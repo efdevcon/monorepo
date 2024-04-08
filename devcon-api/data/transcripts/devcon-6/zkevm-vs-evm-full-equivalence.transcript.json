@@ -1,0 +1,4454 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,320"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14320
+			},
+			"text": " Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,320",
+				"to": "00:00:15,760"
+			},
+			"offsets": {
+				"from": 14320,
+				"to": 15760
+			},
+			"text": " First of all, I would like to thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,760",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 15760,
+				"to": 17600
+			},
+			"text": " to the DEPCON organizers for giving me"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:19,760"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 19760
+			},
+			"text": " the chance to do this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,760",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 19760,
+				"to": 22920
+			},
+			"text": " And also, thank you, all of you for attending the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:24,600"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 24600
+			},
+			"text": " My name is Ignacio Ramos."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,600",
+				"to": "00:00:27,240"
+			},
+			"offsets": {
+				"from": 24600,
+				"to": 27240
+			},
+			"text": " I work for Polygon CKVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,240",
+				"to": "00:00:30,400"
+			},
+			"offsets": {
+				"from": 27240,
+				"to": 30400
+			},
+			"text": " And I am at the protocol team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,400",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 30400,
+				"to": 32640
+			},
+			"text": " It's been a year, a year and a half"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:37,680"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 37680
+			},
+			"text": " that we've been working very hard to release the CKVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,680",
+				"to": "00:00:41,280"
+			},
+			"offsets": {
+				"from": 37680,
+				"to": 41280
+			},
+			"text": " I am very happy and very proud to announce that on Monday."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,280",
+				"to": "00:00:45,440"
+			},
+			"offsets": {
+				"from": 41280,
+				"to": 45440
+			},
+			"text": " It was announced the release of the CKVM on public internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,440",
+				"to": "00:00:48,240"
+			},
+			"offsets": {
+				"from": 45440,
+				"to": 48240
+			},
+			"text": " So I would ask you to do an applause for all the Polygon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,240",
+				"to": "00:00:50,880"
+			},
+			"offsets": {
+				"from": 48240,
+				"to": 50880
+			},
+			"text": " team that they did that effort that it's in almost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,880",
+				"to": "00:00:51,680"
+			},
+			"offsets": {
+				"from": 50880,
+				"to": 51680
+			},
+			"text": " So thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,680",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 51680,
+				"to": 54000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,960",
+				"to": "00:00:58,960"
+			},
+			"offsets": {
+				"from": 56960,
+				"to": 58960
+			},
+			"text": " The detail of the presentation is CKVM best"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,960",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 58960,
+				"to": 61880
+			},
+			"text": " for CBM, full equivalence."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:02,720"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 62720
+			},
+			"text": " OK, so a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,720",
+				"to": "00:01:04,240"
+			},
+			"offsets": {
+				"from": 62720,
+				"to": 64240
+			},
+			"text": " What are we going to talk about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,240",
+				"to": "00:01:07,640"
+			},
+			"offsets": {
+				"from": 64240,
+				"to": 67640
+			},
+			"text": " First of all, I will do an overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,640",
+				"to": "00:01:10,080"
+			},
+			"offsets": {
+				"from": 67640,
+				"to": 70080
+			},
+			"text": " to give some context about what is a CKVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,080",
+				"to": "00:01:13,560"
+			},
+			"offsets": {
+				"from": 70080,
+				"to": 73560
+			},
+			"text": " And then I will go more concrete on what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,560",
+				"to": "00:01:16,360"
+			},
+			"offsets": {
+				"from": 73560,
+				"to": 76360
+			},
+			"text": " is the Polygon CKVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,360",
+				"to": "00:01:19,160"
+			},
+			"offsets": {
+				"from": 76360,
+				"to": 79160
+			},
+			"text": " After that, we will go to the topic of the talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,160",
+				"to": "00:01:22,760"
+			},
+			"offsets": {
+				"from": 79160,
+				"to": 82760
+			},
+			"text": " which is the difference between the CKVM, the Polygon's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,760",
+				"to": "00:01:25,680"
+			},
+			"offsets": {
+				"from": 82760,
+				"to": 85680
+			},
+			"text": " CKVM, and the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,680",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85680,
+				"to": 89000
+			},
+			"text": " So what is a CKVM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:31,720"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 91720
+			},
+			"text": " Well, they are here at the three statements"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,720",
+				"to": "00:01:35,440"
+			},
+			"offsets": {
+				"from": 91720,
+				"to": 95440
+			},
+			"text": " that I think that they define the minimum of a CKVM, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,440",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 95440,
+				"to": 96960
+			},
+			"text": " is that it is a virtual machine that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:40,560"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 100560
+			},
+			"text": " executes smart contracts in a way that is compatible with zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,560",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 100560,
+				"to": 102320
+			},
+			"text": " and all that proof computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:44,720"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 104720
+			},
+			"text": " And why would we like to do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,720",
+				"to": "00:01:47,240"
+			},
+			"offsets": {
+				"from": 104720,
+				"to": 107240
+			},
+			"text": " Because what we're doing is scale Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,240",
+				"to": "00:01:49,960"
+			},
+			"offsets": {
+				"from": 107240,
+				"to": 109960
+			},
+			"text": " We want to increase the throughput of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,960",
+				"to": "00:01:53,640"
+			},
+			"offsets": {
+				"from": 109960,
+				"to": 113640
+			},
+			"text": " the transactions per second, at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,640",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 113640,
+				"to": 115960
+			},
+			"text": " that we lower the fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:01:57,640"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 117640
+			},
+			"text": " So how can we do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,640",
+				"to": "00:02:01,520"
+			},
+			"offsets": {
+				"from": 117640,
+				"to": 121520
+			},
+			"text": " We use CKIS-NART technology to make cryptographic proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,520",
+				"to": "00:02:06,040"
+			},
+			"offsets": {
+				"from": 121520,
+				"to": 126040
+			},
+			"text": " of execution of Ethereum-like transactions in a summary."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,040",
+				"to": "00:02:10,040"
+			},
+			"offsets": {
+				"from": 126040,
+				"to": 130040
+			},
+			"text": " Now, when you process a batch with a lot of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,040",
+				"to": "00:02:10,800"
+			},
+			"offsets": {
+				"from": 130040,
+				"to": 130800
+			},
+			"text": " you get an result."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,800",
+				"to": "00:02:11,400"
+			},
+			"offsets": {
+				"from": 130800,
+				"to": 131400
+			},
+			"text": " You get an output."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,400",
+				"to": "00:02:12,640"
+			},
+			"offsets": {
+				"from": 131400,
+				"to": 132640
+			},
+			"text": " You get an estate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,640",
+				"to": "00:02:16,200"
+			},
+			"offsets": {
+				"from": 132640,
+				"to": 136200
+			},
+			"text": " So how can other people, how can other ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,200",
+				"to": "00:02:20,520"
+			},
+			"offsets": {
+				"from": 136200,
+				"to": 140520
+			},
+			"text": " to address you that this process, this process of the batch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,520",
+				"to": "00:02:24,280"
+			},
+			"offsets": {
+				"from": 140520,
+				"to": 144280
+			},
+			"text": " has been done with correctness, has been done correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,280",
+				"to": "00:02:26,560"
+			},
+			"offsets": {
+				"from": 144280,
+				"to": 146560
+			},
+			"text": " following the EVM constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,560",
+				"to": "00:02:29,440"
+			},
+			"offsets": {
+				"from": 146560,
+				"to": 149440
+			},
+			"text": " They have to process also those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,440",
+				"to": "00:02:31,480"
+			},
+			"offsets": {
+				"from": 149440,
+				"to": 151480
+			},
+			"text": " and see that the output is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,480",
+				"to": "00:02:36,080"
+			},
+			"offsets": {
+				"from": 151480,
+				"to": 156080
+			},
+			"text": " With zero knowledge proofs, we can do it easily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,080",
+				"to": "00:02:39,760"
+			},
+			"offsets": {
+				"from": 156080,
+				"to": 159760
+			},
+			"text": " because we can, after processing all those transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,760",
+				"to": "00:02:41,920"
+			},
+			"offsets": {
+				"from": 159760,
+				"to": 161920
+			},
+			"text": " create a zero knowledge proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,920",
+				"to": "00:02:44,840"
+			},
+			"offsets": {
+				"from": 161920,
+				"to": 164840
+			},
+			"text": " And if someone wants to validate that these transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,840",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164840,
+				"to": 167000
+			},
+			"text": " have been processed correctly following"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,160"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170160
+			},
+			"text": " the constraints of the EVM, the only of the CKVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,160",
+				"to": "00:02:54,720"
+			},
+			"offsets": {
+				"from": 170160,
+				"to": 174720
+			},
+			"text": " in this case, they only have to verify that proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,720",
+				"to": "00:02:55,640"
+			},
+			"offsets": {
+				"from": 174720,
+				"to": 175640
+			},
+			"text": " And this is faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,640",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 175640,
+				"to": 178840
+			},
+			"text": " Also the verification of a proof, it's always constant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:02:59,880"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 179880
+			},
+			"text": " which is very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,880",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179880,
+				"to": 184000
+			},
+			"text": " Actually, this is like a game changer in the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,760"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187760
+			},
+			"text": " I remember it was around the SEC"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,760",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 187760,
+				"to": 190240
+			},
+			"text": " that a lot of companies were doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 193160
+			},
+			"text": " like realist announcements of releases of CKVMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:16,360"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 196360
+			},
+			"text": " And it created a lot of noise, especially in social media"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:18,040"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 198040
+			},
+			"text": " and many places."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,040",
+				"to": "00:03:19,320"
+			},
+			"offsets": {
+				"from": 198040,
+				"to": 199320
+			},
+			"text": " And a lot of people was very confused,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,320",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 199320,
+				"to": 201840
+			},
+			"text": " because a lot of new words appeared there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:25,640"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 205640
+			},
+			"text": " like compatibility, equivalence, what is the proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,640",
+				"to": "00:03:27,520"
+			},
+			"offsets": {
+				"from": 205640,
+				"to": 207520
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,520",
+				"to": "00:03:30,120"
+			},
+			"offsets": {
+				"from": 207520,
+				"to": 210120
+			},
+			"text": " But luckily we have like Vitalik that he did"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,120",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 210120,
+				"to": 211600
+			},
+			"text": " a very interesting blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:34,440"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 214440
+			},
+			"text": " I actually I strongly recommend it to read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,440",
+				"to": "00:03:37,120"
+			},
+			"offsets": {
+				"from": 214440,
+				"to": 217120
+			},
+			"text": " When he classified the CKVM seem five times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,120",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 217120,
+				"to": 220840
+			},
+			"text": " He created what I like to say like the CKVM dilemma."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:42,960"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 222960
+			},
+			"text": " Like if you have more performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,960",
+				"to": "00:03:44,200"
+			},
+			"offsets": {
+				"from": 222960,
+				"to": 224200
+			},
+			"text": " you have less compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,200",
+				"to": "00:03:46,200"
+			},
+			"offsets": {
+				"from": 224200,
+				"to": 226200
+			},
+			"text": " And if you try to have more compatibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,200",
+				"to": "00:03:48,680"
+			},
+			"offsets": {
+				"from": 226200,
+				"to": 228680
+			},
+			"text": " you will have less performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,680",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228680,
+				"to": 232000
+			},
+			"text": " Actually at Polygon CKVM, we aim to be from Type 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 237200
+			},
+			"text": " We are not there yet, because we still have to finish"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,200",
+				"to": "00:04:00,040"
+			},
+			"offsets": {
+				"from": 237200,
+				"to": 240040
+			},
+			"text": " the precompiles, but we will be there very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,040",
+				"to": "00:04:01,960"
+			},
+			"offsets": {
+				"from": 240040,
+				"to": 241960
+			},
+			"text": " I thought we had liked 2.2."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,960",
+				"to": "00:04:03,800"
+			},
+			"offsets": {
+				"from": 241960,
+				"to": 243800
+			},
+			"text": " So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,800",
+				"to": "00:04:09,560"
+			},
+			"offsets": {
+				"from": 243800,
+				"to": 249560
+			},
+			"text": " the advantage of this Type 2"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,560",
+				"to": "00:04:11,480"
+			},
+			"offsets": {
+				"from": 249560,
+				"to": 251480
+			},
+			"text": " is that it has a lot of compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,480",
+				"to": "00:04:15,880"
+			},
+			"offsets": {
+				"from": 251480,
+				"to": 255880
+			},
+			"text": " It has as much compatibility that we can talk about equivalence."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,880",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 255880,
+				"to": 258080
+			},
+			"text": " That is advantage is the performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:21,840"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 261840
+			},
+			"text": " And Vitalik, of course, he said that it takes like a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,840",
+				"to": "00:04:23,440"
+			},
+			"offsets": {
+				"from": 261840,
+				"to": 263440
+			},
+			"text": " to generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,440",
+				"to": "00:04:24,480"
+			},
+			"offsets": {
+				"from": 263440,
+				"to": 264480
+			},
+			"text": " Well, this is a bit relative."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,480",
+				"to": "00:04:26,680"
+			},
+			"offsets": {
+				"from": 264480,
+				"to": 266680
+			},
+			"text": " I mean, what is a lot of time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,680",
+				"to": "00:04:29,360"
+			},
+			"offsets": {
+				"from": 266680,
+				"to": 269360
+			},
+			"text": " Now we are generating proof in around five minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,360",
+				"to": "00:04:31,640"
+			},
+			"offsets": {
+				"from": 269360,
+				"to": 271640
+			},
+			"text": " but we still know how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,640",
+				"to": "00:04:34,240"
+			},
+			"offsets": {
+				"from": 271640,
+				"to": 274240
+			},
+			"text": " And we have a lot of ideas in mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,240",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 274240,
+				"to": 276880
+			},
+			"text": " on how to reduce these two up to five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:41,040"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 281040
+			},
+			"text": " And also, it's not that big problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,040",
+				"to": "00:04:44,320"
+			},
+			"offsets": {
+				"from": 281040,
+				"to": 284320
+			},
+			"text": " because you also can like parallelize the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,320",
+				"to": "00:04:47,840"
+			},
+			"offsets": {
+				"from": 284320,
+				"to": 287840
+			},
+			"text": " First of all, I would like to explain very simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,840",
+				"to": "00:04:49,400"
+			},
+			"offsets": {
+				"from": 287840,
+				"to": 289400
+			},
+			"text": " when we talk about equivalence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,400",
+				"to": "00:04:50,760"
+			},
+			"offsets": {
+				"from": 289400,
+				"to": 290760
+			},
+			"text": " what are we talking about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,760",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 290760,
+				"to": 293560
+			},
+			"text": " We're talking about that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:56,160"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 296160
+			},
+			"text": " putting the batch of transactions in the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,160",
+				"to": "00:04:58,160"
+			},
+			"offsets": {
+				"from": 296160,
+				"to": 298160
+			},
+			"text": " and putting exactly the same batch of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,160",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 298160,
+				"to": 301480
+			},
+			"text": " on the same block or whatever, to the ZKVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:03,080"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 303080
+			},
+			"text": " and get the same state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,080",
+				"to": "00:05:05,960"
+			},
+			"offsets": {
+				"from": 303080,
+				"to": 305960
+			},
+			"text": " And when I say state, it's like the same state route."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,960",
+				"to": "00:05:08,280"
+			},
+			"offsets": {
+				"from": 305960,
+				"to": 308280
+			},
+			"text": " And when they have like the same state route,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,280",
+				"to": "00:05:11,400"
+			},
+			"offsets": {
+				"from": 308280,
+				"to": 311400
+			},
+			"text": " it means that the storage, the state of the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,400",
+				"to": "00:05:12,840"
+			},
+			"offsets": {
+				"from": 311400,
+				"to": 312840
+			},
+			"text": " is exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,840",
+				"to": "00:05:15,960"
+			},
+			"offsets": {
+				"from": 312840,
+				"to": 315960
+			},
+			"text": " It means that all the accounts have the same balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,960",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 315960,
+				"to": 317560
+			},
+			"text": " with the same knowns, with the same bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:19,720"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 319720
+			},
+			"text": " with the same storage, with whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,720",
+				"to": "00:05:21,080"
+			},
+			"offsets": {
+				"from": 319720,
+				"to": 321080
+			},
+			"text": " They are exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,080",
+				"to": "00:05:24,480"
+			},
+			"offsets": {
+				"from": 321080,
+				"to": 324480
+			},
+			"text": " So, are different black boxes, because internally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,480",
+				"to": "00:05:27,440"
+			},
+			"offsets": {
+				"from": 324480,
+				"to": 327440
+			},
+			"text": " they work differently, but the equivalence means that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,440",
+				"to": "00:05:31,400"
+			},
+			"offsets": {
+				"from": 327440,
+				"to": 331400
+			},
+			"text": " for the same input, they have the same output."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,400",
+				"to": "00:05:33,880"
+			},
+			"offsets": {
+				"from": 331400,
+				"to": 333880
+			},
+			"text": " I could be like a lot of time explaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,880",
+				"to": "00:05:35,720"
+			},
+			"offsets": {
+				"from": 333880,
+				"to": 335720
+			},
+			"text": " how we've done it, and there's people here sitting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,720",
+				"to": "00:05:38,720"
+			},
+			"offsets": {
+				"from": 335720,
+				"to": 338720
+			},
+			"text": " that could explain it by far better than me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,720",
+				"to": "00:05:42,720"
+			},
+			"offsets": {
+				"from": 338720,
+				"to": 342720
+			},
+			"text": " So, I just do like some sentence sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,720",
+				"to": "00:05:43,680"
+			},
+			"offsets": {
+				"from": 342720,
+				"to": 343680
+			},
+			"text": " just to put some context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,680",
+				"to": "00:05:46,160"
+			},
+			"offsets": {
+				"from": 343680,
+				"to": 346160
+			},
+			"text": " also it's not the topic of the talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,160",
+				"to": "00:05:48,600"
+			},
+			"offsets": {
+				"from": 346160,
+				"to": 348600
+			},
+			"text": " but we can discuss about it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,600",
+				"to": "00:05:51,960"
+			},
+			"offsets": {
+				"from": 348600,
+				"to": 351960
+			},
+			"text": " But at the end, what we're doing is a processor, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,960",
+				"to": "00:05:54,360"
+			},
+			"offsets": {
+				"from": 351960,
+				"to": 354360
+			},
+			"text": " And a processor has clocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,360",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 354360,
+				"to": 357520
+			},
+			"text": " So, each clock is like a new state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:06:01,520"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 361520
+			},
+			"text": " and we're playing with these new states as steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,520",
+				"to": "00:06:06,520"
+			},
+			"offsets": {
+				"from": 361520,
+				"to": 366520
+			},
+			"text": " So, as all processors, you can build an assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,520",
+				"to": "00:06:07,880"
+			},
+			"offsets": {
+				"from": 366520,
+				"to": 367880
+			},
+			"text": " at the top of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,880",
+				"to": "00:06:10,120"
+			},
+			"offsets": {
+				"from": 367880,
+				"to": 370120
+			},
+			"text": " You can build an assembly language"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,120",
+				"to": "00:06:12,480"
+			},
+			"offsets": {
+				"from": 370120,
+				"to": 372480
+			},
+			"text": " to define these steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,480",
+				"to": "00:06:14,120"
+			},
+			"offsets": {
+				"from": 372480,
+				"to": 374120
+			},
+			"text": " And this is what we've done with a language"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,120",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 374120,
+				"to": 375920
+			},
+			"text": " called ZK assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:19,200"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 379200
+			},
+			"text": " With ZK assembly, we try to replicate the behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,200",
+				"to": "00:06:22,520"
+			},
+			"offsets": {
+				"from": 379200,
+				"to": 382520
+			},
+			"text": " of the EVM in an assembly language."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,520",
+				"to": "00:06:24,440"
+			},
+			"offsets": {
+				"from": 382520,
+				"to": 384440
+			},
+			"text": " When this assembly language is completed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,440",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 384440,
+				"to": 387920
+			},
+			"text": " it creates like a build, which is a big trace"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:32,600"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 392600
+			},
+			"text": " of all the steps that will define the processor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,600",
+				"to": "00:06:35,560"
+			},
+			"offsets": {
+				"from": 392600,
+				"to": 395560
+			},
+			"text": " On the other hand, we have the build,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,560",
+				"to": "00:06:37,600"
+			},
+			"offsets": {
+				"from": 395560,
+				"to": 397600
+			},
+			"text": " the polynomial identity language with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,600",
+				"to": "00:06:41,400"
+			},
+			"offsets": {
+				"from": 397600,
+				"to": 401400
+			},
+			"text": " it's like one step more of CICOM 2.0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,400",
+				"to": "00:06:42,840"
+			},
+			"offsets": {
+				"from": 401400,
+				"to": 402840
+			},
+			"text": " it's also a language done by,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,840",
+				"to": "00:06:44,780"
+			},
+			"offsets": {
+				"from": 402840,
+				"to": 404780
+			},
+			"text": " or the tag lead, Jordi Valena."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,880",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 405880,
+				"to": 409680
+			},
+			"text": " And what the executor does is that he gets the ROM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:51,640"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 411640
+			},
+			"text": " which is the build of the ZK assembly language"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,640",
+				"to": "00:06:52,840"
+			},
+			"offsets": {
+				"from": 411640,
+				"to": 412840
+			},
+			"text": " that I just explained it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,840",
+				"to": "00:06:55,360"
+			},
+			"offsets": {
+				"from": 412840,
+				"to": 415360
+			},
+			"text": " He also uses the pill where there are the state machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,360",
+				"to": "00:06:57,600"
+			},
+			"offsets": {
+				"from": 415360,
+				"to": 417600
+			},
+			"text": " of Ethereum defined there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,600",
+				"to": "00:07:01,120"
+			},
+			"offsets": {
+				"from": 417600,
+				"to": 421120
+			},
+			"text": " and he like verifies the correctness"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,120",
+				"to": "00:07:03,840"
+			},
+			"offsets": {
+				"from": 421120,
+				"to": 423840
+			},
+			"text": " of each one of the steps of the ROM"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,840",
+				"to": "00:07:06,520"
+			},
+			"offsets": {
+				"from": 423840,
+				"to": 426520
+			},
+			"text": " while it process the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,520",
+				"to": "00:07:09,920"
+			},
+			"offsets": {
+				"from": 426520,
+				"to": 429920
+			},
+			"text": " So, more or less, this is how it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,920",
+				"to": "00:07:12,640"
+			},
+			"offsets": {
+				"from": 429920,
+				"to": 432640
+			},
+			"text": " like I'm just scrubbing the surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,640",
+				"to": "00:07:14,760"
+			},
+			"offsets": {
+				"from": 432640,
+				"to": 434760
+			},
+			"text": " That this is how it works at the ZKVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,760",
+				"to": "00:07:18,080"
+			},
+			"offsets": {
+				"from": 435760,
+				"to": 438080
+			},
+			"text": " And of course, as all other processors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,080",
+				"to": "00:07:20,560"
+			},
+			"offsets": {
+				"from": 438080,
+				"to": 440560
+			},
+			"text": " we also have a RAM and a storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,560",
+				"to": "00:07:22,920"
+			},
+			"offsets": {
+				"from": 440560,
+				"to": 442920
+			},
+			"text": " Now, let's talk about the variances"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,920",
+				"to": "00:07:25,600"
+			},
+			"offsets": {
+				"from": 442920,
+				"to": 445600
+			},
+			"text": " between both of the EVMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,600",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 445600,
+				"to": 449840
+			},
+			"text": " As you may know, the EVMs uses a Pateremergal tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:32,520"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 452520
+			},
+			"text": " while we are using a sparse Emmergal tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,520",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 452520,
+				"to": 453960
+			},
+			"text": " where the leaves are indexed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:37,280"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 457280
+			},
+			"text": " In each leaf of the EVM, we store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,280",
+				"to": "00:07:38,520"
+			},
+			"offsets": {
+				"from": 457280,
+				"to": 458520
+			},
+			"text": " well, it just store it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,520",
+				"to": "00:07:42,360"
+			},
+			"offsets": {
+				"from": 458520,
+				"to": 462360
+			},
+			"text": " it just store all the information of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,360",
+				"to": "00:07:44,600"
+			},
+			"offsets": {
+				"from": 462360,
+				"to": 464600
+			},
+			"text": " They have the nodes, the balance, the storage root,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,600",
+				"to": "00:07:45,880"
+			},
+			"offsets": {
+				"from": 464600,
+				"to": 465880
+			},
+			"text": " and the goddess hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,880",
+				"to": "00:07:48,080"
+			},
+			"offsets": {
+				"from": 465880,
+				"to": 468080
+			},
+			"text": " But we are doing it differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,080",
+				"to": "00:07:49,240"
+			},
+			"offsets": {
+				"from": 468080,
+				"to": 469240
+			},
+			"text": " We are doing it differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,240",
+				"to": "00:07:53,160"
+			},
+			"offsets": {
+				"from": 469240,
+				"to": 473160
+			},
+			"text": " On each leaf, we only store one property of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,160",
+				"to": "00:07:55,360"
+			},
+			"offsets": {
+				"from": 473160,
+				"to": 475360
+			},
+			"text": " So this brings me to the second difference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,360",
+				"to": "00:07:57,120"
+			},
+			"offsets": {
+				"from": 475360,
+				"to": 477120
+			},
+			"text": " which is the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,120",
+				"to": "00:08:01,160"
+			},
+			"offsets": {
+				"from": 477120,
+				"to": 481160
+			},
+			"text": " For the EVM, it's used the K-TAC."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,160",
+				"to": "00:08:02,640"
+			},
+			"offsets": {
+				"from": 481160,
+				"to": 482640
+			},
+			"text": " But we are using the Poseidon"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,640",
+				"to": "00:08:05,240"
+			},
+			"offsets": {
+				"from": 482640,
+				"to": 485240
+			},
+			"text": " with the Galalog prime number as the Finit field."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,240",
+				"to": "00:08:07,920"
+			},
+			"offsets": {
+				"from": 485240,
+				"to": 487920
+			},
+			"text": " This is for performance reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,920",
+				"to": "00:08:12,920"
+			},
+			"offsets": {
+				"from": 487920,
+				"to": 492920
+			},
+			"text": " So, when on Ethereum, you want to get the key of a leaf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 496560
+			},
+			"text": " you have to hash the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 499480
+			},
+			"text": " But as we only country three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:21,640"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 501640
+			},
+			"text": " like one property of the account, for each leaf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,640",
+				"to": "00:08:25,040"
+			},
+			"offsets": {
+				"from": 501640,
+				"to": 505040
+			},
+			"text": " we have to hash the address with a property key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,040",
+				"to": "00:08:27,320"
+			},
+			"offsets": {
+				"from": 505040,
+				"to": 507320
+			},
+			"text": " For example, if we hash the Ethereum address"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,320",
+				"to": "00:08:28,800"
+			},
+			"offsets": {
+				"from": 507320,
+				"to": 508800
+			},
+			"text": " with the property key of balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,800",
+				"to": "00:08:32,120"
+			},
+			"offsets": {
+				"from": 508800,
+				"to": 512120
+			},
+			"text": " we will get the leaf where it's stored at the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,120",
+				"to": "00:08:37,880"
+			},
+			"offsets": {
+				"from": 512120,
+				"to": 517880
+			},
+			"text": " Another difference is that Ethereum uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,880",
+				"to": "00:08:42,760"
+			},
+			"offsets": {
+				"from": 517880,
+				"to": 522760
+			},
+			"text": " more than one tree to define all the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,760",
+				"to": "00:08:44,880"
+			},
+			"offsets": {
+				"from": 522760,
+				"to": 524880
+			},
+			"text": " So you can see here, in one of the leaves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,880",
+				"to": "00:08:46,320"
+			},
+			"offsets": {
+				"from": 524880,
+				"to": 526320
+			},
+			"text": " there's the store at root."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,320",
+				"to": "00:08:50,680"
+			},
+			"offsets": {
+				"from": 526320,
+				"to": 530680
+			},
+			"text": " The store at root points to a different state tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,680",
+				"to": "00:08:52,880"
+			},
+			"offsets": {
+				"from": 530680,
+				"to": 532880
+			},
+			"text": " where the store at is stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,880",
+				"to": "00:08:53,960"
+			},
+			"offsets": {
+				"from": 532880,
+				"to": 533960
+			},
+			"text": " We are doing it differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,960",
+				"to": "00:08:57,240"
+			},
+			"offsets": {
+				"from": 533960,
+				"to": 537240
+			},
+			"text": " We only have one tree that defines the whole system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,240",
+				"to": "00:08:59,760"
+			},
+			"offsets": {
+				"from": 537240,
+				"to": 539760
+			},
+			"text": " Another difference is the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,760",
+				"to": "00:09:07,640"
+			},
+			"offsets": {
+				"from": 539760,
+				"to": 547640
+			},
+			"text": " The EVM uses for just a lot of memory, eight bits, one byte."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,640",
+				"to": "00:09:12,200"
+			},
+			"offsets": {
+				"from": 547640,
+				"to": 552200
+			},
+			"text": " And we are using 250 C bits, let's say 32 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,200",
+				"to": "00:09:16,200"
+			},
+			"offsets": {
+				"from": 552200,
+				"to": 556200
+			},
+			"text": " So we are working with a bigger memory slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,200",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 556200,
+				"to": 561200
+			},
+			"text": " This makes that when you are quiting to the memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:24,800"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 564800
+			},
+			"text": " the information that you get, it's the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,800",
+				"to": "00:09:26,600"
+			},
+			"offsets": {
+				"from": 564800,
+				"to": 566600
+			},
+			"text": " But the way that you obtain the information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,600",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 566600,
+				"to": 567440
+			},
+			"text": " it's a bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:31,920"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 571920
+			},
+			"text": " I mean, the internal logic of some of codes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,920",
+				"to": "00:09:33,120"
+			},
+			"offsets": {
+				"from": 571920,
+				"to": 573120
+			},
+			"text": " had to be changed a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,120",
+				"to": "00:09:37,040"
+			},
+			"offsets": {
+				"from": 573120,
+				"to": 577040
+			},
+			"text": " I will show you an example now, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,040",
+				"to": "00:09:38,440"
+			},
+			"offsets": {
+				"from": 577040,
+				"to": 578440
+			},
+			"text": " for the code MLoad."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:43,520"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 583520
+			},
+			"text": " We download you load 32 bytes from the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,520",
+				"to": "00:09:46,160"
+			},
+			"offsets": {
+				"from": 583520,
+				"to": 586160
+			},
+			"text": " So, well, there are different cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,160",
+				"to": "00:09:48,600"
+			},
+			"offsets": {
+				"from": 586160,
+				"to": 588600
+			},
+			"text": " some are more tricky than the other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,600",
+				"to": "00:09:51,360"
+			},
+			"offsets": {
+				"from": 588600,
+				"to": 591360
+			},
+			"text": " This is this one, when you want to get just 32 bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,360",
+				"to": "00:09:55,400"
+			},
+			"offsets": {
+				"from": 591360,
+				"to": 595400
+			},
+			"text": " users are scored it, and you have to return the full slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,400",
+				"to": "00:09:56,560"
+			},
+			"offsets": {
+				"from": 595400,
+				"to": 596560
+			},
+			"text": " In our case, it's the full slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,560",
+				"to": "00:09:58,800"
+			},
+			"offsets": {
+				"from": 596560,
+				"to": 598800
+			},
+			"text": " because we have a slot of 32 bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,800",
+				"to": "00:10:01,160"
+			},
+			"offsets": {
+				"from": 598800,
+				"to": 601160
+			},
+			"text": " the full slot of the memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,160",
+				"to": "00:10:03,280"
+			},
+			"offsets": {
+				"from": 601160,
+				"to": 603280
+			},
+			"text": " In case of the offset is different from zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,280",
+				"to": "00:10:06,840"
+			},
+			"offsets": {
+				"from": 603280,
+				"to": 606840
+			},
+			"text": " when I say different from zero, I'm talking about more 32."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,840",
+				"to": "00:10:10,680"
+			},
+			"offsets": {
+				"from": 606840,
+				"to": 610680
+			},
+			"text": " It means that the beginning of the slot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,680",
+				"to": "00:10:12,160"
+			},
+			"offsets": {
+				"from": 610680,
+				"to": 612160
+			},
+			"text": " is not the beginning of the memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,160",
+				"to": "00:10:13,880"
+			},
+			"offsets": {
+				"from": 612160,
+				"to": 613880
+			},
+			"text": " that you want to retrieve."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,880",
+				"to": "00:10:16,080"
+			},
+			"offsets": {
+				"from": 613880,
+				"to": 616080
+			},
+			"text": " Maybe you will have to get half of the memory"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,080",
+				"to": "00:10:19,520"
+			},
+			"offsets": {
+				"from": 616080,
+				"to": 619520
+			},
+			"text": " from one slot and half of the memory of the next slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,520",
+				"to": "00:10:23,120"
+			},
+			"offsets": {
+				"from": 619520,
+				"to": 623120
+			},
+			"text": " And it gets a bit more tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,120",
+				"to": "00:10:28,760"
+			},
+			"offsets": {
+				"from": 623120,
+				"to": 628760
+			},
+			"text": " Sorry, when you want to retrieve more than 32 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,760",
+				"to": "00:10:32,200"
+			},
+			"offsets": {
+				"from": 628760,
+				"to": 632200
+			},
+			"text": " In this case, for example, more or less than 32 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,200",
+				"to": "00:10:33,520"
+			},
+			"offsets": {
+				"from": 632200,
+				"to": 633520
+			},
+			"text": " In the first case, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,520",
+				"to": "00:10:36,960"
+			},
+			"offsets": {
+				"from": 633520,
+				"to": 636960
+			},
+			"text": " we are only retrieving some bytes of one slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,960",
+				"to": "00:10:41,400"
+			},
+			"offsets": {
+				"from": 636960,
+				"to": 641400
+			},
+			"text": " In the second case, just the bytes in the middle"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,400",
+				"to": "00:10:43,440"
+			},
+			"offsets": {
+				"from": 641400,
+				"to": 643440
+			},
+			"text": " of the slot, and in the third case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,440",
+				"to": "00:10:46,040"
+			},
+			"offsets": {
+				"from": 643440,
+				"to": 646040
+			},
+			"text": " it's like if you want to do it with our offset"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,040",
+				"to": "00:10:48,760"
+			},
+			"offsets": {
+				"from": 646040,
+				"to": 648760
+			},
+			"text": " different from zero, and also more than 32 bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,760",
+				"to": "00:10:51,160"
+			},
+			"offsets": {
+				"from": 648760,
+				"to": 651160
+			},
+			"text": " then maybe you have to get some bytes from one slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,160",
+				"to": "00:10:54,200"
+			},
+			"offsets": {
+				"from": 651160,
+				"to": 654200
+			},
+			"text": " then get the whole byte of the following three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,200",
+				"to": "00:10:56,680"
+			},
+			"offsets": {
+				"from": 654200,
+				"to": 656680
+			},
+			"text": " four, five slot, whatever the length is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,680",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 656680,
+				"to": 659680
+			},
+			"text": " and some bytes from the last slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:02,240"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 662240
+			},
+			"text": " The secret counters, yeah, is another difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,240",
+				"to": "00:11:05,200"
+			},
+			"offsets": {
+				"from": 662240,
+				"to": 665200
+			},
+			"text": " Probably this is very new for a lot of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,200",
+				"to": "00:11:10,840"
+			},
+			"offsets": {
+				"from": 665200,
+				"to": 670840
+			},
+			"text": " I will say that the behavior is like gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,840",
+				"to": "00:11:12,600"
+			},
+			"offsets": {
+				"from": 670840,
+				"to": 672600
+			},
+			"text": " but it doesn't replay gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,600",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 672600,
+				"to": 674000
+			},
+			"text": " I mean, we are computing the gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:16,720"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 676720
+			},
+			"text": " exactly the same way as Ethereum does."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,720",
+				"to": "00:11:20,400"
+			},
+			"offsets": {
+				"from": 676720,
+				"to": 680400
+			},
+			"text": " But as I said before, we have like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,400",
+				"to": "00:11:23,880"
+			},
+			"offsets": {
+				"from": 680400,
+				"to": 683880
+			},
+			"text": " a limited number of steps in the processor, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,880",
+				"to": "00:11:27,640"
+			},
+			"offsets": {
+				"from": 683880,
+				"to": 687640
+			},
+			"text": " So when you are processing a byte,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,640",
+				"to": "00:11:29,680"
+			},
+			"offsets": {
+				"from": 687640,
+				"to": 689680
+			},
+			"text": " you have a limited number of steps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,680",
+				"to": "00:11:31,560"
+			},
+			"offsets": {
+				"from": 689680,
+				"to": 691560
+			},
+			"text": " and also you have a limited number"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,560",
+				"to": "00:11:33,760"
+			},
+			"offsets": {
+				"from": 691560,
+				"to": 693760
+			},
+			"text": " of state machines that you can consume"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,760",
+				"to": "00:11:37,240"
+			},
+			"offsets": {
+				"from": 693760,
+				"to": 697240
+			},
+			"text": " while doing an off-code or an operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,240",
+				"to": "00:11:40,200"
+			},
+			"offsets": {
+				"from": 697240,
+				"to": 700200
+			},
+			"text": " So in our implementation of the ZKVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,200",
+				"to": "00:11:43,040"
+			},
+			"offsets": {
+				"from": 700200,
+				"to": 703040
+			},
+			"text": " I will show an example just after this slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,040",
+				"to": "00:11:45,800"
+			},
+			"offsets": {
+				"from": 703040,
+				"to": 705800
+			},
+			"text": " we have to check that we have enough counters"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,800",
+				"to": "00:11:47,400"
+			},
+			"offsets": {
+				"from": 705800,
+				"to": 707400
+			},
+			"text": " to process that off-code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,400",
+				"to": "00:11:52,040"
+			},
+			"offsets": {
+				"from": 707400,
+				"to": 712040
+			},
+			"text": " If we go out of counters, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,040",
+				"to": "00:11:55,920"
+			},
+			"offsets": {
+				"from": 712040,
+				"to": 715920
+			},
+			"text": " the ZKVM throws an error, which is out of counters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,920",
+				"to": "00:11:59,760"
+			},
+			"offsets": {
+				"from": 715920,
+				"to": 719760
+			},
+			"text": " this error is not user fault, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,760",
+				"to": "00:12:01,880"
+			},
+			"offsets": {
+				"from": 719760,
+				"to": 721880
+			},
+			"text": " It's like a fault of the executor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,880",
+				"to": "00:12:04,920"
+			},
+			"offsets": {
+				"from": 721880,
+				"to": 724920
+			},
+			"text": " but it can be solved easily, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,920",
+				"to": "00:12:06,840"
+			},
+			"offsets": {
+				"from": 724920,
+				"to": 726840
+			},
+			"text": " processing this byte with less transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,840",
+				"to": "00:12:09,880"
+			},
+			"offsets": {
+				"from": 726840,
+				"to": 729880
+			},
+			"text": " because it means that the number of counters"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,880",
+				"to": "00:12:12,280"
+			},
+			"offsets": {
+				"from": 729880,
+				"to": 732280
+			},
+			"text": " to process that byte has been exceed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,280",
+				"to": "00:12:14,440"
+			},
+			"offsets": {
+				"from": 732280,
+				"to": 734440
+			},
+			"text": " Here we have the different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,440",
+				"to": "00:12:16,160"
+			},
+			"offsets": {
+				"from": 734440,
+				"to": 736160
+			},
+			"text": " the name of the fairness state machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,160",
+				"to": "00:12:17,440"
+			},
+			"offsets": {
+				"from": 736160,
+				"to": 737440
+			},
+			"text": " For example, the binary one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,440",
+				"to": "00:12:21,600"
+			},
+			"offsets": {
+				"from": 737440,
+				"to": 741600
+			},
+			"text": " it just consumes when you compute a binary operation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,600",
+				"to": "00:12:23,960"
+			},
+			"offsets": {
+				"from": 741600,
+				"to": 743960
+			},
+			"text": " or the key tag when you do a key tag hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,960",
+				"to": "00:12:28,680"
+			},
+			"offsets": {
+				"from": 743960,
+				"to": 748680
+			},
+			"text": " I will show you an example of an off-code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,680",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 748680,
+				"to": 750920
+			},
+			"text": " It's a widely used off-code, it's the equal one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:33,880"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 753880
+			},
+			"text": " The equal of code, he compares the two last,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,880",
+				"to": "00:12:38,600"
+			},
+			"offsets": {
+				"from": 753880,
+				"to": 758600
+			},
+			"text": " two last ballways in the stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,600",
+				"to": "00:12:40,560"
+			},
+			"offsets": {
+				"from": 758600,
+				"to": 760560
+			},
+			"text": " and takes it there equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,560",
+				"to": "00:12:45,880"
+			},
+			"offsets": {
+				"from": 760560,
+				"to": 765880
+			},
+			"text": " As you can see, this is, this code is from ZKVM assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,880",
+				"to": "00:12:48,280"
+			},
+			"offsets": {
+				"from": 765880,
+				"to": 768280
+			},
+			"text": " As you can see, the first two lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,280",
+				"to": "00:12:50,880"
+			},
+			"offsets": {
+				"from": 768280,
+				"to": 770880
+			},
+			"text": " here I am checking that I have enough counters"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,880",
+				"to": "00:12:52,120"
+			},
+			"offsets": {
+				"from": 770880,
+				"to": 772120
+			},
+			"text": " to process that off-code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,120",
+				"to": "00:12:54,880"
+			},
+			"offsets": {
+				"from": 772120,
+				"to": 774880
+			},
+			"text": " As you can see, the binary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,880",
+				"to": "00:12:57,160"
+			},
+			"offsets": {
+				"from": 774880,
+				"to": 777160
+			},
+			"text": " I'm checking I have at least one binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,600",
+				"to": "00:13:02,160"
+			},
+			"offsets": {
+				"from": 778600,
+				"to": 782160
+			},
+			"text": " counter for the state machine of the one binary counter"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,160",
+				"to": "00:13:03,640"
+			},
+			"offsets": {
+				"from": 782160,
+				"to": 783640
+			},
+			"text": " to process this off-code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,640",
+				"to": "00:13:06,280"
+			},
+			"offsets": {
+				"from": 783640,
+				"to": 786280
+			},
+			"text": " It's because here I use the equal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,280",
+				"to": "00:13:08,520"
+			},
+			"offsets": {
+				"from": 786280,
+				"to": 788520
+			},
+			"text": " and the equal consumes one binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,520",
+				"to": "00:13:11,120"
+			},
+			"offsets": {
+				"from": 788520,
+				"to": 791120
+			},
+			"text": " Also, I check the steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,120",
+				"to": "00:13:13,960"
+			},
+			"offsets": {
+				"from": 791120,
+				"to": 793960
+			},
+			"text": " Each one of the lines of the ZK assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,960",
+				"to": "00:13:16,280"
+			},
+			"offsets": {
+				"from": 793960,
+				"to": 796280
+			},
+			"text": " is a step of the processor."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,280",
+				"to": "00:13:21,200"
+			},
+			"offsets": {
+				"from": 796280,
+				"to": 801200
+			},
+			"text": " Here I put 120, although the number of lines is less."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,200",
+				"to": "00:13:23,720"
+			},
+			"offsets": {
+				"from": 801200,
+				"to": 803720
+			},
+			"text": " It's because I will go to read code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,720",
+				"to": "00:13:25,680"
+			},
+			"offsets": {
+				"from": 803720,
+				"to": 805680
+			},
+			"text": " which means that all the processors have been correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,680",
+				"to": "00:13:27,680"
+			},
+			"offsets": {
+				"from": 805680,
+				"to": 807680
+			},
+			"text": " in the best case scenario,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,680",
+				"to": "00:13:29,320"
+			},
+			"offsets": {
+				"from": 807680,
+				"to": 809320
+			},
+			"text": " but in the worst case scenario,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,320",
+				"to": "00:13:31,640"
+			},
+			"offsets": {
+				"from": 809320,
+				"to": 811640
+			},
+			"text": " I may fall out to a stack on the floor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,640",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 811640,
+				"to": 814000
+			},
+			"text": " or maybe a rough pass, or a stack overflow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:37,280"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 817280
+			},
+			"text": " and I will need some more steps to handle this error."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,280",
+				"to": "00:13:40,400"
+			},
+			"offsets": {
+				"from": 817280,
+				"to": 820400
+			},
+			"text": " We don't use the self-destruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,400",
+				"to": "00:13:42,720"
+			},
+			"offsets": {
+				"from": 820400,
+				"to": 822720
+			},
+			"text": " Actually, this is a difference now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,720",
+				"to": "00:13:47,080"
+			},
+			"offsets": {
+				"from": 822720,
+				"to": 827080
+			},
+			"text": " but we guess that it won't be a difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,080",
+				"to": "00:13:51,160"
+			},
+			"offsets": {
+				"from": 827080,
+				"to": 831160
+			},
+			"text": " in the near future because probably Ethereum will accept"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,160",
+				"to": "00:13:56,160"
+			},
+			"offsets": {
+				"from": 831160,
+				"to": 836160
+			},
+			"text": " the EIP 4.758, where it replaces the self-destruct"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,320",
+				"to": "00:13:58,400"
+			},
+			"offsets": {
+				"from": 836320,
+				"to": 838400
+			},
+			"text": " by send all."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,400",
+				"to": "00:14:01,520"
+			},
+			"offsets": {
+				"from": 838400,
+				"to": 841520
+			},
+			"text": " So we're not using self-destruct from the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,520",
+				"to": "00:14:03,560"
+			},
+			"offsets": {
+				"from": 841520,
+				"to": 843560
+			},
+			"text": " we're using send all, and I'm happy for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,560",
+				"to": "00:14:06,360"
+			},
+			"offsets": {
+				"from": 843560,
+				"to": 846360
+			},
+			"text": " because self-destruct rate a lot of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,360",
+				"to": "00:14:10,040"
+			},
+			"offsets": {
+				"from": 846360,
+				"to": 850040
+			},
+			"text": " What does the send all does?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,040",
+				"to": "00:14:12,520"
+			},
+			"offsets": {
+				"from": 850040,
+				"to": 852520
+			},
+			"text": " Instead of removing the bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,520",
+				"to": "00:14:14,120"
+			},
+			"offsets": {
+				"from": 852520,
+				"to": 854120
+			},
+			"text": " and the storage of the account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,120",
+				"to": "00:14:15,680"
+			},
+			"offsets": {
+				"from": 854120,
+				"to": 855680
+			},
+			"text": " what you call the self-destruct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,680",
+				"to": "00:14:18,160"
+			},
+			"offsets": {
+				"from": 855680,
+				"to": 858160
+			},
+			"text": " what it does is to empty the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,160",
+				"to": "00:14:21,320"
+			},
+			"offsets": {
+				"from": 858160,
+				"to": 861320
+			},
+			"text": " and send all the balance of the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,320",
+				"to": "00:14:23,720"
+			},
+			"offsets": {
+				"from": 861320,
+				"to": 863720
+			},
+			"text": " to the account caller."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,800",
+				"to": "00:14:27,680"
+			},
+			"offsets": {
+				"from": 864800,
+				"to": 867680
+			},
+			"text": " At the end, we're just following the EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,680",
+				"to": "00:14:31,080"
+			},
+			"offsets": {
+				"from": 867680,
+				"to": 871080
+			},
+			"text": " This is also a difference that will disappear"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,080",
+				"to": "00:14:34,120"
+			},
+			"offsets": {
+				"from": 871080,
+				"to": 874120
+			},
+			"text": " in the next months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,120",
+				"to": "00:14:37,400"
+			},
+			"offsets": {
+				"from": 874120,
+				"to": 877400
+			},
+			"text": " because we are really working hard to finish this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,400",
+				"to": "00:14:40,560"
+			},
+			"offsets": {
+				"from": 877400,
+				"to": 880560
+			},
+			"text": " and this is why we are not still type two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,560",
+				"to": "00:14:42,600"
+			},
+			"offsets": {
+				"from": 880560,
+				"to": 882600
+			},
+			"text": " but as I said before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,600",
+				"to": "00:14:45,400"
+			},
+			"offsets": {
+				"from": 882600,
+				"to": 885400
+			},
+			"text": " this will be over in a few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,400",
+				"to": "00:14:48,800"
+			},
+			"offsets": {
+				"from": 885400,
+				"to": 888800
+			},
+			"text": " Actually, we only support three precompiles from the IBM."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,800",
+				"to": "00:14:51,720"
+			},
+			"offsets": {
+				"from": 888800,
+				"to": 891720
+			},
+			"text": " We support the Siri cover, the identity, and the Model X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,720",
+				"to": "00:14:53,120"
+			},
+			"offsets": {
+				"from": 891720,
+				"to": 893120
+			},
+			"text": " and this is one of our priorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,120",
+				"to": "00:14:55,640"
+			},
+			"offsets": {
+				"from": 893120,
+				"to": 895640
+			},
+			"text": " We are working to finish them all."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,640",
+				"to": "00:14:59,560"
+			},
+			"offsets": {
+				"from": 895640,
+				"to": 899560
+			},
+			"text": " Actually, the 2.56 would be that hard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,560",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 899560,
+				"to": 903000
+			},
+			"text": " because we've only done the Siri cover."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:06,560"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 906560
+			},
+			"text": " Maybe the AC binding, it's a bit more tricky,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,560",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 906560,
+				"to": 910000
+			},
+			"text": " but we're working, it's working progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:14,360"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 914360
+			},
+			"text": " Okay, one of them is the code of the Xcode X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,360",
+				"to": "00:15:16,160"
+			},
+			"offsets": {
+				"from": 914360,
+				"to": 916160
+			},
+			"text": " obviously if we are using a different hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,160",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 916160,
+				"to": 918960
+			},
+			"text": " we're using the procedure instead of the key check."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:22,880"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 922880
+			},
+			"text": " This Xcode X has, it's returning the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,880",
+				"to": "00:15:24,360"
+			},
+			"offsets": {
+				"from": 922880,
+				"to": 924360
+			},
+			"text": " between with Posh."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,360",
+				"to": "00:15:28,320"
+			},
+			"offsets": {
+				"from": 924360,
+				"to": 928320
+			},
+			"text": " Also, the block hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,320",
+				"to": "00:15:30,920"
+			},
+			"offsets": {
+				"from": 928320,
+				"to": 930920
+			},
+			"text": " well this one is not really a difference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,920",
+				"to": "00:15:34,360"
+			},
+			"offsets": {
+				"from": 930920,
+				"to": 934360
+			},
+			"text": " because it's not a variant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,360",
+				"to": "00:15:38,720"
+			},
+			"offsets": {
+				"from": 934360,
+				"to": 938720
+			},
+			"text": " because now on the IBM you only can get the block hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,720",
+				"to": "00:15:42,520"
+			},
+			"offsets": {
+				"from": 938720,
+				"to": 942520
+			},
+			"text": " of the last 256 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,520",
+				"to": "00:15:47,240"
+			},
+			"offsets": {
+				"from": 942520,
+				"to": 947240
+			},
+			"text": " We are supporting to get it from the blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,240",
+				"to": "00:15:48,200"
+			},
+			"offsets": {
+				"from": 947240,
+				"to": 948200
+			},
+			"text": " all the blocks in the block chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,200",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 948200,
+				"to": 949920
+			},
+			"text": " from the very beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,320",
+				"to": "00:15:52,520"
+			},
+			"offsets": {
+				"from": 951320,
+				"to": 952520
+			},
+			"text": " And the memory limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,520",
+				"to": "00:15:57,840"
+			},
+			"offsets": {
+				"from": 952520,
+				"to": 957840
+			},
+			"text": " We have a limited memory of around 4Diga bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,840",
+				"to": "00:16:01,680"
+			},
+			"offsets": {
+				"from": 957840,
+				"to": 961680
+			},
+			"text": " This is different from the IBM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,680",
+				"to": "00:16:04,640"
+			},
+			"offsets": {
+				"from": 961680,
+				"to": 964640
+			},
+			"text": " because the IBM is unlimited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,640",
+				"to": "00:16:06,520"
+			},
+			"offsets": {
+				"from": 964640,
+				"to": 966520
+			},
+			"text": " the limited is set by the gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,520",
+				"to": "00:16:10,840"
+			},
+			"offsets": {
+				"from": 966520,
+				"to": 970840
+			},
+			"text": " and you can put like 50 million gas in one block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,840",
+				"to": "00:16:14,360"
+			},
+			"offsets": {
+				"from": 970840,
+				"to": 974360
+			},
+			"text": " Actually, this limitation makes that in a batch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,360",
+				"to": "00:16:17,560"
+			},
+			"offsets": {
+				"from": 974360,
+				"to": 977560
+			},
+			"text": " you can put 8.5 million for each transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,560",
+				"to": "00:16:21,280"
+			},
+			"offsets": {
+				"from": 977560,
+				"to": 981280
+			},
+			"text": " that this is the cost of the memory expansion"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,280",
+				"to": "00:16:23,320"
+			},
+			"offsets": {
+				"from": 981280,
+				"to": 983320
+			},
+			"text": " and we won't have any more memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,320",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 983320,
+				"to": 987360
+			},
+			"text": " But I have to say that a transaction with 8.5 million gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:30,720"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 990720
+			},
+			"text": " should be enough to do whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,720",
+				"to": "00:16:34,680"
+			},
+			"offsets": {
+				"from": 990720,
+				"to": 994680
+			},
+			"text": " It's also very easy to do different transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,680",
+				"to": "00:16:35,920"
+			},
+			"offsets": {
+				"from": 994680,
+				"to": 995920
+			},
+			"text": " If you have a very big transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,920",
+				"to": "00:16:38,480"
+			},
+			"offsets": {
+				"from": 995920,
+				"to": 998480
+			},
+			"text": " it can be like displayed in different ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,480",
+				"to": "00:16:43,800"
+			},
+			"offsets": {
+				"from": 998480,
+				"to": 1003800
+			},
+			"text": " And also this is currently, this last one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,800",
+				"to": "00:16:45,360"
+			},
+			"offsets": {
+				"from": 1003800,
+				"to": 1005360
+			},
+			"text": " it's a different now, but it won't be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,360",
+				"to": "00:16:47,680"
+			},
+			"offsets": {
+				"from": 1005360,
+				"to": 1007680
+			},
+			"text": " at different anymore, because we are also working on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,680",
+				"to": "00:16:49,360"
+			},
+			"offsets": {
+				"from": 1007680,
+				"to": 1009360
+			},
+			"text": " and it's one of our priorities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,360",
+				"to": "00:16:52,320"
+			},
+			"offsets": {
+				"from": 1009360,
+				"to": 1012320
+			},
+			"text": " which is that we are actually not supporting EIP-155"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,320",
+				"to": "00:16:55,320"
+			},
+			"offsets": {
+				"from": 1012320,
+				"to": 1015320
+			},
+			"text": " and EIP-2718 transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,320",
+				"to": "00:16:58,200"
+			},
+			"offsets": {
+				"from": 1015320,
+				"to": 1018200
+			},
+			"text": " but it's a matter of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,200",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1018200,
+				"to": 1023000
+			},
+			"text": " So in conclusion, well, you all have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:06,160"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1026160
+			},
+			"text": " the slide from before, but this is like now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,160",
+				"to": "00:17:10,200"
+			},
+			"offsets": {
+				"from": 1026160,
+				"to": 1030200
+			},
+			"text": " the most important moment of the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,200",
+				"to": "00:17:12,600"
+			},
+			"offsets": {
+				"from": 1030200,
+				"to": 1032600
+			},
+			"text": " Ah, no, why is it happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,600",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1032600,
+				"to": 1039080
+			},
+			"text": " Now, exactly, it's that we are passing the 97%"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:20,560"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1040560
+			},
+			"text": " of the Ethereum test suites."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,560",
+				"to": "00:17:22,240"
+			},
+			"offsets": {
+				"from": 1040560,
+				"to": 1042240
+			},
+			"text": " I think it's the best way and the most empirical way"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,240",
+				"to": "00:17:25,080"
+			},
+			"offsets": {
+				"from": 1042240,
+				"to": 1045080
+			},
+			"text": " to show to the people that we are compatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,080",
+				"to": "00:17:29,560"
+			},
+			"offsets": {
+				"from": 1045080,
+				"to": 1049560
+			},
+			"text": " with EIP-ylans, with the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,560",
+				"to": "00:17:34,600"
+			},
+			"offsets": {
+				"from": 1049560,
+				"to": 1054600
+			},
+			"text": " So this is the final dreamer, we are fully VM equivalent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,600",
+				"to": "00:17:36,640"
+			},
+			"offsets": {
+				"from": 1054600,
+				"to": 1056640
+			},
+			"text": " and I also would like to send a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,640",
+				"to": "00:17:40,040"
+			},
+			"offsets": {
+				"from": 1056640,
+				"to": 1060040
+			},
+			"text": " like this in the second point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,040",
+				"to": "00:17:44,600"
+			},
+			"offsets": {
+				"from": 1060040,
+				"to": 1064600
+			},
+			"text": " which is that the difference that I've been explaining now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,600",
+				"to": "00:17:49,600"
+			},
+			"offsets": {
+				"from": 1064600,
+				"to": 1069600
+			},
+			"text": " most of them are for N2V more equivalent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,600",
+				"to": "00:17:53,600"
+			},
+			"offsets": {
+				"from": 1069600,
+				"to": 1073600
+			},
+			"text": " and with a better performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,600",
+				"to": "00:17:55,840"
+			},
+			"offsets": {
+				"from": 1073600,
+				"to": 1075840
+			},
+			"text": " I mean, we've been building the ZKVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,840",
+				"to": "00:17:59,880"
+			},
+			"offsets": {
+				"from": 1075840,
+				"to": 1079880
+			},
+			"text": " with a different toolkit that what was done with the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,880",
+				"to": "00:18:03,320"
+			},
+			"offsets": {
+				"from": 1079880,
+				"to": 1083320
+			},
+			"text": " So we have to take like some technical decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,320",
+				"to": "00:18:06,640"
+			},
+			"offsets": {
+				"from": 1083320,
+				"to": 1086640
+			},
+			"text": " with different tools, but to reach the equivalent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,640",
+				"to": "00:18:10,320"
+			},
+			"offsets": {
+				"from": 1086640,
+				"to": 1090320
+			},
+			"text": " also taking in account the performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,320",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1090320,
+				"to": 1094480
+			},
+			"text": " So I think that maybe, also we have learned a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:17,040"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1097040
+			},
+			"text": " from all those years of the EVM processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,040",
+				"to": "00:18:18,600"
+			},
+			"offsets": {
+				"from": 1097040,
+				"to": 1098600
+			},
+			"text": " a lot of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,600",
+				"to": "00:18:22,040"
+			},
+			"offsets": {
+				"from": 1098600,
+				"to": 1102040
+			},
+			"text": " And actually, I think that probably people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,040",
+				"to": "00:18:25,320"
+			},
+			"offsets": {
+				"from": 1102040,
+				"to": 1105320
+			},
+			"text": " from the Ethereum Foundation, if they had to do the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,320",
+				"to": "00:18:26,840"
+			},
+			"offsets": {
+				"from": 1105320,
+				"to": 1106840
+			},
+			"text": " again from the very beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,840",
+				"to": "00:18:28,200"
+			},
+			"offsets": {
+				"from": 1106840,
+				"to": 1108200
+			},
+			"text": " they will do some things different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,200",
+				"to": "00:18:30,920"
+			},
+			"offsets": {
+				"from": 1108200,
+				"to": 1110920
+			},
+			"text": " and some of the things are the ones that we're trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,920",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1110920,
+				"to": 1114000
+			},
+			"text": " Like, we've learned from them, we've learned from the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:37,040"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1117040
+			},
+			"text": " and we've tried to do it better."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,040",
+				"to": "00:18:41,080"
+			},
+			"offsets": {
+				"from": 1117040,
+				"to": 1121080
+			},
+			"text": " And finally, to finish, just tell you that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,080",
+				"to": "00:18:44,160"
+			},
+			"offsets": {
+				"from": 1121080,
+				"to": 1124160
+			},
+			"text": " what I said at the beginning, we are on public internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,160",
+				"to": "00:18:48,640"
+			},
+			"offsets": {
+				"from": 1124160,
+				"to": 1128640
+			},
+			"text": " so we really encourage everybody to try to crash it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,640",
+				"to": "00:18:52,040"
+			},
+			"offsets": {
+				"from": 1128640,
+				"to": 1132040
+			},
+			"text": " try to test it, play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,040",
+				"to": "00:18:56,040"
+			},
+			"offsets": {
+				"from": 1132040,
+				"to": 1136040
+			},
+			"text": " I mean, it will be very good for us if you crash it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,040",
+				"to": "00:18:57,760"
+			},
+			"offsets": {
+				"from": 1136040,
+				"to": 1137760
+			},
+			"text": " so we can find a work and we can iterate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,760",
+				"to": "00:19:01,760"
+			},
+			"offsets": {
+				"from": 1137760,
+				"to": 1141760
+			},
+			"text": " and deploy again, fix the work, and all this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,760",
+				"to": "00:19:06,760"
+			},
+			"offsets": {
+				"from": 1141760,
+				"to": 1146760
+			},
+			"text": " So just to finish, thank you very much for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,760",
+				"to": "00:19:08,880"
+			},
+			"offsets": {
+				"from": 1146760,
+				"to": 1148880
+			},
+			"text": " Hope you enjoyed it at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,880",
+				"to": "00:19:10,680"
+			},
+			"offsets": {
+				"from": 1148880,
+				"to": 1150680
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,680",
+				"to": "00:19:11,520"
+			},
+			"offsets": {
+				"from": 1150680,
+				"to": 1151520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,520",
+				"to": "00:19:13,760"
+			},
+			"offsets": {
+				"from": 1151520,
+				"to": 1153760
+			},
+			"text": " (static)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,760",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1153760,
+				"to": 1156000
+			},
+			"text": " (static)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:18,240"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1158240
+			},
+			"text": " (static)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,240",
+				"to": "00:19:20,480"
+			},
+			"offsets": {
+				"from": 1158240,
+				"to": 1160480
+			},
+			"text": " (static)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,480",
+				"to": "00:19:24,480"
+			},
+			"offsets": {
+				"from": 1160480,
+				"to": 1164480
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

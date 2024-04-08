@@ -1,0 +1,2386 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 19000
+			},
+			"text": " My name is Wiewo and I'm a founder and city of Smart Token Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 26000
+			},
+			"text": " We are a team about 40 people and we have been working in the organization for four years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " And in the last two years we have witnessed a lot of brands."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 39000
+			},
+			"text": " I take their huge interest in the NFT and blockchain space and we helped many of them to tokenize their brands."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " And this is our learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 53000
+			},
+			"text": " First, there is a strong demand for brand brands to connect their audience with an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 60000
+			},
+			"text": " There is a difference between a brand lover and a holder of brand token."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 72000
+			},
+			"text": " That gives the brand access to their audience a lot of their users to access the ecosystem and put a value into their loyalty."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " But there are two barriers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 87000
+			},
+			"text": " First, wallet. Not many people in the brand's audience user base have wallet and it's not easy to get it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 91000
+			},
+			"text": " And second, signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 101000
+			},
+			"text": " So a lot of users hesitate to sign any message or transaction when they are holding brand tokens and understandably so."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 108000
+			},
+			"text": " I'm going to talk about three cases where we helped brands to tokenize."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 117000
+			},
+			"text": " And I will explain how we overcome or amend these barriers and share our learnings."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 124000
+			},
+			"text": " So first, La Prairie is a Switzerland luxury skincare brand."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 126000
+			},
+			"text": " It's the word number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " They are user base, high net worth people with a love for art."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " So they do art exhibition, art review, art auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 139000
+			},
+			"text": " And that's basically their market position."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 146000
+			},
+			"text": " What we did for them is a space beyond an NFT project for everlasting digital art."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " However, these are not traditional."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " These are not technical audience. These are traditional art buyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " And you can imagine most of them never had a wallet before."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " And the format of the sales is quite traditional as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 171000
+			},
+			"text": " You can imagine a giant hall with a rotating light and display of digital art moving slowly and people holding champagne in their hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174000
+			},
+			"text": " And sales was done in that moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 181000
+			},
+			"text": " And you can understand that this is not perfect moment to teach them how to install a wallet and get the seed freeze."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 187000
+			},
+			"text": " So what we did for them is we allow them to purchase the art with their credit card."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 204000
+			},
+			"text": " And we will send them an email with a magic link that contains the cryptographic information needed to later prove their ownership of this digital art if they need to use that with a smart contract or a debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " So after the sales, the buyers can set up their wallet in the later time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 221000
+			},
+			"text": " And these sales was linked with their email address and they need to obtain the email address attestation and link that with their email address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 228000
+			},
+			"text": " And from that moment on, debts and smart contracts will recognize them as the legit owner of this digital art."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 237000
+			},
+			"text": " This will effectively have pushed the moment of install wallet to a much later date, therefore smooth out the onboarding process."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " And that's the first example. The second one is actually this step come."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " And the target audience is everybody in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 254000
+			},
+			"text": " This time, understandably, our audience is more sophisticated and most of us have a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 266000
+			},
+			"text": " But we still find it beneficial to smooth out the sales process, use attestation, and there are user experience improvements using this technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 283000
+			},
+			"text": " So we did permissionless perk, which is a project where third party websites can recognize that they can't take it holders and give them special perks and offers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 289000
+			},
+			"text": " This is done by sending an email to every ticket buyer with the ticket attestation magic link."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 296000
+			},
+			"text": " If you click that link, the cryptography information to prove that your ticket holder is stored in your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 303000
+			},
+			"text": " And later when you access third party websites, these information will be working to prove that your ticket holder."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 310000
+			},
+			"text": " And again, if you should sign a message or do a blockchain transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 317000
+			},
+			"text": " the link, the cryptography information will be linked with your wallet that can be configured later stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 325000
+			},
+			"text": " Therefore, users can buy DevCon ticket with credit card without worrying about wallet and get a wallet set up later."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 329000
+			},
+			"text": " Beautiful thing about this design is DevCon does not have to verify ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 336000
+			},
+			"text": " It's not like Google, for example, every time when you use Google ID, Google has to be online and you connect to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " DevCon can be offline when you're using permissionless perks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " So that's what we did for DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 352000
+			},
+			"text": " And the last example is Shopify, where we worked on the VIP shopping experience via NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 360000
+			},
+			"text": " The idea is if you hold NFT, you can access gated content, special discount, or special offers on the Shopify website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 368000
+			},
+			"text": " What we discovered is users hesitate to connect to their wallets on e-commerce website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 378000
+			},
+			"text": " So we give them our product, brand connector, which allows users the option that they can be brought to a safe website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384000
+			},
+			"text": " Connect to their wallet, choose which token to use in the shopping process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 389000
+			},
+			"text": " and the proof will be sent back to the shopping website for the shopping experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 399000
+			},
+			"text": " And this allows users to not having to expose their wallet address to the Shopify website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 405000
+			},
+			"text": " And the users will not have to sign a message on the Shopify website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " So these are the three projects we did that I want to share with you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 423000
+			},
+			"text": " And if you observe all these, you will notice that all these projects are about how websites can interact with token holders, third tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 432000
+			},
+			"text": " and all the technical details such as wallet connection and signature, adjust infrastructure to support this happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " And in terms of user experience, they are actually the hurdles."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 448000
+			},
+			"text": " So that brings me to this point that we are working on the infrastructure to support use of token and websites."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 452000
+			},
+			"text": " But there is a much bigger infrastructure issue at play."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 460000
+			},
+			"text": " That is, today's web3 websites lack the trust anchors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 466000
+			},
+			"text": " Now, before I explain the trust anchors, let me ask a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 475000
+			},
+			"text": " We know today that web2 websites are built around centralized points such as Facebook, Google, and Apple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 484000
+			},
+			"text": " And we know that web3 is decentralized web which does not depend on these centralized services."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 487000
+			},
+			"text": " And we have been building depths for that future."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 497000
+			},
+			"text": " But which depths we build today can replace Google and Facebook and Apple to provide these essential internet central services."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 502000
+			},
+			"text": " And we will elaborate this with an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 507000
+			},
+			"text": " So suppose you are buying the ticket from movie theater."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " Let's say the Minions, you go to movie theater, logging, you probably will log in with Google ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 515000
+			},
+			"text": " You probably will pay with Google Pay or Apple Pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 521000
+			},
+			"text": " Once you got a movie ticket, it can be saved into your Apple wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 528000
+			},
+			"text": " And once you finish purchase, you might want to share it on Facebook, or you might want to edit in your Google calendar."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " Or you might want to get a Google Map pointer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 535000
+			},
+			"text": " This is a typical web3 experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 544000
+			},
+			"text": " It is very smooth. In 5 minutes, you use the 5 or 6 central services provided by Google, Facebook, and Apple."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " These are not just central services. These are trust anchors."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 553000
+			},
+			"text": " Because movie theater website cannot do this by themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556000
+			},
+			"text": " Even they have the software and code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 562000
+			},
+			"text": " They cannot provide Google ID login even if they have the login code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 566000
+			},
+			"text": " If they don't use it, they would have to end up with user management password."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 573000
+			},
+			"text": " They cannot share your shared movie purchase to our friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 578000
+			},
+			"text": " Because you are not trusting them, the movie theater to manage your friendship."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 582000
+			},
+			"text": " It's not because they don't have the code. They have all sorts of social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 585000
+			},
+			"text": " But they don't have that trust anchor to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 591000
+			},
+			"text": " So today's web2 experience was enabled much by these trust anchors."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 594000
+			},
+			"text": " And today's customers are already used to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 598000
+			},
+			"text": " They will not go back. They will expect no less from web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " But where are the things that can serve at this function, web3?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 609000
+			},
+			"text": " And for... that will not do that. We've been building that, but that's not for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 613000
+			},
+			"text": " Three reasons. First, user demand convenience."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 617000
+			},
+			"text": " Users don't like to go to a third party website to go to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 621000
+			},
+			"text": " While they are shopping, go to a dev website, prove they have the token, and come back to the shopping."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 628000
+			},
+			"text": " Similarly, in web2, they don't want to go to PayPal, finalize payment, and go back to the checkout process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " Second, dev suffers from the same security and availability issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " Devs are just normal websites. They are not secured by blockchain consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639000
+			},
+			"text": " Blockchain smart contracts are..."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 644000
+			},
+			"text": " Devs are not. They are repeatedly hacked and they are sometimes not available."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 648000
+			},
+			"text": " Compared to Google and Facebook, which is... have very high availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 651000
+			},
+			"text": " And finally, devs are not designed to be composable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 656000
+			},
+			"text": " So, I'll give you an example. Let's say the movie theater allows you to pay the movie ticket with Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660000
+			},
+			"text": " Unless you have an AAV line of credit, which you can draw Ether from."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 663000
+			},
+			"text": " Today, you will go to AAVE dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 666000
+			},
+			"text": " Draw Ether, and then go to the movie theater and pay it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 671000
+			},
+			"text": " It's not an integrated process. Smart contracts with opposable, devs are not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 676000
+			},
+			"text": " So, there's three reasons. Devs couldn't do the trust anchor role."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 681000
+			},
+			"text": " But can it be tokens? We have been working on tokenization for four years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 684000
+			},
+			"text": " and we have seen a lot of cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 691000
+			},
+			"text": " And I'm going to share my experience with you on token working and the trust anchor."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " But let's hold on for a moment to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " Today, everything is based on the existence of the central trust anchors."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 704000
+			},
+			"text": " It's actually quite hard to imagine Web3 without them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 711000
+			},
+			"text": " It's hard to imagine what will the trust anchor be if we don't have Google."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 716000
+			},
+			"text": " Will the Google login, the Google ID be an identity token?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 723000
+			},
+			"text": " Will the Google calendar become a calendar item token? That is in users wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 729000
+			},
+			"text": " Will the friendship, the connections you have on Facebook be tokens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 736000
+			},
+			"text": " It's difficult to have a picture of the Web3 with new trust anchors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 741000
+			},
+			"text": " We don't know what they will exactly look like and how will they exactly work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 747000
+			},
+			"text": " But we figured out four requirements for token to act as a trust anchor."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 754000
+			},
+			"text": " And these four requirements are trust interoperability, privacy and security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 757000
+			},
+			"text": " Happened to be TIPs for you to remember."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 764000
+			},
+			"text": " Trust means that users should not trust websites as much as they trust their tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " Again, take the movie ticket for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 769000
+			},
+			"text": " If you have an NFT, let's see the meanings."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " And if you want to buy a discount ticket with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 778000
+			},
+			"text": " You won't trust the movie theater website as much as you trust your meaning token."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 782000
+			},
+			"text": " You don't want to connect your token there, connect your wallet and do any transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 785000
+			},
+			"text": " The website might be insecure and steal your meaning."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 790000
+			},
+			"text": " So trust anchors should be on tokens not on the websites that uses tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 792000
+			},
+			"text": " And second, interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 798000
+			},
+			"text": " That means you should not depend on the websites to have the correct code for your token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 802000
+			},
+			"text": " So you don't want to go to website which sells you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 806000
+			},
+			"text": " Sorry, we cannot serve you because we only recognize version two of the minion token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 807000
+			},
+			"text": " You have version three."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 810000
+			},
+			"text": " You don't want to wait for them to upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 817000
+			},
+			"text": " You don't want them to, if you have a new token, take them the next cycle to understand your new token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 824000
+			},
+			"text": " Therefore, token and the website code should be separate and interoperable in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 830000
+			},
+			"text": " And then we have privacy which simply means that the website should not know everything in your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 836000
+			},
+			"text": " It's not okay if you go to movie theater and now they know how much ether you have or everything you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 843000
+			},
+			"text": " And finally, there is security meaning that you cannot trust, you cannot dedicate transactions to the websites."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 849000
+			},
+			"text": " Let's say you have a minion token, let's say you can lend it to a friend to get discount ticket."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 856000
+			},
+			"text": " You don't want the movie theater to do the lending because how do you know the movie theater website is doing it correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " and not taking away your money or your minion token."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " So transaction should be done by secure code that comes with token."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 874000
+			},
+			"text": " And with these four requirements satisfied, we develop our core technology called token script,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " which is enabling technology for token to work as trust anchor."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 887000
+			},
+			"text": " I don't have too much time to go to technical details, but I will explain the design principles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 891000
+			},
+			"text": " and the technical characteristics of token script."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 904000
+			},
+			"text": " So first, it is strongly bound to contracts, meaning that the users should trust token script as much as they trust contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 911000
+			},
+			"text": " They are written by the same team and there's cryptogos-free proof about their linkage."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 919000
+			},
+			"text": " And second, token script is not executed on a blockchain. They are actually used in the user's wallet, in user's agent."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 926000
+			},
+			"text": " For example, R4 Wallet, which is R4 Wallet product leading open source wallet with more than 700 folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 935000
+			},
+			"text": " It has the runtime environment for token script so that token code can rank the wallet and indirect with the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 945000
+			},
+			"text": " And then it is composable, meaning that you can use multiple tokens in one web process, which is not often seen in today's steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 954000
+			},
+			"text": " So you can use one token for payment, one token for discount, and you can get a movie ticket as a new token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 960000
+			},
+			"text": " download it from the website into a wallet. It's composable on the front, not only in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 970000
+			},
+			"text": " And finally, it has both UI and API. And this is different than most tokenization solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 975000
+			},
+			"text": " So most tokenization solutions today build tokens like API, for example, the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 982000
+			},
+			"text": " You can inquire a token and get, for example, the date of creation for the token, who is the current owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 990000
+			},
+			"text": " But it's crucial for a token to be a trust anchor. It's crucial that tokens have user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 996000
+			},
+			"text": " If you go to a movie theater website, logging as Google, you will hesitate if it doesn't display the Google logo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1000000
+			},
+			"text": " or if the logging box deviates from the Google experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1009000
+			},
+			"text": " Similarly, if you want to use the minion token on the movie website, token has to control the part of the UI that interacts with the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1015000
+			},
+			"text": " So it's essential that token generates UI in a trusted environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1021000
+			},
+			"text": " So we have eight minutes left and then for my talk, and then I have finished sharing all my knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1029000
+			},
+			"text": " But I want to pause here and let all do a thought experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1038000
+			},
+			"text": " We have been living in the world enabled by blockchain center points for so long."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1048000
+			},
+			"text": " It's actually hard to imagine what internet could look like if we did not have to depend on the center points."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1055000
+			},
+			"text": " For example, if you have a Tesla car, they have integration with Google with Apple Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1063000
+			},
+			"text": " Tesla car key can be an Apple wallet and you can send it to a friend if he wants to borrow your car to do this on iOS as long as you're in the same ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1069000
+			},
+			"text": " This is the organization. It's done in the iOS system. It's not done on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1077000
+			},
+			"text": " But you can do this now today, but can you float your Tesla car on the rental market by hours?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1079000
+			},
+			"text": " Third-same technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1083000
+			},
+			"text": " You cannot do this today because Apple is not allowing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1091000
+			},
+			"text": " I don't know why they probably don't see it profitable or probably too complicated, but you need Apple's permission to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1100000
+			},
+			"text": " What internet would have looked like if you didn't have to depend on Google to permit you Apple to permit you to do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1105000
+			},
+			"text": " You would be able to set up a rental market very easily as long as tokens support them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1111000
+			},
+			"text": " And the smart car vendors will produce their own smart car tokens to allow this to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1117000
+			},
+			"text": " You can rent a market in Bogota or any city. You don't have to be a world leader to operate a rental market."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " That is why I'm not getting it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1124000
+			},
+			"text": " What is the license of a good base? Is it a parent's force or something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " -Eisen. -Eisen."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1131000
+			},
+			"text": " Our implementation is in MIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1134000
+			},
+			"text": " That's why we have..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1138000
+			},
+			"text": " Actually, right now it's embedded in our wallet and it's not a standalone product."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1140000
+			},
+			"text": " We were making a standalone product."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1146000
+			},
+			"text": " Right now, our wallet has 700 folks and most of them didn't tell me about it because we allow MIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1148000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1150000
+			},
+			"text": " -Hello. -Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1152000
+			},
+			"text": " How are you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1157000
+			},
+			"text": " I was going to ask, what do you think are the main barriers for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1163000
+			},
+			"text": " tokenizing traditional banking or finance products such as portfolio purchases?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1169000
+			},
+			"text": " And what do you think would be the position of traditional banking system towards these kind of innovations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1174000
+			},
+			"text": " If history is proven true, again, there will be the last wave to be tokenized."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1178000
+			},
+			"text": " So there will be a lot of pressure and eventually move their ass."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1182000
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1193000
+			},
+			"text": " -How do we know which token providers can we trust?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1199000
+			},
+			"text": " -Oh, we don't know. The thing is, although token can be acted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1207000
+			},
+			"text": " although token is used at trust anchor to enable web services that doesn't require users to trust them as much as token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1209000
+			},
+			"text": " token itself needs to be trusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1214000
+			},
+			"text": " And the level, it can be trusted is actually a game free market competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1220000
+			},
+			"text": " -But so let's say, for example, somebody wants to go more in a better calendar as a token."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1227000
+			},
+			"text": " How would they know that this company isn't that, let's say, a phishing scam?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1234000
+			},
+			"text": " -I actually don't know. I imagine that the wallet will have a calendar integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1240000
+			},
+			"text": " So if you enable wallet calendar integration, the wallet will create a calendar token on your behalf, your name."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1247000
+			},
+			"text": " But whether or not other people will believe that you will actually realize your promise if you sell your calendar item to other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1253000
+			},
+			"text": " That would require some sort of form of test station, like you have reputation, stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1258000
+			},
+			"text": " We are building these things, but I don't know how it would look in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1261000
+			},
+			"text": " -Thank you so much. -Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1263000
+			},
+			"text": " -For the present."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1265000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1272000
+			},
+			"text": " [silence]"
+		}
+	]
+}

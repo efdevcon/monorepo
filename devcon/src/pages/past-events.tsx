@@ -84,6 +84,7 @@ export default pageHOC(function PastEvents(props: any) {
                       src={event.image || ''}
                       alt={`${event.title} event image`}
                       className="!w-full !h-auto !relative"
+                      fill
                     />
                   </div>
                 </div>

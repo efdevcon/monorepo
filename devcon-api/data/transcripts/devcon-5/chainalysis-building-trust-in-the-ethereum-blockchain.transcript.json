@@ -1,0 +1,2716 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10360
+			},
+			"text": " So, I'm not sure if you guys are aware, but we're from a company called Chainalysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,360",
+				"to": "00:00:14,800"
+			},
+			"offsets": {
+				"from": 10360,
+				"to": 14800
+			},
+			"text": " And today we're going to dive into building trust in the Ethereum blockchain and sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,800",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14800,
+				"to": 17000
+			},
+			"text": " of what our company does in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19600
+			},
+			"text": " I'll keep this closer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:21,120"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 21120
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,120",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 21120,
+				"to": 24120
+			},
+			"text": " So just a brief agenda about what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:26,720"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 26720
+			},
+			"text": " So first we're going to talk about Chainalysis and our services."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,720",
+				"to": "00:00:30,840"
+			},
+			"offsets": {
+				"from": 26720,
+				"to": 30840
+			},
+			"text": " Then we're going to dive into some of the data challenges we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,840",
+				"to": "00:00:34,800"
+			},
+			"offsets": {
+				"from": 30840,
+				"to": 34800
+			},
+			"text": " Then we're actually going to have a long section analyzing some Ethereum data and walking through"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,800",
+				"to": "00:00:37,840"
+			},
+			"offsets": {
+				"from": 34800,
+				"to": 37840
+			},
+			"text": " one of the investigations we did."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,840",
+				"to": "00:00:43,880"
+			},
+			"offsets": {
+				"from": 37840,
+				"to": 43880
+			},
+			"text": " And then we're going to talk generally about the drive insights we gain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,880",
+				"to": "00:00:46,480"
+			},
+			"offsets": {
+				"from": 43880,
+				"to": 46480
+			},
+			"text": " So just a quick background about myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,480",
+				"to": "00:00:51,240"
+			},
+			"offsets": {
+				"from": 46480,
+				"to": 51240
+			},
+			"text": " I'm the engineering manager for the blockchain intelligence team at Chainalysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,240",
+				"to": "00:00:55,240"
+			},
+			"offsets": {
+				"from": 51240,
+				"to": 55240
+			},
+			"text": " But before this, I was very interested academically in Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,240",
+				"to": "00:01:01,400"
+			},
+			"offsets": {
+				"from": 55240,
+				"to": 61400
+			},
+			"text": " So for my undergraduate thesis, I created a set of tools to visualize the Bitcoin blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,400",
+				"to": "00:01:02,840"
+			},
+			"offsets": {
+				"from": 61400,
+				"to": 62840
+			},
+			"text": " This was for Imperial College."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,840",
+				"to": "00:01:06,440"
+			},
+			"offsets": {
+				"from": 62840,
+				"to": 66440
+			},
+			"text": " And these are some of the pictures from my thesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,440",
+				"to": "00:01:11,520"
+			},
+			"offsets": {
+				"from": 66440,
+				"to": 71520
+			},
+			"text": " In the top left, you can see here, these are different views of Bitcoin transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,520",
+				"to": "00:01:14,760"
+			},
+			"offsets": {
+				"from": 71520,
+				"to": 74760
+			},
+			"text": " Over here, this one has one input and two outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,760",
+				"to": "00:01:17,380"
+			},
+			"offsets": {
+				"from": 74760,
+				"to": 77380
+			},
+			"text": " The old way of change addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,380",
+				"to": "00:01:20,480"
+			},
+			"offsets": {
+				"from": 77380,
+				"to": 80480
+			},
+			"text": " This one has a lot of inputs and one output."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,480",
+				"to": "00:01:23,120"
+			},
+			"offsets": {
+				"from": 80480,
+				"to": 83120
+			},
+			"text": " So that would be someone aggregating a lot of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,120",
+				"to": "00:01:27,200"
+			},
+			"offsets": {
+				"from": 83120,
+				"to": 87200
+			},
+			"text": " And then this has the reverse, which is one input and many outputs, so someone's disaggregating"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,200",
+				"to": "00:01:28,960"
+			},
+			"offsets": {
+				"from": 87200,
+				"to": 88960
+			},
+			"text": " funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,960",
+				"to": "00:01:33,640"
+			},
+			"offsets": {
+				"from": 88960,
+				"to": 93640
+			},
+			"text": " This has generally changed since this thesis was completed in 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,640",
+				"to": "00:01:37,480"
+			},
+			"offsets": {
+				"from": 93640,
+				"to": 97480
+			},
+			"text": " So the block size was not as big of an issue back then."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,480",
+				"to": "00:01:42,520"
+			},
+			"offsets": {
+				"from": 97480,
+				"to": 102520
+			},
+			"text": " Batching was not something that was enforced or regularly used."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,520",
+				"to": "00:01:46,840"
+			},
+			"offsets": {
+				"from": 102520,
+				"to": 106840
+			},
+			"text": " So the blockchain itself has changed a lot since then."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,840",
+				"to": "00:01:51,040"
+			},
+			"offsets": {
+				"from": 106840,
+				"to": 111040
+			},
+			"text": " Just a bit about myself, I really like network theory and graph analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,040",
+				"to": "00:01:56,200"
+			},
+			"offsets": {
+				"from": 111040,
+				"to": 116200
+			},
+			"text": " This fun little visualization in the corner is an algorithm I modified, which some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,200",
+				"to": "00:01:58,560"
+			},
+			"offsets": {
+				"from": 116200,
+				"to": 118560
+			},
+			"text": " you might know is called force Atlas II."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,560",
+				"to": "00:02:05,640"
+			},
+			"offsets": {
+				"from": 118560,
+				"to": 125640
+			},
+			"text": " And I created multi-gravity force Atlas II to separate different graph entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,640",
+				"to": "00:02:09,480"
+			},
+			"offsets": {
+				"from": 125640,
+				"to": 129480
+			},
+			"text": " And down here, you can see a cluster over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,480",
+				"to": "00:02:13,200"
+			},
+			"offsets": {
+				"from": 129480,
+				"to": 133200
+			},
+			"text": " So what does chain analysis do and what are the services we provide?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,200",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 133200,
+				"to": 137280
+			},
+			"text": " Well, really, we're trying to build trust in the conventional ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:22,760"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 142760
+			},
+			"text": " So I know some people here might want a disjoint financial ecosystem, but our work is about"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,760",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 142760,
+				"to": 147480
+			},
+			"text": " integrating crypto companies into the existing ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:31,320"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 151320
+			},
+			"text": " So we work with three major parts of that ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,320",
+				"to": "00:02:36,040"
+			},
+			"offsets": {
+				"from": 151320,
+				"to": 156040
+			},
+			"text": " We work with the cryptocurrency business system selves, financial institutions, as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,040",
+				"to": "00:02:39,760"
+			},
+			"offsets": {
+				"from": 156040,
+				"to": 159760
+			},
+			"text": " law enforcement and regulators."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,760",
+				"to": "00:02:46,520"
+			},
+			"offsets": {
+				"from": 159760,
+				"to": 166520
+			},
+			"text": " So we found that in general, the space doesn't grow because each party doesn't feel comfortable"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,520",
+				"to": "00:02:48,640"
+			},
+			"offsets": {
+				"from": 166520,
+				"to": 168640
+			},
+			"text": " with what's being provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,640",
+				"to": "00:02:54,840"
+			},
+			"offsets": {
+				"from": 168640,
+				"to": 174840
+			},
+			"text": " So you can see over regulation occurred in Japan as well as Korea related to some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,840",
+				"to": "00:02:56,680"
+			},
+			"offsets": {
+				"from": 174840,
+				"to": 176680
+			},
+			"text": " the exchange hacks that happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,680",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 176680,
+				"to": 179920
+			},
+			"text": " And it caused a lot of privacy coins to actually be delisted."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:04,360"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 184360
+			},
+			"text": " So first we can see coin check had to delist a couple of their privacy coins, then they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,360",
+				"to": "00:03:10,080"
+			},
+			"offsets": {
+				"from": 184360,
+				"to": 190080
+			},
+			"text": " spread to South Korea and they started having strict regulations and more exchanges followed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,080",
+				"to": "00:03:11,320"
+			},
+			"offsets": {
+				"from": 190080,
+				"to": 191320
+			},
+			"text": " suit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,320",
+				"to": "00:03:16,360"
+			},
+			"offsets": {
+				"from": 191320,
+				"to": 196360
+			},
+			"text": " So our goal is to provide tools that make regulators feel comfortable with these currencies and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:20,640"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 200640
+			},
+			"text": " what they can do with them to some degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,640",
+				"to": "00:03:26,600"
+			},
+			"offsets": {
+				"from": 200640,
+				"to": 206600
+			},
+			"text": " So overall, illicit activity prevents the growth for all ecosystem participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,600",
+				"to": "00:03:30,840"
+			},
+			"offsets": {
+				"from": 206600,
+				"to": 210840
+			},
+			"text": " I'm sure some of you have mixed opinions about the top half, but I'm sure we can all agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,840",
+				"to": "00:03:34,400"
+			},
+			"offsets": {
+				"from": 210840,
+				"to": 214400
+			},
+			"text": " that the bottom two are bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,400",
+				"to": "00:03:40,600"
+			},
+			"offsets": {
+				"from": 214400,
+				"to": 220600
+			},
+			"text": " In general, each of these, each of the actors in the ecosystem has their own risks and needs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,600",
+				"to": "00:03:42,400"
+			},
+			"offsets": {
+				"from": 220600,
+				"to": 222400
+			},
+			"text": " and we try to address each of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,400",
+				"to": "00:03:46,160"
+			},
+			"offsets": {
+				"from": 222400,
+				"to": 226160
+			},
+			"text": " So for cryptocurrency based businesses, they struggle to get bank accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,160",
+				"to": "00:03:50,240"
+			},
+			"offsets": {
+				"from": 226160,
+				"to": 230240
+			},
+			"text": " It's hard to get banking relationships without having some sort of information on where your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,240",
+				"to": "00:03:54,040"
+			},
+			"offsets": {
+				"from": 230240,
+				"to": 234040
+			},
+			"text": " funds come from and what risk is associated with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,040",
+				"to": "00:03:59,480"
+			},
+			"offsets": {
+				"from": 234040,
+				"to": 239480
+			},
+			"text": " For financial institutions, if they expose themselves too much to risk, they harm their"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,480",
+				"to": "00:04:04,960"
+			},
+			"offsets": {
+				"from": 239480,
+				"to": 244960
+			},
+			"text": " reputations and if they're large financial institutions, they will face legal repercussions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,960",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 244960,
+				"to": 249160
+			},
+			"text": " And lastly, for law enforcement regulators, if they can't enforce the laws they make or"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 254640
+			},
+			"text": " the regulations they do to control an industry, they won't be comfortable with that technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:15,880"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 255880
+			},
+			"text": " growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,880",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 255880,
+				"to": 263000
+			},
+			"text": " So overall, our goal is to work with each of the participants of this ecosystem and give"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 268320
+			},
+			"text": " them value that lets them feel more comfortable with cryptocurrencies in the existing financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 271080
+			},
+			"text": " system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:33,840"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 273840
+			},
+			"text": " So some of the data challenges we face."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,840",
+				"to": "00:04:38,920"
+			},
+			"offsets": {
+				"from": 273840,
+				"to": 278920
+			},
+			"text": " We were a very Bitcoin-centric company before, but now we've turned a lot to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,920",
+				"to": "00:04:42,760"
+			},
+			"offsets": {
+				"from": 278920,
+				"to": 282760
+			},
+			"text": " So here is actually Bitcoin on the left and Ethereum on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,760",
+				"to": "00:04:47,440"
+			},
+			"offsets": {
+				"from": 282760,
+				"to": 287440
+			},
+			"text": " They might look similar to you because they're graphs, but they're actually quite different"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,440",
+				"to": "00:04:49,520"
+			},
+			"offsets": {
+				"from": 287440,
+				"to": 289520
+			},
+			"text": " in the structure underlying."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,520",
+				"to": "00:04:54,920"
+			},
+			"offsets": {
+				"from": 289520,
+				"to": 294920
+			},
+			"text": " So on the left, it actually captures the UTXO structure with all UTXO coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,920",
+				"to": "00:04:59,360"
+			},
+			"offsets": {
+				"from": 294920,
+				"to": 299360
+			},
+			"text": " And on the right is the most more account-based structure that we see on any account-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,360",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 299360,
+				"to": 301000
+			},
+			"text": " model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:06,280"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 306280
+			},
+			"text": " Additionally, smart contracting provides a new layer of analysis that's necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:11,120"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 311120
+			},
+			"text": " We have to go beyond the transactions and go into the execution traces themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,120",
+				"to": "00:05:14,840"
+			},
+			"offsets": {
+				"from": 311120,
+				"to": 314840
+			},
+			"text": " We have to see what sort of execution happens and what information we can extract from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,840",
+				"to": "00:05:17,280"
+			},
+			"offsets": {
+				"from": 314840,
+				"to": 317280
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,280",
+				"to": "00:05:21,160"
+			},
+			"offsets": {
+				"from": 317280,
+				"to": 321160
+			},
+			"text": " So this is an example of a data field in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,160",
+				"to": "00:05:26,600"
+			},
+			"offsets": {
+				"from": 321160,
+				"to": 326600
+			},
+			"text": " And this is pretty old now because there are a lot more advanced decompilers, but you basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,600",
+				"to": "00:05:33,800"
+			},
+			"offsets": {
+				"from": 326600,
+				"to": 333800
+			},
+			"text": " decompile the data field to try and figure out what the parameters that were sent are."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,800",
+				"to": "00:05:35,720"
+			},
+			"offsets": {
+				"from": 333800,
+				"to": 335720
+			},
+			"text": " Transitioning to riskiness insights."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,720",
+				"to": "00:05:41,960"
+			},
+			"offsets": {
+				"from": 335720,
+				"to": 341960
+			},
+			"text": " So the tools that we provide for the participants in the ecosystem is essentially insights on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,960",
+				"to": "00:05:43,720"
+			},
+			"offsets": {
+				"from": 341960,
+				"to": 343720
+			},
+			"text": " riskiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,720",
+				"to": "00:05:47,400"
+			},
+			"offsets": {
+				"from": 343720,
+				"to": 347400
+			},
+			"text": " And these vary based on each of the customer themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,400",
+				"to": "00:05:52,040"
+			},
+			"offsets": {
+				"from": 347400,
+				"to": 352040
+			},
+			"text": " So if you're, say, in a country that doesn't consider gambling high-risk, you would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,040",
+				"to": "00:05:56,880"
+			},
+			"offsets": {
+				"from": 352040,
+				"to": 356880
+			},
+			"text": " customized alerts that don't say that a gambling activity is high-risk for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,880",
+				"to": "00:06:00,120"
+			},
+			"offsets": {
+				"from": 356880,
+				"to": 360120
+			},
+			"text": " But if you're in the US, for example, that would be high-risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,120",
+				"to": "00:06:05,680"
+			},
+			"offsets": {
+				"from": 360120,
+				"to": 365680
+			},
+			"text": " So we provide a customizable tool known as KYT to cryptocurrency businesses so that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,680",
+				"to": "00:06:09,480"
+			},
+			"offsets": {
+				"from": 365680,
+				"to": 369480
+			},
+			"text": " can choose the right risk alerts to get."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,480",
+				"to": "00:06:11,320"
+			},
+			"offsets": {
+				"from": 369480,
+				"to": 371320
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,320",
+				"to": "00:06:15,520"
+			},
+			"offsets": {
+				"from": 371320,
+				"to": 375520
+			},
+			"text": " Now I'm going to hand it off to Mikko, who will walk you through one of our investigations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,520",
+				"to": "00:06:20,280"
+			},
+			"offsets": {
+				"from": 375520,
+				"to": 380280
+			},
+			"text": " and analyzing Ethereum data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,280",
+				"to": "00:06:24,160"
+			},
+			"offsets": {
+				"from": 380280,
+				"to": 384160
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,160",
+				"to": "00:06:26,080"
+			},
+			"offsets": {
+				"from": 384160,
+				"to": 386080
+			},
+			"text": " So my name is Mikko."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,080",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 386080,
+				"to": 389480
+			},
+			"text": " And I work in our research department in China."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:32,520"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 392520
+			},
+			"text": " So I actually get to do some of the fun stuff in the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,520",
+				"to": "00:06:37,280"
+			},
+			"offsets": {
+				"from": 392520,
+				"to": 397280
+			},
+			"text": " So I'm going to talk a little bit about some of the cool stuff that we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,280",
+				"to": "00:06:41,360"
+			},
+			"offsets": {
+				"from": 397280,
+				"to": 401360
+			},
+			"text": " And the subtitle is like what happened to the Ethereum volume in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,360",
+				"to": "00:06:45,240"
+			},
+			"offsets": {
+				"from": 401360,
+				"to": 405240
+			},
+			"text": " So that's sort of the story that I'll be talking about today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,240",
+				"to": "00:06:48,320"
+			},
+			"offsets": {
+				"from": 405240,
+				"to": 408320
+			},
+			"text": " And then I asked my mom to send me a picture for my presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,320",
+				"to": "00:06:50,920"
+			},
+			"offsets": {
+				"from": 408320,
+				"to": 410920
+			},
+			"text": " So this is me and my early data science days."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,920",
+				"to": "00:06:53,760"
+			},
+			"offsets": {
+				"from": 410920,
+				"to": 413760
+			},
+			"text": " I actually think I'm playing Counter Strike on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,760",
+				"to": "00:06:57,600"
+			},
+			"offsets": {
+				"from": 413760,
+				"to": 417600
+			},
+			"text": " But just to let you know, like we don't take ourselves too seriously, so if you think any"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,600",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 417600,
+				"to": 419760
+			},
+			"text": " of this is interesting, please come talk to us afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:02,560"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 422560
+			},
+			"text": " We're quite nice guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,560",
+				"to": "00:07:09,400"
+			},
+			"offsets": {
+				"from": 422560,
+				"to": 429400
+			},
+			"text": " So basically what we do is we start out with this idea of not knowing anything on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,400",
+				"to": "00:07:14,920"
+			},
+			"offsets": {
+				"from": 429400,
+				"to": 434920
+			},
+			"text": " So this is one of the visualizations of addresses interacting in some blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,920",
+				"to": "00:07:18,680"
+			},
+			"offsets": {
+				"from": 434920,
+				"to": 438680
+			},
+			"text": " And then our goal is basically to turn this into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,680",
+				"to": "00:07:24,200"
+			},
+			"offsets": {
+				"from": 438680,
+				"to": 444200
+			},
+			"text": " So we have an idea of what belongs together, how do the different entities interact."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,200",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 444200,
+				"to": 449840
+			},
+			"text": " So basically gain knowledge about who's interacting with who on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:34,400"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 454400
+			},
+			"text": " So this is sort of the background info."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,400",
+				"to": "00:07:39,680"
+			},
+			"offsets": {
+				"from": 454400,
+				"to": 459680
+			},
+			"text": " It's like we monitor the blockchain and try to figure out what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,680",
+				"to": "00:07:42,840"
+			},
+			"offsets": {
+				"from": 459680,
+				"to": 462840
+			},
+			"text": " And if there's something we don't understand that peaks are interesting, we're like, whoa,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,840",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 462840,
+				"to": 464400
+			},
+			"text": " what's going on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:50,440"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 470440
+			},
+			"text": " And then this graph is, it's the cumulative volume moved on the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,440",
+				"to": "00:07:53,480"
+			},
+			"offsets": {
+				"from": 470440,
+				"to": 473480
+			},
+			"text": " And oh, I can point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,480",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 473480,
+				"to": 478360
+			},
+			"text": " So in this period here initially, there was quite a normal growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:03,280"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 483280
+			},
+			"text": " And then from this period onwards, it almost looks like a piecewise function to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,280",
+				"to": "00:08:06,840"
+			},
+			"offsets": {
+				"from": 483280,
+				"to": 486840
+			},
+			"text": " So you have sort of a normal growth of volume being moved on the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,840",
+				"to": "00:08:11,280"
+			},
+			"offsets": {
+				"from": 486840,
+				"to": 491280
+			},
+			"text": " And then it shifts into basically a factor of five growth here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,280",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 491280,
+				"to": 495120
+			},
+			"text": " So that's sort of interesting to see is like, well, we know a lot of things happen in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:20,560"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 500560
+			},
+			"text": " A lot of ICOs, there was a bull run on crypto, but it doesn't really explain why you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,560",
+				"to": "00:08:23,680"
+			},
+			"offsets": {
+				"from": 500560,
+				"to": 503680
+			},
+			"text": " move so much ether on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,680",
+				"to": "00:08:24,680"
+			},
+			"offsets": {
+				"from": 503680,
+				"to": 504680
+			},
+			"text": " So this is sort of the starting point."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,680",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 504680,
+				"to": 507200
+			},
+			"text": " It's like we see something here where like we can't really explain it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:30,680"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 510680
+			},
+			"text": " So let's figure out what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,680",
+				"to": "00:08:37,240"
+			},
+			"offsets": {
+				"from": 510680,
+				"to": 517240
+			},
+			"text": " So we can basically, if we divide these periods into two blocks, so we're basically looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,240",
+				"to": "00:08:42,920"
+			},
+			"offsets": {
+				"from": 517240,
+				"to": 522920
+			},
+			"text": " at the initial period on the network and then this high growth period."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,920",
+				"to": "00:08:46,600"
+			},
+			"offsets": {
+				"from": 522920,
+				"to": 526600
+			},
+			"text": " And one thing we can do is we can look at the frequency distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,600",
+				"to": "00:08:52,200"
+			},
+			"offsets": {
+				"from": 526600,
+				"to": 532200
+			},
+			"text": " And what that means is basically we're taking all the transfers from that initial blue period"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,200",
+				"to": "00:08:58,760"
+			},
+			"offsets": {
+				"from": 532200,
+				"to": 538760
+			},
+			"text": " down here and saying, okay, how much volume was sent in this period and which amount are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,760",
+				"to": "00:09:01,280"
+			},
+			"offsets": {
+				"from": 538760,
+				"to": 541280
+			},
+			"text": " accountable for the total volume?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,280",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 541280,
+				"to": 546280
+			},
+			"text": " So this graph basically shows that more total volume was sent on the network through smaller"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:07,760"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 547760
+			},
+			"text": " transfer amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,760",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 547760,
+				"to": 551840
+			},
+			"text": " So that makes sense if you're like a general economic network where it's like where most"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:14,600"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 554600
+			},
+			"text": " people don't have so much money, so they're probably going to be interacting with smaller"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,600",
+				"to": "00:09:15,720"
+			},
+			"offsets": {
+				"from": 554600,
+				"to": 555720
+			},
+			"text": " amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,720",
+				"to": "00:09:18,360"
+			},
+			"offsets": {
+				"from": 555720,
+				"to": 558360
+			},
+			"text": " So there's going to be more volume moved through smaller amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,360",
+				"to": "00:09:23,400"
+			},
+			"offsets": {
+				"from": 558360,
+				"to": 563400
+			},
+			"text": " So this is sort of intuitive, at least to me when I look at it, like this looks like normal"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,400",
+				"to": "00:09:24,560"
+			},
+			"offsets": {
+				"from": 563400,
+				"to": 564560
+			},
+			"text": " behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,560",
+				"to": "00:09:30,280"
+			},
+			"offsets": {
+				"from": 564560,
+				"to": 570280
+			},
+			"text": " So what happens when we overlay a period of that 2017 period?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,280",
+				"to": "00:09:31,600"
+			},
+			"offsets": {
+				"from": 570280,
+				"to": 571600
+			},
+			"text": " So this is quite interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,600",
+				"to": "00:09:35,640"
+			},
+			"offsets": {
+				"from": 571600,
+				"to": 575640
+			},
+			"text": " So this to me definitely doesn't look like normal economic behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,640",
+				"to": "00:09:41,320"
+			},
+			"offsets": {
+				"from": 575640,
+				"to": 581320
+			},
+			"text": " It almost looked like artificial is that you have these almost smoothen out regions and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,320",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581320,
+				"to": 584000
+			},
+			"text": " then they just like sort of drop off here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589960
+			},
+			"text": " So when we see this, one thing is quite noticeable is that more volume is being moved through"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:53,080"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 593080
+			},
+			"text": " larger amounts on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,080",
+				"to": "00:09:58,600"
+			},
+			"offsets": {
+				"from": 593080,
+				"to": 598600
+			},
+			"text": " So then again, you can hypothesize, well, why are some people or entities moving more"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,600",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 598600,
+				"to": 601000
+			},
+			"text": " funds through larger amounts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:04,560"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 604560
+			},
+			"text": " So then you can, I mean, we're basically detective, so having a list of, well, is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,560",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 604560,
+				"to": 610000
+			},
+			"text": " because someone wants to boost the volume artificially or are there just more people"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:11,440"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 611440
+			},
+			"text": " transacting in a normal way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,440",
+				"to": "00:10:13,880"
+			},
+			"offsets": {
+				"from": 611440,
+				"to": 613880
+			},
+			"text": " This definitely doesn't look normal to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,880",
+				"to": "00:10:22,400"
+			},
+			"offsets": {
+				"from": 613880,
+				"to": 622400
+			},
+			"text": " So we can also look at what type of addresses were involved in this increase in volume movement"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,400",
+				"to": "00:10:23,840"
+			},
+			"offsets": {
+				"from": 622400,
+				"to": 623840
+			},
+			"text": " on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,840",
+				"to": "00:10:30,520"
+			},
+			"offsets": {
+				"from": 623840,
+				"to": 630520
+			},
+			"text": " And so this graph is basically showing that for this period, like how much volume was"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,520",
+				"to": "00:10:33,120"
+			},
+			"offsets": {
+				"from": 630520,
+				"to": 633120
+			},
+			"text": " sent through old addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,120",
+				"to": "00:10:39,280"
+			},
+			"offsets": {
+				"from": 633120,
+				"to": 639280
+			},
+			"text": " And what I mean with old addresses is addresses that were seen previously on the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,280",
+				"to": "00:10:43,720"
+			},
+			"offsets": {
+				"from": 639280,
+				"to": 643720
+			},
+			"text": " with respect to, so if we're in this bar here, for example, then old addresses means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,720",
+				"to": "00:10:45,920"
+			},
+			"offsets": {
+				"from": 643720,
+				"to": 645920
+			},
+			"text": " addresses that were seen before that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,920",
+				"to": "00:10:50,640"
+			},
+			"offsets": {
+				"from": 645920,
+				"to": 650640
+			},
+			"text": " Or for over here, it means all the volume that was moved by addresses that were seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,640",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 650640,
+				"to": 652240
+			},
+			"text": " before this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:55,640"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 655640
+			},
+			"text": " So it basically shows how much volume has been moved by addresses that were seen before"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,640",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 655640,
+				"to": 657000
+			},
+			"text": " in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:01,760"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 661760
+			},
+			"text": " And then we can also overlay a graph of how much volume is being moved by addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,760",
+				"to": "00:11:04,800"
+			},
+			"offsets": {
+				"from": 661760,
+				"to": 664800
+			},
+			"text": " which was only or first seen in that block range."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,800",
+				"to": "00:11:09,680"
+			},
+			"offsets": {
+				"from": 664800,
+				"to": 669680
+			},
+			"text": " So basically newly generated addresses for any point on the timeline."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,680",
+				"to": "00:11:12,920"
+			},
+			"offsets": {
+				"from": 669680,
+				"to": 672920
+			},
+			"text": " So when we do that, that also looks kind of cool because here we definitely have a clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,920",
+				"to": "00:11:16,040"
+			},
+			"offsets": {
+				"from": 672920,
+				"to": 676040
+			},
+			"text": " pattern is that something is going on in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,040",
+				"to": "00:11:19,520"
+			},
+			"offsets": {
+				"from": 676040,
+				"to": 679520
+			},
+			"text": " Like a lot of volume is being moved and we know it's through larger amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,520",
+				"to": "00:11:25,120"
+			},
+			"offsets": {
+				"from": 679520,
+				"to": 685120
+			},
+			"text": " And now we also know it's for newly generated addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,120",
+				"to": "00:11:27,680"
+			},
+			"offsets": {
+				"from": 685120,
+				"to": 687680
+			},
+			"text": " So I mean, I could show you 100 slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,680",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 687680,
+				"to": 691000
+			},
+			"text": " And this is just like a very small peak of how we would analyze something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:36,480"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 696480
+			},
+			"text": " So obviously we have a lot more information to go in and say what is going on in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,480",
+				"to": "00:11:43,720"
+			},
+			"offsets": {
+				"from": 696480,
+				"to": 703720
+			},
+			"text": " But when we piece all of this together, then we can sort of, we have an idea of which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:44,720"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 704720
+			},
+			"text": " addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,720",
+				"to": "00:11:45,800"
+			},
+			"offsets": {
+				"from": 704720,
+				"to": 705800
+			},
+			"text": " So we know they're newly generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,800",
+				"to": "00:11:48,240"
+			},
+			"offsets": {
+				"from": 705800,
+				"to": 708240
+			},
+			"text": " We know they move a lot of funds through large amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,240",
+				"to": "00:11:50,600"
+			},
+			"offsets": {
+				"from": 708240,
+				"to": 710600
+			},
+			"text": " And we know a bunch of other things also."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,600",
+				"to": "00:11:54,800"
+			},
+			"offsets": {
+				"from": 710600,
+				"to": 714800
+			},
+			"text": " So we can sort of define which addresses are involved in this movement."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,800",
+				"to": "00:11:57,400"
+			},
+			"offsets": {
+				"from": 714800,
+				"to": 717400
+			},
+			"text": " And then we can cluster them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,400",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 717400,
+				"to": 720720
+			},
+			"text": " And when we've done that, we can sort of do graph analysis as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,720",
+				"to": "00:12:02,480"
+			},
+			"offsets": {
+				"from": 720720,
+				"to": 722480
+			},
+			"text": " So we sort of look at how are they interacting?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,480",
+				"to": "00:12:03,760"
+			},
+			"offsets": {
+				"from": 722480,
+				"to": 723760
+			},
+			"text": " Are they interacting in the same way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,760",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723760,
+				"to": 727000
+			},
+			"text": " Because just if you're a specific address, you can still be interacting with other addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 728000
+			},
+			"text": " in a different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:10,360"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 730360
+			},
+			"text": " So that doesn't really mean you should be clustered together."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,360",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 730360,
+				"to": 732000
+			},
+			"text": " So this is a long process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,240"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736240
+			},
+			"text": " But when we're done, we basically read something like this where this is a visualization of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,240",
+				"to": "00:12:19,600"
+			},
+			"offsets": {
+				"from": 736240,
+				"to": 739600
+			},
+			"text": " 25 blocks in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,600",
+				"to": "00:12:23,840"
+			},
+			"offsets": {
+				"from": 739600,
+				"to": 743840
+			},
+			"text": " And all the orange dots here are the addresses that were connected together that's basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,840",
+				"to": "00:12:26,920"
+			},
+			"offsets": {
+				"from": 743840,
+				"to": 746920
+			},
+			"text": " responsible for this huge movement of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,920",
+				"to": "00:12:29,520"
+			},
+			"offsets": {
+				"from": 746920,
+				"to": 749520
+			},
+			"text": " Yeah, I just like graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,520",
+				"to": "00:12:33,040"
+			},
+			"offsets": {
+				"from": 749520,
+				"to": 753040
+			},
+			"text": " So I just wanted to give you a close up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,040",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 753040,
+				"to": 759520
+			},
+			"text": " So what can we say about-- yeah, so another thing is like we know that the addresses responsible"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:40,520"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 760520
+			},
+			"text": " this belong together."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,520",
+				"to": "00:12:42,200"
+			},
+			"offsets": {
+				"from": 760520,
+				"to": 762200
+			},
+			"text": " So it's one entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,200",
+				"to": "00:12:46,280"
+			},
+			"offsets": {
+				"from": 762200,
+				"to": 766280
+			},
+			"text": " So what can we say about this entity when we know an entity is responsible for moving"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,280",
+				"to": "00:12:49,160"
+			},
+			"offsets": {
+				"from": 766280,
+				"to": 769160
+			},
+			"text": " so much ETH in 2017?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,160",
+				"to": "00:12:53,960"
+			},
+			"offsets": {
+				"from": 769160,
+				"to": 773960
+			},
+			"text": " Well we can go in and say, okay, we know all these addresses belong together."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,960",
+				"to": "00:12:57,040"
+			},
+			"offsets": {
+				"from": 773960,
+				"to": 777040
+			},
+			"text": " Let's look at how much volume they send to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,040",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 777040,
+				"to": 781720
+			},
+			"text": " And here it's denominated as percentage of the total network volume."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:10,040"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 790040
+			},
+			"text": " So in these block numbers, around 60% to 70% on average was sent inside of this entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,040",
+				"to": "00:13:14,280"
+			},
+			"offsets": {
+				"from": 790040,
+				"to": 794280
+			},
+			"text": " And then the orange is basically the funds that is going outside of this entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,280",
+				"to": "00:13:18,840"
+			},
+			"offsets": {
+				"from": 794280,
+				"to": 798840
+			},
+			"text": " So this is, yeah, around 2% to 3% that's leaking over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,840",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 798840,
+				"to": 803240
+			},
+			"text": " So there's a huge difference between how much volume is being moved and how much volume"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 806000
+			},
+			"text": " is being sent outside of the entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:32,080"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 812080
+			},
+			"text": " So yeah, that's-- and I would love to go into detail more about how the entity looks and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,080",
+				"to": "00:13:34,040"
+			},
+			"offsets": {
+				"from": 812080,
+				"to": 814040
+			},
+			"text": " like this is a project that took several months."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,040",
+				"to": "00:13:36,560"
+			},
+			"offsets": {
+				"from": 814040,
+				"to": 816560
+			},
+			"text": " So this is just sort of the high level details."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,560",
+				"to": "00:13:40,360"
+			},
+			"offsets": {
+				"from": 816560,
+				"to": 820360
+			},
+			"text": " But it's really interesting when you find something that's responsible for-- like for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,360",
+				"to": "00:13:42,360"
+			},
+			"offsets": {
+				"from": 820360,
+				"to": 822360
+			},
+			"text": " some of the periods it's over 90%."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,360",
+				"to": "00:13:48,360"
+			},
+			"offsets": {
+				"from": 822360,
+				"to": 828360
+			},
+			"text": " So over 90% of the volume is actually coming from one entity in 2017 on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,360",
+				"to": "00:13:50,320"
+			},
+			"offsets": {
+				"from": 828360,
+				"to": 830320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,320",
+				"to": "00:13:52,960"
+			},
+			"offsets": {
+				"from": 830320,
+				"to": 832960
+			},
+			"text": " Back to Syria."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,960",
+				"to": "00:13:59,480"
+			},
+			"offsets": {
+				"from": 832960,
+				"to": 839480
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,480",
+				"to": "00:14:04,200"
+			},
+			"offsets": {
+				"from": 839480,
+				"to": 844200
+			},
+			"text": " Well we're a very growing company and we're expanding quite fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,200",
+				"to": "00:14:08,160"
+			},
+			"offsets": {
+				"from": 844200,
+				"to": 848160
+			},
+			"text": " So in my team specifically, if you want to work with Miko and myself, we're looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,160",
+				"to": "00:14:10,880"
+			},
+			"offsets": {
+				"from": 848160,
+				"to": 850880
+			},
+			"text": " for data scientists and a product manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,880",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 850880,
+				"to": 855800
+			},
+			"text": " So if either these interests you definitely reach out to us and come chat to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:21,280"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 861280
+			},
+			"text": " In addition, the company overall is hiring across many fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,280",
+				"to": "00:14:24,200"
+			},
+			"offsets": {
+				"from": 861280,
+				"to": 864200
+			},
+			"text": " And also we have major offices based around the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,200",
+				"to": "00:14:27,040"
+			},
+			"offsets": {
+				"from": 864200,
+				"to": 867040
+			},
+			"text": " And New York, DC, Copenhagen, London."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,040",
+				"to": "00:14:32,640"
+			},
+			"offsets": {
+				"from": 867040,
+				"to": 872640
+			},
+			"text": " We have quite a few satellite offices that are smaller, I think coming up around the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,640",
+				"to": "00:14:33,640"
+			},
+			"offsets": {
+				"from": 872640,
+				"to": 873640
+			},
+			"text": " world."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,640",
+				"to": "00:14:38,800"
+			},
+			"offsets": {
+				"from": 873640,
+				"to": 878800
+			},
+			"text": " So wherever you're located is probably likely you can work for us there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,800",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 878800,
+				"to": 880000
+			},
+			"text": " We're also very remote friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:44,680"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 884680
+			},
+			"text": " So even if you don't want to be based in an office and you're remote anywhere, we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,680",
+				"to": "00:14:46,400"
+			},
+			"offsets": {
+				"from": 884680,
+				"to": 886400
+			},
+			"text": " are very remote friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,400",
+				"to": "00:14:49,960"
+			},
+			"offsets": {
+				"from": 886400,
+				"to": 889960
+			},
+			"text": " My team in particular, half of us are spread around Europe and then some of us are in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,960",
+				"to": "00:14:52,320"
+			},
+			"offsets": {
+				"from": 889960,
+				"to": 892320
+			},
+			"text": " New York."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,320",
+				"to": "00:14:54,840"
+			},
+			"offsets": {
+				"from": 892320,
+				"to": 894840
+			},
+			"text": " And additionally no crypto experience is necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,840",
+				"to": "00:14:59,520"
+			},
+			"offsets": {
+				"from": 894840,
+				"to": 899520
+			},
+			"text": " So if you want to learn about the industry, if you want to get insights, we would love"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,520",
+				"to": "00:15:03,240"
+			},
+			"offsets": {
+				"from": 899520,
+				"to": 903240
+			},
+			"text": " to train you and get you up to speed on that and you'll get it on the job."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,240",
+				"to": "00:15:06,920"
+			},
+			"offsets": {
+				"from": 903240,
+				"to": 906920
+			},
+			"text": " And it's not necessary as a prerequisite."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,920",
+				"to": "00:15:12,840"
+			},
+			"offsets": {
+				"from": 906920,
+				"to": 912840
+			},
+			"text": " So yeah, if you found this talk interesting, please come speak to us in the sponsors gallery."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,840",
+				"to": "00:15:13,800"
+			},
+			"offsets": {
+				"from": 912840,
+				"to": 913800
+			},
+			"text": " And yeah, come say hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,800",
+				"to": "00:15:18,800"
+			},
+			"offsets": {
+				"from": 914800,
+				"to": 918800
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,800",
+				"to": "00:15:28,800"
+			},
+			"offsets": {
+				"from": 918800,
+				"to": 928800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,800",
+				"to": "00:15:38,800"
+			},
+			"offsets": {
+				"from": 928800,
+				"to": 938800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,800",
+				"to": "00:15:48,800"
+			},
+			"offsets": {
+				"from": 938800,
+				"to": 948800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,800",
+				"to": "00:15:58,800"
+			},
+			"offsets": {
+				"from": 948800,
+				"to": 958800
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

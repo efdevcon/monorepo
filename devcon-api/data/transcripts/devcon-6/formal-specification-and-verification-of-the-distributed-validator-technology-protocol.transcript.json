@@ -1,0 +1,3959 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16000
+			},
+			"text": " Thank you for making it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:23,300"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 23300
+			},
+			"text": " As the title says, I'll be presenting on our work on formally specifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,300",
+				"to": "00:00:27,200"
+			},
+			"offsets": {
+				"from": 23300,
+				"to": 27200
+			},
+			"text": " and formally verifying the distributed validator technology protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,060",
+				"to": "00:00:33,360"
+			},
+			"offsets": {
+				"from": 28060,
+				"to": 33360
+			},
+			"text": " And the way I'm going to do so is by answering to four key questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,360",
+				"to": "00:00:37,860"
+			},
+			"offsets": {
+				"from": 33360,
+				"to": 37860
+			},
+			"text": " Why do we need a distributed validator in the first place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,860",
+				"to": "00:00:42,860"
+			},
+			"offsets": {
+				"from": 37860,
+				"to": 42860
+			},
+			"text": " Why do we need to formally specify and formally verify the distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,860",
+				"to": "00:00:44,540"
+			},
+			"offsets": {
+				"from": 42860,
+				"to": 44540
+			},
+			"text": " by data technology protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,540",
+				"to": "00:00:48,820"
+			},
+			"offsets": {
+				"from": 44540,
+				"to": 48820
+			},
+			"text": " How does our formal specification look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,820",
+				"to": "00:00:53,820"
+			},
+			"offsets": {
+				"from": 48820,
+				"to": 53820
+			},
+			"text": " And finally, what have actually achieved so far and what is left to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,020",
+				"to": "00:00:58,440"
+			},
+			"offsets": {
+				"from": 54020,
+				"to": 58440
+			},
+			"text": " But before diving into answering to these questions, some due"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,440",
+				"to": "00:01:03,800"
+			},
+			"offsets": {
+				"from": 58440,
+				"to": 63800
+			},
+			"text": " and knowledgement, this work has been carried out by consensus R&D."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,800",
+				"to": "00:01:08,580"
+			},
+			"offsets": {
+				"from": 63800,
+				"to": 68580
+			},
+			"text": " But as I received a grant, co-founded by the Theore Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,580",
+				"to": "00:01:13,380"
+			},
+			"offsets": {
+				"from": 68580,
+				"to": 73380
+			},
+			"text": " OBL and SSB Network, also I'm here presenting the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,380",
+				"to": "00:01:16,580"
+			},
+			"offsets": {
+				"from": 73380,
+				"to": 76580
+			},
+			"text": " But since it was done together with Tanai Tran,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,580",
+				"to": "00:01:21,140"
+			},
+			"offsets": {
+				"from": 76580,
+				"to": 81140
+			},
+			"text": " who is one of my colleagues in the distributed system formal verification team"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,140",
+				"to": "00:01:22,280"
+			},
+			"offsets": {
+				"from": 81140,
+				"to": 82280
+			},
+			"text": " at consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,280",
+				"to": "00:01:23,820"
+			},
+			"offsets": {
+				"from": 82280,
+				"to": 83820
+			},
+			"text": " Everybody, I think so at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,060",
+				"to": "00:01:27,460"
+			},
+			"offsets": {
+				"from": 84060,
+				"to": 87460
+			},
+			"text": " I can start answering to the first quick questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,460",
+				"to": "00:01:30,300"
+			},
+			"offsets": {
+				"from": 87460,
+				"to": 90300
+			},
+			"text": " Why do we need a distributed validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,300",
+				"to": "00:01:34,140"
+			},
+			"offsets": {
+				"from": 90300,
+				"to": 94140
+			},
+			"text": " Now, if you are here before, I'll talk by Colin Ozen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,140",
+				"to": "00:01:37,500"
+			},
+			"offsets": {
+				"from": 94140,
+				"to": 97500
+			},
+			"text": " You may already know why, but I'll briefly go over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,500",
+				"to": "00:01:43,860"
+			},
+			"offsets": {
+				"from": 97500,
+				"to": 103860
+			},
+			"text": " Actually, the way I go over it will be by answering to another question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,860",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 103860,
+				"to": 107600
+			},
+			"text": " What can go wrong with an ethereum validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:52,340"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 112340
+			},
+			"text": " Well, there are two things, at least, that can go wrong with an ethereum validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,420",
+				"to": "00:01:57,380"
+			},
+			"offsets": {
+				"from": 113420,
+				"to": 117380
+			},
+			"text": " The first one is that ethereum validator might fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,380",
+				"to": "00:01:58,820"
+			},
+			"offsets": {
+				"from": 117380,
+				"to": 118820
+			},
+			"text": " And let's see what this means."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,820",
+				"to": "00:02:02,340"
+			},
+			"offsets": {
+				"from": 118820,
+				"to": 122340
+			},
+			"text": " Now, you know, you have your slots, in some of the slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,340",
+				"to": "00:02:04,460"
+			},
+			"offsets": {
+				"from": 122340,
+				"to": 124460
+			},
+			"text": " you have the proposal, another, your attestor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,460",
+				"to": "00:02:06,980"
+			},
+			"offsets": {
+				"from": 124460,
+				"to": 126980
+			},
+			"text": " and your ethereum validator is working."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,980",
+				"to": "00:02:11,420"
+			},
+			"offsets": {
+				"from": 126980,
+				"to": 131420
+			},
+			"text": " What this means is that it reduces blocks, you get rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,420",
+				"to": "00:02:14,660"
+			},
+			"offsets": {
+				"from": 131420,
+				"to": 134660
+			},
+			"text": " Traditions, attestations, you get rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,660",
+				"to": "00:02:17,660"
+			},
+			"offsets": {
+				"from": 134660,
+				"to": 137660
+			},
+			"text": " But now, suppose that your node fails."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,660",
+				"to": "00:02:21,380"
+			},
+			"offsets": {
+				"from": 137660,
+				"to": 141380
+			},
+			"text": " But what's going to happen is you start missing your duties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,980",
+				"to": "00:02:24,420"
+			},
+			"offsets": {
+				"from": 141980,
+				"to": 144420
+			},
+			"text": " So, if you miss a block, you don't receive rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,420",
+				"to": "00:02:26,900"
+			},
+			"offsets": {
+				"from": 144420,
+				"to": 146900
+			},
+			"text": " If you miss an attestation, you don't receive rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,900",
+				"to": "00:02:28,100"
+			},
+			"offsets": {
+				"from": 146900,
+				"to": 148100
+			},
+			"text": " You also get penalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,100",
+				"to": "00:02:32,220"
+			},
+			"offsets": {
+				"from": 148100,
+				"to": 152220
+			},
+			"text": " What this means, basically, with what can happen with a node failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,220",
+				"to": "00:02:36,020"
+			},
+			"offsets": {
+				"from": 152220,
+				"to": 156020
+			},
+			"text": " is that you miss the rewards and you also can incorporate penalties."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,020",
+				"to": "00:02:42,740"
+			},
+			"offsets": {
+				"from": 156020,
+				"to": 162740
+			},
+			"text": " The second thing that can go wrong is that the validator key might be compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,740",
+				"to": "00:02:44,140"
+			},
+			"offsets": {
+				"from": 162740,
+				"to": 164140
+			},
+			"text": " And let's see what this means."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,140",
+				"to": "00:02:48,500"
+			},
+			"offsets": {
+				"from": 164140,
+				"to": 168500
+			},
+			"text": " Assuming your ethereum validator with your validator signing key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,500",
+				"to": "00:02:51,900"
+			},
+			"offsets": {
+				"from": 168500,
+				"to": 171900
+			},
+			"text": " now, in my list, you notice I'm now able to steal it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,540",
+				"to": "00:02:54,060"
+			},
+			"offsets": {
+				"from": 172540,
+				"to": 174060
+			},
+			"text": " What this malicious node can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,060",
+				"to": "00:02:58,860"
+			},
+			"offsets": {
+				"from": 174060,
+				"to": 178860
+			},
+			"text": " can actually produce, for example, two attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,860",
+				"to": "00:03:02,740"
+			},
+			"offsets": {
+				"from": 178860,
+				"to": 182740
+			},
+			"text": " slushable attestation, sign with your validator signing key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,740",
+				"to": "00:03:06,260"
+			},
+			"offsets": {
+				"from": 182740,
+				"to": 186260
+			},
+			"text": " and package all of this into a slush improve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,260",
+				"to": "00:03:08,860"
+			},
+			"offsets": {
+				"from": 186260,
+				"to": 188860
+			},
+			"text": " signed with the malicious node signing key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,860",
+				"to": "00:03:11,780"
+			},
+			"offsets": {
+				"from": 188860,
+				"to": 191780
+			},
+			"text": " And proposal block, submitted to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,780",
+				"to": "00:03:15,380"
+			},
+			"offsets": {
+				"from": 191780,
+				"to": 195380
+			},
+			"text": " what's going to happen is that, of course, you're going to get slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,380",
+				"to": "00:03:18,140"
+			},
+			"offsets": {
+				"from": 195380,
+				"to": 198140
+			},
+			"text": " And some of your funds get actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,620",
+				"to": "00:03:21,980"
+			},
+			"offsets": {
+				"from": 199620,
+				"to": 201980
+			},
+			"text": " kind of transferred to the malicious node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,980",
+				"to": "00:03:26,980"
+			},
+			"offsets": {
+				"from": 201980,
+				"to": 206980
+			},
+			"text": " So while this, while the malicious node doesn't have the withdrawal key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,980",
+				"to": "00:03:29,300"
+			},
+			"offsets": {
+				"from": 206980,
+				"to": 209300
+			},
+			"text": " they can still somehow get some of your funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,300",
+				"to": "00:03:30,140"
+			},
+			"offsets": {
+				"from": 209300,
+				"to": 210140
+			},
+			"text": " And this is very bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,140",
+				"to": "00:03:30,980"
+			},
+			"offsets": {
+				"from": 210140,
+				"to": 210980
+			},
+			"text": " It's bad for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,980",
+				"to": "00:03:33,100"
+			},
+			"offsets": {
+				"from": 210980,
+				"to": 213100
+			},
+			"text": " As a staker, it's bad for the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,100",
+				"to": "00:03:37,060"
+			},
+			"offsets": {
+				"from": 213100,
+				"to": 217060
+			},
+			"text": " because it means that malicious nodes can get more and more power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,060",
+				"to": "00:03:38,780"
+			},
+			"offsets": {
+				"from": 217060,
+				"to": 218780
+			},
+			"text": " more and more staker, and we don't want this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,780",
+				"to": "00:03:41,460"
+			},
+			"offsets": {
+				"from": 218780,
+				"to": 221460
+			},
+			"text": " The way to fix this is not, I strive forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,460",
+				"to": "00:03:42,420"
+			},
+			"offsets": {
+				"from": 221460,
+				"to": 222420
+			},
+			"text": " This one might think."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,420",
+				"to": "00:03:46,820"
+			},
+			"offsets": {
+				"from": 222420,
+				"to": 226820
+			},
+			"text": " Just thinking about the first issue, which is, if you're on simplest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,380",
+				"to": "00:03:51,900"
+			},
+			"offsets": {
+				"from": 227380,
+				"to": 231900
+			},
+			"text": " one might think, well, let's just run more than one theorem validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,900",
+				"to": "00:03:55,420"
+			},
+			"offsets": {
+				"from": 231900,
+				"to": 235420
+			},
+			"text": " And, well, we know from the early day of the big constraint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,420",
+				"to": "00:03:58,820"
+			},
+			"offsets": {
+				"from": 235420,
+				"to": 238820
+			},
+			"text": " this is a perfect recipe for getting yourself slush."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,820",
+				"to": "00:04:01,220"
+			},
+			"offsets": {
+				"from": 238820,
+				"to": 241220
+			},
+			"text": " So, yeah, we know we can't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,220",
+				"to": "00:04:04,740"
+			},
+			"offsets": {
+				"from": 241220,
+				"to": 244740
+			},
+			"text": " And this is why, for the theorem foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,740",
+				"to": "00:04:07,460"
+			},
+			"offsets": {
+				"from": 244740,
+				"to": 247460
+			},
+			"text": " Dicher, Dan Kran, and Kha,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,460",
+				"to": "00:04:10,220"
+			},
+			"offsets": {
+				"from": 247460,
+				"to": 250220
+			},
+			"text": " and come up with a concept of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,220",
+				"to": "00:04:14,900"
+			},
+			"offsets": {
+				"from": 250220,
+				"to": 254900
+			},
+			"text": " distributed validator technology protocol, which is simplified here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,460",
+				"to": "00:04:18,940"
+			},
+			"offsets": {
+				"from": 255460,
+				"to": 258940
+			},
+			"text": " So, what you need, essentially, you need a coordination layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,940",
+				"to": "00:04:20,660"
+			},
+			"offsets": {
+				"from": 258940,
+				"to": 260660
+			},
+			"text": " between the different nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,660",
+				"to": "00:04:24,220"
+			},
+			"offsets": {
+				"from": 260660,
+				"to": 264220
+			},
+			"text": " You need this coordination layer, because you need to ensure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,220",
+				"to": "00:04:28,500"
+			},
+			"offsets": {
+				"from": 264220,
+				"to": 268500
+			},
+			"text": " whatever attestations are submitted potentially by more than one node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,500",
+				"to": "00:04:30,300"
+			},
+			"offsets": {
+				"from": 268500,
+				"to": 270300
+			},
+			"text": " they are not slushable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,300",
+				"to": "00:04:35,540"
+			},
+			"offsets": {
+				"from": 270300,
+				"to": 275540
+			},
+			"text": " And this relies on a consensus protocol that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,540",
+				"to": "00:04:41,180"
+			},
+			"offsets": {
+				"from": 275540,
+				"to": 281180
+			},
+			"text": " so basically, you have a middle layer between the big nodes and the remote signer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,180",
+				"to": "00:04:43,900"
+			},
+			"offsets": {
+				"from": 281180,
+				"to": 283900
+			},
+			"text": " And this middle layer, which is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,900",
+				"to": "00:04:47,860"
+			},
+			"offsets": {
+				"from": 283900,
+				"to": 287860
+			},
+			"text": " distributed validator client, runs, and then needs a consensus protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,860",
+				"to": "00:04:51,060"
+			},
+			"offsets": {
+				"from": 287860,
+				"to": 291060
+			},
+			"text": " plus another layer on top that ensures that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,060",
+				"to": "00:04:54,260"
+			},
+			"offsets": {
+				"from": 291060,
+				"to": 294260
+			},
+			"text": " or must ensure that you never get slush."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,260",
+				"to": "00:04:57,660"
+			},
+			"offsets": {
+				"from": 294260,
+				"to": 297660
+			},
+			"text": " This is a protocol that allows basically splitting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,660",
+				"to": "00:05:02,100"
+			},
+			"offsets": {
+				"from": 297660,
+				"to": 302100
+			},
+			"text": " the distributed validator signing key into different key shares,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,100",
+				"to": "00:05:04,860"
+			},
+			"offsets": {
+				"from": 302100,
+				"to": 304860
+			},
+			"text": " and it's a remote signer as its own key share."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,860",
+				"to": "00:05:08,220"
+			},
+			"offsets": {
+				"from": 304860,
+				"to": 308220
+			},
+			"text": " So, none of the remote signer as the full key."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,220",
+				"to": "00:05:12,540"
+			},
+			"offsets": {
+				"from": 308220,
+				"to": 312540
+			},
+			"text": " This is what ensures protection against"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,420",
+				"to": "00:05:15,180"
+			},
+			"offsets": {
+				"from": 313420,
+				"to": 315180
+			},
+			"text": " our later signing key stealing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,180",
+				"to": "00:05:19,980"
+			},
+			"offsets": {
+				"from": 315180,
+				"to": 319980
+			},
+			"text": " Okay, now we know why it's important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,980",
+				"to": "00:05:25,180"
+			},
+			"offsets": {
+				"from": 319980,
+				"to": 325180
+			},
+			"text": " well, why do we need to formally specify and verify such a protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,180",
+				"to": "00:05:28,020"
+			},
+			"offsets": {
+				"from": 325180,
+				"to": 328020
+			},
+			"text": " We have removed any single point of failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,020",
+				"to": "00:05:30,300"
+			},
+			"offsets": {
+				"from": 328020,
+				"to": 330300
+			},
+			"text": " and so we have higher resiliency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,300",
+				"to": "00:05:35,100"
+			},
+			"offsets": {
+				"from": 330300,
+				"to": 335100
+			},
+			"text": " However, you know, there is no such a thing as a free lunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,100",
+				"to": "00:05:38,340"
+			},
+			"offsets": {
+				"from": 335100,
+				"to": 338340
+			},
+			"text": " We have increased the complexity of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,340",
+				"to": "00:05:42,140"
+			},
+			"offsets": {
+				"from": 338340,
+				"to": 342140
+			},
+			"text": " Now we have a distributed system in place of a single piece of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,740",
+				"to": "00:05:45,100"
+			},
+			"offsets": {
+				"from": 342740,
+				"to": 345100
+			},
+			"text": " So we have higher chances of bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,100",
+				"to": "00:05:49,020"
+			},
+			"offsets": {
+				"from": 345100,
+				"to": 349020
+			},
+			"text": " And this is where formal verification can really help us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,020",
+				"to": "00:05:52,620"
+			},
+			"offsets": {
+				"from": 349020,
+				"to": 352620
+			},
+			"text": " And to give you an idea of how it can really help us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,620",
+				"to": "00:05:55,780"
+			},
+			"offsets": {
+				"from": 352620,
+				"to": 355780
+			},
+			"text": " I want just to draw a comparison to testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,780",
+				"to": "00:06:00,820"
+			},
+			"offsets": {
+				"from": 355780,
+				"to": 360820
+			},
+			"text": " And the key concept here is that formal verification is exhaustive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,820",
+				"to": "00:06:02,580"
+			},
+			"offsets": {
+				"from": 360820,
+				"to": 362580
+			},
+			"text": " and testing is not."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,580",
+				"to": "00:06:04,900"
+			},
+			"offsets": {
+				"from": 362580,
+				"to": 364900
+			},
+			"text": " To give you an idea with formal verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,900",
+				"to": "00:06:08,460"
+			},
+			"offsets": {
+				"from": 364900,
+				"to": 368460
+			},
+			"text": " we can consider networks of any size."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,460",
+				"to": "00:06:10,540"
+			},
+			"offsets": {
+				"from": 368460,
+				"to": 370540
+			},
+			"text": " You pick a number, we can deal with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,540",
+				"to": "00:06:12,060"
+			},
+			"offsets": {
+				"from": 370540,
+				"to": 372060
+			},
+			"text": " You can't do that with testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,060",
+				"to": "00:06:13,860"
+			},
+			"offsets": {
+				"from": 372060,
+				"to": 373860
+			},
+			"text": " You have only small network sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,860",
+				"to": "00:06:18,540"
+			},
+			"offsets": {
+				"from": 373860,
+				"to": 378540
+			},
+			"text": " And it's very important when it comes to Byzantine behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,540",
+				"to": "00:06:20,900"
+			},
+			"offsets": {
+				"from": 378540,
+				"to": 380900
+			},
+			"text": " because with formal verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,900",
+				"to": "00:06:23,460"
+			},
+			"offsets": {
+				"from": 380900,
+				"to": 383460
+			},
+			"text": " we can really consider any Byzantine behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,460",
+				"to": "00:06:25,820"
+			},
+			"offsets": {
+				"from": 383460,
+				"to": 385820
+			},
+			"text": " With testing, even with fuzzing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,820",
+				"to": "00:06:30,180"
+			},
+			"offsets": {
+				"from": 385820,
+				"to": 390180
+			},
+			"text": " you can currently consider a limited set of Byzantine behaviors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,180",
+				"to": "00:06:36,580"
+			},
+			"offsets": {
+				"from": 390180,
+				"to": 396580
+			},
+			"text": " perhaps a node doesn't respond, but you can't really exhaustively consider all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,580",
+				"to": "00:06:40,940"
+			},
+			"offsets": {
+				"from": 396580,
+				"to": 400940
+			},
+			"text": " Also, if you want to make sure that a property is ensured,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,940",
+				"to": "00:06:44,180"
+			},
+			"offsets": {
+				"from": 400940,
+				"to": 404180
+			},
+			"text": " well, and this property actually doesn't talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,180",
+				"to": "00:06:46,020"
+			},
+			"offsets": {
+				"from": 404180,
+				"to": 406020
+			},
+			"text": " so there is a bug in the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,020",
+				"to": "00:06:48,740"
+			},
+			"offsets": {
+				"from": 406020,
+				"to": 408740
+			},
+			"text": " well, with formal verification, it can be detected."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,740",
+				"to": "00:06:52,820"
+			},
+			"offsets": {
+				"from": 408740,
+				"to": 412820
+			},
+			"text": " With testing, maybe yes, maybe no, it depends."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,820",
+				"to": "00:06:55,940"
+			},
+			"offsets": {
+				"from": 412820,
+				"to": 415940
+			},
+			"text": " It's not exhaustive, so you might get lucky."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,940",
+				"to": "00:06:58,940"
+			},
+			"offsets": {
+				"from": 415940,
+				"to": 418940
+			},
+			"text": " Moreover, if a property is actually true,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,940",
+				"to": "00:07:02,100"
+			},
+			"offsets": {
+				"from": 418940,
+				"to": 422100
+			},
+			"text": " well, with formal verification, we can prove that it's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,100",
+				"to": "00:07:06,620"
+			},
+			"offsets": {
+				"from": 422100,
+				"to": 426620
+			},
+			"text": " With testing, we cannot do it, because, again, it's not exhaustive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,620",
+				"to": "00:07:08,860"
+			},
+			"offsets": {
+				"from": 426620,
+				"to": 428860
+			},
+			"text": " So this is the benefit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,860",
+				"to": "00:07:12,500"
+			},
+			"offsets": {
+				"from": 428860,
+				"to": 432500
+			},
+			"text": " This is why formal verification is very well suited for this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,500",
+				"to": "00:07:17,780"
+			},
+			"offsets": {
+				"from": 432500,
+				"to": 437780
+			},
+			"text": " Now, I want to give you an idea of what formal verification consists of."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,780",
+				"to": "00:07:20,780"
+			},
+			"offsets": {
+				"from": 437780,
+				"to": 440780
+			},
+			"text": " You have a formal specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,780",
+				"to": "00:07:23,340"
+			},
+			"offsets": {
+				"from": 440780,
+				"to": 443340
+			},
+			"text": " which essentially is a mathematical definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,340",
+				"to": "00:07:25,660"
+			},
+			"offsets": {
+				"from": 443340,
+				"to": 445660
+			},
+			"text": " of how the protocol is supposed to behave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,660",
+				"to": "00:07:28,780"
+			},
+			"offsets": {
+				"from": 445660,
+				"to": 448780
+			},
+			"text": " which says basically, when you receive methods X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,780",
+				"to": "00:07:30,300"
+			},
+			"offsets": {
+				"from": 448780,
+				"to": 450300
+			},
+			"text": " you need to send methods Y."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,300",
+				"to": "00:07:33,660"
+			},
+			"offsets": {
+				"from": 450300,
+				"to": 453660
+			},
+			"text": " Then you have a property definition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,660",
+				"to": "00:07:36,260"
+			},
+			"offsets": {
+				"from": 453660,
+				"to": 456260
+			},
+			"text": " which is a mathematical definition of the properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,020",
+				"to": "00:07:39,780"
+			},
+			"offsets": {
+				"from": 457020,
+				"to": 459780
+			},
+			"text": " that the protocol is expecting to guarantee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,780",
+				"to": "00:07:43,180"
+			},
+			"offsets": {
+				"from": 459780,
+				"to": 463180
+			},
+			"text": " something like never commit a slouchable offense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,180",
+				"to": "00:07:47,020"
+			},
+			"offsets": {
+				"from": 463180,
+				"to": 467020
+			},
+			"text": " Although this is kind of packaged together in a formal proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,020",
+				"to": "00:07:52,020"
+			},
+			"offsets": {
+				"from": 467020,
+				"to": 472020
+			},
+			"text": " which is a mathematical proof that the protocol specification ensures the properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,020",
+				"to": "00:07:54,460"
+			},
+			"offsets": {
+				"from": 472020,
+				"to": 474460
+			},
+			"text": " Now, what we do, we take this a step further,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,460",
+				"to": "00:07:57,260"
+			},
+			"offsets": {
+				"from": 474460,
+				"to": 477260
+			},
+			"text": " and we work with machine checkable proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,260",
+				"to": "00:08:02,020"
+			},
+			"offsets": {
+				"from": 477260,
+				"to": 482020
+			},
+			"text": " It means that our proofs are checked by a computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,020",
+				"to": "00:08:06,500"
+			},
+			"offsets": {
+				"from": 482020,
+				"to": 486500
+			},
+			"text": " and this provides a higher guarantee that the proofs actually correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,500",
+				"to": "00:08:11,940"
+			},
+			"offsets": {
+				"from": 487500,
+				"to": 491940
+			},
+			"text": " Okay, now we know why we need to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,940",
+				"to": "00:08:16,500"
+			},
+			"offsets": {
+				"from": 491940,
+				"to": 496500
+			},
+			"text": " and now we can overlook how the specification actually looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,500",
+				"to": "00:08:19,540"
+			},
+			"offsets": {
+				"from": 496500,
+				"to": 499540
+			},
+			"text": " Now, the specification is not a piece,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,540",
+				"to": "00:08:21,340"
+			},
+			"offsets": {
+				"from": 499540,
+				"to": 501340
+			},
+			"text": " it's not a single piece, it's modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,340",
+				"to": "00:08:24,220"
+			},
+			"offsets": {
+				"from": 501340,
+				"to": 504220
+			},
+			"text": " We need to specify different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,220",
+				"to": "00:08:26,460"
+			},
+			"offsets": {
+				"from": 504220,
+				"to": 506460
+			},
+			"text": " We need to specify how the single node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,460",
+				"to": "00:08:29,180"
+			},
+			"offsets": {
+				"from": 506460,
+				"to": 509180
+			},
+			"text": " the DVC, the middle layer behaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,180",
+				"to": "00:08:33,420"
+			},
+			"offsets": {
+				"from": 509180,
+				"to": 513420
+			},
+			"text": " We also need to specify how the bison-tyne node behaves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,860",
+				"to": "00:08:39,180"
+			},
+			"offsets": {
+				"from": 513860,
+				"to": 519180
+			},
+			"text": " and actually what we need to do is specify what it cannot do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,180",
+				"to": "00:08:41,860"
+			},
+			"offsets": {
+				"from": 519180,
+				"to": 521860
+			},
+			"text": " So, there are things a bison-tyne node cannot do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,860",
+				"to": "00:08:43,180"
+			},
+			"offsets": {
+				"from": 521860,
+				"to": 523180
+			},
+			"text": " it cannot fold a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,180",
+				"to": "00:08:45,340"
+			},
+			"offsets": {
+				"from": 523180,
+				"to": 525340
+			},
+			"text": " Also, it cannot change the state of another node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,340",
+				"to": "00:08:48,620"
+			},
+			"offsets": {
+				"from": 525340,
+				"to": 528620
+			},
+			"text": " so all these things need to be coded in the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,620",
+				"to": "00:08:51,780"
+			},
+			"offsets": {
+				"from": 528620,
+				"to": 531780
+			},
+			"text": " We also have a specification for the consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,780",
+				"to": "00:08:54,620"
+			},
+			"offsets": {
+				"from": 531780,
+				"to": 534620
+			},
+			"text": " This is because the DVC protocol is agnostic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,620",
+				"to": "00:08:56,580"
+			},
+			"offsets": {
+				"from": 534620,
+				"to": 536580
+			},
+			"text": " of the consensus protocol used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,580",
+				"to": "00:09:00,060"
+			},
+			"offsets": {
+				"from": 536580,
+				"to": 540060
+			},
+			"text": " and so what we need to do, we need to specify the behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,060",
+				"to": "00:09:02,060"
+			},
+			"offsets": {
+				"from": 540060,
+				"to": 542060
+			},
+			"text": " that we expect from the consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,620",
+				"to": "00:09:06,260"
+			},
+			"offsets": {
+				"from": 542620,
+				"to": 546260
+			},
+			"text": " We also need to specify how the network is supposed to behave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,260",
+				"to": "00:09:09,300"
+			},
+			"offsets": {
+				"from": 546260,
+				"to": 549300
+			},
+			"text": " for example, which sequencing of messages you might have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,300",
+				"to": "00:09:13,220"
+			},
+			"offsets": {
+				"from": 549300,
+				"to": 553220
+			},
+			"text": " and I'll go over on this one more detail later."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,220",
+				"to": "00:09:15,980"
+			},
+			"offsets": {
+				"from": 553220,
+				"to": 555980
+			},
+			"text": " And all of this is put together, is linked together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,980",
+				"to": "00:09:19,340"
+			},
+			"offsets": {
+				"from": 555980,
+				"to": 559340
+			},
+			"text": " in the distributed validator specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,340",
+				"to": "00:09:26,540"
+			},
+			"offsets": {
+				"from": 559340,
+				"to": 566540
+			},
+			"text": " What we have, actually, we also have an executable reference implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,540",
+				"to": "00:09:29,540"
+			},
+			"offsets": {
+				"from": 566540,
+				"to": 569540
+			},
+			"text": " that implements the single node specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,220",
+				"to": "00:09:33,500"
+			},
+			"offsets": {
+				"from": 570220,
+				"to": 573500
+			},
+			"text": " And all of this is written for this project in Daphne,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,500",
+				"to": "00:09:36,220"
+			},
+			"offsets": {
+				"from": 573500,
+				"to": 576220
+			},
+			"text": " which is a programming language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,220",
+				"to": "00:09:39,700"
+			},
+			"offsets": {
+				"from": 576220,
+				"to": 579700
+			},
+			"text": " it's a Python JavaScript-like syntax,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,700",
+				"to": "00:09:43,380"
+			},
+			"offsets": {
+				"from": 579700,
+				"to": 583380
+			},
+			"text": " and it's a formally verification-aware language."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,380",
+				"to": "00:09:48,460"
+			},
+			"offsets": {
+				"from": 583380,
+				"to": 588460
+			},
+			"text": " So, I'm going to go over a bit of the spec by starting from the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,460",
+				"to": "00:09:51,780"
+			},
+			"offsets": {
+				"from": 588460,
+				"to": 591780
+			},
+			"text": " as being a bit, say, big abstract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,780",
+				"to": "00:09:55,220"
+			},
+			"offsets": {
+				"from": 591780,
+				"to": 595220
+			},
+			"text": " I want to give you some practical code to look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,220",
+				"to": "00:09:59,220"
+			},
+			"offsets": {
+				"from": 595220,
+				"to": 599220
+			},
+			"text": " So, I start from the executable reference implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,220",
+				"to": "00:10:02,220"
+			},
+			"offsets": {
+				"from": 599220,
+				"to": 602220
+			},
+			"text": " What I want to show here, this is the method that is called,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,220",
+				"to": "00:10:06,780"
+			},
+			"offsets": {
+				"from": 602220,
+				"to": 606780
+			},
+			"text": " when the consensus protocol decides on a neural test station."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,780",
+				"to": "00:10:12,060"
+			},
+			"offsets": {
+				"from": 606780,
+				"to": 612060
+			},
+			"text": " What I want to show here is that the code is pretty easy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,060",
+				"to": "00:10:13,660"
+			},
+			"offsets": {
+				"from": 612060,
+				"to": 613660
+			},
+			"text": " I would say, to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,660",
+				"to": "00:10:17,780"
+			},
+			"offsets": {
+				"from": 613660,
+				"to": 617780
+			},
+			"text": " It's really, I think, that any developer would be able to read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,780",
+				"to": "00:10:21,300"
+			},
+			"offsets": {
+				"from": 617780,
+				"to": 621300
+			},
+			"text": " It's really a mix of Java crypto and Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,300",
+				"to": "00:10:26,460"
+			},
+			"offsets": {
+				"from": 621300,
+				"to": 626460
+			},
+			"text": " You have some statements that are required for a formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,460",
+				"to": "00:10:29,660"
+			},
+			"offsets": {
+				"from": 626460,
+				"to": 629660
+			},
+			"text": " Those are the top, if you are just interested in, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,660",
+				"to": "00:10:33,140"
+			},
+			"offsets": {
+				"from": 629660,
+				"to": 633140
+			},
+			"text": " looking at the reference implementation and having your own implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,140",
+				"to": "00:10:34,660"
+			},
+			"offsets": {
+				"from": 633140,
+				"to": 634660
+			},
+			"text": " you can just ignore them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,660",
+				"to": "00:10:38,380"
+			},
+			"offsets": {
+				"from": 634660,
+				"to": 638380
+			},
+			"text": " There are also some specific syntax like this one at the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,380",
+				"to": "00:10:42,420"
+			},
+			"offsets": {
+				"from": 638380,
+				"to": 642420
+			},
+			"text": " which is kind of the equivalent in some sense of exception propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,420",
+				"to": "00:10:44,620"
+			},
+			"offsets": {
+				"from": 642420,
+				"to": 644620
+			},
+			"text": " in some of the common languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,620",
+				"to": "00:10:46,340"
+			},
+			"offsets": {
+				"from": 644620,
+				"to": 646340
+			},
+			"text": " But aside from this, it's pretty simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,340",
+				"to": "00:10:49,940"
+			},
+			"offsets": {
+				"from": 646340,
+				"to": 649940
+			},
+			"text": " and this is one of the reasons we've chosen Daphne for this project"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,940",
+				"to": "00:10:54,820"
+			},
+			"offsets": {
+				"from": 649940,
+				"to": 654820
+			},
+			"text": " to basically make it easier, as easy as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,820",
+				"to": "00:11:00,140"
+			},
+			"offsets": {
+				"from": 654820,
+				"to": 660140
+			},
+			"text": " for the development community to reuse and disprove to protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,140",
+				"to": "00:11:05,020"
+			},
+			"offsets": {
+				"from": 660140,
+				"to": 665020
+			},
+			"text": " Now, let's go up how does the actual specification looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,020",
+				"to": "00:11:10,820"
+			},
+			"offsets": {
+				"from": 665020,
+				"to": 670820
+			},
+			"text": " What the specification does really defines how the system transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,820",
+				"to": "00:11:12,740"
+			},
+			"offsets": {
+				"from": 670820,
+				"to": 672740
+			},
+			"text": " from one state to the next."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,740",
+				"to": "00:11:17,820"
+			},
+			"offsets": {
+				"from": 672740,
+				"to": 677820
+			},
+			"text": " The system state includes the state of all the various nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,820",
+				"to": "00:11:20,900"
+			},
+			"offsets": {
+				"from": 677820,
+				"to": 680900
+			},
+			"text": " the state of the network, the state of the adversary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,900",
+				"to": "00:11:22,900"
+			},
+			"offsets": {
+				"from": 680900,
+				"to": 682900
+			},
+			"text": " the state of the consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,900",
+				"to": "00:11:27,980"
+			},
+			"offsets": {
+				"from": 682900,
+				"to": 687980
+			},
+			"text": " All this is encapsulated in the different fields,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,980",
+				"to": "00:11:30,940"
+			},
+			"offsets": {
+				"from": 687980,
+				"to": 690940
+			},
+			"text": " or, say, of the system state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,940",
+				"to": "00:11:34,460"
+			},
+			"offsets": {
+				"from": 690940,
+				"to": 694460
+			},
+			"text": " Now, the transition says, well, on a given event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,460",
+				"to": "00:11:38,860"
+			},
+			"offsets": {
+				"from": 694460,
+				"to": 698860
+			},
+			"text": " which can be a new set of duties, time to execute the next duty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,860",
+				"to": "00:11:41,300"
+			},
+			"offsets": {
+				"from": 698860,
+				"to": 701300
+			},
+			"text": " message received, you move from one state to the next,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,300",
+				"to": "00:11:44,900"
+			},
+			"offsets": {
+				"from": 701300,
+				"to": 704900
+			},
+			"text": " like from the yellow state to the green state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,900",
+				"to": "00:11:49,540"
+			},
+			"offsets": {
+				"from": 704900,
+				"to": 709540
+			},
+			"text": " One very important characteristic of the way this specification is written,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,540",
+				"to": "00:11:56,140"
+			},
+			"offsets": {
+				"from": 709540,
+				"to": 716140
+			},
+			"text": " which is common also to our KLA+ way of writing specification in KLA+."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,140",
+				"to": "00:11:57,820"
+			},
+			"offsets": {
+				"from": 716140,
+				"to": 717820
+			},
+			"text": " We allow non-deterministic behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,820",
+				"to": "00:12:01,260"
+			},
+			"offsets": {
+				"from": 717820,
+				"to": 721260
+			},
+			"text": " Now, what you have on the-- and explain why this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,260",
+				"to": "00:12:04,420"
+			},
+			"offsets": {
+				"from": 721260,
+				"to": 724420
+			},
+			"text": " What you have on the left-hand side is not really non-deterministic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,420",
+				"to": "00:12:06,020"
+			},
+			"offsets": {
+				"from": 724420,
+				"to": 726020
+			},
+			"text": " but close to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,020",
+				"to": "00:12:09,820"
+			},
+			"offsets": {
+				"from": 726020,
+				"to": 729820
+			},
+			"text": " So what can happen is that from one state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,820",
+				"to": "00:12:13,700"
+			},
+			"offsets": {
+				"from": 729820,
+				"to": 733700
+			},
+			"text": " you might have more than one event that can move you to two different states."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,700",
+				"to": "00:12:18,380"
+			},
+			"offsets": {
+				"from": 733700,
+				"to": 738380
+			},
+			"text": " So for example, a node might receive a message from node two"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,380",
+				"to": "00:12:20,100"
+			},
+			"offsets": {
+				"from": 738380,
+				"to": 740100
+			},
+			"text": " or perhaps some node three."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,100",
+				"to": "00:12:27,100"
+			},
+			"offsets": {
+				"from": 740100,
+				"to": 747100
+			},
+			"text": " And this is what allows to capture network at synchrony."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,100",
+				"to": "00:12:30,940"
+			},
+			"offsets": {
+				"from": 747100,
+				"to": 750940
+			},
+			"text": " So-- and this is one of important differences to testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,940",
+				"to": "00:12:35,740"
+			},
+			"offsets": {
+				"from": 750940,
+				"to": 755740
+			},
+			"text": " We can really reason on any possible sequences of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,740",
+				"to": "00:12:40,420"
+			},
+			"offsets": {
+				"from": 755740,
+				"to": 760420
+			},
+			"text": " Any that you can imagine, this is coded in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,420",
+				"to": "00:12:46,420"
+			},
+			"offsets": {
+				"from": 760420,
+				"to": 766420
+			},
+			"text": " The other point I want to make is really about the non-deterministic behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,420",
+				"to": "00:12:51,300"
+			},
+			"offsets": {
+				"from": 766420,
+				"to": 771300
+			},
+			"text": " So from one state, the same event can get you to two different states."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,300",
+				"to": "00:12:53,900"
+			},
+			"offsets": {
+				"from": 771300,
+				"to": 773900
+			},
+			"text": " And now, why this can happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,900",
+				"to": "00:12:55,820"
+			},
+			"offsets": {
+				"from": 773900,
+				"to": 775820
+			},
+			"text": " Mainly because of that adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,820",
+				"to": "00:13:01,260"
+			},
+			"offsets": {
+				"from": 775820,
+				"to": 781260
+			},
+			"text": " So if you have a given state, the adversary can be able in multiple ways on an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,260",
+				"to": "00:13:05,820"
+			},
+			"offsets": {
+				"from": 781260,
+				"to": 785820
+			},
+			"text": " And this is what allows us to capture this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,820",
+				"to": "00:13:09,460"
+			},
+			"offsets": {
+				"from": 785820,
+				"to": 789460
+			},
+			"text": " When I speak about this, I want to draw a comparison to model checking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,460",
+				"to": "00:13:11,100"
+			},
+			"offsets": {
+				"from": 789460,
+				"to": 791100
+			},
+			"text": " which is a different technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,100",
+				"to": "00:13:14,100"
+			},
+			"offsets": {
+				"from": 791100,
+				"to": 794100
+			},
+			"text": " And with model checking, you have the problem of state explosion."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,100",
+				"to": "00:13:20,980"
+			},
+			"offsets": {
+				"from": 794100,
+				"to": 800980
+			},
+			"text": " And it's very hard for model checking to really being able to check a property"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,980",
+				"to": "00:13:23,980"
+			},
+			"offsets": {
+				"from": 800980,
+				"to": 803980
+			},
+			"text": " considering bison time behavior because it will take a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,980",
+				"to": "00:13:28,020"
+			},
+			"offsets": {
+				"from": 803980,
+				"to": 808020
+			},
+			"text": " And with formal verification, it takes a lot of time to put together the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,020",
+				"to": "00:13:33,820"
+			},
+			"offsets": {
+				"from": 808020,
+				"to": 813820
+			},
+			"text": " But once the proof is put together, it's quite quick to be run through."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,820",
+				"to": "00:13:38,580"
+			},
+			"offsets": {
+				"from": 813820,
+				"to": 818580
+			},
+			"text": " Now, looking-- I want to show a bit of code again of how actually the formal specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,580",
+				"to": "00:13:41,460"
+			},
+			"offsets": {
+				"from": 818580,
+				"to": 821460
+			},
+			"text": " is written in Daphne."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,460",
+				"to": "00:13:45,980"
+			},
+			"offsets": {
+				"from": 821460,
+				"to": 825980
+			},
+			"text": " Let's focus on the top of the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,980",
+				"to": "00:13:51,660"
+			},
+			"offsets": {
+				"from": 825980,
+				"to": 831660
+			},
+			"text": " So let's assume you have this transition from the yellow state to the green and purple state"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,660",
+				"to": "00:13:54,540"
+			},
+			"offsets": {
+				"from": 831660,
+				"to": 834540
+			},
+			"text": " when the gray event is received."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,540",
+				"to": "00:13:59,900"
+			},
+			"offsets": {
+				"from": 834540,
+				"to": 839900
+			},
+			"text": " The way we code it, we essentially have a function that takes a source state, an event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,900",
+				"to": "00:14:03,700"
+			},
+			"offsets": {
+				"from": 839900,
+				"to": 843700
+			},
+			"text": " and a destination state, and returns a Boolean."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,700",
+				"to": "00:14:10,300"
+			},
+			"offsets": {
+				"from": 843700,
+				"to": 850300
+			},
+			"text": " Now, the way that the transition is encoded is that the function returns true"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,300",
+				"to": "00:14:15,740"
+			},
+			"offsets": {
+				"from": 850300,
+				"to": 855740
+			},
+			"text": " on a event source event and destination state, it means that the system can transition from"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,740",
+				"to": "00:14:19,460"
+			},
+			"offsets": {
+				"from": 855740,
+				"to": 859460
+			},
+			"text": " source to destination given the event."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,460",
+				"to": "00:14:21,820"
+			},
+			"offsets": {
+				"from": 859460,
+				"to": 861820
+			},
+			"text": " If it returns false, there is no such transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,820",
+				"to": "00:14:28,980"
+			},
+			"offsets": {
+				"from": 861820,
+				"to": 868980
+			},
+			"text": " So in this example, for instance, returns true for yellow, gray, green, and purple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,980",
+				"to": "00:14:32,380"
+			},
+			"offsets": {
+				"from": 868980,
+				"to": 872380
+			},
+			"text": " but not false for any other combination."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,380",
+				"to": "00:14:36,580"
+			},
+			"offsets": {
+				"from": 872380,
+				"to": 876580
+			},
+			"text": " And this is-- you can see at the bottom is coded in-- this is how it's coded in."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,580",
+				"to": "00:14:40,660"
+			},
+			"offsets": {
+				"from": 876580,
+				"to": 880660
+			},
+			"text": " Daphne now, this is essentially simplification of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,660",
+				"to": "00:14:45,620"
+			},
+			"offsets": {
+				"from": 880660,
+				"to": 885620
+			},
+			"text": " But this is expressed using first order logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,620",
+				"to": "00:14:51,780"
+			},
+			"offsets": {
+				"from": 885620,
+				"to": 891780
+			},
+			"text": " Now, this is something we don't see often in standard programming languages, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,780",
+				"to": "00:14:55,060"
+			},
+			"offsets": {
+				"from": 891780,
+				"to": 895060
+			},
+			"text": " not much of a stretch, I say."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,060",
+				"to": "00:15:00,820"
+			},
+			"offsets": {
+				"from": 895060,
+				"to": 900820
+			},
+			"text": " What you can see here, this is essentially an end of different state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,820",
+				"to": "00:15:05,740"
+			},
+			"offsets": {
+				"from": 900820,
+				"to": 905740
+			},
+			"text": " And here we have the state transition for the honest node."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,740",
+				"to": "00:15:09,900"
+			},
+			"offsets": {
+				"from": 905740,
+				"to": 909900
+			},
+			"text": " You can see here we say basically this much true for holonist nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,900",
+				"to": "00:15:11,820"
+			},
+			"offsets": {
+				"from": 909900,
+				"to": 911820
+			},
+			"text": " That's what the for all does."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,820",
+				"to": "00:15:16,780"
+			},
+			"offsets": {
+				"from": 911820,
+				"to": 916780
+			},
+			"text": " And then we put this in the command with the state transition for network, adversary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,780",
+				"to": "00:15:18,500"
+			},
+			"offsets": {
+				"from": 916780,
+				"to": 918500
+			},
+			"text": " and consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,500",
+				"to": "00:15:24,300"
+			},
+			"offsets": {
+				"from": 918500,
+				"to": 924300
+			},
+			"text": " And now what you can see here is this exists is what gives us the nondeterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,300",
+				"to": "00:15:30,700"
+			},
+			"offsets": {
+				"from": 924300,
+				"to": 930700
+			},
+			"text": " Because we're saying this function returns true as long as there exists a set of messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,700",
+				"to": "00:15:36,060"
+			},
+			"offsets": {
+				"from": 930700,
+				"to": 936060
+			},
+			"text": " received, messages sent, and decided where you assess that they satisfy all the various"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,060",
+				"to": "00:15:41,620"
+			},
+			"offsets": {
+				"from": 936060,
+				"to": 941620
+			},
+			"text": " constraints and the expression at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,620",
+				"to": "00:15:47,380"
+			},
+			"offsets": {
+				"from": 941620,
+				"to": 947380
+			},
+			"text": " Now before going into what we actually achieved, I need to make sort of disclosure, that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,380",
+				"to": "00:15:51,580"
+			},
+			"offsets": {
+				"from": 947380,
+				"to": 951580
+			},
+			"text": " part of this, say, system that needs to be trusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,580",
+				"to": "00:15:54,820"
+			},
+			"offsets": {
+				"from": 951580,
+				"to": 954820
+			},
+			"text": " So these are the parts that need to be trusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,820",
+				"to": "00:15:58,100"
+			},
+			"offsets": {
+				"from": 954820,
+				"to": 958100
+			},
+			"text": " And these are the parts that actually we don't trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,100",
+				"to": "00:16:04,300"
+			},
+			"offsets": {
+				"from": 958100,
+				"to": 964300
+			},
+			"text": " Now if you look at this, it seems that area is quite of trusted and untrusted, but the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,300",
+				"to": "00:16:07,260"
+			},
+			"offsets": {
+				"from": 964300,
+				"to": 967260
+			},
+			"text": " area doesn't really represent the value of complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,260",
+				"to": "00:16:10,620"
+			},
+			"offsets": {
+				"from": 967260,
+				"to": 970620
+			},
+			"text": " Also it's not really a problem of formless verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,620",
+				"to": "00:16:14,420"
+			},
+			"offsets": {
+				"from": 970620,
+				"to": 974420
+			},
+			"text": " It's sort of an existential problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,420",
+				"to": "00:16:18,420"
+			},
+			"offsets": {
+				"from": 974420,
+				"to": 978420
+			},
+			"text": " You need to assume how the adversary will behave in your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,420",
+				"to": "00:16:21,740"
+			},
+			"offsets": {
+				"from": 978420,
+				"to": 981740
+			},
+			"text": " Even if you just write software, you do write tests, whatever you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,740",
+				"to": "00:16:27,100"
+			},
+			"offsets": {
+				"from": 981740,
+				"to": 987100
+			},
+			"text": " You have a consensus that all elaborate, that works correctly, you have a network, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,100",
+				"to": "00:16:31,740"
+			},
+			"offsets": {
+				"from": 987100,
+				"to": 991740
+			},
+			"text": " assume how the network will behave, saying things for properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,740",
+				"to": "00:16:35,900"
+			},
+			"offsets": {
+				"from": 991740,
+				"to": 995900
+			},
+			"text": " You assume that you have a set of properties that are those that you are really interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,900",
+				"to": "00:16:37,140"
+			},
+			"offsets": {
+				"from": 995900,
+				"to": 997140
+			},
+			"text": " into."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,140",
+				"to": "00:16:45,740"
+			},
+			"offsets": {
+				"from": 997140,
+				"to": 1005740
+			},
+			"text": " So it's just something that, yes, form of verification doesn't solve, but it solves a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,740",
+				"to": "00:16:52,020"
+			},
+			"offsets": {
+				"from": 1005740,
+				"to": 1012020
+			},
+			"text": " good chunk of problems in ensuring that your single node, as it is specified, will do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,020",
+				"to": "00:16:54,220"
+			},
+			"offsets": {
+				"from": 1012020,
+				"to": 1014220
+			},
+			"text": " guarantees those properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,220",
+				"to": "00:17:01,620"
+			},
+			"offsets": {
+				"from": 1014220,
+				"to": 1021620
+			},
+			"text": " Also there are things one can do to increase the chances that the trusted part is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,620",
+				"to": "00:17:06,580"
+			},
+			"offsets": {
+				"from": 1021620,
+				"to": 1026580
+			},
+			"text": " One is to keep the trusted specification as simple as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,580",
+				"to": "00:17:09,580"
+			},
+			"offsets": {
+				"from": 1026580,
+				"to": 1029580
+			},
+			"text": " One is to have a peer review."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,580",
+				"to": "00:17:16,260"
+			},
+			"offsets": {
+				"from": 1029580,
+				"to": 1036260
+			},
+			"text": " Also for the tool, it's important to use formal verification tools that have good support."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,260",
+				"to": "00:17:17,260"
+			},
+			"offsets": {
+				"from": 1036260,
+				"to": 1037260
+			},
+			"text": " We use Daphne."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,260",
+				"to": "00:17:22,620"
+			},
+			"offsets": {
+				"from": 1037260,
+				"to": 1042620
+			},
+			"text": " Daphne is very active, bugs get fixed very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,620",
+				"to": "00:17:28,940"
+			},
+			"offsets": {
+				"from": 1042620,
+				"to": 1048940
+			},
+			"text": " So in this way, the system usually you have two types of properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,940",
+				"to": "00:17:32,740"
+			},
+			"offsets": {
+				"from": 1048940,
+				"to": 1052740
+			},
+			"text": " Safety properties, we say something bad will never happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,740",
+				"to": "00:17:37,660"
+			},
+			"offsets": {
+				"from": 1052740,
+				"to": 1057660
+			},
+			"text": " And you have liveness property, where they say something good will eventually happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,660",
+				"to": "00:17:43,860"
+			},
+			"offsets": {
+				"from": 1057660,
+				"to": 1063860
+			},
+			"text": " Now if you formally prove that a specification guarantees both, it's very, it really increases"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,860",
+				"to": "00:17:45,580"
+			},
+			"offsets": {
+				"from": 1063860,
+				"to": 1065580
+			},
+			"text": " the sense that the trusted part is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,580",
+				"to": "00:17:52,380"
+			},
+			"offsets": {
+				"from": 1065580,
+				"to": 1072380
+			},
+			"text": " It's quite hard to put together a specification guarantees both properties, a decision incorrect."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,380",
+				"to": "00:18:01,140"
+			},
+			"offsets": {
+				"from": 1072380,
+				"to": 1081140
+			},
+			"text": " And now we can go over what you actually achieved so far and what it's left to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,140",
+				"to": "00:18:05,180"
+			},
+			"offsets": {
+				"from": 1081140,
+				"to": 1085180
+			},
+			"text": " So on the right hand side, you have what you've been able to prove on the right hand side"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,180",
+				"to": "00:18:06,180"
+			},
+			"offsets": {
+				"from": 1085180,
+				"to": 1086180
+			},
+			"text": " you have the assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,180",
+				"to": "00:18:14,220"
+			},
+			"offsets": {
+				"from": 1086180,
+				"to": 1094220
+			},
+			"text": " What we've been able to prove is that stretchable attestation, signed by the distributed by data"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,220",
+				"to": "00:18:18,860"
+			},
+			"offsets": {
+				"from": 1094220,
+				"to": 1098860
+			},
+			"text": " or signing key, the one that is shared, they can never be created."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,860",
+				"to": "00:18:24,180"
+			},
+			"offsets": {
+				"from": 1098860,
+				"to": 1104180
+			},
+			"text": " In other words, the account associated with the distributed by data signing key can never"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,180",
+				"to": "00:18:28,420"
+			},
+			"offsets": {
+				"from": 1104180,
+				"to": 1108420
+			},
+			"text": " get slashed because of attestation signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,420",
+				"to": "00:18:33,820"
+			},
+			"offsets": {
+				"from": 1108420,
+				"to": 1113820
+			},
+			"text": " And this is done under the assumptions you see on the left hand side."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,820",
+				"to": "00:18:39,260"
+			},
+			"offsets": {
+				"from": 1113820,
+				"to": 1119260
+			},
+			"text": " And assumption is again, we allow for any message delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,260",
+				"to": "00:18:41,500"
+			},
+			"offsets": {
+				"from": 1119260,
+				"to": 1121500
+			},
+			"text": " We don't constrain this at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,500",
+				"to": "00:18:44,580"
+			},
+			"offsets": {
+				"from": 1121500,
+				"to": 1124580
+			},
+			"text": " We allow messages to be lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,580",
+				"to": "00:18:52,300"
+			},
+			"offsets": {
+				"from": 1124580,
+				"to": 1132300
+			},
+			"text": " We also allow the beacon nodes here to be actually out of sync for this proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,300",
+				"to": "00:18:54,380"
+			},
+			"offsets": {
+				"from": 1132300,
+				"to": 1134380
+			},
+			"text": " We don't require them to be in sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,380",
+				"to": "00:18:58,940"
+			},
+			"offsets": {
+				"from": 1134380,
+				"to": 1138940
+			},
+			"text": " They could be serving completely different duties and the proof still old."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,940",
+				"to": "00:19:05,300"
+			},
+			"offsets": {
+				"from": 1138940,
+				"to": 1145300
+			},
+			"text": " And then we have some assumption on the number of nodes that can, that are either Byzantine"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,300",
+				"to": "00:19:08,060"
+			},
+			"offsets": {
+				"from": 1145300,
+				"to": 1148060
+			},
+			"text": " or whether compromised key to be less than one-third."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,060",
+				"to": "00:19:13,140"
+			},
+			"offsets": {
+				"from": 1148060,
+				"to": 1153140
+			},
+			"text": " And this is theoretical bound on consensus protocols as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,140",
+				"to": "00:19:17,620"
+			},
+			"offsets": {
+				"from": 1153140,
+				"to": 1157620
+			},
+			"text": " We assume that signatures cannot be forged and they are unique and also that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,620",
+				"to": "00:19:21,500"
+			},
+			"offsets": {
+				"from": 1157620,
+				"to": 1161500
+			},
+			"text": " a sound to start a signature scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,500",
+				"to": "00:19:26,060"
+			},
+			"offsets": {
+				"from": 1161500,
+				"to": 1166060
+			},
+			"text": " And then these assumptions we've been able to prove the property."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,060",
+				"to": "00:19:33,020"
+			},
+			"offsets": {
+				"from": 1166060,
+				"to": 1173020
+			},
+			"text": " We've also been able to prove that the reference implementation adheres to the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,020",
+				"to": "00:19:40,580"
+			},
+			"offsets": {
+				"from": 1173020,
+				"to": 1180580
+			},
+			"text": " What this means is that if you deploy a system running the reference implementation of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,580",
+				"to": "00:19:47,380"
+			},
+			"offsets": {
+				"from": 1180580,
+				"to": 1187380
+			},
+			"text": " distributed by data client node, what you get is a system that ensures the non-slashable"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,380",
+				"to": "00:19:50,580"
+			},
+			"offsets": {
+				"from": 1187380,
+				"to": 1190580
+			},
+			"text": " attestation property."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,580",
+				"to": "00:19:58,380"
+			},
+			"offsets": {
+				"from": 1190580,
+				"to": 1198380
+			},
+			"text": " And so looking at what is left to do, so we put together this proof, we have the specification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,380",
+				"to": "00:20:04,740"
+			},
+			"offsets": {
+				"from": 1198380,
+				"to": 1204740
+			},
+			"text": " we have the reference implementation, and it's all open source on the GitHub repo that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,740",
+				"to": "00:20:06,780"
+			},
+			"offsets": {
+				"from": 1204740,
+				"to": 1206780
+			},
+			"text": " you can see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,780",
+				"to": "00:20:13,980"
+			},
+			"offsets": {
+				"from": 1206780,
+				"to": 1213980
+			},
+			"text": " What is left to do is to extend the specification and the reference implementation to distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,980",
+				"to": "00:20:21,420"
+			},
+			"offsets": {
+				"from": 1213980,
+				"to": 1221420
+			},
+			"text": " block proposing and block head signing to extend the formal proof of non-slashable attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,420",
+				"to": "00:20:23,900"
+			},
+			"offsets": {
+				"from": 1221420,
+				"to": 1223900
+			},
+			"text": " to non-slashable blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,900",
+				"to": "00:20:30,660"
+			},
+			"offsets": {
+				"from": 1223900,
+				"to": 1230660
+			},
+			"text": " And then to add the proof of liveness, as I mentioned before, so proving that a distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,660",
+				"to": "00:20:39,420"
+			},
+			"offsets": {
+				"from": 1230660,
+				"to": 1239420
+			},
+			"text": " validator will always eventually create valid attestation, valid blocks, and valid head signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,420",
+				"to": "00:20:41,220"
+			},
+			"offsets": {
+				"from": 1239420,
+				"to": 1241220
+			},
+			"text": " And this is all for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,220",
+				"to": "00:20:43,260"
+			},
+			"offsets": {
+				"from": 1241220,
+				"to": 1243260
+			},
+			"text": " Thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,260",
+				"to": "00:20:44,260"
+			},
+			"offsets": {
+				"from": 1243260,
+				"to": 1244260
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,260",
+				"to": "00:20:51,620"
+			},
+			"offsets": {
+				"from": 1244260,
+				"to": 1251620
+			},
+			"text": " What techniques were used to prove that reference implementation adheres to the specification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,620",
+				"to": "00:21:00,060"
+			},
+			"offsets": {
+				"from": 1251620,
+				"to": 1260060
+			},
+			"text": " So we have used the refinement technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,060",
+				"to": "00:21:06,500"
+			},
+			"offsets": {
+				"from": 1260060,
+				"to": 1266500
+			},
+			"text": " So we've improved the thrower refinement basically, showing that if there is a relationship between"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,500",
+				"to": "00:21:12,980"
+			},
+			"offsets": {
+				"from": 1266500,
+				"to": 1272980
+			},
+			"text": " the reference implementation state and the specification state, on a transition that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,980",
+				"to": "00:21:17,020"
+			},
+			"offsets": {
+				"from": 1272980,
+				"to": 1277020
+			},
+			"text": " maintained."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,020",
+				"to": "00:21:21,060"
+			},
+			"offsets": {
+				"from": 1277020,
+				"to": 1281060
+			},
+			"text": " How far away do you think we are from being able to use validator pools for either ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,060",
+				"to": "00:21:23,300"
+			},
+			"offsets": {
+				"from": 1281060,
+				"to": 1283300
+			},
+			"text": " 2 or other protocols?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,300",
+				"to": "00:21:32,940"
+			},
+			"offsets": {
+				"from": 1283300,
+				"to": 1292940
+			},
+			"text": " Probably this is a question I need to defer to someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,940",
+				"to": "00:21:34,500"
+			},
+			"offsets": {
+				"from": 1292940,
+				"to": 1294500
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,500",
+				"to": "00:21:38,180"
+			},
+			"offsets": {
+				"from": 1294500,
+				"to": 1298180
+			},
+			"text": " This is about implementation, so yeah, I don't have that answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,180",
+				"to": "00:21:45,980"
+			},
+			"offsets": {
+				"from": 1298180,
+				"to": 1305980
+			},
+			"text": " How difficult is the learning curve to kind of become someone who can contribute to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,980",
+				"to": "00:21:50,420"
+			},
+			"offsets": {
+				"from": 1305980,
+				"to": 1310420
+			},
+			"text": " form of verification things and be able to start working on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,420",
+				"to": "00:21:57,100"
+			},
+			"offsets": {
+				"from": 1310420,
+				"to": 1317100
+			},
+			"text": " It's reasonably steep, not too much though."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,100",
+				"to": "00:22:03,100"
+			},
+			"offsets": {
+				"from": 1317100,
+				"to": 1323100
+			},
+			"text": " I mean, nowadays with tools like Daphne, I think it's much simpler than having to learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,100",
+				"to": "00:22:09,620"
+			},
+			"offsets": {
+				"from": 1323100,
+				"to": 1329620
+			},
+			"text": " something like COC, Isabelle, or this theorem improves a bit more, you say, up through syntax"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,620",
+				"to": "00:22:12,940"
+			},
+			"offsets": {
+				"from": 1329620,
+				"to": 1332940
+			},
+			"text": " and way of proving things, so things are improving."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,940",
+				"to": "00:22:15,340"
+			},
+			"offsets": {
+				"from": 1332940,
+				"to": 1335340
+			},
+			"text": " But there is a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,340",
+				"to": "00:22:19,900"
+			},
+			"offsets": {
+				"from": 1335340,
+				"to": 1339900
+			},
+			"text": " In terms of contributing to the specification, say, or reference implementation, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,900",
+				"to": "00:22:28,740"
+			},
+			"offsets": {
+				"from": 1339900,
+				"to": 1348740
+			},
+			"text": " it's not my view, not as much harder as contributing to a Python specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,740",
+				"to": "00:22:33,900"
+			},
+			"offsets": {
+				"from": 1348740,
+				"to": 1353900
+			},
+			"text": " So one could contribute just to the specification, not necessarily to the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,900",
+				"to": "00:22:37,500"
+			},
+			"offsets": {
+				"from": 1353900,
+				"to": 1357500
+			},
+			"text": " How big is your team and how long have you been working on this proof to get it to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,500",
+				"to": "00:22:39,060"
+			},
+			"offsets": {
+				"from": 1357500,
+				"to": 1359060
+			},
+			"text": " point now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,060",
+				"to": "00:22:44,580"
+			},
+			"offsets": {
+				"from": 1359060,
+				"to": 1364580
+			},
+			"text": " So the theme consists of four people."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,580",
+				"to": "00:22:52,340"
+			},
+			"offsets": {
+				"from": 1364580,
+				"to": 1372340
+			},
+			"text": " On this one, I've been working just myself and Tanai, and I've been working on this on"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,340",
+				"to": "00:22:58,980"
+			},
+			"offsets": {
+				"from": 1372340,
+				"to": 1378980
+			},
+			"text": " this, on the, I've been working initially on the specification, so on specifically on"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,980",
+				"to": "00:23:03,780"
+			},
+			"offsets": {
+				"from": 1378980,
+				"to": 1383780
+			},
+			"text": " the proof, I say, since June roughly, just for the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,780",
+				"to": "00:23:07,940"
+			},
+			"offsets": {
+				"from": 1383780,
+				"to": 1387940
+			},
+			"text": " There was a bit of fixing up of the specification before that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,940",
+				"to": "00:23:12,620"
+			},
+			"offsets": {
+				"from": 1387940,
+				"to": 1392620
+			},
+			"text": " So why definitely are not other languages like COC or Isabelle, as you said?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,620",
+				"to": "00:23:22,020"
+			},
+			"offsets": {
+				"from": 1392620,
+				"to": 1402020
+			},
+			"text": " Yeah, one of the reasons is that it's for the, say, fact that we think it's easier for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,020",
+				"to": "00:23:28,220"
+			},
+			"offsets": {
+				"from": 1402020,
+				"to": 1408220
+			},
+			"text": " developers to understand Daphne compared to COC or Lean or Isabelle."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,220",
+				"to": "00:23:29,780"
+			},
+			"offsets": {
+				"from": 1408220,
+				"to": 1409780
+			},
+			"text": " That's one of the reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,780",
+				"to": "00:23:41,220"
+			},
+			"offsets": {
+				"from": 1409780,
+				"to": 1421220
+			},
+			"text": " So when you can compile, I think COC or Isabelle, but the way you write it is far more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,220",
+				"to": "00:23:44,140"
+			},
+			"offsets": {
+				"from": 1421220,
+				"to": 1424140
+			},
+			"text": " I'm not pretty sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,140",
+				"to": "00:23:52,180"
+			},
+			"offsets": {
+				"from": 1424140,
+				"to": 1432180
+			},
+			"text": " Like with Daphne, you can kind of use, as a construct, as the concept of classes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,180",
+				"to": "00:23:57,140"
+			},
+			"offsets": {
+				"from": 1432180,
+				"to": 1437140
+			},
+			"text": " state, which is very similar to programming, and you can have some of the things un-implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,140",
+				"to": "00:23:59,820"
+			},
+			"offsets": {
+				"from": 1437140,
+				"to": 1439820
+			},
+			"text": " and open for external implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,820",
+				"to": "00:24:09,820"
+			},
+			"offsets": {
+				"from": 1439820,
+				"to": 1449820
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,820",
+				"to": "00:24:38,820"
+			},
+			"offsets": {
+				"from": 1449820,
+				"to": 1478820
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

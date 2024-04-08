@@ -1,0 +1,7996 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 15000
+			},
+			"text": " Hi, pre-PBS in consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:15,720"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 15720
+			},
+			"text": " I'm Terence."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,720",
+				"to": "00:00:16,560"
+			},
+			"offsets": {
+				"from": 15720,
+				"to": 16560
+			},
+			"text": " I'm a core dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,560",
+				"to": "00:00:19,160"
+			},
+			"offsets": {
+				"from": 16560,
+				"to": 19160
+			},
+			"text": " And us, myself, earlier this week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,160",
+				"to": "00:00:20,640"
+			},
+			"offsets": {
+				"from": 19160,
+				"to": 20640
+			},
+			"text": " we are proud of our cheer labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,640",
+				"to": "00:00:24,840"
+			},
+			"offsets": {
+				"from": 20640,
+				"to": 24840
+			},
+			"text": " So I had to change my name real quick before I get in trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,840",
+				"to": "00:00:26,080"
+			},
+			"offsets": {
+				"from": 24840,
+				"to": 26080
+			},
+			"text": " So let's just start."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,080",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26080,
+				"to": 29000
+			},
+			"text": " So this talk is about consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:30,800"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 30800
+			},
+			"text": " interfacing with hybrid PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,800",
+				"to": "00:00:34,080"
+			},
+			"offsets": {
+				"from": 30800,
+				"to": 34080
+			},
+			"text": " It's not so much your like searcher, builder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,080",
+				"to": "00:00:35,920"
+			},
+			"offsets": {
+				"from": 34080,
+				"to": 35920
+			},
+			"text": " your typical MAB talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,920",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 35920,
+				"to": 38160
+			},
+			"text": " So we want to understand more what does it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:41,560"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 41560
+			},
+			"text": " mean when consensus layer interface with hybrid PBS"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,560",
+				"to": "00:00:48,600"
+			},
+			"offsets": {
+				"from": 41560,
+				"to": 48600
+			},
+			"text": " from the its tonality, such as latency, file, and censorship."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,600",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 48600,
+				"to": 51760
+			},
+			"text": " Then we'll also talk about mitigations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:55,120"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 55120
+			},
+			"text": " Just to reiterate what I said, everything in the purple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,120",
+				"to": "00:00:56,440"
+			},
+			"offsets": {
+				"from": 55120,
+				"to": 56440
+			},
+			"text": " we will go over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,440",
+				"to": "00:01:01,160"
+			},
+			"offsets": {
+				"from": 56440,
+				"to": 61160
+			},
+			"text": " We'll have Relayers, Matboost, which is a Relayer aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,160",
+				"to": "00:01:03,680"
+			},
+			"offsets": {
+				"from": 61160,
+				"to": 63680
+			},
+			"text": " We have consensus layer client, execution layer client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,680",
+				"to": "00:01:04,880"
+			},
+			"offsets": {
+				"from": 63680,
+				"to": 64880
+			},
+			"text": " and validate the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,880",
+				"to": "00:01:06,520"
+			},
+			"offsets": {
+				"from": 64880,
+				"to": 66520
+			},
+			"text": " And this is what we have been--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,520",
+				"to": "00:01:08,040"
+			},
+			"offsets": {
+				"from": 66520,
+				"to": 68040
+			},
+			"text": " me and my team and other teams have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,040",
+				"to": "00:01:10,320"
+			},
+			"offsets": {
+				"from": 68040,
+				"to": 70320
+			},
+			"text": " been working on over the last few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,320",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70320,
+				"to": 73000
+			},
+			"text": " So background, why are we here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:15,560"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 75560
+			},
+			"text": " So there's options, and options are nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,560",
+				"to": "00:01:19,520"
+			},
+			"offsets": {
+				"from": 75560,
+				"to": 79520
+			},
+			"text": " So the first options, which most people use these days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,520",
+				"to": "00:01:22,200"
+			},
+			"offsets": {
+				"from": 79520,
+				"to": 82200
+			},
+			"text": " is normal block processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,200",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 82200,
+				"to": 83960
+			},
+			"text": " So as the consensus layer client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 86320
+			},
+			"text": " you know which validators you're serving."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,320",
+				"to": "00:01:29,360"
+			},
+			"offsets": {
+				"from": 86320,
+				"to": 89360
+			},
+			"text": " You know when validators are proposing a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,360",
+				"to": "00:01:32,600"
+			},
+			"offsets": {
+				"from": 89360,
+				"to": 92600
+			},
+			"text": " So you will build the block for the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,600",
+				"to": "00:01:36,560"
+			},
+			"offsets": {
+				"from": 92600,
+				"to": 96560
+			},
+			"text": " And post merge, we utilize execution layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,560",
+				"to": "00:01:37,880"
+			},
+			"offsets": {
+				"from": 96560,
+				"to": 97880
+			},
+			"text": " to prepare payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,880",
+				"to": "00:01:40,840"
+			},
+			"offsets": {
+				"from": 97880,
+				"to": 100840
+			},
+			"text": " So consensus layer client uses the execution layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,840",
+				"to": "00:01:41,960"
+			},
+			"offsets": {
+				"from": 100840,
+				"to": 101960
+			},
+			"text": " to prepare payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,960",
+				"to": "00:01:45,040"
+			},
+			"offsets": {
+				"from": 101960,
+				"to": 105040
+			},
+			"text": " They put a payload in the block that passes to the validator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,040",
+				"to": "00:01:47,080"
+			},
+			"offsets": {
+				"from": 105040,
+				"to": 107080
+			},
+			"text": " validate the resinset, return the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,080",
+				"to": "00:01:49,680"
+			},
+			"offsets": {
+				"from": 107080,
+				"to": 109680
+			},
+			"text": " and consensus layer client broadcasts the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,680",
+				"to": "00:01:52,520"
+			},
+			"offsets": {
+				"from": 109680,
+				"to": 112520
+			},
+			"text": " So here, the separation of concern"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,520",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 112520,
+				"to": 115880
+			},
+			"text": " is nice here because like, execution layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:01:57,080"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 117080
+			},
+			"text": " consists of their client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,080",
+				"to": "00:02:00,560"
+			},
+			"offsets": {
+				"from": 117080,
+				"to": 120560
+			},
+			"text": " They're both like very complicated piece of software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,560",
+				"to": "00:02:04,680"
+			},
+			"offsets": {
+				"from": 120560,
+				"to": 124680
+			},
+			"text": " but they only need to know each other through the engine API."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,680",
+				"to": "00:02:09,160"
+			},
+			"offsets": {
+				"from": 124680,
+				"to": 129160
+			},
+			"text": " And so the separation of concern is very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,160",
+				"to": "00:02:12,480"
+			},
+			"offsets": {
+				"from": 129160,
+				"to": 132480
+			},
+			"text": " The second option, which people are starting to use more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,480",
+				"to": "00:02:16,560"
+			},
+			"offsets": {
+				"from": 132480,
+				"to": 136560
+			},
+			"text": " now, is that I can outsource block production, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,560",
+				"to": "00:02:20,160"
+			},
+			"offsets": {
+				"from": 136560,
+				"to": 140160
+			},
+			"text": " As consensus layer client, if I want to participate in the ME"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,160",
+				"to": "00:02:22,800"
+			},
+			"offsets": {
+				"from": 140160,
+				"to": 142800
+			},
+			"text": " game, I can utilize the relay network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,800",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 142800,
+				"to": 145400
+			},
+			"text": " I can, hey, hey, relay network, can you propose"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:26,480"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 146480
+			},
+			"text": " a block for me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,480",
+				"to": "00:02:29,120"
+			},
+			"offsets": {
+				"from": 146480,
+				"to": 149120
+			},
+			"text": " And a block are usually more profitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,120",
+				"to": "00:02:31,400"
+			},
+			"offsets": {
+				"from": 149120,
+				"to": 151400
+			},
+			"text": " And also in the background, consensus layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,400",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 151400,
+				"to": 153600
+			},
+			"text": " can also talk to the execution layer client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:36,520"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 156520
+			},
+			"text": " like, hey, can you make me a backup block in the event"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,520",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 156520,
+				"to": 158000
+			},
+			"text": " that the relay network doesn't work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:39,240"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 159240
+			},
+			"text": " I can still use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,240",
+				"to": "00:02:42,880"
+			},
+			"offsets": {
+				"from": 159240,
+				"to": 162880
+			},
+			"text": " And this is kind of the paradigm that we're heading towards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,880",
+				"to": "00:02:46,280"
+			},
+			"offsets": {
+				"from": 162880,
+				"to": 166280
+			},
+			"text": " And it's important to understand what does this mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,280",
+				"to": "00:02:47,920"
+			},
+			"offsets": {
+				"from": 166280,
+				"to": 167920
+			},
+			"text": " So this is today's number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,920",
+				"to": "00:02:50,600"
+			},
+			"offsets": {
+				"from": 167920,
+				"to": 170600
+			},
+			"text": " And hopefully, you can see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,600",
+				"to": "00:02:52,680"
+			},
+			"offsets": {
+				"from": 170600,
+				"to": 172680
+			},
+			"text": " I captured it this morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,680",
+				"to": "00:02:56,360"
+			},
+			"offsets": {
+				"from": 172680,
+				"to": 176360
+			},
+			"text": " There are 55% of the network participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,360",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 176360,
+				"to": 179800
+			},
+			"text": " It's using MEV block production."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:01,880"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 181880
+			},
+			"text": " It is outsourcing their block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,880",
+				"to": "00:03:06,600"
+			},
+			"offsets": {
+				"from": 181880,
+				"to": 186600
+			},
+			"text": " And then, out of the 55%, 81% are dominated by flash boss"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,600",
+				"to": "00:03:09,960"
+			},
+			"offsets": {
+				"from": 186600,
+				"to": 189960
+			},
+			"text": " relayers, and there's seven active relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,960",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 189960,
+				"to": 193440
+			},
+			"text": " So let's talk about the first risk latency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:16,640"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 196640
+			},
+			"text": " So when you propose a block normally"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,640",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 196640,
+				"to": 199840
+			},
+			"text": " under your local setup, you have your consensus layer client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:21,760"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 201760
+			},
+			"text": " a decision client, value their client."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:22,920"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 202920
+			},
+			"text": " So how does this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,920",
+				"to": "00:03:25,840"
+			},
+			"offsets": {
+				"from": 202920,
+				"to": 205840
+			},
+			"text": " You ask a decision-like client to prepare a payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,840",
+				"to": "00:03:28,600"
+			},
+			"offsets": {
+				"from": 205840,
+				"to": 208600
+			},
+			"text": " and then you pass the payload to value their client to sign it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,600",
+				"to": "00:03:30,880"
+			},
+			"offsets": {
+				"from": 208600,
+				"to": 210880
+			},
+			"text": " value their client, sign their payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,880",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 210880,
+				"to": 212000
+			},
+			"text": " and then you broadcast the payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:35,640"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 215640
+			},
+			"text": " Simple, easy, very easy to reasonable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,640",
+				"to": "00:03:39,920"
+			},
+			"offsets": {
+				"from": 215640,
+				"to": 219920
+			},
+			"text": " But with MEV block processing, it's a commit and reveal"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,920",
+				"to": "00:03:40,720"
+			},
+			"offsets": {
+				"from": 219920,
+				"to": 220720
+			},
+			"text": " approach, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,720",
+				"to": "00:03:42,200"
+			},
+			"offsets": {
+				"from": 220720,
+				"to": 222200
+			},
+			"text": " Why is it coming in reveal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,200",
+				"to": "00:03:44,560"
+			},
+			"offsets": {
+				"from": 222200,
+				"to": 224560
+			},
+			"text": " Because as a relay, as a builder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,560",
+				"to": "00:03:50,200"
+			},
+			"offsets": {
+				"from": 224560,
+				"to": 230200
+			},
+			"text": " you don't want value their client to steal your transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,200",
+				"to": "00:03:53,200"
+			},
+			"offsets": {
+				"from": 230200,
+				"to": 233200
+			},
+			"text": " if it's in the clear text."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,200",
+				"to": "00:03:56,760"
+			},
+			"offsets": {
+				"from": 233200,
+				"to": 236760
+			},
+			"text": " So you made them sign it first, then return the signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,760",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236760,
+				"to": 239000
+			},
+			"text": " and then you give the full transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:01,040"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 241040
+			},
+			"text": " So given it's a commit and reveal approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,040",
+				"to": "00:04:04,080"
+			},
+			"offsets": {
+				"from": 241040,
+				"to": 244080
+			},
+			"text": " there's some more steps in the middle, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,080",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 244080,
+				"to": 247720
+			},
+			"text": " If as you get a header, the relay network return the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:11,160"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 251160
+			},
+			"text": " then you sign the header, then you submit the sign header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,160",
+				"to": "00:04:13,720"
+			},
+			"offsets": {
+				"from": 251160,
+				"to": 253720
+			},
+			"text": " and the relay network return the full payload, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,720",
+				"to": "00:04:16,040"
+			},
+			"offsets": {
+				"from": 253720,
+				"to": 256040
+			},
+			"text": " is transaction and clear text."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,040",
+				"to": "00:04:21,440"
+			},
+			"offsets": {
+				"from": 256040,
+				"to": 261440
+			},
+			"text": " So as you can see, there's two more steps here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,440",
+				"to": "00:04:26,120"
+			},
+			"offsets": {
+				"from": 261440,
+				"to": 266120
+			},
+			"text": " And besides that, it's also on a different network, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,120",
+				"to": "00:04:27,880"
+			},
+			"offsets": {
+				"from": 266120,
+				"to": 267880
+			},
+			"text": " It's not local anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,880",
+				"to": "00:04:30,400"
+			},
+			"offsets": {
+				"from": 267880,
+				"to": 270400
+			},
+			"text": " So ideally, you want a relay network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,400",
+				"to": "00:04:33,200"
+			},
+			"offsets": {
+				"from": 270400,
+				"to": 273200
+			},
+			"text": " to broadcast the block as fast as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,200",
+				"to": "00:04:37,120"
+			},
+			"offsets": {
+				"from": 273200,
+				"to": 277120
+			},
+			"text": " instead of giving it back to you, and then you broadcast it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,120",
+				"to": "00:04:39,240"
+			},
+			"offsets": {
+				"from": 277120,
+				"to": 279240
+			},
+			"text": " So hopefully, most of the relayers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,240",
+				"to": "00:04:43,160"
+			},
+			"offsets": {
+				"from": 279240,
+				"to": 283160
+			},
+			"text": " have been publishing blocks by themselves, instead of just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,160",
+				"to": "00:04:44,040"
+			},
+			"offsets": {
+				"from": 283160,
+				"to": 284040
+			},
+			"text": " passing back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,040",
+				"to": "00:04:47,400"
+			},
+			"offsets": {
+				"from": 284040,
+				"to": 287400
+			},
+			"text": " So for that, you do save some latency, which is nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,400",
+				"to": "00:04:49,320"
+			},
+			"offsets": {
+				"from": 287400,
+				"to": 289320
+			},
+			"text": " So let's ask yourself, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,320",
+				"to": "00:04:51,760"
+			},
+			"offsets": {
+				"from": 289320,
+				"to": 291760
+			},
+			"text": " Do the additional run through an latency matter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,760",
+				"to": "00:04:55,480"
+			},
+			"offsets": {
+				"from": 291760,
+				"to": 295480
+			},
+			"text": " Because like I said before, when you have your EL and your CL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,480",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 295480,
+				"to": 297480
+			},
+			"text": " they are both in the local setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:04:58,320"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 298320
+			},
+			"text": " It's lightning fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,320",
+				"to": "00:05:01,400"
+			},
+			"offsets": {
+				"from": 298320,
+				"to": 301400
+			},
+			"text": " It is reliable, because they just go through hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,400",
+				"to": "00:05:03,400"
+			},
+			"offsets": {
+				"from": 301400,
+				"to": 303400
+			},
+			"text": " They just go through electron circuits, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,400",
+				"to": "00:05:05,880"
+			},
+			"offsets": {
+				"from": 303400,
+				"to": 305880
+			},
+			"text": " But if we relay network, it's slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,880",
+				"to": "00:05:08,440"
+			},
+			"offsets": {
+				"from": 305880,
+				"to": 308440
+			},
+			"text": " You are actually talking to some, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,440",
+				"to": "00:05:12,560"
+			},
+			"offsets": {
+				"from": 308440,
+				"to": 312560
+			},
+			"text": " infor provider, GCP, or AWS on some regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,560",
+				"to": "00:05:14,800"
+			},
+			"offsets": {
+				"from": 312560,
+				"to": 314800
+			},
+			"text": " And so this is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,800",
+				"to": "00:05:17,360"
+			},
+			"offsets": {
+				"from": 314800,
+				"to": 317360
+			},
+			"text": " I was able to capture some numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,360",
+				"to": "00:05:20,360"
+			},
+			"offsets": {
+				"from": 317360,
+				"to": 320360
+			},
+			"text": " Unfortunately, I haven't been home for the last two weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,360",
+				"to": "00:05:22,280"
+			},
+			"offsets": {
+				"from": 320360,
+				"to": 322280
+			},
+			"text": " So these numbers are slightly old."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,280",
+				"to": "00:05:25,400"
+			},
+			"offsets": {
+				"from": 322280,
+				"to": 325400
+			},
+			"text": " But on Grody with 1,000 validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,400",
+				"to": "00:05:26,960"
+			},
+			"offsets": {
+				"from": 325400,
+				"to": 326960
+			},
+			"text": " they're not mainly validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,960",
+				"to": "00:05:29,240"
+			},
+			"offsets": {
+				"from": 326960,
+				"to": 329240
+			},
+			"text": " But yeah, just 1,000 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,240",
+				"to": "00:05:32,160"
+			},
+			"offsets": {
+				"from": 329240,
+				"to": 332160
+			},
+			"text": " But given its Grody, the network topology"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,160",
+				"to": "00:05:33,840"
+			},
+			"offsets": {
+				"from": 332160,
+				"to": 333840
+			},
+			"text": " may be slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,840",
+				"to": "00:05:36,840"
+			},
+			"offsets": {
+				"from": 333840,
+				"to": 336840
+			},
+			"text": " But I mean, I hope we can get a picture here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,840",
+				"to": "00:05:38,760"
+			},
+			"offsets": {
+				"from": 336840,
+				"to": 338760
+			},
+			"text": " Here, I'm not even using MEB booths."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,760",
+				"to": "00:05:41,240"
+			},
+			"offsets": {
+				"from": 338760,
+				"to": 341240
+			},
+			"text": " I'm just talking to the relay directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,240",
+				"to": "00:05:44,400"
+			},
+			"offsets": {
+				"from": 341240,
+				"to": 344400
+			},
+			"text": " It takes about three times slower to propose a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,400",
+				"to": "00:05:46,560"
+			},
+			"offsets": {
+				"from": 344400,
+				"to": 346560
+			},
+			"text": " given the additional latencies, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,560",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 346560,
+				"to": 350080
+			},
+			"text": " So what does this mean when there's additional latency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:51,840"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 351840
+			},
+			"text": " because when you propose a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,840",
+				"to": "00:05:52,840"
+			},
+			"offsets": {
+				"from": 351840,
+				"to": 352840
+			},
+			"text": " you should see how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,840",
+				"to": "00:05:54,600"
+			},
+			"offsets": {
+				"from": 352840,
+				"to": 354600
+			},
+			"text": " It's like you run a fortress to get ahead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,600",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 354600,
+				"to": 357080
+			},
+			"text": " then you build a block based on the head,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:05:59,720"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 359720
+			},
+			"text": " then you get a payload from the institution engine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,720",
+				"to": "00:06:01,800"
+			},
+			"offsets": {
+				"from": 359720,
+				"to": 361800
+			},
+			"text": " then you broadcast the block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,800",
+				"to": "00:06:03,760"
+			},
+			"offsets": {
+				"from": 361800,
+				"to": 363760
+			},
+			"text": " And then at the four second mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,760",
+				"to": "00:06:05,560"
+			},
+			"offsets": {
+				"from": 363760,
+				"to": 365560
+			},
+			"text": " which is 1/3 of the seconds per slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,560",
+				"to": "00:06:09,680"
+			},
+			"offsets": {
+				"from": 365560,
+				"to": 369680
+			},
+			"text": " a testers will vote, right, what is the head of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,680",
+				"to": "00:06:12,120"
+			},
+			"offsets": {
+				"from": 369680,
+				"to": 372120
+			},
+			"text": " And if the testers did not see your block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,120",
+				"to": "00:06:14,280"
+			},
+			"offsets": {
+				"from": 372120,
+				"to": 374280
+			},
+			"text": " then your block may get orphaned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,280",
+				"to": "00:06:17,560"
+			},
+			"offsets": {
+				"from": 374280,
+				"to": 377560
+			},
+			"text": " and that's not ideal, you do not want to lose a block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,560",
+				"to": "00:06:18,760"
+			},
+			"offsets": {
+				"from": 377560,
+				"to": 378760
+			},
+			"text": " So this is what we don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,760",
+				"to": "00:06:21,240"
+			},
+			"offsets": {
+				"from": 378760,
+				"to": 381240
+			},
+			"text": " We don't want something that's taking up so much"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,240",
+				"to": "00:06:23,120"
+			},
+			"offsets": {
+				"from": 381240,
+				"to": 383120
+			},
+			"text": " in the middle with the get header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,120",
+				"to": "00:06:25,200"
+			},
+			"offsets": {
+				"from": 383120,
+				"to": 385200
+			},
+			"text": " second header, and suddenly blind block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,200",
+				"to": "00:06:29,560"
+			},
+			"offsets": {
+				"from": 385200,
+				"to": 389560
+			},
+			"text": " So this is, this to me is worrying."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,560",
+				"to": "00:06:31,880"
+			},
+			"offsets": {
+				"from": 389560,
+				"to": 391880
+			},
+			"text": " And then let's look at some more numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,880",
+				"to": "00:06:34,240"
+			},
+			"offsets": {
+				"from": 391880,
+				"to": 394240
+			},
+			"text": " some block arrival latency differences."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,240",
+				"to": "00:06:35,760"
+			},
+			"offsets": {
+				"from": 394240,
+				"to": 395760
+			},
+			"text": " This is actually capturing a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,760",
+				"to": "00:06:37,920"
+			},
+			"offsets": {
+				"from": 395760,
+				"to": 397920
+			},
+			"text": " This is my home setup at home,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,920",
+				"to": "00:06:39,440"
+			},
+			"offsets": {
+				"from": 397920,
+				"to": 399440
+			},
+			"text": " with 300 megabit bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,440",
+				"to": "00:06:42,440"
+			},
+			"offsets": {
+				"from": 399440,
+				"to": 402440
+			},
+			"text": " So this is as home setup as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,440",
+				"to": "00:06:45,240"
+			},
+			"offsets": {
+				"from": 402440,
+				"to": 405240
+			},
+			"text": " And we capture over 15,000 samples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,240",
+				"to": "00:06:50,560"
+			},
+			"offsets": {
+				"from": 405240,
+				"to": 410560
+			},
+			"text": " and then the MBB block took about 500 milliseconds longer, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,560",
+				"to": "00:06:55,720"
+			},
+			"offsets": {
+				"from": 410560,
+				"to": 415720
+			},
+			"text": " And what does this mean from the submit attestation timeline?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,720",
+				"to": "00:07:00,480"
+			},
+			"offsets": {
+				"from": 415720,
+				"to": 420480
+			},
+			"text": " It just means that if the block takes longer to arrive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,480",
+				"to": "00:07:04,760"
+			},
+			"offsets": {
+				"from": 420480,
+				"to": 424760
+			},
+			"text": " then a testers will unfortunately miss it like that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,760",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 424760,
+				"to": 427800
+			},
+			"text": " If you're waiting, like in the front, like for that alone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:11,640"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 431640
+			},
+			"text": " then you will essentially eat up the time that you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,640",
+				"to": "00:07:13,720"
+			},
+			"offsets": {
+				"from": 431640,
+				"to": 433720
+			},
+			"text": " So we don't want to be the lazy block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,720",
+				"to": "00:07:14,720"
+			},
+			"offsets": {
+				"from": 433720,
+				"to": 434720
+			},
+			"text": " We don't want to be the late block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,720",
+				"to": "00:07:16,120"
+			},
+			"offsets": {
+				"from": 434720,
+				"to": 436120
+			},
+			"text": " because you would get orphaned, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,120",
+				"to": "00:07:19,360"
+			},
+			"offsets": {
+				"from": 436120,
+				"to": 439360
+			},
+			"text": " At the top example, block C was supposed to build on block B"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,360",
+				"to": "00:07:23,360"
+			},
+			"offsets": {
+				"from": 439360,
+				"to": 443360
+			},
+			"text": " by if you build on block A, and then because the block B was late,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,360",
+				"to": "00:07:26,880"
+			},
+			"offsets": {
+				"from": 443360,
+				"to": 446880
+			},
+			"text": " on the bottom example, block E is not building on block D"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,880",
+				"to": "00:07:28,720"
+			},
+			"offsets": {
+				"from": 446880,
+				"to": 448720
+			},
+			"text": " because of proposed boost or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,720",
+				"to": "00:07:30,720"
+			},
+			"offsets": {
+				"from": 448720,
+				"to": 450720
+			},
+			"text": " It was supposed to be the head, but it's not the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,720",
+				"to": "00:07:34,960"
+			},
+			"offsets": {
+				"from": 450720,
+				"to": 454960
+			},
+			"text": " So block E built on block B, therefore C and D got orphaned, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,960",
+				"to": "00:07:39,320"
+			},
+			"offsets": {
+				"from": 454960,
+				"to": 459320
+			},
+			"text": " So now the set of numbers, 50% of the orphan block"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,320",
+				"to": "00:07:43,160"
+			},
+			"offsets": {
+				"from": 459320,
+				"to": 463160
+			},
+			"text": " actually came from relay air from September 17 to 27,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,160",
+				"to": "00:07:46,240"
+			},
+			"offsets": {
+				"from": 463160,
+				"to": 466240
+			},
+			"text": " and there's the orphan block slot, the relays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,240",
+				"to": "00:07:48,800"
+			},
+			"offsets": {
+				"from": 466240,
+				"to": 468800
+			},
+			"text": " they're using the L, D, the entities, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,800",
+				"to": "00:07:50,240"
+			},
+			"offsets": {
+				"from": 468800,
+				"to": 470240
+			},
+			"text": " And that's unfortunate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,240",
+				"to": "00:07:54,200"
+			},
+			"offsets": {
+				"from": 470240,
+				"to": 474200
+			},
+			"text": " I mean, you could ask that, okay, well, maybe it wasn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,200",
+				"to": "00:07:56,160"
+			},
+			"offsets": {
+				"from": 474200,
+				"to": 476160
+			},
+			"text": " like the orphan one or another, we don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,160",
+				"to": "00:07:59,200"
+			},
+			"offsets": {
+				"from": 476160,
+				"to": 479200
+			},
+			"text": " but still, like 50% of it come from the relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,200",
+				"to": "00:08:01,360"
+			},
+			"offsets": {
+				"from": 479200,
+				"to": 481360
+			},
+			"text": " It's not just like Sunshine Rainbow and Butterfly, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,360",
+				"to": "00:08:06,360"
+			},
+			"offsets": {
+				"from": 481360,
+				"to": 486360
+			},
+			"text": " This is like, like, this is, I mean, there is risk to this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,360",
+				"to": "00:08:09,160"
+			},
+			"offsets": {
+				"from": 486360,
+				"to": 489160
+			},
+			"text": " I mean, like, we often tell people, hey, we should use the relay air"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,160",
+				"to": "00:08:12,680"
+			},
+			"offsets": {
+				"from": 489160,
+				"to": 492680
+			},
+			"text": " because it's more possible, but it also comes with risk, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,680",
+				"to": "00:08:14,800"
+			},
+			"offsets": {
+				"from": 492680,
+				"to": 494800
+			},
+			"text": " If you're using a relay air, it makes your block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,800",
+				"to": "00:08:16,640"
+			},
+			"offsets": {
+				"from": 494800,
+				"to": 496640
+			},
+			"text": " two to three times more profitable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,640",
+				"to": "00:08:18,840"
+			},
+			"offsets": {
+				"from": 496640,
+				"to": 498840
+			},
+			"text": " but you get orphaned 10% of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,840",
+				"to": "00:08:20,080"
+			},
+			"offsets": {
+				"from": 498840,
+				"to": 500080
+			},
+			"text": " Is it worth it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,080",
+				"to": "00:08:22,960"
+			},
+			"offsets": {
+				"from": 500080,
+				"to": 502960
+			},
+			"text": " That's something that you have to ask yourself about."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,960",
+				"to": "00:08:26,360"
+			},
+			"offsets": {
+				"from": 502960,
+				"to": 506360
+			},
+			"text": " And another risk, I think, with latency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,360",
+				"to": "00:08:28,160"
+			},
+			"offsets": {
+				"from": 506360,
+				"to": 508160
+			},
+			"text": " is just centralization, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,160",
+				"to": "00:08:32,080"
+			},
+			"offsets": {
+				"from": 508160,
+				"to": 512080
+			},
+			"text": " The whole point of MEV boost is like to make value data"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,080",
+				"to": "00:08:36,200"
+			},
+			"offsets": {
+				"from": 512080,
+				"to": 516200
+			},
+			"text": " decentralized because now we can extract MEV at home,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,200",
+				"to": "00:08:39,360"
+			},
+			"offsets": {
+				"from": 516200,
+				"to": 519360
+			},
+			"text": " so if everyone equals access to MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,360",
+				"to": "00:08:40,960"
+			},
+			"offsets": {
+				"from": 519360,
+				"to": 520960
+			},
+			"text": " you don't want to look at this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,960",
+				"to": "00:08:43,120"
+			},
+			"offsets": {
+				"from": 520960,
+				"to": 523120
+			},
+			"text": " You don't want people start realizing, oh, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,120",
+				"to": "00:08:45,680"
+			},
+			"offsets": {
+				"from": 523120,
+				"to": 525680
+			},
+			"text": " if I have a better latency, then I won't get orphaned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,680",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 525680,
+				"to": 527000
+			},
+			"text": " so I'm gonna move by at home,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:49,200"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 529200
+			},
+			"text": " so they can know close to the relay air,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,200",
+				"to": "00:08:52,240"
+			},
+			"offsets": {
+				"from": 529200,
+				"to": 532240
+			},
+			"text": " so it becomes a negative, it's a penalty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,240",
+				"to": "00:08:53,760"
+			},
+			"offsets": {
+				"from": 532240,
+				"to": 533760
+			},
+			"text": " this is what we don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,760",
+				"to": "00:08:55,240"
+			},
+			"offsets": {
+				"from": 533760,
+				"to": 535240
+			},
+			"text": " So what's the takeaway with this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,240",
+				"to": "00:08:57,160"
+			},
+			"offsets": {
+				"from": 535240,
+				"to": 537160
+			},
+			"text": " The takeaway is, the latency matters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,160",
+				"to": "00:09:00,800"
+			},
+			"offsets": {
+				"from": 537160,
+				"to": 540800
+			},
+			"text": " both for hybrid or even maybe for a little PBS, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,800",
+				"to": "00:09:03,440"
+			},
+			"offsets": {
+				"from": 540800,
+				"to": 543440
+			},
+			"text": " And latency can lead to centralization risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,440",
+				"to": "00:09:05,680"
+			},
+			"offsets": {
+				"from": 543440,
+				"to": 545680
+			},
+			"text": " which we have known a long time already."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,680",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 545680,
+				"to": 547920
+			},
+			"text": " And it's actually really hard to optimize"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:09,840"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 549840
+			},
+			"text": " towards network latency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,840",
+				"to": "00:09:13,320"
+			},
+			"offsets": {
+				"from": 549840,
+				"to": 553320
+			},
+			"text": " At the client level, I don't think there's much we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,320",
+				"to": "00:09:15,640"
+			},
+			"offsets": {
+				"from": 553320,
+				"to": 555640
+			},
+			"text": " I think on the MEV boost side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,640",
+				"to": "00:09:19,200"
+			},
+			"offsets": {
+				"from": 555640,
+				"to": 559200
+			},
+			"text": " there's talks about, instead of Marchur on Marchur GSA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,200",
+				"to": "00:09:22,560"
+			},
+			"offsets": {
+				"from": 559200,
+				"to": 562560
+			},
+			"text": " we Marchur on Marchur SSZ, there's some improvement there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,560",
+				"to": "00:09:24,080"
+			},
+			"offsets": {
+				"from": 562560,
+				"to": 564080
+			},
+			"text": " From the relay air perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,080",
+				"to": "00:09:26,440"
+			},
+			"offsets": {
+				"from": 564080,
+				"to": 566440
+			},
+			"text": " I hope they have really good network config,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,440",
+				"to": "00:09:28,040"
+			},
+			"offsets": {
+				"from": 566440,
+				"to": 568040
+			},
+			"text": " they have a lot more peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,040",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 568040,
+				"to": 571000
+			},
+			"text": " I feel like they have a robust infrastructure there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:32,680"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 572680
+			},
+			"text": " I think that's as much as we can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,680",
+				"to": "00:09:34,320"
+			},
+			"offsets": {
+				"from": 572680,
+				"to": 574320
+			},
+			"text": " because unfortunately, if someone just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,320",
+				"to": "00:09:36,120"
+			},
+			"offsets": {
+				"from": 574320,
+				"to": 576120
+			},
+			"text": " has a slower internet connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,120",
+				"to": "00:09:37,280"
+			},
+			"offsets": {
+				"from": 576120,
+				"to": 577280
+			},
+			"text": " they want to use a relay air,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,280",
+				"to": "00:09:39,200"
+			},
+			"offsets": {
+				"from": 577280,
+				"to": 579200
+			},
+			"text": " I mean, this is gonna be affected, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,200",
+				"to": "00:09:43,120"
+			},
+			"offsets": {
+				"from": 579200,
+				"to": 583120
+			},
+			"text": " And it's important we educate these risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,120",
+				"to": "00:09:45,920"
+			},
+			"offsets": {
+				"from": 583120,
+				"to": 585920
+			},
+			"text": " Besides latency, there's also false, too, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,920",
+				"to": "00:09:47,560"
+			},
+			"offsets": {
+				"from": 585920,
+				"to": 587560
+			},
+			"text": " So what does false mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,560",
+				"to": "00:09:49,360"
+			},
+			"offsets": {
+				"from": 587560,
+				"to": 589360
+			},
+			"text": " False here means that, sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,360",
+				"to": "00:09:50,840"
+			},
+			"offsets": {
+				"from": 589360,
+				"to": 590840
+			},
+			"text": " that's like that little mess up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,840",
+				"to": "00:09:53,760"
+			},
+			"offsets": {
+				"from": 590840,
+				"to": 593760
+			},
+			"text": " So when you ask for the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,760",
+				"to": "00:09:56,240"
+			},
+			"offsets": {
+				"from": 593760,
+				"to": 596240
+			},
+			"text": " the relay network failed to return the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,240",
+				"to": "00:09:57,800"
+			},
+			"offsets": {
+				"from": 596240,
+				"to": 597800
+			},
+			"text": " so that's the convey phase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,800",
+				"to": "00:10:00,200"
+			},
+			"offsets": {
+				"from": 597800,
+				"to": 600200
+			},
+			"text": " or the fucking happen when you submit the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,200",
+				"to": "00:10:04,080"
+			},
+			"offsets": {
+				"from": 600200,
+				"to": 604080
+			},
+			"text": " the relay failed to replay the payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,080",
+				"to": "00:10:05,200"
+			},
+			"offsets": {
+				"from": 604080,
+				"to": 605200
+			},
+			"text": " so that's the second fault."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,200",
+				"to": "00:10:08,280"
+			},
+			"offsets": {
+				"from": 605200,
+				"to": 608280
+			},
+			"text": " So we'll focus on these two types of faults here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,280",
+				"to": "00:10:12,800"
+			},
+			"offsets": {
+				"from": 608280,
+				"to": 612800
+			},
+			"text": " So the first category of faults is just get header faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,800",
+				"to": "00:10:14,320"
+			},
+			"offsets": {
+				"from": 612800,
+				"to": 614320
+			},
+			"text": " When you get header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,320",
+				"to": "00:10:16,840"
+			},
+			"offsets": {
+				"from": 614320,
+				"to": 616840
+			},
+			"text": " and then the relay network failed to replay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,840",
+				"to": "00:10:18,560"
+			},
+			"offsets": {
+				"from": 616840,
+				"to": 618560
+			},
+			"text": " and they can be categorized as,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,560",
+				"to": "00:10:20,360"
+			},
+			"offsets": {
+				"from": 618560,
+				"to": 620360
+			},
+			"text": " like you have a mailform header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,360",
+				"to": "00:10:22,360"
+			},
+			"offsets": {
+				"from": 620360,
+				"to": 622360
+			},
+			"text": " you have a consensus invalid header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,360",
+				"to": "00:10:23,760"
+			},
+			"offsets": {
+				"from": 622360,
+				"to": 623760
+			},
+			"text": " you have a payment invalid header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,760",
+				"to": "00:10:24,920"
+			},
+			"offsets": {
+				"from": 623760,
+				"to": 624920
+			},
+			"text": " or you have none conforming headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,920",
+				"to": "00:10:26,880"
+			},
+			"offsets": {
+				"from": 624920,
+				"to": 626880
+			},
+			"text": " So we'll go over them one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,880",
+				"to": "00:10:29,880"
+			},
+			"offsets": {
+				"from": 626880,
+				"to": 629880
+			},
+			"text": " So what does it mean when a header's mailform, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,880",
+				"to": "00:10:32,800"
+			},
+			"offsets": {
+				"from": 629880,
+				"to": 632800
+			},
+			"text": " It just means that it is syntactically invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,800",
+				"to": "00:10:35,840"
+			},
+			"offsets": {
+				"from": 632800,
+				"to": 635840
+			},
+			"text": " It has an invalid structure, it has an invalid signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,840",
+				"to": "00:10:40,200"
+			},
+			"offsets": {
+				"from": 635840,
+				"to": 640200
+			},
+			"text": " Can the consensus, can the CL client detect it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,200",
+				"to": "00:10:41,240"
+			},
+			"offsets": {
+				"from": 640200,
+				"to": 641240
+			},
+			"text": " Yes, it can, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,240",
+				"to": "00:10:42,800"
+			},
+			"offsets": {
+				"from": 641240,
+				"to": 642800
+			},
+			"text": " 'Cause when you are more sure it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,800",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 642800,
+				"to": 646240
+			},
+			"text": " if it's not the right structure, then, well, you know it's run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:48,080"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 648080
+			},
+			"text": " you also can verify the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,080",
+				"to": "00:10:51,680"
+			},
+			"offsets": {
+				"from": 648080,
+				"to": 651680
+			},
+			"text": " So this type of faults, we can detect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,680",
+				"to": "00:10:54,320"
+			},
+			"offsets": {
+				"from": 651680,
+				"to": 654320
+			},
+			"text": " and then we can mitigate, so this is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,320",
+				"to": "00:10:57,600"
+			},
+			"offsets": {
+				"from": 654320,
+				"to": 657600
+			},
+			"text": " Another type of fault is just consensus invalid header."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,600",
+				"to": "00:10:59,800"
+			},
+			"offsets": {
+				"from": 657600,
+				"to": 659800
+			},
+			"text": " So that just means that the block hash is invalid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,800",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 659800,
+				"to": 661000
+			},
+			"text": " the transaction is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 663160
+			},
+			"text": " But for this, we unfortunately cannot validate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 665440
+			},
+			"text": " because we cannot see the full transactions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:08,080"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 668080
+			},
+			"text": " We cannot calculate the block hash ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,080",
+				"to": "00:11:09,560"
+			},
+			"offsets": {
+				"from": 668080,
+				"to": 669560
+			},
+			"text": " So that's something that we just have to trust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,560",
+				"to": "00:11:12,640"
+			},
+			"offsets": {
+				"from": 669560,
+				"to": 672640
+			},
+			"text": " blindly, that's unfortunate, but it is what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,640",
+				"to": "00:11:15,160"
+			},
+			"offsets": {
+				"from": 672640,
+				"to": 675160
+			},
+			"text": " Then you have payment invalid header."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,160",
+				"to": "00:11:18,960"
+			},
+			"offsets": {
+				"from": 675160,
+				"to": 678960
+			},
+			"text": " So at this type of fault, it just means that, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,960",
+				"to": "00:11:23,760"
+			},
+			"offsets": {
+				"from": 678960,
+				"to": 683760
+			},
+			"text": " the builder was promised to pay the valid proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,760",
+				"to": "00:11:26,760"
+			},
+			"offsets": {
+				"from": 683760,
+				"to": 686760
+			},
+			"text": " some like, some eat, but it failed to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,760",
+				"to": "00:11:30,880"
+			},
+			"offsets": {
+				"from": 686760,
+				"to": 690880
+			},
+			"text": " So, consensus layer client cannot detect the type of fault."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,880",
+				"to": "00:11:34,800"
+			},
+			"offsets": {
+				"from": 690880,
+				"to": 694800
+			},
+			"text": " This, which, we trust, relate to simulate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,800",
+				"to": "00:11:37,680"
+			},
+			"offsets": {
+				"from": 694800,
+				"to": 697680
+			},
+			"text": " That's why, relay is trusted for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,680",
+				"to": "00:11:39,440"
+			},
+			"offsets": {
+				"from": 697680,
+				"to": 699440
+			},
+			"text": " And then there's also the non-conforming header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,440",
+				"to": "00:11:41,920"
+			},
+			"offsets": {
+				"from": 699440,
+				"to": 701920
+			},
+			"text": " it just means that when the validator register,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,920",
+				"to": "00:11:44,800"
+			},
+			"offsets": {
+				"from": 701920,
+				"to": 704800
+			},
+			"text": " it basically say, hey, this is the guess limit I want to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,800",
+				"to": "00:11:46,280"
+			},
+			"offsets": {
+				"from": 704800,
+				"to": 706280
+			},
+			"text": " but the guess limit is incorrect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,280",
+				"to": "00:11:49,440"
+			},
+			"offsets": {
+				"from": 706280,
+				"to": 709440
+			},
+			"text": " the timestamp is incorrect, the block hash is incorrect, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,440",
+				"to": "00:11:51,160"
+			},
+			"offsets": {
+				"from": 709440,
+				"to": 711160
+			},
+			"text": " Can consensus layer client detect that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,160",
+				"to": "00:11:52,480"
+			},
+			"offsets": {
+				"from": 711160,
+				"to": 712480
+			},
+			"text": " Yes, it can."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,480",
+				"to": "00:11:55,960"
+			},
+			"offsets": {
+				"from": 712480,
+				"to": 715960
+			},
+			"text": " So those are what we say, the commit faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,960",
+				"to": "00:11:58,360"
+			},
+			"offsets": {
+				"from": 715960,
+				"to": 718360
+			},
+			"text": " So now we're jumping to reveal faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,360",
+				"to": "00:12:01,400"
+			},
+			"offsets": {
+				"from": 718360,
+				"to": 721400
+			},
+			"text": " so this is the set second type of faults, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,400",
+				"to": "00:12:03,040"
+			},
+			"offsets": {
+				"from": 721400,
+				"to": 723040
+			},
+			"text": " So what are some like reveal faults?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,040",
+				"to": "00:12:07,080"
+			},
+			"offsets": {
+				"from": 723040,
+				"to": 727080
+			},
+			"text": " So the payload could be invalid, or the payload is available."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,080",
+				"to": "00:12:09,800"
+			},
+			"offsets": {
+				"from": 727080,
+				"to": 729800
+			},
+			"text": " And keep in mind, there's no falling back for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,800",
+				"to": "00:12:12,840"
+			},
+			"offsets": {
+				"from": 729800,
+				"to": 732840
+			},
+			"text": " Like, we just assigned the signature ready, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,840",
+				"to": "00:12:15,360"
+			},
+			"offsets": {
+				"from": 732840,
+				"to": 735360
+			},
+			"text": " So at this point, you can complain on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,360",
+				"to": "00:12:17,520"
+			},
+			"offsets": {
+				"from": 735360,
+				"to": 737520
+			},
+			"text": " you can probably complain something else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,520",
+				"to": "00:12:19,120"
+			},
+			"offsets": {
+				"from": 737520,
+				"to": 739120
+			},
+			"text": " but there's not much you can do here"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,120",
+				"to": "00:12:21,840"
+			},
+			"offsets": {
+				"from": 739120,
+				"to": 741840
+			},
+			"text": " to basically make the block as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,840",
+				"to": "00:12:24,160"
+			},
+			"offsets": {
+				"from": 741840,
+				"to": 744160
+			},
+			"text": " So a mail form payload similar to a mail form header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,160",
+				"to": "00:12:25,920"
+			},
+			"offsets": {
+				"from": 744160,
+				"to": 745920
+			},
+			"text": " it just means that it is invalid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,920",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 745920,
+				"to": 748080
+			},
+			"text": " like the block, the full payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:29,560"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 749560
+			},
+			"text": " that's not matched header."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,560",
+				"to": "00:12:31,960"
+			},
+			"offsets": {
+				"from": 749560,
+				"to": 751960
+			},
+			"text": " Can the consensus layer client validate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,960",
+				"to": "00:12:34,640"
+			},
+			"offsets": {
+				"from": 751960,
+				"to": 754640
+			},
+			"text": " Yes, it can, but hey, it's too late, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,640",
+				"to": "00:12:36,480"
+			},
+			"offsets": {
+				"from": 754640,
+				"to": 756480
+			},
+			"text": " At that point, you lost the block already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,480",
+				"to": "00:12:38,200"
+			},
+			"offsets": {
+				"from": 756480,
+				"to": 758200
+			},
+			"text": " there's not much you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,200",
+				"to": "00:12:40,640"
+			},
+			"offsets": {
+				"from": 758200,
+				"to": 760640
+			},
+			"text": " And it's the same with consensus invalid payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,640",
+				"to": "00:12:42,320"
+			},
+			"offsets": {
+				"from": 760640,
+				"to": 762320
+			},
+			"text": " you can validate the transactions now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,320",
+				"to": "00:12:45,280"
+			},
+			"offsets": {
+				"from": 762320,
+				"to": 765280
+			},
+			"text": " because we see everything, but hey, it doesn't work too late,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,280",
+				"to": "00:12:50,360"
+			},
+			"offsets": {
+				"from": 765280,
+				"to": 770360
+			},
+			"text": " sorry, then unavailable, this means that the relay network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,360",
+				"to": "00:12:53,200"
+			},
+			"offsets": {
+				"from": 770360,
+				"to": 773200
+			},
+			"text": " just went to sleep, when malicious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,200",
+				"to": "00:12:57,200"
+			},
+			"offsets": {
+				"from": 773200,
+				"to": 777200
+			},
+			"text": " decided to turn it off, it did not reply back the header to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,200",
+				"to": "00:13:00,520"
+			},
+			"offsets": {
+				"from": 777200,
+				"to": 780520
+			},
+			"text": " So it did not fulfill its commitment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,520",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 780520,
+				"to": 781720
+			},
+			"text": " And then you know when it does that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:04,240"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 784240
+			},
+			"text": " because you never reply, you never receive the payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,240",
+				"to": "00:13:06,040"
+			},
+			"offsets": {
+				"from": 784240,
+				"to": 786040
+			},
+			"text": " and there's something, and there's still,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,040",
+				"to": "00:13:07,120"
+			},
+			"offsets": {
+				"from": 786040,
+				"to": 787120
+			},
+			"text": " there's nothing you can do there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,120",
+				"to": "00:13:08,800"
+			},
+			"offsets": {
+				"from": 787120,
+				"to": 788800
+			},
+			"text": " because you already signed something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,800",
+				"to": "00:13:10,520"
+			},
+			"offsets": {
+				"from": 788800,
+				"to": 790520
+			},
+			"text": " your signature is out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,520",
+				"to": "00:13:12,680"
+			},
+			"offsets": {
+				"from": 790520,
+				"to": 792680
+			},
+			"text": " We have this concept of falling back"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,680",
+				"to": "00:13:14,280"
+			},
+			"offsets": {
+				"from": 792680,
+				"to": 794280
+			},
+			"text": " to a institutional layer client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,280",
+				"to": "00:13:16,520"
+			},
+			"offsets": {
+				"from": 794280,
+				"to": 796520
+			},
+			"text": " just if get header goes wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,520",
+				"to": "00:13:19,520"
+			},
+			"offsets": {
+				"from": 796520,
+				"to": 799520
+			},
+			"text": " you can produce real local, a institutional client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,520",
+				"to": "00:13:23,720"
+			},
+			"offsets": {
+				"from": 799520,
+				"to": 803720
+			},
+			"text": " that's probably fine, but if the get payload fails,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,720",
+				"to": "00:13:26,440"
+			},
+			"offsets": {
+				"from": 803720,
+				"to": 806440
+			},
+			"text": " then you cannot produce with your local assistant client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,440",
+				"to": "00:13:27,920"
+			},
+			"offsets": {
+				"from": 806440,
+				"to": 807920
+			},
+			"text": " because you don't want to double sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,920",
+				"to": "00:13:30,600"
+			},
+			"offsets": {
+				"from": 807920,
+				"to": 810600
+			},
+			"text": " So the return header, the first commit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,600",
+				"to": "00:13:33,440"
+			},
+			"offsets": {
+				"from": 810600,
+				"to": 813440
+			},
+			"text": " can fail two ways, you can either fall or timeout, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,440",
+				"to": "00:13:34,680"
+			},
+			"offsets": {
+				"from": 813440,
+				"to": 814680
+			},
+			"text": " We do prefer fall better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,680",
+				"to": "00:13:36,320"
+			},
+			"offsets": {
+				"from": 814680,
+				"to": 816320
+			},
+			"text": " just because you get to respond right away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,320",
+				"to": "00:13:38,560"
+			},
+			"offsets": {
+				"from": 816320,
+				"to": 818560
+			},
+			"text": " you can start, propose the block right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,560",
+				"to": "00:13:40,200"
+			},
+			"offsets": {
+				"from": 818560,
+				"to": 820200
+			},
+			"text": " If the timeout, it kind of sucks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,200",
+				"to": "00:13:41,800"
+			},
+			"offsets": {
+				"from": 820200,
+				"to": 821800
+			},
+			"text": " because you have to wait for them to timeout,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,800",
+				"to": "00:13:43,120"
+			},
+			"offsets": {
+				"from": 821800,
+				"to": 823120
+			},
+			"text": " you wait for them for a second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,120",
+				"to": "00:13:46,680"
+			},
+			"offsets": {
+				"from": 823120,
+				"to": 826680
+			},
+			"text": " then you lost a second of your appreciative time there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,680",
+				"to": "00:13:48,520"
+			},
+			"offsets": {
+				"from": 826680,
+				"to": 828520
+			},
+			"text": " So let's go through some many incidents."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,520",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 828520,
+				"to": 830280
+			},
+			"text": " I don't want to sound like I'm like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:52,200"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 832200
+			},
+			"text": " like pointing out their fault, incidents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,200",
+				"to": "00:13:53,760"
+			},
+			"offsets": {
+				"from": 832200,
+				"to": 833760
+			},
+			"text": " but I do think it's important to go over"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,760",
+				"to": "00:13:54,880"
+			},
+			"offsets": {
+				"from": 833760,
+				"to": 834880
+			},
+			"text": " these type of incidents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,880",
+				"to": "00:13:57,080"
+			},
+			"offsets": {
+				"from": 834880,
+				"to": 837080
+			},
+			"text": " so that we can learn as a community, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,080",
+				"to": "00:13:58,200"
+			},
+			"offsets": {
+				"from": 837080,
+				"to": 838200
+			},
+			"text": " The first type of incident,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,200",
+				"to": "00:14:01,400"
+			},
+			"offsets": {
+				"from": 838200,
+				"to": 841400
+			},
+			"text": " so the first incident is September 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,400",
+				"to": "00:14:05,240"
+			},
+			"offsets": {
+				"from": 841400,
+				"to": 845240
+			},
+			"text": " flashbox relay, they fail to our Marshall deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,240",
+				"to": "00:14:08,800"
+			},
+			"offsets": {
+				"from": 845240,
+				"to": 848800
+			},
+			"text": " for the payload reply, the damage, we missed three blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,800",
+				"to": "00:14:11,360"
+			},
+			"offsets": {
+				"from": 848800,
+				"to": 851360
+			},
+			"text": " The second one blocks rocks relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,360",
+				"to": "00:14:16,360"
+			},
+			"offsets": {
+				"from": 851360,
+				"to": 856360
+			},
+			"text": " this one is when the relay did not validate the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,960",
+				"to": "00:14:20,880"
+			},
+			"offsets": {
+				"from": 856960,
+				"to": 860880
+			},
+			"text": " and then they replied, the consensus is melted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,880",
+				"to": "00:14:22,720"
+			},
+			"offsets": {
+				"from": 860880,
+				"to": 862720
+			},
+			"text": " we missed 88 blocks here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,720",
+				"to": "00:14:25,520"
+			},
+			"offsets": {
+				"from": 862720,
+				"to": 865520
+			},
+			"text": " The third one is a flashbox, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,520",
+				"to": "00:14:27,520"
+			},
+			"offsets": {
+				"from": 865520,
+				"to": 867520
+			},
+			"text": " this is consensus in the value payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,520",
+				"to": "00:14:30,880"
+			},
+			"offsets": {
+				"from": 867520,
+				"to": 870880
+			},
+			"text": " and the damage of that is 15 blocks was missed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,880",
+				"to": "00:14:33,040"
+			},
+			"offsets": {
+				"from": 870880,
+				"to": 873040
+			},
+			"text": " So this type of things do happen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,040",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 873040,
+				"to": 877000
+			},
+			"text": " First happen, and then it seems like it's mostly happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:41,680"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 881680
+			},
+			"text": " on the commit and then also the reveal phase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,680",
+				"to": "00:14:44,400"
+			},
+			"offsets": {
+				"from": 881680,
+				"to": 884400
+			},
+			"text": " so we need some mitigations like the circuit breaker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,400",
+				"to": "00:14:46,160"
+			},
+			"offsets": {
+				"from": 884400,
+				"to": 886160
+			},
+			"text": " and for example, as a beacon client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,160",
+				"to": "00:14:48,880"
+			},
+			"offsets": {
+				"from": 886160,
+				"to": 888880
+			},
+			"text": " I can detect when there is a liveness failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,880",
+				"to": "00:14:52,240"
+			},
+			"offsets": {
+				"from": 888880,
+				"to": 892240
+			},
+			"text": " and then when the liveness failure is determined by clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,240",
+				"to": "00:14:54,320"
+			},
+			"offsets": {
+				"from": 892240,
+				"to": 894320
+			},
+			"text": " say if you missed three cells in a row,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,320",
+				"to": "00:14:58,120"
+			},
+			"offsets": {
+				"from": 894320,
+				"to": 898120
+			},
+			"text": " or if the chain misses eight slots over 32 slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,120",
+				"to": "00:14:59,680"
+			},
+			"offsets": {
+				"from": 898120,
+				"to": 899680
+			},
+			"text": " if that type of things trigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,680",
+				"to": "00:15:02,240"
+			},
+			"offsets": {
+				"from": 899680,
+				"to": 902240
+			},
+			"text": " then we just default to local exit change, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,240",
+				"to": "00:15:05,400"
+			},
+			"offsets": {
+				"from": 902240,
+				"to": 905400
+			},
+			"text": " So this is to prevent a dominant relay builder"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,400",
+				"to": "00:15:09,200"
+			},
+			"offsets": {
+				"from": 905400,
+				"to": 909200
+			},
+			"text": " go offline, and it doesn't solve the cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,200",
+				"to": "00:15:12,160"
+			},
+			"offsets": {
+				"from": 909200,
+				"to": 912160
+			},
+			"text": " like mentioned before, just because those are happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,160",
+				"to": "00:15:14,480"
+			},
+			"offsets": {
+				"from": 912160,
+				"to": 914480
+			},
+			"text": " maybe like 0.1% of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,480",
+				"to": "00:15:16,480"
+			},
+			"offsets": {
+				"from": 914480,
+				"to": 916480
+			},
+			"text": " For this, this happens all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,480",
+				"to": "00:15:19,360"
+			},
+			"offsets": {
+				"from": 916480,
+				"to": 919360
+			},
+			"text": " but for this, this is a stronger defense."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,360",
+				"to": "00:15:21,520"
+			},
+			"offsets": {
+				"from": 919360,
+				"to": 921520
+			},
+			"text": " Then you have your relay monitor, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,520",
+				"to": "00:15:24,640"
+			},
+			"offsets": {
+				"from": 921520,
+				"to": 924640
+			},
+			"text": " such that you can monitor relay-based performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,640",
+				"to": "00:15:27,680"
+			},
+			"offsets": {
+				"from": 924640,
+				"to": 927680
+			},
+			"text": " such as behavior, and such as behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,680",
+				"to": "00:15:29,480"
+			},
+			"offsets": {
+				"from": 927680,
+				"to": 929480
+			},
+			"text": " which is like safety and liveness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,480",
+				"to": "00:15:31,200"
+			},
+			"offsets": {
+				"from": 929480,
+				"to": 931200
+			},
+			"text": " and performance, which is latency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,200",
+				"to": "00:15:33,440"
+			},
+			"offsets": {
+				"from": 931200,
+				"to": 933440
+			},
+			"text": " and people can see how the relay is performing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,440",
+				"to": "00:15:35,720"
+			},
+			"offsets": {
+				"from": 933440,
+				"to": 935720
+			},
+			"text": " and people can figure out, okay, based on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,720",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 935720,
+				"to": 936920
+			},
+			"text": " do I want to connect with the relay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,920",
+				"to": "00:15:39,760"
+			},
+			"offsets": {
+				"from": 936920,
+				"to": 939760
+			},
+			"text": " So did you just make the information more available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,760",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 939760,
+				"to": 942000
+			},
+			"text": " Then we have features like be filtering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:45,360"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 945360
+			},
+			"text": " so as a proposer, you can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,360",
+				"to": "00:15:47,960"
+			},
+			"offsets": {
+				"from": 945360,
+				"to": 947960
+			},
+			"text": " hey, I only want to use a relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,960",
+				"to": "00:15:50,720"
+			},
+			"offsets": {
+				"from": 947960,
+				"to": 950720
+			},
+			"text": " if they give me something that's over this value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,720",
+				"to": "00:15:54,120"
+			},
+			"offsets": {
+				"from": 950720,
+				"to": 954120
+			},
+			"text": " So there's some nice things you can do there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,120",
+				"to": "00:15:56,280"
+			},
+			"offsets": {
+				"from": 954120,
+				"to": 956280
+			},
+			"text": " So what is takeaways, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,280",
+				"to": "00:15:58,960"
+			},
+			"offsets": {
+				"from": 956280,
+				"to": 958960
+			},
+			"text": " We're still early, but we need more robust relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,960",
+				"to": "00:16:02,640"
+			},
+			"offsets": {
+				"from": 958960,
+				"to": 962640
+			},
+			"text": " and also we need a way to hold relays more accountable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,640",
+				"to": "00:16:03,920"
+			},
+			"offsets": {
+				"from": 962640,
+				"to": 963920
+			},
+			"text": " For example, a simple idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,920",
+				"to": "00:16:06,120"
+			},
+			"offsets": {
+				"from": 963920,
+				"to": 966120
+			},
+			"text": " you just monitor all the missing slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,120",
+				"to": "00:16:07,960"
+			},
+			"offsets": {
+				"from": 966120,
+				"to": 967960
+			},
+			"text": " and the opening slots live,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,960",
+				"to": "00:16:10,440"
+			},
+			"offsets": {
+				"from": 967960,
+				"to": 970440
+			},
+			"text": " and then you pull the API, the relay API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,440",
+				"to": "00:16:13,200"
+			},
+			"offsets": {
+				"from": 970440,
+				"to": 973200
+			},
+			"text": " and then if you see, hey, the missing slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,200",
+				"to": "00:16:15,120"
+			},
+			"offsets": {
+				"from": 973200,
+				"to": 975120
+			},
+			"text": " it's coming from the relay, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,120",
+				"to": "00:16:17,240"
+			},
+			"offsets": {
+				"from": 975120,
+				"to": 977240
+			},
+			"text": " I'm gonna just like shout out loud,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,240",
+				"to": "00:16:19,040"
+			},
+			"offsets": {
+				"from": 977240,
+				"to": 979040
+			},
+			"text": " Twitter or something, so that people know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,040",
+				"to": "00:16:21,400"
+			},
+			"offsets": {
+				"from": 979040,
+				"to": 981400
+			},
+			"text": " hey, there is an incident right there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,400",
+				"to": "00:16:24,720"
+			},
+			"offsets": {
+				"from": 981400,
+				"to": 984720
+			},
+			"text": " it's happening live, you need to turn off your relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,720",
+				"to": "00:16:27,520"
+			},
+			"offsets": {
+				"from": 984720,
+				"to": 987520
+			},
+			"text": " or you need to switch local processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,520",
+				"to": "00:16:29,880"
+			},
+			"offsets": {
+				"from": 987520,
+				"to": 989880
+			},
+			"text": " In terms of just like false, timeout,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,880",
+				"to": "00:16:32,040"
+			},
+			"offsets": {
+				"from": 989880,
+				"to": 992040
+			},
+			"text": " I think I prefer get-headed faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,040",
+				"to": "00:16:34,160"
+			},
+			"offsets": {
+				"from": 992040,
+				"to": 994160
+			},
+			"text": " then I prefer get-headed timeout,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,160",
+				"to": "00:16:35,560"
+			},
+			"offsets": {
+				"from": 994160,
+				"to": 995560
+			},
+			"text": " then I prefer get paid low faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,560",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 995560,
+				"to": 997560
+			},
+			"text": " just because I, with get-headed faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:40,040"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 1000040
+			},
+			"text": " I can propose a block, just like still,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,040",
+				"to": "00:16:42,640"
+			},
+			"offsets": {
+				"from": 1000040,
+				"to": 1002640
+			},
+			"text": " and then it's most likely fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,640",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1002640,
+				"to": 1005160
+			},
+			"text": " And I do believe that relay quality will improve over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:47,960"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1007960
+			},
+			"text": " just because like this still relatively early-ish,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,960",
+				"to": "00:16:49,680"
+			},
+			"offsets": {
+				"from": 1007960,
+				"to": 1009680
+			},
+			"text": " so I mean, there is still learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,680",
+				"to": "00:16:50,680"
+			},
+			"offsets": {
+				"from": 1009680,
+				"to": 1010680
+			},
+			"text": " and we're still learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,680",
+				"to": "00:16:52,680"
+			},
+			"offsets": {
+				"from": 1010680,
+				"to": 1012680
+			},
+			"text": " and something that will improve over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,680",
+				"to": "00:16:54,880"
+			},
+			"offsets": {
+				"from": 1012680,
+				"to": 1014880
+			},
+			"text": " So, okay, last session, censorship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,880",
+				"to": "00:16:57,560"
+			},
+			"offsets": {
+				"from": 1014880,
+				"to": 1017560
+			},
+			"text": " that's something that we have been talking a lot about."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,560",
+				"to": "00:17:00,560"
+			},
+			"offsets": {
+				"from": 1017560,
+				"to": 1020560
+			},
+			"text": " So as of today, let's see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,560",
+				"to": "00:17:04,240"
+			},
+			"offsets": {
+				"from": 1020560,
+				"to": 1024240
+			},
+			"text": " 49% of the mainnet blarts have some sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,240",
+				"to": "00:17:05,720"
+			},
+			"offsets": {
+				"from": 1024240,
+				"to": 1025720
+			},
+			"text": " affect compliance building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,720",
+				"to": "00:17:10,240"
+			},
+			"offsets": {
+				"from": 1025720,
+				"to": 1030240
+			},
+			"text": " and that's unfortunate, just that's already over half, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,240",
+				"to": "00:17:13,200"
+			},
+			"offsets": {
+				"from": 1030240,
+				"to": 1033200
+			},
+			"text": " So, we have to understand like who can censor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,200",
+				"to": "00:17:14,640"
+			},
+			"offsets": {
+				"from": 1033200,
+				"to": 1034640
+			},
+			"text": " like who can censor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,640",
+				"to": "00:17:16,160"
+			},
+			"offsets": {
+				"from": 1034640,
+				"to": 1036160
+			},
+			"text": " builder can censor, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,160",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1036160,
+				"to": 1038000
+			},
+			"text": " If your builder, you don't wanna build blarts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:20,440"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1040440
+			},
+			"text": " they can send like, affect compliance action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,440",
+				"to": "00:17:21,640"
+			},
+			"offsets": {
+				"from": 1040440,
+				"to": 1041640
+			},
+			"text": " you can censor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,640",
+				"to": "00:17:23,960"
+			},
+			"offsets": {
+				"from": 1041640,
+				"to": 1043960
+			},
+			"text": " or the relay can censor as well, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,960",
+				"to": "00:17:27,240"
+			},
+			"offsets": {
+				"from": 1043960,
+				"to": 1047240
+			},
+			"text": " So therefore, it's really hard, it's really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,240",
+				"to": "00:17:28,080"
+			},
+			"offsets": {
+				"from": 1047240,
+				"to": 1048080
+			},
+			"text": " What's the problem here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,080",
+				"to": "00:17:29,400"
+			},
+			"offsets": {
+				"from": 1048080,
+				"to": 1049400
+			},
+			"text": " The problem here is the enemy boost"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,400",
+				"to": "00:17:30,640"
+			},
+			"offsets": {
+				"from": 1049400,
+				"to": 1050640
+			},
+			"text": " is a neutral piece of software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,640",
+				"to": "00:17:33,200"
+			},
+			"offsets": {
+				"from": 1050640,
+				"to": 1053200
+			},
+			"text": " it doesn't care about censorship, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,200",
+				"to": "00:17:35,520"
+			},
+			"offsets": {
+				"from": 1053200,
+				"to": 1055520
+			},
+			"text": " And then the UX of just figuring out"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,520",
+				"to": "00:17:37,360"
+			},
+			"offsets": {
+				"from": 1055520,
+				"to": 1057360
+			},
+			"text": " like how do we defend censorship?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,360",
+				"to": "00:17:39,720"
+			},
+			"offsets": {
+				"from": 1057360,
+				"to": 1059720
+			},
+			"text": " It's still early, right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,720",
+				"to": "00:17:42,600"
+			},
+			"offsets": {
+				"from": 1059720,
+				"to": 1062600
+			},
+			"text": " it just essentially everyone chooses the relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,600",
+				"to": "00:17:44,800"
+			},
+			"offsets": {
+				"from": 1062600,
+				"to": 1064800
+			},
+			"text": " that's non-sensoring, that's it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,800",
+				"to": "00:17:45,920"
+			},
+			"offsets": {
+				"from": 1064800,
+				"to": 1065920
+			},
+			"text": " But then it's hard to figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,920",
+				"to": "00:17:47,840"
+			},
+			"offsets": {
+				"from": 1065920,
+				"to": 1067840
+			},
+			"text": " who is censoring at a given time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,840",
+				"to": "00:17:50,280"
+			},
+			"offsets": {
+				"from": 1067840,
+				"to": 1070280
+			},
+			"text": " it's like you don't know who is censoring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,280",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1070280,
+				"to": 1072000
+			},
+			"text": " I mean, we just look at the news,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:53,240"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1073240
+			},
+			"text": " we do real search,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,240",
+				"to": "00:17:56,960"
+			},
+			"offsets": {
+				"from": 1073240,
+				"to": 1076960
+			},
+			"text": " and that's it, we need more like information there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,960",
+				"to": "00:17:58,880"
+			},
+			"offsets": {
+				"from": 1076960,
+				"to": 1078880
+			},
+			"text": " So, potential solutions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,880",
+				"to": "00:18:00,640"
+			},
+			"offsets": {
+				"from": 1078880,
+				"to": 1080640
+			},
+			"text": " These are very experimental ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,640",
+				"to": "00:18:03,320"
+			},
+			"offsets": {
+				"from": 1080640,
+				"to": 1083320
+			},
+			"text": " that I just have been thinking in top of my head, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,320",
+				"to": "00:18:04,880"
+			},
+			"offsets": {
+				"from": 1083320,
+				"to": 1084880
+			},
+			"text": " You can have some active encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,880",
+				"to": "00:18:06,680"
+			},
+			"offsets": {
+				"from": 1084880,
+				"to": 1086680
+			},
+			"text": " such as mad boost CRDs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,680",
+				"to": "00:18:10,600"
+			},
+			"offsets": {
+				"from": 1086680,
+				"to": 1090600
+			},
+			"text": " you can have some sort of censorship or censorship oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,600",
+				"to": "00:18:12,080"
+			},
+			"offsets": {
+				"from": 1090600,
+				"to": 1092080
+			},
+			"text": " So for active inclusion, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,080",
+				"to": "00:18:14,400"
+			},
+			"offsets": {
+				"from": 1092080,
+				"to": 1094400
+			},
+			"text": " High level, how it works is just like a proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,400",
+				"to": "00:18:18,280"
+			},
+			"offsets": {
+				"from": 1094400,
+				"to": 1098280
+			},
+			"text": " you express the intent to like force transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,280",
+				"to": "00:18:19,320"
+			},
+			"offsets": {
+				"from": 1098280,
+				"to": 1099320
+			},
+			"text": " into the payload, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,320",
+				"to": "00:18:21,160"
+			},
+			"offsets": {
+				"from": 1099320,
+				"to": 1101160
+			},
+			"text": " And the relay has to present those"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,160",
+				"to": "00:18:23,080"
+			},
+			"offsets": {
+				"from": 1101160,
+				"to": 1103080
+			},
+			"text": " like transactions to the builder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,080",
+				"to": "00:18:26,160"
+			},
+			"offsets": {
+				"from": 1103080,
+				"to": 1106160
+			},
+			"text": " and the proposal will only accept those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,160",
+				"to": "00:18:30,320"
+			},
+			"offsets": {
+				"from": 1106160,
+				"to": 1110320
+			},
+			"text": " if they're included or the block has been full, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,320",
+				"to": "00:18:32,920"
+			},
+			"offsets": {
+				"from": 1110320,
+				"to": 1112920
+			},
+			"text": " So for this, you do require some sort of multi-proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,920",
+				"to": "00:18:36,440"
+			},
+			"offsets": {
+				"from": 1112920,
+				"to": 1116440
+			},
+			"text": " to be sure that, hey, the transactions are actually included,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,440",
+				"to": "00:18:39,600"
+			},
+			"offsets": {
+				"from": 1116440,
+				"to": 1119600
+			},
+			"text": " and then, 'cause this client can do the validation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,600",
+				"to": "00:18:41,280"
+			},
+			"offsets": {
+				"from": 1119600,
+				"to": 1121280
+			},
+			"text": " so what's the downside with that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,280",
+				"to": "00:18:43,760"
+			},
+			"offsets": {
+				"from": 1121280,
+				"to": 1123760
+			},
+			"text": " That's not that, we just like, there's more timing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,760",
+				"to": "00:18:48,320"
+			},
+			"offsets": {
+				"from": 1123760,
+				"to": 1128320
+			},
+			"text": " which is now, as a proposer, at the previous slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,320",
+				"to": "00:18:51,400"
+			},
+			"offsets": {
+				"from": 1128320,
+				"to": 1131400
+			},
+			"text": " you do need to send the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,400",
+				"to": "00:18:54,280"
+			},
+			"offsets": {
+				"from": 1131400,
+				"to": 1134280
+			},
+			"text": " you want to send the transactions during the previous slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,280",
+				"to": "00:18:56,440"
+			},
+			"offsets": {
+				"from": 1134280,
+				"to": 1136440
+			},
+			"text": " so you need to figure out what's the timing for that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,440",
+				"to": "00:18:59,240"
+			},
+			"offsets": {
+				"from": 1136440,
+				"to": 1139240
+			},
+			"text": " and now the proposers also need access to the mempool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,240",
+				"to": "00:19:01,120"
+			},
+			"offsets": {
+				"from": 1139240,
+				"to": 1141120
+			},
+			"text": " to the institutional layer state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,120",
+				"to": "00:19:03,640"
+			},
+			"offsets": {
+				"from": 1141120,
+				"to": 1143640
+			},
+			"text": " there's also some latency complexity here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,640",
+				"to": "00:19:07,960"
+			},
+			"offsets": {
+				"from": 1143640,
+				"to": 1147960
+			},
+			"text": " just 'cause like, now it may take longer to propose a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,960",
+				"to": "00:19:10,640"
+			},
+			"offsets": {
+				"from": 1147960,
+				"to": 1150640
+			},
+			"text": " and then, yeah, and then you can also have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,640",
+				"to": "00:19:13,680"
+			},
+			"offsets": {
+				"from": 1150640,
+				"to": 1153680
+			},
+			"text": " this is like a poor man version of just like censorship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,680",
+				"to": "00:19:17,120"
+			},
+			"offsets": {
+				"from": 1153680,
+				"to": 1157120
+			},
+			"text": " like, filtering, basically like, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,120",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1157120,
+				"to": 1159000
+			},
+			"text": " proposer, you just want to enter the mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:21,560"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1161560
+			},
+			"text": " for like the top untransactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,560",
+				"to": "00:19:25,440"
+			},
+			"offsets": {
+				"from": 1161560,
+				"to": 1165440
+			},
+			"text": " that's based on KSP at the given time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,440",
+				"to": "00:19:27,360"
+			},
+			"offsets": {
+				"from": 1165440,
+				"to": 1167360
+			},
+			"text": " and then when the relay reply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,360",
+				"to": "00:19:30,160"
+			},
+			"offsets": {
+				"from": 1167360,
+				"to": 1170160
+			},
+			"text": " the relay has to have to show a proof that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,160",
+				"to": "00:19:34,040"
+			},
+			"offsets": {
+				"from": 1170160,
+				"to": 1174040
+			},
+			"text": " hey, this top end gets transaction are included,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,040",
+				"to": "00:19:37,440"
+			},
+			"offsets": {
+				"from": 1174040,
+				"to": 1177440
+			},
+			"text": " unless that the guess is at this price at the given time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,440",
+				"to": "00:19:38,280"
+			},
+			"offsets": {
+				"from": 1177440,
+				"to": 1178280
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,280",
+				"to": "00:19:40,760"
+			},
+			"offsets": {
+				"from": 1178280,
+				"to": 1180760
+			},
+			"text": " So we don't really try to force transactions inside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,760",
+				"to": "00:19:43,320"
+			},
+			"offsets": {
+				"from": 1180760,
+				"to": 1183320
+			},
+			"text": " but we just want to make sure that the top end transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,320",
+				"to": "00:19:45,680"
+			},
+			"offsets": {
+				"from": 1183320,
+				"to": 1185680
+			},
+			"text": " are actually getting in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,680",
+				"to": "00:19:49,480"
+			},
+			"offsets": {
+				"from": 1185680,
+				"to": 1189480
+			},
+			"text": " and then we're assuming that, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,480",
+				"to": "00:19:51,040"
+			},
+			"offsets": {
+				"from": 1189480,
+				"to": 1191040
+			},
+			"text": " if someone's in the sensor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,040",
+				"to": "00:19:53,960"
+			},
+			"offsets": {
+				"from": 1191040,
+				"to": 1193960
+			},
+			"text": " someone will probably use a higher guess fee and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,960",
+				"to": "00:19:56,040"
+			},
+			"offsets": {
+				"from": 1193960,
+				"to": 1196040
+			},
+			"text": " So it's not ideal because you kind of lose"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,040",
+				"to": "00:19:58,320"
+			},
+			"offsets": {
+				"from": 1196040,
+				"to": 1198320
+			},
+			"text": " this like this inclusion control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,320",
+				"to": "00:20:01,480"
+			},
+			"offsets": {
+				"from": 1198320,
+				"to": 1201480
+			},
+			"text": " but it's probably easier to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,480",
+				"to": "00:20:04,960"
+			},
+			"offsets": {
+				"from": 1201480,
+				"to": 1204960
+			},
+			"text": " Then there's also like, ideas like censorship oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,960",
+				"to": "00:20:08,440"
+			},
+			"offsets": {
+				"from": 1204960,
+				"to": 1208440
+			},
+			"text": " you can introduce like a new actor to produce censorship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,440",
+				"to": "00:20:10,280"
+			},
+			"offsets": {
+				"from": 1208440,
+				"to": 1210280
+			},
+			"text": " kind of like relay monitor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,280",
+				"to": "00:20:12,880"
+			},
+			"offsets": {
+				"from": 1210280,
+				"to": 1212880
+			},
+			"text": " and now as a proposer and a boos,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,880",
+				"to": "00:20:13,960"
+			},
+			"offsets": {
+				"from": 1212880,
+				"to": 1213960
+			},
+			"text": " when we see the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,960",
+				"to": "00:20:15,840"
+			},
+			"offsets": {
+				"from": 1213960,
+				"to": 1215840
+			},
+			"text": " I can ask this oracle, this new actor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,840",
+				"to": "00:20:17,120"
+			},
+			"offsets": {
+				"from": 1215840,
+				"to": 1217120
+			},
+			"text": " be like, hey, is this a sensor one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,120",
+				"to": "00:20:19,440"
+			},
+			"offsets": {
+				"from": 1217120,
+				"to": 1219440
+			},
+			"text": " If they reply, yes, then I won't use it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,440",
+				"to": "00:20:22,680"
+			},
+			"offsets": {
+				"from": 1219440,
+				"to": 1222680
+			},
+			"text": " But then again, you're putting trust on like a new actor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,680",
+				"to": "00:20:24,320"
+			},
+			"offsets": {
+				"from": 1222680,
+				"to": 1224320
+			},
+			"text": " and that's obviously not ideal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,320",
+				"to": "00:20:25,240"
+			},
+			"offsets": {
+				"from": 1224320,
+				"to": 1225240
+			},
+			"text": " because I, because I, who,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,240",
+				"to": "00:20:28,120"
+			},
+			"offsets": {
+				"from": 1225240,
+				"to": 1228120
+			},
+			"text": " because I, who is gonna monitor the censorship oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,120",
+				"to": "00:20:30,360"
+			},
+			"offsets": {
+				"from": 1228120,
+				"to": 1230360
+			},
+			"text": " and there's always that problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,360",
+				"to": "00:20:32,840"
+			},
+			"offsets": {
+				"from": 1230360,
+				"to": 1232840
+			},
+			"text": " So there has been a lot more research going on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,840",
+				"to": "00:20:34,720"
+			},
+			"offsets": {
+				"from": 1232840,
+				"to": 1234720
+			},
+			"text": " which I'm really happy to see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,720",
+				"to": "00:20:37,760"
+			},
+			"offsets": {
+				"from": 1234720,
+				"to": 1237760
+			},
+			"text": " We talked about posted a research a couple of weeks ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,760",
+				"to": "00:20:39,840"
+			},
+			"offsets": {
+				"from": 1237760,
+				"to": 1239840
+			},
+			"text": " on just like, how do we constrain builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,840",
+				"to": "00:20:44,560"
+			},
+			"offsets": {
+				"from": 1239840,
+				"to": 1244560
+			},
+			"text": " without bringing a blog proposal burdens to the proposer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,560",
+				"to": "00:20:47,400"
+			},
+			"offsets": {
+				"from": 1244560,
+				"to": 1247400
+			},
+			"text": " There's ideas that using blog prefix and stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,400",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1247400,
+				"to": 1250360
+			},
+			"text": " and I highly recommend you to take a look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:52,320"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1252320
+			},
+			"text": " And then there's like, from Bronnaby,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,320",
+				"to": "00:20:54,280"
+			},
+			"offsets": {
+				"from": 1252320,
+				"to": 1254280
+			},
+			"text": " I think it came like last week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,280",
+				"to": "00:20:55,840"
+			},
+			"offsets": {
+				"from": 1254280,
+				"to": 1255840
+			},
+			"text": " which I haven't had time to read it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,840",
+				"to": "00:20:58,080"
+			},
+			"offsets": {
+				"from": 1255840,
+				"to": 1258080
+			},
+			"text": " it basically enforces that proposal commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,080",
+				"to": "00:20:59,160"
+			},
+			"offsets": {
+				"from": 1258080,
+				"to": 1259160
+			},
+			"text": " and it's on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,160",
+				"to": "00:21:00,560"
+			},
+			"offsets": {
+				"from": 1259160,
+				"to": 1260560
+			},
+			"text": " And then I think that's very neat."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,560",
+				"to": "00:21:03,160"
+			},
+			"offsets": {
+				"from": 1260560,
+				"to": 1263160
+			},
+			"text": " I definitely wanna take a look at that very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,160",
+				"to": "00:21:04,760"
+			},
+			"offsets": {
+				"from": 1263160,
+				"to": 1264760
+			},
+			"text": " So what are the take-your-ways, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,760",
+				"to": "00:21:05,760"
+			},
+			"offsets": {
+				"from": 1264760,
+				"to": 1265760
+			},
+			"text": " I think I take away with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,760",
+				"to": "00:21:07,640"
+			},
+			"offsets": {
+				"from": 1265760,
+				"to": 1267640
+			},
+			"text": " just like, it seems important to figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,640",
+				"to": "00:21:09,400"
+			},
+			"offsets": {
+				"from": 1267640,
+				"to": 1269400
+			},
+			"text": " like who can censor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,400",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1269400,
+				"to": 1271000
+			},
+			"text": " and then who can feel the censorship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:13,240"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1273240
+			},
+			"text": " because there are so many actors in the picture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,240",
+				"to": "00:21:15,120"
+			},
+			"offsets": {
+				"from": 1273240,
+				"to": 1275120
+			},
+			"text": " there's a proposers, there's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,120",
+				"to": "00:21:17,320"
+			},
+			"offsets": {
+				"from": 1275120,
+				"to": 1277320
+			},
+			"text": " there is a M.E.V. boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,320",
+				"to": "00:21:19,560"
+			},
+			"offsets": {
+				"from": 1277320,
+				"to": 1279560
+			},
+			"text": " and then there's also the relay, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,560",
+				"to": "00:21:21,960"
+			},
+			"offsets": {
+				"from": 1279560,
+				"to": 1281960
+			},
+			"text": " It's important to figure out like who does what,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,960",
+				"to": "00:21:23,440"
+			},
+			"offsets": {
+				"from": 1281960,
+				"to": 1283440
+			},
+			"text": " and then I do think like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,440",
+				"to": "00:21:26,320"
+			},
+			"offsets": {
+				"from": 1283440,
+				"to": 1286320
+			},
+			"text": " we need to leverage the builder API a lot more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,320",
+				"to": "00:21:28,120"
+			},
+			"offsets": {
+				"from": 1286320,
+				"to": 1288120
+			},
+			"text": " because the builder API is probably the best thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,120",
+				"to": "00:21:30,320"
+			},
+			"offsets": {
+				"from": 1288120,
+				"to": 1290320
+			},
+			"text": " we have today, it's the best defense."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,320",
+				"to": "00:21:32,360"
+			},
+			"offsets": {
+				"from": 1290320,
+				"to": 1292360
+			},
+			"text": " We use builder API a lot more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,360",
+				"to": "00:21:35,120"
+			},
+			"offsets": {
+				"from": 1292360,
+				"to": 1295120
+			},
+			"text": " we can like provide more ways to like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,120",
+				"to": "00:21:37,920"
+			},
+			"offsets": {
+				"from": 1295120,
+				"to": 1297920
+			},
+			"text": " to basically organize defenses against censorship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,920",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1297920,
+				"to": 1301000
+			},
+			"text": " such as like inclusion, this, block prefix."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:44,440"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1304440
+			},
+			"text": " And then there is like a spectrum of solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,440",
+				"to": "00:21:47,480"
+			},
+			"offsets": {
+				"from": 1304440,
+				"to": 1307480
+			},
+			"text": " and then we're out there, which we're thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,480",
+				"to": "00:21:50,160"
+			},
+			"offsets": {
+				"from": 1307480,
+				"to": 1310160
+			},
+			"text": " but the simplest solution typically has like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,160",
+				"to": "00:21:51,600"
+			},
+			"offsets": {
+				"from": 1310160,
+				"to": 1311600
+			},
+			"text": " more trusty assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,600",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1311600,
+				"to": 1315000
+			},
+			"text": " So I'm not sure if that's the way that we want to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:57,560"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1317560
+			},
+			"text": " So some final thoughts, I think like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,560",
+				"to": "00:22:01,160"
+			},
+			"offsets": {
+				"from": 1317560,
+				"to": 1321160
+			},
+			"text": " for me, I think censorship resistance should be the highest priority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,160",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1321160,
+				"to": 1323000
+			},
+			"text": " aside from scaling and withdraw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:04,480"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1324480
+			},
+			"text": " like what is Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,480",
+				"to": "00:22:08,040"
+			},
+			"offsets": {
+				"from": 1324480,
+				"to": 1328040
+			},
+			"text": " if 50% of the transactions are censored, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,040",
+				"to": "00:22:10,280"
+			},
+			"offsets": {
+				"from": 1328040,
+				"to": 1330280
+			},
+			"text": " That's something that we have to ask ourselves about, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,280",
+				"to": "00:22:14,400"
+			},
+			"offsets": {
+				"from": 1330280,
+				"to": 1334400
+			},
+			"text": " And I do think the hybrid PBS is basically our best two bots"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,400",
+				"to": "00:22:15,920"
+			},
+			"offsets": {
+				"from": 1334400,
+				"to": 1335920
+			},
+			"text": " to defend against that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,920",
+				"to": "00:22:17,920"
+			},
+			"offsets": {
+				"from": 1335920,
+				"to": 1337920
+			},
+			"text": " because it allows fast iterations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,920",
+				"to": "00:22:22,440"
+			},
+			"offsets": {
+				"from": 1337920,
+				"to": 1342440
+			},
+			"text": " that's, and then before we enshun into full protocol PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,440",
+				"to": "00:22:23,760"
+			},
+			"offsets": {
+				"from": 1342440,
+				"to": 1343760
+			},
+			"text": " then we kind of lose this step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,760",
+				"to": "00:22:25,640"
+			},
+			"offsets": {
+				"from": 1343760,
+				"to": 1345640
+			},
+			"text": " which is everything will be hard for base, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,640",
+				"to": "00:22:28,160"
+			},
+			"offsets": {
+				"from": 1345640,
+				"to": 1348160
+			},
+			"text": " For high-bit PBS, you have the builder API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,160",
+				"to": "00:22:29,720"
+			},
+			"offsets": {
+				"from": 1348160,
+				"to": 1349720
+			},
+			"text": " then you can play around with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,720",
+				"to": "00:22:31,600"
+			},
+			"offsets": {
+				"from": 1349720,
+				"to": 1351600
+			},
+			"text": " and then you can figure out like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,600",
+				"to": "00:22:34,680"
+			},
+			"offsets": {
+				"from": 1351600,
+				"to": 1354680
+			},
+			"text": " what works best, and what doesn't work best."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,680",
+				"to": "00:22:37,840"
+			},
+			"offsets": {
+				"from": 1354680,
+				"to": 1357840
+			},
+			"text": " And then I know like, people that have been working on high-bit PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,840",
+				"to": "00:22:40,040"
+			},
+			"offsets": {
+				"from": 1357840,
+				"to": 1360040
+			},
+			"text": " such as Met Boost, Relay's Builders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,040",
+				"to": "00:22:42,320"
+			},
+			"offsets": {
+				"from": 1360040,
+				"to": 1362320
+			},
+			"text": " they have been getting a lot of like, bashing and stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,320",
+				"to": "00:22:44,760"
+			},
+			"offsets": {
+				"from": 1362320,
+				"to": 1364760
+			},
+			"text": " and I don't think it should be that way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,760",
+				"to": "00:22:48,120"
+			},
+			"offsets": {
+				"from": 1364760,
+				"to": 1368120
+			},
+			"text": " I think we should be like, working together as one team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,120",
+				"to": "00:22:51,360"
+			},
+			"offsets": {
+				"from": 1368120,
+				"to": 1371360
+			},
+			"text": " and to like, to basically advance this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,320",
+				"to": "00:22:55,520"
+			},
+			"offsets": {
+				"from": 1372320,
+				"to": 1375520
+			},
+			"text": " advance this censorship thing forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,520",
+				"to": "00:22:57,600"
+			},
+			"offsets": {
+				"from": 1375520,
+				"to": 1377600
+			},
+			"text": " So yeah, definitely shout out to all the teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,600",
+				"to": "00:22:58,840"
+			},
+			"offsets": {
+				"from": 1377600,
+				"to": 1378840
+			},
+			"text": " that have been working on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,840",
+				"to": "00:23:01,120"
+			},
+			"offsets": {
+				"from": 1378840,
+				"to": 1381120
+			},
+			"text": " I mean, there are the real heroes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,120",
+				"to": "00:23:03,080"
+			},
+			"offsets": {
+				"from": 1381120,
+				"to": 1383080
+			},
+			"text": " So yeah, that's all I have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,080",
+				"to": "00:23:05,800"
+			},
+			"offsets": {
+				"from": 1383080,
+				"to": 1385800
+			},
+			"text": " Thank you so much for having me, and yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,800",
+				"to": "00:23:09,560"
+			},
+			"offsets": {
+				"from": 1385800,
+				"to": 1389560
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,560",
+				"to": "00:23:10,880"
+			},
+			"offsets": {
+				"from": 1389560,
+				"to": 1390880
+			},
+			"text": " - Thank you, Therans."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,880",
+				"to": "00:23:13,280"
+			},
+			"offsets": {
+				"from": 1390880,
+				"to": 1393280
+			},
+			"text": " We have some questions for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,280",
+				"to": "00:23:14,120"
+			},
+			"offsets": {
+				"from": 1393280,
+				"to": 1394120
+			},
+			"text": " - Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,120",
+				"to": "00:23:17,560"
+			},
+			"offsets": {
+				"from": 1394120,
+				"to": 1397560
+			},
+			"text": " So regarding latency, the numbers you showed"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,560",
+				"to": "00:23:19,920"
+			},
+			"offsets": {
+				"from": 1397560,
+				"to": 1399920
+			},
+			"text": " were more than the same as Danny's in the first day."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,920",
+				"to": "00:23:24,920"
+			},
+			"offsets": {
+				"from": 1399920,
+				"to": 1404920
+			},
+			"text": " So if you have 50% of the network proposing through Relayers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,920",
+				"to": "00:23:29,520"
+			},
+			"offsets": {
+				"from": 1404920,
+				"to": 1409520
+			},
+			"text": " and 50% of the orphan blogs are coming from Relayers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,520",
+				"to": "00:23:30,880"
+			},
+			"offsets": {
+				"from": 1409520,
+				"to": 1410880
+			},
+			"text": " I would have taken that as a sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,880",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1410880,
+				"to": 1413000
+			},
+			"text": " that latency did not matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:34,680"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1414680
+			},
+			"text": " That would be the expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,680",
+				"to": "00:23:38,280"
+			},
+			"offsets": {
+				"from": 1414680,
+				"to": 1418280
+			},
+			"text": " - Yes, but I do think that we can do better"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,280",
+				"to": "00:23:40,360"
+			},
+			"offsets": {
+				"from": 1418280,
+				"to": 1420360
+			},
+			"text": " from the orphan point of view, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,360",
+				"to": "00:23:43,840"
+			},
+			"offsets": {
+				"from": 1420360,
+				"to": 1423840
+			},
+			"text": " Because now if you look at, like 20+ gets orphaned a week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,840",
+				"to": "00:23:47,280"
+			},
+			"offsets": {
+				"from": 1423840,
+				"to": 1427280
+			},
+			"text": " if like, if the stages have 10+ get orphaned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,280",
+				"to": "00:23:50,320"
+			},
+			"offsets": {
+				"from": 1427280,
+				"to": 1430320
+			},
+			"text": " then it's probably better than 20+ get orphaned, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,320",
+				"to": "00:23:53,960"
+			},
+			"offsets": {
+				"from": 1430320,
+				"to": 1433960
+			},
+			"text": " It just, I'm coming from more like the orphan's perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,960",
+				"to": "00:23:55,680"
+			},
+			"offsets": {
+				"from": 1433960,
+				"to": 1435680
+			},
+			"text": " because when something orphaned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,680",
+				"to": "00:23:57,560"
+			},
+			"offsets": {
+				"from": 1435680,
+				"to": 1437560
+			},
+			"text": " then it's obviously not ideal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,560",
+				"to": "00:23:59,680"
+			},
+			"offsets": {
+				"from": 1437560,
+				"to": 1439680
+			},
+			"text": " because different sessions should be included."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,680",
+				"to": "00:24:02,160"
+			},
+			"offsets": {
+				"from": 1439680,
+				"to": 1442160
+			},
+			"text": " And there may be some US concerns there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,160",
+				"to": "00:24:05,280"
+			},
+			"offsets": {
+				"from": 1442160,
+				"to": 1445280
+			},
+			"text": " - Hey, Therans, thanks for a super informative talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,280",
+				"to": "00:24:09,120"
+			},
+			"offsets": {
+				"from": 1445280,
+				"to": 1449120
+			},
+			"text": " Can you say a little bit more about the three Relay faults"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,120",
+				"to": "00:24:10,080"
+			},
+			"offsets": {
+				"from": 1449120,
+				"to": 1450080
+			},
+			"text": " that happened recently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,080",
+				"to": "00:24:14,960"
+			},
+			"offsets": {
+				"from": 1450080,
+				"to": 1454960
+			},
+			"text": " Like, how were the malformed headers or payloads generated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,960",
+				"to": "00:24:16,400"
+			},
+			"offsets": {
+				"from": 1454960,
+				"to": 1456400
+			},
+			"text": " And like, how was that mitigated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,400",
+				"to": "00:24:18,240"
+			},
+			"offsets": {
+				"from": 1456400,
+				"to": 1458240
+			},
+			"text": " How do we prevent that in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,240",
+				"to": "00:24:22,080"
+			},
+			"offsets": {
+				"from": 1458240,
+				"to": 1462080
+			},
+			"text": " - Right, I would say like the Relay landscape,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,080",
+				"to": "00:24:24,080"
+			},
+			"offsets": {
+				"from": 1462080,
+				"to": 1464080
+			},
+			"text": " there's still a lot of work to do there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,080",
+				"to": "00:24:26,720"
+			},
+			"offsets": {
+				"from": 1464080,
+				"to": 1466720
+			},
+			"text": " because I didn't need more testing, any spare tests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,720",
+				"to": "00:24:28,120"
+			},
+			"offsets": {
+				"from": 1466720,
+				"to": 1468120
+			},
+			"text": " the new end-to-end tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,120",
+				"to": "00:24:29,960"
+			},
+			"offsets": {
+				"from": 1468120,
+				"to": 1469960
+			},
+			"text": " And in terms of the fault, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,960",
+				"to": "00:24:31,640"
+			},
+			"offsets": {
+				"from": 1469960,
+				"to": 1471640
+			},
+			"text": " the first fault is flash ball,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,640",
+				"to": "00:24:34,640"
+			},
+			"offsets": {
+				"from": 1471640,
+				"to": 1474640
+			},
+			"text": " and then they fail to armature the deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,640",
+				"to": "00:24:35,680"
+			},
+			"offsets": {
+				"from": 1474640,
+				"to": 1475680
+			},
+			"text": " And that point is too late,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,680",
+				"to": "00:24:37,960"
+			},
+			"offsets": {
+				"from": 1475680,
+				"to": 1477960
+			},
+			"text": " because someone already submitted the header"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,960",
+				"to": "00:24:39,480"
+			},
+			"offsets": {
+				"from": 1477960,
+				"to": 1479480
+			},
+			"text": " and stopped there, you have the signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,480",
+				"to": "00:24:41,160"
+			},
+			"offsets": {
+				"from": 1479480,
+				"to": 1481160
+			},
+			"text": " so there's not much you can do there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,160",
+				"to": "00:24:42,920"
+			},
+			"offsets": {
+				"from": 1481160,
+				"to": 1482920
+			},
+			"text": " And then, but then they fail to armortials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,920",
+				"to": "00:24:46,080"
+			},
+			"offsets": {
+				"from": 1482920,
+				"to": 1486080
+			},
+			"text": " because they did not test the payload"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,080",
+				"to": "00:24:48,120"
+			},
+			"offsets": {
+				"from": 1486080,
+				"to": 1488120
+			},
+			"text": " with a full signature embedded."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,120",
+				"to": "00:24:51,240"
+			},
+			"offsets": {
+				"from": 1488120,
+				"to": 1491240
+			},
+			"text": " And the second fault, and the third fault are basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,240",
+				"to": "00:24:52,720"
+			},
+			"offsets": {
+				"from": 1491240,
+				"to": 1492720
+			},
+			"text": " the second incident and the third incident"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,720",
+				"to": "00:24:54,160"
+			},
+			"offsets": {
+				"from": 1492720,
+				"to": 1494160
+			},
+			"text": " are basically the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,160",
+				"to": "00:24:56,240"
+			},
+			"offsets": {
+				"from": 1494160,
+				"to": 1496240
+			},
+			"text": " And I think the block Relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,240",
+				"to": "00:24:59,880"
+			},
+			"offsets": {
+				"from": 1496240,
+				"to": 1499880
+			},
+			"text": " just so the blocks Relay did not validate the payload,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,880",
+				"to": "00:25:01,520"
+			},
+			"offsets": {
+				"from": 1499880,
+				"to": 1501520
+			},
+			"text": " which is what they're supposed to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,520",
+				"to": "00:25:03,480"
+			},
+			"offsets": {
+				"from": 1501520,
+				"to": 1503480
+			},
+			"text": " They're supposed to make sure the payload was valid"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,480",
+				"to": "00:25:05,400"
+			},
+			"offsets": {
+				"from": 1503480,
+				"to": 1505400
+			},
+			"text": " before they pass it to the proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,400",
+				"to": "00:25:07,280"
+			},
+			"offsets": {
+				"from": 1505400,
+				"to": 1507280
+			},
+			"text": " but they just did not validate, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,280",
+				"to": "00:25:09,600"
+			},
+			"offsets": {
+				"from": 1507280,
+				"to": 1509600
+			},
+			"text": " - Hi, Therans, thanks for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,600",
+				"to": "00:25:13,760"
+			},
+			"offsets": {
+				"from": 1509600,
+				"to": 1513760
+			},
+			"text": " I was curious about the out of protocol CR lists"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,760",
+				"to": "00:25:16,880"
+			},
+			"offsets": {
+				"from": 1513760,
+				"to": 1516880
+			},
+			"text": " and the proofs of transaction inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,880",
+				"to": "00:25:19,200"
+			},
+			"offsets": {
+				"from": 1516880,
+				"to": 1519200
+			},
+			"text": " Have you done any research into it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,200",
+				"to": "00:25:20,120"
+			},
+			"offsets": {
+				"from": 1519200,
+				"to": 1520120
+			},
+			"text": " Is it practical?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,120",
+				"to": "00:25:23,080"
+			},
+			"offsets": {
+				"from": 1520120,
+				"to": 1523080
+			},
+			"text": " Like would the builders or the Relayers"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,080",
+				"to": "00:25:27,120"
+			},
+			"offsets": {
+				"from": 1523080,
+				"to": 1527120
+			},
+			"text": " be actually able to calculate the proofs in time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,120",
+				"to": "00:25:29,400"
+			},
+			"offsets": {
+				"from": 1527120,
+				"to": 1529400
+			},
+			"text": " - Yeah, the something still under research,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,400",
+				"to": "00:25:32,040"
+			},
+			"offsets": {
+				"from": 1529400,
+				"to": 1532040
+			},
+			"text": " I think like a crease from flash balls"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,040",
+				"to": "00:25:34,640"
+			},
+			"offsets": {
+				"from": 1532040,
+				"to": 1534640
+			},
+			"text": " does just open a PR, so I need to look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,640",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1534640,
+				"to": 1537000
+			},
+			"text": " But high level, I think like how you should work"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:40,080"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1540080
+			},
+			"text": " is just that, say you're proposing a slot N,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,080",
+				"to": "00:25:43,160"
+			},
+			"offsets": {
+				"from": 1540080,
+				"to": 1543160
+			},
+			"text": " at slot M minus one, you have access to the main pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,160",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1543160,
+				"to": 1546000
+			},
+			"text": " and then you see some transactions that get filtered."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:47,600"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1547600
+			},
+			"text": " You basically a slot N minus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,600",
+				"to": "00:25:50,960"
+			},
+			"offsets": {
+				"from": 1547600,
+				"to": 1550960
+			},
+			"text": " you send those, you basically present those transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,960",
+				"to": "00:25:53,520"
+			},
+			"offsets": {
+				"from": 1550960,
+				"to": 1553520
+			},
+			"text": " to the Relayer, and then Relayer will also present"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,520",
+				"to": "00:25:55,240"
+			},
+			"offsets": {
+				"from": 1553520,
+				"to": 1555240
+			},
+			"text": " those transactions to the builder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,240",
+				"to": "00:25:57,480"
+			},
+			"offsets": {
+				"from": 1555240,
+				"to": 1557480
+			},
+			"text": " and then the builder will essentially build a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,480",
+				"to": "00:25:59,200"
+			},
+			"offsets": {
+				"from": 1557480,
+				"to": 1559200
+			},
+			"text": " just include those transactions real quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,200",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1559200,
+				"to": 1561000
+			},
+			"text": " and then send it back to the Relayer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:03,200"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1563200
+			},
+			"text": " And then like so, at the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,200",
+				"to": "00:26:06,360"
+			},
+			"offsets": {
+				"from": 1563200,
+				"to": 1566360
+			},
+			"text": " after the signature is done, when you get the payload, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,360",
+				"to": "00:26:11,120"
+			},
+			"offsets": {
+				"from": 1566360,
+				"to": 1571120
+			},
+			"text": " so they can include like the multi-proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,120",
+				"to": "00:26:12,960"
+			},
+			"offsets": {
+				"from": 1571120,
+				"to": 1572960
+			},
+			"text": " to basically prove that the signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,960",
+				"to": "00:26:16,400"
+			},
+			"offsets": {
+				"from": 1572960,
+				"to": 1576400
+			},
+			"text": " sorry, to make sure that the transitions are indeed like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,400",
+				"to": "00:26:19,640"
+			},
+			"offsets": {
+				"from": 1576400,
+				"to": 1579640
+			},
+			"text": " are basically indeed included in the payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,640",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1579640,
+				"to": 1583000
+			},
+			"text": " I don't know yet, that something still under research."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:25,080"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1585080
+			},
+			"text": " - Hi, Alex, me, Coinmetrics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,080",
+				"to": "00:26:27,280"
+			},
+			"offsets": {
+				"from": 1585080,
+				"to": 1587280
+			},
+			"text": " thank you so much for your talk, really loved it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,280",
+				"to": "00:26:29,400"
+			},
+			"offsets": {
+				"from": 1587280,
+				"to": 1589400
+			},
+			"text": " Just wondering if you would comment on your opinion"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,400",
+				"to": "00:26:32,720"
+			},
+			"offsets": {
+				"from": 1589400,
+				"to": 1592720
+			},
+			"text": " about maybe non-public Relays, do they exist?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,720",
+				"to": "00:26:34,400"
+			},
+			"offsets": {
+				"from": 1592720,
+				"to": 1594400
+			},
+			"text": " Is this a possibility?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,400",
+				"to": "00:26:35,240"
+			},
+			"offsets": {
+				"from": 1594400,
+				"to": 1595240
+			},
+			"text": " Just wondering."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,240",
+				"to": "00:26:37,840"
+			},
+			"offsets": {
+				"from": 1595240,
+				"to": 1597840
+			},
+			"text": " - As for now, I don't know any non-public Relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,840",
+				"to": "00:26:40,200"
+			},
+			"offsets": {
+				"from": 1597840,
+				"to": 1600200
+			},
+			"text": " I only know the seven Relayer that was presented"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,200",
+				"to": "00:26:44,640"
+			},
+			"offsets": {
+				"from": 1600200,
+				"to": 1604640
+			},
+			"text": " in mvboost.org, and I also think that if, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,640",
+				"to": "00:26:49,240"
+			},
+			"offsets": {
+				"from": 1604640,
+				"to": 1609240
+			},
+			"text": " if there is non-public Relay, it's probably hard for us to know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,240",
+				"to": "00:26:51,520"
+			},
+			"offsets": {
+				"from": 1609240,
+				"to": 1611520
+			},
+			"text": " just because if Coinbase is using a Relayer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,520",
+				"to": "00:26:54,040"
+			},
+			"offsets": {
+				"from": 1611520,
+				"to": 1614040
+			},
+			"text": " it's threatening MAV, they're not open to public."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,040",
+				"to": "00:26:57,200"
+			},
+			"offsets": {
+				"from": 1614040,
+				"to": 1617200
+			},
+			"text": " I mean, that's not something that we can easily find out."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,200",
+				"to": "00:26:59,120"
+			},
+			"offsets": {
+				"from": 1617200,
+				"to": 1619120
+			},
+			"text": " - Why do you think that proves help"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,120",
+				"to": "00:27:01,960"
+			},
+			"offsets": {
+				"from": 1619120,
+				"to": 1621960
+			},
+			"text": " in that, like what he was talking about before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,960",
+				"to": "00:27:05,240"
+			},
+			"offsets": {
+				"from": 1621960,
+				"to": 1625240
+			},
+			"text": " to provoke inclusion on transactions, why can't you just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,240",
+				"to": "00:27:07,360"
+			},
+			"offsets": {
+				"from": 1625240,
+				"to": 1627360
+			},
+			"text": " if the things that are not included once you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,360",
+				"to": "00:27:09,760"
+			},
+			"offsets": {
+				"from": 1627360,
+				"to": 1629760
+			},
+			"text": " the actual payload disconnect from the Relay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,760",
+				"to": "00:27:12,000"
+			},
+			"offsets": {
+				"from": 1629760,
+				"to": 1632000
+			},
+			"text": " 'Cause I'm the Relay, even if there is a proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,000",
+				"to": "00:27:13,520"
+			},
+			"offsets": {
+				"from": 1632000,
+				"to": 1633520
+			},
+			"text": " could always just not release the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,520",
+				"to": "00:27:14,760"
+			},
+			"offsets": {
+				"from": 1633520,
+				"to": 1634760
+			},
+			"text": " and/or the block could be invalid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,760",
+				"to": "00:27:16,440"
+			},
+			"offsets": {
+				"from": 1634760,
+				"to": 1636440
+			},
+			"text": " or there could be all kinds of faults"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,440",
+				"to": "00:27:18,680"
+			},
+			"offsets": {
+				"from": 1636440,
+				"to": 1638680
+			},
+			"text": " that make the proof kind of meaningless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,680",
+				"to": "00:27:20,320"
+			},
+			"offsets": {
+				"from": 1638680,
+				"to": 1640320
+			},
+			"text": " and what you end up doing is anyway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,320",
+				"to": "00:27:23,200"
+			},
+			"offsets": {
+				"from": 1640320,
+				"to": 1643200
+			},
+			"text": " disconnected from the Relay, in either case."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,200",
+				"to": "00:27:26,040"
+			},
+			"offsets": {
+				"from": 1643200,
+				"to": 1646040
+			},
+			"text": " So just, yeah, can we just make it simpler on ourselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,040",
+				"to": "00:27:29,040"
+			},
+			"offsets": {
+				"from": 1646040,
+				"to": 1649040
+			},
+			"text": " and just, you know, you say, please include these transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,040",
+				"to": "00:27:30,360"
+			},
+			"offsets": {
+				"from": 1649040,
+				"to": 1650360
+			},
+			"text": " if they don't, you disconnect from them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,360",
+				"to": "00:27:33,240"
+			},
+			"offsets": {
+				"from": 1650360,
+				"to": 1653240
+			},
+			"text": " the next time that won't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,240",
+				"to": "00:27:37,080"
+			},
+			"offsets": {
+				"from": 1653240,
+				"to": 1657080
+			},
+			"text": " - No, yeah, I fully agree, I think that's possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,080",
+				"to": "00:27:39,000"
+			},
+			"offsets": {
+				"from": 1657080,
+				"to": 1659000
+			},
+			"text": " and I think there may be a better solution, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,000",
+				"to": "00:27:40,360"
+			},
+			"offsets": {
+				"from": 1659000,
+				"to": 1660360
+			},
+			"text": " I think, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,360",
+				"to": "00:27:43,360"
+			},
+			"offsets": {
+				"from": 1660360,
+				"to": 1663360
+			},
+			"text": " - Hey, yeah, apologies, I've already missed this before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,360",
+				"to": "00:27:46,120"
+			},
+			"offsets": {
+				"from": 1663360,
+				"to": 1666120
+			},
+			"text": " but you said that 50% of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,120",
+				"to": "00:27:47,520"
+			},
+			"offsets": {
+				"from": 1666120,
+				"to": 1667520
+			},
+			"text": " making use of MAV boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,520",
+				"to": "00:27:50,880"
+			},
+			"offsets": {
+				"from": 1667520,
+				"to": 1670880
+			},
+			"text": " do you have more like fine-green numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,880",
+				"to": "00:27:52,960"
+			},
+			"offsets": {
+				"from": 1670880,
+				"to": 1672960
+			},
+			"text": " in terms of like, whether or not,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,960",
+				"to": "00:27:55,040"
+			},
+			"offsets": {
+				"from": 1672960,
+				"to": 1675040
+			},
+			"text": " like what the numbers of institutional stakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,040",
+				"to": "00:27:57,120"
+			},
+			"offsets": {
+				"from": 1675040,
+				"to": 1677120
+			},
+			"text": " versus like, home stakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,120",
+				"to": "00:27:59,280"
+			},
+			"offsets": {
+				"from": 1677120,
+				"to": 1679280
+			},
+			"text": " I just know like an institution that I work at,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,280",
+				"to": "00:28:01,320"
+			},
+			"offsets": {
+				"from": 1679280,
+				"to": 1681320
+			},
+			"text": " or security considerations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,320",
+				"to": "00:28:04,640"
+			},
+			"offsets": {
+				"from": 1681320,
+				"to": 1684640
+			},
+			"text": " MAV boost is sort of like a centralized actor at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,640",
+				"to": "00:28:06,240"
+			},
+			"offsets": {
+				"from": 1684640,
+				"to": 1686240
+			},
+			"text": " - Yeah, there is a site for that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,240",
+				"to": "00:28:07,960"
+			},
+			"offsets": {
+				"from": 1686240,
+				"to": 1687960
+			},
+			"text": " I'm happy to share with you after,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,960",
+				"to": "00:28:10,840"
+			},
+			"offsets": {
+				"from": 1687960,
+				"to": 1690840
+			},
+			"text": " but yeah, there's a site that actually activity track,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,840",
+				"to": "00:28:13,400"
+			},
+			"offsets": {
+				"from": 1690840,
+				"to": 1693400
+			},
+			"text": " like, for example, LIDO, Coinbase, Binance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,400",
+				"to": "00:28:16,160"
+			},
+			"offsets": {
+				"from": 1693400,
+				"to": 1696160
+			},
+			"text": " like the top three, like, just like what relays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,160",
+				"to": "00:28:18,360"
+			},
+			"offsets": {
+				"from": 1696160,
+				"to": 1698360
+			},
+			"text": " are they using, and stuff like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,360",
+				"to": "00:28:20,200"
+			},
+			"offsets": {
+				"from": 1698360,
+				"to": 1700200
+			},
+			"text": " and what percentage for each relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,200",
+				"to": "00:28:22,800"
+			},
+			"offsets": {
+				"from": 1700200,
+				"to": 1702800
+			},
+			"text": " yeah, there is active tracking on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,800",
+				"to": "00:28:25,200"
+			},
+			"offsets": {
+				"from": 1702800,
+				"to": 1705200
+			},
+			"text": " but I don't have the data in this slide, sorry, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,200",
+				"to": "00:28:28,280"
+			},
+			"offsets": {
+				"from": 1705200,
+				"to": 1708280
+			},
+			"text": " But there, yeah, but there is a site for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,280",
+				"to": "00:28:31,320"
+			},
+			"offsets": {
+				"from": 1708280,
+				"to": 1711320
+			},
+			"text": " Given all of this, a validated that's deciding"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,320",
+				"to": "00:28:33,240"
+			},
+			"offsets": {
+				"from": 1711320,
+				"to": 1713240
+			},
+			"text": " whether they should run MAV boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,240",
+				"to": "00:28:36,680"
+			},
+			"offsets": {
+				"from": 1713240,
+				"to": 1716680
+			},
+			"text": " or use MAV or not, what would be your advice to them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,680",
+				"to": "00:28:41,440"
+			},
+			"offsets": {
+				"from": 1716680,
+				"to": 1721440
+			},
+			"text": " - I would say, this is a hard question for me personally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,440",
+				"to": "00:28:43,320"
+			},
+			"offsets": {
+				"from": 1721440,
+				"to": 1723320
+			},
+			"text": " and me and my team have different debates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,320",
+				"to": "00:28:45,160"
+			},
+			"offsets": {
+				"from": 1723320,
+				"to": 1725160
+			},
+			"text": " I think for now it's too early"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,160",
+				"to": "00:28:46,840"
+			},
+			"offsets": {
+				"from": 1725160,
+				"to": 1726840
+			},
+			"text": " to be using this type of technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,840",
+				"to": "00:28:48,680"
+			},
+			"offsets": {
+				"from": 1726840,
+				"to": 1728680
+			},
+			"text": " unless you know what you're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,680",
+				"to": "00:28:50,760"
+			},
+			"offsets": {
+				"from": 1728680,
+				"to": 1730760
+			},
+			"text": " just because we don't have any like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,760",
+				"to": "00:28:52,520"
+			},
+			"offsets": {
+				"from": 1730760,
+				"to": 1732520
+			},
+			"text": " public info out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,520",
+				"to": "00:28:54,640"
+			},
+			"offsets": {
+				"from": 1732520,
+				"to": 1734640
+			},
+			"text": " for our giving example, just like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,640",
+				"to": "00:28:56,640"
+			},
+			"offsets": {
+				"from": 1734640,
+				"to": 1736640
+			},
+			"text": " for example, for the second incident, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,640",
+				"to": "00:28:58,560"
+			},
+			"offsets": {
+				"from": 1736640,
+				"to": 1738560
+			},
+			"text": " when the block rod relay has the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,560",
+				"to": "00:29:00,560"
+			},
+			"offsets": {
+				"from": 1738560,
+				"to": 1740560
+			},
+			"text": " it took them six hours to turn off the relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,560",
+				"to": "00:29:02,040"
+			},
+			"offsets": {
+				"from": 1740560,
+				"to": 1742040
+			},
+			"text": " which they could turn off right away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,040",
+				"to": "00:29:04,800"
+			},
+			"offsets": {
+				"from": 1742040,
+				"to": 1744800
+			},
+			"text": " but as the public validators, like, we don't know, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,800",
+				"to": "00:29:06,200"
+			},
+			"offsets": {
+				"from": 1744800,
+				"to": 1746200
+			},
+			"text": " I don't have the access information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,200",
+				"to": "00:29:07,760"
+			},
+			"offsets": {
+				"from": 1746200,
+				"to": 1747760
+			},
+			"text": " be like, hey, there's something wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,760",
+				"to": "00:29:12,760"
+			},
+			"offsets": {
+				"from": 1747760,
+				"to": 1752760
+			},
+			"text": " I need to, I basically need to shut up MAV boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,760",
+				"to": "00:29:14,160"
+			},
+			"offsets": {
+				"from": 1752760,
+				"to": 1754160
+			},
+			"text": " People, the best thing can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,160",
+				"to": "00:29:15,120"
+			},
+			"offsets": {
+				"from": 1754160,
+				"to": 1755120
+			},
+			"text": " people can go to Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,120",
+				"to": "00:29:17,520"
+			},
+			"offsets": {
+				"from": 1755120,
+				"to": 1757520
+			},
+			"text": " but I'm not sure that's like the best media"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,520",
+				"to": "00:29:19,000"
+			},
+			"offsets": {
+				"from": 1757520,
+				"to": 1759000
+			},
+			"text": " for this type of things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,000",
+				"to": "00:29:23,160"
+			},
+			"offsets": {
+				"from": 1759000,
+				"to": 1763160
+			},
+			"text": " So I would say, wait, yeah, that's my advice."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,160",
+				"to": "00:29:26,800"
+			},
+			"offsets": {
+				"from": 1763160,
+				"to": 1766800
+			},
+			"text": " So you mentioned at some point that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,800",
+				"to": "00:29:29,840"
+			},
+			"offsets": {
+				"from": 1766800,
+				"to": 1769840
+			},
+			"text": " if you can't reach the relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,840",
+				"to": "00:29:32,520"
+			},
+			"offsets": {
+				"from": 1769840,
+				"to": 1772520
+			},
+			"text": " your execution client, sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,520",
+				"to": "00:29:34,080"
+			},
+			"offsets": {
+				"from": 1772520,
+				"to": 1774080
+			},
+			"text": " the consensus client will reach out"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:34,080",
+				"to": "00:29:36,880"
+			},
+			"offsets": {
+				"from": 1774080,
+				"to": 1776880
+			},
+			"text": " to your execution client and build your unblock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,880",
+				"to": "00:29:38,040"
+			},
+			"offsets": {
+				"from": 1776880,
+				"to": 1778040
+			},
+			"text": " it'll default to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:38,040",
+				"to": "00:29:40,280"
+			},
+			"offsets": {
+				"from": 1778040,
+				"to": 1780280
+			},
+			"text": " So that makes sense if you can't get the header, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,280",
+				"to": "00:29:42,720"
+			},
+			"offsets": {
+				"from": 1780280,
+				"to": 1782720
+			},
+			"text": " but you mentioned there were two situations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,720",
+				"to": "00:29:45,040"
+			},
+			"offsets": {
+				"from": 1782720,
+				"to": 1785040
+			},
+			"text": " one where you sign the header and return it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,040",
+				"to": "00:29:48,080"
+			},
+			"offsets": {
+				"from": 1785040,
+				"to": 1788080
+			},
+			"text": " and then you can't get, you know, a receipt of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,080",
+				"to": "00:29:49,920"
+			},
+			"offsets": {
+				"from": 1788080,
+				"to": 1789920
+			},
+			"text": " is that not a slashing risk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,920",
+				"to": "00:29:51,400"
+			},
+			"offsets": {
+				"from": 1789920,
+				"to": 1791400
+			},
+			"text": " - No, you cannot get it right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,400",
+				"to": "00:29:52,440"
+			},
+			"offsets": {
+				"from": 1791400,
+				"to": 1792440
+			},
+			"text": " so once you sign the header,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,440",
+				"to": "00:29:55,040"
+			},
+			"offsets": {
+				"from": 1792440,
+				"to": 1795040
+			},
+			"text": " you basically pass the header to the relayer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,040",
+				"to": "00:29:58,920"
+			},
+			"offsets": {
+				"from": 1795040,
+				"to": 1798920
+			},
+			"text": " you don't want to use your local block anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,920",
+				"to": "00:30:00,320"
+			},
+			"offsets": {
+				"from": 1798920,
+				"to": 1800320
+			},
+			"text": " because now it's a slashing risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,320",
+				"to": "00:30:02,040"
+			},
+			"offsets": {
+				"from": 1800320,
+				"to": 1802040
+			},
+			"text": " because now you're signing to your blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,040",
+				"to": "00:30:04,800"
+			},
+			"offsets": {
+				"from": 1802040,
+				"to": 1804800
+			},
+			"text": " - So you don't default to building your unblock"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,800",
+				"to": "00:30:05,640"
+			},
+			"offsets": {
+				"from": 1804800,
+				"to": 1805640
+			},
+			"text": " in that situation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,640",
+				"to": "00:30:06,480"
+			},
+			"offsets": {
+				"from": 1805640,
+				"to": 1806480
+			},
+			"text": " - No."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,480",
+				"to": "00:30:07,320"
+			},
+			"offsets": {
+				"from": 1806480,
+				"to": 1807320
+			},
+			"text": " - Okay, I'm misunderstood, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,320",
+				"to": "00:30:09,680"
+			},
+			"offsets": {
+				"from": 1807320,
+				"to": 1809680
+			},
+			"text": " - Thank you very much, there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,680",
+				"to": "00:30:10,680"
+			},
+			"offsets": {
+				"from": 1809680,
+				"to": 1810680
+			},
+			"text": " Amazing talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,680",
+				"to": "00:30:13,840"
+			},
+			"offsets": {
+				"from": 1810680,
+				"to": 1813840
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,840",
+				"to": "00:30:16,680"
+			},
+			"offsets": {
+				"from": 1813840,
+				"to": 1816680
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,680",
+				"to": "00:30:19,520"
+			},
+			"offsets": {
+				"from": 1816680,
+				"to": 1819520
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,520",
+				"to": "00:30:48,520"
+			},
+			"offsets": {
+				"from": 1819520,
+				"to": 1848520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

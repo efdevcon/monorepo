@@ -1,0 +1,1110 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13480
+			},
+			"text": " >> Hi, my name is Dejan Park. I'm going to talk about the K beacon chain. So, so far,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,480",
+				"to": "00:00:23,240"
+			},
+			"offsets": {
+				"from": 13480,
+				"to": 23240
+			},
+			"text": " people were talking about how to and what they implement the client's network. But now I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,240",
+				"to": "00:00:27,680"
+			},
+			"offsets": {
+				"from": 23240,
+				"to": 27680
+			},
+			"text": " going to talk about a little bit different, which is about how to formally verify the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,680",
+				"to": "00:00:36,080"
+			},
+			"offsets": {
+				"from": 27680,
+				"to": 36080
+			},
+			"text": " chain especially states transient function. So, before we go, this is our awesome team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,080",
+				"to": "00:00:43,160"
+			},
+			"offsets": {
+				"from": 36080,
+				"to": 43160
+			},
+			"text": " This project, we all at the runtime verification do formal verification for any CFD critical"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,160",
+				"to": "00:00:50,320"
+			},
+			"offsets": {
+				"from": 43160,
+				"to": 50320
+			},
+			"text": " systems like smart contract consensus algorithm. And now we are really excited to work on this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,320",
+				"to": "00:01:02,560"
+			},
+			"offsets": {
+				"from": 50320,
+				"to": 62560
+			},
+			"text": " form of verification of the beacon chain implementation. So, the K beacon chain is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,560",
+				"to": "00:01:11,720"
+			},
+			"offsets": {
+				"from": 62560,
+				"to": 71720
+			},
+			"text": " executable formal model of the beacon chain written in the formal language called K for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,720",
+				"to": "00:01:18,640"
+			},
+			"offsets": {
+				"from": 71720,
+				"to": 78640
+			},
+			"text": " the purpose of verifying the important properties, which is called the accountable safety and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,640",
+				"to": "00:01:28,120"
+			},
+			"offsets": {
+				"from": 78640,
+				"to": 88120
+			},
+			"text": " applause or live use of the beacon chain implementation. How many of you know the K language? Oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,120",
+				"to": "00:01:36,360"
+			},
+			"offsets": {
+				"from": 88120,
+				"to": 96360
+			},
+			"text": " okay, awesome. So, those of you don't know about the K, the K is a formal language in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,360",
+				"to": "00:01:44,200"
+			},
+			"offsets": {
+				"from": 96360,
+				"to": 104200
+			},
+			"text": " which we actually specify the EVM semantics called the K EVM, which we use to verify many"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,200",
+				"to": "00:01:52,280"
+			},
+			"offsets": {
+				"from": 104200,
+				"to": 112280
+			},
+			"text": " high-profile smart contract using that K EVM specification. So, including the listen to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,280",
+				"to": "00:01:58,360"
+			},
+			"offsets": {
+				"from": 112280,
+				"to": 118360
+			},
+			"text": " the EVM verify the e2.0 party contract as well using that. So, K is kind of really like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,360",
+				"to": "00:02:06,920"
+			},
+			"offsets": {
+				"from": 118360,
+				"to": 126920
+			},
+			"text": " formal language. You can use any formal thing in this domain. So, let me go to some big picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,920",
+				"to": "00:02:16,640"
+			},
+			"offsets": {
+				"from": 126920,
+				"to": 136640
+			},
+			"text": " about what we, where we are and what we are going to do next. So, we have the K beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,640",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 136640,
+				"to": 146080
+			},
+			"text": " chain is a formal model, which actually formalize the Python, former spec of the beacon chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:34,040"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 154040
+			},
+			"text": " So, we faithfully formalize the whatever the Python spec into our K formal language and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,040",
+				"to": "00:02:39,640"
+			},
+			"offsets": {
+				"from": 154040,
+				"to": 159640
+			},
+			"text": " that we have a formal model. And as I said, the one of the benefits of using K language"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,640",
+				"to": "00:02:45,520"
+			},
+			"offsets": {
+				"from": 159640,
+				"to": 165520
+			},
+			"text": " is that anything is modeled in the K language is executable, which means that it's not just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,520",
+				"to": "00:02:50,480"
+			},
+			"offsets": {
+				"from": 165520,
+				"to": 170480
+			},
+			"text": " modeling the paper, just you can actually execute and you run this model. So, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,480",
+				"to": "00:02:56,120"
+			},
+			"offsets": {
+				"from": 170480,
+				"to": 176120
+			},
+			"text": " actually even test. So, what you are doing, what we don't suffer is we write down this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,120",
+				"to": "00:03:02,360"
+			},
+			"offsets": {
+				"from": 176120,
+				"to": 182360
+			},
+			"text": " model, we run the exactly same test, the conformance test suite, you run in the client's to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,360",
+				"to": "00:03:08,040"
+			},
+			"offsets": {
+				"from": 182360,
+				"to": 188040
+			},
+			"text": " sure that you all agree on that. So, we run the same test and we make sure that all tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,040",
+				"to": "00:03:14,920"
+			},
+			"offsets": {
+				"from": 188040,
+				"to": 194920
+			},
+			"text": " passed. So, we have a fairly high confidence that our model actually faithfully captures"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,920",
+				"to": "00:03:24,600"
+			},
+			"offsets": {
+				"from": 194920,
+				"to": 204600
+			},
+			"text": " whatever the spec and also implementation. So, I will get to that how, what it looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,600",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 204600,
+				"to": 213640
+			},
+			"text": " the KAB conchain model is, but right now we finish the KAB conchain model and the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:39,600"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 219600
+			},
+			"text": " thing we want to do is using that model to prove the safety and liveness groups on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,600",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 219600,
+				"to": 225800
+			},
+			"text": " model. And once we've done these things, we really have a high confidence that your actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,800",
+				"to": "00:03:51,640"
+			},
+			"offsets": {
+				"from": 225800,
+				"to": 231640
+			},
+			"text": " client implementation also satisfy these nice two properties as long as you follow the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,640",
+				"to": "00:04:07,080"
+			},
+			"offsets": {
+				"from": 231640,
+				"to": 247080
+			},
+			"text": " body of the spec. Is that any question at this point? Okay. Awesome. So, now I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,080",
+				"to": "00:04:19,560"
+			},
+			"offsets": {
+				"from": 247080,
+				"to": 259560
+			},
+			"text": " to show you how this formal model looks like. So, we actually decided to have really the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,560",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 259560,
+				"to": 267000
+			},
+			"text": " model that is very similar to the spec to minimize the potential mistakes that made"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:37,720"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 277720
+			},
+			"text": " we write down this formal model. This is important because if our formal model has some differences"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,720",
+				"to": "00:04:43,920"
+			},
+			"offsets": {
+				"from": 277720,
+				"to": 283920
+			},
+			"text": " from whatever spec or implementations, even if you prove these things, they may not hold"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:48,680"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 288680
+			},
+			"text": " in actual implementation unless we verify again the same thing over those implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,680",
+				"to": "00:05:01,840"
+			},
+			"offsets": {
+				"from": 288680,
+				"to": 301840
+			},
+			"text": " as the lighthouse, as I said. So, we actually have very similar formal model that looks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,840",
+				"to": "00:05:07,840"
+			},
+			"offsets": {
+				"from": 301840,
+				"to": 307840
+			},
+			"text": " like almost one-to-one correspondence to the spec. So, I will give you some examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,840",
+				"to": "00:05:13,320"
+			},
+			"offsets": {
+				"from": 307840,
+				"to": 313320
+			},
+			"text": " of what it looks like. So, here the left-hand side we have a Python spec, especially for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,320",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 313320,
+				"to": 318920
+			},
+			"text": " the beacon chain state definition. So, we have a beacon chain definition, the user Python"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:26,200"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 326200
+			},
+			"text": " data structure, we have many things here. And the right-hand side is our k called k configuration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,200",
+				"to": "00:05:33,440"
+			},
+			"offsets": {
+				"from": 326200,
+				"to": 333440
+			},
+			"text": " which is a mathematical object of the same beacon chain state. And we have really similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,440",
+				"to": "00:05:41,760"
+			},
+			"offsets": {
+				"from": 333440,
+				"to": 341760
+			},
+			"text": " structure that we can even follow the one-to-one line drawing that slot, same if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,760",
+				"to": "00:05:46,760"
+			},
+			"offsets": {
+				"from": 341760,
+				"to": 346760
+			},
+			"text": " data and so on and so forth. So, make sure that they are very similar and make sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,760",
+				"to": "00:05:53,920"
+			},
+			"offsets": {
+				"from": 346760,
+				"to": 353920
+			},
+			"text": " you are not missing any important thing. That's the one thing. Next thing is we have a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,920",
+				"to": "00:06:00,800"
+			},
+			"offsets": {
+				"from": 353920,
+				"to": 360800
+			},
+			"text": " of the functions in the Python specs, right? So, each function we have k called rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,800",
+				"to": "00:06:05,760"
+			},
+			"offsets": {
+				"from": 360800,
+				"to": 365760
+			},
+			"text": " So, you can think about rule as a function in Python. So, in the function we have left-hand"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,760",
+				"to": "00:06:12,840"
+			},
+			"offsets": {
+				"from": 365760,
+				"to": 372840
+			},
+			"text": " side is called process apple. We have like called bunch of function in sequence. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,840",
+				"to": "00:06:19,200"
+			},
+			"offsets": {
+				"from": 372840,
+				"to": 379200
+			},
+			"text": " then in the k model we have same thing. We, this call the arrow means that it calls followed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,200",
+				"to": "00:06:23,920"
+			},
+			"offsets": {
+				"from": 379200,
+				"to": 383920
+			},
+			"text": " by this and followed by that. So, you can see also very similar. The only difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,920",
+				"to": "00:06:28,960"
+			},
+			"offsets": {
+				"from": 383920,
+				"to": 388960
+			},
+			"text": " is made is they have this state is actually expressed in mention is here and no state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,960",
+				"to": "00:06:37,040"
+			},
+			"offsets": {
+				"from": 388960,
+				"to": 397040
+			},
+			"text": " mention that. Many because that state actually is already global, which can be accessed. Next"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,040",
+				"to": "00:06:45,600"
+			},
+			"offsets": {
+				"from": 397040,
+				"to": 405600
+			},
+			"text": " example. So, for example, if your function access any state like state dot slot, in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,600",
+				"to": "00:06:53,120"
+			},
+			"offsets": {
+				"from": 405600,
+				"to": 413120
+			},
+			"text": " k model we can simply mention those slot, this called configuration. You just mention"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,120",
+				"to": "00:06:57,320"
+			},
+			"offsets": {
+				"from": 413120,
+				"to": 417320
+			},
+			"text": " that, that means you just match that. So, match the current state and then you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,320",
+				"to": "00:07:05,440"
+			},
+			"offsets": {
+				"from": 417320,
+				"to": 425440
+			},
+			"text": " use that whatever match there in your function body, instead of state dot slot, you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,440",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 425440,
+				"to": 434240
+			},
+			"text": " mention the state slot. Very good. And then if you have any if statement, like a sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:20,240"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 440240
+			},
+			"text": " which can be described as our requires, close. So, it pretty much very similar. You can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,240",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 440240,
+				"to": 447400
+			},
+			"text": " this, right? So, one thing is like, formal model is not really like different thing or"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:36,400"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 456400
+			},
+			"text": " like things. You can even write it from k as long as you know how to write an interpreter"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,400",
+				"to": "00:07:43,360"
+			},
+			"offsets": {
+				"from": 456400,
+				"to": 463360
+			},
+			"text": " or write in the Python code. So, that's that. But the, there is an exception that we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,360",
+				"to": "00:07:50,120"
+			},
+			"offsets": {
+				"from": 463360,
+				"to": 470120
+			},
+			"text": " not really similar in the case that we have Python least comprehension. So, in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,120",
+				"to": "00:07:56,880"
+			},
+			"offsets": {
+				"from": 470120,
+				"to": 476880
+			},
+			"text": " this, we have this get matching target attestation which simply filtering out whatever the target"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,880",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 476880,
+				"to": 481440
+			},
+			"text": " is not matched. And then Python using this risk comprehension which is really succinct"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:09,160"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 489160
+			},
+			"text": " and easy to read. But we decided to not using this risk comprehension similar syntax because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,160",
+				"to": "00:08:14,360"
+			},
+			"offsets": {
+				"from": 489160,
+				"to": 494360
+			},
+			"text": " we think that it's more, I mean, it's better to explicitly specify what's going on here"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,360",
+				"to": "00:08:22,040"
+			},
+			"offsets": {
+				"from": 494360,
+				"to": 502040
+			},
+			"text": " using the traditional iteration approach. So, we have like, like defining filter function"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,040",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 502040,
+				"to": 508000
+			},
+			"text": " and filter function is simply iterate each attestation risk. And then if the target is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:35,280"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 515280
+			},
+			"text": " matched, then it includes otherwise filtering out. So, this is kind of exception that two"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,280",
+				"to": "00:08:45,200"
+			},
+			"offsets": {
+				"from": 515280,
+				"to": 525200
+			},
+			"text": " models are a little bit different but essentially they are same. So, that is how this formal"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,200",
+				"to": "00:08:51,040"
+			},
+			"offsets": {
+				"from": 525200,
+				"to": 531040
+			},
+			"text": " model looks like. And then we already have a good confidence that, I mean, these two"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,040",
+				"to": "00:08:55,040"
+			},
+			"offsets": {
+				"from": 531040,
+				"to": 535040
+			},
+			"text": " are very similar but we want to do more. So, as I said, we run all the tests and make"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,040",
+				"to": "00:09:03,320"
+			},
+			"offsets": {
+				"from": 535040,
+				"to": 543320
+			},
+			"text": " sure that all tests passed. But in addition to that, we also measure the test coverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,320",
+				"to": "00:09:08,240"
+			},
+			"offsets": {
+				"from": 543320,
+				"to": 548240
+			},
+			"text": " which means that how many are formal, I mean, how much part of formal model actually exercised"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,240",
+				"to": "00:09:12,280"
+			},
+			"offsets": {
+				"from": 548240,
+				"to": 552280
+			},
+			"text": " by those tests. And you know what actually we realized, we found that actually some tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,280",
+				"to": "00:09:20,680"
+			},
+			"offsets": {
+				"from": 552280,
+				"to": 560680
+			},
+			"text": " are missed. For example, the same program, I mean, same thing example, sorry, this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,680",
+				"to": "00:09:32,560"
+			},
+			"offsets": {
+				"from": 560680,
+				"to": 572560
+			},
+			"text": " So, that is Python coverage to report where you have this risk comprehension. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,560",
+				"to": "00:09:37,960"
+			},
+			"offsets": {
+				"from": 572560,
+				"to": 577960
+			},
+			"text": " this is, it is comprehension can be, I mean, you have a full 100% state coverage if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,960",
+				"to": "00:09:44,720"
+			},
+			"offsets": {
+				"from": 577960,
+				"to": 584720
+			},
+			"text": " have only one single test because it's single line, whatever you want test, it just execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,720",
+				"to": "00:09:50,600"
+			},
+			"offsets": {
+				"from": 584720,
+				"to": 590600
+			},
+			"text": " it and you just recover. But the things that this is filtering function, so we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,600",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 590600,
+				"to": 596000
+			},
+			"text": " have at least few tests like whether filtering, whether it's filtering out, I mean, some every"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,360"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601360
+			},
+			"text": " elements or filtering out in some element or nothing. So, since we already specified"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,360",
+				"to": "00:10:11,920"
+			},
+			"offsets": {
+				"from": 601360,
+				"to": 611920
+			},
+			"text": " that explicitly, those iteration, we found that the existing test only test none of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,920",
+				"to": "00:10:17,080"
+			},
+			"offsets": {
+				"from": 611920,
+				"to": 617080
+			},
+			"text": " is filtered out. Everything is just our targets matched. So, we found that something is filtering"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,080",
+				"to": "00:10:25,440"
+			},
+			"offsets": {
+				"from": 617080,
+				"to": 625440
+			},
+			"text": " out, case is not covered. So, we wrote down additional tests. So, we found another similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,440",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 625440,
+				"to": 632920
+			},
+			"text": " missing test and we proposed and write a moral test. And I think that will be included in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:38,600"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 638600
+			},
+			"text": " the next release. So, yeah, we not only have a formal model, but also we hope improving"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,600",
+				"to": "00:10:48,040"
+			},
+			"offsets": {
+				"from": 638600,
+				"to": 648040
+			},
+			"text": " the test suite. So, that's what we have so far. We have a formal model, which is very"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,040",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 648040,
+				"to": 654120
+			},
+			"text": " similar to the specification, Python specification. It passed all the tests, so we have a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:11:01,640"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 661640
+			},
+			"text": " high confidence that captures whatever spec and implementation. And then our next goal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,640",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661640,
+				"to": 667000
+			},
+			"text": " as I said, is to now prove the safety and liveness in that model. And then once we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:14,720"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 674720
+			},
+			"text": " have that, we are very high confident that clients are secure, I mean, safe and live."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,720",
+				"to": "00:11:14,920"
+			},
+			"offsets": {
+				"from": 674720,
+				"to": 674920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,920",
+				"to": "00:11:19,160"
+			},
+			"offsets": {
+				"from": 674920,
+				"to": 679160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,160",
+				"to": "00:11:29,160"
+			},
+			"offsets": {
+				"from": 679160,
+				"to": 689160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,160",
+				"to": "00:11:39,160"
+			},
+			"offsets": {
+				"from": 689160,
+				"to": 699160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,160",
+				"to": "00:11:49,160"
+			},
+			"offsets": {
+				"from": 699160,
+				"to": 709160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,160",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 709160,
+				"to": 714160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,3409 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:14,840"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 14840
+			},
+			"text": " - Hi, I'm Connor O'Day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,840",
+				"to": "00:00:18,080"
+			},
+			"offsets": {
+				"from": 14840,
+				"to": 18080
+			},
+			"text": " I work for Bitcoin or I am a member of the Bitcoin Dow"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,080",
+				"to": "00:00:20,320"
+			},
+			"offsets": {
+				"from": 18080,
+				"to": 20320
+			},
+			"text": " and we're gonna be talking about a nifty thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,320",
+				"to": "00:00:21,840"
+			},
+			"offsets": {
+				"from": 20320,
+				"to": 21840
+			},
+			"text": " called quadratic funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,840",
+				"to": "00:00:27,320"
+			},
+			"offsets": {
+				"from": 21840,
+				"to": 27320
+			},
+			"text": " So first off, I just wanted to take a quick poll."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,320",
+				"to": "00:00:30,040"
+			},
+			"offsets": {
+				"from": 27320,
+				"to": 30040
+			},
+			"text": " Who here has heard of quadratic funding?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,040",
+				"to": "00:00:34,120"
+			},
+			"offsets": {
+				"from": 30040,
+				"to": 34120
+			},
+			"text": " Okay, see a lot of hands, that's good, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,120",
+				"to": "00:00:35,760"
+			},
+			"offsets": {
+				"from": 34120,
+				"to": 35760
+			},
+			"text": " Who actually understands it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,760",
+				"to": "00:00:40,120"
+			},
+			"offsets": {
+				"from": 35760,
+				"to": 40120
+			},
+			"text": " Okay, okay, maybe half as much, I'll take it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,120",
+				"to": "00:00:43,080"
+			},
+			"offsets": {
+				"from": 40120,
+				"to": 43080
+			},
+			"text": " I also, you know, I'm still learning, so."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,080",
+				"to": "00:00:45,640"
+			},
+			"offsets": {
+				"from": 43080,
+				"to": 45640
+			},
+			"text": " Who has actually funded a project"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,640",
+				"to": "00:00:47,460"
+			},
+			"offsets": {
+				"from": 45640,
+				"to": 47460
+			},
+			"text": " in a quadratic funding program?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,460",
+				"to": "00:00:50,520"
+			},
+			"offsets": {
+				"from": 47460,
+				"to": 50520
+			},
+			"text": " A lot of hands, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,520",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 50520,
+				"to": 54160
+			},
+			"text": " And who only did it because he thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:00:55,960"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 55960
+			},
+			"text": " you'd get an airdrop in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,800",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 56800,
+				"to": 58760
+			},
+			"text": " I see one, two, three."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:01:00,880"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 60880
+			},
+			"text": " Okay, I like the honesty, I like the honesty."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,880",
+				"to": "00:01:05,200"
+			},
+			"offsets": {
+				"from": 60880,
+				"to": 65200
+			},
+			"text": " So the too long didn't watch for the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,200",
+				"to": "00:01:07,440"
+			},
+			"offsets": {
+				"from": 65200,
+				"to": 67440
+			},
+			"text": " that are heading out to happy hour right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,440",
+				"to": "00:01:11,120"
+			},
+			"offsets": {
+				"from": 67440,
+				"to": 71120
+			},
+			"text": " Quadratic funding has proven to be a powerful tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,120",
+				"to": "00:01:13,720"
+			},
+			"offsets": {
+				"from": 71120,
+				"to": 73720
+			},
+			"text": " but primarily in niche communities like web three"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,720",
+				"to": "00:01:17,900"
+			},
+			"offsets": {
+				"from": 73720,
+				"to": 77900
+			},
+			"text": " and with few new advancements over the past few years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,900",
+				"to": "00:01:21,040"
+			},
+			"offsets": {
+				"from": 77900,
+				"to": 81040
+			},
+			"text": " which is basically QF is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,040",
+				"to": "00:01:25,200"
+			},
+			"offsets": {
+				"from": 81040,
+				"to": 85200
+			},
+			"text": " As adoption has grown, problems are becoming more apparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,200",
+				"to": "00:01:28,200"
+			},
+			"offsets": {
+				"from": 86200,
+				"to": 88200
+			},
+			"text": " Scale is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,200",
+				"to": "00:01:31,200"
+			},
+			"offsets": {
+				"from": 88200,
+				"to": 91200
+			},
+			"text": " And things like decentralized identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,200",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 91200,
+				"to": 94200
+			},
+			"text": " community curation tools will boost scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:36,200"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 96200
+			},
+			"text": " and then tweaks to the mechanism design"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,200",
+				"to": "00:01:38,200"
+			},
+			"offsets": {
+				"from": 96200,
+				"to": 98200
+			},
+			"text": " can help drive adoption as communities tailor QF"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,200",
+				"to": "00:01:40,200"
+			},
+			"offsets": {
+				"from": 98200,
+				"to": 100200
+			},
+			"text": " to fit their specific needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,200",
+				"to": "00:01:43,200"
+			},
+			"offsets": {
+				"from": 100200,
+				"to": 103200
+			},
+			"text": " And we're gonna call that innovation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,200",
+				"to": "00:01:46,200"
+			},
+			"offsets": {
+				"from": 103200,
+				"to": 106200
+			},
+			"text": " and experimentation equals transcendence."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,200",
+				"to": "00:01:48,200"
+			},
+			"offsets": {
+				"from": 106200,
+				"to": 108200
+			},
+			"text": " So that's kind of the high level overview,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,200",
+				"to": "00:01:49,200"
+			},
+			"offsets": {
+				"from": 108200,
+				"to": 109200
+			},
+			"text": " if you need to go, you can go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,200",
+				"to": "00:01:50,200"
+			},
+			"offsets": {
+				"from": 109200,
+				"to": 110200
+			},
+			"text": " but I think it'll be pretty interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,200",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 110200,
+				"to": 112200
+			},
+			"text": " diving into the details here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:55,200"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 115200
+			},
+			"text": " So first, WTF is QF."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,200",
+				"to": "00:01:59,200"
+			},
+			"offsets": {
+				"from": 115200,
+				"to": 119200
+			},
+			"text": " Spoiler alert for the whole presentation, that is QF."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,200",
+				"to": "00:02:02,200"
+			},
+			"offsets": {
+				"from": 119200,
+				"to": 122200
+			},
+			"text": " Basically what it means is funding for any given project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,200",
+				"to": "00:02:06,200"
+			},
+			"offsets": {
+				"from": 122200,
+				"to": 126200
+			},
+			"text": " is calculated by taking the square root of each donation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,200",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 126200,
+				"to": 127200
+			},
+			"text": " adding these values together"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:09,200"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 129200
+			},
+			"text": " and then taking the square of that result."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,200",
+				"to": "00:02:11,200"
+			},
+			"offsets": {
+				"from": 129200,
+				"to": 131200
+			},
+			"text": " We'll get into that a little bit further"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,200",
+				"to": "00:02:12,200"
+			},
+			"offsets": {
+				"from": 131200,
+				"to": 132200
+			},
+			"text": " on the technical side."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,200",
+				"to": "00:02:15,200"
+			},
+			"offsets": {
+				"from": 132200,
+				"to": 135200
+			},
+			"text": " But basically, the widely accepted definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,200",
+				"to": "00:02:17,200"
+			},
+			"offsets": {
+				"from": 135200,
+				"to": 137200
+			},
+			"text": " of quadratic funding is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,200",
+				"to": "00:02:21,200"
+			},
+			"offsets": {
+				"from": 137200,
+				"to": 141200
+			},
+			"text": " it is the mathematically optimal way to fund public goods"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,200",
+				"to": "00:02:23,200"
+			},
+			"offsets": {
+				"from": 141200,
+				"to": 143200
+			},
+			"text": " in a democratic community."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,200",
+				"to": "00:02:24,200"
+			},
+			"offsets": {
+				"from": 143200,
+				"to": 144200
+			},
+			"text": " There's always kind of in this emphasis"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,200",
+				"to": "00:02:27,200"
+			},
+			"offsets": {
+				"from": 144200,
+				"to": 147200
+			},
+			"text": " on public goods and democratic communities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,200",
+				"to": "00:02:29,200"
+			},
+			"offsets": {
+				"from": 147200,
+				"to": 149200
+			},
+			"text": " which covers many of the use cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,200",
+				"to": "00:02:31,200"
+			},
+			"offsets": {
+				"from": 149200,
+				"to": 151200
+			},
+			"text": " but perhaps not all, which I'll get into later."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,200",
+				"to": "00:02:36,200"
+			},
+			"offsets": {
+				"from": 151200,
+				"to": 156200
+			},
+			"text": " And QF was kind of first proposed by Zoe Hitzig,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,200",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 156200,
+				"to": 158200
+			},
+			"text": " Vitalik Buterin, and Glen Whale"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:40,200"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 160200
+			},
+			"text": " in the paper you see on the screen right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,200",
+				"to": "00:02:43,200"
+			},
+			"offsets": {
+				"from": 160200,
+				"to": 163200
+			},
+			"text": " And what it really does is it let us harness"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,200",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 163200,
+				"to": 166200
+			},
+			"text": " the collective intelligence of a community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:49,200"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 169200
+			},
+			"text": " helps ecosystems signal and fund their shared needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,200",
+				"to": "00:02:53,200"
+			},
+			"offsets": {
+				"from": 170200,
+				"to": 173200
+			},
+			"text": " And what it looks like in practice is your donations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,200",
+				"to": "00:02:55,200"
+			},
+			"offsets": {
+				"from": 173200,
+				"to": 175200
+			},
+			"text": " are multiplied on this logarithmic curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,200",
+				"to": "00:02:58,200"
+			},
+			"offsets": {
+				"from": 175200,
+				"to": 178200
+			},
+			"text": " And I really like this about a lot of implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,200",
+				"to": "00:03:00,200"
+			},
+			"offsets": {
+				"from": 178200,
+				"to": 180200
+			},
+			"text": " as you can actually see the impact of your donation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,200",
+				"to": "00:03:01,200"
+			},
+			"offsets": {
+				"from": 180200,
+				"to": 181200
+			},
+			"text": " as you do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,200",
+				"to": "00:03:04,200"
+			},
+			"offsets": {
+				"from": 181200,
+				"to": 184200
+			},
+			"text": " And you can kind of see how a small donation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,200",
+				"to": "00:03:06,200"
+			},
+			"offsets": {
+				"from": 184200,
+				"to": 186200
+			},
+			"text": " can get a large match, a bigger donation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,200",
+				"to": "00:03:08,200"
+			},
+			"offsets": {
+				"from": 186200,
+				"to": 188200
+			},
+			"text": " can get a bigger match, but it really tapers off"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,200",
+				"to": "00:03:10,200"
+			},
+			"offsets": {
+				"from": 188200,
+				"to": 190200
+			},
+			"text": " because the higher value is in the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,200",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 190200,
+				"to": 193200
+			},
+			"text": " of unique contributors rather than the total amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:15,200"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 195200
+			},
+			"text": " contributed by any one person."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,200",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 195200,
+				"to": 197200
+			},
+			"text": " So, quadratic funding came from this idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 201200
+			},
+			"text": " of quadratic voting, which basically allows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:23,200"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 203200
+			},
+			"text": " to signal preferences, but most importantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,200",
+				"to": "00:03:25,200"
+			},
+			"offsets": {
+				"from": 203200,
+				"to": 205200
+			},
+			"text": " the strength of those preferences."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,200",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 205200,
+				"to": 209200
+			},
+			"text": " Quadratic voting as a concept existed before crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:31,200"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 211200
+			},
+			"text": " but was popularized by Glen Whale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,200",
+				"to": "00:03:33,200"
+			},
+			"offsets": {
+				"from": 211200,
+				"to": 213200
+			},
+			"text": " which is also kind of independent of crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,200",
+				"to": "00:03:36,200"
+			},
+			"offsets": {
+				"from": 213200,
+				"to": 216200
+			},
+			"text": " but kind of at the same time the ETH ecosystem was maturing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,200",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 216200,
+				"to": 221200
+			},
+			"text": " But compared to $1 one vote or one person one vote systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:44,200"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 224200
+			},
+			"text": " it really, it really allows you to signal preference"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,200",
+				"to": "00:03:45,200"
+			},
+			"offsets": {
+				"from": 224200,
+				"to": 225200
+			},
+			"text": " in a much better way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,200",
+				"to": "00:03:48,200"
+			},
+			"offsets": {
+				"from": 226200,
+				"to": 228200
+			},
+			"text": " And so QF and public goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,200",
+				"to": "00:03:50,200"
+			},
+			"offsets": {
+				"from": 228200,
+				"to": 230200
+			},
+			"text": " This is kind of the common theme you hear."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,200",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 230200,
+				"to": 232200
+			},
+			"text": " Everything here is about funding public goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:54,200"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 234200
+			},
+			"text": " Everything quadratic funding is usually in relation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,200",
+				"to": "00:03:55,200"
+			},
+			"offsets": {
+				"from": 234200,
+				"to": 235200
+			},
+			"text": " to public goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,200",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 235200,
+				"to": 237200
+			},
+			"text": " And so what even is a public good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,200",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 237200,
+				"to": 241200
+			},
+			"text": " It is a non-rival risk, non-excludable good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:04,200"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 244200
+			},
+			"text": " For example, you know, clean air or open source software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,200",
+				"to": "00:04:06,200"
+			},
+			"offsets": {
+				"from": 244200,
+				"to": 246200
+			},
+			"text": " which is one that we focused on a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,200",
+				"to": "00:04:08,200"
+			},
+			"offsets": {
+				"from": 246200,
+				"to": 248200
+			},
+			"text": " These are often discussed as a pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,200",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 248200,
+				"to": 250200
+			},
+			"text": " but I don't think that will always be the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:13,200"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 253200
+			},
+			"text": " We're kind of starting to stray from this public goods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,200",
+				"to": "00:04:17,200"
+			},
+			"offsets": {
+				"from": 253200,
+				"to": 257200
+			},
+			"text": " goods pigeonhole where the types of goods is more of a gradient"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,200",
+				"to": "00:04:18,200"
+			},
+			"offsets": {
+				"from": 257200,
+				"to": 258200
+			},
+			"text": " that people are understanding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,200",
+				"to": "00:04:21,200"
+			},
+			"offsets": {
+				"from": 258200,
+				"to": 261200
+			},
+			"text": " And there are things like network goods, community goods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,200",
+				"to": "00:04:25,200"
+			},
+			"offsets": {
+				"from": 261200,
+				"to": 265200
+			},
+			"text": " plural goods, even private goods that could benefit from QF."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,200",
+				"to": "00:04:28,200"
+			},
+			"offsets": {
+				"from": 265200,
+				"to": 268200
+			},
+			"text": " And it doesn't mean we are funding public bads,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,200",
+				"to": "00:04:31,200"
+			},
+			"offsets": {
+				"from": 268200,
+				"to": 271200
+			},
+			"text": " but it means we just have to kind of rethink the framing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,200",
+				"to": "00:04:35,200"
+			},
+			"offsets": {
+				"from": 271200,
+				"to": 275200
+			},
+			"text": " that we're using for, you know, what we're funding with this mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,200",
+				"to": "00:04:37,200"
+			},
+			"offsets": {
+				"from": 275200,
+				"to": 277200
+			},
+			"text": " So where are we today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,200",
+				"to": "00:04:41,200"
+			},
+			"offsets": {
+				"from": 277200,
+				"to": 281200
+			},
+			"text": " Get coin in our history since we started in 2017 has a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,200",
+				"to": "00:04:45,200"
+			},
+			"offsets": {
+				"from": 281200,
+				"to": 285200
+			},
+			"text": " And so the three reasons we started in 2017 has funded $69 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,200",
+				"to": "00:04:49,200"
+			},
+			"offsets": {
+				"from": 285200,
+				"to": 289200
+			},
+			"text": " worth of open source software and public goods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,200",
+				"to": "00:04:52,200"
+			},
+			"offsets": {
+				"from": 289200,
+				"to": 292200
+			},
+			"text": " which is a pretty nice number to round out for this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,200",
+				"to": "00:04:54,200"
+			},
+			"offsets": {
+				"from": 292200,
+				"to": 294200
+			},
+			"text": " that just kind of worked out nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,200",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 294200,
+				"to": 297200
+			},
+			"text": " And this includes grants, bounties, hackathons, tips,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:05:00,200"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 300200
+			},
+			"text": " a bunch of different things that can happen on the Get Coin platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,200",
+				"to": "00:05:02,200"
+			},
+			"offsets": {
+				"from": 300200,
+				"to": 302200
+			},
+			"text": " not specifically just grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,200",
+				"to": "00:05:04,200"
+			},
+			"offsets": {
+				"from": 302200,
+				"to": 304200
+			},
+			"text": " And for the Get Coin Grants program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,200",
+				"to": "00:05:08,200"
+			},
+			"offsets": {
+				"from": 304200,
+				"to": 308200
+			},
+			"text": " we've seen kind of round over round growth now for over three years."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,200",
+				"to": "00:05:13,200"
+			},
+			"offsets": {
+				"from": 308200,
+				"to": 313200
+			},
+			"text": " We started in 2019 with the first round, had a $25,000 matching pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,200",
+				"to": "00:05:17,200"
+			},
+			"offsets": {
+				"from": 313200,
+				"to": 317200
+			},
+			"text": " I think it got like $13,000 of community contributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,200",
+				"to": "00:05:19,200"
+			},
+			"offsets": {
+				"from": 317200,
+				"to": 319200
+			},
+			"text": " and 200 contributions total."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,200",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 319200,
+				"to": 320200
+			},
+			"text": " So not a whole lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:23,200"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 323200
+			},
+			"text": " Fast forward to grants around 14 in June,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,200",
+				"to": "00:05:28,200"
+			},
+			"offsets": {
+				"from": 323200,
+				"to": 328200
+			},
+			"text": " 600,000 contributions and over $5 million raised for these projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,200",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 328200,
+				"to": 332200
+			},
+			"text": " these public goods, these open source software projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,200",
+				"to": "00:05:34,200"
+			},
+			"offsets": {
+				"from": 332200,
+				"to": 334200
+			},
+			"text": " which is really cool to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,200",
+				"to": "00:05:37,200"
+			},
+			"offsets": {
+				"from": 334200,
+				"to": 337200
+			},
+			"text": " And these visualization graphs you see are kind of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,200",
+				"to": "00:05:42,200"
+			},
+			"offsets": {
+				"from": 337200,
+				"to": 342200
+			},
+			"text": " and 3D visualized of all these donations and all of these connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,200",
+				"to": "00:05:43,200"
+			},
+			"offsets": {
+				"from": 342200,
+				"to": 343200
+			},
+			"text": " between users and projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,200",
+				"to": "00:05:48,200"
+			},
+			"offsets": {
+				"from": 343200,
+				"to": 348200
+			},
+			"text": " And the most recent round, grants around 15,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,200",
+				"to": "00:05:50,200"
+			},
+			"offsets": {
+				"from": 348200,
+				"to": 350200
+			},
+			"text": " just ran in December or September, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,200",
+				"to": "00:05:54,200"
+			},
+			"offsets": {
+				"from": 350200,
+				"to": 354200
+			},
+			"text": " And what I really want to call out here is that this wouldn't be possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,200",
+				"to": "00:05:56,200"
+			},
+			"offsets": {
+				"from": 354200,
+				"to": 356200
+			},
+			"text": " without the matching pool funders."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,200",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 356200,
+				"to": 360200
+			},
+			"text": " So these are DAOs, organizations, private companies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:03,200"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 363200
+			},
+			"text": " individuals that want to donate large amounts to the matching pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,200",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 363200,
+				"to": 366200
+			},
+			"text": " in order to incentivize the community to also donate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:07,200"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 367200
+			},
+			"text": " to public goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,200",
+				"to": "00:06:11,200"
+			},
+			"offsets": {
+				"from": 367200,
+				"to": 371200
+			},
+			"text": " And that last round had over 450,000 contributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,200",
+				"to": "00:06:17,200"
+			},
+			"offsets": {
+				"from": 371200,
+				"to": 377200
+			},
+			"text": " over $4 million raised and almost 40,000 unique donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:20,200"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 380200
+			},
+			"text": " But yeah, so this wouldn't be possible without all these logos you see up there right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,200",
+				"to": "00:06:26,200"
+			},
+			"offsets": {
+				"from": 380200,
+				"to": 386200
+			},
+			"text": " And so just want to give them a quick shout out because it's super important to what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,200",
+				"to": "00:06:34,200"
+			},
+			"offsets": {
+				"from": 386200,
+				"to": 394200
+			},
+			"text": " And so we're experimenting with all different types of quadratic funding rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,200",
+				"to": "00:06:36,200"
+			},
+			"offsets": {
+				"from": 394200,
+				"to": 396200
+			},
+			"text": " We kind of started with one main pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,200",
+				"to": "00:06:39,200"
+			},
+			"offsets": {
+				"from": 396200,
+				"to": 399200
+			},
+			"text": " We broke it into categories and now we're doing what we call ecosystem rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,200",
+				"to": "00:06:45,200"
+			},
+			"offsets": {
+				"from": 399200,
+				"to": 405200
+			},
+			"text": " So we've done, I think, 20 plus unique ecosystem rounds in the last year or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,200",
+				"to": "00:06:48,200"
+			},
+			"offsets": {
+				"from": 405200,
+				"to": 408200
+			},
+			"text": " And over 40 total, a lot of those are recurring."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,200",
+				"to": "00:06:51,200"
+			},
+			"offsets": {
+				"from": 408200,
+				"to": 411200
+			},
+			"text": " And some of them are kind of crowdfunded and more focused on a theme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,200",
+				"to": "00:06:56,200"
+			},
+			"offsets": {
+				"from": 411200,
+				"to": 416200
+			},
+			"text": " like the open gaming round or the ZK Tech round versus many others are kind of a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,200",
+				"to": "00:06:59,200"
+			},
+			"offsets": {
+				"from": 416200,
+				"to": 419200
+			},
+			"text": " funder trying to grow their own community, their own protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,200",
+				"to": "00:07:04,200"
+			},
+			"offsets": {
+				"from": 419200,
+				"to": 424200
+			},
+			"text": " For example, you know, ENS, Polygon, and some of the others you see up there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,200",
+				"to": "00:07:08,200"
+			},
+			"offsets": {
+				"from": 424200,
+				"to": 428200
+			},
+			"text": " And the way I view it is this could eventually be part of the Dow tooling stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,200",
+				"to": "00:07:11,200"
+			},
+			"offsets": {
+				"from": 428200,
+				"to": 431200
+			},
+			"text": " where it's better than like a yes, no governance vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,200",
+				"to": "00:07:14,200"
+			},
+			"offsets": {
+				"from": 431200,
+				"to": 434200
+			},
+			"text": " It's faster and more democratic than traditional grant programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,200",
+				"to": "00:07:19,200"
+			},
+			"offsets": {
+				"from": 434200,
+				"to": 439200
+			},
+			"text": " So, you know, you can imagine a Dow that needs to decide what works streams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,200",
+				"to": "00:07:23,200"
+			},
+			"offsets": {
+				"from": 439200,
+				"to": 443200
+			},
+			"text": " what hubs, whatever they call their projects within their Dow, what they need to fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,200",
+				"to": "00:07:27,200"
+			},
+			"offsets": {
+				"from": 443200,
+				"to": 447200
+			},
+			"text": " They could use a QF tool or QV tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,200",
+				"to": "00:07:32,200"
+			},
+			"offsets": {
+				"from": 447200,
+				"to": 452200
+			},
+			"text": " And with quadratic funding, it has the added benefit of raising additional funds for those projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,200",
+				"to": "00:07:36,200"
+			},
+			"offsets": {
+				"from": 452200,
+				"to": 456200
+			},
+			"text": " And then cause rounds, I think, are really interesting as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,200",
+				"to": "00:07:40,200"
+			},
+			"offsets": {
+				"from": 456200,
+				"to": 460200
+			},
+			"text": " where we're kind of trying to break out of this Web 3 bubble and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,200",
+				"to": "00:07:43,200"
+			},
+			"offsets": {
+				"from": 460200,
+				"to": 463200
+			},
+			"text": " make an impact in meat space in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,200",
+				"to": "00:07:48,200"
+			},
+			"offsets": {
+				"from": 463200,
+				"to": 468200
+			},
+			"text": " And we've done rounds for climate, diversity, crypto advocacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,200",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 468200,
+				"to": 471200
+			},
+			"text": " desi, longevity, we did around for Ukraine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:56,200"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 476200
+			},
+			"text": " And there's still a lot of overlap between the Web 3 communities and these communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,200",
+				"to": "00:08:02,200"
+			},
+			"offsets": {
+				"from": 476200,
+				"to": 482200
+			},
+			"text": " You know, for example, in climate, like a lot of the climate projects we see are kind of crypto focused climate initiatives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,200",
+				"to": "00:08:06,200"
+			},
+			"offsets": {
+				"from": 482200,
+				"to": 486200
+			},
+			"text": " which isn't a bad thing. But what we're trying to do is really on board, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,200",
+				"to": "00:08:12,200"
+			},
+			"offsets": {
+				"from": 486200,
+				"to": 492200
+			},
+			"text": " non-crypto natives to the blockchain, the Web 3 ecosystem, which is difficult for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,200",
+				"to": "00:08:17,200"
+			},
+			"offsets": {
+				"from": 492200,
+				"to": 497200
+			},
+			"text": " But I think we've been making good progress there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,200",
+				"to": "00:08:19,200"
+			},
+			"offsets": {
+				"from": 497200,
+				"to": 499200
+			},
+			"text": " And here's some examples just from the climate round."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,200",
+				"to": "00:08:23,200"
+			},
+			"offsets": {
+				"from": 499200,
+				"to": 503200
+			},
+			"text": " I think these are really interesting because it really has like a global widespread impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,200",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 503200,
+				"to": 507200
+			},
+			"text": " And it's very cool to see, in this case, we are kind of onboarding new users to Web 3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:32,200"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 512200
+			},
+			"text": " which, you know, comes with a lot of manual hand-holding and onboarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,200",
+				"to": "00:08:38,200"
+			},
+			"offsets": {
+				"from": 512200,
+				"to": 518200
+			},
+			"text": " But it's really cool to see the progress that's been made in these areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,200",
+				"to": "00:08:42,200"
+			},
+			"offsets": {
+				"from": 518200,
+				"to": 522200
+			},
+			"text": " And the last one I want to mention is these kind of geographic QF rounds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,200",
+				"to": "00:08:44,200"
+			},
+			"offsets": {
+				"from": 522200,
+				"to": 524200
+			},
+			"text": " so the regional and local rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,200",
+				"to": "00:08:49,200"
+			},
+			"offsets": {
+				"from": 524200,
+				"to": 529200
+			},
+			"text": " I want to call out specifically the DevCon Latin America focused,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,200",
+				"to": "00:08:53,200"
+			},
+			"offsets": {
+				"from": 529200,
+				"to": 533200
+			},
+			"text": " CLR fund round, so that's happening now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,200",
+				"to": "00:08:56,200"
+			},
+			"offsets": {
+				"from": 533200,
+				"to": 536200
+			},
+			"text": " Gitcoin is not involved, but, you know, we work with CLR fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,200",
+				"to": "00:09:02,200"
+			},
+			"offsets": {
+				"from": 536200,
+				"to": 542200
+			},
+			"text": " We like them a lot and everyone should go check it out because they're also utilizing some of the mechanisms that I'll mention later in this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,200",
+				"to": "00:09:05,200"
+			},
+			"offsets": {
+				"from": 542200,
+				"to": 545200
+			},
+			"text": " But yeah, so that's happening now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,200",
+				"to": "00:09:11,200"
+			},
+			"offsets": {
+				"from": 545200,
+				"to": 551200
+			},
+			"text": " And as Gitcoin, we've done a few rounds, like we did an Oakland youth charity focused round."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,200",
+				"to": "00:09:14,200"
+			},
+			"offsets": {
+				"from": 551200,
+				"to": 554200
+			},
+			"text": " We did a China crypto ecosystem focused round."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,200",
+				"to": "00:09:22,200"
+			},
+			"offsets": {
+				"from": 554200,
+				"to": 562200
+			},
+			"text": " And the downtown stimulus one was actually during COVID and it was focused on Boulder, Colorado and reviving the local businesses there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,200",
+				"to": "00:09:30,200"
+			},
+			"offsets": {
+				"from": 562200,
+				"to": 570200
+			},
+			"text": " And I think what I want to say on this is just like we're all experts at what's right in front of us and our communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,200",
+				"to": "00:09:42,200"
+			},
+			"offsets": {
+				"from": 570200,
+				"to": 582200
+			},
+			"text": " You know, it can be difficult to fund projects that are across the world from you, but this mechanism can really help in kind of, you know, shared shared public goods or localized public goods that maybe don't have an impact around the world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,200",
+				"to": "00:09:45,200"
+			},
+			"offsets": {
+				"from": 582200,
+				"to": 585200
+			},
+			"text": " but have an impact in your neighborhood or your town."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,200",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 585200,
+				"to": 590200
+			},
+			"text": " So growing pains, civil attacks are the single greatest threat to quadratic funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:57,200"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 597200
+			},
+			"text": " If you haven't heard a civil attack is basically one human making, you know, many accounts with quadratic funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,200",
+				"to": "00:10:06,200"
+			},
+			"offsets": {
+				"from": 597200,
+				"to": 606200
+			},
+			"text": " You can imagine if I can make a grant, I can donate it to my donate to myself from 100 different accounts that totally skews the mechanisms, steals funds, and it's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,200",
+				"to": "00:10:16,200"
+			},
+			"offsets": {
+				"from": 606200,
+				"to": 616200
+			},
+			"text": " And so it's a constant kind of battle between, you know, mitigating civil attacks, but also, you know, trying to respect, you know, personal privacy and identity systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,200",
+				"to": "00:10:20,200"
+			},
+			"offsets": {
+				"from": 616200,
+				"to": 620200
+			},
+			"text": " And it's this game of kind of red team versus blue team that's constantly evolving."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,200",
+				"to": "00:10:24,200"
+			},
+			"offsets": {
+				"from": 620200,
+				"to": 624200
+			},
+			"text": " So we've seen civil attacks really increase as of late."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,200",
+				"to": "00:10:28,200"
+			},
+			"offsets": {
+				"from": 624200,
+				"to": 628200
+			},
+			"text": " I'm not sure if it's like more awareness, you know, the bigger matching pools or just the bear market."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,200",
+				"to": "00:10:32,200"
+			},
+			"offsets": {
+				"from": 628200,
+				"to": 632200
+			},
+			"text": " People are running out of things that do to make money. So they decide they're going to civil attack grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,200",
+				"to": "00:10:46,200"
+			},
+			"offsets": {
+				"from": 632200,
+				"to": 646200
+			},
+			"text": " But it's an issue and we see, you know, we see the self donors who are trying to cheat by donating to themselves. We see airdrop farmers, which, you know, are typically not, they're not trying to do bad necessarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,200",
+				"to": "00:10:53,200"
+			},
+			"offsets": {
+				"from": 646200,
+				"to": 653200
+			},
+			"text": " They're just trying to get as many accounts as they can, you know, eligible for possible airdrops, which is also not good because it skews the mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,200",
+				"to": "00:11:01,200"
+			},
+			"offsets": {
+				"from": 653200,
+				"to": 661200
+			},
+			"text": " And I think that's partly in due to a lot of the airdrops we've seen that have went to public goods funders in the past. So we're working on mitigating that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,200",
+				"to": "00:11:14,200"
+			},
+			"offsets": {
+				"from": 661200,
+				"to": 674200
+			},
+			"text": " And then just general collusion between different real humans. It's really hard to tell what's collusion between legitimate people when you don't know their full identity, or, you know, what is actually a civil attack, but in both cases, they're trying to mitigate that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,200",
+				"to": "00:11:24,200"
+			},
+			"offsets": {
+				"from": 674200,
+				"to": 684200
+			},
+			"text": " And then we see fraudulent grants. So, you know, impersonations, grant emulations, which is what we call making up a project and making it look like it's real, but, you know, the GitHub is empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,200",
+				"to": "00:11:32,200"
+			},
+			"offsets": {
+				"from": 684200,
+				"to": 692200
+			},
+			"text": " The Twitter has five followers, but they really write it up to make it look real. So we're dealing with a lot of that. And the solution to all of this is identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,200",
+				"to": "00:11:41,200"
+			},
+			"offsets": {
+				"from": 692200,
+				"to": 701200
+			},
+			"text": " So, how can we channel this airdrop farmer energy into raising more funds for good causes while not compromising the mechanisms integrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,200",
+				"to": "00:11:47,200"
+			},
+			"offsets": {
+				"from": 701200,
+				"to": 707200
+			},
+			"text": " It's inevitable that people are going to donate to things because they think they'll get something out of it eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,200",
+				"to": "00:12:00,200"
+			},
+			"offsets": {
+				"from": 707200,
+				"to": 720200
+			},
+			"text": " And as long as we can kind of channel that energy in such a way that it doesn't hurt the mechanism and other grants, then I think we're kind of secretly converting these these de-gens into regions without them even knowing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,200",
+				"to": "00:12:08,200"
+			},
+			"offsets": {
+				"from": 720200,
+				"to": 728200
+			},
+			"text": " So, get going grants right now. The one, the platform that most of you know, or some of you may know, it's still fairly centralized, but that's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,200",
+				"to": "00:12:14,200"
+			},
+			"offsets": {
+				"from": 728200,
+				"to": 734200
+			},
+			"text": " You know, we can't go to governance for every single grant decision. So governance helps direct the eligibility requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,200",
+				"to": "00:12:19,200"
+			},
+			"offsets": {
+				"from": 734200,
+				"to": 739200
+			},
+			"text": " And then we have a centralized team that must be trusted to act on those decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,200",
+				"to": "00:12:26,200"
+			},
+			"offsets": {
+				"from": 739200,
+				"to": 746200
+			},
+			"text": " But, you know, this is a high bandwidth task where a team, humans are prone to error. It's centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,200",
+				"to": "00:12:30,200"
+			},
+			"offsets": {
+				"from": 746200,
+				"to": 750200
+			},
+			"text": " And, you know, at the end of the day, it's not what we want to be doing with our time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,200",
+				"to": "00:12:39,200"
+			},
+			"offsets": {
+				"from": 750200,
+				"to": 759200
+			},
+			"text": " And so as we kind of move towards the path to decentralization, which I'll get to more later, we're thinking about launching this permissionless protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,200",
+				"to": "00:12:48,200"
+			},
+			"offsets": {
+				"from": 759200,
+				"to": 768200
+			},
+			"text": " We have Brazilian identity systems in the works, community curation, and really self serve product features so people can kind of choose how they run their own rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,200",
+				"to": "00:12:55,200"
+			},
+			"offsets": {
+				"from": 768200,
+				"to": 775200
+			},
+			"text": " And one of the one of the primitives I'm most excited about is around decentralized identity, and that is get coin passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,200",
+				"to": "00:13:03,200"
+			},
+			"offsets": {
+				"from": 775200,
+				"to": 783200
+			},
+			"text": " So this is an open source DAP preserves your privacy. It's fully decentralized. The data is on ceramic network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,200",
+				"to": "00:13:12,200"
+			},
+			"offsets": {
+				"from": 783200,
+				"to": 792200
+			},
+			"text": " Gitcoin uses it as, you know, to separate symbols and provide trust bonuses to donors. And it's all open source and anyone can integrate it with their own DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,200",
+				"to": "00:13:18,200"
+			},
+			"offsets": {
+				"from": 792200,
+				"to": 798200
+			},
+			"text": " So we already have actually 60,000 passports created on on Gitcoin, which is really exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,200",
+				"to": "00:13:31,200"
+			},
+			"offsets": {
+				"from": 798200,
+				"to": 811200
+			},
+			"text": " And some of the integrations that we've seen are East Staker, Bankless Academy, Rabbit Hole, Snapshot, Guild are already using passport, you know, mainly for civil protection or quadratic voting or similar use cases like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,200",
+				"to": "00:13:47,200"
+			},
+			"offsets": {
+				"from": 811200,
+				"to": 827200
+			},
+			"text": " And once we kind of nail this civil resistance with passport or, you know, through many combined means, it unlocks this spectrum of possibilities of quadratic funding, quadratic voting, fair launches, universal basic income, one person, one vote, dows, data collectives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,200",
+				"to": "00:13:58,200"
+			},
+			"offsets": {
+				"from": 827200,
+				"to": 838200
+			},
+			"text": " and plural funding. And then the other mechanism that I'm getting more excited about is different ways to incentivize community curation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,200",
+				"to": "00:14:08,200"
+			},
+			"offsets": {
+				"from": 838200,
+				"to": 848200
+			},
+			"text": " So curation is creation and we're experimenting with things like grant and identity staking, where you actually put value on your grant or on your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,200",
+				"to": "00:14:23,200"
+			},
+			"offsets": {
+				"from": 848200,
+				"to": 863200
+			},
+			"text": " And personally, I think the revival of token curated registries is going to happen. So if you're not familiar, super bullish on this, but TCRs were kind of popularized, you know, long, long time ago in crypto land in 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,200",
+				"to": "00:14:31,200"
+			},
+			"offsets": {
+				"from": 863200,
+				"to": 871200
+			},
+			"text": " But it's an incentivized voting game that helps create trusted lists that are maintained by the very people that use them. So essentially using the wisdom of the crowd principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,200",
+				"to": "00:14:38,200"
+			},
+			"offsets": {
+				"from": 871200,
+				"to": 878200
+			},
+			"text": " People collectively vote on what submissions are valid, what should be removed and they're rewarded in tokens for doing so."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,200",
+				"to": "00:15:00,200"
+			},
+			"offsets": {
+				"from": 878200,
+				"to": 900200
+			},
+			"text": " This is this during the 2017, 2018 cycle, there is a lot of hype around this and I think it kind of died out, but I'm slowly starting to see it kind of come back into the main why three discussions so even if it's not TCRs themselves some type of community, community curation is absolutely needed for, you know, a decentralized grants program."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,200",
+				"to": "00:15:06,200"
+			},
+			"offsets": {
+				"from": 900200,
+				"to": 906200
+			},
+			"text": " All right, so we're going to go into some of the new flavors of quadratic funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,200",
+				"to": "00:15:14,200"
+			},
+			"offsets": {
+				"from": 906200,
+				"to": 914200
+			},
+			"text": " Lots of people are doing really dope stuff with public goods funding quadratic funding and we're excited to work with all of them to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,200",
+				"to": "00:15:18,200"
+			},
+			"offsets": {
+				"from": 914200,
+				"to": 918200
+			},
+			"text": " You'll see some of the logos there on that unnamed bag of candy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,200",
+				"to": "00:15:23,200"
+			},
+			"offsets": {
+				"from": 918200,
+				"to": 923200
+			},
+			"text": " But you know, these new flavors, we're really going to try to taste the rainbow here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,200",
+				"to": "00:15:36,200"
+			},
+			"offsets": {
+				"from": 923200,
+				"to": 936200
+			},
+			"text": " So I first want to establish that almost all QF implementations kind of stray from the math when proposing, you know, adjustments or new experiments like we often get the reply like, oh, well, that's not real QF."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,200",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 936200,
+				"to": 945200
+			},
+			"text": " Hence kind of the meme I dropped in there, but it took me a while to kind of fully grasp like what the image you see on the side there means."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:59,200"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 959200
+			},
+			"text": " Basically, the green is donations, the yellow is matching. And as we said before, the matching is calculated by taking the square root of each contribution. So those those blue lines you see there adding it up and then taking that square, which is the full, the full"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,200",
+				"to": "00:16:02,200"
+			},
+			"offsets": {
+				"from": 959200,
+				"to": 962200
+			},
+			"text": " square of yellow and green that you see there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,200",
+				"to": "00:16:18,200"
+			},
+			"offsets": {
+				"from": 962200,
+				"to": 978200
+			},
+			"text": " So that would be like pure QF right and that would happen if we, so it doesn't happen in this case because what get going does is we have a fixed matching pool and a fixed time limit, which means matches will scale up or down based on the saturation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,200",
+				"to": "00:16:28,200"
+			},
+			"offsets": {
+				"from": 978200,
+				"to": 988200
+			},
+			"text": " So if a round is over saturated or under saturated, that means all the matching is allocated or all the matching is not allocated, then you don't have this perfect square that you see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,200",
+				"to": "00:16:42,200"
+			},
+			"offsets": {
+				"from": 988200,
+				"to": 1002200
+			},
+			"text": " And most of our rounds end up getting saturated. And what you see after that point is it's kind of a zero sum game, which means, you know, there's no additional matching to provide, but as more donations come in, it just shuffles around where that matching goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,200",
+				"to": "00:16:47,200"
+			},
+			"offsets": {
+				"from": 1002200,
+				"to": 1007200
+			},
+			"text": " So, you know, some people have argued that it should kind of end after it's saturated."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,200",
+				"to": "00:16:58,200"
+			},
+			"offsets": {
+				"from": 1007200,
+				"to": 1018200
+			},
+			"text": " And that would be what's kind of like a fixed pool only where as soon as the round is fully saturated, it's over, which I don't think would be a good user experience because people want to know how long they have to donate and when it's going to end."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,200",
+				"to": "00:17:01,200"
+			},
+			"offsets": {
+				"from": 1018200,
+				"to": 1021200
+			},
+			"text": " But it's one thing we could experiment with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,200",
+				"to": "00:17:05,200"
+			},
+			"offsets": {
+				"from": 1021200,
+				"to": 1025200
+			},
+			"text": " The other thing is that there's a fixed time limit but a variable pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,200",
+				"to": "00:17:12,200"
+			},
+			"offsets": {
+				"from": 1025200,
+				"to": 1032200
+			},
+			"text": " You could run it that way, but you essentially need infinite money to make sure that you're not going to run out. And that's not really feasible either."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,200",
+				"to": "00:17:23,200"
+			},
+			"offsets": {
+				"from": 1032200,
+				"to": 1043200
+			},
+			"text": " So we kind of have this middle ground here. And then there's other things to the trust verification bonuses. We have matching caps on certain rounds where there's a certain percentage of the total pool that you can take."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,200",
+				"to": "00:17:35,200"
+			},
+			"offsets": {
+				"from": 1043200,
+				"to": 1055200
+			},
+			"text": " Parrawise bounding, which we'll talk about in a second. And many other mechanisms that kind of take the initial QF, you know, math formula and then add some tweaks to it to kind of help the experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,200",
+				"to": "00:17:47,200"
+			},
+			"offsets": {
+				"from": 1055200,
+				"to": 1067200
+			},
+			"text": " So, pairwise bounding, I'll talk about first. This is a mechanism designed to practically prevent collusion, muting the impact of groups, groups of contributors who contributed the same grants as each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,200",
+				"to": "00:17:58,200"
+			},
+			"offsets": {
+				"from": 1067200,
+				"to": 1078200
+			},
+			"text": " So if you look at the image behind me here, you see those big clusters. Those are all donors that are donating to similar grants and that are, you know, have connections on their network path."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,200",
+				"to": "00:18:06,200"
+			},
+			"offsets": {
+				"from": 1078200,
+				"to": 1086200
+			},
+			"text": " And so those donations are going to be going to earn less of a match because of that kind of assumed collusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,200",
+				"to": "00:18:21,200"
+			},
+			"offsets": {
+				"from": 1086200,
+				"to": 1101200
+			},
+			"text": " So less correlated pool of donors is more matching, more correlated is less matching. And then we could also experiment with like plural pairwise QF, which would, you know, with new identity systems like VCs, DIDs, SVTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,200",
+				"to": "00:18:33,200"
+			},
+			"offsets": {
+				"from": 1101200,
+				"to": 1113200
+			},
+			"text": " You can sort of better figure out how close or far a single individual is to your network and, you know, kind of take the pairwise bounding a step further."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,200",
+				"to": "00:18:40,200"
+			},
+			"offsets": {
+				"from": 1113200,
+				"to": 1120200
+			},
+			"text": " Macy's another really popular mechanism. This one's actually used by CLR Fund. And it's all about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,200",
+				"to": "00:18:48,200"
+			},
+			"offsets": {
+				"from": 1120200,
+				"to": 1128200
+			},
+			"text": " So, you know, privacy is a public good. Privacy is a human right. And Macy voting or funding is private, helping to avoid collusion and vote buying."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,200",
+				"to": "00:18:55,200"
+			},
+			"offsets": {
+				"from": 1128200,
+				"to": 1135200
+			},
+			"text": " So in quadratic funding, users could not cryptographically prove to others how much they've donated or who they've donated to."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,200",
+				"to": "00:19:02,200"
+			},
+			"offsets": {
+				"from": 1135200,
+				"to": 1142200
+			},
+			"text": " Some of the caveats there, I think, is that it relies heavily on civil resistance assumptions, as everything kind of does."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,200",
+				"to": "00:19:11,200"
+			},
+			"offsets": {
+				"from": 1142200,
+				"to": 1151200
+			},
+			"text": " You can only make donations on one chain. You can only contribute once to around. And, you know, if there are trusted parties, you know each other in person, like they could still potentially include."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,200",
+				"to": "00:19:18,200"
+			},
+			"offsets": {
+				"from": 1151200,
+				"to": 1158200
+			},
+			"text": " But in any case, I think, you know, privacy is really important. And this is a good thing that we'll be trying to experiment with soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,200",
+				"to": "00:19:25,200"
+			},
+			"offsets": {
+				"from": 1158200,
+				"to": 1165200
+			},
+			"text": " Retroactive public goods funding is another concept that's not necessarily QF. It's more quadratic voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,200",
+				"to": "00:19:30,200"
+			},
+			"offsets": {
+				"from": 1165200,
+				"to": 1170200
+			},
+			"text": " But the core idea is that it's easier to agree on what was useful than what will be useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,200",
+				"to": "00:19:37,200"
+			},
+			"offsets": {
+				"from": 1170200,
+				"to": 1177200
+			},
+			"text": " So optimism is not trying to be a grants program. They don't want to fund what they want to see built in the future. They want to reward what was already built."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,200",
+				"to": "00:19:43,200"
+			},
+			"offsets": {
+				"from": 1177200,
+				"to": 1183200
+			},
+			"text": " So it's more expert driven and proportional to kind of the past value generated from a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,200",
+				"to": "00:19:51,200"
+			},
+			"offsets": {
+				"from": 1183200,
+				"to": 1191200
+			},
+			"text": " In their iteration, they've kind of went for a whitelessing approach, which reduces civil attacks and fraud, but is less inclusive as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,200",
+				"to": "00:19:57,200"
+			},
+			"offsets": {
+				"from": 1191200,
+				"to": 1197200
+			},
+			"text": " And the benefit of this is it can kind of incentivize the initial seed funding of a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,200",
+				"to": "00:20:05,200"
+			},
+			"offsets": {
+				"from": 1197200,
+				"to": 1205200
+			},
+			"text": " So, you know, right now it's very hard to get initial seed funding for an open source project or a public good, but if retro PGF kind of gains traction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,200",
+				"to": "00:20:10,200"
+			},
+			"offsets": {
+				"from": 1205200,
+				"to": 1210200
+			},
+			"text": " And, you know, part of that retroactive funding goes to the initial funders."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,200",
+				"to": "00:20:17,200"
+			},
+			"offsets": {
+				"from": 1210200,
+				"to": 1217200
+			},
+			"text": " Then you might see, you know, private investors investing in open source with the idea that there's going to be an exit eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,200",
+				"to": "00:20:24,200"
+			},
+			"offsets": {
+				"from": 1217200,
+				"to": 1224200
+			},
+			"text": " So kind of working backwards, it could sort of help fund the initial stage of many open source projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,200",
+				"to": "00:20:33,200"
+			},
+			"offsets": {
+				"from": 1224200,
+				"to": 1233200
+			},
+			"text": " And I want to call out we were working on something very exciting with optimism for retro PGF using the new grants protocol that I think we've sort of announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,200",
+				"to": "00:20:35,200"
+			},
+			"offsets": {
+				"from": 1233200,
+				"to": 1235200
+			},
+			"text": " But you'll be hearing more about that soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,200",
+				"to": "00:20:37,200"
+			},
+			"offsets": {
+				"from": 1235200,
+				"to": 1237200
+			},
+			"text": " It's super exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,200",
+				"to": "00:20:46,200"
+			},
+			"offsets": {
+				"from": 1237200,
+				"to": 1246200
+			},
+			"text": " And the other thing I kind of wanted to mention is just that like when I donate to normal quadratic funding rounds, I'm often donating the projects that I think have done really good work."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,200",
+				"to": "00:20:56,200"
+			},
+			"offsets": {
+				"from": 1246200,
+				"to": 1256200
+			},
+			"text": " Like I'm also donating the projects that I want to do good work, but I certainly think you, F in general, it's a good mix between retro funding and, you know, future funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,200",
+				"to": "00:21:02,200"
+			},
+			"offsets": {
+				"from": 1256200,
+				"to": 1262200
+			},
+			"text": " But it's a lot easier to donate to a project that you know the name, you know, they're doing good work versus someone who's brand new."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,200",
+				"to": "00:21:05,200"
+			},
+			"offsets": {
+				"from": 1262200,
+				"to": 1265200
+			},
+			"text": " So all funding is sort of retro in some capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,200",
+				"to": "00:21:10,200"
+			},
+			"offsets": {
+				"from": 1265200,
+				"to": 1270200
+			},
+			"text": " But, you know, that's kind of a personal preference thing that we haven't fully explored."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,200",
+				"to": "00:21:17,200"
+			},
+			"offsets": {
+				"from": 1270200,
+				"to": 1277200
+			},
+			"text": " Okay, running low in time, but dominance assurance contracts are another mechanism that we could potentially use."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,200",
+				"to": "00:21:25,200"
+			},
+			"offsets": {
+				"from": 1277200,
+				"to": 1285200
+			},
+			"text": " It's a product of a game theory meant to incentivize everybody in the community to contribute to funding the public good and avoid the free rider problem, which essentially, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,200",
+				"to": "00:21:33,200"
+			},
+			"offsets": {
+				"from": 1285200,
+				"to": 1293200
+			},
+			"text": " which essentially offers a refund to your donation if a threshold is not met, whether that's the amount raised or the number of donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,200",
+				"to": "00:21:43,200"
+			},
+			"offsets": {
+				"from": 1293200,
+				"to": 1303200
+			},
+			"text": " And with dominance, the dominance part of it, the person offering the public good could actually would actually have to pay you some bonus on top of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,200",
+				"to": "00:21:46,200"
+			},
+			"offsets": {
+				"from": 1303200,
+				"to": 1306200
+			},
+			"text": " So it kind of turns into a win win for donors."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,200",
+				"to": "00:21:49,200"
+			},
+			"offsets": {
+				"from": 1306200,
+				"to": 1309200
+			},
+			"text": " You know, your public good either gets funded and everyone's happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,200",
+				"to": "00:21:52,200"
+			},
+			"offsets": {
+				"from": 1309200,
+				"to": 1312200
+			},
+			"text": " It's what they wanted or you earn a profit and it doesn't get funded."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,200",
+				"to": "00:22:00,200"
+			},
+			"offsets": {
+				"from": 1312200,
+				"to": 1320200
+			},
+			"text": " And ideally in game three, that might be the dominant strategy for free riders that don't want to fund public goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,200",
+				"to": "00:22:04,200"
+			},
+			"offsets": {
+				"from": 1320200,
+				"to": 1324200
+			},
+			"text": " And then back to quadratic voting. So, you know, do we really need the F and QF?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,200",
+				"to": "00:22:07,200"
+			},
+			"offsets": {
+				"from": 1324200,
+				"to": 1327200
+			},
+			"text": " There's plenty of great quadratic voting experiments happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,200",
+				"to": "00:22:10,200"
+			},
+			"offsets": {
+				"from": 1327200,
+				"to": 1330200
+			},
+			"text": " And it might better serve the needs of some communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,200",
+				"to": "00:22:14,200"
+			},
+			"offsets": {
+				"from": 1330200,
+				"to": 1334200
+			},
+			"text": " You really need strong civil protections or, you know, a whitelist system."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,200",
+				"to": "00:22:22,200"
+			},
+			"offsets": {
+				"from": 1334200,
+				"to": 1342200
+			},
+			"text": " And I find it kind of more useful for single choice decisions like A versus deciding, you know, on what scale to fund something."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,200",
+				"to": "00:22:28,200"
+			},
+			"offsets": {
+				"from": 1342200,
+				"to": 1348200
+			},
+			"text": " And of course, it lacks the benefit of raising additional funds via user contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,200",
+				"to": "00:22:30,200"
+			},
+			"offsets": {
+				"from": 1348200,
+				"to": 1350200
+			},
+			"text": " So what is next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,200",
+				"to": "00:22:37,200"
+			},
+			"offsets": {
+				"from": 1350200,
+				"to": 1357200
+			},
+			"text": " So, get coin as a kind of alluded to, we're launching a new grants protocol that's going to be fully decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,200",
+				"to": "00:22:44,200"
+			},
+			"offsets": {
+				"from": 1357200,
+				"to": 1364200
+			},
+			"text": " And we're kind of at a crossroads because we want to, you know, decentralized QF using the latest and greatest web through tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,200",
+				"to": "00:22:52,200"
+			},
+			"offsets": {
+				"from": 1364200,
+				"to": 1372200
+			},
+			"text": " But we also want to drive adoption of QF in new areas in the real world, which means making web three more accessible to the average non-crypto native person."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,200",
+				"to": "00:22:58,200"
+			},
+			"offsets": {
+				"from": 1372200,
+				"to": 1378200
+			},
+			"text": " So, you know, make an impact in meets base, you know, onboard normies and be grandma friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,200",
+				"to": "00:23:00,200"
+			},
+			"offsets": {
+				"from": 1378200,
+				"to": 1380200
+			},
+			"text": " So, you know, anyone can use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,200",
+				"to": "00:23:03,200"
+			},
+			"offsets": {
+				"from": 1380200,
+				"to": 1383200
+			},
+			"text": " And we're kind of bouncing the scales here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,200",
+				"to": "00:23:12,200"
+			},
+			"offsets": {
+				"from": 1383200,
+				"to": 1392200
+			},
+			"text": " It's a bit difficult to do both at one time. And this is a problem for, you know, the entire web through ecosystem is usability and user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,200",
+				"to": "00:23:22,200"
+			},
+			"offsets": {
+				"from": 1392200,
+				"to": 1402200
+			},
+			"text": " But I think we'll be doing some experiments, both on the new protocol and, you know, in maybe a non-block Jane, you know, QF base system."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,200",
+				"to": "00:23:27,200"
+			},
+			"offsets": {
+				"from": 1402200,
+				"to": 1407200
+			},
+			"text": " So that's actually with the downtown stimulus project that I mentioned for the local round section."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,200",
+				"to": "00:23:36,200"
+			},
+			"offsets": {
+				"from": 1407200,
+				"to": 1416200
+			},
+			"text": " That was totally done in FIA in the Boulder local community. And we might do more of those more social network QF experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,200",
+				"to": "00:23:40,200"
+			},
+			"offsets": {
+				"from": 1416200,
+				"to": 1420200
+			},
+			"text": " But finally, what we wanted to get to is the get coin grants protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,200",
+				"to": "00:23:46,200"
+			},
+			"offsets": {
+				"from": 1420200,
+				"to": 1426200
+			},
+			"text": " So this consists of a suite of overlapping products, passport, round manager, grant hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,200",
+				"to": "00:23:49,200"
+			},
+			"offsets": {
+				"from": 1426200,
+				"to": 1429200
+			},
+			"text": " It's going to be permissionless, modular and decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,200",
+				"to": "00:23:56,200"
+			},
+			"offsets": {
+				"from": 1429200,
+				"to": 1436200
+			},
+			"text": " So anyone can try to, can anyone can try different public goods funding mechanisms to kind of find what fits best for their community."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,200",
+				"to": "00:24:04,200"
+			},
+			"offsets": {
+				"from": 1436200,
+				"to": 1444200
+			},
+			"text": " And this really differs from our centralized program and platform now, because we have to manually kind of help run people's programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,200",
+				"to": "00:24:07,200"
+			},
+			"offsets": {
+				"from": 1444200,
+				"to": 1447200
+			},
+			"text": " It's not self-serve. You can't just spin one up by yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,200",
+				"to": "00:24:15,200"
+			},
+			"offsets": {
+				"from": 1447200,
+				"to": 1455200
+			},
+			"text": " And a lot of the work is kind of, you know, based on our centralized team doing this manual grinding to get it done."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,200",
+				"to": "00:24:17,200"
+			},
+			"offsets": {
+				"from": 1455200,
+				"to": 1457200
+			},
+			"text": " And so this is going to be open to anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,200",
+				"to": "00:24:24,200"
+			},
+			"offsets": {
+				"from": 1457200,
+				"to": 1464200
+			},
+			"text": " And what we envision here is that, you know, project owners will use the grant hub to kickstart their project, use it as a vehicle for growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,200",
+				"to": "00:24:30,200"
+			},
+			"offsets": {
+				"from": 1464200,
+				"to": 1470200
+			},
+			"text": " And then, you know, at a point far in the future, there could be hundreds or thousands of programs running at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,200",
+				"to": "00:24:36,200"
+			},
+			"offsets": {
+				"from": 1470200,
+				"to": 1476200
+			},
+			"text": " All kind of design and operated in a self-soberned way specifically to serve their communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,200",
+				"to": "00:24:38,200"
+			},
+			"offsets": {
+				"from": 1476200,
+				"to": 1478200
+			},
+			"text": " All right. And this is the last slide, I promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,200",
+				"to": "00:24:46,200"
+			},
+			"offsets": {
+				"from": 1478200,
+				"to": 1486200
+			},
+			"text": " So get coin grants 1.0 was a monolith. It's on this centralized stack. Super outdated. We're excited to move on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,200",
+				"to": "00:24:55,200"
+			},
+			"offsets": {
+				"from": 1486200,
+				"to": 1495200
+			},
+			"text": " The grants protocol is really going to take the power of Bitcoin grants and quadratic funding and make it available for any EVM based chain and community."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,200",
+				"to": "00:24:59,200"
+			},
+			"offsets": {
+				"from": 1495200,
+				"to": 1499200
+			},
+			"text": " So this is going to be permissionless, open, decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,200",
+				"to": "00:25:06,200"
+			},
+			"offsets": {
+				"from": 1499200,
+				"to": 1506200
+			},
+			"text": " You can take any of those mechanisms that I mentioned earlier or new mechanisms that haven't been thought of and implement those into your program."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,200",
+				"to": "00:25:11,200"
+			},
+			"offsets": {
+				"from": 1506200,
+				"to": 1511200
+			},
+			"text": " You can kind of self-serve and choose your own adventure. So we're really excited to launch this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,200",
+				"to": "00:25:25,200"
+			},
+			"offsets": {
+				"from": 1511200,
+				"to": 1525200
+			},
+			"text": " So we're going to have a few test rounds that are going to be going live in the next few months. And I think in Q1 of 2023, we'll be moving the entire get coin grants program over to this new protocol, which, again, will be modular decentralized and hopefully"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,200",
+				"to": "00:25:32,200"
+			},
+			"offsets": {
+				"from": 1525200,
+				"to": 1532200
+			},
+			"text": " and hopefully civil resistant. So that's, I think, the talk. That's the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,200",
+				"to": "00:25:37,200"
+			},
+			"offsets": {
+				"from": 1532200,
+				"to": 1537200
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,200",
+				"to": "00:25:46,200"
+			},
+			"offsets": {
+				"from": 1537200,
+				"to": 1546200
+			},
+			"text": " [Silence]"
+		}
+	]
+}

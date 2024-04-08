@@ -1,0 +1,2496 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,040"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14040
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,040",
+				"to": "00:00:16,040"
+			},
+			"offsets": {
+				"from": 14040,
+				"to": 16040
+			},
+			"text": " Welcome, everyone, and thanks to Barry and Nintang"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,040",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 16040,
+				"to": 17520
+			},
+			"text": " for the great introductions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:19,760"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 19760
+			},
+			"text": " Sitate, I'm excited to tell you about this elliptic curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,760",
+				"to": "00:00:23,120"
+			},
+			"offsets": {
+				"from": 19760,
+				"to": 23120
+			},
+			"text": " library we've been building in Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,120",
+				"to": "00:00:26,200"
+			},
+			"offsets": {
+				"from": 23120,
+				"to": 26200
+			},
+			"text": " OK, so first, let me tell you what the library can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,200",
+				"to": "00:00:29,600"
+			},
+			"offsets": {
+				"from": 26200,
+				"to": 29600
+			},
+			"text": " So it's a Halo 2 library for doing various elliptic curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,600",
+				"to": "00:00:32,840"
+			},
+			"offsets": {
+				"from": 29600,
+				"to": 32840
+			},
+			"text": " operations that in particular has a configurable trade-off"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,840",
+				"to": "00:00:36,360"
+			},
+			"offsets": {
+				"from": 32840,
+				"to": 36360
+			},
+			"text": " between the proving time and verifier cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,360",
+				"to": "00:00:38,720"
+			},
+			"offsets": {
+				"from": 36360,
+				"to": 38720
+			},
+			"text": " So the operations we can support is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,720",
+				"to": "00:00:40,640"
+			},
+			"offsets": {
+				"from": 38720,
+				"to": 40640
+			},
+			"text": " that for a generic elliptic curve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,640",
+				"to": "00:00:42,160"
+			},
+			"offsets": {
+				"from": 40640,
+				"to": 42160
+			},
+			"text": " you have to put in a few constants."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,160",
+				"to": "00:00:46,520"
+			},
+			"offsets": {
+				"from": 42160,
+				"to": 46520
+			},
+			"text": " We can do addition, doubling, multi-scaler multiplication."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,520",
+				"to": "00:00:48,080"
+			},
+			"offsets": {
+				"from": 46520,
+				"to": 48080
+			},
+			"text": " And then for pairing friendly curves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,080",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 48080,
+				"to": 51200
+			},
+			"text": " we can do optimal eight pairing verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:54,040"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 54040
+			},
+			"text": " And we can also do ECDSA signature check."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,040",
+				"to": "00:00:58,600"
+			},
+			"offsets": {
+				"from": 54040,
+				"to": 58600
+			},
+			"text": " So we've also put this library into the scroll and PSE"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,600",
+				"to": "00:01:01,920"
+			},
+			"offsets": {
+				"from": 58600,
+				"to": 61920
+			},
+			"text": " aggregation circuits for the KZG back end of Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,920",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 61920,
+				"to": 68160
+			},
+			"text": " OK, so before I tell you more, let me show you some numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:12,040"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 72040
+			},
+			"text": " So for ECDSA signature verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,040",
+				"to": "00:01:15,120"
+			},
+			"offsets": {
+				"from": 72040,
+				"to": 75120
+			},
+			"text": " you can see that if we have a small proof size at the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,120",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 75120,
+				"to": 78520
+			},
+			"text": " we have a longer proof of time around 10 seconds, a little over."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:20,040"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 80040
+			},
+			"text": " And then if we increase the proof size,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,040",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 80040,
+				"to": 83520
+			},
+			"text": " we're able to get things down to around three seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:25,080"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 85080
+			},
+			"text": " on a MacBook Air."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,080",
+				"to": "00:01:27,120"
+			},
+			"offsets": {
+				"from": 85080,
+				"to": 87120
+			},
+			"text": " Weirdly, we found that on the CPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,120",
+				"to": "00:01:29,960"
+			},
+			"offsets": {
+				"from": 87120,
+				"to": 89960
+			},
+			"text": " the MacBook Air meets a fancy AWS box."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,960",
+				"to": "00:01:35,800"
+			},
+			"offsets": {
+				"from": 89960,
+				"to": 95800
+			},
+			"text": " For a multi-scaler multiplication with 100 base points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,800",
+				"to": "00:01:39,760"
+			},
+			"offsets": {
+				"from": 95800,
+				"to": 99760
+			},
+			"text": " we can get things to around 56 seconds using larger proof size."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,760",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 99760,
+				"to": 102640
+			},
+			"text": " And as you can see, that's still an improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 106160
+			},
+			"text": " over the small proof size setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:49,360"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 109360
+			},
+			"text": " And finally, for pairing check on BN254,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,360",
+				"to": "00:01:51,840"
+			},
+			"offsets": {
+				"from": 109360,
+				"to": 111840
+			},
+			"text": " which is the curve on Ethereum, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,840",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 111840,
+				"to": 114920
+			},
+			"text": " can do that in about 15 seconds, again on the MacBook Air."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:02:01,040"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 121040
+			},
+			"text": " OK, so let me tell you how we build all of these circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,040",
+				"to": "00:02:03,480"
+			},
+			"offsets": {
+				"from": 121040,
+				"to": 123480
+			},
+			"text": " So we have a very modular approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,480",
+				"to": "00:02:07,920"
+			},
+			"offsets": {
+				"from": 123480,
+				"to": 127920
+			},
+			"text": " So in Halo 2, you're allowed to use a lot of custom gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,920",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 127920,
+				"to": 131120
+			},
+			"text": " but we're very simple-minded, so we use a single custom gate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:13,800"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 133800
+			},
+			"text": " Our gate has four vertical cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,800",
+				"to": "00:02:15,760"
+			},
+			"offsets": {
+				"from": 133800,
+				"to": 135760
+			},
+			"text": " And eventually, I forgot to highlight them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,760",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 135760,
+				"to": 141160
+			},
+			"text": " But starting from the top, our gate is just A plus B times C equals D."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,160",
+				"to": "00:02:23,600"
+			},
+			"offsets": {
+				"from": 141160,
+				"to": 143600
+			},
+			"text": " So in this example, on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,600",
+				"to": "00:02:28,360"
+			},
+			"offsets": {
+				"from": 143600,
+				"to": 148360
+			},
+			"text": " if we want to compute a dot product of 1 comma 3 with 2 comma 4,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,360",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 148360,
+				"to": 151720
+			},
+			"text": " we're first going to apply a gate on the top four cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:36,080"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 156080
+			},
+			"text": " So that will say 0 plus 1 times 2 equals 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,080",
+				"to": "00:02:39,320"
+			},
+			"offsets": {
+				"from": 156080,
+				"to": 159320
+			},
+			"text": " And then we're going to overlap it with a gate on the bottom four cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,320",
+				"to": "00:02:44,160"
+			},
+			"offsets": {
+				"from": 159320,
+				"to": 164160
+			},
+			"text": " So that would say 2 plus 3 times 4 equals 14."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,160",
+				"to": "00:02:46,480"
+			},
+			"offsets": {
+				"from": 164160,
+				"to": 166480
+			},
+			"text": " So this simple overlap optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,480",
+				"to": "00:02:51,080"
+			},
+			"offsets": {
+				"from": 166480,
+				"to": 171080
+			},
+			"text": " gains us about a 25% gain for all dot product operations, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,080",
+				"to": "00:02:55,960"
+			},
+			"offsets": {
+				"from": 171080,
+				"to": 175960
+			},
+			"text": " turn out to make up maybe 80% of all of the operations we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,960",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 175960,
+				"to": 179800
+			},
+			"text": " So our setup is that we have a number of advice columns"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:01,720"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 181720
+			},
+			"text": " with this custom gate enabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,720",
+				"to": "00:03:04,280"
+			},
+			"offsets": {
+				"from": 181720,
+				"to": 184280
+			},
+			"text": " We have a single lookup table for range checks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,280",
+				"to": "00:03:06,720"
+			},
+			"offsets": {
+				"from": 184280,
+				"to": 186720
+			},
+			"text": " and then we have a bunch of selector columns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,720",
+				"to": "00:03:13,520"
+			},
+			"offsets": {
+				"from": 186720,
+				"to": 193520
+			},
+			"text": " OK, so we wrote a pseudo-layout in Halo 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,520",
+				"to": "00:03:17,240"
+			},
+			"offsets": {
+				"from": 193520,
+				"to": 197240
+			},
+			"text": " which allows us to configure where these columns are placed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,240",
+				"to": "00:03:18,840"
+			},
+			"offsets": {
+				"from": 197240,
+				"to": 198840
+			},
+			"text": " in different regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,840",
+				"to": "00:03:21,480"
+			},
+			"offsets": {
+				"from": 198840,
+				"to": 201480
+			},
+			"text": " So as a configuration to our circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,480",
+				"to": "00:03:24,840"
+			},
+			"offsets": {
+				"from": 201480,
+				"to": 204840
+			},
+			"text": " we allow a fixed number of advice and fixed columns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,840",
+				"to": "00:03:29,240"
+			},
+			"offsets": {
+				"from": 204840,
+				"to": 209240
+			},
+			"text": " and we sort of Tetris these vertical concatenations"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,240",
+				"to": "00:03:32,840"
+			},
+			"offsets": {
+				"from": 209240,
+				"to": 212840
+			},
+			"text": " of our basic gate into the columns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,840",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 212840,
+				"to": 215040
+			},
+			"text": " On top of this, we built a basic library"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:39,360"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 219360
+			},
+			"text": " called Halo 2 basic gadgets, like inner product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,360",
+				"to": "00:03:42,200"
+			},
+			"offsets": {
+				"from": 219360,
+				"to": 222200
+			},
+			"text": " range check, indexing into an array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,200",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 222200,
+				"to": 226240
+			},
+			"text": " doing various bitwise operations and doing comparisons"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 228000
+			},
+			"text": " on top of this gate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,360"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231360
+			},
+			"text": " And that allows us to almost completely abstract away"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,360",
+				"to": "00:03:54,200"
+			},
+			"offsets": {
+				"from": 231360,
+				"to": 234200
+			},
+			"text": " the manual assigning of cells that you may be familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,200",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 234200,
+				"to": 236080
+			},
+			"text": " if you've written some Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 239320
+			},
+			"text": " So on top of that, we build our elliptic curve library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:04,360"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 244360
+			},
+			"text": " mostly maybe 95%, only using these abstractions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,360",
+				"to": "00:04:06,600"
+			},
+			"offsets": {
+				"from": 244360,
+				"to": 246600
+			},
+			"text": " One thing to note is we found it's actually very difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,600",
+				"to": "00:04:09,400"
+			},
+			"offsets": {
+				"from": 246600,
+				"to": 249400
+			},
+			"text": " to outperform using this very simple gate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,400",
+				"to": "00:04:10,880"
+			},
+			"offsets": {
+				"from": 249400,
+				"to": 250880
+			},
+			"text": " using fancier custom gates."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,880",
+				"to": "00:04:12,560"
+			},
+			"offsets": {
+				"from": 250880,
+				"to": 252560
+			},
+			"text": " We tried a number of-- well, we thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,560",
+				"to": "00:04:14,600"
+			},
+			"offsets": {
+				"from": 252560,
+				"to": 254600
+			},
+			"text": " we're very clever things that did not improve the proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,600",
+				"to": "00:04:15,100"
+			},
+			"offsets": {
+				"from": 254600,
+				"to": 255100
+			},
+			"text": " speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,100",
+				"to": "00:04:22,180"
+			},
+			"offsets": {
+				"from": 255100,
+				"to": 262180
+			},
+			"text": " Finally, I wanted to mention one very critical optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,180",
+				"to": "00:04:24,980"
+			},
+			"offsets": {
+				"from": 262180,
+				"to": 264980
+			},
+			"text": " that we made, which is that we previously"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,980",
+				"to": "00:04:27,700"
+			},
+			"offsets": {
+				"from": 264980,
+				"to": 267700
+			},
+			"text": " enabled lookup arguments on every single column,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,700",
+				"to": "00:04:31,060"
+			},
+			"offsets": {
+				"from": 267700,
+				"to": 271060
+			},
+			"text": " and that was crucial in doing our range checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,060",
+				"to": "00:04:35,260"
+			},
+			"offsets": {
+				"from": 271060,
+				"to": 275260
+			},
+			"text": " We did one optimization to have special columns whose only"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,260",
+				"to": "00:04:37,860"
+			},
+			"offsets": {
+				"from": 275260,
+				"to": 277860
+			},
+			"text": " purpose is to hold cells that are looked up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,860",
+				"to": "00:04:41,620"
+			},
+			"offsets": {
+				"from": 277860,
+				"to": 281620
+			},
+			"text": " and we copy all cells we want to look up to those columns."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,620",
+				"to": "00:04:42,980"
+			},
+			"offsets": {
+				"from": 281620,
+				"to": 282980
+			},
+			"text": " Although this sounds a bit trivial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,980",
+				"to": "00:04:45,780"
+			},
+			"offsets": {
+				"from": 282980,
+				"to": 285780
+			},
+			"text": " it actually reduces the proving speed by about--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,780",
+				"to": "00:04:50,020"
+			},
+			"offsets": {
+				"from": 285780,
+				"to": 290020
+			},
+			"text": " the proving time by about 50%."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,020",
+				"to": "00:04:52,660"
+			},
+			"offsets": {
+				"from": 290020,
+				"to": 292660
+			},
+			"text": " And again, we can configure how many of these special lookup"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,660",
+				"to": "00:04:56,740"
+			},
+			"offsets": {
+				"from": 292660,
+				"to": 296740
+			},
+			"text": " columns we need depending on the circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,740",
+				"to": "00:04:59,860"
+			},
+			"offsets": {
+				"from": 296740,
+				"to": 299860
+			},
+			"text": " OK, so just to show some plots on the results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,860",
+				"to": "00:05:03,340"
+			},
+			"offsets": {
+				"from": 299860,
+				"to": 303340
+			},
+			"text": " if we vary the number of columns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,340",
+				"to": "00:05:06,860"
+			},
+			"offsets": {
+				"from": 303340,
+				"to": 306860
+			},
+			"text": " the as the number of columns grows, the proof size grows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,860",
+				"to": "00:05:10,860"
+			},
+			"offsets": {
+				"from": 306860,
+				"to": 310860
+			},
+			"text": " and typically speaking, the proving speed will increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,860",
+				"to": "00:05:12,980"
+			},
+			"offsets": {
+				"from": 310860,
+				"to": 312980
+			},
+			"text": " So you can see for the optimal eight pairing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,980",
+				"to": "00:05:14,900"
+			},
+			"offsets": {
+				"from": 312980,
+				"to": 314900
+			},
+			"text": " for a single column setting, the proving speed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,900",
+				"to": "00:05:17,380"
+			},
+			"offsets": {
+				"from": 314900,
+				"to": 317380
+			},
+			"text": " is about 250 seconds on the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,380",
+				"to": "00:05:21,820"
+			},
+			"offsets": {
+				"from": 317380,
+				"to": 321820
+			},
+			"text": " And as we expand the number of columns to around 15,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,820",
+				"to": "00:05:25,020"
+			},
+			"offsets": {
+				"from": 321820,
+				"to": 325020
+			},
+			"text": " we get pretty sharp drops in the proving time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,020",
+				"to": "00:05:27,220"
+			},
+			"offsets": {
+				"from": 325020,
+				"to": 327220
+			},
+			"text": " but things sort of plateau after that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,220",
+				"to": "00:05:29,260"
+			},
+			"offsets": {
+				"from": 327220,
+				"to": 329260
+			},
+			"text": " On the right, you see a very similar phenomenon"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,260",
+				"to": "00:05:32,020"
+			},
+			"offsets": {
+				"from": 329260,
+				"to": 332020
+			},
+			"text": " for ECDSA verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,020",
+				"to": "00:05:33,740"
+			},
+			"offsets": {
+				"from": 332020,
+				"to": 333740
+			},
+			"text": " We were a little bit surprised that things"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,740",
+				"to": "00:05:36,380"
+			},
+			"offsets": {
+				"from": 333740,
+				"to": 336380
+			},
+			"text": " trail off at this small number of columns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,380",
+				"to": "00:05:38,220"
+			},
+			"offsets": {
+				"from": 336380,
+				"to": 338220
+			},
+			"text": " and we're sort of exploring whether there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,220",
+				"to": "00:05:40,300"
+			},
+			"offsets": {
+				"from": 338220,
+				"to": 340300
+			},
+			"text": " something in the back end, which could"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,300",
+				"to": "00:05:41,220"
+			},
+			"offsets": {
+				"from": 340300,
+				"to": 341220
+			},
+			"text": " let us push it further."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,220",
+				"to": "00:05:46,220"
+			},
+			"offsets": {
+				"from": 341220,
+				"to": 346220
+			},
+			"text": " All right, finally, I want to tell you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,220",
+				"to": "00:05:49,820"
+			},
+			"offsets": {
+				"from": 346220,
+				"to": 349820
+			},
+			"text": " how we plug this in to the existing aggregation circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,820",
+				"to": "00:05:53,820"
+			},
+			"offsets": {
+				"from": 349820,
+				"to": 353820
+			},
+			"text": " So if you have a KZG back end halo2 proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,820",
+				"to": "00:05:56,260"
+			},
+			"offsets": {
+				"from": 353820,
+				"to": 356260
+			},
+			"text": " then to recursively verify the proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,260",
+				"to": "00:05:57,860"
+			},
+			"offsets": {
+				"from": 356260,
+				"to": 357860
+			},
+			"text": " you need to do two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,860",
+				"to": "00:06:01,620"
+			},
+			"offsets": {
+				"from": 357860,
+				"to": 361620
+			},
+			"text": " First, you need to do a bunch of multiscular multiplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,620",
+				"to": "00:06:04,820"
+			},
+			"offsets": {
+				"from": 361620,
+				"to": 364820
+			},
+			"text": " on the KZG commitments that comprise the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,820",
+				"to": "00:06:07,100"
+			},
+			"offsets": {
+				"from": 364820,
+				"to": 367100
+			},
+			"text": " So these would be multiscular multiplications"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,100",
+				"to": "00:06:09,220"
+			},
+			"offsets": {
+				"from": 367100,
+				"to": 369220
+			},
+			"text": " on the BN 254 curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,220",
+				"to": "00:06:11,860"
+			},
+			"offsets": {
+				"from": 369220,
+				"to": 371860
+			},
+			"text": " And secondly, you need to do a pairing check."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,860",
+				"to": "00:06:13,940"
+			},
+			"offsets": {
+				"from": 371860,
+				"to": 373940
+			},
+			"text": " So in the current aggregation setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,940",
+				"to": "00:06:15,860"
+			},
+			"offsets": {
+				"from": 373940,
+				"to": 375860
+			},
+			"text": " the pairing check is deferred, meaning"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,860",
+				"to": "00:06:19,420"
+			},
+			"offsets": {
+				"from": 375860,
+				"to": 379420
+			},
+			"text": " that in the aggregation circuits, only the multiscular"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,420",
+				"to": "00:06:21,100"
+			},
+			"offsets": {
+				"from": 379420,
+				"to": 381100
+			},
+			"text": " multiplication is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,100",
+				"to": "00:06:23,500"
+			},
+			"offsets": {
+				"from": 381100,
+				"to": 383500
+			},
+			"text": " So our target was to integrate our library"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,500",
+				"to": "00:06:27,140"
+			},
+			"offsets": {
+				"from": 383500,
+				"to": 387140
+			},
+			"text": " into the existing aggregation circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,140",
+				"to": "00:06:29,540"
+			},
+			"offsets": {
+				"from": 387140,
+				"to": 389540
+			},
+			"text": " So to our knowledge, there are two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,540",
+				"to": "00:06:30,980"
+			},
+			"offsets": {
+				"from": 389540,
+				"to": 390980
+			},
+			"text": " One is out of PSE."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,980",
+				"to": "00:06:33,020"
+			},
+			"offsets": {
+				"from": 390980,
+				"to": 393020
+			},
+			"text": " It's this Planck-Verifier repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,020",
+				"to": "00:06:36,460"
+			},
+			"offsets": {
+				"from": 393020,
+				"to": 396460
+			},
+			"text": " And one is out of scroll, which is halo2-snark-aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,460",
+				"to": "00:06:38,220"
+			},
+			"offsets": {
+				"from": 396460,
+				"to": 398220
+			},
+			"text": " The way that both of these work is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,220",
+				"to": "00:06:40,180"
+			},
+			"offsets": {
+				"from": 398220,
+				"to": 400180
+			},
+			"text": " that there are various generic traits"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,180",
+				"to": "00:06:43,300"
+			},
+			"offsets": {
+				"from": 400180,
+				"to": 403300
+			},
+			"text": " for an elliptic curve library that they use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,300",
+				"to": "00:06:46,180"
+			},
+			"offsets": {
+				"from": 403300,
+				"to": 406180
+			},
+			"text": " And they sort of abstractly write on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,180",
+				"to": "00:06:48,260"
+			},
+			"offsets": {
+				"from": 406180,
+				"to": 408260
+			},
+			"text": " of these elliptic curve traits."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,260",
+				"to": "00:06:52,100"
+			},
+			"offsets": {
+				"from": 408260,
+				"to": 412100
+			},
+			"text": " So very nicely, that allows us to plug our library"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,100",
+				"to": "00:06:54,940"
+			},
+			"offsets": {
+				"from": 412100,
+				"to": 414940
+			},
+			"text": " into these aggregators simply by, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,940",
+				"to": "00:06:58,100"
+			},
+			"offsets": {
+				"from": 414940,
+				"to": 418100
+			},
+			"text": " re-implementing all of these traits in our language."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,100",
+				"to": "00:07:00,740"
+			},
+			"offsets": {
+				"from": 418100,
+				"to": 420740
+			},
+			"text": " And again, a nice feature is that both of these libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,740",
+				"to": "00:07:03,500"
+			},
+			"offsets": {
+				"from": 420740,
+				"to": 423500
+			},
+			"text": " are able to output EVM verification code"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,500",
+				"to": "00:07:05,780"
+			},
+			"offsets": {
+				"from": 423500,
+				"to": 425780
+			},
+			"text": " for the final aggregated circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,780",
+				"to": "00:07:08,980"
+			},
+			"offsets": {
+				"from": 427780,
+				"to": 428980
+			},
+			"text": " So here are the results."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,980",
+				"to": "00:07:12,060"
+			},
+			"offsets": {
+				"from": 428980,
+				"to": 432060
+			},
+			"text": " So in a setting where we have seven advice columns"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,060",
+				"to": "00:07:14,860"
+			},
+			"offsets": {
+				"from": 432060,
+				"to": 434860
+			},
+			"text": " and eight fixed columns, so of the advice columns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,860",
+				"to": "00:07:17,980"
+			},
+			"offsets": {
+				"from": 434860,
+				"to": 437980
+			},
+			"text": " six are standard columns with this basic gate enabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,980",
+				"to": "00:07:19,980"
+			},
+			"offsets": {
+				"from": 437980,
+				"to": 439980
+			},
+			"text": " And one is a lookup column."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,980",
+				"to": "00:07:24,340"
+			},
+			"offsets": {
+				"from": 439980,
+				"to": 444340
+			},
+			"text": " We're able to verify the actual ZKVM circuits recursively."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,340",
+				"to": "00:07:28,220"
+			},
+			"offsets": {
+				"from": 444340,
+				"to": 448220
+			},
+			"text": " So we just tried out the EVM opcode circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,220",
+				"to": "00:07:30,260"
+			},
+			"offsets": {
+				"from": 448220,
+				"to": 450260
+			},
+			"text": " and then the combination of the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,260",
+				"to": "00:07:32,100"
+			},
+			"offsets": {
+				"from": 450260,
+				"to": 452100
+			},
+			"text": " and state opcode circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,100",
+				"to": "00:07:34,460"
+			},
+			"offsets": {
+				"from": 452100,
+				"to": 454460
+			},
+			"text": " And so even on a MacBook Air, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,460",
+				"to": "00:07:36,780"
+			},
+			"offsets": {
+				"from": 454460,
+				"to": 456780
+			},
+			"text": " able to do the recursive aggregation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,780",
+				"to": "00:07:40,340"
+			},
+			"offsets": {
+				"from": 456780,
+				"to": 460340
+			},
+			"text": " of the EVM circuit in a little bit over, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,340",
+				"to": "00:07:41,620"
+			},
+			"offsets": {
+				"from": 460340,
+				"to": 461620
+			},
+			"text": " around 10 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,620",
+				"to": "00:07:44,260"
+			},
+			"offsets": {
+				"from": 461620,
+				"to": 464260
+			},
+			"text": " Note that the scroll and PSC numbers are not precisely"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,260",
+				"to": "00:07:46,660"
+			},
+			"offsets": {
+				"from": 464260,
+				"to": 466660
+			},
+			"text": " comparable because we have slightly different versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,660",
+				"to": "00:07:48,980"
+			},
+			"offsets": {
+				"from": 466660,
+				"to": 468980
+			},
+			"text": " of the state circuit inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,980",
+				"to": "00:07:51,780"
+			},
+			"offsets": {
+				"from": 468980,
+				"to": 471780
+			},
+			"text": " Unfortunately, when we aggregate the EVM and state circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,780",
+				"to": "00:07:55,860"
+			},
+			"offsets": {
+				"from": 471780,
+				"to": 475860
+			},
+			"text": " together, it exceeds the memory constraints of our MacBook"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,860",
+				"to": "00:08:00,660"
+			},
+			"offsets": {
+				"from": 475860,
+				"to": 480660
+			},
+			"text": " Air, but we'll try it on the server soon enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,660",
+				"to": "00:08:02,780"
+			},
+			"offsets": {
+				"from": 480660,
+				"to": 482780
+			},
+			"text": " OK, so that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,780",
+				"to": "00:08:05,660"
+			},
+			"offsets": {
+				"from": 482780,
+				"to": 485660
+			},
+			"text": " So in summary, we have this library halo2hcc."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,660",
+				"to": "00:08:08,340"
+			},
+			"offsets": {
+				"from": 485660,
+				"to": 488340
+			},
+			"text": " We can support pretty much all the operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,340",
+				"to": "00:08:12,260"
+			},
+			"offsets": {
+				"from": 488340,
+				"to": 492260
+			},
+			"text": " that we know of that you'd want to do on elliptic curves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,260",
+				"to": "00:08:14,140"
+			},
+			"offsets": {
+				"from": 492260,
+				"to": 494140
+			},
+			"text": " So some highlights would be the pairing check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,140",
+				"to": "00:08:16,820"
+			},
+			"offsets": {
+				"from": 494140,
+				"to": 496820
+			},
+			"text": " the ECDSA signature verification, and the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,820",
+				"to": "00:08:20,260"
+			},
+			"offsets": {
+				"from": 496820,
+				"to": 500260
+			},
+			"text": " to configure the base curve without too much work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,260",
+				"to": "00:08:21,660"
+			},
+			"offsets": {
+				"from": 500260,
+				"to": 501660
+			},
+			"text": " And we really wanted to highlight"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,660",
+				"to": "00:08:24,980"
+			},
+			"offsets": {
+				"from": 501660,
+				"to": 504980
+			},
+			"text": " that our base component library halo2base, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,980",
+				"to": "00:08:27,020"
+			},
+			"offsets": {
+				"from": 504980,
+				"to": 507020
+			},
+			"text": " we open sourced this week, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,020",
+				"to": "00:08:30,140"
+			},
+			"offsets": {
+				"from": 507020,
+				"to": 510140
+			},
+			"text": " allows us to write these circuits in a much more modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,140",
+				"to": "00:08:32,540"
+			},
+			"offsets": {
+				"from": 510140,
+				"to": 512540
+			},
+			"text": " and configurable way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,540",
+				"to": "00:08:34,140"
+			},
+			"offsets": {
+				"from": 512540,
+				"to": 514140
+			},
+			"text": " Thanks, and I'm happy to take any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,140",
+				"to": "00:08:37,120"
+			},
+			"offsets": {
+				"from": 514140,
+				"to": 517120
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,120",
+				"to": "00:08:46,540"
+			},
+			"offsets": {
+				"from": 517120,
+				"to": 526540
+			},
+			"text": " Thanks, E. Are there any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,540",
+				"to": "00:08:48,380"
+			},
+			"offsets": {
+				"from": 526540,
+				"to": 528380
+			},
+			"text": " OK, I have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,380",
+				"to": "00:08:52,260"
+			},
+			"offsets": {
+				"from": 528380,
+				"to": 532260
+			},
+			"text": " So I am one of the authors of the halo2 library."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,260",
+				"to": "00:08:57,620"
+			},
+			"offsets": {
+				"from": 532260,
+				"to": 537620
+			},
+			"text": " So if you could change two things about halo2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,620",
+				"to": "00:08:59,180"
+			},
+			"offsets": {
+				"from": 537620,
+				"to": 539180
+			},
+			"text": " what would they be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,180",
+				"to": "00:08:59,660"
+			},
+			"offsets": {
+				"from": 539180,
+				"to": 539660
+			},
+			"text": " No more."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,700",
+				"to": "00:09:04,940"
+			},
+			"offsets": {
+				"from": 542700,
+				"to": 544940
+			},
+			"text": " If you ask me for two things, the first thing would probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,940",
+				"to": "00:09:07,140"
+			},
+			"offsets": {
+				"from": 544940,
+				"to": 547140
+			},
+			"text": " be-- and this might be very difficult to change--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,140",
+				"to": "00:09:09,820"
+			},
+			"offsets": {
+				"from": 547140,
+				"to": 549820
+			},
+			"text": " so halo2 has a function called synthesize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,820",
+				"to": "00:09:11,740"
+			},
+			"offsets": {
+				"from": 549820,
+				"to": 551740
+			},
+			"text": " which constructs your circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,740",
+				"to": "00:09:13,660"
+			},
+			"offsets": {
+				"from": 551740,
+				"to": 553660
+			},
+			"text": " But the design of the library is that synthesize"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,660",
+				"to": "00:09:16,700"
+			},
+			"offsets": {
+				"from": 553660,
+				"to": 556700
+			},
+			"text": " is called multiple times with different purposes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,700",
+				"to": "00:09:18,860"
+			},
+			"offsets": {
+				"from": 556700,
+				"to": 558860
+			},
+			"text": " and different interpretations of the input."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,860",
+				"to": "00:09:21,420"
+			},
+			"offsets": {
+				"from": 558860,
+				"to": 561420
+			},
+			"text": " So when we're developing, that's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,420",
+				"to": "00:09:23,980"
+			},
+			"offsets": {
+				"from": 561420,
+				"to": 563980
+			},
+			"text": " the biggest source of bugs, because we sort of forget"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,980",
+				"to": "00:09:26,740"
+			},
+			"offsets": {
+				"from": 563980,
+				"to": 566740
+			},
+			"text": " that on one of the times, the semantic meaning of some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,740",
+				"to": "00:09:29,500"
+			},
+			"offsets": {
+				"from": 566740,
+				"to": 569500
+			},
+			"text": " of the inputs is a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,500",
+				"to": "00:09:31,180"
+			},
+			"offsets": {
+				"from": 569500,
+				"to": 571180
+			},
+			"text": " I don't know how that would be pulled out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,180",
+				"to": "00:09:33,980"
+			},
+			"offsets": {
+				"from": 571180,
+				"to": 573980
+			},
+			"text": " but that's the biggest difficulty right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,980",
+				"to": "00:09:36,340"
+			},
+			"offsets": {
+				"from": 573980,
+				"to": 576340
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,340",
+				"to": "00:09:39,820"
+			},
+			"offsets": {
+				"from": 576340,
+				"to": 579820
+			},
+			"text": " And also-- is there a question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,820",
+				"to": "00:09:40,780"
+			},
+			"offsets": {
+				"from": 579820,
+				"to": 580780
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,780",
+				"to": "00:09:46,020"
+			},
+			"offsets": {
+				"from": 580780,
+				"to": 586020
+			},
+			"text": " Halo2 is a very low level API in the sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,020",
+				"to": "00:09:50,300"
+			},
+			"offsets": {
+				"from": 586020,
+				"to": 590300
+			},
+			"text": " that you can configure really every detail about your circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,300",
+				"to": "00:09:56,460"
+			},
+			"offsets": {
+				"from": 590300,
+				"to": 596460
+			},
+			"text": " So have you found that to be more helpful or more annoying?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,460",
+				"to": "00:09:58,140"
+			},
+			"offsets": {
+				"from": 596460,
+				"to": 598140
+			},
+			"text": " We really like the configurability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,140",
+				"to": "00:09:59,940"
+			},
+			"offsets": {
+				"from": 598140,
+				"to": 599940
+			},
+			"text": " and that's why we're spending so much time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,940",
+				"to": "00:10:02,060"
+			},
+			"offsets": {
+				"from": 599940,
+				"to": 602060
+			},
+			"text": " in the Halo2 ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,060",
+				"to": "00:10:04,340"
+			},
+			"offsets": {
+				"from": 602060,
+				"to": 604340
+			},
+			"text": " The way we found-- initially, we found it very difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,340",
+				"to": "00:10:07,060"
+			},
+			"offsets": {
+				"from": 604340,
+				"to": 607060
+			},
+			"text": " to manage, but the way we found to be productive in it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,060",
+				"to": "00:10:10,980"
+			},
+			"offsets": {
+				"from": 607060,
+				"to": 610980
+			},
+			"text": " is to sort of really restrict ourselves, as you've seen here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,980",
+				"to": "00:10:14,340"
+			},
+			"offsets": {
+				"from": 610980,
+				"to": 614340
+			},
+			"text": " and then slowly add on more complexity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,340",
+				"to": "00:10:17,540"
+			},
+			"offsets": {
+				"from": 614340,
+				"to": 617540
+			},
+			"text": " almost as-- not really--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,540",
+				"to": "00:10:19,100"
+			},
+			"offsets": {
+				"from": 617540,
+				"to": 619100
+			},
+			"text": " precompile is not the right word,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,100",
+				"to": "00:10:21,980"
+			},
+			"offsets": {
+				"from": 619100,
+				"to": 621980
+			},
+			"text": " but just almost as a special addition to our library"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,980",
+				"to": "00:10:23,940"
+			},
+			"offsets": {
+				"from": 621980,
+				"to": 623940
+			},
+			"text": " and then restrict ourselves to only work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,940",
+				"to": "00:10:26,860"
+			},
+			"offsets": {
+				"from": 623940,
+				"to": 626860
+			},
+			"text": " within this sort of constrained universe of the freedom"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,860",
+				"to": "00:10:28,340"
+			},
+			"offsets": {
+				"from": 626860,
+				"to": 628340
+			},
+			"text": " that Halo2 offers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,340",
+				"to": "00:10:30,420"
+			},
+			"offsets": {
+				"from": 628340,
+				"to": 630420
+			},
+			"text": " But the reason we like that freedom is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,420",
+				"to": "00:10:32,620"
+			},
+			"offsets": {
+				"from": 630420,
+				"to": 632620
+			},
+			"text": " if we ever need something more fancy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,620",
+				"to": "00:10:35,940"
+			},
+			"offsets": {
+				"from": 632620,
+				"to": 635940
+			},
+			"text": " we know that we can sort of add it to our base components."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,940",
+				"to": "00:10:36,300"
+			},
+			"offsets": {
+				"from": 635940,
+				"to": 636300
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,300",
+				"to": "00:10:41,980"
+			},
+			"offsets": {
+				"from": 636300,
+				"to": 641980
+			},
+			"text": " And my last question is, what are you using Halo2 ECC for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,980",
+				"to": "00:10:44,820"
+			},
+			"offsets": {
+				"from": 641980,
+				"to": 644820
+			},
+			"text": " Yeah, so we're building a new project called Axiom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,820",
+				"to": "00:10:46,980"
+			},
+			"offsets": {
+				"from": 644820,
+				"to": 646980
+			},
+			"text": " which is a trussus indexer, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,980",
+				"to": "00:10:50,780"
+			},
+			"offsets": {
+				"from": 646980,
+				"to": 650780
+			},
+			"text": " allows you to take any historic fact from Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,780",
+				"to": "00:10:54,940"
+			},
+			"offsets": {
+				"from": 650780,
+				"to": 654940
+			},
+			"text": " and prove it on chain for use in your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,940",
+				"to": "00:10:55,260"
+			},
+			"offsets": {
+				"from": 654940,
+				"to": 655260
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,260",
+				"to": "00:10:56,780"
+			},
+			"offsets": {
+				"from": 655260,
+				"to": 656780
+			},
+			"text": " Thanks, E."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,780",
+				"to": "00:11:00,140"
+			},
+			"offsets": {
+				"from": 656780,
+				"to": 660140
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,140",
+				"to": "00:11:03,500"
+			},
+			"offsets": {
+				"from": 660140,
+				"to": 663500
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,500",
+				"to": "00:11:06,860"
+			},
+			"offsets": {
+				"from": 663500,
+				"to": 666860
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,860",
+				"to": "00:11:35,860"
+			},
+			"offsets": {
+				"from": 666860,
+				"to": 695860
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

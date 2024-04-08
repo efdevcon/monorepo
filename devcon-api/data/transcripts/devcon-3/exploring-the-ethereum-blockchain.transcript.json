@@ -1,0 +1,2265 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " >> Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 14000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 19000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23000
+			},
+			"text": " Very good afternoon, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 29000
+			},
+			"text": " My name is met you, tan, and i'm the co and lead developer at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " eetrescan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " Welcome to one of the last technical presentations of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42000
+			},
+			"text": " The topic of our presentation today is exploring the theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " Blockchain. What we will do is we will first begin with a quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 50000
+			},
+			"text": " overview of the blockchain stats and share with you some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 54000
+			},
+			"text": " Challenges and issues that we face while building an infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 60000
+			},
+			"text": " Level service for the ethereum blockchain and then we will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 64000
+			},
+			"text": " Attem to derive the ethereum user persona using google analytics"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " Data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 71000
+			},
+			"text": " Before further counting, i would like to do a brief introduction of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " Who we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 77000
+			},
+			"text": " So eetrescan is a blockchain and search engine for the ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 80000
+			},
+			"text": " Blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 85000
+			},
+			"text": " We receive 18 million pages per month and we serve over 9 billion"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 88000
+			},
+			"text": " API calls every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " So eetrescan was first launched in August, second 2015 and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " Today was one of the oldest and longest externally run project"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " Built around n4 ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " For the most part eetrescan, we bootstrapped the entire project"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 110000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 115000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 134000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137000
+			},
+			"text": " It is for manpower and resource allocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " At this point in time half our resources is dedicated to us"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 146000
+			},
+			"text": " Providing community support and the other half on software"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 149000
+			},
+			"text": " Engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 152000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " So for a quick blockchain or use test."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 160000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 167000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 174000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 177000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 183000
+			},
+			"text": " We are all in the same way as ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " We are all in an official term but it is merely a term that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " Blog Explorer came to adopt to represent a message call or action"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 199000
+			},
+			"text": " That resulted in a value transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " Just to give you an overview of how far the ethereum blockchain has come since"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 205000
+			},
+			"text": " It is the early days."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " We are going to use the previous DEF CON conferences"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " As data points over the ethereum transaction chart."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " The DEF CON 1 took place around two years ago in London."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " In November 2015 at that point in time the ethereum blockchain was"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " Only processing around 8500 transactions per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 230000
+			},
+			"text": " At DEF CON 2, last year in Shanghai, the ethereum blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 235000
+			},
+			"text": " Was processing around 46000 transactions per day representing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " A 5x or a 500% increase from the previous year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " Today at DEF CON 3, the ethereum networks processing upwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " Up to half a million of 500000 transactions per day representing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 255000
+			},
+			"text": " A 10x or a 1000% increase in number of day transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 261000
+			},
+			"text": " As for the ethereum block times, pre-bisentum fog,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " The block times used average around 30 seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " A post-bisentum fog after October 16, 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " In the last year, the block times have significantly reduced"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275000
+			},
+			"text": " And now everything around 14 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 280000
+			},
+			"text": " Today the ethereum blockchain is processing more transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284000
+			},
+			"text": " At shorter block infers and with a lower transaction pending queue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 292000
+			},
+			"text": " For the next section, I'd like to pass the mic to V."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 294000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 303000
+			},
+			"text": " Thank you Matthew."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 308000
+			},
+			"text": " Hi, I'm Wie, a product manager at this scan."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " I would like to share some of the challenges we face in building"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 315000
+			},
+			"text": " And infrastructure levels of this around the ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318000
+			},
+			"text": " First off, it's the issue of scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323000
+			},
+			"text": " We revolve around managing and supporting an ever-growing user base."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " Just looking at the transactions volume alone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 330000
+			},
+			"text": " We have seen an average of up to 10x growth year on year."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " From an operational viewpoint, hiring and expanding and team"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 338000
+			},
+			"text": " Is also tricky as there's a shortage of blockchain developers in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 346000
+			},
+			"text": " Security is always a top concern for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " Being on the protocol or application level or external events such as DDoS attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 358000
+			},
+			"text": " Being in the space, as we all know, if there exists any security vulnerable teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 363000
+			},
+			"text": " It will be fairly quickly exploited or taken advantage of."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 368000
+			},
+			"text": " On the support front, we have seen changing user dynamics over the last two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " Back then, when we first started, most of the questions or issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " That we receive are more technical nature or coming from DDoS already working in space."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " However, going forward since the beginning of year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 385000
+			},
+			"text": " We have seen more and more normal or regular users coming on board."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 390000
+			},
+			"text": " On a daily basis, we are receiving an average of 80 to 100 tickets per day"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 393000
+			},
+			"text": " And most of the users are first-time blockchain users"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 398000
+			},
+			"text": " With basic questions such as how do they transfer tokens, missing or invalid transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " Or even request for refunds, which we all know is not possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 406000
+			},
+			"text": " You cannot reverse transactions on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 410000
+			},
+			"text": " Given the ecosystem is still fairly young and evolving so fast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " At times, it's also a challenge for us just to keep it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 421000
+			},
+			"text": " There's never a boring week with Ethereum, new features, ICOs, security issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 426000
+			},
+			"text": " Multiple software revision patches within a short space of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " While it's extremely exciting and interesting, it can be difficult to manage over a longer period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " And lastly, the final issue revolves around Ethereum Notes management"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 445000
+			},
+			"text": " Which is something that we often have been asked about and will explore in further details."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 453000
+			},
+			"text": " At EdoScan, in the earlier days, we ran three different client implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 457000
+			},
+			"text": " And namely, GET, parity and Ethereum J."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 464000
+			},
+			"text": " Over time, we managed to reduce this to just two clients, which is GET and parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 470000
+			},
+			"text": " So some of you may ask, why do we need to run two clients? Why not just one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 476000
+			},
+			"text": " We are not saying this is the correct way, but this is what we found works best for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 481000
+			},
+			"text": " So while both clients supports all the official APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " There are certain areas that each of these clients excels in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 492000
+			},
+			"text": " For instance, if you plan to use Remix Debugger, for now this works only we get."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 496000
+			},
+			"text": " On the other hand, if you need to trace internal transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 501000
+			},
+			"text": " Parity provides an easy-to-use RPC endpoint that does this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 508000
+			},
+			"text": " But more than just feature set, running multiple clients also provide what we call network robustness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 513000
+			},
+			"text": " In case in hand, some of you may recall that during DEV Con 2 in Shanghai last year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 518000
+			},
+			"text": " The network was under a massive DDoS attack just before the event started."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 522000
+			},
+			"text": " One of the reasons that the network was able to continue tracking along"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " Was when a specified attack was successfully executed against one client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 531000
+			},
+			"text": " The other client was not affected and vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 539000
+			},
+			"text": " So while both GET and Parity works extremely well for private notes in default settings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 544000
+			},
+			"text": " There are some challenges when running these as public fun-facing notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 550000
+			},
+			"text": " For instance, to handle bursts of traffic of upwards to thousands of concurrent API calls per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 553000
+			},
+			"text": " Here are some recommendations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556000
+			},
+			"text": " Tip number one, use SSD drives."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " Do not use normal hard disk drives as these IOPS will be about an end."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 562000
+			},
+			"text": " Tip number two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 569000
+			},
+			"text": " If you have spare or extra RAM, you can allocate larger cache settings than the default ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 573000
+			},
+			"text": " When running over a longer period of time with high concurrent requests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 578000
+			},
+			"text": " You'll want to run some sort of monitoring service that tracks if the note is seen correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 582000
+			},
+			"text": " Or the latest block time is not too old."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " If they are, the service should restart the notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 589000
+			},
+			"text": " To scale upwards of multiple concurrent connections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 595000
+			},
+			"text": " You may want to deploy multiple smaller notes behind a load balancer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 599000
+			},
+			"text": " Or application gateways while taking care of the session-percision settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 602000
+			},
+			"text": " I'll now pass to Matt to Kanyan with presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 604000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 611000
+			},
+			"text": " Thanks, B."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 621000
+			},
+			"text": " So for the next section, I would like to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 627000
+			},
+			"text": " Arriving the Ethereum user persona with Google Analytics."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " So as a blockchain developer, or as a developer in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 637000
+			},
+			"text": " One of the things that I found extremely useful is when building applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 644000
+			},
+			"text": " It's to first understand who your target audiences are, who your users are, who your customers are."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 652000
+			},
+			"text": " So, an ether scan as a base layer infrastructure service for the e-treme blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 657000
+			},
+			"text": " We serve a diverse range of e-treme users from all across the globe."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " So what I would like to do right now is to share with you our own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " Our very own Google Analytics data that we derived over the last two and half years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 676000
+			},
+			"text": " Which we feel will provide you with a rough indication of what the typical user of the e-treme blockchain looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 686000
+			},
+			"text": " So, looking at our analytics data, one of the interesting things that we found"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 691000
+			},
+			"text": " Was a shift in user geography locations for the last two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 699000
+			},
+			"text": " So in both years, the United States represented our largest user base."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 704000
+			},
+			"text": " In 2016, United States represented half of our user base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 711000
+			},
+			"text": " Around 44% followed by Russia, Germany, United Kingdom, and Ukraine."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 716000
+			},
+			"text": " But in 2017, we saw a large increase in number of users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 726000
+			},
+			"text": " Originating from coming from China, and the emergence of new interests from South Korea in the crypto scene."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 734000
+			},
+			"text": " So the take home points here, while the United States still represents the largest user base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 740000
+			},
+			"text": " China is definitely a growing market, and at least South Korea is a new player in the scene."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 747000
+			},
+			"text": " So by understanding where your users are located, perhaps as a developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 753000
+			},
+			"text": " This can help you by optimizing location of your physical service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 759000
+			},
+			"text": " Or even when deciding which languages you should support for your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 773000
+			},
+			"text": " So as for the age and gender user demographics, our data was actually fairly consistent of what one might expect in the crypto scene."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 780000
+			},
+			"text": " So it's still largely dominated by males, which make up 92% of the user base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 789000
+			},
+			"text": " And of which 50% of the users belong to the age groups of 25 to 34 years of age."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 792000
+			},
+			"text": " And females only making up 8%."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 799000
+			},
+			"text": " And looking at the affiliate in market user demographics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 806000
+			},
+			"text": " We generally see this coming from users with interest in areas of technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 812000
+			},
+			"text": " And also those interested in financial and investment services."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 825000
+			},
+			"text": " For the user interface analytics, we look at two data points, which is the user browser and screen resolutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 832000
+			},
+			"text": " So as for the web browser type, the Chrome browser represents the larger share at 60%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 837000
+			},
+			"text": " Followed by the Safari and Firefox browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 843000
+			},
+			"text": " And as for screen resolutions, we normally see users interacting with larger screen resolutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " Normally indicating a desktop or a laptop interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 853000
+			},
+			"text": " So for the coributing the screen ratio analytics, we do indeed see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 858000
+			},
+			"text": " Around 2/3 of the users are indeed using a desktop interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 861000
+			},
+			"text": " And around 30% of remaining users using a mobile interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 870000
+			},
+			"text": " For the operating systems breakdown, we see that around half of the users are 50%"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 880000
+			},
+			"text": " Using the Windows operating system followed by Android, iOS and Macintosh in similar proportions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " Linux users only represent 3% of the user base."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 892000
+			},
+			"text": " So for diving into a mobile device background, we see that as a single device type,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 897000
+			},
+			"text": " The Apple iPhone commands the largest market share, followed at 40%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 901000
+			},
+			"text": " Followed by the Apple iPad and Samsung Galaxy phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 907000
+			},
+			"text": " Alright, so looking at the previous analytics data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 918000
+			},
+			"text": " Our derived Ethereum user will most likely be a male from the ages of 25 to 34."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 925000
+			},
+			"text": " Located in the US, China or Russia, generally tech oriented interests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 933000
+			},
+			"text": " And with financial services, and uses a Windows based PC and Chrome as the primary browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 939000
+			},
+			"text": " Any all likelihood either owns an Apple iPhone or a Samsung mobile device."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 949000
+			},
+			"text": " Okay, so summing up, so where are we today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 958000
+			},
+			"text": " We generally feel that we are definitely at the very early stages of the technology and its potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 967000
+			},
+			"text": " However, we passed that first wave of only pure early adopters or software developers or hardcore tech users."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 971000
+			},
+			"text": " And what we're seeing now, are more regular users."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 977000
+			},
+			"text": " So in large part, we believe this is perhaps due to the recent popularity of ICOs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 983000
+			},
+			"text": " We're really getting a lot of users who don't really understand what blockchain technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 986000
+			},
+			"text": " But are in it for speculative investment reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 995000
+			},
+			"text": " Which is why during the stage onboarding and user education is extremely important if you want to continue growing the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1002000
+			},
+			"text": " So onboarding regular users onto the platform through better user interfaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1007000
+			},
+			"text": " Education and while providing a secure user experience is critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1018000
+			},
+			"text": " At the same time, we are actually extremely excited because we sort of can see the pieces of the puzzle coming together."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1024000
+			},
+			"text": " The Ethereum protocol continues to be further developed at a rapid pace."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1031000
+			},
+			"text": " Things like ENS, Ethereum name service in place today and in use."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1040000
+			},
+			"text": " And then both Wispa and Swam will fill the remaining pieces of storage and communication to form the next distributed web built on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1049000
+			},
+			"text": " So at ENSK we'll do what we've always done, which is to continue to push forward at the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1056000
+			},
+			"text": " While continuing to expand our search for content for distributed protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1062000
+			},
+			"text": " Ladies and gentlemen, thank you for exploring the Ethereum blockchain list."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1066000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1079000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:01,260"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1081260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

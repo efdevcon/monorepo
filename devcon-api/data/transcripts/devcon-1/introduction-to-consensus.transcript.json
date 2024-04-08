@@ -1,0 +1,2716 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21000
+			},
+			"text": " >> Hi. Hi, my name is Domenico Williams."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,500"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25500
+			},
+			"text": " I'm the founder of just a research project called \"Definity\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,500",
+				"to": "00:00:31,500"
+			},
+			"offsets": {
+				"from": 25500,
+				"to": 31500
+			},
+			"text": " which seeks to advance blockchain technology with a particular focus on scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,500",
+				"to": "00:00:37,500"
+			},
+			"offsets": {
+				"from": 31500,
+				"to": 37500
+			},
+			"text": " In the process of doing that, we look at many different types of distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,500",
+				"to": "00:00:42,500"
+			},
+			"offsets": {
+				"from": 37500,
+				"to": 42500
+			},
+			"text": " algorithm and in particular many different types of consensus algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,500",
+				"to": "00:00:48,500"
+			},
+			"offsets": {
+				"from": 42500,
+				"to": 48500
+			},
+			"text": " And in the crypto space, we often spend a lot of time talking about block chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,500",
+				"to": "00:00:53,500"
+			},
+			"offsets": {
+				"from": 48500,
+				"to": 53500
+			},
+			"text": " and blockchain-like consensus systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,500",
+				"to": "00:00:59,500"
+			},
+			"offsets": {
+				"from": 53500,
+				"to": 59500
+			},
+			"text": " And I think the purpose of my talk is to introduce another form of consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,500",
+				"to": "00:01:05,500"
+			},
+			"offsets": {
+				"from": 59500,
+				"to": 65500
+			},
+			"text": " which has been around for longer known as Byzantine fault tolerant consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,500",
+				"to": "00:01:07,500"
+			},
+			"offsets": {
+				"from": 65500,
+				"to": 67500
+			},
+			"text": " which is based on message passing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,500",
+				"to": "00:01:12,500"
+			},
+			"offsets": {
+				"from": 67500,
+				"to": 72500
+			},
+			"text": " So I'm going to try and do this in 20 minutes which is kind of challenging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,500",
+				"to": "00:01:17,500"
+			},
+			"offsets": {
+				"from": 72500,
+				"to": 77500
+			},
+			"text": " but I wanted to just give you a feel of some of the issues involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,500",
+				"to": "00:01:20,500"
+			},
+			"offsets": {
+				"from": 77500,
+				"to": 80500
+			},
+			"text": " and what these kind of consensus protocols look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,500",
+				"to": "00:01:25,500"
+			},
+			"offsets": {
+				"from": 80500,
+				"to": 85500
+			},
+			"text": " So first of all, quickly it's worth just asking the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,500",
+				"to": "00:01:32,500"
+			},
+			"offsets": {
+				"from": 85500,
+				"to": 92500
+			},
+			"text": " we already have block chains, so why bother with complex consensus protocols?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,500",
+				"to": "00:01:37,500"
+			},
+			"offsets": {
+				"from": 92500,
+				"to": 97500
+			},
+			"text": " And the answer is they're useful for creating scale out crypto ledgers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,500",
+				"to": "00:01:42,500"
+			},
+			"offsets": {
+				"from": 97500,
+				"to": 102500
+			},
+			"text": " That's crypto ledgers that increase their transaction throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,500",
+				"to": "00:01:46,500"
+			},
+			"offsets": {
+				"from": 102500,
+				"to": 106500
+			},
+			"text": " as more nodes join the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,500",
+				"to": "00:01:50,500"
+			},
+			"offsets": {
+				"from": 106500,
+				"to": 110500
+			},
+			"text": " So the objective of the research effort is to try and support the creation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,500",
+				"to": "00:01:57,500"
+			},
+			"offsets": {
+				"from": 110500,
+				"to": 117500
+			},
+			"text": " of limitless decentralized clouds that can be used in the case of an open"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,500",
+				"to": "00:02:03,500"
+			},
+			"offsets": {
+				"from": 117500,
+				"to": 123500
+			},
+			"text": " decentralized virtual machine like Ethereum to run Gmail, Uber, Facebook,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,500",
+				"to": "00:02:10,500"
+			},
+			"offsets": {
+				"from": 123500,
+				"to": 130500
+			},
+			"text": " Twitter, that kind of thing, Internet of Things, services, layer and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,500",
+				"to": "00:02:14,500"
+			},
+			"offsets": {
+				"from": 130500,
+				"to": 134500
+			},
+			"text": " But there are sort of three different kinds of decentralized systems that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,500",
+				"to": "00:02:18,500"
+			},
+			"offsets": {
+				"from": 134500,
+				"to": 138500
+			},
+			"text": " I mentioned in one is the open decentralized systems like Bitcoin and Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,500",
+				"to": "00:02:23,500"
+			},
+			"offsets": {
+				"from": 138500,
+				"to": 143500
+			},
+			"text": " also federated decentralized systems as of the type that banks are currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,500",
+				"to": "00:02:25,500"
+			},
+			"offsets": {
+				"from": 143500,
+				"to": 145500
+			},
+			"text": " creating for settlement and clearing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,500",
+				"to": "00:02:30,500"
+			},
+			"offsets": {
+				"from": 145500,
+				"to": 150500
+			},
+			"text": " And I also think actually decentralized is a completely new computing paradigm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,500",
+				"to": "00:02:33,500"
+			},
+			"offsets": {
+				"from": 150500,
+				"to": 153500
+			},
+			"text": " and we're going to see it within the enterprise."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,500",
+				"to": "00:02:39,500"
+			},
+			"offsets": {
+				"from": 153500,
+				"to": 159500
+			},
+			"text": " So people are going to create decentralized databases which highly fault tolerant"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,500",
+				"to": "00:02:41,500"
+			},
+			"offsets": {
+				"from": 159500,
+				"to": 161500
+			},
+			"text": " because that's the way they design."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,500",
+				"to": "00:02:44,500"
+			},
+			"offsets": {
+				"from": 161500,
+				"to": 164500
+			},
+			"text": " And they're easy to administer because they're symmetric."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,500",
+				"to": "00:02:47,500"
+			},
+			"offsets": {
+				"from": 164500,
+				"to": 167500
+			},
+			"text": " Every server involved has a similar role."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,500",
+				"to": "00:02:53,500"
+			},
+			"offsets": {
+				"from": 167500,
+				"to": 173500
+			},
+			"text": " There isn't a kind of master slave arrangement like you see in MySQL databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,500",
+				"to": "00:02:55,500"
+			},
+			"offsets": {
+				"from": 173500,
+				"to": 175500
+			},
+			"text": " or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,500",
+				"to": "00:03:01,500"
+			},
+			"offsets": {
+				"from": 175500,
+				"to": 181500
+			},
+			"text": " And once these decentralized networks can scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,500",
+				"to": "00:03:05,500"
+			},
+			"offsets": {
+				"from": 181500,
+				"to": 185500
+			},
+			"text": " multi-party computation can be introduced to secure the data inside them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,500",
+				"to": "00:03:10,500"
+			},
+			"offsets": {
+				"from": 185500,
+				"to": 190500
+			},
+			"text": " So you probably all heard about the hacks that target in America"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,500",
+				"to": "00:03:12,500"
+			},
+			"offsets": {
+				"from": 190500,
+				"to": 192500
+			},
+			"text": " and the Office of Personnel Management, I think in the UK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,500",
+				"to": "00:03:16,500"
+			},
+			"offsets": {
+				"from": 192500,
+				"to": 196500
+			},
+			"text": " talk talk has just lost a load of customer data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,500",
+				"to": "00:03:21,500"
+			},
+			"offsets": {
+				"from": 196500,
+				"to": 201500
+			},
+			"text": " I think we're going to see enterprise decentralized databases where the data is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,500",
+				"to": "00:03:24,500"
+			},
+			"offsets": {
+				"from": 201500,
+				"to": 204500
+			},
+			"text": " distributed across a large number of different servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,500",
+				"to": "00:03:30,500"
+			},
+			"offsets": {
+				"from": 204500,
+				"to": 210500
+			},
+			"text": " And you can only access it by running authorized requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,500",
+				"to": "00:03:33,500"
+			},
+			"offsets": {
+				"from": 210500,
+				"to": 213500
+			},
+			"text": " which access the data in a certain way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,500",
+				"to": "00:03:36,500"
+			},
+			"offsets": {
+				"from": 213500,
+				"to": 216500
+			},
+			"text": " You can also run a query against the data, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,500",
+				"to": "00:03:38,500"
+			},
+			"offsets": {
+				"from": 216500,
+				"to": 218500
+			},
+			"text": " but you can't retrieve all the data from the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,500",
+				"to": "00:03:43,500"
+			},
+			"offsets": {
+				"from": 218500,
+				"to": 223500
+			},
+			"text": " So with a decentralized enterprise database which is using MPC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,500",
+				"to": "00:03:48,500"
+			},
+			"offsets": {
+				"from": 223500,
+				"to": 228500
+			},
+			"text": " all of these kind of hacks that you hear about would no longer be possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,500",
+				"to": "00:03:59,500"
+			},
+			"offsets": {
+				"from": 228500,
+				"to": 239500
+			},
+			"text": " So I think the most specifically for some system I've thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,500",
+				"to": "00:04:05,500"
+			},
+			"offsets": {
+				"from": 239500,
+				"to": 245500
+			},
+			"text": " probably in the long term, I think that the scale-out kind of systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,500",
+				"to": "00:04:10,500"
+			},
+			"offsets": {
+				"from": 245500,
+				"to": 250500
+			},
+			"text": " will use a number of different kinds of consensus system"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,500",
+				"to": "00:04:13,500"
+			},
+			"offsets": {
+				"from": 250500,
+				"to": 253500
+			},
+			"text": " in their overall network architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,500",
+				"to": "00:04:18,500"
+			},
+			"offsets": {
+				"from": 253500,
+				"to": 258500
+			},
+			"text": " And this is an architecture that I pursue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,500",
+				"to": "00:04:21,500"
+			},
+			"offsets": {
+				"from": 258500,
+				"to": 261500
+			},
+			"text": " And you can see at the very top level, there's got several layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,500",
+				"to": "00:04:24,500"
+			},
+			"offsets": {
+				"from": 261500,
+				"to": 264500
+			},
+			"text": " You've got a master consensus layer, you've got a scalable validation there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,500",
+				"to": "00:04:26,500"
+			},
+			"offsets": {
+				"from": 264500,
+				"to": 266500
+			},
+			"text": " and you've got a storage layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,500",
+				"to": "00:04:31,500"
+			},
+			"offsets": {
+				"from": 266500,
+				"to": 271500
+			},
+			"text": " And at the very top level, it's got a blockchain like..."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,500",
+				"to": "00:04:32,500"
+			},
+			"offsets": {
+				"from": 271500,
+				"to": 272500
+			},
+			"text": " It's got a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,500",
+				"to": "00:04:35,500"
+			},
+			"offsets": {
+				"from": 272500,
+				"to": 275500
+			},
+			"text": " It may not use proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,500",
+				"to": "00:04:40,500"
+			},
+			"offsets": {
+				"from": 275500,
+				"to": 280500
+			},
+			"text": " Could use something like CASPer or could use something else altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,500",
+				"to": "00:04:43,500"
+			},
+			"offsets": {
+				"from": 280500,
+				"to": 283500
+			},
+			"text": " But that's only one component of the overall network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,500",
+				"to": "00:04:48,500"
+			},
+			"offsets": {
+				"from": 283500,
+				"to": 288500
+			},
+			"text": " We also have this validation layer and we have a storage layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,500",
+				"to": "00:04:55,500"
+			},
+			"offsets": {
+				"from": 288500,
+				"to": 295500
+			},
+			"text": " And these green dots, these represent traditional consensus processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,500",
+				"to": "00:04:59,500"
+			},
+			"offsets": {
+				"from": 295500,
+				"to": 299500
+			},
+			"text": " that are being run because for various reasons it's very difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,500",
+				"to": "00:05:02,500"
+			},
+			"offsets": {
+				"from": 299500,
+				"to": 302500
+			},
+			"text": " to create strongly consistent master chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,500",
+				"to": "00:05:05,500"
+			},
+			"offsets": {
+				"from": 302500,
+				"to": 305500
+			},
+			"text": " That is, if you have a very large number of nodes, imagine if you had a million nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,500",
+				"to": "00:05:12,500"
+			},
+			"offsets": {
+				"from": 305500,
+				"to": 312500
+			},
+			"text": " in a distributed virtual machine, it would be very difficult to have strong consistency at that level."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,500",
+				"to": "00:05:18,500"
+			},
+			"offsets": {
+				"from": 312500,
+				"to": 318500
+			},
+			"text": " So if the master chain can reorganize itself and drive other changes lower down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,500",
+				"to": "00:05:26,500"
+			},
+			"offsets": {
+				"from": 318500,
+				"to": 326500
+			},
+			"text": " we don't want to have weakly consistent to be composing weakly consistent consensus processes further down."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,500",
+				"to": "00:05:34,500"
+			},
+			"offsets": {
+				"from": 326500,
+				"to": 334500
+			},
+			"text": " So, you know, consensus really does have a really important role to play in creating these kinds of network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,500",
+				"to": "00:05:41,500"
+			},
+			"offsets": {
+				"from": 334500,
+				"to": 341500
+			},
+			"text": " And in this diagram here, these green dots are in fact traditional consensus instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,500",
+				"to": "00:05:47,500"
+			},
+			"offsets": {
+				"from": 341500,
+				"to": 347500
+			},
+			"text": " So, what is the sort of Byzantine consensus challenge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,500",
+				"to": "00:05:55,500"
+			},
+			"offsets": {
+				"from": 347500,
+				"to": 355500
+			},
+			"text": " Very basically, you've got a bunch of nodes that are connected by some kind of network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,500",
+				"to": "00:06:00,500"
+			},
+			"offsets": {
+				"from": 355500,
+				"to": 360500
+			},
+			"text": " Here are cool common processes, so I'll try and use that in non-climature."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,500",
+				"to": "00:06:05,500"
+			},
+			"offsets": {
+				"from": 360500,
+				"to": 365500
+			},
+			"text": " And they all have a value that they want to propose and they've got to agree on this value."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,500",
+				"to": "00:06:11,500"
+			},
+			"offsets": {
+				"from": 365500,
+				"to": 371500
+			},
+			"text": " The important point is that most of these nodes are correct, which means they follow the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,500",
+				"to": "00:06:16,500"
+			},
+			"offsets": {
+				"from": 371500,
+				"to": 376500
+			},
+			"text": " but some of them are faulty, and that means they can behave completely arbitrarily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,500",
+				"to": "00:06:18,500"
+			},
+			"offsets": {
+				"from": 376500,
+				"to": 378500
+			},
+			"text": " which is what is meant by Byzantine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,500",
+				"to": "00:06:27,500"
+			},
+			"offsets": {
+				"from": 382500,
+				"to": 387500
+			},
+			"text": " So what is Byzantine consensus? I guess the easiest way to think about it is as a game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,500",
+				"to": "00:06:35,500"
+			},
+			"offsets": {
+				"from": 387500,
+				"to": 395500
+			},
+			"text": " The correct processes run this protocol and try and reach agreement by sending and receiving messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,500",
+				"to": "00:06:39,500"
+			},
+			"offsets": {
+				"from": 395500,
+				"to": 399500
+			},
+			"text": " Meanwhile, the faulty processes, which are controlled by a adversary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,500",
+				"to": "00:06:47,500"
+			},
+			"offsets": {
+				"from": 399500,
+				"to": 407500
+			},
+			"text": " try to either prevent consensus being reached or to make correct nodes decide in valid values."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,500",
+				"to": "00:06:51,500"
+			},
+			"offsets": {
+				"from": 407500,
+				"to": 411500
+			},
+			"text": " That is, think they've reached agreement on something that they haven't."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,500",
+				"to": "00:06:55,500"
+			},
+			"offsets": {
+				"from": 411500,
+				"to": 415500
+			},
+			"text": " So these faulty processes, what can they do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,500",
+				"to": "00:07:00,500"
+			},
+			"offsets": {
+				"from": 415500,
+				"to": 420500
+			},
+			"text": " They're Byzantine, and what that means is they can adopt arbitrary tactics."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,500",
+				"to": "00:07:03,500"
+			},
+			"offsets": {
+				"from": 420500,
+				"to": 423500
+			},
+			"text": " They can just decide to crash and fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,500",
+				"to": "00:07:06,500"
+			},
+			"offsets": {
+				"from": 423500,
+				"to": 426500
+			},
+			"text": " They can corrupt data and messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,500",
+				"to": "00:07:12,500"
+			},
+			"offsets": {
+				"from": 426500,
+				"to": 432500
+			},
+			"text": " They can subtly subvert the communications protocol and they can coordinate their actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,500",
+				"to": "00:07:15,500"
+			},
+			"offsets": {
+				"from": 432500,
+				"to": 435500
+			},
+			"text": " So they really can do anything at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,500",
+				"to": "00:07:20,500"
+			},
+			"offsets": {
+				"from": 435500,
+				"to": 440500
+			},
+			"text": " Depending on the model that's being used, the adversary can also do things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,500",
+				"to": "00:07:25,500"
+			},
+			"offsets": {
+				"from": 440500,
+				"to": 445500
+			},
+			"text": " The adversary can also do things like controlling the scheduling of messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,500",
+				"to": "00:07:27,500"
+			},
+			"offsets": {
+				"from": 445500,
+				"to": 447500
+			},
+			"text": " and impact the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,500",
+				"to": "00:07:34,500"
+			},
+			"offsets": {
+				"from": 447500,
+				"to": 454500
+			},
+			"text": " He may have full information about processed states, and he can, during the consensus protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,500",
+				"to": "00:07:38,500"
+			},
+			"offsets": {
+				"from": 454500,
+				"to": 458500
+			},
+			"text": " he can corrupt correct nodes at will."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,500",
+				"to": "00:07:46,500"
+			},
+			"offsets": {
+				"from": 458500,
+				"to": 466500
+			},
+			"text": " So just to clarify what consensus is, first of all consensus is agreement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,500",
+				"to": "00:07:50,500"
+			},
+			"offsets": {
+				"from": 466500,
+				"to": 470500
+			},
+			"text": " Here we have a network of just four nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,500",
+				"to": "00:07:53,500"
+			},
+			"offsets": {
+				"from": 470500,
+				"to": 473500
+			},
+			"text": " The green ones are correct, and the red one is faulty."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,500",
+				"to": "00:08:00,500"
+			},
+			"offsets": {
+				"from": 473500,
+				"to": 480500
+			},
+			"text": " The green correct nodes all start off wanting to propose different values."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,500",
+				"to": "00:08:05,500"
+			},
+			"offsets": {
+				"from": 480500,
+				"to": 485500
+			},
+			"text": " And after consensus is run, they've all agreed on the same value, x, y, z."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,500",
+				"to": "00:08:11,500"
+			},
+			"offsets": {
+				"from": 485500,
+				"to": 491500
+			},
+			"text": " That's, I guess, pretty intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,500",
+				"to": "00:08:23,500"
+			},
+			"offsets": {
+				"from": 491500,
+				"to": 503500
+			},
+			"text": " A grand source of validity, validity in this case means that if all the nodes start off proposing the same value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,500",
+				"to": "00:08:26,500"
+			},
+			"offsets": {
+				"from": 503500,
+				"to": 506500
+			},
+			"text": " then they decide that same value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,500",
+				"to": "00:08:28,500"
+			},
+			"offsets": {
+				"from": 506500,
+				"to": 508500
+			},
+			"text": " And there's two forms of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,500",
+				"to": "00:08:33,500"
+			},
+			"offsets": {
+				"from": 508500,
+				"to": 513500
+			},
+			"text": " Actually, there's weak validity, which requires that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,500",
+				"to": "00:08:39,500"
+			},
+			"offsets": {
+				"from": 513500,
+				"to": 519500
+			},
+			"text": " Every single process starts off proposing the same value, and the strong validity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,500",
+				"to": "00:08:46,500"
+			},
+			"offsets": {
+				"from": 519500,
+				"to": 526500
+			},
+			"text": " which requires that only the correct processes need to start off proposing the same value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,500",
+				"to": "00:08:53,500"
+			},
+			"offsets": {
+				"from": 526500,
+				"to": 533500
+			},
+			"text": " Anyway, in this diagram here, all of the processes have started off proposing NMO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,500",
+				"to": "00:09:00,500"
+			},
+			"offsets": {
+				"from": 533500,
+				"to": 540500
+			},
+			"text": " and after consensus, all of the correct processes have decided NMO."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,500",
+				"to": "00:09:03,500"
+			},
+			"offsets": {
+				"from": 540500,
+				"to": 543500
+			},
+			"text": " Of course, the faulty processes come up with x, y, z."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,500",
+				"to": "00:09:09,500"
+			},
+			"offsets": {
+				"from": 543500,
+				"to": 549500
+			},
+			"text": " If anything, it's faulty, it can do what it likes, it can behave arbitrarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,500",
+				"to": "00:09:13,500"
+			},
+			"offsets": {
+				"from": 549500,
+				"to": 553500
+			},
+			"text": " So this is an important one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,500",
+				"to": "00:09:17,500"
+			},
+			"offsets": {
+				"from": 553500,
+				"to": 557500
+			},
+			"text": " Consensus is also termination."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,500",
+				"to": "00:09:25,500"
+			},
+			"offsets": {
+				"from": 557500,
+				"to": 565500
+			},
+			"text": " What that means is that, for a consensus protocol, that it will eventually terminate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,500",
+				"to": "00:09:27,500"
+			},
+			"offsets": {
+				"from": 565500,
+				"to": 567500
+			},
+			"text": " It can't just go on forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,500",
+				"to": "00:09:35,500"
+			},
+			"offsets": {
+				"from": 567500,
+				"to": 575500
+			},
+			"text": " A valid consensus protocol has to terminate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,500",
+				"to": "00:09:43,500"
+			},
+			"offsets": {
+				"from": 575500,
+				"to": 583500
+			},
+			"text": " So, as you probably guessed, listening so far, there are actually many different models"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,500",
+				"to": "00:09:47,500"
+			},
+			"offsets": {
+				"from": 583500,
+				"to": 587500
+			},
+			"text": " that these consensus protocols are designed to work for."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,500",
+				"to": "00:09:52,500"
+			},
+			"offsets": {
+				"from": 587500,
+				"to": 592500
+			},
+			"text": " And so here are some of the main ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,500",
+				"to": "00:09:56,500"
+			},
+			"offsets": {
+				"from": 592500,
+				"to": 596500
+			},
+			"text": " First one is network behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,500",
+				"to": "00:10:02,500"
+			},
+			"offsets": {
+				"from": 596500,
+				"to": 602500
+			},
+			"text": " Generally speaking, consensus protocols are divided into synchronous consensus protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,500",
+				"to": "00:10:06,500"
+			},
+			"offsets": {
+				"from": 602500,
+				"to": 606500
+			},
+			"text": " and partially synchronous consensus protocols and asynchronous protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,500",
+				"to": "00:10:14,500"
+			},
+			"offsets": {
+				"from": 606500,
+				"to": 614500
+			},
+			"text": " And in synchronous protocols, the network is assumed to deliver messages within some"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,500",
+				"to": "00:10:16,500"
+			},
+			"offsets": {
+				"from": 614500,
+				"to": 616500
+			},
+			"text": " bounded predictable time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,500",
+				"to": "00:10:22,500"
+			},
+			"offsets": {
+				"from": 616500,
+				"to": 622500
+			},
+			"text": " In asynchronous networks, there are no timing assumptions whatsoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,500",
+				"to": "00:10:25,500"
+			},
+			"offsets": {
+				"from": 622500,
+				"to": 625500
+			},
+			"text": " And this actually is kind of realistic for the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,500",
+				"to": "00:10:28,500"
+			},
+			"offsets": {
+				"from": 625500,
+				"to": 628500
+			},
+			"text": " You can get arbitrary partitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,500",
+				"to": "00:10:34,500"
+			},
+			"offsets": {
+				"from": 628500,
+				"to": 634500
+			},
+			"text": " A correct node can be DDoSed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,500",
+				"to": "00:10:38,500"
+			},
+			"offsets": {
+				"from": 634500,
+				"to": 638500
+			},
+			"text": " And the second one, of course, is the fault type."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,500",
+				"to": "00:10:44,500"
+			},
+			"offsets": {
+				"from": 638500,
+				"to": 644500
+			},
+			"text": " So this is a really oversimplification, but I've probably heard of a consensus algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,500",
+				"to": "00:10:46,500"
+			},
+			"offsets": {
+				"from": 644500,
+				"to": 646500
+			},
+			"text": " of Paxos."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,500",
+				"to": "00:10:52,500"
+			},
+			"offsets": {
+				"from": 646500,
+				"to": 652500
+			},
+			"text": " It's used in Google Chubby and possibly Zuki and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,500",
+				"to": "00:10:57,500"
+			},
+			"offsets": {
+				"from": 652500,
+				"to": 657500
+			},
+			"text": " So it's a consensus algorithm where the only kinds of faults that are handled are crash faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,500",
+				"to": "00:11:02,500"
+			},
+			"offsets": {
+				"from": 657500,
+				"to": 662500
+			},
+			"text": " So it can deal with processes crashing, but it can't deal with them behaving arbitrarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,500",
+				"to": "00:11:12,500"
+			},
+			"offsets": {
+				"from": 662500,
+				"to": 672500
+			},
+			"text": " And of course, the wider set of fault types is presenting, where processes can behave arbitrarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,500",
+				"to": "00:11:20,500"
+			},
+			"offsets": {
+				"from": 672500,
+				"to": 680500
+			},
+			"text": " So if there's anything just to take from this useful, it's that obviously, if a consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,500",
+				"to": "00:11:26,500"
+			},
+			"offsets": {
+				"from": 680500,
+				"to": 686500
+			},
+			"text": " protocol is Byzantine fault tolerant, it's resistant to a far greater number of faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,500",
+				"to": "00:11:27,500"
+			},
+			"offsets": {
+				"from": 686500,
+				"to": 687500
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,500",
+				"to": "00:11:29,500"
+			},
+			"offsets": {
+				"from": 687500,
+				"to": 689500
+			},
+			"text": " Or arbitrary faults, in fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,500",
+				"to": "00:11:33,500"
+			},
+			"offsets": {
+				"from": 689500,
+				"to": 693500
+			},
+			"text": " And it works with an asynchronous network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,500",
+				"to": "00:11:40,500"
+			},
+			"offsets": {
+				"from": 693500,
+				"to": 700500
+			},
+			"text": " That's better because it's not vulnerable to a correct process being DDoSed or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,500",
+				"to": "00:11:45,500"
+			},
+			"offsets": {
+				"from": 700500,
+				"to": 705500
+			},
+			"text": " or the network just behaving strangely."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,500",
+				"to": "00:11:52,500"
+			},
+			"offsets": {
+				"from": 705500,
+				"to": 712500
+			},
+			"text": " So just to talk about challenges a bit more, I think one of the reasons these kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,500",
+				"to": "00:11:59,500"
+			},
+			"offsets": {
+				"from": 712500,
+				"to": 719500
+			},
+			"text": " protocols are complex is that in fact, of course, the state of the network is unknowable."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,500",
+				"to": "00:12:05,500"
+			},
+			"offsets": {
+				"from": 719500,
+				"to": 725500
+			},
+			"text": " And it's easy to forget that because you always see a network diagram which shows lots of connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,500",
+				"to": "00:12:07,500"
+			},
+			"offsets": {
+				"from": 725500,
+				"to": 727500
+			},
+			"text": " nodes and some of them are correct and some of them are faulty."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,500",
+				"to": "00:12:12,500"
+			},
+			"offsets": {
+				"from": 727500,
+				"to": 732500
+			},
+			"text": " But in actual fact, nobody can know what the state of the network is, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,500",
+				"to": "00:12:17,500"
+			},
+			"offsets": {
+				"from": 732500,
+				"to": 737500
+			},
+			"text": " You can only make inferences about the current state of the network based upon the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,500",
+				"to": "00:12:18,500"
+			},
+			"offsets": {
+				"from": 737500,
+				"to": 738500
+			},
+			"text": " you receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,500",
+				"to": "00:12:24,500"
+			},
+			"offsets": {
+				"from": 738500,
+				"to": 744500
+			},
+			"text": " And that's equally true actually for these kind of consensus protocols as it is from blockchain-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,500",
+				"to": "00:12:26,500"
+			},
+			"offsets": {
+				"from": 744500,
+				"to": 746500
+			},
+			"text": " consensus protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,500",
+				"to": "00:12:29,500"
+			},
+			"offsets": {
+				"from": 746500,
+				"to": 749500
+			},
+			"text": " You've got no way of knowing what the overall state of the network is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,500",
+				"to": "00:12:33,500"
+			},
+			"offsets": {
+				"from": 749500,
+				"to": 753500
+			},
+			"text": " You can only make inferences about it based upon the messages you receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,500",
+				"to": "00:12:41,500"
+			},
+			"offsets": {
+				"from": 753500,
+				"to": 761500
+			},
+			"text": " Now you can send messages out to ask questions and you may or may not get answers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,500",
+				"to": "00:12:43,500"
+			},
+			"offsets": {
+				"from": 761500,
+				"to": 763500
+			},
+			"text": " But you can only make inferences."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,500",
+				"to": "00:12:46,500"
+			},
+			"offsets": {
+				"from": 763500,
+				"to": 766500
+			},
+			"text": " The network is a black box."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,500",
+				"to": "00:12:50,500"
+			},
+			"offsets": {
+				"from": 766500,
+				"to": 770500
+			},
+			"text": " Another big challenge is equivocation by faulty nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,500",
+				"to": "00:12:57,500"
+			},
+			"offsets": {
+				"from": 770500,
+				"to": 777500
+			},
+			"text": " And again, this applies to protocols like CASBOR, although this is again assuming a traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,500",
+				"to": "00:13:00,500"
+			},
+			"offsets": {
+				"from": 777500,
+				"to": 780500
+			},
+			"text": " consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,500",
+				"to": "00:13:06,500"
+			},
+			"offsets": {
+				"from": 780500,
+				"to": 786500
+			},
+			"text": " Equivocation simply means that faulty nodes can send two different versions of a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,500",
+				"to": "00:13:08,500"
+			},
+			"offsets": {
+				"from": 786500,
+				"to": 788500
+			},
+			"text": " when there are many men of men of men of men of men."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,500",
+				"to": "00:13:17,500"
+			},
+			"offsets": {
+				"from": 788500,
+				"to": 797500
+			},
+			"text": " So in this case, process one is faulty and it's telling process two that it's voting ABC"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,500",
+				"to": "00:13:21,500"
+			},
+			"offsets": {
+				"from": 797500,
+				"to": 801500
+			},
+			"text": " and it's telling process three that it's voting NMO."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,500",
+				"to": "00:13:28,500"
+			},
+			"offsets": {
+				"from": 801500,
+				"to": 808500
+			},
+			"text": " And equivocation is a surprisingly powerful tool for an adversary to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,500",
+				"to": "00:13:31,500"
+			},
+			"offsets": {
+				"from": 808500,
+				"to": 811500
+			},
+			"text": " You can create all kinds of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,500",
+				"to": "00:13:40,500"
+			},
+			"offsets": {
+				"from": 811500,
+				"to": 820500
+			},
+			"text": " And there's a result that comes from this, which is that typically to reach consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,500",
+				"to": "00:13:45,500"
+			},
+			"offsets": {
+				"from": 820500,
+				"to": 825500
+			},
+			"text": " when you receive a message from a process, you need to echo it to all the other processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,500",
+				"to": "00:13:51,500"
+			},
+			"offsets": {
+				"from": 825500,
+				"to": 831500
+			},
+			"text": " to make sure that it hasn't been equivocating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,500",
+				"to": "00:13:57,500"
+			},
+			"offsets": {
+				"from": 831500,
+				"to": 837500
+			},
+			"text": " And this kind of leads to quadratic message complexity, which basically means that as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,500",
+				"to": "00:14:04,500"
+			},
+			"offsets": {
+				"from": 837500,
+				"to": 844500
+			},
+			"text": " number of processes cooperating in consensus increases, the number of messages they send"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,500",
+				"to": "00:14:07,500"
+			},
+			"offsets": {
+				"from": 844500,
+				"to": 847500
+			},
+			"text": " increases with the square of the number of processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,500",
+				"to": "00:14:12,500"
+			},
+			"offsets": {
+				"from": 847500,
+				"to": 852500
+			},
+			"text": " And that's the reason why Satoshi created the proof of work blockchain, because it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,500",
+				"to": "00:14:14,500"
+			},
+			"offsets": {
+				"from": 852500,
+				"to": 854500
+			},
+			"text": " have this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,500",
+				"to": "00:14:19,500"
+			},
+			"offsets": {
+				"from": 854500,
+				"to": 859500
+			},
+			"text": " It has a different -- works in a different way that people try and solve puzzles and whoever"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,500",
+				"to": "00:14:23,500"
+			},
+			"offsets": {
+				"from": 859500,
+				"to": 863500
+			},
+			"text": " solves the puzzle gets to cast a deciding vote, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,500",
+				"to": "00:14:25,500"
+			},
+			"offsets": {
+				"from": 863500,
+				"to": 865500
+			},
+			"text": " And you don't get strong consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,500",
+				"to": "00:14:34,500"
+			},
+			"offsets": {
+				"from": 865500,
+				"to": 874500
+			},
+			"text": " You get a sort of eventual consistency as the chain gets longer and block gets better"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,500",
+				"to": "00:14:35,500"
+			},
+			"offsets": {
+				"from": 874500,
+				"to": 875500
+			},
+			"text": " deeper and deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,500",
+				"to": "00:14:38,500"
+			},
+			"offsets": {
+				"from": 875500,
+				"to": 878500
+			},
+			"text": " It gets more and more likely to be permanent."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,500",
+				"to": "00:14:43,500"
+			},
+			"offsets": {
+				"from": 878500,
+				"to": 883500
+			},
+			"text": " So that's the limitation of these kind of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,500",
+				"to": "00:14:49,500"
+			},
+			"offsets": {
+				"from": 883500,
+				"to": 889500
+			},
+			"text": " The number of messages they have to pass increases with the square of the number of processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,500",
+				"to": "00:14:50,500"
+			},
+			"offsets": {
+				"from": 889500,
+				"to": 890500
+			},
+			"text": " involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,500",
+				"to": "00:14:54,500"
+			},
+			"offsets": {
+				"from": 890500,
+				"to": 894500
+			},
+			"text": " And the consequences of the number of messages that are being used within a larger protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,500",
+				"to": "00:14:56,500"
+			},
+			"offsets": {
+				"from": 894500,
+				"to": 896500
+			},
+			"text": " as we look at at the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,500",
+				"to": "00:14:58,500"
+			},
+			"offsets": {
+				"from": 896500,
+				"to": 898500
+			},
+			"text": " So here's another challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,500",
+				"to": "00:15:00,500"
+			},
+			"offsets": {
+				"from": 898500,
+				"to": 900500
+			},
+			"text": " This is network, synchrony."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,500",
+				"to": "00:15:07,500"
+			},
+			"offsets": {
+				"from": 900500,
+				"to": 907500
+			},
+			"text": " And this is probably the most profound challenge, I think, which is there's no way of knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,500",
+				"to": "00:15:12,500"
+			},
+			"offsets": {
+				"from": 907500,
+				"to": 912500
+			},
+			"text": " if the network can behave in a synchronous way why you haven't received a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,500",
+				"to": "00:15:17,500"
+			},
+			"offsets": {
+				"from": 912500,
+				"to": 917500
+			},
+			"text": " So in this case, P2 is expecting a message from P1, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,500",
+				"to": "00:15:21,500"
+			},
+			"offsets": {
+				"from": 917500,
+				"to": 921500
+			},
+			"text": " And it hasn't received a message from P1, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,500",
+				"to": "00:15:25,500"
+			},
+			"offsets": {
+				"from": 921500,
+				"to": 925500
+			},
+			"text": " So what is P2 meant to think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,500",
+				"to": "00:15:30,500"
+			},
+			"offsets": {
+				"from": 925500,
+				"to": 930500
+			},
+			"text": " Does it continue waiting for the message from P1?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,500",
+				"to": "00:15:37,500"
+			},
+			"offsets": {
+				"from": 930500,
+				"to": 937500
+			},
+			"text": " So there's a system called Ripple, which you're probably all aware of, and they had a consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,500",
+				"to": "00:15:41,500"
+			},
+			"offsets": {
+				"from": 937500,
+				"to": 941500
+			},
+			"text": " protocol which didn't handle a synchrony correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,500",
+				"to": "00:15:45,500"
+			},
+			"offsets": {
+				"from": 941500,
+				"to": 945500
+			},
+			"text": " And it was adopted by another cryptocurrency called Stellar."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,500",
+				"to": "00:15:50,500"
+			},
+			"offsets": {
+				"from": 945500,
+				"to": 950500
+			},
+			"text": " And it was absolutely plain from the way they described the protocol that it had this issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,500",
+				"to": "00:15:57,500"
+			},
+			"offsets": {
+				"from": 950500,
+				"to": 957500
+			},
+			"text": " of the synchrony that it would just make an assumption that it hadn't got a message because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,500",
+				"to": "00:15:59,500"
+			},
+			"offsets": {
+				"from": 957500,
+				"to": 959500
+			},
+			"text": " the sender had failed, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,500",
+				"to": "00:16:02,500"
+			},
+			"offsets": {
+				"from": 959500,
+				"to": 962500
+			},
+			"text": " And as a consequence, they had a fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,500",
+				"to": "00:16:08,500"
+			},
+			"offsets": {
+				"from": 962500,
+				"to": 968500
+			},
+			"text": " So it's very easy to just imagine, well, haven't received a message, the sender must have failed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,500",
+				"to": "00:16:14,500"
+			},
+			"offsets": {
+				"from": 968500,
+				"to": 974500
+			},
+			"text": " therefore I'm going to proceed with the messages I have and assume that some part of the network's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,500",
+				"to": "00:16:15,500"
+			},
+			"offsets": {
+				"from": 974500,
+				"to": 975500
+			},
+			"text": " are problematic."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,500",
+				"to": "00:16:18,500"
+			},
+			"offsets": {
+				"from": 975500,
+				"to": 978500
+			},
+			"text": " It can lead to problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,500",
+				"to": "00:16:26,500"
+			},
+			"offsets": {
+				"from": 978500,
+				"to": 986500
+			},
+			"text": " So of course, you know, an adversary realizing that the receiver doesn't know what to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,500",
+				"to": "00:16:31,500"
+			},
+			"offsets": {
+				"from": 986500,
+				"to": 991500
+			},
+			"text": " can use this as a tool, you can decide to withhold messages, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,500",
+				"to": "00:16:37,500"
+			},
+			"offsets": {
+				"from": 991500,
+				"to": 997500
+			},
+			"text": " And there is a kind of profound issue that comes from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,500",
+				"to": "00:16:43,500"
+			},
+			"offsets": {
+				"from": 997500,
+				"to": 1003500
+			},
+			"text": " So what is the maximum number of faulty processes that these kind of consensus protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,500",
+				"to": "00:16:47,500"
+			},
+			"offsets": {
+				"from": 1003500,
+				"to": 1007500
+			},
+			"text": " can handle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,500",
+				"to": "00:16:51,500"
+			},
+			"offsets": {
+				"from": 1007500,
+				"to": 1011500
+			},
+			"text": " There's no easy way to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,500",
+				"to": "00:16:53,500"
+			},
+			"offsets": {
+				"from": 1011500,
+				"to": 1013500
+			},
+			"text": " The practice is the easiest."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,500",
+				"to": "00:16:56,500"
+			},
+			"offsets": {
+				"from": 1013500,
+				"to": 1016500
+			},
+			"text": " There's a thing called the Byzantine Quorum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,500",
+				"to": "00:17:04,500"
+			},
+			"offsets": {
+				"from": 1016500,
+				"to": 1024500
+			},
+			"text": " And a Byzantine Quorum is a subset of nodes so chosen that if two different quorums are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,500",
+				"to": "00:17:11,500"
+			},
+			"offsets": {
+				"from": 1024500,
+				"to": 1031500
+			},
+			"text": " selected, they will always intersect in at least one correct node."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,500",
+				"to": "00:17:19,500"
+			},
+			"offsets": {
+				"from": 1031500,
+				"to": 1039500
+			},
+			"text": " And this means that you can chain operations together and produce some kind of result or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,500",
+				"to": "00:17:20,500"
+			},
+			"offsets": {
+				"from": 1039500,
+				"to": 1040500
+			},
+			"text": " inference."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,500",
+				"to": "00:17:27,500"
+			},
+			"offsets": {
+				"from": 1040500,
+				"to": 1047500
+			},
+			"text": " And so we can see here, there are seven nodes and these two quorums intersect."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,500",
+				"to": "00:17:35,500"
+			},
+			"offsets": {
+				"from": 1047500,
+				"to": 1055500
+			},
+			"text": " There are two quorums here of five nodes and you can see they both intersect in one node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,500",
+				"to": "00:17:40,500"
+			},
+			"offsets": {
+				"from": 1055500,
+				"to": 1060500
+			},
+			"text": " even though both of the quorums have selected the two faulty nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,500",
+				"to": "00:17:50,500"
+			},
+			"offsets": {
+				"from": 1060500,
+				"to": 1070500
+			},
+			"text": " And anyway, there's a general result which is the number of faulty nodes must be less"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,500",
+				"to": "00:17:51,500"
+			},
+			"offsets": {
+				"from": 1070500,
+				"to": 1071500
+			},
+			"text": " than a third."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,500",
+				"to": "00:17:58,500"
+			},
+			"offsets": {
+				"from": 1071500,
+				"to": 1078500
+			},
+			"text": " So less than a third of the process is participating in the consensus algorithm must be faulty for"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,500",
+				"to": "00:18:03,500"
+			},
+			"offsets": {
+				"from": 1078500,
+				"to": 1083500
+			},
+			"text": " the thing to be able to reach a correct result."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,500",
+				"to": "00:18:11,500"
+			},
+			"offsets": {
+				"from": 1083500,
+				"to": 1091500
+			},
+			"text": " And the issue there is that, one of the issues, one of the things we're thinking about is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,500",
+				"to": "00:18:20,500"
+			},
+			"offsets": {
+				"from": 1091500,
+				"to": 1100500
+			},
+			"text": " that if we cannot wait for all of the messages, so let's say there are n processes in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,500",
+				"to": "00:18:21,500"
+			},
+			"offsets": {
+				"from": 1100500,
+				"to": 1101500
+			},
+			"text": " consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,500",
+				"to": "00:18:23,500"
+			},
+			"offsets": {
+				"from": 1101500,
+				"to": 1103500
+			},
+			"text": " In this case, there are seven."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,500",
+				"to": "00:18:27,500"
+			},
+			"offsets": {
+				"from": 1103500,
+				"to": 1107500
+			},
+			"text": " And we know up to two of them can be faulty."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,500",
+				"to": "00:18:35,500"
+			},
+			"offsets": {
+				"from": 1107500,
+				"to": 1115500
+			},
+			"text": " Once we've received five messages, five messages, do we wait and see if we can receive another"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,500",
+				"to": "00:18:37,500"
+			},
+			"offsets": {
+				"from": 1115500,
+				"to": 1117500
+			},
+			"text": " two, right, to receive all seven?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,500",
+				"to": "00:18:38,500"
+			},
+			"offsets": {
+				"from": 1117500,
+				"to": 1118500
+			},
+			"text": " We can't, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,500",
+				"to": "00:18:45,500"
+			},
+			"offsets": {
+				"from": 1118500,
+				"to": 1125500
+			},
+			"text": " Because the remaining two messages we haven't received may be coming from faulty nodes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,500",
+				"to": "00:18:51,500"
+			},
+			"offsets": {
+				"from": 1125500,
+				"to": 1131500
+			},
+			"text": " the faulty nodes may just decide not to send these messages to make us wait forever, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,500",
+				"to": "00:18:58,500"
+			},
+			"offsets": {
+				"from": 1131500,
+				"to": 1138500
+			},
+			"text": " So these kind of protocols need to proceed when they've received two F plus one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,500",
+				"to": "00:19:08,500"
+			},
+			"offsets": {
+				"from": 1138500,
+				"to": 1148500
+			},
+			"text": " messages which has another side effect which is that, of course, it may be that the F messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,500",
+				"to": "00:19:13,500"
+			},
+			"offsets": {
+				"from": 1148500,
+				"to": 1153500
+			},
+			"text": " that we didn't wait for, in this case, the two messages we didn't wait for, we're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,500",
+				"to": "00:19:19,500"
+			},
+			"offsets": {
+				"from": 1153500,
+				"to": 1159500
+			},
+			"text": " from correct processes and we've received two messages from faulty processes, which means"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,500",
+				"to": "00:19:27,500"
+			},
+			"offsets": {
+				"from": 1159500,
+				"to": 1167500
+			},
+			"text": " that we can only be sure F plus one messages from those we've collected from correct processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,500",
+				"to": "00:19:30,500"
+			},
+			"offsets": {
+				"from": 1167500,
+				"to": 1170500
+			},
+			"text": " and mass-wise complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,500",
+				"to": "00:19:35,500"
+			},
+			"offsets": {
+				"from": 1170500,
+				"to": 1175500
+			},
+			"text": " So I'm out of time, so you're saved."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,500",
+				"to": "00:19:43,500"
+			},
+			"offsets": {
+				"from": 1175500,
+				"to": 1183500
+			},
+			"text": " I was going to try and walk you through on a synchronous protocol, but I'm out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,500",
+				"to": "00:19:47,500"
+			},
+			"offsets": {
+				"from": 1183500,
+				"to": 1187500
+			},
+			"text": " But if anyone wants the deck, ping me and you can have it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,500",
+				"to": "00:19:49,500"
+			},
+			"offsets": {
+				"from": 1187500,
+				"to": 1189500
+			},
+			"text": " Thank you so much, Shauna."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,500",
+				"to": "00:19:51,500"
+			},
+			"offsets": {
+				"from": 1189500,
+				"to": 1191500
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,500",
+				"to": "00:19:57,500"
+			},
+			"offsets": {
+				"from": 1191500,
+				"to": 1197500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,500",
+				"to": "00:20:03,500"
+			},
+			"offsets": {
+				"from": 1197500,
+				"to": 1203500
+			},
+			"text": " [Music]"
+		}
+	]
+}

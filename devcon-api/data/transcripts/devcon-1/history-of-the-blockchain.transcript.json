@@ -1,0 +1,2837 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " Cool. Welcome. Welcome to day five, the final day of DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " It has been an incredible week."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28000
+			},
+			"text": " We've gone deep into the Ethereum platform, seen exactly what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " DAPs are capable of. I don't even think the beginning of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 34000
+			},
+			"text": " And today we start off with a very special presentation by Nick"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 38000
+			},
+			"text": " Zabo. He is a blockchain pioneer and he is here to present on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 40000
+			},
+			"text": " the history of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 48000
+			},
+			"text": " Thank you. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 52000
+			},
+			"text": " Thank you. So, yeah, I'm talking about smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 54000
+			},
+			"text": " and Ethereum. Good morning, city of London,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 63000
+			},
+			"text": " Ethereum developers. [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 66000
+			},
+			"text": " So, I'm going to start off talking about the origins of some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 68000
+			},
+			"text": " these ideas, some of the philosophical origins."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 72000
+			},
+			"text": " To left here we have Ayn Rand, the right Frederick Hayek, who"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " had were big political and philosophical inspirations to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " the cypherpunks where many of these ideas came out of."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " So, Ayn Rand, I've never finished one of her books, but she was"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 91000
+			},
+			"text": " very influential, nevertheless. She came up with the idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 96000
+			},
+			"text": " Galt's Gulch, which is a place you could form your own independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " community and declare your independence from corrupt"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " institutions and society. And pretty much a complete fantasy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " when she wrote it based on fake physics and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 115000
+			},
+			"text": " But Tim May, who is in fact a physicist, worked for Intel"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 123000
+			},
+			"text": " studying how to protect their chips from radiation, came up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " the idea of Galt's Gulch and cyberspace, and kind of ideal to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " shoot for. And so, another, and basically cryptography in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " cypherpunks movement, protect yourself with cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 140000
+			},
+			"text": " That would be your shield. And Frederick Hayek, another big"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 146000
+			},
+			"text": " influence on us, was said not so fast. He had studied the basis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " the protocol layer, underlying society, underlying free markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 155000
+			},
+			"text": " for Tree Champion. And property contracts, and if you go"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " to law school you'll study these in your first year of law"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 163000
+			},
+			"text": " school, property contracts, et cetera. And all that requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " security. So, we wanted to apply computer science,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " apply the new technology, take advantage of Moore's law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " to minimize vulnerability to strangers, maximize security."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 183000
+			},
+			"text": " And doing so is solve ambitious problems of the Hayekian nature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " such as privatized money and non-violently enforced property"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " and contracts. And so, that is the milieu where ideas like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " smart contracts, the first blockchain designs, and the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " cryptocurrency designs came out of. And if you wanted to sum that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " up and all one thing, try to secure as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " So, with cryptography, traditional cryptography, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212000
+			},
+			"text": " just trying to secure one narrow thing. You have communications"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 215000
+			},
+			"text": " and you're trying to secure it from a third party. You can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 217000
+			},
+			"text": " really secure it from the party you're talking to if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 220000
+			},
+			"text": " forward your email. Doesn't matter how well your email is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " encrypted. So, it's trying to, encryption, traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " encryption is trying to solve one narrow problem. But now we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 233000
+			},
+			"text": " the opportunity, well, let's go back. So, now we have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " opportunity with Ethereum. Well, let me go back. So, David"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " Chalman did a little cash expanded this and said, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " apply this to money. Let's try to make money, the transfer of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " money private. And so, he solved a privacy problem, although the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " banks didn't like that, so it wasn't taken up. But he had a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " technical solution for solving the privacy problem. What he didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 260000
+			},
+			"text": " solve was this problem right here. And that is a centralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 265000
+			},
+			"text": " problem. And so, there was a bunch of digital cash start ups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " David Chalman's being among them, that they either failed or they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " became centralized systems like PayPal. Because we didn't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 282000
+			},
+			"text": " how to do decentralization at that point. But so, coming on those"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286000
+			},
+			"text": " experiences, we expanded our definition of security and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " realized there were a lot of bad assumptions being made in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " security at that time. One of the big ones being the trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " third party, the certificate authority and encryption system is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " a classic example of a trusted third party that got introduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 303000
+			},
+			"text": " And pretty quickly, they became, to usurp, at the height of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 307000
+			},
+			"text": " internet bubble, Varysign, which basically specialized in being"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 311000
+			},
+			"text": " a certificate authority, was worth tens of billions of dollars just"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 317000
+			},
+			"text": " on that basis alone that they owned this bottleneck in the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " of cryptography securing the internet. It's gotten a little more"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 326000
+			},
+			"text": " broken up now, but it's still a bottleneck as is the domain name"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 331000
+			},
+			"text": " system. And you can go back farther in history and see that in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 337000
+			},
+			"text": " industrial era, around the turn of the century, 1900, early 1900s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 341000
+			},
+			"text": " we had a lot of very centralized security, a lot of centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 347000
+			},
+			"text": " industrial technology. So, radio was centralized broadcast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 351000
+			},
+			"text": " railroads, especially railroads stations, very centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 355000
+			},
+			"text": " And newspapers, this is a picture of an old steam press here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 359000
+			},
+			"text": " or it could be a steam press or run by diesel, but the point is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 365000
+			},
+			"text": " a large scale manufacturer, just a few newspapers per city or"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 371000
+			},
+			"text": " even per country. And that's, and so when the communists came"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 375000
+			},
+			"text": " along, Mr. Vladimir Lenin there, they had some mutinous soldiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 378000
+			},
+			"text": " they actually had some workers as well, but mostly they had mutinous"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " soldiers, and they only had to take over a few urban places to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " get a stranglehold in society. The railroad stations, the handful"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 390000
+			},
+			"text": " of radio stations, and the handful of newspapers, and then they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 396000
+			},
+			"text": " had control over society. And physical wealth has not necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 402000
+			},
+			"text": " been very secure either. So, the Aztecs compelled tribute from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 408000
+			},
+			"text": " tribes in gold, in a masked gold. The Spanish looted the Aztecs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " gold. Sir Francis Drake there on the right, and other English"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 416000
+			},
+			"text": " pirates looted their gold, jumped ahead in history from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 420000
+			},
+			"text": " Spanish, jumped ahead in history a little bit, and the end of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424000
+			},
+			"text": " gold standard, part of the end of the gold standard, the part the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 426000
+			},
+			"text": " economists don't tell you because it violates their assumptions of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 430000
+			},
+			"text": " voluntary transactions, is the German U-boats during World War"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 434000
+			},
+			"text": " II are sending significant fractions of allied, and especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 439000
+			},
+			"text": " British boats, the bottom of the ocean. So British stopped being able"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 443000
+			},
+			"text": " to transport gold. If you look at the gold standard, the way the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " trust works in a gold standard, anybody needs to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " look to a gold window and cash in their bank notes for gold."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 454000
+			},
+			"text": " And because they couldn't transport gold around during the war,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 458000
+			},
+			"text": " that was one of the reasons the gold standard collapsed. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 461000
+			},
+			"text": " to the bottom right here we have Franklin Roosevelt who confiscated"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 466000
+			},
+			"text": " gold in the US, and I didn't put a picture of an X-ray machine here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 472000
+			},
+			"text": " but in modern times gold is even less secure now. So that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " Bitcoin and Ethereum as cryptocurrencies really are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " superior to that now. So we did, as we said, let's take"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " decentralization per computer science is much more automated and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 490000
+			},
+			"text": " secure. So if we take an Ethereum blockchain and put some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " smart contracts on it, it's only going to substitute in any given"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 498000
+			},
+			"text": " case for a small fraction of what these guys on the left. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 501000
+			},
+			"text": " guys on the left, the army is of accountants, the armies of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 506000
+			},
+			"text": " investigators, police officers, the armies of lawyers. In any"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " given case, it's only going to substitute for a small fraction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 514000
+			},
+			"text": " but the cost savings is so high that those particular applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " are going to be pretty compelling. And especially across the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 524000
+			},
+			"text": " national borders places, because in security and just about all"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 528000
+			},
+			"text": " IT right now is very insecure, no matter what the security people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 532000
+			},
+			"text": " tell you, there's hacks happening all the time. This is the latest"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 537000
+			},
+			"text": " JP Morgan hack, identity theft. And what they had to do, they had"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540000
+			},
+			"text": " to have a strong partnership with law enforcement. The security"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 543000
+			},
+			"text": " isn't the protocol itself. It is the police officers in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 547000
+			},
+			"text": " traditional finance. It is law enforcement, the accountants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 552000
+			},
+			"text": " the investigators and lawyers. So that's the reason, one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 555000
+			},
+			"text": " big reasons that traditional finance is stuck inside its"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 563000
+			},
+			"text": " national silos and it's highly regulated. So cryptocurrency in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 569000
+			},
+			"text": " particular theory of Ethereum helps solve that. So through"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 572000
+			},
+			"text": " decentralization, and I'll talk a little bit about what kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 575000
+			},
+			"text": " decentralization is good. So if you think of traditional finance"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 579000
+			},
+			"text": " as separation of duties, and one of the crucial things important"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " and separation of duties is that the people that are separated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 586000
+			},
+			"text": " you need several people to perform a task to get it done. So in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 592000
+			},
+			"text": " that sense, broad sense, it's like Ethereum. But you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 595000
+			},
+			"text": " independence. You want each of the nodes to be independent as"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " possible. So one crude measure you can do is how many nodes we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 606000
+			},
+			"text": " have, like nearly 400 nodes here for Ethereum. But actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 609000
+			},
+			"text": " more important thing to look at is look on the map and see the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 613000
+			},
+			"text": " diversity. You've got a node there in the middle of the Indian"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 618000
+			},
+			"text": " Ocean. That's really good. You've got Singapore, you've got"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 621000
+			},
+			"text": " somewhere near Vietnam there. Those are the best nodes because"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 625000
+			},
+			"text": " those are most likely to be the more likely to be the independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 628000
+			},
+			"text": " nodes. And there's all sorts of other ways you can estimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " independence too. But the point is the actual sheer number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " nodes is just a proxy measure of something more important to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 642000
+			},
+			"text": " blow that. So to get to smart contracts, there are two ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 646000
+			},
+			"text": " people talk about smart contracts. They're both valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 650000
+			},
+			"text": " The way Ethereum talks about it is long-lived, sometimes a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 655000
+			},
+			"text": " synonym for a long-lived process, a contractor distributed app."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 660000
+			},
+			"text": " The original and still quite meaningful definition of smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 663000
+			},
+			"text": " contract is it acts like a contract. There's automated"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 667000
+			},
+			"text": " performance, there's verification, it's doing the function of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 671000
+			},
+			"text": " contract or it's analogous to what a contract would do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 674000
+			},
+			"text": " So typically in a smart contract of that kind, you have two"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 677000
+			},
+			"text": " parties or you have one party in the blockchain, something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 682000
+			},
+			"text": " that. So now there's a strong distinction to be made between"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 687000
+			},
+			"text": " dry code smart contracts and wet code traditional law."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 696000
+			},
+			"text": " So I can go over it here. There's laws based on our mines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 701000
+			},
+			"text": " our wetware, based on analogy, software tends to ground on"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 707000
+			},
+			"text": " Boolean logic bits, hard mathematics. The security of laws"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " based on ultimate threat of coercion, you're going to go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " imprisonment if you violate the court order to pay somebody."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 717000
+			},
+			"text": " Even in a civil lawsuit, you could get charged with contempt and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 721000
+			},
+			"text": " go to prison. So that's ultimately what the security of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 726000
+			},
+			"text": " wet law grounds down on. And for software, for block chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 729000
+			},
+			"text": " it grounds down on the replication of the blockchain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 736000
+			},
+			"text": " on cryptography. So -- and the law is more flexible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 742000
+			},
+			"text": " software is more rigid. And in area of the laws, I've said"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 746000
+			},
+			"text": " tends to be bashed in jurisdictional silos, software"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 750000
+			},
+			"text": " tends to be independent, gross seamlessly cross-border."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 753000
+			},
+			"text": " Lawsuits are very expensive, especially if they're cross-border."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 756000
+			},
+			"text": " The software can get very, very cheap once you amortize the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 759000
+			},
+			"text": " capital costs. So now I'm going to talk about a couple -- some"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 765000
+			},
+			"text": " applications that interest me that don't necessarily widely"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 770000
+			},
+			"text": " get talked about. So back in the day, back when writing was"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 775000
+			},
+			"text": " first invented, seals were a really big deal. If you go into"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 779000
+			},
+			"text": " archaeological layers, you'll find a lot of these. This is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 782000
+			},
+			"text": " seal of King Darius of Persia, but they're also very commonly"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 788000
+			},
+			"text": " used for commercial transactions. You take your seal and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 791000
+			},
+			"text": " rub it on the clay, and that would be your signature, and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 801000
+			},
+			"text": " would also provide tamper evidence. So today -- so today, seals"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 805000
+			},
+			"text": " are still widely used. They're very important. They tend to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 808000
+			},
+			"text": " along with recording serial numbers. You'll seal something up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813000
+			},
+			"text": " seal up a door, seal up an evidence bag, and so forth, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 817000
+			},
+			"text": " write down the number, and you get a log of what's there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 820000
+			},
+			"text": " And you can go back and verify things haven't been tampered"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " with. Now, the blockchain could help quite significantly here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 828000
+			},
+			"text": " Instead of keeping an insecure offline log, or even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 833000
+			},
+			"text": " insecure online log without the blockchain, you keep your log"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 839000
+			},
+			"text": " online. You can keep it as ongoing hashes, and also as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 842000
+			},
+			"text": " descriptions of the evidence -- what's in the evidence bag"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 846000
+			},
+			"text": " itself if you want to use that for further smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 849000
+			},
+			"text": " processing. And that's a general pattern that's good in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 852000
+			},
+			"text": " Ethereum, is that you put the proof of evidence on the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 855000
+			},
+			"text": " for taking physical stuff. And reflecting on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 858000
+			},
+			"text": " you want to put the proof of evidence on the blockchain, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 861000
+			},
+			"text": " you also want to have semantic information for contract code"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 867000
+			},
+			"text": " to be able to play with. And you can do this with physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 874000
+			},
+			"text": " spaces as well. And this is a scheme I came up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " I guess over a decade ago now for smart property."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 882000
+			},
+			"text": " And I call it \"proplets.\" You can Google that online if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 886000
+			},
+			"text": " like. And basically what \"proplets\" do is they look to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 890000
+			},
+			"text": " blockchain to see who owns them. They're kind of like a SIM"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 894000
+			},
+			"text": " card, and the electronics on your smartphone that they know"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 898000
+			},
+			"text": " where they're at, they know things they can sense in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 901000
+			},
+			"text": " environment. But the main thing they know is who owns them"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 905000
+			},
+			"text": " and what the instructions are that they are to follow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 908000
+			},
+			"text": " And one of the applications of this is the auto repo auto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 913000
+			},
+			"text": " or more generally the auto repo collateral, where if you use"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " your physical device's security for a loan, then that can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 924000
+			},
+			"text": " automatically repossessed. And that allows credit to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 930000
+			},
+			"text": " much more efficiently used. So there was, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 934000
+			},
+			"text": " an offshore rig that costs tens of billions of dollars an offshore"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 940000
+			},
+			"text": " facility uses collateral in a big business deal. But since the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " creditors did not actually have a way to gain physical control"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " over it, they're out of luck and they're out tens of billions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 951000
+			},
+			"text": " of dollars so they can't actually repossess the collateral right"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 956000
+			},
+			"text": " now. Whereas if they had these devices they could."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 961000
+			},
+			"text": " So current project I'm currently working on is very fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 964000
+			},
+			"text": " Financial assets on the blockchain. So the first generation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 968000
+			},
+			"text": " which I invented in 1998, is the trust minimized token. So you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 973000
+			},
+			"text": " trust minimize the transfer of tokens from one person to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 976000
+			},
+			"text": " I call these secure property titles. The most common name"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 978000
+			},
+			"text": " they're called now is colored coins. And they trust minimize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 981000
+			},
+			"text": " again, it's securing a particular thing. It's securing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 984000
+			},
+			"text": " transfer of ownership of a thing. But there's other things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 987000
+			},
+			"text": " any more important things you want to secure with financial assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 991000
+			},
+			"text": " And so the second generation is trust minimizing cash flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 994000
+			},
+			"text": " That's what you really want in your financial assets. You want"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 998000
+			},
+			"text": " the dividends, the coupons, et cetera. So that's what I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1004000
+			},
+			"text": " working on around my partner Donald McIntyre. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1009000
+			},
+			"text": " another cool one I recently worked on. This is social networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1013000
+			},
+			"text": " plus Ethereum. So blockchains are back office technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1018000
+			},
+			"text": " They don't see them directly. In Ethereum you have missed as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1022000
+			},
+			"text": " wallet cross browser to allow you to interact directly. But this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1025000
+			},
+			"text": " another interesting way you could interact with blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1028000
+			},
+			"text": " And that is through social networks. And so tip bots are a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1032000
+			},
+			"text": " simple example of this now. This is an architecturized design."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1036000
+			},
+			"text": " For more decentralized version of tip bots that can do more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1039000
+			},
+			"text": " tipping, more than paying, you can actually do some smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1044000
+			},
+			"text": " contracts stuff initiated from a social network. And you start"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1049000
+			},
+			"text": " off with largely in the traditional web space linking your social"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1055000
+			},
+			"text": " network accounts together. And then you use them to -- once you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1058000
+			},
+			"text": " do that, you can instruct from the social network the payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1064000
+			},
+			"text": " swaps other smart contract things. And so in summary, let's try"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1067000
+			},
+			"text": " to think about security more broadly. Instead of thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1073000
+			},
+			"text": " narrowly, encryption is security and nothing else is or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1077000
+			},
+			"text": " transfer of tokens is security and nothing else is. Let's try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1079000
+			},
+			"text": " secure everything. Let's try to protect everything that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1086000
+			},
+			"text": " important to us as much as we can. And not like this, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1092000
+			},
+			"text": " Let's do it like this with Ethereum. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1097000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1102000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1104000
+			},
+			"text": " ( )"
+		}
+	]
+}

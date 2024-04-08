@@ -1,0 +1,1671 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 20000
+			},
+			"text": " Thank you. Good afternoon everyone and welcome to this talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 25000
+			},
+			"text": " Secretify. Secretify is a smart contract verification tool which was developed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 28000
+			},
+			"text": " by the people that you can see on this slide. It was developed at the EJJ"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 33000
+			},
+			"text": " which is leading technical university in Switzerland. And you can learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " more about Secretify by visiting the various links that will appear in these"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 42000
+			},
+			"text": " slides and I will make these slides available afterwards after this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 49000
+			},
+			"text": " So first let me tell you the reasoning behind Secretify and motivate the creation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 56000
+			},
+			"text": " Secretify. So most of you are aware, I assume, in this room of the various"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " security flaws that have plagued Ethereum since the beginning. So the most famous one"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " remains the Dow bug which eventually led the developers to a hard fork of the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 72000
+			},
+			"text": " so as to revert the state changes created by the attackers. Another more recent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " security flaw was the multi-sick parity bug which resulted in 30 millions in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 84000
+			},
+			"text": " Ethereum robbed by attackers. So let me go into details of these second flaws"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 90000
+			},
+			"text": " more precisely. So it was a case of an imprevalage right storage. Here I have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 95000
+			},
+			"text": " really simple example of this kind of flaw. So just keep in mind for all the examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100000
+			},
+			"text": " that are going to come that these are meant only to illustrate the flaws and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " meant to have a real logic in themselves. So as you see here it's really a toy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 108000
+			},
+			"text": " example. So this is a wallet contract which contains a storage variable"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " owner which specify the owner of this wallet. And there are two functions, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 119000
+			},
+			"text": " initialization function in it wallet which can change the owner. And this withdraw"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 125000
+			},
+			"text": " function through which the owner can actually withdraw money. So you can see here"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131000
+			},
+			"text": " this works. So you can see here that there is actually a check to prevent anybody else"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 137000
+			},
+			"text": " from withdrawing money. But the problem in that case is that anybody can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 145000
+			},
+			"text": " change the owner variable which is a problem because it makes the check useless."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 152000
+			},
+			"text": " So this is in a sense the multi-sick parity bug. That is you allow anybody to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 158000
+			},
+			"text": " write to your storage even though you rely on it for crucial alterations. So of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " course the exploit in the multi-sick parity bug was much more complicated because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " contract itself was more sophisticated but the basic vulnerability is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " So there are many more security bugs that are possible with the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " platform. One of them is the category of unexpected ether flows. For instance when"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " you expect ether to go to your contract but don't provide any means to withdraw it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 189000
+			},
+			"text": " So you end up with locked ether in your contract. In circuit coding such as"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " the multi-sick parity bug so providing ways to write to your storage without checking"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 199000
+			},
+			"text": " whether the user should be able to do that or not. The use of unsafe input whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 204000
+			},
+			"text": " you use for instance time stamp or block numbers and pretend that these are random"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " variables and even feed them into cryptographic functions. For instance to create a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " pseudo-random generator then this is bound to failure because these variables can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 221000
+			},
+			"text": " biased by miners. So for instance a miner can decide not to process your transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 225000
+			},
+			"text": " right away and this is going to be delayed by at least one block which is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 232000
+			},
+			"text": " result in a higher time stamp. Re-entered method calls. This is basically the deal bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 238000
+			},
+			"text": " And manipulating ether flows via transaction reordering. So this is a bit specific to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 248000
+			},
+			"text": " the ether in platform where all the transaction can be processed concurrently."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 254000
+			},
+			"text": " So for the details of this one I have another toy example. This token contract where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " have two storage variables. One is the price of this token and the other is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 266000
+			},
+			"text": " owner of this contract. And so you can set the price where only the owner can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 274000
+			},
+			"text": " change this price and the second one is a cell token where some ether is transferred."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " As you can see here a user can call this function according to a given price. So what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 284000
+			},
+			"text": " happens in practice that a user can read the price variable on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " Everything is public and you don't even need to create the transaction to read the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 295000
+			},
+			"text": " value of this variable. But what happens here is that once a user decide to call"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 300000
+			},
+			"text": " this function the owner can still call another function. So what would happen is that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " owner would realize that there is a transaction pending with this function."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 310000
+			},
+			"text": " And then decide, okay, maybe I want to increase the price or lower the price depending on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 314000
+			},
+			"text": " what he wants to do. So the thing is when you have a transaction pending you have no"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 321000
+			},
+			"text": " guarantee that it's going to be executed within the context that you just read."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 325000
+			},
+			"text": " And so in a sense the two operations do not commute and you shouldn't expect them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 331000
+			},
+			"text": " commute either. So how to detect these kind of bugs. I'm going to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 337000
+			},
+			"text": " automated security analysis as a way to make sure that these bugs are not implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 343000
+			},
+			"text": " in your contracts. So if I were to draw a big drawing of all the possible behaviors"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 349000
+			},
+			"text": " I would have something with all the possible behaviors and within them a lot of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 355000
+			},
+			"text": " bugs that you want to avoid when implementing smart contracts. The problem is that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 360000
+			},
+			"text": " cannot enumerate all possible behaviors. For instance if you have an integer argument"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365000
+			},
+			"text": " in your function it's going to be, you cannot call this function with all possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " integers and just say, okay, this trace is faulty. So at all point you have to make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 380000
+			},
+			"text": " trade-off and decide how to find the bad behaviors. So the different security analysis"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 387000
+			},
+			"text": " approaches that you can have are here represented. So the first one would be testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 393000
+			},
+			"text": " where you actually try to cover one path and from this one path you're going to extract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 401000
+			},
+			"text": " one trace and try to check whether or not it's faulty and whether or not it corresponds to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 409000
+			},
+			"text": " what you expected. Dynamic symbolic analysis which is an improvement on basic"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 415000
+			},
+			"text": " testing because you're not able to cover way many more paths. So this is a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 421000
+			},
+			"text": " testing plus plus if you want. And so you have the same kind of guarantees that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 426000
+			},
+			"text": " testing and dynamic analysis report through bugs that actually exist in your codes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 431000
+			},
+			"text": " say they provide you with traces of what happened. But they can still miss bugs because"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 436000
+			},
+			"text": " you have an issue of code coverage which is not equal to 100%. So this is a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 443000
+			},
+			"text": " because you can never be sure unless you have covered all your codes and that is 100%"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 448000
+			},
+			"text": " coverage. You can never be sure that your code doesn't contain any of these bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453000
+			},
+			"text": " And the last one in the focus of my talk today is automated verification which makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 460000
+			},
+			"text": " a different trade off. That is it can report false alarms but it has no missed bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 466000
+			},
+			"text": " So it is a current state of the art for the Ethereum platform. What do we have? What tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 472000
+			},
+			"text": " do we have and why do I suggest today? So on the testing side we have Truffle and Popolus"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " which are respectively JavaScript and Python frameworks and help the developer to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 482000
+			},
+			"text": " their constructs and associated tests and deploy them efficiently on the local"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 488000
+			},
+			"text": " dev chain. And this way the developer can run these traces and check their assertions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 495000
+			},
+			"text": " in an efficient manner. On the dynamic analysis side you have Oiente which was just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 503000
+			},
+			"text": " presented and which allows the developer to cover many more path in his code execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " And on the automated verification side we know I have security file I am presenting today"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 514000
+			},
+			"text": " and which makes a different trade off. That is it provides you with strong guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " that the bug that you are trying to find doesn't exist in your code. On the other hand it can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 524000
+			},
+			"text": " also report that the bug might exist in your code and then you have to look at it on your"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 530000
+			},
+			"text": " own and tell whether or not it is here. So this is really a different trade off from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 537000
+			},
+			"text": " two previous categories. So if I were to summarize security file in a few words I would say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 543000
+			},
+			"text": " security file is fully automated. One click formal verification system for Ethereum smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 558000
+			},
+			"text": " contract. So I have prepared a short demo and so I hope it is going to work. So this is recorded."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 570000
+			},
+			"text": " Okay. So here you have the interface of security file. You can see that by default there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 579000
+			},
+			"text": " some example of Solidity code. So this is the website itself. So here you have some solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 585000
+			},
+			"text": " code that you can input so that you can verify it afterwards. You can also feed some byte code"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 591000
+			},
+			"text": " or you can also input the address of a contract already deployed on the main chain. So the thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " to keep in mind here is that security file actually works on byte code. So even if you give"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 601000
+			},
+			"text": " Solidity code what is this going to do under the hood is this going to compile this code and work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 610000
+			},
+			"text": " on the EVM code. So now if we look at this simple example of a simple bank you can see here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 617000
+			},
+			"text": " that you have a storage variable balances which contains the balances of the users. You have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 625000
+			},
+			"text": " deposit function which allows a user to deposit some money and you also have a withdrawal function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 632000
+			},
+			"text": " So there are many things that are wrong with this code and I just want to show one of the codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " So here you can click formally verify and you know have a security report with various patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 643000
+			},
+			"text": " that are checked or not. So the ones that I am interested in right now is gas-dependent"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 651000
+			},
+			"text": " re-entrancy. So basically the DAO bug. So if we click on the match line to find out where the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 660000
+			},
+			"text": " faulty code is. We are going to see that here there is actually some ether which is sent and some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 667000
+			},
+			"text": " storage value which is set to another value after the call. So this means that the attacker"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " through his fallback function can call this function again and this function is going to be executed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 683000
+			},
+			"text": " within the same state which is the DAO bug. So one solution for this bug in this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 691000
+			},
+			"text": " example is just to remove this line and put it before which is a quick and dirty solution let's say."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 699000
+			},
+			"text": " So if we click formally verify again we are going to get another security report and in that case"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 705000
+			},
+			"text": " you can see that the pattern is not going to check. So you have made sure that your contract is no longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 713000
+			},
+			"text": " can not be victim of gas-dependent re-entrancy. And this is a strong guarantee that is your 100%"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 726000
+			},
+			"text": " sure of that there is no notion of code coverage here. Or let's say that the code coverage is 100%."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 735000
+			},
+			"text": " So another example now is this flow-to-wallet contract. So here you have a storage variable which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 743000
+			},
+			"text": " on there which is the owner of the contract. So this is an example I showed earlier you can initialize the owner of the contract through the first function in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 754000
+			},
+			"text": " it wallet and the second function allows some transfer of ether if the message sender is the owner. So we are not going to try to get the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 771000
+			},
+			"text": " security report out of this contract. So if you remember it's a multi-sick party bug. So you see different patterns and here the one that I want to focus on is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 785000
+			},
+			"text": " the storage. So I explained it earlier is this that you allow anybody to write to your storage without any check. So if we click on the match line we are going to see that the faulty line is where you assign the owner to another"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 805000
+			},
+			"text": " user. So here is a solution that we can use and that was actually used in a multi-sick party bug was to have a modifier only owner which is going to make sure that the function will be executed only if the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 825000
+			},
+			"text": " sender is the owner. So basically having the same check as you had in this function but for the initialization function. So here you click formally verify again and if you look at the patterns nights it's safe and so now your contract is guaranteed to be deprived of any"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 854000
+			},
+			"text": " and privileged right to storage. One last example quickly is that of the token with a changing price. So this is the other transaction real dirty example that I showed earlier where you have this set price function through which the owner can change the price. And you also have this cell token which is meant to be used by the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 871000
+			},
+			"text": " So if you click formally verify you can see here that the transaction may affect either amount. So this is a case of transaction reordering because the amount that can be sent depends on the variable which is not constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 900000
+			},
+			"text": " So here a quick fix would be to just decide that the price is constant and remove any ability to change the price in the future. So if we click formally verify again we're going to make sure that this pattern is checked. So of course in that precise case it removes one feature of the contract that is changing the price so you would need to do a bit more to keep this feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 907000
+			},
+			"text": " That's it for the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 933000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 947000
+			},
+			"text": " So now let's talk a bit about what's under the hood of security file. So first as I said earlier security file works on the EVM code so you're going to fit it in binary that you obtain for instance by compilation of the of your solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 956000
+			},
+			"text": " And using this security file is going to obtain an intermediate representation. This intermediate representation is only meant to be easier to process by static analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 967000
+			},
+			"text": " The static analysis provides you with a set of basic facts about your code. For instance you know that this variable is a constant or you know that this variable is a balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 980000
+			},
+			"text": " And so all these basic facts are the number zero of your iterations that you're going to run to have more and more facts. So basically you have a set of inference rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 998000
+			},
+			"text": " That is for instance if A is a constant, B is a constant and C depends only on A and B. You will know that C is a constant as well. So you can imagine the sort of inference rules that we have in security file to obtain more and more useful facts about the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1012000
+			},
+			"text": " So iterating over this you finally obtain a set of facts which is a fixed point with respect to these inference rules. And so from all these facts you can infer the security report that I showed to you earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1024000
+			},
+			"text": " And which so basically you match the facts against patterns, security patterns. So we have a few now and we hope to increase the number in the coming months."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1034000
+			},
+			"text": " So what is important to remember here is that you, this is fully automated. That is the only thing you do is at the beginning providing the source code of your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1044000
+			},
+			"text": " And then a sacrifice is going to do all this part and provide you with the security report. And this is easily extensible because you can add new patterns along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1055000
+			},
+			"text": " So in our experience so far it was easy and quite quick to add new patterns because the platform provides any sufficient primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1066000
+			},
+			"text": " So our hope is that we won't have to modify, to signify that much in the future to provide new patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1078000
+			},
+			"text": " So following this experience we'll specify and automated tools to analyze smart contracts. A startup was created in Switzerland to audit blockchains and smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1087000
+			},
+			"text": " And the loop is really between auditing contracts and seeing the common patterns and try to extract the routine out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1096000
+			},
+			"text": " And so this is really this feedback loop that we try to maintain to develop new tools that we'll improve on the current state of Arc."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1101000
+			},
+			"text": " So you can check out the information about chain security if you're interested on this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1113000
+			},
+			"text": " So to summarize our present security file which is fully automated, provides strong guarantees that is when it tells you that the bug doesn't exist, that it means that it really doesn't exist in your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1121000
+			},
+			"text": " And it's also extensible via a domain specific language to create new patterns using the primitives already implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1134000
+			},
+			"text": " Following the experience we'll specify, a chain security was created, a startup that specializes in audit of smart contracts and automated program analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1136000
+			},
+			"text": " And with this, thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1145000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:07,260"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1147260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

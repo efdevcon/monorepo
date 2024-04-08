@@ -1,0 +1,4388 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,720"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6720
+			},
+			"text": " This talk is payment channels in production, and it's myself and Arjun, and we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,720",
+				"to": "00:00:12,560"
+			},
+			"offsets": {
+				"from": 6720,
+				"to": 12560
+			},
+			"text": " to talk about what we've been doing for the last year or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,560",
+				"to": "00:00:14,080"
+			},
+			"offsets": {
+				"from": 12560,
+				"to": 14080
+			},
+			"text": " Little overview of what Spank Chain is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,080",
+				"to": "00:00:15,080"
+			},
+			"offsets": {
+				"from": 14080,
+				"to": 15080
+			},
+			"text": " Show of hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,080",
+				"to": "00:00:17,520"
+			},
+			"offsets": {
+				"from": 15080,
+				"to": 17520
+			},
+			"text": " Who knows what Spank Chain is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,520",
+				"to": "00:00:19,560"
+			},
+			"offsets": {
+				"from": 17520,
+				"to": 19560
+			},
+			"text": " Good branding."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,560",
+				"to": "00:00:20,960"
+			},
+			"offsets": {
+				"from": 19560,
+				"to": 20960
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,960",
+				"to": "00:00:27,160"
+			},
+			"offsets": {
+				"from": 20960,
+				"to": 27160
+			},
+			"text": " We don't have a booth, but we all have pink hair, so just come find us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,160",
+				"to": "00:00:29,480"
+			},
+			"offsets": {
+				"from": 27160,
+				"to": 29480
+			},
+			"text": " This is a quick overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,480",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 29480,
+				"to": 34040
+			},
+			"text": " So today is the 10th anniversary of the Bitcoin White Paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:35,640"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 35640
+			},
+			"text": " Let's see how we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,640",
+				"to": "00:00:38,280"
+			},
+			"offsets": {
+				"from": 35640,
+				"to": 38280
+			},
+			"text": " So this is something that Satoshi said in a mailing list."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,280",
+				"to": "00:00:41,040"
+			},
+			"offsets": {
+				"from": 38280,
+				"to": 41040
+			},
+			"text": " He said, \"I would be surprised in 10 years from now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,040",
+				"to": "00:00:46,160"
+			},
+			"offsets": {
+				"from": 41040,
+				"to": 46160
+			},
+			"text": " If we're not using electronic currency in some way, now that we know a way to do it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,160",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 46160,
+				"to": 49720
+			},
+			"text": " that won't inevitably get dumbed down when the trusted third party gets cold feet.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:55,400"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 55400
+			},
+			"text": " And Satoshi knew what was up, because he knew that micro payments for adult was where"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,400",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 55400,
+				"to": 58760
+			},
+			"text": " the party was going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:00:59,760"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 59760
+			},
+			"text": " Show of hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,760",
+				"to": "00:01:01,440"
+			},
+			"offsets": {
+				"from": 59760,
+				"to": 61440
+			},
+			"text": " Who knows how payment channels work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,440",
+				"to": "00:01:02,600"
+			},
+			"offsets": {
+				"from": 61440,
+				"to": 62600
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,600",
+				"to": "00:01:06,400"
+			},
+			"offsets": {
+				"from": 62600,
+				"to": 66400
+			},
+			"text": " If you don't, find the slide later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,400",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 66400,
+				"to": 72920
+			},
+			"text": " For DevCon 4, this is a tale of four payment channel systems that we've made."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:15,440"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 75440
+			},
+			"text": " Part 1, the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,440",
+				"to": "00:01:17,600"
+			},
+			"offsets": {
+				"from": 75440,
+				"to": 77600
+			},
+			"text": " This was August 31, 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,600",
+				"to": "00:01:20,080"
+			},
+			"offsets": {
+				"from": 77600,
+				"to": 80080
+			},
+			"text": " It was pre-ICO."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,080",
+				"to": "00:01:25,720"
+			},
+			"offsets": {
+				"from": 80080,
+				"to": 85720
+			},
+			"text": " Started working with Sergey and Russia, a UCostov of machine-made."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,720",
+				"to": "00:01:27,840"
+			},
+			"offsets": {
+				"from": 85720,
+				"to": 87840
+			},
+			"text": " The magic word is \"hodl.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,840",
+				"to": "00:01:28,840"
+			},
+			"offsets": {
+				"from": 87840,
+				"to": 88840
+			},
+			"text": " This is what it looked like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,840",
+				"to": "00:01:30,040"
+			},
+			"offsets": {
+				"from": 88840,
+				"to": 90040
+			},
+			"text": " It was called \"Vinos.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,040",
+				"to": "00:01:37,880"
+			},
+			"offsets": {
+				"from": 90040,
+				"to": 97880
+			},
+			"text": " This is me doing a video walkthrough where I asked Janice Griffith to spank herself, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,880",
+				"to": "00:01:41,640"
+			},
+			"offsets": {
+				"from": 97880,
+				"to": 101640
+			},
+			"text": " she refused until I said the magic word, which was \"hodl.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,640",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 101640,
+				"to": 102640
+			},
+			"text": " It was not \"please.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:43,640"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 103640
+			},
+			"text": " It was not \"pretty pleased.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,640",
+				"to": "00:01:45,140"
+			},
+			"offsets": {
+				"from": 103640,
+				"to": 105140
+			},
+			"text": " It was \"hodl.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,140",
+				"to": "00:01:48,400"
+			},
+			"offsets": {
+				"from": 105140,
+				"to": 108400
+			},
+			"text": " So we did this demonstration just to show that our payment channel system worked in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,400",
+				"to": "00:01:54,480"
+			},
+			"offsets": {
+				"from": 108400,
+				"to": 114480
+			},
+			"text": " advance of actually doing the ICO, because we wanted to improve the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,480",
+				"to": "00:01:55,480"
+			},
+			"offsets": {
+				"from": 114480,
+				"to": 115480
+			},
+			"text": " It took three tries."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,480",
+				"to": "00:01:56,880"
+			},
+			"offsets": {
+				"from": 115480,
+				"to": 116880
+			},
+			"text": " There was a bunch of bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,880",
+				"to": "00:02:03,360"
+			},
+			"offsets": {
+				"from": 116880,
+				"to": 123360
+			},
+			"text": " And then, so each of these times we had Janice Griffith there at our Hollywood mansion ready"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,360",
+				"to": "00:02:10,080"
+			},
+			"offsets": {
+				"from": 123360,
+				"to": 130080
+			},
+			"text": " to do this demonstration and then could not get it working."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,080",
+				"to": "00:02:15,160"
+			},
+			"offsets": {
+				"from": 130080,
+				"to": 135160
+			},
+			"text": " The second time was actually because Xerox was doing their ICO at the same time, and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,160",
+				"to": "00:02:17,240"
+			},
+			"offsets": {
+				"from": 135160,
+				"to": 137240
+			},
+			"text": " could not get any of the transactions through."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,240",
+				"to": "00:02:20,680"
+			},
+			"offsets": {
+				"from": 137240,
+				"to": 140680
+			},
+			"text": " It was very, very sad."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,680",
+				"to": "00:02:24,600"
+			},
+			"offsets": {
+				"from": 140680,
+				"to": 144600
+			},
+			"text": " The second system we launched, after the ICO, we launched on April 2, which was one day"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,600",
+				"to": "00:02:27,680"
+			},
+			"offsets": {
+				"from": 144600,
+				"to": 147680
+			},
+			"text": " later than our target date of April 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,680",
+				"to": "00:02:30,720"
+			},
+			"offsets": {
+				"from": 147680,
+				"to": 150720
+			},
+			"text": " And it was the simplest possible payment channel implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,720",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 150720,
+				"to": 151720
+			},
+			"text": " Looked like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:35,760"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 155760
+			},
+			"text": " Actually, this is what is still live on our site because we had to revert it, which I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,760",
+				"to": "00:02:37,440"
+			},
+			"offsets": {
+				"from": 155760,
+				"to": 157440
+			},
+			"text": " get to in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,440",
+				"to": "00:02:41,480"
+			},
+			"offsets": {
+				"from": 157440,
+				"to": 161480
+			},
+			"text": " But you had a wallet, and you send money to the wallet, and that's like a legitimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,480",
+				"to": "00:02:42,480"
+			},
+			"offsets": {
+				"from": 161480,
+				"to": 162480
+			},
+			"text": " Ethereum wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,480",
+				"to": "00:02:46,520"
+			},
+			"offsets": {
+				"from": 162480,
+				"to": 166520
+			},
+			"text": " And then, after that, you clicked \"load up your spank card,\" and you send the money"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,520",
+				"to": "00:02:47,960"
+			},
+			"offsets": {
+				"from": 166520,
+				"to": 167960
+			},
+			"text": " to the payment channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,960",
+				"to": "00:02:50,240"
+			},
+			"offsets": {
+				"from": 167960,
+				"to": 170240
+			},
+			"text": " It was represented by the spank card."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,240",
+				"to": "00:02:55,960"
+			},
+			"offsets": {
+				"from": 170240,
+				"to": 175960
+			},
+			"text": " And so this was a unidirectional, ether-only, custodial payment channel setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,960",
+				"to": "00:02:59,880"
+			},
+			"offsets": {
+				"from": 175960,
+				"to": 179880
+			},
+			"text": " So the users had payment channels with the hub that we were operating, but the performers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,880",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 179880,
+				"to": 182920
+			},
+			"text": " did not, they had to click, withdraw through a separate interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:06,440"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 186440
+			},
+			"text": " And in the time between they got the money and they hit withdraw, we held the money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,440",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 186440,
+				"to": 187440
+			},
+			"text": " and so we had custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:13,720"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 193720
+			},
+			"text": " Again, I was working with machine-to-me libraries and contracts, and we brought on KioCan."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,720",
+				"to": "00:03:16,240"
+			},
+			"offsets": {
+				"from": 193720,
+				"to": 196240
+			},
+			"text": " The metaphor for the spank card was a hit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,240",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 196240,
+				"to": 201000
+			},
+			"text": " Everything that we've learned about payment channels is nobody gives a shit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:25,200"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 205200
+			},
+			"text": " It works like a card, so we represented it like a card."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,200",
+				"to": "00:03:26,480"
+			},
+			"offsets": {
+				"from": 205200,
+				"to": 206480
+			},
+			"text": " Everybody knows how a card works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,480",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 206480,
+				"to": 211960
+			},
+			"text": " You put money in, you spend it, and when you're done, you take whatever's left."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:36,800"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 216800
+			},
+			"text": " So now I never need to tell any of the users what payment channels are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,800",
+				"to": "00:03:38,960"
+			},
+			"offsets": {
+				"from": 216800,
+				"to": 218960
+			},
+			"text": " Fun things we encountered along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,960",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 218960,
+				"to": 221280
+			},
+			"text": " So querying in Furo was non-deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:46,800"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 226800
+			},
+			"text": " We would get a transaction in and we would see that it had worked, and then we'd query"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,800",
+				"to": "00:03:49,640"
+			},
+			"offsets": {
+				"from": 226800,
+				"to": 229640
+			},
+			"text": " in Furo, and in Furo is eventually consistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,640",
+				"to": "00:03:54,080"
+			},
+			"offsets": {
+				"from": 229640,
+				"to": 234080
+			},
+			"text": " So half of in Furo is like, yes, this worked, and the other half is like, I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,080",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 234080,
+				"to": 240880
+			},
+			"text": " And so we, yeah, that problem, truffle timeout is 240 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 249000
+			},
+			"text": " So in production, when you have transactions and you have a variable amounts of gas, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,080"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252080
+			},
+			"text": " sometimes your transactions just timeout, and that sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,080",
+				"to": "00:04:15,440"
+			},
+			"offsets": {
+				"from": 252080,
+				"to": 255440
+			},
+			"text": " You have to go trace them down."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,440",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 255440,
+				"to": 262000
+			},
+			"text": " So fast forward to June 6th, or June 9th, sorry, we hardened our wallet, and then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265440
+			},
+			"text": " shipped our open beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:32,160"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 272160
+			},
+			"text": " So this was the same wallet, roughly, actually this is the wrong picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,160",
+				"to": "00:04:38,360"
+			},
+			"offsets": {
+				"from": 272160,
+				"to": 278360
+			},
+			"text": " Yeah, so this is when we upgrade later, but anyway, we got hacked, actually, we never"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,360",
+				"to": "00:04:39,360"
+			},
+			"offsets": {
+				"from": 278360,
+				"to": 279360
+			},
+			"text": " talked about this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,360",
+				"to": "00:04:41,680"
+			},
+			"offsets": {
+				"from": 279360,
+				"to": 281680
+			},
+			"text": " It didn't really seem like a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,680",
+				"to": "00:04:47,520"
+			},
+			"offsets": {
+				"from": 281680,
+				"to": 287520
+			},
+			"text": " But we actually got hacked before the most recent hack for a lot less money, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,520",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 287520,
+				"to": 292240
+			},
+			"text": " in the process of migrating to a different infrastructure, we let our Geth node firewall"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 296000
+			},
+			"text": " slip for two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 302240
+			},
+			"text": " And in the two minutes, within 30 seconds, the $1,500 in ETH that we had on our hot wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:07,840"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 307840
+			},
+			"text": " was drained because the Geth node was unlocked, and somebody just sent a JSON RPC request"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,840",
+				"to": "00:05:11,920"
+			},
+			"offsets": {
+				"from": 307840,
+				"to": 311920
+			},
+			"text": " to send themselves all the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,920",
+				"to": "00:05:17,360"
+			},
+			"offsets": {
+				"from": 311920,
+				"to": 317360
+			},
+			"text": " So then we did an upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,360",
+				"to": "00:05:20,400"
+			},
+			"offsets": {
+				"from": 317360,
+				"to": 320400
+			},
+			"text": " We launched that September 1st."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,400",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 320400,
+				"to": 325120
+			},
+			"text": " Move fast and break things, they said."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 327200
+			},
+			"text": " So the upgrade was a non-custodial wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:33,960"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 333960
+			},
+			"text": " It had Perun-style peer-to-peer virtual channels, which we call Threads now, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,960",
+				"to": "00:05:36,560"
+			},
+			"offsets": {
+				"from": 333960,
+				"to": 336560
+			},
+			"text": " The contract had support for ETH and ERC20."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,560",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 336560,
+				"to": 342080
+			},
+			"text": " So on September 1st, we launched the wallet, which looked like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:46,400"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 346400
+			},
+			"text": " So we integrated the wallet and card into just one balance and basically just showed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,400",
+				"to": "00:05:49,640"
+			},
+			"offsets": {
+				"from": 346400,
+				"to": 349640
+			},
+			"text": " a pending transaction until all of the wallet funds were there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,640",
+				"to": "00:05:53,880"
+			},
+			"offsets": {
+				"from": 349640,
+				"to": 353880
+			},
+			"text": " And so we actually took the liberty of when you send the wallet the money, we automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,880",
+				"to": "00:05:57,040"
+			},
+			"offsets": {
+				"from": 353880,
+				"to": 357040
+			},
+			"text": " deposit it into your payment channels, because we figured there's no other reason why you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,040",
+				"to": "00:06:00,440"
+			},
+			"offsets": {
+				"from": 357040,
+				"to": 360440
+			},
+			"text": " sending this thing money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,440",
+				"to": "00:06:03,960"
+			},
+			"offsets": {
+				"from": 360440,
+				"to": 363960
+			},
+			"text": " And we joined forces with Connects to work on the hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,960",
+				"to": "00:06:10,200"
+			},
+			"offsets": {
+				"from": 363960,
+				"to": 370200
+			},
+			"text": " So now I was going to ship payment channels, but then I got hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,200",
+				"to": "00:06:11,680"
+			},
+			"offsets": {
+				"from": 370200,
+				"to": 371680
+			},
+			"text": " So the hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,680",
+				"to": "00:06:13,640"
+			},
+			"offsets": {
+				"from": 371680,
+				"to": 373640
+			},
+			"text": " We lost $40,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,640",
+				"to": "00:06:17,720"
+			},
+			"offsets": {
+				"from": 373640,
+				"to": 377720
+			},
+			"text": " We got it all back, and we made a friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,720",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 377720,
+				"to": 384480
+			},
+			"text": " So this was the post that we published in the aftermath of the hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:31,320"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 391320
+			},
+			"text": " So the hack exploited a re-entrancy bug and an integer overflow, which allowed the hacker"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,320",
+				"to": "00:06:37,640"
+			},
+			"offsets": {
+				"from": 391320,
+				"to": 397640
+			},
+			"text": " to call back into the withdrawal function and basically give themselves all of the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,640",
+				"to": "00:06:39,280"
+			},
+			"offsets": {
+				"from": 397640,
+				"to": 399280
+			},
+			"text": " It wasn't quite the withdrawal function."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,280",
+				"to": "00:06:42,640"
+			},
+			"offsets": {
+				"from": 399280,
+				"to": 402640
+			},
+			"text": " It was a function that allowed them to exit a channel that had not been joined by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,640",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 402640,
+				"to": 407000
+			},
+			"text": " counterparty, but they opened the channel and then exited the channel that had not been"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 408000
+			},
+			"text": " joined."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:53,920"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 413920
+			},
+			"text": " But that function, they called back into it because it only deleted the on-chain data"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,920",
+				"to": "00:06:57,960"
+			},
+			"offsets": {
+				"from": 413920,
+				"to": 417960
+			},
+			"text": " about the balances after the transaction had been sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,960",
+				"to": "00:07:04,560"
+			},
+			"offsets": {
+				"from": 417960,
+				"to": 424560
+			},
+			"text": " And in the course of sending the token transfer, the actual token contract was not what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,560",
+				"to": "00:07:07,120"
+			},
+			"offsets": {
+				"from": 424560,
+				"to": 427120
+			},
+			"text": " thought it was."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,120",
+				"to": "00:07:11,840"
+			},
+			"offsets": {
+				"from": 427120,
+				"to": 431840
+			},
+			"text": " It called back into the function and gave the attacker all our money."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,840",
+				"to": "00:07:12,840"
+			},
+			"offsets": {
+				"from": 431840,
+				"to": 432840
+			},
+			"text": " There was another bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,840",
+				"to": "00:07:18,280"
+			},
+			"offsets": {
+				"from": 432840,
+				"to": 438280
+			},
+			"text": " So when I called the attacker up, I said, you know, I'm a mean soul of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,280",
+				"to": "00:07:20,040"
+			},
+			"offsets": {
+				"from": 438280,
+				"to": 440040
+			},
+			"text": " So you have a spank chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,040",
+				"to": "00:07:22,240"
+			},
+			"offsets": {
+				"from": 440040,
+				"to": 442240
+			},
+			"text": " Do you know why I'm calling?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,240",
+				"to": "00:07:23,400"
+			},
+			"offsets": {
+				"from": 442240,
+				"to": 443400
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,400",
+				"to": "00:07:25,400"
+			},
+			"offsets": {
+				"from": 443400,
+				"to": 445400
+			},
+			"text": " Said, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,400",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445400,
+				"to": 448000
+			},
+			"text": " A little bit nervous."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453960
+			},
+			"text": " So from there, I said, you know, congratulations on being the real winner of the ESF hackathon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:34,960"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 454960
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,960",
+				"to": "00:07:36,760"
+			},
+			"offsets": {
+				"from": 454960,
+				"to": 456760
+			},
+			"text": " Very impressed with your work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,760",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 456760,
+				"to": 458720
+			},
+			"text": " Can I have all my money back?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:43,040"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 463040
+			},
+			"text": " If you give it back, I'll give you a $5,000 reward for your contribution to exposing our"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,040",
+				"to": "00:07:45,560"
+			},
+			"offsets": {
+				"from": 463040,
+				"to": 465560
+			},
+			"text": " vulnerabilities, which we really appreciate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,560",
+				"to": "00:07:49,640"
+			},
+			"offsets": {
+				"from": 465560,
+				"to": 469640
+			},
+			"text": " And they said that seems reasonable, texted me the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,640",
+				"to": "00:07:54,160"
+			},
+			"offsets": {
+				"from": 469640,
+				"to": 474160
+			},
+			"text": " And then they said, well, actually, there's another bug in your contract and that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,160",
+				"to": "00:07:58,480"
+			},
+			"offsets": {
+				"from": 474160,
+				"to": 478480
+			},
+			"text": " allow me to get back the $4,000 booty, which is our stablecoin, pegged to a dollar get"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,480",
+				"to": "00:08:00,480"
+			},
+			"offsets": {
+				"from": 478480,
+				"to": 480480
+			},
+			"text": " it booty peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,480",
+				"to": "00:08:01,480"
+			},
+			"offsets": {
+				"from": 480480,
+				"to": 481480
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,480",
+				"to": "00:08:02,480"
+			},
+			"offsets": {
+				"from": 481480,
+				"to": 482480
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,480",
+				"to": "00:08:04,960"
+			},
+			"offsets": {
+				"from": 482480,
+				"to": 484960
+			},
+			"text": " So they said, yeah, we'll get you $4,000 booty back."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,960",
+				"to": "00:08:09,240"
+			},
+			"offsets": {
+				"from": 484960,
+				"to": 489240
+			},
+			"text": " And I said, well, if this person can get the booty, then somebody else can get the booty."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,240",
+				"to": "00:08:11,160"
+			},
+			"offsets": {
+				"from": 489240,
+				"to": 491160
+			},
+			"text": " And my plan involved getting everybody back online."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,160",
+				"to": "00:08:13,160"
+			},
+			"offsets": {
+				"from": 491160,
+				"to": 493160
+			},
+			"text": " And I was like, okay, fuck it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,160",
+				"to": "00:08:15,320"
+			},
+			"offsets": {
+				"from": 493160,
+				"to": 495320
+			},
+			"text": " Like, let's let this person do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,320",
+				"to": "00:08:20,200"
+			},
+			"offsets": {
+				"from": 495320,
+				"to": 500200
+			},
+			"text": " And I said, look, if you can get this back within 24 hours, I will pay you the dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,200",
+				"to": "00:08:21,880"
+			},
+			"offsets": {
+				"from": 500200,
+				"to": 501880
+			},
+			"text": " price, $4,000 for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,880",
+				"to": "00:08:26,400"
+			},
+			"offsets": {
+				"from": 501880,
+				"to": 506400
+			},
+			"text": " And within an hour, actually, 65 minutes later, I had my 4,000 booty, so I sent them 4,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,400",
+				"to": "00:08:31,400"
+			},
+			"offsets": {
+				"from": 506400,
+				"to": 511400
+			},
+			"text": " eath and called them back up to, hey, pleasure doing business with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,400",
+				"to": "00:08:34,640"
+			},
+			"offsets": {
+				"from": 511400,
+				"to": 514640
+			},
+			"text": " And they were kind enough to do pro bono audits of two of our other contracts, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,640",
+				"to": "00:08:37,760"
+			},
+			"offsets": {
+				"from": 514640,
+				"to": 517760
+			},
+			"text": " They didn't find any vulnerabilities in the bank bank and gave me some notes on the Moloch"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,760",
+				"to": "00:08:38,760"
+			},
+			"offsets": {
+				"from": 517760,
+				"to": 518760
+			},
+			"text": " Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,760",
+				"to": "00:08:41,160"
+			},
+			"offsets": {
+				"from": 518760,
+				"to": 521160
+			},
+			"text": " So that was cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,160",
+				"to": "00:08:43,560"
+			},
+			"offsets": {
+				"from": 521160,
+				"to": 523560
+			},
+			"text": " So in the aftermath, Connects, we worked together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,560",
+				"to": "00:08:48,760"
+			},
+			"offsets": {
+				"from": 523560,
+				"to": 528760
+			},
+			"text": " They prepared a transparency report and we did in-depth, full team, line by line, audits"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,760",
+				"to": "00:08:55,880"
+			},
+			"offsets": {
+				"from": 528760,
+				"to": 535880
+			},
+			"text": " of the contracts and hub systems every day for several hours and identified 10 total"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,880",
+				"to": "00:09:01,640"
+			},
+			"offsets": {
+				"from": 535880,
+				"to": 541640
+			},
+			"text": " attack vectors and published all of it as part of the transparency report."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,640",
+				"to": "00:09:05,640"
+			},
+			"offsets": {
+				"from": 541640,
+				"to": 545640
+			},
+			"text": " This is what it means to be in production, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,640",
+				"to": "00:09:07,880"
+			},
+			"offsets": {
+				"from": 545640,
+				"to": 547880
+			},
+			"text": " Get ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,880",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 547880,
+				"to": 549880
+			},
+			"text": " So then we did a reboot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:14,320"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 554320
+			},
+			"text": " We decided to rewrite the contracts from scratch and we made significant improvements"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,320",
+				"to": "00:09:17,400"
+			},
+			"offsets": {
+				"from": 554320,
+				"to": 557400
+			},
+			"text": " to our UX while we were doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,400",
+				"to": "00:09:22,360"
+			},
+			"offsets": {
+				"from": 557400,
+				"to": 562360
+			},
+			"text": " And this was a combined team effort of Connects, QKEN and Spankchain all working together for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,360",
+				"to": "00:09:25,520"
+			},
+			"offsets": {
+				"from": 562360,
+				"to": 565520
+			},
+			"text": " the last two weeks nonstop."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,520",
+				"to": "00:09:27,520"
+			},
+			"offsets": {
+				"from": 565520,
+				"to": 567520
+			},
+			"text": " We were trying to get it done by DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,520",
+				"to": "00:09:32,560"
+			},
+			"offsets": {
+				"from": 567520,
+				"to": 572560
+			},
+			"text": " We figured if we code nonstop between now and DevCon, there's some chance that we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,560",
+				"to": "00:09:36,280"
+			},
+			"offsets": {
+				"from": 572560,
+				"to": 576280
+			},
+			"text": " ship this by DevCon and then we got pretty far, but we will probably have to ship it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,280",
+				"to": "00:09:38,360"
+			},
+			"offsets": {
+				"from": 576280,
+				"to": 578360
+			},
+			"text": " next week."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,360",
+				"to": "00:09:39,800"
+			},
+			"offsets": {
+				"from": 578360,
+				"to": 579800
+			},
+			"text": " So we did the reboot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,800",
+				"to": "00:09:45,080"
+			},
+			"offsets": {
+				"from": 579800,
+				"to": 585080
+			},
+			"text": " A couple of things that I want to go over on the reboot because they're really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,080",
+				"to": "00:09:48,640"
+			},
+			"offsets": {
+				"from": 585080,
+				"to": 588640
+			},
+			"text": " So before, we had a payment channel system, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,640",
+				"to": "00:09:52,120"
+			},
+			"offsets": {
+				"from": 588640,
+				"to": 592120
+			},
+			"text": " And payment channel systems, you open a channel, you join a channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,120",
+				"to": "00:09:55,520"
+			},
+			"offsets": {
+				"from": 592120,
+				"to": 595520
+			},
+			"text": " Everybody knows this sort of standard flow, but we reimagined it because we'd been dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,520",
+				"to": "00:10:01,120"
+			},
+			"offsets": {
+				"from": 595520,
+				"to": 601120
+			},
+			"text": " with this for a while and there was a bunch of really annoying user flows."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,120",
+				"to": "00:10:06,760"
+			},
+			"offsets": {
+				"from": 601120,
+				"to": 606760
+			},
+			"text": " So for example, when the user wanted to deposit money into the channel, they would have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,760",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 606760,
+				"to": 612320
+			},
+			"text": " call the create channel function and then the hub would wait until it saw that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:15,880"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 615880
+			},
+			"text": " And keeping in mind that we wait several block confirmations, like five block confirmations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,880",
+				"to": "00:10:18,960"
+			},
+			"offsets": {
+				"from": 615880,
+				"to": 618960
+			},
+			"text": " so it's not just like 15 seconds, it's like a minute and a half, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,960",
+				"to": "00:10:24,800"
+			},
+			"offsets": {
+				"from": 618960,
+				"to": 624800
+			},
+			"text": " And then after that, the hub would join the channel and then they would deposit the money"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,800",
+				"to": "00:10:26,440"
+			},
+			"offsets": {
+				"from": 624800,
+				"to": 626440
+			},
+			"text": " and do an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,440",
+				"to": "00:10:31,640"
+			},
+			"offsets": {
+				"from": 626440,
+				"to": 631640
+			},
+			"text": " So that took several minutes of waiting for the user, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,640",
+				"to": "00:10:36,200"
+			},
+			"offsets": {
+				"from": 631640,
+				"to": 636200
+			},
+			"text": " Another annoying flow was especially more annoying for the performer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,200",
+				"to": "00:10:41,200"
+			},
+			"offsets": {
+				"from": 636200,
+				"to": 641200
+			},
+			"text": " When the performer wanted to join a channel, they would also have to call create channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,200",
+				"to": "00:10:44,360"
+			},
+			"offsets": {
+				"from": 641200,
+				"to": 644360
+			},
+			"text": " And the performers don't have any ETH and they're not supposed to have an ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,360",
+				"to": "00:10:46,880"
+			},
+			"offsets": {
+				"from": 644360,
+				"to": 646880
+			},
+			"text": " They're the ones getting paid, so they shouldn't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,880",
+				"to": "00:10:50,040"
+			},
+			"offsets": {
+				"from": 646880,
+				"to": 650040
+			},
+			"text": " And so we actually end up writing a little bot that like when the performer was about"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,040",
+				"to": "00:10:55,160"
+			},
+			"offsets": {
+				"from": 650040,
+				"to": 655160
+			},
+			"text": " to start a show, we would send them a small amount of Ether so that they would then be"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,160",
+				"to": "00:10:58,120"
+			},
+			"offsets": {
+				"from": 655160,
+				"to": 658120
+			},
+			"text": " able to open the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,120",
+				"to": "00:11:00,200"
+			},
+			"offsets": {
+				"from": 658120,
+				"to": 660200
+			},
+			"text": " And that was crazy and then we would join it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,200",
+				"to": "00:11:03,080"
+			},
+			"offsets": {
+				"from": 660200,
+				"to": 663080
+			},
+			"text": " And then the performer withdrawal was even worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,080",
+				"to": "00:11:09,960"
+			},
+			"offsets": {
+				"from": 663080,
+				"to": 669960
+			},
+			"text": " So when the performers wanted to withdraw, especially in the upgraded version, they earn"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,960",
+				"to": "00:11:16,920"
+			},
+			"offsets": {
+				"from": 669960,
+				"to": 676920
+			},
+			"text": " booty because we used Finney, a denominated ETH in production for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,920",
+				"to": "00:11:19,560"
+			},
+			"offsets": {
+				"from": 676920,
+				"to": 679560
+			},
+			"text": " And then we, you know, I don't know if you guys have been paying attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,560",
+				"to": "00:11:25,280"
+			},
+			"offsets": {
+				"from": 679560,
+				"to": 685280
+			},
+			"text": " I know we're not supposed to talk about prices and stuff, but everything crashed miserably"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,280",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 685280,
+				"to": 687480
+			},
+			"text": " for the entire year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:31,920"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 691920
+			},
+			"text": " And so anybody who had any money on Spankchain lost a bunch of it and that sucked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,920",
+				"to": "00:11:35,160"
+			},
+			"offsets": {
+				"from": 691920,
+				"to": 695160
+			},
+			"text": " And so we realized, you know, stablecoins are actually really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,160",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 695160,
+				"to": 700000
+			},
+			"text": " So performers started earning in booty and then when they cash out, they want to cash"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:44,040"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 704040
+			},
+			"text": " out ETH so they can send it to whatever exchange and get it in their bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,040",
+				"to": "00:11:49,720"
+			},
+			"offsets": {
+				"from": 704040,
+				"to": 709720
+			},
+			"text": " But the process of going from booty in your channel to ETH in a wallet was really annoying"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,720",
+				"to": "00:11:53,720"
+			},
+			"offsets": {
+				"from": 709720,
+				"to": 713720
+			},
+			"text": " because you had to either close, there was a couple of ways of doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,720",
+				"to": "00:11:57,360"
+			},
+			"offsets": {
+				"from": 713720,
+				"to": 717360
+			},
+			"text": " You could close the channel and then you'd have the booty and then you would send that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,360",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 717360,
+				"to": 721960
+			},
+			"text": " to the hub and the hub would give you back ETH or you would wait for the hub to deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:06,480"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 726480
+			},
+			"text": " ETH into the channel and then you would swap in the channel and then you would close it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,480",
+				"to": "00:12:10,080"
+			},
+			"offsets": {
+				"from": 726480,
+				"to": 730080
+			},
+			"text": " but then the next time you would still have to go through that process of creating the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,080",
+				"to": "00:12:12,560"
+			},
+			"offsets": {
+				"from": 730080,
+				"to": 732560
+			},
+			"text": " channel and joining the channel again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,560",
+				"to": "00:12:14,280"
+			},
+			"offsets": {
+				"from": 732560,
+				"to": 734280
+			},
+			"text": " And it was a mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,280",
+				"to": "00:12:20,320"
+			},
+			"offsets": {
+				"from": 734280,
+				"to": 740320
+			},
+			"text": " And so what we ended up being able to do is get every combination of deposits, withdrawals"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,320",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 740320,
+				"to": 743200
+			},
+			"text": " and exchange in a single on-chain transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:29,040"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 749040
+			},
+			"text": " So performers, when they want to start a show now, they just sign a thing and the hub will"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,040",
+				"to": "00:12:32,400"
+			},
+			"offsets": {
+				"from": 749040,
+				"to": 752400
+			},
+			"text": " deposit into their channel directly, one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,400",
+				"to": "00:12:33,680"
+			},
+			"offsets": {
+				"from": 752400,
+				"to": 753680
+			},
+			"text": " They don't need any ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,680",
+				"to": "00:12:38,840"
+			},
+			"offsets": {
+				"from": 753680,
+				"to": 758840
+			},
+			"text": " For every operation that is not the user depositing into their own channel to fund it, the hub"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,840",
+				"to": "00:12:42,320"
+			},
+			"offsets": {
+				"from": 758840,
+				"to": 762320
+			},
+			"text": " will be able to do it so long as they have a user signature and that keeps things in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,320",
+				"to": "00:12:44,280"
+			},
+			"offsets": {
+				"from": 762320,
+				"to": 764280
+			},
+			"text": " sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,280",
+				"to": "00:12:49,600"
+			},
+			"offsets": {
+				"from": 764280,
+				"to": 769600
+			},
+			"text": " And that's going to be a much better model and I'm really excited to launch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,600",
+				"to": "00:12:56,760"
+			},
+			"offsets": {
+				"from": 769600,
+				"to": 776760
+			},
+			"text": " So also wanted to announce our decentralized exchange which will be called COMSwap."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,760",
+				"to": "00:13:05,080"
+			},
+			"offsets": {
+				"from": 776760,
+				"to": 785080
+			},
+			"text": " I'm going to give a demo of this actually in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,080",
+				"to": "00:13:08,040"
+			},
+			"offsets": {
+				"from": 785080,
+				"to": 788040
+			},
+			"text": " And I want to talk about the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,040",
+				"to": "00:13:11,080"
+			},
+			"offsets": {
+				"from": 788040,
+				"to": 791080
+			},
+			"text": " Other things that we're building, affiliate system with Instant Payouts and other great"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,080",
+				"to": "00:13:12,720"
+			},
+			"offsets": {
+				"from": 791080,
+				"to": 792720
+			},
+			"text": " use for payment channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,720",
+				"to": "00:13:16,560"
+			},
+			"offsets": {
+				"from": 792720,
+				"to": 796560
+			},
+			"text": " We're very excited to integrate with the NOSA Safe Multi-Sig Wallet and we're looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,560",
+				"to": "00:13:20,800"
+			},
+			"offsets": {
+				"from": 796560,
+				"to": 800800
+			},
+			"text": " for partnerships for fiat off-ramps so that performers can earn booty in a channel and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,800",
+				"to": "00:13:25,480"
+			},
+			"offsets": {
+				"from": 800800,
+				"to": 805480
+			},
+			"text": " then spend it with a card because then they don't need a bank and then we win."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,480",
+				"to": "00:13:30,040"
+			},
+			"offsets": {
+				"from": 805480,
+				"to": 810040
+			},
+			"text": " This is, I don't know if you guys all saw this, but we're also very interested in entering"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,040",
+				"to": "00:13:37,880"
+			},
+			"offsets": {
+				"from": 810040,
+				"to": 817880
+			},
+			"text": " the crypto teledildonic space and using the data, the work that Team Daddy made in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,880",
+				"to": "00:13:38,880"
+			},
+			"offsets": {
+				"from": 817880,
+				"to": 818880
+			},
+			"text": " status hackathon."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,880",
+				"to": "00:13:43,880"
+			},
+			"offsets": {
+				"from": 818880,
+				"to": 823880
+			},
+			"text": " That is a dildo that he is holding on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,880",
+				"to": "00:13:46,280"
+			},
+			"offsets": {
+				"from": 823880,
+				"to": 826280
+			},
+			"text": " Which is controlled by the Ethereum mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,280",
+				"to": "00:13:51,320"
+			},
+			"offsets": {
+				"from": 826280,
+				"to": 831320
+			},
+			"text": " I'm like, yeah, it's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,320",
+				"to": "00:13:56,760"
+			},
+			"offsets": {
+				"from": 831320,
+				"to": 836760
+			},
+			"text": " So let me show you guys something neat."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,760",
+				"to": "00:14:01,080"
+			},
+			"offsets": {
+				"from": 836760,
+				"to": 841080
+			},
+			"text": " This is going to be our exchange interface, simplest ever exchange interface best UX on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,080",
+				"to": "00:14:02,080"
+			},
+			"offsets": {
+				"from": 841080,
+				"to": 842080
+			},
+			"text": " Earth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,080",
+				"to": "00:14:07,920"
+			},
+			"offsets": {
+				"from": 842080,
+				"to": 847920
+			},
+			"text": " You push the button, you get what you want, here's how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,920",
+				"to": "00:14:11,720"
+			},
+			"offsets": {
+				"from": 847920,
+				"to": 851720
+			},
+			"text": " As you increase, you can't see them shooting out of the card because the resolution is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,720",
+				"to": "00:14:12,720"
+			},
+			"offsets": {
+				"from": 851720,
+				"to": 852720
+			},
+			"text": " whack."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,720",
+				"to": "00:14:18,080"
+			},
+			"offsets": {
+				"from": 852720,
+				"to": 858080
+			},
+			"text": " But normally what you'd see is the little globules would shoot out of the card."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,080",
+				"to": "00:14:20,560"
+			},
+			"offsets": {
+				"from": 858080,
+				"to": 860560
+			},
+			"text": " And then they'd make this big glob."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,560",
+				"to": "00:14:25,240"
+			},
+			"offsets": {
+				"from": 860560,
+				"to": 865240
+			},
+			"text": " And then when you hit confirm, it like pulsates for a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,240",
+				"to": "00:14:26,240"
+			},
+			"offsets": {
+				"from": 865240,
+				"to": 866240
+			},
+			"text": " And then it disappears."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,240",
+				"to": "00:14:30,680"
+			},
+			"offsets": {
+				"from": 866240,
+				"to": 870680
+			},
+			"text": " I was trying to get it to like, coagulate and then drip."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,680",
+				"to": "00:14:33,320"
+			},
+			"offsets": {
+				"from": 870680,
+				"to": 873320
+			},
+			"text": " We're limited by the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,320",
+				"to": "00:14:34,680"
+			},
+			"offsets": {
+				"from": 873320,
+				"to": 874680
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,680",
+				"to": "00:14:36,920"
+			},
+			"offsets": {
+				"from": 874680,
+				"to": 876920
+			},
+			"text": " So that's all I got."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,920",
+				"to": "00:14:41,520"
+			},
+			"offsets": {
+				"from": 876920,
+				"to": 881520
+			},
+			"text": " And now I'd like to invite Arjun up and here's his presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,520",
+				"to": "00:14:42,520"
+			},
+			"offsets": {
+				"from": 881520,
+				"to": 882520
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,520",
+				"to": "00:14:43,520"
+			},
+			"offsets": {
+				"from": 882520,
+				"to": 883520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,520",
+				"to": "00:14:50,520"
+			},
+			"offsets": {
+				"from": 883520,
+				"to": 890520
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,520",
+				"to": "00:14:51,520"
+			},
+			"offsets": {
+				"from": 890520,
+				"to": 891520
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,520",
+				"to": "00:14:52,520"
+			},
+			"offsets": {
+				"from": 891520,
+				"to": 892520
+			},
+			"text": " I'm Arjun."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,520",
+				"to": "00:14:54,480"
+			},
+			"offsets": {
+				"from": 892520,
+				"to": 894480
+			},
+			"text": " I am the founder of Connect."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,480",
+				"to": "00:14:56,600"
+			},
+			"offsets": {
+				"from": 894480,
+				"to": 896600
+			},
+			"text": " We worked with Spankchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,600",
+				"to": "00:15:01,960"
+			},
+			"offsets": {
+				"from": 896600,
+				"to": 901960
+			},
+			"text": " We're going to continue to work with Spankchain for obvious reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,960",
+				"to": "00:15:05,680"
+			},
+			"offsets": {
+				"from": 901960,
+				"to": 905680
+			},
+			"text": " I'm going to zoom out and give a little bit of context about everything that we're doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,680",
+				"to": "00:15:07,240"
+			},
+			"offsets": {
+				"from": 905680,
+				"to": 907240
+			},
+			"text": " and then that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,240",
+				"to": "00:15:11,400"
+			},
+			"offsets": {
+				"from": 907240,
+				"to": 911400
+			},
+			"text": " You can see where we are now and where we want to be in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,400",
+				"to": "00:15:16,080"
+			},
+			"offsets": {
+				"from": 911400,
+				"to": 916080
+			},
+			"text": " One thing that we sort of asked ourselves when we started working in this industry was"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,080",
+				"to": "00:15:20,920"
+			},
+			"offsets": {
+				"from": 916080,
+				"to": 920920
+			},
+			"text": " if in a year or two years every single thing that we do in scaling becomes obsolete, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,920",
+				"to": "00:15:25,160"
+			},
+			"offsets": {
+				"from": 920920,
+				"to": 925160
+			},
+			"text": " it will, what is the point of doing scaling research in the first place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,160",
+				"to": "00:15:28,480"
+			},
+			"offsets": {
+				"from": 925160,
+				"to": 928480
+			},
+			"text": " Or at least building scaling systems right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,480",
+				"to": "00:15:33,080"
+			},
+			"offsets": {
+				"from": 928480,
+				"to": 933080
+			},
+			"text": " And the truth is that there are a set of problems that can be solved immediately that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,080",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 933080,
+				"to": 936920
+			},
+			"text": " are associated with the things that you cannot do in the world right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,920",
+				"to": "00:15:39,880"
+			},
+			"offsets": {
+				"from": 936920,
+				"to": 939880
+			},
+			"text": " Spankchain is a great example of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,880",
+				"to": "00:15:43,880"
+			},
+			"offsets": {
+				"from": 939880,
+				"to": 943880
+			},
+			"text": " Building instant peer-to-peer payments for the adult industry was not really possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,880",
+				"to": "00:15:47,280"
+			},
+			"offsets": {
+				"from": 943880,
+				"to": 947280
+			},
+			"text": " Doing payments for the adult industry was really, really difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,280",
+				"to": "00:15:49,160"
+			},
+			"offsets": {
+				"from": 947280,
+				"to": 949160
+			},
+			"text": " And now we can do them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,160",
+				"to": "00:15:52,160"
+			},
+			"offsets": {
+				"from": 949160,
+				"to": 952160
+			},
+			"text": " So what can't legacy financial systems do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,160",
+				"to": "00:15:55,600"
+			},
+			"offsets": {
+				"from": 952160,
+				"to": 955600
+			},
+			"text": " Legacy financial systems can't do very, very small things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,600",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 955600,
+				"to": 961000
+			},
+			"text": " Legacy financial systems can't serve high-risk users and they can't really do peer-to-peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:05,720"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 965720
+			},
+			"text": " Anything that you guys can think of that falls under these things, please come talk to us"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,720",
+				"to": "00:16:10,680"
+			},
+			"offsets": {
+				"from": 965720,
+				"to": 970680
+			},
+			"text": " because we're really interested in figuring out how to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,680",
+				"to": "00:16:12,720"
+			},
+			"offsets": {
+				"from": 970680,
+				"to": 972720
+			},
+			"text": " What is Connects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,720",
+				"to": "00:16:17,360"
+			},
+			"offsets": {
+				"from": 972720,
+				"to": 977360
+			},
+			"text": " A lot of people think that we're like a subset of Spankchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,360",
+				"to": "00:16:21,960"
+			},
+			"offsets": {
+				"from": 977360,
+				"to": 981960
+			},
+			"text": " It makes sense because we've been working together so closely for so long."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,960",
+				"to": "00:16:26,640"
+			},
+			"offsets": {
+				"from": 981960,
+				"to": 986640
+			},
+			"text": " Really what we are is just open source, unappinionated infrastructure for scaling, specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,640",
+				"to": "00:16:29,200"
+			},
+			"offsets": {
+				"from": 986640,
+				"to": 989200
+			},
+			"text": " for scaling micro-payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,200",
+				"to": "00:16:37,120"
+			},
+			"offsets": {
+				"from": 989200,
+				"to": 997120
+			},
+			"text": " We want to help the projects that have this problem today and collect data and hopefully"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,120",
+				"to": "00:16:41,760"
+			},
+			"offsets": {
+				"from": 997120,
+				"to": 1001760
+			},
+			"text": " money to be able to solve the scaling problems in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,760",
+				"to": "00:16:44,880"
+			},
+			"offsets": {
+				"from": 1001760,
+				"to": 1004880
+			},
+			"text": " Jeff Coleman is definitely going to disagree with me on this but I really do think there"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,880",
+				"to": "00:16:50,160"
+			},
+			"offsets": {
+				"from": 1004880,
+				"to": 1010160
+			},
+			"text": " is a ton of value in doing experimentation and actually collecting real user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,160",
+				"to": "00:16:53,880"
+			},
+			"offsets": {
+				"from": 1010160,
+				"to": 1013880
+			},
+			"text": " This is sort of a view that Amin and I share and a big part of the reason why we're working"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,880",
+				"to": "00:16:57,200"
+			},
+			"offsets": {
+				"from": 1013880,
+				"to": 1017200
+			},
+			"text": " together."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,200",
+				"to": "00:17:00,600"
+			},
+			"offsets": {
+				"from": 1017200,
+				"to": 1020600
+			},
+			"text": " So what did we learn from Spankchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,600",
+				"to": "00:17:03,960"
+			},
+			"offsets": {
+				"from": 1020600,
+				"to": 1023960
+			},
+			"text": " We partnered up really closely with them and there were some really phenomenal things"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,960",
+				"to": "00:17:06,080"
+			},
+			"offsets": {
+				"from": 1023960,
+				"to": 1026080
+			},
+			"text": " that came out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,080",
+				"to": "00:17:11,400"
+			},
+			"offsets": {
+				"from": 1026080,
+				"to": 1031400
+			},
+			"text": " One of the biggest things was that the adult industry is really, really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,400",
+				"to": "00:17:13,800"
+			},
+			"offsets": {
+				"from": 1031400,
+				"to": 1033800
+			},
+			"text": " It's really an awesome space."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,800",
+				"to": "00:17:19,800"
+			},
+			"offsets": {
+				"from": 1033800,
+				"to": 1039800
+			},
+			"text": " They are very, very open-minded, very willing to learn new things and most importantly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,800",
+				"to": "00:17:23,520"
+			},
+			"offsets": {
+				"from": 1039800,
+				"to": 1043520
+			},
+			"text": " there are a ton of problems that exist over there that can be solved by crypto and solved"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,520",
+				"to": "00:17:25,440"
+			},
+			"offsets": {
+				"from": 1043520,
+				"to": 1045440
+			},
+			"text": " by blockchain in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,440",
+				"to": "00:17:26,640"
+			},
+			"offsets": {
+				"from": 1045440,
+				"to": 1046640
+			},
+			"text": " Highly recommend you guys check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,640",
+				"to": "00:17:30,240"
+			},
+			"offsets": {
+				"from": 1046640,
+				"to": 1050240
+			},
+			"text": " If you don't already."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,240",
+				"to": "00:17:35,720"
+			},
+			"offsets": {
+				"from": 1050240,
+				"to": 1055720
+			},
+			"text": " The second thing that we learned and again, I'm sorry, counterfactual guys and all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,720",
+				"to": "00:17:39,080"
+			},
+			"offsets": {
+				"from": 1055720,
+				"to": 1059080
+			},
+			"text": " the other researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,080",
+				"to": "00:17:41,520"
+			},
+			"offsets": {
+				"from": 1059080,
+				"to": 1061520
+			},
+			"text": " There is a lot of theory in scaling research."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,520",
+				"to": "00:17:48,200"
+			},
+			"offsets": {
+				"from": 1061520,
+				"to": 1068200
+			},
+			"text": " It's really incredibly valuable to do these exercises and learn what sorts of things are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,200",
+				"to": "00:17:50,600"
+			},
+			"offsets": {
+				"from": 1068200,
+				"to": 1070600
+			},
+			"text": " possible within the logical framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,600",
+				"to": "00:17:55,080"
+			},
+			"offsets": {
+				"from": 1070600,
+				"to": 1075080
+			},
+			"text": " The thing that happens though is that when you put this stuff on mainnet, when you put"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,080",
+				"to": "00:17:59,600"
+			},
+			"offsets": {
+				"from": 1075080,
+				"to": 1079600
+			},
+			"text": " it in front of real users, almost all of it breaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,600",
+				"to": "00:18:05,360"
+			},
+			"offsets": {
+				"from": 1079600,
+				"to": 1085360
+			},
+			"text": " We went through, I mean, didn't mention this, but we actually also, between implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,360",
+				"to": "00:18:08,840"
+			},
+			"offsets": {
+				"from": 1085360,
+				"to": 1088840
+			},
+			"text": " three and implementation four, went through three rewrites of the framework that we wanted"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,840",
+				"to": "00:18:10,640"
+			},
+			"offsets": {
+				"from": 1088840,
+				"to": 1090640
+			},
+			"text": " to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,640",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1090640,
+				"to": 1094480
+			},
+			"text": " We as Knecks sort of initially came to Spankchain with like, \"Hey, we've already built this whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:15,480"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1095480
+			},
+			"text": " thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,480",
+				"to": "00:18:16,480"
+			},
+			"offsets": {
+				"from": 1095480,
+				"to": 1096480
+			},
+			"text": " Why don't you guys just integrate it?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,480",
+				"to": "00:18:19,040"
+			},
+			"offsets": {
+				"from": 1096480,
+				"to": 1099040
+			},
+			"text": " None of it would have made sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,040",
+				"to": "00:18:23,400"
+			},
+			"offsets": {
+				"from": 1099040,
+				"to": 1103400
+			},
+			"text": " Literally none of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,400",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1103400,
+				"to": 1109000
+			},
+			"text": " The reason that that happens is because your users are crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1112000
+			},
+			"text": " They don't really do any of the things that you expect them to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:35,480"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1115480
+			},
+			"text": " They have entirely different needs and most of the time they don't fully understand your"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,480",
+				"to": "00:18:36,480"
+			},
+			"offsets": {
+				"from": 1115480,
+				"to": 1116480
+			},
+			"text": " system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,480",
+				"to": "00:18:39,960"
+			},
+			"offsets": {
+				"from": 1116480,
+				"to": 1119960
+			},
+			"text": " Until you spend a bunch of time working with them, until you spend a bunch of time collecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,960",
+				"to": "00:18:45,600"
+			},
+			"offsets": {
+				"from": 1119960,
+				"to": 1125600
+			},
+			"text": " data from them, you don't really realize that, \"Oh, for instance, users really don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,600",
+				"to": "00:18:49,520"
+			},
+			"offsets": {
+				"from": 1125600,
+				"to": 1129520
+			},
+			"text": " care about paying 10 extra cents of gas costs, but they do care about coming back online"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,520",
+				"to": "00:18:52,080"
+			},
+			"offsets": {
+				"from": 1129520,
+				"to": 1132080
+			},
+			"text": " to sign transactions.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,080",
+				"to": "00:18:56,200"
+			},
+			"offsets": {
+				"from": 1132080,
+				"to": 1136200
+			},
+			"text": " Turns out signing transactions leads to a huge drop off."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,200",
+				"to": "00:19:01,480"
+			},
+			"offsets": {
+				"from": 1136200,
+				"to": 1141480
+			},
+			"text": " Paying gas, most of them really don't mind that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,480",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1141480,
+				"to": 1147360
+			},
+			"text": " The last thing that we learned was, actually, I think I covered it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:09,200"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1149200
+			},
+			"text": " Yeah, I'm fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,200",
+				"to": "00:19:12,280"
+			},
+			"offsets": {
+				"from": 1149200,
+				"to": 1152280
+			},
+			"text": " What's next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,280",
+				"to": "00:19:16,240"
+			},
+			"offsets": {
+				"from": 1152280,
+				"to": 1156240
+			},
+			"text": " We sort of did this thing with Spankchain where we worked on figuring out what one node"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,240",
+				"to": "00:19:17,240"
+			},
+			"offsets": {
+				"from": 1156240,
+				"to": 1157240
+			},
+			"text": " would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,240",
+				"to": "00:19:22,040"
+			},
+			"offsets": {
+				"from": 1157240,
+				"to": 1162040
+			},
+			"text": " How do you solve micro payments for one ecosystem that has a bunch of users clustered on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,040",
+				"to": "00:19:23,040"
+			},
+			"offsets": {
+				"from": 1162040,
+				"to": 1163040
+			},
+			"text": " ground?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,040",
+				"to": "00:19:29,200"
+			},
+			"offsets": {
+				"from": 1163040,
+				"to": 1169200
+			},
+			"text": " Now, the goal is to go from one to N. Basically, copy-pasting this same framework in a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,200",
+				"to": "00:19:33,280"
+			},
+			"offsets": {
+				"from": 1169200,
+				"to": 1173280
+			},
+			"text": " of different places and then connecting all of it into a network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,280",
+				"to": "00:19:39,040"
+			},
+			"offsets": {
+				"from": 1173280,
+				"to": 1179040
+			},
+			"text": " You can see here we have wallets connected to channel managers, which are contracts connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,040",
+				"to": "00:19:40,040"
+			},
+			"offsets": {
+				"from": 1179040,
+				"to": 1180040
+			},
+			"text": " to hubs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,040",
+				"to": "00:19:41,640"
+			},
+			"offsets": {
+				"from": 1180040,
+				"to": 1181640
+			},
+			"text": " This is how our existing system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,640",
+				"to": "00:19:44,560"
+			},
+			"offsets": {
+				"from": 1181640,
+				"to": 1184560
+			},
+			"text": " Normally at this point, it's also connected to another wallet and then two wallets can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,560",
+				"to": "00:19:45,720"
+			},
+			"offsets": {
+				"from": 1184560,
+				"to": 1185720
+			},
+			"text": " pay each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,720",
+				"to": "00:19:49,360"
+			},
+			"offsets": {
+				"from": 1185720,
+				"to": 1189360
+			},
+			"text": " But there's no real reason why you can't take pretty much exactly what we have right"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,360",
+				"to": "00:19:54,240"
+			},
+			"offsets": {
+				"from": 1189360,
+				"to": 1194240
+			},
+			"text": " now and just keep going with it, adding more and more hubs to the mix until they're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,240",
+				"to": "00:19:57,040"
+			},
+			"offsets": {
+				"from": 1194240,
+				"to": 1197040
+			},
+			"text": " really hubs anymore, their nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,040",
+				"to": "00:20:01,200"
+			},
+			"offsets": {
+				"from": 1197040,
+				"to": 1201200
+			},
+			"text": " This looks a lot more like lightning or rain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,200",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1201200,
+				"to": 1205000
+			},
+			"text": " We think that this is really valuable because the user experience that we want to deliver"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:10,360"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1210360
+			},
+			"text": " is you wake up in the morning, you put 50 die or something like, or maybe booty, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,360",
+				"to": "00:20:16,160"
+			},
+			"offsets": {
+				"from": 1210360,
+				"to": 1216160
+			},
+			"text": " You put 50 booty onto your wallet into a daily spending account, like a checking account"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,160",
+				"to": "00:20:20,360"
+			},
+			"offsets": {
+				"from": 1216160,
+				"to": 1220360
+			},
+			"text": " or something like that, and then you never pay gas again."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,360",
+				"to": "00:20:22,920"
+			},
+			"offsets": {
+				"from": 1220360,
+				"to": 1222920
+			},
+			"text": " You can earn money, you can spend money pretty much anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,920",
+				"to": "00:20:31,360"
+			},
+			"offsets": {
+				"from": 1222920,
+				"to": 1231360
+			},
+			"text": " You never actually have to pay gas until you withdraw your funds at the end of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,360",
+				"to": "00:20:34,560"
+			},
+			"offsets": {
+				"from": 1231360,
+				"to": 1234560
+			},
+			"text": " We actually had two announcements."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,560",
+				"to": "00:20:38,480"
+			},
+			"offsets": {
+				"from": 1234560,
+				"to": 1238480
+			},
+			"text": " I appreciate Ken sort of alluding to them, but we did have two announcements that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,480",
+				"to": "00:20:40,160"
+			},
+			"offsets": {
+				"from": 1238480,
+				"to": 1240160
+			},
+			"text": " really excited to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,160",
+				"to": "00:20:43,080"
+			},
+			"offsets": {
+				"from": 1240160,
+				"to": 1243080
+			},
+			"text": " The second announcement is that we're officially partnering up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,080",
+				"to": "00:20:46,200"
+			},
+			"offsets": {
+				"from": 1243080,
+				"to": 1246200
+			},
+			"text": " This is probably not really surprising to anybody, especially the people who thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,200",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1246200,
+				"to": 1250360
+			},
+			"text": " that we were the same organization this whole time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:53,320"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1253320
+			},
+			"text": " But we have partnered up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,320",
+				"to": "00:20:57,720"
+			},
+			"offsets": {
+				"from": 1253320,
+				"to": 1257720
+			},
+			"text": " The way that this partnership works is we've actually done an ownership swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,720",
+				"to": "00:21:01,520"
+			},
+			"offsets": {
+				"from": 1257720,
+				"to": 1261520
+			},
+			"text": " We now own a certain percentage of Spankchain and Spankchain now owns a certain percentage"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,520",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1261520,
+				"to": 1263000
+			},
+			"text": " of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:06,800"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1266800
+			},
+			"text": " We both think that this is a really, really cool way to incentivize mutual collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,800",
+				"to": "00:21:08,400"
+			},
+			"offsets": {
+				"from": 1266800,
+				"to": 1268400
+			},
+			"text": " in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,400",
+				"to": "00:21:11,480"
+			},
+			"offsets": {
+				"from": 1268400,
+				"to": 1271480
+			},
+			"text": " More projects should do this in order to stay aligned."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,480",
+				"to": "00:21:17,040"
+			},
+			"offsets": {
+				"from": 1271480,
+				"to": 1277040
+			},
+			"text": " We really want to see Spankchain succeed, and Spankchain really wants to see us succeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,040",
+				"to": "00:21:19,240"
+			},
+			"offsets": {
+				"from": 1277040,
+				"to": 1279240
+			},
+			"text": " How does it check out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,240",
+				"to": "00:21:23,400"
+			},
+			"offsets": {
+				"from": 1279240,
+				"to": 1283400
+			},
+			"text": " Spankchain is going to go and focus on all of the node bits, basically optimizing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,400",
+				"to": "00:21:28,080"
+			},
+			"offsets": {
+				"from": 1283400,
+				"to": 1288080
+			},
+			"text": " user experience, optimizing how all of the amazing things that you can do as a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,080",
+				"to": "00:21:30,160"
+			},
+			"offsets": {
+				"from": 1288080,
+				"to": 1290160
+			},
+			"text": " node in our network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,160",
+				"to": "00:21:32,200"
+			},
+			"offsets": {
+				"from": 1290160,
+				"to": 1292200
+			},
+			"text": " And we are going to go build the rest of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,200",
+				"to": "00:21:36,360"
+			},
+			"offsets": {
+				"from": 1292200,
+				"to": 1296360
+			},
+			"text": " So optimizing on how we can connect all of the nodes to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,360",
+				"to": "00:21:42,600"
+			},
+			"offsets": {
+				"from": 1296360,
+				"to": 1302600
+			},
+			"text": " So you can think of it as one hub and then many hubs and then we are the shit that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,600",
+				"to": "00:21:46,080"
+			},
+			"offsets": {
+				"from": 1302600,
+				"to": 1306080
+			},
+			"text": " in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,080",
+				"to": "00:21:51,400"
+			},
+			"offsets": {
+				"from": 1306080,
+				"to": 1311400
+			},
+			"text": " We are really incredibly excited to be working on this and incredibly happy to be up here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,400",
+				"to": "00:21:54,800"
+			},
+			"offsets": {
+				"from": 1311400,
+				"to": 1314800
+			},
+			"text": " letting you guys know that this is our plan in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,800",
+				"to": "00:22:00,280"
+			},
+			"offsets": {
+				"from": 1314800,
+				"to": 1320280
+			},
+			"text": " We are open source, we are free infrastructure, we don't have a token, we just want to figure"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,280",
+				"to": "00:22:01,280"
+			},
+			"offsets": {
+				"from": 1320280,
+				"to": 1321280
+			},
+			"text": " out this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,280",
+				"to": "00:22:04,920"
+			},
+			"offsets": {
+				"from": 1321280,
+				"to": 1324920
+			},
+			"text": " We want to figure out this problem and use the data that we get from this problem to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,920",
+				"to": "00:22:07,240"
+			},
+			"offsets": {
+				"from": 1324920,
+				"to": 1327240
+			},
+			"text": " figure out many, many other problems in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,240",
+				"to": "00:22:10,360"
+			},
+			"offsets": {
+				"from": 1327240,
+				"to": 1330360
+			},
+			"text": " So if you have an interest, please, please, please reach out to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,360",
+				"to": "00:22:12,760"
+			},
+			"offsets": {
+				"from": 1330360,
+				"to": 1332760
+			},
+			"text": " Please go check out Spankchain if you haven't already."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,760",
+				"to": "00:22:14,920"
+			},
+			"offsets": {
+				"from": 1332760,
+				"to": 1334920
+			},
+			"text": " They literally have the best user experience in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,920",
+				"to": "00:22:19,640"
+			},
+			"offsets": {
+				"from": 1334920,
+				"to": 1339640
+			},
+			"text": " They are also one of the only companies that has real users and is struggling with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,640",
+				"to": "00:22:23,960"
+			},
+			"offsets": {
+				"from": 1339640,
+				"to": 1343960
+			},
+			"text": " real problems that come with having real users."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,960",
+				"to": "00:22:27,320"
+			},
+			"offsets": {
+				"from": 1343960,
+				"to": 1347320
+			},
+			"text": " And I think that that is all I've got."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,320",
+				"to": "00:22:28,320"
+			},
+			"offsets": {
+				"from": 1347320,
+				"to": 1348320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,320",
+				"to": "00:22:29,320"
+			},
+			"offsets": {
+				"from": 1348320,
+				"to": 1349320
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,320",
+				"to": "00:22:30,320"
+			},
+			"offsets": {
+				"from": 1349320,
+				"to": 1350320
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,320",
+				"to": "00:22:36,720"
+			},
+			"offsets": {
+				"from": 1350320,
+				"to": 1356720
+			},
+			"text": " I'm very curious about, I think there have been many talk about projects like merger"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,720",
+				"to": "00:22:38,840"
+			},
+			"offsets": {
+				"from": 1356720,
+				"to": 1358840
+			},
+			"text": " or acquisition, take over, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,840",
+				"to": "00:22:45,680"
+			},
+			"offsets": {
+				"from": 1358840,
+				"to": 1365680
+			},
+			"text": " How do you guys decide that organically cross our own ship evaluation at that point?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,680",
+				"to": "00:22:48,200"
+			},
+			"offsets": {
+				"from": 1365680,
+				"to": 1368200
+			},
+			"text": " Yeah, that's a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,200",
+				"to": "00:22:54,680"
+			},
+			"offsets": {
+				"from": 1368200,
+				"to": 1374680
+			},
+			"text": " We sort of just kind of met up at a means house one day and we really want to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,680",
+				"to": "00:22:59,240"
+			},
+			"offsets": {
+				"from": 1374680,
+				"to": 1379240
+			},
+			"text": " and sort of decided what would be a fair price for both."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,240",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1379240,
+				"to": 1384120
+			},
+			"text": " And one of the great things about doing this kind of a swap is we both want to see each"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:08,240"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1388240
+			},
+			"text": " other succeed so neither of us is really incentivized to screw each other over."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,240",
+				"to": "00:23:11,240"
+			},
+			"offsets": {
+				"from": 1388240,
+				"to": 1391240
+			},
+			"text": " That was basically what went into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,240",
+				"to": "00:23:14,920"
+			},
+			"offsets": {
+				"from": 1391240,
+				"to": 1394920
+			},
+			"text": " More deals should be done like that, by the way, just hanging out at someone's house in"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,920",
+				"to": "00:23:15,920"
+			},
+			"offsets": {
+				"from": 1394920,
+				"to": 1395920
+			},
+			"text": " general."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,920",
+				"to": "00:23:16,920"
+			},
+			"offsets": {
+				"from": 1395920,
+				"to": 1396920
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,920",
+				"to": "00:23:23,960"
+			},
+			"offsets": {
+				"from": 1396920,
+				"to": 1403960
+			},
+			"text": " My investment thesis was like invest in all the things that use state channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,960",
+				"to": "00:23:30,920"
+			},
+			"offsets": {
+				"from": 1403960,
+				"to": 1410920
+			},
+			"text": " And so we, as a company, in working together, we can work with the teams that we know are"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,920",
+				"to": "00:23:32,480"
+			},
+			"offsets": {
+				"from": 1410920,
+				"to": 1412480
+			},
+			"text": " going to deliver."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,480",
+				"to": "00:23:36,880"
+			},
+			"offsets": {
+				"from": 1412480,
+				"to": 1416880
+			},
+			"text": " And we know that if they can deliver something for us, then they'll be able to deliver something"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,880",
+				"to": "00:23:38,440"
+			},
+			"offsets": {
+				"from": 1416880,
+				"to": 1418440
+			},
+			"text": " for everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,440",
+				"to": "00:23:40,720"
+			},
+			"offsets": {
+				"from": 1418440,
+				"to": 1420720
+			},
+			"text": " And regarding the numbers, I mean, it's like any negotiation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,720",
+				"to": "00:23:43,400"
+			},
+			"offsets": {
+				"from": 1420720,
+				"to": 1423400
+			},
+			"text": " You pick a number that makes you both happy and move on with your lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,400",
+				"to": "00:23:45,120"
+			},
+			"offsets": {
+				"from": 1423400,
+				"to": 1425120
+			},
+			"text": " [SOUND]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,120",
+				"to": "00:23:55,120"
+			},
+			"offsets": {
+				"from": 1425120,
+				"to": 1435120
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,120",
+				"to": "00:24:05,120"
+			},
+			"offsets": {
+				"from": 1435120,
+				"to": 1445120
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,120",
+				"to": "00:24:15,120"
+			},
+			"offsets": {
+				"from": 1445120,
+				"to": 1455120
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

@@ -1,0 +1,2353 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 20000
+			},
+			"text": " Great. Thanks for hanging with us on day three and we're Uport."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24000
+			},
+			"text": " So it's great to be back on stage in front of all of our friends again."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " So much has happened since last year and we're excited to have the opportunity to share an update with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " About what we've been doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 33000
+			},
+			"text": " I'm Michael Senna."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 35000
+			},
+			"text": " I'm product lead for Uport."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 39000
+			},
+			"text": " I'm accompanied by Reuben Heck, project lead and Pellet Brandguard technical lead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 44000
+			},
+			"text": " And we will spend the next 20 minutes sharing our progress with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 49000
+			},
+			"text": " So if there's one thing that you take away from this presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " it's that we've built Ethereum's user platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 56000
+			},
+			"text": " So we've been working on, we're hoping to answer the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 62000
+			},
+			"text": " what is Uport? We've heard it from so many of you and it's about time we share it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 66000
+			},
+			"text": " So, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 73000
+			},
+			"text": " So if you're building an Ethereum application and your goal is to have end users, we should talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " Because building user-friendly Ethereum apps is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " You need to solve account management in login."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " So account management for users in a way that begins to protect their privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " or protects them from themselves and bad behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " As an extension of that, we have key management solutions to help your users avoid danger."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 102000
+			},
+			"text": " Also, we can handle things like onboarding new users without ether or gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 107000
+			},
+			"text": " also sort of abstracting the concept of gas from end users in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " We can also do things like know your user KYC and reputation systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " So if you're building an app and your goal is to have end users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 123000
+			},
+			"text": " you should probably think about solving these and we have a comprehensive solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " And so at a high level, Uport makes Ethereum easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 130000
+			},
+			"text": " Uport Ethereum today is not really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 132000
+			},
+			"text": " You need to be pretty technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " You have to have an on-ramp to acquire ether or gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " You need to interact with too many low-level things in a non-user-friendly way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 142000
+			},
+			"text": " So we've built four components."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 148000
+			},
+			"text": " The first are all Ethereum accounts are in one central place for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150000
+			},
+			"text": " That's easier for them to manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " Users can create a complete user profile that they take with them throughout the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 156000
+			},
+			"text": " as they interact with various applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " Third, Uport enables the storage, the user-centered storage of credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 167000
+			},
+			"text": " and other pieces of signed data that enable a shared user-centric data platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171000
+			},
+			"text": " Fourth, we offer mobile factor authentication and signatures for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 177000
+			},
+			"text": " So basically, user clicks a button on your app and we have a mobile signer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " So I'll pass it over to Riven and Pelly to explain some more of the technical details"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 183000
+			},
+			"text": " and actually how we implement some of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 188000
+			},
+			"text": " But yeah, looking forward to working with all of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 194000
+			},
+			"text": " Hi. So I'm going to talk a little bit about how Uport manages your user's accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 204000
+			},
+			"text": " A Uport account is something that we wanted to create a form of permanescence with."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209000
+			},
+			"text": " And what that means is that it is something that just because you change devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 215000
+			},
+			"text": " or you lose your phone or anything else happens, you should not lose access to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 222000
+			},
+			"text": " So we have a fairly simple architecture with your identity itself represented"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " by a very simple smart contract called a proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 232000
+			},
+			"text": " This is ultimately controlled by a user's device where the private keys are stored"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " and these private keys never ever leave the device."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " In between then, there we have an upgradable access control system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " a smart contract that we call the controller."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " And to handle recovery, we don't want, as I say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 250000
+			},
+			"text": " we don't want people to lose access to their identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 258000
+			},
+			"text": " So we have this smart contract layer to be able to handle recovery of your user's accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 259000
+			},
+			"text": " and identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 269000
+			},
+			"text": " This allows us to do things like social recovery and many other future kinds of recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " Last year, we presented a much simpler model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " There was one good test network, Robston."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " We had one account representing a user's identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " You used this for interacting with all the different apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 285000
+			},
+			"text": " And this was a great way to get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " Lots of developers used it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 294000
+			},
+			"text": " But we started seeing a lot of changes happening in the Ethereum world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 298000
+			},
+			"text": " So first of all, there are a lot more different test networks right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 300000
+			},
+			"text": " There's also a lot of private chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " Users started having different accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 304000
+			},
+			"text": " There are a lot of more apps in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 311000
+			},
+			"text": " So this was a problem that we couldn't just solve having a single account identity on a single chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 317000
+			},
+			"text": " So our new architecture supports multiple accounts on multiple chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 324000
+			},
+			"text": " And it supports, is roughly the same smart contract structure that we had before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 327000
+			},
+			"text": " but we have obviously improved our smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 329000
+			},
+			"text": " They're way more efficient right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 338000
+			},
+			"text": " So we can support, easily support having a separate account for each DAP that wants to integrate with us per user."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 347000
+			},
+			"text": " And we can support this over multiple networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 353000
+			},
+			"text": " The other thing that we learned over the last year is that users really want to manage their interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 359000
+			},
+			"text": " and for all the different apps in one place, regardless where the app logic's run."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 370000
+			},
+			"text": " And what I'm trying to say with this is app logic isn't just run in the web browser or on multiple Ethereum chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373000
+			},
+			"text": " There are still Web 2.0 server-style apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 376000
+			},
+			"text": " And there's a lot of hybrid apps as well in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 387000
+			},
+			"text": " Newport actually manages account management for all of these, and it's particularly useful for the hybrid solution in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 394000
+			},
+			"text": " So we do this by having the mobile app maintain all the different accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 399000
+			},
+			"text": " It's a glue that works for integrating the different apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 413000
+			},
+			"text": " So for a traditional Web 3 app, you write your app just like you would normally using Web 3 or any of the cool new developers libraries that are out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 419000
+			},
+			"text": " We have a Newport Connect library that automatically takes your Web 3 code sends transactions to the phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 426000
+			},
+			"text": " For Web 2.0, the process is very similar to, say, a Facebook Connect."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 433000
+			},
+			"text": " The only difference, of course, is that there are no centralized servers that you interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 440000
+			},
+			"text": " And the identity is always under the control of the end user."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 445000
+			},
+			"text": " Finally, a problem that we tried to solve was onboarding of new users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 450000
+			},
+			"text": " There are a lot of non-technical users and even technical users not familiar with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 455000
+			},
+			"text": " They're coming in and want to try all of these new things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 466000
+			},
+			"text": " At the moment, we have to, every single time, explain about the difference between Mainnet, Covent, Ring could be, what's gas, how do you fund your accounts, all of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 472000
+			},
+			"text": " These are huge problems for most developers when their apps hit real users."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 479000
+			},
+			"text": " So the first thing that we're doing to solve this is by having a much smarter login flow that our first version."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 485000
+			},
+			"text": " So a developer can go in and specify what network that they want account created on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 494000
+			},
+			"text": " And then if the user already has an account for your particular DAP on this particular network, that will always be returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 497000
+			},
+			"text": " If not, a new account will be created on the fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 508000
+			},
+			"text": " And this means that the user never has to worry about whether your app is on Ring could be Covent, Mainnet, or even private networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 511000
+			},
+			"text": " The other big issue is fuel."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 517000
+			},
+			"text": " Gas is an obvious thing that we all have to pay for our Ethereum transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 526000
+			},
+			"text": " And it's a stumbling block that, you know, it's very difficult, you want to get people onto your new app and try it, but first they need gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " They need Ether to pay for the contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 532000
+			},
+			"text": " That alone is a big issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 546000
+			},
+			"text": " There's also a little obvious issue of lots of non-technical end users following links on Twitter, sending Mainnet ETH to a Covent account, or Covent Smart Contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 549000
+			},
+			"text": " So this is obviously a really bad experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 559000
+			},
+			"text": " So we're solving this by having all the transactions that go through Newport are automatically fueled by our transaction fueling servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 562000
+			},
+			"text": " And neither you nor your users have to worry about that in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 565000
+			},
+			"text": " And I would like to give it over to Riven."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 566000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 572000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 579000
+			},
+			"text": " So I'm going to talk about user credentials and I think it's too my concern."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 585000
+			},
+			"text": " So for users, after DAP from one way we presented, you put in the roll from today."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 594000
+			},
+			"text": " And we realized that we got a lot of feedback from the community how to interact and make it much more user-friendly for users and more personal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 602000
+			},
+			"text": " So when you log on to DAP and a simple thing like a nickname or a photo, make it a bit more personal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " So it's all about how can we give badges or information from a user back to the user because we don't want to store them centrally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 614000
+			},
+			"text": " So that's something we explored and we talked a lot with the identity community."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 625000
+			},
+			"text": " And we realized there's a lot of opportunities to use the identity from you as an individual as well as from the DAP to create credentials in form of badges or attestations to the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 628000
+			},
+			"text": " It's like some form of like verifiable claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 630000
+			},
+			"text": " So what we did, thanks, Puth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 637000
+			},
+			"text": " What we did is we built an ability for the user to make this very, very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " So we have libraries now to issue these kind of attestations to the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 645000
+			},
+			"text": " This can be in form of on-chain as well as off-chain stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 651000
+			},
+			"text": " We had the conversation, we were building an identity platform, so a lot of the information you get, a nickname is maybe less critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 662000
+			},
+			"text": " But there's a lot of information about my name, my birthday that I have a certain degree or maybe have achieved a certain certificate because I achieved an online course or something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 666000
+			},
+			"text": " All of this data is something you don't really want to have on-chain, even not encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 672000
+			},
+			"text": " So we spent a lot of time in our focus on doing this with off-chain attestations in a very, very easy way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 675000
+			},
+			"text": " Last year we had an experiment here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 686000
+			},
+			"text": " Piper was doing this DEFCON 2 attendance where people went to him, gave him the Ethereum address, and he was basically recording this in form of a smart contact."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 689000
+			},
+			"text": " And we tried to do a little experiment later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 690000
+			},
+			"text": " Let's see how the Wi-Fi works."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 700000
+			},
+			"text": " If you have viewport, the latest app, you will see QR code at the end of the talk and hopefully get an attestation about being attended or have been attended here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 712000
+			},
+			"text": " So obviously after your credentials have been issued and stored with the user, we need to make it as well easy for the developers to receive this data back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 719000
+			},
+			"text": " So what we built is a library that you can easily receive credentials and can validate them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 727000
+			},
+			"text": " And that's a very critical and very interesting part because what we allow now to do is that anyone can issue, let's say, a KYC attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 741000
+			},
+			"text": " So there are enough companies in the world who have done KYC before and they can issue this form to me now in an attestation, which is signed from the issuer that can be a bank, that can be a crypto exchange or anyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 748000
+			},
+			"text": " We're now working on an integration of a couple of KYC providers itself, so it's more native as part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 757000
+			},
+			"text": " And now what you can do, if you have done this once, you go through this process and now you go to a token launch platform and you can reissue this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 768000
+			},
+			"text": " So it's a very, very easy, much more user-friendly way to get this validation and can rely on this as a developer, as long as you trust the issuing parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774000
+			},
+			"text": " I think that's a very nice way because now we get a lot of feedback in the community that people want to use this for many other apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 784000
+			},
+			"text": " So whether it's mal-import because you manage certain assets, whether it's a poker platform or whether it's a no-sis, there's multiple reasons why you want to know something about the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 790000
+			},
+			"text": " There just can be abstract, it can be, he's older than 18 or he lives in a certain state or not in a certain country."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 797000
+			},
+			"text": " There's a lot of value in these kinds of attestations and it's all, like, digitally signed to my identity, so it's very secure and powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 807000
+			},
+			"text": " So ultimately what we built was this, it's really the foundation that you create an identity, which is not just a random number, like a random address."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 816000
+			},
+			"text": " It is now the ability that you have a privacy-preserving ability to use as a user interacting with a DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 820000
+			},
+			"text": " So you build the trust without revealing too much information."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 827000
+			},
+			"text": " And that's a very powerful foundation anyway, and also the foundation for any reputation system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833000
+			},
+			"text": " Because think about this, if you are issuing to a user that in your decentralized Airbnb, he was a good host."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 837000
+			},
+			"text": " And he has a, I don't know, he can drive a car because of the driver license."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 843000
+			},
+			"text": " Other things, all these things are part of a very good foundation for any type of reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 852000
+			},
+			"text": " So if you go on a certain website the next time and you can issue transaction of the last 100 interactions with, I know, your Airbnb platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 860000
+			},
+			"text": " You can just take this anywhere and issue this to this new DAP, and that will make it much, much easier to build digital interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866000
+			},
+			"text": " So what I will show you now, hopefully, if the Wi-Fi works, how digital signatures work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 869000
+			},
+			"text": " So that's something we demoed last year already."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 876000
+			},
+			"text": " And so we all know that to do any kind of interactions with the blockchain or with Ethereum, you need to have an ability for signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 876000
+			},
+			"text": " So Pelori mentioned it, the phone has the private key and we have our architecture with Smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 883000
+			},
+			"text": " Human Networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 891000
+			},
+			"text": " But I will try to do, and let's see how that works with the connectivity here, is to show you how this could look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 896000
+			},
+			"text": " So, and I do it live, so I hope it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 901000
+			},
+			"text": " So what you see here, first of all I show you the application itself, it's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 905000
+			},
+			"text": " It has, at the moment, a couple of information about yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 911000
+			},
+			"text": " So in this case we just have US and a phone number. This is data which is stored on my phone. This is not stored anywhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 917000
+			},
+			"text": " We have verifications. This is the stuff which we hopefully can give you as part of this experiment, or at least to some of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 921000
+			},
+			"text": " You see that you haven't badged, you have attended this conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 932000
+			},
+			"text": " So that might be an interesting thing for next time if you go somewhere and you want to demonstrate this, that you have a certain experience, or you have learned something, or get a discount for other means."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 937000
+			},
+			"text": " So that's kind of the verifications. As Pelori mentioned, there are multiple accounts we support now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " So in this demo I just have a Timono Ringo B account on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 948000
+			},
+			"text": " And what I show you now is a mobile phone app. So what we have here is the mobile Safari. It's just a simple app."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 953000
+			},
+			"text": " And what I do is I connect now my U port with the stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 962000
+			},
+			"text": " So what it does, it jumps like the Facebook Connect into the app. It pulls now information about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 969000
+			},
+			"text": " So you see the logo, you see the details which are requested from this application, and now I can confirm this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 974000
+			},
+			"text": " What you see on the bottom is a first attempt to build some trust into this whole interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 977000
+			},
+			"text": " What you see, I've done this already 67 times."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 982000
+			},
+			"text": " That's important because there are so many websites which suddenly get spoofed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 988000
+			},
+			"text": " So it gives you an additional level of trust. This is not the final version, but that's the first start."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 997000
+			},
+			"text": " So what you do is you log in, and now what it does, if the network is not fast enough, it will show my name and just a photo."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " That's something which is just local. It's not needed to be stored because it's a DAP, it's only a MFA."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1006000
+			},
+			"text": " But it gives the user a right, it gives the experience that he's now logged in, and not your friend or someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1015000
+			},
+			"text": " What I do now is very simple. What we have in here is you can buy a certain set of shares, which is just like an example of an interaction with a smart contact."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1023000
+			},
+			"text": " So if I click on Buy Shares, what it does, it jumps back into the application, and now what you see here is a transaction screen, and that's very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1033000
+			},
+			"text": " So what you see is the smart contact you're interacting with, it gives you what kind of function call you're doing, and as well the 56 shares I just requested to buy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1038000
+			},
+			"text": " And that's just very important because at the moment, how do you know with Ethereum that you're about to sign?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1042000
+			},
+			"text": " And I think that's kind of the user experience we want to build in."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1048000
+			},
+			"text": " That can be in the future, maybe more customized screens, and they will look a bit more beautiful, but for now this is the starting point."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1060000
+			},
+			"text": " So what I do now, in the moment I do approve, I need now to use my private key, therefore I need to put my finger on this, to unlock the key which is in the secure enclave, and do the signing now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1064000
+			},
+			"text": " And now it will take a few seconds, obviously, so that's kind of what you guys know."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1066000
+			},
+			"text": " So back to the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1075000
+			},
+			"text": " So what we did, just recently, was in the city of Took, a little project with them, and it is a four-step thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1083000
+			},
+			"text": " So you basically down it your mobile application, generate your digital identity, and you go to a portal."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1089000
+			},
+			"text": " On this portal you can enter a certain set of information about yourself, your name and your ID card."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1093000
+			},
+			"text": " This is only stuff which you would give to the city of Took as a portal."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1102000
+			},
+			"text": " And then the second step, you go into the office there with your ID card and prove that you are the person who claims to be this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1105000
+			},
+			"text": " So it's like a real in-life validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1114000
+			},
+			"text": " And what the clerk can do is they go to their internal portal and click one button, and it pushes a notification back to you as a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1121000
+			},
+			"text": " This information now contains that, does it your name, your citizen of this city, someone has validated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1128000
+			},
+			"text": " So suddenly we create this connection between your theorem address and your real person, and someone has validated."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1137000
+			},
+			"text": " And if you trust that the city of Took's process or the clerks are doing that only if it's right, you can now trust this attestation or this badge from the city of Took."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1143000
+			},
+			"text": " So we are working with a couple of integrations, like using this Took thing now for the city itself, for like simple e-boarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1149000
+			},
+			"text": " so they don't do like, or voting voting, it's more like opening times of the swimming pool or something else as a test bed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1157000
+			},
+			"text": " But it's a start. And as well, we are working with Malinport and others to integrate this information now into their platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1161000
+			},
+			"text": " which allows them to trust immediately this identity much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1166000
+			},
+			"text": " So now, that's the end of the presentation. This is the QR code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1172000
+			},
+			"text": " If you have Uport, try to scan it. I don't know with the network connectivity here, where that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1178000
+			},
+			"text": " And now we have live streams, so it's not technically attendance, but let's say you listen to this live, because in five minutes we will turn it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1186000
+			},
+			"text": " What happens now, you go on this, it will ask you whether you are willing to give us the right to send your push notification."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1194000
+			},
+			"text": " It's a service we operate at the moment, and what it does is basically sends a request, and in five seconds or so after that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1201000
+			},
+			"text": " we will sign a signature, or we will sign a piece of data, and send it back to you as a push notification."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1204000
+			},
+			"text": " So that's the badge of attending here in Defcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1210000
+			},
+			"text": " And with that, I'm closing in to please visit our website and look into integrating us. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1212000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1222000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:24,240"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1224240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

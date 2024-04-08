@@ -1,0 +1,2529 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4880
+			},
+			"text": " So these three efforts are called e-prize, e-security, and the community of communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,880",
+				"to": "00:00:08,280"
+			},
+			"offsets": {
+				"from": 4880,
+				"to": 8280
+			},
+			"text": " And while we have this big, messy governance stuff around Ethereum, there's a lot of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,280",
+				"to": "00:00:11,680"
+			},
+			"offsets": {
+				"from": 8280,
+				"to": 11680
+			},
+			"text": " cross-ecosystem things that have just sort of sprung up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,680",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 11680,
+				"to": 15840
+			},
+			"text": " Not really any governance and all volunteer base to kind of solve problems, and very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:17,320"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 17320
+			},
+			"text": " echoing what these guys are saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,320",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17320,
+				"to": 19000
+			},
+			"text": " It's not about, you know, you should do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:24,080"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 24080
+			},
+			"text": " It's just people going and doing it, and that's why I find these things inspiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,080",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24080,
+				"to": 26000
+			},
+			"text": " So the first one, e-prize, what is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,320"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29320
+			},
+			"text": " So I was talking to a bunch of my developer friends from different projects, and it seems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,320",
+				"to": "00:00:31,320"
+			},
+			"offsets": {
+				"from": 29320,
+				"to": 31320
+			},
+			"text": " everybody was duplicating efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,320",
+				"to": "00:00:34,240"
+			},
+			"offsets": {
+				"from": 31320,
+				"to": 34240
+			},
+			"text": " So I'm talking with Agar and Zeppelin and a lot of other DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,240",
+				"to": "00:00:38,680"
+			},
+			"offsets": {
+				"from": 34240,
+				"to": 38680
+			},
+			"text": " You know, everybody's rolling their own testing tools, rolling their own deployment tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,680",
+				"to": "00:00:41,920"
+			},
+			"offsets": {
+				"from": 38680,
+				"to": 41920
+			},
+			"text": " having trouble, and not really sharing their efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,920",
+				"to": "00:00:45,600"
+			},
+			"offsets": {
+				"from": 41920,
+				"to": 45600
+			},
+			"text": " So a group of volunteers, about 10 people, got together and just started interviewing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,600",
+				"to": "00:00:49,400"
+			},
+			"offsets": {
+				"from": 45600,
+				"to": 49400
+			},
+			"text": " developers around what type of tools they're using and what problems they're having building"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,400",
+				"to": "00:00:50,400"
+			},
+			"offsets": {
+				"from": 49400,
+				"to": 50400
+			},
+			"text": " on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,400",
+				"to": "00:00:51,640"
+			},
+			"offsets": {
+				"from": 50400,
+				"to": 51640
+			},
+			"text": " And this is like really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,640",
+				"to": "00:00:55,960"
+			},
+			"offsets": {
+				"from": 51640,
+				"to": 55960
+			},
+			"text": " So just pen random people just start interviewing teams out of the good of their heart, documenting"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,960",
+				"to": "00:00:59,240"
+			},
+			"offsets": {
+				"from": 55960,
+				"to": 59240
+			},
+			"text": " this and making it available in an open-source manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,240",
+				"to": "00:01:04,560"
+			},
+			"offsets": {
+				"from": 59240,
+				"to": 64560
+			},
+			"text": " I ended up, this project ended up interviewing 100 developers, putting the interviews in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,560",
+				"to": "00:01:08,600"
+			},
+			"offsets": {
+				"from": 64560,
+				"to": 68600
+			},
+			"text": " GitHub repo, building a website around this and marketing it so that new developers in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,600",
+				"to": "00:01:10,880"
+			},
+			"offsets": {
+				"from": 68600,
+				"to": 70880
+			},
+			"text": " this space could figure out what they should be using to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,880",
+				"to": "00:01:16,880"
+			},
+			"offsets": {
+				"from": 70880,
+				"to": 76880
+			},
+			"text": " And it gets even crazier as a result of that, the Ethereum Foundation, and a whole bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,880",
+				"to": "00:01:21,200"
+			},
+			"offsets": {
+				"from": 76880,
+				"to": 81200
+			},
+			"text": " of others like Web 3.0 XL4 coinbase funded the effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,200",
+				"to": "00:01:25,760"
+			},
+			"offsets": {
+				"from": 81200,
+				"to": 85760
+			},
+			"text": " And so the effort became called e-prize, as this was a new way to fund bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,760",
+				"to": "00:01:27,480"
+			},
+			"offsets": {
+				"from": 85760,
+				"to": 87480
+			},
+			"text": " We called them active bounties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,480",
+				"to": "00:01:31,480"
+			},
+			"offsets": {
+				"from": 87480,
+				"to": 91480
+			},
+			"text": " And as a result, two bounties were actually funded this year, one for an open-source block"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,480",
+				"to": "00:01:34,760"
+			},
+			"offsets": {
+				"from": 91480,
+				"to": 94760
+			},
+			"text": " explorer and one for Ethereum package manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,760",
+				"to": "00:01:38,240"
+			},
+			"offsets": {
+				"from": 94760,
+				"to": 98240
+			},
+			"text": " Now what's cool about this is it's not like somebody said, \"Hey, I want to build this.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,240",
+				"to": "00:01:41,720"
+			},
+			"offsets": {
+				"from": 98240,
+				"to": 101720
+			},
+			"text": " It was like the best developers in the space are saying, \"We need this.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,720",
+				"to": "00:01:43,520"
+			},
+			"offsets": {
+				"from": 101720,
+				"to": 103520
+			},
+			"text": " And so we listened to these people."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,520",
+				"to": "00:01:45,400"
+			},
+			"offsets": {
+				"from": 103520,
+				"to": 105400
+			},
+			"text": " These actually got funded and they'd been delivered."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,400",
+				"to": "00:01:51,120"
+			},
+			"offsets": {
+				"from": 105400,
+				"to": 111120
+			},
+			"text": " So POA Blockscat is an open-source block explorer that's existing and can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,120",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 111120,
+				"to": 113000
+			},
+			"text": " And ETHPM was actually launched this weekend."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:58,200"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 118200
+			},
+			"text": " So if you talk about people just getting shit done, 100 interviews, tools required, funding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,200",
+				"to": "00:01:59,200"
+			},
+			"offsets": {
+				"from": 118200,
+				"to": 119200
+			},
+			"text": " tools built."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,200",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 119200,
+				"to": 121600
+			},
+			"text": " I think this is a really, really strong model."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 125800
+			},
+			"text": " And ETHPRISE has funded a bunch of new work, mostly around infrastructure stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:09,400"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 129400
+			},
+			"text": " So if you look at the Universal Logins project from Alex Van Dassan, it got funding from"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,400",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 129400,
+				"to": 130400
+			},
+			"text": " ETHPRISE."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:12,600"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 132600
+			},
+			"text": " So this is cool because these things have no business models."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,600",
+				"to": "00:02:15,120"
+			},
+			"offsets": {
+				"from": 132600,
+				"to": 135120
+			},
+			"text": " And it's what people ask for and actually need."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,120",
+				"to": "00:02:20,720"
+			},
+			"offsets": {
+				"from": 135120,
+				"to": 140720
+			},
+			"text": " So seeing this happen, going from an idea and talking to a bunch of people, that's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,720",
+				"to": "00:02:23,400"
+			},
+			"offsets": {
+				"from": 140720,
+				"to": 143400
+			},
+			"text": " awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,400",
+				"to": "00:02:24,480"
+			},
+			"offsets": {
+				"from": 143400,
+				"to": 144480
+			},
+			"text": " So how did it happen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,480",
+				"to": "00:02:27,800"
+			},
+			"offsets": {
+				"from": 144480,
+				"to": 147800
+			},
+			"text": " So if you're thinking, \"I'm sitting here, how can I get involved in the community?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,800",
+				"to": "00:02:28,800"
+			},
+			"offsets": {
+				"from": 147800,
+				"to": 148800
+			},
+			"text": " What can I do?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,800",
+				"to": "00:02:30,880"
+			},
+			"offsets": {
+				"from": 148800,
+				"to": 150880
+			},
+			"text": " Well, early curation is everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,880",
+				"to": "00:02:32,800"
+			},
+			"offsets": {
+				"from": 150880,
+				"to": 152800
+			},
+			"text": " So enlisting into community."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,800",
+				"to": "00:02:34,880"
+			},
+			"offsets": {
+				"from": 152800,
+				"to": 154880
+			},
+			"text": " So as you heard, these one-to-one interviews were key."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,880",
+				"to": "00:02:39,040"
+			},
+			"offsets": {
+				"from": 154880,
+				"to": 159040
+			},
+			"text": " So going and finding credible people and asking them what their problems are and having"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,040",
+				"to": "00:02:40,920"
+			},
+			"offsets": {
+				"from": 159040,
+				"to": 160920
+			},
+			"text": " a strong mission and making everything transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,920",
+				"to": "00:02:44,240"
+			},
+			"offsets": {
+				"from": 160920,
+				"to": 164240
+			},
+			"text": " So here the mission was like, \"Can we build better tools on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,240",
+				"to": "00:02:45,720"
+			},
+			"offsets": {
+				"from": 164240,
+				"to": 165720
+			},
+			"text": " Can we actually help the developers?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,720",
+				"to": "00:02:49,800"
+			},
+			"offsets": {
+				"from": 165720,
+				"to": 169800
+			},
+			"text": " And really mean that from the core and listen to what people said and then make the notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,800",
+				"to": "00:02:54,200"
+			},
+			"offsets": {
+				"from": 169800,
+				"to": 174200
+			},
+			"text": " transparent so this stuff was just available on GitHub for anyone to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,200",
+				"to": "00:02:57,160"
+			},
+			"offsets": {
+				"from": 174200,
+				"to": 177160
+			},
+			"text": " And so what this just shows you in this case is with a little bit of coordination."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,160",
+				"to": "00:03:00,720"
+			},
+			"offsets": {
+				"from": 177160,
+				"to": 180720
+			},
+			"text": " There was no weekly meetings or organization or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,720",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 180720,
+				"to": 183560
+			},
+			"text": " It's just a group of people saying, \"Hey, we're going to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:06,200"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 186200
+			},
+			"text": " There's an opportunity for literally a huge impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,200",
+				"to": "00:03:08,400"
+			},
+			"offsets": {
+				"from": 186200,
+				"to": 188400
+			},
+			"text": " This can be done with almost no technical scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,400",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 188400,
+				"to": 193440
+			},
+			"text": " Anybody in this room can accomplish something like this with a little bit of work.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:14,680"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 194680
+			},
+			"text": " So two other stories."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,680",
+				"to": "00:03:17,080"
+			},
+			"offsets": {
+				"from": 194680,
+				"to": 197080
+			},
+			"text": " One is ETH security."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,080",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 197080,
+				"to": 198080
+			},
+			"text": " This started."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:23,440"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 203440
+			},
+			"text": " I was working for a project called TrueBit and I went to get our smart contracts audited"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,440",
+				"to": "00:03:25,160"
+			},
+			"offsets": {
+				"from": 203440,
+				"to": 205160
+			},
+			"text": " and it was really frustrating."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,160",
+				"to": "00:03:29,600"
+			},
+			"offsets": {
+				"from": 205160,
+				"to": 209600
+			},
+			"text": " So I don't know if anyone's tried this before but getting quotes for $70,000 to add a smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,600",
+				"to": "00:03:33,440"
+			},
+			"offsets": {
+				"from": 209600,
+				"to": 213440
+			},
+			"text": " contracts and say not only insane but just annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,440",
+				"to": "00:03:38,600"
+			},
+			"offsets": {
+				"from": 213440,
+				"to": 218600
+			},
+			"text": " And then even on top of that, you might have to wait for three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,600",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 218600,
+				"to": 219800
+			},
+			"text": " You don't even know what you're getting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:41,920"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 221920
+			},
+			"text": " So are these auditors standing behind this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,920",
+				"to": "00:03:42,920"
+			},
+			"offsets": {
+				"from": 221920,
+				"to": 222920
+			},
+			"text": " Are they any good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,920",
+				"to": "00:03:43,920"
+			},
+			"offsets": {
+				"from": 222920,
+				"to": 223920
+			},
+			"text": " Do you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,920",
+				"to": "00:03:47,600"
+			},
+			"offsets": {
+				"from": 223920,
+				"to": 227600
+			},
+			"text": " It's a really, really, really big problem because there's not many companies that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,600",
+				"to": "00:03:51,200"
+			},
+			"offsets": {
+				"from": 227600,
+				"to": 231200
+			},
+			"text": " afford or only the privileged few that can afford this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,200",
+				"to": "00:03:54,880"
+			},
+			"offsets": {
+				"from": 231200,
+				"to": 234880
+			},
+			"text": " So I started talking to a whole bunch of security auditors during this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,880",
+				"to": "00:03:59,520"
+			},
+			"offsets": {
+				"from": 234880,
+				"to": 239520
+			},
+			"text": " Found a bunch of people who believed in this mission, put together a telegram group and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,520",
+				"to": "00:04:03,640"
+			},
+			"offsets": {
+				"from": 239520,
+				"to": 243640
+			},
+			"text": " invited all the best security companies to join it with the goal of creating a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,640",
+				"to": "00:04:06,360"
+			},
+			"offsets": {
+				"from": 243640,
+				"to": 246360
+			},
+			"text": " source of truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,360",
+				"to": "00:04:08,120"
+			},
+			"offsets": {
+				"from": 246360,
+				"to": 248120
+			},
+			"text": " So what happened as a result of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,120",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 248120,
+				"to": 254640
+			},
+			"text": " So this telegram group ended up getting bounty hunters, hackers, info sec and ops sec"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 260440
+			},
+			"text": " experts, DAP builders, all the big security players, consensus, seplants, solidified."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:22,720"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 262720
+			},
+			"text": " And it became like a single source of truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,720",
+				"to": "00:04:26,080"
+			},
+			"offsets": {
+				"from": 262720,
+				"to": 266080
+			},
+			"text": " So if you want to find an auditor or have a question, you can go and ask and say, hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,080",
+				"to": "00:04:27,160"
+			},
+			"offsets": {
+				"from": 266080,
+				"to": 267160
+			},
+			"text": " what should I be paying for this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,160",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 267160,
+				"to": 268800
+			},
+			"text": " Who's somebody I can talk to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:29,800"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 269800
+			},
+			"text": " Who's reputable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,800",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 269800,
+				"to": 272840
+			},
+			"text": " Where can I find information to learn about security audits?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:33,840"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 273840
+			},
+			"text": " Something really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,840",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 273840,
+				"to": 277760
+			},
+			"text": " They created the ethesecurity.org website which launched this week and the idea is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:39,880"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 279880
+			},
+			"text": " place for resources around security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,880",
+				"to": "00:04:43,560"
+			},
+			"offsets": {
+				"from": 279880,
+				"to": 283560
+			},
+			"text": " So if you have a security question, you can go there for free and try to figure out what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,560",
+				"to": "00:04:44,760"
+			},
+			"offsets": {
+				"from": 283560,
+				"to": 284760
+			},
+			"text": " you need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,760",
+				"to": "00:04:47,320"
+			},
+			"offsets": {
+				"from": 284760,
+				"to": 287320
+			},
+			"text": " They hosted an event at East Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,320",
+				"to": "00:04:50,720"
+			},
+			"offsets": {
+				"from": 287320,
+				"to": 290720
+			},
+			"text": " This was first posted on the magicians forum by John Marlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,720",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 290720,
+				"to": 294400
+			},
+			"text": " These guys picked it up and over 100 attendees showed up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:59,160"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 299160
+			},
+			"text": " And again, this is like all volunteer people coming together in the community to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,160",
+				"to": "00:05:02,360"
+			},
+			"offsets": {
+				"from": 299160,
+				"to": 302360
+			},
+			"text": " some results around security."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,360",
+				"to": "00:05:06,080"
+			},
+			"offsets": {
+				"from": 302360,
+				"to": 306080
+			},
+			"text": " The guys in this group advised the security track at DevCon and have done a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,080",
+				"to": "00:05:07,080"
+			},
+			"offsets": {
+				"from": 306080,
+				"to": 307080
+			},
+			"text": " presentations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,080",
+				"to": "00:05:12,760"
+			},
+			"offsets": {
+				"from": 307080,
+				"to": 312760
+			},
+			"text": " They also went so far as to formulate working groups to determine guidelines, common resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,760",
+				"to": "00:05:14,280"
+			},
+			"offsets": {
+				"from": 312760,
+				"to": 314280
+			},
+			"text": " and are now giving out grants as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,280",
+				"to": "00:05:18,600"
+			},
+			"offsets": {
+				"from": 314280,
+				"to": 318600
+			},
+			"text": " So again, you know, a couple people talking about how shitty the auditing process was"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,600",
+				"to": "00:05:22,640"
+			},
+			"offsets": {
+				"from": 318600,
+				"to": 322640
+			},
+			"text": " and it turns into this massive thing with a whole bunch of momentum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,640",
+				"to": "00:05:26,920"
+			},
+			"offsets": {
+				"from": 322640,
+				"to": 326920
+			},
+			"text": " So anybody in this room could have seen that problem, started talking to people and made"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,920",
+				"to": "00:05:29,280"
+			},
+			"offsets": {
+				"from": 326920,
+				"to": 329280
+			},
+			"text": " it happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,280",
+				"to": "00:05:30,800"
+			},
+			"offsets": {
+				"from": 329280,
+				"to": 330800
+			},
+			"text": " So again, how do we do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,800",
+				"to": "00:05:32,480"
+			},
+			"offsets": {
+				"from": 330800,
+				"to": 332480
+			},
+			"text": " So like early creation is everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,480",
+				"to": "00:05:36,920"
+			},
+			"offsets": {
+				"from": 332480,
+				"to": 336920
+			},
+			"text": " So somebody actually applied to the UCF for a grant to interview all the best security"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,920",
+				"to": "00:05:37,920"
+			},
+			"offsets": {
+				"from": 336920,
+				"to": 337920
+			},
+			"text": " people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,920",
+				"to": "00:05:42,640"
+			},
+			"offsets": {
+				"from": 337920,
+				"to": 342640
+			},
+			"text": " And in these interviews, we again made the transcripts available and then invited everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,640",
+				"to": "00:05:46,360"
+			},
+			"offsets": {
+				"from": 342640,
+				"to": 346360
+			},
+			"text": " to a common telegram thread to get people to start collaborating."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,360",
+				"to": "00:05:50,480"
+			},
+			"offsets": {
+				"from": 346360,
+				"to": 350480
+			},
+			"text": " So if you're trying to like form an early community, think of like who needs to be in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,480",
+				"to": "00:05:54,440"
+			},
+			"offsets": {
+				"from": 350480,
+				"to": 354440
+			},
+			"text": " this community, where can we get them to start talking and like what is the mission to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,440",
+				"to": "00:05:55,960"
+			},
+			"offsets": {
+				"from": 354440,
+				"to": 355960
+			},
+			"text": " these people interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,960",
+				"to": "00:05:58,120"
+			},
+			"offsets": {
+				"from": 355960,
+				"to": 358120
+			},
+			"text": " So we use common goals to align all parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,120",
+				"to": "00:06:02,360"
+			},
+			"offsets": {
+				"from": 358120,
+				"to": 362360
+			},
+			"text": " And in this case, it was one, the interviews and sharing of knowledge and then two, funding"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,360",
+				"to": "00:06:03,360"
+			},
+			"offsets": {
+				"from": 362360,
+				"to": 363360
+			},
+			"text": " of tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,360",
+				"to": "00:06:06,760"
+			},
+			"offsets": {
+				"from": 363360,
+				"to": 366760
+			},
+			"text": " So getting these people interested with potential funding for the tools they're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,760",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 366760,
+				"to": 368920
+			},
+			"text": " And then three, there was the event at ETH Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:13,360"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 373360
+			},
+			"text": " And once everybody was in this group in Cambridge, and made it really easy for people to want"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,360",
+				"to": "00:06:17,360"
+			},
+			"offsets": {
+				"from": 373360,
+				"to": 377360
+			},
+			"text": " to collaborate because like Greg said, they're all talking face to face."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,360",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 377360,
+				"to": 380000
+			},
+			"text": " And then provide value add for the group members right from the start."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " So like in this group, we have a biweekly call around security tools where people can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 385000
+			},
+			"text": " present what they're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " And it's a good way for anyone who wants to learn about security to watch what's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:30,600"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 390600
+			},
+			"text": " on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,600",
+				"to": "00:06:32,720"
+			},
+			"offsets": {
+				"from": 390600,
+				"to": 392720
+			},
+			"text": " And then the final one is the community of communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,720",
+				"to": "00:06:36,920"
+			},
+			"offsets": {
+				"from": 392720,
+				"to": 396920
+			},
+			"text": " This was like a pretty cool experiment where a major problem is that people don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,920",
+				"to": "00:06:38,120"
+			},
+			"offsets": {
+				"from": 396920,
+				"to": 398120
+			},
+			"text": " what events to go to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,120",
+				"to": "00:06:41,240"
+			},
+			"offsets": {
+				"from": 398120,
+				"to": 401240
+			},
+			"text": " So every week you hear about some type of conference meetup."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,240",
+				"to": "00:06:42,240"
+			},
+			"offsets": {
+				"from": 401240,
+				"to": 402240
+			},
+			"text": " Is it real?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,240",
+				"to": "00:06:43,240"
+			},
+			"offsets": {
+				"from": 402240,
+				"to": 403240
+			},
+			"text": " Is it not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,240",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 403240,
+				"to": 404240
+			},
+			"text": " Is it valuable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:45,240"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 405240
+			},
+			"text": " Should we spend our team resources to go?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,240",
+				"to": "00:06:49,560"
+			},
+			"offsets": {
+				"from": 405240,
+				"to": 409560
+			},
+			"text": " And so again, Telegram group was made 250 community experts have joined."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,560",
+				"to": "00:06:52,880"
+			},
+			"offsets": {
+				"from": 409560,
+				"to": 412880
+			},
+			"text": " It's pretty much people from every single ecosystem and project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,880",
+				"to": "00:06:58,200"
+			},
+			"offsets": {
+				"from": 412880,
+				"to": 418200
+			},
+			"text": " It's a place where you can share any PR updates you want retweeted or a Cloud 4 on Medium."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,200",
+				"to": "00:07:02,680"
+			},
+			"offsets": {
+				"from": 418200,
+				"to": 422680
+			},
+			"text": " You can ask questions about hiring risk practices, PR, and there's a group of experts there"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,680",
+				"to": "00:07:03,760"
+			},
+			"offsets": {
+				"from": 422680,
+				"to": 423760
+			},
+			"text": " that can answer for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,760",
+				"to": "00:07:08,480"
+			},
+			"offsets": {
+				"from": 423760,
+				"to": 428480
+			},
+			"text": " So again, it's like a single source of truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,480",
+				"to": "00:07:09,480"
+			},
+			"offsets": {
+				"from": 428480,
+				"to": 429480
+			},
+			"text": " So why does this matter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,480",
+				"to": "00:07:13,680"
+			},
+			"offsets": {
+				"from": 429480,
+				"to": 433680
+			},
+			"text": " It's just again, in decentralized space, it's tough to get access to good information"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:15,320"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 435320
+			},
+			"text": " and know it's good information."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,320",
+				"to": "00:07:19,480"
+			},
+			"offsets": {
+				"from": 435320,
+				"to": 439480
+			},
+			"text": " So it's kind of where do I go to find experts to figure out a problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,480",
+				"to": "00:07:23,320"
+			},
+			"offsets": {
+				"from": 439480,
+				"to": 443320
+			},
+			"text": " All these communities, super lightweight, and really they're just problem solvers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,320",
+				"to": "00:07:26,480"
+			},
+			"offsets": {
+				"from": 443320,
+				"to": 446480
+			},
+			"text": " So ETH prizes for tools, ETH security for security."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,480",
+				"to": "00:07:28,600"
+			},
+			"offsets": {
+				"from": 446480,
+				"to": 448600
+			},
+			"text": " This is for marketing and building community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,600",
+				"to": "00:07:32,480"
+			},
+			"offsets": {
+				"from": 448600,
+				"to": 452480
+			},
+			"text": " It's where you can go to find credible people to ask questions and it's all volunteer based."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,480",
+				"to": "00:07:36,640"
+			},
+			"offsets": {
+				"from": 452480,
+				"to": 456640
+			},
+			"text": " So me is super inspiring and powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,640",
+				"to": "00:07:40,640"
+			},
+			"offsets": {
+				"from": 456640,
+				"to": 460640
+			},
+			"text": " So again, I'm just kind of repeating here that the playbook is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,640",
+				"to": "00:07:43,960"
+			},
+			"offsets": {
+				"from": 460640,
+				"to": 463960
+			},
+			"text": " So if you're thinking about doing this, you can do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,960",
+				"to": "00:07:45,760"
+			},
+			"offsets": {
+				"from": 463960,
+				"to": 465760
+			},
+			"text": " You want to find an early cure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,760",
+				"to": "00:07:47,360"
+			},
+			"offsets": {
+				"from": 465760,
+				"to": 467360
+			},
+			"text": " You want to find a problem you want to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,360",
+				"to": "00:07:49,560"
+			},
+			"offsets": {
+				"from": 467360,
+				"to": 469560
+			},
+			"text": " Make sure you find the right people early."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,560",
+				"to": "00:07:50,920"
+			},
+			"offsets": {
+				"from": 469560,
+				"to": 470920
+			},
+			"text": " Find common goals to align them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,920",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 470920,
+				"to": 474960
+			},
+			"text": " So in this case, it was the events and the mission was like getting the best information"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:08:01,080"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 481080
+			},
+			"text": " around marketing and community building and then providing value right from the start."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,080",
+				"to": "00:08:04,520"
+			},
+			"offsets": {
+				"from": 481080,
+				"to": 484520
+			},
+			"text": " So finally, I've said it a bunch of times, but that's what I'm trying to get across here"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,520",
+				"to": "00:08:07,800"
+			},
+			"offsets": {
+				"from": 484520,
+				"to": 487800
+			},
+			"text": " as you as an individual can have a huge impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,800",
+				"to": "00:08:10,080"
+			},
+			"offsets": {
+				"from": 487800,
+				"to": 490080
+			},
+			"text": " ETH prize was just a set of interviews."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,080",
+				"to": "00:08:11,080"
+			},
+			"offsets": {
+				"from": 490080,
+				"to": 491080
+			},
+			"text": " Things start small."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,080",
+				"to": "00:08:12,320"
+			},
+			"offsets": {
+				"from": 491080,
+				"to": 492320
+			},
+			"text": " They move really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,320",
+				"to": "00:08:16,160"
+			},
+			"offsets": {
+				"from": 492320,
+				"to": 496160
+			},
+			"text": " So ETH security was just a couple of people talking about audits and in a three month period"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,160",
+				"to": "00:08:20,120"
+			},
+			"offsets": {
+				"from": 496160,
+				"to": 500120
+			},
+			"text": " it had 100 groups of all the best security people in the space hosting events, running"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,120",
+				"to": "00:08:21,680"
+			},
+			"offsets": {
+				"from": 500120,
+				"to": 501680
+			},
+			"text": " a DevCon security track."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,680",
+				"to": "00:08:23,160"
+			},
+			"offsets": {
+				"from": 501680,
+				"to": 503160
+			},
+			"text": " This is awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,160",
+				"to": "00:08:26,920"
+			},
+			"offsets": {
+				"from": 503160,
+				"to": 506920
+			},
+			"text": " This happens with completely altruistically with no funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,920",
+				"to": "00:08:30,560"
+			},
+			"offsets": {
+				"from": 506920,
+				"to": 510560
+			},
+			"text": " And then the final one, which is most important, I think is just listening is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,560",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 510560,
+				"to": 514000
+			},
+			"text": " So all these things come from listening to problems people are having and then trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,960"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517960
+			},
+			"text": " to take people who have the same problems and put them in a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,960",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 517960,
+				"to": 521200
+			},
+			"text": " And again, this is kind of what's happened at the magicians and it's the first group"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:44,720"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 524720
+			},
+			"text": " of people who decided, hey, let's listen to each other and you see these awesome things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,720",
+				"to": "00:08:45,720"
+			},
+			"offsets": {
+				"from": 524720,
+				"to": 525720
+			},
+			"text": " happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,720",
+				"to": "00:08:47,640"
+			},
+			"offsets": {
+				"from": 525720,
+				"to": 527640
+			},
+			"text": " And a lot of momentum is built."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,640",
+				"to": "00:08:55,360"
+			},
+			"offsets": {
+				"from": 527640,
+				"to": 535360
+			},
+			"text": " So final thing to say is just if we do a breakout group here and some things that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,360",
+				"to": "00:08:58,960"
+			},
+			"offsets": {
+				"from": 535360,
+				"to": 538960
+			},
+			"text": " will be looking to talk to is like, well, how we have all these groups, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,960",
+				"to": "00:09:00,840"
+			},
+			"offsets": {
+				"from": 538960,
+				"to": 540840
+			},
+			"text": " And how can they improve?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,840",
+				"to": "00:09:05,360"
+			},
+			"offsets": {
+				"from": 540840,
+				"to": 545360
+			},
+			"text": " So there's a lot of telegram and slack and discord and all this shit everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,360",
+				"to": "00:09:09,680"
+			},
+			"offsets": {
+				"from": 545360,
+				"to": 549680
+			},
+			"text": " It's kind of like, you know, I wake up and I have 50 messages, what am I looking at?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,680",
+				"to": "00:09:13,880"
+			},
+			"offsets": {
+				"from": 549680,
+				"to": 553880
+			},
+			"text": " So how do you make your group stand out from the noise?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,880",
+				"to": "00:09:15,320"
+			},
+			"offsets": {
+				"from": 553880,
+				"to": 555320
+			},
+			"text": " How should these groups be structured?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,320",
+				"to": "00:09:19,480"
+			},
+			"offsets": {
+				"from": 555320,
+				"to": 559480
+			},
+			"text": " So if you have 200 projects, what are the cultural norms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,480",
+				"to": "00:09:20,480"
+			},
+			"offsets": {
+				"from": 559480,
+				"to": 560480
+			},
+			"text": " And like who is the leader?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,480",
+				"to": "00:09:21,480"
+			},
+			"offsets": {
+				"from": 560480,
+				"to": 561480
+			},
+			"text": " Are there leaders?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,480",
+				"to": "00:09:22,480"
+			},
+			"offsets": {
+				"from": 561480,
+				"to": 562480
+			},
+			"text": " How do things get voted on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,480",
+				"to": "00:09:24,240"
+			},
+			"offsets": {
+				"from": 562480,
+				"to": 564240
+			},
+			"text": " This is stuff that magicians are working through right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,240",
+				"to": "00:09:25,880"
+			},
+			"offsets": {
+				"from": 564240,
+				"to": 565880
+			},
+			"text": " I'm pretty interested in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,880",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 565880,
+				"to": 568360
+			},
+			"text": " And then how do you make sure the group continues to create value?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:29,800"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 569800
+			},
+			"text": " There's no financial resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,800",
+				"to": "00:09:32,600"
+			},
+			"offsets": {
+				"from": 569800,
+				"to": 572600
+			},
+			"text": " So like we wanted to do a community of communities event."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,600",
+				"to": "00:09:34,480"
+			},
+			"offsets": {
+				"from": 572600,
+				"to": 574480
+			},
+			"text": " DevCon, who's going to pay for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,480",
+				"to": "00:09:37,120"
+			},
+			"offsets": {
+				"from": 574480,
+				"to": 577120
+			},
+			"text": " Because none of it's not a monetary thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,120",
+				"to": "00:09:40,960"
+			},
+			"offsets": {
+				"from": 577120,
+				"to": 580960
+			},
+			"text": " So interested in answers to any of these questions, you know, how do we continue to get value"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,960",
+				"to": "00:09:42,760"
+			},
+			"offsets": {
+				"from": 580960,
+				"to": 582760
+			},
+			"text": " from these groups?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,760",
+				"to": "00:09:44,960"
+			},
+			"offsets": {
+				"from": 582760,
+				"to": 584960
+			},
+			"text": " Yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,960",
+				"to": "00:09:45,960"
+			},
+			"offsets": {
+				"from": 584960,
+				"to": 585960
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,960",
+				"to": "00:09:45,960"
+			},
+			"offsets": {
+				"from": 585960,
+				"to": 585960
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,960",
+				"to": "00:09:46,960"
+			},
+			"offsets": {
+				"from": 585960,
+				"to": 586960
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,960",
+				"to": "00:09:47,960"
+			},
+			"offsets": {
+				"from": 586960,
+				"to": 587960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,960",
+				"to": "00:09:48,960"
+			},
+			"offsets": {
+				"from": 587960,
+				"to": 588960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,960",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 588960,
+				"to": 589960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:50,960"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 590960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,960",
+				"to": "00:09:51,960"
+			},
+			"offsets": {
+				"from": 590960,
+				"to": 591960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,960",
+				"to": "00:09:52,960"
+			},
+			"offsets": {
+				"from": 591960,
+				"to": 592960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,960",
+				"to": "00:09:53,960"
+			},
+			"offsets": {
+				"from": 592960,
+				"to": 593960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,960",
+				"to": "00:09:54,960"
+			},
+			"offsets": {
+				"from": 593960,
+				"to": 594960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,960",
+				"to": "00:09:55,960"
+			},
+			"offsets": {
+				"from": 594960,
+				"to": 595960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,960",
+				"to": "00:09:56,960"
+			},
+			"offsets": {
+				"from": 595960,
+				"to": 596960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,960",
+				"to": "00:09:57,960"
+			},
+			"offsets": {
+				"from": 596960,
+				"to": 597960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,960",
+				"to": "00:09:58,960"
+			},
+			"offsets": {
+				"from": 597960,
+				"to": 598960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,960",
+				"to": "00:09:59,960"
+			},
+			"offsets": {
+				"from": 598960,
+				"to": 599960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,960",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 599960,
+				"to": 600960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:01,960"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 601960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,960",
+				"to": "00:10:02,960"
+			},
+			"offsets": {
+				"from": 601960,
+				"to": 602960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,960",
+				"to": "00:10:03,960"
+			},
+			"offsets": {
+				"from": 602960,
+				"to": 603960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,960",
+				"to": "00:10:04,960"
+			},
+			"offsets": {
+				"from": 603960,
+				"to": 604960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,960",
+				"to": "00:10:05,960"
+			},
+			"offsets": {
+				"from": 604960,
+				"to": 605960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,960",
+				"to": "00:10:06,960"
+			},
+			"offsets": {
+				"from": 605960,
+				"to": 606960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,960",
+				"to": "00:10:07,960"
+			},
+			"offsets": {
+				"from": 606960,
+				"to": 607960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,960",
+				"to": "00:10:08,960"
+			},
+			"offsets": {
+				"from": 607960,
+				"to": 608960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,960",
+				"to": "00:10:09,960"
+			},
+			"offsets": {
+				"from": 608960,
+				"to": 609960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,960",
+				"to": "00:10:10,960"
+			},
+			"offsets": {
+				"from": 609960,
+				"to": 610960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,960",
+				"to": "00:10:11,960"
+			},
+			"offsets": {
+				"from": 610960,
+				"to": 611960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,960",
+				"to": "00:10:12,960"
+			},
+			"offsets": {
+				"from": 611960,
+				"to": 612960
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,960",
+				"to": "00:10:16,960"
+			},
+			"offsets": {
+				"from": 612960,
+				"to": 616960
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

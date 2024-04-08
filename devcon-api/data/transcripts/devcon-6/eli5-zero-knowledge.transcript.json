@@ -1,0 +1,3728 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,040"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16040
+			},
+			"text": " If you are already familiar with the journalist proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,040",
+				"to": "00:00:21,640"
+			},
+			"offsets": {
+				"from": 16040,
+				"to": 21640
+			},
+			"text": " then I strongly recommend you to listen here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,640",
+				"to": "00:00:24,200"
+			},
+			"offsets": {
+				"from": 21640,
+				"to": 24200
+			},
+			"text": " This session, the Designing Public Goods using"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,200",
+				"to": "00:00:31,680"
+			},
+			"offsets": {
+				"from": 24200,
+				"to": 31680
+			},
+			"text": " ZKPs, which is running by the Rachel, who is a support designer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,680",
+				"to": "00:00:34,280"
+			},
+			"offsets": {
+				"from": 31680,
+				"to": 34280
+			},
+			"text": " of the Their Foundations PSC team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,280",
+				"to": "00:00:41,720"
+			},
+			"offsets": {
+				"from": 34280,
+				"to": 41720
+			},
+			"text": " She has designed in three years at the team and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,720",
+				"to": "00:00:46,520"
+			},
+			"offsets": {
+				"from": 41720,
+				"to": 46520
+			},
+			"text": " designed a lot of ZKP related user experiences and user interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,520",
+				"to": "00:00:49,120"
+			},
+			"offsets": {
+				"from": 46520,
+				"to": 49120
+			},
+			"text": " It might be very, very inspiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,120",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 49120,
+				"to": 59000
+			},
+			"text": " >> Yeah, so let's start with about thinking about where the ZKP is mostly used."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:07,120"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 67120
+			},
+			"text": " So we use zero knowledge proof when you want to prove a fact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,120",
+				"to": "00:01:13,640"
+			},
+			"offsets": {
+				"from": 67120,
+				"to": 73640
+			},
+			"text": " but you don't want to share the information."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,640",
+				"to": "00:01:20,040"
+			},
+			"offsets": {
+				"from": 73640,
+				"to": 80040
+			},
+			"text": " I want to give you an example about more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,040",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 80040,
+				"to": 86560
+			},
+			"text": " So let's think about some example at immigration at the airport."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:32,280"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 92280
+			},
+			"text": " Let's assume that I'm an immigration officer here and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,280",
+				"to": "00:01:33,720"
+			},
+			"offsets": {
+				"from": 92280,
+				"to": 93720
+			},
+			"text": " just an entrant here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,720",
+				"to": "00:01:38,040"
+			},
+			"offsets": {
+				"from": 93720,
+				"to": 98040
+			},
+			"text": " When you go to the airport, the immigration officer says where you're from."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,040",
+				"to": "00:01:44,320"
+			},
+			"offsets": {
+				"from": 98040,
+				"to": 104320
+			},
+			"text": " Then I say like I'm from Korea and from Korea."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,320",
+				"to": "00:01:50,280"
+			},
+			"offsets": {
+				"from": 104320,
+				"to": 110280
+			},
+			"text": " Then immigration officer says like North or South."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,280",
+				"to": "00:01:56,920"
+			},
+			"offsets": {
+				"from": 110280,
+				"to": 116920
+			},
+			"text": " I definitely say I'm from South, but unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,920",
+				"to": "00:01:59,800"
+			},
+			"offsets": {
+				"from": 116920,
+				"to": 119800
+			},
+			"text": " this immigration officer doesn't trust me that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,800",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 119800,
+				"to": 124040
+			},
+			"text": " So he says like, huh, I really think you look like from North."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:05,840"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 125840
+			},
+			"text": " So give me your passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,840",
+				"to": "00:02:14,320"
+			},
+			"offsets": {
+				"from": 125840,
+				"to": 134320
+			},
+			"text": " This poor Korean guy wants to keep the freedom to keep my personal information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,320",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 134320,
+				"to": 136960
+			},
+			"text": " So I say like, this is my personal information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:18,400"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 138400
+			},
+			"text": " I don't want to keep my passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,400",
+				"to": "00:02:20,160"
+			},
+			"offsets": {
+				"from": 138400,
+				"to": 140160
+			},
+			"text": " Then okay, what happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,160",
+				"to": "00:02:24,040"
+			},
+			"offsets": {
+				"from": 140160,
+				"to": 144040
+			},
+			"text": " This is kicking out and this situation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:26,080"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 146080
+			},
+			"text": " what should I have to do here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,080",
+				"to": "00:02:27,800"
+			},
+			"offsets": {
+				"from": 146080,
+				"to": 147800
+			},
+			"text": " What should I do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,800",
+				"to": "00:02:29,520"
+			},
+			"offsets": {
+				"from": 147800,
+				"to": 149520
+			},
+			"text": " What can I do here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,520",
+				"to": "00:02:33,280"
+			},
+			"offsets": {
+				"from": 149520,
+				"to": 153280
+			},
+			"text": " Yeah, actually, I can show some passport number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,280",
+				"to": "00:02:38,720"
+			},
+			"offsets": {
+				"from": 153280,
+				"to": 158720
+			},
+			"text": " I can show my nationality or passport card on the cover."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,720",
+				"to": "00:02:47,840"
+			},
+			"offsets": {
+				"from": 158720,
+				"to": 167840
+			},
+			"text": " But if we give a zero knowledge proof that I can prove that I'm a part of the South Korean."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,840",
+				"to": "00:02:54,840"
+			},
+			"offsets": {
+				"from": 167840,
+				"to": 174840
+			},
+			"text": " Yeah, this is just an example which can be really happened in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,840",
+				"to": "00:02:57,280"
+			},
+			"offsets": {
+				"from": 174840,
+				"to": 177280
+			},
+			"text": " Let's think about what happens here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,280",
+				"to": "00:03:04,160"
+			},
+			"offsets": {
+				"from": 177280,
+				"to": 184160
+			},
+			"text": " So we can call the immigration officer here as the verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,160",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 184160,
+				"to": 188960
+			},
+			"text": " the entran, the poor South Korean as the prover."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 196960
+			},
+			"text": " And then the prover prepares the witness using my passport,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:21,680"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 201680
+			},
+			"text": " which means like, witness means I have some passport number here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,680",
+				"to": "00:03:31,520"
+			},
+			"offsets": {
+				"from": 201680,
+				"to": 211520
+			},
+			"text": " and I have my mail and my number in Korea, something like that, birthday, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,520",
+				"to": "00:03:39,760"
+			},
+			"offsets": {
+				"from": 211520,
+				"to": 219760
+			},
+			"text": " So and then generates a zk proof and give it to the verifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,760",
+				"to": "00:03:42,440"
+			},
+			"offsets": {
+				"from": 219760,
+				"to": 222440
+			},
+			"text": " which means the immigration officer here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,440",
+				"to": "00:03:48,680"
+			},
+			"offsets": {
+				"from": 222440,
+				"to": 228680
+			},
+			"text": " Then the verifier, the officer says, okay, I'm going to verify this proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,680",
+				"to": "00:03:51,480"
+			},
+			"offsets": {
+				"from": 228680,
+				"to": 231480
+			},
+			"text": " using the existing database we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,480",
+				"to": "00:03:53,960"
+			},
+			"offsets": {
+				"from": 231480,
+				"to": 233960
+			},
+			"text": " Actually, this is pretty possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,960",
+				"to": "00:04:01,400"
+			},
+			"offsets": {
+				"from": 233960,
+				"to": 241400
+			},
+			"text": " And we're going to take a look at the details later about how we can prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,400",
+				"to": "00:04:05,960"
+			},
+			"offsets": {
+				"from": 241400,
+				"to": 245960
+			},
+			"text": " the membership of that I'm a part of the South Korean people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,960",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 245960,
+				"to": 253000
+			},
+			"text": " Let's see what is witness and what is informations we have to share here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:15,720"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 255720
+			},
+			"text": " So there are some informations you can see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,720",
+				"to": "00:04:22,680"
+			},
+			"offsets": {
+				"from": 255720,
+				"to": 262680
+			},
+			"text": " And maybe there's a passport number that I don't want to share with the immigration officer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,680",
+				"to": "00:04:24,760"
+			},
+			"offsets": {
+				"from": 262680,
+				"to": 264760
+			},
+			"text": " Actually, it doesn't make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,760",
+				"to": "00:04:31,640"
+			},
+			"offsets": {
+				"from": 264760,
+				"to": 271640
+			},
+			"text": " But so I recall these values as private inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,640",
+				"to": "00:04:37,080"
+			},
+			"offsets": {
+				"from": 271640,
+				"to": 277080
+			},
+			"text": " But I'm going to just say I'm a part of the South Korean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,080",
+				"to": "00:04:39,720"
+			},
+			"offsets": {
+				"from": 277080,
+				"to": 279720
+			},
+			"text": " so I just opened my nationality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,720",
+				"to": "00:04:42,200"
+			},
+			"offsets": {
+				"from": 279720,
+				"to": 282200
+			},
+			"text": " This is the public input."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,200",
+				"to": "00:04:47,640"
+			},
+			"offsets": {
+				"from": 282200,
+				"to": 287640
+			},
+			"text": " And to prove that I'm a part of the people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,640",
+				"to": "00:04:53,480"
+			},
+			"offsets": {
+				"from": 287640,
+				"to": 293480
+			},
+			"text": " I just calculate some mathematical values using the inputs there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,480",
+				"to": "00:04:57,640"
+			},
+			"offsets": {
+				"from": 293480,
+				"to": 297640
+			},
+			"text": " So recall these intermediate values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,640",
+				"to": "00:05:03,960"
+			},
+			"offsets": {
+				"from": 297640,
+				"to": 303960
+			},
+			"text": " including all the private inputs and the public inputs as witness here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,960",
+				"to": "00:05:11,320"
+			},
+			"offsets": {
+				"from": 303960,
+				"to": 311320
+			},
+			"text": " And this is just a basic model of how genre knowledge-proofing system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,320",
+				"to": "00:05:17,240"
+			},
+			"offsets": {
+				"from": 311320,
+				"to": 317240
+			},
+			"text": " So we have private inputs and we have public inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,240",
+				"to": "00:05:22,440"
+			},
+			"offsets": {
+				"from": 317240,
+				"to": 322440
+			},
+			"text": " And also we have the circuit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,440",
+				"to": "00:05:27,560"
+			},
+			"offsets": {
+				"from": 322440,
+				"to": 327560
+			},
+			"text": " The circuit is about the relations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,560",
+				"to": "00:05:33,080"
+			},
+			"offsets": {
+				"from": 327560,
+				"to": 333080
+			},
+			"text": " What was the relations here in the immigration situation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,080",
+				"to": "00:05:39,800"
+			},
+			"offsets": {
+				"from": 333080,
+				"to": 339800
+			},
+			"text": " Like I don't reveal my passport number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,800",
+				"to": "00:05:49,560"
+			},
+			"offsets": {
+				"from": 339800,
+				"to": 349560
+			},
+			"text": " but my passport number is definitely a part of the registered existing database"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,560",
+				"to": "00:05:52,680"
+			},
+			"offsets": {
+				"from": 349560,
+				"to": 352680
+			},
+			"text": " of the Korean people's passport number."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,680",
+				"to": "00:05:55,320"
+			},
+			"offsets": {
+				"from": 352680,
+				"to": 355320
+			},
+			"text": " So it's kind of a membership proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,320",
+				"to": "00:06:00,120"
+			},
+			"offsets": {
+				"from": 355320,
+				"to": 360120
+			},
+			"text": " Oh, there's a database and I don't want to share my information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,120",
+				"to": "00:06:04,840"
+			},
+			"offsets": {
+				"from": 360120,
+				"to": 364840
+			},
+			"text": " But this definitely exists in the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,840",
+				"to": "00:06:10,760"
+			},
+			"offsets": {
+				"from": 364840,
+				"to": 370760
+			},
+			"text": " So this relation is the circuit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,760",
+				"to": "00:06:14,840"
+			},
+			"offsets": {
+				"from": 370760,
+				"to": 374840
+			},
+			"text": " And using all the private inputs and public inputs and circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,840",
+				"to": "00:06:18,600"
+			},
+			"offsets": {
+				"from": 374840,
+				"to": 378600
+			},
+			"text": " the prover makes a zero-knowledge proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,600",
+				"to": "00:06:23,320"
+			},
+			"offsets": {
+				"from": 378600,
+				"to": 383320
+			},
+			"text": " And then the verifier verifies this zero-knowledge proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,320",
+				"to": "00:06:29,160"
+			},
+			"offsets": {
+				"from": 383320,
+				"to": 389160
+			},
+			"text": " using the circuit, using the same circuit, using the given circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,160",
+				"to": "00:06:33,560"
+			},
+			"offsets": {
+				"from": 389160,
+				"to": 393560
+			},
+			"text": " to verify that I am a part of the Korean people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,560",
+				"to": "00:06:43,080"
+			},
+			"offsets": {
+				"from": 393560,
+				"to": 403080
+			},
+			"text": " Okay, then let's think about how and why it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,080",
+				"to": "00:06:49,560"
+			},
+			"offsets": {
+				"from": 403080,
+				"to": 409560
+			},
+			"text": " Yeah, to start with it, I think I should explain about what is ZK-SNARK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,560",
+				"to": "00:06:55,800"
+			},
+			"offsets": {
+				"from": 409560,
+				"to": 415800
+			},
+			"text": " Actually, maybe I think some of people here in this room might be pretty familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,800",
+				"to": "00:07:00,680"
+			},
+			"offsets": {
+				"from": 415800,
+				"to": 420680
+			},
+			"text": " what is ZK-SNARK, and some of us are not familiar with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,680",
+				"to": "00:07:06,360"
+			},
+			"offsets": {
+				"from": 420680,
+				"to": 426360
+			},
+			"text": " So I'm going to explain pretty in detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,360",
+				"to": "00:07:10,280"
+			},
+			"offsets": {
+				"from": 426360,
+				"to": 430280
+			},
+			"text": " So sometimes it's not four or five years old here, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,280",
+				"to": "00:07:13,240"
+			},
+			"offsets": {
+				"from": 430280,
+				"to": 433240
+			},
+			"text": " So please understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,240",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433240,
+				"to": 437000
+			},
+			"text": " I'm going to start with the classic example."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:23,640"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 443640
+			},
+			"text": " Maybe many of you heard about when you just search Google what is ZKP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,640",
+				"to": "00:07:28,040"
+			},
+			"offsets": {
+				"from": 443640,
+				"to": 448040
+			},
+			"text": " then you might see some example of Alibaba there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,040",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 448040,
+				"to": 454840
+			},
+			"text": " Then here's an example that here's a very extremely smart Rhino."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:42,920"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 462920
+			},
+			"text": " And he's arguing that he knows the magic phrase of the Alibaba cave."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,920",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 462920,
+				"to": 466040
+			},
+			"text": " Can you trust him? Can you believe it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:49,160"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 469160
+			},
+			"text": " It's pretty hard to believe, isn't it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,160",
+				"to": "00:07:52,280"
+			},
+			"offsets": {
+				"from": 469160,
+				"to": 472280
+			},
+			"text": " So we are the verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,280",
+				"to": "00:08:02,280"
+			},
+			"offsets": {
+				"from": 472280,
+				"to": 482280
+			},
+			"text": " And by the way, this argument that this Rhino is doing is called the argument of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,280",
+				"to": "00:08:07,960"
+			},
+			"offsets": {
+				"from": 482280,
+				"to": 487960
+			},
+			"text": " Because this Rhino is arguing that he knows the magic phrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,960",
+				"to": "00:08:11,640"
+			},
+			"offsets": {
+				"from": 487960,
+				"to": 491640
+			},
+			"text": " This is called the argument of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,640",
+				"to": "00:08:19,560"
+			},
+			"offsets": {
+				"from": 491640,
+				"to": 499560
+			},
+			"text": " By the way, because this is pretty hard to believe, the verifier comes up with an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,560",
+				"to": "00:08:28,040"
+			},
+			"offsets": {
+				"from": 499560,
+				"to": 508040
+			},
+			"text": " And says to the Rhino that, okay, go to the cave and wait for me there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,040",
+				"to": "00:08:32,200"
+			},
+			"offsets": {
+				"from": 508040,
+				"to": 512200
+			},
+			"text": " Then Rhino goes to the cave."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,200",
+				"to": "00:08:36,040"
+			},
+			"offsets": {
+				"from": 512200,
+				"to": 516040
+			},
+			"text": " So you can see how the Alibaba cave looks like here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,040",
+				"to": "00:08:47,080"
+			},
+			"offsets": {
+				"from": 516040,
+				"to": 527080
+			},
+			"text": " So there is a gate between the two gates that if the Rhino really knows the magic phrase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,080",
+				"to": "00:08:50,520"
+			},
+			"offsets": {
+				"from": 527080,
+				"to": 530520
+			},
+			"text": " do you know, is there anyone who knows the magic phrase here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,520",
+				"to": "00:08:56,680"
+			},
+			"offsets": {
+				"from": 530520,
+				"to": 536680
+			},
+			"text": " Yeah. So if Rhino can say the up and says the magic phrase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,680",
+				"to": "00:09:02,200"
+			},
+			"offsets": {
+				"from": 536680,
+				"to": 542200
+			},
+			"text": " then Rhino can enter through the gate because it will get up on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,200",
+				"to": "00:09:07,400"
+			},
+			"offsets": {
+				"from": 542200,
+				"to": 547400
+			},
+			"text": " So Rhino gets into the cave. So maybe it just depends on his choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,400",
+				"to": "00:09:11,400"
+			},
+			"offsets": {
+				"from": 547400,
+				"to": 551400
+			},
+			"text": " He can go into the left gate or he can go to the right gate there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,400",
+				"to": "00:09:19,880"
+			},
+			"offsets": {
+				"from": 551400,
+				"to": 559880
+			},
+			"text": " And the verifier comes here and says like, hey, try to come out from the right gate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,880",
+				"to": "00:09:26,760"
+			},
+			"offsets": {
+				"from": 559880,
+				"to": 566760
+			},
+			"text": " Then to come out from the right gate, Rhino goes to the door and says the opposite of me"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,760",
+				"to": "00:09:32,280"
+			},
+			"offsets": {
+				"from": 566760,
+				"to": 572280
+			},
+			"text": " and open the door and she'll come out from the right gate. Then we can think like, oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,280",
+				"to": "00:09:41,720"
+			},
+			"offsets": {
+				"from": 572280,
+				"to": 581720
+			},
+			"text": " I think Rhino really knows the magic phrase. Maybe some of us realize there is some problem here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,720",
+				"to": "00:09:49,160"
+			},
+			"offsets": {
+				"from": 581720,
+				"to": 589160
+			},
+			"text": " Yeah. So we're going to ask about the left gate situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,160",
+				"to": "00:09:54,520"
+			},
+			"offsets": {
+				"from": 589160,
+				"to": 594520
+			},
+			"text": " In this case, actually Rhino just went to the left gate at first."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,560",
+				"to": "00:10:03,640"
+			},
+			"offsets": {
+				"from": 595560,
+				"to": 603640
+			},
+			"text": " Then the verifier has come out from the left gate and actually it doesn't need to say the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,640",
+				"to": "00:10:10,280"
+			},
+			"offsets": {
+				"from": 603640,
+				"to": 610280
+			},
+			"text": " magic phrase there. Yeah. So actually you can think like this is very probabilistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,280",
+				"to": "00:10:21,480"
+			},
+			"offsets": {
+				"from": 610280,
+				"to": 621480
+			},
+			"text": " This case is called false positive. So the probability of the false positive here is 50%."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,720",
+				"to": "00:10:31,480"
+			},
+			"offsets": {
+				"from": 623720,
+				"to": 631480
+			},
+			"text": " Then how about if you repeat this process, as you said, 10 times here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,480",
+				"to": "00:10:40,760"
+			},
+			"offsets": {
+				"from": 631480,
+				"to": 640760
+			},
+			"text": " Then the probability of the false positive becomes less than 0.1%."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,760",
+				"to": "00:10:48,760"
+			},
+			"offsets": {
+				"from": 640760,
+				"to": 648760
+			},
+			"text": " We can just repeat this like a thousand times. Then we can think, okay, this is pretty."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,040",
+				"to": "00:10:57,960"
+			},
+			"offsets": {
+				"from": 650040,
+				"to": 657960
+			},
+			"text": " There might be the probability of the false positive is extremely low. Then we call this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,960",
+				"to": "00:11:04,440"
+			},
+			"offsets": {
+				"from": 657960,
+				"to": 664440
+			},
+			"text": " as the soundness. So soundness is a pretty important concept in ZK SNORIC."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,440",
+				"to": "00:11:07,800"
+			},
+			"offsets": {
+				"from": 664440,
+				"to": 667800
+			},
+			"text": " And I'm going to tell you about why it is important again later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,800",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 667800,
+				"to": 678360
+			},
+			"text": " The verifier asks and the Rhino answers here. And actually the set of rhinos answers is the ZKP."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,480",
+				"to": "00:11:27,320"
+			},
+			"offsets": {
+				"from": 679480,
+				"to": 687320
+			},
+			"text": " How can we compute the size of the ZKP here? It definitely depends on the repetition number."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,320",
+				"to": "00:11:38,280"
+			},
+			"offsets": {
+				"from": 687320,
+				"to": 698280
+			},
+			"text": " So if the proof size is very big, then do we have the soundness there? Yes, we have the soundness"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,280",
+				"to": "00:11:45,080"
+			},
+			"offsets": {
+				"from": 698280,
+				"to": 705080
+			},
+			"text": " there. If the proof size is too small, we cannot have the soundness. The false positive is too"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,960",
+				"to": "00:11:49,720"
+			},
+			"offsets": {
+				"from": 705960,
+				"to": 709720
+			},
+			"text": " probably the probability of the false positive is too high."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,720",
+				"to": "00:11:59,720"
+			},
+			"offsets": {
+				"from": 709720,
+				"to": 719720
+			},
+			"text": " So the proof size is pretty important. And here, okay, but imagine if we do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,720",
+				"to": "00:12:07,400"
+			},
+			"offsets": {
+				"from": 719720,
+				"to": 727400
+			},
+			"text": " a thousand times at immigration. So immigrant services, okay, just tell me you'll mispronounce"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,400",
+				"to": "00:12:18,120"
+			},
+			"offsets": {
+				"from": 727400,
+				"to": 738120
+			},
+			"text": " something. Okay, actually it totally doesn't make sense. So we need the non-intractive system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,120",
+				"to": "00:12:25,480"
+			},
+			"offsets": {
+				"from": 738120,
+				"to": 745480
+			},
+			"text": " here. Any idea how to make the non-intractive system? Okay, let's go back to the Rhino case."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,480",
+				"to": "00:12:34,200"
+			},
+			"offsets": {
+				"from": 745480,
+				"to": 754200
+			},
+			"text": " In this case, this verifier tried to make the random question every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:45,160"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 765160
+			},
+			"text": " But what if we generate some random set of questions before this proving happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,160",
+				"to": "00:12:54,120"
+			},
+			"offsets": {
+				"from": 765160,
+				"to": 774120
+			},
+			"text": " Just like this. Left, left, right, left, right, left. What is the problem here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,120",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 774120,
+				"to": 784040
+			},
+			"text": " Yeah, right. Rhino can chill on us just using the dolly. So we need to homomophically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:13,560"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 793560
+			},
+			"text": " increase those values. Actually, today we're not going to deal with the homomorphic concept here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,560",
+				"to": "00:13:23,560"
+			},
+			"offsets": {
+				"from": 793560,
+				"to": 803560
+			},
+			"text": " but we should increase this in a verifiable way. By the before we go to the next slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,560",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 803560,
+				"to": 811000
+			},
+			"text": " I just want to say here, this is called common reference string, because verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,360",
+				"to": "00:13:42,360"
+			},
+			"offsets": {
+				"from": 812360,
+				"to": 822360
+			},
+			"text": " already made this for the prover. So this string is shared between the prover and the verifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,360",
+				"to": "00:13:49,080"
+			},
+			"offsets": {
+				"from": 822360,
+				"to": 829080
+			},
+			"text": " So commonly shared string, which can be the reference for the proving system. So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,080",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 829080,
+				"to": 835000
+			},
+			"text": " called common reference string. By the way, because we need to encrypt those values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,560",
+				"to": "00:14:00,600"
+			},
+			"offsets": {
+				"from": 835560,
+				"to": 840600
+			},
+			"text": " I'm going to have to encrypt this in green. Maybe there might be a little bit of people who can"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,600",
+				"to": "00:14:07,160"
+			},
+			"offsets": {
+				"from": 840600,
+				"to": 847160
+			},
+			"text": " read this word. But actually, this is saying about go left and go right. And if you go left and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,160",
+				"to": "00:14:13,400"
+			},
+			"offsets": {
+				"from": 847160,
+				"to": 853400
+			},
+			"text": " right, go right twice or something else. So let's assume there is something that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,400",
+				"to": "00:14:24,040"
+			},
+			"offsets": {
+				"from": 853400,
+				"to": 864040
+			},
+			"text": " interpret this encrypted common reference string. So actually, interpret is not a good explanation here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,920",
+				"to": "00:14:32,280"
+			},
+			"offsets": {
+				"from": 864920,
+				"to": 872280
+			},
+			"text": " In more detail, let me assume that the five years old key understand hash function here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,280",
+				"to": "00:14:42,120"
+			},
+			"offsets": {
+				"from": 872280,
+				"to": 882120
+			},
+			"text": " We are adding a salt and hashing the value and make a modular there. So it's kind of a deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,120",
+				"to": "00:14:54,840"
+			},
+			"offsets": {
+				"from": 882120,
+				"to": 894840
+			},
+			"text": " random stuff. So the Rhino never can cheat on that if this Rhino doesn't know the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,840",
+				"to": "00:15:02,600"
+			},
+			"offsets": {
+				"from": 894840,
+				"to": 902600
+			},
+			"text": " reference string. By the way, these encrypted common reference strings not enough to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,400",
+				"to": "00:15:13,960"
+			},
+			"offsets": {
+				"from": 903400,
+				"to": 913960
+			},
+			"text": " used publicly, because this is okay when only we want to verify this Rhino is smart. What we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,960",
+				"to": "00:15:24,920"
+			},
+			"offsets": {
+				"from": 913960,
+				"to": 924920
+			},
+			"text": " want to build is some protocol that can be used publicly, widely for everyone. So for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,720",
+				"to": "00:15:37,800"
+			},
+			"offsets": {
+				"from": 925720,
+				"to": 937800
+			},
+			"text": " we have a system that we can transfer some if using zk proof, then the zk proof will include"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,800",
+				"to": "00:15:44,520"
+			},
+			"offsets": {
+				"from": 937800,
+				"to": 944520
+			},
+			"text": " some information that I have enough balance. And I can generate some signature. And every"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,520",
+				"to": "00:15:50,840"
+			},
+			"offsets": {
+				"from": 944520,
+				"to": 950840
+			},
+			"text": " information will be in the zk proof. But if you can sit on that, I just can move a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,840",
+				"to": "00:15:59,320"
+			},
+			"offsets": {
+				"from": 950840,
+				"to": 959320
+			},
+			"text": " into my account without the correct information without the signature. This is really important to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,320",
+				"to": "00:16:09,400"
+			},
+			"offsets": {
+				"from": 959320,
+				"to": 969400
+			},
+			"text": " make anyone, no one knows the original reference string. Yes, this is called the trusset setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,400",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 969400,
+				"to": 979000
+			},
+			"text": " To achieve this, we have to do the trusset setup. Let me explain this one by one. Actually, this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:28,360"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 988360
+			},
+			"text": " how a zk p system works with, I mean, the zk snark works with the common reference string. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,360",
+				"to": "00:16:34,040"
+			},
+			"offsets": {
+				"from": 988360,
+				"to": 994040
+			},
+			"text": " there is a common reference string made by the trusset setup. It's shared with the prover and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,040",
+				"to": "00:16:43,080"
+			},
+			"offsets": {
+				"from": 994040,
+				"to": 1003080
+			},
+			"text": " the verifier. And the prover and verifier both does not know the seed original reference string here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,120",
+				"to": "00:16:51,080"
+			},
+			"offsets": {
+				"from": 1004120,
+				"to": 1011080
+			},
+			"text": " And then prover picks a random salt and share it with the verifier. And then also, once the prover"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,080",
+				"to": "00:16:57,480"
+			},
+			"offsets": {
+				"from": 1011080,
+				"to": 1017480
+			},
+			"text": " picks a salt, the prover can drive a set of casters, because there is a reference string."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,480",
+				"to": "00:17:03,400"
+			},
+			"offsets": {
+				"from": 1017480,
+				"to": 1023400
+			},
+			"text": " Actually, the verifier at first in the interactive system verifiles escape the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,400",
+				"to": "00:17:11,720"
+			},
+			"offsets": {
+				"from": 1023400,
+				"to": 1031720
+			},
+			"text": " question to the rhino. But in this case, rhino can generate the questions by himself. And also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,720",
+				"to": "00:17:19,480"
+			},
+			"offsets": {
+				"from": 1031720,
+				"to": 1039480
+			},
+			"text": " the verifier can drive the answers, right answers without knowing the exact questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,480",
+				"to": "00:17:29,160"
+			},
+			"offsets": {
+				"from": 1039480,
+				"to": 1049160
+			},
+			"text": " If the verifier using the homomorphic feature, homo characteristic of the reference string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,160",
+				"to": "00:17:40,920"
+			},
+			"offsets": {
+				"from": 1049160,
+				"to": 1060920
+			},
+			"text": " it can be a little bit tricky, but this is also a pretty important thing. So I want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,560",
+				"to": "00:17:51,560"
+			},
+			"offsets": {
+				"from": 1061560,
+				"to": 1071560
+			},
+			"text": " explain some multiparty computation thing here. Yeah, actually, this is pretty technical, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,560",
+				"to": "00:18:04,120"
+			},
+			"offsets": {
+				"from": 1071560,
+				"to": 1084120
+			},
+			"text": " not that difficult, actually. Please, by the way, let me say why I'm explaining this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,120",
+				"to": "00:18:13,640"
+			},
+			"offsets": {
+				"from": 1084120,
+				"to": 1093640
+			},
+			"text": " multiparty computation here. Do you guys know how the trusted server works? Why you need to join"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,640",
+				"to": "00:18:22,440"
+			},
+			"offsets": {
+				"from": 1093640,
+				"to": 1102440
+			},
+			"text": " the ceremony that is shared today's opening ceremony? So I just want to share how it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,440",
+				"to": "00:18:30,360"
+			},
+			"offsets": {
+				"from": 1102440,
+				"to": 1110360
+			},
+			"text": " and why you need to join the KJT of the services of ceremony here. So let's go through. Actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,360",
+				"to": "00:18:40,120"
+			},
+			"offsets": {
+				"from": 1110360,
+				"to": 1120120
+			},
+			"text": " this is pretty four 15 years old kid, but let's go. So yeah, there is a homomorphic hiding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,120",
+				"to": "00:18:50,360"
+			},
+			"offsets": {
+				"from": 1120120,
+				"to": 1130360
+			},
+			"text": " G to the A is kind of a, we can make some encrypted value using number A. So actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,360",
+				"to": "00:18:58,280"
+			},
+			"offsets": {
+				"from": 1130360,
+				"to": 1138280
+			},
+			"text": " that is a signature of the homomorphic hiding H. But just think about that, just as a hash function."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,920",
+				"to": "00:19:04,840"
+			},
+			"offsets": {
+				"from": 1138920,
+				"to": 1144840
+			},
+			"text": " So think about G to the A is something related to the hash of A. Actually, it's kind of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,840",
+				"to": "00:19:13,320"
+			},
+			"offsets": {
+				"from": 1144840,
+				"to": 1153320
+			},
+			"text": " homomorphic hiding of A, but then there is a characteristic that we can compute the G to the A"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,320",
+				"to": "00:19:24,680"
+			},
+			"offsets": {
+				"from": 1153320,
+				"to": 1164680
+			},
+			"text": " using number A pretty easily. But in contrast, it's extremely difficult to compute A from G to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,680",
+				"to": "00:19:32,040"
+			},
+			"offsets": {
+				"from": 1164680,
+				"to": 1172040
+			},
+			"text": " A. Actually, this is called the logarithmic discrete assumption here, but let's just skip here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,040",
+				"to": "00:19:45,160"
+			},
+			"offsets": {
+				"from": 1172040,
+				"to": 1185160
+			},
+			"text": " And also, if we have a G to the A and B, we can also compute the G to the A be pretty easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,160",
+				"to": "00:19:51,560"
+			},
+			"offsets": {
+				"from": 1185160,
+				"to": 1191560
+			},
+			"text": " Okay, this is a, just a some key features of the homomorphic hiding using the electric curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,560",
+				"to": "00:20:03,640"
+			},
+			"offsets": {
+				"from": 1191560,
+				"to": 1203640
+			},
+			"text": " cryptography. And let's see how the traces set up works. So, trust set up is creating a common"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,640",
+				"to": "00:20:13,240"
+			},
+			"offsets": {
+				"from": 1203640,
+				"to": 1213240
+			},
+			"text": " reference string, and without anyone knows the original reference string. So at first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,960",
+				"to": "00:20:22,200"
+			},
+			"offsets": {
+				"from": 1213960,
+				"to": 1222200
+			},
+			"text": " Alice joined this ceremony and picks the set of the questions. The set of questions here is A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,200",
+				"to": "00:20:30,680"
+			},
+			"offsets": {
+				"from": 1222200,
+				"to": 1230680
+			},
+			"text": " D, C, D, E here. All the A and B and C, D and E are numbers in a finite field."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,680",
+				"to": "00:20:39,960"
+			},
+			"offsets": {
+				"from": 1230680,
+				"to": 1239960
+			},
+			"text": " So some numbers, they are numbers. And then we compute, actually, we did some encryption thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,960",
+				"to": "00:20:47,560"
+			},
+			"offsets": {
+				"from": 1239960,
+				"to": 1247560
+			},
+			"text": " here. You remember? So the left, left, right, left, right, left is A, B, C, D, E. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,560",
+				"to": "00:20:53,720"
+			},
+			"offsets": {
+				"from": 1247560,
+				"to": 1253720
+			},
+			"text": " something already encrypted volume, G to the A, G to the B, G to the C, something. So we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,720",
+				"to": "00:21:02,680"
+			},
+			"offsets": {
+				"from": 1253720,
+				"to": 1262680
+			},
+			"text": " compute G to the A, G to the B, C and G to the E there. And Alice shares this G to the A and G to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,680",
+				"to": "00:21:14,200"
+			},
+			"offsets": {
+				"from": 1262680,
+				"to": 1274200
+			},
+			"text": " the E values publicly to the people. Then Bob joins this ceremony. In this case, Alice may"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,200",
+				"to": "00:21:24,760"
+			},
+			"offsets": {
+				"from": 1274200,
+				"to": 1284760
+			},
+			"text": " discourage the A, B, C, D, E value if Alice is innocent. But if Alice is not innocent, maybe she"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,760",
+				"to": "00:21:35,720"
+			},
+			"offsets": {
+				"from": 1284760,
+				"to": 1295720
+			},
+			"text": " just store the A, B, C, D, E value in her computer. By the way, Alice didn't share the A, B, C, D"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,720",
+				"to": "00:21:45,640"
+			},
+			"offsets": {
+				"from": 1295720,
+				"to": 1305640
+			},
+			"text": " value with Bob yet. Okay. Then Bob also picks a set of questions again here. That is F, G, H, I,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,640",
+				"to": "00:21:56,840"
+			},
+			"offsets": {
+				"from": 1305640,
+				"to": 1316840
+			},
+			"text": " J, and then we're going to create a new reference string using G to the A to the G to the E and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,840",
+				"to": "00:22:09,080"
+			},
+			"offsets": {
+				"from": 1316840,
+				"to": 1329080
+			},
+			"text": " F, G, H, I, J on me. Because we can compute G to the A, F using G to the A and F together. Bob"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,080",
+				"to": "00:22:16,920"
+			},
+			"offsets": {
+				"from": 1329080,
+				"to": 1336920
+			},
+			"text": " can generate G to the A, F, G to the B, G to the C, H without knowing the A, B, C, D, E value here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,920",
+				"to": "00:22:29,880"
+			},
+			"offsets": {
+				"from": 1336920,
+				"to": 1349880
+			},
+			"text": " Call does the same thing here. Okay. Then if anyone of these three participants discarded and destroyed"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,440",
+				"to": "00:22:39,640"
+			},
+			"offsets": {
+				"from": 1350440,
+				"to": 1359640
+			},
+			"text": " the randomly picked question values, then maybe anyone might know the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,640",
+				"to": "00:22:49,400"
+			},
+			"offsets": {
+				"from": 1359640,
+				"to": 1369400
+			},
+			"text": " original reference string here, AFK, B, G, all, C, H, M, and etc. Because to know AFK, you need all"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,400",
+				"to": "00:23:01,560"
+			},
+			"offsets": {
+				"from": 1369400,
+				"to": 1381560
+			},
+			"text": " those values, A, F, and K. So it means to just recover its original value, you need all the secrets"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,560",
+				"to": "00:23:10,120"
+			},
+			"offsets": {
+				"from": 1381560,
+				"to": 1390120
+			},
+			"text": " from the old participant of the ceremony. So it makes if any one of the participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,120",
+				"to": "00:23:17,160"
+			},
+			"offsets": {
+				"from": 1390120,
+				"to": 1397160
+			},
+			"text": " to discord it and destroy the value, then all will be your slave. The best way to use this common"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,160",
+				"to": "00:23:27,160"
+			},
+			"offsets": {
+				"from": 1397160,
+				"to": 1407160
+			},
+			"text": " reference string is actually not to trust anyone. It means just go to the trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,160",
+				"to": "00:23:34,440"
+			},
+			"offsets": {
+				"from": 1407160,
+				"to": 1414440
+			},
+			"text": " step ceremony and discard your seed there. Then you will be safe at least by yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,440",
+				"to": "00:23:40,520"
+			},
+			"offsets": {
+				"from": 1414440,
+				"to": 1420520
+			},
+			"text": " If you just keep it discarded and destroyed, right? Don't trust anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,400",
+				"to": "00:23:50,120"
+			},
+			"offsets": {
+				"from": 1421400,
+				"to": 1430120
+			},
+			"text": " Just trust. Actually, don't trust yourself too. Just go to the trusted ceremony. This is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,120",
+				"to": "00:23:58,040"
+			},
+			"offsets": {
+				"from": 1430120,
+				"to": 1438040
+			},
+			"text": " page that shared today's opening ceremony. So you can just go to ceremony.ethrim.org"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,040",
+				"to": "00:24:07,960"
+			},
+			"offsets": {
+				"from": 1438040,
+				"to": 1447960
+			},
+			"text": " that you can join the ceremony. And actually, you just saw that these should be conducted"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,960",
+				"to": "00:24:14,040"
+			},
+			"offsets": {
+				"from": 1447960,
+				"to": 1454040
+			},
+			"text": " in a sequential manner because all I should do something and share and then Bob does something."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,040",
+				"to": "00:24:24,120"
+			},
+			"offsets": {
+				"from": 1454040,
+				"to": 1464120
+			},
+			"text": " So there might be some queue, but please don't lose your faith. Please don't trust anyone. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,120",
+				"to": "00:24:29,720"
+			},
+			"offsets": {
+				"from": 1464120,
+				"to": 1469720
+			},
+			"text": " go into the queue and let's join the ceremony together."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,680",
+				"to": "00:24:42,920"
+			},
+			"offsets": {
+				"from": 1470680,
+				"to": 1482920
+			},
+			"text": " Okay, great. Then now I think I've explained almost every important concept of ZK SNARK."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,920",
+				"to": "00:24:51,560"
+			},
+			"offsets": {
+				"from": 1482920,
+				"to": 1491560
+			},
+			"text": " Then let's rebuild why this is called ZK SNARK using the concepts we just explored today."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,560",
+				"to": "00:24:59,240"
+			},
+			"offsets": {
+				"from": 1491560,
+				"to": 1499240
+			},
+			"text": " So ZK SNARK is zero knowledge, succinct, non-intractive argument of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,280",
+				"to": "00:25:06,120"
+			},
+			"offsets": {
+				"from": 1500280,
+				"to": 1506120
+			},
+			"text": " First, zero knowledge means just hiding some information. Remember that I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,120",
+				"to": "00:25:14,360"
+			},
+			"offsets": {
+				"from": 1506120,
+				"to": 1514360
+			},
+			"text": " wanted to hide my passport number here. But I wanted to prove something. This is called just"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,360",
+				"to": "00:25:18,920"
+			},
+			"offsets": {
+				"from": 1514360,
+				"to": 1518920
+			},
+			"text": " zero knowledge. If you want to hide some volume, that can be called zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,920",
+				"to": "00:25:28,600"
+			},
+			"offsets": {
+				"from": 1518920,
+				"to": 1528600
+			},
+			"text": " And to talk about succinct, actually we have to talk about the soundness. Remember, if we repeat"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,600",
+				"to": "00:25:37,720"
+			},
+			"offsets": {
+				"from": 1528600,
+				"to": 1537720
+			},
+			"text": " only ten times, the proof will be pretty small. But if we repeat the answering like 10,000 times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,720",
+				"to": "00:25:46,200"
+			},
+			"offsets": {
+				"from": 1537720,
+				"to": 1546200
+			},
+			"text": " the proof size will be larger. It's pretty important to keep the proof succinct while we keep the soundness."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,200",
+				"to": "00:25:54,680"
+			},
+			"offsets": {
+				"from": 1546200,
+				"to": 1554680
+			},
+			"text": " So we need to find the gray balance there. So succinct is used here because of the soundness"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,680",
+				"to": "00:26:01,880"
+			},
+			"offsets": {
+				"from": 1554680,
+				"to": 1561880
+			},
+			"text": " thing. The non-intractive thing. We can do that at a thousand times in the immigration office."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,880",
+				"to": "00:26:09,960"
+			},
+			"offsets": {
+				"from": 1561880,
+				"to": 1569960
+			},
+			"text": " So we should have a non-intractive system. And for the non-intractive system, we should do some"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,960",
+				"to": "00:26:14,040"
+			},
+			"offsets": {
+				"from": 1569960,
+				"to": 1574040
+			},
+			"text": " common reference string. And because of that, we need to do the trusted setup stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,920",
+				"to": "00:26:23,080"
+			},
+			"offsets": {
+				"from": 1574920,
+				"to": 1583080
+			},
+			"text": " All we did, all these things to prove argument of knowledge from this Rhino."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,080",
+				"to": "00:26:31,560"
+			},
+			"offsets": {
+				"from": 1583080,
+				"to": 1591560
+			},
+			"text": " So this is called zk-snark. Generalist succinct, non-intractive argument of knowledge. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,560",
+				"to": "00:26:39,960"
+			},
+			"offsets": {
+				"from": 1591560,
+				"to": 1599960
+			},
+			"text": " does everyone understand now? Great. I am pretty happy now. Okay, so we're gonna go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,600",
+				"to": "00:26:53,080"
+			},
+			"offsets": {
+				"from": 1600600,
+				"to": 1613080
+			},
+			"text": " the apply zkp stuff. So where can I use zkp? Mostly people think like I can hide something. Then"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,080",
+				"to": "00:27:03,800"
+			},
+			"offsets": {
+				"from": 1613080,
+				"to": 1623800
+			},
+			"text": " it can be used for the privacy, definitely. So the usages are mainly the privacy and scaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,800",
+				"to": "00:27:09,240"
+			},
+			"offsets": {
+				"from": 1623800,
+				"to": 1629240
+			},
+			"text": " and there are a lot of undiscovered usages. So let's go to the privacy thing first."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,120",
+				"to": "00:27:16,920"
+			},
+			"offsets": {
+				"from": 1630120,
+				"to": 1636920
+			},
+			"text": " Yeah, and actually we already go through some difficult concepts like multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,920",
+				"to": "00:27:25,800"
+			},
+			"offsets": {
+				"from": 1636920,
+				"to": 1645800
+			},
+			"text": " computation, homomorphic hiding, and local rhythm, discrete assumption stuff. So let me assume again"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,800",
+				"to": "00:27:33,640"
+			},
+			"offsets": {
+				"from": 1645800,
+				"to": 1653640
+			},
+			"text": " that I could already know this function and make it proof. And please, let's remind how the zk"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,640",
+				"to": "00:27:41,800"
+			},
+			"offsets": {
+				"from": 1653640,
+				"to": 1661800
+			},
+			"text": " proving system works here. We have a circuit that represents the relations between witness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,800",
+				"to": "00:27:47,880"
+			},
+			"offsets": {
+				"from": 1661800,
+				"to": 1667880
+			},
+			"text": " including the public inputs and private inputs. And the prover creates a zkp and the verifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,880",
+				"to": "00:27:56,280"
+			},
+			"offsets": {
+				"from": 1667880,
+				"to": 1676280
+			},
+			"text": " will verify the proof using the circuit together. And in the Merkle tree, what we want to do here"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,240",
+				"to": "00:28:12,520"
+			},
+			"offsets": {
+				"from": 1677240,
+				"to": 1692520
+			},
+			"text": " is proving that there exists a leaf in the Merkle tree without revealing any information about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,520",
+				"to": "00:28:19,800"
+			},
+			"offsets": {
+				"from": 1692520,
+				"to": 1699800
+			},
+			"text": " leaf and the sibling information, which can reveal the path of the leaf, which can be kind of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,800",
+				"to": "00:28:30,200"
+			},
+			"offsets": {
+				"from": 1699800,
+				"to": 1710200
+			},
+			"text": " reference. And here, I'm going to share the Merkle root information between both the verifier and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,200",
+				"to": "00:28:38,280"
+			},
+			"offsets": {
+				"from": 1710200,
+				"to": 1718280
+			},
+			"text": " prover. So this is where do we use this thing at the immigration office?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:38,280",
+				"to": "00:28:49,080"
+			},
+			"offsets": {
+				"from": 1718280,
+				"to": 1729080
+			},
+			"text": " Yeah, just to prove I'm a member of this group, but I don't want to reveal my identity here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,040",
+				"to": "00:28:55,640"
+			},
+			"offsets": {
+				"from": 1730040,
+				"to": 1735640
+			},
+			"text": " So this is the reason why we do this is Merkle proof using zkp. Actually, we can compute the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,640",
+				"to": "00:29:02,200"
+			},
+			"offsets": {
+				"from": 1735640,
+				"to": 1742200
+			},
+			"text": " Merkle root using sibling values. And the sibling values also should be private inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,200",
+				"to": "00:29:08,360"
+			},
+			"offsets": {
+				"from": 1742200,
+				"to": 1748360
+			},
+			"text": " because if they are revealed, then they can be some hint for about the leaf. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,360",
+				"to": "00:29:18,200"
+			},
+			"offsets": {
+				"from": 1748360,
+				"to": 1758200
+			},
+			"text": " to generate the multiple proof, we need to compute the intermediate nodes here, right? You need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,200",
+				"to": "00:29:24,840"
+			},
+			"offsets": {
+				"from": 1758200,
+				"to": 1764840
+			},
+			"text": " compute the branch node of the Merkle tree when you compute the Merkle proof. And these intermediate"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,840",
+				"to": "00:29:33,160"
+			},
+			"offsets": {
+				"from": 1764840,
+				"to": 1773160
+			},
+			"text": " values are the witness. Actually, witness also include the private and public all the values, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,160",
+				"to": "00:29:41,800"
+			},
+			"offsets": {
+				"from": 1773160,
+				"to": 1781800
+			},
+			"text": " I'm going to say this is an witness. And also, this is the relation of the witness."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,440",
+				"to": "00:29:50,040"
+			},
+			"offsets": {
+				"from": 1782440,
+				"to": 1790040
+			},
+			"text": " So the first, let's see the first relation. Node one is hash of sibling one and leaf one."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,040",
+				"to": "00:29:55,720"
+			},
+			"offsets": {
+				"from": 1790040,
+				"to": 1795720
+			},
+			"text": " And node two is hash of the node one and sibling two, node three, node three is the hash of node"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,720",
+				"to": "00:30:04,600"
+			},
+			"offsets": {
+				"from": 1795720,
+				"to": 1804600
+			},
+			"text": " two and sibling three. And then finally, the computed node three should equal to the root"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,600",
+				"to": "00:30:12,040"
+			},
+			"offsets": {
+				"from": 1804600,
+				"to": 1812040
+			},
+			"text": " value here. This is a relation that we want to prove using the witness. While we are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,040",
+				"to": "00:30:18,440"
+			},
+			"offsets": {
+				"from": 1812040,
+				"to": 1818440
+			},
+			"text": " revealing the private information here. Okay, so let's just put these values like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,440",
+				"to": "00:30:27,080"
+			},
+			"offsets": {
+				"from": 1818440,
+				"to": 1827080
+			},
+			"text": " So there's a circle circuit. The logic is blue color and the private inputs are the green"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,080",
+				"to": "00:30:33,960"
+			},
+			"offsets": {
+				"from": 1827080,
+				"to": 1833960
+			},
+			"text": " color and public inputs are the red color here. Then we can generate zk proof and the verifier can"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:34,760",
+				"to": "00:30:42,520"
+			},
+			"offsets": {
+				"from": 1834760,
+				"to": 1842520
+			},
+			"text": " prove that, okay, you don't need to reveal the private inputs, but I have the information about"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,520",
+				"to": "00:30:51,400"
+			},
+			"offsets": {
+				"from": 1842520,
+				"to": 1851400
+			},
+			"text": " this group, which is a root value, the public input, red thing. And also, there is a relation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,400",
+				"to": "00:30:59,960"
+			},
+			"offsets": {
+				"from": 1851400,
+				"to": 1859960
+			},
+			"text": " logic between the witness. Here, that is the Merkle proof. And this member's proof thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,960",
+				"to": "00:31:06,920"
+			},
+			"offsets": {
+				"from": 1859960,
+				"to": 1866920
+			},
+			"text": " also can be used for various usages. Actually, first of all, the privacy protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,920",
+				"to": "00:31:16,280"
+			},
+			"offsets": {
+				"from": 1866920,
+				"to": 1876280
+			},
+			"text": " definitely. And for the privacy protocol, we have the very good example for the identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,280",
+				"to": "00:31:26,920"
+			},
+			"offsets": {
+				"from": 1876280,
+				"to": 1886920
+			},
+			"text": " We are having the semaphore protocol, which is just the name of a membership proof protocol that"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,800",
+				"to": "00:31:39,240"
+			},
+			"offsets": {
+				"from": 1887800,
+				"to": 1899240
+			},
+			"text": " keeps your identity private, but let you vote on some agenda in an anonymous manner. And also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,240",
+				"to": "00:31:46,200"
+			},
+			"offsets": {
+				"from": 1899240,
+				"to": 1906200
+			},
+			"text": " we can have some private transaction stuff, zcash, and also Aztecs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,200",
+				"to": "00:31:55,080"
+			},
+			"offsets": {
+				"from": 1906200,
+				"to": 1915080
+			},
+			"text": " Aztecs, heimani, and polygonized ball, and PS team Zico proof, and collator cash. There are"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,080",
+				"to": "00:32:03,640"
+			},
+			"offsets": {
+				"from": 1915080,
+				"to": 1923640
+			},
+			"text": " all the implementing the same logic with this member's proof system. And also, this member's"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:03,640",
+				"to": "00:32:11,480"
+			},
+			"offsets": {
+				"from": 1923640,
+				"to": 1931480
+			},
+			"text": " proof system can be implemented in various ways. Definitely, the first way is the method that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,480",
+				"to": "00:32:19,240"
+			},
+			"offsets": {
+				"from": 1931480,
+				"to": 1939240
+			},
+			"text": " share here, the Merkle proof thing. And actually, recently, people are exploring another methodology"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:19,240",
+				"to": "00:32:30,040"
+			},
+			"offsets": {
+				"from": 1939240,
+				"to": 1950040
+			},
+			"text": " using the vector commitment, which can let us express a set of values using a polynomial."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,040",
+				"to": "00:32:39,480"
+			},
+			"offsets": {
+				"from": 1950040,
+				"to": 1959480
+			},
+			"text": " So if you are interested in, you can just Google this talk and take a deep look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,480",
+				"to": "00:32:46,680"
+			},
+			"offsets": {
+				"from": 1959480,
+				"to": 1966680
+			},
+			"text": " By the way, we have 10 more minutes. So I'm going to use 10 more minutes all the 10 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,040",
+				"to": "00:32:55,560"
+			},
+			"offsets": {
+				"from": 1968040,
+				"to": 1975560
+			},
+			"text": " The next example is scaling. You guys are pretty familiar with the word roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,560",
+				"to": "00:33:09,640"
+			},
+			"offsets": {
+				"from": 1975560,
+				"to": 1989640
+			},
+			"text": " Actually, the roll-up started from 2018 by Barry, our PSC team's leader. And roll-up started from"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,640",
+				"to": "00:33:17,160"
+			},
+			"offsets": {
+				"from": 1989640,
+				"to": 1997160
+			},
+			"text": " the Zico roll-up. And I'm going to explain what is the basic form of Zico roll-up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,160",
+				"to": "00:33:28,520"
+			},
+			"offsets": {
+				"from": 1997160,
+				"to": 2008520
+			},
+			"text": " The first block is a just say, some Ethereum block. Let's assume that this is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,520",
+				"to": "00:33:32,920"
+			},
+			"offsets": {
+				"from": 2008520,
+				"to": 2012920
+			},
+			"text": " normal Ethereum block. Then there should be some transactions. Transact from one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,480",
+				"to": "00:33:41,320"
+			},
+			"offsets": {
+				"from": 2013480,
+				"to": 2021320
+			},
+			"text": " which is two. And for each transaction, every account external on the account should generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,320",
+				"to": "00:33:47,640"
+			},
+			"offsets": {
+				"from": 2021320,
+				"to": 2027640
+			},
+			"text": " the ECD-assignature. So every transaction has its matching transaction signature there."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,640",
+				"to": "00:33:55,240"
+			},
+			"offsets": {
+				"from": 2027640,
+				"to": 2035240
+			},
+			"text": " And finally, we compute the block hash using some other values there. But how if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,320",
+				"to": "00:34:05,080"
+			},
+			"offsets": {
+				"from": 2037320,
+				"to": 2045080
+			},
+			"text": " make these signatures as private input, what happens here? We can just remove the private"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,080",
+				"to": "00:34:15,320"
+			},
+			"offsets": {
+				"from": 2045080,
+				"to": 2055320
+			},
+			"text": " inputs and replace that using a CKP. This is just what Zico roll-up is. And here are two"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,320",
+				"to": "00:34:23,720"
+			},
+			"offsets": {
+				"from": 2055320,
+				"to": 2063720
+			},
+			"text": " advantages. What are the two advantages here? Yeah, definitely the data used. And the another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,600",
+				"to": "00:34:31,880"
+			},
+			"offsets": {
+				"from": 2064600,
+				"to": 2071880
+			},
+			"text": " Because if we just compress all the signatures, then we don't need to verify all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,880",
+				"to": "00:34:41,320"
+			},
+			"offsets": {
+				"from": 2071880,
+				"to": 2081320
+			},
+			"text": " electrical signatures. So let's assume that if we have 10,000 of signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:41,320",
+				"to": "00:34:48,760"
+			},
+			"offsets": {
+				"from": 2081320,
+				"to": 2088760
+			},
+			"text": " then the general law proof can be much less than the 10,000 of the signatures. So we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,800",
+				"to": "00:34:56,280"
+			},
+			"offsets": {
+				"from": 2089800,
+				"to": 2096280
+			},
+			"text": " reduce the data size a lot. And also, we can skip the computation, just using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,280",
+				"to": "00:35:05,640"
+			},
+			"offsets": {
+				"from": 2096280,
+				"to": 2105640
+			},
+			"text": " cryptographic verifying system. So we have a two advantage here. The scaling of the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,640",
+				"to": "00:35:14,440"
+			},
+			"offsets": {
+				"from": 2105640,
+				"to": 2114440
+			},
+			"text": " and the scaling of the data usage. So this is the reason why we are using ZK for scaling solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,320",
+				"to": "00:35:23,000"
+			},
+			"offsets": {
+				"from": 2115320,
+				"to": 2123000
+			},
+			"text": " And actually, there is a tutorial that you can implement the simple ZK roll-up by yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:23,000",
+				"to": "00:35:31,720"
+			},
+			"offsets": {
+				"from": 2123000,
+				"to": 2131720
+			},
+			"text": " So if you want to just deep dive into how it really works, then I can just go to there and go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,720",
+				"to": "00:35:38,680"
+			},
+			"offsets": {
+				"from": 2131720,
+				"to": 2138680
+			},
+			"text": " the tutorial. I'll be very helpful for you to understand how it works. And for the next,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:40,760",
+				"to": "00:35:51,400"
+			},
+			"offsets": {
+				"from": 2140760,
+				"to": 2151400
+			},
+			"text": " I'm going to share another fun examples. Macy and rate limiting nullifier. Macy is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:51,400",
+				"to": "00:36:01,320"
+			},
+			"offsets": {
+				"from": 2151400,
+				"to": 2161320
+			},
+			"text": " Macy's stands for minimal anti-collusion infrastructure. Which means actually, have you"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,040",
+				"to": "00:36:11,160"
+			},
+			"offsets": {
+				"from": 2162040,
+				"to": 2171160
+			},
+			"text": " tried the CLR fund before using Bitcoin fund, quadratic fund. So quadratic fund in quadratic fund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,160",
+				"to": "00:36:24,120"
+			},
+			"offsets": {
+				"from": 2171160,
+				"to": 2184120
+			},
+			"text": " it is very useful to buy the vote. Because the number of the participants is much important"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,120",
+				"to": "00:36:30,600"
+			},
+			"offsets": {
+				"from": 2184120,
+				"to": 2190600
+			},
+			"text": " than the amount of the votes, right? In quadratic voting. So buying the vote is pretty useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,480",
+				"to": "00:36:39,480"
+			},
+			"offsets": {
+				"from": 2191480,
+				"to": 2199480
+			},
+			"text": " Then how can we prevent vote buying attack? Collecting all the votes first. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,480",
+				"to": "00:36:53,160"
+			},
+			"offsets": {
+				"from": 2199480,
+				"to": 2213160
+			},
+			"text": " the coordinator makes it and generate a new state tree. Then the voter cannot prove that"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,280",
+				"to": "00:37:03,320"
+			},
+			"offsets": {
+				"from": 2214280,
+				"to": 2223320
+			},
+			"text": " I voted to this one. Then we can just prevent the vote buying attack. So we can also use ZKP here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,320",
+				"to": "00:37:10,760"
+			},
+			"offsets": {
+				"from": 2223320,
+				"to": 2230760
+			},
+			"text": " that the coordinator mixed the result without just modifying them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,760",
+				"to": "00:37:21,000"
+			},
+			"offsets": {
+				"from": 2230760,
+				"to": 2241000
+			},
+			"text": " correctly using zero-knowledge proof. So we are also doing the CLR fund for"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,640",
+				"to": "00:37:29,960"
+			},
+			"offsets": {
+				"from": 2241640,
+				"to": 2249960
+			},
+			"text": " DAFCON. So you can go to the 8th Columbia, the CLR fund to participate in the new"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:29,960",
+				"to": "00:37:38,280"
+			},
+			"offsets": {
+				"from": 2249960,
+				"to": 2258280
+			},
+			"text": " crowdfunding round. Another really fun example is the rate limiting nullifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:38,280",
+				"to": "00:37:47,400"
+			},
+			"offsets": {
+				"from": 2258280,
+				"to": 2267400
+			},
+			"text": " This is pretty novel. And maybe it is pretty hard to think about this concept from ZKP."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,400",
+				"to": "00:37:55,640"
+			},
+			"offsets": {
+				"from": 2267400,
+				"to": 2275640
+			},
+			"text": " Because we are just thinking about only the privacy or scaling, right? Then let's see what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,640",
+				"to": "00:38:10,120"
+			},
+			"offsets": {
+				"from": 2275640,
+				"to": 2290120
+			},
+			"text": " There is a polynomial, a 1 degree polynomial. So it is y equals Ax plus b. And actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:10,120",
+				"to": "00:38:23,080"
+			},
+			"offsets": {
+				"from": 2290120,
+				"to": 2303080
+			},
+			"text": " this polynomial is a polynomial that I just chose. And actually the value b is my secret key"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,080",
+				"to": "00:38:37,080"
+			},
+			"offsets": {
+				"from": 2303080,
+				"to": 2317080
+			},
+			"text": " of Ethereum. Then I can share you some point on this line. But if I share you more than two points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:37,640",
+				"to": "00:38:42,600"
+			},
+			"offsets": {
+				"from": 2317640,
+				"to": 2322600
+			},
+			"text": " what happens? You can just compute this polynomial, right? Because you have two points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:42,600",
+				"to": "00:38:48,360"
+			},
+			"offsets": {
+				"from": 2322600,
+				"to": 2328360
+			},
+			"text": " and this 1 degree. So you can just know the A and A and B. You can know my secret key."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:48,360",
+				"to": "00:38:53,720"
+			},
+			"offsets": {
+				"from": 2328360,
+				"to": 2333720
+			},
+			"text": " So my secret gets revealed. So rate limiting nullifier is using this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:53,720",
+				"to": "00:39:00,120"
+			},
+			"offsets": {
+				"from": 2333720,
+				"to": 2340120
+			},
+			"text": " actually this protocol is Sharmir's secret sharing protocol. Rate limiting nullifier is"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:01,400",
+				"to": "00:39:08,360"
+			},
+			"offsets": {
+				"from": 2341400,
+				"to": 2348360
+			},
+			"text": " using this to prevent spam attack. If I want to communicate with you, I should"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:08,360",
+				"to": "00:39:19,560"
+			},
+			"offsets": {
+				"from": 2348360,
+				"to": 2359560
+			},
+			"text": " revolve my point on the polynomial to you. So if I just send you too many messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:19,560",
+				"to": "00:39:27,320"
+			},
+			"offsets": {
+				"from": 2359560,
+				"to": 2367320
+			},
+			"text": " that actually you can just recover my polynomial and just get all my it from the account, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:28,040",
+				"to": "00:39:37,160"
+			},
+			"offsets": {
+				"from": 2368040,
+				"to": 2377160
+			},
+			"text": " But here we have to use the kp that all these shared points are on the polynomial."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:37,160",
+				"to": "00:39:44,680"
+			},
+			"offsets": {
+				"from": 2377160,
+				"to": 2384680
+			},
+			"text": " This is the only the relation. Pretty simple, right? And we can use this for spam protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:44,680",
+				"to": "00:39:49,320"
+			},
+			"offsets": {
+				"from": 2384680,
+				"to": 2389320
+			},
+			"text": " protocol. We are doing a lot of experiments using this right limiting nullifier concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:49,320",
+				"to": "00:39:57,080"
+			},
+			"offsets": {
+				"from": 2389320,
+				"to": 2397080
+			},
+			"text": " for the consensus layer and also the peer-to-peer networking. Okay, so this is the last. So from five"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:57,080",
+				"to": "00:40:04,680"
+			},
+			"offsets": {
+				"from": 2397080,
+				"to": 2404680
+			},
+			"text": " years old key to a student, I want to recommend this curriculum. The first one is just write a"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,680",
+				"to": "00:40:12,280"
+			},
+			"offsets": {
+				"from": 2404680,
+				"to": 2412280
+			},
+			"text": " CKP application using the tutorial thing I shared for the ZK roll-up. Then it will let you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:12,280",
+				"to": "00:40:19,080"
+			},
+			"offsets": {
+				"from": 2412280,
+				"to": 2419080
+			},
+			"text": " it will help you understand how the KP works and how the proven system works there. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:19,080",
+				"to": "00:40:26,920"
+			},
+			"offsets": {
+				"from": 2419080,
+				"to": 2426920
+			},
+			"text": " you need to study and learn about the first abstract algebra, because in the proven system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:27,160",
+				"to": "00:40:33,000"
+			},
+			"offsets": {
+				"from": 2427160,
+				"to": 2433000
+			},
+			"text": " we are using a specific set of numbers. And we need to understand how this number works"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:33,000",
+				"to": "00:40:39,480"
+			},
+			"offsets": {
+				"from": 2433000,
+				"to": 2439480
+			},
+			"text": " and how the homomorphic hiding worries to understand this. Actually, you need to understand the"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:39,480",
+				"to": "00:40:47,400"
+			},
+			"offsets": {
+				"from": 2439480,
+				"to": 2447400
+			},
+			"text": " abstract algebra and the group theory thing. After that, please study and learn about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:47,400",
+				"to": "00:40:53,560"
+			},
+			"offsets": {
+				"from": 2447400,
+				"to": 2453560
+			},
+			"text": " electric curve cryptography first. And then after that, please study about the pairing based cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,520",
+				"to": "00:41:04,600"
+			},
+			"offsets": {
+				"from": 2454520,
+				"to": 2464600
+			},
+			"text": " Then maybe some of you guys are heard about a Planck and KG and inner product argument stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:04,600",
+				"to": "00:41:13,240"
+			},
+			"offsets": {
+				"from": 2464600,
+				"to": 2473240
+			},
+			"text": " And they are all the kind of things after you, you have to use study about this pairing based"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,240",
+				"to": "00:41:20,680"
+			},
+			"offsets": {
+				"from": 2473240,
+				"to": 2480680
+			},
+			"text": " cryptography and an abstract algebra and an astra. So after you study these three things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:20,680",
+				"to": "00:41:27,720"
+			},
+			"offsets": {
+				"from": 2480680,
+				"to": 2487720
+			},
+			"text": " then please study about the Planck, which is arithmeticization, which means the converting"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,720",
+				"to": "00:41:36,760"
+			},
+			"offsets": {
+				"from": 2487720,
+				"to": 2496760
+			},
+			"text": " your program into a polynomial. Then after then, go through the polynomial commitment schemes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,760",
+				"to": "00:41:43,640"
+			},
+			"offsets": {
+				"from": 2496760,
+				"to": 2503640
+			},
+			"text": " which is like how to make the questions and how to make the answers what we have done"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:43,640",
+				"to": "00:41:49,880"
+			},
+			"offsets": {
+				"from": 2503640,
+				"to": 2509880
+			},
+			"text": " using the Alibaba's case with the rhinus. Actually, the arithmeticization is pretty related to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:49,880",
+				"to": "00:41:55,080"
+			},
+			"offsets": {
+				"from": 2509880,
+				"to": 2515080
+			},
+			"text": " polynomial commitment scheme. So you're going to study with some RNCS"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,080",
+				"to": "00:42:02,760"
+			},
+			"offsets": {
+				"from": 2515080,
+				"to": 2522760
+			},
+			"text": " arithmeticization with graph 16. And you're going to study Planck arithmeticization with KG or inner"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,760",
+				"to": "00:42:11,720"
+			},
+			"offsets": {
+				"from": 2522760,
+				"to": 2531720
+			},
+			"text": " product argument. Thank you, everyone. I'm one's up from the foundation PSC team. And I hope this"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:11,720",
+				"to": "00:42:14,440"
+			},
+			"offsets": {
+				"from": 2531720,
+				"to": 2534440
+			},
+			"text": " session help you a lot. Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:14,440",
+				"to": "00:42:27,160"
+			},
+			"offsets": {
+				"from": 2534440,
+				"to": 2547160
+			},
+			"text": " [silence]"
+		}
+	]
+}

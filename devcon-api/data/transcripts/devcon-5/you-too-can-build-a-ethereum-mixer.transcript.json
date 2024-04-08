@@ -1,0 +1,604 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 12000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 13000
+			},
+			"text": " G'day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 20000
+			},
+			"text": " Okay, I'm Kendrick and this talk is titled \"You Too Can Do It\" at Dear and Mesa."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " So just a little bit about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 23000
+			},
+			"text": " I'm based in Australia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 24000
+			},
+			"text": " I'm a person in Australia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 25000
+			},
+			"text": " I'm a software developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " If you want to check out my social links, it's my give up and my Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 37000
+			},
+			"text": " Before we start, I would like to emphasize that this isn't a tool we have two important announcements to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 39000
+			},
+			"text": " But one, this is not a technical talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " This is not going to take you out of building mixes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47000
+			},
+			"text": " So if you want to do that, I think Workshop B can be a better place."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 50000
+			},
+			"text": " And two, my cat has an Instagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 55000
+			},
+			"text": " So if you guys could follow it at nister.niso.osy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " Pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 63000
+			},
+			"text": " So this talk is mainly about imposter syndrome."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 74000
+			},
+			"text": " And I think we as a tech community should really talk about it and acknowledge it primarily because it's so prominent in the tech industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 81000
+			},
+			"text": " And if we don't acknowledge it, we can't be the best community we can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 89000
+			},
+			"text": " I would like to share a little story that I've been through a little roller coaster ride in my life for the past three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " And essentially what happened in July was that I quit my job in Brisbane, Australia."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " And I had a one-month buffer gap before my next job."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 103000
+			},
+			"text": " I was a bit bored and I decided to browse the Ethereum subreddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 109000
+			},
+			"text": " And turns out there was a list of projects that the Ethereum Foundation wanted to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 115000
+			},
+			"text": " One of them was a Ethereum mixer, which I thought was quite interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " Actually, building an Ethereum mixer isn't that easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 127000
+			},
+			"text": " You actually have to go into quite in-depth cryptography, software design patterns, and currently smart contract designs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 138000
+			},
+			"text": " At one point, I was copying and pasting a prime fuel orders into Etherscan.com and finding contracts that verify contracts with the same prime number that extract certain pieces of product."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " And then I started to make my smart contract work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " Occasionally you find it on GitHub, you find it on Facebook, but not GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 148000
+			},
+			"text": " And you find it on a verified contract on an easy scan."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " So that's how deep I had to dive in. There was no real roughness materials."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 159000
+			},
+			"text": " But I got it done anyway. I built the mixer. I got the UI out. I built the MVP and I launched it on Ronson."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " It was quite happy on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 168000
+			},
+			"text": " So I made a tweet. I actually had like 15% of this so I wasn't expecting much traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " But the topic actually retweeted it and it kind of catapulted my Twitter follower accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " Now I actually have an influence of people. So I can't have it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " If I get 1,000 calls now, so I can do like 20x, 20x better than any other ICO anticipated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " But you know what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 195000
+			},
+			"text": " Actually, because of this, I got invited to a workshop, a zero-knowledge proof workshop, sponsored by the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 204000
+			},
+			"text": " And some of the world's best engineers in cryptography and specifying zero-knowledge proof in abstract maths award day."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 213000
+			},
+			"text": " But something the takeaway of the conference was that the best of the best engineers, who I wasn't even sure if they were speaking English at the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 219000
+			},
+			"text": " acknowledged the fact that everyone at the workshop was at different technical levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 228000
+			},
+			"text": " And everyone should share a perspective and their opinions regardless of the background or the experience in the field."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " My goal inside is as valuable as anyone's."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 241000
+			},
+			"text": " So I guess if I had to give a conclusion a couple of takeaways, it's okay to not know everything and different perspectives in the Ethereum community"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " and welcome, and it helps us to kind of be the best version or the best community we can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " I apologize if this isn't as technical as you guys wanted above."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 260000
+			},
+			"text": " Yeah, if you guys got any questions, those are my soul feelings and I have my cats Instagram, which would be really nice if you guys could follow it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 262000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 264000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 279000
+			},
+			"text": " [Music]"
+		}
+	]
+}

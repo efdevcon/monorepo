@@ -1,0 +1,7886 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 19640
+			},
+			"text": " OK, so this is the standardization panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:23,400"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 23400
+			},
+			"text": " We have a bunch of brilliant minds up here, Gavin Wood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,400",
+				"to": "00:00:27,760"
+			},
+			"offsets": {
+				"from": 23400,
+				"to": 27760
+			},
+			"text": " Nikolai, Fabian, Vitalik, and Christian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,760",
+				"to": "00:00:32,520"
+			},
+			"offsets": {
+				"from": 27760,
+				"to": 32520
+			},
+			"text": " So the point in this panel is to talk about current standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,520",
+				"to": "00:00:35,520"
+			},
+			"offsets": {
+				"from": 32520,
+				"to": 35520
+			},
+			"text": " potential issues that we might see might happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,520",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 35520,
+				"to": 38880
+			},
+			"text": " How can we as a community resolve some of these issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:43,920"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 43920
+			},
+			"text": " And how can we go forward to maybe implement perhaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,920",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 43920,
+				"to": 46280
+			},
+			"text": " a process or something like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 49000
+			},
+			"text": " So I think to start off with, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:51,080"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 51080
+			},
+			"text": " it would be great to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,080",
+				"to": "00:00:53,240"
+			},
+			"offsets": {
+				"from": 51080,
+				"to": 53240
+			},
+			"text": " there are certain standards that have already"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,240",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 53240,
+				"to": 57280
+			},
+			"text": " been defined that people are using and want to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 61880
+			},
+			"text": " such as the token standards, rich G standards, and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:05,360"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 65360
+			},
+			"text": " In your area, which are the ones that you currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,360",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 65360,
+				"to": 67000
+			},
+			"text": " feel the most passionate about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:11,480"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 71480
+			},
+			"text": " And what are your thoughts on that particular standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,480",
+				"to": "00:01:13,760"
+			},
+			"offsets": {
+				"from": 71480,
+				"to": 73760
+			},
+			"text": " and going forward?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,760",
+				"to": "00:01:16,240"
+			},
+			"offsets": {
+				"from": 73760,
+				"to": 76240
+			},
+			"text": " We ever want to start, Christian?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,240",
+				"to": "00:01:20,920"
+			},
+			"offsets": {
+				"from": 76240,
+				"to": 80920
+			},
+			"text": " Yeah, so I think for me it's probably tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,920",
+				"to": "00:01:31,320"
+			},
+			"offsets": {
+				"from": 80920,
+				"to": 91320
+			},
+			"text": " So in the Transactive Grid Energy Trading Program project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,320",
+				"to": "00:01:34,840"
+			},
+			"offsets": {
+				"from": 91320,
+				"to": 94840
+			},
+			"text": " right now we have our own custom way"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,840",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 94840,
+				"to": 102000
+			},
+			"text": " of tokenizing energy credits, renewable energy credits."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,760"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106760
+			},
+			"text": " And we want to move towards a standard token solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,760",
+				"to": "00:01:50,600"
+			},
+			"offsets": {
+				"from": 106760,
+				"to": 110600
+			},
+			"text": " so that it can be integrated with markets, such as etherics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,600",
+				"to": "00:01:51,440"
+			},
+			"offsets": {
+				"from": 110600,
+				"to": 111440
+			},
+			"text": " et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,440",
+				"to": "00:01:54,280"
+			},
+			"offsets": {
+				"from": 111440,
+				"to": 114280
+			},
+			"text": " And so this is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,280",
+				"to": "00:01:56,920"
+			},
+			"offsets": {
+				"from": 114280,
+				"to": 116920
+			},
+			"text": " for that reason, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,920",
+				"to": "00:02:02,520"
+			},
+			"offsets": {
+				"from": 116920,
+				"to": 122520
+			},
+			"text": " I'm also using registries in various dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,520",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122520,
+				"to": 130000
+			},
+			"text": " But I think there it's often more straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:17,320"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 137320
+			},
+			"text": " And there might be less need for interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,320",
+				"to": "00:02:20,320"
+			},
+			"offsets": {
+				"from": 137320,
+				"to": 140320
+			},
+			"text": " if you have a very targeted system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,320",
+				"to": "00:02:23,680"
+			},
+			"offsets": {
+				"from": 140320,
+				"to": 143680
+			},
+			"text": " So I think for me, tokens, stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,680",
+				"to": "00:02:26,960"
+			},
+			"offsets": {
+				"from": 143680,
+				"to": 146960
+			},
+			"text": " Yeah, tokens and registries, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,960",
+				"to": "00:02:28,960"
+			},
+			"offsets": {
+				"from": 146960,
+				"to": 148960
+			},
+			"text": " probably are the two biggest categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,960",
+				"to": "00:02:33,400"
+			},
+			"offsets": {
+				"from": 148960,
+				"to": 153400
+			},
+			"text": " And with registries, there are different types of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,400",
+				"to": "00:02:35,600"
+			},
+			"offsets": {
+				"from": 153400,
+				"to": 155600
+			},
+			"text": " So there are some registries that are specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,600",
+				"to": "00:02:38,160"
+			},
+			"offsets": {
+				"from": 155600,
+				"to": 158160
+			},
+			"text": " kind of targeted to particular types of metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,160",
+				"to": "00:02:40,720"
+			},
+			"offsets": {
+				"from": 158160,
+				"to": 160720
+			},
+			"text": " And then there's other things which are basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,720",
+				"to": "00:02:41,640"
+			},
+			"offsets": {
+				"from": 160720,
+				"to": 161640
+			},
+			"text": " named registries."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,640",
+				"to": "00:02:44,520"
+			},
+			"offsets": {
+				"from": 161640,
+				"to": 164520
+			},
+			"text": " And they have a lot of different requirements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,520",
+				"to": "00:02:47,280"
+			},
+			"offsets": {
+				"from": 164520,
+				"to": 167280
+			},
+			"text": " though in some cases, kind of partially or entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,280",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 167280,
+				"to": 169000
+			},
+			"text": " the same interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:51,440"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 171440
+			},
+			"text": " Aside from those two, the third category"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,440",
+				"to": "00:02:56,880"
+			},
+			"offsets": {
+				"from": 171440,
+				"to": 176880
+			},
+			"text": " would be different kinds of financial contracts, exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,880",
+				"to": "00:02:58,360"
+			},
+			"offsets": {
+				"from": 176880,
+				"to": 178360
+			},
+			"text": " even like purchase offers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,360",
+				"to": "00:03:03,960"
+			},
+			"offsets": {
+				"from": 178360,
+				"to": 183960
+			},
+			"text": " I want to buy X units of A for Y units of B."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,960",
+				"to": "00:03:08,560"
+			},
+			"offsets": {
+				"from": 183960,
+				"to": 188560
+			},
+			"text": " So for me, it would be like proxy contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,560",
+				"to": "00:03:12,320"
+			},
+			"offsets": {
+				"from": 188560,
+				"to": 192320
+			},
+			"text": " Contracts where actually would hold your ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,320",
+				"to": "00:03:15,200"
+			},
+			"offsets": {
+				"from": 192320,
+				"to": 195200
+			},
+			"text": " and send it along, but maybe do something with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,200",
+				"to": "00:03:19,200"
+			},
+			"offsets": {
+				"from": 195200,
+				"to": 199200
+			},
+			"text": " Maybe send our chairs to other proxies"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,200",
+				"to": "00:03:23,960"
+			},
+			"offsets": {
+				"from": 199200,
+				"to": 203960
+			},
+			"text": " or some kind of voting system based on whatever you pass through."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,960",
+				"to": "00:03:25,680"
+			},
+			"offsets": {
+				"from": 203960,
+				"to": 205680
+			},
+			"text": " This would be interesting to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,680",
+				"to": "00:03:28,040"
+			},
+			"offsets": {
+				"from": 205680,
+				"to": 208040
+			},
+			"text": " And also tokens as well, because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,040",
+				"to": "00:03:30,120"
+			},
+			"offsets": {
+				"from": 208040,
+				"to": 210120
+			},
+			"text": " need to integrate it into wallet or we did already."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,120",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 210120,
+				"to": 214560
+			},
+			"text": " And we want to obviously support as many tokens as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:38,160"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 218160
+			},
+			"text": " Can you elaborate more on the proxy contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,160",
+				"to": "00:03:41,440"
+			},
+			"offsets": {
+				"from": 218160,
+				"to": 221440
+			},
+			"text": " I mean, the current wallet, for example, is a proxy contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,440",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 221440,
+				"to": 223200
+			},
+			"text": " But ideally, you should be, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:48,440"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 228440
+			},
+			"text": " if the wallet you have a multi-sick on ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,440",
+				"to": "00:03:50,320"
+			},
+			"offsets": {
+				"from": 228440,
+				"to": 230320
+			},
+			"text": " ideally you can have a multi-sick on everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,320",
+				"to": "00:03:53,640"
+			},
+			"offsets": {
+				"from": 230320,
+				"to": 233640
+			},
+			"text": " like even a multi-sick on sending your custom tokens or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,640",
+				"to": "00:03:57,960"
+			},
+			"offsets": {
+				"from": 233640,
+				"to": 237960
+			},
+			"text": " So you basically can use these proxies for whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,960",
+				"to": "00:04:00,520"
+			},
+			"offsets": {
+				"from": 237960,
+				"to": 240520
+			},
+			"text": " you want to do with any other contract on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,520",
+				"to": "00:04:02,480"
+			},
+			"offsets": {
+				"from": 240520,
+				"to": 242480
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,480",
+				"to": "00:04:05,920"
+			},
+			"offsets": {
+				"from": 242480,
+				"to": 245920
+			},
+			"text": " Yeah, so I work on Maker and obviously we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,920",
+				"to": "00:04:10,800"
+			},
+			"offsets": {
+				"from": 245920,
+				"to": 250800
+			},
+			"text": " most interested in the token standard also."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,800",
+				"to": "00:04:13,920"
+			},
+			"offsets": {
+				"from": 250800,
+				"to": 253920
+			},
+			"text": " And I guess my role on this panel is pretty much just going to be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,920",
+				"to": "00:04:15,520"
+			},
+			"offsets": {
+				"from": 253920,
+				"to": 255520
+			},
+			"text": " I think it's too early in nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,520",
+				"to": "00:04:18,280"
+			},
+			"offsets": {
+				"from": 255520,
+				"to": 258280
+			},
+			"text": " Seems like a satisfying solution yet, although I"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,280",
+				"to": "00:04:19,120"
+			},
+			"offsets": {
+				"from": 258280,
+				"to": 259120
+			},
+			"text": " don't have anything better."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,120",
+				"to": "00:04:20,120"
+			},
+			"offsets": {
+				"from": 259120,
+				"to": 260120
+			},
+			"text": " So--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,120",
+				"to": "00:04:26,240"
+			},
+			"offsets": {
+				"from": 260120,
+				"to": 266240
+			},
+			"text": " So I think identity, in some sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,240",
+				"to": "00:04:29,880"
+			},
+			"offsets": {
+				"from": 266240,
+				"to": 269880
+			},
+			"text": " is something worth considering deeply in how"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,880",
+				"to": "00:04:34,480"
+			},
+			"offsets": {
+				"from": 269880,
+				"to": 274480
+			},
+			"text": " we can try and make all of the different pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,480",
+				"to": "00:04:37,400"
+			},
+			"offsets": {
+				"from": 274480,
+				"to": 277400
+			},
+			"text": " of infrastructure fit well together while dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,400",
+				"to": "00:04:39,440"
+			},
+			"offsets": {
+				"from": 277400,
+				"to": 279440
+			},
+			"text": " with actual individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,440",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 279440,
+				"to": 285040
+			},
+			"text": " So things that are going to fold into this, like reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:49,360"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 289360
+			},
+			"text": " potentially stuff to do with the outside world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,360",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 289360,
+				"to": 292920
+			},
+			"text": " My email address, my website, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:04:55,200"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 295200
+			},
+			"text": " This is, in some sense, already addressed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,200",
+				"to": "00:04:57,560"
+			},
+			"offsets": {
+				"from": 295200,
+				"to": 297560
+			},
+			"text": " with the notion of like this 160-bit address scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,560",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 297560,
+				"to": 298000
+			},
+			"text": " that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 302240
+			},
+			"text": " But I think it's worth considering a bit deeper"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:06,600"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 306600
+			},
+			"text": " and how this might feed back into things like avatars"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,600",
+				"to": "00:05:09,400"
+			},
+			"offsets": {
+				"from": 306600,
+				"to": 309400
+			},
+			"text": " that go across the various applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,400",
+				"to": "00:05:11,280"
+			},
+			"offsets": {
+				"from": 309400,
+				"to": 311280
+			},
+			"text": " within the Ethereum and sort of web"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,280",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 311280,
+				"to": 313720
+			},
+			"text": " three at large ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 315840
+			},
+			"text": " And I also note that the other thing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:17,600"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 317600
+			},
+			"text": " we tend to think about standards as something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,600",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 317600,
+				"to": 319680
+			},
+			"text": " that they tend to be kind of opt in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:23,640"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 323640
+			},
+			"text": " And we need standards in order to have interoperability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,640",
+				"to": "00:05:24,120"
+			},
+			"offsets": {
+				"from": 323640,
+				"to": 324120
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,120",
+				"to": "00:05:25,840"
+			},
+			"offsets": {
+				"from": 324120,
+				"to": 325840
+			},
+			"text": " Different applications implement the same standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,840",
+				"to": "00:05:28,160"
+			},
+			"offsets": {
+				"from": 325840,
+				"to": 328160
+			},
+			"text": " so that they can operate with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,160",
+				"to": "00:05:30,560"
+			},
+			"offsets": {
+				"from": 328160,
+				"to": 330560
+			},
+			"text": " But actually, one of the great things about Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,560",
+				"to": "00:05:34,240"
+			},
+			"offsets": {
+				"from": 330560,
+				"to": 334240
+			},
+			"text": " is that this is a fundamentally programmatic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,240",
+				"to": "00:05:34,920"
+			},
+			"offsets": {
+				"from": 334240,
+				"to": 334920
+			},
+			"text": " infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,920",
+				"to": "00:05:40,440"
+			},
+			"offsets": {
+				"from": 334920,
+				"to": 340440
+			},
+			"text": " So we have the notion of objects existing within the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,440",
+				"to": "00:05:43,480"
+			},
+			"offsets": {
+				"from": 340440,
+				"to": 343480
+			},
+			"text": " And these kind of already enforce standards"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,480",
+				"to": "00:05:44,520"
+			},
+			"offsets": {
+				"from": 343480,
+				"to": 344520
+			},
+			"text": " because they have an API."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,520",
+				"to": "00:05:47,200"
+			},
+			"offsets": {
+				"from": 344520,
+				"to": 347200
+			},
+			"text": " And if you want to interact with this object that sits"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,200",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 347200,
+				"to": 349960
+			},
+			"text": " at the center of some system that you do want to operate with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:51,840"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 351840
+			},
+			"text": " then you just use the API."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,840",
+				"to": "00:05:53,160"
+			},
+			"offsets": {
+				"from": 351840,
+				"to": 353160
+			},
+			"text": " And the API is a standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,160",
+				"to": "00:05:54,720"
+			},
+			"offsets": {
+				"from": 353160,
+				"to": 354720
+			},
+			"text": " It's already there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,720",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354720,
+				"to": 358000
+			},
+			"text": " And there's no real prejudice because, assuming"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:00,440"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 360440
+			},
+			"text": " that it's been implemented in some reasonably fair way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,440",
+				"to": "00:06:02,600"
+			},
+			"offsets": {
+				"from": 360440,
+				"to": 362600
+			},
+			"text": " and you can check because there's a code there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,600",
+				"to": "00:06:07,440"
+			},
+			"offsets": {
+				"from": 362600,
+				"to": 367440
+			},
+			"text": " then we can already kind of pre-agree to the standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,440",
+				"to": "00:06:10,400"
+			},
+			"offsets": {
+				"from": 367440,
+				"to": 370400
+			},
+			"text": " It's like if someone makes a token that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,400",
+				"to": "00:06:12,320"
+			},
+			"offsets": {
+				"from": 370400,
+				"to": 372320
+			},
+			"text": " doesn't conform to the normal standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,320",
+				"to": "00:06:15,720"
+			},
+			"offsets": {
+				"from": 372320,
+				"to": 375720
+			},
+			"text": " then maybe EtherX, a decentralized exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,720",
+				"to": "00:06:17,480"
+			},
+			"offsets": {
+				"from": 375720,
+				"to": 377480
+			},
+			"text": " wouldn't then be able to use those tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,480",
+				"to": "00:06:19,760"
+			},
+			"offsets": {
+				"from": 377480,
+				"to": 379760
+			},
+			"text": " But considering that the code is open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,760",
+				"to": "00:06:23,800"
+			},
+			"offsets": {
+				"from": 379760,
+				"to": 383800
+			},
+			"text": " you can just clone EtherX and make an exchange for your standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,800",
+				"to": "00:06:24,160"
+			},
+			"offsets": {
+				"from": 383800,
+				"to": 384160
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,160",
+				"to": "00:06:27,280"
+			},
+			"offsets": {
+				"from": 384160,
+				"to": 387280
+			},
+			"text": " So it's great in that manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,280",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 387280,
+				"to": 389960
+			},
+			"text": " The topic of identity--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:31,280"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 391280
+			},
+			"text": " I want to come back to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,280",
+				"to": "00:06:35,360"
+			},
+			"offsets": {
+				"from": 391280,
+				"to": 395360
+			},
+			"text": " I think it's an important one because as far as I know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,360",
+				"to": "00:06:36,440"
+			},
+			"offsets": {
+				"from": 395360,
+				"to": 396440
+			},
+			"text": " it hasn't been--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,440",
+				"to": "00:06:40,120"
+			},
+			"offsets": {
+				"from": 396440,
+				"to": 400120
+			},
+			"text": " we haven't specified anything yet in what--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,120",
+				"to": "00:06:42,960"
+			},
+			"offsets": {
+				"from": 400120,
+				"to": 402960
+			},
+			"text": " like how it should work and how the ideal version of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,960",
+				"to": "00:06:45,040"
+			},
+			"offsets": {
+				"from": 402960,
+				"to": 405040
+			},
+			"text": " should work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,040",
+				"to": "00:06:49,040"
+			},
+			"offsets": {
+				"from": 405040,
+				"to": 409040
+			},
+			"text": " The Christian yesterday explained more about U-port work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,040",
+				"to": "00:06:55,400"
+			},
+			"offsets": {
+				"from": 409040,
+				"to": 415400
+			},
+			"text": " What's the idea or design goal of that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,400",
+				"to": "00:06:59,400"
+			},
+			"offsets": {
+				"from": 415400,
+				"to": 419400
+			},
+			"text": " Is it sort of the idea that you keep your identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,400",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 419400,
+				"to": 420640
+			},
+			"text": " in the browser and then you move it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:02,120"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 422120
+			},
+			"text": " between certain depths?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,120",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 422120,
+				"to": 425000
+			},
+			"text": " What about sort of examples where you have a phone client"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:08,680"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 428680
+			},
+			"text": " or you have a web browser client or something like MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,680",
+				"to": "00:07:11,640"
+			},
+			"offsets": {
+				"from": 428680,
+				"to": 431640
+			},
+			"text": " or something like-- what do you think is the most ideal way"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,640",
+				"to": "00:07:15,760"
+			},
+			"offsets": {
+				"from": 431640,
+				"to": 435760
+			},
+			"text": " to swap identities through different interfaces?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,760",
+				"to": "00:07:17,160"
+			},
+			"offsets": {
+				"from": 435760,
+				"to": 437160
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,160",
+				"to": "00:07:20,120"
+			},
+			"offsets": {
+				"from": 437160,
+				"to": 440120
+			},
+			"text": " So this is, of course, a big question."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,120",
+				"to": "00:07:25,920"
+			},
+			"offsets": {
+				"from": 440120,
+				"to": 445920
+			},
+			"text": " And the notion of using the same identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,920",
+				"to": "00:07:29,680"
+			},
+			"offsets": {
+				"from": 445920,
+				"to": 449680
+			},
+			"text": " on multiple devices that ultimately comes down"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,680",
+				"to": "00:07:32,280"
+			},
+			"offsets": {
+				"from": 449680,
+				"to": 452280
+			},
+			"text": " to key management, which is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,280",
+				"to": "00:07:38,840"
+			},
+			"offsets": {
+				"from": 452280,
+				"to": 458840
+			},
+			"text": " might be one of the greatest challenges of this whole endeavor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,840",
+				"to": "00:07:42,120"
+			},
+			"offsets": {
+				"from": 458840,
+				"to": 462120
+			},
+			"text": " how to have key management with a good UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,120",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 462120,
+				"to": 471000
+			},
+			"text": " Yeah, identity is, of course, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:58,320"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 478320
+			},
+			"text": " And I'm glad you brought it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,320",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 478320,
+				"to": 480760
+			},
+			"text": " An interesting thing there is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 484280
+			},
+			"text": " so when I think about identity, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:09,280"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 489280
+			},
+			"text": " describe the kind of general outline in my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,280",
+				"to": "00:08:14,680"
+			},
+			"offsets": {
+				"from": 489280,
+				"to": 494680
+			},
+			"text": " And the key management issue is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,680",
+				"to": "00:08:18,520"
+			},
+			"offsets": {
+				"from": 494680,
+				"to": 498520
+			},
+			"text": " So I think we have to have a system of identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,520",
+				"to": "00:08:23,560"
+			},
+			"offsets": {
+				"from": 498520,
+				"to": 503560
+			},
+			"text": " where even if you lose your private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,560",
+				"to": "00:08:25,240"
+			},
+			"offsets": {
+				"from": 503560,
+				"to": 505240
+			},
+			"text": " you don't lose your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,240",
+				"to": "00:08:30,960"
+			},
+			"offsets": {
+				"from": 505240,
+				"to": 510960
+			},
+			"text": " So then we come into the fact that in the current system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,960",
+				"to": "00:08:35,320"
+			},
+			"offsets": {
+				"from": 510960,
+				"to": 515320
+			},
+			"text": " contracts always interact with keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,320",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 515320,
+				"to": 521200
+			},
+			"text": " So you have access control in the form of if message.center"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:46,160"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 526160
+			},
+			"text": " equals this address, then do this, otherwise do something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,160",
+				"to": "00:08:52,200"
+			},
+			"offsets": {
+				"from": 526160,
+				"to": 532200
+			},
+			"text": " And that works in the context of identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,200",
+				"to": "00:08:58,320"
+			},
+			"offsets": {
+				"from": 532200,
+				"to": 538320
+			},
+			"text": " because you can have a lookup that goes from key to identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,320",
+				"to": "00:09:06,360"
+			},
+			"offsets": {
+				"from": 538320,
+				"to": 546360
+			},
+			"text": " But it's an interesting thing to think about if we should"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,360",
+				"to": "00:09:09,280"
+			},
+			"offsets": {
+				"from": 546360,
+				"to": 549280
+			},
+			"text": " think about an access control system that works on the level"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,280",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 549280,
+				"to": 551840
+			},
+			"text": " of identities rather than keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:17,640"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 557640
+			},
+			"text": " So in my mind, an identity is kind of a cryptographic identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,640",
+				"to": "00:09:21,400"
+			},
+			"offsets": {
+				"from": 557640,
+				"to": 561400
+			},
+			"text": " So maybe a 32 byte hash or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,400",
+				"to": "00:09:28,640"
+			},
+			"offsets": {
+				"from": 561400,
+				"to": 568640
+			},
+			"text": " And then the contract could say, OK, I'm getting this message."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,640",
+				"to": "00:09:29,360"
+			},
+			"offsets": {
+				"from": 568640,
+				"to": 569360
+			},
+			"text": " Then I look up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,360",
+				"to": "00:09:34,240"
+			},
+			"offsets": {
+				"from": 569360,
+				"to": 574240
+			},
+			"text": " If it's-- maybe it's just a key, then do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,240",
+				"to": "00:09:39,720"
+			},
+			"offsets": {
+				"from": 574240,
+				"to": 579720
+			},
+			"text": " If I do a lookup and see, oh, this is actually an identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,720",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 579720,
+				"to": 582680
+			},
+			"text": " then I can have access control on the level of that identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:46,760"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 586760
+			},
+			"text": " And so then you can keep using these contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,760",
+				"to": "00:09:49,720"
+			},
+			"offsets": {
+				"from": 586760,
+				"to": 589720
+			},
+			"text": " even if you rotate your keys for your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,720",
+				"to": "00:09:52,880"
+			},
+			"offsets": {
+				"from": 589720,
+				"to": 592880
+			},
+			"text": " So that's something to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,880",
+				"to": "00:09:57,560"
+			},
+			"offsets": {
+				"from": 592880,
+				"to": 597560
+			},
+			"text": " And that, of course, if we want to go down a path like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,560",
+				"to": "00:10:05,120"
+			},
+			"offsets": {
+				"from": 597560,
+				"to": 605120
+			},
+			"text": " it requires standardization in how we construct these contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,120",
+				"to": "00:10:08,880"
+			},
+			"offsets": {
+				"from": 605120,
+				"to": 608880
+			},
+			"text": " Yeah, it does paint a potential issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,880",
+				"to": "00:10:12,480"
+			},
+			"offsets": {
+				"from": 608880,
+				"to": 612480
+			},
+			"text": " that if a lot of the current apps are going to use the normal"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,480",
+				"to": "00:10:16,600"
+			},
+			"offsets": {
+				"from": 612480,
+				"to": 616600
+			},
+			"text": " account system and not more, say, identity system"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,600",
+				"to": "00:10:18,880"
+			},
+			"offsets": {
+				"from": 616600,
+				"to": 618880
+			},
+			"text": " that you won't be able to upgrade all the previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,880",
+				"to": "00:10:21,920"
+			},
+			"offsets": {
+				"from": 618880,
+				"to": 621920
+			},
+			"text": " applications to optionally slot into an identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,920",
+				"to": "00:10:25,840"
+			},
+			"offsets": {
+				"from": 621920,
+				"to": 625840
+			},
+			"text": " but more flexible identity system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,840",
+				"to": "00:10:28,400"
+			},
+			"offsets": {
+				"from": 625840,
+				"to": 628400
+			},
+			"text": " That's one of the things we need to figure out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,400",
+				"to": "00:10:31,240"
+			},
+			"offsets": {
+				"from": 628400,
+				"to": 631240
+			},
+			"text": " Any other comments on that issue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,240",
+				"to": "00:10:33,840"
+			},
+			"offsets": {
+				"from": 631240,
+				"to": 633840
+			},
+			"text": " In general, I think that 20 byte address"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,840",
+				"to": "00:10:36,440"
+			},
+			"offsets": {
+				"from": 633840,
+				"to": 636440
+			},
+			"text": " are pretty wonderful identity standards themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,440",
+				"to": "00:10:40,200"
+			},
+			"offsets": {
+				"from": 636440,
+				"to": 640200
+			},
+			"text": " just because the sort of really important property"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,200",
+				"to": "00:10:42,840"
+			},
+			"offsets": {
+				"from": 640200,
+				"to": 642840
+			},
+			"text": " that they have is how they're good at completely separating"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,840",
+				"to": "00:10:45,680"
+			},
+			"offsets": {
+				"from": 642840,
+				"to": 645680
+			},
+			"text": " the concept of identity to the concept of how you do access"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,680",
+				"to": "00:10:47,400"
+			},
+			"offsets": {
+				"from": 645680,
+				"to": 647400
+			},
+			"text": " control for the identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,400",
+				"to": "00:10:50,400"
+			},
+			"offsets": {
+				"from": 647400,
+				"to": 650400
+			},
+			"text": " And even, you know, potentially what things like registries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,400",
+				"to": "00:10:53,400"
+			},
+			"offsets": {
+				"from": 650400,
+				"to": 653400
+			},
+			"text": " how you provide metadata or assortations"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,400",
+				"to": "00:10:54,760"
+			},
+			"offsets": {
+				"from": 653400,
+				"to": 654760
+			},
+			"text": " about that identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,760",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 654760,
+				"to": 661000
+			},
+			"text": " So in general, I do think that access control is a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,680"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665680
+			},
+			"text": " and figuring out how to switch keys around is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,680",
+				"to": "00:11:07,840"
+			},
+			"offsets": {
+				"from": 665680,
+				"to": 667840
+			},
+			"text": " But all of those things--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,840",
+				"to": "00:11:11,800"
+			},
+			"offsets": {
+				"from": 667840,
+				"to": 671800
+			},
+			"text": " it's important to kind of neatly separate all"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,800",
+				"to": "00:11:14,240"
+			},
+			"offsets": {
+				"from": 671800,
+				"to": 674240
+			},
+			"text": " of those problems so that all of those problems can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,240",
+				"to": "00:11:18,080"
+			},
+			"offsets": {
+				"from": 674240,
+				"to": 678080
+			},
+			"text": " sort of hit-- at least from the point of view of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,080",
+				"to": "00:11:20,200"
+			},
+			"offsets": {
+				"from": 678080,
+				"to": 680200
+			},
+			"text": " hit in behind one single account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,200",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 680200,
+				"to": 683000
+			},
+			"text": " And then people can basically use whatever solutions they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:25,600"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 685600
+			},
+			"text": " want because, in theory, people have the incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,600",
+				"to": "00:11:28,720"
+			},
+			"offsets": {
+				"from": 685600,
+				"to": 688720
+			},
+			"text": " to protect their own security and they'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,720",
+				"to": "00:11:32,320"
+			},
+			"offsets": {
+				"from": 688720,
+				"to": 692320
+			},
+			"text": " go with what's most comfortable for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,320",
+				"to": "00:11:35,320"
+			},
+			"offsets": {
+				"from": 692320,
+				"to": 695320
+			},
+			"text": " I think that's where proxy contracts can become useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,320",
+				"to": "00:11:38,560"
+			},
+			"offsets": {
+				"from": 695320,
+				"to": 698560
+			},
+			"text": " in that regard where you essentially--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,560",
+				"to": "00:11:42,440"
+			},
+			"offsets": {
+				"from": 698560,
+				"to": 702440
+			},
+			"text": " you navigate your interaction with the rest of the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,440",
+				"to": "00:11:44,560"
+			},
+			"offsets": {
+				"from": 702440,
+				"to": 704560
+			},
+			"text": " through a personal proxy contract that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,560",
+				"to": "00:11:47,520"
+			},
+			"offsets": {
+				"from": 704560,
+				"to": 707520
+			},
+			"text": " your sort of forwarder to the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,520",
+				"to": "00:11:49,520"
+			},
+			"offsets": {
+				"from": 707520,
+				"to": 709520
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,520",
+				"to": "00:11:50,020"
+			},
+			"offsets": {
+				"from": 709520,
+				"to": 710020
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,020",
+				"to": "00:11:55,360"
+			},
+			"offsets": {
+				"from": 710020,
+				"to": 715360
+			},
+			"text": " And this could be tied into any type of identity system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,360",
+				"to": "00:11:58,560"
+			},
+			"offsets": {
+				"from": 715360,
+				"to": 718560
+			},
+			"text": " potentially, so that the proxy contract then"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,560",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 718560,
+				"to": 723200
+			},
+			"text": " would become the canonical--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 725000
+			},
+			"text": " I mean, the address of the proxy contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:11,080"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 731080
+			},
+			"text": " becomes the canonical identifier for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,080",
+				"to": "00:12:13,320"
+			},
+			"offsets": {
+				"from": 731080,
+				"to": 733320
+			},
+			"text": " And then you do all your interactions through that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,320",
+				"to": "00:12:16,440"
+			},
+			"offsets": {
+				"from": 733320,
+				"to": 736440
+			},
+			"text": " But you can have multi-sig access through that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,440",
+				"to": "00:12:19,600"
+			},
+			"offsets": {
+				"from": 736440,
+				"to": 739600
+			},
+			"text": " and do key rotation for access to the proxy contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,600",
+				"to": "00:12:20,360"
+			},
+			"offsets": {
+				"from": 739600,
+				"to": 740360
+			},
+			"text": " et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,360",
+				"to": "00:12:23,880"
+			},
+			"offsets": {
+				"from": 740360,
+				"to": 743880
+			},
+			"text": " So that might be a good solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,880",
+				"to": "00:12:25,400"
+			},
+			"offsets": {
+				"from": 743880,
+				"to": 745400
+			},
+			"text": " You can go--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,400",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 745400,
+				"to": 750920
+			},
+			"text": " If the EVM can practically be expressive enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:33,160"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 753160
+			},
+			"text": " especially in terms of cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,160",
+				"to": "00:12:35,720"
+			},
+			"offsets": {
+				"from": 753160,
+				"to": 755720
+			},
+			"text": " I think we can go very far with proxy contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,720",
+				"to": "00:12:38,960"
+			},
+			"offsets": {
+				"from": 755720,
+				"to": 758960
+			},
+			"text": " Like one really far out thing is if you look at something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,960",
+				"to": "00:12:41,320"
+			},
+			"offsets": {
+				"from": 758960,
+				"to": 761320
+			},
+			"text": " like the Estonian digital ID standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,320",
+				"to": "00:12:44,120"
+			},
+			"offsets": {
+				"from": 761320,
+				"to": 764120
+			},
+			"text": " then someone with an Estonian digital ID"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,120",
+				"to": "00:12:47,080"
+			},
+			"offsets": {
+				"from": 764120,
+				"to": 767080
+			},
+			"text": " should is theoretically able to create digital signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,080",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 767080,
+				"to": 770000
+			},
+			"text": " with that, and you could even have a proxy contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:51,400"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 771400
+			},
+			"text": " and verify those."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,400",
+				"to": "00:12:53,400"
+			},
+			"offsets": {
+				"from": 771400,
+				"to": 773400
+			},
+			"text": " Same."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,400",
+				"to": "00:12:55,880"
+			},
+			"offsets": {
+				"from": 773400,
+				"to": 775880
+			},
+			"text": " I agree that proxy contracts work very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,880",
+				"to": "00:12:57,800"
+			},
+			"offsets": {
+				"from": 775880,
+				"to": 777800
+			},
+			"text": " Like the address scheme is super general."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,800",
+				"to": "00:13:01,160"
+			},
+			"offsets": {
+				"from": 777800,
+				"to": 781160
+			},
+			"text": " And it pretty much solves a problem like you described."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,160",
+				"to": "00:13:04,240"
+			},
+			"offsets": {
+				"from": 781160,
+				"to": 784240
+			},
+			"text": " But another approach you could do is basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,240",
+				"to": "00:13:05,840"
+			},
+			"offsets": {
+				"from": 784240,
+				"to": 785840
+			},
+			"text": " the two keys are the same identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,840",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 785840,
+				"to": 788000
+			},
+			"text": " if they both say that about each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:10,200"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 790200
+			},
+			"text": " So you have one contract where everyone just comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,200",
+				"to": "00:13:13,720"
+			},
+			"offsets": {
+				"from": 790200,
+				"to": 793720
+			},
+			"text": " and like, I guess, wires up their cluster of keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,720",
+				"to": "00:13:16,280"
+			},
+			"offsets": {
+				"from": 793720,
+				"to": 796280
+			},
+			"text": " and also a contract if you can force it to do a particular call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,280",
+				"to": "00:13:17,240"
+			},
+			"offsets": {
+				"from": 796280,
+				"to": 797240
+			},
+			"text": " It's the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,240",
+				"to": "00:13:19,680"
+			},
+			"offsets": {
+				"from": 797240,
+				"to": 799680
+			},
+			"text": " And then your cluster has one canonical address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,680",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799680,
+				"to": 802000
+			},
+			"text": " which you use when you check the sender,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:23,320"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 803320
+			},
+			"text": " you look up the canonical address"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,320",
+				"to": "00:13:25,320"
+			},
+			"offsets": {
+				"from": 803320,
+				"to": 805320
+			},
+			"text": " and then see if that's authorized."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,320",
+				"to": "00:13:28,840"
+			},
+			"offsets": {
+				"from": 805320,
+				"to": 808840
+			},
+			"text": " And then people can make up whatever--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,840",
+				"to": "00:13:30,880"
+			},
+			"offsets": {
+				"from": 808840,
+				"to": 810880
+			},
+			"text": " they can even merge identities if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,880",
+				"to": "00:13:33,080"
+			},
+			"offsets": {
+				"from": 810880,
+				"to": 813080
+			},
+			"text": " I have two identities, but then I"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,080",
+				"to": "00:13:34,840"
+			},
+			"offsets": {
+				"from": 813080,
+				"to": 814840
+			},
+			"text": " want to combine the reputation or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,840",
+				"to": "00:13:39,960"
+			},
+			"offsets": {
+				"from": 814840,
+				"to": 819960
+			},
+			"text": " then I can link them together and now they're one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,960",
+				"to": "00:13:42,080"
+			},
+			"offsets": {
+				"from": 819960,
+				"to": 822080
+			},
+			"text": " Yeah, that's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,080",
+				"to": "00:13:44,080"
+			},
+			"offsets": {
+				"from": 822080,
+				"to": 824080
+			},
+			"text": " So I think one of the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,080",
+				"to": "00:13:49,760"
+			},
+			"offsets": {
+				"from": 824080,
+				"to": 829760
+			},
+			"text": " we've heard a lot about tokens through the past few days."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,760",
+				"to": "00:13:52,600"
+			},
+			"offsets": {
+				"from": 829760,
+				"to": 832600
+			},
+			"text": " It's definitely one of the more pertinent things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,600",
+				"to": "00:13:54,040"
+			},
+			"offsets": {
+				"from": 832600,
+				"to": 834040
+			},
+			"text": " to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,040",
+				"to": "00:13:56,040"
+			},
+			"offsets": {
+				"from": 834040,
+				"to": 836040
+			},
+			"text": " And I think as a community, we've come"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,040",
+				"to": "00:13:59,880"
+			},
+			"offsets": {
+				"from": 836040,
+				"to": 839880
+			},
+			"text": " to very close to defining a pretty good decent standard that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,880",
+				"to": "00:14:03,720"
+			},
+			"offsets": {
+				"from": 839880,
+				"to": 843720
+			},
+			"text": " not ambiguous and people can understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,720",
+				"to": "00:14:09,480"
+			},
+			"offsets": {
+				"from": 843720,
+				"to": 849480
+			},
+			"text": " I think the next big one would most likely be registries."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,480",
+				"to": "00:14:11,720"
+			},
+			"offsets": {
+				"from": 849480,
+				"to": 851720
+			},
+			"text": " It's good that a lot of people are going to want to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,720",
+				"to": "00:14:13,840"
+			},
+			"offsets": {
+				"from": 851720,
+				"to": 853840
+			},
+			"text": " and going to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,840",
+				"to": "00:14:16,960"
+			},
+			"offsets": {
+				"from": 853840,
+				"to": 856960
+			},
+			"text": " I know there has been talk about questioning"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,960",
+				"to": "00:14:19,360"
+			},
+			"offsets": {
+				"from": 856960,
+				"to": 859360
+			},
+			"text": " where should metadata live."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,360",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859360,
+				"to": 862000
+			},
+			"text": " It should be in the contracts themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:23,440"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 863440
+			},
+			"text": " Or should it be in registries?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,440",
+				"to": "00:14:27,720"
+			},
+			"offsets": {
+				"from": 863440,
+				"to": 867720
+			},
+			"text": " Gavin, I think you have opinions on that you want to share."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,720",
+				"to": "00:14:30,160"
+			},
+			"offsets": {
+				"from": 867720,
+				"to": 870160
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,160",
+				"to": "00:14:35,960"
+			},
+			"offsets": {
+				"from": 870160,
+				"to": 875960
+			},
+			"text": " Yeah, so this is a question concerning whether, given"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,960",
+				"to": "00:14:38,760"
+			},
+			"offsets": {
+				"from": 875960,
+				"to": 878760
+			},
+			"text": " a contract that does some particular thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,760",
+				"to": "00:14:43,720"
+			},
+			"offsets": {
+				"from": 878760,
+				"to": 883720
+			},
+			"text": " let's assume it's a token contract that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,720",
+				"to": "00:14:47,480"
+			},
+			"offsets": {
+				"from": 883720,
+				"to": 887480
+			},
+			"text": " recording the balances of various identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,480",
+				"to": "00:14:52,560"
+			},
+			"offsets": {
+				"from": 887480,
+				"to": 892560
+			},
+			"text": " should the contract itself contain information regarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,560",
+				"to": "00:14:53,400"
+			},
+			"offsets": {
+				"from": 892560,
+				"to": 893400
+			},
+			"text": " itself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,400",
+				"to": "00:14:56,800"
+			},
+			"offsets": {
+				"from": 893400,
+				"to": 896800
+			},
+			"text": " Or should that information be placed elsewhere on the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,800",
+				"to": "00:14:59,240"
+			},
+			"offsets": {
+				"from": 896800,
+				"to": 899240
+			},
+			"text": " potentially in some other contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,240",
+				"to": "00:15:02,880"
+			},
+			"offsets": {
+				"from": 899240,
+				"to": 902880
+			},
+			"text": " whose rezondetras, so to speak, is purely"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,880",
+				"to": "00:15:06,080"
+			},
+			"offsets": {
+				"from": 902880,
+				"to": 906080
+			},
+			"text": " to retain information concerning, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,080",
+				"to": "00:15:08,760"
+			},
+			"offsets": {
+				"from": 906080,
+				"to": 908760
+			},
+			"text": " token contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,760",
+				"to": "00:15:12,360"
+			},
+			"offsets": {
+				"from": 908760,
+				"to": 912360
+			},
+			"text": " These are the two sort of options."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,360",
+				"to": "00:15:17,800"
+			},
+			"offsets": {
+				"from": 912360,
+				"to": 917800
+			},
+			"text": " It's my opinion that because we live-- because we have this system--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,800",
+				"to": "00:15:22,080"
+			},
+			"offsets": {
+				"from": 917800,
+				"to": 922080
+			},
+			"text": " so normally, I would place the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,080",
+				"to": "00:15:28,920"
+			},
+			"offsets": {
+				"from": 922080,
+				"to": 928920
+			},
+			"text": " in with the contract that it actually refers to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,920",
+				"to": "00:15:31,720"
+			},
+			"offsets": {
+				"from": 928920,
+				"to": 931720
+			},
+			"text": " This is mainly because in the real world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,720",
+				"to": "00:15:36,480"
+			},
+			"offsets": {
+				"from": 931720,
+				"to": 936480
+			},
+			"text": " we have siloed servers that actually have system admins"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,480",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 936480,
+				"to": 938160
+			},
+			"text": " that can actually corrupt data."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:42,560"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 942560
+			},
+			"text": " And the two sort of systems can become disjoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,560",
+				"to": "00:15:46,480"
+			},
+			"offsets": {
+				"from": 942560,
+				"to": 946480
+			},
+			"text": " But within Ethereum, of course, we don't have these problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,480",
+				"to": "00:15:53,760"
+			},
+			"offsets": {
+				"from": 946480,
+				"to": 953760
+			},
+			"text": " And we can actually have nice isolation of use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,760",
+				"to": "00:15:57,320"
+			},
+			"offsets": {
+				"from": 953760,
+				"to": 957320
+			},
+			"text": " without having to have the sort of real world problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,320",
+				"to": "00:15:59,200"
+			},
+			"offsets": {
+				"from": 957320,
+				"to": 959200
+			},
+			"text": " that isolation brings, such as the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,200",
+				"to": "00:16:00,760"
+			},
+			"offsets": {
+				"from": 959200,
+				"to": 960760
+			},
+			"text": " it's stored on a different computer, potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,760",
+				"to": "00:16:02,160"
+			},
+			"offsets": {
+				"from": 960760,
+				"to": 962160
+			},
+			"text": " with a different ISP, potentially it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,160",
+				"to": "00:16:05,240"
+			},
+			"offsets": {
+				"from": 962160,
+				"to": 965240
+			},
+			"text": " going to go down at different times and all the rest of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,240",
+				"to": "00:16:06,920"
+			},
+			"offsets": {
+				"from": 965240,
+				"to": 966920
+			},
+			"text": " So in this instance, I would actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,920",
+				"to": "00:16:11,480"
+			},
+			"offsets": {
+				"from": 966920,
+				"to": 971480
+			},
+			"text": " prefer to have a nice contract that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,480",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 971480,
+				"to": 976000
+			},
+			"text": " it's rezondetrated, simply to store metadata about other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:18,800"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 978800
+			},
+			"text": " And then allow the coin contracts and all the rest"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,800",
+				"to": "00:16:20,680"
+			},
+			"offsets": {
+				"from": 978800,
+				"to": 980680
+			},
+			"text": " of the other token contracts, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,680",
+				"to": "00:16:23,160"
+			},
+			"offsets": {
+				"from": 980680,
+				"to": 983160
+			},
+			"text": " to do their thing, which is to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,160",
+				"to": "00:16:26,840"
+			},
+			"offsets": {
+				"from": 983160,
+				"to": 986840
+			},
+			"text": " maintain the balances of their users."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,840",
+				"to": "00:16:29,280"
+			},
+			"offsets": {
+				"from": 986840,
+				"to": 989280
+			},
+			"text": " Can you explain more what types of metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,280",
+				"to": "00:16:30,920"
+			},
+			"offsets": {
+				"from": 989280,
+				"to": 990920
+			},
+			"text": " you're talking about, because that can mean so much?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,920",
+				"to": "00:16:31,880"
+			},
+			"offsets": {
+				"from": 990920,
+				"to": 991880
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,880",
+				"to": "00:16:34,720"
+			},
+			"offsets": {
+				"from": 991880,
+				"to": 994720
+			},
+			"text": " So specifically data concerning the contract itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,720",
+				"to": "00:16:37,640"
+			},
+			"offsets": {
+				"from": 994720,
+				"to": 997640
+			},
+			"text": " rather than containing the data that the contract cares about."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,640",
+				"to": "00:16:39,760"
+			},
+			"offsets": {
+				"from": 997640,
+				"to": 999760
+			},
+			"text": " So in this case, the data would be things"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,760",
+				"to": "00:16:43,680"
+			},
+			"offsets": {
+				"from": 999760,
+				"to": 1003680
+			},
+			"text": " like what's the name of the contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,680",
+				"to": "00:16:46,880"
+			},
+			"offsets": {
+				"from": 1003680,
+				"to": 1006880
+			},
+			"text": " Maybe there's-- typically in real programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,880",
+				"to": "00:16:49,280"
+			},
+			"offsets": {
+				"from": 1006880,
+				"to": 1009280
+			},
+			"text": " we consider them like static members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,280",
+				"to": "00:16:51,320"
+			},
+			"offsets": {
+				"from": 1009280,
+				"to": 1011320
+			},
+			"text": " stuff that doesn't actually change with the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,320",
+				"to": "00:16:55,720"
+			},
+			"offsets": {
+				"from": 1011320,
+				"to": 1015720
+			},
+			"text": " It's just to do with the actual object itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,720",
+				"to": "00:16:58,600"
+			},
+			"offsets": {
+				"from": 1015720,
+				"to": 1018600
+			},
+			"text": " Yeah, in your opinion, so that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,600",
+				"to": "00:17:02,560"
+			},
+			"offsets": {
+				"from": 1018600,
+				"to": 1022560
+			},
+			"text": " The idea is basically names and the token symbol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,560",
+				"to": "00:17:07,360"
+			},
+			"offsets": {
+				"from": 1022560,
+				"to": 1027360
+			},
+			"text": " or how much decimal the blazes one token has."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,360",
+				"to": "00:17:10,760"
+			},
+			"offsets": {
+				"from": 1027360,
+				"to": 1030760
+			},
+			"text": " And I think it's definitely a valid approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,760",
+				"to": "00:17:13,160"
+			},
+			"offsets": {
+				"from": 1030760,
+				"to": 1033160
+			},
+			"text": " But I could also imagine that a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,160",
+				"to": "00:17:16,920"
+			},
+			"offsets": {
+				"from": 1033160,
+				"to": 1036920
+			},
+			"text": " may want to have tokens which are not listed in any kind of registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,920",
+				"to": "00:17:20,040"
+			},
+			"offsets": {
+				"from": 1036920,
+				"to": 1040040
+			},
+			"text": " And as well as-- I see this as a like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,040",
+				"to": "00:17:25,720"
+			},
+			"offsets": {
+				"from": 1040040,
+				"to": 1045720
+			},
+			"text": " growing from simple things, from what we can do right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,720",
+				"to": "00:17:29,320"
+			},
+			"offsets": {
+				"from": 1045720,
+				"to": 1049320
+			},
+			"text": " what we can add for example to the wallet right now in an easy way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,320",
+				"to": "00:17:32,240"
+			},
+			"offsets": {
+				"from": 1049320,
+				"to": 1052240
+			},
+			"text": " and what ideally we want to have at some point in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,240",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1052240,
+				"to": 1055320
+			},
+			"text": " At some point in the future, we probably have like missed many dabs"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:37,600"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1057600
+			},
+			"text": " which allow you to look at these registries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,600",
+				"to": "00:17:42,320"
+			},
+			"offsets": {
+				"from": 1057600,
+				"to": 1062320
+			},
+			"text": " to modify these registries, to have all kind of search functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,320",
+				"to": "00:17:46,320"
+			},
+			"offsets": {
+				"from": 1062320,
+				"to": 1066320
+			},
+			"text": " And then it's very useful to have these registries"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,320",
+				"to": "00:17:49,520"
+			},
+			"offsets": {
+				"from": 1066320,
+				"to": 1069520
+			},
+			"text": " and maybe even exit all through this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,520",
+				"to": "00:17:53,280"
+			},
+			"offsets": {
+				"from": 1069520,
+				"to": 1073280
+			},
+			"text": " But in the current state, I see it more like a lean approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,280",
+				"to": "00:17:56,920"
+			},
+			"offsets": {
+				"from": 1073280,
+				"to": 1076920
+			},
+			"text": " like putting the things where they are right now easy accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,920",
+				"to": "00:18:00,840"
+			},
+			"offsets": {
+				"from": 1076920,
+				"to": 1080840
+			},
+			"text": " and easy to understand because it's also from the other developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,840",
+				"to": "00:18:03,880"
+			},
+			"offsets": {
+				"from": 1080840,
+				"to": 1083880
+			},
+			"text": " who use these contracts, who want to understand them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,880",
+				"to": "00:18:06,720"
+			},
+			"offsets": {
+				"from": 1083880,
+				"to": 1086720
+			},
+			"text": " they have to know that they have to look in this and this in this places."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,720",
+				"to": "00:18:11,200"
+			},
+			"offsets": {
+				"from": 1086720,
+				"to": 1091200
+			},
+			"text": " Or maybe there's two different coin registries or three or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,200",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1091200,
+				"to": 1093000
+			},
+			"text": " If they just like right now have it in the place"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:15,520"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1095520
+			},
+			"text": " where they're actually expecting it to be, it's easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,520",
+				"to": "00:18:18,120"
+			},
+			"offsets": {
+				"from": 1095520,
+				"to": 1098120
+			},
+			"text": " And it's like, I think we will grow in that direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,120",
+				"to": "00:18:21,800"
+			},
+			"offsets": {
+				"from": 1098120,
+				"to": 1101800
+			},
+			"text": " So we will like mature over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,800",
+				"to": "00:18:25,560"
+			},
+			"offsets": {
+				"from": 1101800,
+				"to": 1105560
+			},
+			"text": " And this also brings me to the point of the current standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,560",
+				"to": "00:18:27,920"
+			},
+			"offsets": {
+				"from": 1105560,
+				"to": 1107920
+			},
+			"text": " So I don't think we can make up a standard right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,920",
+				"to": "00:18:30,960"
+			},
+			"offsets": {
+				"from": 1107920,
+				"to": 1110960
+			},
+			"text": " which fits everything for the next five years or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,960",
+				"to": "00:18:33,120"
+			},
+			"offsets": {
+				"from": 1110960,
+				"to": 1113120
+			},
+			"text": " It will probably be many iterations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,120",
+				"to": "00:18:38,600"
+			},
+			"offsets": {
+				"from": 1113120,
+				"to": 1118600
+			},
+			"text": " And I think one major point is to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,600",
+				"to": "00:18:42,800"
+			},
+			"offsets": {
+				"from": 1118600,
+				"to": 1122800
+			},
+			"text": " that we have some kind of up-creatability strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,800",
+				"to": "00:18:46,800"
+			},
+			"offsets": {
+				"from": 1122800,
+				"to": 1126800
+			},
+			"text": " So what happens if like standards change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,800",
+				"to": "00:18:52,360"
+			},
+			"offsets": {
+				"from": 1126800,
+				"to": 1132360
+			},
+			"text": " Maybe we can use proxies in front of others or some kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,360",
+				"to": "00:18:57,400"
+			},
+			"offsets": {
+				"from": 1132360,
+				"to": 1137400
+			},
+			"text": " like, proxies where like you can change the API of your token in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,400",
+				"to": "00:18:59,640"
+			},
+			"offsets": {
+				"from": 1137400,
+				"to": 1139640
+			},
+			"text": " without changing the actual contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,640",
+				"to": "00:19:01,600"
+			},
+			"offsets": {
+				"from": 1139640,
+				"to": 1141600
+			},
+			"text": " Without it, the real update of the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,600",
+				"to": "00:19:04,200"
+			},
+			"offsets": {
+				"from": 1141600,
+				"to": 1144200
+			},
+			"text": " you can still be sure it's still the same contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,200",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1144200,
+				"to": 1147360
+			},
+			"text": " just now it has a different interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:10,120"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1150120
+			},
+			"text": " With things like this, we can actually be rather flexible"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,120",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1150120,
+				"to": 1152840
+			},
+			"text": " even if we have to make changes in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:15,880"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1155880
+			},
+			"text": " And one other thing towards the token is for some of the guys from Knosses"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,880",
+				"to": "00:19:19,280"
+			},
+			"offsets": {
+				"from": 1155880,
+				"to": 1159280
+			},
+			"text": " have the issue that they want to not only have one contract per token"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,280",
+				"to": "00:19:23,160"
+			},
+			"offsets": {
+				"from": 1159280,
+				"to": 1163160
+			},
+			"text": " but they have a token contract which holds multiple tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,160",
+				"to": "00:19:25,400"
+			},
+			"offsets": {
+				"from": 1163160,
+				"to": 1165400
+			},
+			"text": " And that's actually something worth thinking of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,400",
+				"to": "00:19:30,960"
+			},
+			"offsets": {
+				"from": 1165400,
+				"to": 1170960
+			},
+			"text": " how we like have token per contract or multiple tokens per contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,960",
+				"to": "00:19:34,720"
+			},
+			"offsets": {
+				"from": 1170960,
+				"to": 1174720
+			},
+			"text": " and how we bring this into one standard, how we make this readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,720",
+				"to": "00:19:37,440"
+			},
+			"offsets": {
+				"from": 1174720,
+				"to": 1177440
+			},
+			"text": " For example, this would require not only having a coin registry"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,440",
+				"to": "00:19:39,880"
+			},
+			"offsets": {
+				"from": 1177440,
+				"to": 1179880
+			},
+			"text": " which has like token name and address"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,880",
+				"to": "00:19:44,040"
+			},
+			"offsets": {
+				"from": 1179880,
+				"to": 1184040
+			},
+			"text": " but token name address and identifier of the token used inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,040",
+				"to": "00:19:48,440"
+			},
+			"offsets": {
+				"from": 1184040,
+				"to": 1188440
+			},
+			"text": " And so I really would love to really bring the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,440",
+				"to": "00:19:50,680"
+			},
+			"offsets": {
+				"from": 1188440,
+				"to": 1190680
+			},
+			"text": " and come up with what use cases they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,680",
+				"to": "00:19:52,320"
+			},
+			"offsets": {
+				"from": 1190680,
+				"to": 1192320
+			},
+			"text": " and try to find the common standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,320",
+				"to": "00:19:55,080"
+			},
+			"offsets": {
+				"from": 1192320,
+				"to": 1195080
+			},
+			"text": " And I think that's more rather a process."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,080",
+				"to": "00:19:56,440"
+			},
+			"offsets": {
+				"from": 1195080,
+				"to": 1196440
+			},
+			"text": " Yeah, then."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,440",
+				"to": "00:19:57,520"
+			},
+			"offsets": {
+				"from": 1196440,
+				"to": 1197520
+			},
+			"text": " - So, tell it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,520",
+				"to": "00:20:01,440"
+			},
+			"offsets": {
+				"from": 1197520,
+				"to": 1201440
+			},
+			"text": " - Regarding standards, it's also important to just keep in mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,440",
+				"to": "00:20:07,040"
+			},
+			"offsets": {
+				"from": 1201440,
+				"to": 1207040
+			},
+			"text": " that modularity fundamentally is about upgradability."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,040",
+				"to": "00:20:09,840"
+			},
+			"offsets": {
+				"from": 1207040,
+				"to": 1209840
+			},
+			"text": " So if you knew that, you know, the way things are"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,840",
+				"to": "00:20:12,200"
+			},
+			"offsets": {
+				"from": 1209840,
+				"to": 1212200
+			},
+			"text": " is exactly the way things are going to be for every one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,200",
+				"to": "00:20:14,200"
+			},
+			"offsets": {
+				"from": 1212200,
+				"to": 1214200
+			},
+			"text": " as well just write the whole thing in spaghetti code"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,200",
+				"to": "00:20:15,440"
+			},
+			"offsets": {
+				"from": 1214200,
+				"to": 1215440
+			},
+			"text": " because it's faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,440",
+				"to": "00:20:20,360"
+			},
+			"offsets": {
+				"from": 1215440,
+				"to": 1220360
+			},
+			"text": " So, when you have questions of the form, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,360",
+				"to": "00:20:23,120"
+			},
+			"offsets": {
+				"from": 1220360,
+				"to": 1223120
+			},
+			"text": " should X be lumped into object A"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,120",
+				"to": "00:20:24,880"
+			},
+			"offsets": {
+				"from": 1223120,
+				"to": 1224880
+			},
+			"text": " or should X be lumped into object B?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,880",
+				"to": "00:20:27,080"
+			},
+			"offsets": {
+				"from": 1224880,
+				"to": 1227080
+			},
+			"text": " One of the things to think about is, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,080",
+				"to": "00:20:31,160"
+			},
+			"offsets": {
+				"from": 1227080,
+				"to": 1231160
+			},
+			"text": " what category of those objects do you expect to be upgraded"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,160",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1231160,
+				"to": 1232000
+			},
+			"text": " more frequently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:33,520"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1233520
+			},
+			"text": " What category do you expect to be created"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,520",
+				"to": "00:20:35,160"
+			},
+			"offsets": {
+				"from": 1233520,
+				"to": 1235160
+			},
+			"text": " or destroyed more frequently?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,160",
+				"to": "00:20:38,560"
+			},
+			"offsets": {
+				"from": 1235160,
+				"to": 1238560
+			},
+			"text": " So, with tokens, for example, we're going to see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,560",
+				"to": "00:20:41,360"
+			},
+			"offsets": {
+				"from": 1238560,
+				"to": 1241360
+			},
+			"text": " keep on seeing new tokens being issued over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,360",
+				"to": "00:20:42,400"
+			},
+			"offsets": {
+				"from": 1241360,
+				"to": 1242400
+			},
+			"text": " - You have a question of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,400",
+				"to": "00:20:44,280"
+			},
+			"offsets": {
+				"from": 1242400,
+				"to": 1244280
+			},
+			"text": " do the existing tokens that get issued?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,280",
+				"to": "00:20:46,840"
+			},
+			"offsets": {
+				"from": 1244280,
+				"to": 1246840
+			},
+			"text": " Are they going to, like, are, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,840",
+				"to": "00:20:49,520"
+			},
+			"offsets": {
+				"from": 1246840,
+				"to": 1249520
+			},
+			"text": " who is going to be upgrading them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,520",
+				"to": "00:20:52,120"
+			},
+			"offsets": {
+				"from": 1249520,
+				"to": 1252120
+			},
+			"text": " Is anyone supposed to, like, have ultimate authority over them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,120",
+				"to": "00:20:53,200"
+			},
+			"offsets": {
+				"from": 1252120,
+				"to": 1253200
+			},
+			"text": " How are they going to be upgraded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,200",
+				"to": "00:20:55,120"
+			},
+			"offsets": {
+				"from": 1253200,
+				"to": 1255120
+			},
+			"text": " Is it just going to be some religious?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,120",
+				"to": "00:20:57,920"
+			},
+			"offsets": {
+				"from": 1255120,
+				"to": 1257920
+			},
+			"text": " Creating new proxy contracts for each new standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,920",
+				"to": "00:21:01,040"
+			},
+			"offsets": {
+				"from": 1257920,
+				"to": 1261040
+			},
+			"text": " might actually be a pretty decent approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,040",
+				"to": "00:21:05,800"
+			},
+			"offsets": {
+				"from": 1261040,
+				"to": 1265800
+			},
+			"text": " Another question, then you have the question of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,800",
+				"to": "00:21:10,280"
+			},
+			"offsets": {
+				"from": 1265800,
+				"to": 1270280
+			},
+			"text": " when are, when is the registry going to be upgraded?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,280",
+				"to": "00:21:13,880"
+			},
+			"offsets": {
+				"from": 1270280,
+				"to": 1273880
+			},
+			"text": " So, for example, right now, we know that tokens have names."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,880",
+				"to": "00:21:16,800"
+			},
+			"offsets": {
+				"from": 1273880,
+				"to": 1276800
+			},
+			"text": " We know that tokens might have, you know, decimal places."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,800",
+				"to": "00:21:17,720"
+			},
+			"offsets": {
+				"from": 1276800,
+				"to": 1277720
+			},
+			"text": " Well, guess what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,720",
+				"to": "00:21:21,680"
+			},
+			"offsets": {
+				"from": 1277720,
+				"to": 1281680
+			},
+			"text": " Ether has, you know, six sub denominations and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,680",
+				"to": "00:21:22,920"
+			},
+			"offsets": {
+				"from": 1281680,
+				"to": 1282920
+			},
+			"text": " eventually people are going to decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,920",
+				"to": "00:21:26,120"
+			},
+			"offsets": {
+				"from": 1282920,
+				"to": 1286120
+			},
+			"text": " that they want logos and maybe the FAD in 2017"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,120",
+				"to": "00:21:29,440"
+			},
+			"offsets": {
+				"from": 1286120,
+				"to": 1289440
+			},
+			"text": " is going to be logos that are in the form of MP4 videos."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,440",
+				"to": "00:21:34,440"
+			},
+			"offsets": {
+				"from": 1289440,
+				"to": 1294440
+			},
+			"text": " So, the, sort of importance to figure out, you know, exactly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,440",
+				"to": "00:21:37,800"
+			},
+			"offsets": {
+				"from": 1294440,
+				"to": 1297800
+			},
+			"text": " whatever standard we take,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,800",
+				"to": "00:21:40,880"
+			},
+			"offsets": {
+				"from": 1297800,
+				"to": 1300880
+			},
+			"text": " how that's going to handle those kinds of situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,880",
+				"to": "00:21:45,880"
+			},
+			"offsets": {
+				"from": 1300880,
+				"to": 1305880
+			},
+			"text": " - So, I think one thing that touches both registries"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,880",
+				"to": "00:21:51,200"
+			},
+			"offsets": {
+				"from": 1305880,
+				"to": 1311200
+			},
+			"text": " and tokens is name registries."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,200",
+				"to": "00:21:56,200"
+			},
+			"offsets": {
+				"from": 1311200,
+				"to": 1316200
+			},
+			"text": " And I think this is a quite challenging problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,200",
+				"to": "00:22:00,280"
+			},
+			"offsets": {
+				"from": 1316200,
+				"to": 1320280
+			},
+			"text": " because whenever you have a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,280",
+				"to": "00:22:04,480"
+			},
+			"offsets": {
+				"from": 1320280,
+				"to": 1324480
+			},
+			"text": " that registers human meaningful strings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,760",
+				"to": "00:22:09,320"
+			},
+			"offsets": {
+				"from": 1325760,
+				"to": 1329320
+			},
+			"text": " there's going to be questions about economics"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,320",
+				"to": "00:22:11,600"
+			},
+			"offsets": {
+				"from": 1329320,
+				"to": 1331600
+			},
+			"text": " because these things have value."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,600",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1331600,
+				"to": 1334000
+			},
+			"text": " They have different value for different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:16,360"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1336360
+			},
+			"text": " You have things like name squatting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,360",
+				"to": "00:22:19,840"
+			},
+			"offsets": {
+				"from": 1336360,
+				"to": 1339840
+			},
+			"text": " which is a huge problem in name coin, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,840",
+				"to": "00:22:24,600"
+			},
+			"offsets": {
+				"from": 1339840,
+				"to": 1344600
+			},
+			"text": " So, this is something that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,600",
+				"to": "00:22:26,280"
+			},
+			"offsets": {
+				"from": 1344600,
+				"to": 1346280
+			},
+			"text": " we should be thinking very carefully about."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,280",
+				"to": "00:22:31,280"
+			},
+			"offsets": {
+				"from": 1346280,
+				"to": 1351280
+			},
+			"text": " And I think you, Gavin, have thought about auctions"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:36,680"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1356680
+			},
+			"text": " in the context of registries, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,680",
+				"to": "00:22:40,360"
+			},
+			"offsets": {
+				"from": 1356680,
+				"to": 1360360
+			},
+			"text": " And so, just, you know, putting it out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,360",
+				"to": "00:22:43,200"
+			},
+			"offsets": {
+				"from": 1360360,
+				"to": 1363200
+			},
+			"text": " - In registries, they serve essentially two purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,200",
+				"to": "00:22:45,560"
+			},
+			"offsets": {
+				"from": 1363200,
+				"to": 1365560
+			},
+			"text": " which is providing additional information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,560",
+				"to": "00:22:48,760"
+			},
+			"offsets": {
+				"from": 1365560,
+				"to": 1368760
+			},
+			"text": " additional metadata, but also if there are scenarios"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,760",
+				"to": "00:22:50,720"
+			},
+			"offsets": {
+				"from": 1368760,
+				"to": 1370720
+			},
+			"text": " where you want something like a namespace"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,720",
+				"to": "00:22:53,200"
+			},
+			"offsets": {
+				"from": 1370720,
+				"to": 1373200
+			},
+			"text": " for certain things to exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,200",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1373200,
+				"to": 1378000
+			},
+			"text": " Like, if we eventually want a system where,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:01,440"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1381440
+			},
+			"text": " like one name which has the namespace in Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,440",
+				"to": "00:23:04,200"
+			},
+			"offsets": {
+				"from": 1381440,
+				"to": 1384200
+			},
+			"text": " wallets, then you want that interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,200",
+				"to": "00:23:05,920"
+			},
+			"offsets": {
+				"from": 1384200,
+				"to": 1385920
+			},
+			"text": " to exist in all the Bitcoin wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,920",
+				"to": "00:23:10,040"
+			},
+			"offsets": {
+				"from": 1385920,
+				"to": 1390040
+			},
+			"text": " So, then there needs to be like a community decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,040",
+				"to": "00:23:12,360"
+			},
+			"offsets": {
+				"from": 1390040,
+				"to": 1392360
+			},
+			"text": " to gravitate towards a certain namespace"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,360",
+				"to": "00:23:13,200"
+			},
+			"offsets": {
+				"from": 1392360,
+				"to": 1393200
+			},
+			"text": " for certain things."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,200",
+				"to": "00:23:15,200"
+			},
+			"offsets": {
+				"from": 1393200,
+				"to": 1395200
+			},
+			"text": " And that's probably more difficult thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,200",
+				"to": "00:23:17,920"
+			},
+			"offsets": {
+				"from": 1395200,
+				"to": 1397920
+			},
+			"text": " than just the fact of registering metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,920",
+				"to": "00:23:22,080"
+			},
+			"offsets": {
+				"from": 1397920,
+				"to": 1402080
+			},
+			"text": " Anyone have opinions on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,080",
+				"to": "00:23:24,440"
+			},
+			"offsets": {
+				"from": 1402080,
+				"to": 1404440
+			},
+			"text": " - Yeah, well, I kind of want to go on a slide track."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,440",
+				"to": "00:23:26,360"
+			},
+			"offsets": {
+				"from": 1404440,
+				"to": 1406360
+			},
+			"text": " Like, I think before we even start talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,360",
+				"to": "00:23:28,880"
+			},
+			"offsets": {
+				"from": 1406360,
+				"to": 1408880
+			},
+			"text": " about more like application level standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,880",
+				"to": "00:23:30,560"
+			},
+			"offsets": {
+				"from": 1408880,
+				"to": 1410560
+			},
+			"text": " we should resolve things like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,560",
+				"to": "00:23:32,880"
+			},
+			"offsets": {
+				"from": 1410560,
+				"to": 1412880
+			},
+			"text": " what is the correct way to deal with VM errors?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,880",
+				"to": "00:23:34,400"
+			},
+			"offsets": {
+				"from": 1412880,
+				"to": 1414400
+			},
+			"text": " Because in the current standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,400",
+				"to": "00:23:37,680"
+			},
+			"offsets": {
+				"from": 1414400,
+				"to": 1417680
+			},
+			"text": " it's like half, you know, return value VM check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,680",
+				"to": "00:23:39,040"
+			},
+			"offsets": {
+				"from": 1417680,
+				"to": 1419040
+			},
+			"text": " and then the other half don't have that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,040",
+				"to": "00:23:41,400"
+			},
+			"offsets": {
+				"from": 1419040,
+				"to": 1421400
+			},
+			"text": " So, I'm assuming there's an exception being thrown there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,400",
+				"to": "00:23:43,840"
+			},
+			"offsets": {
+				"from": 1421400,
+				"to": 1423840
+			},
+			"text": " And this actually is, I think, in all the standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,840",
+				"to": "00:23:45,560"
+			},
+			"offsets": {
+				"from": 1423840,
+				"to": 1425560
+			},
+			"text": " or all the proposed standards right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,560",
+				"to": "00:23:46,520"
+			},
+			"offsets": {
+				"from": 1425560,
+				"to": 1426520
+			},
+			"text": " So, something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,520",
+				"to": "00:23:48,760"
+			},
+			"offsets": {
+				"from": 1426520,
+				"to": 1428760
+			},
+			"text": " And then maybe some standard design patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,760",
+				"to": "00:23:50,760"
+			},
+			"offsets": {
+				"from": 1428760,
+				"to": 1430760
+			},
+			"text": " for upgradability like they were saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,760",
+				"to": "00:23:53,160"
+			},
+			"offsets": {
+				"from": 1430760,
+				"to": 1433160
+			},
+			"text": " And once we get those done, I think it'll be much simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,160",
+				"to": "00:23:56,040"
+			},
+			"offsets": {
+				"from": 1433160,
+				"to": 1436040
+			},
+			"text": " Like, I think the standards will just emerge naturally."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,040",
+				"to": "00:23:58,240"
+			},
+			"offsets": {
+				"from": 1436040,
+				"to": 1438240
+			},
+			"text": " Like, a couple of people will make some great wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,240",
+				"to": "00:23:59,440"
+			},
+			"offsets": {
+				"from": 1438240,
+				"to": 1439440
+			},
+			"text": " with decent standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,440",
+				"to": "00:24:01,360"
+			},
+			"offsets": {
+				"from": 1439440,
+				"to": 1441360
+			},
+			"text": " Everyone will want to be compatible with that wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,360",
+				"to": "00:24:02,360"
+			},
+			"offsets": {
+				"from": 1441360,
+				"to": 1442360
+			},
+			"text": " And there's your standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,360",
+				"to": "00:24:05,320"
+			},
+			"offsets": {
+				"from": 1442360,
+				"to": 1445320
+			},
+			"text": " Like, it won't change until someone makes a better thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,320",
+				"to": "00:24:07,080"
+			},
+			"offsets": {
+				"from": 1445320,
+				"to": 1447080
+			},
+			"text": " - Yeah, I really agree with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,080",
+				"to": "00:24:09,560"
+			},
+			"offsets": {
+				"from": 1447080,
+				"to": 1449560
+			},
+			"text": " I really think it will evolve naturally."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,560",
+				"to": "00:24:12,280"
+			},
+			"offsets": {
+				"from": 1449560,
+				"to": 1452280
+			},
+			"text": " Like, Twitter took on other things to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,280",
+				"to": "00:24:14,320"
+			},
+			"offsets": {
+				"from": 1452280,
+				"to": 1454320
+			},
+			"text": " If somebody does something which a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,320",
+				"to": "00:24:16,440"
+			},
+			"offsets": {
+				"from": 1454320,
+				"to": 1456440
+			},
+			"text": " like the way it's done, they will adopt it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,440",
+				"to": "00:24:20,400"
+			},
+			"offsets": {
+				"from": 1456440,
+				"to": 1460400
+			},
+			"text": " and it will really become the standard and with time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,400",
+				"to": "00:24:22,720"
+			},
+			"offsets": {
+				"from": 1460400,
+				"to": 1462720
+			},
+			"text": " So, but I really would like for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,720",
+				"to": "00:24:24,880"
+			},
+			"offsets": {
+				"from": 1462720,
+				"to": 1464880
+			},
+			"text": " because we are very early in this game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,880",
+				"to": "00:24:28,160"
+			},
+			"offsets": {
+				"from": 1464880,
+				"to": 1468160
+			},
+			"text": " to have like more community approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,160",
+				"to": "00:24:29,160"
+			},
+			"offsets": {
+				"from": 1468160,
+				"to": 1469160
+			},
+			"text": " bringing in ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,160",
+				"to": "00:24:30,800"
+			},
+			"offsets": {
+				"from": 1469160,
+				"to": 1470800
+			},
+			"text": " I mean, this can be a lengthy process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,800",
+				"to": "00:24:33,600"
+			},
+			"offsets": {
+				"from": 1470800,
+				"to": 1473600
+			},
+			"text": " and it can be like, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,600",
+				"to": "00:24:35,280"
+			},
+			"offsets": {
+				"from": 1473600,
+				"to": 1475280
+			},
+			"text": " discussion sometimes take time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,280",
+				"to": "00:24:38,600"
+			},
+			"offsets": {
+				"from": 1475280,
+				"to": 1478600
+			},
+			"text": " and maybe they need somewhere in this stuck path."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,600",
+				"to": "00:24:42,120"
+			},
+			"offsets": {
+				"from": 1478600,
+				"to": 1482120
+			},
+			"text": " But it's about like bringing ideas together."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,120",
+				"to": "00:24:45,600"
+			},
+			"offsets": {
+				"from": 1482120,
+				"to": 1485600
+			},
+			"text": " And because so many things we can't think of even yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,600",
+				"to": "00:24:48,160"
+			},
+			"offsets": {
+				"from": 1485600,
+				"to": 1488160
+			},
+			"text": " Where this is going, what all will be necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,160",
+				"to": "00:24:52,120"
+			},
+			"offsets": {
+				"from": 1488160,
+				"to": 1492120
+			},
+			"text": " So, everything will come up probably will maybe be very simplistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,120",
+				"to": "00:24:54,560"
+			},
+			"offsets": {
+				"from": 1492120,
+				"to": 1494560
+			},
+			"text": " from compared to what we need at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,560",
+				"to": "00:24:55,880"
+			},
+			"offsets": {
+				"from": 1494560,
+				"to": 1495880
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,880",
+				"to": "00:24:58,800"
+			},
+			"offsets": {
+				"from": 1495880,
+				"to": 1498800
+			},
+			"text": " I think one of the things I want to point out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,800",
+				"to": "00:25:02,320"
+			},
+			"offsets": {
+				"from": 1498800,
+				"to": 1502320
+			},
+			"text": " I want to make on that, is the way the current standards work"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,320",
+				"to": "00:25:05,440"
+			},
+			"offsets": {
+				"from": 1502320,
+				"to": 1505440
+			},
+			"text": " is whoever edited the wiki the last time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,440",
+				"to": "00:25:08,680"
+			},
+			"offsets": {
+				"from": 1505440,
+				"to": 1508680
+			},
+			"text": " And I think if it would be great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,680",
+				"to": "00:25:10,640"
+			},
+			"offsets": {
+				"from": 1508680,
+				"to": 1510640
+			},
+			"text": " I think if we can move towards just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,640",
+				"to": "00:25:12,440"
+			},
+			"offsets": {
+				"from": 1510640,
+				"to": 1512440
+			},
+			"text": " it doesn't have to be very complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,440",
+				"to": "00:25:14,680"
+			},
+			"offsets": {
+				"from": 1512440,
+				"to": 1514680
+			},
+			"text": " We don't have to put up mailing lists"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,680",
+				"to": "00:25:16,920"
+			},
+			"offsets": {
+				"from": 1514680,
+				"to": 1516920
+			},
+			"text": " and like get a committee on things or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,920",
+				"to": "00:25:20,640"
+			},
+			"offsets": {
+				"from": 1516920,
+				"to": 1520640
+			},
+			"text": " But I think it would be great if there's a sort of a stamp"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,640",
+				"to": "00:25:22,320"
+			},
+			"offsets": {
+				"from": 1520640,
+				"to": 1522320
+			},
+			"text": " of approval from various people."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,320",
+				"to": "00:25:25,680"
+			},
+			"offsets": {
+				"from": 1522320,
+				"to": 1525680
+			},
+			"text": " That this feels like the best approach at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,680",
+				"to": "00:25:29,320"
+			},
+			"offsets": {
+				"from": 1525680,
+				"to": 1529320
+			},
+			"text": " But we could make a discussion on Reddit"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,320",
+				"to": "00:25:32,640"
+			},
+			"offsets": {
+				"from": 1529320,
+				"to": 1532640
+			},
+			"text": " and get a lot of people involved to see what they think."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,640",
+				"to": "00:25:39,400"
+			},
+			"offsets": {
+				"from": 1532640,
+				"to": 1539400
+			},
+			"text": " - So, actually I think a good idea would be actually using GIST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,400",
+				"to": "00:25:41,760"
+			},
+			"offsets": {
+				"from": 1539400,
+				"to": 1541760
+			},
+			"text": " because in GIST you can comment on the GIST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,760",
+				"to": "00:25:43,680"
+			},
+			"offsets": {
+				"from": 1541760,
+				"to": 1543680
+			},
+			"text": " and then it moves to a wiki."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,680",
+				"to": "00:25:47,320"
+			},
+			"offsets": {
+				"from": 1543680,
+				"to": 1547320
+			},
+			"text": " Right now kind of like it's a little bit like a Wikipedia"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,320",
+				"to": "00:25:50,240"
+			},
+			"offsets": {
+				"from": 1547320,
+				"to": 1550240
+			},
+			"text": " edit war, kind of thing, not that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,240",
+				"to": "00:25:53,240"
+			},
+			"offsets": {
+				"from": 1550240,
+				"to": 1553240
+			},
+			"text": " But yeah, definitely having places"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,240",
+				"to": "00:25:57,400"
+			},
+			"offsets": {
+				"from": 1553240,
+				"to": 1557400
+			},
+			"text": " where we can bring together examples and have these talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,400",
+				"to": "00:26:04,200"
+			},
+			"offsets": {
+				"from": 1557400,
+				"to": 1564200
+			},
+			"text": " - Okay, I think the last topic before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,200",
+				"to": "00:26:06,160"
+			},
+			"offsets": {
+				"from": 1564200,
+				"to": 1566160
+			},
+			"text": " I think we end up 10 parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,160",
+				"to": "00:26:08,640"
+			},
+			"offsets": {
+				"from": 1566160,
+				"to": 1568640
+			},
+			"text": " So I think there are probably people who have some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,640",
+				"to": "00:26:11,280"
+			},
+			"offsets": {
+				"from": 1568640,
+				"to": 1571280
+			},
+			"text": " So I think one last thing I want to touch upon is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,280",
+				"to": "00:26:18,320"
+			},
+			"offsets": {
+				"from": 1571280,
+				"to": 1578320
+			},
+			"text": " do we feel that there should be more like formal process"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,320",
+				"to": "00:26:23,040"
+			},
+			"offsets": {
+				"from": 1578320,
+				"to": 1583040
+			},
+			"text": " for the finding standards and maybe into the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,040",
+				"to": "00:26:24,040"
+			},
+			"offsets": {
+				"from": 1583040,
+				"to": 1584040
+			},
+			"text": " not at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,040",
+				"to": "00:26:26,280"
+			},
+			"offsets": {
+				"from": 1584040,
+				"to": 1586280
+			},
+			"text": " I think at the moment it's still sort of nebulous"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,280",
+				"to": "00:26:29,160"
+			},
+			"offsets": {
+				"from": 1586280,
+				"to": 1589160
+			},
+			"text": " and growing organically."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,160",
+				"to": "00:26:34,160"
+			},
+			"offsets": {
+				"from": 1589160,
+				"to": 1594160
+			},
+			"text": " But you know, Bitcoin has the approval process, the books."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,160",
+				"to": "00:26:37,440"
+			},
+			"offsets": {
+				"from": 1594160,
+				"to": 1597440
+			},
+			"text": " Is there something that currently exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,440",
+				"to": "00:26:38,680"
+			},
+			"offsets": {
+				"from": 1597440,
+				"to": 1598680
+			},
+			"text": " in the Ethereum community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,680",
+				"to": "00:26:41,920"
+			},
+			"offsets": {
+				"from": 1598680,
+				"to": 1601920
+			},
+			"text": " or is there something we need to consider more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,920",
+				"to": "00:26:44,560"
+			},
+			"offsets": {
+				"from": 1601920,
+				"to": 1604560
+			},
+			"text": " - Yeah, so there's quite recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,560",
+				"to": "00:26:45,480"
+			},
+			"offsets": {
+				"from": 1604560,
+				"to": 1605480
+			},
+			"text": " I think it was a couple of weeks ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,480",
+				"to": "00:26:47,560"
+			},
+			"offsets": {
+				"from": 1605480,
+				"to": 1607560
+			},
+			"text": " Martin set out the EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,560",
+				"to": "00:26:50,560"
+			},
+			"offsets": {
+				"from": 1607560,
+				"to": 1610560
+			},
+			"text": " - Okay, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,560",
+				"to": "00:26:53,120"
+			},
+			"offsets": {
+				"from": 1610560,
+				"to": 1613120
+			},
+			"text": " And there's a wiki for it as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,120",
+				"to": "00:26:57,240"
+			},
+			"offsets": {
+				"from": 1613120,
+				"to": 1617240
+			},
+			"text": " if information about it, okay, well that's great then."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,240",
+				"to": "00:27:00,920"
+			},
+			"offsets": {
+				"from": 1617240,
+				"to": 1620920
+			},
+			"text": " - Yeah, right now this is read about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,920",
+				"to": "00:27:02,680"
+			},
+			"offsets": {
+				"from": 1620920,
+				"to": 1622680
+			},
+			"text": " theorem protocol updates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,680",
+				"to": "00:27:05,520"
+			},
+			"offsets": {
+				"from": 1622680,
+				"to": 1625520
+			},
+			"text": " but one can think of like for all kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,520",
+				"to": "00:27:07,320"
+			},
+			"offsets": {
+				"from": 1625520,
+				"to": 1627320
+			},
+			"text": " But right now I think it's like you say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,320",
+				"to": "00:27:08,480"
+			},
+			"offsets": {
+				"from": 1627320,
+				"to": 1628480
+			},
+			"text": " it's very early stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,480",
+				"to": "00:27:10,960"
+			},
+			"offsets": {
+				"from": 1628480,
+				"to": 1630960
+			},
+			"text": " it's very much exploration phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,960",
+				"to": "00:27:14,240"
+			},
+			"offsets": {
+				"from": 1630960,
+				"to": 1634240
+			},
+			"text": " So I would, it's a lot of things like trying things out"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,240",
+				"to": "00:27:16,080"
+			},
+			"offsets": {
+				"from": 1634240,
+				"to": 1636080
+			},
+			"text": " and see what catches on."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,080",
+				"to": "00:27:19,280"
+			},
+			"offsets": {
+				"from": 1636080,
+				"to": 1639280
+			},
+			"text": " Maybe it's about who, I mean we can make up a standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,280",
+				"to": "00:27:20,880"
+			},
+			"offsets": {
+				"from": 1639280,
+				"to": 1640880
+			},
+			"text": " if nobody follows this, that's just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,880",
+				"to": "00:27:22,760"
+			},
+			"offsets": {
+				"from": 1640880,
+				"to": 1642760
+			},
+			"text": " it's not written, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,760",
+				"to": "00:27:25,480"
+			},
+			"offsets": {
+				"from": 1642760,
+				"to": 1645480
+			},
+			"text": " - Yeah, I definitely think the Ethereum foundation's role"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,480",
+				"to": "00:27:27,560"
+			},
+			"offsets": {
+				"from": 1645480,
+				"to": 1647560
+			},
+			"text": " should be like facilitating discussions"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,560",
+				"to": "00:27:29,600"
+			},
+			"offsets": {
+				"from": 1647560,
+				"to": 1649600
+			},
+			"text": " and all this and not defining standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,600",
+				"to": "00:27:32,600"
+			},
+			"offsets": {
+				"from": 1649600,
+				"to": 1652600
+			},
+			"text": " and definitely not like creating apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,600",
+				"to": "00:27:34,400"
+			},
+			"offsets": {
+				"from": 1652600,
+				"to": 1654400
+			},
+			"text": " and then you have to follow those standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,400",
+				"to": "00:27:36,600"
+			},
+			"offsets": {
+				"from": 1654400,
+				"to": 1656600
+			},
+			"text": " 'cause that's the official one, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,600",
+				"to": "00:27:39,360"
+			},
+			"offsets": {
+				"from": 1656600,
+				"to": 1659360
+			},
+			"text": " - Yeah, okay, there's about five minutes left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,360",
+				"to": "00:27:41,960"
+			},
+			"offsets": {
+				"from": 1659360,
+				"to": 1661960
+			},
+			"text": " I think we open up some questions over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,960",
+				"to": "00:27:46,360"
+			},
+			"offsets": {
+				"from": 1661960,
+				"to": 1666360
+			},
+			"text": " 15 minutes left, okay, well, Piper."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,560",
+				"to": "00:27:50,200"
+			},
+			"offsets": {
+				"from": 1667560,
+				"to": 1670200
+			},
+			"text": " - So there's talk about using proxy contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,200",
+				"to": "00:27:53,120"
+			},
+			"offsets": {
+				"from": 1670200,
+				"to": 1673120
+			},
+			"text": " one of the problems with that is the message center pattern,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,120",
+				"to": "00:27:57,480"
+			},
+			"offsets": {
+				"from": 1673120,
+				"to": 1677480
+			},
+			"text": " because you use it everywhere for authorization."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,480",
+				"to": "00:28:00,920"
+			},
+			"offsets": {
+				"from": 1677480,
+				"to": 1680920
+			},
+			"text": " You see the app where there's like a link in change"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,920",
+				"to": "00:28:04,720"
+			},
+			"offsets": {
+				"from": 1680920,
+				"to": 1684720
+			},
+			"text": " that helps facilitate this, because proxy contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,720",
+				"to": "00:28:07,760"
+			},
+			"offsets": {
+				"from": 1684720,
+				"to": 1687760
+			},
+			"text": " and message centers are very, very, very, very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,760",
+				"to": "00:28:10,240"
+			},
+			"offsets": {
+				"from": 1687760,
+				"to": 1690240
+			},
+			"text": " because now all of a sudden everything's coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,240",
+				"to": "00:28:12,360"
+			},
+			"offsets": {
+				"from": 1690240,
+				"to": 1692360
+			},
+			"text": " from some other address."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,360",
+				"to": "00:28:15,440"
+			},
+			"offsets": {
+				"from": 1692360,
+				"to": 1695440
+			},
+			"text": " - Yeah, you want to, basically the fundamental issue here"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,440",
+				"to": "00:28:18,200"
+			},
+			"offsets": {
+				"from": 1695440,
+				"to": 1698200
+			},
+			"text": " is that the call code operator maintains"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,200",
+				"to": "00:28:20,320"
+			},
+			"offsets": {
+				"from": 1698200,
+				"to": 1700320
+			},
+			"text": " all the same state except for the sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,320",
+				"to": "00:28:23,480"
+			},
+			"offsets": {
+				"from": 1700320,
+				"to": 1703480
+			},
+			"text": " So it sort of just barely doesn't satisfy the role"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,480",
+				"to": "00:28:26,280"
+			},
+			"offsets": {
+				"from": 1703480,
+				"to": 1706280
+			},
+			"text": " that we, or that intuitively it's supposed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,280",
+				"to": "00:28:29,520"
+			},
+			"offsets": {
+				"from": 1706280,
+				"to": 1709520
+			},
+			"text": " - Yeah, like this is also something we have with the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,520",
+				"to": "00:28:32,440"
+			},
+			"offsets": {
+				"from": 1709520,
+				"to": 1712440
+			},
+			"text": " The wallet currently actually uses stop contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,440",
+				"to": "00:28:34,120"
+			},
+			"offsets": {
+				"from": 1712440,
+				"to": 1714120
+			},
+			"text": " so it's cheaper to deploy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,120",
+				"to": "00:28:37,600"
+			},
+			"offsets": {
+				"from": 1714120,
+				"to": 1717600
+			},
+			"text": " because 120,000 gas versus a 1.2 million gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,600",
+				"to": "00:28:40,560"
+			},
+			"offsets": {
+				"from": 1717600,
+				"to": 1720560
+			},
+			"text": " so we have one code base and we have the stop contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,560",
+				"to": "00:28:43,560"
+			},
+			"offsets": {
+				"from": 1720560,
+				"to": 1723560
+			},
+			"text": " They use call code and the problem is inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,560",
+				"to": "00:28:47,120"
+			},
+			"offsets": {
+				"from": 1723560,
+				"to": 1727120
+			},
+			"text": " the actual wallet, it is, message center"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,120",
+				"to": "00:28:48,680"
+			},
+			"offsets": {
+				"from": 1727120,
+				"to": 1728680
+			},
+			"text": " is actually the calling contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,680",
+				"to": "00:28:51,080"
+			},
+			"offsets": {
+				"from": 1728680,
+				"to": 1731080
+			},
+			"text": " and not the one who actually initiated it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,080",
+				"to": "00:28:54,840"
+			},
+			"offsets": {
+				"from": 1731080,
+				"to": 1734840
+			},
+			"text": " or the one before, and this basically makes call code"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,840",
+				"to": "00:28:57,680"
+			},
+			"offsets": {
+				"from": 1734840,
+				"to": 1737680
+			},
+			"text": " not neutral and really like a bit destroys"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,680",
+				"to": "00:29:00,040"
+			},
+			"offsets": {
+				"from": 1737680,
+				"to": 1740040
+			},
+			"text": " this library functionality, so I really would love"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,040",
+				"to": "00:29:01,920"
+			},
+			"offsets": {
+				"from": 1740040,
+				"to": 1741920
+			},
+			"text": " to see change here."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,920",
+				"to": "00:29:04,760"
+			},
+			"offsets": {
+				"from": 1741920,
+				"to": 1744760
+			},
+			"text": " - So one of the other things that's currently not possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,760",
+				"to": "00:29:07,080"
+			},
+			"offsets": {
+				"from": 1744760,
+				"to": 1747080
+			},
+			"text": " if I understand correctly, is accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,080",
+				"to": "00:29:09,960"
+			},
+			"offsets": {
+				"from": 1747080,
+				"to": 1749960
+			},
+			"text": " further down the stack of message center."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,960",
+				"to": "00:29:12,360"
+			},
+			"offsets": {
+				"from": 1749960,
+				"to": 1752360
+			},
+			"text": " Is that an option for future EVM upgrades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,360",
+				"to": "00:29:14,560"
+			},
+			"offsets": {
+				"from": 1752360,
+				"to": 1754560
+			},
+			"text": " being able to actually trace your way all the way back"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,560",
+				"to": "00:29:15,840"
+			},
+			"offsets": {
+				"from": 1754560,
+				"to": 1755840
+			},
+			"text": " to transaction origin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,840",
+				"to": "00:29:20,560"
+			},
+			"offsets": {
+				"from": 1755840,
+				"to": 1760560
+			},
+			"text": " - Yeah, it's something that we're looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,560",
+				"to": "00:29:25,000"
+			},
+			"offsets": {
+				"from": 1760560,
+				"to": 1765000
+			},
+			"text": " The argument against it is essentially isolation."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:25,000",
+				"to": "00:29:29,360"
+			},
+			"offsets": {
+				"from": 1765000,
+				"to": 1769360
+			},
+			"text": " There's a notion that the current executing frame"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,360",
+				"to": "00:29:33,640"
+			},
+			"offsets": {
+				"from": 1769360,
+				"to": 1773640
+			},
+			"text": " on the stack shouldn't really be possibly prejudiced"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,640",
+				"to": "00:29:36,480"
+			},
+			"offsets": {
+				"from": 1773640,
+				"to": 1776480
+			},
+			"text": " by previous stack frames, because it breaks"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,480",
+				"to": "00:29:39,360"
+			},
+			"offsets": {
+				"from": 1776480,
+				"to": 1779360
+			},
+			"text": " the notion of encapsulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,360",
+				"to": "00:29:41,400"
+			},
+			"offsets": {
+				"from": 1779360,
+				"to": 1781400
+			},
+			"text": " - Shouldn't transaction origin be excluded"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,400",
+				"to": "00:29:44,360"
+			},
+			"offsets": {
+				"from": 1781400,
+				"to": 1784360
+			},
+			"text": " in principle, yes, but there is a slight difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,360",
+				"to": "00:29:46,720"
+			},
+			"offsets": {
+				"from": 1784360,
+				"to": 1786720
+			},
+			"text": " in that a transaction is different to a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,720",
+				"to": "00:29:52,040"
+			},
+			"offsets": {
+				"from": 1786720,
+				"to": 1792040
+			},
+			"text": " - Other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,040",
+				"to": "00:30:10,520"
+			},
+			"offsets": {
+				"from": 1792040,
+				"to": 1810520
+			},
+			"text": " - So one of the arguments for the registry again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,400",
+				"to": "00:30:14,320"
+			},
+			"offsets": {
+				"from": 1811400,
+				"to": 1814320
+			},
+			"text": " skipping metadata inside contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,320",
+				"to": "00:30:19,480"
+			},
+			"offsets": {
+				"from": 1814320,
+				"to": 1819480
+			},
+			"text": " is really how does the contract we will register itself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,480",
+				"to": "00:30:23,400"
+			},
+			"offsets": {
+				"from": 1819480,
+				"to": 1823400
+			},
+			"text": " Because either we have to register when the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,400",
+				"to": "00:30:26,320"
+			},
+			"offsets": {
+				"from": 1823400,
+				"to": 1826320
+			},
+			"text": " is launched, meaning that if you have a register"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,320",
+				"to": "00:30:28,520"
+			},
+			"offsets": {
+				"from": 1826320,
+				"to": 1828520
+			},
+			"text": " that exists after the contract has launched,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,520",
+				"to": "00:30:31,160"
+			},
+			"offsets": {
+				"from": 1828520,
+				"to": 1831160
+			},
+			"text": " the contract can register itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:31,160",
+				"to": "00:30:35,200"
+			},
+			"offsets": {
+				"from": 1831160,
+				"to": 1835200
+			},
+			"text": " or the contract must have some sort of way"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,200",
+				"to": "00:30:38,800"
+			},
+			"offsets": {
+				"from": 1835200,
+				"to": 1838800
+			},
+			"text": " to pass on arbitrary messages, which might add"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,800",
+				"to": "00:30:41,600"
+			},
+			"offsets": {
+				"from": 1838800,
+				"to": 1841600
+			},
+			"text": " some complexity that something like a token contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,600",
+				"to": "00:30:45,840"
+			},
+			"offsets": {
+				"from": 1841600,
+				"to": 1845840
+			},
+			"text": " might not necessarily have, which then gives you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,840",
+				"to": "00:30:48,560"
+			},
+			"offsets": {
+				"from": 1845840,
+				"to": 1848560
+			},
+			"text": " have the problem of who has the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,560",
+				"to": "00:30:50,160"
+			},
+			"offsets": {
+				"from": 1848560,
+				"to": 1850160
+			},
+			"text": " to pass arbitrary messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,160",
+				"to": "00:30:55,160"
+			},
+			"offsets": {
+				"from": 1850160,
+				"to": 1855160
+			},
+			"text": " So if a token, how would the token register itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:55,160",
+				"to": "00:30:59,040"
+			},
+			"offsets": {
+				"from": 1855160,
+				"to": 1859040
+			},
+			"text": " and who would be owner of the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,040",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1859040,
+				"to": 1861000
+			},
+			"text": " if the token has no owners?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:03,840"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1863840
+			},
+			"text": " - So there's two major categories of solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:03,840",
+				"to": "00:31:06,640"
+			},
+			"offsets": {
+				"from": 1863840,
+				"to": 1866640
+			},
+			"text": " of ways of solving this, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,640",
+				"to": "00:31:10,280"
+			},
+			"offsets": {
+				"from": 1866640,
+				"to": 1870280
+			},
+			"text": " One of them basically is to say that currencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,280",
+				"to": "00:31:14,000"
+			},
+			"offsets": {
+				"from": 1870280,
+				"to": 1874000
+			},
+			"text": " or tokens have to build in some mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,000",
+				"to": "00:31:16,120"
+			},
+			"offsets": {
+				"from": 1874000,
+				"to": 1876120
+			},
+			"text": " it doesn't have to be standardized"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,120",
+				"to": "00:31:18,600"
+			},
+			"offsets": {
+				"from": 1876120,
+				"to": 1878600
+			},
+			"text": " in order to allow some particular administrator"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,600",
+				"to": "00:31:21,800"
+			},
+			"offsets": {
+				"from": 1878600,
+				"to": 1881800
+			},
+			"text": " to keep on updating registry data if they have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,800",
+				"to": "00:31:25,240"
+			},
+			"offsets": {
+				"from": 1881800,
+				"to": 1885240
+			},
+			"text": " And, or alternatively, you could just say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,240",
+				"to": "00:31:31,160"
+			},
+			"offsets": {
+				"from": 1885240,
+				"to": 1891160
+			},
+			"text": " the token just calls the method once and it's in it code"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,160",
+				"to": "00:31:32,880"
+			},
+			"offsets": {
+				"from": 1891160,
+				"to": 1892880
+			},
+			"text": " and then never does it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,880",
+				"to": "00:31:35,760"
+			},
+			"offsets": {
+				"from": 1892880,
+				"to": 1895760
+			},
+			"text": " The other approach is this proxy contract route,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,760",
+				"to": "00:31:38,840"
+			},
+			"offsets": {
+				"from": 1895760,
+				"to": 1898840
+			},
+			"text": " which basically means that it started off"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,840",
+				"to": "00:31:41,640"
+			},
+			"offsets": {
+				"from": 1898840,
+				"to": 1901640
+			},
+			"text": " by just having the token follow whatever the API was"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:41,640",
+				"to": "00:31:42,600"
+			},
+			"offsets": {
+				"from": 1901640,
+				"to": 1902600
+			},
+			"text": " at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,600",
+				"to": "00:31:44,800"
+			},
+			"offsets": {
+				"from": 1902600,
+				"to": 1904800
+			},
+			"text": " And then if a new standard comes along,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,800",
+				"to": "00:31:47,720"
+			},
+			"offsets": {
+				"from": 1904800,
+				"to": 1907720
+			},
+			"text": " or if you want to update the registry information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,720",
+				"to": "00:31:50,680"
+			},
+			"offsets": {
+				"from": 1907720,
+				"to": 1910680
+			},
+			"text": " then the way you would do that is by creating a new token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:50,680",
+				"to": "00:31:53,120"
+			},
+			"offsets": {
+				"from": 1910680,
+				"to": 1913120
+			},
+			"text": " which is really just a proxy pointing back"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,120",
+				"to": "00:31:54,480"
+			},
+			"offsets": {
+				"from": 1913120,
+				"to": 1914480
+			},
+			"text": " to the first token."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:54,480",
+				"to": "00:31:57,280"
+			},
+			"offsets": {
+				"from": 1914480,
+				"to": 1917280
+			},
+			"text": " And then all that that new token is is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,280",
+				"to": "00:31:58,880"
+			},
+			"offsets": {
+				"from": 1917280,
+				"to": 1918880
+			},
+			"text": " the same thing as the original one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:58,880",
+				"to": "00:32:00,440"
+			},
+			"offsets": {
+				"from": 1918880,
+				"to": 1920440
+			},
+			"text": " except it has a different interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,440",
+				"to": "00:32:02,840"
+			},
+			"offsets": {
+				"from": 1920440,
+				"to": 1922840
+			},
+			"text": " and maybe different registry data to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,840",
+				"to": "00:32:06,240"
+			},
+			"offsets": {
+				"from": 1922840,
+				"to": 1926240
+			},
+			"text": " So that's like one potential way of making things"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:06,240",
+				"to": "00:32:07,120"
+			},
+			"offsets": {
+				"from": 1926240,
+				"to": 1927120
+			},
+			"text": " more modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,120",
+				"to": "00:32:11,400"
+			},
+			"offsets": {
+				"from": 1927120,
+				"to": 1931400
+			},
+			"text": " - I was just gonna say, if you don't know how to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,400",
+				"to": "00:32:12,680"
+			},
+			"offsets": {
+				"from": 1931400,
+				"to": 1932680
+			},
+			"text": " basically there's two categories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,680",
+				"to": "00:32:14,520"
+			},
+			"offsets": {
+				"from": 1932680,
+				"to": 1934520
+			},
+			"text": " there's like immutable contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:14,520",
+				"to": "00:32:16,240"
+			},
+			"offsets": {
+				"from": 1934520,
+				"to": 1936240
+			},
+			"text": " which basically you know exactly what they're supposed to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,240",
+				"to": "00:32:17,520"
+			},
+			"offsets": {
+				"from": 1936240,
+				"to": 1937520
+			},
+			"text": " Ahead of time you write the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:17,520",
+				"to": "00:32:19,240"
+			},
+			"offsets": {
+				"from": 1937520,
+				"to": 1939240
+			},
+			"text": " and there's no back doors or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:19,240",
+				"to": "00:32:22,720"
+			},
+			"offsets": {
+				"from": 1939240,
+				"to": 1942720
+			},
+			"text": " But then like if you have even one use case"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,720",
+				"to": "00:32:25,080"
+			},
+			"offsets": {
+				"from": 1942720,
+				"to": 1945080
+			},
+			"text": " where you might need to do a proxy call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,080",
+				"to": "00:32:27,000"
+			},
+			"offsets": {
+				"from": 1945080,
+				"to": 1947000
+			},
+			"text": " then your contract becomes, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,000",
+				"to": "00:32:28,480"
+			},
+			"offsets": {
+				"from": 1947000,
+				"to": 1948480
+			},
+			"text": " you don't, it can do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:28,480",
+				"to": "00:32:32,200"
+			},
+			"offsets": {
+				"from": 1948480,
+				"to": 1952200
+			},
+			"text": " And so then it needs a governance model basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,200",
+				"to": "00:32:33,440"
+			},
+			"offsets": {
+				"from": 1952200,
+				"to": 1953440
+			},
+			"text": " So the answer to that is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,440",
+				"to": "00:32:36,600"
+			},
+			"offsets": {
+				"from": 1953440,
+				"to": 1956600
+			},
+			"text": " if your contract is doing arbitrary behaviors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,600",
+				"to": "00:32:39,040"
+			},
+			"offsets": {
+				"from": 1956600,
+				"to": 1959040
+			},
+			"text": " then yes, you need a governance thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,040",
+				"to": "00:32:41,080"
+			},
+			"offsets": {
+				"from": 1959040,
+				"to": 1961080
+			},
+			"text": " and that's a separate problem altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,080",
+				"to": "00:32:43,920"
+			},
+			"offsets": {
+				"from": 1961080,
+				"to": 1963920
+			},
+			"text": " - Yeah, the only thing I'd add."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,920",
+				"to": "00:32:49,400"
+			},
+			"offsets": {
+				"from": 1963920,
+				"to": 1969400
+			},
+			"text": " If the notion that actually we're gonna say all tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:49,400",
+				"to": "00:32:51,240"
+			},
+			"offsets": {
+				"from": 1969400,
+				"to": 1971240
+			},
+			"text": " can in principle become proxy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:51,240",
+				"to": "00:32:53,880"
+			},
+			"offsets": {
+				"from": 1971240,
+				"to": 1973880
+			},
+			"text": " have proxy sort of facades in front of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,880",
+				"to": "00:32:56,240"
+			},
+			"offsets": {
+				"from": 1973880,
+				"to": 1976240
+			},
+			"text": " and this can be added for all possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,240",
+				"to": "00:32:59,560"
+			},
+			"offsets": {
+				"from": 1976240,
+				"to": 1979560
+			},
+			"text": " all eventual improvements to registries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,560",
+				"to": "00:33:02,560"
+			},
+			"offsets": {
+				"from": 1979560,
+				"to": 1982560
+			},
+			"text": " then we've got like this order n squared issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:02,560",
+				"to": "00:33:05,680"
+			},
+			"offsets": {
+				"from": 1982560,
+				"to": 1985680
+			},
+			"text": " where you're forcing all tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:05,680",
+				"to": "00:33:08,800"
+			},
+			"offsets": {
+				"from": 1985680,
+				"to": 1988800
+			},
+			"text": " to support all registries, whereas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,800",
+				"to": "00:33:12,080"
+			},
+			"offsets": {
+				"from": 1988800,
+				"to": 1992080
+			},
+			"text": " so you're gonna end up with like n squared facades, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,080",
+				"to": "00:33:15,480"
+			},
+			"offsets": {
+				"from": 1992080,
+				"to": 1995480
+			},
+			"text": " Whereas if we go for the root of saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:15,480",
+				"to": "00:33:16,720"
+			},
+			"offsets": {
+				"from": 1995480,
+				"to": 1996720
+			},
+			"text": " right, well actually tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,720",
+				"to": "00:33:20,680"
+			},
+			"offsets": {
+				"from": 1996720,
+				"to": 2000680
+			},
+			"text": " maybe it's the case that they elect to a registrar"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,680",
+				"to": "00:33:23,520"
+			},
+			"offsets": {
+				"from": 2000680,
+				"to": 2003520
+			},
+			"text": " some third party address and say actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:23,520",
+				"to": "00:33:26,520"
+			},
+			"offsets": {
+				"from": 2003520,
+				"to": 2006520
+			},
+			"text": " we're not gonna execute arbitrary transactions in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,520",
+				"to": "00:33:30,680"
+			},
+			"offsets": {
+				"from": 2006520,
+				"to": 2010680
+			},
+			"text": " but this guy can actually update metadata on our behalf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,680",
+				"to": "00:33:33,640"
+			},
+			"offsets": {
+				"from": 2010680,
+				"to": 2013640
+			},
+			"text": " which massively reduces the attack surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,640",
+				"to": "00:33:36,440"
+			},
+			"offsets": {
+				"from": 2013640,
+				"to": 2016440
+			},
+			"text": " And it could in principle be like a multi-party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,440",
+				"to": "00:33:37,840"
+			},
+			"offsets": {
+				"from": 2016440,
+				"to": 2017840
+			},
+			"text": " a multi-six sort of contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:37,840",
+				"to": "00:33:39,520"
+			},
+			"offsets": {
+				"from": 2017840,
+				"to": 2019520
+			},
+			"text": " multi-party sort of stakeholder thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:39,520",
+				"to": "00:33:42,480"
+			},
+			"offsets": {
+				"from": 2019520,
+				"to": 2022480
+			},
+			"text": " where multiple people actually have to agree that yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,480",
+				"to": "00:33:45,200"
+			},
+			"offsets": {
+				"from": 2022480,
+				"to": 2025200
+			},
+			"text": " this isn't just some dodgy troll"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:45,200",
+				"to": "00:33:49,480"
+			},
+			"offsets": {
+				"from": 2025200,
+				"to": 2029480
+			},
+			"text": " trying to change your name to something silly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,480",
+				"to": "00:33:53,120"
+			},
+			"offsets": {
+				"from": 2029480,
+				"to": 2033120
+			},
+			"text": " it's actually a reasonable metadata upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,000",
+				"to": "00:33:57,000"
+			},
+			"offsets": {
+				"from": 2035000,
+				"to": 2037000
+			},
+			"text": " Thank you, any more questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,000",
+				"to": "00:34:09,600"
+			},
+			"offsets": {
+				"from": 2037000,
+				"to": 2049600
+			},
+			"text": " - So how much do standardization and conversations today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,600",
+				"to": "00:34:11,040"
+			},
+			"offsets": {
+				"from": 2049600,
+				"to": 2051040
+			},
+			"text": " or how much should they be influenced"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,040",
+				"to": "00:34:13,200"
+			},
+			"offsets": {
+				"from": 2051040,
+				"to": 2053200
+			},
+			"text": " by scalability conversations tomorrow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:13,200",
+				"to": "00:34:14,960"
+			},
+			"offsets": {
+				"from": 2053200,
+				"to": 2054960
+			},
+			"text": " So with respect to sharding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,960",
+				"to": "00:34:17,960"
+			},
+			"offsets": {
+				"from": 2054960,
+				"to": 2057960
+			},
+			"text": " if we take some approaches to standardization"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,960",
+				"to": "00:34:20,400"
+			},
+			"offsets": {
+				"from": 2057960,
+				"to": 2060400
+			},
+			"text": " that may not make sense in a sharded future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,400",
+				"to": "00:34:22,680"
+			},
+			"offsets": {
+				"from": 2060400,
+				"to": 2062680
+			},
+			"text": " I'm just wondering thoughts."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,600",
+				"to": "00:34:25,640"
+			},
+			"offsets": {
+				"from": 2063600,
+				"to": 2065640
+			},
+			"text": " - That's actually good questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:25,640",
+				"to": "00:34:27,280"
+			},
+			"offsets": {
+				"from": 2065640,
+				"to": 2067280
+			},
+			"text": " or if you have to register,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,280",
+				"to": "00:34:31,640"
+			},
+			"offsets": {
+				"from": 2067280,
+				"to": 2071640
+			},
+			"text": " you have to token and we take the basic metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,640",
+				"to": "00:34:34,440"
+			},
+			"offsets": {
+				"from": 2071640,
+				"to": 2074440
+			},
+			"text": " of the token out of the contract to a registry"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,440",
+				"to": "00:34:35,560"
+			},
+			"offsets": {
+				"from": 2074440,
+				"to": 2075560
+			},
+			"text": " and they are in a different shard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:35,560",
+				"to": "00:34:38,000"
+			},
+			"offsets": {
+				"from": 2075560,
+				"to": 2078000
+			},
+			"text": " it would get more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,000",
+				"to": "00:34:45,040"
+			},
+			"offsets": {
+				"from": 2078000,
+				"to": 2085040
+			},
+			"text": " - Yeah, I mean, I guess today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,040",
+				"to": "00:34:47,640"
+			},
+			"offsets": {
+				"from": 2085040,
+				"to": 2087640
+			},
+			"text": " exactly how the sharding is gonna work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,640",
+				"to": "00:34:50,200"
+			},
+			"offsets": {
+				"from": 2087640,
+				"to": 2090200
+			},
+			"text": " exactly how sort of scalability and 2.0 is gonna work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,200",
+				"to": "00:34:52,720"
+			},
+			"offsets": {
+				"from": 2090200,
+				"to": 2092720
+			},
+			"text": " is still very much a question of research."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,720",
+				"to": "00:34:54,480"
+			},
+			"offsets": {
+				"from": 2092720,
+				"to": 2094480
+			},
+			"text": " We've yet to do any real modeling"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,480",
+				"to": "00:34:57,160"
+			},
+			"offsets": {
+				"from": 2094480,
+				"to": 2097160
+			},
+			"text": " on the ideas that we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,160",
+				"to": "00:34:59,440"
+			},
+			"offsets": {
+				"from": 2097160,
+				"to": 2099440
+			},
+			"text": " and then of course there's still feasibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,440",
+				"to": "00:35:00,840"
+			},
+			"offsets": {
+				"from": 2099440,
+				"to": 2100840
+			},
+			"text": " and implementation, all the rest of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,840",
+				"to": "00:35:03,440"
+			},
+			"offsets": {
+				"from": 2100840,
+				"to": 2103440
+			},
+			"text": " So I think it's still a relatively long way off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,440",
+				"to": "00:35:06,280"
+			},
+			"offsets": {
+				"from": 2103440,
+				"to": 2106280
+			},
+			"text": " and we probably should be focusing on real use cases today"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:06,280",
+				"to": "00:35:10,320"
+			},
+			"offsets": {
+				"from": 2106280,
+				"to": 2110320
+			},
+			"text": " rather than presuming potential architecture decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,320",
+				"to": "00:35:13,000"
+			},
+			"offsets": {
+				"from": 2110320,
+				"to": 2113000
+			},
+			"text": " that we're gonna take in maybe one, two years time."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,000",
+				"to": "00:35:18,840"
+			},
+			"offsets": {
+				"from": 2113000,
+				"to": 2118840
+			},
+			"text": " - I feel like it's kind of a case of premature optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,920",
+				"to": "00:35:24,480"
+			},
+			"offsets": {
+				"from": 2121920,
+				"to": 2124480
+			},
+			"text": " We have this idea that, oh, maybe in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,480",
+				"to": "00:35:25,800"
+			},
+			"offsets": {
+				"from": 2124480,
+				"to": 2125800
+			},
+			"text": " there'll be different shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,800",
+				"to": "00:35:29,480"
+			},
+			"offsets": {
+				"from": 2125800,
+				"to": 2129480
+			},
+			"text": " so I make certain decisions now"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,480",
+				"to": "00:35:33,880"
+			},
+			"offsets": {
+				"from": 2129480,
+				"to": 2133880
+			},
+			"text": " that that's probably not a good approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,880",
+				"to": "00:35:38,880"
+			},
+			"offsets": {
+				"from": 2133880,
+				"to": 2138880
+			},
+			"text": " And I mean, I think with any future upgrades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,880",
+				"to": "00:35:49,360"
+			},
+			"offsets": {
+				"from": 2138880,
+				"to": 2149360
+			},
+			"text": " I guess what they should just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:50,880",
+				"to": "00:35:54,120"
+			},
+			"offsets": {
+				"from": 2150880,
+				"to": 2154120
+			},
+			"text": " we can probably rely on future upgrade,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,120",
+				"to": "00:35:58,440"
+			},
+			"offsets": {
+				"from": 2154120,
+				"to": 2158440
+			},
+			"text": " not directly breaking what works now."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,440",
+				"to": "00:36:02,760"
+			},
+			"offsets": {
+				"from": 2158440,
+				"to": 2162760
+			},
+			"text": " And so, if we create stuff that works now"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,760",
+				"to": "00:36:07,760"
+			},
+			"offsets": {
+				"from": 2162760,
+				"to": 2167760
+			},
+			"text": " and make sure that works, I think that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,760",
+				"to": "00:36:11,440"
+			},
+			"offsets": {
+				"from": 2167760,
+				"to": 2171440
+			},
+			"text": " - There's always the possibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,440",
+				"to": "00:36:14,520"
+			},
+			"offsets": {
+				"from": 2171440,
+				"to": 2174520
+			},
+			"text": " to basically copy a contract and copy its storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,520",
+				"to": "00:36:16,520"
+			},
+			"offsets": {
+				"from": 2174520,
+				"to": 2176520
+			},
+			"text": " I mean, it would be maybe a manual process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:16,520",
+				"to": "00:36:17,440"
+			},
+			"offsets": {
+				"from": 2176520,
+				"to": 2177440
+			},
+			"text": " but it will work."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,440",
+				"to": "00:36:20,440"
+			},
+			"offsets": {
+				"from": 2177440,
+				"to": 2180440
+			},
+			"text": " So you can always basically change it, move it over."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:20,440",
+				"to": "00:36:23,520"
+			},
+			"offsets": {
+				"from": 2180440,
+				"to": 2183520
+			},
+			"text": " You just have to point in, the phase is tend to be new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:23,520",
+				"to": "00:36:25,440"
+			},
+			"offsets": {
+				"from": 2183520,
+				"to": 2185440
+			},
+			"text": " So in the worst case kind of."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,440",
+				"to": "00:36:27,560"
+			},
+			"offsets": {
+				"from": 2185440,
+				"to": 2187560
+			},
+			"text": " - Well, it depends on what the contract contains ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:27,560",
+				"to": "00:36:29,360"
+			},
+			"offsets": {
+				"from": 2187560,
+				"to": 2189360
+			},
+			"text": " or any other assets you don't control."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:29,360",
+				"to": "00:36:30,200"
+			},
+			"offsets": {
+				"from": 2189360,
+				"to": 2190200
+			},
+			"text": " - Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,200",
+				"to": "00:36:31,120"
+			},
+			"offsets": {
+				"from": 2190200,
+				"to": 2191120
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,120",
+				"to": "00:36:36,120"
+			},
+			"offsets": {
+				"from": 2191120,
+				"to": 2196120
+			},
+			"text": " - But yeah, using pointers to contract in a modular fashion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:36,120",
+				"to": "00:36:37,760"
+			},
+			"offsets": {
+				"from": 2196120,
+				"to": 2197760
+			},
+			"text": " is more than anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:37,760",
+				"to": "00:36:40,440"
+			},
+			"offsets": {
+				"from": 2197760,
+				"to": 2200440
+			},
+			"text": " - Incidentally though, this last particular argument"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,440",
+				"to": "00:36:43,440"
+			},
+			"offsets": {
+				"from": 2200440,
+				"to": 2203440
+			},
+			"text": " is actually a very good reason why you might,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,440",
+				"to": "00:36:46,200"
+			},
+			"offsets": {
+				"from": 2203440,
+				"to": 2206200
+			},
+			"text": " very good arguments in favor of different daps"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,200",
+				"to": "00:36:48,360"
+			},
+			"offsets": {
+				"from": 2206200,
+				"to": 2208360
+			},
+			"text": " basically creating their own sub-tilgans."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,200",
+				"to": "00:36:50,040"
+			},
+			"offsets": {
+				"from": 2209200,
+				"to": 2210040
+			},
+			"text": " - Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,040",
+				"to": "00:36:52,880"
+			},
+			"offsets": {
+				"from": 2210040,
+				"to": 2212880
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,880",
+				"to": "00:36:55,480"
+			},
+			"offsets": {
+				"from": 2212880,
+				"to": 2215480
+			},
+			"text": " - I think that's it for this panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,480",
+				"to": "00:36:57,640"
+			},
+			"offsets": {
+				"from": 2215480,
+				"to": 2217640
+			},
+			"text": " So I wanna thank all the people."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,640",
+				"to": "00:36:58,640"
+			},
+			"offsets": {
+				"from": 2217640,
+				"to": 2218640
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:58,640",
+				"to": "00:37:01,640"
+			},
+			"offsets": {
+				"from": 2218640,
+				"to": 2221640
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,640",
+				"to": "00:37:04,220"
+			},
+			"offsets": {
+				"from": 2221640,
+				"to": 2224220
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,220",
+				"to": "00:37:06,460"
+			},
+			"offsets": {
+				"from": 2224220,
+				"to": 2226460
+			},
+			"text": " (static)"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,460",
+				"to": "00:37:08,700"
+			},
+			"offsets": {
+				"from": 2226460,
+				"to": 2228700
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

@@ -1,0 +1,1165 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:13,320"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 13320
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,320",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 13320,
+				"to": 15360
+			},
+			"text": " My name is Max Glaujov."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:17,680"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 17680
+			},
+			"text": " I'm an engineer with Coinbase custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,680",
+				"to": "00:00:20,920"
+			},
+			"offsets": {
+				"from": 17680,
+				"to": 20920
+			},
+			"text": " I am extremely excited to be here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,920",
+				"to": "00:00:23,120"
+			},
+			"offsets": {
+				"from": 20920,
+				"to": 23120
+			},
+			"text": " In as you can see, my talk is titled,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,120",
+				"to": "00:00:28,080"
+			},
+			"offsets": {
+				"from": 23120,
+				"to": 28080
+			},
+			"text": " Smart Contract Interaction Out of the Cold Business Storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,080",
+				"to": "00:00:32,840"
+			},
+			"offsets": {
+				"from": 28080,
+				"to": 32840
+			},
+			"text": " So at Coinbase custody, we provide friction as a feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,840",
+				"to": "00:00:36,080"
+			},
+			"offsets": {
+				"from": 32840,
+				"to": 36080
+			},
+			"text": " We introduce barriers that make it extremely difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,080",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36080,
+				"to": 39000
+			},
+			"text": " for attackers to steal our customer response."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,960"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42960
+			},
+			"text": " We take our private keys, shard them up into many, many"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,960",
+				"to": "00:00:46,400"
+			},
+			"offsets": {
+				"from": 42960,
+				"to": 46400
+			},
+			"text": " pieces, and sort them completely off-line."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,400",
+				"to": "00:00:50,640"
+			},
+			"offsets": {
+				"from": 46400,
+				"to": 50640
+			},
+			"text": " We only use any given address once to sign transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,640",
+				"to": "00:00:54,280"
+			},
+			"offsets": {
+				"from": 50640,
+				"to": 54280
+			},
+			"text": " and then we roll over the customer response to a new address."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,280",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 54280,
+				"to": 59120
+			},
+			"text": " And we also have a very talented ops team who personally"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:02,160"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 62160
+			},
+			"text": " verify each transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,160",
+				"to": "00:01:04,640"
+			},
+			"offsets": {
+				"from": 62160,
+				"to": 64640
+			},
+			"text": " So these features differentiate ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,640",
+				"to": "00:01:06,160"
+			},
+			"offsets": {
+				"from": 64640,
+				"to": 66160
+			},
+			"text": " from our competitors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,160",
+				"to": "00:01:08,800"
+			},
+			"offsets": {
+				"from": 66160,
+				"to": 68800
+			},
+			"text": " They are the reason why more people choose us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,800",
+				"to": "00:01:13,720"
+			},
+			"offsets": {
+				"from": 68800,
+				"to": 73720
+			},
+			"text": " to hold their crypto than any other custodian on the planet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,720",
+				"to": "00:01:16,400"
+			},
+			"offsets": {
+				"from": 73720,
+				"to": 76400
+			},
+			"text": " And so we support mini-currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,400",
+				"to": "00:01:20,320"
+			},
+			"offsets": {
+				"from": 76400,
+				"to": 80320
+			},
+			"text": " But as the most successful smart contract platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,320",
+				"to": "00:01:24,680"
+			},
+			"offsets": {
+				"from": 80320,
+				"to": 84680
+			},
+			"text": " Ethereum provides unique challenges to how our system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,680",
+				"to": "00:01:28,120"
+			},
+			"offsets": {
+				"from": 84680,
+				"to": 88120
+			},
+			"text": " So our top-of-the-line security comes out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,120",
+				"to": "00:01:29,480"
+			},
+			"offsets": {
+				"from": 88120,
+				"to": 89480
+			},
+			"text": " You're either safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,480",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 89480,
+				"to": 91800
+			},
+			"text": " But we may have to struggle to do some of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 95520
+			},
+			"text": " that make Ethereum the most exciting platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:37,840"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 97840
+			},
+			"text": " So as far as interacting with contracts that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,840",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 97840,
+				"to": 100960
+			},
+			"text": " require high transaction throughput,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:44,480"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 104480
+			},
+			"text": " like governance or gaming or you name it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,480",
+				"to": "00:01:47,160"
+			},
+			"offsets": {
+				"from": 104480,
+				"to": 107160
+			},
+			"text": " since it takes a non-trivial amount of time for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,160",
+				"to": "00:01:51,320"
+			},
+			"offsets": {
+				"from": 107160,
+				"to": 111320
+			},
+			"text": " to reconstruct a piece, we struggle to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,320",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 111320,
+				"to": 113600
+			},
+			"text": " And for interacting with smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:57,320"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 117320
+			},
+			"text": " like edge-first signaling that require funds to stay put,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,320",
+				"to": "00:01:59,280"
+			},
+			"offsets": {
+				"from": 117320,
+				"to": 119280
+			},
+			"text": " we simply can't support that out of the box"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,280",
+				"to": "00:02:02,440"
+			},
+			"offsets": {
+				"from": 119280,
+				"to": 122440
+			},
+			"text": " since we roll over our funds to a new address every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,440",
+				"to": "00:02:05,160"
+			},
+			"offsets": {
+				"from": 122440,
+				"to": 125160
+			},
+			"text": " the signed transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,160",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 125160,
+				"to": 129240
+			},
+			"text": " But at Coinbase custody, you take a queue from my manga hero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:10,920"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 130920
+			},
+			"text": " y'all basically a hero."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,920",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 130920,
+				"to": 134800
+			},
+			"text": " And we surpass our limits right here, right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:16,800"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 136800
+			},
+			"text": " So how do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,800",
+				"to": "00:02:20,040"
+			},
+			"offsets": {
+				"from": 136800,
+				"to": 140040
+			},
+			"text": " I will introduce to you the proxy smart contract pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,040",
+				"to": "00:02:21,480"
+			},
+			"offsets": {
+				"from": 140040,
+				"to": 141480
+			},
+			"text": " that we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,480",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141480,
+				"to": 144000
+			},
+			"text": " So using this pattern, we can continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:27,720"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 147720
+			},
+			"text": " to provide world-class security while also giving our users"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,720",
+				"to": "00:02:31,080"
+			},
+			"offsets": {
+				"from": 147720,
+				"to": 151080
+			},
+			"text": " a frictionless user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,080",
+				"to": "00:02:33,080"
+			},
+			"offsets": {
+				"from": 151080,
+				"to": 153080
+			},
+			"text": " So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,080",
+				"to": "00:02:36,800"
+			},
+			"offsets": {
+				"from": 153080,
+				"to": 156800
+			},
+			"text": " Let's say we want to let our customers participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,800",
+				"to": "00:02:38,360"
+			},
+			"offsets": {
+				"from": 156800,
+				"to": 158360
+			},
+			"text": " in maker governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,360",
+				"to": "00:02:40,040"
+			},
+			"offsets": {
+				"from": 158360,
+				"to": 160040
+			},
+			"text": " What a coincidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,040",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 160040,
+				"to": 162840
+			},
+			"text": " So whenever we approach a new integration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:46,440"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 166440
+			},
+			"text": " we start by writing a customized proxy contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,440",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 166440,
+				"to": 170000
+			},
+			"text": " that fits around the external contract like in the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 172560
+			},
+			"text": " So as you can see, there aren't really a lot of bells"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:53,880"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 173880
+			},
+			"text": " and whistles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,880",
+				"to": "00:02:58,080"
+			},
+			"offsets": {
+				"from": 173880,
+				"to": 178080
+			},
+			"text": " We just create a thin facade over the external contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,080",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178080,
+				"to": 182000
+			},
+			"text": " and we call the external contract methods using the proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186040
+			},
+			"text": " contract as the identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:08,520"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 188520
+			},
+			"text": " And so when we onboard a new customer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,520",
+				"to": "00:03:10,600"
+			},
+			"offsets": {
+				"from": 188520,
+				"to": 190600
+			},
+			"text": " one of these integrations, we start"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,600",
+				"to": "00:03:12,520"
+			},
+			"offsets": {
+				"from": 190600,
+				"to": 192520
+			},
+			"text": " by pairing them with a hot address"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,520",
+				"to": "00:03:14,920"
+			},
+			"offsets": {
+				"from": 192520,
+				"to": 194920
+			},
+			"text": " with a tiny bit of ether in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,920",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 194920,
+				"to": 197960
+			},
+			"text": " Not just the main contract calls and pay calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:22,080"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 202080
+			},
+			"text": " We then use that hot address to deploy a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,080",
+				"to": "00:03:24,280"
+			},
+			"offsets": {
+				"from": 202080,
+				"to": 204280
+			},
+			"text": " on behalf of the customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,280",
+				"to": "00:03:27,200"
+			},
+			"offsets": {
+				"from": 204280,
+				"to": 207200
+			},
+			"text": " And we designate a new cold storage address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,200",
+				"to": "00:03:31,840"
+			},
+			"offsets": {
+				"from": 207200,
+				"to": 211840
+			},
+			"text": " the return address, that the funds will ultimately arrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,840",
+				"to": "00:03:34,080"
+			},
+			"offsets": {
+				"from": 211840,
+				"to": 214080
+			},
+			"text": " And so once the contract is deployed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,080",
+				"to": "00:03:37,360"
+			},
+			"offsets": {
+				"from": 214080,
+				"to": 217360
+			},
+			"text": " we move the customer's full balance of either ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,360",
+				"to": "00:03:42,600"
+			},
+			"offsets": {
+				"from": 217360,
+				"to": 222600
+			},
+			"text": " or tokens to the contract, depending on what it's trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,600",
+				"to": "00:03:44,720"
+			},
+			"offsets": {
+				"from": 222600,
+				"to": 224720
+			},
+			"text": " And once the funds are in the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,720",
+				"to": "00:03:47,520"
+			},
+			"offsets": {
+				"from": 224720,
+				"to": 227520
+			},
+			"text": " the fund can really begin."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,520",
+				"to": "00:03:51,240"
+			},
+			"offsets": {
+				"from": 227520,
+				"to": 231240
+			},
+			"text": " We can use the hot address to make as many quick and risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,240",
+				"to": "00:03:55,040"
+			},
+			"offsets": {
+				"from": 231240,
+				"to": 235040
+			},
+			"text": " for any contract calls to the external contract as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,040",
+				"to": "00:03:58,520"
+			},
+			"offsets": {
+				"from": 235040,
+				"to": 238520
+			},
+			"text": " using the proxy as the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,520",
+				"to": "00:04:01,520"
+			},
+			"offsets": {
+				"from": 238520,
+				"to": 241520
+			},
+			"text": " Since the proxy has the customer's full balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,520",
+				"to": "00:04:04,200"
+			},
+			"offsets": {
+				"from": 241520,
+				"to": 244200
+			},
+			"text": " they don't find them influence on any of these networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,200",
+				"to": "00:04:05,280"
+			},
+			"offsets": {
+				"from": 244200,
+				"to": 245280
+			},
+			"text": " to manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,280",
+				"to": "00:04:07,760"
+			},
+			"offsets": {
+				"from": 245280,
+				"to": 247760
+			},
+			"text": " So if you're voting for mega-guarnies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,760",
+				"to": "00:04:09,400"
+			},
+			"offsets": {
+				"from": 247760,
+				"to": 249400
+			},
+			"text": " you're voting with IRMIG."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,400",
+				"to": "00:04:11,400"
+			},
+			"offsets": {
+				"from": 249400,
+				"to": 251400
+			},
+			"text": " If you're signaling for edgmer signaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,400",
+				"to": "00:04:13,120"
+			},
+			"offsets": {
+				"from": 251400,
+				"to": 253120
+			},
+			"text": " you're signaling with all your input."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,120",
+				"to": "00:04:17,640"
+			},
+			"offsets": {
+				"from": 253120,
+				"to": 257640
+			},
+			"text": " It's-- they're still able to wield the full F"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,640",
+				"to": "00:04:19,960"
+			},
+			"offsets": {
+				"from": 257640,
+				"to": 259960
+			},
+			"text": " of their currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,960",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 259960,
+				"to": 262400
+			},
+			"text": " And when customers are done interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:25,240"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 265240
+			},
+			"text": " with the proxy contracts, we call that previously"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,240",
+				"to": "00:04:28,640"
+			},
+			"offsets": {
+				"from": 265240,
+				"to": 268640
+			},
+			"text": " shown release method, which will send the funds back"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 270000
+			},
+			"text": " to safety in the whole storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:37,880"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 277880
+			},
+			"text": " So with this pattern, we're able to smash our limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,880",
+				"to": "00:04:41,760"
+			},
+			"offsets": {
+				"from": 277880,
+				"to": 281760
+			},
+			"text": " We're able to continue to provide world-class security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,760",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281760,
+				"to": 285000
+			},
+			"text": " while also giving our users a frictionless customer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,760"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288760
+			},
+			"text": " experience while interacting with extra contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,760",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 288760,
+				"to": 294000
+			},
+			"text": " Our anime hero, Yarmacy Pit Hero, is proud."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:55,080"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 295080
+			},
+			"text": " So that's my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,080",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 295080,
+				"to": 296040
+			},
+			"text": " Thanks for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 297840
+			},
+			"text": " My name is Nast."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:04:58,680"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 298680
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,680",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 298680,
+				"to": 301160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:04,840"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 304840
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,840",
+				"to": "00:05:08,180"
+			},
+			"offsets": {
+				"from": 304840,
+				"to": 308180
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,180",
+				"to": "00:05:11,520"
+			},
+			"offsets": {
+				"from": 308180,
+				"to": 311520
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,520",
+				"to": "00:05:14,260"
+			},
+			"offsets": {
+				"from": 311520,
+				"to": 314260
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,260",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314260,
+				"to": 317000
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

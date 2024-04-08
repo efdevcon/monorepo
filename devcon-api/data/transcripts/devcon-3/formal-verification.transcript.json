@@ -1,0 +1,3662 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " >> Hi everyone, my name is Retta Trinkler."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " I'm the chairman and co-founder together with Mona Lisa"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " of Melonport and the Madison advisor to the Web3 Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 34000
+			},
+			"text": " So, great, so let's start with formulaeification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 41000
+			},
+			"text": " So formulaeification is the act of proving or disproving an algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 46000
+			},
+			"text": " with respect to an intended underlying algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 50000
+			},
+			"text": " So this algorithm is specified in a formal specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 63000
+			},
+			"text": " So I'd like to ask all of you what makes a good specification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 64000
+			},
+			"text": " What makes a good specification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 65000
+			},
+			"text": " That's a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 68000
+			},
+			"text": " So I think theoretically the answer is that the specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 73000
+			},
+			"text": " accurately captures the intent of the developer who wrote it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 76000
+			},
+			"text": " Making sure that's the case is obviously very difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " So I think a lot of that depends on sort of your tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " and the feedback that it provides when you're writing the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " But in general I'd say a good specification accurately reflects the intent of the developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 92000
+			},
+			"text": " and also includes sort of all of the assumptions that the smart contract makes very explicitly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " and very clearly so that if someone were to update the smart contract later"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " or something they would all be very nicely in the same place."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102000
+			},
+			"text": " >> I just want to add a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106000
+			},
+			"text": " I think a good specification should be easy to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " and should be easy for others to read and build a test case later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " And it's really, you know, it follows some standard as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 120000
+			},
+			"text": " >> I think in general any specification is better than what most people do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " which is no specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " So that's probably a good place to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 129000
+			},
+			"text": " Ideally you'd write a specification and then argue over that for a few days at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 132000
+			},
+			"text": " and then write your tests and then begin coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " But a lot of people kind of do it maybe in the reverse order or something like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 137000
+			},
+			"text": " or maybe they never even write a specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 142000
+			},
+			"text": " >> If you would like to capture it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " but maybe a good specification should put a contract in a bigger picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 158000
+			},
+			"text": " what kind of game people can play on it, what would be the best strategy for rational players."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 166000
+			},
+			"text": " So if a specification fits into this crypto economic game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " it's already reasoning that something nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 172000
+			},
+			"text": " But the EI, this depends on the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174000
+			},
+			"text": " >> Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 180000
+			},
+			"text": " So what is your take on a specification, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " specify it kind of abstractly with formal methods of mathematics versus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 189000
+			},
+			"text": " a specification implemented, for example, in Haskell?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " >> What are the differences?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 197000
+			},
+			"text": " >> One is kind of like a reference implementation in Haskell"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 201000
+			},
+			"text": " and the other is just kind of abstract, like purely theoretical."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 208000
+			},
+			"text": " >> Well, I think that a reference implementation in Haskell is a perfectly fine specification, honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " I think a lot of people when they think of a specification think of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 215000
+			},
+			"text": " kind of just an English language document or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 220000
+			},
+			"text": " but at least in our group we focus a lot on executable specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " So I think, you know, Haskell implementation, you know, that's a whole lot of hell of a lot better"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " than no specification once again, and at least you can test it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " You can run tests against your specification even before you go to implementing the final thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 238000
+			},
+			"text": " So that's already a huge advantage over an English language specification, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241000
+			},
+			"text": " but certainly English language specifications are easier to write,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 245000
+			},
+			"text": " so maybe start with that and then do the Haskell or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " >> Yeah, I totally agree with everything that was just said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " and I sort of want to add that you can have good or bad specifications in any format,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " so absolutely, while it's nice to have a specification be testable and clear and readable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 262000
+			},
+			"text": " you can have really, really good Haskell language specifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " or you can have pretty bad Haskell specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " And I've even seen English language specifications that are not entirely bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " so sort of goes more to the expertise of whoever's implementing it, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 275000
+			},
+			"text": " >> Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 286000
+			},
+			"text": " So, like, could you maybe share a bit about what is, like, new and unique about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " formerly verifying smart contracts blockchains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 295000
+			},
+			"text": " Can I compare to, you know, safety critical hardware verification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 299000
+			},
+			"text": " And what are the corresponding opportunities of it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " You know, what is new and unique about formerly verifying smart contracts or blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 307000
+			},
+			"text": " compared to, like, for example, verifying hardware?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 310000
+			},
+			"text": " And what are the opportunities of it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 317000
+			},
+			"text": " >> Well, I guess smart contract has a new sort of semantic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322000
+			},
+			"text": " So we have the concept of like transaction, the concept of gas, and solely token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 328000
+			},
+			"text": " and ito, which, you know, doesn't exist in existing systems like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 332000
+			},
+			"text": " critical hardware or software system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 336000
+			},
+			"text": " So when you, like, formerly verify it, I think you need to define new property"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 344000
+			},
+			"text": " that you want to verify that only exists in, you know, smart contract and also itorium."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 347000
+			},
+			"text": " >> There's definitely some really nice things about smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " They are bounded in terms of their execution time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 354000
+			},
+			"text": " They're generally very small, simple programs, at least compared to something you'd see"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " in a safety critical system, a car or an airplane or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " And they directly handle large quantities of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " So actually, I'm really excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366000
+			},
+			"text": " I think that I said this last year and I still strongly believe it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 370000
+			},
+			"text": " that as a space we have an opportunity to set standards for how software is developed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373000
+			},
+			"text": " even beyond blockchains and smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " Because I think the users of smart contracts and blockchains have a much stronger understanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 383000
+			},
+			"text": " and demand for this kind of technology than the users of a car or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 394000
+			},
+			"text": " >> So, ethereum virtual machine has no non-determined behaviors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 400000
+			},
+			"text": " no undefined behaviors, because that means consensus, folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 407000
+			},
+			"text": " So, well, so this possibility of different clients following different focus is a huge problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 412000
+			},
+			"text": " But it's really a blessing for us on top of the virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " because that means the specification is really always deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 424000
+			},
+			"text": " That's a huge improvement of proving anything over Intel chips or ARM chips."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 426000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 428000
+			},
+			"text": " >> Yeah, you wanna?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " >> Pretty much agree with what people said."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 432000
+			},
+			"text": " The non-determinedism makes it easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 435000
+			},
+			"text": " The bounded gas makes it kind of nice, although sometimes it's hard to reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438000
+			},
+			"text": " about exactly how much gas a contract will use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 443000
+			},
+			"text": " And basically, you know, what's making the most driving force behind this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 450000
+			},
+			"text": " is the amount of money being at stake, essentially, as opposed to just normal programs in other settings."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 459000
+			},
+			"text": " >> It may move over because it was really hard for me to understand the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 464000
+			},
+			"text": " >> Yeah, it's kind of interesting how people care a little bit more about money"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 465000
+			},
+			"text": " than their lives, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 470000
+			},
+			"text": " You have someone lose their 50,000 endowed tokens and their clamoring for formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 474000
+			},
+			"text": " But then Toyota has an issue in their ECUs that kills 20 people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 478000
+			},
+			"text": " and Toyota customers could not care less about the software in their car."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 482000
+			},
+			"text": " So, I just think that's kind of an interesting observation on humanity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 485000
+			},
+			"text": " >> It is kind of interesting, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 486000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 492000
+			},
+			"text": " So, could you maybe talk a bit about the limitations and challenges of formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 496000
+			},
+			"text": " and maybe also introduce the project that you're involved with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " and how your project kind of tries to make things easier or better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 510000
+			},
+			"text": " >> So, my background in interactive theorem proving is not user-friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517000
+			},
+			"text": " So, take a class of computer science students of 30 people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 521000
+			},
+			"text": " maybe a couple of them are willing to use interactive theorem prove us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 531000
+			},
+			"text": " maybe only one of them can finish verifying a program of like 20, 30 times in a month or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 534000
+			},
+			"text": " So, it's kind of challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 542000
+			},
+			"text": " Actually, verifying software using these interactive theorem prove us is so challenging"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 550000
+			},
+			"text": " that I don't see many successful applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 558000
+			},
+			"text": " But for the reasons described before, I believe in Ethereum, it might still make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 565000
+			},
+			"text": " >> I guess it's really hard to formally prove existing smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 570000
+			},
+			"text": " especially the complicated one, because first of all, you need to represent them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " in some mathematical model that you can easily prove some property later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 583000
+			},
+			"text": " But it's really hard to convert or transfer or interpret the program into the new language"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 588000
+			},
+			"text": " or the new model because of the compatibility issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 595000
+			},
+			"text": " And also, sometimes you cannot even explore all the possible outcomes or properties of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 603000
+			},
+			"text": " And most of the formal verification tool requires strong background"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 606000
+			},
+			"text": " and human involved, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 612000
+			},
+			"text": " And most of the project and companies do not have these people."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 624000
+			},
+			"text": " So really, we need some sort of user-friendly developer tool so that you can just run the tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 632000
+			},
+			"text": " with some existing smart contract and it will produce all the helpful output for the developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 637000
+			},
+			"text": " >> Yeah, so I work on sort of a number of projects in the correctness space."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " One of them is I'm advising this sort of heavier weight formal verification project"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 642000
+			},
+			"text": " called KVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 645000
+			},
+			"text": " I'll let Everett describe that since he's actually the lead."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 651000
+			},
+			"text": " But to speak to the broader point, I think there's like a very wide range of correctness techniques"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 655000
+			},
+			"text": " that we have here, both formal, informal and semi-formal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 659000
+			},
+			"text": " And another one of the projects I'm on, Hydra, is sort of a lighter weight approach to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 666000
+			},
+			"text": " where you abandon full formal guarantees for sort of low cost and easy startup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 672000
+			},
+			"text": " which I think is a very valuable thing to a lot of companies who aren't going to be able to, as Loi said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 675000
+			},
+			"text": " hire the right people or have the right expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 679000
+			},
+			"text": " At the end of the day, formal verification is still super expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " It's still hard to do and it still doesn't give you perfect guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 688000
+			},
+			"text": " So it's understandable why for a lot of people, especially now that the tools are not totally mature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 690000
+			},
+			"text": " the business case sort of isn't there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 696000
+			},
+			"text": " So I think we need to develop a range of techniques and ask ourselves what are really our high assurance contracts here"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 701000
+			},
+			"text": " to use our full fledged techniques and how can we get the other ones to a better level of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 704000
+			},
+			"text": " with like the lower hanging fruit techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 708000
+			},
+			"text": " Yeah, I think I agree pretty much with what Phil is saying here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 713000
+			},
+			"text": " And actually it makes me really happy that I see so many people just emphasizing the importance of testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 717000
+			},
+			"text": " and of writing specifications because just those two steps alone"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 721000
+			},
+			"text": " force you to first clarify in your head what is it I'm trying to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 725000
+			},
+			"text": " which so many people don't even do. They just sit down and start kind of plonking away at code"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 730000
+			},
+			"text": " and then second to kind of concretize that by writing some tests and then say like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " \"Is what I did actually implementing these tests?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 740000
+			},
+			"text": " So the test kind of serve as a semi-specification, if you will, or a concretization of the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " Regarding the KVM project that Phil mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 751000
+			},
+			"text": " I think it helps with the entire, you know, there's the entire range of verification that you can go through, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 755000
+			},
+			"text": " You can start at testing and you can move up to some sort of runtime verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 761000
+			},
+			"text": " or runtime model checking up to model checking, which is where you explore the whole state space of a program"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 766000
+			},
+			"text": " and then up to theorem proving where you use more advanced techniques to prove that a program is behaving correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 769000
+			},
+			"text": " and K gives you tools for all of those things actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 774000
+			},
+			"text": " So I think KVM can be a useful tool in that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 779000
+			},
+			"text": " It doesn't have quite a nice user interface unfortunately, so it suffers from that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 783000
+			},
+			"text": " but I think it can help a lot in all those areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 791000
+			},
+			"text": " Thanks. So it seems like a common theme seems to be too complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 801000
+			},
+			"text": " So how can we make tools and how can we develop approaches that are more accessible to the end user?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 812000
+			},
+			"text": " I think in the end it's not reasonable to expect the end users to use as to be the logical formula,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 818000
+			},
+			"text": " but maybe K configurations are more accessible, but it's hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 828000
+			},
+			"text": " So at the end what we want is a tool that can synthesize an adversary based on the unproven goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 835000
+			},
+			"text": " Well, this scenario can happen and it can play it on web browser, maybe not an animation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 840000
+			},
+			"text": " but it should look like somebody attacking you, your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 847000
+			},
+			"text": " That would make the program much more easier to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " So I guess usability is always a hard problem, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 860000
+			},
+			"text": " And that's also one of the motivations that we built on the smart contract analyzer based on simple execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 864000
+			},
+			"text": " So the idea here is that users do not need to understand how ONTech works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 871000
+			},
+			"text": " they only need to place the smart contract into ONT or into the web browser and the click analyzer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 878000
+			},
+			"text": " and we can just show all the possible vulnerabilities that ONTech can figure out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 883000
+			},
+			"text": " I personally think demand sort of breeds progress in this direction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 886000
+			},
+			"text": " and we're sitting in a room of some extremely smart and talented people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 890000
+			},
+			"text": " and we've seen some projects that really push the envelope in a number of spaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 894000
+			},
+			"text": " And while the tools are hard to use and there certainly could be improvements made there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 898000
+			},
+			"text": " nothing here is sort of magic or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 903000
+			},
+			"text": " So I think sufficiently motivated developers who are incentivized by the market to develop these tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 906000
+			},
+			"text": " is really what we need to push the envelope here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 909000
+			},
+			"text": " Another thing that I think is really helpful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " and I'd like to especially congratulate Melonport for taking this approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 919000
+			},
+			"text": " is to take these things out of academia and into industry and use them on real contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 923000
+			},
+			"text": " with real developers who are working on the ground in solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 926000
+			},
+			"text": " I think just that step could do a lot for usability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 931000
+			},
+			"text": " and academics are not really the greatest at writing super usable systems sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 936000
+			},
+			"text": " So more broad participation would definitely help."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 942000
+			},
+			"text": " Yeah, thirding that, just a second, but yeah, definitely the approach that Melonport"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 946000
+			},
+			"text": " is taking seems to be the correct one, just make the tools usable"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 951000
+			},
+			"text": " and make them have, check for some specific properties automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 955000
+			},
+			"text": " Certainly all the verification tools can be instantiated to do those sorts of things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 958000
+			},
+			"text": " but it takes effort and takes developer time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 961000
+			},
+			"text": " it takes people who know the tools to do that instantiation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 963000
+			},
+			"text": " and that's not going to happen overnight."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 967000
+			},
+			"text": " So these lighter weight methods like Phil's Hydra stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 971000
+			},
+			"text": " that's really going to be the stop gap until we can have better tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 974000
+			},
+			"text": " for all these high assurance tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 977000
+			},
+			"text": " Thanks very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 983000
+			},
+			"text": " So the last question from me and then opening it up to the audience"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 986000
+			},
+			"text": " is essentially a shout out from you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 993000
+			},
+			"text": " So what would you like to see from different ecosystem players,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 999000
+			},
+			"text": " from the users, the developers, the investors, the project leads and the researchers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " to make formal verification mainstream?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1012000
+			},
+			"text": " In the current ecosystem, I think it's still the users' responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1021000
+			},
+			"text": " to make sure that they understand the contract they are interacting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1028000
+			},
+			"text": " Some people are proposing markets for audits and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1031000
+			},
+			"text": " and it is not working yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1036000
+			},
+			"text": " So actually, I have to repeat the marketing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1040000
+			},
+			"text": " It's hard to say this, but you have to read the bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1049000
+			},
+			"text": " learn the EVM in order to make sure that you are interacting with a reasonable thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1054000
+			},
+			"text": " It's hard to say this, but it's something like that currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1059000
+			},
+			"text": " Yes, something like audit market with the reputation system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1064000
+			},
+			"text": " or something like that to really gradually improve the situation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1073000
+			},
+			"text": " but now due diligence is required for all parties, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1075000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1078000
+			},
+			"text": " So I see there as sort of being two pushes that need to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1080000
+			},
+			"text": " One of them is bottom up."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1084000
+			},
+			"text": " They need to really start demanding that if there are techniques available"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1086000
+			},
+			"text": " to ensure the correctness of their contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1090000
+			},
+			"text": " they're either used or a good justification is provided for why they're not used."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1092000
+			},
+			"text": " We certainly have a few tools right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1096000
+			},
+			"text": " We've seen presentations today about quite a few of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1100000
+			},
+			"text": " So users really need to start being more selective about where they put their money."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1104000
+			},
+			"text": " And while, sure, it's tempting to sort of buy into every single ICO"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1108000
+			},
+			"text": " and flip it for 2X or whatever, that's not the kind of space"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1113000
+			},
+			"text": " that sort of incentivizes and fosters rigorous, proper software development."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1116000
+			},
+			"text": " And so I think users and investors need to become more selective"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1119000
+			},
+			"text": " and developers need to sort of enable them to do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1124000
+			},
+			"text": " by really going through the processes in a way that's serious"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " and in a way that they put in a concerted effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1130000
+			},
+			"text": " to get the maximum assurance out of their contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1131000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1134000
+			},
+			"text": " Yeah, kind of echoing what UHU said a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1137000
+			},
+			"text": " You know, no amount of money as a substitute for just understanding, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " So at some point you just have to read and understand the bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1144000
+			},
+			"text": " and understand how EVM works and understand hustle-id decompiles to EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1147000
+			},
+			"text": " or whatever tool it is, whatever high-level programming language you're using,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1152000
+			},
+			"text": " how it compiles to EVM and what the implications for security are in that setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " And, you know, the people doing security audits, they understand this really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1159000
+			},
+			"text": " and they, like they were saying earlier, you know, they just read the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1161000
+			},
+			"text": " and read it again and read it again and read it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1164000
+			},
+			"text": " You know, there's no substitute for just putting time and effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1167000
+			},
+			"text": " into, you know, high-assurance software."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1176000
+			},
+			"text": " Well, I guess, you know, in order to make formal verification popular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1179000
+			},
+			"text": " I think we need to adopt this first, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1183000
+			},
+			"text": " So, I mean, I hope that we can have some sort of, like, ERC"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1188000
+			},
+			"text": " that allows, you know, people to put, you know, maybe oriented type,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1193000
+			},
+			"text": " or, you know, K EVM type into every single smart contract that has been, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1198000
+			},
+			"text": " deployed in the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1201000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1205000
+			},
+			"text": " Anyone from the audience would like to ask some questions, yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1215000
+			},
+			"text": " Maybe it's better if people with questions should come to the front."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1220000
+			},
+			"text": " That's probably a good idea for the next person."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1225000
+			},
+			"text": " So, from an Irish standpoint, how would you like to see people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1229000
+			},
+			"text": " who provide smart contract audits either contributing to your projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1231000
+			},
+			"text": " or using your projects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:37,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1237000
+			},
+			"text": " I assume it's sort of maybe one or the other, but maybe there's both for us right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1237000,
+				"to": 1239000
+			},
+			"text": " Does that make sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1240000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1245000
+			},
+			"text": " I do do some smart contract audits, and I would say ideally the role of these kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1250000
+			},
+			"text": " of tools in the long run would be to sort of put most of that business right now out of business"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:53,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1253000
+			},
+			"text": " to an extent, like at least that's my personal goal with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1253000,
+				"to": 1257000
+			},
+			"text": " In all my audits, I always make recommendations to the team about which tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1260000
+			},
+			"text": " are state of the art and what they should be running on their contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1264000
+			},
+			"text": " Certainly, auditors can run these tools on the contracts as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:08,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1268000
+			},
+			"text": " but at the end of the day, my personal opinion is that it's the responsibility of the team"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1268000,
+				"to": 1272000
+			},
+			"text": " and the team to seek help when they're not able to do something like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1279000
+			},
+			"text": " especially because most teams would not be willing to pay the hourly for an auditor"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1283000
+			},
+			"text": " to run, secure on their code or whatever when they could do the same thing themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1287000
+			},
+			"text": " So, I think the role of auditors to answer your question is to sort of inform the team"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1291000
+			},
+			"text": " about what's available and what they think could be useful for the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1296000
+			},
+			"text": " and then it's absolutely the team's responsibility to follow up on that and put the time in."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1299000
+			},
+			"text": " Often, I think the hardest part is just the spin up time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1302000
+			},
+			"text": " So, you have some new tool that you're trying to bring into your tool chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1305000
+			},
+			"text": " and then, you know, maybe takes a week or something to get it fully integrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1309000
+			},
+			"text": " and get it to be seamless, but once you have that spin up time taken care of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1312000
+			},
+			"text": " then you can kind of begin to make incremental progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1316000
+			},
+			"text": " So, what I would like to see is people taking the case semantics and making extensions of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1319000
+			},
+			"text": " so we have already several extensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1325000
+			},
+			"text": " One is a small gas analysis tool that's not very featureful or very complete or sound."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1329000
+			},
+			"text": " It just kind of gives a rough estimate, but it would be nice to kind of tighten the screws on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1335000
+			},
+			"text": " And then there's another tool called EVM Prime, which is just a small extension of the EVM semantics"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1339000
+			},
+			"text": " to a higher level language, and if people wanted to hack on that, that would be really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1344000
+			},
+			"text": " I'm answering specifically for KVM because that's, you know, the project I'm working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1348000
+			},
+			"text": " But there's all sorts of other analysis tools you can write directly in K itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1352000
+			},
+			"text": " as an extension of language, and the hard part is the spin up time on K, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1356000
+			},
+			"text": " but, you know, there's no avoiding that with a project like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1360000
+			},
+			"text": " Yeah, just to butt in, just for one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1365000
+			},
+			"text": " It would be really nice also if these auditors and these teams sort of complained a lot more about the tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1368000
+			},
+			"text": " One more, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1375000
+			},
+			"text": " Yeah, so for most of the research focused around either Tok or Krause,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1380000
+			},
+			"text": " which are relatively smaller size, and also it's quite similar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1390000
+			},
+			"text": " but as more companies start delivering the product, which they promise to do based on the funding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1394000
+			},
+			"text": " the size is going to be a lot bigger, and the product will be quite diverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1402000
+			},
+			"text": " What would be the challenge when it comes to verifying these actual product rather than talking on the ground cells?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1403000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1406000
+			},
+			"text": " Please, quick answer because we need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1414000
+			},
+			"text": " Sorry, the question was what are the challenges for these teams that are using these tools mostly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1416000
+			},
+			"text": " No, like when you start verifying all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1419000
+			},
+			"text": " It's better without the mic, actually, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1423000
+			},
+			"text": " When it comes to verifying just tool control or crowd cells,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1426000
+			},
+			"text": " there's a most of research that that's six more."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1434000
+			},
+			"text": " But now, once people start producing more of their product, they're bigger and they're not alike, so I just want to be able to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1436000
+			},
+			"text": " Yeah, yeah, so yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1441000
+			},
+			"text": " So the question was about, like, most of the verification right now is tokens or crowd cells,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1446000
+			},
+			"text": " because that's sort of what everyone's doing, and it's all the same, but what about when we get more complicated contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1452000
+			},
+			"text": " I personally think people are always going to sort of push the envelope and do things that are more complicated than we actually can verify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1455000
+			},
+			"text": " and I think that's really cool to sort of feed back in."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1459000
+			},
+			"text": " But the more complicated, the more experimental your contract is, the more time you're going to have to take,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1463000
+			},
+			"text": " and the more you're going to have to consult experts who really know how to write, like, new specifications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1467000
+			},
+			"text": " and not just reuse those same old building blocks in the old ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1476000
+			},
+			"text": " I think auditing or finding bugs in the contract is a bad game to play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1482000
+			},
+			"text": " because you have to beat the best attackers in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1495000
+			},
+			"text": " So going forward, if you try more and more complicated stuff, you will need a much stronger useable tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1499000
+			},
+			"text": " Otherwise, so I mean, the game is not fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:09,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1509000
+			},
+			"text": " You have to find all the holes, and a very good attacker should find only one hole critical vulnerability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1509000,
+				"to": 1513000
+			},
+			"text": " so it's a very, very skewed game."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1519000
+			},
+			"text": " So maybe a good tooling, or maybe a good game like Hydra is necessary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1525000
+			},
+			"text": " but I think we are kind of ready to take the challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1528000
+			},
+			"text": " Great, thanks very much. That concludes the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1536000
+			},
+			"text": " I'd like to thank all the panelists. It's a huge honor to share the stage with some of the best researchers in the field."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1537000
+			},
+			"text": " Thanks very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:42,000"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1542000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,000",
+				"to": "00:25:48,000"
+			},
+			"offsets": {
+				"from": 1542000,
+				"to": 1548000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,000",
+				"to": "00:25:50,240"
+			},
+			"offsets": {
+				"from": 1548000,
+				"to": 1550240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

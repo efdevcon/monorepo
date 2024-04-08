@@ -1,0 +1,4190 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,440"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18440
+			},
+			"text": " >> Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,440",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18440,
+				"to": 20000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:21,440"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 21440
+			},
+			"text": " My name is Christopher."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,440",
+				"to": "00:00:22,760"
+			},
+			"offsets": {
+				"from": 21440,
+				"to": 22760
+			},
+			"text": " That's my colleague, Bant."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,760",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 22760,
+				"to": 26440
+			},
+			"text": " We're from BrainBot, and we're here to present the Trust Lines Network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:32,360"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 32360
+			},
+			"text": " which is an open protocol for decentralized IOU-based currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,360",
+				"to": "00:00:34,720"
+			},
+			"offsets": {
+				"from": 32360,
+				"to": 34720
+			},
+			"text": " So we broke the presentation up in two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,720",
+				"to": "00:00:39,120"
+			},
+			"offsets": {
+				"from": 34720,
+				"to": 39120
+			},
+			"text": " I will start by presenting the basic idea and the problem we're trying to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,120",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 39120,
+				"to": 43360
+			},
+			"text": " And then Bant is going to take over, and he's going to present the technical implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:46,080"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 46080
+			},
+			"text": " give you an overview of the system and explain how things work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,080",
+				"to": "00:00:48,440"
+			},
+			"offsets": {
+				"from": 46080,
+				"to": 48440
+			},
+			"text": " and where we currently are with the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,440",
+				"to": "00:00:54,880"
+			},
+			"offsets": {
+				"from": 48440,
+				"to": 54880
+			},
+			"text": " So to start off with, let's think about something for cryptocurrencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,880",
+				"to": "00:01:00,600"
+			},
+			"offsets": {
+				"from": 54880,
+				"to": 60600
+			},
+			"text": " which is truly unique concept, which is this idea of permissionless decentralized payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,600",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 60600,
+				"to": 64600
+			},
+			"text": " everyday payments, everyday purchases for all of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 70000
+			},
+			"text": " This is unique because it enables us to pay payments without the use of a bank account"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73200
+			},
+			"text": " or any kind of financial intermediaries to do a payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:15,120"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 75120
+			},
+			"text": " This is something which, at least on a global scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,120",
+				"to": "00:01:18,320"
+			},
+			"offsets": {
+				"from": 75120,
+				"to": 78320
+			},
+			"text": " we haven't actually seen before."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,320",
+				"to": "00:01:22,680"
+			},
+			"offsets": {
+				"from": 78320,
+				"to": 82680
+			},
+			"text": " There are some problems with it, which doesn't actually work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,680",
+				"to": "00:01:25,560"
+			},
+			"offsets": {
+				"from": 82680,
+				"to": 85560
+			},
+			"text": " And there's two really good reasons for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,560",
+				"to": "00:01:29,080"
+			},
+			"offsets": {
+				"from": 85560,
+				"to": 89080
+			},
+			"text": " First of all, the issuance of these currencies is flawed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,080",
+				"to": "00:01:34,840"
+			},
+			"offsets": {
+				"from": 89080,
+				"to": 94840
+			},
+			"text": " because ideally we're supposed to be able to turn on a computer and run the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,840",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 94840,
+				"to": 98520
+			},
+			"text": " And if we do that, we're rewarded with cryptocurrency for validating a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:42,840"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 102840
+			},
+			"text": " We get some money, and then we can go spend that at a grocery store for tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,840",
+				"to": "00:01:44,560"
+			},
+			"offsets": {
+				"from": 102840,
+				"to": 104560
+			},
+			"text": " But of course, that doesn't actually work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,560",
+				"to": "00:01:47,160"
+			},
+			"offsets": {
+				"from": 104560,
+				"to": 107160
+			},
+			"text": " because mining is a specialist industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,160",
+				"to": "00:01:50,400"
+			},
+			"offsets": {
+				"from": 107160,
+				"to": 110400
+			},
+			"text": " It requires special hardware, and most people will never validate a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,400",
+				"to": "00:01:53,200"
+			},
+			"offsets": {
+				"from": 110400,
+				"to": 113200
+			},
+			"text": " with their regular MacBook or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,200",
+				"to": "00:01:55,680"
+			},
+			"offsets": {
+				"from": 113200,
+				"to": 115680
+			},
+			"text": " So where does the rest of us get cryptocurrencies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,680",
+				"to": "00:02:00,040"
+			},
+			"offsets": {
+				"from": 115680,
+				"to": 120040
+			},
+			"text": " Well, we buy them on exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,040",
+				"to": "00:02:02,080"
+			},
+			"offsets": {
+				"from": 120040,
+				"to": 122080
+			},
+			"text": " And that's kind of a problem, because these exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,080",
+				"to": "00:02:05,560"
+			},
+			"offsets": {
+				"from": 122080,
+				"to": 125560
+			},
+			"text": " well, they give cryptocurrencies for payments of really poor usability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,560",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125560,
+				"to": 128000
+			},
+			"text": " is that we buy them with fee at first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:10,840"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 130840
+			},
+			"text": " and then we exchange them to use something that we want to use for payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,840",
+				"to": "00:02:13,160"
+			},
+			"offsets": {
+				"from": 130840,
+				"to": 133160
+			},
+			"text": " It's kind of a clumsy user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,160",
+				"to": "00:02:15,960"
+			},
+			"offsets": {
+				"from": 133160,
+				"to": 135960
+			},
+			"text": " It's not really good for payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,960",
+				"to": "00:02:17,680"
+			},
+			"offsets": {
+				"from": 135960,
+				"to": 137680
+			},
+			"text": " So if we were to rethink this and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,680",
+				"to": "00:02:22,800"
+			},
+			"offsets": {
+				"from": 137680,
+				"to": 142800
+			},
+			"text": " \"Let's try to create a cryptocurrency that's really good for payments,\" ideal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,800",
+				"to": "00:02:25,560"
+			},
+			"offsets": {
+				"from": 142800,
+				"to": 145560
+			},
+			"text": " I would present three arguments that it should definitely have."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,560",
+				"to": "00:02:27,240"
+			},
+			"offsets": {
+				"from": 145560,
+				"to": 147240
+			},
+			"text": " It should incentivize being spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,240",
+				"to": "00:02:30,160"
+			},
+			"offsets": {
+				"from": 147240,
+				"to": 150160
+			},
+			"text": " So when I have it, I should want to go spend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,160",
+				"to": "00:02:34,080"
+			},
+			"offsets": {
+				"from": 150160,
+				"to": 154080
+			},
+			"text": " It should not need to be bought with fear and exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,080",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 154080,
+				"to": 156720
+			},
+			"text": " And it should still be interoperable with the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:40,120"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 160120
+			},
+			"text": " with the cryptocurrency ecosystem, because, well, that's what we want, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,120",
+				"to": "00:02:42,360"
+			},
+			"offsets": {
+				"from": 160120,
+				"to": 162360
+			},
+			"text": " We want to be able to use it with our favorite dabs or protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,360",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162360,
+				"to": 167000
+			},
+			"text": " We want to use it to buy ERC-20 tokens, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,320"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170320
+			},
+			"text": " One of the ways we could do this is if we took money, as I/O used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,320",
+				"to": "00:02:52,280"
+			},
+			"offsets": {
+				"from": 170320,
+				"to": 172280
+			},
+			"text": " and implemented it on social networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,280",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 172280,
+				"to": 175440
+			},
+			"text": " and we issued it in these individual trust relationships."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:02:57,800"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 177800
+			},
+			"text": " We used these trust relationships to make payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,800",
+				"to": "00:03:00,240"
+			},
+			"offsets": {
+				"from": 177800,
+				"to": 180240
+			},
+			"text": " We had this global payment network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,240",
+				"to": "00:03:03,240"
+			},
+			"offsets": {
+				"from": 180240,
+				"to": 183240
+			},
+			"text": " which is the original Ripple idea from 2004 by Ryan Fueger."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,240",
+				"to": "00:03:06,600"
+			},
+			"offsets": {
+				"from": 183240,
+				"to": 186600
+			},
+			"text": " Not what Ripple is doing nowadays, but the original one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,600",
+				"to": "00:03:10,560"
+			},
+			"offsets": {
+				"from": 186600,
+				"to": 190560
+			},
+			"text": " And it's basically these individual trust relationships,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,560",
+				"to": "00:03:13,320"
+			},
+			"offsets": {
+				"from": 190560,
+				"to": 193320
+			},
+			"text": " which are people who know and trust each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,320",
+				"to": "00:03:14,760"
+			},
+			"offsets": {
+				"from": 193320,
+				"to": 194760
+			},
+			"text": " and they issue to other credit lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,760",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 194760,
+				"to": 197200
+			},
+			"text": " and this works pretty much how it works in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:20,240"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 200240
+			},
+			"text": " For example, if you go out to a bar and you forgot your credit card,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,240",
+				"to": "00:03:23,040"
+			},
+			"offsets": {
+				"from": 200240,
+				"to": 203040
+			},
+			"text": " most likely one of your friends would borrow you $10,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,040",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 203040,
+				"to": 205520
+			},
+			"text": " or let you pay for you for the rest of the night,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:28,120"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 208120
+			},
+			"text": " so that you could drink beers with him."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,120",
+				"to": "00:03:32,240"
+			},
+			"offsets": {
+				"from": 208120,
+				"to": 212240
+			},
+			"text": " You could settle at a later point, or maybe next week you pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,240",
+				"to": "00:03:34,480"
+			},
+			"offsets": {
+				"from": 212240,
+				"to": 214480
+			},
+			"text": " So if people have these relationships already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,480",
+				"to": "00:03:35,800"
+			},
+			"offsets": {
+				"from": 214480,
+				"to": 215800
+			},
+			"text": " they have these credit lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,800",
+				"to": "00:03:39,920"
+			},
+			"offsets": {
+				"from": 215800,
+				"to": 219920
+			},
+			"text": " what we could do is when people issue those bilaterally between two trusting friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,920",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 219920,
+				"to": 221880
+			},
+			"text": " they have them what we call a trust line."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:45,160"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 225160
+			},
+			"text": " And this trust line consists of two different credit lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,160",
+				"to": "00:03:48,560"
+			},
+			"offsets": {
+				"from": 225160,
+				"to": 228560
+			},
+			"text": " and a credit limit, and a balance, which indicates money was spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 230480
+			},
+			"text": " So let's suppose Alice and Bob are good friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:52,800"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 232800
+			},
+			"text": " and Alice wants to pay Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,800",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232800,
+				"to": 235000
+			},
+			"text": " She spends five of her $10 credit line"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:57,600"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 237600
+			},
+			"text": " creating an imbalance between Alice and Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,600",
+				"to": "00:04:02,560"
+			},
+			"offsets": {
+				"from": 237600,
+				"to": 242560
+			},
+			"text": " And this IOU, that Alice issues Bob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,560",
+				"to": "00:04:04,200"
+			},
+			"offsets": {
+				"from": 242560,
+				"to": 244200
+			},
+			"text": " is then money which was created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,200",
+				"to": "00:04:07,280"
+			},
+			"offsets": {
+				"from": 244200,
+				"to": 247280
+			},
+			"text": " because we have something of value which was exchanged for this IOU."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,280",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 247280,
+				"to": 250080
+			},
+			"text": " This is good for Bob, because Bob knows and trusts Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:15,360"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 255360
+			},
+			"text": " and has given her this credit line allowing her to spend up to the specified credit limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,360",
+				"to": "00:04:18,720"
+			},
+			"offsets": {
+				"from": 255360,
+				"to": 258720
+			},
+			"text": " It's totally pointless to use money for this, or cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,720",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 258720,
+				"to": 260560
+			},
+			"text": " We don't need that at all actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:22,480"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 262480
+			},
+			"text": " because people do this all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,480",
+				"to": "00:04:24,120"
+			},
+			"offsets": {
+				"from": 262480,
+				"to": 264120
+			},
+			"text": " and as I explained people do this at bars,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,120",
+				"to": "00:04:25,920"
+			},
+			"offsets": {
+				"from": 264120,
+				"to": 265920
+			},
+			"text": " they don't need cryptocurrency or any kind of money for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,920",
+				"to": "00:04:28,280"
+			},
+			"offsets": {
+				"from": 265920,
+				"to": 268280
+			},
+			"text": " This is just basically how friends work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,280",
+				"to": "00:04:30,840"
+			},
+			"offsets": {
+				"from": 268280,
+				"to": 270840
+			},
+			"text": " What we need money for is when we have trust problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,840",
+				"to": "00:04:32,480"
+			},
+			"offsets": {
+				"from": 270840,
+				"to": 272480
+			},
+			"text": " So if Alice wants to pay Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,480",
+				"to": "00:04:35,480"
+			},
+			"offsets": {
+				"from": 272480,
+				"to": 275480
+			},
+			"text": " she has this issue that Charlie does not care about her IOU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,480",
+				"to": "00:04:37,920"
+			},
+			"offsets": {
+				"from": 275480,
+				"to": 277920
+			},
+			"text": " because Charlie doesn't know or trust him."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,920",
+				"to": "00:04:40,480"
+			},
+			"offsets": {
+				"from": 277920,
+				"to": 280480
+			},
+			"text": " So she's not going to accept that IOU."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,480",
+				"to": "00:04:43,040"
+			},
+			"offsets": {
+				"from": 280480,
+				"to": 283040
+			},
+			"text": " And then if we go back to this payment network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,040",
+				"to": "00:04:45,200"
+			},
+			"offsets": {
+				"from": 283040,
+				"to": 285200
+			},
+			"text": " what we could do is we could, or Alice could,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,200",
+				"to": "00:04:48,720"
+			},
+			"offsets": {
+				"from": 285200,
+				"to": 288720
+			},
+			"text": " discover a path of connecting trust lines that would allow her"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,720",
+				"to": "00:04:53,960"
+			},
+			"offsets": {
+				"from": 288720,
+				"to": 293960
+			},
+			"text": " to back the IOU with something or someone that Charlie would trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,960",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293960,
+				"to": 298000
+			},
+			"text": " So we see there is a path of connecting trust lines between Alice and Charlie."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 299960
+			},
+			"text": " And if Alice then wants to pay Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:03,880"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 303880
+			},
+			"text": " what Alice does is she spends five of her $10 credit line with Bob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,880",
+				"to": "00:05:07,760"
+			},
+			"offsets": {
+				"from": 303880,
+				"to": 307760
+			},
+			"text": " and then Bob spends five of his $10 credit line with Charlie."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,760",
+				"to": "00:05:10,200"
+			},
+			"offsets": {
+				"from": 307760,
+				"to": 310200
+			},
+			"text": " So this solves two problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,200",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 310200,
+				"to": 314440
+			},
+			"text": " First of all, it allows Charlie to receive a payment from someone that he can trust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:17,760"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 317760
+			},
+			"text": " because he's dependent on the solvency of Bob and not of Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,760",
+				"to": "00:05:19,240"
+			},
+			"offsets": {
+				"from": 317760,
+				"to": 319240
+			},
+			"text": " So that's good for him."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,240",
+				"to": "00:05:21,280"
+			},
+			"offsets": {
+				"from": 319240,
+				"to": 321280
+			},
+			"text": " It also allows Alice to pay a stranger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,280",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 321280,
+				"to": 326000
+			},
+			"text": " because she can now send a payment to anyone so long as it is backed by someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:27,760"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 327760
+			},
+			"text": " who trusts that person."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,760",
+				"to": "00:05:31,520"
+			},
+			"offsets": {
+				"from": 327760,
+				"to": 331520
+			},
+			"text": " Of course, this only really works if Bob is actually willing to do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,520",
+				"to": "00:05:32,920"
+			},
+			"offsets": {
+				"from": 331520,
+				"to": 332920
+			},
+			"text": " but for Bob this is not really a problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,920",
+				"to": "00:05:34,800"
+			},
+			"offsets": {
+				"from": 332920,
+				"to": 334800
+			},
+			"text": " because his net balance remains unchanged."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,800",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 334800,
+				"to": 337520
+			},
+			"text": " So he still has $20 so he can spend."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:39,640"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 339640
+			},
+			"text": " I mean, he has $15 in one trust line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,640",
+				"to": "00:05:42,040"
+			},
+			"offsets": {
+				"from": 339640,
+				"to": 342040
+			},
+			"text": " five plus $10 credit line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,040",
+				"to": "00:05:45,480"
+			},
+			"offsets": {
+				"from": 342040,
+				"to": 345480
+			},
+			"text": " and he has five remaining in the other trust line."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,480",
+				"to": "00:05:47,560"
+			},
+			"offsets": {
+				"from": 345480,
+				"to": 347560
+			},
+			"text": " There's a little bit of a thing missing there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,560",
+				"to": "00:05:50,680"
+			},
+			"offsets": {
+				"from": 347560,
+				"to": 350680
+			},
+			"text": " which is of course at some point in time Bob might,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,680",
+				"to": "00:05:52,160"
+			},
+			"offsets": {
+				"from": 350680,
+				"to": 352160
+			},
+			"text": " his trust line might run out."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,160",
+				"to": "00:05:55,200"
+			},
+			"offsets": {
+				"from": 352160,
+				"to": 355200
+			},
+			"text": " It might not be a capacity left in the trust line."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,200",
+				"to": "00:05:57,120"
+			},
+			"offsets": {
+				"from": 355200,
+				"to": 357120
+			},
+			"text": " And that leaves him with two options."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,120",
+				"to": "00:05:59,400"
+			},
+			"offsets": {
+				"from": 357120,
+				"to": 359400
+			},
+			"text": " Either he has to settle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,400",
+				"to": "00:06:03,120"
+			},
+			"offsets": {
+				"from": 359400,
+				"to": 363120
+			},
+			"text": " or he has to ask Charlie to increase the capacity of the trust line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,120",
+				"to": "00:06:06,120"
+			},
+			"offsets": {
+				"from": 363120,
+				"to": 366120
+			},
+			"text": " giving him a larger credit line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,120",
+				"to": "00:06:08,720"
+			},
+			"offsets": {
+				"from": 366120,
+				"to": 368720
+			},
+			"text": " Neither option is really that nice, it's kind of awkward."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,720",
+				"to": "00:06:11,360"
+			},
+			"offsets": {
+				"from": 368720,
+				"to": 371360
+			},
+			"text": " But this is a quite powerful feature of the idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,360",
+				"to": "00:06:13,480"
+			},
+			"offsets": {
+				"from": 371360,
+				"to": 373480
+			},
+			"text": " is that we can mostly avoid settling."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,480",
+				"to": "00:06:16,480"
+			},
+			"offsets": {
+				"from": 373480,
+				"to": 376480
+			},
+			"text": " So when we have many users on the same network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,480",
+				"to": "00:06:18,760"
+			},
+			"offsets": {
+				"from": 376480,
+				"to": 378760
+			},
+			"text": " we have money which flows in many directions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,760",
+				"to": "00:06:21,480"
+			},
+			"offsets": {
+				"from": 378760,
+				"to": 381480
+			},
+			"text": " Sometimes you're getting paid, sometimes you are paying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,480",
+				"to": "00:06:24,680"
+			},
+			"offsets": {
+				"from": 381480,
+				"to": 384680
+			},
+			"text": " sometimes you're forwarding payments in different directions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,680",
+				"to": "00:06:28,440"
+			},
+			"offsets": {
+				"from": 384680,
+				"to": 388440
+			},
+			"text": " And this social approach to money helps money circulate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,440",
+				"to": "00:06:30,720"
+			},
+			"offsets": {
+				"from": 388440,
+				"to": 390720
+			},
+			"text": " meaning that that cancels out over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,720",
+				"to": "00:06:34,440"
+			},
+			"offsets": {
+				"from": 390720,
+				"to": 394440
+			},
+			"text": " And so for most scenarios, real world settlements are unnecessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,440",
+				"to": "00:06:36,680"
+			},
+			"offsets": {
+				"from": 394440,
+				"to": 396680
+			},
+			"text": " And as you can see here, what I've tried to do is illustrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,680",
+				"to": "00:06:39,880"
+			},
+			"offsets": {
+				"from": 396680,
+				"to": 399880
+			},
+			"text": " how they've making a payment to Bob cancels out the debt"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,880",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 399880,
+				"to": 401640
+			},
+			"text": " that Alice had with Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:44,640"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 404640
+			},
+			"text": " or that Bob had with Charlie from Alice's payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,640",
+				"to": "00:06:47,080"
+			},
+			"offsets": {
+				"from": 404640,
+				"to": 407080
+			},
+			"text": " So that's basically the basic idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,080",
+				"to": "00:06:52,200"
+			},
+			"offsets": {
+				"from": 407080,
+				"to": 412200
+			},
+			"text": " that's how money implemented on the social graph could work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,200",
+				"to": "00:06:55,280"
+			},
+			"offsets": {
+				"from": 412200,
+				"to": 415280
+			},
+			"text": " Now the next question would be how we access such a system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,280",
+				"to": "00:07:00,280"
+			},
+			"offsets": {
+				"from": 415280,
+				"to": 420280
+			},
+			"text": " And the way that we would do that is by having an accessibility system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,280",
+				"to": "00:07:02,880"
+			},
+			"offsets": {
+				"from": 420280,
+				"to": 422880
+			},
+			"text": " which still appears to buying money on an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,880",
+				"to": "00:07:04,920"
+			},
+			"offsets": {
+				"from": 422880,
+				"to": 424920
+			},
+			"text": " So you simply just download the app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,920",
+				"to": "00:07:07,360"
+			},
+			"offsets": {
+				"from": 424920,
+				"to": 427360
+			},
+			"text": " you join by creating a trust line with a friend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,360",
+				"to": "00:07:09,320"
+			},
+			"offsets": {
+				"from": 427360,
+				"to": 429320
+			},
+			"text": " and then you can start sending and receiving payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,320",
+				"to": "00:07:10,560"
+			},
+			"offsets": {
+				"from": 429320,
+				"to": 430560
+			},
+			"text": " That's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,560",
+				"to": "00:07:12,720"
+			},
+			"offsets": {
+				"from": 430560,
+				"to": 432720
+			},
+			"text": " So compared to first joining an exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,720",
+				"to": "00:07:16,440"
+			},
+			"offsets": {
+				"from": 432720,
+				"to": 436440
+			},
+			"text": " wiring money, this is a little bit faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,440",
+				"to": "00:07:18,400"
+			},
+			"offsets": {
+				"from": 436440,
+				"to": 438400
+			},
+			"text": " The money that we could use to pay each other with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,400",
+				"to": "00:07:20,320"
+			},
+			"offsets": {
+				"from": 438400,
+				"to": 440320
+			},
+			"text": " is issued on smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,320",
+				"to": "00:07:21,760"
+			},
+			"offsets": {
+				"from": 440320,
+				"to": 441760
+			},
+			"text": " this we call them currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,760",
+				"to": "00:07:23,600"
+			},
+			"offsets": {
+				"from": 441760,
+				"to": 443600
+			},
+			"text": " These currency networks are highly customizable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,600",
+				"to": "00:07:25,680"
+			},
+			"offsets": {
+				"from": 443600,
+				"to": 445680
+			},
+			"text": " they can be nominated into virtually anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,680",
+				"to": "00:07:27,840"
+			},
+			"offsets": {
+				"from": 445680,
+				"to": 447840
+			},
+			"text": " that people find valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,840",
+				"to": "00:07:31,640"
+			},
+			"offsets": {
+				"from": 447840,
+				"to": 451640
+			},
+			"text": " Beers, Bitcoin, gold, and chiladas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,640",
+				"to": "00:07:34,200"
+			},
+			"offsets": {
+				"from": 451640,
+				"to": 454200
+			},
+			"text": " whatever it is people like, they can trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,200",
+				"to": "00:07:36,040"
+			},
+			"offsets": {
+				"from": 454200,
+				"to": 456040
+			},
+			"text": " And to reflect the denomination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,040",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 456040,
+				"to": 458040
+			},
+			"text": " they can also use these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:39,400"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 459400
+			},
+			"text": " they can customize the currency networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,400",
+				"to": "00:07:40,920"
+			},
+			"offsets": {
+				"from": 459400,
+				"to": 460920
+			},
+			"text": " such that it reflects the denomination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,920",
+				"to": "00:07:43,680"
+			},
+			"offsets": {
+				"from": 460920,
+				"to": 463680
+			},
+			"text": " they can have user groups be open or closed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,680",
+				"to": "00:07:46,840"
+			},
+			"offsets": {
+				"from": 463680,
+				"to": 466840
+			},
+			"text": " So for example, the Euro token network might be more open"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,840",
+				"to": "00:07:50,040"
+			},
+			"offsets": {
+				"from": 466840,
+				"to": 470040
+			},
+			"text": " than a local economy who wishes to control exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,040",
+				"to": "00:07:52,400"
+			},
+			"offsets": {
+				"from": 470040,
+				"to": 472400
+			},
+			"text": " who can issue different trust lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,400",
+				"to": "00:07:55,040"
+			},
+			"offsets": {
+				"from": 472400,
+				"to": 475040
+			},
+			"text": " So they might have a permissioned approach to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,040",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 475040,
+				"to": 476800
+			},
+			"text": " We can also customize rules on interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:07:58,960"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 478960
+			},
+			"text": " and the specific value of credit lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,080",
+				"to": "00:08:01,600"
+			},
+			"offsets": {
+				"from": 480080,
+				"to": 481600
+			},
+			"text": " Now the final piece of the puzzle is of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,600",
+				"to": "00:08:04,720"
+			},
+			"offsets": {
+				"from": 481600,
+				"to": 484720
+			},
+			"text": " how can we buy ERC 20 tokens or F?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,720",
+				"to": "00:08:06,160"
+			},
+			"offsets": {
+				"from": 484720,
+				"to": 486160
+			},
+			"text": " And we can use this because every,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,160",
+				"to": "00:08:09,040"
+			},
+			"offsets": {
+				"from": 486160,
+				"to": 489040
+			},
+			"text": " the mobile payment app also comes with a wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,040",
+				"to": "00:08:11,920"
+			},
+			"offsets": {
+				"from": 489040,
+				"to": 491920
+			},
+			"text": " which can hold Ethereum or ERC 20 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,920",
+				"to": "00:08:14,120"
+			},
+			"offsets": {
+				"from": 491920,
+				"to": 494120
+			},
+			"text": " So if Alice wants to buy some F"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,120",
+				"to": "00:08:16,360"
+			},
+			"offsets": {
+				"from": 494120,
+				"to": 496360
+			},
+			"text": " and she has been on board to the trust lines network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,360",
+				"to": "00:08:18,040"
+			},
+			"offsets": {
+				"from": 496360,
+				"to": 498040
+			},
+			"text": " and Dave wants to sell some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,040",
+				"to": "00:08:19,680"
+			},
+			"offsets": {
+				"from": 498040,
+				"to": 499680
+			},
+			"text": " and they don't know or trust each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,680",
+				"to": "00:08:23,360"
+			},
+			"offsets": {
+				"from": 499680,
+				"to": 503360
+			},
+			"text": " what Dave can do is he can list some F"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,360",
+				"to": "00:08:25,200"
+			},
+			"offsets": {
+				"from": 503360,
+				"to": 505200
+			},
+			"text": " on a decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,200",
+				"to": "00:08:28,200"
+			},
+			"offsets": {
+				"from": 505200,
+				"to": 508200
+			},
+			"text": " And if Alice likes that offer, she can take it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,200",
+				"to": "00:08:30,880"
+			},
+			"offsets": {
+				"from": 508200,
+				"to": 510880
+			},
+			"text": " And if there's a path with sufficient capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,880",
+				"to": "00:08:33,160"
+			},
+			"offsets": {
+				"from": 510880,
+				"to": 513160
+			},
+			"text": " the decentralized exchange will swap the ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,160",
+				"to": "00:08:34,560"
+			},
+			"offsets": {
+				"from": 513160,
+				"to": 514560
+			},
+			"text": " for trust line money."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,560",
+				"to": "00:08:38,360"
+			},
+			"offsets": {
+				"from": 514560,
+				"to": 518360
+			},
+			"text": " So Dave will now have more credit in the currency network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,360",
+				"to": "00:08:40,640"
+			},
+			"offsets": {
+				"from": 518360,
+				"to": 520640
+			},
+			"text": " that they're both participating in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,640",
+				"to": "00:08:43,760"
+			},
+			"offsets": {
+				"from": 520640,
+				"to": 523760
+			},
+			"text": " And Alice will now have ETH in her wallet address."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,760",
+				"to": "00:08:47,640"
+			},
+			"offsets": {
+				"from": 523760,
+				"to": 527640
+			},
+			"text": " So what that solves is the dependency"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,640",
+				"to": "00:08:48,920"
+			},
+			"offsets": {
+				"from": 527640,
+				"to": 528920
+			},
+			"text": " we have on centralized exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,920",
+				"to": "00:08:52,280"
+			},
+			"offsets": {
+				"from": 528920,
+				"to": 532280
+			},
+			"text": " because we can provide accessibility to cryptocurrencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,280",
+				"to": "00:08:54,480"
+			},
+			"offsets": {
+				"from": 532280,
+				"to": 534480
+			},
+			"text": " without the use of fiat money."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,480",
+				"to": "00:08:56,600"
+			},
+			"offsets": {
+				"from": 534480,
+				"to": 536600
+			},
+			"text": " It removes the requirement to have a bank account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,600",
+				"to": "00:08:58,440"
+			},
+			"offsets": {
+				"from": 536600,
+				"to": 538440
+			},
+			"text": " which I personally think is quite important"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,440",
+				"to": "00:09:00,200"
+			},
+			"offsets": {
+				"from": 538440,
+				"to": 540200
+			},
+			"text": " because we can also provide cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,200",
+				"to": "00:09:01,760"
+			},
+			"offsets": {
+				"from": 540200,
+				"to": 541760
+			},
+			"text": " and decentralized financial services"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,760",
+				"to": "00:09:05,480"
+			},
+			"offsets": {
+				"from": 541760,
+				"to": 545480
+			},
+			"text": " for people who might not have a bank account to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,480",
+				"to": "00:09:08,840"
+			},
+			"offsets": {
+				"from": 545480,
+				"to": 548840
+			},
+			"text": " And finally, it also allows us to purchase ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,840",
+				"to": "00:09:11,560"
+			},
+			"offsets": {
+				"from": 548840,
+				"to": 551560
+			},
+			"text": " with trust line money without having"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,560",
+				"to": "00:09:13,280"
+			},
+			"offsets": {
+				"from": 551560,
+				"to": 553280
+			},
+			"text": " or to do interact with any data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,280",
+				"to": "00:09:15,560"
+			},
+			"offsets": {
+				"from": 553280,
+				"to": 555560
+			},
+			"text": " So the basic idea is you should be able to get access"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,560",
+				"to": "00:09:17,760"
+			},
+			"offsets": {
+				"from": 555560,
+				"to": 557760
+			},
+			"text": " to cryptocurrency by joining, creating a trust line"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,760",
+				"to": "00:09:19,200"
+			},
+			"offsets": {
+				"from": 557760,
+				"to": 559200
+			},
+			"text": " with a friend and then have access"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,200",
+				"to": "00:09:20,840"
+			},
+			"offsets": {
+				"from": 559200,
+				"to": 560840
+			},
+			"text": " to the whole Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,840",
+				"to": "00:09:25,040"
+			},
+			"offsets": {
+				"from": 560840,
+				"to": 565040
+			},
+			"text": " So that's the basic idea and yeah, give this to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,880",
+				"to": "00:09:28,200"
+			},
+			"offsets": {
+				"from": 565880,
+				"to": 568200
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,200",
+				"to": "00:09:29,040"
+			},
+			"offsets": {
+				"from": 568200,
+				"to": 569040
+			},
+			"text": " - Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,040",
+				"to": "00:09:34,160"
+			},
+			"offsets": {
+				"from": 569040,
+				"to": 574160
+			},
+			"text": " - Hi, my name is Band."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,160",
+				"to": "00:09:36,480"
+			},
+			"offsets": {
+				"from": 574160,
+				"to": 576480
+			},
+			"text": " I'm one of the developers behind trust lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,480",
+				"to": "00:09:42,280"
+			},
+			"offsets": {
+				"from": 576480,
+				"to": 582280
+			},
+			"text": " Hi, my name is Band."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,280",
+				"to": "00:09:44,400"
+			},
+			"offsets": {
+				"from": 582280,
+				"to": 584400
+			},
+			"text": " I'm one of the developers behind trust lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,400",
+				"to": "00:09:46,320"
+			},
+			"offsets": {
+				"from": 584400,
+				"to": 586320
+			},
+			"text": " And I wanna give you now a brief overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,320",
+				"to": "00:09:48,440"
+			},
+			"offsets": {
+				"from": 586320,
+				"to": 588440
+			},
+			"text": " about the technical implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,440",
+				"to": "00:09:52,080"
+			},
+			"offsets": {
+				"from": 588440,
+				"to": 592080
+			},
+			"text": " So the architecture of the trust lines network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,080",
+				"to": "00:09:54,320"
+			},
+			"offsets": {
+				"from": 592080,
+				"to": 594320
+			},
+			"text": " will be is a three tier architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,320",
+				"to": "00:09:55,160"
+			},
+			"offsets": {
+				"from": 594320,
+				"to": 595160
+			},
+			"text": " on the core of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,160",
+				"to": "00:09:59,680"
+			},
+			"offsets": {
+				"from": 595160,
+				"to": 599680
+			},
+			"text": " We have the smart contracts that handle all the logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,680",
+				"to": "00:10:01,240"
+			},
+			"offsets": {
+				"from": 599680,
+				"to": 601240
+			},
+			"text": " especially the currency networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,240",
+				"to": "00:10:03,280"
+			},
+			"offsets": {
+				"from": 601240,
+				"to": 603280
+			},
+			"text": " and decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,280",
+				"to": "00:10:05,200"
+			},
+			"offsets": {
+				"from": 603280,
+				"to": 605200
+			},
+			"text": " And as the user interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,200",
+				"to": "00:10:07,400"
+			},
+			"offsets": {
+				"from": 605200,
+				"to": 607400
+			},
+			"text": " we are developing a mobile app"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,400",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 607400,
+				"to": 609320
+			},
+			"text": " that comes with a good user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:12,640"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 612640
+			},
+			"text": " This is also where the private key will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,640",
+				"to": "00:10:16,560"
+			},
+			"offsets": {
+				"from": 612640,
+				"to": 616560
+			},
+			"text": " and which will sign the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,560",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 616560,
+				"to": 617760
+			},
+			"text": " to actually do transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 619360
+			},
+			"text": " within the trust lines network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,360",
+				"to": "00:10:22,640"
+			},
+			"offsets": {
+				"from": 619360,
+				"to": 622640
+			},
+			"text": " In between, we have a middle layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,640",
+				"to": "00:10:24,200"
+			},
+			"offsets": {
+				"from": 622640,
+				"to": 624200
+			},
+			"text": " that we call the relay service."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,200",
+				"to": "00:10:25,720"
+			},
+			"offsets": {
+				"from": 624200,
+				"to": 625720
+			},
+			"text": " They are helper services."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,720",
+				"to": "00:10:27,240"
+			},
+			"offsets": {
+				"from": 625720,
+				"to": 627240
+			},
+			"text": " For example, for the pathfinding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,240",
+				"to": "00:10:28,600"
+			},
+			"offsets": {
+				"from": 627240,
+				"to": 628600
+			},
+			"text": " I will talk about them later."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,600",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 628600,
+				"to": 632360
+			},
+			"text": " Today, I don't wanna talk about the mobile app."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,360",
+				"to": "00:10:34,040"
+			},
+			"offsets": {
+				"from": 632360,
+				"to": 634040
+			},
+			"text": " I wanna focus on the platform itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,040",
+				"to": "00:10:36,120"
+			},
+			"offsets": {
+				"from": 634040,
+				"to": 636120
+			},
+			"text": " So we'll talk first about the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,120",
+				"to": "00:10:37,840"
+			},
+			"offsets": {
+				"from": 636120,
+				"to": 637840
+			},
+			"text": " And after that, I will talk a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,840",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637840,
+				"to": 639000
+			},
+			"text": " about the relay service."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:45,120"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 645120
+			},
+			"text": " So the currency network contract manages all the trust lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,120",
+				"to": "00:10:46,680"
+			},
+			"offsets": {
+				"from": 645120,
+				"to": 646680
+			},
+			"text": " within one currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,680",
+				"to": "00:10:48,760"
+			},
+			"offsets": {
+				"from": 646680,
+				"to": 648760
+			},
+			"text": " That means it keeps tracks of the balances"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,760",
+				"to": "00:10:51,840"
+			},
+			"offsets": {
+				"from": 648760,
+				"to": 651840
+			},
+			"text": " between two friends and it keeps track"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,840",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 651840,
+				"to": 654120
+			},
+			"text": " of all the credit limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 656880
+			},
+			"text": " Of these two friends that they gave each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:11:01,400"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 661400
+			},
+			"text": " It has a logic to execute mediated transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,400",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 661400,
+				"to": 665440
+			},
+			"text": " That means it's when you do a transfer within the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:07,880"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 667880
+			},
+			"text": " it will update all the balances accordingly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,880",
+				"to": "00:11:09,640"
+			},
+			"offsets": {
+				"from": 667880,
+				"to": 669640
+			},
+			"text": " and make sure that they will stay"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,640",
+				"to": "00:11:11,120"
+			},
+			"offsets": {
+				"from": 669640,
+				"to": 671120
+			},
+			"text": " within the given credit limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,120",
+				"to": "00:11:15,080"
+			},
+			"offsets": {
+				"from": 671120,
+				"to": 675080
+			},
+			"text": " We wanna implement existing token standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,080",
+				"to": "00:11:17,280"
+			},
+			"offsets": {
+				"from": 675080,
+				"to": 677280
+			},
+			"text": " However, this will not be fully possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,280",
+				"to": "00:11:18,160"
+			},
+			"offsets": {
+				"from": 677280,
+				"to": 678160
+			},
+			"text": " because there are difference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,160",
+				"to": "00:11:21,840"
+			},
+			"offsets": {
+				"from": 678160,
+				"to": 681840
+			},
+			"text": " because our currency network is IOU based."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,840",
+				"to": "00:11:23,080"
+			},
+			"offsets": {
+				"from": 681840,
+				"to": 683080
+			},
+			"text": " So that means there will be differences."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,080",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 683080,
+				"to": 686000
+			},
+			"text": " For example, the balance of a user can be negative"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:29,480"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 689480
+			},
+			"text": " and the transfer within our system needs another parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,480",
+				"to": "00:11:33,120"
+			},
+			"offsets": {
+				"from": 689480,
+				"to": 693120
+			},
+			"text": " It needs the path over which the transfer should happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,120",
+				"to": "00:11:36,920"
+			},
+			"offsets": {
+				"from": 693120,
+				"to": 696920
+			},
+			"text": " So we aiming for developing a new standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,920",
+				"to": "00:11:38,480"
+			},
+			"offsets": {
+				"from": 696920,
+				"to": 698480
+			},
+			"text": " for IOU based currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,480",
+				"to": "00:11:43,800"
+			},
+			"offsets": {
+				"from": 698480,
+				"to": 703800
+			},
+			"text": " Next, I wanna talk about the decentralized exchange contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,800",
+				"to": "00:11:47,320"
+			},
+			"offsets": {
+				"from": 703800,
+				"to": 707320
+			},
+			"text": " So the trust lines network will be a platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,320",
+				"to": "00:11:49,200"
+			},
+			"offsets": {
+				"from": 707320,
+				"to": 709200
+			},
+			"text": " to host multiple currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,200",
+				"to": "00:11:50,720"
+			},
+			"offsets": {
+				"from": 709200,
+				"to": 710720
+			},
+			"text": " So one challenge we need to solve there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,720",
+				"to": "00:11:53,720"
+			},
+			"offsets": {
+				"from": 710720,
+				"to": 713720
+			},
+			"text": " is how do we wanna connect these networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,720",
+				"to": "00:11:55,800"
+			},
+			"offsets": {
+				"from": 713720,
+				"to": 715800
+			},
+			"text": " and how can we bridge gaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,800",
+				"to": "00:11:58,720"
+			},
+			"offsets": {
+				"from": 715800,
+				"to": 718720
+			},
+			"text": " because if you wanna do a transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,720",
+				"to": "00:12:02,520"
+			},
+			"offsets": {
+				"from": 718720,
+				"to": 722520
+			},
+			"text": " and there's either no connection or too long connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,520",
+				"to": "00:12:04,400"
+			},
+			"offsets": {
+				"from": 722520,
+				"to": 724400
+			},
+			"text": " especially at the beginning, we wanna gap this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,400",
+				"to": "00:12:07,400"
+			},
+			"offsets": {
+				"from": 724400,
+				"to": 727400
+			},
+			"text": " So the decentralized exchange contract can help us"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,400",
+				"to": "00:12:11,680"
+			},
+			"offsets": {
+				"from": 727400,
+				"to": 731680
+			},
+			"text": " to solve that because it allows to buy a quarter ladder"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,680",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 731680,
+				"to": 735000
+			},
+			"text": " as token on an exchange, for example, ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:18,360"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 738360
+			},
+			"text": " With trust lines money and this ETH can then be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,360",
+				"to": "00:12:21,360"
+			},
+			"offsets": {
+				"from": 738360,
+				"to": 741360
+			},
+			"text": " to close gaps and to make cross currency payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,360",
+				"to": "00:12:23,960"
+			},
+			"offsets": {
+				"from": 741360,
+				"to": 743960
+			},
+			"text": " Let's look at the following example"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,960",
+				"to": "00:12:25,600"
+			},
+			"offsets": {
+				"from": 743960,
+				"to": 745600
+			},
+			"text": " to see how this could work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,600",
+				"to": "00:12:28,680"
+			},
+			"offsets": {
+				"from": 745600,
+				"to": 748680
+			},
+			"text": " So if Alice wants to pay Dave in US dollar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,680",
+				"to": "00:12:31,040"
+			},
+			"offsets": {
+				"from": 748680,
+				"to": 751040
+			},
+			"text": " but she's only part of the Euro network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,040",
+				"to": "00:12:33,560"
+			},
+			"offsets": {
+				"from": 751040,
+				"to": 753560
+			},
+			"text": " she can make a transaction within the Euro network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,560",
+				"to": "00:12:36,040"
+			},
+			"offsets": {
+				"from": 753560,
+				"to": 756040
+			},
+			"text": " to buy ETH on an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,040",
+				"to": "00:12:39,560"
+			},
+			"offsets": {
+				"from": 756040,
+				"to": 759560
+			},
+			"text": " These ETH can then be used to buy US dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,560",
+				"to": "00:12:42,400"
+			},
+			"offsets": {
+				"from": 759560,
+				"to": 762400
+			},
+			"text": " on another exchange in the US dollar network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,400",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 762400,
+				"to": 765000
+			},
+			"text": " For Alice and Dave, this will be all transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:47,760"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 767760
+			},
+			"text": " It will be just one atomic Ethereum transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,760",
+				"to": "00:12:52,760"
+			},
+			"offsets": {
+				"from": 767760,
+				"to": 772760
+			},
+			"text": " and this is how Alice can do a cross currency payment to Dave."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,760",
+				"to": "00:12:58,160"
+			},
+			"offsets": {
+				"from": 772760,
+				"to": 778160
+			},
+			"text": " So let's now talk about this middle AI presented before."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,160",
+				"to": "00:13:01,960"
+			},
+			"offsets": {
+				"from": 778160,
+				"to": 781960
+			},
+			"text": " So why do we even need this relay service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,960",
+				"to": "00:13:06,280"
+			},
+			"offsets": {
+				"from": 781960,
+				"to": 786280
+			},
+			"text": " So as we learned for payment, we need to find a valid path"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,280",
+				"to": "00:13:09,240"
+			},
+			"offsets": {
+				"from": 786280,
+				"to": 789240
+			},
+			"text": " and preferably we wanna find the shortest one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,240",
+				"to": "00:13:12,320"
+			},
+			"offsets": {
+				"from": 789240,
+				"to": 792320
+			},
+			"text": " because that is the one that will save gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,320",
+				"to": "00:13:14,840"
+			},
+			"offsets": {
+				"from": 792320,
+				"to": 794840
+			},
+			"text": " because we don't have to update so many trust lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,800",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 795800,
+				"to": 797800
+			},
+			"text": " But it's not feasible to do this calculation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:19,800"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 799800
+			},
+			"text": " for the path on the phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,800",
+				"to": "00:13:23,280"
+			},
+			"offsets": {
+				"from": 799800,
+				"to": 803280
+			},
+			"text": " because you have limited memory on your phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,280",
+				"to": "00:13:25,040"
+			},
+			"offsets": {
+				"from": 803280,
+				"to": 805040
+			},
+			"text": " and it's also not feasible to do it on change"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,040",
+				"to": "00:13:27,520"
+			},
+			"offsets": {
+				"from": 805040,
+				"to": 807520
+			},
+			"text": " just because the computation is too expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,520",
+				"to": "00:13:31,040"
+			},
+			"offsets": {
+				"from": 807520,
+				"to": 811040
+			},
+			"text": " So relay service essentially just help a service"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,040",
+				"to": "00:13:34,040"
+			},
+			"offsets": {
+				"from": 811040,
+				"to": 814040
+			},
+			"text": " to calculate this path and in our current setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,040",
+				"to": "00:13:35,880"
+			},
+			"offsets": {
+				"from": 814040,
+				"to": 815880
+			},
+			"text": " will be used as a gateway to the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,880",
+				"to": "00:13:39,480"
+			},
+			"offsets": {
+				"from": 815880,
+				"to": 819480
+			},
+			"text": " or this could be changed later by using a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,480",
+				"to": "00:13:45,200"
+			},
+			"offsets": {
+				"from": 819480,
+				"to": 825200
+			},
+			"text": " Introducing these relaysers however create"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,200",
+				"to": "00:13:46,720"
+			},
+			"offsets": {
+				"from": 825200,
+				"to": 826720
+			},
+			"text": " a different kind of problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,720",
+				"to": "00:13:49,720"
+			},
+			"offsets": {
+				"from": 826720,
+				"to": 829720
+			},
+			"text": " because we no longer can enforce by the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,720",
+				"to": "00:13:52,400"
+			},
+			"offsets": {
+				"from": 829720,
+				"to": 832400
+			},
+			"text": " with path which path will be chosen."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,400",
+				"to": "00:13:54,680"
+			},
+			"offsets": {
+				"from": 832400,
+				"to": 834680
+			},
+			"text": " So the only thing that the smart contracts checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,680",
+				"to": "00:13:55,880"
+			},
+			"offsets": {
+				"from": 834680,
+				"to": 835880
+			},
+			"text": " is that the path is valid"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,880",
+				"to": "00:13:58,520"
+			},
+			"offsets": {
+				"from": 835880,
+				"to": 838520
+			},
+			"text": " so that all the balances stay within the credit lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,520",
+				"to": "00:14:01,400"
+			},
+			"offsets": {
+				"from": 838520,
+				"to": 841400
+			},
+			"text": " but we cannot enforce which path."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,400",
+				"to": "00:14:04,160"
+			},
+			"offsets": {
+				"from": 841400,
+				"to": 844160
+			},
+			"text": " This is important because there's for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,160",
+				"to": "00:14:06,200"
+			},
+			"offsets": {
+				"from": 844160,
+				"to": 846200
+			},
+			"text": " one property that we want to have in our system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,200",
+				"to": "00:14:08,400"
+			},
+			"offsets": {
+				"from": 846200,
+				"to": 848400
+			},
+			"text": " we wanna balance out and cancel depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,400",
+				"to": "00:14:13,040"
+			},
+			"offsets": {
+				"from": 848400,
+				"to": 853040
+			},
+			"text": " So to incentivize this behavior, we aim"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,040",
+				"to": "00:14:15,520"
+			},
+			"offsets": {
+				"from": 853040,
+				"to": 855520
+			},
+			"text": " but this is currently work in progress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,520",
+				"to": "00:14:17,480"
+			},
+			"offsets": {
+				"from": 855520,
+				"to": 857480
+			},
+			"text": " we're not really done with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,480",
+				"to": "00:14:20,120"
+			},
+			"offsets": {
+				"from": 857480,
+				"to": 860120
+			},
+			"text": " We aim for implementing a fee in a reward system"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,120",
+				"to": "00:14:23,840"
+			},
+			"offsets": {
+				"from": 860120,
+				"to": 863840
+			},
+			"text": " to incentivize this balancing out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,840",
+				"to": "00:14:27,400"
+			},
+			"offsets": {
+				"from": 863840,
+				"to": 867400
+			},
+			"text": " So there will be one fee that we call the imbalanced fee reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,400",
+				"to": "00:14:33,160"
+			},
+			"offsets": {
+				"from": 867400,
+				"to": 873160
+			},
+			"text": " This is to be paid by users adding imbalances to the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,160",
+				"to": "00:14:37,920"
+			},
+			"offsets": {
+				"from": 873160,
+				"to": 877920
+			},
+			"text": " and it gets rewarded to the one decreasing the imbalance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,920",
+				"to": "00:14:40,440"
+			},
+			"offsets": {
+				"from": 877920,
+				"to": 880440
+			},
+			"text": " There's another fee reward system for capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,440",
+				"to": "00:14:41,600"
+			},
+			"offsets": {
+				"from": 880440,
+				"to": 881600
+			},
+			"text": " that we also wanna include"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,600",
+				"to": "00:14:44,360"
+			},
+			"offsets": {
+				"from": 881600,
+				"to": 884360
+			},
+			"text": " that is just to incentivize providing capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,360",
+				"to": "00:14:49,280"
+			},
+			"offsets": {
+				"from": 884360,
+				"to": 889280
+			},
+			"text": " And this is basically paid by the one using the capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,280",
+				"to": "00:14:52,080"
+			},
+			"offsets": {
+				"from": 889280,
+				"to": 892080
+			},
+			"text": " to root of transfer and gets rewarded"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,080",
+				"to": "00:14:56,840"
+			},
+			"offsets": {
+				"from": 892080,
+				"to": 896840
+			},
+			"text": " to the one providing the capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,840",
+				"to": "00:14:59,600"
+			},
+			"offsets": {
+				"from": 896840,
+				"to": 899600
+			},
+			"text": " Yeah, there are also mandatory fees that we will have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,600",
+				"to": "00:15:03,360"
+			},
+			"offsets": {
+				"from": 899600,
+				"to": 903360
+			},
+			"text": " that obviously the gas fees for the Ethereum system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,360",
+				"to": "00:15:05,880"
+			},
+			"offsets": {
+				"from": 903360,
+				"to": 905880
+			},
+			"text": " and there will be probably related server fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,880",
+				"to": "00:15:09,120"
+			},
+			"offsets": {
+				"from": 905880,
+				"to": 909120
+			},
+			"text": " because we need to incentivize running dedicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,120",
+				"to": "00:15:11,720"
+			},
+			"offsets": {
+				"from": 909120,
+				"to": 911720
+			},
+			"text": " relayservice by third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,720",
+				"to": "00:15:14,960"
+			},
+			"offsets": {
+				"from": 911720,
+				"to": 914960
+			},
+			"text": " Yeah, so how does it affect now the pathfinding algorithm?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,960",
+				"to": "00:15:16,480"
+			},
+			"offsets": {
+				"from": 914960,
+				"to": 916480
+			},
+			"text": " The pathfinding will obviously look"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,480",
+				"to": "00:15:18,720"
+			},
+			"offsets": {
+				"from": 916480,
+				"to": 918720
+			},
+			"text": " for a subsuisance capacity and the shortest paths"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,720",
+				"to": "00:15:21,240"
+			},
+			"offsets": {
+				"from": 918720,
+				"to": 921240
+			},
+			"text": " to save gas but now with a new fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,240",
+				"to": "00:15:25,120"
+			},
+			"offsets": {
+				"from": 921240,
+				"to": 925120
+			},
+			"text": " it will also aim for minimizing the added imbalance"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,120",
+				"to": "00:15:26,960"
+			},
+			"offsets": {
+				"from": 925120,
+				"to": 926960
+			},
+			"text": " or if we cancel out depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,960",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 926960,
+				"to": 929000
+			},
+			"text": " So let's look at this following sample."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:33,640"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 933640
+			},
+			"text": " If Dave wants to pay Bob and there are two paths"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,640",
+				"to": "00:15:36,440"
+			},
+			"offsets": {
+				"from": 933640,
+				"to": 936440
+			},
+			"text": " with the same length, one over Earl and one over Charlie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,440",
+				"to": "00:15:41,360"
+			},
+			"offsets": {
+				"from": 936440,
+				"to": 941360
+			},
+			"text": " we can see here that the upper path is worse"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,360",
+				"to": "00:15:45,960"
+			},
+			"offsets": {
+				"from": 941360,
+				"to": 945960
+			},
+			"text": " because it will increase the already existing imbalances"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,960",
+				"to": "00:15:48,280"
+			},
+			"offsets": {
+				"from": 945960,
+				"to": 948280
+			},
+			"text": " where the lower path will cancel out depth"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,280",
+				"to": "00:15:51,280"
+			},
+			"offsets": {
+				"from": 948280,
+				"to": 951280
+			},
+			"text": " so it will actually not increase the overall imbalances"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,280",
+				"to": "00:15:52,320"
+			},
+			"offsets": {
+				"from": 951280,
+				"to": 952320
+			},
+			"text": " within the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,320",
+				"to": "00:15:56,480"
+			},
+			"offsets": {
+				"from": 952320,
+				"to": 956480
+			},
+			"text": " So if we add those fees, the lower one will be slightly cheaper"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,480",
+				"to": "00:15:59,740"
+			},
+			"offsets": {
+				"from": 956480,
+				"to": 959740
+			},
+			"text": " so Dave will hopefully choose this path."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,740",
+				"to": "00:16:05,520"
+			},
+			"offsets": {
+				"from": 959740,
+				"to": 965520
+			},
+			"text": " So that was it about what I wanted to present a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,520",
+				"to": "00:16:07,520"
+			},
+			"offsets": {
+				"from": 965520,
+				"to": 967520
+			},
+			"text": " about what we're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,520",
+				"to": "00:16:10,880"
+			},
+			"offsets": {
+				"from": 967520,
+				"to": 970880
+			},
+			"text": " Our current project status right now is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,880",
+				"to": "00:16:13,920"
+			},
+			"offsets": {
+				"from": 970880,
+				"to": 973920
+			},
+			"text": " we have a working prototype on the Robson testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,920",
+				"to": "00:16:16,960"
+			},
+			"offsets": {
+				"from": 973920,
+				"to": 976960
+			},
+			"text": " It already, we already have implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,960",
+				"to": "00:16:19,920"
+			},
+			"offsets": {
+				"from": 976960,
+				"to": 979920
+			},
+			"text": " the currency network with media transfers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,920",
+				"to": "00:16:23,400"
+			},
+			"offsets": {
+				"from": 979920,
+				"to": 983400
+			},
+			"text": " direct transfers and you can give it as credit lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,400",
+				"to": "00:16:25,360"
+			},
+			"offsets": {
+				"from": 983400,
+				"to": 985360
+			},
+			"text": " We are currently working on new features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,360",
+				"to": "00:16:29,920"
+			},
+			"offsets": {
+				"from": 985360,
+				"to": 989920
+			},
+			"text": " we're working on implementing the fees I just mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,920",
+				"to": "00:16:34,200"
+			},
+			"offsets": {
+				"from": 989920,
+				"to": 994200
+			},
+			"text": " We are working on implementing the decentralized exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,200",
+				"to": "00:16:37,160"
+			},
+			"offsets": {
+				"from": 994200,
+				"to": 997160
+			},
+			"text": " and other features I didn't talk about yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,160",
+				"to": "00:16:39,160"
+			},
+			"offsets": {
+				"from": 997160,
+				"to": 999160
+			},
+			"text": " We're also working on the mobile app."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,160",
+				"to": "00:16:43,280"
+			},
+			"offsets": {
+				"from": 999160,
+				"to": 1003280
+			},
+			"text": " You can watch our progress on our GitHub rivers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,280",
+				"to": "00:16:45,640"
+			},
+			"offsets": {
+				"from": 1003280,
+				"to": 1005640
+			},
+			"text": " with a repository and if you wanna know more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,640",
+				"to": "00:16:48,520"
+			},
+			"offsets": {
+				"from": 1005640,
+				"to": 1008520
+			},
+			"text": " about the general idea, we have a white paper on our website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,520",
+				"to": "00:16:49,960"
+			},
+			"offsets": {
+				"from": 1008520,
+				"to": 1009960
+			},
+			"text": " you can also check that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,960",
+				"to": "00:16:55,040"
+			},
+			"offsets": {
+				"from": 1009960,
+				"to": 1015040
+			},
+			"text": " I wanna emphasize that we aim to create an open protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,040",
+				"to": "00:16:56,840"
+			},
+			"offsets": {
+				"from": 1015040,
+				"to": 1016840
+			},
+			"text": " so we're working on open APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,840",
+				"to": "00:17:00,400"
+			},
+			"offsets": {
+				"from": 1016840,
+				"to": 1020400
+			},
+			"text": " You can also check that out on our repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,400",
+				"to": "00:17:03,600"
+			},
+			"offsets": {
+				"from": 1020400,
+				"to": 1023600
+			},
+			"text": " For the release service, we aim for a RESTful API"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,600",
+				"to": "00:17:07,360"
+			},
+			"offsets": {
+				"from": 1023600,
+				"to": 1027360
+			},
+			"text": " and we wanna implement, we wanna develop a JavaScript library"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,360",
+				"to": "00:17:11,640"
+			},
+			"offsets": {
+				"from": 1027360,
+				"to": 1031640
+			},
+			"text": " that makes it easy to also develop third party mobile apps"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,640",
+				"to": "00:17:15,080"
+			},
+			"offsets": {
+				"from": 1031640,
+				"to": 1035080
+			},
+			"text": " besides the one we will actually build"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,080",
+				"to": "00:17:17,920"
+			},
+			"offsets": {
+				"from": 1035080,
+				"to": 1037920
+			},
+			"text": " and we also want to aim that it will be easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,920",
+				"to": "00:17:22,920"
+			},
+			"offsets": {
+				"from": 1037920,
+				"to": 1042920
+			},
+			"text": " to use our mobile app but also third party mobile apps"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,920",
+				"to": "00:17:24,440"
+			},
+			"offsets": {
+				"from": 1042920,
+				"to": 1044440
+			},
+			"text": " together which each other so make payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,440",
+				"to": "00:17:25,640"
+			},
+			"offsets": {
+				"from": 1044440,
+				"to": 1045640
+			},
+			"text": " from one app to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,640",
+				"to": "00:17:28,080"
+			},
+			"offsets": {
+				"from": 1045640,
+				"to": 1048080
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,080",
+				"to": "00:17:30,760"
+			},
+			"offsets": {
+				"from": 1048080,
+				"to": 1050760
+			},
+			"text": " So let me summarize that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,760",
+				"to": "00:17:33,080"
+			},
+			"offsets": {
+				"from": 1050760,
+				"to": 1053080
+			},
+			"text": " We at Prima Technology work on an open protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,080",
+				"to": "00:17:36,960"
+			},
+			"offsets": {
+				"from": 1053080,
+				"to": 1056960
+			},
+			"text": " for decentralized IUs based currency networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,960",
+				"to": "00:17:39,520"
+			},
+			"offsets": {
+				"from": 1056960,
+				"to": 1059520
+			},
+			"text": " This will enable global payments based on a network"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,520",
+				"to": "00:17:43,880"
+			},
+			"offsets": {
+				"from": 1059520,
+				"to": 1063880
+			},
+			"text": " of already existing individual trust relationships."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,880",
+				"to": "00:17:46,240"
+			},
+			"offsets": {
+				"from": 1063880,
+				"to": 1066240
+			},
+			"text": " We think it's an old but powerful idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,240",
+				"to": "00:17:48,600"
+			},
+			"offsets": {
+				"from": 1066240,
+				"to": 1068600
+			},
+			"text": " that can increase adoption of cryptocurrencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,600",
+				"to": "00:17:51,480"
+			},
+			"offsets": {
+				"from": 1068600,
+				"to": 1071480
+			},
+			"text": " and made it easier to access for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,480",
+				"to": "00:17:54,960"
+			},
+			"offsets": {
+				"from": 1071480,
+				"to": 1074960
+			},
+			"text": " Thanks everybody and if you have questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,960",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1074960,
+				"to": 1077080
+			},
+			"text": " or if you wanna talk about the idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1079000
+			},
+			"text": " please feel free to approach us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:02,160"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1082160
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,160",
+				"to": "00:18:04,740"
+			},
+			"offsets": {
+				"from": 1082160,
+				"to": 1084740
+			},
+			"text": " (gentle music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,740",
+				"to": "00:18:07,900"
+			},
+			"offsets": {
+				"from": 1084740,
+				"to": 1087900
+			},
+			"text": " (audience applauding)"
+		}
+	]
+}

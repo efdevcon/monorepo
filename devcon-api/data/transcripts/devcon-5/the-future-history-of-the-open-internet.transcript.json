@@ -1,0 +1,3255 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9600
+			},
+			"text": " >> My name is Kevin O'waki. I am one of the co-founders of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,600",
+				"to": "00:00:15,120"
+			},
+			"offsets": {
+				"from": 9600,
+				"to": 15120
+			},
+			"text": " Gitcoin, made possible by consensus and a community member"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,120",
+				"to": "00:00:20,440"
+			},
+			"offsets": {
+				"from": 15120,
+				"to": 20440
+			},
+			"text": " out of Boulder, Colorado, shill Colorado. The talk that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,440",
+				"to": "00:00:25,840"
+			},
+			"offsets": {
+				"from": 20440,
+				"to": 25840
+			},
+			"text": " pitched at DevCon is entitled the future history of the open"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,840",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 25840,
+				"to": 31640
+			},
+			"text": " internet. I think I have given a lot of talks about dev relations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 34840
+			},
+			"text": " and building open source communities. This is by and large"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:40,800"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 40800
+			},
+			"text": " the most abstract talk that I have ever given. I think for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,800",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40800,
+				"to": 44000
+			},
+			"text": " that reason it is one that is a little bit outside of my"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,520"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47520
+			},
+			"text": " comfort zone because as a software engineer really like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,520",
+				"to": "00:00:53,080"
+			},
+			"offsets": {
+				"from": 47520,
+				"to": 53080
+			},
+			"text": " focus on being pragmatic and on things that are tangible to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,080",
+				"to": "00:00:57,440"
+			},
+			"offsets": {
+				"from": 53080,
+				"to": 57440
+			},
+			"text": " me. At the same time I do not have a crystal ball. I do not know"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,440",
+				"to": "00:01:00,680"
+			},
+			"offsets": {
+				"from": 57440,
+				"to": 60680
+			},
+			"text": " what the future history of the open internet is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,680",
+				"to": "00:01:04,400"
+			},
+			"offsets": {
+				"from": 60680,
+				"to": 64400
+			},
+			"text": " But I do feel strongly as a community member, as an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,400",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 64400,
+				"to": 68960
+			},
+			"text": " ethereum and as a father and as a member of the Colorado scene"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:12,600"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 72600
+			},
+			"text": " that this is one of the most important talks that I could"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,600",
+				"to": "00:01:16,560"
+			},
+			"offsets": {
+				"from": 72600,
+				"to": 76560
+			},
+			"text": " be giving at DevCon this year. It is because I am"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,560",
+				"to": "00:01:20,440"
+			},
+			"offsets": {
+				"from": 76560,
+				"to": 80440
+			},
+			"text": " increasingly worried about the direction of the world at a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,440",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 80440,
+				"to": 83480
+			},
+			"text": " time in which you could argue that our industrial age"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:27,320"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 87320
+			},
+			"text": " institutions are crumbling in terms of credibility and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,320",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 87320,
+				"to": 90560
+			},
+			"text": " world struggles with the inability to do collective sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 94200
+			},
+			"text": " making because of fake news and other challenges like climate"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:39,080"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 99080
+			},
+			"text": " change. For me, ethereum is a shelling point where I can come"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,080",
+				"to": "00:01:43,040"
+			},
+			"offsets": {
+				"from": 99080,
+				"to": 103040
+			},
+			"text": " together with other people who have hope of building a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,040",
+				"to": "00:01:47,320"
+			},
+			"offsets": {
+				"from": 103040,
+				"to": 107320
+			},
+			"text": " world, new systems that are not subject to the same sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,320",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107320,
+				"to": 113000
+			},
+			"text": " issues. I think it would be appropriate for me to start my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,080"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117080
+			},
+			"text": " talk about the future history of the open internet with talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,080",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 117080,
+				"to": 123000
+			},
+			"text": " about the present history of the open internet. I think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,400"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127400
+			},
+			"text": " for me that starts in 1985 with Richard Stalman and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,400",
+				"to": "00:02:10,680"
+			},
+			"offsets": {
+				"from": 127400,
+				"to": 130680
+			},
+			"text": " founding of the Free Software Foundation. Say what you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,680",
+				"to": "00:02:14,200"
+			},
+			"offsets": {
+				"from": 130680,
+				"to": 134200
+			},
+			"text": " about Richard Stalman's politics these days, I believe that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,200",
+				"to": "00:02:17,720"
+			},
+			"offsets": {
+				"from": 134200,
+				"to": 137720
+			},
+			"text": " the work that the Free Software Foundation did in 1985 was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,720",
+				"to": "00:02:21,800"
+			},
+			"offsets": {
+				"from": 137720,
+				"to": 141800
+			},
+			"text": " really important in defining a category of software that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,800",
+				"to": "00:02:27,560"
+			},
+			"offsets": {
+				"from": 141800,
+				"to": 147560
+			},
+			"text": " free as in libre, as in freedom, not as in free beer. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,560",
+				"to": "00:02:30,760"
+			},
+			"offsets": {
+				"from": 147560,
+				"to": 150760
+			},
+			"text": " goal of this community was to advocate for software which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,760",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 150760,
+				"to": 154120
+			},
+			"text": " would give you the right to A, run the software, B, study the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:38,920"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 158920
+			},
+			"text": " software and make changes to it, and C, redistribute the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,920",
+				"to": "00:02:43,640"
+			},
+			"offsets": {
+				"from": 158920,
+				"to": 163640
+			},
+			"text": " software with or without changes. The reason why this rule set"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,640",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 163640,
+				"to": 167480
+			},
+			"text": " was important to Richard Stalman was that in a world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:51,160"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 171160
+			},
+			"text": " increasingly intermediated by software, the decisions that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,160",
+				"to": "00:02:55,240"
+			},
+			"offsets": {
+				"from": 171160,
+				"to": 175240
+			},
+			"text": " make could be influenced by software creators. And so the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,240",
+				"to": "00:02:59,320"
+			},
+			"offsets": {
+				"from": 175240,
+				"to": 179320
+			},
+			"text": " question in my mind is always, is this software doing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,320",
+				"to": "00:03:03,480"
+			},
+			"offsets": {
+				"from": 179320,
+				"to": 183480
+			},
+			"text": " right thing for me as the end user? Does it have my interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,480",
+				"to": "00:03:08,040"
+			},
+			"offsets": {
+				"from": 183480,
+				"to": 188040
+			},
+			"text": " in mind? Or does it have the interests of say a for-profit"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,040",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 188040,
+				"to": 193400
+			},
+			"text": " corporation in by proxy, maybe a government behind it in mind?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:17,640"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 197640
+			},
+			"text": " And so I think that Richard's work in advocating that we create"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,640",
+				"to": "00:03:21,480"
+			},
+			"offsets": {
+				"from": 197640,
+				"to": 201480
+			},
+			"text": " open source software, that we create free software that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,480",
+				"to": "00:03:25,080"
+			},
+			"offsets": {
+				"from": 201480,
+				"to": 205080
+			},
+			"text": " inspect and look and see is this in the best interest of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,080",
+				"to": "00:03:28,120"
+			},
+			"offsets": {
+				"from": 205080,
+				"to": 208120
+			},
+			"text": " and then redistribute the software that we modify, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,120",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 208120,
+				"to": 213640
+			},
+			"text": " in the best interest of users, was foundational. The next, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:37,320"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 217320
+			},
+			"text": " next event in the history of the open internet that I think is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,320",
+				"to": "00:03:41,080"
+			},
+			"offsets": {
+				"from": 217320,
+				"to": 221080
+			},
+			"text": " important is Linus Travel is creating Linux, the Linux"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,080",
+				"to": "00:03:47,800"
+			},
+			"offsets": {
+				"from": 221080,
+				"to": 227800
+			},
+			"text": " kernel in 1991. Linux went on to compete with Microsoft for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,800",
+				"to": "00:03:53,240"
+			},
+			"offsets": {
+				"from": 227800,
+				"to": 233240
+			},
+			"text": " backbone, the sort of infrastructure of the internet in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,240",
+				"to": "00:03:57,960"
+			},
+			"offsets": {
+				"from": 233240,
+				"to": 237960
+			},
+			"text": " the 90s and today is one of the most popular distributions of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,960",
+				"to": "00:04:02,200"
+			},
+			"offsets": {
+				"from": 237960,
+				"to": 242200
+			},
+			"text": " software in the world today. And it's all available for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,200",
+				"to": "00:04:06,600"
+			},
+			"offsets": {
+				"from": 242200,
+				"to": 246600
+			},
+			"text": " Linux is an important operating system because A, it proved that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,600",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 246600,
+				"to": 249160
+			},
+			"text": " open source software, a group of people who have never met each"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:12,680"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 252680
+			},
+			"text": " other could create a product that compete with for-profit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,680",
+				"to": "00:04:16,680"
+			},
+			"offsets": {
+				"from": 252680,
+				"to": 256680
+			},
+			"text": " corporations. The next event that I think is important in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,680",
+				"to": "00:04:20,760"
+			},
+			"offsets": {
+				"from": 256680,
+				"to": 260760
+			},
+			"text": " history of the open internet is the founding of Bitcoin by an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,760",
+				"to": "00:04:23,560"
+			},
+			"offsets": {
+				"from": 260760,
+				"to": 263560
+			},
+			"text": " individual or a group of individuals known as Satoshi"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,560",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 263560,
+				"to": 266760
+			},
+			"text": " Nakamoto, which solves the double spend problem and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:30,200"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 270200
+			},
+			"text": " Byzantine general problem and created a new open source money"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,200",
+				"to": "00:04:35,400"
+			},
+			"offsets": {
+				"from": 270200,
+				"to": 275400
+			},
+			"text": " that we could use to transact online. This was further extended"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,400",
+				"to": "00:04:41,240"
+			},
+			"offsets": {
+				"from": 275400,
+				"to": 281240
+			},
+			"text": " by Vitalik Bootyron in 2015. It's like stop my monologue and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,240",
+				"to": "00:04:44,520"
+			},
+			"offsets": {
+				"from": 281240,
+				"to": 284520
+			},
+			"text": " say you guys want to take a picture of this and tag your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,520",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 284520,
+				"to": 287800
+			},
+			"text": " favorite Bitcoin maximalist with it. I think that I get a real"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:51,640"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 291640
+			},
+			"text": " kick out of that conversation. Vitalik extended the Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,640",
+				"to": "00:04:55,240"
+			},
+			"offsets": {
+				"from": 291640,
+				"to": 295240
+			},
+			"text": " system by creating a system that would allow for programmable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,240",
+				"to": "00:04:59,400"
+			},
+			"offsets": {
+				"from": 295240,
+				"to": 299400
+			},
+			"text": " smart contracts and therefore the ability for the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,400",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 299400,
+				"to": 303000
+			},
+			"text": " blockchain to do more than just move money across the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,960"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305960
+			},
+			"text": " So a lot of people don't know this in this space but we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,960",
+				"to": "00:05:13,160"
+			},
+			"offsets": {
+				"from": 305960,
+				"to": 313160
+			},
+			"text": " actually sitting at in 2019 at the apex of a long history of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,160",
+				"to": "00:05:16,520"
+			},
+			"offsets": {
+				"from": 313160,
+				"to": 316520
+			},
+			"text": " people who have been advocates for end users and for peer to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 320200
+			},
+			"text": " peer digital systems. And I think that that's important to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 324040
+			},
+			"text": " think about when we're wondering what is our legacy in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 326680
+			},
+			"text": " Ethereum space and in the blockchain space and what will the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:31,560"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 331560
+			},
+			"text": " world look like in 2035 when I'm retired or retiring and looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,560",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 331560,
+				"to": 335400
+			},
+			"text": " back on the work that we've done. So as I transition from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:38,680"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 338680
+			},
+			"text": " present history of the open internet to the future history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,680",
+				"to": "00:05:42,440"
+			},
+			"offsets": {
+				"from": 338680,
+				"to": 342440
+			},
+			"text": " I want to say, I want to set expectations by saying that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,440",
+				"to": "00:05:46,680"
+			},
+			"offsets": {
+				"from": 342440,
+				"to": 346680
+			},
+			"text": " don't think that I could possibly cover that entire scope"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,680",
+				"to": "00:05:50,440"
+			},
+			"offsets": {
+				"from": 346680,
+				"to": 350440
+			},
+			"text": " within this 20 minutes. And even if I could, this subject"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,440",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 350440,
+				"to": 353480
+			},
+			"text": " matter is so abstract that I don't know that we would all come"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:56,840"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 356840
+			},
+			"text": " away with the same conception of it. There's this fable that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,840",
+				"to": "00:06:00,600"
+			},
+			"offsets": {
+				"from": 356840,
+				"to": 360600
+			},
+			"text": " actually quite famous where several blind bin try to conceptualize"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,600",
+				"to": "00:06:05,160"
+			},
+			"offsets": {
+				"from": 360600,
+				"to": 365160
+			},
+			"text": " what an elephant is by feeling it, by touching the elephant."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,160",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 365160,
+				"to": 369000
+			},
+			"text": " And they come to disagree because the person who felt the trunk"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:12,360"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 372360
+			},
+			"text": " said this is a tree and the person who felt the tusk said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,360",
+				"to": "00:06:17,080"
+			},
+			"offsets": {
+				"from": 372360,
+				"to": 377080
+			},
+			"text": " oh, this is a weapon. And I think that that's a great metaphor"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,080",
+				"to": "00:06:21,400"
+			},
+			"offsets": {
+				"from": 377080,
+				"to": 381400
+			},
+			"text": " for what is web 3 and what we're building today because I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,400",
+				"to": "00:06:25,640"
+			},
+			"offsets": {
+				"from": 381400,
+				"to": 385640
+			},
+			"text": " that in some versions of this fable, these blind men actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,640",
+				"to": "00:06:29,080"
+			},
+			"offsets": {
+				"from": 385640,
+				"to": 389080
+			},
+			"text": " come to blows because they disagree about what they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,080",
+				"to": "00:06:32,120"
+			},
+			"offsets": {
+				"from": 389080,
+				"to": 392120
+			},
+			"text": " conceptualizing. And I think that's a great metaphor for some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,120",
+				"to": "00:06:35,320"
+			},
+			"offsets": {
+				"from": 392120,
+				"to": 395320
+			},
+			"text": " the sense making that we've been doing on crypto Twitter about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,320",
+				"to": "00:06:41,320"
+			},
+			"offsets": {
+				"from": 395320,
+				"to": 401320
+			},
+			"text": " what web 3 is. So with that caveat aside, I'd like to move on by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,320",
+				"to": "00:06:47,800"
+			},
+			"offsets": {
+				"from": 401320,
+				"to": 407800
+			},
+			"text": " talking about what I view as the primary story of the creation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,800",
+				"to": "00:06:51,080"
+			},
+			"offsets": {
+				"from": 407800,
+				"to": 411080
+			},
+			"text": " the open internet of the people here at DevCon, which I call the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,080",
+				"to": "00:06:55,160"
+			},
+			"offsets": {
+				"from": 411080,
+				"to": 415160
+			},
+			"text": " hero's journey. So like many of you, I grew up in a small town"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,160",
+				"to": "00:07:00,760"
+			},
+			"offsets": {
+				"from": 415160,
+				"to": 420760
+			},
+			"text": " with small town values, community, family, peace, and brotherhood."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,760",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 420760,
+				"to": 425000
+			},
+			"text": " And like many of you, I went off to college to get educated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:09,480"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 429480
+			},
+			"text": " I have a computer science degree but studied a few other things in school,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,480",
+				"to": "00:07:12,840"
+			},
+			"offsets": {
+				"from": 429480,
+				"to": 432840
+			},
+			"text": " eventually launched my career by moving to a big city,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,840",
+				"to": "00:07:18,360"
+			},
+			"offsets": {
+				"from": 432840,
+				"to": 438360
+			},
+			"text": " Philadelphia, then New York City. And then I got a big person job."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,360",
+				"to": "00:07:21,800"
+			},
+			"offsets": {
+				"from": 438360,
+				"to": 441800
+			},
+			"text": " So you work your way up the corporate ladder and you're trying to please"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,800",
+				"to": "00:07:25,640"
+			},
+			"offsets": {
+				"from": 441800,
+				"to": 445640
+			},
+			"text": " your boss so that they can please their boss. But what hill are we really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,640",
+				"to": "00:07:29,720"
+			},
+			"offsets": {
+				"from": 445640,
+				"to": 449720
+			},
+			"text": " climbing when we're trying to support our families by working for these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,720",
+				"to": "00:07:33,240"
+			},
+			"offsets": {
+				"from": 449720,
+				"to": 453240
+			},
+			"text": " for-profit corporations and we're climbing the corporate ladder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,240",
+				"to": "00:07:37,880"
+			},
+			"offsets": {
+				"from": 453240,
+				"to": 457880
+			},
+			"text": " I found this path really distasteful and I felt like I was doing work that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,880",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 457880,
+				"to": 462040
+			},
+			"text": " didn't match my values. And I was working in finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:45,320"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 465320
+			},
+			"text": " I was working in a place where in order to feed my family to stay afloat in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,320",
+				"to": "00:07:48,120"
+			},
+			"offsets": {
+				"from": 465320,
+				"to": 468120
+			},
+			"text": " world and in order to advance my personal agenda,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,120",
+				"to": "00:07:52,680"
+			},
+			"offsets": {
+				"from": 468120,
+				"to": 472680
+			},
+			"text": " I was working for some big corporate fat cat who was making more money than me."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,680",
+				"to": "00:07:57,400"
+			},
+			"offsets": {
+				"from": 472680,
+				"to": 477400
+			},
+			"text": " And in my case specifically I felt like they were externalizing harm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,400",
+				"to": "00:08:00,840"
+			},
+			"offsets": {
+				"from": 477400,
+				"to": 480840
+			},
+			"text": " with the work that I was getting paid to do for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,840",
+				"to": "00:08:05,400"
+			},
+			"offsets": {
+				"from": 480840,
+				"to": 485400
+			},
+			"text": " So I hated going into this office. I hated everything about the meetings and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,400",
+				"to": "00:08:10,200"
+			},
+			"offsets": {
+				"from": 485400,
+				"to": 490200
+			},
+			"text": " the software that I was writing. And this is what I mean when I say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,200",
+				"to": "00:08:14,520"
+			},
+			"offsets": {
+				"from": 490200,
+				"to": 494520
+			},
+			"text": " Ethereum is a shelling point for hope because my feeling is that in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,520",
+				"to": "00:08:19,080"
+			},
+			"offsets": {
+				"from": 494520,
+				"to": 499080
+			},
+			"text": " Ethereum space we can do work that not only can advance our pocketbooks and I"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,080",
+				"to": "00:08:23,240"
+			},
+			"offsets": {
+				"from": 499080,
+				"to": 503240
+			},
+			"text": " can support my family but I can also do work that's creating a new economy that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,240",
+				"to": "00:08:28,120"
+			},
+			"offsets": {
+				"from": 503240,
+				"to": 508120
+			},
+			"text": " can be better than the old economy and I can do work that aligns with my values."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,120",
+				"to": "00:08:31,960"
+			},
+			"offsets": {
+				"from": 508120,
+				"to": 511960
+			},
+			"text": " And this here is journey isn't me. I've talked to many of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,960",
+				"to": "00:08:36,120"
+			},
+			"offsets": {
+				"from": 511960,
+				"to": 516120
+			},
+			"text": " all here at DevCon and I know that there are other people out there that feel"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,120",
+				"to": "00:08:40,200"
+			},
+			"offsets": {
+				"from": 516120,
+				"to": 520200
+			},
+			"text": " this way. The founding myth of Ethereum is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,200",
+				"to": "00:08:46,600"
+			},
+			"offsets": {
+				"from": 520200,
+				"to": 526600
+			},
+			"text": " we can create new transparent economic systems that can fundamentally be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,600",
+				"to": "00:08:51,640"
+			},
+			"offsets": {
+				"from": 526600,
+				"to": 531640
+			},
+			"text": " less corruptible than the old systems because the users can be owners of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,640",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 531640,
+				"to": 535560
+			},
+			"text": " economic systems because they're transparent and because we can program"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:08:59,320"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 539320
+			},
+			"text": " immutability into the economic system. So even if the creator of these software"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,320",
+				"to": "00:09:04,120"
+			},
+			"offsets": {
+				"from": 539320,
+				"to": 544120
+			},
+			"text": " systems becomes evil then the software system itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,120",
+				"to": "00:09:07,160"
+			},
+			"offsets": {
+				"from": 544120,
+				"to": 547160
+			},
+			"text": " will still be a free piece of software. It would still have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,160",
+				"to": "00:09:10,680"
+			},
+			"offsets": {
+				"from": 547160,
+				"to": 550680
+			},
+			"text": " end user interest in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,680",
+				"to": "00:09:17,160"
+			},
+			"offsets": {
+				"from": 550680,
+				"to": 557160
+			},
+			"text": " And then I think that this is even multiplied in importance because"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,160",
+				"to": "00:09:21,160"
+			},
+			"offsets": {
+				"from": 557160,
+				"to": 561160
+			},
+			"text": " from first principles the internet of money could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,160",
+				"to": "00:09:24,360"
+			},
+			"offsets": {
+				"from": 561160,
+				"to": 564360
+			},
+			"text": " huge. If you think about what the internet of information did to our"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,360",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 564360,
+				"to": 568360
+			},
+			"text": " society because it was the core innovation was that a group of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:31,800"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 571800
+			},
+			"text": " computers could transmit information across"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,800",
+				"to": "00:09:34,920"
+			},
+			"offsets": {
+				"from": 571800,
+				"to": 574920
+			},
+			"text": " across the internet without an intermediary. Everything that was based on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,920",
+				"to": "00:09:38,600"
+			},
+			"offsets": {
+				"from": 574920,
+				"to": 578600
+			},
+			"text": " top of information in society was fundamentally changed by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,600",
+				"to": "00:09:42,760"
+			},
+			"offsets": {
+				"from": 578600,
+				"to": 582760
+			},
+			"text": " internet. Our media, our politics, the way we're entertained."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,760",
+				"to": "00:09:46,520"
+			},
+			"offsets": {
+				"from": 582760,
+				"to": 586520
+			},
+			"text": " And if you if you reason about the internet of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,520",
+				"to": "00:09:50,680"
+			},
+			"offsets": {
+				"from": 586520,
+				"to": 590680
+			},
+			"text": " in that way and you ask yourself what is built on top of money?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,680",
+				"to": "00:09:55,400"
+			},
+			"offsets": {
+				"from": 590680,
+				"to": 595400
+			},
+			"text": " Well the answer to me is jobs is banking, insurance, investments, gaming, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,400",
+				"to": "00:09:58,280"
+			},
+			"offsets": {
+				"from": 595400,
+				"to": 598280
+			},
+			"text": " gambling. There are so many things in society"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,280",
+				"to": "00:10:03,240"
+			},
+			"offsets": {
+				"from": 598280,
+				"to": 603240
+			},
+			"text": " that are built on top of on top of money and if we can build them"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,240",
+				"to": "00:10:07,800"
+			},
+			"offsets": {
+				"from": 603240,
+				"to": 607800
+			},
+			"text": " based upon the Ethereum mainnet and the Ethereum based technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,800",
+				"to": "00:10:12,360"
+			},
+			"offsets": {
+				"from": 607800,
+				"to": 612360
+			},
+			"text": " then we're going to be able to create a economic system that is hopefully"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,360",
+				"to": "00:10:16,840"
+			},
+			"offsets": {
+				"from": 612360,
+				"to": 616840
+			},
+			"text": " freer, fairer, and more open than the one that existed before."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,840",
+				"to": "00:10:21,480"
+			},
+			"offsets": {
+				"from": 616840,
+				"to": 621480
+			},
+			"text": " And as someone who as I said before has"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,480",
+				"to": "00:10:27,080"
+			},
+			"offsets": {
+				"from": 621480,
+				"to": 627080
+			},
+			"text": " small town community values and I believe what we're doing in in Colorado"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,080",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627080,
+				"to": 631000
+			},
+			"text": " with respect to community is working. It's a really great place to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:35,960"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 635960
+			},
+			"text": " live and work. The neighbors are friendly. We have an economic system in which we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,960",
+				"to": "00:10:39,480"
+			},
+			"offsets": {
+				"from": 635960,
+				"to": 639480
+			},
+			"text": " can transact in our local economy and we can take care of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,480",
+				"to": "00:10:43,960"
+			},
+			"offsets": {
+				"from": 639480,
+				"to": 643960
+			},
+			"text": " we can take care of each other. I'm really hopeful that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,960",
+				"to": "00:10:48,200"
+			},
+			"offsets": {
+				"from": 643960,
+				"to": 648200
+			},
+			"text": " Ethereum based internet will allow us to take what's working in our local"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,200",
+				"to": "00:10:52,920"
+			},
+			"offsets": {
+				"from": 648200,
+				"to": 652920
+			},
+			"text": " communities and scale it past to past what's the suggested"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,920",
+				"to": "00:10:57,080"
+			},
+			"offsets": {
+				"from": 652920,
+				"to": 657080
+			},
+			"text": " cognitive limit in humans called Dunbar's number."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,080",
+				"to": "00:11:02,200"
+			},
+			"offsets": {
+				"from": 657080,
+				"to": 662200
+			},
+			"text": " Dunbar's number is a suggested cognitive limit in which says that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,200",
+				"to": "00:11:05,880"
+			},
+			"offsets": {
+				"from": 662200,
+				"to": 665880
+			},
+			"text": " basically only have stable relationships with up to five people in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,880",
+				"to": "00:11:11,320"
+			},
+			"offsets": {
+				"from": 665880,
+				"to": 671320
+			},
+			"text": " your kin, 15 people in your super family, or 150 people in your tribe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,320",
+				"to": "00:11:16,680"
+			},
+			"offsets": {
+				"from": 671320,
+				"to": 676680
+			},
+			"text": " And so this is a cognitive limit in humans that exists and it's basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,680",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 676680,
+				"to": 679640
+			},
+			"text": " something that we evolved in our hunter-gatherer days."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:24,120"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 684120
+			},
+			"text": " And the sort of like composable things that are working in our local communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,120",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 684120,
+				"to": 687720
+			},
+			"text": " is that we're having repeat interactions, we're having possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:31,400"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 691400
+			},
+			"text": " wind winds in our interactions with people in our local communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,400",
+				"to": "00:11:34,840"
+			},
+			"offsets": {
+				"from": 691400,
+				"to": 694840
+			},
+			"text": " and we're having low miscommunication ideally with people in our local"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,840",
+				"to": "00:11:39,400"
+			},
+			"offsets": {
+				"from": 694840,
+				"to": 699400
+			},
+			"text": " communities. So my hope is that with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,400",
+				"to": "00:11:43,240"
+			},
+			"offsets": {
+				"from": 699400,
+				"to": 703240
+			},
+			"text": " creating a new internet in which trust is able to be managed and move around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,240",
+				"to": "00:11:46,600"
+			},
+			"offsets": {
+				"from": 703240,
+				"to": 706600
+			},
+			"text": " that we're going to be able to scale Dunbar's number."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,600",
+				"to": "00:11:51,320"
+			},
+			"offsets": {
+				"from": 706600,
+				"to": 711320
+			},
+			"text": " So the internet was a fundamentally, foundationally changed the way we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,320",
+				"to": "00:11:54,680"
+			},
+			"offsets": {
+				"from": 711320,
+				"to": 714680
+			},
+			"text": " interact with each other because it allowed you to access someone from across"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,680",
+				"to": "00:11:57,320"
+			},
+			"offsets": {
+				"from": 714680,
+				"to": 717320
+			},
+			"text": " the world. But it didn't allow you to trust someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,320",
+				"to": "00:12:01,640"
+			},
+			"offsets": {
+				"from": 717320,
+				"to": 721640
+			},
+			"text": " from across the world and it didn't allow you to create a meaningful"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,640",
+				"to": "00:12:05,160"
+			},
+			"offsets": {
+				"from": 721640,
+				"to": 725160
+			},
+			"text": " relationship or a stable social relationship with people across the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,160",
+				"to": "00:12:07,480"
+			},
+			"offsets": {
+				"from": 725160,
+				"to": 727480
+			},
+			"text": " world. And I think that if we can program our"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,480",
+				"to": "00:12:11,480"
+			},
+			"offsets": {
+				"from": 727480,
+				"to": 731480
+			},
+			"text": " incentives into our money then we can create incentives which allow us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,480",
+				"to": "00:12:16,440"
+			},
+			"offsets": {
+				"from": 731480,
+				"to": 736440
+			},
+			"text": " have more stable social relationships across the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,440",
+				"to": "00:12:20,360"
+			},
+			"offsets": {
+				"from": 736440,
+				"to": 740360
+			},
+			"text": " The final principle that I want to talk about really quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,360",
+				"to": "00:12:25,160"
+			},
+			"offsets": {
+				"from": 740360,
+				"to": 745160
+			},
+			"text": " is the Matthew effect which is basically explained sometimes as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,160",
+				"to": "00:12:30,600"
+			},
+			"offsets": {
+				"from": 745160,
+				"to": 750600
+			},
+			"text": " cumulative effect of a cumulative advantage. And it can be observed in many"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,600",
+				"to": "00:12:37,080"
+			},
+			"offsets": {
+				"from": 750600,
+				"to": 757080
+			},
+			"text": " aspects of life in systems where the rich get richer, the people who have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,080",
+				"to": "00:12:40,680"
+			},
+			"offsets": {
+				"from": 757080,
+				"to": 760680
+			},
+			"text": " resources continue to monopolize the resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,680",
+				"to": "00:12:46,040"
+			},
+			"offsets": {
+				"from": 760680,
+				"to": 766040
+			},
+			"text": " And my hope is that because we have a new financial system that we're building"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,040",
+				"to": "00:12:51,800"
+			},
+			"offsets": {
+				"from": 766040,
+				"to": 771800
+			},
+			"text": " in the Ethereum space, not that everything will, these new systems that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,800",
+				"to": "00:12:54,520"
+			},
+			"offsets": {
+				"from": 771800,
+				"to": 774520
+			},
+			"text": " building in the Ethereum space will just magically be better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,520",
+				"to": "00:12:57,560"
+			},
+			"offsets": {
+				"from": 774520,
+				"to": 777560
+			},
+			"text": " But because we have the properties of transparency and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,560",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 777560,
+				"to": 781720
+			},
+			"text": " immutability, we can build systems that are fundamentally resistant to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:06,520"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 786520
+			},
+			"text": " accumulation, the accumulation of capital over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,520",
+				"to": "00:13:12,840"
+			},
+			"offsets": {
+				"from": 786520,
+				"to": 792840
+			},
+			"text": " And what's really exciting is that this year at DevCon we can all point at"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,840",
+				"to": "00:13:20,120"
+			},
+			"offsets": {
+				"from": 792840,
+				"to": 800120
+			},
+			"text": " DeFi and OpenFi and say you can do transactions on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,120",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 800120,
+				"to": 803240
+			},
+			"text": " Gitcoin in order to work for open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:27,720"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 807720
+			},
+			"text": " You can transact with a stablecoin. You can make investments with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,720",
+				"to": "00:13:32,360"
+			},
+			"offsets": {
+				"from": 807720,
+				"to": 812360
+			},
+			"text": " Compound. And now we even have extensibility of Compound and we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,360",
+				"to": "00:13:35,880"
+			},
+			"offsets": {
+				"from": 812360,
+				"to": 815880
+			},
+			"text": " do transactions that benefit other people with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,880",
+				"to": "00:13:40,600"
+			},
+			"offsets": {
+				"from": 815880,
+				"to": 820600
+			},
+			"text": " RDI. And it's with this in mind that I'm a little bit worried"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,600",
+				"to": "00:13:44,520"
+			},
+			"offsets": {
+				"from": 820600,
+				"to": 824520
+			},
+			"text": " that we're just going to see a reemergence of the existing financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,520",
+				"to": "00:13:47,400"
+			},
+			"offsets": {
+				"from": 824520,
+				"to": 827400
+			},
+			"text": " system and the incentive structures that exist in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,400",
+				"to": "00:13:51,720"
+			},
+			"offsets": {
+				"from": 827400,
+				"to": 831720
+			},
+			"text": " existing financial system reemerge but with Ethereum-based technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,720",
+				"to": "00:13:56,120"
+			},
+			"offsets": {
+				"from": 831720,
+				"to": 836120
+			},
+			"text": " So I think the Ethereum community is bundled up as a set of technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,120",
+				"to": "00:14:00,520"
+			},
+			"offsets": {
+				"from": 836120,
+				"to": 840520
+			},
+			"text": " but it's also a set of values around censorship resistance, around"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,520",
+				"to": "00:14:03,640"
+			},
+			"offsets": {
+				"from": 840520,
+				"to": 843640
+			},
+			"text": " decentralization, around pushing power to the edges."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,640",
+				"to": "00:14:07,720"
+			},
+			"offsets": {
+				"from": 843640,
+				"to": 847720
+			},
+			"text": " And we've seen a lot of VC chains launch over the last several years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,720",
+				"to": "00:14:12,280"
+			},
+			"offsets": {
+				"from": 847720,
+				"to": 852280
+			},
+			"text": " or the last year or so, that are basically taking technology that looks and sounds"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,280",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 852280,
+				"to": 855800
+			},
+			"text": " a lot like Ethereum, but I don't fundamentally think it's bundled up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:19,560"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 859560
+			},
+			"text": " the same sort of values that we're seeing from the Ethereum space"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,560",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 859560,
+				"to": 865000
+			},
+			"text": " and the founding myth of Ethereum. So the thought that I would leave you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:28,920"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 868920
+			},
+			"text": " with today is that we're designing these power structures now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,920",
+				"to": "00:14:34,520"
+			},
+			"offsets": {
+				"from": 868920,
+				"to": 874520
+			},
+			"text": " In 20 years you will look back at DevCon 5 in Japan and the work that we've done"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,520",
+				"to": "00:14:39,880"
+			},
+			"offsets": {
+				"from": 874520,
+				"to": 879880
+			},
+			"text": " in the Ethereum space, and it'll be shaped by the contours of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,880",
+				"to": "00:14:44,360"
+			},
+			"offsets": {
+				"from": 879880,
+				"to": 884360
+			},
+			"text": " bull and bear market and probably by the regulatory regimes that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,360",
+				"to": "00:14:48,200"
+			},
+			"offsets": {
+				"from": 884360,
+				"to": 888200
+			},
+			"text": " that we go back and forth with in our various governments."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,200",
+				"to": "00:14:51,720"
+			},
+			"offsets": {
+				"from": 888200,
+				"to": 891720
+			},
+			"text": " It'll be shaped by the trade-off between surveillance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,720",
+				"to": "00:14:55,080"
+			},
+			"offsets": {
+				"from": 891720,
+				"to": 895080
+			},
+			"text": " the capitalist need to surveil your users and make money off of the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,080",
+				"to": "00:14:58,920"
+			},
+			"offsets": {
+				"from": 895080,
+				"to": 898920
+			},
+			"text": " and the fundamental user right to have privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,920",
+				"to": "00:15:02,920"
+			},
+			"offsets": {
+				"from": 898920,
+				"to": 902920
+			},
+			"text": " And we're going to decide what kind of network we're building for our network"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,920",
+				"to": "00:15:06,120"
+			},
+			"offsets": {
+				"from": 902920,
+				"to": 906120
+			},
+			"text": " species, what kind of power structures there's going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,120",
+				"to": "00:15:09,560"
+			},
+			"offsets": {
+				"from": 906120,
+				"to": 909560
+			},
+			"text": " Is it going to be a one-to-many relationship with power brokers that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,560",
+				"to": "00:15:16,200"
+			},
+			"offsets": {
+				"from": 909560,
+				"to": 916200
+			},
+			"text": " monopolies over our investment and it our employment relationships?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,200",
+				"to": "00:15:20,200"
+			},
+			"offsets": {
+				"from": 916200,
+				"to": 920200
+			},
+			"text": " Or will the power be slightly more distributed in an oligarchical type model"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,200",
+				"to": "00:15:26,680"
+			},
+			"offsets": {
+				"from": 920200,
+				"to": 926680
+			},
+			"text": " where we all have local lords that we that we deal with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,680",
+				"to": "00:15:31,240"
+			},
+			"offsets": {
+				"from": 926680,
+				"to": 931240
+			},
+			"text": " In the US we call our system of government a representative democracy"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,240",
+				"to": "00:15:34,920"
+			},
+			"offsets": {
+				"from": 931240,
+				"to": 934920
+			},
+			"text": " in which we have about 100 senators, 300 something"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,920",
+				"to": "00:15:40,360"
+			},
+			"offsets": {
+				"from": 934920,
+				"to": 940360
+			},
+			"text": " house of representatives that that we defer our power to in our decision-making power."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,360",
+				"to": "00:15:44,920"
+			},
+			"offsets": {
+				"from": 940360,
+				"to": 944920
+			},
+			"text": " One of the things that I've been sharing ideas with the halls of DevCon and over"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,920",
+				"to": "00:15:49,800"
+			},
+			"offsets": {
+				"from": 944920,
+				"to": 949800
+			},
+			"text": " sake in the bars of DevCon has been what would the world look like if we were"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,800",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 949800,
+				"to": 955000
+			},
+			"text": " completely peer-to-peer network species if there was government and a financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:58,360"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 958360
+			},
+			"text": " system that was by of and for the people."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,360",
+				"to": "00:16:01,880"
+			},
+			"offsets": {
+				"from": 958360,
+				"to": 961880
+			},
+			"text": " And I think that it's really interesting to think about deconstructing jobs and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,880",
+				"to": "00:16:06,040"
+			},
+			"offsets": {
+				"from": 961880,
+				"to": 966040
+			},
+			"text": " deconstructing environment deconstructing investments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,040",
+				"to": "00:16:09,960"
+			},
+			"offsets": {
+				"from": 966040,
+				"to": 969960
+			},
+			"text": " pushing them into a peer-to-peer network and then rebuilding a financial system"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,960",
+				"to": "00:16:14,600"
+			},
+			"offsets": {
+				"from": 969960,
+				"to": 974600
+			},
+			"text": " on top of that. The work that we're doing at Bitcoin is designed to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,600",
+				"to": "00:16:20,440"
+			},
+			"offsets": {
+				"from": 974600,
+				"to": 980440
+			},
+			"text": " peer-to-peer jobs for software developers and this is a real visualization of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,440",
+				"to": "00:16:24,040"
+			},
+			"offsets": {
+				"from": 980440,
+				"to": 984040
+			},
+			"text": " our mesh network of jobs looks like. You can see that there are super"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,040",
+				"to": "00:16:28,360"
+			},
+			"offsets": {
+				"from": 984040,
+				"to": 988360
+			},
+			"text": " connectors that are brokers on the network but you can see that there's also a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,360",
+				"to": "00:16:34,280"
+			},
+			"offsets": {
+				"from": 988360,
+				"to": 994280
+			},
+			"text": " of peer-to-peer activity. My vision is that we will all work for the open"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,280",
+				"to": "00:16:38,120"
+			},
+			"offsets": {
+				"from": 994280,
+				"to": 998120
+			},
+			"text": " internet one day and we'll be able to transact with each other support open"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,120",
+				"to": "00:16:42,520"
+			},
+			"offsets": {
+				"from": 998120,
+				"to": 1002520
+			},
+			"text": " source software in support our families by doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,520",
+				"to": "00:16:45,720"
+			},
+			"offsets": {
+				"from": 1002520,
+				"to": 1005720
+			},
+			"text": " And one of the things that I try to remember as a design principle at"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,720",
+				"to": "00:16:50,840"
+			},
+			"offsets": {
+				"from": 1005720,
+				"to": 1010840
+			},
+			"text": " Bitcoin is that these nodes in these networks are three-dimensional humans"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,840",
+				"to": "00:16:55,080"
+			},
+			"offsets": {
+				"from": 1010840,
+				"to": 1015080
+			},
+			"text": " that have families that have needs that have their own sets of values that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,080",
+				"to": "00:17:00,920"
+			},
+			"offsets": {
+				"from": 1015080,
+				"to": 1020920
+			},
+			"text": " their own backgrounds and communication across the edges of these networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,920",
+				"to": "00:17:06,440"
+			},
+			"offsets": {
+				"from": 1020920,
+				"to": 1026440
+			},
+			"text": " will be fundamentally hard to to facilitate value"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,440",
+				"to": "00:17:09,240"
+			},
+			"offsets": {
+				"from": 1026440,
+				"to": 1029240
+			},
+			"text": " because of the communication barriers across this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,240",
+				"to": "00:17:13,320"
+			},
+			"offsets": {
+				"from": 1029240,
+				"to": 1033320
+			},
+			"text": " And one of the things that we're really trying to program into our system is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,320",
+				"to": "00:17:18,040"
+			},
+			"offsets": {
+				"from": 1033320,
+				"to": 1038040
+			},
+			"text": " empathy. We're all spending face-to-face time with each other this week and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,040",
+				"to": "00:17:22,040"
+			},
+			"offsets": {
+				"from": 1038040,
+				"to": 1042040
+			},
+			"text": " won't get to do that probably for another year or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,040",
+				"to": "00:17:25,960"
+			},
+			"offsets": {
+				"from": 1042040,
+				"to": 1045960
+			},
+			"text": " And so when you're transacting in this peer-to-peer network building in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,960",
+				"to": "00:17:29,720"
+			},
+			"offsets": {
+				"from": 1045960,
+				"to": 1049720
+			},
+			"text": " ethical design considerations that remind you that your work transacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,720",
+				"to": "00:17:34,280"
+			},
+			"offsets": {
+				"from": 1049720,
+				"to": 1054280
+			},
+			"text": " with an actual three-dimensional human will be important because the contours of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,280",
+				"to": "00:17:37,160"
+			},
+			"offsets": {
+				"from": 1054280,
+				"to": 1057160
+			},
+			"text": " this peer-to-peer financial system that we're building"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,160",
+				"to": "00:17:43,160"
+			},
+			"offsets": {
+				"from": 1057160,
+				"to": 1063160
+			},
+			"text": " are going to be the way value flows in this peer-to-peer, this network species"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,160",
+				"to": "00:17:47,160"
+			},
+			"offsets": {
+				"from": 1063160,
+				"to": 1067160
+			},
+			"text": " that we're building. And we can always choose between building something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,160",
+				"to": "00:17:52,840"
+			},
+			"offsets": {
+				"from": 1067160,
+				"to": 1072840
+			},
+			"text": " that that enriches ourselves at the expense of others and building something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,840",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1072840,
+				"to": 1077080
+			},
+			"text": " that climbs both hills at once. And we're doing this all collectively in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:18:02,120"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1082120
+			},
+			"text": " Ethereum space when we build the Ethereum OS which I've started to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,120",
+				"to": "00:18:07,880"
+			},
+			"offsets": {
+				"from": 1082120,
+				"to": 1087880
+			},
+			"text": " conceptualize as the operating system for a new financial system"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,880",
+				"to": "00:18:12,040"
+			},
+			"offsets": {
+				"from": 1087880,
+				"to": 1092040
+			},
+			"text": " and then the DAP store that we're building on top of this new financial"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,040",
+				"to": "00:18:16,200"
+			},
+			"offsets": {
+				"from": 1092040,
+				"to": 1096200
+			},
+			"text": " system which includes things like DALS which includes things like peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,200",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1096200,
+				"to": 1101000
+			},
+			"text": " jobs which includes your investments and probably many more things by DevCon 6."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:27,320"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1107320
+			},
+			"text": " At Gitcoin our mission is to grow and sustain open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,320",
+				"to": "00:18:31,640"
+			},
+			"offsets": {
+				"from": 1107320,
+				"to": 1111640
+			},
+			"text": " We believe that open source software creates billions of dollars of value in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,640",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1111640,
+				"to": 1115960
+			},
+			"text": " the world and that software developers don't get to work on and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:40,680"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1120680
+			},
+			"text": " that they don't get to capture as much value as they create."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,680",
+				"to": "00:18:44,040"
+			},
+			"offsets": {
+				"from": 1120680,
+				"to": 1124040
+			},
+			"text": " And so we're fundamentally trying to create a better world for software"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,040",
+				"to": "00:18:48,040"
+			},
+			"offsets": {
+				"from": 1124040,
+				"to": 1128040
+			},
+			"text": " engineers and trying to create a world where software developers work just for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,040",
+				"to": "00:18:52,040"
+			},
+			"offsets": {
+				"from": 1128040,
+				"to": 1132040
+			},
+			"text": " the internet. I'm really lucky to be working on a use case"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,040",
+				"to": "00:18:57,640"
+			},
+			"offsets": {
+				"from": 1132040,
+				"to": 1137640
+			},
+			"text": " that has highly technical people involved in the transactions that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,640",
+				"to": "00:19:01,480"
+			},
+			"offsets": {
+				"from": 1137640,
+				"to": 1141480
+			},
+			"text": " creating because they'll get through the barriers of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,480",
+				"to": "00:19:05,240"
+			},
+			"offsets": {
+				"from": 1141480,
+				"to": 1145240
+			},
+			"text": " signing MetaMask transactions, of getting gas, of figuring out how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,240",
+				"to": "00:19:09,480"
+			},
+			"offsets": {
+				"from": 1145240,
+				"to": 1149480
+			},
+			"text": " resubmit their transactions on MetaMask when the gas network is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,480",
+				"to": "00:19:14,600"
+			},
+			"offsets": {
+				"from": 1149480,
+				"to": 1154600
+			},
+			"text": " clogged but we all have a lot of work to do as a community to make sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,600",
+				"to": "00:19:20,040"
+			},
+			"offsets": {
+				"from": 1154600,
+				"to": 1160040
+			},
+			"text": " the most decentralized chain that's out there is the one that's the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,040",
+				"to": "00:19:22,760"
+			},
+			"offsets": {
+				"from": 1160040,
+				"to": 1162760
+			},
+			"text": " transacted and I hope that when you're building"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,760",
+				"to": "00:19:27,560"
+			},
+			"offsets": {
+				"from": 1162760,
+				"to": 1167560
+			},
+			"text": " the new financial system you'll remember the rich history that comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,560",
+				"to": "00:19:31,080"
+			},
+			"offsets": {
+				"from": 1167560,
+				"to": 1171080
+			},
+			"text": " from the open source in free software movements"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,080",
+				"to": "00:19:34,200"
+			},
+			"offsets": {
+				"from": 1171080,
+				"to": 1174200
+			},
+			"text": " because we're building the future of our network species."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,200",
+				"to": "00:19:36,920"
+			},
+			"offsets": {
+				"from": 1174200,
+				"to": 1176920
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,240",
+				"to": "00:19:39,320"
+			},
+			"offsets": {
+				"from": 1177240,
+				"to": 1179320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,320",
+				"to": "00:19:41,320"
+			},
+			"offsets": {
+				"from": 1179320,
+				"to": 1181320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,320",
+				"to": "00:19:43,320"
+			},
+			"offsets": {
+				"from": 1181320,
+				"to": 1183320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,320",
+				"to": "00:19:45,320"
+			},
+			"offsets": {
+				"from": 1183320,
+				"to": 1185320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,320",
+				"to": "00:19:47,320"
+			},
+			"offsets": {
+				"from": 1185320,
+				"to": 1187320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,320",
+				"to": "00:19:49,320"
+			},
+			"offsets": {
+				"from": 1187320,
+				"to": 1189320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,320",
+				"to": "00:19:51,320"
+			},
+			"offsets": {
+				"from": 1189320,
+				"to": 1191320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,320",
+				"to": "00:19:53,320"
+			},
+			"offsets": {
+				"from": 1191320,
+				"to": 1193320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,320",
+				"to": "00:19:55,320"
+			},
+			"offsets": {
+				"from": 1193320,
+				"to": 1195320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,320",
+				"to": "00:19:57,320"
+			},
+			"offsets": {
+				"from": 1195320,
+				"to": 1197320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,320",
+				"to": "00:19:59,320"
+			},
+			"offsets": {
+				"from": 1197320,
+				"to": 1199320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,320",
+				"to": "00:20:01,320"
+			},
+			"offsets": {
+				"from": 1199320,
+				"to": 1201320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,320",
+				"to": "00:20:03,320"
+			},
+			"offsets": {
+				"from": 1201320,
+				"to": 1203320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,320",
+				"to": "00:20:05,320"
+			},
+			"offsets": {
+				"from": 1203320,
+				"to": 1205320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,320",
+				"to": "00:20:07,320"
+			},
+			"offsets": {
+				"from": 1205320,
+				"to": 1207320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,320",
+				"to": "00:20:09,320"
+			},
+			"offsets": {
+				"from": 1207320,
+				"to": 1209320
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,320",
+				"to": "00:20:38,320"
+			},
+			"offsets": {
+				"from": 1209320,
+				"to": 1238320
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

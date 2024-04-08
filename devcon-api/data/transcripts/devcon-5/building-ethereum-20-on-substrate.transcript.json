@@ -1,0 +1,2045 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11600
+			},
+			"text": " So, my talk is about building the Ethereum 2.0 on Shout-Subtrict."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,600",
+				"to": "00:00:17,120"
+			},
+			"offsets": {
+				"from": 11600,
+				"to": 17120
+			},
+			"text": " So, before I go into the talk, I shot Introduction Open E. I'm Waitong."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,120",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 17120,
+				"to": 23560
+			},
+			"text": " I'm a Cloud Developer, I'm a party technology, and I work on Ethereum and Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 29800
+			},
+			"text": " So, I really want to in this talk talk about how we got involved into Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:34,800"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 34800
+			},
+			"text": " And some quite hard license we learned in the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,800",
+				"to": "00:00:44,720"
+			},
+			"offsets": {
+				"from": 34800,
+				"to": 44720
+			},
+			"text": " So, like our journey for Ethereum 2.0 is really about building a generic blockchain framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,720",
+				"to": "00:00:48,840"
+			},
+			"offsets": {
+				"from": 44720,
+				"to": 48840
+			},
+			"text": " because we, at party, we build a lot of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,840",
+				"to": "00:00:53,360"
+			},
+			"offsets": {
+				"from": 48840,
+				"to": 53360
+			},
+			"text": " And we really want to make sure we don't write too many duplicate codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,360",
+				"to": "00:00:58,680"
+			},
+			"offsets": {
+				"from": 53360,
+				"to": 58680
+			},
+			"text": " So the first thing I remember for the Ethereum 2.0 was the hybrid customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,680",
+				"to": "00:01:06,240"
+			},
+			"offsets": {
+				"from": 58680,
+				"to": 66240
+			},
+			"text": " At that time, we were experimenting with building, having a generic engine design in our party"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,240",
+				"to": "00:01:07,240"
+			},
+			"offsets": {
+				"from": 66240,
+				"to": 67240
+			},
+			"text": " Ethereum plant."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,240",
+				"to": "00:01:12,640"
+			},
+			"offsets": {
+				"from": 67240,
+				"to": 72640
+			},
+			"text": " So we have support for Fanalty and a real-size support for custom fork-twice rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,640",
+				"to": "00:01:19,800"
+			},
+			"offsets": {
+				"from": 72640,
+				"to": 79800
+			},
+			"text": " So, in that case, adding the hybrid customer FAG turns out to be quite relatively easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,800",
+				"to": "00:01:20,800"
+			},
+			"offsets": {
+				"from": 79800,
+				"to": 80800
+			},
+			"text": " task."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,800",
+				"to": "00:01:25,880"
+			},
+			"offsets": {
+				"from": 80800,
+				"to": 85880
+			},
+			"text": " So, we had a working hybrid customer implementation quite early."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,880",
+				"to": "00:01:26,880"
+			},
+			"offsets": {
+				"from": 85880,
+				"to": 86880
+			},
+			"text": " And it actually works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,880",
+				"to": "00:01:37,440"
+			},
+			"offsets": {
+				"from": 86880,
+				"to": 97440
+			},
+			"text": " So, but later, it comes to the second phrase, which is, we decided to build a separate blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,440",
+				"to": "00:01:38,760"
+			},
+			"offsets": {
+				"from": 97440,
+				"to": 98760
+			},
+			"text": " for Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,760",
+				"to": "00:01:45,560"
+			},
+			"offsets": {
+				"from": 98760,
+				"to": 105560
+			},
+			"text": " So, for us, we moved to the beacon sub-grid runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,560",
+				"to": "00:01:51,960"
+			},
+			"offsets": {
+				"from": 105560,
+				"to": 111960
+			},
+			"text": " So, for the hybrid customer, there's really some performance issues, and we had to abandon"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,960",
+				"to": "00:01:52,960"
+			},
+			"offsets": {
+				"from": 111960,
+				"to": 112960
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,960",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 112960,
+				"to": 118400
+			},
+			"text": " So, to create a separate blockchain for Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 129240
+			},
+			"text": " And what I mean by beacon sub-grid runtime is basically beacon-chan, is a sub-grid runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 140000
+			},
+			"text": " So, I really want to go into some of the details of how we think the beacon-chan can work on"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:25,800"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 145800
+			},
+			"text": " sub-grid runtime, but before that, probably a really shallow introduction about the sub-grid"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,800",
+				"to": "00:02:26,800"
+			},
+			"offsets": {
+				"from": 145800,
+				"to": 146800
+			},
+			"text": " runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,800",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 146800,
+				"to": 152160
+			},
+			"text": " So, sub-grid is an engine to build blockchains, and we figure out that there are two mindsings"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:33,880"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 153880
+			},
+			"text": " that every blockchain needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,880",
+				"to": "00:02:38,480"
+			},
+			"offsets": {
+				"from": 153880,
+				"to": 158480
+			},
+			"text": " It's basically consensus and state execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,480",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 158480,
+				"to": 162800
+			},
+			"text": " It's really hard to generate the consensus part, because different consensus can require"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 169840
+			},
+			"text": " different, like, entirely different structures, like some consensus need finality, some consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:58,480"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 178480
+			},
+			"text": " don't need finality, some consensus just need to pass block and other probably need to refer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,480",
+				"to": "00:03:00,600"
+			},
+			"offsets": {
+				"from": 178480,
+				"to": 180600
+			},
+			"text": " back to a lot of previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,600",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180600,
+				"to": 186000
+			},
+			"text": " And also, some consensus need to have a lot of accelerated data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " Some doesn't really need that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 192600
+			},
+			"text": " And also, we have those vast majority of different forks to hide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:16,200"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 196200
+			},
+			"text": " It's really hard to generate, but we have some helpers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,200",
+				"to": "00:03:18,680"
+			},
+			"offsets": {
+				"from": 196200,
+				"to": 198680
+			},
+			"text": " And the second part is state execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,680",
+				"to": "00:03:23,920"
+			},
+			"offsets": {
+				"from": 198680,
+				"to": 203920
+			},
+			"text": " So, we figure out we probably can generate the scale execution part, and we just call"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,920",
+				"to": "00:03:26,600"
+			},
+			"offsets": {
+				"from": 203920,
+				"to": 206600
+			},
+			"text": " it runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,600",
+				"to": "00:03:35,800"
+			},
+			"offsets": {
+				"from": 206600,
+				"to": 215800
+			},
+			"text": " So, we have a current--our current sub-grid runtime, DISA, has some fixed things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,800",
+				"to": "00:03:38,880"
+			},
+			"offsets": {
+				"from": 215800,
+				"to": 218880
+			},
+			"text": " Like, we have a definition of block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,880",
+				"to": "00:03:46,080"
+			},
+			"offsets": {
+				"from": 218880,
+				"to": 226080
+			},
+			"text": " We have something like extrinsic, which includes what we all know called transactions, or--and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,080",
+				"to": "00:03:51,800"
+			},
+			"offsets": {
+				"from": 226080,
+				"to": 231800
+			},
+			"text": " the other part is the inherent extrinsic, which includes things like timestamp, a server"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,800",
+				"to": "00:03:58,400"
+			},
+			"offsets": {
+				"from": 231800,
+				"to": 238400
+			},
+			"text": " guide, and we also have DISA item, which is similar to logs in theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,400",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 238400,
+				"to": 244000
+			},
+			"text": " And we have a definition of runtime externalities, basically how the runtime talk, which--outside"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 245000
+			},
+			"text": " word."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,960"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249960
+			},
+			"text": " So, we have all these things, and they have some different structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,960",
+				"to": "00:04:17,600"
+			},
+			"offsets": {
+				"from": 249960,
+				"to": 257600
+			},
+			"text": " And one thing we want to figure out is how we can reuse those structures and make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,600",
+				"to": "00:04:21,520"
+			},
+			"offsets": {
+				"from": 257600,
+				"to": 261520
+			},
+			"text": " work for building our Ethereum 2.0 client."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,520",
+				"to": "00:04:27,080"
+			},
+			"offsets": {
+				"from": 261520,
+				"to": 267080
+			},
+			"text": " Because if we can do that, then we can--we use a lot of the sub-grid contract and guide"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,080",
+				"to": "00:04:33,160"
+			},
+			"offsets": {
+				"from": 267080,
+				"to": 273160
+			},
+			"text": " something for free, like the networking works, the subject, a light client protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,160",
+				"to": "00:04:39,360"
+			},
+			"offsets": {
+				"from": 273160,
+				"to": 279360
+			},
+			"text": " So, what we end up doing is we create a wafer block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,360",
+				"to": "00:04:45,200"
+			},
+			"offsets": {
+				"from": 279360,
+				"to": 285200
+			},
+			"text": " This is basically says that we create a separate block definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,200",
+				"to": "00:04:50,920"
+			},
+			"offsets": {
+				"from": 285200,
+				"to": 290920
+			},
+			"text": " This block definition, we call it wiper block, follows sub-grid definition of what a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,920",
+				"to": "00:04:51,920"
+			},
+			"offsets": {
+				"from": 290920,
+				"to": 291920
+			},
+			"text": " is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,920",
+				"to": "00:04:54,920"
+			},
+			"offsets": {
+				"from": 291920,
+				"to": 294920
+			},
+			"text": " Basically, there's a defense structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,920",
+				"to": "00:04:59,160"
+			},
+			"offsets": {
+				"from": 294920,
+				"to": 299160
+			},
+			"text": " And we also have the--like, the modified beacon block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,160",
+				"to": "00:05:04,880"
+			},
+			"offsets": {
+				"from": 299160,
+				"to": 304880
+			},
+			"text": " And for each beacon block, we make sure that there is a unique corresponding wafer block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,880",
+				"to": "00:05:13,040"
+			},
+			"offsets": {
+				"from": 304880,
+				"to": 313040
+			},
+			"text": " So in that case, given beacon block, you can always generate a wafer block, but you might"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,040",
+				"to": "00:05:16,520"
+			},
+			"offsets": {
+				"from": 313040,
+				"to": 316520
+			},
+			"text": " need some past block data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:23,880"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 323880
+			},
+			"text": " It may not be so trivial, but it should be in a series possible to generate a wafer block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,880",
+				"to": "00:05:30,560"
+			},
+			"offsets": {
+				"from": 323880,
+				"to": 330560
+			},
+			"text": " We also have a wafer state, which also is a wiper structure on top of the beacon state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,560",
+				"to": "00:05:35,240"
+			},
+			"offsets": {
+				"from": 330560,
+				"to": 335240
+			},
+			"text": " And this wafer state follows sub-grid definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,240",
+				"to": "00:05:40,160"
+			},
+			"offsets": {
+				"from": 335240,
+				"to": 340160
+			},
+			"text": " And the state is basically a Markle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,160",
+				"to": "00:05:44,360"
+			},
+			"offsets": {
+				"from": 340160,
+				"to": 344360
+			},
+			"text": " And this Markle tree also has the definition in sub-grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,360",
+				"to": "00:05:53,280"
+			},
+			"offsets": {
+				"from": 344360,
+				"to": 353280
+			},
+			"text": " And what we do--and that Markle tree is different, is currently different than what is defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,280",
+				"to": "00:05:54,440"
+			},
+			"offsets": {
+				"from": 353280,
+				"to": 354440
+			},
+			"text": " It's from 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,440",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 354440,
+				"to": 358520
+			},
+			"text": " So what we do, we define a child tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:06:04,080"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 364080
+			},
+			"text": " And this tree structure is exactly the same as the beacon tree structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,080",
+				"to": "00:06:08,840"
+			},
+			"offsets": {
+				"from": 364080,
+				"to": 368840
+			},
+			"text": " This is like a working library, you can use a sub-grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,840",
+				"to": "00:06:10,720"
+			},
+			"offsets": {
+				"from": 368840,
+				"to": 370720
+			},
+			"text": " So we define a child tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,720",
+				"to": "00:06:18,320"
+			},
+			"offsets": {
+				"from": 370720,
+				"to": 378320
+			},
+			"text": " And in this child tree, we follow exactly what the beacon block is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,320",
+				"to": "00:06:23,280"
+			},
+			"offsets": {
+				"from": 378320,
+				"to": 383280
+			},
+			"text": " And we store the actual beacon state in the wafer state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,280",
+				"to": "00:06:29,360"
+			},
+			"offsets": {
+				"from": 383280,
+				"to": 389360
+			},
+			"text": " So there's always a child tree which has the exact state root of the beacon state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,360",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 389360,
+				"to": 394600
+			},
+			"text": " And we web it with some other state, probably some cache or other information that's that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:37,920"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 397920
+			},
+			"text": " we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,920",
+				"to": "00:06:42,320"
+			},
+			"offsets": {
+				"from": 397920,
+				"to": 402320
+			},
+			"text": " So to look into the actual thing, it will be like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,320",
+				"to": "00:06:46,160"
+			},
+			"offsets": {
+				"from": 402320,
+				"to": 406160
+			},
+			"text": " This is the standard beacon block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,160",
+				"to": "00:06:52,080"
+			},
+			"offsets": {
+				"from": 406160,
+				"to": 412080
+			},
+			"text": " We have the slot definition, block root, state root, block body and signature, things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,080",
+				"to": "00:06:53,480"
+			},
+			"offsets": {
+				"from": 412080,
+				"to": 413480
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,480",
+				"to": "00:06:59,240"
+			},
+			"offsets": {
+				"from": 413480,
+				"to": 419240
+			},
+			"text": " And for the sub-grid block, we basically make it like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,240",
+				"to": "00:07:08,440"
+			},
+			"offsets": {
+				"from": 419240,
+				"to": 428440
+			},
+			"text": " So you can say some of the items are exactly the same as what is on the beacon block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,440",
+				"to": "00:07:13,240"
+			},
+			"offsets": {
+				"from": 428440,
+				"to": 433240
+			},
+			"text": " So you should--there's a unique corresponding."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,240",
+				"to": "00:07:20,120"
+			},
+			"offsets": {
+				"from": 433240,
+				"to": 440120
+			},
+			"text": " And for stuff that doesn't have a definition that is considered specific, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,120",
+				"to": "00:07:27,840"
+			},
+			"offsets": {
+				"from": 440120,
+				"to": 447840
+			},
+			"text": " the slot and the signature, we just put it on the digits, which because it's in the header"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,840",
+				"to": "00:07:32,280"
+			},
+			"offsets": {
+				"from": 447840,
+				"to": 452280
+			},
+			"text": " is obviously readable no matter your look and don't like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,280",
+				"to": "00:07:40,480"
+			},
+			"offsets": {
+				"from": 452280,
+				"to": 460480
+			},
+			"text": " And the last thing we need to care about is this state root because I mean in the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,480",
+				"to": "00:07:43,920"
+			},
+			"offsets": {
+				"from": 460480,
+				"to": 463920
+			},
+			"text": " we need to verify this block structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,920",
+				"to": "00:07:53,280"
+			},
+			"offsets": {
+				"from": 463920,
+				"to": 473280
+			},
+			"text": " The issue is even if there's unique correspondence, this signature is still a beacon block signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,280",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 473280,
+				"to": 480000
+			},
+			"text": " So it doesn't verify this state root, but instead it verifies the beacon block state"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:01,240"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 481240
+			},
+			"text": " root."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,240",
+				"to": "00:08:07,800"
+			},
+			"offsets": {
+				"from": 481240,
+				"to": 487800
+			},
+			"text": " So in that case, we need to find a way to make sure that we can also verify this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,800",
+				"to": "00:08:08,800"
+			},
+			"offsets": {
+				"from": 487800,
+				"to": 488800
+			},
+			"text": " So how do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,800",
+				"to": "00:08:15,400"
+			},
+			"offsets": {
+				"from": 488800,
+				"to": 495400
+			},
+			"text": " So basically, it's not shown here, but we basically create a second digit structure that creates"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,400",
+				"to": "00:08:16,240"
+			},
+			"offsets": {
+				"from": 495400,
+				"to": 496240
+			},
+			"text": " the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,240",
+				"to": "00:08:25,960"
+			},
+			"offsets": {
+				"from": 496240,
+				"to": 505960
+			},
+			"text": " So an additional state proof that goes from the beacon state root into the sub-grid state"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,960",
+				"to": "00:08:30,760"
+			},
+			"offsets": {
+				"from": 505960,
+				"to": 510760
+			},
+			"text": " root, the river block state root that we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,760",
+				"to": "00:08:36,320"
+			},
+			"offsets": {
+				"from": 510760,
+				"to": 516320
+			},
+			"text": " And while we're doing this, so this is all about real stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,320",
+				"to": "00:08:43,200"
+			},
+			"offsets": {
+				"from": 516320,
+				"to": 523200
+			},
+			"text": " So let me create this river block and we create a consensus engine in sub-grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,200",
+				"to": "00:08:50,560"
+			},
+			"offsets": {
+				"from": 523200,
+				"to": 530560
+			},
+			"text": " We can then just directly plug it into sub-grid and it will work with the right of the sub-grid"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,560",
+				"to": "00:08:58,360"
+			},
+			"offsets": {
+				"from": 530560,
+				"to": 538360
+			},
+			"text": " code base so we can get a separate networking and also the sub-grid light-clant component"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,360",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 538360,
+				"to": 544360
+			},
+			"text": " for free and that will be working on Eastern fuba 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:07,560"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 547560
+			},
+			"text": " So we need to have some obstacles."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,560",
+				"to": "00:09:10,520"
+			},
+			"offsets": {
+				"from": 547560,
+				"to": 550520
+			},
+			"text": " That's why."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,520",
+				"to": "00:09:17,280"
+			},
+			"offsets": {
+				"from": 550520,
+				"to": 557280
+			},
+			"text": " So the issue is we try to do too early of this thing in the specification process."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,280",
+				"to": "00:09:22,280"
+			},
+			"offsets": {
+				"from": 557280,
+				"to": 562280
+			},
+			"text": " The issue is either time the specification is still changing a lot and that creates a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,280",
+				"to": "00:09:28,280"
+			},
+			"offsets": {
+				"from": 562280,
+				"to": 568280
+			},
+			"text": " lot of problems for us because for each new release, we are basically rewriting everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,280",
+				"to": "00:09:34,280"
+			},
+			"offsets": {
+				"from": 568280,
+				"to": 574280
+			},
+			"text": " and that kind of slow down the process quite a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,280",
+				"to": "00:09:37,680"
+			},
+			"offsets": {
+				"from": 574280,
+				"to": 577680
+			},
+			"text": " We still like little bit primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,680",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 577680,
+				"to": 582680
+			},
+			"text": " We have the child market tree structure, but we currently don't have a binary market tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:44,280"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 584280
+			},
+			"text": " child tree set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,280",
+				"to": "00:09:48,640"
+			},
+			"offsets": {
+				"from": 584280,
+				"to": 588640
+			},
+			"text": " So assessing that is we are adding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,640",
+				"to": "00:09:57,160"
+			},
+			"offsets": {
+				"from": 588640,
+				"to": 597160
+			},
+			"text": " The BRS works on the runtime by itself, but the issue is if we don't add new primitives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,160",
+				"to": "00:10:00,520"
+			},
+			"offsets": {
+				"from": 597160,
+				"to": 600520
+			},
+			"text": " the BRS will be too slow for production use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,520",
+				"to": "00:10:05,520"
+			},
+			"offsets": {
+				"from": 600520,
+				"to": 605520
+			},
+			"text": " So that's also some primitives we need to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,520",
+				"to": "00:10:18,080"
+			},
+			"offsets": {
+				"from": 605520,
+				"to": 618080
+			},
+			"text": " And because we are kind of not too fast on that, the current plans is we do a two-plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,080",
+				"to": "00:10:19,080"
+			},
+			"offsets": {
+				"from": 618080,
+				"to": 619080
+			},
+			"text": " set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,080",
+				"to": "00:10:24,840"
+			},
+			"offsets": {
+				"from": 619080,
+				"to": 624840
+			},
+			"text": " So basically we have the subject runtime plans still in place, but we still want to catch"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,840",
+				"to": "00:10:26,320"
+			},
+			"offsets": {
+				"from": 624840,
+				"to": 626320
+			},
+			"text": " up with the rest of the team."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,320",
+				"to": "00:10:31,840"
+			},
+			"offsets": {
+				"from": 626320,
+				"to": 631840
+			},
+			"text": " So what we plan to do is we want to build a beacon core and we want to plug the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,840",
+				"to": "00:10:32,840"
+			},
+			"offsets": {
+				"from": 631840,
+				"to": 632840
+			},
+			"text": " core."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,840",
+				"to": "00:10:36,960"
+			},
+			"offsets": {
+				"from": 632840,
+				"to": 636960
+			},
+			"text": " In the future, we want to plug this beacon core into the subject runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,960",
+				"to": "00:10:43,120"
+			},
+			"offsets": {
+				"from": 636960,
+				"to": 643120
+			},
+			"text": " But currently we are also using the beacon core to build a subject, to build an e-subroom"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,120",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 643120,
+				"to": 646240
+			},
+			"text": " and zero client without subject runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:51,560"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 651560
+			},
+			"text": " But we are still trying to use a limited set of subject components so that we can reuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,560",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 651560,
+				"to": 655000
+			},
+			"text": " things and not write too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:02,040"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 662040
+			},
+			"text": " And later, still using the beacon core, we want to build a full subject runtime on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,040",
+				"to": "00:11:03,040"
+			},
+			"offsets": {
+				"from": 662040,
+				"to": 663040
+			},
+			"text": " of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,040",
+				"to": "00:11:13,320"
+			},
+			"offsets": {
+				"from": 663040,
+				"to": 673320
+			},
+			"text": " So this two-plan set up is basically one with subject runtime and another with not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,320",
+				"to": "00:11:22,080"
+			},
+			"offsets": {
+				"from": 673320,
+				"to": 682080
+			},
+			"text": " And we didn't join the interrupt on site, but I try to hack it at home and it mostly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,080",
+				"to": "00:11:28,160"
+			},
+			"offsets": {
+				"from": 682080,
+				"to": 688160
+			},
+			"text": " works last month."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,160",
+				"to": "00:11:35,760"
+			},
+			"offsets": {
+				"from": 688160,
+				"to": 695760
+			},
+			"text": " So basically we are talking about writing generic plans and for an e-subroom two-plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,760",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 695760,
+				"to": 697000
+			},
+			"text": " zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:42,760"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 702760
+			},
+			"text": " So in the beginning, we have hybrid CASPER, which unfortunately we need to abandon because"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,760",
+				"to": "00:11:45,400"
+			},
+			"offsets": {
+				"from": 702760,
+				"to": 705400
+			},
+			"text": " of performance issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,400",
+				"to": "00:11:53,840"
+			},
+			"offsets": {
+				"from": 705400,
+				"to": 713840
+			},
+			"text": " And later we decided to build beacon chain on subject runtime using what is called a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,840",
+				"to": "00:11:55,800"
+			},
+			"offsets": {
+				"from": 713840,
+				"to": 715800
+			},
+			"text": " vapor block."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,800",
+				"to": "00:12:00,640"
+			},
+			"offsets": {
+				"from": 715800,
+				"to": 720640
+			},
+			"text": " In this way we can reuse a lot of the subject components."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,640",
+				"to": "00:12:03,560"
+			},
+			"offsets": {
+				"from": 720640,
+				"to": 723560
+			},
+			"text": " And our current plan is to build double clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,560",
+				"to": "00:12:09,320"
+			},
+			"offsets": {
+				"from": 723560,
+				"to": 729320
+			},
+			"text": " Basically the first client is for without subject runtime to catch up with the mandate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,320",
+				"to": "00:12:14,880"
+			},
+			"offsets": {
+				"from": 729320,
+				"to": 734880
+			},
+			"text": " release and the rest of team schedule and another with subject runtime so we can continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,880",
+				"to": "00:12:22,440"
+			},
+			"offsets": {
+				"from": 734880,
+				"to": 742440
+			},
+			"text": " to explore building a really generic block chain framework for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,440",
+				"to": "00:12:24,440"
+			},
+			"offsets": {
+				"from": 742440,
+				"to": 744440
+			},
+			"text": " So that's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,440",
+				"to": "00:12:25,440"
+			},
+			"offsets": {
+				"from": 744440,
+				"to": 745440
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,440",
+				"to": "00:12:25,440"
+			},
+			"offsets": {
+				"from": 745440,
+				"to": 745440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,440",
+				"to": "00:12:26,440"
+			},
+			"offsets": {
+				"from": 745440,
+				"to": 746440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,440",
+				"to": "00:12:27,440"
+			},
+			"offsets": {
+				"from": 746440,
+				"to": 747440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,440",
+				"to": "00:12:28,440"
+			},
+			"offsets": {
+				"from": 747440,
+				"to": 748440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,440",
+				"to": "00:12:29,440"
+			},
+			"offsets": {
+				"from": 748440,
+				"to": 749440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,440",
+				"to": "00:12:30,440"
+			},
+			"offsets": {
+				"from": 749440,
+				"to": 750440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,440",
+				"to": "00:12:31,440"
+			},
+			"offsets": {
+				"from": 750440,
+				"to": 751440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,440",
+				"to": "00:12:32,440"
+			},
+			"offsets": {
+				"from": 751440,
+				"to": 752440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,440",
+				"to": "00:12:33,440"
+			},
+			"offsets": {
+				"from": 752440,
+				"to": 753440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,440",
+				"to": "00:12:34,440"
+			},
+			"offsets": {
+				"from": 753440,
+				"to": 754440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,440",
+				"to": "00:12:35,440"
+			},
+			"offsets": {
+				"from": 754440,
+				"to": 755440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,440",
+				"to": "00:12:36,440"
+			},
+			"offsets": {
+				"from": 755440,
+				"to": 756440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,440",
+				"to": "00:12:37,440"
+			},
+			"offsets": {
+				"from": 756440,
+				"to": 757440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,440",
+				"to": "00:12:38,440"
+			},
+			"offsets": {
+				"from": 757440,
+				"to": 758440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,440",
+				"to": "00:12:39,440"
+			},
+			"offsets": {
+				"from": 758440,
+				"to": 759440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,440",
+				"to": "00:12:40,440"
+			},
+			"offsets": {
+				"from": 759440,
+				"to": 760440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,440",
+				"to": "00:12:41,440"
+			},
+			"offsets": {
+				"from": 760440,
+				"to": 761440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,440",
+				"to": "00:12:43,440"
+			},
+			"offsets": {
+				"from": 761440,
+				"to": 763440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,440",
+				"to": "00:12:44,440"
+			},
+			"offsets": {
+				"from": 763440,
+				"to": 764440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,440",
+				"to": "00:12:45,440"
+			},
+			"offsets": {
+				"from": 764440,
+				"to": 765440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,440",
+				"to": "00:12:46,440"
+			},
+			"offsets": {
+				"from": 765440,
+				"to": 766440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,440",
+				"to": "00:12:47,440"
+			},
+			"offsets": {
+				"from": 766440,
+				"to": 767440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,440",
+				"to": "00:12:48,440"
+			},
+			"offsets": {
+				"from": 767440,
+				"to": 768440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,440",
+				"to": "00:12:49,440"
+			},
+			"offsets": {
+				"from": 768440,
+				"to": 769440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,440",
+				"to": "00:12:50,440"
+			},
+			"offsets": {
+				"from": 769440,
+				"to": 770440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,440",
+				"to": "00:12:51,440"
+			},
+			"offsets": {
+				"from": 770440,
+				"to": 771440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,440",
+				"to": "00:12:52,440"
+			},
+			"offsets": {
+				"from": 771440,
+				"to": 772440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,440",
+				"to": "00:12:53,440"
+			},
+			"offsets": {
+				"from": 772440,
+				"to": 773440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,440",
+				"to": "00:12:54,440"
+			},
+			"offsets": {
+				"from": 773440,
+				"to": 774440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,440",
+				"to": "00:12:55,440"
+			},
+			"offsets": {
+				"from": 774440,
+				"to": 775440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,440",
+				"to": "00:12:56,440"
+			},
+			"offsets": {
+				"from": 775440,
+				"to": 776440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,440",
+				"to": "00:12:57,440"
+			},
+			"offsets": {
+				"from": 776440,
+				"to": 777440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,440",
+				"to": "00:12:58,440"
+			},
+			"offsets": {
+				"from": 777440,
+				"to": 778440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,440",
+				"to": "00:12:59,440"
+			},
+			"offsets": {
+				"from": 778440,
+				"to": 779440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,440",
+				"to": "00:13:00,440"
+			},
+			"offsets": {
+				"from": 779440,
+				"to": 780440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,440",
+				"to": "00:13:01,440"
+			},
+			"offsets": {
+				"from": 780440,
+				"to": 781440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,440",
+				"to": "00:13:02,440"
+			},
+			"offsets": {
+				"from": 781440,
+				"to": 782440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,440",
+				"to": "00:13:03,440"
+			},
+			"offsets": {
+				"from": 782440,
+				"to": 783440
+			},
+			"text": " [Applause]"
+		}
+	]
+}

@@ -1,0 +1,2705 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 21000
+			},
+			"text": " So let's try this again. So I'm working on introducing diversity on the blockchain layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 27000
+			},
+			"text": " and the end goal would be to change Ethereum but also other blockchains themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " to enforce diversity on that level. As said, I'm working for the Vega protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " That's a derivative trading platform that works on its own blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " If you want to know what exactly Vega does, there's a wonderful workshop tomorrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " where you can spend one and a half hours playing with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 49000
+			},
+			"text": " I'm talking about the lower level, so I'm doing blockchain research, MEV, fairness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54000
+			},
+			"text": " and yes, diversity. In our case, tenderment, but it's an approach that works everywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 60000
+			},
+			"text": " and should also work on Ethereum and that's a goal to have a discussion with Ethereum developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 65000
+			},
+			"text": " How far can we drive this to put diversity onto the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 71000
+			},
+			"text": " So generally, why do we need validator policies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 78000
+			},
+			"text": " In the old days, when Bitcoin started, we had this beautiful anarchic cyberpoint of view"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " that we have millions of validators in the dorm rooms securing Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " that used to work, but now validating is a serious business"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 92000
+			},
+			"text": " and that has caused dependencies, that has caused centralization factors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " so some of the basic assumptions we had are wrong, and Anna has just shown"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 103000
+			},
+			"text": " there's some very few validators that own an enormous amount of Ethereum shares,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " so it's not really that decentralized anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " So there's a couple of policies and some other works that I also would like to advertise"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 116000
+			},
+			"text": " as people actually thinking about a structural way to figure out what actually do we want from validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 122000
+			},
+			"text": " The bad thing is if you start with the same axioms you may end up somewhere totally differently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 128000
+			},
+			"text": " so this still needs a lot of debate, but one thing that I think nobody needs to debate anymore"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " is we need more diversity and centralization or an under-versed system is a very bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 142000
+			},
+			"text": " And if you don't have enough examples, so from other blockchains, Bitcoin at some point"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 148000
+			},
+			"text": " had a vast majority of the mining capacity in China, so if China had not set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " you guys used too much energy to get out, if they just set get out and leave your rigs here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " then China would now own Bitcoin, pretty bad idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " Ethereum has a similar problem, there's no so much validation, power in America,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 168000
+			},
+			"text": " that the United States has essentially said Ethereum is now a US citizen, so we have legislation over you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " so congratulations Ethereum, you're now a citizen of the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 182000
+			},
+			"text": " We had other diversity problems, early Ethereum test net, 75% of the validators had a client code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 190000
+			},
+			"text": " there was a bug in there, the whole thing stopped, Solana, almost 30% of all validators run in the same Amazon cloud,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 194000
+			},
+			"text": " so if Amazon goes down, then so does Solana, that's not really diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " And if you go all the way back into history, Leslie Lampro to actually invent it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " the term Byzantine agreement already set, the whole threshold model just doesn't make sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " that's not what I meant when I set Byzantine, so we're even using his term in a totally different way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 214000
+			},
+			"text": " than it was originally intended by assuming failure independence."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 220000
+			},
+			"text": " So we need to assume failure independently, states fail, implementations fail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 228000
+			},
+			"text": " flashbots may fail or behave in a bad way, so we need definitely more diversity on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 236000
+			},
+			"text": " One controversy in there, and that's a discussion that pretty much always comes up when talking about this topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 242000
+			},
+			"text": " how about enforceability, so if I say I want geographical diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 248000
+			},
+			"text": " a validator can just lie about where they are, and that's true, they can, they can use a VPN,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " so I can be in China and claim I'm in the US, no problems there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 259000
+			},
+			"text": " So there's a couple of things, so A, just because I can't 100% enforce a policy, doesn't mean I shouldn't have it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 263000
+			},
+			"text": " I have doorlocks at home, I have friends who can pick those doorlocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " but that doesn't mean I remove my locks and put my valuables on the street,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 272000
+			},
+			"text": " they still serve a purpose even though they're just 95% secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 278000
+			},
+			"text": " And if we create a business case that at least honest people create diversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 285000
+			},
+			"text": " and dishonest people at least have some risk and need to show some criminal behavior to violate diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 292000
+			},
+			"text": " then we have something, it's not perfect, but just giving up because we say somebody can lie about where they are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 298000
+			},
+			"text": " that doesn't really help, and there's some really fun research on finding out where you really are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " even if you're in a VPN and you're probably, if you ask Netflix or Amazon, they're also pretty good at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 312000
+			},
+			"text": " So it's a discussion that needs to be had, but my opinion is even if we cannot 100% be sure about what a validator says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " who they are, what codes they run, where they are, that doesn't mean we should just go home and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 323000
+			},
+			"text": " well, then we all end up in China fine and we can just stop the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 329000
+			},
+			"text": " The way we normally do this, or the first idea to implement policies is by economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 336000
+			},
+			"text": " So Ethereum is very heavy on slashing, is you misbehave, we may slash you, so you better be a nice validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 343000
+			},
+			"text": " We can have positive incentives like diversity award, if you run your validator from New Zealand, we give you more money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 349000
+			},
+			"text": " or something indirect, like a delegate proof of stake, if you add diversity to the network, you're a good citizen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 353000
+			},
+			"text": " more people stake to you, you get more money, everybody is happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 356000
+			},
+			"text": " That has a couple of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 364000
+			},
+			"text": " My favorite one being MEV, and we have to mention MEV here, with MEV we don't know what's the business model of the validator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 372000
+			},
+			"text": " it's anymore they don't make money by fees, they make money by MEV extraction, so paying them a diversity bonus is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " paying police a small bonus in a country where the lift of generally of bribes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 385000
+			},
+			"text": " That's not the business model to get the salary, the business model is getting bribes, so economic incentives may not really work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 395000
+			},
+			"text": " We have fun financial instruments that can outsource flashing risks, and if it's just economics and I have a higher incentive to cheat."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 403000
+			},
+			"text": " It's one approach, definitely is one error in our toolkit, but it's not the end solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " That's why we want to implement diversity on the consensus protocol itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 418000
+			},
+			"text": " To get there, I need a little bit background on consensus protocols, and there you see how old I am,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 429000
+			},
+			"text": " because these papers from 1984, so the impossibility results pretty predate everybody in this room, almost everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 436000
+			},
+			"text": " The worst one is actually bugging the whole community since 40 years by now, it's called Fish and Lunch Patterson,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 442000
+			},
+			"text": " and they prove that consensus is actually impossible. The end, let's all go home."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 451000
+			},
+			"text": " What they're more precisely proved is no deterministic asynchronous protocol can guarantee termination even if one validator may crash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 459000
+			},
+			"text": " and this is a result we've been working around for the last 40 years, so this is the reason why every consensus protocol is a bit messy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " because if it were easy, we would run into an impossibility result."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 471000
+			},
+			"text": " There are others you can write papers with thousand impossibility results in the area, which are a very fun read, but that's actually the most fundamental one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 477000
+			},
+			"text": " Now, of course, we can cheat, we have cheated, that is why we're all here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 484000
+			},
+			"text": " The first way to cheat is it says asynchronous, so if you use a timing assumption, you can get around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 490000
+			},
+			"text": " This is what tenement is doing, for example. The bad thing is, if you guess, or you're timing assumption wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " then bad thing, you get very inefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " The second one is probabilistic, it says deterministic protocols, so that's actually my favorite approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 506000
+			},
+			"text": " We just terminate with probability one, which is generally good enough, and then I don't need a timing assumption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 512000
+			},
+			"text": " or what was invented by Bitcoin, essentially, and it's not also partially used by Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " a way to terminate in the first place, if I have a long-term protocol, I just run it at some point, it's good enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 522000
+			},
+			"text": " but technically you never really terminate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " Now, after the first you do, but technically, a long-term protocol never finalizes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 531000
+			},
+			"text": " you always could theoretically roll back your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 537000
+			},
+			"text": " This is the three ways we got around this, that gets us to the consensus map."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 543000
+			},
+			"text": " We have essentially three approaches, we have the randomized approach, the partial synchronous approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 551000
+			},
+			"text": " and the longest chain approach, and they all have nice properties, so the both committee-based ones are finalizing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 559000
+			},
+			"text": " which is great, different timing assumptions, their disadvantages, they don't scale as well as the longest chain protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 566000
+			},
+			"text": " every validator, they need to talk to everybody, so if I try to run those protocols with 40,000 validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 571000
+			},
+			"text": " everything will explode, so this is why people still use the longest chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 579000
+			},
+			"text": " Now, the reason why I'm actually going to all of this, the technique I'm now talking about is actually very well explored"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 583000
+			},
+			"text": " for the two committee-based protocols, we know exactly how it works there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 592000
+			},
+			"text": " For longest chain protocols, like the old Ethereum, Bitcoin, Solana, we sort of can make it work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 596000
+			},
+			"text": " but you probably need some more statistical evaluation to be sure what we're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601000
+			},
+			"text": " and for GASPR, we need to talk because GASPR is a pretty complex beast."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 611000
+			},
+			"text": " It works there, I'm just not sure nothing explodes if you would implement it, so this is a very good idea to actually have a small discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 618000
+			},
+			"text": " So what we want to do is call generally adversary structures, so normally, as you saw in these protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 625000
+			},
+			"text": " you have thresholds like only one third of the validators may be corrupt or in the longest chain half of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 630000
+			},
+			"text": " and we want to get rid of this. So forget about thresholds, they are boring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 638000
+			},
+			"text": " what we want to do is write down explicitly all coalitions of adversaries that want to be able to tolerate if they are corrupt simultaneously."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 645000
+			},
+			"text": " So I could say I want to tolerate if a quarter of all stake plus an entire country goes corrupt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 652000
+			},
+			"text": " independently on how many validators are in this country, and for now I just write down these sets and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 659000
+			},
+			"text": " \"This is the set I want to tolerate.\" It's a pretty flexible notion, we can later scale it down to make it more manageable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 666000
+			},
+			"text": " Then we want to modify the protocols to work with this, and unfortunately we also have some requirements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 673000
+			},
+			"text": " we can't just say, \"I want to tolerate everybody going bad, so there's some limits what we can do in there.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 679000
+			},
+			"text": " If we look at the committee-based protocols or also the cusp per part of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 686000
+			},
+			"text": " you usually find somewhere in the code something like, \"Wait for 2T+1 or 2F+1 votes.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 691000
+			},
+			"text": " This is where the thresholds come in, and in pretty much every modern protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 700000
+			},
+			"text": " there's exactly three thresholds they use. It's N-T for N validators and up to T-trators, 2T+1 and T+1."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 708000
+			},
+			"text": " If you now go back in the protocol, if they say T+1, what do they actually mean with this? What do they want from this property?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 717000
+			},
+			"text": " We have three things we need. We have a threshold where if I talk to that many validators, I know at least one is honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 724000
+			},
+			"text": " Honest majority, or this is the longest I can wait before I can't wait anymore because everybody else may be corrupted."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 732000
+			},
+			"text": " This way we now can replace the thresholds with actually sets, so the T+1 is replaced by any set on my list of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " I want to be corrupted plus one more guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 743000
+			},
+			"text": " For the committee-based protocols, we can just essentially take the thresholds out of the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 751000
+			},
+			"text": " replace it with our set properties, and we have pretty much automatically transformed that protocol into a more flexible model."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 758000
+			},
+			"text": " We can do the same for the proofs, although it's probably a good idea to manually check the proof afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 766000
+			},
+			"text": " We can generically take a protocol that is threshold-based and go to set-based version, which is then much more flexible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772000
+			},
+			"text": " which allows us to explicitly write down, \"I want to tolerate all of these people going bad.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 780000
+			},
+			"text": " There are some limits, so the limit we need for committee-based protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 783000
+			},
+			"text": " but we used to have a third of the validators can be bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 786000
+			},
+			"text": " Now it's three of the sets I write down."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789000
+			},
+			"text": " I must not cover the whole set of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 794000
+			},
+			"text": " If I say I have three countries and I want all of them to be able to corrupted, it doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 800000
+			},
+			"text": " If I say I have four countries and I want to tolerate if one entire country goes down, that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 803000
+			},
+			"text": " That's our limits on the sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 809000
+			},
+			"text": " It's necessary and sufficient, so we know if I satisfy this condition, I can still solve consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 811000
+			},
+			"text": " If I doesn't, it's impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 817000
+			},
+			"text": " This is how we can compute what are the sets we actually can generate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 823000
+			},
+			"text": " How do we define actually who we want to tolerate to be corrupted?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 826000
+			},
+			"text": " Longest chain protocols are slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 828000
+			},
+			"text": " They don't have a threshold."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 833000
+			},
+			"text": " The thing we have here is a leader selection algorithm and the longest chain rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 839000
+			},
+			"text": " What we can do here is change the definition of what a longest chain is."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 848000
+			},
+			"text": " If I have consecutive blocks generated in America, I can say the length of each block goes down in the longest chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 855000
+			},
+			"text": " depending on the number of blocks that were generated in the same set before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 859000
+			},
+			"text": " First block generated by an American validator has length one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 864000
+			},
+			"text": " Second block generated by an American validator has length 0.95."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 867000
+			},
+			"text": " Third block is going down 0.8 something."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 874000
+			},
+			"text": " The more blocks are generated by validators in the same corruption set or say in the same country in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 876000
+			},
+			"text": " the shorter they get."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 883000
+			},
+			"text": " At some point, just anybody coming from another country will be longer because they just can't add to the chain anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 894000
+			},
+			"text": " We can use this approach to secure a longest chain protocol and have these corruption sets on a longest chain base."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 898000
+			},
+			"text": " Parameter choice is still a little bit difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 900000
+			},
+			"text": " This is where we need experimentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 907000
+			},
+			"text": " That's a general problem with all longest chain protocols like Bitcoin, like old Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 909000
+			},
+			"text": " That's a lot of guesswork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 918000
+			},
+			"text": " Right now we have how many steps do I need until I actually trust that my block is sort of final."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 919000
+			},
+			"text": " It is guesswork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 921000
+			},
+			"text": " It's statistical evaluation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 928000
+			},
+			"text": " This is what we need to read now if you want to go to these generalized address-free sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 932000
+			},
+			"text": " Gasper is getting even more complex because it's a hybrid protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 941000
+			},
+			"text": " As I said, I think I can put this into Gasper. I could implement it in Gasper, but given the analysis of it is relatively complicated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 946000
+			},
+			"text": " we have no idea if the security proof still holds."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 954000
+			},
+			"text": " This is then future work, put it into Gasper and then redo the security analysis is in the new model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 967000
+			},
+			"text": " Last thing that's important is how do we manage the sets? We have a very flexible way now to deal with validators, which is actually too flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 970000
+			},
+			"text": " What we want is actually an attribute-based one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 973000
+			},
+			"text": " I used this already in my example. I used countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 983000
+			},
+			"text": " What we want to say is I want a quarter of the stake to fail plus one country plus one implementation plus maybe one cloud provider plus flashboards."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 994000
+			},
+			"text": " If we define it by the set of views, if all the validators can compute the production sets from saying a one entire country to fail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 999000
+			},
+			"text": " we can compute back what is said that we are implemented for algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1005000
+			},
+			"text": " Our algorithm can ensure that not only can tolerate half of the validators to fail or assert,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1015000
+			},
+			"text": " but in addition, an entire country, an entire code base, an entire flashboards client, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1021000
+			},
+			"text": " The problem in here is, and I guess it's an issue with all diversity implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1027000
+			},
+			"text": " The more attributes I have along which I want to be diverse, the more validators I need to actually implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1038000
+			},
+			"text": " It's easy to say I want to tolerate an entire country to fail saying a country plus an implementation is probably doable, adding a cloud provider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1047000
+			},
+			"text": " then it's getting messy so the more attributes we have along which I want to be diverse, the more difficult it is to actually get that implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1057000
+			},
+			"text": " I guess that's the same also in normal diversity in real life. If I have a board of a company and I want more women on the board, that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1066000
+			},
+			"text": " If I also want different ethnicities, handicaps, whatever, then at some point I need a very, very big board to accommodate all of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1071000
+			},
+			"text": " The danger we have here is that we need to avoid minorities stacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1080000
+			},
+			"text": " That's a validator, say, great. I have one value that represents all minorities on the planet, so it's its own operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1085000
+			},
+			"text": " A client, nobody else uses, located in Vatican State."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " So such a validator may get an undue weight in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1092000
+			},
+			"text": " If you're not careful how we define our sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1105000
+			},
+			"text": " But in general, what that gives us now is I can give validators attributes and rather than saying assert of the validators can fail, I can say everybody with a certain attribute is allowed to fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1111000
+			},
+			"text": " The discussion we need to have as a community is then what attributes are actually important."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1116000
+			},
+			"text": " Is it more important to have geographical diversity? Is it more important to have client diversity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1124000
+			},
+			"text": " Where do we want to set the priorities and which diversity aspects actually in the end less important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " So that's my parting summary already."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1133000
+			},
+			"text": " So plain blockchain implementations are getting serious diversity errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1143000
+			},
+			"text": " We have a huge number of examples. Economic incentivization does sort of work, but it has its limits due to new financial tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1147000
+			},
+			"text": " due to different business models of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1157000
+			},
+			"text": " We have a tool that we can put things onto the consensus level, that we can enforce diversity properties on that level."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1162000
+			},
+			"text": " We know how to implement this for some protocols. This is proven, this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1168000
+			},
+			"text": " Ethereum is a bit more complex. It can be implemented, but we still need security proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " The last thing is we can also calculate the limit on how diverse we actually can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1181000
+			},
+			"text": " We have a mathematical way to prove this is a maximum amount of diversity I can get via the consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1188000
+			},
+			"text": " If that's enough, that's fine. If you need more, then we need to sit back and maybe combine consensus with economic incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1196000
+			},
+			"text": " or really go back to the drawing board, but we can precisely calculate now what kind of level of diversity can we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1206000
+			},
+			"text": " The legal question that comes up, which was also essentially one of the new motivations with Ethereum now being American,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1210000
+			},
+			"text": " does it actually also help to give us a legal document or argument?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1213000
+			},
+			"text": " Does it just make us technically more secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1220000
+			},
+			"text": " Or are we also now legally more secure by saying, well, there are no blocks that can be created only in America."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1227000
+			},
+			"text": " It always needs non-American body data, so Ethereum cannot be under complete American law."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1233000
+			},
+			"text": " But that's pretty the wrong crowd to answer this, but interesting questions in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:37,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1237000
+			},
+			"text": " So, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1237000,
+				"to": 1242000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1260000
+			},
+			"text": " Do you have any thoughts on things like Lido that are building their own node-operators' steps and are taking them on themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1267000
+			},
+			"text": " build their own step in the way that they see a diverse set looking."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1273000
+			},
+			"text": " There are some people that say, oh, it's so great that we have so many home-stakers, but like you mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1278000
+			},
+			"text": " a lot of people might not be stating their own infrastructure, they might just be running into a pit of the US."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1287000
+			},
+			"text": " So, do you have any thoughts on how we can economically ensure that there are diverse sets and do you have any thoughts on people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1292000
+			},
+			"text": " that are going ahead and doing themselves like Lido?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1299000
+			},
+			"text": " One thing with this approach, we could actually say that Lido is an adversary set where we need blocks to be generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1307000
+			},
+			"text": " by not Lido on a very frequent basis, so they can't completely take over there if an upper bound or how much control they can have."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1315000
+			},
+			"text": " The approach generally isn't economical, so if it makes a lot of monetary sense to centralize this, it's not stopping it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1325000
+			},
+			"text": " it just gives you less weight, so the more people are joining Lido, the more weight in the consensus people get that did not."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1334000
+			},
+			"text": " You can link this with an economic incentive, so if you also use the same approach for the leader selection algorithm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1342000
+			},
+			"text": " then you can also say the validators at diversity get more block proposals, so they make more money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1347000
+			},
+			"text": " so that at some point also an economic limit on how centralized you can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1354000
+			},
+			"text": " So, it probably would be a combination that both by consensus enforcement, you say I need validators at diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1361000
+			},
+			"text": " but they also would earn more money, so after certain size it just doesn't pay off to grow much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1367000
+			},
+			"text": " So, it can be implemented, the only problem again is if you have too many access among we want to be diverse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1372000
+			},
+			"text": " then we run into issues of implementability."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1379000
+			},
+			"text": " All right, thank you so much. We are headed for the next step."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1384000
+			},
+			"text": " Is there any one more question? Maybe we have room for one last."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1388000
+			},
+			"text": " There you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1390000
+			},
+			"text": " Yeah, thanks for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1395000
+			},
+			"text": " It is for you to be also applicable for distributed outliers."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1400000
+			},
+			"text": " I think it will be difficult to get community development."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1405000
+			},
+			"text": " And something that is not cryptographically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1412000
+			},
+			"text": " it's cryptographically, you can not assert that it values in a company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1426000
+			},
+			"text": " I think this could maybe apply distributed outliers like their SSP networks or OBL or per se working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1432000
+			},
+			"text": " I haven't thought about that yet, so probably you could make it on a second level."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1443000
+			},
+			"text": " I would still hope that it gets into Ethereum even if you don't know exactly where somebody is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1450000
+			},
+			"text": " that we prefer semi-perfect policies over 100% cryptographically short ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1455000
+			},
+			"text": " I don't see a reason why it couldn't be used with distributed validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:21,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1461000
+			},
+			"text": " Maybe it gets a little bit more difficult to define than the policies on if you have two levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1461000,
+				"to": 1466000
+			},
+			"text": " In Ethereum I have two protocols that both have different thresholds and those different sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1468000
+			},
+			"text": " I hope you combined this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1472000
+			},
+			"text": " I think if I get in a distributed validator I get a certain one."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1475000
+			},
+			"text": " Should be solvable, I don't see a fundamental problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1480000
+			},
+			"text": " but definitely if it needs to be worked out what it means and if the proof still goes through."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1484000
+			},
+			"text": " The main thing is you need to still prove everything still works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1489000
+			},
+			"text": " and that's part that is still a lot of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:54,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1494000
+			},
+			"text": " Well, be grown with a plus for how you can do so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1494000,
+				"to": 1499000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:09,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1509000
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1509000,
+				"to": 1538000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

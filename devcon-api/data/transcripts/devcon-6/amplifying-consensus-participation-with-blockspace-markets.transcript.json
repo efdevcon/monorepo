@@ -1,0 +1,3002 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,200"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15200
+			},
+			"text": " >> I'm Julian from Swole Finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,200",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 15200,
+				"to": 17400
+			},
+			"text": " I'm technically the CEO, but I do a lot over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:20,640"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 20640
+			},
+			"text": " And today we're generally going to be talking about ETH2"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,640",
+				"to": "00:00:23,060"
+			},
+			"offsets": {
+				"from": 20640,
+				"to": 23060
+			},
+			"text": " and the way that we can really use DeFi products"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,060",
+				"to": "00:00:24,680"
+			},
+			"offsets": {
+				"from": 23060,
+				"to": 24680
+			},
+			"text": " to kind of amplify both the securities"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,680",
+				"to": "00:00:28,740"
+			},
+			"offsets": {
+				"from": 24680,
+				"to": 28740
+			},
+			"text": " of the ecosystem generally, as well as just the attractiveness"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,740",
+				"to": "00:00:30,040"
+			},
+			"offsets": {
+				"from": 28740,
+				"to": 30040
+			},
+			"text": " of what we can offer in DeFi itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,040",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 30040,
+				"to": 32800
+			},
+			"text": " So to start really, what is block space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:36,540"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 36540
+			},
+			"text": " Right? Block space is generally just a reservation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,540",
+				"to": "00:00:38,860"
+			},
+			"offsets": {
+				"from": 36540,
+				"to": 38860
+			},
+			"text": " of some computation space on the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,860",
+				"to": "00:00:41,040"
+			},
+			"offsets": {
+				"from": 38860,
+				"to": 41040
+			},
+			"text": " for specifically the mutation of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,040",
+				"to": "00:00:43,140"
+			},
+			"offsets": {
+				"from": 41040,
+				"to": 43140
+			},
+			"text": " Right? So generally speaking, when you try"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,140",
+				"to": "00:00:45,580"
+			},
+			"offsets": {
+				"from": 43140,
+				"to": 45580
+			},
+			"text": " to submit a transaction, it's going to require a certain amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,580",
+				"to": "00:00:48,340"
+			},
+			"offsets": {
+				"from": 45580,
+				"to": 48340
+			},
+			"text": " of computation and you then must reserve a certain amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,340",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 48340,
+				"to": 51200
+			},
+			"text": " of block space, of course, to transfer those funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:52,640"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 52640
+			},
+			"text": " or whatever you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,640",
+				"to": "00:00:55,560"
+			},
+			"offsets": {
+				"from": 52640,
+				"to": 55560
+			},
+			"text": " Also, generally speaking, right, this is supplied"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,560",
+				"to": "00:00:58,340"
+			},
+			"offsets": {
+				"from": 55560,
+				"to": 58340
+			},
+			"text": " by validators in ETH2, supplied by miners traditionally."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,340",
+				"to": "00:01:00,640"
+			},
+			"offsets": {
+				"from": 58340,
+				"to": 60640
+			},
+			"text": " And the demand really then just comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,640",
+				"to": "00:01:03,040"
+			},
+			"offsets": {
+				"from": 60640,
+				"to": 63040
+			},
+			"text": " from purely user transactions or arbitrage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,040",
+				"to": "00:01:04,640"
+			},
+			"offsets": {
+				"from": 63040,
+				"to": 64640
+			},
+			"text": " or whatever it might be, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,640",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64640,
+				"to": 67000
+			},
+			"text": " So, yeah, going towards demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:08,280"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 68280
+			},
+			"text": " You see that generally speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,280",
+				"to": "00:01:11,100"
+			},
+			"offsets": {
+				"from": 68280,
+				"to": 71100
+			},
+			"text": " it actually is insanely volatile, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,100",
+				"to": "00:01:13,060"
+			},
+			"offsets": {
+				"from": 71100,
+				"to": 73060
+			},
+			"text": " It's very difficult to predict demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,060",
+				"to": "00:01:15,380"
+			},
+			"offsets": {
+				"from": 73060,
+				"to": 75380
+			},
+			"text": " There are a number of just confounding factors"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,380",
+				"to": "00:01:18,260"
+			},
+			"offsets": {
+				"from": 75380,
+				"to": 78260
+			},
+			"text": " that continue to screw up any sort of models people have made."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,260",
+				"to": "00:01:22,060"
+			},
+			"offsets": {
+				"from": 78260,
+				"to": 82060
+			},
+			"text": " And really at the end of the day, this volatility is fueled"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,060",
+				"to": "00:01:24,340"
+			},
+			"offsets": {
+				"from": 82060,
+				"to": 84340
+			},
+			"text": " by mutually extractable opportunities, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,340",
+				"to": "00:01:26,900"
+			},
+			"offsets": {
+				"from": 84340,
+				"to": 86900
+			},
+			"text": " Whenever there is volatility in the market itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,900",
+				"to": "00:01:28,740"
+			},
+			"offsets": {
+				"from": 86900,
+				"to": 88740
+			},
+			"text": " there's liquidation opportunities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,740",
+				"to": "00:01:30,540"
+			},
+			"offsets": {
+				"from": 88740,
+				"to": 90540
+			},
+			"text": " arbitrage opportunities, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,540",
+				"to": "00:01:33,540"
+			},
+			"offsets": {
+				"from": 90540,
+				"to": 93540
+			},
+			"text": " Whenever there are NF2 drops, like that massive one"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,540",
+				"to": "00:01:38,280"
+			},
+			"offsets": {
+				"from": 93540,
+				"to": 98280
+			},
+			"text": " up to 450 gas for an entire day, it just screws things up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,280",
+				"to": "00:01:40,020"
+			},
+			"offsets": {
+				"from": 98280,
+				"to": 100020
+			},
+			"text": " for really how people must price"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,020",
+				"to": "00:01:42,080"
+			},
+			"offsets": {
+				"from": 100020,
+				"to": 102080
+			},
+			"text": " and create instruments around the ETH2 market."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,080",
+				"to": "00:01:46,220"
+			},
+			"offsets": {
+				"from": 102080,
+				"to": 106220
+			},
+			"text": " On the other side, right, we see that supply is kind of weird, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,220",
+				"to": "00:01:48,860"
+			},
+			"offsets": {
+				"from": 106220,
+				"to": 108860
+			},
+			"text": " You have an increasing number of validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,860",
+				"to": "00:01:51,020"
+			},
+			"offsets": {
+				"from": 108860,
+				"to": 111020
+			},
+			"text": " and this will continue to increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,020",
+				"to": "00:01:54,300"
+			},
+			"offsets": {
+				"from": 111020,
+				"to": 114300
+			},
+			"text": " It really hasn't started to plateau in my opinion yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,300",
+				"to": "00:01:56,360"
+			},
+			"offsets": {
+				"from": 114300,
+				"to": 116360
+			},
+			"text": " But on the other side of that, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,360",
+				"to": "00:02:00,160"
+			},
+			"offsets": {
+				"from": 116360,
+				"to": 120160
+			},
+			"text": " the actual block space within a given block is actually static."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,160",
+				"to": "00:02:02,560"
+			},
+			"offsets": {
+				"from": 120160,
+				"to": 122560
+			},
+			"text": " So you really look at this and kind of have to think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,560",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 122560,
+				"to": 124160
+			},
+			"text": " in two ways, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:08,400"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 128400
+			},
+			"text": " And when it comes to the factors of block space, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,400",
+				"to": "00:02:11,300"
+			},
+			"offsets": {
+				"from": 128400,
+				"to": 131300
+			},
+			"text": " you have to look at a number of things that will impact the yields"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,300",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 131300,
+				"to": 136000
+			},
+			"text": " of the validators and how that really makes the product attractive to them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,940"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138940
+			},
+			"text": " You kind of have to make things financially incentivize."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,940",
+				"to": "00:02:23,140"
+			},
+			"offsets": {
+				"from": 138940,
+				"to": 143140
+			},
+			"text": " So then the question comes, right, when you're looking at block space"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,140",
+				"to": "00:02:27,680"
+			},
+			"offsets": {
+				"from": 143140,
+				"to": 147680
+			},
+			"text": " and these supply and demand factors, how can you actually properly price these, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,680",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 147680,
+				"to": 150280
+			},
+			"text": " To start, obviously, everyone knows of base rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:32,740"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 152740
+			},
+			"text": " Most people actually don't know that this kind of --"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,740",
+				"to": "00:02:36,240"
+			},
+			"offsets": {
+				"from": 152740,
+				"to": 156240
+			},
+			"text": " it does shift depending on how much demand there is within a short period, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,240",
+				"to": "00:02:38,680"
+			},
+			"offsets": {
+				"from": 156240,
+				"to": 158680
+			},
+			"text": " So if a block is full, there's more rewards in the next block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,680",
+				"to": "00:02:42,080"
+			},
+			"offsets": {
+				"from": 158680,
+				"to": 162080
+			},
+			"text": " And essentially, they just try to move around on this direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,080",
+				"to": "00:02:48,520"
+			},
+			"offsets": {
+				"from": 162080,
+				"to": 168520
+			},
+			"text": " But on the other side of this, right, what most people are most familiar with is just purely the fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,520",
+				"to": "00:02:49,640"
+			},
+			"offsets": {
+				"from": 168520,
+				"to": 169640
+			},
+			"text": " that you pay, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,640",
+				"to": "00:02:54,700"
+			},
+			"offsets": {
+				"from": 169640,
+				"to": 174700
+			},
+			"text": " If you want to get a transaction through in a reasonable amount of time, you have to pay fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,700",
+				"to": "00:02:58,620"
+			},
+			"offsets": {
+				"from": 174700,
+				"to": 178620
+			},
+			"text": " And, I mean, the important factor is really that this has been very clearly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,620",
+				"to": "00:03:02,240"
+			},
+			"offsets": {
+				"from": 178620,
+				"to": 182240
+			},
+			"text": " an increasingly impactful mechanism over the past few years, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,240",
+				"to": "00:03:06,840"
+			},
+			"offsets": {
+				"from": 182240,
+				"to": 186840
+			},
+			"text": " You cannot really look at purely any of these base rewards or other factors alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,840",
+				"to": "00:03:09,140"
+			},
+			"offsets": {
+				"from": 186840,
+				"to": 189140
+			},
+			"text": " You have to really get abstract with your thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,140",
+				"to": "00:03:13,740"
+			},
+			"offsets": {
+				"from": 189140,
+				"to": 193740
+			},
+			"text": " So on the other side of that, right, you can also disincentivize negative activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,740",
+				"to": "00:03:19,160"
+			},
+			"offsets": {
+				"from": 193740,
+				"to": 199160
+			},
+			"text": " And this really just introduces more risks for validators than really people recognize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,160",
+				"to": "00:03:21,160"
+			},
+			"offsets": {
+				"from": 199160,
+				"to": 201160
+			},
+			"text": " at this point in time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,160",
+				"to": "00:03:28,460"
+			},
+			"offsets": {
+				"from": 201160,
+				"to": 208460
+			},
+			"text": " There's an entire row of blocks that were entirely completely destroyed in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,460",
+				"to": "00:03:32,860"
+			},
+			"offsets": {
+				"from": 208460,
+				"to": 212860
+			},
+			"text": " And realistically, you end up having to -- sorry, I actually did the wrong slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,860",
+				"to": "00:03:33,860"
+			},
+			"offsets": {
+				"from": 212860,
+				"to": 213860
+			},
+			"text": " Next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,860",
+				"to": "00:03:38,660"
+			},
+			"offsets": {
+				"from": 213860,
+				"to": 218660
+			},
+			"text": " You end up getting slashed, and a validator ended up getting slashed, I think, on about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,660",
+				"to": "00:03:40,560"
+			},
+			"offsets": {
+				"from": 218660,
+				"to": 220560
+			},
+			"text": " 20 slots in a row."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,560",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 220560,
+				"to": 221560
+			},
+			"text": " So it's pretty horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:42,560"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 222560
+			},
+			"text": " This happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,560",
+				"to": "00:03:45,280"
+			},
+			"offsets": {
+				"from": 222560,
+				"to": 225280
+			},
+			"text": " And there are real risks there that users must kind of accept."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,280",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 225280,
+				"to": 229600
+			},
+			"text": " Really at the end of the day as well, okay, on the demand side, or rather the APY that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:54,240"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 234240
+			},
+			"text": " you can earn in the yield, we're seeing increasing amounts of this not coming from the traditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,240",
+				"to": "00:03:59,440"
+			},
+			"offsets": {
+				"from": 234240,
+				"to": 239440
+			},
+			"text": " mempool tips and et cetera, but large blocks that are proposed by off-chain relays, primarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,440",
+				"to": "00:04:01,480"
+			},
+			"offsets": {
+				"from": 239440,
+				"to": 241480
+			},
+			"text": " flashpots, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,480",
+				"to": "00:04:06,080"
+			},
+			"offsets": {
+				"from": 241480,
+				"to": 246080
+			},
+			"text": " In a row here, right, you have about 20 -- no, I think that's about 10 within about 100 transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,080",
+				"to": "00:04:09,520"
+			},
+			"offsets": {
+				"from": 246080,
+				"to": 249520
+			},
+			"text": " No, actually, that's only about 20 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,520",
+				"to": "00:04:12,040"
+			},
+			"offsets": {
+				"from": 249520,
+				"to": 252040
+			},
+			"text": " And really, these transactions allow people to do a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,040",
+				"to": "00:04:16,960"
+			},
+			"offsets": {
+				"from": 252040,
+				"to": 256960
+			},
+			"text": " And particularly, right, as a validator, it's themselves, you can begin to actually extract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,960",
+				"to": "00:04:18,920"
+			},
+			"offsets": {
+				"from": 256960,
+				"to": 258920
+			},
+			"text": " these opportunities from others."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,920",
+				"to": "00:04:24,200"
+			},
+			"offsets": {
+				"from": 258920,
+				"to": 264200
+			},
+			"text": " Interestingly, we haven't seen a lot of malicious validators do this yet, but that also does"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,200",
+				"to": "00:04:25,920"
+			},
+			"offsets": {
+				"from": 264200,
+				"to": 265920
+			},
+			"text": " present a risk, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,920",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 265920,
+				"to": 271120
+			},
+			"text": " And the final factor, right, when you talk about pricing block space has to be dilution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:04:34,640"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 274640
+			},
+			"text": " Generally speaking, again, I said that this isn't plateauing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,640",
+				"to": "00:04:37,640"
+			},
+			"offsets": {
+				"from": 274640,
+				"to": 277640
+			},
+			"text": " It's very consistent because there's a certain amount of validators that can actually be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,640",
+				"to": "00:04:39,600"
+			},
+			"offsets": {
+				"from": 277640,
+				"to": 279600
+			},
+			"text": " introduced per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,600",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 279600,
+				"to": 284000
+			},
+			"text": " And at the end of the day, we've seen that over the past year, regardless of increases"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288800
+			},
+			"text": " of yield based on, you know, MEV and the ETH to merge, validator yields have actually just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,800",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288800,
+				"to": 291000
+			},
+			"text": " been diluted by 50%."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 296000
+			},
+			"text": " If this continues, right, we will see yields crunch, but you need to introduce more incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:57,440"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 297440
+			},
+			"text": " for this to continue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,440",
+				"to": "00:05:01,800"
+			},
+			"offsets": {
+				"from": 297440,
+				"to": 301800
+			},
+			"text": " You need to ensure that the network is secure, and you do that by continuing to introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,800",
+				"to": "00:05:03,480"
+			},
+			"offsets": {
+				"from": 301800,
+				"to": 303480
+			},
+			"text": " incentives for these parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,480",
+				"to": "00:05:07,200"
+			},
+			"offsets": {
+				"from": 303480,
+				"to": 307200
+			},
+			"text": " So at the end of the day, really, what is the massive risk, whether there's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,200",
+				"to": "00:05:08,200"
+			},
+			"offsets": {
+				"from": 307200,
+				"to": 308200
+			},
+			"text": " demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,200",
+				"to": "00:05:13,400"
+			},
+			"offsets": {
+				"from": 308200,
+				"to": 313400
+			},
+			"text": " And for pretty much every factor other than slashing, demand is just a function for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,400",
+				"to": "00:05:14,400"
+			},
+			"offsets": {
+				"from": 313400,
+				"to": 314400
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,400",
+				"to": "00:05:18,560"
+			},
+			"offsets": {
+				"from": 314400,
+				"to": 318560
+			},
+			"text": " So then when you actually try to apply this, you get this massive formula where effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,560",
+				"to": "00:05:24,240"
+			},
+			"offsets": {
+				"from": 318560,
+				"to": 324240
+			},
+			"text": " you have the base fees, the fees themselves, MEV and tips, and as well dilution, all really"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,240",
+				"to": "00:05:29,600"
+			},
+			"offsets": {
+				"from": 324240,
+				"to": 329600
+			},
+			"text": " kind of dependent on demand, as well as these time factors, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,600",
+				"to": "00:05:33,840"
+			},
+			"offsets": {
+				"from": 329600,
+				"to": 333840
+			},
+			"text": " If you know that six months from now, there's going to be a 5% yield, well, you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,840",
+				"to": "00:05:35,320"
+			},
+			"offsets": {
+				"from": 333840,
+				"to": 335320
+			},
+			"text": " predict things pretty accurately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,320",
+				"to": "00:05:38,840"
+			},
+			"offsets": {
+				"from": 335320,
+				"to": 338840
+			},
+			"text": " However, if this is going to be massively volatile over that time period, you need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,840",
+				"to": "00:05:42,040"
+			},
+			"offsets": {
+				"from": 338840,
+				"to": 342040
+			},
+			"text": " actually do some pretty complicated stuff in there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,040",
+				"to": "00:05:44,480"
+			},
+			"offsets": {
+				"from": 342040,
+				"to": 344480
+			},
+			"text": " So the question becomes, why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,480",
+				"to": "00:05:45,480"
+			},
+			"offsets": {
+				"from": 344480,
+				"to": 345480
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,480",
+				"to": "00:05:48,800"
+			},
+			"offsets": {
+				"from": 345480,
+				"to": 348800
+			},
+			"text": " There's all this math, there's all this, honestly, it's crap involved in trying to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,800",
+				"to": "00:05:50,160"
+			},
+			"offsets": {
+				"from": 348800,
+				"to": 350160
+			},
+			"text": " this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,160",
+				"to": "00:05:53,280"
+			},
+			"offsets": {
+				"from": 350160,
+				"to": 353280
+			},
+			"text": " Why actually create products that can do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,280",
+				"to": "00:05:57,800"
+			},
+			"offsets": {
+				"from": 353280,
+				"to": 357800
+			},
+			"text": " And at the end of the day, it's really because you can create validator experiences that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,800",
+				"to": "00:06:02,160"
+			},
+			"offsets": {
+				"from": 357800,
+				"to": 362160
+			},
+			"text": " honestly exceed anything that is available today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,160",
+				"to": "00:06:05,040"
+			},
+			"offsets": {
+				"from": 362160,
+				"to": 365040
+			},
+			"text": " So getting into really how you do this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,040",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 365040,
+				"to": 368600
+			},
+			"text": " What are block space capital markets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:12,840"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 372840
+			},
+			"text": " At their core, block space capital markets allow users to take the future yield that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,840",
+				"to": "00:06:17,560"
+			},
+			"offsets": {
+				"from": 372840,
+				"to": 377560
+			},
+			"text": " might generate on some amount of block space that they can commit and sell that to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,560",
+				"to": "00:06:19,320"
+			},
+			"offsets": {
+				"from": 377560,
+				"to": 379320
+			},
+			"text": " people to reserve today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,320",
+				"to": "00:06:23,200"
+			},
+			"offsets": {
+				"from": 379320,
+				"to": 383200
+			},
+			"text": " Whether that's in direct reservations like Eden Network, whether that's through peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,200",
+				"to": "00:06:27,920"
+			},
+			"offsets": {
+				"from": 383200,
+				"to": 387920
+			},
+			"text": " transactions directly like Alchemia, or whether that's through larger validator pools and everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,920",
+				"to": "00:06:31,680"
+			},
+			"offsets": {
+				"from": 387920,
+				"to": 391680
+			},
+			"text": " like Lydone, et cetera, through the stack of swivel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,680",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 391680,
+				"to": 395480
+			},
+			"text": " On our end, I think that something is very important to note, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:40,040"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 400040
+			},
+			"text": " We split up the components into yield tokens and principal tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,040",
+				"to": "00:06:47,360"
+			},
+			"offsets": {
+				"from": 400040,
+				"to": 407360
+			},
+			"text": " So if you took a deposit on LIDO and you instead immediately gave it to us, we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,360",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 407360,
+				"to": 411440
+			},
+			"text": " take that deposit, we would split it into those two components, the yield tokens representing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:54,600"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 414600
+			},
+			"text": " the yield that would actually be generated, and the principal tokens representing your"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,600",
+				"to": "00:06:59,680"
+			},
+			"offsets": {
+				"from": 414600,
+				"to": 419680
+			},
+			"text": " actual deposit itself, and allow you to actually trade those, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,680",
+				"to": "00:07:04,480"
+			},
+			"offsets": {
+				"from": 419680,
+				"to": 424480
+			},
+			"text": " So the most common use case there is then, well, I want to trade away my yield tokens that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,480",
+				"to": "00:07:06,760"
+			},
+			"offsets": {
+				"from": 424480,
+				"to": 426760
+			},
+			"text": " future yield to somebody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,760",
+				"to": "00:07:11,160"
+			},
+			"offsets": {
+				"from": 426760,
+				"to": 431160
+			},
+			"text": " And the result really is that as a staker, you then are completely insulated from any"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,160",
+				"to": "00:07:17,280"
+			},
+			"offsets": {
+				"from": 431160,
+				"to": 437280
+			},
+			"text": " slashing risks, any dilution risks, any volatility, and on the other side, the party is effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,280",
+				"to": "00:07:19,680"
+			},
+			"offsets": {
+				"from": 437280,
+				"to": 439680
+			},
+			"text": " leveraging, massively, on the rate, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,680",
+				"to": "00:07:24,880"
+			},
+			"offsets": {
+				"from": 439680,
+				"to": 444880
+			},
+			"text": " You can either hedge your costs if you are a validator yourself, you can hedge variability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,880",
+				"to": "00:07:31,120"
+			},
+			"offsets": {
+				"from": 444880,
+				"to": 451120
+			},
+			"text": " or at this point in time, the gas price is literally on a regular basis down to two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,120",
+				"to": "00:07:33,920"
+			},
+			"offsets": {
+				"from": 451120,
+				"to": 453920
+			},
+			"text": " you could speculate that it will increase over the next year, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,920",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 453920,
+				"to": 458720
+			},
+			"text": " These are very, very important dynamics that are standard honestly in almost any commodity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 462760
+			},
+			"text": " but for some reason right now, they aren't really in ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:47,200"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 467200
+			},
+			"text": " But then, okay, there are multiple designs to do something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,200",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 467200,
+				"to": 471200
+			},
+			"text": " And the question really becomes, what can we do with these designs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:57,880"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 477880
+			},
+			"text": " You have a base layer of staking to then continue to increase the capabilities of your validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,880",
+				"to": "00:08:01,880"
+			},
+			"offsets": {
+				"from": 477880,
+				"to": 481880
+			},
+			"text": " and in doing so, increase the safety of your network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,880",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 481880,
+				"to": 486520
+			},
+			"text": " And the question then comes in, okay, what are the things you are looking for, and really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:08,880"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 488880
+			},
+			"text": " at the end of the day, it's composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,880",
+				"to": "00:08:14,720"
+			},
+			"offsets": {
+				"from": 488880,
+				"to": 494720
+			},
+			"text": " You have the ability with these sorts of matureable instruments that are designed around block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,720",
+				"to": "00:08:19,040"
+			},
+			"offsets": {
+				"from": 494720,
+				"to": 499040
+			},
+			"text": " space to create composable instruments that are continuously re-hypothenated."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,040",
+				"to": "00:08:22,960"
+			},
+			"offsets": {
+				"from": 499040,
+				"to": 502960
+			},
+			"text": " The first example is being just composable principle tokens, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,960",
+				"to": "00:08:27,480"
+			},
+			"offsets": {
+				"from": 502960,
+				"to": 507480
+			},
+			"text": " I mentioned that this mechanism creates principle tokens that are redeemable one for one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,480",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 507480,
+				"to": 512800
+			},
+			"text": " This is extremely important because this is a mechanism that is shared by about 10 protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 518560
+			},
+			"text": " This then introduced the ability for hyper-composability across a number of different yield generation sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:44,200"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 524200
+			},
+			"text": " ensuring that there is liquidity for these markets and they can continue to be built upon."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,200",
+				"to": "00:08:48,720"
+			},
+			"offsets": {
+				"from": 524200,
+				"to": 528720
+			},
+			"text": " So, let's say they can be, or really then looking back at the two different models, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,720",
+				"to": "00:08:52,880"
+			},
+			"offsets": {
+				"from": 528720,
+				"to": 532880
+			},
+			"text": " well, how can you continue to build on top of them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,880",
+				"to": "00:08:56,480"
+			},
+			"offsets": {
+				"from": 532880,
+				"to": 536480
+			},
+			"text": " Alchemia is a very popular project that is working in this direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,480",
+				"to": "00:09:01,880"
+			},
+			"offsets": {
+				"from": 536480,
+				"to": 541880
+			},
+			"text": " They take individual validators and they ensure that those validators can find counterparties"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,880",
+				"to": "00:09:05,640"
+			},
+			"offsets": {
+				"from": 541880,
+				"to": 545640
+			},
+			"text": " to purchase effectively those yield tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,640",
+				"to": "00:09:11,240"
+			},
+			"offsets": {
+				"from": 545640,
+				"to": 551240
+			},
+			"text": " These agreements are, again, individual validators and they all have unique maturities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,240",
+				"to": "00:09:14,360"
+			},
+			"offsets": {
+				"from": 551240,
+				"to": 554360
+			},
+			"text": " which effectively means that they are completely non-fungible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,360",
+				"to": "00:09:20,360"
+			},
+			"offsets": {
+				"from": 554360,
+				"to": 560360
+			},
+			"text": " They cannot be re-hypothenated generally and you cannot really trade them on secondary markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,360",
+				"to": "00:09:23,600"
+			},
+			"offsets": {
+				"from": 560360,
+				"to": 563600
+			},
+			"text": " The upside being of Alchemia, I don't want to just crap on them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,600",
+				"to": "00:09:29,400"
+			},
+			"offsets": {
+				"from": 563600,
+				"to": 569400
+			},
+			"text": " you know, you can address this market of individual validators and there are a lot of bespoke validators out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,400",
+				"to": "00:09:32,720"
+			},
+			"offsets": {
+				"from": 569400,
+				"to": 572720
+			},
+			"text": " However, right, if you want to build a more composable product,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,720",
+				"to": "00:09:36,400"
+			},
+			"offsets": {
+				"from": 572720,
+				"to": 576400
+			},
+			"text": " you can combine these sorts of things with LIDO, with Rocketpool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,400",
+				"to": "00:09:40,480"
+			},
+			"offsets": {
+				"from": 576400,
+				"to": 580480
+			},
+			"text": " And instead of having an agreement that goes directly from validator to a contract buyer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,480",
+				"to": "00:09:44,280"
+			},
+			"offsets": {
+				"from": 580480,
+				"to": 584280
+			},
+			"text": " you route that liquidity through a third-party validator that is composable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,280",
+				"to": "00:09:50,680"
+			},
+			"offsets": {
+				"from": 584280,
+				"to": 590680
+			},
+			"text": " like LIDO, like Rocketpool, and then through them you actually create this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,680",
+				"to": "00:09:57,240"
+			},
+			"offsets": {
+				"from": 590680,
+				"to": 597240
+			},
+			"text": " And by doing that, right, you then start to have the ability to create more and more interesting instruments."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,240",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 597240,
+				"to": 600000
+			},
+			"text": " A first example, this is a friend of Marperticles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:05,240"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 605240
+			},
+			"text": " they let people take those principal tokens and borrow against them at extremely high LTVs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,240",
+				"to": "00:10:07,600"
+			},
+			"offsets": {
+				"from": 605240,
+				"to": 607600
+			},
+			"text": " around 90 to 95 percent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,600",
+				"to": "00:10:11,400"
+			},
+			"offsets": {
+				"from": 607600,
+				"to": 611400
+			},
+			"text": " In context, that represents the ability to leverage on the stake deal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,400",
+				"to": "00:10:13,880"
+			},
+			"offsets": {
+				"from": 611400,
+				"to": 613880
+			},
+			"text": " way more than anyone really ever would."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,880",
+				"to": "00:10:16,480"
+			},
+			"offsets": {
+				"from": 613880,
+				"to": 616480
+			},
+			"text": " It allows you to continue to hedge in many directions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,480",
+				"to": "00:10:21,600"
+			},
+			"offsets": {
+				"from": 616480,
+				"to": 621600
+			},
+			"text": " And at the end of the day, it continues to provide utility to the stake-yula products"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,600",
+				"to": "00:10:26,160"
+			},
+			"offsets": {
+				"from": 621600,
+				"to": 626160
+			},
+			"text": " that allow you to make more composable interesting things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,160",
+				"to": "00:10:30,400"
+			},
+			"offsets": {
+				"from": 626160,
+				"to": 630400
+			},
+			"text": " This is probably my most exciting slide, or one I like most."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,400",
+				"to": "00:10:35,560"
+			},
+			"offsets": {
+				"from": 630400,
+				"to": 635560
+			},
+			"text": " There are really a ton of advantages native to D5 for fixed maturity instruments"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,560",
+				"to": "00:10:39,160"
+			},
+			"offsets": {
+				"from": 635560,
+				"to": 639160
+			},
+			"text": " that are not replicable in traditional finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,160",
+				"to": "00:10:43,080"
+			},
+			"offsets": {
+				"from": 639160,
+				"to": 643080
+			},
+			"text": " Primarily the ability to, like I've said, re-hypotheicate atomically."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,080",
+				"to": "00:10:46,920"
+			},
+			"offsets": {
+				"from": 643080,
+				"to": 646920
+			},
+			"text": " And in the context of these maturing instruments, a principal token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,920",
+				"to": "00:10:51,720"
+			},
+			"offsets": {
+				"from": 646920,
+				"to": 651720
+			},
+			"text": " let's say you have, in this case, a hundred or a thousand principal tokens maturing on December 31st,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,720",
+				"to": "00:10:57,240"
+			},
+			"offsets": {
+				"from": 651720,
+				"to": 657240
+			},
+			"text": " and then potentially be used as collateral to underwrite options, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,240",
+				"to": "00:10:59,560"
+			},
+			"offsets": {
+				"from": 657240,
+				"to": 659560
+			},
+			"text": " In this case, again, you take that principal token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,560",
+				"to": "00:11:01,840"
+			},
+			"offsets": {
+				"from": 659560,
+				"to": 661840
+			},
+			"text": " you know it's maturing on December 31st,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,840",
+				"to": "00:11:04,720"
+			},
+			"offsets": {
+				"from": 661840,
+				"to": 664720
+			},
+			"text": " and you would find a counterparty that would accept that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,720",
+				"to": "00:11:09,200"
+			},
+			"offsets": {
+				"from": 664720,
+				"to": 669200
+			},
+			"text": " knowing that they would also have that face value at December 31st as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,200",
+				"to": "00:11:13,280"
+			},
+			"offsets": {
+				"from": 669200,
+				"to": 673280
+			},
+			"text": " Again, this is a completely unique market for D5, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,280",
+				"to": "00:11:17,280"
+			},
+			"offsets": {
+				"from": 673280,
+				"to": 677280
+			},
+			"text": " Try going to a bank with your bonds or with your T-bills that you bought this year at 4%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,280",
+				"to": "00:11:18,880"
+			},
+			"offsets": {
+				"from": 677280,
+				"to": 678880
+			},
+			"text": " right, that everyone's bragging about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:22,520"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 682520
+			},
+			"text": " and asking them if you can underwrite some puts or anything with it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,520",
+				"to": "00:11:24,880"
+			},
+			"offsets": {
+				"from": 682520,
+				"to": 684880
+			},
+			"text": " You will find that they will laugh you up the door,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,880",
+				"to": "00:11:28,800"
+			},
+			"offsets": {
+				"from": 684880,
+				"to": 688800
+			},
+			"text": " and it's like, it's just kind of a joke to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,800",
+				"to": "00:11:32,080"
+			},
+			"offsets": {
+				"from": 688800,
+				"to": 692080
+			},
+			"text": " Again, I think this is probably one of the more exciting things going on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,080",
+				"to": "00:11:36,640"
+			},
+			"offsets": {
+				"from": 692080,
+				"to": 696640
+			},
+			"text": " The ability to take these assets that really are only traditionally used in one way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,640",
+				"to": "00:11:41,760"
+			},
+			"offsets": {
+				"from": 696640,
+				"to": 701760
+			},
+			"text": " and to combine them into these structured products that allow you to utilize them further."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,760",
+				"to": "00:11:46,480"
+			},
+			"offsets": {
+				"from": 701760,
+				"to": 706480
+			},
+			"text": " In this case, specifically, you have the ability to lend a stake yield, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,480",
+				"to": "00:11:49,600"
+			},
+			"offsets": {
+				"from": 706480,
+				"to": 709600
+			},
+			"text": " You're capturing the base yield, the MEV, the tips,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,600",
+				"to": "00:11:54,080"
+			},
+			"offsets": {
+				"from": 709600,
+				"to": 714080
+			},
+			"text": " you're capturing everything from EIP 559, if that was happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,080",
+				"to": "00:11:56,320"
+			},
+			"offsets": {
+				"from": 714080,
+				"to": 716320
+			},
+			"text": " you're capturing a lending yield on another protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,320",
+				"to": "00:11:58,960"
+			},
+			"offsets": {
+				"from": 716320,
+				"to": 718960
+			},
+			"text": " and then in addition to all of that, you can capture an options yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,960",
+				"to": "00:12:01,760"
+			},
+			"offsets": {
+				"from": 718960,
+				"to": 721760
+			},
+			"text": " And going further down that rabbit hole, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,760",
+				"to": "00:12:04,480"
+			},
+			"offsets": {
+				"from": 721760,
+				"to": 724480
+			},
+			"text": " here's another protocol that is another friend of ours,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,480",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 724480,
+				"to": 728000
+			},
+			"text": " where they effectively create expirable futures products."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,120"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731120
+			},
+			"text": " It's honestly kind of complicated how they do it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,120",
+				"to": "00:12:14,640"
+			},
+			"offsets": {
+				"from": 731120,
+				"to": 734640
+			},
+			"text": " But the bottom line is, they use fixed rate markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,640",
+				"to": "00:12:19,440"
+			},
+			"offsets": {
+				"from": 734640,
+				"to": 739440
+			},
+			"text": " that themselves can be backed by ETH consensus to create these expirable futures."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,440",
+				"to": "00:12:21,600"
+			},
+			"offsets": {
+				"from": 739440,
+				"to": 741600
+			},
+			"text": " And in context, it's actually very interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,600",
+				"to": "00:12:24,400"
+			},
+			"offsets": {
+				"from": 741600,
+				"to": 744400
+			},
+			"text": " because the most common use case of expirable futures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,400",
+				"to": "00:12:26,560"
+			},
+			"offsets": {
+				"from": 744400,
+				"to": 746560
+			},
+			"text": " in fact, is hedging options."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,560",
+				"to": "00:12:31,760"
+			},
+			"offsets": {
+				"from": 746560,
+				"to": 751760
+			},
+			"text": " So at the end of the day, you actually are already seeing this symbiotic ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,760",
+				"to": "00:12:36,080"
+			},
+			"offsets": {
+				"from": 751760,
+				"to": 756080
+			},
+			"text": " where users are able to hedge regular, just trading markets in both directions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,080",
+				"to": "00:12:39,280"
+			},
+			"offsets": {
+				"from": 756080,
+				"to": 759280
+			},
+			"text": " while getting additional yield, and all of these list liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,280",
+				"to": "00:12:42,560"
+			},
+			"offsets": {
+				"from": 759280,
+				"to": 762560
+			},
+			"text": " is then routed through the base ETH consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,560",
+				"to": "00:12:46,080"
+			},
+			"offsets": {
+				"from": 762560,
+				"to": 766080
+			},
+			"text": " That's the big conclusion I'm trying to push, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,080",
+				"to": "00:12:47,440"
+			},
+			"offsets": {
+				"from": 766080,
+				"to": 767440
+			},
+			"text": " Is that at the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,440",
+				"to": "00:12:51,200"
+			},
+			"offsets": {
+				"from": 767440,
+				"to": 771200
+			},
+			"text": " composability is the king thing, or the largest thing that you can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,200",
+				"to": "00:12:54,960"
+			},
+			"offsets": {
+				"from": 771200,
+				"to": 774960
+			},
+			"text": " to ensure that the ETH consensus is secure, and beyond that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,960",
+				"to": "00:12:59,200"
+			},
+			"offsets": {
+				"from": 774960,
+				"to": 779200
+			},
+			"text": " ensure that users are continuously attracted towards these products, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,200",
+				"to": "00:13:03,200"
+			},
+			"offsets": {
+				"from": 779200,
+				"to": 783200
+			},
+			"text": " I think that we have an extreme opportunity to, at this point, capture"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,200",
+				"to": "00:13:08,160"
+			},
+			"offsets": {
+				"from": 783200,
+				"to": 788160
+			},
+			"text": " the attraction of people that really, at the end of the day, are more oriented to trad-fi."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,160",
+				"to": "00:13:11,520"
+			},
+			"offsets": {
+				"from": 788160,
+				"to": 791520
+			},
+			"text": " The big statement that is always said is that you need to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,520",
+				"to": "00:13:16,160"
+			},
+			"offsets": {
+				"from": 791520,
+				"to": 796160
+			},
+			"text": " a user experience that is 10 times better to onboard them from one platform to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,160",
+				"to": "00:13:20,400"
+			},
+			"offsets": {
+				"from": 796160,
+				"to": 800400
+			},
+			"text": " And really, only these DeFi unique products will be able to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,360",
+				"to": "00:13:24,560"
+			},
+			"offsets": {
+				"from": 801360,
+				"to": 804560
+			},
+			"text": " So, yeah, that's really the point. At the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,560",
+				"to": "00:13:29,360"
+			},
+			"offsets": {
+				"from": 804560,
+				"to": 809360
+			},
+			"text": " every derivative instrument in DeFi, pretty much everything other than perps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,360",
+				"to": "00:13:33,360"
+			},
+			"offsets": {
+				"from": 809360,
+				"to": 813360
+			},
+			"text": " will be being routed through ETH2, and at the end of the day as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,360",
+				"to": "00:13:35,680"
+			},
+			"offsets": {
+				"from": 813360,
+				"to": 815680
+			},
+			"text": " this will all be being routed through these fixed rate instruments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,680",
+				"to": "00:13:41,360"
+			},
+			"offsets": {
+				"from": 815680,
+				"to": 821360
+			},
+			"text": " I'm Julian. I'm the founder of Swivel Finance, so feel free to reach out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,360",
+				"to": "00:13:46,560"
+			},
+			"offsets": {
+				"from": 821360,
+				"to": 826560
+			},
+			"text": " follow me, and/or join our Discord at discord.gg/swivelv"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,560",
+				"to": "00:13:49,840"
+			},
+			"offsets": {
+				"from": 826560,
+				"to": 829840
+			},
+			"text": " Just swivel. Yeah, that's it. Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,840",
+				"to": "00:13:53,520"
+			},
+			"offsets": {
+				"from": 829840,
+				"to": 833520
+			},
+			"text": " Right in the beginning, you were talking about validators supplying block space."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,520",
+				"to": "00:13:56,960"
+			},
+			"offsets": {
+				"from": 833520,
+				"to": 836960
+			},
+			"text": " But the block space remains constant throughout, like you said."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,960",
+				"to": "00:14:03,200"
+			},
+			"offsets": {
+				"from": 836960,
+				"to": 843200
+			},
+			"text": " How do you define them supplying it as opposed to them constraining it or selling it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,200",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 843200,
+				"to": 848000
+			},
+			"text": " At the end of the day, while the block space from the demand point of view is static,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:12,480"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 852480
+			},
+			"text": " the suppliers are still competing to be the one that actually provides it, if that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,480",
+				"to": "00:14:18,320"
+			},
+			"offsets": {
+				"from": 852480,
+				"to": 858320
+			},
+			"text": " Right, so when looking at pricing this future yield, it'd be ideal to just have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,320",
+				"to": "00:14:22,640"
+			},
+			"offsets": {
+				"from": 858320,
+				"to": 862640
+			},
+			"text": " exact metrics for block space directly and given block, but you really have to be looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,640",
+				"to": "00:14:28,640"
+			},
+			"offsets": {
+				"from": 862640,
+				"to": 868640
+			},
+			"text": " heuristics, right, gas price and all these things. And in context, it's just about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,640",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 868640,
+				"to": 874000
+			},
+			"text": " you know, kind of trying to get anything you can to just derive the base block space rate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:36,160"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 876160
+			},
+			"text": " like something that you should try to price and sell your yield at."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,360",
+				"to": "00:14:44,640"
+			},
+			"offsets": {
+				"from": 877360,
+				"to": 884640
+			},
+			"text": " So you mentioned block space and those markets, how does the fungibility of block space"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,640",
+				"to": "00:14:54,400"
+			},
+			"offsets": {
+				"from": 884640,
+				"to": 894400
+			},
+			"text": " make pricing harder? It's extremely difficult to honestly create any markets without fungibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,400",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 894400,
+				"to": 898800
+			},
+			"text": " honestly. We were looking at creating swivel initially with a sort of non-fungible agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:04,080"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 904080
+			},
+			"text": " similar to alchemia. But when you start to do this, you silo off liquidity and users are no"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,080",
+				"to": "00:15:09,840"
+			},
+			"offsets": {
+				"from": 904080,
+				"to": 909840
+			},
+			"text": " longer able to compare kind of what one other person would do for it, right? At the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,840",
+				"to": "00:15:15,200"
+			},
+			"offsets": {
+				"from": 909840,
+				"to": 915200
+			},
+			"text": " most pricing is actually rather subjective and you need contextual markets in order to price things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,200",
+				"to": "00:15:20,080"
+			},
+			"offsets": {
+				"from": 915200,
+				"to": 920080
+			},
+			"text": " right? I talk about this a lot more in reference to just the fixed rate space in general. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,080",
+				"to": "00:15:24,800"
+			},
+			"offsets": {
+				"from": 920080,
+				"to": 924800
+			},
+			"text": " extremely important to ensure that maturity is, themselves, are fungible for even these sorts of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,800",
+				"to": "00:15:33,280"
+			},
+			"offsets": {
+				"from": 924800,
+				"to": 933280
+			},
+			"text": " similar activities. The distinction that you've noticed, which is that for these kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,920",
+				"to": "00:15:41,440"
+			},
+			"offsets": {
+				"from": 933920,
+				"to": 941440
+			},
+			"text": " splitting and like re-hypoticating future staking yields, it kind of requires going through"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,440",
+				"to": "00:15:47,360"
+			},
+			"offsets": {
+				"from": 941440,
+				"to": 947360
+			},
+			"text": " central-ish validator of some kind, generally speaking. Is there any way around that? Like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,360",
+				"to": "00:15:52,240"
+			},
+			"offsets": {
+				"from": 947360,
+				"to": 952240
+			},
+			"text": " is there a world in which we can create fungible claims to individual home stakers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,240",
+				"to": "00:15:57,760"
+			},
+			"offsets": {
+				"from": 952240,
+				"to": 957760
+			},
+			"text": " I need to hope that honestly alchemia is working further in this direction. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,760",
+				"to": "00:16:01,600"
+			},
+			"offsets": {
+				"from": 957760,
+				"to": 961600
+			},
+			"text": " more difficult than one would think, I'm sure, right? Because you actually then have to actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,600",
+				"to": "00:16:06,400"
+			},
+			"offsets": {
+				"from": 961600,
+				"to": 966400
+			},
+			"text": " you have to create the infrastructure between a validator client and some DAP, and honestly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,400",
+				"to": "00:16:12,400"
+			},
+			"offsets": {
+				"from": 966400,
+				"to": 972400
+			},
+			"text": " I don't think anyone who's doing that whatsoever yet. Really, it's going to be a difficult problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,400",
+				"to": "00:16:16,960"
+			},
+			"offsets": {
+				"from": 972400,
+				"to": 976960
+			},
+			"text": " for them to solve. I think they can create more fungible markets is kind of the way I'd put it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,960",
+				"to": "00:16:23,200"
+			},
+			"offsets": {
+				"from": 976960,
+				"to": 983200
+			},
+			"text": " by forcing people to use a certain maturity and only trading within that, right? But at the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,200",
+				"to": "00:16:27,120"
+			},
+			"offsets": {
+				"from": 983200,
+				"to": 987120
+			},
+			"text": " of the day, I think it's more of a technical problem than a market design one probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,920",
+				"to": "00:16:35,040"
+			},
+			"offsets": {
+				"from": 987920,
+				"to": 995040
+			},
+			"text": " Would the return profile and the volatility of the split-out yield aspect of it not just mirror"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,040",
+				"to": "00:16:43,120"
+			},
+			"offsets": {
+				"from": 995040,
+				"to": 1003120
+			},
+			"text": " Ethereum anyway? It would, yes. That's the point. And if you split away your Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,120",
+				"to": "00:16:48,480"
+			},
+			"offsets": {
+				"from": 1003120,
+				"to": 1008480
+			},
+			"text": " it's not going to do anything. What you need to do is find a counterparty to buy the yield token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,480",
+				"to": "00:16:52,080"
+			},
+			"offsets": {
+				"from": 1008480,
+				"to": 1012080
+			},
+			"text": " the split-away yield that you're going to be earning over some future date, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,600",
+				"to": "00:16:57,520"
+			},
+			"offsets": {
+				"from": 1013600,
+				"to": 1017520
+			},
+			"text": " And that's why, again, it's very important to try to create these markets that are fungible and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,520",
+				"to": "00:17:02,720"
+			},
+			"offsets": {
+				"from": 1017520,
+				"to": 1022720
+			},
+			"text": " liquid. Otherwise, it becomes increasingly difficult to actually find these counterparties."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,720",
+				"to": "00:17:06,960"
+			},
+			"offsets": {
+				"from": 1022720,
+				"to": 1026960
+			},
+			"text": " And then as well, right, if you don't have a secondary market for anyone to sell anything on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,960",
+				"to": "00:17:12,400"
+			},
+			"offsets": {
+				"from": 1026960,
+				"to": 1032400
+			},
+			"text": " it's impossible, right? So you really need, really answering your question. You're selling"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,400",
+				"to": "00:17:16,880"
+			},
+			"offsets": {
+				"from": 1032400,
+				"to": 1036880
+			},
+			"text": " those yield tokens to another counterparty, and that person is going to be the beneficiary of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,880",
+				"to": "00:17:20,240"
+			},
+			"offsets": {
+				"from": 1036880,
+				"to": 1040240
+			},
+			"text": " whatever ETH is taking, et cetera, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,240",
+				"to": "00:17:33,200"
+			},
+			"offsets": {
+				"from": 1040240,
+				"to": 1053200
+			},
+			"text": " [silence]"
+		}
+	]
+}

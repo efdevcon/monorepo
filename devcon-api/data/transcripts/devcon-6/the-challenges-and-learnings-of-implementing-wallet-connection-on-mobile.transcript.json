@@ -1,0 +1,2089 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,600"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15600
+			},
+			"text": " All right, thank you all for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,600",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 15600,
+				"to": 17760
+			},
+			"text": " We're going to be talking today about the challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 21080
+			},
+			"text": " and learnings of implementing Wallant Connection on mobile apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:23,600"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 23600
+			},
+			"text": " So first off, my name is Brian Moreno,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,600",
+				"to": "00:00:26,520"
+			},
+			"offsets": {
+				"from": 23600,
+				"to": 26520
+			},
+			"text": " and I'm a full stack developer at Shopify."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,520",
+				"to": "00:00:28,400"
+			},
+			"offsets": {
+				"from": 26520,
+				"to": 28400
+			},
+			"text": " I come from Belo Horizonte, Brazil,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,400",
+				"to": "00:00:31,440"
+			},
+			"offsets": {
+				"from": 28400,
+				"to": 31440
+			},
+			"text": " but now I'm based in Berlin, Germany."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,440",
+				"to": "00:00:35,080"
+			},
+			"offsets": {
+				"from": 31440,
+				"to": 35080
+			},
+			"text": " And I'm Carolina, but I prefer people call me Kato, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,080",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 35080,
+				"to": 37120
+			},
+			"text": " And I'm from here, from Bogota."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 41160
+			},
+			"text": " I currently live in Canada in Vancouver."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:43,080"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 43080
+			},
+			"text": " And yeah, I've been a front and develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,080",
+				"to": "00:00:47,520"
+			},
+			"offsets": {
+				"from": 43080,
+				"to": 47520
+			},
+			"text": " at Shopify for the past two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,520",
+				"to": "00:00:48,840"
+			},
+			"offsets": {
+				"from": 47520,
+				"to": 48840
+			},
+			"text": " And Shopify, I don't know if you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,840",
+				"to": "00:00:52,120"
+			},
+			"offsets": {
+				"from": 48840,
+				"to": 52120
+			},
+			"text": " but it's number one e-commerce platform for all business."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,120",
+				"to": "00:00:54,280"
+			},
+			"offsets": {
+				"from": 52120,
+				"to": 54280
+			},
+			"text": " So whether you want to start or your own business"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,280",
+				"to": "00:00:56,400"
+			},
+			"offsets": {
+				"from": 54280,
+				"to": 56400
+			},
+			"text": " is a place that you can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,400",
+				"to": "00:00:57,960"
+			},
+			"offsets": {
+				"from": 56400,
+				"to": 57960
+			},
+			"text": " And more specifically, in Shopify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,960",
+				"to": "00:01:03,040"
+			},
+			"offsets": {
+				"from": 57960,
+				"to": 63040
+			},
+			"text": " we work at this product called GM Shop."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,040",
+				"to": "00:01:03,800"
+			},
+			"offsets": {
+				"from": 63040,
+				"to": 63800
+			},
+			"text": " Exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,800",
+				"to": "00:01:05,560"
+			},
+			"offsets": {
+				"from": 63800,
+				"to": 65560
+			},
+			"text": " So what is GM Shop?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,560",
+				"to": "00:01:09,840"
+			},
+			"offsets": {
+				"from": 65560,
+				"to": 69840
+			},
+			"text": " Well, GM Shop is our take on token gated commerce"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,840",
+				"to": "00:01:11,720"
+			},
+			"offsets": {
+				"from": 69840,
+				"to": 71720
+			},
+			"text": " on a mobile platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,720",
+				"to": "00:01:15,240"
+			},
+			"offsets": {
+				"from": 71720,
+				"to": 75240
+			},
+			"text": " So the premise is what if we could unite brands"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,240",
+				"to": "00:01:18,480"
+			},
+			"offsets": {
+				"from": 75240,
+				"to": 78480
+			},
+			"text": " with their most loyal fans and granting those fans access"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,480",
+				"to": "00:01:22,840"
+			},
+			"offsets": {
+				"from": 78480,
+				"to": 82840
+			},
+			"text": " to exclusive products, like gated by the NFTs they already own?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,840",
+				"to": "00:01:25,600"
+			},
+			"offsets": {
+				"from": 82840,
+				"to": 85600
+			},
+			"text": " And to build such a product, the first thing we need to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,600",
+				"to": "00:01:28,360"
+			},
+			"offsets": {
+				"from": 85600,
+				"to": 88360
+			},
+			"text": " is to let the users connect their wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,360",
+				"to": "00:01:30,840"
+			},
+			"offsets": {
+				"from": 88360,
+				"to": 90840
+			},
+			"text": " and to know which NFTs they own, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,840",
+				"to": "00:01:34,160"
+			},
+			"offsets": {
+				"from": 90840,
+				"to": 94160
+			},
+			"text": " So our constraints were to build proof of ownership"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,160",
+				"to": "00:01:37,760"
+			},
+			"offsets": {
+				"from": 94160,
+				"to": 97760
+			},
+			"text": " in as few steps as possible in the most seamless way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,760",
+				"to": "00:01:41,400"
+			},
+			"offsets": {
+				"from": 97760,
+				"to": 101400
+			},
+			"text": " like best UX experience as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,400",
+				"to": "00:01:43,560"
+			},
+			"offsets": {
+				"from": 101400,
+				"to": 103560
+			},
+			"text": " And that's what we set out to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,560",
+				"to": "00:01:44,520"
+			},
+			"offsets": {
+				"from": 103560,
+				"to": 104520
+			},
+			"text": " That's what we learned."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,520",
+				"to": "00:01:45,880"
+			},
+			"offsets": {
+				"from": 104520,
+				"to": 105880
+			},
+			"text": " Yeah, so we're going to share a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,880",
+				"to": "00:01:48,720"
+			},
+			"offsets": {
+				"from": 105880,
+				"to": 108720
+			},
+			"text": " like our journey that we did, the first thing that we did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,720",
+				"to": "00:01:51,880"
+			},
+			"offsets": {
+				"from": 108720,
+				"to": 111880
+			},
+			"text": " we wanted to do an MVP."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,880",
+				"to": "00:01:54,640"
+			},
+			"offsets": {
+				"from": 111880,
+				"to": 114640
+			},
+			"text": " Just to prove that this could be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,640",
+				"to": "00:01:56,320"
+			},
+			"offsets": {
+				"from": 114640,
+				"to": 116320
+			},
+			"text": " and that we could connect our wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,320",
+				"to": "00:01:58,960"
+			},
+			"offsets": {
+				"from": 116320,
+				"to": 118960
+			},
+			"text": " And we focused on MetaMask and Rainbow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,960",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 118960,
+				"to": 121600
+			},
+			"text": " And we started using WalletConnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:05,160"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 125160
+			},
+			"text": " I know you have heard of it, but the React dev, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,160",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 125160,
+				"to": 130560
+			},
+			"text": " is out of the box, application that you can install and use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:12,600"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 132600
+			},
+			"text": " And yes, this works for the MVP."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,600",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 132600,
+				"to": 134640
+			},
+			"text": " But we started seeing that it was really flaky."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:17,640"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 137640
+			},
+			"text": " We didn't have the robustness that we needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,640",
+				"to": "00:02:19,680"
+			},
+			"offsets": {
+				"from": 137640,
+				"to": 139680
+			},
+			"text": " And we started like, OK, let's try different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,680",
+				"to": "00:02:24,200"
+			},
+			"offsets": {
+				"from": 139680,
+				"to": 144200
+			},
+			"text": " The next thing that we did was for MetaMask specifically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,200",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 144200,
+				"to": 147480
+			},
+			"text": " we looked into deep linking connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:32,160"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 152160
+			},
+			"text": " And we actually found really good results, especially on iOS."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,160",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 152160,
+				"to": 156720
+			},
+			"text": " This was what the protocol that we used."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 161400
+			},
+			"text": " And also it also wait for Coinbase Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 165440
+			},
+			"text": " Although this did improve our results, well, it was still"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:45,960"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 165960
+			},
+			"text": " not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,960",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 165960,
+				"to": 167400
+			},
+			"text": " It was still not done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:49,760"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 169760
+			},
+			"text": " So we were not seeing the success rate we wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,760",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 169760,
+				"to": 171840
+			},
+			"text": " We wanted a more robust solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:55,200"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 175200
+			},
+			"text": " And we still had failures for no apparent reasons,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,200",
+				"to": "00:02:58,880"
+			},
+			"offsets": {
+				"from": 175200,
+				"to": 178880
+			},
+			"text": " because we needed to replace the connection with another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,880",
+				"to": "00:03:01,440"
+			},
+			"offsets": {
+				"from": 178880,
+				"to": 181440
+			},
+			"text": " Sometimes when the user didn't have the right NFT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,440",
+				"to": "00:03:03,760"
+			},
+			"offsets": {
+				"from": 181440,
+				"to": 183760
+			},
+			"text": " and that was failing sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,760",
+				"to": "00:03:08,840"
+			},
+			"offsets": {
+				"from": 183760,
+				"to": 188840
+			},
+			"text": " So our hypothesis is, because the React library of WalletConnect"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,840",
+				"to": "00:03:11,760"
+			},
+			"offsets": {
+				"from": 188840,
+				"to": 191760
+			},
+			"text": " was kind of closed, like out of the box was closed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,760",
+				"to": "00:03:16,080"
+			},
+			"offsets": {
+				"from": 191760,
+				"to": 196080
+			},
+			"text": " So we assumed that they set a persistent connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,080",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 196080,
+				"to": 197960
+			},
+			"text": " And that was getting in our way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 201800
+			},
+			"text": " So what we did to fix that was, actually, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:22,840"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 202840
+			},
+			"text": " going to get to that in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,840",
+				"to": "00:03:25,360"
+			},
+			"offsets": {
+				"from": 202840,
+				"to": 205360
+			},
+			"text": " But just to remember, we needed proof of ownership"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,360",
+				"to": "00:03:26,880"
+			},
+			"offsets": {
+				"from": 205360,
+				"to": 206880
+			},
+			"text": " and as few steps as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,880",
+				"to": "00:03:29,960"
+			},
+			"offsets": {
+				"from": 206880,
+				"to": 209960
+			},
+			"text": " So we could just get the connection, a signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,960",
+				"to": "00:03:32,080"
+			},
+			"offsets": {
+				"from": 209960,
+				"to": 212080
+			},
+			"text": " and drop the session, because the backend"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,080",
+				"to": "00:03:34,680"
+			},
+			"offsets": {
+				"from": 212080,
+				"to": 214680
+			},
+			"text": " could do the rest of the checks, like whether the user had"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,680",
+				"to": "00:03:36,640"
+			},
+			"offsets": {
+				"from": 214680,
+				"to": 216640
+			},
+			"text": " the right NFT or not, and that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,640",
+				"to": "00:03:39,880"
+			},
+			"offsets": {
+				"from": 216640,
+				"to": 219880
+			},
+			"text": " The client could just drop the connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,880",
+				"to": "00:03:43,600"
+			},
+			"offsets": {
+				"from": 219880,
+				"to": 223600
+			},
+			"text": " So what we did to fix that, well, we rewrote our Wallet Connector"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,600",
+				"to": "00:03:43,960"
+			},
+			"offsets": {
+				"from": 223600,
+				"to": 223960
+			},
+			"text": " code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,960",
+				"to": "00:03:47,560"
+			},
+			"offsets": {
+				"from": 223960,
+				"to": 227560
+			},
+			"text": " This is a screenshot of the PR that done that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,560",
+				"to": "00:03:50,800"
+			},
+			"offsets": {
+				"from": 227560,
+				"to": 230800
+			},
+			"text": " And yeah, we got rid of this out of the box library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,800",
+				"to": "00:03:53,400"
+			},
+			"offsets": {
+				"from": 230800,
+				"to": 233400
+			},
+			"text": " and we use WalletConnect's core package"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,400",
+				"to": "00:03:57,800"
+			},
+			"offsets": {
+				"from": 233400,
+				"to": 237800
+			},
+			"text": " to rebuild our WalletConnection code and focus on this one time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,800",
+				"to": "00:04:01,440"
+			},
+			"offsets": {
+				"from": 237800,
+				"to": 241440
+			},
+			"text": " connection that we could just easily replace or drop"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,440",
+				"to": "00:04:02,960"
+			},
+			"offsets": {
+				"from": 241440,
+				"to": 242960
+			},
+			"text": " if we didn't need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,960",
+				"to": "00:04:07,280"
+			},
+			"offsets": {
+				"from": 242960,
+				"to": 247280
+			},
+			"text": " And, well, the results were pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,280",
+				"to": "00:04:10,440"
+			},
+			"offsets": {
+				"from": 247280,
+				"to": 250440
+			},
+			"text": " Our user feedback improved, the internal feedback improved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,440",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 250440,
+				"to": 252280
+			},
+			"text": " and the numbers were significantly better."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 254000
+			},
+			"text": " You could see a screenshot of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,320"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257320
+			},
+			"text": " This was the version we shipped to our users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,320",
+				"to": "00:04:19,960"
+			},
+			"offsets": {
+				"from": 257320,
+				"to": 259960
+			},
+			"text": " But you're going to notice this also"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,960",
+				"to": "00:04:23,520"
+			},
+			"offsets": {
+				"from": 259960,
+				"to": 263520
+			},
+			"text": " has LedgerLive, besides Metamask Wallet, Rainbow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,520",
+				"to": "00:04:26,360"
+			},
+			"offsets": {
+				"from": 263520,
+				"to": 266360
+			},
+			"text": " and Coinbase Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,360",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 266360,
+				"to": 268320
+			},
+			"text": " Yeah, so like an important feedback"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 271000
+			},
+			"text": " we got from the user was that we didn't have hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 272000
+			},
+			"text": " wallets apart."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:34,280"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 274280
+			},
+			"text": " We have only talked about software wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,280",
+				"to": "00:04:37,960"
+			},
+			"offsets": {
+				"from": 274280,
+				"to": 277960
+			},
+			"text": " And it was really important because we don't want our users"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,960",
+				"to": "00:04:42,680"
+			},
+			"offsets": {
+				"from": 277960,
+				"to": 282680
+			},
+			"text": " to connect wallets that have valuable tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,680",
+				"to": "00:04:45,800"
+			},
+			"offsets": {
+				"from": 282680,
+				"to": 285800
+			},
+			"text": " but we don't want them to move their tokens to a software"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,800",
+				"to": "00:04:47,920"
+			},
+			"offsets": {
+				"from": 285800,
+				"to": 287920
+			},
+			"text": " wallet to connect to our application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,920",
+				"to": "00:04:49,240"
+			},
+			"offsets": {
+				"from": 287920,
+				"to": 289240
+			},
+			"text": " And it's also about practice that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,240",
+				"to": "00:04:51,960"
+			},
+			"offsets": {
+				"from": 289240,
+				"to": 291960
+			},
+			"text": " want to encourage good practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,960",
+				"to": "00:04:55,720"
+			},
+			"offsets": {
+				"from": 291960,
+				"to": 295720
+			},
+			"text": " So what we tried doing was introducing LedgerLive"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,720",
+				"to": "00:04:57,240"
+			},
+			"offsets": {
+				"from": 295720,
+				"to": 297240
+			},
+			"text": " through WalletConnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,240",
+				"to": "00:04:58,760"
+			},
+			"offsets": {
+				"from": 297240,
+				"to": 298760
+			},
+			"text": " And yes, this sort of did the trick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,760",
+				"to": "00:05:00,680"
+			},
+			"offsets": {
+				"from": 298760,
+				"to": 300680
+			},
+			"text": " but it was really flaky, to be honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,680",
+				"to": "00:05:02,400"
+			},
+			"offsets": {
+				"from": 300680,
+				"to": 302400
+			},
+			"text": " And when it failed, we didn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,400",
+				"to": "00:05:03,560"
+			},
+			"offsets": {
+				"from": 302400,
+				"to": 303560
+			},
+			"text": " know what was happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,560",
+				"to": "00:05:06,040"
+			},
+			"offsets": {
+				"from": 303560,
+				"to": 306040
+			},
+			"text": " Like the only support that we could give it was OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,040",
+				"to": "00:05:08,640"
+			},
+			"offsets": {
+				"from": 306040,
+				"to": 308640
+			},
+			"text": " Just restart everything and try it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,640",
+				"to": "00:05:12,840"
+			},
+			"offsets": {
+				"from": 308640,
+				"to": 312840
+			},
+			"text": " So yeah, we didn't nail this part."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,840",
+				"to": "00:05:16,240"
+			},
+			"offsets": {
+				"from": 312840,
+				"to": 316240
+			},
+			"text": " And even though we did implement support for Ledger wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,240",
+				"to": "00:05:17,640"
+			},
+			"offsets": {
+				"from": 316240,
+				"to": 317640
+			},
+			"text": " well, guess what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,640",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 317640,
+				"to": 318920
+			},
+			"text": " It was still not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 321600
+			},
+			"text": " I mean, for some users, like some users"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:24,400"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 324400
+			},
+			"text": " ask for support for even more hardware wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,400",
+				"to": "00:05:27,440"
+			},
+			"offsets": {
+				"from": 324400,
+				"to": 327440
+			},
+			"text": " because they had extra security concerns, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,440",
+				"to": "00:05:29,160"
+			},
+			"offsets": {
+				"from": 327440,
+				"to": 329160
+			},
+			"text": " about Ledger."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,160",
+				"to": "00:05:31,720"
+			},
+			"offsets": {
+				"from": 329160,
+				"to": 331720
+			},
+			"text": " So a portion of our users asked for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,720",
+				"to": "00:05:35,680"
+			},
+			"offsets": {
+				"from": 331720,
+				"to": 335680
+			},
+			"text": " And it's kind of hard to solve because not all of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,680",
+				"to": "00:05:38,160"
+			},
+			"offsets": {
+				"from": 335680,
+				"to": 338160
+			},
+			"text": " hardware wallets have mobile support."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,160",
+				"to": "00:05:39,880"
+			},
+			"offsets": {
+				"from": 338160,
+				"to": 339880
+			},
+			"text": " So what could we do in this case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,880",
+				"to": "00:05:43,320"
+			},
+			"offsets": {
+				"from": 339880,
+				"to": 343320
+			},
+			"text": " Well, WalletConnect on the desktop is actually built"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,320",
+				"to": "00:05:44,880"
+			},
+			"offsets": {
+				"from": 343320,
+				"to": 344880
+			},
+			"text": " as a first class citizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,880",
+				"to": "00:05:45,880"
+			},
+			"offsets": {
+				"from": 344880,
+				"to": 345880
+			},
+			"text": " It works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,880",
+				"to": "00:05:50,320"
+			},
+			"offsets": {
+				"from": 345880,
+				"to": 350320
+			},
+			"text": " So for these wallets, we could just let the user connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,320",
+				"to": "00:05:54,800"
+			},
+			"offsets": {
+				"from": 350320,
+				"to": 354800
+			},
+			"text": " via the desktop and propagate that connection back to the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,800",
+				"to": "00:05:59,240"
+			},
+			"offsets": {
+				"from": 354800,
+				"to": 359240
+			},
+			"text": " However, that creates many challenges, especially UX-wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,240",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 359240,
+				"to": 361000
+			},
+			"text": " Because you need to get this experience right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " You're creating extra friction, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:07,080"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 367080
+			},
+			"text": " So take this advice, so to say, with a grain of salt."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,080",
+				"to": "00:06:09,200"
+			},
+			"offsets": {
+				"from": 367080,
+				"to": 369200
+			},
+			"text": " And this is something we haven't implemented yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,200",
+				"to": "00:06:13,600"
+			},
+			"offsets": {
+				"from": 369200,
+				"to": 373600
+			},
+			"text": " We were still in progress of doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,600",
+				"to": "00:06:16,720"
+			},
+			"offsets": {
+				"from": 373600,
+				"to": 376720
+			},
+			"text": " Yeah, so there's still a long way to go with the Wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,720",
+				"to": "00:06:18,320"
+			},
+			"offsets": {
+				"from": 376720,
+				"to": 378320
+			},
+			"text": " connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,320",
+				"to": "00:06:20,320"
+			},
+			"offsets": {
+				"from": 378320,
+				"to": 380320
+			},
+			"text": " So this is a little bit of the summary"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,320",
+				"to": "00:06:22,720"
+			},
+			"offsets": {
+				"from": 380320,
+				"to": 382720
+			},
+			"text": " of what we have right now working."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,720",
+				"to": "00:06:26,320"
+			},
+			"offsets": {
+				"from": 382720,
+				"to": 386320
+			},
+			"text": " The leader also the different implementations that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,320",
+				"to": "00:06:31,360"
+			},
+			"offsets": {
+				"from": 386320,
+				"to": 391360
+			},
+			"text": " As you can see, it changes from platform, also from Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,360",
+				"to": "00:06:35,440"
+			},
+			"offsets": {
+				"from": 391360,
+				"to": 395440
+			},
+			"text": " We do want to focus or make clear that we work on this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,440",
+				"to": "00:06:36,800"
+			},
+			"offsets": {
+				"from": 395440,
+				"to": 396800
+			},
+			"text": " for one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,800",
+				"to": "00:06:40,320"
+			},
+			"offsets": {
+				"from": 396800,
+				"to": 400320
+			},
+			"text": " And we understand that our requirements were"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,320",
+				"to": "00:06:42,080"
+			},
+			"offsets": {
+				"from": 400320,
+				"to": 402080
+			},
+			"text": " to have a really robust wallet connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,080",
+				"to": "00:06:44,040"
+			},
+			"offsets": {
+				"from": 402080,
+				"to": 404040
+			},
+			"text": " But that's not the case for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,040",
+				"to": "00:06:47,600"
+			},
+			"offsets": {
+				"from": 404040,
+				"to": 407600
+			},
+			"text": " Maybe you just need an MVP that you can connect a wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,600",
+				"to": "00:06:49,160"
+			},
+			"offsets": {
+				"from": 407600,
+				"to": 409160
+			},
+			"text": " MetaMask, and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,160",
+				"to": "00:06:52,480"
+			},
+			"offsets": {
+				"from": 409160,
+				"to": 412480
+			},
+			"text": " So it just depends on the team that you have, the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,480",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 412480,
+				"to": 416600
+			},
+			"text": " that you have, and what you need for your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:07:00,080"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 420080
+			},
+			"text": " So yeah, the solutions can change."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,080",
+				"to": "00:07:04,920"
+			},
+			"offsets": {
+				"from": 420080,
+				"to": 424920
+			},
+			"text": " Yes, and I don't know something that made me think"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,920",
+				"to": "00:07:10,080"
+			},
+			"offsets": {
+				"from": 424920,
+				"to": 430080
+			},
+			"text": " about all these mobile and WF3 gap that we have is that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,080",
+				"to": "00:07:13,480"
+			},
+			"offsets": {
+				"from": 430080,
+				"to": 433480
+			},
+			"text": " have been working on WF3 for almost five years."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,480",
+				"to": "00:07:14,920"
+			},
+			"offsets": {
+				"from": 433480,
+				"to": 434920
+			},
+			"text": " And honestly, it was the first time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,920",
+				"to": "00:07:17,520"
+			},
+			"offsets": {
+				"from": 434920,
+				"to": 437520
+			},
+			"text": " that I worked on mobile during that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,520",
+				"to": "00:07:21,200"
+			},
+			"offsets": {
+				"from": 437520,
+				"to": 441200
+			},
+			"text": " And that shows us that, like, yes, as Brian said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,200",
+				"to": "00:07:24,240"
+			},
+			"offsets": {
+				"from": 441200,
+				"to": 444240
+			},
+			"text": " WF3 is a desktop first, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,240",
+				"to": "00:07:26,120"
+			},
+			"offsets": {
+				"from": 444240,
+				"to": 446120
+			},
+			"text": " But in order for us to reach the gap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,120",
+				"to": "00:07:28,720"
+			},
+			"offsets": {
+				"from": 446120,
+				"to": 448720
+			},
+			"text": " we need to make it mobile first, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,720",
+				"to": "00:07:29,880"
+			},
+			"offsets": {
+				"from": 448720,
+				"to": 449880
+			},
+			"text": " like us as developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,880",
+				"to": "00:07:32,800"
+			},
+			"offsets": {
+				"from": 449880,
+				"to": 452800
+			},
+			"text": " We do have the power, I guess, to shape the industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,800",
+				"to": "00:07:36,280"
+			},
+			"offsets": {
+				"from": 452800,
+				"to": 456280
+			},
+			"text": " because what we build is what people will actually use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,280",
+				"to": "00:07:37,920"
+			},
+			"offsets": {
+				"from": 456280,
+				"to": 457920
+			},
+			"text": " So the only way to reach in this gap"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,920",
+				"to": "00:07:41,320"
+			},
+			"offsets": {
+				"from": 457920,
+				"to": 461320
+			},
+			"text": " is for us to focus in on mobile and trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,320",
+				"to": "00:07:44,080"
+			},
+			"offsets": {
+				"from": 461320,
+				"to": 464080
+			},
+			"text": " to make those tools better, because we shape our tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,080",
+				"to": "00:07:47,160"
+			},
+			"offsets": {
+				"from": 464080,
+				"to": 467160
+			},
+			"text": " and therefore our tools shape us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,160",
+				"to": "00:07:49,400"
+			},
+			"offsets": {
+				"from": 467160,
+				"to": 469400
+			},
+			"text": " And yeah, also, like, a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,400",
+				"to": "00:07:51,240"
+			},
+			"offsets": {
+				"from": 469400,
+				"to": 471240
+			},
+			"text": " don't have easy access to desktop."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,240",
+				"to": "00:07:56,360"
+			},
+			"offsets": {
+				"from": 471240,
+				"to": 476360
+			},
+			"text": " And the access to mobile is way more accessible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,360",
+				"to": "00:08:01,200"
+			},
+			"offsets": {
+				"from": 476360,
+				"to": 481200
+			},
+			"text": " So yeah, I would say in order for us to bring WF3 to Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,200",
+				"to": "00:08:04,360"
+			},
+			"offsets": {
+				"from": 481200,
+				"to": 484360
+			},
+			"text": " to billions, we need to make it accessible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,360",
+				"to": "00:08:08,240"
+			},
+			"offsets": {
+				"from": 484360,
+				"to": 488240
+			},
+			"text": " And that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,240",
+				"to": "00:08:09,560"
+			},
+			"offsets": {
+				"from": 488240,
+				"to": 489560
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,560",
+				"to": "00:08:10,320"
+			},
+			"offsets": {
+				"from": 489560,
+				"to": 490320
+			},
+			"text": " And--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,320",
+				"to": "00:08:15,320"
+			},
+			"offsets": {
+				"from": 490320,
+				"to": 495320
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,320",
+				"to": "00:08:15,920"
+			},
+			"offsets": {
+				"from": 495320,
+				"to": 495920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,920",
+				"to": "00:08:17,400"
+			},
+			"offsets": {
+				"from": 495920,
+				"to": 497400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,400",
+				"to": "00:08:20,120"
+			},
+			"offsets": {
+				"from": 497400,
+				"to": 500120
+			},
+			"text": " Just a quick parentheses, we're still"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,120",
+				"to": "00:08:22,320"
+			},
+			"offsets": {
+				"from": 500120,
+				"to": 502320
+			},
+			"text": " doing research around the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,320",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 502320,
+				"to": 506560
+			},
+			"text": " So we got to get coin, bounty, up for grabs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 510640
+			},
+			"text": " around air gap, qualification around assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:32,160"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 512160
+			},
+			"text": " So please check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,160",
+				"to": "00:08:34,960"
+			},
+			"offsets": {
+				"from": 512160,
+				"to": 514960
+			},
+			"text": " And if you're interested in helping us out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,960",
+				"to": "00:08:36,040"
+			},
+			"offsets": {
+				"from": 514960,
+				"to": 516040
+			},
+			"text": " it would be great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,040",
+				"to": "00:08:36,320"
+			},
+			"offsets": {
+				"from": 516040,
+				"to": 516320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,320",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 516320,
+				"to": 517600
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:40,560"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 520560
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,560",
+				"to": "00:08:43,560"
+			},
+			"offsets": {
+				"from": 520560,
+				"to": 523560
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,560",
+				"to": "00:08:46,560"
+			},
+			"offsets": {
+				"from": 523560,
+				"to": 526560
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,560",
+				"to": "00:08:50,560"
+			},
+			"offsets": {
+				"from": 526560,
+				"to": 530560
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

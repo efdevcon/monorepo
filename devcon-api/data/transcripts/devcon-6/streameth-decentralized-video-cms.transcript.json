@@ -1,0 +1,5048 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:15,800"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 15800
+			},
+			"text": " My name is Pablo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,800",
+				"to": "00:00:16,720"
+			},
+			"offsets": {
+				"from": 15800,
+				"to": 16720
+			},
+			"text": " Buenos dias."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,720",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 16720,
+				"to": 18040
+			},
+			"text": " Gedal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 23000
+			},
+			"text": " And today I'm going to speak about StreamEath, a project"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " I've been working on with the Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:27,400"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 27400
+			},
+			"text": " and the guys from Life here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,400",
+				"to": "00:00:31,960"
+			},
+			"offsets": {
+				"from": 28400,
+				"to": 31960
+			},
+			"text": " And it's a project that we're using right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,960",
+				"to": "00:00:33,680"
+			},
+			"offsets": {
+				"from": 31960,
+				"to": 33680
+			},
+			"text": " to stream DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,680",
+				"to": "00:00:38,080"
+			},
+			"offsets": {
+				"from": 33680,
+				"to": 38080
+			},
+			"text": " So if you go to life.devcon.org, you can actually follow"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,080",
+				"to": "00:00:39,840"
+			},
+			"offsets": {
+				"from": 38080,
+				"to": 39840
+			},
+			"text": " all the sessions there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,840",
+				"to": "00:00:44,120"
+			},
+			"offsets": {
+				"from": 39840,
+				"to": 44120
+			},
+			"text": " And so yeah, I'll be speaking about what StreamEath is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,120",
+				"to": "00:00:48,120"
+			},
+			"offsets": {
+				"from": 44120,
+				"to": 48120
+			},
+			"text": " how it works, and why we need StreamEath, actually, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,120",
+				"to": "00:00:50,680"
+			},
+			"offsets": {
+				"from": 48120,
+				"to": 50680
+			},
+			"text": " I think is the most important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,680",
+				"to": "00:00:53,360"
+			},
+			"offsets": {
+				"from": 50680,
+				"to": 53360
+			},
+			"text": " And then I'll go over a bit of history"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,360",
+				"to": "00:00:59,560"
+			},
+			"offsets": {
+				"from": 53360,
+				"to": 59560
+			},
+			"text": " on how the application came to be, where we used it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,560",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 59560,
+				"to": 63080
+			},
+			"text": " and also how the future is going to look like for StreamEath."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:06,200"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 66200
+			},
+			"text": " So what is StreamEath?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,200",
+				"to": "00:01:08,400"
+			},
+			"offsets": {
+				"from": 66200,
+				"to": 68400
+			},
+			"text": " This is a very official definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,400",
+				"to": "00:01:10,920"
+			},
+			"offsets": {
+				"from": 68400,
+				"to": 70920
+			},
+			"text": " that I made up yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,920",
+				"to": "00:01:15,840"
+			},
+			"offsets": {
+				"from": 70920,
+				"to": 75840
+			},
+			"text": " So StreamEath is a self-hosted application"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,840",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 75840,
+				"to": 79320
+			},
+			"text": " that event organizers can use to host their virtual events."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:22,560"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 82560
+			},
+			"text": " Like I said, StreamEath was born out of a collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,560",
+				"to": "00:01:27,040"
+			},
+			"offsets": {
+				"from": 82560,
+				"to": 87040
+			},
+			"text": " between Ethereum Foundation, Life here, and myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,040",
+				"to": "00:01:28,480"
+			},
+			"offsets": {
+				"from": 87040,
+				"to": 88480
+			},
+			"text": " It all started with Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,480",
+				"to": "00:01:32,840"
+			},
+			"offsets": {
+				"from": 88480,
+				"to": 92840
+			},
+			"text": " wanting to decouple the sessions from YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,840",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 92840,
+				"to": 97000
+			},
+			"text": " They wanted to do three simple things at first."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:39,760"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 99760
+			},
+			"text": " So our current version of StreamEath,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,760",
+				"to": "00:01:45,320"
+			},
+			"offsets": {
+				"from": 99760,
+				"to": 105320
+			},
+			"text": " these three simple things, fairly good, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,320",
+				"to": "00:01:48,920"
+			},
+			"offsets": {
+				"from": 105320,
+				"to": 108920
+			},
+			"text": " So Stream, we wanted to livestream the events, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,920",
+				"to": "00:01:51,640"
+			},
+			"offsets": {
+				"from": 108920,
+				"to": 111640
+			},
+			"text": " without relying on YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,640",
+				"to": "00:01:56,840"
+			},
+			"offsets": {
+				"from": 111640,
+				"to": 116840
+			},
+			"text": " We wanted to also show a schedule of the sessions for each talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,840",
+				"to": "00:02:02,160"
+			},
+			"offsets": {
+				"from": 116840,
+				"to": 122160
+			},
+			"text": " And after the event was done, we wanted to record--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,160",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 122160,
+				"to": 126120
+			},
+			"text": " show the recording of all the sessions that we street."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:08,040"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 128040
+			},
+			"text": " So when we started designing the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,040",
+				"to": "00:02:13,840"
+			},
+			"offsets": {
+				"from": 128040,
+				"to": 133840
+			},
+			"text": " we decided that we wanted to mimic"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,840",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 133840,
+				"to": 134800
+			},
+			"text": " how the application looked like."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 138280
+			},
+			"text": " We wanted to mimic it to what a real event is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:21,840"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 141840
+			},
+			"text": " So we designed everything around rooms and sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,840",
+				"to": "00:02:25,320"
+			},
+			"offsets": {
+				"from": 141840,
+				"to": 145320
+			},
+			"text": " So one event has multiple rooms, and one room"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,320",
+				"to": "00:02:26,640"
+			},
+			"offsets": {
+				"from": 145320,
+				"to": 146640
+			},
+			"text": " has multiple sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,640",
+				"to": "00:02:33,120"
+			},
+			"offsets": {
+				"from": 146640,
+				"to": 153120
+			},
+			"text": " So then from then on, we started building StreamEath."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,120",
+				"to": "00:02:36,680"
+			},
+			"offsets": {
+				"from": 153120,
+				"to": 156680
+			},
+			"text": " The first thing we focused on was on live streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,680",
+				"to": "00:02:41,560"
+			},
+			"offsets": {
+				"from": 156680,
+				"to": 161560
+			},
+			"text": " So each room can have one live stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,560",
+				"to": "00:02:42,960"
+			},
+			"offsets": {
+				"from": 161560,
+				"to": 162960
+			},
+			"text": " Through the whole application, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,960",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 162960,
+				"to": 165440
+			},
+			"text": " can concurrently stream on multiple rooms."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:50,040"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 170040
+			},
+			"text": " So today, in DEFCON, we're concurrently live streaming"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,040",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 170040,
+				"to": 174360
+			},
+			"text": " in nine multiple rooms, which I think is pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:58,720"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 178720
+			},
+			"text": " We also focused on uptime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,720",
+				"to": "00:03:02,760"
+			},
+			"offsets": {
+				"from": 178720,
+				"to": 182760
+			},
+			"text": " We built in a failover mechanism into our playback systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,760",
+				"to": "00:03:07,760"
+			},
+			"offsets": {
+				"from": 182760,
+				"to": 187760
+			},
+			"text": " that allows a single room to ingest two sources that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,760",
+				"to": "00:03:11,600"
+			},
+			"offsets": {
+				"from": 187760,
+				"to": 191600
+			},
+			"text": " have the same content, to failover to one or the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,600",
+				"to": "00:03:14,960"
+			},
+			"offsets": {
+				"from": 191600,
+				"to": 194960
+			},
+			"text": " in case there were errors in the broadcast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,960",
+				"to": "00:03:17,360"
+			},
+			"offsets": {
+				"from": 194960,
+				"to": 197360
+			},
+			"text": " and one of the sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,360",
+				"to": "00:03:20,360"
+			},
+			"offsets": {
+				"from": 197360,
+				"to": 200360
+			},
+			"text": " You may be wondering what we use instead of YouTube,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,360",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 200360,
+				"to": 202880
+			},
+			"text": " and that is, of course, very interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:26,840"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 206840
+			},
+			"text": " and that's where live here comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,840",
+				"to": "00:03:29,680"
+			},
+			"offsets": {
+				"from": 206840,
+				"to": 209680
+			},
+			"text": " StreamEath is actually provider agnostic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,680",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 209680,
+				"to": 214160
+			},
+			"text": " which means that we don't do any of the broadcasting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 214840
+			},
+			"text": " ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:39,520"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 219520
+			},
+			"text": " We are just front-end that hooks into whatever video"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,520",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 219520,
+				"to": 221200
+			},
+			"text": " provider we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:45,920"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 225920
+			},
+			"text": " In our case, we built a solution by default"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,920",
+				"to": "00:03:49,960"
+			},
+			"offsets": {
+				"from": 225920,
+				"to": 229960
+			},
+			"text": " on top of Live here, which is an awesome protocol that some of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,960",
+				"to": "00:03:50,560"
+			},
+			"offsets": {
+				"from": 229960,
+				"to": 230560
+			},
+			"text": " know--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,560",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 230560,
+				"to": 232200
+			},
+			"text": " I know these guys know them, because they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:53,080"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 233080
+			},
+			"text": " the core developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,080",
+				"to": "00:03:55,760"
+			},
+			"offsets": {
+				"from": 233080,
+				"to": 235760
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,760",
+				"to": "00:03:58,640"
+			},
+			"offsets": {
+				"from": 235760,
+				"to": 238640
+			},
+			"text": " Live here is a decentralized video streaming network built"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,640",
+				"to": "00:04:00,520"
+			},
+			"offsets": {
+				"from": 238640,
+				"to": 240520
+			},
+			"text": " on the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,520",
+				"to": "00:04:04,160"
+			},
+			"offsets": {
+				"from": 240520,
+				"to": 244160
+			},
+			"text": " Live here can currently distribute live and on the main content."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,160",
+				"to": "00:04:08,520"
+			},
+			"offsets": {
+				"from": 244160,
+				"to": 248520
+			},
+			"text": " So yeah, it's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,520",
+				"to": "00:04:12,480"
+			},
+			"offsets": {
+				"from": 248520,
+				"to": 252480
+			},
+			"text": " I go more in depth on why we chose Live here later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,480",
+				"to": "00:04:15,240"
+			},
+			"offsets": {
+				"from": 252480,
+				"to": 255240
+			},
+			"text": " but you can imagine it's a protocol built on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,240",
+				"to": "00:04:19,640"
+			},
+			"offsets": {
+				"from": 255240,
+				"to": 259640
+			},
+			"text": " So this is authorization, censorship-resistant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,640",
+				"to": "00:04:24,400"
+			},
+			"offsets": {
+				"from": 259640,
+				"to": 264400
+			},
+			"text": " and all the nice things about this authorization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,400",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 264400,
+				"to": 267000
+			},
+			"text": " So like I said, the application is provided agnostic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,440"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270440
+			},
+			"text": " but there's already an out-of-the-box solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,440",
+				"to": "00:04:31,920"
+			},
+			"offsets": {
+				"from": 270440,
+				"to": 271920
+			},
+			"text": " that integrates with Live here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,920",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 271920,
+				"to": 277800
+			},
+			"text": " So you can start up StreamEath, set up your Live here account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:41,760"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 281760
+			},
+			"text": " and start streaming decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,760",
+				"to": "00:04:44,520"
+			},
+			"offsets": {
+				"from": 281760,
+				"to": 284520
+			},
+			"text": " Then we also put a lot of focus into the schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,520",
+				"to": "00:04:47,680"
+			},
+			"offsets": {
+				"from": 284520,
+				"to": 287680
+			},
+			"text": " This is because StreamEath is not only something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,680",
+				"to": "00:04:49,760"
+			},
+			"offsets": {
+				"from": 287680,
+				"to": 289760
+			},
+			"text": " you can use to live stream, but it's actually something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,760",
+				"to": "00:04:51,440"
+			},
+			"offsets": {
+				"from": 289760,
+				"to": 291440
+			},
+			"text": " that we want to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,440",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291440,
+				"to": 294000
+			},
+			"text": " that event organizers want to use to, like I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:59,280"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 299280
+			},
+			"text": " replicate the event experience, but virtually."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,280",
+				"to": "00:05:03,720"
+			},
+			"offsets": {
+				"from": 299280,
+				"to": 303720
+			},
+			"text": " So the schedule, as always, is a very important part"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,720",
+				"to": "00:05:06,920"
+			},
+			"offsets": {
+				"from": 303720,
+				"to": 306920
+			},
+			"text": " of any event, especially events like DevCon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,920",
+				"to": "00:05:10,320"
+			},
+			"offsets": {
+				"from": 306920,
+				"to": 310320
+			},
+			"text": " where you have a lot of sessions and other rooms."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,320",
+				"to": "00:05:13,040"
+			},
+			"offsets": {
+				"from": 310320,
+				"to": 313040
+			},
+			"text": " You kind of want to automate the process of scheduling"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,040",
+				"to": "00:05:17,200"
+			},
+			"offsets": {
+				"from": 313040,
+				"to": 317200
+			},
+			"text": " everything and showing the information in a nice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,200",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 317200,
+				"to": 319480
+			},
+			"text": " accessible way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:21,400"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 321400
+			},
+			"text": " So we built a schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,400",
+				"to": "00:05:22,760"
+			},
+			"offsets": {
+				"from": 321400,
+				"to": 322760
+			},
+			"text": " By the way, I'm talking about the features"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,760",
+				"to": "00:05:25,040"
+			},
+			"offsets": {
+				"from": 322760,
+				"to": 325040
+			},
+			"text": " that I will do a live demo and showcase the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,040",
+				"to": "00:05:28,200"
+			},
+			"offsets": {
+				"from": 325040,
+				"to": 328200
+			},
+			"text": " because I know it might be a bit difficult to imagine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,200",
+				"to": "00:05:30,520"
+			},
+			"offsets": {
+				"from": 328200,
+				"to": 330520
+			},
+			"text": " But I'm saying, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,520",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 330520,
+				"to": 335400
+			},
+			"text": " So yeah, the schedule is a very central part of StreamEath."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:39,520"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 339520
+			},
+			"text": " We built multiple integrations with different schedule"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,520",
+				"to": "00:05:40,920"
+			},
+			"offsets": {
+				"from": 339520,
+				"to": 340920
+			},
+			"text": " providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,920",
+				"to": "00:05:45,800"
+			},
+			"offsets": {
+				"from": 340920,
+				"to": 345800
+			},
+			"text": " DevCon is using pre-talks as a schedule manager, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,800",
+				"to": "00:05:47,520"
+			},
+			"offsets": {
+				"from": 345800,
+				"to": 347520
+			},
+			"text": " is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,520",
+				"to": "00:05:50,680"
+			},
+			"offsets": {
+				"from": 347520,
+				"to": 350680
+			},
+			"text": " and pre-talks is an open source tool for management"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,680",
+				"to": "00:05:53,600"
+			},
+			"offsets": {
+				"from": 350680,
+				"to": 353600
+			},
+			"text": " that the DevCon team is using to organize all the sessions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,600",
+				"to": "00:05:55,200"
+			},
+			"offsets": {
+				"from": 353600,
+				"to": 355200
+			},
+			"text": " and all the rooms."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,200",
+				"to": "00:05:57,200"
+			},
+			"offsets": {
+				"from": 355200,
+				"to": 357200
+			},
+			"text": " So we built an integration with our API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,200",
+				"to": "00:05:59,400"
+			},
+			"offsets": {
+				"from": 357200,
+				"to": 359400
+			},
+			"text": " and that's also available in StreamEath."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,400",
+				"to": "00:06:01,240"
+			},
+			"offsets": {
+				"from": 359400,
+				"to": 361240
+			},
+			"text": " So if you're an event organizer, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,240",
+				"to": "00:06:07,520"
+			},
+			"offsets": {
+				"from": 361240,
+				"to": 367520
+			},
+			"text": " can spin up a pre-talks instance and get going with that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,520",
+				"to": "00:06:11,080"
+			},
+			"offsets": {
+				"from": 367520,
+				"to": 371080
+			},
+			"text": " and have a pretty nice schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,080",
+				"to": "00:06:15,160"
+			},
+			"offsets": {
+				"from": 371080,
+				"to": 375160
+			},
+			"text": " Thanks for having me there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,160",
+				"to": "00:06:19,120"
+			},
+			"offsets": {
+				"from": 375160,
+				"to": 379120
+			},
+			"text": " Also, the application has an internal clock, which will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,120",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 379120,
+				"to": 383600
+			},
+			"text": " basically sync you up with the latest sessions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:27,040"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 387040
+			},
+			"text": " and always display the current information on which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,040",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 387040,
+				"to": 389480
+			},
+			"text": " stock is happening and all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:31,480"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 391480
+			},
+			"text": " But I think that's better to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,480",
+				"to": "00:06:33,320"
+			},
+			"offsets": {
+				"from": 391480,
+				"to": 393320
+			},
+			"text": " that you guys see it in a live demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,320",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 393320,
+				"to": 395920
+			},
+			"text": " that I'm going to show later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:38,400"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 398400
+			},
+			"text": " Then, of course, like we said, on demand with the playback,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,400",
+				"to": "00:06:43,200"
+			},
+			"offsets": {
+				"from": 398400,
+				"to": 403200
+			},
+			"text": " there is also crucial for the event organizers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,200",
+				"to": "00:06:45,600"
+			},
+			"offsets": {
+				"from": 403200,
+				"to": 405600
+			},
+			"text": " Actually, most of the views for events"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,600",
+				"to": "00:06:48,200"
+			},
+			"offsets": {
+				"from": 405600,
+				"to": 408200
+			},
+			"text": " happen during on demand playback."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,200",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408200,
+				"to": 412000
+			},
+			"text": " So live video don't usually get too many views."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:58,080"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 418080
+			},
+			"text": " But then when you store that video and you show it on demand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,080",
+				"to": "00:06:59,800"
+			},
+			"offsets": {
+				"from": 418080,
+				"to": 419800
+			},
+			"text": " because of the content we're sharing here in these stocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:01,800"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 421800
+			},
+			"text": " it's very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,800",
+				"to": "00:07:05,240"
+			},
+			"offsets": {
+				"from": 421800,
+				"to": 425240
+			},
+			"text": " People go and watch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,240",
+				"to": "00:07:09,920"
+			},
+			"offsets": {
+				"from": 425240,
+				"to": 429920
+			},
+			"text": " So yeah, this is also currently all the on demand video"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,920",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 429920,
+				"to": 433160
+			},
+			"text": " that we are hosting on different StreamEath instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:15,800"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 435800
+			},
+			"text": " It's also living on the live here network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,800",
+				"to": "00:07:20,120"
+			},
+			"offsets": {
+				"from": 435800,
+				"to": 440120
+			},
+			"text": " They recently developed their video on demand features."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,120",
+				"to": "00:07:21,360"
+			},
+			"offsets": {
+				"from": 440120,
+				"to": 441360
+			},
+			"text": " So it's working very nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,360",
+				"to": "00:07:27,480"
+			},
+			"offsets": {
+				"from": 441360,
+				"to": 447480
+			},
+			"text": " And I'll also show an example of a StreamEath instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,480",
+				"to": "00:07:29,920"
+			},
+			"offsets": {
+				"from": 447480,
+				"to": 449920
+			},
+			"text": " where we used video on demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,920",
+				"to": "00:07:32,080"
+			},
+			"offsets": {
+				"from": 449920,
+				"to": 452080
+			},
+			"text": " It was at the East Berlin last month."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,080",
+				"to": "00:07:33,320"
+			},
+			"offsets": {
+				"from": 452080,
+				"to": 453320
+			},
+			"text": " It worked very nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,320",
+				"to": "00:07:37,480"
+			},
+			"offsets": {
+				"from": 453320,
+				"to": 457480
+			},
+			"text": " So I'll show a demo of that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,480",
+				"to": "00:07:39,880"
+			},
+			"offsets": {
+				"from": 457480,
+				"to": 459880
+			},
+			"text": " And finally, plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,880",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 459880,
+				"to": 465520
+			},
+			"text": " And I think this is the most interesting feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:49,320"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 469320
+			},
+			"text": " So this over architecture that we built"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,320",
+				"to": "00:07:53,080"
+			},
+			"offsets": {
+				"from": 469320,
+				"to": 473080
+			},
+			"text": " was thought to contain this plugin feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,080",
+				"to": "00:07:56,280"
+			},
+			"offsets": {
+				"from": 473080,
+				"to": 476280
+			},
+			"text": " So essentially, we, in the long term, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,280",
+				"to": "00:08:00,960"
+			},
+			"offsets": {
+				"from": 476280,
+				"to": 480960
+			},
+			"text": " we want different protocols to build plugins into StreamEath"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,960",
+				"to": "00:08:04,640"
+			},
+			"offsets": {
+				"from": 480960,
+				"to": 484640
+			},
+			"text": " so that they can integrate their features"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,640",
+				"to": "00:08:06,080"
+			},
+			"offsets": {
+				"from": 484640,
+				"to": 486080
+			},
+			"text": " into the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,080",
+				"to": "00:08:08,760"
+			},
+			"offsets": {
+				"from": 486080,
+				"to": 488760
+			},
+			"text": " So for instance, we are working with Radical"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,760",
+				"to": "00:08:10,600"
+			},
+			"offsets": {
+				"from": 488760,
+				"to": 490600
+			},
+			"text": " to integrate Radical Drips."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,600",
+				"to": "00:08:12,320"
+			},
+			"offsets": {
+				"from": 490600,
+				"to": 492320
+			},
+			"text": " And that would allow to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,320",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 492320,
+				"to": 494000
+			},
+			"text": " I don't know if you guys know Radical Drips."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:16,520"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 496520
+			},
+			"text": " But it's basically a product that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,520",
+				"to": "00:08:22,120"
+			},
+			"offsets": {
+				"from": 496520,
+				"to": 502120
+			},
+			"text": " allows to have tipping on web interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,120",
+				"to": "00:08:24,200"
+			},
+			"offsets": {
+				"from": 502120,
+				"to": 504200
+			},
+			"text": " So you can have a StreamEath instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,200",
+				"to": "00:08:25,840"
+			},
+			"offsets": {
+				"from": 504200,
+				"to": 505840
+			},
+			"text": " where you're live streaming an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,840",
+				"to": "00:08:28,280"
+			},
+			"offsets": {
+				"from": 505840,
+				"to": 508280
+			},
+			"text": " And then you have the Radical Drips plugin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,280",
+				"to": "00:08:31,160"
+			},
+			"offsets": {
+				"from": 508280,
+				"to": 511160
+			},
+			"text": " And so users of that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,160",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 511160,
+				"to": 514720
+			},
+			"text": " viewers of that event could donate directly to the speakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:36,160"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 516160
+			},
+			"text": " which I think is pretty cool, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,160",
+				"to": "00:08:40,200"
+			},
+			"offsets": {
+				"from": 516160,
+				"to": 520200
+			},
+			"text": " So the plugin architecture is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,200",
+				"to": "00:08:41,680"
+			},
+			"offsets": {
+				"from": 520200,
+				"to": 521680
+			},
+			"text": " Now we need to develop the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,680",
+				"to": "00:08:45,640"
+			},
+			"offsets": {
+				"from": 521680,
+				"to": 525640
+			},
+			"text": " and bring people in to develop these plugins for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,640",
+				"to": "00:08:48,040"
+			},
+			"offsets": {
+				"from": 525640,
+				"to": 528040
+			},
+			"text": " Oh, and this is the slide where I show the live demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,040",
+				"to": "00:08:48,840"
+			},
+			"offsets": {
+				"from": 528040,
+				"to": 528840
+			},
+			"text": " So I'm going to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,840",
+				"to": "00:08:53,200"
+			},
+			"offsets": {
+				"from": 528840,
+				"to": 533200
+			},
+			"text": " yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,200",
+				"to": "00:08:55,080"
+			},
+			"offsets": {
+				"from": 533200,
+				"to": 535080
+			},
+			"text": " So this is the StreamEath instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,080",
+				"to": "00:08:59,800"
+			},
+			"offsets": {
+				"from": 535080,
+				"to": 539800
+			},
+			"text": " that we use for DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,800",
+				"to": "00:09:02,960"
+			},
+			"offsets": {
+				"from": 539800,
+				"to": 542960
+			},
+			"text": " And we can see there that the biggest buffering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,960",
+				"to": "00:09:06,760"
+			},
+			"offsets": {
+				"from": 542960,
+				"to": 546760
+			},
+			"text": " because the Wi-Fi isn't the best in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,760",
+				"to": "00:09:12,480"
+			},
+			"offsets": {
+				"from": 546760,
+				"to": 552480
+			},
+			"text": " But yeah, so like I said, we are live streaming through Live"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,480",
+				"to": "00:09:12,840"
+			},
+			"offsets": {
+				"from": 552480,
+				"to": 552840
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,840",
+				"to": "00:09:15,600"
+			},
+			"offsets": {
+				"from": 552840,
+				"to": 555600
+			},
+			"text": " This is the main stage, as you guys can see."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,600",
+				"to": "00:09:18,080"
+			},
+			"offsets": {
+				"from": 555600,
+				"to": 558080
+			},
+			"text": " So even though network conditions are pretty shit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,080",
+				"to": "00:09:19,560"
+			},
+			"offsets": {
+				"from": 558080,
+				"to": 559560
+			},
+			"text": " it's working fine, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,560",
+				"to": "00:09:22,880"
+			},
+			"offsets": {
+				"from": 559560,
+				"to": 562880
+			},
+			"text": " So props to the Live here team."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,880",
+				"to": "00:09:26,320"
+			},
+			"offsets": {
+				"from": 562880,
+				"to": 566320
+			},
+			"text": " In this case, we also added the YouTube link."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,320",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 566320,
+				"to": 568000
+			},
+			"text": " So the good thing about StreamEath"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:31,440"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 571440
+			},
+			"text": " is that because it's an over-sourced application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,440",
+				"to": "00:09:35,280"
+			},
+			"offsets": {
+				"from": 571440,
+				"to": 575280
+			},
+			"text": " each instance can be adjusted to the needs of the event, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,280",
+				"to": "00:09:38,120"
+			},
+			"offsets": {
+				"from": 575280,
+				"to": 578120
+			},
+			"text": " So for this, in this case, for DevCon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,120",
+				"to": "00:09:40,680"
+			},
+			"offsets": {
+				"from": 578120,
+				"to": 580680
+			},
+			"text": " we also wanted to include a YouTube stream"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,680",
+				"to": "00:09:45,600"
+			},
+			"offsets": {
+				"from": 580680,
+				"to": 585600
+			},
+			"text": " for-- to have the maximum reach."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,600",
+				"to": "00:09:47,760"
+			},
+			"offsets": {
+				"from": 585600,
+				"to": 587760
+			},
+			"text": " So we're streaming both on Live here and YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,760",
+				"to": "00:09:51,320"
+			},
+			"offsets": {
+				"from": 587760,
+				"to": 591320
+			},
+			"text": " And we added this nice switcher in the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,320",
+				"to": "00:09:53,280"
+			},
+			"offsets": {
+				"from": 591320,
+				"to": 593280
+			},
+			"text": " so you can switch between-- like I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,280",
+				"to": "00:09:57,920"
+			},
+			"offsets": {
+				"from": 593280,
+				"to": 597920
+			},
+			"text": " then the schedule for this instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,920",
+				"to": "00:10:00,200"
+			},
+			"offsets": {
+				"from": 597920,
+				"to": 600200
+			},
+			"text": " we built the schedule into a nice navigation bar"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,200",
+				"to": "00:10:03,240"
+			},
+			"offsets": {
+				"from": 600200,
+				"to": 603240
+			},
+			"text": " on the right panel of the page."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,240",
+				"to": "00:10:07,760"
+			},
+			"offsets": {
+				"from": 603240,
+				"to": 607760
+			},
+			"text": " You can kind of look through all the talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,760",
+				"to": "00:10:08,960"
+			},
+			"offsets": {
+				"from": 607760,
+				"to": 608960
+			},
+			"text": " So yeah, when I refresh, you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,960",
+				"to": "00:10:13,720"
+			},
+			"offsets": {
+				"from": 608960,
+				"to": 613720
+			},
+			"text": " can see that the schedule kind of sync to the latest hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,720",
+				"to": "00:10:15,760"
+			},
+			"offsets": {
+				"from": 613720,
+				"to": 615760
+			},
+			"text": " So this should be me."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,760",
+				"to": "00:10:17,160"
+			},
+			"offsets": {
+				"from": 615760,
+				"to": 617160
+			},
+			"text": " Oh no, this is talk 5."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,160",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 617160,
+				"to": 618160
+			},
+			"text": " This is not my stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:23,680"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 623680
+			},
+			"text": " So yeah, right now in stage 5, how to scale the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,680",
+				"to": "00:10:25,480"
+			},
+			"offsets": {
+				"from": 623680,
+				"to": 625480
+			},
+			"text": " is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,480",
+				"to": "00:10:27,640"
+			},
+			"offsets": {
+				"from": 625480,
+				"to": 627640
+			},
+			"text": " So that's the internal clock feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,640",
+				"to": "00:10:28,440"
+			},
+			"offsets": {
+				"from": 627640,
+				"to": 628440
+			},
+			"text": " that I was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,440",
+				"to": "00:10:34,520"
+			},
+			"offsets": {
+				"from": 628440,
+				"to": 634520
+			},
+			"text": " And yeah, it's pretty simple, but it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,520",
+				"to": "00:10:36,360"
+			},
+			"offsets": {
+				"from": 634520,
+				"to": 636360
+			},
+			"text": " Like we said, I'm going to show also--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,360",
+				"to": "00:10:41,360"
+			},
+			"offsets": {
+				"from": 636360,
+				"to": 641360
+			},
+			"text": " and this is the Eve Berlin StreamEath that we deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,360",
+				"to": "00:10:45,320"
+			},
+			"offsets": {
+				"from": 641360,
+				"to": 645320
+			},
+			"text": " This is a custom schedule page that we built."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,320",
+				"to": "00:10:49,440"
+			},
+			"offsets": {
+				"from": 645320,
+				"to": 649440
+			},
+			"text": " So this is containing all of the sessions for Eve Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,440",
+				"to": "00:10:52,840"
+			},
+			"offsets": {
+				"from": 649440,
+				"to": 652840
+			},
+			"text": " You can filter by stages and days."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,840",
+				"to": "00:10:54,760"
+			},
+			"offsets": {
+				"from": 652840,
+				"to": 654760
+			},
+			"text": " And so when you click on a session,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,760",
+				"to": "00:10:59,320"
+			},
+			"offsets": {
+				"from": 654760,
+				"to": 659320
+			},
+			"text": " it goes to the session page and it loads up the VOD content."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,320",
+				"to": "00:11:00,760"
+			},
+			"offsets": {
+				"from": 659320,
+				"to": 660760
+			},
+			"text": " And also some speaker information"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,760",
+				"to": "00:11:03,440"
+			},
+			"offsets": {
+				"from": 660760,
+				"to": 663440
+			},
+			"text": " and kind of like the description of the event."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,440",
+				"to": "00:11:06,640"
+			},
+			"offsets": {
+				"from": 663440,
+				"to": 666640
+			},
+			"text": " And let's see if the VOD video--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,640",
+				"to": "00:11:07,440"
+			},
+			"offsets": {
+				"from": 666640,
+				"to": 667440
+			},
+			"text": " go check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,440",
+				"to": "00:11:10,280"
+			},
+			"offsets": {
+				"from": 667440,
+				"to": 670280
+			},
+			"text": " Watch.eatherlin.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,280",
+				"to": "00:11:12,320"
+			},
+			"offsets": {
+				"from": 670280,
+				"to": 672320
+			},
+			"text": " It's very good content."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,320",
+				"to": "00:11:13,720"
+			},
+			"offsets": {
+				"from": 672320,
+				"to": 673720
+			},
+			"text": " So yeah, like I said, at the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,720",
+				"to": "00:11:21,120"
+			},
+			"offsets": {
+				"from": 673720,
+				"to": 681120
+			},
+			"text": " three basic features, but very powerful and very effective"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,120",
+				"to": "00:11:21,480"
+			},
+			"offsets": {
+				"from": 681120,
+				"to": 681480
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,480",
+				"to": "00:11:24,640"
+			},
+			"offsets": {
+				"from": 681480,
+				"to": 684640
+			},
+			"text": " Because the main goal was to decouple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,640",
+				"to": "00:11:28,800"
+			},
+			"offsets": {
+				"from": 684640,
+				"to": 688800
+			},
+			"text": " Eve events and community events of centralized platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,800",
+				"to": "00:11:30,600"
+			},
+			"offsets": {
+				"from": 688800,
+				"to": 690600
+			},
+			"text": " like YouTube, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,600",
+				"to": "00:11:34,360"
+			},
+			"offsets": {
+				"from": 690600,
+				"to": 694360
+			},
+			"text": " So I think even though it's nothing fancy, we're not Twitch."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,360",
+				"to": "00:11:35,240"
+			},
+			"offsets": {
+				"from": 694360,
+				"to": 695240
+			},
+			"text": " We don't do VR."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,240",
+				"to": "00:11:37,280"
+			},
+			"offsets": {
+				"from": 695240,
+				"to": 697280
+			},
+			"text": " We don't do 3D nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,280",
+				"to": "00:11:41,080"
+			},
+			"offsets": {
+				"from": 697280,
+				"to": 701080
+			},
+			"text": " It really serves a purpose, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,080",
+				"to": "00:11:42,760"
+			},
+			"offsets": {
+				"from": 701080,
+				"to": 702760
+			},
+			"text": " And now, because I'm talking about purpose,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,760",
+				"to": "00:11:46,280"
+			},
+			"offsets": {
+				"from": 702760,
+				"to": 706280
+			},
+			"text": " I want to go into a bit of the ethics on why we built this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,280",
+				"to": "00:11:48,640"
+			},
+			"offsets": {
+				"from": 706280,
+				"to": 708640
+			},
+			"text": " why we think it's important, and why--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,640",
+				"to": "00:11:53,800"
+			},
+			"offsets": {
+				"from": 708640,
+				"to": 713800
+			},
+			"text": " yeah, no, why we built this and why we think it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,800",
+				"to": "00:11:56,040"
+			},
+			"offsets": {
+				"from": 713800,
+				"to": 716040
+			},
+			"text": " I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,040",
+				"to": "00:11:58,920"
+			},
+			"offsets": {
+				"from": 716040,
+				"to": 718920
+			},
+			"text": " Most of the Web3 events are being broadcasted"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,920",
+				"to": "00:12:01,480"
+			},
+			"offsets": {
+				"from": 718920,
+				"to": 721480
+			},
+			"text": " using centralized providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,480",
+				"to": "00:12:04,760"
+			},
+			"offsets": {
+				"from": 721480,
+				"to": 724760
+			},
+			"text": " And this sucks a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,760",
+				"to": "00:12:06,120"
+			},
+			"offsets": {
+				"from": 724760,
+				"to": 726120
+			},
+			"text": " And it's not just because I say that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,120",
+				"to": "00:12:08,720"
+			},
+			"offsets": {
+				"from": 726120,
+				"to": 728720
+			},
+			"text": " It actually sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,720",
+				"to": "00:12:10,560"
+			},
+			"offsets": {
+				"from": 728720,
+				"to": 730560
+			},
+			"text": " We all know YouTube and Twitch don't read online"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,560",
+				"to": "00:12:14,880"
+			},
+			"offsets": {
+				"from": 730560,
+				"to": 734880
+			},
+			"text": " with a core values of decentralization that we are all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,880",
+				"to": "00:12:17,920"
+			},
+			"offsets": {
+				"from": 734880,
+				"to": 737920
+			},
+			"text": " here for and that we believe in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,920",
+				"to": "00:12:22,280"
+			},
+			"offsets": {
+				"from": 737920,
+				"to": 742280
+			},
+			"text": " So streaming, if this should be a good first step"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,280",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742280,
+				"to": 746000
+			},
+			"text": " to help these communities decouple from these services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:27,920"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 747920
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,920",
+				"to": "00:12:30,360"
+			},
+			"offsets": {
+				"from": 747920,
+				"to": 750360
+			},
+			"text": " So now we're going to look at a bit of what are the problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,360",
+				"to": "00:12:34,640"
+			},
+			"offsets": {
+				"from": 750360,
+				"to": 754640
+			},
+			"text": " about that you get with using YouTube, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,640",
+				"to": "00:12:38,200"
+			},
+			"offsets": {
+				"from": 754640,
+				"to": 758200
+			},
+			"text": " So the first one is pretty clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,200",
+				"to": "00:12:42,360"
+			},
+			"offsets": {
+				"from": 758200,
+				"to": 762360
+			},
+			"text": " YouTube and Twitch and others are censorship prone."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,360",
+				"to": "00:12:49,480"
+			},
+			"offsets": {
+				"from": 762360,
+				"to": 769480
+			},
+			"text": " So yeah, here I put two tweets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,480",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769480,
+				"to": 773000
+			},
+			"text": " The first one was at ETH Barcelona."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:55,360"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 775360
+			},
+			"text": " The livestream was taken down because they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,360",
+				"to": "00:12:59,160"
+			},
+			"offsets": {
+				"from": 775360,
+				"to": 779160
+			},
+			"text": " had some copyright issues, which is usually--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,160",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779160,
+				"to": 782000
+			},
+			"text": " I mean, event production is pretty hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:03,080"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 783080
+			},
+			"text": " You have all kinds of audio."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,080",
+				"to": "00:13:04,200"
+			},
+			"offsets": {
+				"from": 783080,
+				"to": 784200
+			},
+			"text": " You have all kinds of music."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,200",
+				"to": "00:13:07,840"
+			},
+			"offsets": {
+				"from": 784200,
+				"to": 787840
+			},
+			"text": " And sometimes some music segments with copyright"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,840",
+				"to": "00:13:10,320"
+			},
+			"offsets": {
+				"from": 787840,
+				"to": 790320
+			},
+			"text": " can slip into the production."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,320",
+				"to": "00:13:13,080"
+			},
+			"offsets": {
+				"from": 790320,
+				"to": 793080
+			},
+			"text": " And then your whole stream gets taken down."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,080",
+				"to": "00:13:14,480"
+			},
+			"offsets": {
+				"from": 793080,
+				"to": 794480
+			},
+			"text": " So that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,480",
+				"to": "00:13:18,320"
+			},
+			"offsets": {
+				"from": 794480,
+				"to": 798320
+			},
+			"text": " So ETH Barcelona had one day without streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,320",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 798320,
+				"to": 802800
+			},
+			"text": " And then there's another tweet about a YouTube account"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:27,800"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 807800
+			},
+			"text": " that got taken down because they were talking about web"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,800",
+				"to": "00:13:28,720"
+			},
+			"offsets": {
+				"from": 807800,
+				"to": 808720
+			},
+			"text": " free content on YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,720",
+				"to": "00:13:32,280"
+			},
+			"offsets": {
+				"from": 808720,
+				"to": 812280
+			},
+			"text": " So there were some disputes and YouTube kind of banned"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,280",
+				"to": "00:13:34,320"
+			},
+			"offsets": {
+				"from": 812280,
+				"to": 814320
+			},
+			"text": " their account, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,320",
+				"to": "00:13:37,320"
+			},
+			"offsets": {
+				"from": 814320,
+				"to": 817320
+			},
+			"text": " So what is the solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,320",
+				"to": "00:13:38,920"
+			},
+			"offsets": {
+				"from": 817320,
+				"to": 818920
+			},
+			"text": " Streamy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,920",
+				"to": "00:13:40,680"
+			},
+			"offsets": {
+				"from": 818920,
+				"to": 820680
+			},
+			"text": " So that's what I'm here talking about Streamy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,680",
+				"to": "00:13:44,480"
+			},
+			"offsets": {
+				"from": 820680,
+				"to": 824480
+			},
+			"text": " Now, the solution is having a front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,480",
+				"to": "00:13:46,360"
+			},
+			"offsets": {
+				"from": 824480,
+				"to": 826360
+			},
+			"text": " So the first one is the front end, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,360",
+				"to": "00:13:49,720"
+			},
+			"offsets": {
+				"from": 826360,
+				"to": 829720
+			},
+			"text": " You want to deploy the front end on a decentralized storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,720",
+				"to": "00:13:53,040"
+			},
+			"offsets": {
+				"from": 829720,
+				"to": 833040
+			},
+			"text": " layer like IPFS or Swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,040",
+				"to": "00:13:54,440"
+			},
+			"offsets": {
+				"from": 833040,
+				"to": 834440
+			},
+			"text": " And that is actually one of the next steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,440",
+				"to": "00:13:57,720"
+			},
+			"offsets": {
+				"from": 834440,
+				"to": 837720
+			},
+			"text": " we're going to take after DevCon is to make sure the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,720",
+				"to": "00:13:58,680"
+			},
+			"offsets": {
+				"from": 837720,
+				"to": 838680
+			},
+			"text": " is lightweight."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,680",
+				"to": "00:14:04,280"
+			},
+			"offsets": {
+				"from": 838680,
+				"to": 844280
+			},
+			"text": " And we can use it and deploy it in one of these two layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,280",
+				"to": "00:14:05,840"
+			},
+			"offsets": {
+				"from": 844280,
+				"to": 845840
+			},
+			"text": " And the second solution to the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,840",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 845840,
+				"to": 852000
+			},
+			"text": " is using decentralized with the providers like Live here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:16,480"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 856480
+			},
+			"text": " Since Live here is at decentralized layer of nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,480",
+				"to": "00:14:19,280"
+			},
+			"offsets": {
+				"from": 856480,
+				"to": 859280
+			},
+			"text": " the content cannot be really stopped even if the government"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,280",
+				"to": "00:14:22,800"
+			},
+			"offsets": {
+				"from": 859280,
+				"to": 862800
+			},
+			"text": " or any platform says so, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,800",
+				"to": "00:14:28,880"
+			},
+			"offsets": {
+				"from": 862800,
+				"to": 868880
+			},
+			"text": " The next problem that erases from using centralized providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,880",
+				"to": "00:14:30,600"
+			},
+			"offsets": {
+				"from": 868880,
+				"to": 870600
+			},
+			"text": " is the intellectual property."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,600",
+				"to": "00:14:32,480"
+			},
+			"offsets": {
+				"from": 870600,
+				"to": 872480
+			},
+			"text": " It is going to tie to the censorship-prone issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:36,920"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 876920
+			},
+			"text": " So we set copyright claims, kind of insulting streams"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,920",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 876920,
+				"to": 880000
+			},
+			"text": " being taken down, channels being banned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:44,160"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 884160
+			},
+			"text": " and users being demonetized with the one done."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,160",
+				"to": "00:14:47,920"
+			},
+			"offsets": {
+				"from": 884160,
+				"to": 887920
+			},
+			"text": " And also, it's not only that they take in down the streams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,920",
+				"to": "00:14:51,760"
+			},
+			"offsets": {
+				"from": 887920,
+				"to": 891760
+			},
+			"text": " but it's the lack of transparency in the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,760",
+				"to": "00:14:54,440"
+			},
+			"offsets": {
+				"from": 891760,
+				"to": 894440
+			},
+			"text": " to decide which streams get taken down"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,440",
+				"to": "00:14:56,880"
+			},
+			"offsets": {
+				"from": 894440,
+				"to": 896880
+			},
+			"text": " and which content is being shown or not, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,880",
+				"to": "00:15:01,040"
+			},
+			"offsets": {
+				"from": 896880,
+				"to": 901040
+			},
+			"text": " So there's really an ethical discussion around what content"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,040",
+				"to": "00:15:05,400"
+			},
+			"offsets": {
+				"from": 901040,
+				"to": 905400
+			},
+			"text": " are we being allowed to see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,400",
+				"to": "00:15:09,800"
+			},
+			"offsets": {
+				"from": 905400,
+				"to": 909800
+			},
+			"text": " So using decentralized services, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,800",
+				"to": "00:15:11,040"
+			},
+			"offsets": {
+				"from": 909800,
+				"to": 911040
+			},
+			"text": " don't really solve this content because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,040",
+				"to": "00:15:12,400"
+			},
+			"offsets": {
+				"from": 911040,
+				"to": 912400
+			},
+			"text": " no moderation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,400",
+				"to": "00:15:15,040"
+			},
+			"offsets": {
+				"from": 912400,
+				"to": 915040
+			},
+			"text": " But I think we're heading in the right direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,040",
+				"to": "00:15:19,760"
+			},
+			"offsets": {
+				"from": 915040,
+				"to": 919760
+			},
+			"text": " in regards to not allowing this one central entity to decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,760",
+				"to": "00:15:22,440"
+			},
+			"offsets": {
+				"from": 919760,
+				"to": 922440
+			},
+			"text": " what we can see or what we can't see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,440",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 922440,
+				"to": 925000
+			},
+			"text": " Next would be the high fee to connect creators."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 927120
+			},
+			"text": " And this is also fairly interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:32,800"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 932800
+			},
+			"text": " especially recently Twitch increased their share."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,800",
+				"to": "00:15:35,880"
+			},
+			"offsets": {
+				"from": 932800,
+				"to": 935880
+			},
+			"text": " They're taking from content creators from, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,880",
+				"to": "00:15:38,960"
+			},
+			"offsets": {
+				"from": 935880,
+				"to": 938960
+			},
+			"text": " it was 15% to 30% or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,960",
+				"to": "00:15:41,520"
+			},
+			"offsets": {
+				"from": 938960,
+				"to": 941520
+			},
+			"text": " Because these centralized providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,520",
+				"to": "00:15:43,680"
+			},
+			"offsets": {
+				"from": 941520,
+				"to": 943680
+			},
+			"text": " are actually super expensive to run, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,680",
+				"to": "00:15:47,320"
+			},
+			"offsets": {
+				"from": 943680,
+				"to": 947320
+			},
+			"text": " So Twitch is, even though the content is free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,320",
+				"to": "00:15:51,080"
+			},
+			"offsets": {
+				"from": 947320,
+				"to": 951080
+			},
+			"text": " it's mega expensive to run an operation like Twitch."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,080",
+				"to": "00:15:54,320"
+			},
+			"offsets": {
+				"from": 951080,
+				"to": 954320
+			},
+			"text": " So in the long term, they have two solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,320",
+				"to": "00:15:56,640"
+			},
+			"offsets": {
+				"from": 954320,
+				"to": 956640
+			},
+			"text": " And one solution is to increase the share"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,640",
+				"to": "00:15:59,400"
+			},
+			"offsets": {
+				"from": 956640,
+				"to": 959400
+			},
+			"text": " they're taking from connect creators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,400",
+				"to": "00:16:03,440"
+			},
+			"offsets": {
+				"from": 959400,
+				"to": 963440
+			},
+			"text": " the other solution is to display ads, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,440",
+				"to": "00:16:06,600"
+			},
+			"offsets": {
+				"from": 963440,
+				"to": 966600
+			},
+			"text": " So yeah, moving on to a decentralized solution like StreamEath"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,600",
+				"to": "00:16:13,320"
+			},
+			"offsets": {
+				"from": 966600,
+				"to": 973320
+			},
+			"text": " and also Live here will basically allow us to give back"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,320",
+				"to": "00:16:18,120"
+			},
+			"offsets": {
+				"from": 973320,
+				"to": 978120
+			},
+			"text": " the monetization power to the connect creator."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,120",
+				"to": "00:16:20,360"
+			},
+			"offsets": {
+				"from": 978120,
+				"to": 980360
+			},
+			"text": " Because then if a connect creator is using Live here"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,360",
+				"to": "00:16:24,120"
+			},
+			"offsets": {
+				"from": 980360,
+				"to": 984120
+			},
+			"text": " to distribute the content, the content is actually theirs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,120",
+				"to": "00:16:29,640"
+			},
+			"offsets": {
+				"from": 984120,
+				"to": 989640
+			},
+			"text": " So he is then able to decide how he monetizes the content."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,640",
+				"to": "00:16:32,160"
+			},
+			"offsets": {
+				"from": 989640,
+				"to": 992160
+			},
+			"text": " Also, building on top of the plugin system"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,160",
+				"to": "00:16:36,160"
+			},
+			"offsets": {
+				"from": 992160,
+				"to": 996160
+			},
+			"text": " that I was talking about earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,160",
+				"to": "00:16:38,600"
+			},
+			"offsets": {
+				"from": 996160,
+				"to": 998600
+			},
+			"text": " we're really setting up this ecosystem for developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,600",
+				"to": "00:16:42,040"
+			},
+			"offsets": {
+				"from": 998600,
+				"to": 1002040
+			},
+			"text": " to come in and build custom solutions on top of StreamEath"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,040",
+				"to": "00:16:47,360"
+			},
+			"offsets": {
+				"from": 1002040,
+				"to": 1007360
+			},
+			"text": " that they can use to monetize their content."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,360",
+				"to": "00:16:50,480"
+			},
+			"offsets": {
+				"from": 1007360,
+				"to": 1010480
+			},
+			"text": " So radical drips will be a good example."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,480",
+				"to": "00:16:56,560"
+			},
+			"offsets": {
+				"from": 1010480,
+				"to": 1016560
+			},
+			"text": " But this is Web3. The best thing we do is create monetization"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,560",
+				"to": "00:16:59,560"
+			},
+			"offsets": {
+				"from": 1016560,
+				"to": 1019560
+			},
+			"text": " routes that-- this is Web3 crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,560",
+				"to": "00:17:02,120"
+			},
+			"offsets": {
+				"from": 1019560,
+				"to": 1022120
+			},
+			"text": " We're good at monetizing without having someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,120",
+				"to": "00:17:05,960"
+			},
+			"offsets": {
+				"from": 1022120,
+				"to": 1025960
+			},
+			"text": " in the middle taking a share of our money."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,960",
+				"to": "00:17:10,240"
+			},
+			"offsets": {
+				"from": 1025960,
+				"to": 1030240
+			},
+			"text": " So you guys can figure out the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,240",
+				"to": "00:17:13,160"
+			},
+			"offsets": {
+				"from": 1030240,
+				"to": 1033160
+			},
+			"text": " Just build a custom plugin that sends money to one address"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,160",
+				"to": "00:17:18,160"
+			},
+			"offsets": {
+				"from": 1033160,
+				"to": 1038160
+			},
+			"text": " or the other, and we should be solving this issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,160",
+				"to": "00:17:21,680"
+			},
+			"offsets": {
+				"from": 1038160,
+				"to": 1041680
+			},
+			"text": " And finally, and that's for me the most important one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,680",
+				"to": "00:17:26,360"
+			},
+			"offsets": {
+				"from": 1041680,
+				"to": 1046360
+			},
+			"text": " the Web3 ecosystem and how to teach YouTube and others"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,360",
+				"to": "00:17:32,160"
+			},
+			"offsets": {
+				"from": 1046360,
+				"to": 1052160
+			},
+			"text": " and are really respecting the values that we've sent for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,160",
+				"to": "00:17:35,920"
+			},
+			"offsets": {
+				"from": 1052160,
+				"to": 1055920
+			},
+			"text": " especially the open source and the communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,920",
+				"to": "00:17:38,080"
+			},
+			"offsets": {
+				"from": 1055920,
+				"to": 1058080
+			},
+			"text": " that you build solutions sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,080",
+				"to": "00:17:40,280"
+			},
+			"offsets": {
+				"from": 1058080,
+				"to": 1060280
+			},
+			"text": " and they're trying to get into Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,280",
+				"to": "00:17:44,200"
+			},
+			"offsets": {
+				"from": 1060280,
+				"to": 1064200
+			},
+			"text": " But they're not actually thinking about the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,200",
+				"to": "00:17:45,960"
+			},
+			"offsets": {
+				"from": 1064200,
+				"to": 1065960
+			},
+			"text": " They're not making this code public."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,960",
+				"to": "00:17:50,840"
+			},
+			"offsets": {
+				"from": 1065960,
+				"to": 1070840
+			},
+			"text": " They're not contributing back to the protocols they use."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,840",
+				"to": "00:17:52,960"
+			},
+			"offsets": {
+				"from": 1070840,
+				"to": 1072960
+			},
+			"text": " They're not part of our community."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,960",
+				"to": "00:17:59,280"
+			},
+			"offsets": {
+				"from": 1072960,
+				"to": 1079280
+			},
+			"text": " And yeah, I think StreamEath is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,280",
+				"to": "00:18:02,120"
+			},
+			"offsets": {
+				"from": 1079280,
+				"to": 1082120
+			},
+			"text": " existing because we believe in these ideals."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,120",
+				"to": "00:18:05,320"
+			},
+			"offsets": {
+				"from": 1082120,
+				"to": 1085320
+			},
+			"text": " And it's coming out of our community effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,320",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085320,
+				"to": 1089000
+			},
+			"text": " between the EF, LifeEar, and me and others,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:14,280"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1094280
+			},
+			"text": " the other developers to embrace these ideals."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,280",
+				"to": "00:18:20,440"
+			},
+			"offsets": {
+				"from": 1094280,
+				"to": 1100440
+			},
+			"text": " And trying to help communities decouple from these providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,440",
+				"to": "00:18:24,520"
+			},
+			"offsets": {
+				"from": 1100440,
+				"to": 1104520
+			},
+			"text": " And finally, oh, no, no, the most important slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,520",
+				"to": "00:18:27,960"
+			},
+			"offsets": {
+				"from": 1104520,
+				"to": 1107960
+			},
+			"text": " The members of the team, and I want to round up applause"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,960",
+				"to": "00:18:30,360"
+			},
+			"offsets": {
+				"from": 1107960,
+				"to": 1110360
+			},
+			"text": " after I say all of their names."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,360",
+				"to": "00:18:36,200"
+			},
+			"offsets": {
+				"from": 1110360,
+				"to": 1116200
+			},
+			"text": " So first, we have Hans, which is the guy that developed"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,200",
+				"to": "00:18:37,520"
+			},
+			"offsets": {
+				"from": 1116200,
+				"to": 1117520
+			},
+			"text": " quite a big chunk of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,520",
+				"to": "00:18:39,520"
+			},
+			"offsets": {
+				"from": 1117520,
+				"to": 1119520
+			},
+			"text": " He's sitting there in the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,520",
+				"to": "00:18:42,720"
+			},
+			"offsets": {
+				"from": 1119520,
+				"to": 1122720
+			},
+			"text": " Big props for applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,720",
+				"to": "00:18:45,360"
+			},
+			"offsets": {
+				"from": 1122720,
+				"to": 1125360
+			},
+			"text": " This."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,360",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1125360,
+				"to": 1127240
+			},
+			"text": " Then we have Wesley, the effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:48,080"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1128080
+			},
+			"text": " He's sitting there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,080",
+				"to": "00:18:49,880"
+			},
+			"offsets": {
+				"from": 1128080,
+				"to": 1129880
+			},
+			"text": " Oh, shit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,880",
+				"to": "00:18:51,480"
+			},
+			"offsets": {
+				"from": 1129880,
+				"to": 1131480
+			},
+			"text": " I don't know if Akio is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,480",
+				"to": "00:18:52,240"
+			},
+			"offsets": {
+				"from": 1131480,
+				"to": 1132240
+			},
+			"text": " I don't think so."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,240",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1132240,
+				"to": 1134000
+			},
+			"text": " He's watching me on the stream, Akio."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:54,800"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1134800
+			},
+			"text": " What's up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,800",
+				"to": "00:18:57,280"
+			},
+			"offsets": {
+				"from": 1134800,
+				"to": 1137280
+			},
+			"text": " He's the designer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,280",
+				"to": "00:19:00,240"
+			},
+			"offsets": {
+				"from": 1137280,
+				"to": 1140240
+			},
+			"text": " And then I'm there with the Panda that I set for the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,240",
+				"to": "00:19:01,960"
+			},
+			"offsets": {
+				"from": 1140240,
+				"to": 1141960
+			},
+			"text": " It's my PFP for the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,960",
+				"to": "00:19:02,680"
+			},
+			"offsets": {
+				"from": 1141960,
+				"to": 1142680
+			},
+			"text": " I didn't change it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,680",
+				"to": "00:19:04,240"
+			},
+			"offsets": {
+				"from": 1142680,
+				"to": 1144240
+			},
+			"text": " So yeah, the Panda."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,240",
+				"to": "00:19:05,480"
+			},
+			"offsets": {
+				"from": 1144240,
+				"to": 1145480
+			},
+			"text": " And that's me."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,480",
+				"to": "00:19:06,640"
+			},
+			"offsets": {
+				"from": 1145480,
+				"to": 1146640
+			},
+			"text": " And you don't have to clap."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,640",
+				"to": "00:19:07,120"
+			},
+			"offsets": {
+				"from": 1146640,
+				"to": 1147120
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,120",
+				"to": "00:19:11,720"
+			},
+			"offsets": {
+				"from": 1147120,
+				"to": 1151720
+			},
+			"text": " So yeah, it was awesome working with these guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,480",
+				"to": "00:19:14,400"
+			},
+			"offsets": {
+				"from": 1152480,
+				"to": 1154400
+			},
+			"text": " Really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,400",
+				"to": "00:19:15,160"
+			},
+			"offsets": {
+				"from": 1154400,
+				"to": 1155160
+			},
+			"text": " Quick things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,160",
+				"to": "00:19:16,320"
+			},
+			"offsets": {
+				"from": 1155160,
+				"to": 1156320
+			},
+			"text": " We used it at DevConnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,320",
+				"to": "00:19:17,800"
+			},
+			"offsets": {
+				"from": 1156320,
+				"to": 1157800
+			},
+			"text": " That was the first demo that we used."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,800",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1157800,
+				"to": 1159000
+			},
+			"text": " It was awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:20,600"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1160600
+			},
+			"text": " Lots of traction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,600",
+				"to": "00:19:23,200"
+			},
+			"offsets": {
+				"from": 1160600,
+				"to": 1163200
+			},
+			"text": " We hacked a demo in a week."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,200",
+				"to": "00:19:25,360"
+			},
+			"offsets": {
+				"from": 1163200,
+				"to": 1165360
+			},
+			"text": " So that's why I'm saying it's a great team, because we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,360",
+				"to": "00:19:27,160"
+			},
+			"offsets": {
+				"from": 1165360,
+				"to": 1167160
+			},
+			"text": " really plan the development."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,160",
+				"to": "00:19:30,680"
+			},
+			"offsets": {
+				"from": 1167160,
+				"to": 1170680
+			},
+			"text": " It was just-- it was really a decentralized development effort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,680",
+				"to": "00:19:33,280"
+			},
+			"offsets": {
+				"from": 1170680,
+				"to": 1173280
+			},
+			"text": " because everyone was doing its own thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,280",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1173280,
+				"to": 1175000
+			},
+			"text": " But we got to DevConnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:35,680"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1175680
+			},
+			"text": " It was awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,680",
+				"to": "00:19:41,280"
+			},
+			"offsets": {
+				"from": 1175680,
+				"to": 1181280
+			},
+			"text": " We got great numbers on viewership and no box, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,280",
+				"to": "00:19:42,680"
+			},
+			"offsets": {
+				"from": 1181280,
+				"to": 1182680
+			},
+			"text": " It's so great."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,680",
+				"to": "00:19:44,200"
+			},
+			"offsets": {
+				"from": 1182680,
+				"to": 1184200
+			},
+			"text": " Then we went to Etherlane."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,200",
+				"to": "00:19:47,400"
+			},
+			"offsets": {
+				"from": 1184200,
+				"to": 1187400
+			},
+			"text": " And we read it the design."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,400",
+				"to": "00:19:49,840"
+			},
+			"offsets": {
+				"from": 1187400,
+				"to": 1189840
+			},
+			"text": " We call this Streamys 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,840",
+				"to": "00:19:52,440"
+			},
+			"offsets": {
+				"from": 1189840,
+				"to": 1192440
+			},
+			"text": " We added Dark Mode, which is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,440",
+				"to": "00:19:55,480"
+			},
+			"offsets": {
+				"from": 1192440,
+				"to": 1195480
+			},
+			"text": " the best feature in the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,480",
+				"to": "00:19:59,480"
+			},
+			"offsets": {
+				"from": 1195480,
+				"to": 1199480
+			},
+			"text": " The schedule, super good."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,480",
+				"to": "00:20:00,920"
+			},
+			"offsets": {
+				"from": 1199480,
+				"to": 1200920
+			},
+			"text": " There really we had no box."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,920",
+				"to": "00:20:03,800"
+			},
+			"offsets": {
+				"from": 1200920,
+				"to": 1203800
+			},
+			"text": " And I know this for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,800",
+				"to": "00:20:06,360"
+			},
+			"offsets": {
+				"from": 1203800,
+				"to": 1206360
+			},
+			"text": " And overall, we're super happy with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,360",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1206360,
+				"to": 1210000
+			},
+			"text": " And then DevCon, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:11,360"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1211360
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,360",
+				"to": "00:20:12,520"
+			},
+			"offsets": {
+				"from": 1211360,
+				"to": 1212520
+			},
+			"text": " And how does the feature look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,520",
+				"to": "00:20:13,840"
+			},
+			"offsets": {
+				"from": 1212520,
+				"to": 1213840
+			},
+			"text": " We're going to focus on usability."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,840",
+				"to": "00:20:15,280"
+			},
+			"offsets": {
+				"from": 1213840,
+				"to": 1215280
+			},
+			"text": " We're going to focus on plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,280",
+				"to": "00:20:17,280"
+			},
+			"offsets": {
+				"from": 1215280,
+				"to": 1217280
+			},
+			"text": " And we're going to focus on embracing the Web3 ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,280",
+				"to": "00:20:18,760"
+			},
+			"offsets": {
+				"from": 1217280,
+				"to": 1218760
+			},
+			"text": " like we said."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,760",
+				"to": "00:20:21,720"
+			},
+			"offsets": {
+				"from": 1218760,
+				"to": 1221720
+			},
+			"text": " And yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,720",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1221720,
+				"to": 1224000
+			},
+			"text": " And this is kind of like our vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:27,240"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1227240
+			},
+			"text": " I don't know if you guys know WordPress, but the vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,240",
+				"to": "00:20:30,400"
+			},
+			"offsets": {
+				"from": 1227240,
+				"to": 1230400
+			},
+			"text": " that we had since the beginning is to have Streamys be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,400",
+				"to": "00:20:33,760"
+			},
+			"offsets": {
+				"from": 1230400,
+				"to": 1233760
+			},
+			"text": " WordPress, so something-- so WordPress for video."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,760",
+				"to": "00:20:36,960"
+			},
+			"offsets": {
+				"from": 1233760,
+				"to": 1236960
+			},
+			"text": " So something that event organizers can clone and use"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,960",
+				"to": "00:20:40,640"
+			},
+			"offsets": {
+				"from": 1236960,
+				"to": 1240640
+			},
+			"text": " quickly to stream their events."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,640",
+				"to": "00:20:41,140"
+			},
+			"offsets": {
+				"from": 1240640,
+				"to": 1241140
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,140",
+				"to": "00:20:41,880"
+			},
+			"offsets": {
+				"from": 1241140,
+				"to": 1241880
+			},
+			"text": " Hi, Paul."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,880",
+				"to": "00:20:44,360"
+			},
+			"offsets": {
+				"from": 1241880,
+				"to": 1244360
+			},
+			"text": " Thank you for your talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,360",
+				"to": "00:20:46,240"
+			},
+			"offsets": {
+				"from": 1244360,
+				"to": 1246240
+			},
+			"text": " I'm an event organizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,240",
+				"to": "00:20:49,360"
+			},
+			"offsets": {
+				"from": 1246240,
+				"to": 1249360
+			},
+			"text": " I have used several streaming providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,360",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1249360,
+				"to": 1251000
+			},
+			"text": " And I like Lightpear."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:54,280"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1254280
+			},
+			"text": " But one thing that worries me is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,280",
+				"to": "00:20:58,680"
+			},
+			"offsets": {
+				"from": 1254280,
+				"to": 1258680
+			},
+			"text": " how is the performance compared to other alternatives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,680",
+				"to": "00:21:01,200"
+			},
+			"offsets": {
+				"from": 1258680,
+				"to": 1261200
+			},
+			"text": " like BMO, YouTube?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,200",
+				"to": "00:21:02,680"
+			},
+			"offsets": {
+				"from": 1261200,
+				"to": 1262680
+			},
+			"text": " Because this is decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,680",
+				"to": "00:21:05,400"
+			},
+			"offsets": {
+				"from": 1262680,
+				"to": 1265400
+			},
+			"text": " So this is kind of worry for the performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,400",
+				"to": "00:21:06,880"
+			},
+			"offsets": {
+				"from": 1265400,
+				"to": 1266880
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,880",
+				"to": "00:21:10,040"
+			},
+			"offsets": {
+				"from": 1266880,
+				"to": 1270040
+			},
+			"text": " So this-- a Lightpear is pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,040",
+				"to": "00:21:12,960"
+			},
+			"offsets": {
+				"from": 1270040,
+				"to": 1272960
+			},
+			"text": " So I was a pretty early community member."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,960",
+				"to": "00:21:13,720"
+			},
+			"offsets": {
+				"from": 1272960,
+				"to": 1273720
+			},
+			"text": " And I've been using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,720",
+				"to": "00:21:16,080"
+			},
+			"offsets": {
+				"from": 1273720,
+				"to": 1276080
+			},
+			"text": " And in the early days, it had some issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,080",
+				"to": "00:21:18,520"
+			},
+			"offsets": {
+				"from": 1276080,
+				"to": 1278520
+			},
+			"text": " So since the beginning, I come from the Web2 world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,520",
+				"to": "00:21:19,960"
+			},
+			"offsets": {
+				"from": 1278520,
+				"to": 1279960
+			},
+			"text": " like production world."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,960",
+				"to": "00:21:21,600"
+			},
+			"offsets": {
+				"from": 1279960,
+				"to": 1281600
+			},
+			"text": " And you always have failovers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,600",
+				"to": "00:21:22,880"
+			},
+			"offsets": {
+				"from": 1281600,
+				"to": 1282880
+			},
+			"text": " And when I started using Lightpear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,880",
+				"to": "00:21:24,800"
+			},
+			"offsets": {
+				"from": 1282880,
+				"to": 1284800
+			},
+			"text": " I was like, hey, we need to build a failover here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,800",
+				"to": "00:21:26,880"
+			},
+			"offsets": {
+				"from": 1284800,
+				"to": 1286880
+			},
+			"text": " So that's why we have built in a failover mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,880",
+				"to": "00:21:28,520"
+			},
+			"offsets": {
+				"from": 1286880,
+				"to": 1288520
+			},
+			"text": " into all of our players."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,520",
+				"to": "00:21:33,360"
+			},
+			"offsets": {
+				"from": 1288520,
+				"to": 1293360
+			},
+			"text": " So on the one hand, Lightpear got really good already."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,360",
+				"to": "00:21:35,600"
+			},
+			"offsets": {
+				"from": 1293360,
+				"to": 1295600
+			},
+			"text": " On the other hand, we have a failover mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,600",
+				"to": "00:21:40,320"
+			},
+			"offsets": {
+				"from": 1295600,
+				"to": 1300320
+			},
+			"text": " that allows to basically set two Lightpear channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,320",
+				"to": "00:21:41,720"
+			},
+			"offsets": {
+				"from": 1300320,
+				"to": 1301720
+			},
+			"text": " for the same room."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,720",
+				"to": "00:21:44,640"
+			},
+			"offsets": {
+				"from": 1301720,
+				"to": 1304640
+			},
+			"text": " So you have double the reliability."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,640",
+				"to": "00:21:46,240"
+			},
+			"offsets": {
+				"from": 1304640,
+				"to": 1306240
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,240",
+				"to": "00:21:50,600"
+			},
+			"offsets": {
+				"from": 1306240,
+				"to": 1310600
+			},
+			"text": " But what about the streaming related to attendees?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,600",
+				"to": "00:21:54,200"
+			},
+			"offsets": {
+				"from": 1310600,
+				"to": 1314200
+			},
+			"text": " Because you have attendees all around the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,200",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1314200,
+				"to": 1318000
+			},
+			"text": " And streaming providers have like a CDN content"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:21:58,840"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1318840
+			},
+			"text": " that they work for."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,840",
+				"to": "00:22:00,720"
+			},
+			"offsets": {
+				"from": 1318840,
+				"to": 1320720
+			},
+			"text": " So how Lightpear solves that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,720",
+				"to": "00:22:04,440"
+			},
+			"offsets": {
+				"from": 1320720,
+				"to": 1324440
+			},
+			"text": " Yeah, Lightpear-- there's a bit of a more complex question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,440",
+				"to": "00:22:05,880"
+			},
+			"offsets": {
+				"from": 1324440,
+				"to": 1325880
+			},
+			"text": " because you have the Lightpear, the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,880",
+				"to": "00:22:08,160"
+			},
+			"offsets": {
+				"from": 1325880,
+				"to": 1328160
+			},
+			"text": " and then you have Lightpear Studio."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,160",
+				"to": "00:22:09,840"
+			},
+			"offsets": {
+				"from": 1328160,
+				"to": 1329840
+			},
+			"text": " But basically, Lightpear Studio, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,840",
+				"to": "00:22:12,600"
+			},
+			"offsets": {
+				"from": 1329840,
+				"to": 1332600
+			},
+			"text": " what we are using, has its own CDN."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,600",
+				"to": "00:22:14,920"
+			},
+			"offsets": {
+				"from": 1332600,
+				"to": 1334920
+			},
+			"text": " And latency is pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,920",
+				"to": "00:22:17,160"
+			},
+			"offsets": {
+				"from": 1334920,
+				"to": 1337160
+			},
+			"text": " So you shouldn't have an issue if you have people"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,160",
+				"to": "00:22:19,640"
+			},
+			"offsets": {
+				"from": 1337160,
+				"to": 1339640
+			},
+			"text": " from around the world trying to watch your stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,640",
+				"to": "00:22:21,280"
+			},
+			"offsets": {
+				"from": 1339640,
+				"to": 1341280
+			},
+			"text": " Like I said, performance is really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,280",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1341280,
+				"to": 1344000
+			},
+			"text": " East Berlin, we had a bunch of people watching."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:27,480"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1347480
+			},
+			"text": " Devcon, a bunch of people watching here is Devcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,480",
+				"to": "00:22:31,360"
+			},
+			"offsets": {
+				"from": 1347480,
+				"to": 1351360
+			},
+			"text": " Just today, we had 3K views on Lightpear alone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,360",
+				"to": "00:22:32,440"
+			},
+			"offsets": {
+				"from": 1351360,
+				"to": 1352440
+			},
+			"text": " and almost no downtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,440",
+				"to": "00:22:33,840"
+			},
+			"offsets": {
+				"from": 1352440,
+				"to": 1353840
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,840",
+				"to": "00:22:38,840"
+			},
+			"offsets": {
+				"from": 1353840,
+				"to": 1358840
+			},
+			"text": " If you want, we can speak later, and I can explain a bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,840",
+				"to": "00:22:40,200"
+			},
+			"offsets": {
+				"from": 1358840,
+				"to": 1360200
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,200",
+				"to": "00:22:41,840"
+			},
+			"offsets": {
+				"from": 1360200,
+				"to": 1361840
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,840",
+				"to": "00:22:46,840"
+			},
+			"offsets": {
+				"from": 1361840,
+				"to": 1366840
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,840",
+				"to": "00:22:51,840"
+			},
+			"offsets": {
+				"from": 1366840,
+				"to": 1371840
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,840",
+				"to": "00:22:53,840"
+			},
+			"offsets": {
+				"from": 1371840,
+				"to": 1373840
+			},
+			"text": " [ ]"
+		}
+	]
+}

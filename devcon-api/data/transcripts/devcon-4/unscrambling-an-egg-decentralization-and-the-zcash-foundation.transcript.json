@@ -1,0 +1,4883 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3240
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,240",
+				"to": "00:00:05,400"
+			},
+			"offsets": {
+				"from": 3240,
+				"to": 5400
+			},
+			"text": " >> All right, hello everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,400",
+				"to": "00:00:09,760"
+			},
+			"offsets": {
+				"from": 5400,
+				"to": 9760
+			},
+			"text": " Thank you for choosing to wait with me for Vlad's talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,760",
+				"to": "00:00:10,600"
+			},
+			"offsets": {
+				"from": 9760,
+				"to": 10600
+			},
+			"text": " I appreciate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,600",
+				"to": "00:00:17,040"
+			},
+			"offsets": {
+				"from": 10600,
+				"to": 17040
+			},
+			"text": " But I'm here today to talk a little bit about decentralization and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,040",
+				"to": "00:00:20,240"
+			},
+			"offsets": {
+				"from": 17040,
+				"to": 20240
+			},
+			"text": " the Zcash Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,240",
+				"to": "00:00:23,520"
+			},
+			"offsets": {
+				"from": 20240,
+				"to": 23520
+			},
+			"text": " And to those of you who don't know me, my name is Josh Cincinnati."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,520",
+				"to": "00:00:24,920"
+			},
+			"offsets": {
+				"from": 23520,
+				"to": 24920
+			},
+			"text": " You may have seen me on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,920",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 24920,
+				"to": 29520
+			},
+			"text": " You may have seen me write some rather sarcastic white papers from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,520",
+				"to": "00:00:30,760"
+			},
+			"offsets": {
+				"from": 29520,
+				"to": 30760
+			},
+			"text": " time to time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,760",
+				"to": "00:00:34,480"
+			},
+			"offsets": {
+				"from": 30760,
+				"to": 34480
+			},
+			"text": " But my main job and what I'm really focused on is helping to distribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,480",
+				"to": "00:00:38,680"
+			},
+			"offsets": {
+				"from": 34480,
+				"to": 38680
+			},
+			"text": " power in the Zcash protocol by running the Zcash Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,680",
+				"to": "00:00:43,160"
+			},
+			"offsets": {
+				"from": 38680,
+				"to": 43160
+			},
+			"text": " So there's a Spectre haunting cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,160",
+				"to": "00:00:48,440"
+			},
+			"offsets": {
+				"from": 43160,
+				"to": 48440
+			},
+			"text": " It's a Spectre of arewedecentralizedyet.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,440",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 48440,
+				"to": 58000
+			},
+			"text": " So this is something from Jackson Palmer, who has made a rather"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,840"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61840
+			},
+			"text": " welcome addition to the suite of data that we have on whether something should"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,840",
+				"to": "00:01:02,760"
+			},
+			"offsets": {
+				"from": 61840,
+				"to": 62760
+			},
+			"text": " be decentralized or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,760",
+				"to": "00:01:07,880"
+			},
+			"offsets": {
+				"from": 62760,
+				"to": 67880
+			},
+			"text": " It actually was mentioned in another Zcash Foundation board members talk earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,880",
+				"to": "00:01:10,040"
+			},
+			"offsets": {
+				"from": 67880,
+				"to": 70040
+			},
+			"text": " And it's a great piece of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,040",
+				"to": "00:01:13,480"
+			},
+			"offsets": {
+				"from": 70040,
+				"to": 73480
+			},
+			"text": " It tells us a lot about some of the features that we care about when it comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,480",
+				"to": "00:01:14,720"
+			},
+			"offsets": {
+				"from": 73480,
+				"to": 74720
+			},
+			"text": " to decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,720",
+				"to": "00:01:17,720"
+			},
+			"offsets": {
+				"from": 74720,
+				"to": 77720
+			},
+			"text": " But it doesn't truly answer the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,720",
+				"to": "00:01:19,320"
+			},
+			"offsets": {
+				"from": 77720,
+				"to": 79320
+			},
+			"text": " It provides us with intuition and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,320",
+				"to": "00:01:26,240"
+			},
+			"offsets": {
+				"from": 79320,
+				"to": 86240
+			},
+			"text": " juristics and it leads I think a lot of us to realize that that term is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,240",
+				"to": "00:01:27,720"
+			},
+			"offsets": {
+				"from": 86240,
+				"to": 87720
+			},
+			"text": " sort of overloaded."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,720",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 87720,
+				"to": 88680
+			},
+			"text": " It's a common theme."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:30,800"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 90800
+			},
+			"text": " It's not novel for me to say this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,800",
+				"to": "00:01:33,920"
+			},
+			"offsets": {
+				"from": 90800,
+				"to": 93920
+			},
+			"text": " But it does seem like it's a bit of a shibboleth in our community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,920",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 93920,
+				"to": 101200
+			},
+			"text": " And so I'm afraid that I kind of did a bad job with my title."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:43,520"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 103520
+			},
+			"text": " I made a bit of a misnomer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,520",
+				"to": "00:01:50,080"
+			},
+			"offsets": {
+				"from": 103520,
+				"to": 110080
+			},
+			"text": " In reality, first off, an unscrambled egg is far more centralized than a scrambled"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,080",
+				"to": "00:01:53,320"
+			},
+			"offsets": {
+				"from": 110080,
+				"to": 113320
+			},
+			"text": " one because you can tell by the fork in the scrambled egg."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,760",
+				"to": "00:01:57,800"
+			},
+			"offsets": {
+				"from": 114760,
+				"to": 117800
+			},
+			"text": " But beyond that, it's really not about decentralization at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,800",
+				"to": "00:02:03,840"
+			},
+			"offsets": {
+				"from": 117800,
+				"to": 123840
+			},
+			"text": " It's about how we build a foundation for Zcash, the protocol to grow and develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,840",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 123840,
+				"to": 127280
+			},
+			"text": " beyond the confines of an individual company."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 131560
+			},
+			"text": " The question that we have to ask ourselves is what are we really after?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 134160
+			},
+			"text": " Like what's the goal?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:19,760"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 139760
+			},
+			"text": " For Zcash and in particular the Zcash Foundation, we're dedicated to building"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,760",
+				"to": "00:02:23,120"
+			},
+			"offsets": {
+				"from": 139760,
+				"to": 143120
+			},
+			"text": " internet payment and privacy infrastructure for the public good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,120",
+				"to": "00:02:25,960"
+			},
+			"offsets": {
+				"from": 143120,
+				"to": 145960
+			},
+			"text": " With a particular focus on the Zcash protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,960",
+				"to": "00:02:31,040"
+			},
+			"offsets": {
+				"from": 145960,
+				"to": 151040
+			},
+			"text": " So what really matters to us is that mission."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,040",
+				"to": "00:02:34,400"
+			},
+			"offsets": {
+				"from": 151040,
+				"to": 154400
+			},
+			"text": " Matters very deeply to us at the foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,400",
+				"to": "00:02:38,040"
+			},
+			"offsets": {
+				"from": 154400,
+				"to": 158040
+			},
+			"text": " And what that means strategically is that we're meant to be a check and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,040",
+				"to": "00:02:41,600"
+			},
+			"offsets": {
+				"from": 158040,
+				"to": 161600
+			},
+			"text": " balance on the Zcash company's power, full stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,600",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 161600,
+				"to": 168000
+			},
+			"text": " So earlier today in Zuko's talk, I think he asked how many people were familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:48,600"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 168600
+			},
+			"text": " with Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,600",
+				"to": "00:02:49,880"
+			},
+			"offsets": {
+				"from": 168600,
+				"to": 169880
+			},
+			"text": " I'm going to do the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,880",
+				"to": "00:02:52,160"
+			},
+			"offsets": {
+				"from": 169880,
+				"to": 172160
+			},
+			"text": " How many people are familiar with Zcash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,160",
+				"to": "00:02:52,720"
+			},
+			"offsets": {
+				"from": 172160,
+				"to": 172720
+			},
+			"text": " Hands raised."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,720",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 172720,
+				"to": 175440
+			},
+			"text": " Great, okay, I'm not going to go over the history then."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:03:00,200"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 180200
+			},
+			"text": " But how many people are familiar with the fact that there is a Zcash foundation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,200",
+				"to": "00:03:03,040"
+			},
+			"offsets": {
+				"from": 180200,
+				"to": 183040
+			},
+			"text": " that it is a separate entity from the Zcash company?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,040",
+				"to": "00:03:06,520"
+			},
+			"offsets": {
+				"from": 183040,
+				"to": 186520
+			},
+			"text": " Okay, okay, we're doing okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,520",
+				"to": "00:03:07,880"
+			},
+			"offsets": {
+				"from": 186520,
+				"to": 187880
+			},
+			"text": " That's not bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,880",
+				"to": "00:03:09,880"
+			},
+			"offsets": {
+				"from": 187880,
+				"to": 189880
+			},
+			"text": " There seems to be confusion around that generally."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,880",
+				"to": "00:03:14,880"
+			},
+			"offsets": {
+				"from": 189880,
+				"to": 194880
+			},
+			"text": " But just to snapshot a little bit of that history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,880",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 194880,
+				"to": 198080
+			},
+			"text": " after the Zcash company was founded and after the protocol was launched,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 204360
+			},
+			"text": " a segment of the founder's reward that was part of the Zech distribution mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:30,960"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 210960
+			},
+			"text": " was granted by some of the early recipients in donated to the Zcash foundation to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,960",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 210960,
+				"to": 213640
+			},
+			"text": " create this non-profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:36,080"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 216080
+			},
+			"text": " And the idea of course being that we would help distribute power."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,080",
+				"to": "00:03:40,120"
+			},
+			"offsets": {
+				"from": 216080,
+				"to": 220120
+			},
+			"text": " So what does that mean for us starting out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,120",
+				"to": "00:03:45,160"
+			},
+			"offsets": {
+				"from": 220120,
+				"to": 225160
+			},
+			"text": " Well, in 2017, we had some real low bar goals, no scandals."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,160",
+				"to": "00:03:48,680"
+			},
+			"offsets": {
+				"from": 225160,
+				"to": 228680
+			},
+			"text": " And we need to disperse some exploratory grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,680",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 228680,
+				"to": 235360
+			},
+			"text": " We only had, I was only part time at the time and the only part time employee there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:03:59,480"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 239480
+			},
+			"text": " So that was like a reasonable set of goals for us back then."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,480",
+				"to": "00:04:04,400"
+			},
+			"offsets": {
+				"from": 239480,
+				"to": 244400
+			},
+			"text": " So then the question becomes what was the Zcash company's role and responsibility?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,400",
+				"to": "00:04:06,760"
+			},
+			"offsets": {
+				"from": 244400,
+				"to": 246760
+			},
+			"text": " And it was literally everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,760",
+				"to": "00:04:10,720"
+			},
+			"offsets": {
+				"from": 246760,
+				"to": 250720
+			},
+			"text": " Literally everything that you can possibly imagine, protocol development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,720",
+				"to": "00:04:13,200"
+			},
+			"offsets": {
+				"from": 250720,
+				"to": 253200
+			},
+			"text": " ecosystem, partnership and growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,200",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 253200,
+				"to": 255200
+			},
+			"text": " Everything was on the company side."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:20,480"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 260480
+			},
+			"text": " And in the middle, we all had to confuse everyone by having Zcash in the foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,480",
+				"to": "00:04:25,600"
+			},
+			"offsets": {
+				"from": 260480,
+				"to": 265600
+			},
+			"text": " and company name, so mission accomplished."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,600",
+				"to": "00:04:29,720"
+			},
+			"offsets": {
+				"from": 265600,
+				"to": 269720
+			},
+			"text": " But where do we need to go and where are we going from this year onward?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,720",
+				"to": "00:04:33,080"
+			},
+			"offsets": {
+				"from": 269720,
+				"to": 273080
+			},
+			"text": " So thankfully, we've expanded a bit on the foundation side and we're still in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,080",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 273080,
+				"to": 277760
+			},
+			"text": " process of dispersing more grants to more ecosystem participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:40,400"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 280400
+			},
+			"text": " Stay tuned for next week for our grant disbursements."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,400",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 280400,
+				"to": 284560
+			},
+			"text": " We've been experimenting with different governance structures, incubating them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:46,040"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 286040
+			},
+			"text": " you might say."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,040",
+				"to": "00:04:50,480"
+			},
+			"offsets": {
+				"from": 286040,
+				"to": 290480
+			},
+			"text": " I apologize in advance, I'm a new dad, so the dad jokes are going to come."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,480",
+				"to": "00:04:56,480"
+			},
+			"offsets": {
+				"from": 290480,
+				"to": 296480
+			},
+			"text": " Then the other piece that we're going, that we've been working on is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,480",
+				"to": "00:05:00,160"
+			},
+			"offsets": {
+				"from": 296480,
+				"to": 300160
+			},
+			"text": " hosting and supporting meetups and Zcon Zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,160",
+				"to": "00:05:03,960"
+			},
+			"offsets": {
+				"from": 300160,
+				"to": 303960
+			},
+			"text": " And also something that's new that we're getting into is researching speculative"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,960",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 303960,
+				"to": 310000
+			},
+			"text": " cryptography that could benefit anyone that's working on privacy in crypto systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:15,600"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 315600
+			},
+			"text": " So the Zcash company has still maintained a fair amount of control over Zcash D,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,600",
+				"to": "00:05:19,600"
+			},
+			"offsets": {
+				"from": 315600,
+				"to": 319600
+			},
+			"text": " super majority of protocol roadmap and feature development, and also other sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,600",
+				"to": "00:05:23,040"
+			},
+			"offsets": {
+				"from": 319600,
+				"to": 323040
+			},
+			"text": " broader ecosystem development and partnership opportunities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,040",
+				"to": "00:05:27,680"
+			},
+			"offsets": {
+				"from": 323040,
+				"to": 327680
+			},
+			"text": " But in the middle, we're still helping to, we're both working on building open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,680",
+				"to": "00:05:29,680"
+			},
+			"offsets": {
+				"from": 327680,
+				"to": 329680
+			},
+			"text": " libraries and wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,680",
+				"to": "00:05:35,920"
+			},
+			"offsets": {
+				"from": 329680,
+				"to": 335920
+			},
+			"text": " And the foundation is going to be taking a much more involved role in moving forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,920",
+				"to": "00:05:41,080"
+			},
+			"offsets": {
+				"from": 335920,
+				"to": 341080
+			},
+			"text": " the protocol and feature development, particularly next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,080",
+				"to": "00:05:46,400"
+			},
+			"offsets": {
+				"from": 341080,
+				"to": 346400
+			},
+			"text": " But why are those roles distributed the way they are and what underlies them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,400",
+				"to": "00:05:52,760"
+			},
+			"offsets": {
+				"from": 346400,
+				"to": 352760
+			},
+			"text": " what motivates them, what incentivizes them, we love incentives and cryptocurrencies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,760",
+				"to": "00:06:00,600"
+			},
+			"offsets": {
+				"from": 352760,
+				"to": 360600
+			},
+			"text": " In this case, it's fairly well delineated thanks to pretty stark corporate language"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,600",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 360600,
+				"to": 362480
+			},
+			"text": " and bylaws."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:07,400"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 367400
+			},
+			"text": " In the Zcash company, there is a fiduciary duty to shareholders as a for profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,400",
+				"to": "00:06:11,400"
+			},
+			"offsets": {
+				"from": 367400,
+				"to": 371400
+			},
+			"text": " And the foundation, it's a duty of care as a nonprofit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,400",
+				"to": "00:06:17,200"
+			},
+			"offsets": {
+				"from": 371400,
+				"to": 377200
+			},
+			"text": " The board is tasked with making sure that the foundation is still in line and guided"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:19,280"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 379280
+			},
+			"text": " toward their mission."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,280",
+				"to": "00:06:23,640"
+			},
+			"offsets": {
+				"from": 379280,
+				"to": 383640
+			},
+			"text": " The other thing that's rather interesting that I think will help to explain how even"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,640",
+				"to": "00:06:30,840"
+			},
+			"offsets": {
+				"from": 383640,
+				"to": 390840
+			},
+			"text": " foundations in particular US-based nonprofits that pass the public support test can be more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,840",
+				"to": "00:06:35,240"
+			},
+			"offsets": {
+				"from": 390840,
+				"to": 395240
+			},
+			"text": " can actually help encourage even more dispersion of power."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,240",
+				"to": "00:06:37,040"
+			},
+			"offsets": {
+				"from": 395240,
+				"to": 397040
+			},
+			"text": " And I'll get into that a little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,040",
+				"to": "00:06:43,160"
+			},
+			"offsets": {
+				"from": 397040,
+				"to": 403160
+			},
+			"text": " But in the middle, we still have a common shared ideology, which is do good by advancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,160",
+				"to": "00:06:47,800"
+			},
+			"offsets": {
+				"from": 403160,
+				"to": 407800
+			},
+			"text": " privacy everywhere, particularly in payments and internet payment infrastructure, and to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,800",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 407800,
+				"to": 412000
+			},
+			"text": " maintain and grow Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:55,600"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 415600
+			},
+			"text": " So why aren't there more stakeholders with more Venn diagrams?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,600",
+				"to": "00:07:00,520"
+			},
+			"offsets": {
+				"from": 415600,
+				"to": 420520
+			},
+			"text": " Well, the lazy answer is this is the template I got from DevCon 4 and they didn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,520",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 420520,
+				"to": 423080
+			},
+			"text": " three circles for me to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:10,400"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 430400
+			},
+			"text": " But the actual answer is that in a lot of political history in particular, there seems"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,400",
+				"to": "00:07:15,480"
+			},
+			"offsets": {
+				"from": 430400,
+				"to": 435480
+			},
+			"text": " to be a stabilizing force around bimodal power distributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,480",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 435480,
+				"to": 441640
+			},
+			"text": " You see it all the time, for better or for worse, but in general, these sorts of distributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:29,560"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 449560
+			},
+			"text": " lead to stapler periods of development and more advancement in society."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,560",
+				"to": "00:07:36,440"
+			},
+			"offsets": {
+				"from": 449560,
+				"to": 456440
+			},
+			"text": " They're really powerful, particularly if you can design a bimodal power distribution that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,440",
+				"to": "00:07:40,560"
+			},
+			"offsets": {
+				"from": 456440,
+				"to": 460560
+			},
+			"text": " has inherent gridlock, where you have common goals and aims, but there are places where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,560",
+				"to": "00:07:43,440"
+			},
+			"offsets": {
+				"from": 460560,
+				"to": 463440
+			},
+			"text": " you might not completely agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,440",
+				"to": "00:07:47,080"
+			},
+			"offsets": {
+				"from": 463440,
+				"to": 467080
+			},
+			"text": " And in those cases, it's not just powerful, but it's empowering."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,080",
+				"to": "00:07:52,880"
+			},
+			"offsets": {
+				"from": 467080,
+				"to": 472880
+			},
+			"text": " It enables participants who may not have a seat at the table at one particular structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,880",
+				"to": "00:07:56,360"
+			},
+			"offsets": {
+				"from": 472880,
+				"to": 476360
+			},
+			"text": " whether you're if you're not an employee of the Zcash company, but maybe you're an open"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,360",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 476360,
+				"to": 480200
+			},
+			"text": " source contributor that can get a grant from the Zcash foundation, there are ways for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:08,360"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 488360
+			},
+			"text": " foundation to offer an opportunity to effectively roll up a lot of user voice and user will"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,360",
+				"to": "00:08:13,360"
+			},
+			"offsets": {
+				"from": 488360,
+				"to": 493360
+			},
+			"text": " into our organization and to be the counterbalance to the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,360",
+				"to": "00:08:18,680"
+			},
+			"offsets": {
+				"from": 493360,
+				"to": 498680
+			},
+			"text": " So there's obviously an American balance, sort of bias here from me."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,680",
+				"to": "00:08:24,360"
+			},
+			"offsets": {
+				"from": 498680,
+				"to": 504360
+			},
+			"text": " And in effect, if you wanted to make an American political analogy, if political discourse was"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,360",
+				"to": "00:08:31,080"
+			},
+			"offsets": {
+				"from": 504360,
+				"to": 511080
+			},
+			"text": " civil and mutually respectful, you could say that the Zcash company is much like the Senate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,080",
+				"to": "00:08:37,680"
+			},
+			"offsets": {
+				"from": 511080,
+				"to": 517680
+			},
+			"text": " in that it's a smaller, or in this case, bigger organization, but definitely represents the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,680",
+				"to": "00:08:42,880"
+			},
+			"offsets": {
+				"from": 517680,
+				"to": 522880
+			},
+			"text": " smaller will of people, whereas the House of Representatives represents the broader will"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,880",
+				"to": "00:08:44,960"
+			},
+			"offsets": {
+				"from": 522880,
+				"to": 524960
+			},
+			"text": " of a community."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,960",
+				"to": "00:08:49,120"
+			},
+			"offsets": {
+				"from": 524960,
+				"to": 529120
+			},
+			"text": " But maybe a more familiar analogy for everyone whose cryptocurrency focus would suffice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,120",
+				"to": "00:08:53,960"
+			},
+			"offsets": {
+				"from": 529120,
+				"to": 533960
+			},
+			"text": " which is you could view this as governance by two of two multisig."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,960",
+				"to": "00:08:58,520"
+			},
+			"offsets": {
+				"from": 533960,
+				"to": 538520
+			},
+			"text": " And it's actually like a, I think, a real powerful mental model for people who are familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,520",
+				"to": "00:09:03,600"
+			},
+			"offsets": {
+				"from": 538520,
+				"to": 543600
+			},
+			"text": " with multisignature transactions, because that makes it very easy to understand how things"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,600",
+				"to": "00:09:08,520"
+			},
+			"offsets": {
+				"from": 543600,
+				"to": 548520
+			},
+			"text": " can move forward, how protocols can be developed when you have these two parties that have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,520",
+				"to": "00:09:14,360"
+			},
+			"offsets": {
+				"from": 548520,
+				"to": 554360
+			},
+			"text": " similar aims, but maybe when there's conflict, there's actually no way for us to go forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,360",
+				"to": "00:09:17,400"
+			},
+			"offsets": {
+				"from": 554360,
+				"to": 557400
+			},
+			"text": " in a particular feature or protocol development."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,400",
+				"to": "00:09:23,120"
+			},
+			"offsets": {
+				"from": 557400,
+				"to": 563120
+			},
+			"text": " And I also view this as being kind of a fundamental feature in a lot of these bi-modal power"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,120",
+				"to": "00:09:27,920"
+			},
+			"offsets": {
+				"from": 563120,
+				"to": 567920
+			},
+			"text": " distributions, and in fact that you'll wind up seeing a lot of this behavior even represented"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,920",
+				"to": "00:09:31,800"
+			},
+			"offsets": {
+				"from": 567920,
+				"to": 571800
+			},
+			"text": " within organizations themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,800",
+				"to": "00:09:36,440"
+			},
+			"offsets": {
+				"from": 571800,
+				"to": 576440
+			},
+			"text": " But to be intellectually honest, it is still currently more like one of one, because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,440",
+				"to": "00:09:42,080"
+			},
+			"offsets": {
+				"from": 576440,
+				"to": 582080
+			},
+			"text": " Zcash company still controls a great deal of protocol development and support."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,080",
+				"to": "00:09:43,080"
+			},
+			"offsets": {
+				"from": 582080,
+				"to": 583080
+			},
+			"text": " But that's changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,080",
+				"to": "00:09:47,840"
+			},
+			"offsets": {
+				"from": 583080,
+				"to": 587840
+			},
+			"text": " One of the things that I was really, really excited about was the announcement earlier"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,840",
+				"to": "00:09:52,160"
+			},
+			"offsets": {
+				"from": 587840,
+				"to": 592160
+			},
+			"text": " this week that we had the foundation are going to be partnering with Parity to develop a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,160",
+				"to": "00:09:59,560"
+			},
+			"offsets": {
+				"from": 592160,
+				"to": 599560
+			},
+			"text": " completely independent implementation from the Zcash company that will be under foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,560",
+				"to": "00:10:03,080"
+			},
+			"offsets": {
+				"from": 599560,
+				"to": 603080
+			},
+			"text": " control after it's developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:06,680"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 606680
+			},
+			"text": " Beyond that, we've had these experiments that we've been incubating, particularly our"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,680",
+				"to": "00:10:13,320"
+			},
+			"offsets": {
+				"from": 606680,
+				"to": 613320
+			},
+			"text": " governance panel experiment was a really interesting way for us to try and get the voices of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,320",
+				"to": "00:10:14,320"
+			},
+			"offsets": {
+				"from": 613320,
+				"to": 614320
+			},
+			"text": " community."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,320",
+				"to": "00:10:15,920"
+			},
+			"offsets": {
+				"from": 614320,
+				"to": 615920
+			},
+			"text": " But it had a lot of flaws."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,920",
+				"to": "00:10:21,920"
+			},
+			"offsets": {
+				"from": 615920,
+				"to": 621920
+			},
+			"text": " Namely, there was sort of a necessary, identifying and identifiable element to the people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,920",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 621920,
+				"to": 626000
+			},
+			"text": " were participating, and we as the foundation had to be arbiters of who could and couldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 627000
+			},
+			"text": " participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,440"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632440
+			},
+			"text": " But thanks to Sappling, hopefully becoming much more widely used and deployed, particularly"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,440",
+				"to": "00:10:36,560"
+			},
+			"offsets": {
+				"from": 632440,
+				"to": 636560
+			},
+			"text": " shielded transactions, there's an opportunity for us to start to poll community members"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,560",
+				"to": "00:10:41,080"
+			},
+			"offsets": {
+				"from": 636560,
+				"to": 641080
+			},
+			"text": " based off of the shielded transaction pool, where no one has to reveal their identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,080",
+				"to": "00:10:47,440"
+			},
+			"offsets": {
+				"from": 641080,
+				"to": 647440
+			},
+			"text": " but we can still understand in great detail the will of the community through the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,440",
+				"to": "00:10:51,960"
+			},
+			"offsets": {
+				"from": 647440,
+				"to": 651960
+			},
+			"text": " that actually hold Zcash in the shielded pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,960",
+				"to": "00:10:53,720"
+			},
+			"offsets": {
+				"from": 651960,
+				"to": 653720
+			},
+			"text": " And that really excites me personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,720",
+				"to": "00:11:00,960"
+			},
+			"offsets": {
+				"from": 653720,
+				"to": 660960
+			},
+			"text": " I don't think that as many have discussed in sort of pure, like, carbon vote-style situations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,960",
+				"to": "00:11:04,320"
+			},
+			"offsets": {
+				"from": 660960,
+				"to": 664320
+			},
+			"text": " it's very difficult to not have those systems be game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,320",
+				"to": "00:11:09,080"
+			},
+			"offsets": {
+				"from": 664320,
+				"to": 669080
+			},
+			"text": " So I don't imagine that it will be the end-all be-all of what input we use as a foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,080",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 669080,
+				"to": 675000
+			},
+			"text": " to describe how we move forward, but I think it's going to be a useful piece of data as"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 676000
+			},
+			"text": " we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:18,600"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 678600
+			},
+			"text": " There's the grants for the ecosystem development."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,600",
+				"to": "00:11:22,760"
+			},
+			"offsets": {
+				"from": 678600,
+				"to": 682760
+			},
+			"text": " There's a future trademark agreement with the company that will be very important in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,760",
+				"to": "00:11:26,640"
+			},
+			"offsets": {
+				"from": 682760,
+				"to": 686640
+			},
+			"text": " determining what gets called Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,640",
+				"to": "00:11:31,480"
+			},
+			"offsets": {
+				"from": 686640,
+				"to": 691480
+			},
+			"text": " And that's something that I think will have a very, very strong analog to that idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,480",
+				"to": "00:11:33,520"
+			},
+			"offsets": {
+				"from": 691480,
+				"to": 693520
+			},
+			"text": " two of two multi-sig."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,520",
+				"to": "00:11:37,760"
+			},
+			"offsets": {
+				"from": 693520,
+				"to": 697760
+			},
+			"text": " And then finally, there are zip process improvements where we're going to be working diligently"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,760",
+				"to": "00:11:43,800"
+			},
+			"offsets": {
+				"from": 697760,
+				"to": 703800
+			},
+			"text": " to take the product roadmap and feature discussion that currently really happens behind closed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,800",
+				"to": "00:11:48,400"
+			},
+			"offsets": {
+				"from": 703800,
+				"to": 708400
+			},
+			"text": " doors and make it more open."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,400",
+				"to": "00:11:54,440"
+			},
+			"offsets": {
+				"from": 708400,
+				"to": 714440
+			},
+			"text": " So what's the point of talking about all this in the context of the foundation and why am"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,440",
+				"to": "00:11:56,440"
+			},
+			"offsets": {
+				"from": 714440,
+				"to": 716440
+			},
+			"text": " I speaking to you about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,440",
+				"to": "00:11:59,600"
+			},
+			"offsets": {
+				"from": 716440,
+				"to": 719600
+			},
+			"text": " Well, it's actually quite prescriptive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,600",
+				"to": "00:12:05,360"
+			},
+			"offsets": {
+				"from": 719600,
+				"to": 725360
+			},
+			"text": " For people here that have projects that they're working on, you really should consider a US-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,360",
+				"to": "00:12:06,360"
+			},
+			"offsets": {
+				"from": 725360,
+				"to": 726360
+			},
+			"text": " 501(c)(3)."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,360",
+				"to": "00:12:12,160"
+			},
+			"offsets": {
+				"from": 726360,
+				"to": 732160
+			},
+			"text": " Now, look, I know that we're all here to dismantle the government, and that's great"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,160",
+				"to": "00:12:14,600"
+			},
+			"offsets": {
+				"from": 732160,
+				"to": 734600
+			},
+			"text": " and all for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,600",
+				"to": "00:12:20,120"
+			},
+			"offsets": {
+				"from": 734600,
+				"to": 740120
+			},
+			"text": " But in the meantime, I think it's important to recognize that we shouldn't dismiss hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,120",
+				"to": "00:12:26,840"
+			},
+			"offsets": {
+				"from": 740120,
+				"to": 746840
+			},
+			"text": " of years of bureaucratic legal tradition that helps us understand how we can organize and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,840",
+				"to": "00:12:27,840"
+			},
+			"offsets": {
+				"from": 746840,
+				"to": 747840
+			},
+			"text": " reach consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,840",
+				"to": "00:12:34,440"
+			},
+			"offsets": {
+				"from": 747840,
+				"to": 754440
+			},
+			"text": " I actually, when I was hearing Cory Doctorow's talk about law being an additional arrow in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,440",
+				"to": "00:12:39,320"
+			},
+			"offsets": {
+				"from": 754440,
+				"to": 759320
+			},
+			"text": " the quiver that we have, this is exactly the kind of mentality we have, and he expressed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,320",
+				"to": "00:12:41,480"
+			},
+			"offsets": {
+				"from": 759320,
+				"to": 761480
+			},
+			"text": " it much more eloquently than I."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,480",
+				"to": "00:12:47,160"
+			},
+			"offsets": {
+				"from": 761480,
+				"to": 767160
+			},
+			"text": " So I want everyone to have that in the back of their mind when they think about how they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,160",
+				"to": "00:12:49,280"
+			},
+			"offsets": {
+				"from": 767160,
+				"to": 769280
+			},
+			"text": " should structure their projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,280",
+				"to": "00:12:55,800"
+			},
+			"offsets": {
+				"from": 769280,
+				"to": 775800
+			},
+			"text": " And just to get a little bit more detail about why public charities in particular are very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,800",
+				"to": "00:13:00,600"
+			},
+			"offsets": {
+				"from": 775800,
+				"to": 780600
+			},
+			"text": " very good for this, one is, as I mentioned, there's a long legal tradition."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,600",
+				"to": "00:13:05,240"
+			},
+			"offsets": {
+				"from": 780600,
+				"to": 785240
+			},
+			"text": " It removes some ambiguity, not in the technology that you're building, but certainly in what"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,240",
+				"to": "00:13:09,360"
+			},
+			"offsets": {
+				"from": 785240,
+				"to": 789360
+			},
+			"text": " sort of duties that your board might have and how you organize."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,360",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 789360,
+				"to": 797800
+			},
+			"text": " Two is that conflict of interest policies obviously are not perfect, but they are certainly better"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:19,960"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 799960
+			},
+			"text": " than not having those transparency requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,960",
+				"to": "00:13:26,720"
+			},
+			"offsets": {
+				"from": 799960,
+				"to": 806720
+			},
+			"text": " And in 501(c)(3), you're actually mandated to report when a board member recuses themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,720",
+				"to": "00:13:32,360"
+			},
+			"offsets": {
+				"from": 806720,
+				"to": 812360
+			},
+			"text": " from a discussion because of a conflict of interest, at least we do in our bylaws."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,360",
+				"to": "00:13:40,040"
+			},
+			"offsets": {
+				"from": 812360,
+				"to": 820040
+			},
+			"text": " And then there's just plenty of history of successful software and protocol focused 501(c)(3)."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,040",
+				"to": "00:13:44,120"
+			},
+			"offsets": {
+				"from": 820040,
+				"to": 824120
+			},
+			"text": " Obviously the ones that come to mind are some folks that are here from the EFF and from"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,120",
+				"to": "00:13:48,320"
+			},
+			"offsets": {
+				"from": 824120,
+				"to": 828320
+			},
+			"text": " the Internet Archive, but there are many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,320",
+				"to": "00:13:52,480"
+			},
+			"offsets": {
+				"from": 828320,
+				"to": 832480
+			},
+			"text": " And also above and beyond that, there are norms for nonprofit pay that mean that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,480",
+				"to": "00:13:58,840"
+			},
+			"offsets": {
+				"from": 832480,
+				"to": 838840
+			},
+			"text": " basically going to be self-selecting for people that are intrinsically motivated for your mission."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,840",
+				"to": "00:14:01,320"
+			},
+			"offsets": {
+				"from": 838840,
+				"to": 841320
+			},
+			"text": " This is working for nonprofit is not a way to get rich."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,320",
+				"to": "00:14:06,520"
+			},
+			"offsets": {
+				"from": 841320,
+				"to": 846520
+			},
+			"text": " It's a way to change something that you want to see changed in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,520",
+				"to": "00:14:10,840"
+			},
+			"offsets": {
+				"from": 846520,
+				"to": 850840
+			},
+			"text": " And lastly, and something that we are going to have to deal with after our Founders'"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,840",
+				"to": "00:14:15,920"
+			},
+			"offsets": {
+				"from": 850840,
+				"to": 855920
+			},
+			"text": " Reward Endowment runs out, there's this concept of this public support test in public charities"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,920",
+				"to": "00:14:18,600"
+			},
+			"offsets": {
+				"from": 855920,
+				"to": 858600
+			},
+			"text": " that's actually really, really powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,600",
+				"to": "00:14:22,480"
+			},
+			"offsets": {
+				"from": 858600,
+				"to": 862480
+			},
+			"text": " Because effectively what it mandates, and you don't have to read all that text, but it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,480",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 862480,
+				"to": 870000
+			},
+			"text": " really means that you have to get a long tail of your donations from members, from donations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:37,320"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 877320
+			},
+			"text": " of individual donors, people that are interested in your mission and want you to succeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,320",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 877320,
+				"to": 883000
+			},
+			"text": " And that basically demands that you have to listen to the people that you're trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:45,680"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 885680
+			},
+			"text": " serve in whatever nonprofit you're in."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,680",
+				"to": "00:14:49,280"
+			},
+			"offsets": {
+				"from": 885680,
+				"to": 889280
+			},
+			"text": " So in order for us to remain a public charity, we have to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,280",
+				"to": "00:14:55,600"
+			},
+			"offsets": {
+				"from": 889280,
+				"to": 895600
+			},
+			"text": " And I think it's exactly the kind of accountability that will help other projects that are looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,600",
+				"to": "00:15:01,360"
+			},
+			"offsets": {
+				"from": 895600,
+				"to": 901360
+			},
+			"text": " into, you know, looking into trying to distribute power, that this is one wonderful way to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,360",
+				"to": "00:15:03,360"
+			},
+			"offsets": {
+				"from": 901360,
+				"to": 903360
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,360",
+				"to": "00:15:07,360"
+			},
+			"offsets": {
+				"from": 903360,
+				"to": 907360
+			},
+			"text": " But as mentioned, I don't know that bimodal power distribution is necessarily the goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,360",
+				"to": "00:15:13,160"
+			},
+			"offsets": {
+				"from": 907360,
+				"to": 913160
+			},
+			"text": " This is sort of an arbitrary view of how distributed power is for giving cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,160",
+				"to": "00:15:19,600"
+			},
+			"offsets": {
+				"from": 913160,
+				"to": 919600
+			},
+			"text": " I think we all want to live in a world where it's very clear that there is no central power"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,600",
+				"to": "00:15:26,960"
+			},
+			"offsets": {
+				"from": 919600,
+				"to": 926960
+			},
+			"text": " structure that can dictate how we interact with the systems that we're involved in, whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,960",
+				"to": "00:15:30,480"
+			},
+			"offsets": {
+				"from": 926960,
+				"to": 930480
+			},
+			"text": " it's payments or computation or anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,480",
+				"to": "00:15:36,640"
+			},
+			"offsets": {
+				"from": 930480,
+				"to": 936640
+			},
+			"text": " Except for Doge, the Doge coin protocol hasn't changed for like two years because it's perfect"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,640",
+				"to": "00:15:41,720"
+			},
+			"offsets": {
+				"from": 936640,
+				"to": 941720
+			},
+			"text": " and every Shiba that I've ever met is a self-sauverent Shiba."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,720",
+				"to": "00:15:42,880"
+			},
+			"offsets": {
+				"from": 941720,
+				"to": 942880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,880",
+				"to": "00:15:43,880"
+			},
+			"offsets": {
+				"from": 942880,
+				"to": 943880
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,880",
+				"to": "00:15:46,480"
+			},
+			"offsets": {
+				"from": 943880,
+				"to": 946480
+			},
+			"text": " Finally, there we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,480",
+				"to": "00:15:49,440"
+			},
+			"offsets": {
+				"from": 946480,
+				"to": 949440
+			},
+			"text": " I knew something would get some chuckles."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,440",
+				"to": "00:15:50,840"
+			},
+			"offsets": {
+				"from": 949440,
+				"to": 950840
+			},
+			"text": " One thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,840",
+				"to": "00:15:58,080"
+			},
+			"offsets": {
+				"from": 950840,
+				"to": 958080
+			},
+			"text": " So the takeaway for Ethereum or projects building on Ethereum or anyone getting involved in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,080",
+				"to": "00:16:04,760"
+			},
+			"offsets": {
+				"from": 958080,
+				"to": 964760
+			},
+			"text": " cryptocurrencies, I think there's this fascination with novelty in our space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,760",
+				"to": "00:16:05,880"
+			},
+			"offsets": {
+				"from": 964760,
+				"to": 965880
+			},
+			"text": " And it's merited, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,880",
+				"to": "00:16:07,360"
+			},
+			"offsets": {
+				"from": 965880,
+				"to": 967360
+			},
+			"text": " Like we're building these new systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,360",
+				"to": "00:16:09,720"
+			},
+			"offsets": {
+				"from": 967360,
+				"to": 969720
+			},
+			"text": " They're kind of amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,720",
+				"to": "00:16:11,440"
+			},
+			"offsets": {
+				"from": 969720,
+				"to": 971440
+			},
+			"text": " Everything that they've done is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,440",
+				"to": "00:16:17,400"
+			},
+			"offsets": {
+				"from": 971440,
+				"to": 977400
+			},
+			"text": " And it's incredible that everything has blossomed and grown and it's a really wonderful space"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,400",
+				"to": "00:16:19,760"
+			},
+			"offsets": {
+				"from": 977400,
+				"to": 979760
+			},
+			"text": " for experimentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,760",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 979760,
+				"to": 990000
+			},
+			"text": " But don't throw out all of this combined history that can really help dictate how you structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:35,400"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 995400
+			},
+			"text": " accountability and incentives in the tools that you're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,400",
+				"to": "00:16:39,240"
+			},
+			"offsets": {
+				"from": 995400,
+				"to": 999240
+			},
+			"text": " And that's where there are all these tried and true governance models."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,240",
+				"to": "00:16:44,560"
+			},
+			"offsets": {
+				"from": 999240,
+				"to": 1004560
+			},
+			"text": " And even though a lot of us are not big fans of authoritarian states, there are tools that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,560",
+				"to": "00:16:48,720"
+			},
+			"offsets": {
+				"from": 1004560,
+				"to": 1008720
+			},
+			"text": " these states provide to encourage the legal enforcement of some of these incentives and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,720",
+				"to": "00:16:51,920"
+			},
+			"offsets": {
+				"from": 1008720,
+				"to": 1011920
+			},
+			"text": " it's worth exploring them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,920",
+				"to": "00:16:59,160"
+			},
+			"offsets": {
+				"from": 1011920,
+				"to": 1019160
+			},
+			"text": " And finally, if you have to have centralization for speed sake, I really believe, the case"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,160",
+				"to": "00:17:04,080"
+			},
+			"offsets": {
+				"from": 1019160,
+				"to": 1024080
+			},
+			"text": " as the case with Zcash, that what we're doing to have a foundation as a counterbalance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,080",
+				"to": "00:17:09,680"
+			},
+			"offsets": {
+				"from": 1024080,
+				"to": 1029680
+			},
+			"text": " as a focal point for other viewpoints, is something that is tremendously important and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,680",
+				"to": "00:17:14,640"
+			},
+			"offsets": {
+				"from": 1029680,
+				"to": 1034640
+			},
+			"text": " can be really powerful for eventually reaching that state where, yes, you can claim that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,640",
+				"to": "00:17:16,800"
+			},
+			"offsets": {
+				"from": 1034640,
+				"to": 1036800
+			},
+			"text": " you are decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,800",
+				"to": "00:17:19,440"
+			},
+			"offsets": {
+				"from": 1036800,
+				"to": 1039440
+			},
+			"text": " So thank you all very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,440",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1039440,
+				"to": 1042000
+			},
+			"text": " I blazed through that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:23,840"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1043840
+			},
+			"text": " I feel free if there are any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,840",
+				"to": "00:17:25,840"
+			},
+			"offsets": {
+				"from": 1043840,
+				"to": 1045840
+			},
+			"text": " I'm happy to take them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,840",
+				"to": "00:17:26,840"
+			},
+			"offsets": {
+				"from": 1045840,
+				"to": 1046840
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,840",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1046840,
+				"to": 1066000
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:48,760"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1068760
+			},
+			"text": " Oh, it was just like legal fees, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,760",
+				"to": "00:17:56,760"
+			},
+			"offsets": {
+				"from": 1068760,
+				"to": 1076760
+			},
+			"text": " So like $10,000 or $20,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,760",
+				"to": "00:18:02,480"
+			},
+			"offsets": {
+				"from": 1076760,
+				"to": 1082480
+			},
+			"text": " Hi, can you talk a little more about how Zcash Foundation thinks about the distribution of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,480",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1082480,
+				"to": 1085240
+			},
+			"text": " power versus resources?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:09,400"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1089400
+			},
+			"text": " Because there's-- obviously, we're in the blockchain space and there's a tremendous"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,400",
+				"to": "00:18:13,640"
+			},
+			"offsets": {
+				"from": 1089400,
+				"to": 1093640
+			},
+			"text": " amount of capital that's in the Zcash ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,640",
+				"to": "00:18:20,640"
+			},
+			"offsets": {
+				"from": 1093640,
+				"to": 1100640
+			},
+			"text": " In to what role is the Zcash Foundation in charge of distributing that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,640",
+				"to": "00:18:21,640"
+			},
+			"offsets": {
+				"from": 1100640,
+				"to": 1101640
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,640",
+				"to": "00:18:27,120"
+			},
+			"offsets": {
+				"from": 1101640,
+				"to": 1107120
+			},
+			"text": " And how do you think about that versus power versus right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,120",
+				"to": "00:18:28,680"
+			},
+			"offsets": {
+				"from": 1107120,
+				"to": 1108680
+			},
+			"text": " Yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,680",
+				"to": "00:18:34,480"
+			},
+			"offsets": {
+				"from": 1108680,
+				"to": 1114480
+			},
+			"text": " I think in large part, the grant process is supposed to be a method for us to engage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,480",
+				"to": "00:18:39,680"
+			},
+			"offsets": {
+				"from": 1114480,
+				"to": 1119680
+			},
+			"text": " particularly in that capital redistribution, where we have resources that we at the foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,680",
+				"to": "00:18:43,160"
+			},
+			"offsets": {
+				"from": 1119680,
+				"to": 1123160
+			},
+			"text": " are not allocating as effectively as members of the community might be."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,160",
+				"to": "00:18:46,960"
+			},
+			"offsets": {
+				"from": 1123160,
+				"to": 1126960
+			},
+			"text": " And we need to be able to find them and give them an opportunity to develop core pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,960",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1126960,
+				"to": 1132200
+			},
+			"text": " of infrastructure that can be a part of the Zcash ecosystem and hopefully also help to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,200",
+				"to": "00:18:54,200"
+			},
+			"offsets": {
+				"from": 1132200,
+				"to": 1134200
+			},
+			"text": " distribute some of the power as a result."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,200",
+				"to": "00:19:01,360"
+			},
+			"offsets": {
+				"from": 1134200,
+				"to": 1141360
+			},
+			"text": " So a good example of that is we are going to be funded in the past mobile wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,360",
+				"to": "00:19:07,560"
+			},
+			"offsets": {
+				"from": 1141360,
+				"to": 1147560
+			},
+			"text": " And having a mobile wallet that is not controlled by a company or the foundation is a great"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,560",
+				"to": "00:19:14,400"
+			},
+			"offsets": {
+				"from": 1147560,
+				"to": 1154400
+			},
+			"text": " way to add another piece of distribution to the network of power distribution, rather."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,400",
+				"to": "00:19:18,200"
+			},
+			"offsets": {
+				"from": 1154400,
+				"to": 1158200
+			},
+			"text": " But a lot of them need capital and that's what the grant process is really supposed to help"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,200",
+				"to": "00:19:19,200"
+			},
+			"offsets": {
+				"from": 1158200,
+				"to": 1159200
+			},
+			"text": " with."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,200",
+				"to": "00:19:23,360"
+			},
+			"offsets": {
+				"from": 1159200,
+				"to": 1163360
+			},
+			"text": " I have to admit, in terms of being a little bit self-critical, the current grant process"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,360",
+				"to": "00:19:30,240"
+			},
+			"offsets": {
+				"from": 1163360,
+				"to": 1170240
+			},
+			"text": " is structured in such a way that it really mirrors an academic style grant committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,240",
+				"to": "00:19:33,160"
+			},
+			"offsets": {
+				"from": 1170240,
+				"to": 1173160
+			},
+			"text": " And as a result, the disbursement process is a little bit too slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,160",
+				"to": "00:19:39,320"
+			},
+			"offsets": {
+				"from": 1173160,
+				"to": 1179320
+			},
+			"text": " I think I'm okay with the idea of nonprofits acting slower to distribute those, or just"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,320",
+				"to": "00:19:40,440"
+			},
+			"offsets": {
+				"from": 1179320,
+				"to": 1180440
+			},
+			"text": " slower in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,440",
+				"to": "00:19:42,960"
+			},
+			"offsets": {
+				"from": 1180440,
+				"to": 1182960
+			},
+			"text": " But it's still a little bit too slow for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,960",
+				"to": "00:19:48,680"
+			},
+			"offsets": {
+				"from": 1182960,
+				"to": 1188680
+			},
+			"text": " And my hope is that we're going to be partnering with some folks to actually build a more streamlined"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,680",
+				"to": "00:19:53,720"
+			},
+			"offsets": {
+				"from": 1188680,
+				"to": 1193720
+			},
+			"text": " grant platform and bounty platform that will help with that too."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,720",
+				"to": "00:20:03,120"
+			},
+			"offsets": {
+				"from": 1193720,
+				"to": 1203120
+			},
+			"text": " What about the biggest revenue generator in the Zcash ecosystem is the founders reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,120",
+				"to": "00:20:09,040"
+			},
+			"offsets": {
+				"from": 1203120,
+				"to": 1209040
+			},
+			"text": " And is that going to be, that's obviously a governance question of how that founders"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,040",
+				"to": "00:20:14,120"
+			},
+			"offsets": {
+				"from": 1209040,
+				"to": 1214120
+			},
+			"text": " or work as distributed in this ecosystem, and that's probably the most sustainable way"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,120",
+				"to": "00:20:19,600"
+			},
+			"offsets": {
+				"from": 1214120,
+				"to": 1219600
+			},
+			"text": " to fund efforts in an ongoing basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,600",
+				"to": "00:20:24,520"
+			},
+			"offsets": {
+				"from": 1219600,
+				"to": 1224520
+			},
+			"text": " Is there anything like that where there's a sustainable model where the foundation can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,520",
+				"to": "00:20:27,600"
+			},
+			"offsets": {
+				"from": 1224520,
+				"to": 1227600
+			},
+			"text": " fund something through the community?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,600",
+				"to": "00:20:28,600"
+			},
+			"offsets": {
+				"from": 1227600,
+				"to": 1228600
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,600",
+				"to": "00:20:33,680"
+			},
+			"offsets": {
+				"from": 1228600,
+				"to": 1233680
+			},
+			"text": " Well, I think a lot of that depends on how, so if you're building a project that has a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,680",
+				"to": "00:20:39,920"
+			},
+			"offsets": {
+				"from": 1233680,
+				"to": 1239920
+			},
+			"text": " founders reward, you're effectively engaging in a social contract with miners and users"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,920",
+				"to": "00:20:45,360"
+			},
+			"offsets": {
+				"from": 1239920,
+				"to": 1245360
+			},
+			"text": " that you are going to create a certain carve out for resources that should be dedicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,360",
+				"to": "00:20:47,920"
+			},
+			"offsets": {
+				"from": 1245360,
+				"to": 1247920
+			},
+			"text": " to a given ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,920",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1247920,
+				"to": 1251000
+			},
+			"text": " And then the question becomes, well, how do you distribute them effectively?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:55,480"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1255480
+			},
+			"text": " And to be honest, the foundation, it was somewhat of a foregone conclusion on how the founders"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,480",
+				"to": "00:21:01,680"
+			},
+			"offsets": {
+				"from": 1255480,
+				"to": 1261680
+			},
+			"text": " reward would be distributed, because the foundation didn't exist when that decision was made."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,680",
+				"to": "00:21:07,920"
+			},
+			"offsets": {
+				"from": 1261680,
+				"to": 1267920
+			},
+			"text": " But it was made as a result of, in my view, I think people who were looking far ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,920",
+				"to": "00:21:12,880"
+			},
+			"offsets": {
+				"from": 1267920,
+				"to": 1272880
+			},
+			"text": " at what needed to happen to help distribute power, and those individual recipients of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,880",
+				"to": "00:21:16,880"
+			},
+			"offsets": {
+				"from": 1272880,
+				"to": 1276880
+			},
+			"text": " the founders reward came together and said, we want to donate to create this foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,880",
+				"to": "00:21:19,400"
+			},
+			"offsets": {
+				"from": 1276880,
+				"to": 1279400
+			},
+			"text": " that's completely separate from the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,400",
+				"to": "00:21:21,960"
+			},
+			"offsets": {
+				"from": 1279400,
+				"to": 1281960
+			},
+			"text": " And it's a rather sizable amount of ZAC."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,960",
+				"to": "00:21:28,200"
+			},
+			"offsets": {
+				"from": 1281960,
+				"to": 1288200
+			},
+			"text": " It's roughly 1.4% of Zcash that will ever be mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,200",
+				"to": "00:21:32,800"
+			},
+			"offsets": {
+				"from": 1288200,
+				"to": 1292800
+			},
+			"text": " You know, the full supply schedule will go to the foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,800",
+				"to": "00:21:38,280"
+			},
+			"offsets": {
+				"from": 1292800,
+				"to": 1298280
+			},
+			"text": " And so the onus is on us coming up with a better method for distributing those grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,280",
+				"to": "00:21:40,600"
+			},
+			"offsets": {
+				"from": 1298280,
+				"to": 1300600
+			},
+			"text": " Right now we have a voluntary grant review committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,600",
+				"to": "00:21:41,600"
+			},
+			"offsets": {
+				"from": 1300600,
+				"to": 1301600
+			},
+			"text": " It's very academic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,600",
+				"to": "00:21:42,840"
+			},
+			"offsets": {
+				"from": 1301600,
+				"to": 1302840
+			},
+			"text": " It's a little slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,840",
+				"to": "00:21:47,440"
+			},
+			"offsets": {
+				"from": 1302840,
+				"to": 1307440
+			},
+			"text": " My view is that there's a way to create more community involvement that will not necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,440",
+				"to": "00:21:52,280"
+			},
+			"offsets": {
+				"from": 1307440,
+				"to": 1312280
+			},
+			"text": " involve anything fancy, like on-chain, but really just a platform that we run that enables"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,280",
+				"to": "00:21:56,640"
+			},
+			"offsets": {
+				"from": 1312280,
+				"to": 1316640
+			},
+			"text": " people to fund projects they want to see with the possibility of getting foundation support"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,640",
+				"to": "00:21:57,640"
+			},
+			"offsets": {
+				"from": 1316640,
+				"to": 1317640
+			},
+			"text": " later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,640",
+				"to": "00:22:00,640"
+			},
+			"offsets": {
+				"from": 1317640,
+				"to": 1320640
+			},
+			"text": " Yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,640",
+				"to": "00:22:01,640"
+			},
+			"offsets": {
+				"from": 1320640,
+				"to": 1321640
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,640",
+				"to": "00:22:02,640"
+			},
+			"offsets": {
+				"from": 1321640,
+				"to": 1322640
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,640",
+				"to": "00:22:04,640"
+			},
+			"offsets": {
+				"from": 1322640,
+				"to": 1324640
+			},
+			"text": " Great talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,640",
+				"to": "00:22:10,800"
+			},
+			"offsets": {
+				"from": 1324640,
+				"to": 1330800
+			},
+			"text": " Referring to the scale that you showed us, I can't help but notice that the privacy protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,800",
+				"to": "00:22:12,120"
+			},
+			"offsets": {
+				"from": 1330800,
+				"to": 1332120
+			},
+			"text": " are a little bit more centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,120",
+				"to": "00:22:13,120"
+			},
+			"offsets": {
+				"from": 1332120,
+				"to": 1333120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,120",
+				"to": "00:22:19,520"
+			},
+			"offsets": {
+				"from": 1333120,
+				"to": 1339520
+			},
+			"text": " Do you think there is a correlation between the degree of privacy and the degree of decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,520",
+				"to": "00:22:23,480"
+			},
+			"offsets": {
+				"from": 1339520,
+				"to": 1343480
+			},
+			"text": " Maybe but I actually would, so that's a great question, but I would reframe it not in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,480",
+				"to": "00:22:29,880"
+			},
+			"offsets": {
+				"from": 1343480,
+				"to": 1349880
+			},
+			"text": " of privacy, but in terms of cryptographic expertise necessary to execute a privacy coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,880",
+				"to": "00:22:37,120"
+			},
+			"offsets": {
+				"from": 1349880,
+				"to": 1357120
+			},
+			"text": " Because truth be told, doing this stuff right is very, very difficult and very esoteric."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,120",
+				"to": "00:22:40,920"
+			},
+			"offsets": {
+				"from": 1357120,
+				"to": 1360920
+			},
+			"text": " And it's hard to find the right people to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,920",
+				"to": "00:22:47,200"
+			},
+			"offsets": {
+				"from": 1360920,
+				"to": 1367200
+			},
+			"text": " And I mean so many kudos to the Zcash company because it's one of the brightest group of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,200",
+				"to": "00:22:50,560"
+			},
+			"offsets": {
+				"from": 1367200,
+				"to": 1370560
+			},
+			"text": " cryptographers that I've ever seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,560",
+				"to": "00:22:54,960"
+			},
+			"offsets": {
+				"from": 1370560,
+				"to": 1374960
+			},
+			"text": " And I think it's very, very difficult to find people of that caliber, but a lot of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,960",
+				"to": "00:22:57,480"
+			},
+			"offsets": {
+				"from": 1374960,
+				"to": 1377480
+			},
+			"text": " is also an education problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,480",
+				"to": "00:23:02,160"
+			},
+			"offsets": {
+				"from": 1377480,
+				"to": 1382160
+			},
+			"text": " And it's something that we at the foundation are also somewhat tasked with trying to open"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,160",
+				"to": "00:23:06,520"
+			},
+			"offsets": {
+				"from": 1382160,
+				"to": 1386520
+			},
+			"text": " up more opportunities for people to learn about these technologies so they can become"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,520",
+				"to": "00:23:07,520"
+			},
+			"offsets": {
+				"from": 1386520,
+				"to": 1387520
+			},
+			"text": " contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,520",
+				"to": "00:23:13,320"
+			},
+			"offsets": {
+				"from": 1387520,
+				"to": 1393320
+			},
+			"text": " But it's very, very difficult to contribute to any sort of like, you know, snark development"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,320",
+				"to": "00:23:16,400"
+			},
+			"offsets": {
+				"from": 1393320,
+				"to": 1396400
+			},
+			"text": " or ring signature development or grin or mimble-wimble."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,400",
+				"to": "00:23:17,480"
+			},
+			"offsets": {
+				"from": 1396400,
+				"to": 1397480
+			},
+			"text": " It's like, it's just hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,480",
+				"to": "00:23:20,920"
+			},
+			"offsets": {
+				"from": 1397480,
+				"to": 1400920
+			},
+			"text": " And so that necessarily makes a smaller pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,920",
+				"to": "00:23:22,760"
+			},
+			"offsets": {
+				"from": 1400920,
+				"to": 1402760
+			},
+			"text": " And they're also younger projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,760",
+				"to": "00:23:27,440"
+			},
+			"offsets": {
+				"from": 1402760,
+				"to": 1407440
+			},
+			"text": " So it takes time."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,440",
+				"to": "00:23:36,960"
+			},
+			"offsets": {
+				"from": 1407440,
+				"to": 1416960
+			},
+			"text": " Can you share a specific example of tension that was resolved using this by model governance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,960",
+				"to": "00:23:40,360"
+			},
+			"offsets": {
+				"from": 1416960,
+				"to": 1420360
+			},
+			"text": " Specific example."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,360",
+				"to": "00:23:47,440"
+			},
+			"offsets": {
+				"from": 1420360,
+				"to": 1427440
+			},
+			"text": " I would say that there's -- so I won't give a -- I'll give a --"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,440",
+				"to": "00:23:49,240"
+			},
+			"offsets": {
+				"from": 1427440,
+				"to": 1429240
+			},
+			"text": " specific enough example."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,240",
+				"to": "00:23:50,240"
+			},
+			"offsets": {
+				"from": 1429240,
+				"to": 1430240
+			},
+			"text": " Is that better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,240",
+				"to": "00:23:51,240"
+			},
+			"offsets": {
+				"from": 1430240,
+				"to": 1431240
+			},
+			"text": " Oh, I'm sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,240",
+				"to": "00:23:54,680"
+			},
+			"offsets": {
+				"from": 1431240,
+				"to": 1434680
+			},
+			"text": " Specific enough example so you can mask it and ambiguity a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,680",
+				"to": "00:23:55,680"
+			},
+			"offsets": {
+				"from": 1434680,
+				"to": 1435680
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,680",
+				"to": "00:23:56,680"
+			},
+			"offsets": {
+				"from": 1435680,
+				"to": 1436680
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,680",
+				"to": "00:23:57,680"
+			},
+			"offsets": {
+				"from": 1436680,
+				"to": 1437680
+			},
+			"text": " I'll do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,680",
+				"to": "00:24:07,120"
+			},
+			"offsets": {
+				"from": 1437680,
+				"to": 1447120
+			},
+			"text": " So there is a case where I think the company and the foundation, we were chatting about"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,120",
+				"to": "00:24:16,040"
+			},
+			"offsets": {
+				"from": 1447120,
+				"to": 1456040
+			},
+			"text": " the possibility of distributing Zcash to people in places that are at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,040",
+				"to": "00:24:19,480"
+			},
+			"offsets": {
+				"from": 1456040,
+				"to": 1459480
+			},
+			"text": " And I think it's a very important thing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,480",
+				"to": "00:24:22,440"
+			},
+			"offsets": {
+				"from": 1459480,
+				"to": 1462440
+			},
+			"text": " And it's very critical that we figure out a way, a way to do it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,440",
+				"to": "00:24:28,600"
+			},
+			"offsets": {
+				"from": 1462440,
+				"to": 1468600
+			},
+			"text": " But there was a case where really the foundation didn't feel quite as comfortable doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,600",
+				"to": "00:24:33,920"
+			},
+			"offsets": {
+				"from": 1468600,
+				"to": 1473920
+			},
+			"text": " And there was, as a result, lack of a joint effort on doing it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,920",
+				"to": "00:24:40,720"
+			},
+			"offsets": {
+				"from": 1473920,
+				"to": 1480720
+			},
+			"text": " I will say that there also -- to bring a hypothetical future case up, let's say that in the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,720",
+				"to": "00:24:49,160"
+			},
+			"offsets": {
+				"from": 1480720,
+				"to": 1489160
+			},
+			"text": " that we have a version of Zcash that's promoted by the company that has some degree of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,160",
+				"to": "00:24:51,360"
+			},
+			"offsets": {
+				"from": 1489160,
+				"to": 1491360
+			},
+			"text": " feature that is controversial."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,360",
+				"to": "00:24:54,600"
+			},
+			"offsets": {
+				"from": 1491360,
+				"to": 1494600
+			},
+			"text": " Some people in the community say they don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,600",
+				"to": "00:24:58,160"
+			},
+			"offsets": {
+				"from": 1494600,
+				"to": 1498160
+			},
+			"text": " And we hear that feedback and we -- on the foundation side, we collect it and we say"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,160",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1498160,
+				"to": 1504000
+			},
+			"text": " we can't support this because of this feedback in the ecosystem at large."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:10,480"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1510480
+			},
+			"text": " So in that case, when we have our future sort of trademark agreement, there is this possibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,480",
+				"to": "00:25:14,800"
+			},
+			"offsets": {
+				"from": 1510480,
+				"to": 1514800
+			},
+			"text": " where the company and the foundation will come together and we will try to figure out how"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,800",
+				"to": "00:25:15,960"
+			},
+			"offsets": {
+				"from": 1514800,
+				"to": 1515960
+			},
+			"text": " to make that feature work."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,960",
+				"to": "00:25:20,680"
+			},
+			"offsets": {
+				"from": 1515960,
+				"to": 1520680
+			},
+			"text": " And if we can't, then effectively it's like nothing can move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,680",
+				"to": "00:25:26,360"
+			},
+			"offsets": {
+				"from": 1520680,
+				"to": 1526360
+			},
+			"text": " That in that no -- neither the foundation nor the company will be able to enforce the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,360",
+				"to": "00:25:30,040"
+			},
+			"offsets": {
+				"from": 1526360,
+				"to": 1530040
+			},
+			"text": " trademark on whatever -- whatever fourth the company wanted to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,040",
+				"to": "00:25:34,400"
+			},
+			"offsets": {
+				"from": 1530040,
+				"to": 1534400
+			},
+			"text": " And then the main -- you know, whatever maintained non-fork version would not be allowed to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,400",
+				"to": "00:25:36,640"
+			},
+			"offsets": {
+				"from": 1534400,
+				"to": 1536640
+			},
+			"text": " called Zcash by trademark law."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,640",
+				"to": "00:25:41,840"
+			},
+			"offsets": {
+				"from": 1536640,
+				"to": 1541840
+			},
+			"text": " Now that trademark agreement is something that we're still trying to put in place, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,840",
+				"to": "00:25:47,400"
+			},
+			"offsets": {
+				"from": 1541840,
+				"to": 1547400
+			},
+			"text": " it's something that is, I think, very meaningful to determining how people view what is considered"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,400",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1547400,
+				"to": 1551000
+			},
+			"text": " like the authentic chain going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1557000
+			},
+			"text": " And that is like maybe not a very -- it might not be a very like satisfactory answer for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:26:01,760"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1561760
+			},
+			"text": " a lot of people, but I think that there's far more protection in going that route than"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,760",
+				"to": "00:26:08,160"
+			},
+			"offsets": {
+				"from": 1561760,
+				"to": 1568160
+			},
+			"text": " just letting the company who, again, I deeply admire and respect, but having any organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,160",
+				"to": "00:26:13,720"
+			},
+			"offsets": {
+				"from": 1568160,
+				"to": 1573720
+			},
+			"text": " that has unilateral control over the direction of a protocol is just its bad design."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,720",
+				"to": "00:26:14,720"
+			},
+			"offsets": {
+				"from": 1573720,
+				"to": 1574720
+			},
+			"text": " So yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,720",
+				"to": "00:26:15,720"
+			},
+			"offsets": {
+				"from": 1574720,
+				"to": 1575720
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,720",
+				"to": "00:26:16,720"
+			},
+			"offsets": {
+				"from": 1575720,
+				"to": 1576720
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,720",
+				"to": "00:26:17,720"
+			},
+			"offsets": {
+				"from": 1576720,
+				"to": 1577720
+			},
+			"text": " >> Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,720",
+				"to": "00:26:18,720"
+			},
+			"offsets": {
+				"from": 1577720,
+				"to": 1578720
+			},
+			"text": " >> Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,720",
+				"to": "00:26:22,920"
+			},
+			"offsets": {
+				"from": 1578720,
+				"to": 1582920
+			},
+			"text": " >> So recently we've seen a bit license approved exchange as a Gemini listing Zcash as one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,920",
+				"to": "00:26:24,440"
+			},
+			"offsets": {
+				"from": 1582920,
+				"to": 1584440
+			},
+			"text": " their coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,440",
+				"to": "00:26:30,880"
+			},
+			"offsets": {
+				"from": 1584440,
+				"to": 1590880
+			},
+			"text": " And I have a question as if you believe the company structure of Zcash has boosted in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,880",
+				"to": "00:26:34,640"
+			},
+			"offsets": {
+				"from": 1590880,
+				"to": 1594640
+			},
+			"text": " of regulation in terms of other privacy coins like Monero?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,640",
+				"to": "00:26:38,640"
+			},
+			"offsets": {
+				"from": 1594640,
+				"to": 1598640
+			},
+			"text": " >> Oh, do you think that the company structure has helped other privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,640",
+				"to": "00:26:40,640"
+			},
+			"offsets": {
+				"from": 1598640,
+				"to": 1600640
+			},
+			"text": " >> In terms of legal and regulation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,640",
+				"to": "00:26:41,640"
+			},
+			"offsets": {
+				"from": 1600640,
+				"to": 1601640
+			},
+			"text": " >> Absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,640",
+				"to": "00:26:48,800"
+			},
+			"offsets": {
+				"from": 1601640,
+				"to": 1608800
+			},
+			"text": " Because I think particularly with other privacy coin projects, because of the lack of maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,800",
+				"to": "00:26:53,120"
+			},
+			"offsets": {
+				"from": 1608800,
+				"to": 1613120
+			},
+			"text": " a legal entity, it's very unusual."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,120",
+				"to": "00:27:00,240"
+			},
+			"offsets": {
+				"from": 1613120,
+				"to": 1620240
+			},
+			"text": " It's not like you'll see a Monero contributor being invited to, you know, to unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,240",
+				"to": "00:27:04,920"
+			},
+			"offsets": {
+				"from": 1620240,
+				"to": 1624920
+			},
+			"text": " actually, like I think there should be more of a more openness in exchanges being willing"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,920",
+				"to": "00:27:06,360"
+			},
+			"offsets": {
+				"from": 1624920,
+				"to": 1626360
+			},
+			"text": " to talk to individual contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,360",
+				"to": "00:27:11,480"
+			},
+			"offsets": {
+				"from": 1626360,
+				"to": 1631480
+			},
+			"text": " But I think it helps when you have some authority that you can point to and say, yes, these are"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,480",
+				"to": "00:27:16,440"
+			},
+			"offsets": {
+				"from": 1631480,
+				"to": 1636440
+			},
+			"text": " the people that I go to to talk to about privacy coins because they are a company that's represented"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,440",
+				"to": "00:27:20,080"
+			},
+			"offsets": {
+				"from": 1636440,
+				"to": 1640080
+			},
+			"text": " and I know how to deal with companies as an American company myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,080",
+				"to": "00:27:25,160"
+			},
+			"offsets": {
+				"from": 1640080,
+				"to": 1645160
+			},
+			"text": " On the, I think it will get trickier as the foundation and companies start to distribute"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,160",
+				"to": "00:27:26,160"
+			},
+			"offsets": {
+				"from": 1645160,
+				"to": 1646160
+			},
+			"text": " more of that power."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,160",
+				"to": "00:27:32,120"
+			},
+			"offsets": {
+				"from": 1646160,
+				"to": 1652120
+			},
+			"text": " But part of our goal is to try and figure out how to delineate those things going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,120",
+				"to": "00:27:36,160"
+			},
+			"offsets": {
+				"from": 1652120,
+				"to": 1656160
+			},
+			"text": " >> One more question if you don't mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,160",
+				"to": "00:27:40,320"
+			},
+			"offsets": {
+				"from": 1656160,
+				"to": 1660320
+			},
+			"text": " Do you know if there are any very noticeable or significant downsides to choosing the company"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,320",
+				"to": "00:27:42,320"
+			},
+			"offsets": {
+				"from": 1660320,
+				"to": 1662320
+			},
+			"text": " route for Zcash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,320",
+				"to": "00:27:50,200"
+			},
+			"offsets": {
+				"from": 1662320,
+				"to": 1670200
+			},
+			"text": " >> Well, I mean, I think the big downside is really one that's purely of perception,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,200",
+				"to": "00:27:51,840"
+			},
+			"offsets": {
+				"from": 1670200,
+				"to": 1671840
+			},
+			"text": " I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,840",
+				"to": "00:27:58,560"
+			},
+			"offsets": {
+				"from": 1671840,
+				"to": 1678560
+			},
+			"text": " I, again, in my interactions with everyone in the company, there's not a more, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,560",
+				"to": "00:28:03,320"
+			},
+			"offsets": {
+				"from": 1678560,
+				"to": 1683320
+			},
+			"text": " Ethereum is actually pretty close, but there's not a more open and welcoming and kind group"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,320",
+				"to": "00:28:06,280"
+			},
+			"offsets": {
+				"from": 1683320,
+				"to": 1686280
+			},
+			"text": " of people that are also just wicked smart."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,280",
+				"to": "00:28:07,760"
+			},
+			"offsets": {
+				"from": 1686280,
+				"to": 1687760
+			},
+			"text": " And that is the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,760",
+				"to": "00:28:15,680"
+			},
+			"offsets": {
+				"from": 1687760,
+				"to": 1695680
+			},
+			"text": " But when you have a for-profit entity that is creating a protocol that they knowingly"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,680",
+				"to": "00:28:21,760"
+			},
+			"offsets": {
+				"from": 1695680,
+				"to": 1701760
+			},
+			"text": " want to be decentralized, it leads to viewpoints and perspectives that are, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,760",
+				"to": "00:28:27,760"
+			},
+			"offsets": {
+				"from": 1701760,
+				"to": 1707760
+			},
+			"text": " I think can be difficult to try and argue against because of the kind of crypto-annercure"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,760",
+				"to": "00:28:31,200"
+			},
+			"offsets": {
+				"from": 1707760,
+				"to": 1711200
+			},
+			"text": " routes of all these systems that we're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,200",
+				"to": "00:28:35,760"
+			},
+			"offsets": {
+				"from": 1711200,
+				"to": 1715760
+			},
+			"text": " But my hope is that everything that we're doing on the foundation side will change that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,760",
+				"to": "00:28:37,760"
+			},
+			"offsets": {
+				"from": 1715760,
+				"to": 1717760
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,760",
+				"to": "00:28:39,640"
+			},
+			"offsets": {
+				"from": 1717760,
+				"to": 1719640
+			},
+			"text": " >> Yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,640",
+				"to": "00:28:40,640"
+			},
+			"offsets": {
+				"from": 1719640,
+				"to": 1720640
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,640",
+				"to": "00:28:46,080"
+			},
+			"offsets": {
+				"from": 1720640,
+				"to": 1726080
+			},
+			"text": " Well, I think we've got a minute left and since there, oh, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,080",
+				"to": "00:28:54,640"
+			},
+			"offsets": {
+				"from": 1726080,
+				"to": 1734640
+			},
+			"text": " So how do you manage the conflicting goals of, let's say, marketing something versus"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,640",
+				"to": "00:28:56,160"
+			},
+			"offsets": {
+				"from": 1734640,
+				"to": 1736160
+			},
+			"text": " educating a community?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,160",
+				"to": "00:28:58,720"
+			},
+			"offsets": {
+				"from": 1736160,
+				"to": 1738720
+			},
+			"text": " Like how do you bridge that gap?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,720",
+				"to": "00:29:03,800"
+			},
+			"offsets": {
+				"from": 1738720,
+				"to": 1743800
+			},
+			"text": " Because I've noticed some cryptocurrencies kind of jumped the shark a little bit while"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,800",
+				"to": "00:29:08,160"
+			},
+			"offsets": {
+				"from": 1743800,
+				"to": 1748160
+			},
+			"text": " some have invested heavily in community development and education."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,160",
+				"to": "00:29:09,160"
+			},
+			"offsets": {
+				"from": 1748160,
+				"to": 1749160
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,160",
+				"to": "00:29:13,520"
+			},
+			"offsets": {
+				"from": 1749160,
+				"to": 1753520
+			},
+			"text": " So actually, I mean, it's really, it's as clear as the way you frame the question, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,520",
+				"to": "00:29:17,600"
+			},
+			"offsets": {
+				"from": 1753520,
+				"to": 1757600
+			},
+			"text": " the difficulty is deciding what's marketing and what's education, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,600",
+				"to": "00:29:19,120"
+			},
+			"offsets": {
+				"from": 1757600,
+				"to": 1759120
+			},
+			"text": " That's ultimately what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,120",
+				"to": "00:29:23,760"
+			},
+			"offsets": {
+				"from": 1759120,
+				"to": 1763760
+			},
+			"text": " And really what will wind up happening is right now, there's very little interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,760",
+				"to": "00:29:28,280"
+			},
+			"offsets": {
+				"from": 1763760,
+				"to": 1768280
+			},
+			"text": " between the company and the foundation, but there's occasionally something comes up that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,280",
+				"to": "00:29:32,800"
+			},
+			"offsets": {
+				"from": 1768280,
+				"to": 1772800
+			},
+			"text": " says, oh, there's this opportunity to engage with this company on this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,800",
+				"to": "00:29:40,400"
+			},
+			"offsets": {
+				"from": 1772800,
+				"to": 1780400
+			},
+			"text": " And effectively, it's up to the foundation board, a five person board, and me as the executive"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,400",
+				"to": "00:29:45,920"
+			},
+			"offsets": {
+				"from": 1780400,
+				"to": 1785920
+			},
+			"text": " director representing the board to decide whether that falls in line with our mission"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,920",
+				"to": "00:29:52,480"
+			},
+			"offsets": {
+				"from": 1785920,
+				"to": 1792480
+			},
+			"text": " to actually educate or if it's just marketing or business development."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,480",
+				"to": "00:29:57,360"
+			},
+			"offsets": {
+				"from": 1792480,
+				"to": 1797360
+			},
+			"text": " And so if we basically disagree on approach, then the company can do what they independently"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,360",
+				"to": "00:29:58,360"
+			},
+			"offsets": {
+				"from": 1797360,
+				"to": 1798360
+			},
+			"text": " want."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,360",
+				"to": "00:30:02,760"
+			},
+			"offsets": {
+				"from": 1798360,
+				"to": 1802760
+			},
+			"text": " And similarly, if the company disagrees with our approach on a particular partnership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,760",
+				"to": "00:30:06,160"
+			},
+			"offsets": {
+				"from": 1802760,
+				"to": 1806160
+			},
+			"text": " like that's fine, but we're going to go our way."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,160",
+				"to": "00:30:07,160"
+			},
+			"offsets": {
+				"from": 1806160,
+				"to": 1807160
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,160",
+				"to": "00:30:09,400"
+			},
+			"offsets": {
+				"from": 1807160,
+				"to": 1809400
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,400",
+				"to": "00:30:10,400"
+			},
+			"offsets": {
+				"from": 1809400,
+				"to": 1810400
+			},
+			"text": " And I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,400",
+				"to": "00:30:11,400"
+			},
+			"offsets": {
+				"from": 1810400,
+				"to": 1811400
+			},
+			"text": " Thank you all very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,400",
+				"to": "00:30:12,400"
+			},
+			"offsets": {
+				"from": 1811400,
+				"to": 1812400
+			},
+			"text": " Really appreciate your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,400",
+				"to": "00:30:13,400"
+			},
+			"offsets": {
+				"from": 1812400,
+				"to": 1813400
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,400",
+				"to": "00:30:15,400"
+			},
+			"offsets": {
+				"from": 1813400,
+				"to": 1815400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,400",
+				"to": "00:30:25,400"
+			},
+			"offsets": {
+				"from": 1815400,
+				"to": 1825400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,400",
+				"to": "00:30:35,400"
+			},
+			"offsets": {
+				"from": 1825400,
+				"to": 1835400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,400",
+				"to": "00:30:45,400"
+			},
+			"offsets": {
+				"from": 1835400,
+				"to": 1845400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,400",
+				"to": "00:30:47,400"
+			},
+			"offsets": {
+				"from": 1845400,
+				"to": 1847400
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

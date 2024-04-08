@@ -1,0 +1,1891 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16000
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17000
+			},
+			"text": " So, hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 23000
+			},
+			"text": " So, today we're going to speak about a situation of contract and decentralized quotes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 31000
+			},
+			"text": " So, first, let's start with a simple example. You have Alice and Bob who met on the freelancing platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 37000
+			},
+			"text": " And they agreed that Bob will make a website for Alice against three users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 46000
+			},
+			"text": " And Alice pays Bob, but Bob gives a shitty website and Alice is not happy and wants her money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " But since there is no charge back with crypto, she has no recourse."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 59000
+			},
+			"text": " So, to avoid that, she could put money in a smart contract if she gets a website, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 63000
+			},
+			"text": " She sign and the contract pays Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 69000
+			},
+			"text": " But in case we dispute, Bob says no, I've made the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72000
+			},
+			"text": " If you want something better, you'll have to pay extra."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " And both things are right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 76000
+			},
+			"text": " So, they pay arbitration fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " The dispute goes to an arbitrator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 87000
+			},
+			"text": " And the arbitrator can rule, which will trigger the previous smart contract, which removes the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 94000
+			},
+			"text": " The first catch is all could the arbitrator know what this smart contract was referring about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 102000
+			},
+			"text": " So, to solve that, they first, when they created the contract, input the ash of the plain English contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 111000
+			},
+			"text": " And this way, when they dispute, they can show to the arbitrator what was the contract agreed in plain English."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 118000
+			},
+			"text": " And if there is no dispute, it's progressive preserving and no one has to ever know about what the contract was."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 120000
+			},
+			"text": " Actually, we can even do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 127000
+			},
+			"text": " Imagine if we have a contract with four pages, pages one and two are on one topic, pages three and four on another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 136000
+			},
+			"text": " And you don't want to reveal both of the topic of the contract if you only have one topic which is important for arbitration."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 144000
+			},
+			"text": " So, use a mercury and you just have to reveal the pages which are linked to what you are disputing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 148000
+			},
+			"text": " And the thing is that the arbitrator can be everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " It can be a centralized party, a multi-seag or even a down."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " And that's what clear it says."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " I've given an example which is very simple, which is just transfer money."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 171000
+			},
+			"text": " But in practice, we can have way more complex dispute and enforcement as long as it's enforceable by a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 182000
+			},
+			"text": " So, with money, with freelancing, e-commerce, crowdfunding, you will have, you have all this ICO, there is money, but if they're talking buyer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186000
+			},
+			"text": " I'm not happy, they have no way to get the money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " So, we will have milestone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " And when a milestone is reached, you unlock the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 195000
+			},
+			"text": " And if the token order and the team don't agree, that's a dispute."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 204000
+			},
+			"text": " Online gaming, cheating, social network, you submit content, which is, again, the chart, you have a dispute, you lose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " You remove the content and you penalize the party while you're writing the rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " Intercultural property, we've seen a nice example in the DevCon with ENS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 218000
+			},
+			"text": " You have someone registering your trademark."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " Well, you go to an ENS system to have a blacklist."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 223000
+			},
+			"text": " You have a dispute."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 225000
+			},
+			"text": " This is my trademark."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " I don't want you to use this ENS and I want it to be blacklisted."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 239000
+			},
+			"text": " And the result of the arbitable contract is a blacklist of the domain if the one claiming the intellectual property is seen as correct by the arbitrator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 245000
+			},
+			"text": " Or insurance, this event occurred and does the answer have to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 247000
+			},
+			"text": " So, we can abstract that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 261000
+			},
+			"text": " And have two kinds of contracts, arbitrators' mark contract, which are responsible for enforcement of ruling and arbitrators, which are responsible for giving the ruling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " And the goal is to have every arbitrators' mark contract, arbitrators' mark contract, arbitrators' mark contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 275000
+			},
+			"text": " So this way, if you're a contract developer, you can easily switch from one arbitrator to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 278000
+			},
+			"text": " So let's go back to Cleros."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " The idea of Cleros is to have courts who said \"jurros\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 287000
+			},
+			"text": " So first, we could say, okay, we let everyone register and everyone is a drawer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 294000
+			},
+			"text": " Well, that would be quite impractical because you will either need to pay everyone arbitration fee or everyone will get peanuts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 297000
+			},
+			"text": " So in both ways, we have an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " So we can just draw some of them, which we look at evidence and vote and get a relation fee, but not all."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 306000
+			},
+			"text": " But there is still a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 318000
+			},
+			"text": " Since we don't have a way to be sure that someone had just one online on-chain identity, someone like this guy who registered tons of time and be almost the only one drawn."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 323000
+			},
+			"text": " To solve that, instead of drawing jurros, we draw tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " So you activate your token for arbitration."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 332000
+			},
+			"text": " We get a random number with one of the methods I talked about yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 335000
+			},
+			"text": " From this one, we can get multiple ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " Everyone who has a token drawn is an arbitrator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 343000
+			},
+			"text": " So we add the incentive to arbitrate, which is get the relationship."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 349000
+			},
+			"text": " But now we need an incentive to arbitrate correctly and honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 355000
+			},
+			"text": " But unfortunately, we can't really measure honestly in an algorithmic manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " We could say, \"Okay, it's an obvious dispute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " Did this arbitrator rule honestly or not?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " But that's some kind of chicken and zig problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 370000
+			},
+			"text": " So the best thing we can have is clearance as a proxy of honesty."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 377000
+			},
+			"text": " So in this example, you can ask the new audio, they voted for Bob, why is the majority voted for Alice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 384000
+			},
+			"text": " So those draw, they will lose part of the token to the draw, over the seed, currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 390000
+			},
+			"text": " That's inspired by game theory and a shedding point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 398000
+			},
+			"text": " In this basic example, if you vote the same way as the other, you win something, otherwise you lose something."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 410000
+			},
+			"text": " And if we remove all the level, we can see a matrix, which is symmetric, and from a mathematical standpoint, there is no reason to vote for Bob or for Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " Both of them could be seen at the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 416000
+			},
+			"text": " But fortunately, we have levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 424000
+			},
+			"text": " And in the absence of other factors, we have some solution, which can emerge, which we call the focal point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 428000
+			},
+			"text": " And in this case, the focal point has to be honest here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 430000
+			},
+			"text": " So why would you vote honestly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 436000
+			},
+			"text": " Because you think that the author will vote honestly, or perhaps because you think that the author thinks that the author will vote honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 439000
+			},
+			"text": " In practice, it goes up to three levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 442000
+			},
+			"text": " And that's all we can get honest for."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 443000
+			},
+			"text": " There are still some attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 446000
+			},
+			"text": " One could be, \"Okay, I vote before everyone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 447000
+			},
+			"text": " I vote Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 449000
+			},
+			"text": " No, both of the other parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 451000
+			},
+			"text": " They know that if they vote Bob, they are coherent."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 456000
+			},
+			"text": " So even if Bob is not the honest answer, they could vote Bob.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460000
+			},
+			"text": " So, to avoid that is to use committing reveal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 471000
+			},
+			"text": " So instead of voting directly, you generate your number, a random one locally, and you commit the ash of this number and your vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 480000
+			},
+			"text": " And in the second phase, you will reverse the number, your vote, and on chain, we can verify that it was effectively corresponding to the ash."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 485000
+			},
+			"text": " And then you will see that the other party is committed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 491000
+			},
+			"text": " You could still say, \"Okay, I'm going to reveal my number and my vote towards the party to influence them.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " So to avoid that, we have to penalize this behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 507000
+			},
+			"text": " So if someone revolved the number and the vote to another party, this party can show that on chain, invalidate the vote, and still part of the coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 513000
+			},
+			"text": " So, you can either say, \"Okay, I'm going to vote for Bob, but I don't prove it. I don't show you. I could be lying.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 517000
+			},
+			"text": " Or you can say, \"Okay, I'm going to vote for Bob. I'll show you the proof.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 522000
+			},
+			"text": " But now you have the right to steal my coin and invalidate my vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " So it's not, first, last one way or the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " Another attack, problematic, will be bribing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 545000
+			},
+			"text": " And that's particularly problematic with blockchain and smart contract, because you can make bribing contract, which are trustless, which will automatically pay the bribe with the draw vote the way you asked."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " So to avoid that, you need to have an appeal system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 558000
+			},
+			"text": " So if someone managed to bribe draw at some level, there was a party can appeal and get more and more draws."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 571000
+			},
+			"text": " And if you are in the honest majority assumption, it will be highly more expensive for the dishonest party, because most of the round, it will lose, and even in the round, it will win."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 577000
+			},
+			"text": " It will also have to pay bribe, while the defender just have to pay appeal fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 580000
+			},
+			"text": " So that gives a huge advantage to the defender."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 592000
+			},
+			"text": " Another problem which can arise is, okay, perhaps I don't like freelancing this field. I don't want to buy betwey zoos. I want to arbitrate insurance."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 599000
+			},
+			"text": " So for that, we need an arborescence, of course, which are increasingly and increasingly specialized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 606000
+			},
+			"text": " So when you register to be a draw, you don't just choose a quote, you choose a pass to one quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 611000
+			},
+			"text": " So for chief, it's a generalite e-commerce and freelancing, so it can be drawn in all of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 619000
+			},
+			"text": " But we can ask, okay, or do we make all the quotes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 627000
+			},
+			"text": " If we were to let everyone make the quote, that will rapidly end in a mess of support, with no clearance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 629000
+			},
+			"text": " So that's why we need governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 639000
+			},
+			"text": " And we've seen in previous governance system, like the DAO, that we have a huge problem, which is most of the token holder, they just don't vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 646000
+			},
+			"text": " So, okay, we can't vote if people don't want to vote. That solves real liquid voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 658000
+			},
+			"text": " So in liquid voting, either you vote and everything works as it was in direct voting, or if you don't, and you've designed before, and you showed them before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 663000
+			},
+			"text": " an advisor, you vote the same way as your advisor."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 680000
+			},
+			"text": " And it is advisor as a vote, but also as an advisor, you vote as a way advisor, your advisor votes, and in can go to the point that you have one party with effectively voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 692000
+			},
+			"text": " And now we've seen the website dispute, and we see we have tons of website dispute, so why not make a quote specifically for those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 699000
+			},
+			"text": " We can also have some other kind of problem, which is arbitration is not just right or wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 707000
+			},
+			"text": " That could be the case for Oracle, if it's something with the president, you either lied or you tell the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 715000
+			},
+			"text": " It's easy. But for disputes, it can be more shady, so whether we draw the line."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 725000
+			},
+			"text": " If you just let your vote like that, some general would vote honestly, but be still considered as incurable, so we lose token, so we be frustrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 729000
+			},
+			"text": " So to reduce this problem, we'll have policies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 735000
+			},
+			"text": " A policy is something which looks like a law, it's basically a guideline of auto-abituate."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 755000
+			},
+			"text": " One example of policy will be if you sell some good and you sell it at distance, and it was more than one user, and you don't use track shipment, and the buyer claims he has not received it, we assume that the buyer has not received it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 766000
+			},
+			"text": " So the one is there are some bad news, I know we could do that for 0.1, 1.4.10, and it may not be consensual between the draw."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 773000
+			},
+			"text": " So for them to know all the should rule, the should have a guideline which can be voted through governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 776000
+			},
+			"text": " Another problem is the 51% attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 788000
+			},
+			"text": " What if someone buys more than half of the coin and keeps giving the next rolling, accepting bribe, that would pose a huge problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 802000
+			},
+			"text": " That's also why we need some specific coin, because buying half of the coin of keros would be way more expensive as buying half of the user which would be used in keros because of market death."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 817000
+			},
+			"text": " If you want to buy half of the coin of a coin type, you don't just have to pay for half of the market cap, because the first seller you pay the market price, but you rapidly run out of sell at market price as the price increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 826000
+			},
+			"text": " So perhaps even with value which is higher than the market cap, you may not even be able to buy half of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 841000
+			},
+			"text": " Moreover, if you buy those coins, you do some attack and you accept bribe, you are a dishonest, well, you end up with a dishonest quote, and rule won't is dispute to be arbitrated by your dishonest quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 843000
+			},
+			"text": " No one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " So your token will rapidly become worthless."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 855000
+			},
+			"text": " You can fork it even and make another quote with only dishonest party, but even in that there is still a catch, which is a contract which were created by the court."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 858000
+			},
+			"text": " They don't know the court becomes dishonest."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 867000
+			},
+			"text": " They don't know that they have to update to a new court and a new token, and they will still be under the arbitration of the dishonest quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 874000
+			},
+			"text": " But one could argue that it's the same with Ethereum and connected object blockchain aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 892000
+			},
+			"text": " If someone buy half of the ether and Ethereum attack, all the objects relying on blockchain, they don't know there is an attack, and they will still behave the way the attack chain is behaving."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 902000
+			},
+			"text": " And in the first step, I've shown you some really simplified version of what the incentive could look like, but in practice, it's way more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 907000
+			},
+			"text": " So you have some parts which is a token redistribution, voting the same way as the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 920000
+			},
+			"text": " You also have the honesty of the decision, because if the court gives one decision, your token is not a quote, and the next quote is valuable, so the value of your token increases a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925000
+			},
+			"text": " And if the court gives a dissonance, ruling, your value decreases a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 931000
+			},
+			"text": " And since the token are logged during the cases, you have no way to sell them before."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 941000
+			},
+			"text": " But we will send a catch in the other sense, which is you're not a computer, you can't just get evidence, process them in one week or second, and give a ruling."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 952000
+			},
+			"text": " It actually takes time, you have to look at paperwork, at images, at argument of parties, and time is money, so it has a cost for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 956000
+			},
+			"text": " So you could just say, okay, now that's mainly worth it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 960000
+			},
+			"text": " I will use the vote randomly to get the fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 980000
+			},
+			"text": " So depending on the value of all these variables in the incentives, we can have multiple points where parties could always vote this way, and each one will be as coherent as the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 991000
+			},
+			"text": " But some would lead to this honest quote, some would lead to honest one, and some would lead to quote, just giving random results."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 995000
+			},
+			"text": " So what we call it is Nash equilibrium."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1007000
+			},
+			"text": " It's Nash equilibrium when everyone's strategy is in such a way that after everyone knows everyone's strategy, no one regrets his own strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1016000
+			},
+			"text": " And changing from one strategy to another does not have a lot of sense if you don't think that all the parties are also going to change your strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1030000
+			},
+			"text": " So that's why it's very important that at the beginning, the quote, if honest ruling, because this way, no one will have an interest in changing a use for him a strategy to a business one."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1037000
+			},
+			"text": " So, okay, we verify that it works, so can we recite by that, it's with experimental crypto economics."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1051000
+			},
+			"text": " So at the beginning, you don't link that to your contract with regards to market management, but you still have a general incentive in terms of token distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1058000
+			},
+			"text": " You take a set of dispute that you know are already solved, but that you don't feel good to draw."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1068000
+			},
+			"text": " And you look at what the result will be compared to what you call your own green truth, which is the result of the dispute you had before."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1080000
+			},
+			"text": " And you can use metrics which are inspired by machine learning to evaluate all the ruling of the quote is actually related to the ruling of the green truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1086000
+			},
+			"text": " So basically you do machine learning with human as classifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1089000
+			},
+			"text": " So thanks everyone for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " If you want, you can contribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1096000
+			},
+			"text": " We have a basic version of the quote, some arbitrary smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1107000
+			},
+			"text": " You can interact with contract on the test net, and we are still building the web3 interface to act with you in a nice and user friendly manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1108000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1113000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1121000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:43,260"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1123260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

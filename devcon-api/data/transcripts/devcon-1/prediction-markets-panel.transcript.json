@@ -1,0 +1,4410 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,900"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17900
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,900",
+				"to": "00:00:20,360"
+			},
+			"offsets": {
+				"from": 17900,
+				"to": 20360
+			},
+			"text": " >> We are about to begin our prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,360",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 20360,
+				"to": 23280
+			},
+			"text": " I will hand it over to our moderator."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:28,760"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 28760
+			},
+			"text": " So if everyone could quiet down while we begin prediction markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,760",
+				"to": "00:00:32,280"
+			},
+			"offsets": {
+				"from": 28760,
+				"to": 32280
+			},
+			"text": " Thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,280",
+				"to": "00:00:38,240"
+			},
+			"offsets": {
+				"from": 32280,
+				"to": 38240
+			},
+			"text": " I have a general question that I started asking during the tea break."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,240",
+				"to": "00:00:41,520"
+			},
+			"offsets": {
+				"from": 38240,
+				"to": 41520
+			},
+			"text": " And that is, what do you see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,520",
+				"to": "00:00:47,140"
+			},
+			"offsets": {
+				"from": 41520,
+				"to": 47140
+			},
+			"text": " The in funnel and the out funnel into prediction mark."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,140",
+				"to": "00:00:53,400"
+			},
+			"offsets": {
+				"from": 47140,
+				"to": 53400
+			},
+			"text": " So what kind of processes that could themselves be related to Ethereum could lead"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,400",
+				"to": "00:00:57,520"
+			},
+			"offsets": {
+				"from": 53400,
+				"to": 57520
+			},
+			"text": " to prediction markets be very liquid and very effective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,900",
+				"to": "00:01:02,760"
+			},
+			"offsets": {
+				"from": 57900,
+				"to": 62760
+			},
+			"text": " And if we manage to create liquid and effective prediction markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,760",
+				"to": "00:01:06,820"
+			},
+			"offsets": {
+				"from": 62760,
+				"to": 66820
+			},
+			"text": " what kind of Ethereum processes could benefit from that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,820",
+				"to": "00:01:08,400"
+			},
+			"offsets": {
+				"from": 66820,
+				"to": 68400
+			},
+			"text": " So if we could start from Martin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,400",
+				"to": "00:01:14,880"
+			},
+			"offsets": {
+				"from": 68400,
+				"to": 74880
+			},
+			"text": " >> Yeah. So as I mentioned in the presentation earlier on G nozzles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,880",
+				"to": "00:01:20,980"
+			},
+			"offsets": {
+				"from": 74880,
+				"to": 80980
+			},
+			"text": " our goal is first to set it up to make it really, really easy to set up a prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,980",
+				"to": "00:01:25,900"
+			},
+			"offsets": {
+				"from": 80980,
+				"to": 85900
+			},
+			"text": " So let's say you are interested in one specific topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,900",
+				"to": "00:01:32,400"
+			},
+			"offsets": {
+				"from": 85900,
+				"to": 92400
+			},
+			"text": " Let's just have an example, decisions on Supreme Court decisions or any kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,400",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 92400,
+				"to": 99000
+			},
+			"text": " of special interest or what's going on in the next season of House of Cards, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:45,080"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 105080
+			},
+			"text": " Then it should be really easy as easy as setting up a WordPress block to set up a prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,080",
+				"to": "00:01:54,160"
+			},
+			"offsets": {
+				"from": 105080,
+				"to": 114160
+			},
+			"text": " And one additional mechanism that might make it easier to get started is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,160",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 114160,
+				"to": 118240
+			},
+			"text": " that you can use first tokens for those markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:02:04,240"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 124240
+			},
+			"text": " And they can have a value or they can be additionally traded in E.S.R."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,240",
+				"to": "00:02:14,580"
+			},
+			"offsets": {
+				"from": 124240,
+				"to": 134580
+			},
+			"text": " But for sure it's easier to get it started if you have some kind of play money that only evolves"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,580",
+				"to": "00:02:19,940"
+			},
+			"offsets": {
+				"from": 134580,
+				"to": 139940
+			},
+			"text": " over time into something that becomes valuable because those who have a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,940",
+				"to": "00:02:26,880"
+			},
+			"offsets": {
+				"from": 139940,
+				"to": 146880
+			},
+			"text": " of tokens kind of certificates that they are experts in this field."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,880",
+				"to": "00:02:28,140"
+			},
+			"offsets": {
+				"from": 146880,
+				"to": 148140
+			},
+			"text": " >> Jack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,140",
+				"to": "00:02:36,520"
+			},
+			"offsets": {
+				"from": 148140,
+				"to": 156520
+			},
+			"text": " >> Well, I think one thing that could help sort of onboard people is like really meaningful"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,520",
+				"to": "00:02:38,320"
+			},
+			"offsets": {
+				"from": 156520,
+				"to": 158320
+			},
+			"text": " social media integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,320",
+				"to": "00:02:47,580"
+			},
+			"offsets": {
+				"from": 158320,
+				"to": 167580
+			},
+			"text": " So one integration that I've thought would be pretty cool is like if you could sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,580",
+				"to": "00:02:54,280"
+			},
+			"offsets": {
+				"from": 167580,
+				"to": 174280
+			},
+			"text": " of challenge people on Twitter, like I guess Twitter has like a change tip integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,280",
+				"to": "00:02:55,160"
+			},
+			"offsets": {
+				"from": 174280,
+				"to": 175160
+			},
+			"text": " now, at least I think they do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,160",
+				"to": "00:03:02,260"
+			},
+			"offsets": {
+				"from": 175160,
+				"to": 182260
+			},
+			"text": " And you can imagine, you know, someone is always on Twitter saying something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,260",
+				"to": "00:03:03,880"
+			},
+			"offsets": {
+				"from": 182260,
+				"to": 183880
+			},
+			"text": " that's just like blatantly wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,880",
+				"to": "00:03:06,840"
+			},
+			"offsets": {
+				"from": 183880,
+				"to": 186840
+			},
+			"text": " And I mean, okay, so you could rage at that person."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,840",
+				"to": "00:03:07,880"
+			},
+			"offsets": {
+				"from": 186840,
+				"to": 187880
+			},
+			"text": " It's not going to change anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,880",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 187880,
+				"to": 191280
+			},
+			"text": " But you could challenge them to put their money with their mouth is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,380",
+				"to": "00:03:17,640"
+			},
+			"offsets": {
+				"from": 191380,
+				"to": 197640
+			},
+			"text": " you know, to sort of the catchphrase for prediction markets and say, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,640",
+				"to": "00:03:22,640"
+			},
+			"offsets": {
+				"from": 197640,
+				"to": 202640
+			},
+			"text": " you have a button you can click on that says, you know, Jack has thrown down the gauntlet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,640",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 202640,
+				"to": 207440
+			},
+			"text": " and challenged you to place a, you know, five Bitcoin bet that what you're saying is right."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:32,040"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 212040
+			},
+			"text": " You know, vaccines actually cause autism and see if they take you up on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,040",
+				"to": "00:03:36,580"
+			},
+			"offsets": {
+				"from": 212040,
+				"to": 216580
+			},
+			"text": " I think the sort of conflict and sort of spectacle."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,580",
+				"to": "00:03:39,240"
+			},
+			"offsets": {
+				"from": 216580,
+				"to": 219240
+			},
+			"text": " >> Maybe a tough response that I really like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,240",
+				"to": "00:03:41,540"
+			},
+			"offsets": {
+				"from": 219240,
+				"to": 221540
+			},
+			"text": " >> Yeah, like the idea Twitter integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,540",
+				"to": "00:03:47,380"
+			},
+			"offsets": {
+				"from": 221540,
+				"to": 227380
+			},
+			"text": " One thing that I think might be problematic, you just brought up the example."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,380",
+				"to": "00:03:54,060"
+			},
+			"offsets": {
+				"from": 227380,
+				"to": 234060
+			},
+			"text": " That basically it's a cause or autism."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,060",
+				"to": "00:04:00,120"
+			},
+			"offsets": {
+				"from": 234060,
+				"to": 240120
+			},
+			"text": " The problem is do you get those people to rely on a specific oracle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,120",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 240120,
+				"to": 241880
+			},
+			"text": " What would be the oracle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:06,860"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 246860
+			},
+			"text": " It would be the Wikipedia article then well, they can just directly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,860",
+				"to": "00:04:08,440"
+			},
+			"offsets": {
+				"from": 246860,
+				"to": 248440
+			},
+			"text": " I guess they would not agree to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,740",
+				"to": "00:04:14,560"
+			},
+			"offsets": {
+				"from": 248740,
+				"to": 254560
+			},
+			"text": " >> The problem with that example is that vaccines cause autism isn't a prediction so much as a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,560",
+				"to": "00:04:19,420"
+			},
+			"offsets": {
+				"from": 254560,
+				"to": 259420
+			},
+			"text": " So then you have to formulate exactly what would a testable prediction off of that be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,420",
+				"to": "00:04:21,520"
+			},
+			"offsets": {
+				"from": 259420,
+				"to": 261520
+			},
+			"text": " >> You know, that's a fair point."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,520",
+				"to": "00:04:27,460"
+			},
+			"offsets": {
+				"from": 261520,
+				"to": 267460
+			},
+			"text": " And I mean, I think that the trick, if you were sort of the challenger would be finding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,460",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 267460,
+				"to": 270960
+			},
+			"text": " you know, an existing prediction market or even creating one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:33,820"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 273820
+			},
+			"text": " that matched the challenge that you wanted to place."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,820",
+				"to": "00:04:40,620"
+			},
+			"offsets": {
+				"from": 273820,
+				"to": 280620
+			},
+			"text": " One sort of example that might be sort of more effective is let's say you had two people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,620",
+				"to": "00:04:44,840"
+			},
+			"offsets": {
+				"from": 280620,
+				"to": 284840
+			},
+			"text": " one of whom thinks that technological unemployment is going to be a very serious problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,840",
+				"to": "00:04:48,740"
+			},
+			"offsets": {
+				"from": 284840,
+				"to": 288740
+			},
+			"text": " And the other one who says well, you know, no humans aren't like horses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,740",
+				"to": "00:04:51,340"
+			},
+			"offsets": {
+				"from": 288740,
+				"to": 291340
+			},
+			"text": " we're not going to be replaced, we're infinitely creative"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,340",
+				"to": "00:04:53,020"
+			},
+			"offsets": {
+				"from": 291340,
+				"to": 293020
+			},
+			"text": " and we'll just keep on finding better jobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,020",
+				"to": "00:04:58,620"
+			},
+			"offsets": {
+				"from": 293020,
+				"to": 298620
+			},
+			"text": " And so you actually could me, you know, between those two people actually could make a testable prediction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,620",
+				"to": "00:05:01,420"
+			},
+			"offsets": {
+				"from": 298620,
+				"to": 301420
+			},
+			"text": " something like, you know, labor force participation rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,420",
+				"to": "00:05:05,700"
+			},
+			"offsets": {
+				"from": 301420,
+				"to": 305700
+			},
+			"text": " So we'll continue being above half, we just will continue going up for about 20 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,700",
+				"to": "00:05:09,300"
+			},
+			"offsets": {
+				"from": 305700,
+				"to": 309300
+			},
+			"text": " even making conditional and, you know, technological progress and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,300",
+				"to": "00:05:13,620"
+			},
+			"offsets": {
+				"from": 309300,
+				"to": 313620
+			},
+			"text": " >> What's great about this process is that it actually really drives the conversation forwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,620",
+				"to": "00:05:18,460"
+			},
+			"offsets": {
+				"from": 313620,
+				"to": 318460
+			},
+			"text": " and in a productive direction when you can take a conversation from, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,460",
+				"to": "00:05:22,740"
+			},
+			"offsets": {
+				"from": 318460,
+				"to": 322740
+			},
+			"text": " this is what I think and this is what you think to what would it take to know who was right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,740",
+				"to": "00:05:26,340"
+			},
+			"offsets": {
+				"from": 322740,
+				"to": 326340
+			},
+			"text": " And that's something that really pushes an argument in a positive direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,740",
+				"to": "00:05:33,140"
+			},
+			"offsets": {
+				"from": 326740,
+				"to": 333140
+			},
+			"text": " So, you know, I think the kind of integrating these things into communities is very positive"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,140",
+				"to": "00:05:35,780"
+			},
+			"offsets": {
+				"from": 333140,
+				"to": 335780
+			},
+			"text": " for onboarding, it's positive for those communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,780",
+				"to": "00:05:40,460"
+			},
+			"offsets": {
+				"from": 335780,
+				"to": 340460
+			},
+			"text": " And it's also potentially, I mean, depending on how you design your settlement system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,460",
+				"to": "00:05:45,780"
+			},
+			"offsets": {
+				"from": 340460,
+				"to": 345780
+			},
+			"text": " it's also potentially something where you've got these people who've already identified"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,780",
+				"to": "00:05:46,820"
+			},
+			"offsets": {
+				"from": 345780,
+				"to": 346820
+			},
+			"text": " with their reputations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,820",
+				"to": "00:05:52,500"
+			},
+			"offsets": {
+				"from": 346820,
+				"to": 352500
+			},
+			"text": " So potentially you can use that to settle the outcome based on those real world reputations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,500",
+				"to": "00:05:53,740"
+			},
+			"offsets": {
+				"from": 352500,
+				"to": 353740
+			},
+			"text": " if you build the system around that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,460",
+				"to": "00:05:59,020"
+			},
+			"offsets": {
+				"from": 354460,
+				"to": 359020
+			},
+			"text": " >> Okay, but I was wondering if I could push in a slightly more ambitious direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,020",
+				"to": "00:06:02,940"
+			},
+			"offsets": {
+				"from": 359020,
+				"to": 362940
+			},
+			"text": " So if you work for a sufficiently large organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,940",
+				"to": "00:06:06,420"
+			},
+			"offsets": {
+				"from": 362940,
+				"to": 366420
+			},
+			"text": " you've heard the expression key performance indicator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,420",
+				"to": "00:06:10,980"
+			},
+			"offsets": {
+				"from": 366420,
+				"to": 370980
+			},
+			"text": " Okay, now suppose this organization was run on a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,980",
+				"to": "00:06:18,420"
+			},
+			"offsets": {
+				"from": 370980,
+				"to": 378420
+			},
+			"text": " and they have the key performance indicator and those are published as predictions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,420",
+				"to": "00:06:19,860"
+			},
+			"offsets": {
+				"from": 378420,
+				"to": 379860
+			},
+			"text": " on a prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,180",
+				"to": "00:06:25,060"
+			},
+			"offsets": {
+				"from": 380180,
+				"to": 385060
+			},
+			"text": " So if the company steers left and the price of the contract tanks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,060",
+				"to": "00:06:29,660"
+			},
+			"offsets": {
+				"from": 385060,
+				"to": 389660
+			},
+			"text": " that's an indication that perhaps should be starting steering right instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,660",
+				"to": "00:06:36,660"
+			},
+			"offsets": {
+				"from": 389660,
+				"to": 396660
+			},
+			"text": " So do you see that as a potential addition to the toolkit of the governance of a company?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,660",
+				"to": "00:06:43,060"
+			},
+			"offsets": {
+				"from": 396660,
+				"to": 403060
+			},
+			"text": " >> I think in the Ethereum community it seems as though lots of people are very excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,060",
+				"to": "00:06:46,620"
+			},
+			"offsets": {
+				"from": 403060,
+				"to": 406620
+			},
+			"text": " about this idea of making the run Ethereum startups be DAOs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,860",
+				"to": "00:06:50,940"
+			},
+			"offsets": {
+				"from": 406860,
+				"to": 410940
+			},
+			"text": " And if you want to create a blockchain based organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,940",
+				"to": "00:06:55,140"
+			},
+			"offsets": {
+				"from": 410940,
+				"to": 415140
+			},
+			"text": " then you definitely need to have some kind of blockchain based governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,140",
+				"to": "00:07:01,020"
+			},
+			"offsets": {
+				"from": 415140,
+				"to": 421020
+			},
+			"text": " So having people vote as one approach, it also has weaknesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,020",
+				"to": "00:07:06,020"
+			},
+			"offsets": {
+				"from": 421020,
+				"to": 426020
+			},
+			"text": " So for example, one very simple one that I think people might be overlooking a bit is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,020",
+				"to": "00:07:08,860"
+			},
+			"offsets": {
+				"from": 426020,
+				"to": 428860
+			},
+			"text": " if you have this simple approach where people vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,860",
+				"to": "00:07:12,700"
+			},
+			"offsets": {
+				"from": 428860,
+				"to": 432700
+			},
+			"text": " people automatically become shareholders and shareholders vote on where the money goes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,700",
+				"to": "00:07:14,980"
+			},
+			"offsets": {
+				"from": 432700,
+				"to": 434980
+			},
+			"text": " then here's one thing that I could do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,340",
+				"to": "00:07:19,260"
+			},
+			"offsets": {
+				"from": 435340,
+				"to": 439260
+			},
+			"text": " Let's say, you know, SWOC.IT does their little crowd fund, does their little crowd fund"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,260",
+				"to": "00:07:24,060"
+			},
+			"offsets": {
+				"from": 439260,
+				"to": 444060
+			},
+			"text": " and they get $80,000 in the last hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,060",
+				"to": "00:07:26,940"
+			},
+			"offsets": {
+				"from": 444060,
+				"to": 446940
+			},
+			"text": " I don't get $100,000, I get 55%."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,940",
+				"to": "00:07:33,940"
+			},
+			"offsets": {
+				"from": 446940,
+				"to": 453940
+			},
+			"text": " And I make a motion to send $180,000 back to myself and I have 55% of the vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,940",
+				"to": "00:07:34,580"
+			},
+			"offsets": {
+				"from": 453940,
+				"to": 454580
+			},
+			"text": " and so I win."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,580",
+				"to": "00:07:37,660"
+			},
+			"offsets": {
+				"from": 454580,
+				"to": 457660
+			},
+			"text": " So this is basically the reason why in the real world we have things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,660",
+				"to": "00:07:39,420"
+			},
+			"offsets": {
+				"from": 457660,
+				"to": 459420
+			},
+			"text": " like minority shareholder protections."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,820",
+				"to": "00:07:44,540"
+			},
+			"offsets": {
+				"from": 459820,
+				"to": 464540
+			},
+			"text": " So basically the point of this is that governance mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,540",
+				"to": "00:07:51,260"
+			},
+			"offsets": {
+				"from": 464540,
+				"to": 471260
+			},
+			"text": " especially those for a system that's kind of intended to really sort of stand"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,260",
+				"to": "00:07:57,980"
+			},
+			"offsets": {
+				"from": 471260,
+				"to": 477980
+			},
+			"text": " the test of time and even without sort of relying on manual human intervention,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,980",
+				"to": "00:08:03,100"
+			},
+			"offsets": {
+				"from": 477980,
+				"to": 483100
+			},
+			"text": " potentially ever, it's figuring out sort of effective governance mechanisms is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,100",
+				"to": "00:08:07,980"
+			},
+			"offsets": {
+				"from": 483100,
+				"to": 487980
+			},
+			"text": " a very hard and interesting problem and I could easily see prediction markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,980",
+				"to": "00:08:08,860"
+			},
+			"offsets": {
+				"from": 487980,
+				"to": 488860
+			},
+			"text": " playing a part in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,620",
+				"to": "00:08:10,860"
+			},
+			"offsets": {
+				"from": 489620,
+				"to": 490860
+			},
+			"text": " OK, anyone else on this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,860",
+				"to": "00:08:18,260"
+			},
+			"offsets": {
+				"from": 490860,
+				"to": 498260
+			},
+			"text": " I think one really nice example to show cast is this governance thing could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,260",
+				"to": "00:08:21,500"
+			},
+			"offsets": {
+				"from": 498260,
+				"to": 501500
+			},
+			"text": " and I'm looking forward to do it, to play a chess game."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,500",
+				"to": "00:08:25,740"
+			},
+			"offsets": {
+				"from": 501500,
+				"to": 505740
+			},
+			"text": " To the key performance indicator, as you mentioned, it would be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,740",
+				"to": "00:08:30,540"
+			},
+			"offsets": {
+				"from": 505740,
+				"to": 510540
+			},
+			"text": " will we win the game on the one hand, the prediction market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,540",
+				"to": "00:08:36,580"
+			},
+			"offsets": {
+				"from": 510540,
+				"to": 516580
+			},
+			"text": " And then you could, for every move, have different markets and then see what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,580",
+				"to": "00:08:38,980"
+			},
+			"offsets": {
+				"from": 516580,
+				"to": 518980
+			},
+			"text": " the likelihood to win the game under the condition of this move"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,220",
+				"to": "00:08:44,500"
+			},
+			"offsets": {
+				"from": 519220,
+				"to": 524500
+			},
+			"text": " and on the other side, you have a very strong player and it would be really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,500",
+				"to": "00:08:48,060"
+			},
+			"offsets": {
+				"from": 524500,
+				"to": 528060
+			},
+			"text": " nice showcase if the prediction market could beat a very strong player."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,060",
+				"to": "00:08:56,060"
+			},
+			"offsets": {
+				"from": 528060,
+				"to": 536060
+			},
+			"text": " You know, I mean, one of the examples that's thrown around for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,060",
+				"to": "00:08:58,980"
+			},
+			"offsets": {
+				"from": 536060,
+				"to": 538980
+			},
+			"text": " you know, prediction markets as governance is just like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,980",
+				"to": "00:09:02,860"
+			},
+			"offsets": {
+				"from": 538980,
+				"to": 542860
+			},
+			"text": " will the share price go up or down if this person is elected CEO?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,860",
+				"to": "00:09:05,980"
+			},
+			"offsets": {
+				"from": 542860,
+				"to": 545980
+			},
+			"text": " And by making it a market, you know, you attach a financial incentive to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,340",
+				"to": "00:09:09,460"
+			},
+			"offsets": {
+				"from": 546340,
+				"to": 549460
+			},
+			"text": " And I think it becomes more meaningful than just say a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,460",
+				"to": "00:09:14,420"
+			},
+			"offsets": {
+				"from": 549460,
+				"to": 554420
+			},
+			"text": " OK, so now let's explore the other end of the prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,420",
+				"to": "00:09:18,940"
+			},
+			"offsets": {
+				"from": 554420,
+				"to": 558940
+			},
+			"text": " Now, suppose you do have in place a liquid, well-functioning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,940",
+				"to": "00:09:20,260"
+			},
+			"offsets": {
+				"from": 558940,
+				"to": 560260
+			},
+			"text": " efficient prediction markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,260",
+				"to": "00:09:25,140"
+			},
+			"offsets": {
+				"from": 560260,
+				"to": 565140
+			},
+			"text": " How do you teach people to extract who are not necessarily directly involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,140",
+				"to": "00:09:29,980"
+			},
+			"offsets": {
+				"from": 565140,
+				"to": 569980
+			},
+			"text": " in the events that are predicted to extract a signal out of it that can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,980",
+				"to": "00:09:32,900"
+			},
+			"offsets": {
+				"from": 569980,
+				"to": 572900
+			},
+			"text": " for their activities and possibly within the blockchain itself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,420",
+				"to": "00:09:38,700"
+			},
+			"offsets": {
+				"from": 574420,
+				"to": 578700
+			},
+			"text": " I think if it's really well-functioning and if you've really got reliable"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,700",
+				"to": "00:09:40,860"
+			},
+			"offsets": {
+				"from": 578700,
+				"to": 580860
+			},
+			"text": " information, then actually world will spread quite."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,860",
+				"to": "00:09:44,820"
+			},
+			"offsets": {
+				"from": 580860,
+				"to": 584820
+			},
+			"text": " I mean, it's quite well-known how well prediction markets have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,820",
+				"to": "00:09:48,620"
+			},
+			"offsets": {
+				"from": 584820,
+				"to": 588620
+			},
+			"text": " performing, for example, outperforming pundits in predicting, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,620",
+				"to": "00:09:49,540"
+			},
+			"offsets": {
+				"from": 588620,
+				"to": 589540
+			},
+			"text": " who's going to win elections."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,540",
+				"to": "00:09:52,900"
+			},
+			"offsets": {
+				"from": 589540,
+				"to": 592900
+			},
+			"text": " So I think that once it's clearly a valid source of information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,900",
+				"to": "00:09:57,140"
+			},
+			"offsets": {
+				"from": 592900,
+				"to": 597140
+			},
+			"text": " it's going to be no problem getting people to actually use that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,140",
+				"to": "00:10:00,060"
+			},
+			"offsets": {
+				"from": 597140,
+				"to": 600060
+			},
+			"text": " The difficult problem is making it actually a valid source of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,060",
+				"to": "00:10:02,420"
+			},
+			"offsets": {
+				"from": 600060,
+				"to": 602420
+			},
+			"text": " that isn't going to be gained, isn't going to be messed with."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,620",
+				"to": "00:10:05,500"
+			},
+			"offsets": {
+				"from": 602620,
+				"to": 605500
+			},
+			"text": " I mean, I think there are definitely a such a thing as, you know, markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,500",
+				"to": "00:10:07,740"
+			},
+			"offsets": {
+				"from": 605500,
+				"to": 607740
+			},
+			"text": " sort of market maturity and more ends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,740",
+				"to": "00:10:11,660"
+			},
+			"offsets": {
+				"from": 607740,
+				"to": 611660
+			},
+			"text": " who could actually jumping onto a market because, you know, we see right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,660",
+				"to": "00:10:15,220"
+			},
+			"offsets": {
+				"from": 611660,
+				"to": 615220
+			},
+			"text": " we already have a bunch of prediction markets on group on group"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,220",
+				"to": "00:10:16,860"
+			},
+			"offsets": {
+				"from": 615220,
+				"to": 616860
+			},
+			"text": " gnosis happen trading this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,860",
+				"to": "00:10:20,100"
+			},
+			"offsets": {
+				"from": 616860,
+				"to": 620100
+			},
+			"text": " And I'm pleased to announce that I earned about 25"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,100",
+				"to": "00:10:21,660"
+			},
+			"offsets": {
+				"from": 620100,
+				"to": 621660
+			},
+			"text": " feet or insider trading this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,660",
+				"to": "00:10:29,100"
+			},
+			"offsets": {
+				"from": 621660,
+				"to": 629100
+			},
+			"text": " So for those who work here on Monday, the story is basically that there is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,100",
+				"to": "00:10:31,820"
+			},
+			"offsets": {
+				"from": 629100,
+				"to": 631820
+			},
+			"text": " market on whether or not I'm going to wear a hat again this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,580",
+				"to": "00:10:40,140"
+			},
+			"offsets": {
+				"from": 632580,
+				"to": 640140
+			},
+			"text": " So the other market there was on whether or not the price of Ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,140",
+				"to": "00:10:43,340"
+			},
+			"offsets": {
+				"from": 640140,
+				"to": 643340
+			},
+			"text": " would be higher on Saturday than it was on Monday."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,340",
+				"to": "00:10:46,420"
+			},
+			"offsets": {
+				"from": 643340,
+				"to": 646420
+			},
+			"text": " And, you know, if markets were efficient at all, we would probably see the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,420",
+				"to": "00:10:50,300"
+			},
+			"offsets": {
+				"from": 646420,
+				"to": 650300
+			},
+			"text": " probability of pretty efficiently kind of track, you know, jump down quite a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,300",
+				"to": "00:10:53,580"
+			},
+			"offsets": {
+				"from": 650300,
+				"to": 653580
+			},
+			"text": " bit when the price goes down, go up when the price goes up and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,580",
+				"to": "00:11:00,100"
+			},
+			"offsets": {
+				"from": 653580,
+				"to": 660100
+			},
+			"text": " So, you know, you can, it's kind of easy to just as an economist to kind of think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,300",
+				"to": "00:11:03,860"
+			},
+			"offsets": {
+				"from": 660300,
+				"to": 663860
+			},
+			"text": " that, you know, if basically, you know, if you set the incentives, they will come."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,860",
+				"to": "00:11:07,660"
+			},
+			"offsets": {
+				"from": 663860,
+				"to": 667660
+			},
+			"text": " But at the same time, it does kind of take time for that to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,660",
+				"to": "00:11:11,460"
+			},
+			"offsets": {
+				"from": 667660,
+				"to": 671460
+			},
+			"text": " And, you know, those kinds of activities, it's important not to forget that those"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,460",
+				"to": "00:11:15,300"
+			},
+			"offsets": {
+				"from": 671460,
+				"to": 675300
+			},
+			"text": " activities happening actually involves, you know, real humans doing real things"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,300",
+				"to": "00:11:18,460"
+			},
+			"offsets": {
+				"from": 675300,
+				"to": 678460
+			},
+			"text": " and actually sort of writing the bots or, you know, doing things or doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,460",
+				"to": "00:11:23,220"
+			},
+			"offsets": {
+				"from": 678460,
+				"to": 683220
+			},
+			"text": " whatever things themselves and all of that kind of in first real infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,220",
+				"to": "00:11:24,540"
+			},
+			"offsets": {
+				"from": 683220,
+				"to": 684540
+			},
+			"text": " or work happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,540",
+				"to": "00:11:27,300"
+			},
+			"offsets": {
+				"from": 684540,
+				"to": 687300
+			},
+			"text": " So I'm actually going to latch onto the last comment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,500",
+				"to": "00:11:33,100"
+			},
+			"offsets": {
+				"from": 687500,
+				"to": 693100
+			},
+			"text": " We seem to be in an unusual crowd here where most people seem to have a positive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,100",
+				"to": "00:11:37,100"
+			},
+			"offsets": {
+				"from": 693100,
+				"to": 697100
+			},
+			"text": " opinion of prediction markets, but that's by far not the norm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,100",
+				"to": "00:11:41,820"
+			},
+			"offsets": {
+				"from": 697100,
+				"to": 701820
+			},
+			"text": " And a lot of people who strongly resist to this idea are actually concerned about"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,820",
+				"to": "00:11:47,300"
+			},
+			"offsets": {
+				"from": 701820,
+				"to": 707300
+			},
+			"text": " the possibility of somebody with deep pockets moving a prediction market in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,300",
+				"to": "00:11:50,780"
+			},
+			"offsets": {
+				"from": 707300,
+				"to": 710780
+			},
+			"text": " certain direction for the purpose of taking advantage of it later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,780",
+				"to": "00:11:53,900"
+			},
+			"offsets": {
+				"from": 710780,
+				"to": 713900
+			},
+			"text": " So how would you guys comfort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,100",
+				"to": "00:11:58,900"
+			},
+			"offsets": {
+				"from": 714100,
+				"to": 718900
+			},
+			"text": " and stay the fears of such a person if we start with Martin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,900",
+				"to": "00:12:04,500"
+			},
+			"offsets": {
+				"from": 718900,
+				"to": 724500
+			},
+			"text": " I would say that's difficult because to some degree, I also have those concerns"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,500",
+				"to": "00:12:10,300"
+			},
+			"offsets": {
+				"from": 724500,
+				"to": 730300
+			},
+			"text": " and I would need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,300",
+				"to": "00:12:20,700"
+			},
+			"offsets": {
+				"from": 730300,
+				"to": 740700
+			},
+			"text": " really paint a bigger picture of a new economy where hopefully,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,900",
+				"to": "00:12:25,900"
+			},
+			"offsets": {
+				"from": 740900,
+				"to": 745900
+			},
+			"text": " well, more people get directly shareholders of things they do and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,900",
+				"to": "00:12:32,700"
+			},
+			"offsets": {
+				"from": 745900,
+				"to": 752700
+			},
+			"text": " therefore make better decisions and therefore money cannot influence them so"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,700",
+				"to": "00:12:34,500"
+			},
+			"offsets": {
+				"from": 752700,
+				"to": 754500
+			},
+			"text": " easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,500",
+				"to": "00:12:40,700"
+			},
+			"offsets": {
+				"from": 754500,
+				"to": 760700
+			},
+			"text": " But yeah, it's really a bigger answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,700",
+				"to": "00:12:41,700"
+			},
+			"offsets": {
+				"from": 760700,
+				"to": 761700
+			},
+			"text": " Let's jump over here, Edmond."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,700",
+				"to": "00:12:43,100"
+			},
+			"offsets": {
+				"from": 761700,
+				"to": 763100
+			},
+			"text": " What do you think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,100",
+				"to": "00:12:46,900"
+			},
+			"offsets": {
+				"from": 763100,
+				"to": 766900
+			},
+			"text": " People are going to spend money to move markets and change information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,100",
+				"to": "00:12:51,700"
+			},
+			"offsets": {
+				"from": 767100,
+				"to": 771700
+			},
+			"text": " And you see this a lot right now, particularly in political markets because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,700",
+				"to": "00:12:55,100"
+			},
+			"offsets": {
+				"from": 771700,
+				"to": 775100
+			},
+			"text": " political betting, because I'm in the UK where it's all entirely legal, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,100",
+				"to": "00:12:58,900"
+			},
+			"offsets": {
+				"from": 775100,
+				"to": 778900
+			},
+			"text": " still an extremely small market with not a lot of liquidity compared to, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,900",
+				"to": "00:13:00,100"
+			},
+			"offsets": {
+				"from": 778900,
+				"to": 780100
+			},
+			"text": " example, sports."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,100",
+				"to": "00:13:07,700"
+			},
+			"offsets": {
+				"from": 780100,
+				"to": 787700
+			},
+			"text": " And so, for example, a few years back, there was a leadership election between"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,700",
+				"to": "00:13:12,300"
+			},
+			"offsets": {
+				"from": 787700,
+				"to": 792300
+			},
+			"text": " Nick Clegg and Chris Hoon and somebody was putting a lot of money on Chris Hoon"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,300",
+				"to": "00:13:16,300"
+			},
+			"offsets": {
+				"from": 792300,
+				"to": 796300
+			},
+			"text": " in a way that seemed to be, you know, aimed at moving the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,500",
+				"to": "00:13:21,100"
+			},
+			"offsets": {
+				"from": 796500,
+				"to": 801100
+			},
+			"text": " And the solution to it or the, you know, the mitigation is that hopefully if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,100",
+				"to": "00:13:23,700"
+			},
+			"offsets": {
+				"from": 801100,
+				"to": 803700
+			},
+			"text": " you've got enough liquidity and enough people who know what's going on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,700",
+				"to": "00:13:27,500"
+			},
+			"offsets": {
+				"from": 803700,
+				"to": 807500
+			},
+			"text": " they're going to pile up over money on the opposite side and they're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,500",
+				"to": "00:13:28,900"
+			},
+			"offsets": {
+				"from": 807500,
+				"to": 808900
+			},
+			"text": " make a big profit, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,900",
+				"to": "00:13:32,900"
+			},
+			"offsets": {
+				"from": 808900,
+				"to": 812900
+			},
+			"text": " So in that sense, I think from the point of view of people who actually run"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,900",
+				"to": "00:13:36,700"
+			},
+			"offsets": {
+				"from": 812900,
+				"to": 816700
+			},
+			"text": " and promote these prediction markets, it's something they'd like to see happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,700",
+				"to": "00:13:39,500"
+			},
+			"offsets": {
+				"from": 816700,
+				"to": 819500
+			},
+			"text": " because all of their honest users are actually going to make money when people"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,500",
+				"to": "00:13:41,500"
+			},
+			"offsets": {
+				"from": 819500,
+				"to": 821500
+			},
+			"text": " try to manipulate the markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,700",
+				"to": "00:13:47,300"
+			},
+			"offsets": {
+				"from": 821700,
+				"to": 827300
+			},
+			"text": " I mean, what I would say is just that, you know, what prediction markets do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,300",
+				"to": "00:13:50,620"
+			},
+			"offsets": {
+				"from": 827300,
+				"to": 830620
+			},
+			"text": " assuming that they're liquid and well-functioning the assumptions you said"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,620",
+				"to": "00:13:56,700"
+			},
+			"offsets": {
+				"from": 830620,
+				"to": 836700
+			},
+			"text": " earlier, is, you know, they make it so that if you're manipulating the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,700",
+				"to": "00:13:57,300"
+			},
+			"offsets": {
+				"from": 836700,
+				"to": 837300
+			},
+			"text": " you'll lose money."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,300",
+				"to": "00:13:58,500"
+			},
+			"offsets": {
+				"from": 837300,
+				"to": 838500
+			},
+			"text": " You should lose money."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,500",
+				"to": "00:14:05,300"
+			},
+			"offsets": {
+				"from": 838500,
+				"to": 845300
+			},
+			"text": " And, you know, that doesn't necessarily help you in, you know, this hypothetical"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,300",
+				"to": "00:14:09,500"
+			},
+			"offsets": {
+				"from": 845300,
+				"to": 849500
+			},
+			"text": " situation where you have someone with an unlimited amount of money and nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,700",
+				"to": "00:14:12,700"
+			},
+			"offsets": {
+				"from": 849700,
+				"to": 852700
+			},
+			"text": " that you lose and they're just, you know, kind of out to burn the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,700",
+				"to": "00:14:19,100"
+			},
+			"offsets": {
+				"from": 852700,
+				"to": 859100
+			},
+			"text": " But I think that's, you know, that's a quote-unquote vulnerability that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,100",
+				"to": "00:14:21,500"
+			},
+			"offsets": {
+				"from": 859100,
+				"to": 861500
+			},
+			"text": " you know, most systems have that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,500",
+				"to": "00:14:24,100"
+			},
+			"offsets": {
+				"from": 861500,
+				"to": 864100
+			},
+			"text": " Okay, so let me dig a little bit deeper into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,100",
+				"to": "00:14:27,900"
+			},
+			"offsets": {
+				"from": 864100,
+				"to": 867900
+			},
+			"text": " So imagine a situation where the prediction is about an act of sabotage"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,900",
+				"to": "00:14:34,100"
+			},
+			"offsets": {
+				"from": 867900,
+				"to": 874100
+			},
+			"text": " where an individual could actually buy themselves or with help actually carry out"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,100",
+				"to": "00:14:37,900"
+			},
+			"offsets": {
+				"from": 874100,
+				"to": 877900
+			},
+			"text": " the act of sabotage and cause the event to actually take place."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,100",
+				"to": "00:14:43,500"
+			},
+			"offsets": {
+				"from": 878100,
+				"to": 883500
+			},
+			"text": " So what do you guys think a responsible prediction market should do to deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,500",
+				"to": "00:14:44,300"
+			},
+			"offsets": {
+				"from": 883500,
+				"to": 884300
+			},
+			"text": " that kind of case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,300",
+				"to": "00:14:45,900"
+			},
+			"offsets": {
+				"from": 884300,
+				"to": 885900
+			},
+			"text": " Could start with that, Mott again."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,900",
+				"to": "00:14:46,900"
+			},
+			"offsets": {
+				"from": 885900,
+				"to": 886900
+			},
+			"text": " Yes, sir."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,900",
+				"to": "00:14:51,100"
+			},
+			"offsets": {
+				"from": 886900,
+				"to": 891100
+			},
+			"text": " I mean, as a data feed provider, we've always kind of agonized about whether we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,100",
+				"to": "00:14:57,700"
+			},
+			"offsets": {
+				"from": 891100,
+				"to": 897700
+			},
+			"text": " should be providing signed data about people's deaths, which obviously has a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,700",
+				"to": "00:14:58,700"
+			},
+			"offsets": {
+				"from": 897700,
+				"to": 898700
+			},
+			"text": " of potential for abuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,700",
+				"to": "00:15:01,100"
+			},
+			"offsets": {
+				"from": 898700,
+				"to": 901100
+			},
+			"text": " You know, people always bring out the assassination contract when you talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,100",
+				"to": "00:15:02,100"
+			},
+			"offsets": {
+				"from": 901100,
+				"to": 902100
+			},
+			"text": " about prediction markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,100",
+				"to": "00:15:07,100"
+			},
+			"offsets": {
+				"from": 902100,
+				"to": 907100
+			},
+			"text": " At the same time, it has all kinds of really useful, interesting use cases like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,300",
+				"to": "00:15:11,100"
+			},
+			"offsets": {
+				"from": 907300,
+				"to": 911100
+			},
+			"text": " you know, making wills execute quickly, for example, or, you know, governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,100",
+				"to": "00:15:12,700"
+			},
+			"offsets": {
+				"from": 911100,
+				"to": 912700
+			},
+			"text": " procedures."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,700",
+				"to": "00:15:18,900"
+			},
+			"offsets": {
+				"from": 912700,
+				"to": 918900
+			},
+			"text": " So we still haven't quite made up our minds what to do ultimately about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,900",
+				"to": "00:15:22,100"
+			},
+			"offsets": {
+				"from": 918900,
+				"to": 922100
+			},
+			"text": " But I think, you know, it's going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,100",
+				"to": "00:15:23,500"
+			},
+			"offsets": {
+				"from": 922100,
+				"to": 923500
+			},
+			"text": " Somebody's going to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,500",
+				"to": "00:15:24,900"
+			},
+			"offsets": {
+				"from": 923500,
+				"to": 924900
+			},
+			"text": " Mark, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,900",
+				"to": "00:15:31,700"
+			},
+			"offsets": {
+				"from": 924900,
+				"to": 931700
+			},
+			"text": " Obviously also, as I thought about is signed messages of people's deaths."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,700",
+				"to": "00:15:36,900"
+			},
+			"offsets": {
+				"from": 931700,
+				"to": 936900
+			},
+			"text": " And basically, in the world of Ethereum, every time you are publishing a signed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,100",
+				"to": "00:15:41,700"
+			},
+			"offsets": {
+				"from": 937100,
+				"to": 941700
+			},
+			"text": " message, you're pulling a trigger of a machine where you don't know what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,700",
+				"to": "00:15:43,100"
+			},
+			"offsets": {
+				"from": 941700,
+				"to": 943100
+			},
+			"text": " happening in this machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,100",
+				"to": "00:15:46,500"
+			},
+			"offsets": {
+				"from": 943100,
+				"to": 946500
+			},
+			"text": " So you could trigger anything with a signed message."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,500",
+				"to": "00:15:56,300"
+			},
+			"offsets": {
+				"from": 946500,
+				"to": 956300
+			},
+			"text": " And especially when it comes to the death of people, it might be or it might"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,300",
+				"to": "00:16:04,900"
+			},
+			"offsets": {
+				"from": 956300,
+				"to": 964900
+			},
+			"text": " be a solution to say you as an individual would have the right to make an"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,100",
+				"to": "00:16:12,100"
+			},
+			"offsets": {
+				"from": 965100,
+				"to": 972100
+			},
+			"text": " ethical, wrongly, a report about your death, for example, to kind of unload the gun."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,100",
+				"to": "00:16:13,700"
+			},
+			"offsets": {
+				"from": 972100,
+				"to": 973700
+			},
+			"text": " And just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,700",
+				"to": "00:16:14,900"
+			},
+			"offsets": {
+				"from": 973700,
+				"to": 974900
+			},
+			"text": " Well, thanks, Jack."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,900",
+				"to": "00:16:16,100"
+			},
+			"offsets": {
+				"from": 974900,
+				"to": 976100
+			},
+			"text": " I got to have a..."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,100",
+				"to": "00:16:22,900"
+			},
+			"offsets": {
+				"from": 976100,
+				"to": 982900
+			},
+			"text": " My thought about that is that, you know, why not take advantage of the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,900",
+				"to": "00:16:27,300"
+			},
+			"offsets": {
+				"from": 982900,
+				"to": 987300
+			},
+			"text": " mechanism that, you know, sort of powers, prediction markets in general, the idea of the wisdom"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,300",
+				"to": "00:16:32,700"
+			},
+			"offsets": {
+				"from": 987300,
+				"to": 992700
+			},
+			"text": " of the crowd and, you know, say that, you know, what does it mean for a market to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,900",
+				"to": "00:16:37,900"
+			},
+			"offsets": {
+				"from": 992900,
+				"to": 997900
+			},
+			"text": " saying, like unethical? And, well, it's really, you know, whether or not people think"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,900",
+				"to": "00:16:43,900"
+			},
+			"offsets": {
+				"from": 997900,
+				"to": 1003900
+			},
+			"text": " it's unethical. And so you could sort of leverage the moral compass of your users"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,900",
+				"to": "00:16:51,900"
+			},
+			"offsets": {
+				"from": 1003900,
+				"to": 1011900
+			},
+			"text": " and say, like, well, they can vote on whether or not this is an ethical question."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,900",
+				"to": "00:16:52,900"
+			},
+			"offsets": {
+				"from": 1011900,
+				"to": 1012900
+			},
+			"text": " We don't think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,900",
+				"to": "00:16:59,300"
+			},
+			"offsets": {
+				"from": 1012900,
+				"to": 1019300
+			},
+			"text": " Yeah, I mean, I think as, you know, as I understand, you know, the way Auger does it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,500",
+				"to": "00:17:03,300"
+			},
+			"offsets": {
+				"from": 1019500,
+				"to": 1023300
+			},
+			"text": " that when you, when people actually vote on whether or not an event occurred, they can vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,300",
+				"to": "00:17:07,100"
+			},
+			"offsets": {
+				"from": 1023300,
+				"to": 1027100
+			},
+			"text": " yes, they can vote no or they can vote, you know, ambiguous or unethical."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,100",
+				"to": "00:17:12,300"
+			},
+			"offsets": {
+				"from": 1027100,
+				"to": 1032300
+			},
+			"text": " And the theory is that, you know, if some question actually is unethical in some way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,300",
+				"to": "00:17:16,300"
+			},
+			"offsets": {
+				"from": 1032300,
+				"to": 1036300
+			},
+			"text": " or if it's just sort of two-plane ambiguous, like if you just throw gibberish into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,300",
+				"to": "00:17:20,500"
+			},
+			"offsets": {
+				"from": 1036300,
+				"to": 1040500
+			},
+			"text": " question field, then they'll answer that. And even the person who created the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,500",
+				"to": "00:17:22,100"
+			},
+			"offsets": {
+				"from": 1040500,
+				"to": 1042100
+			},
+			"text": " might even be penalized some mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,100",
+				"to": "00:17:28,900"
+			},
+			"offsets": {
+				"from": 1042100,
+				"to": 1048900
+			},
+			"text": " So it's like the thing is that all of these watching-based systems, they all kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,100",
+				"to": "00:17:30,900"
+			},
+			"offsets": {
+				"from": 1049100,
+				"to": 1050900
+			},
+			"text": " exist in this sort of crypto sphere."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,900",
+				"to": "00:17:34,900"
+			},
+			"offsets": {
+				"from": 1050900,
+				"to": 1054900
+			},
+			"text": " And there is always going to be some kind of link between that and the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,900",
+				"to": "00:17:40,300"
+			},
+			"offsets": {
+				"from": 1054900,
+				"to": 1060300
+			},
+			"text": " And it's kind of clear that that link is inevitably going to be a collusion"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,300",
+				"to": "00:17:43,700"
+			},
+			"offsets": {
+				"from": 1060300,
+				"to": 1063700
+			},
+			"text": " vector, I guess, both for good and for evil."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,700",
+				"to": "00:17:46,700"
+			},
+			"offsets": {
+				"from": 1063700,
+				"to": 1066700
+			},
+			"text": " Okay. Going in a slightly different direction now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,700",
+				"to": "00:17:53,900"
+			},
+			"offsets": {
+				"from": 1066700,
+				"to": 1073900
+			},
+			"text": " So imagine that you have the ability to make the life of the predictor as easy as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,100",
+				"to": "00:18:00,900"
+			},
+			"offsets": {
+				"from": 1074100,
+				"to": 1080900
+			},
+			"text": " So imagine the equivalent of an IDE for predictors where you enter the market and you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,900",
+				"to": "00:18:05,100"
+			},
+			"offsets": {
+				"from": 1080900,
+				"to": 1085100
+			},
+			"text": " a series of dashboards that you can look at that can assist you with your prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,100",
+				"to": "00:18:10,900"
+			},
+			"offsets": {
+				"from": 1085100,
+				"to": 1090900
+			},
+			"text": " And here there is an interesting link because a lot of governments at various levels,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,900",
+				"to": "00:18:17,700"
+			},
+			"offsets": {
+				"from": 1090900,
+				"to": 1097700
+			},
+			"text": " national, regional and even city, are now publishing very large amounts of data sets"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,700",
+				"to": "00:18:23,100"
+			},
+			"offsets": {
+				"from": 1097700,
+				"to": 1103100
+			},
+			"text": " that describe what's happening in the region or the country at various levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,300",
+				"to": "00:18:26,300"
+			},
+			"offsets": {
+				"from": 1103300,
+				"to": 1106300
+			},
+			"text": " So the question is, how would you set up giving you access to all this information"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,300",
+				"to": "00:18:28,100"
+			},
+			"offsets": {
+				"from": 1106300,
+				"to": 1108100
+			},
+			"text": " so that you can make a prediction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,100",
+				"to": "00:18:32,700"
+			},
+			"offsets": {
+				"from": 1108100,
+				"to": 1112700
+			},
+			"text": " Yeah, which kind of data sets would you, if this was your dashboard, what would you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,700",
+				"to": "00:18:35,300"
+			},
+			"offsets": {
+				"from": 1112700,
+				"to": 1115300
+			},
+			"text": " to see or for what kind of predictions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,300",
+				"to": "00:18:38,900"
+			},
+			"offsets": {
+				"from": 1115300,
+				"to": 1118900
+			},
+			"text": " Right. Well, it's going to really, you know, entirely depend on the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,900",
+				"to": "00:18:40,100"
+			},
+			"offsets": {
+				"from": 1118900,
+				"to": 1120100
+			},
+			"text": " the data sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,100",
+				"to": "00:18:41,300"
+			},
+			"offsets": {
+				"from": 1120100,
+				"to": 1121300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,300",
+				"to": "00:18:42,300"
+			},
+			"offsets": {
+				"from": 1121300,
+				"to": 1122300
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,300",
+				"to": "00:18:43,300"
+			},
+			"offsets": {
+				"from": 1122300,
+				"to": 1123300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,300",
+				"to": "00:18:43,500"
+			},
+			"offsets": {
+				"from": 1123300,
+				"to": 1123500
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,500",
+				"to": "00:18:44,500"
+			},
+			"offsets": {
+				"from": 1123500,
+				"to": 1124500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,500",
+				"to": "00:18:45,700"
+			},
+			"offsets": {
+				"from": 1124500,
+				"to": 1125700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,700",
+				"to": "00:18:46,900"
+			},
+			"offsets": {
+				"from": 1125700,
+				"to": 1126900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,900",
+				"to": "00:18:47,900"
+			},
+			"offsets": {
+				"from": 1126900,
+				"to": 1127900
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,900",
+				"to": "00:18:48,900"
+			},
+			"offsets": {
+				"from": 1127900,
+				"to": 1128900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,900",
+				"to": "00:18:49,100"
+			},
+			"offsets": {
+				"from": 1128900,
+				"to": 1129100
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,100",
+				"to": "00:18:50,100"
+			},
+			"offsets": {
+				"from": 1129100,
+				"to": 1130100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,100",
+				"to": "00:18:51,100"
+			},
+			"offsets": {
+				"from": 1130100,
+				"to": 1131100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,300",
+				"to": "00:18:53,300"
+			},
+			"offsets": {
+				"from": 1131300,
+				"to": 1133300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,300",
+				"to": "00:18:54,300"
+			},
+			"offsets": {
+				"from": 1133300,
+				"to": 1134300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,300",
+				"to": "00:18:55,500"
+			},
+			"offsets": {
+				"from": 1134300,
+				"to": 1135500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,500",
+				"to": "00:18:56,700"
+			},
+			"offsets": {
+				"from": 1135500,
+				"to": 1136700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,700",
+				"to": "00:18:57,900"
+			},
+			"offsets": {
+				"from": 1136700,
+				"to": 1137900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,900",
+				"to": "00:18:59,100"
+			},
+			"offsets": {
+				"from": 1137900,
+				"to": 1139100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,100",
+				"to": "00:19:00,300"
+			},
+			"offsets": {
+				"from": 1139100,
+				"to": 1140300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,300",
+				"to": "00:19:01,500"
+			},
+			"offsets": {
+				"from": 1140300,
+				"to": 1141500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,500",
+				"to": "00:19:02,700"
+			},
+			"offsets": {
+				"from": 1141500,
+				"to": 1142700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,700",
+				"to": "00:19:03,900"
+			},
+			"offsets": {
+				"from": 1142700,
+				"to": 1143900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,900",
+				"to": "00:19:05,100"
+			},
+			"offsets": {
+				"from": 1143900,
+				"to": 1145100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,100",
+				"to": "00:19:06,300"
+			},
+			"offsets": {
+				"from": 1145100,
+				"to": 1146300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,300",
+				"to": "00:19:07,500"
+			},
+			"offsets": {
+				"from": 1146300,
+				"to": 1147500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,500",
+				"to": "00:19:08,700"
+			},
+			"offsets": {
+				"from": 1147500,
+				"to": 1148700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,700",
+				"to": "00:19:09,900"
+			},
+			"offsets": {
+				"from": 1148700,
+				"to": 1149900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,900",
+				"to": "00:19:11,100"
+			},
+			"offsets": {
+				"from": 1149900,
+				"to": 1151100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,100",
+				"to": "00:19:12,300"
+			},
+			"offsets": {
+				"from": 1151100,
+				"to": 1152300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,300",
+				"to": "00:19:13,500"
+			},
+			"offsets": {
+				"from": 1152300,
+				"to": 1153500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,500",
+				"to": "00:19:14,700"
+			},
+			"offsets": {
+				"from": 1153500,
+				"to": 1154700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,700",
+				"to": "00:19:15,900"
+			},
+			"offsets": {
+				"from": 1154700,
+				"to": 1155900
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,900",
+				"to": "00:19:17,100"
+			},
+			"offsets": {
+				"from": 1155900,
+				"to": 1157100
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,100",
+				"to": "00:19:18,300"
+			},
+			"offsets": {
+				"from": 1157100,
+				"to": 1158300
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,300",
+				"to": "00:19:19,500"
+			},
+			"offsets": {
+				"from": 1158300,
+				"to": 1159500
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,500",
+				"to": "00:19:20,700"
+			},
+			"offsets": {
+				"from": 1159500,
+				"to": 1160700
+			},
+			"text": " So you can make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,900",
+				"to": "00:19:21,900"
+			},
+			"offsets": {
+				"from": 1160900,
+				"to": 1161900
+			},
+			"text": " And make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,900",
+				"to": "00:19:23,100"
+			},
+			"offsets": {
+				"from": 1161900,
+				"to": 1163100
+			},
+			"text": " And make a prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,100",
+				"to": "00:19:25,700"
+			},
+			"offsets": {
+				"from": 1163100,
+				"to": 1165700
+			},
+			"text": " And then maybe put in some market maker subsidy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,700",
+				"to": "00:19:27,900"
+			},
+			"offsets": {
+				"from": 1165700,
+				"to": 1167900
+			},
+			"text": " And then just see people start voting on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,900",
+				"to": "00:19:33,500"
+			},
+			"offsets": {
+				"from": 1167900,
+				"to": 1173500
+			},
+			"text": " I mean, this is maybe a somewhat optimistic answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,500",
+				"to": "00:19:36,900"
+			},
+			"offsets": {
+				"from": 1173500,
+				"to": 1176900
+			},
+			"text": " But you asked for sort of the best case scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,900",
+				"to": "00:19:42,700"
+			},
+			"offsets": {
+				"from": 1176900,
+				"to": 1182700
+			},
+			"text": " So I would say, you know, if you had like a really good, you know, sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,700",
+				"to": "00:19:49,500"
+			},
+			"offsets": {
+				"from": 1182700,
+				"to": 1189500
+			},
+			"text": " AI/machine learning text mining algorithm that could suggest answers to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,700",
+				"to": "00:19:53,700"
+			},
+			"offsets": {
+				"from": 1189700,
+				"to": 1193700
+			},
+			"text": " And you could always verify them yourself afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,700",
+				"to": "00:20:02,700"
+			},
+			"offsets": {
+				"from": 1193700,
+				"to": 1202700
+			},
+			"text": " I think that knowing how other people are deciding is that that would also be a very strong indicator."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,700",
+				"to": "00:20:07,700"
+			},
+			"offsets": {
+				"from": 1202700,
+				"to": 1207700
+			},
+			"text": " But you know, that relies on getting something like that to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,700",
+				"to": "00:20:13,700"
+			},
+			"offsets": {
+				"from": 1207700,
+				"to": 1213700
+			},
+			"text": " We are sort of researching something like that at Auger."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,700",
+				"to": "00:20:16,900"
+			},
+			"offsets": {
+				"from": 1213700,
+				"to": 1216900
+			},
+			"text": " But it remains to be seen without that will pan out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,900",
+				"to": "00:20:21,900"
+			},
+			"offsets": {
+				"from": 1216900,
+				"to": 1221900
+			},
+			"text": " Martin, if you have anything to add?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,900",
+				"to": "00:20:25,900"
+			},
+			"offsets": {
+				"from": 1221900,
+				"to": 1225900
+			},
+			"text": " Okay. So then I'm trying to coax a prediction out of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,900",
+				"to": "00:20:29,900"
+			},
+			"offsets": {
+				"from": 1225900,
+				"to": 1229900
+			},
+			"text": " So what kind..."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,900",
+				"to": "00:20:34,900"
+			},
+			"offsets": {
+				"from": 1229900,
+				"to": 1234900
+			},
+			"text": " So how many question types do you..."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,900",
+				"to": "00:20:40,100"
+			},
+			"offsets": {
+				"from": 1234900,
+				"to": 1240100
+			},
+			"text": " So today, you know, the most frequently cited examples of prediction markets"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,100",
+				"to": "00:20:45,900"
+			},
+			"offsets": {
+				"from": 1240100,
+				"to": 1245900
+			},
+			"text": " are about political events, so elections, or Hollywood movies, gross totals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,100",
+				"to": "00:20:52,500"
+			},
+			"offsets": {
+				"from": 1246100,
+				"to": 1252500
+			},
+			"text": " or issues that have to do with popular culture in general, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,500",
+				"to": "00:20:56,100"
+			},
+			"offsets": {
+				"from": 1252500,
+				"to": 1256100
+			},
+			"text": " And so those are fairly predictable in their types."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,100",
+				"to": "00:21:03,300"
+			},
+			"offsets": {
+				"from": 1256100,
+				"to": 1263300
+			},
+			"text": " How many different types of predictions do you expect to see, say, in the next five years' time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,300",
+				"to": "00:21:08,300"
+			},
+			"offsets": {
+				"from": 1263300,
+				"to": 1268300
+			},
+			"text": " So a tenfold increase, a one hundredfold increase, and one millionfold increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,300",
+				"to": "00:21:12,100"
+			},
+			"offsets": {
+				"from": 1268300,
+				"to": 1272100
+			},
+			"text": " And what would drive that growth, if possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,100",
+				"to": "00:21:14,100"
+			},
+			"offsets": {
+				"from": 1272100,
+				"to": 1274100
+			},
+			"text": " So can we start from Jack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,300",
+				"to": "00:21:22,300"
+			},
+			"offsets": {
+				"from": 1274300,
+				"to": 1282300
+			},
+			"text": " So I mean, so I don't have a good sense of like the number of categories"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,300",
+				"to": "00:21:25,500"
+			},
+			"offsets": {
+				"from": 1282300,
+				"to": 1285500
+			},
+			"text": " that people will be making predictions on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,500",
+				"to": "00:21:27,700"
+			},
+			"offsets": {
+				"from": 1285500,
+				"to": 1287700
+			},
+			"text": " I think that..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,700",
+				"to": "00:21:30,300"
+			},
+			"offsets": {
+				"from": 1287700,
+				"to": 1290300
+			},
+			"text": " You know, my sense is that..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,300",
+				"to": "00:21:38,300"
+			},
+			"offsets": {
+				"from": 1290300,
+				"to": 1298300
+			},
+			"text": " Maybe this is a pessimistic prediction, but I feel like the few basic things that people want to predict"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,300",
+				"to": "00:21:40,500"
+			},
+			"offsets": {
+				"from": 1298300,
+				"to": 1300500
+			},
+			"text": " won't be that different than they are now."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,500",
+				"to": "00:21:42,100"
+			},
+			"offsets": {
+				"from": 1300500,
+				"to": 1302100
+			},
+			"text": " I think politics will decline."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,300",
+				"to": "00:21:44,300"
+			},
+			"offsets": {
+				"from": 1302300,
+				"to": 1304300
+			},
+			"text": " That's sort of a..."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,300",
+				"to": "00:21:51,300"
+			},
+			"offsets": {
+				"from": 1304300,
+				"to": 1311300
+			},
+			"text": " For some reason that has become prediction markets, you know, the sort of go-to topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,300",
+				"to": "00:21:59,300"
+			},
+			"offsets": {
+				"from": 1311300,
+				"to": 1319300
+			},
+			"text": " I think that one thing that might be somewhat new, as you mentioned, like Hollywood Stock Exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,300",
+				"to": "00:22:06,300"
+			},
+			"offsets": {
+				"from": 1319300,
+				"to": 1326300
+			},
+			"text": " will be people sort of betting on things like who will win American Idol."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,300",
+				"to": "00:22:10,300"
+			},
+			"offsets": {
+				"from": 1326300,
+				"to": 1330300
+			},
+			"text": " I think a lot of people would find it to be very diverting."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,500",
+				"to": "00:22:19,500"
+			},
+			"offsets": {
+				"from": 1330500,
+				"to": 1339500
+			},
+			"text": " And aside from that sort of the usual suspects, you can imagine like, you know, financial betting."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,500",
+				"to": "00:22:25,500"
+			},
+			"offsets": {
+				"from": 1339500,
+				"to": 1345500
+			},
+			"text": " I mean, it's sort of like, you know, if you think of like options are kind of like betting."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,500",
+				"to": "00:22:28,500"
+			},
+			"offsets": {
+				"from": 1345500,
+				"to": 1348500
+			},
+			"text": " You know, maybe sports, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,500",
+				"to": "00:22:33,500"
+			},
+			"offsets": {
+				"from": 1348500,
+				"to": 1353500
+			},
+			"text": " I'm not too sure on exactly how long the roadmap until this will be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,500",
+				"to": "00:22:38,500"
+			},
+			"offsets": {
+				"from": 1353500,
+				"to": 1358500
+			},
+			"text": " but one area that I'm interested in is actually rather than sort of starting from the top"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,700",
+				"to": "00:22:46,700"
+			},
+			"offsets": {
+				"from": 1358700,
+				"to": 1366700
+			},
+			"text": " and sort of thinking big of, you know, is making predictions on whether policy or policy will be more likely to increase GDP by 5 trillion years"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,700",
+				"to": "00:22:51,700"
+			},
+			"offsets": {
+				"from": 1366700,
+				"to": 1371700
+			},
+			"text": " or anything of that scale, why not use them for things that are extremely microscopic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,700",
+				"to": "00:23:00,700"
+			},
+			"offsets": {
+				"from": 1371700,
+				"to": 1380700
+			},
+			"text": " So one simple example of a prediction market is you can imagine one being used to, let's say, create a voting system for a decentralized Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,700",
+				"to": "00:23:05,700"
+			},
+			"offsets": {
+				"from": 1380700,
+				"to": 1385700
+			},
+			"text": " So the basic problem here is that in general on Reddit, you have two types of moderation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,900",
+				"to": "00:23:08,900"
+			},
+			"offsets": {
+				"from": 1385900,
+				"to": 1388900
+			},
+			"text": " One type is community moderation up votes and down votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,900",
+				"to": "00:23:13,700"
+			},
+			"offsets": {
+				"from": 1388900,
+				"to": 1393700
+			},
+			"text": " It's nice and sort of democratic and decentralized and people like that, but the problem is it's slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,700",
+				"to": "00:23:17,900"
+			},
+			"offsets": {
+				"from": 1393700,
+				"to": 1397900
+			},
+			"text": " And people don't like the fact that if someone posts a spammy content and comment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,900",
+				"to": "00:23:22,500"
+			},
+			"offsets": {
+				"from": 1397900,
+				"to": 1402500
+			},
+			"text": " it still stays on for at least a couple of hours before it gets kicked off the page."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,500",
+				"to": "00:23:29,100"
+			},
+			"offsets": {
+				"from": 1402500,
+				"to": 1409100
+			},
+			"text": " The second kind is centralized moderation, which people don't like because it's, you know, the big, big, bad guy with an iron fist and forcing everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,300",
+				"to": "00:23:39,300"
+			},
+			"offsets": {
+				"from": 1409300,
+				"to": 1419300
+			},
+			"text": " So one sort of alternative proposal is imagine every single Reddit comment being a prediction market and people could, you know, upvote and downvote."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,300",
+				"to": "00:23:41,100"
+			},
+			"offsets": {
+				"from": 1419300,
+				"to": 1421100
+			},
+			"text": " They could upvote and downvote themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,100",
+				"to": "00:23:46,300"
+			},
+			"offsets": {
+				"from": 1421100,
+				"to": 1426300
+			},
+			"text": " They could potentially, you know, have a machine learning bought to the up voting and down voting, you know, potentially any strategy goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,300",
+				"to": "00:23:53,900"
+			},
+			"offsets": {
+				"from": 1426300,
+				"to": 1433900
+			},
+			"text": " But the thing that they will be predicting is, you know, it could imagine some sort of pool of moderate of community moderators."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,100",
+				"to": "00:24:02,300"
+			},
+			"offsets": {
+				"from": 1434100,
+				"to": 1442300
+			},
+			"text": " And this could be sort of very large, fairly easy to join and, you know, people sort of be moderating random subsets of comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,300",
+				"to": "00:24:04,900"
+			},
+			"offsets": {
+				"from": 1442300,
+				"to": 1444900
+			},
+			"text": " And this would be a prediction market on how they would vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,900",
+				"to": "00:24:11,500"
+			},
+			"offsets": {
+				"from": 1444900,
+				"to": 1451500
+			},
+			"text": " So it's sort of kind of like, I think, Robin Hanson came up with what he called predictocracy, which is like using prediction markets on voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,500",
+				"to": "00:24:13,100"
+			},
+			"offsets": {
+				"from": 1451500,
+				"to": 1453100
+			},
+			"text": " So this would be kind of similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,100",
+				"to": "00:24:19,500"
+			},
+			"offsets": {
+				"from": 1453100,
+				"to": 1459500
+			},
+			"text": " So the benefits here is that, you know, people could make sort of downvotes and potentially push content down very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,700",
+				"to": "00:24:27,700"
+			},
+			"offsets": {
+				"from": 1459700,
+				"to": 1467700
+			},
+			"text": " But, you know, by doing that, they're putting their money where their mouth is and if they're abusing the system, then theoretically someone else considered bad against them and steal their money."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,700",
+				"to": "00:24:38,700"
+			},
+			"offsets": {
+				"from": 1467700,
+				"to": 1478700
+			},
+			"text": " So, you know, that's just one very simple sort of, you know, completely out there example of how prediction markets could be applied on like sub-dulver scales."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,700",
+				"to": "00:24:40,900"
+			},
+			"offsets": {
+				"from": 1478700,
+				"to": 1480900
+			},
+			"text": " So again, let me build on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,900",
+				"to": "00:24:47,100"
+			},
+			"offsets": {
+				"from": 1480900,
+				"to": 1487100
+			},
+			"text": " So I find it interesting and remarkable how still the web oriented much of the discussion is."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,300",
+				"to": "00:25:05,100"
+			},
+			"offsets": {
+				"from": 1487300,
+				"to": 1505100
+			},
+			"text": " But suppose you want to know how many new stores a large company like Walmart will open in the United States next year, you really want to have the people who are driving by the construction sites of the Walmart site to tell you if the construction is proceeding on schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,100",
+				"to": "00:25:16,700"
+			},
+			"offsets": {
+				"from": 1505100,
+				"to": 1516700
+			},
+			"text": " So what kind of mechanism do you think could be put into place to have those very micro local observations feed into a macro process like how well Walmart is going to do next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,900",
+				"to": "00:25:23,900"
+			},
+			"offsets": {
+				"from": 1516900,
+				"to": 1523900
+			},
+			"text": " I can't idea what market says sort of in decentralizing information aggregators actually really work well."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,900",
+				"to": "00:25:30,100"
+			},
+			"offsets": {
+				"from": 1523900,
+				"to": 1530100
+			},
+			"text": " I think, I mean, the problem seems to be a user interface problem by and large."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,100",
+				"to": "00:25:45,900"
+			},
+			"offsets": {
+				"from": 1530100,
+				"to": 1545900
+			},
+			"text": " So, you know, the solutions are going to be sort of things that, you know, economists might not find too sexy, but which app developers perfectly well understand, like, you know, making sort of nice and easy to use apps that people can sort of, you know, see a bunch of prediction markets potentially even."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,100",
+				"to": "00:25:55,100"
+			},
+			"offsets": {
+				"from": 1546100,
+				"to": 1555100
+			},
+			"text": " You know, sort of use machine learning, and even it's a sort of suggest which ones you should look at and just make it very easy for people to bet on them."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,100",
+				"to": "00:26:03,100"
+			},
+			"offsets": {
+				"from": 1555100,
+				"to": 1563100
+			},
+			"text": " One thing that's important in my mind is that you can have very, very different views on the same data."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,300",
+				"to": "00:26:15,300"
+			},
+			"offsets": {
+				"from": 1563300,
+				"to": 1575300
+			},
+			"text": " So one reason to place a prediction on a prediction market could be hedging against the risk and basically buying insurance."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,300",
+				"to": "00:26:27,300"
+			},
+			"offsets": {
+				"from": 1575300,
+				"to": 1587300
+			},
+			"text": " But that would obviously be a completely different user interface and look and feel, but still it could access or it could be on the same market."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,500",
+				"to": "00:26:37,500"
+			},
+			"offsets": {
+				"from": 1587500,
+				"to": 1597500
+			},
+			"text": " And then there could be on the other side or on another side market that's more speculative on those."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,500",
+				"to": "00:26:51,500"
+			},
+			"offsets": {
+				"from": 1597500,
+				"to": 1611500
+			},
+			"text": " And I think those different use cases might also help to get the ecosystem right for a predicted market because in the end it's a zero-sum game."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,700",
+				"to": "00:27:02,700"
+			},
+			"offsets": {
+				"from": 1611700,
+				"to": 1622700
+			},
+			"text": " So in the end if someone wins money and those who contribute the information, they should win money, then someone else on average needs to lose money."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,700",
+				"to": "00:27:06,700"
+			},
+			"offsets": {
+				"from": 1622700,
+				"to": 1626700
+			},
+			"text": " And that could be someone who, for example, wants to hedge against the risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,700",
+				"to": "00:27:15,700"
+			},
+			"offsets": {
+				"from": 1626700,
+				"to": 1635700
+			},
+			"text": " Right, so that's like the famous no trade theorem that says that if somebody is taking that side of the bet, who am I to think that I know more than they do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,900",
+				"to": "00:27:22,900"
+			},
+			"offsets": {
+				"from": 1635900,
+				"to": 1642900
+			},
+			"text": " So again, how sometimes they might, so how do you break that problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,900",
+				"to": "00:27:31,900"
+			},
+			"offsets": {
+				"from": 1642900,
+				"to": 1651900
+			},
+			"text": " Well, I was just going to say, like wholeheartedly agree with the, I mean really what both of you guys have said, just that the user interface is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,900",
+				"to": "00:27:41,900"
+			},
+			"offsets": {
+				"from": 1651900,
+				"to": 1661900
+			},
+			"text": " And especially with your point that, you know, really, there is not necessarily a one size fits all solution for user interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,100",
+				"to": "00:27:52,100"
+			},
+			"offsets": {
+				"from": 1662100,
+				"to": 1672100
+			},
+			"text": " In general, but prediction markets specifically, like you can imagine that, I mean, you can break it down sort of as granularly as you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,100",
+				"to": "00:27:58,300"
+			},
+			"offsets": {
+				"from": 1672100,
+				"to": 1678300
+			},
+			"text": " But you know, it seems like well you'd have like the sort of traders would want one kind of interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,300",
+				"to": "00:28:01,500"
+			},
+			"offsets": {
+				"from": 1678300,
+				"to": 1681500
+			},
+			"text": " They'd want really all the detail, all the data presented to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,700",
+				"to": "00:28:08,700"
+			},
+			"offsets": {
+				"from": 1681700,
+				"to": 1688700
+			},
+			"text": " You know, if you want, maybe people who are, it seems like people who are betting on say sports would expect a different interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,700",
+				"to": "00:28:12,700"
+			},
+			"offsets": {
+				"from": 1688700,
+				"to": 1692700
+			},
+			"text": " Right, they'd expect like odds instead of probabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,700",
+				"to": "00:28:26,300"
+			},
+			"offsets": {
+				"from": 1692700,
+				"to": 1706300
+			},
+			"text": " And, well, and maybe the most important one is just sort of a newbie interface, one that doesn't require you to sift through mountains of data or understand how odds work or really anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,500",
+				"to": "00:28:34,500"
+			},
+			"offsets": {
+				"from": 1706500,
+				"to": 1714500
+			},
+			"text": " You know, so just an app where you can click on, you know, where you drive by the Walmart and is this going well? Yes or no, that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,500",
+				"to": "00:28:36,500"
+			},
+			"offsets": {
+				"from": 1714500,
+				"to": 1716500
+			},
+			"text": " Okay, so different questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,500",
+				"to": "00:28:50,100"
+			},
+			"offsets": {
+				"from": 1716500,
+				"to": 1730100
+			},
+			"text": " So imagine a situation not too far, I don't think, where a very advanced artificial intelligence gets access to one of these markets and systematically ends up out beating everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,100",
+				"to": "00:28:55,500"
+			},
+			"offsets": {
+				"from": 1730100,
+				"to": 1735500
+			},
+			"text": " So what would happen to a market in those circumstances?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,700",
+				"to": "00:29:05,700"
+			},
+			"offsets": {
+				"from": 1735700,
+				"to": 1745700
+			},
+			"text": " It sounds like, you know, at the very start people would lose and then the second phase people would kind of realize that the AI is probably smarter than them."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,700",
+				"to": "00:29:08,700"
+			},
+			"offsets": {
+				"from": 1745700,
+				"to": 1748700
+			},
+			"text": " And so there's no point in disagreeing with any of the probabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,700",
+				"to": "00:29:18,700"
+			},
+			"offsets": {
+				"from": 1748700,
+				"to": 1758700
+			},
+			"text": " And then of course the third phase would be that the AI realizes that aside from this crazy Ethereum thing, there's this thing called Wall Street where the AI can make millions of times more money."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,900",
+				"to": "00:29:28,900"
+			},
+			"offsets": {
+				"from": 1760900,
+				"to": 1768900
+			},
+			"text": " So the AI would vacate the market and move to better things and neither humans pick up the scraps."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,900",
+				"to": "00:29:36,900"
+			},
+			"offsets": {
+				"from": 1768900,
+				"to": 1776900
+			},
+			"text": " That would be nice, but in the meantime you'd have like perfectly efficient prediction markets that always told you the right answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,900",
+				"to": "00:29:46,900"
+			},
+			"offsets": {
+				"from": 1776900,
+				"to": 1786900
+			},
+			"text": " Okay, so thank you all for being on the panel and I hope everybody else had fun. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,900",
+				"to": "00:29:53,900"
+			},
+			"offsets": {
+				"from": 1786900,
+				"to": 1793900
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,900",
+				"to": "00:29:55,900"
+			},
+			"offsets": {
+				"from": 1793900,
+				"to": 1795900
+			},
+			"text": " ( )"
+		}
+	]
+}

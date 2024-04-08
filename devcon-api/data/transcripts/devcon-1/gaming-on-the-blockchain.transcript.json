@@ -1,0 +1,4223 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 24000
+			},
+			"text": " Okay, hi everybody. My name is Wendell Davis. This is the Gaming on the Blockchain panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 32000
+			},
+			"text": " I have with us here Tyler Smith from Free My Vunk, which I guess you guys just got a little bit of taste of there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 40000
+			},
+			"text": " We have Peter Borra, primarily known I guess for Dow Wars and also some Ethereum roguelike implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 46000
+			},
+			"text": " We have Julian Pittleman, who is doing the poker work at Consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " And we have Vinay Gupta, who is of course the strategic consultant."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 53000
+			},
+			"text": " Actually, how would you describe your role?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 58000
+			},
+			"text": " Strategic architect at Consensus and General Renaissance Men, as you know him very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " So, there's a lot to cover here, so let's just get right into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 70000
+			},
+			"text": " The first thing I kind of want to talk about is generally how gaming will change as a result of blockchain technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 82000
+			},
+			"text": " I was a part of some discussions some time ago about this with, I think, Adam B. Levine talking about how in the future it may be the case that in fact gamers are kind of like the breadwinners of families."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 92000
+			},
+			"text": " That a lot of work as a result of automation, etc. may shift over to kind of interesting creative gaming oriented labor as a work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 103000
+			},
+			"text": " And I kind of want to get some feedback about that, and I guess I want to open this up first of all, maybe to how about Peter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 104000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 111000
+			},
+			"text": " So, yeah, I think there are a lot of different roles that people play in games, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 123000
+			},
+			"text": " There are people who play games primarily for fun on the weekends, there are people who grind every day, there are people who create content for games, and various sorts of user generated content ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " There are people who play games for an audience on Twitch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 133000
+			},
+			"text": " And I think that sort of all of these roles have different economic considerations, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 155000
+			},
+			"text": " They have different implications, and I think a lot of them can be monetized, especially things that have a creative element, because when they're creating content for a game or when they are building something, you know, with the whole free my bunk thing, like when you're actually generating value, then you should be rewarded for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 162000
+			},
+			"text": " So, I think that it's not unusual to us that musicians might be, you know, primary earners in families or dancers, actors, performers, writers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 183000
+			},
+			"text": " So, the idea that games and gaming, you know, are a kind of modern art form that's beginning to acquire sort of legitimate status in an economy seems pretty natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 200000
+			},
+			"text": " As for where that goes over time, I mean, you know, if you think about the size of the movie industry and how much larger the gaming industry is in the movie industry, the idea that you would have essentially kind of professionalization all the way through seems rational, but of what if it's bound by IP law?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 206000
+			},
+			"text": " So, you know, if game assets are copyrighted, then how do you make folk art around games and not wind up getting sued?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " And those kind of issues, I think, have to shake out as it becomes a legitimized art form."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 221000
+			},
+			"text": " Do you think that, you know, everyday mom and pop businesses will find their way into the games of the future, Tyler?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 230000
+			},
+			"text": " So, I think one of the least explored areas within the video game industry right now is user-created content."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 237000
+			},
+			"text": " And I think you're going to see a lot of user-created content start to be included in video games."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 254000
+			},
+			"text": " Particularly, I didn't talk about this in my talk because it's not the very first part of the movement, but Free My Vunk is going to be enabling by having an asset registry on Ethereum and then characterizing those assets through a file on IPFS that's linked to the registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 271000
+			},
+			"text": " People can start producing video game content themselves and essentially act as consultants or some sort of service that video game companies could actually go out and outsource some of the content that they normally create in house."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 283000
+			},
+			"text": " And so people can actually start making mom and pop businesses, single individuals who just know how to use 3D visualization and know how to create really cool objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 290000
+			},
+			"text": " And empower them with certain features that video game developers find attractive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 306000
+			},
+			"text": " So I think that's really the kind of the next step that we could go to after we get video game developers on board is that they can start recruiting small organizations to create the content for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 308000
+			},
+			"text": " So what about development?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " If the game of the future is going to change, then obviously the development patterns are going to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " And of course, this is a developer conference. Many people are probably thinking about this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " And I guess maybe Julie and I can start with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 331000
+			},
+			"text": " How do you see things changing for developers in terms of the way development could be decentralized in terms of the way revenue shares and things like that can happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 333000
+			},
+			"text": " You have some thoughts about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 353000
+			},
+			"text": " Yeah, I mean this technology lets you kind of modularize the process of building games in a way where you can possibly have different gaming shops collectively contributing to a single game earning revenue that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 364000
+			},
+			"text": " Also, I guess as an extension of the development process, you can have users generate levels for games and earn revenue that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 372000
+			},
+			"text": " Tons of different potential use cases, different revenues of revenue streams."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " Peter, what about you? What do you think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 383000
+			},
+			"text": " Yeah, so gaming right now is this incredibly one-to-many model, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 392000
+			},
+			"text": " Like you're developing a game, you do it by sitting in your apartment by yourself or with a small team or possibly a large team if you're a AAA company."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 400000
+			},
+			"text": " And then after years and years of creation, you release the game and then people pay a flat fee or they pay a monthly fee and they get to play the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 416000
+			},
+			"text": " And that works, that's a legitimate model for gaming, but a lot of the most interesting content in games over the past 10, 20 years especially has come out of user-generated things in a wide variety of ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 427000
+			},
+			"text": " So MMORPGs are incredibly popular and one of the reasons they're so popular is because of this sense of scope you get from all the other players and because of the complex interactions you can have with other players."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 433000
+			},
+			"text": " Some of the, like, EVE Online is a game that is incredibly boring for its own sake."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 447000
+			},
+			"text": " But the reason it has such a devoted following is because it gives players the tools to really make social connections and come up with social schemes to get their way in the game and..."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 451000
+			},
+			"text": " It really gives players tools to make each other miserable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 452000
+			},
+			"text": " Exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 462000
+			},
+			"text": " And so when, like, the value of EVE is not primarily derived from the game mechanics, it's primarily derived from the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 481000
+			},
+			"text": " I think that's a general pattern that we're seeing more and more of and so I think it's very, I think that blockchains by giving us a way to do peer-to-peer relationships that we can trust and that we can rely on just open up a whole range of possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 489000
+			},
+			"text": " So, Julian, I'd like to ask you a little bit more about, I think it's either poker that you're working on at Consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 505000
+			},
+			"text": " And one of the interesting things you told me just now was that you guys are kind of trying to take away, you know, I guess, you're sort of thinking this is like an infrastructure for this as a service that someone else can subscribe to so that they don't necessarily have to deal with the cards or the money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 512000
+			},
+			"text": " and they being the people that want to set up a poker site or something like that. Can you talk a little bit about how that might work or how that does work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 521000
+			},
+			"text": " Yeah. So the online poker market is in a very weird place where you have a lot of parts of the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 527000
+			},
+			"text": " It is perfectly legal to play online poker, but it is against the law to host a poker site."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 535000
+			},
+			"text": " So what this creates is a situation where you have a lot of players on sites that are outside of their legal jurisdiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 540000
+			},
+			"text": " That's a huge problem if they have to trust holding a large amount of money on these sites."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 544000
+			},
+			"text": " They have to trust that the site is going to properly shuffle their deck and write cards."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 549000
+			},
+			"text": " They're not going to have rogue employees looking at their cards. Massive issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 564000
+			},
+			"text": " The idea of providing infrastructure as a service for that industry is basically giving open source tools that connects these various sites to one network in which the players are encrypting their cards on their local machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " Their money is held in escrow by Ethereum's smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 574000
+			},
+			"text": " And you're taking away all of the trust friction that's making it difficult for any of these sites to get users."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " And you're basically giving them an easy way to bootstrap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 583000
+			},
+			"text": " The tricky thing with infrastructure as a service of your code is completely open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 588000
+			},
+			"text": " Somebody can just copy it and use it for themselves and not pay you anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 599000
+			},
+			"text": " The way that we're getting around that is by connecting these various sites into one network where the two sites could have players play at a table against each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 607000
+			},
+			"text": " Each of these sites will collect revenue for it. By pooling the players, you create somewhat of an incentive for them all to use your software."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 616000
+			},
+			"text": " In that moment where they are creating a table that is part of that network, that's where you can still collect the fee even though it is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 621000
+			},
+			"text": " Do you consider this really, this is to be fundamentally about censorship resistance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 624000
+			},
+			"text": " Just to get nothing too political."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 631000
+			},
+			"text": " I think it's great that almost none of the projects that I've seen so far are focused on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 638000
+			},
+			"text": " I think that as a brand of Ethereum is best off avoiding that, especially while it's nascent stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " What we're building isn't to try to get around the law."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 649000
+			},
+			"text": " It's to make it so that consumers are protected from fraud with these sites that they have no way of getting their money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 660000
+			},
+			"text": " If the site is operating on a fractional reserve of player deposits which has happened with hundreds of millions of dollars with full tilt."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 674000
+			},
+			"text": " Situations like that definitely, I think, create the use case for this infrastructure without needing to necessarily be helping you get around the law."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 683000
+			},
+			"text": " So, Vinay, you gave me an interesting term while we were staying in the hall talking about this which was generative complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 691000
+			},
+			"text": " I think I just want to let you wax on that for a moment because it parlays into something I want to talk about later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 698000
+			},
+			"text": " This is the whole thing about the most interesting thing about a game of any scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 703000
+			},
+			"text": " It isn't the game mechanics of the rules, it's the action of the other players."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 708000
+			},
+			"text": " So far, the only widely used mode of engagement for that is P versus P."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 713000
+			},
+			"text": " But actually there's a much more interesting mode which is Minecraft style collaborative building."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 724000
+			},
+			"text": " My guess is that creation of large complex systems based collaborative worlds that have economies and ecologies will turn out to be a core medium of the 21st century."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 734000
+			},
+			"text": " So, what when you get this interface between the new VR systems and blockchains for persistent property that what you'll get is these kind of fake civilizations running inside of this one"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 746000
+			},
+			"text": " in which the predominant complexity is from player interaction, building social structures, building cities, building maps, opening space lanes, whatever happens to be genetically breeding their new orcs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 754000
+			},
+			"text": " But these things are then shared narrative, the way the cultures have myths that are retold and kind of fractalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 762000
+			},
+			"text": " So what happens when the next thing that has the cultural impact of Star Trek is actually a game with a quarter of a million players, this kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 773000
+			},
+			"text": " I think Warcraft is close to that, but there's such a limited opportunity for player interaction that it doesn't get over that hump into the thing where the players are the story and the story is the players."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 777000
+			},
+			"text": " We're going to have to solve the grieving problem though."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 786000
+			},
+			"text": " Grieving is one of the biggest reasons why it's really difficult to create these complex structures because people are just destroying them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 794000
+			},
+			"text": " That's a game mechanic right there, isn't it? The defense of your complex structures against player-generated orcs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 802000
+			},
+			"text": " Actually, in the current moment, a lot of the most interesting stories we're generating that way come from incredibly large-scale griefing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 810000
+			},
+			"text": " There are some blog posts about Yvonne Line guilds that were taken down by years of sabotage and all that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 817000
+			},
+			"text": " As long as the game design makes that fun, that can be the thing that generates the myth. It's just a matter of design and games."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 822000
+			},
+			"text": " I have a particularly favorite Warcraft video, which was a bunch of people raiding a funeral."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 827000
+			},
+			"text": " It's one of the funniest things I've ever seen. It's horrendous, but it's hilarious."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 835000
+			},
+			"text": " Do you think that there, in some of that stuff that you just said, there's something that I've been thinking about a lot as well, is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 848000
+			},
+			"text": " As we spend more and more time in these kind of environments, do you think that because inevitably some of this technology will be used on both sides, in the gaming world, and in our flesh and blood world as it were,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 853000
+			},
+			"text": " do you think that there are things that will be portable in between those environments?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 856000
+			},
+			"text": " I guess I can start with you because you probably thought a lot about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 865000
+			},
+			"text": " Absolutely. I think you're going to see a real blending of the gaming environment, to the corporate environment, to the home environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 874000
+			},
+			"text": " and you're going to be able to utilize tools in a virtual experience between all of those facets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " I do think we'll solve the grieving problem in certain platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 889000
+			},
+			"text": " But right now, I work for a major corporation, and when we have meetings, there's communication loss just because there's no body language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 897000
+			},
+			"text": " and there's no, in a lot of ways, teleconferences are worse, but virtual conferences are better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 903000
+			},
+			"text": " but they still don't satisfy the need that we have to actually sit down with somebody and talk person to person."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 913000
+			},
+			"text": " I think that the gaming environment is going to evolve to that point where we're going to be using virtual environments, both a business, home, and for entertainment."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 919000
+			},
+			"text": " And the rules, the rules of those environments, the contracts, as it were, do you see those as being portable as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 929000
+			},
+			"text": " in the sense that we could basically, I thought about this idea that perhaps a game or a virtual environment might prototype certain types of societal governance structures and things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 936000
+			},
+			"text": " and then it might be possible in that simulation to port them over, and then maybe you want to jump in on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 942000
+			},
+			"text": " I just want to say that there's a thing called Norwegian, is it Norwegian-war, Scandinavian-war?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 948000
+			},
+			"text": " Nordic-war, that's a phrase I'm looking for, where they have these very, very hard-hitting-warf games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 956000
+			},
+			"text": " and there's quite a lot of bleed-over, people take behaviors, they learn in the game like, you know, you have a spaceship game that has like 25 people locked in a tiny room."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 962000
+			},
+			"text": " And six months later, you discover that 14 of the players are still renting a single tiny apartment in Oslo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 968000
+			},
+			"text": " because they learned to set protocols for sharing the space over a 3D game, and then thought, why don't we do that in the real world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 973000
+			},
+			"text": " And I think that that kind of bleed-over is going to become more and more intense as games become like prototyping."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 982000
+			},
+			"text": " I think in particular, there's a horrendous or hilarious bleed-over from .com startups, from Dungeons and Dragons,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 990000
+			},
+			"text": " where you basically have system administrator, sales guy, designer, programmer, essentially character classes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 999000
+			},
+			"text": " and people that were kind of conceptually trained on D&D viewed the entire .com thing as finding a roving party of adventures and going off and raiding capital dungeons."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1010000
+			},
+			"text": " And the same thing with Warcraft. Warcraft prototyped this style of 40-person teams engaged in mass collaboration, which is essentially consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1016000
+			},
+			"text": " Each generation prototypes ways of living through their games, and then those skills go directly into business."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1024000
+			},
+			"text": " So if we design games that have the right kind of complexity, I think that that could be an enormous empowerment for culture later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1030000
+			},
+			"text": " But who's going to design the games? How do we bring the best models into the games that the kids are playing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1033000
+			},
+			"text": " so that when they're adults, they can basically just go out and change the world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1034000
+			},
+			"text": " Last day."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1035000
+			},
+			"text": " If I could not."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1041000
+			},
+			"text": " Sorry, I didn't want to be rude and talk out of turn, but this is something I thought about a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1047000
+			},
+			"text": " I think it's really important. So I completely agree that we can use games to prototype economic systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1055000
+			},
+			"text": " but I think it's also worth considering that the distinction between a game and the rest of the world has always been blurry and is becoming increasingly so."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1063000
+			},
+			"text": " So there's an entire genre of games called alternate reality games where the characters call you on the telephone and interact near a daily world."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1071000
+			},
+			"text": " And there's a great short story by Carl Schröder. It's called \"To High from Far Selenia.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1079000
+			},
+			"text": " And in this short story, there's one of these alternate reality games where people play characters who are essentially a Victorian aristocrats."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1081000
+			},
+			"text": " Sorry, I'll -- this will be quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1089000
+			},
+			"text": " But they -- in this game, they're socializing, they're, you know, politicking."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1096000
+			},
+			"text": " And at a certain point, they go to a restaurant in order to continue politicking, continue socializing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1100000
+			},
+			"text": " And the restaurant is in the game, but it also is in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1108000
+			},
+			"text": " So they go to this location and it's this pop-up tent and there's food being served and they go in and they come and serve them the food and the food's really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110000
+			},
+			"text": " They eat the food and at the end they get the bill."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1115000
+			},
+			"text": " And the bill is in the credits from the game instead of real world dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1119000
+			},
+			"text": " And one of the players says, \"Wait, like, I don't need to pay you in real money?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1124000
+			},
+			"text": " And the server says, \"No, you pay us. We only take this currency.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " And I say, \"But where do you get the money to run the restaurant?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1129000
+			},
+			"text": " \"You're paying us.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1132000
+			},
+			"text": " But like, where does the food come from? Farmers, we pay them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1143000
+			},
+			"text": " And the -- the, like, thing that the character has to realize in this story is that they never have to go back to the real economy because they're creating all of the value inside the game economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1157000
+			},
+			"text": " And I think that that bleed-over becomes more and more possible as these systems get bigger and as the, you know, blockchain empowers things that wouldn't have been possible for."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1161000
+			},
+			"text": " Do you think this is what happens to labor in the face of mass automation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1164000
+			},
+			"text": " Like, basically we all move into these kind of spaces? I mean, just --"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1166000
+			},
+			"text": " I mean, the economy is already a social construct, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1171000
+			},
+			"text": " Like, we have chosen a particular way to give our resources out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1184000
+			},
+			"text": " And as the system that we've built becomes less and less relevant, as technology makes things increasingly obsolete, then I think we'll experiment with other systems, and those systems might be games because the games are fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1185000
+			},
+			"text": " Tyler George, this one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1200000
+			},
+			"text": " Yeah, I was just going to mention, you know, this is a little bit pie in the sky that we're talking about, but we're -- we have to, like, say that we've already made a significant step right here that we can create complex financials."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1212000
+			},
+			"text": " Financial and legal contracts now that can exist in virtual space, which is just a huge step forward to enabling the types of things that we're talking about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1220000
+			},
+			"text": " So, I want to jump into one more thing about -- I mean, I guess actually we should take a step back in a way because you're right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1226000
+			},
+			"text": " You know, we're kind of stepping into science fiction territory, which -- well, maybe it's not science fiction, but it's probably --"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1227000
+			},
+			"text": " You know, it's a --"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1229000
+			},
+			"text": " Yeah, indeed, indeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1233000
+			},
+			"text": " But let's talk about something a little bit more -- a little bit more right now accessible and practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1241000
+			},
+			"text": " So, Peter, you had also talked about this idea of different things that can go on in sort of the game streaming world, which has obviously become quite huge in the last few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1243000
+			},
+			"text": " You want to talk a little bit about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1258000
+			},
+			"text": " Yeah, so -- so Twitch TV is a huge company that the only thing they do is they allow people to watch other people play video games, and this is becoming this whole new cultural phenomenon that is really influencing the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1263000
+			},
+			"text": " And the way people live their lives in a lot of -- and a lot of these streamers are professional."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1270000
+			},
+			"text": " In fact, the majority of them are professional. They make their money off of ad revenue. They make their money off of subscriptions. They make their money off of donations."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1276000
+			},
+			"text": " And the relationship between a streamer and their audience is becoming increasingly complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1278000
+			},
+			"text": " So, here's my favorite example."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1280000
+			},
+			"text": " So, there's a game called Mario Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1282000
+			},
+			"text": " And Mario Maker is just a Mario game."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1284000
+			},
+			"text": " You run around and jump on platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1290000
+			},
+			"text": " But all the levels are created by users, and they get uploaded to Nintendo servers, and then you download them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1295000
+			},
+			"text": " And they're like game modes where you get 20 random levels in a row and all that sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1300000
+			},
+			"text": " And what's happening is that viewers are starting to offer challenges to the streamers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1303000
+			},
+			"text": " So, they say, I want you to play a 100 Mario challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " I want you to have at least 50 lives left at the end, and I want you to only play Japanese levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:52,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1312000
+			},
+			"text": " And if you do that successfully, then I'll give you $100."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1312000,
+				"to": 1318000
+			},
+			"text": " And there are major streamers who have taken this as a major part of their streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1322000
+			},
+			"text": " But it's all on our base. It's all through PayPal."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1324000
+			},
+			"text": " There's big fees. It's slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1330000
+			},
+			"text": " When we've got games on the blockchain, when these levels are created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1336000
+			},
+			"text": " referenced on the blockchain, when the creation of a new challenge can just be a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:23,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1343000
+			},
+			"text": " then you get the ability to have these relationships between streamers and their audience become, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,000",
+				"to": "00:22:26,000"
+			},
+			"offsets": {
+				"from": 1343000,
+				"to": 1346000
+			},
+			"text": " have all the advantages that having something on the blockchain has."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1346000,
+				"to": 1351000
+			},
+			"text": " So, what extent experiment in the space right now actually comes closest to this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1354000
+			},
+			"text": " So, I've -- thank you for the leading question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1361000
+			},
+			"text": " I built a -- at a hackathon recently, at the block apps hackathon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1366000
+			},
+			"text": " I built something called Ethercrawler with two of my colleagues, Jim and Eva."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1369000
+			},
+			"text": " And it's a fully functional roguelike game."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1372000
+			},
+			"text": " Very simple, but I move around to attack monsters."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1380000
+			},
+			"text": " But the cool thing about it is that you can create -- like all the levels are user-generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1382000
+			},
+			"text": " in the same way as Mario Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1387000
+			},
+			"text": " And then you set challenges for each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1392000
+			},
+			"text": " So, you basically make a bet with someone. I don't think you can beat these six levels in a row."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1398000
+			},
+			"text": " And then the money raised through that -- like, a 1% fees taken off the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1404000
+			},
+			"text": " And that 1% is automatically split between all of the people who created the levels involved in that challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1409000
+			},
+			"text": " And so -- and in our particular example, we also run all the game logic on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1412000
+			},
+			"text": " because that was cool for hackathon. I think in real life, a lot of the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1416000
+			},
+			"text": " the game would be off blockchain. It would just be the levels and the challenges that would be on blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1423000
+			},
+			"text": " But either way, you get sort of this blockchainized challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1428000
+			},
+			"text": " and you get this blockchainized revenue sharing, and I think that's a really powerful model."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:53,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1433000
+			},
+			"text": " So, the code's up on GitHub, Ethercrawler."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1433000,
+				"to": 1439000
+			},
+			"text": " >> Julie, how do you think we get people to get interested in this stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1444000
+			},
+			"text": " to use this stuff, to think about this in the core process when they're actually thinking about building a game?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:09,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1449000
+			},
+			"text": " How do we make them see that this is -- well, how do we convince them that this is actually a really important piece?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1449000,
+				"to": 1452000
+			},
+			"text": " That this is something that they'll be missing out on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1455000
+			},
+			"text": " >> I think games like Dao War has actually helped with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1462000
+			},
+			"text": " getting people to experiment with blockchains and fool around, see what they're capable of."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1468000
+			},
+			"text": " I think a lot of the time it's going to come from -- like Tyler was talking about earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1474000
+			},
+			"text": " targeting smaller dev shops that are trying to break in with something."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1479000
+			},
+			"text": " In the case of poker, it's they need to get users to trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1487000
+			},
+			"text": " In the case of Vunk, it's getting users to have something new that they don't have with other games."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1493000
+			},
+			"text": " And I think, yeah, targeting the smaller developers is the way to go with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1499000
+			},
+			"text": " >> So, of course, you guys heard Tyler talk about cross-game items in Vunk"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:01,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1501000
+			},
+			"text": " and all the interesting stuff that's going on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1501000,
+				"to": 1507000
+			},
+			"text": " But I think this is an interesting topic because it may be something that's quite contentious among game developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1513000
+			},
+			"text": " In other words, the idea that perhaps items can free flow between different titles and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1519000
+			},
+			"text": " So, Tyler, I wanted you to maybe start this off and give us some thoughts about the conversations and issues that you've had"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1524000
+			},
+			"text": " communicating this to game developers and what people might say in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1529000
+			},
+			"text": " Because traditionally, of course, in these worlds, they've been able to control the game developers' control nearly everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1532000
+			},
+			"text": " if not everything, besides player actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1539000
+			},
+			"text": " >> Yeah, so we've had several interactions with different entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1543000
+			},
+			"text": " We don't formally launch, by the way, until January 1st."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:48,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1548000
+			},
+			"text": " So, there's some announcements that I can't make, but hopefully we can add upon that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1548000,
+				"to": 1551000
+			},
+			"text": " so you guys know what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1554000
+			},
+			"text": " So, there is mixed reaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:25:59,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1559000
+			},
+			"text": " I would say that the smaller shops are very, very excited by the possibilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1559000,
+				"to": 1563000
+			},
+			"text": " There was actually an experiment done by a larger shop, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:12,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1572000
+			},
+			"text": " In Diablo 3, they had something called the auction house, where they allowed people to actually withdraw real money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1572000,
+				"to": 1578000
+			},
+			"text": " based on sales that they would make in the auction house."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1581000
+			},
+			"text": " And it got a little out of control, to be honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1586000
+			},
+			"text": " There's various rumors for why they had to shut it down."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1592000
+			},
+			"text": " And I won't speculate on those, but Blizzard eventually decided that they couldn't maintain the auction house."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:36,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1596000
+			},
+			"text": " It was not in their best interest at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1596000,
+				"to": 1600000
+			},
+			"text": " But they said it was a very valuable experiment for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:46,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1606000
+			},
+			"text": " And it really proved the value of Vunk in a really meaningful way."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,000",
+				"to": "00:26:59,000"
+			},
+			"offsets": {
+				"from": 1606000,
+				"to": 1619000
+			},
+			"text": " So, the idea that you could actually trade cross-platform when you were done with a game might seem a little bit scary at first to a game developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,000",
+				"to": "00:27:07,000"
+			},
+			"offsets": {
+				"from": 1619000,
+				"to": 1627000
+			},
+			"text": " because they understand that they have an appreciation curve and then a depreciation curve to their game."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,000",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1627000,
+				"to": 1633000
+			},
+			"text": " But anyone who really understands that, understands that you never keep a player forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:25,000"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1645000
+			},
+			"text": " And the short-term gains that you would be able to obtain by not allowing players to trade their Vunk with someone else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,000",
+				"to": "00:27:33,000"
+			},
+			"offsets": {
+				"from": 1645000,
+				"to": 1653000
+			},
+			"text": " is not enough, because when you can monetize an asset, you're willing to invest more."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,000",
+				"to": "00:27:40,000"
+			},
+			"offsets": {
+				"from": 1653000,
+				"to": 1660000
+			},
+			"text": " I would be willing to spend a lot more in a game that I like if I knew that I could change to another game later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,000",
+				"to": "00:27:47,000"
+			},
+			"offsets": {
+				"from": 1660000,
+				"to": 1667000
+			},
+			"text": " and I don't have to go from being a king in this game to a popper in the next game."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,000",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1667000,
+				"to": 1672000
+			},
+			"text": " But regardless, I don't think I know a single gamer who plays only one game."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:27:57,000"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1677000
+			},
+			"text": " We all switch. Games become outdated. We start to play new games."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,000",
+				"to": "00:28:01,000"
+			},
+			"offsets": {
+				"from": 1677000,
+				"to": 1681000
+			},
+			"text": " And that's just part of the depreciation cycle of technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1681000,
+				"to": 1689000
+			},
+			"text": " So in the end, I don't think that there's going to be any reason for game developers not to adopt this technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,000",
+				"to": "00:28:13,000"
+			},
+			"offsets": {
+				"from": 1689000,
+				"to": 1693000
+			},
+			"text": " because it's going to be in their best interest to do so in terms of overall investment."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:17,000"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1697000
+			},
+			"text": " Of course, that does change sort of how they have to think about games from a design cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,000",
+				"to": "00:28:28,000"
+			},
+			"offsets": {
+				"from": 1697000,
+				"to": 1708000
+			},
+			"text": " Yeah, I mean, the design of the game is going to change somewhat when you realize that these people are going to be actively trying to monetize what they're doing in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,000",
+				"to": "00:28:38,000"
+			},
+			"offsets": {
+				"from": 1708000,
+				"to": 1718000
+			},
+			"text": " So game developers are going to have to take different strategies on how to approach their user base simply because it's changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:38,000",
+				"to": "00:28:41,000"
+			},
+			"offsets": {
+				"from": 1718000,
+				"to": 1721000
+			},
+			"text": " Vinay, you have any thoughts about this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,000",
+				"to": "00:28:46,000"
+			},
+			"offsets": {
+				"from": 1721000,
+				"to": 1726000
+			},
+			"text": " Well, I mean, if we go all the way down this path, then we erase the line between games and work."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,000",
+				"to": "00:28:51,000"
+			},
+			"offsets": {
+				"from": 1726000,
+				"to": 1731000
+			},
+			"text": " And you wind up with huge capital assets that exist only in a game world or as reputation in a game."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,000",
+				"to": "00:28:56,000"
+			},
+			"offsets": {
+				"from": 1731000,
+				"to": 1736000
+			},
+			"text": " So imagine a slightly different history where Dungeons and Dragons had professionalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,000",
+				"to": "00:29:02,000"
+			},
+			"offsets": {
+				"from": 1736000,
+				"to": 1742000
+			},
+			"text": " and people played on late night television and you had Dungeons and Dragons stars, which is essentially your Twitch thing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,000",
+				"to": "00:29:07,000"
+			},
+			"offsets": {
+				"from": 1742000,
+				"to": 1747000
+			},
+			"text": " So to have your skill in the game be something that sustains you economically poker players."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,000",
+				"to": "00:29:16,000"
+			},
+			"offsets": {
+				"from": 1747000,
+				"to": 1756000
+			},
+			"text": " In a lot of ways, I feel like this is the mainstreaming of something which is already there and weird into a new normal that people will just accept in a generation as powerfully natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,000",
+				"to": "00:29:20,000"
+			},
+			"offsets": {
+				"from": 1756000,
+				"to": 1760000
+			},
+			"text": " Like, you know, of course you could take your status out of one myth and into another myth."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,000",
+				"to": "00:29:27,000"
+			},
+			"offsets": {
+				"from": 1760000,
+				"to": 1767000
+			},
+			"text": " In the same way that comic book characters don't disappear when they go from Iron Man to the Avengers."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,000",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1767000,
+				"to": 1776000
+			},
+			"text": " I bet like kind of Michael Moorcock's Eternal Champion series, where you have the same guy that goes through a whole bunch of different genres and is always the same Jerry Cornelius."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:43,000"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1783000
+			},
+			"text": " I feel that it's almost like this stuff becoming fully encased in myth and encapsulated in myth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,000",
+				"to": "00:29:47,000"
+			},
+			"offsets": {
+				"from": 1783000,
+				"to": 1787000
+			},
+			"text": " rather than sitting as this outgrowth of a board game."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,000",
+				"to": "00:29:54,000"
+			},
+			"offsets": {
+				"from": 1787000,
+				"to": 1794000
+			},
+			"text": " They're taking one of the kind of mythic structures that characters have always had in fiction, and myth and story and legend."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,000",
+				"to": "00:29:59,000"
+			},
+			"offsets": {
+				"from": 1794000,
+				"to": 1799000
+			},
+			"text": " It all has this kind of persistent quality that things interweave in in this kind of soft way."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,000",
+				"to": "00:30:03,000"
+			},
+			"offsets": {
+				"from": 1799000,
+				"to": 1803000
+			},
+			"text": " So I think games are growing up if that's what's going to happen next."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,000",
+				"to": "00:30:06,000"
+			},
+			"offsets": {
+				"from": 1803000,
+				"to": 1806000
+			},
+			"text": " Julie, do you have any thoughts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,000",
+				"to": "00:30:16,000"
+			},
+			"offsets": {
+				"from": 1806000,
+				"to": 1816000
+			},
+			"text": " Yeah, not a ton to add, but I actually think that it's interesting, kind of the way that gamers are becoming kind of celebrities"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,000",
+				"to": "00:30:23,000"
+			},
+			"offsets": {
+				"from": 1816000,
+				"to": 1823000
+			},
+			"text": " and Korea and everything. I think that might be where we might start to see kind of people making their living,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,000",
+				"to": "00:30:30,000"
+			},
+			"offsets": {
+				"from": 1823000,
+				"to": 1830000
+			},
+			"text": " not from being a professional gamer necessarily, but just a hardcore gamer that kind of pays the bills with it type of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,000",
+				"to": "00:30:38,000"
+			},
+			"offsets": {
+				"from": 1830000,
+				"to": 1838000
+			},
+			"text": " They might be more interested in the concept of a funk and other ways of making money with games"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,000",
+				"to": "00:30:41,000"
+			},
+			"offsets": {
+				"from": 1838000,
+				"to": 1841000
+			},
+			"text": " and that might be an interesting place to watch."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,000",
+				"to": "00:30:43,000"
+			},
+			"offsets": {
+				"from": 1841000,
+				"to": 1843000
+			},
+			"text": " Peter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,000",
+				"to": "00:30:54,000"
+			},
+			"offsets": {
+				"from": 1843000,
+				"to": 1854000
+			},
+			"text": " Yeah, I mean, I think that all of it, like, I have trouble pinning down a specific thing I'm excited about in this whole realm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,000",
+				"to": "00:30:58,000"
+			},
+			"offsets": {
+				"from": 1854000,
+				"to": 1858000
+			},
+			"text": " because I think games can just be everything, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,000",
+				"to": "00:31:05,000"
+			},
+			"offsets": {
+				"from": 1858000,
+				"to": 1865000
+			},
+			"text": " It's human interaction, and human interaction is powerful, and fun human interaction is especially powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,000",
+				"to": "00:31:10,000"
+			},
+			"offsets": {
+				"from": 1865000,
+				"to": 1870000
+			},
+			"text": " You know what? One day, digital wallets are going to replace bank accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,000",
+				"to": "00:31:15,000"
+			},
+			"offsets": {
+				"from": 1870000,
+				"to": 1875000
+			},
+			"text": " and those digital wallets are going to be full of funk."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:15,000",
+				"to": "00:31:20,000"
+			},
+			"offsets": {
+				"from": 1875000,
+				"to": 1880000
+			},
+			"text": " Alright, so we have about ten minutes, right? Left?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,000",
+				"to": "00:31:27,000"
+			},
+			"offsets": {
+				"from": 1880000,
+				"to": 1887000
+			},
+			"text": " Alright, so is anybody have any questions for any of the panelists who are generally speaking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,000",
+				"to": "00:31:30,000"
+			},
+			"offsets": {
+				"from": 1887000,
+				"to": 1890000
+			},
+			"text": " Anything at all? Because we can keep talking."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,000",
+				"to": "00:31:32,000"
+			},
+			"offsets": {
+				"from": 1890000,
+				"to": 1892000
+			},
+			"text": " What's that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,000",
+				"to": "00:31:39,000"
+			},
+			"offsets": {
+				"from": 1892000,
+				"to": 1899000
+			},
+			"text": " Hold on, we have one back here."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,000",
+				"to": "00:31:45,000"
+			},
+			"offsets": {
+				"from": 1899000,
+				"to": 1905000
+			},
+			"text": " Thank you. So one of the things that might be in some people's mind is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:45,000",
+				"to": "00:31:48,000"
+			},
+			"offsets": {
+				"from": 1905000,
+				"to": 1908000
+			},
+			"text": " you know, gaming on the blockchain seems like a very interesting space."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,000",
+				"to": "00:31:52,000"
+			},
+			"offsets": {
+				"from": 1908000,
+				"to": 1912000
+			},
+			"text": " At the moment, there's potentially, you know, some things you can do already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,000",
+				"to": "00:31:54,000"
+			},
+			"offsets": {
+				"from": 1912000,
+				"to": 1914000
+			},
+			"text": " but some things are more, like, into the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:54,000",
+				"to": "00:31:58,000"
+			},
+			"offsets": {
+				"from": 1914000,
+				"to": 1918000
+			},
+			"text": " What sort of the technical and scalability concerns you are thinking about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:58,000",
+				"to": "00:32:04,000"
+			},
+			"offsets": {
+				"from": 1918000,
+				"to": 1924000
+			},
+			"text": " Are there things that you've bolted, make things better, maybe, say, you know, like state channels or things like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,000",
+				"to": "00:32:08,000"
+			},
+			"offsets": {
+				"from": 1924000,
+				"to": 1928000
+			},
+			"text": " What are the things you keep in mind?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,000",
+				"to": "00:32:13,000"
+			},
+			"offsets": {
+				"from": 1928000,
+				"to": 1933000
+			},
+			"text": " Anybody? I have experimented with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:13,000",
+				"to": "00:32:19,000"
+			},
+			"offsets": {
+				"from": 1933000,
+				"to": 1939000
+			},
+			"text": " Yeah, so the problem with games on the blockchain right now is that we have a 17-second block time."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:19,000",
+				"to": "00:32:23,000"
+			},
+			"offsets": {
+				"from": 1939000,
+				"to": 1943000
+			},
+			"text": " And 17 seconds is a very long time in most styles of game."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:23,000",
+				"to": "00:32:26,000"
+			},
+			"offsets": {
+				"from": 1943000,
+				"to": 1946000
+			},
+			"text": " And so I think there are a few different ways around this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,000",
+				"to": "00:32:29,000"
+			},
+			"offsets": {
+				"from": 1946000,
+				"to": 1949000
+			},
+			"text": " One, you can build styles of game where that isn't actually very long."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,000",
+				"to": "00:32:33,000"
+			},
+			"offsets": {
+				"from": 1949000,
+				"to": 1953000
+			},
+			"text": " If it is a turn-based game in which a lot of thought is normal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,000",
+				"to": "00:32:37,000"
+			},
+			"offsets": {
+				"from": 1953000,
+				"to": 1957000
+			},
+			"text": " there are various games that, where a real-world time has a big effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,000",
+				"to": "00:32:41,000"
+			},
+			"offsets": {
+				"from": 1957000,
+				"to": 1961000
+			},
+			"text": " And so you, like, send your ships out, and it takes four hours for them to get somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,000",
+				"to": "00:32:45,000"
+			},
+			"offsets": {
+				"from": 1961000,
+				"to": 1965000
+			},
+			"text": " And so the fact that you wait 17 seconds toward them to go doesn't really matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,000",
+				"to": "00:32:50,000"
+			},
+			"offsets": {
+				"from": 1965000,
+				"to": 1970000
+			},
+			"text": " So that's one solution. Another solution is that you don't build the game itself on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:50,000",
+				"to": "00:32:53,000"
+			},
+			"offsets": {
+				"from": 1970000,
+				"to": 1973000
+			},
+			"text": " You build structures around the game on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,000",
+				"to": "00:32:59,000"
+			},
+			"offsets": {
+				"from": 1973000,
+				"to": 1979000
+			},
+			"text": " So this is basically how I think a real product that was based on the Ethercrawler experiment would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,000",
+				"to": "00:33:03,000"
+			},
+			"offsets": {
+				"from": 1979000,
+				"to": 1983000
+			},
+			"text": " You have a single-player game that runs on your computer like normal."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,000",
+				"to": "00:33:09,000"
+			},
+			"offsets": {
+				"from": 1983000,
+				"to": 1989000
+			},
+			"text": " And the thing that's blockchainized is the level creation, saving it on in the cloud,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,000",
+				"to": "00:33:12,000"
+			},
+			"offsets": {
+				"from": 1989000,
+				"to": 1992000
+			},
+			"text": " raiding people's levels, getting assigned levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,000",
+				"to": "00:33:15,000"
+			},
+			"offsets": {
+				"from": 1992000,
+				"to": 1995000
+			},
+			"text": " That all can live on the blockchain. And 17 seconds is fine for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:15,000",
+				"to": "00:33:21,000"
+			},
+			"offsets": {
+				"from": 1995000,
+				"to": 2001000
+			},
+			"text": " The third option, of course, is something like payment channels, lightning network."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,000",
+				"to": "00:33:28,000"
+			},
+			"offsets": {
+				"from": 2001000,
+				"to": 2008000
+			},
+			"text": " If you have, if the rules of the game allow for state transitions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,000",
+				"to": "00:33:35,000"
+			},
+			"offsets": {
+				"from": 2008000,
+				"to": 2015000
+			},
+			"text": " where you've got a game state, you take an action, that action plus the game state leads to a new state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:35,000",
+				"to": "00:33:39,000"
+			},
+			"offsets": {
+				"from": 2015000,
+				"to": 2019000
+			},
+			"text": " then you don't need to necessarily have the blockchain know about the entire history."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:39,000",
+				"to": "00:33:43,000"
+			},
+			"offsets": {
+				"from": 2019000,
+				"to": 2023000
+			},
+			"text": " You can just have people agreeing back and forth in the same way as you do a payment channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,000",
+				"to": "00:33:49,000"
+			},
+			"offsets": {
+				"from": 2023000,
+				"to": 2029000
+			},
+			"text": " and only enforce the rules on a particular state transition if that particular state transition is argued about."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,000",
+				"to": "00:33:54,000"
+			},
+			"offsets": {
+				"from": 2029000,
+				"to": 2034000
+			},
+			"text": " That still doesn't get you to real time, but that helps."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,000",
+				"to": "00:33:55,000"
+			},
+			"offsets": {
+				"from": 2034000,
+				"to": 2035000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,000",
+				"to": "00:33:56,000"
+			},
+			"offsets": {
+				"from": 2035000,
+				"to": 2036000
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,000",
+				"to": "00:33:58,000"
+			},
+			"offsets": {
+				"from": 2036000,
+				"to": 2038000
+			},
+			"text": " I actually have a comment about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,000",
+				"to": "00:33:59,000"
+			},
+			"offsets": {
+				"from": 2038000,
+				"to": 2039000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,000",
+				"to": "00:34:00,000"
+			},
+			"offsets": {
+				"from": 2039000,
+				"to": 2040000
+			},
+			"text": " Challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,000",
+				"to": "00:34:05,000"
+			},
+			"offsets": {
+				"from": 2040000,
+				"to": 2045000
+			},
+			"text": " So one of the things that we're really challenged with at Free My Vunk is the fact that we're trying to abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,000",
+				"to": "00:34:13,000"
+			},
+			"offsets": {
+				"from": 2045000,
+				"to": 2053000
+			},
+			"text": " the way the blockchain a little bit for the average consumer is the costs of lots of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:13,000",
+				"to": "00:34:19,000"
+			},
+			"offsets": {
+				"from": 2053000,
+				"to": 2059000
+			},
+			"text": " We're going to have to mitigate that in the beginning by being somewhat more centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,000",
+				"to": "00:34:24,000"
+			},
+			"offsets": {
+				"from": 2059000,
+				"to": 2064000
+			},
+			"text": " so that we can maintain digital wallets, something like a coin base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,000",
+				"to": "00:34:31,000"
+			},
+			"offsets": {
+				"from": 2064000,
+				"to": 2071000
+			},
+			"text": " and move value around without actually publishing that to the blockchain only in chunks every so often,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,000",
+				"to": "00:34:38,000"
+			},
+			"offsets": {
+				"from": 2071000,
+				"to": 2078000
+			},
+			"text": " because otherwise eating the cost of millions of transactions is really, really difficult,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,000",
+				"to": "00:34:46,000"
+			},
+			"offsets": {
+				"from": 2078000,
+				"to": 2086000
+			},
+			"text": " because the blockchain is not cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,000",
+				"to": "00:34:53,000"
+			},
+			"offsets": {
+				"from": 2086000,
+				"to": 2093000
+			},
+			"text": " So not really a question, but just wondering thoughts of how VR, like Oculus Rift,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:53,000",
+				"to": "00:34:57,000"
+			},
+			"offsets": {
+				"from": 2093000,
+				"to": 2097000
+			},
+			"text": " might plug into this blockchain world of the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,000",
+				"to": "00:35:07,000"
+			},
+			"offsets": {
+				"from": 2097000,
+				"to": 2107000
+			},
+			"text": " I can comment on that since that's actually my thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:07,000",
+				"to": "00:35:09,000"
+			},
+			"offsets": {
+				"from": 2107000,
+				"to": 2109000
+			},
+			"text": " This is my company's visor."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:09,000",
+				"to": "00:35:11,000"
+			},
+			"offsets": {
+				"from": 2109000,
+				"to": 2111000
+			},
+			"text": " We're doing actually something very similar to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,000",
+				"to": "00:35:19,000"
+			},
+			"offsets": {
+				"from": 2111000,
+				"to": 2119000
+			},
+			"text": " It's an open source web-based creation tool for VR experiences using the WebVR API."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:19,000",
+				"to": "00:35:24,000"
+			},
+			"offsets": {
+				"from": 2119000,
+				"to": 2124000
+			},
+			"text": " I have put a lot of thought into this kind of stuff, and it's kind of why I led with some of these questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,000",
+				"to": "00:35:31,000"
+			},
+			"offsets": {
+				"from": 2124000,
+				"to": 2131000
+			},
+			"text": " regarding the governance issues, how these things could work transparently between worlds and stuff like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:31,000",
+				"to": "00:35:37,000"
+			},
+			"offsets": {
+				"from": 2131000,
+				"to": 2137000
+			},
+			"text": " Our initial thought was probably to do something more along the lines of Vunk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,000",
+				"to": "00:35:38,000"
+			},
+			"offsets": {
+				"from": 2137000,
+				"to": 2138000
+			},
+			"text": " because there will be assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,000",
+				"to": "00:35:40,000"
+			},
+			"offsets": {
+				"from": 2138000,
+				"to": 2140000
+			},
+			"text": " We'd like those to be decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:40,000",
+				"to": "00:35:42,000"
+			},
+			"offsets": {
+				"from": 2140000,
+				"to": 2142000
+			},
+			"text": " We'd like people to be able to bring."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,000",
+				"to": "00:35:45,000"
+			},
+			"offsets": {
+				"from": 2142000,
+				"to": 2145000
+			},
+			"text": " We're not a games company, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,000",
+				"to": "00:35:48,000"
+			},
+			"offsets": {
+				"from": 2145000,
+				"to": 2148000
+			},
+			"text": " We're making a games engine effectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,000",
+				"to": "00:35:53,000"
+			},
+			"offsets": {
+				"from": 2148000,
+				"to": 2153000
+			},
+			"text": " It's not so important that some strict rule hierarchy be followed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,000",
+				"to": "00:35:59,000"
+			},
+			"offsets": {
+				"from": 2153000,
+				"to": 2159000
+			},
+			"text": " but more that people are able to move stuff between different instances of visor."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,000",
+				"to": "00:36:03,000"
+			},
+			"offsets": {
+				"from": 2159000,
+				"to": 2163000
+			},
+			"text": " That's something we've been thinking a lot about and we'll probably be doing next summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:03,000",
+				"to": "00:36:14,000"
+			},
+			"offsets": {
+				"from": 2163000,
+				"to": 2174000
+			},
+			"text": " Additionally, per the topic that I mentioned, I'm totally fascinated by the idea that essentially we are going to be living more and more inside of these virtual worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,000",
+				"to": "00:36:15,000"
+			},
+			"offsets": {
+				"from": 2174000,
+				"to": 2175000
+			},
+			"text": " Absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:15,000",
+				"to": "00:36:18,000"
+			},
+			"offsets": {
+				"from": 2175000,
+				"to": 2178000
+			},
+			"text": " There's just no question to me that that's going to be the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:18,000",
+				"to": "00:36:24,000"
+			},
+			"offsets": {
+				"from": 2178000,
+				"to": 2184000
+			},
+			"text": " I want personally to be able to know what works there or works elsewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,000",
+				"to": "00:36:30,000"
+			},
+			"offsets": {
+				"from": 2184000,
+				"to": 2190000
+			},
+			"text": " Those two topics, which I somewhat mentioned here, those are the things that I think we'll be focusing on quite a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,000",
+				"to": "00:36:34,000"
+			},
+			"offsets": {
+				"from": 2190000,
+				"to": 2194000
+			},
+			"text": " There is another effort like this. I think it's called Voxelis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,000",
+				"to": "00:36:39,000"
+			},
+			"offsets": {
+				"from": 2194000,
+				"to": 2199000
+			},
+			"text": " which I think Calzymiter and some Argentinian guys are working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,000",
+				"to": "00:36:45,000"
+			},
+			"offsets": {
+				"from": 2199000,
+				"to": 2205000
+			},
+			"text": " I haven't actually tried it out yet, but yeah, I think the future of this stuff is quite obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,000",
+				"to": "00:36:48,000"
+			},
+			"offsets": {
+				"from": 2205000,
+				"to": 2208000
+			},
+			"text": " These two things are going to be paired in really, really interesting ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,000",
+				"to": "00:36:51,000"
+			},
+			"offsets": {
+				"from": 2208000,
+				"to": 2211000
+			},
+			"text": " If you have some thoughts about that, please come talk to me afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:51,000",
+				"to": "00:36:52,000"
+			},
+			"offsets": {
+				"from": 2211000,
+				"to": 2212000
+			},
+			"text": " I'm definitely interested in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,000",
+				"to": "00:36:53,000"
+			},
+			"offsets": {
+				"from": 2212000,
+				"to": 2213000
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,000",
+				"to": "00:36:57,000"
+			},
+			"offsets": {
+				"from": 2213000,
+				"to": 2217000
+			},
+			"text": " Can I make a wee expansion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,000",
+				"to": "00:36:58,000"
+			},
+			"offsets": {
+				"from": 2217000,
+				"to": 2218000
+			},
+			"text": " Oh, do you have a comment?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:58,000",
+				"to": "00:36:59,000"
+			},
+			"offsets": {
+				"from": 2218000,
+				"to": 2219000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:59,000",
+				"to": "00:37:04,000"
+			},
+			"offsets": {
+				"from": 2219000,
+				"to": 2224000
+			},
+			"text": " I think there are four or five technologies that are all going to hybridize in completely insane ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,000",
+				"to": "00:37:06,000"
+			},
+			"offsets": {
+				"from": 2224000,
+				"to": 2226000
+			},
+			"text": " in the next few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,000",
+				"to": "00:37:13,000"
+			},
+			"offsets": {
+				"from": 2226000,
+				"to": 2233000
+			},
+			"text": " VR and AR, blockchains, weak AI, robotics, including drones and internet things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,000",
+				"to": "00:37:15,000"
+			},
+			"offsets": {
+				"from": 2233000,
+				"to": 2235000
+			},
+			"text": " I think are going to mash in."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,000",
+				"to": "00:37:18,000"
+			},
+			"offsets": {
+				"from": 2235000,
+				"to": 2238000
+			},
+			"text": " Each one of those is currently at the limits of investability."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:18,000",
+				"to": "00:37:25,000"
+			},
+			"offsets": {
+				"from": 2238000,
+				"to": 2245000
+			},
+			"text": " Over the next few years, those things will mature to the point where you can start seeing real investment in the interactions between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:25,000",
+				"to": "00:37:27,000"
+			},
+			"offsets": {
+				"from": 2245000,
+				"to": 2247000
+			},
+			"text": " What's going to come out of that is any eruption."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:27,000",
+				"to": "00:37:31,000"
+			},
+			"offsets": {
+				"from": 2247000,
+				"to": 2251000
+			},
+			"text": " What do you have in that you have a company that has all four of those technologies integrated in product?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:31,000",
+				"to": "00:37:33,000"
+			},
+			"offsets": {
+				"from": 2251000,
+				"to": 2253000
+			},
+			"text": " What is that even going to be like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:33,000",
+				"to": "00:37:40,000"
+			},
+			"offsets": {
+				"from": 2253000,
+				"to": 2260000
+			},
+			"text": " Self-flying drones that use a blockchain to negotiate for air space as they make package deliveries in people's AR games?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,000",
+				"to": "00:37:41,000"
+			},
+			"offsets": {
+				"from": 2260000,
+				"to": 2261000
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:41,000",
+				"to": "00:37:42,000"
+			},
+			"offsets": {
+				"from": 2261000,
+				"to": 2262000
+			},
+			"text": " Yeah, totally."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,000",
+				"to": "00:37:45,000"
+			},
+			"offsets": {
+				"from": 2262000,
+				"to": 2265000
+			},
+			"text": " You can just sit down and play this as a game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:45,000",
+				"to": "00:37:50,000"
+			},
+			"offsets": {
+				"from": 2265000,
+				"to": 2270000
+			},
+			"text": " When you basically sit down and try and imagine a product which has all four of those technologies interacting inside of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,000",
+				"to": "00:37:53,000"
+			},
+			"offsets": {
+				"from": 2270000,
+				"to": 2273000
+			},
+			"text": " and the things that come out are just sounds fiction in a can."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,000",
+				"to": "00:37:57,000"
+			},
+			"offsets": {
+				"from": 2273000,
+				"to": 2277000
+			},
+			"text": " That's the entire next 10 years. It's going to just, I can't even imagine."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,000",
+				"to": "00:37:59,000"
+			},
+			"offsets": {
+				"from": 2277000,
+				"to": 2279000
+			},
+			"text": " It's going to blow our minds."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:59,000",
+				"to": "00:38:02,000"
+			},
+			"offsets": {
+				"from": 2279000,
+				"to": 2282000
+			},
+			"text": " It's actually, I think this is the most fun intersection to possibly be working at."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:02,000",
+				"to": "00:38:05,000"
+			},
+			"offsets": {
+				"from": 2282000,
+				"to": 2285000
+			},
+			"text": " So, just a bit of thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,000",
+				"to": "00:38:06,000"
+			},
+			"offsets": {
+				"from": 2285000,
+				"to": 2286000
+			},
+			"text": " Who else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:06,000",
+				"to": "00:38:09,000"
+			},
+			"offsets": {
+				"from": 2286000,
+				"to": 2289000
+			},
+			"text": " We're good. Okay. Time's up. Thanks guys. Appreciate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,000",
+				"to": "00:38:16,000"
+			},
+			"offsets": {
+				"from": 2289000,
+				"to": 2296000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,000",
+				"to": "00:38:18,260"
+			},
+			"offsets": {
+				"from": 2296000,
+				"to": 2298260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

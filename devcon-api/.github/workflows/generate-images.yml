@@ -1,0 +1,32 @@
+name: Generate Programming Images
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+        with:
+          token: ${{secrets.GH_ACCESS_TOKEN}}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Generate images
+        run: yarn scripts:generator
+
+      - name: Commit updates
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: 'CI Image generation'

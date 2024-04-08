@@ -1,0 +1,2089 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5680
+			},
+			"text": " Hi everybody. So maybe you are not coming for this talk, so I have an explanation for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,680",
+				"to": "00:00:12,760"
+			},
+			"offsets": {
+				"from": 5680,
+				"to": 12760
+			},
+			"text": " that. Which is right there. So, where I can try to convince that this is the talk you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,760",
+				"to": "00:00:18,160"
+			},
+			"offsets": {
+				"from": 12760,
+				"to": 18160
+			},
+			"text": " are coming from, you are coming from it, it will probably not work. So, my initial talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,160",
+				"to": "00:00:23,640"
+			},
+			"offsets": {
+				"from": 18160,
+				"to": 23640
+			},
+			"text": " was rejected and I got a notification like yesterday at midnight that in fact it was not"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,640",
+				"to": "00:00:29,880"
+			},
+			"offsets": {
+				"from": 23640,
+				"to": 29880
+			},
+			"text": " rejected. So, I decided to recycle some slides there for a GX, add a bit more content and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,880",
+				"to": "00:00:34,560"
+			},
+			"offsets": {
+				"from": 29880,
+				"to": 34560
+			},
+			"text": " that is what the talk will be about. So, if you have a medical condition and you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,560",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 34560,
+				"to": 41000
+			},
+			"text": " listen to an SJX talk, you might live, I won't be offended. Otherwise, it should be interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:47,600"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 47600
+			},
+			"text": " So, with that, we are going to talk a little bit more about around clave. The idea is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,600",
+				"to": "00:00:52,760"
+			},
+			"offsets": {
+				"from": 47600,
+				"to": 52760
+			},
+			"text": " keep talking about what we did last year previously, which was not very successful. We will discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,760",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 52760,
+				"to": 59120
+			},
+			"text": " why and we will discuss how we can improve that. And, well, if you want to follow something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 63080
+			},
+			"text": " for example, during the talk and to read something during the talk, the threat model we have in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:09,640"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 69640
+			},
+			"text": " the read me is interesting to read and it's still up to date even if the code is not."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,640",
+				"to": "00:01:15,960"
+			},
+			"offsets": {
+				"from": 69640,
+				"to": 75960
+			},
+			"text": " So, first question you can ask, why are we making an enclave as a hardware wallet manufacturer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,960",
+				"to": "00:01:20,160"
+			},
+			"offsets": {
+				"from": 75960,
+				"to": 80160
+			},
+			"text": " So, the first thing is that we are, a ledger has been developing into several industries"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,160",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 80160,
+				"to": 84560
+			},
+			"text": " and created several business units today. So, we are not only making hardware wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 90080
+			},
+			"text": " with the SE on which we can code over on OS. We are exploring the custodian model where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:34,920"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 94920
+			},
+			"text": " we work on HSN that are not built by us. So, in that case, we need to work into some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,920",
+				"to": "00:01:40,440"
+			},
+			"offsets": {
+				"from": 94920,
+				"to": 100440
+			},
+			"text": " things that look a little bit like an enclave and we want to transition from a company manufacturing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,440",
+				"to": "00:01:46,480"
+			},
+			"offsets": {
+				"from": 100440,
+				"to": 106480
+			},
+			"text": " hardware devices to a company selling operating system licenses. And, for that, enclaves are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:50,760"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 110760
+			},
+			"text": " a very good target because they already exist. They are already in the market. And, the main"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,760",
+				"to": "00:01:55,080"
+			},
+			"offsets": {
+				"from": 110760,
+				"to": 115080
+			},
+			"text": " obstacle today for people to use a ledger is actually to buy a ledger. So, if we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,080",
+				"to": "00:02:01,720"
+			},
+			"offsets": {
+				"from": 115080,
+				"to": 121720
+			},
+			"text": " find a way to download a ledger and have an interesting security and an existing computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,720",
+				"to": "00:02:05,600"
+			},
+			"offsets": {
+				"from": 121720,
+				"to": 125600
+			},
+			"text": " it would be quite interesting for us. And so, that's why we are digging into those models"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,600",
+				"to": "00:02:11,960"
+			},
+			"offsets": {
+				"from": 125600,
+				"to": 131960
+			},
+			"text": " and we are evaluating the security very carefully for that. So, we have a re-usable operating"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,960",
+				"to": "00:02:16,800"
+			},
+			"offsets": {
+				"from": 131960,
+				"to": 136800
+			},
+			"text": " system code base working on an enclave and changing from a secure element to an enclave"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,800",
+				"to": "00:02:24,360"
+			},
+			"offsets": {
+				"from": 136800,
+				"to": 144360
+			},
+			"text": " for us is quite easy. So, we are using this expertise. And another important thing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,360",
+				"to": "00:02:30,440"
+			},
+			"offsets": {
+				"from": 144360,
+				"to": 150440
+			},
+			"text": " that, well, we have a strong expertise in hardening cryptographic code. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,440",
+				"to": "00:02:34,400"
+			},
+			"offsets": {
+				"from": 150440,
+				"to": 154400
+			},
+			"text": " some things that's difficult to do. I mean, that's something that you don't usually do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,400",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 154400,
+				"to": 160000
+			},
+			"text": " because a lot of people using secure elements will just reuse a vendor cryptographic library."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:46,120"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 166120
+			},
+			"text": " We build them from scratch and we reuse everything that we have on the chip to make them harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,120",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 166120,
+				"to": 171920
+			},
+			"text": " So, we did a popular CTF this year, annual device that was won by a company called Ninja"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:58,400"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 178400
+			},
+			"text": " Labs. They liked the CTF. They didn't describe everything yet, but it is related to side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,400",
+				"to": "00:03:03,120"
+			},
+			"offsets": {
+				"from": 178400,
+				"to": 183120
+			},
+			"text": " channels and to template profiling on side channels. So, that's the kind of things we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,120",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 183120,
+				"to": 190120
+			},
+			"text": " want to do in SGX as well, improve it and provide the result to everybody. So, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:17,080"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 197080
+			},
+			"text": " want to transition from hardware wallet to virtual secure device or to have an enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,080",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 197080,
+				"to": 201600
+			},
+			"text": " you have to consider a few things. First, you want to focus on the key protection. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:25,320"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 205320
+			},
+			"text": " keyboard action is a most important part of a hardware wallet. It's going to be very important"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,320",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 205320,
+				"to": 210480
+			},
+			"text": " for an enclave as well. You don't want an attacker to be able to extract keys. So, here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 214960
+			},
+			"text": " for an enclave, we will focus on software threat models. So, we will not consider hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:39,200"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 219200
+			},
+			"text": " threat models where an attacker has access to the enclave because that's pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,200",
+				"to": "00:03:45,320"
+			},
+			"offsets": {
+				"from": 219200,
+				"to": 225320
+			},
+			"text": " out of scope. Claves are quite complex and it's difficult to focus on securing as a whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,320",
+				"to": "00:03:52,480"
+			},
+			"offsets": {
+				"from": 225320,
+				"to": 232480
+			},
+			"text": " thing against a physical attacker. Then, user confirmation is extremely important as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,480",
+				"to": "00:03:57,680"
+			},
+			"offsets": {
+				"from": 232480,
+				"to": 237680
+			},
+			"text": " because if you want to play with holding keys but users can an attacker or malware can sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,680",
+				"to": "00:04:02,080"
+			},
+			"offsets": {
+				"from": 237680,
+				"to": 242080
+			},
+			"text": " anything, it's not very secure. So, you should be able to confirm what you are doing and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,080",
+				"to": "00:04:06,360"
+			},
+			"offsets": {
+				"from": 242080,
+				"to": 246360
+			},
+			"text": " should be -- it shouldn't be possible to fake this confirmation if you're malware. Then"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,360",
+				"to": "00:04:11,640"
+			},
+			"offsets": {
+				"from": 246360,
+				"to": 251640
+			},
+			"text": " flexibility, you should be able to do software updates on your hardware wallet on a claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,640",
+				"to": "00:04:18,360"
+			},
+			"offsets": {
+				"from": 251640,
+				"to": 258360
+			},
+			"text": " anytime. So, even if your computer is compromised, which is quite important. And as a developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,360",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 258360,
+				"to": 263240
+			},
+			"text": " you should be able to test new functionalities. Typically, for Ethereum, if your enclave is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:27,720"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 267720
+			},
+			"text": " signing an Ethereum transaction, it should be able to support smart contracts and it should"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,720",
+				"to": "00:04:33,880"
+			},
+			"offsets": {
+				"from": 267720,
+				"to": 273880
+			},
+			"text": " be able, if possible, to display specific UX for specific smart contracts in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,880",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 273880,
+				"to": 279680
+			},
+			"text": " provide always the best and the clearest message to the user to know what you are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 286760
+			},
+			"text": " Finally, remote attestation, we should have a way in an enclave or in a -- like we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:51,160"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 291160
+			},
+			"text": " in the device to verify that the code is running on a healthy platform and that you are running"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,160",
+				"to": "00:04:54,800"
+			},
+			"offsets": {
+				"from": 291160,
+				"to": 294800
+			},
+			"text": " the right code. So, you should be able to verify which code you're running and we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,800",
+				"to": "00:05:02,360"
+			},
+			"offsets": {
+				"from": 294800,
+				"to": 302360
+			},
+			"text": " see that this comes with some difficulties on SGX but we can help solving that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,360",
+				"to": "00:05:06,760"
+			},
+			"offsets": {
+				"from": 302360,
+				"to": 306760
+			},
+			"text": " So, today in our architecture, the way we achieve source code portability between secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,760",
+				"to": "00:05:12,240"
+			},
+			"offsets": {
+				"from": 306760,
+				"to": 312240
+			},
+			"text": " elements and enclaves is quite simple. We focus on C source code portability. So, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,240",
+				"to": "00:05:17,400"
+			},
+			"offsets": {
+				"from": 312240,
+				"to": 317400
+			},
+			"text": " write the code once with the same API. When we work natively on the secure elements, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,400",
+				"to": "00:05:22,240"
+			},
+			"offsets": {
+				"from": 317400,
+				"to": 322240
+			},
+			"text": " are compiling to ARM because the worst secure elements are based on secure cores, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,240",
+				"to": "00:05:28,520"
+			},
+			"offsets": {
+				"from": 322240,
+				"to": 328520
+			},
+			"text": " is kind of a secure ARM. And when we are working on an enclave, all kind of enclaves, it could"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,520",
+				"to": "00:05:35,600"
+			},
+			"offsets": {
+				"from": 328520,
+				"to": 335600
+			},
+			"text": " be SGX, T, or NHSM, we are cross-compiling to Moxie, which is an open architecture which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,600",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 335600,
+				"to": 343880
+			},
+			"text": " was used usually in the Bitcoin project as an experiment by Jeff Gasek back in the days."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:48,840"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 348840
+			},
+			"text": " But it's very simple. It's very easy to review, easy to secure as well. So, it's a good target"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,840",
+				"to": "00:05:58,040"
+			},
+			"offsets": {
+				"from": 348840,
+				"to": 358040
+			},
+			"text": " if you want to have a simple VM. Regarding the architecture itself, we will try to reuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,040",
+				"to": "00:06:02,720"
+			},
+			"offsets": {
+				"from": 358040,
+				"to": 362720
+			},
+			"text": " this model as much as we can. So, we want to protect the user secrets. So, we will -- the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,720",
+				"to": "00:06:08,520"
+			},
+			"offsets": {
+				"from": 362720,
+				"to": 368520
+			},
+			"text": " user secrets will sit between a kind of firewall. Applications will be firewall between each"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,520",
+				"to": "00:06:14,160"
+			},
+			"offsets": {
+				"from": 368520,
+				"to": 374160
+			},
+			"text": " other as well. And while an application wants to access some cryptographic material, it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:19,720"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 379720
+			},
+			"text": " use -- it will use a service call. So, service call on ARM or something else in virtual machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,720",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 379720,
+				"to": 385400
+			},
+			"text": " to access the secrets. So, applications can't touch secrets unless the enter privilege"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:30,200"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 390200
+			},
+			"text": " mode, which is run by the kernel. And applications are isolated and, of course, can't touch the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,200",
+				"to": "00:06:40,920"
+			},
+			"offsets": {
+				"from": 390200,
+				"to": 400920
+			},
+			"text": " kernel. So, if we look at the state of our SGX tag in 2017, we had good points and bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,920",
+				"to": "00:06:46,160"
+			},
+			"offsets": {
+				"from": 400920,
+				"to": 406160
+			},
+			"text": " points. So, the first good point is that it works. So, if you want to try it today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,160",
+				"to": "00:06:52,640"
+			},
+			"offsets": {
+				"from": 406160,
+				"to": 412640
+			},
+			"text": " you can do something, you can run some simple applications. We demonstrated on-chain attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,640",
+				"to": "00:06:57,920"
+			},
+			"offsets": {
+				"from": 412640,
+				"to": 417920
+			},
+			"text": " so you can verify that your enclave is legitimate on-chain. After you pass the enterlet station,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,920",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 417920,
+				"to": 423000
+			},
+			"text": " you can verify that your code is the code that is supposed to be on-chain. And we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,960"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427960
+			},
+			"text": " an open source SDK. Even if the code is deprecated, it's still completely usable and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,960",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 427960,
+				"to": 436000
+			},
+			"text": " still play with it. On the bad side, on the negative side, we are no user confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:25,680"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 445680
+			},
+			"text": " possible since we didn't have a display API. So, you couldn't use it really as a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,680",
+				"to": "00:07:30,360"
+			},
+			"offsets": {
+				"from": 445680,
+				"to": 450360
+			},
+			"text": " So, if all code that you wanted to run on the enclave had to be signed by us. So, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,360",
+				"to": "00:07:35,720"
+			},
+			"offsets": {
+				"from": 450360,
+				"to": 455720
+			},
+			"text": " the biggest thing that deterred people from using the enclave, because at some point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,720",
+				"to": "00:07:40,720"
+			},
+			"offsets": {
+				"from": 455720,
+				"to": 460720
+			},
+			"text": " if you wanted to run with, you know, protected environment, you had to send us the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,720",
+				"to": "00:07:45,960"
+			},
+			"offsets": {
+				"from": 460720,
+				"to": 465960
+			},
+			"text": " We had to sign a key, which was more convenient. But still, a lot of people didn't want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,960",
+				"to": "00:07:52,040"
+			},
+			"offsets": {
+				"from": 465960,
+				"to": 472040
+			},
+			"text": " contact us for that. So, that's why, in my opinion, it wasn't very popular. And, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,040",
+				"to": "00:07:58,200"
+			},
+			"offsets": {
+				"from": 472040,
+				"to": 478200
+			},
+			"text": " we did no security audit, so the code is really sent to you to be tried and without any kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,200",
+				"to": "00:08:05,560"
+			},
+			"offsets": {
+				"from": 478200,
+				"to": 485560
+			},
+			"text": " of guarantee. So, how can we improve that? Of course, regarding the attestation, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,560",
+				"to": "00:08:11,720"
+			},
+			"offsets": {
+				"from": 485560,
+				"to": 491720
+			},
+			"text": " people have been talking about Intel attestation a lot. So, the thing is, the Intel attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,720",
+				"to": "00:08:15,960"
+			},
+			"offsets": {
+				"from": 491720,
+				"to": 495960
+			},
+			"text": " today is still very useful, in my opinion, because you need to validate the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,960",
+				"to": "00:08:20,600"
+			},
+			"offsets": {
+				"from": 495960,
+				"to": 500600
+			},
+			"text": " health from time to time. For example, when there is a new security exploit that involves"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,600",
+				"to": "00:08:26,680"
+			},
+			"offsets": {
+				"from": 500600,
+				"to": 506680
+			},
+			"text": " updating your BIOS, or updating the microcode of your CPU, the only way to know that is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,680",
+				"to": "00:08:33,040"
+			},
+			"offsets": {
+				"from": 506680,
+				"to": 513040
+			},
+			"text": " have a centralized API at some point. So, it's still used today. But you can select different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,040",
+				"to": "00:08:41,080"
+			},
+			"offsets": {
+				"from": 513040,
+				"to": 521080
+			},
+			"text": " setups depending what you want for your application when you are using your own enclave. So, if"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,080",
+				"to": "00:08:46,040"
+			},
+			"offsets": {
+				"from": 521080,
+				"to": 526040
+			},
+			"text": " you don't want to use Intel attestation, you can. It works. The code is still secure because"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,040",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 526040,
+				"to": 530120
+			},
+			"text": " the code is signed. You can verify, you can rebuild the code on your side and verify that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:55,080"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 535080
+			},
+			"text": " the code is correct. But, in this case, you don't get remotetestation at all. It's a choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,080",
+				"to": "00:08:59,360"
+			},
+			"offsets": {
+				"from": 535080,
+				"to": 539360
+			},
+			"text": " If you want to run your wallet on your side, you can do that. Maybe not the best choice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,360",
+				"to": "00:09:04,840"
+			},
+			"offsets": {
+				"from": 539360,
+				"to": 544840
+			},
+			"text": " but it's a choice. You can run Intel attestation once. If you do that, you get a week, let your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,840",
+				"to": "00:09:10,400"
+			},
+			"offsets": {
+				"from": 544840,
+				"to": 550400
+			},
+			"text": " attestation. I put week here because it will not be up to date regarding the health of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,400",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 550400,
+				"to": 557000
+			},
+			"text": " platform which can change. So, again, it's a choice. But if you run Intel attestation from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:22,200"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 562200
+			},
+			"text": " time to time, then you can get a stronger attestation. And the biggest difference here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,200",
+				"to": "00:09:29,400"
+			},
+			"offsets": {
+				"from": 562200,
+				"to": 569400
+			},
+			"text": " according to IAS attestation today, is that it's something you can validate on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,400",
+				"to": "00:09:39,600"
+			},
+			"offsets": {
+				"from": 569400,
+				"to": 579600
+			},
+			"text": " So, the good news is that with a new Intel API called protected transaction display, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,600",
+				"to": "00:09:45,200"
+			},
+			"offsets": {
+				"from": 579600,
+				"to": 585200
+			},
+			"text": " can solve two problems. So, we can solve the confirmation issue and we can solve the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,200",
+				"to": "00:09:51,200"
+			},
+			"offsets": {
+				"from": 585200,
+				"to": 591200
+			},
+			"text": " that you couldn't run an in-use code so far. So, now, you won't have to contact us to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,200",
+				"to": "00:09:58,840"
+			},
+			"offsets": {
+				"from": 591200,
+				"to": 598840
+			},
+			"text": " your code on the enclave once this is released. So, if we want to summarize very quickly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,840",
+				"to": "00:10:04,960"
+			},
+			"offsets": {
+				"from": 598840,
+				"to": 604960
+			},
+			"text": " get another view of protected transaction display, it will be a way to create a secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,960",
+				"to": "00:10:11,960"
+			},
+			"offsets": {
+				"from": 604960,
+				"to": 611960
+			},
+			"text": " display to display something securely, so a new device that will be prepared by the enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,960",
+				"to": "00:10:19,200"
+			},
+			"offsets": {
+				"from": 611960,
+				"to": 619200
+			},
+			"text": " So, the way this works is that PTD will allow you to create a confidential output on display."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,200",
+				"to": "00:10:24,960"
+			},
+			"offsets": {
+				"from": 619200,
+				"to": 624960
+			},
+			"text": " So, the display here is a mixed display. In this window, you have a mixed display. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,960",
+				"to": "00:10:30,560"
+			},
+			"offsets": {
+				"from": 624960,
+				"to": 630560
+			},
+			"text": " the sun is done by PTD, so it can't be spied on by the host. The pin pad here is done by"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,560",
+				"to": "00:10:35,960"
+			},
+			"offsets": {
+				"from": 630560,
+				"to": 635960
+			},
+			"text": " PTD. This line is displayed by PTD and this line is displayed by PTD as well. The buttons"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,960",
+				"to": "00:10:46,560"
+			},
+			"offsets": {
+				"from": 635960,
+				"to": 646560
+			},
+			"text": " are not and these are labeled and string are not. So, the input, the output is confidential"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,560",
+				"to": "00:10:53,240"
+			},
+			"offsets": {
+				"from": 646560,
+				"to": 653240
+			},
+			"text": " because the host cannot read anything. And with the fact that you can display a pin code"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,240",
+				"to": "00:10:58,080"
+			},
+			"offsets": {
+				"from": 653240,
+				"to": 658080
+			},
+			"text": " that is randomly swapped by PTD, you can achieve confidential input as well. Because if, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,080",
+				"to": "00:11:03,800"
+			},
+			"offsets": {
+				"from": 658080,
+				"to": 663800
+			},
+			"text": " example, here you type your pin code, the host has no way to know that you type 1234"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,800",
+				"to": "00:11:08,680"
+			},
+			"offsets": {
+				"from": 663800,
+				"to": 668680
+			},
+			"text": " if you click that. I mean, the host will just see that you click some buttons on your screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,680",
+				"to": "00:11:14,880"
+			},
+			"offsets": {
+				"from": 668680,
+				"to": 674880
+			},
+			"text": " but this way you can manage to have some secure input even if it's not very convenient. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,880",
+				"to": "00:11:22,920"
+			},
+			"offsets": {
+				"from": 674880,
+				"to": 682920
+			},
+			"text": " here we have a way to display some additional data on PTD. So, you see an amount which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,920",
+				"to": "00:11:30,160"
+			},
+			"offsets": {
+				"from": 682920,
+				"to": 690160
+			},
+			"text": " is an amount of 0.0096 meters. So, here you see the number of the symbol below, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,160",
+				"to": "00:11:36,320"
+			},
+			"offsets": {
+				"from": 690160,
+				"to": 696320
+			},
+			"text": " again not the best UI, but well, that's what you can do today. And part of an Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,320",
+				"to": "00:11:41,320"
+			},
+			"offsets": {
+				"from": 696320,
+				"to": 701320
+			},
+			"text": " advice. So, after you do that, after you enter your pin, wallet could send a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,320",
+				"to": "00:11:50,800"
+			},
+			"offsets": {
+				"from": 701320,
+				"to": 710800
+			},
+			"text": " transaction. The limitations we have with PTD today are the output is confidential, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,800",
+				"to": "00:11:56,160"
+			},
+			"offsets": {
+				"from": 710800,
+				"to": 716160
+			},
+			"text": " the output cannot be spied on, but it cannot be trusted because you can still display"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,160",
+				"to": "00:12:01,400"
+			},
+			"offsets": {
+				"from": 716160,
+				"to": 721400
+			},
+			"text": " something on top of the output. So, in this case, that's why we are -- that's why we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,400",
+				"to": "00:12:08,200"
+			},
+			"offsets": {
+				"from": 721400,
+				"to": 728200
+			},
+			"text": " -- you have to do this user confirmation twice. So, it's not the best UX possible, but I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,200",
+				"to": "00:12:14,080"
+			},
+			"offsets": {
+				"from": 728200,
+				"to": 734080
+			},
+			"text": " say it works with what is available there. So, the I/O primitive are very limited today."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,080",
+				"to": "00:12:18,400"
+			},
+			"offsets": {
+				"from": 734080,
+				"to": 738400
+			},
+			"text": " That's probably something that can change. But you don't have the flexibility of global"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,400",
+				"to": "00:12:25,360"
+			},
+			"offsets": {
+				"from": 738400,
+				"to": 745360
+			},
+			"text": " platform T trusted UI if you want. So, one thing that's popular with this API is to basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,360",
+				"to": "00:12:30,240"
+			},
+			"offsets": {
+				"from": 745360,
+				"to": 750240
+			},
+			"text": " register an image on a server and then display this image. So, you can be sure that nobody"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,240",
+				"to": "00:12:35,720"
+			},
+			"offsets": {
+				"from": 750240,
+				"to": 755720
+			},
+			"text": " can intercept the image and malware on the host could not replace the trusted UI, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,720",
+				"to": "00:12:43,680"
+			},
+			"offsets": {
+				"from": 755720,
+				"to": 763680
+			},
+			"text": " you can't in that case. So, that's why you have to have the user type again and confirm"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,680",
+				"to": "00:12:50,680"
+			},
+			"offsets": {
+				"from": 763680,
+				"to": 770680
+			},
+			"text": " twice, which is not the most convenient thing, but it works. So, the alternative options,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,680",
+				"to": "00:12:56,680"
+			},
+			"offsets": {
+				"from": 770680,
+				"to": 776680
+			},
+			"text": " you can think of -- or at least I can think of ours. Typically, if I want a user to -- if"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,680",
+				"to": "00:13:00,880"
+			},
+			"offsets": {
+				"from": 776680,
+				"to": 780880
+			},
+			"text": " I want a user to verify that the trusted UI is genuine, you would have to train your"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,880",
+				"to": "00:13:05,680"
+			},
+			"offsets": {
+				"from": 780880,
+				"to": 785680
+			},
+			"text": " users to try to take screenshots, for example, and see that they can't take screenshots."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,680",
+				"to": "00:13:10,880"
+			},
+			"offsets": {
+				"from": 785680,
+				"to": 790880
+			},
+			"text": " So, that's not something extremely realistic. I mean, geeks can probably do that, but not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,880",
+				"to": "00:13:16,080"
+			},
+			"offsets": {
+				"from": 790880,
+				"to": 796080
+			},
+			"text": " the regular user. And so far it's Windows only, so if you want to run those tests, you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,080",
+				"to": "00:13:24,320"
+			},
+			"offsets": {
+				"from": 796080,
+				"to": 804320
+			},
+			"text": " run them on Linux. That will probably change over time as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,320",
+				"to": "00:13:29,840"
+			},
+			"offsets": {
+				"from": 804320,
+				"to": 809840
+			},
+			"text": " We are still -- so, one part we are still missing compared to 2017 is the security audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,840",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 809840,
+				"to": 814000
+			},
+			"text": " and that's what we will be focusing on right now, and that's the reason why typically I"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:40,400"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 820400
+			},
+			"text": " didn't update the code, because we didn't run our security audit yet. So, on the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,400",
+				"to": "00:13:44,320"
+			},
+			"offsets": {
+				"from": 820400,
+				"to": 824320
+			},
+			"text": " part of the security audit, you want to run that like a standard security audit. So, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,320",
+				"to": "00:13:48,960"
+			},
+			"offsets": {
+				"from": 824320,
+				"to": 828960
+			},
+			"text": " want to verify that your own claim is not vulnerable to typical bugs, but further flows"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,960",
+				"to": "00:13:56,960"
+			},
+			"offsets": {
+				"from": 828960,
+				"to": 836960
+			},
+			"text": " and so on. So, that's very, very normal. Then, you want to verify something more. You want"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,960",
+				"to": "00:14:02,760"
+			},
+			"offsets": {
+				"from": 836960,
+				"to": 842760
+			},
+			"text": " to see if your key can withstand several side-channel attacks, because side-channel attacks got very"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,760",
+				"to": "00:14:08,920"
+			},
+			"offsets": {
+				"from": 842760,
+				"to": 848920
+			},
+			"text": " popular during last year. So, more and more people have been able to -- have been demonstrating"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,920",
+				"to": "00:14:14,120"
+			},
+			"offsets": {
+				"from": 848920,
+				"to": 854120
+			},
+			"text": " ways to extract keys from enclaves, either by attacking the enclave from another one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,120",
+				"to": "00:14:20,560"
+			},
+			"offsets": {
+				"from": 854120,
+				"to": 860560
+			},
+			"text": " from the host. And today, there is still a state of the art to be written to know if"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,560",
+				"to": "00:14:26,680"
+			},
+			"offsets": {
+				"from": 860560,
+				"to": 866680
+			},
+			"text": " keys are correctly protected in an enclave. And we are very interested to answer this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,680",
+				"to": "00:14:31,080"
+			},
+			"offsets": {
+				"from": 866680,
+				"to": 871080
+			},
+			"text": " We are very interested to publish results, and we want to advance the state of the art"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,080",
+				"to": "00:14:38,880"
+			},
+			"offsets": {
+				"from": 871080,
+				"to": 878880
+			},
+			"text": " of protecting key and enclave. So, good news is that we are, I think, good at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,880",
+				"to": "00:14:43,120"
+			},
+			"offsets": {
+				"from": 878880,
+				"to": 883120
+			},
+			"text": " At least, we already did it on hardware, so we should be able to do it on bigger hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,120",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 883120,
+				"to": 888000
+			},
+			"text": " as well as an enclave. And that's just a random advertisement, which is not totally"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:52,920"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 892920
+			},
+			"text": " related to side-channel on the cache. But it's a general side-channel API that we published"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,920",
+				"to": "00:15:04,400"
+			},
+			"offsets": {
+				"from": 892920,
+				"to": 904400
+			},
+			"text": " a few days ago that will let you test state of the art's state-channel on completing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,400",
+				"to": "00:15:10,360"
+			},
+			"offsets": {
+				"from": 904400,
+				"to": 910360
+			},
+			"text": " So how will we proceed with this audit? So, first, we will focus on a single curve. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,360",
+				"to": "00:15:16,720"
+			},
+			"offsets": {
+				"from": 910360,
+				"to": 916720
+			},
+			"text": " will focus on secP256K1, which is a curve used by a lot of cryptos today, so at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,720",
+				"to": "00:15:21,440"
+			},
+			"offsets": {
+				"from": 916720,
+				"to": 921440
+			},
+			"text": " Bitcoin and Ethereum. So, for the time being that the curve we are the most interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,440",
+				"to": "00:15:27,480"
+			},
+			"offsets": {
+				"from": 921440,
+				"to": 927480
+			},
+			"text": " in, we will review the state-of-the-art library used today by multiple projects coming from"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,480",
+				"to": "00:15:35,440"
+			},
+			"offsets": {
+				"from": 927480,
+				"to": 935440
+			},
+			"text": " Bitcoin core, so libsecp256K1, and we will test it against state-of-the-art side-channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,440",
+				"to": "00:15:42,840"
+			},
+			"offsets": {
+				"from": 935440,
+				"to": 942840
+			},
+			"text": " attacks that we have on SGX. We will publish a review on that, a detailed report. If there"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,840",
+				"to": "00:15:49,160"
+			},
+			"offsets": {
+				"from": 942840,
+				"to": 949160
+			},
+			"text": " are patches to be written, we will do that as well. If we have some parts to rewrite,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,160",
+				"to": "00:15:57,040"
+			},
+			"offsets": {
+				"from": 949160,
+				"to": 957040
+			},
+			"text": " we will also do that. And in the end, we want to know if and when, how long, we can store"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,040",
+				"to": "00:16:04,520"
+			},
+			"offsets": {
+				"from": 957040,
+				"to": 964520
+			},
+			"text": " keys on SGX. And I think that using this research, we will be able to finally have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,520",
+				"to": "00:16:10,480"
+			},
+			"offsets": {
+				"from": 964520,
+				"to": 970480
+			},
+			"text": " a workable hardware wallet on an enclave, and with strong guarantees that the keys are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,480",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 970480,
+				"to": 975000
+			},
+			"text": " going to be available and that the keys are not going to be stolen for a given amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:21,600"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 981600
+			},
+			"text": " of time. So, for this, we chose not to use the Intel proprietary cryptographic library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,600",
+				"to": "00:16:27,440"
+			},
+			"offsets": {
+				"from": 981600,
+				"to": 987440
+			},
+			"text": " because we figured that working on an open source code and providing some review of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,440",
+				"to": "00:16:34,640"
+			},
+			"offsets": {
+				"from": 987440,
+				"to": 994640
+			},
+			"text": " will benefit more to the community by knowing how we can work and design new side-channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,640",
+				"to": "00:16:45,680"
+			},
+			"offsets": {
+				"from": 994640,
+				"to": 1005680
+			},
+			"text": " protection attacks, which could later be applied to other curves. So, to finish, summary of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,680",
+				"to": "00:16:52,440"
+			},
+			"offsets": {
+				"from": 1005680,
+				"to": 1012440
+			},
+			"text": " what is coming next in 2019 for enclave, first, we want to start with the CTF. So, after"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,440",
+				"to": "00:17:00,600"
+			},
+			"offsets": {
+				"from": 1012440,
+				"to": 1020600
+			},
+			"text": " our review, we will test, so we will publish what we did with our hardened API, and, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,600",
+				"to": "00:17:06,600"
+			},
+			"offsets": {
+				"from": 1020600,
+				"to": 1026600
+			},
+			"text": " standard CTF. So, if you win, you get a tater, because, well, we will put some ads in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,600",
+				"to": "00:17:12,080"
+			},
+			"offsets": {
+				"from": 1026600,
+				"to": 1032080
+			},
+			"text": " round clave. So, we will usually increase the amount, and we will see if people are interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,080",
+				"to": "00:17:17,920"
+			},
+			"offsets": {
+				"from": 1032080,
+				"to": 1037920
+			},
+			"text": " in, if people manage to extract something. As I talked for our cryptographic API on our"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,920",
+				"to": "00:17:24,200"
+			},
+			"offsets": {
+				"from": 1037920,
+				"to": 1044200
+			},
+			"text": " hardware wallet, so that worked on, well, two bit coins, I think. On one bit coin, nobody"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,200",
+				"to": "00:17:31,200"
+			},
+			"offsets": {
+				"from": 1044200,
+				"to": 1051200
+			},
+			"text": " stole it, nobody stole it. On two bit coins, we found some motivated parties, so maybe we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,200",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1051200,
+				"to": 1055320
+			},
+			"text": " see the same here. After we do that, and we're convinced that our security is fine, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:40,080"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1060080
+			},
+			"text": " we can, we will be able to release a wallet, so we will release a simple wallet that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,080",
+				"to": "00:17:46,360"
+			},
+			"offsets": {
+				"from": 1060080,
+				"to": 1066360
+			},
+			"text": " work first for Bitcoin and Ethereum, and then we can move forward and release an SDK that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,360",
+				"to": "00:17:52,600"
+			},
+			"offsets": {
+				"from": 1066360,
+				"to": 1072600
+			},
+			"text": " will let people write their own applications and use PTD to secure their own applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,600",
+				"to": "00:17:59,520"
+			},
+			"offsets": {
+				"from": 1072600,
+				"to": 1079520
+			},
+			"text": " So, that's it. And we still have some minutes for questions, if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,520",
+				"to": "00:18:00,520"
+			},
+			"offsets": {
+				"from": 1079520,
+				"to": 1080520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,520",
+				"to": "00:18:07,520"
+			},
+			"offsets": {
+				"from": 1080520,
+				"to": 1087520
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,520",
+				"to": "00:18:14,520"
+			},
+			"offsets": {
+				"from": 1087520,
+				"to": 1094520
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,520",
+				"to": "00:18:21,520"
+			},
+			"offsets": {
+				"from": 1094520,
+				"to": 1101520
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,520",
+				"to": "00:18:28,520"
+			},
+			"offsets": {
+				"from": 1101520,
+				"to": 1108520
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,520",
+				"to": "00:18:57,520"
+			},
+			"offsets": {
+				"from": 1108520,
+				"to": 1137520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

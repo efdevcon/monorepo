@@ -1,0 +1,2573 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19640
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:20,540"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 20540
+			},
+			"text": " >> Welcome back."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,540",
+				"to": "00:00:24,920"
+			},
+			"offsets": {
+				"from": 20540,
+				"to": 24920
+			},
+			"text": " So we have with us Takamichi Tsumihi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,920",
+				"to": "00:00:29,120"
+			},
+			"offsets": {
+				"from": 24920,
+				"to": 29120
+			},
+			"text": " And he's going to tell us about a private exchange application"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,120",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 29120,
+				"to": 31120
+			},
+			"text": " that was built on top of ZK-OPRU."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 32120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:33,120"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 33120
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,120",
+				"to": "00:00:37,880"
+			},
+			"offsets": {
+				"from": 33120,
+				"to": 37880
+			},
+			"text": " >> Thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,880",
+				"to": "00:00:39,600"
+			},
+			"offsets": {
+				"from": 37880,
+				"to": 39600
+			},
+			"text": " My name is Takamichi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,600",
+				"to": "00:00:44,480"
+			},
+			"offsets": {
+				"from": 39600,
+				"to": 44480
+			},
+			"text": " Today, I'm going to talk about the private exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,480",
+				"to": "00:00:45,480"
+			},
+			"offsets": {
+				"from": 44480,
+				"to": 45480
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,480",
+				"to": "00:00:52,880"
+			},
+			"offsets": {
+				"from": 45480,
+				"to": 52880
+			},
+			"text": " I'm so far-engineered at privacy and scaling exploration team at Ethan Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,880",
+				"to": "00:00:54,880"
+			},
+			"offsets": {
+				"from": 52880,
+				"to": 54880
+			},
+			"text": " And yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,880",
+				"to": "00:00:59,080"
+			},
+			"offsets": {
+				"from": 54880,
+				"to": 59080
+			},
+			"text": " Today, I want to explore."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,080",
+				"to": "00:01:05,240"
+			},
+			"offsets": {
+				"from": 59080,
+				"to": 65240
+			},
+			"text": " A privacy preserving decentralized exchange on ZK-OPRU."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,240",
+				"to": "00:01:13,320"
+			},
+			"offsets": {
+				"from": 65240,
+				"to": 73320
+			},
+			"text": " For this project, we are aiming for more private peer-to-peer exchange system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,320",
+				"to": "00:01:19,240"
+			},
+			"offsets": {
+				"from": 73320,
+				"to": 79240
+			},
+			"text": " And private exchange consists of three different zero-knowledge protocols to protect users'"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,240",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79240,
+				"to": 82000
+			},
+			"text": " privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:26,960"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 86960
+			},
+			"text": " And this talk, I'm not going very deep on the technical details of the protocol, but I"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,960",
+				"to": "00:01:35,280"
+			},
+			"offsets": {
+				"from": 86960,
+				"to": 95280
+			},
+			"text": " will show how those protocols work and how the protocols are used in private exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,280",
+				"to": "00:01:37,840"
+			},
+			"offsets": {
+				"from": 95280,
+				"to": 97840
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,840",
+				"to": "00:01:45,560"
+			},
+			"offsets": {
+				"from": 97840,
+				"to": 105560
+			},
+			"text": " Before diving right into the private exchange, let me start with one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,560",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 105560,
+				"to": 110640
+			},
+			"text": " So why do we need privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:58,040"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 118040
+			},
+			"text": " I think there are many reasons for many different people and for many different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,040",
+				"to": "00:02:04,320"
+			},
+			"offsets": {
+				"from": 118040,
+				"to": 124320
+			},
+			"text": " So I'd like to share my opinion on this today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,320",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 124320,
+				"to": 130600
+			},
+			"text": " The privacy is important because it can contribute to censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:13,600"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 133600
+			},
+			"text": " Like on public, look-chain-like Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,600",
+				"to": "00:02:20,560"
+			},
+			"offsets": {
+				"from": 133600,
+				"to": 140560
+			},
+			"text": " Like the transactions on the old transactions on the blockchain are all visible to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,560",
+				"to": "00:02:30,960"
+			},
+			"offsets": {
+				"from": 140560,
+				"to": 150960
+			},
+			"text": " So it can be censored mostly in smaller networks because the number of the validators and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,960",
+				"to": "00:02:39,360"
+			},
+			"offsets": {
+				"from": 150960,
+				"to": 159360
+			},
+			"text": " block builders are relatively small to the censorship likely to be happened more often."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,360",
+				"to": "00:02:53,800"
+			},
+			"offsets": {
+				"from": 159360,
+				"to": 173800
+			},
+			"text": " For example, if you want to spin up minor roll-up on Ethereum, this is the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,800",
+				"to": "00:03:00,920"
+			},
+			"offsets": {
+				"from": 173800,
+				"to": 180920
+			},
+			"text": " And for a second, it also can mitigate the MEV or front-running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,920",
+				"to": "00:03:12,320"
+			},
+			"offsets": {
+				"from": 180920,
+				"to": 192320
+			},
+			"text": " If the privacy of the transactions can be kept at work to prevent the MEV and front-running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,320",
+				"to": "00:03:16,040"
+			},
+			"offsets": {
+				"from": 192320,
+				"to": 196040
+			},
+			"text": " But most importantly, it is a human rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,040",
+				"to": "00:03:19,400"
+			},
+			"offsets": {
+				"from": 196040,
+				"to": 199400
+			},
+			"text": " The privacy is a human rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,400",
+				"to": "00:03:28,600"
+			},
+			"offsets": {
+				"from": 199400,
+				"to": 208600
+			},
+			"text": " Here is a quote from the Universal Declaration of the Human Rights in Article 12."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,600",
+				"to": "00:03:37,280"
+			},
+			"offsets": {
+				"from": 208600,
+				"to": 217280
+			},
+			"text": " So my opinion is, we don't need any reason to work on protecting privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,280",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 217280,
+				"to": 223440
+			},
+			"text": " We need privacy because it's human rights and we should care when we're building an"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 226640
+			},
+			"text": " application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 234000
+			},
+			"text": " And today in this talk, I will walk you through how we approach to protect privacy when building"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:58,160"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 238160
+			},
+			"text": " a decentralized application like private exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,160",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 238160,
+				"to": 241200
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:04,320"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 244320
+			},
+			"text": " Let's get into the interesting part."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,320",
+				"to": "00:04:10,280"
+			},
+			"offsets": {
+				"from": 244320,
+				"to": 250280
+			},
+			"text": " What is private exchange and how it works?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,280",
+				"to": "00:04:16,680"
+			},
+			"offsets": {
+				"from": 250280,
+				"to": 256680
+			},
+			"text": " So what we are trying to achieve with the private exchange is to make exchange process"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,680",
+				"to": "00:04:18,160"
+			},
+			"offsets": {
+				"from": 256680,
+				"to": 258160
+			},
+			"text": " more private."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,160",
+				"to": "00:04:21,080"
+			},
+			"offsets": {
+				"from": 258160,
+				"to": 261080
+			},
+			"text": " Yes, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,080",
+				"to": "00:04:28,040"
+			},
+			"offsets": {
+				"from": 261080,
+				"to": 268040
+			},
+			"text": " And don't let users expose their information or intentions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,040",
+				"to": "00:04:32,880"
+			},
+			"offsets": {
+				"from": 268040,
+				"to": 272880
+			},
+			"text": " That's our goal here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,880",
+				"to": "00:04:36,040"
+			},
+			"offsets": {
+				"from": 272880,
+				"to": 276040
+			},
+			"text": " So what exchanges do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,040",
+				"to": "00:04:42,840"
+			},
+			"offsets": {
+				"from": 276040,
+				"to": 282840
+			},
+			"text": " Exchange let users exchange their tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,840",
+				"to": "00:04:54,160"
+			},
+			"offsets": {
+				"from": 282840,
+				"to": 294160
+			},
+			"text": " In this diagram, at least sends 1.08 to exchange and gets 1,050, 500 die in exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,160",
+				"to": "00:05:02,400"
+			},
+			"offsets": {
+				"from": 294160,
+				"to": 302400
+			},
+			"text": " There are more functionalities, but I'd like to focus this one function today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,400",
+				"to": "00:05:08,960"
+			},
+			"offsets": {
+				"from": 302400,
+				"to": 308960
+			},
+			"text": " And there are two popular constructions in decentralized exchanges today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,960",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 308960,
+				"to": 312800
+			},
+			"text": " The first one is automated market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:23,200"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 323200
+			},
+			"text": " In this kind of exchange, users can exchange their tokens without a counterparty."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,200",
+				"to": "00:05:29,800"
+			},
+			"offsets": {
+				"from": 323200,
+				"to": 329800
+			},
+			"text": " This means that Alice just interacts with a smart contract and doesn't need to anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,800",
+				"to": "00:05:36,160"
+			},
+			"offsets": {
+				"from": 329800,
+				"to": 336160
+			},
+			"text": " else doing an opposite trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,160",
+				"to": "00:05:40,960"
+			},
+			"offsets": {
+				"from": 336160,
+				"to": 340960
+			},
+			"text": " The price is calculated automatically in the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,960",
+				"to": "00:05:46,680"
+			},
+			"offsets": {
+				"from": 340960,
+				"to": 346680
+			},
+			"text": " Alice can exchange tokens on that price."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,680",
+				"to": "00:05:50,720"
+			},
+			"offsets": {
+				"from": 346680,
+				"to": 350720
+			},
+			"text": " The second approach is an order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,720",
+				"to": "00:05:58,320"
+			},
+			"offsets": {
+				"from": 350720,
+				"to": 358320
+			},
+			"text": " In order book, Alice puts something called an order to an order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,320",
+				"to": "00:06:05,240"
+			},
+			"offsets": {
+				"from": 358320,
+				"to": 365240
+			},
+			"text": " And the order contains information such as token pair, amount, and a price."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,240",
+				"to": "00:06:09,560"
+			},
+			"offsets": {
+				"from": 365240,
+				"to": 369560
+			},
+			"text": " In this example, Alice wants to die in exchange of 8."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,560",
+				"to": "00:06:23,440"
+			},
+			"offsets": {
+				"from": 369560,
+				"to": 383440
+			},
+			"text": " An amount she wants is 1,500 die and a price is 1,500 die per 8."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,440",
+				"to": "00:06:32,680"
+			},
+			"offsets": {
+				"from": 383440,
+				"to": 392680
+			},
+			"text": " And if there happens to be some other order by Bob, who wants to do the opposite trade,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,680",
+				"to": "00:06:38,600"
+			},
+			"offsets": {
+				"from": 392680,
+				"to": 398600
+			},
+			"text": " adding 1,500 die for 1,8."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,600",
+				"to": "00:06:44,440"
+			},
+			"offsets": {
+				"from": 398600,
+				"to": 404440
+			},
+			"text": " Then the order book attempts to match the orders and executes the swap transaction by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,440",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 404440,
+				"to": 409680
+			},
+			"text": " sending transaction on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:55,560"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 415560
+			},
+			"text": " And one thing to note is that order books can be on chain or off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,560",
+				"to": "00:07:03,920"
+			},
+			"offsets": {
+				"from": 415560,
+				"to": 423920
+			},
+			"text": " If the order book is on chain, Alice posts an order to the smart contract order book,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,920",
+				"to": "00:07:10,680"
+			},
+			"offsets": {
+				"from": 423920,
+				"to": 430680
+			},
+			"text": " then Bob binds the order on the smart contract and takes it by sending transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,680",
+				"to": "00:07:18,680"
+			},
+			"offsets": {
+				"from": 430680,
+				"to": 438680
+			},
+			"text": " And if the order book is off chain, there's typically some intermediary order book provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,680",
+				"to": "00:07:24,320"
+			},
+			"offsets": {
+				"from": 438680,
+				"to": 444320
+			},
+			"text": " that collects all the orders and trying to match the orders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,320",
+				"to": "00:07:32,640"
+			},
+			"offsets": {
+				"from": 444320,
+				"to": 452640
+			},
+			"text": " But in either way, the orders Bob and Alice sends includes the information that order"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,640",
+				"to": "00:07:38,840"
+			},
+			"offsets": {
+				"from": 452640,
+				"to": 458840
+			},
+			"text": " book provider or smart contracts can find a pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,840",
+				"to": "00:07:39,840"
+			},
+			"offsets": {
+				"from": 458840,
+				"to": 459840
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,840",
+				"to": "00:07:46,920"
+			},
+			"offsets": {
+				"from": 459840,
+				"to": 466920
+			},
+			"text": " Now it's time to think how we can execute the process more privately."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,920",
+				"to": "00:07:54,040"
+			},
+			"offsets": {
+				"from": 466920,
+				"to": 474040
+			},
+			"text": " In order to make exchange process private, we come up with a relatively simple peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,040",
+				"to": "00:07:56,400"
+			},
+			"offsets": {
+				"from": 474040,
+				"to": 476400
+			},
+			"text": " exchange system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,400",
+				"to": "00:08:02,440"
+			},
+			"offsets": {
+				"from": 476400,
+				"to": 482440
+			},
+			"text": " And it is somewhat similar to an order book construction here, but it tries to keep information"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,440",
+				"to": "00:08:07,760"
+			},
+			"offsets": {
+				"from": 482440,
+				"to": 487760
+			},
+			"text": " private as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,760",
+				"to": "00:08:10,960"
+			},
+			"offsets": {
+				"from": 487760,
+				"to": 490960
+			},
+			"text": " So let's look at the order book diagram again."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,960",
+				"to": "00:08:18,800"
+			},
+			"offsets": {
+				"from": 490960,
+				"to": 498800
+			},
+			"text": " Here we can see the parts that are not private in this diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,800",
+				"to": "00:08:24,200"
+			},
+			"offsets": {
+				"from": 498800,
+				"to": 504200
+			},
+			"text": " The contents of the orders, Alice and Bob sends to the order book, are not private."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,200",
+				"to": "00:08:30,600"
+			},
+			"offsets": {
+				"from": 504200,
+				"to": 510600
+			},
+			"text": " And the transaction that order book sends to the blockchain is not private."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,600",
+				"to": "00:08:32,880"
+			},
+			"offsets": {
+				"from": 510600,
+				"to": 512880
+			},
+			"text": " So how do we make this more private?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,880",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 512880,
+				"to": 521200
+			},
+			"text": " Here we use three zero-knowledge protocols, blind find and socialist millionaire problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:44,320"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 524320
+			},
+			"text": " and decay approve."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,320",
+				"to": "00:08:46,320"
+			},
+			"offsets": {
+				"from": 524320,
+				"to": 526320
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,320",
+				"to": "00:08:54,440"
+			},
+			"offsets": {
+				"from": 526320,
+				"to": 534440
+			},
+			"text": " Firstly, let us think of how we can make orders more private."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,440",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 534440,
+				"to": 541520
+			},
+			"text": " In the order book system, order book is the one who collects all the orders from users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:04,320"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 544320
+			},
+			"text": " and make matches."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,320",
+				"to": "00:09:11,840"
+			},
+			"offsets": {
+				"from": 544320,
+				"to": 551840
+			},
+			"text": " So Alice and Bob need to send the order data to the order book provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,840",
+				"to": "00:09:24,240"
+			},
+			"offsets": {
+				"from": 551840,
+				"to": 564240
+			},
+			"text": " But if they can compare prices and make a much more P2P way, directly sending messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,240",
+				"to": "00:09:32,760"
+			},
+			"offsets": {
+				"from": 564240,
+				"to": 572760
+			},
+			"text": " each other, then they don't need to reveal the data to the order book provider at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,760",
+				"to": "00:09:39,600"
+			},
+			"offsets": {
+				"from": 572760,
+				"to": 579600
+			},
+			"text": " But wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,600",
+				"to": "00:09:46,040"
+			},
+			"offsets": {
+				"from": 579600,
+				"to": 586040
+			},
+			"text": " How does Bob reach out Alice in peer-to-peer network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,040",
+				"to": "00:09:50,720"
+			},
+			"offsets": {
+				"from": 586040,
+				"to": 590720
+			},
+			"text": " We use blind find protocol here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,720",
+				"to": "00:10:03,240"
+			},
+			"offsets": {
+				"from": 590720,
+				"to": 603240
+			},
+			"text": " Blind find is a network that peers have neighborhood lists and Bob can look up Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,240",
+				"to": "00:10:09,600"
+			},
+			"offsets": {
+				"from": 603240,
+				"to": 609600
+			},
+			"text": " and prove that he can reach to Alice in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,600",
+				"to": "00:10:17,320"
+			},
+			"offsets": {
+				"from": 609600,
+				"to": 617320
+			},
+			"text": " Importantly, Bob can search for Alice in the network without revealing that Bob is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,320",
+				"to": "00:10:20,160"
+			},
+			"offsets": {
+				"from": 617320,
+				"to": 620160
+			},
+			"text": " one who is searching for Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,160",
+				"to": "00:10:27,400"
+			},
+			"offsets": {
+				"from": 620160,
+				"to": 627400
+			},
+			"text": " So the neighbors that receives a message from Bob will never learn that Bob is the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,400",
+				"to": "00:10:33,920"
+			},
+			"offsets": {
+				"from": 627400,
+				"to": 633920
+			},
+			"text": " who is searching for Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,920",
+				"to": "00:10:46,080"
+			},
+			"offsets": {
+				"from": 633920,
+				"to": 646080
+			},
+			"text": " So in this way, Bob have some privacy of that key, have some intention to take Alice's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,080",
+				"to": "00:10:53,880"
+			},
+			"offsets": {
+				"from": 646080,
+				"to": 653880
+			},
+			"text": " order in the public board."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,880",
+				"to": "00:11:01,880"
+			},
+			"offsets": {
+				"from": 653880,
+				"to": 661880
+			},
+			"text": " Now Bob can reach out to Alice to execute the peer-to-peer order matching."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,880",
+				"to": "00:11:07,280"
+			},
+			"offsets": {
+				"from": 661880,
+				"to": 667280
+			},
+			"text": " Moving through the socialist millionaire problem here, we can do the private peer-to-peer order"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,280",
+				"to": "00:11:11,280"
+			},
+			"offsets": {
+				"from": 667280,
+				"to": 671280
+			},
+			"text": " matching."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,280",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 671280,
+				"to": 679640
+			},
+			"text": " Socialist millionaire protocol is used to check the equality of two values but without revealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:25,760"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 685760
+			},
+			"text": " the actual values."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,760",
+				"to": "00:11:31,240"
+			},
+			"offsets": {
+				"from": 685760,
+				"to": 691240
+			},
+			"text": " So the idea is that they have some numbers in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,240",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 691240,
+				"to": 697200
+			},
+			"text": " Let's say Bob have X in mind and Alice have Y in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:45,640"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 705640
+			},
+			"text": " Then they don't directly send in the original values but instead they derive some values"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,640",
+				"to": "00:11:50,480"
+			},
+			"offsets": {
+				"from": 705640,
+				"to": 710480
+			},
+			"text": " by calculating some mathematics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,480",
+				"to": "00:11:58,160"
+			},
+			"offsets": {
+				"from": 710480,
+				"to": 718160
+			},
+			"text": " And also they use some random values and exchanging messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,160",
+				"to": "00:12:05,160"
+			},
+			"offsets": {
+				"from": 718160,
+				"to": 725160
+			},
+			"text": " Then after the exchange complete, they can test that if the original values that Bob has"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,160",
+				"to": "00:12:11,120"
+			},
+			"offsets": {
+				"from": 725160,
+				"to": 731120
+			},
+			"text": " in mind and Alice has in mind are same or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,120",
+				"to": "00:12:19,960"
+			},
+			"offsets": {
+				"from": 731120,
+				"to": 739960
+			},
+			"text": " But here Bob cannot calculate back using the received value to Y and Alice cannot calculate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,960",
+				"to": "00:12:27,280"
+			},
+			"offsets": {
+				"from": 739960,
+				"to": 747280
+			},
+			"text": " X from the derived messaging values."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,280",
+				"to": "00:12:38,600"
+			},
+			"offsets": {
+				"from": 747280,
+				"to": 758600
+			},
+			"text": " And we use this protocol to check if the prices that Bob wants and Alice wants much or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,600",
+				"to": "00:12:41,560"
+			},
+			"offsets": {
+				"from": 758600,
+				"to": 761560
+			},
+			"text": " And here is how things work in private exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,560",
+				"to": "00:12:50,600"
+			},
+			"offsets": {
+				"from": 761560,
+				"to": 770600
+			},
+			"text": " Firstly Alice creates information to public board but without a price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,600",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 770600,
+				"to": 778120
+			},
+			"text": " We call this advertisement and Bob finds the advertisement on public board and search"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:02,560"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 782560
+			},
+			"text": " Alice in the blind find network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,560",
+				"to": "00:13:11,200"
+			},
+			"offsets": {
+				"from": 782560,
+				"to": 791200
+			},
+			"text": " If the price matches, they proceed to create transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,200",
+				"to": "00:13:19,920"
+			},
+			"offsets": {
+				"from": 791200,
+				"to": 799920
+			},
+			"text": " And this way we could omit the intermediary who acts as comparing the price and making"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,920",
+				"to": "00:13:32,920"
+			},
+			"offsets": {
+				"from": 799920,
+				"to": 812920
+			},
+			"text": " a match and preventing posting prices they want to public."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,920",
+				"to": "00:13:40,280"
+			},
+			"offsets": {
+				"from": 812920,
+				"to": 820280
+			},
+			"text": " Now the order is partially private because they can post an advertisement without a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,280",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 820280,
+				"to": 829000
+			},
+			"text": " price."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:14:01,120"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 841120
+			},
+			"text": " And now we should think about how we can make these transactions right hand part private."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,120",
+				"to": "00:14:04,280"
+			},
+			"offsets": {
+				"from": 841120,
+				"to": 844280
+			},
+			"text": " So here comes ZKO-Pro."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,280",
+				"to": "00:14:10,840"
+			},
+			"offsets": {
+				"from": 844280,
+				"to": 850840
+			},
+			"text": " ZKO-Pro is an abbreviation of zero knowledge optimistic roll up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,840",
+				"to": "00:14:20,200"
+			},
+			"offsets": {
+				"from": 850840,
+				"to": 860200
+			},
+			"text": " We use ZKO-Pro for privacy and optimistic roll up technology as a layer to technology protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,200",
+				"to": "00:14:29,560"
+			},
+			"offsets": {
+				"from": 860200,
+				"to": 869560
+			},
+			"text": " And in essence we can make secret transfers with cheap fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,560",
+				"to": "00:14:37,120"
+			},
+			"offsets": {
+				"from": 869560,
+				"to": 877120
+			},
+			"text": " We can prove that those transfers are valid using ZKO-Pro but without revealing the contents"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,120",
+				"to": "00:14:42,240"
+			},
+			"offsets": {
+				"from": 877120,
+				"to": 882240
+			},
+			"text": " of the transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,240",
+				"to": "00:14:48,720"
+			},
+			"offsets": {
+				"from": 882240,
+				"to": 888720
+			},
+			"text": " But there is another thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,720",
+				"to": "00:14:53,960"
+			},
+			"offsets": {
+				"from": 888720,
+				"to": 893960
+			},
+			"text": " A secret atomic swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,960",
+				"to": "00:14:58,960"
+			},
+			"offsets": {
+				"from": 893960,
+				"to": 898960
+			},
+			"text": " So there is a feature called atomic swap on ZKO-Pro."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,960",
+				"to": "00:15:06,320"
+			},
+			"offsets": {
+				"from": 898960,
+				"to": 906320
+			},
+			"text": " And let's say that Alice and Bob agreed on some price using socialist program and they"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,320",
+				"to": "00:15:15,960"
+			},
+			"offsets": {
+				"from": 906320,
+				"to": 915960
+			},
+			"text": " can create, they want to create the transactions called atomic swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,960",
+				"to": "00:15:25,600"
+			},
+			"offsets": {
+				"from": 915960,
+				"to": 925600
+			},
+			"text": " Atomic swap transactions are a pair of transactions and has to be included in the same block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,600",
+				"to": "00:15:40,080"
+			},
+			"offsets": {
+				"from": 925600,
+				"to": 940080
+			},
+			"text": " So in this case Bob send Alice 500 die and Alice sends 1.0 to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,080",
+				"to": "00:15:46,040"
+			},
+			"offsets": {
+				"from": 940080,
+				"to": 946040
+			},
+			"text": " The two transactions have to be included in the same block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,040",
+				"to": "00:15:51,800"
+			},
+			"offsets": {
+				"from": 946040,
+				"to": 951800
+			},
+			"text": " And if not it's not valid transactions anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,800",
+				"to": "00:15:56,520"
+			},
+			"offsets": {
+				"from": 951800,
+				"to": 956520
+			},
+			"text": " And of course the transactions contents are secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,520",
+				"to": "00:16:08,240"
+			},
+			"offsets": {
+				"from": 956520,
+				"to": 968240
+			},
+			"text": " Even block builders called coordinators cannot see the contents of the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,240",
+				"to": "00:16:21,080"
+			},
+			"offsets": {
+				"from": 968240,
+				"to": 981080
+			},
+			"text": " So using the secret atomic swap the transactions sent on the blockchain is private now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,080",
+				"to": "00:16:27,800"
+			},
+			"offsets": {
+				"from": 981080,
+				"to": 987800
+			},
+			"text": " So here is a complete diagram of the private exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,800",
+				"to": "00:16:35,160"
+			},
+			"offsets": {
+				"from": 987800,
+				"to": 995160
+			},
+			"text": " Alright, so let's go over the private exchange flow again."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,160",
+				"to": "00:16:42,360"
+			},
+			"offsets": {
+				"from": 995160,
+				"to": 1002360
+			},
+			"text": " So firstly Alice and Bob joins the network called blind find so that they can reach each"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,360",
+				"to": "00:16:49,920"
+			},
+			"offsets": {
+				"from": 1002360,
+				"to": 1009920
+			},
+			"text": " other but without revealing that they are finding someone in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,920",
+				"to": "00:16:59,880"
+			},
+			"offsets": {
+				"from": 1009920,
+				"to": 1019880
+			},
+			"text": " Next Alice posts an advertisement on the board without a price."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,880",
+				"to": "00:17:12,280"
+			},
+			"offsets": {
+				"from": 1019880,
+				"to": 1032280
+			},
+			"text": " And next Bob finds the advertisement and Bob search for Alice in the blind find."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,280",
+				"to": "00:17:21,280"
+			},
+			"offsets": {
+				"from": 1032280,
+				"to": 1041280
+			},
+			"text": " If they successfully Bob finds Alice he starts executing socialist program to compare the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,280",
+				"to": "00:17:24,480"
+			},
+			"offsets": {
+				"from": 1041280,
+				"to": 1044480
+			},
+			"text": " price that they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,480",
+				"to": "00:17:33,840"
+			},
+			"offsets": {
+				"from": 1044480,
+				"to": 1053840
+			},
+			"text": " And if the price are same they can create atomic swap transaction and send it to zk"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,840",
+				"to": "00:17:38,080"
+			},
+			"offsets": {
+				"from": 1053840,
+				"to": 1058080
+			},
+			"text": " or pro."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,080",
+				"to": "00:17:47,120"
+			},
+			"offsets": {
+				"from": 1058080,
+				"to": 1067120
+			},
+			"text": " In this process advertisement is partially private and price matching is done privately"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,120",
+				"to": "00:18:02,680"
+			},
+			"offsets": {
+				"from": 1067120,
+				"to": 1082680
+			},
+			"text": " and pfinding is done privately and transactions contents is also private."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,680",
+				"to": "00:18:12,600"
+			},
+			"offsets": {
+				"from": 1082680,
+				"to": 1092600
+			},
+			"text": " So what I've talked today is one simple example of a privacy application."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,600",
+				"to": "00:18:22,840"
+			},
+			"offsets": {
+				"from": 1092600,
+				"to": 1102840
+			},
+			"text": " And what I talked to was firstly I started with what does this application do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,840",
+				"to": "00:18:32,880"
+			},
+			"offsets": {
+				"from": 1102840,
+				"to": 1112880
+			},
+			"text": " In our case it is an exchange so exchange let users to exchange their tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,880",
+				"to": "00:18:42,840"
+			},
+			"offsets": {
+				"from": 1112880,
+				"to": 1122840
+			},
+			"text": " And in that process which part of the exchange process is should be private."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,840",
+				"to": "00:18:49,120"
+			},
+			"offsets": {
+				"from": 1122840,
+				"to": 1129120
+			},
+			"text": " In our case it is an orders and transactions sent on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,120",
+				"to": "00:19:02,080"
+			},
+			"offsets": {
+				"from": 1129120,
+				"to": 1142080
+			},
+			"text": " And lastly I talked about how to make those information private."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,080",
+				"to": "00:19:08,120"
+			},
+			"offsets": {
+				"from": 1142080,
+				"to": 1148120
+			},
+			"text": " We use three zero-knowledge protocols blind find and socialist million a problem and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,120",
+				"to": "00:19:14,880"
+			},
+			"offsets": {
+				"from": 1148120,
+				"to": 1154880
+			},
+			"text": " take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,880",
+				"to": "00:19:21,840"
+			},
+			"offsets": {
+				"from": 1154880,
+				"to": 1161840
+			},
+			"text": " And as a result the private exchange does not reveal transactions content and it does"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,840",
+				"to": "00:19:29,520"
+			},
+			"offsets": {
+				"from": 1161840,
+				"to": 1169520
+			},
+			"text": " not reveal price of the orders to public and it also does not reveal the peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,520",
+				"to": "00:19:31,360"
+			},
+			"offsets": {
+				"from": 1169520,
+				"to": 1171360
+			},
+			"text": " routing in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,360",
+				"to": "00:19:43,760"
+			},
+			"offsets": {
+				"from": 1171360,
+				"to": 1183760
+			},
+			"text": " But at the same time there are challenges in these constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,760",
+				"to": "00:19:54,400"
+			},
+			"offsets": {
+				"from": 1183760,
+				"to": 1194400
+			},
+			"text": " Firstly, socialist million a problem can check the equality of the values."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,400",
+				"to": "00:20:05,520"
+			},
+			"offsets": {
+				"from": 1194400,
+				"to": 1205520
+			},
+			"text": " Therefore, it's not easy to compare for example to use a range to create a match."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,520",
+				"to": "00:20:12,600"
+			},
+			"offsets": {
+				"from": 1205520,
+				"to": 1212600
+			},
+			"text": " So in the application it's harder to find the counterparty like Bob if this MP can work"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,600",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1212600,
+				"to": 1215000
+			},
+			"text": " only this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:23,360"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1223360
+			},
+			"text": " Secondly, an advertisers need to stay online while waiting incoming socialist million a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,360",
+				"to": "00:20:26,440"
+			},
+			"offsets": {
+				"from": 1223360,
+				"to": 1226440
+			},
+			"text": " problem messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,440",
+				"to": "00:20:33,240"
+			},
+			"offsets": {
+				"from": 1226440,
+				"to": 1233240
+			},
+			"text": " So Alice after sending advertisement on public board she has to stay online until Bob shows"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,240",
+				"to": "00:20:35,240"
+			},
+			"offsets": {
+				"from": 1233240,
+				"to": 1235240
+			},
+			"text": " up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,240",
+				"to": "00:20:43,760"
+			},
+			"offsets": {
+				"from": 1235240,
+				"to": 1243760
+			},
+			"text": " And finally, users need to join blind find network before starting the process and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,760",
+				"to": "00:20:50,920"
+			},
+			"offsets": {
+				"from": 1243760,
+				"to": 1250920
+			},
+			"text": " run the blind find process while in the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,920",
+				"to": "00:21:02,640"
+			},
+			"offsets": {
+				"from": 1250920,
+				"to": 1262640
+			},
+			"text": " So these are the challenges and it directly affects the user experience of the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,640",
+				"to": "00:21:13,440"
+			},
+			"offsets": {
+				"from": 1262640,
+				"to": 1273440
+			},
+			"text": " But some of the challenges can be mitigated on the application layers but some other needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,440",
+				"to": "00:21:23,600"
+			},
+			"offsets": {
+				"from": 1273440,
+				"to": 1283600
+			},
+			"text": " improvement of the cryptographic protocol layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,600",
+				"to": "00:21:29,760"
+			},
+			"offsets": {
+				"from": 1283600,
+				"to": 1289760
+			},
+			"text": " So in privacy and scaling exploration team we do many privacy projects like applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,760",
+				"to": "00:21:36,880"
+			},
+			"offsets": {
+				"from": 1289760,
+				"to": 1296880
+			},
+			"text": " and also cryptographic protocols to improve privacy in this blockchain space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,880",
+				"to": "00:21:45,480"
+			},
+			"offsets": {
+				"from": 1296880,
+				"to": 1305480
+			},
+			"text": " If you are interested in those projects, please take a look at our homepage and Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,480",
+				"to": "00:21:49,320"
+			},
+			"offsets": {
+				"from": 1305480,
+				"to": 1309320
+			},
+			"text": " And I want to give a shout out to the CKL Pro team."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,320",
+				"to": "00:21:56,720"
+			},
+			"offsets": {
+				"from": 1309320,
+				"to": 1316720
+			},
+			"text": " Once up, Jean, give me GEO chance, Charlie, Rachel."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,720",
+				"to": "00:21:57,720"
+			},
+			"offsets": {
+				"from": 1316720,
+				"to": 1317720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,720",
+				"to": "00:21:58,720"
+			},
+			"offsets": {
+				"from": 1317720,
+				"to": 1318720
+			},
+			"text": " Questions please."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,720",
+				"to": "00:22:14,640"
+			},
+			"offsets": {
+				"from": 1318720,
+				"to": 1334640
+			},
+			"text": " First quick question, is the S&P interactive or non-interactive?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,640",
+				"to": "00:22:16,280"
+			},
+			"offsets": {
+				"from": 1334640,
+				"to": 1336280
+			},
+			"text": " It's interactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,280",
+				"to": "00:22:21,600"
+			},
+			"offsets": {
+				"from": 1336280,
+				"to": 1341600
+			},
+			"text": " So you have to basically, if there's a list of an advertisers, a user will have to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,600",
+				"to": "00:22:23,400"
+			},
+			"offsets": {
+				"from": 1341600,
+				"to": 1343400
+			},
+			"text": " with every advertiser."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,400",
+				"to": "00:22:24,400"
+			},
+			"offsets": {
+				"from": 1343400,
+				"to": 1344400
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,400",
+				"to": "00:22:31,280"
+			},
+			"offsets": {
+				"from": 1344400,
+				"to": 1351280
+			},
+			"text": " So this doesn't really scale well as N-increases, is N-squared like complexity for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,280",
+				"to": "00:22:32,280"
+			},
+			"offsets": {
+				"from": 1351280,
+				"to": 1352280
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,280",
+				"to": "00:22:33,280"
+			},
+			"offsets": {
+				"from": 1352280,
+				"to": 1353280
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,280",
+				"to": "00:22:38,160"
+			},
+			"offsets": {
+				"from": 1353280,
+				"to": 1358160
+			},
+			"text": " So that's also what UX challenges as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,160",
+				"to": "00:22:46,520"
+			},
+			"offsets": {
+				"from": 1358160,
+				"to": 1366520
+			},
+			"text": " Yes, sort of on the same vein, one question I had was because you still have to do the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,520",
+				"to": "00:22:49,120"
+			},
+			"offsets": {
+				"from": 1366520,
+				"to": 1369120
+			},
+			"text": " S&P to find the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,120",
+				"to": "00:22:53,520"
+			},
+			"offsets": {
+				"from": 1369120,
+				"to": 1373520
+			},
+			"text": " You sort of know a general idea of the price because you have other markets that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,520",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1373520,
+				"to": 1375000
+			},
+			"text": " measure the price from."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:23:01,320"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1381320
+			},
+			"text": " And so is there any prevention mechanism for like a mass de-anonymization of the price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,320",
+				"to": "00:23:07,680"
+			},
+			"offsets": {
+				"from": 1381320,
+				"to": 1387680
+			},
+			"text": " the ads, in a way that somebody could just keep trying to discover the price and build"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,680",
+				"to": "00:23:11,760"
+			},
+			"offsets": {
+				"from": 1387680,
+				"to": 1391760
+			},
+			"text": " up an order book that sort of matches the expectation of the ads?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,760",
+				"to": "00:23:15,960"
+			},
+			"offsets": {
+				"from": 1391760,
+				"to": 1395960
+			},
+			"text": " Because there's no obligation to actually trade on any of these ads, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,960",
+				"to": "00:23:21,360"
+			},
+			"offsets": {
+				"from": 1395960,
+				"to": 1401360
+			},
+			"text": " So you could just try to brute force, figure out the actual order."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,360",
+				"to": "00:23:22,360"
+			},
+			"offsets": {
+				"from": 1401360,
+				"to": 1402360
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,360",
+				"to": "00:23:23,360"
+			},
+			"offsets": {
+				"from": 1402360,
+				"to": 1403360
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,360",
+				"to": "00:23:31,280"
+			},
+			"offsets": {
+				"from": 1403360,
+				"to": 1411280
+			},
+			"text": " So for current implementation, we don't have like such features."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,280",
+				"to": "00:23:41,440"
+			},
+			"offsets": {
+				"from": 1411280,
+				"to": 1421440
+			},
+			"text": " But as you said, it needs like the many times of S&P trial to find the price matches."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,440",
+				"to": "00:23:50,360"
+			},
+			"offsets": {
+				"from": 1421440,
+				"to": 1430360
+			},
+			"text": " And also, we don't have like the prevent it to prevent such details like types of attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,360",
+				"to": "00:23:51,560"
+			},
+			"offsets": {
+				"from": 1430360,
+				"to": 1431560
+			},
+			"text": " right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,560",
+				"to": "00:23:58,560"
+			},
+			"offsets": {
+				"from": 1431560,
+				"to": 1438560
+			},
+			"text": " So yeah, we need to work on that UX improvement as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,560",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1438560,
+				"to": 1443000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:06,680"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1446680
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,680",
+				"to": "00:24:10,080"
+			},
+			"offsets": {
+				"from": 1447680,
+				"to": 1450080
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,080",
+				"to": "00:24:11,080"
+			},
+			"offsets": {
+				"from": 1450080,
+				"to": 1451080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,080",
+				"to": "00:24:12,080"
+			},
+			"offsets": {
+				"from": 1451080,
+				"to": 1452080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,080",
+				"to": "00:24:13,080"
+			},
+			"offsets": {
+				"from": 1452080,
+				"to": 1453080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,080",
+				"to": "00:24:14,080"
+			},
+			"offsets": {
+				"from": 1453080,
+				"to": 1454080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,080",
+				"to": "00:24:15,080"
+			},
+			"offsets": {
+				"from": 1454080,
+				"to": 1455080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,080",
+				"to": "00:24:16,080"
+			},
+			"offsets": {
+				"from": 1455080,
+				"to": 1456080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,080",
+				"to": "00:24:17,080"
+			},
+			"offsets": {
+				"from": 1456080,
+				"to": 1457080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,080",
+				"to": "00:24:18,080"
+			},
+			"offsets": {
+				"from": 1457080,
+				"to": 1458080
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,080",
+				"to": "00:24:22,080"
+			},
+			"offsets": {
+				"from": 1458080,
+				"to": 1462080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

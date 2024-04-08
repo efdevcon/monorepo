@@ -1,0 +1,2375 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,340"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14340
+			},
+			"text": " I'm really interested in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,340",
+				"to": "00:00:16,340"
+			},
+			"offsets": {
+				"from": 14340,
+				"to": 16340
+			},
+			"text": " And I think a lot of people in the security field"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,340",
+				"to": "00:00:18,340"
+			},
+			"offsets": {
+				"from": 16340,
+				"to": 18340
+			},
+			"text": " should be as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,340",
+				"to": "00:00:20,500"
+			},
+			"offsets": {
+				"from": 18340,
+				"to": 20500
+			},
+			"text": " And that's escape hatches for roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,500",
+				"to": "00:00:22,420"
+			},
+			"offsets": {
+				"from": 20500,
+				"to": 22420
+			},
+			"text": " You've heard a lot about roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,420",
+				"to": "00:00:24,940"
+			},
+			"offsets": {
+				"from": 22420,
+				"to": 24940
+			},
+			"text": " So let's give a brief introduction about what they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,940",
+				"to": "00:00:27,580"
+			},
+			"offsets": {
+				"from": 24940,
+				"to": 27580
+			},
+			"text": " And then we'll talk about the specific feature I care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,580",
+				"to": "00:00:29,100"
+			},
+			"offsets": {
+				"from": 27580,
+				"to": 29100
+			},
+			"text": " And then we'll talk about some features"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,100",
+				"to": "00:00:30,900"
+			},
+			"offsets": {
+				"from": 29100,
+				"to": 30900
+			},
+			"text": " that those features should have."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,900",
+				"to": "00:00:33,580"
+			},
+			"offsets": {
+				"from": 30900,
+				"to": 33580
+			},
+			"text": " So what a good roll-up might want."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,580",
+				"to": "00:00:35,780"
+			},
+			"offsets": {
+				"from": 33580,
+				"to": 35780
+			},
+			"text": " So let's be sort of similar to my colleague's talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,780",
+				"to": "00:00:37,420"
+			},
+			"offsets": {
+				"from": 35780,
+				"to": 37420
+			},
+			"text": " from earlier, except not bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,420",
+				"to": "00:00:38,780"
+			},
+			"offsets": {
+				"from": 37420,
+				"to": 38780
+			},
+			"text": " But OK, so what is a roll-up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,780",
+				"to": "00:00:42,100"
+			},
+			"offsets": {
+				"from": 38780,
+				"to": 42100
+			},
+			"text": " Well, if you attended a lot of these talks here"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,100",
+				"to": "00:00:45,220"
+			},
+			"offsets": {
+				"from": 42100,
+				"to": 45220
+			},
+			"text": " at Dubcon or elsewhere, you see a bunch of more or less"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,220",
+				"to": "00:00:47,300"
+			},
+			"offsets": {
+				"from": 45220,
+				"to": 47300
+			},
+			"text": " mutually consistent definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,300",
+				"to": "00:00:48,540"
+			},
+			"offsets": {
+				"from": 47300,
+				"to": 48540
+			},
+			"text": " But essentially, it's some sort of layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,540",
+				"to": "00:00:50,780"
+			},
+			"offsets": {
+				"from": 48540,
+				"to": 50780
+			},
+			"text": " to scaling solution, or maybe layer three or layer four"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,780",
+				"to": "00:00:52,820"
+			},
+			"offsets": {
+				"from": 50780,
+				"to": 52820
+			},
+			"text": " if you're really forward-thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,820",
+				"to": "00:00:55,020"
+			},
+			"offsets": {
+				"from": 52820,
+				"to": 55020
+			},
+			"text": " And it's some system that just takes transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,020",
+				"to": "00:00:57,540"
+			},
+			"offsets": {
+				"from": 55020,
+				"to": 57540
+			},
+			"text": " and executes them off-chain, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,540",
+				"to": "00:00:59,740"
+			},
+			"offsets": {
+				"from": 57540,
+				"to": 59740
+			},
+			"text": " batches them and compresses them and does something"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,740",
+				"to": "00:01:01,820"
+			},
+			"offsets": {
+				"from": 59740,
+				"to": 61820
+			},
+			"text": " to get you some sort of savings and pushes some data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,820",
+				"to": "00:01:02,980"
+			},
+			"offsets": {
+				"from": 61820,
+				"to": 62980
+			},
+			"text": " onto layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,980",
+				"to": "00:01:04,660"
+			},
+			"offsets": {
+				"from": 62980,
+				"to": 64660
+			},
+			"text": " And so essentially, it's a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,660",
+				"to": "00:01:07,700"
+			},
+			"offsets": {
+				"from": 64660,
+				"to": 67700
+			},
+			"text": " that's replicating your layer one blockchain like Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,700",
+				"to": "00:01:09,940"
+			},
+			"offsets": {
+				"from": 67700,
+				"to": 69940
+			},
+			"text": " But it's doing it elsewhere with some nice advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,940",
+				"to": "00:01:14,220"
+			},
+			"offsets": {
+				"from": 69940,
+				"to": 74220
+			},
+			"text": " that gives you scalability in some sense or savings."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,220",
+				"to": "00:01:15,900"
+			},
+			"offsets": {
+				"from": 74220,
+				"to": 75900
+			},
+			"text": " And so how does the system work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,900",
+				"to": "00:01:17,460"
+			},
+			"offsets": {
+				"from": 75900,
+				"to": 77460
+			},
+			"text": " Well, usually you get some transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,460",
+				"to": "00:01:20,580"
+			},
+			"offsets": {
+				"from": 77460,
+				"to": 80580
+			},
+			"text": " And then your system design is very dependent"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,580",
+				"to": "00:01:21,820"
+			},
+			"offsets": {
+				"from": 80580,
+				"to": 81820
+			},
+			"text": " on the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,820",
+				"to": "00:01:23,740"
+			},
+			"offsets": {
+				"from": 81820,
+				"to": 83740
+			},
+			"text": " But typically, there's something called a sequencer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,740",
+				"to": "00:01:26,380"
+			},
+			"offsets": {
+				"from": 83740,
+				"to": 86380
+			},
+			"text": " that gives an order to the transactions that are taken."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,380",
+				"to": "00:01:29,460"
+			},
+			"offsets": {
+				"from": 86380,
+				"to": 89460
+			},
+			"text": " And then this ordered set of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,460",
+				"to": "00:01:31,980"
+			},
+			"offsets": {
+				"from": 89460,
+				"to": 91980
+			},
+			"text": " is executed in some state transition function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,980",
+				"to": "00:01:33,420"
+			},
+			"offsets": {
+				"from": 91980,
+				"to": 93420
+			},
+			"text": " the state is updated, and something"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,420",
+				"to": "00:01:35,780"
+			},
+			"offsets": {
+				"from": 93420,
+				"to": 95780
+			},
+			"text": " gets pushed to your layer one chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,780",
+				"to": "00:01:38,100"
+			},
+			"offsets": {
+				"from": 95780,
+				"to": 98100
+			},
+			"text": " where it's eventually considered final."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,100",
+				"to": "00:01:41,220"
+			},
+			"offsets": {
+				"from": 98100,
+				"to": 101220
+			},
+			"text": " But this is great when everything works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,220",
+				"to": "00:01:43,340"
+			},
+			"offsets": {
+				"from": 101220,
+				"to": 103340
+			},
+			"text": " But what happens when things don't work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,340",
+				"to": "00:01:46,900"
+			},
+			"offsets": {
+				"from": 103340,
+				"to": 106900
+			},
+			"text": " In particular, if your sequencer goes offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,900",
+				"to": "00:01:48,380"
+			},
+			"offsets": {
+				"from": 106900,
+				"to": 108380
+			},
+			"text": " or some other component possibly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,380",
+				"to": "00:01:50,300"
+			},
+			"offsets": {
+				"from": 108380,
+				"to": 110300
+			},
+			"text": " but typically these escape hatches"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,300",
+				"to": "00:01:53,900"
+			},
+			"offsets": {
+				"from": 110300,
+				"to": 113900
+			},
+			"text": " are discussed in the context of sequencer failures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,900",
+				"to": "00:01:54,740"
+			},
+			"offsets": {
+				"from": 113900,
+				"to": 114740
+			},
+			"text": " what happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,740",
+				"to": "00:01:57,940"
+			},
+			"offsets": {
+				"from": 114740,
+				"to": 117940
+			},
+			"text": " Because if you had a bunch of money or assets or tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,940",
+				"to": "00:02:00,100"
+			},
+			"offsets": {
+				"from": 117940,
+				"to": 120100
+			},
+			"text": " locked up in one of these roll-ups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,100",
+				"to": "00:02:02,060"
+			},
+			"offsets": {
+				"from": 120100,
+				"to": 122060
+			},
+			"text": " and suddenly the transaction that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,060",
+				"to": "00:02:04,420"
+			},
+			"offsets": {
+				"from": 122060,
+				"to": 124420
+			},
+			"text": " give me my money back is no longer sequenced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,420",
+				"to": "00:02:05,380"
+			},
+			"offsets": {
+				"from": 124420,
+				"to": 125380
+			},
+			"text": " you're kind of screwed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,380",
+				"to": "00:02:07,700"
+			},
+			"offsets": {
+				"from": 125380,
+				"to": 127700
+			},
+			"text": " So the functionality of an escape hatch"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,700",
+				"to": "00:02:11,220"
+			},
+			"offsets": {
+				"from": 127700,
+				"to": 131220
+			},
+			"text": " is some way to get program state or digital assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,220",
+				"to": "00:02:14,540"
+			},
+			"offsets": {
+				"from": 131220,
+				"to": 134540
+			},
+			"text": " because tokens are basically this program state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,540",
+				"to": "00:02:17,940"
+			},
+			"offsets": {
+				"from": 134540,
+				"to": 137940
+			},
+			"text": " off of this roll-up system, even when your sequencer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,940",
+				"to": "00:02:19,540"
+			},
+			"offsets": {
+				"from": 137940,
+				"to": 139540
+			},
+			"text": " or some other component has failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,540",
+				"to": "00:02:20,780"
+			},
+			"offsets": {
+				"from": 139540,
+				"to": 140780
+			},
+			"text": " Now, obviously, there's some sort of caveat."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,780",
+				"to": "00:02:21,940"
+			},
+			"offsets": {
+				"from": 140780,
+				"to": 141940
+			},
+			"text": " Some things probably can't fail"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,940",
+				"to": "00:02:23,660"
+			},
+			"offsets": {
+				"from": 141940,
+				"to": 143660
+			},
+			"text": " and always work within a escape hatch, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,660",
+				"to": "00:02:25,420"
+			},
+			"offsets": {
+				"from": 143660,
+				"to": 145420
+			},
+			"text": " If you have a bug in your smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,420",
+				"to": "00:02:27,420"
+			},
+			"offsets": {
+				"from": 145420,
+				"to": 147420
+			},
+			"text": " maybe no escape hatch functionality is going to work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,420",
+				"to": "00:02:28,540"
+			},
+			"offsets": {
+				"from": 147420,
+				"to": 148540
+			},
+			"text": " because maybe that's what's broken,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,540",
+				"to": "00:02:30,020"
+			},
+			"offsets": {
+				"from": 148540,
+				"to": 150020
+			},
+			"text": " but we'll talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,020",
+				"to": "00:02:32,780"
+			},
+			"offsets": {
+				"from": 150020,
+				"to": 152780
+			},
+			"text": " And some people have actually started to look at this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,780",
+				"to": "00:02:35,300"
+			},
+			"offsets": {
+				"from": 152780,
+				"to": 155300
+			},
+			"text": " This list thanks to L2B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,300",
+				"to": "00:02:37,220"
+			},
+			"offsets": {
+				"from": 155300,
+				"to": 157220
+			},
+			"text": " but rewritten through our paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,220",
+				"to": "00:02:40,820"
+			},
+			"offsets": {
+				"from": 157220,
+				"to": 160820
+			},
+			"text": " does suggest that various roll-up projects right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,820",
+				"to": "00:02:42,100"
+			},
+			"offsets": {
+				"from": 160820,
+				"to": 162100
+			},
+			"text": " are thinking about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,100",
+				"to": "00:02:44,260"
+			},
+			"offsets": {
+				"from": 162100,
+				"to": 164260
+			},
+			"text": " and trying to implement these solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,260",
+				"to": "00:02:46,180"
+			},
+			"offsets": {
+				"from": 164260,
+				"to": 166180
+			},
+			"text": " Now, some of them have the none there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,180",
+				"to": "00:02:47,420"
+			},
+			"offsets": {
+				"from": 166180,
+				"to": 167420
+			},
+			"text": " we're not going to talk about the specifics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,420",
+				"to": "00:02:48,940"
+			},
+			"offsets": {
+				"from": 167420,
+				"to": 168940
+			},
+			"text": " and I'm also unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,940",
+				"to": "00:02:50,500"
+			},
+			"offsets": {
+				"from": 168940,
+				"to": 170500
+			},
+			"text": " I don't have enough time to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,500",
+				"to": "00:02:52,740"
+			},
+			"offsets": {
+				"from": 170500,
+				"to": 172740
+			},
+			"text": " even one of these approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,740",
+				"to": "00:02:53,580"
+			},
+			"offsets": {
+				"from": 172740,
+				"to": 173580
+			},
+			"text": " But if you are interested,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,580",
+				"to": "00:02:55,060"
+			},
+			"offsets": {
+				"from": 173580,
+				"to": 175060
+			},
+			"text": " let me know or go contact the project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,060",
+				"to": "00:02:57,500"
+			},
+			"offsets": {
+				"from": 175060,
+				"to": 177500
+			},
+			"text": " and say, \"Hey, how do you do this?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,500",
+				"to": "00:02:58,620"
+			},
+			"offsets": {
+				"from": 177500,
+				"to": 178620
+			},
+			"text": " But even when they're implemented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,620",
+				"to": "00:03:01,380"
+			},
+			"offsets": {
+				"from": 178620,
+				"to": 181380
+			},
+			"text": " they're often not exactly done."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,380",
+				"to": "00:03:03,740"
+			},
+			"offsets": {
+				"from": 181380,
+				"to": 183740
+			},
+			"text": " In some cases, design is not well understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,740",
+				"to": "00:03:06,020"
+			},
+			"offsets": {
+				"from": 183740,
+				"to": 186020
+			},
+			"text": " In some cases, the code is literally a stub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,020",
+				"to": "00:03:08,380"
+			},
+			"offsets": {
+				"from": 186020,
+				"to": 188380
+			},
+			"text": " and it says, \"Hey, it's going to come later.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,380",
+				"to": "00:03:10,900"
+			},
+			"offsets": {
+				"from": 188380,
+				"to": 190900
+			},
+			"text": " But now that the rest of the roll-up functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,900",
+				"to": "00:03:14,260"
+			},
+			"offsets": {
+				"from": 190900,
+				"to": 194260
+			},
+			"text": " is done, like the ZK parts are all coming together"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,260",
+				"to": "00:03:16,140"
+			},
+			"offsets": {
+				"from": 194260,
+				"to": 196140
+			},
+			"text": " and everyone's got roll-up state working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,140",
+				"to": "00:03:17,780"
+			},
+			"offsets": {
+				"from": 196140,
+				"to": 197780
+			},
+			"text": " it's time to start thinking about this feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,780",
+				"to": "00:03:21,060"
+			},
+			"offsets": {
+				"from": 197780,
+				"to": 201060
+			},
+			"text": " that you sort of kept pushing off into the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,060",
+				"to": "00:03:23,140"
+			},
+			"offsets": {
+				"from": 201060,
+				"to": 203140
+			},
+			"text": " because ultimately, while I hope this feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,140",
+				"to": "00:03:25,380"
+			},
+			"offsets": {
+				"from": 203140,
+				"to": 205380
+			},
+			"text": " is never used by any roll-up ever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,380",
+				"to": "00:03:26,740"
+			},
+			"offsets": {
+				"from": 205380,
+				"to": 206740
+			},
+			"text": " we would like to see it exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,740",
+				"to": "00:03:29,820"
+			},
+			"offsets": {
+				"from": 206740,
+				"to": 209820
+			},
+			"text": " so that if someone does have any issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,820",
+				"to": "00:03:31,900"
+			},
+			"offsets": {
+				"from": 209820,
+				"to": 211900
+			},
+			"text": " you get your funds back and things"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,900",
+				"to": "00:03:33,460"
+			},
+			"offsets": {
+				"from": 211900,
+				"to": 213460
+			},
+			"text": " work out in the user's favor."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,460",
+				"to": "00:03:34,780"
+			},
+			"offsets": {
+				"from": 213460,
+				"to": 214780
+			},
+			"text": " And then ideally, you fix it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,780",
+				"to": "00:03:36,860"
+			},
+			"offsets": {
+				"from": 214780,
+				"to": 216860
+			},
+			"text": " and your roll-up gets back up or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,860",
+				"to": "00:03:40,540"
+			},
+			"offsets": {
+				"from": 216860,
+				"to": 220540
+			},
+			"text": " So it's being done, but maybe not done"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,540",
+				"to": "00:03:42,700"
+			},
+			"offsets": {
+				"from": 220540,
+				"to": 222700
+			},
+			"text": " all the time or entirely correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,700",
+				"to": "00:03:45,500"
+			},
+			"offsets": {
+				"from": 222700,
+				"to": 225500
+			},
+			"text": " And so I'm going to discuss what I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,500",
+				"to": "00:03:47,960"
+			},
+			"offsets": {
+				"from": 225500,
+				"to": 227960
+			},
+			"text": " some nice features would be in a roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,960",
+				"to": "00:03:49,860"
+			},
+			"offsets": {
+				"from": 227960,
+				"to": 229860
+			},
+			"text": " Now, these would vary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,860",
+				"to": "00:03:51,620"
+			},
+			"offsets": {
+				"from": 229860,
+				"to": 231620
+			},
+			"text": " and just like in the cases for bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,620",
+				"to": "00:03:53,220"
+			},
+			"offsets": {
+				"from": 231620,
+				"to": 233220
+			},
+			"text": " for features, some functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,220",
+				"to": "00:03:54,740"
+			},
+			"offsets": {
+				"from": 233220,
+				"to": 234740
+			},
+			"text": " is probably contradictory"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,740",
+				"to": "00:03:58,020"
+			},
+			"offsets": {
+				"from": 234740,
+				"to": 238020
+			},
+			"text": " and you can't necessarily do all of these at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,020",
+				"to": "00:03:59,500"
+			},
+			"offsets": {
+				"from": 238020,
+				"to": 239500
+			},
+			"text": " But there's some things that probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,500",
+				"to": "00:04:00,820"
+			},
+			"offsets": {
+				"from": 239500,
+				"to": 240820
+			},
+			"text": " should be nice and obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,820",
+				"to": "00:04:03,500"
+			},
+			"offsets": {
+				"from": 240820,
+				"to": 243500
+			},
+			"text": " First, they should be well-engineered components"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,500",
+				"to": "00:04:05,180"
+			},
+			"offsets": {
+				"from": 243500,
+				"to": 245180
+			},
+			"text": " of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,180",
+				"to": "00:04:07,140"
+			},
+			"offsets": {
+				"from": 245180,
+				"to": 247140
+			},
+			"text": " That usually means very modular"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,140",
+				"to": "00:04:09,180"
+			},
+			"offsets": {
+				"from": 247140,
+				"to": 249180
+			},
+			"text": " and in case you need to upgrade your roll-up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,180",
+				"to": "00:04:11,340"
+			},
+			"offsets": {
+				"from": 249180,
+				"to": 251340
+			},
+			"text": " you can upgrade part of it or all of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,340",
+				"to": "00:04:12,340"
+			},
+			"offsets": {
+				"from": 251340,
+				"to": 252340
+			},
+			"text": " or just this part."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,340",
+				"to": "00:04:13,900"
+			},
+			"offsets": {
+				"from": 252340,
+				"to": 253900
+			},
+			"text": " Maybe this is the only part that's concerning"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,900",
+				"to": "00:04:15,020"
+			},
+			"offsets": {
+				"from": 253900,
+				"to": 255020
+			},
+			"text": " because if you saw on that list,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,020",
+				"to": "00:04:17,660"
+			},
+			"offsets": {
+				"from": 255020,
+				"to": 257660
+			},
+			"text": " some people just force a transaction, whatever that means."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,660",
+				"to": "00:04:19,340"
+			},
+			"offsets": {
+				"from": 257660,
+				"to": 259340
+			},
+			"text": " Others suggest proposing new blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,340",
+				"to": "00:04:21,380"
+			},
+			"offsets": {
+				"from": 259340,
+				"to": 261380
+			},
+			"text": " whatever that means."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,380",
+				"to": "00:04:23,700"
+			},
+			"offsets": {
+				"from": 261380,
+				"to": 263700
+			},
+			"text": " But this should be a full-fledged feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,700",
+				"to": "00:04:25,020"
+			},
+			"offsets": {
+				"from": 263700,
+				"to": 265020
+			},
+			"text": " not an after-the-a."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,020",
+				"to": "00:04:26,420"
+			},
+			"offsets": {
+				"from": 265020,
+				"to": 266420
+			},
+			"text": " Second, it should be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,420",
+				"to": "00:04:30,180"
+			},
+			"offsets": {
+				"from": 266420,
+				"to": 270180
+			},
+			"text": " We always think about security acquisition"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,180",
+				"to": "00:04:32,900"
+			},
+			"offsets": {
+				"from": 270180,
+				"to": 272900
+			},
+			"text": " and certainly a roll-up is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,900",
+				"to": "00:04:34,780"
+			},
+			"offsets": {
+				"from": 272900,
+				"to": 274780
+			},
+			"text": " a bridge that's even more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,780",
+				"to": "00:04:39,580"
+			},
+			"offsets": {
+				"from": 274780,
+				"to": 279580
+			},
+			"text": " And we don't want to have to deal with exploits"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,580",
+				"to": "00:04:42,820"
+			},
+			"offsets": {
+				"from": 279580,
+				"to": 282820
+			},
+			"text": " that arise for the roll-up because of this functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,820",
+				"to": "00:04:44,580"
+			},
+			"offsets": {
+				"from": 282820,
+				"to": 284580
+			},
+			"text": " If you do this, do it right"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,580",
+				"to": "00:04:47,220"
+			},
+			"offsets": {
+				"from": 284580,
+				"to": 287220
+			},
+			"text": " and make sure you test it and not a bit and all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,220",
+				"to": "00:04:48,660"
+			},
+			"offsets": {
+				"from": 287220,
+				"to": 288660
+			},
+			"text": " And finally, it should be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,660",
+				"to": "00:04:52,300"
+			},
+			"offsets": {
+				"from": 288660,
+				"to": 292300
+			},
+			"text": " You shouldn't really have to use consecutive escape patches."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,300",
+				"to": "00:04:55,620"
+			},
+			"offsets": {
+				"from": 292300,
+				"to": 295620
+			},
+			"text": " This is a bit confusing, but I have heard some people say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,620",
+				"to": "00:04:58,740"
+			},
+			"offsets": {
+				"from": 295620,
+				"to": 298740
+			},
+			"text": " \"Well, our plan for a roll-up escape patch"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,740",
+				"to": "00:05:01,860"
+			},
+			"offsets": {
+				"from": 298740,
+				"to": 301860
+			},
+			"text": " is to just migrate the state to another copy of our roll-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,860",
+				"to": "00:05:03,340"
+			},
+			"offsets": {
+				"from": 301860,
+				"to": 303340
+			},
+			"text": " and then everything will work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,340",
+				"to": "00:05:06,260"
+			},
+			"offsets": {
+				"from": 303340,
+				"to": 306260
+			},
+			"text": " But as a user, am I going to be really trusting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,260",
+				"to": "00:05:09,380"
+			},
+			"offsets": {
+				"from": 306260,
+				"to": 309380
+			},
+			"text": " of the same type of roll-up that just went down on me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,380",
+				"to": "00:05:11,020"
+			},
+			"offsets": {
+				"from": 309380,
+				"to": 311020
+			},
+			"text": " I'm not so sure that that's going to be the case.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,020",
+				"to": "00:05:14,140"
+			},
+			"offsets": {
+				"from": 311020,
+				"to": 314140
+			},
+			"text": " So ideally something that gets you sort of out of the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,140",
+				"to": "00:05:15,940"
+			},
+			"offsets": {
+				"from": 314140,
+				"to": 315940
+			},
+			"text": " maybe correcting something the best name"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,940",
+				"to": "00:05:17,740"
+			},
+			"offsets": {
+				"from": 315940,
+				"to": 317740
+			},
+			"text": " is something that I'd like to see personally."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,740",
+				"to": "00:05:20,060"
+			},
+			"offsets": {
+				"from": 317740,
+				"to": 320060
+			},
+			"text": " But beyond that, we can think a little bit deeper"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,060",
+				"to": "00:05:23,620"
+			},
+			"offsets": {
+				"from": 320060,
+				"to": 323620
+			},
+			"text": " about what it means to escape from a roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,620",
+				"to": "00:05:25,260"
+			},
+			"offsets": {
+				"from": 323620,
+				"to": 325260
+			},
+			"text": " In particular, if you're taking assets out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,260",
+				"to": "00:05:26,340"
+			},
+			"offsets": {
+				"from": 325260,
+				"to": 326340
+			},
+			"text": " that's pretty well understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,340",
+				"to": "00:05:27,660"
+			},
+			"offsets": {
+				"from": 326340,
+				"to": 327660
+			},
+			"text": " And a lot of them do have functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,660",
+				"to": "00:05:31,020"
+			},
+			"offsets": {
+				"from": 327660,
+				"to": 331020
+			},
+			"text": " for forcing transactions for ERC-20 tokens, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,020",
+				"to": "00:05:33,020"
+			},
+			"offsets": {
+				"from": 331020,
+				"to": 333020
+			},
+			"text": " But what do you actually really want to escape?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,020",
+				"to": "00:05:36,420"
+			},
+			"offsets": {
+				"from": 333020,
+				"to": 336420
+			},
+			"text": " Maybe you want to escape more than just ERC-20 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,420",
+				"to": "00:05:38,580"
+			},
+			"offsets": {
+				"from": 336420,
+				"to": 338580
+			},
+			"text": " The obvious case is what if you have an NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,580",
+				"to": "00:05:39,820"
+			},
+			"offsets": {
+				"from": 338580,
+				"to": 339820
+			},
+			"text": " minted under a roll-up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,820",
+				"to": "00:05:41,660"
+			},
+			"offsets": {
+				"from": 339820,
+				"to": 341660
+			},
+			"text": " Obviously, you probably want that back"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,660",
+				"to": "00:05:44,620"
+			},
+			"offsets": {
+				"from": 341660,
+				"to": 344620
+			},
+			"text": " too without having to go through extra hoops."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,620",
+				"to": "00:05:46,620"
+			},
+			"offsets": {
+				"from": 344620,
+				"to": 346620
+			},
+			"text": " This also very much depends on the actual bridging"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,620",
+				"to": "00:05:48,340"
+			},
+			"offsets": {
+				"from": 346620,
+				"to": 348340
+			},
+			"text": " that's being done, but maybe there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,340",
+				"to": "00:05:50,540"
+			},
+			"offsets": {
+				"from": 348340,
+				"to": 350540
+			},
+			"text": " some other things you want that are valuable to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,540",
+				"to": "00:05:51,700"
+			},
+			"offsets": {
+				"from": 350540,
+				"to": 351700
+			},
+			"text": " This should be built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,700",
+				"to": "00:05:54,340"
+			},
+			"offsets": {
+				"from": 351700,
+				"to": 354340
+			},
+			"text": " If you have a DAP that you have on L1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,340",
+				"to": "00:05:56,060"
+			},
+			"offsets": {
+				"from": 354340,
+				"to": 356060
+			},
+			"text": " you should sort of migrate it to L2"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,060",
+				"to": "00:05:58,060"
+			},
+			"offsets": {
+				"from": 356060,
+				"to": 358060
+			},
+			"text": " and sort of expect minimal extra friction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,060",
+				"to": "00:05:59,260"
+			},
+			"offsets": {
+				"from": 358060,
+				"to": 359260
+			},
+			"text": " introduced by this feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,260",
+				"to": "00:06:01,140"
+			},
+			"offsets": {
+				"from": 359260,
+				"to": 361140
+			},
+			"text": " So in particular, if that DAP is supposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,140",
+				"to": "00:06:04,460"
+			},
+			"offsets": {
+				"from": 361140,
+				"to": 364460
+			},
+			"text": " to escape some state as part of this functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,460",
+				"to": "00:06:06,420"
+			},
+			"offsets": {
+				"from": 364460,
+				"to": 366420
+			},
+			"text": " it should come for free in ERC-20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,420",
+				"to": "00:06:08,860"
+			},
+			"offsets": {
+				"from": 366420,
+				"to": 368860
+			},
+			"text": " because doing extra work sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,860",
+				"to": "00:06:10,500"
+			},
+			"offsets": {
+				"from": 368860,
+				"to": 370500
+			},
+			"text": " And finally, it should be transaction efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,500",
+				"to": "00:06:12,260"
+			},
+			"offsets": {
+				"from": 370500,
+				"to": 372260
+			},
+			"text": " on the layer underneath."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,260",
+				"to": "00:06:14,500"
+			},
+			"offsets": {
+				"from": 372260,
+				"to": 374500
+			},
+			"text": " If you escape from a layer or two roll-up"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,500",
+				"to": "00:06:16,580"
+			},
+			"offsets": {
+				"from": 374500,
+				"to": 376580
+			},
+			"text": " and everyone else is trying to do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,580",
+				"to": "00:06:17,820"
+			},
+			"offsets": {
+				"from": 376580,
+				"to": 377820
+			},
+			"text": " there's going to be a gas war and things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,820",
+				"to": "00:06:18,900"
+			},
+			"offsets": {
+				"from": 377820,
+				"to": 378900
+			},
+			"text": " are going to get expensive and things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,900",
+				"to": "00:06:19,900"
+			},
+			"offsets": {
+				"from": 378900,
+				"to": 379900
+			},
+			"text": " are going to get messy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,900",
+				"to": "00:06:22,660"
+			},
+			"offsets": {
+				"from": 379900,
+				"to": 382660
+			},
+			"text": " If you can do this in a nice way that aggregates"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,660",
+				"to": "00:06:25,460"
+			},
+			"offsets": {
+				"from": 382660,
+				"to": 385460
+			},
+			"text": " many users' need or does something clever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,460",
+				"to": "00:06:27,660"
+			},
+			"offsets": {
+				"from": 385460,
+				"to": 387660
+			},
+			"text": " I think that's really the way to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,660",
+				"to": "00:06:29,340"
+			},
+			"offsets": {
+				"from": 387660,
+				"to": 389340
+			},
+			"text": " Now, I'm not saying I have solutions for these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,340",
+				"to": "00:06:31,100"
+			},
+			"offsets": {
+				"from": 389340,
+				"to": 391100
+			},
+			"text": " but that's just what I want to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,100",
+				"to": "00:06:32,540"
+			},
+			"offsets": {
+				"from": 391100,
+				"to": 392540
+			},
+			"text": " Some other properties that'd be really nice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,540",
+				"to": "00:06:33,580"
+			},
+			"offsets": {
+				"from": 392540,
+				"to": 393580
+			},
+			"text": " be global."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,580",
+				"to": "00:06:37,460"
+			},
+			"offsets": {
+				"from": 393580,
+				"to": 397460
+			},
+			"text": " So in particular, if you call an escape patch functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,460",
+				"to": "00:06:38,580"
+			},
+			"offsets": {
+				"from": 397460,
+				"to": 398580
+			},
+			"text": " you don't have to do it for every DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,580",
+				"to": "00:06:40,180"
+			},
+			"offsets": {
+				"from": 398580,
+				"to": 400180
+			},
+			"text": " that you've deployed on that L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,180",
+				"to": "00:06:43,700"
+			},
+			"offsets": {
+				"from": 400180,
+				"to": 403700
+			},
+			"text": " So if I'm using Uniswap and something else on some roll-up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,700",
+				"to": "00:06:46,380"
+			},
+			"offsets": {
+				"from": 403700,
+				"to": 406380
+			},
+			"text": " I want to just say escape everything, not escape Uniswap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,380",
+				"to": "00:06:48,420"
+			},
+			"offsets": {
+				"from": 406380,
+				"to": 408420
+			},
+			"text": " and then also escape whatever the other DAP is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,420",
+				"to": "00:06:49,820"
+			},
+			"offsets": {
+				"from": 408420,
+				"to": 409820
+			},
+			"text": " That would be ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,820",
+				"to": "00:06:51,820"
+			},
+			"offsets": {
+				"from": 409820,
+				"to": 411820
+			},
+			"text": " It'd make my life a lot easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,820",
+				"to": "00:06:53,540"
+			},
+			"offsets": {
+				"from": 411820,
+				"to": 413540
+			},
+			"text": " And it should be automatic in life."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,540",
+				"to": "00:06:55,620"
+			},
+			"offsets": {
+				"from": 413540,
+				"to": 415620
+			},
+			"text": " Ideally, it's always available because who knows"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,620",
+				"to": "00:06:57,420"
+			},
+			"offsets": {
+				"from": 415620,
+				"to": 417420
+			},
+			"text": " when this system could go down, hopefully never."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,420",
+				"to": "00:06:59,940"
+			},
+			"offsets": {
+				"from": 417420,
+				"to": 419940
+			},
+			"text": " But if it does, we don't know when it'll be."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,940",
+				"to": "00:07:02,660"
+			},
+			"offsets": {
+				"from": 419940,
+				"to": 422660
+			},
+			"text": " And it should be triggered, hopefully automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,660",
+				"to": "00:07:05,660"
+			},
+			"offsets": {
+				"from": 422660,
+				"to": 425660
+			},
+			"text": " So not depending too much on social consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,660",
+				"to": "00:07:09,220"
+			},
+			"offsets": {
+				"from": 425660,
+				"to": 429220
+			},
+			"text": " I mean, it might be unavoidable, but it should be very clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,220",
+				"to": "00:07:12,380"
+			},
+			"offsets": {
+				"from": 429220,
+				"to": 432380
+			},
+			"text": " when you can trigger this functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,380",
+				"to": "00:07:15,180"
+			},
+			"offsets": {
+				"from": 432380,
+				"to": 435180
+			},
+			"text": " And when you want to do that, it should be available to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,180",
+				"to": "00:07:17,580"
+			},
+			"offsets": {
+				"from": 435180,
+				"to": 437580
+			},
+			"text": " Or at least the community should be able to make the decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,580",
+				"to": "00:07:20,420"
+			},
+			"offsets": {
+				"from": 437580,
+				"to": 440420
+			},
+			"text": " But automatic would be ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,420",
+				"to": "00:07:22,500"
+			},
+			"offsets": {
+				"from": 440420,
+				"to": 442500
+			},
+			"text": " So that's what I think they should do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,500",
+				"to": "00:07:23,340"
+			},
+			"offsets": {
+				"from": 442500,
+				"to": 443340
+			},
+			"text": " Have I missed anything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,340",
+				"to": "00:07:24,340"
+			},
+			"offsets": {
+				"from": 443340,
+				"to": 444340
+			},
+			"text": " Please let me know."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,340",
+				"to": "00:07:25,260"
+			},
+			"offsets": {
+				"from": 444340,
+				"to": 445260
+			},
+			"text": " Do you disagree?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,260",
+				"to": "00:07:26,660"
+			},
+			"offsets": {
+				"from": 445260,
+				"to": 446660
+			},
+			"text": " Please also let me know."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,660",
+				"to": "00:07:30,220"
+			},
+			"offsets": {
+				"from": 446660,
+				"to": 450220
+			},
+			"text": " You can contact me, email, or put her there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,220",
+				"to": "00:07:31,140"
+			},
+			"offsets": {
+				"from": 450220,
+				"to": 451140
+			},
+			"text": " Find me around here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,140",
+				"to": "00:07:35,460"
+			},
+			"offsets": {
+				"from": 451140,
+				"to": 455460
+			},
+			"text": " And we do have a write-up of this at a non-blockchain conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,460",
+				"to": "00:07:37,460"
+			},
+			"offsets": {
+				"from": 455460,
+				"to": 457460
+			},
+			"text": " So I can send you some papers about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,460",
+				"to": "00:07:38,740"
+			},
+			"offsets": {
+				"from": 457460,
+				"to": 458740
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,740",
+				"to": "00:07:40,700"
+			},
+			"offsets": {
+				"from": 458740,
+				"to": 460700
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,700",
+				"to": "00:07:42,700"
+			},
+			"offsets": {
+				"from": 460700,
+				"to": 462700
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,700",
+				"to": "00:07:44,700"
+			},
+			"offsets": {
+				"from": 462700,
+				"to": 464700
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,700",
+				"to": "00:07:46,700"
+			},
+			"offsets": {
+				"from": 464700,
+				"to": 466700
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,700",
+				"to": "00:07:48,700"
+			},
+			"offsets": {
+				"from": 466700,
+				"to": 468700
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,700",
+				"to": "00:08:17,700"
+			},
+			"offsets": {
+				"from": 468700,
+				"to": 497700
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

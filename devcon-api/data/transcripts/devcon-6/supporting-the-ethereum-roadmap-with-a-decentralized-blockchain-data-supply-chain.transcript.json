@@ -1,0 +1,6412 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:13,480"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 13480
+			},
+			"text": " - My name is Brandon Ramirez."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,480",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 13480,
+				"to": 15840
+			},
+			"text": " I'm a co-founder at The Graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:19,720"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 19720
+			},
+			"text": " as well as one of its core developers, EJNODE."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,720",
+				"to": "00:00:20,800"
+			},
+			"offsets": {
+				"from": 19720,
+				"to": 20800
+			},
+			"text": " And today I'm gonna be talking to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,800",
+				"to": "00:00:23,960"
+			},
+			"offsets": {
+				"from": 20800,
+				"to": 23960
+			},
+			"text": " about the importance of decentralizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,960",
+				"to": "00:00:26,280"
+			},
+			"offsets": {
+				"from": 23960,
+				"to": 26280
+			},
+			"text": " the blockchain data supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,280",
+				"to": "00:00:29,200"
+			},
+			"offsets": {
+				"from": 26280,
+				"to": 29200
+			},
+			"text": " And specifically it's important to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,200",
+				"to": "00:00:32,240"
+			},
+			"offsets": {
+				"from": 29200,
+				"to": 32240
+			},
+			"text": " the Ethereum vision, as well as the Ethereum roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,240",
+				"to": "00:00:33,040"
+			},
+			"offsets": {
+				"from": 32240,
+				"to": 33040
+			},
+			"text": " moving forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,040",
+				"to": "00:00:36,640"
+			},
+			"offsets": {
+				"from": 33040,
+				"to": 36640
+			},
+			"text": " So before we get into that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,640",
+				"to": "00:00:37,720"
+			},
+			"offsets": {
+				"from": 36640,
+				"to": 37720
+			},
+			"text": " let's first things first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,720",
+				"to": "00:00:39,480"
+			},
+			"offsets": {
+				"from": 37720,
+				"to": 39480
+			},
+			"text": " like what do we mean when we say"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,480",
+				"to": "00:00:41,820"
+			},
+			"offsets": {
+				"from": 39480,
+				"to": 41820
+			},
+			"text": " the blockchain data supply chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,820",
+				"to": "00:00:45,560"
+			},
+			"offsets": {
+				"from": 41820,
+				"to": 45560
+			},
+			"text": " Simply put, it's everything that happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,560",
+				"to": "00:00:48,640"
+			},
+			"offsets": {
+				"from": 45560,
+				"to": 48640
+			},
+			"text": " between you as a user, sending a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,640",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 48640,
+				"to": 51360
+			},
+			"text": " to modify the state of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:54,760"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 54760
+			},
+			"text": " And another user reading that modified state"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,760",
+				"to": "00:00:57,360"
+			},
+			"offsets": {
+				"from": 54760,
+				"to": 57360
+			},
+			"text": " based on the transaction that you sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,360",
+				"to": "00:00:58,920"
+			},
+			"offsets": {
+				"from": 57360,
+				"to": 58920
+			},
+			"text": " And at a high level, we can break that up"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,920",
+				"to": "00:01:00,960"
+			},
+			"offsets": {
+				"from": 58920,
+				"to": 60960
+			},
+			"text": " into three kind of stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,960",
+				"to": "00:01:03,320"
+			},
+			"offsets": {
+				"from": 60960,
+				"to": 63320
+			},
+			"text": " On the left, we have writing state."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,320",
+				"to": "00:01:04,320"
+			},
+			"offsets": {
+				"from": 63320,
+				"to": 64320
+			},
+			"text": " So it's everything that happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,320",
+				"to": "00:01:06,040"
+			},
+			"offsets": {
+				"from": 64320,
+				"to": 66040
+			},
+			"text": " with you sending a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,040",
+				"to": "00:01:09,720"
+			},
+			"offsets": {
+				"from": 66040,
+				"to": 69720
+			},
+			"text": " getting it included in a block on the canonical chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,720",
+				"to": "00:01:11,720"
+			},
+			"offsets": {
+				"from": 69720,
+				"to": 71720
+			},
+			"text": " which is through consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,720",
+				"to": "00:01:13,440"
+			},
+			"offsets": {
+				"from": 71720,
+				"to": 73440
+			},
+			"text": " And then downstream of consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,440",
+				"to": "00:01:16,960"
+			},
+			"offsets": {
+				"from": 73440,
+				"to": 76960
+			},
+			"text": " you have everything that's required for that state to be read,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,960",
+				"to": "00:01:19,440"
+			},
+			"offsets": {
+				"from": 76960,
+				"to": 79440
+			},
+			"text": " for the various applications that you might use that state"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,440",
+				"to": "00:01:22,520"
+			},
+			"offsets": {
+				"from": 79440,
+				"to": 82520
+			},
+			"text": " for, for example, in a decentralized application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,520",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 82520,
+				"to": 87000
+			},
+			"text": " And I think most of us are probably more familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:28,760"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 88760
+			},
+			"text": " with the right side of the supply chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,760",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 88760,
+				"to": 90000
+			},
+			"text": " because it's gotten a lot of attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:33,360"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 93360
+			},
+			"text": " in the last few years with things like MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,360",
+				"to": "00:01:35,960"
+			},
+			"offsets": {
+				"from": 93360,
+				"to": 95960
+			},
+			"text": " some of the proposals like builder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,960",
+				"to": "00:01:38,840"
+			},
+			"offsets": {
+				"from": 95960,
+				"to": 98840
+			},
+			"text": " proposer separation and MEV boosts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,840",
+				"to": "00:01:41,640"
+			},
+			"offsets": {
+				"from": 98840,
+				"to": 101640
+			},
+			"text": " So this is like an example of what the right side"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,640",
+				"to": "00:01:44,040"
+			},
+			"offsets": {
+				"from": 101640,
+				"to": 104040
+			},
+			"text": " of the blockchain data supply chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,040",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 104040,
+				"to": 106160
+			},
+			"text": " will look like in Ethereum in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 108080
+			},
+			"text": " where you have a transaction going to a private"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:49,600"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 109600
+			},
+			"text": " or a public mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,600",
+				"to": "00:01:51,120"
+			},
+			"offsets": {
+				"from": 109600,
+				"to": 111120
+			},
+			"text": " You have people bundling that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,120",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 111120,
+				"to": 113600
+			},
+			"text": " into larger transaction bundles."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:55,760"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 115760
+			},
+			"text": " You have block builders that might be these specialized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,760",
+				"to": "00:01:59,040"
+			},
+			"offsets": {
+				"from": 115760,
+				"to": 119040
+			},
+			"text": " actors trying to kind of extract as much MEV as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,040",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 119040,
+				"to": 121920
+			},
+			"text": " And then eventually it makes it to a proposer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:04,680"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 124680
+			},
+			"text": " and validated as part of consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,680",
+				"to": "00:02:07,880"
+			},
+			"offsets": {
+				"from": 124680,
+				"to": 127880
+			},
+			"text": " Downstream of consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,880",
+				"to": "00:02:11,320"
+			},
+			"offsets": {
+				"from": 127880,
+				"to": 131320
+			},
+			"text": " then we have everything that's required to get that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,320",
+				"to": "00:02:15,160"
+			},
+			"offsets": {
+				"from": 131320,
+				"to": 135160
+			},
+			"text": " into a useful place for you to do something with it as a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,160",
+				"to": "00:02:16,920"
+			},
+			"offsets": {
+				"from": 135160,
+				"to": 136920
+			},
+			"text": " Broadly speaking, we can break that up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,920",
+				"to": "00:02:21,840"
+			},
+			"offsets": {
+				"from": 136920,
+				"to": 141840
+			},
+			"text": " into extract, transform and load."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,840",
+				"to": "00:02:25,240"
+			},
+			"offsets": {
+				"from": 141840,
+				"to": 145240
+			},
+			"text": " And you don't always need to go through all those steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,240",
+				"to": "00:02:29,440"
+			},
+			"offsets": {
+				"from": 145240,
+				"to": 149440
+			},
+			"text": " Like for example, you know, JSON RPC is a form of extraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,440",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 149440,
+				"to": 153360
+			},
+			"text": " There's many use cases that just consume JSON RPC directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,360",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 153360,
+				"to": 156720
+			},
+			"text": " Many people today consume blockchain data through subgraphs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:38,720"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 158720
+			},
+			"text": " in which case they're using subgraph mappings"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,720",
+				"to": "00:02:42,080"
+			},
+			"offsets": {
+				"from": 158720,
+				"to": 162080
+			},
+			"text": " as a transform step and then loading into a database"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,080",
+				"to": "00:02:46,160"
+			},
+			"offsets": {
+				"from": 162080,
+				"to": 166160
+			},
+			"text": " or a store that's optimized for GraphQL queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,160",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 166160,
+				"to": 168000
+			},
+			"text": " Later in this talk, I'll be touching briefly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,040"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171040
+			},
+			"text": " upon two technologies, firehose and sub streams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,040",
+				"to": "00:02:53,720"
+			},
+			"offsets": {
+				"from": 171040,
+				"to": 173720
+			},
+			"text": " which are next generation versions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,720",
+				"to": "00:02:58,720"
+			},
+			"offsets": {
+				"from": 173720,
+				"to": 178720
+			},
+			"text": " of the firehose and extract logic in the supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,720",
+				"to": "00:03:02,480"
+			},
+			"offsets": {
+				"from": 178720,
+				"to": 182480
+			},
+			"text": " We've got some autonomous lights over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,480",
+				"to": "00:03:04,280"
+			},
+			"offsets": {
+				"from": 182480,
+				"to": 184280
+			},
+			"text": " At a high level, we can sort of categorize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,280",
+				"to": "00:03:07,080"
+			},
+			"offsets": {
+				"from": 184280,
+				"to": 187080
+			},
+			"text": " the different approaches to decentralizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,080",
+				"to": "00:03:09,280"
+			},
+			"offsets": {
+				"from": 187080,
+				"to": 189280
+			},
+			"text": " the blockchain data supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,280",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 189280,
+				"to": 191440
+			},
+			"text": " The first approach, and I would say for a long time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:13,640"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 193640
+			},
+			"text": " this was kind of the conventional thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,640",
+				"to": "00:03:16,480"
+			},
+			"offsets": {
+				"from": 193640,
+				"to": 196480
+			},
+			"text": " was what we call web 2.5."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,480",
+				"to": "00:03:19,520"
+			},
+			"offsets": {
+				"from": 196480,
+				"to": 199520
+			},
+			"text": " And in web 2.5, basically what you're saying is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,520",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 199520,
+				"to": 201800
+			},
+			"text": " we do all the things that we've been talking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:23,920"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 203920
+			},
+			"text": " the last few years to decentralize the right side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,920",
+				"to": "00:03:28,200"
+			},
+			"offsets": {
+				"from": 203920,
+				"to": 208200
+			},
+			"text": " so protecting against MEV, keeping good stake decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,200",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 208200,
+				"to": 210760
+			},
+			"text": " and keeping good validator decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:34,320"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 214320
+			},
+			"text": " But then downstream of that, we let the reads be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,320",
+				"to": "00:03:37,400"
+			},
+			"offsets": {
+				"from": 214320,
+				"to": 217400
+			},
+			"text": " through proprietary APIs, centralized servers, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,400",
+				"to": "00:03:41,720"
+			},
+			"offsets": {
+				"from": 217400,
+				"to": 221720
+			},
+			"text": " And I think the reason that there's been so much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,720",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 221720,
+				"to": 225800
+			},
+			"text": " attention to the web 2.5 vision is because failures"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,800",
+				"to": "00:03:47,960"
+			},
+			"offsets": {
+				"from": 225800,
+				"to": 227960
+			},
+			"text": " on the right side of the supply chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,960",
+				"to": "00:03:49,240"
+			},
+			"offsets": {
+				"from": 227960,
+				"to": 229240
+			},
+			"text": " tend to be a little bit more visible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,240",
+				"to": "00:03:50,560"
+			},
+			"offsets": {
+				"from": 229240,
+				"to": 230560
+			},
+			"text": " or at least a little bit more intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,560",
+				"to": "00:03:52,880"
+			},
+			"offsets": {
+				"from": 230560,
+				"to": 232880
+			},
+			"text": " So if you're getting your transactions censored"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,880",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 232880,
+				"to": 235720
+			},
+			"text": " from being included in consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:57,160"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 237160
+			},
+			"text": " that's something that's gonna be very apparent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,160",
+				"to": "00:03:58,120"
+			},
+			"offsets": {
+				"from": 237160,
+				"to": 238120
+			},
+			"text": " and you can point to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,120",
+				"to": "00:04:02,120"
+			},
+			"offsets": {
+				"from": 238120,
+				"to": 242120
+			},
+			"text": " Similarly, if there's actually a determinism issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,120",
+				"to": "00:04:04,320"
+			},
+			"offsets": {
+				"from": 242120,
+				"to": 244320
+			},
+			"text": " upstream of consensus, like some kind of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,320",
+				"to": "00:04:06,640"
+			},
+			"offsets": {
+				"from": 244320,
+				"to": 246640
+			},
+			"text": " or execution inconsistencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,640",
+				"to": "00:04:08,960"
+			},
+			"offsets": {
+				"from": 246640,
+				"to": 248960
+			},
+			"text": " that's actually gonna lead to a consensus failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,960",
+				"to": "00:04:12,160"
+			},
+			"offsets": {
+				"from": 248960,
+				"to": 252160
+			},
+			"text": " like potentially like a unplanned chain split,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,160",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252160,
+				"to": 254000
+			},
+			"text": " and that's a very visible type of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:16,440"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 256440
+			},
+			"text": " And so I think rightfully so, there's been a lot of attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,440",
+				"to": "00:04:19,920"
+			},
+			"offsets": {
+				"from": 256440,
+				"to": 259920
+			},
+			"text": " to everything upstream of consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,920",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 259920,
+				"to": 262000
+			},
+			"text": " but you can also have data inconsistencies, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:24,880"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 264880
+			},
+			"text": " downstream of consensus, that's some things that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,880",
+				"to": "00:04:27,880"
+			},
+			"offsets": {
+				"from": 264880,
+				"to": 267880
+			},
+			"text": " our indexers in the graph have like come across"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,880",
+				"to": "00:04:30,640"
+			},
+			"offsets": {
+				"from": 267880,
+				"to": 270640
+			},
+			"text": " and help debug, but they just don't get as much attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,640",
+				"to": "00:04:34,640"
+			},
+			"offsets": {
+				"from": 270640,
+				"to": 274640
+			},
+			"text": " because inconsistencies in the way that you read data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,640",
+				"to": "00:04:37,440"
+			},
+			"offsets": {
+				"from": 274640,
+				"to": 277440
+			},
+			"text": " downstream of consensus impacts you as a user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,440",
+				"to": "00:04:41,200"
+			},
+			"offsets": {
+				"from": 277440,
+				"to": 281200
+			},
+			"text": " but it doesn't show up in, for example, a consensus failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,200",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 281200,
+				"to": 285040
+			},
+			"text": " So the other approach is what we call the web 3 approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:48,160"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 288160
+			},
+			"text": " Web 3 simply put is full stack decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,160",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 288160,
+				"to": 290960
+			},
+			"text": " in the context of the blockchain data supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 293400
+			},
+			"text": " What that means is decentralized rights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:54,960"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 294960
+			},
+			"text": " like what we just talked about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,960",
+				"to": "00:04:57,240"
+			},
+			"offsets": {
+				"from": 294960,
+				"to": 297240
+			},
+			"text": " but also decentralized reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,240",
+				"to": "00:05:00,080"
+			},
+			"offsets": {
+				"from": 297240,
+				"to": 300080
+			},
+			"text": " A lot of my thinking on this is obviously influenced"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,080",
+				"to": "00:05:01,880"
+			},
+			"offsets": {
+				"from": 300080,
+				"to": 301880
+			},
+			"text": " through my work on the graph, but I wanna note"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,880",
+				"to": "00:05:03,880"
+			},
+			"offsets": {
+				"from": 301880,
+				"to": 303880
+			},
+			"text": " that there's other projects in this space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,880",
+				"to": "00:05:06,040"
+			},
+			"offsets": {
+				"from": 303880,
+				"to": 306040
+			},
+			"text": " like portal network, pocket network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,040",
+				"to": "00:05:08,920"
+			},
+			"offsets": {
+				"from": 306040,
+				"to": 308920
+			},
+			"text": " true blocks that are all taking varied approaches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,920",
+				"to": "00:05:10,680"
+			},
+			"offsets": {
+				"from": 308920,
+				"to": 310680
+			},
+			"text": " and I definitely recommend you checking out"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,680",
+				"to": "00:05:15,020"
+			},
+			"offsets": {
+				"from": 310680,
+				"to": 315020
+			},
+			"text": " sort of this landscape of the decentralized reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,880",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 316880,
+				"to": 320200
+			},
+			"text": " So why do decentralized reads matter to the Ethereum vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:22,320"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 322320
+			},
+			"text": " or to the web 3 vision?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,320",
+				"to": "00:05:24,160"
+			},
+			"offsets": {
+				"from": 322320,
+				"to": 324160
+			},
+			"text": " I think we can start by just reasoning about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,160",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 324160,
+				"to": 327600
+			},
+			"text": " from first principles and what it looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:29,720"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 329720
+			},
+			"text": " to access a decentralized system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,720",
+				"to": "00:05:31,920"
+			},
+			"offsets": {
+				"from": 329720,
+				"to": 331920
+			},
+			"text": " through a centralized intermediary."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,920",
+				"to": "00:05:33,680"
+			},
+			"offsets": {
+				"from": 331920,
+				"to": 333680
+			},
+			"text": " By a quick show of hands,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,680",
+				"to": "00:05:35,840"
+			},
+			"offsets": {
+				"from": 333680,
+				"to": 335840
+			},
+			"text": " does anyone see something wrong with the diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,840",
+				"to": "00:05:37,880"
+			},
+			"offsets": {
+				"from": 335840,
+				"to": 337880
+			},
+			"text": " on the right side of the screen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,880",
+				"to": "00:05:44,240"
+			},
+			"offsets": {
+				"from": 337880,
+				"to": 344240
+			},
+			"text": " I'm glad I can educate you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,240",
+				"to": "00:05:47,600"
+			},
+			"offsets": {
+				"from": 344240,
+				"to": 347600
+			},
+			"text": " So what we're showing on the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,600",
+				"to": "00:05:49,280"
+			},
+			"offsets": {
+				"from": 347600,
+				"to": 349280
+			},
+			"text": " is basically a decentralized system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,280",
+				"to": "00:05:50,920"
+			},
+			"offsets": {
+				"from": 349280,
+				"to": 350920
+			},
+			"text": " kind of on the top right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,920",
+				"to": "00:05:53,720"
+			},
+			"offsets": {
+				"from": 350920,
+				"to": 353720
+			},
+			"text": " being access through a centralized intermediary."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,720",
+				"to": "00:05:56,120"
+			},
+			"offsets": {
+				"from": 353720,
+				"to": 356120
+			},
+			"text": " So like so much of the work that you guys have heard about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,120",
+				"to": "00:05:58,640"
+			},
+			"offsets": {
+				"from": 356120,
+				"to": 358640
+			},
+			"text": " in the Ethereum ecosystem from the Ethereum researchers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,640",
+				"to": "00:06:00,800"
+			},
+			"offsets": {
+				"from": 358640,
+				"to": 360800
+			},
+			"text": " is really about maintaining decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,800",
+				"to": "00:06:04,880"
+			},
+			"offsets": {
+				"from": 360800,
+				"to": 364880
+			},
+			"text": " at the blockchain layer, at the consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,880",
+				"to": "00:06:07,480"
+			},
+			"offsets": {
+				"from": 364880,
+				"to": 367480
+			},
+			"text": " And then what we've effectively done in many instances"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,480",
+				"to": "00:06:10,960"
+			},
+			"offsets": {
+				"from": 367480,
+				"to": 370960
+			},
+			"text": " is taking this decentralized system with all its benefits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,960",
+				"to": "00:06:13,440"
+			},
+			"offsets": {
+				"from": 370960,
+				"to": 373440
+			},
+			"text": " all its advantages, put it inside of a box,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,440",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 373440,
+				"to": 377000
+			},
+			"text": " and then accessing that box through a centralized gatekeeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:19,360"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 379360
+			},
+			"text": " And at that point, what's inside the box"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,360",
+				"to": "00:06:20,960"
+			},
+			"offsets": {
+				"from": 379360,
+				"to": 380960
+			},
+			"text": " really becomes irrelevant, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,960",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 380960,
+				"to": 384800
+			},
+			"text": " All the work that's been done"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:27,280"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 387280
+			},
+			"text": " to actually build this beautiful decentralized system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,280",
+				"to": "00:06:29,360"
+			},
+			"offsets": {
+				"from": 387280,
+				"to": 389360
+			},
+			"text": " is sort of opaque to the end user"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,360",
+				"to": "00:06:31,720"
+			},
+			"offsets": {
+				"from": 389360,
+				"to": 391720
+			},
+			"text": " and to the applications that are built on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,720",
+				"to": "00:06:34,480"
+			},
+			"offsets": {
+				"from": 391720,
+				"to": 394480
+			},
+			"text": " Off-free I think put it really concisely."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,480",
+				"to": "00:06:37,160"
+			},
+			"offsets": {
+				"from": 394480,
+				"to": 397160
+			},
+			"text": " He's one of the early prominent Ethereum core developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,160",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 397160,
+				"to": 402000
+			},
+			"text": " that just, if daps are still accessing the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:44,720"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 404720
+			},
+			"text": " through centralized hosting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,720",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 404720,
+				"to": 406560
+			},
+			"text": " then the Ethereum vision has effectively failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:49,040"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 409040
+			},
+			"text": " It's the way that he put it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,040",
+				"to": "00:06:52,040"
+			},
+			"offsets": {
+				"from": 409040,
+				"to": 412040
+			},
+			"text": " I was working on an analogy to describe"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,040",
+				"to": "00:06:55,240"
+			},
+			"offsets": {
+				"from": 412040,
+				"to": 415240
+			},
+			"text": " kind of the web2 dilemma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,240",
+				"to": "00:06:56,480"
+			},
+			"offsets": {
+				"from": 415240,
+				"to": 416480
+			},
+			"text": " and hopefully this isn't too soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,480",
+				"to": "00:06:58,680"
+			},
+			"offsets": {
+				"from": 416480,
+				"to": 418680
+			},
+			"text": " but one analogy that kind of made this stick for me"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,680",
+				"to": "00:07:03,320"
+			},
+			"offsets": {
+				"from": 418680,
+				"to": 423320
+			},
+			"text": " a little bit is that if web2 is someone sneezing on you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,320",
+				"to": "00:07:08,320"
+			},
+			"offsets": {
+				"from": 423320,
+				"to": 428320
+			},
+			"text": " during the pandemic, and web3 is a properly fitted N95 mask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,800",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 429800,
+				"to": 433000
+			},
+			"text": " then web2.5 is kind of like a chin diaper, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 436960
+			},
+			"text": " And I know there's a lot of different opinions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:20,680"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 440680
+			},
+			"text": " and ideas on the efficacy of mask mandates, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,680",
+				"to": "00:07:22,680"
+			},
+			"offsets": {
+				"from": 440680,
+				"to": 442680
+			},
+			"text": " but I think we can all agree that the chin diaper"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,680",
+				"to": "00:07:24,720"
+			},
+			"offsets": {
+				"from": 442680,
+				"to": 444720
+			},
+			"text": " really didn't make a lot of sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,720",
+				"to": "00:07:26,400"
+			},
+			"offsets": {
+				"from": 444720,
+				"to": 446400
+			},
+			"text": " And that's kind of web2.5, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,400",
+				"to": "00:07:27,280"
+			},
+			"offsets": {
+				"from": 446400,
+				"to": 447280
+			},
+			"text": " It just doesn't make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,280",
+				"to": "00:07:30,520"
+			},
+			"offsets": {
+				"from": 447280,
+				"to": 450520
+			},
+			"text": " It's sort of incongruous with the goals"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,520",
+				"to": "00:07:33,400"
+			},
+			"offsets": {
+				"from": 450520,
+				"to": 453400
+			},
+			"text": " of blockchain and web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,400",
+				"to": "00:07:36,320"
+			},
+			"offsets": {
+				"from": 453400,
+				"to": 456320
+			},
+			"text": " Specifically, it undermines a lot of the value propositions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,320",
+				"to": "00:07:38,640"
+			},
+			"offsets": {
+				"from": 456320,
+				"to": 458640
+			},
+			"text": " that the Ethereum founders"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,640",
+				"to": "00:07:40,840"
+			},
+			"offsets": {
+				"from": 458640,
+				"to": 460840
+			},
+			"text": " and a lot of the early builders in web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,840",
+				"to": "00:07:44,160"
+			},
+			"offsets": {
+				"from": 460840,
+				"to": 464160
+			},
+			"text": " sort of united around in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,160",
+				"to": "00:07:47,160"
+			},
+			"offsets": {
+				"from": 464160,
+				"to": 467160
+			},
+			"text": " So being able to build unstoppable applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,160",
+				"to": "00:07:51,280"
+			},
+			"offsets": {
+				"from": 467160,
+				"to": 471280
+			},
+			"text": " with composability, when you start building on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,280",
+				"to": "00:07:54,440"
+			},
+			"offsets": {
+				"from": 471280,
+				"to": 474440
+			},
+			"text": " centralized info run by single service providers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,440",
+				"to": "00:07:56,840"
+			},
+			"offsets": {
+				"from": 474440,
+				"to": 476840
+			},
+			"text": " well then your app is no longer unstoppable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,840",
+				"to": "00:07:59,840"
+			},
+			"offsets": {
+				"from": 476840,
+				"to": 479840
+			},
+			"text": " It stops as soon as that platform gets shut down."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,840",
+				"to": "00:08:04,080"
+			},
+			"offsets": {
+				"from": 479840,
+				"to": 484080
+			},
+			"text": " Once you stop building on open standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,080",
+				"to": "00:08:06,040"
+			},
+			"offsets": {
+				"from": 484080,
+				"to": 486040
+			},
+			"text": " the composability of your applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,040",
+				"to": "00:08:08,360"
+			},
+			"offsets": {
+				"from": 486040,
+				"to": 488360
+			},
+			"text": " and the stuff that you've built goes down quite a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,360",
+				"to": "00:08:10,280"
+			},
+			"offsets": {
+				"from": 488360,
+				"to": 490280
+			},
+			"text": " And even if there was standardization"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,280",
+				"to": "00:08:12,360"
+			},
+			"offsets": {
+				"from": 490280,
+				"to": 492360
+			},
+			"text": " on these centralized servers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,360",
+				"to": "00:08:14,840"
+			},
+			"offsets": {
+				"from": 492360,
+				"to": 494840
+			},
+			"text": " there's a limit to how much composability you can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,840",
+				"to": "00:08:17,600"
+			},
+			"offsets": {
+				"from": 494840,
+				"to": 497600
+			},
+			"text": " when you're building on centralized building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,600",
+				"to": "00:08:20,160"
+			},
+			"offsets": {
+				"from": 497600,
+				"to": 500160
+			},
+			"text": " because the more centralized building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,160",
+				"to": "00:08:23,040"
+			},
+			"offsets": {
+				"from": 500160,
+				"to": 503040
+			},
+			"text": " you compose, the more brittle your system becomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,040",
+				"to": "00:08:24,640"
+			},
+			"offsets": {
+				"from": 503040,
+				"to": 504640
+			},
+			"text": " Because now you're basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,640",
+				"to": "00:08:26,280"
+			},
+			"offsets": {
+				"from": 504640,
+				"to": 506280
+			},
+			"text": " if one centralized building block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,280",
+				"to": "00:08:28,080"
+			},
+			"offsets": {
+				"from": 506280,
+				"to": 508080
+			},
+			"text": " and your giant compose system goes out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,080",
+				"to": "00:08:30,840"
+			},
+			"offsets": {
+				"from": 508080,
+				"to": 510840
+			},
+			"text": " well now that ripples to breaking your entire system"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,840",
+				"to": "00:08:35,280"
+			},
+			"offsets": {
+				"from": 510840,
+				"to": 515280
+			},
+			"text": " as opposed to unstoppable smart contracts running on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,280",
+				"to": "00:08:36,240"
+			},
+			"offsets": {
+				"from": 515280,
+				"to": 516240
+			},
+			"text": " the way those work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,240",
+				"to": "00:08:38,600"
+			},
+			"offsets": {
+				"from": 516240,
+				"to": 518600
+			},
+			"text": " where a new DeFi protocol can come along,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,600",
+				"to": "00:08:41,880"
+			},
+			"offsets": {
+				"from": 518600,
+				"to": 521880
+			},
+			"text": " integrate with an existing unstoppable DeFi protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,880",
+				"to": "00:08:45,440"
+			},
+			"offsets": {
+				"from": 521880,
+				"to": 525440
+			},
+			"text": " and that composition can keep playing out"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,440",
+				"to": "00:08:48,560"
+			},
+			"offsets": {
+				"from": 525440,
+				"to": 528560
+			},
+			"text": " until you get this really rich tapestry"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,560",
+				"to": "00:08:50,640"
+			},
+			"offsets": {
+				"from": 528560,
+				"to": 530640
+			},
+			"text": " of decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,640",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 530640,
+				"to": 533600
+			},
+			"text": " Definitely hurts for usability"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:55,680"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 535680
+			},
+			"text": " if you're just doing one-offs all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,680",
+				"to": "00:08:58,880"
+			},
+			"offsets": {
+				"from": 535680,
+				"to": 538880
+			},
+			"text": " And then I think on ownership, censorship, resistance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,880",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 538880,
+				"to": 541520
+			},
+			"text": " fairness, I'm gonna try and paint this a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:03,440"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 543440
+			},
+			"text": " in a few examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,440",
+				"to": "00:09:06,920"
+			},
+			"offsets": {
+				"from": 543440,
+				"to": 546920
+			},
+			"text": " The first is how many people saw the article"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,920",
+				"to": "00:09:10,720"
+			},
+			"offsets": {
+				"from": 546920,
+				"to": 550720
+			},
+			"text": " that Moxie Marlin Spike from Signal wrote earlier this year?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,720",
+				"to": "00:09:13,200"
+			},
+			"offsets": {
+				"from": 550720,
+				"to": 553200
+			},
+			"text": " Okay, let's say 30%."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,200",
+				"to": "00:09:15,240"
+			},
+			"offsets": {
+				"from": 553200,
+				"to": 555240
+			},
+			"text": " So he wrote, I recommend you look it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,240",
+				"to": "00:09:16,880"
+			},
+			"offsets": {
+				"from": 555240,
+				"to": 556880
+			},
+			"text": " He wrote a very well-intentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,880",
+				"to": "00:09:18,480"
+			},
+			"offsets": {
+				"from": 556880,
+				"to": 558480
+			},
+			"text": " well-thought-out critique of Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,480",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 558480,
+				"to": 561000
+			},
+			"text": " from someone actually trying to make a good faith attempt"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:24,240"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 564240
+			},
+			"text": " at building some decentralized applications in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,240",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 564240,
+				"to": 568360
+			},
+			"text": " And so one of the things that he did was build an NFT app"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:32,440"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 572440
+			},
+			"text": " and to sort of kick the tires on like the guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,440",
+				"to": "00:09:34,720"
+			},
+			"offsets": {
+				"from": 572440,
+				"to": 574720
+			},
+			"text": " that we think we have when we're building on NFTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,720",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 574720,
+				"to": 577440
+			},
+			"text": " he basically built a single NFT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:39,600"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 579600
+			},
+			"text": " but depending on where you viewed it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,600",
+				"to": "00:09:42,360"
+			},
+			"offsets": {
+				"from": 579600,
+				"to": 582360
+			},
+			"text": " whether you viewed it on OpenSea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,360",
+				"to": "00:09:44,360"
+			},
+			"offsets": {
+				"from": 582360,
+				"to": 584360
+			},
+			"text": " rarerable or in your own wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,360",
+				"to": "00:09:46,560"
+			},
+			"offsets": {
+				"from": 584360,
+				"to": 586560
+			},
+			"text": " you got one of the three images shown on the screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,560",
+				"to": "00:09:48,800"
+			},
+			"offsets": {
+				"from": 586560,
+				"to": 588800
+			},
+			"text": " So like when you're actually buying the NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,800",
+				"to": "00:09:50,560"
+			},
+			"offsets": {
+				"from": 588800,
+				"to": 590560
+			},
+			"text": " or looking at it in a collection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,560",
+				"to": "00:09:52,120"
+			},
+			"offsets": {
+				"from": 590560,
+				"to": 592120
+			},
+			"text": " you're seeing like this cool piece of artwork"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,120",
+				"to": "00:09:53,960"
+			},
+			"offsets": {
+				"from": 592120,
+				"to": 593960
+			},
+			"text": " and then by the time it makes it to your wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,960",
+				"to": "00:09:55,240"
+			},
+			"offsets": {
+				"from": 593960,
+				"to": 595240
+			},
+			"text": " you get a poop emoji."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,240",
+				"to": "00:09:57,680"
+			},
+			"offsets": {
+				"from": 595240,
+				"to": 597680
+			},
+			"text": " And that's possible because the NFT was not hosted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,680",
+				"to": "00:10:01,320"
+			},
+			"offsets": {
+				"from": 597680,
+				"to": 601320
+			},
+			"text": " on decentralized data and using a decentralized data supply chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,320",
+				"to": "00:10:05,680"
+			},
+			"offsets": {
+				"from": 601320,
+				"to": 605680
+			},
+			"text": " it was using centralized servers to serve that NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,680",
+				"to": "00:10:09,640"
+			},
+			"offsets": {
+				"from": 605680,
+				"to": 609640
+			},
+			"text": " You know, and for a lot of us who are sort of inspired"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,640",
+				"to": "00:10:12,360"
+			},
+			"offsets": {
+				"from": 609640,
+				"to": 612360
+			},
+			"text": " by the ownership vision of Web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,360",
+				"to": "00:10:15,160"
+			},
+			"offsets": {
+				"from": 612360,
+				"to": 615160
+			},
+			"text": " you know, Web3 is enabling digital ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,160",
+				"to": "00:10:16,960"
+			},
+			"offsets": {
+				"from": 615160,
+				"to": 616960
+			},
+			"text": " You know, how can we own things"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,960",
+				"to": "00:10:19,520"
+			},
+			"offsets": {
+				"from": 616960,
+				"to": 619520
+			},
+			"text": " when the actual information artifacts that we're owning"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,520",
+				"to": "00:10:23,320"
+			},
+			"offsets": {
+				"from": 619520,
+				"to": 623320
+			},
+			"text": " are controlled by centralized intermediaries?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,320",
+				"to": "00:10:26,720"
+			},
+			"offsets": {
+				"from": 623320,
+				"to": 626720
+			},
+			"text": " So this experiment also highlighted a way in which we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,720",
+				"to": "00:10:30,160"
+			},
+			"offsets": {
+				"from": 626720,
+				"to": 630160
+			},
+			"text": " censorship in quote-unquote, Web3 today"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,160",
+				"to": "00:10:35,160"
+			},
+			"offsets": {
+				"from": 630160,
+				"to": 635160
+			},
+			"text": " because once OpenSea realized that Moxie had done this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,160",
+				"to": "00:10:39,240"
+			},
+			"offsets": {
+				"from": 635160,
+				"to": 639240
+			},
+			"text": " they actually delisted his NFT from OpenSea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,240",
+				"to": "00:10:43,520"
+			},
+			"offsets": {
+				"from": 639240,
+				"to": 643520
+			},
+			"text": " which if OpenSea was doing that as a individual application"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,520",
+				"to": "00:10:45,560"
+			},
+			"offsets": {
+				"from": 643520,
+				"to": 645560
+			},
+			"text": " and doing that for, you know, sort of their own purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,560",
+				"to": "00:10:46,840"
+			},
+			"offsets": {
+				"from": 645560,
+				"to": 646840
+			},
+			"text": " and I think that's, you know, fine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,840",
+				"to": "00:10:48,600"
+			},
+			"offsets": {
+				"from": 646840,
+				"to": 648600
+			},
+			"text": " like we believe in choice, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,600",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 648600,
+				"to": 650920
+			},
+			"text": " at the level of projects and individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 654120
+			},
+			"text": " But the problem was that so many other projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:57,040"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 657040
+			},
+			"text": " in the ecosystem were building on the OpenSea API"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,040",
+				"to": "00:10:59,800"
+			},
+			"offsets": {
+				"from": 657040,
+				"to": 659800
+			},
+			"text": " that him getting delisted from the OpenSea application"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,800",
+				"to": "00:11:02,880"
+			},
+			"offsets": {
+				"from": 659800,
+				"to": 662880
+			},
+			"text": " also made it so that the NFT stopped showing up in wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,880",
+				"to": "00:11:06,120"
+			},
+			"offsets": {
+				"from": 662880,
+				"to": 666120
+			},
+			"text": " and all these other places where you would expect to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,120",
+				"to": "00:11:07,880"
+			},
+			"offsets": {
+				"from": 666120,
+				"to": 667880
+			},
+			"text": " an NFT that you had purchased, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,880",
+				"to": "00:11:10,960"
+			},
+			"offsets": {
+				"from": 667880,
+				"to": 670960
+			},
+			"text": " So this is a real example of censorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,960",
+				"to": "00:11:14,080"
+			},
+			"offsets": {
+				"from": 670960,
+				"to": 674080
+			},
+			"text": " that's happened just this year in the context of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,080",
+				"to": "00:11:15,640"
+			},
+			"offsets": {
+				"from": 674080,
+				"to": 675640
+			},
+			"text": " you know, the blockchain data supply chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,640",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 675640,
+				"to": 678360
+			},
+			"text": " for a use case that we all, I think, care a lot about."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,360",
+				"to": "00:11:20,760"
+			},
+			"offsets": {
+				"from": 678360,
+				"to": 680760
+			},
+			"text": " Another one that, this is a little bit more speculative,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,760",
+				"to": "00:11:21,800"
+			},
+			"offsets": {
+				"from": 680760,
+				"to": 681800
+			},
+			"text": " but I think it's an interesting one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,800",
+				"to": "00:11:26,120"
+			},
+			"offsets": {
+				"from": 681800,
+				"to": 686120
+			},
+			"text": " just as a thought experiment is index or extractable value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,120",
+				"to": "00:11:28,760"
+			},
+			"offsets": {
+				"from": 686120,
+				"to": 688760
+			},
+			"text": " This was an idea that was put forth by someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,760",
+				"to": "00:11:30,440"
+			},
+			"offsets": {
+				"from": 688760,
+				"to": 690440
+			},
+			"text": " in our community."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,440",
+				"to": "00:11:32,440"
+			},
+			"offsets": {
+				"from": 690440,
+				"to": 692440
+			},
+			"text": " You can think of this as being a little bit analogous"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,440",
+				"to": "00:11:36,320"
+			},
+			"offsets": {
+				"from": 692440,
+				"to": 696320
+			},
+			"text": " to like MEV or also payment for order flow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,320",
+				"to": "00:11:39,760"
+			},
+			"offsets": {
+				"from": 696320,
+				"to": 699760
+			},
+			"text": " which got a lot of attention this past year or two"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,760",
+				"to": "00:11:42,760"
+			},
+			"offsets": {
+				"from": 699760,
+				"to": 702760
+			},
+			"text": " when people realized that Robinhood's business model"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,760",
+				"to": "00:11:44,920"
+			},
+			"offsets": {
+				"from": 702760,
+				"to": 704920
+			},
+			"text": " for offering free, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,920",
+				"to": "00:11:47,400"
+			},
+			"offsets": {
+				"from": 704920,
+				"to": 707400
+			},
+			"text": " stock trading to retail investors was that they sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,400",
+				"to": "00:11:50,280"
+			},
+			"offsets": {
+				"from": 707400,
+				"to": 710280
+			},
+			"text": " the order flow to giant hedge funds like Citadel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,280",
+				"to": "00:11:52,240"
+			},
+			"offsets": {
+				"from": 710280,
+				"to": 712240
+			},
+			"text": " and then Citadel with its privileged access"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,240",
+				"to": "00:11:56,440"
+			},
+			"offsets": {
+				"from": 712240,
+				"to": 716440
+			},
+			"text": " to this order flow can then like extract all this value"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,440",
+				"to": "00:11:58,400"
+			},
+			"offsets": {
+				"from": 716440,
+				"to": 718400
+			},
+			"text": " at the expense of the retail investor."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,400",
+				"to": "00:12:00,960"
+			},
+			"offsets": {
+				"from": 718400,
+				"to": 720960
+			},
+			"text": " You could imagine a world where if we were all accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,960",
+				"to": "00:12:04,080"
+			},
+			"offsets": {
+				"from": 720960,
+				"to": 724080
+			},
+			"text": " the blockchain where we expect more of our financial lives"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,080",
+				"to": "00:12:07,120"
+			},
+			"offsets": {
+				"from": 724080,
+				"to": 727120
+			},
+			"text": " to exist over time, and we were all accessing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,120",
+				"to": "00:12:09,240"
+			},
+			"offsets": {
+				"from": 727120,
+				"to": 729240
+			},
+			"text": " through a centralized intermediary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,240",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 729240,
+				"to": 732000
+			},
+			"text": " that that centralized intermediary might gain a lot of alpha"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:14,360"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 734360
+			},
+			"text": " from, you know, being the one that's seeing the sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,360",
+				"to": "00:12:17,040"
+			},
+			"offsets": {
+				"from": 734360,
+				"to": 737040
+			},
+			"text": " of Google Trends style, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,040",
+				"to": "00:12:20,760"
+			},
+			"offsets": {
+				"from": 737040,
+				"to": 740760
+			},
+			"text": " data around accessing and querying, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,760",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 740760,
+				"to": 743200
+			},
+			"text": " our financial lives as it exists on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:26,920"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 746920
+			},
+			"text": " Okay, so that's kind of where the web three vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,920",
+				"to": "00:12:29,160"
+			},
+			"offsets": {
+				"from": 746920,
+				"to": 749160
+			},
+			"text": " is at today and sort of the importance of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,160",
+				"to": "00:12:32,880"
+			},
+			"offsets": {
+				"from": 749160,
+				"to": 752880
+			},
+			"text": " that keeping the blockchain, supply chain decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,880",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 752880,
+				"to": 755000
+			},
+			"text": " Let's talk about where Ethereum is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:37,800"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 757800
+			},
+			"text": " and the ways in which a decentralized blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,800",
+				"to": "00:12:40,560"
+			},
+			"offsets": {
+				"from": 757800,
+				"to": 760560
+			},
+			"text": " data supply chain supports that future vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,560",
+				"to": "00:12:45,120"
+			},
+			"offsets": {
+				"from": 760560,
+				"to": 765120
+			},
+			"text": " So for those that saw Vitalix ECC talk earlier this year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,120",
+				"to": "00:12:47,520"
+			},
+			"offsets": {
+				"from": 765120,
+				"to": 767520
+			},
+			"text": " you might have come across these new,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,520",
+				"to": "00:12:50,920"
+			},
+			"offsets": {
+				"from": 767520,
+				"to": 770920
+			},
+			"text": " let's call them work streams that are all happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,920",
+				"to": "00:12:53,320"
+			},
+			"offsets": {
+				"from": 770920,
+				"to": 773320
+			},
+			"text": " in parallel, so, you know, they're not sequential milestones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,320",
+				"to": "00:12:57,200"
+			},
+			"offsets": {
+				"from": 773320,
+				"to": 777200
+			},
+			"text": " but they're all parallelized work streams"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,200",
+				"to": "00:12:58,880"
+			},
+			"offsets": {
+				"from": 777200,
+				"to": 778880
+			},
+			"text": " that are happening in the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,880",
+				"to": "00:13:03,280"
+			},
+			"offsets": {
+				"from": 778880,
+				"to": 783280
+			},
+			"text": " the merge, the surge, the verge and the splurge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,280",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 783280,
+				"to": 786000
+			},
+			"text": " And the diagram on the left can look a little intimidating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:10,680"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 790680
+			},
+			"text": " We're just gonna focus on a few aspects of this roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,680",
+				"to": "00:13:14,560"
+			},
+			"offsets": {
+				"from": 790680,
+				"to": 794560
+			},
+			"text": " specifically parts of the verge, the purge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,560",
+				"to": "00:13:18,880"
+			},
+			"offsets": {
+				"from": 794560,
+				"to": 798880
+			},
+			"text": " and parts of sort of the light client vision of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,880",
+				"to": "00:13:21,440"
+			},
+			"offsets": {
+				"from": 798880,
+				"to": 801440
+			},
+			"text": " So a brief overview,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,560",
+				"to": "00:13:25,400"
+			},
+			"offsets": {
+				"from": 802560,
+				"to": 805400
+			},
+			"text": " the verge, one of its sub goals is around supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,400",
+				"to": "00:13:27,240"
+			},
+			"offsets": {
+				"from": 805400,
+				"to": 807240
+			},
+			"text": " stateless clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,240",
+				"to": "00:13:30,560"
+			},
+			"offsets": {
+				"from": 807240,
+				"to": 810560
+			},
+			"text": " Stateless clients allow validators to sort of be small"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,560",
+				"to": "00:13:35,160"
+			},
+			"offsets": {
+				"from": 810560,
+				"to": 815160
+			},
+			"text": " and light while having like heavier specialized builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,160",
+				"to": "00:13:36,680"
+			},
+			"offsets": {
+				"from": 815160,
+				"to": 816680
+			},
+			"text": " and the, you know, the right side"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,680",
+				"to": "00:13:38,200"
+			},
+			"offsets": {
+				"from": 816680,
+				"to": 818200
+			},
+			"text": " of the blockchain data supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,200",
+				"to": "00:13:39,520"
+			},
+			"offsets": {
+				"from": 818200,
+				"to": 819520
+			},
+			"text": " There's different approaches to this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,520",
+				"to": "00:13:41,880"
+			},
+			"offsets": {
+				"from": 819520,
+				"to": 821880
+			},
+			"text": " weak statelessness, strong statelessness."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,880",
+				"to": "00:13:45,520"
+			},
+			"offsets": {
+				"from": 821880,
+				"to": 825520
+			},
+			"text": " Weak statelessness is where builders sort of provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,520",
+				"to": "00:13:49,800"
+			},
+			"offsets": {
+				"from": 825520,
+				"to": 829800
+			},
+			"text": " the witness of state that's being used by a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,800",
+				"to": "00:13:52,600"
+			},
+			"offsets": {
+				"from": 829800,
+				"to": 832600
+			},
+			"text": " and strong statelessness, the end user actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,600",
+				"to": "00:13:55,600"
+			},
+			"offsets": {
+				"from": 832600,
+				"to": 835600
+			},
+			"text": " when they submit a transaction, they would also have to submit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,600",
+				"to": "00:13:58,160"
+			},
+			"offsets": {
+				"from": 835600,
+				"to": 838160
+			},
+			"text": " the state that that transaction is gonna access"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,160",
+				"to": "00:14:00,400"
+			},
+			"offsets": {
+				"from": 838160,
+				"to": 840400
+			},
+			"text": " as a witness to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,400",
+				"to": "00:14:04,880"
+			},
+			"offsets": {
+				"from": 840400,
+				"to": 844880
+			},
+			"text": " The purge is about history expiry as well as state expiry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,880",
+				"to": "00:14:09,880"
+			},
+			"offsets": {
+				"from": 844880,
+				"to": 849880
+			},
+			"text": " so, EIP-4/4 covers the history expiry side of things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,880",
+				"to": "00:14:13,600"
+			},
+			"offsets": {
+				"from": 849880,
+				"to": 853600
+			},
+			"text": " which is the idea that after a certain amount of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,600",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 853600,
+				"to": 856000
+			},
+			"text": " in contrast to the way that Ethereum works today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:18,640"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 858640
+			},
+			"text": " full nodes and validators would be allowed to drop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,640",
+				"to": "00:14:21,520"
+			},
+			"offsets": {
+				"from": 858640,
+				"to": 861520
+			},
+			"text": " they'd be allowed to prune historical blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,520",
+				"to": "00:14:26,080"
+			},
+			"offsets": {
+				"from": 861520,
+				"to": 866080
+			},
+			"text": " basically keeping the storage footprint"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,080",
+				"to": "00:14:30,240"
+			},
+			"offsets": {
+				"from": 866080,
+				"to": 870240
+			},
+			"text": " of these nodes lighter, and then state expiry basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,240",
+				"to": "00:14:34,360"
+			},
+			"offsets": {
+				"from": 870240,
+				"to": 874360
+			},
+			"text": " attacks the unbounded state growth of Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,360",
+				"to": "00:14:37,160"
+			},
+			"offsets": {
+				"from": 874360,
+				"to": 877160
+			},
+			"text": " where certain state, if it's not touched frequently enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,160",
+				"to": "00:14:39,320"
+			},
+			"offsets": {
+				"from": 877160,
+				"to": 879320
+			},
+			"text": " again, would be allowed to expire."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,320",
+				"to": "00:14:42,440"
+			},
+			"offsets": {
+				"from": 879320,
+				"to": 882440
+			},
+			"text": " And then light clients, we're gonna touch on a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,440",
+				"to": "00:14:44,040"
+			},
+			"offsets": {
+				"from": 882440,
+				"to": 884040
+			},
+			"text": " in the next screen, but I think they're interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,040",
+				"to": "00:14:45,800"
+			},
+			"offsets": {
+				"from": 884040,
+				"to": 885800
+			},
+			"text": " to bring up here because they share a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,800",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885800,
+				"to": 888000
+			},
+			"text": " of the same requirements as sort of those previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:51,040"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 891040
+			},
+			"text": " two milestones, and they're also part of the solution space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,040",
+				"to": "00:14:53,440"
+			},
+			"offsets": {
+				"from": 891040,
+				"to": 893440
+			},
+			"text": " 'cause a lot of this stuff boils down to being able"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,440",
+				"to": "00:14:56,440"
+			},
+			"offsets": {
+				"from": 893440,
+				"to": 896440
+			},
+			"text": " to access state and data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,440",
+				"to": "00:15:00,760"
+			},
+			"offsets": {
+				"from": 896440,
+				"to": 900760
+			},
+			"text": " But the problem with light clients is that today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,760",
+				"to": "00:15:04,240"
+			},
+			"offsets": {
+				"from": 900760,
+				"to": 904240
+			},
+			"text": " at least, light clients rely on altruism"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,240",
+				"to": "00:15:06,480"
+			},
+			"offsets": {
+				"from": 904240,
+				"to": 906480
+			},
+			"text": " from the full nodes in the Ethereum network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,480",
+				"to": "00:15:08,960"
+			},
+			"offsets": {
+				"from": 906480,
+				"to": 908960
+			},
+			"text": " so if those full nodes decide to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,960",
+				"to": "00:15:11,200"
+			},
+			"offsets": {
+				"from": 908960,
+				"to": 911200
+			},
+			"text": " the light client protocol and serve data"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,200",
+				"to": "00:15:14,520"
+			},
+			"offsets": {
+				"from": 911200,
+				"to": 914520
+			},
+			"text": " to these light clients, then it works out great."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,520",
+				"to": "00:15:17,960"
+			},
+			"offsets": {
+				"from": 914520,
+				"to": 917960
+			},
+			"text": " But the reality is that because of that lack of incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,960",
+				"to": "00:15:20,160"
+			},
+			"offsets": {
+				"from": 917960,
+				"to": 920160
+			},
+			"text": " as Piper, one of the researchers working on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,160",
+				"to": "00:15:24,240"
+			},
+			"offsets": {
+				"from": 920160,
+				"to": 924240
+			},
+			"text": " noted, basically, the light client protocol in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,240",
+				"to": "00:15:28,400"
+			},
+			"offsets": {
+				"from": 924240,
+				"to": 928400
+			},
+			"text": " is a vast desert of starved clients desperate for data."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,400",
+				"to": "00:15:30,200"
+			},
+			"offsets": {
+				"from": 928400,
+				"to": 930200
+			},
+			"text": " It's not working, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,200",
+				"to": "00:15:32,120"
+			},
+			"offsets": {
+				"from": 930200,
+				"to": 932120
+			},
+			"text": " It works nice in theory, but in practice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,120",
+				"to": "00:15:35,160"
+			},
+			"offsets": {
+				"from": 932120,
+				"to": 935160
+			},
+			"text": " you need incentives or some way to make that data available"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,160",
+				"to": "00:15:37,360"
+			},
+			"offsets": {
+				"from": 935160,
+				"to": 937360
+			},
+			"text": " to support these light client protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,360",
+				"to": "00:15:39,800"
+			},
+			"offsets": {
+				"from": 937360,
+				"to": 939800
+			},
+			"text": " which mind you was very important to the vision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,800",
+				"to": "00:15:42,320"
+			},
+			"offsets": {
+				"from": 939800,
+				"to": 942320
+			},
+			"text": " Ethereum's founding vision of decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,320",
+				"to": "00:15:47,120"
+			},
+			"offsets": {
+				"from": 942320,
+				"to": 947120
+			},
+			"text": " So the common threads, without going too deep"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,120",
+				"to": "00:15:50,600"
+			},
+			"offsets": {
+				"from": 947120,
+				"to": 950600
+			},
+			"text": " into the weeds of any of these sort of proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,600",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 950600,
+				"to": 952360
+			},
+			"text": " in the roadmap, there's some common threads"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:55,320"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 955320
+			},
+			"text": " that we can kind of paint here"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,320",
+				"to": "00:15:58,960"
+			},
+			"offsets": {
+				"from": 955320,
+				"to": 958960
+			},
+			"text": " in terms of requirements, and it's basically that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,960",
+				"to": "00:16:02,400"
+			},
+			"offsets": {
+				"from": 958960,
+				"to": 962400
+			},
+			"text": " all of these proposals are gonna need to depend"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,400",
+				"to": "00:16:07,040"
+			},
+			"offsets": {
+				"from": 962400,
+				"to": 967040
+			},
+			"text": " on some way of reliably, efficiently and verifiably,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,040",
+				"to": "00:16:11,600"
+			},
+			"offsets": {
+				"from": 967040,
+				"to": 971600
+			},
+			"text": " accessing either historical blocks or pruned blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,600",
+				"to": "00:16:16,280"
+			},
+			"offsets": {
+				"from": 971600,
+				"to": 976280
+			},
+			"text": " from the blockchain or expired or uncached state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,280",
+				"to": "00:16:19,200"
+			},
+			"offsets": {
+				"from": 976280,
+				"to": 979200
+			},
+			"text": " So in the case of state expiry, it's expired state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,200",
+				"to": "00:16:22,600"
+			},
+			"offsets": {
+				"from": 979200,
+				"to": 982600
+			},
+			"text": " in the case of stateless clients, it might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,600",
+				"to": "00:16:24,760"
+			},
+			"offsets": {
+				"from": 982600,
+				"to": 984760
+			},
+			"text": " just state that the builder or the user needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,760",
+				"to": "00:16:26,520"
+			},
+			"offsets": {
+				"from": 984760,
+				"to": 986520
+			},
+			"text": " that's not cached locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,520",
+				"to": "00:16:30,160"
+			},
+			"offsets": {
+				"from": 986520,
+				"to": 990160
+			},
+			"text": " And the solution space breakdown here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,160",
+				"to": "00:16:33,800"
+			},
+			"offsets": {
+				"from": 990160,
+				"to": 993800
+			},
+			"text": " I think can be broken into two larger categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,800",
+				"to": "00:16:36,760"
+			},
+			"offsets": {
+				"from": 993800,
+				"to": 996760
+			},
+			"text": " One is financially incentivized approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,760",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 996760,
+				"to": 1001000
+			},
+			"text": " We mentioned those like clients needing cooperation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:44,040"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1004040
+			},
+			"text": " from the full nodes, which right now don't have an incentive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,040",
+				"to": "00:16:46,240"
+			},
+			"offsets": {
+				"from": 1004040,
+				"to": 1006240
+			},
+			"text": " So things like the graph, things like pocket network"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,240",
+				"to": "00:16:48,320"
+			},
+			"offsets": {
+				"from": 1006240,
+				"to": 1008320
+			},
+			"text": " could fit into that category."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,320",
+				"to": "00:16:51,400"
+			},
+			"offsets": {
+				"from": 1008320,
+				"to": 1011400
+			},
+			"text": " The other category here is using more like tit for tat"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,400",
+				"to": "00:16:53,680"
+			},
+			"offsets": {
+				"from": 1011400,
+				"to": 1013680
+			},
+			"text": " incentives, which are not financial incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,680",
+				"to": "00:16:55,800"
+			},
+			"offsets": {
+				"from": 1013680,
+				"to": 1015800
+			},
+			"text": " but this is kind of how the BitTorrent network works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,800",
+				"to": "00:16:59,040"
+			},
+			"offsets": {
+				"from": 1015800,
+				"to": 1019040
+			},
+			"text": " for example, where if you're being a good citizen"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,040",
+				"to": "00:17:02,160"
+			},
+			"offsets": {
+				"from": 1019040,
+				"to": 1022160
+			},
+			"text": " in that network, uploading data as much as you're downloading,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,160",
+				"to": "00:17:05,520"
+			},
+			"offsets": {
+				"from": 1022160,
+				"to": 1025520
+			},
+			"text": " then there's sort of this reciprocity that you get."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,520",
+				"to": "00:17:08,920"
+			},
+			"offsets": {
+				"from": 1025520,
+				"to": 1028920
+			},
+			"text": " And that's the approach being explored by projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,920",
+				"to": "00:17:12,080"
+			},
+			"offsets": {
+				"from": 1028920,
+				"to": 1032080
+			},
+			"text": " like Portal Network, using things like Gossip Protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,080",
+				"to": "00:17:16,240"
+			},
+			"offsets": {
+				"from": 1032080,
+				"to": 1036240
+			},
+			"text": " and DHTs, which again are techniques from BitTorrent"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,240",
+				"to": "00:17:17,940"
+			},
+			"offsets": {
+				"from": 1036240,
+				"to": 1037940
+			},
+			"text": " and now IPFS as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,940",
+				"to": "00:17:21,200"
+			},
+			"offsets": {
+				"from": 1037940,
+				"to": 1041200
+			},
+			"text": " And so why are we doing all this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,200",
+				"to": "00:17:22,720"
+			},
+			"offsets": {
+				"from": 1041200,
+				"to": 1042720
+			},
+			"text": " Like why are we getting rid of all this state?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,720",
+				"to": "00:17:24,080"
+			},
+			"offsets": {
+				"from": 1042720,
+				"to": 1044080
+			},
+			"text": " Why are we getting, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,080",
+				"to": "00:17:25,800"
+			},
+			"offsets": {
+				"from": 1044080,
+				"to": 1045800
+			},
+			"text": " what are we doing it just for the fun of it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,800",
+				"to": "00:17:27,880"
+			},
+			"offsets": {
+				"from": 1045800,
+				"to": 1047880
+			},
+			"text": " No, we're getting rid of this state and this history"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,880",
+				"to": "00:17:31,120"
+			},
+			"offsets": {
+				"from": 1047880,
+				"to": 1051120
+			},
+			"text": " for a purpose and that purpose is scaling Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,120",
+				"to": "00:17:33,160"
+			},
+			"offsets": {
+				"from": 1051120,
+				"to": 1053160
+			},
+			"text": " in a decentralized way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,160",
+				"to": "00:17:36,080"
+			},
+			"offsets": {
+				"from": 1053160,
+				"to": 1056080
+			},
+			"text": " So simply put what that means is being able to fit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,080",
+				"to": "00:17:40,880"
+			},
+			"offsets": {
+				"from": 1056080,
+				"to": 1060880
+			},
+			"text": " more transactions into a block, being able to have bigger blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,880",
+				"to": "00:17:45,880"
+			},
+			"offsets": {
+				"from": 1060880,
+				"to": 1065880
+			},
+			"text": " while maintaining a small footprint for validating clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,880",
+				"to": "00:17:47,960"
+			},
+			"offsets": {
+				"from": 1065880,
+				"to": 1067960
+			},
+			"text": " and light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,960",
+				"to": "00:17:51,480"
+			},
+			"offsets": {
+				"from": 1067960,
+				"to": 1071480
+			},
+			"text": " And as an example of this, one of the EIPs that's out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,480",
+				"to": "00:17:54,600"
+			},
+			"offsets": {
+				"from": 1071480,
+				"to": 1074600
+			},
+			"text": " right now is called EIP4488."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,600",
+				"to": "00:17:59,600"
+			},
+			"offsets": {
+				"from": 1074600,
+				"to": 1079600
+			},
+			"text": " It proposes a approximately 5X cheaper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,600",
+				"to": "00:18:03,040"
+			},
+			"offsets": {
+				"from": 1079600,
+				"to": 1083040
+			},
+			"text": " 5X reduction in gas costs for call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,040",
+				"to": "00:18:06,440"
+			},
+			"offsets": {
+				"from": 1083040,
+				"to": 1086440
+			},
+			"text": " This is about supporting like the Ethereum like roll up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,440",
+				"to": "00:18:07,720"
+			},
+			"offsets": {
+				"from": 1086440,
+				"to": 1087720
+			},
+			"text": " you know, centric future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,200",
+				"to": "00:18:11,440"
+			},
+			"offsets": {
+				"from": 1089200,
+				"to": 1091440
+			},
+			"text": " But the reason that they feel comfortable doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,440",
+				"to": "00:18:13,640"
+			},
+			"offsets": {
+				"from": 1091440,
+				"to": 1093640
+			},
+			"text": " which is inevitably going to lead to bigger blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,640",
+				"to": "00:18:17,440"
+			},
+			"offsets": {
+				"from": 1093640,
+				"to": 1097440
+			},
+			"text": " or more full blocks is because it's intended to be paired"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,440",
+				"to": "00:18:21,160"
+			},
+			"offsets": {
+				"from": 1097440,
+				"to": 1101160
+			},
+			"text": " with EIP44s, which is one of the proposals in the purge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,160",
+				"to": "00:18:25,280"
+			},
+			"offsets": {
+				"from": 1101160,
+				"to": 1105280
+			},
+			"text": " which specifies dropping this requirement for full nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,280",
+				"to": "00:18:29,160"
+			},
+			"offsets": {
+				"from": 1105280,
+				"to": 1109160
+			},
+			"text": " and validator nodes to keep around all this historical blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,160",
+				"to": "00:18:31,040"
+			},
+			"offsets": {
+				"from": 1109160,
+				"to": 1111040
+			},
+			"text": " past a certain point."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,040",
+				"to": "00:18:33,440"
+			},
+			"offsets": {
+				"from": 1111040,
+				"to": 1113440
+			},
+			"text": " So that's what all this really boils down to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,440",
+				"to": "00:18:36,800"
+			},
+			"offsets": {
+				"from": 1113440,
+				"to": 1116800
+			},
+			"text": " is decentralized scalability of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,680",
+				"to": "00:18:41,800"
+			},
+			"offsets": {
+				"from": 1117680,
+				"to": 1121800
+			},
+			"text": " Okay, so this last one's kind of a bonus section."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,800",
+				"to": "00:18:45,240"
+			},
+			"offsets": {
+				"from": 1121800,
+				"to": 1125240
+			},
+			"text": " I think this is really interesting from both a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,240",
+				"to": "00:18:46,080"
+			},
+			"offsets": {
+				"from": 1125240,
+				"to": 1126080
+			},
+			"text": " of standpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,080",
+				"to": "00:18:49,280"
+			},
+			"offsets": {
+				"from": 1126080,
+				"to": 1129280
+			},
+			"text": " One is that the fire hose, which we briefly noted earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,280",
+				"to": "00:18:52,280"
+			},
+			"offsets": {
+				"from": 1129280,
+				"to": 1132280
+			},
+			"text": " is a next generation extraction technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,280",
+				"to": "00:18:55,080"
+			},
+			"offsets": {
+				"from": 1132280,
+				"to": 1135080
+			},
+			"text": " I think it's interesting, A, because I think it should"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,080",
+				"to": "00:18:58,080"
+			},
+			"offsets": {
+				"from": 1135080,
+				"to": 1138080
+			},
+			"text": " impact the way that Ethereum clients get built in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,080",
+				"to": "00:19:00,520"
+			},
+			"offsets": {
+				"from": 1138080,
+				"to": 1140520
+			},
+			"text": " But I also think it's interesting because it's an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,520",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1140520,
+				"to": 1146000
+			},
+			"text": " of sort of this positive externality coming from an ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:09,640"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1149640
+			},
+			"text": " that's tackling the blockchain data supply chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,640",
+				"to": "00:19:12,160"
+			},
+			"offsets": {
+				"from": 1149640,
+				"to": 1152160
+			},
+			"text": " in a decentralized open source way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,160",
+				"to": "00:19:15,520"
+			},
+			"offsets": {
+				"from": 1152160,
+				"to": 1155520
+			},
+			"text": " So this is firehose technology originally created by"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,520",
+				"to": "00:19:17,360"
+			},
+			"offsets": {
+				"from": 1155520,
+				"to": 1157360
+			},
+			"text": " streaming fast, which is another core developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,360",
+				"to": "00:19:19,160"
+			},
+			"offsets": {
+				"from": 1157360,
+				"to": 1159160
+			},
+			"text": " in the graph ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,160",
+				"to": "00:19:22,480"
+			},
+			"offsets": {
+				"from": 1159160,
+				"to": 1162480
+			},
+			"text": " Before I get into how it works, it's worth calling out"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,480",
+				"to": "00:19:25,200"
+			},
+			"offsets": {
+				"from": 1162480,
+				"to": 1165200
+			},
+			"text": " some of the problems with JSON RPC and the way that it works"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,200",
+				"to": "00:19:25,840"
+			},
+			"offsets": {
+				"from": 1165200,
+				"to": 1165840
+			},
+			"text": " today."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,840",
+				"to": "00:19:29,240"
+			},
+			"offsets": {
+				"from": 1165840,
+				"to": 1169240
+			},
+			"text": " So most of you I think are show of hands, people that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,240",
+				"to": "00:19:30,720"
+			},
+			"offsets": {
+				"from": 1169240,
+				"to": 1170720
+			},
+			"text": " familiar with JSON RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,720",
+				"to": "00:19:32,240"
+			},
+			"offsets": {
+				"from": 1170720,
+				"to": 1172240
+			},
+			"text": " Okay, most people in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,240",
+				"to": "00:19:35,760"
+			},
+			"offsets": {
+				"from": 1172240,
+				"to": 1175760
+			},
+			"text": " So this is how you access data from a Geth or an Eragon"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,760",
+				"to": "00:19:37,240"
+			},
+			"offsets": {
+				"from": 1175760,
+				"to": 1177240
+			},
+			"text": " client today."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,240",
+				"to": "00:19:41,200"
+			},
+			"offsets": {
+				"from": 1177240,
+				"to": 1181200
+			},
+			"text": " It basically depends on a running program to read data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,200",
+				"to": "00:19:43,680"
+			},
+			"offsets": {
+				"from": 1181200,
+				"to": 1183680
+			},
+			"text": " So if you look at this diagram on the left, you kind of have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,680",
+				"to": "00:19:48,120"
+			},
+			"offsets": {
+				"from": 1183680,
+				"to": 1188120
+			},
+			"text": " this fan in architecture where all the users are sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,120",
+				"to": "00:19:50,360"
+			},
+			"offsets": {
+				"from": 1188120,
+				"to": 1190360
+			},
+			"text": " hitting a running process."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,360",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1190360,
+				"to": 1193000
+			},
+			"text": " That process consumes CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:57,240"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1197240
+			},
+			"text": " That process becomes the bottleneck for getting data out"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,240",
+				"to": "00:19:58,320"
+			},
+			"offsets": {
+				"from": 1197240,
+				"to": 1198320
+			},
+			"text": " of the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,320",
+				"to": "00:20:01,040"
+			},
+			"offsets": {
+				"from": 1198320,
+				"to": 1201040
+			},
+			"text": " And then because you need to have heavier nodes to serve all"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,040",
+				"to": "00:20:03,200"
+			},
+			"offsets": {
+				"from": 1201040,
+				"to": 1203200
+			},
+			"text": " the data that people want, like archive nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,200",
+				"to": "00:20:05,440"
+			},
+			"offsets": {
+				"from": 1203200,
+				"to": 1205440
+			},
+			"text": " potentially running parity trace, it's also"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,440",
+				"to": "00:20:09,360"
+			},
+			"offsets": {
+				"from": 1205440,
+				"to": 1209360
+			},
+			"text": " incredibly intensive on memory and solid state disks because in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,360",
+				"to": "00:20:12,080"
+			},
+			"offsets": {
+				"from": 1209360,
+				"to": 1212080
+			},
+			"text": " order to actually efficiently access that data, you need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,080",
+				"to": "00:20:15,280"
+			},
+			"offsets": {
+				"from": 1212080,
+				"to": 1215280
+			},
+			"text": " provision a lot of both of the latter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,280",
+				"to": "00:20:17,280"
+			},
+			"offsets": {
+				"from": 1215280,
+				"to": 1217280
+			},
+			"text": " It's difficult to get query intermediate states."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,280",
+				"to": "00:20:21,240"
+			},
+			"offsets": {
+				"from": 1217280,
+				"to": 1221240
+			},
+			"text": " So JSON RPC really only lets you query data as of a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,240",
+				"to": "00:20:23,920"
+			},
+			"offsets": {
+				"from": 1221240,
+				"to": 1223920
+			},
+			"text": " You can get a little bit more by using the parity trace API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,920",
+				"to": "00:20:25,520"
+			},
+			"offsets": {
+				"from": 1223920,
+				"to": 1225520
+			},
+			"text": " but it's still incomplete."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,520",
+				"to": "00:20:26,960"
+			},
+			"offsets": {
+				"from": 1225520,
+				"to": 1226960
+			},
+			"text": " Also very cumbersome."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,960",
+				"to": "00:20:28,320"
+			},
+			"offsets": {
+				"from": 1226960,
+				"to": 1228320
+			},
+			"text": " It can be difficult to debug."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,320",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1228320,
+				"to": 1232000
+			},
+			"text": " So if you're using a subscription to like ETH get logs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:35,120"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1235120
+			},
+			"text": " for example, via Infura, like we've encountered this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,120",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1235120,
+				"to": 1238000
+			},
+			"text": " in our own stack that sometimes in the past,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:42,080"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1242080
+			},
+			"text": " messages will just get dropped due to transient network"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,080",
+				"to": "00:20:44,280"
+			},
+			"offsets": {
+				"from": 1242080,
+				"to": 1244280
+			},
+			"text": " events or partitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,280",
+				"to": "00:20:45,920"
+			},
+			"offsets": {
+				"from": 1244280,
+				"to": 1245920
+			},
+			"text": " And there's just no way to debug that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,920",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1245920,
+				"to": 1247000
+			},
+			"text": " You just miss the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:50,320"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1250320
+			},
+			"text": " And it's very, very difficult to figure out that, hey, a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,320",
+				"to": "00:20:54,640"
+			},
+			"offsets": {
+				"from": 1250320,
+				"to": 1254640
+			},
+			"text": " message you should have gotten never made it to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,640",
+				"to": "00:20:56,560"
+			},
+			"offsets": {
+				"from": 1254640,
+				"to": 1256560
+			},
+			"text": " And there's a pretty incomplete verifiability story."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,560",
+				"to": "00:20:59,080"
+			},
+			"offsets": {
+				"from": 1256560,
+				"to": 1259080
+			},
+			"text": " Some of the data you want to get out, you can get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,080",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1259080,
+				"to": 1260520
+			},
+			"text": " Merkle proof for."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:04,720"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1264720
+			},
+			"text": " But other data, if you're using the ETH get logs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,720",
+				"to": "00:21:07,160"
+			},
+			"offsets": {
+				"from": 1264720,
+				"to": 1267160
+			},
+			"text": " interface, for example, there's not a really easy way to get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,160",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1267160,
+				"to": 1273000
+			},
+			"text": " compact proof that says you didn't miss any logs within"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:16,440"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1276440
+			},
+			"text": " some range of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,440",
+				"to": "00:21:17,760"
+			},
+			"offsets": {
+				"from": 1276440,
+				"to": 1277760
+			},
+			"text": " So what's the solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,760",
+				"to": "00:21:20,040"
+			},
+			"offsets": {
+				"from": 1277760,
+				"to": 1280040
+			},
+			"text": " We think the solution is the firehouse approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,040",
+				"to": "00:21:21,320"
+			},
+			"offsets": {
+				"from": 1280040,
+				"to": 1281320
+			},
+			"text": " It's streaming first."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,320",
+				"to": "00:21:25,840"
+			},
+			"offsets": {
+				"from": 1281320,
+				"to": 1285840
+			},
+			"text": " So if you look at the diagram on the left, data is being--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,840",
+				"to": "00:21:29,760"
+			},
+			"offsets": {
+				"from": 1285840,
+				"to": 1289760
+			},
+			"text": " as soon as it's available, it is being broadcast out in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,760",
+				"to": "00:21:32,240"
+			},
+			"offsets": {
+				"from": 1289760,
+				"to": 1292240
+			},
+			"text": " fan out approach rather than this fan in."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,240",
+				"to": "00:21:36,280"
+			},
+			"offsets": {
+				"from": 1292240,
+				"to": 1296280
+			},
+			"text": " It's being distributed as flat, protobuf files."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,280",
+				"to": "00:21:40,880"
+			},
+			"offsets": {
+				"from": 1296280,
+				"to": 1300880
+			},
+			"text": " So these can be distributed across commodity hardware and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,880",
+				"to": "00:21:46,240"
+			},
+			"offsets": {
+				"from": 1300880,
+				"to": 1306240
+			},
+			"text": " using things like Google Cloud Object Storage or Amazon S3."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,240",
+				"to": "00:21:49,720"
+			},
+			"offsets": {
+				"from": 1306240,
+				"to": 1309720
+			},
+			"text": " Because now we have these distributed flat files, now"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,720",
+				"to": "00:21:55,320"
+			},
+			"offsets": {
+				"from": 1309720,
+				"to": 1315320
+			},
+			"text": " we can parallelize workloads on those files, all without"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,320",
+				"to": "00:21:56,920"
+			},
+			"offsets": {
+				"from": 1315320,
+				"to": 1316920
+			},
+			"text": " even touching the blockchain nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,920",
+				"to": "00:22:01,480"
+			},
+			"offsets": {
+				"from": 1316920,
+				"to": 1321480
+			},
+			"text": " So this is much more akin to what you would see in a Hadoop"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,480",
+				"to": "00:22:04,840"
+			},
+			"offsets": {
+				"from": 1321480,
+				"to": 1324840
+			},
+			"text": " big data architecture, where you have all these flat files"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,840",
+				"to": "00:22:07,840"
+			},
+			"offsets": {
+				"from": 1324840,
+				"to": 1327840
+			},
+			"text": " distributed across commodity hardware, and then you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,840",
+				"to": "00:22:11,920"
+			},
+			"offsets": {
+				"from": 1327840,
+				"to": 1331920
+			},
+			"text": " these compute clusters that can be scaled independently and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,920",
+				"to": "00:22:15,440"
+			},
+			"offsets": {
+				"from": 1331920,
+				"to": 1335440
+			},
+			"text": " spin up concurrent and parallelized access for doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,440",
+				"to": "00:22:18,720"
+			},
+			"offsets": {
+				"from": 1335440,
+				"to": 1338720
+			},
+			"text": " the sort of transform steps on that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,720",
+				"to": "00:22:20,800"
+			},
+			"offsets": {
+				"from": 1338720,
+				"to": 1340800
+			},
+			"text": " And so when you do that stuff, you get--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,800",
+				"to": "00:22:24,280"
+			},
+			"offsets": {
+				"from": 1340800,
+				"to": 1344280
+			},
+			"text": " compared to the approach using JSON RPC today, you get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,280",
+				"to": "00:22:28,520"
+			},
+			"offsets": {
+				"from": 1344280,
+				"to": 1348520
+			},
+			"text": " one to two order of magnitude increase in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,520",
+				"to": "00:22:32,640"
+			},
+			"offsets": {
+				"from": 1348520,
+				"to": 1352640
+			},
+			"text": " read performance based on the use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,640",
+				"to": "00:22:34,760"
+			},
+			"offsets": {
+				"from": 1352640,
+				"to": 1354760
+			},
+			"text": " There's a couple integration strategies that I'm going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,760",
+				"to": "00:22:36,800"
+			},
+			"offsets": {
+				"from": 1354760,
+				"to": 1356800
+			},
+			"text": " move through here real quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,800",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1356800,
+				"to": 1359000
+			},
+			"text": " The first is just integrating this as a drop-in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:40,720"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1360720
+			},
+			"text": " replacement for JSON RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,720",
+				"to": "00:22:43,480"
+			},
+			"offsets": {
+				"from": 1360720,
+				"to": 1363480
+			},
+			"text": " Basically have it be something that runs locally on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,480",
+				"to": "00:22:46,080"
+			},
+			"offsets": {
+				"from": 1363480,
+				"to": 1366080
+			},
+			"text": " node when you're running your node instead of accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,080",
+				"to": "00:22:47,280"
+			},
+			"offsets": {
+				"from": 1366080,
+				"to": 1367280
+			},
+			"text": " the JSON RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,280",
+				"to": "00:22:49,720"
+			},
+			"offsets": {
+				"from": 1367280,
+				"to": 1369720
+			},
+			"text": " You would be using the fire hose stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,720",
+				"to": "00:22:53,080"
+			},
+			"offsets": {
+				"from": 1369720,
+				"to": 1373080
+			},
+			"text": " And that's a really basic integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,080",
+				"to": "00:22:57,280"
+			},
+			"offsets": {
+				"from": 1373080,
+				"to": 1377280
+			},
+			"text": " But in the future, you also might want to actually improve"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,280",
+				"to": "00:23:00,320"
+			},
+			"offsets": {
+				"from": 1377280,
+				"to": 1380320
+			},
+			"text": " the verifiability guarantees that you get from fire hose."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,320",
+				"to": "00:23:05,160"
+			},
+			"offsets": {
+				"from": 1380320,
+				"to": 1385160
+			},
+			"text": " So you could imagine the fire hose instrumentation logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,160",
+				"to": "00:23:09,960"
+			},
+			"offsets": {
+				"from": 1385160,
+				"to": 1389960
+			},
+			"text": " running as a WASM process that is implemented as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,960",
+				"to": "00:23:11,120"
+			},
+			"offsets": {
+				"from": 1389960,
+				"to": 1391120
+			},
+			"text": " read-oriented roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,120",
+				"to": "00:23:14,520"
+			},
+			"offsets": {
+				"from": 1391120,
+				"to": 1394520
+			},
+			"text": " So like an optimistic roll-up or even a ZK roll-up that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,520",
+				"to": "00:23:18,600"
+			},
+			"offsets": {
+				"from": 1394520,
+				"to": 1398600
+			},
+			"text": " actually gives you some guarantees on the validity of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,600",
+				"to": "00:23:22,520"
+			},
+			"offsets": {
+				"from": 1398600,
+				"to": 1402520
+			},
+			"text": " the sort of data that is extracted through that fire"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,520",
+				"to": "00:23:24,720"
+			},
+			"offsets": {
+				"from": 1402520,
+				"to": 1404720
+			},
+			"text": " hose instrumentation process."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,720",
+				"to": "00:23:26,440"
+			},
+			"offsets": {
+				"from": 1404720,
+				"to": 1406440
+			},
+			"text": " And then the final approach that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,440",
+				"to": "00:23:29,040"
+			},
+			"offsets": {
+				"from": 1406440,
+				"to": 1409040
+			},
+			"text": " again, these are still very early in us thinking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,040",
+				"to": "00:23:30,840"
+			},
+			"offsets": {
+				"from": 1409040,
+				"to": 1410840
+			},
+			"text": " But the final approach is you could even potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,840",
+				"to": "00:23:34,800"
+			},
+			"offsets": {
+				"from": 1410840,
+				"to": 1414800
+			},
+			"text": " integrate fire hose files into the consensus process itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,800",
+				"to": "00:23:37,680"
+			},
+			"offsets": {
+				"from": 1414800,
+				"to": 1417680
+			},
+			"text": " Now you probably wouldn't want to do that initially"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,680",
+				"to": "00:23:41,440"
+			},
+			"offsets": {
+				"from": 1417680,
+				"to": 1421440
+			},
+			"text": " because initially there's a strong benefit to having what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,440",
+				"to": "00:23:42,880"
+			},
+			"offsets": {
+				"from": 1421440,
+				"to": 1422880
+			},
+			"text": " called data agility."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,880",
+				"to": "00:23:45,040"
+			},
+			"offsets": {
+				"from": 1422880,
+				"to": 1425040
+			},
+			"text": " Being able to evolve the schema, evolve the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,040",
+				"to": "00:23:47,600"
+			},
+			"offsets": {
+				"from": 1425040,
+				"to": 1427600
+			},
+			"text": " instrumentation logic based on sort of a changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,600",
+				"to": "00:23:49,120"
+			},
+			"offsets": {
+				"from": 1427600,
+				"to": 1429120
+			},
+			"text": " understanding of what's needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,120",
+				"to": "00:23:52,600"
+			},
+			"offsets": {
+				"from": 1429120,
+				"to": 1432600
+			},
+			"text": " But as those integrations stabilize, there might come a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,600",
+				"to": "00:23:55,200"
+			},
+			"offsets": {
+				"from": 1432600,
+				"to": 1435200
+			},
+			"text": " time and point where blockchain core developers decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,200",
+				"to": "00:24:01,440"
+			},
+			"offsets": {
+				"from": 1435200,
+				"to": 1441440
+			},
+			"text": " to say, hey, we'll reference maybe the fire hose files from"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,440",
+				"to": "00:24:04,360"
+			},
+			"offsets": {
+				"from": 1441440,
+				"to": 1444360
+			},
+			"text": " the previous epoch at some future block."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,360",
+				"to": "00:24:06,600"
+			},
+			"offsets": {
+				"from": 1444360,
+				"to": 1446600
+			},
+			"text": " So that they're actually-- you have some guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,600",
+				"to": "00:24:08,840"
+			},
+			"offsets": {
+				"from": 1446600,
+				"to": 1448840
+			},
+			"text": " natively in consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,840",
+				"to": "00:24:12,320"
+			},
+			"offsets": {
+				"from": 1448840,
+				"to": 1452320
+			},
+			"text": " I'm happy to announce that actually we have our first"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,320",
+				"to": "00:24:15,960"
+			},
+			"offsets": {
+				"from": 1452320,
+				"to": 1455960
+			},
+			"text": " example recently of a blockchain core development team"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,960",
+				"to": "00:24:18,480"
+			},
+			"offsets": {
+				"from": 1455960,
+				"to": 1458480
+			},
+			"text": " self-serving their fire hose integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,480",
+				"to": "00:24:20,600"
+			},
+			"offsets": {
+				"from": 1458480,
+				"to": 1460600
+			},
+			"text": " And I think this is going to be really important for every"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,600",
+				"to": "00:24:23,480"
+			},
+			"offsets": {
+				"from": 1460600,
+				"to": 1463480
+			},
+			"text": " blockchain core development team, especially in"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,480",
+				"to": "00:24:27,160"
+			},
+			"offsets": {
+				"from": 1463480,
+				"to": 1467160
+			},
+			"text": " including the dairy meco system to eventually own their fire"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,160",
+				"to": "00:24:30,080"
+			},
+			"offsets": {
+				"from": 1467160,
+				"to": 1470080
+			},
+			"text": " hose deployment so that they can sort of maintain that for"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,080",
+				"to": "00:24:30,960"
+			},
+			"offsets": {
+				"from": 1470080,
+				"to": 1470960
+			},
+			"text": " their own use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,960",
+				"to": "00:24:33,600"
+			},
+			"offsets": {
+				"from": 1470960,
+				"to": 1473600
+			},
+			"text": " And then that also has secondary benefits like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,600",
+				"to": "00:24:35,960"
+			},
+			"offsets": {
+				"from": 1473600,
+				"to": 1475960
+			},
+			"text": " basically automatic integration with protocols like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,960",
+				"to": "00:24:38,320"
+			},
+			"offsets": {
+				"from": 1475960,
+				"to": 1478320
+			},
+			"text": " graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,320",
+				"to": "00:24:43,120"
+			},
+			"offsets": {
+				"from": 1478320,
+				"to": 1483120
+			},
+			"text": " There's another integration story here related to EIP44"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,120",
+				"to": "00:24:44,560"
+			},
+			"offsets": {
+				"from": 1483120,
+				"to": 1484560
+			},
+			"text": " called shim clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,560",
+				"to": "00:24:45,960"
+			},
+			"offsets": {
+				"from": 1484560,
+				"to": 1485960
+			},
+			"text": " But we're out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,960",
+				"to": "00:24:48,600"
+			},
+			"offsets": {
+				"from": 1485960,
+				"to": 1488600
+			},
+			"text": " So if you're interested in that, feel free to come up to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,600",
+				"to": "00:24:50,480"
+			},
+			"offsets": {
+				"from": 1488600,
+				"to": 1490480
+			},
+			"text": " me and find me afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,480",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1490480,
+				"to": 1493000
+			},
+			"text": " Highly recommend checking out Alex B from Streaming"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:55,200"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1495200
+			},
+			"text": " Fast Talk this week on Substreams."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,200",
+				"to": "00:24:58,160"
+			},
+			"offsets": {
+				"from": 1495200,
+				"to": 1498160
+			},
+			"text": " And then also Vincent from Massari has a talk on"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,160",
+				"to": "00:25:00,240"
+			},
+			"offsets": {
+				"from": 1498160,
+				"to": 1500240
+			},
+			"text": " standardized subgraphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,240",
+				"to": "00:25:02,720"
+			},
+			"offsets": {
+				"from": 1500240,
+				"to": 1502720
+			},
+			"text": " But they're heavily using fire hose and sub streams as part"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,720",
+				"to": "00:25:05,080"
+			},
+			"offsets": {
+				"from": 1502720,
+				"to": 1505080
+			},
+			"text": " of their dog food in."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,080",
+				"to": "00:25:06,920"
+			},
+			"offsets": {
+				"from": 1505080,
+				"to": 1506920
+			},
+			"text": " So yeah, thank you guys very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,920",
+				"to": "00:25:07,600"
+			},
+			"offsets": {
+				"from": 1506920,
+				"to": 1507600
+			},
+			"text": " That's my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,600",
+				"to": "00:25:14,400"
+			},
+			"offsets": {
+				"from": 1507600,
+				"to": 1514400
+			},
+			"text": " Do we have time for questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,400",
+				"to": "00:25:15,840"
+			},
+			"offsets": {
+				"from": 1514400,
+				"to": 1515840
+			},
+			"text": " I guess we have time for a couple questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,840",
+				"to": "00:25:17,560"
+			},
+			"offsets": {
+				"from": 1515840,
+				"to": 1517560
+			},
+			"text": " We have a mic in the back."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,560",
+				"to": "00:25:20,400"
+			},
+			"offsets": {
+				"from": 1517560,
+				"to": 1520400
+			},
+			"text": " Is there a published specification for the fire hose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,400",
+				"to": "00:25:23,040"
+			},
+			"offsets": {
+				"from": 1520400,
+				"to": 1523040
+			},
+			"text": " There's pretty detailed documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,040",
+				"to": "00:25:25,920"
+			},
+			"offsets": {
+				"from": 1523040,
+				"to": 1525920
+			},
+			"text": " I wouldn't say it's at the level of an IEEE spec or"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,920",
+				"to": "00:25:26,680"
+			},
+			"offsets": {
+				"from": 1525920,
+				"to": 1526680
+			},
+			"text": " anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,680",
+				"to": "00:25:28,720"
+			},
+			"offsets": {
+				"from": 1526680,
+				"to": 1528720
+			},
+			"text": " But there's very detailed documentation on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,720",
+				"to": "00:25:29,880"
+			},
+			"offsets": {
+				"from": 1528720,
+				"to": 1529880
+			},
+			"text": " architecture of how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,880",
+				"to": "00:25:31,760"
+			},
+			"offsets": {
+				"from": 1529880,
+				"to": 1531760
+			},
+			"text": " The repos are open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,760",
+				"to": "00:25:37,400"
+			},
+			"offsets": {
+				"from": 1531760,
+				"to": 1537400
+			},
+			"text": " So if you just search fire hose, the graph, docs, you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,400",
+				"to": "00:25:40,640"
+			},
+			"offsets": {
+				"from": 1537400,
+				"to": 1540640
+			},
+			"text": " find it real quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,640",
+				"to": "00:25:41,800"
+			},
+			"offsets": {
+				"from": 1540640,
+				"to": 1541800
+			},
+			"text": " Dave in the front."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,800",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1541800,
+				"to": 1544000
+			},
+			"text": " So for-- oh, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:50,360"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1550360
+			},
+			"text": " For the stateless clients in EIP4444, is there any way to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,360",
+				"to": "00:25:52,760"
+			},
+			"offsets": {
+				"from": 1550360,
+				"to": 1552760
+			},
+			"text": " estimate or predict how--"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,760",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1552760,
+				"to": 1555000
+			},
+			"text": " basically what I'm trying to understand, can the graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:25:59,240"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1559240
+			},
+			"text": " network itself as a whole essentially earn income from"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,240",
+				"to": "00:26:03,160"
+			},
+			"offsets": {
+				"from": 1559240,
+				"to": 1563160
+			},
+			"text": " providing a service of basically the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,160",
+				"to": "00:26:06,040"
+			},
+			"offsets": {
+				"from": 1563160,
+				"to": 1566040
+			},
+			"text": " Ethereum nodes retiring the state, but then graph nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,040",
+				"to": "00:26:06,760"
+			},
+			"offsets": {
+				"from": 1566040,
+				"to": 1566760
+			},
+			"text": " serving up that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,760",
+				"to": "00:26:09,960"
+			},
+			"offsets": {
+				"from": 1566760,
+				"to": 1569960
+			},
+			"text": " And then as a whole, the network getting some"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,960",
+				"to": "00:26:11,320"
+			},
+			"offsets": {
+				"from": 1569960,
+				"to": 1571320
+			},
+			"text": " profitability from that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,320",
+				"to": "00:26:12,200"
+			},
+			"offsets": {
+				"from": 1571320,
+				"to": 1572200
+			},
+			"text": " Yeah, it's a really good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,200",
+				"to": "00:26:14,480"
+			},
+			"offsets": {
+				"from": 1572200,
+				"to": 1574480
+			},
+			"text": " So this is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,480",
+				"to": "00:26:16,840"
+			},
+			"offsets": {
+				"from": 1574480,
+				"to": 1576840
+			},
+			"text": " you had a sort of emerging ideas in our ecosystem, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,840",
+				"to": "00:26:20,760"
+			},
+			"offsets": {
+				"from": 1576840,
+				"to": 1580760
+			},
+			"text": " increasingly my view of the graph is that it is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,760",
+				"to": "00:26:23,280"
+			},
+			"offsets": {
+				"from": 1580760,
+				"to": 1583280
+			},
+			"text": " like a multi-service ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,280",
+				"to": "00:26:27,360"
+			},
+			"offsets": {
+				"from": 1583280,
+				"to": 1587360
+			},
+			"text": " So today the primary service is you do ETL into a subgraph"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,360",
+				"to": "00:26:29,320"
+			},
+			"offsets": {
+				"from": 1587360,
+				"to": 1589320
+			},
+			"text": " and query it via GraphQL."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,320",
+				"to": "00:26:32,800"
+			},
+			"offsets": {
+				"from": 1589320,
+				"to": 1592800
+			},
+			"text": " But there might be a range of services, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,800",
+				"to": "00:26:35,600"
+			},
+			"offsets": {
+				"from": 1592800,
+				"to": 1595600
+			},
+			"text": " accessing fire hose data directly, or JSONRPC data"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,600",
+				"to": "00:26:39,880"
+			},
+			"offsets": {
+				"from": 1595600,
+				"to": 1599880
+			},
+			"text": " directly, or data in a key value store or a sequel store."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,880",
+				"to": "00:26:41,920"
+			},
+			"offsets": {
+				"from": 1599880,
+				"to": 1601920
+			},
+			"text": " And I think all of those could potentially be supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,920",
+				"to": "00:26:44,520"
+			},
+			"offsets": {
+				"from": 1601920,
+				"to": 1604520
+			},
+			"text": " side by side in different namespaces, if you will, within"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,520",
+				"to": "00:26:45,800"
+			},
+			"offsets": {
+				"from": 1604520,
+				"to": 1605800
+			},
+			"text": " the graph ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,800",
+				"to": "00:26:48,800"
+			},
+			"offsets": {
+				"from": 1605800,
+				"to": 1608800
+			},
+			"text": " And in that context, then you could imagine, yes, graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,800",
+				"to": "00:26:53,800"
+			},
+			"offsets": {
+				"from": 1608800,
+				"to": 1613800
+			},
+			"text": " indexers and service providers being the endpoint that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,800",
+				"to": "00:26:57,080"
+			},
+			"offsets": {
+				"from": 1613800,
+				"to": 1617080
+			},
+			"text": " like light clients use to get their data."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,080",
+				"to": "00:27:00,040"
+			},
+			"offsets": {
+				"from": 1617080,
+				"to": 1620040
+			},
+			"text": " It could also be what blockchain nodes themselves use to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,040",
+				"to": "00:27:04,480"
+			},
+			"offsets": {
+				"from": 1620040,
+				"to": 1624480
+			},
+			"text": " hydrate data and some of these other--"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,480",
+				"to": "00:27:05,640"
+			},
+			"offsets": {
+				"from": 1624480,
+				"to": 1625640
+			},
+			"text": " related to these other milestones."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,640",
+				"to": "00:27:09,320"
+			},
+			"offsets": {
+				"from": 1625640,
+				"to": 1629320
+			},
+			"text": " So yeah, I think it will be a source of query volume in"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,320",
+				"to": "00:27:12,160"
+			},
+			"offsets": {
+				"from": 1629320,
+				"to": 1632160
+			},
+			"text": " the future on the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,160",
+				"to": "00:27:13,360"
+			},
+			"offsets": {
+				"from": 1632160,
+				"to": 1633360
+			},
+			"text": " That great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,360",
+				"to": "00:27:17,360"
+			},
+			"offsets": {
+				"from": 1633360,
+				"to": 1637360
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,360",
+				"to": "00:27:18,120"
+			},
+			"offsets": {
+				"from": 1637360,
+				"to": 1638120
+			},
+			"text": " I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,120",
+				"to": "00:27:19,960"
+			},
+			"offsets": {
+				"from": 1638120,
+				"to": 1639960
+			},
+			"text": " Thank you guys so much for your time and attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,960",
+				"to": "00:27:22,800"
+			},
+			"offsets": {
+				"from": 1639960,
+				"to": 1642800
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,800",
+				"to": "00:27:25,800"
+			},
+			"offsets": {
+				"from": 1642800,
+				"to": 1645800
+			},
+			"text": " [AUDIO OUT]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,800",
+				"to": "00:27:32,800"
+			},
+			"offsets": {
+				"from": 1645800,
+				"to": 1652800
+			},
+			"text": " [AUDIO OUT]"
+		}
+	]
+}

@@ -1,0 +1,3915 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20000
+			},
+			"text": " >> Okay, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 25000
+			},
+			"text": " So I was originally here to give a talk specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27000
+			},
+			"text": " about what was called maximally"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 35000
+			},
+			"text": " verifying like clients in charting, and I will end up touching on a lot of that in this talk in certain ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 42000
+			},
+			"text": " but I also wanted to make it broader a bit, and basically make it be not just about scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 49000
+			},
+			"text": " and just about charting, but also a kind of general outline at a proposal for what I think a sensible path"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 56000
+			},
+			"text": " for Ethereum protocol development in general to be going forward over maybe the next two to four years or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 65000
+			},
+			"text": " All right, so I'll start off by just let's take a look at what's been going on in Ethereum so far, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " So in Ethereum, we've first of all had a lot of successes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 74000
+			},
+			"text": " So first of all, the Ethereum blockchain and Ethereum protocol work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 82000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 88000
+			},
+			"text": " So you may have noted the total lack of a crippling deal to tack on the network this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 100000
+			},
+			"text": " Many applications, and we've gone to somewhere over a thousand applications at this point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " and I'm pretty sure people aren't even really counting anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " And it shows in all the charts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 113000
+			},
+			"text": " So we've got this Ethereum transaction chart, and we just recently broke above 500,000 transactions per day"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 122000
+			},
+			"text": " for the first time, which in case you can't divide is something like over seven transactions per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 129000
+			},
+			"text": " And so it's almost exactly seven transactions per second at the peak, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 136000
+			},
+			"text": " So the scale of the amount of activity on the Ethereum blockchain is orders of magnitude higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138000
+			},
+			"text": " than it was one or two years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 144000
+			},
+			"text": " And this includes not just Ether transfers, it includes ERC20s, it includes Ether Delta,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 153000
+			},
+			"text": " it includes various different daps, it just includes just a whole bunch of different smart contracts of various types."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " This is another diagram I'm fairly proud of."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " This is the global Ethereum network with more than 20,000 nodes worldwide"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 171000
+			},
+			"text": " with hubs existing all over North America, including East Coast and West Coast, hubs all over Europe, a bunch in Russia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 177000
+			},
+			"text": " a smaller but still very significant and growing amount scattered across the various hubs in Asia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 187000
+			},
+			"text": " and increasingly, you know, know it's starting to show up in places like South America and Africa as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " According to the data that got scraped from either this site or another site a couple of days ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 197000
+			},
+			"text": " we seem to have one node in North Korea, but not sure if that's actually in North Korea."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 204000
+			},
+			"text": " Yeah, so in general, a lot of progress, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 211000
+			},
+			"text": " And if you look at just by ZNTM as well, you know, by ZNTM hard fork, basically, you know, it has gone through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 220000
+			},
+			"text": " and you can now take advantage of cryptographic primitives that are available in accelerated form on top of the Ethereum blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " in order to build privacy-preserving applications, and people already are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " So, you know, you just saw Socrates in the last presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 236000
+			},
+			"text": " Just yesterday, I saw on Reddit someone announced a protocol that was doing a reputation market based on ZK-SNARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 244000
+			},
+			"text": " I know of, you know, one project that's trying to do things with ring signatures, actually multiple projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 252000
+			},
+			"text": " So, I also know of at least a couple of projects that are taking advantage of RSA verification to do things like better communicate between Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 258000
+			},
+			"text": " and existing DNS between, you know, like a stony-nie residency and just various other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 267000
+			},
+			"text": " So, the privacy part of the three kind of major challenges to Ethereum's success that I've outlined, privacy security and scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270000
+			},
+			"text": " is actually quite well on the way to being solved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 272000
+			},
+			"text": " You know, there is still a lot of work to be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " Someone actually has to build the ring signature stuff, someone actually has to build Socrates, people actually have to use it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " people have to actually make using zero-knowledge-based practical, but we've made progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 283000
+			},
+			"text": " So, what are the challenges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " So, scalability is probably challenge number one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 295000
+			},
+			"text": " So, in this is a quick excerpt from the shorting FAQ, where I talk about this challenge called the scalability trilabba."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 304000
+			},
+			"text": " And I basically state that, you know, it seems likely that blockchain systems can only have at most two of these three properties at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 313000
+			},
+			"text": " Number one decentralization, which I define as basically being able to run without trusting super nodes, scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " so being able to process many more transactions than a regular laptop, and security."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 327000
+			},
+			"text": " So, basically, you know, it's okay to be vulnerable to 51% attacks, but you definitely cannot be vulnerable to 0.51% attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 335000
+			},
+			"text": " There is a very, very big and growing graveyard of systems that claim to solve the scalability triangle, but actually keep really don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 346000
+			},
+			"text": " So, you know, I actually think that the scalability triangle is solvable, but it basically requires significantly more kind of complex technologies than, you know, the kinds of technologies that we have available."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 355000
+			},
+			"text": " Part of this is something called the data availability problem, which I'm not going to talk about today because it really does require a one-hour presentation to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 364000
+			},
+			"text": " But basically, you know, it gets this problem that, you know, a lot of people don't even think about, but basically, not only do you need to verify that the blockchain is valid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 367000
+			},
+			"text": " you also need to verify that everyone can access the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " And even Zika's narks and starks cannot solve that part of the puzzle, and there's mathematical proofs based on information theory that say that if you cannot solve that part of the puzzle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 380000
+			},
+			"text": " your protocol is basically, you know, is basically cannot be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 386000
+			},
+			"text": " The relevant paper here is one, basically one that says that batch updates for cryptographic accumulators are impossible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 389000
+			},
+			"text": " and so I'm going to head to Justin Drake for that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " So, it is a very significant and hard challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 396000
+			},
+			"text": " So, basically, right now, every node processes every transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 405000
+			},
+			"text": " The capacity of a blockchain is limited to the capacity of one node, and it's actually even worse because we need to have safety margins for anti-DDoS purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 415000
+			},
+			"text": " The limiting factor in Ethereum scalability and Ethereum's likely worst point of DDoS vulnerability is likely to be disk reads."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 419000
+			},
+			"text": " And also, Ethereum VM execution is currently absolutely not parallelizable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 426000
+			},
+			"text": " So, you know, these are just known facts and the, you know, severely limit the extents to which Ethereum and its present form can scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " So, the likely solution to a lot of this, now, there are more incremental solutions that we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 437000
+			},
+			"text": " So, for example, you can use EIP648 to greatly improve parallelizability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 443000
+			},
+			"text": " but if you want to really solve the fundamental problem, every node processes every transaction, basically sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 449000
+			},
+			"text": " And the way that you think about sharding is, well, basically, you can split the blockchain state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 454000
+			},
+			"text": " so split the set of information that everyone needs to keep track of into end universes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " and we call each one of these universes a shard, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 461000
+			},
+			"text": " So, each universe has its own account space, its own account, its own contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 467000
+			},
+			"text": " You can have transactions within each shard, and you only allow asynchronous communication between shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 473000
+			},
+			"text": " So, if you want to send a coin from shard A to shard B, you actually have to have two transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 478000
+			},
+			"text": " the first transaction on shard A, and the second transaction on shard B."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 483000
+			},
+			"text": " And contracts on shard A cannot synchronously call contracts on shard B."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 489000
+			},
+			"text": " So, you cannot call a contract on shard B and get a response and do something with that response in one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 496000
+			},
+			"text": " And the benefit of this is that each client only processes a small portion of all the activity on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 501000
+			},
+			"text": " So, the reason why we call it quadratic sharding is because if you imagine, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 506000
+			},
+			"text": " there are processing capacity of one computer to be N, then you can imagine N shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 509000
+			},
+			"text": " and each shard has, you know, like N worth of activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 515000
+			},
+			"text": " Each node would have to process the activity on basically just the one shard it's interested in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " and every node would have to process the activity of kind of the entire system of shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 524000
+			},
+			"text": " So, the amount of activity of each node would basically be N at the top and N at the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 528000
+			},
+			"text": " so a total of 2N, but the capacity of the entire system would be N squared."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 533000
+			},
+			"text": " And theoretically, you can make the sharding be exponential, but, you know, a quadratic is simpler,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 536000
+			},
+			"text": " and, you know, there might be good reasons to keep it quadratic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 540000
+			},
+			"text": " And it may well be a reasonable approach to say, you know, if we only do sharding up to quadratic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 545000
+			},
+			"text": " and if you want to go up to exponential, then basically you have to stick with things like sharding in plasma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 548000
+			},
+			"text": " or sorry, well, state channels in plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 553000
+			},
+			"text": " Another challenge that we've had is this kind of challenge of governance and protocol evolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 558000
+			},
+			"text": " So basically, you know, we have this trade-off where on the one hand we want progress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 561000
+			},
+			"text": " but on the other hand, you know, there is demand for protocol stability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " and hard forks making deep changes are hard, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570000
+			},
+			"text": " So, we finally got by ZNTM out on October 16th,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " and by ZNTM is the result of, you know, over a year of work, a large amount of testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " and, you know, even after a year of testing, we still required some pretty epic work between, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 585000
+			},
+			"text": " like the Go team and the parody team doing, you know, super advanced forms of fuzz testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 590000
+			},
+			"text": " that even that I don't even fully understand in order to catch, you know, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 594000
+			},
+			"text": " I fairly were a large number of bugs that appeared pretty close to launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 599000
+			},
+			"text": " So hard forks making deep changes take a long time to code, take a long time to agree on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 602000
+			},
+			"text": " a long time to test, and there is a high risk of consensus bugs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " especially since the Ethereum network has, like, basically seven different clients that you have to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 612000
+			},
+			"text": " that all have to implement the protocol and agree on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " But even still, even with all these challenges, you know, we've done by ZNTM and we've done it successfully."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 623000
+			},
+			"text": " So, but the problem is, right, that on the one hand, hard forks making deep changes are hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 628000
+			},
+			"text": " On the other hand, to get to what we want to see in Ethereum 2.0,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 632000
+			},
+			"text": " so to get to this kind of highly shorted, highly scalable network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " as well as all of the EVM upgrades we want to do, all of the parallelizability upgrades we want to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 642000
+			},
+			"text": " EVM 1.5, Ewasm, potentially more pre-compiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 648000
+			},
+			"text": " In order to get to this ideal end state, very deep changes are exact to what we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 653000
+			},
+			"text": " So, what do we do? How do we handle the trade-off?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 656000
+			},
+			"text": " So, intuition, one blockchain, two systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " And I'll make this clear with the kind of diagram that I'll show in the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 667000
+			},
+			"text": " So, here is, you know, like, what a sharding system, as we're already starting to build,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 670000
+			},
+			"text": " might as could possibly look like, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 677000
+			},
+			"text": " So, you have the main chain, and in the main chain, you know, it's basically everything is basically as it was before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 681000
+			},
+			"text": " You have your blocks, you have your state root, you have your transaction root, you have your state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 684000
+			},
+			"text": " you have your accounts, your contracts, your storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " Now, what we're going to do is, in the main chain, we're going to add something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 692000
+			},
+			"text": " or a called a validator manager contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 695000
+			},
+			"text": " Now, what does the validator manager contract do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 704000
+			},
+			"text": " It basically runs a proof of stake system that maintains the consensus for a kind of two-layer sharding system"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 709000
+			},
+			"text": " that exists kind of on top of or even inside the main chain in a certain sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 716000
+			},
+			"text": " So, the validator manager contract would keep track of validators and would allow anyone to join and leave the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 724000
+			},
+			"text": " service a validator, and basically assign the right to create blocks in each of these end shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 727000
+			},
+			"text": " that the validator manager contract keeps track of."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 735000
+			},
+			"text": " The VMC would also keep track of block headers for each of these shards, but what the VMC would not do"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 742000
+			},
+			"text": " is it would not verify the full blocks of the shard, and the VMC would not contain a copy of all the new consensus rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 748000
+			},
+			"text": " Instead, basically, actually creating valid blocks, actually enforcing that the blocks are valid in the shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 756000
+			},
+			"text": " actually enforcing that the data in the shards is entirely available and follows the desired consensus rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 763000
+			},
+			"text": " Basically, it would be the responsibility of the proof of stake that exists inside the validator manager contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 768000
+			},
+			"text": " So, the validator manager contract would initially be this kind of very low risk thing to participate in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774000
+			},
+			"text": " There would actually not even be a risk of total slashing in the same way that there is in CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 781000
+			},
+			"text": " And the goal would be to basically just get a fairly significant portion of ether stake participating in this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " and basically, if you are part of the validator manager contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 793000
+			},
+			"text": " then you just get assigned randomly the right to create blocks in each and every one of these shards at periodic intervals."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 798000
+			},
+			"text": " I should probably use more correct terminology. We call the blocks inside of shards collations."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 803000
+			},
+			"text": " So, if you have a transaction, then transactions get grouped into collations, and the collation headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 810000
+			},
+			"text": " then get put into the validator manager contract, and they get put into transactions that get included into blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 812000
+			},
+			"text": " So, we have this kind of two-layer structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 819000
+			},
+			"text": " We're at the top layer you would have the blockchain, and at the bottom layer you would have all of these different shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 825000
+			},
+			"text": " and each shard would be like its own universe. And connecting the two universes, you have this validator manager contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 831000
+			},
+			"text": " which enforces the proof of stake, basically maintains an internal light client for each of the shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 838000
+			},
+			"text": " and processes and facilitates things like moving ether from the main chains of the shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 841000
+			},
+			"text": " and possibly from one shard to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " So, you can think of the kind of differences between the two systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 851000
+			},
+			"text": " between the main shard world and the new shard world, so if someone like this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 860000
+			},
+			"text": " So, scalability. So, main shard is OFC. So, C is the letter I normally use to refer to the computational capacity of one node."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 865000
+			},
+			"text": " So, the main shard would have a scalability of just OFC, which is exactly what it does now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 871000
+			},
+			"text": " And the new shards would have a capacity of OFC squared, and the reason for this is you have OFC shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 874000
+			},
+			"text": " and each of the OFC shards itself has OFC capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 881000
+			},
+			"text": " Right? So, by the way, if you're not familiar with big O notation, just like don't think about the O's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " main chain scalability of C, new shard scalability of C squared,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887000
+			},
+			"text": " because there's C shards and each shard has C transactions per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 894000
+			},
+			"text": " Consentous algorithm. So, on the main shard, the consentous algorithm is currently proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 900000
+			},
+			"text": " In the very short to medium term, we hope to transition it into hybrid proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 908000
+			},
+			"text": " in the form of a CASPER friendly finality gadget, a paper for which was released on archive something like five days ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 913000
+			},
+			"text": " and which is actually, I would say, nearing the kind of final stages of a full specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " And eventually, we will transition the main chain consensus into a full proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 923000
+			},
+			"text": " Now, the consentous, which itself is designed to be fairly conservative, and so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " possible to implement in this kind of fairly slow and careful way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 934000
+			},
+			"text": " So, for example, the first part of the switch to hybrid proof of stake actually doesn't require a hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 937000
+			},
+			"text": " Technically, it requires this weird kind of soft fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " Where basically, it's not even like a real soft fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 947000
+			},
+			"text": " Instead, it's just an optional change to the fork-uous rule that's used inside of a client."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 954000
+			},
+			"text": " The only thing you would need a hard fork for is when we want to basically stop providing rewards to proof of work miners,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 958000
+			},
+			"text": " or at least reduce the words to proof of work miners and switch the rewards to validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 964000
+			},
+			"text": " So, the switch to proof of stake, I'm fairly confident, can be done in this kind of gradual, fairly conservative way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 970000
+			},
+			"text": " A main chart has full security, basically the same security guarantees we can expect to have now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 978000
+			},
+			"text": " And the governance of the main chart, basically, in order to kind of satisfy the demand of people that really wants to have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 990000
+			},
+			"text": " like, basically stronger mutability and less risk on the main chain, we can have norms of governance that emphasize conservatism and strong mutability more than today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 992000
+			},
+			"text": " Now, what happens in the new charts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 999000
+			},
+			"text": " So, scalability OFC squared, consensus is this proof of stake where in order to vote in the proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1006000
+			},
+			"text": " you would have to deposit ether into the validator manager contract, and the validator manager contract would randomly assign to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1009000
+			},
+			"text": " the right to create blocks on all of these charts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1016000
+			},
+			"text": " The security would be 50% honest majority of the on-chain proof of stake holders now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1023000
+			},
+			"text": " and basically, once the, like, what we want to do with the theory M2.0 and shorting solidify enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1031000
+			},
+			"text": " then, you know, eventually, the shards would be kind of tightly coupled, and so too would have roughly the same level of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1037000
+			},
+			"text": " And now the governance for the new shards is basically just going to be on-chain ether voting, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1046000
+			},
+			"text": " So, basically, for these new shards, because you have this proof of stake, we might as well have this proof of stake be used in order to, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1050000
+			},
+			"text": " basically, vote on what the protocol changes are within this sharded universe, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1058000
+			},
+			"text": " So, basically, you know, like, validators themselves already are going to be the ones that enforce the consensus rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1066000
+			},
+			"text": " so, like, why not just have them be, you know, just the one, you know, they kind of are the ones that decide on the rules already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1079000
+			},
+			"text": " so we might as well accept this, and we basically actually take advantage of this because this kind of on-chain ether voting governance would give us the ability to basically emphasize fast evolution in the new shards initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1086000
+			},
+			"text": " and then when we have this tight coupling and when every client becomes basically a fully validating client for all the shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1090000
+			},
+			"text": " then, you know, the kind of governance would become much more conservative."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1096000
+			},
+			"text": " So, this is kind of the dichotomy that I'm suggesting, where we can have these two universes at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1103000
+			},
+			"text": " where the universe on the left, the main shard, is just basically continuous working as Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1110000
+			},
+			"text": " We do not need to negotiate EVM 1.5, negotiate EVOSM between seven different Ethereum implementations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1115000
+			},
+			"text": " and we can focus on relatively milder things that do things like state-sized control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1122000
+			},
+			"text": " that do things like, you know, just improving security, possibly improving paralyzability a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1129000
+			},
+			"text": " heavy focus on the proof of stake switch, and we have this other new universe, or really these new N-universes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1137000
+			},
+			"text": " in which, like, basically the implementation of, you know, all of these things that we've already been working on over the last one in two years"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " can basically be rolled out onto the main net much, much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1145000
+			},
+			"text": " So, here's what an implementation roadmap might look like, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1152000
+			},
+			"text": " So, sharding, basically, step one is you would implement this kind of sharding universe as a proof of stake side-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1157000
+			},
+			"text": " and, you know, in a proof of stake side-chain, in each shard you would have collations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1162000
+			},
+			"text": " and the collision headers would be verified and processed by this on main-chain validator manager contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1166000
+			},
+			"text": " Block creation rights are assigned by a simple proof of stake in the VMC."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1172000
+			},
+			"text": " Clients would just get randomly assigned the right to create blocks and randomly shuffled between shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1175000
+			},
+			"text": " and in the first step you could have one-way ETH convertibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1178000
+			},
+			"text": " In the second stage you could make the ETH convertibility two-way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1184000
+			},
+			"text": " Now, this is what a node for the Ethereum sharded network might look like, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1189000
+			},
+			"text": " So, you already have the existing Ethereum nodes that talk to the existing Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1193000
+			},
+			"text": " Everything on the left does not need to be changed one single bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1197000
+			},
+			"text": " What you have on the right is you could have a sharded chain node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1203000
+			},
+			"text": " Sharded chain nodes would be responsible for basically broadcasting full collations, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1206000
+			},
+			"text": " So, collation headers would go into the VMC contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1213000
+			},
+			"text": " Full collations would only be broadcasted in the sharded chain network between all of the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1215000
+			},
+			"text": " that are participating in the sharding system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1220000
+			},
+			"text": " So, sharded chain node would be written in Python initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1225000
+			},
+			"text": " and it could be designed in such a way that it can talk to any Ethereum node by RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1231000
+			},
+			"text": " Now, if we want fast evolution, we could have, like, basically one or two clients for the sharded chain node initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1235000
+			},
+			"text": " and then over time, you know, I can ramp it up to the full seven as some more teams become ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1239000
+			},
+			"text": " So, you know, basically you would have this kind of fairly, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1243000
+			},
+			"text": " a kind of partial split between what happens on the Ethereum side"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1249000
+			},
+			"text": " and what happens in these sharded networks where, you know, basically you would really have a shard network"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1252000
+			},
+			"text": " for, like, basically every single shard, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1256000
+			},
+			"text": " So, after this, you would add two-way convertibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1260000
+			},
+			"text": " you would move the collation headers from the VMC into, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1264000
+			},
+			"text": " being main chain Ethereum uncles, and then the step four would be tight coupling."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1269000
+			},
+			"text": " So, tight coupling basically means if you have a block in the main chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1274000
+			},
+			"text": " that contains a collation header which is invalid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1277000
+			},
+			"text": " then the entire main chain block is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1285000
+			},
+			"text": " So, invalidity on the shard side will be able to cause invalidity on the main chain side."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1293000
+			},
+			"text": " And this would be basically when the main chain and the shards would both switch into this kind of tighter security mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1296000
+			},
+			"text": " And stage four is something that, you know, theoretically could happen later."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1303000
+			},
+			"text": " Ideally, it should happen basically when things on the sharding side are actually reasonably stabilized."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " So, remember, the shards that I'm suggesting are creating new address space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1311000
+			},
+			"text": " They are not affecting existing address space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1316000
+			},
+			"text": " This gives us a unique opportunity to make many very important, many efficiency-improving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1320000
+			},
+			"text": " but backwards incompatible changes to the Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1322000
+			},
+			"text": " So, what kind of changes do we want to make?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1324000
+			},
+			"text": " Well, we can just list through a few, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1328000
+			},
+			"text": " So, number one, changing Merkle trees from hexa-retree to binary trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1330000
+			},
+			"text": " This is a no-brainer."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1332000
+			},
+			"text": " It makes the Merkle proofs four times shorter."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1334000
+			},
+			"text": " Account state tree redesigns."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1338000
+			},
+			"text": " So, you might want to get rid of contract storage trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1340000
+			},
+			"text": " You might want to have multi-level nested trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1342000
+			},
+			"text": " You might want to have a different account system."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " These are things that we can brainstorm."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1348000
+			},
+			"text": " These are things that, you know, we can think about an optimise."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1349000
+			},
+			"text": " EVM upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1355000
+			},
+			"text": " So, basically, you know, can we make the EVM efficient enough that pre-compiles are no longer necessary?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1358000
+			},
+			"text": " It seems like it's very likely that we can."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1364000
+			},
+			"text": " So, in the Ethereum community, we have had these kind of two paths for optimising the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1368000
+			},
+			"text": " where one of them is the second of Greg Colvin's approach of EVM 1.5,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1372000
+			},
+			"text": " which is more moderate upgrades than additions to the existing EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1376000
+			},
+			"text": " And the second one is this kind of full-scale replacement with ewasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1382000
+			},
+			"text": " Well, basically, the idea would be let's work together, let's come up with, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1385000
+			},
+			"text": " what combination of these two models seems most reasonable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1390000
+			},
+			"text": " and let's just immediately apply it as the only EVM available in the shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1395000
+			},
+			"text": " And so, this way, you know, you'd have much more efficiency without having to worry about"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1397000
+			},
+			"text": " as many backwards compatibility issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1398000
+			},
+			"text": " Parallelizability."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1402000
+			},
+			"text": " So, there are fairly simple Ethereum upgrades that we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1404000
+			},
+			"text": " So, EIP648 is one example."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1407000
+			},
+			"text": " There's also a sharding EIP, which is a stricter version of EIP648,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1412000
+			},
+			"text": " which basically lets you execute Ethereum transactions in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1416000
+			},
+			"text": " If you can do that, then we basically have, you know, like, if we really, if we want it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1420000
+			},
+			"text": " kind of unlimited access to the kind of big log scaling route, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1425000
+			},
+			"text": " So, if we have parallelizability, if we want to, we could always make the blocks bigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1429000
+			},
+			"text": " and all that would happen is that the kind of resource requirements of running a node"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1434000
+			},
+			"text": " would be a bit higher, but if you have enough cores, you would still be able to process a block fairly quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1440000
+			},
+			"text": " So, parallelizability is something that if we tried to add it to the existing Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1443000
+			},
+			"text": " I mean, it would require some fairly deep changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1448000
+			},
+			"text": " but if we can make this kind of new system where we have parallelizability right from the start,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:09,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1449000
+			},
+			"text": " then it might be easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1449000,
+				"to": 1451000
+			},
+			"text": " Stateless clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1458000
+			},
+			"text": " So, stateless clients are a, yeah, the topic that I've written about slightly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1463000
+			},
+			"text": " but they're a topic that you might end up hearing about more and more over the next few year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1468000
+			},
+			"text": " while or so, the basic idea behind a stateless client is this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1474000
+			},
+			"text": " So, I mean, as you might have seen from the diagram, stateless clients have something to do with a Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1476000
+			},
+			"text": " Everyone bow down a Ralph Berkel again."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1481000
+			},
+			"text": " Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1487000
+			},
+			"text": " So, consensus nodes do not hold the entire state, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1490000
+			},
+			"text": " So, consensus nodes, so basically full nodes, miners, anyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1493000
+			},
+			"text": " do not need to hold the entire state."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1496000
+			},
+			"text": " They only need to hold the root hash of the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1502000
+			},
+			"text": " People who want to send transactions would apply attached Merkle branches, so witnesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1507000
+			},
+			"text": " basically proving the correctness of the specific portions of the state they want to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:14,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1514000
+			},
+			"text": " So, if you have a state root and if I want to send a transaction that sends 10 coins from address A to address B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,000",
+				"to": "00:25:20,000"
+			},
+			"offsets": {
+				"from": 1514000,
+				"to": 1520000
+			},
+			"text": " I would provide two Merkle branches that prove the existing balances of address A and address B."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1520000,
+				"to": 1525000
+			},
+			"text": " Then the transaction, the blocks would get passed around with the witness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1530000
+			},
+			"text": " and that's all the information that a node needs in order to execute the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1535000
+			},
+			"text": " execute every transaction in the block, and figure out what the new state root is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1543000
+			},
+			"text": " and what the new Merkle branches are and what the portions of the state are that got modified by that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1549000
+			},
+			"text": " So, the idea here is that we can substitute each individual instance of a disk read."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1555000
+			},
+			"text": " So, basically, each individual instance of reading a storage key or an account from disk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1561000
+			},
+			"text": " which takes possibly something like a millisecond, with about one kilobyte of bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:04,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1564000
+			},
+			"text": " assuming we optimize the Merkle tree and assuming a billion accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1564000,
+				"to": 1571000
+			},
+			"text": " If we go up to a trillion accounts, then we'll only need shock or 1,300 bytes of bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1578000
+			},
+			"text": " Now, the benefits of this are that, first of all, it makes it much easier to reshuffle validators when sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1583000
+			},
+			"text": " Basically, the idea is that if you're in a stateless client architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1588000
+			},
+			"text": " and you suddenly reassigns to a new shard, you do not have to download the state of the shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1593000
+			},
+			"text": " In a stateless client paradigm, fast syncing is literally pretty much instant."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1597000
+			},
+			"text": " And this is true regardless of what the state size is."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1600000
+			},
+			"text": " The list clients allow us to care much less about the state size."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:45,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1605000
+			},
+			"text": " So, even if the state was, you know, like one petabyte, nobody really needs to store that one petabyte."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,000",
+				"to": "00:26:51,000"
+			},
+			"offsets": {
+				"from": 1605000,
+				"to": 1611000
+			},
+			"text": " And the massively increased parallelizability kind of as a side effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,000",
+				"to": "00:26:57,000"
+			},
+			"offsets": {
+				"from": 1611000,
+				"to": 1617000
+			},
+			"text": " So, you know, like this is one other kind of second year reskill ability path that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,000",
+				"to": "00:27:02,000"
+			},
+			"offsets": {
+				"from": 1617000,
+				"to": 1622000
+			},
+			"text": " basically it might even just make sense to do it in the sharded universe from day one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,000",
+				"to": "00:27:09,000"
+			},
+			"offsets": {
+				"from": 1622000,
+				"to": 1629000
+			},
+			"text": " So, regardless of kind of each individual proposal, right, the general idea is that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,000",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1629000,
+				"to": 1633000
+			},
+			"text": " we could have ongoing development of the Ethereum protocol happening two layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:19,000"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1639000
+			},
+			"text": " Where the first layer basically involves relatively small changes, efficiency improvements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,000",
+				"to": "00:27:21,000"
+			},
+			"offsets": {
+				"from": 1639000,
+				"to": 1641000
+			},
+			"text": " getting CASPER rolled out."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,000",
+				"to": "00:27:25,000"
+			},
+			"offsets": {
+				"from": 1641000,
+				"to": 1645000
+			},
+			"text": " And then the second layer is the one where rapid development and experimentation happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,000",
+				"to": "00:27:30,000"
+			},
+			"offsets": {
+				"from": 1645000,
+				"to": 1650000
+			},
+			"text": " And it's the one where, you know, we could get to thousands of transactions per second"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,000",
+				"to": "00:27:35,000"
+			},
+			"offsets": {
+				"from": 1650000,
+				"to": 1655000
+			},
+			"text": " and actually fairly quickly and on a significantly accelerated schedule if we want, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,000",
+				"to": "00:27:36,000"
+			},
+			"offsets": {
+				"from": 1655000,
+				"to": 1656000
+			},
+			"text": " if we want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,000",
+				"to": "00:27:42,000"
+			},
+			"offsets": {
+				"from": 1656000,
+				"to": 1662000
+			},
+			"text": " So, if there are applications that do not need super duper high security, then, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1662000,
+				"to": 1665000
+			},
+			"text": " they can just go on layer two fairly quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:49,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1669000
+			},
+			"text": " So, this gives us the benefits of basically both approaches at the same time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1669000,
+				"to": 1673000
+			},
+			"text": " So, save and conservative layer one and all this rapid development in layer two"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:27:58,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1678000
+			},
+			"text": " and the ability to use layer two in order to do all of these protocol improvements that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,000",
+				"to": "00:28:03,000"
+			},
+			"offsets": {
+				"from": 1678000,
+				"to": 1683000
+			},
+			"text": " work developers have been dreaming about the whole time without having to go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,000",
+				"to": "00:28:08,000"
+			},
+			"offsets": {
+				"from": 1683000,
+				"to": 1688000
+			},
+			"text": " this kind of political process of getting all seven clients to agree on it and write a million"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,000",
+				"to": "00:28:13,000"
+			},
+			"offsets": {
+				"from": 1688000,
+				"to": 1693000
+			},
+			"text": " tests for it and fuzz it for six months in the short term."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1699000
+			},
+			"text": " In the longer term, even as the shorting system solidifies, of course, the shorting system will end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,000",
+				"to": "00:28:24,000"
+			},
+			"offsets": {
+				"from": 1699000,
+				"to": 1704000
+			},
+			"text": " focusing more and more on conservatism and security and eventually the two will be kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,000",
+				"to": "00:28:26,000"
+			},
+			"offsets": {
+				"from": 1704000,
+				"to": 1706000
+			},
+			"text": " merged in some nice and clean way."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1706000,
+				"to": 1710000
+			},
+			"text": " But, you know, like, this is something that if we want to can wait three or four years."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:37,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1717000
+			},
+			"text": " So, the good news is that along with the initial work of unsharding, having a proceeding very"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,000",
+				"to": "00:28:42,000"
+			},
+			"offsets": {
+				"from": 1717000,
+				"to": 1722000
+			},
+			"text": " quickly to the point where we are basically just inches away from having a working CASPER"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,000",
+				"to": "00:28:44,000"
+			},
+			"offsets": {
+				"from": 1722000,
+				"to": 1724000
+			},
+			"text": " proof of concept test then in Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,000",
+				"to": "00:28:48,000"
+			},
+			"offsets": {
+				"from": 1724000,
+				"to": 1728000
+			},
+			"text": " We also have initial work on sharding that's being done in the Sreepo."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,000",
+				"to": "00:28:55,000"
+			},
+			"offsets": {
+				"from": 1728000,
+				"to": 1735000
+			},
+			"text": " So, you know, we have some developers that are working on a sharding capable client"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,000",
+				"to": "00:29:00,000"
+			},
+			"offsets": {
+				"from": 1735000,
+				"to": 1740000
+			},
+			"text": " and that are starting to work on some of these stateless client improvements, starting to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,000",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1740000,
+				"to": 1743000
+			},
+			"text": " experiment with some of these optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:07,000"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1747000
+			},
+			"text": " And, you know, the hope would be to also, you know, like, if there are other client developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,000",
+				"to": "00:29:11,000"
+			},
+			"offsets": {
+				"from": 1747000,
+				"to": 1751000
+			},
+			"text": " that wants to participate in this as well, then, you know, this is something that should"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,000",
+				"to": "00:29:16,000"
+			},
+			"offsets": {
+				"from": 1751000,
+				"to": 1756000
+			},
+			"text": " happen totally openly in this sh--and this is a process that, you know, should eventually go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,000",
+				"to": "00:29:19,000"
+			},
+			"offsets": {
+				"from": 1756000,
+				"to": 1759000
+			},
+			"text": " you know, beyond just happening inside of one client."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,000",
+				"to": "00:29:27,000"
+			},
+			"offsets": {
+				"from": 1759000,
+				"to": 1767000
+			},
+			"text": " And, you know, basically, you know, in the short--in the short term, the sharding stuff would continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,000",
+				"to": "00:29:30,000"
+			},
+			"offsets": {
+				"from": 1767000,
+				"to": 1770000
+			},
+			"text": " as kind of proof of concept and test note, test mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,000",
+				"to": "00:29:35,000"
+			},
+			"offsets": {
+				"from": 1770000,
+				"to": 1775000
+			},
+			"text": " And the nice thing is that because this is not being done as a hard fork, because this is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,000",
+				"to": "00:29:41,000"
+			},
+			"offsets": {
+				"from": 1775000,
+				"to": 1781000
+			},
+			"text": " rolled in gradually as this kind of loosely coupled overly at first and tightly coupled"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,000",
+				"to": "00:29:45,000"
+			},
+			"offsets": {
+				"from": 1781000,
+				"to": 1785000
+			},
+			"text": " over time, like, basically, there is no sharp test net to mean that cutoff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,000",
+				"to": "00:29:49,000"
+			},
+			"offsets": {
+				"from": 1785000,
+				"to": 1789000
+			},
+			"text": " So, like, the extents to which the shards are attached to that and the extents to which the"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,000",
+				"to": "00:29:53,000"
+			},
+			"offsets": {
+				"from": 1789000,
+				"to": 1793000
+			},
+			"text": " shards are a mainnet actually kind of flows fluidly from one to the other over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,000",
+				"to": "00:30:00,000"
+			},
+			"offsets": {
+				"from": 1793000,
+				"to": 1800000
+			},
+			"text": " So, you know, basically, this way we can get development of both scalability and a large"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,000",
+				"to": "00:30:06,000"
+			},
+			"offsets": {
+				"from": 1800000,
+				"to": 1806000
+			},
+			"text": " number of other needed improvements in both quickly and safely with respect to the existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,000",
+				"to": "00:30:07,000"
+			},
+			"offsets": {
+				"from": 1806000,
+				"to": 1807000
+			},
+			"text": " Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1807000,
+				"to": 1808000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:09,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1809000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,000",
+				"to": "00:30:16,000"
+			},
+			"offsets": {
+				"from": 1809000,
+				"to": 1816000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,000",
+				"to": "00:30:21,000"
+			},
+			"offsets": {
+				"from": 1816000,
+				"to": 1821000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,000",
+				"to": "00:30:30,000"
+			},
+			"offsets": {
+				"from": 1821000,
+				"to": 1830000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,000",
+				"to": "00:30:32,240"
+			},
+			"offsets": {
+				"from": 1830000,
+				"to": 1832240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

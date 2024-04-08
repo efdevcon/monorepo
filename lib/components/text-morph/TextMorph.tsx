@@ -17,7 +17,7 @@ export default (props: TextMorphProps) => {
 
     // Controls the speed of morphing.
     const morphTime = 1;
-    const cooldownTime = 8;
+    const cooldownTime = 6;
 
     let textIndex = texts.length - 1;
     let time = new Date() as any;
@@ -103,7 +103,7 @@ export default (props: TextMorphProps) => {
   }, [props.texts]);
 
   return (
-    <div className={`${css["container"]} justify-center lg:justify-start`}>
+    <div className={`${css["container"]} justify-center lg:justify-center`}>
       <span className={`${css["text1"]} opacity-0 !block !relative`}>
         {props.texts[1]}
       </span>

@@ -1,0 +1,2276 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14240
+			},
+			"text": " >> Hi, everyone. Thank you for coming. My name is Alex. I work in SmartEgg. Hi. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,240",
+				"to": "00:00:22,200"
+			},
+			"offsets": {
+				"from": 14240,
+				"to": 22200
+			},
+			"text": " today I will tell about one of our creations, ERC-weighted test suite and how it helps in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,200",
+				"to": "00:00:29,560"
+			},
+			"offsets": {
+				"from": 22200,
+				"to": 29560
+			},
+			"text": " achieving the decentralized security. To start with a couple of words about SmartEgg,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,560",
+				"to": "00:00:34,440"
+			},
+			"offsets": {
+				"from": 29560,
+				"to": 34440
+			},
+			"text": " we've been working in the area of application security for maybe 10 years now and the five"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,440",
+				"to": "00:00:40,400"
+			},
+			"offsets": {
+				"from": 34440,
+				"to": 40400
+			},
+			"text": " years of those we are creating application security tools, both for small businesses and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,400",
+				"to": "00:00:46,680"
+			},
+			"offsets": {
+				"from": 40400,
+				"to": 46680
+			},
+			"text": " big enterprise businesses. And in the area of blockchain security, we perform more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,680",
+				"to": "00:00:55,400"
+			},
+			"offsets": {
+				"from": 46680,
+				"to": 55400
+			},
+			"text": " 200 blockchain audits. And of course, we create a number of smart contract security tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,400",
+				"to": "00:01:04,840"
+			},
+			"offsets": {
+				"from": 55400,
+				"to": 64840
+			},
+			"text": " And during our work in blockchain, we encountered the following problem. Many blockchain projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,840",
+				"to": "00:01:12,400"
+			},
+			"offsets": {
+				"from": 64840,
+				"to": 72400
+			},
+			"text": " like some dabs or exchanges deal with tokens. And most of those tokens are meant to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,400",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 72400,
+				"to": 81240
+			},
+			"text": " your C20 compliant. But the sad truth is that most of them are not. Currently, if you run"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:29,760"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 89760
+			},
+			"text": " some of such projects, there are only two approaches to ensure the air-situating compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,760",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 89760,
+				"to": 97160
+			},
+			"text": " It's either ordering third party code audit or writing a bunch of tests. So both of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:42,960"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 102960
+			},
+			"text": " approaches take a long time. They are expensive. They need certain degree of trust. And of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,960",
+				"to": "00:01:53,720"
+			},
+			"offsets": {
+				"from": 102960,
+				"to": 113720
+			},
+			"text": " course, they are not scalable. So according to our vision, if you work in a project that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,720",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 113720,
+				"to": 121600
+			},
+			"text": " deals with any counterparty interfaces that need to comply to some requirements, you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:08,240"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 128240
+			},
+			"text": " to have a way to check these compliance in a decentralized way. So as a first step in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,240",
+				"to": "00:02:14,960"
+			},
+			"offsets": {
+				"from": 128240,
+				"to": 134960
+			},
+			"text": " achieving this vision, we created the tool that we named here, C20 test suite. Basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,960",
+				"to": "00:02:22,440"
+			},
+			"offsets": {
+				"from": 134960,
+				"to": 142440
+			},
+			"text": " it's a DAP. It runs tests on chain. It saves the results on chain. And it is completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,440",
+				"to": "00:02:27,240"
+			},
+			"offsets": {
+				"from": 142440,
+				"to": 147240
+			},
+			"text": " trustless since it's a smart contract. It has simple web interface, but it can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,240",
+				"to": "00:02:37,080"
+			},
+			"offsets": {
+				"from": 147240,
+				"to": 157080
+			},
+			"text": " via a smart contract. So I will show you how it looks like. So the process is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,080",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 157080,
+				"to": 164200
+			},
+			"text": " easy. It has only three steps. You enter the address of token, you approve 1000 token"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 169160
+			},
+			"text": " units in order to perform some checks. And please know that all of those tokens will"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:56,960"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 176960
+			},
+			"text": " be refunded to you. And on step three, you click yes, okay, please check this token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,960",
+				"to": "00:03:03,320"
+			},
+			"offsets": {
+				"from": 176960,
+				"to": 183320
+			},
+			"text": " And after a couple of minutes, after the transaction is mined, you see the result. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,320",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 183320,
+				"to": 190000
+			},
+			"text": " basically a list of properties grouped by type. And they are color coded to show whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 198280
+			},
+			"text": " the concrete property is violated or not. So these same results are written on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:26,360"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 206360
+			},
+			"text": " and can be accessed by any smart contract at any time. So what do we get? We get low"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,360",
+				"to": "00:03:34,520"
+			},
+			"offsets": {
+				"from": 206360,
+				"to": 214520
+			},
+			"text": " price. You pay only for guess. The process is fully automated because no people involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,520",
+				"to": "00:03:42,040"
+			},
+			"offsets": {
+				"from": 214520,
+				"to": 222040
+			},
+			"text": " at any moment. And those tests are really easy to run. You saw it. And results are easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,040",
+				"to": "00:03:49,240"
+			},
+			"offsets": {
+				"from": 222040,
+				"to": 229240
+			},
+			"text": " to understand and easy to shoulder anyone. And not to say that we achieve trustlessness."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,240",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 229240,
+				"to": 238840
+			},
+			"text": " So please go and try it. It's online. It's testsu.net. And also we open sourced it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:10,960"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 250960
+			},
+			"text": " And it can be found on GitHub. So you can play with it. And maybe change it according"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,960",
+				"to": "00:04:16,880"
+			},
+			"offsets": {
+				"from": 250960,
+				"to": 256880
+			},
+			"text": " to your needs. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,880",
+				"to": "00:04:22,520"
+			},
+			"offsets": {
+				"from": 256880,
+				"to": 262520
+			},
+			"text": " >> Hey, everyone. My name is Tim Bagel. I'm here to talk about how we can fund each one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,520",
+				"to": "00:04:28,360"
+			},
+			"offsets": {
+				"from": 262520,
+				"to": 268360
+			},
+			"text": " point x by auctioning off the names to Ethereum network upgrades. So a bit of background."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,360",
+				"to": "00:04:34,760"
+			},
+			"offsets": {
+				"from": 268360,
+				"to": 274760
+			},
+			"text": " There's some initiatives on Ethereum 1.0 and Ethereum 1.x that don't get the funds they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,760",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 274760,
+				"to": 278960
+			},
+			"text": " need to get off the ground. And oftentimes the amount needed for these initiatives are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:43,320"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 283320
+			},
+			"text": " quite small to build a proof of concept to get to an initial heap and something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,320",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 283320,
+				"to": 287800
+			},
+			"text": " that. So I think we could fund some of these efforts by auctioning off the names to network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:54,920"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 294920
+			},
+			"text": " upgrades. So what I mean specifically is I think we could run an on-chain auction from"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,920",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 294920,
+				"to": 298800
+			},
+			"text": " the first block of an upgrade all the way to the last block of it before the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:03,840"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 303840
+			},
+			"text": " And throughout the auction people bid for what the name of the upgrade will be. And this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,840",
+				"to": "00:05:07,600"
+			},
+			"offsets": {
+				"from": 303840,
+				"to": 307600
+			},
+			"text": " kind of a dynamic auction, so throughout the auction whatever the highest bid says the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,600",
+				"to": "00:05:16,120"
+			},
+			"offsets": {
+				"from": 307600,
+				"to": 316120
+			},
+			"text": " name is is what we refer to the upgrade as for that point of time. And obviously whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,120",
+				"to": "00:05:21,760"
+			},
+			"offsets": {
+				"from": 316120,
+				"to": 321760
+			},
+			"text": " someone out bids that bid then you refund the previous person update the name and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,760",
+				"to": "00:05:25,200"
+			},
+			"offsets": {
+				"from": 321760,
+				"to": 325200
+			},
+			"text": " it. And there's a couple of things that are important here. The first is that you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,200",
+				"to": "00:05:29,120"
+			},
+			"offsets": {
+				"from": 325200,
+				"to": 329120
+			},
+			"text": " want to have like a high minimum bid because this premium name space you're selling you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,120",
+				"to": "00:05:34,400"
+			},
+			"offsets": {
+				"from": 329120,
+				"to": 334400
+			},
+			"text": " want to make sure that people value it accordingly. So I propose a thousand each minimum. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,400",
+				"to": "00:05:37,240"
+			},
+			"offsets": {
+				"from": 334400,
+				"to": 337240
+			},
+			"text": " you also want to have large increments between the bids because you don't want people to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,240",
+				"to": "00:05:41,680"
+			},
+			"offsets": {
+				"from": 337240,
+				"to": 341680
+			},
+			"text": " spam the network while they're making bids for these names. So I had a proposal for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,680",
+				"to": "00:05:46,080"
+			},
+			"offsets": {
+				"from": 341680,
+				"to": 346080
+			},
+			"text": " hundred each. And this would obviously be a bit complicated on the client side because"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,080",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 346080,
+				"to": 350000
+			},
+			"text": " if they need to change the name all the time that's not ideal. So we could just use version"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:55,320"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 355320
+			},
+			"text": " numbers in the clients and use a marketing name that we use sort of in blog posts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,320",
+				"to": "00:05:59,560"
+			},
+			"offsets": {
+				"from": 355320,
+				"to": 359560
+			},
+			"text": " whatnot. Kind of like Android does where all the major releases have both a marketing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,560",
+				"to": "00:06:07,960"
+			},
+			"offsets": {
+				"from": 359560,
+				"to": 367960
+			},
+			"text": " name and a version number. And so on the upgrade block whatever the highest bid says the name"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,960",
+				"to": "00:06:14,600"
+			},
+			"offsets": {
+				"from": 367960,
+				"to": 374600
+			},
+			"text": " is gets finalized on chain and that's how we refer to the upgrade going forward in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,600",
+				"to": "00:06:20,080"
+			},
+			"offsets": {
+				"from": 374600,
+				"to": 380080
+			},
+			"text": " And what do you actually fund here? So I think we should do these funds and try to spend"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,080",
+				"to": "00:06:25,360"
+			},
+			"offsets": {
+				"from": 380080,
+				"to": 385360
+			},
+			"text": " them on initiatives that have a high likelihood of improving the Ethereum network today. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,360",
+				"to": "00:06:31,440"
+			},
+			"offsets": {
+				"from": 385360,
+				"to": 391440
+			},
+			"text": " means things like new sinking discovery protocols, some better testing, some ETH 1.x initiatives"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,440",
+				"to": "00:06:35,760"
+			},
+			"offsets": {
+				"from": 391440,
+				"to": 395760
+			},
+			"text": " like state rent, some coordination across the clients or even some research ideas like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,760",
+				"to": "00:06:40,240"
+			},
+			"offsets": {
+				"from": 395760,
+				"to": 400240
+			},
+			"text": " off-chain storage. And again it's important to note that we should try to optimize to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,240",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 400240,
+				"to": 404240
+			},
+			"text": " have a large set of initiatives so have very small amounts that are kind of proof of concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:48,800"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 408800
+			},
+			"text": " size that are spent fairly quickly. So in an ideal world you've spent almost all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,800",
+				"to": "00:06:54,920"
+			},
+			"offsets": {
+				"from": 408800,
+				"to": 414920
+			},
+			"text": " funds from one auction before starting the next one. But who gets to decide how we spend"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,920",
+				"to": "00:07:00,200"
+			},
+			"offsets": {
+				"from": 414920,
+				"to": 420200
+			},
+			"text": " those funds? The purpose of this is a three out of five multi-sig with the following parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:04,080"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 424080
+			},
+			"text": " So you have someone who's there to represent the Ethereum foundation, who's not a client"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,080",
+				"to": "00:07:08,120"
+			},
+			"offsets": {
+				"from": 424080,
+				"to": 428120
+			},
+			"text": " developer who's already there to represent sort of the Ethereum brand and vision. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,120",
+				"to": "00:07:12,560"
+			},
+			"offsets": {
+				"from": 428120,
+				"to": 432560
+			},
+			"text": " don't want to have two client developers, ideally one or more, not from the EF who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,560",
+				"to": "00:07:17,960"
+			},
+			"offsets": {
+				"from": 432560,
+				"to": 437960
+			},
+			"text": " there to represent the Core devs. And then you want also an independent protocol developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,960",
+				"to": "00:07:21,680"
+			},
+			"offsets": {
+				"from": 437960,
+				"to": 441680
+			},
+			"text": " to someone who's not affiliated with one of the bigger companies in the space. And finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,680",
+				"to": "00:07:25,240"
+			},
+			"offsets": {
+				"from": 441680,
+				"to": 445240
+			},
+			"text": " someone to represent the broader community. So someone who's not part of the EF who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,240",
+				"to": "00:07:29,440"
+			},
+			"offsets": {
+				"from": 445240,
+				"to": 449440
+			},
+			"text": " not a core developer but just represents the Ethereum community at large, whether they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,440",
+				"to": "00:07:33,720"
+			},
+			"offsets": {
+				"from": 449440,
+				"to": 453720
+			},
+			"text": " adopt developer and Ethereum cat harder or just some Reddit or Twitter user who's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,720",
+				"to": "00:07:39,680"
+			},
+			"offsets": {
+				"from": 453720,
+				"to": 459680
+			},
+			"text": " favorable towards Ethereum. And the people on these multi-sig would basically be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,680",
+				"to": "00:07:44,360"
+			},
+			"offsets": {
+				"from": 459680,
+				"to": 464360
+			},
+			"text": " to rotate in and out on a per upgrade basis. So you're not signing up to this for life."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,360",
+				"to": "00:07:48,120"
+			},
+			"offsets": {
+				"from": 464360,
+				"to": 468120
+			},
+			"text": " This obviously implies you need a process to decide how you add or remove people from"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,120",
+				"to": "00:07:54,320"
+			},
+			"offsets": {
+				"from": 468120,
+				"to": 474320
+			},
+			"text": " that multi-sig. And there's a couple constraints on the people in that multi-sig. Specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,320",
+				"to": "00:07:58,200"
+			},
+			"offsets": {
+				"from": 474320,
+				"to": 478200
+			},
+			"text": " that you don't want them to be able to get grants from the auction if they're part of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,200",
+				"to": "00:08:02,040"
+			},
+			"offsets": {
+				"from": 478200,
+				"to": 482040
+			},
+			"text": " the multi-sig. And even farther than that, you probably don't want anyone from the organizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,040",
+				"to": "00:08:06,880"
+			},
+			"offsets": {
+				"from": 482040,
+				"to": 486880
+			},
+			"text": " to apply for a grant if they control the keys to the funds. So for example, if Basu,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,880",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 486880,
+				"to": 490640
+			},
+			"text": " which is the team that I'm on, was part of the multi-sig for Berlin, which is the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 495120
+			},
+			"text": " upgrade after Istanbul, then no one from Pegasus, which is the company I work for, should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:24,480"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 504480
+			},
+			"text": " able to apply for a grant from funds raised during that auction. And so one interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,480",
+				"to": "00:08:29,080"
+			},
+			"offsets": {
+				"from": 504480,
+				"to": 509080
+			},
+			"text": " question here is like, what do you actually name the hard fork? So I have a couple proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,080",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 509080,
+				"to": 513360
+			},
+			"text": " for what would be okay or not okay for names. Obviously this is something you'd want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:37,920"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 517920
+			},
+			"text": " prove by the community and you'd want to discuss. And more specifically, you probably want"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,920",
+				"to": "00:08:42,240"
+			},
+			"offsets": {
+				"from": 517920,
+				"to": 522240
+			},
+			"text": " to have a process where at least one person on a multi-sig has to approve of a name for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,240",
+				"to": "00:08:47,120"
+			},
+			"offsets": {
+				"from": 522240,
+				"to": 527120
+			},
+			"text": " a bid to be valid. So some couple ideas of what's okay, just like some generic words."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,120",
+				"to": "00:08:52,680"
+			},
+			"offsets": {
+				"from": 527120,
+				"to": 532680
+			},
+			"text": " You don't want bad stuff, no offensive stuff. And probably just like not anything confusing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,680",
+				"to": "00:08:58,320"
+			},
+			"offsets": {
+				"from": 532680,
+				"to": 538320
+			},
+			"text": " So no previous upgrade names, no other blockchain names. So it would be kind of awkward if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,320",
+				"to": "00:09:05,120"
+			},
+			"offsets": {
+				"from": 538320,
+				"to": 545120
+			},
+			"text": " had like the ETC, Ethereum upgrade. And generally, like something that you would be okay sponsoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,120",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 545120,
+				"to": 551000
+			},
+			"text": " DEF CON would probably be a good name there. And finally, if you don't raise any money"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:15,240"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 555240
+			},
+			"text": " there in this auction, then we could just revert back to using DEF CON city names, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,240",
+				"to": "00:09:21,800"
+			},
+			"offsets": {
+				"from": 555240,
+				"to": 561800
+			},
+			"text": " what you started doing informally past Istanbul. So that's what I had. I have like a minute"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,800",
+				"to": "00:09:28,440"
+			},
+			"offsets": {
+				"from": 561800,
+				"to": 568440
+			},
+			"text": " left if anyone has a question. Okay. Thanks, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,440",
+				"to": "00:09:35,280"
+			},
+			"offsets": {
+				"from": 568440,
+				"to": 575280
+			},
+			"text": " Hello, everyone. This is Hooman Farandman. I'm with Gartner. So in this session, I want"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,280",
+				"to": "00:09:40,200"
+			},
+			"offsets": {
+				"from": 575280,
+				"to": 580200
+			},
+			"text": " to share with you some end user perspective. You know that hopefully helped with adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,200",
+				"to": "00:09:46,920"
+			},
+			"offsets": {
+				"from": 580200,
+				"to": 586920
+			},
+			"text": " So we have basically service in thousands of inquiries per year, you know, that relates"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,920",
+				"to": "00:09:53,960"
+			},
+			"offsets": {
+				"from": 586920,
+				"to": 593960
+			},
+			"text": " to blockchain. And pretty much half of them deals with selecting a blockchain platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,960",
+				"to": "00:09:59,760"
+			},
+			"offsets": {
+				"from": 593960,
+				"to": 599760
+			},
+			"text": " In many cases, we'll see there's still a lot of confusion that what a blockchain platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,760",
+				"to": "00:10:09,960"
+			},
+			"offsets": {
+				"from": 599760,
+				"to": 609960
+			},
+			"text": " is or is not. So, and that really play into the adoption and there is of evaluating the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,960",
+				"to": "00:10:19,440"
+			},
+			"offsets": {
+				"from": 609960,
+				"to": 619440
+			},
+			"text": " platform. So there are many different definitions, you know, that we find out, you know, unfortunately"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,440",
+				"to": "00:10:23,640"
+			},
+			"offsets": {
+				"from": 619440,
+				"to": 623640
+			},
+			"text": " some of them really doesn't make sense. And you have to spend a lot of time, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,640",
+				"to": "00:10:29,200"
+			},
+			"offsets": {
+				"from": 623640,
+				"to": 629200
+			},
+			"text": " for companies to first of all define a blockchain platform, what it constitutes and take the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,200",
+				"to": "00:10:35,200"
+			},
+			"offsets": {
+				"from": 629200,
+				"to": 635200
+			},
+			"text": " next step to start comparing the platform which is out there and select something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,200",
+				"to": "00:10:42,080"
+			},
+			"offsets": {
+				"from": 635200,
+				"to": 642080
+			},
+			"text": " works for them. So from what we have seen obviously, Ethereum and Hyperledger fabric are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,080",
+				"to": "00:10:47,360"
+			},
+			"offsets": {
+				"from": 642080,
+				"to": 647360
+			},
+			"text": " the most popular one, but I have to say that there is no loyalty to any of these platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,360",
+				"to": "00:10:52,480"
+			},
+			"offsets": {
+				"from": 647360,
+				"to": 652480
+			},
+			"text": " because still most of the organizations are testing, you know, and going through proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,480",
+				"to": "00:11:00,480"
+			},
+			"offsets": {
+				"from": 652480,
+				"to": 660480
+			},
+			"text": " of concept or some sort of limited pilot. So the any decision that they make is not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,480",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 660480,
+				"to": 664880
+			},
+			"text": " a strategic one. So in a couple of years or one year, you know, they may switch to another"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:11,840"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 671840
+			},
+			"text": " platform. So what we thought, you know, it may help is to start establishing a functional"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,840",
+				"to": "00:11:18,400"
+			},
+			"offsets": {
+				"from": 671840,
+				"to": 678400
+			},
+			"text": " framework for blockchain platforms, you know, that helps with organizations to do an Apple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,400",
+				"to": "00:11:24,840"
+			},
+			"offsets": {
+				"from": 678400,
+				"to": 684840
+			},
+			"text": " to Apple comparison of different frameworks or platforms out there, which there are hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,840",
+				"to": "00:11:30,320"
+			},
+			"offsets": {
+				"from": 684840,
+				"to": 690320
+			},
+			"text": " of them. They initially come to us and say, okay, why don't you as a gardener go create"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,320",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 690320,
+				"to": 695000
+			},
+			"text": " a magic quadrant, you know, for all of these platforms. The challenge is that there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:41,360"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 701360
+			},
+			"text": " so many of them out there. So and then they are changing too fast in terms of, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,360",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 701360,
+				"to": 707000
+			},
+			"text": " all the improvements that happen. So it's kind of work in progress. So that's not possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:54,840"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 714840
+			},
+			"text": " So what we did instead, we created this framework that pretty much covers all the key functional"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,840",
+				"to": "00:12:01,840"
+			},
+			"offsets": {
+				"from": 714840,
+				"to": 721840
+			},
+			"text": " modules from smart contracts, node management, the core blockchain transactions infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,840",
+				"to": "00:12:11,080"
+			},
+			"offsets": {
+				"from": 721840,
+				"to": 731080
+			},
+			"text": " and more and more the ecosystem management aspect of blockchain solution. So basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,080",
+				"to": "00:12:15,280"
+			},
+			"offsets": {
+				"from": 731080,
+				"to": 735280
+			},
+			"text": " the idea is that this is not obviously perfect, you know, we are going to improve it over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,280",
+				"to": "00:12:22,320"
+			},
+			"offsets": {
+				"from": 735280,
+				"to": 742320
+			},
+			"text": " but the idea is that first of all, they get an understanding what a platform is and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,320",
+				"to": "00:12:28,880"
+			},
+			"offsets": {
+				"from": 742320,
+				"to": 748880
+			},
+			"text": " they start asking the right questions. So for every of these functional modules, we define,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,880",
+				"to": "00:12:33,960"
+			},
+			"offsets": {
+				"from": 748880,
+				"to": 753960
+			},
+			"text": " you know, what it is, you know, and then we introduce some questions that they should ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,960",
+				"to": "00:12:42,800"
+			},
+			"offsets": {
+				"from": 753960,
+				"to": 762800
+			},
+			"text": " So if you add them up, it's about 142 questions, you know, that pretty much covers, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,800",
+				"to": "00:12:49,400"
+			},
+			"offsets": {
+				"from": 762800,
+				"to": 769400
+			},
+			"text": " all the key important, you know, features that you may expect from a platform. Some of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,400",
+				"to": "00:12:57,720"
+			},
+			"offsets": {
+				"from": 769400,
+				"to": 777720
+			},
+			"text": " may be applicable or not applicable depending to the use case that they have. And that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,720",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 777720,
+				"to": 781720
+			},
+			"text": " give them hopefully an understanding that, for example, what's the difference if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:11,720"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 791720
+			},
+			"text": " go with, let's say, Ethereum versus Hedera versus Fabric, Core them. And some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,720",
+				"to": "00:13:18,400"
+			},
+			"offsets": {
+				"from": 791720,
+				"to": 798400
+			},
+			"text": " differences, you know, will come up in as part of that process, you know. But the story"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,400",
+				"to": "00:13:24,600"
+			},
+			"offsets": {
+				"from": 798400,
+				"to": 804600
+			},
+			"text": " doesn't change, doesn't end there. What we have to deal with, you know, there's a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,600",
+				"to": "00:13:31,680"
+			},
+			"offsets": {
+				"from": 804600,
+				"to": 811680
+			},
+			"text": " debates around public versus, you know, enterprise. We see those are the two key patterns in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,680",
+				"to": "00:13:37,600"
+			},
+			"offsets": {
+				"from": 811680,
+				"to": 817600
+			},
+			"text": " of the design of these platforms. We see sometimes people try to differentiate these platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,600",
+				"to": "00:13:45,080"
+			},
+			"offsets": {
+				"from": 817600,
+				"to": 825080
+			},
+			"text": " in a much more granular way. But a lot of those differences, we consider them as configurable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,080",
+				"to": "00:13:52,680"
+			},
+			"offsets": {
+				"from": 825080,
+				"to": 832680
+			},
+			"text": " features that over time they morph into the same platform that we have. And even between"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,680",
+				"to": "00:13:58,600"
+			},
+			"offsets": {
+				"from": 832680,
+				"to": 838600
+			},
+			"text": " public and enterprise, we'll see the lines start lowering over time. So, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,600",
+				"to": "00:14:04,600"
+			},
+			"offsets": {
+				"from": 838600,
+				"to": 844600
+			},
+			"text": " what's happening with Ethereum 2.0, we envision, you know, an environment that you can define"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,600",
+				"to": "00:14:12,200"
+			},
+			"offsets": {
+				"from": 844600,
+				"to": 852200
+			},
+			"text": " a chart, you fix the validators for those charts and eventually use some sort of gateway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,200",
+				"to": "00:14:18,360"
+			},
+			"offsets": {
+				"from": 852200,
+				"to": 858360
+			},
+			"text": " you know, to interact with beacon chains. So while you are isolating your chart and chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,360",
+				"to": "00:14:27,760"
+			},
+			"offsets": {
+				"from": 858360,
+				"to": 867760
+			},
+			"text": " you have the opportunity to connect to a public type of, you know, platform. So that's something"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,760",
+				"to": "00:14:33,160"
+			},
+			"offsets": {
+				"from": 867760,
+				"to": 873160
+			},
+			"text": " that we try to convey to this organization, not too much, you know, stuck with having"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,160",
+				"to": "00:14:38,120"
+			},
+			"offsets": {
+				"from": 873160,
+				"to": 878120
+			},
+			"text": " a shared ledger, looking at the bigger picture of the platform, like the cryptoeconomics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,120",
+				"to": "00:14:44,160"
+			},
+			"offsets": {
+				"from": 878120,
+				"to": 884160
+			},
+			"text": " you know, embedded native, you know, token, you know, that that's establishing the platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,160",
+				"to": "00:14:50,280"
+			},
+			"offsets": {
+				"from": 884160,
+				"to": 890280
+			},
+			"text": " the coordination and consensus, you know, protocol, the importance of them to make their"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,280",
+				"to": "00:14:59,360"
+			},
+			"offsets": {
+				"from": 890280,
+				"to": 899360
+			},
+			"text": " choice future proof over time. But in addition to that, we think organizations need to also"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,360",
+				"to": "00:15:05,960"
+			},
+			"offsets": {
+				"from": 899360,
+				"to": 905960
+			},
+			"text": " look at areas beyond just having the pure blockchain platform. And that's, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,960",
+				"to": "00:15:11,440"
+			},
+			"offsets": {
+				"from": 905960,
+				"to": 911440
+			},
+			"text": " things like decentralized web. At Gartner, we believe that the vision of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,440",
+				"to": "00:15:18,400"
+			},
+			"offsets": {
+				"from": 911440,
+				"to": 918400
+			},
+			"text": " web, I think it's a key element of supporting digital ecosystems moving forward. So without"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,400",
+				"to": "00:15:25,120"
+			},
+			"offsets": {
+				"from": 918400,
+				"to": 925120
+			},
+			"text": " having that fabric, you know, to do a trans verification between all sorts of entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,120",
+				"to": "00:15:31,280"
+			},
+			"offsets": {
+				"from": 925120,
+				"to": 931280
+			},
+			"text": " having that vision of digitalization in an ecosystem that's almost impossible. So decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,280",
+				"to": "00:15:35,920"
+			},
+			"offsets": {
+				"from": 931280,
+				"to": 935920
+			},
+			"text": " web is coming. And then from a platform perspective, if the platform has a limited vision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,920",
+				"to": "00:15:42,760"
+			},
+			"offsets": {
+				"from": 935920,
+				"to": 942760
+			},
+			"text": " it cannot support decentralized web. So that's another layer that needs to be factored as"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,760",
+				"to": "00:15:49,080"
+			},
+			"offsets": {
+				"from": 942760,
+				"to": 949080
+			},
+			"text": " part of the decision. So, and even we push it further in terms of long-term planning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,080",
+				"to": "00:15:54,440"
+			},
+			"offsets": {
+				"from": 949080,
+				"to": 954440
+			},
+			"text": " like 10 years, 15 years down the road, this concept of worldwide ledger, you know, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,440",
+				"to": "00:16:02,480"
+			},
+			"offsets": {
+				"from": 954440,
+				"to": 962480
+			},
+			"text": " we are going to have an kind of muted version of worldwide web that basically connect all"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,480",
+				"to": "00:16:07,640"
+			},
+			"offsets": {
+				"from": 962480,
+				"to": 967640
+			},
+			"text": " these ledgers together, you know, with new type of identification methods, new type of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,640",
+				"to": "00:16:18,400"
+			},
+			"offsets": {
+				"from": 967640,
+				"to": 978400
+			},
+			"text": " you know, objects, new type of protocols that we try to convey. And the whole idea is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,400",
+				"to": "00:16:21,880"
+			},
+			"offsets": {
+				"from": 978400,
+				"to": 981880
+			},
+			"text": " help the organizations to understand, you know, where are we going with all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,880",
+				"to": "00:16:27,840"
+			},
+			"offsets": {
+				"from": 981880,
+				"to": 987840
+			},
+			"text": " technologies? Sometimes, you know, as developers, we may focus too much on the bits and bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,840",
+				"to": "00:16:33,120"
+			},
+			"offsets": {
+				"from": 987840,
+				"to": 993120
+			},
+			"text": " you know, and miss on the bigger picture, which is important for them, you know, to build the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,120",
+				"to": "00:16:39,800"
+			},
+			"offsets": {
+				"from": 993120,
+				"to": 999800
+			},
+			"text": " case to adopt this type of technology. So that's the idea, you know, as some kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,800",
+				"to": "00:16:43,560"
+			},
+			"offsets": {
+				"from": 999800,
+				"to": 1003560
+			},
+			"text": " you know, hopefully pointers, you know, as you want building, you know, all these great"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,560",
+				"to": "00:16:49,120"
+			},
+			"offsets": {
+				"from": 1003560,
+				"to": 1009120
+			},
+			"text": " systems, you know, to convey it in a way that they can relate to and adopt it over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,120",
+				"to": "00:16:51,120"
+			},
+			"offsets": {
+				"from": 1009120,
+				"to": 1011120
+			},
+			"text": " That's it. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,120",
+				"to": "00:16:59,240"
+			},
+			"offsets": {
+				"from": 1011120,
+				"to": 1019240
+			},
+			"text": " Hi, everyone. And welcome to Japan. My name is Yunos Kenabayama. I'm a master student at"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,240",
+				"to": "00:17:05,480"
+			},
+			"offsets": {
+				"from": 1019240,
+				"to": 1025480
+			},
+			"text": " Tokyo Institute of Technology. Today, I would like to talk about a network simulator called"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,480",
+				"to": "00:17:13,440"
+			},
+			"offsets": {
+				"from": 1025480,
+				"to": 1033440
+			},
+			"text": " Shinbrok. Network is one of the important things for us. So blockchain is based on P2P"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,440",
+				"to": "00:17:21,080"
+			},
+			"offsets": {
+				"from": 1033440,
+				"to": 1041080
+			},
+			"text": " networks. So it's necessary to consider communication within the network. For example, we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,080",
+				"to": "00:17:27,840"
+			},
+			"offsets": {
+				"from": 1041080,
+				"to": 1047840
+			},
+			"text": " to improve the blockchain throughput. You will increase the block size and the number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,840",
+				"to": "00:17:36,120"
+			},
+			"offsets": {
+				"from": 1047840,
+				"to": 1056120
+			},
+			"text": " blocks generated per second. But however, this increases the block propagation delay"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,120",
+				"to": "00:17:45,880"
+			},
+			"offsets": {
+				"from": 1056120,
+				"to": 1065880
+			},
+			"text": " and shorten the blockchain time. So then it's, it becomes difficult to synchronize blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,880",
+				"to": "00:17:55,960"
+			},
+			"offsets": {
+				"from": 1065880,
+				"to": 1075960
+			},
+			"text": " in network and it triggers the chain of blocks. So like this, network communication is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,960",
+				"to": "00:18:04,080"
+			},
+			"offsets": {
+				"from": 1075960,
+				"to": 1084080
+			},
+			"text": " our security degradation on blockchain. So we research the improving as a method for improving"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,080",
+				"to": "00:18:12,760"
+			},
+			"offsets": {
+				"from": 1084080,
+				"to": 1092760
+			},
+			"text": " the blockchain networks. But it's difficult to experiment with real networks. So we, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,760",
+				"to": "00:18:20,720"
+			},
+			"offsets": {
+				"from": 1092760,
+				"to": 1100720
+			},
+			"text": " developed a blockchain network simulator. So, and we, we call it Shinbrok. Shinbrok shim rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,720",
+				"to": "00:18:29,840"
+			},
+			"offsets": {
+				"from": 1100720,
+				"to": 1109840
+			},
+			"text": " blockchain protocols and block propagation. By default, blockchain using proof of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,840",
+				"to": "00:18:37,240"
+			},
+			"offsets": {
+				"from": 1109840,
+				"to": 1117240
+			},
+			"text": " and long as through on random networks. But if you want to test your new idea, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,240",
+				"to": "00:18:45,600"
+			},
+			"offsets": {
+				"from": 1117240,
+				"to": 1125600
+			},
+			"text": " design node behavior, network topology and network configuration to fit your ideas. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,600",
+				"to": "00:18:52,920"
+			},
+			"offsets": {
+				"from": 1125600,
+				"to": 1132920
+			},
+			"text": " you can get the various data from Shinbrok. This data can be used for network measurement"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,920",
+				"to": "00:19:02,200"
+			},
+			"offsets": {
+				"from": 1132920,
+				"to": 1142200
+			},
+			"text": " and attack analysis and so on. And this, this image was used for some experiments about"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,200",
+				"to": "00:19:13,560"
+			},
+			"offsets": {
+				"from": 1142200,
+				"to": 1153560
+			},
+			"text": " new network selection algorithm and measuring the effect of the networks. So, and now, Shinbrok"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,560",
+				"to": "00:19:20,840"
+			},
+			"offsets": {
+				"from": 1153560,
+				"to": 1160840
+			},
+			"text": " supports Bitcoin, Litecoin and those coins. And we are developing for Eastern support."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,840",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1160840,
+				"to": 1169000
+			},
+			"text": " But there are many Eastern projects. So such as Chaspa, Prasma. So this time, I should"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:35,160"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1175160
+			},
+			"text": " summarize the first thing. So, this is the first thing that we are going to do. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,160",
+				"to": "00:19:40,440"
+			},
+			"offsets": {
+				"from": 1175160,
+				"to": 1180440
+			},
+			"text": " this is the first thing that we are going to do. So, this is the first thing that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,440",
+				"to": "00:19:47,480"
+			},
+			"offsets": {
+				"from": 1180440,
+				"to": 1187480
+			},
+			"text": " are going to do. So, this is the first thing that we are going to do. So, this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,480",
+				"to": "00:19:54,520"
+			},
+			"offsets": {
+				"from": 1187480,
+				"to": 1194520
+			},
+			"text": " first thing that we are going to do. So, this is the first thing that we are going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,520",
+				"to": "00:20:02,120"
+			},
+			"offsets": {
+				"from": 1194520,
+				"to": 1202120
+			},
+			"text": " So, this is the first protocol against surface mining. This is the interim result. The left"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,120",
+				"to": "00:20:09,640"
+			},
+			"offsets": {
+				"from": 1202120,
+				"to": 1209640
+			},
+			"text": " shows the ratio of the attack guard blocks in main chain corresponding to the attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,640",
+				"to": "00:20:18,480"
+			},
+			"offsets": {
+				"from": 1209640,
+				"to": 1218480
+			},
+			"text": " guard mining power. This shows how much mining power is needed for surface mining. And Lite"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,480",
+				"to": "00:20:29,200"
+			},
+			"offsets": {
+				"from": 1218480,
+				"to": 1229200
+			},
+			"text": " shows the average length of the attack, the chain released by the attacker. This is related"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,200",
+				"to": "00:20:38,560"
+			},
+			"offsets": {
+				"from": 1229200,
+				"to": 1238560
+			},
+			"text": " to the safe number of confirmation. This in both results, it shows the cost is better"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,560",
+				"to": "00:20:47,400"
+			},
+			"offsets": {
+				"from": 1238560,
+				"to": 1247400
+			},
+			"text": " than the long history. But it's not as much as I expected. This is probably because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,400",
+				"to": "00:21:03,320"
+			},
+			"offsets": {
+				"from": 1247400,
+				"to": 1263320
+			},
+			"text": " interim has not so much focus. So, I think if the cost is better, more efficient with"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,320",
+				"to": "00:21:13,120"
+			},
+			"offsets": {
+				"from": 1263320,
+				"to": 1273120
+			},
+			"text": " the more focused block chain. So, as this experiment, Simbroke will help you to evaluate"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,120",
+				"to": "00:21:24,680"
+			},
+			"offsets": {
+				"from": 1273120,
+				"to": 1284680
+			},
+			"text": " some eastern protocols. Please try Simbroke and give us feedback. If you are interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,680",
+				"to": "00:21:31,400"
+			},
+			"offsets": {
+				"from": 1284680,
+				"to": 1291400
+			},
+			"text": " in the Simbroke, you can get more information and code on our website or GitHub. Thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,400",
+				"to": "00:21:34,160"
+			},
+			"offsets": {
+				"from": 1291400,
+				"to": 1294160
+			},
+			"text": " for listening. Please enjoy the contact or suck up."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,160",
+				"to": "00:21:36,640"
+			},
+			"offsets": {
+				"from": 1294160,
+				"to": 1296640
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,640",
+				"to": "00:21:43,640"
+			},
+			"offsets": {
+				"from": 1296640,
+				"to": 1303640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,640",
+				"to": "00:21:50,640"
+			},
+			"offsets": {
+				"from": 1303640,
+				"to": 1310640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,640",
+				"to": "00:21:57,640"
+			},
+			"offsets": {
+				"from": 1310640,
+				"to": 1317640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,640",
+				"to": "00:22:04,640"
+			},
+			"offsets": {
+				"from": 1317640,
+				"to": 1324640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,640",
+				"to": "00:22:11,640"
+			},
+			"offsets": {
+				"from": 1324640,
+				"to": 1331640
+			},
+			"text": " [Music]"
+		}
+	]
+}

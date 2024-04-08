@@ -1,0 +1,2067 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:20,080"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 20080
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,080",
+				"to": "00:00:20,580"
+			},
+			"offsets": {
+				"from": 20080,
+				"to": 20580
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,580",
+				"to": "00:00:21,960"
+			},
+			"offsets": {
+				"from": 20580,
+				"to": 21960
+			},
+			"text": " My name is Tim Coulter."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,960",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21960,
+				"to": 25000
+			},
+			"text": " I'm here to talk to you about Truffle."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,200"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27200
+			},
+			"text": " So first, I want to start up and say thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,200",
+				"to": "00:00:28,760"
+			},
+			"offsets": {
+				"from": 27200,
+				"to": 28760
+			},
+			"text": " It's a pleasure to be on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,760",
+				"to": "00:00:32,920"
+			},
+			"offsets": {
+				"from": 28760,
+				"to": 32920
+			},
+			"text": " And I'm very happy to tell you about all the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,920",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32920,
+				"to": 35000
+			},
+			"text": " that we've been doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:36,600"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 36600
+			},
+			"text": " First off, what is Truffle?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,600",
+				"to": "00:00:40,280"
+			},
+			"offsets": {
+				"from": 36600,
+				"to": 40280
+			},
+			"text": " Truffle is the most widely used Ethereum development"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,280",
+				"to": "00:00:42,320"
+			},
+			"offsets": {
+				"from": 40280,
+				"to": 42320
+			},
+			"text": " framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,320",
+				"to": "00:00:46,720"
+			},
+			"offsets": {
+				"from": 42320,
+				"to": 46720
+			},
+			"text": " Two dates we've had over 17,000 downloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,720",
+				"to": "00:00:49,520"
+			},
+			"offsets": {
+				"from": 46720,
+				"to": 49520
+			},
+			"text": " 15,000 of those were this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,520",
+				"to": "00:00:53,080"
+			},
+			"offsets": {
+				"from": 49520,
+				"to": 53080
+			},
+			"text": " 6,000 of those were in the last two months."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,080",
+				"to": "00:00:54,800"
+			},
+			"offsets": {
+				"from": 53080,
+				"to": 54800
+			},
+			"text": " 421 GitHub stars."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,800",
+				"to": "00:00:57,240"
+			},
+			"offsets": {
+				"from": 54800,
+				"to": 57240
+			},
+			"text": " We have 397 Gitter users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,240",
+				"to": "00:00:59,600"
+			},
+			"offsets": {
+				"from": 57240,
+				"to": 59600
+			},
+			"text": " I have to thank every user on there"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,600",
+				"to": "00:01:02,200"
+			},
+			"offsets": {
+				"from": 59600,
+				"to": 62200
+			},
+			"text": " for answering questions of everybody else"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,200",
+				"to": "00:01:04,280"
+			},
+			"offsets": {
+				"from": 62200,
+				"to": 64280
+			},
+			"text": " that I can't get to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,280",
+				"to": "00:01:10,360"
+			},
+			"offsets": {
+				"from": 64280,
+				"to": 70360
+			},
+			"text": " And so far, we've had over 20 external global contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,360",
+				"to": "00:01:16,760"
+			},
+			"offsets": {
+				"from": 70360,
+				"to": 76760
+			},
+			"text": " So for Truffle 1.0, we gave you the basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,760",
+				"to": "00:01:20,040"
+			},
+			"offsets": {
+				"from": 76760,
+				"to": 80040
+			},
+			"text": " It was compilation, deployment, bootstrapping, application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,040",
+				"to": "00:01:23,440"
+			},
+			"offsets": {
+				"from": 80040,
+				"to": 83440
+			},
+			"text": " If you're making a web app, contract abstractions, unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,440",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 83440,
+				"to": 86560
+			},
+			"text": " testing, and ad-engquit development."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:29,800"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 89800
+			},
+			"text": " We added on that on top of that with 2.0"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,800",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 89800,
+				"to": 93960
+			},
+			"text": " and allowed better network management migrations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 96960
+			},
+			"text": " which supports complex deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:40,200"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 100200
+			},
+			"text": " And it knows that your contracts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,200",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 100200,
+				"to": 103160
+			},
+			"text": " going to change over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:46,680"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 106680
+			},
+			"text": " We focused on modularity and completely rewriting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,680",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 106680,
+				"to": 109400
+			},
+			"text": " the Truffle code base so that you can use only a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:52,120"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 112120
+			},
+			"text": " portion of the Truffle code base if you need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,120",
+				"to": "00:01:55,880"
+			},
+			"offsets": {
+				"from": 112120,
+				"to": 115880
+			},
+			"text": " And then we had a big push for documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,880",
+				"to": "00:01:59,240"
+			},
+			"offsets": {
+				"from": 115880,
+				"to": 119240
+			},
+			"text": " Now, what I want to talk about today is where we are now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,240",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 119240,
+				"to": 122840
+			},
+			"text": " And we're getting ready for Truffle 3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:06,880"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 126880
+			},
+			"text": " In doing that, I need to talk about the Ethereum GS TestRPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,880",
+				"to": "00:02:13,200"
+			},
+			"offsets": {
+				"from": 126880,
+				"to": 133200
+			},
+			"text": " Now, the TestRPC is an in-memory Ethereum client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,200",
+				"to": "00:02:16,880"
+			},
+			"offsets": {
+				"from": 133200,
+				"to": 136880
+			},
+			"text": " And it is not under the Truffle moniker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,880",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 136880,
+				"to": 141160
+			},
+			"text": " but I see it as the sister application to Truffle."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,160",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 141160,
+				"to": 143560
+			},
+			"text": " I'm the main steward of this application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,560",
+				"to": "00:02:29,160"
+			},
+			"offsets": {
+				"from": 143560,
+				"to": 149160
+			},
+			"text": " And it basically provides instant mining, account creation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,160",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 149160,
+				"to": 151720
+			},
+			"text": " HD wallet support if you need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:33,960"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 153960
+			},
+			"text": " It's deterministic if you need it, and it's programmable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,960",
+				"to": "00:02:37,240"
+			},
+			"offsets": {
+				"from": 153960,
+				"to": 157240
+			},
+			"text": " So what this means is that you can get quick development"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,240",
+				"to": "00:02:40,440"
+			},
+			"offsets": {
+				"from": 157240,
+				"to": 160440
+			},
+			"text": " without having to use live chain or private chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,440",
+				"to": "00:02:43,360"
+			},
+			"offsets": {
+				"from": 160440,
+				"to": 163360
+			},
+			"text": " no syncing, no mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,360",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 163360,
+				"to": 165680
+			},
+			"text": " So the biggest feature of the TestRPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:48,760"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 168760
+			},
+			"text": " is what I want to focus on today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,760",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 168760,
+				"to": 170440
+			},
+			"text": " And this is the fork feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,440",
+				"to": "00:02:53,040"
+			},
+			"offsets": {
+				"from": 170440,
+				"to": 173040
+			},
+			"text": " It's a big feature in a little package."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,040",
+				"to": "00:02:56,840"
+			},
+			"offsets": {
+				"from": 173040,
+				"to": 176840
+			},
+			"text": " So if you install the TestRPC and then use the dash dash fork"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,840",
+				"to": "00:03:02,160"
+			},
+			"offsets": {
+				"from": 176840,
+				"to": 182160
+			},
+			"text": " option, what this allows you to do is create a new Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,160",
+				"to": "00:03:06,240"
+			},
+			"offsets": {
+				"from": 182160,
+				"to": 186240
+			},
+			"text": " client and fork from any available chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,240",
+				"to": "00:03:09,760"
+			},
+			"offsets": {
+				"from": 186240,
+				"to": 189760
+			},
+			"text": " This means that if you're running Go Ethereum, you can fork"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,760",
+				"to": "00:03:14,640"
+			},
+			"offsets": {
+				"from": 189760,
+				"to": 194640
+			},
+			"text": " and run a new development chain using all the data that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,640",
+				"to": "00:03:16,560"
+			},
+			"offsets": {
+				"from": 194640,
+				"to": 196560
+			},
+			"text": " exists on the live chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,560",
+				"to": "00:03:17,840"
+			},
+			"offsets": {
+				"from": 196560,
+				"to": 197840
+			},
+			"text": " You can use parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,840",
+				"to": "00:03:19,720"
+			},
+			"offsets": {
+				"from": 197840,
+				"to": 199720
+			},
+			"text": " You can use CPP Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,720",
+				"to": "00:03:21,520"
+			},
+			"offsets": {
+				"from": 199720,
+				"to": 201520
+			},
+			"text": " You can fork from anyone you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,520",
+				"to": "00:03:24,880"
+			},
+			"offsets": {
+				"from": 201520,
+				"to": 204880
+			},
+			"text": " And this feature is perhaps the biggest feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,880",
+				"to": "00:03:26,360"
+			},
+			"offsets": {
+				"from": 204880,
+				"to": 206360
+			},
+			"text": " in development to date."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,360",
+				"to": "00:03:31,720"
+			},
+			"offsets": {
+				"from": 206360,
+				"to": 211720
+			},
+			"text": " Because in history of development, especially web"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,720",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211720,
+				"to": 216000
+			},
+			"text": " development, when have you ever had the chance"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:42,840"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 222840
+			},
+			"text": " to use live data and live code without--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,840",
+				"to": "00:03:47,320"
+			},
+			"offsets": {
+				"from": 222840,
+				"to": 227320
+			},
+			"text": " excuse me, when have you had the chance"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,320",
+				"to": "00:03:53,840"
+			},
+			"offsets": {
+				"from": 227320,
+				"to": 233840
+			},
+			"text": " to program against a production database, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,840",
+				"to": "00:03:56,400"
+			},
+			"offsets": {
+				"from": 233840,
+				"to": 236400
+			},
+			"text": " with all the data that exists there"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,400",
+				"to": "00:03:59,880"
+			},
+			"offsets": {
+				"from": 236400,
+				"to": 239880
+			},
+			"text": " and all the external interactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,880",
+				"to": "00:04:03,080"
+			},
+			"offsets": {
+				"from": 239880,
+				"to": 243080
+			},
+			"text": " in this case external contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,080",
+				"to": "00:04:04,360"
+			},
+			"offsets": {
+				"from": 243080,
+				"to": 244360
+			},
+			"text": " And this will allow you to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,360",
+				"to": "00:04:07,880"
+			},
+			"offsets": {
+				"from": 244360,
+				"to": 247880
+			},
+			"text": " So this has big implications for package management."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,880",
+				"to": "00:04:09,840"
+			},
+			"offsets": {
+				"from": 247880,
+				"to": 249840
+			},
+			"text": " It has big implications for security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,840",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 249840,
+				"to": 253680
+			},
+			"text": " For instance, I can program the Ethereum VS TestRPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:16,120"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 256120
+			},
+			"text": " in to exploit the DAO contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,120",
+				"to": "00:04:21,080"
+			},
+			"offsets": {
+				"from": 256120,
+				"to": 261080
+			},
+			"text": " For instance, I can fork right before the DAO presale"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,080",
+				"to": "00:04:25,360"
+			},
+			"offsets": {
+				"from": 261080,
+				"to": 265360
+			},
+			"text": " and then give you this code that shows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,360",
+				"to": "00:04:26,720"
+			},
+			"offsets": {
+				"from": 265360,
+				"to": 266720
+			},
+			"text": " how this exploit happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,720",
+				"to": "00:04:29,280"
+			},
+			"offsets": {
+				"from": 266720,
+				"to": 269280
+			},
+			"text": " And this goes back to what they were talking about before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,280",
+				"to": "00:04:35,040"
+			},
+			"offsets": {
+				"from": 269280,
+				"to": 275040
+			},
+			"text": " what specifically Rain Revere dynamic analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,040",
+				"to": "00:04:37,920"
+			},
+			"offsets": {
+				"from": 275040,
+				"to": 277920
+			},
+			"text": " We can use the testRPC for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,920",
+				"to": "00:04:40,080"
+			},
+			"offsets": {
+				"from": 277920,
+				"to": 280080
+			},
+			"text": " So the next big thing for Truffle is solidity unit test."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,080",
+				"to": "00:04:42,520"
+			},
+			"offsets": {
+				"from": 280080,
+				"to": 282520
+			},
+			"text": " This has been asked for for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,520",
+				"to": "00:04:44,320"
+			},
+			"offsets": {
+				"from": 282520,
+				"to": 284320
+			},
+			"text": " And these are drop-in unit tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,320",
+				"to": "00:04:46,600"
+			},
+			"offsets": {
+				"from": 284320,
+				"to": 286600
+			},
+			"text": " You can finally write your unit test in solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,600",
+				"to": "00:04:48,640"
+			},
+			"offsets": {
+				"from": 286600,
+				"to": 288640
+			},
+			"text": " put them alongside your JavaScript unit tests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,640",
+				"to": "00:04:50,360"
+			},
+			"offsets": {
+				"from": 288640,
+				"to": 290360
+			},
+			"text": " and Truffle will know how to run them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,360",
+				"to": "00:04:53,080"
+			},
+			"offsets": {
+				"from": 290360,
+				"to": 293080
+			},
+			"text": " It uses Sol unit for its assertion library."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,080",
+				"to": "00:04:55,280"
+			},
+			"offsets": {
+				"from": 293080,
+				"to": 295280
+			},
+			"text": " That has been discontinued, but it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,280",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 295280,
+				"to": 302000
+			},
+			"text": " a beautiful solidity library that I urge you all to check out."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:03,760"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 303760
+			},
+			"text": " The next big feature is NPM integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,760",
+				"to": "00:05:08,080"
+			},
+			"offsets": {
+				"from": 303760,
+				"to": 308080
+			},
+			"text": " So the ideal for package management on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,080",
+				"to": "00:05:10,400"
+			},
+			"offsets": {
+				"from": 308080,
+				"to": 310400
+			},
+			"text": " is obviously something that runs--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,400",
+				"to": "00:05:14,600"
+			},
+			"offsets": {
+				"from": 310400,
+				"to": 314600
+			},
+			"text": " that has a registry on chain, something that runs--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,600",
+				"to": "00:05:16,320"
+			},
+			"offsets": {
+				"from": 314600,
+				"to": 316320
+			},
+			"text": " that has the package date on IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,320",
+				"to": "00:05:18,440"
+			},
+			"offsets": {
+				"from": 316320,
+				"to": 318440
+			},
+			"text": " But it's going to be a while before that reaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,440",
+				"to": "00:05:19,440"
+			},
+			"offsets": {
+				"from": 318440,
+				"to": 319440
+			},
+			"text": " terminal velocity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,440",
+				"to": "00:05:24,640"
+			},
+			"offsets": {
+				"from": 319440,
+				"to": 324640
+			},
+			"text": " So what you can do now with some of the new features that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,640",
+				"to": "00:05:27,440"
+			},
+			"offsets": {
+				"from": 324640,
+				"to": 327440
+			},
+			"text": " are coming is run NPM install My Package."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,440",
+				"to": "00:05:32,640"
+			},
+			"offsets": {
+				"from": 327440,
+				"to": 332640
+			},
+			"text": " And if that's a Truffle project that you built,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,640",
+				"to": "00:05:36,440"
+			},
+			"offsets": {
+				"from": 332640,
+				"to": 336440
+			},
+			"text": " or somebody built and packaged up as My Package, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,440",
+				"to": "00:05:39,120"
+			},
+			"offsets": {
+				"from": 336440,
+				"to": 339120
+			},
+			"text": " then you can import those contracts into yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,120",
+				"to": "00:05:43,840"
+			},
+			"offsets": {
+				"from": 339120,
+				"to": 343840
+			},
+			"text": " And not only that, it will take all the build artifacts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:46,200"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 346200
+			},
+			"text": " and deployed addresses, and you can use those"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,200",
+				"to": "00:05:47,480"
+			},
+			"offsets": {
+				"from": 346200,
+				"to": 347480
+			},
+			"text": " within your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,480",
+				"to": "00:05:50,240"
+			},
+			"offsets": {
+				"from": 347480,
+				"to": 350240
+			},
+			"text": " So if you go back to the test RBC and use the fork feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,240",
+				"to": "00:05:56,360"
+			},
+			"offsets": {
+				"from": 350240,
+				"to": 356360
+			},
+			"text": " like I mentioned, you can use live contracts via NPM"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,360",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 356360,
+				"to": 361280
+			},
+			"text": " and interact with real code that exists on the live chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 363400
+			},
+			"text": " The next thing is Webpack integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:05,920"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 365920
+			},
+			"text": " The-- let's be real."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,920",
+				"to": "00:06:08,440"
+			},
+			"offsets": {
+				"from": 365920,
+				"to": 368440
+			},
+			"text": " The build system that came with Truffle"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,440",
+				"to": "00:06:10,560"
+			},
+			"offsets": {
+				"from": 368440,
+				"to": 370560
+			},
+			"text": " doesn't support everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,560",
+				"to": "00:06:13,640"
+			},
+			"offsets": {
+				"from": 370560,
+				"to": 373640
+			},
+			"text": " If you are a developer and you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,640",
+				"to": "00:06:16,280"
+			},
+			"offsets": {
+				"from": 373640,
+				"to": 376280
+			},
+			"text": " to bundle your front end code, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,280",
+				"to": "00:06:17,560"
+			},
+			"offsets": {
+				"from": 376280,
+				"to": 377560
+			},
+			"text": " need something more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,560",
+				"to": "00:06:22,880"
+			},
+			"offsets": {
+				"from": 377560,
+				"to": 382880
+			},
+			"text": " And Webpack integration, you could add a one line of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,880",
+				"to": "00:06:27,020"
+			},
+			"offsets": {
+				"from": 382880,
+				"to": 387020
+			},
+			"text": " or in this case, three lines, to your Webpack configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,020",
+				"to": "00:06:29,640"
+			},
+			"offsets": {
+				"from": 387020,
+				"to": 389640
+			},
+			"text": " file, and it will interact with your contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,640",
+				"to": "00:06:32,800"
+			},
+			"offsets": {
+				"from": 389640,
+				"to": 392800
+			},
+			"text": " and use all the nice, hot module reloading"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,800",
+				"to": "00:06:34,560"
+			},
+			"offsets": {
+				"from": 392800,
+				"to": 394560
+			},
+			"text": " that Webpack provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,560",
+				"to": "00:06:36,920"
+			},
+			"offsets": {
+				"from": 394560,
+				"to": 396920
+			},
+			"text": " The next thing-- this is just a small feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,920",
+				"to": "00:06:42,120"
+			},
+			"offsets": {
+				"from": 396920,
+				"to": 402120
+			},
+			"text": " but emotionally as a developer, it's a really nice one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,120",
+				"to": "00:06:47,120"
+			},
+			"offsets": {
+				"from": 402120,
+				"to": 407120
+			},
+			"text": " If you've used events and you've had to-- let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,120",
+				"to": "00:06:50,520"
+			},
+			"offsets": {
+				"from": 407120,
+				"to": 410520
+			},
+			"text": " you're making a transaction and you wanted to watch for an event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,520",
+				"to": "00:06:52,440"
+			},
+			"offsets": {
+				"from": 410520,
+				"to": 412440
+			},
+			"text": " or so you wanted to see if an event happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,440",
+				"to": "00:06:53,560"
+			},
+			"offsets": {
+				"from": 412440,
+				"to": 413560
+			},
+			"text": " you had to watch for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,560",
+				"to": "00:06:56,640"
+			},
+			"offsets": {
+				"from": 413560,
+				"to": 416640
+			},
+			"text": " And then after watching for it, that changes your control"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,640",
+				"to": "00:06:58,560"
+			},
+			"offsets": {
+				"from": 416640,
+				"to": 418560
+			},
+			"text": " flow and the way you write your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,560",
+				"to": "00:06:59,880"
+			},
+			"offsets": {
+				"from": 418560,
+				"to": 419880
+			},
+			"text": " You no longer have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,880",
+				"to": "00:07:04,080"
+			},
+			"offsets": {
+				"from": 419880,
+				"to": 424080
+			},
+			"text": " So along with the transaction that comes back"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,080",
+				"to": "00:07:06,040"
+			},
+			"offsets": {
+				"from": 424080,
+				"to": 426040
+			},
+			"text": " with a transaction ID, the new version of ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,040",
+				"to": "00:07:11,560"
+			},
+			"offsets": {
+				"from": 426040,
+				"to": 431560
+			},
+			"text": " recruiting is going to have the transaction ID, the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,560",
+				"to": "00:07:13,400"
+			},
+			"offsets": {
+				"from": 431560,
+				"to": 433400
+			},
+			"text": " receipt, and all the decoded logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,400",
+				"to": "00:07:16,400"
+			},
+			"offsets": {
+				"from": 433400,
+				"to": 436400
+			},
+			"text": " So you can structure your application to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,400",
+				"to": "00:07:18,680"
+			},
+			"offsets": {
+				"from": 436400,
+				"to": 438680
+			},
+			"text": " run this transaction, did it make this event?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,680",
+				"to": "00:07:22,120"
+			},
+			"offsets": {
+				"from": 438680,
+				"to": 442120
+			},
+			"text": " Yes, continue on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,120",
+				"to": "00:07:24,880"
+			},
+			"offsets": {
+				"from": 442120,
+				"to": 444880
+			},
+			"text": " The next thing I'd like to announce is a new website."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,880",
+				"to": "00:07:27,880"
+			},
+			"offsets": {
+				"from": 444880,
+				"to": 447880
+			},
+			"text": " So you can all go to truffle framework.com right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,880",
+				"to": "00:07:30,880"
+			},
+			"offsets": {
+				"from": 447880,
+				"to": 450880
+			},
+			"text": " and get information about truffle, tutorials, new releases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,880",
+				"to": "00:07:34,720"
+			},
+			"offsets": {
+				"from": 450880,
+				"to": 454720
+			},
+			"text": " It looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,280",
+				"to": "00:07:40,280"
+			},
+			"offsets": {
+				"from": 455280,
+				"to": 460280
+			},
+			"text": " And I'd like to announce the beta program."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,280",
+				"to": "00:07:43,040"
+			},
+			"offsets": {
+				"from": 460280,
+				"to": 463040
+			},
+			"text": " So before we make new releases, we'd"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,040",
+				"to": "00:07:48,800"
+			},
+			"offsets": {
+				"from": 463040,
+				"to": 468800
+			},
+			"text": " like to release beta versions so we can get feedback fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,800",
+				"to": "00:07:51,280"
+			},
+			"offsets": {
+				"from": 468800,
+				"to": 471280
+			},
+			"text": " And you can sign up for the mailing list."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,280",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 471280,
+				"to": 472720
+			},
+			"text": " It's a low volume mailing list."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:57,760"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 477760
+			},
+			"text": " We're only going to send emails about truffle"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,760",
+				"to": "00:07:59,160"
+			},
+			"offsets": {
+				"from": 477760,
+				"to": 479160
+			},
+			"text": " and about the beta program."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,160",
+				"to": "00:08:01,640"
+			},
+			"offsets": {
+				"from": 479160,
+				"to": 481640
+			},
+			"text": " You can get it on it at truffle framework.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,640",
+				"to": "00:08:07,560"
+			},
+			"offsets": {
+				"from": 481640,
+				"to": 487560
+			},
+			"text": " As well, you can see documentation for the beta documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,560",
+				"to": "00:08:09,080"
+			},
+			"offsets": {
+				"from": 487560,
+				"to": 489080
+			},
+			"text": " So one more thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,080",
+				"to": "00:08:11,280"
+			},
+			"offsets": {
+				"from": 489080,
+				"to": 491280
+			},
+			"text": " There's always one more thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,280",
+				"to": "00:08:14,640"
+			},
+			"offsets": {
+				"from": 491280,
+				"to": 494640
+			},
+			"text": " Everything I mentioned today is currently in beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,640",
+				"to": "00:08:16,800"
+			},
+			"offsets": {
+				"from": 494640,
+				"to": 496800
+			},
+			"text": " So you can go use it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,800",
+				"to": "00:08:18,480"
+			},
+			"offsets": {
+				"from": 496800,
+				"to": 498480
+			},
+			"text": " NPM install truffle at beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,480",
+				"to": "00:08:20,040"
+			},
+			"offsets": {
+				"from": 498480,
+				"to": 500040
+			},
+			"text": " Use the beta tag."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,040",
+				"to": "00:08:21,080"
+			},
+			"offsets": {
+				"from": 500040,
+				"to": 501080
+			},
+			"text": " Instantaneous forking."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,080",
+				"to": "00:08:22,680"
+			},
+			"offsets": {
+				"from": 501080,
+				"to": 502680
+			},
+			"text": " That's the fork feature from the testRBC."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,680",
+				"to": "00:08:26,080"
+			},
+			"offsets": {
+				"from": 502680,
+				"to": 506080
+			},
+			"text": " That's already live NPM install."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,080",
+				"to": "00:08:27,880"
+			},
+			"offsets": {
+				"from": 506080,
+				"to": 507880
+			},
+			"text": " EthereumGS testRBC."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,880",
+				"to": "00:08:29,840"
+			},
+			"offsets": {
+				"from": 507880,
+				"to": 509840
+			},
+			"text": " You can try out the Solidity unit tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,840",
+				"to": "00:08:32,160"
+			},
+			"offsets": {
+				"from": 509840,
+				"to": 512160
+			},
+			"text": " You can try out package management with NPM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,160",
+				"to": "00:08:33,600"
+			},
+			"offsets": {
+				"from": 512160,
+				"to": 513600
+			},
+			"text": " You can use Webpack."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,600",
+				"to": "00:08:36,520"
+			},
+			"offsets": {
+				"from": 513600,
+				"to": 516520
+			},
+			"text": " And you can have those smarter events that I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,520",
+				"to": "00:08:40,520"
+			},
+			"offsets": {
+				"from": 516520,
+				"to": 520520
+			},
+			"text": " Up next, Solidity 0.4.9 support."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,520",
+				"to": "00:08:43,080"
+			},
+			"offsets": {
+				"from": 520520,
+				"to": 523080
+			},
+			"text": " That requires a change to the Solidity parser."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,080",
+				"to": "00:08:45,080"
+			},
+			"offsets": {
+				"from": 523080,
+				"to": 525080
+			},
+			"text": " But once we get that, that will be in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,080",
+				"to": "00:08:46,680"
+			},
+			"offsets": {
+				"from": 525080,
+				"to": 526680
+			},
+			"text": " Better network management, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,680",
+				"to": "00:08:48,040"
+			},
+			"offsets": {
+				"from": 526680,
+				"to": 528040
+			},
+			"text": " if you're going to be one of those people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,040",
+				"to": "00:08:51,080"
+			},
+			"offsets": {
+				"from": 528040,
+				"to": 531080
+			},
+			"text": " maintaining a truffle package or a truffle-based package"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,080",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 531080,
+				"to": 532400
+			},
+			"text": " on NPM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:54,840"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 534840
+			},
+			"text": " We're hoping to have more integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,840",
+				"to": "00:08:56,720"
+			},
+			"offsets": {
+				"from": 534840,
+				"to": 536720
+			},
+			"text": " Browserify is one of them more boiler plates"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,720",
+				"to": "00:08:59,280"
+			},
+			"offsets": {
+				"from": 536720,
+				"to": 539280
+			},
+			"text": " to show you exactly how to build your app quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,280",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 539280,
+				"to": 542240
+			},
+			"text": " and more tutorials."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:04,480"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 544480
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,480",
+				"to": "00:09:07,240"
+			},
+			"offsets": {
+				"from": 544480,
+				"to": 547240
+			},
+			"text": " I have plenty of time left, which I didn't expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,240",
+				"to": "00:09:10,320"
+			},
+			"offsets": {
+				"from": 547240,
+				"to": 550320
+			},
+			"text": " If there's questions, I'm happy to take those."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,320",
+				"to": "00:09:13,800"
+			},
+			"offsets": {
+				"from": 550320,
+				"to": 553800
+			},
+			"text": " Otherwise, please ask me questions later."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,800",
+				"to": "00:09:16,480"
+			},
+			"offsets": {
+				"from": 553800,
+				"to": 556480
+			},
+			"text": " I would love to answer them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,480",
+				"to": "00:09:18,520"
+			},
+			"offsets": {
+				"from": 556480,
+				"to": 558520
+			},
+			"text": " Get on Gitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,520",
+				"to": "00:09:19,720"
+			},
+			"offsets": {
+				"from": 558520,
+				"to": 559720
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,720",
+				"to": "00:09:21,240"
+			},
+			"offsets": {
+				"from": 559720,
+				"to": 561240
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,240",
+				"to": "00:09:24,440"
+			},
+			"offsets": {
+				"from": 561240,
+				"to": 564440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,440",
+				"to": "00:09:27,020"
+			},
+			"offsets": {
+				"from": 564440,
+				"to": 567020
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,020",
+				"to": "00:09:29,600"
+			},
+			"offsets": {
+				"from": 567020,
+				"to": 569600
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

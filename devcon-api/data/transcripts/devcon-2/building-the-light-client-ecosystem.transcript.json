@@ -1,0 +1,2584 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 20000
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:21,360"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 21360
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,360",
+				"to": "00:00:23,480"
+			},
+			"offsets": {
+				"from": 21360,
+				"to": 23480
+			},
+			"text": " I hope you're all really excited to hear the latest"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,480",
+				"to": "00:00:26,360"
+			},
+			"offsets": {
+				"from": 23480,
+				"to": 26360
+			},
+			"text": " new \"The Moved the Light\" client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,360",
+				"to": "00:00:29,040"
+			},
+			"offsets": {
+				"from": 26360,
+				"to": 29040
+			},
+			"text": " Well, the good news is that it's already"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,040",
+				"to": "00:00:32,400"
+			},
+			"offsets": {
+				"from": 29040,
+				"to": 32400
+			},
+			"text": " in public beta testing stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,400",
+				"to": "00:00:34,560"
+			},
+			"offsets": {
+				"from": 32400,
+				"to": 34560
+			},
+			"text": " It's being prepared for the official release."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,560",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 34560,
+				"to": 37360
+			},
+			"text": " If you would like to try it, I will show the necessary links"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:38,720"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 38720
+			},
+			"text": " at the end of my presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,720",
+				"to": "00:00:45,600"
+			},
+			"offsets": {
+				"from": 38720,
+				"to": 45600
+			},
+			"text": " Yeah, if you haven't tried it yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,600",
+				"to": "00:00:48,320"
+			},
+			"offsets": {
+				"from": 45600,
+				"to": 48320
+			},
+			"text": " the first thing you will notice is that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,320",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 48320,
+				"to": 51120
+			},
+			"text": " syncs absolutely fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:52,640"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 52640
+			},
+			"text": " This is, of course, mainly because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,640",
+				"to": "00:00:56,560"
+			},
+			"offsets": {
+				"from": 52640,
+				"to": 56560
+			},
+			"text": " doesn't have to process state transitions just"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,560",
+				"to": "00:00:58,400"
+			},
+			"offsets": {
+				"from": 56560,
+				"to": 58400
+			},
+			"text": " download and check headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,400",
+				"to": "00:01:00,680"
+			},
+			"offsets": {
+				"from": 58400,
+				"to": 60680
+			},
+			"text": " Processing headers is a lot faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,680",
+				"to": "00:01:02,440"
+			},
+			"offsets": {
+				"from": 60680,
+				"to": 62440
+			},
+			"text": " than processing entire blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,440",
+				"to": "00:01:06,360"
+			},
+			"offsets": {
+				"from": 62440,
+				"to": 66360
+			},
+			"text": " Our current implementation can process up to 5,000 to 10,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,360",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66360,
+				"to": 70000
+			},
+			"text": " headers per second on a good desktop computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,280"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73280
+			},
+			"text": " To improve syncing even further,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,280",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73280,
+				"to": 77000
+			},
+			"text": " it is possible to start syncing from a trusted checkpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81560
+			},
+			"text": " which is represented by the root hash of a mercury"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:24,080"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 84080
+			},
+			"text": " containing all previous block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,080",
+				"to": "00:01:26,520"
+			},
+			"offsets": {
+				"from": 84080,
+				"to": 86520
+			},
+			"text": " It's called a canonical hash tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,520",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 86520,
+				"to": 94200
+			},
+			"text": " This structure also allows to access all headers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:37,360"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 97360
+			},
+			"text": " hasn't been downloaded during initial sync, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,360",
+				"to": "00:01:40,440"
+			},
+			"offsets": {
+				"from": 97360,
+				"to": 100440
+			},
+			"text": " could be useful for searching for all logs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,440",
+				"to": "00:01:43,360"
+			},
+			"offsets": {
+				"from": 100440,
+				"to": 103360
+			},
+			"text": " or accessing all transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,360",
+				"to": "00:01:45,220"
+			},
+			"offsets": {
+				"from": 103360,
+				"to": 105220
+			},
+			"text": " Currently, there is such a checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,220",
+				"to": "00:01:47,360"
+			},
+			"offsets": {
+				"from": 105220,
+				"to": 107360
+			},
+			"text": " hard-coded into the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,360",
+				"to": "00:01:52,720"
+			},
+			"offsets": {
+				"from": 107360,
+				"to": 112720
+			},
+			"text": " But in the future, if we can make these checkpoints"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,720",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112720,
+				"to": 116000
+			},
+			"text": " or some equivalent information a part of the consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:59,840"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 119840
+			},
+			"text": " then it will be possible to obtain these checkpoints"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,840",
+				"to": "00:02:03,200"
+			},
+			"offsets": {
+				"from": 119840,
+				"to": 123200
+			},
+			"text": " from the servers in a safe and trustless way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,200",
+				"to": "00:02:08,640"
+			},
+			"offsets": {
+				"from": 123200,
+				"to": 128640
+			},
+			"text": " In addition to a fast-syncing, another important feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,640",
+				"to": "00:02:11,480"
+			},
+			"offsets": {
+				"from": 128640,
+				"to": 131480
+			},
+			"text": " of the like client is that it has generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,480",
+				"to": "00:02:13,640"
+			},
+			"offsets": {
+				"from": 131480,
+				"to": 133640
+			},
+			"text": " low resource requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,640",
+				"to": "00:02:16,320"
+			},
+			"offsets": {
+				"from": 133640,
+				"to": 136320
+			},
+			"text": " Since everything can be fetched on demand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,320",
+				"to": "00:02:19,680"
+			},
+			"offsets": {
+				"from": 136320,
+				"to": 139680
+			},
+			"text": " the database basically acts like a cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,680",
+				"to": "00:02:21,320"
+			},
+			"offsets": {
+				"from": 139680,
+				"to": 141320
+			},
+			"text": " It can be kept really small."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,320",
+				"to": "00:02:24,240"
+			},
+			"offsets": {
+				"from": 141320,
+				"to": 144240
+			},
+			"text": " Memory requirements are also significantly lower"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,240",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 144240,
+				"to": 147000
+			},
+			"text": " than with a full node, mainly because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:29,040"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 149040
+			},
+			"text": " don't have to process entire states."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,040",
+				"to": "00:02:31,040"
+			},
+			"offsets": {
+				"from": 149040,
+				"to": 151040
+			},
+			"text": " This aspect of the get implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,040",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151040,
+				"to": 154000
+			},
+			"text": " can be improved even further."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:36,160"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 156160
+			},
+			"text": " Still, it provides an RPC interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,160",
+				"to": "00:02:39,520"
+			},
+			"offsets": {
+				"from": 156160,
+				"to": 159520
+			},
+			"text": " that is compatible with the existing full node interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,520",
+				"to": "00:02:44,680"
+			},
+			"offsets": {
+				"from": 159520,
+				"to": 164680
+			},
+			"text": " It's not perfect yet, but it can already work with missed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,680",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 164680,
+				"to": 166680
+			},
+			"text": " Hopefully, tomorrow you will also"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:50,840"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 170840
+			},
+			"text": " see a nice missed demo using the like client by Alex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,840",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 170840,
+				"to": 177120
+			},
+			"text": " Several people have already successfully tested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:02:59,320"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 179320
+			},
+			"text": " on smaller devices, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,320",
+				"to": "00:03:01,680"
+			},
+			"offsets": {
+				"from": 179320,
+				"to": 181680
+			},
+			"text": " This picture is from Martin Brooks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,680",
+				"to": "00:03:03,400"
+			},
+			"offsets": {
+				"from": 181680,
+				"to": 183400
+			},
+			"text": " thinking with an Intel Adison."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,400",
+				"to": "00:03:09,520"
+			},
+			"offsets": {
+				"from": 183400,
+				"to": 189520
+			},
+			"text": " And this screenshot is from a Raspberry Pi"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,520",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 189520,
+				"to": 192480
+			},
+			"text": " using-- running a missed using the like client."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:14,360"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 194360
+			},
+			"text": " You have to see of John Gerries, who, by the way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,360",
+				"to": "00:03:17,800"
+			},
+			"offsets": {
+				"from": 194360,
+				"to": 197800
+			},
+			"text": " also donated a like server to help the public testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,800",
+				"to": "00:03:20,120"
+			},
+			"offsets": {
+				"from": 197800,
+				"to": 200120
+			},
+			"text": " And like other community members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,120",
+				"to": "00:03:23,560"
+			},
+			"offsets": {
+				"from": 200120,
+				"to": 203560
+			},
+			"text": " provided a lot of useful feedback during testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,560",
+				"to": "00:03:30,080"
+			},
+			"offsets": {
+				"from": 203560,
+				"to": 210080
+			},
+			"text": " In addition to basic protocol functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,080",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 210080,
+				"to": 212880
+			},
+			"text": " another important question is whether all of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 216720
+			},
+			"text": " can work in a large scale with good performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 219640
+			},
+			"text": " The basic client strategy is simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:43,520"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 223520
+			},
+			"text": " It always tries to have a few active server connections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,520",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 223520,
+				"to": 226240
+			},
+			"text": " selected randomly from a suitable PFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:50,320"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 230320
+			},
+			"text": " Whenever one of them seems slow or unresponsive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,320",
+				"to": "00:03:52,800"
+			},
+			"offsets": {
+				"from": 230320,
+				"to": 232800
+			},
+			"text": " it drops it and looks for another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,800",
+				"to": "00:04:00,320"
+			},
+			"offsets": {
+				"from": 232800,
+				"to": 240320
+			},
+			"text": " Servers take care of themselves by limiting the bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,320",
+				"to": "00:04:06,840"
+			},
+			"offsets": {
+				"from": 240320,
+				"to": 246840
+			},
+			"text": " spent-- bandwidth of clients and also dropping damage"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,840",
+				"to": "00:04:07,200"
+			},
+			"offsets": {
+				"from": 246840,
+				"to": 247200
+			},
+			"text": " necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,200",
+				"to": "00:04:14,120"
+			},
+			"offsets": {
+				"from": 247200,
+				"to": 254120
+			},
+			"text": " So they limit the time and resources spent"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,120",
+				"to": "00:04:17,880"
+			},
+			"offsets": {
+				"from": 254120,
+				"to": 257880
+			},
+			"text": " on serving clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,880",
+				"to": "00:04:20,480"
+			},
+			"offsets": {
+				"from": 257880,
+				"to": 260480
+			},
+			"text": " For limiting client bandwidth, though,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,480",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 260480,
+				"to": 264920
+			},
+			"text": " we needed some smarter mechanism than simply delaying"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:30,320"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 270320
+			},
+			"text": " request replies, because that would ruin"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,320",
+				"to": "00:04:32,920"
+			},
+			"offsets": {
+				"from": 270320,
+				"to": 272920
+			},
+			"text": " the user experience of the client, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,920",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 272920,
+				"to": 275920
+			},
+			"text": " depends heavily on quick server responses."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:38,840"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 278840
+			},
+			"text": " This is why we created client-side folk control, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,840",
+				"to": "00:04:41,160"
+			},
+			"offsets": {
+				"from": 278840,
+				"to": 281160
+			},
+			"text": " is a simple feedback mechanism, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,160",
+				"to": "00:04:46,640"
+			},
+			"offsets": {
+				"from": 281160,
+				"to": 286640
+			},
+			"text": " that can tell clients when they can send their next request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,640",
+				"to": "00:04:49,760"
+			},
+			"offsets": {
+				"from": 286640,
+				"to": 289760
+			},
+			"text": " so that clients can better distribute their request"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,760",
+				"to": "00:04:53,680"
+			},
+			"offsets": {
+				"from": 289760,
+				"to": 293680
+			},
+			"text": " among the few server connections they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,680",
+				"to": "00:04:55,520"
+			},
+			"offsets": {
+				"from": 293680,
+				"to": 295520
+			},
+			"text": " If they send a request too early,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,520",
+				"to": "00:04:58,200"
+			},
+			"offsets": {
+				"from": 295520,
+				"to": 298200
+			},
+			"text": " they would get immediately disconnected."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,200",
+				"to": "00:04:59,360"
+			},
+			"offsets": {
+				"from": 298200,
+				"to": 299360
+			},
+			"text": " They shouldn't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,360",
+				"to": "00:05:01,760"
+			},
+			"offsets": {
+				"from": 299360,
+				"to": 301760
+			},
+			"text": " But these two truths have the advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,760",
+				"to": "00:05:05,760"
+			},
+			"offsets": {
+				"from": 301760,
+				"to": 305760
+			},
+			"text": " that requests never get queued up on the server side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,760",
+				"to": "00:05:11,120"
+			},
+			"offsets": {
+				"from": 305760,
+				"to": 311120
+			},
+			"text": " and therefore they can be answered immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,120",
+				"to": "00:05:16,680"
+			},
+			"offsets": {
+				"from": 311120,
+				"to": 316680
+			},
+			"text": " This mechanism can ensure a good distribution of server load"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,680",
+				"to": "00:05:18,080"
+			},
+			"offsets": {
+				"from": 316680,
+				"to": 318080
+			},
+			"text": " throughout the entire network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,080",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 318080,
+				"to": 320200
+			},
+			"text": " But we also need some market forces"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:25,800"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 325800
+			},
+			"text": " to incentivize the running of good servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,800",
+				"to": "00:05:28,840"
+			},
+			"offsets": {
+				"from": 325800,
+				"to": 328840
+			},
+			"text": " In theory, micro payment is the ideal way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,840",
+				"to": "00:05:33,520"
+			},
+			"offsets": {
+				"from": 328840,
+				"to": 333520
+			},
+			"text": " to incentivize high quality service"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,520",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 333520,
+				"to": 336120
+			},
+			"text": " and responsible use of resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 340000
+			},
+			"text": " But on the other hand, we should also"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343360
+			},
+			"text": " take into consideration that the requiring payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:46,240"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 346240
+			},
+			"text": " for all LES requests would seriously hinder"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,240",
+				"to": "00:05:49,640"
+			},
+			"offsets": {
+				"from": 346240,
+				"to": 349640
+			},
+			"text": " the adoption of the protocol, and also limit its usefulness."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,640",
+				"to": "00:05:52,320"
+			},
+			"offsets": {
+				"from": 349640,
+				"to": 352320
+			},
+			"text": " You couldn't even sync up to make your first payment using"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,320",
+				"to": "00:05:53,720"
+			},
+			"offsets": {
+				"from": 352320,
+				"to": 353720
+			},
+			"text": " a lifeline then."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,720",
+				"to": "00:05:56,680"
+			},
+			"offsets": {
+				"from": 353720,
+				"to": 356680
+			},
+			"text": " So another important question is whether it is possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,680",
+				"to": "00:06:02,960"
+			},
+			"offsets": {
+				"from": 356680,
+				"to": 362960
+			},
+			"text": " to create an ecosystem where both free and paid services"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,960",
+				"to": "00:06:05,960"
+			},
+			"offsets": {
+				"from": 362960,
+				"to": 365960
+			},
+			"text": " have their place and purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,960",
+				"to": "00:06:08,520"
+			},
+			"offsets": {
+				"from": 365960,
+				"to": 368520
+			},
+			"text": " Fortunately, I believe the answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,520",
+				"to": "00:06:12,880"
+			},
+			"offsets": {
+				"from": 368520,
+				"to": 372880
+			},
+			"text": " With a service like this, demand changes very rapidly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,880",
+				"to": "00:06:17,440"
+			},
+			"offsets": {
+				"from": 372880,
+				"to": 377440
+			},
+			"text": " while the available server capacity changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,440",
+				"to": "00:06:18,800"
+			},
+			"offsets": {
+				"from": 377440,
+				"to": 378800
+			},
+			"text": " relatively slowly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,800",
+				"to": "00:06:21,120"
+			},
+			"offsets": {
+				"from": 378800,
+				"to": 381120
+			},
+			"text": " So if you want to provide high quality service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,120",
+				"to": "00:06:23,520"
+			},
+			"offsets": {
+				"from": 381120,
+				"to": 383520
+			},
+			"text": " you have to have a lot of resource capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,520",
+				"to": "00:06:28,080"
+			},
+			"offsets": {
+				"from": 383520,
+				"to": 388080
+			},
+			"text": " and you usually get a low utilization ratio, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,080",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 388080,
+				"to": 390520
+			},
+			"text": " means, of course, that servers can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:33,720"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 393720
+			},
+			"text": " set the remaining capacity at a lower priority"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,720",
+				"to": "00:06:35,120"
+			},
+			"offsets": {
+				"from": 393720,
+				"to": 395120
+			},
+			"text": " and a lower price."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,120",
+				"to": "00:06:37,880"
+			},
+			"offsets": {
+				"from": 395120,
+				"to": 397880
+			},
+			"text": " So basically, our model is that clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,880",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397880,
+				"to": 401000
+			},
+			"text": " are buying priority from the servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:44,600"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 404600
+			},
+			"text": " And on the lowest possible priority level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,600",
+				"to": "00:06:47,440"
+			},
+			"offsets": {
+				"from": 404600,
+				"to": 407440
+			},
+			"text": " if the servers still have some free capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,440",
+				"to": "00:06:50,360"
+			},
+			"offsets": {
+				"from": 407440,
+				"to": 410360
+			},
+			"text": " they can basically give it away for free, which, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,360",
+				"to": "00:06:52,840"
+			},
+			"offsets": {
+				"from": 410360,
+				"to": 412840
+			},
+			"text": " still wouldn't ensure that they actually do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,840",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 412840,
+				"to": 415000
+			},
+			"text": " But we can create a service model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:58,280"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 418280
+			},
+			"text": " and they will have an actual incentive to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,280",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 418280,
+				"to": 421600
+			},
+			"text": " Free service is a good indicator of a reserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:05,560"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 425560
+			},
+			"text": " capacities, which are necessary for providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,560",
+				"to": "00:07:09,040"
+			},
+			"offsets": {
+				"from": 425560,
+				"to": 429040
+			},
+			"text": " a high quality service that is actually worth paying for."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,040",
+				"to": "00:07:15,240"
+			},
+			"offsets": {
+				"from": 429040,
+				"to": 435240
+			},
+			"text": " So in our model, free service can act as an advertisement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,240",
+				"to": "00:07:19,720"
+			},
+			"offsets": {
+				"from": 435240,
+				"to": 439720
+			},
+			"text": " And also, as a protection version against the scam"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,720",
+				"to": "00:07:26,880"
+			},
+			"offsets": {
+				"from": 439720,
+				"to": 446880
+			},
+			"text": " for clients, it can protect them from paying for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,880",
+				"to": "00:07:30,280"
+			},
+			"offsets": {
+				"from": 446880,
+				"to": 450280
+			},
+			"text": " and then getting no service in return."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,280",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 450280,
+				"to": 452160
+			},
+			"text": " So the basic client strategy should"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:35,880"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 455880
+			},
+			"text": " be that even if you are willing to pay for services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,880",
+				"to": "00:07:38,760"
+			},
+			"offsets": {
+				"from": 455880,
+				"to": 458760
+			},
+			"text": " if you find a new server through peer discovery first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,760",
+				"to": "00:07:42,520"
+			},
+			"offsets": {
+				"from": 458760,
+				"to": 462520
+			},
+			"text": " you always evaluate it for free, collect some statistics"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,520",
+				"to": "00:07:46,640"
+			},
+			"offsets": {
+				"from": 462520,
+				"to": 466640
+			},
+			"text": " about availability and average delays."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,640",
+				"to": "00:07:49,480"
+			},
+			"offsets": {
+				"from": 466640,
+				"to": 469480
+			},
+			"text": " And then, if the statistics are acceptable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,480",
+				"to": "00:07:52,480"
+			},
+			"offsets": {
+				"from": 469480,
+				"to": 472480
+			},
+			"text": " then you can start paying for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,480",
+				"to": "00:07:56,560"
+			},
+			"offsets": {
+				"from": 472480,
+				"to": 476560
+			},
+			"text": " I wanted to talk about the new peer discovery protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,560",
+				"to": "00:07:57,680"
+			},
+			"offsets": {
+				"from": 476560,
+				"to": 477680
+			},
+			"text": " we're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,680",
+				"to": "00:08:00,520"
+			},
+			"offsets": {
+				"from": 477680,
+				"to": 480520
+			},
+			"text": " Unfortunately, there's no time for many details."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,520",
+				"to": "00:08:05,680"
+			},
+			"offsets": {
+				"from": 480520,
+				"to": 485680
+			},
+			"text": " It's a new feature is an advertisement feature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,680",
+				"to": "00:08:08,400"
+			},
+			"offsets": {
+				"from": 485680,
+				"to": 488400
+			},
+			"text": " where nodes can advertise their capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,400",
+				"to": "00:08:11,920"
+			},
+			"offsets": {
+				"from": 488400,
+				"to": 491920
+			},
+			"text": " They can pick multiple category identifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,920",
+				"to": "00:08:16,840"
+			},
+			"offsets": {
+				"from": 491920,
+				"to": 496840
+			},
+			"text": " or so-called topics, and advertise them under these categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,840",
+				"to": "00:08:19,640"
+			},
+			"offsets": {
+				"from": 496840,
+				"to": 499640
+			},
+			"text": " And of course, they can also look for nodes who advertise"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,640",
+				"to": "00:08:21,560"
+			},
+			"offsets": {
+				"from": 499640,
+				"to": 501560
+			},
+			"text": " themselves under certain topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,560",
+				"to": "00:08:24,920"
+			},
+			"offsets": {
+				"from": 501560,
+				"to": 504920
+			},
+			"text": " Of course, one of such topics will be a light server."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,240",
+				"to": "00:08:32,080"
+			},
+			"offsets": {
+				"from": 508240,
+				"to": 512080
+			},
+			"text": " And finally, I would quickly like to talk about one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,080",
+				"to": "00:08:34,960"
+			},
+			"offsets": {
+				"from": 512080,
+				"to": 514960
+			},
+			"text": " of my future development plans, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,960",
+				"to": "00:08:40,600"
+			},
+			"offsets": {
+				"from": 514960,
+				"to": 520600
+			},
+			"text": " could greatly enhance the performance and flexibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,600",
+				"to": "00:08:43,640"
+			},
+			"offsets": {
+				"from": 520600,
+				"to": 523640
+			},
+			"text": " of the light protocol by allowing clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,640",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 523640,
+				"to": 529000
+			},
+			"text": " to run complex operations on the server side."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:51,640"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 531640
+			},
+			"text": " In theory, basically, a request can provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,640",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 531640,
+				"to": 533600
+			},
+			"text": " any information a client needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:56,760"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 536760
+			},
+			"text": " But if they want to evaluate something more complex,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,760",
+				"to": "00:09:01,240"
+			},
+			"offsets": {
+				"from": 536760,
+				"to": 541240
+			},
+			"text": " like a contract accessor function that accesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,240",
+				"to": "00:09:03,880"
+			},
+			"offsets": {
+				"from": 541240,
+				"to": 543880
+			},
+			"text": " a thousand state entries, that would also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,880",
+				"to": "00:09:09,440"
+			},
+			"offsets": {
+				"from": 543880,
+				"to": 549440
+			},
+			"text": " mean a thousand consecutive alias requests, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,440",
+				"to": "00:09:12,840"
+			},
+			"offsets": {
+				"from": 549440,
+				"to": 552840
+			},
+			"text": " would take a very long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,840",
+				"to": "00:09:16,880"
+			},
+			"offsets": {
+				"from": 552840,
+				"to": 556880
+			},
+			"text": " Usually, evaluating complex data structures on server side"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,880",
+				"to": "00:09:19,400"
+			},
+			"offsets": {
+				"from": 556880,
+				"to": 559400
+			},
+			"text": " could be orders of magnitude faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,400",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 559400,
+				"to": 565240
+			},
+			"text": " And I don't only want to evaluate contract functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:31,080"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 571080
+			},
+			"text": " I would like to create a universal virtual machine that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,080",
+				"to": "00:09:36,920"
+			},
+			"offsets": {
+				"from": 571080,
+				"to": 576920
+			},
+			"text": " can access anything from the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,920",
+				"to": "00:09:40,760"
+			},
+			"offsets": {
+				"from": 576920,
+				"to": 580760
+			},
+			"text": " including block headers, transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,760",
+				"to": "00:09:45,720"
+			},
+			"offsets": {
+				"from": 580760,
+				"to": 585720
+			},
+			"text": " receives logs, everything, and allow clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,720",
+				"to": "00:09:50,680"
+			},
+			"offsets": {
+				"from": 585720,
+				"to": 590680
+			},
+			"text": " to run any code in such a virtual machine on server side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,680",
+				"to": "00:09:54,120"
+			},
+			"offsets": {
+				"from": 590680,
+				"to": 594120
+			},
+			"text": " so that basically they can ask any question about the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,120",
+				"to": "00:09:56,720"
+			},
+			"offsets": {
+				"from": 594120,
+				"to": 596720
+			},
+			"text": " that a phone cannot possibly answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,720",
+				"to": "00:10:00,080"
+			},
+			"offsets": {
+				"from": 596720,
+				"to": 600080
+			},
+			"text": " Of course, if we are running code on the server side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,080",
+				"to": "00:10:02,760"
+			},
+			"offsets": {
+				"from": 600080,
+				"to": 602760
+			},
+			"text": " we have to make sure that the clients can somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,760",
+				"to": "00:10:06,240"
+			},
+			"offsets": {
+				"from": 602760,
+				"to": 606240
+			},
+			"text": " know that they are getting the correct answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,240",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 606240,
+				"to": 610520
+			},
+			"text": " And there are two possible approaches to achieve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:15,280"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 615280
+			},
+			"text": " And I would like to make both of these options available"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,280",
+				"to": "00:10:20,440"
+			},
+			"offsets": {
+				"from": 615280,
+				"to": 620440
+			},
+			"text": " for clients to choose according to their priorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,440",
+				"to": "00:10:26,560"
+			},
+			"offsets": {
+				"from": 620440,
+				"to": 626560
+			},
+			"text": " One of these approaches is that when the server runs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,560",
+				"to": "00:10:31,600"
+			},
+			"offsets": {
+				"from": 626560,
+				"to": 631600
+			},
+			"text": " a virtual machine code, it collects all the data it accesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,600",
+				"to": "00:10:33,640"
+			},
+			"offsets": {
+				"from": 631600,
+				"to": 633640
+			},
+			"text": " creates more core proofs for all of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,640",
+				"to": "00:10:35,400"
+			},
+			"offsets": {
+				"from": 633640,
+				"to": 635400
+			},
+			"text": " and returns these proofs to the client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,400",
+				"to": "00:10:38,560"
+			},
+			"offsets": {
+				"from": 635400,
+				"to": 638560
+			},
+			"text": " so that client can, with one request and one"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,560",
+				"to": "00:10:43,680"
+			},
+			"offsets": {
+				"from": 638560,
+				"to": 643680
+			},
+			"text": " who apply the client, can rerun the entire function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,680",
+				"to": "00:10:46,680"
+			},
+			"offsets": {
+				"from": 643680,
+				"to": 646680
+			},
+			"text": " and have all the data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,680",
+				"to": "00:10:49,320"
+			},
+			"offsets": {
+				"from": 646680,
+				"to": 649320
+			},
+			"text": " Another approach might be useful when processing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,320",
+				"to": "00:10:53,440"
+			},
+			"offsets": {
+				"from": 649320,
+				"to": 653440
+			},
+			"text": " large amounts of data, and it's a more generalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,440",
+				"to": "00:10:56,600"
+			},
+			"offsets": {
+				"from": 653440,
+				"to": 656600
+			},
+			"text": " off-chain computing approach, very much like what"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,600",
+				"to": "00:10:59,640"
+			},
+			"offsets": {
+				"from": 656600,
+				"to": 659640
+			},
+			"text": " Christoph was talking about yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,640",
+				"to": "00:11:04,160"
+			},
+			"offsets": {
+				"from": 659640,
+				"to": 664160
+			},
+			"text": " Basically, it's about a server signing statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,160",
+				"to": "00:11:07,840"
+			},
+			"offsets": {
+				"from": 664160,
+				"to": 667840
+			},
+			"text": " saying that I guarantee that running this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,840",
+				"to": "00:11:12,240"
+			},
+			"offsets": {
+				"from": 667840,
+				"to": 672240
+			},
+			"text": " with this blockchain as an input returns in this many clock"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,240",
+				"to": "00:11:14,840"
+			},
+			"offsets": {
+				"from": 672240,
+				"to": 674840
+			},
+			"text": " cycles with these results."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,840",
+				"to": "00:11:19,480"
+			},
+			"offsets": {
+				"from": 674840,
+				"to": 679480
+			},
+			"text": " The clients can then ask multiple randomly selected servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,480",
+				"to": "00:11:23,200"
+			},
+			"offsets": {
+				"from": 679480,
+				"to": 683200
+			},
+			"text": " to answer the same question, evaluate the same function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,200",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 683200,
+				"to": 685000
+			},
+			"text": " Hopefully, all of them will return the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 687720
+			},
+			"text": " and then the client can believe it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:31,320"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 691320
+			},
+			"text": " In the unlike case, when they return different results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:34,200"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 694200
+			},
+			"text": " of course, at least one of them will be false,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,200",
+				"to": "00:11:36,680"
+			},
+			"offsets": {
+				"from": 694200,
+				"to": 696680
+			},
+			"text": " and the client should post these statements"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,680",
+				"to": "00:11:41,080"
+			},
+			"offsets": {
+				"from": 696680,
+				"to": 701080
+			},
+			"text": " to a judge contract, which will then request"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,080",
+				"to": "00:11:46,080"
+			},
+			"offsets": {
+				"from": 701080,
+				"to": 706080
+			},
+			"text": " intermediate states of this VM execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,080",
+				"to": "00:11:50,440"
+			},
+			"offsets": {
+				"from": 706080,
+				"to": 710440
+			},
+			"text": " from the signing parties until it finds the one single"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,440",
+				"to": "00:11:52,920"
+			},
+			"offsets": {
+				"from": 710440,
+				"to": 712920
+			},
+			"text": " insertion that has been executed differently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,920",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 712920,
+				"to": 718080
+			},
+			"text": " and punish that one which has been lying by taking away"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:11:59,080"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 719080
+			},
+			"text": " a security deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,080",
+				"to": "00:12:04,560"
+			},
+			"offsets": {
+				"from": 719080,
+				"to": 724560
+			},
+			"text": " Both of these approaches have their advantages"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,560",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 724560,
+				"to": 730000
+			},
+			"text": " and disadvantages, but whichever one the clients are choosing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:13,520"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 733520
+			},
+			"text": " this remote virtual machine execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,520",
+				"to": "00:12:20,040"
+			},
+			"offsets": {
+				"from": 733520,
+				"to": 740040
+			},
+			"text": " will basically be the ultimate flexible alias request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,040",
+				"to": "00:12:26,400"
+			},
+			"offsets": {
+				"from": 740040,
+				"to": 746400
+			},
+			"text": " which can minimize any gap between the capabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,400",
+				"to": "00:12:32,280"
+			},
+			"offsets": {
+				"from": 746400,
+				"to": 752280
+			},
+			"text": " of full and light clients, which I believe will bring us"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,280",
+				"to": "00:12:37,680"
+			},
+			"offsets": {
+				"from": 752280,
+				"to": 757680
+			},
+			"text": " closer to realizing our original vision we had with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,680",
+				"to": "00:12:46,920"
+			},
+			"offsets": {
+				"from": 757680,
+				"to": 766920
+			},
+			"text": " So we are at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,920",
+				"to": "00:12:48,440"
+			},
+			"offsets": {
+				"from": 766920,
+				"to": 768440
+			},
+			"text": " Thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,440",
+				"to": "00:12:52,800"
+			},
+			"offsets": {
+				"from": 768440,
+				"to": 772800
+			},
+			"text": " And if you, as I promised, here are some links."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,800",
+				"to": "00:12:57,160"
+			},
+			"offsets": {
+				"from": 772800,
+				"to": 777160
+			},
+			"text": " There's a GitHub channel, GitHub.im/it/new/light client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,160",
+				"to": "00:12:59,320"
+			},
+			"offsets": {
+				"from": 777160,
+				"to": 779320
+			},
+			"text": " and this is the main forum of the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,320",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 779320,
+				"to": 781720
+			},
+			"text": " where you can follow the developments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:04,360"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 784360
+			},
+			"text": " You can ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,360",
+				"to": "00:13:09,520"
+			},
+			"offsets": {
+				"from": 784360,
+				"to": 789520
+			},
+			"text": " And whatever news I have, I always post it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,520",
+				"to": "00:13:15,200"
+			},
+			"offsets": {
+				"from": 789520,
+				"to": 795200
+			},
+			"text": " And there's also a Wikipedia page with the instructions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,200",
+				"to": "00:13:19,160"
+			},
+			"offsets": {
+				"from": 795200,
+				"to": 799160
+			},
+			"text": " to try the current beta version."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,160",
+				"to": "00:13:29,240"
+			},
+			"offsets": {
+				"from": 799160,
+				"to": 809240
+			},
+			"text": " So please stay tuned for much development in the near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,240",
+				"to": "00:13:32,720"
+			},
+			"offsets": {
+				"from": 809240,
+				"to": 812720
+			},
+			"text": " Also, a lot of documentation is coming soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,720",
+				"to": "00:13:40,160"
+			},
+			"offsets": {
+				"from": 812720,
+				"to": 820160
+			},
+			"text": " because another good news is that now both parity and C++"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,160",
+				"to": "00:13:42,600"
+			},
+			"offsets": {
+				"from": 820160,
+				"to": 822600
+			},
+			"text": " wants to implement the light protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,600",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 822600,
+				"to": 826000
+			},
+			"text": " So of course, we have to improve specifications better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 830000
+			},
+			"text": " because so far I have concentrated mostly on code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:51,360"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 831360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,360",
+				"to": "00:13:53,840"
+			},
+			"offsets": {
+				"from": 831360,
+				"to": 833840
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,840",
+				"to": "00:13:56,600"
+			},
+			"offsets": {
+				"from": 833840,
+				"to": 836600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,600",
+				"to": "00:13:59,180"
+			},
+			"offsets": {
+				"from": 836600,
+				"to": 839180
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,180",
+				"to": "00:14:01,760"
+			},
+			"offsets": {
+				"from": 839180,
+				"to": 841760
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

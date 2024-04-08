@@ -1,0 +1,8414 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 18000
+			},
+			"text": " Hi. We're from a project called Nim, and we're going to be talking about privacy and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " blockchains and decentralized systems and distributed systems today and a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27000
+			},
+			"text": " about the Internet and sort of more general systems outside of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30000
+			},
+			"text": " We're a project that is basically about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 34000
+			},
+			"text": " The kinds of things we're going to talk about today, why are we doing this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 36000
+			},
+			"text": " What are the things that we're interested in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " What problems are we interested in solving?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 41000
+			},
+			"text": " Giving a quick definition of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 46000
+			},
+			"text": " We're going to talk about two core technologies so that we are working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 53000
+			},
+			"text": " One of them is called the MIXNet, which is a kind of better-than-tor way of anonymizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 55000
+			},
+			"text": " your Internet traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " The second one is decentralized credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " That's kind of like the quickest way I've ever tried to figure out to explain it to people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66000
+			},
+			"text": " is something like a decentralized OAuth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 69000
+			},
+			"text": " It's actually much more powerful than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 76000
+			},
+			"text": " You can actually use it to anonymize pretty much any cryptocurrency transaction or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 82000
+			},
+			"text": " blockchain transaction using anonymizing claims, which I'll explain in great detail in just a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 85000
+			},
+			"text": " Then we'll do a quick demo and then we have a discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 90000
+			},
+			"text": " How many of you here are developers who have projects that maybe have interest in privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 94000
+			},
+			"text": " You think it would be useful to have different privacy and preserving things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " That's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 97000
+			},
+			"text": " I'm super happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 98000
+			},
+			"text": " Okay, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 100000
+			},
+			"text": " Hopefully we can have a really good discussion as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 103000
+			},
+			"text": " I think we should introduce ourselves first, just as people."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 105000
+			},
+			"text": " So, on your?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 106000
+			},
+			"text": " Hi, hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110000
+			},
+			"text": " My name is Adejem Petroska and I head of research at them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 116000
+			},
+			"text": " I'm also a PhD student at University College in London where I research privacy and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 120000
+			},
+			"text": " seen technologies and in particular identification methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 121000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 123000
+			},
+			"text": " My name is David Arishan."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127000
+			},
+			"text": " As you can see from my last name, I got quite an early start with encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 134000
+			},
+			"text": " I'm a founding member of a decentralized derivatives platform called the Vega Protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " I previously built a charted scalable blockchain and consensus system called chain space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 144000
+			},
+			"text": " moved to leaver very briefly and I thought that I was actually more interested in working"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 148000
+			},
+			"text": " on internet privacy issues since that's why I'm working here at them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 155000
+			},
+			"text": " The wider team, this is the kind of production team including some of our coders and other"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 161000
+			},
+			"text": " surrounding people and we actually have quite a large team of advisors from across Europe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " from four or five different universities across Europe basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " So, our goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " We have one goal, some ending mass surveillance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174000
+			},
+			"text": " Why would we want to do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " Quick, quick kind of overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " I kind of think that the present situation on the internet is something like crypto wars"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 185000
+			},
+			"text": " too so it's like the sequel to the crypto wars."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " For those of you who missed crypto wars one, the original episode, the 1990s were quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 195000
+			},
+			"text": " bold attempts by the US government to legislate things like hardware, back door, back door,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 201000
+			},
+			"text": " into computers and network systems and they basically wanted to pre-root all cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 202000
+			},
+			"text": " at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 204000
+			},
+			"text": " That was their kind of big aim."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209000
+			},
+			"text": " Strong cryptography in the 90s was classed as a munition and it was subject to export"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 213000
+			},
+			"text": " bands so that you couldn't share it outside the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " Many arguments against privacy were advanced at that time and if the anti-privacy advocates"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 223000
+			},
+			"text": " have one in the 90s most of the internet systems that we use today would probably never have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 230000
+			},
+			"text": " happened but as it turns out the original crypto wars were won during the course of the 90s."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 239000
+			},
+			"text": " I think that the availability of SSL probably did more to advance security and privacy of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 241000
+			},
+			"text": " internet in the 90s than anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 248000
+			},
+			"text": " It's rarely viewed this way but SSL and successor protocols like TLS are a practical and very"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " controversial to help ensure civil rights worldwide."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 257000
+			},
+			"text": " Transport security is the core infrastructure of global civil society in my view."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " It also ensured that a lot of new industries could take risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " Things like e-commerce, internet banking, private messaging, photosharing, many of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " convenience of modern life that we take for granted, everything would be very different"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " today if the coders starting in the 90s had been prevented from protecting user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 284000
+			},
+			"text": " Now today just like in the 90s we have a kind of new technical set of possibilities in front"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " of us and the same arguments about privacy are being advanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 298000
+			},
+			"text": " I think that we have to win the kind of crypto wars too in order to make both global civil"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " society secure and also take advantage of the new economic opportunities that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 306000
+			},
+			"text": " in front of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 311000
+			},
+			"text": " Yeah, so that's in a nutshell the reason why we're doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " How?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 319000
+			},
+			"text": " Okay, so you might rightly ask how we're planning to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 322000
+			},
+			"text": " We have basically two core technologies in our system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 328000
+			},
+			"text": " The first one as I said is a mix net which is a better than Tor network security layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " On use a mix net expert she's going to talk about what better than Tor means."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 338000
+			},
+			"text": " Not to rag on Tor because it actually does a really good job but there are certain attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 342000
+			},
+			"text": " against Tor and we think we can just generally do a better job."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 349000
+			},
+			"text": " The second thing which I'll talk about is a signature scheme that provides these properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " and I'll go into those in detail in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " But first I'll hand off to Lanyon."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 362000
+			},
+			"text": " Okay, I think it's the first time I'm using the click here so by my accident like explode"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 365000
+			},
+			"text": " the screen or try not to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " So before we go and jump to like discussing what mix net works are, let's just discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 372000
+			},
+			"text": " what privacy actually means."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " So privacy is the fundamental human right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 382000
+			},
+			"text": " And we can think about privacy in the context of legal basis in the context of human need"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386000
+			},
+			"text": " and we can also think about privacy in the context of computer security."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 392000
+			},
+			"text": " So in context of computer security and in any other the most general way to define privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 398000
+			},
+			"text": " is that privacy is the ability for us to decide what type of information we would like to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " share with other people or disclose about ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 409000
+			},
+			"text": " And privacy is a very complex topic because when we are building privacy enhancing systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " we have to make sure that we're going to consider each of the components of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 415000
+			},
+			"text": " in terms of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420000
+			},
+			"text": " So it's a very holistic property which means that the information leakage in one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 427000
+			},
+			"text": " components of the system may very significantly degrade the privacy properties provided by"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 432000
+			},
+			"text": " given the most enhanced cryptographic techniques in the other component of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 438000
+			},
+			"text": " So because today we're talking about name and name is a system for enhancing the privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 445000
+			},
+			"text": " properties of the online users the most basic component of the system which we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 448000
+			},
+			"text": " run online is the network layer security."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453000
+			},
+			"text": " And when we're thinking about the network layer security one basic thing which we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 455000
+			},
+			"text": " thinking about is the anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 456000
+			},
+			"text": " So what is anonymity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 462000
+			},
+			"text": " Anonymity in general is the property which allows us to remain indistinguishable among"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 465000
+			},
+			"text": " other people performing similar actions or operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 470000
+			},
+			"text": " And in the online world we're going to talk about anonymous communication at the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 471000
+			},
+			"text": " layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " So we would like to hide the fact who is communicating with whom or who is exchanging information"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 479000
+			},
+			"text": " with whom."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 481000
+			},
+			"text": " And what this anonymity is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 487000
+			},
+			"text": " So if you're going to think about network layer security you have to think about the metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 493000
+			},
+			"text": " So when the internet was first introduced in DARPA it was developed as a small site project"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 499000
+			},
+			"text": " focused on fast packet switching and it was intended to be used for casual communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 503000
+			},
+			"text": " not for exchange of confidential information."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " Therefore there was a very small amount of thought put into securing actually this communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 514000
+			},
+			"text": " And how it turned out this little project ended up being a worldwide project and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 517000
+			},
+			"text": " always internet nowadays for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 522000
+			},
+			"text": " And every online activity which we perform lives a digital fingerprint."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " And it means that every operation which you perform with every operation which you perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " online is associated with the metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 531000
+			},
+			"text": " What is this metadata?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 538000
+			},
+			"text": " The best way to define metadata is to say that it is everything about your communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 539000
+			},
+			"text": " except the content."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 545000
+			},
+			"text": " So this is information for example about who is communicating with whom, how often, at"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 551000
+			},
+			"text": " what time so the day, what is the dynamic of the group, what is the sequence of communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 556000
+			},
+			"text": " from which location you're communicating with people and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 563000
+			},
+			"text": " And when the CRISP program was revealed the NSA was saying that hey no big deal that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 567000
+			},
+			"text": " trying to record your communication because we are not reading your content we are just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 568000
+			},
+			"text": " looking at the metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 575000
+			},
+			"text": " But it turns out that this metadata carries a lot of sensitive information about the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 578000
+			},
+			"text": " which very often is as revealing as the content itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584000
+			},
+			"text": " So you don't actually try to print the messages and look into the content to infer a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 590000
+			},
+			"text": " information about the users which in result allows you to infer whether the relationship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " whether they're political or sexual preferences, religions and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 601000
+			},
+			"text": " So let's look at a couple of examples of privacy enhancing technologies which are very popular"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 606000
+			},
+			"text": " nowadays I'm pretty sure you saw or heard at least about one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 612000
+			},
+			"text": " And let's think whether they offer us anonymity at the network level or not and how good is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 613000
+			},
+			"text": " this anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 615000
+			},
+			"text": " So the first example is end-to-end encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 621000
+			},
+			"text": " I'm quite sure that you either use of heard about PGP for emails or end-to-end encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 626000
+			},
+			"text": " instant messaging applications like WhatsApp, Signal, Telegram and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 631000
+			},
+			"text": " So this is a very good example of a privacy enhancing technology which allows you to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 637000
+			},
+			"text": " confidentiality so which allows you to hide the content of your communication but it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " protect the network layer metadata associated with your communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 646000
+			},
+			"text": " So even though you're hiding your actual messages you're not hiding the fact with whom and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 648000
+			},
+			"text": " how or for you are communicating."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 652000
+			},
+			"text": " Another example are the privacy enhancing crypto coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 657000
+			},
+			"text": " So I think I don't have to convince anyone that Bitcoin is not anonymous but let's look"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 661000
+			},
+			"text": " at more privacy friendly coins like for example Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 668000
+			},
+			"text": " So Zcash is a very nice privacy supporting coin because it offers a good privacy properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 675000
+			},
+			"text": " on-chain thanks to using the zero knowledge technology but it does not protect the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 676000
+			},
+			"text": " layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 682000
+			},
+			"text": " So in a result the adversary who has access to the network layer is able to correlate users"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 686000
+			},
+			"text": " transacting just looking at their network addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 690000
+			},
+			"text": " And the last example is VPN so the virtual private network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694000
+			},
+			"text": " So here we are getting a little bit closer towards securing the network layer of communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 702000
+			},
+			"text": " because actually VPNs offer some type of network level protection by offering an encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706000
+			},
+			"text": " channel between the user and the VPN provider which acts as a proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 708000
+			},
+			"text": " But what is the limitation of the VPN?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 717000
+			},
+			"text": " Well VPNs are centralized which means that simply you have to trust the VPN provider that he"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 722000
+			},
+			"text": " will be behaving honestly because he's the one who sees your traffic between the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 724000
+			},
+			"text": " and the public internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 729000
+			},
+			"text": " So in a result you have to trust that the VPN is not malicious or it does not give any"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 735000
+			},
+			"text": " loss about your online activities and does not share it with anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 741000
+			},
+			"text": " So the research in anonymous communication networks is definitely not new already in early 80s."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 747000
+			},
+			"text": " David Champio near the idea of the first ever anonymous network called the mixed network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 752000
+			},
+			"text": " So I will try to give like a very brief crash course on what mixed networks are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 759000
+			},
+			"text": " So let's start first what is a mixed mix is simply a router and network router for any"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 762000
+			},
+			"text": " type of internet traffic which we would like to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 765000
+			},
+			"text": " And the mixed network is just a set of such mix now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 771000
+			},
+			"text": " And those people are in the face that I'm showing the mixed network as a single sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " In general you can have many topologies of this network but just for simplification I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 780000
+			},
+			"text": " just a single path."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " But on top of being just a network router the mixes have some security properties which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 791000
+			},
+			"text": " allow you to remain anonymous at the network layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 793000
+			},
+			"text": " So what are those properties?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 799000
+			},
+			"text": " The first property is that a mixed transforms the received packet cryptographically."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 806000
+			},
+			"text": " What does it mean that if Alice wants to send a message to Bob, she gonna encode her message"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 812000
+			},
+			"text": " into a special cryptographic packet format in such a way that each mix on the path between"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 818000
+			},
+			"text": " Alice and Bob will remove one layer of this cryptographic protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 822000
+			},
+			"text": " So if some of you know on your routing it's a very similar idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 824000
+			},
+			"text": " So we layer and crib the packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 828000
+			},
+			"text": " And what this gives us is the property called bitwise unincability."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 834000
+			},
+			"text": " This means that if the adversary observes any single mix and he sees packets coming in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 839000
+			},
+			"text": " and packets coming out he won't be able to correlate them looking under binary representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 845000
+			},
+			"text": " So the bit pattern of the packets in and out does not correspond to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 851000
+			},
+			"text": " Another property of the mix networks and the mixes is not related anymore to the bitstream"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 854000
+			},
+			"text": " but rather to the timing of the packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 860000
+			},
+			"text": " So most of the routers on the network work at the first in the first out basis which means"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 864000
+			},
+			"text": " the first packet coming in will be probably the first coming out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 869000
+			},
+			"text": " So imagine your mix works like that and the adversary observes the mix and he sees packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 874000
+			},
+			"text": " coming in and out and even though he cannot correlate them based on their binary representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " he will be able to correlate them looking at the time of their arrivals and departures."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 885000
+			},
+			"text": " That's why the mixes do not forward packets at the first in first out role."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 891000
+			},
+			"text": " Instead of that they reorder the packets following some secret permutation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 898000
+			},
+			"text": " What this does is that the timing correspondence between the incoming and outgoing packets is broken up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 904000
+			},
+			"text": " There are many different ways to perform this reordering following secret permutation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 913000
+			},
+			"text": " The original chance mix networks operated in synchronized batches which meant that the mix is waiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 918000
+			},
+			"text": " the whole round which can be for example an hour or something like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 923000
+			},
+			"text": " and gather some packets, processes them and at the end of the round shuffle"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 927000
+			},
+			"text": " and then the secret permutation and the rest of the next."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 934000
+			},
+			"text": " So those two properties the bitwise and the timing and the capability allow you to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 940000
+			},
+			"text": " anonymity of your communication because the mixes are combined in long chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 946000
+			},
+			"text": " and thanks to that none of the mixes knows who is the sender and recipient"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 950000
+			},
+			"text": " because they only know the previews and the next hope."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 954000
+			},
+			"text": " So they don't know what is the whole path and who is sending messages to call."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 960000
+			},
+			"text": " And at the same time the adversary who is observing even the entire network"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 966000
+			},
+			"text": " and can sniff all the packets at all the links won't be able to correlate your communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 973000
+			},
+			"text": " So as long as at least one mix in the path is honest your strong anonymity remains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 979000
+			},
+			"text": " So early mix network designs have a couple of limitations in terms of performance mostly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 984000
+			},
+			"text": " Scalability and very high latency overhead because those batching grants required"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 987000
+			},
+			"text": " a lot of time to wait for many packets to arrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 992000
+			},
+			"text": " That's why the NimMix network is based on the modern mix network design called LUPICS"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 997000
+			},
+			"text": " which solves the problems of traditional mix networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1003000
+			},
+			"text": " So a little bit about how NimMix network works and how we solve those issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " of limited performance in traditional mix networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1011000
+			},
+			"text": " So the first important thing is the network topology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1016000
+			},
+			"text": " So topology means that the mix nodes are grouped into layers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1021000
+			},
+			"text": " and the traffic is flowing from first layer to the last layer in one direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1024000
+			},
+			"text": " And why did we pick the stratified topology?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1029000
+			},
+			"text": " It's because as research has shown the stratified topology has the best trade-off"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1034000
+			},
+			"text": " between anonymity and performance and it's a topology which scales horizontally"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038000
+			},
+			"text": " which means that you can very easily scale your network"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1043000
+			},
+			"text": " if the number of users using it increases or the volume of traffic increases"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1046000
+			},
+			"text": " because you simply have to incrementally add more nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1052000
+			},
+			"text": " So for example Tor is an example of a network which also scales horizontally."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1060000
+			},
+			"text": " In terms of the bitwise un-acability and cryptographic packet format which we are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1062000
+			},
+			"text": " we are using the Sphinx packet format."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1066000
+			},
+			"text": " If some of you know lightning networks you will know that exactly the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " cryptographic packet format is used in the lightning networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1075000
+			},
+			"text": " And the Sphinx packet format offers the un-linkability of the binary pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1078000
+			},
+			"text": " and make sure that all the messages are padded to the same length."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1083000
+			},
+			"text": " But it also ensures resistance to tagging and replay attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1088000
+			},
+			"text": " and it allows to encode all the random information within the packet"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1093000
+			},
+			"text": " which means that the sender as soon as he sends the message into the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1097000
+			},
+			"text": " he can go offline which for example does not happen in Tor"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1100000
+			},
+			"text": " because in Tor you have to be online all the time to be able to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1103000
+			},
+			"text": " when you are sending packets because you have an open circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1108000
+			},
+			"text": " In the name mix effort because we are using Sphinx we can just send the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110000
+			},
+			"text": " and go offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1115000
+			},
+			"text": " And in terms of this mixing operation, this reordering"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1118000
+			},
+			"text": " we use the so-called continuous time mixes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1123000
+			},
+			"text": " And this is a very nice technique for mixing the packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1128000
+			},
+			"text": " And how it works we don't have synchronized RAMs, we do not bash messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1134000
+			},
+			"text": " Instead of that each packet is delayed with some random amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1140000
+			},
+			"text": " The sender when he is preparing the packet to be sent into the mix network"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1144000
+			},
+			"text": " so that those random delays for each mix on the path"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1146000
+			},
+			"text": " this delay is randomized."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1150000
+			},
+			"text": " And the mix when he strips the level of cryptographic protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1154000
+			},
+			"text": " he is going to see this delay and he knows for how long he should keep the packet"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1155000
+			},
+			"text": " before flashing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1158000
+			},
+			"text": " And why actually this is a good technique for mixing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1163000
+			},
+			"text": " Well we are picking the delays from the exponential distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1168000
+			},
+			"text": " and the exponential distribution has a very nice property called \"memorless property\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1174000
+			},
+			"text": " What it means, imagine you are the adversary and you are observing a mix node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1181000
+			},
+			"text": " And you see one packet arriving at some time and then another packet arriving to the mix at another time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1183000
+			},
+			"text": " And then you see a packet leaving the mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1191000
+			},
+			"text": " This memorial is proper details you that you cannot guess which of the incoming packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1197000
+			},
+			"text": " is the one which you observe going out because the timing at which the packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1201000
+			},
+			"text": " are imparted from the mix is not correlated to their arrival times."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1207000
+			},
+			"text": " And what it gives like in the big picture, it increases the anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1211000
+			},
+			"text": " Because in the Synchronize Mix networks you have the anonymity set"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1215000
+			},
+			"text": " of the size of how many messages you've managed to gather during the round."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1219000
+			},
+			"text": " Here because everything works in a continuous manner"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1222000
+			},
+			"text": " and the exponential distribution is long held"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1227000
+			},
+			"text": " your anonymity set is much larger because you actually have to consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1231000
+			},
+			"text": " all the messages which you've ever seen arriving to the mix node"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1234000
+			},
+			"text": " as being potentially the one departure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1240000
+			},
+			"text": " And the last thing about the NIMS MixNet is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1243000
+			},
+			"text": " it's very intuitive that when we're talking about anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1249000
+			},
+			"text": " the larger the group of people among which your anonymity was the better is your anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1252000
+			},
+			"text": " So mix networks very often use covert traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1255000
+			},
+			"text": " The problem with the traditional mix network design"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1259000
+			},
+			"text": " was that this covert traffic usually required a long bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1265000
+			},
+			"text": " And that's why in the NIMS MixNet work we're using a tunable covert traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1270000
+			},
+			"text": " A tunable means that when the volume of real traffic increases in the mix network"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1273000
+			},
+			"text": " you can tune down the amount of covert traffic which you're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1277000
+			},
+			"text": " and vice versa if the amount of real traffic is dropping."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1277000,
+				"to": 1281000
+			},
+			"text": " And the time of covert traffic which we're using is called a loop covert traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1286000
+			},
+			"text": " A loop means that the sender and the recipient of this packet is the same person."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1290000
+			},
+			"text": " And both the clients and the mix nodes are sending loop covert traffic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1292000
+			},
+			"text": " following the Poisson distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1297000
+			},
+			"text": " This ensures that the packets, the real ones and the loop packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1299000
+			},
+			"text": " are very nicely mixed together."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1303000
+			},
+			"text": " So the adversary cannot distinguish looking at some sample of traffic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " whether he sees real messages or loop messages or have, have and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1311000
+			},
+			"text": " And the loop messages they also have another very big advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1315000
+			},
+			"text": " They allow to detect and prevent active attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1319000
+			},
+			"text": " in which either malicious mixes or malicious adversary"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1322000
+			},
+			"text": " can block or drop some of the packets in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1327000
+			},
+			"text": " These are properties which were not in the traditional mix network designs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1330000
+			},
+			"text": " So it's a very big advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1336000
+			},
+			"text": " Okay, just to wrap up about the name mix that what is like the key takeaways"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1341000
+			},
+			"text": " you should remember is that we have a mix network which has a very good"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1344000
+			},
+			"text": " anonymity versus performance trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:26,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1346000
+			},
+			"text": " The network's case very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1346000,
+				"to": 1350000
+			},
+			"text": " We can adjust the latency which we need in our system"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1353000
+			},
+			"text": " depending on the amount and volume of traffic which we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1358000
+			},
+			"text": " We can detect and resist active attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1362000
+			},
+			"text": " And yeah, so that's about mix networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1364000
+			},
+			"text": " All right, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1366000
+			},
+			"text": " So that's half of our system."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1369000
+			},
+			"text": " And by the way, we're going to try to do, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:52,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1372000
+			},
+			"text": " we're going to succeed in doing a demo because we don't have any dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,000",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1372000,
+				"to": 1375000
+			},
+			"text": " on Internet because I shut a little ruby last night at my hotel room."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1378000
+			},
+			"text": " So we'll actually be able to see some of the stuff happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1382000
+			},
+			"text": " So we built a small chat application just as a kind of tester."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1386000
+			},
+			"text": " And you'll be able to see messages going into the mixnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1390000
+			},
+			"text": " and going between two terminals as a kind of simple example."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1393000
+			},
+			"text": " But you could use mixnets for many more things than chat."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1397000
+			},
+			"text": " You could use it to pretty much anonymize any of your blockchain transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1403000
+			},
+			"text": " any of your cryptocurrency transactions, or anything else for that matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:28,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1408000
+			},
+			"text": " The second part of our system is a system of privacy preserving credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1408000,
+				"to": 1411000
+			},
+			"text": " So we're working at different layers here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:35,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1415000
+			},
+			"text": " A mixnet defends you at the network layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1415000,
+				"to": 1421000
+			},
+			"text": " Whereas the credentials that we have can defend you at the layer of your transactions or your blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1429000
+			},
+			"text": " So the mixnet protects your IP traffic as it's traveling across the unprotected wilds of the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1434000
+			},
+			"text": " And the privacy preserving credentials allow you to encode cryptographic claims and use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1438000
+			},
+			"text": " So we're using a signature scheme called Coconut."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1440000
+			},
+			"text": " So what is Coconut?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1443000
+			},
+			"text": " Well, Coconut is a signature scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:08,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1448000
+			},
+			"text": " And as you may know, all signature schemes have at least these three algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1448000,
+				"to": 1450000
+			},
+			"text": " You need to be able to generate your keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1453000
+			},
+			"text": " You need to verify a signature that you receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1456000
+			},
+			"text": " And somebody has to be able to sign, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1460000
+			},
+			"text": " So given the public key of the person that you want to sign a message for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1462000
+			},
+			"text": " you should be able to sign that thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1465000
+			},
+			"text": " And then if anybody who has the public key that was signed with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1467000
+			},
+			"text": " you should be able to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:30,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1470000
+			},
+			"text": " So everybody's pretty much familiar with these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1470000,
+				"to": 1471000
+			},
+			"text": " A lot of nothing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1472000
+			},
+			"text": " It's very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1473000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1476000
+			},
+			"text": " So the name signatures are, it is a signature scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1478000
+			},
+			"text": " but we have several additional properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1482000
+			},
+			"text": " So the first property that we add to the sort of normal three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1485000
+			},
+			"text": " we have blind signatures or blind issuance."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1488000
+			},
+			"text": " Do people know what that means?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:49,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1489000
+			},
+			"text": " Some people, not everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,000",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1489000,
+				"to": 1490000
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:24:53,000"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1493000
+			},
+			"text": " So again, David Chiang, cryptographic genius,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,000",
+				"to": "00:24:58,000"
+			},
+			"offsets": {
+				"from": 1493000,
+				"to": 1498000
+			},
+			"text": " invented blind signatures, which have some additional properties and functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,000",
+				"to": "00:25:03,000"
+			},
+			"offsets": {
+				"from": 1498000,
+				"to": 1503000
+			},
+			"text": " Let's take a fictional e-cash scheme just to kind of use an example to try to walk"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,000",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1503000,
+				"to": 1504000
+			},
+			"text": " through what a blind signature is."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1507000
+			},
+			"text": " So I'm going to create a cryptographic claim."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1511000
+			},
+			"text": " So a piece of cryptographic material that basically says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1515000
+			},
+			"text": " what I want to end up with is a bare token saying I have $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1516000
+			},
+			"text": " Okay, that's our aim."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:18,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1518000
+			},
+			"text": " Don't take it out of the blockchain world for just a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1518000,
+				"to": 1522000
+			},
+			"text": " So I'm going to create this claim saying, Dave has $1 and it'll be in clear text."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1523000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1528000
+			},
+			"text": " So I've blinded locally on my client and that turns it into gobbledygook."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1532000
+			},
+			"text": " So it's just a piece of stringy stringiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1536000
+			},
+			"text": " And I'm going to send it to the bank over the network along with a dollar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1539000
+			},
+			"text": " if I could transmit a dollar through the pipes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1543000
+			},
+			"text": " The bank is going to then sign it and saying they had test yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1544000
+			},
+			"text": " Dave definitely has a dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1545000
+			},
+			"text": " We're holding it cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1549000
+			},
+			"text": " Now he's got this claim that he can run around with and they give me a signature back."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1554000
+			},
+			"text": " So they've signed basically a piece of blind cryptographic material."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1561000
+			},
+			"text": " They give it back to me and now I've now I unblind the credential and I can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:03,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1563000
+			},
+			"text": " delink at that from what I got back from the bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1563000,
+				"to": 1569000
+			},
+			"text": " So I now have a bare token which attests that I own a dollar and yet the bank never actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:17,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1577000
+			},
+			"text": " they can't really identify me because all the other material in that blinded credential"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,000",
+				"to": "00:26:19,000"
+			},
+			"offsets": {
+				"from": 1577000,
+				"to": 1579000
+			},
+			"text": " they never saw it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1579000,
+				"to": 1580000
+			},
+			"text": " They just saw some gobbledygook."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:22,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1582000
+			},
+			"text": " So this process of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1582000,
+				"to": 1586000
+			},
+			"text": " So create a clear text, blind to clear text locally, send it to the signer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:31,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1591000
+			},
+			"text": " The signer signs it, return it to the creator and the creator unblinds it to use it as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1591000,
+				"to": 1592000
+			},
+			"text": " bare token."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1595000
+			},
+			"text": " This is the kind of general process of blind signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1600000
+			},
+			"text": " Now some of you may have noted that there's a problem with blind issuance."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1603000
+			},
+			"text": " Can anybody detect what it might be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:46,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1606000
+			},
+			"text": " Well, do you pretend that you have $3?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1606000,
+				"to": 1607000
+			},
+			"text": " Exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:51,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1611000
+			},
+			"text": " So the signer has just been presented with this gobbledygook and they've signed it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,000",
+				"to": "00:26:52,000"
+			},
+			"offsets": {
+				"from": 1611000,
+				"to": 1612000
+			},
+			"text": " they've given it back to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,000",
+				"to": "00:26:56,000"
+			},
+			"offsets": {
+				"from": 1612000,
+				"to": 1616000
+			},
+			"text": " So it could have said Dave has $1 million in it and they would be unable to tell without"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,000",
+				"to": "00:26:58,000"
+			},
+			"offsets": {
+				"from": 1616000,
+				"to": 1618000
+			},
+			"text": " some further active verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1618000,
+				"to": 1621000
+			},
+			"text": " So if you're the bank, you get some gobbledygook."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:04,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1624000
+			},
+			"text": " The usual solution to this is to use a zero knowledge proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,000",
+				"to": "00:27:08,000"
+			},
+			"offsets": {
+				"from": 1624000,
+				"to": 1628000
+			},
+			"text": " A testing that the message contains $1 but reveals nothing else."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,000",
+				"to": "00:27:12,000"
+			},
+			"offsets": {
+				"from": 1628000,
+				"to": 1632000
+			},
+			"text": " So the serial number of the credential, my identity, anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,000",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1632000,
+				"to": 1635000
+			},
+			"text": " So there's a bit of zero knowledge action inside this."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:19,000"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1639000
+			},
+			"text": " So coconut, our signature scheme has this zero knowledge proof ability."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,000",
+				"to": "00:27:21,000"
+			},
+			"offsets": {
+				"from": 1639000,
+				"to": 1641000
+			},
+			"text": " So that's one of the things that it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,000",
+				"to": "00:27:23,000"
+			},
+			"offsets": {
+				"from": 1641000,
+				"to": 1643000
+			},
+			"text": " So it can do blind issuance."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,000",
+				"to": "00:27:24,000"
+			},
+			"offsets": {
+				"from": 1643000,
+				"to": 1644000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,000",
+				"to": "00:27:31,000"
+			},
+			"offsets": {
+				"from": 1644000,
+				"to": 1651000
+			},
+			"text": " A second thing that we have is the concept of re-randomizable signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,000",
+				"to": "00:27:33,000"
+			},
+			"offsets": {
+				"from": 1651000,
+				"to": 1653000
+			},
+			"text": " Has anybody ever run across this before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,000",
+				"to": "00:27:35,000"
+			},
+			"offsets": {
+				"from": 1653000,
+				"to": 1655000
+			},
+			"text": " That's a pretty weird one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1655000,
+				"to": 1657000
+			},
+			"text": " I'm going to demonstrate it in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:43,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1663000
+			},
+			"text": " But this type of signature has an additional algorithm to these three, which is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1663000,
+				"to": 1665000
+			},
+			"text": " randomized."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:48,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1668000
+			},
+			"text": " So you basically can take a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,000",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1668000,
+				"to": 1672000
+			},
+			"text": " And then from that signature, you can call the randomized method on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:27:58,000"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1678000
+			},
+			"text": " And you can basically generate a brand new credential, which is cryptographically equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,000",
+				"to": "00:28:03,000"
+			},
+			"offsets": {
+				"from": 1678000,
+				"to": 1683000
+			},
+			"text": " to the original credential that you originally had in your hand, is completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,000",
+				"to": "00:28:04,000"
+			},
+			"offsets": {
+				"from": 1683000,
+				"to": 1684000
+			},
+			"text": " delinked."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,000",
+				"to": "00:28:08,000"
+			},
+			"offsets": {
+				"from": 1684000,
+				"to": 1688000
+			},
+			"text": " It completely anonymizes the cryptographic material that you have in the bearer token."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,000",
+				"to": "00:28:12,000"
+			},
+			"offsets": {
+				"from": 1688000,
+				"to": 1692000
+			},
+			"text": " So it looks like a brand new credential is not sort of unlinkable between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,000",
+				"to": "00:28:17,000"
+			},
+			"offsets": {
+				"from": 1692000,
+				"to": 1697000
+			},
+			"text": " But it can still be verified through cryptography as if it was the original one."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,000",
+				"to": "00:28:20,000"
+			},
+			"offsets": {
+				"from": 1697000,
+				"to": 1700000
+			},
+			"text": " So I'll demonstrate that in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,000",
+				"to": "00:28:24,000"
+			},
+			"offsets": {
+				"from": 1700000,
+				"to": 1704000
+			},
+			"text": " But that basically can make your bearer tokens untraceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,000",
+				"to": "00:28:27,000"
+			},
+			"offsets": {
+				"from": 1704000,
+				"to": 1707000
+			},
+			"text": " So you get a bearer token back from some kind of authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,000",
+				"to": "00:28:29,000"
+			},
+			"offsets": {
+				"from": 1707000,
+				"to": 1709000
+			},
+			"text": " You call the re-randomized method on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,000",
+				"to": "00:28:32,000"
+			},
+			"offsets": {
+				"from": 1709000,
+				"to": 1712000
+			},
+			"text": " You get a new bearer token that has a same cryptographic material."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,000",
+				"to": "00:28:36,000"
+			},
+			"offsets": {
+				"from": 1712000,
+				"to": 1716000
+			},
+			"text": " But the authority can't say, yeah, this was Dave that generated this because I saw that one"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,000",
+				"to": "00:28:37,000"
+			},
+			"offsets": {
+				"from": 1716000,
+				"to": 1717000
+			},
+			"text": " and I gave it to him."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,000",
+				"to": "00:28:39,000"
+			},
+			"offsets": {
+				"from": 1717000,
+				"to": 1719000
+			},
+			"text": " So that kind of makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,000",
+				"to": "00:28:41,000"
+			},
+			"offsets": {
+				"from": 1719000,
+				"to": 1721000
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,000",
+				"to": "00:28:43,000"
+			},
+			"offsets": {
+				"from": 1721000,
+				"to": 1723000
+			},
+			"text": " Okay, so what is this used for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,000",
+				"to": "00:28:47,000"
+			},
+			"offsets": {
+				"from": 1723000,
+				"to": 1727000
+			},
+			"text": " So you could create multiple signatures and show them to different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,000",
+				"to": "00:28:52,000"
+			},
+			"offsets": {
+				"from": 1727000,
+				"to": 1732000
+			},
+			"text": " But the people that you show it to cannot link you back to the original signature or any"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,000",
+				"to": "00:28:55,000"
+			},
+			"offsets": {
+				"from": 1732000,
+				"to": 1735000
+			},
+			"text": " of the other re-randomized signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,000",
+				"to": "00:28:59,000"
+			},
+			"offsets": {
+				"from": 1735000,
+				"to": 1739000
+			},
+			"text": " But the underlying messages in this case is all the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,000",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1739000,
+				"to": 1743000
+			},
+			"text": " So the cryptographic content is all the same across all these credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:08,000"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1748000
+			},
+			"text": " So we basically have multiple anonymized bearer tokens that can each be validated as if they were the original."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,000",
+				"to": "00:29:11,000"
+			},
+			"offsets": {
+				"from": 1748000,
+				"to": 1751000
+			},
+			"text": " So we have the property of unlinkability."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,000",
+				"to": "00:29:14,000"
+			},
+			"offsets": {
+				"from": 1751000,
+				"to": 1754000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,000",
+				"to": "00:29:17,000"
+			},
+			"offsets": {
+				"from": 1754000,
+				"to": 1757000
+			},
+			"text": " We also have a concept of selective disclosure."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1757000,
+				"to": 1763000
+			},
+			"text": " So in a traditional scheme, when you sign the message and somebody once somebody verifies the message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:25,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1765000
+			},
+			"text": " they have to verify the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:25,000",
+				"to": "00:29:30,000"
+			},
+			"offsets": {
+				"from": 1765000,
+				"to": 1770000
+			},
+			"text": " Okay, so selective disclosure means that instead of needing to verify the whole message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,000",
+				"to": "00:29:35,000"
+			},
+			"offsets": {
+				"from": 1770000,
+				"to": 1775000
+			},
+			"text": " you can have people verify only certain attributes in the message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,000",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1775000,
+				"to": 1776000
+			},
+			"text": " keeping other parts of it private."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:40,000"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1780000
+			},
+			"text": " So let's consider an example again to make things easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,000",
+				"to": "00:29:42,000"
+			},
+			"offsets": {
+				"from": 1780000,
+				"to": 1782000
+			},
+			"text": " Let's assume that we have a passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,000",
+				"to": "00:29:47,000"
+			},
+			"offsets": {
+				"from": 1782000,
+				"to": 1787000
+			},
+			"text": " So my passport has my name, my nationality, age, photo, and place of issue in it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,000",
+				"to": "00:29:50,000"
+			},
+			"offsets": {
+				"from": 1787000,
+				"to": 1790000
+			},
+			"text": " So these are the attributes in the passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,000",
+				"to": "00:29:53,000"
+			},
+			"offsets": {
+				"from": 1790000,
+				"to": 1793000
+			},
+			"text": " Let's say I want to go to the pub and have a drink."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,000",
+				"to": "00:29:58,000"
+			},
+			"offsets": {
+				"from": 1793000,
+				"to": 1798000
+			},
+			"text": " And I mean, I'm so old that I would never need to prove that I'm old enough to get in."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,000",
+				"to": "00:30:01,000"
+			},
+			"offsets": {
+				"from": 1798000,
+				"to": 1801000
+			},
+			"text": " But other people might need to actually produce some kind of ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1801000,
+				"to": 1808000
+			},
+			"text": " And you could, in an electronic kind of way, you might send your whole passport over, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:10,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1810000
+			},
+			"text": " And identify yourself completely."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,000",
+				"to": "00:30:14,000"
+			},
+			"offsets": {
+				"from": 1810000,
+				"to": 1814000
+			},
+			"text": " But actually, can anybody see what we actually need to get into the pub here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,000",
+				"to": "00:30:15,000"
+			},
+			"offsets": {
+				"from": 1814000,
+				"to": 1815000
+			},
+			"text": " Age."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,000",
+				"to": "00:30:17,000"
+			},
+			"offsets": {
+				"from": 1815000,
+				"to": 1817000
+			},
+			"text": " Age and photo, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:17,000",
+				"to": "00:30:23,000"
+			},
+			"offsets": {
+				"from": 1817000,
+				"to": 1823000
+			},
+			"text": " And actually, we don't really want to say how old is Dave, he's really super ancient."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,000",
+				"to": "00:30:25,000"
+			},
+			"offsets": {
+				"from": 1823000,
+				"to": 1825000
+			},
+			"text": " What we really just want to say is he's over 18, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,000",
+				"to": "00:30:29,000"
+			},
+			"offsets": {
+				"from": 1825000,
+				"to": 1829000
+			},
+			"text": " So that's basically what we want to selectively disclose."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,000",
+				"to": "00:30:32,000"
+			},
+			"offsets": {
+				"from": 1829000,
+				"to": 1832000
+			},
+			"text": " So coconut allows us to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,000",
+				"to": "00:30:37,000"
+			},
+			"offsets": {
+				"from": 1832000,
+				"to": 1837000
+			},
+			"text": " So you basically sign a tuple of all fields in the passport, and when it comes to verify,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,000",
+				"to": "00:30:40,000"
+			},
+			"offsets": {
+				"from": 1837000,
+				"to": 1840000
+			},
+			"text": " the verifier can verify only some of the attributes."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,000",
+				"to": "00:30:46,000"
+			},
+			"offsets": {
+				"from": 1840000,
+				"to": 1846000
+			},
+			"text": " Despite the fact that the rest of them are still there, you can selectively choose to disclose these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,000",
+				"to": "00:30:52,000"
+			},
+			"offsets": {
+				"from": 1846000,
+				"to": 1852000
+			},
+			"text": " And you can selectively choose to disclose different ones to different people, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,000",
+				"to": "00:30:55,000"
+			},
+			"offsets": {
+				"from": 1852000,
+				"to": 1855000
+			},
+			"text": " So yeah, so basically we have three parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:55,000",
+				"to": "00:31:00,000"
+			},
+			"offsets": {
+				"from": 1855000,
+				"to": 1860000
+			},
+			"text": " We have the passport authority, the subject, that's whoever wants to go in the pub."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,000",
+				"to": "00:31:05,000"
+			},
+			"offsets": {
+				"from": 1860000,
+				"to": 1865000
+			},
+			"text": " And then we have the relying party, we call it, which is the bouncer at the pub door, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,000",
+				"to": "00:31:12,000"
+			},
+			"offsets": {
+				"from": 1865000,
+				"to": 1872000
+			},
+			"text": " And you can basically choose to selectively disclose some or all of the attributes in the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,000",
+				"to": "00:31:22,000"
+			},
+			"offsets": {
+				"from": 1872000,
+				"to": 1882000
+			},
+			"text": " So when you put it all together, selective disclosure can be applied to normal signature schemes without blinding, without re-randomization."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:22,000",
+				"to": "00:31:27,000"
+			},
+			"offsets": {
+				"from": 1882000,
+				"to": 1887000
+			},
+			"text": " So you can get a signed message from an authority and disclose them selectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,000",
+				"to": "00:31:36,000"
+			},
+			"offsets": {
+				"from": 1887000,
+				"to": 1896000
+			},
+			"text": " And this provides privacy against the relying party, the bouncer, and also against the passport authority, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,000",
+				"to": "00:31:37,000"
+			},
+			"offsets": {
+				"from": 1896000,
+				"to": 1897000
+			},
+			"text": " Oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:37,000",
+				"to": "00:31:46,000"
+			},
+			"offsets": {
+				"from": 1897000,
+				"to": 1906000
+			},
+			"text": " If you go to the pub again, or if the passport authority wants to, without the other properties, that is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,000",
+				"to": "00:31:53,000"
+			},
+			"offsets": {
+				"from": 1906000,
+				"to": 1913000
+			},
+			"text": " blind issuance and re-randomizable signatures, they can identify you the second time you go to the pub as being the same person, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,000",
+				"to": "00:31:56,000"
+			},
+			"offsets": {
+				"from": 1913000,
+				"to": 1916000
+			},
+			"text": " Or the passport authority to break your anonymity if they wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,000",
+				"to": "00:32:04,000"
+			},
+			"offsets": {
+				"from": 1916000,
+				"to": 1924000
+			},
+			"text": " If we combine all of these things, blindred credentials, re-randomizable signatures, and selective disclosure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,000",
+				"to": "00:32:10,000"
+			},
+			"offsets": {
+				"from": 1924000,
+				"to": 1930000
+			},
+			"text": " we can protect the users' provide privacy against multiple shows, that is, uses of the credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:10,000",
+				"to": "00:32:15,000"
+			},
+			"offsets": {
+				"from": 1930000,
+				"to": 1935000
+			},
+			"text": " At the pub, so the bouncer will always think it's the first time you've been there, which might be important in certain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,000",
+				"to": "00:32:18,000"
+			},
+			"offsets": {
+				"from": 1935000,
+				"to": 1938000
+			},
+			"text": " And we can also protect you against the passport authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:18,000",
+				"to": "00:32:22,000"
+			},
+			"offsets": {
+				"from": 1938000,
+				"to": 1942000
+			},
+			"text": " There is no way of linking the credentials you're using to what they issued."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,000",
+				"to": "00:32:26,000"
+			},
+			"offsets": {
+				"from": 1942000,
+				"to": 1946000
+			},
+			"text": " Now, keep in mind, we're not really talking about making a passport authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,000",
+				"to": "00:32:36,000"
+			},
+			"offsets": {
+				"from": 1946000,
+				"to": 1956000
+			},
+			"text": " Any kind of authority that you want to have that can assert any useful information about anything in your applications can be contained inside an infredential."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,000",
+				"to": "00:32:47,000"
+			},
+			"offsets": {
+				"from": 1956000,
+				"to": 1967000
+			},
+			"text": " So, all the elements thus far basically existed in the cryptography literature, and we're just stringing them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,000",
+				"to": "00:32:55,000"
+			},
+			"offsets": {
+				"from": 1967000,
+				"to": 1975000
+			},
+			"text": " So, like, this isn't some mind-blowingly new set of things, maybe you haven't heard of it before, but all of this stuff basically exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,000",
+				"to": "00:32:58,000"
+			},
+			"offsets": {
+				"from": 1975000,
+				"to": 1978000
+			},
+			"text": " But they only existed in centralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:58,000",
+				"to": "00:33:03,000"
+			},
+			"offsets": {
+				"from": 1978000,
+				"to": 1983000
+			},
+			"text": " So, up until now, it's been impossible to string these things together in decentralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,000",
+				"to": "00:33:12,000"
+			},
+			"offsets": {
+				"from": 1983000,
+				"to": 1992000
+			},
+			"text": " And that's what Coconut basically gives you, is this one more thing, which is threshold issuance."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,000",
+				"to": "00:33:19,000"
+			},
+			"offsets": {
+				"from": 1992000,
+				"to": 1999000
+			},
+			"text": " So, you can actually have a decentralized set of authorities all generate part of a credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:19,000",
+				"to": "00:33:32,000"
+			},
+			"offsets": {
+				"from": 1999000,
+				"to": 2012000
+			},
+			"text": " So, that allows the decentralization and the kind of blockchainization of using these kinds of attributes for the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,000",
+				"to": "00:33:34,000"
+			},
+			"offsets": {
+				"from": 2012000,
+				"to": 2014000
+			},
+			"text": " So, we're not aware of anybody else who's done this."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,000",
+				"to": "00:33:43,000"
+			},
+			"offsets": {
+				"from": 2014000,
+				"to": 2023000
+			},
+			"text": " So, it makes all of these other things, like blind issuance, rear-endomizable signature, select disclosure, usable in a blockchain context."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,000",
+				"to": "00:33:46,000"
+			},
+			"offsets": {
+				"from": 2023000,
+				"to": 2026000
+			},
+			"text": " So, this is known as a threshold signature scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:46,000",
+				"to": "00:33:51,000"
+			},
+			"offsets": {
+				"from": 2026000,
+				"to": 2031000
+			},
+			"text": " So, that's basically what Coconut does and what the MixNet does."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,000",
+				"to": "00:33:56,000"
+			},
+			"offsets": {
+				"from": 2031000,
+				"to": 2036000
+			},
+			"text": " Maybe I'll break for some questions here just to keep things coming back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,000",
+				"to": "00:34:04,000"
+			},
+			"offsets": {
+				"from": 2036000,
+				"to": 2044000
+			},
+			"text": " And then I'll do a quick architecture diagram of what we have running right now, and then I'll show you that can show some of this stuff in action."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:04,000",
+				"to": "00:34:07,000"
+			},
+			"offsets": {
+				"from": 2044000,
+				"to": 2047000
+			},
+			"text": " Cool, so questions, any?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,000",
+				"to": "00:34:09,000"
+			},
+			"offsets": {
+				"from": 2047000,
+				"to": 2049000
+			},
+			"text": " I know."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,000",
+				"to": "00:34:13,000"
+			},
+			"offsets": {
+				"from": 2049000,
+				"to": 2053000
+			},
+			"text": " You mentioned a lot of the attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:13,000",
+				"to": "00:34:16,000"
+			},
+			"offsets": {
+				"from": 2053000,
+				"to": 2056000
+			},
+			"text": " So, here's a first question."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,000",
+				"to": "00:34:18,000"
+			},
+			"offsets": {
+				"from": 2056000,
+				"to": 2058000
+			},
+			"text": " Yeah, we're repeating it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,000",
+				"to": "00:34:20,000"
+			},
+			"offsets": {
+				"from": 2058000,
+				"to": 2060000
+			},
+			"text": " It rings a bell, but I'm not professional."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,000",
+				"to": "00:34:23,000"
+			},
+			"offsets": {
+				"from": 2060000,
+				"to": 2063000
+			},
+			"text": " Okay, so the question is, what is that tagging and replay attack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,000",
+				"to": "00:34:38,000"
+			},
+			"offsets": {
+				"from": 2063000,
+				"to": 2078000
+			},
+			"text": " So, a tagging attack is if the adversary is able to snip a packet, so I put a network, and then flip a single bid, for example, in order to be able to trace this packet further in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,000",
+				"to": "00:34:46,000"
+			},
+			"offsets": {
+				"from": 2078000,
+				"to": 2086000
+			},
+			"text": " If you don't have a cryptographic packet format which will be resistant to that, you will just flip a bid and then you will be able to trace the packet."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,000",
+				"to": "00:34:49,000"
+			},
+			"offsets": {
+				"from": 2086000,
+				"to": 2089000
+			},
+			"text": " The replay attack can be used also for tagging."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,000",
+				"to": "00:34:56,000"
+			},
+			"offsets": {
+				"from": 2089000,
+				"to": 2096000
+			},
+			"text": " It means that you're repeating the same packet once again, just for example, to see where it will go again."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,000",
+				"to": "00:35:03,000"
+			},
+			"offsets": {
+				"from": 2096000,
+				"to": 2103000
+			},
+			"text": " So, you're able to sniff it and then resend it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,000",
+				"to": "00:35:09,000"
+			},
+			"offsets": {
+				"from": 2103000,
+				"to": 2109000
+			},
+			"text": " You mentioned that you set out to basically build something that's better than Tor in terms of network security."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:09,000",
+				"to": "00:35:21,000"
+			},
+			"offsets": {
+				"from": 2109000,
+				"to": 2121000
+			},
+			"text": " So, the main attack against Tor is essentially a government agency running over 30% of all nodes, and by having a majority of exit nodes, they just see where all the packets end up."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,000",
+				"to": "00:35:23,000"
+			},
+			"offsets": {
+				"from": 2121000,
+				"to": 2123000
+			},
+			"text": " How do you address that attack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:23,000",
+				"to": "00:35:32,000"
+			},
+			"offsets": {
+				"from": 2123000,
+				"to": 2132000
+			},
+			"text": " So, for example, the thing in Tor is that all the packets are going, like all your packets from the location packets are going by the same circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:32,000",
+				"to": "00:35:34,000"
+			},
+			"offsets": {
+				"from": 2132000,
+				"to": 2134000
+			},
+			"text": " So, with the same entry and exit node."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,000",
+				"to": "00:35:40,000"
+			},
+			"offsets": {
+				"from": 2134000,
+				"to": 2140000
+			},
+			"text": " Here in the Make Network, every packet is going by an independent path, which is selected randomly."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:40,000",
+				"to": "00:35:50,000"
+			},
+			"offsets": {
+				"from": 2140000,
+				"to": 2150000
+			},
+			"text": " So, this is already causing a little bit of trouble because then it's not that the agent just, you know, trying to control some of the exit nodes and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:50,000",
+				"to": "00:36:01,000"
+			},
+			"offsets": {
+				"from": 2150000,
+				"to": 2161000
+			},
+			"text": " Another thing is that when we run the Make Snows, there are a couple of techniques which allow you to detect any nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,000",
+				"to": "00:36:11,000"
+			},
+			"offsets": {
+				"from": 2161000,
+				"to": 2171000
+			},
+			"text": " Based on the reputation, so try to build the reputation which nodes are the honest ones and which ones you want to manage these ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,000",
+				"to": "00:36:17,000"
+			},
+			"offsets": {
+				"from": 2171000,
+				"to": 2177000
+			},
+			"text": " Click on it. Is there any instant validation for running nodes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,000",
+				"to": "00:36:21,000"
+			},
+			"offsets": {
+				"from": 2177000,
+				"to": 2181000
+			},
+			"text": " Yes, so, exactly. I don't know if I have any more to come up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,000",
+				"to": "00:36:22,000"
+			},
+			"offsets": {
+				"from": 2181000,
+				"to": 2182000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,000",
+				"to": "00:36:28,000"
+			},
+			"offsets": {
+				"from": 2182000,
+				"to": 2188000
+			},
+			"text": " Yeah, so, basically, just to complete our, give a quick, maybe, visual over the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,000",
+				"to": "00:36:30,000"
+			},
+			"offsets": {
+				"from": 2188000,
+				"to": 2190000
+			},
+			"text": " It might help partly answer some of the questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:30,000",
+				"to": "00:36:34,000"
+			},
+			"offsets": {
+				"from": 2190000,
+				"to": 2194000
+			},
+			"text": " We basically have two chunks of our, two parts of our system."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,000",
+				"to": "00:36:45,000"
+			},
+			"offsets": {
+				"from": 2194000,
+				"to": 2205000
+			},
+			"text": " At the top here is the MixNet and then we also have validator nodes of decentralized authorities that communicate among themselves in a kind of BFT round, so they're doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,000",
+				"to": "00:36:49,000"
+			},
+			"offsets": {
+				"from": 2205000,
+				"to": 2209000
+			},
+			"text": " And we have some dummy service providers over here built as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,000",
+				"to": "00:36:56,000"
+			},
+			"offsets": {
+				"from": 2209000,
+				"to": 2216000
+			},
+			"text": " To talk about, you know, to answer your question, we have a system which we haven't yet built."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,000",
+				"to": "00:37:02,000"
+			},
+			"offsets": {
+				"from": 2216000,
+				"to": 2222000
+			},
+			"text": " So all of the stuff I've just drawn here actually is running right now and people can start to integrate against it and try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:02,000",
+				"to": "00:37:08,000"
+			},
+			"offsets": {
+				"from": 2222000,
+				"to": 2228000
+			},
+			"text": " This new thing that I'm about to talk about doesn't yet exist as running code because it's only a few weeks old."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,000",
+				"to": "00:37:12,000"
+			},
+			"offsets": {
+				"from": 2228000,
+				"to": 2232000
+			},
+			"text": " So it's kind of, we just haven't had a chance yet to actually put it together."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,000",
+				"to": "00:37:16,000"
+			},
+			"offsets": {
+				"from": 2232000,
+				"to": 2236000
+			},
+			"text": " But it's essentially a way of saying, okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:16,000",
+				"to": "00:37:24,000"
+			},
+			"offsets": {
+				"from": 2236000,
+				"to": 2244000
+			},
+			"text": " The original Lupix design, I need to take a bit of a detour, but I'll get back to it, was, okay, cool, your client starts sending stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:24,000",
+				"to": "00:37:28,000"
+			},
+			"offsets": {
+				"from": 2244000,
+				"to": 2248000
+			},
+			"text": " So we have a packet which is like here."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,000",
+				"to": "00:37:33,000"
+			},
+			"offsets": {
+				"from": 2248000,
+				"to": 2253000
+			},
+			"text": " Think of it as like some encrypted Russian dolls that all kind of open up, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:33,000",
+				"to": "00:37:37,000"
+			},
+			"offsets": {
+				"from": 2253000,
+				"to": 2257000
+			},
+			"text": " So the center doll, the little one is this, the message you're actually trying to send."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:37,000",
+				"to": "00:37:40,000"
+			},
+			"offsets": {
+				"from": 2257000,
+				"to": 2260000
+			},
+			"text": " Then there's these layers of encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,000",
+				"to": "00:37:47,000"
+			},
+			"offsets": {
+				"from": 2260000,
+				"to": 2267000
+			},
+			"text": " And that basically defines a path that goes in here, comes out here, goes this way, ends up at this storage node over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,000",
+				"to": "00:37:53,000"
+			},
+			"offsets": {
+				"from": 2267000,
+				"to": 2273000
+			},
+			"text": " And then the offline client, maybe that was here, maybe somebody comes out of the metro or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,000",
+				"to": "00:37:56,000"
+			},
+			"offsets": {
+				"from": 2273000,
+				"to": 2276000
+			},
+			"text": " grabs that and actually gets the content delivered, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:56,000",
+				"to": "00:38:03,000"
+			},
+			"offsets": {
+				"from": 2276000,
+				"to": 2283000
+			},
+			"text": " Now, the original design of Lupix, which is something that Anya worked on, was very individualistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,000",
+				"to": "00:38:12,000"
+			},
+			"offsets": {
+				"from": 2283000,
+				"to": 2292000
+			},
+			"text": " So you can do loop traffic, it's called, and you can be spitting, even if you're not sending any real messages through the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:12,000",
+				"to": "00:38:20,000"
+			},
+			"offsets": {
+				"from": 2292000,
+				"to": 2300000
+			},
+			"text": " you might be spitting a loop traffic through, so your packet might go, and actually loop back around to you and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:20,000",
+				"to": "00:38:25,000"
+			},
+			"offsets": {
+				"from": 2300000,
+				"to": 2305000
+			},
+			"text": " \"Cool, wow, my message made it through.\" So you send maybe one every ten times, you send a loop packet around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:25,000",
+				"to": "00:38:28,000"
+			},
+			"offsets": {
+				"from": 2305000,
+				"to": 2308000
+			},
+			"text": " and you can basically see cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,000",
+				"to": "00:38:31,000"
+			},
+			"offsets": {
+				"from": 2308000,
+				"to": 2311000
+			},
+			"text": " These guys delivered my message, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:31,000",
+				"to": "00:38:40,000"
+			},
+			"offsets": {
+				"from": 2311000,
+				"to": 2320000
+			},
+			"text": " The problem we have to solve is, okay, if this is me, I'm a good person, I would never say anything wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:40,000",
+				"to": "00:38:47,000"
+			},
+			"offsets": {
+				"from": 2320000,
+				"to": 2327000
+			},
+			"text": " how can we, if we just rely on the users to do this measurements, I could also be an attacker, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:47,000",
+				"to": "00:38:54,000"
+			},
+			"offsets": {
+				"from": 2327000,
+				"to": 2334000
+			},
+			"text": " So we have to come up with a way of verifying the behavior of each of these nodes in a way that's publicly verifiable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:54,000",
+				"to": "00:39:00,000"
+			},
+			"offsets": {
+				"from": 2334000,
+				"to": 2340000
+			},
+			"text": " in a way that's kind of akin to like a BFT consensus system, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,000",
+				"to": "00:39:08,000"
+			},
+			"offsets": {
+				"from": 2340000,
+				"to": 2348000
+			},
+			"text": " Because I could say, \"Hey, my packet never made it past here, and if we rely on my individual judgment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:08,000",
+				"to": "00:39:12,000"
+			},
+			"offsets": {
+				"from": 2348000,
+				"to": 2352000
+			},
+			"text": " I could be the attacker trying to damage the reputation of this node,\" right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:12,000",
+				"to": "00:39:20,000"
+			},
+			"offsets": {
+				"from": 2352000,
+				"to": 2360000
+			},
+			"text": " So we basically come up with a way of using a verifiable random dysfunction to pre-generate a bunch of packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:20,000",
+				"to": "00:39:27,000"
+			},
+			"offsets": {
+				"from": 2360000,
+				"to": 2367000
+			},
+			"text": " and assign them to clients. The clients will send them through, the VRF will be revealed at the end of a timed round,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:27,000",
+				"to": "00:39:37,000"
+			},
+			"offsets": {
+				"from": 2367000,
+				"to": 2377000
+			},
+			"text": " and we can then check, does the Merkle trees of each of these nodes, which they've been keeping for record-keeping purposes, basically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:37,000",
+				"to": "00:39:42,000"
+			},
+			"offsets": {
+				"from": 2377000,
+				"to": 2382000
+			},
+			"text": " They have to show the Merkle trees and the commitments inside the Merkle trees that each node has."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:42,000",
+				"to": "00:39:51,000"
+			},
+			"offsets": {
+				"from": 2382000,
+				"to": 2391000
+			},
+			"text": " They send that back to the staking authorities, and the staking authorities can then verify, did they do the right thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:51,000",
+				"to": "00:39:56,000"
+			},
+			"offsets": {
+				"from": 2391000,
+				"to": 2396000
+			},
+			"text": " at a kind of system level, not at an individual level. So this is something we've just come up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:56,000",
+				"to": "00:40:04,000"
+			},
+			"offsets": {
+				"from": 2396000,
+				"to": 2404000
+			},
+			"text": " It's probably the first time that anybody's come up with incentivization system that works with a mixed net like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,000",
+				"to": "00:40:09,000"
+			},
+			"offsets": {
+				"from": 2404000,
+				"to": 2409000
+			},
+			"text": " so we're quite proud of it. We haven't built it yet though."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:09,000",
+				"to": "00:40:15,000"
+			},
+			"offsets": {
+				"from": 2409000,
+				"to": 2415000
+			},
+			"text": " I would suggest to wrap up this incentivized system, is that we're checking the quality of service offered by the mixers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:15,000",
+				"to": "00:40:23,000"
+			},
+			"offsets": {
+				"from": 2415000,
+				"to": 2423000
+			},
+			"text": " and if we see that some mixers are behaving dishonest or in a malicious way, we're just cutting from their stakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:23,000",
+				"to": "00:40:27,000"
+			},
+			"offsets": {
+				"from": 2423000,
+				"to": 2427000
+			},
+			"text": " So if you're acting honestly, you can get rewards for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:27,000",
+				"to": "00:40:34,000"
+			},
+			"offsets": {
+				"from": 2427000,
+				"to": 2434000
+			},
+			"text": " By you, you mean start going from here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:34,000",
+				"to": "00:40:42,000"
+			},
+			"offsets": {
+				"from": 2434000,
+				"to": 2442000
+			},
+			"text": " As far as I understand it, Taul just has very simple, it just sends the messages out directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:42,000",
+				"to": "00:40:49,000"
+			},
+			"offsets": {
+				"from": 2442000,
+				"to": 2449000
+			},
+			"text": " There's a mixed network, we want to use a person distribution for sending out the messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:49,000",
+				"to": "00:40:54,000"
+			},
+			"offsets": {
+				"from": 2449000,
+				"to": 2454000
+			},
+			"text": " and also the different classes of applications will have different profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,000",
+				"to": "00:41:04,000"
+			},
+			"offsets": {
+				"from": 2454000,
+				"to": 2464000
+			},
+			"text": " How do you want to create those profiles for the different applications, what processes and tools we used to create those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:04,000",
+				"to": "00:41:13,000"
+			},
+			"offsets": {
+				"from": 2464000,
+				"to": 2473000
+			},
+			"text": " So just make sure I understand your question, you're asking if we discuss different use cases where people send different volumes of traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,000",
+				"to": "00:41:17,000"
+			},
+			"offsets": {
+				"from": 2473000,
+				"to": 2477000
+			},
+			"text": " For example, like a chart, a big coin wallet will have different..."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,000",
+				"to": "00:41:25,000"
+			},
+			"offsets": {
+				"from": 2477000,
+				"to": 2485000
+			},
+			"text": " So just to give you a little bit of the background, in the looping design and hence in the NIMS mixnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:25,000",
+				"to": "00:41:31,000"
+			},
+			"offsets": {
+				"from": 2485000,
+				"to": 2491000
+			},
+			"text": " we enforce kind of the clients to send following a Poisson distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,000",
+				"to": "00:41:32,000"
+			},
+			"offsets": {
+				"from": 2491000,
+				"to": 2492000
+			},
+			"text": " What does it mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,000",
+				"to": "00:41:35,000"
+			},
+			"offsets": {
+				"from": 2492000,
+				"to": 2495000
+			},
+			"text": " Imagine you have a phone and you press the button send."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:35,000",
+				"to": "00:41:42,000"
+			},
+			"offsets": {
+				"from": 2495000,
+				"to": 2502000
+			},
+			"text": " Your message is not immediately injected into the mixnet word, instead of that it's buffered in like a special queue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:42,000",
+				"to": "00:41:49,000"
+			},
+			"offsets": {
+				"from": 2502000,
+				"to": 2509000
+			},
+			"text": " which is controlled by the Poisson process. And from time to time, at random time this Poisson process wakes up and checks this buffer."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:49,000",
+				"to": "00:41:53,000"
+			},
+			"offsets": {
+				"from": 2509000,
+				"to": 2513000
+			},
+			"text": " If there is a real message, he takes this message and sends it."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:53,000",
+				"to": "00:41:56,000"
+			},
+			"offsets": {
+				"from": 2513000,
+				"to": 2516000
+			},
+			"text": " If there is no real message, he sends a loop cover message."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,000",
+				"to": "00:42:00,000"
+			},
+			"offsets": {
+				"from": 2516000,
+				"to": 2520000
+			},
+			"text": " What this gives you is that your sending pattern is unobservable."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,000",
+				"to": "00:42:07,000"
+			},
+			"offsets": {
+				"from": 2520000,
+				"to": 2527000
+			},
+			"text": " So from the perspective of the adversary who's observing your client, it just looks like you're always sending something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:07,000",
+				"to": "00:42:11,000"
+			},
+			"offsets": {
+				"from": 2527000,
+				"to": 2531000
+			},
+			"text": " but whether you're sending real traffic or just cover traffic, we don't know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:11,000",
+				"to": "00:42:22,000"
+			},
+			"offsets": {
+				"from": 2531000,
+				"to": 2542000
+			},
+			"text": " So coming back to Amir's question, if we have different use cases like instant messaging or giving someone is fast sending, the other is slow sending,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:22,000",
+				"to": "00:42:27,000"
+			},
+			"offsets": {
+				"from": 2542000,
+				"to": 2547000
+			},
+			"text": " then we can adjust this Poisson process to be sending faster on slower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:27,000",
+				"to": "00:42:31,000"
+			},
+			"offsets": {
+				"from": 2547000,
+				"to": 2551000
+			},
+			"text": " but we actually all the time obfuscate the sending pattern of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:31,000",
+				"to": "00:42:38,000"
+			},
+			"offsets": {
+				"from": 2551000,
+				"to": 2558000
+			},
+			"text": " So the adversary cannot tell whether you're actually communicating with someone or you're just being completely on hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:38,000",
+				"to": "00:42:50,000"
+			},
+			"offsets": {
+				"from": 2558000,
+				"to": 2570000
+			},
+			"text": " So, yeah, so we have a very preliminary, let's call it demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:50,000",
+				"to": "00:42:54,000"
+			},
+			"offsets": {
+				"from": 2570000,
+				"to": 2574000
+			},
+			"text": " Nobody tries to judge us on our graphic design or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:54,000",
+				"to": "00:42:57,000"
+			},
+			"offsets": {
+				"from": 2574000,
+				"to": 2577000
+			},
+			"text": " I'm just going to show, I've just built the client cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,000",
+				"to": "00:43:02,000"
+			},
+			"offsets": {
+				"from": 2577000,
+				"to": 2582000
+			},
+			"text": " We have a really cool, like I said, a graphical introduction to the client to it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:02,000",
+				"to": "00:43:07,000"
+			},
+			"offsets": {
+				"from": 2582000,
+				"to": 2587000
+			},
+			"text": " So I'm going to start it. Basically, I'm about to run it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:07,000",
+				"to": "00:43:15,000"
+			},
+			"offsets": {
+				"from": 2587000,
+				"to": 2595000
+			},
+			"text": " Just so you can see what it says, I've edited an Alice user, so it's like Lupik's client in it Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:15,000",
+				"to": "00:43:21,000"
+			},
+			"offsets": {
+				"from": 2595000,
+				"to": 2601000
+			},
+			"text": " So Alice, now I get some private and public keys generated and stored on her system."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:21,000",
+				"to": "00:43:24,000"
+			},
+			"offsets": {
+				"from": 2601000,
+				"to": 2604000
+			},
+			"text": " Now it's starting to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:24,000",
+				"to": "00:43:32,000"
+			},
+			"offsets": {
+				"from": 2604000,
+				"to": 2612000
+			},
+			"text": " So, in the kind of Lupik's client binary, which you can integrate against if you're actually interested in trying to make your applications work with a mixnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:32,000",
+				"to": "00:43:41,000"
+			},
+			"offsets": {
+				"from": 2612000,
+				"to": 2621000
+			},
+			"text": " We have a bunch of running mixnet nodes. We have this topology of six nodes running on the internet right now with two storage nodes at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:41,000",
+				"to": "00:43:44,000"
+			},
+			"offsets": {
+				"from": 2621000,
+				"to": 2624000
+			},
+			"text": " So even if your kind of end user clients are offline, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:44,000",
+				"to": "00:43:49,000"
+			},
+			"offsets": {
+				"from": 2624000,
+				"to": 2629000
+			},
+			"text": " As soon as we told Alice, as soon as Alice said, hey, I'm going to run this client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:49,000",
+				"to": "00:43:57,000"
+			},
+			"offsets": {
+				"from": 2629000,
+				"to": 2637000
+			},
+			"text": " the client automatically starts sending packets. So it starts encrypting packets through the system and sending them back to herself."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:57,000",
+				"to": "00:44:01,000"
+			},
+			"offsets": {
+				"from": 2637000,
+				"to": 2641000
+			},
+			"text": " So it starts generating cover traffic as soon as the client has started up."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:01,000",
+				"to": "00:44:09,000"
+			},
+			"offsets": {
+				"from": 2641000,
+				"to": 2649000
+			},
+			"text": " This client doesn't do anything else than that. So you might be a bit disappointed if you just like fired up and then you'd be like, oh, wow, that doesn't really do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:09,000",
+				"to": "00:44:14,000"
+			},
+			"offsets": {
+				"from": 2649000,
+				"to": 2654000
+			},
+			"text": " But it is actually doing something. If you wire shark yourself, you'll be able to see the cover traffic going."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:14,000",
+				"to": "00:44:24,000"
+			},
+			"offsets": {
+				"from": 2654000,
+				"to": 2664000
+			},
+			"text": " So whatever. We're basically within the next week, our plan is to build a set of socket interfaces so you can just have this binary sitting inside your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:24,000",
+				"to": "00:44:28,000"
+			},
+			"offsets": {
+				"from": 2664000,
+				"to": 2668000
+			},
+			"text": " You can connect it to it by either a web socket or a TCP socket and just push bytes into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,000",
+				"to": "00:44:34,000"
+			},
+			"offsets": {
+				"from": 2668000,
+				"to": 2674000
+			},
+			"text": " And those will be those bytes that you push into it will basically go through the mixnet and you'll be able to send messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:34,000",
+				"to": "00:44:41,000"
+			},
+			"offsets": {
+				"from": 2674000,
+				"to": 2681000
+			},
+			"text": " So as a kind of example of that, we're building a chat client and we've got it built up to show right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:41,000",
+				"to": "00:44:49,000"
+			},
+			"offsets": {
+				"from": 2681000,
+				"to": 2689000
+			},
+			"text": " So I'm just going to, I'm just backing out. I'm saying, okay, cool. We're going to go to the chat client demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:49,000",
+				"to": "00:44:57,000"
+			},
+			"offsets": {
+				"from": 2689000,
+				"to": 2697000
+			},
+			"text": " And I'm going to spark it up. So we're going to use this Alice thing, this Alice user."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,000",
+				"to": "00:45:00,000"
+			},
+			"offsets": {
+				"from": 2697000,
+				"to": 2700000
+			},
+			"text": " Cool. So now again, it says what Alice's public key is."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:00,000",
+				"to": "00:45:04,000"
+			},
+			"offsets": {
+				"from": 2700000,
+				"to": 2704000
+			},
+			"text": " And she has to figure out who she wants to communicate with. We've also made a Bob user."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:04,000",
+				"to": "00:45:11,000"
+			},
+			"offsets": {
+				"from": 2704000,
+				"to": 2711000
+			},
+			"text": " And I'm just going to start him in another terminal there. Start up Bob. Good. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,000",
+				"to": "00:45:16,000"
+			},
+			"offsets": {
+				"from": 2711000,
+				"to": 2716000
+			},
+			"text": " He selects Alice's public key, which has to be sent out of bands. So he has to know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:16,000",
+				"to": "00:45:24,000"
+			},
+			"offsets": {
+				"from": 2716000,
+				"to": 2724000
+			},
+			"text": " Cool. Now we have this two message thing. Now just as that kind of goes through, I'll just explain what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:24,000",
+				"to": "00:45:31,000"
+			},
+			"offsets": {
+				"from": 2724000,
+				"to": 2731000
+			},
+			"text": " We have two clients. Both of them start sending cover traffic and we have a dashboard that you can actually see on the internet right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:31,000",
+				"to": "00:45:38,000"
+			},
+			"offsets": {
+				"from": 2731000,
+				"to": 2738000
+			},
+			"text": " It's at dashboard.nimtech.net. And we're always sending cover traffic through that anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:38,000",
+				"to": "00:45:57,000"
+			},
+			"offsets": {
+				"from": 2738000,
+				"to": 2757000
+			},
+			"text": " And you can basically see the cover traffic going through the nose because it tells you, you know, this note here, let's say, in the last one second, it sent 20 packets and it received 18 packets or 12 packets, whatever whatever that has to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:57,000",
+				"to": "00:46:03,000"
+			},
+			"offsets": {
+				"from": 2757000,
+				"to": 2763000
+			},
+			"text": " So you can basically get a view overall of the whole network and what's happening within it."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:03,000",
+				"to": "00:46:17,000"
+			},
+			"offsets": {
+				"from": 2763000,
+				"to": 2777000
+			},
+			"text": " Yeah. So you can see the speeds. This is actually going through from my hotel room in Japan to our mixnet in Europe somewhere through the six nodes and then back out back to Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:17,000",
+				"to": "00:46:25,000"
+			},
+			"offsets": {
+				"from": 2777000,
+				"to": 2785000
+			},
+			"text": " So you can see the speeds actually not that bad as far as when something is typed in here or you can see it appear on the other side quite rapidly."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:25,000",
+				"to": "00:46:35,000"
+			},
+			"offsets": {
+				"from": 2785000,
+				"to": 2795000
+			},
+			"text": " So it's definitely sub-second latency. It's like sort of 300, 400 milliseconds, I'd say, of latency that gets added at that thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:35,000",
+				"to": "00:46:42,000"
+			},
+			"offsets": {
+				"from": 2795000,
+				"to": 2802000
+			},
+			"text": " So we can also see the mix nodes and the validators here as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:42,000",
+				"to": "00:46:53,000"
+			},
+			"offsets": {
+				"from": 2802000,
+				"to": 2813000
+			},
+			"text": " And if I just back it up a little bit, I think you'll be able to see right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:53,000",
+				"to": "00:46:55,000"
+			},
+			"offsets": {
+				"from": 2813000,
+				"to": 2815000
+			},
+			"text": " Yeah. Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:55,000",
+				"to": "00:47:00,000"
+			},
+			"offsets": {
+				"from": 2815000,
+				"to": 2820000
+			},
+			"text": " Over on the right-hand side there, you can see it says received and sent in that one second period."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:00,000",
+				"to": "00:47:02,000"
+			},
+			"offsets": {
+				"from": 2820000,
+				"to": 2822000
+			},
+			"text": " That's what the mix nodes are actually receiving in."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:02,000",
+				"to": "00:47:09,000"
+			},
+			"offsets": {
+				"from": 2822000,
+				"to": 2829000
+			},
+			"text": " And you can see, you can kind of tell that the ordering is happening inside the nodes because otherwise the numbers would be exactly the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:09,000",
+				"to": "00:47:14,000"
+			},
+			"offsets": {
+				"from": 2829000,
+				"to": 2834000
+			},
+			"text": " I was sent to receive in that one second period and they're not across all of those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:14,000",
+				"to": "00:47:17,000"
+			},
+			"offsets": {
+				"from": 2834000,
+				"to": 2837000
+			},
+			"text": " So that's the reordering of the packet."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:17,000",
+				"to": "00:47:18,000"
+			},
+			"offsets": {
+				"from": 2837000,
+				"to": 2838000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:18,000",
+				"to": "00:47:23,000"
+			},
+			"offsets": {
+				"from": 2838000,
+				"to": 2843000
+			},
+			"text": " If I have a server, can I contribute? Like a resource right now? Ready or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:23,000",
+				"to": "00:47:28,000"
+			},
+			"offsets": {
+				"from": 2843000,
+				"to": 2848000
+			},
+			"text": " Yeah, yeah. So there's the repos that we have are completely open."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:28,000",
+				"to": "00:47:31,000"
+			},
+			"offsets": {
+				"from": 2848000,
+				"to": 2851000
+			},
+			"text": " The chat client might not be, but that's more an oversight."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:31,000",
+				"to": "00:47:40,000"
+			},
+			"offsets": {
+				"from": 2851000,
+				"to": 2860000
+			},
+			"text": " But the main nodes, both the nim validator nodes that run the credential system and the mix nodes that run the mixing system, it's all open right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:40,000",
+				"to": "00:47:45,000"
+			},
+			"offsets": {
+				"from": 2860000,
+				"to": 2865000
+			},
+			"text": " So you can look at it and have a look. It's not super beautiful. Yeah, go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:45,000",
+				"to": "00:47:46,000"
+			},
+			"offsets": {
+				"from": 2865000,
+				"to": 2866000
+			},
+			"text": " So two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:46,000",
+				"to": "00:47:51,000"
+			},
+			"offsets": {
+				"from": 2866000,
+				"to": 2871000
+			},
+			"text": " The first one is how the directory service is provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:51,000",
+				"to": "00:47:53,000"
+			},
+			"offsets": {
+				"from": 2871000,
+				"to": 2873000
+			},
+			"text": " Like how do I know what nodes there are?"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:53,000",
+				"to": "00:47:57,000"
+			},
+			"offsets": {
+				"from": 2873000,
+				"to": 2877000
+			},
+			"text": " Cool. So right now we're running a directory server at directory.nintech.net."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:57,000",
+				"to": "00:48:08,000"
+			},
+			"offsets": {
+				"from": 2877000,
+				"to": 2888000
+			},
+			"text": " It's centralized at the moment, but that's a temporary thing because we need to bootstrap the network and then I need to figure out what my next move is going to be as far as just distributing the presence information around."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:08,000",
+				"to": "00:48:11,000"
+			},
+			"offsets": {
+				"from": 2888000,
+				"to": 2891000
+			},
+			"text": " We have several good options for doing that. I just haven't picked one yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:11,000",
+				"to": "00:48:12,000"
+			},
+			"offsets": {
+				"from": 2891000,
+				"to": 2892000
+			},
+			"text": " So."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:12,000",
+				"to": "00:48:13,000"
+			},
+			"offsets": {
+				"from": 2892000,
+				"to": 2893000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:13,000",
+				"to": "00:48:14,000"
+			},
+			"offsets": {
+				"from": 2893000,
+				"to": 2894000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:14,000",
+				"to": "00:48:22,000"
+			},
+			"offsets": {
+				"from": 2894000,
+				"to": 2902000
+			},
+			"text": " So what is the significance of deciding in advance the relays? Why cannot you rope?"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:22,000",
+				"to": "00:48:28,000"
+			},
+			"offsets": {
+				"from": 2902000,
+				"to": 2908000
+			},
+			"text": " Why cannot the individual nodes just come up with random delays?"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:28,000",
+				"to": "00:48:30,000"
+			},
+			"offsets": {
+				"from": 2908000,
+				"to": 2910000
+			},
+			"text": " I'll pass out a mismixnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:30,000",
+				"to": "00:48:43,000"
+			},
+			"offsets": {
+				"from": 2910000,
+				"to": 2923000
+			},
+			"text": " So there are a couple of reasons why the first one is if you're in the center and you're picking the delays in advance for each pod, you know where your packet should arrive at the other end."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:43,000",
+				"to": "00:48:54,000"
+			},
+			"offsets": {
+				"from": 2923000,
+				"to": 2934000
+			},
+			"text": " This allows you to, for example, expect an acknowledgement for your packet. So you will know whether your message got to the other end or not, whether one of the mix is droppeded or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:54,000",
+				"to": "00:48:56,000"
+			},
+			"offsets": {
+				"from": 2934000,
+				"to": 2936000
+			},
+			"text": " So that's one of the advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:56,000",
+				"to": "00:49:02,000"
+			},
+			"offsets": {
+				"from": 2936000,
+				"to": 2942000
+			},
+			"text": " Yeah, and it's the main one because also it will allow you to detect malicious mix now."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:02,000",
+				"to": "00:49:15,000"
+			},
+			"offsets": {
+				"from": 2942000,
+				"to": 2955000
+			},
+			"text": " If your packet, you didn't get the acknowledgement for your packet. This means that maybe your packet will drop somewhere on the way and you should investigate which of those mix zones potentially dropped your packet and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:15,000",
+				"to": "00:49:18,000"
+			},
+			"offsets": {
+				"from": 2955000,
+				"to": 2958000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:18,000",
+				"to": "00:49:24,000"
+			},
+			"offsets": {
+				"from": 2958000,
+				"to": 2964000
+			},
+			"text": " I just see that here received and sent. I expect that to be equal."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:24,000",
+				"to": "00:49:28,000"
+			},
+			"offsets": {
+				"from": 2964000,
+				"to": 2968000
+			},
+			"text": " So you're not received sent, yes, and you're not sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:28,000",
+				"to": "00:49:30,000"
+			},
+			"offsets": {
+				"from": 2968000,
+				"to": 2970000
+			},
+			"text": " They're quite different."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:30,000",
+				"to": "00:49:36,000"
+			},
+			"offsets": {
+				"from": 2970000,
+				"to": 2976000
+			},
+			"text": " They're supposed to be different because the packets as they received are held for random amounts of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:36,000",
+				"to": "00:49:44,000"
+			},
+			"offsets": {
+				"from": 2976000,
+				"to": 2984000
+			},
+			"text": " So that's why we get the reordering. So if they were the same, that's when we would be unhappy because then we would be going like, why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:44,000",
+				"to": "00:49:49,000"
+			},
+			"offsets": {
+				"from": 2984000,
+				"to": 2989000
+			},
+			"text": " What if it's just passing the same things in and out in the same order and it's not reordering anything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:49,000",
+				"to": "00:49:59,000"
+			},
+			"offsets": {
+				"from": 2989000,
+				"to": 2999000
+			},
+			"text": " What it's actually doing is we can tell it's working because it's holding the packets for a random interval and therefore we can see that it's actually mixing."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:59,000",
+				"to": "00:50:04,000"
+			},
+			"offsets": {
+				"from": 2999000,
+				"to": 3004000
+			},
+			"text": " But why then some notes sent more messages than they were."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:04,000",
+				"to": "00:50:06,000"
+			},
+			"offsets": {
+				"from": 3004000,
+				"to": 3006000
+			},
+			"text": " It's like this is my reading for a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:06,000",
+				"to": "00:50:07,000"
+			},
+			"offsets": {
+				"from": 3006000,
+				"to": 3007000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:07,000",
+				"to": "00:50:16,000"
+			},
+			"offsets": {
+				"from": 3007000,
+				"to": 3016000
+			},
+			"text": " So they also like imagine like in one second you receive 10 packets in the other second you send 5 of them and then you receive another 5 and then you send 15."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:16,000",
+				"to": "00:50:19,000"
+			},
+			"offsets": {
+				"from": 3016000,
+				"to": 3019000
+			},
+			"text": " So like there is all the time that's shuffling with the packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:19,000",
+				"to": "00:50:21,000"
+			},
+			"offsets": {
+				"from": 3019000,
+				"to": 3021000
+			},
+			"text": " It's not over all."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:21,000",
+				"to": "00:50:22,000"
+			},
+			"offsets": {
+				"from": 3021000,
+				"to": 3022000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:22,000",
+				"to": "00:50:23,000"
+			},
+			"offsets": {
+				"from": 3022000,
+				"to": 3023000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:23,000",
+				"to": "00:50:24,000"
+			},
+			"offsets": {
+				"from": 3023000,
+				"to": 3024000
+			},
+			"text": " Sorry, go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:24,000",
+				"to": "00:50:34,000"
+			},
+			"offsets": {
+				"from": 3024000,
+				"to": 3034000
+			},
+			"text": " What is the ever since scheme for the notes? Do I present my public key or how do I connect the external process to the service of the SockSock?"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:34,000",
+				"to": "00:50:35,000"
+			},
+			"offsets": {
+				"from": 3034000,
+				"to": 3035000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:35,000",
+				"to": "00:50:40,000"
+			},
+			"offsets": {
+				"from": 3035000,
+				"to": 3040000
+			},
+			"text": " So the client binary is the thing that you'll want to use. It's written in Go right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:40,000",
+				"to": "00:50:45,000"
+			},
+			"offsets": {
+				"from": 3040000,
+				"to": 3045000
+			},
+			"text": " So if you're a Go user, you can just compile the client right into your software."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:45,000",
+				"to": "00:50:49,000"
+			},
+			"offsets": {
+				"from": 3045000,
+				"to": 3049000
+			},
+			"text": " If you're not a Go user, we're going to provide socket connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:49,000",
+				"to": "00:50:54,000"
+			},
+			"offsets": {
+				"from": 3049000,
+				"to": 3054000
+			},
+			"text": " So let's say we're a JavaScript or just for instance, there'll be a WebSocket connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:54,000",
+				"to": "00:50:57,000"
+			},
+			"offsets": {
+				"from": 3054000,
+				"to": 3057000
+			},
+			"text": " Basically your application has to fire the binary out."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:57,000",
+				"to": "00:51:03,000"
+			},
+			"offsets": {
+				"from": 3057000,
+				"to": 3063000
+			},
+			"text": " That will take care of all the key generation, all of the loop cover traffic, all of the kind of mixed-netty stuff for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:03,000",
+				"to": "00:51:09,000"
+			},
+			"offsets": {
+				"from": 3063000,
+				"to": 3069000
+			},
+			"text": " And then you subscribe to events on that WebSocket and you can push events into the WebSocket."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:09,000",
+				"to": "00:51:15,000"
+			},
+			"offsets": {
+				"from": 3069000,
+				"to": 3075000
+			},
+			"text": " So from your point of view you're making a chat application with a WebSocket or you're making some other application socket in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:15,000",
+				"to": "00:51:21,000"
+			},
+			"offsets": {
+				"from": 3075000,
+				"to": 3081000
+			},
+			"text": " And it goes into the Go binary. The Go binary goes, \"Hey, cool. Does this guy have any real stuff to send?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:51:21,000",
+				"to": "00:51:23,000"
+			},
+			"offsets": {
+				"from": 3081000,
+				"to": 3083000
+			},
+			"text": " No, cool. Send a cover message. Good."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:23,000",
+				"to": "00:51:28,000"
+			},
+			"offsets": {
+				"from": 3083000,
+				"to": 3088000
+			},
+			"text": " Or if you have real stuff to send, yes, then good. We'll send your real stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:28,000",
+				"to": "00:51:30,000"
+			},
+			"offsets": {
+				"from": 3088000,
+				"to": 3090000
+			},
+			"text": " It will take care of all of that stuff for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:30,000",
+				"to": "00:51:36,000"
+			},
+			"offsets": {
+				"from": 3090000,
+				"to": 3096000
+			},
+			"text": " And the client also takes care of going to the directory server, looking up where all the notes are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:36,000",
+				"to": "00:51:40,000"
+			},
+			"offsets": {
+				"from": 3096000,
+				"to": 3100000
+			},
+			"text": " downloading, grabbing their public keys, getting the whole network of technology, everything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:40,000",
+				"to": "00:51:46,000"
+			},
+			"offsets": {
+				"from": 3100000,
+				"to": 3106000
+			},
+			"text": " And then the client will automatically do your client-side routing for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:46,000",
+				"to": "00:51:53,000"
+			},
+			"offsets": {
+				"from": 3106000,
+				"to": 3113000
+			},
+			"text": " So you never, as an application developer, need to think about, you know, what path am I going to choose or anything like that? It's all done for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:53,000",
+				"to": "00:52:06,000"
+			},
+			"offsets": {
+				"from": 3113000,
+				"to": 3126000
+			},
+			"text": " So if I had a service inside me, let's say for example, a service like a sent in a file, could I retrofit curl to fetch the file by going through a soft proxy locally?"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:06,000",
+				"to": "00:52:11,000"
+			},
+			"offsets": {
+				"from": 3126000,
+				"to": 3131000
+			},
+			"text": " You would need to packetize it. That would be the one thing that you would need to do in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:11,000",
+				"to": "00:52:17,000"
+			},
+			"offsets": {
+				"from": 3131000,
+				"to": 3137000
+			},
+			"text": " So if you need to chop up that file into chunks that match the size of the mixed net packets."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:17,000",
+				"to": "00:52:26,000"
+			},
+			"offsets": {
+				"from": 3137000,
+				"to": 3146000
+			},
+			"text": " And at the other end of your application, you would need to provide some way of turning those packets into something that maybe gets reordered if you need ordering in your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:26,000",
+				"to": "00:52:27,000"
+			},
+			"offsets": {
+				"from": 3146000,
+				"to": 3147000
+			},
+			"text": " So that's the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:27,000",
+				"to": "00:52:30,000"
+			},
+			"offsets": {
+				"from": 3147000,
+				"to": 3150000
+			},
+			"text": " I actually like it. I have a P layer without TCP."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:30,000",
+				"to": "00:52:36,000"
+			},
+			"offsets": {
+				"from": 3150000,
+				"to": 3156000
+			},
+			"text": " Yeah, kind of it's like super anonymous UDP, I guess, we've registered event."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:36,000",
+				"to": "00:52:41,000"
+			},
+			"offsets": {
+				"from": 3156000,
+				"to": 3161000
+			},
+			"text": " This one more thing that we've got here, which is an equipped demo of the credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:41,000",
+				"to": "00:52:47,000"
+			},
+			"offsets": {
+				"from": 3161000,
+				"to": 3167000
+			},
+			"text": " I'm just going to jump forward a tiny bit just to see if you can see it running."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:47,000",
+				"to": "00:52:48,000"
+			},
+			"offsets": {
+				"from": 3167000,
+				"to": 3168000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:48,000",
+				"to": "00:52:50,000"
+			},
+			"offsets": {
+				"from": 3168000,
+				"to": 3170000
+			},
+			"text": " We're just loading up some configuration files."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:50,000",
+				"to": "00:52:59,000"
+			},
+			"offsets": {
+				"from": 3170000,
+				"to": 3179000
+			},
+			"text": " But basically what we have here is a wonderfully designed QT thing, which basically will take some ERC-20 Nim tokens in."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:59,000",
+				"to": "00:53:02,000"
+			},
+			"offsets": {
+				"from": 3179000,
+				"to": 3182000
+			},
+			"text": " Just as a kind of demonstration, it's not for any real reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:02,000",
+				"to": "00:53:05,000"
+			},
+			"offsets": {
+				"from": 3182000,
+				"to": 3185000
+			},
+			"text": " What I'm trying to do is demonstrate the kind of flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:05,000",
+				"to": "00:53:13,000"
+			},
+			"offsets": {
+				"from": 3185000,
+				"to": 3193000
+			},
+			"text": " So basically what's going to happen is the client, that's this white thing you see on the screen, will ask for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:13,000",
+				"to": "00:53:16,000"
+			},
+			"offsets": {
+				"from": 3193000,
+				"to": 3196000
+			},
+			"text": " Hey, here's Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:16,000",
+				"to": "00:53:27,000"
+			},
+			"offsets": {
+				"from": 3196000,
+				"to": 3207000
+			},
+			"text": " We're going to ask for Ethereum to basically pump some Ethereum tokens into Nim into this tenderman round, which is what we're actually using for the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:27,000",
+				"to": "00:53:31,000"
+			},
+			"offsets": {
+				"from": 3207000,
+				"to": 3211000
+			},
+			"text": " That will create some nims on the tenderman side of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:31,000",
+				"to": "00:53:35,000"
+			},
+			"offsets": {
+				"from": 3211000,
+				"to": 3215000
+			},
+			"text": " You'll then get back a credential from the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:35,000",
+				"to": "00:53:45,000"
+			},
+			"offsets": {
+				"from": 3215000,
+				"to": 3225000
+			},
+			"text": " So all these guys will respond to you and say, \"Cool, yeah, here's each piece of your credential because you get a threshold credential.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:53:45,000",
+				"to": "00:53:49,000"
+			},
+			"offsets": {
+				"from": 3225000,
+				"to": 3229000
+			},
+			"text": " We can then re-randomize the credential and we'll show that working."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:49,000",
+				"to": "00:53:53,000"
+			},
+			"offsets": {
+				"from": 3229000,
+				"to": 3233000
+			},
+			"text": " And then you can spend the credential with the service provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:53,000",
+				"to": "00:53:58,000"
+			},
+			"offsets": {
+				"from": 3233000,
+				"to": 3238000
+			},
+			"text": " And the service provider can then redeem it over here and say, \"Cool, pay me.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:53:58,000",
+				"to": "00:54:01,000"
+			},
+			"offsets": {
+				"from": 3238000,
+				"to": 3241000
+			},
+			"text": " And we can have double spending production there as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:01,000",
+				"to": "00:54:04,000"
+			},
+			"offsets": {
+				"from": 3241000,
+				"to": 3244000
+			},
+			"text": " So that's the basic flow of the coconut credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:04,000",
+				"to": "00:54:05,000"
+			},
+			"offsets": {
+				"from": 3244000,
+				"to": 3245000
+			},
+			"text": " So cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:05,000",
+				"to": "00:54:11,000"
+			},
+			"offsets": {
+				"from": 3245000,
+				"to": 3251000
+			},
+			"text": " We just got 10 nims in."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:11,000",
+				"to": "00:54:14,000"
+			},
+			"offsets": {
+				"from": 3251000,
+				"to": 3254000
+			},
+			"text": " We're going to create a credential that codes five nims in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:14,000",
+				"to": "00:54:18,000"
+			},
+			"offsets": {
+				"from": 3254000,
+				"to": 3258000
+			},
+			"text": " Don't get sucked in by thinking you always have to put currency inside your credentials."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:18,000",
+				"to": "00:54:21,000"
+			},
+			"offsets": {
+				"from": 3258000,
+				"to": 3261000
+			},
+			"text": " This is a very general purpose system."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:21,000",
+				"to": "00:54:29,000"
+			},
+			"offsets": {
+				"from": 3261000,
+				"to": 3269000
+			},
+			"text": " So the nim credential is the same thing as like this application is like a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:29,000",
+				"to": "00:54:33,000"
+			},
+			"offsets": {
+				"from": 3269000,
+				"to": 3273000
+			},
+			"text": " A smart contract is to the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:33,000",
+				"to": "00:54:37,000"
+			},
+			"offsets": {
+				"from": 3273000,
+				"to": 3277000
+			},
+			"text": " The basic thing underneath all of this is very general purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:37,000",
+				"to": "00:54:38,000"
+			},
+			"offsets": {
+				"from": 3277000,
+				"to": 3278000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:38,000",
+				"to": "00:54:39,000"
+			},
+			"offsets": {
+				"from": 3278000,
+				"to": 3279000
+			},
+			"text": " We've got back a partial credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:39,000",
+				"to": "00:54:41,000"
+			},
+			"offsets": {
+				"from": 3279000,
+				"to": 3281000
+			},
+			"text": " Our client has reassembled it over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:41,000",
+				"to": "00:54:43,000"
+			},
+			"offsets": {
+				"from": 3281000,
+				"to": 3283000
+			},
+			"text": " And I'm pressing the re-randomize button."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:43,000",
+				"to": "00:54:48,000"
+			},
+			"offsets": {
+				"from": 3283000,
+				"to": 3288000
+			},
+			"text": " And you can see the credential changing right there as I'm pressing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:48,000",
+				"to": "00:54:50,000"
+			},
+			"offsets": {
+				"from": 3288000,
+				"to": 3290000
+			},
+			"text": " So I just re-randomized it five times."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:50,000",
+				"to": "00:54:54,000"
+			},
+			"offsets": {
+				"from": 3290000,
+				"to": 3294000
+			},
+			"text": " It has now the same five nims inside the credential that it always had."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:54,000",
+				"to": "00:54:59,000"
+			},
+			"offsets": {
+				"from": 3294000,
+				"to": 3299000
+			},
+			"text": " But it is a totally different credential than what we got back from these issuing authorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:59,000",
+				"to": "00:55:01,000"
+			},
+			"offsets": {
+				"from": 3299000,
+				"to": 3301000
+			},
+			"text": " So they can't rat on me anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:01,000",
+				"to": "00:55:03,000"
+			},
+			"offsets": {
+				"from": 3301000,
+				"to": 3303000
+			},
+			"text": " They can't tell who they gave it to."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:03,000",
+				"to": "00:55:06,000"
+			},
+			"offsets": {
+				"from": 3303000,
+				"to": 3306000
+			},
+			"text": " Even if they colluded, they would be unable to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:06,000",
+				"to": "00:55:14,000"
+			},
+			"offsets": {
+				"from": 3306000,
+				"to": 3314000
+			},
+			"text": " So we then said the credential from our client to some kind of service provider to pay for something."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:14,000",
+				"to": "00:55:15,000"
+			},
+			"offsets": {
+				"from": 3314000,
+				"to": 3315000
+			},
+			"text": " Could be for anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:15,000",
+				"to": "00:55:20,000"
+			},
+			"offsets": {
+				"from": 3315000,
+				"to": 3320000
+			},
+			"text": " That's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:20,000",
+				"to": "00:55:22,000"
+			},
+			"offsets": {
+				"from": 3320000,
+				"to": 3322000
+			},
+			"text": " The service provider redeemed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:22,000",
+				"to": "00:55:23,000"
+			},
+			"offsets": {
+				"from": 3322000,
+				"to": 3323000
+			},
+			"text": " That means it's been spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:23,000",
+				"to": "00:55:25,000"
+			},
+			"offsets": {
+				"from": 3323000,
+				"to": 3325000
+			},
+			"text": " I then tried to spend it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:25,000",
+				"to": "00:55:27,000"
+			},
+			"offsets": {
+				"from": 3325000,
+				"to": 3327000
+			},
+			"text": " And it said no, you've already spent it."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:27,000",
+				"to": "00:55:32,000"
+			},
+			"offsets": {
+				"from": 3327000,
+				"to": 3332000
+			},
+			"text": " The really interesting thing, I'm going to re-randomize it another five times here."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:32,000",
+				"to": "00:55:34,000"
+			},
+			"offsets": {
+				"from": 3332000,
+				"to": 3334000
+			},
+			"text": " So you can see the credential changing again."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:34,000",
+				"to": "00:55:36,000"
+			},
+			"offsets": {
+				"from": 3334000,
+				"to": 3336000
+			},
+			"text": " Sorry, it's a bit faint."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:36,000",
+				"to": "00:55:38,000"
+			},
+			"offsets": {
+				"from": 3336000,
+				"to": 3338000
+			},
+			"text": " I try to spend it now."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:38,000",
+				"to": "00:55:44,000"
+			},
+			"offsets": {
+				"from": 3338000,
+				"to": 3344000
+			},
+			"text": " And despite the fact that it's a brand new credential, the blockchain has rejected it as being already spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:44,000",
+				"to": "00:55:50,000"
+			},
+			"offsets": {
+				"from": 3344000,
+				"to": 3350000
+			},
+			"text": " So the cryptographic material in there has been recognized even if it's a different credential."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:50,000",
+				"to": "00:55:55,000"
+			},
+			"offsets": {
+				"from": 3350000,
+				"to": 3355000
+			},
+			"text": " So we still have double spending protection even with the re-randomization."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:55,000",
+				"to": "00:55:56,000"
+			},
+			"offsets": {
+				"from": 3355000,
+				"to": 3356000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:56,000",
+				"to": "00:55:57,000"
+			},
+			"offsets": {
+				"from": 3356000,
+				"to": 3357000
+			},
+			"text": " That's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:57,000",
+				"to": "00:56:01,000"
+			},
+			"offsets": {
+				"from": 3357000,
+				"to": 3361000
+			},
+			"text": " So any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:01,000",
+				"to": "00:56:04,000"
+			},
+			"offsets": {
+				"from": 3361000,
+				"to": 3364000
+			},
+			"text": " How was your work done, though?"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:04,000",
+				"to": "00:56:07,000"
+			},
+			"offsets": {
+				"from": 3364000,
+				"to": 3367000
+			},
+			"text": " We have some investment from different VCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:07,000",
+				"to": "00:56:10,000"
+			},
+			"offsets": {
+				"from": 3367000,
+				"to": 3370000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:10,000",
+				"to": "00:56:16,000"
+			},
+			"offsets": {
+				"from": 3370000,
+				"to": 3376000
+			},
+			"text": " So I've been talking to the service provider to go through the face net, or could you still identify it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:16,000",
+				"to": "00:56:17,000"
+			},
+			"offsets": {
+				"from": 3376000,
+				"to": 3377000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:17,000",
+				"to": "00:56:19,000"
+			},
+			"offsets": {
+				"from": 3377000,
+				"to": 3379000
+			},
+			"text": " It doesn't right now, but eventually the vision is that it will."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:19,000",
+				"to": "00:56:22,000"
+			},
+			"offsets": {
+				"from": 3379000,
+				"to": 3382000
+			},
+			"text": " I was having that time to plume it all together quite yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:22,000",
+				"to": "00:56:25,000"
+			},
+			"offsets": {
+				"from": 3382000,
+				"to": 3385000
+			},
+			"text": " What would be our construction argue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:25,000",
+				"to": "00:56:27,000"
+			},
+			"offsets": {
+				"from": 3385000,
+				"to": 3387000
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:27,000",
+				"to": "00:56:29,000"
+			},
+			"offsets": {
+				"from": 3387000,
+				"to": 3389000
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:29,000",
+				"to": "00:56:32,000"
+			},
+			"offsets": {
+				"from": 3389000,
+				"to": 3392000
+			},
+			"text": " Which BRF construction I think I heard?"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:32,000",
+				"to": "00:56:33,000"
+			},
+			"offsets": {
+				"from": 3392000,
+				"to": 3393000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:33,000",
+				"to": "00:56:37,000"
+			},
+			"offsets": {
+				"from": 3393000,
+				"to": 3397000
+			},
+			"text": " Yeah, I can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:37,000",
+				"to": "00:56:40,000"
+			},
+			"offsets": {
+				"from": 3397000,
+				"to": 3400000
+			},
+			"text": " But the first thing that invented the two people who invented this e-mart are going to hear right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:56:40,000",
+				"to": "00:56:42,000"
+			},
+			"offsets": {
+				"from": 3400000,
+				"to": 3402000
+			},
+			"text": " so I'm not sure what they're planning to use there."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:42,000",
+				"to": "00:56:43,000"
+			},
+			"offsets": {
+				"from": 3402000,
+				"to": 3403000
+			},
+			"text": " So I can't say it."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:43,000",
+				"to": "00:56:44,000"
+			},
+			"offsets": {
+				"from": 3403000,
+				"to": 3404000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:44,000",
+				"to": "00:56:51,000"
+			},
+			"offsets": {
+				"from": 3404000,
+				"to": 3411000
+			},
+			"text": " And also, we are working on the research paper related to that, so probably what the research paper will be."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:51,000",
+				"to": "00:56:56,000"
+			},
+			"offsets": {
+				"from": 3411000,
+				"to": 3416000
+			},
+			"text": " So I just wanted to say that for a little question, we are working on the research paper about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:56,000",
+				"to": "00:57:00,000"
+			},
+			"offsets": {
+				"from": 3416000,
+				"to": 3420000
+			},
+			"text": " So in the research paper, probably discuss which BRF to use and which one is the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:00,000",
+				"to": "00:57:06,000"
+			},
+			"offsets": {
+				"from": 3420000,
+				"to": 3426000
+			},
+			"text": " So the BRF will also be used to randomize the packet sent inside a main set."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:06,000",
+				"to": "00:57:13,000"
+			},
+			"offsets": {
+				"from": 3426000,
+				"to": 3433000
+			},
+			"text": " The client will still generate the path, but the mixed nodes will need to say what they saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:13,000",
+				"to": "00:57:14,000"
+			},
+			"offsets": {
+				"from": 3433000,
+				"to": 3434000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:14,000",
+				"to": "00:57:16,000"
+			},
+			"offsets": {
+				"from": 3434000,
+				"to": 3436000
+			},
+			"text": " And afterwards, the BRF comes into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:16,000",
+				"to": "00:57:23,000"
+			},
+			"offsets": {
+				"from": 3436000,
+				"to": 3443000
+			},
+			"text": " Everybody opens up the box and goes, \"Hey, did Timmy mix net node two like actually send the correct packets?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:57:23,000",
+				"to": "00:57:26,000"
+			},
+			"offsets": {
+				"from": 3443000,
+				"to": 3446000
+			},
+			"text": " And there's going to be a record of what he was supposed to have sent, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:26,000",
+				"to": "00:57:34,000"
+			},
+			"offsets": {
+				"from": 3446000,
+				"to": 3454000
+			},
+			"text": " Yeah, and this BRF is used only for those special measurement messages which are checking the quality of service."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:34,000",
+				"to": "00:57:42,000"
+			},
+			"offsets": {
+				"from": 3454000,
+				"to": 3462000
+			},
+			"text": " The regular messages, it's up to the client what he's using to like pick the path random type that he likes and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:42,000",
+				"to": "00:57:43,000"
+			},
+			"offsets": {
+				"from": 3462000,
+				"to": 3463000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:43,000",
+				"to": "00:57:44,000"
+			},
+			"offsets": {
+				"from": 3463000,
+				"to": 3464000
+			},
+			"text": " Well, thank you very much for the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:44,000",
+				"to": "00:57:49,000"
+			},
+			"offsets": {
+				"from": 3464000,
+				"to": 3469000
+			},
+			"text": " But if people want to keep on chatting out in the hall, please come say hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:49,000",
+				"to": "00:57:54,000"
+			},
+			"offsets": {
+				"from": 3469000,
+				"to": 3474000
+			},
+			"text": " And if anybody's interested in trying out some of the code or trying to develop against this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:57:54,000",
+				"to": "00:57:56,000"
+			},
+			"offsets": {
+				"from": 3474000,
+				"to": 3476000
+			},
+			"text": " then please come talk to me as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:56,000",
+				"to": "00:57:57,000"
+			},
+			"offsets": {
+				"from": 3476000,
+				"to": 3477000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:57,000",
+				"to": "00:58:00,000"
+			},
+			"offsets": {
+				"from": 3477000,
+				"to": 3480000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:58:00,000",
+				"to": "00:58:15,000"
+			},
+			"offsets": {
+				"from": 3480000,
+				"to": 3495000
+			},
+			"text": " [music]"
+		}
+	]
+}

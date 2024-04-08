@@ -1,0 +1,28 @@
+{
+  "id": "efficient-and-cryptoeconomically-driven-dkg-as-a-smart-contract",
+  "sourceId": "efficient-and-cryptoeconomically-driven-dkg-as-a-smart-contract",
+  "eventId": "devcon-4",
+  "title": "Efficient and cryptoeconomically driven DKG as a smart contract",
+  "description": "In the absence of a trusted party, Distributed Key Generation (DKG) protocols are essential for the initial setup of any type of threshold cryptosystem. The protocol results with each of the participants holding a valid key share. We use Ethereum as a decentralized trusted platform to run a DKG protocol for BLS signatures. We use precompiled contracts that were initially designed for fast (within the block gas limit) zkSNARKs verification to overcome the computational complexity of the protocol. We rely on a previously proven DKG protocol, but our version is specifically designed to be implemented as a smart contract over Ethereum. We prove the security of our DKG protocol in the random oracle model and other common cryptographic assumptions. To conclude the system, we give an efficient smart contract for signature verification. Our smart contract consumes reasonable gas and scales nicely (in terms of the number of participants). Only a dispute between two of the participants will invoke elliptic curve arithmetics or paring computations. Ethereum is used for three reasons: As a medium for (synchronous) communication, as a mediating authority in case of conflicts, and as a cryptoeconomic incentivization layer over the plain DKG protocol.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Intermediate",
+  "tags": [
+    "Security",
+    "gas",
+    "gwei",
+    "scaling",
+    "incentives"
+  ],
+  "speakers": [
+    "david-yakira",
+    "ido-grayevsky",
+    "avi-asayag",
+    "ido-zilberberg"
+  ],
+  "sources_youtubeId": "OOk7fsoDoLk",
+  "sources_ipfsHash": "QmfYNZYxLn48g2ygDLVxo5Kk24EG4oe2Skn4spSEBtPT87",
+  "sources_swarmHash": "719d1b2ef0c7c54ba5b34481b0d8387cb4200b5423621a4a087efd955905afa2",
+  "duration": 439,
+  "language": "en"
+}

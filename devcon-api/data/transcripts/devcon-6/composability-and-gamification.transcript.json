@@ -1,0 +1,1484 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,280",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 13280,
+				"to": 17600
+			},
+			"text": " Hola! Ma'amo Andi, and that is all of the Spanish I know, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 22000
+			},
+			"text": " Which is surprising because I've used Duolingo. Anybody use Duolingo?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,700"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25700
+			},
+			"text": " But I used it a bunch and I'm not at all fluent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,700",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 25700,
+				"to": 29800
+			},
+			"text": " Now, Duolingo boasts gamification. That's how they, like, do what they do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:33,800"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 33800
+			},
+			"text": " And it certainly is fun, right? You get badges, you get experience, you level up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,800",
+				"to": "00:00:37,800"
+			},
+			"offsets": {
+				"from": 33800,
+				"to": 37800
+			},
+			"text": " But it doesn't always do the best job at learning, at actual teaching."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,800",
+				"to": "00:00:42,800"
+			},
+			"offsets": {
+				"from": 37800,
+				"to": 42800
+			},
+			"text": " And so, what I want to talk a little bit about is gamification, and what that means in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,800",
+				"to": "00:00:48,800"
+			},
+			"offsets": {
+				"from": 42800,
+				"to": 48800
+			},
+			"text": " composability and web 3 today. My background is I'm a former professor of games."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,800",
+				"to": "00:00:52,800"
+			},
+			"offsets": {
+				"from": 48800,
+				"to": 52800
+			},
+			"text": " I study digital media effects for a variety of entertainment media,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,800",
+				"to": "00:00:56,800"
+			},
+			"offsets": {
+				"from": 52800,
+				"to": 56800
+			},
+			"text": " and how the affordances of systems impacted player or user behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,800",
+				"to": "00:01:01,800"
+			},
+			"offsets": {
+				"from": 56800,
+				"to": 61800
+			},
+			"text": " So, yeah, I studied video games for 10 years. They gave me tenure, and then I left for crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,800",
+				"to": "00:01:03,800"
+			},
+			"offsets": {
+				"from": 61800,
+				"to": 63800
+			},
+			"text": " because, hey, we're all here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,800",
+				"to": "00:01:08,800"
+			},
+			"offsets": {
+				"from": 63800,
+				"to": 68800
+			},
+			"text": " In my time in crypto, I worked for a number of protocols that you'll know, status,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,800",
+				"to": "00:01:13,800"
+			},
+			"offsets": {
+				"from": 68800,
+				"to": 73800
+			},
+			"text": " chain link labs. And last year, during the metaverse excitement, and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,800",
+				"to": "00:01:18,800"
+			},
+			"offsets": {
+				"from": 73800,
+				"to": 78800
+			},
+			"text": " play-to-earn excitement and NFTs, what I noticed was that there was something missing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,800",
+				"to": "00:01:22,800"
+			},
+			"offsets": {
+				"from": 78800,
+				"to": 82800
+			},
+			"text": " There was a lot of talk about gamification in terms of incentives and rewards"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,800",
+				"to": "00:01:26,800"
+			},
+			"offsets": {
+				"from": 82800,
+				"to": 86800
+			},
+			"text": " and bonuses and experience points. But there wasn't a lot of talk about game mechanics"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,800",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 86800,
+				"to": 91800
+			},
+			"text": " and how those worked. There was a lot of hand-wringing about it, but not a ton."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:37,800"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 97800
+			},
+			"text": " So, I now founded a company called Infinity Keys. We are a project that tries to think"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,800",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 97800,
+				"to": 103800
+			},
+			"text": " about composability in web 3, especially on the EVM, and how we can make games with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:49,800"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 109800
+			},
+			"text": " So, quickly, right now, if you go to Infinity Keys I/O, you can see a number of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,800",
+				"to": "00:01:53,800"
+			},
+			"offsets": {
+				"from": 109800,
+				"to": 113800
+			},
+			"text": " kinds of games that we have. There are mostly games where you have to solve a riddle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,800",
+				"to": "00:01:58,800"
+			},
+			"offsets": {
+				"from": 113800,
+				"to": 118800
+			},
+			"text": " find a passcode, or go somewhere and find a passcode, or go collect an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,800",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 118800,
+				"to": 123800
+			},
+			"text": " And this is kind of core to what I want to talk about in terms of composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:07,800"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 127800
+			},
+			"text": " It's not finding a passcode and minting an NFT achievement. That's all that exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,800",
+				"to": "00:02:10,800"
+			},
+			"offsets": {
+				"from": 127800,
+				"to": 130800
+			},
+			"text": " That's a piece of it. You can make fun games out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,800",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 130800,
+				"to": 134800
+			},
+			"text": " But what is interesting and exciting is when we take the NFT that you mint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:18,800"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 138800
+			},
+			"text": " a composable asset, and we require that in the next game."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,800",
+				"to": "00:02:23,800"
+			},
+			"offsets": {
+				"from": 138800,
+				"to": 143800
+			},
+			"text": " And then we give you a reward in NFT for that, and then we require that in another game."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,800",
+				"to": "00:02:29,800"
+			},
+			"offsets": {
+				"from": 143800,
+				"to": 149800
+			},
+			"text": " And then we start interlacing those assets together and requiring them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,800",
+				"to": "00:02:34,800"
+			},
+			"offsets": {
+				"from": 149800,
+				"to": 154800
+			},
+			"text": " And then the final sort of end state that we're trying to build at Infinity Keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,800",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 154800,
+				"to": 158800
+			},
+			"text": " and that I want to encourage you all to build as well is we allow anyone to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:43,800"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 163800
+			},
+			"text": " lace those assets together. So developers and engineers, you know how to require"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,800",
+				"to": "00:02:47,800"
+			},
+			"offsets": {
+				"from": 163800,
+				"to": 167800
+			},
+			"text": " composable assets, you know, for gating and have them talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,800",
+				"to": "00:02:51,800"
+			},
+			"offsets": {
+				"from": 167800,
+				"to": 171800
+			},
+			"text": " But average people don't know how to do that. Yet they still want to play games"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,800",
+				"to": "00:02:54,800"
+			},
+			"offsets": {
+				"from": 171800,
+				"to": 174800
+			},
+			"text": " and they still want to be able to design games in many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,800",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 174800,
+				"to": 179800
+			},
+			"text": " And so what I'm advocating for here is a new type of game, a new type of game that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:03,800"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 183800
+			},
+			"text": " relies on composable assets. I'm coining the term \"composability games.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,800",
+				"to": "00:03:07,800"
+			},
+			"offsets": {
+				"from": 183800,
+				"to": 187800
+			},
+			"text": " We'll see if it sticks. That allows anybody to do this sort of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,800",
+				"to": "00:03:11,800"
+			},
+			"offsets": {
+				"from": 187800,
+				"to": 191800
+			},
+			"text": " And it's not just to make games and have people have good experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,800",
+				"to": "00:03:14,800"
+			},
+			"offsets": {
+				"from": 191800,
+				"to": 194800
+			},
+			"text": " That is a part of it. That's a piece of it. And that's what we're doing right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,800",
+				"to": "00:03:18,800"
+			},
+			"offsets": {
+				"from": 194800,
+				"to": 198800
+			},
+			"text": " It's very fun. And you're supposed to have like, \"Yay, I solved it.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,800",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 198800,
+				"to": 201800
+			},
+			"text": " Like a good moment. That feels good. That's a nice experience to have with blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:26,800"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 206800
+			},
+			"text": " But if you take a look at this, if you're familiar with complex systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,800",
+				"to": "00:03:30,800"
+			},
+			"offsets": {
+				"from": 206800,
+				"to": 210800
+			},
+			"text": " or complex adaptive systems, how they work is you have a whole bunch of small"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,800",
+				"to": "00:03:33,800"
+			},
+			"offsets": {
+				"from": 210800,
+				"to": 213800
+			},
+			"text": " components that interrelate as part of a system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,800",
+				"to": "00:03:36,800"
+			},
+			"offsets": {
+				"from": 213800,
+				"to": 216800
+			},
+			"text": " And as they interrelate and as there's more of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,800",
+				"to": "00:03:40,800"
+			},
+			"offsets": {
+				"from": 216800,
+				"to": 220800
+			},
+			"text": " emergent phenomena start to happen. And I believe, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,800",
+				"to": "00:03:44,800"
+			},
+			"offsets": {
+				"from": 220800,
+				"to": 224800
+			},
+			"text": " that if we do this with NFTs and we start to connect them together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,800",
+				"to": "00:03:47,800"
+			},
+			"offsets": {
+				"from": 224800,
+				"to": 227800
+			},
+			"text": " not just NFTs, but tokens, wallet signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,800",
+				"to": "00:03:51,800"
+			},
+			"offsets": {
+				"from": 227800,
+				"to": 231800
+			},
+			"text": " all sorts of sort of composable elements that live on EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,800",
+				"to": "00:03:56,800"
+			},
+			"offsets": {
+				"from": 231800,
+				"to": 236800
+			},
+			"text": " we'll start to see a new kind of, may I use the term \"metiverse\"?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,800",
+				"to": "00:04:01,800"
+			},
+			"offsets": {
+				"from": 236800,
+				"to": 241800
+			},
+			"text": " Metiverse isn't necessarily a 3D digital world. It does not have to be by any means."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,800",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 241800,
+				"to": 245800
+			},
+			"text": " And what I think is more interesting are deep digital worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 249800
+			},
+			"text": " Hey, everybody. Good to see the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:12,800"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 252800
+			},
+			"text": " And when I talk about deep digital worlds, when you play a game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,800",
+				"to": "00:04:14,800"
+			},
+			"offsets": {
+				"from": 252800,
+				"to": 254800
+			},
+			"text": " y'all play wild, anybody, world of work rafters?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,800",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 254800,
+				"to": 257800
+			},
+			"text": " I know there's a couple. Or Breath of the Wild, anybody? Destiny?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:19,800"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 259800
+			},
+			"text": " All right, I know I got some Destiny people in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,800",
+				"to": "00:04:23,800"
+			},
+			"offsets": {
+				"from": 259800,
+				"to": 263800
+			},
+			"text": " When you play one of these games you go in, there's so much to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,800",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 263800,
+				"to": 268800
+			},
+			"text": " It's an extremely rich and vibrant world because any town you walk into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:31,800"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 271800
+			},
+			"text": " there's 100 quests and there's NPCs that tell you where to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,800",
+				"to": "00:04:35,800"
+			},
+			"offsets": {
+				"from": 271800,
+				"to": 275800
+			},
+			"text": " And then you go to the next town and it's a different culture and there's even more to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,800",
+				"to": "00:04:40,800"
+			},
+			"offsets": {
+				"from": 275800,
+				"to": 280800
+			},
+			"text": " A metaverse isn't just a plot of pixelated land that you can build things"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,800",
+				"to": "00:04:43,800"
+			},
+			"offsets": {
+				"from": 280800,
+				"to": 283800
+			},
+			"text": " and put up a new sign or even build games."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,800",
+				"to": "00:04:45,800"
+			},
+			"offsets": {
+				"from": 283800,
+				"to": 285800
+			},
+			"text": " It's a rich array of things to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,800",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 285800,
+				"to": 287800
+			},
+			"text": " And you don't need 3D worlds to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:49,800"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 289800
+			},
+			"text": " What you need is a whole bunch of stuff to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,800",
+				"to": "00:04:55,800"
+			},
+			"offsets": {
+				"from": 289800,
+				"to": 295800
+			},
+			"text": " Composable assets let us do that if we connect them together using fun experiences called games."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,800",
+				"to": "00:04:59,800"
+			},
+			"offsets": {
+				"from": 295800,
+				"to": 299800
+			},
+			"text": " So this is what I'm building. We're building Adam Finanikis."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,800",
+				"to": "00:05:02,800"
+			},
+			"offsets": {
+				"from": 299800,
+				"to": 302800
+			},
+			"text": " And it's a piece of what you are all building as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,800",
+				"to": "00:05:06,800"
+			},
+			"offsets": {
+				"from": 302800,
+				"to": 306800
+			},
+			"text": " And so I really do think not only is it about composable assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,800",
+				"to": "00:05:08,800"
+			},
+			"offsets": {
+				"from": 306800,
+				"to": 308800
+			},
+			"text": " but it's about composable communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,800",
+				"to": "00:05:13,800"
+			},
+			"offsets": {
+				"from": 308800,
+				"to": 313800
+			},
+			"text": " I'm not going to talk about this too much because I do have limited time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,800",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 313800,
+				"to": 318800
+			},
+			"text": " Lightning talk, many things to say. Not a lot of times say it, but that's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:21,800"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 321800
+			},
+			"text": " Come on in, plenty of room. We're here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,800",
+				"to": "00:05:28,800"
+			},
+			"offsets": {
+				"from": 321800,
+				"to": 328800
+			},
+			"text": " But kind of core to what I want to think about here that's different than just requiring it one NFT to mint another NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,800",
+				"to": "00:05:32,800"
+			},
+			"offsets": {
+				"from": 328800,
+				"to": 332800
+			},
+			"text": " is we need to make good games and make good experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,800",
+				"to": "00:05:38,800"
+			},
+			"offsets": {
+				"from": 332800,
+				"to": 338800
+			},
+			"text": " And that's something that we haven't been that concerned with because we've been making sure that the technology works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,800",
+				"to": "00:05:44,800"
+			},
+			"offsets": {
+				"from": 338800,
+				"to": 344800
+			},
+			"text": " Making sure that we can stake and those things are secure or can be secured if you use all the best practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,800",
+				"to": "00:05:47,800"
+			},
+			"offsets": {
+				"from": 344800,
+				"to": 347800
+			},
+			"text": " Making sure that we do convert to proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,800",
+				"to": "00:05:49,800"
+			},
+			"offsets": {
+				"from": 347800,
+				"to": 349800
+			},
+			"text": " Well done team."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,800",
+				"to": "00:05:54,800"
+			},
+			"offsets": {
+				"from": 349800,
+				"to": 354800
+			},
+			"text": " But now we can start thinking about user experience beyond just what's on the screen and what do they interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,800",
+				"to": "00:05:56,800"
+			},
+			"offsets": {
+				"from": 354800,
+				"to": 356800
+			},
+			"text": " But what are the feelings that they have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,800",
+				"to": "00:06:00,800"
+			},
+			"offsets": {
+				"from": 356800,
+				"to": 360800
+			},
+			"text": " Games are more than just a place to reward you with even more tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,800",
+				"to": "00:06:06,800"
+			},
+			"offsets": {
+				"from": 360800,
+				"to": 366800
+			},
+			"text": " There are a place where you can help players have interesting emotional experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,800",
+				"to": "00:06:11,800"
+			},
+			"offsets": {
+				"from": 366800,
+				"to": 371800
+			},
+			"text": " And that is, if you go to Infinity Key's IO and you solve some of our basic puzzles, they're easy, but you're like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,800",
+				"to": "00:06:14,800"
+			},
+			"offsets": {
+				"from": 371800,
+				"to": 374800
+			},
+			"text": " \"Alright, you feel good. You get that little kick.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,800",
+				"to": "00:06:16,800"
+			},
+			"offsets": {
+				"from": 374800,
+				"to": 376800
+			},
+			"text": " And that's enough in many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,800",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 376800,
+				"to": 384800
+			},
+			"text": " And those emotions are really, really powerful attractants as we bring more people into web3 and into crypteconomic systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:32,800"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 392800
+			},
+			"text": " Right now, a lot of the emotional experiences that people have with crypto is #GoUp, which feels good, but is not sustainable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,800",
+				"to": "00:06:37,800"
+			},
+			"offsets": {
+				"from": 392800,
+				"to": 397800
+			},
+			"text": " And #Go's down, which is terrible and leaves a very long lasting impression."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,800",
+				"to": "00:06:40,800"
+			},
+			"offsets": {
+				"from": 397800,
+				"to": 400800
+			},
+			"text": " The rest of us are here that like figured out that curiosity."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,800",
+				"to": "00:06:43,800"
+			},
+			"offsets": {
+				"from": 400800,
+				"to": 403800
+			},
+			"text": " What else can we build? How do we improve systems with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,800",
+				"to": "00:06:47,800"
+			},
+			"offsets": {
+				"from": 403800,
+				"to": 407800
+			},
+			"text": " But most of the people that interact with crypto systems, that's what they deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,800",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 407800,
+				"to": 412800
+			},
+			"text": " #GoUp, #GoDown. Games can change that. I really do think that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:07:03,800"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 423800
+			},
+			"text": " And not only can games change that, but by leaning into composable assets and permissionlessness of systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,800",
+				"to": "00:07:06,800"
+			},
+			"offsets": {
+				"from": 423800,
+				"to": 426800
+			},
+			"text": " we can open that and broaden that to further and further reaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,800",
+				"to": "00:07:10,800"
+			},
+			"offsets": {
+				"from": 426800,
+				"to": 430800
+			},
+			"text": " It doesn't have to be me creating games and a set of my NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,800",
+				"to": "00:07:18,800"
+			},
+			"offsets": {
+				"from": 430800,
+				"to": 438800
+			},
+			"text": " You can be a fan of a band and create trivia and reward NFTs for very cheap or free on layer 2s and roll ups and all those sorts of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,800",
+				"to": "00:07:22,800"
+			},
+			"offsets": {
+				"from": 438800,
+				"to": 442800
+			},
+			"text": " and make those a required asset for the next stage of your own hunt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,800",
+				"to": "00:07:29,800"
+			},
+			"offsets": {
+				"from": 442800,
+				"to": 449800
+			},
+			"text": " I can make a hunt about DevCon where you have to go and collect po-apps from five different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,800",
+				"to": "00:07:33,800"
+			},
+			"offsets": {
+				"from": 449800,
+				"to": 453800
+			},
+			"text": " You've got to collect one from Dave Hoffman and from Preston Van Loon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,800",
+				"to": "00:07:36,800"
+			},
+			"offsets": {
+				"from": 453800,
+				"to": 456800
+			},
+			"text": " You've got to find Hudson. And now we've got a fun quest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,800",
+				"to": "00:07:42,800"
+			},
+			"offsets": {
+				"from": 456800,
+				"to": 462800
+			},
+			"text": " And now we're using the composability of po-apps, which is a fantastic, really fun system that we've come to love."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,800",
+				"to": "00:07:44,800"
+			},
+			"offsets": {
+				"from": 462800,
+				"to": 464800
+			},
+			"text": " And now we can create layers on top of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,800",
+				"to": "00:07:48,800"
+			},
+			"offsets": {
+				"from": 464800,
+				"to": 468800
+			},
+			"text": " And then once you have that layer, we can create layers on top of that, etc, etc, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,800",
+				"to": "00:07:52,800"
+			},
+			"offsets": {
+				"from": 468800,
+				"to": 472800
+			},
+			"text": " And by opening it up to community, we're creating stronger systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,800",
+				"to": "00:07:57,800"
+			},
+			"offsets": {
+				"from": 472800,
+				"to": 477800
+			},
+			"text": " I lost track of time and so I'm getting cut off, so I will wrap up shortly, I promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,800",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 477800,
+				"to": 481800
+			},
+			"text": " I think composability games will be something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,800",
+				"to": "00:08:04,800"
+			},
+			"offsets": {
+				"from": 481800,
+				"to": 484800
+			},
+			"text": " And this is a meta that we have missed thus far."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,800",
+				"to": "00:08:11,800"
+			},
+			"offsets": {
+				"from": 484800,
+				"to": 491800
+			},
+			"text": " Web3 Gaming has been about owning your assets, which means selling your assets, which is kind of boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,800",
+				"to": "00:08:18,800"
+			},
+			"offsets": {
+				"from": 491800,
+				"to": 498800
+			},
+			"text": " Maybe it's a value for some people, but it is far from the greatest value that we offer as a community of people building together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,800",
+				"to": "00:08:20,800"
+			},
+			"offsets": {
+				"from": 498800,
+				"to": 500800
+			},
+			"text": " The value is the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,800",
+				"to": "00:08:24,800"
+			},
+			"offsets": {
+				"from": 500800,
+				"to": 504800
+			},
+			"text": " And so let's use the network to create value for people and their experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,800",
+				"to": "00:08:27,800"
+			},
+			"offsets": {
+				"from": 504800,
+				"to": 507800
+			},
+			"text": " That's what we're doing at Infiniti Keys. You can check us out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,800",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 507800,
+				"to": 512800
+			},
+			"text": " We have a number of live puzzles. We recently got a lens grant, and so put up -- I'm not going to read all this stuff --"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:38,800"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 518800
+			},
+			"text": " but we recently put up a lens challenge where you have to go to different daps on lens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,800",
+				"to": "00:08:44,800"
+			},
+			"offsets": {
+				"from": 518800,
+				"to": 524800
+			},
+			"text": " find passcodes, bring them back to MintaKey, and then when you collect three keys, you can mint a treasure chest."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,800",
+				"to": "00:08:47,800"
+			},
+			"offsets": {
+				"from": 524800,
+				"to": 527800
+			},
+			"text": " It's all valueless-free NFTs for fun. We're in alpha."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,800",
+				"to": "00:08:53,800"
+			},
+			"offsets": {
+				"from": 527800,
+				"to": 533800
+			},
+			"text": " But what we're starting to see is people coming into our community, starting to build their own puzzles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,800",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 533800,
+				"to": 537800
+			},
+			"text": " and figure out how can we expand this world and use the assets that you've already created."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:09:00,800"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 540800
+			},
+			"text": " That we created all last year at AdNauseum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,800",
+				"to": "00:09:06,800"
+			},
+			"offsets": {
+				"from": 540800,
+				"to": 546800
+			},
+			"text": " How can we put those together and more in the future to create a wider world of composability and gaming?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,800",
+				"to": "00:09:12,800"
+			},
+			"offsets": {
+				"from": 546800,
+				"to": 552800
+			},
+			"text": " There's treasure everywhere. This is a really important statement to me. It's not just the loot that you find."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,800",
+				"to": "00:09:17,800"
+			},
+			"offsets": {
+				"from": 552800,
+				"to": 557800
+			},
+			"text": " There's treasure in you. There's treasure in us and our ideas and the things that we can build together"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,800",
+				"to": "00:09:22,800"
+			},
+			"offsets": {
+				"from": 557800,
+				"to": 562800
+			},
+			"text": " if we use systems that allow for composability and interconnection."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,800",
+				"to": "00:09:25,800"
+			},
+			"offsets": {
+				"from": 562800,
+				"to": 565800
+			},
+			"text": " That is my time. I'm happy to talk to anybody about games."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,800",
+				"to": "00:09:31,800"
+			},
+			"offsets": {
+				"from": 565800,
+				"to": 571800
+			},
+			"text": " I also love music or whatever. I'm around. I'm very tall. You can find me. Thank you very much for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,800",
+				"to": "00:09:38,800"
+			},
+			"offsets": {
+				"from": 571800,
+				"to": 578800
+			},
+			"text": " [silence]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,800",
+				"to": "00:09:44,800"
+			},
+			"offsets": {
+				"from": 578800,
+				"to": 584800
+			},
+			"text": " [silence]"
+		}
+	]
+}

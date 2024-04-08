@@ -1,0 +1,2683 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16640
+			},
+			"text": " >> Hi everyone, good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:19,240"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 19240
+			},
+			"text": " Thanks for coming at this early hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,240",
+				"to": "00:00:22,460"
+			},
+			"offsets": {
+				"from": 19240,
+				"to": 22460
+			},
+			"text": " Hopefully no one's to hang over."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,460",
+				"to": "00:00:26,660"
+			},
+			"offsets": {
+				"from": 22460,
+				"to": 26660
+			},
+			"text": " So I'm going to talk about Enigma and specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,660",
+				"to": "00:00:29,280"
+			},
+			"offsets": {
+				"from": 26660,
+				"to": 29280
+			},
+			"text": " our decentralized data marketplace protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,280",
+				"to": "00:00:34,280"
+			},
+			"offsets": {
+				"from": 29280,
+				"to": 34280
+			},
+			"text": " [ Inaudible Remark ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,280",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 34280,
+				"to": 35280
+			},
+			"text": " What's the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:38,280"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 38280
+			},
+			"text": " [ Inaudible Remark ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,280",
+				"to": "00:00:38,780"
+			},
+			"offsets": {
+				"from": 38280,
+				"to": 38780
+			},
+			"text": " Makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,780",
+				"to": "00:00:40,740"
+			},
+			"offsets": {
+				"from": 38780,
+				"to": 40740
+			},
+			"text": " All right, everyone again, good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,740",
+				"to": "00:00:42,840"
+			},
+			"offsets": {
+				"from": 40740,
+				"to": 42840
+			},
+			"text": " I'm going to talk to you about Enigma."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,840",
+				"to": "00:00:45,820"
+			},
+			"offsets": {
+				"from": 42840,
+				"to": 45820
+			},
+			"text": " Enigma is building a decentralized data marketplace"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,820",
+				"to": "00:00:49,400"
+			},
+			"offsets": {
+				"from": 45820,
+				"to": 49400
+			},
+			"text": " that is part on chain on Ethereum and part off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,400",
+				"to": "00:00:53,680"
+			},
+			"offsets": {
+				"from": 49400,
+				"to": 53680
+			},
+			"text": " So the background to Enigma starts at MIT in 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,680",
+				"to": "00:00:57,640"
+			},
+			"offsets": {
+				"from": 53680,
+				"to": 57640
+			},
+			"text": " We launched the Enigma project from there"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:01:01,780"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 61780
+			},
+			"text": " where we basically conceptualized a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,780",
+				"to": "00:01:05,220"
+			},
+			"offsets": {
+				"from": 61780,
+				"to": 65220
+			},
+			"text": " computation platform that can guarantee both privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,220",
+				"to": "00:01:08,400"
+			},
+			"offsets": {
+				"from": 65220,
+				"to": 68400
+			},
+			"text": " and correctness and with better scale than just blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,400",
+				"to": "00:01:09,800"
+			},
+			"offsets": {
+				"from": 68400,
+				"to": 69800
+			},
+			"text": " and themselves allow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,800",
+				"to": "00:01:12,560"
+			},
+			"offsets": {
+				"from": 69800,
+				"to": 72560
+			},
+			"text": " How many of you here have like seen that white paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,560",
+				"to": "00:01:15,040"
+			},
+			"offsets": {
+				"from": 72560,
+				"to": 75040
+			},
+			"text": " or like are familiar with the Enigma project from that sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,040",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 75040,
+				"to": 77120
+			},
+			"text": " Right, not bad, not bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,120",
+				"to": "00:01:20,520"
+			},
+			"offsets": {
+				"from": 77120,
+				"to": 80520
+			},
+			"text": " So cool, yeah, it's been cited quite a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,520",
+				"to": "00:01:22,440"
+			},
+			"offsets": {
+				"from": 80520,
+				"to": 82440
+			},
+			"text": " I think it's one of the more cited white papers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,440",
+				"to": "00:01:24,880"
+			},
+			"offsets": {
+				"from": 82440,
+				"to": 84880
+			},
+			"text": " in the space downloaded quite frequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:27,080"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 87080
+			},
+			"text": " So I guess there's a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,080",
+				"to": "00:01:32,880"
+			},
+			"offsets": {
+				"from": 87080,
+				"to": 92880
+			},
+			"text": " who share our vision and yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,880",
+				"to": "00:01:36,920"
+			},
+			"offsets": {
+				"from": 92880,
+				"to": 96920
+			},
+			"text": " Anyone can help me with the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,920",
+				"to": "00:01:42,660"
+			},
+			"offsets": {
+				"from": 96920,
+				"to": 102660
+			},
+			"text": " [ Inaudible Remark ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,660",
+				"to": "00:01:43,360"
+			},
+			"offsets": {
+				"from": 102660,
+				"to": 103360
+			},
+			"text": " I have to go closer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,360",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 103360,
+				"to": 108080
+			},
+			"text": " Nice, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:51,920"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 111920
+			},
+			"text": " So some about our motivation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,920",
+				"to": "00:01:54,600"
+			},
+			"offsets": {
+				"from": 111920,
+				"to": 114600
+			},
+			"text": " So our motivation, you know, data is everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,040",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 115040,
+				"to": 118280
+			},
+			"text": " It's the most valuable asset right now in the 21st century."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:02:01,760"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 121760
+			},
+			"text": " But right now the situation is that only a handful of companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,760",
+				"to": "00:02:04,720"
+			},
+			"offsets": {
+				"from": 121760,
+				"to": 124720
+			},
+			"text": " can really capitalize on that, you know, their hoarding need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,720",
+				"to": "00:02:07,040"
+			},
+			"offsets": {
+				"from": 124720,
+				"to": 127040
+			},
+			"text": " their monetizing need, but that's not something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,040",
+				"to": "00:02:09,040"
+			},
+			"offsets": {
+				"from": 127040,
+				"to": 129040
+			},
+			"text": " that the open public can take part in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,040",
+				"to": "00:02:11,760"
+			},
+			"offsets": {
+				"from": 129040,
+				"to": 131760
+			},
+			"text": " And that is what we are set to change with our protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,760",
+				"to": "00:02:15,360"
+			},
+			"offsets": {
+				"from": 131760,
+				"to": 135360
+			},
+			"text": " I'm going to give you a quick outline of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,360",
+				"to": "00:02:18,120"
+			},
+			"offsets": {
+				"from": 135360,
+				"to": 138120
+			},
+			"text": " I'm going to first of all speak about, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,120",
+				"to": "00:02:20,600"
+			},
+			"offsets": {
+				"from": 138120,
+				"to": 140600
+			},
+			"text": " what is the data marketplace at a high level?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,600",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 140600,
+				"to": 143160
+			},
+			"text": " How does the on chain works with the off chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,360",
+				"to": "00:02:26,400"
+			},
+			"offsets": {
+				"from": 143360,
+				"to": 146400
+			},
+			"text": " for the stakeholders and how we're thinking about designing this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,400",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 146400,
+				"to": 151000
+			},
+			"text": " I will at that point, I will not focus on, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:33,880"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 153880
+			},
+			"text": " how the network stores data, how computation is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,880",
+				"to": "00:02:36,520"
+			},
+			"offsets": {
+				"from": 153880,
+				"to": 156520
+			},
+			"text": " That would be the second part of the talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,520",
+				"to": "00:02:38,440"
+			},
+			"offsets": {
+				"from": 156520,
+				"to": 158440
+			},
+			"text": " when we like go deeply into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,440",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 158440,
+				"to": 161680
+			},
+			"text": " Again, given time constraints, this is going to be pretty high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:45,520"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 165520
+			},
+			"text": " And finally, I'm going to give you a taste of catalyst."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,520",
+				"to": "00:02:47,560"
+			},
+			"offsets": {
+				"from": 165520,
+				"to": 167560
+			},
+			"text": " Catalyst is an application that we're developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,560",
+				"to": "00:02:51,440"
+			},
+			"offsets": {
+				"from": 167560,
+				"to": 171440
+			},
+			"text": " that is going to be the first one to leave on the data marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,440",
+				"to": "00:02:56,080"
+			},
+			"offsets": {
+				"from": 171440,
+				"to": 176080
+			},
+			"text": " All right, so at the high level, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,080",
+				"to": "00:02:59,440"
+			},
+			"offsets": {
+				"from": 176080,
+				"to": 179440
+			},
+			"text": " the Enigma data marketplace, it has three main stakeholders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,440",
+				"to": "00:03:02,760"
+			},
+			"offsets": {
+				"from": 179440,
+				"to": 182760
+			},
+			"text": " which are pretty obvious and trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,760",
+				"to": "00:03:06,400"
+			},
+			"offsets": {
+				"from": 182760,
+				"to": 186400
+			},
+			"text": " You have data providers, those who want to sell data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,400",
+				"to": "00:03:09,240"
+			},
+			"offsets": {
+				"from": 186400,
+				"to": 189240
+			},
+			"text": " data consumers, those who want to consume data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,240",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189240,
+				"to": 194000
+			},
+			"text": " And on the off chain, you have worker nodes, which are basically, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,600"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197600
+			},
+			"text": " just nodes who don't have any stake in the data buying or selling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,600",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 197600,
+				"to": 199920
+			},
+			"text": " but they are the ones who are actually storing the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,200",
+				"to": "00:03:23,360"
+			},
+			"offsets": {
+				"from": 200200,
+				"to": 203360
+			},
+			"text": " doing computation, answering queries, and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,360",
+				"to": "00:03:26,520"
+			},
+			"offsets": {
+				"from": 203360,
+				"to": 206520
+			},
+			"text": " So my focus right now is going to be mostly on the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,520",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 206520,
+				"to": 209520
+			},
+			"text": " on the kind of the contracts between the data providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:31,200"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 211200
+			},
+			"text": " and data consumers first."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,200",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211200,
+				"to": 216000
+			},
+			"text": " So starting with the data provider, a data provider comes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:38,200"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 218200
+			},
+			"text": " has a data set that they want to sell."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,200",
+				"to": "00:03:43,280"
+			},
+			"offsets": {
+				"from": 218200,
+				"to": 223280
+			},
+			"text": " What they do is, first of all, they provide enough context"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,280",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 223280,
+				"to": 224600
+			},
+			"text": " to the off chain network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:47,400"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 227400
+			},
+			"text": " They basically need to register the data set."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,400",
+				"to": "00:03:49,560"
+			},
+			"offsets": {
+				"from": 227400,
+				"to": 229560
+			},
+			"text": " Now, that could be in one of two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,560",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 229560,
+				"to": 232240
+			},
+			"text": " Either they, they upload the data to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:03:54,800"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 234800
+			},
+			"text": " and I will show later on how that's done securely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,800",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 234800,
+				"to": 238600
+			},
+			"text": " or they can actually store it in some, some of their own nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,600",
+				"to": "00:04:02,400"
+			},
+			"offsets": {
+				"from": 238600,
+				"to": 242400
+			},
+			"text": " and just provide enough context to the network on where that data leaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,400",
+				"to": "00:04:06,240"
+			},
+			"offsets": {
+				"from": 242400,
+				"to": 246240
+			},
+			"text": " The network then computes some kind of address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,240",
+				"to": "00:04:08,920"
+			},
+			"offsets": {
+				"from": 246240,
+				"to": 248920
+			},
+			"text": " like a permanent address, kind of like a DNS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,920",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 248920,
+				"to": 253360
+			},
+			"text": " that the network can then route consumers to that data set."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:17,720"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 257720
+			},
+			"text": " The data provider then takes that address, that unique address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 260440
+			},
+			"text": " some meets transaction to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:24,880"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 264880
+			},
+			"text": " also puts like the price of the data and some other metadata,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,880",
+				"to": "00:04:29,240"
+			},
+			"offsets": {
+				"from": 264880,
+				"to": 269240
+			},
+			"text": " and also stores a deposit, which I'll touch a bit later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,240",
+				"to": "00:04:34,800"
+			},
+			"offsets": {
+				"from": 269240,
+				"to": 274800
+			},
+			"text": " Now that the data, that data set is registered on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,800",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 274800,
+				"to": 276880
+			},
+			"text": " there's a reference to it off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:41,360"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 281360
+			},
+			"text": " A data consumer can actually come in and send a message to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,360",
+				"to": "00:04:44,880"
+			},
+			"offsets": {
+				"from": 281360,
+				"to": 284880
+			},
+			"text": " saying, \"Hey, I want to subscribe to this feed of data,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,880",
+				"to": "00:04:47,240"
+			},
+			"offsets": {
+				"from": 284880,
+				"to": 287240
+			},
+			"text": " and obviously they need to provide payment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,240",
+				"to": "00:04:49,840"
+			},
+			"offsets": {
+				"from": 287240,
+				"to": 289840
+			},
+			"text": " and they also need to provide a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,840",
+				"to": "00:04:56,080"
+			},
+			"offsets": {
+				"from": 289840,
+				"to": 296080
+			},
+			"text": " A deposit is there in case the consumer defaults in their payments in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,080",
+				"to": "00:05:02,200"
+			},
+			"offsets": {
+				"from": 296080,
+				"to": 302200
+			},
+			"text": " So one note about the incentive structure here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,200",
+				"to": "00:05:06,680"
+			},
+			"offsets": {
+				"from": 302200,
+				"to": 306680
+			},
+			"text": " really what Enigma is trying to do is it's trying to kind of tokenize"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,680",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306680,
+				"to": 310000
+			},
+			"text": " or capture in a token the value of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 312800
+			},
+			"text": " We're trying to make something that's really implicit today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 315840
+			},
+			"text": " and kind of, I guess, stuck behind walls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:19,600"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 319600
+			},
+			"text": " we're trying to make that more open and very, very, very explicit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,600",
+				"to": "00:05:23,600"
+			},
+			"offsets": {
+				"from": 319600,
+				"to": 323600
+			},
+			"text": " So there are two ways in which the incentives mechanics kind of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,600",
+				"to": "00:05:28,560"
+			},
+			"offsets": {
+				"from": 323600,
+				"to": 328560
+			},
+			"text": " The first one is the value of data, directly that's an explicit metric,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,560",
+				"to": "00:05:32,720"
+			},
+			"offsets": {
+				"from": 328560,
+				"to": 332720
+			},
+			"text": " so a data provider basically sets a price to what their data is worth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,720",
+				"to": "00:05:35,120"
+			},
+			"offsets": {
+				"from": 332720,
+				"to": 335120
+			},
+			"text": " and then the market either buys into that or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,120",
+				"to": "00:05:36,960"
+			},
+			"offsets": {
+				"from": 335120,
+				"to": 336960
+			},
+			"text": " That's like the explicit value of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,960",
+				"to": "00:05:40,400"
+			},
+			"offsets": {
+				"from": 336960,
+				"to": 340400
+			},
+			"text": " and they have to share their earnings with the nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,400",
+				"to": "00:05:43,680"
+			},
+			"offsets": {
+				"from": 340400,
+				"to": 343680
+			},
+			"text": " the worker nodes in the network that are doing computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,680",
+				"to": "00:05:48,240"
+			},
+			"offsets": {
+				"from": 343680,
+				"to": 348240
+			},
+			"text": " that are doing the storage, and that is really where the implicit value of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,240",
+				"to": "00:05:49,840"
+			},
+			"offsets": {
+				"from": 348240,
+				"to": 349840
+			},
+			"text": " is also reflected."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,840",
+				"to": "00:05:52,600"
+			},
+			"offsets": {
+				"from": 349840,
+				"to": 352600
+			},
+			"text": " Another note about discovery and ranking."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,600",
+				"to": "00:05:54,520"
+			},
+			"offsets": {
+				"from": 352600,
+				"to": 354520
+			},
+			"text": " So we expect to have, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,520",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 354520,
+				"to": 358800
+			},
+			"text": " eventually many thousands of data sets in our system, of all kinds."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:01,040"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 361040
+			},
+			"text": " You know, we can employ some statistical methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,040",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361040,
+				"to": 364000
+			},
+			"text": " we can tag data sets, but at the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,800"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368800
+			},
+			"text": " we need to find some mechanism to run data sets that are kind of like in the same bucket."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,800",
+				"to": "00:06:15,680"
+			},
+			"offsets": {
+				"from": 368800,
+				"to": 375680
+			},
+			"text": " And the best way we see to do that is by directly correlating the economic incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,680",
+				"to": "00:06:19,520"
+			},
+			"offsets": {
+				"from": 375680,
+				"to": 379520
+			},
+			"text": " that is locked in a data set with its rank."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,520",
+				"to": "00:06:26,880"
+			},
+			"offsets": {
+				"from": 379520,
+				"to": 386880
+			},
+			"text": " What I mean by that is that simply the amount of money that people have bought into that data set"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,880",
+				"to": "00:06:34,080"
+			},
+			"offsets": {
+				"from": 386880,
+				"to": 394080
+			},
+			"text": " plus some factorization of the deposit that the data provider has put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,080",
+				"to": "00:06:38,240"
+			},
+			"offsets": {
+				"from": 394080,
+				"to": 398240
+			},
+			"text": " So basically the idea with the deposit here is that data providers need to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,240",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 398240,
+				"to": 406560
+			},
+			"text": " put their money or their mouth is, that sets the rank of a data set and kind of used to break ties."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:52,320"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 412320
+			},
+			"text": " Now this is a good way to transition to like the off-chain computation and storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,320",
+				"to": "00:06:57,040"
+			},
+			"offsets": {
+				"from": 412320,
+				"to": 417040
+			},
+			"text": " Again, would be pretty high level, but I want to go through some of the main ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,040",
+				"to": "00:07:02,800"
+			},
+			"offsets": {
+				"from": 417040,
+				"to": 422800
+			},
+			"text": " This is really where the heavy lifting happens, off-chain, and we'll talk about that next."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,800",
+				"to": "00:07:09,680"
+			},
+			"offsets": {
+				"from": 422800,
+				"to": 429680
+			},
+			"text": " So the main idea is, and that's the main idea that we also set in the 2015 white paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,680",
+				"to": "00:07:14,400"
+			},
+			"offsets": {
+				"from": 429680,
+				"to": 434400
+			},
+			"text": " is as follows. Global consensus is expensive, I think all of us here are aware of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,400",
+				"to": "00:07:21,520"
+			},
+			"offsets": {
+				"from": 434400,
+				"to": 441520
+			},
+			"text": " It's not scalable, it's very, very pricey. We need to figure out a way to basically segment the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,520",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 441520,
+				"to": 449360
+			},
+			"text": " and for different computations, for different data sets, data blocks are restoring."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:34,320"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 454320
+			},
+			"text": " We need to make sure that only some of the network is utilized and we need to do it in a way that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,320",
+				"to": "00:07:41,760"
+			},
+			"offsets": {
+				"from": 454320,
+				"to": 461760
+			},
+			"text": " secure enough. Again, it's not as won't be as perfect security as like global consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,760",
+				"to": "00:07:49,040"
+			},
+			"offsets": {
+				"from": 461760,
+				"to": 469040
+			},
+			"text": " but good enough for decentralized needs and scalable enough. There are a couple of good ways to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,040",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 469040,
+				"to": 476800
+			},
+			"text": " First of all, let me touch on the stakeholders here. So you probably know this as sharding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:08:02,240"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 482240
+			},
+			"text": " that's kind of what's being popularized in the space. I'm going to use quorums. Quorums is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,240",
+				"to": "00:08:08,720"
+			},
+			"offsets": {
+				"from": 482240,
+				"to": 488720
+			},
+			"text": " more of an academic term saying that you have a large network, you select a committee and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,720",
+				"to": "00:08:14,640"
+			},
+			"offsets": {
+				"from": 488720,
+				"to": 494640
+			},
+			"text": " committee is really in charge of some portion of the data, some portion of the state, some portion"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,640",
+				"to": "00:08:23,200"
+			},
+			"offsets": {
+				"from": 494640,
+				"to": 503200
+			},
+			"text": " of the computation. So what we're doing basically is for every data block, every data segmentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,200",
+				"to": "00:08:28,560"
+			},
+			"offsets": {
+				"from": 503200,
+				"to": 508560
+			},
+			"text": " every data set that's coming into the network, the option network needs to go into a randomized"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,560",
+				"to": "00:08:34,640"
+			},
+			"offsets": {
+				"from": 508560,
+				"to": 514640
+			},
+			"text": " protocol where they kind of like flip a coin and use that to randomly select a subset of the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,640",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 514640,
+				"to": 520000
+			},
+			"text": " likely small, big enough that it's secure, but small enough that it's scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:47,280"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 527280
+			},
+			"text": " And to select that quorum, there are several techniques. Most of them use threshold cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,280",
+				"to": "00:08:53,360"
+			},
+			"offsets": {
+				"from": 527280,
+				"to": 533360
+			},
+			"text": " or secret sharing, which is very similar. You can also use random becomes on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,360",
+				"to": "00:08:59,360"
+			},
+			"offsets": {
+				"from": 533360,
+				"to": 539360
+			},
+			"text": " which are very fast, but they have some trade-offs in terms of the entropy that you can get."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,360",
+				"to": "00:09:05,600"
+			},
+			"offsets": {
+				"from": 539360,
+				"to": 545600
+			},
+			"text": " But with kind of like this black box, you can actually, for each data, you can select"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,600",
+				"to": "00:09:10,080"
+			},
+			"offsets": {
+				"from": 545600,
+				"to": 550080
+			},
+			"text": " only a handful of nodes that would be in charge of that. And that's where you kind of get like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,080",
+				"to": "00:09:20,480"
+			},
+			"offsets": {
+				"from": 550080,
+				"to": 560480
+			},
+			"text": " your scalability properties. But that raises the questions. Once we have a quorum for one data set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,480",
+				"to": "00:09:25,600"
+			},
+			"offsets": {
+				"from": 560480,
+				"to": 565600
+			},
+			"text": " right? And that quorum needs to make sure that that quorum always runs the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,600",
+				"to": "00:09:30,320"
+			},
+			"offsets": {
+				"from": 565600,
+				"to": 570320
+			},
+			"text": " correctly over that data set. And we also need to make sure that that quorum itself cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,320",
+				"to": "00:09:35,120"
+			},
+			"offsets": {
+				"from": 570320,
+				"to": 575120
+			},
+			"text": " actually see the underlying data if that data is sensitive. These are the tricky questions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,120",
+				"to": "00:09:43,200"
+			},
+			"offsets": {
+				"from": 575120,
+				"to": 583200
+			},
+			"text": " we have. And I'm going to talk about that now. So this is not inexhaustively, but this is meant to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,200",
+				"to": "00:09:48,800"
+			},
+			"offsets": {
+				"from": 583200,
+				"to": 588800
+			},
+			"text": " give you kind of like a quick overview of different techniques in the literature for handling"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,800",
+				"to": "00:09:56,240"
+			},
+			"offsets": {
+				"from": 588800,
+				"to": 596240
+			},
+			"text": " outsourced correct computation with privacy. So let me go very quickly over that. First,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,240",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 596240,
+				"to": 602800
+			},
+			"text": " we have, you know, blockchain. Blockchain is, you know, fully decentralized, gives us a very strong"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:09,280"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 609280
+			},
+			"text": " integrity and consistency. But it's really bad at keeping secrets. Like there's zero privacy in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,280",
+				"to": "00:10:14,800"
+			},
+			"offsets": {
+				"from": 609280,
+				"to": 614800
+			},
+			"text": " And it's very, and it's not scalable at all. Then we have something I like to call partial"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,800",
+				"to": "00:10:20,400"
+			},
+			"offsets": {
+				"from": 614800,
+				"to": 620400
+			},
+			"text": " encryption, not a scientific term. But that's like an umbrella for like order preserving"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,400",
+				"to": "00:10:26,960"
+			},
+			"offsets": {
+				"from": 620400,
+				"to": 626960
+			},
+			"text": " encryption, deterministic encryption, kind of like encryption methods that are not perfect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,520",
+				"to": "00:10:35,360"
+			},
+			"offsets": {
+				"from": 627520,
+				"to": 635360
+			},
+			"text": " but give you some confidentiality for the data, but zero integrity. And then we really get to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,360",
+				"to": "00:10:41,680"
+			},
+			"offsets": {
+				"from": 635360,
+				"to": 641680
+			},
+			"text": " the interesting stuff of like the really heavy machine guns of cryptography. We have fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,680",
+				"to": "00:10:48,960"
+			},
+			"offsets": {
+				"from": 641680,
+				"to": 648960
+			},
+			"text": " homomorphic encryption, which is would be the best if we ever figure out a way to do it fast enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,960",
+				"to": "00:10:55,360"
+			},
+			"offsets": {
+				"from": 648960,
+				"to": 655360
+			},
+			"text": " We right now we we're not sure how to do it. There's a snarks, which are great if you want to prove a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,360",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 655360,
+				"to": 662320
+			},
+			"text": " statement and then verify that many, many times. But for other use cases, it is unfortunately limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:08,400"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 668400
+			},
+			"text": " And you have multiparty computation, which we feel is a good trade off. Multi-party computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,400",
+				"to": "00:11:14,400"
+			},
+			"offsets": {
+				"from": 668400,
+				"to": 674400
+			},
+			"text": " gives you you can basically compute anything with privacy, with correctness, under some assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,400",
+				"to": "00:11:19,840"
+			},
+			"offsets": {
+				"from": 674400,
+				"to": 679840
+			},
+			"text": " It is more scalable than the other cryptographic solutions, because it really only uses a symmetric"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,840",
+				"to": "00:11:27,520"
+			},
+			"offsets": {
+				"from": 679840,
+				"to": 687520
+			},
+			"text": " cryptography. But I do want to emphasize that it is still much slower than like hardware-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,520",
+				"to": "00:11:34,880"
+			},
+			"offsets": {
+				"from": 687520,
+				"to": 694880
+			},
+			"text": " solutions, and of course computing over unencrypted data. And this is why actually we at Enigma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,880",
+				"to": "00:11:39,760"
+			},
+			"offsets": {
+				"from": 694880,
+				"to": 699760
+			},
+			"text": " we're focusing, it's a bit off-free. We're focusing on both of these technologies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,760",
+				"to": "00:11:45,920"
+			},
+			"offsets": {
+				"from": 699760,
+				"to": 705920
+			},
+			"text": " MPC and secure hardware. So secure hardware is stuff like Intel SGX and trusted execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,920",
+				"to": "00:11:52,080"
+			},
+			"offsets": {
+				"from": 705920,
+				"to": 712080
+			},
+			"text": " environments. We feel that MPC is great for like implications like identity, where you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,080",
+				"to": "00:11:57,040"
+			},
+			"offsets": {
+				"from": 712080,
+				"to": 717040
+			},
+			"text": " have zero trust. But if you're okay with having some minimal trust in the vendor, which is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,040",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 717040,
+				"to": 723200
+			},
+			"text": " secure hardware requires you, then you can really get full functionality, great scalability, and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:09,840"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 729840
+			},
+			"text": " And with that, I'm gonna, yeah, I think I have enough time. I want to walk you through kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,840",
+				"to": "00:12:14,400"
+			},
+			"offsets": {
+				"from": 729840,
+				"to": 734400
+			},
+			"text": " like the basics of MPC, right? MPC is an amazing technology. It's something we've been working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,400",
+				"to": "00:12:19,200"
+			},
+			"offsets": {
+				"from": 734400,
+				"to": 739200
+			},
+			"text": " for a while, and that also would help to illustrate kind of like the strengths and weaknesses of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,200",
+				"to": "00:12:26,880"
+			},
+			"offsets": {
+				"from": 739200,
+				"to": 746880
+			},
+			"text": " So MPC says something like this. Imagine there's an ideal world where we have like this godlike"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,880",
+				"to": "00:12:33,360"
+			},
+			"offsets": {
+				"from": 746880,
+				"to": 753360
+			},
+			"text": " computer that we can trust, and we can outsource every computation to it. Now that trusted machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,360",
+				"to": "00:12:40,880"
+			},
+			"offsets": {
+				"from": 753360,
+				"to": 760880
+			},
+			"text": " would never leak the data. No one can breach it, and we can always trust it around the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,880",
+				"to": "00:12:46,720"
+			},
+			"offsets": {
+				"from": 760880,
+				"to": 766720
+			},
+			"text": " correctly. But in the real world, that's not possible. So what MPC comes and said, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,720",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766720,
+				"to": 772000
+			},
+			"text": " simulate that trusted machine. Let's simulate that with the network. Kind of like the argument"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:57,520"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 777520
+			},
+			"text": " that blockchain is making, by the way. Let's simulate that with the network, and the statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,520",
+				"to": "00:13:03,520"
+			},
+			"offsets": {
+				"from": 777520,
+				"to": 783520
+			},
+			"text": " says, and this is a simplified statement, that as long as there's at least one honest node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,520",
+				"to": "00:13:08,080"
+			},
+			"offsets": {
+				"from": 783520,
+				"to": 788080
+			},
+			"text": " at least one node that is not a bad actor, you can actually make sure that the computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,120",
+				"to": "00:13:14,880"
+			},
+			"offsets": {
+				"from": 789120,
+				"to": 794880
+			},
+			"text": " is correct every computation, and that no node in the network, no one in the network can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,880",
+				"to": "00:13:20,320"
+			},
+			"offsets": {
+				"from": 794880,
+				"to": 800320
+			},
+			"text": " see the data, the raw data. And that basically means that data remains encrypted end to end."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,320",
+				"to": "00:13:26,560"
+			},
+			"offsets": {
+				"from": 800320,
+				"to": 806560
+			},
+			"text": " Let me walk you through a simple example. Let's imagine we have a network of three nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,560",
+				"to": "00:13:32,560"
+			},
+			"offsets": {
+				"from": 806560,
+				"to": 812560
+			},
+			"text": " a very small network, and let's say we have the data provider on one hand, and then a data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,560",
+				"to": "00:13:37,920"
+			},
+			"offsets": {
+				"from": 812560,
+				"to": 817920
+			},
+			"text": " consumer. I'm ignoring the blockchain here, I'm just talking about the process of the off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,920",
+				"to": "00:13:45,600"
+			},
+			"offsets": {
+				"from": 817920,
+				"to": 825600
+			},
+			"text": " storage and computation. So let's say a data provider wants to store some number X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,600",
+				"to": "00:13:51,680"
+			},
+			"offsets": {
+				"from": 825600,
+				"to": 831680
+			},
+			"text": " what it does locally, it basically goes through a protocol called secret sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,680",
+				"to": "00:13:59,680"
+			},
+			"offsets": {
+				"from": 831680,
+				"to": 839680
+			},
+			"text": " That protocol essentially splits that data into shares and encrypted shares, and sends one share"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,680",
+				"to": "00:14:07,120"
+			},
+			"offsets": {
+				"from": 839680,
+				"to": 847120
+			},
+			"text": " to each node. Okay, so node one has X1, node two X2, and node three X3. These shares are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,120",
+				"to": "00:14:12,560"
+			},
+			"offsets": {
+				"from": 847120,
+				"to": 852560
+			},
+			"text": " completely encrypted, no one, and the others cannot see anything about the raw X. Then we do the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,560",
+				"to": "00:14:20,960"
+			},
+			"offsets": {
+				"from": 852560,
+				"to": 860960
+			},
+			"text": " thing with Y, and then actually the data provider can go offline, data lives in the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,960",
+				"to": "00:14:27,040"
+			},
+			"offsets": {
+				"from": 860960,
+				"to": 867040
+			},
+			"text": " now a consumer comes in, wants to run some computation. The state of the network is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,040",
+				"to": "00:14:34,080"
+			},
+			"offsets": {
+				"from": 867040,
+				"to": 874080
+			},
+			"text": " they collectively hold X and Y, but it's encrypted as shares in each node. Now the consumer comes in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,080",
+				"to": "00:14:41,440"
+			},
+			"offsets": {
+				"from": 874080,
+				"to": 881440
+			},
+			"text": " and wants to compute just X plus Y. So because of the properties of secret sharing, actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,440",
+				"to": "00:14:47,840"
+			},
+			"offsets": {
+				"from": 881440,
+				"to": 887840
+			},
+			"text": " that comes for free. We can just, each node can locally compute their local shares, which give"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,840",
+				"to": "00:14:55,680"
+			},
+			"offsets": {
+				"from": 887840,
+				"to": 895680
+			},
+			"text": " them the encrypted summation, and then they can just send all of the shares back to the consumer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,680",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 895680,
+				"to": 900000
+			},
+			"text": " and the one thing about secret sharing is that if you have all the shares in one place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:05,840"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 905840
+			},
+			"text": " you can reconstruct, you can decrypt the data. But the important part to realize is that there"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,840",
+				"to": "00:15:10,720"
+			},
+			"offsets": {
+				"from": 905840,
+				"to": 910720
+			},
+			"text": " was a computation going on in this network, and we can extend that network as much as we want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,720",
+				"to": "00:15:15,280"
+			},
+			"offsets": {
+				"from": 910720,
+				"to": 915280
+			},
+			"text": " but none of the nodes in the network have actually seen the raw data. They have just"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,280",
+				"to": "00:15:21,840"
+			},
+			"offsets": {
+				"from": 915280,
+				"to": 921840
+			},
+			"text": " operated on fully encrypted data, which is pretty amazing. So let's run another example with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,840",
+				"to": "00:15:28,160"
+			},
+			"offsets": {
+				"from": 921840,
+				"to": 928160
+			},
+			"text": " multiplication. I'm going to go fast over that. It's like more complicated. I just want to give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,160",
+				"to": "00:15:35,760"
+			},
+			"offsets": {
+				"from": 928160,
+				"to": 935760
+			},
+			"text": " the main ideas. So multiplication requires communication between the nodes. They can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,760",
+				"to": "00:15:43,520"
+			},
+			"offsets": {
+				"from": 935760,
+				"to": 943520
+			},
+			"text": " compute it locally. But we know that if you get all the shares in one place, then you can decrypt"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,520",
+				"to": "00:15:48,880"
+			},
+			"offsets": {
+				"from": 943520,
+				"to": 948880
+			},
+			"text": " the data. So we need some trick. We need to avoid that. So what happens in MPC, and that happens here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,880",
+				"to": "00:15:54,400"
+			},
+			"offsets": {
+				"from": 948880,
+				"to": 954400
+			},
+			"text": " but that really happens in every, like if you're writing a VM and you're implementing any kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,400",
+				"to": "00:16:00,240"
+			},
+			"offsets": {
+				"from": 954400,
+				"to": 960240
+			},
+			"text": " protocol, you're actually going to use the same trick over and over. And the trick is simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,240",
+				"to": "00:16:04,720"
+			},
+			"offsets": {
+				"from": 960240,
+				"to": 964720
+			},
+			"text": " Whenever you need to share some information with other nodes, you're going to re-encrypt it using"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,720",
+				"to": "00:16:09,600"
+			},
+			"offsets": {
+				"from": 964720,
+				"to": 969600
+			},
+			"text": " some, like a one-time pad, and then you're going to send the information. So that's what the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,600",
+				"to": "00:16:15,120"
+			},
+			"offsets": {
+				"from": 969600,
+				"to": 975120
+			},
+			"text": " are doing here. Then they're communicating that information with each other. And then there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,120",
+				"to": "00:16:20,640"
+			},
+			"offsets": {
+				"from": 975120,
+				"to": 980640
+			},
+			"text": " some more local computation that if you kind of plug the algorithm in, you would actually see"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,280",
+				"to": "00:16:28,560"
+			},
+			"offsets": {
+				"from": 981280,
+				"to": 988560
+			},
+			"text": " that the disease here end up being exactly the encrypted shares of the product of XY."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,560",
+				"to": "00:16:34,960"
+			},
+			"offsets": {
+				"from": 988560,
+				"to": 994960
+			},
+			"text": " And then you can send that back to the consumer. And the consumer, again, having all the shares"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,960",
+				"to": "00:16:40,160"
+			},
+			"offsets": {
+				"from": 994960,
+				"to": 1000160
+			},
+			"text": " can pull them back in and decrypt the data and the network's so nothing, which is, and that's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,160",
+				"to": "00:16:46,320"
+			},
+			"offsets": {
+				"from": 1000160,
+				"to": 1006320
+			},
+			"text": " point. Now, why did I show you addition and multiplication other than them being like relatively"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,320",
+				"to": "00:16:52,960"
+			},
+			"offsets": {
+				"from": 1006320,
+				"to": 1012960
+			},
+			"text": " simple? Well, there's a nice theorem saying in computation theory saying that if you have addition"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,960",
+				"to": "00:16:58,880"
+			},
+			"offsets": {
+				"from": 1012960,
+				"to": 1018880
+			},
+			"text": " and multiplication, you can build any--you can compute any circuit. Essentially, you can compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,880",
+				"to": "00:17:04,640"
+			},
+			"offsets": {
+				"from": 1018880,
+				"to": 1024640
+			},
+			"text": " anything that you want. So these are the building blocks that we need. There are--I mean, a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,640",
+				"to": "00:17:10,400"
+			},
+			"offsets": {
+				"from": 1024640,
+				"to": 1030400
+			},
+			"text": " like more complicated protocols. How do you compare two numbers? How do you do like floating points"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,400",
+				"to": "00:17:16,160"
+			},
+			"offsets": {
+				"from": 1030400,
+				"to": 1036160
+			},
+			"text": " and fixed point operations? Many of these, obviously, I'm not going to get to here. That was a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,160",
+				"to": "00:17:23,760"
+			},
+			"offsets": {
+				"from": 1036160,
+				"to": 1043760
+			},
+			"text": " of my teases, actually, doing--working about improving these protocols. We got like between 10 to 100"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,760",
+				"to": "00:17:29,200"
+			},
+			"offsets": {
+				"from": 1043760,
+				"to": 1049200
+			},
+			"text": " speed up on quite a few foundational protocols. But unfortunately, I won't have time to discuss that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,200",
+				"to": "00:17:36,160"
+			},
+			"offsets": {
+				"from": 1049200,
+				"to": 1056160
+			},
+			"text": " here. So that's it on the hard stuff. I want to finish with like something simpler and kind of nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,160",
+				"to": "00:17:43,120"
+			},
+			"offsets": {
+				"from": 1056160,
+				"to": 1063120
+			},
+			"text": " We feel that in order to bootstrap a data marketplace, we need to also introduce some use cases, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,120",
+				"to": "00:17:48,480"
+			},
+			"offsets": {
+				"from": 1063120,
+				"to": 1068480
+			},
+			"text": " We need to set the demand side. We need to bootstrap it with some interesting data. And given the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,480",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068480,
+				"to": 1074000
+			},
+			"text": " we're in, given what we're interested in, given the state of everything that's related to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:18:01,760"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1081760
+			},
+			"text": " blockchain and cryptocurrencies data, we felt that building--I'm sorry--a data-driven investment"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,760",
+				"to": "00:18:08,240"
+			},
+			"offsets": {
+				"from": 1081760,
+				"to": 1088240
+			},
+			"text": " platform for cryptocurrencies where all the data that comes in and all the data that is like stored"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,720",
+				"to": "00:18:13,920"
+			},
+			"offsets": {
+				"from": 1088720,
+				"to": 1093920
+			},
+			"text": " and is going to be kept on the Enigma data marketplace. And that kind of sets and boots"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,920",
+				"to": "00:18:19,040"
+			},
+			"offsets": {
+				"from": 1093920,
+				"to": 1099040
+			},
+			"text": " up the network and also allows us to stress test the protocol as we are building this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,040",
+				"to": "00:18:24,960"
+			},
+			"offsets": {
+				"from": 1099040,
+				"to": 1104960
+			},
+			"text": " Now, Catalyst is still centralized because the protocol is not yet live, but Catalyst is live"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,960",
+				"to": "00:18:30,720"
+			},
+			"offsets": {
+				"from": 1104960,
+				"to": 1110720
+			},
+			"text": " and operational. If you're interested in agitrating or just like using crypto data for doing some"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,720",
+				"to": "00:18:37,360"
+			},
+			"offsets": {
+				"from": 1110720,
+				"to": 1117360
+			},
+			"text": " research, I really welcome you to try it out. It's on our website. This is one cool example. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,360",
+				"to": "00:18:44,560"
+			},
+			"offsets": {
+				"from": 1117360,
+				"to": 1124560
+			},
+			"text": " someone from our community has actually used Catalyst to build a model of Markovitch portfolio"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,560",
+				"to": "00:18:50,160"
+			},
+			"offsets": {
+				"from": 1124560,
+				"to": 1130160
+			},
+			"text": " optimizations on crypto assets, which I think is fascinating. We have a few other examples like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,160",
+				"to": "00:18:57,520"
+			},
+			"offsets": {
+				"from": 1130160,
+				"to": 1137520
+			},
+			"text": " that in our blog, and I welcome all of you to really look into that. And with that, I'd like to finish."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,520",
+				"to": "00:19:04,640"
+			},
+			"offsets": {
+				"from": 1137520,
+				"to": 1144640
+			},
+			"text": " If you're interested in, you know, off-chain computation, the future of data, data marketplaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,600",
+				"to": "00:19:11,360"
+			},
+			"offsets": {
+				"from": 1145600,
+				"to": 1151360
+			},
+			"text": " anything that I discuss right now, please come talk to us. I'm here. John is, John,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,360",
+				"to": "00:19:17,520"
+			},
+			"offsets": {
+				"from": 1151360,
+				"to": 1157520
+			},
+			"text": " show your hand. John is also here. John is my co-founder. Please come talk to us. And if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,520",
+				"to": "00:19:22,080"
+			},
+			"offsets": {
+				"from": 1157520,
+				"to": 1162080
+			},
+			"text": " excited about this, and like you really want to be at the forefront of solving like really"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,080",
+				"to": "00:19:26,640"
+			},
+			"offsets": {
+				"from": 1162080,
+				"to": 1166640
+			},
+			"text": " some of the most interesting and hardest problems, we're like, we're hiring people. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,640",
+				"to": "00:19:38,880"
+			},
+			"offsets": {
+				"from": 1166640,
+				"to": 1178880
+			},
+			"text": " come talk to us about that as well. We'd love to hear from you. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,880",
+				"to": "00:19:45,920"
+			},
+			"offsets": {
+				"from": 1178880,
+				"to": 1185920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,920",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1185920,
+				"to": 1188000
+			},
+			"text": " (buzzer)"
+		}
+	]
+}

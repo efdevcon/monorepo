@@ -1,0 +1,1528 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 12000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 13000
+			},
+			"text": " I'm Ethan Wessel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15000
+			},
+			"text": " I am the astronomer, engineer at AirSwap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16000
+			},
+			"text": " You don't know what AirSwap is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17000
+			},
+			"text": " It's the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " A lot of things is that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:20,200"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 20200
+			},
+			"text": " But this presentation is going to be about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,200",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 20200,
+				"to": 24000
+			},
+			"text": " truly showing private keys for application use on AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,220"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26220
+			},
+			"text": " So I want to note that we are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,220",
+				"to": "00:00:28,200"
+			},
+			"offsets": {
+				"from": 26220,
+				"to": 28200
+			},
+			"text": " stonoring user private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,200",
+				"to": "00:00:30,400"
+			},
+			"offsets": {
+				"from": 28200,
+				"to": 30400
+			},
+			"text": " This is for our back applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,400",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 30400,
+				"to": 33200
+			},
+			"text": " This can be for side projects or integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:35,300"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 35300
+			},
+			"text": " We might have heard one of them mention yesterday"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,300",
+				"to": "00:00:38,600"
+			},
+			"offsets": {
+				"from": 35300,
+				"to": 38600
+			},
+			"text": " by Roo, which is the SIN, which was our top project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,600",
+				"to": "00:00:41,600"
+			},
+			"offsets": {
+				"from": 38600,
+				"to": 41600
+			},
+			"text": " So first off, application law security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,600",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 41600,
+				"to": 42920
+			},
+			"text": " Data can be in three states."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:43,920"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 43920
+			},
+			"text": " It can be at rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,920",
+				"to": "00:00:46,120"
+			},
+			"offsets": {
+				"from": 43920,
+				"to": 46120
+			},
+			"text": " It can be in use, or it can be in motion."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,120",
+				"to": "00:00:49,800"
+			},
+			"offsets": {
+				"from": 46120,
+				"to": 49800
+			},
+			"text": " And the key to that is memory is vulnerable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,800",
+				"to": "00:00:52,880"
+			},
+			"offsets": {
+				"from": 49800,
+				"to": 52880
+			},
+			"text": " So we have to have tools and practices around our infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,880",
+				"to": "00:00:56,960"
+			},
+			"offsets": {
+				"from": 52880,
+				"to": 56960
+			},
+			"text": " that allow us to ensure the wallet security"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,960",
+				"to": "00:00:59,960"
+			},
+			"offsets": {
+				"from": 56960,
+				"to": 59960
+			},
+			"text": " so that we're doing trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,960",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 59960,
+				"to": 61960
+			},
+			"text": " So again, once compromised, a private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:03,760"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 63760
+			},
+			"text": " and everything tied to it is gone forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,760",
+				"to": "00:01:07,360"
+			},
+			"offsets": {
+				"from": 63760,
+				"to": 67360
+			},
+			"text": " So that means tokens are wallet, are functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,360",
+				"to": "00:01:11,400"
+			},
+			"offsets": {
+				"from": 67360,
+				"to": 71400
+			},
+			"text": " Any things that we're doing is at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,400",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 71400,
+				"to": 73200
+			},
+			"text": " So there are four main criteria we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:15,840"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 75840
+			},
+			"text": " We have auditability, which is, can we see what happened?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,840",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75840,
+				"to": 79000
+			},
+			"text": " Can we see who access at what time we have encryption?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:22,160"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 82160
+			},
+			"text": " Are these keys unusable when they're not being used?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,160",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 82160,
+				"to": 83960
+			},
+			"text": " And I want to note, the keys I'm talking about here"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:25,760"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 85760
+			},
+			"text": " are the keys to encrypted data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,760",
+				"to": "00:01:27,560"
+			},
+			"offsets": {
+				"from": 85760,
+				"to": 87560
+			},
+			"text": " They're not the public private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,560",
+				"to": "00:01:30,280"
+			},
+			"offsets": {
+				"from": 87560,
+				"to": 90280
+			},
+			"text": " So this is taking encryption keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,280",
+				"to": "00:01:32,480"
+			},
+			"offsets": {
+				"from": 90280,
+				"to": 92480
+			},
+			"text": " and then using those to encrypt and like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,480",
+				"to": "00:01:35,360"
+			},
+			"offsets": {
+				"from": 92480,
+				"to": 95360
+			},
+			"text": " securely save storage or a private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,360",
+				"to": "00:01:37,120"
+			},
+			"offsets": {
+				"from": 95360,
+				"to": 97120
+			},
+			"text": " We also have new keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,120",
+				"to": "00:01:39,120"
+			},
+			"offsets": {
+				"from": 97120,
+				"to": 99120
+			},
+			"text": " So if you're a developer, you don't want to be fumbling around"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,120",
+				"to": "00:01:41,840"
+			},
+			"offsets": {
+				"from": 99120,
+				"to": 101840
+			},
+			"text": " with trying to let family go by the keys to security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,840",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 101840,
+				"to": 103240
+			},
+			"text": " So developers and DevOps engineers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:45,560"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 105560
+			},
+			"text": " need to be able to use a tool with these."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,560",
+				"to": "00:01:47,720"
+			},
+			"offsets": {
+				"from": 105560,
+				"to": 107720
+			},
+			"text": " And these key permissions, you can be able to lock it down."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,720",
+				"to": "00:01:50,080"
+			},
+			"offsets": {
+				"from": 107720,
+				"to": 110080
+			},
+			"text": " If you can't do that, then that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,080",
+				"to": "00:01:51,360"
+			},
+			"offsets": {
+				"from": 110080,
+				"to": 111360
+			},
+			"text": " That's just too much access to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,360",
+				"to": "00:01:52,360"
+			},
+			"offsets": {
+				"from": 111360,
+				"to": 112360
+			},
+			"text": " - Not really."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,360",
+				"to": "00:01:53,200"
+			},
+			"offsets": {
+				"from": 112360,
+				"to": 113200
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,200",
+				"to": "00:01:56,160"
+			},
+			"offsets": {
+				"from": 113200,
+				"to": 116160
+			},
+			"text": " - So we have four main tools that are disposal for AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,160",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 116160,
+				"to": 118240
+			},
+			"text": " And the first one is key management service."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:02:01,160"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 121160
+			},
+			"text": " The second is secure secrets manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,160",
+				"to": "00:02:02,920"
+			},
+			"offsets": {
+				"from": 121160,
+				"to": 122920
+			},
+			"text": " We have the systems manager, a parameter store."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,920",
+				"to": "00:02:04,120"
+			},
+			"offsets": {
+				"from": 122920,
+				"to": 124120
+			},
+			"text": " And we have a code ID sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,120",
+				"to": "00:02:05,400"
+			},
+			"offsets": {
+				"from": 124120,
+				"to": 125400
+			},
+			"text": " So I'll talk about each of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,400",
+				"to": "00:02:07,840"
+			},
+			"offsets": {
+				"from": 125400,
+				"to": 127840
+			},
+			"text": " Again, this is a bit more of an infrastructure talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,840",
+				"to": "00:02:10,240"
+			},
+			"offsets": {
+				"from": 127840,
+				"to": 130240
+			},
+			"text": " of how we kind of like organize these."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,240",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 130240,
+				"to": 132040
+			},
+			"text": " So for the key management service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134640
+			},
+			"text": " its main job is to create and control"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:18,960"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 138960
+			},
+			"text": " the encrypting keys used to encrypt data, like that's earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,960",
+				"to": "00:02:20,560"
+			},
+			"offsets": {
+				"from": 138960,
+				"to": 140560
+			},
+			"text": " In terms of its auditability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,560",
+				"to": "00:02:22,360"
+			},
+			"offsets": {
+				"from": 140560,
+				"to": 142360
+			},
+			"text": " it integrates other tools and provides logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,360",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 142360,
+				"to": 144760
+			},
+			"text": " And you can easily see these logs and see what's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 146000
+			},
+			"text": " The encryption with--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:27,560"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 147560
+			},
+			"text": " sorry, in regards to the encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,560",
+				"to": "00:02:29,440"
+			},
+			"offsets": {
+				"from": 147560,
+				"to": 149440
+			},
+			"text": " the keys are encrypted at rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,440",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 149440,
+				"to": 151280
+			},
+			"text": " They're not accessible or not visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:32,840"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 152840
+			},
+			"text": " And it's very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,840",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 152840,
+				"to": 154120
+			},
+			"text": " So as soon as you make an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:35,440"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 155440
+			},
+			"text": " there's a key ready to go by default"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,440",
+				"to": "00:02:37,560"
+			},
+			"offsets": {
+				"from": 155440,
+				"to": 157560
+			},
+			"text": " to allow you to encrypt data and its permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,560",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 157560,
+				"to": 160080
+			},
+			"text": " So you can use IAM policies, key policies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:43,560"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 163560
+			},
+			"text": " and you can throw access controls on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,560",
+				"to": "00:02:46,320"
+			},
+			"offsets": {
+				"from": 163560,
+				"to": 166320
+			},
+			"text": " The secrets manager, its job is to manage secrets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,320",
+				"to": "00:02:47,960"
+			},
+			"offsets": {
+				"from": 166320,
+				"to": 167960
+			},
+			"text": " for applications and services."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,960",
+				"to": "00:02:50,760"
+			},
+			"offsets": {
+				"from": 167960,
+				"to": 170760
+			},
+			"text": " Again, it's audible, it has logs in terms of encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,760",
+				"to": "00:02:53,080"
+			},
+			"offsets": {
+				"from": 170760,
+				"to": 173080
+			},
+			"text": " the secrets and keys are encrypted at rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,080",
+				"to": "00:02:55,720"
+			},
+			"offsets": {
+				"from": 173080,
+				"to": 175720
+			},
+			"text": " But it really shines with how easy it is to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,720",
+				"to": "00:02:57,600"
+			},
+			"offsets": {
+				"from": 175720,
+				"to": 177600
+			},
+			"text": " So instead of putting hard-protein credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,600",
+				"to": "00:03:00,080"
+			},
+			"offsets": {
+				"from": 177600,
+				"to": 180080
+			},
+			"text": " inside of your applications and making the available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,080",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 180080,
+				"to": 182920
+			},
+			"text": " it uses an API caller and SDK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:04,520"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 184520
+			},
+			"text": " which makes it much easier for development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,520",
+				"to": "00:03:05,840"
+			},
+			"offsets": {
+				"from": 184520,
+				"to": 185840
+			},
+			"text": " just to like to throw it in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,840",
+				"to": "00:03:08,840"
+			},
+			"offsets": {
+				"from": 185840,
+				"to": 188840
+			},
+			"text": " And on top of that, the secrets manager also provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,840",
+				"to": "00:03:10,560"
+			},
+			"offsets": {
+				"from": 188840,
+				"to": 190560
+			},
+			"text": " additional functionality that allows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,560",
+				"to": "00:03:11,840"
+			},
+			"offsets": {
+				"from": 190560,
+				"to": 191840
+			},
+			"text": " auto-rotator keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,840",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 191840,
+				"to": 193400
+			},
+			"text": " And again, it's also permissioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:15,040"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 195040
+			},
+			"text": " so you can grab permissions, individuals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,040",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 195040,
+				"to": 198200
+			},
+			"text": " on perform list roles, which is also very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:21,320"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 201320
+			},
+			"text": " There's another one here which is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,320",
+				"to": "00:03:23,200"
+			},
+			"offsets": {
+				"from": 201320,
+				"to": 203200
+			},
+			"text": " systems manager at Brownger store."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,200",
+				"to": "00:03:24,920"
+			},
+			"offsets": {
+				"from": 203200,
+				"to": 204920
+			},
+			"text": " This is pretty akin to Ansible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,920",
+				"to": "00:03:27,080"
+			},
+			"offsets": {
+				"from": 204920,
+				"to": 207080
+			},
+			"text": " I don't know if you've ever, anybody's ever used it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,080",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 207080,
+				"to": 209520
+			},
+			"text": " but there's something called a default Ansible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:32,960"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 212960
+			},
+			"text": " And the systems manager really shines with regards"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,960",
+				"to": "00:03:36,040"
+			},
+			"offsets": {
+				"from": 212960,
+				"to": 216040
+			},
+			"text": " to the secrets that are interpolated at runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,040",
+				"to": "00:03:38,120"
+			},
+			"offsets": {
+				"from": 216040,
+				"to": 218120
+			},
+			"text": " In terms, again, of its audibility, encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,120",
+				"to": "00:03:39,920"
+			},
+			"offsets": {
+				"from": 218120,
+				"to": 219920
+			},
+			"text": " and permission, these are all pretty standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,920",
+				"to": "00:03:41,920"
+			},
+			"offsets": {
+				"from": 219920,
+				"to": 221920
+			},
+			"text": " of AWS services."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,920",
+				"to": "00:03:44,080"
+			},
+			"offsets": {
+				"from": 221920,
+				"to": 224080
+			},
+			"text": " But again, it's very easy and most of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,080",
+				"to": "00:03:45,440"
+			},
+			"offsets": {
+				"from": 224080,
+				"to": 225440
+			},
+			"text": " are just injected to container services"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,440",
+				"to": "00:03:48,440"
+			},
+			"offsets": {
+				"from": 225440,
+				"to": 228440
+			},
+			"text": " through environment variables and they're never visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,440",
+				"to": "00:03:51,400"
+			},
+			"offsets": {
+				"from": 228440,
+				"to": 231400
+			},
+			"text": " The last one is Kubernetes secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,400",
+				"to": "00:03:53,160"
+			},
+			"offsets": {
+				"from": 231400,
+				"to": 233160
+			},
+			"text": " And its job stores the management"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,160",
+				"to": "00:03:54,640"
+			},
+			"offsets": {
+				"from": 233160,
+				"to": 234640
+			},
+			"text": " sensitive information in Kubernetes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,640",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 234640,
+				"to": 236640
+			},
+			"text": " So you can put passwords, you can put SDH keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:03:58,440"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 238440
+			},
+			"text": " you can do pretty much anything, plain text,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,440",
+				"to": "00:04:01,120"
+			},
+			"offsets": {
+				"from": 238440,
+				"to": 241120
+			},
+			"text": " which eventually becomes encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,120",
+				"to": "00:04:03,240"
+			},
+			"offsets": {
+				"from": 241120,
+				"to": 243240
+			},
+			"text": " So in terms of its audibility, it's great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,240",
+				"to": "00:04:06,680"
+			},
+			"offsets": {
+				"from": 243240,
+				"to": 246680
+			},
+			"text": " it also logs, but there have to be problems with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,680",
+				"to": "00:04:08,600"
+			},
+			"offsets": {
+				"from": 246680,
+				"to": 248600
+			},
+			"text": " where you can actually expose secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,600",
+				"to": "00:04:10,440"
+			},
+			"offsets": {
+				"from": 248600,
+				"to": 250440
+			},
+			"text": " And when you expose secrets inside your logs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,440",
+				"to": "00:04:12,440"
+			},
+			"offsets": {
+				"from": 250440,
+				"to": 252440
+			},
+			"text": " every month you log, that would become vulnerable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,440",
+				"to": "00:04:15,080"
+			},
+			"offsets": {
+				"from": 252440,
+				"to": 255080
+			},
+			"text": " then you can have your kind of script, it's visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,080",
+				"to": "00:04:17,440"
+			},
+			"offsets": {
+				"from": 255080,
+				"to": 257440
+			},
+			"text": " Again, things aren't encrypted at rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,440",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 257440,
+				"to": 260560
+			},
+			"text": " It'll be the EBS volume and it's also easy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:22,360"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 262360
+			},
+			"text": " so you can attach the pods and you can inject"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,360",
+				"to": "00:04:24,280"
+			},
+			"offsets": {
+				"from": 262360,
+				"to": 264280
+			},
+			"text": " your secrets to the pods."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,280",
+				"to": "00:04:27,080"
+			},
+			"offsets": {
+				"from": 264280,
+				"to": 267080
+			},
+			"text": " However, in terms of permission, even though access"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,080",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 267080,
+				"to": 269000
+			},
+			"text": " is on a per-wide basis, you have to be careful"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,800"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272800
+			},
+			"text": " because a pod can see those secrets and that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,800",
+				"to": "00:04:35,440"
+			},
+			"offsets": {
+				"from": 272800,
+				"to": 275440
+			},
+			"text": " So again, you'll have a phone release though."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,440",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275440,
+				"to": 279000
+			},
+			"text": " Over view, KMS as we have found is good for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:40,440"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 280440
+			},
+			"text": " generally encryption management."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,440",
+				"to": "00:04:42,080"
+			},
+			"offsets": {
+				"from": 280440,
+				"to": 282080
+			},
+			"text": " Service manager is again, managed secrets"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,080",
+				"to": "00:04:45,280"
+			},
+			"offsets": {
+				"from": 282080,
+				"to": 285280
+			},
+			"text": " applications for services and the parameter store"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,280",
+				"to": "00:04:47,600"
+			},
+			"offsets": {
+				"from": 285280,
+				"to": 287600
+			},
+			"text": " for configuring data for deployments."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,600",
+				"to": "00:04:49,200"
+			},
+			"offsets": {
+				"from": 287600,
+				"to": 289200
+			},
+			"text": " And you have too many secrets which is really good"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,200",
+				"to": "00:04:51,240"
+			},
+			"offsets": {
+				"from": 289200,
+				"to": 291240
+			},
+			"text": " for security types of data and clusters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,240",
+				"to": "00:04:56,320"
+			},
+			"offsets": {
+				"from": 291240,
+				"to": 296320
+			},
+			"text": " The documentation I'm sure will be available afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,320",
+				"to": "00:04:57,160"
+			},
+			"offsets": {
+				"from": 296320,
+				"to": 297160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,160",
+				"to": "00:05:00,160"
+			},
+			"offsets": {
+				"from": 297160,
+				"to": 300160
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,160",
+				"to": "00:05:04,140"
+			},
+			"offsets": {
+				"from": 300160,
+				"to": 304140
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,140",
+				"to": "00:05:06,720"
+			},
+			"offsets": {
+				"from": 304140,
+				"to": 306720
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,720",
+				"to": "00:05:09,300"
+			},
+			"offsets": {
+				"from": 306720,
+				"to": 309300
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,300",
+				"to": "00:05:11,880"
+			},
+			"offsets": {
+				"from": 309300,
+				"to": 311880
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,880",
+				"to": "00:05:14,620"
+			},
+			"offsets": {
+				"from": 311880,
+				"to": 314620
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,620",
+				"to": "00:05:17,360"
+			},
+			"offsets": {
+				"from": 314620,
+				"to": 317360
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

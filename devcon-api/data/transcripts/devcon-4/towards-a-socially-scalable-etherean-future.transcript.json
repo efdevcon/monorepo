@@ -1,0 +1,4322 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4000
+			},
+			"text": " So I'm Lane, I'm a core developer on the Ewasm team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,000",
+				"to": "00:00:06,640"
+			},
+			"offsets": {
+				"from": 4000,
+				"to": 6640
+			},
+			"text": " And as you can imagine, as a core developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,640",
+				"to": "00:00:08,800"
+			},
+			"offsets": {
+				"from": 6640,
+				"to": 8800
+			},
+			"text": " I love technology very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,800",
+				"to": "00:00:11,800"
+			},
+			"offsets": {
+				"from": 8800,
+				"to": 11800
+			},
+			"text": " But you know what, I like people a lot too."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,800",
+				"to": "00:00:16,800"
+			},
+			"offsets": {
+				"from": 11800,
+				"to": 16800
+			},
+			"text": " And I'm here to talk to you guys about people today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,800",
+				"to": "00:00:20,520"
+			},
+			"offsets": {
+				"from": 16800,
+				"to": 20520
+			},
+			"text": " And in particular, sort of the role that Ethereum has to play"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,520",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 20520,
+				"to": 24400
+			},
+			"text": " and that we all in this community have to play in the world at large."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:29,600"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 29600
+			},
+			"text": " Since I sort of got involved in the Ethereum community about a year ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,600",
+				"to": "00:00:33,600"
+			},
+			"offsets": {
+				"from": 29600,
+				"to": 33600
+			},
+			"text": " and I've been kind of exploring this ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,600",
+				"to": "00:00:37,600"
+			},
+			"offsets": {
+				"from": 33600,
+				"to": 37600
+			},
+			"text": " I've sort of found that the role that makes the most sense for me"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,600",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 37600,
+				"to": 40600
+			},
+			"text": " is asking the hard questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:43,600"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 43600
+			},
+			"text": " So these are questions like, you know, Ethereum's great, the technology's great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,600",
+				"to": "00:00:45,600"
+			},
+			"offsets": {
+				"from": 43600,
+				"to": 45600
+			},
+			"text": " but like, what's your deep why, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,600",
+				"to": "00:00:47,600"
+			},
+			"offsets": {
+				"from": 45600,
+				"to": 47600
+			},
+			"text": " Why are we all here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,600",
+				"to": "00:00:49,600"
+			},
+			"offsets": {
+				"from": 47600,
+				"to": 49600
+			},
+			"text": " What exactly are we building?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,600",
+				"to": "00:00:50,600"
+			},
+			"offsets": {
+				"from": 49600,
+				"to": 50600
+			},
+			"text": " Who is it serving?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,600",
+				"to": "00:00:51,600"
+			},
+			"offsets": {
+				"from": 50600,
+				"to": 51600
+			},
+			"text": " Right, what's the purpose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,600",
+				"to": "00:00:54,600"
+			},
+			"offsets": {
+				"from": 51600,
+				"to": 54600
+			},
+			"text": " What gets you out of bed in the morning?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,600",
+				"to": "00:01:01,600"
+			},
+			"offsets": {
+				"from": 56600,
+				"to": 61600
+			},
+			"text": " And as I've kind of searched for a framework that's helped me understand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,600",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 61600,
+				"to": 64600
+			},
+			"text": " in a broader context, what we're trying to do with Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:07,600"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 67600
+			},
+			"text": " I've found this thing called social scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,600",
+				"to": "00:01:10,600"
+			},
+			"offsets": {
+				"from": 67600,
+				"to": 70600
+			},
+			"text": " which has been the framework that's helped me understand the big picture of what we're doing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,600",
+				"to": "00:01:15,600"
+			},
+			"offsets": {
+				"from": 70600,
+				"to": 75600
+			},
+			"text": " Beyond the currency aspect, beyond even the technology aspect, there's a social..."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,600",
+				"to": "00:01:19,600"
+			},
+			"offsets": {
+				"from": 75600,
+				"to": 79600
+			},
+			"text": " And, you know, I want to start with a confession."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,600",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 79600,
+				"to": 84600
+			},
+			"text": " As when I first elaborated or kind of described this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:28,600"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 88600
+			},
+			"text": " and had a vision for this talk and wrote down the title of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,600",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 88600,
+				"to": 90600
+			},
+			"text": " towards a socially scalable Ethereum future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:33,600"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 93600
+			},
+			"text": " I initially wanted to talk to you guys about scaling Ethereum, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,600",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 93600,
+				"to": 96600
+			},
+			"text": " Because Ethereum's great, and there's a lot of like really smart people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:39,600"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 99600
+			},
+			"text": " working on scaling the technological side of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,600",
+				"to": "00:01:42,600"
+			},
+			"offsets": {
+				"from": 99600,
+				"to": 102600
+			},
+			"text": " There's all kinds of talks here at DevCon on that topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,600",
+				"to": "00:01:45,600"
+			},
+			"offsets": {
+				"from": 102600,
+				"to": 105600
+			},
+			"text": " but we're hearing less about the social side of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,600",
+				"to": "00:01:49,600"
+			},
+			"offsets": {
+				"from": 105600,
+				"to": 109600
+			},
+			"text": " You know, overcoming challenges like UX and, you know, speaking a language"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,600",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 109600,
+				"to": 112600
+			},
+			"text": " the world can understand, and of course governance, which is a big social challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:58,600"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 118600
+			},
+			"text": " But as I went deeper and began preparing this talk, I had a realization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,600",
+				"to": "00:02:03,600"
+			},
+			"offsets": {
+				"from": 118600,
+				"to": 123600
+			},
+			"text": " which is that to ask this question, right, what can we all do for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,600",
+				"to": "00:02:06,600"
+			},
+			"offsets": {
+				"from": 123600,
+				"to": 126600
+			},
+			"text": " is actually not the right way to frame it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,600",
+				"to": "00:02:08,600"
+			},
+			"offsets": {
+				"from": 126600,
+				"to": 128600
+			},
+			"text": " So let me try to explain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,600",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 128600,
+				"to": 130600
+			},
+			"text": " Imagine that this is all the human beings in the world, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:13,600"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 133600
+			},
+			"text": " All seven point, whatever, billion of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,600",
+				"to": "00:02:17,600"
+			},
+			"offsets": {
+				"from": 133600,
+				"to": 137600
+			},
+			"text": " How many lives do you guys think Ethereum has touched up to now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,600",
+				"to": "00:02:21,600"
+			},
+			"offsets": {
+				"from": 137600,
+				"to": 141600
+			},
+			"text": " In some capacity, how many people have, you know, coded for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,600",
+				"to": "00:02:26,600"
+			},
+			"offsets": {
+				"from": 141600,
+				"to": 146600
+			},
+			"text": " or have used it, or even care about it or know that it exists?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,600",
+				"to": "00:02:29,600"
+			},
+			"offsets": {
+				"from": 146600,
+				"to": 149600
+			},
+			"text": " Can anyone see up there? Which one is a little different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,600",
+				"to": "00:02:31,600"
+			},
+			"offsets": {
+				"from": 149600,
+				"to": 151600
+			},
+			"text": " Let me help you out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,600",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 151600,
+				"to": 153600
+			},
+			"text": " (Laughter)"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:36,600"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 156600
+			},
+			"text": " It's, you know, whether it's 10,000 or 100,000 or a million or 10 million,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,600",
+				"to": "00:02:39,600"
+			},
+			"offsets": {
+				"from": 156600,
+				"to": 159600
+			},
+			"text": " like it actually doesn't matter because there's so many people on the planet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,600",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 159600,
+				"to": 164600
+			},
+			"text": " It's like, we're not at 1%, we're not even at 1/10 of 1% yet, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:46,600"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 166600
+			},
+			"text": " And this is why I'm saying to ask this question, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,600",
+				"to": "00:02:49,600"
+			},
+			"offsets": {
+				"from": 166600,
+				"to": 169600
+			},
+			"text": " what can we all do for Ethereum is really selfish?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,600",
+				"to": "00:02:52,600"
+			},
+			"offsets": {
+				"from": 169600,
+				"to": 172600
+			},
+			"text": " Because no one cares about Ethereum yet, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,600",
+				"to": "00:02:54,600"
+			},
+			"offsets": {
+				"from": 172600,
+				"to": 174600
+			},
+			"text": " The question we should be asking is the opposite question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,600",
+				"to": "00:02:57,600"
+			},
+			"offsets": {
+				"from": 174600,
+				"to": 177600
+			},
+			"text": " which is what can we do for the world?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,600",
+				"to": "00:03:01,600"
+			},
+			"offsets": {
+				"from": 177600,
+				"to": 181600
+			},
+			"text": " So I want to lead here with a quote from President John F. Theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,600",
+				"to": "00:03:05,600"
+			},
+			"offsets": {
+				"from": 181600,
+				"to": 185600
+			},
+			"text": " And so my fellow Theoreans ask not what the world can do for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,600",
+				"to": "00:03:07,600"
+			},
+			"offsets": {
+				"from": 185600,
+				"to": 187600
+			},
+			"text": " Ask what Ethereum can do for the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,600",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 187600,
+				"to": 192600
+			},
+			"text": " My fellow citizens of the world ask not what Ethereum will do for you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:14,600"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 194600
+			},
+			"text": " but what together we can do for the freedom of man."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,600",
+				"to": "00:03:18,600"
+			},
+			"offsets": {
+				"from": 194600,
+				"to": 198600
+			},
+			"text": " So obviously this is a really powerful talk and a really powerful quote."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,600",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 198600,
+				"to": 201600
+			},
+			"text": " And I really didn't understand it until I saw it in this context."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:25,600"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 205600
+			},
+			"text": " So I want to turn the question around and ask what we can do for the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,600",
+				"to": "00:03:28,600"
+			},
+			"offsets": {
+				"from": 205600,
+				"to": 208600
+			},
+			"text": " I have the next 21 minutes to do three things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,600",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 208600,
+				"to": 211600
+			},
+			"text": " The first is try to explain social scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 216600
+			},
+			"text": " The second is to try to somehow explain this Ethereum concept,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:38,600"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 218600
+			},
+			"text": " which I think we've all seen this word here and there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,600",
+				"to": "00:03:41,600"
+			},
+			"offsets": {
+				"from": 218600,
+				"to": 221600
+			},
+			"text": " but I'm going to make an attempt to go a bit deeper today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,600",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 221600,
+				"to": 224600
+			},
+			"text": " And the third is as if those things were not exciting enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:48,600"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 228600
+			},
+			"text": " I have a couple of fairly big exciting announcements that I want to share at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,600",
+				"to": "00:03:50,600"
+			},
+			"offsets": {
+				"from": 228600,
+				"to": 230600
+			},
+			"text": " So let's dive right in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,600",
+				"to": "00:03:52,600"
+			},
+			"offsets": {
+				"from": 230600,
+				"to": 232600
+			},
+			"text": " What is social scalability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,600",
+				"to": "00:03:56,600"
+			},
+			"offsets": {
+				"from": 232600,
+				"to": 236600
+			},
+			"text": " Well, before we talk about social scalability, let's start with the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,600",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 236600,
+				"to": 238600
+			},
+			"text": " what is scalability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,600",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 238600,
+				"to": 239600
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:05,600"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 245600
+			},
+			"text": " In brief, something that is scalable is something that actually gets stronger"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,600",
+				"to": "00:04:07,600"
+			},
+			"offsets": {
+				"from": 245600,
+				"to": 247600
+			},
+			"text": " as it grows bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,600",
+				"to": "00:04:10,600"
+			},
+			"offsets": {
+				"from": 247600,
+				"to": 250600
+			},
+			"text": " And I think DevCon is a great example of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,600",
+				"to": "00:04:13,600"
+			},
+			"offsets": {
+				"from": 250600,
+				"to": 253600
+			},
+			"text": " You know, they asked me for slides a week ago and I kind of said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,600",
+				"to": "00:04:17,600"
+			},
+			"offsets": {
+				"from": 253600,
+				"to": 257600
+			},
+			"text": " \"Yeah, sorry, because this is -- I literally added the slide 10 minutes ago.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,600",
+				"to": "00:04:19,600"
+			},
+			"offsets": {
+				"from": 257600,
+				"to": 259600
+			},
+			"text": " Things moved fast in this community, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,600",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 259600,
+				"to": 262600
+			},
+			"text": " And as I was sitting in the main stage downstairs a few minutes ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:23,600"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 263600
+			},
+			"text": " I had this realization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,600",
+				"to": "00:04:25,600"
+			},
+			"offsets": {
+				"from": 263600,
+				"to": 265600
+			},
+			"text": " You know, DevCon has more than doubled."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,600",
+				"to": "00:04:29,600"
+			},
+			"offsets": {
+				"from": 265600,
+				"to": 269600
+			},
+			"text": " We went from 1,500 people last year to more than 3,000 this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,600",
+				"to": "00:04:31,600"
+			},
+			"offsets": {
+				"from": 269600,
+				"to": 271600
+			},
+			"text": " And I don't know, what do you guys think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,600",
+				"to": "00:04:34,600"
+			},
+			"offsets": {
+				"from": 271600,
+				"to": 274600
+			},
+			"text": " Is DevCon worse or is it better than last year?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,600",
+				"to": "00:04:36,600"
+			},
+			"offsets": {
+				"from": 274600,
+				"to": 276600
+			},
+			"text": " Better, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,600",
+				"to": "00:04:39,600"
+			},
+			"offsets": {
+				"from": 276600,
+				"to": 279600
+			},
+			"text": " So, okay, so first of all, kudos to the people who organized the event"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,600",
+				"to": "00:04:42,600"
+			},
+			"offsets": {
+				"from": 279600,
+				"to": 282600
+			},
+			"text": " because they're incredible and we have more than doubled this event in one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,600",
+				"to": "00:04:44,600"
+			},
+			"offsets": {
+				"from": 282600,
+				"to": 284600
+			},
+			"text": " And it's scaling, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,600",
+				"to": "00:04:48,600"
+			},
+			"offsets": {
+				"from": 284600,
+				"to": 288600
+			},
+			"text": " So, again, this is an example of scaling that I think we all have near and dear to our hearts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,600",
+				"to": "00:04:51,600"
+			},
+			"offsets": {
+				"from": 288600,
+				"to": 291600
+			},
+			"text": " So, let's talk about social scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,600",
+				"to": "00:04:56,600"
+			},
+			"offsets": {
+				"from": 291600,
+				"to": 296600
+			},
+			"text": " This is a concept that was introduced by a computer scientist named Nick Zabo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,600",
+				"to": "00:05:01,600"
+			},
+			"offsets": {
+				"from": 296600,
+				"to": 301600
+			},
+			"text": " And it turns out that primates, including human beings, have cognitive limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,600",
+				"to": "00:05:04,600"
+			},
+			"offsets": {
+				"from": 301600,
+				"to": 304600
+			},
+			"text": " And there's this magic number, which I'm sure many of you have heard before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,600",
+				"to": "00:05:08,600"
+			},
+			"offsets": {
+				"from": 304600,
+				"to": 308600
+			},
+			"text": " Dunvar's number, which is something on the order of about 150 for humans."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,600",
+				"to": "00:05:12,600"
+			},
+			"offsets": {
+				"from": 308600,
+				"to": 312600
+			},
+			"text": " This is the number of people that you can kind of think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,600",
+				"to": "00:05:15,600"
+			},
+			"offsets": {
+				"from": 312600,
+				"to": 315600
+			},
+			"text": " as knowing on a first name basis or trusting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,600",
+				"to": "00:05:17,600"
+			},
+			"offsets": {
+				"from": 315600,
+				"to": 317600
+			},
+			"text": " It's all kind of boils down to trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,600",
+				"to": "00:05:24,600"
+			},
+			"offsets": {
+				"from": 317600,
+				"to": 324600
+			},
+			"text": " And there's a reason that tribes tend to be smaller than 150 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,600",
+				"to": "00:05:26,600"
+			},
+			"offsets": {
+				"from": 324600,
+				"to": 326600
+			},
+			"text": " Now, that's all well and good, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,600",
+				"to": "00:05:32,600"
+			},
+			"offsets": {
+				"from": 326600,
+				"to": 332600
+			},
+			"text": " But there's a limit to how much we can accomplish in a group of 150 people, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,600",
+				"to": "00:05:35,600"
+			},
+			"offsets": {
+				"from": 332600,
+				"to": 335600
+			},
+			"text": " What sort of technologies we can build?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,600",
+				"to": "00:05:39,600"
+			},
+			"offsets": {
+				"from": 335600,
+				"to": 339600
+			},
+			"text": " And what happened is that throughout human history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,600",
+				"to": "00:05:44,600"
+			},
+			"offsets": {
+				"from": 339600,
+				"to": 344600
+			},
+			"text": " humans have developed a series of technologies to scale the size of the society."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,600",
+				"to": "00:05:46,600"
+			},
+			"offsets": {
+				"from": 344600,
+				"to": 346600
+			},
+			"text": " What is a technology?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,600",
+				"to": "00:05:50,600"
+			},
+			"offsets": {
+				"from": 346600,
+				"to": 350600
+			},
+			"text": " The definition of a technology is something which allows us to do more with less."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,600",
+				"to": "00:05:52,600"
+			},
+			"offsets": {
+				"from": 350600,
+				"to": 352600
+			},
+			"text": " Simply put, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,600",
+				"to": "00:05:54,600"
+			},
+			"offsets": {
+				"from": 352600,
+				"to": 354600
+			},
+			"text": " We can achieve more wealth, more output."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,600",
+				"to": "00:05:57,600"
+			},
+			"offsets": {
+				"from": 354600,
+				"to": 357600
+			},
+			"text": " We can do more with the same amount of, let's say, cognitive input."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,600",
+				"to": "00:06:01,600"
+			},
+			"offsets": {
+				"from": 357600,
+				"to": 361600
+			},
+			"text": " And so, a great example, early example of this is language and writing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,600",
+				"to": "00:06:06,600"
+			},
+			"offsets": {
+				"from": 361600,
+				"to": 366600
+			},
+			"text": " Every tribe has its own language, then we can't transact or interact with people down the road"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,600",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 366600,
+				"to": 368600
+			},
+			"text": " in the next tribe."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:11,600"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 371600
+			},
+			"text": " But language has allowed us to scale, and there's a reason that there's a power law"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,600",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 371600,
+				"to": 375600
+			},
+			"text": " distribution, and we have languages today that have hundreds of millions of speakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:17,600"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 377600
+			},
+			"text": " because it's a powerful social scaling tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,600",
+				"to": "00:06:22,600"
+			},
+			"offsets": {
+				"from": 377600,
+				"to": 382600
+			},
+			"text": " Of course, writing and books and the printing press took that even further."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,600",
+				"to": "00:06:26,600"
+			},
+			"offsets": {
+				"from": 382600,
+				"to": 386600
+			},
+			"text": " And of course, another example is money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,600",
+				"to": "00:06:30,600"
+			},
+			"offsets": {
+				"from": 386600,
+				"to": 390600
+			},
+			"text": " If you hand me cash, right, I don't need to trust you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,600",
+				"to": "00:06:31,600"
+			},
+			"offsets": {
+				"from": 390600,
+				"to": 391600
+			},
+			"text": " I don't need to know who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,600",
+				"to": "00:06:32,600"
+			},
+			"offsets": {
+				"from": 391600,
+				"to": 392600
+			},
+			"text": " I don't need to know where you're from."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,600",
+				"to": "00:06:36,600"
+			},
+			"offsets": {
+				"from": 392600,
+				"to": 396600
+			},
+			"text": " This is a great example of a technology that scales society and scales the number of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,600",
+				"to": "00:06:38,600"
+			},
+			"offsets": {
+				"from": 396600,
+				"to": 398600
+			},
+			"text": " we can transact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,600",
+				"to": "00:06:43,600"
+			},
+			"offsets": {
+				"from": 398600,
+				"to": 403600
+			},
+			"text": " It's completely trustless, in theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,600",
+				"to": "00:06:48,600"
+			},
+			"offsets": {
+				"from": 403600,
+				"to": 408600
+			},
+			"text": " Adam Smith actually wrote about social scalability almost 300 years ago, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,600",
+				"to": "00:06:51,600"
+			},
+			"offsets": {
+				"from": 408600,
+				"to": 411600
+			},
+			"text": " And what he wrote about was clothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,600",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 411600,
+				"to": 416600
+			},
+			"text": " Something as simple as a single garment, a single simple shirt or jacket."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 421600
+			},
+			"text": " Does anyone in this room think that they could create a piece of clothing from scratch, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:02,600"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 422600
+			},
+			"text": " truly from the raw materials?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,600",
+				"to": "00:07:04,600"
+			},
+			"offsets": {
+				"from": 422600,
+				"to": 424600
+			},
+			"text": " Okay, I'm super impressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,600",
+				"to": "00:07:07,600"
+			},
+			"offsets": {
+				"from": 424600,
+				"to": 427600
+			},
+			"text": " You guys have to show me how to do that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,600",
+				"to": "00:07:11,600"
+			},
+			"offsets": {
+				"from": 427600,
+				"to": 431600
+			},
+			"text": " He wrote about, so Adam Smith wrote about the hundreds or thousands of people, even in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,600",
+				"to": "00:07:16,600"
+			},
+			"offsets": {
+				"from": 431600,
+				"to": 436600
+			},
+			"text": " the 18th century, who were involved in creating and transporting and creating a market for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,600",
+				"to": "00:07:21,600"
+			},
+			"offsets": {
+				"from": 436600,
+				"to": 441600
+			},
+			"text": " a simple garment, right, from the shepherd who tends the sheep to the person who shears"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,600",
+				"to": "00:07:26,200"
+			},
+			"offsets": {
+				"from": 441600,
+				"to": 446200
+			},
+			"text": " the sheep to the person who cards the wool and dies it and creates the garment to the enormous"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,200",
+				"to": "00:07:27,200"
+			},
+			"offsets": {
+				"from": 446200,
+				"to": 447200
+			},
+			"text": " supply chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,200",
+				"to": "00:07:31,200"
+			},
+			"offsets": {
+				"from": 447200,
+				"to": 451200
+			},
+			"text": " Again, even hundreds of years ago, the shipbuilders and the sailors and the merchants that were"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,200",
+				"to": "00:07:34,200"
+			},
+			"offsets": {
+				"from": 451200,
+				"to": 454200
+			},
+			"text": " involved in bringing these garments to market."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,200",
+				"to": "00:07:41,200"
+			},
+			"offsets": {
+				"from": 454200,
+				"to": 461200
+			},
+			"text": " The definition of social scalability is how little we all need to understand about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,200",
+				"to": "00:07:43,200"
+			},
+			"offsets": {
+				"from": 461200,
+				"to": 463200
+			},
+			"text": " world, because that's the point of society."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,200",
+				"to": "00:07:47,200"
+			},
+			"offsets": {
+				"from": 463200,
+				"to": 467200
+			},
+			"text": " I don't need to know how to create a t-shirt, because I trust, it's about trust, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,200",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 467200,
+				"to": 471200
+			},
+			"text": " I trust that I can go down the road to a shop and buy a shirt."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:53,200"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 473200
+			},
+			"text": " It'll be there, it'll fit, it'll work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,200",
+				"to": "00:07:56,200"
+			},
+			"offsets": {
+				"from": 473200,
+				"to": 476200
+			},
+			"text": " This was the case hundreds of years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,200",
+				"to": "00:07:59,200"
+			},
+			"offsets": {
+				"from": 476200,
+				"to": 479200
+			},
+			"text": " Now, let's bring to the modern era, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,200",
+				"to": "00:08:04,200"
+			},
+			"offsets": {
+				"from": 479200,
+				"to": 484200
+			},
+			"text": " If it's that complex for a shirt 300 years ago, it's just mind-blowing, truly mind-blowing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,200",
+				"to": "00:08:09,200"
+			},
+			"offsets": {
+				"from": 484200,
+				"to": 489200
+			},
+			"text": " to think about the number of people involved in a technology as complex as a jetliner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,200",
+				"to": "00:08:12,200"
+			},
+			"offsets": {
+				"from": 489200,
+				"to": 492200
+			},
+			"text": " which of course brought many or most of us here to Prague."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,200",
+				"to": "00:08:19,200"
+			},
+			"offsets": {
+				"from": 492200,
+				"to": 499200
+			},
+			"text": " Tens, hundreds of thousands of people involved in the design, the manufacture, the operation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,200",
+				"to": "00:08:21,200"
+			},
+			"offsets": {
+				"from": 499200,
+				"to": 501200
+			},
+			"text": " of things like airplanes and airlines."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,200",
+				"to": "00:08:24,200"
+			},
+			"offsets": {
+				"from": 501200,
+				"to": 504200
+			},
+			"text": " So this is testament to the power of social scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,200",
+				"to": "00:08:30,200"
+			},
+			"offsets": {
+				"from": 504200,
+				"to": 510200
+			},
+			"text": " Not only is there no one person, there's not even one organization that could do this on"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,200",
+				"to": "00:08:32,200"
+			},
+			"offsets": {
+				"from": 510200,
+				"to": 512200
+			},
+			"text": " their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,200",
+				"to": "00:08:37,200"
+			},
+			"offsets": {
+				"from": 512200,
+				"to": 517200
+			},
+			"text": " Of course, another great example is law, in particular contract law, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,200",
+				"to": "00:08:43,200"
+			},
+			"offsets": {
+				"from": 517200,
+				"to": 523200
+			},
+			"text": " I don't need to know who you are to transact with you in the modern world, because I trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,200",
+				"to": "00:08:48,200"
+			},
+			"offsets": {
+				"from": 523200,
+				"to": 528200
+			},
+			"text": " that if you do something wrong, I can take you to court and I can fix the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,200",
+				"to": "00:08:56,200"
+			},
+			"offsets": {
+				"from": 528200,
+				"to": 536200
+			},
+			"text": " I think the ultimate example of a social scaling technology is the nation state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,200",
+				"to": "00:08:59,200"
+			},
+			"offsets": {
+				"from": 536200,
+				"to": 539200
+			},
+			"text": " So this image is sort of the piece of Westphalia, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,200",
+				"to": "00:09:02,200"
+			},
+			"offsets": {
+				"from": 539200,
+				"to": 542200
+			},
+			"text": " So we're now in the middle of the 17th century."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,200",
+				"to": "00:09:04,200"
+			},
+			"offsets": {
+				"from": 542200,
+				"to": 544200
+			},
+			"text": " It's the end of the warring states period."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,200",
+				"to": "00:09:11,200"
+			},
+			"offsets": {
+				"from": 544200,
+				"to": 551200
+			},
+			"text": " There were 80, 90 years of war of these kingdoms that had been at war over things like religion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,200",
+				"to": "00:09:15,200"
+			},
+			"offsets": {
+				"from": 551200,
+				"to": 555200
+			},
+			"text": " and they came together and over a period of years and a series of treaties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,200",
+				"to": "00:09:20,200"
+			},
+			"offsets": {
+				"from": 555200,
+				"to": 560200
+			},
+			"text": " they hammered out this thing which has today become the international system, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,200",
+				"to": "00:09:24,200"
+			},
+			"offsets": {
+				"from": 560200,
+				"to": 564200
+			},
+			"text": " The concept of a sovereign state, the idea that states can communicate with each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,200",
+				"to": "00:09:26,200"
+			},
+			"offsets": {
+				"from": 564200,
+				"to": 566200
+			},
+			"text": " and treat with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,200",
+				"to": "00:09:30,200"
+			},
+			"offsets": {
+				"from": 566200,
+				"to": 570200
+			},
+			"text": " And again, this is the epitome today of social scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,200",
+				"to": "00:09:35,200"
+			},
+			"offsets": {
+				"from": 570200,
+				"to": 575200
+			},
+			"text": " We have countries with over a billion people in them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,200",
+				"to": "00:09:41,200"
+			},
+			"offsets": {
+				"from": 575200,
+				"to": 581200
+			},
+			"text": " Just try to imagine that, like a single system that, you know, I mean, okay, they're not perfect, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,200",
+				"to": "00:09:44,200"
+			},
+			"offsets": {
+				"from": 581200,
+				"to": 584200
+			},
+			"text": " But they've actually kind of worked and they've scaled reasonably well up to now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,200",
+				"to": "00:09:47,200"
+			},
+			"offsets": {
+				"from": 584200,
+				"to": 587200
+			},
+			"text": " Does anyone recognize this guy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,200",
+				"to": "00:09:49,200"
+			},
+			"offsets": {
+				"from": 587200,
+				"to": 589200
+			},
+			"text": " Thank you. This is Alexei Dutokville, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,200",
+				"to": "00:09:56,200"
+			},
+			"offsets": {
+				"from": 589200,
+				"to": 596200
+			},
+			"text": " So he is a Frenchman who traveled in the United States in the 18th century, sorry, the 19th century,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,200",
+				"to": "00:10:01,200"
+			},
+			"offsets": {
+				"from": 596200,
+				"to": 601200
+			},
+			"text": " and he wrote a book called Democracy in America, and he commented on the fact that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,200",
+				"to": "00:10:06,200"
+			},
+			"offsets": {
+				"from": 601200,
+				"to": 606200
+			},
+			"text": " America was unique in the world at that time because of the level of civil engagement"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,200",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 606200,
+				"to": 609200
+			},
+			"text": " and the fact that democracy had deep roots in American society."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:14,200"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 614200
+			},
+			"text": " And, you know, so I want to apologize for the very kind of America-centric nature of these photos."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,200",
+				"to": "00:10:17,200"
+			},
+			"offsets": {
+				"from": 614200,
+				"to": 617200
+			},
+			"text": " I'm from the United States. I'm going to own that right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,200",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 617200,
+				"to": 623200
+			},
+			"text": " But, you know, we have this version of the story which says that we have this civic engagement, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:27,200"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 627200
+			},
+			"text": " We have these town hall meetings that happen in every local municipality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,200",
+				"to": "00:10:30,200"
+			},
+			"offsets": {
+				"from": 627200,
+				"to": 630200
+			},
+			"text": " We have people who come together and debate the issues on their merits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,200",
+				"to": "00:10:36,200"
+			},
+			"offsets": {
+				"from": 630200,
+				"to": 636200
+			},
+			"text": " and we have this lively participation, which is what Dutokville was describing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,200",
+				"to": "00:10:41,200"
+			},
+			"offsets": {
+				"from": 636200,
+				"to": 641200
+			},
+			"text": " But as an American today, and maybe many of you feel what I feel, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,200",
+				"to": "00:10:45,200"
+			},
+			"offsets": {
+				"from": 641200,
+				"to": 645200
+			},
+			"text": " democracy doesn't feel like this today. It feels more like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,200",
+				"to": "00:10:55,200"
+			},
+			"offsets": {
+				"from": 645200,
+				"to": 655200
+			},
+			"text": " You know, it's angry, entitled white men who feel that the system, which has benefited them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,200",
+				"to": "00:10:58,200"
+			},
+			"offsets": {
+				"from": 655200,
+				"to": 658200
+			},
+			"text": " us, obviously, I'm part of this, right? I'm not angry."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,200",
+				"to": "00:11:03,200"
+			},
+			"offsets": {
+				"from": 658200,
+				"to": 663200
+			},
+			"text": " For a very long time is beginning to change, and they're beginning to lose some privilege."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,200",
+				"to": "00:11:08,200"
+			},
+			"offsets": {
+				"from": 663200,
+				"to": 668200
+			},
+			"text": " And this is a huge topic, right? I could stand up here for the next hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,200",
+				"to": "00:11:12,200"
+			},
+			"offsets": {
+				"from": 668200,
+				"to": 672200
+			},
+			"text": " and describe to you the rise of populism and demagoguery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,200",
+				"to": "00:11:16,200"
+			},
+			"offsets": {
+				"from": 672200,
+				"to": 676200
+			},
+			"text": " and, you know, the wealth gap getting worse, and the rich getting richer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,200",
+				"to": "00:11:21,200"
+			},
+			"offsets": {
+				"from": 676200,
+				"to": 681200
+			},
+			"text": " and the poor getting poorer, and the lack of civil engagement and apathy on the part of voters."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,200",
+				"to": "00:11:27,200"
+			},
+			"offsets": {
+				"from": 681200,
+				"to": 687200
+			},
+			"text": " The only point I want to make is that the nation-state is a technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,200",
+				"to": "00:11:31,200"
+			},
+			"offsets": {
+				"from": 687200,
+				"to": 691200
+			},
+			"text": " and it's not that old, okay? It's less than 400 years old."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,200",
+				"to": "00:11:35,200"
+			},
+			"offsets": {
+				"from": 691200,
+				"to": 695200
+			},
+			"text": " And I intended to have my phone in my pocket. I left it over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,200",
+				"to": "00:11:38,200"
+			},
+			"offsets": {
+				"from": 695200,
+				"to": 698200
+			},
+			"text": " But, you know, I have this, whatever. This is a, I don't know, a clicker, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,200",
+				"to": "00:11:42,200"
+			},
+			"offsets": {
+				"from": 698200,
+				"to": 702200
+			},
+			"text": " So I went to the store and I bought this to serve a specific function, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,200",
+				"to": "00:11:46,200"
+			},
+			"offsets": {
+				"from": 702200,
+				"to": 706200
+			},
+			"text": " It's a piece of technology. I can use it to move around and use a laser pointer and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,200",
+				"to": "00:11:50,200"
+			},
+			"offsets": {
+				"from": 706200,
+				"to": 710200
+			},
+			"text": " Five years from now, this may be obsolete. Maybe this won't, but my phone will be, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,200",
+				"to": "00:11:53,200"
+			},
+			"offsets": {
+				"from": 710200,
+				"to": 713200
+			},
+			"text": " It'll be too slow. The apps won't work. It won't have enough storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,200",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 713200,
+				"to": 719200
+			},
+			"text": " So what do we do when a technology is outdated? We upgrade, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:04,200"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 724200
+			},
+			"text": " And the point I'm trying to make is that the nation-state is a technology like any other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,200",
+				"to": "00:12:07,200"
+			},
+			"offsets": {
+				"from": 724200,
+				"to": 727200
+			},
+			"text": " and that that technology is beginning to show its age."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,200",
+				"to": "00:12:11,200"
+			},
+			"offsets": {
+				"from": 727200,
+				"to": 731200
+			},
+			"text": " And we should be having this dialogue about how we can do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,200",
+				"to": "00:12:15,200"
+			},
+			"offsets": {
+				"from": 731200,
+				"to": 735200
+			},
+			"text": " This is the Galactic Senate from Star Wars. I had to throw a nerd reference in here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,200",
+				"to": "00:12:20,200"
+			},
+			"offsets": {
+				"from": 735200,
+				"to": 740200
+			},
+			"text": " I used to have a vision that the future of humanity would look something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,200",
+				"to": "00:12:24,200"
+			},
+			"offsets": {
+				"from": 740200,
+				"to": 744200
+			},
+			"text": " You know, that this is sort of the UN scaled by a couple of orders of magnitude."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,200",
+				"to": "00:12:27,200"
+			},
+			"offsets": {
+				"from": 744200,
+				"to": 747200
+			},
+			"text": " You know, you have all these groups of whatever humanoids from around the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,200",
+				"to": "00:12:32,200"
+			},
+			"offsets": {
+				"from": 747200,
+				"to": 752200
+			},
+			"text": " around the galaxy who come together in this gigantic centralized forum to, like, debate their issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,200",
+				"to": "00:12:36,200"
+			},
+			"offsets": {
+				"from": 752200,
+				"to": 756200
+			},
+			"text": " But, you know, the nation-states kind of not working. The UN is definitely not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,200",
+				"to": "00:12:39,200"
+			},
+			"offsets": {
+				"from": 756200,
+				"to": 759200
+			},
+			"text": " And this is no longer how I conceive the future of humanity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,200",
+				"to": "00:12:42,200"
+			},
+			"offsets": {
+				"from": 759200,
+				"to": 762200
+			},
+			"text": " To me, it looks more like this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,200",
+				"to": "00:12:46,200"
+			},
+			"offsets": {
+				"from": 762200,
+				"to": 766200
+			},
+			"text": " We have these, like, autonomous groups of people who have these divergent interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,200",
+				"to": "00:12:50,200"
+			},
+			"offsets": {
+				"from": 766200,
+				"to": 770200
+			},
+			"text": " at the local or municipal, or in some cases, the national level."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,200",
+				"to": "00:12:55,200"
+			},
+			"offsets": {
+				"from": 770200,
+				"to": 775200
+			},
+			"text": " And, you know, maybe the solution is not a single centralized system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,200",
+				"to": "00:12:58,200"
+			},
+			"offsets": {
+				"from": 775200,
+				"to": 778200
+			},
+			"text": " Maybe the solution looks something more like, I don't know, blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,200",
+				"to": "00:13:01,200"
+			},
+			"offsets": {
+				"from": 778200,
+				"to": 781200
+			},
+			"text": " Maybe we have a role to play in all this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,200",
+				"to": "00:13:06,200"
+			},
+			"offsets": {
+				"from": 781200,
+				"to": 786200
+			},
+			"text": " So, ten years ago today, right, this thing entered the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,200",
+				"to": "00:13:08,200"
+			},
+			"offsets": {
+				"from": 786200,
+				"to": 788200
+			},
+			"text": " You know, Bitcoin exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,200",
+				"to": "00:13:13,200"
+			},
+			"offsets": {
+				"from": 788200,
+				"to": 793200
+			},
+			"text": " And I guess the question I'm asking is what role does the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,200",
+				"to": "00:13:16,200"
+			},
+			"offsets": {
+				"from": 793200,
+				"to": 796200
+			},
+			"text": " those things like Bitcoin and Ethereum have to play in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,200",
+				"to": "00:13:19,200"
+			},
+			"offsets": {
+				"from": 796200,
+				"to": 799200
+			},
+			"text": " And what can they do to change the narrative here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,200",
+				"to": "00:13:22,200"
+			},
+			"offsets": {
+				"from": 799200,
+				"to": 802200
+			},
+			"text": " There are projects that are actually doing this today, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,200",
+				"to": "00:13:26,200"
+			},
+			"offsets": {
+				"from": 802200,
+				"to": 806200
+			},
+			"text": " So, there's many projects that are building governance --"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,200",
+				"to": "00:13:30,200"
+			},
+			"offsets": {
+				"from": 806200,
+				"to": 810200
+			},
+			"text": " Hi, Santi -- governance on the blockchain for blockchain projects, which is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,200",
+				"to": "00:13:34,200"
+			},
+			"offsets": {
+				"from": 810200,
+				"to": 814200
+			},
+			"text": " That's very important. But there's at least one project that is trying to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,200",
+				"to": "00:13:39,200"
+			},
+			"offsets": {
+				"from": 814200,
+				"to": 819200
+			},
+			"text": " governance of actual, real, human institutions, like meat space, flesh and blood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,200",
+				"to": "00:13:43,200"
+			},
+			"offsets": {
+				"from": 819200,
+				"to": 823200
+			},
+			"text": " human institutions using things like Ethereum, using tools like quadratic voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,200",
+				"to": "00:13:46,200"
+			},
+			"offsets": {
+				"from": 823200,
+				"to": 826200
+			},
+			"text": " and liquid democracy. So, kudos to the Democracy Earth project."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,200",
+				"to": "00:13:48,200"
+			},
+			"offsets": {
+				"from": 826200,
+				"to": 828200
+			},
+			"text": " If you're not familiar with it, check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,200",
+				"to": "00:13:52,200"
+			},
+			"offsets": {
+				"from": 828200,
+				"to": 832200
+			},
+			"text": " I think that we all can learn a lot from that project."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,200",
+				"to": "00:13:56,200"
+			},
+			"offsets": {
+				"from": 832200,
+				"to": 836200
+			},
+			"text": " All right. Now, let's talk about this Ethereum idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,200",
+				"to": "00:14:00,200"
+			},
+			"offsets": {
+				"from": 836200,
+				"to": 840200
+			},
+			"text": " Over the past week, I've had incredible conversations about the technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,200",
+				"to": "00:14:04,200"
+			},
+			"offsets": {
+				"from": 840200,
+				"to": 844200
+			},
+			"text": " behind Ethereum in Berlin and now in Prague here at DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,200",
+				"to": "00:14:07,200"
+			},
+			"offsets": {
+				"from": 844200,
+				"to": 847200
+			},
+			"text": " But more than that, I've had a lot of conversations about the non-technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,200",
+				"to": "00:14:11,200"
+			},
+			"offsets": {
+				"from": 847200,
+				"to": 851200
+			},
+			"text": " stuff in Ethereum. So, this is a gentleman named Harry Halpin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,200",
+				"to": "00:14:15,200"
+			},
+			"offsets": {
+				"from": 851200,
+				"to": 855200
+			},
+			"text": " who spoke at the Web3 Summit about the mistakes of Web2 and lessons we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,200",
+				"to": "00:14:19,200"
+			},
+			"offsets": {
+				"from": 855200,
+				"to": 859200
+			},
+			"text": " learn about avoiding corporate capture, for example, of the technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,200",
+				"to": "00:14:24,200"
+			},
+			"offsets": {
+				"from": 859200,
+				"to": 864200
+			},
+			"text": " This is the Decentral Node, which was literally a conference within a conference"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,200",
+				"to": "00:14:28,200"
+			},
+			"offsets": {
+				"from": 864200,
+				"to": 868200
+			},
+			"text": " at the Web3 Summit that had three full days of non-stop programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,200",
+				"to": "00:14:32,200"
+			},
+			"offsets": {
+				"from": 868200,
+				"to": 872200
+			},
+			"text": " including this talk on decentralized governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,200",
+				"to": "00:14:37,200"
+			},
+			"offsets": {
+				"from": 872200,
+				"to": 877200
+			},
+			"text": " This is an event called the Philosopher's Salon -- sorry, the Philosopher's Salon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,200",
+				"to": "00:14:40,200"
+			},
+			"offsets": {
+				"from": 877200,
+				"to": 880200
+			},
+			"text": " the Ethereum Philosopher's Salon, that was organized by Andy from Status"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,200",
+				"to": "00:14:44,200"
+			},
+			"offsets": {
+				"from": 880200,
+				"to": 884200
+			},
+			"text": " and several other incredible people. This happened here in Prague a few days ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,200",
+				"to": "00:14:49,200"
+			},
+			"offsets": {
+				"from": 884200,
+				"to": 889200
+			},
+			"text": " and it was an extremely moving, you know, personal conversation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,200",
+				"to": "00:14:53,200"
+			},
+			"offsets": {
+				"from": 889200,
+				"to": 893200
+			},
+			"text": " People really opening their hearts and asking deep, difficult questions like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,200",
+				"to": "00:14:56,200"
+			},
+			"offsets": {
+				"from": 893200,
+				"to": 896200
+			},
+			"text": " \"Why are we all here? What are we building? How do we build a system for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,200",
+				"to": "00:15:01,200"
+			},
+			"offsets": {
+				"from": 896200,
+				"to": 901200
+			},
+			"text": " humans everywhere?\" This is a town hall that the Status team ran,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,200",
+				"to": "00:15:06,200"
+			},
+			"offsets": {
+				"from": 901200,
+				"to": 906200
+			},
+			"text": " also a few days ago, here in Prague. And this particular -- this was not about"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,200",
+				"to": "00:15:09,200"
+			},
+			"offsets": {
+				"from": 906200,
+				"to": 909200
+			},
+			"text": " technology. That's the point I'm trying to make, right? This was about, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,200",
+				"to": "00:15:13,200"
+			},
+			"offsets": {
+				"from": 909200,
+				"to": 913200
+			},
+			"text": " vulnerability. This is about embracing our failure and how that can make"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,200",
+				"to": "00:15:17,200"
+			},
+			"offsets": {
+				"from": 913200,
+				"to": 917200
+			},
+			"text": " us better people and lead to better projects. This is a workshop I participated"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,200",
+				"to": "00:15:21,200"
+			},
+			"offsets": {
+				"from": 917200,
+				"to": 921200
+			},
+			"text": " in yesterday here on diversity and inclusion with an incredibly diverse"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,200",
+				"to": "00:15:26,200"
+			},
+			"offsets": {
+				"from": 921200,
+				"to": 926200
+			},
+			"text": " group of people having a very deep open conversation about recruiting users"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,200",
+				"to": "00:15:32,200"
+			},
+			"offsets": {
+				"from": 926200,
+				"to": 932200
+			},
+			"text": " and builders from diverse walks of life. I had the great fortune last night at"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,200",
+				"to": "00:15:37,200"
+			},
+			"offsets": {
+				"from": 932200,
+				"to": 937200
+			},
+			"text": " dinner to meet this individual, Eduardo, are you here? Somewhere? Maybe? Eduardo is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,200",
+				"to": "00:15:42,200"
+			},
+			"offsets": {
+				"from": 937200,
+				"to": 942200
+			},
+			"text": " a true revolutionary, okay? This gentleman has been living exclusively"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,200",
+				"to": "00:15:46,200"
+			},
+			"offsets": {
+				"from": 942200,
+				"to": 946200
+			},
+			"text": " on cryptocurrency for years in Venezuela, and he just escaped Venezuela a month"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,200",
+				"to": "00:15:50,200"
+			},
+			"offsets": {
+				"from": 946200,
+				"to": 950200
+			},
+			"text": " ago to Argentina, and he's here with us today. And it was -- let's get a round"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,200",
+				"to": "00:15:57,200"
+			},
+			"offsets": {
+				"from": 950200,
+				"to": 957200
+			},
+			"text": " of applause. That's an incredible accomplishment. [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,200",
+				"to": "00:16:01,200"
+			},
+			"offsets": {
+				"from": 957200,
+				"to": 961200
+			},
+			"text": " And, you know, we all opened this morning in the main room, singing kumbaya"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,200",
+				"to": "00:16:05,200"
+			},
+			"offsets": {
+				"from": 961200,
+				"to": 965200
+			},
+			"text": " effectively, and coming together as a community and embracing, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,200",
+				"to": "00:16:09,200"
+			},
+			"offsets": {
+				"from": 965200,
+				"to": 969200
+			},
+			"text": " rainbows and unicorns and, you know, just goodwill. So the point I'm trying to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,200",
+				"to": "00:16:14,200"
+			},
+			"offsets": {
+				"from": 969200,
+				"to": 974200
+			},
+			"text": " is that it's time that we, like, face the facts, right? Ethereum is about"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,200",
+				"to": "00:16:19,200"
+			},
+			"offsets": {
+				"from": 974200,
+				"to": 979200
+			},
+			"text": " technology, but it's about so much more than technology. If you ask me, this looks -- I"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,200",
+				"to": "00:16:22,200"
+			},
+			"offsets": {
+				"from": 979200,
+				"to": 982200
+			},
+			"text": " don't know what it looks like. It's a social movement. It's a political movement."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,200",
+				"to": "00:16:27,200"
+			},
+			"offsets": {
+				"from": 982200,
+				"to": 987200
+			},
+			"text": " It's like that town hall image. I showed you a little while ago, right? It's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,200",
+				"to": "00:16:30,200"
+			},
+			"offsets": {
+				"from": 987200,
+				"to": 990200
+			},
+			"text": " people coming together to have these deep, honest conversations about why we're all"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,200",
+				"to": "00:16:35,200"
+			},
+			"offsets": {
+				"from": 990200,
+				"to": 995200
+			},
+			"text": " here and what we're doing. I had a conversation with my father recently, and he"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,200",
+				"to": "00:16:39,200"
+			},
+			"offsets": {
+				"from": 995200,
+				"to": 999200
+			},
+			"text": " kind of asked me, what are you? Are you a Democrat? Are you a Republican? Are you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,200",
+				"to": "00:16:46,200"
+			},
+			"offsets": {
+				"from": 999200,
+				"to": 1006200
+			},
+			"text": " liberal? Are you conservative? And, you know, in the world that he grew up in, people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,200",
+				"to": "00:16:50,200"
+			},
+			"offsets": {
+				"from": 1006200,
+				"to": 1010200
+			},
+			"text": " fit into these neat boxes. I don't know if this is true for anyone else here. I suspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,200",
+				"to": "00:16:54,200"
+			},
+			"offsets": {
+				"from": 1010200,
+				"to": 1014200
+			},
+			"text": " maybe it is, right? I don't really strongly identify with any of these labels."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,200",
+				"to": "00:16:58,200"
+			},
+			"offsets": {
+				"from": 1014200,
+				"to": 1018200
+			},
+			"text": " There's things I appreciate and hate about Democrats and Republicans about"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,200",
+				"to": "00:17:02,200"
+			},
+			"offsets": {
+				"from": 1018200,
+				"to": 1022200
+			},
+			"text": " liberals and conservatives. You know, another question. Am I an American or a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,200",
+				"to": "00:17:07,200"
+			},
+			"offsets": {
+				"from": 1022200,
+				"to": 1027200
+			},
+			"text": " citizen of the world? You know, I'm patriotic. I love my country. I'm standing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,200",
+				"to": "00:17:11,200"
+			},
+			"offsets": {
+				"from": 1027200,
+				"to": 1031200
+			},
+			"text": " here before you as an example of the American dream. My father is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,200",
+				"to": "00:17:15,200"
+			},
+			"offsets": {
+				"from": 1031200,
+				"to": 1035200
+			},
+			"text": " immigrant. He arrived in the United States with no money and no education, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,200",
+				"to": "00:17:20,200"
+			},
+			"offsets": {
+				"from": 1035200,
+				"to": 1040200
+			},
+			"text": " here I am standing in front of you today. At the same time, I don't believe"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,200",
+				"to": "00:17:24,200"
+			},
+			"offsets": {
+				"from": 1040200,
+				"to": 1044200
+			},
+			"text": " Americans deserve any special privilege over -- you know, there's billions of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,200",
+				"to": "00:17:28,200"
+			},
+			"offsets": {
+				"from": 1044200,
+				"to": 1048200
+			},
+			"text": " people in the world, as I said before, right? So, again, it's not either of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,200",
+				"to": "00:17:33,200"
+			},
+			"offsets": {
+				"from": 1048200,
+				"to": 1053200
+			},
+			"text": " things specifically. You know, I fought further. Am I -- I'm definitely -- I believe"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,200",
+				"to": "00:17:38,200"
+			},
+			"offsets": {
+				"from": 1053200,
+				"to": 1058200
+			},
+			"text": " in the future. I'm optimistic. I believe in the power of technology. And, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,200",
+				"to": "00:17:43,200"
+			},
+			"offsets": {
+				"from": 1058200,
+				"to": 1063200
+			},
+			"text": " identity is a very complex, multifaceted thing. When I really paused and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,200",
+				"to": "00:17:47,200"
+			},
+			"offsets": {
+				"from": 1063200,
+				"to": 1067200
+			},
+			"text": " reflected and asked myself honestly, like, what do I -- what is my identity? I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,200",
+				"to": "00:17:52,200"
+			},
+			"offsets": {
+				"from": 1067200,
+				"to": 1072200
+			},
+			"text": " American. I'm a technologist. I'm a New Yorker. The thing that I identified"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,200",
+				"to": "00:17:59,200"
+			},
+			"offsets": {
+				"from": 1072200,
+				"to": 1079200
+			},
+			"text": " with the most strongly is all of you, right? I'm an ethereum. And I don't know what"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,200",
+				"to": "00:18:03,200"
+			},
+			"offsets": {
+				"from": 1079200,
+				"to": 1083200
+			},
+			"text": " this means, right? Again, I don't -- is this -- this is a social movement. It's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,200",
+				"to": "00:18:07,200"
+			},
+			"offsets": {
+				"from": 1083200,
+				"to": 1087200
+			},
+			"text": " technology. It's not really a political party. It's kind of all of these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,200",
+				"to": "00:18:13,200"
+			},
+			"offsets": {
+				"from": 1087200,
+				"to": 1093200
+			},
+			"text": " and sort of none of them at the same time. And all -- whatever this is is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,200",
+				"to": "00:18:18,200"
+			},
+			"offsets": {
+				"from": 1093200,
+				"to": 1098200
+			},
+			"text": " what we, as a community, create going forward in a collective, decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,200",
+				"to": "00:18:23,200"
+			},
+			"offsets": {
+				"from": 1098200,
+				"to": 1103200
+			},
+			"text": " fashion. So if you guys feel comfortable using this word, I'm going to stand up"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,200",
+				"to": "00:18:27,200"
+			},
+			"offsets": {
+				"from": 1103200,
+				"to": 1107200
+			},
+			"text": " here now proudly and say, I'm an ethereum and I, you know, I share this identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,200",
+				"to": "00:18:33,200"
+			},
+			"offsets": {
+				"from": 1107200,
+				"to": 1113200
+			},
+			"text": " with many of you. All right. I said I was going to make a couple of announcements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,200",
+				"to": "00:18:39,200"
+			},
+			"offsets": {
+				"from": 1113200,
+				"to": 1119200
+			},
+			"text": " but I'm going to do that. So the first is, in order to kind of kick off this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,200",
+				"to": "00:18:43,200"
+			},
+			"offsets": {
+				"from": 1119200,
+				"to": 1123200
+			},
+			"text": " conversation of, you know, understanding what is -- you know, what does ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,200",
+				"to": "00:18:47,200"
+			},
+			"offsets": {
+				"from": 1123200,
+				"to": 1127200
+			},
+			"text": " mean? I've launched a website called ethereum.org. This is live. You can check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,200",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1127200,
+				"to": 1132200
+			},
+			"text": " Right now it's just a discourse forum. Okay. So you can go. You can sign up. I posted"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,200",
+				"to": "00:18:56,200"
+			},
+			"offsets": {
+				"from": 1132200,
+				"to": 1136200
+			},
+			"text": " a couple of topics that we can start talking about. Some of the things I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,200",
+				"to": "00:19:01,200"
+			},
+			"offsets": {
+				"from": 1136200,
+				"to": 1141200
+			},
+			"text": " spoken about today, like the nation state. And if this is something that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,200",
+				"to": "00:19:05,200"
+			},
+			"offsets": {
+				"from": 1141200,
+				"to": 1145200
+			},
+			"text": " interesting to you, please check it out. Join this conversation, right? As I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,200",
+				"to": "00:19:08,200"
+			},
+			"offsets": {
+				"from": 1145200,
+				"to": 1148200
+			},
+			"text": " I don't -- it's not up to me and I'm not standing here. I'm not trying to lead a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,200",
+				"to": "00:19:12,200"
+			},
+			"offsets": {
+				"from": 1148200,
+				"to": 1152200
+			},
+			"text": " movement, right? I'm just trying to -- what's the word? I'm trying to steward"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,200",
+				"to": "00:19:16,200"
+			},
+			"offsets": {
+				"from": 1152200,
+				"to": 1156200
+			},
+			"text": " something into existence. I'm trying to recognize the reality on the ground,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,200",
+				"to": "00:19:20,200"
+			},
+			"offsets": {
+				"from": 1156200,
+				"to": 1160200
+			},
+			"text": " which is that this is about a lot more than technology. And, you know, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,200",
+				"to": "00:19:24,200"
+			},
+			"offsets": {
+				"from": 1160200,
+				"to": 1164200
+			},
+			"text": " inspired by things like radical markets and the work that democracy earth and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,200",
+				"to": "00:19:27,200"
+			},
+			"offsets": {
+				"from": 1164200,
+				"to": 1167200
+			},
+			"text": " many other projects are doing. And I'm hoping this can become a forum for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,200",
+				"to": "00:19:31,200"
+			},
+			"offsets": {
+				"from": 1167200,
+				"to": 1171200
+			},
+			"text": " Maybe a year from now, you know, we can have an ethereum breakout session here at"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,200",
+				"to": "00:19:36,200"
+			},
+			"offsets": {
+				"from": 1171200,
+				"to": 1176200
+			},
+			"text": " DevCon or something like that. And the second thing is, I've been extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,200",
+				"to": "00:19:40,200"
+			},
+			"offsets": {
+				"from": 1176200,
+				"to": 1180200
+			},
+			"text": " inspired by the work that Eric Posner and Glenn Wheel did in the radical"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,200",
+				"to": "00:19:45,200"
+			},
+			"offsets": {
+				"from": 1180200,
+				"to": 1185200
+			},
+			"text": " markets book. Radical markets is -- if you haven't read this yet, please, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,200",
+				"to": "00:19:50,200"
+			},
+			"offsets": {
+				"from": 1185200,
+				"to": 1190200
+			},
+			"text": " go home after DevCon, decompress, read this book. It's very powerful. It's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,200",
+				"to": "00:19:54,200"
+			},
+			"offsets": {
+				"from": 1190200,
+				"to": 1194200
+			},
+			"text": " just radical ideas, as it says, for uprooting capitalism and democracy for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,200",
+				"to": "00:19:58,200"
+			},
+			"offsets": {
+				"from": 1194200,
+				"to": 1198200
+			},
+			"text": " a just society. It's actually -- it paints a picture, right? It actually has these"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,200",
+				"to": "00:20:04,200"
+			},
+			"offsets": {
+				"from": 1198200,
+				"to": 1204200
+			},
+			"text": " hypothetical narratives, these anecdotes of what a future world might look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,200",
+				"to": "00:20:09,200"
+			},
+			"offsets": {
+				"from": 1204200,
+				"to": 1209200
+			},
+			"text": " I think the single most important thing that we as a community can do, aside from"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,200",
+				"to": "00:20:13,200"
+			},
+			"offsets": {
+				"from": 1209200,
+				"to": 1213200
+			},
+			"text": " building the technology itself, is attempting to engage with the real world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,200",
+				"to": "00:20:17,200"
+			},
+			"offsets": {
+				"from": 1213200,
+				"to": 1217200
+			},
+			"text": " attempting to develop a dialogue that makes sense and, you know, growing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,200",
+				"to": "00:20:25,200"
+			},
+			"offsets": {
+				"from": 1217200,
+				"to": 1225200
+			},
+			"text": " impact of ethereum and, let's say, ethereum, including ethereum's, to more than, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,200",
+				"to": "00:20:29,200"
+			},
+			"offsets": {
+				"from": 1225200,
+				"to": 1229200
+			},
+			"text": " know, what we are today, which is less than one tenth of one percent. And I think a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,200",
+				"to": "00:20:35,200"
+			},
+			"offsets": {
+				"from": 1229200,
+				"to": 1235200
+			},
+			"text": " great way to do that is by writing a book. So the working title is \"Move, Slow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,200",
+				"to": "00:20:38,200"
+			},
+			"offsets": {
+				"from": 1235200,
+				"to": 1238200
+			},
+			"text": " and Fix Things.\" And I'm sure many of you could help me come up with a better title,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,200",
+				"to": "00:20:45,200"
+			},
+			"offsets": {
+				"from": 1238200,
+				"to": 1245200
+			},
+			"text": " but I'm going to work this next year on writing a book. And trying to explain to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,200",
+				"to": "00:20:48,200"
+			},
+			"offsets": {
+				"from": 1245200,
+				"to": 1248200
+			},
+			"text": " the world what we're doing and what we're all about and the impact that these ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,200",
+				"to": "00:20:53,200"
+			},
+			"offsets": {
+				"from": 1248200,
+				"to": 1253200
+			},
+			"text": " can have. I'm happy to do this in a very open source fashion, right? We can have that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,200",
+				"to": "00:20:58,200"
+			},
+			"offsets": {
+				"from": 1253200,
+				"to": 1258200
+			},
+			"text": " conversation on the ethereum.org website. And I really hope that a year from now I"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,200",
+				"to": "00:21:02,200"
+			},
+			"offsets": {
+				"from": 1258200,
+				"to": 1262200
+			},
+			"text": " can stand on this stage and I can share maybe a first draft of that book and that many of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,200",
+				"to": "00:21:10,200"
+			},
+			"offsets": {
+				"from": 1262200,
+				"to": 1270200
+			},
+			"text": " can contribute to it. So, you know, sorry, I want to say one thing first. The move"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,200",
+				"to": "00:21:14,200"
+			},
+			"offsets": {
+				"from": 1270200,
+				"to": 1274200
+			},
+			"text": " slow part here, right? This is in recognition of the fact that we're not looking for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,200",
+				"to": "00:21:18,200"
+			},
+			"offsets": {
+				"from": 1274200,
+				"to": 1278200
+			},
+			"text": " revolution. We're looking for evolution, okay? We're looking to incrementally improve things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,200",
+				"to": "00:21:23,200"
+			},
+			"offsets": {
+				"from": 1278200,
+				"to": 1283200
+			},
+			"text": " And that's, I'm calling that the ethfaloosion here. The last thing I want to leave you with"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,200",
+				"to": "00:21:27,200"
+			},
+			"offsets": {
+				"from": 1283200,
+				"to": 1287200
+			},
+			"text": " is that over the next, you know, today, tomorrow, and the following day, the next three days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,200",
+				"to": "00:21:31,200"
+			},
+			"offsets": {
+				"from": 1287200,
+				"to": 1291200
+			},
+			"text": " you're going to hear a lot of really incredible talks from a lot of very brilliant people."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,200",
+				"to": "00:21:36,200"
+			},
+			"offsets": {
+				"from": 1291200,
+				"to": 1296200
+			},
+			"text": " And what I'd like you to have in the back of your mind, the overarching question is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,200",
+				"to": "00:21:41,200"
+			},
+			"offsets": {
+				"from": 1296200,
+				"to": 1301200
+			},
+			"text": " what does this serve, right? How do these technologies make the world a better place and what role do we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,200",
+				"to": "00:21:44,200"
+			},
+			"offsets": {
+				"from": 1301200,
+				"to": 1304200
+			},
+			"text": " to do in getting there? Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,200",
+				"to": "00:21:48,200"
+			},
+			"offsets": {
+				"from": 1304200,
+				"to": 1308200
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,200",
+				"to": "00:21:52,200"
+			},
+			"offsets": {
+				"from": 1308200,
+				"to": 1312200
+			},
+			"text": " I think it's a really fascinating idea. What do you think of sort of this whole idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,200",
+				"to": "00:21:57,200"
+			},
+			"offsets": {
+				"from": 1312200,
+				"to": 1317200
+			},
+			"text": " blockchain, maximalism and things like that? Because branding it, sort of, ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,200",
+				"to": "00:22:04,200"
+			},
+			"offsets": {
+				"from": 1317200,
+				"to": 1324200
+			},
+			"text": " I guess, in a way, blocks out other blockchains and other ideas, potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,200",
+				"to": "00:22:07,200"
+			},
+			"offsets": {
+				"from": 1324200,
+				"to": 1327200
+			},
+			"text": " So I don't, the short answer, so sorry, the question was like, what do you think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,200",
+				"to": "00:22:11,200"
+			},
+			"offsets": {
+				"from": 1327200,
+				"to": 1331200
+			},
+			"text": " blockchain maximalism and, you know, I guess the implied question is, are you an ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,200",
+				"to": "00:22:15,200"
+			},
+			"offsets": {
+				"from": 1331200,
+				"to": 1335200
+			},
+			"text": " maximalist? Does that sort of cancel out other ideas? The short answer is, I don't believe in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,200",
+				"to": "00:22:23,200"
+			},
+			"offsets": {
+				"from": 1335200,
+				"to": 1343200
+			},
+			"text": " isms, I don't believe in maximalism, and, um, no isms, right? It's not about ethereum at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,200",
+				"to": "00:22:27,200"
+			},
+			"offsets": {
+				"from": 1343200,
+				"to": 1347200
+			},
+			"text": " end of the day. That's the point I was trying to make in the beginning. It doesn't matter whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,200",
+				"to": "00:22:32,200"
+			},
+			"offsets": {
+				"from": 1347200,
+				"to": 1352200
+			},
+			"text": " ethereum succeeds or fails in the long run, in the grand scheme of things, right? What matters is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,200",
+				"to": "00:22:36,200"
+			},
+			"offsets": {
+				"from": 1352200,
+				"to": 1356200
+			},
+			"text": " we move forward as a society, and that the ideas and the values and the principles that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,200",
+				"to": "00:22:41,200"
+			},
+			"offsets": {
+				"from": 1356200,
+				"to": 1361200
+			},
+			"text": " we're doing this for, um, you know, they say you can't un-invent Bitcoin, right? You can't un-invent"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,200",
+				"to": "00:22:47,200"
+			},
+			"offsets": {
+				"from": 1361200,
+				"to": 1367200
+			},
+			"text": " ethereum, you can't, you can, you know, the technology may not scale, and, you know, you can, um, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,200",
+				"to": "00:22:51,200"
+			},
+			"offsets": {
+				"from": 1367200,
+				"to": 1371200
+			},
+			"text": " spam the blockchain, but, like, we're not going anywhere as a community, and, you know, some other"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,200",
+				"to": "00:22:56,200"
+			},
+			"offsets": {
+				"from": 1371200,
+				"to": 1376200
+			},
+			"text": " technology will come along and pick up that same flag and keep the progress moving forward, so I am"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,200",
+				"to": "00:23:02,200"
+			},
+			"offsets": {
+				"from": 1376200,
+				"to": 1382200
+			},
+			"text": " absolutely not a maximalist. One question I have is, how do you envision underrepresented groups"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,200",
+				"to": "00:23:06,200"
+			},
+			"offsets": {
+				"from": 1382200,
+				"to": 1386200
+			},
+			"text": " getting more involved? Because I was at the ethereum 2.0 workday on Monday, and I was one of three"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,200",
+				"to": "00:23:12,200"
+			},
+			"offsets": {
+				"from": 1386200,
+				"to": 1392200
+			},
+			"text": " women out of, like, 75 men, which is atrocious, like, as a software engineer, that's like the worst"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,200",
+				"to": "00:23:18,200"
+			},
+			"offsets": {
+				"from": 1392200,
+				"to": 1398200
+			},
+			"text": " ratio I've ever seen. Um, so yeah, how do you envision more underrepresented groups getting involved in"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,200",
+				"to": "00:23:23,200"
+			},
+			"offsets": {
+				"from": 1398200,
+				"to": 1403200
+			},
+			"text": " this collective future? Awesome, that's such a big topic, and this thing says 29 seconds, so I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,200",
+				"to": "00:23:28,200"
+			},
+			"offsets": {
+				"from": 1403200,
+				"to": 1408200
+			},
+			"text": " gonna, uh, I'm gonna give you a super high-level overview, and then let's keep the conversation going,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,200",
+				"to": "00:23:34,200"
+			},
+			"offsets": {
+				"from": 1408200,
+				"to": 1414200
+			},
+			"text": " because it's important. Uh, number one, diversity inclusion is freaking super important, okay? So"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,200",
+				"to": "00:23:38,200"
+			},
+			"offsets": {
+				"from": 1414200,
+				"to": 1418200
+			},
+			"text": " Kelvin Fichter gave a talk yesterday at the diversity inclusion breakout session, and he made this"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,200",
+				"to": "00:23:42,200"
+			},
+			"offsets": {
+				"from": 1418200,
+				"to": 1422200
+			},
+			"text": " case much better than I could, so if you weren't there, check out the video. One of the points he made"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,200",
+				"to": "00:23:47,200"
+			},
+			"offsets": {
+				"from": 1422200,
+				"to": 1427200
+			},
+			"text": " is that even if you sort of on the surface don't care about diversity, you should anyway, even if"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,200",
+				"to": "00:23:52,200"
+			},
+			"offsets": {
+				"from": 1427200,
+				"to": 1432200
+			},
+			"text": " you only are in it for the economics, because diverse systems are more anti-fragile and better, and,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,200",
+				"to": "00:23:56,200"
+			},
+			"offsets": {
+				"from": 1432200,
+				"to": 1436200
+			},
+			"text": " you know, the economics will be a lot better if we can bring more diversity into the picture. Number"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,200",
+				"to": "00:24:01,200"
+			},
+			"offsets": {
+				"from": 1436200,
+				"to": 1441200
+			},
+			"text": " two, um, I don't have the answers, I don't claim to have the answers, right? This is the whole point"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,200",
+				"to": "00:24:05,200"
+			},
+			"offsets": {
+				"from": 1441200,
+				"to": 1445200
+			},
+			"text": " of what I'm saying here, is that this is a platform, uh, for us to have more dialogue about this, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,200",
+				"to": "00:24:09,200"
+			},
+			"offsets": {
+				"from": 1445200,
+				"to": 1449200
+			},
+			"text": " to learn from each other, and, you know, we need to engage with the rest of the world, right? We"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,200",
+				"to": "00:24:13,200"
+			},
+			"offsets": {
+				"from": 1449200,
+				"to": 1453200
+			},
+			"text": " in this room, it's very hubristic of us to think that we can kind of build a system for all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,200",
+				"to": "00:24:18,200"
+			},
+			"offsets": {
+				"from": 1453200,
+				"to": 1458200
+			},
+			"text": " humans. Um, the last thought I want to share is, you know, we have a lot of focus about putting"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,200",
+				"to": "00:24:22,200"
+			},
+			"offsets": {
+				"from": 1458200,
+				"to": 1462200
+			},
+			"text": " butts in seats, which is important, like, I wish that, you know, 50% of the people in this room"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,200",
+				"to": "00:24:26,200"
+			},
+			"offsets": {
+				"from": 1462200,
+				"to": 1466200
+			},
+			"text": " were female, and that is important, but I think that there's an upstream question here, right? So"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,200",
+				"to": "00:24:31,200"
+			},
+			"offsets": {
+				"from": 1466200,
+				"to": 1471200
+			},
+			"text": " we need to talk about, like, um, you know, going all the way back, right? How do we raise our kids,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,200",
+				"to": "00:24:35,200"
+			},
+			"offsets": {
+				"from": 1471200,
+				"to": 1475200
+			},
+			"text": " and how do we instill men and women with different values, and how do we, from a, you know, very early"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,200",
+				"to": "00:24:40,200"
+			},
+			"offsets": {
+				"from": 1475200,
+				"to": 1480200
+			},
+			"text": " point, going back to, let's say, grade school, um, get, you know, women more excited about technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,200",
+				"to": "00:24:44,200"
+			},
+			"offsets": {
+				"from": 1480200,
+				"to": 1484200
+			},
+			"text": " and, you know, we need to be able to get to the point where we are now, with engaged people"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,200",
+				"to": "00:24:48,200"
+			},
+			"offsets": {
+				"from": 1484200,
+				"to": 1488200
+			},
+			"text": " sitting in chairs and events like this. Again, thank you guys very, very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,200",
+				"to": "00:24:49,200"
+			},
+			"offsets": {
+				"from": 1488200,
+				"to": 1489200
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,200",
+				"to": "00:24:51,200"
+			},
+			"offsets": {
+				"from": 1489200,
+				"to": 1491200
+			},
+			"text": " Thank you, Grandma Paz for Lane."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,200",
+				"to": "00:24:53,200"
+			},
+			"offsets": {
+				"from": 1491200,
+				"to": 1493200
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,200",
+				"to": "00:24:55,200"
+			},
+			"offsets": {
+				"from": 1493200,
+				"to": 1495200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,200",
+				"to": "00:24:57,200"
+			},
+			"offsets": {
+				"from": 1495200,
+				"to": 1497200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,200",
+				"to": "00:24:59,200"
+			},
+			"offsets": {
+				"from": 1497200,
+				"to": 1499200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,200",
+				"to": "00:25:01,200"
+			},
+			"offsets": {
+				"from": 1499200,
+				"to": 1501200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,200",
+				"to": "00:25:03,200"
+			},
+			"offsets": {
+				"from": 1501200,
+				"to": 1503200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,200",
+				"to": "00:25:05,200"
+			},
+			"offsets": {
+				"from": 1503200,
+				"to": 1505200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,200",
+				"to": "00:25:07,200"
+			},
+			"offsets": {
+				"from": 1505200,
+				"to": 1507200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,200",
+				"to": "00:25:09,200"
+			},
+			"offsets": {
+				"from": 1507200,
+				"to": 1509200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,200",
+				"to": "00:25:11,200"
+			},
+			"offsets": {
+				"from": 1509200,
+				"to": 1511200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,200",
+				"to": "00:25:13,200"
+			},
+			"offsets": {
+				"from": 1511200,
+				"to": 1513200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,200",
+				"to": "00:25:15,200"
+			},
+			"offsets": {
+				"from": 1513200,
+				"to": 1515200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,200",
+				"to": "00:25:17,200"
+			},
+			"offsets": {
+				"from": 1515200,
+				"to": 1517200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,200",
+				"to": "00:25:19,200"
+			},
+			"offsets": {
+				"from": 1517200,
+				"to": 1519200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,200",
+				"to": "00:25:21,200"
+			},
+			"offsets": {
+				"from": 1519200,
+				"to": 1521200
+			},
+			"text": " [end of transcript]"
+		}
+	]
+}

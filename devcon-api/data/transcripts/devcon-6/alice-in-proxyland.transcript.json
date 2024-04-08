@@ -1,0 +1,3354 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,760"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17760
+			},
+			"text": " >> Solidity auditor in Open Sepulant, then I worked with Aragon for a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,760",
+				"to": "00:00:26,880"
+			},
+			"offsets": {
+				"from": 17760,
+				"to": 26880
+			},
+			"text": " and now I'm working with synthetics, mainly addressing the problem of how do you build a super complex smart contract system"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,420",
+				"to": "00:00:32,820"
+			},
+			"offsets": {
+				"from": 27420,
+				"to": 32820
+			},
+			"text": " in a way that you can iterate through it and fix bugs and improve and experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,820",
+				"to": "00:00:39,300"
+			},
+			"offsets": {
+				"from": 32820,
+				"to": 39300
+			},
+			"text": " And other than that, I consider myself a bit of an educator in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,300",
+				"to": "00:00:42,600"
+			},
+			"offsets": {
+				"from": 39300,
+				"to": 42600
+			},
+			"text": " I just -- it's not that I know a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,600",
+				"to": "00:00:47,340"
+			},
+			"offsets": {
+				"from": 42600,
+				"to": 47340
+			},
+			"text": " I just love to empower other people with knowledge, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,340",
+				"to": "00:00:55,380"
+			},
+			"offsets": {
+				"from": 47340,
+				"to": 55380
+			},
+			"text": " So what we're going to do today is talk about proxies and that, like, in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:03,580"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 63580
+			},
+			"text": " and then we're going to talk about a pretty sophisticated type of proxy that we're using in synthetics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,580",
+				"to": "00:01:11,760"
+			},
+			"offsets": {
+				"from": 63580,
+				"to": 71760
+			},
+			"text": " So I think that it's critical for everyone to understand how proxies work under the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,760",
+				"to": "00:01:18,480"
+			},
+			"offsets": {
+				"from": 71760,
+				"to": 78480
+			},
+			"text": " I think that it's not okay for a dev to use proxies and not know how they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,480",
+				"to": "00:01:22,020"
+			},
+			"offsets": {
+				"from": 78480,
+				"to": 82020
+			},
+			"text": " But the good news is it's that they're really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,380",
+				"to": "00:01:27,340"
+			},
+			"offsets": {
+				"from": 82380,
+				"to": 87340
+			},
+			"text": " Like, in the end, there's, like, no mystery. It's very easy to demystify it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,340",
+				"to": "00:01:40,260"
+			},
+			"offsets": {
+				"from": 87340,
+				"to": 100260
+			},
+			"text": " So I insist, besides the proxy I'm going to show, I think the essence of this talk is to promote the awareness of how proxies work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,260",
+				"to": "00:01:44,360"
+			},
+			"offsets": {
+				"from": 100260,
+				"to": 104360
+			},
+			"text": " And if you're going to use one, like, make sure you understand how they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:54,560"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 114560
+			},
+			"text": " So to illustrate this, we're going to play them. Like, we're going to start with a very simple contract and make it upgradable and see what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,560",
+				"to": "00:01:56,800"
+			},
+			"offsets": {
+				"from": 114560,
+				"to": 116800
+			},
+			"text": " So this is the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,800",
+				"to": "00:02:02,400"
+			},
+			"offsets": {
+				"from": 116800,
+				"to": 122400
+			},
+			"text": " I don't know if it's a good idea to bring in code to a talk, but I don't know if you can see it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,400",
+				"to": "00:02:06,200"
+			},
+			"offsets": {
+				"from": 122400,
+				"to": 126200
+			},
+			"text": " but it's just a contract that sets a value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,200",
+				"to": "00:02:08,040"
+			},
+			"offsets": {
+				"from": 126200,
+				"to": 128040
+			},
+			"text": " It has a function set value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,040",
+				"to": "00:02:11,980"
+			},
+			"offsets": {
+				"from": 128040,
+				"to": 131980
+			},
+			"text": " You can set the value and it records who set the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,980",
+				"to": "00:02:13,880"
+			},
+			"offsets": {
+				"from": 131980,
+				"to": 133880
+			},
+			"text": " It's measure sender and it emits an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,880",
+				"to": "00:02:14,580"
+			},
+			"offsets": {
+				"from": 133880,
+				"to": 134580
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,880",
+				"to": "00:02:21,160"
+			},
+			"offsets": {
+				"from": 135880,
+				"to": 141160
+			},
+			"text": " So this contract is deployed at the 0x1 address, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,160",
+				"to": "00:02:27,960"
+			},
+			"offsets": {
+				"from": 141160,
+				"to": 147960
+			},
+			"text": " And then after deploying it, Bob calls set value 42, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,960",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 147960,
+				"to": 155920
+			},
+			"text": " Then 42 is set in storage slot 0 because the variable is declared."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 158000
+			},
+			"text": " It's the first variable declared."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:47,360"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 167360
+			},
+			"text": " And 0xBob, which is the address of Bob, gets stored in the second slot, which is slot 1, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,360",
+				"to": "00:02:54,760"
+			},
+			"offsets": {
+				"from": 167360,
+				"to": 174760
+			},
+			"text": " That's how Solidity lays out storage automatically when you declare variables in a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,760",
+				"to": "00:02:58,120"
+			},
+			"offsets": {
+				"from": 174760,
+				"to": 178120
+			},
+			"text": " An event is emitted from 0x1."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,120",
+				"to": "00:03:02,360"
+			},
+			"offsets": {
+				"from": 178120,
+				"to": 182360
+			},
+			"text": " Now they decide to make their contract upgradable, all right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,360",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 182360,
+				"to": 183360
+			},
+			"text": " How does this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:09,280"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 189280
+			},
+			"text": " They decide to deploy a proxy, which is just a contract that has a function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,280",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 189280,
+				"to": 193400
+			},
+			"text": " You can tell what the current implementation is, which is going to be the other contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:22,120"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 202120
+			},
+			"text": " And then it has a magic assembly function, which forwards anything using call to the implementation contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,120",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 202120,
+				"to": 205120
+			},
+			"text": " So this is deployed at 0x2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:28,720"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 208720
+			},
+			"text": " Then Bob calls set implementation 0x1."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,600",
+				"to": "00:03:38,360"
+			},
+			"offsets": {
+				"from": 209600,
+				"to": 218360
+			},
+			"text": " And in the proxy storage, slot 0 now holds 0x1 because the address implementation variable is declared in slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,360",
+				"to": "00:03:42,520"
+			},
+			"offsets": {
+				"from": 218360,
+				"to": 222520
+			},
+			"text": " It is the first variable, one declared, so it's saved in slot 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,520",
+				"to": "00:03:45,880"
+			},
+			"offsets": {
+				"from": 222520,
+				"to": 225880
+			},
+			"text": " Then they're now connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,880",
+				"to": "00:03:48,360"
+			},
+			"offsets": {
+				"from": 225880,
+				"to": 228360
+			},
+			"text": " This is the proxy and this is implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,360",
+				"to": "00:03:51,120"
+			},
+			"offsets": {
+				"from": 228360,
+				"to": 231120
+			},
+			"text": " And Bob calls value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,120",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 231120,
+				"to": 237200
+			},
+			"text": " It forwards the call to that implicit getter that Solidity generates."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,240",
+				"to": "00:04:02,360"
+			},
+			"offsets": {
+				"from": 238240,
+				"to": 242360
+			},
+			"text": " And it returns return to which is expected, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,360",
+				"to": "00:04:03,840"
+			},
+			"offsets": {
+				"from": 242360,
+				"to": 243840
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,840",
+				"to": "00:04:10,760"
+			},
+			"offsets": {
+				"from": 243840,
+				"to": 250760
+			},
+			"text": " Now Bob calls set value 1337, let's see what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,760",
+				"to": "00:04:17,520"
+			},
+			"offsets": {
+				"from": 250760,
+				"to": 257520
+			},
+			"text": " It gets forwarded using call to the set value function in implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,520",
+				"to": "00:04:25,240"
+			},
+			"offsets": {
+				"from": 257520,
+				"to": 265240
+			},
+			"text": " And it affects the storage of the implementation, not of the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,280",
+				"to": "00:04:34,240"
+			},
+			"offsets": {
+				"from": 266280,
+				"to": 274240
+			},
+			"text": " And it stores 1337 in slot 0 and 0x2 in slot 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,240",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 274240,
+				"to": 275960
+			},
+			"text": " That's weird, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:37,320"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 277320
+			},
+			"text": " That's message sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,320",
+				"to": "00:04:50,160"
+			},
+			"offsets": {
+				"from": 277320,
+				"to": 290160
+			},
+			"text": " So the problem that we have here is that call makes the execution context to be the implementation of the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,160",
+				"to": "00:04:56,400"
+			},
+			"offsets": {
+				"from": 290160,
+				"to": 296400
+			},
+			"text": " The event is submitted from the implementation, which is also not a good thing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,400",
+				"to": "00:05:03,280"
+			},
+			"offsets": {
+				"from": 296400,
+				"to": 303280
+			},
+			"text": " Because you don't want to have a protocol and tell people to be changing addresses every time you update the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,280",
+				"to": "00:05:11,920"
+			},
+			"offsets": {
+				"from": 303280,
+				"to": 311920
+			},
+			"text": " So the problem that we have with this particular proxy that uses call is that the execution context is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,920",
+				"to": "00:05:13,680"
+			},
+			"offsets": {
+				"from": 311920,
+				"to": 313680
+			},
+			"text": " And we don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,880",
+				"to": "00:05:24,320"
+			},
+			"offsets": {
+				"from": 314880,
+				"to": 324320
+			},
+			"text": " So what is an execution context is when you run code, basically what determines which storage space to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,320",
+				"to": "00:05:30,160"
+			},
+			"offsets": {
+				"from": 324320,
+				"to": 330160
+			},
+			"text": " who message sender is, and where it's come out from, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,160",
+				"to": "00:05:34,320"
+			},
+			"offsets": {
+				"from": 330160,
+				"to": 334320
+			},
+			"text": " There's more to it, but that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,320",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 334320,
+				"to": 340800
+			},
+			"text": " So how can we take the execution context to the proxy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 343360
+			},
+			"text": " We just need to use delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,240",
+				"to": "00:05:53,360"
+			},
+			"offsets": {
+				"from": 344240,
+				"to": 353360
+			},
+			"text": " So call runs the code that we're running in the current context and delegate call runs the code in the context of the caller, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,360",
+				"to": "00:05:57,120"
+			},
+			"offsets": {
+				"from": 353360,
+				"to": 357120
+			},
+			"text": " So here we have a second proxy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,120",
+				"to": "00:06:02,080"
+			},
+			"offsets": {
+				"from": 357120,
+				"to": 362080
+			},
+			"text": " Which is the only difference is that it uses delegate call, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,080",
+				"to": "00:06:09,760"
+			},
+			"offsets": {
+				"from": 362080,
+				"to": 369760
+			},
+			"text": " It's deployed at 0.3, 0.3, it's connected to the implementation, the same one as before."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,760",
+				"to": "00:06:15,280"
+			},
+			"offsets": {
+				"from": 369760,
+				"to": 375280
+			},
+			"text": " And now when bob calls set value 1337, it uses delegate call."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,280",
+				"to": "00:06:17,680"
+			},
+			"offsets": {
+				"from": 375280,
+				"to": 377680
+			},
+			"text": " So the execution context is this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,680",
+				"to": "00:06:22,080"
+			},
+			"offsets": {
+				"from": 377680,
+				"to": 382080
+			},
+			"text": " We are using the storage space of the proxy, which is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,080",
+				"to": "00:06:26,240"
+			},
+			"offsets": {
+				"from": 382080,
+				"to": 386240
+			},
+			"text": " The event is coming from the proxy, which is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,240",
+				"to": "00:06:32,400"
+			},
+			"offsets": {
+				"from": 386240,
+				"to": 392400
+			},
+			"text": " Now bob calls value, the getter, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,400",
+				"to": "00:06:36,080"
+			},
+			"offsets": {
+				"from": 392400,
+				"to": 396080
+			},
+			"text": " The execution context is still that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,080",
+				"to": "00:06:36,880"
+			},
+			"offsets": {
+				"from": 396080,
+				"to": 396880
+			},
+			"text": " It's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,880",
+				"to": "00:06:42,160"
+			},
+			"offsets": {
+				"from": 396880,
+				"to": 402160
+			},
+			"text": " Now this is going to delegate call to whatever is stored in the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,160",
+				"to": "00:06:49,440"
+			},
+			"offsets": {
+				"from": 402160,
+				"to": 409440
+			},
+			"text": " And the implementation is in slot zero, and the value now holds 1337, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,440",
+				"to": "00:06:51,920"
+			},
+			"offsets": {
+				"from": 409440,
+				"to": 411920
+			},
+			"text": " So what are we delegating call to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,920",
+				"to": "00:06:58,720"
+			},
+			"offsets": {
+				"from": 411920,
+				"to": 418720
+			},
+			"text": " To some contract at 1337, which there's probably nothing there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,720",
+				"to": "00:07:02,480"
+			},
+			"offsets": {
+				"from": 418720,
+				"to": 422480
+			},
+			"text": " So we just, we have a storage collision, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,520",
+				"to": "00:07:10,080"
+			},
+			"offsets": {
+				"from": 423520,
+				"to": 430080
+			},
+			"text": " We overrode the address of the implementation with a number, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,080",
+				"to": "00:07:13,760"
+			},
+			"offsets": {
+				"from": 430080,
+				"to": 433760
+			},
+			"text": " So we basically bricked this proxy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,760",
+				"to": "00:07:18,800"
+			},
+			"offsets": {
+				"from": 433760,
+				"to": 438800
+			},
+			"text": " So delegate call is awesome, but it is dangerous because you have storage collisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,800",
+				"to": "00:07:28,640"
+			},
+			"offsets": {
+				"from": 438800,
+				"to": 448640
+			},
+			"text": " So to solve this, bob goes to the next level and destructures the proxy storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,640",
+				"to": "00:07:30,080"
+			},
+			"offsets": {
+				"from": 448640,
+				"to": 450080
+			},
+			"text": " So what is destructuring?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,800",
+				"to": "00:07:34,800"
+			},
+			"offsets": {
+				"from": 450800,
+				"to": 454800
+			},
+			"text": " It's basically choosing where to put to store something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,800",
+				"to": "00:07:35,200"
+			},
+			"offsets": {
+				"from": 454800,
+				"to": 455200
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,200",
+				"to": "00:07:40,160"
+			},
+			"offsets": {
+				"from": 455200,
+				"to": 460160
+			},
+			"text": " It's not using solidities custom slots, but just choosing where you put it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,160",
+				"to": "00:07:48,160"
+			},
+			"offsets": {
+				"from": 460160,
+				"to": 468160
+			},
+			"text": " So for solidity, first variable is at zero, second at one, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,160",
+				"to": "00:07:55,280"
+			},
+			"offsets": {
+				"from": 468160,
+				"to": 475280
+			},
+			"text": " And you have infinite slots, destructuring is just picking a custom slot, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,280",
+				"to": "00:07:59,200"
+			},
+			"offsets": {
+				"from": 475280,
+				"to": 479200
+			},
+			"text": " So we have the third proxy here, it's called unstructured proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,200",
+				"to": "00:08:05,920"
+			},
+			"offsets": {
+				"from": 479200,
+				"to": 485920
+			},
+			"text": " And the difference is that we are not using solidities like regular storage slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,920",
+				"to": "00:08:12,720"
+			},
+			"offsets": {
+				"from": 485920,
+				"to": 492720
+			},
+			"text": " but we are declaring where we store things, that's about 1000, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,720",
+				"to": "00:08:17,520"
+			},
+			"offsets": {
+				"from": 492720,
+				"to": 497520
+			},
+			"text": " And using that, the code looks a little bit weirder, but that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,520",
+				"to": "00:08:24,320"
+			},
+			"offsets": {
+				"from": 497520,
+				"to": 504320
+			},
+			"text": " So we deploy this proxy, zwx4, we connect it to implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,320",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 504320,
+				"to": 506640
+			},
+			"text": " Oh, this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:28,160"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 508160
+			},
+			"text": " Can you see the storage?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,160",
+				"to": "00:08:33,840"
+			},
+			"offsets": {
+				"from": 508160,
+				"to": 513840
+			},
+			"text": " It's the implementation address is stored at the custom slot of 1000."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,840",
+				"to": "00:08:37,040"
+			},
+			"offsets": {
+				"from": 513840,
+				"to": 517040
+			},
+			"text": " So that's destructured right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,040",
+				"to": "00:08:44,320"
+			},
+			"offsets": {
+				"from": 517040,
+				"to": 524320
+			},
+			"text": " So now we call set value, it makes a delegate call, the execution context is that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,320",
+				"to": "00:08:51,600"
+			},
+			"offsets": {
+				"from": 524320,
+				"to": 531600
+			},
+			"text": " We write the new values, but they don't step over, let's say the implementation address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,600",
+				"to": "00:08:52,960"
+			},
+			"offsets": {
+				"from": 531600,
+				"to": 532960
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,960",
+				"to": "00:08:55,280"
+			},
+			"offsets": {
+				"from": 532960,
+				"to": 535280
+			},
+			"text": " And the event comes from the proxy, which is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,080",
+				"to": "00:08:58,720"
+			},
+			"offsets": {
+				"from": 536080,
+				"to": 538720
+			},
+			"text": " So we have a proxy that works, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,720",
+				"to": "00:09:04,880"
+			},
+			"offsets": {
+				"from": 538720,
+				"to": 544880
+			},
+			"text": " And now we can upgrade the implementation because we know that it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,880",
+				"to": "00:09:12,320"
+			},
+			"offsets": {
+				"from": 544880,
+				"to": 552320
+			},
+			"text": " So we have value holder v2, the only difference is that we added a new variable called date, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,320",
+				"to": "00:09:13,840"
+			},
+			"offsets": {
+				"from": 552320,
+				"to": 553840
+			},
+			"text": " Just added it on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:20,800"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 560800
+			},
+			"text": " And just whenever someone sets the value, we also record when that happened, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,400"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568400
+			},
+			"text": " So now we connect the implementation, we call value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,400",
+				"to": "00:09:30,400"
+			},
+			"offsets": {
+				"from": 568400,
+				"to": 570400
+			},
+			"text": " A delegate calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,400",
+				"to": "00:09:37,200"
+			},
+			"offsets": {
+				"from": 570400,
+				"to": 577200
+			},
+			"text": " And value is whatever is stored at slot one, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,200",
+				"to": "00:09:39,520"
+			},
+			"offsets": {
+				"from": 577200,
+				"to": 579520
+			},
+			"text": " According to Solidity's storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,520",
+				"to": "00:09:42,880"
+			},
+			"offsets": {
+				"from": 579520,
+				"to": 582880
+			},
+			"text": " And at one, we have zwx pop."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,880",
+				"to": "00:09:45,120"
+			},
+			"offsets": {
+				"from": 582880,
+				"to": 585120
+			},
+			"text": " So another problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,120",
+				"to": "00:09:50,080"
+			},
+			"offsets": {
+				"from": 585120,
+				"to": 590080
+			},
+			"text": " This is another type of storage collision."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,080",
+				"to": "00:09:53,680"
+			},
+			"offsets": {
+				"from": 590080,
+				"to": 593680
+			},
+			"text": " We shifted the implementation storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,680",
+				"to": "00:09:59,680"
+			},
+			"offsets": {
+				"from": 593680,
+				"to": 599680
+			},
+			"text": " And we have a collision between versions of the implementation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,680",
+				"to": "00:10:02,160"
+			},
+			"offsets": {
+				"from": 599680,
+				"to": 602160
+			},
+			"text": " We have incompatible storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,160",
+				"to": "00:10:11,680"
+			},
+			"offsets": {
+				"from": 602160,
+				"to": 611680
+			},
+			"text": " So, Bob understands that to avoid this, you, in an implementation, you only append to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,680",
+				"to": "00:10:14,960"
+			},
+			"offsets": {
+				"from": 611680,
+				"to": 614960
+			},
+			"text": " storage instead of like putting it anywhere, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,960",
+				"to": "00:10:21,760"
+			},
+			"offsets": {
+				"from": 614960,
+				"to": 621760
+			},
+			"text": " So he moves the date variable to the end of the previous storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,760",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621760,
+				"to": 624000
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 626000
+			},
+			"text": " That's a pretty simple fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:29,280"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 629280
+			},
+			"text": " That's another rule of using proxies, always append to."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,280",
+				"to": "00:10:37,120"
+			},
+			"offsets": {
+				"from": 629280,
+				"to": 637120
+			},
+			"text": " And now this value is going to get whatever is stored at slot zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,120",
+				"to": "00:10:40,640"
+			},
+			"offsets": {
+				"from": 637120,
+				"to": 640640
+			},
+			"text": " which is 1337."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,640",
+				"to": "00:10:41,520"
+			},
+			"offsets": {
+				"from": 640640,
+				"to": 641520
+			},
+			"text": " So it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,400",
+				"to": "00:10:45,440"
+			},
+			"offsets": {
+				"from": 642400,
+				"to": 645440
+			},
+			"text": " So we avoided that collision."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,440",
+				"to": "00:10:52,160"
+			},
+			"offsets": {
+				"from": 645440,
+				"to": 652160
+			},
+			"text": " So storage collisions, it's critical to understand when they occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,160",
+				"to": "00:10:56,400"
+			},
+			"offsets": {
+				"from": 652160,
+				"to": 656400
+			},
+			"text": " And it's basically the two types of collisions that I just showed you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,400",
+				"to": "00:10:56,800"
+			},
+			"offsets": {
+				"from": 656400,
+				"to": 656800
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,800",
+				"to": "00:11:00,640"
+			},
+			"offsets": {
+				"from": 656800,
+				"to": 660640
+			},
+			"text": " If you get that, you can pretty much think about any type of collision."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,640",
+				"to": "00:11:05,280"
+			},
+			"offsets": {
+				"from": 660640,
+				"to": 665280
+			},
+			"text": " Things to consider, the execution context is always the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,280",
+				"to": "00:11:07,680"
+			},
+			"offsets": {
+				"from": 665280,
+				"to": 667680
+			},
+			"text": " So everything is stored in the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,520",
+				"to": "00:11:11,840"
+			},
+			"offsets": {
+				"from": 669520,
+				"to": 671840
+			},
+			"text": " There's two types of collisions that we just talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,840",
+				"to": "00:11:18,720"
+			},
+			"offsets": {
+				"from": 671840,
+				"to": 678720
+			},
+			"text": " The first kind can be avoided by unstructuring the storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,720",
+				"to": "00:11:25,360"
+			},
+			"offsets": {
+				"from": 678720,
+				"to": 685360
+			},
+			"text": " And the second one can be avoided by just making sure that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,360",
+				"to": "00:11:30,320"
+			},
+			"offsets": {
+				"from": 685360,
+				"to": 690320
+			},
+			"text": " updates to the storage layout and implementations is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,320",
+				"to": "00:11:32,640"
+			},
+			"offsets": {
+				"from": 690320,
+				"to": 692640
+			},
+			"text": " Always append."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,640",
+				"to": "00:11:36,720"
+			},
+			"offsets": {
+				"from": 692640,
+				"to": 696720
+			},
+			"text": " And something to consider, this is critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,720",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 696720,
+				"to": 698000
+			},
+			"text": " Multiple inheritance."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,560",
+				"to": "00:11:44,080"
+			},
+			"offsets": {
+				"from": 698560,
+				"to": 704080
+			},
+			"text": " Flattens your contracts so you cannot predict the storage layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,080",
+				"to": "00:11:49,520"
+			},
+			"offsets": {
+				"from": 704080,
+				"to": 709520
+			},
+			"text": " So you can add a new inherited contract to your super contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,520",
+				"to": "00:11:56,400"
+			},
+			"offsets": {
+				"from": 709520,
+				"to": 716400
+			},
+			"text": " And it can add like five new variables in an unpredicted part of the layout."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,400",
+				"to": "00:12:03,440"
+			},
+			"offsets": {
+				"from": 716400,
+				"to": 723440
+			},
+			"text": " So it becomes hard to detect when you have invalid storage mutations."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,440",
+				"to": "00:12:06,640"
+			},
+			"offsets": {
+				"from": 723440,
+				"to": 726640
+			},
+			"text": " And you need to use tooling if you use proxies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,200",
+				"to": "00:12:12,080"
+			},
+			"offsets": {
+				"from": 727200,
+				"to": 732080
+			},
+			"text": " I see a lot of people using proxies and not using tooling and it's not a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,080",
+				"to": "00:12:18,160"
+			},
+			"offsets": {
+				"from": 732080,
+				"to": 738160
+			},
+			"text": " And even if you detect them, and this is not something that tooling fixes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,160",
+				"to": "00:12:24,400"
+			},
+			"offsets": {
+				"from": 738160,
+				"to": 744400
+			},
+			"text": " it can be very hard to avoid the invalid mutation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,400",
+				"to": "00:12:29,040"
+			},
+			"offsets": {
+				"from": 744400,
+				"to": 749040
+			},
+			"text": " Like if you have an inherited contract and it causes this collision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,040",
+				"to": "00:12:31,520"
+			},
+			"offsets": {
+				"from": 749040,
+				"to": 751520
+			},
+			"text": " to avoid it, you have to do some weird stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,560",
+				"to": "00:12:39,040"
+			},
+			"offsets": {
+				"from": 752560,
+				"to": 759040
+			},
+			"text": " So why not use that technique of unstructuring on everything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,040",
+				"to": "00:12:45,200"
+			},
+			"offsets": {
+				"from": 759040,
+				"to": 765200
+			},
+			"text": " Not just the proxy storage, but the implementation storage definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,200",
+				"to": "00:12:50,720"
+			},
+			"offsets": {
+				"from": 765200,
+				"to": 770720
+			},
+			"text": " So here we have value holder before, the implementation before."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,720",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 770720,
+				"to": 776240
+			},
+			"text": " And the difference is that it uses the same technique that the proxy use"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:12:58,400"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 778400
+			},
+			"text": " and stores everything at 5,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,400",
+				"to": "00:13:00,720"
+			},
+			"offsets": {
+				"from": 778400,
+				"to": 780720
+			},
+			"text": " Everything else is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,520",
+				"to": "00:13:08,240"
+			},
+			"offsets": {
+				"from": 781520,
+				"to": 788240
+			},
+			"text": " So we deploy this, we connect it to our proxy, which we're not changing anymore because it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,240",
+				"to": "00:13:12,880"
+			},
+			"offsets": {
+				"from": 788240,
+				"to": 792880
+			},
+			"text": " We call set value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,880",
+				"to": "00:13:16,240"
+			},
+			"offsets": {
+				"from": 792880,
+				"to": 796240
+			},
+			"text": " It makes it delicate call to the implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,240",
+				"to": "00:13:24,400"
+			},
+			"offsets": {
+				"from": 796240,
+				"to": 804400
+			},
+			"text": " And we can see that we have the gray storage we're not using anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,400",
+				"to": "00:13:30,240"
+			},
+			"offsets": {
+				"from": 804400,
+				"to": 810240
+			},
+			"text": " We have the proxy storage namespace, let's say, there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,120",
+				"to": "00:13:36,800"
+			},
+			"offsets": {
+				"from": 811120,
+				"to": 816800
+			},
+			"text": " And the new implementation namespace here, and they don't collide, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,800",
+				"to": "00:13:41,920"
+			},
+			"offsets": {
+				"from": 816800,
+				"to": 821920
+			},
+			"text": " So we've unstructured the implementation storage right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,920",
+				"to": "00:13:45,600"
+			},
+			"offsets": {
+				"from": 821920,
+				"to": 825600
+			},
+			"text": " We're pretty happy with this proxy configuration."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,600",
+				"to": "00:13:54,640"
+			},
+			"offsets": {
+				"from": 825600,
+				"to": 834640
+			},
+			"text": " The context is kept at the proxy, and collisions are avoided using unstructured storage or storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,640",
+				"to": "00:13:56,320"
+			},
+			"offsets": {
+				"from": 834640,
+				"to": 836320
+			},
+			"text": " namespace absolutely everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:14:04,320"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 844320
+			},
+			"text": " Tooling should still be used to guarantee that there's no storage collision that you don't notice."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,320",
+				"to": "00:14:15,840"
+			},
+			"offsets": {
+				"from": 844320,
+				"to": 855840
+			},
+			"text": " But the thing is that this custom or manual use of storage makes storage layouts much easier to control."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,840",
+				"to": "00:14:27,200"
+			},
+			"offsets": {
+				"from": 855840,
+				"to": 867200
+			},
+			"text": " So now that we understand these basic principles of proxies, let's talk about what a multi-contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,200",
+				"to": "00:14:30,160"
+			},
+			"offsets": {
+				"from": 867200,
+				"to": 870160
+			},
+			"text": " system looks like in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,160",
+				"to": "00:14:38,400"
+			},
+			"offsets": {
+				"from": 870160,
+				"to": 878400
+			},
+			"text": " So there's no ideal standard solution for multi-contract systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,400",
+				"to": "00:14:42,960"
+			},
+			"offsets": {
+				"from": 878400,
+				"to": 882960
+			},
+			"text": " People often use registries, which is basically a contract that knows every other contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,960",
+				"to": "00:14:50,400"
+			},
+			"offsets": {
+				"from": 882960,
+				"to": 890400
+			},
+			"text": " and whenever contract A needs to talk to contract B, it needs to go to the registry and ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,400",
+				"to": "00:14:55,920"
+			},
+			"offsets": {
+				"from": 890400,
+				"to": 895920
+			},
+			"text": " \"Hey, I want to talk to B, who's B, he or he is B,\" and then it makes a call to contract B, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,920",
+				"to": "00:15:02,480"
+			},
+			"offsets": {
+				"from": 895920,
+				"to": 902480
+			},
+			"text": " And then B needs, if it's a sensitive operation, needs to say, \"Okay, who's calling me?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,480",
+				"to": "00:15:07,120"
+			},
+			"offsets": {
+				"from": 902480,
+				"to": 907120
+			},
+			"text": " A is A from the system, it asks the registry, the registry goes, \"Yes.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,120",
+				"to": "00:15:15,040"
+			},
+			"offsets": {
+				"from": 907120,
+				"to": 915040
+			},
+			"text": " And then, \"Okay, then you can perform this.\" It's complicated, and it gets messy pretty fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,040",
+				"to": "00:15:20,720"
+			},
+			"offsets": {
+				"from": 915040,
+				"to": 920720
+			},
+			"text": " So let's try a pretty crazy solution, which is we're calling it the router proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:30,400"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 930400
+			},
+			"text": " So we basically have a new contract, which is another contract that has one variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,400",
+				"to": "00:15:40,720"
+			},
+			"offsets": {
+				"from": 930400,
+				"to": 940720
+			},
+			"text": " It's called Cool Value, and it's also using this storage name space system instead of Solidity's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,720",
+				"to": "00:15:49,680"
+			},
+			"offsets": {
+				"from": 940720,
+				"to": 949680
+			},
+			"text": " like own storage layout thingy. But that's it. It just records a variable, right? It gets the store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,320",
+				"to": "00:16:01,280"
+			},
+			"offsets": {
+				"from": 950320,
+				"to": 961280
+			},
+			"text": " sets the store's value, and then it's an event. So we deploy it at 0x8, and then this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,280",
+				"to": "00:16:08,640"
+			},
+			"offsets": {
+				"from": 961280,
+				"to": 968640
+			},
+			"text": " tricky part, bear with me with this part, Bob uses tooling to build a router, right? So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,640",
+				"to": "00:16:17,440"
+			},
+			"offsets": {
+				"from": 968640,
+				"to": 977440
+			},
+			"text": " basically a table, right? It has the addresses of the two contracts, value holder and another"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,440",
+				"to": "00:16:30,640"
+			},
+			"offsets": {
+				"from": 977440,
+				"to": 990640
+			},
+			"text": " contract, hard-coded, and its fallback function basically has to do like this binary search algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,640",
+				"to": "00:16:37,040"
+			},
+			"offsets": {
+				"from": 990640,
+				"to": 997040
+			},
+			"text": " to determine which implementation has that function, right? Is it value holder or is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,040",
+				"to": "00:16:45,440"
+			},
+			"offsets": {
+				"from": 997040,
+				"to": 1005440
+			},
+			"text": " another contract, right? And it just checks the incoming selector and forwards it to the appropriate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,440",
+				"to": "00:16:52,240"
+			},
+			"offsets": {
+				"from": 1005440,
+				"to": 1012240
+			},
+			"text": " implementation, and that's it. And then it just makes the regular delegate call proxy forwarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,240",
+				"to": "00:17:02,720"
+			},
+			"offsets": {
+				"from": 1012240,
+				"to": 1022720
+			},
+			"text": " So this is deployed at 0x9, and then we set the router as the proxy's implementation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,720",
+				"to": "00:17:08,160"
+			},
+			"offsets": {
+				"from": 1022720,
+				"to": 1028160
+			},
+			"text": " 0x9 is the new implementation, and now we have this. We have the proxy over here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,960",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1028960,
+				"to": 1036000
+			},
+			"text": " we have the router over here, and we have the implementations over here, right? So when Bob calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:22,800"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1042800
+			},
+			"text": " set value 7, you don't, I don't think you guys see it, but it's calling set value 7 with the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,800",
+				"to": "00:17:31,760"
+			},
+			"offsets": {
+				"from": 1042800,
+				"to": 1051760
+			},
+			"text": " 7. It makes a delegate call to the router, and then another delegate call to the, to the, another"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,760",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1051760,
+				"to": 1058000
+			},
+			"text": " contract implementation, because the router figures out that the function set value is in that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,960",
+				"to": "00:17:44,160"
+			},
+			"offsets": {
+				"from": 1058960,
+				"to": 1064160
+			},
+			"text": " Let's keep in mind that the execution context is still the proxy. It doesn't matter how many"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,160",
+				"to": "00:17:58,080"
+			},
+			"offsets": {
+				"from": 1064160,
+				"to": 1078080
+			},
+			"text": " delegate calls you make, it will always be the entry point. So that works. It sets the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,080",
+				"to": "00:18:07,200"
+			},
+			"offsets": {
+				"from": 1078080,
+				"to": 1087200
+			},
+			"text": " contract's custom slot was 9,000, so it stores 7 right there. And the event is still"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,200",
+				"to": "00:18:13,440"
+			},
+			"offsets": {
+				"from": 1087200,
+				"to": 1093440
+			},
+			"text": " limited from the execution context. So if Bob wants to upgrade the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,440",
+				"to": "00:18:19,280"
+			},
+			"offsets": {
+				"from": 1093440,
+				"to": 1099280
+			},
+			"text": " all he needs to do, like here we're making a silly change, right? We're just multiplying the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,280",
+				"to": "00:18:31,680"
+			},
+			"offsets": {
+				"from": 1099280,
+				"to": 1111680
+			},
+			"text": " incoming value just by 7. This new, another contract, B2, is deployed at 0x10, and new router"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,680",
+				"to": "00:18:40,640"
+			},
+			"offsets": {
+				"from": 1111680,
+				"to": 1120640
+			},
+			"text": " is generated by the tooling. It just has, the only difference is up there in, in, another contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,640",
+				"to": "00:18:48,880"
+			},
+			"offsets": {
+				"from": 1120640,
+				"to": 1128880
+			},
+			"text": " has a new address, everything else is the same, and Bob sets the implementation of the proxy to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,880",
+				"to": "00:18:56,800"
+			},
+			"offsets": {
+				"from": 1128880,
+				"to": 1136800
+			},
+			"text": " that new router. So that's how you upgrade the, any contract in your system. So what would a more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,800",
+				"to": "00:19:04,240"
+			},
+			"offsets": {
+				"from": 1136800,
+				"to": 1144240
+			},
+			"text": " complex system look like? Maybe like this, you have the main proxy, right? You have the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,240",
+				"to": "00:19:09,680"
+			},
+			"offsets": {
+				"from": 1144240,
+				"to": 1149680
+			},
+			"text": " storage namespaces of that proxy, and then you have the router, which you keep changing every"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,680",
+				"to": "00:19:16,080"
+			},
+			"offsets": {
+				"from": 1149680,
+				"to": 1156080
+			},
+			"text": " time you upgrade the system, and you have the different modules that specify a particular behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,080",
+				"to": "00:19:23,280"
+			},
+			"offsets": {
+				"from": 1156080,
+				"to": 1163280
+			},
+			"text": " of your system. And then you have this thing, which is really cool, cool, because, called"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,280",
+				"to": "00:19:28,880"
+			},
+			"offsets": {
+				"from": 1163280,
+				"to": 1168880
+			},
+			"text": " mix-dense, because it allows intermodular communication in a way that we're going to see that's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,880",
+				"to": "00:19:39,360"
+			},
+			"offsets": {
+				"from": 1168880,
+				"to": 1179360
+			},
+			"text": " efficient and really easy. So yeah, we don't use any storage other than the execution context storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,360",
+				"to": "00:19:48,720"
+			},
+			"offsets": {
+				"from": 1179360,
+				"to": 1188720
+			},
+			"text": " Gas efficiency, it's like a concern with this pattern because you're doing two delay calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,720",
+				"to": "00:19:56,800"
+			},
+			"offsets": {
+				"from": 1190720,
+				"to": 1196800
+			},
+			"text": " Keep in mind that transparent proxy is the one's almost everyone uses, cost like 3000 gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,800",
+				"to": "00:20:06,640"
+			},
+			"offsets": {
+				"from": 1196800,
+				"to": 1206640
+			},
+			"text": " universal proxies about 1600, and this system uses only 2600 gas, which is all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,640",
+				"to": "00:20:14,960"
+			},
+			"offsets": {
+				"from": 1206640,
+				"to": 1214960
+			},
+			"text": " And then intermodular communications, how would a module talk to another module?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,600",
+				"to": "00:20:23,360"
+			},
+			"offsets": {
+				"from": 1215600,
+				"to": 1223360
+			},
+			"text": " You could cast your module as the other module and just call its function, because every module is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,360",
+				"to": "00:20:31,920"
+			},
+			"offsets": {
+				"from": 1223360,
+				"to": 1231920
+			},
+			"text": " the system. But the problem with this is that message sender would be lost, because it's a call."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,920",
+				"to": "00:20:41,200"
+			},
+			"offsets": {
+				"from": 1231920,
+				"to": 1241200
+			},
+			"text": " You break the delay call chain, right? So you need to delay call to the other module, just the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,200",
+				"to": "00:20:48,400"
+			},
+			"offsets": {
+				"from": 1241200,
+				"to": 1248400
+			},
+			"text": " like self-casting mechanism, but with delay call. It works, but there's something much better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,400",
+				"to": "00:20:54,160"
+			},
+			"offsets": {
+				"from": 1248400,
+				"to": 1254160
+			},
+			"text": " which is mix-ins, which are pieces of code that know how to interact with another module storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,160",
+				"to": "00:20:59,760"
+			},
+			"offsets": {
+				"from": 1254160,
+				"to": 1259760
+			},
+			"text": " They're like delegates for that particular part of the logic, right? And they're not deployed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,760",
+				"to": "00:21:04,240"
+			},
+			"offsets": {
+				"from": 1259760,
+				"to": 1264240
+			},
+			"text": " they're just inherited, it's like modulae inherits a bit of the code of module B."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,520",
+				"to": "00:21:14,400"
+			},
+			"offsets": {
+				"from": 1267520,
+				"to": 1274400
+			},
+			"text": " And the nice thing is that you can tell the mix-in to interact with the other module without even"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,400",
+				"to": "00:21:21,680"
+			},
+			"offsets": {
+				"from": 1274400,
+				"to": 1281680
+			},
+			"text": " making a call. So communication becomes super cheap. Let's see an example. We have owner storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,680",
+				"to": "00:21:28,800"
+			},
+			"offsets": {
+				"from": 1281680,
+				"to": 1288800
+			},
+			"text": " which just declares a struct with a single variable, that mechanism to get custom storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,800",
+				"to": "00:21:37,600"
+			},
+			"offsets": {
+				"from": 1288800,
+				"to": 1297600
+			},
+			"text": " slots. Then we have the owner mix-in, which knows that storage and only has an only owner modifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,600",
+				"to": "00:21:45,920"
+			},
+			"offsets": {
+				"from": 1297600,
+				"to": 1305920
+			},
+			"text": " that does the typical check, right? And then in owner module, we inherit the mix-in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,920",
+				"to": "00:21:53,920"
+			},
+			"offsets": {
+				"from": 1305920,
+				"to": 1313920
+			},
+			"text": " which gives us the only owner modifier access, right? And we have a getter for the owner."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,800",
+				"to": "00:22:03,040"
+			},
+			"offsets": {
+				"from": 1314800,
+				"to": 1323040
+			},
+			"text": " And now we have a new version of value holder B5, right? That has a single change, which is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,040",
+				"to": "00:22:09,520"
+			},
+			"offsets": {
+				"from": 1323040,
+				"to": 1329520
+			},
+			"text": " we're using the only owner modifier here from another module using the owner mix-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,520",
+				"to": "00:22:16,160"
+			},
+			"offsets": {
+				"from": 1329520,
+				"to": 1336160
+			},
+			"text": " If you want to use this, you only have to change your code style a little bit. It's kind of weird,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,160",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1336160,
+				"to": 1344000
+			},
+			"text": " but you get used to it fast because it's simple. You just need to use storage name spaces instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:32,160"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1352160
+			},
+			"text": " of regular variables. And yeah, you get used to it. Should Solidity do this under the hood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,160",
+				"to": "00:22:39,280"
+			},
+			"offsets": {
+				"from": 1352160,
+				"to": 1359280
+			},
+			"text": " there's a proposal from Maxam 4. So it is something that the Solidity team is considering."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,280",
+				"to": "00:22:44,080"
+			},
+			"offsets": {
+				"from": 1359280,
+				"to": 1364080
+			},
+			"text": " This could be a language supported feature to have a contract hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,080",
+				"to": "00:22:52,560"
+			},
+			"offsets": {
+				"from": 1364080,
+				"to": 1372560
+			},
+			"text": " And yeah, while you use the router, you don't have contract size limitations anymore because"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,560",
+				"to": "00:22:59,280"
+			},
+			"offsets": {
+				"from": 1372560,
+				"to": 1379280
+			},
+			"text": " you can just combine, like I think I tested it once with like 800 functions, which is pretty crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,280",
+				"to": "00:23:06,080"
+			},
+			"offsets": {
+				"from": 1379280,
+				"to": 1386080
+			},
+			"text": " It's like the router merges all the contracts into a single contract. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,080",
+				"to": "00:23:13,200"
+			},
+			"offsets": {
+				"from": 1386080,
+				"to": 1393200
+			},
+			"text": " then, as we just saw, we have good, easy communications between the models without having to use a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,200",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1393200,
+				"to": 1400000
+			},
+			"text": " registry or authentication or anything. It's ideal for complex experimental systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,040",
+				"to": "00:23:26,720"
+			},
+			"offsets": {
+				"from": 1401040,
+				"to": 1406720
+			},
+			"text": " And the other nice thing is that the router is, since the addresses are hard-coded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,720",
+				"to": "00:23:32,080"
+			},
+			"offsets": {
+				"from": 1406720,
+				"to": 1412080
+			},
+			"text": " it's very explicit. So it's good for governance. If you want to make an update to the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,080",
+				"to": "00:23:36,560"
+			},
+			"offsets": {
+				"from": 1412080,
+				"to": 1416560
+			},
+			"text": " you show your community like, this is what we're going to change. This is what the configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,560",
+				"to": "00:23:43,440"
+			},
+			"offsets": {
+				"from": 1416560,
+				"to": 1423440
+			},
+			"text": " of the system will look like. It's not hidden in some dynamic storage somewhere. It's right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,440",
+				"to": "00:23:52,160"
+			},
+			"offsets": {
+				"from": 1425440,
+				"to": 1432160
+			},
+			"text": " And yeah, that's why we're using it as a core component of synthetics B3, because it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,160",
+				"to": "00:23:58,320"
+			},
+			"offsets": {
+				"from": 1432160,
+				"to": 1438320
+			},
+			"text": " complex system that needs to not have all the complications of intermodular communications and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,320",
+				"to": "00:24:06,960"
+			},
+			"offsets": {
+				"from": 1438320,
+				"to": 1446960
+			},
+			"text": " all that. And well, if you want to try it out, it's a hard-help plugin. It's synthetics B3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,240",
+				"to": "00:24:17,520"
+			},
+			"offsets": {
+				"from": 1448240,
+				"to": 1457520
+			},
+			"text": " hard-hat router. It generates the router source. It manages storage namespaces for you. It"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,520",
+				"to": "00:24:23,360"
+			},
+			"offsets": {
+				"from": 1457520,
+				"to": 1463360
+			},
+			"text": " performs validations to ensure that there are no storage collisions. And that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,360",
+				"to": "00:24:27,840"
+			},
+			"offsets": {
+				"from": 1463360,
+				"to": 1467840
+			},
+			"text": " That's what the plugin does. So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,320",
+				"to": "00:24:43,920"
+			},
+			"offsets": {
+				"from": 1474320,
+				"to": 1483920
+			},
+			"text": " Thank you. Are there any questions? I just want to know if I'm missing something, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,920",
+				"to": "00:24:52,960"
+			},
+			"offsets": {
+				"from": 1483920,
+				"to": 1492960
+			},
+			"text": " this proxy router could be the same as the multifacet proxy, the diamond proxy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,960",
+				"to": "00:25:01,760"
+			},
+			"offsets": {
+				"from": 1492960,
+				"to": 1501760
+			},
+			"text": " but with the hard-coded implementations. Yes, I couldn't hear perfectly, but I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,760",
+				"to": "00:25:07,520"
+			},
+			"offsets": {
+				"from": 1501760,
+				"to": 1507520
+			},
+			"text": " you are asking about the diamond proxy, right? Yeah, yeah. This is based on the diamond proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,520",
+				"to": "00:25:15,360"
+			},
+			"offsets": {
+				"from": 1507520,
+				"to": 1515360
+			},
+			"text": " So it's the diamond proxy, but without getting the implementation from the storage, but instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,360",
+				"to": "00:25:21,840"
+			},
+			"offsets": {
+				"from": 1515360,
+				"to": 1521840
+			},
+			"text": " hard-coded in them basically. Some people are calling the diamond proxy a dynamic router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,840",
+				"to": "00:25:30,880"
+			},
+			"offsets": {
+				"from": 1521840,
+				"to": 1530880
+			},
+			"text": " and this one a static router. And we like this one because for our project, because it saves storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,880",
+				"to": "00:25:38,240"
+			},
+			"offsets": {
+				"from": 1530880,
+				"to": 1538240
+			},
+			"text": " weeks, because the values are hard-coded, and it's also more explicit. What we don't like about"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,240",
+				"to": "00:25:44,400"
+			},
+			"offsets": {
+				"from": 1538240,
+				"to": 1544400
+			},
+			"text": " diamonds is that if you're a community member or whatever, and you want to know what's the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,400",
+				"to": "00:25:51,360"
+			},
+			"offsets": {
+				"from": 1544400,
+				"to": 1551360
+			},
+			"text": " composition of the system, you need to query it a lot, right? Yeah, it's the same otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,360",
+				"to": "00:25:59,760"
+			},
+			"offsets": {
+				"from": 1551360,
+				"to": 1559760
+			},
+			"text": " Just one question. So you only use the sort of ints and addresses and stuff. What happens with"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,760",
+				"to": "00:26:06,640"
+			},
+			"offsets": {
+				"from": 1559760,
+				"to": 1566640
+			},
+			"text": " mappings and arrays in regards to storage collision? Sorry, can you repeat a bit louder? So if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,640",
+				"to": "00:26:15,920"
+			},
+			"offsets": {
+				"from": 1566640,
+				"to": 1575920
+			},
+			"text": " an array, does that affect storage collision? Well, if you declare your array or any dynamic type"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,920",
+				"to": "00:26:22,720"
+			},
+			"offsets": {
+				"from": 1575920,
+				"to": 1582720
+			},
+			"text": " inside of those storage namespace trucks, then solidities like regular storage layout"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,240",
+				"to": "00:26:31,920"
+			},
+			"offsets": {
+				"from": 1584240,
+				"to": 1591920
+			},
+			"text": " system is used, which uses unstructured storage under the hood. If you have a dynamic array,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,920",
+				"to": "00:26:39,520"
+			},
+			"offsets": {
+				"from": 1591920,
+				"to": 1599520
+			},
+			"text": " the position of that array, I think it's going to be a slot, say if it's 9,003, because it's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,520",
+				"to": "00:26:44,800"
+			},
+			"offsets": {
+				"from": 1599520,
+				"to": 1604800
+			},
+			"text": " third variable in your struct, the hash of that. So it's going to be some other random place."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,800",
+				"to": "00:26:52,400"
+			},
+			"offsets": {
+				"from": 1604800,
+				"to": 1612400
+			},
+			"text": " So it probabilistically, even though they're in the structs, some things are going to be spread"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,400",
+				"to": "00:26:58,800"
+			},
+			"offsets": {
+				"from": 1612400,
+				"to": 1618800
+			},
+			"text": " out, but the probability of a collision is very low and significant."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,800",
+				"to": "00:27:04,320"
+			},
+			"offsets": {
+				"from": 1618800,
+				"to": 1624320
+			},
+			"text": " So you mentioned a couple times that we should use tooling in order to check for storage collisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,320",
+				"to": "00:27:09,920"
+			},
+			"offsets": {
+				"from": 1624320,
+				"to": 1629920
+			},
+			"text": " What sort of tooling do you recommend contract developers use? Sorry, I can't hear really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,920",
+				"to": "00:27:15,200"
+			},
+			"offsets": {
+				"from": 1629920,
+				"to": 1635200
+			},
+			"text": " really well from here. I'm just going to stand there. Okay, so in your talk, you mentioned a"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,200",
+				"to": "00:27:20,080"
+			},
+			"offsets": {
+				"from": 1635200,
+				"to": 1640080
+			},
+			"text": " couple times that you should be using tooling in order to detect storage collisions. What sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,080",
+				"to": "00:27:22,800"
+			},
+			"offsets": {
+				"from": 1640080,
+				"to": 1642800
+			},
+			"text": " tooling should developers use in order to do these checks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,800",
+				"to": "00:27:30,960"
+			},
+			"offsets": {
+				"from": 1642800,
+				"to": 1650960
+			},
+			"text": " Sort of tools. Okay. Yeah, so if you're using open-sevolence proxies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,960",
+				"to": "00:27:39,360"
+			},
+			"offsets": {
+				"from": 1650960,
+				"to": 1659360
+			},
+			"text": " you should use their tooling. If you're using the router, as you can see, we didn't just offer"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,360",
+				"to": "00:27:45,440"
+			},
+			"offsets": {
+				"from": 1659360,
+				"to": 1665440
+			},
+			"text": " like a solution to generate the code, but we have a, it checks your storage layout of your entire"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,440",
+				"to": "00:27:51,440"
+			},
+			"offsets": {
+				"from": 1665440,
+				"to": 1671440
+			},
+			"text": " project. So in that case, you could use our code, right? So I would say always use the tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,440",
+				"to": "00:27:57,040"
+			},
+			"offsets": {
+				"from": 1671440,
+				"to": 1677040
+			},
+			"text": " of whoever is providing you the code, the smart contract code of the proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,040",
+				"to": "00:28:03,680"
+			},
+			"offsets": {
+				"from": 1677040,
+				"to": 1683680
+			},
+			"text": " Were there any attempts to solve this storage collision thing on the EVM or compiler level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,680",
+				"to": "00:28:08,640"
+			},
+			"offsets": {
+				"from": 1683680,
+				"to": 1688640
+			},
+			"text": " like to sandbox each contact, for example? I don't think there's a need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,800",
+				"to": "00:28:18,400"
+			},
+			"offsets": {
+				"from": 1690800,
+				"to": 1698400
+			},
+			"text": " The way solidity, like de-structures, arrays and mappings and all that, it's theoretically"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,400",
+				"to": "00:28:24,880"
+			},
+			"offsets": {
+				"from": 1698400,
+				"to": 1704880
+			},
+			"text": " impossible to get a collision. So there's no need to sandbox it. The problem with collisions is"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,880",
+				"to": "00:28:32,640"
+			},
+			"offsets": {
+				"from": 1704880,
+				"to": 1712640
+			},
+			"text": " when people use a design that's not supported at a language or at a protocol layer like the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,640",
+				"to": "00:28:43,520"
+			},
+			"offsets": {
+				"from": 1712640,
+				"to": 1723520
+			},
+			"text": " right? And they get collisions between two contracts, right? So I'm not aware of any attempt"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,520",
+				"to": "00:28:50,240"
+			},
+			"offsets": {
+				"from": 1723520,
+				"to": 1730240
+			},
+			"text": " at that level to avoid collisions. Is it possible to migrate an open-sevolence proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,240",
+				"to": "00:28:54,320"
+			},
+			"offsets": {
+				"from": 1730240,
+				"to": 1734320
+			},
+			"text": " to this one, their outer proxy or would we have to start from scratch?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,320",
+				"to": "00:29:00,720"
+			},
+			"offsets": {
+				"from": 1734320,
+				"to": 1740720
+			},
+			"text": " Code-wise, it's pretty much the same. You can use a new universal proxy as your entry point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,720",
+				"to": "00:29:09,120"
+			},
+			"offsets": {
+				"from": 1740720,
+				"to": 1749120
+			},
+			"text": " so you could probably just use that. And the migration is the crazy thing about this is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,120",
+				"to": "00:29:19,440"
+			},
+			"offsets": {
+				"from": 1749120,
+				"to": 1759440
+			},
+			"text": " the routing occurs at the implementation, right? So code-wise, you're okay. Then storage-wise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,440",
+				"to": "00:29:30,000"
+			},
+			"offsets": {
+				"from": 1759440,
+				"to": 1770000
+			},
+			"text": " you just need to probably choose new namespaces and populate the data, right? Or accept"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,640",
+				"to": "00:29:36,160"
+			},
+			"offsets": {
+				"from": 1770640,
+				"to": 1776160
+			},
+			"text": " that your modules are going to use existing storage, right? And make sure that new modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,160",
+				"to": "00:29:42,400"
+			},
+			"offsets": {
+				"from": 1776160,
+				"to": 1782400
+			},
+			"text": " declare like a new namespace or something. But yeah, sure, you can do it. Even if solidity like"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,400",
+				"to": "00:29:49,200"
+			},
+			"offsets": {
+				"from": 1782400,
+				"to": 1789200
+			},
+			"text": " makes this a language feature, you just stop using generic routers and deploy a solidity hub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,200",
+				"to": "00:29:52,720"
+			},
+			"offsets": {
+				"from": 1789200,
+				"to": 1792720
+			},
+			"text": " right? So it's completely future-proof, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,080",
+				"to": "00:30:02,080"
+			},
+			"offsets": {
+				"from": 1794080,
+				"to": 1802080
+			},
+			"text": " How standardize is proxy? Are you the only ones using it or is someone else using it in production?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,080",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1802080,
+				"to": 1808000
+			},
+			"text": " Doesn't mean first question. And the second question is, do you think it would be useful to"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:15,760"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1815760
+			},
+			"text": " have something like a public function in the proxy to share the signatures that are being used?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,760",
+				"to": "00:30:22,000"
+			},
+			"offsets": {
+				"from": 1815760,
+				"to": 1822000
+			},
+			"text": " So let's say a user or someone that wants to check what is being used doesn't have to dive"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,000",
+				"to": "00:30:30,640"
+			},
+			"offsets": {
+				"from": 1822000,
+				"to": 1830640
+			},
+			"text": " into the source code. Yep, so standards, not many. Right now, if you deploy this, you won't see"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,640",
+				"to": "00:30:36,160"
+			},
+			"offsets": {
+				"from": 1830640,
+				"to": 1836160
+			},
+			"text": " anything on Etherscan, for example. Etherscan doesn't know how to interpret a proxy that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,160",
+				"to": "00:30:41,920"
+			},
+			"offsets": {
+				"from": 1836160,
+				"to": 1841920
+			},
+			"text": " multiple implementations, which is unfortunate, but we're trying to solve that pretty fast. It"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,920",
+				"to": "00:30:50,640"
+			},
+			"offsets": {
+				"from": 1841920,
+				"to": 1850640
+			},
+			"text": " shouldn't be hard. And your second question, you would just add a module that adopts"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,280",
+				"to": "00:31:02,080"
+			},
+			"offsets": {
+				"from": 1851280,
+				"to": 1862080
+			},
+			"text": " ERC 165, is it? That just replies it has that function. I don't remember that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,080",
+				"to": "00:31:07,600"
+			},
+			"offsets": {
+				"from": 1862080,
+				"to": 1867600
+			},
+			"text": " was a function that gives you the entire interface of the whole system. Okay, that's it. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,600",
+				"to": "00:31:20,720"
+			},
+			"offsets": {
+				"from": 1867600,
+				"to": 1880720
+			},
+			"text": " [silence]"
+		}
+	]
+}

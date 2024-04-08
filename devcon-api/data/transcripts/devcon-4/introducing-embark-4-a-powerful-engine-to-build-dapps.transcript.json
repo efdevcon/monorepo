@@ -1,0 +1,2078 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,740"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6740
+			},
+			"text": " >> Hello, I'm Yuri. I'm the lead developer of the Embark framework by status. We're trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,740",
+				"to": "00:00:12,360"
+			},
+			"offsets": {
+				"from": 6740,
+				"to": 12360
+			},
+			"text": " to do a framework that makes it as easy as possible to develop decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,360",
+				"to": "00:00:17,040"
+			},
+			"offsets": {
+				"from": 12360,
+				"to": 17040
+			},
+			"text": " And I do mean decentralized applications in a true sense of the word. So, that's that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,040",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 17040,
+				"to": 25160
+			},
+			"text": " really used the entire decentralized stack that is currently available. And we're really"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 32120
+			},
+			"text": " excited to talk today about Embark 4. And we also have a few other surprises. First,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:37,960"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 37960
+			},
+			"text": " though, we'll just do a quick detour for Embark 3 and what happened this year. For those of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,960",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 37960,
+				"to": 45000
+			},
+			"text": " you that might not be familiar yet with Embark. So, this year, back in May, status announced"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:51,600"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 51600
+			},
+			"text": " that it was supporting Embark. And the team has grown a lot. We're not like seven members"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,600",
+				"to": "00:00:59,320"
+			},
+			"offsets": {
+				"from": 51600,
+				"to": 59320
+			},
+			"text": " full-time working on this. And so, first of all, Embark goes far beyond just the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,320",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 59320,
+				"to": 65600
+			},
+			"text": " contracts. It does support utility and other language like Viber and bamboo out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:12,440"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 72440
+			},
+			"text": " And you can even use them together if you want to. But it also supports Swarm, IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,440",
+				"to": "00:01:21,960"
+			},
+			"offsets": {
+				"from": 72440,
+				"to": 81960
+			},
+			"text": " whisper, and recently ENS has more components in the stack. And we can also add other technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,960",
+				"to": "00:01:29,040"
+			},
+			"offsets": {
+				"from": 81960,
+				"to": 89040
+			},
+			"text": " through the plugin API. And we work with some other projects to include, to add their projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,040",
+				"to": "00:01:39,640"
+			},
+			"offsets": {
+				"from": 89040,
+				"to": 99640
+			},
+			"text": " to Embark. So, the first big difference in Embark with other tools is that the contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,640",
+				"to": "00:01:44,680"
+			},
+			"offsets": {
+				"from": 99640,
+				"to": 104680
+			},
+			"text": " it describes the relationship between the contracts. So, instead of very complex, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,680",
+				"to": "00:01:51,240"
+			},
+			"offsets": {
+				"from": 104680,
+				"to": 111240
+			},
+			"text": " often spagaty like migrations, all you have to do is really describe how contracts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,240",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 111240,
+				"to": 116400
+			},
+			"text": " related to each other and what actions you might want to do once a contract is deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 125000
+			},
+			"text": " and other events. And Embark will automatically figure out what is the best way to deploy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,320"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130320
+			},
+			"text": " those contracts to reflect the state that you just described. And that's also effective"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,320",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 130320,
+				"to": 135800
+			},
+			"text": " if you change a particular contract, it will not deploy everything, it will deploy only"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:24,120"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 144120
+			},
+			"text": " what's actually needed to again reflect that particular configuration. So, stairs uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,120",
+				"to": "00:02:31,440"
+			},
+			"offsets": {
+				"from": 144120,
+				"to": 151440
+			},
+			"text": " Embark extensively, internally for DAPs and smart contracts. This is a more or less real"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,440",
+				"to": "00:02:40,960"
+			},
+			"offsets": {
+				"from": 151440,
+				"to": 160960
+			},
+			"text": " example. I modified a lot for the purposes of this presentation. But the first thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,960",
+				"to": "00:02:47,840"
+			},
+			"offsets": {
+				"from": 160960,
+				"to": 167840
+			},
+			"text": " is that there are environments. So, there's the special default environment, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,840",
+				"to": "00:02:53,360"
+			},
+			"offsets": {
+				"from": 167840,
+				"to": 173360
+			},
+			"text": " sort of environment that applies to every other environment. And then you can override"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,360",
+				"to": "00:02:59,080"
+			},
+			"offsets": {
+				"from": 173360,
+				"to": 179080
+			},
+			"text": " in a specific environment and in particular configurations that you might need. So, in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,080",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 179080,
+				"to": 186040
+			},
+			"text": " this case, there is this minimy token factory, which is already deployed on Robson. So, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:12,800"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 192800
+			},
+			"text": " define it there. So, when we deploy to Robson, it will take the configuration of default,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,800",
+				"to": "00:03:18,120"
+			},
+			"offsets": {
+				"from": 192800,
+				"to": 198120
+			},
+			"text": " merge it with Robson. And in that case, it will not try to redeploy Minitocon factory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,120",
+				"to": "00:03:26,680"
+			},
+			"offsets": {
+				"from": 198120,
+				"to": 206680
+			},
+			"text": " we'll just reuse that address. Then, here we can see there's a minimitocon factory is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,680",
+				"to": "00:03:33,480"
+			},
+			"offsets": {
+				"from": 206680,
+				"to": 213480
+			},
+			"text": " being passed as a string with a dollar sign. And this is special directive that it tells"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,480",
+				"to": "00:03:41,120"
+			},
+			"offsets": {
+				"from": 213480,
+				"to": 221120
+			},
+			"text": " Embark that this contract for this argument needs the address of this contract. So, Embark"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,120",
+				"to": "00:03:47,680"
+			},
+			"offsets": {
+				"from": 221120,
+				"to": 227680
+			},
+			"text": " with this knows that it first needs to deploy Minitocon factory or get the address. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,680",
+				"to": "00:03:55,200"
+			},
+			"offsets": {
+				"from": 227680,
+				"to": 235200
+			},
+			"text": " only then it should deploy this STT token. There's also other directives like Deployif,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,200",
+				"to": "00:04:00,040"
+			},
+			"offsets": {
+				"from": 235200,
+				"to": 240040
+			},
+			"text": " which will only deploy if a protocol condition is true. That can be something in JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,040",
+				"to": "00:04:07,360"
+			},
+			"offsets": {
+				"from": 240040,
+				"to": 247360
+			},
+			"text": " code or can be something in a contract. And you can also do multiple actions when a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,360",
+				"to": "00:04:11,520"
+			},
+			"offsets": {
+				"from": 247360,
+				"to": 251520
+			},
+			"text": " deploys. And there's other directives here, which I'm not really going to because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,520",
+				"to": "00:04:16,920"
+			},
+			"offsets": {
+				"from": 251520,
+				"to": 256920
+			},
+			"text": " a lot of them. There's things like after deploy and other directives. So, you can do a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,920",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 256920,
+				"to": 263320
+			},
+			"text": " of different configurations with this type of thing. And here's another example that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 269320
+			},
+			"text": " can also specify URI for a particular contract. This is very useful if you want to quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 275000
+			},
+			"text": " prototype something that needs a contract from open zappling. In this case, give it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:47,440"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 287440
+			},
+			"text": " You can specify URL or even a swarm URL or IPFS. That comes configuration by the ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,440",
+				"to": "00:04:52,680"
+			},
+			"offsets": {
+				"from": 287440,
+				"to": 292680
+			},
+			"text": " >> Yeah, I have a question. >> Okay, questions? We're asking them. Is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,680",
+				"to": "00:04:57,440"
+			},
+			"offsets": {
+				"from": 292680,
+				"to": 297440
+			},
+			"text": " there okay? All right. So, at that counts, by default, we will take the accounts on a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,440",
+				"to": "00:05:03,560"
+			},
+			"offsets": {
+				"from": 297440,
+				"to": 303560
+			},
+			"text": " connected node. However, you can specify -- there's a light wallet functionality which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,560",
+				"to": "00:05:09,480"
+			},
+			"offsets": {
+				"from": 303560,
+				"to": 309480
+			},
+			"text": " you can use to specify accounts and even set their balance. So, in this case, we define"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,480",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 309480,
+				"to": 315840
+			},
+			"text": " here two accounts. We use a private key, not want to use a mnemonic. And there's two"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 321600
+			},
+			"text": " examples that are possible. It perfectly don't put your private key in source control. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:27,320"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 327320
+			},
+			"text": " a good idea. And you can see there's a balance 5-eater which -- so, if you're in a development"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,320",
+				"to": "00:05:32,600"
+			},
+			"offsets": {
+				"from": 327320,
+				"to": 332600
+			},
+			"text": " chain or a test variant, we'll set that to 5-eater. Of course, this won't work on main"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,600",
+				"to": "00:05:43,520"
+			},
+			"offsets": {
+				"from": 332600,
+				"to": 343520
+			},
+			"text": " that. But it's just for development. And INS is -- so, INS in a bar gets considered"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,520",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 343520,
+				"to": 352000
+			},
+			"text": " another layer in the stack, which is the naming layer. INS seems to be the only working centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:00,400"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 360400
+			},
+			"text": " naming system. So, it's only one that's actually supported. And in the bar, when you are in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,400",
+				"to": "00:06:04,680"
+			},
+			"offsets": {
+				"from": 360400,
+				"to": 364680
+			},
+			"text": " development chain or in a private chain, in bar will automatically deploy and set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,680",
+				"to": "00:06:11,520"
+			},
+			"offsets": {
+				"from": 364680,
+				"to": 371520
+			},
+			"text": " the INS contracts so you can use them in your application. And this is how configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,520",
+				"to": "00:06:18,240"
+			},
+			"offsets": {
+				"from": 371520,
+				"to": 378240
+			},
+			"text": " might look like. So, in this case, when this is enabled and we are in the development chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,240",
+				"to": "00:06:24,760"
+			},
+			"offsets": {
+				"from": 378240,
+				"to": 384760
+			},
+			"text": " if I go to my DAP and resolve status that app, that will resolve to that address that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,760",
+				"to": "00:06:30,920"
+			},
+			"offsets": {
+				"from": 384760,
+				"to": 390920
+			},
+			"text": " is defined. And you can put a contract that you just deployed as one of those addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,920",
+				"to": "00:06:36,360"
+			},
+			"offsets": {
+				"from": 390920,
+				"to": 396360
+			},
+			"text": " If your DAP, then it's -- if you are -- I've been more connected to a non-chain like Robston"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,360",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 396360,
+				"to": 402400
+			},
+			"text": " or Mainnet, then it will just use the INS contracts that are already there. You will not try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 409680
+			},
+			"text": " redeploy them. All right. The tests -- so, there's a lot of functionality in the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:54,120"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 414120
+			},
+			"text": " They are quite flexible in the sense that you can use the same contract configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,120",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 414120,
+				"to": 419760
+			},
+			"text": " that we see within before. If you don't want that in one of the very, very pure unit tests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:05,880"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 425880
+			},
+			"text": " you can also do that just import the contract object and deploy them in before each or before"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,880",
+				"to": "00:07:12,760"
+			},
+			"offsets": {
+				"from": 425880,
+				"to": 432760
+			},
+			"text": " all. They are quite fast. They try -- there's like little tricks that the framework tries"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,760",
+				"to": "00:07:16,840"
+			},
+			"offsets": {
+				"from": 432760,
+				"to": 436840
+			},
+			"text": " to do. Like if you have any bark instance, you will actually connect it and instance and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,840",
+				"to": "00:07:22,240"
+			},
+			"offsets": {
+				"from": 436840,
+				"to": 442240
+			},
+			"text": " reuse a lot of the code that's already running. Like the might reuse the compiler or might"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,240",
+				"to": "00:07:28,200"
+			},
+			"offsets": {
+				"from": 442240,
+				"to": 448200
+			},
+			"text": " even reuse the node that you already have, which is much faster than putting a VM on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,200",
+				"to": "00:07:35,200"
+			},
+			"offsets": {
+				"from": 448200,
+				"to": 455200
+			},
+			"text": " the spot. It will display gas costs and it also supports code coverage out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,200",
+				"to": "00:07:39,760"
+			},
+			"offsets": {
+				"from": 455200,
+				"to": 459760
+			},
+			"text": " And there's a lot of functionality in the previous embark. We cannot really cover it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,760",
+				"to": "00:07:44,520"
+			},
+			"offsets": {
+				"from": 459760,
+				"to": 464520
+			},
+			"text": " here, but for instance, there's full support for our Webpack, so it makes it very easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,520",
+				"to": "00:07:53,120"
+			},
+			"offsets": {
+				"from": 464520,
+				"to": 473120
+			},
+			"text": " to do production builds of your DAP or so you can have very small file sizes, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,120",
+				"to": "00:07:59,760"
+			},
+			"offsets": {
+				"from": 473120,
+				"to": 479760
+			},
+			"text": " really handy when uploading to Switu Swarm, for instance. It supports already IP 1102."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,760",
+				"to": "00:08:05,200"
+			},
+			"offsets": {
+				"from": 479760,
+				"to": 485200
+			},
+			"text": " There's many templates ready to use, such as if you want to use a React template or you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,200",
+				"to": "00:08:11,560"
+			},
+			"offsets": {
+				"from": 485200,
+				"to": 491560
+			},
+			"text": " want to do a status DAP. There's also a plugin for that. And it can very easily create private"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,560",
+				"to": "00:08:15,720"
+			},
+			"offsets": {
+				"from": 491560,
+				"to": 495720
+			},
+			"text": " chains. So if you're with other developers and want to develop on the same chain, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,720",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 495720,
+				"to": 503000
+			},
+			"text": " also pretty simple to do. And there's a plugin API that allows you also to extend and completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:31,280"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 511280
+			},
+			"text": " change the functionality if you want to. In fact, embark itself is entirely a plugin based."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,280",
+				"to": "00:08:37,520"
+			},
+			"offsets": {
+				"from": 511280,
+				"to": 517520
+			},
+			"text": " So everything in it is implemented as a plugin. So if you want to add some other technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,520",
+				"to": "00:08:45,240"
+			},
+			"offsets": {
+				"from": 517520,
+				"to": 525240
+			},
+			"text": " or completely change, you can actually quite easily. So now embark for. So the team has"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,240",
+				"to": "00:08:54,920"
+			},
+			"offsets": {
+				"from": 525240,
+				"to": 534920
+			},
+			"text": " been working hard in this the last few months. And there's this feature in the embark tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,920",
+				"to": "00:09:02,160"
+			},
+			"offsets": {
+				"from": 534920,
+				"to": 542160
+			},
+			"text": " which is the transaction logger. And what this did and still does is when you do a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,160",
+				"to": "00:09:07,680"
+			},
+			"offsets": {
+				"from": 542160,
+				"to": 547680
+			},
+			"text": " in your DAP, so you're developing, you will show in the logs what contract you're calling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,680",
+				"to": "00:09:15,760"
+			},
+			"offsets": {
+				"from": 547680,
+				"to": 555760
+			},
+			"text": " what mattered, what parameters and all that information. In embark for now, it will also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,760",
+				"to": "00:09:23,280"
+			},
+			"offsets": {
+				"from": 555760,
+				"to": 563280
+			},
+			"text": " show why if a transaction fails, it will show you why and exactly what line caused that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,280",
+				"to": "00:09:31,720"
+			},
+			"offsets": {
+				"from": 563280,
+				"to": 571720
+			},
+			"text": " to fail. It will also show you the variables, values. So I can easily see why."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,720",
+				"to": "00:09:39,920"
+			},
+			"offsets": {
+				"from": 571720,
+				"to": 579920
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,920",
+				"to": "00:09:46,520"
+			},
+			"offsets": {
+				"from": 579920,
+				"to": 586520
+			},
+			"text": " We also include embark for a debugger. So if you type, you can either type debug in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,520",
+				"to": "00:09:51,600"
+			},
+			"offsets": {
+				"from": 586520,
+				"to": 591600
+			},
+			"text": " transaction or if you just type debug, then it will debug the last filling transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,600",
+				"to": "00:09:57,240"
+			},
+			"offsets": {
+				"from": 591600,
+				"to": 597240
+			},
+			"text": " So you can easily, you can quickly see, okay, what are the values of the variables? You"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,240",
+				"to": "00:10:07,840"
+			},
+			"offsets": {
+				"from": 597240,
+				"to": 607840
+			},
+			"text": " can do next, previous and other commands. We also include experimental DAP generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,840",
+				"to": "00:10:13,560"
+			},
+			"offsets": {
+				"from": 607840,
+				"to": 613560
+			},
+			"text": " And the idea of this is that you can give embark a contract and it will attempt to generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,560",
+				"to": "00:10:22,320"
+			},
+			"offsets": {
+				"from": 613560,
+				"to": 622320
+			},
+			"text": " a React app that works for that contract, which can be quite handy for prototyping. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,320",
+				"to": "00:10:33,640"
+			},
+			"offsets": {
+				"from": 622320,
+				"to": 633640
+			},
+			"text": " we went a level deeper and for particular cases, you can also just specify a model and it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,640",
+				"to": "00:10:39,160"
+			},
+			"offsets": {
+				"from": 633640,
+				"to": 639160
+			},
+			"text": " create the contract and the DAP based on the configuration that you did. So in the case"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,160",
+				"to": "00:10:45,120"
+			},
+			"offsets": {
+				"from": 639160,
+				"to": 645120
+			},
+			"text": " of this command, for instance, because that's picture IPFS, it knows that it has to put"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,120",
+				"to": "00:10:51,840"
+			},
+			"offsets": {
+				"from": 645120,
+				"to": 651840
+			},
+			"text": " the functionality to upload and display pictures, they should go to IPFS and the ash that gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,840",
+				"to": "00:11:02,360"
+			},
+			"offsets": {
+				"from": 651840,
+				"to": 662360
+			},
+			"text": " returned needs to be in the smart contract. Now embark as since version 2, I believe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,360",
+				"to": "00:11:10,440"
+			},
+			"offsets": {
+				"from": 662360,
+				"to": 670440
+			},
+			"text": " this dashboard and just be very clear this is not going away because we got typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,440",
+				"to": "00:11:20,680"
+			},
+			"offsets": {
+				"from": 670440,
+				"to": 680680
+			},
+			"text": " very good feedback on this. However, we're introducing now cockpit and this is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,680",
+				"to": "00:11:31,600"
+			},
+			"offsets": {
+				"from": 680680,
+				"to": 691600
+			},
+			"text": " a complementary but it launches a UI that you can access to interact with embark. So it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,600",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 691600,
+				"to": 697200
+			},
+			"text": " kind of takes that dashboard and puts it as a web UI. So you have the same things that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:42,560"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 702560
+			},
+			"text": " you had in the console from the services, you can see the deploy contract, but it's obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,560",
+				"to": "00:11:48,240"
+			},
+			"offsets": {
+				"from": 702560,
+				"to": 708240
+			},
+			"text": " much more interactive. So for example, in the console, oh yeah, we also have like light"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,240",
+				"to": "00:11:56,480"
+			},
+			"offsets": {
+				"from": 708240,
+				"to": 716480
+			},
+			"text": " team, dark team, depending on your preference, I prefer the dark. So the console, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,480",
+				"to": "00:12:01,760"
+			},
+			"offsets": {
+				"from": 716480,
+				"to": 721760
+			},
+			"text": " you have also suggested and it tries to recognize what you're doing and give the appropriate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,760",
+				"to": "00:12:06,400"
+			},
+			"offsets": {
+				"from": 721760,
+				"to": 726400
+			},
+			"text": " suggestion. So if you're using Web3, it kind of gives you a documentation on the spot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,400",
+				"to": "00:12:11,760"
+			},
+			"offsets": {
+				"from": 726400,
+				"to": 731760
+			},
+			"text": " what each of the suggestions are. If you're typing a contract address, it will give information"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,760",
+				"to": "00:12:18,520"
+			},
+			"offsets": {
+				"from": 731760,
+				"to": 738520
+			},
+			"text": " like where that contract is deployed, what is the type of the object. It also has a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,520",
+				"to": "00:12:26,040"
+			},
+			"offsets": {
+				"from": 738520,
+				"to": 746040
+			},
+			"text": " explorer. So it has pretty much typically everything you would expect to have from accounts, block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,040",
+				"to": "00:12:33,080"
+			},
+			"offsets": {
+				"from": 746040,
+				"to": 753080
+			},
+			"text": " transactions and the contracts as well, the contract that you have just deployed. It has"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,080",
+				"to": "00:12:41,040"
+			},
+			"offsets": {
+				"from": 753080,
+				"to": 761040
+			},
+			"text": " an editor and again, this is complementary. You can still use VIM or VS codes or for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,040",
+				"to": "00:12:50,320"
+			},
+			"offsets": {
+				"from": 761040,
+				"to": 770320
+			},
+			"text": " got for VED emacs. So when you open a contract file, you can immediately, you can interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,320",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 770320,
+				"to": 778000
+			},
+			"text": " with it in the IDE. You can see that you're in the sidebar. There's also, I thought the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:04,080"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 784080
+			},
+			"text": " screenshot might be missing, there's also a gas price estimator, which is useful for connecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,080",
+				"to": "00:13:09,680"
+			},
+			"offsets": {
+				"from": 784080,
+				"to": 789680
+			},
+			"text": " to a more public network. So you can see how fast the transactions can actually go and for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,680",
+				"to": "00:13:15,400"
+			},
+			"offsets": {
+				"from": 789680,
+				"to": 795400
+			},
+			"text": " what price. We also have the details in case you need an ABI or the bytecode to copy paste"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,400",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 795400,
+				"to": 801000
+			},
+			"text": " that. We also have the same transaction logger that I showed in the console. But in here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:27,080"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 807080
+			},
+			"text": " you can actually see what the transactions are done to that contract. And you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,080",
+				"to": "00:13:34,280"
+			},
+			"offsets": {
+				"from": 807080,
+				"to": 814280
+			},
+			"text": " filter them if you want to. You can filter by events. And you can also debug them. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,280",
+				"to": "00:13:40,360"
+			},
+			"offsets": {
+				"from": 814280,
+				"to": 820360
+			},
+			"text": " in the case of debugger, it will show you the contract global variables. You'll show the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,360",
+				"to": "00:13:45,520"
+			},
+			"offsets": {
+				"from": 820360,
+				"to": 825520
+			},
+			"text": " solidity variables as well as the local variables to that function. And you can step through"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,520",
+				"to": "00:13:54,160"
+			},
+			"offsets": {
+				"from": 825520,
+				"to": 834160
+			},
+			"text": " it, step in, break points, the whole thing. And there's also a browser preview that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,160",
+				"to": "00:14:01,400"
+			},
+			"offsets": {
+				"from": 834160,
+				"to": 841400
+			},
+			"text": " can use for more quick prototyping. So a good workflow in this would be, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,400",
+				"to": "00:14:07,440"
+			},
+			"offsets": {
+				"from": 841400,
+				"to": 847440
+			},
+			"text": " that by press the set value, I see in the transaction the set went in, maybe it broke."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,440",
+				"to": "00:14:16,120"
+			},
+			"offsets": {
+				"from": 847440,
+				"to": 856120
+			},
+			"text": " I press debug, go to debug, and I can then debug the contract and see what went wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,120",
+				"to": "00:14:23,760"
+			},
+			"offsets": {
+				"from": 856120,
+				"to": 863760
+			},
+			"text": " And we also introducing this deployment tool. So the idea here is that we, from speaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,760",
+				"to": "00:14:31,080"
+			},
+			"offsets": {
+				"from": 863760,
+				"to": 871080
+			},
+			"text": " to many of our users, we realized that a lot of people actually prefer to deploy directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,080",
+				"to": "00:14:39,880"
+			},
+			"offsets": {
+				"from": 871080,
+				"to": 879880
+			},
+			"text": " with MetaMask, typically with a browser ID and then deploy to MetaMask. Because sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,880",
+				"to": "00:14:43,400"
+			},
+			"offsets": {
+				"from": 879880,
+				"to": 883400
+			},
+			"text": " they don't feel very comfortable deploying from the command line. And because in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,400",
+				"to": "00:14:51,240"
+			},
+			"offsets": {
+				"from": 883400,
+				"to": 891240
+			},
+			"text": " case of more advanced tools like in Bork, it can do a lot of deployments. And when deploying"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,240",
+				"to": "00:14:56,720"
+			},
+			"offsets": {
+				"from": 891240,
+				"to": 896720
+			},
+			"text": " the mainnet, people need to have the confidence of what's actually happening. So here in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,720",
+				"to": "00:15:01,360"
+			},
+			"offsets": {
+				"from": 896720,
+				"to": 901360
+			},
+			"text": " with this option, in Bork will tell you what is the intended deploy order. And then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,360",
+				"to": "00:15:07,440"
+			},
+			"offsets": {
+				"from": 901360,
+				"to": 907440
+			},
+			"text": " can actually deploy semi manually one by one. And each time you deploy a contract manually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,440",
+				"to": "00:15:12,240"
+			},
+			"offsets": {
+				"from": 907440,
+				"to": 912240
+			},
+			"text": " you can interact with it, see if everything is okay, and then you can move to the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,240",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 912240,
+				"to": 923000
+			},
+			"text": " contract. So you can get more info in the Bork website at status.im. It's now available"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:31,120"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 931120
+			},
+			"text": " as an alpha. It's still on an alpha stage. So be careful. And we also intended to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,120",
+				"to": "00:15:36,040"
+			},
+			"offsets": {
+				"from": 931120,
+				"to": 936040
+			},
+			"text": " it available as a pure web application. If you're interested in that, you can go to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,040",
+				"to": "00:15:42,360"
+			},
+			"offsets": {
+				"from": 936040,
+				"to": 942360
+			},
+			"text": " Bork website and sign up in the mailing list and you will get an invite. And I just want"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,360",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 942360,
+				"to": 951000
+			},
+			"text": " to thank the Bork team and all our contributors that made all of this possible. And thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:55,560"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 955560
+			},
+			"text": " >> [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,560",
+				"to": "00:16:00,360"
+			},
+			"offsets": {
+				"from": 955560,
+				"to": 960360
+			},
+			"text": " >> The visual debioger, are you leveraging remix for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,360",
+				"to": "00:16:05,720"
+			},
+			"offsets": {
+				"from": 960360,
+				"to": 965720
+			},
+			"text": " >> Yep, we're using remix. >> So you're just reusing most of that library from remix?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,720",
+				"to": "00:16:15,360"
+			},
+			"offsets": {
+				"from": 965720,
+				"to": 975360
+			},
+			"text": " >> Yes, so remix, it's being basically refactoring into an API that you can use. And in Bork is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,360",
+				"to": "00:16:21,640"
+			},
+			"offsets": {
+				"from": 975360,
+				"to": 981640
+			},
+			"text": " leveraging that. So it has pretty much the same functionality as a remix."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,640",
+				"to": "00:16:30,640"
+			},
+			"offsets": {
+				"from": 981640,
+				"to": 990640
+			},
+			"text": " >> All right, thanks. >> Hi. So I understood that you provide a testing framework for off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,640",
+				"to": "00:16:38,600"
+			},
+			"offsets": {
+				"from": 990640,
+				"to": 998600
+			},
+			"text": " code. Does it work for solidity contracts too? And as an alternative, do you integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,600",
+				"to": "00:16:46,800"
+			},
+			"offsets": {
+				"from": 998600,
+				"to": 1006800
+			},
+			"text": " truffle or the whole suite? Truffle, drizzle and what's it called? Ganache, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,800",
+				"to": "00:16:57,120"
+			},
+			"offsets": {
+				"from": 1006800,
+				"to": 1017120
+			},
+			"text": " >> Can you read the first question? >> Yeah, in your presentation, you showed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,120",
+				"to": "00:17:02,240"
+			},
+			"offsets": {
+				"from": 1017120,
+				"to": 1022240
+			},
+			"text": " apparently you can write tests with Mbark. What do you test exactly? Do you test the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,240",
+				"to": "00:17:07,400"
+			},
+			"offsets": {
+				"from": 1022240,
+				"to": 1027400
+			},
+			"text": " contract code or do you test the off-chain code? So that's my first question. And if"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,400",
+				"to": "00:17:13,280"
+			},
+			"offsets": {
+				"from": 1027400,
+				"to": 1033280
+			},
+			"text": " it works for both, and if not, do you, for testing smart contract code, do you integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,280",
+				"to": "00:17:20,080"
+			},
+			"offsets": {
+				"from": 1033280,
+				"to": 1040080
+			},
+			"text": " truffle? >> Right. So it tests the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,080",
+				"to": "00:17:27,880"
+			},
+			"offsets": {
+				"from": 1040080,
+				"to": 1047880
+			},
+			"text": " That's, I mean, focus. It's actually a support solidity test. A truffle is like a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,880",
+				"to": "00:17:33,800"
+			},
+			"offsets": {
+				"from": 1047880,
+				"to": 1053800
+			},
+			"text": " framework and it does more more, a sub, it does like specifically just for the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,800",
+				"to": "00:17:38,920"
+			},
+			"offsets": {
+				"from": 1053800,
+				"to": 1058920
+			},
+			"text": " contracts. While this does the smart contract, so it is what you were describing like truffle"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,920",
+				"to": "00:17:46,280"
+			},
+			"offsets": {
+				"from": 1058920,
+				"to": 1066280
+			},
+			"text": " does, but it also focuses on the other components. And drizzle, I assume that's independent of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,280",
+				"to": "00:17:51,800"
+			},
+			"offsets": {
+				"from": 1066280,
+				"to": 1071800
+			},
+			"text": " truffle, so in that case, it should work. >> We got one right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,800",
+				"to": "00:18:00,440"
+			},
+			"offsets": {
+				"from": 1071800,
+				"to": 1080440
+			},
+			"text": " >> Hey, so when you were showing the configuration, you were showing some kind of hooks in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,440",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1080440,
+				"to": 1086000
+			},
+			"text": " JavaScript object, like on deploy and the string representing the code that it's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:11,400"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1091400
+			},
+			"text": " evaluated. My question is why don't you just use anonymous function with, you know, some"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,400",
+				"to": "00:18:18,760"
+			},
+			"offsets": {
+				"from": 1091400,
+				"to": 1098760
+			},
+			"text": " arguments and like you're doing it like Angular 1 style, like with this funny syntax."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,760",
+				"to": "00:18:25,760"
+			},
+			"offsets": {
+				"from": 1098760,
+				"to": 1105760
+			},
+			"text": " >> Oh, look, I took like a real configuration and then I thought, okay, what's missing here"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,760",
+				"to": "00:18:31,400"
+			},
+			"offsets": {
+				"from": 1105760,
+				"to": 1111400
+			},
+			"text": " that could be educational and I added, I didn't really think about, you know, that type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,400",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1111400,
+				"to": 1115960
+			},
+			"text": " stuff. The goal, if anything, before you confused people more, it was already a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:42,960"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1122960
+			},
+			"text": " config file. So, to answer your question for educational purposes, that's the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,960",
+				"to": "00:18:48,480"
+			},
+			"offsets": {
+				"from": 1122960,
+				"to": 1128480
+			},
+			"text": " >> Hi. >> Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,480",
+				"to": "00:18:54,240"
+			},
+			"offsets": {
+				"from": 1128480,
+				"to": 1134240
+			},
+			"text": " >> As a long time truffle and embark user, I've been waiting anxiously to see which framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,240",
+				"to": "00:19:01,160"
+			},
+			"offsets": {
+				"from": 1134240,
+				"to": 1141160
+			},
+			"text": " actually which JavaScript kind of version of the block chain, so Ganesha or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,160",
+				"to": "00:19:08,160"
+			},
+			"offsets": {
+				"from": 1141160,
+				"to": 1148160
+			},
+			"text": " embark powers up, is going to support default event reading, like when they happen in contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,160",
+				"to": "00:19:14,040"
+			},
+			"offsets": {
+				"from": 1148160,
+				"to": 1154040
+			},
+			"text": " without having to subscribe to them. So, are there any plans to have events tracked by"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,040",
+				"to": "00:19:19,880"
+			},
+			"offsets": {
+				"from": 1154040,
+				"to": 1159880
+			},
+			"text": " default from your smart contracts and shown in the block explorer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,880",
+				"to": "00:19:23,680"
+			},
+			"offsets": {
+				"from": 1159880,
+				"to": 1163680
+			},
+			"text": " >> So you mean actual, in a slightly different event, you don't mean like just transactions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,680",
+				"to": "00:19:28,560"
+			},
+			"offsets": {
+				"from": 1163680,
+				"to": 1168560
+			},
+			"text": " >> No, no, just actual events from the code without having to subscribe individually."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,560",
+				"to": "00:19:35,160"
+			},
+			"offsets": {
+				"from": 1168560,
+				"to": 1175160
+			},
+			"text": " >> I'll think about it because I feel there's some downsides to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,160",
+				"to": "00:19:40,040"
+			},
+			"offsets": {
+				"from": 1175160,
+				"to": 1180040
+			},
+			"text": " >> I know this is coming in the next version of Ganesh and I really hope you guys beat"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,040",
+				"to": "00:19:41,040"
+			},
+			"offsets": {
+				"from": 1180040,
+				"to": 1181040
+			},
+			"text": " them to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,040",
+				"to": "00:19:47,080"
+			},
+			"offsets": {
+				"from": 1181040,
+				"to": 1187080
+			},
+			"text": " >> Yeah, yeah, exactly what I was thinking. Yeah, because we do have the logger that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,080",
+				"to": "00:19:53,640"
+			},
+			"offsets": {
+				"from": 1187080,
+				"to": 1193640
+			},
+			"text": " can see the state. So doing that, it looks fairly trivial, misunderstanding some, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,640",
+				"to": "00:20:00,520"
+			},
+			"offsets": {
+				"from": 1193640,
+				"to": 1200520
+			},
+			"text": " yeah, so I didn't show really the, the, the, the, the, the contracts and you can, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,520",
+				"to": "00:20:04,680"
+			},
+			"offsets": {
+				"from": 1200520,
+				"to": 1204680
+			},
+			"text": " choose your contract and you can, yeah, you can interact with it, but I think this, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,680",
+				"to": "00:20:09,080"
+			},
+			"offsets": {
+				"from": 1204680,
+				"to": 1209080
+			},
+			"text": " could also add the state to it. So I think it's a good suggestion."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,080",
+				"to": "00:20:16,400"
+			},
+			"offsets": {
+				"from": 1209080,
+				"to": 1216400
+			},
+			"text": " >> So you support, ENS, you support IPFS, are you going to support IPNS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,400",
+				"to": "00:20:20,760"
+			},
+			"offsets": {
+				"from": 1216400,
+				"to": 1220760
+			},
+			"text": " >> We actually do support IPNS, I don't know, I didn't mention it, but we do support it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,760",
+				"to": "00:20:24,320"
+			},
+			"offsets": {
+				"from": 1220760,
+				"to": 1224320
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,320",
+				"to": "00:20:54,320"
+			},
+			"offsets": {
+				"from": 1224320,
+				"to": 1254320
+			},
+			"text": " >> Yeah."
+		}
+	]
+}

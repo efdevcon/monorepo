@@ -1,0 +1,2089 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:22,880"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 22880
+			},
+			"text": " So during this presentation, I'll speak about the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,880",
+				"to": "00:00:25,400"
+			},
+			"offsets": {
+				"from": 22880,
+				"to": 25400
+			},
+			"text": " Isoracle solution and some of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,400",
+				"to": "00:00:27,640"
+			},
+			"offsets": {
+				"from": 25400,
+				"to": 27640
+			},
+			"text": " that we have in the workings."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,640",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 27640,
+				"to": 31000
+			},
+			"text": " So given the circumstances, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:33,560"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 33560
+			},
+			"text": " are many smart contracts that need"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,560",
+				"to": "00:00:36,560"
+			},
+			"offsets": {
+				"from": 33560,
+				"to": 36560
+			},
+			"text": " to get external data, think about web APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,560",
+				"to": "00:00:39,720"
+			},
+			"offsets": {
+				"from": 36560,
+				"to": 39720
+			},
+			"text": " or from any data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,720",
+				"to": "00:00:42,320"
+			},
+			"offsets": {
+				"from": 39720,
+				"to": 42320
+			},
+			"text": " Still, decentralized networks like Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,320",
+				"to": "00:00:45,920"
+			},
+			"offsets": {
+				"from": 42320,
+				"to": 45920
+			},
+			"text": " have the inherent limitation in not being"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,920",
+				"to": "00:00:48,160"
+			},
+			"offsets": {
+				"from": 45920,
+				"to": 48160
+			},
+			"text": " able to reach out the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,160",
+				"to": "00:00:51,560"
+			},
+			"offsets": {
+				"from": 48160,
+				"to": 51560
+			},
+			"text": " So smart contracts live like in a wood garden,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,560",
+				"to": "00:00:55,360"
+			},
+			"offsets": {
+				"from": 51560,
+				"to": 55360
+			},
+			"text": " and they cannot simply open a socket and fetch external data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,360",
+				"to": "00:00:58,640"
+			},
+			"offsets": {
+				"from": 55360,
+				"to": 58640
+			},
+			"text": " So this is why there are many different solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,640",
+				"to": "00:01:03,440"
+			},
+			"offsets": {
+				"from": 58640,
+				"to": 63440
+			},
+			"text": " called as oracles to pull or push data, external data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,440",
+				"to": "00:01:04,760"
+			},
+			"offsets": {
+				"from": 63440,
+				"to": 64760
+			},
+			"text": " to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,760",
+				"to": "00:01:07,440"
+			},
+			"offsets": {
+				"from": 64760,
+				"to": 67440
+			},
+			"text": " So we'll focus during this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,440",
+				"to": "00:01:11,160"
+			},
+			"offsets": {
+				"from": 67440,
+				"to": 71160
+			},
+			"text": " on the first approach listed in this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,160",
+				"to": "00:01:13,960"
+			},
+			"offsets": {
+				"from": 71160,
+				"to": 73960
+			},
+			"text": " So this is the one used by Oracle Eyes, and as we speak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,960",
+				"to": "00:01:18,480"
+			},
+			"offsets": {
+				"from": 73960,
+				"to": 78480
+			},
+			"text": " this is the most widely used on the public blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,480",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 78480,
+				"to": 80840
+			},
+			"text": " So one of the pros of this approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:23,280"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 83280
+			},
+			"text": " is that it's fully transparent in the sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,280",
+				"to": "00:01:25,560"
+			},
+			"offsets": {
+				"from": 83280,
+				"to": 85560
+			},
+			"text": " that both the query and the results"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,560",
+				"to": "00:01:28,080"
+			},
+			"offsets": {
+				"from": 85560,
+				"to": 88080
+			},
+			"text": " are permanent restore on blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,080",
+				"to": "00:01:31,600"
+			},
+			"offsets": {
+				"from": 88080,
+				"to": 91600
+			},
+			"text": " Another advantage is that we can use any data source"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,600",
+				"to": "00:01:35,440"
+			},
+			"offsets": {
+				"from": 91600,
+				"to": 95440
+			},
+			"text": " available on the internet, so any web API potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,440",
+				"to": "00:01:38,400"
+			},
+			"offsets": {
+				"from": 95440,
+				"to": 98400
+			},
+			"text": " Since there is no need for them to adapt to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,400",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 98400,
+				"to": 100000
+			},
+			"text": " they have no knowledge of the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102120
+			},
+			"text": " and they don't have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:44,200"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 104200
+			},
+			"text": " And another advantage is that there"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,200",
+				"to": "00:01:46,440"
+			},
+			"offsets": {
+				"from": 104200,
+				"to": 106440
+			},
+			"text": " is no trust line open with the Oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,440",
+				"to": "00:01:49,720"
+			},
+			"offsets": {
+				"from": 106440,
+				"to": 109720
+			},
+			"text": " So the Oracle cannot simply tamper with the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,720",
+				"to": "00:01:53,360"
+			},
+			"offsets": {
+				"from": 109720,
+				"to": 113360
+			},
+			"text": " As with attestation, we can move the trust away"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,360",
+				"to": "00:01:55,680"
+			},
+			"offsets": {
+				"from": 113360,
+				"to": 115680
+			},
+			"text": " from the Oracle to attestators."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,680",
+				"to": "00:01:58,960"
+			},
+			"offsets": {
+				"from": 115680,
+				"to": 118960
+			},
+			"text": " We've seen a bit who these attestators are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,960",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 118960,
+				"to": 121240
+			},
+			"text": " So this is the logic flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:05,440"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 125440
+			},
+			"text": " What you have is a smart counter sitting on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,440",
+				"to": "00:02:08,840"
+			},
+			"offsets": {
+				"from": 125440,
+				"to": 128840
+			},
+			"text": " that can reach out the internet via Oracle Eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,840",
+				"to": "00:02:13,320"
+			},
+			"offsets": {
+				"from": 128840,
+				"to": 133320
+			},
+			"text": " The way they do so is simply by using the Oracle Eyes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,320",
+				"to": "00:02:15,240"
+			},
+			"offsets": {
+				"from": 133320,
+				"to": 135240
+			},
+			"text": " query function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,240",
+				"to": "00:02:18,160"
+			},
+			"offsets": {
+				"from": 135240,
+				"to": 138160
+			},
+			"text": " So this function essentially is an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,160",
+				"to": "00:02:20,760"
+			},
+			"offsets": {
+				"from": 138160,
+				"to": 140760
+			},
+			"text": " So our off-chain engine can listen to these events"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,760",
+				"to": "00:02:21,920"
+			},
+			"offsets": {
+				"from": 140760,
+				"to": 141920
+			},
+			"text": " and fulfill the request."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,920",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141920,
+				"to": 145000
+			},
+			"text": " So essentially, we are the one opening the connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 146920
+			},
+			"text": " with the remote web service."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:30,760"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 150760
+			},
+			"text": " We get a result along with what we call authenticity proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,760",
+				"to": "00:02:33,520"
+			},
+			"offsets": {
+				"from": 150760,
+				"to": 153520
+			},
+			"text": " and we send both of them back to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,520",
+				"to": "00:02:36,200"
+			},
+			"offsets": {
+				"from": 153520,
+				"to": 156200
+			},
+			"text": " So this is a synchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,200",
+				"to": "00:02:40,280"
+			},
+			"offsets": {
+				"from": 156200,
+				"to": 160280
+			},
+			"text": " And there are different approaches, actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,280",
+				"to": "00:02:43,480"
+			},
+			"offsets": {
+				"from": 160280,
+				"to": 163480
+			},
+			"text": " to implement these authenticity proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,480",
+				"to": "00:02:48,360"
+			},
+			"offsets": {
+				"from": 163480,
+				"to": 168360
+			},
+			"text": " So these authenticity proofs are cryptographic signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,360",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 168360,
+				"to": 172560
+			},
+			"text": " that can enable these smart contracts and any external auditor"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:55,200"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 175200
+			},
+			"text": " to verify that the data being provided by the Oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,200",
+				"to": "00:02:56,840"
+			},
+			"offsets": {
+				"from": 175200,
+				"to": 176840
+			},
+			"text": " has not been tampered with."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,840",
+				"to": "00:03:00,080"
+			},
+			"offsets": {
+				"from": 176840,
+				"to": 180080
+			},
+			"text": " And that the result that the smart contract is receiving"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,080",
+				"to": "00:03:04,840"
+			},
+			"offsets": {
+				"from": 180080,
+				"to": 184840
+			},
+			"text": " is really the one sent by the external data source."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,840",
+				"to": "00:03:07,640"
+			},
+			"offsets": {
+				"from": 184840,
+				"to": 187640
+			},
+			"text": " So the first one is based on an external project"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,640",
+				"to": "00:03:09,280"
+			},
+			"offsets": {
+				"from": 187640,
+				"to": 189280
+			},
+			"text": " called TLS Notary."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,280",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 189280,
+				"to": 193160
+			},
+			"text": " This is the only one available today on the Ethereum mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:15,320"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 195320
+			},
+			"text": " since September last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,320",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 195320,
+				"to": 197920
+			},
+			"text": " And the way it works just briefly is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:20,840"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 200840
+			},
+			"text": " that when the client, the client being"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,840",
+				"to": "00:03:25,360"
+			},
+			"offsets": {
+				"from": 200840,
+				"to": 205360
+			},
+			"text": " Oracle Eyes, initiate TLS session with a web service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,360",
+				"to": "00:03:32,080"
+			},
+			"offsets": {
+				"from": 205360,
+				"to": 212080
+			},
+			"text": " the client secret is split in ALF so that Oracle Eyes just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,080",
+				"to": "00:03:32,840"
+			},
+			"offsets": {
+				"from": 212080,
+				"to": 212840
+			},
+			"text": " has alphofit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,840",
+				"to": "00:03:34,640"
+			},
+			"offsets": {
+				"from": 212840,
+				"to": 214640
+			},
+			"text": " And the other ALF, the other ALF,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,640",
+				"to": "00:03:39,320"
+			},
+			"offsets": {
+				"from": 214640,
+				"to": 219320
+			},
+			"text": " is secured by a piece of code whose correct execution is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,320",
+				"to": "00:03:43,360"
+			},
+			"offsets": {
+				"from": 219320,
+				"to": 223360
+			},
+			"text": " ensured via the Amazon Web Service sandbox concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,360",
+				"to": "00:03:48,240"
+			},
+			"offsets": {
+				"from": 223360,
+				"to": 228240
+			},
+			"text": " So the way it works is that we get a cryptographic proof out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,240",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 228240,
+				"to": 232200
+			},
+			"text": " which doesn't prove that the data has not been tampered."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:55,400"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 235400
+			},
+			"text": " It just proves that there was some kind of cooperation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,400",
+				"to": "00:03:59,080"
+			},
+			"offsets": {
+				"from": 235400,
+				"to": 239080
+			},
+			"text": " between the notary server running on Amazon Web Service"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,080",
+				"to": "00:04:00,840"
+			},
+			"offsets": {
+				"from": 239080,
+				"to": 240840
+			},
+			"text": " and Oracle Eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,840",
+				"to": "00:04:04,720"
+			},
+			"offsets": {
+				"from": 240840,
+				"to": 244720
+			},
+			"text": " So this means that if you do trust Amazon being honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,720",
+				"to": "00:04:08,080"
+			},
+			"offsets": {
+				"from": 244720,
+				"to": 248080
+			},
+			"text": " then Oracle Eyes is being honest as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,080",
+				"to": "00:04:13,040"
+			},
+			"offsets": {
+				"from": 248080,
+				"to": 253040
+			},
+			"text": " So there is a trust in Amazon with Amazon being an attestator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,040",
+				"to": "00:04:16,680"
+			},
+			"offsets": {
+				"from": 253040,
+				"to": 256680
+			},
+			"text": " Another approach that we are presenting today--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,680",
+				"to": "00:04:20,680"
+			},
+			"offsets": {
+				"from": 256680,
+				"to": 260680
+			},
+			"text": " you can check out the paper that we are releasing this afternoon--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,680",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 260680,
+				"to": 262640
+			},
+			"text": " is based on a different approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 264720
+			},
+			"text": " So the first one, the TLS Notary one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:27,160"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 267160
+			},
+			"text": " is essentially a software attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,160",
+				"to": "00:04:29,520"
+			},
+			"offsets": {
+				"from": 267160,
+				"to": 269520
+			},
+			"text": " This one is an ABDR-backed one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,520",
+				"to": "00:04:31,560"
+			},
+			"offsets": {
+				"from": 269520,
+				"to": 271560
+			},
+			"text": " We call it Android Proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,560",
+				"to": "00:04:35,440"
+			},
+			"offsets": {
+				"from": 271560,
+				"to": 275440
+			},
+			"text": " And essentially, it does leverage two techniques--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,440",
+				"to": "00:04:36,080"
+			},
+			"offsets": {
+				"from": 275440,
+				"to": 276080
+			},
+			"text": " technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,080",
+				"to": "00:04:39,960"
+			},
+			"offsets": {
+				"from": 276080,
+				"to": 279960
+			},
+			"text": " The first one is QSE, which is the Qualcomm TEE,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,960",
+				"to": "00:04:45,040"
+			},
+			"offsets": {
+				"from": 279960,
+				"to": 285040
+			},
+			"text": " trusted execution environment solution, and Android SafetyNet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,040",
+				"to": "00:04:48,440"
+			},
+			"offsets": {
+				"from": 285040,
+				"to": 288440
+			},
+			"text": " So by using both of them, we can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,440",
+				"to": "00:04:52,600"
+			},
+			"offsets": {
+				"from": 288440,
+				"to": 292600
+			},
+			"text": " verify that there is an open source piece of code fetching"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,600",
+				"to": "00:04:54,360"
+			},
+			"offsets": {
+				"from": 292600,
+				"to": 294360
+			},
+			"text": " the data from the web service, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,360",
+				"to": "00:04:59,320"
+			},
+			"offsets": {
+				"from": 294360,
+				"to": 299320
+			},
+			"text": " is running in a secured, hardware-backed Android-based device."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,320",
+				"to": "00:05:03,920"
+			},
+			"offsets": {
+				"from": 299320,
+				"to": 303920
+			},
+			"text": " The third one that we are presenting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,920",
+				"to": "00:05:06,440"
+			},
+			"offsets": {
+				"from": 303920,
+				"to": 306440
+			},
+			"text": " is slightly different because it doesn't prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,440",
+				"to": "00:05:08,960"
+			},
+			"offsets": {
+				"from": 306440,
+				"to": 308960
+			},
+			"text": " that data has not been tampered with when fetching data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,960",
+				"to": "00:05:12,640"
+			},
+			"offsets": {
+				"from": 308960,
+				"to": 312640
+			},
+			"text": " from an external data source, but it's based on Intel SJX."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,640",
+				"to": "00:05:17,040"
+			},
+			"offsets": {
+				"from": 312640,
+				"to": 317040
+			},
+			"text": " So we have already seen it with the Criplet presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,040",
+				"to": "00:05:21,080"
+			},
+			"offsets": {
+				"from": 317040,
+				"to": 321080
+			},
+			"text": " Intel SJX, again, is capable of verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,080",
+				"to": "00:05:24,480"
+			},
+			"offsets": {
+				"from": 321080,
+				"to": 324480
+			},
+			"text": " that a given piece of code, a subset of C, essentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,480",
+				"to": "00:05:30,160"
+			},
+			"offsets": {
+				"from": 324480,
+				"to": 330160
+			},
+			"text": " is running in a secure Intel CPU-backed sandbox."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,160",
+				"to": "00:05:34,600"
+			},
+			"offsets": {
+				"from": 330160,
+				"to": 334600
+			},
+			"text": " And there is the inter-signature on the correct execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,600",
+				"to": "00:05:35,560"
+			},
+			"offsets": {
+				"from": 334600,
+				"to": 335560
+			},
+			"text": " of the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,560",
+				"to": "00:05:40,120"
+			},
+			"offsets": {
+				"from": 335560,
+				"to": 340120
+			},
+			"text": " So this process is essentially called enclave remote attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,120",
+				"to": "00:05:42,920"
+			},
+			"offsets": {
+				"from": 340120,
+				"to": 342920
+			},
+			"text": " and works via the Intel attestation service."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,920",
+				"to": "00:05:47,320"
+			},
+			"offsets": {
+				"from": 342920,
+				"to": 347320
+			},
+			"text": " And we use this to solve one of the very issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,320",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 347320,
+				"to": 349960
+			},
+			"text": " that we have seen in the last few days in many talks, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:54,720"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 354720
+			},
+			"text": " is the difficulty of getting reliable on chain random data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,720",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354720,
+				"to": 357000
+			},
+			"text": " random numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,320"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360320
+			},
+			"text": " So with a random data source that you can use via aroclize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,320",
+				"to": "00:06:02,320"
+			},
+			"offsets": {
+				"from": 360320,
+				"to": 362320
+			},
+			"text": " what you get out is a random number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,320",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 362320,
+				"to": 365480
+			},
+			"text": " which is generated by a low-level Intel SJX-backed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:06,480"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 366480
+			},
+			"text": " instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,480",
+				"to": "00:06:08,880"
+			},
+			"offsets": {
+				"from": 366480,
+				"to": 368880
+			},
+			"text": " And you can verify the correct execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,880",
+				"to": "00:06:13,880"
+			},
+			"offsets": {
+				"from": 368880,
+				"to": 373880
+			},
+			"text": " meaning that the random data was really random if you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,880",
+				"to": "00:06:16,760"
+			},
+			"offsets": {
+				"from": 373880,
+				"to": 376760
+			},
+			"text": " trust the Intel solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,760",
+				"to": "00:06:21,560"
+			},
+			"offsets": {
+				"from": 376760,
+				"to": 381560
+			},
+			"text": " So again, here, we have just seen two different attestators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,560",
+				"to": "00:06:26,560"
+			},
+			"offsets": {
+				"from": 381560,
+				"to": 386560
+			},
+			"text": " So Google or Qualcomm, if you want, and Intel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,560",
+				"to": "00:06:29,040"
+			},
+			"offsets": {
+				"from": 386560,
+				"to": 389040
+			},
+			"text": " So what we have seen so far with all these three"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,040",
+				"to": "00:06:33,120"
+			},
+			"offsets": {
+				"from": 389040,
+				"to": 393120
+			},
+			"text": " different authenticity proofs is attestation as a service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,120",
+				"to": "00:06:33,600"
+			},
+			"offsets": {
+				"from": 393120,
+				"to": 393600
+			},
+			"text": " essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,600",
+				"to": "00:06:38,160"
+			},
+			"offsets": {
+				"from": 393600,
+				"to": 398160
+			},
+			"text": " So different kind of software and hardware attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,160",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 398160,
+				"to": 401640
+			},
+			"text": " that we can use to move the trust away from the untrusted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:47,480"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 407480
+			},
+			"text": " small startup oracle, to a trusted entity, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,480",
+				"to": "00:06:48,880"
+			},
+			"offsets": {
+				"from": 407480,
+				"to": 408880
+			},
+			"text": " is a much bigger company."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,880",
+				"to": "00:06:52,360"
+			},
+			"offsets": {
+				"from": 408880,
+				"to": 412360
+			},
+			"text": " Of course, you don't want to trust a single corporation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,360",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 412360,
+				"to": 414000
+			},
+			"text": " But the assumption that we are making here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:01,840"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 421840
+			},
+			"text": " is that few trusted companies or attestators, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,840",
+				"to": "00:07:06,480"
+			},
+			"offsets": {
+				"from": 421840,
+				"to": 426480
+			},
+			"text": " are less likely to act all aspect actors"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,480",
+				"to": "00:07:11,520"
+			},
+			"offsets": {
+				"from": 426480,
+				"to": 431520
+			},
+			"text": " compared to a network of untrusted anonymous players."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,520",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 431520,
+				"to": 434360
+			},
+			"text": " So viaroclize, you can specify the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:15,880"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 435880
+			},
+			"text": " that you want to get out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,880",
+				"to": "00:07:20,560"
+			},
+			"offsets": {
+				"from": 435880,
+				"to": 440560
+			},
+			"text": " So the kind of authenticity proof that you want the oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,560",
+				"to": "00:07:24,240"
+			},
+			"offsets": {
+				"from": 440560,
+				"to": 444240
+			},
+			"text": " as infrastructure to generate to fetch this kind of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,240",
+				"to": "00:07:26,520"
+			},
+			"offsets": {
+				"from": 444240,
+				"to": 446520
+			},
+			"text": " And of course, you can specify more than one proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,520",
+				"to": "00:07:29,960"
+			},
+			"offsets": {
+				"from": 446520,
+				"to": 449960
+			},
+			"text": " So you can get the Android proof, the TLS not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,960",
+				"to": "00:07:32,320"
+			},
+			"offsets": {
+				"from": 449960,
+				"to": 452320
+			},
+			"text": " a proof, et cetera, on the same request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,320",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 452320,
+				"to": 456520
+			},
+			"text": " meaning that if all the proofs are valid and the result has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:39,800"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 459800
+			},
+			"text": " still been tampered with, it will mean that at the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,800",
+				"to": "00:07:45,040"
+			},
+			"offsets": {
+				"from": 459800,
+				"to": 465040
+			},
+			"text": " at the same exact time, Android, Qualcomm, Amazon, and Google"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,040",
+				"to": "00:07:50,400"
+			},
+			"offsets": {
+				"from": 465040,
+				"to": 470400
+			},
+			"text": " were all providing the same wrong data, which is pretty unlikely."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,400",
+				"to": "00:07:53,520"
+			},
+			"offsets": {
+				"from": 470400,
+				"to": 473520
+			},
+			"text": " So the last thing that we are presenting today"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,520",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473520,
+				"to": 477000
+			},
+			"text": " and that it's available in our documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:58,680"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 478680
+			},
+			"text": " is the off-chain computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,680",
+				"to": "00:08:02,440"
+			},
+			"offsets": {
+				"from": 478680,
+				"to": 482440
+			},
+			"text": " So this is yet another solution to the limitation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,440",
+				"to": "00:08:05,400"
+			},
+			"offsets": {
+				"from": 482440,
+				"to": 485400
+			},
+			"text": " the constraints of DVM, meaning that if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,400",
+				"to": "00:08:07,400"
+			},
+			"offsets": {
+				"from": 485400,
+				"to": 487400
+			},
+			"text": " to execute any piece of code, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,400",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 487400,
+				"to": 490520
+			},
+			"text": " want to reuse any library, external library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:12,960"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 492960
+			},
+			"text": " or if you have concerns related to the gas limit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,960",
+				"to": "00:08:15,480"
+			},
+			"offsets": {
+				"from": 492960,
+				"to": 495480
+			},
+			"text": " in some cases, you might want to delegate to an off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,480",
+				"to": "00:08:18,760"
+			},
+			"offsets": {
+				"from": 495480,
+				"to": 498760
+			},
+			"text": " context, the execution of this code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,760",
+				"to": "00:08:21,080"
+			},
+			"offsets": {
+				"from": 498760,
+				"to": 501080
+			},
+			"text": " And the approach that we follow here"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,080",
+				"to": "00:08:24,880"
+			},
+			"offsets": {
+				"from": 501080,
+				"to": 504880
+			},
+			"text": " is, again, the one based on attestation or so attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,880",
+				"to": "00:08:28,600"
+			},
+			"offsets": {
+				"from": 504880,
+				"to": 508600
+			},
+			"text": " And what we do, essentially, is extending the base Amazon"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,600",
+				"to": "00:08:31,960"
+			},
+			"offsets": {
+				"from": 508600,
+				"to": 511960
+			},
+			"text": " web service sandbox concept introduced by TLS notary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,960",
+				"to": "00:08:34,920"
+			},
+			"offsets": {
+				"from": 511960,
+				"to": 514920
+			},
+			"text": " And with this extended concept, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,920",
+				"to": "00:08:40,720"
+			},
+			"offsets": {
+				"from": 514920,
+				"to": 520720
+			},
+			"text": " can execute in a safe Amazon web service backed lockdown"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,720",
+				"to": "00:08:42,760"
+			},
+			"offsets": {
+				"from": 520720,
+				"to": 522760
+			},
+			"text": " instance any piece of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,760",
+				"to": "00:08:45,400"
+			},
+			"offsets": {
+				"from": 522760,
+				"to": 525400
+			},
+			"text": " And you can get out on an authenticity proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,400",
+				"to": "00:08:48,680"
+			},
+			"offsets": {
+				"from": 525400,
+				"to": 528680
+			},
+			"text": " So this authenticity proof can be verified by anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,680",
+				"to": "00:08:54,120"
+			},
+			"offsets": {
+				"from": 528680,
+				"to": 534120
+			},
+			"text": " And the way it works is that you define a receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,120",
+				"to": "00:08:56,880"
+			},
+			"offsets": {
+				"from": 534120,
+				"to": 536880
+			},
+			"text": " So there is an example here using, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,880",
+				"to": "00:08:58,800"
+			},
+			"offsets": {
+				"from": 536880,
+				"to": 538800
+			},
+			"text": " the Python NumPy library."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,800",
+				"to": "00:09:01,320"
+			},
+			"offsets": {
+				"from": 538800,
+				"to": 541320
+			},
+			"text": " And we can get a result out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,320",
+				"to": "00:09:03,880"
+			},
+			"offsets": {
+				"from": 541320,
+				"to": 543880
+			},
+			"text": " We distribute it over IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,880",
+				"to": "00:09:08,320"
+			},
+			"offsets": {
+				"from": 543880,
+				"to": 548320
+			},
+			"text": " And in the Oracle I-squery, we specify as data source"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,320",
+				"to": "00:09:11,160"
+			},
+			"offsets": {
+				"from": 548320,
+				"to": 551160
+			},
+			"text": " the computation metadata source."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,160",
+				"to": "00:09:16,600"
+			},
+			"offsets": {
+				"from": 551160,
+				"to": 556600
+			},
+			"text": " And as query, we specify the IPFS mutiash."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,600",
+				"to": "00:09:21,360"
+			},
+			"offsets": {
+				"from": 556600,
+				"to": 561360
+			},
+			"text": " So what happens is that Oracle is that does initiate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,360",
+				"to": "00:09:24,720"
+			},
+			"offsets": {
+				"from": 561360,
+				"to": 564720
+			},
+			"text": " the secure instance, generate the honesty proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,720",
+				"to": "00:09:26,960"
+			},
+			"offsets": {
+				"from": 564720,
+				"to": 566960
+			},
+			"text": " And the verification steps are essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,960",
+				"to": "00:09:31,080"
+			},
+			"offsets": {
+				"from": 566960,
+				"to": 571080
+			},
+			"text": " based on an extended verification of the authenticity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,080",
+				"to": "00:09:35,080"
+			},
+			"offsets": {
+				"from": 571080,
+				"to": 575080
+			},
+			"text": " proofs that I've just explained before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,080",
+				"to": "00:09:37,780"
+			},
+			"offsets": {
+				"from": 575080,
+				"to": 577780
+			},
+			"text": " So what you get out is the proof that the result is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,780",
+				"to": "00:09:40,840"
+			},
+			"offsets": {
+				"from": 577780,
+				"to": 580840
+			},
+			"text": " coming from a correct execution in an off-chain context"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,840",
+				"to": "00:09:43,400"
+			},
+			"offsets": {
+				"from": 580840,
+				"to": 583400
+			},
+			"text": " of a single instance of this piece of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,400",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 583400,
+				"to": 588000
+			},
+			"text": " So there is not anymore this challenge game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:54,440"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 594440
+			},
+			"text": " but it's more like an auditor-based approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,440",
+				"to": "00:09:55,960"
+			},
+			"offsets": {
+				"from": 594440,
+				"to": 595960
+			},
+			"text": " So thank you all for the attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,960",
+				"to": "00:09:59,360"
+			},
+			"offsets": {
+				"from": 595960,
+				"to": 599360
+			},
+			"text": " And I will be around so come find me if you have any question."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,360",
+				"to": "00:10:01,360"
+			},
+			"offsets": {
+				"from": 599360,
+				"to": 601360
+			},
+			"text": " We are looking for feedbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,360",
+				"to": "00:10:04,280"
+			},
+			"offsets": {
+				"from": 601360,
+				"to": 604280
+			},
+			"text": " And we are releasing, as I said, the Android paper later"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,280",
+				"to": "00:10:05,040"
+			},
+			"offsets": {
+				"from": 604280,
+				"to": 605040
+			},
+			"text": " today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,040",
+				"to": "00:10:07,280"
+			},
+			"offsets": {
+				"from": 605040,
+				"to": 607280
+			},
+			"text": " So please give us some feedbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,280",
+				"to": "00:10:10,280"
+			},
+			"offsets": {
+				"from": 607280,
+				"to": 610280
+			},
+			"text": " And thank you for the attention again."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,280",
+				"to": "00:10:12,040"
+			},
+			"offsets": {
+				"from": 610280,
+				"to": 612040
+			},
+			"text": " Thank you very much, Thomas."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,040",
+				"to": "00:10:15,400"
+			},
+			"offsets": {
+				"from": 612040,
+				"to": 615400
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,400",
+				"to": "00:10:17,980"
+			},
+			"offsets": {
+				"from": 615400,
+				"to": 617980
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,980",
+				"to": "00:10:20,560"
+			},
+			"offsets": {
+				"from": 617980,
+				"to": 620560
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

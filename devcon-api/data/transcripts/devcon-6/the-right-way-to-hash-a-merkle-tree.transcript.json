@@ -1,0 +1,2925 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12800
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,800",
+				"to": "00:00:15,880"
+			},
+			"offsets": {
+				"from": 12800,
+				"to": 15880
+			},
+			"text": " So let me tell you what Shah 256 is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,880",
+				"to": "00:00:18,800"
+			},
+			"offsets": {
+				"from": 15880,
+				"to": 18800
+			},
+			"text": " The Shah, the Hashing Library is something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,800",
+				"to": "00:00:21,040"
+			},
+			"offsets": {
+				"from": 18800,
+				"to": 21040
+			},
+			"text": " generically just takes any message, any"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,040",
+				"to": "00:00:25,200"
+			},
+			"offsets": {
+				"from": 21040,
+				"to": 25200
+			},
+			"text": " an arbitrary length message in a sequence of bits"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,200",
+				"to": "00:00:27,600"
+			},
+			"offsets": {
+				"from": 25200,
+				"to": 27600
+			},
+			"text": " of any length and it just fits out"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:32,080"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 32080
+			},
+			"text": " of that 32 bytes. The digest of this thing is 256 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,080",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 32080,
+				"to": 35280
+			},
+			"text": " The procedure to go through those consists of three parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 38560
+			},
+			"text": " So I'll just go over the three parts. The first part is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:42,640"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 42640
+			},
+			"text": " breaking your message into multiples of 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,640",
+				"to": "00:00:47,040"
+			},
+			"offsets": {
+				"from": 42640,
+				"to": 47040
+			},
+			"text": " So those are the chunks, 512 bits. The second part consists on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,040",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 47040,
+				"to": 51840
+			},
+			"text": " scheduling words, computing a bunch of double words which are 4 bytes each."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:55,440"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 55440
+			},
+			"text": " And the third part consists on performing a bunch of rounds"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,440",
+				"to": "00:00:58,080"
+			},
+			"offsets": {
+				"from": 55440,
+				"to": 58080
+			},
+			"text": " which is just the function that actually does the Hashing itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,080",
+				"to": "00:01:01,840"
+			},
+			"offsets": {
+				"from": 58080,
+				"to": 61840
+			},
+			"text": " The function that is not inverted. Here's just a brief"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,840",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61840,
+				"to": 66000
+			},
+			"text": " description of this slide I just stole from somewhere in the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,240"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70240
+			},
+			"text": " But I want to go in some detail in each one of the three parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,240",
+				"to": "00:01:15,040"
+			},
+			"offsets": {
+				"from": 70240,
+				"to": 75040
+			},
+			"text": " So let's start with the easiest one which is scheduling words."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,040",
+				"to": "00:01:18,720"
+			},
+			"offsets": {
+				"from": 75040,
+				"to": 78720
+			},
+			"text": " So scheduling words as you see here, you're giving a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,720",
+				"to": "00:01:21,920"
+			},
+			"offsets": {
+				"from": 78720,
+				"to": 81920
+			},
+			"text": " let's suppose that we've already broken the message in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,920",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 81920,
+				"to": 84960
+			},
+			"text": " pieces. Each one of them is 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:29,760"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 89760
+			},
+			"text": " So the first thing you do is you compute 48 double words"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,760",
+				"to": "00:01:34,240"
+			},
+			"offsets": {
+				"from": 89760,
+				"to": 94240
+			},
+			"text": " 4 bytes each. The first unit 64 in total, the first 16"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,240",
+				"to": "00:01:37,440"
+			},
+			"offsets": {
+				"from": 94240,
+				"to": 97440
+			},
+			"text": " are your message, are the 64 bytes that you're giving."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,440",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 97440,
+				"to": 102000
+			},
+			"text": " These are 16 words. With those 16 words you can compute the next 16 words"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:45,600"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 105600
+			},
+			"text": " and with those 16 words that you just computed, you can compute the next ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,600",
+				"to": "00:01:48,640"
+			},
+			"offsets": {
+				"from": 105600,
+				"to": 108640
+			},
+			"text": " and the next one and you computed the 64 that you need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,640",
+				"to": "00:01:51,200"
+			},
+			"offsets": {
+				"from": 108640,
+				"to": 111200
+			},
+			"text": " And the important thing that you need to remember from this slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:55,680"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 115680
+			},
+			"text": " is that to compute those scheduled words, the only thing that you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,680",
+				"to": "00:02:01,680"
+			},
+			"offsets": {
+				"from": 115680,
+				"to": 121680
+			},
+			"text": " is the previous words, nothing else. That means that when you're scheduling"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,680",
+				"to": "00:02:06,720"
+			},
+			"offsets": {
+				"from": 121680,
+				"to": 126720
+			},
+			"text": " words, well I think the consensus people are starting to come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,720",
+				"to": "00:02:11,360"
+			},
+			"offsets": {
+				"from": 126720,
+				"to": 131360
+			},
+			"text": " Anyways, I've already started guys. So when you're scheduling words, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,360",
+				"to": "00:02:15,920"
+			},
+			"offsets": {
+				"from": 131360,
+				"to": 135920
+			},
+			"text": " important thing is that you don't need to know the previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,920",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135920,
+				"to": 140000
+			},
+			"text": " state of the Hashing. You only need to know what were the previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:24,320"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 144320
+			},
+			"text": " scheduled words. In particular, it only depends on the chunk"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,320",
+				"to": "00:02:27,280"
+			},
+			"offsets": {
+				"from": 144320,
+				"to": 147280
+			},
+			"text": " that you're hashing now and it doesn't depend on the other chunks that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,280",
+				"to": "00:02:30,720"
+			},
+			"offsets": {
+				"from": 147280,
+				"to": 150720
+			},
+			"text": " going to hash. So if your message consists of 10,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,720",
+				"to": "00:02:34,240"
+			},
+			"offsets": {
+				"from": 150720,
+				"to": 154240
+			},
+			"text": " chunks, you can compute the scheduled words for the 10"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,240",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 154240,
+				"to": 158800
+			},
+			"text": " times in chunks without caring about how you would hash each one of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 162800
+			},
+			"text": " and without caring about the rounds part. So scheduling words only requires the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:47,360"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 167360
+			},
+			"text": " previously scheduled words. So the diagram there is taken out of an"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,360",
+				"to": "00:02:52,080"
+			},
+			"offsets": {
+				"from": 167360,
+				"to": 172080
+			},
+			"text": " Intel paper describing what were two new instructions that do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,080",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 172080,
+				"to": 175600
+			},
+			"text": " scheduling of four words at a time with only two instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:02:59,840"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 179840
+			},
+			"text": " This can be done now on modern CPUs and this is just a sketch that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,840",
+				"to": "00:03:03,760"
+			},
+			"offsets": {
+				"from": 179840,
+				"to": 183760
+			},
+			"text": " how diagrammatically you compute four words at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,760",
+				"to": "00:03:07,360"
+			},
+			"offsets": {
+				"from": 183760,
+				"to": 187360
+			},
+			"text": " But this is relevant, the method that you use to compute those scheduled words."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,360",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 187360,
+				"to": 190960
+			},
+			"text": " What I want you to remember is that to compute them, you need to know the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:15,040"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 195040
+			},
+			"text": " previous words and nothing else. Rounds, we don't care about what rounds"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,040",
+				"to": "00:03:17,680"
+			},
+			"offsets": {
+				"from": 195040,
+				"to": 197680
+			},
+			"text": " it. We only care that it's a function that is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,680",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 197680,
+				"to": 200400
+			},
+			"text": " invertible, that it's hard, that it's computationally hard to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:23,440"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 203440
+			},
+			"text": " invert. But the important thing that we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,440",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 203440,
+				"to": 208160
+			},
+			"text": " remember is this. We already, we're giving the message, we broke it into"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:30,560"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 210560
+			},
+			"text": " pieces of 64 bytes that I haven't told you how."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,560",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 210560,
+				"to": 216720
+			},
+			"text": " We computed those scheduled words that we need and then what we do is we pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:40,320"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 220320
+			},
+			"text": " an incoming digest. If it's the very first chunk that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,320",
+				"to": "00:03:44,720"
+			},
+			"offsets": {
+				"from": 220320,
+				"to": 224720
+			},
+			"text": " slashing, we pass a constant digest that the method has."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,720",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224720,
+				"to": 230000
+			},
+			"text": " If it's the third chunk, you're going to pass the hash that the second chunk"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:52,640"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 232640
+			},
+			"text": " produced. The point is that you have a status,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,640",
+				"to": "00:03:56,960"
+			},
+			"offsets": {
+				"from": 232640,
+				"to": 236960
+			},
+			"text": " which is your current hash, and you pass it through this function that takes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,960",
+				"to": "00:04:02,080"
+			},
+			"offsets": {
+				"from": 236960,
+				"to": 242080
+			},
+			"text": " this status, the hash, the 32 bytes, it takes one of the scheduled words that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,080",
+				"to": "00:04:05,840"
+			},
+			"offsets": {
+				"from": 242080,
+				"to": 245840
+			},
+			"text": " you computed and it takes another constant word that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,840",
+				"to": "00:04:10,400"
+			},
+			"offsets": {
+				"from": 245840,
+				"to": 250400
+			},
+			"text": " protocol has. It takes this data and it produces for you a new hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,400",
+				"to": "00:04:14,080"
+			},
+			"offsets": {
+				"from": 250400,
+				"to": 254080
+			},
+			"text": " What do you need to remember from this is that you need to have computed at"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,080",
+				"to": "00:04:18,240"
+			},
+			"offsets": {
+				"from": 254080,
+				"to": 258240
+			},
+			"text": " least that scheduled word before passing through the rounds"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,240",
+				"to": "00:04:22,960"
+			},
+			"offsets": {
+				"from": 258240,
+				"to": 262960
+			},
+			"text": " and you cannot do this in parallel. To pass through the round, you need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,960",
+				"to": "00:04:26,160"
+			},
+			"offsets": {
+				"from": 262960,
+				"to": 266160
+			},
+			"text": " have computed already the hash before. This is something that you cannot do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,160",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 266160,
+				"to": 270720
+			},
+			"text": " in parallel. The padding block. This is the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 276880
+			},
+			"text": " part of the three process which is breaking the message into multiple 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:42,480"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 282480
+			},
+			"text": " How do you do this? Well, you just break your message into multiple of 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,480",
+				"to": "00:04:47,200"
+			},
+			"offsets": {
+				"from": 282480,
+				"to": 287200
+			},
+			"text": " You add one bit at the very end of the message, just to signal"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,200",
+				"to": "00:04:51,680"
+			},
+			"offsets": {
+				"from": 287200,
+				"to": 291680
+			},
+			"text": " this message has ended. So here the message is less than 64 bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,680",
+				"to": "00:04:55,840"
+			},
+			"offsets": {
+				"from": 291680,
+				"to": 295840
+			},
+			"text": " is 24 bits. These three bytes there, A, B and C."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,840",
+				"to": "00:05:00,960"
+			},
+			"offsets": {
+				"from": 295840,
+				"to": 300960
+			},
+			"text": " This one there is showing that we added that extra bit to show the message has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,960",
+				"to": "00:05:07,840"
+			},
+			"offsets": {
+				"from": 300960,
+				"to": 307840
+			},
+			"text": " finished and then you pad with zero bits up to a multiple of 64 bytes minus"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,840",
+				"to": "00:05:13,040"
+			},
+			"offsets": {
+				"from": 307840,
+				"to": 313040
+			},
+			"text": " eight because you're going to use the last eight bytes or 64 bits to encode the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,040",
+				"to": "00:05:18,080"
+			},
+			"offsets": {
+				"from": 313040,
+				"to": 318080
+			},
+			"text": " length of the whole message as is there in binary that's the number 24,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,080",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 318080,
+				"to": 322960
+			},
+			"text": " which is the actual length of this message. So this is the procedure to pad"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:28,320"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 328320
+			},
+			"text": " your message, which was arbitrary length, into a multiple of 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,320",
+				"to": "00:05:32,560"
+			},
+			"offsets": {
+				"from": 328320,
+				"to": 332560
+			},
+			"text": " Vectorization, which is the main topic of this talk is vectorization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,560",
+				"to": "00:05:36,720"
+			},
+			"offsets": {
+				"from": 332560,
+				"to": 336720
+			},
+			"text": " So the first thing to notice is that you're not going to beat any of the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,720",
+				"to": "00:05:41,280"
+			},
+			"offsets": {
+				"from": 336720,
+				"to": 341280
+			},
+			"text": " yourself there. Every implementation that I've reviewed before I got into this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,280",
+				"to": "00:05:45,280"
+			},
+			"offsets": {
+				"from": 341280,
+				"to": 345280
+			},
+			"text": " and I'm not an expert at all on this. I'm coming from a completely different subject."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,280",
+				"to": "00:05:49,200"
+			},
+			"offsets": {
+				"from": 345280,
+				"to": 349200
+			},
+			"text": " But every implementation I've seen is equivalent to Intel's original"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,200",
+				"to": "00:05:52,960"
+			},
+			"offsets": {
+				"from": 349200,
+				"to": 352960
+			},
+			"text": " paper, white paper on this, and it's equivalent to what opens itself, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,960",
+				"to": "00:05:56,720"
+			},
+			"offsets": {
+				"from": 352960,
+				"to": 356720
+			},
+			"text": " example, does. All of them implement the following."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,720",
+				"to": "00:06:00,880"
+			},
+			"offsets": {
+				"from": 356720,
+				"to": 360880
+			},
+			"text": " You can compute your scheduled words, as I told you, without knowing what the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,880",
+				"to": "00:06:05,440"
+			},
+			"offsets": {
+				"from": 360880,
+				"to": 365440
+			},
+			"text": " previously hash, what the previous, what the current status of the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,440",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 365440,
+				"to": 369280
+			},
+			"text": " in it is. So all of them use vector instructions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:16,960"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 376960
+			},
+			"text": " to compute several words at a time. If your CPU supports 128 bits, registers like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,960",
+				"to": "00:06:21,840"
+			},
+			"offsets": {
+				"from": 376960,
+				"to": 381840
+			},
+			"text": " these ones, and almost every CPU now does, then you're going to compute four"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,840",
+				"to": "00:06:26,240"
+			},
+			"offsets": {
+				"from": 381840,
+				"to": 386240
+			},
+			"text": " words at a time, four double words at a time. You start with your 16 double words,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,240",
+				"to": "00:06:30,960"
+			},
+			"offsets": {
+				"from": 386240,
+				"to": 390960
+			},
+			"text": " which is your message, and you can put those 16 double words in only four"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,960",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 390960,
+				"to": 397680
+			},
+			"text": " registers. If your computer supports AVX2, that's, it can do whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:41,680"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 401680
+			},
+			"text": " electric can registers that are 256 bits, then you're going to compute eight."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,680",
+				"to": "00:06:45,200"
+			},
+			"offsets": {
+				"from": 401680,
+				"to": 405200
+			},
+			"text": " You're going to use only two registers, and you're going to compute eight words at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,200",
+				"to": "00:06:51,280"
+			},
+			"offsets": {
+				"from": 405200,
+				"to": 411280
+			},
+			"text": " If your computer supports AVX512, you're going to compute all of them, the 16 of them at a time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,280",
+				"to": "00:06:56,960"
+			},
+			"offsets": {
+				"from": 411280,
+				"to": 416960
+			},
+			"text": " and, well, AVX 1024 doesn't exist yet, but it's already in the books."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,960",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 416960,
+				"to": 421600
+			},
+			"text": " There's two options into computing this. Modern implementations either do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:07,280"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 427280
+			},
+			"text": " this vectorization, or if your CPU implements cryptographic extensions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,320",
+				"to": "00:07:14,800"
+			},
+			"offsets": {
+				"from": 428320,
+				"to": 434800
+			},
+			"text": " that was in a picture, then they will use 128 bits, registers regardless if your computer has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,800",
+				"to": "00:07:20,720"
+			},
+			"offsets": {
+				"from": 434800,
+				"to": 440720
+			},
+			"text": " larger registers, because cryptographic extensions can compute four words at a time much faster than"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,720",
+				"to": "00:07:25,680"
+			},
+			"offsets": {
+				"from": 440720,
+				"to": 445680
+			},
+			"text": " vectorized computations. But the point I want to make is that this vectorization is there"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,680",
+				"to": "00:07:31,440"
+			},
+			"offsets": {
+				"from": 445680,
+				"to": 451440
+			},
+			"text": " in every current implementation. This is since Intel's, since Intel's white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,440",
+				"to": "00:07:36,480"
+			},
+			"offsets": {
+				"from": 451440,
+				"to": 456480
+			},
+			"text": " Also, computing the words like this is useful, because since you can compute the words, and at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,480",
+				"to": "00:07:42,400"
+			},
+			"offsets": {
+				"from": 456480,
+				"to": 462400
+			},
+			"text": " same time pass through some rounds, so let's say that you computed the fifth word, then you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,400",
+				"to": "00:07:47,840"
+			},
+			"offsets": {
+				"from": 462400,
+				"to": 467840
+			},
+			"text": " pass up to the fifth round. Then you can mix scalar operations with vector operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,840",
+				"to": "00:07:54,560"
+			},
+			"offsets": {
+				"from": 467840,
+				"to": 474560
+			},
+			"text": " and the CPU will perform this in parallel. The CPU can take several ports and can take"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,560",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 474560,
+				"to": 479440
+			},
+			"text": " different types of operations at the same time. So you can't be computing the fifth round,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:04,240"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 484240
+			},
+			"text": " that is a computation that it has to be done on the scalar part of the CPU, because it has to be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,120",
+				"to": "00:08:11,200"
+			},
+			"offsets": {
+				"from": 485120,
+				"to": 491200
+			},
+			"text": " it cannot be in parallel. And at the same time, you are computing the sixth word in parallel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,200",
+				"to": "00:08:20,560"
+			},
+			"offsets": {
+				"from": 491200,
+				"to": 500560
+			},
+			"text": " on vector registers. Okay, so I've covered what is a typical implementation of hashing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,560",
+				"to": "00:08:25,680"
+			},
+			"offsets": {
+				"from": 500560,
+				"to": 505680
+			},
+			"text": " And this is the thing to remember from the whole part, from the whole purpose of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,680",
+				"to": "00:08:29,920"
+			},
+			"offsets": {
+				"from": 505680,
+				"to": 509920
+			},
+			"text": " top, is that the hasher signature is this. In either language is something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,920",
+				"to": "00:08:35,280"
+			},
+			"offsets": {
+				"from": 509920,
+				"to": 515280
+			},
+			"text": " It's something that takes an arbitrary length byte slice, and it gives you back 32 bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,280",
+				"to": "00:08:40,480"
+			},
+			"offsets": {
+				"from": 515280,
+				"to": 520480
+			},
+			"text": " which is the hash. So it takes an arbitrary length message, and it gives you one, it gives you a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,480",
+				"to": "00:08:45,040"
+			},
+			"offsets": {
+				"from": 520480,
+				"to": 525040
+			},
+			"text": " digest. And this is something that you're not going to beat. You're not going to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,040",
+				"to": "00:08:49,680"
+			},
+			"offsets": {
+				"from": 525040,
+				"to": 529680
+			},
+			"text": " this better than OpenSSESET. No one is going to do it. You perhaps can do it for one CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,680",
+				"to": "00:08:54,080"
+			},
+			"offsets": {
+				"from": 529680,
+				"to": 534080
+			},
+			"text": " You're not going to write an implementation faster than what is already there. However,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,640",
+				"to": "00:09:01,200"
+			},
+			"offsets": {
+				"from": 534640,
+				"to": 541200
+			},
+			"text": " we use hashing in a very restricted scenario. We use hashing to hash Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,200",
+				"to": "00:09:08,560"
+			},
+			"offsets": {
+				"from": 541200,
+				"to": 548560
+			},
+			"text": " And Merkle trees are not arbitrary length. Merkle trees are in the case of the consensus layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,560",
+				"to": "00:09:13,520"
+			},
+			"offsets": {
+				"from": 548560,
+				"to": 553520
+			},
+			"text": " for example, where the nodes are 32 bytes. They're something like this. Each one of these nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,520",
+				"to": "00:09:19,520"
+			},
+			"offsets": {
+				"from": 553520,
+				"to": 559520
+			},
+			"text": " represents 32 bytes, and each parent node has only two children, and these two children are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,520",
+				"to": "00:09:26,640"
+			},
+			"offsets": {
+				"from": 559520,
+				"to": 566640
+			},
+			"text": " hashed together, so the two children are 64 bytes and go get concatenated, you hash them, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,640",
+				"to": "00:09:33,200"
+			},
+			"offsets": {
+				"from": 566640,
+				"to": 573200
+			},
+			"text": " get the hash of the parent. You get what goes in the part. So this is what we hash, typically."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,200",
+				"to": "00:09:39,760"
+			},
+			"offsets": {
+				"from": 573200,
+				"to": 579760
+			},
+			"text": " And we observe two things. Well, actually, the execution layer has something completely different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,760",
+				"to": "00:09:44,720"
+			},
+			"offsets": {
+				"from": 579760,
+				"to": 584720
+			},
+			"text": " but still, the same technique is going to apply. What we observe immediately is the following thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,720",
+				"to": "00:09:49,280"
+			},
+			"offsets": {
+				"from": 584720,
+				"to": 589280
+			},
+			"text": " First of all, we're not hashing arbitrary length. We're hashing every single time 64 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,280",
+				"to": "00:09:55,760"
+			},
+			"offsets": {
+				"from": 589280,
+				"to": 595760
+			},
+			"text": " And second of all, we can hash this in parallel. You don't need to hash the blue one by knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,760",
+				"to": "00:10:01,200"
+			},
+			"offsets": {
+				"from": 595760,
+				"to": 601200
+			},
+			"text": " the entire left subtree and hash the yellow one completely in parallel in the other side."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,200",
+				"to": "00:10:06,320"
+			},
+			"offsets": {
+				"from": 601200,
+				"to": 606320
+			},
+			"text": " Of course, you can do this in parallel. If you have a CPU that has two CPUs, you can just use"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,320",
+				"to": "00:10:11,360"
+			},
+			"offsets": {
+				"from": 606320,
+				"to": 611360
+			},
+			"text": " two threads to hash this, and this is exploited in the consensus layer. I don't know if any other"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,360",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 611360,
+				"to": 618160
+			},
+			"text": " besides Lighthouse uses this, but I want to talk about a different kind of parallelization."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:23,440"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 623440
+			},
+			"text": " You can parallelize this in different threads, but the point I want to make is that you can do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,440",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 623440,
+				"to": 629520
+			},
+			"text": " by using vector instructions. This is the typical, this is the one that is in the specs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:33,920"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 633920
+			},
+			"text": " in the consensus layer specs. This is the implementation. I think this is Vitalix implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,920",
+				"to": "00:10:40,480"
+			},
+			"offsets": {
+				"from": 633920,
+				"to": 640480
+			},
+			"text": " This is a flat array approach to having a Merkle tree. I highlighted the line where you're computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,480",
+				"to": "00:10:47,840"
+			},
+			"offsets": {
+				"from": 640480,
+				"to": 647840
+			},
+			"text": " the hash of the parent by hashing the two children that are concatenated. The top one is a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,840",
+				"to": "00:10:55,200"
+			},
+			"offsets": {
+				"from": 647840,
+				"to": 655200
+			},
+			"text": " memory layout. This is protocol lambdas implementation, unremarkable. The point is that it's the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,200",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 655200,
+				"to": 659680
+			},
+			"text": " kind of hashing. You take the two children and you hash them and you hash two blocks at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:05,920"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 665920
+			},
+			"text": " This is fairly, fairly inefficient. This is a Go implementation. This is also James."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,480",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 666480,
+				"to": 672080
+			},
+			"text": " This is a production implementation. And again, the same thing. It's slightly more complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:16,400"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 676400
+			},
+			"text": " because it takes into account other things. But the highlighted line is the point where you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,400",
+				"to": "00:11:22,400"
+			},
+			"offsets": {
+				"from": 676400,
+				"to": 682400
+			},
+			"text": " hashing and you hash one node as the hash of the two children. You do this on a loop."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,400",
+				"to": "00:11:27,200"
+			},
+			"offsets": {
+				"from": 682400,
+				"to": 687200
+			},
+			"text": " For each pair of children, you hash once, you call the hash and you get one hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,200",
+				"to": "00:11:34,240"
+			},
+			"offsets": {
+				"from": 687200,
+				"to": 694240
+			},
+			"text": " I want to tell you what is the right way of hashing a Merkle tree. It's fairly simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,240",
+				"to": "00:11:40,400"
+			},
+			"offsets": {
+				"from": 694240,
+				"to": 700400
+			},
+			"text": " So there are two things that we want to exploit. We want to exploit the fact that our hash is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,400",
+				"to": "00:11:46,320"
+			},
+			"offsets": {
+				"from": 700400,
+				"to": 706320
+			},
+			"text": " exactly 64 bytes. That's the thing that we want to hash. So remember how is it that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,320",
+				"to": "00:11:53,440"
+			},
+			"offsets": {
+				"from": 706320,
+				"to": 713440
+			},
+			"text": " padded our message into a multiple of 64 bytes? Well, our message is already 64 bytes. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,440",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 713440,
+				"to": 720720
+			},
+			"text": " unfortunately, we need to add one bit to tell the message ascended. So that's the first bit there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,440",
+				"to": "00:12:06,560"
+			},
+			"offsets": {
+				"from": 721440,
+				"to": 726560
+			},
+			"text": " The problem is that since we added that bit, now we need an entire block. And the entire block is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,560",
+				"to": "00:12:13,840"
+			},
+			"offsets": {
+				"from": 726560,
+				"to": 733840
+			},
+			"text": " all made of zeros except this little bit one here. And that bit one here is saying the message was"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,840",
+				"to": "00:12:23,040"
+			},
+			"offsets": {
+				"from": 733840,
+				"to": 743040
+			},
+			"text": " 64 bytes. So that bit there is 512 bits that the message was. But the point is that this block is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,040",
+				"to": "00:12:28,720"
+			},
+			"offsets": {
+				"from": 743040,
+				"to": 748720
+			},
+			"text": " known. It's known before we started hashing. The whole block is known. And in order to compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,720",
+				"to": "00:12:34,080"
+			},
+			"offsets": {
+				"from": 748720,
+				"to": 754080
+			},
+			"text": " the scheduled words, we only need to know the message. We don't need to know the hash of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,080",
+				"to": "00:12:42,240"
+			},
+			"offsets": {
+				"from": 754080,
+				"to": 762240
+			},
+			"text": " previous block. So whenever we hash 64 bytes, we can already compute the scheduled words for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,240",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 762240,
+				"to": 768000
+			},
+			"text": " this entire block. And we can do this now. We have them. So we can hard-put it in the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:53,760"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 773760
+			},
+			"text": " here itself. This is something that the Bitcoin community learned and they have it in their standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,760",
+				"to": "00:12:59,600"
+			},
+			"offsets": {
+				"from": 773760,
+				"to": 779600
+			},
+			"text": " node. I don't know how is it called. I think it's Bitcoin core, the client. And it has it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,600",
+				"to": "00:13:06,160"
+			},
+			"offsets": {
+				"from": 779600,
+				"to": 786160
+			},
+			"text": " No Ethereum client used this. So I was surprised when I found this out. So we can still this from"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,160",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 786160,
+				"to": 792000
+			},
+			"text": " the Bitcoin community. And indeed, so person uses this library. Loads are also implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:18,160"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 798160
+			},
+			"text": " this. And just by implementing this, you get at least 20% gain on your hashing speak. Just this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,160",
+				"to": "00:13:25,840"
+			},
+			"offsets": {
+				"from": 798160,
+				"to": 805840
+			},
+			"text": " No changes on your code. Just include this hard-coded words. The second one is vectorization itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,840",
+				"to": "00:13:33,760"
+			},
+			"offsets": {
+				"from": 805840,
+				"to": 813760
+			},
+			"text": " And vectorization, this is also something that is implemented already. If you have several"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,760",
+				"to": "00:13:38,800"
+			},
+			"offsets": {
+				"from": 813760,
+				"to": 818800
+			},
+			"text": " messages that you need to hash at the same time, there are libraries to do this. Intel has a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,800",
+				"to": "00:13:44,720"
+			},
+			"offsets": {
+				"from": 818800,
+				"to": 824720
+			},
+			"text": " good library. And all I need is to change the signature of that library. But the point is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,720",
+				"to": "00:13:50,320"
+			},
+			"offsets": {
+				"from": 824720,
+				"to": 830320
+			},
+			"text": " you can be hashing several buffers at the same time. If you have -- so this is a way of encoding"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,320",
+				"to": "00:13:57,600"
+			},
+			"offsets": {
+				"from": 830320,
+				"to": 837600
+			},
+			"text": " the words again. You're going to take -- this is the message that you want to hash. So these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,600",
+				"to": "00:14:03,440"
+			},
+			"offsets": {
+				"from": 837600,
+				"to": 843440
+			},
+			"text": " are the 16 words corresponding to this node here, the 0th node. Then you're going to have 16 words"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,440",
+				"to": "00:14:08,400"
+			},
+			"offsets": {
+				"from": 843440,
+				"to": 848400
+			},
+			"text": " corresponding to this one that you want to hash. 16 words for this two and 16 words for this two."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,400",
+				"to": "00:14:14,320"
+			},
+			"offsets": {
+				"from": 848400,
+				"to": 854320
+			},
+			"text": " And what you're going to do is collect the first double word from this one. The first double word"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,320",
+				"to": "00:14:21,440"
+			},
+			"offsets": {
+				"from": 854320,
+				"to": 861440
+			},
+			"text": " from this one. The first double word from this one into one register. That's if you have registers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,440",
+				"to": "00:14:28,240"
+			},
+			"offsets": {
+				"from": 861440,
+				"to": 868240
+			},
+			"text": " that are 128 bits. If you had AVX12, you would collect eight of them at the same time. And again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,240",
+				"to": "00:14:36,640"
+			},
+			"offsets": {
+				"from": 868240,
+				"to": 876640
+			},
+			"text": " if you're AVX512, you can do 16 at a time. The point is that you can hash in one pass,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,520",
+				"to": "00:14:44,560"
+			},
+			"offsets": {
+				"from": 877520,
+				"to": 884560
+			},
+			"text": " you can hash up to 16 blocks on AVX512. And you can do the same thing for the words themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,560",
+				"to": "00:14:52,480"
+			},
+			"offsets": {
+				"from": 884560,
+				"to": 892480
+			},
+			"text": " So the digest consists of eight double words. If you have registers that are 128 bits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,480",
+				"to": "00:14:59,920"
+			},
+			"offsets": {
+				"from": 892480,
+				"to": 899920
+			},
+			"text": " you can put this -- you can put four of them in one register, and then you use eight such registers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,920",
+				"to": "00:15:04,800"
+			},
+			"offsets": {
+				"from": 899920,
+				"to": 904800
+			},
+			"text": " for the eight words of the digest, and you can hash four blocks at the time. So this is, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,800",
+				"to": "00:15:08,960"
+			},
+			"offsets": {
+				"from": 904800,
+				"to": 908960
+			},
+			"text": " this is a library that exists. So all I'm selling you is something that already exists. It's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,960",
+				"to": "00:15:14,320"
+			},
+			"offsets": {
+				"from": 908960,
+				"to": 914320
+			},
+			"text": " that we're rolling out our own crypto. I need to brag about something. I was told as a student that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,320",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 914320,
+				"to": 918960
+			},
+			"text": " if you're giving a talk, you need to brag about something that you did yourself. And I guess this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:25,600"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 925600
+			},
+			"text": " is something I did. Of course, the assembly for Intel and AMD, Intel's libraries, I'm not going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,600",
+				"to": "00:15:33,040"
+			},
+			"offsets": {
+				"from": 925600,
+				"to": 933040
+			},
+			"text": " to beat it. Unfortunately, Intel, or reasonably, Intel does not produce assembly for ARM. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,040",
+				"to": "00:15:38,960"
+			},
+			"offsets": {
+				"from": 933040,
+				"to": 938960
+			},
+			"text": " there's something interesting here. ARM assembly, I told you that every library out there uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,960",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 938960,
+				"to": 946320
+			},
+			"text": " vectorization to compute the scheduled words. That's not true on ARM. On ARM, OpenSSL had a library"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:53,520"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 953520
+			},
+			"text": " using neon instructions, vector instructions to compute the hashing, and it turned out to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,520",
+				"to": "00:16:02,720"
+			},
+			"offsets": {
+				"from": 953520,
+				"to": 962720
+			},
+			"text": " slower than scale. So most libraries for ARM do not use scalar instructions. However, if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,720",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962720,
+				"to": 968000
+			},
+			"text": " going to hash a miracle tree, you can hash several blocks at the same time. And that's very, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:13,760"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 973760
+			},
+			"text": " much, much faster than hashing them on scale. So the pipeline in for ARM, I think, is purely mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,760",
+				"to": "00:16:19,040"
+			},
+			"offsets": {
+				"from": 973760,
+				"to": 979040
+			},
+			"text": " Let's say that you want to use this library and you want to implement it. So there are changes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,040",
+				"to": "00:16:26,480"
+			},
+			"offsets": {
+				"from": 979040,
+				"to": 986480
+			},
+			"text": " your code. So the changes are following since let me go back a few slides, perhaps. It did have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,480",
+				"to": "00:16:37,920"
+			},
+			"offsets": {
+				"from": 986480,
+				"to": 997920
+			},
+			"text": " pointer. I'm just technology at first. Okay. Anyways, let's see. This is the -- so as I told you, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,920",
+				"to": "00:16:42,400"
+			},
+			"offsets": {
+				"from": 997920,
+				"to": 1002400
+			},
+			"text": " going to hash with these kind of registers we can hash -- now I have a pointer. Of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,400",
+				"to": "00:16:47,520"
+			},
+			"offsets": {
+				"from": 1002400,
+				"to": 1007520
+			},
+			"text": " With this kind of register I can hash four blocks at a time. That means that I can compute this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,520",
+				"to": "00:16:53,440"
+			},
+			"offsets": {
+				"from": 1007520,
+				"to": 1013440
+			},
+			"text": " entire layer in one pass of the hash. So instead of passing in a loop and hash this to hash this to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,440",
+				"to": "00:16:58,720"
+			},
+			"offsets": {
+				"from": 1013440,
+				"to": 1018720
+			},
+			"text": " hash it to and so forth, what I'll do is -- and this is a requirement. You cannot use proto's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,720",
+				"to": "00:17:04,800"
+			},
+			"offsets": {
+				"from": 1018720,
+				"to": 1024800
+			},
+			"text": " implementation that has pointers everywhere and the data can be anywhere. If you want to use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,800",
+				"to": "00:17:10,560"
+			},
+			"offsets": {
+				"from": 1024800,
+				"to": 1030560
+			},
+			"text": " library, then you need to have at the very least this entire layer consecutively memory and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,560",
+				"to": "00:17:17,520"
+			},
+			"offsets": {
+				"from": 1030560,
+				"to": 1037520
+			},
+			"text": " entire layer consecutively in memory and so forth. Vitalix Flat Array would work fantastic for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,520",
+				"to": "00:17:23,760"
+			},
+			"offsets": {
+				"from": 1037520,
+				"to": 1043760
+			},
+			"text": " for this thing. If I were to implement this, I would just put everything on one array. The point is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,760",
+				"to": "00:17:29,600"
+			},
+			"offsets": {
+				"from": 1043760,
+				"to": 1049600
+			},
+			"text": " that what you're going to pass to the hash here is a pointer to this or this whole slide, whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,600",
+				"to": "00:17:35,040"
+			},
+			"offsets": {
+				"from": 1049600,
+				"to": 1055040
+			},
+			"text": " equivalent signature for this is and the hash is going to give you back all of this at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,040",
+				"to": "00:17:40,240"
+			},
+			"offsets": {
+				"from": 1055040,
+				"to": 1060240
+			},
+			"text": " So this is something that you need to change. The hash here signature for this has this form. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,240",
+				"to": "00:17:45,440"
+			},
+			"offsets": {
+				"from": 1060240,
+				"to": 1065440
+			},
+			"text": " in goal this takes an arbitrary byte slice. So this is the layer that you want to hash and it gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,440",
+				"to": "00:17:54,640"
+			},
+			"offsets": {
+				"from": 1065440,
+				"to": 1074640
+			},
+			"text": " you back a slice of hashes of 32 bytes. It's hashes all of them at the same time. I think I might"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,640",
+				"to": "00:18:01,760"
+			},
+			"offsets": {
+				"from": 1074640,
+				"to": 1081760
+			},
+			"text": " have gotten this correctly in Rust after several iterations. This would be in Python. We have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,760",
+				"to": "00:18:08,080"
+			},
+			"offsets": {
+				"from": 1081760,
+				"to": 1088080
+			},
+			"text": " library -- we have two libraries. We have one in goal assembly and we have one in user assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,080",
+				"to": "00:18:15,120"
+			},
+			"offsets": {
+				"from": 1088080,
+				"to": 1095120
+			},
+			"text": " with C bindings. If you're going to use that, let me know because crypto extensions on ARM is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,120",
+				"to": "00:18:20,160"
+			},
+			"offsets": {
+				"from": 1095120,
+				"to": 1100160
+			},
+			"text": " still not implemented. It's going to take like 10 minutes to add this. But this is the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,160",
+				"to": "00:18:27,680"
+			},
+			"offsets": {
+				"from": 1100160,
+				"to": 1107680
+			},
+			"text": " that the library is going to use if you're using a C bind. All right. So that's all I want to sell"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,680",
+				"to": "00:18:34,720"
+			},
+			"offsets": {
+				"from": 1107680,
+				"to": 1114720
+			},
+			"text": " you. And that's it. >> Okay. Sure. I'll just repeat that for the second recording. I was just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,720",
+				"to": "00:18:41,680"
+			},
+			"offsets": {
+				"from": 1114720,
+				"to": 1121680
+			},
+			"text": " asking if the ability to process multiple different hashes in parallel was already implemented in"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,680",
+				"to": "00:18:49,680"
+			},
+			"offsets": {
+				"from": 1121680,
+				"to": 1129680
+			},
+			"text": " libraries. That was the question to the answer. So there's two things you have here. One is to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,680",
+				"to": "00:18:57,600"
+			},
+			"offsets": {
+				"from": 1129680,
+				"to": 1137600
+			},
+			"text": " like pre-compute the padding block. And then the second is the ability to in parallel process"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,600",
+				"to": "00:19:04,400"
+			},
+			"offsets": {
+				"from": 1137600,
+				"to": 1144400
+			},
+			"text": " multiple different hash values and then produce multiple different hash values. And so there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,400",
+				"to": "00:19:09,200"
+			},
+			"offsets": {
+				"from": 1144400,
+				"to": 1149200
+			},
+			"text": " already implementations that do multiple different hash values at once and you just modified them"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,200",
+				"to": "00:19:14,240"
+			},
+			"offsets": {
+				"from": 1149200,
+				"to": 1154240
+			},
+			"text": " to deal with the padding block. Is that right? >> Yes. And so there are two modifications here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,240",
+				"to": "00:19:19,920"
+			},
+			"offsets": {
+				"from": 1154240,
+				"to": 1159920
+			},
+			"text": " One is the thing that you're going to use the padding block. The padding block has this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,920",
+				"to": "00:19:25,280"
+			},
+			"offsets": {
+				"from": 1159920,
+				"to": 1165280
+			},
+			"text": " constant hard-coded. And then the other modification which is the fact that you're expected to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,280",
+				"to": "00:19:32,880"
+			},
+			"offsets": {
+				"from": 1165280,
+				"to": 1172880
+			},
+			"text": " a list of 64 bytes chunks. And then you pipeline this -- so what this library does is it grabs"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,600",
+				"to": "00:19:41,360"
+			},
+			"offsets": {
+				"from": 1173600,
+				"to": 1181360
+			},
+			"text": " all of the blocks consecutively memory. It gets a matrix on the vector registers. It transposes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,360",
+				"to": "00:19:48,880"
+			},
+			"offsets": {
+				"from": 1181360,
+				"to": 1188880
+			},
+			"text": " this matrix and now you have on all of your registers the different messages. So then you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,880",
+				"to": "00:19:56,640"
+			},
+			"offsets": {
+				"from": 1188880,
+				"to": 1196640
+			},
+			"text": " Intel's machinery to hash those messages in parallel. You print the output these hashes and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,640",
+				"to": "00:20:02,320"
+			},
+			"offsets": {
+				"from": 1196640,
+				"to": 1202320
+			},
+			"text": " just loop it back. >> Okay. Cool. So you have -- so the result is basically like -- so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,320",
+				"to": "00:20:06,960"
+			},
+			"offsets": {
+				"from": 1202320,
+				"to": 1206960
+			},
+			"text": " in go assembly what you have, right? >> Sorry. >> Your implementation is in go assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,960",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1206960,
+				"to": 1212000
+			},
+			"text": " >> Yeah. So the original implementation was just purely assembly. This is there. It has"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:19,360"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1219360
+			},
+			"text": " C bindings but the C go overhead is horrible. So it ended up being slower than using the go"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,360",
+				"to": "00:20:24,320"
+			},
+			"offsets": {
+				"from": 1219360,
+				"to": 1224320
+			},
+			"text": " implementation, the standard library in go. So we needed to write a go assembly library to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,320",
+				"to": "00:20:28,720"
+			},
+			"offsets": {
+				"from": 1224320,
+				"to": 1228720
+			},
+			"text": " our cells. >> Yeah. Okay. Cool. Well done. Very good. Very impressive. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,040",
+				"to": "00:20:35,920"
+			},
+			"offsets": {
+				"from": 1231040,
+				"to": 1235920
+			},
+			"text": " >> So I was curious, you've shown that there are always optimizations you have to do to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,920",
+				"to": "00:20:42,080"
+			},
+			"offsets": {
+				"from": 1235920,
+				"to": 1242080
+			},
+			"text": " around the general purpose nature of the general perfect hash functions. Do you think it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,080",
+				"to": "00:20:46,720"
+			},
+			"offsets": {
+				"from": 1242080,
+				"to": 1246720
+			},
+			"text": " possible to design a hash function that was like a special hash function only for like -- >> Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,720",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1246720,
+				"to": 1254000
+			},
+			"text": " Oh, that's a good question. I'm not sure you can do better than the current implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:59,840"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1259840
+			},
+			"text": " Like you can take this bunch type of implementations, the chat, and company. And you can try to adapt"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,840",
+				"to": "00:21:05,520"
+			},
+			"offsets": {
+				"from": 1259840,
+				"to": 1265520
+			},
+			"text": " this for this? I don't know. I think -- yeah. Your question is completely open. It's a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,520",
+				"to": "00:21:10,720"
+			},
+			"offsets": {
+				"from": 1265520,
+				"to": 1270720
+			},
+			"text": " good question. I think we should think about this. So if I understood your question ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,720",
+				"to": "00:21:16,320"
+			},
+			"offsets": {
+				"from": 1270720,
+				"to": 1276320
+			},
+			"text": " can there be a method that is designed for Merkle trees instead of like a generic one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,320",
+				"to": "00:21:20,880"
+			},
+			"offsets": {
+				"from": 1276320,
+				"to": 1280880
+			},
+			"text": " >> And your implementation does it. So say there's some really big Merkle trees in the big and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,880",
+				"to": "00:21:26,400"
+			},
+			"offsets": {
+				"from": 1280880,
+				"to": 1286400
+			},
+			"text": " state, right? Is it the job of the implementation to kind of split that Merkle tree up into smaller"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,400",
+				"to": "00:21:34,080"
+			},
+			"offsets": {
+				"from": 1286400,
+				"to": 1294080
+			},
+			"text": " sub trees that fit the size of your CPU? >> No, no. So you're saying if you have this large tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,080",
+				"to": "00:21:39,440"
+			},
+			"offsets": {
+				"from": 1294080,
+				"to": 1299440
+			},
+			"text": " if it's a job of the implementation, I'm splitting it into smaller trees? No, no. This is completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,440",
+				"to": "00:21:44,400"
+			},
+			"offsets": {
+				"from": 1299440,
+				"to": 1304400
+			},
+			"text": " orthogonal to that. So what you guys are doing in a live house is splitting this into smaller trees"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,400",
+				"to": "00:21:49,840"
+			},
+			"offsets": {
+				"from": 1304400,
+				"to": 1309840
+			},
+			"text": " and you send this on different threads to complete the Merkle. This is completely different. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,840",
+				"to": "00:21:54,640"
+			},
+			"offsets": {
+				"from": 1309840,
+				"to": 1314640
+			},
+			"text": " just pass the entire slide. So big trees is the big game for this. You're going to be at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,640",
+				"to": "00:21:59,840"
+			},
+			"offsets": {
+				"from": 1314640,
+				"to": 1319840
+			},
+			"text": " hashing four times faster than the standard library. You just pass the entire slides. Like all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,840",
+				"to": "00:22:06,080"
+			},
+			"offsets": {
+				"from": 1319840,
+				"to": 1326080
+			},
+			"text": " slides that you -- of the bottom slides. And what this thing is going to do is not splitting to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,080",
+				"to": "00:22:11,920"
+			},
+			"offsets": {
+				"from": 1326080,
+				"to": 1331920
+			},
+			"text": " subtrees. What this thing is going to do is grab as many blocks as possible that it can fit in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,920",
+				"to": "00:22:16,480"
+			},
+			"offsets": {
+				"from": 1331920,
+				"to": 1336480
+			},
+			"text": " registers. And then just go to the next chunk and the next chunk and the next chunk and like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,480",
+				"to": "00:22:22,720"
+			},
+			"offsets": {
+				"from": 1336480,
+				"to": 1342720
+			},
+			"text": " So it doesn't split in subtrees. >> Okay. And so you feed it all of the leaves and then it produces"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,720",
+				"to": "00:22:28,240"
+			},
+			"offsets": {
+				"from": 1342720,
+				"to": 1348240
+			},
+			"text": " the intermediate. >> It produces the next layer and then you just feed it the next layer entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,240",
+				"to": "00:22:32,480"
+			},
+			"offsets": {
+				"from": 1348240,
+				"to": 1352480
+			},
+			"text": " and it produces the next one. >> Oh, yeah. Okay. >> So for the state -- so you're thinking in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,480",
+				"to": "00:22:37,280"
+			},
+			"offsets": {
+				"from": 1352480,
+				"to": 1357280
+			},
+			"text": " beacon state. For the state, this is incredibly fast. But this is not how we hash the state because"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,280",
+				"to": "00:22:44,240"
+			},
+			"offsets": {
+				"from": 1357280,
+				"to": 1364240
+			},
+			"text": " we have it in cachea typically. And you just have a few nodes that you're changing. So when you hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,240",
+				"to": "00:22:52,640"
+			},
+			"offsets": {
+				"from": 1364240,
+				"to": 1372640
+			},
+			"text": " the dirty trees, dirty leaves, then there's two things that happen. So sometimes you have several"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,640",
+				"to": "00:22:58,640"
+			},
+			"offsets": {
+				"from": 1372640,
+				"to": 1378640
+			},
+			"text": " of them that are consecutive and then you can be smart and pass this consecutive layer to this hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,640",
+				"to": "00:23:03,440"
+			},
+			"offsets": {
+				"from": 1378640,
+				"to": 1383440
+			},
+			"text": " Or you can just use whatever you're using now. Just hash two blocks at a time. You're not going"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,440",
+				"to": "00:23:08,640"
+			},
+			"offsets": {
+				"from": 1383440,
+				"to": 1388640
+			},
+			"text": " to get the vectorization impact but you're going to get at least 20% of the hard one -- the padding"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,640",
+				"to": "00:23:13,120"
+			},
+			"offsets": {
+				"from": 1388640,
+				"to": 1393120
+			},
+			"text": " block. >> Yeah. Okay. Cool. So I guess there's maybe like an argument for -- maybe it's quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,120",
+				"to": "00:23:17,920"
+			},
+			"offsets": {
+				"from": 1393120,
+				"to": 1397920
+			},
+			"text": " useful for small trees. You don't get a lot from caching. >> Yeah. It's not really useful for small"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,920",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1397920,
+				"to": 1404000
+			},
+			"text": " trees. You only get the 20% of the padding block. It's very, very useful on large trees. And here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:29,040"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1409040
+			},
+			"text": " large means more than eight blocks. So anything that has depth, more than two, this is already four"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,040",
+				"to": "00:23:32,240"
+			},
+			"offsets": {
+				"from": 1409040,
+				"to": 1412240
+			},
+			"text": " times faster. [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,240",
+				"to": "00:23:44,240"
+			},
+			"offsets": {
+				"from": 1412240,
+				"to": 1424240
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,240",
+				"to": "00:23:46,240"
+			},
+			"offsets": {
+				"from": 1424240,
+				"to": 1426240
+			},
+			"text": " [ ]"
+		}
+	]
+}

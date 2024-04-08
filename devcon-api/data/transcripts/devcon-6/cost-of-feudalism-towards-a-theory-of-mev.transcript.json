@@ -1,0 +1,5378 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12400
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,400",
+				"to": "00:00:16,660"
+			},
+			"offsets": {
+				"from": 12400,
+				"to": 16660
+			},
+			"text": " >> Hello. So, you know, I probably don't need to talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,660",
+				"to": "00:00:20,340"
+			},
+			"offsets": {
+				"from": 16660,
+				"to": 20340
+			},
+			"text": " about what MEV is as much given that there were, if I remember right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,340",
+				"to": "00:00:22,360"
+			},
+			"offsets": {
+				"from": 20340,
+				"to": 22360
+			},
+			"text": " 17 or 18 talks about MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,360",
+				"to": "00:00:26,340"
+			},
+			"offsets": {
+				"from": 22360,
+				"to": 26340
+			},
+			"text": " But, you know, I think in the spirit of trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,340",
+				"to": "00:00:30,160"
+			},
+			"offsets": {
+				"from": 26340,
+				"to": 30160
+			},
+			"text": " to understand the incentives hidden in a lot of these systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,160",
+				"to": "00:00:34,160"
+			},
+			"offsets": {
+				"from": 30160,
+				"to": 34160
+			},
+			"text": " one question you might ask is, does there exist sort of some type"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,160",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 34160,
+				"to": 35560
+			},
+			"text": " of formal theory for MEV?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:39,520"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 39520
+			},
+			"text": " Does there exist some type of mathematical structure to this thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,520",
+				"to": "00:00:44,080"
+			},
+			"offsets": {
+				"from": 39520,
+				"to": 44080
+			},
+			"text": " that seems to be, you know, captivate people's imaginations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,080",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 44080,
+				"to": 45360
+			},
+			"text": " yet no one can describe it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:48,440"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 48440
+			},
+			"text": " And so, I'm going to talk a little bit about different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,440",
+				"to": "00:00:51,500"
+			},
+			"offsets": {
+				"from": 48440,
+				"to": 51500
+			},
+			"text": " of addressing this problem, including some work we've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,040",
+				"to": "00:00:58,280"
+			},
+			"offsets": {
+				"from": 52040,
+				"to": 58280
+			},
+			"text": " And I like to call any analysis of MEV sort of measuring the cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,280",
+				"to": "00:01:02,240"
+			},
+			"offsets": {
+				"from": 58280,
+				"to": 62240
+			},
+			"text": " of feudalism, so that's sort of where the title comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,240",
+				"to": "00:01:04,960"
+			},
+			"offsets": {
+				"from": 62240,
+				"to": 64960
+			},
+			"text": " Let's start with the operative definition of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,960",
+				"to": "00:01:07,200"
+			},
+			"offsets": {
+				"from": 64960,
+				"to": 67200
+			},
+			"text": " You know it when you see it, like the, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,200",
+				"to": "00:01:09,720"
+			},
+			"offsets": {
+				"from": 67200,
+				"to": 69720
+			},
+			"text": " the famous Supreme Court ruling on porn."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,720",
+				"to": "00:01:14,040"
+			},
+			"offsets": {
+				"from": 69720,
+				"to": 74040
+			},
+			"text": " And, you know, MEV comes in many shapes and sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,040",
+				"to": "00:01:16,920"
+			},
+			"offsets": {
+				"from": 74040,
+				"to": 76920
+			},
+			"text": " You know, of course, we have everything from sandwich attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,920",
+				"to": "00:01:21,160"
+			},
+			"offsets": {
+				"from": 76920,
+				"to": 81160
+			},
+			"text": " liquidations, arbitrage, NFT, front running, and cross chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:24,800"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 84800
+			},
+			"text": " And as you can see, there's, it's sort of quite a variable form"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,800",
+				"to": "00:01:27,360"
+			},
+			"offsets": {
+				"from": 84800,
+				"to": 87360
+			},
+			"text": " of revenue for, for Valdez and searchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,360",
+				"to": "00:01:33,280"
+			},
+			"offsets": {
+				"from": 87360,
+				"to": 93280
+			},
+			"text": " And somehow, because we know there are many examples and we feel"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,280",
+				"to": "00:01:36,320"
+			},
+			"offsets": {
+				"from": 93280,
+				"to": 96320
+			},
+			"text": " like we can't enumerate all of them, it might feel like the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,320",
+				"to": "00:01:38,160"
+			},
+			"offsets": {
+				"from": 96320,
+				"to": 98160
+			},
+			"text": " of all MEVs super big."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,160",
+				"to": "00:01:39,120"
+			},
+			"offsets": {
+				"from": 98160,
+				"to": 99120
+			},
+			"text": " So how do you analyze it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,120",
+				"to": "00:01:42,220"
+			},
+			"offsets": {
+				"from": 99120,
+				"to": 102220
+			},
+			"text": " You know, I know there were two talks yesterday about what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,220",
+				"to": "00:01:46,780"
+			},
+			"offsets": {
+				"from": 102220,
+				"to": 106780
+			},
+			"text": " and isn't MEV, but I think we're going to focus on kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,780",
+				"to": "00:01:50,120"
+			},
+			"offsets": {
+				"from": 106780,
+				"to": 110120
+			},
+			"text": " of an operative definition that can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,120",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 110120,
+				"to": 114920
+			},
+			"text": " And we could, we could sort of say MEV is any excess value"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:01:59,840"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 119840
+			},
+			"text": " that can be captured by validators by reordering transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,840",
+				"to": "00:02:02,200"
+			},
+			"offsets": {
+				"from": 119840,
+				"to": 122200
+			},
+			"text": " strategically adding or removing transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,200",
+				"to": "00:02:05,880"
+			},
+			"offsets": {
+				"from": 122200,
+				"to": 125880
+			},
+			"text": " The idea is most of this is currently managed by off chain auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,880",
+				"to": "00:02:09,360"
+			},
+			"offsets": {
+				"from": 125880,
+				"to": 129360
+			},
+			"text": " So people bid on transaction priority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,360",
+				"to": "00:02:11,760"
+			},
+			"offsets": {
+				"from": 129360,
+				"to": 131760
+			},
+			"text": " atomicity, you know, within bundles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,760",
+				"to": "00:02:15,980"
+			},
+			"offsets": {
+				"from": 131760,
+				"to": 135980
+			},
+			"text": " And, you know, if we take a step back and look at the history"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,980",
+				"to": "00:02:18,780"
+			},
+			"offsets": {
+				"from": 135980,
+				"to": 138780
+			},
+			"text": " of Ethereum as to why we got to the auction world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,460",
+				"to": "00:02:23,140"
+			},
+			"offsets": {
+				"from": 139460,
+				"to": 143140
+			},
+			"text": " part of the reason is the blockchain was just getting spammed"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,140",
+				"to": "00:02:25,620"
+			},
+			"offsets": {
+				"from": 143140,
+				"to": 145620
+			},
+			"text": " by people doing liquidations and backrunning oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,620",
+				"to": "00:02:28,400"
+			},
+			"offsets": {
+				"from": 145620,
+				"to": 148400
+			},
+			"text": " And instead of normal users being able to get their transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,400",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148400,
+				"to": 151000
+			},
+			"text": " in, you'd have the, you know, entire blocks filled"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,220"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154220
+			},
+			"text": " with people's, you know, spam background transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,220",
+				"to": "00:02:37,800"
+			},
+			"offsets": {
+				"from": 154220,
+				"to": 157800
+			},
+			"text": " On the other hand, of course, as the previous talk was focused"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,800",
+				"to": "00:02:41,020"
+			},
+			"offsets": {
+				"from": 157800,
+				"to": 161020
+			},
+			"text": " on there's a lot of centralization risk with off chain auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,020",
+				"to": "00:02:44,980"
+			},
+			"offsets": {
+				"from": 161020,
+				"to": 164980
+			},
+			"text": " So let's, you know, try to maybe schematically look at, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,980",
+				"to": "00:02:46,600"
+			},
+			"offsets": {
+				"from": 164980,
+				"to": 166600
+			},
+			"text": " what, how MEV works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,700",
+				"to": "00:02:50,120"
+			},
+			"offsets": {
+				"from": 166700,
+				"to": 170120
+			},
+			"text": " We have users who submit transactions, which are the deltas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,120",
+				"to": "00:02:51,560"
+			},
+			"offsets": {
+				"from": 170120,
+				"to": 171560
+			},
+			"text": " We have a mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,560",
+				"to": "00:02:55,960"
+			},
+			"offsets": {
+				"from": 171560,
+				"to": 175960
+			},
+			"text": " The searcher has sort of their own view of the mempool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,960",
+				"to": "00:02:58,760"
+			},
+			"offsets": {
+				"from": 175960,
+				"to": 178760
+			},
+			"text": " and maybe they have some transactions that are directly given"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,760",
+				"to": "00:03:02,120"
+			},
+			"offsets": {
+				"from": 178760,
+				"to": 182120
+			},
+			"text": " to them, which, you know, people would call private order flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,120",
+				"to": "00:03:05,080"
+			},
+			"offsets": {
+				"from": 182120,
+				"to": 185080
+			},
+			"text": " And then the searcher sends their bundle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,080",
+				"to": "00:03:08,580"
+			},
+			"offsets": {
+				"from": 185080,
+				"to": 188580
+			},
+			"text": " which they're willing to pay for to the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,580",
+				"to": "00:03:09,680"
+			},
+			"offsets": {
+				"from": 188580,
+				"to": 189680
+			},
+			"text": " and the validator adds a tool block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,680",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 189680,
+				"to": 193760
+			},
+			"text": " The philosophical question here though is how do we know value captured"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:17,460"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 197460
+			},
+			"text": " by MEV is excessive or in a notion of excess, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,460",
+				"to": "00:03:20,980"
+			},
+			"offsets": {
+				"from": 197460,
+				"to": 200980
+			},
+			"text": " in this sort of first definition, I said any excess value."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,980",
+				"to": "00:03:23,900"
+			},
+			"offsets": {
+				"from": 200980,
+				"to": 203900
+			},
+			"text": " Well, how excessive is excess?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,900",
+				"to": "00:03:26,380"
+			},
+			"offsets": {
+				"from": 203900,
+				"to": 206380
+			},
+			"text": " Describing value flows in MEV is actually quite difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,380",
+				"to": "00:03:30,220"
+			},
+			"offsets": {
+				"from": 206380,
+				"to": 210220
+			},
+			"text": " So in, in algorithmic game theory, you usually have two main ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,220",
+				"to": "00:03:31,380"
+			},
+			"offsets": {
+				"from": 210220,
+				"to": 211380
+			},
+			"text": " of thinking about the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,380",
+				"to": "00:03:34,120"
+			},
+			"offsets": {
+				"from": 211380,
+				"to": 214120
+			},
+			"text": " One is optimizing social welfare."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,120",
+				"to": "00:03:38,060"
+			},
+			"offsets": {
+				"from": 214120,
+				"to": 218060
+			},
+			"text": " Social welfare means if everyone has some notion of utility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,060",
+				"to": "00:03:40,560"
+			},
+			"offsets": {
+				"from": 218060,
+				"to": 220560
+			},
+			"text": " some notion of how happy they are with the world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,560",
+				"to": "00:03:43,740"
+			},
+			"offsets": {
+				"from": 220560,
+				"to": 223740
+			},
+			"text": " you want to maximize the sum of everyone's utilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,740",
+				"to": "00:03:49,340"
+			},
+			"offsets": {
+				"from": 223740,
+				"to": 229340
+			},
+			"text": " On the other hand, revenue is, you know, the person selling the good,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,340",
+				"to": "00:03:52,580"
+			},
+			"offsets": {
+				"from": 229340,
+				"to": 232580
+			},
+			"text": " you know, maximizing how much they earn."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,580",
+				"to": "00:03:56,200"
+			},
+			"offsets": {
+				"from": 232580,
+				"to": 236200
+			},
+			"text": " And in cryptocurrency, it's actually interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,200",
+				"to": "00:03:58,660"
+			},
+			"offsets": {
+				"from": 236200,
+				"to": 238660
+			},
+			"text": " that you have to optimize both jointly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,660",
+				"to": "00:04:02,560"
+			},
+			"offsets": {
+				"from": 238660,
+				"to": 242560
+			},
+			"text": " So obviously, user welfare is important for the success of any network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,560",
+				"to": "00:04:05,100"
+			},
+			"offsets": {
+				"from": 242560,
+				"to": 245100
+			},
+			"text": " I don't need to really convince anyone of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,100",
+				"to": "00:04:08,340"
+			},
+			"offsets": {
+				"from": 245100,
+				"to": 248340
+			},
+			"text": " But validator revenue being optimized is actually important"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,340",
+				"to": "00:04:09,300"
+			},
+			"offsets": {
+				"from": 248340,
+				"to": 249300
+			},
+			"text": " for economic security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,300",
+				"to": "00:04:12,380"
+			},
+			"offsets": {
+				"from": 249300,
+				"to": 252380
+			},
+			"text": " If validators are not making sufficient income from it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,380",
+				"to": "00:04:15,620"
+			},
+			"offsets": {
+				"from": 252380,
+				"to": 255620
+			},
+			"text": " then they're unable to really secure the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,620",
+				"to": "00:04:18,860"
+			},
+			"offsets": {
+				"from": 255620,
+				"to": 258860
+			},
+			"text": " And in decentralized networks versus centralized networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,860",
+				"to": "00:04:20,480"
+			},
+			"offsets": {
+				"from": 258860,
+				"to": 260480
+			},
+			"text": " these are two competing goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,480",
+				"to": "00:04:24,380"
+			},
+			"offsets": {
+				"from": 260480,
+				"to": 264380
+			},
+			"text": " And I think the one reason there's a broad view of how theory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,380",
+				"to": "00:04:27,580"
+			},
+			"offsets": {
+				"from": 264380,
+				"to": 267580
+			},
+			"text": " you know, algorithmic game theory, it's different for crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,580",
+				"to": "00:04:31,020"
+			},
+			"offsets": {
+				"from": 267580,
+				"to": 271020
+			},
+			"text": " is that you have to sort of balance these two goals instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,020",
+				"to": "00:04:32,820"
+			},
+			"offsets": {
+				"from": 271020,
+				"to": 272820
+			},
+			"text": " of trying to optimize one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,820",
+				"to": "00:04:35,780"
+			},
+			"offsets": {
+				"from": 272820,
+				"to": 275780
+			},
+			"text": " So what pieces are sort of missing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,780",
+				"to": "00:04:39,540"
+			},
+			"offsets": {
+				"from": 275780,
+				"to": 279540
+			},
+			"text": " So how would we kind of describe welfare as how do you describe revenue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,100",
+				"to": "00:04:44,260"
+			},
+			"offsets": {
+				"from": 280100,
+				"to": 284260
+			},
+			"text": " You know, one thing is understanding the user's utilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,260",
+				"to": "00:04:45,580"
+			},
+			"offsets": {
+				"from": 284260,
+				"to": 285580
+			},
+			"text": " What is the user getting out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,580",
+				"to": "00:04:47,540"
+			},
+			"offsets": {
+				"from": 285580,
+				"to": 287540
+			},
+			"text": " What is their individual notion of value?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,540",
+				"to": "00:04:49,380"
+			},
+			"offsets": {
+				"from": 287540,
+				"to": 289380
+			},
+			"text": " And that can vary over the entire network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,380",
+				"to": "00:04:52,540"
+			},
+			"offsets": {
+				"from": 289380,
+				"to": 292540
+			},
+			"text": " The other thing is some notion of transaction fees and payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,540",
+				"to": "00:04:55,540"
+			},
+			"offsets": {
+				"from": 292540,
+				"to": 295540
+			},
+			"text": " that, you know, the distribution of payment sizes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,540",
+				"to": "00:04:57,180"
+			},
+			"offsets": {
+				"from": 295540,
+				"to": 297180
+			},
+			"text": " that users are willing to handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,180",
+				"to": "00:05:01,340"
+			},
+			"offsets": {
+				"from": 297180,
+				"to": 301340
+			},
+			"text": " And the last thing is an understanding of how an auctioneer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,340",
+				"to": "00:05:04,260"
+			},
+			"offsets": {
+				"from": 301340,
+				"to": 304260
+			},
+			"text": " so in Flashbots or, you know, in PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,260",
+				"to": "00:05:07,020"
+			},
+			"offsets": {
+				"from": 304260,
+				"to": 307020
+			},
+			"text": " how they allocate block spaces to users."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,020",
+				"to": "00:05:09,980"
+			},
+			"offsets": {
+				"from": 307020,
+				"to": 309980
+			},
+			"text": " And that the last part is actually quite complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,980",
+				"to": "00:05:12,740"
+			},
+			"offsets": {
+				"from": 309980,
+				"to": 312740
+			},
+			"text": " And these three things are quite entangled when you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,740",
+				"to": "00:05:14,460"
+			},
+			"offsets": {
+				"from": 312740,
+				"to": 314460
+			},
+			"text": " to try to write a mathematical theory for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,460",
+				"to": "00:05:19,540"
+			},
+			"offsets": {
+				"from": 314460,
+				"to": 319540
+			},
+			"text": " And these sort of things actually depend a lot on the application, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,540",
+				"to": "00:05:23,620"
+			},
+			"offsets": {
+				"from": 319540,
+				"to": 323620
+			},
+			"text": " The user's utility for minting and NFT is extremely different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,620",
+				"to": "00:05:28,500"
+			},
+			"offsets": {
+				"from": 323620,
+				"to": 328500
+			},
+			"text": " for a user's utility for borrowing against some collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,500",
+				"to": "00:05:31,820"
+			},
+			"offsets": {
+				"from": 328500,
+				"to": 331820
+			},
+			"text": " And inevitably, that means that the allocation mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,820",
+				"to": "00:05:32,940"
+			},
+			"offsets": {
+				"from": 331820,
+				"to": 332940
+			},
+			"text": " should somehow be tied to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,940",
+				"to": "00:05:36,980"
+			},
+			"offsets": {
+				"from": 332940,
+				"to": 336980
+			},
+			"text": " Okay, so let's try to do kind of like the ELI5 simple version"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,980",
+				"to": "00:05:41,660"
+			},
+			"offsets": {
+				"from": 336980,
+				"to": 341660
+			},
+			"text": " of this, which is, you know, we have a notion of block space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,660",
+				"to": "00:05:45,140"
+			},
+			"offsets": {
+				"from": 341660,
+				"to": 345140
+			},
+			"text": " which is sort of a notion of a max number of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,140",
+				"to": "00:05:47,020"
+			},
+			"offsets": {
+				"from": 345140,
+				"to": 347020
+			},
+			"text": " or slots or size or gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,020",
+				"to": "00:05:49,500"
+			},
+			"offsets": {
+				"from": 347020,
+				"to": 349500
+			},
+			"text": " You can choose a unit, but for simplicity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,500",
+				"to": "00:05:51,540"
+			},
+			"offsets": {
+				"from": 349500,
+				"to": 351540
+			},
+			"text": " just assume there's sort of some fixed number of units."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,540",
+				"to": "00:05:55,100"
+			},
+			"offsets": {
+				"from": 351540,
+				"to": 355100
+			},
+			"text": " There's sort of a notion of a binary allocation to a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,100",
+				"to": "00:05:57,620"
+			},
+			"offsets": {
+				"from": 355100,
+				"to": 357620
+			},
+			"text": " of whether a particular user gets a particular slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,620",
+				"to": "00:05:59,500"
+			},
+			"offsets": {
+				"from": 357620,
+				"to": 359500
+			},
+			"text": " The users have the utility functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,500",
+				"to": "00:06:02,820"
+			},
+			"offsets": {
+				"from": 359500,
+				"to": 362820
+			},
+			"text": " I'm unspecified the domain and range because, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,820",
+				"to": "00:06:05,740"
+			},
+			"offsets": {
+				"from": 362820,
+				"to": 365740
+			},
+			"text": " it's actually quite complicated in the world of cross-chain bridging."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,700",
+				"to": "00:06:12,620"
+			},
+			"offsets": {
+				"from": 366700,
+				"to": 372620
+			},
+			"text": " And we see here that social welfare is defined as sort of the expected"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,620",
+				"to": "00:06:15,740"
+			},
+			"offsets": {
+				"from": 372620,
+				"to": 375740
+			},
+			"text": " total utility of all the users given an allocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,740",
+				"to": "00:06:21,020"
+			},
+			"offsets": {
+				"from": 375740,
+				"to": 381020
+			},
+			"text": " So these X variables are effectively whether that slot is given to a certain person,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,020",
+				"to": "00:06:24,860"
+			},
+			"offsets": {
+				"from": 381020,
+				"to": 384860
+			},
+			"text": " and this is sort of measuring their sort of net happiness, let's say."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,860",
+				"to": "00:06:28,980"
+			},
+			"offsets": {
+				"from": 384860,
+				"to": 388980
+			},
+			"text": " Revenue, however, is just the expected value of the payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,980",
+				"to": "00:06:30,460"
+			},
+			"offsets": {
+				"from": 388980,
+				"to": 390460
+			},
+			"text": " And notice these are quite different."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,460",
+				"to": "00:06:36,300"
+			},
+			"offsets": {
+				"from": 390460,
+				"to": 396300
+			},
+			"text": " In particular, the social welfare includes the utility of the auctioneer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,780",
+				"to": "00:06:42,060"
+			},
+			"offsets": {
+				"from": 396780,
+				"to": 402060
+			},
+			"text": " Which means that all of the payments that the user send are subtracted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,060",
+				"to": "00:06:45,260"
+			},
+			"offsets": {
+				"from": 402060,
+				"to": 405260
+			},
+			"text": " or sorry, are negative terms for the bidders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,260",
+				"to": "00:06:47,380"
+			},
+			"offsets": {
+				"from": 405260,
+				"to": 407380
+			},
+			"text": " and it's a positive term for the auctioneer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,380",
+				"to": "00:06:49,860"
+			},
+			"offsets": {
+				"from": 407380,
+				"to": 409860
+			},
+			"text": " So the payments cancel out in social welfare."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,860",
+				"to": "00:06:52,420"
+			},
+			"offsets": {
+				"from": 409860,
+				"to": 412420
+			},
+			"text": " So you have no dependence on payments explicitly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,420",
+				"to": "00:06:55,060"
+			},
+			"offsets": {
+				"from": 412420,
+				"to": 415060
+			},
+			"text": " Whereas in revenue, of course, you depend on payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,060",
+				"to": "00:07:00,020"
+			},
+			"offsets": {
+				"from": 415060,
+				"to": 420020
+			},
+			"text": " So if we wanted to try to formulate what is an economic equilibrium for the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,020",
+				"to": "00:07:05,500"
+			},
+			"offsets": {
+				"from": 420020,
+				"to": 425500
+			},
+			"text": " you might say, OK, well, let's try to find joint maxima"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,700",
+				"to": "00:07:08,140"
+			},
+			"offsets": {
+				"from": 425700,
+				"to": 428140
+			},
+			"text": " of the social welfare and revenue functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,140",
+				"to": "00:07:13,620"
+			},
+			"offsets": {
+				"from": 428140,
+				"to": 433620
+			},
+			"text": " However, given an allocation that optimizes social welfare,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,620",
+				"to": "00:07:15,580"
+			},
+			"offsets": {
+				"from": 433620,
+				"to": 435580
+			},
+			"text": " it implies a set of payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,580",
+				"to": "00:07:20,500"
+			},
+			"offsets": {
+				"from": 435580,
+				"to": 440500
+			},
+			"text": " And it can be true that the payments that you get from optimal social welfare"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,500",
+				"to": "00:07:24,660"
+			},
+			"offsets": {
+				"from": 440500,
+				"to": 444660
+			},
+			"text": " are very far from the payments that you get from optimal revenue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,660",
+				"to": "00:07:26,300"
+			},
+			"offsets": {
+				"from": 444660,
+				"to": 446300
+			},
+			"text": " That there's sort of some intuition to that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,300",
+				"to": "00:07:30,540"
+			},
+			"offsets": {
+				"from": 446300,
+				"to": 450540
+			},
+			"text": " Like if flashbots just basically gave every bundle for free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,540",
+				"to": "00:07:34,740"
+			},
+			"offsets": {
+				"from": 450540,
+				"to": 454740
+			},
+			"text": " obviously there's a lot of user gains, but like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,740",
+				"to": "00:07:38,140"
+			},
+			"offsets": {
+				"from": 454740,
+				"to": 458140
+			},
+			"text": " the auctioneer is pretty pissed, aka the validator/miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,140",
+				"to": "00:07:40,940"
+			},
+			"offsets": {
+				"from": 458140,
+				"to": 460940
+			},
+			"text": " And this happens all the time in AmiD,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,940",
+				"to": "00:07:46,460"
+			},
+			"offsets": {
+				"from": 460940,
+				"to": 466460
+			},
+			"text": " the idea that the optimal revenue equilibria and the optimal social welfare equilibria"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,460",
+				"to": "00:07:47,580"
+			},
+			"offsets": {
+				"from": 466460,
+				"to": 467580
+			},
+			"text": " are sort of disjoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,580",
+				"to": "00:07:51,980"
+			},
+			"offsets": {
+				"from": 467580,
+				"to": 471980
+			},
+			"text": " So, you know, the name cost of feudalism"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,980",
+				"to": "00:07:55,060"
+			},
+			"offsets": {
+				"from": 471980,
+				"to": 475060
+			},
+			"text": " is really a pun on the concept of the price of anarchy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,060",
+				"to": "00:07:57,700"
+			},
+			"offsets": {
+				"from": 475060,
+				"to": 477700
+			},
+			"text": " which is sort of a common concept in algorithmic gain theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,700",
+				"to": "00:08:00,620"
+			},
+			"offsets": {
+				"from": 477700,
+				"to": 480620
+			},
+			"text": " Roughly speaking, you can think of the price of anarchy as"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,620",
+				"to": "00:08:03,700"
+			},
+			"offsets": {
+				"from": 480620,
+				"to": 483700
+			},
+			"text": " if I take, if I have a set of many equilibria,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,060",
+				"to": "00:08:08,420"
+			},
+			"offsets": {
+				"from": 484060,
+				"to": 488420
+			},
+			"text": " I want to look at the ratio of the worst case behavior of an equilibria"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,420",
+				"to": "00:08:09,900"
+			},
+			"offsets": {
+				"from": 488420,
+				"to": 489900
+			},
+			"text": " to the best case behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,900",
+				"to": "00:08:11,940"
+			},
+			"offsets": {
+				"from": 489900,
+				"to": 491940
+			},
+			"text": " It's an approximation ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,940",
+				"to": "00:08:15,060"
+			},
+			"offsets": {
+				"from": 491940,
+				"to": 495060
+			},
+			"text": " And so what this, for instance, this formula says is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,060",
+				"to": "00:08:18,860"
+			},
+			"offsets": {
+				"from": 495060,
+				"to": 498860
+			},
+			"text": " what's the worst case that the equilibria, the payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,860",
+				"to": "00:08:23,140"
+			},
+			"offsets": {
+				"from": 498860,
+				"to": 503140
+			},
+			"text": " earned by the validator, deviate from the payments earned at optimal welfare?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,140",
+				"to": "00:08:26,220"
+			},
+			"offsets": {
+				"from": 503140,
+				"to": 506220
+			},
+			"text": " And what's the best case and what's the ratio of those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,220",
+				"to": "00:08:29,500"
+			},
+			"offsets": {
+				"from": 506220,
+				"to": 509500
+			},
+			"text": " And you could basically think of this as, if this is really large"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,500",
+				"to": "00:08:33,140"
+			},
+			"offsets": {
+				"from": 509500,
+				"to": 513140
+			},
+			"text": " or depends on the number of transactions or users, that's really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,140",
+				"to": "00:08:37,260"
+			},
+			"offsets": {
+				"from": 513140,
+				"to": 517260
+			},
+			"text": " And so, you know, tongue in cheek, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,260",
+				"to": "00:08:40,260"
+			},
+			"offsets": {
+				"from": 517260,
+				"to": 520260
+			},
+			"text": " of course nothing in real life is asymptotic, but, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,260",
+				"to": "00:08:42,500"
+			},
+			"offsets": {
+				"from": 520260,
+				"to": 522500
+			},
+			"text": " I feel like these are good heuristics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,500",
+				"to": "00:08:45,900"
+			},
+			"offsets": {
+				"from": 522500,
+				"to": 525900
+			},
+			"text": " which is constant price of anarchy is really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,900",
+				"to": "00:08:49,660"
+			},
+			"offsets": {
+				"from": 525900,
+				"to": 529660
+			},
+			"text": " It means that even if you get to a shitty equilibria,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,660",
+				"to": "00:08:55,140"
+			},
+			"offsets": {
+				"from": 529660,
+				"to": 535140
+			},
+			"text": " it's not that much worse, it's not that much worse than the best equilibria."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,140",
+				"to": "00:08:58,540"
+			},
+			"offsets": {
+				"from": 535140,
+				"to": 538540
+			},
+			"text": " If the price of anarchy is weakly growing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,540",
+				"to": "00:09:01,060"
+			},
+			"offsets": {
+				"from": 538540,
+				"to": 541060
+			},
+			"text": " it's a little O of N, so like maybe it's logarithmic"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,060",
+				"to": "00:09:02,660"
+			},
+			"offsets": {
+				"from": 541060,
+				"to": 542660
+			},
+			"text": " and the number of users or slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,660",
+				"to": "00:09:05,300"
+			},
+			"offsets": {
+				"from": 542660,
+				"to": 545300
+			},
+			"text": " maybe it's square root of the number of user slots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,300",
+				"to": "00:09:07,540"
+			},
+			"offsets": {
+				"from": 545300,
+				"to": 547540
+			},
+			"text": " that's okay, you can deal with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,540",
+				"to": "00:09:12,500"
+			},
+			"offsets": {
+				"from": 547540,
+				"to": 552500
+			},
+			"text": " And if the price of anarchy is linear in the number of users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,500",
+				"to": "00:09:13,460"
+			},
+			"offsets": {
+				"from": 552500,
+				"to": 553460
+			},
+			"text": " that's horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,460",
+				"to": "00:09:17,620"
+			},
+			"offsets": {
+				"from": 553460,
+				"to": 557620
+			},
+			"text": " That basically means that the more users join the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,620",
+				"to": "00:09:19,940"
+			},
+			"offsets": {
+				"from": 557620,
+				"to": 559940
+			},
+			"text": " the worse the equilibria is for everyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,940",
+				"to": "00:09:21,940"
+			},
+			"offsets": {
+				"from": 559940,
+				"to": 561940
+			},
+			"text": " which is like the opposite of a network effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,940",
+				"to": "00:09:23,860"
+			},
+			"offsets": {
+				"from": 561940,
+				"to": 563860
+			},
+			"text": " It's like the anti-network effect, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,860",
+				"to": "00:09:26,020"
+			},
+			"offsets": {
+				"from": 563860,
+				"to": 566020
+			},
+			"text": " No one wants that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,020",
+				"to": "00:09:27,940"
+			},
+			"offsets": {
+				"from": 566020,
+				"to": 567940
+			},
+			"text": " And the interesting thing is that this quantity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,940",
+				"to": "00:09:30,580"
+			},
+			"offsets": {
+				"from": 567940,
+				"to": 570580
+			},
+			"text": " if you try to write it out, depends a lot on your choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,580",
+				"to": "00:09:33,540"
+			},
+			"offsets": {
+				"from": 570580,
+				"to": 573540
+			},
+			"text": " of what applications you're modeling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,540",
+				"to": "00:09:34,980"
+			},
+			"offsets": {
+				"from": 573540,
+				"to": 574980
+			},
+			"text": " because to compute the prices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,980",
+				"to": "00:09:37,300"
+			},
+			"offsets": {
+				"from": 574980,
+				"to": 577300
+			},
+			"text": " you need to sort of know these utilities of the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,300",
+				"to": "00:09:39,140"
+			},
+			"offsets": {
+				"from": 577300,
+				"to": 579140
+			},
+			"text": " and that of course depends on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,140",
+				"to": "00:09:40,500"
+			},
+			"offsets": {
+				"from": 579140,
+				"to": 580500
+			},
+			"text": " And not to keep belaboring that point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,500",
+				"to": "00:09:42,980"
+			},
+			"offsets": {
+				"from": 580500,
+				"to": 582980
+			},
+			"text": " but I think that the one of the reasons MEV has this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,980",
+				"to": "00:09:48,100"
+			},
+			"offsets": {
+				"from": 582980,
+				"to": 588100
+			},
+			"text": " both memeability and inability for anyone to write down equations for it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,100",
+				"to": "00:09:50,660"
+			},
+			"offsets": {
+				"from": 588100,
+				"to": 590660
+			},
+			"text": " is because it's so dependent on the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,660",
+				"to": "00:09:53,220"
+			},
+			"offsets": {
+				"from": 590660,
+				"to": 593220
+			},
+			"text": " which is something I think the early designers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,220",
+				"to": "00:09:56,980"
+			},
+			"offsets": {
+				"from": 593220,
+				"to": 596980
+			},
+			"text": " of cryptocurrency networks did not divine at that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,980",
+				"to": "00:10:00,340"
+			},
+			"offsets": {
+				"from": 596980,
+				"to": 600340
+			},
+			"text": " So let's go through an example, a stylized example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,340",
+				"to": "00:10:01,620"
+			},
+			"offsets": {
+				"from": 600340,
+				"to": 601620
+			},
+			"text": " of kind of what this looks like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,620",
+				"to": "00:10:04,180"
+			},
+			"offsets": {
+				"from": 601620,
+				"to": 604180
+			},
+			"text": " how would you analyze this for AMMs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,180",
+				"to": "00:10:08,500"
+			},
+			"offsets": {
+				"from": 604180,
+				"to": 608500
+			},
+			"text": " There's a very famous paradox in algorithm game theory"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,500",
+				"to": "00:10:09,460"
+			},
+			"offsets": {
+				"from": 608500,
+				"to": 609460
+			},
+			"text": " called Brace's Paradox."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,460",
+				"to": "00:10:13,700"
+			},
+			"offsets": {
+				"from": 609460,
+				"to": 613700
+			},
+			"text": " And Brace's Paradox is really about how traffic flows on a network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,700",
+				"to": "00:10:16,100"
+			},
+			"offsets": {
+				"from": 613700,
+				"to": 616100
+			},
+			"text": " So we have this network on the left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,100",
+				"to": "00:10:18,580"
+			},
+			"offsets": {
+				"from": 616100,
+				"to": 618580
+			},
+			"text": " and we have a source city S,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,580",
+				"to": "00:10:20,180"
+			},
+			"offsets": {
+				"from": 618580,
+				"to": 620180
+			},
+			"text": " we have a destination city D."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,180",
+				"to": "00:10:24,100"
+			},
+			"offsets": {
+				"from": 620180,
+				"to": 624100
+			},
+			"text": " And imagine that there's a bunch of traffic"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,100",
+				"to": "00:10:26,340"
+			},
+			"offsets": {
+				"from": 624100,
+				"to": 626340
+			},
+			"text": " that needs to go from source to destination."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,340",
+				"to": "00:10:29,140"
+			},
+			"offsets": {
+				"from": 626340,
+				"to": 629140
+			},
+			"text": " Each edge that it takes is a latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,140",
+				"to": "00:10:30,900"
+			},
+			"offsets": {
+				"from": 629140,
+				"to": 630900
+			},
+			"text": " And so when you see a latency of one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,900",
+				"to": "00:10:34,980"
+			},
+			"offsets": {
+				"from": 630900,
+				"to": 634980
+			},
+			"text": " that's sort of like a link that can take arbitrary capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,980",
+				"to": "00:10:38,900"
+			},
+			"offsets": {
+				"from": 634980,
+				"to": 638900
+			},
+			"text": " It takes the same amount of time for everyone to cross that link."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,900",
+				"to": "00:10:41,780"
+			},
+			"offsets": {
+				"from": 638900,
+				"to": 641780
+			},
+			"text": " When you see a link of X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,780",
+				"to": "00:10:44,020"
+			},
+			"offsets": {
+				"from": 641780,
+				"to": 644020
+			},
+			"text": " it's dependent on the amount of flow in that network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,020",
+				"to": "00:10:46,580"
+			},
+			"offsets": {
+				"from": 644020,
+				"to": 646580
+			},
+			"text": " So you could basically imagine that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,580",
+				"to": "00:10:48,100"
+			},
+			"offsets": {
+				"from": 646580,
+				"to": 648100
+			},
+			"text": " say we have 100 cars,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,100",
+				"to": "00:10:51,700"
+			},
+			"offsets": {
+				"from": 648100,
+				"to": 651700
+			},
+			"text": " if 100 cars all go down the route X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,700",
+				"to": "00:10:55,540"
+			},
+			"offsets": {
+				"from": 651700,
+				"to": 655540
+			},
+			"text": " then it's proportional to the number of cars that are going on the route."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,540",
+				"to": "00:10:57,300"
+			},
+			"offsets": {
+				"from": 655540,
+				"to": 657300
+			},
+			"text": " And so what you can do is you can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,300",
+				"to": "00:11:00,100"
+			},
+			"offsets": {
+				"from": 657300,
+				"to": 660100
+			},
+			"text": " hey, what if everyone is selfish or greedy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,100",
+				"to": "00:11:01,700"
+			},
+			"offsets": {
+				"from": 660100,
+				"to": 661700
+			},
+			"text": " They're not cooperating."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,700",
+				"to": "00:11:02,740"
+			},
+			"offsets": {
+				"from": 661700,
+				"to": 662740
+			},
+			"text": " They don't have Google Maps."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,740",
+				"to": "00:11:04,420"
+			},
+			"offsets": {
+				"from": 662740,
+				"to": 664420
+			},
+			"text": " So Google Maps effectively gets you around this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,420",
+				"to": "00:11:07,140"
+			},
+			"offsets": {
+				"from": 664420,
+				"to": 667140
+			},
+			"text": " because it sort of implicitly coordinates people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,140",
+				"to": "00:11:09,060"
+			},
+			"offsets": {
+				"from": 667140,
+				"to": 669060
+			},
+			"text": " whether you're thinking about it or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,060",
+				"to": "00:11:11,620"
+			},
+			"offsets": {
+				"from": 669060,
+				"to": 671620
+			},
+			"text": " But assume everyone's selfish,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,620",
+				"to": "00:11:13,140"
+			},
+			"offsets": {
+				"from": 671620,
+				"to": 673140
+			},
+			"text": " and they know this map."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,140",
+				"to": "00:11:15,860"
+			},
+			"offsets": {
+				"from": 673140,
+				"to": 675860
+			},
+			"text": " How would they choose which path to take?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,860",
+				"to": "00:11:19,460"
+			},
+			"offsets": {
+				"from": 675860,
+				"to": 679460
+			},
+			"text": " And the thing you can show is basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,460",
+				"to": "00:11:22,180"
+			},
+			"offsets": {
+				"from": 679460,
+				"to": 682180
+			},
+			"text": " they would split themselves up 50/50."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,180",
+				"to": "00:11:24,180"
+			},
+			"offsets": {
+				"from": 682180,
+				"to": 684180
+			},
+			"text": " The traffic would go on the upper path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,180",
+				"to": "00:11:25,780"
+			},
+			"offsets": {
+				"from": 684180,
+				"to": 685780
+			},
+			"text": " half on the lower path."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,780",
+				"to": "00:11:28,420"
+			},
+			"offsets": {
+				"from": 685780,
+				"to": 688420
+			},
+			"text": " And so the time it would take is 3/2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,420",
+				"to": "00:11:31,780"
+			},
+			"offsets": {
+				"from": 688420,
+				"to": 691780
+			},
+			"text": " We choose some units, such as Xs from 0 to 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,780",
+				"to": "00:11:32,500"
+			},
+			"offsets": {
+				"from": 691780,
+				"to": 692500
+			},
+			"text": " On the other hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,500",
+				"to": "00:11:35,700"
+			},
+			"offsets": {
+				"from": 692500,
+				"to": 695700
+			},
+			"text": " you might think that adding more roads always,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,700",
+				"to": "00:11:39,460"
+			},
+			"offsets": {
+				"from": 695700,
+				"to": 699460
+			},
+			"text": " decreases traffic, and this is not true."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,460",
+				"to": "00:11:42,820"
+			},
+			"offsets": {
+				"from": 699460,
+				"to": 702820
+			},
+			"text": " So there's this interesting thing of everyone's selfishly optimizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,820",
+				"to": "00:11:45,620"
+			},
+			"offsets": {
+				"from": 702820,
+				"to": 705620
+			},
+			"text": " If you add a link between the two middle cities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,620",
+				"to": "00:11:47,700"
+			},
+			"offsets": {
+				"from": 705620,
+				"to": 707700
+			},
+			"text": " that lets you teleport,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,700",
+				"to": "00:11:52,820"
+			},
+			"offsets": {
+				"from": 707700,
+				"to": 712820
+			},
+			"text": " then everyone just takes the X middle link X path."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,620",
+				"to": "00:11:57,300"
+			},
+			"offsets": {
+				"from": 713620,
+				"to": 717300
+			},
+			"text": " And the total congestion that everyone realizes goes up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,300",
+				"to": "00:12:00,900"
+			},
+			"offsets": {
+				"from": 717300,
+				"to": 720900
+			},
+			"text": " And so this paradoxical behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,900",
+				"to": "00:12:03,620"
+			},
+			"offsets": {
+				"from": 720900,
+				"to": 723620
+			},
+			"text": " I think philosophers would not call this paradox,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,620",
+				"to": "00:12:05,860"
+			},
+			"offsets": {
+				"from": 723620,
+				"to": 725860
+			},
+			"text": " but economists call it a paradox."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,860",
+				"to": "00:12:10,260"
+			},
+			"offsets": {
+				"from": 725860,
+				"to": 730260
+			},
+			"text": " Is that even though you added a road,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,260",
+				"to": "00:12:11,780"
+			},
+			"offsets": {
+				"from": 730260,
+				"to": 731780
+			},
+			"text": " you've actually worsened congestion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,780",
+				"to": "00:12:14,340"
+			},
+			"offsets": {
+				"from": 731780,
+				"to": 734340
+			},
+			"text": " because people aren't routing themselves across the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,340",
+				"to": "00:12:15,940"
+			},
+			"offsets": {
+				"from": 734340,
+				"to": 735940
+			},
+			"text": " well, because they're not coordinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,940",
+				"to": "00:12:17,700"
+			},
+			"offsets": {
+				"from": 735940,
+				"to": 737700
+			},
+			"text": " So you might say, \"Okay, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,700",
+				"to": "00:12:19,780"
+			},
+			"offsets": {
+				"from": 737700,
+				"to": 739780
+			},
+			"text": " What does traffic have to do with crypto?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,780",
+				"to": "00:12:21,700"
+			},
+			"offsets": {
+				"from": 739780,
+				"to": 741700
+			},
+			"text": " Well, first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,660",
+				"to": "00:12:23,700"
+			},
+			"offsets": {
+				"from": 742660,
+				"to": 743700
+			},
+			"text": " before we even get to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,700",
+				"to": "00:12:25,460"
+			},
+			"offsets": {
+				"from": 743700,
+				"to": 745460
+			},
+			"text": " you may think MEV is always bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,460",
+				"to": "00:12:28,340"
+			},
+			"offsets": {
+				"from": 745460,
+				"to": 748340
+			},
+			"text": " There's always these articles that people are writing that are like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,340",
+				"to": "00:12:30,340"
+			},
+			"offsets": {
+				"from": 748340,
+				"to": 750340
+			},
+			"text": " \"Front running is theft."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,340",
+				"to": "00:12:31,140"
+			},
+			"offsets": {
+				"from": 750340,
+				"to": 751140
+			},
+			"text": " It's bribery."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,140",
+				"to": "00:12:32,420"
+			},
+			"offsets": {
+				"from": 751140,
+				"to": 752420
+			},
+			"text": " It's whatever.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,420",
+				"to": "00:12:36,660"
+			},
+			"offsets": {
+				"from": 752420,
+				"to": 756660
+			},
+			"text": " You will take your favorite negatively connotated Weasel word."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,660",
+				"to": "00:12:39,460"
+			},
+			"offsets": {
+				"from": 756660,
+				"to": 759460
+			},
+			"text": " And you might just say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,460",
+				"to": "00:12:42,900"
+			},
+			"offsets": {
+				"from": 759460,
+				"to": 762900
+			},
+			"text": " \"Okay, we need to get rid of it at all costs.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,900",
+				"to": "00:12:43,860"
+			},
+			"offsets": {
+				"from": 762900,
+				"to": 763860
+			},
+			"text": " Instead of thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,860",
+				"to": "00:12:46,420"
+			},
+			"offsets": {
+				"from": 763860,
+				"to": 766420
+			},
+			"text": " \"Hey, maybe it's just endemic to such systems.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,420",
+				"to": "00:12:48,660"
+			},
+			"offsets": {
+				"from": 766420,
+				"to": 768660
+			},
+			"text": " We saw braces paradox,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,660",
+				"to": "00:12:50,340"
+			},
+			"offsets": {
+				"from": 768660,
+				"to": 770340
+			},
+			"text": " and what we're going to see is we're going to see that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,340",
+				"to": "00:12:54,340"
+			},
+			"offsets": {
+				"from": 770340,
+				"to": 774340
+			},
+			"text": " for some examples of applications in crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,340",
+				"to": "00:12:57,780"
+			},
+			"offsets": {
+				"from": 774340,
+				"to": 777780
+			},
+			"text": " you can get around braces paradox by having MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,780",
+				"to": "00:12:59,620"
+			},
+			"offsets": {
+				"from": 777780,
+				"to": 779620
+			},
+			"text": " which says MEV has some positive"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,620",
+				"to": "00:13:01,460"
+			},
+			"offsets": {
+				"from": 779620,
+				"to": 781460
+			},
+			"text": " externality in some situations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,460",
+				"to": "00:13:03,860"
+			},
+			"offsets": {
+				"from": 781460,
+				"to": 783860
+			},
+			"text": " which is the opposite of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,860",
+				"to": "00:13:06,580"
+			},
+			"offsets": {
+				"from": 783860,
+				"to": 786580
+			},
+			"text": " front running is theft as a service or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,580",
+				"to": "00:13:11,220"
+			},
+			"offsets": {
+				"from": 786580,
+				"to": 791220
+			},
+			"text": " And again, not all applications are the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,220",
+				"to": "00:13:16,100"
+			},
+			"offsets": {
+				"from": 791220,
+				"to": 796100
+			},
+			"text": " so that's where the conundrum in defining your optimization problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,100",
+				"to": "00:13:16,580"
+			},
+			"offsets": {
+				"from": 796100,
+				"to": 796580
+			},
+			"text": " shows up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,260",
+				"to": "00:13:21,460"
+			},
+			"offsets": {
+				"from": 798260,
+				"to": 801460
+			},
+			"text": " Another thing that's actually really important to pay attention to is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,460",
+				"to": "00:13:24,580"
+			},
+			"offsets": {
+				"from": 801460,
+				"to": 804580
+			},
+			"text": " if we classify users into two types of users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,580",
+				"to": "00:13:29,940"
+			},
+			"offsets": {
+				"from": 804580,
+				"to": 809940
+			},
+			"text": " strategic users who are MEV searchers or people who are trying to optimize routes on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,940",
+				"to": "00:13:31,140"
+			},
+			"offsets": {
+				"from": 809940,
+				"to": 811140
+			},
+			"text": " and non-strategic user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,140",
+				"to": "00:13:34,180"
+			},
+			"offsets": {
+				"from": 811140,
+				"to": 814180
+			},
+			"text": " like the person who pays 80 bits for a Metamask swap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,180",
+				"to": "00:13:38,180"
+			},
+			"offsets": {
+				"from": 814180,
+				"to": 818180
+			},
+			"text": " if we kind of look at those two sides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,180",
+				"to": "00:13:41,140"
+			},
+			"offsets": {
+				"from": 818180,
+				"to": 821140
+			},
+			"text": " routing is actually one of the hardest problems for non-strategic users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,140",
+				"to": "00:13:42,900"
+			},
+			"offsets": {
+				"from": 821140,
+				"to": 822900
+			},
+			"text": " So non-strategic users actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,900",
+				"to": "00:13:45,220"
+			},
+			"offsets": {
+				"from": 822900,
+				"to": 825220
+			},
+			"text": " in fact, outsource that to third parties right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,220",
+				"to": "00:13:47,700"
+			},
+			"offsets": {
+				"from": 825220,
+				"to": 827700
+			},
+			"text": " So if I want to trade token A for token B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,180",
+				"to": "00:13:50,580"
+			},
+			"offsets": {
+				"from": 828180,
+				"to": 830580
+			},
+			"text": " but there's no pool directly from A to B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,580",
+				"to": "00:13:51,620"
+			},
+			"offsets": {
+				"from": 830580,
+				"to": 831620
+			},
+			"text": " or there's not enough liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,620",
+				"to": "00:13:54,100"
+			},
+			"offsets": {
+				"from": 831620,
+				"to": 834100
+			},
+			"text": " I go to one-inch matcha gem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,100",
+				"to": "00:13:57,940"
+			},
+			"offsets": {
+				"from": 834100,
+				"to": 837940
+			},
+			"text": " including gem from the, you could argue NFTs have the same properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,940",
+				"to": "00:14:02,980"
+			},
+			"offsets": {
+				"from": 837940,
+				"to": 842980
+			},
+			"text": " and routing is actually quite complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,980",
+				"to": "00:14:05,380"
+			},
+			"offsets": {
+				"from": 842980,
+				"to": 845380
+			},
+			"text": " So algorithmic game theory is studied routing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,380",
+				"to": "00:14:10,180"
+			},
+			"offsets": {
+				"from": 845380,
+				"to": 850180
+			},
+			"text": " In fact, braces paradox is a great example of how to study routing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,180",
+				"to": "00:14:13,220"
+			},
+			"offsets": {
+				"from": 850180,
+				"to": 853220
+			},
+			"text": " And one question you might ask is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,220",
+				"to": "00:14:14,660"
+			},
+			"offsets": {
+				"from": 853220,
+				"to": 854660
+			},
+			"text": " hey, does this apply to AMMs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,660",
+				"to": "00:14:16,420"
+			},
+			"offsets": {
+				"from": 854660,
+				"to": 856420
+			},
+			"text": " Does this apply to one-inch, this apply to matcha?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,380",
+				"to": "00:14:20,980"
+			},
+			"offsets": {
+				"from": 857380,
+				"to": 860980
+			},
+			"text": " And the interesting thing that you'll see is now imagine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,980",
+				"to": "00:14:22,020"
+			},
+			"offsets": {
+				"from": 860980,
+				"to": 862020
+			},
+			"text": " in this prior example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,020",
+				"to": "00:14:24,180"
+			},
+			"offsets": {
+				"from": 862020,
+				"to": 864180
+			},
+			"text": " instead of teleporting in the middle link,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,180",
+				"to": "00:14:26,340"
+			},
+			"offsets": {
+				"from": 864180,
+				"to": 866340
+			},
+			"text": " we actually add a small amount of congestion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,340",
+				"to": "00:14:29,460"
+			},
+			"offsets": {
+				"from": 866340,
+				"to": 869460
+			},
+			"text": " epsilon times the traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,460",
+				"to": "00:14:32,340"
+			},
+			"offsets": {
+				"from": 869460,
+				"to": 872340
+			},
+			"text": " Now you can show the equilibria basically approaches something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,340",
+				"to": "00:14:35,300"
+			},
+			"offsets": {
+				"from": 872340,
+				"to": 875300
+			},
+			"text": " as epsilon gets really large,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,300",
+				"to": "00:14:40,660"
+			},
+			"offsets": {
+				"from": 875300,
+				"to": 880660
+			},
+			"text": " you go back to the condition where everyone routes themselves across the two paths,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,660",
+				"to": "00:14:41,860"
+			},
+			"offsets": {
+				"from": 880660,
+				"to": 881860
+			},
+			"text": " and when epsilon's really small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,860",
+				"to": "00:14:44,020"
+			},
+			"offsets": {
+				"from": 881860,
+				"to": 884020
+			},
+			"text": " you get back to the purely selfish thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,020",
+				"to": "00:14:48,980"
+			},
+			"offsets": {
+				"from": 884020,
+				"to": 888980
+			},
+			"text": " And the idea is the MEV searchers are actually adding this extra epsilon"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,980",
+				"to": "00:14:52,020"
+			},
+			"offsets": {
+				"from": 888980,
+				"to": 892020
+			},
+			"text": " so that people route themselves across the graph more efficiently."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,020",
+				"to": "00:14:55,780"
+			},
+			"offsets": {
+				"from": 892020,
+				"to": 895780
+			},
+			"text": " And that's something that's a weird positive externality"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,780",
+				"to": "00:14:57,780"
+			},
+			"offsets": {
+				"from": 895780,
+				"to": 897780
+			},
+			"text": " that if you write out the math,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,780",
+				"to": "00:15:01,780"
+			},
+			"offsets": {
+				"from": 897780,
+				"to": 901780
+			},
+			"text": " I try to not add a lot of the equations to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,780",
+				"to": "00:15:03,700"
+			},
+			"offsets": {
+				"from": 901780,
+				"to": 903700
+			},
+			"text": " But if you write out the math,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,700",
+				"to": "00:15:07,540"
+			},
+			"offsets": {
+				"from": 903700,
+				"to": 907540
+			},
+			"text": " it's actually quite compelling that the social welfare somehow is improved"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,540",
+				"to": "00:15:09,780"
+			},
+			"offsets": {
+				"from": 907540,
+				"to": 909780
+			},
+			"text": " by MEV in some scenarios, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,780",
+				"to": "00:15:11,380"
+			},
+			"offsets": {
+				"from": 909780,
+				"to": 911380
+			},
+			"text": " That's not the narrative you hear, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,380",
+				"to": "00:15:12,740"
+			},
+			"offsets": {
+				"from": 911380,
+				"to": 912740
+			},
+			"text": " And the narrative you hear is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,740",
+				"to": "00:15:15,060"
+			},
+			"offsets": {
+				"from": 912740,
+				"to": 915060
+			},
+			"text": " \"Oh, I'm just, grannies are getting robbed in MetaMask.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,060",
+				"to": "00:15:16,340"
+			},
+			"offsets": {
+				"from": 915060,
+				"to": 916340
+			},
+			"text": " And that's just not true."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,340",
+				"to": "00:15:18,020"
+			},
+			"offsets": {
+				"from": 916340,
+				"to": 918020
+			},
+			"text": " So I, like I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,020",
+				"to": "00:15:20,740"
+			},
+			"offsets": {
+				"from": 918020,
+				"to": 920740
+			},
+			"text": " I'm not going to go through how you show such a thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,740",
+				"to": "00:15:25,060"
+			},
+			"offsets": {
+				"from": 920740,
+				"to": 925060
+			},
+			"text": " but I'll at least give you an idea of like what such a theorem statement looks like for such a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,060",
+				"to": "00:15:29,860"
+			},
+			"offsets": {
+				"from": 925060,
+				"to": 929860
+			},
+			"text": " And the idea is we show that even when they're sandwiches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,860",
+				"to": "00:15:32,100"
+			},
+			"offsets": {
+				"from": 929860,
+				"to": 932100
+			},
+			"text": " the price of anarchy is constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,100",
+				"to": "00:15:33,940"
+			},
+			"offsets": {
+				"from": 932100,
+				"to": 933940
+			},
+			"text": " Remember, price of anarchy is constant, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,940",
+				"to": "00:15:35,620"
+			},
+			"offsets": {
+				"from": 933940,
+				"to": 935620
+			},
+			"text": " That's very surprising."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,620",
+				"to": "00:15:38,020"
+			},
+			"offsets": {
+				"from": 935620,
+				"to": 938020
+			},
+			"text": " You would think that, hey, as more users come to network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,020",
+				"to": "00:15:40,820"
+			},
+			"offsets": {
+				"from": 938020,
+				"to": 940820
+			},
+			"text": " sandwich attackers make more of a profit, they cause more of a loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,820",
+				"to": "00:15:42,900"
+			},
+			"offsets": {
+				"from": 940820,
+				"to": 942900
+			},
+			"text": " But in some liquidity conditions, they do not."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,900",
+				"to": "00:15:48,180"
+			},
+			"offsets": {
+				"from": 942900,
+				"to": 948180
+			},
+			"text": " And this sort of bottom chart shows you the expected profit on the Y-axis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,180",
+				"to": "00:15:52,820"
+			},
+			"offsets": {
+				"from": 948180,
+				"to": 952820
+			},
+			"text": " and it shows you sort of the amount of slippage in your, by the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,820",
+				"to": "00:15:54,660"
+			},
+			"offsets": {
+				"from": 952820,
+				"to": 954660
+			},
+			"text": " And you'll see that it has a maxima."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,660",
+				"to": "00:15:56,020"
+			},
+			"offsets": {
+				"from": 954660,
+				"to": 956020
+			},
+			"text": " It's not like it keeps growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,020",
+				"to": "00:16:00,820"
+			},
+			"offsets": {
+				"from": 956020,
+				"to": 960820
+			},
+			"text": " And that's the thing that's actually quite interesting and nice about this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,820",
+				"to": "00:16:05,540"
+			},
+			"offsets": {
+				"from": 960820,
+				"to": 965540
+			},
+			"text": " So you've listened to me try to convince you that MEV is not bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,540",
+				"to": "00:16:07,300"
+			},
+			"offsets": {
+				"from": 965540,
+				"to": 967300
+			},
+			"text": " it can have these positive externalities."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,300",
+				"to": "00:16:10,260"
+			},
+			"offsets": {
+				"from": 967300,
+				"to": 970260
+			},
+			"text": " Maybe there's something really interesting about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,260",
+				"to": "00:16:15,140"
+			},
+			"offsets": {
+				"from": 970260,
+				"to": 975140
+			},
+			"text": " and maybe you can direct it into being used for some particular applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,140",
+				"to": "00:16:20,340"
+			},
+			"offsets": {
+				"from": 975140,
+				"to": 980340
+			},
+			"text": " that are just net beneficial to your network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,340",
+				"to": "00:16:23,140"
+			},
+			"offsets": {
+				"from": 980340,
+				"to": 983140
+			},
+			"text": " So one question is, what do you do to harness it for good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,140",
+				"to": "00:16:28,580"
+			},
+			"offsets": {
+				"from": 983140,
+				"to": 988580
+			},
+			"text": " So one thing I think that's interesting, and this goes a little bit to Alex's talk before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,580",
+				"to": "00:16:36,980"
+			},
+			"offsets": {
+				"from": 988580,
+				"to": 996980
+			},
+			"text": " is suppose you did have a mechanism where it was just extremely expensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,980",
+				"to": "00:16:40,500"
+			},
+			"offsets": {
+				"from": 996980,
+				"to": 1000500
+			},
+			"text": " for people to bribe a validator off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,500",
+				"to": "00:16:48,100"
+			},
+			"offsets": {
+				"from": 1000500,
+				"to": 1008100
+			},
+			"text": " And in fact, people were willing to basically share their MEV revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,100",
+				"to": "00:16:50,020"
+			},
+			"offsets": {
+				"from": 1008100,
+				"to": 1010020
+			},
+			"text": " Imagine like a mining pool for MEV revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,020",
+				"to": "00:16:53,780"
+			},
+			"offsets": {
+				"from": 1010020,
+				"to": 1013780
+			},
+			"text": " Now the reason that that's very hard to design is it's very hard to make it collusion proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,780",
+				"to": "00:16:57,460"
+			},
+			"offsets": {
+				"from": 1013780,
+				"to": 1017460
+			},
+			"text": " where people pay one miner ahead of time in the pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,460",
+				"to": "00:17:00,100"
+			},
+			"offsets": {
+				"from": 1017460,
+				"to": 1020100
+			},
+			"text": " and they don't share revenue with everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,100",
+				"to": "00:17:03,060"
+			},
+			"offsets": {
+				"from": 1020100,
+				"to": 1023060
+			},
+			"text": " But suppose you have a way of doing that, and there's a lot of people working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,060",
+				"to": "00:17:06,260"
+			},
+			"offsets": {
+				"from": 1023060,
+				"to": 1026260
+			},
+			"text": " really, really interesting stuff, both on the cryptography side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,260",
+				"to": "00:17:11,620"
+			},
+			"offsets": {
+				"from": 1026260,
+				"to": 1031620
+			},
+			"text": " as well as on the distributed system side for trying to do such a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,620",
+				"to": "00:17:15,620"
+			},
+			"offsets": {
+				"from": 1031620,
+				"to": 1035620
+			},
+			"text": " But suppose you have such a mechanism, then you can redistribute MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,620",
+				"to": "00:17:18,180"
+			},
+			"offsets": {
+				"from": 1035620,
+				"to": 1038180
+			},
+			"text": " to all the validators in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,180",
+				"to": "00:17:25,300"
+			},
+			"offsets": {
+				"from": 1038180,
+				"to": 1045300
+			},
+			"text": " And one very interesting thing is you can show in some different types of MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,300",
+				"to": "00:17:29,300"
+			},
+			"offsets": {
+				"from": 1045300,
+				"to": 1049300
+			},
+			"text": " you actually can lower the overall inflation rate of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,300",
+				"to": "00:17:31,540"
+			},
+			"offsets": {
+				"from": 1049300,
+				"to": 1051540
+			},
+			"text": " if the MEV subsidy is large enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,540",
+				"to": "00:17:35,780"
+			},
+			"offsets": {
+				"from": 1051540,
+				"to": 1055780
+			},
+			"text": " So the x-axis on this plot is the percentage of MEV revenue shared,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,260",
+				"to": "00:17:41,460"
+			},
+			"offsets": {
+				"from": 1056260,
+				"to": 1061460
+			},
+			"text": " and the y-axis sort of is a measure of how much people are adjusting their stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,460",
+				"to": "00:17:46,580"
+			},
+			"offsets": {
+				"from": 1061460,
+				"to": 1066580
+			},
+			"text": " So let's say there's sort of opportunities outside of staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,580",
+				"to": "00:17:48,740"
+			},
+			"offsets": {
+				"from": 1066580,
+				"to": 1068740
+			},
+			"text": " that people can earn yield on their assets with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,740",
+				"to": "00:17:53,380"
+			},
+			"offsets": {
+				"from": 1068740,
+				"to": 1073380
+			},
+			"text": " One question you might ask is like, what are the incentives that keep people staking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,380",
+				"to": "00:17:56,420"
+			},
+			"offsets": {
+				"from": 1073380,
+				"to": 1076420
+			},
+			"text": " And the interesting thing is that MEV actually adds this feedback loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,420",
+				"to": "00:18:01,060"
+			},
+			"offsets": {
+				"from": 1076420,
+				"to": 1081060
+			},
+			"text": " such that you can lower your inflation, but also ensure that people stay staked."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,060",
+				"to": "00:18:05,060"
+			},
+			"offsets": {
+				"from": 1081060,
+				"to": 1085060
+			},
+			"text": " And so, you know, the y-axis is sort of a notion of percentage of how much is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,060",
+				"to": "00:18:06,660"
+			},
+			"offsets": {
+				"from": 1085060,
+				"to": 1086660
+			},
+			"text": " of the network is staked."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,660",
+				"to": "00:18:13,220"
+			},
+			"offsets": {
+				"from": 1086660,
+				"to": 1093220
+			},
+			"text": " And you can see that at around 25 to 50 percent in this style's model of revenue sharing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,220",
+				"to": "00:18:17,540"
+			},
+			"offsets": {
+				"from": 1093220,
+				"to": 1097540
+			},
+			"text": " you actually get people to continue staking, which is just, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,540",
+				"to": "00:18:19,860"
+			},
+			"offsets": {
+				"from": 1097540,
+				"to": 1099860
+			},
+			"text": " it's just kind of surprising, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,860",
+				"to": "00:18:23,300"
+			},
+			"offsets": {
+				"from": 1099860,
+				"to": 1103300
+			},
+			"text": " Like everyone's always like, oh, we've always needed kind of hyper-inflationary"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,300",
+				"to": "00:18:25,220"
+			},
+			"offsets": {
+				"from": 1103300,
+				"to": 1105220
+			},
+			"text": " economics, and there's lots of reasons for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,220",
+				"to": "00:18:30,420"
+			},
+			"offsets": {
+				"from": 1105220,
+				"to": 1110420
+			},
+			"text": " But MEV distribution also allows you to avoid having to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,420",
+				"to": "00:18:34,100"
+			},
+			"offsets": {
+				"from": 1110420,
+				"to": 1114100
+			},
+			"text": " So that's sort of like a kind of amazing blessing in disguise."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,100",
+				"to": "00:18:37,940"
+			},
+			"offsets": {
+				"from": 1114100,
+				"to": 1117940
+			},
+			"text": " And there's a lot more research that can be done in this space that I think we mainly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,940",
+				"to": "00:18:43,060"
+			},
+			"offsets": {
+				"from": 1117940,
+				"to": 1123060
+			},
+			"text": " looked at how liquidations impact staker incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,060",
+				"to": "00:18:47,300"
+			},
+			"offsets": {
+				"from": 1123060,
+				"to": 1127300
+			},
+			"text": " Another interesting thing, and I think this is the type of thing that we're seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,300",
+				"to": "00:18:49,860"
+			},
+			"offsets": {
+				"from": 1127300,
+				"to": 1129860
+			},
+			"text": " in multiple ecosystems, whether it's in Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,860",
+				"to": "00:18:54,660"
+			},
+			"offsets": {
+				"from": 1129860,
+				"to": 1134660
+			},
+			"text": " especially with roll-up auctions, whether it's in Cosmos."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,660",
+				"to": "00:19:02,100"
+			},
+			"offsets": {
+				"from": 1134660,
+				"to": 1142100
+			},
+			"text": " But everyone's sort of starting to realize the MEV auction of having a single MEV auction for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,740",
+				"to": "00:19:07,620"
+			},
+			"offsets": {
+				"from": 1142740,
+				"to": 1147620
+			},
+			"text": " everyone to kind of compete in may not be the best form of an auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,620",
+				"to": "00:19:11,700"
+			},
+			"offsets": {
+				"from": 1147620,
+				"to": 1151700
+			},
+			"text": " You may want to have an auction per roll-up, you may want to have an auction per application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,700",
+				"to": "00:19:16,580"
+			},
+			"offsets": {
+				"from": 1151700,
+				"to": 1156580
+			},
+			"text": " so that you can tune the social welfare versus revenue trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,580",
+				"to": "00:19:21,620"
+			},
+			"offsets": {
+				"from": 1156580,
+				"to": 1161620
+			},
+			"text": " Right now, if you think about it, everyone who's making a flash-bought bundle for an"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,620",
+				"to": "00:19:25,940"
+			},
+			"offsets": {
+				"from": 1161620,
+				"to": 1165940
+			},
+			"text": " NFT Mint is competing with everyone who's sandwiching for the same sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,940",
+				"to": "00:19:27,060"
+			},
+			"offsets": {
+				"from": 1165940,
+				"to": 1167060
+			},
+			"text": " block space."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,060",
+				"to": "00:19:30,020"
+			},
+			"offsets": {
+				"from": 1167060,
+				"to": 1170020
+			},
+			"text": " But they may actually, if you segment to the block space and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,020",
+				"to": "00:19:33,300"
+			},
+			"offsets": {
+				"from": 1170020,
+				"to": 1173300
+			},
+			"text": " only this amount goes for sandwiching and this amount goes for NFTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,300",
+				"to": "00:19:35,060"
+			},
+			"offsets": {
+				"from": 1173300,
+				"to": 1175060
+			},
+			"text": " you might have a very different equilibria."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,060",
+				"to": "00:19:40,900"
+			},
+			"offsets": {
+				"from": 1175060,
+				"to": 1180900
+			},
+			"text": " And I think a lot of the roll-up developers are basically kind of talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,900",
+				"to": "00:19:45,780"
+			},
+			"offsets": {
+				"from": 1180900,
+				"to": 1185780
+			},
+			"text": " But an interesting thing and some current work is you can actually show that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,780",
+				"to": "00:19:52,260"
+			},
+			"offsets": {
+				"from": 1185780,
+				"to": 1192260
+			},
+			"text": " disaggregating a single auction into many auctions can actually have better social welfare"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,260",
+				"to": "00:19:52,980"
+			},
+			"offsets": {
+				"from": 1192260,
+				"to": 1192980
+			},
+			"text": " for the end-user."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,980",
+				"to": "00:19:57,300"
+			},
+			"offsets": {
+				"from": 1192980,
+				"to": 1197300
+			},
+			"text": " And that's sort of like an interesting kind of trade-off that I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,300",
+				"to": "00:20:01,780"
+			},
+			"offsets": {
+				"from": 1197300,
+				"to": 1201780
+			},
+			"text": " as things like PBS get developed, you have to sort of analyze these types of incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,780",
+				"to": "00:20:09,460"
+			},
+			"offsets": {
+				"from": 1201780,
+				"to": 1209460
+			},
+			"text": " So, you know, I think I want to just at least impress upon people that theoretical foundations"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,460",
+				"to": "00:20:11,140"
+			},
+			"offsets": {
+				"from": 1209460,
+				"to": 1211140
+			},
+			"text": " for MEV are really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,140",
+				"to": "00:20:17,060"
+			},
+			"offsets": {
+				"from": 1211140,
+				"to": 1217060
+			},
+			"text": " And I think we've sort of started with this thing as this like emergent, unstudied phenomena."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,060",
+				"to": "00:20:20,900"
+			},
+			"offsets": {
+				"from": 1217060,
+				"to": 1220900
+			},
+			"text": " We sort of backed our way into some mechanisms for like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,940",
+				"to": "00:20:27,380"
+			},
+			"offsets": {
+				"from": 1221940,
+				"to": 1227380
+			},
+			"text": " doing an auction, coming up with sort of rough reputation scores, which, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,380",
+				"to": "00:20:30,420"
+			},
+			"offsets": {
+				"from": 1227380,
+				"to": 1230420
+			},
+			"text": " it's not totally clear exactly how that whole system can be analyzed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,420",
+				"to": "00:20:34,660"
+			},
+			"offsets": {
+				"from": 1230420,
+				"to": 1234660
+			},
+			"text": " to a point where we actually are really able to start thinking about, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,660",
+				"to": "00:20:38,420"
+			},
+			"offsets": {
+				"from": 1234660,
+				"to": 1238420
+			},
+			"text": " how do we optimize for things like redistribution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,420",
+				"to": "00:20:39,940"
+			},
+			"offsets": {
+				"from": 1238420,
+				"to": 1239940
+			},
+			"text": " How do we optimize for social welfare?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,940",
+				"to": "00:20:43,300"
+			},
+			"offsets": {
+				"from": 1239940,
+				"to": 1243300
+			},
+			"text": " How do we optimize for validator revenue in a sort of joint manner?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,100",
+				"to": "00:20:52,820"
+			},
+			"offsets": {
+				"from": 1244100,
+				"to": 1252820
+			},
+			"text": " And formalism, I think, provides us this way of finding these truths about MEV,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,820",
+				"to": "00:20:56,500"
+			},
+			"offsets": {
+				"from": 1252820,
+				"to": 1256500
+			},
+			"text": " where it would show that, hey, it's not always robbing granny as a meta-mask."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,500",
+				"to": "00:21:01,620"
+			},
+			"offsets": {
+				"from": 1256500,
+				"to": 1261620
+			},
+			"text": " And the interesting thing is I think, you know, this is sort of the beginning of this kind of new"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,620",
+				"to": "00:21:06,260"
+			},
+			"offsets": {
+				"from": 1261620,
+				"to": 1266260
+			},
+			"text": " branch in my mind of algorithmic game theory, where you're really focused on the joint optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,260",
+				"to": "00:21:10,420"
+			},
+			"offsets": {
+				"from": 1266260,
+				"to": 1270420
+			},
+			"text": " of social welfare and revenue, because both of them are extremely important to network survival"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,420",
+				"to": "00:21:11,540"
+			},
+			"offsets": {
+				"from": 1270420,
+				"to": 1271540
+			},
+			"text": " and cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,580",
+				"to": "00:21:18,820"
+			},
+			"offsets": {
+				"from": 1272580,
+				"to": 1278820
+			},
+			"text": " And so I want to leave you with some open problems in case anyone kind of is interested in this type"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,820",
+				"to": "00:21:23,860"
+			},
+			"offsets": {
+				"from": 1278820,
+				"to": 1283860
+			},
+			"text": " of stuff. The first thing is, what's the notion of optimality for an auction, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,860",
+				"to": "00:21:28,980"
+			},
+			"offsets": {
+				"from": 1283860,
+				"to": 1288980
+			},
+			"text": " Now, if you look at Flashbots, it's sort of a first-price auction with some filtering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,980",
+				"to": "00:21:32,580"
+			},
+			"offsets": {
+				"from": 1288980,
+				"to": 1292580
+			},
+			"text": " because they use a scoring function that removes some public-memple transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,580",
+				"to": "00:21:36,420"
+			},
+			"offsets": {
+				"from": 1292580,
+				"to": 1296420
+			},
+			"text": " Is that optimal? Does that work when you have multiple chains or multiple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,420",
+				"to": "00:21:44,740"
+			},
+			"offsets": {
+				"from": 1296420,
+				"to": 1304740
+			},
+			"text": " sort of hierarchical system? Also, does it sort of deal with some of the problems of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,740",
+				"to": "00:21:48,740"
+			},
+			"offsets": {
+				"from": 1304740,
+				"to": 1308740
+			},
+			"text": " hey, how do I trust the auctioneer? Right now, we have a system where everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,740",
+				"to": "00:21:55,460"
+			},
+			"offsets": {
+				"from": 1308740,
+				"to": 1315460
+			},
+			"text": " basically trusts the auctioneer. And, you know, economists have copied cryptocurrency enthusiasts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,460",
+				"to": "00:22:02,580"
+			},
+			"offsets": {
+				"from": 1315460,
+				"to": 1322580
+			},
+			"text": " and made some trilemmas recently on proving things about when auctions, when you when you when and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,580",
+				"to": "00:22:08,820"
+			},
+			"offsets": {
+				"from": 1322580,
+				"to": 1328820
+			},
+			"text": " when you can't trust an auctioneer. And a lot of that work, you know, I think if the right people"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,820",
+				"to": "00:22:14,420"
+			},
+			"offsets": {
+				"from": 1328820,
+				"to": 1334420
+			},
+			"text": " were focused on it, could really determine how PBS functions as an auction and what sort of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,420",
+				"to": "00:22:18,660"
+			},
+			"offsets": {
+				"from": 1334420,
+				"to": 1338660
+			},
+			"text": " the expected properties of it are. On the other hand, there's sort of some notion of lower bounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,660",
+				"to": "00:22:25,540"
+			},
+			"offsets": {
+				"from": 1338660,
+				"to": 1345540
+			},
+			"text": " Like, in an open permissionless system with some notion of value, there sort of has to be some"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,540",
+				"to": "00:22:30,660"
+			},
+			"offsets": {
+				"from": 1345540,
+				"to": 1350660
+			},
+			"text": " lower bound to the amount that's extracted, because without any extraction, it's very hard to imagine"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,660",
+				"to": "00:22:36,260"
+			},
+			"offsets": {
+				"from": 1350660,
+				"to": 1356260
+			},
+			"text": " validators being able to continue to sustain the network. And so, one question is, how do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,260",
+				"to": "00:22:42,260"
+			},
+			"offsets": {
+				"from": 1356260,
+				"to": 1362260
+			},
+			"text": " construct those lower bounds? You know, in information theory and in theoretical computer science,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,260",
+				"to": "00:22:47,220"
+			},
+			"offsets": {
+				"from": 1362260,
+				"to": 1367220
+			},
+			"text": " lower bounds are extremely hard. Upper bounds are always easy. Lower bounds are really sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,220",
+				"to": "00:22:52,900"
+			},
+			"offsets": {
+				"from": 1367220,
+				"to": 1372900
+			},
+			"text": " some of the hardest kind of things to show. And I think the MEV space of lower bounds is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,940",
+				"to": "00:23:00,900"
+			},
+			"offsets": {
+				"from": 1373940,
+				"to": 1380900
+			},
+			"text": " still quite open. I think, you know, in spite of kind of there being some, a camp of some people"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,900",
+				"to": "00:23:06,340"
+			},
+			"offsets": {
+				"from": 1380900,
+				"to": 1386340
+			},
+			"text": " who believe with sort of fair ordering that there exists no such lower bound, I would argue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,340",
+				"to": "00:23:11,380"
+			},
+			"offsets": {
+				"from": 1386340,
+				"to": 1391380
+			},
+			"text": " I would argue just proving that the lower bounds not zero is already a quite difficult problem that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,380",
+				"to": "00:23:19,220"
+			},
+			"offsets": {
+				"from": 1391380,
+				"to": 1399220
+			},
+			"text": " would, you know, be worth solving. And the last thing that's a very big open problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,220",
+				"to": "00:23:24,820"
+			},
+			"offsets": {
+				"from": 1399220,
+				"to": 1404820
+			},
+			"text": " research-wise in MEV is this concept of aggregation versus disaggregation effects. And so, I think a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,820",
+				"to": "00:23:31,780"
+			},
+			"offsets": {
+				"from": 1404820,
+				"to": 1411780
+			},
+			"text": " lot of people in the MEV parlance will focus on talking about things like private order flow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,780",
+				"to": "00:23:36,100"
+			},
+			"offsets": {
+				"from": 1411780,
+				"to": 1416100
+			},
+			"text": " order flow aggregation, like what happens when a builder has all of a certain type of order flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,100",
+				"to": "00:23:42,740"
+			},
+			"offsets": {
+				"from": 1416100,
+				"to": 1422740
+			},
+			"text": " There are ways to talk about what the equilibrium of the system are, what's the distribution of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,740",
+				"to": "00:23:49,140"
+			},
+			"offsets": {
+				"from": 1422740,
+				"to": 1429140
+			},
+			"text": " revenue to different participants based on these kind of aggregation versus disaggregation effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,140",
+				"to": "00:23:54,660"
+			},
+			"offsets": {
+				"from": 1429140,
+				"to": 1434660
+			},
+			"text": " But if I were to kind of give you the stylized version of what this question is asking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,660",
+				"to": "00:24:01,940"
+			},
+			"offsets": {
+				"from": 1434660,
+				"to": 1441940
+			},
+			"text": " it's saying what is the co-se theorem for MEV? So, co-se theorem for those who don't know is sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,940",
+				"to": "00:24:10,580"
+			},
+			"offsets": {
+				"from": 1441940,
+				"to": 1450580
+			},
+			"text": " of a very famous thing that I think basically says, imagine you have a company. Now suppose the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,580",
+				"to": "00:24:16,420"
+			},
+			"offsets": {
+				"from": 1450580,
+				"to": 1456420
+			},
+			"text": " company had everyone at the company as an individual contractor. Why is it more efficient to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,420",
+				"to": "00:24:21,300"
+			},
+			"offsets": {
+				"from": 1456420,
+				"to": 1461300
+			},
+			"text": " organize as a group versus individual contractors who are giving payments to each other? And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,300",
+				"to": "00:24:26,100"
+			},
+			"offsets": {
+				"from": 1461300,
+				"to": 1466100
+			},
+			"text": " co-se theorem sort of says there's some equilibrium in the middle where there's aggregation effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,100",
+				"to": "00:24:31,140"
+			},
+			"offsets": {
+				"from": 1466100,
+				"to": 1471140
+			},
+			"text": " where it's cheaper for people to work together and share common infrastructure up to some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,140",
+				"to": "00:24:36,660"
+			},
+			"offsets": {
+				"from": 1471140,
+				"to": 1476660
+			},
+			"text": " And then after that point, the overhead of managing that many people starts causing you to lower"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,660",
+				"to": "00:24:42,740"
+			},
+			"offsets": {
+				"from": 1476660,
+				"to": 1482740
+			},
+			"text": " your welfare. And this notion of aggregation versus disaggregation in MEV is completely unsolved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,740",
+				"to": "00:24:48,980"
+			},
+			"offsets": {
+				"from": 1482740,
+				"to": 1488980
+			},
+			"text": " yet people are always talking about it. It's kind of implied in people's language, yet not formalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,980",
+				"to": "00:24:53,540"
+			},
+			"offsets": {
+				"from": 1488980,
+				"to": 1493540
+			},
+			"text": " Cool. And so with that, I'll leave you for questions and also, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,540",
+				"to": "00:24:57,780"
+			},
+			"offsets": {
+				"from": 1493540,
+				"to": 1497780
+			},
+			"text": " Thank you. Do you have any questions for Tarun? If so, please raise your hand. We'll get you a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,780",
+				"to": "00:25:02,180"
+			},
+			"offsets": {
+				"from": 1497780,
+				"to": 1502180
+			},
+			"text": " mic. We got one question on this side. We'll get to you in a second. We got another question at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,180",
+				"to": "00:25:11,060"
+			},
+			"offsets": {
+				"from": 1502180,
+				"to": 1511060
+			},
+			"text": " back. Hi. So my question is you gave an example of you gave first-net theoretical example of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,260",
+				"to": "00:25:19,300"
+			},
+			"offsets": {
+				"from": 1512260,
+				"to": 1519300
+			},
+			"text": " removing an edge from a network can make traffic more efficient. And then you gave an analogy for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,300",
+				"to": "00:25:24,340"
+			},
+			"offsets": {
+				"from": 1519300,
+				"to": 1524340
+			},
+			"text": " how this can also happen with AMMs. And you gave a practical example of how it could happen with"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,340",
+				"to": "00:25:32,020"
+			},
+			"offsets": {
+				"from": 1524340,
+				"to": 1532020
+			},
+			"text": " AMMs. But I did not understand how this practical example works. So could you explain more like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,020",
+				"to": "00:25:40,020"
+			},
+			"offsets": {
+				"from": 1532020,
+				"to": 1540020
+			},
+			"text": " how could MEV improve the efficiency of trading on this scenario with two pairs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,980",
+				"to": "00:25:47,220"
+			},
+			"offsets": {
+				"from": 1540980,
+				"to": 1547220
+			},
+			"text": " Yeah. So think of this way. Imagine that there's people who want to trade from token A to token B."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,220",
+				"to": "00:25:55,060"
+			},
+			"offsets": {
+				"from": 1547220,
+				"to": 1555060
+			},
+			"text": " And there's an order flow of N orders from A to B. If I look at how to optimally route the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,060",
+				"to": "00:26:01,140"
+			},
+			"offsets": {
+				"from": 1555060,
+				"to": 1561140
+			},
+			"text": " orders from A to B, if everyone gets routed on the same route, the price that everyone pays on"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,140",
+				"to": "00:26:06,260"
+			},
+			"offsets": {
+				"from": 1561140,
+				"to": 1566260
+			},
+			"text": " average could be a lot higher. If everyone gets routed on different routes throughout the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,260",
+				"to": "00:26:12,420"
+			},
+			"offsets": {
+				"from": 1566260,
+				"to": 1572420
+			},
+			"text": " you could have your load balancing what the price impact is. And the point is that the MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,420",
+				"to": "00:26:17,620"
+			},
+			"offsets": {
+				"from": 1572420,
+				"to": 1577620
+			},
+			"text": " searchers are sort of acting in some weird capacity is almost like air traffic controllers."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,620",
+				"to": "00:26:22,900"
+			},
+			"offsets": {
+				"from": 1577620,
+				"to": 1582900
+			},
+			"text": " When there's a bunch of traffic going on the same route, it increases the MEV profit. But as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,900",
+				"to": "00:26:27,860"
+			},
+			"offsets": {
+				"from": 1582900,
+				"to": 1587860
+			},
+			"text": " MEV profit goes up, then people start routing away from that. And you could effectively think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,860",
+				"to": "00:26:32,900"
+			},
+			"offsets": {
+				"from": 1587860,
+				"to": 1592900
+			},
+			"text": " as a way of sort of having a decentralized coordinator where it comes from the fact that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,540",
+				"to": "00:26:38,740"
+			},
+			"offsets": {
+				"from": 1593540,
+				"to": 1598740
+			},
+			"text": " the more traffic going on on route, the more the sandwich profit, but then once people start"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,740",
+				"to": "00:26:43,700"
+			},
+			"offsets": {
+				"from": 1598740,
+				"to": 1603700
+			},
+			"text": " realizing the sandwich profit, they route elsewhere. And so this routing problem is actually, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,700",
+				"to": "00:26:52,660"
+			},
+			"offsets": {
+				"from": 1603700,
+				"to": 1612660
+			},
+			"text": " know, the quintessential example of these cases where congestion sort of, you can add in some sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,660",
+				"to": "00:26:58,260"
+			},
+			"offsets": {
+				"from": 1612660,
+				"to": 1618260
+			},
+			"text": " of like incentives to avoid congestion. And you know, a lot of internet routing, traffic routing on"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,260",
+				"to": "00:27:03,460"
+			},
+			"offsets": {
+				"from": 1618260,
+				"to": 1623460
+			},
+			"text": " the internet, a lot of that kind of work is like where this initially started. And this is sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,460",
+				"to": "00:27:08,260"
+			},
+			"offsets": {
+				"from": 1623460,
+				"to": 1628260
+			},
+			"text": " making an analog about here. But the key is that someone is getting a worse price by being"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,260",
+				"to": "00:27:14,260"
+			},
+			"offsets": {
+				"from": 1628260,
+				"to": 1634260
+			},
+			"text": " sandwiched. There's no doubt. But everyone going across the graph is getting a better price on"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,260",
+				"to": "00:27:18,820"
+			},
+			"offsets": {
+				"from": 1634260,
+				"to": 1638820
+			},
+			"text": " average. And that's the social welfare versus revenue tradeoff, if that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,820",
+				"to": "00:27:20,900"
+			},
+			"offsets": {
+				"from": 1638820,
+				"to": 1640900
+			},
+			"text": " Awesome. We have another question at the back."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,900",
+				"to": "00:27:25,780"
+			},
+			"offsets": {
+				"from": 1640900,
+				"to": 1645780
+			},
+			"text": " Hello. Good afternoon. I love the presentation as usual. My question is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,500",
+				"to": "00:27:31,780"
+			},
+			"offsets": {
+				"from": 1646500,
+				"to": 1651780
+			},
+			"text": " have you made any studies around central bank digital currencies or even fiat currencies using"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,780",
+				"to": "00:27:37,380"
+			},
+			"offsets": {
+				"from": 1651780,
+				"to": 1657380
+			},
+			"text": " the same theory? Yeah, I mean, I think the hard part with any of these sort of like pseudo"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,380",
+				"to": "00:27:44,820"
+			},
+			"offsets": {
+				"from": 1657380,
+				"to": 1664820
+			},
+			"text": " centralized federated type of things is, well, I mean, the validator can just always do the MEV"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,820",
+				"to": "00:27:49,860"
+			},
+			"offsets": {
+				"from": 1664820,
+				"to": 1669860
+			},
+			"text": " themselves, right? Like the limit of the centralized thing is like, well, what is Facebook, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,860",
+				"to": "00:27:54,420"
+			},
+			"offsets": {
+				"from": 1669860,
+				"to": 1674420
+			},
+			"text": " are Facebook and Google doing? They're just doing MEV on their own auctions, right? They're constructing"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,420",
+				"to": "00:27:58,340"
+			},
+			"offsets": {
+				"from": 1674420,
+				"to": 1678340
+			},
+			"text": " the bidding strategies for you. They're like, we're using the highest machine learning to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,340",
+				"to": "00:28:03,460"
+			},
+			"offsets": {
+				"from": 1678340,
+				"to": 1683460
+			},
+			"text": " you optimal targeting. It actually means actually we're just going to front run you in our auction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,460",
+				"to": "00:28:07,860"
+			},
+			"offsets": {
+				"from": 1683460,
+				"to": 1687860
+			},
+			"text": " but it's too complicated to explain how. So in the centralized world, these types of things are"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,860",
+				"to": "00:28:12,260"
+			},
+			"offsets": {
+				"from": 1687860,
+				"to": 1692260
+			},
+			"text": " not that interesting to analyze from that perspective in the sense that the centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,260",
+				"to": "00:28:16,020"
+			},
+			"offsets": {
+				"from": 1692260,
+				"to": 1696020
+			},
+			"text": " coordinator will just like choose the most expensive route for you all the time, right? But in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,020",
+				"to": "00:28:20,820"
+			},
+			"offsets": {
+				"from": 1696020,
+				"to": 1700820
+			},
+			"text": " decentralized world, it's actually quite interesting because the user has to choose their own way"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,620",
+				"to": "00:28:28,900"
+			},
+			"offsets": {
+				"from": 1701620,
+				"to": 1708900
+			},
+			"text": " through the network. So yeah, that's sort of you. Great. Well, one last question on that side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,900",
+				"to": "00:28:33,060"
+			},
+			"offsets": {
+				"from": 1708900,
+				"to": 1713060
+			},
+			"text": " and we'll move on to the next talk. So please go ahead. Yeah, hi. I'm following up on the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,060",
+				"to": "00:28:39,300"
+			},
+			"offsets": {
+				"from": 1713060,
+				"to": 1719300
+			},
+			"text": " question. In the rest example, the conditions under which the routing would actually, or in which"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,300",
+				"to": "00:28:44,260"
+			},
+			"offsets": {
+				"from": 1719300,
+				"to": 1724260
+			},
+			"text": " MEV would be beneficial is, and if you can teleport, right? These conditions are usually not met."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,260",
+				"to": "00:28:48,020"
+			},
+			"offsets": {
+				"from": 1724260,
+				"to": 1728020
+			},
+			"text": " What are the, you said under certain conditions, this applies for AMMs. What are those conditions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,020",
+				"to": "00:28:54,500"
+			},
+			"offsets": {
+				"from": 1728020,
+				"to": 1734500
+			},
+			"text": " Does it mean if I can trade, if I can print free money or trade it on the mid or zero exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,500",
+				"to": "00:28:59,460"
+			},
+			"offsets": {
+				"from": 1734500,
+				"to": 1739460
+			},
+			"text": " rate, or what are the conditions in which? No, yeah, actually, that's a good point. So the zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,460",
+				"to": "00:29:05,940"
+			},
+			"offsets": {
+				"from": 1739460,
+				"to": 1745940
+			},
+			"text": " in the traffic example, in the AMM example, you can never have zero effectively in that edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,940",
+				"to": "00:29:12,340"
+			},
+			"offsets": {
+				"from": 1745940,
+				"to": 1752340
+			},
+			"text": " There's always some amount of liquidity price impact unless it's like a linear AMM."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,380",
+				"to": "00:29:19,060"
+			},
+			"offsets": {
+				"from": 1753380,
+				"to": 1759060
+			},
+			"text": " I think the main thing we showed is that the liquidity difference on certain edges on that graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,060",
+				"to": "00:29:23,620"
+			},
+			"offsets": {
+				"from": 1759060,
+				"to": 1763620
+			},
+			"text": " relative to the center edge has to be large. So it's not necessarily that it's saying that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,620",
+				"to": "00:29:28,740"
+			},
+			"offsets": {
+				"from": 1763620,
+				"to": 1768740
+			},
+			"text": " hey, you're teleporting or it's like you have some sort of non-balanced budget condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,740",
+				"to": "00:29:32,900"
+			},
+			"offsets": {
+				"from": 1768740,
+				"to": 1772900
+			},
+			"text": " It's actually just that the liquidity, relative liquidity differences on different edges has to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,900",
+				"to": "00:29:40,020"
+			},
+			"offsets": {
+				"from": 1772900,
+				"to": 1780020
+			},
+			"text": " be high. And those are the conditions. And I'd say our proof is pretty pessimistic in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,020",
+				"to": "00:29:44,660"
+			},
+			"offsets": {
+				"from": 1780020,
+				"to": 1784660
+			},
+			"text": " conditions. And there are definitely ways of getting much better bounds on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,660",
+				"to": "00:29:55,940"
+			},
+			"offsets": {
+				"from": 1784660,
+				"to": 1795940
+			},
+			"text": " Yeah, awesome. Thank you so much. Please give a big round of applause for Tarun."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,940",
+				"to": "00:29:57,940"
+			},
+			"offsets": {
+				"from": 1795940,
+				"to": 1797940
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,940",
+				"to": "00:30:23,940"
+			},
+			"offsets": {
+				"from": 1797940,
+				"to": 1823940
+			},
+			"text": " ]"
+		}
+	]
+}

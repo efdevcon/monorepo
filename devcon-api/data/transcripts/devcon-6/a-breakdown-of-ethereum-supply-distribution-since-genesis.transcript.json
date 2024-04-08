@@ -1,0 +1,5862 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14880
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,880",
+				"to": "00:00:17,440"
+			},
+			"offsets": {
+				"from": 14880,
+				"to": 17440
+			},
+			"text": " Fly since the network's genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,440",
+				"to": "00:00:19,800"
+			},
+			"offsets": {
+				"from": 17440,
+				"to": 19800
+			},
+			"text": " This is going to be a two-part presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,800",
+				"to": "00:00:22,400"
+			},
+			"offsets": {
+				"from": 19800,
+				"to": 22400
+			},
+			"text": " First, we're going to discuss how 60%"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,400",
+				"to": "00:00:26,560"
+			},
+			"offsets": {
+				"from": 22400,
+				"to": 26560
+			},
+			"text": " of total e-supply today was generated all in one single block"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,560",
+				"to": "00:00:30,440"
+			},
+			"offsets": {
+				"from": 26560,
+				"to": 30440
+			},
+			"text": " and how that very large sum of e-th got distributed over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,440",
+				"to": "00:00:33,800"
+			},
+			"offsets": {
+				"from": 30440,
+				"to": 33800
+			},
+			"text": " And then second, we'll discuss total staked e-supply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,800",
+				"to": "00:00:37,640"
+			},
+			"offsets": {
+				"from": 33800,
+				"to": 37640
+			},
+			"text": " which is actually a very small percentage of total supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,640",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 37640,
+				"to": 40600
+			},
+			"text": " But now it has an extremely outsized impact"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:44,360"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 44360
+			},
+			"text": " on network security and censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,360",
+				"to": "00:00:48,360"
+			},
+			"offsets": {
+				"from": 44360,
+				"to": 48360
+			},
+			"text": " So before I dive into the data, I want to elaborate a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,360",
+				"to": "00:00:51,160"
+			},
+			"offsets": {
+				"from": 48360,
+				"to": 51160
+			},
+			"text": " on why I think this is such an important research topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,160",
+				"to": "00:00:52,440"
+			},
+			"offsets": {
+				"from": 51160,
+				"to": 52440
+			},
+			"text": " for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,440",
+				"to": "00:00:54,720"
+			},
+			"offsets": {
+				"from": 52440,
+				"to": 54720
+			},
+			"text": " I started investigating this back in the summer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,720",
+				"to": "00:00:57,960"
+			},
+			"offsets": {
+				"from": 54720,
+				"to": 57960
+			},
+			"text": " because it was becoming clear that Ethereum was soon going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,960",
+				"to": "00:01:01,840"
+			},
+			"offsets": {
+				"from": 57960,
+				"to": 61840
+			},
+			"text": " to transition to proof of stake after many years of delays"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,840",
+				"to": "00:01:05,360"
+			},
+			"offsets": {
+				"from": 61840,
+				"to": 65360
+			},
+			"text": " and lots of uncertainty around whether this upgrade would happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,360",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 65360,
+				"to": 68160
+			},
+			"text": " And this would mean that soon, and today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:11,640"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 71640
+			},
+			"text": " now that the merge has happened, the amount of e-th"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,640",
+				"to": "00:01:15,600"
+			},
+			"offsets": {
+				"from": 71640,
+				"to": 75600
+			},
+			"text": " that users hold can be directly translated into influence"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,600",
+				"to": "00:01:19,040"
+			},
+			"offsets": {
+				"from": 75600,
+				"to": 79040
+			},
+			"text": " over Ethereum's consensus and block building process."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,040",
+				"to": "00:01:24,320"
+			},
+			"offsets": {
+				"from": 79040,
+				"to": 84320
+			},
+			"text": " So to understand how resilient Ethereum is against attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,320",
+				"to": "00:01:27,400"
+			},
+			"offsets": {
+				"from": 84320,
+				"to": 87400
+			},
+			"text": " such as, for example, like a 51% attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,400",
+				"to": "00:01:29,680"
+			},
+			"offsets": {
+				"from": 87400,
+				"to": 89680
+			},
+			"text": " one of the key questions to ask is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,680",
+				"to": "00:01:32,040"
+			},
+			"offsets": {
+				"from": 89680,
+				"to": 92040
+			},
+			"text": " who controls staked e-th supply?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,040",
+				"to": "00:01:36,480"
+			},
+			"offsets": {
+				"from": 92040,
+				"to": 96480
+			},
+			"text": " And how easy is it to seize control of staked e-th supply?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,480",
+				"to": "00:01:39,360"
+			},
+			"offsets": {
+				"from": 96480,
+				"to": 99360
+			},
+			"text": " And the more concentrated that your staked e-th supply is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,360",
+				"to": "00:01:41,720"
+			},
+			"offsets": {
+				"from": 99360,
+				"to": 101720
+			},
+			"text": " the easier it is to disrupt network consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,720",
+				"to": "00:01:44,080"
+			},
+			"offsets": {
+				"from": 101720,
+				"to": 104080
+			},
+			"text": " It's like a centralized point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,080",
+				"to": "00:01:48,240"
+			},
+			"offsets": {
+				"from": 104080,
+				"to": 108240
+			},
+			"text": " But the less concentrated your staked e-th supply is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,240",
+				"to": "00:01:50,960"
+			},
+			"offsets": {
+				"from": 108240,
+				"to": 110960
+			},
+			"text": " the harder those types of attacks are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,960",
+				"to": "00:01:53,520"
+			},
+			"offsets": {
+				"from": 110960,
+				"to": 113520
+			},
+			"text": " And the second reason is very closely related"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,520",
+				"to": "00:01:54,520"
+			},
+			"offsets": {
+				"from": 113520,
+				"to": 114520
+			},
+			"text": " to security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,520",
+				"to": "00:01:59,320"
+			},
+			"offsets": {
+				"from": 114520,
+				"to": 119320
+			},
+			"text": " It's a one that goes part in parcel with security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,320",
+				"to": "00:02:03,200"
+			},
+			"offsets": {
+				"from": 119320,
+				"to": 123200
+			},
+			"text": " And that's because the supply distribution of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,200",
+				"to": "00:02:06,640"
+			},
+			"offsets": {
+				"from": 123200,
+				"to": 126640
+			},
+			"text": " it matters more than ever also to the decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,640",
+				"to": "00:02:07,480"
+			},
+			"offsets": {
+				"from": 126640,
+				"to": 127480
+			},
+			"text": " of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,480",
+				"to": "00:02:09,640"
+			},
+			"offsets": {
+				"from": 127480,
+				"to": 129640
+			},
+			"text": " And that relates to censorship resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,640",
+				"to": "00:02:13,320"
+			},
+			"offsets": {
+				"from": 129640,
+				"to": 133320
+			},
+			"text": " and credible neutrality, because validators are now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,320",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 133320,
+				"to": 136160
+			},
+			"text": " the block proposers of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:19,480"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 139480
+			},
+			"text": " They are the block proposers of a proof of stake blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,480",
+				"to": "00:02:22,120"
+			},
+			"offsets": {
+				"from": 139480,
+				"to": 142120
+			},
+			"text": " And for those of us who are from the US,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,120",
+				"to": "00:02:26,520"
+			},
+			"offsets": {
+				"from": 142120,
+				"to": 146520
+			},
+			"text": " this really does matter also from a regulatory point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,520",
+				"to": "00:02:31,200"
+			},
+			"offsets": {
+				"from": 146520,
+				"to": 151200
+			},
+			"text": " Because for regulators like the SEC, decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,200",
+				"to": "00:02:34,800"
+			},
+			"offsets": {
+				"from": 151200,
+				"to": 154800
+			},
+			"text": " is a key criteria, determining what type of financial asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,800",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 154800,
+				"to": 156720
+			},
+			"text": " each should be classified as."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:39,720"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 159720
+			},
+			"text": " And finally, the third reason is because this topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,720",
+				"to": "00:02:42,440"
+			},
+			"offsets": {
+				"from": 159720,
+				"to": 162440
+			},
+			"text": " helps to illustrate who the biggest winners are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,440",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 162440,
+				"to": 166000
+			},
+			"text": " from proof of stake, from AKA the merge upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:47,960"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 167960
+			},
+			"text": " The biggest e-th holders on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,960",
+				"to": "00:02:50,040"
+			},
+			"offsets": {
+				"from": 167960,
+				"to": 170040
+			},
+			"text": " are in the best position to profit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,040",
+				"to": "00:02:52,360"
+			},
+			"offsets": {
+				"from": 170040,
+				"to": 172360
+			},
+			"text": " now that the merge upgrade is complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,360",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 172360,
+				"to": 175600
+			},
+			"text": " And the capital that they hold will now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:02:57,960"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 177960
+			},
+			"text": " be able to generate more capital on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,960",
+				"to": "00:03:00,400"
+			},
+			"offsets": {
+				"from": 177960,
+				"to": 180400
+			},
+			"text": " So, however, holds a lot of e-th now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,400",
+				"to": "00:03:04,760"
+			},
+			"offsets": {
+				"from": 180400,
+				"to": 184760
+			},
+			"text": " stands to generate and continue to hold on to a lot more e-th."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,760",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 184760,
+				"to": 186920
+			},
+			"text": " And this is a little different from proof of work mining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:10,960"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 190960
+			},
+			"text": " whereas where miners were to some incentivize"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,960",
+				"to": "00:03:14,520"
+			},
+			"offsets": {
+				"from": 190960,
+				"to": 194520
+			},
+			"text": " to sell off their e-th due to their high operational costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,520",
+				"to": "00:03:16,720"
+			},
+			"offsets": {
+				"from": 194520,
+				"to": 196720
+			},
+			"text": " So when you're mining e-th, you sell it off"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,720",
+				"to": "00:03:18,320"
+			},
+			"offsets": {
+				"from": 196720,
+				"to": 198320
+			},
+			"text": " once you've mined it, because you have to pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,320",
+				"to": "00:03:20,120"
+			},
+			"offsets": {
+				"from": 198320,
+				"to": 200120
+			},
+			"text": " a very high electricity bill."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,120",
+				"to": "00:03:21,880"
+			},
+			"offsets": {
+				"from": 200120,
+				"to": 201880
+			},
+			"text": " But for validators, that's not the case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,880",
+				"to": "00:03:23,720"
+			},
+			"offsets": {
+				"from": 201880,
+				"to": 203720
+			},
+			"text": " the operational costs are in comparison,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,720",
+				"to": "00:03:25,720"
+			},
+			"offsets": {
+				"from": 203720,
+				"to": 205720
+			},
+			"text": " extremely negligible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,720",
+				"to": "00:03:28,880"
+			},
+			"offsets": {
+				"from": 205720,
+				"to": 208880
+			},
+			"text": " So I hope this has got you interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,880",
+				"to": "00:03:31,120"
+			},
+			"offsets": {
+				"from": 208880,
+				"to": 211120
+			},
+			"text": " So now on to the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,120",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 211120,
+				"to": 214560
+			},
+			"text": " As of the beginning of October, about 120 million e-th"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:39,040"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 219040
+			},
+			"text": " has been generated on Ethereum since Genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,040",
+				"to": "00:03:42,360"
+			},
+			"offsets": {
+				"from": 219040,
+				"to": 222360
+			},
+			"text": " This value, there's actually quite a lot of dispute"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,360",
+				"to": "00:03:45,720"
+			},
+			"offsets": {
+				"from": 222360,
+				"to": 225720
+			},
+			"text": " around the exact decimal points of the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,720",
+				"to": "00:03:47,720"
+			},
+			"offsets": {
+				"from": 225720,
+				"to": 227720
+			},
+			"text": " But for that conversation around some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,720",
+				"to": "00:03:51,920"
+			},
+			"offsets": {
+				"from": 227720,
+				"to": 231920
+			},
+			"text": " of the nitpicky stuff of how we even know what total supply is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,920",
+				"to": "00:03:53,960"
+			},
+			"offsets": {
+				"from": 231920,
+				"to": 233960
+			},
+			"text": " I encourage you to read the full report"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,960",
+				"to": "00:03:57,640"
+			},
+			"offsets": {
+				"from": 233960,
+				"to": 237640
+			},
+			"text": " that I've written on this research topic at galaxy.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,640",
+				"to": "00:04:01,040"
+			},
+			"offsets": {
+				"from": 237640,
+				"to": 241040
+			},
+			"text": " But more than mining or validating combined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,040",
+				"to": "00:04:03,800"
+			},
+			"offsets": {
+				"from": 241040,
+				"to": 243800
+			},
+			"text": " the majority of supply was allocated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,800",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 243800,
+				"to": 245800
+			},
+			"text": " before the network even launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 249600
+			},
+			"text": " So 60 million e-th, representing about 50%"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:12,320"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 252320
+			},
+			"text": " of total e-th supply today, was distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,320",
+				"to": "00:04:14,440"
+			},
+			"offsets": {
+				"from": 252320,
+				"to": 254440
+			},
+			"text": " at the network's genesis to participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,440",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 254440,
+				"to": 258080
+			},
+			"text": " who were involved in the initial coin offering."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:21,200"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 261200
+			},
+			"text": " So the ICO sale of Ethereum basically sold off"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,200",
+				"to": "00:04:24,680"
+			},
+			"offsets": {
+				"from": 261200,
+				"to": 264680
+			},
+			"text": " e-th to the general public, anyone with an internet connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,680",
+				"to": "00:04:26,880"
+			},
+			"offsets": {
+				"from": 264680,
+				"to": 266880
+			},
+			"text": " who had Bitcoin could participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,880",
+				"to": "00:04:29,040"
+			},
+			"offsets": {
+				"from": 266880,
+				"to": 269040
+			},
+			"text": " in this fundraising effort for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,040",
+				"to": "00:04:31,840"
+			},
+			"offsets": {
+				"from": 269040,
+				"to": 271840
+			},
+			"text": " And that sale took place in 2014,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,840",
+				"to": "00:04:34,160"
+			},
+			"offsets": {
+				"from": 271840,
+				"to": 274160
+			},
+			"text": " a year before Ethereum even launched"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,160",
+				"to": "00:04:37,520"
+			},
+			"offsets": {
+				"from": 274160,
+				"to": 277520
+			},
+			"text": " and it raised funds for about 42 days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,520",
+				"to": "00:04:41,280"
+			},
+			"offsets": {
+				"from": 277520,
+				"to": 281280
+			},
+			"text": " around 18 million dollars was raised at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,280",
+				"to": "00:04:44,160"
+			},
+			"offsets": {
+				"from": 281280,
+				"to": 284160
+			},
+			"text": " Now, the second part that I want to highlight"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,160",
+				"to": "00:04:47,920"
+			},
+			"offsets": {
+				"from": 284160,
+				"to": 287920
+			},
+			"text": " is 12 million e-th, so roughly around 10%"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,920",
+				"to": "00:04:50,040"
+			},
+			"offsets": {
+				"from": 287920,
+				"to": 290040
+			},
+			"text": " of Ethereum's total network supply,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,040",
+				"to": "00:04:51,880"
+			},
+			"offsets": {
+				"from": 290040,
+				"to": 291880
+			},
+			"text": " was also generated at Genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,880",
+				"to": "00:04:55,920"
+			},
+			"offsets": {
+				"from": 291880,
+				"to": 295920
+			},
+			"text": " And this e-th went to early project contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,920",
+				"to": "00:04:59,080"
+			},
+			"offsets": {
+				"from": 295920,
+				"to": 299080
+			},
+			"text": " to Ethereum and the Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,080",
+				"to": "00:05:00,840"
+			},
+			"offsets": {
+				"from": 299080,
+				"to": 300840
+			},
+			"text": " which is an organization that was set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,840",
+				"to": "00:05:03,240"
+			},
+			"offsets": {
+				"from": 300840,
+				"to": 303240
+			},
+			"text": " to help steward the development"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,240",
+				"to": "00:05:06,760"
+			},
+			"offsets": {
+				"from": 303240,
+				"to": 306760
+			},
+			"text": " and the growth of the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,760",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 306760,
+				"to": 310000
+			},
+			"text": " which if you guys were there for the opening ceremonies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:13,520"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 313520
+			},
+			"text": " I had a really good talk of what her vision for the EF is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,520",
+				"to": "00:05:16,400"
+			},
+			"offsets": {
+				"from": 313520,
+				"to": 316400
+			},
+			"text": " But for the 12 million e-th that was generated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,400",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 316400,
+				"to": 318920
+			},
+			"text": " it was basically split up between the foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:21,200"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 321200
+			},
+			"text": " and a bunch of founders."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,200",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 321200,
+				"to": 324040
+			},
+			"text": " So like some of those names, big names,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:26,320"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 326320
+			},
+			"text": " are like Vitalik Buterin, Charles Hoskinson,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,320",
+				"to": "00:05:31,160"
+			},
+			"offsets": {
+				"from": 326320,
+				"to": 331160
+			},
+			"text": " Mihailisi, Gavin Woods, Joe Lubin, there's more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,160",
+				"to": "00:05:34,640"
+			},
+			"offsets": {
+				"from": 331160,
+				"to": 334640
+			},
+			"text": " But it's not clear the distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,640",
+				"to": "00:05:37,640"
+			},
+			"offsets": {
+				"from": 334640,
+				"to": 337640
+			},
+			"text": " of how much of that 12 million went to those contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,640",
+				"to": "00:05:41,880"
+			},
+			"offsets": {
+				"from": 337640,
+				"to": 341880
+			},
+			"text": " And we also don't know exactly what the full list"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,880",
+				"to": "00:05:44,280"
+			},
+			"offsets": {
+				"from": 341880,
+				"to": 344280
+			},
+			"text": " of contributors were at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,280",
+				"to": "00:05:46,520"
+			},
+			"offsets": {
+				"from": 344280,
+				"to": 346520
+			},
+			"text": " There's sources to say that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,520",
+				"to": "00:05:50,760"
+			},
+			"offsets": {
+				"from": 346520,
+				"to": 350760
+			},
+			"text": " it was split up around 85 early project founders."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,760",
+				"to": "00:05:53,800"
+			},
+			"offsets": {
+				"from": 350760,
+				"to": 353800
+			},
+			"text": " So a lot of critics of Ethereum do note"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,800",
+				"to": "00:05:56,280"
+			},
+			"offsets": {
+				"from": 353800,
+				"to": 356280
+			},
+			"text": " that the distribution of coins through processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,280",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 356280,
+				"to": 359600
+			},
+			"text": " that take place before the public launch of a cryptocurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 362480
+			},
+			"text": " So before mining starts, before validating starts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:03,840"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 363840
+			},
+			"text": " this is called a pre-mine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,840",
+				"to": "00:06:05,720"
+			},
+			"offsets": {
+				"from": 363840,
+				"to": 365720
+			},
+			"text": " and it can be easily manipulated"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,720",
+				"to": "00:06:07,800"
+			},
+			"offsets": {
+				"from": 365720,
+				"to": 367800
+			},
+			"text": " by a few select instwriters."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,800",
+				"to": "00:06:10,760"
+			},
+			"offsets": {
+				"from": 367800,
+				"to": 370760
+			},
+			"text": " And it's not a very transparent process"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,760",
+				"to": "00:06:12,960"
+			},
+			"offsets": {
+				"from": 370760,
+				"to": 372960
+			},
+			"text": " to understand who got what."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,960",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 372960,
+				"to": 375600
+			},
+			"text": " And to some extent, this is very true."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:17,320"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 377320
+			},
+			"text": " If there's two really great books"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,320",
+				"to": "00:06:20,680"
+			},
+			"offsets": {
+				"from": 377320,
+				"to": 380680
+			},
+			"text": " that discuss a lot of the drama and the difficulties"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,680",
+				"to": "00:06:22,720"
+			},
+			"offsets": {
+				"from": 380680,
+				"to": 382720
+			},
+			"text": " around figuring out how much of this e-th"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,720",
+				"to": "00:06:25,920"
+			},
+			"offsets": {
+				"from": 382720,
+				"to": 385920
+			},
+			"text": " should be distributed to early project contributors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,920",
+				"to": "00:06:29,320"
+			},
+			"offsets": {
+				"from": 385920,
+				"to": 389320
+			},
+			"text": " Loreshins, Kryptopians, and Kamri Russo's Infinite Machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,320",
+				"to": "00:06:31,600"
+			},
+			"offsets": {
+				"from": 389320,
+				"to": 391600
+			},
+			"text": " are two books that discuss that history."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,600",
+				"to": "00:06:33,480"
+			},
+			"offsets": {
+				"from": 391600,
+				"to": 393480
+			},
+			"text": " And when you think about the ICO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,480",
+				"to": "00:06:36,280"
+			},
+			"offsets": {
+				"from": 393480,
+				"to": 396280
+			},
+			"text": " there is on-chain data to show that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,280",
+				"to": "00:06:38,800"
+			},
+			"offsets": {
+				"from": 396280,
+				"to": 398800
+			},
+			"text": " that 60 million e-th, it was distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,800",
+				"to": "00:06:42,160"
+			},
+			"offsets": {
+				"from": 398800,
+				"to": 402160
+			},
+			"text": " across 8,800 different on-chain accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,160",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 402160,
+				"to": 404200
+			},
+			"text": " which sounds really decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:47,120"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 407120
+			},
+			"text": " But the thing is, we don't know how many of those accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,120",
+				"to": "00:06:49,640"
+			},
+			"offsets": {
+				"from": 407120,
+				"to": 409640
+			},
+			"text": " were actually owned by the same person."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,640",
+				"to": "00:06:54,600"
+			},
+			"offsets": {
+				"from": 409640,
+				"to": 414600
+			},
+			"text": " It's a very difficult, there's no videos explaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,600",
+				"to": "00:06:56,280"
+			},
+			"offsets": {
+				"from": 414600,
+				"to": 416280
+			},
+			"text": " how you could actually participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,280",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 416280,
+				"to": 419760
+			},
+			"text": " in a Ethereum's ICO using multiple fake identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:01,440"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 421440
+			},
+			"text": " So there's no way to really double check"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,440",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 421440,
+				"to": 423000
+			},
+			"text": " how clean the ICO was"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:06,080"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 426080
+			},
+			"text": " and how according to the rules people were playing at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,080",
+				"to": "00:07:08,400"
+			},
+			"offsets": {
+				"from": 426080,
+				"to": 428400
+			},
+			"text": " So from Genesis, it's very hard to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,400",
+				"to": "00:07:10,480"
+			},
+			"offsets": {
+				"from": 428400,
+				"to": 430480
+			},
+			"text": " how decentralized e-th supply was."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,480",
+				"to": "00:07:13,480"
+			},
+			"offsets": {
+				"from": 430480,
+				"to": 433480
+			},
+			"text": " And in some ways, it does look like a bunch of insiders"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,480",
+				"to": "00:07:15,920"
+			},
+			"offsets": {
+				"from": 433480,
+				"to": 435920
+			},
+			"text": " are getting a really big part of the pie."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,920",
+				"to": "00:07:17,400"
+			},
+			"offsets": {
+				"from": 435920,
+				"to": 437400
+			},
+			"text": " So for the next scooted slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,400",
+				"to": "00:07:18,760"
+			},
+			"offsets": {
+				"from": 437400,
+				"to": 438760
+			},
+			"text": " I really wanna do a case study"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,760",
+				"to": "00:07:21,480"
+			},
+			"offsets": {
+				"from": 438760,
+				"to": 441480
+			},
+			"text": " on some of the biggest e-th holders from Genesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,480",
+				"to": "00:07:24,160"
+			},
+			"offsets": {
+				"from": 441480,
+				"to": 444160
+			},
+			"text": " and explain and hopefully show you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,160",
+				"to": "00:07:26,400"
+			},
+			"offsets": {
+				"from": 444160,
+				"to": 446400
+			},
+			"text": " that we can see a lot of evidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,400",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 446400,
+				"to": 448000
+			},
+			"text": " to suggest that Ethereum's supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:29,960"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 449960
+			},
+			"text": " has distributed a lot over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,960",
+				"to": "00:07:34,080"
+			},
+			"offsets": {
+				"from": 449960,
+				"to": 454080
+			},
+			"text": " So let's start with the Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,080",
+				"to": "00:07:37,680"
+			},
+			"offsets": {
+				"from": 454080,
+				"to": 457680
+			},
+			"text": " the biggest, the top recipient of the pre-mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,680",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 457680,
+				"to": 459360
+			},
+			"text": " Over the past seven years, you can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 462040
+			},
+			"text": " in this black shaded area that its supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 464000
+			},
+			"text": " has decreased dramatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 465400
+			},
+			"text": " Starting with the 12 million,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:48,400"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 468400
+			},
+			"text": " it's reported that the foundation gave roughly half away"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,400",
+				"to": "00:07:51,560"
+			},
+			"offsets": {
+				"from": 468400,
+				"to": 471560
+			},
+			"text": " to those 85 early project contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,560",
+				"to": "00:07:54,520"
+			},
+			"offsets": {
+				"from": 471560,
+				"to": 474520
+			},
+			"text": " We don't know exactly how they are, how it was divvied up."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,520",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 474520,
+				"to": 476920
+			},
+			"text": " And then another 3 million was set aside"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 478360
+			},
+			"text": " for foundation employees"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:01,080"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 481080
+			},
+			"text": " through something called the developer purchase programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,080",
+				"to": "00:08:03,080"
+			},
+			"offsets": {
+				"from": 481080,
+				"to": 483080
+			},
+			"text": " And for the 3 million that's remaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,080",
+				"to": "00:08:05,480"
+			},
+			"offsets": {
+				"from": 483080,
+				"to": 485480
+			},
+			"text": " from 12 to six to three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,480",
+				"to": "00:08:07,600"
+			},
+			"offsets": {
+				"from": 485480,
+				"to": 487600
+			},
+			"text": " it's well documented that the Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,600",
+				"to": "00:08:11,960"
+			},
+			"offsets": {
+				"from": 487600,
+				"to": 491960
+			},
+			"text": " had to sell off their ETH in 2018 and 2021"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,960",
+				"to": "00:08:14,040"
+			},
+			"offsets": {
+				"from": 491960,
+				"to": 494040
+			},
+			"text": " to pay off operational expenses"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,040",
+				"to": "00:08:16,760"
+			},
+			"offsets": {
+				"from": 494040,
+				"to": 496760
+			},
+			"text": " and just keep the foundation going."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,760",
+				"to": "00:08:19,280"
+			},
+			"offsets": {
+				"from": 496760,
+				"to": 499280
+			},
+			"text": " But of course, this is really just one account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,280",
+				"to": "00:08:22,280"
+			},
+			"offsets": {
+				"from": 499280,
+				"to": 502280
+			},
+			"text": " This is a publicly labeled account on Etherscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,280",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 502280,
+				"to": 503120
+			},
+			"text": " And you might be asking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:24,480"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 504480
+			},
+			"text": " well, what if Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,480",
+				"to": "00:08:26,760"
+			},
+			"offsets": {
+				"from": 504480,
+				"to": 506760
+			},
+			"text": " has more accounts on chain that we don't know about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,760",
+				"to": "00:08:30,080"
+			},
+			"offsets": {
+				"from": 506760,
+				"to": 510080
+			},
+			"text": " Well, as of March 31st, 2022,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,080",
+				"to": "00:08:33,120"
+			},
+			"offsets": {
+				"from": 510080,
+				"to": 513120
+			},
+			"text": " the Ethereum Foundation self reported their financials."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,120",
+				"to": "00:08:34,440"
+			},
+			"offsets": {
+				"from": 513120,
+				"to": 514440
+			},
+			"text": " They said, hey, everyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,440",
+				"to": "00:08:38,400"
+			},
+			"offsets": {
+				"from": 514440,
+				"to": 518400
+			},
+			"text": " in the spirit of transparency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,400",
+				"to": "00:08:40,080"
+			},
+			"offsets": {
+				"from": 518400,
+				"to": 520080
+			},
+			"text": " here's how much ETH we control today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,080",
+				"to": "00:08:43,960"
+			},
+			"offsets": {
+				"from": 520080,
+				"to": 523960
+			},
+			"text": " And they've said and self reported"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,960",
+				"to": "00:08:48,480"
+			},
+			"offsets": {
+				"from": 523960,
+				"to": 528480
+			},
+			"text": " that they currently only control about $1.3 billion worth"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,480",
+				"to": "00:08:50,880"
+			},
+			"offsets": {
+				"from": 528480,
+				"to": 530880
+			},
+			"text": " of ETH, that's probably less now that ETH price"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,880",
+				"to": "00:08:53,200"
+			},
+			"offsets": {
+				"from": 530880,
+				"to": 533200
+			},
+			"text": " has gone down a little bit since March."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,200",
+				"to": "00:08:57,480"
+			},
+			"offsets": {
+				"from": 533200,
+				"to": 537480
+			},
+			"text": " But that represents 0.3% of total ETH supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,480",
+				"to": "00:09:01,080"
+			},
+			"offsets": {
+				"from": 537480,
+				"to": 541080
+			},
+			"text": " So we went from 12 million to now 0.3% of total ETH supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,080",
+				"to": "00:09:04,800"
+			},
+			"offsets": {
+				"from": 541080,
+				"to": 544800
+			},
+			"text": " And the ETH has sold off some of the ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,800",
+				"to": "00:09:06,440"
+			},
+			"offsets": {
+				"from": 544800,
+				"to": 546440
+			},
+			"text": " to hold other assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,440",
+				"to": "00:09:07,880"
+			},
+			"offsets": {
+				"from": 546440,
+				"to": 547880
+			},
+			"text": " And a lot of this analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,880",
+				"to": "00:09:11,440"
+			},
+			"offsets": {
+				"from": 547880,
+				"to": 551440
+			},
+			"text": " I will explain that it depends on self reporting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,440",
+				"to": "00:09:13,720"
+			},
+			"offsets": {
+				"from": 551440,
+				"to": 553720
+			},
+			"text": " It depends on these individuals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,720",
+				"to": "00:09:17,240"
+			},
+			"offsets": {
+				"from": 553720,
+				"to": 557240
+			},
+			"text": " major individuals to self report how much ETH they still hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,240",
+				"to": "00:09:19,920"
+			},
+			"offsets": {
+				"from": 557240,
+				"to": 559920
+			},
+			"text": " So Vitalik has talked about this openly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,920",
+				"to": "00:09:22,920"
+			},
+			"offsets": {
+				"from": 559920,
+				"to": 562920
+			},
+			"text": " I've asked Joe Lubin on stage at CoinDesk consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,920",
+				"to": "00:09:24,920"
+			},
+			"offsets": {
+				"from": 562920,
+				"to": 564920
+			},
+			"text": " like how much ETH do you hold certain now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,920",
+				"to": "00:09:29,720"
+			},
+			"offsets": {
+				"from": 564920,
+				"to": 569720
+			},
+			"text": " And his answer was basically like less than 0.5%."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,720",
+				"to": "00:09:32,400"
+			},
+			"offsets": {
+				"from": 569720,
+				"to": 572400
+			},
+			"text": " But of course, not everyone is super altruistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,400",
+				"to": "00:09:34,280"
+			},
+			"offsets": {
+				"from": 572400,
+				"to": 574280
+			},
+			"text": " and not everyone is going to just like explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,280",
+				"to": "00:09:36,120"
+			},
+			"offsets": {
+				"from": 574280,
+				"to": 576120
+			},
+			"text": " how much ETH they hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,120",
+				"to": "00:09:41,120"
+			},
+			"offsets": {
+				"from": 576120,
+				"to": 581120
+			},
+			"text": " So it's worth also looking at some on chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,120",
+				"to": "00:09:43,880"
+			},
+			"offsets": {
+				"from": 581120,
+				"to": 583880
+			},
+			"text": " Who are the biggest ICO recipients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,880",
+				"to": "00:09:46,840"
+			},
+			"offsets": {
+				"from": 583880,
+				"to": 586840
+			},
+			"text": " Well, the top receiving address from the ICO"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,840",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586840,
+				"to": 589000
+			},
+			"text": " received 1 million ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:52,320"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 592320
+			},
+			"text": " And over time, outflows from that account"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,320",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 592320,
+				"to": 595000
+			},
+			"text": " reveals that the funds have been dispersed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:57,240"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 597240
+			},
+			"text": " to several other accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,240",
+				"to": "00:10:00,240"
+			},
+			"offsets": {
+				"from": 597240,
+				"to": 600240
+			},
+			"text": " So this one account that received 1 million ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,240",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 600240,
+				"to": 602800
+			},
+			"text": " you can see that they sent some of that ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:04,840"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 604840
+			},
+			"text": " to centralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,840",
+				"to": "00:10:07,160"
+			},
+			"offsets": {
+				"from": 604840,
+				"to": 607160
+			},
+			"text": " They invested in the Dow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,160",
+				"to": "00:10:11,880"
+			},
+			"offsets": {
+				"from": 607160,
+				"to": 611880
+			},
+			"text": " a very infamous token sale back in the day"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,880",
+				"to": "00:10:15,160"
+			},
+			"offsets": {
+				"from": 611880,
+				"to": 615160
+			},
+			"text": " that caused the Ethereum Classic creation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,160",
+				"to": "00:10:16,880"
+			},
+			"offsets": {
+				"from": 615160,
+				"to": 616880
+			},
+			"text": " Different smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,880",
+				"to": "00:10:19,320"
+			},
+			"offsets": {
+				"from": 616880,
+				"to": 619320
+			},
+			"text": " And a lot of these flows actually converge"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,320",
+				"to": "00:10:22,960"
+			},
+			"offsets": {
+				"from": 619320,
+				"to": 622960
+			},
+			"text": " to one account tertiary account domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,960",
+				"to": "00:10:24,240"
+			},
+			"offsets": {
+				"from": 622960,
+				"to": 624240
+			},
+			"text": " called Vaternity ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,240",
+				"to": "00:10:28,840"
+			},
+			"offsets": {
+				"from": 624240,
+				"to": 628840
+			},
+			"text": " And that account only currently holds about 800 ETH today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,840",
+				"to": "00:10:30,080"
+			},
+			"offsets": {
+				"from": 628840,
+				"to": 630080
+			},
+			"text": " Shout out to breadcrumbs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,080",
+				"to": "00:10:33,880"
+			},
+			"offsets": {
+				"from": 630080,
+				"to": 633880
+			},
+			"text": " who was able to create this visualization"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,880",
+				"to": "00:10:36,320"
+			},
+			"offsets": {
+				"from": 633880,
+				"to": 636320
+			},
+			"text": " and be able to track the flows"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,320",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 636320,
+				"to": 638000
+			},
+			"text": " out of that account over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,040"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641040
+			},
+			"text": " And similarly, if you do the same exercise"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,040",
+				"to": "00:10:43,480"
+			},
+			"offsets": {
+				"from": 641040,
+				"to": 643480
+			},
+			"text": " for the second and the third top accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,480",
+				"to": "00:10:45,040"
+			},
+			"offsets": {
+				"from": 643480,
+				"to": 645040
+			},
+			"text": " that receive the ICO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,040",
+				"to": "00:10:47,560"
+			},
+			"offsets": {
+				"from": 645040,
+				"to": 647560
+			},
+			"text": " they received around 935,000 ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,560",
+				"to": "00:10:49,480"
+			},
+			"offsets": {
+				"from": 647560,
+				"to": 649480
+			},
+			"text": " and then 933,000 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,480",
+				"to": "00:10:51,920"
+			},
+			"offsets": {
+				"from": 649480,
+				"to": 651920
+			},
+			"text": " That's the second and the third largest recipients."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,920",
+				"to": "00:10:54,600"
+			},
+			"offsets": {
+				"from": 651920,
+				"to": 654600
+			},
+			"text": " 95% of the funds that they received"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,600",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 654600,
+				"to": 658000
+			},
+			"text": " has since been transferred over to centralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:10:59,360"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 659360
+			},
+			"text": " So that basically means that the funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,360",
+				"to": "00:11:00,760"
+			},
+			"offsets": {
+				"from": 659360,
+				"to": 660760
+			},
+			"text": " have been moved off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,760",
+				"to": "00:11:01,960"
+			},
+			"offsets": {
+				"from": 660760,
+				"to": 661960
+			},
+			"text": " They can't be really traced"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,960",
+				"to": "00:11:03,960"
+			},
+			"offsets": {
+				"from": 661960,
+				"to": 663960
+			},
+			"text": " without further supporting evidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,960",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 663960,
+				"to": 666000
+			},
+			"text": " But the movement of funds to exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:07,520"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 667520
+			},
+			"text": " generally suggests that the funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,520",
+				"to": "00:11:09,320"
+			},
+			"offsets": {
+				"from": 667520,
+				"to": 669320
+			},
+			"text": " have either been sold or traded."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,320",
+				"to": "00:11:14,080"
+			},
+			"offsets": {
+				"from": 669320,
+				"to": 674080
+			},
+			"text": " And that's kind of like a case study of the three."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,080",
+				"to": "00:11:16,840"
+			},
+			"offsets": {
+				"from": 674080,
+				"to": 676840
+			},
+			"text": " But if we take a little bit more of a broader look"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,840",
+				"to": "00:11:21,520"
+			},
+			"offsets": {
+				"from": 676840,
+				"to": 681520
+			},
+			"text": " at all of where all of the ETH has since flowed to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,520",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 681520,
+				"to": 685000
+			},
+			"text": " this is data that was compiled from Nansen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:28,440"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 688440
+			},
+			"text": " but it sums up the first outgoing transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,440",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 688440,
+				"to": 690800
+			},
+			"text": " between 2015 and 2018"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:33,840"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 693840
+			},
+			"text": " from accounts that received ETH from the Genesis plaque."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,840",
+				"to": "00:11:37,720"
+			},
+			"offsets": {
+				"from": 693840,
+				"to": 697720
+			},
+			"text": " And it shows that the top 10 receiving entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,720",
+				"to": "00:11:40,840"
+			},
+			"offsets": {
+				"from": 697720,
+				"to": 700840
+			},
+			"text": " it shows like the top 10 of like how much ETH they receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,840",
+				"to": "00:11:43,240"
+			},
+			"offsets": {
+				"from": 700840,
+				"to": 703240
+			},
+			"text": " and most of them are exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,240",
+				"to": "00:11:46,640"
+			},
+			"offsets": {
+				"from": 703240,
+				"to": 706640
+			},
+			"text": " Only 2.3% of Ethereum's pre-mind supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,640",
+				"to": "00:11:50,320"
+			},
+			"offsets": {
+				"from": 706640,
+				"to": 710320
+			},
+			"text": " was held unmoved from 2015 to 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,320",
+				"to": "00:11:53,600"
+			},
+			"offsets": {
+				"from": 710320,
+				"to": 713600
+			},
+			"text": " So this analysis does suggest that many investors"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,600",
+				"to": "00:11:57,520"
+			},
+			"offsets": {
+				"from": 713600,
+				"to": 717520
+			},
+			"text": " that did participate in Ethereum's ICO"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,520",
+				"to": "00:11:59,440"
+			},
+			"offsets": {
+				"from": 717520,
+				"to": 719440
+			},
+			"text": " likely sold off their ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,440",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 719440,
+				"to": 721960
+			},
+			"text": " within the first three years of the network's launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:05,080"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 725080
+			},
+			"text": " And on-chain data of the known account balances"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,080",
+				"to": "00:12:06,760"
+			},
+			"offsets": {
+				"from": 725080,
+				"to": 726760
+			},
+			"text": " of these early ICO investors"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,760",
+				"to": "00:12:08,720"
+			},
+			"offsets": {
+				"from": 726760,
+				"to": 728720
+			},
+			"text": " and talking with self-reported figures"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,720",
+				"to": "00:12:10,840"
+			},
+			"offsets": {
+				"from": 728720,
+				"to": 730840
+			},
+			"text": " from project contributors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,840",
+				"to": "00:12:14,520"
+			},
+			"offsets": {
+				"from": 730840,
+				"to": 734520
+			},
+			"text": " many of them have not retained that large supply of ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,520",
+				"to": "00:12:16,720"
+			},
+			"offsets": {
+				"from": 734520,
+				"to": 736720
+			},
+			"text": " over the years through market fluctuations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,720",
+				"to": "00:12:19,560"
+			},
+			"offsets": {
+				"from": 736720,
+				"to": 739560
+			},
+			"text": " through the evolution of Ethereum's DAP ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,560",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 739560,
+				"to": 741040
+			},
+			"text": " And of course, it wasn't clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:24,360"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 744360
+			},
+			"text": " exactly when Ethereum would transition over to proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,360",
+				"to": "00:12:26,160"
+			},
+			"offsets": {
+				"from": 744360,
+				"to": 746160
+			},
+			"text": " you know, five years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,160",
+				"to": "00:12:29,400"
+			},
+			"offsets": {
+				"from": 746160,
+				"to": 749400
+			},
+			"text": " This has been a very long time coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,400",
+				"to": "00:12:31,960"
+			},
+			"offsets": {
+				"from": 749400,
+				"to": 751960
+			},
+			"text": " So in the report that I have written on this topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,960",
+				"to": "00:12:34,840"
+			},
+			"offsets": {
+				"from": 751960,
+				"to": 754840
+			},
+			"text": " I actually go into a lot more detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,840",
+				"to": "00:12:36,320"
+			},
+			"offsets": {
+				"from": 754840,
+				"to": 756320
+			},
+			"text": " using other on-chain metrics"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,320",
+				"to": "00:12:38,960"
+			},
+			"offsets": {
+				"from": 756320,
+				"to": 758960
+			},
+			"text": " like a bird's-eye view of Ethereum's supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,960",
+				"to": "00:12:41,400"
+			},
+			"offsets": {
+				"from": 758960,
+				"to": 761400
+			},
+			"text": " Holistically, I use metrics like HODL waves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,400",
+				"to": "00:12:45,480"
+			},
+			"offsets": {
+				"from": 761400,
+				"to": 765480
+			},
+			"text": " supply quality ratio, network distribution factor."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,480",
+				"to": "00:12:48,680"
+			},
+			"offsets": {
+				"from": 765480,
+				"to": 768680
+			},
+			"text": " So definitely be sure to check out that report"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,680",
+				"to": "00:12:50,520"
+			},
+			"offsets": {
+				"from": 768680,
+				"to": 770520
+			},
+			"text": " if you want more supporting evidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,520",
+				"to": "00:12:53,120"
+			},
+			"offsets": {
+				"from": 770520,
+				"to": 773120
+			},
+			"text": " for this idea that Ethereum's supply distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,120",
+				"to": "00:12:55,040"
+			},
+			"offsets": {
+				"from": 773120,
+				"to": 775040
+			},
+			"text": " has changed over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,040",
+				"to": "00:12:59,320"
+			},
+			"offsets": {
+				"from": 775040,
+				"to": 779320
+			},
+			"text": " and how the biggest winners of the proof of stake merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,320",
+				"to": "00:13:02,920"
+			},
+			"offsets": {
+				"from": 779320,
+				"to": 782920
+			},
+			"text": " most likely aren't the ICO recipients and early founders."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,920",
+				"to": "00:13:04,760"
+			},
+			"offsets": {
+				"from": 782920,
+				"to": 784760
+			},
+			"text": " That report is on Galaxy.com,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,760",
+				"to": "00:13:06,320"
+			},
+			"offsets": {
+				"from": 784760,
+				"to": 786320
+			},
+			"text": " but because of limited time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,320",
+				"to": "00:13:09,680"
+			},
+			"offsets": {
+				"from": 786320,
+				"to": 789680
+			},
+			"text": " I now want to jump to showing you guys some data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,680",
+				"to": "00:13:12,080"
+			},
+			"offsets": {
+				"from": 789680,
+				"to": 792080
+			},
+			"text": " around total staked ETH supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,080",
+				"to": "00:13:16,200"
+			},
+			"offsets": {
+				"from": 792080,
+				"to": 796200
+			},
+			"text": " and how we're seeing that data kind of evolve over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,200",
+				"to": "00:13:18,680"
+			},
+			"offsets": {
+				"from": 796200,
+				"to": 798680
+			},
+			"text": " and the trends around staked ETH supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,680",
+				"to": "00:13:20,280"
+			},
+			"offsets": {
+				"from": 798680,
+				"to": 800280
+			},
+			"text": " that we're seeing over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,280",
+				"to": "00:13:25,120"
+			},
+			"offsets": {
+				"from": 800280,
+				"to": 805120
+			},
+			"text": " So in comparison to how much total ETH supply there is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,120",
+				"to": "00:13:30,120"
+			},
+			"offsets": {
+				"from": 805120,
+				"to": 810120
+			},
+			"text": " only roughly 12% has been staked on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,120",
+				"to": "00:13:31,400"
+			},
+			"offsets": {
+				"from": 810120,
+				"to": 811400
+			},
+			"text": " which is kind of small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,400",
+				"to": "00:13:34,240"
+			},
+			"offsets": {
+				"from": 811400,
+				"to": 814240
+			},
+			"text": " that's 18.5 billion dollars on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,240",
+				"to": "00:13:36,760"
+			},
+			"offsets": {
+				"from": 814240,
+				"to": 816760
+			},
+			"text": " And that's very surprising kind of to me"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,760",
+				"to": "00:13:38,400"
+			},
+			"offsets": {
+				"from": 816760,
+				"to": 818400
+			},
+			"text": " because if you're not staking your ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,400",
+				"to": "00:13:40,200"
+			},
+			"offsets": {
+				"from": 818400,
+				"to": 820200
+			},
+			"text": " you're essentially getting diluted"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,200",
+				"to": "00:13:42,680"
+			},
+			"offsets": {
+				"from": 820200,
+				"to": 822680
+			},
+			"text": " and liquid-staking solutions basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,680",
+				"to": "00:13:44,200"
+			},
+			"offsets": {
+				"from": 822680,
+				"to": 824200
+			},
+			"text": " you don't have to make that trade off of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,200",
+				"to": "00:13:45,400"
+			},
+			"offsets": {
+				"from": 824200,
+				"to": 825400
+			},
+			"text": " \"Oh, if I lock in my ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,400",
+				"to": "00:13:48,400"
+			},
+			"offsets": {
+				"from": 825400,
+				"to": 828400
+			},
+			"text": " then I can't use it for DeFi applications.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,400",
+				"to": "00:13:51,760"
+			},
+			"offsets": {
+				"from": 828400,
+				"to": 831760
+			},
+			"text": " It's surprising that it's only at 12%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,760",
+				"to": "00:13:53,840"
+			},
+			"offsets": {
+				"from": 831760,
+				"to": 833840
+			},
+			"text": " but that's probably because number one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,840",
+				"to": "00:13:56,400"
+			},
+			"offsets": {
+				"from": 833840,
+				"to": 836400
+			},
+			"text": " you can't actually withdraw your stake right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,400",
+				"to": "00:13:59,560"
+			},
+			"offsets": {
+				"from": 836400,
+				"to": 839560
+			},
+			"text": " There is a big risk factor in that Shanghai"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,560",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 839560,
+				"to": 842000
+			},
+			"text": " we're not exactly sure when Shanghai is gonna be."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,240"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845240
+			},
+			"text": " And up until very recently, until the last month,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,240",
+				"to": "00:14:08,480"
+			},
+			"offsets": {
+				"from": 845240,
+				"to": 848480
+			},
+			"text": " it was very uncertain when the merge would actually happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,480",
+				"to": "00:14:11,400"
+			},
+			"offsets": {
+				"from": 848480,
+				"to": 851400
+			},
+			"text": " And there were tons of risks associated with the merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,400",
+				"to": "00:14:14,840"
+			},
+			"offsets": {
+				"from": 851400,
+				"to": 854840
+			},
+			"text": " that probably made people a little bit iffy about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,840",
+				"to": "00:14:17,400"
+			},
+			"offsets": {
+				"from": 854840,
+				"to": 857400
+			},
+			"text": " \"Should I be staking my ETH into the beacon chain?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,400",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 857400,
+				"to": 860320
+			},
+			"text": " So there were core developments in the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:23,520"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 863520
+			},
+			"text": " that needed to happen in order to grow more confidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,520",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 863520,
+				"to": 865000
+			},
+			"text": " in staking your ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:28,880"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 868880
+			},
+			"text": " And so I actually suspect this figure to start rising"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,880",
+				"to": "00:14:30,040"
+			},
+			"offsets": {
+				"from": 868880,
+				"to": 870040
+			},
+			"text": " now that the merges happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,040",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 870040,
+				"to": 873000
+			},
+			"text": " and especially after Shanghai is complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:35,640"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 875640
+			},
+			"text": " And you can see that this trajectory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,640",
+				"to": "00:14:38,520"
+			},
+			"offsets": {
+				"from": 875640,
+				"to": 878520
+			},
+			"text": " like year over year, it's getting higher and higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,520",
+				"to": "00:14:42,120"
+			},
+			"offsets": {
+				"from": 878520,
+				"to": 882120
+			},
+			"text": " And if we're, if we start to see more total supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,120",
+				"to": "00:14:45,760"
+			},
+			"offsets": {
+				"from": 882120,
+				"to": 885760
+			},
+			"text": " of ETH become staked, it's important to ask the question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,760",
+				"to": "00:14:47,160"
+			},
+			"offsets": {
+				"from": 885760,
+				"to": 887160
+			},
+			"text": " who's holding that ETH?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,160",
+				"to": "00:14:50,120"
+			},
+			"offsets": {
+				"from": 887160,
+				"to": 890120
+			},
+			"text": " And how has that distribution changed over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,120",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 890120,
+				"to": 893080
+			},
+			"text": " So for the past, since 2020,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:54,880"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 894880
+			},
+			"text": " since when the beacon chain started,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,880",
+				"to": "00:14:58,640"
+			},
+			"offsets": {
+				"from": 894880,
+				"to": 898640
+			},
+			"text": " you can see that initially, independent stakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,640",
+				"to": "00:15:00,760"
+			},
+			"offsets": {
+				"from": 898640,
+				"to": 900760
+			},
+			"text": " basically stakers that were not associated"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,760",
+				"to": "00:15:03,080"
+			},
+			"offsets": {
+				"from": 900760,
+				"to": 903080
+			},
+			"text": " with a staking provider, it was pretty high."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,080",
+				"to": "00:15:08,040"
+			},
+			"offsets": {
+				"from": 903080,
+				"to": 908040
+			},
+			"text": " It was around 70% of the total stake ETH to supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,040",
+				"to": "00:15:10,720"
+			},
+			"offsets": {
+				"from": 908040,
+				"to": 910720
+			},
+			"text": " was controlled by independent stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,720",
+				"to": "00:15:12,720"
+			},
+			"offsets": {
+				"from": 910720,
+				"to": 912720
+			},
+			"text": " But over time, we can see very quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,720",
+				"to": "00:15:15,200"
+			},
+			"offsets": {
+				"from": 912720,
+				"to": 915200
+			},
+			"text": " that we're starting to see more concentration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,200",
+				"to": "00:15:20,200"
+			},
+			"offsets": {
+				"from": 915200,
+				"to": 920200
+			},
+			"text": " see the black to staking providers like Lido and Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,200",
+				"to": "00:15:23,680"
+			},
+			"offsets": {
+				"from": 920200,
+				"to": 923680
+			},
+			"text": " And of course, take some of this data with a grain of salt"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,680",
+				"to": "00:15:26,200"
+			},
+			"offsets": {
+				"from": 923680,
+				"to": 926200
+			},
+			"text": " because this requires on-chain address labeling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,200",
+				"to": "00:15:28,160"
+			},
+			"offsets": {
+				"from": 926200,
+				"to": 928160
+			},
+			"text": " which is not always an accurate science."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,160",
+				"to": "00:15:29,720"
+			},
+			"offsets": {
+				"from": 928160,
+				"to": 929720
+			},
+			"text": " And shout out to Hill Dobby"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,720",
+				"to": "00:15:32,760"
+			},
+			"offsets": {
+				"from": 929720,
+				"to": 932760
+			},
+			"text": " from who's like a do-and-anil-looks wizard"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,760",
+				"to": "00:15:34,680"
+			},
+			"offsets": {
+				"from": 932760,
+				"to": 934680
+			},
+			"text": " 'cause I basically took his dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,680",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 934680,
+				"to": 938000
+			},
+			"text": " But so why, why do we see this happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:42,760"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 942760
+			},
+			"text": " Why do we see it going from 70 to smaller?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,760",
+				"to": "00:15:44,120"
+			},
+			"offsets": {
+				"from": 942760,
+				"to": 944120
+			},
+			"text": " Well, I think number one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,120",
+				"to": "00:15:46,440"
+			},
+			"offsets": {
+				"from": 944120,
+				"to": 946440
+			},
+			"text": " it's because it's a lot easier to stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,440",
+				"to": "00:15:47,800"
+			},
+			"offsets": {
+				"from": 946440,
+				"to": 947800
+			},
+			"text": " with a staking provider than it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,800",
+				"to": "00:15:50,400"
+			},
+			"offsets": {
+				"from": 947800,
+				"to": 950400
+			},
+			"text": " to run your own validator node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,400",
+				"to": "00:15:53,200"
+			},
+			"offsets": {
+				"from": 950400,
+				"to": 953200
+			},
+			"text": " especially after the merge with the execution layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,200",
+				"to": "00:15:54,520"
+			},
+			"offsets": {
+				"from": 953200,
+				"to": 954520
+			},
+			"text": " and the consensus layer client"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,520",
+				"to": "00:15:57,200"
+			},
+			"offsets": {
+				"from": 954520,
+				"to": 957200
+			},
+			"text": " and making sure that those communications happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,200",
+				"to": "00:15:59,680"
+			},
+			"offsets": {
+				"from": 957200,
+				"to": 959680
+			},
+			"text": " in the right manner and not getting slashed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,680",
+				"to": "00:16:02,920"
+			},
+			"offsets": {
+				"from": 959680,
+				"to": 962920
+			},
+			"text": " it is much easier to just kind of offload"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,920",
+				"to": "00:16:05,560"
+			},
+			"offsets": {
+				"from": 962920,
+				"to": 965560
+			},
+			"text": " that technical capability to somebody else"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,560",
+				"to": "00:16:06,920"
+			},
+			"offsets": {
+				"from": 965560,
+				"to": 966920
+			},
+			"text": " and ask somebody else to run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,920",
+				"to": "00:16:10,040"
+			},
+			"offsets": {
+				"from": 966920,
+				"to": 970040
+			},
+			"text": " And the second thing is you can't actually have liquid staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,040",
+				"to": "00:16:11,640"
+			},
+			"offsets": {
+				"from": 970040,
+				"to": 971640
+			},
+			"text": " if you're an independent staking provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,640",
+				"to": "00:16:14,320"
+			},
+			"offsets": {
+				"from": 971640,
+				"to": 974320
+			},
+			"text": " There's a ton of benefits of going to Lido"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,320",
+				"to": "00:16:16,600"
+			},
+			"offsets": {
+				"from": 974320,
+				"to": 976600
+			},
+			"text": " and then being able to re-hypopicate your staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,600",
+				"to": "00:16:18,600"
+			},
+			"offsets": {
+				"from": 976600,
+				"to": 978600
+			},
+			"text": " and get additional yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,600",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978600,
+				"to": 982000
+			},
+			"text": " So I think a big plus of Lido"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:24,040"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 984040
+			},
+			"text": " is this idea of liquid staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,040",
+				"to": "00:16:28,080"
+			},
+			"offsets": {
+				"from": 984040,
+				"to": 988080
+			},
+			"text": " that you don't get as an independent staker."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,080",
+				"to": "00:16:30,520"
+			},
+			"offsets": {
+				"from": 988080,
+				"to": 990520
+			},
+			"text": " And then finally, this is the theoretical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,520",
+				"to": "00:16:34,560"
+			},
+			"offsets": {
+				"from": 990520,
+				"to": 994560
+			},
+			"text": " more theoretical benefit of joining us a large staking pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,560",
+				"to": "00:16:37,040"
+			},
+			"offsets": {
+				"from": 994560,
+				"to": 997040
+			},
+			"text": " But theoretically, if you join a staking pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,040",
+				"to": "00:16:39,680"
+			},
+			"offsets": {
+				"from": 997040,
+				"to": 999680
+			},
+			"text": " that has control over more than one third of the ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,680",
+				"to": "00:16:43,080"
+			},
+			"offsets": {
+				"from": 999680,
+				"to": 1003080
+			},
+			"text": " or key thresholds like one half of the ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,080",
+				"to": "00:16:45,840"
+			},
+			"offsets": {
+				"from": 1003080,
+				"to": 1005840
+			},
+			"text": " then you also have this ability to theoretically"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,840",
+				"to": "00:16:49,760"
+			},
+			"offsets": {
+				"from": 1005840,
+				"to": 1009760
+			},
+			"text": " achieve outside profits by deploying"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,760",
+				"to": "00:16:54,640"
+			},
+			"offsets": {
+				"from": 1009760,
+				"to": 1014640
+			},
+			"text": " cross multi-block MEV strategies"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,640",
+				"to": "00:16:56,960"
+			},
+			"offsets": {
+				"from": 1014640,
+				"to": 1016960
+			},
+			"text": " and you're able to manipulate block times"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,960",
+				"to": "00:16:59,200"
+			},
+			"offsets": {
+				"from": 1016960,
+				"to": 1019200
+			},
+			"text": " and do these fancy things that you can only do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,200",
+				"to": "00:17:01,080"
+			},
+			"offsets": {
+				"from": 1019200,
+				"to": 1021080
+			},
+			"text": " if you're a very large staking provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,080",
+				"to": "00:17:04,240"
+			},
+			"offsets": {
+				"from": 1021080,
+				"to": 1024240
+			},
+			"text": " and in those ways like increase your reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,240",
+				"to": "00:17:09,280"
+			},
+			"offsets": {
+				"from": 1024240,
+				"to": 1029280
+			},
+			"text": " So left unchecked, I really do think that this trend"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,280",
+				"to": "00:17:14,280"
+			},
+			"offsets": {
+				"from": 1029280,
+				"to": 1034280
+			},
+			"text": " of increasingly centralized players dominating"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,280",
+				"to": "00:17:18,200"
+			},
+			"offsets": {
+				"from": 1034280,
+				"to": 1038200
+			},
+			"text": " the stake ETH arena,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,200",
+				"to": "00:17:21,200"
+			},
+			"offsets": {
+				"from": 1038200,
+				"to": 1041200
+			},
+			"text": " I think that's a trend that we could start to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,200",
+				"to": "00:17:23,880"
+			},
+			"offsets": {
+				"from": 1041200,
+				"to": 1043880
+			},
+			"text": " grow a lot stronger over time"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,880",
+				"to": "00:17:27,120"
+			},
+			"offsets": {
+				"from": 1043880,
+				"to": 1047120
+			},
+			"text": " if we don't start talking about solutions now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,120",
+				"to": "00:17:29,880"
+			},
+			"offsets": {
+				"from": 1047120,
+				"to": 1049880
+			},
+			"text": " So for the last slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,880",
+				"to": "00:17:32,480"
+			},
+			"offsets": {
+				"from": 1049880,
+				"to": 1052480
+			},
+			"text": " I wanted to talk about some of these solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,480",
+				"to": "00:17:35,280"
+			},
+			"offsets": {
+				"from": 1052480,
+				"to": 1055280
+			},
+			"text": " And I'm not gonna go much into"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,280",
+				"to": "00:17:36,920"
+			},
+			"offsets": {
+				"from": 1055280,
+				"to": 1056920
+			},
+			"text": " distributed validator technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,920",
+				"to": "00:17:38,960"
+			},
+			"offsets": {
+				"from": 1056920,
+				"to": 1058960
+			},
+			"text": " because that was explained in much detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,960",
+				"to": "00:17:41,240"
+			},
+			"offsets": {
+				"from": 1058960,
+				"to": 1061240
+			},
+			"text": " in the last presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,240",
+				"to": "00:17:43,760"
+			},
+			"offsets": {
+				"from": 1061240,
+				"to": 1063760
+			},
+			"text": " So the first one, it was proposed earlier this year"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,760",
+				"to": "00:17:46,520"
+			},
+			"offsets": {
+				"from": 1063760,
+				"to": 1066520
+			},
+			"text": " by Justin Drake and he suggests the creation"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,520",
+				"to": "00:17:49,840"
+			},
+			"offsets": {
+				"from": 1066520,
+				"to": 1069840
+			},
+			"text": " of a liquid staking derivative token called LSD,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,840",
+				"to": "00:17:51,520"
+			},
+			"offsets": {
+				"from": 1069840,
+				"to": 1071520
+			},
+			"text": " which is the name of drug,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,520",
+				"to": "00:17:55,760"
+			},
+			"offsets": {
+				"from": 1071520,
+				"to": 1075760
+			},
+			"text": " but it stands for liquid staking derivatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,760",
+				"to": "00:17:58,080"
+			},
+			"offsets": {
+				"from": 1075760,
+				"to": 1078080
+			},
+			"text": " Yes, and this would basically allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,080",
+				"to": "00:18:00,800"
+			},
+			"offsets": {
+				"from": 1078080,
+				"to": 1080800
+			},
+			"text": " independent node operators running their own validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,800",
+				"to": "00:18:04,240"
+			},
+			"offsets": {
+				"from": 1080800,
+				"to": 1084240
+			},
+			"text": " as opposed to other, to that of other users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,240",
+				"to": "00:18:06,560"
+			},
+			"offsets": {
+				"from": 1084240,
+				"to": 1086560
+			},
+			"text": " you'd be able to enjoy the benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,560",
+				"to": "00:18:08,600"
+			},
+			"offsets": {
+				"from": 1086560,
+				"to": 1088600
+			},
+			"text": " of basically rehypnoticating your assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,600",
+				"to": "00:18:13,120"
+			},
+			"offsets": {
+				"from": 1088600,
+				"to": 1093120
+			},
+			"text": " without having to rely on a staking provider like LIDO."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,120",
+				"to": "00:18:15,680"
+			},
+			"offsets": {
+				"from": 1093120,
+				"to": 1095680
+			},
+			"text": " And the setup would really circumvent that need"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,680",
+				"to": "00:18:20,280"
+			},
+			"offsets": {
+				"from": 1095680,
+				"to": 1100280
+			},
+			"text": " for you to trust in a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,280",
+				"to": "00:18:23,140"
+			},
+			"offsets": {
+				"from": 1100280,
+				"to": 1103140
+			},
+			"text": " that may contain like smart contract risks and bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,140",
+				"to": "00:18:27,360"
+			},
+			"offsets": {
+				"from": 1103140,
+				"to": 1107360
+			},
+			"text": " But of course, this would require a really heavy"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,360",
+				"to": "00:18:31,040"
+			},
+			"offsets": {
+				"from": 1107360,
+				"to": 1111040
+			},
+			"text": " and major code change to Ethereum consensus mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,040",
+				"to": "00:18:32,680"
+			},
+			"offsets": {
+				"from": 1111040,
+				"to": 1112680
+			},
+			"text": " It's protocol and it's design."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,680",
+				"to": "00:18:35,040"
+			},
+			"offsets": {
+				"from": 1112680,
+				"to": 1115040
+			},
+			"text": " And as you saw in the last presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,040",
+				"to": "00:18:36,880"
+			},
+			"offsets": {
+				"from": 1115040,
+				"to": 1116880
+			},
+			"text": " with Dink sharding, statelessness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,880",
+				"to": "00:18:39,040"
+			},
+			"offsets": {
+				"from": 1116880,
+				"to": 1119040
+			},
+			"text": " all these other things in Ethereum's roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,040",
+				"to": "00:18:43,520"
+			},
+			"offsets": {
+				"from": 1119040,
+				"to": 1123520
+			},
+			"text": " it's kind of hard to think that liquid solo validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,520",
+				"to": "00:18:46,360"
+			},
+			"offsets": {
+				"from": 1123520,
+				"to": 1126360
+			},
+			"text": " is in Ethereum's near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,360",
+				"to": "00:18:49,600"
+			},
+			"offsets": {
+				"from": 1126360,
+				"to": 1129600
+			},
+			"text": " But it is a solution or a potential proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,600",
+				"to": "00:18:51,040"
+			},
+			"offsets": {
+				"from": 1129600,
+				"to": 1131040
+			},
+			"text": " that has been discussed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,040",
+				"to": "00:18:53,720"
+			},
+			"offsets": {
+				"from": 1131040,
+				"to": 1133720
+			},
+			"text": " But I'm just saying it would require a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,720",
+				"to": "00:18:56,760"
+			},
+			"offsets": {
+				"from": 1133720,
+				"to": 1136760
+			},
+			"text": " and there is a lot on Ethereum's development roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,760",
+				"to": "00:19:00,600"
+			},
+			"offsets": {
+				"from": 1136760,
+				"to": 1140600
+			},
+			"text": " As you probably noticed from the last presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,600",
+				"to": "00:19:03,760"
+			},
+			"offsets": {
+				"from": 1140600,
+				"to": 1143760
+			},
+			"text": " The second one, which is a more short-term solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,760",
+				"to": "00:19:06,800"
+			},
+			"offsets": {
+				"from": 1143760,
+				"to": 1146800
+			},
+			"text": " that many Ethereum community members have been advocating for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,800",
+				"to": "00:19:09,760"
+			},
+			"offsets": {
+				"from": 1146800,
+				"to": 1149760
+			},
+			"text": " is basically just altruistic behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,760",
+				"to": "00:19:11,560"
+			},
+			"offsets": {
+				"from": 1149760,
+				"to": 1151560
+			},
+			"text": " from the top staking protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,560",
+				"to": "00:19:14,560"
+			},
+			"offsets": {
+				"from": 1151560,
+				"to": 1154560
+			},
+			"text": " So Vitalik was tweeting earlier this summer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,560",
+				"to": "00:19:17,240"
+			},
+			"offsets": {
+				"from": 1154560,
+				"to": 1157240
+			},
+			"text": " about this idea that maybe staking pools"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,240",
+				"to": "00:19:19,760"
+			},
+			"offsets": {
+				"from": 1157240,
+				"to": 1159760
+			},
+			"text": " should just altruistically start increasing fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,760",
+				"to": "00:19:22,800"
+			},
+			"offsets": {
+				"from": 1159760,
+				"to": 1162800
+			},
+			"text": " for users if their share of the state to eat supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,800",
+				"to": "00:19:24,600"
+			},
+			"offsets": {
+				"from": 1162800,
+				"to": 1164600
+			},
+			"text": " goes above 15%."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,600",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1164600,
+				"to": 1168000
+			},
+			"text": " Or maybe the individuals like Lidos"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:30,760"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1170760
+			},
+			"text": " should start imposing, self imposing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,760",
+				"to": "00:19:34,120"
+			},
+			"offsets": {
+				"from": 1170760,
+				"to": 1174120
+			},
+			"text": " like deposit caps into their smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,120",
+				"to": "00:19:37,320"
+			},
+			"offsets": {
+				"from": 1174120,
+				"to": 1177320
+			},
+			"text": " so that their portion of staking supply"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,320",
+				"to": "00:19:40,600"
+			},
+			"offsets": {
+				"from": 1177320,
+				"to": 1180600
+			},
+			"text": " never goes above like 20% or 25%."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,600",
+				"to": "00:19:45,880"
+			},
+			"offsets": {
+				"from": 1180600,
+				"to": 1185880
+			},
+			"text": " And I think that this kind of goodwill behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,880",
+				"to": "00:19:48,400"
+			},
+			"offsets": {
+				"from": 1185880,
+				"to": 1188400
+			},
+			"text": " might seem very laughable at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,400",
+				"to": "00:19:51,520"
+			},
+			"offsets": {
+				"from": 1188400,
+				"to": 1191520
+			},
+			"text": " But it's happened time and time again"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,520",
+				"to": "00:19:55,720"
+			},
+			"offsets": {
+				"from": 1191520,
+				"to": 1195720
+			},
+			"text": " on Ethereum's protocol for other issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,720",
+				"to": "00:19:58,480"
+			},
+			"offsets": {
+				"from": 1195720,
+				"to": 1198480
+			},
+			"text": " So MEV is a really great example"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,480",
+				"to": "00:20:01,120"
+			},
+			"offsets": {
+				"from": 1198480,
+				"to": 1201120
+			},
+			"text": " where we saw a lot of altruistic behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,120",
+				"to": "00:20:04,520"
+			},
+			"offsets": {
+				"from": 1201120,
+				"to": 1204520
+			},
+			"text": " from key ecosystem players."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,520",
+				"to": "00:20:06,480"
+			},
+			"offsets": {
+				"from": 1204520,
+				"to": 1206480
+			},
+			"text": " Before Ethereum merged, there was Ethermine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,480",
+				"to": "00:20:09,280"
+			},
+			"offsets": {
+				"from": 1206480,
+				"to": 1209280
+			},
+			"text": " which was the largest Ethereum mining pool by hash power."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,280",
+				"to": "00:20:12,600"
+			},
+			"offsets": {
+				"from": 1209280,
+				"to": 1212600
+			},
+			"text": " And they publicly tweeted about refraining"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,600",
+				"to": "00:20:14,960"
+			},
+			"offsets": {
+				"from": 1212600,
+				"to": 1214960
+			},
+			"text": " from MEV opportunities that don't align"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,960",
+				"to": "00:20:17,360"
+			},
+			"offsets": {
+				"from": 1214960,
+				"to": 1217360
+			},
+			"text": " with the ethos of the Ethereum community"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,360",
+				"to": "00:20:19,800"
+			},
+			"offsets": {
+				"from": 1217360,
+				"to": 1219800
+			},
+			"text": " out of support for the longevity of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,800",
+				"to": "00:20:21,680"
+			},
+			"offsets": {
+				"from": 1219800,
+				"to": 1221680
+			},
+			"text": " So they're basically leaving money on the table,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,680",
+				"to": "00:20:23,840"
+			},
+			"offsets": {
+				"from": 1221680,
+				"to": 1223840
+			},
+			"text": " not interacting with certain MEV strategies"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,840",
+				"to": "00:20:26,960"
+			},
+			"offsets": {
+				"from": 1223840,
+				"to": 1226960
+			},
+			"text": " because it's just bad and they're not gonna do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,960",
+				"to": "00:20:29,080"
+			},
+			"offsets": {
+				"from": 1226960,
+				"to": 1229080
+			},
+			"text": " Slashbots recently tweeted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,080",
+				"to": "00:20:31,880"
+			},
+			"offsets": {
+				"from": 1229080,
+				"to": 1231880
+			},
+			"text": " we're gonna start giving blocks to other relays"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,880",
+				"to": "00:20:34,160"
+			},
+			"offsets": {
+				"from": 1231880,
+				"to": 1234160
+			},
+			"text": " because we just wanna bootstrap other relays"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,160",
+				"to": "00:20:36,680"
+			},
+			"offsets": {
+				"from": 1234160,
+				"to": 1236680
+			},
+			"text": " and we want to help out the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,680",
+				"to": "00:20:39,040"
+			},
+			"offsets": {
+				"from": 1236680,
+				"to": 1239040
+			},
+			"text": " Ethereum 2.0 client diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,040",
+				"to": "00:20:40,760"
+			},
+			"offsets": {
+				"from": 1239040,
+				"to": 1240760
+			},
+			"text": " consensus layer client diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,760",
+				"to": "00:20:42,720"
+			},
+			"offsets": {
+				"from": 1240760,
+				"to": 1242720
+			},
+			"text": " even though not all teams are like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,720",
+				"to": "00:20:47,040"
+			},
+			"offsets": {
+				"from": 1242720,
+				"to": 1247040
+			},
+			"text": " have the same resources and they have the same track record"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,040",
+				"to": "00:20:48,080"
+			},
+			"offsets": {
+				"from": 1247040,
+				"to": 1248080
+			},
+			"text": " for performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,080",
+				"to": "00:20:49,960"
+			},
+			"offsets": {
+				"from": 1248080,
+				"to": 1249960
+			},
+			"text": " there was a huge push by the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,960",
+				"to": "00:20:52,040"
+			},
+			"offsets": {
+				"from": 1249960,
+				"to": 1252040
+			},
+			"text": " to just encourage minority clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,040",
+				"to": "00:20:54,240"
+			},
+			"offsets": {
+				"from": 1252040,
+				"to": 1254240
+			},
+			"text": " to gain more user adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,240",
+				"to": "00:20:55,160"
+			},
+			"offsets": {
+				"from": 1254240,
+				"to": 1255160
+			},
+			"text": " So time and time again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,160",
+				"to": "00:20:59,160"
+			},
+			"offsets": {
+				"from": 1255160,
+				"to": 1259160
+			},
+			"text": " we're seeing a lot of altruistic behavior encouraged"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,160",
+				"to": "00:21:02,600"
+			},
+			"offsets": {
+				"from": 1259160,
+				"to": 1262600
+			},
+			"text": " and I actually hate this kind of solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,600",
+				"to": "00:21:05,600"
+			},
+			"offsets": {
+				"from": 1262600,
+				"to": 1265600
+			},
+			"text": " of just like relying and encouraging the altruism"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,600",
+				"to": "00:21:09,520"
+			},
+			"offsets": {
+				"from": 1265600,
+				"to": 1269520
+			},
+			"text": " of ecosystem players to keep Ethereum safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,520",
+				"to": "00:21:13,520"
+			},
+			"offsets": {
+				"from": 1269520,
+				"to": 1273520
+			},
+			"text": " But I put it on the slide because it's worked"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,520",
+				"to": "00:21:14,760"
+			},
+			"offsets": {
+				"from": 1273520,
+				"to": 1274760
+			},
+			"text": " for other solutions before"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,760",
+				"to": "00:21:17,440"
+			},
+			"offsets": {
+				"from": 1274760,
+				"to": 1277440
+			},
+			"text": " and we've seen examples of it happening on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,440",
+				"to": "00:21:21,240"
+			},
+			"offsets": {
+				"from": 1277440,
+				"to": 1281240
+			},
+			"text": " and it was one of the proposals around this topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,240",
+				"to": "00:21:24,760"
+			},
+			"offsets": {
+				"from": 1281240,
+				"to": 1284760
+			},
+			"text": " for how we want to see stake ETH being more decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,760",
+				"to": "00:21:25,760"
+			},
+			"offsets": {
+				"from": 1284760,
+				"to": 1285760
+			},
+			"text": " over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,760",
+				"to": "00:21:29,600"
+			},
+			"offsets": {
+				"from": 1285760,
+				"to": 1289600
+			},
+			"text": " And then the final one is distributed validator technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,600",
+				"to": "00:21:31,200"
+			},
+			"offsets": {
+				"from": 1289600,
+				"to": 1291200
+			},
+			"text": " I won't go too deeply into it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,200",
+				"to": "00:21:33,200"
+			},
+			"offsets": {
+				"from": 1291200,
+				"to": 1293200
+			},
+			"text": " 'cause again, it was talked about in the last slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,200",
+				"to": "00:21:36,840"
+			},
+			"offsets": {
+				"from": 1293200,
+				"to": 1296840
+			},
+			"text": " But this, I will also specify is a research"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,840",
+				"to": "00:21:39,960"
+			},
+			"offsets": {
+				"from": 1296840,
+				"to": 1299960
+			},
+			"text": " an active research initiative."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,960",
+				"to": "00:21:44,960"
+			},
+			"offsets": {
+				"from": 1299960,
+				"to": 1304960
+			},
+			"text": " Obel and SSV are two of like the few projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,960",
+				"to": "00:21:46,720"
+			},
+			"offsets": {
+				"from": 1304960,
+				"to": 1306720
+			},
+			"text": " in this ecosystem that's really trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,720",
+				"to": "00:21:48,720"
+			},
+			"offsets": {
+				"from": 1306720,
+				"to": 1308720
+			},
+			"text": " to make DVT a reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,720",
+				"to": "00:21:51,520"
+			},
+			"offsets": {
+				"from": 1308720,
+				"to": 1311520
+			},
+			"text": " And I didn't really in this presentation go much"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,520",
+				"to": "00:21:54,480"
+			},
+			"offsets": {
+				"from": 1311520,
+				"to": 1314480
+			},
+			"text": " into how MEV Boost is actually changing the dynamics"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,480",
+				"to": "00:21:57,960"
+			},
+			"offsets": {
+				"from": 1314480,
+				"to": 1317960
+			},
+			"text": " of how validator node operators are competing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,960",
+				"to": "00:21:59,040"
+			},
+			"offsets": {
+				"from": 1317960,
+				"to": 1319040
+			},
+			"text": " with one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,040",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1319040,
+				"to": 1321000
+			},
+			"text": " But as with many aspects of research"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1323000
+			},
+			"text": " and many topics of research on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:06,400"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1326400
+			},
+			"text": " once you research one topic and propose solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,400",
+				"to": "00:22:09,200"
+			},
+			"offsets": {
+				"from": 1326400,
+				"to": 1329200
+			},
+			"text": " it actually impacts and has many third order consequences"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,200",
+				"to": "00:22:11,840"
+			},
+			"offsets": {
+				"from": 1329200,
+				"to": 1331840
+			},
+			"text": " to other areas of Ethereum's development."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,840",
+				"to": "00:22:13,160"
+			},
+			"offsets": {
+				"from": 1331840,
+				"to": 1333160
+			},
+			"text": " So as I close out my talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,160",
+				"to": "00:22:15,600"
+			},
+			"offsets": {
+				"from": 1333160,
+				"to": 1335600
+			},
+			"text": " I'd just like to reiterate that the supply distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,600",
+				"to": "00:22:18,640"
+			},
+			"offsets": {
+				"from": 1335600,
+				"to": 1338640
+			},
+			"text": " of Ethereum matters now more than ever"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,640",
+				"to": "00:22:20,720"
+			},
+			"offsets": {
+				"from": 1338640,
+				"to": 1340720
+			},
+			"text": " because Ethereum is a proof of stake blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,720",
+				"to": "00:22:22,960"
+			},
+			"offsets": {
+				"from": 1340720,
+				"to": 1342960
+			},
+			"text": " And the solutions that I discussed on this slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,960",
+				"to": "00:22:24,480"
+			},
+			"offsets": {
+				"from": 1342960,
+				"to": 1344480
+			},
+			"text": " are really far from perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,480",
+				"to": "00:22:27,040"
+			},
+			"offsets": {
+				"from": 1344480,
+				"to": 1347040
+			},
+			"text": " And I urge a lot of developers and stakeholders"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,040",
+				"to": "00:22:29,320"
+			},
+			"offsets": {
+				"from": 1347040,
+				"to": 1349320
+			},
+			"text": " and people in this audience to think deeply"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,320",
+				"to": "00:22:32,600"
+			},
+			"offsets": {
+				"from": 1349320,
+				"to": 1352600
+			},
+			"text": " about how supply can become more decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,600",
+				"to": "00:22:36,160"
+			},
+			"offsets": {
+				"from": 1352600,
+				"to": 1356160
+			},
+			"text": " and distributed over time because left in its current form,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,160",
+				"to": "00:22:39,760"
+			},
+			"offsets": {
+				"from": 1356160,
+				"to": 1359760
+			},
+			"text": " there is this danger of it trending towards centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,760",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1359760,
+				"to": 1361000
+			},
+			"text": " So that wraps up my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:44,800"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1364800
+			},
+			"text": " Happy to answer any questions, email and Twitter's there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,800",
+				"to": "00:22:47,120"
+			},
+			"offsets": {
+				"from": 1364800,
+				"to": 1367120
+			},
+			"text": " And yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,120",
+				"to": "00:22:49,320"
+			},
+			"offsets": {
+				"from": 1367120,
+				"to": 1369320
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,320",
+				"to": "00:22:51,400"
+			},
+			"offsets": {
+				"from": 1369320,
+				"to": 1371400
+			},
+			"text": " - I think we have space for one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,400",
+				"to": "00:22:52,400"
+			},
+			"offsets": {
+				"from": 1371400,
+				"to": 1372400
+			},
+			"text": " - Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,400",
+				"to": "00:22:54,760"
+			},
+			"offsets": {
+				"from": 1372400,
+				"to": 1374760
+			},
+			"text": " - Who gets the mic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,760",
+				"to": "00:23:00,360"
+			},
+			"offsets": {
+				"from": 1374760,
+				"to": 1380360
+			},
+			"text": " Hi, how do you imagine the role of Latin America"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,360",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1380360,
+				"to": 1384120
+			},
+			"text": " in terms of decentralizing the offer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1387000
+			},
+			"text": " I mean, not the offer, but the staking of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:08,840"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1388840
+			},
+			"text": " - Sorry, the what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,840",
+				"to": "00:23:12,920"
+			},
+			"offsets": {
+				"from": 1388840,
+				"to": 1392920
+			},
+			"text": " - How do you imagine the role of us Latin America?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,920",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1392920,
+				"to": 1395000
+			},
+			"text": " - Regarding this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:16,600"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1396600
+			},
+			"text": " - Latin America regarding this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,600",
+				"to": "00:23:19,200"
+			},
+			"offsets": {
+				"from": 1396600,
+				"to": 1399200
+			},
+			"text": " Well, I think many of the validator node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,200",
+				"to": "00:23:22,160"
+			},
+			"offsets": {
+				"from": 1399200,
+				"to": 1402160
+			},
+			"text": " are probably based out of North America."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,160",
+				"to": "00:23:25,040"
+			},
+			"offsets": {
+				"from": 1402160,
+				"to": 1405040
+			},
+			"text": " So I think the fact that we're having this conference here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,040",
+				"to": "00:23:27,880"
+			},
+			"offsets": {
+				"from": 1405040,
+				"to": 1407880
+			},
+			"text": " and the fact that we're talking more about Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,880",
+				"to": "00:23:32,880"
+			},
+			"offsets": {
+				"from": 1407880,
+				"to": 1412880
+			},
+			"text": " in other areas of the world that maybe many developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,880",
+				"to": "00:23:34,600"
+			},
+			"offsets": {
+				"from": 1412880,
+				"to": 1414600
+			},
+			"text": " haven't ever interacted with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,600",
+				"to": "00:23:38,680"
+			},
+			"offsets": {
+				"from": 1414600,
+				"to": 1418680
+			},
+			"text": " haven't ever come to visit and know more of the population here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,680",
+				"to": "00:23:40,080"
+			},
+			"offsets": {
+				"from": 1418680,
+				"to": 1420080
+			},
+			"text": " and more of the ways in which,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,080",
+				"to": "00:23:42,520"
+			},
+			"offsets": {
+				"from": 1420080,
+				"to": 1422520
+			},
+			"text": " yeah, we can have more validator node operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,520",
+				"to": "00:23:45,440"
+			},
+			"offsets": {
+				"from": 1422520,
+				"to": 1425440
+			},
+			"text": " independent staking node operators from Latin America."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,440",
+				"to": "00:23:47,280"
+			},
+			"offsets": {
+				"from": 1425440,
+				"to": 1427280
+			},
+			"text": " I think that would contribute significantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,280",
+				"to": "00:23:49,520"
+			},
+			"offsets": {
+				"from": 1427280,
+				"to": 1429520
+			},
+			"text": " to the security and the decentralization of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,520",
+				"to": "00:23:52,840"
+			},
+			"offsets": {
+				"from": 1429520,
+				"to": 1432840
+			},
+			"text": " So I think it's really great that we're talking about this here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,840",
+				"to": "00:23:55,680"
+			},
+			"offsets": {
+				"from": 1432840,
+				"to": 1435680
+			},
+			"text": " and that we have a great audience of people who can bring"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,680",
+				"to": "00:23:57,400"
+			},
+			"offsets": {
+				"from": 1435680,
+				"to": 1437400
+			},
+			"text": " other perspectives and other ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,400",
+				"to": "00:24:00,360"
+			},
+			"offsets": {
+				"from": 1437400,
+				"to": 1440360
+			},
+			"text": " so that it's not all from a perspective of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,360",
+				"to": "00:24:03,520"
+			},
+			"offsets": {
+				"from": 1440360,
+				"to": 1443520
+			},
+			"text": " we were all educated from like universities"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,520",
+				"to": "00:24:05,720"
+			},
+			"offsets": {
+				"from": 1443520,
+				"to": 1445720
+			},
+			"text": " out of like North America, but many like different ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,720",
+				"to": "00:24:07,160"
+			},
+			"offsets": {
+				"from": 1445720,
+				"to": 1447160
+			},
+			"text": " So yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,160",
+				"to": "00:24:08,560"
+			},
+			"offsets": {
+				"from": 1447160,
+				"to": 1448560
+			},
+			"text": " - Actually I can answer that question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,560",
+				"to": "00:24:11,360"
+			},
+			"offsets": {
+				"from": 1448560,
+				"to": 1451360
+			},
+			"text": " There is a group in Argentina called Sensei node."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,360",
+				"to": "00:24:14,440"
+			},
+			"offsets": {
+				"from": 1451360,
+				"to": 1454440
+			},
+			"text": " They are pushing for geographical decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,440",
+				"to": "00:24:16,720"
+			},
+			"offsets": {
+				"from": 1454440,
+				"to": 1456720
+			},
+			"text": " So you should check it out then."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,720",
+				"to": "00:24:17,600"
+			},
+			"offsets": {
+				"from": 1456720,
+				"to": 1457600
+			},
+			"text": " - Thank you, Christine."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,600",
+				"to": "00:24:18,960"
+			},
+			"offsets": {
+				"from": 1457600,
+				"to": 1458960
+			},
+			"text": " Big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,960",
+				"to": "00:24:19,800"
+			},
+			"offsets": {
+				"from": 1458960,
+				"to": 1459800
+			},
+			"text": " And..."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,800",
+				"to": "00:24:22,960"
+			},
+			"offsets": {
+				"from": 1459800,
+				"to": 1462960
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,960",
+				"to": "00:24:26,120"
+			},
+			"offsets": {
+				"from": 1462960,
+				"to": 1466120
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,120",
+				"to": "00:24:29,280"
+			},
+			"offsets": {
+				"from": 1466120,
+				"to": 1469280
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,280",
+				"to": "00:24:32,440"
+			},
+			"offsets": {
+				"from": 1469280,
+				"to": 1472440
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,440",
+				"to": "00:25:01,440"
+			},
+			"offsets": {
+				"from": 1472440,
+				"to": 1501440
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

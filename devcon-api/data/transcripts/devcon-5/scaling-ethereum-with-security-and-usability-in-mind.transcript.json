@@ -1,0 +1,2155 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11320
+			},
+			"text": " >> Hi, my name is Junthi Kanani and I'm a founder and CEO at MATIC."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,320",
+				"to": "00:00:20,280"
+			},
+			"offsets": {
+				"from": 11320,
+				"to": 20280
+			},
+			"text": " Basically we are building a layer two scalability solutions for Ethereum and we use Plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,280",
+				"to": "00:00:28,600"
+			},
+			"offsets": {
+				"from": 20280,
+				"to": 28600
+			},
+			"text": " framework to secure our valuable assets and we use proof of stake for our consensus mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,600",
+				"to": "00:00:32,680"
+			},
+			"offsets": {
+				"from": 28600,
+				"to": 32680
+			},
+			"text": " to validate and keep the chain running."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,680",
+				"to": "00:00:40,920"
+			},
+			"offsets": {
+				"from": 32680,
+				"to": 40920
+			},
+			"text": " So basically today I'm here to talk about mostly how we at MATIC thought differently than other"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,920",
+				"to": "00:00:49,960"
+			},
+			"offsets": {
+				"from": 40920,
+				"to": 49960
+			},
+			"text": " layer two solutions and created a way to create mass eruptions for dabs and users."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,960",
+				"to": "00:00:57,520"
+			},
+			"offsets": {
+				"from": 49960,
+				"to": 57520
+			},
+			"text": " We are going to share this story with how we did our tag and the usability part of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,520",
+				"to": "00:01:01,600"
+			},
+			"offsets": {
+				"from": 57520,
+				"to": 61600
+			},
+			"text": " at MATIC and so yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,600",
+				"to": "00:01:09,600"
+			},
+			"offsets": {
+				"from": 61600,
+				"to": 69600
+			},
+			"text": " So basically in general in the blockchain ecosystem what we all want, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,600",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 69600,
+				"to": 73200
+			},
+			"text": " These are ultimate questions right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:15,440"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 75440
+			},
+			"text": " Do we need scalability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,440",
+				"to": "00:01:17,920"
+			},
+			"offsets": {
+				"from": 75440,
+				"to": 77920
+			},
+			"text": " Do we need more apps?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,920",
+				"to": "00:01:19,400"
+			},
+			"offsets": {
+				"from": 77920,
+				"to": 79400
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,400",
+				"to": "00:01:23,560"
+			},
+			"offsets": {
+				"from": 79400,
+				"to": 83560
+			},
+			"text": " Basically what do we need is users, more and more users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,560",
+				"to": "00:01:30,920"
+			},
+			"offsets": {
+				"from": 83560,
+				"to": 90920
+			},
+			"text": " And in any industry if you take a notice of outside decentralized systems, decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,920",
+				"to": "00:01:36,840"
+			},
+			"offsets": {
+				"from": 90920,
+				"to": 96840
+			},
+			"text": " market you will see growth is very important for any industry, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,840",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 96840,
+				"to": 102320
+			},
+			"text": " And what we are targeting is just users, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:48,440"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 108440
+			},
+			"text": " Someone said like when you think about the problem you think about, you think backward"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,440",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 108440,
+				"to": 110000
+			},
+			"text": " and work forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:57,080"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 117080
+			},
+			"text": " So here also we are, when we think about the problems we think about users and how we get"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,080",
+				"to": "00:02:05,680"
+			},
+			"offsets": {
+				"from": 117080,
+				"to": 125680
+			},
+			"text": " more users and work backward like how we get more dab developers to build on blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,680",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 125680,
+				"to": 129000
+			},
+			"text": " and how they can actually get more and more users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 135000
+			},
+			"text": " So it works both ways, you need users and for that you need more and more dabs and for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:17,640"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 137640
+			},
+			"text": " that you need scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,640",
+				"to": "00:02:24,080"
+			},
+			"offsets": {
+				"from": 137640,
+				"to": 144080
+			},
+			"text": " So that's how we work backward, think backward and work forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,080",
+				"to": "00:02:31,760"
+			},
+			"offsets": {
+				"from": 144080,
+				"to": 151760
+			},
+			"text": " So we just start with the scalability and how it actually affects the more dabs in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,760",
+				"to": "00:02:42,080"
+			},
+			"offsets": {
+				"from": 151760,
+				"to": 162080
+			},
+			"text": " So for that what we are doing is that we provide scalability as a layer two using plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,080",
+				"to": "00:02:43,680"
+			},
+			"offsets": {
+				"from": 162080,
+				"to": 163680
+			},
+			"text": " and pedicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,680",
+				"to": "00:02:46,720"
+			},
+			"offsets": {
+				"from": 163680,
+				"to": 166720
+			},
+			"text": " We also use side chains, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,720",
+				"to": "00:02:50,240"
+			},
+			"offsets": {
+				"from": 166720,
+				"to": 170240
+			},
+			"text": " Side chains is a simple because there are multiple layer two solutions like stretch"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,240",
+				"to": "00:02:52,760"
+			},
+			"offsets": {
+				"from": 170240,
+				"to": 172760
+			},
+			"text": " channels, other other solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,760",
+				"to": "00:02:58,080"
+			},
+			"offsets": {
+				"from": 172760,
+				"to": 178080
+			},
+			"text": " But the problem with other solutions are there like there is a tradeoff between the amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,080",
+				"to": "00:03:06,960"
+			},
+			"offsets": {
+				"from": 178080,
+				"to": 186960
+			},
+			"text": " you need to settle your, settle your transactions and make your transactions on the layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,960",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 186960,
+				"to": 192480
+			},
+			"text": " What we use is the simple side chains using plasmas and preprop steak."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:20,200"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 200200
+			},
+			"text": " Then we hide all other complexities underneath and just provide dab developers what they need."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,200",
+				"to": "00:03:27,080"
+			},
+			"offsets": {
+				"from": 200200,
+				"to": 207080
+			},
+			"text": " So here, so just for dab developers, if you see the what dab developers need, we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,080",
+				"to": "00:03:33,160"
+			},
+			"offsets": {
+				"from": 207080,
+				"to": 213160
+			},
+			"text": " provide easy onboarding for all the dab developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,160",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 213160,
+				"to": 219480
+			},
+			"text": " We provide valuable assets using plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:43,480"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 223480
+			},
+			"text": " And for them, we need also provide easy migrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,480",
+				"to": "00:03:48,920"
+			},
+			"offsets": {
+				"from": 223480,
+				"to": 228920
+			},
+			"text": " So once Joey Crook said, if someone comes to me and asks for let's say if I can scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,920",
+				"to": "00:03:55,480"
+			},
+			"offsets": {
+				"from": 228920,
+				"to": 235480
+			},
+			"text": " your dabs in next six months, we're not going to do it because it takes a huge amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,480",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 235480,
+				"to": 241200
+			},
+			"text": " efforts and time and money to migrate from one solution to other solutions just to scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:02,200"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 242200
+			},
+			"text": " your dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,200",
+				"to": "00:04:07,760"
+			},
+			"offsets": {
+				"from": 242200,
+				"to": 247760
+			},
+			"text": " Instead, people want to focus on the dabs instead of focusing on the scalability, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,760",
+				"to": "00:04:15,880"
+			},
+			"offsets": {
+				"from": 247760,
+				"to": 255880
+			},
+			"text": " So what we do is that we just provide simple and easy migrations and testing for dab developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,880",
+				"to": "00:04:22,040"
+			},
+			"offsets": {
+				"from": 255880,
+				"to": 262040
+			},
+			"text": " Most of the times, dab developers need different kind of free models, free models, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,040",
+				"to": "00:04:28,360"
+			},
+			"offsets": {
+				"from": 262040,
+				"to": 268360
+			},
+			"text": " In Ethereum, if you want to make a transaction, you need Ethereum or maybe you need to integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,360",
+				"to": "00:04:29,360"
+			},
+			"offsets": {
+				"from": 268360,
+				"to": 269360
+			},
+			"text": " meta-transjections."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,360",
+				"to": "00:04:37,200"
+			},
+			"offsets": {
+				"from": 269360,
+				"to": 277200
+			},
+			"text": " But here, we actually provide those kind of solutions in build on Matik."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,200",
+				"to": "00:04:44,600"
+			},
+			"offsets": {
+				"from": 277200,
+				"to": 284600
+			},
+			"text": " So dab developers just can use directly on the platform and just run their dabs easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,600",
+				"to": "00:04:48,320"
+			},
+			"offsets": {
+				"from": 284600,
+				"to": 288320
+			},
+			"text": " There is another problem in the whole ecosystem is a UX problem, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,320",
+				"to": "00:04:56,280"
+			},
+			"offsets": {
+				"from": 288320,
+				"to": 296280
+			},
+			"text": " So if you think about, if you are scaling in Ethereum and simple providing a platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,280",
+				"to": "00:05:02,480"
+			},
+			"offsets": {
+				"from": 296280,
+				"to": 302480
+			},
+			"text": " for developers, you also need to make sure you provide the best UX in the industry so"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,480",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 302480,
+				"to": 306400
+			},
+			"text": " people can just move to the next platform, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:13,560"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 313560
+			},
+			"text": " If you see the previous markets before the decentralization movement, web 1 and web 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,560",
+				"to": "00:05:19,400"
+			},
+			"offsets": {
+				"from": 313560,
+				"to": 319400
+			},
+			"text": " each iteration makes your users, your applications very user-friendly, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,400",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 319400,
+				"to": 324040
+			},
+			"text": " If you use currently, if you are using Uber before you are using taxis, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:31,440"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 331440
+			},
+			"text": " See the difference between the user experience throughout the web, when web 1 and web 2 came,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,440",
+				"to": "00:05:32,440"
+			},
+			"offsets": {
+				"from": 331440,
+				"to": 332440
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,440",
+				"to": "00:05:38,640"
+			},
+			"offsets": {
+				"from": 332440,
+				"to": 338640
+			},
+			"text": " So if we talk about web 3, we should think about how we can provide better user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,640",
+				"to": "00:05:44,040"
+			},
+			"offsets": {
+				"from": 338640,
+				"to": 344040
+			},
+			"text": " for our users, better experience for our developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,040",
+				"to": "00:05:52,560"
+			},
+			"offsets": {
+				"from": 344040,
+				"to": 352560
+			},
+			"text": " And for that, we also have multiple development tools as well, which people can directly integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,560",
+				"to": "00:05:58,680"
+			},
+			"offsets": {
+				"from": 352560,
+				"to": 358680
+			},
+			"text": " and provide kind of a seamless experience for their users."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,680",
+				"to": "00:06:07,720"
+			},
+			"offsets": {
+				"from": 358680,
+				"to": 367720
+			},
+			"text": " So now if you think about what we as a MATIC provide to developers is that we use Plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,720",
+				"to": "00:06:13,320"
+			},
+			"offsets": {
+				"from": 367720,
+				"to": 373320
+			},
+			"text": " So basically, in our Plasma model, we use more VP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,320",
+				"to": "00:06:18,720"
+			},
+			"offsets": {
+				"from": 373320,
+				"to": 378720
+			},
+			"text": " There are multiple flavors of Plasma currently, but we use more VP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,720",
+				"to": "00:06:23,440"
+			},
+			"offsets": {
+				"from": 378720,
+				"to": 383440
+			},
+			"text": " Plus, we actually use EVM with Plasma, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,440",
+				"to": "00:06:30,240"
+			},
+			"offsets": {
+				"from": 383440,
+				"to": 390240
+			},
+			"text": " So among of you know that it is not viable to create a Plasma, which is general computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,240",
+				"to": "00:06:31,880"
+			},
+			"offsets": {
+				"from": 390240,
+				"to": 391880
+			},
+			"text": " for general computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,880",
+				"to": "00:06:37,840"
+			},
+			"offsets": {
+				"from": 391880,
+				"to": 397840
+			},
+			"text": " But for now, we are using ERC, we have like kind of a solutions where you can use ERC"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,840",
+				"to": "00:06:43,960"
+			},
+			"offsets": {
+				"from": 397840,
+				"to": 403960
+			},
+			"text": " 20 in ERC 21 directly on EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,960",
+				"to": "00:06:50,120"
+			},
+			"offsets": {
+				"from": 403960,
+				"to": 410120
+			},
+			"text": " So basically, what we did is like we changed the ERC 20 standard a little bit and added"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,120",
+				"to": "00:06:57,920"
+			},
+			"offsets": {
+				"from": 410120,
+				"to": 417920
+			},
+			"text": " receipts extra receipt to make sure like input output input one, input output one, input"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,920",
+				"to": "00:07:02,360"
+			},
+			"offsets": {
+				"from": 417920,
+				"to": 422360
+			},
+			"text": " two, output two, some kind of simple accounting on the receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,360",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 422360,
+				"to": 429000
+			},
+			"text": " And it actually help us to create a fraud proofs when you exit from the Plasma framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:15,680"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 435680
+			},
+			"text": " So those kind of little bit tricks and tweaks we made on our Plasma model to create a seamless"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,680",
+				"to": "00:07:20,680"
+			},
+			"offsets": {
+				"from": 435680,
+				"to": 440680
+			},
+			"text": " EVM compatible Plasma ERC 20 and 71 computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,680",
+				"to": "00:07:27,360"
+			},
+			"offsets": {
+				"from": 440680,
+				"to": 447360
+			},
+			"text": " And if you think about simple ERC 20 and ERC 21, it's just a simple computation plus"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,360",
+				"to": "00:07:28,360"
+			},
+			"offsets": {
+				"from": 447360,
+				"to": 448360
+			},
+			"text": " or minus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,360",
+				"to": "00:07:35,120"
+			},
+			"offsets": {
+				"from": 448360,
+				"to": 455120
+			},
+			"text": " Let's say if I am sending it 10 die to someone else, it just subtract the amount from my"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,120",
+				"to": "00:07:39,160"
+			},
+			"offsets": {
+				"from": 455120,
+				"to": 459160
+			},
+			"text": " account and adds to the opponent account, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,160",
+				"to": "00:07:40,920"
+			},
+			"offsets": {
+				"from": 459160,
+				"to": 460920
+			},
+			"text": " The other person's account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,920",
+				"to": "00:07:50,440"
+			},
+			"offsets": {
+				"from": 460920,
+				"to": 470440
+			},
+			"text": " But if you think about a little bit complex, a little bit complex state, you may want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,440",
+				"to": "00:07:51,640"
+			},
+			"offsets": {
+				"from": 470440,
+				"to": 471640
+			},
+			"text": " write your pedicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,640",
+				"to": "00:07:57,320"
+			},
+			"offsets": {
+				"from": 471640,
+				"to": 477320
+			},
+			"text": " So pedicates basically just say, okay, hey, let's say if you are using Multi-Sick Wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,320",
+				"to": "00:07:58,320"
+			},
+			"offsets": {
+				"from": 477320,
+				"to": 478320
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,320",
+				"to": "00:08:04,680"
+			},
+			"offsets": {
+				"from": 478320,
+				"to": 484680
+			},
+			"text": " When you move your state from the side chain to Ethereum chain, you need to make sure only"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,680",
+				"to": "00:08:11,240"
+			},
+			"offsets": {
+				"from": 484680,
+				"to": 491240
+			},
+			"text": " owners of the Multi-Sick Wallet only can withdraw your tokens or exit your tokens from Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,240",
+				"to": "00:08:13,360"
+			},
+			"offsets": {
+				"from": 491240,
+				"to": 493360
+			},
+			"text": " side chain to Ethereum chain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,360",
+				"to": "00:08:19,200"
+			},
+			"offsets": {
+				"from": 493360,
+				"to": 499200
+			},
+			"text": " So those kind of state computation you can write using pedicates, pedicates systems right"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,200",
+				"to": "00:08:25,920"
+			},
+			"offsets": {
+				"from": 499200,
+				"to": 505920
+			},
+			"text": " now on MediG, but for the ERC 20 and most of the standards we actually provide directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,920",
+				"to": "00:08:29,240"
+			},
+			"offsets": {
+				"from": 505920,
+				"to": 509240
+			},
+			"text": " in build support for pedicates, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,240",
+				"to": "00:08:36,440"
+			},
+			"offsets": {
+				"from": 509240,
+				"to": 516440
+			},
+			"text": " There's also some kind of problems in plasma where you exit your tokens from the side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,440",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 516440,
+				"to": 517600
+			},
+			"text": " to Ethereum chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:44,360"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 524360
+			},
+			"text": " It takes seven days or maybe no more because you need to make sure you don't create a fraud"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,360",
+				"to": "00:08:47,520"
+			},
+			"offsets": {
+				"from": 524360,
+				"to": 527520
+			},
+			"text": " on the side chain and exit instantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,520",
+				"to": "00:08:52,600"
+			},
+			"offsets": {
+				"from": 527520,
+				"to": 532600
+			},
+			"text": " So plasma framework provides you a way to create, you know, have a like priority queue"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,600",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 532600,
+				"to": 533600
+			},
+			"text": " when you exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:56,560"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 536560
+			},
+			"text": " So it takes kind of a seven days for exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,560",
+				"to": "00:09:03,760"
+			},
+			"offsets": {
+				"from": 536560,
+				"to": 543760
+			},
+			"text": " But what we do is that we actually sell your exit directly to know who else is the buyer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,760",
+				"to": "00:09:09,320"
+			},
+			"offsets": {
+				"from": 543760,
+				"to": 549320
+			},
+			"text": " and you get the exit instantly, but you pay some fees for it and, you know, it's kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,320",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 549320,
+				"to": 556760
+			},
+			"text": " of security with kind of, you know, with with with probability using just other person"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:22,320"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 562320
+			},
+			"text": " can just prove, okay, hey, your exit is valid, you can exit, but you have to pay, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,320",
+				"to": "00:09:28,320"
+			},
+			"offsets": {
+				"from": 562320,
+				"to": 568320
+			},
+			"text": " point zero nine die for one die, if you if you don't want to wait for like seven days."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,320",
+				"to": "00:09:35,360"
+			},
+			"offsets": {
+				"from": 568320,
+				"to": 575360
+			},
+			"text": " So those kind of marketplace we are building for faster exits on our system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,360",
+				"to": "00:09:41,160"
+			},
+			"offsets": {
+				"from": 575360,
+				"to": 581160
+			},
+			"text": " As we said, like we also provide multiple SDKs and development tools to just to onboard"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,160",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 581160,
+				"to": 589040
+			},
+			"text": " more and more DAP developers directly on the on, directly on our systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:53,840"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 593840
+			},
+			"text": " The main thing is that we are not that specific site chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,840",
+				"to": "00:09:59,600"
+			},
+			"offsets": {
+				"from": 593840,
+				"to": 599600
+			},
+			"text": " So we have like one public site chains, which actually provides you a composability and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,600",
+				"to": "00:10:03,720"
+			},
+			"offsets": {
+				"from": 599600,
+				"to": 603720
+			},
+			"text": " the network effect if you if you are building on layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,720",
+				"to": "00:10:08,160"
+			},
+			"offsets": {
+				"from": 603720,
+				"to": 608160
+			},
+			"text": " So basically, let's say if you have a DAP specific site chain and you want to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,160",
+				"to": "00:10:14,240"
+			},
+			"offsets": {
+				"from": 608160,
+				"to": 614240
+			},
+			"text": " with multiple multiple DAP and multiple contracts like a DeFi systems, you need to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,240",
+				"to": "00:10:19,160"
+			},
+			"offsets": {
+				"from": 614240,
+				"to": 619160
+			},
+			"text": " make a transgix on a different shot or different, different chain to make this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,160",
+				"to": "00:10:24,600"
+			},
+			"offsets": {
+				"from": 619160,
+				"to": 624600
+			},
+			"text": " But here we provide like composability out of the box and the systems actually works"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,600",
+				"to": "00:10:29,760"
+			},
+			"offsets": {
+				"from": 624600,
+				"to": 629760
+			},
+			"text": " pretty well because it derives the security from the Ethereum if something goes wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,760",
+				"to": "00:10:30,760"
+			},
+			"offsets": {
+				"from": 629760,
+				"to": 630760
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,760",
+				"to": "00:10:36,160"
+			},
+			"offsets": {
+				"from": 630760,
+				"to": 636160
+			},
+			"text": " So for security, Ethereum is there and we just provide a partial, partial confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,160",
+				"to": "00:10:37,440"
+			},
+			"offsets": {
+				"from": 636160,
+				"to": 637440
+			},
+			"text": " directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,440",
+				"to": "00:10:43,920"
+			},
+			"offsets": {
+				"from": 637440,
+				"to": 643920
+			},
+			"text": " And after after five minutes or so, you get this simple finality after, after a plus much"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,920",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 643920,
+				"to": 646520
+			},
+			"text": " check points goes in the theorem chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:53,640"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 653640
+			},
+			"text": " So those kind of tweaks and ticks help us make it the whole system smooth and for, of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,640",
+				"to": "00:10:58,360"
+			},
+			"offsets": {
+				"from": 653640,
+				"to": 658360
+			},
+			"text": " course, our, our, our users and developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,360",
+				"to": "00:11:02,440"
+			},
+			"offsets": {
+				"from": 658360,
+				"to": 662440
+			},
+			"text": " So in this whole, whole system, what about end users, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,440",
+				"to": "00:11:06,200"
+			},
+			"offsets": {
+				"from": 662440,
+				"to": 666200
+			},
+			"text": " How end users actually interact with multiple chains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,200",
+				"to": "00:11:13,200"
+			},
+			"offsets": {
+				"from": 666200,
+				"to": 673200
+			},
+			"text": " So as a layer two, we have a problem with interacting with multiple chains in one, one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,200",
+				"to": "00:11:14,200"
+			},
+			"offsets": {
+				"from": 673200,
+				"to": 674200
+			},
+			"text": " one screen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,200",
+				"to": "00:11:20,080"
+			},
+			"offsets": {
+				"from": 674200,
+				"to": 680080
+			},
+			"text": " So if you use kind of, you know, use metamas, you need to change your networks or your user"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,080",
+				"to": "00:11:23,120"
+			},
+			"offsets": {
+				"from": 680080,
+				"to": 683120
+			},
+			"text": " has to change your networks very frequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,120",
+				"to": "00:11:29,240"
+			},
+			"offsets": {
+				"from": 683120,
+				"to": 689240
+			},
+			"text": " So let's say if I want to move my tokens from the Ethereum to layer two, I need to deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,240",
+				"to": "00:11:33,440"
+			},
+			"offsets": {
+				"from": 689240,
+				"to": 693440
+			},
+			"text": " I need to make a deposit transaction on the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,440",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 693440,
+				"to": 697120
+			},
+			"text": " And then after that, I can make transaction on the layer two, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:40,760"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 700760
+			},
+			"text": " But here, like, let's say if you are using metamas or something like that, you need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,760",
+				"to": "00:11:46,560"
+			},
+			"offsets": {
+				"from": 700760,
+				"to": 706560
+			},
+			"text": " make sure you have to change your networks once you make a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,560",
+				"to": "00:11:52,920"
+			},
+			"offsets": {
+				"from": 706560,
+				"to": 712920
+			},
+			"text": " But for that, what we are doing is we are, we are actually integrating wallet connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,920",
+				"to": "00:11:59,840"
+			},
+			"offsets": {
+				"from": 712920,
+				"to": 719840
+			},
+			"text": " protocol, which help us to, which help us our users to interact with multiple chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,840",
+				"to": "00:12:00,840"
+			},
+			"offsets": {
+				"from": 719840,
+				"to": 720840
+			},
+			"text": " directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,840",
+				"to": "00:12:06,440"
+			},
+			"offsets": {
+				"from": 720840,
+				"to": 726440
+			},
+			"text": " So people, users don't have to worry about multiple chains, multiple deposits or exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,440",
+				"to": "00:12:08,240"
+			},
+			"offsets": {
+				"from": 726440,
+				"to": 728240
+			},
+			"text": " anything, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,240",
+				"to": "00:12:16,120"
+			},
+			"offsets": {
+				"from": 728240,
+				"to": 736120
+			},
+			"text": " So when we talk about simple public side chain or one public chain, people can actually use"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,120",
+				"to": "00:12:20,280"
+			},
+			"offsets": {
+				"from": 736120,
+				"to": 740280
+			},
+			"text": " and test multiple contracts when they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,280",
+				"to": "00:12:26,280"
+			},
+			"offsets": {
+				"from": 740280,
+				"to": 746280
+			},
+			"text": " If you use a simple, you know, DAP specific chains, you have to, your user has to move"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,280",
+				"to": "00:12:32,520"
+			},
+			"offsets": {
+				"from": 746280,
+				"to": 752520
+			},
+			"text": " one chain to second, other chain to test your, test your applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,520",
+				"to": "00:12:40,480"
+			},
+			"offsets": {
+				"from": 752520,
+				"to": 760480
+			},
+			"text": " But here, your user can anytime trade or interact with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,480",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 760480,
+				"to": 768000
+			},
+			"text": " It also help per stable coins on the chain to, you know, so for users, and DAPs, can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,560"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774560
+			},
+			"text": " stable coins in payments, in decent exchanges and, you know, multiple ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,560",
+				"to": "00:13:01,040"
+			},
+			"offsets": {
+				"from": 774560,
+				"to": 781040
+			},
+			"text": " So those kind of mechanism we are providing for about end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,040",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 781040,
+				"to": 788000
+			},
+			"text": " So also, we are working on multiple widgets, who developers can directly integrate for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 789000
+			},
+			"text": " the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:17,080"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 797080
+			},
+			"text": " So again, they don't have to make a deposit and exit transactions on the layer too."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,080",
+				"to": "00:13:24,120"
+			},
+			"offsets": {
+				"from": 797080,
+				"to": 804120
+			},
+			"text": " So mostly, our system, like, if such kind of system can make users and developers life"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,120",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 804120,
+				"to": 811000
+			},
+			"text": " easy and for that, developers can actually build new markets and kind of, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:39,280"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 819280
+			},
+			"text": " DeFi games, new kind of DeFi, which actually works with multiple contracts, games who can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,280",
+				"to": "00:13:45,920"
+			},
+			"offsets": {
+				"from": 819280,
+				"to": 825920
+			},
+			"text": " integrate, let's say, UNICEWAP or multiple DEXIs or simple other games as well, other"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,920",
+				"to": "00:13:47,520"
+			},
+			"offsets": {
+				"from": 825920,
+				"to": 827520
+			},
+			"text": " games contract as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,520",
+				"to": "00:13:54,080"
+			},
+			"offsets": {
+				"from": 827520,
+				"to": 834080
+			},
+			"text": " And so, yeah, those kinds of market and existing market, we can actually target on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,080",
+				"to": "00:13:57,400"
+			},
+			"offsets": {
+				"from": 834080,
+				"to": 837400
+			},
+			"text": " or when we have such kind of system."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,400",
+				"to": "00:14:00,880"
+			},
+			"offsets": {
+				"from": 837400,
+				"to": 840880
+			},
+			"text": " So yeah, and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,880",
+				"to": "00:14:01,120"
+			},
+			"offsets": {
+				"from": 840880,
+				"to": 841120
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,120",
+				"to": "00:14:03,120"
+			},
+			"offsets": {
+				"from": 842120,
+				"to": 843120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,120",
+				"to": "00:14:04,120"
+			},
+			"offsets": {
+				"from": 843120,
+				"to": 844120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,120",
+				"to": "00:14:05,120"
+			},
+			"offsets": {
+				"from": 844120,
+				"to": 845120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,120",
+				"to": "00:14:06,120"
+			},
+			"offsets": {
+				"from": 845120,
+				"to": 846120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,120",
+				"to": "00:14:07,120"
+			},
+			"offsets": {
+				"from": 846120,
+				"to": 847120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,120",
+				"to": "00:14:08,120"
+			},
+			"offsets": {
+				"from": 847120,
+				"to": 848120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,120",
+				"to": "00:14:09,120"
+			},
+			"offsets": {
+				"from": 848120,
+				"to": 849120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,120",
+				"to": "00:14:10,120"
+			},
+			"offsets": {
+				"from": 849120,
+				"to": 850120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,120",
+				"to": "00:14:11,120"
+			},
+			"offsets": {
+				"from": 850120,
+				"to": 851120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,120",
+				"to": "00:14:12,120"
+			},
+			"offsets": {
+				"from": 851120,
+				"to": 852120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,120",
+				"to": "00:14:13,120"
+			},
+			"offsets": {
+				"from": 852120,
+				"to": 853120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,120",
+				"to": "00:14:14,120"
+			},
+			"offsets": {
+				"from": 853120,
+				"to": 854120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,120",
+				"to": "00:14:15,120"
+			},
+			"offsets": {
+				"from": 854120,
+				"to": 855120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,120",
+				"to": "00:14:16,120"
+			},
+			"offsets": {
+				"from": 855120,
+				"to": 856120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,120",
+				"to": "00:14:18,120"
+			},
+			"offsets": {
+				"from": 856120,
+				"to": 858120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,120",
+				"to": "00:14:19,120"
+			},
+			"offsets": {
+				"from": 858120,
+				"to": 859120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,120",
+				"to": "00:14:20,120"
+			},
+			"offsets": {
+				"from": 859120,
+				"to": 860120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,120",
+				"to": "00:14:21,120"
+			},
+			"offsets": {
+				"from": 860120,
+				"to": 861120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,120",
+				"to": "00:14:22,120"
+			},
+			"offsets": {
+				"from": 861120,
+				"to": 862120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,120",
+				"to": "00:14:23,120"
+			},
+			"offsets": {
+				"from": 862120,
+				"to": 863120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,120",
+				"to": "00:14:24,120"
+			},
+			"offsets": {
+				"from": 863120,
+				"to": 864120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,120",
+				"to": "00:14:25,120"
+			},
+			"offsets": {
+				"from": 864120,
+				"to": 865120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,120",
+				"to": "00:14:26,120"
+			},
+			"offsets": {
+				"from": 865120,
+				"to": 866120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,120",
+				"to": "00:14:27,120"
+			},
+			"offsets": {
+				"from": 866120,
+				"to": 867120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,120",
+				"to": "00:14:28,120"
+			},
+			"offsets": {
+				"from": 867120,
+				"to": 868120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,120",
+				"to": "00:14:29,120"
+			},
+			"offsets": {
+				"from": 868120,
+				"to": 869120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,120",
+				"to": "00:14:30,120"
+			},
+			"offsets": {
+				"from": 869120,
+				"to": 870120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,120",
+				"to": "00:14:31,120"
+			},
+			"offsets": {
+				"from": 870120,
+				"to": 871120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,120",
+				"to": "00:14:32,120"
+			},
+			"offsets": {
+				"from": 871120,
+				"to": 872120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,120",
+				"to": "00:14:33,120"
+			},
+			"offsets": {
+				"from": 872120,
+				"to": 873120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,120",
+				"to": "00:14:34,120"
+			},
+			"offsets": {
+				"from": 873120,
+				"to": 874120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,120",
+				"to": "00:14:35,120"
+			},
+			"offsets": {
+				"from": 874120,
+				"to": 875120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,120",
+				"to": "00:14:36,120"
+			},
+			"offsets": {
+				"from": 875120,
+				"to": 876120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,120",
+				"to": "00:14:37,120"
+			},
+			"offsets": {
+				"from": 876120,
+				"to": 877120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,120",
+				"to": "00:14:38,120"
+			},
+			"offsets": {
+				"from": 877120,
+				"to": 878120
+			},
+			"text": " [Applause]"
+		}
+	]
+}

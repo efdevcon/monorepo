@@ -1,0 +1,5433 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,080"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3080
+			},
+			"text": " So I explain what food proofs are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,080",
+				"to": "00:00:05,800"
+			},
+			"offsets": {
+				"from": 3080,
+				"to": 5800
+			},
+			"text": " I'm going to motivate why we actually need them"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,800",
+				"to": "00:00:08,600"
+			},
+			"offsets": {
+				"from": 5800,
+				"to": 8600
+			},
+			"text": " and what is the problem that we're trying to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,600",
+				"to": "00:00:11,320"
+			},
+			"offsets": {
+				"from": 8600,
+				"to": 11320
+			},
+			"text": " So as we all know, at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,320",
+				"to": "00:00:13,200"
+			},
+			"offsets": {
+				"from": 11320,
+				"to": 13200
+			},
+			"text": " there's a really huge trade-off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,200",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 13200,
+				"to": 15560
+			},
+			"text": " or it's thought to be that there's a huge trade-off"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:18,360"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 18360
+			},
+			"text": " between how much decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,360",
+				"to": "00:00:20,280"
+			},
+			"offsets": {
+				"from": 18360,
+				"to": 20280
+			},
+			"text": " that your blockchain system has"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,280",
+				"to": "00:00:23,400"
+			},
+			"offsets": {
+				"from": 20280,
+				"to": 23400
+			},
+			"text": " and how much on-chain throughput you can get."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,400",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 23400,
+				"to": 25960
+			},
+			"text": " And effectively, the argument goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:29,920"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 29920
+			},
+			"text": " that the bigger the block size, the bigger the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,920",
+				"to": "00:00:32,320"
+			},
+			"offsets": {
+				"from": 29920,
+				"to": 32320
+			},
+			"text": " the more expensive it is to run a full node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,320",
+				"to": "00:00:35,400"
+			},
+			"offsets": {
+				"from": 32320,
+				"to": 35400
+			},
+			"text": " and so everyone will have to run a light client instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,400",
+				"to": "00:00:37,400"
+			},
+			"offsets": {
+				"from": 35400,
+				"to": 37400
+			},
+			"text": " And the problem with light clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,400",
+				"to": "00:00:40,640"
+			},
+			"offsets": {
+				"from": 37400,
+				"to": 40640
+			},
+			"text": " is that they accept blocks that are invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,640",
+				"to": "00:00:44,040"
+			},
+			"offsets": {
+				"from": 40640,
+				"to": 44040
+			},
+			"text": " So if a block contains invalid transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,040",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 44040,
+				"to": 47200
+			},
+			"text": " and they will happily accept that block"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:49,800"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 49800
+			},
+			"text": " if the majority of the consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,800",
+				"to": "00:00:53,520"
+			},
+			"offsets": {
+				"from": 49800,
+				"to": 53520
+			},
+			"text": " has actually sort of gained consensus on that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,520",
+				"to": "00:00:56,920"
+			},
+			"offsets": {
+				"from": 53520,
+				"to": 56920
+			},
+			"text": " So for example, if there's a 51% attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,920",
+				"to": "00:01:00,880"
+			},
+			"offsets": {
+				"from": 56920,
+				"to": 60880
+			},
+			"text": " then you could trick a light client into accepting blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,880",
+				"to": "00:01:03,120"
+			},
+			"offsets": {
+				"from": 60880,
+				"to": 63120
+			},
+			"text": " that effectively generate money out of tin air"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,120",
+				"to": "00:01:06,040"
+			},
+			"offsets": {
+				"from": 63120,
+				"to": 66040
+			},
+			"text": " or double spend or break the protocol rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,040",
+				"to": "00:01:07,480"
+			},
+			"offsets": {
+				"from": 66040,
+				"to": 67480
+			},
+			"text": " and so on and so forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,480",
+				"to": "00:01:09,720"
+			},
+			"offsets": {
+				"from": 67480,
+				"to": 69720
+			},
+			"text": " because they effectively assume"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,720",
+				"to": "00:01:12,320"
+			},
+			"offsets": {
+				"from": 69720,
+				"to": 72320
+			},
+			"text": " that the majority of the consensus is honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,320",
+				"to": "00:01:16,320"
+			},
+			"offsets": {
+				"from": 72320,
+				"to": 76320
+			},
+			"text": " which is really bad assumption that we should try to eliminate."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,320",
+				"to": "00:01:19,920"
+			},
+			"offsets": {
+				"from": 76320,
+				"to": 79920
+			},
+			"text": " So the big question that we might want to ask ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,920",
+				"to": "00:01:22,800"
+			},
+			"offsets": {
+				"from": 79920,
+				"to": 82800
+			},
+			"text": " is how could we actually make it possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,800",
+				"to": "00:01:26,520"
+			},
+			"offsets": {
+				"from": 82800,
+				"to": 86520
+			},
+			"text": " for light clients to reject these invalid blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,520",
+				"to": "00:01:28,040"
+			},
+			"offsets": {
+				"from": 86520,
+				"to": 88040
+			},
+			"text": " just like full nodes do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,040",
+				"to": "00:01:29,880"
+			},
+			"offsets": {
+				"from": 88040,
+				"to": 89880
+			},
+			"text": " because if full node receives an invalid block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,880",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 89880,
+				"to": 91000
+			},
+			"text": " they will reject it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,760"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93760
+			},
+			"text": " So how can we make a light client do the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,760",
+				"to": "00:01:38,160"
+			},
+			"offsets": {
+				"from": 93760,
+				"to": 98160
+			},
+			"text": " so that they too don't have to trust the miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,160",
+				"to": "00:01:39,720"
+			},
+			"offsets": {
+				"from": 98160,
+				"to": 99720
+			},
+			"text": " and they don't have to assume"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,720",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 99720,
+				"to": 102120
+			},
+			"text": " that the majority of the consensus is honest?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:46,280"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 106280
+			},
+			"text": " So the solution to this is that we could use fraud"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,280",
+				"to": "00:01:47,960"
+			},
+			"offsets": {
+				"from": 106280,
+				"to": 107960
+			},
+			"text": " and data availability proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,960",
+				"to": "00:01:51,240"
+			},
+			"offsets": {
+				"from": 107960,
+				"to": 111240
+			},
+			"text": " And this is what I'm gonna be presenting today"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,240",
+				"to": "00:01:55,120"
+			},
+			"offsets": {
+				"from": 111240,
+				"to": 115120
+			},
+			"text": " is based on a paper that we released last month,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,120",
+				"to": "00:01:57,480"
+			},
+			"offsets": {
+				"from": 115120,
+				"to": 117480
+			},
+			"text": " and this is a joint work with Alberto from UCL"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,480",
+				"to": "00:02:00,240"
+			},
+			"offsets": {
+				"from": 117480,
+				"to": 120240
+			},
+			"text": " and Vitalik from Ethereum Research."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,240",
+				"to": "00:02:02,200"
+			},
+			"offsets": {
+				"from": 120240,
+				"to": 122200
+			},
+			"text": " We also have the link is on the screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,200",
+				"to": "00:02:03,760"
+			},
+			"offsets": {
+				"from": 122200,
+				"to": 123760
+			},
+			"text": " and also we have code as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,760",
+				"to": "00:02:08,480"
+			},
+			"offsets": {
+				"from": 123760,
+				"to": 128480
+			},
+			"text": " So the basic idea of fraud proofs is effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,480",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 128480,
+				"to": 132040
+			},
+			"text": " that you have light clients and you have full nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,480"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134480
+			},
+			"text": " and light clients only download block headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,480",
+				"to": "00:02:17,240"
+			},
+			"offsets": {
+				"from": 134480,
+				"to": 137240
+			},
+			"text": " and full nodes also download the entire block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,240",
+				"to": "00:02:19,080"
+			},
+			"offsets": {
+				"from": 137240,
+				"to": 139080
+			},
+			"text": " including the transaction data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,080",
+				"to": "00:02:21,480"
+			},
+			"offsets": {
+				"from": 139080,
+				"to": 141480
+			},
+			"text": " And if a full node detects"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,480",
+				"to": "00:02:24,120"
+			},
+			"offsets": {
+				"from": 141480,
+				"to": 144120
+			},
+			"text": " that there is some invalid transaction in that block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,120",
+				"to": "00:02:26,480"
+			},
+			"offsets": {
+				"from": 144120,
+				"to": 146480
+			},
+			"text": " then they will effectively send that light client"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,480",
+				"to": "00:02:31,480"
+			},
+			"offsets": {
+				"from": 146480,
+				"to": 151480
+			},
+			"text": " a compact proof that that block contains invalid transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,480",
+				"to": "00:02:33,720"
+			},
+			"offsets": {
+				"from": 151480,
+				"to": 153720
+			},
+			"text": " And the size of that proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,720",
+				"to": "00:02:36,920"
+			},
+			"offsets": {
+				"from": 153720,
+				"to": 156920
+			},
+			"text": " should be significantly lower than the size of that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,920",
+				"to": "00:02:43,160"
+			},
+			"offsets": {
+				"from": 156920,
+				"to": 163160
+			},
+			"text": " So the original Bitcoin white paper actually briefly mentions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,160",
+				"to": "00:02:46,840"
+			},
+			"offsets": {
+				"from": 163160,
+				"to": 166840
+			},
+			"text": " a concept like this called alerts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,840",
+				"to": "00:02:50,200"
+			},
+			"offsets": {
+				"from": 166840,
+				"to": 170200
+			},
+			"text": " which like in a single sentence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,200",
+				"to": "00:02:52,840"
+			},
+			"offsets": {
+				"from": 170200,
+				"to": 172840
+			},
+			"text": " and the idea of alerts as Satoshi proposed them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,840",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 172840,
+				"to": 177440
+			},
+			"text": " was that a full node could send a light client a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:02:59,960"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 179960
+			},
+			"text": " to alert them that the block is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,960",
+				"to": "00:03:01,680"
+			},
+			"offsets": {
+				"from": 179960,
+				"to": 181680
+			},
+			"text": " And that would cause a light client"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,680",
+				"to": "00:03:06,320"
+			},
+			"offsets": {
+				"from": 181680,
+				"to": 186320
+			},
+			"text": " to have to redownload the block and validate that block again."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,320",
+				"to": "00:03:09,440"
+			},
+			"offsets": {
+				"from": 186320,
+				"to": 189440
+			},
+			"text": " But the problem with this is that as a full node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,440",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 189440,
+				"to": 191440
+			},
+			"text": " I could just lie to all the light clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:13,240"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 193240
+			},
+			"text": " and say all the blocks are invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,240",
+				"to": "00:03:15,920"
+			},
+			"offsets": {
+				"from": 193240,
+				"to": 195920
+			},
+			"text": " And so effectively, in the worst case scenario,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,920",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 195920,
+				"to": 199920
+			},
+			"text": " the efficiency of the system for light clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,920",
+				"to": "00:03:22,920"
+			},
+			"offsets": {
+				"from": 199920,
+				"to": 202920
+			},
+			"text": " is no better than downloading the whole blockchain again."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,920",
+				"to": "00:03:25,160"
+			},
+			"offsets": {
+				"from": 202920,
+				"to": 205160
+			},
+			"text": " So it boils down to running a full node again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,160",
+				"to": "00:03:26,560"
+			},
+			"offsets": {
+				"from": 205160,
+				"to": 206560
+			},
+			"text": " so it doesn't really work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,560",
+				"to": "00:03:34,520"
+			},
+			"offsets": {
+				"from": 206560,
+				"to": 214520
+			},
+			"text": " Also, there has been some discussions in the Bitcoin space"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,520",
+				"to": "00:03:36,440"
+			},
+			"offsets": {
+				"from": 214520,
+				"to": 216440
+			},
+			"text": " about having compact for proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,440",
+				"to": "00:03:37,800"
+			},
+			"offsets": {
+				"from": 216440,
+				"to": 217800
+			},
+			"text": " which is what I just discussed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,800",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 217800,
+				"to": 220040
+			},
+			"text": " But some of these earlier proposals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:43,520"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 223520
+			},
+			"text": " they propose a different for proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,520",
+				"to": "00:03:47,400"
+			},
+			"offsets": {
+				"from": 223520,
+				"to": 227400
+			},
+			"text": " for every single way to violate the rules of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,400",
+				"to": "00:03:50,120"
+			},
+			"offsets": {
+				"from": 227400,
+				"to": 230120
+			},
+			"text": " So for example, you might have one for proof for double spans,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,120",
+				"to": "00:03:52,760"
+			},
+			"offsets": {
+				"from": 230120,
+				"to": 232760
+			},
+			"text": " one for proof for a UTX or not existing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,760",
+				"to": "00:03:54,320"
+			},
+			"offsets": {
+				"from": 232760,
+				"to": 234320
+			},
+			"text": " and so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,320",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 234320,
+				"to": 236640
+			},
+			"text": " So what we can do here, or what we're going to do here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:04:02,320"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 242320
+			},
+			"text": " is simplify everything so that you only need one for proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,320",
+				"to": "00:04:04,520"
+			},
+			"offsets": {
+				"from": 242320,
+				"to": 244520
+			},
+			"text": " And to understand how this could work"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,520",
+				"to": "00:04:08,200"
+			},
+			"offsets": {
+				"from": 244520,
+				"to": 248200
+			},
+			"text": " is we have to remind ourselves that we could generalize"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,200",
+				"to": "00:04:11,040"
+			},
+			"offsets": {
+				"from": 248200,
+				"to": 251040
+			},
+			"text": " the blockchain as a state transition system, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,040",
+				"to": "00:04:14,360"
+			},
+			"offsets": {
+				"from": 251040,
+				"to": 254360
+			},
+			"text": " is what Ethereum actually does."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,360",
+				"to": "00:04:18,440"
+			},
+			"offsets": {
+				"from": 254360,
+				"to": 258440
+			},
+			"text": " So effectively, you have a transition function"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,440",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 258440,
+				"to": 261680
+			},
+			"text": " that takes in as input the state of the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:25,280"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 265280
+			},
+			"text": " and some transaction, and then every transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,280",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 265280,
+				"to": 268320
+			},
+			"text": " modifies the state of the blockchain in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:31,320"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 271320
+			},
+			"text": " And then, so between block X and block X plus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,320",
+				"to": "00:04:32,600"
+			},
+			"offsets": {
+				"from": 271320,
+				"to": 272600
+			},
+			"text": " you have a number of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,600",
+				"to": "00:04:34,720"
+			},
+			"offsets": {
+				"from": 272600,
+				"to": 274720
+			},
+			"text": " and they modify the state in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,720",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 274720,
+				"to": 276520
+			},
+			"text": " And in between those transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:39,160"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 279160
+			},
+			"text": " if you apply those transactions sequentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,160",
+				"to": "00:04:40,920"
+			},
+			"offsets": {
+				"from": 279160,
+				"to": 280920
+			},
+			"text": " you have many intermediate states,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,920",
+				"to": "00:04:43,960"
+			},
+			"offsets": {
+				"from": 280920,
+				"to": 283960
+			},
+			"text": " as you can see in the diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,960",
+				"to": "00:04:48,480"
+			},
+			"offsets": {
+				"from": 283960,
+				"to": 288480
+			},
+			"text": " So what happens if there's one transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,480",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 288480,
+				"to": 293560
+			},
+			"text": " is included in the block that is invalid, and modifies"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:59,240"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 299240
+			},
+			"text": " the state in an invalid way that is illegal or not allowed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,240",
+				"to": "00:05:03,080"
+			},
+			"offsets": {
+				"from": 299240,
+				"to": 303080
+			},
+			"text": " So if there's a 51% attack, then a miner could do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,080",
+				"to": "00:05:05,960"
+			},
+			"offsets": {
+				"from": 303080,
+				"to": 305960
+			},
+			"text": " and insert this malicious block into the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,960",
+				"to": "00:05:08,480"
+			},
+			"offsets": {
+				"from": 305960,
+				"to": 308480
+			},
+			"text": " and like clients-- sorry, malicious transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,480",
+				"to": "00:05:12,360"
+			},
+			"offsets": {
+				"from": 308480,
+				"to": 312360
+			},
+			"text": " into the chain, and like clients would happily accept it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,360",
+				"to": "00:05:15,280"
+			},
+			"offsets": {
+				"from": 312360,
+				"to": 315280
+			},
+			"text": " So we need a way to prove-- we need a way for fullness"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,280",
+				"to": "00:05:18,760"
+			},
+			"offsets": {
+				"from": 315280,
+				"to": 318760
+			},
+			"text": " to prove that this has happened so that like clients can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,760",
+				"to": "00:05:21,160"
+			},
+			"offsets": {
+				"from": 318760,
+				"to": 321160
+			},
+			"text": " reject the block as well, and we need to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,160",
+				"to": "00:05:23,520"
+			},
+			"offsets": {
+				"from": 321160,
+				"to": 323520
+			},
+			"text": " in a compact way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,520",
+				"to": "00:05:29,760"
+			},
+			"offsets": {
+				"from": 323520,
+				"to": 329760
+			},
+			"text": " So to do this, we need some way to commit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,760",
+				"to": "00:05:34,200"
+			},
+			"offsets": {
+				"from": 329760,
+				"to": 334200
+			},
+			"text": " to the states of the blockchain in the block headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,200",
+				"to": "00:05:38,240"
+			},
+			"offsets": {
+				"from": 334200,
+				"to": 338240
+			},
+			"text": " So at the moment, Ethereum uses a patriche-wishry"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,240",
+				"to": "00:05:41,120"
+			},
+			"offsets": {
+				"from": 338240,
+				"to": 341120
+			},
+			"text": " to effectively represent the entire state of the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,120",
+				"to": "00:05:43,640"
+			},
+			"offsets": {
+				"from": 341120,
+				"to": 343640
+			},
+			"text": " in a single route."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,640",
+				"to": "00:05:45,640"
+			},
+			"offsets": {
+				"from": 343640,
+				"to": 345640
+			},
+			"text": " And you can effectively represent the entire state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,640",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 345640,
+				"to": 347960
+			},
+			"text": " of the blockchain as a key value store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:50,360"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 350360
+			},
+			"text": " the accounts in the blockchain and values."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,360",
+				"to": "00:05:54,880"
+			},
+			"offsets": {
+				"from": 350360,
+				"to": 354880
+			},
+			"text": " But recently, one of the proposed changes in serenity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,880",
+				"to": "00:05:56,960"
+			},
+			"offsets": {
+				"from": 354880,
+				"to": 356960
+			},
+			"text": " is to actually change this structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,960",
+				"to": "00:06:01,320"
+			},
+			"offsets": {
+				"from": 356960,
+				"to": 361320
+			},
+			"text": " to a much simpler structure called a sparse mercury, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,320",
+				"to": "00:06:05,320"
+			},
+			"offsets": {
+				"from": 361320,
+				"to": 365320
+			},
+			"text": " is a much simpler way to actually represent"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,320",
+				"to": "00:06:07,600"
+			},
+			"offsets": {
+				"from": 365320,
+				"to": 367600
+			},
+			"text": " the entire state as a single miracle root."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,600",
+				"to": "00:06:09,520"
+			},
+			"offsets": {
+				"from": 367600,
+				"to": 369520
+			},
+			"text": " And the basic idea for sparse mercury"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,520",
+				"to": "00:06:11,920"
+			},
+			"offsets": {
+				"from": 369520,
+				"to": 371920
+			},
+			"text": " is that it's basically a normal mercury,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,920",
+				"to": "00:06:15,040"
+			},
+			"offsets": {
+				"from": 371920,
+				"to": 375040
+			},
+			"text": " but with an insanely large number of leaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,040",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 375040,
+				"to": 377040
+			},
+			"text": " So if you wanted to, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,040",
+				"to": "00:06:20,080"
+			},
+			"offsets": {
+				"from": 377040,
+				"to": 380080
+			},
+			"text": " to represent every single possible sharty 5/6 hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,080",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 380080,
+				"to": 383600
+			},
+			"text": " then the size of your mercury would have--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:27,360"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 387360
+			},
+			"text": " it would have two to the power of 256 leaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,360",
+				"to": "00:06:28,800"
+			},
+			"offsets": {
+				"from": 387360,
+				"to": 388800
+			},
+			"text": " And you might be asking how is it even"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,800",
+				"to": "00:06:31,040"
+			},
+			"offsets": {
+				"from": 388800,
+				"to": 391040
+			},
+			"text": " possible to actually compute this mercury?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,040",
+				"to": "00:06:32,960"
+			},
+			"offsets": {
+				"from": 391040,
+				"to": 392960
+			},
+			"text": " And actually, there's some neat tricks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,960",
+				"to": "00:06:35,040"
+			},
+			"offsets": {
+				"from": 392960,
+				"to": 395040
+			},
+			"text": " that you can do, such as, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,040",
+				"to": "00:06:38,040"
+			},
+			"offsets": {
+				"from": 395040,
+				"to": 398040
+			},
+			"text": " And if you consider the fact that most of the leaves"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,040",
+				"to": "00:06:43,480"
+			},
+			"offsets": {
+				"from": 398040,
+				"to": 403480
+			},
+			"text": " in this tree will be empty, will have a zero or default value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,480",
+				"to": "00:06:48,600"
+			},
+			"offsets": {
+				"from": 403480,
+				"to": 408600
+			},
+			"text": " then you can effectively assume that the vast majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,600",
+				"to": "00:06:52,120"
+			},
+			"offsets": {
+				"from": 408600,
+				"to": 412120
+			},
+			"text": " of the intermediate nodes in this tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,120",
+				"to": "00:06:53,600"
+			},
+			"offsets": {
+				"from": 412120,
+				"to": 413600
+			},
+			"text": " will have the same value."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,600",
+				"to": "00:06:58,040"
+			},
+			"offsets": {
+				"from": 413600,
+				"to": 418040
+			},
+			"text": " So you don't have to recompute every single node in the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,040",
+				"to": "00:07:01,080"
+			},
+			"offsets": {
+				"from": 418040,
+				"to": 421080
+			},
+			"text": " Because you know that the vast majority of these nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,080",
+				"to": "00:07:04,560"
+			},
+			"offsets": {
+				"from": 421080,
+				"to": 424560
+			},
+			"text": " only contain children with zero values."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,560",
+				"to": "00:07:07,880"
+			},
+			"offsets": {
+				"from": 424560,
+				"to": 427880
+			},
+			"text": " So effectively, it is pretty much as efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,880",
+				"to": "00:07:10,880"
+			},
+			"offsets": {
+				"from": 427880,
+				"to": 430880
+			},
+			"text": " as a standard mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,880",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 430880,
+				"to": 434360
+			},
+			"text": " And so if we do this, then we could effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:16,680"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 436680
+			},
+			"text": " do this concept called stateless clacklions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,680",
+				"to": "00:07:19,760"
+			},
+			"offsets": {
+				"from": 436680,
+				"to": 439760
+			},
+			"text": " So instead of imagining the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,760",
+				"to": "00:07:24,840"
+			},
+			"offsets": {
+				"from": 439760,
+				"to": 444840
+			},
+			"text": " as a state transition system, you imagine the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,840",
+				"to": "00:07:27,200"
+			},
+			"offsets": {
+				"from": 444840,
+				"to": 447200
+			},
+			"text": " as a state root transition system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,200",
+				"to": "00:07:30,880"
+			},
+			"offsets": {
+				"from": 447200,
+				"to": 450880
+			},
+			"text": " Because if we use this mass mercury"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,880",
+				"to": "00:07:33,640"
+			},
+			"offsets": {
+				"from": 450880,
+				"to": 453640
+			},
+			"text": " to represent the state of the entire blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,640",
+				"to": "00:07:37,080"
+			},
+			"offsets": {
+				"from": 453640,
+				"to": 457080
+			},
+			"text": " as a single-meltarute, and you include this-meltarute"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,080",
+				"to": "00:07:40,040"
+			},
+			"offsets": {
+				"from": 457080,
+				"to": 460040
+			},
+			"text": " in every block header, which is what Ethereum is doing right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,040",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 460040,
+				"to": 463840
+			},
+			"text": " using a patriches tree, then you can also imagine"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:48,480"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 468480
+			},
+			"text": " that there are many intermediate roots between block X"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,480",
+				"to": "00:07:52,640"
+			},
+			"offsets": {
+				"from": 468480,
+				"to": 472640
+			},
+			"text": " and block X plus one, or the previous and next blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,640",
+				"to": "00:07:56,880"
+			},
+			"offsets": {
+				"from": 472640,
+				"to": 476880
+			},
+			"text": " And so you effectively have this execution trace"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,880",
+				"to": "00:08:00,960"
+			},
+			"offsets": {
+				"from": 476880,
+				"to": 480960
+			},
+			"text": " for every single transaction in a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,960",
+				"to": "00:08:04,600"
+			},
+			"offsets": {
+				"from": 480960,
+				"to": 484600
+			},
+			"text": " And so what you can do is you can not just include"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,600",
+				"to": "00:08:06,840"
+			},
+			"offsets": {
+				"from": 484600,
+				"to": 486840
+			},
+			"text": " the final state root in the block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,840",
+				"to": "00:08:11,320"
+			},
+			"offsets": {
+				"from": 486840,
+				"to": 491320
+			},
+			"text": " You can also include the intermediate state roots"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,320",
+				"to": "00:08:12,400"
+			},
+			"offsets": {
+				"from": 491320,
+				"to": 492400
+			},
+			"text": " in the block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,400",
+				"to": "00:08:15,040"
+			},
+			"offsets": {
+				"from": 492400,
+				"to": 495040
+			},
+			"text": " So for example, if you wanted to, you could include,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,040",
+				"to": "00:08:16,840"
+			},
+			"offsets": {
+				"from": 495040,
+				"to": 496840
+			},
+			"text": " after every single transaction, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,840",
+				"to": "00:08:20,880"
+			},
+			"offsets": {
+				"from": 496840,
+				"to": 500880
+			},
+			"text": " could include the new state root, which is the new 32 byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,880",
+				"to": "00:08:22,280"
+			},
+			"offsets": {
+				"from": 500880,
+				"to": 502280
+			},
+			"text": " state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,280",
+				"to": "00:08:25,040"
+			},
+			"offsets": {
+				"from": 502280,
+				"to": 505040
+			},
+			"text": " Or you could do after every few transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,040",
+				"to": "00:08:27,480"
+			},
+			"offsets": {
+				"from": 505040,
+				"to": 507480
+			},
+			"text": " It's basically a trade-off between how big the foot"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,480",
+				"to": "00:08:31,040"
+			},
+			"offsets": {
+				"from": 507480,
+				"to": 511040
+			},
+			"text": " proof is and how much extra on-chain there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,040",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 511040,
+				"to": 513520
+			},
+			"text": " that you want to put in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:38,600"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 518600
+			},
+			"text": " So then you could easily generate a foot proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,600",
+				"to": "00:08:42,800"
+			},
+			"offsets": {
+				"from": 518600,
+				"to": 522800
+			},
+			"text": " if you have these intermediate state roots in the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,800",
+				"to": "00:08:46,520"
+			},
+			"offsets": {
+				"from": 522800,
+				"to": 526520
+			},
+			"text": " Effectively, the foot proof would consist of the pre-state"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,520",
+				"to": "00:08:50,320"
+			},
+			"offsets": {
+				"from": 526520,
+				"to": 530320
+			},
+			"text": " roots of that transaction, the post-state root transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,320",
+				"to": "00:08:53,960"
+			},
+			"offsets": {
+				"from": 530320,
+				"to": 533960
+			},
+			"text": " itself, and also the witnesses of that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,960",
+				"to": "00:08:55,440"
+			},
+			"offsets": {
+				"from": 533960,
+				"to": 535440
+			},
+			"text": " Now, the witnesses of a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,440",
+				"to": "00:09:00,880"
+			},
+			"offsets": {
+				"from": 535440,
+				"to": 540880
+			},
+			"text": " are simply all of the Merkle proofs of all of the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,880",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 540880,
+				"to": 548000
+			},
+			"text": " keys that a transaction accesses in the state Merkle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:09,600"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 549600
+			},
+			"text": " And then you would also need the Merkle proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,600",
+				"to": "00:09:13,280"
+			},
+			"offsets": {
+				"from": 549600,
+				"to": 553280
+			},
+			"text": " for the transaction itself and the pre- and post-state root."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,280",
+				"to": "00:09:16,240"
+			},
+			"offsets": {
+				"from": 553280,
+				"to": 556240
+			},
+			"text": " So then this is what effectively what the foot proof would"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,240",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 556240,
+				"to": 556760
+			},
+			"text": " look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:21,440"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 561440
+			},
+			"text": " And so that's all all good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,440",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 561440,
+				"to": 565160
+			},
+			"text": " So now we have a working unified foot proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:27,720"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 567720
+			},
+			"text": " that only requires one single foot proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,720",
+				"to": "00:09:29,280"
+			},
+			"offsets": {
+				"from": 567720,
+				"to": 569280
+			},
+			"text": " rather than many different foot proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,280",
+				"to": "00:09:33,160"
+			},
+			"offsets": {
+				"from": 569280,
+				"to": 573160
+			},
+			"text": " like some of the earlier ideas were proposing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,160",
+				"to": "00:09:35,480"
+			},
+			"offsets": {
+				"from": 573160,
+				"to": 575480
+			},
+			"text": " But the problem with this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,480",
+				"to": "00:09:37,960"
+			},
+			"offsets": {
+				"from": 575480,
+				"to": 577960
+			},
+			"text": " the biggest problem with this is something called"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,960",
+				"to": "00:09:40,280"
+			},
+			"offsets": {
+				"from": 577960,
+				"to": 580280
+			},
+			"text": " the data availability problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,280",
+				"to": "00:09:42,560"
+			},
+			"offsets": {
+				"from": 580280,
+				"to": 582560
+			},
+			"text": " And the data availability problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,560",
+				"to": "00:09:47,520"
+			},
+			"offsets": {
+				"from": 582560,
+				"to": 587520
+			},
+			"text": " is effectively says that, OK, so what if a miner only"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,520",
+				"to": "00:09:51,720"
+			},
+			"offsets": {
+				"from": 587520,
+				"to": 591720
+			},
+			"text": " distributes the block headers to the like clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,720",
+				"to": "00:09:54,160"
+			},
+			"offsets": {
+				"from": 591720,
+				"to": 594160
+			},
+			"text": " So the like clients only know the block headers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,160",
+				"to": "00:09:57,720"
+			},
+			"offsets": {
+				"from": 594160,
+				"to": 597720
+			},
+			"text": " But what if no one knows the actual transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,720",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 597720,
+				"to": 599520
+			},
+			"text": " data of the block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,520",
+				"to": "00:10:02,920"
+			},
+			"offsets": {
+				"from": 599520,
+				"to": 602920
+			},
+			"text": " So just because you need the Merkle root for the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,920",
+				"to": "00:10:07,120"
+			},
+			"offsets": {
+				"from": 602920,
+				"to": 607120
+			},
+			"text": " doesn't mean you know what the data behind that Merkle root is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,120",
+				"to": "00:10:09,680"
+			},
+			"offsets": {
+				"from": 607120,
+				"to": 609680
+			},
+			"text": " So if a miner does this, then that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,680",
+				"to": "00:10:14,280"
+			},
+			"offsets": {
+				"from": 609680,
+				"to": 614280
+			},
+			"text": " means a full node wouldn't be able to generate a foot proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,280",
+				"to": "00:10:16,240"
+			},
+			"offsets": {
+				"from": 614280,
+				"to": 616240
+			},
+			"text": " because they simply would not have the data for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,240",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 616240,
+				"to": 619360
+			},
+			"text": " They would not have the data to generate that foot proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,360",
+				"to": "00:10:21,160"
+			},
+			"offsets": {
+				"from": 619360,
+				"to": 621160
+			},
+			"text": " So we need a way somehow to guarantee"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,160",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 621160,
+				"to": 625000
+			},
+			"text": " the data availability or the availability of the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,240"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627240
+			},
+			"text": " in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,240",
+				"to": "00:10:30,440"
+			},
+			"offsets": {
+				"from": 627240,
+				"to": 630440
+			},
+			"text": " And Vitalik proposed a neat way to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,440",
+				"to": "00:10:34,640"
+			},
+			"offsets": {
+				"from": 630440,
+				"to": 634640
+			},
+			"text": " called using erasure coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,640",
+				"to": "00:10:36,880"
+			},
+			"offsets": {
+				"from": 634640,
+				"to": 636880
+			},
+			"text": " And the idea of erasure coding is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,880",
+				"to": "00:10:41,760"
+			},
+			"offsets": {
+				"from": 636880,
+				"to": 641760
+			},
+			"text": " that let's suppose that you have some data that is X pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,760",
+				"to": "00:10:43,880"
+			},
+			"offsets": {
+				"from": 641760,
+				"to": 643880
+			},
+			"text": " long."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,880",
+				"to": "00:10:49,800"
+			},
+			"offsets": {
+				"from": 643880,
+				"to": 649800
+			},
+			"text": " What you can do is you can blow up that data to 2X pieces long."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,800",
+				"to": "00:10:53,760"
+			},
+			"offsets": {
+				"from": 649800,
+				"to": 653760
+			},
+			"text": " And then if you lose any X pieces in that data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,760",
+				"to": "00:10:58,360"
+			},
+			"offsets": {
+				"from": 653760,
+				"to": 658360
+			},
+			"text": " you can recover the entire data from any of those X pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,360",
+				"to": "00:11:01,160"
+			},
+			"offsets": {
+				"from": 658360,
+				"to": 661160
+			},
+			"text": " So what that effectively means is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,160",
+				"to": "00:11:06,720"
+			},
+			"offsets": {
+				"from": 661160,
+				"to": 666720
+			},
+			"text": " that this no longer becomes a 100% data availability problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,720",
+				"to": "00:11:09,840"
+			},
+			"offsets": {
+				"from": 666720,
+				"to": 669840
+			},
+			"text": " This only becomes a 50% data availability problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,840",
+				"to": "00:11:16,440"
+			},
+			"offsets": {
+				"from": 669840,
+				"to": 676440
+			},
+			"text": " because you can recover 100% of the data just from 50% of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,440",
+				"to": "00:11:19,040"
+			},
+			"offsets": {
+				"from": 676440,
+				"to": 679040
+			},
+			"text": " So what that means is that miners,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,040",
+				"to": "00:11:22,720"
+			},
+			"offsets": {
+				"from": 679040,
+				"to": 682720
+			},
+			"text": " if they wanted to hide even a single bit or single bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,720",
+				"to": "00:11:26,840"
+			},
+			"offsets": {
+				"from": 682720,
+				"to": 686840
+			},
+			"text": " in data, they would have to hide at least 50% of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,840",
+				"to": "00:11:30,160"
+			},
+			"offsets": {
+				"from": 686840,
+				"to": 690160
+			},
+			"text": " or not to release 50% of that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,160",
+				"to": "00:11:33,400"
+			},
+			"offsets": {
+				"from": 690160,
+				"to": 693400
+			},
+			"text": " So what we can do with this is we can require"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,400",
+				"to": "00:11:39,040"
+			},
+			"offsets": {
+				"from": 693400,
+				"to": 699040
+			},
+			"text": " miners to commit to the medical route of this blown up"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,040",
+				"to": "00:11:41,040"
+			},
+			"offsets": {
+				"from": 699040,
+				"to": 701040
+			},
+			"text": " or erasure coded version of the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,040",
+				"to": "00:11:46,360"
+			},
+			"offsets": {
+				"from": 701040,
+				"to": 706360
+			},
+			"text": " data that is extended to X pieces instead of X pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,360",
+				"to": "00:11:49,080"
+			},
+			"offsets": {
+				"from": 706360,
+				"to": 709080
+			},
+			"text": " And then clients could use this construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,080",
+				"to": "00:11:52,800"
+			},
+			"offsets": {
+				"from": 709080,
+				"to": 712800
+			},
+			"text": " to have a guarantee that the data is available."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,800",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 712800,
+				"to": 715000
+			},
+			"text": " And so what they could do is they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 719200
+			},
+			"text": " could randomly sample different pieces of that block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:01,200"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 721200
+			},
+			"text": " of the erasure code block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,200",
+				"to": "00:12:07,280"
+			},
+			"offsets": {
+				"from": 721200,
+				"to": 727280
+			},
+			"text": " And if we can assume that the miner is trying to do this attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,280",
+				"to": "00:12:10,520"
+			},
+			"offsets": {
+				"from": 727280,
+				"to": 730520
+			},
+			"text": " and has hidden 50% of data, then there"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,520",
+				"to": "00:12:13,880"
+			},
+			"offsets": {
+				"from": 730520,
+				"to": 733880
+			},
+			"text": " is a 50% chance in the first sample"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,880",
+				"to": "00:12:18,760"
+			},
+			"offsets": {
+				"from": 733880,
+				"to": 738760
+			},
+			"text": " that you will end up in a part of the block that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,760",
+				"to": "00:12:20,320"
+			},
+			"offsets": {
+				"from": 738760,
+				"to": 740320
+			},
+			"text": " is unavailable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,320",
+				"to": "00:12:23,560"
+			},
+			"offsets": {
+				"from": 740320,
+				"to": 743560
+			},
+			"text": " And so if you sample a part of the block that is unavailable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,560",
+				"to": "00:12:25,360"
+			},
+			"offsets": {
+				"from": 743560,
+				"to": 745360
+			},
+			"text": " i.e. you request from the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,360",
+				"to": "00:12:28,400"
+			},
+			"offsets": {
+				"from": 745360,
+				"to": 748400
+			},
+			"text": " to give you the part of the block that is unavailable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,400",
+				"to": "00:12:30,480"
+			},
+			"offsets": {
+				"from": 748400,
+				"to": 750480
+			},
+			"text": " and you don't receive a response,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,480",
+				"to": "00:12:35,880"
+			},
+			"offsets": {
+				"from": 750480,
+				"to": 755880
+			},
+			"text": " then you don't accept that block because you think you might,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,880",
+				"to": "00:12:40,440"
+			},
+			"offsets": {
+				"from": 755880,
+				"to": 760440
+			},
+			"text": " because you haven't received a response to your sample."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,440",
+				"to": "00:12:42,920"
+			},
+			"offsets": {
+				"from": 760440,
+				"to": 762920
+			},
+			"text": " And so if you keep doing more samples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,920",
+				"to": "00:12:46,360"
+			},
+			"offsets": {
+				"from": 762920,
+				"to": 766360
+			},
+			"text": " you can get a very hyperboothie guarantee"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,360",
+				"to": "00:12:49,040"
+			},
+			"offsets": {
+				"from": 766360,
+				"to": 769040
+			},
+			"text": " that the block is actually available."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,040",
+				"to": "00:12:52,120"
+			},
+			"offsets": {
+				"from": 769040,
+				"to": 772120
+			},
+			"text": " Because then there would be a 1 minus 2"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,120",
+				"to": "00:12:57,120"
+			},
+			"offsets": {
+				"from": 772120,
+				"to": 777120
+			},
+			"text": " to the power of minus s chance of landing on an unavailable"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,120",
+				"to": "00:13:02,640"
+			},
+			"offsets": {
+				"from": 777120,
+				"to": 782640
+			},
+			"text": " block if the block is largely or 50% unavailable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,640",
+				"to": "00:13:05,240"
+			},
+			"offsets": {
+				"from": 782640,
+				"to": 785240
+			},
+			"text": " And again, if you don't have an unavailable block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,240",
+				"to": "00:13:09,160"
+			},
+			"offsets": {
+				"from": 785240,
+				"to": 789160
+			},
+			"text": " you don't receive a response, and then you don't accept the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,160",
+				"to": "00:13:14,120"
+			},
+			"offsets": {
+				"from": 789160,
+				"to": 794120
+			},
+			"text": " The problem with this-- to add to this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,120",
+				"to": "00:13:16,720"
+			},
+			"offsets": {
+				"from": 794120,
+				"to": 796720
+			},
+			"text": " is that it's not a problem with this yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,720",
+				"to": "00:13:18,160"
+			},
+			"offsets": {
+				"from": 796720,
+				"to": 798160
+			},
+			"text": " The problem with this is in the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,160",
+				"to": "00:13:23,200"
+			},
+			"offsets": {
+				"from": 798160,
+				"to": 803200
+			},
+			"text": " But just as I noted this, for this to work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,200",
+				"to": "00:13:26,200"
+			},
+			"offsets": {
+				"from": 803200,
+				"to": 806200
+			},
+			"text": " you need a sufficient number of like clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,200",
+				"to": "00:13:30,280"
+			},
+			"offsets": {
+				"from": 806200,
+				"to": 810280
+			},
+			"text": " to make enough samples to be able to reconstruct"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,280",
+				"to": "00:13:31,560"
+			},
+			"offsets": {
+				"from": 810280,
+				"to": 811560
+			},
+			"text": " the entire data."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,560",
+				"to": "00:13:34,280"
+			},
+			"offsets": {
+				"from": 811560,
+				"to": 814280
+			},
+			"text": " So for example, if you only have one client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,280",
+				"to": "00:13:36,800"
+			},
+			"offsets": {
+				"from": 814280,
+				"to": 816800
+			},
+			"text": " then there's not enough clients to make enough samples"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,800",
+				"to": "00:13:39,920"
+			},
+			"offsets": {
+				"from": 816800,
+				"to": 819920
+			},
+			"text": " for 50% to sample 50% of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,920",
+				"to": "00:13:42,560"
+			},
+			"offsets": {
+				"from": 819920,
+				"to": 822560
+			},
+			"text": " So then the scheme wouldn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,560",
+				"to": "00:13:44,920"
+			},
+			"offsets": {
+				"from": 822560,
+				"to": 824920
+			},
+			"text": " Now there are ways to kind of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,920",
+				"to": "00:13:47,800"
+			},
+			"offsets": {
+				"from": 824920,
+				"to": 827800
+			},
+			"text": " and also there are ways to kind of get around this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,800",
+				"to": "00:13:53,720"
+			},
+			"offsets": {
+				"from": 827800,
+				"to": 833720
+			},
+			"text": " or to make it more possible so that you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,720",
+				"to": "00:13:56,040"
+			},
+			"offsets": {
+				"from": 833720,
+				"to": 836040
+			},
+			"text": " fool the first number of clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,040",
+				"to": "00:13:57,880"
+			},
+			"offsets": {
+				"from": 836040,
+				"to": 837880
+			},
+			"text": " But I'm not going to mention it in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,880",
+				"to": "00:14:01,480"
+			},
+			"offsets": {
+				"from": 837880,
+				"to": 841480
+			},
+			"text": " It will be in the full version of the paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,480",
+				"to": "00:14:04,560"
+			},
+			"offsets": {
+				"from": 841480,
+				"to": 844560
+			},
+			"text": " And there's also more analysis and graphs in the paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,560",
+				"to": "00:14:07,840"
+			},
+			"offsets": {
+				"from": 844560,
+				"to": 847840
+			},
+			"text": " that show how many like clients you need exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,840",
+				"to": "00:14:09,680"
+			},
+			"offsets": {
+				"from": 847840,
+				"to": 849680
+			},
+			"text": " So the problem with the scheme--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,680",
+				"to": "00:14:12,280"
+			},
+			"offsets": {
+				"from": 849680,
+				"to": 852280
+			},
+			"text": " the problem with the scheme that I've described so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,280",
+				"to": "00:14:16,960"
+			},
+			"offsets": {
+				"from": 852280,
+				"to": 856960
+			},
+			"text": " is that what if the miner actually incorrectly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,960",
+				"to": "00:14:19,200"
+			},
+			"offsets": {
+				"from": 856960,
+				"to": 859200
+			},
+			"text": " applies the erasure code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,200",
+				"to": "00:14:22,320"
+			},
+			"offsets": {
+				"from": 859200,
+				"to": 862320
+			},
+			"text": " So what if they just insert gibberish"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,320",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 862320,
+				"to": 865360
+			},
+			"text": " in the extended part of the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:27,960"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 867960
+			},
+			"text": " So then that would be useful to anyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,960",
+				"to": "00:14:32,120"
+			},
+			"offsets": {
+				"from": 867960,
+				"to": 872120
+			},
+			"text": " because then if you actually lose 50% of the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,120",
+				"to": "00:14:34,560"
+			},
+			"offsets": {
+				"from": 872120,
+				"to": 874560
+			},
+			"text": " then that gibberish data is not going to help you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,560",
+				"to": "00:14:37,200"
+			},
+			"offsets": {
+				"from": 874560,
+				"to": 877200
+			},
+			"text": " to reconstruct the entire block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,200",
+				"to": "00:14:41,600"
+			},
+			"offsets": {
+				"from": 877200,
+				"to": 881600
+			},
+			"text": " So if you wanted to prove this to your like clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,600",
+				"to": "00:14:43,200"
+			},
+			"offsets": {
+				"from": 881600,
+				"to": 883200
+			},
+			"text": " then you would basically have to give them"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,200",
+				"to": "00:14:45,440"
+			},
+			"offsets": {
+				"from": 883200,
+				"to": 885440
+			},
+			"text": " the entire original data, and then they"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,440",
+				"to": "00:14:48,560"
+			},
+			"offsets": {
+				"from": 885440,
+				"to": 888560
+			},
+			"text": " would have to recompute the erasure code themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,560",
+				"to": "00:14:50,200"
+			},
+			"offsets": {
+				"from": 888560,
+				"to": 890200
+			},
+			"text": " to check that it's correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,200",
+				"to": "00:14:51,560"
+			},
+			"offsets": {
+				"from": 890200,
+				"to": 891560
+			},
+			"text": " And this is going back to square one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,560",
+				"to": "00:14:56,120"
+			},
+			"offsets": {
+				"from": 891560,
+				"to": 896120
+			},
+			"text": " because you need the entire block to do this check."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,120",
+				"to": "00:14:59,040"
+			},
+			"offsets": {
+				"from": 896120,
+				"to": 899040
+			},
+			"text": " So the forward proof would be equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,040",
+				"to": "00:15:01,120"
+			},
+			"offsets": {
+				"from": 899040,
+				"to": 901120
+			},
+			"text": " to the size of the block itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,120",
+				"to": "00:15:03,840"
+			},
+			"offsets": {
+				"from": 901120,
+				"to": 903840
+			},
+			"text": " And that's what we're trying to avoid in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,840",
+				"to": "00:15:06,840"
+			},
+			"offsets": {
+				"from": 903840,
+				"to": 906840
+			},
+			"text": " So the way to fix this is that you could use"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,840",
+				"to": "00:15:09,960"
+			},
+			"offsets": {
+				"from": 906840,
+				"to": 909960
+			},
+			"text": " multi-dimensional erasure coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,960",
+				"to": "00:15:13,520"
+			},
+			"offsets": {
+				"from": 909960,
+				"to": 913520
+			},
+			"text": " And the idea of multi-dimensional erasure coding"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,520",
+				"to": "00:15:19,840"
+			},
+			"offsets": {
+				"from": 913520,
+				"to": 919840
+			},
+			"text": " is that you basically arrange your block data into a square."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,840",
+				"to": "00:15:22,040"
+			},
+			"offsets": {
+				"from": 919840,
+				"to": 922040
+			},
+			"text": " So you call it up into a number of pieces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,040",
+				"to": "00:15:26,120"
+			},
+			"offsets": {
+				"from": 922040,
+				"to": 926120
+			},
+			"text": " and you arrange those pieces into a square."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,120",
+				"to": "00:15:29,600"
+			},
+			"offsets": {
+				"from": 926120,
+				"to": 929600
+			},
+			"text": " And then you apply the erasure coding one by one"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,600",
+				"to": "00:15:32,560"
+			},
+			"offsets": {
+				"from": 929600,
+				"to": 932560
+			},
+			"text": " on each row and column of this square"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,560",
+				"to": "00:15:36,680"
+			},
+			"offsets": {
+				"from": 932560,
+				"to": 936680
+			},
+			"text": " until you can extend it into a bigger square."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,680",
+				"to": "00:15:39,680"
+			},
+			"offsets": {
+				"from": 936680,
+				"to": 939680
+			},
+			"text": " And so if one of these rows and columns"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,680",
+				"to": "00:15:43,560"
+			},
+			"offsets": {
+				"from": 939680,
+				"to": 943560
+			},
+			"text": " were incorrectly extended, then the size of the forward proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,560",
+				"to": "00:15:46,120"
+			},
+			"offsets": {
+				"from": 943560,
+				"to": 946120
+			},
+			"text": " would be limited to a single row or column,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,120",
+				"to": "00:15:48,840"
+			},
+			"offsets": {
+				"from": 946120,
+				"to": 948840
+			},
+			"text": " because only the like client would only"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,840",
+				"to": "00:15:54,840"
+			},
+			"offsets": {
+				"from": 948840,
+				"to": 954840
+			},
+			"text": " have to make proof that one row or column is incorrectly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,840",
+				"to": "00:15:58,800"
+			},
+			"offsets": {
+				"from": 954840,
+				"to": 958800
+			},
+			"text": " computed to be able to know that the block is invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,760",
+				"to": "00:16:02,480"
+			},
+			"offsets": {
+				"from": 959760,
+				"to": 962480
+			},
+			"text": " And this is much better because this has efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,480",
+				"to": "00:16:09,720"
+			},
+			"offsets": {
+				"from": 962480,
+				"to": 969720
+			},
+			"text": " of O square root of the block size rather than O block size."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,720",
+				"to": "00:16:13,760"
+			},
+			"offsets": {
+				"from": 969720,
+				"to": 973760
+			},
+			"text": " And with this 2D coding scheme--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,760",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 973760,
+				"to": 976000
+			},
+			"text": " so in the example here, I'm using two-dimensional"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:18,760"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 978760
+			},
+			"text": " encoding-- but you could use higher dimensions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,760",
+				"to": "00:16:20,160"
+			},
+			"offsets": {
+				"from": 978760,
+				"to": 980160
+			},
+			"text": " if you wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,160",
+				"to": "00:16:21,640"
+			},
+			"offsets": {
+				"from": 980160,
+				"to": 981640
+			},
+			"text": " Although personally, I don't think it's worth it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,640",
+				"to": "00:16:23,800"
+			},
+			"offsets": {
+				"from": 981640,
+				"to": 983800
+			},
+			"text": " because there are other trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,800",
+				"to": "00:16:30,440"
+			},
+			"offsets": {
+				"from": 983800,
+				"to": 990440
+			},
+			"text": " So with this scheme, a miner would have to hide 25% of the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,440",
+				"to": "00:16:33,800"
+			},
+			"offsets": {
+				"from": 990440,
+				"to": 993800
+			},
+			"text": " to hide the whole square."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,800",
+				"to": "00:16:40,360"
+			},
+			"offsets": {
+				"from": 993800,
+				"to": 1000360
+			},
+			"text": " So here's a graph showing, given a like client that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,360",
+				"to": "00:16:44,160"
+			},
+			"offsets": {
+				"from": 1000360,
+				"to": 1004160
+			},
+			"text": " makes s samples, what is the probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,160",
+				"to": "00:16:49,400"
+			},
+			"offsets": {
+				"from": 1004160,
+				"to": 1009400
+			},
+			"text": " that they will land on an unavailable part of the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,400",
+				"to": "00:16:53,520"
+			},
+			"offsets": {
+				"from": 1009400,
+				"to": 1013520
+			},
+			"text": " if the miner has hidden 25% of the square?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,520",
+				"to": "00:16:57,080"
+			},
+			"offsets": {
+				"from": 1013520,
+				"to": 1017080
+			},
+			"text": " And the higher the probability, then the higher the probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,080",
+				"to": "00:17:01,800"
+			},
+			"offsets": {
+				"from": 1017080,
+				"to": 1021800
+			},
+			"text": " of a like client detecting that a block is not available."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,800",
+				"to": "00:17:03,800"
+			},
+			"offsets": {
+				"from": 1021800,
+				"to": 1023800
+			},
+			"text": " So we want the probability to be high."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,800",
+				"to": "00:17:06,760"
+			},
+			"offsets": {
+				"from": 1023800,
+				"to": 1026760
+			},
+			"text": " And you can see here that if you do say--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,760",
+				"to": "00:17:10,920"
+			},
+			"offsets": {
+				"from": 1026760,
+				"to": 1030920
+			},
+			"text": " after 3 samples, the probability is about 60%."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,920",
+				"to": "00:17:14,440"
+			},
+			"offsets": {
+				"from": 1030920,
+				"to": 1034440
+			},
+			"text": " After 15 samples, the probability is about 99%."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,440",
+				"to": "00:17:17,400"
+			},
+			"offsets": {
+				"from": 1034440,
+				"to": 1037400
+			},
+			"text": " So you can get very high probabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,400",
+				"to": "00:17:21,200"
+			},
+			"offsets": {
+				"from": 1037400,
+				"to": 1041200
+			},
+			"text": " just from a reasonable number of samples."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,200",
+				"to": "00:17:25,760"
+			},
+			"offsets": {
+				"from": 1041200,
+				"to": 1045760
+			},
+			"text": " So some people might consider that 99% is too low."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,760",
+				"to": "00:17:29,840"
+			},
+			"offsets": {
+				"from": 1045760,
+				"to": 1049840
+			},
+			"text": " If you wanted 99.99%, you would need 30 samples."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,840",
+				"to": "00:17:34,680"
+			},
+			"offsets": {
+				"from": 1049840,
+				"to": 1054680
+			},
+			"text": " But I think 99% is reasonable, because what that would basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,680",
+				"to": "00:17:36,840"
+			},
+			"offsets": {
+				"from": 1054680,
+				"to": 1056840
+			},
+			"text": " mean is that if you are a miner and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,840",
+				"to": "00:17:39,800"
+			},
+			"offsets": {
+				"from": 1056840,
+				"to": 1059800
+			},
+			"text": " wanted to do this attack against someone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,800",
+				"to": "00:17:41,360"
+			},
+			"offsets": {
+				"from": 1059800,
+				"to": 1061360
+			},
+			"text": " you would effectively, on average,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,360",
+				"to": "00:17:44,320"
+			},
+			"offsets": {
+				"from": 1061360,
+				"to": 1064320
+			},
+			"text": " need to mine about 100 blocks in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,320",
+				"to": "00:17:47,360"
+			},
+			"offsets": {
+				"from": 1064320,
+				"to": 1067360
+			},
+			"text": " to get a chance of filling the like client that you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,360",
+				"to": "00:17:50,800"
+			},
+			"offsets": {
+				"from": 1067360,
+				"to": 1070800
+			},
+			"text": " to fall into thinking that a block is available when"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,800",
+				"to": "00:17:51,840"
+			},
+			"offsets": {
+				"from": 1070800,
+				"to": 1071840
+			},
+			"text": " it's not."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,840",
+				"to": "00:17:56,400"
+			},
+			"offsets": {
+				"from": 1071840,
+				"to": 1076400
+			},
+			"text": " So that increases the cost of an attack 100x, which I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,400",
+				"to": "00:17:57,600"
+			},
+			"offsets": {
+				"from": 1076400,
+				"to": 1077600
+			},
+			"text": " is quite--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,600",
+				"to": "00:18:01,360"
+			},
+			"offsets": {
+				"from": 1077600,
+				"to": 1081360
+			},
+			"text": " would make it unreasonably expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,360",
+				"to": "00:18:02,840"
+			},
+			"offsets": {
+				"from": 1081360,
+				"to": 1082840
+			},
+			"text": " Yeah, we have some performance measurements."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,840",
+				"to": "00:18:04,400"
+			},
+			"offsets": {
+				"from": 1082840,
+				"to": 1084400
+			},
+			"text": " I'm not going to go into details to them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,400",
+				"to": "00:18:06,200"
+			},
+			"offsets": {
+				"from": 1084400,
+				"to": 1086200
+			},
+			"text": " because I want to take questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,200",
+				"to": "00:18:07,560"
+			},
+			"offsets": {
+				"from": 1086200,
+				"to": 1087560
+			},
+			"text": " But everything is quite efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,560",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1087560,
+				"to": 1090520
+			},
+			"text": " So under these parameters, I'm assuming"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:12,520"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1092520
+			},
+			"text": " that you have an intermediate state route"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,520",
+				"to": "00:18:15,080"
+			},
+			"offsets": {
+				"from": 1092520,
+				"to": 1095080
+			},
+			"text": " after every 10 transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,080",
+				"to": "00:18:19,600"
+			},
+			"offsets": {
+				"from": 1095080,
+				"to": 1099600
+			},
+			"text": " So the size of the state forward proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,600",
+				"to": "00:18:21,800"
+			},
+			"offsets": {
+				"from": 1099600,
+				"to": 1101800
+			},
+			"text": " would be about 14 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,800",
+				"to": "00:18:25,200"
+			},
+			"offsets": {
+				"from": 1101800,
+				"to": 1105200
+			},
+			"text": " Everything is less than a few kilobytes, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,200",
+				"to": "00:18:28,760"
+			},
+			"offsets": {
+				"from": 1105200,
+				"to": 1108760
+			},
+			"text": " The biggest trade-off, though, is that if you're a like client"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,760",
+				"to": "00:18:34,200"
+			},
+			"offsets": {
+				"from": 1108760,
+				"to": 1114200
+			},
+			"text": " that wants to have a guarantee that the data is available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,200",
+				"to": "00:18:37,560"
+			},
+			"offsets": {
+				"from": 1114200,
+				"to": 1117560
+			},
+			"text": " then you also have to actually download something"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,560",
+				"to": "00:18:40,280"
+			},
+			"offsets": {
+				"from": 1117560,
+				"to": 1120280
+			},
+			"text": " called the access routes, which are basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,280",
+				"to": "00:18:44,080"
+			},
+			"offsets": {
+				"from": 1120280,
+				"to": 1124080
+			},
+			"text": " every single row and column in this square"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,080",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1124080,
+				"to": 1127240
+			},
+			"text": " has its own medical route that you have to download."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:52,240"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1132240
+			},
+			"text": " And that does increase the header by about 10x."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,240",
+				"to": "00:18:53,400"
+			},
+			"offsets": {
+				"from": 1132240,
+				"to": 1133400
+			},
+			"text": " But you only have to do this if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,400",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1133400,
+				"to": 1135000
+			},
+			"text": " do want the data availability guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:57,400"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1137400
+			},
+			"text": " You can still run super light clients, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,400",
+				"to": "00:18:59,600"
+			},
+			"offsets": {
+				"from": 1137400,
+				"to": 1139600
+			},
+			"text": " have no data availability guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,600",
+				"to": "00:19:02,640"
+			},
+			"offsets": {
+				"from": 1139600,
+				"to": 1142640
+			},
+			"text": " But I think this is quite a reasonable trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,640",
+				"to": "00:19:12,200"
+			},
+			"offsets": {
+				"from": 1142640,
+				"to": 1152200
+			},
+			"text": " And in terms of computation, it's all quite efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,200",
+				"to": "00:19:14,840"
+			},
+			"offsets": {
+				"from": 1152200,
+				"to": 1154840
+			},
+			"text": " Generating the state forward proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,840",
+				"to": "00:19:16,080"
+			},
+			"offsets": {
+				"from": 1154840,
+				"to": 1156080
+			},
+			"text": " looked quite expensive here, but that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,080",
+				"to": "00:19:18,600"
+			},
+			"offsets": {
+				"from": 1156080,
+				"to": 1158600
+			},
+			"text": " because my sparse medical tree implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,600",
+				"to": "00:19:21,040"
+			},
+			"offsets": {
+				"from": 1158600,
+				"to": 1161040
+			},
+			"text": " is quite inefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,040",
+				"to": "00:19:24,840"
+			},
+			"offsets": {
+				"from": 1161040,
+				"to": 1164840
+			},
+			"text": " Verifying sample responses, verifying availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,840",
+				"to": "00:19:27,840"
+			},
+			"offsets": {
+				"from": 1164840,
+				"to": 1167840
+			},
+			"text": " foot proofs are all in sub-millisecond times."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,840",
+				"to": "00:19:31,240"
+			},
+			"offsets": {
+				"from": 1167840,
+				"to": 1171240
+			},
+			"text": " So it's all quite efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,240",
+				"to": "00:19:32,600"
+			},
+			"offsets": {
+				"from": 1171240,
+				"to": 1172600
+			},
+			"text": " So if you want to look at the paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,600",
+				"to": "00:19:33,600"
+			},
+			"offsets": {
+				"from": 1172600,
+				"to": 1173600
+			},
+			"text": " the link is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,600",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1173600,
+				"to": 1175000
+			},
+			"text": " Code is in GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:39,120"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1179120
+			},
+			"text": " We have the code for the data availability code."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,120",
+				"to": "00:19:41,320"
+			},
+			"offsets": {
+				"from": 1179120,
+				"to": 1181320
+			},
+			"text": " They're using a regi coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,320",
+				"to": "00:19:42,800"
+			},
+			"offsets": {
+				"from": 1181320,
+				"to": 1182800
+			},
+			"text": " Also a sparse medical tree implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,800",
+				"to": "00:19:45,480"
+			},
+			"offsets": {
+				"from": 1182800,
+				"to": 1185480
+			},
+			"text": " can go on a prototype for the foot proofs itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,480",
+				"to": "00:19:45,980"
+			},
+			"offsets": {
+				"from": 1185480,
+				"to": 1185980
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,980",
+				"to": "00:19:46,960"
+			},
+			"offsets": {
+				"from": 1185980,
+				"to": 1186960
+			},
+			"text": " I'll take some questions now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,960",
+				"to": "00:19:57,400"
+			},
+			"offsets": {
+				"from": 1186960,
+				"to": 1197400
+			},
+			"text": " The reason for not adding another dimension"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,400",
+				"to": "00:20:02,800"
+			},
+			"offsets": {
+				"from": 1197400,
+				"to": 1202800
+			},
+			"text": " is just the amount that the miner needs to fake."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,800",
+				"to": "00:20:06,400"
+			},
+			"offsets": {
+				"from": 1202800,
+				"to": 1206400
+			},
+			"text": " So actually, if you add more dimensions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,400",
+				"to": "00:20:09,920"
+			},
+			"offsets": {
+				"from": 1206400,
+				"to": 1209920
+			},
+			"text": " it makes it worse from a ballistic perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,920",
+				"to": "00:20:13,840"
+			},
+			"offsets": {
+				"from": 1209920,
+				"to": 1213840
+			},
+			"text": " because the miner has to hide less part of the pieces of block"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,840",
+				"to": "00:20:15,040"
+			},
+			"offsets": {
+				"from": 1213840,
+				"to": 1215040
+			},
+			"text": " to hide the whole block."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,040",
+				"to": "00:20:17,360"
+			},
+			"offsets": {
+				"from": 1215040,
+				"to": 1217360
+			},
+			"text": " It's like with the one-dimensional scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,360",
+				"to": "00:20:18,840"
+			},
+			"offsets": {
+				"from": 1217360,
+				"to": 1218840
+			},
+			"text": " you have to hide 50%."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,840",
+				"to": "00:20:21,280"
+			},
+			"offsets": {
+				"from": 1218840,
+				"to": 1221280
+			},
+			"text": " With the two-dimensional scheme, you only have to hide 25%."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,280",
+				"to": "00:20:22,920"
+			},
+			"offsets": {
+				"from": 1221280,
+				"to": 1222920
+			},
+			"text": " With a three-dimensional scheme, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,920",
+				"to": "00:20:24,840"
+			},
+			"offsets": {
+				"from": 1222920,
+				"to": 1224840
+			},
+			"text": " have to hide 12.5%."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,840",
+				"to": "00:20:28,360"
+			},
+			"offsets": {
+				"from": 1224840,
+				"to": 1228360
+			},
+			"text": " So that means you have to sample more sizes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,360",
+				"to": "00:20:30,520"
+			},
+			"offsets": {
+				"from": 1228360,
+				"to": 1230520
+			},
+			"text": " to get the same sample more pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,520",
+				"to": "00:20:33,640"
+			},
+			"offsets": {
+				"from": 1230520,
+				"to": 1233640
+			},
+			"text": " to get the same probability of guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,640",
+				"to": "00:20:36,320"
+			},
+			"offsets": {
+				"from": 1233640,
+				"to": 1236320
+			},
+			"text": " And also the other problem with having higher dimensions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,320",
+				"to": "00:20:40,600"
+			},
+			"offsets": {
+				"from": 1236320,
+				"to": 1240600
+			},
+			"text": " is that it dramatically increases the number of medical routes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,600",
+				"to": "00:20:42,280"
+			},
+			"offsets": {
+				"from": 1240600,
+				"to": 1242280
+			},
+			"text": " that a black client has to download."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,280",
+				"to": "00:20:43,640"
+			},
+			"offsets": {
+				"from": 1242280,
+				"to": 1243640
+			},
+			"text": " So I don't really think it's worse"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,640",
+				"to": "00:20:46,440"
+			},
+			"offsets": {
+				"from": 1243640,
+				"to": 1246440
+			},
+			"text": " than unless you have insane large block size"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,440",
+				"to": "00:20:49,440"
+			},
+			"offsets": {
+				"from": 1246440,
+				"to": 1249440
+			},
+			"text": " or like insane large intervals between blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,440",
+				"to": "00:20:53,240"
+			},
+			"offsets": {
+				"from": 1249440,
+				"to": 1253240
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,240",
+				"to": "00:20:58,400"
+			},
+			"offsets": {
+				"from": 1253240,
+				"to": 1258400
+			},
+			"text": " So could this scheme be used in the context of plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,400",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1258400,
+				"to": 1264000
+			},
+			"text": " to force essentially the operating party to essentially--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:07,520"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1267520
+			},
+			"text": " either they provide the proof or they get slashed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,520",
+				"to": "00:21:10,840"
+			},
+			"offsets": {
+				"from": 1267520,
+				"to": 1270840
+			},
+			"text": " Because as far as I'm concerned, this allows somebody to just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,840",
+				"to": "00:21:15,320"
+			},
+			"offsets": {
+				"from": 1270840,
+				"to": 1275320
+			},
+			"text": " you cannot know if the provider of the proof is unavailable"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,320",
+				"to": "00:21:18,480"
+			},
+			"offsets": {
+				"from": 1275320,
+				"to": 1278480
+			},
+			"text": " if they're attacked or if they're adjustment issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,480",
+				"to": "00:21:20,360"
+			},
+			"offsets": {
+				"from": 1278480,
+				"to": 1280360
+			},
+			"text": " So I'm not an expert on plasma, but there"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,360",
+				"to": "00:21:23,120"
+			},
+			"offsets": {
+				"from": 1280360,
+				"to": 1283120
+			},
+			"text": " was a thread on Ethereum research to ask that question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,120",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1283120,
+				"to": 1286000
+			},
+			"text": " And the response was from Vitalik said"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:27,880"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1287880
+			},
+			"text": " that it would be quite reasonable to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,880",
+				"to": "00:21:29,920"
+			},
+			"offsets": {
+				"from": 1287880,
+				"to": 1289920
+			},
+			"text": " It's like if you wanted to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,920",
+				"to": "00:21:31,400"
+			},
+			"offsets": {
+				"from": 1289920,
+				"to": 1291400
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,400",
+				"to": "00:21:32,040"
+			},
+			"offsets": {
+				"from": 1291400,
+				"to": 1292040
+			},
+			"text": " Sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,040",
+				"to": "00:21:34,080"
+			},
+			"offsets": {
+				"from": 1292040,
+				"to": 1294080
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,080",
+				"to": "00:21:36,120"
+			},
+			"offsets": {
+				"from": 1294080,
+				"to": 1296120
+			},
+			"text": " Yeah, with the deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,120",
+				"to": "00:21:38,480"
+			},
+			"offsets": {
+				"from": 1296120,
+				"to": 1298480
+			},
+			"text": " I think it would be quite reasonable to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,480",
+				"to": "00:21:43,560"
+			},
+			"offsets": {
+				"from": 1298480,
+				"to": 1303560
+			},
+			"text": " And if you wanted to make the plasma operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,560",
+				"to": "00:21:46,440"
+			},
+			"offsets": {
+				"from": 1303560,
+				"to": 1306440
+			},
+			"text": " erase your code dead blocks and then make the clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,440",
+				"to": "00:21:48,920"
+			},
+			"offsets": {
+				"from": 1306440,
+				"to": 1308920
+			},
+			"text": " have to do samples."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,920",
+				"to": "00:21:51,800"
+			},
+			"offsets": {
+				"from": 1308920,
+				"to": 1311800
+			},
+			"text": " And maybe you could even actually make it on the main chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,800",
+				"to": "00:21:55,560"
+			},
+			"offsets": {
+				"from": 1311800,
+				"to": 1315560
+			},
+			"text": " that after some amount of time or after some delay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,560",
+				"to": "00:21:59,760"
+			},
+			"offsets": {
+				"from": 1315560,
+				"to": 1319760
+			},
+			"text": " you have the main chain sample some of the pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,760",
+				"to": "00:22:01,520"
+			},
+			"offsets": {
+				"from": 1319760,
+				"to": 1321520
+			},
+			"text": " as well for extra security."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,520",
+				"to": "00:22:04,060"
+			},
+			"offsets": {
+				"from": 1321520,
+				"to": 1324060
+			},
+			"text": " That would be great because it already uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,060",
+				"to": "00:22:04,960"
+			},
+			"offsets": {
+				"from": 1324060,
+				"to": 1324960
+			},
+			"text": " pastors to increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,960",
+				"to": "00:22:05,480"
+			},
+			"offsets": {
+				"from": 1324960,
+				"to": 1325480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,480",
+				"to": "00:22:09,080"
+			},
+			"offsets": {
+				"from": 1325480,
+				"to": 1329080
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,080",
+				"to": "00:22:10,760"
+			},
+			"offsets": {
+				"from": 1329080,
+				"to": 1330760
+			},
+			"text": " Yeah, I think it would be quite reasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,760",
+				"to": "00:22:12,760"
+			},
+			"offsets": {
+				"from": 1330760,
+				"to": 1332760
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,760",
+				"to": "00:22:13,260"
+			},
+			"offsets": {
+				"from": 1332760,
+				"to": 1333260
+			},
+			"text": " Question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,260",
+				"to": "00:22:18,600"
+			},
+			"offsets": {
+				"from": 1333260,
+				"to": 1338600
+			},
+			"text": " Yes, that's-- yeah, OK, that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,600",
+				"to": "00:22:26,800"
+			},
+			"offsets": {
+				"from": 1338600,
+				"to": 1346800
+			},
+			"text": " So I just wondering if you change one entry in the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,800",
+				"to": "00:22:32,800"
+			},
+			"offsets": {
+				"from": 1346800,
+				"to": 1352800
+			},
+			"text": " then how big part of the erasure coding data structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,800",
+				"to": "00:22:33,320"
+			},
+			"offsets": {
+				"from": 1352800,
+				"to": 1353320
+			},
+			"text": " will change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,320",
+				"to": "00:22:37,640"
+			},
+			"offsets": {
+				"from": 1353320,
+				"to": 1357640
+			},
+			"text": " So how does do changes propagate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,640",
+				"to": "00:22:42,160"
+			},
+			"offsets": {
+				"from": 1357640,
+				"to": 1362160
+			},
+			"text": " So what happens if you change the structure of what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,160",
+				"to": "00:22:43,160"
+			},
+			"offsets": {
+				"from": 1362160,
+				"to": 1363160
+			},
+			"text": " Sorry, the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,160",
+				"to": "00:22:46,640"
+			},
+			"offsets": {
+				"from": 1363160,
+				"to": 1366640
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,640",
+				"to": "00:22:54,840"
+			},
+			"offsets": {
+				"from": 1366640,
+				"to": 1374840
+			},
+			"text": " OK, so our data structures are based on three hashing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,840",
+				"to": "00:22:58,400"
+			},
+			"offsets": {
+				"from": 1374840,
+				"to": 1378400
+			},
+			"text": " which means we just change a few entries."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,400",
+				"to": "00:23:03,120"
+			},
+			"offsets": {
+				"from": 1378400,
+				"to": 1383120
+			},
+			"text": " Each state write just changes a single entry."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,120",
+				"to": "00:23:07,520"
+			},
+			"offsets": {
+				"from": 1383120,
+				"to": 1387520
+			},
+			"text": " And the logarithmic number of intermediate try notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,520",
+				"to": "00:23:11,560"
+			},
+			"offsets": {
+				"from": 1387520,
+				"to": 1391560
+			},
+			"text": " So how much data will change in the erasure code"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,560",
+				"to": "00:23:14,960"
+			},
+			"offsets": {
+				"from": 1391560,
+				"to": 1394960
+			},
+			"text": " after each state write?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,960",
+				"to": "00:23:18,720"
+			},
+			"offsets": {
+				"from": 1394960,
+				"to": 1398720
+			},
+			"text": " OK, so let's go back to the erasure code."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,720",
+				"to": "00:23:21,320"
+			},
+			"offsets": {
+				"from": 1398720,
+				"to": 1401320
+			},
+			"text": " So this is the erasure coding version of the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,320",
+				"to": "00:23:22,320"
+			},
+			"offsets": {
+				"from": 1401320,
+				"to": 1402320
+			},
+			"text": " data."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,320",
+				"to": "00:23:27,960"
+			},
+			"offsets": {
+				"from": 1402320,
+				"to": 1407960
+			},
+			"text": " So what you're asking is if you change a single transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,960",
+				"to": "00:23:31,680"
+			},
+			"offsets": {
+				"from": 1407960,
+				"to": 1411680
+			},
+			"text": " how much of the erasure code would change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,680",
+				"to": "00:23:33,520"
+			},
+			"offsets": {
+				"from": 1411680,
+				"to": 1413520
+			},
+			"text": " Well, first of all, I'm not sure why that would matter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,520",
+				"to": "00:23:36,640"
+			},
+			"offsets": {
+				"from": 1413520,
+				"to": 1416640
+			},
+			"text": " because that would change the medical routes as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,640",
+				"to": "00:23:38,560"
+			},
+			"offsets": {
+				"from": 1416640,
+				"to": 1418560
+			},
+			"text": " So I don't think there's a specific attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,560",
+				"to": "00:23:41,840"
+			},
+			"offsets": {
+				"from": 1418560,
+				"to": 1421840
+			},
+			"text": " you can do from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,840",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1421840,
+				"to": 1425000
+			},
+			"text": " But it would actually change--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:46,640"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1426640
+			},
+			"text": " it would change a significant portion."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,640",
+				"to": "00:23:49,560"
+			},
+			"offsets": {
+				"from": 1426640,
+				"to": 1429560
+			},
+			"text": " It wouldn't change the entire erasure code, I think, at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,560",
+				"to": "00:23:51,840"
+			},
+			"offsets": {
+				"from": 1429560,
+				"to": 1431840
+			},
+			"text": " Yeah, so it wouldn't change the entire erasure code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,840",
+				"to": "00:23:54,800"
+			},
+			"offsets": {
+				"from": 1431840,
+				"to": 1434800
+			},
+			"text": " but it would change a significant portion of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,800",
+				"to": "00:23:57,440"
+			},
+			"offsets": {
+				"from": 1434800,
+				"to": 1437440
+			},
+			"text": " So it would change, at least, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,440",
+				"to": "00:24:02,080"
+			},
+			"offsets": {
+				"from": 1437440,
+				"to": 1442080
+			},
+			"text": " that entire fourth quadrant of the square."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,080",
+				"to": "00:24:04,480"
+			},
+			"offsets": {
+				"from": 1442080,
+				"to": 1444480
+			},
+			"text": " But it doesn't really matter, because that would also"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,480",
+				"to": "00:24:08,280"
+			},
+			"offsets": {
+				"from": 1444480,
+				"to": 1448280
+			},
+			"text": " change the medical routes of the rows and columns."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,280",
+				"to": "00:24:10,120"
+			},
+			"offsets": {
+				"from": 1448280,
+				"to": 1450120
+			},
+			"text": " Do you write back here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,120",
+				"to": "00:24:11,960"
+			},
+			"offsets": {
+				"from": 1450120,
+				"to": 1451960
+			},
+			"text": " Do you write?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,960",
+				"to": "00:24:12,800"
+			},
+			"offsets": {
+				"from": 1451960,
+				"to": 1452800
+			},
+			"text": " Do you write?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,800",
+				"to": "00:24:14,640"
+			},
+			"offsets": {
+				"from": 1452800,
+				"to": 1454640
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,640",
+				"to": "00:24:15,720"
+			},
+			"offsets": {
+				"from": 1454640,
+				"to": 1455720
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,720",
+				"to": "00:24:17,720"
+			},
+			"offsets": {
+				"from": 1455720,
+				"to": 1457720
+			},
+			"text": " I was wondering if you guys explored"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,720",
+				"to": "00:24:21,840"
+			},
+			"offsets": {
+				"from": 1457720,
+				"to": 1461840
+			},
+			"text": " more succinct ways of generating and verifying the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,840",
+				"to": "00:24:24,160"
+			},
+			"offsets": {
+				"from": 1461840,
+				"to": 1464160
+			},
+			"text": " Seems to me that it could allow you to go to a higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,160",
+				"to": "00:24:26,760"
+			},
+			"offsets": {
+				"from": 1464160,
+				"to": 1466760
+			},
+			"text": " dimensional--"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,760",
+				"to": "00:24:33,120"
+			},
+			"offsets": {
+				"from": 1466760,
+				"to": 1473120
+			},
+			"text": " yeah, so Vitalik has some blog posts on using things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,120",
+				"to": "00:24:37,280"
+			},
+			"offsets": {
+				"from": 1473120,
+				"to": 1477280
+			},
+			"text": " proof soft proximity to make it possible to verify that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,280",
+				"to": "00:24:42,440"
+			},
+			"offsets": {
+				"from": 1477280,
+				"to": 1482440
+			},
+			"text": " erasure code was constructed correctly without having to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,440",
+				"to": "00:24:44,280"
+			},
+			"offsets": {
+				"from": 1482440,
+				"to": 1484280
+			},
+			"text": " rely on port proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,280",
+				"to": "00:24:46,720"
+			},
+			"offsets": {
+				"from": 1484280,
+				"to": 1486720
+			},
+			"text": " And so this is something completely different."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,720",
+				"to": "00:24:53,640"
+			},
+			"offsets": {
+				"from": 1486720,
+				"to": 1493640
+			},
+			"text": " This would be like, if you wanted to completely eliminate"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,640",
+				"to": "00:24:56,720"
+			},
+			"offsets": {
+				"from": 1493640,
+				"to": 1496720
+			},
+			"text": " foot proofs, then you would need a way for light clients to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,720",
+				"to": "00:25:00,800"
+			},
+			"offsets": {
+				"from": 1496720,
+				"to": 1500800
+			},
+			"text": " succinctly verify that the state transitions in the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,800",
+				"to": "00:25:04,920"
+			},
+			"offsets": {
+				"from": 1500800,
+				"to": 1504920
+			},
+			"text": " were valid and also succinctly verify that the erasure code"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,920",
+				"to": "00:25:06,400"
+			},
+			"offsets": {
+				"from": 1504920,
+				"to": 1506400
+			},
+			"text": " was constructed correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,400",
+				"to": "00:25:08,720"
+			},
+			"offsets": {
+				"from": 1506400,
+				"to": 1508720
+			},
+			"text": " And there are some ideas on how to do that, and they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,720",
+				"to": "00:25:10,560"
+			},
+			"offsets": {
+				"from": 1508720,
+				"to": 1510560
+			},
+			"text": " on Vitalik's blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,560",
+				"to": "00:25:12,560"
+			},
+			"offsets": {
+				"from": 1510560,
+				"to": 1512560
+			},
+			"text": " But there are currently some trade-offs that need to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,560",
+				"to": "00:25:13,520"
+			},
+			"offsets": {
+				"from": 1512560,
+				"to": 1513520
+			},
+			"text": " ironed out."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,520",
+				"to": "00:25:18,160"
+			},
+			"offsets": {
+				"from": 1513520,
+				"to": 1518160
+			},
+			"text": " If I recall correctly, one of the ideas had the drawback of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,160",
+				"to": "00:25:23,080"
+			},
+			"offsets": {
+				"from": 1518160,
+				"to": 1523080
+			},
+			"text": " potentially requiring making medical branches 100 times"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,080",
+				"to": "00:25:25,400"
+			},
+			"offsets": {
+				"from": 1523080,
+				"to": 1525400
+			},
+			"text": " bigger in a worst-case scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,400",
+				"to": "00:25:28,920"
+			},
+			"offsets": {
+				"from": 1525400,
+				"to": 1528920
+			},
+			"text": " But it's definitely something that people are looking into."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,920",
+				"to": "00:25:30,880"
+			},
+			"offsets": {
+				"from": 1528920,
+				"to": 1530880
+			},
+			"text": " Let's give them a stop and another round of applause, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,880",
+				"to": "00:25:33,720"
+			},
+			"offsets": {
+				"from": 1530880,
+				"to": 1533720
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,720",
+				"to": "00:25:43,720"
+			},
+			"offsets": {
+				"from": 1533720,
+				"to": 1543720
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,720",
+				"to": "00:25:53,720"
+			},
+			"offsets": {
+				"from": 1543720,
+				"to": 1553720
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,720",
+				"to": "00:26:03,720"
+			},
+			"offsets": {
+				"from": 1553720,
+				"to": 1563720
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

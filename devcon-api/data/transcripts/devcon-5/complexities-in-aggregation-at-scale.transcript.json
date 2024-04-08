@@ -1,0 +1,2155 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7240
+			},
+			"text": " Hello, my name is Mikhail Kalinin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,240",
+				"to": "00:00:09,520"
+			},
+			"offsets": {
+				"from": 7240,
+				"to": 9520
+			},
+			"text": " I'm from Harmony team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,520",
+				"to": "00:00:15,720"
+			},
+			"offsets": {
+				"from": 9520,
+				"to": 15720
+			},
+			"text": " First of all, I'd like to credit Alex Vlasov, who has been investigating these complexities"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,720",
+				"to": "00:00:16,720"
+			},
+			"offsets": {
+				"from": 15720,
+				"to": 16720
+			},
+			"text": " in aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,720",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 16720,
+				"to": 20840
+			},
+			"text": " Okay, let's move on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 23560
+			},
+			"text": " So here is the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:34,520"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 34520
+			},
+			"text": " We have attestation votes, you are already familiar with them from yesterday's talks about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,520",
+				"to": "00:00:38,440"
+			},
+			"offsets": {
+				"from": 34520,
+				"to": 38440
+			},
+			"text": " Big N Chain Technical introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,440",
+				"to": "00:00:41,760"
+			},
+			"offsets": {
+				"from": 38440,
+				"to": 41760
+			},
+			"text": " So we have cross links to shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,760",
+				"to": "00:00:47,480"
+			},
+			"offsets": {
+				"from": 41760,
+				"to": 47480
+			},
+			"text": " We have finality checkpoints and we have a fork choice vote as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,480",
+				"to": "00:00:53,680"
+			},
+			"offsets": {
+				"from": 47480,
+				"to": 53680
+			},
+			"text": " So the attestation is a very important thing for the Big N Chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,680",
+				"to": "00:00:57,920"
+			},
+			"offsets": {
+				"from": 53680,
+				"to": 57920
+			},
+			"text": " This is how Big N Chain makes the consensus happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,920",
+				"to": "00:01:02,640"
+			},
+			"offsets": {
+				"from": 57920,
+				"to": 62640
+			},
+			"text": " Let's see how it's progressing through a slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,640",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 62640,
+				"to": 70280
+			},
+			"text": " So at the beginning of the slot, a proposer produces a block and sends it to the wire."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:15,880"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 75880
+			},
+			"text": " So all validators can receive it through the wire."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,880",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 75880,
+				"to": 82000
+			},
+			"text": " In the middle of the slot, committees start to produce their attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:26,400"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 86400
+			},
+			"text": " Basically this could happen not in the middle of the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,400",
+				"to": "00:01:33,120"
+			},
+			"offsets": {
+				"from": 86400,
+				"to": 93120
+			},
+			"text": " One may produce a distillation upon receiving this block and importing this to its chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,120",
+				"to": "00:01:42,280"
+			},
+			"offsets": {
+				"from": 93120,
+				"to": 102280
+			},
+			"text": " After that, attesters should deliver their attestations to the proposer of the next block"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,280",
+				"to": "00:01:44,040"
+			},
+			"offsets": {
+				"from": 102280,
+				"to": 104040
+			},
+			"text": " to be included on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,040",
+				"to": "00:01:51,080"
+			},
+			"offsets": {
+				"from": 104040,
+				"to": 111080
+			},
+			"text": " And they are eager to do this because their rewards depend on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,080",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 111080,
+				"to": 119400
+			},
+			"text": " And if a proposer of next slot for some reason fails to include some of those attestations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:06,360"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 126360
+			},
+			"text": " those attestation should be delivered to proposer of the slot after the next one and so force"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,360",
+				"to": "00:02:09,960"
+			},
+			"offsets": {
+				"from": 126360,
+				"to": 129960
+			},
+			"text": " up to 64 slots ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,960",
+				"to": "00:02:15,480"
+			},
+			"offsets": {
+				"from": 129960,
+				"to": 135480
+			},
+			"text": " Okay, so what proposer does with those attestations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,480",
+				"to": "00:02:22,080"
+			},
+			"offsets": {
+				"from": 135480,
+				"to": 142080
+			},
+			"text": " It aggregates them and includes them into a block body."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,080",
+				"to": "00:02:26,280"
+			},
+			"offsets": {
+				"from": 142080,
+				"to": 146280
+			},
+			"text": " Aggregation reduces verification complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,280",
+				"to": "00:02:35,360"
+			},
+			"offsets": {
+				"from": 146280,
+				"to": 155360
+			},
+			"text": " It means that instead of verifying hundreds of signatures, you should, in the best case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,360",
+				"to": "00:02:40,360"
+			},
+			"offsets": {
+				"from": 155360,
+				"to": 160360
+			},
+			"text": " you should verify only one signature and per-comittee."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,360",
+				"to": "00:02:46,800"
+			},
+			"offsets": {
+				"from": 160360,
+				"to": 166800
+			},
+			"text": " It also reduces size demand on the block body."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,800",
+				"to": "00:02:58,680"
+			},
+			"offsets": {
+				"from": 166800,
+				"to": 178680
+			},
+			"text": " This chart shows why access is megabytes of data and access is a million of ETH at stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,680",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 178680,
+				"to": 186040
+			},
+			"text": " So this green line is the aggregated case and orange line is not a gregated case and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:09,320"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 189320
+			},
+			"text": " can see how aggregation saves our lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,320",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 189320,
+				"to": 193200
+			},
+			"text": " So okay, let's talk about attestation delivery."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:17,120"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 197120
+			},
+			"text": " How do we deliver those attestations to a proposer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,120",
+				"to": "00:03:25,800"
+			},
+			"offsets": {
+				"from": 197120,
+				"to": 205800
+			},
+			"text": " We might probably do direct delivery, just send those attestations directly to, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,800",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 205800,
+				"to": 212640
+			},
+			"text": " say, five or ten proposers of the next blocks, whatever number we find reasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:37,280"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 217280
+			},
+			"text": " But this way is very efficient and fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,280",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 217280,
+				"to": 220840
+			},
+			"text": " But in that case, we are really in proposer identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:51,480"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 231480
+			},
+			"text": " It means that adversary may match proposer public key and its network ID and organize a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,480",
+				"to": "00:03:57,040"
+			},
+			"offsets": {
+				"from": 231480,
+				"to": 237040
+			},
+			"text": " coordinated attack to this particular proposer and kick them off of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,040",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 237040,
+				"to": 239320
+			},
+			"text": " So we are not doing it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:05,320"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 245320
+			},
+			"text": " Instead of this, we are using a P2P overlay that includes all validators of the big-end"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,320",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 245320,
+				"to": 250200
+			},
+			"text": " chain and gossiping the attestations through this overlay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:12,600"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 252600
+			},
+			"text": " So everybody is happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,600",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 252600,
+				"to": 260000
+			},
+			"text": " Everybody, all proposers, receiving those attestations, nobody knows who a proposers, who proposers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:21,400"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 261400
+			},
+			"text": " are."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,400",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 261400,
+				"to": 269320
+			},
+			"text": " And this P2P overlay is big enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:37,440"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 277440
+			},
+			"text": " Everybody knows that there are some validators in it, but it's hard to organize an attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,440",
+				"to": "00:04:43,360"
+			},
+			"offsets": {
+				"from": 277440,
+				"to": 283360
+			},
+			"text": " on this because there are just a lot of nodes and nobody knows who is the proposer of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,360",
+				"to": "00:04:47,840"
+			},
+			"offsets": {
+				"from": 283360,
+				"to": 287840
+			},
+			"text": " next lot or who are the participants of the committee in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,840",
+				"to": "00:04:52,480"
+			},
+			"offsets": {
+				"from": 287840,
+				"to": 292480
+			},
+			"text": " Because identity is not reveal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,480",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 292480,
+				"to": 302240
+			},
+			"text": " That gossiping to everybody, gossiping in the P2P overlay is prone to Byzantine failures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:15,200"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 315200
+			},
+			"text": " And to cope with Byzantine failures, we have to keep the degree of the P2P mesh on a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,200",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 315200,
+				"to": 317000
+			},
+			"text": " level."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:19,280"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 319280
+			},
+			"text": " And it brings redundancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,280",
+				"to": "00:05:25,400"
+			},
+			"offsets": {
+				"from": 319280,
+				"to": 325400
+			},
+			"text": " The degree is the parameter that is just a number of peers that your peer is connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,400",
+				"to": "00:05:26,680"
+			},
+			"offsets": {
+				"from": 325400,
+				"to": 326680
+			},
+			"text": " to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,680",
+				"to": "00:05:35,560"
+			},
+			"offsets": {
+				"from": 326680,
+				"to": 335560
+			},
+			"text": " So let's say your peer is connected to 10 peers and you are receiving the same attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,560",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 335560,
+				"to": 343000
+			},
+			"text": " message from five of them and sending this attestation propagating this attestation message"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:44,400"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 344400
+			},
+			"text": " to the other five."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,400",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 344400,
+				"to": 348520
+			},
+			"text": " So we have redundancy by a factor of five."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:56,880"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 356880
+			},
+			"text": " And these redundancies about inbound and outbound traffic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,880",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 356880,
+				"to": 366200
+			},
+			"text": " And also nodes must do verification to prevent epidemic attacks where the network can be flooded"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:10,640"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 370640
+			},
+			"text": " by just bad attestation in Walid."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,640",
+				"to": "00:06:15,680"
+			},
+			"offsets": {
+				"from": 370640,
+				"to": 375680
+			},
+			"text": " And this brings high demand on resources at scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,680",
+				"to": "00:06:25,600"
+			},
+			"offsets": {
+				"from": 375680,
+				"to": 385600
+			},
+			"text": " So these numbers are a factor of redundancy in the P2P of the P2P mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,600",
+				"to": "00:06:30,920"
+			},
+			"offsets": {
+				"from": 385600,
+				"to": 390920
+			},
+			"text": " And this like triple redundancy is a blue line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,920",
+				"to": "00:06:34,680"
+			},
+			"offsets": {
+				"from": 390920,
+				"to": 394680
+			},
+			"text": " And if probably only for zero we are okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,680",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 394680,
+				"to": 395680
+			},
+			"text": " We are here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:36,680"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 396680
+			},
+			"text": " Where is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,680",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 396680,
+				"to": 397680
+			},
+			"text": " 10 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:48,880"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 408880
+			},
+			"text": " But when we start to approach to 50 million ETH we are having like 50 megabits per second"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,880",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 408880,
+				"to": 411440
+			},
+			"text": " as a requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:57,080"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 417080
+			},
+			"text": " And this is calculated for six seconds per slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,080",
+				"to": "00:07:00,040"
+			},
+			"offsets": {
+				"from": 417080,
+				"to": 420040
+			},
+			"text": " What do we do with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,040",
+				"to": "00:07:10,160"
+			},
+			"offsets": {
+				"from": 420040,
+				"to": 430160
+			},
+			"text": " Instead of sending single attestation to this P2P mesh where we want to partially aggregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,160",
+				"to": "00:07:20,200"
+			},
+			"offsets": {
+				"from": 430160,
+				"to": 440200
+			},
+			"text": " them in relatively small overlays and only after that send it to the beacon attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,200",
+				"to": "00:07:23,560"
+			},
+			"offsets": {
+				"from": 440200,
+				"to": 443560
+			},
+			"text": " where everybody signed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,560",
+				"to": "00:07:29,200"
+			},
+			"offsets": {
+				"from": 443560,
+				"to": 449200
+			},
+			"text": " This is where aggregating overlays comes into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,200",
+				"to": "00:07:32,520"
+			},
+			"offsets": {
+				"from": 449200,
+				"to": 452520
+			},
+			"text": " So what options do we have for those overlays?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,520",
+				"to": "00:07:40,520"
+			},
+			"offsets": {
+				"from": 452520,
+				"to": 460520
+			},
+			"text": " We can build them for each epoch because we know what committees are in each epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,520",
+				"to": "00:07:43,920"
+			},
+			"offsets": {
+				"from": 460520,
+				"to": 463920
+			},
+			"text": " 64 slot beforehand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,920",
+				"to": "00:07:45,920"
+			},
+			"offsets": {
+				"from": 463920,
+				"to": 465920
+			},
+			"text": " It's like six minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,920",
+				"to": "00:07:51,920"
+			},
+			"offsets": {
+				"from": 465920,
+				"to": 471920
+			},
+			"text": " So we could probably just build them for each epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,920",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 471920,
+				"to": 477440
+			},
+			"text": " Or there is another option and to use short subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:08:03,760"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 483760
+			},
+			"text": " These are like natural overlays for the ETH 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,760",
+				"to": "00:08:10,560"
+			},
+			"offsets": {
+				"from": 483760,
+				"to": 490560
+			},
+			"text": " So the requirements are to the overlay are like first of all it should be relatively small"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,560",
+				"to": "00:08:16,820"
+			},
+			"offsets": {
+				"from": 490560,
+				"to": 496820
+			},
+			"text": " and efficient enough to do this partial aggregation and infractions of slot because we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,820",
+				"to": "00:08:20,840"
+			},
+			"offsets": {
+				"from": 496820,
+				"to": 500840
+			},
+			"text": " send those aggregates to that P2P mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,840",
+				"to": "00:08:25,520"
+			},
+			"offsets": {
+				"from": 500840,
+				"to": 505520
+			},
+			"text": " So it takes -- we are restricted in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,520",
+				"to": "00:08:28,800"
+			},
+			"offsets": {
+				"from": 505520,
+				"to": 508800
+			},
+			"text": " So it should be incentivized."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,800",
+				"to": "00:08:33,440"
+			},
+			"offsets": {
+				"from": 508800,
+				"to": 513440
+			},
+			"text": " The participants of these overlays should be incentivized to do the aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,440",
+				"to": "00:08:40,760"
+			},
+			"offsets": {
+				"from": 513440,
+				"to": 520760
+			},
+			"text": " And the only ones who are incentivized is the committees that produce those attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,760",
+				"to": "00:08:44,440"
+			},
+			"offsets": {
+				"from": 520760,
+				"to": 524440
+			},
+			"text": " It should be business intolerant, being relatively small."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,440",
+				"to": "00:08:51,320"
+			},
+			"offsets": {
+				"from": 524440,
+				"to": 531320
+			},
+			"text": " It should be tolerant to kind of C-bill and Eclipse attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,320",
+				"to": "00:08:58,640"
+			},
+			"offsets": {
+				"from": 531320,
+				"to": 538640
+			},
+			"text": " And if we want to build the overlay for each epoch, we have 6.5 minutes to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,640",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 538640,
+				"to": 541720
+			},
+			"text": " So this is the time restriction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:02,720"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 542720
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,720",
+				"to": "00:09:13,120"
+			},
+			"offsets": {
+				"from": 542720,
+				"to": 553120
+			},
+			"text": " So parabola overlays are very efficient because you can build this overlay with whatever topology"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,120",
+				"to": "00:09:16,040"
+			},
+			"offsets": {
+				"from": 553120,
+				"to": 556040
+			},
+			"text": " and properties that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,040",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 556040,
+				"to": 561200
+			},
+			"text": " And it could be after that leveraged by your aggregation strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:28,680"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 568680
+			},
+			"text": " But the drawback of that is that you need a reliable source of peers within a small amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,680",
+				"to": "00:09:30,240"
+			},
+			"offsets": {
+				"from": 568680,
+				"to": 570240
+			},
+			"text": " of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,240",
+				"to": "00:09:36,240"
+			},
+			"offsets": {
+				"from": 570240,
+				"to": 576240
+			},
+			"text": " And the topic discovery will probably not help here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,240",
+				"to": "00:09:41,600"
+			},
+			"offsets": {
+				"from": 576240,
+				"to": 581600
+			},
+			"text": " Because if you don't have a reliable source of peers, your overlay will be prone to C-bill"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,600",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 581600,
+				"to": 583000
+			},
+			"text": " and Eclipse attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:49,280"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 589280
+			},
+			"text": " So this is a very difficult part of building this overlay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,280",
+				"to": "00:09:50,920"
+			},
+			"offsets": {
+				"from": 589280,
+				"to": 590920
+			},
+			"text": " We can use shards of nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,920",
+				"to": "00:09:51,920"
+			},
+			"offsets": {
+				"from": 590920,
+				"to": 591920
+			},
+			"text": " They already exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,920",
+				"to": "00:10:03,360"
+			},
+			"offsets": {
+				"from": 591920,
+				"to": 603360
+			},
+			"text": " They are relatively big and they're like more long-playing network units."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,360",
+				"to": "00:10:10,280"
+			},
+			"offsets": {
+				"from": 603360,
+				"to": 610280
+			},
+			"text": " And hence, they are resistant to kind of attacks like Eclipse and C-bill."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,280",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 610280,
+				"to": 617760
+			},
+			"text": " And but the problem is that one committee is spread across all the shards of nets."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:26,080"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 626080
+			},
+			"text": " So let's say you have 10 peers, 10 validators of one committee in shards of net number one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,080",
+				"to": "00:10:29,560"
+			},
+			"offsets": {
+				"from": 626080,
+				"to": 629560
+			},
+			"text": " then in shards of net number five and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,560",
+				"to": "00:10:33,280"
+			},
+			"offsets": {
+				"from": 629560,
+				"to": 633280
+			},
+			"text": " And they just can't talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,280",
+				"to": "00:10:36,560"
+			},
+			"offsets": {
+				"from": 633280,
+				"to": 636560
+			},
+			"text": " That is the problem for the aggregation strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,560",
+				"to": "00:10:38,760"
+			},
+			"offsets": {
+				"from": 636560,
+				"to": 638760
+			},
+			"text": " So two strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,760",
+				"to": "00:10:40,760"
+			},
+			"offsets": {
+				"from": 638760,
+				"to": 640760
+			},
+			"text": " So one is coordinated."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,760",
+				"to": "00:10:42,200"
+			},
+			"offsets": {
+				"from": 640760,
+				"to": 642200
+			},
+			"text": " It's like Handel."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,200",
+				"to": "00:10:45,040"
+			},
+			"offsets": {
+				"from": 642200,
+				"to": 645040
+			},
+			"text": " You probably heard about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,040",
+				"to": "00:10:49,240"
+			},
+			"offsets": {
+				"from": 645040,
+				"to": 649240
+			},
+			"text": " It's very like optimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,240",
+				"to": "00:10:57,640"
+			},
+			"offsets": {
+				"from": 649240,
+				"to": 657640
+			},
+			"text": " So you can get clean aggregates without overlapping with lower network demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,640",
+				"to": "00:11:04,280"
+			},
+			"offsets": {
+				"from": 657640,
+				"to": 664280
+			},
+			"text": " But this kind of strategies requires those overlays to be built, very epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,280",
+				"to": "00:11:09,960"
+			},
+			"offsets": {
+				"from": 664280,
+				"to": 669960
+			},
+			"text": " And we have this difficulty with reliable source of peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,960",
+				"to": "00:11:17,080"
+			},
+			"offsets": {
+				"from": 669960,
+				"to": 677080
+			},
+			"text": " And they are not P2B friendly, so it should be -- there should exist direct connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,080",
+				"to": "00:11:19,640"
+			},
+			"offsets": {
+				"from": 677080,
+				"to": 679640
+			},
+			"text": " between validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,640",
+				"to": "00:11:32,360"
+			},
+			"offsets": {
+				"from": 679640,
+				"to": 692360
+			},
+			"text": " And that's why we have -- we are getting back to this anonymity problem here again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,360",
+				"to": "00:11:41,360"
+			},
+			"offsets": {
+				"from": 692360,
+				"to": 701360
+			},
+			"text": " We can use shard subnets and to fire a gossip-based strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,360",
+				"to": "00:11:47,480"
+			},
+			"offsets": {
+				"from": 701360,
+				"to": 707480
+			},
+			"text": " So it's just, you know, everything is ready for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,480",
+				"to": "00:11:48,960"
+			},
+			"offsets": {
+				"from": 707480,
+				"to": 708960
+			},
+			"text": " And you can send messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,960",
+				"to": "00:11:52,040"
+			},
+			"offsets": {
+				"from": 708960,
+				"to": 712040
+			},
+			"text": " You can send a station within one subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,040",
+				"to": "00:11:56,320"
+			},
+			"offsets": {
+				"from": 712040,
+				"to": 716320
+			},
+			"text": " Make those aggregates."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,320",
+				"to": "00:12:01,480"
+			},
+			"offsets": {
+				"from": 716320,
+				"to": 721480
+			},
+			"text": " And yeah, well, the leaders of the committee that produced those attestations can aggregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,480",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 721480,
+				"to": 728000
+			},
+			"text": " them, but it requires higher network demand because we're working in a P2P mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:09,880"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 729880
+			},
+			"text": " And it's not that wise."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,880",
+				"to": "00:12:16,760"
+			},
+			"offsets": {
+				"from": 729880,
+				"to": 736760
+			},
+			"text": " What is the threshold for the aggregation and when it's ready to be sent to the big annotation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,760",
+				"to": "00:12:18,600"
+			},
+			"offsets": {
+				"from": 736760,
+				"to": 738600
+			},
+			"text": " topic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,600",
+				"to": "00:12:22,680"
+			},
+			"offsets": {
+				"from": 738600,
+				"to": 742680
+			},
+			"text": " And that's probably the problem here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,680",
+				"to": "00:12:29,400"
+			},
+			"offsets": {
+				"from": 742680,
+				"to": 749400
+			},
+			"text": " And this problem is amplified by spreading committee across different shard subnets, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,400",
+				"to": "00:12:33,840"
+			},
+			"offsets": {
+				"from": 749400,
+				"to": 753840
+			},
+			"text": " you don't know how much of participants in your shard subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,840",
+				"to": "00:12:40,320"
+			},
+			"offsets": {
+				"from": 753840,
+				"to": 760320
+			},
+			"text": " So you don't know how big aggregate you can combine within the resources that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,320",
+				"to": "00:12:41,560"
+			},
+			"offsets": {
+				"from": 760320,
+				"to": 761560
+			},
+			"text": " that fire."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,560",
+				"to": "00:12:49,760"
+			},
+			"offsets": {
+				"from": 761560,
+				"to": 769760
+			},
+			"text": " So let's summarize that we have to use P2P overlay to deliver attestation to proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,760",
+				"to": "00:12:55,920"
+			},
+			"offsets": {
+				"from": 769760,
+				"to": 775920
+			},
+			"text": " And at scale, it puts some big requirements to bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,920",
+				"to": "00:13:03,400"
+			},
+			"offsets": {
+				"from": 775920,
+				"to": 783400
+			},
+			"text": " We are considering a partial aggregation in a smaller overlay as a solution, but it have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,400",
+				"to": "00:13:05,800"
+			},
+			"offsets": {
+				"from": 783400,
+				"to": 785800
+			},
+			"text": " a number of complexities."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,800",
+				"to": "00:13:12,200"
+			},
+			"offsets": {
+				"from": 785800,
+				"to": 792200
+			},
+			"text": " There is also another possible solution to use onion rote, rote in similar techniques,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,200",
+				"to": "00:13:17,480"
+			},
+			"offsets": {
+				"from": 792200,
+				"to": 797480
+			},
+			"text": " but they will bring their own complexity as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,480",
+				"to": "00:13:20,280"
+			},
+			"offsets": {
+				"from": 797480,
+				"to": 800280
+			},
+			"text": " So we need to just investigate in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,280",
+				"to": "00:13:27,320"
+			},
+			"offsets": {
+				"from": 800280,
+				"to": 807320
+			},
+			"text": " And phase zero and probably phase one is not affected because it's not expected to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,320",
+				"to": "00:13:32,640"
+			},
+			"offsets": {
+				"from": 807320,
+				"to": 812640
+			},
+			"text": " a big amount of ETH validating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,640",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 812640,
+				"to": 814560
+			},
+			"text": " So thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:35,560"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 815560
+			},
+			"text": " I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,560",
+				"to": "00:13:35,560"
+			},
+			"offsets": {
+				"from": 815560,
+				"to": 815560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,560",
+				"to": "00:13:36,560"
+			},
+			"offsets": {
+				"from": 815560,
+				"to": 816560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,560",
+				"to": "00:13:37,560"
+			},
+			"offsets": {
+				"from": 816560,
+				"to": 817560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,560",
+				"to": "00:13:38,560"
+			},
+			"offsets": {
+				"from": 817560,
+				"to": 818560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,560",
+				"to": "00:13:39,560"
+			},
+			"offsets": {
+				"from": 818560,
+				"to": 819560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,560",
+				"to": "00:13:40,560"
+			},
+			"offsets": {
+				"from": 819560,
+				"to": 820560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,560",
+				"to": "00:13:41,560"
+			},
+			"offsets": {
+				"from": 820560,
+				"to": 821560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,560",
+				"to": "00:13:42,560"
+			},
+			"offsets": {
+				"from": 821560,
+				"to": 822560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,560",
+				"to": "00:13:43,560"
+			},
+			"offsets": {
+				"from": 822560,
+				"to": 823560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,560",
+				"to": "00:13:44,560"
+			},
+			"offsets": {
+				"from": 823560,
+				"to": 824560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,560",
+				"to": "00:13:45,560"
+			},
+			"offsets": {
+				"from": 824560,
+				"to": 825560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,560",
+				"to": "00:13:46,560"
+			},
+			"offsets": {
+				"from": 825560,
+				"to": 826560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,560",
+				"to": "00:13:47,560"
+			},
+			"offsets": {
+				"from": 826560,
+				"to": 827560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,560",
+				"to": "00:13:48,560"
+			},
+			"offsets": {
+				"from": 827560,
+				"to": 828560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,560",
+				"to": "00:13:49,560"
+			},
+			"offsets": {
+				"from": 828560,
+				"to": 829560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,560",
+				"to": "00:13:50,560"
+			},
+			"offsets": {
+				"from": 829560,
+				"to": 830560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,560",
+				"to": "00:13:51,560"
+			},
+			"offsets": {
+				"from": 830560,
+				"to": 831560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,560",
+				"to": "00:13:52,560"
+			},
+			"offsets": {
+				"from": 831560,
+				"to": 832560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,560",
+				"to": "00:13:53,560"
+			},
+			"offsets": {
+				"from": 832560,
+				"to": 833560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,560",
+				"to": "00:13:54,560"
+			},
+			"offsets": {
+				"from": 833560,
+				"to": 834560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,560",
+				"to": "00:13:55,560"
+			},
+			"offsets": {
+				"from": 834560,
+				"to": 835560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,560",
+				"to": "00:13:56,560"
+			},
+			"offsets": {
+				"from": 835560,
+				"to": 836560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,560",
+				"to": "00:13:57,560"
+			},
+			"offsets": {
+				"from": 836560,
+				"to": 837560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,560",
+				"to": "00:13:58,560"
+			},
+			"offsets": {
+				"from": 837560,
+				"to": 838560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,560",
+				"to": "00:13:59,560"
+			},
+			"offsets": {
+				"from": 838560,
+				"to": 839560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,560",
+				"to": "00:14:00,560"
+			},
+			"offsets": {
+				"from": 839560,
+				"to": 840560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,560",
+				"to": "00:14:02,560"
+			},
+			"offsets": {
+				"from": 840560,
+				"to": 842560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,560",
+				"to": "00:14:03,560"
+			},
+			"offsets": {
+				"from": 842560,
+				"to": 843560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,560",
+				"to": "00:14:04,560"
+			},
+			"offsets": {
+				"from": 843560,
+				"to": 844560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,560",
+				"to": "00:14:05,560"
+			},
+			"offsets": {
+				"from": 844560,
+				"to": 845560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,560",
+				"to": "00:14:06,560"
+			},
+			"offsets": {
+				"from": 845560,
+				"to": 846560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,560",
+				"to": "00:14:07,560"
+			},
+			"offsets": {
+				"from": 846560,
+				"to": 847560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,560",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 847560,
+				"to": 848560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:09,560"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 849560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,560",
+				"to": "00:14:10,560"
+			},
+			"offsets": {
+				"from": 849560,
+				"to": 850560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,560",
+				"to": "00:14:11,560"
+			},
+			"offsets": {
+				"from": 850560,
+				"to": 851560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,560",
+				"to": "00:14:12,560"
+			},
+			"offsets": {
+				"from": 851560,
+				"to": 852560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,560",
+				"to": "00:14:13,560"
+			},
+			"offsets": {
+				"from": 852560,
+				"to": 853560
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,560",
+				"to": "00:14:14,560"
+			},
+			"offsets": {
+				"from": 853560,
+				"to": 854560
+			},
+			"text": " [applause]"
+		}
+	]
+}

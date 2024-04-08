@@ -1,0 +1,1418 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:18,240"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 18240
+			},
+			"text": " Okay, so thank you everybody for attending. I'm working at the Panzaplin and this talks about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,240",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 18240,
+				"to": 23360
+			},
+			"text": " like five smart contract patterns but that's actually a lie. The real thing I want to discuss"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:28,240"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 28240
+			},
+			"text": " is what I think are it's a good mindset when writing Solidity Contract and basically the pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,240",
+				"to": "00:00:34,480"
+			},
+			"offsets": {
+				"from": 28240,
+				"to": 34480
+			},
+			"text": " I'm going to show you are more like examples of what I think can be fun development and Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,480",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 34480,
+				"to": 38320
+			},
+			"text": " and how I think it aligns with the good development practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:41,520"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 41520
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,520",
+				"to": "00:00:47,120"
+			},
+			"offsets": {
+				"from": 41520,
+				"to": 47120
+			},
+			"text": " Okay, yeah, so I think one of the two main points I want to make today is that a lot of the ecosystem's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,120",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 47120,
+				"to": 52960
+			},
+			"text": " value is the result of smart contract composability. That's particularly true of this fact. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:00:57,360"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 57360
+			},
+			"text": " first thing you should do when writing a smart contract is make sure that you are leveraging"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,360",
+				"to": "00:01:02,160"
+			},
+			"offsets": {
+				"from": 57360,
+				"to": 62160
+			},
+			"text": " as much composability as possible and trying to make sure that your contract can interface with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,160",
+				"to": "00:01:07,360"
+			},
+			"offsets": {
+				"from": 62160,
+				"to": 67360
+			},
+			"text": " all the existing tooling that would be relevant. An example is people always ask us like hey can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,360",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 67360,
+				"to": 73600
+			},
+			"text": " we make an honorable contract payable like someone could buy it and this makes really no sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:19,600"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 79600
+			},
+			"text": " because there is already a lot of tooling for buying assets and that's the NFT space. In the NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,600",
+				"to": "00:01:24,800"
+			},
+			"offsets": {
+				"from": 79600,
+				"to": 84800
+			},
+			"text": " space you can just buy anything from OpenCL, RARRIBLE or any other marketplaces and we don't want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,800",
+				"to": "00:01:31,440"
+			},
+			"offsets": {
+				"from": 84800,
+				"to": 91440
+			},
+			"text": " redeploy that for the NFTs, for the onable contracts that exist. So the idea is that when onability is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,440",
+				"to": "00:01:38,880"
+			},
+			"offsets": {
+				"from": 91440,
+				"to": 98880
+			},
+			"text": " just like the ownership of a contract in order to have access to it, to some functions, well you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,880",
+				"to": "00:01:45,520"
+			},
+			"offsets": {
+				"from": 98880,
+				"to": 105520
+			},
+			"text": " could just turn that into a new RCS721 and this is how you would do it. Basically you can very simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,520",
+				"to": "00:01:53,120"
+			},
+			"offsets": {
+				"from": 105520,
+				"to": 113120
+			},
+			"text": " say like hey my owner is just the owner of a specific token on an ownership registry and I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,120",
+				"to": "00:01:58,480"
+			},
+			"offsets": {
+				"from": 113120,
+				"to": 118480
+			},
+			"text": " have an owner modifier for that and when I want to transfer ownership the only thing I will have to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,480",
+				"to": "00:02:04,880"
+			},
+			"offsets": {
+				"from": 118480,
+				"to": 124880
+			},
+			"text": " is go to this ownership registry and try to transfer the corresponding token. Now on the ownership registry"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,880",
+				"to": "00:02:09,840"
+			},
+			"offsets": {
+				"from": 124880,
+				"to": 129840
+			},
+			"text": " you would have to override the either approval or no function to allow that but that's very easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,840",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 129840,
+				"to": 134640
+			},
+			"text": " to do and so here in this example you have a vasering factory this is actually live on mainnet and when"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:19,760"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 139760
+			},
+			"text": " you want to deploy a new vaseting wallet with a beneficiary freight well here's a beneficiary is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,760",
+				"to": "00:02:25,840"
+			},
+			"offsets": {
+				"from": 139760,
+				"to": 145840
+			},
+			"text": " just the owner of the NFT on this factory and when I deploy a new contract I just create a new clone"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,840",
+				"to": "00:02:31,520"
+			},
+			"offsets": {
+				"from": 145840,
+				"to": 151520
+			},
+			"text": " I initialize it and I mean the token and that's the equivalent of my owner if the contracts were"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,520",
+				"to": "00:02:36,560"
+			},
+			"offsets": {
+				"from": 151520,
+				"to": 156560
+			},
+			"text": " onable. The difference is here my contract show up on OpenSea and I can basically sell it or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,560",
+				"to": "00:02:41,920"
+			},
+			"offsets": {
+				"from": 156560,
+				"to": 161920
+			},
+			"text": " transfer it very easily. If you want to go a bit further you can even have like a universal"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,920",
+				"to": "00:02:47,280"
+			},
+			"offsets": {
+				"from": 161920,
+				"to": 167280
+			},
+			"text": " address ownership registry which I think it's pretty fun because it allows you to get rid of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,280",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 167280,
+				"to": 173520
+			},
+			"text": " minting part by just saying that A by default all the tokens are already minted and they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 177520
+			},
+			"text": " owned by the address that corresponds to the token idea. I mean all the tokens I did that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:02,640"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 182640
+			},
+			"text": " matches an address in an extra decimal form and then you can just say that A is not possible to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,640",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 182640,
+				"to": 186880
+			},
+			"text": " burn them you would just send them back to the original owner and there is this is a proven"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:11,680"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 191680
+			},
+			"text": " ownership that I am doing some fancy stuff with codes but you don't need to care about that and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,680",
+				"to": "00:03:17,600"
+			},
+			"offsets": {
+				"from": 191680,
+				"to": 197600
+			},
+			"text": " this can just be another approach of taking it's nice and it shows creative use of FRC-720 ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,600",
+				"to": "00:03:24,080"
+			},
+			"offsets": {
+				"from": 197600,
+				"to": 204080
+			},
+			"text": " Another thing we use is that ownable obviously is something that a lot of people are familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,080",
+				"to": "00:03:28,720"
+			},
+			"offsets": {
+				"from": 204080,
+				"to": 208720
+			},
+			"text": " but the granularity is really bad. Sometimes you have different admin function in your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,720",
+				"to": "00:03:33,120"
+			},
+			"offsets": {
+				"from": 208720,
+				"to": 213120
+			},
+			"text": " that you want to have different access for and access control does that pretty well access control"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,120",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 213120,
+				"to": 218640
+			},
+			"text": " is provided by OpenZeplin. The thing is that access control is maybe a bit more difficult to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:42,880"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 222880
+			},
+			"text": " work with because you cannot transfer a world you need to grant it to someone else and then either"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,880",
+				"to": "00:03:49,840"
+			},
+			"offsets": {
+				"from": 222880,
+				"to": 229840
+			},
+			"text": " get it revoked or renounce it and so it's very nice for some users but at the same time own ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,840",
+				"to": "00:03:56,400"
+			},
+			"offsets": {
+				"from": 229840,
+				"to": 236400
+			},
+			"text": " has some advantages. So let's just combine both. Let's just make a contract that as an owner and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,400",
+				"to": "00:04:01,120"
+			},
+			"offsets": {
+				"from": 236400,
+				"to": 241120
+			},
+			"text": " the owner is basically the default admin world and then you just cannot grant or revoke this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,120",
+				"to": "00:04:06,160"
+			},
+			"offsets": {
+				"from": 241120,
+				"to": 246160
+			},
+			"text": " default admin world because that's controlled by the ownership part but the owner still is the admin"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,160",
+				"to": "00:04:11,680"
+			},
+			"offsets": {
+				"from": 246160,
+				"to": 251680
+			},
+			"text": " so it can grant any other one and this here it's ownable but it could be the ownable registry"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,680",
+				"to": "00:04:16,800"
+			},
+			"offsets": {
+				"from": 251680,
+				"to": 256800
+			},
+			"text": " should just before so you could have a contract whereas the owner is the NFT orders and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,800",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 256800,
+				"to": 262400
+			},
+			"text": " you have all these access controls that are managing that way or you could be creative and use"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:28,960"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 268960
+			},
+			"text": " ERC-755s here and so yeah that's just some small ideas but it's not very complex code I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,960",
+				"to": "00:04:33,120"
+			},
+			"offsets": {
+				"from": 268960,
+				"to": 273120
+			},
+			"text": " everybody can understand that but the point I really want to make is that you can combine"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,120",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 273120,
+				"to": 276880
+			},
+			"text": " tooling together and combine contracts to make sure that everything is as"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:42,560"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 282560
+			},
+			"text": " basically as seamless as possible. The second thing I want to present quickly is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,560",
+				"to": "00:04:47,920"
+			},
+			"offsets": {
+				"from": 282560,
+				"to": 287920
+			},
+			"text": " the ecosystem is constantly changing and basically when you write a contract I mean you can make"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,920",
+				"to": "00:04:53,360"
+			},
+			"offsets": {
+				"from": 287920,
+				"to": 293360
+			},
+			"text": " your contract upgradable but even without the upgradability part you really need to care about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,360",
+				"to": "00:04:58,480"
+			},
+			"offsets": {
+				"from": 293360,
+				"to": 298480
+			},
+			"text": " what is going to be the life cycle of my contract and are there small tricks that I could use"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,480",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 298480,
+				"to": 304240
+			},
+			"text": " that will make my users life better in the long run and that's for users but also for like the UI"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:10,240"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 310240
+			},
+			"text": " designers or and basically anybody in this space. So these are just two small pieces of code like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 316000
+			},
+			"text": " 0.4 than five that I came up with very recently and I think that's things that are interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 321600
+			},
+			"text": " because we never expect a hard fork to happen until it actually does and people start trying to do a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:27,360"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 327360
+			},
+			"text": " proof of fork blockchain and then the bridges that are on this proof of fork chain starts breaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,360",
+				"to": "00:05:32,640"
+			},
+			"offsets": {
+				"from": 327360,
+				"to": 332640
+			},
+			"text": " and that's a pain. So you could imagine having this very small piece of code here that basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,640",
+				"to": "00:05:40,080"
+			},
+			"offsets": {
+				"from": 332640,
+				"to": 340080
+			},
+			"text": " takes no size on chain that just gives you two modifier that verifies that the chain ID that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,080",
+				"to": "00:05:46,800"
+			},
+			"offsets": {
+				"from": 340080,
+				"to": 346800
+			},
+			"text": " you're currently using is the one that was registered in immutable storage when the contract was deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,800",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346800,
+				"to": 352000
+			},
+			"text": " and then you could do that to create some kind of bridge where actually most of the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 358000
+			},
+			"text": " remains completely trustless with this only initial chain modifier but if for any reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:04,080"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 364080
+			},
+			"text": " there were to be hard forks the version of the bridge that is on the chain that changes the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,080",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 364080,
+				"to": 369280
+			},
+			"text": " ID then all those would be automatically disabled and you'll get into recovery mode when some like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:12,880"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 372880
+			},
+			"text": " multi-sick would be able to take over and this multi-sick is not a threat for the user on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,880",
+				"to": "00:06:18,800"
+			},
+			"offsets": {
+				"from": 372880,
+				"to": 378800
+			},
+			"text": " legitimate chain because because of this only fork chain like this admin cannot do anything nasty"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,800",
+				"to": "00:06:23,760"
+			},
+			"offsets": {
+				"from": 378800,
+				"to": 383760
+			},
+			"text": " to your users but that's that's an exit point that would have saved some pain I mean it was on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,760",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 383760,
+				"to": 388320
+			},
+			"text": " proof of fork chain so maybe we don't care a lot but who knows maybe there will be more legitimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:33,520"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 393520
+			},
+			"text": " forks at some points in this theorem slide here and another one is that that's something we provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,520",
+				"to": "00:06:38,800"
+			},
+			"offsets": {
+				"from": 393520,
+				"to": 398800
+			},
+			"text": " as open-up in and that's what we call the multi-cold contract and that's very simple it's just one"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,800",
+				"to": "00:06:45,680"
+			},
+			"offsets": {
+				"from": 398800,
+				"to": 405680
+			},
+			"text": " n.1 small functions that allows you to delegate to yourself with an array of data and that's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,680",
+				"to": "00:06:50,240"
+			},
+			"offsets": {
+				"from": 405680,
+				"to": 410240
+			},
+			"text": " easy for you to integrate into any of your contract and I don't think there is any reason not to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,240",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 410240,
+				"to": 415680
+			},
+			"text": " it and the way it's being done is earlier we saw this example here and here you have this multi-cold"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:06:59,920"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 419920
+			},
+			"text": " that maybe you didn't see because it's red and black so it's not really visible but what it allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,920",
+				"to": "00:07:05,040"
+			},
+			"offsets": {
+				"from": 419920,
+				"to": 425040
+			},
+			"text": " you to do is when you went to create a new vesting for one of your investors or someone when if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,040",
+				"to": "00:07:10,160"
+			},
+			"offsets": {
+				"from": 425040,
+				"to": 430160
+			},
+			"text": " have 10 or 20 investors maybe you don't want to do 20 transaction that do 20 calls to this new"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,160",
+				"to": "00:07:16,160"
+			},
+			"offsets": {
+				"from": 430160,
+				"to": 436160
+			},
+			"text": " vesting function so what you do is just that you encode like you have a map of entry and you echo"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,160",
+				"to": "00:07:22,320"
+			},
+			"offsets": {
+				"from": 436160,
+				"to": 442320
+			},
+			"text": " the function using like ESRJS or Web3 or whatever you like and then you just have to do a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,320",
+				"to": "00:07:26,800"
+			},
+			"offsets": {
+				"from": 442320,
+				"to": 446800
+			},
+			"text": " call so there is a single transaction here that you have to wait for and what it will do it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,800",
+				"to": "00:07:33,360"
+			},
+			"offsets": {
+				"from": 446800,
+				"to": 453360
+			},
+			"text": " basically run like all these these these operations so you could deploy 20 vesting at the time or you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,360",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 453360,
+				"to": 459360
+			},
+			"text": " could do and approve and some something else or you could batch transaction together like you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 464400
+			},
+			"text": " need to wait for icon abstraction to batch transaction you can already do it at the contract level I mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:50,240"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 470240
+			},
+			"text": " providing that the target is the same contract for all the subcodes and that's as simple as including"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,240",
+				"to": "00:07:55,600"
+			},
+			"offsets": {
+				"from": 470240,
+				"to": 475600
+			},
+			"text": " that so yeah keep in mind that there are all this nice trick that could possibly help your users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,600",
+				"to": "00:08:01,200"
+			},
+			"offsets": {
+				"from": 475600,
+				"to": 481200
+			},
+			"text": " on the line and I think it's important to have that in mangan billing contracts and try to be creative"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,200",
+				"to": "00:08:09,200"
+			},
+			"offsets": {
+				"from": 481200,
+				"to": 489200
+			},
+			"text": " that's it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:16,080"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 496080
+			},
+			"text": " yeah so I'm going to repeat the question for for the stream and the live and the question was about"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,080",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 496080,
+				"to": 503120
+			},
+			"text": " like can access control be used for smart wallets is that that's it basically I think well it really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:28,080"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 508080
+			},
+			"text": " depends what kind of smart wallet you want to build there are different kind of smart wallets if"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,080",
+				"to": "00:08:33,600"
+			},
+			"offsets": {
+				"from": 508080,
+				"to": 513600
+			},
+			"text": " it's just something like your list of sole owner of I'm not sure it brings anything new to the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,640",
+				"to": "00:08:39,520"
+			},
+			"offsets": {
+				"from": 514640,
+				"to": 519520
+			},
+			"text": " but if you are doing a multi-sig maybe it will be relevant I mean my opinion is that a time lock"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,520",
+				"to": "00:08:44,560"
+			},
+			"offsets": {
+				"from": 519520,
+				"to": 524560
+			},
+			"text": " for example is a kind of smart wallet because it's just someone that will manage asset and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,560",
+				"to": "00:08:50,960"
+			},
+			"offsets": {
+				"from": 524560,
+				"to": 530960
+			},
+			"text": " do operation but with specific rules and in the open the time lock we use access control to separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,960",
+				"to": "00:08:56,160"
+			},
+			"offsets": {
+				"from": 530960,
+				"to": 536160
+			},
+			"text": " the role of the proposers from the executors from the admin that may have the right to cancel"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,160",
+				"to": "00:09:00,560"
+			},
+			"offsets": {
+				"from": 536160,
+				"to": 540560
+			},
+			"text": " potentially so yes if you are billing and multi-sig and you want to have different privilege and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,560",
+				"to": "00:09:07,280"
+			},
+			"offsets": {
+				"from": 540560,
+				"to": 547280
+			},
+			"text": " access maybe and having an overseer that is able to recover in case of of of of issue having signers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,280",
+				"to": "00:09:12,400"
+			},
+			"offsets": {
+				"from": 547280,
+				"to": 552400
+			},
+			"text": " having proposers that basically you're turning your multi-sig into some governance mechanism which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,400",
+				"to": "00:09:16,480"
+			},
+			"offsets": {
+				"from": 552400,
+				"to": 556480
+			},
+			"text": " which it basically is what I'm mostly is a governance mechanism so yes you could use access control"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,480",
+				"to": "00:09:27,680"
+			},
+			"offsets": {
+				"from": 556480,
+				"to": 567680
+			},
+			"text": " hey in the example with a magic orbit you've shown we are deploying the same method like a bytecode"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,680",
+				"to": "00:09:33,440"
+			},
+			"offsets": {
+				"from": 567680,
+				"to": 573440
+			},
+			"text": " for this method in every contract wouldn't it be better if we have it deployed separately"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,440",
+				"to": "00:09:42,880"
+			},
+			"offsets": {
+				"from": 573440,
+				"to": 582880
+			},
+			"text": " yes it would but it's not possible right now so like if we had a EIP 3074 live we could just have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,880",
+				"to": "00:09:48,560"
+			},
+			"offsets": {
+				"from": 582880,
+				"to": 588560
+			},
+			"text": " this make use this OS and OS code mechanism to do batching transaction and and you would not have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,560",
+				"to": "00:09:53,920"
+			},
+			"offsets": {
+				"from": 588560,
+				"to": 593920
+			},
+			"text": " to include that in your contract uh thing is that this is not available no it will not be available"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,920",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 593920,
+				"to": 602000
+			},
+			"text": " until at least Shanghai maybe later um so I think the bytecode increase is is really small compared to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:08,400"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 608400
+			},
+			"text": " the value that is added to your contract right now but yeah in the long run hopefully you would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,400",
+				"to": "00:10:16,880"
+			},
+			"offsets": {
+				"from": 608400,
+				"to": 616880
+			},
+			"text": " all this supported at the at the execution level layer okay great talk by the way in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,880",
+				"to": "00:10:23,920"
+			},
+			"offsets": {
+				"from": 616880,
+				"to": 623920
+			},
+			"text": " ownable erc721 part you were talking about how you could basically ditch the ownable the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,920",
+				"to": "00:10:29,600"
+			},
+			"offsets": {
+				"from": 623920,
+				"to": 629600
+			},
+			"text": " ownable library right what what advantage I kind of missed the point of like what's the advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,600",
+				"to": "00:10:36,960"
+			},
+			"offsets": {
+				"from": 629600,
+				"to": 636960
+			},
+			"text": " of implementing the ownership inside the erc721 logic instead of just bringing ownable is it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,960",
+				"to": "00:10:42,720"
+			},
+			"offsets": {
+				"from": 636960,
+				"to": 642720
+			},
+			"text": " like bytecode size or is there any other advantage that I'm missing no the real advantage is in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,720",
+				"to": "00:10:48,960"
+			},
+			"offsets": {
+				"from": 642720,
+				"to": 648960
+			},
+			"text": " in the composability the example is for example your your ownable contract it could be tied to assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,960",
+				"to": "00:10:55,120"
+			},
+			"offsets": {
+				"from": 648960,
+				"to": 655120
+			},
+			"text": " maybe you would want to consider that as a class of its own that you would be able to land against"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,120",
+				"to": "00:11:01,760"
+			},
+			"offsets": {
+				"from": 655120,
+				"to": 661760
+			},
+			"text": " collateral or maybe it's maybe it's like a a vase invalid that is basically a future uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,760",
+				"to": "00:11:07,120"
+			},
+			"offsets": {
+				"from": 661760,
+				"to": 667120
+			},
+			"text": " a financial future that you want to sell on Uniswah on on open c uh right now you cannot sell a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,120",
+				"to": "00:11:13,200"
+			},
+			"offsets": {
+				"from": 667120,
+				"to": 673200
+			},
+			"text": " non-able contract on open c but you can sell an nft so the way here is to make sure that your"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,200",
+				"to": "00:11:19,920"
+			},
+			"offsets": {
+				"from": 673200,
+				"to": 679920
+			},
+			"text": " contract is compatible with all the tooling that exists out there open c and odors also just being"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,920",
+				"to": "00:11:25,680"
+			},
+			"offsets": {
+				"from": 679920,
+				"to": 685680
+			},
+			"text": " able to see the ownership in your zerai on any pallet your use that's also something nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,680",
+				"to": "00:11:27,520"
+			},
+			"offsets": {
+				"from": 685680,
+				"to": 687520
+			},
+			"text": " thanks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,520",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 687520,
+				"to": 690800
+			},
+			"text": " thank you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:32,800"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 692800
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,800",
+				"to": "00:11:34,800"
+			},
+			"offsets": {
+				"from": 692800,
+				"to": 694800
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,800",
+				"to": "00:11:36,800"
+			},
+			"offsets": {
+				"from": 694800,
+				"to": 696800
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,800",
+				"to": "00:11:38,800"
+			},
+			"offsets": {
+				"from": 696800,
+				"to": 698800
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,800",
+				"to": "00:12:07,800"
+			},
+			"offsets": {
+				"from": 698800,
+				"to": 727800
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

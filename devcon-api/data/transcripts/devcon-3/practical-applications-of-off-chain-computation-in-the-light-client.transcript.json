@@ -1,0 +1,1594 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:21,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 21680
+			},
+			"text": " >> Hello, everyone. I'm George Falfordy, and today I would like to talk about some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,680",
+				"to": "00:00:27,960"
+			},
+			"offsets": {
+				"from": 21680,
+				"to": 27960
+			},
+			"text": " potential applications of chain computation in the light client ecosystem. Maybe you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,960",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 27960,
+				"to": 33200
+			},
+			"text": " already heard about off-chain computation and interactive validation. These are really"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:41,840"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 41840
+			},
+			"text": " promising and exciting new concepts, but the basic idea is really simple. If there's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,840",
+				"to": "00:00:46,400"
+			},
+			"offsets": {
+				"from": 41840,
+				"to": 46400
+			},
+			"text": " complex but deterministic calculation that would be too expensive to directly process"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,400",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 46400,
+				"to": 52960
+			},
+			"text": " on the blockchain, it is still possible to have multiple parties evaluate the same function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:00:57,840"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 57840
+			},
+			"text": " where the results can see each other and only start an interactive validation process that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,840",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 57840,
+				"to": 63080
+			},
+			"text": " could prove one of the parties wrong if there's a disagreement and this validation process"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:08,440"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 68440
+			},
+			"text": " can be realized inside a contract, so eventually the results of such a calculation can be canonized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,440",
+				"to": "00:01:15,440"
+			},
+			"offsets": {
+				"from": 68440,
+				"to": 75440
+			},
+			"text": " on the blockchain. This technology can be used to process large amounts of external data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,440",
+				"to": "00:01:21,760"
+			},
+			"offsets": {
+				"from": 75440,
+				"to": 81760
+			},
+			"text": " but which could be located anywhere like a swarm. But in this case, I would like to present"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,760",
+				"to": "00:01:27,440"
+			},
+			"offsets": {
+				"from": 81760,
+				"to": 87440
+			},
+			"text": " some use cases where the input data is a blockchain itself, either the same chain where the validation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,440",
+				"to": "00:01:34,960"
+			},
+			"offsets": {
+				"from": 87440,
+				"to": 94960
+			},
+			"text": " happens or can be another one too. These use cases are mostly related to even filtering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,960",
+				"to": "00:01:40,480"
+			},
+			"offsets": {
+				"from": 94960,
+				"to": 100480
+			},
+			"text": " In a current single blockchain scenario, even filtering is quite simple. We have the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,480",
+				"to": "00:01:49,040"
+			},
+			"offsets": {
+				"from": 100480,
+				"to": 109040
+			},
+			"text": " log events and long filters, but in order to do a full history search with good performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,040",
+				"to": "00:01:54,320"
+			},
+			"offsets": {
+				"from": 109040,
+				"to": 114320
+			},
+			"text": " we already needed some clever performance optimizations which I will shortly talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,320",
+				"to": "00:02:02,800"
+			},
+			"offsets": {
+				"from": 114320,
+				"to": 122800
+			},
+			"text": " Later, I would also like to talk about the future challenges of even filtering with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,800",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 122800,
+				"to": 131120
+			},
+			"text": " light clients when we are going to have a sharding and state channel technologies like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:18,320"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 138320
+			},
+			"text": " plasma or polka dot and eventually we'll end up with a massive hierarchy of chains and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,320",
+				"to": "00:02:23,360"
+			},
+			"offsets": {
+				"from": 138320,
+				"to": 143360
+			},
+			"text": " massive amounts of chain data and we will definitely need some sophisticated filtering"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,360",
+				"to": "00:02:28,240"
+			},
+			"offsets": {
+				"from": 143360,
+				"to": 148240
+			},
+			"text": " methods to make sense of all this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,240",
+				"to": "00:02:34,280"
+			},
+			"offsets": {
+				"from": 148240,
+				"to": 154280
+			},
+			"text": " First, let me just quickly talk about the current filtering system in the co-itarium"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,280",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 154280,
+				"to": 160080
+			},
+			"text": " client. You probably know Bloom filters, they are really simple data structures, just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:47,080"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 167080
+			},
+			"text": " the 2014 bit long bit vector and for every log address and topic three quasi random bits"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,080",
+				"to": "00:02:51,280"
+			},
+			"offsets": {
+				"from": 167080,
+				"to": 171280
+			},
+			"text": " are set and if someone else is looking for the same events later, they can just check"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,280",
+				"to": "00:02:55,480"
+			},
+			"offsets": {
+				"from": 171280,
+				"to": 175480
+			},
+			"text": " for these three bits if they are set and only check the block receipts if these bits are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,480",
+				"to": "00:03:00,640"
+			},
+			"offsets": {
+				"from": 175480,
+				"to": 180640
+			},
+			"text": " set. This is already a good performance improvement compared to checking all the block receipts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,640",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180640,
+				"to": 186000
+			},
+			"text": " in the entire history, but still checking them means that you have to read the entire"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 190120
+			},
+			"text": " header chain which is already more than two gigabytes and it was kind of slow even on"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 198200
+			},
+			"text": " a full node and with a light client it is even worse because downloading and keeping the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:24,560"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 204560
+			},
+			"text": " entire header chain locally is something that some devices just don't want to do and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,560",
+				"to": "00:03:29,600"
+			},
+			"offsets": {
+				"from": 204560,
+				"to": 209600
+			},
+			"text": " also why we implemented the checkpoint thinking so that we can avoid downloading all the headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,600",
+				"to": "00:03:35,960"
+			},
+			"offsets": {
+				"from": 209600,
+				"to": 215960
+			},
+			"text": " but then we don't have all the Bloom filters either. So we needed some clever data structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,960",
+				"to": "00:03:45,560"
+			},
+			"offsets": {
+				"from": 215960,
+				"to": 225560
+			},
+			"text": " and what we did is we took fixed length sections of consecutive blocks and put the Bloom filters"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,560",
+				"to": "00:03:51,840"
+			},
+			"offsets": {
+				"from": 225560,
+				"to": 231840
+			},
+			"text": " of them under each other, imagine it is a bitmap and you can see on the left blue box"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,840",
+				"to": "00:03:57,480"
+			},
+			"offsets": {
+				"from": 231840,
+				"to": 237480
+			},
+			"text": " then when doing a simple search we are interested in three vertical columns in this bitmap which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,480",
+				"to": "00:04:03,560"
+			},
+			"offsets": {
+				"from": 237480,
+				"to": 243560
+			},
+			"text": " is still if you read this you had to read all the Bloom filters from this because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,560",
+				"to": "00:04:07,360"
+			},
+			"offsets": {
+				"from": 243560,
+				"to": 247360
+			},
+			"text": " not tightly packed to the interesting bits and not tightly packed together but if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,360",
+				"to": "00:04:13,520"
+			},
+			"offsets": {
+				"from": 247360,
+				"to": 253520
+			},
+			"text": " do a 90 degrees rotation of this bitmap we will get horizontal lines, horizontal lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,520",
+				"to": "00:04:18,280"
+			},
+			"offsets": {
+				"from": 253520,
+				"to": 258280
+			},
+			"text": " will be interesting for us just three lines out of the 2000s so we only have to read those"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,280",
+				"to": "00:04:24,120"
+			},
+			"offsets": {
+				"from": 258280,
+				"to": 264120
+			},
+			"text": " and this optimization already yields a two or three orders of magnitude performance improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,120",
+				"to": "00:04:30,320"
+			},
+			"offsets": {
+				"from": 264120,
+				"to": 270320
+			},
+			"text": " in lock searching and it also works nicely with the lifelines by the way this requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,320",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 270320,
+				"to": 275000
+			},
+			"text": " the second version of the alias protocol which has just recently been merged into the go Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:43,240"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 283240
+			},
+			"text": " codebase and it also works very nicely, it can filter the entire lock history in a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,240",
+				"to": "00:04:47,960"
+			},
+			"offsets": {
+				"from": 283240,
+				"to": 287960
+			},
+			"text": " seconds but there was another problem we had to solve in order for this to work, namely"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,960",
+				"to": "00:04:54,160"
+			},
+			"offsets": {
+				"from": 287960,
+				"to": 294160
+			},
+			"text": " that these data structures are not a part of the consensus so we needed some, so lifelines"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,160",
+				"to": "00:04:59,920"
+			},
+			"offsets": {
+				"from": 294160,
+				"to": 299920
+			},
+			"text": " can directly validate it even though light servers can generate and serve it and in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,920",
+				"to": "00:05:06,280"
+			},
+			"offsets": {
+				"from": 299920,
+				"to": 306280
+			},
+			"text": " to solve this we created a special try, the Bloom filter try and organize all the bits"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:10,960"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 310960
+			},
+			"text": " vector in this try so that the light client only needs to know the root hash of the Bloom"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,960",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 310960,
+				"to": 315480
+			},
+			"text": " filter try and use Marker proof to validate everything else, of course the question still"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:22,200"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 322200
+			},
+			"text": " remains how a light client can trust the Bloom filter, root hash, Bloom filter try root hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,200",
+				"to": "00:05:28,800"
+			},
+			"offsets": {
+				"from": 322200,
+				"to": 328800
+			},
+			"text": " and currently we are doing checkpoint syncing with hard coded trusted checkpoints which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,800",
+				"to": "00:05:33,840"
+			},
+			"offsets": {
+				"from": 328800,
+				"to": 333840
+			},
+			"text": " is only a temporary solution and right now the Bloom filter try is also hard coded into"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,840",
+				"to": "00:05:39,760"
+			},
+			"offsets": {
+				"from": 333840,
+				"to": 339760
+			},
+			"text": " these checkpoints but soon we would like to get rid of hard coded checkpoints and use"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,760",
+				"to": "00:05:46,760"
+			},
+			"offsets": {
+				"from": 339760,
+				"to": 346760
+			},
+			"text": " trustless validation of checkpoints and in order to do this we need to somehow validate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,760",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 346760,
+				"to": 351200
+			},
+			"text": " the Bloom filter try on chain and this is where off chain validation comes into the picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:54,840"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 354840
+			},
+			"text": " because all the light servers know the input data which is the header chain and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,840",
+				"to": "00:06:02,400"
+			},
+			"offsets": {
+				"from": 354840,
+				"to": 362400
+			},
+			"text": " a deterministic calculation that they do anyway so servers can send the root hash to a judge"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,400",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 362400,
+				"to": 368600
+			},
+			"text": " contact and only do validation if necessary if a root hash remains unchallenged on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:14,080"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 374080
+			},
+			"text": " chain for a long enough time then the clients can trust it, of course we still also need"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,080",
+				"to": "00:06:21,520"
+			},
+			"offsets": {
+				"from": 374080,
+				"to": 381520
+			},
+			"text": " some security deposits and other incentives to make the system work but that's also part"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,520",
+				"to": "00:06:26,160"
+			},
+			"offsets": {
+				"from": 381520,
+				"to": 386160
+			},
+			"text": " of the plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,160",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 386160,
+				"to": 395680
+			},
+			"text": " Now let me also talk about how I imagine the future challenges the massive chain hierarchies"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:43,800"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 403800
+			},
+			"text": " and scaling will mean for light clients and what we can do about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,800",
+				"to": "00:06:49,200"
+			},
+			"offsets": {
+				"from": 403800,
+				"to": 409200
+			},
+			"text": " Here's an example situation where there's a user who wants to observe a subset of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,200",
+				"to": "00:06:56,200"
+			},
+			"offsets": {
+				"from": 409200,
+				"to": 416200
+			},
+			"text": " chain hierarchy which could still be a quite a large subset right now our imaginary user"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,200",
+				"to": "00:07:02,120"
+			},
+			"offsets": {
+				"from": 416200,
+				"to": 422120
+			},
+			"text": " uses a decentralized marketplace which has multiple state channels for listing different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,120",
+				"to": "00:07:06,720"
+			},
+			"offsets": {
+				"from": 422120,
+				"to": 426720
+			},
+			"text": " market offers like one for listing crypto versus fiat mini trade offers and other for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,720",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 426720,
+				"to": 433160
+			},
+			"text": " listing second-hand cars and a local news service which has a state channel for a federal"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:21,360"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 441360
+			},
+			"text": " arts and the user who wants to observe this change and get notified about interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,360",
+				"to": "00:07:30,240"
+			},
+			"offsets": {
+				"from": 441360,
+				"to": 450240
+			},
+			"text": " results and the filtering criteria for interesting events might be even more complex than what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,240",
+				"to": "00:07:38,480"
+			},
+			"offsets": {
+				"from": 450240,
+				"to": 458480
+			},
+			"text": " could be realized with our current simple log address and topic systems so it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,480",
+				"to": "00:07:45,680"
+			},
+			"offsets": {
+				"from": 458480,
+				"to": 465680
+			},
+			"text": " great if your clients could somehow get some help for filtering also it's possible with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,680",
+				"to": "00:07:50,840"
+			},
+			"offsets": {
+				"from": 465680,
+				"to": 470840
+			},
+			"text": " some state channel technologies that you will already that use low redundancy that their"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,840",
+				"to": "00:07:57,080"
+			},
+			"offsets": {
+				"from": 470840,
+				"to": 477080
+			},
+			"text": " security model is based on an assumption that some interested parties actually do validate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,080",
+				"to": "00:08:01,520"
+			},
+			"offsets": {
+				"from": 477080,
+				"to": 481520
+			},
+			"text": " the chain and that's also something that like clients can do so they would also require"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,520",
+				"to": "00:08:11,240"
+			},
+			"offsets": {
+				"from": 481520,
+				"to": 491240
+			},
+			"text": " some insurance to be able to trust the validity of this chains I think it is possible that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,240",
+				"to": "00:08:18,640"
+			},
+			"offsets": {
+				"from": 491240,
+				"to": 498640
+			},
+			"text": " they can have the higher light servers to do all of this for them and also it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,640",
+				"to": "00:08:24,320"
+			},
+			"offsets": {
+				"from": 498640,
+				"to": 504320
+			},
+			"text": " even better than still possible to build a filtering and observing hierarchy for each"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,320",
+				"to": "00:08:29,600"
+			},
+			"offsets": {
+				"from": 504320,
+				"to": 509600
+			},
+			"text": " client who is running complex applications this hierarchy could run on multiple light"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,600",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 509600,
+				"to": 515760
+			},
+			"text": " servers and the delivery of just the interesting results from the entire work computer to our"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:44,800"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 524800
+			},
+			"text": " clients who can then run with very low resource requirements I would like to show I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,800",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 524800,
+				"to": 530000
+			},
+			"text": " like to show how I think this is possible so let me just define two very simple primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 536520
+			},
+			"text": " that could achieve this one of them is called the chain filter a chain filter is a deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:09:02,800"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 542800
+			},
+			"text": " set of operations performed on an input blockchain and it is specified preferably in a virtual"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,800",
+				"to": "00:09:09,400"
+			},
+			"offsets": {
+				"from": 542800,
+				"to": 549400
+			},
+			"text": " machine that is suitable both for just in time compilation and interactive validation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,400",
+				"to": "00:09:14,240"
+			},
+			"offsets": {
+				"from": 549400,
+				"to": 554240
+			},
+			"text": " and a chain filter can have its own state but not its own consensus mechanism because"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,240",
+				"to": "00:09:19,680"
+			},
+			"offsets": {
+				"from": 554240,
+				"to": 559680
+			},
+			"text": " a chain filter blocks are deterministic functions of previous chain filter blocks and new input"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,680",
+				"to": "00:09:24,680"
+			},
+			"offsets": {
+				"from": 559680,
+				"to": 564680
+			},
+			"text": " blocks so whatever consensus mechanism the input chain uses the chain filter we just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,680",
+				"to": "00:09:33,800"
+			},
+			"offsets": {
+				"from": 564680,
+				"to": 573800
+			},
+			"text": " follow and these chain filters can be used for realizing user specific filtering criteria"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,800",
+				"to": "00:09:48,480"
+			},
+			"offsets": {
+				"from": 573800,
+				"to": 588480
+			},
+			"text": " and so these are also of course the use cases of chain computation but the other primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,480",
+				"to": "00:09:54,800"
+			},
+			"offsets": {
+				"from": 588480,
+				"to": 594800
+			},
+			"text": " I would like to show is called the observer chain and observer chain belongs to a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,800",
+				"to": "00:10:00,040"
+			},
+			"offsets": {
+				"from": 594800,
+				"to": 600040
+			},
+			"text": " node a single light server and it is also validated by a single signature and what an"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,040",
+				"to": "00:10:08,240"
+			},
+			"offsets": {
+				"from": 600040,
+				"to": 608240
+			},
+			"text": " observer does is that it processes multiple observed chains and creates observer blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,240",
+				"to": "00:10:15,960"
+			},
+			"offsets": {
+				"from": 608240,
+				"to": 615960
+			},
+			"text": " that contain the new latest heads of these chains and the chain observer chain is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,960",
+				"to": "00:10:24,040"
+			},
+			"offsets": {
+				"from": 615960,
+				"to": 624040
+			},
+			"text": " backed by a security deposit at a judge contract and the observer has to defend the validity"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,040",
+				"to": "00:10:30,800"
+			},
+			"offsets": {
+				"from": 624040,
+				"to": 630800
+			},
+			"text": " and availability of these chains or at least the latest actions of them on request the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,800",
+				"to": "00:10:38,720"
+			},
+			"offsets": {
+				"from": 630800,
+				"to": 638720
+			},
+			"text": " observer chain can follow public chains private chains state channels chain filters and even"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,720",
+				"to": "00:10:45,840"
+			},
+			"offsets": {
+				"from": 638720,
+				"to": 645840
+			},
+			"text": " other observer chains and now let's see how we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,840",
+				"to": "00:10:51,520"
+			},
+			"offsets": {
+				"from": 645840,
+				"to": 651520
+			},
+			"text": " realize a filtering and observing hierarchy with these primitives here is an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,520",
+				"to": "00:10:59,160"
+			},
+			"offsets": {
+				"from": 651520,
+				"to": 659160
+			},
+			"text": " scenario where there is a public chain and two state channels and the user has its own"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,160",
+				"to": "00:11:06,360"
+			},
+			"offsets": {
+				"from": 659160,
+				"to": 666360
+			},
+			"text": " chain filters defined for all three of them which are called my events and these chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,360",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 666360,
+				"to": 675000
+			},
+			"text": " and chain filters are processed by hired servers servers 1, 2 and 3 in this case who give certificates"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:24,040"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 684040
+			},
+			"text": " about the validity of the input chains and also the results of the users chain filters"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,040",
+				"to": "00:11:29,560"
+			},
+			"offsets": {
+				"from": 684040,
+				"to": 689560
+			},
+			"text": " maybe in some case it would be enough to just hire a few servers and call it the results"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,560",
+				"to": "00:11:34,640"
+			},
+			"offsets": {
+				"from": 689560,
+				"to": 694640
+			},
+			"text": " but it is possible that we have such a huge hierarchy and we want to observe so many chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,640",
+				"to": "00:11:40,680"
+			},
+			"offsets": {
+				"from": 694640,
+				"to": 700680
+			},
+			"text": " that we might need additional layers of servers in this case they are servers 4 and 5 who"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,680",
+				"to": "00:11:44,920"
+			},
+			"offsets": {
+				"from": 700680,
+				"to": 704920
+			},
+			"text": " are observing the observer chains of servers 1, 2 and 3 and run their own chain filter"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,920",
+				"to": "00:11:49,560"
+			},
+			"offsets": {
+				"from": 704920,
+				"to": 709560
+			},
+			"text": " called collect events that could filter and collect all the interesting events for our"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,560",
+				"to": "00:11:55,800"
+			},
+			"offsets": {
+				"from": 709560,
+				"to": 715800
+			},
+			"text": " client so the client can very conveniently just contact the last layer of helping servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,800",
+				"to": "00:12:04,680"
+			},
+			"offsets": {
+				"from": 715800,
+				"to": 724680
+			},
+			"text": " and receive just the interesting results of course we need some redundancy to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,680",
+				"to": "00:12:11,120"
+			},
+			"offsets": {
+				"from": 724680,
+				"to": 731120
+			},
+			"text": " this system works correctly so if we have multiple paths leading to every interesting chain or"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,120",
+				"to": "00:12:18,080"
+			},
+			"offsets": {
+				"from": 731120,
+				"to": 738080
+			},
+			"text": " chain filter then the client can always detect if it receives different results from different"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,080",
+				"to": "00:12:25,680"
+			},
+			"offsets": {
+				"from": 738080,
+				"to": 745680
+			},
+			"text": " directions and then it can try to investigate the observer chains and the chain filters"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,680",
+				"to": "00:12:33,400"
+			},
+			"offsets": {
+				"from": 745680,
+				"to": 753400
+			},
+			"text": " of its hired servers or maybe raise an alarm and notify other clients about a suspected fraud"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,400",
+				"to": "00:12:39,960"
+			},
+			"offsets": {
+				"from": 753400,
+				"to": 759960
+			},
+			"text": " and eventually if there seems to be a fraud then start an interactive validation process"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,960",
+				"to": "00:12:47,920"
+			},
+			"offsets": {
+				"from": 759960,
+				"to": 767920
+			},
+			"text": " to try to prove it all of this is of course quite far from the original idea of the light"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,920",
+				"to": "00:12:57,120"
+			},
+			"offsets": {
+				"from": 767920,
+				"to": 777120
+			},
+			"text": " client but I believe it still fits pretty well with the philosophy of what the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,120",
+				"to": "00:13:04,760"
+			},
+			"offsets": {
+				"from": 777120,
+				"to": 784760
+			},
+			"text": " light protocol is based on because the idea is that in this massive world computer ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,760",
+				"to": "00:13:09,640"
+			},
+			"offsets": {
+				"from": 784760,
+				"to": 789640
+			},
+			"text": " there are nodes with very different capabilities and small entities will always require help"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,640",
+				"to": "00:13:16,640"
+			},
+			"offsets": {
+				"from": 789640,
+				"to": 796640
+			},
+			"text": " from bigger entities and what we can do to avoid the concentration of power is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,640",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 796640,
+				"to": 803080
+			},
+			"text": " can create a standardized protocol that makes the bigger help grant it is interchangeable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:30,400"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 810400
+			},
+			"text": " and therefore create a liquid market of services so that whenever someone wants to stop providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,400",
+				"to": "00:13:36,640"
+			},
+			"offsets": {
+				"from": 810400,
+				"to": 816640
+			},
+			"text": " services or raise their prices very high then other servers can just take over and no one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,640",
+				"to": "00:13:46,480"
+			},
+			"offsets": {
+				"from": 816640,
+				"to": 826480
+			},
+			"text": " can stop them from doing so so we can ensure a continuous service with a reasonable prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,480",
+				"to": "00:13:56,200"
+			},
+			"offsets": {
+				"from": 826480,
+				"to": 836200
+			},
+			"text": " and also we can still provide security not with the regular Merkoproof, Merkoproofs like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,200",
+				"to": "00:14:03,080"
+			},
+			"offsets": {
+				"from": 836200,
+				"to": 843080
+			},
+			"text": " in the classical light client but we can still increase the cost of an attempted fraud by"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,080",
+				"to": "00:14:08,320"
+			},
+			"offsets": {
+				"from": 843080,
+				"to": 848320
+			},
+			"text": " using security deposits and also reduce the risk of a successful fraud by using multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,320",
+				"to": "00:14:15,560"
+			},
+			"offsets": {
+				"from": 848320,
+				"to": 855560
+			},
+			"text": " paths and detecting any attempted fraud right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,560",
+				"to": "00:14:24,120"
+			},
+			"offsets": {
+				"from": 855560,
+				"to": 864120
+			},
+			"text": " Of course there are still some details that are not worked out and right now our main development"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,120",
+				"to": "00:14:31,280"
+			},
+			"offsets": {
+				"from": 864120,
+				"to": 871280
+			},
+			"text": " priority is still making the classical light client reliable and usable but when setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,280",
+				"to": "00:14:39,240"
+			},
+			"offsets": {
+				"from": 871280,
+				"to": 879240
+			},
+			"text": " the directions of new development it is always important to keep the future challenges in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,240",
+				"to": "00:14:44,920"
+			},
+			"offsets": {
+				"from": 879240,
+				"to": 884920
+			},
+			"text": " mind and the long-term goals and I think the long-term goal is a massively scalable high"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,920",
+				"to": "00:14:53,360"
+			},
+			"offsets": {
+				"from": 884920,
+				"to": 893360
+			},
+			"text": " performance work computer that even small embedded and mobile devices can safely access."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,360",
+				"to": "00:15:00,040"
+			},
+			"offsets": {
+				"from": 893360,
+				"to": 900040
+			},
+			"text": " And I believe that in this massive, in addition to the massive chain hierarchy that provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,040",
+				"to": "00:15:10,800"
+			},
+			"offsets": {
+				"from": 900040,
+				"to": 910800
+			},
+			"text": " the global consensus the client-specific observing and filtering higher is belonging to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,800",
+				"to": "00:15:18,800"
+			},
+			"offsets": {
+				"from": 910800,
+				"to": 918800
+			},
+			"text": " unique perspective of some applications will be equally important in this ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,800",
+				"to": "00:15:23,160"
+			},
+			"offsets": {
+				"from": 918800,
+				"to": 923160
+			},
+			"text": " And I hope you found my own unique perspective on the future of Ethereum interesting and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,160",
+				"to": "00:15:24,200"
+			},
+			"offsets": {
+				"from": 923160,
+				"to": 924200
+			},
+			"text": " thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,200",
+				"to": "00:15:25,200"
+			},
+			"offsets": {
+				"from": 924200,
+				"to": 925200
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,200",
+				"to": "00:15:32,200"
+			},
+			"offsets": {
+				"from": 925200,
+				"to": 932200
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,200",
+				"to": "00:15:39,200"
+			},
+			"offsets": {
+				"from": 932200,
+				"to": 939200
+			},
+			"text": " [Music]"
+		}
+	]
+}

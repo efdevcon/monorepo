@@ -1,0 +1,1891 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 21000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23000
+			},
+			"text": " >> Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 24400
+			},
+			"text": " My name is Jack Peterson."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 27800
+			},
+			"text": " I'm the lead developer of Auger."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,800",
+				"to": "00:00:32,200"
+			},
+			"offsets": {
+				"from": 27800,
+				"to": 32200
+			},
+			"text": " But I'm actually not really going to be talking about Auger today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,200",
+				"to": "00:00:39,120"
+			},
+			"offsets": {
+				"from": 32200,
+				"to": 39120
+			},
+			"text": " Instead, I'm going to be talking about sort of the general state of tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,120",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 39120,
+				"to": 49000
+			},
+			"text": " in Ethereum's ecosystem and point out some things that I think could use some improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:59,400"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 59400
+			},
+			"text": " You know, Auger has been in development at this point for almost three years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,400",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 59400,
+				"to": 64120
+			},
+			"text": " And that's a long development cycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:13,240"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 73240
+			},
+			"text": " It's certainly longer than any of the team who came from backgrounds of web development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,240",
+				"to": "00:01:18,920"
+			},
+			"offsets": {
+				"from": 73240,
+				"to": 78920
+			},
+			"text": " application development, scientific development, expected based on their past experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,920",
+				"to": "00:01:28,920"
+			},
+			"offsets": {
+				"from": 78920,
+				"to": 88920
+			},
+			"text": " And I think one of the reasons for this is that we all came from environments"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,920",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 88920,
+				"to": 92920
+			},
+			"text": " where, you know, that had been established for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:36,920"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 96920
+			},
+			"text": " And in an established development environment, there are certain tools that you just sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,920",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 96920,
+				"to": 98920
+			},
+			"text": " of take for granted as being available."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:42,920"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 102920
+			},
+			"text": " Whereas in a very young ecosystem like Ethereum's, they might not be."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,920",
+				"to": "00:01:47,920"
+			},
+			"offsets": {
+				"from": 102920,
+				"to": 107920
+			},
+			"text": " Excuse me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,920",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 107920,
+				"to": 114920
+			},
+			"text": " So over the past, I don't know, six months, I've spent a fair amount of time talking to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:02:04,920"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 124920
+			},
+			"text": " DAP developers on different projects about whether they, you know, what their thoughts are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,920",
+				"to": "00:02:11,920"
+			},
+			"offsets": {
+				"from": 124920,
+				"to": 131920
+			},
+			"text": " on the tooling in the ecosystem and whether or not they are ahead of schedule or behind schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,920",
+				"to": "00:02:19,920"
+			},
+			"offsets": {
+				"from": 131920,
+				"to": 139920
+			},
+			"text": " And, well, I guess a lot of you are DAP developers yourself, so I don't have to tell you this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,920",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 139920,
+				"to": 146920
+			},
+			"text": " But the most common answer was definitely, wow, everything is taking a lot longer than we expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:37,920"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 157920
+			},
+			"text": " And I think the reason for that is basically just that there's a lack of good consistent"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,920",
+				"to": "00:02:43,920"
+			},
+			"offsets": {
+				"from": 157920,
+				"to": 163920
+			},
+			"text": " understanding in this space. You know, I think of tooling as being so important because it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,920",
+				"to": "00:02:50,920"
+			},
+			"offsets": {
+				"from": 163920,
+				"to": 170920
+			},
+			"text": " force multiplier, right? If I have an ecosystem of thousand developers and those thousand"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,920",
+				"to": "00:02:54,920"
+			},
+			"offsets": {
+				"from": 170920,
+				"to": 174920
+			},
+			"text": " developers don't have, I don't know, a debugger, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,920",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 174920,
+				"to": 182920
+			},
+			"text": " And then you sit down, you're right when you give it to them, that makes every one of them more efficient, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 186920
+			},
+			"text": " And I think that as a multiplicative, not an additive effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 193920
+			},
+			"text": " And I think that the main thing that we need in this ecosystem is just better tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 205920
+			},
+			"text": " Now, I think as we're just taking a step back and examining, well, why might there not be good tooling in this space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:32,920"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 212920
+			},
+			"text": " And now part of it is just that this is a young space, right? So you wouldn't expect it to have, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,920",
+				"to": "00:03:37,920"
+			},
+			"offsets": {
+				"from": 212920,
+				"to": 217920
+			},
+			"text": " maturity of desktop application development tools, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,920",
+				"to": "00:03:43,920"
+			},
+			"offsets": {
+				"from": 217920,
+				"to": 223920
+			},
+			"text": " But I also think that there's sort of a structural problem in that there's currently a lack of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,920",
+				"to": "00:03:50,920"
+			},
+			"offsets": {
+				"from": 223920,
+				"to": 230920
+			},
+			"text": " incentive to build good tools, right? There's the allure of doing the token sale, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,920",
+				"to": "00:04:00,920"
+			},
+			"offsets": {
+				"from": 230920,
+				"to": 240920
+			},
+			"text": " And the thing is, having done a token sale, after you do a token sale, you are committed to delivering on a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,920",
+				"to": "00:04:07,920"
+			},
+			"offsets": {
+				"from": 240920,
+				"to": 247920
+			},
+			"text": " particular application, right? So you move at breakneck speed towards NBP for your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,920",
+				"to": "00:04:14,920"
+			},
+			"offsets": {
+				"from": 247920,
+				"to": 254920
+			},
+			"text": " And I think that a lot of the best minds in this space are doing exactly that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,920",
+				"to": "00:04:23,920"
+			},
+			"offsets": {
+				"from": 254920,
+				"to": 263920
+			},
+			"text": " And I think that if you stop and think about how tooling does have a multiplicative effect, that we are all"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,920",
+				"to": "00:04:32,920"
+			},
+			"offsets": {
+				"from": 263920,
+				"to": 272920
+			},
+			"text": " ironically actually moving slower than if we stopped and took a deep breath, and all communicated really well with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,920",
+				"to": "00:04:43,920"
+			},
+			"offsets": {
+				"from": 272920,
+				"to": 283920
+			},
+			"text": " each other about what tools we could share between different projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 292920
+			},
+			"text": " And so to try and address the issue of lack of incentives, I'd like to propose sort of a call to arms, if you will."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:05:01,920"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 301920
+			},
+			"text": " I think that DAP teams, especially those of us that have done token sales, and we have some resources, and we have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,920",
+				"to": "00:05:11,920"
+			},
+			"offsets": {
+				"from": 301920,
+				"to": 311920
+			},
+			"text": " dire need for better tools. I think we should create bounties for the tooling that we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,920",
+				"to": "00:05:17,920"
+			},
+			"offsets": {
+				"from": 311920,
+				"to": 317920
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,920",
+				"to": "00:05:29,920"
+			},
+			"offsets": {
+				"from": 317920,
+				"to": 329920
+			},
+			"text": " Or we could just commission the tools, but bounties and prizes are sort of more fun. So I'm going to go with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,920",
+				"to": "00:05:40,920"
+			},
+			"offsets": {
+				"from": 329920,
+				"to": 340920
+			},
+			"text": " Okay, so I had a bunch of long conversations with my smart contract, with Auger's smart contract development team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,920",
+				"to": "00:05:48,920"
+			},
+			"offsets": {
+				"from": 340920,
+				"to": 348920
+			},
+			"text": " and I think that's sort of what is their wish list as far as tooling that could be improved. And it's mostly not things that are, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,920",
+				"to": "00:05:58,920"
+			},
+			"offsets": {
+				"from": 348920,
+				"to": 358920
+			},
+			"text": " X is just completely missing from this ecosystem. Rather, it's something that exists, but maybe doesn't work as well as we would like it to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,920",
+				"to": "00:06:06,920"
+			},
+			"offsets": {
+				"from": 358920,
+				"to": 366920
+			},
+			"text": " or just doesn't work quite as we would like it to. So this is my wish list. I sort of trimmed down the suggestions that I got"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,920",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 366920,
+				"to": 375920
+			},
+			"text": " in this seem to be the consensus list. And I'm going to go through each one of these in some detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:24,920"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 384920
+			},
+			"text": " And I guess there's two things that I would like people to take away from this. First is that if you are an Ethereum developer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,920",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 384920,
+				"to": 395920
+			},
+			"text": " which I know many of you are, then please chip in. This is me saying that Auger could really use your help."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:48,920"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 408920
+			},
+			"text": " And I guess in the spirit of Auger, putting our money where our mouth is. And if you are a, you know, if you're a DAP development team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,920",
+				"to": "00:06:57,920"
+			},
+			"offsets": {
+				"from": 408920,
+				"to": 417920
+			},
+			"text": " and my wish list doesn't match yours, I mean, it probably doesn't, right? Everybody's not going to have the exact same needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,920",
+				"to": "00:07:12,920"
+			},
+			"offsets": {
+				"from": 417920,
+				"to": 432920
+			},
+			"text": " Then I would say you should create your own bounties or commission your own tools. And I'll tell you what, if you don't want to go through the hassle of letting people know that you're doing a bounty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,920",
+				"to": "00:07:21,920"
+			},
+			"offsets": {
+				"from": 432920,
+				"to": 441920
+			},
+			"text": " and you want to just make it available, you can put it on Auger's website. We're going to have Auger.net/bounties is where this is going to be listed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,920",
+				"to": "00:07:31,920"
+			},
+			"offsets": {
+				"from": 441920,
+				"to": 451920
+			},
+			"text": " You know, just send me an email, Jack@augher.net. And I'm happy to put up third-party bounties as well as the ones we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,920",
+				"to": "00:07:40,920"
+			},
+			"offsets": {
+				"from": 451920,
+				"to": 460920
+			},
+			"text": " So now let me go through my particular wish list in detail. Well, as much detail as 10 minutes we'll allow anyways."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,920",
+				"to": "00:07:57,920"
+			},
+			"offsets": {
+				"from": 460920,
+				"to": 477920
+			},
+			"text": " So feedback I got from our smart contract development team, as well as a number of other people in this space, is that the number one thing that's really missing is a debugger, like a good debugger."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,920",
+				"to": "00:08:04,920"
+			},
+			"offsets": {
+				"from": 477920,
+				"to": 484920
+			},
+			"text": " The kinds that we knew in our past lives as other source of application developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,920",
+				"to": "00:08:25,920"
+			},
+			"offsets": {
+				"from": 484920,
+				"to": 505920
+			},
+			"text": " You know, there's all kinds of, well, you're room full developers, right? So tell me if any of you have been through this sort of debugging cycle where you are trying to execute a send transaction and it fails for where you've a bug in your code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,920",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 505920,
+				"to": 523920
+			},
+			"text": " you ran out of gas, whatever, transaction failed. But you don't actually know anything other than that. Your transaction failed, right? You can't, if you've tried to emit some logs as part of your transaction, well, they didn't get emitted because your transaction failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:54,920"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 534920
+			},
+			"text": " You can't just set a break point in your solidity code and then drop into the environment and look at the variables because, well, you don't have a property bugger."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,920",
+				"to": "00:09:13,920"
+			},
+			"offsets": {
+				"from": 534920,
+				"to": 553920
+			},
+			"text": " And so what you end up doing is you comment out chunks of code, you recompile, you run your test again, and see if it passes. You do that over and over again until you get the transaction not failing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,920",
+				"to": "00:09:28,920"
+			},
+			"offsets": {
+				"from": 553920,
+				"to": 568920
+			},
+			"text": " This makes writing contract code take forever if this is your development cycle. Now, there's various things that we do in house to make this not literally our development cycle. It's not quite this raw."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,920",
+				"to": "00:09:38,920"
+			},
+			"offsets": {
+				"from": 568920,
+				"to": 578920
+			},
+			"text": " But this is sort of the, this is sort of the naive cycle. Now, a lot of you're probably thinking, well, there is a debugger out there, right? Remix."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,920",
+				"to": "00:10:02,920"
+			},
+			"offsets": {
+				"from": 578920,
+				"to": 602920
+			},
+			"text": " Remix is cool. But it's also, it's a full browser based IDE. And it's, so one, it's awkward for large projects to use. It's awkward to load lots of contracts into it, get all the relative paths and stuff to resolve correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,920",
+				"to": "00:10:16,920"
+			},
+			"offsets": {
+				"from": 602920,
+				"to": 616920
+			},
+			"text": " But the big, I think the bigger issue with it by far is that you can't really integrate it with other tooling. Or at least, I don't know how to do it. And by smart contract dev team doesn't know how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,920",
+				"to": "00:10:29,920"
+			},
+			"offsets": {
+				"from": 616920,
+				"to": 629920
+			},
+			"text": " For example, like, on Auger has a pretty extensive test suite. As you might imagine, we have including libraries and stuff. We have 75 or 76 smart contracts make up Auger in total."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,920",
+				"to": "00:10:35,920"
+			},
+			"offsets": {
+				"from": 629920,
+				"to": 635920
+			},
+			"text": " And so we have a lot of tests associated with that. We have unit tests written using PyEthereum Tester."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,920",
+				"to": "00:10:46,920"
+			},
+			"offsets": {
+				"from": 635920,
+				"to": 646920
+			},
+			"text": " And we have integration tests, which are written using, well, they're written in JavaScript using the ETH JS library."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,920",
+				"to": "00:10:51,920"
+			},
+			"offsets": {
+				"from": 646920,
+				"to": 651920
+			},
+			"text": " I think the author of that library is actually talking right after me."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,920",
+				"to": "00:11:07,920"
+			},
+			"offsets": {
+				"from": 651920,
+				"to": 667920
+			},
+			"text": " And I mean, what the cycle we would really want is to be able to, say, set a breakpoint in Solidity. And then run our test suite. Right? That's basically what we're developing against."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,920",
+				"to": "00:11:17,920"
+			},
+			"offsets": {
+				"from": 667920,
+				"to": 677920
+			},
+			"text": " And, you know, have it break and then drop us into a context where we can see what went wrong, when something goes wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,920",
+				"to": "00:11:28,920"
+			},
+			"offsets": {
+				"from": 677920,
+				"to": 688920
+			},
+			"text": " And as far as I can tell, there's not really a way to do this with Remix because it's a full solution. It's a standalone web application."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,920",
+				"to": "00:11:34,920"
+			},
+			"offsets": {
+				"from": 688920,
+				"to": 694920
+			},
+			"text": " And so Remix is cool, but it would be so much cooler if it was a library."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,920",
+				"to": "00:11:39,920"
+			},
+			"offsets": {
+				"from": 694920,
+				"to": 699920
+			},
+			"text": " And so this is the first bounty I want to propose."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,920",
+				"to": "00:11:48,920"
+			},
+			"offsets": {
+				"from": 699920,
+				"to": 708920
+			},
+			"text": " What I want, I should say, what my team wants is a portable debugger, and they want this more than anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,920",
+				"to": "00:11:57,920"
+			},
+			"offsets": {
+				"from": 708920,
+				"to": 717920
+			},
+			"text": " And the most important requirement is that it must be a library/module so that it can be integrated with our existing tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,920",
+				"to": "00:12:06,920"
+			},
+			"offsets": {
+				"from": 717920,
+				"to": 726920
+			},
+			"text": " That means integrated with our existing IDEs. Right? Like, for example, if you use VS code, you want the debugger to be integrated with VS code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,920",
+				"to": "00:12:16,920"
+			},
+			"offsets": {
+				"from": 726920,
+				"to": 736920
+			},
+			"text": " You want it to be integrated with your existing test suite, with your existing build system, with your existing deploy system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,920",
+				"to": "00:12:22,920"
+			},
+			"offsets": {
+				"from": 736920,
+				"to": 742920
+			},
+			"text": " And this probably is obvious, but the key feature is breakpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,920",
+				"to": "00:12:33,920"
+			},
+			"offsets": {
+				"from": 742920,
+				"to": 753920
+			},
+			"text": " One of those things that you do not realize how much you miss breakpoints until you're in a development environment where you don't have breakpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,920",
+				"to": "00:12:40,920"
+			},
+			"offsets": {
+				"from": 753920,
+				"to": 760920
+			},
+			"text": " And so we're going to put up details for this bounty and the others I'm proposing at auger.net/bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,920",
+				"to": "00:12:45,920"
+			},
+			"offsets": {
+				"from": 760920,
+				"to": 765920
+			},
+			"text": " So there's just a placeholder page there now. The details will be available sometime over the next few days."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,920",
+				"to": "00:12:55,920"
+			},
+			"offsets": {
+				"from": 765920,
+				"to": 775920
+			},
+			"text": " And so if once we have that up and you can look at proper specs for this thing, if you build it, you get 2,000 rep."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,920",
+				"to": "00:12:58,920"
+			},
+			"offsets": {
+				"from": 775920,
+				"to": 778920
+			},
+			"text": " That's the first bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,920",
+				"to": "00:13:03,920"
+			},
+			"offsets": {
+				"from": 778920,
+				"to": 783920
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,920",
+				"to": "00:13:10,920"
+			},
+			"offsets": {
+				"from": 783920,
+				"to": 790920
+			},
+			"text": " This is the second point. And this is a little controversial."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,920",
+				"to": "00:13:18,920"
+			},
+			"offsets": {
+				"from": 790920,
+				"to": 798920
+			},
+			"text": " Very often I find when I bring this up, especially among younger developers, I met with something less than a chorus of agreement."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,920",
+				"to": "00:13:30,920"
+			},
+			"offsets": {
+				"from": 798920,
+				"to": 810920
+			},
+			"text": " But nevertheless, I think it's an important point, especially for code written in a smart contract environment, which is very unforgiving."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,920",
+				"to": "00:13:38,920"
+			},
+			"offsets": {
+				"from": 810920,
+				"to": 818920
+			},
+			"text": " And where if you can't reasonably expect to launch with bugs and recover."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,920",
+				"to": "00:13:47,920"
+			},
+			"offsets": {
+				"from": 818920,
+				"to": 827920
+			},
+			"text": " So one thing I think it makes sense to do is step back and say, what other software is written in environments like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,920",
+				"to": "00:13:59,920"
+			},
+			"offsets": {
+				"from": 827920,
+				"to": 839920
+			},
+			"text": " And good examples are things that are called safety critical software. So these are things like the software that monitors nuclear reactors."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,920",
+				"to": "00:14:05,920"
+			},
+			"offsets": {
+				"from": 839920,
+				"to": 845920
+			},
+			"text": " The software, like the firmware inside anti-lock brake controllers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,920",
+				"to": "00:14:15,920"
+			},
+			"offsets": {
+				"from": 845920,
+				"to": 855920
+			},
+			"text": " And it's a good case for a car."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,920",
+				"to": "00:14:20,920"
+			},
+			"offsets": {
+				"from": 855920,
+				"to": 860920
+			},
+			"text": " And it's a good case for a car."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,920",
+				"to": "00:14:24,920"
+			},
+			"offsets": {
+				"from": 860920,
+				"to": 864920
+			},
+			"text": " And it's a good case for a car."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,920",
+				"to": "00:14:33,920"
+			},
+			"offsets": {
+				"from": 864920,
+				"to": 873920
+			},
+			"text": " And it works consistently for 30 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,920",
+				"to": "00:14:44,920"
+			},
+			"offsets": {
+				"from": 873920,
+				"to": 884920
+			},
+			"text": " And if you compare that to the move fast and break things mentality of modern web development, it's almost unthinkable to write stuff that's that reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,920",
+				"to": "00:14:55,920"
+			},
+			"offsets": {
+				"from": 884920,
+				"to": 895920
+			},
+			"text": " You're going to write something and not only is it not going to have bugs, it's going to work bug free for 30 years in an environment where if it fails, there will be a nuclear meltdown."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,920",
+				"to": "00:14:59,920"
+			},
+			"offsets": {
+				"from": 895920,
+				"to": 899920
+			},
+			"text": " That's a pretty reliable code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,920",
+				"to": "00:15:05,920"
+			},
+			"offsets": {
+				"from": 899920,
+				"to": 905920
+			},
+			"text": " And so I think it's really worth asking how do people actually write code for environments like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,920",
+				"to": "00:15:13,920"
+			},
+			"offsets": {
+				"from": 905920,
+				"to": 913920
+			},
+			"text": " Well, so my co-founder Joey spent a bunch of time over the past year really researching this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,920",
+				"to": "00:15:18,920"
+			},
+			"offsets": {
+				"from": 913920,
+				"to": 918920
+			},
+			"text": " He looked up the standards that are used to write code in these kinds of environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,920",
+				"to": "00:15:20,920"
+			},
+			"offsets": {
+				"from": 918920,
+				"to": 920920
+			},
+			"text": " And there's actually several of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,920",
+				"to": "00:15:26,920"
+			},
+			"offsets": {
+				"from": 920920,
+				"to": 926920
+			},
+			"text": " Misra is the one used as a C coding standard used by the automotive industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,920",
+				"to": "00:15:33,920"
+			},
+			"offsets": {
+				"from": 926920,
+				"to": 933920
+			},
+			"text": " NASA and JPL, Jet Propulsion Laboratory, they have their own coding standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,920",
+				"to": "00:15:40,920"
+			},
+			"offsets": {
+				"from": 933920,
+				"to": 940920
+			},
+			"text": " There's another, there's like a restrictive subset of the Ada language called Spark that's also used in these kinds of environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,920",
+				"to": "00:15:48,920"
+			},
+			"offsets": {
+				"from": 940920,
+				"to": 948920
+			},
+			"text": " And there's a lot of commonalities between these different safety critical coding standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,920",
+				"to": "00:15:53,920"
+			},
+			"offsets": {
+				"from": 948920,
+				"to": 953920
+			},
+			"text": " One is that they always use a restricted subset of a language."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,920",
+				"to": "00:15:56,920"
+			},
+			"offsets": {
+				"from": 953920,
+				"to": 956920
+			},
+			"text": " I mean, you take, so misres a C coding standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,920",
+				"to": "00:15:58,920"
+			},
+			"offsets": {
+				"from": 956920,
+				"to": 958920
+			},
+			"text": " Now C's a pretty small language to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,920",
+				"to": "00:16:04,920"
+			},
+			"offsets": {
+				"from": 958920,
+				"to": 964920
+			},
+			"text": " It's not like, well it's not like say C++, which is just all kinds of features."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,920",
+				"to": "00:16:10,920"
+			},
+			"offsets": {
+				"from": 964920,
+				"to": 970920
+			},
+			"text": " The C's a fairly small language, but misres is actually a subset of C."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,920",
+				"to": "00:16:13,920"
+			},
+			"offsets": {
+				"from": 970920,
+				"to": 973920
+			},
+			"text": " And it's a subset, it has fewer features."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,920",
+				"to": "00:16:16,920"
+			},
+			"offsets": {
+				"from": 973920,
+				"to": 976920
+			},
+			"text": " It's designed to be less abstract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,920",
+				"to": "00:16:22,920"
+			},
+			"offsets": {
+				"from": 976920,
+				"to": 982920
+			},
+			"text": " And it's designed to just be safer by sort of just being simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,920",
+				"to": "00:16:30,920"
+			},
+			"offsets": {
+				"from": 982920,
+				"to": 990920
+			},
+			"text": " And really if you could encapsulate the goal is just catch as many bugs as you can with static analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,920",
+				"to": "00:16:42,920"
+			},
+			"offsets": {
+				"from": 990920,
+				"to": 1002920
+			},
+			"text": " So, bounty number two is what I'm calling super simple solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,920",
+				"to": "00:16:47,920"
+			},
+			"offsets": {
+				"from": 1002920,
+				"to": 1007920
+			},
+			"text": " So this is sort of like misra for solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,920",
+				"to": "00:16:55,920"
+			},
+			"offsets": {
+				"from": 1007920,
+				"to": 1015920
+			},
+			"text": " And I would really like to see basically just a pragma for solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,920",
+				"to": "00:17:00,920"
+			},
+			"offsets": {
+				"from": 1015920,
+				"to": 1020920
+			},
+			"text": " And this would just be a safe, simple, very restricted subset of solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,920",
+				"to": "00:17:02,920"
+			},
+			"offsets": {
+				"from": 1020920,
+				"to": 1022920
+			},
+			"text": " So here are some examples, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,920",
+				"to": "00:17:09,920"
+			},
+			"offsets": {
+				"from": 1022920,
+				"to": 1029920
+			},
+			"text": " And this may seem absurdly restricted depending on what kind of programming you're used to."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,920",
+				"to": "00:17:15,920"
+			},
+			"offsets": {
+				"from": 1029920,
+				"to": 1035920
+			},
+			"text": " But these restrictions are the kinds of things that you find in the misra standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,920",
+				"to": "00:17:20,920"
+			},
+			"offsets": {
+				"from": 1035920,
+				"to": 1040920
+			},
+			"text": " For example, no inheritance, no recursion, no implicit types, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,920",
+				"to": "00:17:24,920"
+			},
+			"offsets": {
+				"from": 1040920,
+				"to": 1044920
+			},
+			"text": " No var, no function overloading."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,920",
+				"to": "00:17:36,920"
+			},
+			"offsets": {
+				"from": 1044920,
+				"to": 1056920
+			},
+			"text": " Anyway, we've got a whole list of all here, but we have a whole list of things that we would like to see excluded from this sort of very simple solidity subset."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,920",
+				"to": "00:17:44,920"
+			},
+			"offsets": {
+				"from": 1056920,
+				"to": 1064920
+			},
+			"text": " And so if you create this pragma, you get 1,250 rep."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,920",
+				"to": "00:17:49,920"
+			},
+			"offsets": {
+				"from": 1064920,
+				"to": 1069920
+			},
+			"text": " I need to move this along because it looks like I'm running out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,920",
+				"to": "00:17:52,920"
+			},
+			"offsets": {
+				"from": 1069920,
+				"to": 1072920
+			},
+			"text": " Oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,920",
+				"to": "00:17:59,920"
+			},
+			"offsets": {
+				"from": 1072920,
+				"to": 1079920
+			},
+			"text": " Okay, so to go through the rest of this quickly, anybody ever seen this exception?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,920",
+				"to": "00:18:01,920"
+			},
+			"offsets": {
+				"from": 1079920,
+				"to": 1081920
+			},
+			"text": " Exception stack too deep."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,920",
+				"to": "00:18:11,920"
+			},
+			"offsets": {
+				"from": 1081920,
+				"to": 1091920
+			},
+			"text": " Solidity has a quirk where local variables and parameters, they go on the stack, and the stack can only be a certain depth, sort of depending on what's on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,920",
+				"to": "00:18:16,920"
+			},
+			"offsets": {
+				"from": 1091920,
+				"to": 1096920
+			},
+			"text": " So we have between 8 and 16 variables, something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,920",
+				"to": "00:18:25,920"
+			},
+			"offsets": {
+				"from": 1096920,
+				"to": 1105920
+			},
+			"text": " One thing that's a little awkward about it is anytime you allocate a new variable and solidity, it puts it on the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,920",
+				"to": "00:18:34,920"
+			},
+			"offsets": {
+				"from": 1105920,
+				"to": 1114920
+			},
+			"text": " But there's actually a way to pop it off the stack, at least not without digging down into assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,920",
+				"to": "00:18:45,920"
+			},
+			"offsets": {
+				"from": 1114920,
+				"to": 1125920
+			},
+			"text": " So, the serpent, which I missed terribly, serpent had both stack and memory variables, and you could pop variables off the stack if you needed, which seems like a pretty reasonable system to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,920",
+				"to": "00:18:59,920"
+			},
+			"offsets": {
+				"from": 1125920,
+				"to": 1139920
+			},
+			"text": " Nothing on the stack, use the with key word to put something on the stack, and then when you exit, there's nothing on the stack again."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,920",
+				"to": "00:19:04,920"
+			},
+			"offsets": {
+				"from": 1139920,
+				"to": 1144920
+			},
+			"text": " So, about any number three is a stack popper feature for solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,920",
+				"to": "00:19:10,920"
+			},
+			"offsets": {
+				"from": 1144920,
+				"to": 1150920
+			},
+			"text": " So this is just a way of removing local variables from the stack without digging down into assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,920",
+				"to": "00:19:16,920"
+			},
+			"offsets": {
+				"from": 1150920,
+				"to": 1156920
+			},
+			"text": " Doesn't even have to work for function parameters, just talking about local variables here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,920",
+				"to": "00:19:24,920"
+			},
+			"offsets": {
+				"from": 1156920,
+				"to": 1164920
+			},
+			"text": " Yeah, you can sort of accomplish the same thing with function calls, but it would also be really nice to be able to clear off the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,920",
+				"to": "00:19:29,920"
+			},
+			"offsets": {
+				"from": 1164920,
+				"to": 1169920
+			},
+			"text": " The solidity devs themselves claim this, Christian, Alex, are you guys in here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,920",
+				"to": "00:19:43,920"
+			},
+			"offsets": {
+				"from": 1169920,
+				"to": 1183920
+			},
+			"text": " Or really anyone, but it's open to anyone who wants to submit a PR, as long as your PR is accepted, you get a thousand wrap."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,920",
+				"to": "00:19:51,920"
+			},
+			"offsets": {
+				"from": 1183920,
+				"to": 1191920
+			},
+			"text": " Currently, there's actually not a way to get return values if you do a send transaction to any theorem node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,920",
+				"to": "00:19:59,920"
+			},
+			"offsets": {
+				"from": 1191920,
+				"to": 1199920
+			},
+			"text": " which actually surprises a lot of people at first, but if you do a send transaction, you actually just get back a transaction hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,920",
+				"to": "00:20:08,920"
+			},
+			"offsets": {
+				"from": 1199920,
+				"to": 1208920
+			},
+			"text": " You do not get back the actual return value, and in fact, that return value is not accessible anywhere at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,920",
+				"to": "00:20:17,920"
+			},
+			"offsets": {
+				"from": 1208920,
+				"to": 1217920
+			},
+			"text": " Now, if your return value doesn't have any dependence on state, if it's just based on the input data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,920",
+				"to": "00:20:25,920"
+			},
+			"offsets": {
+				"from": 1217920,
+				"to": 1225920
+			},
+			"text": " then you can rerun the same input data as a call, and that will give you the return value."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,920",
+				"to": "00:20:31,920"
+			},
+			"offsets": {
+				"from": 1225920,
+				"to": 1231920
+			},
+			"text": " But if it is state dependent, maybe it depends on the block number, maybe it depends on the timestamp,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,920",
+				"to": "00:20:34,920"
+			},
+			"offsets": {
+				"from": 1231920,
+				"to": 1234920
+			},
+			"text": " then there's actually no way to get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,920",
+				"to": "00:20:42,920"
+			},
+			"offsets": {
+				"from": 1234920,
+				"to": 1242920
+			},
+			"text": " Now, it's computable by the caller using Kumavus' nice library, but this is somewhat heavy weight, it's inconvenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,920",
+				"to": "00:20:47,920"
+			},
+			"offsets": {
+				"from": 1242920,
+				"to": 1247920
+			},
+			"text": " I think the theorem, I think it'd be really great if the theorem nodes just would provide the return value."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,920",
+				"to": "00:21:00,920"
+			},
+			"offsets": {
+				"from": 1247920,
+				"to": 1260920
+			},
+			"text": " And so this is the fourth and final bounty I want to propose, is, I guess that's a lot of text, isn't it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,920",
+				"to": "00:21:05,920"
+			},
+			"offsets": {
+				"from": 1260920,
+				"to": 1265920
+			},
+			"text": " It's just that I would like any theorem, any of the theorem, any of the theorem, any of the theorem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,920",
+				"to": "00:21:11,920"
+			},
+			"offsets": {
+				"from": 1265920,
+				"to": 1271920
+			},
+			"text": " is a path, parity, you name it, to supply users with a return value."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,920",
+				"to": "00:21:13,920"
+			},
+			"offsets": {
+				"from": 1271920,
+				"to": 1273920
+			},
+			"text": " And you can do this using really any mechanism you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,920",
+				"to": "00:21:21,920"
+			},
+			"offsets": {
+				"from": 1273920,
+				"to": 1281920
+			},
+			"text": " There was an EIP recently that's proposed putting it in transaction receipts for various reasons that didn't go through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,920",
+				"to": "00:21:24,920"
+			},
+			"offsets": {
+				"from": 1281920,
+				"to": 1284920
+			},
+			"text": " but there's other ways of doing it that I think would work perfectly well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,920",
+				"to": "00:21:30,920"
+			},
+			"offsets": {
+				"from": 1284920,
+				"to": 1290920
+			},
+			"text": " You don't have to store anything, you could just make it available via a subscription, you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,920",
+				"to": "00:21:39,920"
+			},
+			"offsets": {
+				"from": 1290920,
+				"to": 1299920
+			},
+			"text": " So, the fact that the transaction is sealed, the theorem node uses its existing pub subsystem to send out a push notification to the client saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,920",
+				"to": "00:21:47,920"
+			},
+			"offsets": {
+				"from": 1299920,
+				"to": 1307920
+			},
+			"text": " \"Hey, here's the return value,\" but really can be implemented any way you want, it's claimable by either the theorem node development teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,920",
+				"to": "00:21:53,920"
+			},
+			"offsets": {
+				"from": 1307920,
+				"to": 1313920
+			},
+			"text": " or again by third party submitting a PR."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,920",
+				"to": "00:22:02,920"
+			},
+			"offsets": {
+				"from": 1313920,
+				"to": 1322920
+			},
+			"text": " Okay, and all the bounty details will be posted over the next few days at auger.net/boundies."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,920",
+				"to": "00:22:04,920"
+			},
+			"offsets": {
+				"from": 1322920,
+				"to": 1324920
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,920",
+				"to": "00:22:17,920"
+			},
+			"offsets": {
+				"from": 1324920,
+				"to": 1337920
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,920",
+				"to": "00:22:20,180"
+			},
+			"offsets": {
+				"from": 1337920,
+				"to": 1340180
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

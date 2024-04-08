@@ -1,0 +1,3541 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 22000
+			},
+			"text": " So I wanted to open this before we introduce ourselves with a quote from one of my favorite essays of all time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 31000
+			},
+			"text": " The optimal user is someone who does not want the burden of choice or feels they do not have the time to make their own decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 38000
+			},
+			"text": " It is for this person that the modern web is designed and it is this type of person the modern web encourages all of us to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " So this is from Zach Mandeville's essay, The Future Will Be Technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 46000
+			},
+			"text": " It's at CoolGuide.website."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 57000
+			},
+			"text": " It's a really excellent piece of writing about sort of our relationship to modern technology and the way we exist online and the ways that it damages us."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 65000
+			},
+			"text": " So starting from there, sorry I'm going to pull up my notes again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 75000
+			},
+			"text": " I'm going to have our panelists introduce themselves in a second, but just to kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 78000
+			},
+			"text": " set the stage for our topic here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 85000
+			},
+			"text": " In the modern web and what we think of as web 2, everything has kind of these guardrails on it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 95000
+			},
+			"text": " Everything is simplified, our paths are clear, you have only so many options and this makes things easier, but it's also really disempowering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 111000
+			},
+			"text": " So I think that we all in this room probably agree that things like can and should be different, but what that means is still a little bit fuzzy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 124000
+			},
+			"text": " So we still have to be defined and there's even an argument to be made, I think that it shouldn't be defined so much as discovered, like in cooperation with the people that we're designing for."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 131000
+			},
+			"text": " So with that, I'm going to invite the panelists to introduce themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 144000
+			},
+			"text": " Let us know, less interested in affiliation and more in sort of what you do, what your background is and the kinds of people that you designed for, who you think of as your users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 147000
+			},
+			"text": " Awesome, hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 155000
+			},
+			"text": " I am Scott, I co-founded Gitcoin back in 2017, I think, I'm trying to remember, it seems like a while ago now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 175000
+			},
+			"text": " I think for me, I actually don't come from, which is, I'm the outlier on this panel, like a design background, but I do a lot of community design and think about the role of the community in participatory decision making, both in the context of the data we run, but also in the process of things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 181000
+			},
+			"text": " things like quadratic funding, which are more about local first sort of community led decisions for funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 201000
+			},
+			"text": " And I think, you know, the quote that you mentioned is actually like, very resonant to me because the experience, it's telling you I had growing up in the web, I think reflects that, and certainly was, I think like, you know, I was at this era, I grew up in this era where I think it was just on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 211000
+			},
+			"text": " precipice of things like Facebook and all these big platforms, which I think I don't need to dive into the details on, like that we all know kind of have created this attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 215000
+			},
+			"text": " And I sort of saw that magic of the internet disappear a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 228000
+			},
+			"text": " And so I'm very hopeful that with the tools we're building here, we think about bringing that magic back and like, kind of think about, you know, the weirdness of the internet as it used to be as something that we can actually like use in an empowering way within our own communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " So that's just what came to mind, but I'll leave it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 234000
+			},
+			"text": " That's perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 236000
+			},
+			"text": " Take over."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 238000
+			},
+			"text": " So guys, I'm Hester."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241000
+			},
+			"text": " I work as an independent UX researcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 245000
+			},
+			"text": " I have a background in psychology and interaction design."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " And yeah, kind of do what is necessary at any given time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 255000
+			},
+			"text": " So I don't like sticking to a particular function or role too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 265000
+			},
+			"text": " My kind of views, I think have been mostly influenced by my last five years or so at status."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 281000
+			},
+			"text": " For those of you who are not familiar, it's one of the, I'd say one of the older, older projects in the space, but also an incredibly principal one on bringing privacy and security and participation to everyone by putting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 285000
+			},
+			"text": " access to Ethereum onto a mobile phone among other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 306000
+			},
+			"text": " So that's kind of like what has in a way re-educated me or educated me in the first place about kind of the ignorance I had around like privacy and data I'd be giving up and kind of the trade off that I was making for convenience."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 312000
+			},
+			"text": " For context, I also spent a very short stint at the Ads Department of what is now meta."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 324000
+			},
+			"text": " And so I have a bit of a nuanced view on kind of the big bat wolf of social media companies as well, seeing problems as very systematic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " So that's another lens I try to look at things from."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330000
+			},
+			"text": " I guess that's me."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 332000
+			},
+			"text": " Rachel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 343000
+			},
+			"text": " Yeah, my name is Rachel. I work at the Ethereum Foundation on the Privacy and Scaling Explorations team with Althea."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 363000
+			},
+			"text": " My background is in fine arts. I went to school for sculpture and I was doing a lot of work related to how do people interact with objects and spaces and how can those interactions create conversation and communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 378000
+			},
+			"text": " And it was also, I think, a time where I was exploring a lot of like, how can you find metaphor to explain things in new ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " And that's what I relate to the work I do on the PSE team."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 389000
+			},
+			"text": " We're working with developers who are creating zero knowledge protocols and apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 393000
+			},
+			"text": " The content is really abstract and complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 417000
+			},
+			"text": " So a lot of my role is like spending time with developers or in conversations with Althea and other designers, other communicators and saying like, how can we find ways to make this understandable or familiar so that more people can be involved in conversations around"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 421000
+			},
+			"text": " designing for ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 442000
+			},
+			"text": " And the users that we're focused on right now are a lot of other app developers and designers who want to be making their own products with the zero knowledge protocols that our team is creating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 447000
+			},
+			"text": " Thank you and I will also introduce myself, but I wanted to lead with you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 457000
+			},
+			"text": " So my name is Althea. As Rachel said, I also work on the privacy and scaling explorations team at the EF, but I lead communications there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 467000
+			},
+			"text": " I actually also have a fine arts background, but as a fine arts major, I really gravitated toward what most people would call crafts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 477000
+			},
+			"text": " So I was a ceramicist. I was really a potter because I just could never really enjoy or get my head around the idea of creating things for people to just consume."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 494000
+			},
+			"text": " I wanted to create things that people would like use and have as a part of their lives and eventually destroy probably or give away or whatever, that things that are not sort of there for money or to like, you know, accumulate value or to just be pretty to look at,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 499000
+			},
+			"text": " but things that really are part of your life that you build experiences around."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 516000
+			},
+			"text": " So Rachel's kind of explained what PSE's user base is, but in terms of communicating with that user base, I have a similar kind of approach of wanting to put out things that people, we don't just want to market ourselves, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 535000
+			},
+			"text": " That's not even a little bit what we do, but we want to educate people and invite people to be a part of this, to create stuff with us, to give us feedback, to help us iterate, and to just themselves become builders of the worlds that they want to live in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 556000
+			},
+			"text": " So this panel is ostensibly about user experience, but I think it has to start with kind of redefining what a user even is, and maybe just throwing out the word user entirely because it kind of sucks for the way that we want to think about the people that are interacting with things that we create, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 561000
+			},
+			"text": " Like user implies this very passive thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 581000
+			},
+			"text": " We make you use, it's this sort of client server model of like human interaction, and we expect as users to have our platform sort of consume and parse and spit back out little package things that we can like then process, and this very simple and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 586000
+			},
+			"text": " sort of deadening way, a little bit biased on all of this, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 604000
+			},
+			"text": " But to think about users in a different way as being sort of more human having like, you know, entire lives, minds, responsibilities, like capabilities really requires a huge mental shift."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 611000
+			},
+			"text": " It means thinking in a very different way about sort of who's on the other end of whatever it is that you're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 619000
+			},
+			"text": " So I wanted to ask you guys, like, you've all come from more kind of traditional backgrounds, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 631000
+			},
+			"text": " You didn't all start in Web3, which is a term I hope to never use again in this conversation, and I'm sorry, I hate it, because it defines itself against the thing that it's trying not to be, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 638000
+			},
+			"text": " And we want Web3 to be something a lot better than like Web2 with a blockchain on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 643000
+			},
+			"text": " Like those foundations are just broken. We don't want to build on them. We want to rebuild them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 658000
+			},
+			"text": " So coming from the backgrounds that you did, what have been some of the challenges are like the things that you've had to really unlearn or rethink or reimagine as you've been coming into this new space and like coming with this new approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 675000
+			},
+			"text": " I think for me the biggest learning is probably being that, so before I even did anything in, I'll say crypto, like the, my work was actually in more machine learning, which is very much removed from person,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 686000
+			},
+			"text": " because I mean you have sort of this notion in machine learning of like working with people, but only in the sense that like people at some point made like training data that you're then kind of applying like a much later point."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 692000
+			},
+			"text": " So like people in the past, like often like the far past did something, now you're kind of drawing on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 704000
+			},
+			"text": " I think with something like quadratic funding and what we're doing with Gitcoin, it's much more about like kind of, even the word agent isn't great, but like I'll use agent as compared to like algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 715000
+			},
+			"text": " And I think, you know, what we're trying to do is like have people form kind of collective intelligence like, you know, at a given point in time where they're actually present and they're actually participating and they're actually participating."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 724000
+			},
+			"text": " They're actually making decision, you know, for now for the future versus kind of using this previous past like training data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 741000
+			},
+			"text": " And I think that's, you know, one shift that's been really interesting for me to explore and I think it's been kind of exciting to see that like web, you know, crypto tends to be a lot more about like the idea of people being participants in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 748000
+			},
+			"text": " Even when, you know, they're just kind of providing signal or providing some kind of like aggregate information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 755000
+			},
+			"text": " But I think there's something deeper to that which is just like, someone a pop talks about this a lot too, also in the Gitcoin community."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 760000
+			},
+			"text": " The idea of like kind of human thriving or like bringing your like whole self to something that you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 770000
+			},
+			"text": " I think there's definitely even beyond just like, I think the user experience kind of concept is a symptom of a broader way of framing like the interaction we have with institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 781000
+			},
+			"text": " Organizations in which we sort of talk about like, oh, like, I guess we're sort of like a customer or we're like, you know, one, we have one facet of ourselves in the conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 791000
+			},
+			"text": " But I think it's actually much more important for us to think about like, how do we start to bring more of ourselves to the institutions that we're building and then how the institutions change as a result of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 801000
+			},
+			"text": " So I'm kind of partly thinking of this in the context of like this shift from algorithm to agent, which isn't entirely correct, but is one thing I'm interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 820000
+			},
+			"text": " And then I'm also thinking of it in terms of like kind of bringing like one part of the elephant and that sort of like, blind man in the element analogy to like actually trying to look at the whole elephant and look at the whole picture of each person that's in the community to better kind of serve them in the institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 825000
+			},
+			"text": " Thanks for mentioning the word future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 830000
+			},
+			"text": " Because that was my cue to my notes. I was like, oh, yes, future. That's what I wanted to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 841000
+			},
+			"text": " Now, I always have this because we were talking about like users, what defines users and in UX and design, like, this is like always eternal ongoing debate, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 851000
+			},
+			"text": " Users versus human centered versus like the creators. There's a lot of different labels that you can give and all different views on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 870000
+			},
+			"text": " Yeah, I have my own, but I think my most critical insight relates more to how we define UX, which like traditionally coming from a psychology cognitive psychology background was always focused on the usability side, like how efficient can we get people through flows"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875000
+			},
+			"text": " or providing the right information. But it was never focused around the future context."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 894000
+			},
+			"text": " And to me, that's been pretty eye opening to the extent that I actually looked up the official kind of ISO definition of UX, which actually does include like context and long term impact of what your experience is when you're using something."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 912000
+			},
+			"text": " And yeah, to me, it's been most interesting to see how the systems that we're building require us to think beyond these basic flows to talk in design language to what is it is going to come to do for people in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 922000
+			},
+			"text": " be it the initial users or indirectly their context, their environment. Yeah, I'll leave it at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 933000
+			},
+			"text": " Right, no, there was one thing I wanted to say. It occurred to me just now how interesting it is that we are sitting here talking about participation design and like reminder open chair."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 935000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 940000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " You really just wanted the water."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 953000
+			},
+			"text": " We have to share a mic if somebody comes up. That's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 975000
+			},
+			"text": " Here, guys, I'm a demo from the bar. And actually one of the with my team, we have some people here. We've been building products since 2013 and we got into Web 3 in 2017 probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 990000
+			},
+			"text": " And one of the huge issues that we always had with products, it's usually experienced rate. And the thing that we have with Web 3 right now is that it's very hard to get those web people into Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 1009000
+			},
+			"text": " So what do you use? Use the tools that we have already like email and password, right? And we're trying to like to make it really secure to get those people in secure and known for them manner to get into our products."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1026000
+			},
+			"text": " So we have created a model where you can create an account with username and password. And we are smart wallets, which means we're built on top of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1039000
+			},
+			"text": " And we're able to get the private keys and put it on the browser and put it on the back end. So we have like two different private keys. And this way we're able to get something they already know and to put it in our product."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1049000
+			},
+			"text": " We don't want to change like we're not able to come with something like very different. It doesn't make any sense to come with something very different and educate people how to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1062000
+			},
+			"text": " We're using things that they already know. And the other point is that basically Web 3 and the blockchain is not it's complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1073000
+			},
+			"text": " And one of the things that we've been working on is explaining transactions in a human friendly way. So you're signing something and we're explaining exactly what you're signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1085000
+			},
+			"text": " So there is no bothering, right? And basically this is the two keys of our product. Of course we have very smart people and they've been working on their interesting things."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1094000
+			},
+			"text": " And the wallet itself works with abstraction. So we're taking advantage of all those beautiful things that we have from the smart contracts in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1106000
+			},
+			"text": " But this is why I actually attended this because that's the most important part. Like to get the web to users and bring in on Web 3. That's the whole thing in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1120000
+			},
+			"text": " So we have created a product that my mom can use easily. So she has an email, right? And our point here is to create it securely, like to create an account securely into Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1136000
+			},
+			"text": " So yeah, awesome. So go ahead. Well, do you see like so? I mean, you're talking about like kind of privacy, security, like, and I think that like ties in to actually your work, like Rachel, like pretty deeply like, how do you think about like explaining that stuff to users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1147000
+			},
+			"text": " Like, that just seems very difficult, especially with the DKA, especially. It's like even on its own complicated. But if you want to respond to that first."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1158000
+			},
+			"text": " So when I joined the team, that's where my head was like, wow, this stuff is so weird. How do I explain it to my parents?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1176000
+			},
+			"text": " How can I? How can we make these apps that my friends and family can use? And I was very stuck in that like headspace and it took me like a little while before I realized that that was like a misdirection for us and our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1196000
+			},
+			"text": " Specifically, because we're making public goods, what we want to do is we want to make protocols that other people can build with. We want to create proof of concept applications that people can use that inspire them to build and to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1209000
+			},
+			"text": " So I really liked also that and thank you for being the first to join us by the way. You're very brave. I'm not kicking you out. But if anybody else does want to come up, you know, that wasn't so bad, right? Yeah, come on."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1216000
+			},
+			"text": " But I wanted to just like come back to a point that you made about using kind of."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1221000
+			},
+			"text": " Well, we've got another volunteer."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1243000
+			},
+			"text": " More the better, right? But about using kind of human readable language to describe these kind of complex processes. This is something that Rachel talked about in her presentation yesterday also that yes, the stuff that's going on is complicated, but a lot of the time is where you lose people is actually just in literally the language that you use to describe it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1259000
+			},
+			"text": " That people are not stupid and they're not like incapable, but they don't know what a zero knowledge proof is. They don't know what a polynomial is, whatever it is that like putting that stuff into just more common language can go a long way."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1266000
+			},
+			"text": " And it's something that I think we kind of forget that people do like to understand things. People like to explore. People are curious."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1275000
+			},
+			"text": " So like to kind of empower people by helping them to understand what's going on and helping them to see the tools that are actually in front of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1281000
+			},
+			"text": " So I think that that was a really like a powerful point. So thanks for that. And do you want to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1283000
+			},
+			"text": " Yeah, I just go."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1285000
+			},
+			"text": " Sorry, Scott. Did you have something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1296000
+			},
+			"text": " Okay, yeah, so just to build on the board, you were saying about complexity. So well, hi, I'm Nelly, head of adoption at IXX, one of the oldest projects in France."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1305000
+			},
+			"text": " And well, I want to share my experience because I love mass adoption and inclusion and diversity in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1318000
+			},
+			"text": " And when I joined this project, this project was launched by researchers. We're doing blockchain confidential computing. And one of our first audiences was people looking for computing power, data sets, applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1322000
+			},
+			"text": " And it's a very technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1336000
+			},
+			"text": " They need to be able to bring our technology to masses. But when you're doing with Oracle, it's confidential computing. It's not as easy. So we came up with this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1345000
+			},
+			"text": " It's a new product. And it's about using confidential computing to protect our personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1356000
+			},
+			"text": " So the idea behind this is like, hey, our protocol is complex. And how can we make people identify with our product, with our features?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1363000
+			},
+			"text": " So trying to sell Oracle's and, you know, trust execution environments is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1374000
+			},
+			"text": " But we realize that the thing that was linking us to the audience is like, nobody identifies with computing power to Oracle's. It's really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1382000
+			},
+			"text": " But we all have an identity. We all have personal data. And what we're trying to do is like create, you create an avatar."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1394000
+			},
+			"text": " And then you put all your personal data, email address, age, everything. You transform it using confidential computing using confidential NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1404000
+			},
+			"text": " And this is the way that now you're going to connect and access products and services in Wave 3. And then everybody can identify it with all the Gram."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1419000
+			},
+			"text": " All the Gram meets me. It's my personal data. I transform it. And then I connect. So one of the things I learned, like try to find that feature, that narrative that really connects you with your audience, even if your project or your protocol is complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1430000
+			},
+			"text": " Yeah, I think that's really important. Like finding something that people can connect to or see themselves in. Like Rachel said, again, your presentation was just really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1442000
+			},
+			"text": " I'm going to reference it probably a few times. But something that feels familiar, like something that is like something that you know. Did you have something you wanted to add there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1450000
+			},
+			"text": " Well, just that one common theme, I think, and it probably will come up like as other people come up as well, which I'll like say anyone else wants to come up shit."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1458000
+			},
+			"text": " I think it's really actually interesting to think about like education because we don't really like we don't actually educate users in a lot of."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1467000
+			},
+			"text": " We kind of do it implicitly in existing design paradigms where we're just kind of like, here's the flow and like then you walk through and by definition, you've now understood what you're supposed to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1472000
+			},
+			"text": " There's a lot of like pre work that's I think required with like a lot of these products that like we're sort of touching on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1478000
+			},
+			"text": " And like I think there's the option of trying to reduce that. There's the option of trying to like have people that are identified with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1490000
+			},
+			"text": " And so like just going back to like your like sort of first question, like how are we redefining what a user is like that part of participation is like being involved and kind of learning and growing and like educating."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1496000
+			},
+			"text": " And that's actually something that people I think are like often in the context of like using a product or being part of a community."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:00,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1500000
+			},
+			"text": " Like sometimes uncomfortable with, but it's really important to be able to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,000",
+				"to": "00:25:06,000"
+			},
+			"offsets": {
+				"from": 1500000,
+				"to": 1506000
+			},
+			"text": " Yeah, definitely. So and that kind of leads me to and I hope that this one will also be interesting for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1506000,
+				"to": 1515000
+			},
+			"text": " Welcome. Like another thing that I wanted to bring up and I think education is like a big piece of this, but it's also much deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1533000
+			},
+			"text": " How you inspire people to like to take responsibility for the actions that they take responsibility for giving the feedback that helps to shape a platform just responsibility for kind of curating the spaces that we create together."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1543000
+			},
+			"text": " What are some of the other things that we think about when we're trying to like give that power to people and like inspire and expect them."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1547000
+			},
+			"text": " To make that contribution back."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:26:06,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1566000
+			},
+			"text": " I can give a quick response to that. No, I was thinking along the lines of the the first two people that joined us up here that we were talking about language right then how do you use language to help people understand what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1566000,
+				"to": 1573000
+			},
+			"text": " And if we want to talk about participation design, that's that to me is where the pivot is what between users and participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1580000
+			},
+			"text": " You need to know what's going on. You need transparency on the system in order to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1587000
+			},
+			"text": " So yeah, just my line of thinking of the distinction between designing for users, designing for participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1589000
+			},
+			"text": " We need a lot more system transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1597000
+			},
+			"text": " Which also means we need to understand how these things work and especially designers need to understand how to bring it down to the surface and communicate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:41,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1601000
+			},
+			"text": " But I'm very curious how that or you were going to bring up."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,000",
+				"to": "00:26:46,000"
+			},
+			"offsets": {
+				"from": 1601000,
+				"to": 1606000
+			},
+			"text": " So, my name is Germany, like the country."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1606000,
+				"to": 1613000
+			},
+			"text": " So I'm co-founder of Hyperloco Dao in Tampa, Florida called Tampa Bay Dao TBD for short because we're always figuring shit out."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1621000
+			},
+			"text": " But yeah, so one thing we really like to do is like help out the local community and like kind of comes back down to education and onboarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:04,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1624000
+			},
+			"text": " Because in Tampa, we have a diverse group of people, old, young."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,000",
+				"to": "00:27:12,000"
+			},
+			"offsets": {
+				"from": 1624000,
+				"to": 1632000
+			},
+			"text": " And one thing that kept coming up for us was before we started getting to like ZK roll-ups or different networks in the crypto ecosystem and Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,000",
+				"to": "00:27:22,000"
+			},
+			"offsets": {
+				"from": 1632000,
+				"to": 1642000
+			},
+			"text": " I realized as we're like doing these like really like educational like classes is we kept missing the initial principles in which I got in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,000",
+				"to": "00:27:32,000"
+			},
+			"offsets": {
+				"from": 1642000,
+				"to": 1652000
+			},
+			"text": " And so what I did was created this visual web and it has starting in the middle, which is part that people forget is self sovereignty."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,000",
+				"to": "00:27:36,000"
+			},
+			"offsets": {
+				"from": 1652000,
+				"to": 1656000
+			},
+			"text": " So if you ask me, well, why are you here? I'm like, well, if you read the biblical wipe it, what does it really mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,000",
+				"to": "00:27:44,000"
+			},
+			"offsets": {
+				"from": 1656000,
+				"to": 1664000
+			},
+			"text": " So that's in the middle and then it kind of breaks out into the trifecta and it goes into like trustlessness, consensus, proof of work, proof of stake, Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,000",
+				"to": "00:27:52,000"
+			},
+			"offsets": {
+				"from": 1664000,
+				"to": 1672000
+			},
+			"text": " Then people start to understand like a rival of, oh, now I understand the grid. Now I see why we need ZK roll-ups to get for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1672000,
+				"to": 1682000
+			},
+			"text": " And I think that really helps in terms of what you were saying as well, which is like education is key, but education forms of like the principles versus really getting to like the bytecode of like, well, here's how we got to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:04,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1684000
+			},
+			"text": " We got to charge it like, no, we don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,000",
+				"to": "00:28:06,000"
+			},
+			"offsets": {
+				"from": 1684000,
+				"to": 1686000
+			},
+			"text": " So yeah, that's all I just like wanted to say with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1686000,
+				"to": 1689000
+			},
+			"text": " I thought was interesting because education really is important for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,000",
+				"to": "00:28:13,000"
+			},
+			"offsets": {
+				"from": 1689000,
+				"to": 1693000
+			},
+			"text": " I really want to see that visual."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1699000
+			},
+			"text": " I actually think I like posted this like open source. You know, I can just download and use it for to teach people in your local neighborhoods or communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,000",
+				"to": "00:28:21,000"
+			},
+			"offsets": {
+				"from": 1699000,
+				"to": 1701000
+			},
+			"text": " Awesome. And sorry, what was it called?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,000",
+				"to": "00:28:28,000"
+			},
+			"offsets": {
+				"from": 1701000,
+				"to": 1708000
+			},
+			"text": " I have to like post up. It's like on like Kumo, I'll like share out whoever wants to connect after this and give you the link."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,000",
+				"to": "00:28:34,000"
+			},
+			"offsets": {
+				"from": 1708000,
+				"to": 1714000
+			},
+			"text": " Yeah, thank you so much for that. Rachel, did you have anything you wanted to add there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,000",
+				"to": "00:28:47,000"
+			},
+			"offsets": {
+				"from": 1714000,
+				"to": 1727000
+			},
+			"text": " Well, yeah, I guess it's just so interesting to think about like we all, everyone who's talking right now is designing for different audience members, but we're all thinking about education on different levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,000",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1727000,
+				"to": 1737000
+			},
+			"text": " So I just, I get stuck on this idea that I hear people, you know, say like, well, this has to be usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:29:05,000"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1745000
+			},
+			"text": " Like this stuff is not approachable yet. And for me, it's like, that's okay. That's where we are right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,000",
+				"to": "00:29:26,000"
+			},
+			"offsets": {
+				"from": 1745000,
+				"to": 1766000
+			},
+			"text": " But like if we don't spend time like really educating ourselves, like the people who are making it and documenting our process and documenting our learnings, then like we're not going to get to that endpoint that everyone's visualizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,000",
+				"to": "00:29:31,000"
+			},
+			"offsets": {
+				"from": 1766000,
+				"to": 1771000
+			},
+			"text": " Where like everything is really easy for anyone to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:31,000",
+				"to": "00:29:42,000"
+			},
+			"offsets": {
+				"from": 1771000,
+				"to": 1782000
+			},
+			"text": " So like Germany was saying about like creating these visual maps, creating these resources for people from different learning levels to onboard into the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,000",
+				"to": "00:29:45,000"
+			},
+			"offsets": {
+				"from": 1782000,
+				"to": 1785000
+			},
+			"text": " I think that's just really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,000",
+				"to": "00:29:55,000"
+			},
+			"offsets": {
+				"from": 1785000,
+				"to": 1795000
+			},
+			"text": " I really like that. And I think this is something that we forget a lot that like we are also users and participants in this, like all of these things were sort of the first participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,000",
+				"to": "00:30:01,000"
+			},
+			"offsets": {
+				"from": 1795000,
+				"to": 1801000
+			},
+			"text": " We are hopefully building in the way that we hope other people will continue to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1801000,
+				"to": 1808000
+			},
+			"text": " And so to kind of build for ourselves, I think is not selfish, it's practice. It's like, that's the first iteration."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:15,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1815000
+			},
+			"text": " And we learn what that learning process is like by having to model through it as we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,000",
+				"to": "00:30:28,000"
+			},
+			"offsets": {
+				"from": 1815000,
+				"to": 1828000
+			},
+			"text": " So yeah, I think to sort of just as Rachel was saying, like document those processes and really pay attention to what it's like for us to learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,000",
+				"to": "00:30:34,000"
+			},
+			"offsets": {
+				"from": 1828000,
+				"to": 1834000
+			},
+			"text": " And for us to find that inspiration is really important and really valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:34,000",
+				"to": "00:30:36,000"
+			},
+			"offsets": {
+				"from": 1834000,
+				"to": 1836000
+			},
+			"text": " And we have a new friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,000",
+				"to": "00:30:39,000"
+			},
+			"offsets": {
+				"from": 1836000,
+				"to": 1839000
+			},
+			"text": " Yeah, super grateful to be here in the presence of everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,000",
+				"to": "00:30:56,000"
+			},
+			"offsets": {
+				"from": 1839000,
+				"to": 1856000
+			},
+			"text": " My name is Sean. I'm working on a community owned and operated proactive healthcare system. So it's a Dow. And this seems super aligned because in healthcare, we think a lot about how we can co create health experiences for people, especially people combating"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,000",
+				"to": "00:31:00,000"
+			},
+			"offsets": {
+				"from": 1856000,
+				"to": 1860000
+			},
+			"text": " stuff like chronic diseases have to have some sort of lifestyle change."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,000",
+				"to": "00:31:15,000"
+			},
+			"offsets": {
+				"from": 1860000,
+				"to": 1875000
+			},
+			"text": " And it's quite interesting the parallels between web three, where we have to basically design for a participatory experience because if the people involved in the experience are not playing an active part in designing what they want to do, in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:15,000",
+				"to": "00:31:20,000"
+			},
+			"offsets": {
+				"from": 1875000,
+				"to": 1880000
+			},
+			"text": " sense autonomy in healthcare that helps people stick to whatever they're committing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,000",
+				"to": "00:31:35,000"
+			},
+			"offsets": {
+				"from": 1880000,
+				"to": 1895000
+			},
+			"text": " And then in web three, I think what we want to design and what we want is to let people come into our product or a community and then figure out how they intentionally with their own values missions fit in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,000",
+				"to": "00:31:53,000"
+			},
+			"offsets": {
+				"from": 1895000,
+				"to": 1913000
+			},
+			"text": " And we spend a lot of time like figuring out how that looks like for a healthcare Dow. And I'm curious to hear what your guys thoughts are on that kind of intentionality in community onboarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,000",
+				"to": "00:32:09,000"
+			},
+			"offsets": {
+				"from": 1913000,
+				"to": 1929000
+			},
+			"text": " I'll just quickly say, I think there's definitely thank you. Yeah, there's a huge challenge with anything to do with the community, which is, you know, what is the boundary of community? Like, what is the community? What is the goal of the community? What's the purpose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,000",
+				"to": "00:32:17,000"
+			},
+			"offsets": {
+				"from": 1929000,
+				"to": 1937000
+			},
+			"text": " Why are people there? What is there? Like, how did it start? What were the principles behind that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:17,000",
+				"to": "00:32:31,000"
+			},
+			"offsets": {
+				"from": 1937000,
+				"to": 1951000
+			},
+			"text": " I think one of the challenges is always, I think actually it's easier in some ways with a defined mission like you're talking about to rally people around something that in this case, if it's a group of people that all have sort of like some amounts of chronic illness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:31,000",
+				"to": "00:32:46,000"
+			},
+			"offsets": {
+				"from": 1951000,
+				"to": 1966000
+			},
+			"text": " like I think there's a shared sort of kernel of similarity and like a feeling of kind of congeniality between people by definition. Whereas, you know, with something like crypto, I think like maybe just not to go too off track,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:46,000",
+				"to": "00:33:09,000"
+			},
+			"offsets": {
+				"from": 1966000,
+				"to": 1989000
+			},
+			"text": " but maybe mean many different things by it. Lots of people in this room probably mean different things by it. And so figuring out like what those like kernels are, what those like core principles are like Germany said, I think is like really important as we think about like, you know, not necessarily even like, I think boundaries, maybe the wrong word, but like what is the sort of like inclusion criteria in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,000",
+				"to": "00:33:26,000"
+			},
+			"offsets": {
+				"from": 1989000,
+				"to": 2006000
+			},
+			"text": " It's important because you need to make sure that, you know, if someone is participating that they're doing to your point, like they're taking the responsibility doing the relevant work. So it's a little bit of a tangent, like it's not directly answering the question, but like, I think that's a really important, like just discovery process for any new community."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,000",
+				"to": "00:33:32,000"
+			},
+			"offsets": {
+				"from": 2006000,
+				"to": 2012000
+			},
+			"text": " Yeah, yeah, I did this a conversation, right? So I don't think you missed any question."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,000",
+				"to": "00:33:49,000"
+			},
+			"offsets": {
+				"from": 2012000,
+				"to": 2029000
+			},
+			"text": " No, thank you Sean. Where's Sean? No, it gave me added a dot for me in like the framework of going from like user to participation, which is ownership that's in between and getting this sense of ownership."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,000",
+				"to": "00:34:02,000"
+			},
+			"offsets": {
+				"from": 2029000,
+				"to": 2042000
+			},
+			"text": " And I don't know too much about like the healthcare industry and how that's like transitioning into letter based applications, not sure what else to call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:02,000",
+				"to": "00:34:05,000"
+			},
+			"offsets": {
+				"from": 2042000,
+				"to": 2045000
+			},
+			"text": " Whatever it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,000",
+				"to": "00:34:19,000"
+			},
+			"offsets": {
+				"from": 2045000,
+				"to": 2059000
+			},
+			"text": " Yeah, healthcare seems like an interesting case because that's where ownership ties to like this very intrinsic, you need ownership over your own body like it makes it very tangible."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,000",
+				"to": "00:34:34,000"
+			},
+			"offsets": {
+				"from": 2059000,
+				"to": 2074000
+			},
+			"text": " And if we want to expand ownership to communities, you first need that sense of ownership over the community that you are impacted by decisions that are made the same as you're impacted by decisions that doctors would make over your own healthcare."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,000",
+				"to": "00:34:47,000"
+			},
+			"offsets": {
+				"from": 2074000,
+				"to": 2087000
+			},
+			"text": " So yeah, just added that question in my mind at least on how do you first create ownership over the community before you ask or try and incentivize people to participate in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,000",
+				"to": "00:34:51,000"
+			},
+			"offsets": {
+				"from": 2087000,
+				"to": 2091000
+			},
+			"text": " Yeah, starting to draw framework here."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,000",
+				"to": "00:34:59,000"
+			},
+			"offsets": {
+				"from": 2091000,
+				"to": 2099000
+			},
+			"text": " And I just want to add a quick point that with designing zk stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,000",
+				"to": "00:35:13,000"
+			},
+			"offsets": {
+				"from": 2099000,
+				"to": 2113000
+			},
+			"text": " I feel strongly that I don't want people to feel polarized from being participants in creating the like products that use zero knowledge, like it sounds, science or Matthew."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,000",
+				"to": "00:35:21,000"
+			},
+			"offsets": {
+				"from": 2113000,
+				"to": 2121000
+			},
+			"text": " And I think we have this like obligation to make it approachable so that people like people know what they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,000",
+				"to": "00:35:42,000"
+			},
+			"offsets": {
+				"from": 2121000,
+				"to": 2142000
+			},
+			"text": " Why do we have to only follow former models of saying like we'll figure out what they need and design for them when we could try something different where people can like co create the experiences that they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:42,000",
+				"to": "00:35:52,000"
+			},
+			"offsets": {
+				"from": 2142000,
+				"to": 2152000
+			},
+			"text": " Hi, my name is Marnu and I'm one of the founders of doing good also found a member of API three down and a couple of other doubts that I participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,000",
+				"to": "00:36:00,000"
+			},
+			"offsets": {
+				"from": 2152000,
+				"to": 2160000
+			},
+			"text": " I really like the conversation. However, I have a couple of things that is bothering me quite a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,000",
+				"to": "00:36:13,000"
+			},
+			"offsets": {
+				"from": 2160000,
+				"to": 2173000
+			},
+			"text": " Yeah, most of us are here building tools, as you said for ourselves. But most of the people that are building the space are actually from very privileged countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,000",
+				"to": "00:36:19,000"
+			},
+			"offsets": {
+				"from": 2173000,
+				"to": 2179000
+			},
+			"text": " And yeah, basically those tools are being built and not being built for the people that actually needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,000",
+				"to": "00:36:28,000"
+			},
+			"offsets": {
+				"from": 2179000,
+				"to": 2188000
+			},
+			"text": " And that bother me a lot. Also, I know I think the bias me is that we are using a lot of terms or we creating these new terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,000",
+				"to": "00:36:37,000"
+			},
+			"offsets": {
+				"from": 2188000,
+				"to": 2197000
+			},
+			"text": " Like, let's say stable coins, which are not really stable, we know that they're not stable, or we call them."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:37,000",
+				"to": "00:36:47,000"
+			},
+			"offsets": {
+				"from": 2197000,
+				"to": 2207000
+			},
+			"text": " Soulbound tokens. What the fuck is that? You know, and yeah, it's, it's just very confusing for people that are outside of the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,000",
+				"to": "00:36:53,000"
+			},
+			"offsets": {
+				"from": 2207000,
+				"to": 2213000
+			},
+			"text": " It's not really inclusive when we are creating these new terms that cannot even be translated."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,000",
+				"to": "00:36:57,000"
+			},
+			"offsets": {
+				"from": 2213000,
+				"to": 2217000
+			},
+			"text": " When we talk about staking, I don't even know how to say that in Spanish."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,000",
+				"to": "00:37:09,000"
+			},
+			"offsets": {
+				"from": 2217000,
+				"to": 2229000
+			},
+			"text": " I don't even I need to explain it all the time to people. So I think that we are getting to a trap when we are creating all of these new terms and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:09,000",
+				"to": "00:37:17,000"
+			},
+			"offsets": {
+				"from": 2229000,
+				"to": 2237000
+			},
+			"text": " We're trying to onboard people and we're trying to onboard masses, as we say, but in reality, we're just onboarding other gigs."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,000",
+				"to": "00:37:26,000"
+			},
+			"offsets": {
+				"from": 2237000,
+				"to": 2246000
+			},
+			"text": " And yeah, it's to me, it's really bad. And we say that also we're creating a more decentralized space, more inclusive space."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,000",
+				"to": "00:37:31,000"
+			},
+			"offsets": {
+				"from": 2246000,
+				"to": 2251000
+			},
+			"text": " When reality is just a bunch of white people just doing that, just talking between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:31,000",
+				"to": "00:37:43,000"
+			},
+			"offsets": {
+				"from": 2251000,
+				"to": 2263000
+			},
+			"text": " So, you know, are we really doing what we're saying that we're doing? Are we really using their language and the tools that we have for inviting new people to join us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,000",
+				"to": "00:37:48,000"
+			},
+			"offsets": {
+				"from": 2263000,
+				"to": 2268000
+			},
+			"text": " Or are we just, you know, trying to be cool?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:48,000",
+				"to": "00:37:53,000"
+			},
+			"offsets": {
+				"from": 2268000,
+				"to": 2273000
+			},
+			"text": " Thank you for, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,000",
+				"to": "00:38:01,000"
+			},
+			"offsets": {
+				"from": 2273000,
+				"to": 2281000
+			},
+			"text": " Really, thank you for bringing up some really challenging and really important points."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:01,000",
+				"to": "00:38:07,000"
+			},
+			"offsets": {
+				"from": 2281000,
+				"to": 2287000
+			},
+			"text": " And there were a couple of different things there that I don't know, maybe we can get to all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:07,000",
+				"to": "00:38:19,000"
+			},
+			"offsets": {
+				"from": 2287000,
+				"to": 2299000
+			},
+			"text": " But maybe let's start with the first one, which was, yeah, that we tend to be sort of insular, like we're sort of designing for the people that we see."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:19,000",
+				"to": "00:38:26,000"
+			},
+			"offsets": {
+				"from": 2299000,
+				"to": 2306000
+			},
+			"text": " This community is, you know, we would like to think that it's global, but it's really difficult to figure out how to reach people."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:26,000",
+				"to": "00:38:37,000"
+			},
+			"offsets": {
+				"from": 2306000,
+				"to": 2317000
+			},
+			"text": " And we end up designing in ways that like makes sense in my brain, but in a place that I've never been in a culture that I've never experienced in a language that I don't speak."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:37,000",
+				"to": "00:38:48,000"
+			},
+			"offsets": {
+				"from": 2317000,
+				"to": 2328000
+			},
+			"text": " It can be really difficult to predict, which also comes back to kind of what Rachel was saying that there's a difference between trying to figure out what people want and then make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:48,000",
+				"to": "00:38:58,000"
+			},
+			"offsets": {
+				"from": 2328000,
+				"to": 2338000
+			},
+			"text": " And then like this sort of hopefully interactive process of inviting people in to like figure out what it is they need and help them help themselves build it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:58,000",
+				"to": "00:39:06,000"
+			},
+			"offsets": {
+				"from": 2338000,
+				"to": 2346000
+			},
+			"text": " And there's this problem of like literally knowing how to find those people is really challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:06,000",
+				"to": "00:39:17,000"
+			},
+			"offsets": {
+				"from": 2346000,
+				"to": 2357000
+			},
+			"text": " Like I don't necessarily know where to look and to try to come with like prescriptive solutions or like, you know, go out with my binoculars looking for the person in the third world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:17,000",
+				"to": "00:39:21,000"
+			},
+			"offsets": {
+				"from": 2357000,
+				"to": 2361000
+			},
+			"text": " and it isn't in the third world country that I'm supposed to design for."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,000",
+				"to": "00:39:27,000"
+			},
+			"offsets": {
+				"from": 2361000,
+				"to": 2367000
+			},
+			"text": " It's really difficult to kind of know where to start with that sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:27,000",
+				"to": "00:39:33,000"
+			},
+			"offsets": {
+				"from": 2367000,
+				"to": 2373000
+			},
+			"text": " So I did want to ask like panelists and our new friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:33,000",
+				"to": "00:39:42,000"
+			},
+			"offsets": {
+				"from": 2373000,
+				"to": 2382000
+			},
+			"text": " Kind of how do you think about like we tend to when we do, you know, user research or try to like measure the impact of the things that we make."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:42,000",
+				"to": "00:39:55,000"
+			},
+			"offsets": {
+				"from": 2382000,
+				"to": 2395000
+			},
+			"text": " We rely on kind of simplified like easy things like analytics and like metrics that they're satisfying because you can count a number and think it's the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:55,000",
+				"to": "00:40:04,000"
+			},
+			"offsets": {
+				"from": 2395000,
+				"to": 2404000
+			},
+			"text": " bur and check a box, but they're actually the limiting and kind of useless and opaque and don't really particularly connect to reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:04,000",
+				"to": "00:40:19,000"
+			},
+			"offsets": {
+				"from": 2404000,
+				"to": 2419000
+			},
+			"text": " And they end up also like leading you to design for the people that are already there and certainly not like leading you into new areas or like inviting new people in."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:19,000",
+				"to": "00:40:33,000"
+			},
+			"offsets": {
+				"from": 2419000,
+				"to": 2433000
+			},
+			"text": " So wondering how you think about like how to measure success or how to like get richer, better feedback and have that be a more interactive process and just sort of open."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:33,000",
+				"to": "00:40:43,000"
+			},
+			"offsets": {
+				"from": 2433000,
+				"to": 2443000
+			},
+			"text": " The borders of it so that more people are able to participate and more people are able to kind of create."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:43,000",
+				"to": "00:40:49,000"
+			},
+			"offsets": {
+				"from": 2443000,
+				"to": 2449000
+			},
+			"text": " Hey guys, I'm Raghav. I'm building a community led fundraising platform. I'll be not quadratic."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:49,000",
+				"to": "00:40:58,000"
+			},
+			"offsets": {
+				"from": 2449000,
+				"to": 2458000
+			},
+			"text": " But just to like on what you said, I often think and it's something I was thinking earlier like for quadratic funding right mathematically speaking, it's not the most straightforward thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:58,000",
+				"to": "00:41:07,000"
+			},
+			"offsets": {
+				"from": 2458000,
+				"to": 2467000
+			},
+			"text": " But you know like let's say in the third world today, like in India, I'm from India, a lot of people don't have bank accounts, right? The goal is not to teach them how a bank works."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,000",
+				"to": "00:41:14,000"
+			},
+			"offsets": {
+				"from": 2467000,
+				"to": 2474000
+			},
+			"text": " The goal is perhaps first let's get them bank account. Let's tell them, okay, this is why it's good for you. You don't need to know the economics of it yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:14,000",
+				"to": "00:41:19,000"
+			},
+			"offsets": {
+				"from": 2474000,
+				"to": 2479000
+			},
+			"text": " So I think a similar thing can happen here where like our first goal is as long as we can get the service that we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:19,000",
+				"to": "00:41:28,000"
+			},
+			"offsets": {
+				"from": 2479000,
+				"to": 2488000
+			},
+			"text": " Let's get that to them and over time as that leads to what a prosperity we hope for, then we can reach a point where we can have education around those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:28,000",
+				"to": "00:41:36,000"
+			},
+			"offsets": {
+				"from": 2488000,
+				"to": 2496000
+			},
+			"text": " If we just keep waiting for education and just for that we don't provide them what we can provide them today, I think that would be a misstep."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,000",
+				"to": "00:41:38,000"
+			},
+			"offsets": {
+				"from": 2496000,
+				"to": 2498000
+			},
+			"text": " Also just to, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:38,000",
+				"to": "00:41:48,000"
+			},
+			"offsets": {
+				"from": 2498000,
+				"to": 2508000
+			},
+			"text": " Yeah, no, I think that's like my biggest, you know, I think learning from the last few years is that like you need politics to be like."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:48,000",
+				"to": "00:41:56,000"
+			},
+			"offsets": {
+				"from": 2508000,
+				"to": 2516000
+			},
+			"text": " What's the word? So like pre-figurative, like they need to like basically like you need to like take action towards the thing that you want to see in the world in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,000",
+				"to": "00:42:02,000"
+			},
+			"offsets": {
+				"from": 2516000,
+				"to": 2522000
+			},
+			"text": " I think crypto does that by definition. Like we just build things. We like they sometimes don't work, you know, at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,000",
+				"to": "00:42:05,000"
+			},
+			"offsets": {
+				"from": 2522000,
+				"to": 2525000
+			},
+			"text": " Sometimes they work kind of okay, but they're kind of janky."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:05,000",
+				"to": "00:42:10,000"
+			},
+			"offsets": {
+				"from": 2525000,
+				"to": 2530000
+			},
+			"text": " And then hopefully sometimes they work really well and like are sustainable for like long term."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:10,000",
+				"to": "00:42:24,000"
+			},
+			"offsets": {
+				"from": 2530000,
+				"to": 2544000
+			},
+			"text": " I think the biggest challenge I see aside from driving my phone apparently is that we really don't have a, you know, we're talking here about like participants, but we don't have a really good way to do that globally as both your mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:24,000",
+				"to": "00:42:26,000"
+			},
+			"offsets": {
+				"from": 2544000,
+				"to": 2546000
+			},
+			"text": " I think that's still a missing point here."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:26,000",
+				"to": "00:42:29,000"
+			},
+			"offsets": {
+				"from": 2546000,
+				"to": 2549000
+			},
+			"text": " We're still doing better than like, you know, meta or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:29,000",
+				"to": "00:42:35,000"
+			},
+			"offsets": {
+				"from": 2549000,
+				"to": 2555000
+			},
+			"text": " We're like, you're literally just in a room and like still come down like designing for a community that's global."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:35,000",
+				"to": "00:42:38,000"
+			},
+			"offsets": {
+				"from": 2555000,
+				"to": 2558000
+			},
+			"text": " Like as if that's going to just magically work for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:38,000",
+				"to": "00:42:46,000"
+			},
+			"offsets": {
+				"from": 2558000,
+				"to": 2566000
+			},
+			"text": " I think there's more like local first principles and thinking here, but we still don't have that really broad global participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:46,000",
+				"to": "00:42:57,000"
+			},
+			"offsets": {
+				"from": 2566000,
+				"to": 2577000
+			},
+			"text": " I think it's one of the reasons that like, you know, we sort of like as a community need to be having more conferences in places like Bogota to like participate more with local communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,000",
+				"to": "00:43:03,000"
+			},
+			"offsets": {
+				"from": 2577000,
+				"to": 2583000
+			},
+			"text": " We probably are not doing that enough, but I'm hopeful that we're like getting in the right direction there."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:03,000",
+				"to": "00:43:17,000"
+			},
+			"offsets": {
+				"from": 2583000,
+				"to": 2597000
+			},
+			"text": " Quick response to that, because honestly, I do think there's a lot that we can learn from traditional companies in this area of how do you design for local communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:17,000",
+				"to": "00:43:23,000"
+			},
+			"offsets": {
+				"from": 2597000,
+				"to": 2603000
+			},
+			"text": " Even being at a conference. I'm not sure how many people actually go outside of the venue to explore."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:23,000",
+				"to": "00:43:32,000"
+			},
+			"offsets": {
+				"from": 2603000,
+				"to": 2612000
+			},
+			"text": " Personally, big proponent of field research trip to Venezuela was most insightful in my last five years in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:32,000",
+				"to": "00:43:42,000"
+			},
+			"offsets": {
+				"from": 2612000,
+				"to": 2622000
+			},
+			"text": " Yeah, just to kind of make the point, I think there's a lot that we can learn from traditional companies in how do we."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:42,000",
+				"to": "00:44:01,000"
+			},
+			"offsets": {
+				"from": 2622000,
+				"to": 2641000
+			},
+			"text": " How do we study and work with local communities? There is a reason that some of these companies are so successful to the extent that we believe it's detrimental because there are some things that I managed to do really well and understanding needs on the ground in local communities is definitely one of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:01,000",
+				"to": "00:44:05,000"
+			},
+			"offsets": {
+				"from": 2641000,
+				"to": 2645000
+			},
+			"text": " Things, dream job."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:05,000",
+				"to": "00:44:28,000"
+			},
+			"offsets": {
+				"from": 2645000,
+				"to": 2668000
+			},
+			"text": " Maybe to riff on that a little bit. One of the challenges I found in trying to get more on the ground experiences and insights and connecting to communities to work and design alongside has been that it requires a certain degree of openness in what we're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,000",
+				"to": "00:44:39,000"
+			},
+			"offsets": {
+				"from": 2668000,
+				"to": 2679000
+			},
+			"text": " Because you go on, you land, you put your feet on the ground and you're like, oh my god, this is never going to work, but you've already spent six months developing for something that's not going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:39,000",
+				"to": "00:44:55,000"
+			},
+			"offsets": {
+				"from": 2679000,
+				"to": 2695000
+			},
+			"text": " And so that open mindset plus the funding to that uncertainty of what the outcome will be is I think something that as a community you can all contribute to."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:55,000",
+				"to": "00:45:00,000"
+			},
+			"offsets": {
+				"from": 2695000,
+				"to": 2700000
+			},
+			"text": " How? Not sure. Maybe there's someone here who has a better answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:00,000",
+				"to": "00:45:11,000"
+			},
+			"offsets": {
+				"from": 2700000,
+				"to": 2711000
+			},
+			"text": " The question that I actually came to ask, so we speak about obviously ownership and sub sovereignty and stuff and that obviously comes at a cost of like, there's a lot more finality of action in the blockchain, right? Once you sign something, you sign it."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,000",
+				"to": "00:45:20,000"
+			},
+			"offsets": {
+				"from": 2711000,
+				"to": 2720000
+			},
+			"text": " So do you think the future of these apps or anything that we build in this new internet is more about communicating to people that your mistakes or your mistakes and that's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:20,000",
+				"to": "00:45:33,000"
+			},
+			"offsets": {
+				"from": 2720000,
+				"to": 2733000
+			},
+			"text": " Or is it more about making sure systems sort of they have the scope for mistakes which can right be from simple steps like, and are you sure pop up box all the way to maybe some kind of like magical reversible transactions on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:33,000",
+				"to": "00:45:37,000"
+			},
+			"offsets": {
+				"from": 2733000,
+				"to": 2737000
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:37,000",
+				"to": "00:45:41,000"
+			},
+			"offsets": {
+				"from": 2737000,
+				"to": 2741000
+			},
+			"text": " Does anyone have a response to that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:41,000",
+				"to": "00:45:56,000"
+			},
+			"offsets": {
+				"from": 2741000,
+				"to": 2756000
+			},
+			"text": " I mean, it's a great question, right? And it's sort of the opposite of, or it could be the opposite of the thing that I said at the very beginning about sort of putting like bumpers on everything so that you just can't screw up even if you wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:56,000",
+				"to": "00:46:18,000"
+			},
+			"offsets": {
+				"from": 2756000,
+				"to": 2778000
+			},
+			"text": " And there is this really interesting dynamic between trying to give people choices and then not sort of putting people in danger by just like throwing them into a snake pit without even telling them what a snake is first, like that you have to give people the tools to not make those horrific mistakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:18,000",
+				"to": "00:46:28,000"
+			},
+			"offsets": {
+				"from": 2778000,
+				"to": 2788000
+			},
+			"text": " But also not do that in a way that limits them from making like all of the choices that you would want them to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:28,000",
+				"to": "00:46:31,000"
+			},
+			"offsets": {
+				"from": 2788000,
+				"to": 2791000
+			},
+			"text": " I know you."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:31,000",
+				"to": "00:46:32,000"
+			},
+			"offsets": {
+				"from": 2791000,
+				"to": 2792000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:32,000",
+				"to": "00:46:39,000"
+			},
+			"offsets": {
+				"from": 2792000,
+				"to": 2799000
+			},
+			"text": " I didn't know when the session was ending so I was going to show at the end, but I just wanted to thank you guys for the conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:39,000",
+				"to": "00:47:01,000"
+			},
+			"offsets": {
+				"from": 2799000,
+				"to": 2821000
+			},
+			"text": " But I think in that regard, as far as like, how do we create ecosystems where people are more able to make mistakes, etc. I think a lot of it has to do with progressive disclosure, people getting used to some of this technology as they get aware of what's really happening on the front and on the back end and on the actual protocol level."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:01,000",
+				"to": "00:47:07,000"
+			},
+			"offsets": {
+				"from": 2821000,
+				"to": 2827000
+			},
+			"text": " So just kind of walking them through that focus of like, okay, this is this some sort of hand hold it got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:07,000",
+				"to": "00:47:10,000"
+			},
+			"offsets": {
+				"from": 2827000,
+				"to": 2830000
+			},
+			"text": " Functionality is of how you actually get into the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:10,000",
+				"to": "00:47:17,000"
+			},
+			"offsets": {
+				"from": 2830000,
+				"to": 2837000
+			},
+			"text": " I think there's a lot of education communication around language, all those things that you guys have already kind of highlighted that will lead us to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:17,000",
+				"to": "00:47:19,000"
+			},
+			"offsets": {
+				"from": 2837000,
+				"to": 2839000
+			},
+			"text": " But it is a long journey."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:19,000",
+				"to": "00:47:22,000"
+			},
+			"offsets": {
+				"from": 2839000,
+				"to": 2842000
+			},
+			"text": " Like people need to come and play with some of this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:22,000",
+				"to": "00:47:30,000"
+			},
+			"offsets": {
+				"from": 2842000,
+				"to": 2850000
+			},
+			"text": " And we don't have the opportunity or test nets or all these resources where people can experiment with some of this stuff and not have that risk factor associated with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:30,000",
+				"to": "00:47:34,000"
+			},
+			"offsets": {
+				"from": 2850000,
+				"to": 2854000
+			},
+			"text": " So I think gaming and all these other mechanisms of like pull apps, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:34,000",
+				"to": "00:47:39,000"
+			},
+			"offsets": {
+				"from": 2854000,
+				"to": 2859000
+			},
+			"text": " provide you that opportunity to interface with this technology and learn a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:39,000",
+				"to": "00:47:46,000"
+			},
+			"offsets": {
+				"from": 2859000,
+				"to": 2866000
+			},
+			"text": " But we need more use cases. We need more creative thinking around some of this functionality for people doing this actually using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:46,000",
+				"to": "00:47:48,000"
+			},
+			"offsets": {
+				"from": 2866000,
+				"to": 2868000
+			},
+			"text": " Thank you for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:48,000",
+				"to": "00:47:51,000"
+			},
+			"offsets": {
+				"from": 2868000,
+				"to": 2871000
+			},
+			"text": " We do kind of have to wrap up now."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:51,000",
+				"to": "00:47:57,000"
+			},
+			"offsets": {
+				"from": 2871000,
+				"to": 2877000
+			},
+			"text": " But yeah, I want to thank all of you and also everybody who was brave enough to come up here and join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:57,000",
+				"to": "00:48:01,000"
+			},
+			"offsets": {
+				"from": 2877000,
+				"to": 2881000
+			},
+			"text": " You guys brought a lot of really good points and good questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,000",
+				"to": "00:48:03,000"
+			},
+			"offsets": {
+				"from": 2881000,
+				"to": 2883000
+			},
+			"text": " So yeah, thank you for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:03,000",
+				"to": "00:48:10,000"
+			},
+			"offsets": {
+				"from": 2883000,
+				"to": 2890000
+			},
+			"text": " And I wanted to end on another Zach Mandeville quote and I could just, there we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:10,000",
+				"to": "00:48:18,000"
+			},
+			"offsets": {
+				"from": 2890000,
+				"to": 2898000
+			},
+			"text": " So, and I think Akhil you actually wrapped this up rather nicely for me to build whatever you're building for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:18,000",
+				"to": "00:48:23,000"
+			},
+			"offsets": {
+				"from": 2898000,
+				"to": 2903000
+			},
+			"text": " We must expect and empower the best from anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:23,000",
+				"to": "00:48:27,000"
+			},
+			"offsets": {
+				"from": 2903000,
+				"to": 2907000
+			},
+			"text": " So thank you everybody. Let's go out and do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:27,000",
+				"to": "00:48:29,000"
+			},
+			"offsets": {
+				"from": 2907000,
+				"to": 2909000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:29,000",
+				"to": "00:48:31,000"
+			},
+			"offsets": {
+				"from": 2909000,
+				"to": 2911000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:31,000",
+				"to": "00:48:33,000"
+			},
+			"offsets": {
+				"from": 2911000,
+				"to": 2913000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:33,000",
+				"to": "00:48:35,000"
+			},
+			"offsets": {
+				"from": 2913000,
+				"to": 2915000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:35,000",
+				"to": "00:48:39,000"
+			},
+			"offsets": {
+				"from": 2915000,
+				"to": 2919000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,3739 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:14,160"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 14160
+			},
+			"text": " - Hi everyone, I'm Vivek."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,160",
+				"to": "00:00:17,160"
+			},
+			"offsets": {
+				"from": 14160,
+				"to": 17160
+			},
+			"text": " I go by Vive poop on like social media stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,160",
+				"to": "00:00:18,920"
+			},
+			"offsets": {
+				"from": 17160,
+				"to": 18920
+			},
+			"text": " I'm here presenting personae on behalf"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,920",
+				"to": "00:00:21,840"
+			},
+			"offsets": {
+				"from": 18920,
+				"to": 21840
+			},
+			"text": " or hand on on behalf of personae in Xerox Park."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,840",
+				"to": "00:00:24,880"
+			},
+			"offsets": {
+				"from": 21840,
+				"to": 24880
+			},
+			"text": " Before I go into what hand on actually is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,880",
+				"to": "00:00:26,880"
+			},
+			"offsets": {
+				"from": 24880,
+				"to": 26880
+			},
+			"text": " I wanna talk about a little motivation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,880",
+				"to": "00:00:28,960"
+			},
+			"offsets": {
+				"from": 26880,
+				"to": 28960
+			},
+			"text": " So currently online we have basically two ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,960",
+				"to": "00:00:30,240"
+			},
+			"offsets": {
+				"from": 28960,
+				"to": 30240
+			},
+			"text": " to present ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,240",
+				"to": "00:00:32,040"
+			},
+			"offsets": {
+				"from": 30240,
+				"to": 32040
+			},
+			"text": " You can use your entire real life identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,040",
+				"to": "00:00:34,880"
+			},
+			"offsets": {
+				"from": 32040,
+				"to": 34880
+			},
+			"text": " like me, I'm Vivek, I'm from Boston,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,880",
+				"to": "00:00:37,720"
+			},
+			"offsets": {
+				"from": 34880,
+				"to": 37720
+			},
+			"text": " I grew up there, I work at Xerox Park now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,720",
+				"to": "00:00:40,160"
+			},
+			"offsets": {
+				"from": 37720,
+				"to": 40160
+			},
+			"text": " And you know, this includes also like your social graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,160",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 40160,
+				"to": 42920
+			},
+			"text": " your hometown, like all the random tweets you said."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:46,120"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 46120
+			},
+			"text": " And then the other basic option is to be fully pseudonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,120",
+				"to": "00:00:47,680"
+			},
+			"offsets": {
+				"from": 46120,
+				"to": 47680
+			},
+			"text": " It's an account that's unlinked from everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,680",
+				"to": "00:00:50,360"
+			},
+			"offsets": {
+				"from": 47680,
+				"to": 50360
+			},
+			"text": " And if you bring a reputation from your real life identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,360",
+				"to": "00:00:51,880"
+			},
+			"offsets": {
+				"from": 50360,
+				"to": 51880
+			},
+			"text": " into your pseudonymous account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,880",
+				"to": "00:00:54,920"
+			},
+			"offsets": {
+				"from": 51880,
+				"to": 54920
+			},
+			"text": " it can be really easy to sort of dox you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,920",
+				"to": "00:00:58,080"
+			},
+			"offsets": {
+				"from": 54920,
+				"to": 58080
+			},
+			"text": " And so what hand on is is attempting"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,080",
+				"to": "00:01:00,080"
+			},
+			"offsets": {
+				"from": 58080,
+				"to": 60080
+			},
+			"text": " to be an open source app to allow users"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,080",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 60080,
+				"to": 61880
+			},
+			"text": " to attach a subset of their identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:03,560"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 63560
+			},
+			"text": " and reputation to speech online."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,560",
+				"to": "00:01:05,640"
+			},
+			"offsets": {
+				"from": 63560,
+				"to": 65640
+			},
+			"text": " So they can choose selectively what they actually wanna"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,640",
+				"to": "00:01:07,840"
+			},
+			"offsets": {
+				"from": 65640,
+				"to": 67840
+			},
+			"text": " kind of attach with everything they say."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,840",
+				"to": "00:01:09,680"
+			},
+			"offsets": {
+				"from": 67840,
+				"to": 69680
+			},
+			"text": " It uses zero knowledge groups to prove membership"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,680",
+				"to": "00:01:11,280"
+			},
+			"offsets": {
+				"from": 69680,
+				"to": 71280
+			},
+			"text": " in both off chain and on chain groups"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,280",
+				"to": "00:01:13,400"
+			},
+			"offsets": {
+				"from": 71280,
+				"to": 73400
+			},
+			"text": " without revealing your exact identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,400",
+				"to": "00:01:16,160"
+			},
+			"offsets": {
+				"from": 73400,
+				"to": 76160
+			},
+			"text": " Right now we have deployed for ECDSA groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,160",
+				"to": "00:01:18,400"
+			},
+			"offsets": {
+				"from": 76160,
+				"to": 78400
+			},
+			"text": " which just includes like various groups on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,400",
+				"to": "00:01:21,440"
+			},
+			"offsets": {
+				"from": 78400,
+				"to": 81440
+			},
+			"text": " like NFT owners or Gitcoin donors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,440",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 81440,
+				"to": 83520
+			},
+			"text": " as well as some semaphore groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:25,200"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 85200
+			},
+			"text": " including like the TAS group from PSC."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,200",
+				"to": "00:01:27,560"
+			},
+			"offsets": {
+				"from": 85200,
+				"to": 87560
+			},
+			"text": " And we also had a group at SPC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,560",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 87560,
+				"to": 89200
+			},
+			"text": " also using semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:30,960"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 90960
+			},
+			"text": " For all these apps, like the proof is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,960",
+				"to": "00:01:32,440"
+			},
+			"offsets": {
+				"from": 90960,
+				"to": 92440
+			},
+			"text": " completely generated client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,440",
+				"to": "00:01:34,160"
+			},
+			"offsets": {
+				"from": 92440,
+				"to": 94160
+			},
+			"text": " It's stored on IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,160",
+				"to": "00:01:36,560"
+			},
+			"offsets": {
+				"from": 94160,
+				"to": 96560
+			},
+			"text": " And then anywhere where this message is posted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,560",
+				"to": "00:01:40,080"
+			},
+			"offsets": {
+				"from": 96560,
+				"to": 100080
+			},
+			"text": " we also attach like this like proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,080",
+				"to": "00:01:41,560"
+			},
+			"offsets": {
+				"from": 100080,
+				"to": 101560
+			},
+			"text": " and also like a little panel to like verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,560",
+				"to": "00:01:42,480"
+			},
+			"offsets": {
+				"from": 101560,
+				"to": 102480
+			},
+			"text": " the proof as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,480",
+				"to": "00:01:44,920"
+			},
+			"offsets": {
+				"from": 102480,
+				"to": 104920
+			},
+			"text": " How do you use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,920",
+				"to": "00:01:47,120"
+			},
+			"offsets": {
+				"from": 104920,
+				"to": 107120
+			},
+			"text": " So here at DevCon, as PSC folks mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,120",
+				"to": "00:01:48,600"
+			},
+			"offsets": {
+				"from": 107120,
+				"to": 108600
+			},
+			"text": " like you can just go to the TAS booth"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,600",
+				"to": "00:01:49,880"
+			},
+			"offsets": {
+				"from": 108600,
+				"to": 109880
+			},
+			"text": " and pick up a little card."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,880",
+				"to": "00:01:51,360"
+			},
+			"offsets": {
+				"from": 109880,
+				"to": 111360
+			},
+			"text": " And then if you navigate to the hand on section"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,360",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 111360,
+				"to": 112600
+			},
+			"text": " on the experience pages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:55,920"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 115920
+			},
+			"text": " you'll be able to post a tweet to this DevCon A and on feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,920",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 115920,
+				"to": 118240
+			},
+			"text": " After DevCon, you can continue to use this account."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:01:59,200"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 119200
+			},
+			"text": " You still have access to it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,200",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119200,
+				"to": 122000
+			},
+			"text": " and you can still reply as a attendee of DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,720"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124720
+			},
+			"text": " to other people's tweets or to just say whatever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,720",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 124720,
+				"to": 126120
+			},
+			"text": " And we're gonna add more sort of generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:09,160"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 129160
+			},
+			"text": " Ethereum groups that more people can post to very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,160",
+				"to": "00:02:10,720"
+			},
+			"offsets": {
+				"from": 129160,
+				"to": 130720
+			},
+			"text": " In addition, we recently shipped a version"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,720",
+				"to": "00:02:13,280"
+			},
+			"offsets": {
+				"from": 130720,
+				"to": 133280
+			},
+			"text": " of an admin panel where people can suggest their own groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,280",
+				"to": "00:02:15,200"
+			},
+			"offsets": {
+				"from": 133280,
+				"to": 135200
+			},
+			"text": " This can be stuff that's actually like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,200",
+				"to": "00:02:16,880"
+			},
+			"offsets": {
+				"from": 135200,
+				"to": 136880
+			},
+			"text": " NFT owners are like some sort of like new,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,880",
+				"to": "00:02:18,800"
+			},
+			"offsets": {
+				"from": 136880,
+				"to": 138800
+			},
+			"text": " actually existing thing or you can even just make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,800",
+				"to": "00:02:20,240"
+			},
+			"offsets": {
+				"from": 138800,
+				"to": 140240
+			},
+			"text": " a group with your friends and just post them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,240",
+				"to": "00:02:22,600"
+			},
+			"offsets": {
+				"from": 140240,
+				"to": 142600
+			},
+			"text": " at half of like your little friend group if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,600",
+				"to": "00:02:24,960"
+			},
+			"offsets": {
+				"from": 142600,
+				"to": 144960
+			},
+			"text": " There's a V1 at this link and we're gonna sort of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,960",
+				"to": "00:02:27,640"
+			},
+			"offsets": {
+				"from": 144960,
+				"to": 147640
+			},
+			"text": " clean it up and then add it to the hand on website very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,640",
+				"to": "00:02:31,840"
+			},
+			"offsets": {
+				"from": 147640,
+				"to": 151840
+			},
+			"text": " Another sort of goal of hand on is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,840",
+				"to": "00:02:34,920"
+			},
+			"offsets": {
+				"from": 151840,
+				"to": 154920
+			},
+			"text": " just overall like Z-Get terminology is super technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,920",
+				"to": "00:02:36,800"
+			},
+			"offsets": {
+				"from": 154920,
+				"to": 156800
+			},
+			"text": " and in my opinion very boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,800",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 156800,
+				"to": 158280
+			},
+			"text": " Every developer in ZK will tell you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:40,480"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 160480
+			},
+			"text": " that what they're doing just like feels magical."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,480",
+				"to": "00:02:43,720"
+			},
+			"offsets": {
+				"from": 160480,
+				"to": 163720
+			},
+			"text": " Like it doesn't make sense that you can get verifiability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,720",
+				"to": "00:02:46,960"
+			},
+			"offsets": {
+				"from": 163720,
+				"to": 166960
+			},
+			"text": " sickness and privacy all in one tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,960",
+				"to": "00:02:48,680"
+			},
+			"offsets": {
+				"from": 166960,
+				"to": 168680
+			},
+			"text": " but it all sort of just works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,680",
+				"to": "00:02:50,960"
+			},
+			"offsets": {
+				"from": 168680,
+				"to": 170960
+			},
+			"text": " And I think using terms like proving,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,960",
+				"to": "00:02:52,880"
+			},
+			"offsets": {
+				"from": 170960,
+				"to": 172880
+			},
+			"text": " verifying, zero knowledge, like all this stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,880",
+				"to": "00:02:56,680"
+			},
+			"offsets": {
+				"from": 172880,
+				"to": 176680
+			},
+			"text": " is sort of like magical this is to like an end user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,680",
+				"to": "00:02:58,520"
+			},
+			"offsets": {
+				"from": 176680,
+				"to": 178520
+			},
+			"text": " And I think like to really convince people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,520",
+				"to": "00:03:00,080"
+			},
+			"offsets": {
+				"from": 178520,
+				"to": 180080
+			},
+			"text": " how big of a paradigm shift we're making"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,080",
+				"to": "00:03:01,640"
+			},
+			"offsets": {
+				"from": 180080,
+				"to": 181640
+			},
+			"text": " from like, you know, centralized servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,640",
+				"to": "00:03:03,800"
+			},
+			"offsets": {
+				"from": 181640,
+				"to": 183800
+			},
+			"text": " owning all of your data to you owning all of your data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,800",
+				"to": "00:03:05,280"
+			},
+			"offsets": {
+				"from": 183800,
+				"to": 185280
+			},
+			"text": " and improving stuff about that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,280",
+				"to": "00:03:07,240"
+			},
+			"offsets": {
+				"from": 185280,
+				"to": 187240
+			},
+			"text": " we're gonna need some like new vocabulary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,240",
+				"to": "00:03:09,240"
+			},
+			"offsets": {
+				"from": 187240,
+				"to": 189240
+			},
+			"text": " new product, new branding work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,240",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 189240,
+				"to": 191280
+			},
+			"text": " So heavily inspired by conversations with Justin"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,280",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 191280,
+				"to": 193400
+			},
+			"text": " who's actually here, we've attempted to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:16,160"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 196160
+			},
+			"text": " magical terminology for all parts of the ZK stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,160",
+				"to": "00:03:18,920"
+			},
+			"offsets": {
+				"from": 196160,
+				"to": 198920
+			},
+			"text": " So instead of a semaphore identity, this is your wand."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,920",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 198920,
+				"to": 200920
+			},
+			"text": " With your wand you cast spells."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:22,760"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 202760
+			},
+			"text": " And instead of like downloading a proving key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,760",
+				"to": "00:03:26,280"
+			},
+			"offsets": {
+				"from": 202760,
+				"to": 206280
+			},
+			"text": " you use magical equipment to make all this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,280",
+				"to": "00:03:28,920"
+			},
+			"offsets": {
+				"from": 206280,
+				"to": 208920
+			},
+			"text": " And so we'll get to see this in action."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,920",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 208920,
+				"to": 213000
+			},
+			"text": " So hopefully the internet doesn't ruin this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " but I will demo, you good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,640"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222640
+			},
+			"text": " Demo TAS or demo the TAS group from my phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,640",
+				"to": "00:03:43,600"
+			},
+			"offsets": {
+				"from": 222640,
+				"to": 223600
+			},
+			"text": " So this is a TAS website."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,600",
+				"to": "00:03:45,040"
+			},
+			"offsets": {
+				"from": 223600,
+				"to": 225040
+			},
+			"text": " If you navigate down to here to HANA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,040",
+				"to": "00:03:48,120"
+			},
+			"offsets": {
+				"from": 225040,
+				"to": 228120
+			},
+			"text": " you can just click on this and it'll take you to the page."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,120",
+				"to": "00:03:49,800"
+			},
+			"offsets": {
+				"from": 228120,
+				"to": 229800
+			},
+			"text": " I've pre-related it because I don't want to wait"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,800",
+				"to": "00:03:50,760"
+			},
+			"offsets": {
+				"from": 229800,
+				"to": 230760
+			},
+			"text": " for the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,760",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 230760,
+				"to": 231680
+			},
+			"text": " And so there's a few options."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:53,600"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 233600
+			},
+			"text": " So first off you can view the feed you can post"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,600",
+				"to": "00:03:54,640"
+			},
+			"offsets": {
+				"from": 233600,
+				"to": 234640
+			},
+			"text": " or you can apply."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,640",
+				"to": "00:03:56,200"
+			},
+			"offsets": {
+				"from": 234640,
+				"to": 236200
+			},
+			"text": " I'll just go through each of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,200",
+				"to": "00:03:57,040"
+			},
+			"offsets": {
+				"from": 236200,
+				"to": 237040
+			},
+			"text": " Oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,040",
+				"to": "00:04:02,320"
+			},
+			"offsets": {
+				"from": 237040,
+				"to": 242320
+			},
+			"text": " Well now, okay, so here's the feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,320",
+				"to": "00:04:04,160"
+			},
+			"offsets": {
+				"from": 242320,
+				"to": 244160
+			},
+			"text": " This is the feed of all the different posts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,160",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 244160,
+				"to": 245200
+			},
+			"text": " that people have made."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:06,200"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 246200
+			},
+			"text": " Not a lot of like interesting stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,200",
+				"to": "00:04:07,680"
+			},
+			"offsets": {
+				"from": 246200,
+				"to": 247680
+			},
+			"text": " just random people saying random stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,680",
+				"to": "00:04:11,160"
+			},
+			"offsets": {
+				"from": 247680,
+				"to": 251160
+			},
+			"text": " but if you join, you can add some spice to the feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,160",
+				"to": "00:04:12,880"
+			},
+			"offsets": {
+				"from": 251160,
+				"to": 252880
+			},
+			"text": " And then if we go back to the main app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,880",
+				"to": "00:04:14,920"
+			},
+			"offsets": {
+				"from": 252880,
+				"to": 254920
+			},
+			"text": " we can now post anything we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,920",
+				"to": "00:04:18,560"
+			},
+			"offsets": {
+				"from": 254920,
+				"to": 258560
+			},
+			"text": " So I'm gonna say this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,560",
+				"to": "00:04:20,400"
+			},
+			"offsets": {
+				"from": 258560,
+				"to": 260400
+			},
+			"text": " are you just presenting next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,880",
+				"to": "00:04:21,880"
+			},
+			"offsets": {
+				"from": 260880,
+				"to": 261880
+			},
+			"text": " Posting this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,880",
+				"to": "00:04:25,400"
+			},
+			"offsets": {
+				"from": 261880,
+				"to": 265400
+			},
+			"text": " No one can verify this, so I'm just gonna say it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,400",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 265400,
+				"to": 267760
+			},
+			"text": " And then it'll generate the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,760",
+				"to": "00:04:28,680"
+			},
+			"offsets": {
+				"from": 267760,
+				"to": 268680
+			},
+			"text": " This is all with semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,680",
+				"to": "00:04:31,400"
+			},
+			"offsets": {
+				"from": 268680,
+				"to": 271400
+			},
+			"text": " which is all fast enough that it can be around your phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,400",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 271400,
+				"to": 275080
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:36,080"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 276080
+			},
+			"text": " So here if you actually want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,080",
+				"to": "00:04:37,480"
+			},
+			"offsets": {
+				"from": 276080,
+				"to": 277480
+			},
+			"text": " you can look at the elliptic curve points"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,480",
+				"to": "00:04:39,200"
+			},
+			"offsets": {
+				"from": 277480,
+				"to": 279200
+			},
+			"text": " that make up your proof for most people"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,200",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 279200,
+				"to": 280960
+			},
+			"text": " that doesn't mean anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:41,920"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 281920
+			},
+			"text": " So you can submit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,920",
+				"to": "00:04:45,240"
+			},
+			"offsets": {
+				"from": 281920,
+				"to": 285240
+			},
+			"text": " And then boom."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,240",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285240,
+				"to": 287000
+			},
+			"text": " There it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:47,840"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 287840
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,880",
+				"to": "00:04:51,760"
+			},
+			"offsets": {
+				"from": 288880,
+				"to": 291760
+			},
+			"text": " And here it is. So here's the sort of like tweet itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,760",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 291760,
+				"to": 293400
+			},
+			"text": " And then if you click on this link,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:55,400"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 295400
+			},
+			"text": " it'll take you to a page where you can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,400",
+				"to": "00:04:58,960"
+			},
+			"offsets": {
+				"from": 295400,
+				"to": 298960
+			},
+			"text": " let's see if this is gonna work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,960",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 298960,
+				"to": 299960
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 302320
+			},
+			"text": " Or you can verify this proof in browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:04,920"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 304920
+			},
+			"text": " I'm just using like the semaphore v key."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,920",
+				"to": "00:05:06,640"
+			},
+			"offsets": {
+				"from": 304920,
+				"to": 306640
+			},
+			"text": " Okay, so let's go back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,640",
+				"to": "00:05:09,200"
+			},
+			"offsets": {
+				"from": 306640,
+				"to": 309200
+			},
+			"text": " So Vitalik, he posted this funny little,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,200",
+				"to": "00:05:13,080"
+			},
+			"offsets": {
+				"from": 309200,
+				"to": 313080
+			},
+			"text": " funny little little tweet about Bogota."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,080",
+				"to": "00:05:15,080"
+			},
+			"offsets": {
+				"from": 313080,
+				"to": 315080
+			},
+			"text": " And so I'm gonna reply to it as this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,080",
+				"to": "00:05:16,640"
+			},
+			"offsets": {
+				"from": 315080,
+				"to": 316640
+			},
+			"text": " as this bot actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,640",
+				"to": "00:05:17,960"
+			},
+			"offsets": {
+				"from": 316640,
+				"to": 317960
+			},
+			"text": " So if we go back to this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,600",
+				"to": "00:05:23,600"
+			},
+			"offsets": {
+				"from": 318600,
+				"to": 323600
+			},
+			"text": " I can just paste in the tweet link that I wanna reply to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,600",
+				"to": "00:05:31,600"
+			},
+			"offsets": {
+				"from": 323600,
+				"to": 331600
+			},
+			"text": " And then funny pun mystery theory man."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,600",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 331600,
+				"to": 338320
+			},
+			"text": " I can't tell you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:40,680"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 340680
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,680",
+				"to": "00:05:45,640"
+			},
+			"offsets": {
+				"from": 340680,
+				"to": 345640
+			},
+			"text": " And then again, it'll do its little thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,640",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 346640,
+				"to": 349400
+			},
+			"text": " (mouse clicking)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:53,760"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 353760
+			},
+			"text": " Come on, buddy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,760",
+				"to": "00:06:04,320"
+			},
+			"offsets": {
+				"from": 353760,
+				"to": 364320
+			},
+			"text": " What's going on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,320",
+				"to": "00:06:09,780"
+			},
+			"offsets": {
+				"from": 364320,
+				"to": 369780
+			},
+			"text": " (mouse clicking)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,780",
+				"to": "00:06:12,440"
+			},
+			"offsets": {
+				"from": 369780,
+				"to": 372440
+			},
+			"text": " Let's try that again."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:16,960"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 376960
+			},
+			"text": " It might just be some internet thing or like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,960",
+				"to": "00:06:17,800"
+			},
+			"offsets": {
+				"from": 376960,
+				"to": 377800
+			},
+			"text": " the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,800",
+				"to": "00:06:20,600"
+			},
+			"offsets": {
+				"from": 377800,
+				"to": 380600
+			},
+			"text": " it's just working."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,600",
+				"to": "00:06:37,640"
+			},
+			"offsets": {
+				"from": 380600,
+				"to": 397640
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,640",
+				"to": "00:06:39,960"
+			},
+			"offsets": {
+				"from": 397640,
+				"to": 399960
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,960",
+				"to": "00:06:40,880"
+			},
+			"offsets": {
+				"from": 399960,
+				"to": 400880
+			},
+			"text": " We can submit it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,880",
+				"to": "00:06:41,720"
+			},
+			"offsets": {
+				"from": 400880,
+				"to": 401720
+			},
+			"text": " And then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,280",
+				"to": "00:06:44,960"
+			},
+			"offsets": {
+				"from": 402280,
+				"to": 404960
+			},
+			"text": " (mouse clicking)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,960",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 404960,
+				"to": 406560
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:50,200"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 410200
+			},
+			"text": " I've been replied to Vitalik as an anonymous dev kind of tendi."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,200",
+				"to": "00:06:52,840"
+			},
+			"offsets": {
+				"from": 410200,
+				"to": 412840
+			},
+			"text": " So yeah, that's sort of how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,840",
+				"to": "00:06:53,840"
+			},
+			"offsets": {
+				"from": 412840,
+				"to": 413840
+			},
+			"text": " Let me just connect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,840",
+				"to": "00:06:57,280"
+			},
+			"offsets": {
+				"from": 413840,
+				"to": 417280
+			},
+			"text": " And so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,280",
+				"to": "00:07:00,840"
+			},
+			"offsets": {
+				"from": 417280,
+				"to": 420840
+			},
+			"text": " yeah, I just wanna go through like a lot of our sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,840",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 420840,
+				"to": 422280
+			},
+			"text": " future directions with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:03,600"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 423600
+			},
+			"text": " Right now everything is very Twitter based,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,600",
+				"to": "00:07:04,880"
+			},
+			"offsets": {
+				"from": 423600,
+				"to": 424880
+			},
+			"text": " but as I said in the introduction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,880",
+				"to": "00:07:07,760"
+			},
+			"offsets": {
+				"from": 424880,
+				"to": 427760
+			},
+			"text": " like this is really just a mechanism to attach reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,760",
+				"to": "00:07:09,160"
+			},
+			"offsets": {
+				"from": 427760,
+				"to": 429160
+			},
+			"text": " to your speech online."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,160",
+				"to": "00:07:11,520"
+			},
+			"offsets": {
+				"from": 429160,
+				"to": 431520
+			},
+			"text": " And so we wanna basically have like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,520",
+				"to": "00:07:14,080"
+			},
+			"offsets": {
+				"from": 431520,
+				"to": 434080
+			},
+			"text": " first off, like a lot more different groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,080",
+				"to": "00:07:16,040"
+			},
+			"offsets": {
+				"from": 434080,
+				"to": 436040
+			},
+			"text": " not just Ethereum and Semaphore groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,040",
+				"to": "00:07:19,120"
+			},
+			"offsets": {
+				"from": 436040,
+				"to": 439120
+			},
+			"text": " as you can email, which is gonna be presented next by"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,120",
+				"to": "00:07:20,800"
+			},
+			"offsets": {
+				"from": 439120,
+				"to": 440800
+			},
+			"text": " a U-Shoo is not here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,800",
+				"to": "00:07:24,040"
+			},
+			"offsets": {
+				"from": 440800,
+				"to": 444040
+			},
+			"text": " is gonna give us access to a lot of interesting groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,040",
+				"to": "00:07:25,600"
+			},
+			"offsets": {
+				"from": 444040,
+				"to": 445600
+			},
+			"text": " One thing is just like organizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,600",
+				"to": "00:07:28,080"
+			},
+			"offsets": {
+				"from": 445600,
+				"to": 448080
+			},
+			"text": " like you can verify that like this person owns like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,080",
+				"to": "00:07:31,160"
+			},
+			"offsets": {
+				"from": 448080,
+				"to": 451160
+			},
+			"text": " Twitter.com email or like a Facebook.com email."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,160",
+				"to": "00:07:33,400"
+			},
+			"offsets": {
+				"from": 451160,
+				"to": 453400
+			},
+			"text": " You can prove your top fan of an artist by looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,400",
+				"to": "00:07:34,920"
+			},
+			"offsets": {
+				"from": 453400,
+				"to": 454920
+			},
+			"text": " some Spotify wrapped emails."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,920",
+				"to": "00:07:36,560"
+			},
+			"offsets": {
+				"from": 454920,
+				"to": 456560
+			},
+			"text": " You can prove that you own some amount of stocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,560",
+				"to": "00:07:37,720"
+			},
+			"offsets": {
+				"from": 456560,
+				"to": 457720
+			},
+			"text": " with a Robinhood email."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,720",
+				"to": "00:07:39,960"
+			},
+			"offsets": {
+				"from": 457720,
+				"to": 459960
+			},
+			"text": " So email really opens the gates up to like a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,960",
+				"to": "00:07:42,080"
+			},
+			"offsets": {
+				"from": 459960,
+				"to": 462080
+			},
+			"text": " really interesting Twitter groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,080",
+				"to": "00:07:44,400"
+			},
+			"offsets": {
+				"from": 462080,
+				"to": 464400
+			},
+			"text": " In addition, like GitHub users, like if you go to your"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,400",
+				"to": "00:07:46,360"
+			},
+			"offsets": {
+				"from": 464400,
+				"to": 466360
+			},
+			"text": " like username and then type dot keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,360",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 466360,
+				"to": 469280
+			},
+			"text": " it'll store all your public like RSA keys or EDSA keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:51,480"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 471480
+			},
+			"text": " that you use to do SSH."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,480",
+				"to": "00:07:54,280"
+			},
+			"offsets": {
+				"from": 471480,
+				"to": 474280
+			},
+			"text": " And so from there we can make GitHub groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,280",
+				"to": "00:07:55,720"
+			},
+			"offsets": {
+				"from": 474280,
+				"to": 475720
+			},
+			"text": " And then sort of as Jason was getting to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,720",
+				"to": "00:07:58,200"
+			},
+			"offsets": {
+				"from": 475720,
+				"to": 478200
+			},
+			"text": " one of these here, we can also have groups that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,200",
+				"to": "00:07:59,840"
+			},
+			"offsets": {
+				"from": 478200,
+				"to": 479840
+			},
+			"text": " like gated with ML models."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,840",
+				"to": "00:08:02,560"
+			},
+			"offsets": {
+				"from": 479840,
+				"to": 482560
+			},
+			"text": " So we can do some sort of like primitive like KYC"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,560",
+				"to": "00:08:04,080"
+			},
+			"offsets": {
+				"from": 482560,
+				"to": 484080
+			},
+			"text": " or like Face ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,080",
+				"to": "00:08:06,640"
+			},
+			"offsets": {
+				"from": 484080,
+				"to": 486640
+			},
+			"text": " You can even imagine like some sort of thing where it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,640",
+				"to": "00:08:08,680"
+			},
+			"offsets": {
+				"from": 486640,
+				"to": 488680
+			},
+			"text": " if there's some treasure hunt of some item and like you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,680",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 488680,
+				"to": 490640
+			},
+			"text": " find the item, you can take a picture of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:13,520"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 493520
+			},
+			"text": " And then you can post to some Twitter feed basically or kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,520",
+				"to": "00:08:15,160"
+			},
+			"offsets": {
+				"from": 493520,
+				"to": 495160
+			},
+			"text": " of get a GEDSI KP of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,160",
+				"to": "00:08:19,160"
+			},
+			"offsets": {
+				"from": 495160,
+				"to": 499160
+			},
+			"text": " In addition, like we're working on just in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,160",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499160,
+				"to": 501000
+			},
+			"text": " like improving the ECSA proving process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503120
+			},
+			"text": " Like right now it still takes like five minutes and can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:24,520"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 504520
+			},
+			"text": " only be done on a computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,520",
+				"to": "00:08:27,240"
+			},
+			"offsets": {
+				"from": 504520,
+				"to": 507240
+			},
+			"text": " But we have a lot of exciting work that's making that better."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,240",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507240,
+				"to": 510000
+			},
+			"text": " There's one repo like under the Persona Labs GitHub that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:33,280"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 513280
+			},
+			"text": " working on basically doing a lot of the signature verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,280",
+				"to": "00:08:35,480"
+			},
+			"offsets": {
+				"from": 513280,
+				"to": 515480
+			},
+			"text": " outside of the SNAARC in a way that doesn't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,480",
+				"to": "00:08:37,880"
+			},
+			"offsets": {
+				"from": 515480,
+				"to": 517880
+			},
+			"text": " remove privacy in any way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,880",
+				"to": "00:08:40,240"
+			},
+			"offsets": {
+				"from": 517880,
+				"to": 520240
+			},
+			"text": " In addition, we're trying to move from Circum to Halo 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,240",
+				"to": "00:08:42,480"
+			},
+			"offsets": {
+				"from": 520240,
+				"to": 522480
+			},
+			"text": " we're in the process of taking the Halo 2 ECC circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,480",
+				"to": "00:08:44,920"
+			},
+			"offsets": {
+				"from": 522480,
+				"to": 524920
+			},
+			"text": " from Axiom and getting this work in browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,920",
+				"to": "00:08:46,920"
+			},
+			"offsets": {
+				"from": 524920,
+				"to": 526920
+			},
+			"text": " And also we're interested in potentially trying to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,920",
+				"to": "00:08:49,520"
+			},
+			"offsets": {
+				"from": 526920,
+				"to": 529520
+			},
+			"text": " some collaborative ZKs NARCs working, which is where like"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,520",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 529520,
+				"to": 532520
+			},
+			"text": " and different Provers work together to produce a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:55,480"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 535480
+			},
+			"text": " over like some shared like, or secret shared witness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,480",
+				"to": "00:08:57,920"
+			},
+			"offsets": {
+				"from": 535480,
+				"to": 537920
+			},
+			"text": " And if one of those end users is actually the like you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,920",
+				"to": "00:09:00,720"
+			},
+			"offsets": {
+				"from": 537920,
+				"to": 540720
+			},
+			"text": " yourself, then sort of privacy is preserved by like the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,720",
+				"to": "00:09:03,200"
+			},
+			"offsets": {
+				"from": 540720,
+				"to": 543200
+			},
+			"text": " of them, NPC assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,520",
+				"to": "00:09:06,560"
+			},
+			"offsets": {
+				"from": 544520,
+				"to": 546560
+			},
+			"text": " And for the product, yeah, as I was mentioning, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,560",
+				"to": "00:09:08,280"
+			},
+			"offsets": {
+				"from": 546560,
+				"to": 548280
+			},
+			"text": " this isn't supposed to be just be Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,280",
+				"to": "00:09:09,480"
+			},
+			"offsets": {
+				"from": 548280,
+				"to": 549480
+			},
+			"text": " We want to put this everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,480",
+				"to": "00:09:11,600"
+			},
+			"offsets": {
+				"from": 549480,
+				"to": 551600
+			},
+			"text": " So this is just going to take like, just like writing a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,600",
+				"to": "00:09:14,840"
+			},
+			"offsets": {
+				"from": 551600,
+				"to": 554840
+			},
+			"text": " bunch of different like, like just posting mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,840",
+				"to": "00:09:17,720"
+			},
+			"offsets": {
+				"from": 554840,
+				"to": 557720
+			},
+			"text": " And then one thing I'm really excited about is like for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,720",
+				"to": "00:09:21,240"
+			},
+			"offsets": {
+				"from": 557720,
+				"to": 561240
+			},
+			"text": " Reddit, for example, and also this works for like discord"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,240",
+				"to": "00:09:24,440"
+			},
+			"offsets": {
+				"from": 561240,
+				"to": 564440
+			},
+			"text": " and like Telegram a bit is like, you can really tune specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,440",
+				"to": "00:09:27,120"
+			},
+			"offsets": {
+				"from": 564440,
+				"to": 567120
+			},
+			"text": " like groups to like specific like sub-readits or like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,120",
+				"to": "00:09:29,080"
+			},
+			"offsets": {
+				"from": 567120,
+				"to": 569080
+			},
+			"text": " specific like group chats or channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,080",
+				"to": "00:09:31,720"
+			},
+			"offsets": {
+				"from": 569080,
+				"to": 571720
+			},
+			"text": " And so it'll basically just like allow for sort of more"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,720",
+				"to": "00:09:33,240"
+			},
+			"offsets": {
+				"from": 571720,
+				"to": 573240
+			},
+			"text": " fine-grained interesting groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,240",
+				"to": "00:09:35,040"
+			},
+			"offsets": {
+				"from": 573240,
+				"to": 575040
+			},
+			"text": " Whereas on Twitter, it's sort of like this massive public"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,040",
+				"to": "00:09:38,120"
+			},
+			"offsets": {
+				"from": 575040,
+				"to": 578120
+			},
+			"text": " feed and like, you know, if you have too many groups of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,120",
+				"to": "00:09:39,920"
+			},
+			"offsets": {
+				"from": 578120,
+				"to": 579920
+			},
+			"text": " people, it can get a bit overwhelming."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,920",
+				"to": "00:09:41,760"
+			},
+			"offsets": {
+				"from": 579920,
+				"to": 581760
+			},
+			"text": " And then sort of as you know, it's getting out like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,760",
+				"to": "00:09:44,600"
+			},
+			"offsets": {
+				"from": 581760,
+				"to": 584600
+			},
+			"text": " moderation is really important for all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,600",
+				"to": "00:09:47,480"
+			},
+			"offsets": {
+				"from": 584600,
+				"to": 587480
+			},
+			"text": " Every sort of good use case of, of, you know, being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,480",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 587480,
+				"to": 589960
+			},
+			"text": " talk suit, honestly, like for example, if you're in an"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:51,680"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 591680
+			},
+			"text": " oppressive regime and you want to speak up against your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,680",
+				"to": "00:09:55,080"
+			},
+			"offsets": {
+				"from": 591680,
+				"to": 595080
+			},
+			"text": " government, but not sort of, you know, like get attacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,080",
+				"to": "00:09:57,920"
+			},
+			"offsets": {
+				"from": 595080,
+				"to": 597920
+			},
+			"text": " like you can use something like this to say what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,920",
+				"to": "00:10:00,520"
+			},
+			"offsets": {
+				"from": 597920,
+				"to": 600520
+			},
+			"text": " But at the same time, like, let's say you're a very powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,520",
+				"to": "00:10:02,600"
+			},
+			"offsets": {
+				"from": 600520,
+				"to": 602600
+			},
+			"text": " person and you're in like sort of an anonymous group with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,600",
+				"to": "00:10:05,040"
+			},
+			"offsets": {
+				"from": 602600,
+				"to": 605040
+			},
+			"text": " other powerful people, you can just use this to say really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,040",
+				"to": "00:10:10,800"
+			},
+			"offsets": {
+				"from": 605040,
+				"to": 610800
+			},
+			"text": " really shitty things without any sort of like sort of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,800",
+				"to": "00:10:13,040"
+			},
+			"offsets": {
+				"from": 610800,
+				"to": 613040
+			},
+			"text": " negative feedback coming back to you because you know, you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,040",
+				"to": "00:10:14,320"
+			},
+			"offsets": {
+				"from": 613040,
+				"to": 614320
+			},
+			"text": " protected by this veil and enmity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,320",
+				"to": "00:10:17,200"
+			},
+			"offsets": {
+				"from": 614320,
+				"to": 617200
+			},
+			"text": " So it's going to be really important that there's some sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,200",
+				"to": "00:10:18,400"
+			},
+			"offsets": {
+				"from": 617200,
+				"to": 618400
+			},
+			"text": " of moderation built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,400",
+				"to": "00:10:21,600"
+			},
+			"offsets": {
+				"from": 618400,
+				"to": 621600
+			},
+			"text": " I think the most like sort of center way to do this is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,600",
+				"to": "00:10:24,200"
+			},
+			"offsets": {
+				"from": 621600,
+				"to": 624200
+			},
+			"text": " like within your group, you either have some admins that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,200",
+				"to": "00:10:26,680"
+			},
+			"offsets": {
+				"from": 624200,
+				"to": 626680
+			},
+			"text": " approve all your posts similar to like a Facebook group or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,680",
+				"to": "00:10:30,400"
+			},
+			"offsets": {
+				"from": 626680,
+				"to": 630400
+			},
+			"text": " even potentially just like any, any three people in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,400",
+				"to": "00:10:32,560"
+			},
+			"offsets": {
+				"from": 630400,
+				"to": 632560
+			},
+			"text": " group need to approve some posts before it's posted"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,560",
+				"to": "00:10:33,680"
+			},
+			"offsets": {
+				"from": 632560,
+				"to": 633680
+			},
+			"text": " publicly for other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,680",
+				"to": "00:10:37,520"
+			},
+			"offsets": {
+				"from": 633680,
+				"to": 637520
+			},
+			"text": " Yeah, help us out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,520",
+				"to": "00:10:39,760"
+			},
+			"offsets": {
+				"from": 637520,
+				"to": 639760
+			},
+			"text": " We have so many projects and stuff to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,760",
+				"to": "00:10:43,280"
+			},
+			"offsets": {
+				"from": 639760,
+				"to": 643280
+			},
+			"text": " We really want to release all this stuff is just open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,280",
+				"to": "00:10:45,960"
+			},
+			"offsets": {
+				"from": 643280,
+				"to": 645960
+			},
+			"text": " because we think that users should be able to like store"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,960",
+				"to": "00:10:47,120"
+			},
+			"offsets": {
+				"from": 645960,
+				"to": 647120
+			},
+			"text": " their own parts there identity without."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,120",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 647120,
+				"to": 650000
+			},
+			"text": " Also, you know, builders should be able to build on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:50,600"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 650600
+			},
+			"text": " all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,600",
+				"to": "00:10:52,960"
+			},
+			"offsets": {
+				"from": 650600,
+				"to": 652960
+			},
+			"text": " And there's also a lot of really cool ways to put this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,960",
+				"to": "00:10:55,400"
+			},
+			"offsets": {
+				"from": 652960,
+				"to": 655400
+			},
+			"text": " down the real world, like a chance from PSC had this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,400",
+				"to": "00:10:58,880"
+			},
+			"offsets": {
+				"from": 655400,
+				"to": 658880
+			},
+			"text": " local idea of basically like arming people who are trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,880",
+				"to": "00:11:01,960"
+			},
+			"offsets": {
+				"from": 658880,
+				"to": 661960
+			},
+			"text": " unionize against like a, you know, some, some big corporation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,960",
+				"to": "00:11:05,240"
+			},
+			"offsets": {
+				"from": 661960,
+				"to": 665240
+			},
+			"text": " like Amazon, basically handing out little semaphore keys to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,240",
+				"to": "00:11:07,520"
+			},
+			"offsets": {
+				"from": 665240,
+				"to": 667520
+			},
+			"text": " different people so that they could post to a Twitter feed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,520",
+				"to": "00:11:10,360"
+			},
+			"offsets": {
+				"from": 667520,
+				"to": 670360
+			},
+			"text": " as a verified sort of Amazon employee, but sort of not, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,360",
+				"to": "00:11:12,880"
+			},
+			"offsets": {
+				"from": 670360,
+				"to": 672880
+			},
+			"text": " know, facing the consequences for saying what they want to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,880",
+				"to": "00:11:15,880"
+			},
+			"offsets": {
+				"from": 672880,
+				"to": 675880
+			},
+			"text": " Yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,880",
+				"to": "00:11:16,240"
+			},
+			"offsets": {
+				"from": 675880,
+				"to": 676240
+			},
+			"text": " That's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,240",
+				"to": "00:11:17,200"
+			},
+			"offsets": {
+				"from": 676240,
+				"to": 677200
+			},
+			"text": " And this is a link to our repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,200",
+				"to": "00:11:19,720"
+			},
+			"offsets": {
+				"from": 677200,
+				"to": 679720
+			},
+			"text": " It's kind of messy because it's just been me hacking, but we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,720",
+				"to": "00:11:20,520"
+			},
+			"offsets": {
+				"from": 679720,
+				"to": 680520
+			},
+			"text": " going to clean it up soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,520",
+				"to": "00:11:22,120"
+			},
+			"offsets": {
+				"from": 680520,
+				"to": 682120
+			},
+			"text": " And we want to onboard more people."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,120",
+				"to": "00:11:23,280"
+			},
+			"offsets": {
+				"from": 682120,
+				"to": 683280
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,280",
+				"to": "00:11:25,280"
+			},
+			"offsets": {
+				"from": 683280,
+				"to": 685280
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,280",
+				"to": "00:11:33,440"
+			},
+			"offsets": {
+				"from": 685280,
+				"to": 693440
+			},
+			"text": " I think our second mic died, but we had a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,440",
+				"to": "00:11:35,280"
+			},
+			"offsets": {
+				"from": 693440,
+				"to": 695280
+			},
+			"text": " Are there any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,280",
+				"to": "00:11:39,840"
+			},
+			"offsets": {
+				"from": 695280,
+				"to": 699840
+			},
+			"text": " I'll just run it back before I think there is better."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,840",
+				"to": "00:11:42,960"
+			},
+			"offsets": {
+				"from": 699840,
+				"to": 702960
+			},
+			"text": " Wait, you haven't asked one yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,960",
+				"to": "00:11:50,400"
+			},
+			"offsets": {
+				"from": 702960,
+				"to": 710400
+			},
+			"text": " Can we do some kind of voting in the semaphore group to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,400",
+				"to": "00:11:53,200"
+			},
+			"offsets": {
+				"from": 710400,
+				"to": 713200
+			},
+			"text": " sure that we can add more people, for example, if like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,640",
+				"to": "00:11:57,560"
+			},
+			"offsets": {
+				"from": 713640,
+				"to": 717560
+			},
+			"text": " 10 out of 10 will vote for create another like proof?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,560",
+				"to": "00:12:05,800"
+			},
+			"offsets": {
+				"from": 717560,
+				"to": 725800
+			},
+			"text": " Yes, can we do voting inside that protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,800",
+				"to": "00:12:09,880"
+			},
+			"offsets": {
+				"from": 725800,
+				"to": 729880
+			},
+			"text": " Because you can also like do voting outside the protocol, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,880",
+				"to": "00:12:12,760"
+			},
+			"offsets": {
+				"from": 729880,
+				"to": 732760
+			},
+			"text": " then what's the purpose of using the protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,760",
+				"to": "00:12:17,040"
+			},
+			"offsets": {
+				"from": 732760,
+				"to": 737040
+			},
+			"text": " We don't have that built out, but yeah, that could be added."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,040",
+				"to": "00:12:19,560"
+			},
+			"offsets": {
+				"from": 737040,
+				"to": 739560
+			},
+			"text": " I don't see no reason why I can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,560",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 739560,
+				"to": 741000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:21,400"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 741400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,400",
+				"to": "00:12:25,480"
+			},
+			"offsets": {
+				"from": 742400,
+				"to": 745480
+			},
+			"text": " We had one over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,480",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 745480,
+				"to": 750920
+			},
+			"text": " So if somebody posts something that causes that Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:35,040"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 755040
+			},
+			"text": " account to get banned, is it possible to like make a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,040",
+				"to": "00:12:37,920"
+			},
+			"offsets": {
+				"from": 755040,
+				"to": 757920
+			},
+			"text": " group without knowing who they are, but that they're not in it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,920",
+				"to": "00:12:43,560"
+			},
+			"offsets": {
+				"from": 757920,
+				"to": 763560
+			},
+			"text": " It depends, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,560",
+				"to": "00:12:48,120"
+			},
+			"offsets": {
+				"from": 763560,
+				"to": 768120
+			},
+			"text": " So if you have nullifiers for every single address, then I"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,120",
+				"to": "00:12:52,760"
+			},
+			"offsets": {
+				"from": 768120,
+				"to": 772760
+			},
+			"text": " think you can basically ban like the sort of like bad nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,760",
+				"to": "00:12:53,920"
+			},
+			"offsets": {
+				"from": 772760,
+				"to": 773920
+			},
+			"text": " from like the second group."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,920",
+				"to": "00:12:56,760"
+			},
+			"offsets": {
+				"from": 773920,
+				"to": 776760
+			},
+			"text": " The point you're making though about Twitter banning groups is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,760",
+				"to": "00:12:57,320"
+			},
+			"offsets": {
+				"from": 776760,
+				"to": 777320
+			},
+			"text": " very accurate."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,320",
+				"to": "00:13:00,040"
+			},
+			"offsets": {
+				"from": 777320,
+				"to": 780040
+			},
+			"text": " Like Twitter could at any point shut down this entire operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,040",
+				"to": "00:13:02,680"
+			},
+			"offsets": {
+				"from": 780040,
+				"to": 782680
+			},
+			"text": " So that is part of the reason why building on these centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,680",
+				"to": "00:13:05,800"
+			},
+			"offsets": {
+				"from": 782680,
+				"to": 785800
+			},
+			"text": " platforms is is tough and why building stuff like ZKeter is so"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,800",
+				"to": "00:13:07,880"
+			},
+			"offsets": {
+				"from": 785800,
+				"to": 787880
+			},
+			"text": " important for the for this sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,880",
+				"to": "00:13:10,920"
+			},
+			"offsets": {
+				"from": 787880,
+				"to": 790920
+			},
+			"text": " Any other questions now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,920",
+				"to": "00:13:12,920"
+			},
+			"offsets": {
+				"from": 790920,
+				"to": 792920
+			},
+			"text": " Two microphones."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,920",
+				"to": "00:13:15,640"
+			},
+			"offsets": {
+				"from": 792920,
+				"to": 795640
+			},
+			"text": " I don't know if that's useful for anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,240",
+				"to": "00:13:19,240"
+			},
+			"offsets": {
+				"from": 797240,
+				"to": 799240
+			},
+			"text": " OK, oh, one more."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,240",
+				"to": "00:13:30,280"
+			},
+			"offsets": {
+				"from": 799240,
+				"to": 810280
+			},
+			"text": " Have you considered tying this into LinkedIn?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,280",
+				"to": "00:13:32,520"
+			},
+			"offsets": {
+				"from": 810280,
+				"to": 812520
+			},
+			"text": " Because I think that's an environment where people really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,520",
+				"to": "00:13:34,440"
+			},
+			"offsets": {
+				"from": 812520,
+				"to": 814440
+			},
+			"text": " have to uphold like the professional identity, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,440",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 814440,
+				"to": 817000
+			},
+			"text": " And not able to like share information that they actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:38,800"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 818800
+			},
+			"text": " would like to share with their colleagues or people in their"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,800",
+				"to": "00:13:39,200"
+			},
+			"offsets": {
+				"from": 818800,
+				"to": 819200
+			},
+			"text": " community."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,200",
+				"to": "00:13:42,560"
+			},
+			"offsets": {
+				"from": 819200,
+				"to": 822560
+			},
+			"text": " Glassdoor is a good example, but you cannot really verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,560",
+				"to": "00:13:44,960"
+			},
+			"offsets": {
+				"from": 822560,
+				"to": 824960
+			},
+			"text": " if people work at some place like in the setting like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,680",
+				"to": "00:13:49,200"
+			},
+			"offsets": {
+				"from": 825680,
+				"to": 829200
+			},
+			"text": " Oh, wait, what was your question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,200",
+				"to": "00:13:52,160"
+			},
+			"offsets": {
+				"from": 829200,
+				"to": 832160
+			},
+			"text": " Oh, yeah, yeah, for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,160",
+				"to": "00:13:55,760"
+			},
+			"offsets": {
+				"from": 832160,
+				"to": 835760
+			},
+			"text": " I think once we have like ZK, most sort of working, it'll be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,760",
+				"to": "00:13:57,840"
+			},
+			"offsets": {
+				"from": 835760,
+				"to": 837840
+			},
+			"text": " really easy to sort of bootstrap these groups of like, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:13:59,120"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 839120
+			},
+			"text": " example, like employees of a company."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,120",
+				"to": "00:14:02,400"
+			},
+			"offsets": {
+				"from": 839120,
+				"to": 842400
+			},
+			"text": " Glassroom blind like works pretty well for this stuff, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,400",
+				"to": "00:14:05,600"
+			},
+			"offsets": {
+				"from": 842400,
+				"to": 845600
+			},
+			"text": " again, like you're trusting last room blind to not reveal"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,600",
+				"to": "00:14:06,400"
+			},
+			"offsets": {
+				"from": 845600,
+				"to": 846400
+			},
+			"text": " this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,400",
+				"to": "00:14:08,640"
+			},
+			"offsets": {
+				"from": 846400,
+				"to": 848640
+			},
+			"text": " I think there's some like lawsuit in New Zealand or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,640",
+				"to": "00:14:11,680"
+			},
+			"offsets": {
+				"from": 848640,
+				"to": 851680
+			},
+			"text": " where like Glassdoor got sued to like release some of their"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,680",
+				"to": "00:14:12,080"
+			},
+			"offsets": {
+				"from": 851680,
+				"to": 852080
+			},
+			"text": " information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,080",
+				"to": "00:14:14,640"
+			},
+			"offsets": {
+				"from": 852080,
+				"to": 854640
+			},
+			"text": " So, you know, this stuff does break down at some level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,640",
+				"to": "00:14:17,520"
+			},
+			"offsets": {
+				"from": 854640,
+				"to": 857520
+			},
+			"text": " but yeah, we could we could just have a more sort of secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,520",
+				"to": "00:14:18,400"
+			},
+			"offsets": {
+				"from": 857520,
+				"to": 858400
+			},
+			"text": " version of that for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,400",
+				"to": "00:14:20,400"
+			},
+			"offsets": {
+				"from": 858400,
+				"to": 860400
+			},
+			"text": " So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,400",
+				"to": "00:14:22,400"
+			},
+			"offsets": {
+				"from": 860400,
+				"to": 862400
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,400",
+				"to": "00:14:24,400"
+			},
+			"offsets": {
+				"from": 862400,
+				"to": 864400
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,400",
+				"to": "00:14:26,400"
+			},
+			"offsets": {
+				"from": 864400,
+				"to": 866400
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,400",
+				"to": "00:14:28,400"
+			},
+			"offsets": {
+				"from": 866400,
+				"to": 868400
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,400",
+				"to": "00:14:32,400"
+			},
+			"offsets": {
+				"from": 868400,
+				"to": 872400
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

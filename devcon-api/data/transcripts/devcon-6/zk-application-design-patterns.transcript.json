@@ -1,0 +1,4355 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17400
+			},
+			"text": " Our talk was originally ZK application design patterns,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:20,400"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 20400
+			},
+			"text": " but you and I got together and started talking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,400",
+				"to": "00:00:24,320"
+			},
+			"offsets": {
+				"from": 20400,
+				"to": 24320
+			},
+			"text": " We realized a lot of what we really wanted to talk about was,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,320",
+				"to": "00:00:26,960"
+			},
+			"offsets": {
+				"from": 24320,
+				"to": 26960
+			},
+			"text": " like, what is the landscape of ZK applications?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,960",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 26960,
+				"to": 32640
+			},
+			"text": " ZK or ZKP or SNARK is quickly becoming like a big data-esque"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:35,040"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 35040
+			},
+			"text": " bud buzzword and very jargony."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,040",
+				"to": "00:00:37,920"
+			},
+			"offsets": {
+				"from": 35040,
+				"to": 37920
+			},
+			"text": " It's starting to mean a lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,920",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 37920,
+				"to": 40600
+			},
+			"text": " And so we're hoping to talk to sort of like talk through some"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:44,600"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 44600
+			},
+			"text": " of the different application classes we're seeing emerging today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,600",
+				"to": "00:00:49,080"
+			},
+			"offsets": {
+				"from": 44600,
+				"to": 49080
+			},
+			"text": " And in the process sort of like plot what we think the next six months"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,080",
+				"to": "00:00:52,600"
+			},
+			"offsets": {
+				"from": 49080,
+				"to": 52600
+			},
+			"text": " to one year of like new ideas coming out look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,600",
+				"to": "00:00:56,680"
+			},
+			"offsets": {
+				"from": 52600,
+				"to": 56680
+			},
+			"text": " And the core thesis or statement is single statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,680",
+				"to": "00:01:00,440"
+			},
+			"offsets": {
+				"from": 56680,
+				"to": 60440
+			},
+			"text": " It's basically maybe unsurprisingly to many people who work in ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,440",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 60440,
+				"to": 64120
+			},
+			"text": " that succinctness and privacy are kind of like the two sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:06,800"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 66800
+			},
+			"text": " of features of ZK that are interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,800",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 66800,
+				"to": 70000
+			},
+			"text": " And understanding what succinct apps require"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:12,960"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 72960
+			},
+			"text": " and what private apps require like independent of one another might help us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,960",
+				"to": "00:01:15,760"
+			},
+			"offsets": {
+				"from": 72960,
+				"to": 75760
+			},
+			"text": " understand how like these two applications exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,760",
+				"to": "00:01:20,760"
+			},
+			"offsets": {
+				"from": 75760,
+				"to": 80760
+			},
+			"text": " >> So as much one mentioned, we really think of ZK as this matrix"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,760",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 80760,
+				"to": 84960
+			},
+			"text": " where your proof can be either succinct or not succinct."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:28,160"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 88160
+			},
+			"text": " And your proof can either be private or not private."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,160",
+				"to": "00:01:31,920"
+			},
+			"offsets": {
+				"from": 88160,
+				"to": 91920
+			},
+			"text": " So we think that each of these quadrants is useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,920",
+				"to": "00:01:33,880"
+			},
+			"offsets": {
+				"from": 91920,
+				"to": 93880
+			},
+			"text": " in a different type of application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,880",
+				"to": "00:01:38,480"
+			},
+			"offsets": {
+				"from": 93880,
+				"to": 98480
+			},
+			"text": " So in the top left, if you have a private proof that's not succinct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,480",
+				"to": "00:01:40,880"
+			},
+			"offsets": {
+				"from": 98480,
+				"to": 100880
+			},
+			"text": " well it's going to be hard to verify it on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,880",
+				"to": "00:01:44,200"
+			},
+			"offsets": {
+				"from": 100880,
+				"to": 104200
+			},
+			"text": " but you can still use it in some off-chain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,200",
+				"to": "00:01:48,040"
+			},
+			"offsets": {
+				"from": 104200,
+				"to": 108040
+			},
+			"text": " In the bottom left, if you have a succinct proof that's not private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,040",
+				"to": "00:01:51,560"
+			},
+			"offsets": {
+				"from": 108040,
+				"to": 111560
+			},
+			"text": " well that's perfect for on-chain infrastructure applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,560",
+				"to": "00:01:54,280"
+			},
+			"offsets": {
+				"from": 111560,
+				"to": 114280
+			},
+			"text": " but not so good if you're trying to hide information."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,280",
+				"to": "00:01:57,440"
+			},
+			"offsets": {
+				"from": 114280,
+				"to": 117440
+			},
+			"text": " And of course, you can have the best of both worlds in the top right"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,440",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 117440,
+				"to": 120080
+			},
+			"text": " where you have both succinctness and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:02,200"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 122200
+			},
+			"text": " But as we'll talk about a bit later in the talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,200",
+				"to": "00:02:04,280"
+			},
+			"offsets": {
+				"from": 122200,
+				"to": 124280
+			},
+			"text": " that's extremely challenging to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,280",
+				"to": "00:02:08,840"
+			},
+			"offsets": {
+				"from": 124280,
+				"to": 128840
+			},
+			"text": " So we think that almost all applications right now fit into one"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,840",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 128840,
+				"to": 131160
+			},
+			"text": " of the left two quadrants."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:16,040"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 136040
+			},
+			"text": " So just to talk through some of them on the top left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,040",
+				"to": "00:02:20,720"
+			},
+			"offsets": {
+				"from": 136040,
+				"to": 140720
+			},
+			"text": " we have more social type explorations of what you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,720",
+				"to": "00:02:24,480"
+			},
+			"offsets": {
+				"from": 140720,
+				"to": 144480
+			},
+			"text": " when you can hide information about what groups you belong to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,480",
+				"to": "00:02:26,160"
+			},
+			"offsets": {
+				"from": 144480,
+				"to": 146160
+			},
+			"text": " and what statements you want to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,160",
+				"to": "00:02:29,240"
+			},
+			"offsets": {
+				"from": 146160,
+				"to": 149240
+			},
+			"text": " with partial revelation of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,240",
+				"to": "00:02:32,640"
+			},
+			"offsets": {
+				"from": 149240,
+				"to": 152640
+			},
+			"text": " On the bottom left, there are a lot of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,640",
+				"to": "00:02:35,400"
+			},
+			"offsets": {
+				"from": 152640,
+				"to": 155400
+			},
+			"text": " surrounding making blockchains more scalable"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,400",
+				"to": "00:02:38,920"
+			},
+			"offsets": {
+				"from": 155400,
+				"to": 158920
+			},
+			"text": " or giving additional capabilities to decentralized applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,920",
+				"to": "00:02:40,720"
+			},
+			"offsets": {
+				"from": 158920,
+				"to": 160720
+			},
+			"text": " using the succinctness property,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,720",
+				"to": "00:02:42,200"
+			},
+			"offsets": {
+				"from": 160720,
+				"to": 162200
+			},
+			"text": " but where everything's public already"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,200",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 162200,
+				"to": 164600
+			},
+			"text": " so we don't care too much about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:46,480"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 166480
+			},
+			"text": " And finally, in the top right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,480",
+				"to": "00:02:49,400"
+			},
+			"offsets": {
+				"from": 166480,
+				"to": 169400
+			},
+			"text": " there are a very small number of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,400",
+				"to": "00:02:53,280"
+			},
+			"offsets": {
+				"from": 169400,
+				"to": 173280
+			},
+			"text": " that have managed to both achieve succinctness and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,280",
+				"to": "00:02:57,600"
+			},
+			"offsets": {
+				"from": 173280,
+				"to": 177600
+			},
+			"text": " And probably everyone is familiar with those shown."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,600",
+				"to": "00:02:59,360"
+			},
+			"offsets": {
+				"from": 177600,
+				"to": 179360
+			},
+			"text": " OK, so we're now going to give an overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,360",
+				"to": "00:03:02,040"
+			},
+			"offsets": {
+				"from": 179360,
+				"to": 182040
+			},
+			"text": " of where we are today on each of these factors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,040",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 182040,
+				"to": 183840
+			},
+			"text": " succinctness and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:07,360"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 187360
+			},
+			"text": " So in the bottom left corner, if we ask for succinctness"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,360",
+				"to": "00:03:09,880"
+			},
+			"offsets": {
+				"from": 187360,
+				"to": 189880
+			},
+			"text": " but not privacy, the general theme"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,880",
+				"to": "00:03:14,280"
+			},
+			"offsets": {
+				"from": 189880,
+				"to": 194280
+			},
+			"text": " is that ZKPs are used to scale trustless off-chain compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,280",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 194280,
+				"to": 196840
+			},
+			"text": " And the theoretical principle behind this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:19,640"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 199640
+			},
+			"text": " is that if you run code on Ethereum today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,640",
+				"to": "00:03:23,240"
+			},
+			"offsets": {
+				"from": 199640,
+				"to": 203240
+			},
+			"text": " every Ethereum full node has to rerun that code"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,240",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 203240,
+				"to": 207440
+			},
+			"text": " to validate that the execution of your transaction was correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 211680
+			},
+			"text": " So that's about 100k x overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 214000
+			},
+			"text": " and it has very high duplication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,720"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217720
+			},
+			"text": " The new capability that succinct proofs give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,720",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 217720,
+				"to": 221880
+			},
+			"text": " is that only one party needs to execute the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:45,040"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 225040
+			},
+			"text": " and generate a validity proof of that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,040",
+				"to": "00:03:48,200"
+			},
+			"offsets": {
+				"from": 225040,
+				"to": 228200
+			},
+			"text": " Everyone else simply needs to validate that proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,200",
+				"to": "00:03:50,240"
+			},
+			"offsets": {
+				"from": 228200,
+				"to": 230240
+			},
+			"text": " So this removes the duplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,240",
+				"to": "00:03:54,080"
+			},
+			"offsets": {
+				"from": 230240,
+				"to": 234080
+			},
+			"text": " but just incurs a very high overhead on the prover."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,080",
+				"to": "00:03:56,200"
+			},
+			"offsets": {
+				"from": 234080,
+				"to": 236200
+			},
+			"text": " And so examples about applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,200",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 236200,
+				"to": 239600
+			},
+			"text": " that use this pattern today are all of the ZK roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:02,080"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 242080
+			},
+			"text": " as well as the sort of app-specific roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,080",
+				"to": "00:04:04,400"
+			},
+			"offsets": {
+				"from": 242080,
+				"to": 244400
+			},
+			"text": " like dydx or loop ring."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,400",
+				"to": "00:04:08,280"
+			},
+			"offsets": {
+				"from": 244400,
+				"to": 248280
+			},
+			"text": " So another capability that we see ZK succinct proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,280",
+				"to": "00:04:11,360"
+			},
+			"offsets": {
+				"from": 248280,
+				"to": 251360
+			},
+			"text": " springing is cryptographic interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,360",
+				"to": "00:04:13,720"
+			},
+			"offsets": {
+				"from": 251360,
+				"to": 253720
+			},
+			"text": " So one thing that ZK allows you to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,720",
+				"to": "00:04:16,240"
+			},
+			"offsets": {
+				"from": 253720,
+				"to": 256240
+			},
+			"text": " is to take anything from the grab bag"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,240",
+				"to": "00:04:19,600"
+			},
+			"offsets": {
+				"from": 256240,
+				"to": 259600
+			},
+			"text": " of cryptographic primitives on the left"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,600",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 259600,
+				"to": 262600
+			},
+			"text": " and allow you to wrap it in a uniform format,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:25,080"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 265080
+			},
+			"text": " namely a ZK snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,080",
+				"to": "00:04:27,200"
+			},
+			"offsets": {
+				"from": 265080,
+				"to": 267200
+			},
+			"text": " So while each of these primitives is useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,200",
+				"to": "00:04:29,440"
+			},
+			"offsets": {
+				"from": 267200,
+				"to": 269440
+			},
+			"text": " for a different thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,440",
+				"to": "00:04:32,480"
+			},
+			"offsets": {
+				"from": 269440,
+				"to": 272480
+			},
+			"text": " they are designed in a somewhat single-purpose way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,480",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 272480,
+				"to": 275080
+			},
+			"text": " And that makes it very difficult to aggregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:37,200"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 277200
+			},
+			"text": " or compose these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,200",
+				"to": "00:04:39,840"
+			},
+			"offsets": {
+				"from": 277200,
+				"to": 279840
+			},
+			"text": " So ZK provides an interoperability layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,840",
+				"to": "00:04:42,520"
+			},
+			"offsets": {
+				"from": 279840,
+				"to": 282520
+			},
+			"text": " that turns all of these into a snark proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,520",
+				"to": "00:04:45,640"
+			},
+			"offsets": {
+				"from": 282520,
+				"to": 285640
+			},
+			"text": " that is arbitrarily composable using recursion."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,640",
+				"to": "00:04:48,120"
+			},
+			"offsets": {
+				"from": 285640,
+				"to": 288120
+			},
+			"text": " And while that snark proof adds some overhead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,120",
+				"to": "00:04:51,560"
+			},
+			"offsets": {
+				"from": 288120,
+				"to": 291560
+			},
+			"text": " it makes this open interoperability possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,560",
+				"to": "00:04:54,600"
+			},
+			"offsets": {
+				"from": 291560,
+				"to": 294600
+			},
+			"text": " Okay, so let's talk about now what's necessary today"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,600",
+				"to": "00:04:55,760"
+			},
+			"offsets": {
+				"from": 294600,
+				"to": 295760
+			},
+			"text": " to make this happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,760",
+				"to": "00:04:58,600"
+			},
+			"offsets": {
+				"from": 295760,
+				"to": 298600
+			},
+			"text": " The first thing is that because we're only asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,600",
+				"to": "00:05:02,120"
+			},
+			"offsets": {
+				"from": 298600,
+				"to": 302120
+			},
+			"text": " for a succinct proof, we can really scale the prover."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,120",
+				"to": "00:05:05,240"
+			},
+			"offsets": {
+				"from": 302120,
+				"to": 305240
+			},
+			"text": " In particular, we can first not prove in the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,240",
+				"to": "00:05:08,440"
+			},
+			"offsets": {
+				"from": 305240,
+				"to": 308440
+			},
+			"text": " we can prove on the user's bare metal CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,440",
+				"to": "00:05:12,080"
+			},
+			"offsets": {
+				"from": 308440,
+				"to": 312080
+			},
+			"text": " So that gives us a really high 5 to 10x improvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,080",
+				"to": "00:05:15,400"
+			},
+			"offsets": {
+				"from": 312080,
+				"to": 315400
+			},
+			"text": " Secondly, we can outsource the prover to the cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,400",
+				"to": "00:05:18,720"
+			},
+			"offsets": {
+				"from": 315400,
+				"to": 318720
+			},
+			"text": " So the user can send a request for a snark proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,720",
+				"to": "00:05:21,200"
+			},
+			"offsets": {
+				"from": 318720,
+				"to": 321200
+			},
+			"text": " of something that's already going to be public."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,200",
+				"to": "00:05:25,200"
+			},
+			"offsets": {
+				"from": 321200,
+				"to": 325200
+			},
+			"text": " And then the cloud-based server can run a big,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,200",
+				"to": "00:05:28,400"
+			},
+			"offsets": {
+				"from": 325200,
+				"to": 328400
+			},
+			"text": " large AWS instance, it can run a GPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,400",
+				"to": "00:05:31,360"
+			},
+			"offsets": {
+				"from": 328400,
+				"to": 331360
+			},
+			"text": " it can run an FPGA, or eventually an ASIC."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,360",
+				"to": "00:05:33,760"
+			},
+			"offsets": {
+				"from": 331360,
+				"to": 333760
+			},
+			"text": " And that can give another 5 to 10x speed up"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,760",
+				"to": "00:05:35,640"
+			},
+			"offsets": {
+				"from": 333760,
+				"to": 335640
+			},
+			"text": " in the proving time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,640",
+				"to": "00:05:38,440"
+			},
+			"offsets": {
+				"from": 335640,
+				"to": 338440
+			},
+			"text": " And finally, I wanted to talk about the last constraint"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,440",
+				"to": "00:05:41,080"
+			},
+			"offsets": {
+				"from": 338440,
+				"to": 341080
+			},
+			"text": " when you use succinctness on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,080",
+				"to": "00:05:42,800"
+			},
+			"offsets": {
+				"from": 341080,
+				"to": 342800
+			},
+			"text": " And this is a pretty heavy one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,800",
+				"to": "00:05:44,640"
+			},
+			"offsets": {
+				"from": 342800,
+				"to": 344640
+			},
+			"text": " which is that you have to verify all"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,640",
+				"to": "00:05:47,520"
+			},
+			"offsets": {
+				"from": 344640,
+				"to": 347520
+			},
+			"text": " of your zero-knowledge proofs on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,520",
+				"to": "00:05:50,200"
+			},
+			"offsets": {
+				"from": 347520,
+				"to": 350200
+			},
+			"text": " And in this case, the gas cost of verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,200",
+				"to": "00:05:53,080"
+			},
+			"offsets": {
+				"from": 350200,
+				"to": 353080
+			},
+			"text": " really differs from the CPU cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,080",
+				"to": "00:05:55,800"
+			},
+			"offsets": {
+				"from": 353080,
+				"to": 355800
+			},
+			"text": " It's going to depend on the proving system you used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,800",
+				"to": "00:05:58,400"
+			},
+			"offsets": {
+				"from": 355800,
+				"to": 358400
+			},
+			"text": " the choice of curve for that proving system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,400",
+				"to": "00:06:02,200"
+			},
+			"offsets": {
+				"from": 358400,
+				"to": 362200
+			},
+			"text": " and also some proving system specific implementation choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,200",
+				"to": "00:06:05,160"
+			},
+			"offsets": {
+				"from": 362200,
+				"to": 365160
+			},
+			"text": " The most restricted of these is the choice of curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,160",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 365160,
+				"to": 366840
+			},
+			"text": " So on Ethereum, there are precompiles"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:09,360"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 369360
+			},
+			"text": " for the BN254 elliptic curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,360",
+				"to": "00:06:11,960"
+			},
+			"offsets": {
+				"from": 369360,
+				"to": 371960
+			},
+			"text": " And those operations are much cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,960",
+				"to": "00:06:14,800"
+			},
+			"offsets": {
+				"from": 371960,
+				"to": 374800
+			},
+			"text": " Unfortunately, other curves are somewhat prohibitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,800",
+				"to": "00:06:16,800"
+			},
+			"offsets": {
+				"from": 374800,
+				"to": 376800
+			},
+			"text": " to do directly in EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,800",
+				"to": "00:06:19,600"
+			},
+			"offsets": {
+				"from": 376800,
+				"to": 379600
+			},
+			"text": " hence the need for a precompile in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,600",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379600,
+				"to": 383000
+			},
+			"text": " One way that is commonly used right now to get around this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:25,320"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 385320
+			},
+			"text": " for example, in the ZK EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,320",
+				"to": "00:06:28,280"
+			},
+			"offsets": {
+				"from": 385320,
+				"to": 388280
+			},
+			"text": " is the operation known as aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,280",
+				"to": "00:06:31,400"
+			},
+			"offsets": {
+				"from": 388280,
+				"to": 391400
+			},
+			"text": " The strategy here is that if you want to use a snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,400",
+				"to": "00:06:34,560"
+			},
+			"offsets": {
+				"from": 391400,
+				"to": 394560
+			},
+			"text": " a very big one, that's not natively compatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,560",
+				"to": "00:06:36,560"
+			},
+			"offsets": {
+				"from": 394560,
+				"to": 396560
+			},
+			"text": " for EVM verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,560",
+				"to": "00:06:39,280"
+			},
+			"offsets": {
+				"from": 396560,
+				"to": 399280
+			},
+			"text": " you first generate your snark, a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,280",
+				"to": "00:06:42,720"
+			},
+			"offsets": {
+				"from": 399280,
+				"to": 402720
+			},
+			"text": " and then you produce a recursive snark, b,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,720",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 402720,
+				"to": 406560
+			},
+			"text": " which proves the claim that you know a large snark, a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:48,960"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 408960
+			},
+			"text": " that proves the statement you claimed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,960",
+				"to": "00:06:50,960"
+			},
+			"offsets": {
+				"from": 408960,
+				"to": 410960
+			},
+			"text": " In this case, you can choose b"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,960",
+				"to": "00:06:52,880"
+			},
+			"offsets": {
+				"from": 410960,
+				"to": 412880
+			},
+			"text": " to come from a different proving system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,880",
+				"to": "00:06:54,480"
+			},
+			"offsets": {
+				"from": 412880,
+				"to": 414480
+			},
+			"text": " than your original snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,480",
+				"to": "00:06:57,200"
+			},
+			"offsets": {
+				"from": 414480,
+				"to": 417200
+			},
+			"text": " and that proving system could be very cheap to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,200",
+				"to": "00:06:58,080"
+			},
+			"offsets": {
+				"from": 417200,
+				"to": 418080
+			},
+			"text": " on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,080",
+				"to": "00:07:01,680"
+			},
+			"offsets": {
+				"from": 418080,
+				"to": 421680
+			},
+			"text": " In this way, you can sort of transmute a very large snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,680",
+				"to": "00:07:03,680"
+			},
+			"offsets": {
+				"from": 421680,
+				"to": 423680
+			},
+			"text": " from an arbitrary proving system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,680",
+				"to": "00:07:06,720"
+			},
+			"offsets": {
+				"from": 423680,
+				"to": 426720
+			},
+			"text": " to an on-chain verifiable snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,720",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426720,
+				"to": 430000
+			},
+			"text": " from something that's compatible with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:12,320"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 432320
+			},
+			"text": " The only caveat here is that you, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,320",
+				"to": "00:07:15,840"
+			},
+			"offsets": {
+				"from": 432320,
+				"to": 435840
+			},
+			"text": " incur the overhead of this recursive proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,840",
+				"to": "00:07:17,920"
+			},
+			"offsets": {
+				"from": 435840,
+				"to": 437920
+			},
+			"text": " Cool, thanks, E."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,920",
+				"to": "00:07:21,440"
+			},
+			"offsets": {
+				"from": 437920,
+				"to": 441440
+			},
+			"text": " Yeah, now I'll talk about the other kind of interesting cluster"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,440",
+				"to": "00:07:22,640"
+			},
+			"offsets": {
+				"from": 441440,
+				"to": 442640
+			},
+			"text": " we're seeing in the top left,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,640",
+				"to": "00:07:26,960"
+			},
+			"offsets": {
+				"from": 442640,
+				"to": 446960
+			},
+			"text": " which is an application class that seemed to require privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,960",
+				"to": "00:07:28,560"
+			},
+			"offsets": {
+				"from": 446960,
+				"to": 448560
+			},
+			"text": " or suit on the media of some sort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,560",
+				"to": "00:07:31,920"
+			},
+			"offsets": {
+				"from": 448560,
+				"to": 451920
+			},
+			"text": " but don't necessarily require a sickness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,920",
+				"to": "00:07:35,680"
+			},
+			"offsets": {
+				"from": 451920,
+				"to": 455680
+			},
+			"text": " This is kind of like a more nascent ecosystem of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,680",
+				"to": "00:07:38,800"
+			},
+			"offsets": {
+				"from": 455680,
+				"to": 458800
+			},
+			"text": " Many of them don't require chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,800",
+				"to": "00:07:42,400"
+			},
+			"offsets": {
+				"from": 458800,
+				"to": 462400
+			},
+			"text": " and so I think relative to maybe a lot of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,400",
+				"to": "00:07:44,800"
+			},
+			"offsets": {
+				"from": 462400,
+				"to": 464800
+			},
+			"text": " that you talked about, they're perhaps less familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,800",
+				"to": "00:07:47,840"
+			},
+			"offsets": {
+				"from": 464800,
+				"to": 467840
+			},
+			"text": " to the average Ethereum conference in Tendi."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,840",
+				"to": "00:07:50,720"
+			},
+			"offsets": {
+				"from": 467840,
+				"to": 470720
+			},
+			"text": " But what we're seeing is that they seem to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,720",
+				"to": "00:07:53,760"
+			},
+			"offsets": {
+				"from": 470720,
+				"to": 473760
+			},
+			"text": " they seem to cluster around social type things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,760",
+				"to": "00:07:56,960"
+			},
+			"offsets": {
+				"from": 473760,
+				"to": 476960
+			},
+			"text": " This doesn't mean that this is all it is in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,960",
+				"to": "00:08:00,080"
+			},
+			"offsets": {
+				"from": 476960,
+				"to": 480080
+			},
+			"text": " but kind of want to talk about what we're seeing today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,960",
+				"to": "00:08:06,080"
+			},
+			"offsets": {
+				"from": 480960,
+				"to": 486080
+			},
+			"text": " And so in thinking about this quadrant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,080",
+				"to": "00:08:08,800"
+			},
+			"offsets": {
+				"from": 486080,
+				"to": 488800
+			},
+			"text": " I spend a lot of time thinking about sort of this spectrum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,800",
+				"to": "00:08:11,280"
+			},
+			"offsets": {
+				"from": 488800,
+				"to": 491280
+			},
+			"text": " There's a spectrum, so let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,280",
+				"to": "00:08:14,640"
+			},
+			"offsets": {
+				"from": 491280,
+				"to": 494640
+			},
+			"text": " think about those arrows or zero-knowledge proofs being made."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,640",
+				"to": "00:08:17,600"
+			},
+			"offsets": {
+				"from": 494640,
+				"to": 497600
+			},
+			"text": " The computers are like, say like an end-user computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,600",
+				"to": "00:08:22,240"
+			},
+			"offsets": {
+				"from": 497600,
+				"to": 502240
+			},
+			"text": " Ethereum there obviously is a decentralized state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,240",
+				"to": "00:08:27,680"
+			},
+			"offsets": {
+				"from": 502240,
+				"to": 507680
+			},
+			"text": " with low-ish relative to congestion block-gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,480",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 508480,
+				"to": 513360
+			},
+			"text": " Those bottom two icons are sort of how proofs are being consumed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 515760
+			},
+			"text": " and the top two icons are how proofs are being produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:38,880"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 518880
+			},
+			"text": " It feels like there's a spectrum of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,880",
+				"to": "00:08:41,280"
+			},
+			"offsets": {
+				"from": 518880,
+				"to": 521280
+			},
+			"text": " and how we think about what is consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,280",
+				"to": "00:08:42,640"
+			},
+			"offsets": {
+				"from": 521280,
+				"to": 522640
+			},
+			"text": " Is it being consumed by a human?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,640",
+				"to": "00:08:44,800"
+			},
+			"offsets": {
+				"from": 522640,
+				"to": 524800
+			},
+			"text": " Is it being consumed by a state machine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,800",
+				"to": "00:08:46,160"
+			},
+			"offsets": {
+				"from": 524800,
+				"to": 526160
+			},
+			"text": " Or a decentralized state machine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,160",
+				"to": "00:08:48,960"
+			},
+			"offsets": {
+				"from": 526160,
+				"to": 528960
+			},
+			"text": " If it's being consumed by a decentralized state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,960",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 528960,
+				"to": 531920
+			},
+			"text": " like Ethereum, hence like on-chain verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:55,040"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 535040
+			},
+			"text": " you need things to be considerably more succinct."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,040",
+				"to": "00:08:58,320"
+			},
+			"offsets": {
+				"from": 535040,
+				"to": 538320
+			},
+			"text": " If it's being interpreted by a human, maybe you don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,320",
+				"to": "00:09:01,520"
+			},
+			"offsets": {
+				"from": 538320,
+				"to": 541520
+			},
+			"text": " Maybe it can be a much larger piece of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,520",
+				"to": "00:09:06,320"
+			},
+			"offsets": {
+				"from": 541520,
+				"to": 546320
+			},
+			"text": " that is human interpretable or has some kind of interesting graphical representation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,320",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546320,
+				"to": 550000
+			},
+			"text": " And so in thinking about this spectrum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:12,560"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 552560
+			},
+			"text": " and again, this is not including a lot of things in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,560",
+				"to": "00:09:13,760"
+			},
+			"offsets": {
+				"from": 552560,
+				"to": 553760
+			},
+			"text": " So things in the middle might be things"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:19,280"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 559280
+			},
+			"text": " like being consumed by an app chain or a layer two"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,280",
+				"to": "00:09:22,400"
+			},
+			"offsets": {
+				"from": 559280,
+				"to": 562400
+			},
+			"text": " or a lower congestion layer one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,400",
+				"to": "00:09:24,160"
+			},
+			"offsets": {
+				"from": 562400,
+				"to": 564160
+			},
+			"text": " or a short-lived chain or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,160",
+				"to": "00:09:26,240"
+			},
+			"offsets": {
+				"from": 564160,
+				"to": 566240
+			},
+			"text": " But these two ends of the spectrum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,040",
+				"to": "00:09:30,480"
+			},
+			"offsets": {
+				"from": 567040,
+				"to": 570480
+			},
+			"text": " I think we all quite understand the chain side of applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,480",
+				"to": "00:09:33,520"
+			},
+			"offsets": {
+				"from": 570480,
+				"to": 573520
+			},
+			"text": " like things that use the eonautics proofs that require six-ness."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,520",
+				"to": "00:09:37,200"
+			},
+			"offsets": {
+				"from": 573520,
+				"to": 577200
+			},
+			"text": " Six-ness tend to benefit from being very composable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,200",
+				"to": "00:09:38,800"
+			},
+			"offsets": {
+				"from": 577200,
+				"to": 578800
+			},
+			"text": " creating things that are canonical."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,800",
+				"to": "00:09:42,640"
+			},
+			"offsets": {
+				"from": 578800,
+				"to": 582640
+			},
+			"text": " On the other hand, if we're talking about humans interpreting proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,640",
+				"to": "00:09:46,320"
+			},
+			"offsets": {
+				"from": 582640,
+				"to": 586320
+			},
+			"text": " it feels like the applications want to be higher velocity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,320",
+				"to": "00:09:47,920"
+			},
+			"offsets": {
+				"from": 586320,
+				"to": 587920
+			},
+			"text": " or can benefit from being higher velocity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,920",
+				"to": "00:09:50,640"
+			},
+			"offsets": {
+				"from": 587920,
+				"to": 590640
+			},
+			"text": " because you don't need a chain verifying every proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,640",
+				"to": "00:09:52,400"
+			},
+			"offsets": {
+				"from": 590640,
+				"to": 592400
+			},
+			"text": " Things are more ephemeral."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,400",
+				"to": "00:09:56,720"
+			},
+			"offsets": {
+				"from": 592400,
+				"to": 596720
+			},
+			"text": " Maybe humans don't necessarily have persistent memory themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,720",
+				"to": "00:09:58,800"
+			},
+			"offsets": {
+				"from": 596720,
+				"to": 598800
+			},
+			"text": " We see a lot of things on Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,800",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598800,
+				"to": 602000
+			},
+			"text": " and sort of like form of vague understanding of what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,360"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605360
+			},
+			"text": " Another mental model I think about is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,360",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 605360,
+				"to": 610400
+			},
+			"text": " ZKPs on the privacy, not just inside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:14,560"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 614560
+			},
+			"text": " like ZKPs sort of creating a new content type,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,560",
+				"to": "00:10:19,200"
+			},
+			"offsets": {
+				"from": 614560,
+				"to": 619200
+			},
+			"text": " which is like all these places where people create content online today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,200",
+				"to": "00:10:22,800"
+			},
+			"offsets": {
+				"from": 619200,
+				"to": 622800
+			},
+			"text": " What if they now were enriched with a ZKP of some sort?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,800",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 622800,
+				"to": 624560
+			},
+			"text": " It kind of means something a little bit different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:25,520"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 625520
+			},
+			"text": " which is quite cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,400",
+				"to": "00:10:27,840"
+			},
+			"offsets": {
+				"from": 626400,
+				"to": 627840
+			},
+			"text": " I didn't really talk about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,840",
+				"to": "00:10:29,920"
+			},
+			"offsets": {
+				"from": 627840,
+				"to": 629920
+			},
+			"text": " I realized I probably should add a slide here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,920",
+				"to": "00:10:30,960"
+			},
+			"offsets": {
+				"from": 629920,
+				"to": 630960
+			},
+			"text": " presenting some applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,960",
+				"to": "00:10:35,600"
+			},
+			"offsets": {
+				"from": 630960,
+				"to": 635600
+			},
+			"text": " Some examples are like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,600",
+				"to": "00:10:39,520"
+			},
+			"offsets": {
+				"from": 635600,
+				"to": 639520
+			},
+			"text": " actually let me just go back to this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,520",
+				"to": "00:10:42,800"
+			},
+			"offsets": {
+				"from": 639520,
+				"to": 642800
+			},
+			"text": " So STEM before, which is a project of the PSE,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,800",
+				"to": "00:10:46,560"
+			},
+			"offsets": {
+				"from": 642800,
+				"to": 646560
+			},
+			"text": " which is kind of group membership in like proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,560",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 646560,
+				"to": 649120
+			},
+			"text": " private group membership."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:51,280"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 651280
+			},
+			"text": " So you can prove that you are one of the people in a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,280",
+				"to": "00:10:52,880"
+			},
+			"offsets": {
+				"from": 651280,
+				"to": 652880
+			},
+			"text": " And so you can use this to do like private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,880",
+				"to": "00:10:55,440"
+			},
+			"offsets": {
+				"from": 652880,
+				"to": 655440
+			},
+			"text": " like a Stonomist message board or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,440",
+				"to": "00:10:58,480"
+			},
+			"offsets": {
+				"from": 655440,
+				"to": 658480
+			},
+			"text": " Things like ZK email, like proving that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,480",
+				"to": "00:11:01,840"
+			},
+			"offsets": {
+				"from": 658480,
+				"to": 661840
+			},
+			"text": " you know, mail servers, it turns out many of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,840",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 661840,
+				"to": 666000
+			},
+			"text": " like sign the email body."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 670000
+			},
+			"text": " So you can do a zero-knowledge proof that you receive an email"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:11,520"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 671520
+			},
+			"text": " with certain properties or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,520",
+				"to": "00:11:12,160"
+			},
+			"offsets": {
+				"from": 671520,
+				"to": 672160
+			},
+			"text": " which is kind of cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,160",
+				"to": "00:11:14,320"
+			},
+			"offsets": {
+				"from": 672160,
+				"to": 674320
+			},
+			"text": " And these things like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,320",
+				"to": "00:11:16,080"
+			},
+			"offsets": {
+				"from": 674320,
+				"to": 676080
+			},
+			"text": " it's not obvious that that zero-knowledge proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,080",
+				"to": "00:11:18,160"
+			},
+			"offsets": {
+				"from": 676080,
+				"to": 678160
+			},
+			"text": " in either of these cases needs to be interpreted by a chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,160",
+				"to": "00:11:23,280"
+			},
+			"offsets": {
+				"from": 678160,
+				"to": 683280
+			},
+			"text": " And so the requirements in this quadrant are quite a bit different"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,280",
+				"to": "00:11:25,840"
+			},
+			"offsets": {
+				"from": 683280,
+				"to": 685840
+			},
+			"text": " than the quadrant E was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,840",
+				"to": "00:11:28,640"
+			},
+			"offsets": {
+				"from": 685840,
+				"to": 688640
+			},
+			"text": " And that like, verification complexity doesn't matter as much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,640",
+				"to": "00:11:30,960"
+			},
+			"offsets": {
+				"from": 688640,
+				"to": 690960
+			},
+			"text": " Verification complexity matters to the thickness"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,960",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 690960,
+				"to": 694400
+			},
+			"text": " because, or matters when you're verifying on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 697120
+			},
+			"text": " because you don't want the chain to have to spend a lot of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:38,320"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 698320
+			},
+			"text": " to verify your proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,320",
+				"to": "00:11:40,320"
+			},
+			"offsets": {
+				"from": 698320,
+				"to": 700320
+			},
+			"text": " But if a human is verifying it, like whatever, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,320",
+				"to": "00:11:44,080"
+			},
+			"offsets": {
+				"from": 700320,
+				"to": 704080
+			},
+			"text": " Like it can be done somewhere else, like off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,080",
+				"to": "00:11:46,080"
+			},
+			"offsets": {
+				"from": 704080,
+				"to": 706080
+			},
+			"text": " and or like, you know, it can use like some,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,080",
+				"to": "00:11:49,760"
+			},
+			"offsets": {
+				"from": 706080,
+				"to": 709760
+			},
+			"text": " like even consumer hardware is more powerful than a chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,760",
+				"to": "00:11:52,640"
+			},
+			"offsets": {
+				"from": 709760,
+				"to": 712640
+			},
+			"text": " Proving complexity tends to matter a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,640",
+				"to": "00:11:55,840"
+			},
+			"offsets": {
+				"from": 712640,
+				"to": 715840
+			},
+			"text": " because we are operating usually on a consumer device for proving."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,840",
+				"to": "00:11:58,240"
+			},
+			"offsets": {
+				"from": 715840,
+				"to": 718240
+			},
+			"text": " So consumer device proving friendliness as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,240",
+				"to": "00:12:00,240"
+			},
+			"offsets": {
+				"from": 718240,
+				"to": 720240
+			},
+			"text": " This is something we think about a lot is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,240",
+				"to": "00:12:01,680"
+			},
+			"offsets": {
+				"from": 720240,
+				"to": 721680
+			},
+			"text": " how do we make things work in a web browser?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,680",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 721680,
+				"to": 723200
+			},
+			"text": " How do we make things work in a mobile device?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:07,200"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 727200
+			},
+			"text": " And another piece is, you know, like given that we care about privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,200",
+				"to": "00:12:09,520"
+			},
+			"offsets": {
+				"from": 727200,
+				"to": 729520
+			},
+			"text": " in this quadrant is respect for sensitive user information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,520",
+				"to": "00:12:14,400"
+			},
+			"offsets": {
+				"from": 729520,
+				"to": 734400
+			},
+			"text": " So if anyone was around for a useless talk earlier today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,400",
+				"to": "00:12:18,560"
+			},
+			"offsets": {
+				"from": 734400,
+				"to": 738560
+			},
+			"text": " where he's sort of been developing this new deterministic nullifier scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,560",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 738560,
+				"to": 742000
+			},
+			"text": " that came from realizing that we just couldn't do a lot of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:28,480"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 748480
+			},
+			"text": " with private key in a client device because we would need to pass"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,480",
+				"to": "00:12:30,240"
+			},
+			"offsets": {
+				"from": 748480,
+				"to": 750240
+			},
+			"text": " this very sensitive piece of information"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,240",
+				"to": "00:12:31,920"
+			},
+			"offsets": {
+				"from": 750240,
+				"to": 751920
+			},
+			"text": " around different parts of application memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,920",
+				"to": "00:12:35,200"
+			},
+			"offsets": {
+				"from": 751920,
+				"to": 755200
+			},
+			"text": " And so we have to think of new kind of like mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,200",
+				"to": "00:12:36,800"
+			},
+			"offsets": {
+				"from": 755200,
+				"to": 756800
+			},
+			"text": " for not having to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,800",
+				"to": "00:12:38,400"
+			},
+			"offsets": {
+				"from": 756800,
+				"to": 758400
+			},
+			"text": " Oh, this is filming."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,400",
+				"to": "00:12:38,960"
+			},
+			"offsets": {
+				"from": 758400,
+				"to": 758960
+			},
+			"text": " Oh, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,960",
+				"to": "00:12:40,160"
+			},
+			"offsets": {
+				"from": 758960,
+				"to": 760160
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,160",
+				"to": "00:12:46,880"
+			},
+			"offsets": {
+				"from": 760160,
+				"to": 766880
+			},
+			"text": " So some of the challenges that we see technical challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,880",
+				"to": "00:12:48,960"
+			},
+			"offsets": {
+				"from": 766880,
+				"to": 768960
+			},
+			"text": " in the next six months, so as I mentioned earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,960",
+				"to": "00:12:52,160"
+			},
+			"offsets": {
+				"from": 768960,
+				"to": 772160
+			},
+			"text": " like we need to be very friendly on like privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,160",
+				"to": "00:12:56,240"
+			},
+			"offsets": {
+				"from": 772160,
+				"to": 776240
+			},
+			"text": " not succinct applications and in research constraint environments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,240",
+				"to": "00:13:00,320"
+			},
+			"offsets": {
+				"from": 776240,
+				"to": 780320
+			},
+			"text": " like mobile devices, like web browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,320",
+				"to": "00:13:01,280"
+			},
+			"offsets": {
+				"from": 780320,
+				"to": 781280
+			},
+			"text": " I think a lot of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,280",
+				"to": "00:13:09,520"
+			},
+			"offsets": {
+				"from": 781280,
+				"to": 789520
+			},
+			"text": " a lot of the vk space is assuming that most vk proofs will be produced"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,520",
+				"to": "00:13:14,320"
+			},
+			"offsets": {
+				"from": 789520,
+				"to": 794320
+			},
+			"text": " on like very large servers or with FPGAs or DPUs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,320",
+				"to": "00:13:17,440"
+			},
+			"offsets": {
+				"from": 794320,
+				"to": 797440
+			},
+			"text": " You know, there's some like debate around which of those two things wins, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,400",
+				"to": "00:13:23,520"
+			},
+			"offsets": {
+				"from": 798400,
+				"to": 803520
+			},
+			"text": " But if users are making proofs to other or humans are making proofs to other humans,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,520",
+				"to": "00:13:25,840"
+			},
+			"offsets": {
+				"from": 803520,
+				"to": 805840
+			},
+			"text": " we perhaps can't quite make that assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,840",
+				"to": "00:13:27,280"
+			},
+			"offsets": {
+				"from": 805840,
+				"to": 807280
+			},
+			"text": " So we spent a lot of time thinking about performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,280",
+				"to": "00:13:28,480"
+			},
+			"offsets": {
+				"from": 807280,
+				"to": 808480
+			},
+			"text": " in research constraint environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,480",
+				"to": "00:13:32,320"
+			},
+			"offsets": {
+				"from": 808480,
+				"to": 812320
+			},
+			"text": " So specifically like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,320",
+				"to": "00:13:34,960"
+			},
+			"offsets": {
+				"from": 812320,
+				"to": 814960
+			},
+			"text": " the specific example that I gave earlier with a Ush,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,960",
+				"to": "00:13:40,160"
+			},
+			"offsets": {
+				"from": 814960,
+				"to": 820160
+			},
+			"text": " we need to think a lot about non-private key nullifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,160",
+				"to": "00:13:43,120"
+			},
+			"offsets": {
+				"from": 820160,
+				"to": 823120
+			},
+			"text": " like non-private key uniqueness of identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,120",
+				"to": "00:13:46,640"
+			},
+			"offsets": {
+				"from": 823120,
+				"to": 826640
+			},
+			"text": " because we don't want to have to deal with private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,640",
+				"to": "00:13:50,240"
+			},
+			"offsets": {
+				"from": 826640,
+				"to": 830240
+			},
+			"text": " We don't want to have to create like an environment or a platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,240",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 830240,
+				"to": 834240
+			},
+			"text": " or anything where we assume private key is passed from app to app."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:13:55,920"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 835920
+			},
+			"text": " And then we also spent a lot of time thinking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,920",
+				"to": "00:14:03,200"
+			},
+			"offsets": {
+				"from": 835920,
+				"to": 843200
+			},
+			"text": " representing more cryptosystems where identity matters in SNARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,200",
+				"to": "00:14:05,840"
+			},
+			"offsets": {
+				"from": 843200,
+				"to": 845840
+			},
+			"text": " So, you know, Ethereum, we all interact with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,840",
+				"to": "00:14:09,760"
+			},
+			"offsets": {
+				"from": 845840,
+				"to": 849760
+			},
+			"text": " And it's quite obvious there's a lot of interesting things you can say about Ethereum stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,760",
+				"to": "00:14:15,840"
+			},
+			"offsets": {
+				"from": 849760,
+				"to": 855840
+			},
+			"text": " but there are other networks in the world where, you know, cryptographic signatures are made,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,840",
+				"to": "00:14:18,400"
+			},
+			"offsets": {
+				"from": 855840,
+				"to": 858400
+			},
+			"text": " like email servers like I mentioned earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,400",
+				"to": "00:14:21,120"
+			},
+			"offsets": {
+				"from": 858400,
+				"to": 861120
+			},
+			"text": " So we're constantly looking around to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,120",
+				"to": "00:14:26,240"
+			},
+			"offsets": {
+				"from": 861120,
+				"to": 866240
+			},
+			"text": " where new networks are forming and how to like put those operations inside SNARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,240",
+				"to": "00:14:30,400"
+			},
+			"offsets": {
+				"from": 866240,
+				"to": 870400
+			},
+			"text": " So a lot of times look a bit about some of the challenges it's ahead for privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,400",
+				"to": "00:14:35,120"
+			},
+			"offsets": {
+				"from": 870400,
+				"to": 875120
+			},
+			"text": " And a lot of that was dominated by finding new ways to improve the user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,120",
+				"to": "00:14:36,240"
+			},
+			"offsets": {
+				"from": 875120,
+				"to": 876240
+			},
+			"text": " and find applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,240",
+				"to": "00:14:41,120"
+			},
+			"offsets": {
+				"from": 876240,
+				"to": 881120
+			},
+			"text": " I think on the sickness side, the split is the other way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,120",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881120,
+				"to": 884000
+			},
+			"text": " where what you want to build is somewhat more clear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,360"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887360
+			},
+			"text": " but you need to have good enough performance to actually build it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,360",
+				"to": "00:14:50,720"
+			},
+			"offsets": {
+				"from": 887360,
+				"to": 890720
+			},
+			"text": " So in that sense, what I view the challenge ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,720",
+				"to": "00:14:55,120"
+			},
+			"offsets": {
+				"from": 890720,
+				"to": 895120
+			},
+			"text": " is really optimizing the performance of our proving systems and our architectures."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,120",
+				"to": "00:15:01,840"
+			},
+			"offsets": {
+				"from": 895120,
+				"to": 901840
+			},
+			"text": " So one direction is to really weaponize this operation of aggregation and recursion"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,840",
+				"to": "00:15:02,800"
+			},
+			"offsets": {
+				"from": 901840,
+				"to": 902800
+			},
+			"text": " that I mentioned earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,800",
+				"to": "00:15:07,680"
+			},
+			"offsets": {
+				"from": 902800,
+				"to": 907680
+			},
+			"text": " And the reason here is that if you want a very rich infrastructure application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,680",
+				"to": "00:15:13,040"
+			},
+			"offsets": {
+				"from": 907680,
+				"to": 913040
+			},
+			"text": " you need to prove for a much larger circuit than is even possible in the larger circuits today."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,920",
+				"to": "00:15:17,760"
+			},
+			"offsets": {
+				"from": 913920,
+				"to": 917760
+			},
+			"text": " And so there are a couple ideas here that are only beginning to be exploited"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,760",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 917760,
+				"to": 918960
+			},
+			"text": " by projects right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:23,120"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 923120
+			},
+			"text": " One is to maximize what's called a Prover Verifier trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,120",
+				"to": "00:15:28,800"
+			},
+			"offsets": {
+				"from": 923120,
+				"to": 928800
+			},
+			"text": " There's a fundamental trade-off between the proving time and the complexity of verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,800",
+				"to": "00:15:29,600"
+			},
+			"offsets": {
+				"from": 928800,
+				"to": 929600
+			},
+			"text": " a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,600",
+				"to": "00:15:33,520"
+			},
+			"offsets": {
+				"from": 929600,
+				"to": 933520
+			},
+			"text": " If you feed in more compute, you can get it an easier to verify proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,520",
+				"to": "00:15:40,320"
+			},
+			"offsets": {
+				"from": 933520,
+				"to": 940320
+			},
+			"text": " So we can do things like starting with a very fast to prove system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,320",
+				"to": "00:15:46,800"
+			},
+			"offsets": {
+				"from": 940320,
+				"to": 946800
+			},
+			"text": " and then wrapping it in an aggregation layer with which transforms it to a cheaper to verify system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,800",
+				"to": "00:15:50,640"
+			},
+			"offsets": {
+				"from": 946800,
+				"to": 950640
+			},
+			"text": " One form of that is already in use with basic aggregation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,640",
+				"to": "00:15:54,240"
+			},
+			"offsets": {
+				"from": 950640,
+				"to": 954240
+			},
+			"text": " but we can push it much further using multiple aggregation layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,240",
+				"to": "00:16:00,640"
+			},
+			"offsets": {
+				"from": 954240,
+				"to": 960640
+			},
+			"text": " And the things here to really optimize our non-native arithmetic and elliptic curve operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,640",
+				"to": "00:16:02,080"
+			},
+			"offsets": {
+				"from": 960640,
+				"to": 962080
+			},
+			"text": " for these snark-based systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,080",
+				"to": "00:16:06,720"
+			},
+			"offsets": {
+				"from": 962080,
+				"to": 966720
+			},
+			"text": " And a second direction is that even if we really optimize aggregation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,720",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 966720,
+				"to": 970000
+			},
+			"text": " it's likely that the most interesting statements to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:12,240"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 972240
+			},
+			"text": " are going to require multiple circuits to prove."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,240",
+				"to": "00:16:18,880"
+			},
+			"offsets": {
+				"from": 972240,
+				"to": 978880
+			},
+			"text": " And so in this schema, you divide up a large computation into multiple pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,880",
+				"to": "00:16:24,320"
+			},
+			"offsets": {
+				"from": 978880,
+				"to": 984320
+			},
+			"text": " and then you verify each piece in a snark and then you verify those snarks recursively."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,320",
+				"to": "00:16:31,520"
+			},
+			"offsets": {
+				"from": 984320,
+				"to": 991520
+			},
+			"text": " So with the ZKVM and other ZK roll-up VMs, we're seeing the beginnings of building virtual"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,520",
+				"to": "00:16:33,360"
+			},
+			"offsets": {
+				"from": 991520,
+				"to": 993360
+			},
+			"text": " machines in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,360",
+				"to": "00:16:38,160"
+			},
+			"offsets": {
+				"from": 993360,
+				"to": 998160
+			},
+			"text": " And I think that VMs for transaction execution are just the beginning of this trend."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,720",
+				"to": "00:16:44,720"
+			},
+			"offsets": {
+				"from": 998720,
+				"to": 1004720
+			},
+			"text": " In a separate direction, in the last five years, a lot of the progress in ZK has been driven by"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,720",
+				"to": "00:16:51,040"
+			},
+			"offsets": {
+				"from": 1004720,
+				"to": 1011040
+			},
+			"text": " the emergence of many new types of proof systems that really push the envelope on what we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,040",
+				"to": "00:16:52,160"
+			},
+			"offsets": {
+				"from": 1011040,
+				"to": 1012160
+			},
+			"text": " inside a ZK circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,160",
+				"to": "00:17:01,200"
+			},
+			"offsets": {
+				"from": 1012160,
+				"to": 1021200
+			},
+			"text": " So just as recently as 2016, really the most viable ZK proof system we had access to was GRAS 16."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,200",
+				"to": "00:17:06,640"
+			},
+			"offsets": {
+				"from": 1021200,
+				"to": 1026640
+			},
+			"text": " But since then, we've added many capabilities like custom gates, look-up arguments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,640",
+				"to": "00:17:12,080"
+			},
+			"offsets": {
+				"from": 1026640,
+				"to": 1032080
+			},
+			"text": " and we've been able to remove some aspects of the trusted setup in newer systems like Planck,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,080",
+				"to": "00:17:13,680"
+			},
+			"offsets": {
+				"from": 1032080,
+				"to": 1033680
+			},
+			"text": " Halo 2, and in Starks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,680",
+				"to": "00:17:19,200"
+			},
+			"offsets": {
+				"from": 1033680,
+				"to": 1039200
+			},
+			"text": " In the landscape today, there are actually a number of new primitives emerging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,200",
+				"to": "00:17:22,240"
+			},
+			"offsets": {
+				"from": 1039200,
+				"to": 1042240
+			},
+			"text": " which may be equally or more exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,240",
+				"to": "00:17:26,800"
+			},
+			"offsets": {
+				"from": 1042240,
+				"to": 1046800
+			},
+			"text": " So systems like NOVA allow for much more efficient accumulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,800",
+				"to": "00:17:35,440"
+			},
+			"offsets": {
+				"from": 1046800,
+				"to": 1055440
+			},
+			"text": " Some check-based systems like GKR or Hyper Planck allow for fast and faster but larger proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,440",
+				"to": "00:17:40,640"
+			},
+			"offsets": {
+				"from": 1055440,
+				"to": 1060640
+			},
+			"text": " which could then be recursively aggregated in other proof systems that we already control very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,640",
+				"to": "00:17:46,080"
+			},
+			"offsets": {
+				"from": 1060640,
+				"to": 1066080
+			},
+			"text": " And finally, there's the potential for much more efficient look-ups and new systems such as CULK."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,080",
+				"to": "00:17:52,320"
+			},
+			"offsets": {
+				"from": 1066080,
+				"to": 1072320
+			},
+			"text": " And so each of these represent a pretty big shift in the way that we can design ZK circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,320",
+				"to": "00:17:55,760"
+			},
+			"offsets": {
+				"from": 1072320,
+				"to": 1075760
+			},
+			"text": " and what type of programs we can express efficiently in them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,760",
+				"to": "00:18:00,320"
+			},
+			"offsets": {
+				"from": 1075760,
+				"to": 1080320
+			},
+			"text": " And so it'll be exciting to see how fast these things can come to production,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,320",
+				"to": "00:18:02,240"
+			},
+			"offsets": {
+				"from": 1080320,
+				"to": 1082240
+			},
+			"text": " and what new applications they can enable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,800",
+				"to": "00:18:09,600"
+			},
+			"offsets": {
+				"from": 1082800,
+				"to": 1089600
+			},
+			"text": " Oh yeah. And so finally, and to talk a little bit about where we see kind of these two things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,600",
+				"to": "00:18:16,960"
+			},
+			"offsets": {
+				"from": 1089600,
+				"to": 1096960
+			},
+			"text": " converging in the third quadrant, this is probably what the future will look like in the sense that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,960",
+				"to": "00:18:22,880"
+			},
+			"offsets": {
+				"from": 1096960,
+				"to": 1102880
+			},
+			"text": " so that the left side is the kind of privacy side and the right side is sort of this distinct"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,880",
+				"to": "00:18:29,440"
+			},
+			"offsets": {
+				"from": 1102880,
+				"to": 1109440
+			},
+			"text": " proving side. And the idea being that hopefully we reduce the surface area of the private to public"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,440",
+				"to": "00:18:35,680"
+			},
+			"offsets": {
+				"from": 1109440,
+				"to": 1115680
+			},
+			"text": " ish proof to something quite small that can then be recursively included in a larger proof that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,680",
+				"to": "00:18:43,600"
+			},
+			"offsets": {
+				"from": 1115680,
+				"to": 1123600
+			},
+			"text": " that is in the kind of like succinct but not private kind of like technology requirement land,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,600",
+				"to": "00:18:48,240"
+			},
+			"offsets": {
+				"from": 1123600,
+				"to": 1128240
+			},
+			"text": " and then that is interpreted on chain. And then this way we get all of the nice benefits of privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,240",
+				"to": "00:18:53,040"
+			},
+			"offsets": {
+				"from": 1128240,
+				"to": 1133040
+			},
+			"text": " and sickness and on chain applications with student-imity and cool stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,040",
+				"to": "00:18:55,360"
+			},
+			"offsets": {
+				"from": 1133040,
+				"to": 1135360
+			},
+			"text": " Yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,080",
+				"to": "00:19:01,840"
+			},
+			"offsets": {
+				"from": 1136080,
+				"to": 1141840
+			},
+			"text": " Sorry, maybe a silly question for the audience, but can you explain a bit more like what actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,840",
+				"to": "00:19:09,280"
+			},
+			"offsets": {
+				"from": 1141840,
+				"to": 1149280
+			},
+			"text": " succinct means like what's that property in the layman's terms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,280",
+				"to": "00:19:15,280"
+			},
+			"offsets": {
+				"from": 1149280,
+				"to": 1155280
+			},
+			"text": " Yes, succinctness is a property of zero knowledge proofs, which says that the size of the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,280",
+				"to": "00:19:20,560"
+			},
+			"offsets": {
+				"from": 1155280,
+				"to": 1160560
+			},
+			"text": " can be asymptotically smaller than the size of the computation you're able to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,560",
+				"to": "00:19:25,040"
+			},
+			"offsets": {
+				"from": 1160560,
+				"to": 1165040
+			},
+			"text": " So depending on the proof system, either the size of the proof could be constant size"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,040",
+				"to": "00:19:29,760"
+			},
+			"offsets": {
+				"from": 1165040,
+				"to": 1169760
+			},
+			"text": " in the size of the computation or it could be logarithmic. But either way, the point is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,760",
+				"to": "00:19:34,400"
+			},
+			"offsets": {
+				"from": 1169760,
+				"to": 1174400
+			},
+			"text": " you can verify this proof in much less compute than doing the actual computation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,400",
+				"to": "00:19:38,640"
+			},
+			"offsets": {
+				"from": 1174400,
+				"to": 1178640
+			},
+			"text": " Hey, and perhaps there's another distinct slight thing which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,640",
+				"to": "00:19:44,720"
+			},
+			"offsets": {
+				"from": 1178640,
+				"to": 1184720
+			},
+			"text": " many of many of many of I mean, most of these proof systems do have constant proof sizes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,720",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1184720,
+				"to": 1190000
+			},
+			"text": " but also like the lower the the lower the constant proof size, the better for something that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:54,320"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1194320
+			},
+			"text": " interpreted on chain obviously. But yeah, using answer is better than mine would have been. I was"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,320",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1194320,
+				"to": 1202000
+			},
+			"text": " just going to say small. Hey, so when we recursively prove stuff, so oh, yeah, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:09,040"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1209040
+			},
+			"text": " When we recursively prove, so there is a proof and then you are proving the proof, right? So"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,040",
+				"to": "00:20:16,800"
+			},
+			"offsets": {
+				"from": 1209040,
+				"to": 1216800
+			},
+			"text": " there are multiple layers of integrity checks, right? That is the assurance that you get. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,800",
+				"to": "00:20:23,760"
+			},
+			"offsets": {
+				"from": 1216800,
+				"to": 1223760
+			},
+			"text": " and these circuits are super complex and there could be like a million atomitations in there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,760",
+				"to": "00:20:30,720"
+			},
+			"offsets": {
+				"from": 1223760,
+				"to": 1230720
+			},
+			"text": " right? So what about the security of these proofs? Because if you have a single bug in a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,720",
+				"to": "00:20:36,240"
+			},
+			"offsets": {
+				"from": 1230720,
+				"to": 1236240
+			},
+			"text": " right, that is going to traverse down to like this very small proof that you will post on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,240",
+				"to": "00:20:40,640"
+			},
+			"offsets": {
+				"from": 1236240,
+				"to": 1240640
+			},
+			"text": " So what are your thoughts about that? How is the security landscape around"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,640",
+				"to": "00:20:46,000"
+			},
+			"offsets": {
+				"from": 1240640,
+				"to": 1246000
+			},
+			"text": " verifying secret systems? Let me hear your thoughts. Yeah, definitely. I would say on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,000",
+				"to": "00:20:51,120"
+			},
+			"offsets": {
+				"from": 1246000,
+				"to": 1251120
+			},
+			"text": " significant sink the site, definitely recursion and aggregation make it substantially more difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,120",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1251120,
+				"to": 1256320
+			},
+			"text": " to verify that your circuits are correct. So we have obviously traditional unit testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:21:01,200"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1261200
+			},
+			"text": " we have randomized fuzzing and we have some emerging formal verification approaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,200",
+				"to": "00:21:06,400"
+			},
+			"offsets": {
+				"from": 1261200,
+				"to": 1266400
+			},
+			"text": " for ensuring circuits are correct. Where recursion make these more complicated is that you may need"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,400",
+				"to": "00:21:11,520"
+			},
+			"offsets": {
+				"from": 1266400,
+				"to": 1271520
+			},
+			"text": " to encode assumptions slightly external to your circuit itself to check things. I'm sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,520",
+				"to": "00:21:17,040"
+			},
+			"offsets": {
+				"from": 1271520,
+				"to": 1277040
+			},
+			"text": " Loxone has some views on how that affects privacy as well. Oh, I mean, like, I think this is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,040",
+				"to": "00:21:21,680"
+			},
+			"offsets": {
+				"from": 1277040,
+				"to": 1281680
+			},
+			"text": " something we need to think about very seriously. It feels like, I mean, if any of you are familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,680",
+				"to": "00:21:26,640"
+			},
+			"offsets": {
+				"from": 1281680,
+				"to": 1286640
+			},
+			"text": " with like supply chain attacks and the node JSC ecosystem, it feels like we could easily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,640",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1286640,
+				"to": 1290000
+			},
+			"text": " that is like, I don't want to get too pessimistic, but that is like a very bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:34,800"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1294800
+			},
+			"text": " worst case here because it's like, it's very hard for the recursing proof to make strong"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,800",
+				"to": "00:21:42,160"
+			},
+			"offsets": {
+				"from": 1294800,
+				"to": 1302160
+			},
+			"text": " assumptions around the soundness of like proof that it is recursing on. I don't have any optimistic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,160",
+				"to": "00:21:45,280"
+			},
+			"offsets": {
+				"from": 1302160,
+				"to": 1305280
+			},
+			"text": " takes, unfortunately, but I think it's something we need to think about. There are lots of great"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,280",
+				"to": "00:21:50,320"
+			},
+			"offsets": {
+				"from": 1305280,
+				"to": 1310320
+			},
+			"text": " people, like especially in the zero x-par ecosystem, kind of thinking a lot about like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,320",
+				"to": "00:21:55,280"
+			},
+			"offsets": {
+				"from": 1310320,
+				"to": 1315280
+			},
+			"text": " formal verification and things like this. And maybe like, yeah, the formal verification of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,280",
+				"to": "00:22:01,920"
+			},
+			"offsets": {
+				"from": 1315280,
+				"to": 1321920
+			},
+			"text": " dependency graph type things needs to start happening. I don't know. Hello. What measures can"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,920",
+				"to": "00:22:08,560"
+			},
+			"offsets": {
+				"from": 1321920,
+				"to": 1328560
+			},
+			"text": " we take to make our proofs of quantum resistance for the long term? So I think of the different"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,560",
+				"to": "00:22:13,360"
+			},
+			"offsets": {
+				"from": 1328560,
+				"to": 1333360
+			},
+			"text": " proof systems. Most of the ones which are based on elliptic curve cryptography are not going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,360",
+				"to": "00:22:18,800"
+			},
+			"offsets": {
+				"from": 1333360,
+				"to": 1338800
+			},
+			"text": " quantum resistant since they will require at least a discrete log assumption. But we actually do"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,800",
+				"to": "00:22:24,240"
+			},
+			"offsets": {
+				"from": 1338800,
+				"to": 1344240
+			},
+			"text": " already know proof systems which are quantum resistant like starts, which only require a"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,240",
+				"to": "00:22:30,720"
+			},
+			"offsets": {
+				"from": 1344240,
+				"to": 1350720
+			},
+			"text": " random oracle hash assumption. And so if you want something to be really standing the test of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,720",
+				"to": "00:22:35,280"
+			},
+			"offsets": {
+				"from": 1350720,
+				"to": 1355280
+			},
+			"text": " you probably want to use one of those quantum resistance systems. I just want to add to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,280",
+				"to": "00:22:39,440"
+			},
+			"offsets": {
+				"from": 1355280,
+				"to": 1359440
+			},
+			"text": " succincting part, there's a difference between space succinctness and time succinctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,080",
+				"to": "00:22:47,920"
+			},
+			"offsets": {
+				"from": 1360080,
+				"to": 1367920
+			},
+			"text": " Usually, six things mean like both. Question on talk. What do you mean by talk being more efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,920",
+				"to": "00:22:54,720"
+			},
+			"offsets": {
+				"from": 1367920,
+				"to": 1374720
+			},
+			"text": " than easiest in lookups? So from what it seems to me that you can actually be applied to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,720",
+				"to": "00:22:59,280"
+			},
+			"offsets": {
+				"from": 1374720,
+				"to": 1379280
+			},
+			"text": " look up arguments in circuits or in the Merkle tree setting where you want to have, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,280",
+				"to": "00:23:05,680"
+			},
+			"offsets": {
+				"from": 1379280,
+				"to": 1385680
+			},
+			"text": " zero knowledge membership proofs. Because there's a linear overhead maintaining this"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,680",
+				"to": "00:23:10,160"
+			},
+			"offsets": {
+				"from": 1385680,
+				"to": 1390160
+			},
+			"text": " you know, pre positive proofs. Yeah, definitely. Like I would say we're being a bit sloppy with"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,160",
+				"to": "00:23:14,800"
+			},
+			"offsets": {
+				"from": 1390160,
+				"to": 1394800
+			},
+			"text": " the use of succinctness here. In most of the systems that are deployed today, you get both"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,800",
+				"to": "00:23:21,440"
+			},
+			"offsets": {
+				"from": 1394800,
+				"to": 1401440
+			},
+			"text": " verifier and size succinctness. With regards to caulk, I'm more trying to gesture towards the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,440",
+				"to": "00:23:26,720"
+			},
+			"offsets": {
+				"from": 1401440,
+				"to": 1406720
+			},
+			"text": " that there are people working on enabling look up arguments to be more efficient and that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,720",
+				"to": "00:23:32,080"
+			},
+			"offsets": {
+				"from": 1406720,
+				"to": 1412080
+			},
+			"text": " would really transform how we write these circuits. I totally agree that they're not, caulk is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,080",
+				"to": "00:23:37,680"
+			},
+			"offsets": {
+				"from": 1412080,
+				"to": 1417680
+			},
+			"text": " like today going to enable much more efficient lookups. Well, the music is coming, I guess we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,680",
+				"to": "00:23:43,680"
+			},
+			"offsets": {
+				"from": 1417680,
+				"to": 1423680
+			},
+			"text": " coming to an end. Thank you so much Big Ruff-a-plus to Lakshman and Yi."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,680",
+				"to": "00:23:56,080"
+			},
+			"offsets": {
+				"from": 1423680,
+				"to": 1436080
+			},
+			"text": " [silence]"
+		}
+	]
+}

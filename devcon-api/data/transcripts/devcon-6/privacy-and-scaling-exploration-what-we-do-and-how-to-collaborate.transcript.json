@@ -1,0 +1,4113 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3340
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,340",
+				"to": "00:00:14,160"
+			},
+			"offsets": {
+				"from": 3340,
+				"to": 14160
+			},
+			"text": " Thanks, everyone, for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,160",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 14160,
+				"to": 17600
+			},
+			"text": " Actually, who's from the EF here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:18,600"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 18600
+			},
+			"text": " OK, not everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,600",
+				"to": "00:00:19,480"
+			},
+			"offsets": {
+				"from": 18600,
+				"to": 19480
+			},
+			"text": " That's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,480",
+				"to": "00:00:21,160"
+			},
+			"offsets": {
+				"from": 19480,
+				"to": 21160
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,160",
+				"to": "00:00:24,240"
+			},
+			"offsets": {
+				"from": 21160,
+				"to": 24240
+			},
+			"text": " Hi, my name is Torre, and I'm working for the Privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,240",
+				"to": "00:00:26,880"
+			},
+			"offsets": {
+				"from": 24240,
+				"to": 26880
+			},
+			"text": " and Scaling Exploration Team at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,880",
+				"to": "00:00:29,960"
+			},
+			"offsets": {
+				"from": 26880,
+				"to": 29960
+			},
+			"text": " And in these slides, I will talk about what we do in our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,960",
+				"to": "00:00:33,800"
+			},
+			"offsets": {
+				"from": 29960,
+				"to": 33800
+			},
+			"text": " And how you can get involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,800",
+				"to": "00:00:37,840"
+			},
+			"offsets": {
+				"from": 33800,
+				"to": 37840
+			},
+			"text": " Before I start, I would like to get a sense for the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,840",
+				"to": "00:00:43,720"
+			},
+			"offsets": {
+				"from": 37840,
+				"to": 43720
+			},
+			"text": " So please raise your hand if you have used a ZK-powered"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,720",
+				"to": "00:00:46,920"
+			},
+			"offsets": {
+				"from": 43720,
+				"to": 46920
+			},
+			"text": " application in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,920",
+				"to": "00:00:47,600"
+			},
+			"offsets": {
+				"from": 46920,
+				"to": 47600
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,600",
+				"to": "00:00:49,080"
+			},
+			"offsets": {
+				"from": 47600,
+				"to": 49080
+			},
+			"text": " That's like 30%."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,080",
+				"to": "00:00:50,560"
+			},
+			"offsets": {
+				"from": 49080,
+				"to": 50560
+			},
+			"text": " That's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,560",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 50560,
+				"to": 54560
+			},
+			"text": " And who has written code related to zero-knowledge proofs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:56,920"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 56920
+			},
+			"text": " One, two, three, and two are from our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,920",
+				"to": "00:00:59,440"
+			},
+			"offsets": {
+				"from": 56920,
+				"to": 59440
+			},
+			"text": " One is our grantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,440",
+				"to": "00:01:05,360"
+			},
+			"offsets": {
+				"from": 59440,
+				"to": 65360
+			},
+			"text": " OK, and who would be able to tell a relative about zero-knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,360",
+				"to": "00:01:08,080"
+			},
+			"offsets": {
+				"from": 65360,
+				"to": 68080
+			},
+			"text": " proof and explain, like, high level what a ZKP does?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,080",
+				"to": "00:01:11,760"
+			},
+			"offsets": {
+				"from": 68080,
+				"to": 71760
+			},
+			"text": " 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,760",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 71760,
+				"to": 73000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 73200
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 75680
+			},
+			"text": " So let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:18,240"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 78240
+			},
+			"text": " The Privacy and Scaling Exploration Team"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,240",
+				"to": "00:01:21,400"
+			},
+			"offsets": {
+				"from": 78240,
+				"to": 81400
+			},
+			"text": " is one of the larger teams at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,400",
+				"to": "00:01:24,400"
+			},
+			"offsets": {
+				"from": 81400,
+				"to": 84400
+			},
+			"text": " And what we do is we explore what can be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,400",
+				"to": "00:01:27,120"
+			},
+			"offsets": {
+				"from": 84400,
+				"to": 87120
+			},
+			"text": " with zero-knowledge proofs, what type of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,120",
+				"to": "00:01:28,520"
+			},
+			"offsets": {
+				"from": 87120,
+				"to": 88520
+			},
+			"text": " can be built."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,520",
+				"to": "00:01:32,880"
+			},
+			"offsets": {
+				"from": 88520,
+				"to": 92880
+			},
+			"text": " So we are not building proof systems ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,880",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92880,
+				"to": 95000
+			},
+			"text": " We use the existing proof systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 99000
+			},
+			"text": " to build applications on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:42,960"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 102960
+			},
+			"text": " And this space is really exciting and rapidly evolving"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,960",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 102960,
+				"to": 108080
+			},
+			"text": " right now, especially due to some recent advancements"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 113400
+			},
+			"text": " in engineering and academic works that just plonk and pluck up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 117600
+			},
+			"text": " Much more complex use cases are possible just recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,600",
+				"to": "00:01:59,480"
+			},
+			"offsets": {
+				"from": 117600,
+				"to": 119480
+			},
+			"text": " And so it's a really good time if you already"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,480",
+				"to": "00:02:04,480"
+			},
+			"offsets": {
+				"from": 119480,
+				"to": 124480
+			},
+			"text": " had an itch to get involved now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,480",
+				"to": "00:02:09,640"
+			},
+			"offsets": {
+				"from": 124480,
+				"to": 129640
+			},
+			"text": " So what we do in our team usually starts with a circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,640",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 129640,
+				"to": 134000
+			},
+			"text": " A circuit is a description for the ZKP system"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,440"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137440
+			},
+			"text": " to tell it what it should be proving about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,440",
+				"to": "00:02:19,040"
+			},
+			"offsets": {
+				"from": 137440,
+				"to": 139040
+			},
+			"text": " So we have a bunch of guys in our team"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,040",
+				"to": "00:02:22,520"
+			},
+			"offsets": {
+				"from": 139040,
+				"to": 142520
+			},
+			"text": " that are deeply familiar with ZKPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,520",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 142520,
+				"to": 145400
+			},
+			"text": " And they understand what type of circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 150080
+			},
+			"text": " could be useful, and we built these circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 152000
+			},
+			"text": " On top of these circuits, we often"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:34,560"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 154560
+			},
+			"text": " build what we call gadgets or primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,560",
+				"to": "00:02:38,040"
+			},
+			"offsets": {
+				"from": 154560,
+				"to": 158040
+			},
+			"text": " So these are tools or libraries that allow you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,040",
+				"to": "00:02:42,360"
+			},
+			"offsets": {
+				"from": 158040,
+				"to": 162360
+			},
+			"text": " as a non-ZK savvy developer, to integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,360",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 162360,
+				"to": 165800
+			},
+			"text": " the specific functionality that the circuit provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:47,120"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 167120
+			},
+			"text": " into an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 173160
+			},
+			"text": " And sometimes we also build user-facing applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:56,880"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 176880
+			},
+			"text": " on top of these gadgets in order to showcase to the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,880",
+				"to": "00:02:58,160"
+			},
+			"offsets": {
+				"from": 176880,
+				"to": 178160
+			},
+			"text": " how this can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,160",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 178160,
+				"to": 184000
+			},
+			"text": " On the side, we also do some other things, such as education."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,040"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187040
+			},
+			"text": " So we do blog posts and workshops"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,040",
+				"to": "00:03:09,720"
+			},
+			"offsets": {
+				"from": 187040,
+				"to": 189720
+			},
+			"text": " to help people get up to speed with ZKPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,720",
+				"to": "00:03:15,440"
+			},
+			"offsets": {
+				"from": 189720,
+				"to": 195440
+			},
+			"text": " One thing that we do quite a lot as well is grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,440",
+				"to": "00:03:20,240"
+			},
+			"offsets": {
+				"from": 195440,
+				"to": 200240
+			},
+			"text": " So we work a lot with the ecosystem support program."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,240",
+				"to": "00:03:22,800"
+			},
+			"offsets": {
+				"from": 200240,
+				"to": 202800
+			},
+			"text": " And that's the reason why I invited here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,800",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 202800,
+				"to": 205920
+			},
+			"text": " And in the second part of this presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:28,760"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 208760
+			},
+			"text": " I will show you a little bit how you can get involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,760",
+				"to": "00:03:32,240"
+			},
+			"offsets": {
+				"from": 208760,
+				"to": 212240
+			},
+			"text": " and get a grant with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,240",
+				"to": "00:03:36,200"
+			},
+			"offsets": {
+				"from": 212240,
+				"to": 216200
+			},
+			"text": " So this slide is sort of a Blackback's explanation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,200",
+				"to": "00:03:40,720"
+			},
+			"offsets": {
+				"from": 216200,
+				"to": 220720
+			},
+			"text": " just to get everybody on the same page about what a ZKP is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,720",
+				"to": "00:03:42,680"
+			},
+			"offsets": {
+				"from": 220720,
+				"to": 222680
+			},
+			"text": " So you might have heard that with a ZKP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,680",
+				"to": "00:03:45,920"
+			},
+			"offsets": {
+				"from": 222680,
+				"to": 225920
+			},
+			"text": " you can prove that you have done some computation correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,920",
+				"to": "00:03:48,120"
+			},
+			"offsets": {
+				"from": 225920,
+				"to": 228120
+			},
+			"text": " And you might have also heard about all these different proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,120",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 228120,
+				"to": 232160
+			},
+			"text": " systems, like Snarks, Darks, Plunk, Groth 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:54,120"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 234120
+			},
+			"text": " and all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,120",
+				"to": "00:03:56,160"
+			},
+			"offsets": {
+				"from": 234120,
+				"to": 236160
+			},
+			"text": " They all have in common that these proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,160",
+				"to": "00:03:59,560"
+			},
+			"offsets": {
+				"from": 236160,
+				"to": 239560
+			},
+			"text": " systems need these circuits or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,560",
+				"to": "00:04:01,720"
+			},
+			"offsets": {
+				"from": 239560,
+				"to": 241720
+			},
+			"text": " So a description for the proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,720",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 241720,
+				"to": 247000
+			},
+			"text": " that allows it to understand what the proof should be about."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:11,040"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 251040
+			},
+			"text": " Once you have this circuit, then you can set things up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,040",
+				"to": "00:04:12,880"
+			},
+			"offsets": {
+				"from": 251040,
+				"to": 252880
+			},
+			"text": " and you will have a prover algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,880",
+				"to": "00:04:15,640"
+			},
+			"offsets": {
+				"from": 252880,
+				"to": 255640
+			},
+			"text": " and you have a verifier algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,640",
+				"to": "00:04:18,480"
+			},
+			"offsets": {
+				"from": 255640,
+				"to": 258480
+			},
+			"text": " If you satisfy the prover algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,480",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 258480,
+				"to": 260360
+			},
+			"text": " so you give it the right witness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 263000
+			},
+			"text": " it will provide you with a short proof string."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:25,280"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 265280
+			},
+			"text": " This is the actual proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,280",
+				"to": "00:04:28,440"
+			},
+			"offsets": {
+				"from": 265280,
+				"to": 268440
+			},
+			"text": " And that proof can then be fed to the verifier algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,440",
+				"to": "00:04:31,920"
+			},
+			"offsets": {
+				"from": 268440,
+				"to": 271920
+			},
+			"text": " And this checks basically, gives you assurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,920",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 271920,
+				"to": 276520
+			},
+			"text": " that this computation really has been performed correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:42,400"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 282400
+			},
+			"text": " So that way Ethereum is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,400",
+				"to": "00:04:47,080"
+			},
+			"offsets": {
+				"from": 282400,
+				"to": 287080
+			},
+			"text": " able to learn whether something that happened off chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,080",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 287080,
+				"to": 289000
+			},
+			"text": " some computation that happened off chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292360
+			},
+			"text": " and that is potentially large is correct or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:04:56,320"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 296320
+			},
+			"text": " So it can learn something that it couldn't process itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,320",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 296320,
+				"to": 301160
+			},
+			"text": " And it has sort of this scaling aspect to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:06,120"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 306120
+			},
+			"text": " It also has, like with zero knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,120",
+				"to": "00:05:08,760"
+			},
+			"offsets": {
+				"from": 306120,
+				"to": 308760
+			},
+			"text": " it also gives you the optional ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,760",
+				"to": "00:05:11,920"
+			},
+			"offsets": {
+				"from": 308760,
+				"to": 311920
+			},
+			"text": " to hide the inputs of this computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,920",
+				"to": "00:05:15,720"
+			},
+			"offsets": {
+				"from": 311920,
+				"to": 315720
+			},
+			"text": " So this is how zero knowledge proofs got their name"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,720",
+				"to": "00:05:19,640"
+			},
+			"offsets": {
+				"from": 315720,
+				"to": 319640
+			},
+			"text": " because of this property, but it's actually an optional thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,640",
+				"to": "00:05:22,080"
+			},
+			"offsets": {
+				"from": 319640,
+				"to": 322080
+			},
+			"text": " So with these two things together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,080",
+				"to": "00:05:24,880"
+			},
+			"offsets": {
+				"from": 322080,
+				"to": 324880
+			},
+			"text": " you have this scalability aspect"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,880",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 324880,
+				"to": 327200
+			},
+			"text": " and you have this privacy aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:29,680"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 329680
+			},
+			"text": " And if you take them together and you use them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,680",
+				"to": "00:05:33,200"
+			},
+			"offsets": {
+				"from": 329680,
+				"to": 333200
+			},
+			"text": " in the right way, you can give Ethereum back its privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,200",
+				"to": "00:05:34,800"
+			},
+			"offsets": {
+				"from": 333200,
+				"to": 334800
+			},
+			"text": " and its scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,800",
+				"to": "00:05:40,480"
+			},
+			"offsets": {
+				"from": 334800,
+				"to": 340480
+			},
+			"text": " And this is why we are in our team excited about CKPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,480",
+				"to": "00:05:43,840"
+			},
+			"offsets": {
+				"from": 340480,
+				"to": 343840
+			},
+			"text": " So now I'm going to show you a couple of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 349400
+			},
+			"text": " that are like in our team that we work on in our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:51,720"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 351720
+			},
+			"text": " And these are just three projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,720",
+				"to": "00:05:54,560"
+			},
+			"offsets": {
+				"from": 351720,
+				"to": 354560
+			},
+			"text": " I counted we have 15 different projects at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,560",
+				"to": "00:05:57,240"
+			},
+			"offsets": {
+				"from": 354560,
+				"to": 357240
+			},
+			"text": " And you can see them all on our website."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,240",
+				"to": "00:05:59,800"
+			},
+			"offsets": {
+				"from": 357240,
+				"to": 359800
+			},
+			"text": " On the last slide, I show KSTA."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,800",
+				"to": "00:06:02,040"
+			},
+			"offsets": {
+				"from": 359800,
+				"to": 362040
+			},
+			"text": " I have the link to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,040",
+				"to": "00:06:04,640"
+			},
+			"offsets": {
+				"from": 362040,
+				"to": 364640
+			},
+			"text": " So I give just these three examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,640",
+				"to": "00:06:07,080"
+			},
+			"offsets": {
+				"from": 364640,
+				"to": 367080
+			},
+			"text": " And I've included the people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,080",
+				"to": "00:06:09,680"
+			},
+			"offsets": {
+				"from": 367080,
+				"to": 369680
+			},
+			"text": " have right access to the repost here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,680",
+				"to": "00:06:13,080"
+			},
+			"offsets": {
+				"from": 369680,
+				"to": 373080
+			},
+			"text": " that was the easiest way for me to determine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,080",
+				"to": "00:06:17,440"
+			},
+			"offsets": {
+				"from": 373080,
+				"to": 377440
+			},
+			"text": " who is willing to be publicly associated with the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,440",
+				"to": "00:06:21,840"
+			},
+			"offsets": {
+				"from": 377440,
+				"to": 381840
+			},
+			"text": " So the first project I want to talk about is CKEVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,840",
+				"to": "00:06:23,160"
+			},
+			"offsets": {
+				"from": 381840,
+				"to": 383160
+			},
+			"text": " That's our largest project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,160",
+				"to": "00:06:27,880"
+			},
+			"offsets": {
+				"from": 383160,
+				"to": 387880
+			},
+			"text": " And it's a really talented team, really interesting project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,880",
+				"to": "00:06:31,560"
+			},
+			"offsets": {
+				"from": 387880,
+				"to": 391560
+			},
+			"text": " And what they work on, they build a set of circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,560",
+				"to": "00:06:34,720"
+			},
+			"offsets": {
+				"from": 391560,
+				"to": 394720
+			},
+			"text": " that allow you to prove that you have processed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,720",
+				"to": "00:06:38,280"
+			},
+			"offsets": {
+				"from": 394720,
+				"to": 398280
+			},
+			"text": " a Ethereum transaction correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,280",
+				"to": "00:06:42,040"
+			},
+			"offsets": {
+				"from": 398280,
+				"to": 402040
+			},
+			"text": " And of course, this can be useful for roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,040",
+				"to": "00:06:45,920"
+			},
+			"offsets": {
+				"from": 402040,
+				"to": 405920
+			},
+			"text": " or so the roll-up can prove whatever state transitions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,920",
+				"to": "00:06:48,200"
+			},
+			"offsets": {
+				"from": 405920,
+				"to": 408200
+			},
+			"text": " happened in the roll-up are correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,200",
+				"to": "00:06:51,920"
+			},
+			"offsets": {
+				"from": 408200,
+				"to": 411920
+			},
+			"text": " And Ethereum can verify this then."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,920",
+				"to": "00:06:55,120"
+			},
+			"offsets": {
+				"from": 411920,
+				"to": 415120
+			},
+			"text": " And maybe in the future, it could also be useful for layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,120",
+				"to": "00:07:00,280"
+			},
+			"offsets": {
+				"from": 415120,
+				"to": 420280
+			},
+			"text": " So that light clients make use of this technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,280",
+				"to": "00:07:04,280"
+			},
+			"offsets": {
+				"from": 420280,
+				"to": 424280
+			},
+			"text": " This project is also called the Community Edition of CKEVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,280",
+				"to": "00:07:05,920"
+			},
+			"offsets": {
+				"from": 424280,
+				"to": 425920
+			},
+			"text": " So everything that build is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,920",
+				"to": "00:07:09,280"
+			},
+			"offsets": {
+				"from": 425920,
+				"to": 429280
+			},
+			"text": " You can go on scale privacy scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,280",
+				"to": "00:07:12,440"
+			},
+			"offsets": {
+				"from": 429280,
+				"to": 432440
+			},
+			"text": " minus exploration slash CKEVM circuits"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,440",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 432440,
+				"to": 434360
+			},
+			"text": " and look at what's going on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:15,480"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 435480
+			},
+			"text": " And if you have the right skills,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,480",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 435480,
+				"to": 440160
+			},
+			"text": " then you're welcome to become a contributor."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,160",
+				"to": "00:07:24,720"
+			},
+			"offsets": {
+				"from": 440160,
+				"to": 444720
+			},
+			"text": " They're working quite closely with the scroll project as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,720",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 444720,
+				"to": 446000
+			},
+			"text": " So please check that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:28,360"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 448360
+			},
+			"text": " Vitalik has done a block recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,360",
+				"to": "00:07:34,720"
+			},
+			"offsets": {
+				"from": 448360,
+				"to": 454720
+			},
+			"text": " that shows the differences between these various CKEVM projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,720",
+				"to": "00:07:36,960"
+			},
+			"offsets": {
+				"from": 454720,
+				"to": 456960
+			},
+			"text": " They are quite a number of them out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,960",
+				"to": "00:07:40,320"
+			},
+			"offsets": {
+				"from": 456960,
+				"to": 460320
+			},
+			"text": " And they all make different trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,320",
+				"to": "00:07:44,840"
+			},
+			"offsets": {
+				"from": 460320,
+				"to": 464840
+			},
+			"text": " This project goes for perfect compatibility with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,840",
+				"to": "00:07:46,440"
+			},
+			"offsets": {
+				"from": 464840,
+				"to": 466440
+			},
+			"text": " at the expense of proof-of-time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,440",
+				"to": "00:07:53,040"
+			},
+			"offsets": {
+				"from": 466440,
+				"to": 473040
+			},
+			"text": " The project is written in the Halo 2 proof system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,040",
+				"to": "00:07:55,200"
+			},
+			"offsets": {
+				"from": 473040,
+				"to": 475200
+			},
+			"text": " And it's developed by CKEASH."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,200",
+				"to": "00:07:57,040"
+			},
+			"offsets": {
+				"from": 475200,
+				"to": 477040
+			},
+			"text": " They made some modifications to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,040",
+				"to": "00:08:02,480"
+			},
+			"offsets": {
+				"from": 477040,
+				"to": 482480
+			},
+			"text": " But everybody's really excited about Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,480",
+				"to": "00:08:05,760"
+			},
+			"offsets": {
+				"from": 482480,
+				"to": 485760
+			},
+			"text": " So this was our first project."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,760",
+				"to": "00:08:09,320"
+			},
+			"offsets": {
+				"from": 485760,
+				"to": 489320
+			},
+			"text": " The second project I want to show you here is Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,320",
+				"to": "00:08:11,760"
+			},
+			"offsets": {
+				"from": 489320,
+				"to": 491760
+			},
+			"text": " The main contributor is Cito."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,760",
+				"to": "00:08:14,400"
+			},
+			"offsets": {
+				"from": 491760,
+				"to": 494400
+			},
+			"text": " He's sitting back there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,400",
+				"to": "00:08:18,280"
+			},
+			"offsets": {
+				"from": 494400,
+				"to": 498280
+			},
+			"text": " And we have hired a PO, Andy, who is not on the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,280",
+				"to": "00:08:20,760"
+			},
+			"offsets": {
+				"from": 498280,
+				"to": 500760
+			},
+			"text": " And actually, Wager and Colby, these two guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,760",
+				"to": "00:08:22,920"
+			},
+			"offsets": {
+				"from": 500760,
+				"to": 502920
+			},
+			"text": " they have left us a while ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,920",
+				"to": "00:08:27,520"
+			},
+			"offsets": {
+				"from": 502920,
+				"to": 507520
+			},
+			"text": " But they have made some very important contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,520",
+				"to": "00:08:30,360"
+			},
+			"offsets": {
+				"from": 507520,
+				"to": 510360
+			},
+			"text": " So what is Semaphore?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,360",
+				"to": "00:08:32,760"
+			},
+			"offsets": {
+				"from": 510360,
+				"to": 512760
+			},
+			"text": " Semaphore is a protocol that allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,760",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 512760,
+				"to": 517600
+			},
+			"text": " you to prove that you are part of a group privately."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 521000
+			},
+			"text": " So you can think of a group as basically a mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:43,360"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 523360
+			},
+			"text": " And you create an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,360",
+				"to": "00:08:45,080"
+			},
+			"offsets": {
+				"from": 523360,
+				"to": 525080
+			},
+			"text": " You stick it into this mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,080",
+				"to": "00:08:46,840"
+			},
+			"offsets": {
+				"from": 525080,
+				"to": 526840
+			},
+			"text": " And then you are able, using Semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,840",
+				"to": "00:08:50,520"
+			},
+			"offsets": {
+				"from": 526840,
+				"to": 530520
+			},
+			"text": " to prove that you are in this mercury."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,520",
+				"to": "00:08:53,680"
+			},
+			"offsets": {
+				"from": 530520,
+				"to": 533680
+			},
+			"text": " In practice, it's a set of circuits, some contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,680",
+				"to": "00:08:55,840"
+			},
+			"offsets": {
+				"from": 533680,
+				"to": 535840
+			},
+			"text": " and some JavaScript libraries that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,840",
+				"to": "00:08:59,880"
+			},
+			"offsets": {
+				"from": 535840,
+				"to": 539880
+			},
+			"text": " make it easy for developers to integrate this functionality"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,880",
+				"to": "00:09:01,480"
+			},
+			"offsets": {
+				"from": 539880,
+				"to": 541480
+			},
+			"text": " into their applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,480",
+				"to": "00:09:04,640"
+			},
+			"offsets": {
+				"from": 541480,
+				"to": 544640
+			},
+			"text": " And Cito has built some quick setup template."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,640",
+				"to": "00:09:06,160"
+			},
+			"offsets": {
+				"from": 544640,
+				"to": 546160
+			},
+			"text": " It's really straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,160",
+				"to": "00:09:09,160"
+			},
+			"offsets": {
+				"from": 546160,
+				"to": 549160
+			},
+			"text": " If you have an idea, something, some application in mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,160",
+				"to": "00:09:12,600"
+			},
+			"offsets": {
+				"from": 549160,
+				"to": 552600
+			},
+			"text": " that could use that, then you can go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,600",
+				"to": "00:09:20,840"
+			},
+			"offsets": {
+				"from": 552600,
+				"to": 560840
+			},
+			"text": " We have recently started a Semaphore grants round."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,840",
+				"to": "00:09:23,960"
+			},
+			"offsets": {
+				"from": 560840,
+				"to": 563960
+			},
+			"text": " And I will talk about that in a future slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,960",
+				"to": "00:09:25,720"
+			},
+			"offsets": {
+				"from": 563960,
+				"to": 565720
+			},
+			"text": " If you want to see Semaphore in action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,720",
+				"to": "00:09:27,960"
+			},
+			"offsets": {
+				"from": 565720,
+				"to": 567960
+			},
+			"text": " you can go, I think, on the first floor."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,960",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 567960,
+				"to": 571320
+			},
+			"text": " There is the temporary anonymous zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:33,360"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 573360
+			},
+			"text": " And they will give you a card."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,360",
+				"to": "00:09:35,080"
+			},
+			"offsets": {
+				"from": 573360,
+				"to": 575080
+			},
+			"text": " You, on this card, is a link."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,080",
+				"to": "00:09:41,480"
+			},
+			"offsets": {
+				"from": 575080,
+				"to": 581480
+			},
+			"text": " You join-- this link allows you to join the DEFCON Bogota"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,480",
+				"to": "00:09:42,840"
+			},
+			"offsets": {
+				"from": 581480,
+				"to": 582840
+			},
+			"text": " Semaphore group."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,840",
+				"to": "00:09:46,680"
+			},
+			"offsets": {
+				"from": 582840,
+				"to": 586680
+			},
+			"text": " And then you're also able to make use of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,680",
+				"to": "00:09:48,680"
+			},
+			"offsets": {
+				"from": 586680,
+				"to": 588680
+			},
+			"text": " interact with some applications there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,680",
+				"to": "00:09:52,280"
+			},
+			"offsets": {
+				"from": 588680,
+				"to": 592280
+			},
+			"text": " And it's a nice showcase."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,280",
+				"to": "00:09:54,120"
+			},
+			"offsets": {
+				"from": 592280,
+				"to": 594120
+			},
+			"text": " Yeah, if you want to learn more about Semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,120",
+				"to": "00:09:57,760"
+			},
+			"offsets": {
+				"from": 594120,
+				"to": 597760
+			},
+			"text": " you can go on semaphore.apply at ckp.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,160",
+				"to": "00:10:04,880"
+			},
+			"offsets": {
+				"from": 601160,
+				"to": 604880
+			},
+			"text": " So this is the last project I want to show here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,880",
+				"to": "00:10:06,480"
+			},
+			"offsets": {
+				"from": 604880,
+				"to": 606480
+			},
+			"text": " The name is Macy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,480",
+				"to": "00:10:12,120"
+			},
+			"offsets": {
+				"from": 606480,
+				"to": 612120
+			},
+			"text": " And it's an idea that Vitalik came up with its currently run"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,120",
+				"to": "00:10:17,040"
+			},
+			"offsets": {
+				"from": 612120,
+				"to": 617040
+			},
+			"text": " or managed by an anonymous guy called Q."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,040",
+				"to": "00:10:20,120"
+			},
+			"offsets": {
+				"from": 617040,
+				"to": 620120
+			},
+			"text": " And there are also two important people"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,120",
+				"to": "00:10:21,480"
+			},
+			"offsets": {
+				"from": 620120,
+				"to": 621480
+			},
+			"text": " that don't write code here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,480",
+				"to": "00:10:23,160"
+			},
+			"offsets": {
+				"from": 621480,
+				"to": 623160
+			},
+			"text": " This is V and Trini."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,160",
+				"to": "00:10:25,880"
+			},
+			"offsets": {
+				"from": 623160,
+				"to": 625880
+			},
+			"text": " They should also-- they're not included in this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,880",
+				"to": "00:10:30,320"
+			},
+			"offsets": {
+				"from": 625880,
+				"to": 630320
+			},
+			"text": " So Macy stands for minimal anti-comusion infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,320",
+				"to": "00:10:34,520"
+			},
+			"offsets": {
+				"from": 630320,
+				"to": 634520
+			},
+			"text": " And the idea is-- so the point of Macy"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,520",
+				"to": "00:10:38,680"
+			},
+			"offsets": {
+				"from": 634520,
+				"to": 638680
+			},
+			"text": " is to prevent bribery in voting systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,680",
+				"to": "00:10:44,840"
+			},
+			"offsets": {
+				"from": 638680,
+				"to": 644840
+			},
+			"text": " So as an example, you could think of something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,840",
+				"to": "00:10:47,880"
+			},
+			"offsets": {
+				"from": 644840,
+				"to": 647880
+			},
+			"text": " like Gitcoin, where there are voters that basically vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,880",
+				"to": "00:10:49,800"
+			},
+			"offsets": {
+				"from": 647880,
+				"to": 649800
+			},
+			"text": " on allocation of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,800",
+				"to": "00:10:53,120"
+			},
+			"offsets": {
+				"from": 649800,
+				"to": 653120
+			},
+			"text": " And in this system, someone could say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,120",
+				"to": "00:10:55,640"
+			},
+			"offsets": {
+				"from": 653120,
+				"to": 655640
+			},
+			"text": " everybody who provably voted for me"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,640",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 655640,
+				"to": 658000
+			},
+			"text": " will get an ad-drop later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:02,960"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 662960
+			},
+			"text": " And so this would sort of distort these incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,960",
+				"to": "00:11:04,800"
+			},
+			"offsets": {
+				"from": 662960,
+				"to": 664800
+			},
+			"text": " of the quadratic funding system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,800",
+				"to": "00:11:08,080"
+			},
+			"offsets": {
+				"from": 664800,
+				"to": 668080
+			},
+			"text": " And Macy can help you get around that using zero knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,080",
+				"to": "00:11:09,920"
+			},
+			"offsets": {
+				"from": 668080,
+				"to": 669920
+			},
+			"text": " proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,920",
+				"to": "00:11:12,480"
+			},
+			"offsets": {
+				"from": 669920,
+				"to": 672480
+			},
+			"text": " How Macy works is that all the voters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,480",
+				"to": "00:11:14,960"
+			},
+			"offsets": {
+				"from": 672480,
+				"to": 674960
+			},
+			"text": " they encrypt their votes, they put them on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,960",
+				"to": "00:11:18,880"
+			},
+			"offsets": {
+				"from": 674960,
+				"to": 678880
+			},
+			"text": " And then there's a coordinator who telles all the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:22,280"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 682280
+			},
+			"text": " And so he's able to decrypt the votes that are on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,280",
+				"to": "00:11:24,040"
+			},
+			"offsets": {
+				"from": 682280,
+				"to": 684040
+			},
+			"text": " He telles the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,040",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 684040,
+				"to": 687480
+			},
+			"text": " He publishes the result, along with the zero knowledge proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:32,400"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 692400
+			},
+			"text": " that shows that the telling has been performed correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,400",
+				"to": "00:11:34,880"
+			},
+			"offsets": {
+				"from": 692400,
+				"to": 694880
+			},
+			"text": " So he only has two choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,880",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 694880,
+				"to": 697120
+			},
+			"text": " Either he doesn't participate at all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:42,200"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 702200
+			},
+			"text": " or he publishes the correct result."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,200",
+				"to": "00:11:44,760"
+			},
+			"offsets": {
+				"from": 702200,
+				"to": 704760
+			},
+			"text": " Another important feature of Macy"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,760",
+				"to": "00:11:46,920"
+			},
+			"offsets": {
+				"from": 704760,
+				"to": 706920
+			},
+			"text": " is that it's always possible for voters"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,920",
+				"to": "00:11:48,680"
+			},
+			"offsets": {
+				"from": 706920,
+				"to": 708680
+			},
+			"text": " to override their vote again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,680",
+				"to": "00:11:51,560"
+			},
+			"offsets": {
+				"from": 708680,
+				"to": 711560
+			},
+			"text": " So if the bribery looked over their shoulder"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,560",
+				"to": "00:11:54,960"
+			},
+			"offsets": {
+				"from": 711560,
+				"to": 714960
+			},
+			"text": " while they were voting, they could always"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,960",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 714960,
+				"to": 719200
+			},
+			"text": " change their mind later on and override that vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:00,920"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 720920
+			},
+			"text": " Yeah, so this is Macy's hard work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,920",
+				"to": "00:12:03,280"
+			},
+			"offsets": {
+				"from": 720920,
+				"to": 723280
+			},
+			"text": " So you can also see this in action here on Defcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,280",
+				"to": "00:12:06,360"
+			},
+			"offsets": {
+				"from": 723280,
+				"to": 726360
+			},
+			"text": " They are running together with the Clear Fund guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,360",
+				"to": "00:12:07,720"
+			},
+			"offsets": {
+				"from": 726360,
+				"to": 727720
+			},
+			"text": " clr.fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,720",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 727720,
+				"to": 731000
+			},
+			"text": " They're running a quadratic funding round."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:13,840"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 733840
+			},
+			"text": " Defcon, Bogota, quadratic funding round."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,840",
+				"to": "00:12:19,520"
+			},
+			"offsets": {
+				"from": 733840,
+				"to": 739520
+			},
+			"text": " They are supporting local communities in Latin America,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,520",
+				"to": "00:12:23,280"
+			},
+			"offsets": {
+				"from": 739520,
+				"to": 743280
+			},
+			"text": " I think, with 250k."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,280",
+				"to": "00:12:27,040"
+			},
+			"offsets": {
+				"from": 743280,
+				"to": 747040
+			},
+			"text": " The team is also running a project called QFI."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,040",
+				"to": "00:12:30,400"
+			},
+			"offsets": {
+				"from": 747040,
+				"to": 750400
+			},
+			"text": " This is an incubator that helps local communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,400",
+				"to": "00:12:33,440"
+			},
+			"offsets": {
+				"from": 750400,
+				"to": 753440
+			},
+			"text": " to spin up their own quadratic funding round,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,440",
+				"to": "00:12:38,200"
+			},
+			"offsets": {
+				"from": 753440,
+				"to": 758200
+			},
+			"text": " and basically provide them with the infrastructure for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,200",
+				"to": "00:12:43,800"
+			},
+			"offsets": {
+				"from": 758200,
+				"to": 763800
+			},
+			"text": " Yeah, so this were a sample, a couple of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,800",
+				"to": "00:12:45,600"
+			},
+			"offsets": {
+				"from": 763800,
+				"to": 765600
+			},
+			"text": " we were working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,600",
+				"to": "00:12:48,920"
+			},
+			"offsets": {
+				"from": 765600,
+				"to": 768920
+			},
+			"text": " And I hope those got you excited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,920",
+				"to": "00:12:51,520"
+			},
+			"offsets": {
+				"from": 768920,
+				"to": 771520
+			},
+			"text": " because in the following slides I will talk about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,520",
+				"to": "00:12:55,680"
+			},
+			"offsets": {
+				"from": 771520,
+				"to": 775680
+			},
+			"text": " you can get involved and how you can contribute to such projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,680",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 775680,
+				"to": 778120
+			},
+			"text": " And in fact, these projects that I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:01,880"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 781880
+			},
+			"text": " showed you were in large part built by also grantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,880",
+				"to": "00:13:06,680"
+			},
+			"offsets": {
+				"from": 781880,
+				"to": 786680
+			},
+			"text": " that made big contributions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,680",
+				"to": "00:13:13,280"
+			},
+			"offsets": {
+				"from": 786680,
+				"to": 793280
+			},
+			"text": " So the first thing that I want to talk about in regards"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,280",
+				"to": "00:13:17,120"
+			},
+			"offsets": {
+				"from": 793280,
+				"to": 797120
+			},
+			"text": " on how to get involved is targeted grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,120",
+				"to": "00:13:18,280"
+			},
+			"offsets": {
+				"from": 797120,
+				"to": 798280
+			},
+			"text": " around what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,280",
+				"to": "00:13:22,840"
+			},
+			"offsets": {
+				"from": 798280,
+				"to": 802840
+			},
+			"text": " So occasionally we just get out to the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,840",
+				"to": "00:13:26,800"
+			},
+			"offsets": {
+				"from": 802840,
+				"to": 806800
+			},
+			"text": " and encourage them to submit applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,800",
+				"to": "00:13:28,360"
+			},
+			"offsets": {
+				"from": 806800,
+				"to": 808360
+			},
+			"text": " on a specific topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,360",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 808360,
+				"to": 812000
+			},
+			"text": " The first one I want to mention here is Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:34,240"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 814240
+			},
+			"text": " So this is a dedicated grants round"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,240",
+				"to": "00:13:37,640"
+			},
+			"offsets": {
+				"from": 814240,
+				"to": 817640
+			},
+			"text": " for people that build an application on top of Semaphore"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,640",
+				"to": "00:13:42,520"
+			},
+			"offsets": {
+				"from": 817640,
+				"to": 822520
+			},
+			"text": " or that extend Semaphore or that have a completely different"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,520",
+				"to": "00:13:46,760"
+			},
+			"offsets": {
+				"from": 822520,
+				"to": 826760
+			},
+			"text": " approach to solve the same problem as Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,760",
+				"to": "00:13:52,200"
+			},
+			"offsets": {
+				"from": 826760,
+				"to": 832200
+			},
+			"text": " So we're interested in supporting all such kind of projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,200",
+				"to": "00:13:55,040"
+			},
+			"offsets": {
+				"from": 832200,
+				"to": 835040
+			},
+			"text": " Projects at all stages are welcome to apply here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,040",
+				"to": "00:13:58,480"
+			},
+			"offsets": {
+				"from": 835040,
+				"to": 838480
+			},
+			"text": " You can follow this QR code here that will lead you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,480",
+				"to": "00:14:01,080"
+			},
+			"offsets": {
+				"from": 838480,
+				"to": 841080
+			},
+			"text": " to the announcement blog post."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,080",
+				"to": "00:14:10,080"
+			},
+			"offsets": {
+				"from": 841080,
+				"to": 850080
+			},
+			"text": " And in this blog post you find your way to a submission form"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,080",
+				"to": "00:14:12,880"
+			},
+			"offsets": {
+				"from": 850080,
+				"to": 852880
+			},
+			"text": " where you can type in the actual application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,880",
+				"to": "00:14:16,240"
+			},
+			"offsets": {
+				"from": 852880,
+				"to": 856240
+			},
+			"text": " And there is also a wish list which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,240",
+				"to": "00:14:19,760"
+			},
+			"offsets": {
+				"from": 856240,
+				"to": 859760
+			},
+			"text": " can give you some inspiration on what type of projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,760",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859760,
+				"to": 862000
+			},
+			"text": " could be interesting to build on Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " So examples for that could be anonymous voting application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:29,320"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 869320
+			},
+			"text": " whistle-blowing application, anonymous chat"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,320",
+				"to": "00:14:34,760"
+			},
+			"offsets": {
+				"from": 869320,
+				"to": 874760
+			},
+			"text": " applications, anonymous reputation systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,760",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 874760,
+				"to": 881000
+			},
+			"text": " There's a huge amount of untapped potential here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:42,720"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 882720
+			},
+			"text": " One of our guys had the idea to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,720",
+				"to": "00:14:46,040"
+			},
+			"offsets": {
+				"from": 882720,
+				"to": 886040
+			},
+			"text": " like a private feedback bot in Discord"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,040",
+				"to": "00:14:50,200"
+			},
+			"offsets": {
+				"from": 886040,
+				"to": 890200
+			},
+			"text": " that our team can use internally to share feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,200",
+				"to": "00:14:52,520"
+			},
+			"offsets": {
+				"from": 890200,
+				"to": 892520
+			},
+			"text": " So yeah, please, if that's interesting for you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,520",
+				"to": "00:14:58,480"
+			},
+			"offsets": {
+				"from": 892520,
+				"to": 898480
+			},
+			"text": " follow this QR code and submit an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,480",
+				"to": "00:15:02,160"
+			},
+			"offsets": {
+				"from": 898480,
+				"to": 902160
+			},
+			"text": " An upcoming grants round that we are currently preparing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,160",
+				"to": "00:15:05,800"
+			},
+			"offsets": {
+				"from": 902160,
+				"to": 905800
+			},
+			"text": " is the L2 community grants round."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,800",
+				"to": "00:15:10,200"
+			},
+			"offsets": {
+				"from": 905800,
+				"to": 910200
+			},
+			"text": " It is with James from the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,200",
+				"to": "00:15:12,760"
+			},
+			"offsets": {
+				"from": 910200,
+				"to": 912760
+			},
+			"text": " This will start on October 24."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,760",
+				"to": "00:15:16,080"
+			},
+			"offsets": {
+				"from": 912760,
+				"to": 916080
+			},
+			"text": " So there will also be a blog post about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,080",
+				"to": "00:15:19,200"
+			},
+			"offsets": {
+				"from": 916080,
+				"to": 919200
+			},
+			"text": " with submission form and a wish list."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,200",
+				"to": "00:15:22,920"
+			},
+			"offsets": {
+				"from": 919200,
+				"to": 922920
+			},
+			"text": " So examples of interesting things here"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,920",
+				"to": "00:15:27,120"
+			},
+			"offsets": {
+				"from": 922920,
+				"to": 927120
+			},
+			"text": " would be like R&D stuff like cross-rollup execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,120",
+				"to": "00:15:32,160"
+			},
+			"offsets": {
+				"from": 927120,
+				"to": 932160
+			},
+			"text": " or better compression for rollup data, L2 light lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,160",
+				"to": "00:15:33,200"
+			},
+			"offsets": {
+				"from": 932160,
+				"to": 933200
+			},
+			"text": " things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,200",
+				"to": "00:15:37,240"
+			},
+			"offsets": {
+				"from": 933200,
+				"to": 937240
+			},
+			"text": " Educational efforts would be great to inform the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,240",
+				"to": "00:15:40,920"
+			},
+			"offsets": {
+				"from": 937240,
+				"to": 940920
+			},
+			"text": " about advantages of rollups and potentially the risks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,920",
+				"to": "00:15:48,120"
+			},
+			"offsets": {
+				"from": 940920,
+				"to": 948120
+			},
+			"text": " So please look forward to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,120",
+				"to": "00:15:55,960"
+			},
+			"offsets": {
+				"from": 948120,
+				"to": 955960
+			},
+			"text": " So these targeted grants rounds, we get quite a lot of grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,960",
+				"to": "00:15:59,440"
+			},
+			"offsets": {
+				"from": 955960,
+				"to": 959440
+			},
+			"text": " from that, but that's not most of the grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,440",
+				"to": "00:16:00,080"
+			},
+			"offsets": {
+				"from": 959440,
+				"to": 960080
+			},
+			"text": " that we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,080",
+				"to": "00:16:06,440"
+			},
+			"offsets": {
+				"from": 960080,
+				"to": 966440
+			},
+			"text": " Most of the grants are what I would call discretionary grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,440",
+				"to": "00:16:09,400"
+			},
+			"offsets": {
+				"from": 966440,
+				"to": 969400
+			},
+			"text": " So these are things where we find someone tweeted"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,400",
+				"to": "00:16:11,120"
+			},
+			"offsets": {
+				"from": 969400,
+				"to": 971120
+			},
+			"text": " a cool project they did on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,120",
+				"to": "00:16:13,240"
+			},
+			"offsets": {
+				"from": 971120,
+				"to": 973240
+			},
+			"text": " and we reached out to them and asked them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,240",
+				"to": "00:16:14,240"
+			},
+			"offsets": {
+				"from": 973240,
+				"to": 974240
+			},
+			"text": " do you need support?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,240",
+				"to": "00:16:16,800"
+			},
+			"offsets": {
+				"from": 974240,
+				"to": 976800
+			},
+			"text": " Like, we can give you advice or we can support you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,800",
+				"to": "00:16:18,040"
+			},
+			"offsets": {
+				"from": 976800,
+				"to": 978040
+			},
+			"text": " with funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,040",
+				"to": "00:16:21,400"
+			},
+			"offsets": {
+				"from": 978040,
+				"to": 981400
+			},
+			"text": " Or sometimes people also come to us with ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,400",
+				"to": "00:16:24,440"
+			},
+			"offsets": {
+				"from": 981400,
+				"to": 984440
+			},
+			"text": " In general, if you are thinking about getting a grant"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,440",
+				"to": "00:16:27,040"
+			},
+			"offsets": {
+				"from": 984440,
+				"to": 987040
+			},
+			"text": " from the EF, your first thought should"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,040",
+				"to": "00:16:29,200"
+			},
+			"offsets": {
+				"from": 987040,
+				"to": 989200
+			},
+			"text": " be the ecosystem support program."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,200",
+				"to": "00:16:31,760"
+			},
+			"offsets": {
+				"from": 989200,
+				"to": 991760
+			},
+			"text": " Like they have the right infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,760",
+				"to": "00:16:35,040"
+			},
+			"offsets": {
+				"from": 991760,
+				"to": 995040
+			},
+			"text": " and well-oiled machine to process your application"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,040",
+				"to": "00:16:36,840"
+			},
+			"offsets": {
+				"from": 995040,
+				"to": 996840
+			},
+			"text": " and make it a nice experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,840",
+				"to": "00:16:42,800"
+			},
+			"offsets": {
+				"from": 996840,
+				"to": 1002800
+			},
+			"text": " With us, it makes a lot of sense to talk directly to us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,800",
+				"to": "00:16:48,120"
+			},
+			"offsets": {
+				"from": 1002800,
+				"to": 1008120
+			},
+			"text": " however, if you have a ZK focus and if you're an individual,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,120",
+				"to": "00:16:50,800"
+			},
+			"offsets": {
+				"from": 1008120,
+				"to": 1010800
+			},
+			"text": " we are not really working with like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,800",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1010800,
+				"to": 1015440
+			},
+			"text": " corpse or defi project, dows or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:57,840"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1017840
+			},
+			"text": " This is just too difficult for us to deal with"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,840",
+				"to": "00:17:01,160"
+			},
+			"offsets": {
+				"from": 1017840,
+				"to": 1021160
+			},
+			"text": " in terms of like the due diligence."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,160",
+				"to": "00:17:06,560"
+			},
+			"offsets": {
+				"from": 1021160,
+				"to": 1026560
+			},
+			"text": " Yeah, so these type of discretionary grants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,560",
+				"to": "00:17:09,440"
+			},
+			"offsets": {
+				"from": 1026560,
+				"to": 1029440
+			},
+			"text": " very often these are people that build something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,440",
+				"to": "00:17:12,880"
+			},
+			"offsets": {
+				"from": 1029440,
+				"to": 1032880
+			},
+			"text": " on top of our projects or that extends somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,880",
+				"to": "00:17:16,800"
+			},
+			"offsets": {
+				"from": 1032880,
+				"to": 1036800
+			},
+			"text": " the functionality of our existing systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,800",
+				"to": "00:17:18,960"
+			},
+			"offsets": {
+				"from": 1036800,
+				"to": 1038960
+			},
+			"text": " So people find out what we're doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,960",
+				"to": "00:17:21,880"
+			},
+			"offsets": {
+				"from": 1038960,
+				"to": 1041880
+			},
+			"text": " and just want to get involved somehow here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,880",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1041880,
+				"to": 1045000
+			},
+			"text": " Quite often people come also to us with ideas on their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:28,040"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1048040
+			},
+			"text": " that we don't really have in-house expertise on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,040",
+				"to": "00:17:32,520"
+			},
+			"offsets": {
+				"from": 1048040,
+				"to": 1052520
+			},
+			"text": " So we have been doing a number of ZK machine learning grants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,520",
+				"to": "00:17:36,880"
+			},
+			"offsets": {
+				"from": 1052520,
+				"to": 1056880
+			},
+			"text": " for example, lately, and we support them as good as we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,880",
+				"to": "00:17:41,440"
+			},
+			"offsets": {
+				"from": 1056880,
+				"to": 1061440
+			},
+			"text": " with what we know and with funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,440",
+				"to": "00:17:46,680"
+			},
+			"offsets": {
+				"from": 1061440,
+				"to": 1066680
+			},
+			"text": " Finally, we always have some ideas of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,680",
+				"to": "00:17:48,600"
+			},
+			"offsets": {
+				"from": 1066680,
+				"to": 1068600
+			},
+			"text": " we would be excited about."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,600",
+				"to": "00:17:52,880"
+			},
+			"offsets": {
+				"from": 1068600,
+				"to": 1072880
+			},
+			"text": " If you have no idea at all about what you would like to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,880",
+				"to": "00:17:56,240"
+			},
+			"offsets": {
+				"from": 1072880,
+				"to": 1076240
+			},
+			"text": " but you do definitely have the right skills to do something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,240",
+				"to": "00:17:58,240"
+			},
+			"offsets": {
+				"from": 1076240,
+				"to": 1078240
+			},
+			"text": " then please talk to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,240",
+				"to": "00:18:01,240"
+			},
+			"offsets": {
+				"from": 1078240,
+				"to": 1081240
+			},
+			"text": " These are normally the more difficult grants"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,240",
+				"to": "00:18:03,240"
+			},
+			"offsets": {
+				"from": 1081240,
+				"to": 1083240
+			},
+			"text": " or more complex projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,240",
+				"to": "00:18:05,800"
+			},
+			"offsets": {
+				"from": 1083240,
+				"to": 1085800
+			},
+			"text": " Like we would be really interested in supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,800",
+				"to": "00:18:11,520"
+			},
+			"offsets": {
+				"from": 1085800,
+				"to": 1091520
+			},
+			"text": " the Halo 2 ecosystem more, like building a DSL for that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,520",
+				"to": "00:18:15,600"
+			},
+			"offsets": {
+				"from": 1091520,
+				"to": 1095600
+			},
+			"text": " make it as easy to write a circuit in a circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,600",
+				"to": "00:18:18,920"
+			},
+			"offsets": {
+				"from": 1095600,
+				"to": 1098920
+			},
+			"text": " I see the battleship guy, I excited about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,920",
+				"to": "00:18:21,520"
+			},
+			"offsets": {
+				"from": 1098920,
+				"to": 1101520
+			},
+			"text": " Make it as easy to build a circuit in Halo 2"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,520",
+				"to": "00:18:24,680"
+			},
+			"offsets": {
+				"from": 1101520,
+				"to": 1104680
+			},
+			"text": " as it is for a circle or have more circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,680",
+				"to": "00:18:27,400"
+			},
+			"offsets": {
+				"from": 1104680,
+				"to": 1107400
+			},
+			"text": " make recursion easier and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,400",
+				"to": "00:18:29,760"
+			},
+			"offsets": {
+				"from": 1107400,
+				"to": 1109760
+			},
+			"text": " Or if you're into breaking things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,760",
+				"to": "00:18:33,840"
+			},
+			"offsets": {
+				"from": 1109760,
+				"to": 1113840
+			},
+			"text": " we want to see people that try to break these snark friendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,840",
+				"to": "00:18:36,080"
+			},
+			"offsets": {
+				"from": 1113840,
+				"to": 1116080
+			},
+			"text": " hash functions, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,080",
+				"to": "00:18:37,080"
+			},
+			"offsets": {
+				"from": 1116080,
+				"to": 1117080
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,080",
+				"to": "00:18:38,800"
+			},
+			"offsets": {
+				"from": 1117080,
+				"to": 1118800
+			},
+			"text": " So if any of that is up your alley,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,800",
+				"to": "00:18:43,160"
+			},
+			"offsets": {
+				"from": 1118800,
+				"to": 1123160
+			},
+			"text": " please get in touch with us directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,160",
+				"to": "00:18:46,280"
+			},
+			"offsets": {
+				"from": 1123160,
+				"to": 1126280
+			},
+			"text": " We are also hiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,280",
+				"to": "00:18:48,400"
+			},
+			"offsets": {
+				"from": 1126280,
+				"to": 1128400
+			},
+			"text": " I have in the last slide, I have a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,400",
+				"to": "00:18:52,040"
+			},
+			"offsets": {
+				"from": 1128400,
+				"to": 1132040
+			},
+			"text": " in the next slide, actually, I have a link to our jobs page."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,040",
+				"to": "00:18:54,360"
+			},
+			"offsets": {
+				"from": 1132040,
+				"to": 1134360
+			},
+			"text": " You can check those open positions out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,360",
+				"to": "00:18:57,720"
+			},
+			"offsets": {
+				"from": 1134360,
+				"to": 1137720
+			},
+			"text": " But it also always makes sense to just talk to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,720",
+				"to": "00:19:01,200"
+			},
+			"offsets": {
+				"from": 1137720,
+				"to": 1141200
+			},
+			"text": " If you're good at rust, if you have experienced building"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,200",
+				"to": "00:19:07,520"
+			},
+			"offsets": {
+				"from": 1141200,
+				"to": 1147520
+			},
+			"text": " circuits, or if you are just really excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,520",
+				"to": "00:19:12,440"
+			},
+			"offsets": {
+				"from": 1147520,
+				"to": 1152440
+			},
+			"text": " about building applications, that you see KP's in some way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,440",
+				"to": "00:19:15,880"
+			},
+			"offsets": {
+				"from": 1152440,
+				"to": 1155880
+			},
+			"text": " and you don't really have a lot of deep experience in CK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,880",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1155880,
+				"to": 1159000
+			},
+			"text": " it still makes sense to talk to us directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:22,360"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1162360
+			},
+			"text": " We might just be able to find something for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,360",
+				"to": "00:19:24,440"
+			},
+			"offsets": {
+				"from": 1162360,
+				"to": 1164440
+			},
+			"text": " And of course, if you don't want money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,440",
+				"to": "00:19:25,960"
+			},
+			"offsets": {
+				"from": 1164440,
+				"to": 1165960
+			},
+			"text": " everything is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,960",
+				"to": "00:19:30,120"
+			},
+			"offsets": {
+				"from": 1165960,
+				"to": 1170120
+			},
+			"text": " Everybody's welcome to contribute to what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,120",
+				"to": "00:19:34,240"
+			},
+			"offsets": {
+				"from": 1170120,
+				"to": 1174240
+			},
+			"text": " So this-- the last slide, how to get involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,240",
+				"to": "00:19:36,320"
+			},
+			"offsets": {
+				"from": 1174240,
+				"to": 1176320
+			},
+			"text": " Our website still has our old name."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,320",
+				"to": "00:19:37,720"
+			},
+			"offsets": {
+				"from": 1176320,
+				"to": 1177720
+			},
+			"text": " It was called applied CKP."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,720",
+				"to": "00:19:39,880"
+			},
+			"offsets": {
+				"from": 1177720,
+				"to": 1179880
+			},
+			"text": " So it's applied CKP.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,880",
+				"to": "00:19:41,960"
+			},
+			"offsets": {
+				"from": 1179880,
+				"to": 1181960
+			},
+			"text": " The GitHub is privacy minus scaling minus"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,960",
+				"to": "00:19:43,120"
+			},
+			"offsets": {
+				"from": 1181960,
+				"to": 1183120
+			},
+			"text": " expressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,120",
+				"to": "00:19:46,520"
+			},
+			"offsets": {
+				"from": 1183120,
+				"to": 1186520
+			},
+			"text": " This left QR code here is for our job site."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,520",
+				"to": "00:19:48,880"
+			},
+			"offsets": {
+				"from": 1186520,
+				"to": 1188880
+			},
+			"text": " And the right QR code is for our Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,880",
+				"to": "00:19:53,360"
+			},
+			"offsets": {
+				"from": 1188880,
+				"to": 1193360
+			},
+			"text": " We have a very friendly and open Discord channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,360",
+				"to": "00:19:58,080"
+			},
+			"offsets": {
+				"from": 1193360,
+				"to": 1198080
+			},
+			"text": " So please get in touch there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,080",
+				"to": "00:20:00,720"
+			},
+			"offsets": {
+				"from": 1198080,
+				"to": 1200720
+			},
+			"text": " We would be welcoming you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,720",
+				"to": "00:20:02,200"
+			},
+			"offsets": {
+				"from": 1200720,
+				"to": 1202200
+			},
+			"text": " This was my presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,200",
+				"to": "00:20:03,640"
+			},
+			"offsets": {
+				"from": 1202200,
+				"to": 1203640
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,640",
+				"to": "00:20:07,760"
+			},
+			"offsets": {
+				"from": 1203640,
+				"to": 1207760
+			},
+			"text": " You can talk to me later."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,760",
+				"to": "00:20:11,760"
+			},
+			"offsets": {
+				"from": 1207760,
+				"to": 1211760
+			},
+			"text": " And you can reach out to me on Telegram at CK_TH."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,760",
+				"to": "00:20:13,760"
+			},
+			"offsets": {
+				"from": 1211760,
+				"to": 1213760
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,760",
+				"to": "00:20:15,760"
+			},
+			"offsets": {
+				"from": 1213760,
+				"to": 1215760
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,760",
+				"to": "00:20:17,760"
+			},
+			"offsets": {
+				"from": 1215760,
+				"to": 1217760
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,760",
+				"to": "00:20:19,760"
+			},
+			"offsets": {
+				"from": 1217760,
+				"to": 1219760
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,760",
+				"to": "00:20:24,760"
+			},
+			"offsets": {
+				"from": 1219760,
+				"to": 1224760
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

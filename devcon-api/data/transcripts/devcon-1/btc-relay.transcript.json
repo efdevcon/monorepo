@@ -1,0 +1,2771 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21000
+			},
+			"text": " So can an Ethereum contract own bitcoins?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " Could it own your bitcoins?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " The direct answer is no."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 36000
+			},
+			"text": " But it is possible that an Ethereum contract could have a lot of incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 42000
+			},
+			"text": " so that effectively does own and control your bitcoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 50000
+			},
+			"text": " Imagine a contract that has a massive amount of ether or assets that you wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 57000
+			},
+			"text": " This contract could be programmed to, you know, give you a large amount of these assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 70000
+			},
+			"text": " When it receives a proof that bitcoins from your address were sent to an address that the contract specified."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 80000
+			},
+			"text": " The first secret to interacting with bitcoin in Ethereum is the use of payment proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 89000
+			},
+			"text": " BTC relay is a bridge that empowers DAPs to accept bitcoin payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 97000
+			},
+			"text": " process arbitrary bitcoin transactions, and empowers innovation across bitcoin and Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 103000
+			},
+			"text": " such as decentralized exchange and side chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 105000
+			},
+			"text": " It has four primary advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 109000
+			},
+			"text": " The first advantage is it is trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 117000
+			},
+			"text": " With its inputs, it doesn't care who sends them, whether they are reputable or malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 126000
+			},
+			"text": " And the outputs produced by the relay follow the cryptographic rules behind bitcoin and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 135000
+			},
+			"text": " And it's also fully open source, and this leads to the second advantage that it is fully decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 140000
+			},
+			"text": " There are no owners, no administrators, no back doors."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143000
+			},
+			"text": " I can't change it once it's deployed there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 148000
+			},
+			"text": " Effectively it's owned by everyone, the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153000
+			},
+			"text": " The third advantage is the relay is autonomous."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 160000
+			},
+			"text": " Unlike other contracts, autonomy is actually a requirement for the relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 169000
+			},
+			"text": " because it must be alive with a bitcoin blockchain where new blocks are generated every ten minutes on average."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 174000
+			},
+			"text": " The fourth advantage is that the relay is modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " It is a building block that is easy to integrate with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 187000
+			},
+			"text": " and an extensible foundation for innovations such as decentralized exchange and side chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 193000
+			},
+			"text": " The first secret was using payment proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 197000
+			},
+			"text": " But what would these payment proofs be verified against?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 205000
+			},
+			"text": " The second secret is the BTC relay builds a mini version of the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " a smaller version of the bitcoin blockchain in an Ethereum contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 223000
+			},
+			"text": " And I'll call this an SPV chain, and this SPV chain is what the payment proofs are verified against."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 232000
+			},
+			"text": " So again, not much time for this talk, so I'm going to give a whirlwind technical introduction to BTC relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 237000
+			},
+			"text": " It starts with bitcoin and SPV, simplified payment verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 247000
+			},
+			"text": " So in bitcoin a block has both a header, which is 80 bytes, and then all the transactions in that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 257000
+			},
+			"text": " This header has quite a few remarkable properties that lead to the bitcoin blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 265000
+			},
+			"text": " For example, one of the fields in header has the hash of the previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 272000
+			},
+			"text": " Another property is that the header has a root of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 278000
+			},
+			"text": " Mercal tree formed by all the transactions in that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 284000
+			},
+			"text": " So there. Now here's an example of, we've heard a lot about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 290000
+			},
+			"text": " Mercal and Mercal trees, so I'm going to give a quick example of how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 297000
+			},
+			"text": " So we have all of the transactions here at the bottom where these are all the transactions in this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 299000
+			},
+			"text": " So there's only four for this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 303000
+			},
+			"text": " So we take for all of these transactions, we hash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 309000
+			},
+			"text": " Bitcoin uses hash that will produce a 32 byte value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 313000
+			},
+			"text": " So that's how we get the level above."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " Now for each pair of transaction hashes, we concatenate them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 327000
+			},
+			"text": " So we temporarily get a 64 byte value, and then we hash that again to end up again with another 32 byte value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 333000
+			},
+			"text": " So at this level we always take pairs of them, pairwise concatenate them, and then hash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 341000
+			},
+			"text": " And we keep repeating that process until there's only one hash left, and that is basically the root of your Mercal tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 352000
+			},
+			"text": " Now with this root you can verify whether a transaction exists in that block or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 362000
+			},
+			"text": " That is all that you need, and BTC relay uses just headers to build an SPV chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 369000
+			},
+			"text": " For example, suppose you paid Alice one Bitcoin in TX3."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 376000
+			},
+			"text": " Now you could provide the relay with all the transactions in the block, all of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 380000
+			},
+			"text": " The relay would run the algorithm that I just explained."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 383000
+			},
+			"text": " It would compute a Mercal root."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 391000
+			},
+			"text": " And then with that root that it computed, it would just check the actual header and does that computer root match what's in the header."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 402000
+			},
+			"text": " If it does match, then the relay will have verified that yes, TX3 is in this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 412000
+			},
+			"text": " Now it's possible to have shorter proof instead of having to send all the transactions, because this could be really, really long down here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 424000
+			},
+			"text": " And for an example for TX3, that Mercal proof would include hash two and just hash zero one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 429000
+			},
+			"text": " So you would just need these two instead of all the transactions in the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 441000
+			},
+			"text": " Now I'll have to let you ruminate on that, but you can see that it's logarithmically shorter than the naive approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 454000
+			},
+			"text": " So here are the APIs that the VTC relay contract, the two main verification APIs that exposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " Verify TX and relay TX."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 463000
+			},
+			"text": " So all this data here is the transaction and Mercal proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 467000
+			},
+			"text": " And basically this asks the relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 472000
+			},
+			"text": " There's this transaction in this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 475000
+			},
+			"text": " It's the end transaction in this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 478000
+			},
+			"text": " Is that valid? Is that true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 482000
+			},
+			"text": " VTC relay will return true based on three conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 486000
+			},
+			"text": " The first is this transaction in that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 489000
+			},
+			"text": " Is that block on the Bitcoin main chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 496000
+			},
+			"text": " And the third is does this block have enough six confirmations, at least six confirmations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 503000
+			},
+			"text": " The relay TX API has the same parameters with two additional ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 507000
+			},
+			"text": " The first additional one is the actual transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 510000
+			},
+			"text": " Because recall that this is only the hash of the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 512000
+			},
+			"text": " So you've lost a lot of data here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " But this is all the inputs, outputs of the Bitcoin transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 517000
+			},
+			"text": " It's arbitrary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 525000
+			},
+			"text": " And then the additional parameter is your contract address where you want to be able to process these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 532000
+			},
+			"text": " There are two main parties in VTC relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 537000
+			},
+			"text": " The relayers who submit the block headers which are used to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 545000
+			},
+			"text": " SPV chain and verifiers who verify Bitcoin payments and transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 554000
+			},
+			"text": " And so every ten minutes there's a new Bitcoin block and VTC really needs that header."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 561000
+			},
+			"text": " So this leads to the third secret which is having incentives for the community to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 569000
+			},
+			"text": " relayers so that the contract itself, the VTC relay contract is autonomous."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 576000
+			},
+			"text": " Now there are different incentive plans and ideas that were considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 580000
+			},
+			"text": " But given limited time, I will discuss the current one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 588000
+			},
+			"text": " And this current one, when a relay submits a header, they get to see a fee for that header."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 594000
+			},
+			"text": " Now the verifier who uses that, who has a payment or transaction in that block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 597000
+			},
+			"text": " needs to pay that fee to the fee recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " The initial fee recipient is the relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 604000
+			},
+			"text": " So for example, it's called a Romeo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 611000
+			},
+			"text": " Now to prevent excessive fees, there could be another person or party."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 613000
+			},
+			"text": " It's called Tango."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 619000
+			},
+			"text": " Tango decides to pay in Mount C to relay a Romeo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 624000
+			},
+			"text": " Now what happens is now Tango gets to become the fee recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 630000
+			},
+			"text": " So any future verifications there, Tango will receive the fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 638000
+			},
+			"text": " But to also, in addition to paying C, Tango would have had to also set a fee lower than"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " what Romeo had set."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 650000
+			},
+			"text": " And C is roughly double the amount that it initially cost Romeo to submit the header."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 658000
+			},
+			"text": " To be a relay and earn some ether, there's this repository here where it's right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 665000
+			},
+			"text": " It's currently a command line tool that fetches block headers using a Bitcoin block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 670000
+			},
+			"text": " Explorer like blockchain.info, compares it with what the relay has and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 674000
+			},
+			"text": " submits the ones the relay doesn't have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 679000
+			},
+			"text": " And it's on a public test net, so you don't need to spend real ether and you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 684000
+			},
+			"text": " to worry about what's this unlocked account that you have to provide here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " There's more information and I'm going to give an example of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 691000
+			},
+			"text": " Extensibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 699000
+			},
+			"text": " So a basic side chain flow is you have, let's consider that your"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 705000
+			},
+			"text": " Bitcoin blockchain is here and your side chain is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 709000
+			},
+			"text": " Now time is going vertically downwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 714000
+			},
+			"text": " So at the start in Bitcoin and the Bitcoin blockchain, you lock some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 715000
+			},
+			"text": " BTC."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 718000
+			},
+			"text": " Let's call that a lock BTC transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 724000
+			},
+			"text": " Now when a proof of that is sent to a side chain, then the side chain can create"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 728000
+			},
+			"text": " some side chain tokens here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " And then time goes by and say we want to get the bitcoins back."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736000
+			},
+			"text": " Okay, now those side chain tokens are destroyed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 741000
+			},
+			"text": " And then when those side chain tokens are destroyed, a proof of it is sent back and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 744000
+			},
+			"text": " verified in Bitcoin blockchain over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " And that's how the Bitcoin blockchain can then unlock the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 751000
+			},
+			"text": " BTC that was locked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 757000
+			},
+			"text": " So in this short example, you can see that if you are a side chain contract, the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 761000
+			},
+			"text": " part where there's a locked BTC transaction, you can just pass that to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 770000
+			},
+			"text": " BTC relay to get the answer of if that locked BTC transaction has been confirmed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 776000
+			},
+			"text": " Now an example for integrating it into a DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 783000
+			},
+			"text": " There's, so this example is basically adding just another contract to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 786000
+			},
+			"text": " whatever DAP you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 792000
+			},
+			"text": " And two important points, the ones in blue."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 797000
+			},
+			"text": " The first point is you need to have a process transaction function with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 799000
+			},
+			"text": " exact signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 805000
+			},
+			"text": " If the signature doesn't match, then it won't, your contract won't get the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 809000
+			},
+			"text": " data that BTC relay is sending it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 813000
+			},
+			"text": " The second important point is you have to check that message"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 819000
+			},
+			"text": " that the sender is BTC relay, otherwise anyone can send your contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 822000
+			},
+			"text": " fake transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 829000
+			},
+			"text": " And as this sample does, it's recommended to set the address of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 832000
+			},
+			"text": " BTC relay in a constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 836000
+			},
+			"text": " There's a minor thing about deliberately emitting braces there just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 839000
+			},
+			"text": " fits on the slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843000
+			},
+			"text": " There are other things that you also will want to do afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 847000
+			},
+			"text": " For example, you probably want to keep track of the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 851000
+			},
+			"text": " hashes that you've seen, otherwise people could just replay them and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 857000
+			},
+			"text": " keep getting your side chain tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 862000
+			},
+			"text": " So I have a couple more demos, but I'm going to do it after the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " references because it requires me going off the slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 870000
+			},
+			"text": " But for the conclusion, the -- okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 874000
+			},
+			"text": " The conclusion is -- okay, so there's three secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 878000
+			},
+			"text": " The first one is it BTC relay builds an SPV chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 882000
+			},
+			"text": " It verifies transactions using Merkle proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 887000
+			},
+			"text": " And it has incentives for the community to relay the block headers so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 891000
+			},
+			"text": " that BTC relay can build the SPV chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 896000
+			},
+			"text": " It's trustless, decentralized, autonomous and modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 903000
+			},
+			"text": " And these are -- yeah, I want to thank these people supporters of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 909000
+			},
+			"text": " BTC relay for their priceless time thought and work."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 913000
+			},
+			"text": " And here are references."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 920000
+			},
+			"text": " And the site is BTC relay.org, which I'll show right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 936000
+			},
+			"text": " So this is where BTC relay is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 941000
+			},
+			"text": " That's the address. It's on a public ethereum test net that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 944000
+			},
+			"text": " anyone can connect to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 946000
+			},
+			"text": " You get the information in that link."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 948000
+			},
+			"text": " There's the ABI there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 952000
+			},
+			"text": " There's some issue in the test net right now where someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 954000
+			},
+			"text": " mined on it so it's a little slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 958000
+			},
+			"text": " But you can compare it with what has usually it's up to date with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 961000
+			},
+			"text": " the blockchain explorers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 968000
+			},
+			"text": " Quickly -- yeah, this is the site that has more."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 971000
+			},
+			"text": " So BTC relay.org that has more information there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 976000
+			},
+			"text": " And the other quick example that I wanted to show was -- so here"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 979000
+			},
+			"text": " we do -- I've already run this because I'm not going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 980000
+			},
+			"text": " Wi-Fi."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 982000
+			},
+			"text": " But this is the first transaction in block 38,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 983000
+			},
+			"text": " 1100."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 987000
+			},
+			"text": " When we do a lookup, it gets all the transactions in that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 992000
+			},
+			"text": " And then it's going to pass them to a module that I've put an"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 996000
+			},
+			"text": " NPM to generate that Merkle proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 998000
+			},
+			"text": " So the module is pretty easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1002000
+			},
+			"text": " You're passing all your transactions, the index of which one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1004000
+			},
+			"text": " you want to proof from."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1012000
+			},
+			"text": " And if we go back to the example -- that's an example of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1014000
+			},
+			"text": " But of course, you don't need to show your users any of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1015000
+			},
+			"text": " stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1018000
+			},
+			"text": " Because once you have the data, then you can just pass it along"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1021000
+			},
+			"text": " to the contract, BTC relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1029000
+			},
+			"text": " And when you click call, it's just going to return one or zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1034000
+			},
+			"text": " This is just a sample to show it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038000
+			},
+			"text": " And I guess just more -- some source since we have a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1043000
+			},
+			"text": " couple of minutes here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1048000
+			},
+			"text": " So -- okay, let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1054000
+			},
+			"text": " So this is where the call is done, the verify TX call."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1059000
+			},
+			"text": " Anyway, you can look at this as well online."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1068000
+			},
+			"text": " But -- so the module is here, the Bitcoin proof module."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " And so, yeah, we call it -- yeah, we call it somewhere -- the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1079000
+			},
+			"text": " NPM code that I showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1083000
+			},
+			"text": " So that's -- yeah, I guess maybe time for one question or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1086000
+			},
+			"text": " If anyone has any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1089000
+			},
+			"text": " Yeah, hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1093000
+			},
+			"text": " >> Can this be used to connect with Metaporticals as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1096000
+			},
+			"text": " Metacoints, like Mastercoin, counterparty?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1099000
+			},
+			"text": " >> So it could, but you would have to -- you would have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1101000
+			},
+			"text": " write something similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1105000
+			},
+			"text": " So you can't leverage it directly unless those use -- you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1112000
+			},
+			"text": " know, be a Bitcoin directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:39,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1119000
+			},
+			"text": " >> Yeah, for script is expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1119000,
+				"to": 1123000
+			},
+			"text": " >> Is there another question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1131000
+			},
+			"text": " >> Bitcoin and CD4."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1141000
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1144000
+			},
+			"text": " >> One more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1145000
+			},
+			"text": " >> No."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1146000
+			},
+			"text": " >> Okay, two."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1147000
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1149000
+			},
+			"text": " >> The headers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1150000
+			},
+			"text": " >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1153000
+			},
+			"text": " >> Are you storing that on the interior blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1154000
+			},
+			"text": " >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1156000
+			},
+			"text": " >> 20 something megabytes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1157000
+			},
+			"text": " >> No, no, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1162000
+			},
+			"text": " >> Yeah, well, if you start from -- yeah, then it would be that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1163000
+			},
+			"text": " Big."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1166000
+			},
+			"text": " But yeah, that's something that we can configure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1169000
+			},
+			"text": " >> You'll just pay the fees to put that in before you start?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1171000
+			},
+			"text": " >> Well, no, that's the thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1173000
+			},
+			"text": " That's why we have the incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1177000
+			},
+			"text": " So we're probably just going to start at a future block that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1179000
+			},
+			"text": " Not Satoshi's Genesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1180000
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1183000
+			},
+			"text": " >> And then let it be -- yeah, the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1187000
+			},
+			"text": " >> Yes, Alex."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1193000
+			},
+			"text": " >> So, in the planning plan, you would use the token with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1198000
+			},
+			"text": " One-to-One value, which is the Bitcoin community related?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1201000
+			},
+			"text": " >> Yeah, there can be plans."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1202000
+			},
+			"text": " >> Hang out for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1208000
+			},
+			"text": " >> Are there plans to build a BTC token on Ethereum that maps one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1212000
+			},
+			"text": " To one with actual bitcoins?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1217000
+			},
+			"text": " >> Yeah, that could be definitely a future thing that's possible to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1218000
+			},
+			"text": " Build."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1222000
+			},
+			"text": " The next main thing that i'm building is just a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1227000
+			},
+			"text": " Swap of ether and bitcoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1232000
+			},
+			"text": " And then after that, with the side chains, then these ideas can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1235000
+			},
+			"text": " Be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1236000
+			},
+			"text": " Any others?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:37,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1237000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1237000,
+				"to": 1238000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1244000
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1250000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1279000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

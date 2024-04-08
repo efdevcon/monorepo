@@ -475,6 +475,33 @@ export const FAQDuringEvent = [
 // TODO: Add missing links
 const FAQ = [
   {
+    text: 'What is the difference between Devcon and Devconnect?',
+    value: 'prove-attendance',
+    content: () => {
+      return (
+        <>
+          <p>
+            Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the other
+            amazing ETH events are community-run!). Both events are Ethereum-focused but serve different purposes.
+          </p>
+          <p>
+            <b>Devcon</b> is a global Ethereum family reunion, a place to celebrate success and align on updates and
+            direction. It is our principal event, all in one place with one big venue, and talks and workshops open to
+            all.{' '}
+            <Link href="https://devcon.org" indicateExternal>
+              Devcon SEA will take place in Bangkok, Thailand between 12-15 November 2024!
+            </Link>
+          </p>
+          <p>
+            <b>Devconnect</b> on the other hand, is a week to make progress, dive deep into specific topics among fellow
+            experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists of many
+            individual events, organized by you the community, that each cover one topic in depth.
+          </p>
+        </>
+      )
+    },
+  },
+  {
     text: 'Can I get a proof that I attended Devconnect? aka What is Zupass?',
     value: 'prove-attendance',
     content: () => {
@@ -516,20 +543,6 @@ const FAQ = [
             here
           </Link>
           .
-        </>
-      )
-    },
-  },
-  {
-    text: 'How can I provide feedback about the event?',
-    value: 'feedback-form',
-    content: () => {
-      return (
-        <>
-          <p>
-            We value your feedback! We've sent all attendees an email (subject line: “Devconnect IST 2023 - THAT'S A
-            WRAP!") with a feedback survey. There will be a POAP for your participation!
-          </p>
         </>
       )
     },
@@ -1533,7 +1546,7 @@ const Home: NextPage = (props: any) => {
                 <div className="flex flex-nowrap">
                   {[
                     { cover: Cover1, url: 'https://app.streameth.org/devconnect/light_client_summit/archive' },
-                    { cover: Cover4, url: 'https://app.streameth.org/devconnect/progcrypto' },
+                    { cover: Cover4, url: 'https://www.youtube.com/@PROGCRYPTO/videos' },
                     {
                       cover: Cover3,
                       url: 'https://app.streameth.org/devconnect/conflux__web3_ux_unconference/archive',

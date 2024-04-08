@@ -1,0 +1,3871 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " Today I'm going to talk about from scalability to inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:08,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 8000
+			},
+			"text": " And I'm going to touch on a few concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 8000,
+				"to": 13000
+			},
+			"text": " The last DEFCON that I was at was two years ago in Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " And the last two days I've been attending a lot of talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " And I see there's a great difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " And I'm going to go through the summary and just discuss what we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " I think you have talked a lot about technical scalability over the last two days."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 34000
+			},
+			"text": " And as well as today's on layer one and layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 38000
+			},
+			"text": " I'm not going to touch on that, but I'm going to go back in time to where Nick Zabo"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 44000
+			},
+			"text": " talks about social scalability, which I think Vitalik has talked a little bit about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " over the last two weeks about social scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 49000
+			},
+			"text": " It is the ability to overcome the mindset."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " And it is the mindset who limits who and how many can successfully participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57000
+			},
+			"text": " And that's key to mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 63000
+			},
+			"text": " It is about human limitations, not about technological limitations or physical resource constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 65000
+			},
+			"text": " that we are talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " And if you look back, I have five Ds for this scalability for crypto economies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 74000
+			},
+			"text": " And the five Ds are all there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 76000
+			},
+			"text": " I'm going to go through every single one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 82000
+			},
+			"text": " It is a process that you will see that possibly our community will go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84000
+			},
+			"text": " And the first one is digitalization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 92000
+			},
+			"text": " And digitalization is about having new business model using digitization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " So digitalization is different from digitization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 99000
+			},
+			"text": " And we are using digitization to come up with new model."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " And what we are seeing now are some very interesting developments."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 110000
+			},
+			"text": " A lot of people are trying to tokenize a legal entity, which was Satoshi has given us a gift"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 113000
+			},
+			"text": " not to deal with legal entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " So now we are going backwards and try to tokenize a legal entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " And by tokenizing a legal entity, there is a lot of cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 125000
+			},
+			"text": " The cost of governance, the compliant cost, and you stop yourself from going cross-border."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131000
+			},
+			"text": " And those are the costs that is embedded in trying to tokenize securities."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " And securities has its own risk and return characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " And you now put a layer of token, which is technology on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 145000
+			},
+			"text": " Your technology risk management has to be good, and you have increased the risk of the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " But at the same time, you may only increase efficiency by a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 156000
+			},
+			"text": " And I am not too sure how much of a mass adoption you can find because you are serving the same customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 158000
+			},
+			"text": " You are having the same business model."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " There is no improvement from what Satoshi has given us from ten years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " So instead of that, we always talk about security token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " The other idea is token security."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 175000
+			},
+			"text": " We tokenize anything that is not securitized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 183000
+			},
+			"text": " We tokenize anything that is not in a legal form, for example, a cow token, a livestock token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 191000
+			},
+			"text": " And in that case, you then have a new set of token law to take care of token security."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 196000
+			},
+			"text": " So we may want to move to a different direction from security token to token security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 204000
+			},
+			"text": " because it releases us from all the localized legal and legislation that we have to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " So this is where our mindset, which is the scalability, social scalability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " is to bring the extruded assets back to the economic and financial system through digitalization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 220000
+			},
+			"text": " And this is what inclusion and mass adoption is about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " And the second and third is this intimidation and democratization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " I gave the example of the livestock token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231000
+			},
+			"text": " You can tokenize a cow, which is not a legal entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 239000
+			},
+			"text": " You can disintermediate the rent-seeking lenders who charge 100% in Myanmar."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " We have somebody from Myanmar who knows that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 249000
+			},
+			"text": " And we can actually then put them onto an insurance scheme, micro insurance scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " because now you have a token, you know the GPS position, you now have it on blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " you have identity of the farmers, the insurance company, they are willing to insure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 264000
+			},
+			"text": " And once the insurance is willing to insure, you lower the risk of that product."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 270000
+			},
+			"text": " And the risk is lowered, you will be able to get the micro-lending to land at single digit or double digit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 276000
+			},
+			"text": " And we have reduced the landing rate from 100% to single digit or double digit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " And that is the beauty of token security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " And the mindset is to balance the profit and social objectives."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " So there is another mindset that we must have in mass adoption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 291000
+			},
+			"text": " because charity is not going to help us to do mass adoption at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 296000
+			},
+			"text": " You have to combine both profit motives as well as social objectives for sustainability."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 298000
+			},
+			"text": " And the fourth is decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 301000
+			},
+			"text": " FinTech companies are good for inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " We have seen that in Alipay, we have seen that in Kenya."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " And so on. But they are still centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 313000
+			},
+			"text": " That is the major problem of doing financial inclusion to centralize."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 321000
+			},
+			"text": " No government would like to have a centralized FinTech company in the country that controls the entire payment system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " So that is the danger of a centralized system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 325000
+			},
+			"text": " And what is decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 333000
+			},
+			"text": " Decentralization is actually, to me, a dynamic and continuous process of distribution of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " And that is key to a lot of design thinking that we must have."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 343000
+			},
+			"text": " And whatever blockchain that you have, whatever decentralization at Genesis is always centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 348000
+			},
+			"text": " So when you try to do decentralization, it is a continuous process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 354000
+			},
+			"text": " A decentralized system can be centralized tomorrow if there are left with two of us doing the mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " So that is the thought that we must have at the back of a mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " And we always must remember that off-chain governance are mostly centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366000
+			},
+			"text": " So there must be a distinction between on-chain and off-chain governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 367000
+			},
+			"text": " And we don't mix them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 371000
+			},
+			"text": " When we talk about decentralization, it is decentralized on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 375000
+			},
+			"text": " And most of the time off-chain governance is centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 380000
+			},
+			"text": " And we can do better off-chain and on-chain to distribute trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 383000
+			},
+			"text": " And especially on the child chains as well when we start."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 390000
+			},
+			"text": " So it is important where we have inclusive blockchain, with open blockchain, private blockchain, consulting blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 395000
+			},
+			"text": " And in second layer, third layer, child chains that we start with centralized governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 398000
+			},
+			"text": " but we need to continuously decentralize trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 400000
+			},
+			"text": " And the mindset is a dynamic distribution of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 403000
+			},
+			"text": " And that is very important for mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 406000
+			},
+			"text": " And the fifth is diminishing oneself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " And that is the best act of Satoshi Nakamoto."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 410000
+			},
+			"text": " He disappeared."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " Besides being diminishing himself, he disappeared."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 416000
+			},
+			"text": " And there's no single point of attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 418000
+			},
+			"text": " There's no single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 421000
+			},
+			"text": " And this is the hardest and the most essential."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 430000
+			},
+			"text": " We can look at a lot of corporate fiat stable coin, which is doing the reverse instead of disintermediating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 432000
+			},
+			"text": " We are disintermediating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 441000
+			},
+			"text": " So we are adding another layer of intermediary in the design thinking of the coin that we have when we try to put something in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 445000
+			},
+			"text": " So we shouldn't be disintermediating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 450000
+			},
+			"text": " And if you are a maximum list, then we are making ourselves as a center."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " And if you are supernose, you are drawing attention to yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " And that is the mindset that we need to have, which is we are just facilitators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 460000
+			},
+			"text": " We are all just facilitators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 462000
+			},
+			"text": " We are all here, just facilitators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466000
+			},
+			"text": " And our task is to minimize a single point of attack and failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 467000
+			},
+			"text": " And that is our mission."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 470000
+			},
+			"text": " That's why we are here in Prague."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 474000
+			},
+			"text": " And the science are not good for the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 478000
+			},
+			"text": " For the over the year, we can see there's still a lot of concentration of mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 479000
+			},
+			"text": " Yes, there's a basic resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 481000
+			},
+			"text": " We are talking about concentration of wealth."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484000
+			},
+			"text": " We are talking about concentration of developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 486000
+			},
+			"text": " We still need a lot more education."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 495000
+			},
+			"text": " We are continuing to expose ourselves to third-party trust in both soft and hard way that we are talking about in the last few days."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 497000
+			},
+			"text": " So we have security token."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 498000
+			},
+			"text": " We are scammering CEO."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 500000
+			},
+			"text": " We have fiat stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 508000
+			},
+			"text": " We actually distracted us from what we tried to do from 10 years ago, which is to distribute trust and lower the cost of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 510000
+			},
+			"text": " So there are dependence on third-party trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 511000
+			},
+			"text": " It's at the lowest."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 518000
+			},
+			"text": " So we have the first layer versus the second layer, where it's difficult to get consensus in the governance of chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 525000
+			},
+			"text": " But it's better to have changes and innovation on the second layer because it's a little bit more centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 530000
+			},
+			"text": " Whether those are the good development, we'll leave it to everybody to decide."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 538000
+			},
+			"text": " But we need more than technical and social scalability for mass adoption and the focus and switch in this few days."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 542000
+			},
+			"text": " And what we have seen in these few days is a lot of talk about zero knowledge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 547000
+			},
+			"text": " proof, a lot about secure multi-party computing, a lot more about full homomorphic encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 550000
+			},
+			"text": " and very little about secret sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 555000
+			},
+			"text": " But data and smart contract privacy, pen testing, code audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 561000
+			},
+			"text": " and we are talking about open source software as well as open source hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 563000
+			},
+			"text": " And that is interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 571000
+			},
+			"text": " But again, we need to think about distribution of trust because third-party trust is something that we have set out to ensure that it's minimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 578000
+			},
+			"text": " So when we look at all these trusted, executed environment and SGX and more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584000
+			},
+			"text": " we have to bear in mind the design thinking of distribution of trust for mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 589000
+			},
+			"text": " And safe mass adoption, privacy protection mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 594000
+			},
+			"text": " And the success, though not perfect, of privacy protection is drawing attention worldwide."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 602000
+			},
+			"text": " And this is what the community has done well in terms of impressing a lot of investors as well as government."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 608000
+			},
+			"text": " The mass adoption will be triggered by more major hacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 612000
+			},
+			"text": " And as soon as there are more hacks, especially when your prime minister data are stolen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " and health data is stolen like country or Singapore, we will pay more attention to crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 623000
+			},
+			"text": " And I'm sure a lot of you know that the country I come from Singapore, our data, our health data has been stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 630000
+			},
+			"text": " And what is never discussed a lot in this conference is where is the sustainable demand coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635000
+			},
+			"text": " And throughout the two days, a lot of us were discussing about the supply side."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 639000
+			},
+			"text": " The technology, scalability, and also social scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 642000
+			},
+			"text": " But where is the demand coming from? We are talking about mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 647000
+			},
+			"text": " So it's important to look at decentralized financial inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 652000
+			},
+			"text": " And that's the key to mass adoption and entails quite a few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 655000
+			},
+			"text": " This is the statistics that we need to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 660000
+			},
+			"text": " We have a lot of people who are willing to join this community."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 663000
+			},
+			"text": " And we have to bring them back to join us."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 668000
+			},
+			"text": " And this is what mass adoption is about. It's about the demand side."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 675000
+			},
+			"text": " The beauty of it is that in these countries, these countries are not in debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 678000
+			},
+			"text": " They are all in debt. They are all in debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 684000
+			},
+			"text": " The beauty of it is that in these countries, these countries are not in debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 690000
+			},
+			"text": " They are all in Asia. They have 100% hand-form penetration."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 700000
+			},
+			"text": " And we have a digital revolution and at least 438 million in 10 countries in ASEAN, Asia or Southeast Asian nation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 702000
+			},
+			"text": " that are ready to be served."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 706000
+			},
+			"text": " And 73% of them do not have a bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 709000
+			},
+			"text": " They have a hand-form. They have a cow."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 713000
+			},
+			"text": " You can tokenize the cow on the hand-form, but they don't have utilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 717000
+			},
+			"text": " They have no toilets, but they have a hand-form and they have a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 721000
+			},
+			"text": " So that's why we should be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 723000
+			},
+			"text": " So the demand is a decentralized inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " The greatest demand comes from the excluded."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 730000
+			},
+			"text": " The excluded are the customers that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " These are the people and as said, we have to try to convert debt"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 737000
+			},
+			"text": " to life-digit assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:21,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 741000
+			},
+			"text": " We shouldn't be working with stocks and shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 741000,
+				"to": 743000
+			},
+			"text": " We shouldn't be working with rare estate."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 747000
+			},
+			"text": " We shouldn't be working with debt instruments."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 751000
+			},
+			"text": " Or we work with them, but with less energy in those areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 757000
+			},
+			"text": " The community should direct the attention to trying to convert the debt assets to life-digit assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 761000
+			},
+			"text": " like a cow to a farmer, as a sheep to a farmer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 767000
+			},
+			"text": " tokenizing the non-securities, and then securitize the tokens is what we should do."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 774000
+			},
+			"text": " Not to tokenize the security and then subject ourselves to another layer of legal compliance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 781000
+			},
+			"text": " We just need one layer, which is to tokenize non-securities and then look for a new token law"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 788000
+			},
+			"text": " and request the government to have a new token law and not subject ourselves to all securities law, commodity laws and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 790000
+			},
+			"text": " We want new token laws."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 799000
+			},
+			"text": " And fractionalize a cow that can own 10%, 5% of cow, ymiyama right here in Prague, and heterogenize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " And now you can own the calf different from the cow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804000
+			},
+			"text": " You can have the milk different from the cow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 810000
+			},
+			"text": " These are all the things that we can tokenize with IoT, with convergence of technology and by serving the underserved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 815000
+			},
+			"text": " And we can solve the greatest mystery of all this economy it's going to leap from,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 818000
+			},
+			"text": " because they have no regulation to deal with any of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 826000
+			},
+			"text": " We devise our new token law so that they can get cheap capital via globalized crypto funding that we have here for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 828000
+			},
+			"text": " And there's a convergence of tag."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 831000
+			},
+			"text": " And this is next stage I will see in the next three to four years."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 838000
+			},
+			"text": " I can see most conferences talking about convergence of tag where blockchain is the driver, where Ethereum is the driver."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 842000
+			},
+			"text": " And sustainable green business model that we don't destroy anymore forests."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 850000
+			},
+			"text": " We use drones, we're on the blockchain, we use mesh network, we're on the blockchain, we use satellite payments using token."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 854000
+			},
+			"text": " We do not want to build more rows and destroy more forests."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " We just want to use blockchain to do a lot more green advancement."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 862000
+			},
+			"text": " So this is the 10 critical enablers or mass adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " They may be contradicting to each other, but this is what I thought of."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 874000
+			},
+			"text": " You have to have fast-dable internet connection, and if there's no internet, we can use mesh network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 875000
+			},
+			"text": " And that can be tokenized."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 879000
+			},
+			"text": " We need to have interoperable value transfer gateway."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 881000
+			},
+			"text": " We need to have privacy protection for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 884000
+			},
+			"text": " We need strong security framework which we talked about the last two days."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 888000
+			},
+			"text": " We need open source and trust distribution governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 889000
+			},
+			"text": " And this is lacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " We need to discuss about governance amongst ourselves, self-governance, digital literacy and UX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 897000
+			},
+			"text": " which is still very weak."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 899000
+			},
+			"text": " We need digital ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 901000
+			},
+			"text": " We need compliance easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 904000
+			},
+			"text": " We do not want to subject the assisting law."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 912000
+			},
+			"text": " We don't mind to subject to the new laws that's favorable to the token world, but not all regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 918000
+			},
+			"text": " And comprehensive data and oracles ecosystem, which we talked about decentralized oracles yesterday,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 924000
+			},
+			"text": " and talent knowledge and skills, which is why we are all here to exchange views and share whatever we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 926000
+			},
+			"text": " Now, this is the market size."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 927000
+			},
+			"text": " Look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " For remittances, welfare aid, donation, ownership, or data, health care."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 936000
+			},
+			"text": " Have you ever found yourself donating to a charity and you never found where your money goes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 946000
+			},
+			"text": " So, this company, A-TAC, they have remittances looking, they have welfare transfer, aid transfer and health care."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 948000
+			},
+			"text": " It is a profitable business."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 952000
+			},
+			"text": " It's a combination of profit motives with social objectives."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 957000
+			},
+			"text": " And this is the direction we should go using blockchain with more transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 959000
+			},
+			"text": " And this is the market size."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 960000
+			},
+			"text": " It is big."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 962000
+			},
+			"text": " You can accommodate many of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 965000
+			},
+			"text": " There are just not enough people working in those areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 968000
+			},
+			"text": " And we have the first baby born on blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 971000
+			},
+			"text": " And this is also a company that we invest in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 975000
+			},
+			"text": " Because when you are a refugee, you have no identity, you have to be given an identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 979000
+			},
+			"text": " Once you have an identity, you want to give birth, you need money."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 985000
+			},
+			"text": " So, what happens is that A-TAC has given the money, the lady could go to the hospital and give birth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991000
+			},
+			"text": " Now, the danger is that when the baby is born, whatever medical expenses is taken away by syndicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 999000
+			},
+			"text": " And again, blockchain will allow the expenses to be spent, specifically in the hospital for medicine for the baby."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1004000
+			},
+			"text": " So, this is the baby on the blockchain and it is not a myth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1006000
+			},
+			"text": " It is already happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1009000
+			},
+			"text": " And you know what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1012000
+			},
+			"text": " Governments are now investing into blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1018000
+			},
+			"text": " Singapore government, Irish government, they are all investing in token blockchain projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1021000
+			},
+			"text": " And then in Myanmar, you have the Tao-Kao token, which I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1023000
+			},
+			"text": " It is not a dream."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1025000
+			},
+			"text": " It is already life."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1029000
+			},
+			"text": " You can tokenize the cow and you can see the years is there is attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1032000
+			},
+			"text": " Once you break it, there is no more insurance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1035000
+			},
+			"text": " But basically, this is how you tack onto your blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1041000
+			},
+			"text": " And again, the government will roll up, break the cow and 60 million pounds to be tokenized."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1050000
+			},
+			"text": " These are the projects that can be on Ethereum or a lot of other blockchain that we can talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1053000
+			},
+			"text": " And have you ever heard about cypherpunk government?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1056000
+			},
+			"text": " Is it an oxymoron, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1059000
+			},
+			"text": " Well, what is happening in Singapore?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1064000
+			},
+			"text": " We will be in one using Ethereum as saying dollars for international payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1066000
+			},
+			"text": " It is already done."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1070000
+			},
+			"text": " Wubing 2 has just been announced."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1075000
+			},
+			"text": " And we have Koda, we have Hyperledger, and we also have Corum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1077000
+			},
+			"text": " And they are using encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1079000
+			},
+			"text": " They are using zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1080000
+			},
+			"text": " And this is central bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1086000
+			},
+			"text": " I am talking central bank who knows more about different technology than us."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1089000
+			},
+			"text": " And then they open trade blockchain by the government."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1095000
+			},
+			"text": " And the government is an not stick and harness the bank's technology and they expand into the open virtual space."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100000
+			},
+			"text": " And the best thing you look at the report, you just Google, Wubing 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1103000
+			},
+			"text": " The report says that they will diminish itself by providing infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1105000
+			},
+			"text": " They are like Satoshi."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1107000
+			},
+			"text": " The government will diminish themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1116000
+			},
+			"text": " So you see the last two three slides is that excluded will change the world because mass adoption comes from the exclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1122000
+			},
+			"text": " If you are doing exactly the same thing as the government and corporate, then it is not sustainable because they can do it better than you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1124000
+			},
+			"text": " You try to do security."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127000
+			},
+			"text": " I don't think you will be better than any exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1133000
+			},
+			"text": " That's why the use of compliance is key to much of a developed economy thinking in design."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1138000
+			},
+			"text": " For example, why think about the Ricardian contract where you can have a new token legislation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1140000
+			},
+			"text": " Just go over a new token legislation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1144000
+			},
+			"text": " There are many, many countries in the world that will be able to have that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1152000
+			},
+			"text": " That's why investment should go to places that lay out the Ricardian and many more of them who wants to work with the Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1157000
+			},
+			"text": " And convergence on technology brings convergence of profit and social objectives."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1160000
+			},
+			"text": " For the first time in history, we are not charity."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1161000
+			},
+			"text": " We could do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1169000
+			},
+			"text": " That's why the leapfrogging economy may have mass adoption before others because there's no regulation and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1174000
+			},
+			"text": " Last slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1184000
+			},
+			"text": " We are here to complete a system not to compete with assisting organizations like the corporates or the government because blockchain with token incentivizes collaboration."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1189000
+			},
+			"text": " We are not talking about production efficiency, making cheaper faster better."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1197000
+			},
+			"text": " We are talking about collaboration efficiency and the token itself allows us to align our interests."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1198000
+			},
+			"text": " And this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1200000
+			},
+			"text": " We are here to complete the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1201000
+			},
+			"text": " We are not here to compete."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1204000
+			},
+			"text": " We are here to serve not to rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1205000
+			},
+			"text": " We don't make ourselves as a center."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1212000
+			},
+			"text": " And this is important to note that perhaps the manifest to 2.0 may have to be rewritten."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1214000
+			},
+			"text": " This is just my view."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1217000
+			},
+			"text": " And that's all I have for you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1218000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1220000
+			},
+			"text": " I think I have four minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1245000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1255000
+			},
+			"text": " What is the support for the idea that part of what will help mass adoption is supporting privacy concerns?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1262000
+			},
+			"text": " I know that that's a huge concern here, but I don't get the impression from the way people currently use the Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1265000
+			},
+			"text": " That is the concern of many people."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:09,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1269000
+			},
+			"text": " Of course, that might be my view coming from certain western places."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1269000,
+				"to": 1279000
+			},
+			"text": " I think that's the key to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1281000
+			},
+			"text": " Every node is a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1284000
+			},
+			"text": " Every individual for their own human dignity."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1287000
+			},
+			"text": " We must have our own independent decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1290000
+			},
+			"text": " And we have to ensure that by having privacy protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1298000
+			},
+			"text": " It's very important to focus on a lot of, I think in the last few days we talked a lot about combination of AI"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1306000
+			},
+			"text": " and blockchains so that we can do a lot of analysis without actually knowing what is the metadata and the raw data itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1308000
+			},
+			"text": " So I agree with you that this is something we need to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1316000
+			},
+			"text": " And it's important to work with government that willing to diminish themselves so that allowing individuals to have their own privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1322000
+			},
+			"text": " And this is key to the entire exercise and what we are talking about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1329000
+			},
+			"text": " Perhaps I can bring it out very clearly, it's exactly what it is about privacy protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1333000
+			},
+			"text": " Not only about privacy protection, but also a lot more data that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1336000
+			},
+			"text": " There's no more question there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1341000
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1349000
+			},
+			"text": " So I am, when it comes to sort of development initiatives and tech stuff helping development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1352000
+			},
+			"text": " I tend to be on the cynical side."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1361000
+			},
+			"text": " And I think that's kind of an important thing to do is think about the risks and think about what can go wrong and what can go bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1368000
+			},
+			"text": " And if you've seen Zuckerberg testifying, everybody sort of watched this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1374000
+			},
+			"text": " And Myanmar was referenced many times and the adoption, the mass adoption, the really quick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1380000
+			},
+			"text": " I think what you're talking about is true is in these greenfield markets, people will adopt something very, very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1389000
+			},
+			"text": " When that happens, I want to know, in your opinion, perhaps maybe in the context of ASEAN, what are the big risks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1391000
+			},
+			"text": " Where are the risk points?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1397000
+			},
+			"text": " I think financial literacy is one of the most important things and also privacy protection literacy, which very few people talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1404000
+			},
+			"text": " And I totally agree with you that we have to be very careful because technology is actually neutral."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1411000
+			},
+			"text": " Even though blockchain is a little bit more for the weak, for the small, for the neglected, but it's about human."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1419000
+			},
+			"text": " The human itself that can misuse the technology and we don't have to waste them, we could destroy the entire human race."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1424000
+			},
+			"text": " And that's the fear that we all have with AI and the rest and not so much with blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1428000
+			},
+			"text": " But still, we have to be very careful. And what you say is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1430000
+			},
+			"text": " But I see new business model coming out."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1436000
+			},
+			"text": " That people who are not privacy protection literate or financially trade,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:24:03,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1443000
+			},
+			"text": " they are a new business model that we can help them to ensure that, again, we have a trusted party."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1443000,
+				"to": 1453000
+			},
+			"text": " And how do we decentralize or distribute the trust of this trusted party, new model, that actually protect the private keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1456000
+			},
+			"text": " and protect their own human dignity, we need to think deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1464000
+			},
+			"text": " And this is what I'm here today for, to trigger the thinking about, we need to continuously distribute trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1471000
+			},
+			"text": " We should never stop. We should never stop. And we should continue to not trust the third party, but we cannot avoid it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1481000
+			},
+			"text": " It is a process that we have to trust the first party just like there were only two people mining Bitcoin ten years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1484000
+			},
+			"text": " and first started, just H.O. and Satoshi."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1491000
+			},
+			"text": " So they started as a centralized Bitcoin. And then they start to become decentralized, but it has to be a continuous process."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:25:01,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1501000
+			},
+			"text": " So we need to continuously to remind us in our design thinking, whatever the design weather is and clave for encrypted data that we draw out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,000",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1501000,
+				"to": 1510000
+			},
+			"text": " or whatever, or it's an oracle which is decentralized, we make sure that we have this effort of continuously distributing trust, nonstop."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1513000
+			},
+			"text": " And that's the only way we can protect ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1516000
+			},
+			"text": " I don't know where to answer my question."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:19,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1519000
+			},
+			"text": " Okay, thank you very much. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1519000,
+				"to": 1521000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1523000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1525000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1527000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1529000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:31,000"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1531000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1531000,
+				"to": 1533000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1535000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1537000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1539000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1541000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1543000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:45,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1545000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1545000,
+				"to": 1547000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1551000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,2672 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 20000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " Quick quickly about me, you just heard it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 32000
+			},
+			"text": " But I built these things and recently also initiated the ERC20 token standard with italic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 37000
+			},
+			"text": " and that became a lot bigger than expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " [Laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 47000
+			},
+			"text": " Yeah, so when we think about identity, and this talk is about identity, and it's also an ERC."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 49000
+			},
+			"text": " What is identity, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 57000
+			},
+			"text": " So if you think about identity today, mind clicker doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " It could be for example your physical attributions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " Like it could be how you look or your biometric data, and some kind of like physical properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " attached to your physical person and your body for example, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 76000
+			},
+			"text": " But in identity could also be the group you belong to, like the country you belong to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " and even the history over time, like the reputation over time, or the things you experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 83000
+			},
+			"text": " or your ancestors experience and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " And this is all what we kind of aggregate to our identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 96000
+			},
+			"text": " Today, obviously identity mostly like some kind of like forms and certifications we get from our government,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " or we get from like all kind of other places."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 105000
+			},
+			"text": " For example, we have social security numbers, we have plastic carts, we have passports and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 112000
+			},
+			"text": " This kind of like is what we think our identity is today, and this is what we use in the world to represent ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 116000
+			},
+			"text": " So when we think about the passport for example, what is it really, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118000
+			},
+			"text": " What is a passport?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 123000
+			},
+			"text": " It's basically the fact that there was a government agency bureaucrat sitting somewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 130000
+			},
+			"text": " and I came along with a birth certificate and a photo, and maybe they measured my biometric data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " and they figured out, yeah, makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " It's all matching, I give you a passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 144000
+			},
+			"text": " So basically it's a collection of things, and what it is, is actually a collection of claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 151000
+			},
+			"text": " Because what I'm having here is I have a claim, the birth certificate, which somebody gave me when I was born, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 158000
+			},
+			"text": " It's already a claim, but that person who was there maybe was the doctor, or maybe was the hospital, that I was born there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 164000
+			},
+			"text": " Then I take a physical claim, which is basically a photocopy or maybe some biometric data scanned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 172000
+			},
+			"text": " and then it creates a new claim, now done by this guy here, there's no laser pointer, yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " And this creates now this new claim, a passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 185000
+			},
+			"text": " So basically almost everything is just a lot of like attestation we get from each other, and we give to each other, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " For example, we could look at here this use case, I have passports, or I get driver's licenses here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 198000
+			},
+			"text": " or for example I have a university degree, and this is in the first place issued by a government to a person who can issue that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 206000
+			},
+			"text": " degrees to a university itself, and they then issue a degree, and this is really hard here, to do another person, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " So it's a lot of claims on the end, it's all claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 216000
+			},
+			"text": " It's a humongous network of claims, and we came up with a lot of different types of claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 223000
+			},
+			"text": " decreased certificates and whatnot, and we collect them over time, and it's kind of like how we represent ourselves in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 230000
+			},
+			"text": " Maybe not necessarily with our friends, with our friends we might use social networks, which is also kind of like a collection of claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 237000
+			},
+			"text": " but if we go do any kind of like company cooperation, we make an interview or whatever, we just take all of these claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " we show them here look at all of these titles, and I did this and this and that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 251000
+			},
+			"text": " and this basically tells the other person, \"Hey, I trust this university, it's a big one, looks like a real thing here, what he has.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " I might just hire him, for example, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 261000
+			},
+			"text": " The problem with the current systems is that we have these huge institutions, which issue claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " and I'm the tiny little guy and I will receive these claims, and I kind of like the power sits in these institutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 277000
+			},
+			"text": " and it sits in the humongous data walls, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 285000
+			},
+			"text": " So identity claims today is basically not necessarily with me, I mean it's with the papers I carry around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 291000
+			},
+			"text": " but it's kind of like a more like monopolized ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 304000
+			},
+			"text": " Whatever you could decentralize all the things, you could just take that and distribute that power and that ability to claim things about each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " and where do I have to point, I have to put this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 321000
+			},
+			"text": " So for example, when we think about standards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 323000
+			},
+			"text": " So what are standards good for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 328000
+			},
+			"text": " And I initiated together with Vitalik, basically I proposed it's standard, and it was a huge debate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " and on the end everybody started using it's standard, it really helped foster a few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 340000
+			},
+			"text": " For example, if you look at the token example, right? The token standard and how it kind of came to be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 346000
+			},
+			"text": " is we had already things like Bitcoin, and then people came with this idea, hey, let's make colored coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " and then there were these projects, Mastercoin, out of it later, split it off, counterparty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " and what's the idea is that we can basically create coins on top of Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " we have the same security like the Bitcoin network, but we can create new coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " and then companies suddenly can issue their own coins, and that was all really nice and neat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 368000
+			},
+			"text": " and it was kind of used but not really big."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 372000
+			},
+			"text": " Then the theorem came along, and also people started issuing tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " inventing their own ideas of how a token can look like, and we had things like Digix, the gold token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384000
+			},
+			"text": " which was kind of like the first at least I know of rather bigger custom token."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 389000
+			},
+			"text": " But what really actually made this very interesting and very powerful is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 393000
+			},
+			"text": " when you come up with a standard, like if you say, hey, a simple set of rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397000
+			},
+			"text": " you basically say, hey, let's make these three, four, or five functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 402000
+			},
+			"text": " let's all use these functions as the operator, the interface towards the token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 408000
+			},
+			"text": " and suddenly we can have wallets, exchanges, other contracts interacting with those tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 410000
+			},
+			"text": " and suddenly you have a complete mess."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " (Laughter)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 415000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 421000
+			},
+			"text": " This is actually what spurred all this craziness, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 427000
+			},
+			"text": " because suddenly we have a rather simple standard, which doesn't really even determine much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 433000
+			},
+			"text": " but it allows so much flexibility still inside that all of this experimentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 437000
+			},
+			"text": " and all of this crazy new ways of how using it became possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 444000
+			},
+			"text": " and that's why it took off so big, and it's still obviously in the rocket ship flying wherever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " So it's actually all about standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 452000
+			},
+			"text": " If we have standards, it allows us to basically interoperate and be compatible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 456000
+			},
+			"text": " and especially in a platform like Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460000
+			},
+			"text": " where you have an endless amount of possibilities of what you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 463000
+			},
+			"text": " and how you can interact and what you can create,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 469000
+			},
+			"text": " standards are really the key to make a viable ecosystem flourish."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 476000
+			},
+			"text": " So I thought about a few years, about two years about how identity could look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480000
+			},
+			"text": " was working back then with a client and thinking about this idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 487000
+			},
+			"text": " and I had this idea, \"Okay, it should be a smart contract, and it should represent you, and lala lala lala.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 492000
+			},
+			"text": " And I thought about it, and really until now I didn't came up with any way different solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 494000
+			},
+			"text": " than the one I had back then."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 501000
+			},
+			"text": " And actually always expecting somebody else would come up with a standard and make an ERC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 504000
+			},
+			"text": " which didn't happen, so I did it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509000
+			},
+			"text": " So I created this standard or initiated it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " and on the end it will only become a standard that everybody participates and everybody agrees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 519000
+			},
+			"text": " but that's the whole point of a standard, and it now has the number 725."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 525000
+			},
+			"text": " And I created this standard which basically defines a smart contract which represents you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529000
+			},
+			"text": " and represents not even a person, it could also represent a machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 536000
+			},
+			"text": " or it even could represent an item, an object, or a company."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 542000
+			},
+			"text": " So this identity standard basically consists out of three components."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548000
+			},
+			"text": " So it itself is a smart contract, which is representing you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 550000
+			},
+			"text": " and it has these three components."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 553000
+			},
+			"text": " It has keys, which are your operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 560000
+			},
+			"text": " It can execute, so it can actually act on the blockchain as you, and it has claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 567000
+			},
+			"text": " So I will now explain these three pieces here, and then show some examples of how this can work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 571000
+			},
+			"text": " The idea is basically that you have these keys, and this is how you act in the world, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 574000
+			},
+			"text": " So for example you can make transactions, obviously, on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 578000
+			},
+			"text": " you can send money around, and then you can prove with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 583000
+			},
+			"text": " that if this is one of your keys in your identity, that it obviously must be done by you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 589000
+			},
+			"text": " I can also sign any kind of documents, or I can sign any kind of proofs or messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 593000
+			},
+			"text": " in the real world proving that it was me doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 599000
+			},
+			"text": " As long as I attach my identity to it, the person seeing the signature can verify the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 603000
+			},
+			"text": " and can assume a very high likelihood that it was me."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 611000
+			},
+			"text": " So actually the list is unlimited, because what you could do with these kind of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 614000
+			},
+			"text": " is not very limited in this sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 619000
+			},
+			"text": " The idea is, and this is the beauty of public-private key cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 626000
+			},
+			"text": " is that we can have this kind of control over, we can basically validate ourselves in the real world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 632000
+			},
+			"text": " and others can probably validate this as well, they can check that this is correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " I ever have to reveal my password or my secrets or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 644000
+			},
+			"text": " And I think we are just getting started into the age of key signing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 648000
+			},
+			"text": " So we do this all the time for basically everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 652000
+			},
+			"text": " And a really simple use case for example would be logins, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 656000
+			},
+			"text": " So I'm going to sign a message, I want to go into your website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " and they can prove that maybe even check my identity and do some kind of verification process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " and they can let me in, and I never send my password over the wire or anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 670000
+			},
+			"text": " and I could even use a third-party two-factor location device."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 675000
+			},
+			"text": " The other part is, and because it's a smart contract, I can execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 682000
+			},
+			"text": " So this standard has a execute function which allows you to act as yourself on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 686000
+			},
+			"text": " So you could either use the keys to do actions on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 690000
+			},
+			"text": " and then somehow point the people you interact with to your identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 696000
+			},
+			"text": " so they can check things about you, or you can actually act directly through your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 702000
+			},
+			"text": " And the really important thing is that you can add other claims to other identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 707000
+			},
+			"text": " or to other people objects, or even other smart contracts, which might just be code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " And you can claim that for example you verified them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " or maybe you're an issuer about claims, maybe you're a government,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 720000
+			},
+			"text": " and you can attach claims, and it's very provably coming from that identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " And the third part, and that's actually the important part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 728000
+			},
+			"text": " which is its own ERC."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " After some discussion, we decided moving it out in ERC735,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 738000
+			},
+			"text": " and basically making it a substandard of the 725."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 744000
+			},
+			"text": " And the idea is really to have a way to attach claims to a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 747000
+			},
+			"text": " and now we have all to debate exactly how this can look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 752000
+			},
+			"text": " and I have an initial draft up there of how this can look like and how it can work."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 757000
+			},
+			"text": " The benefit of claims in your own identity, it can be added by anyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " but I always have to approve it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 764000
+			},
+			"text": " If it's my identity, I want to be able to approve it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 769000
+			},
+			"text": " because I don't want the things I attach to my identity, which I don't really agree to."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 772000
+			},
+			"text": " This is especially important if I'm a person."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 775000
+			},
+			"text": " If I'm a smart contract, maybe an approval is not even needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 782000
+			},
+			"text": " Maybe a smart contract can just get a bunch of claims, and randomly people can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 787000
+			},
+			"text": " And it can't be changed without my permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 789000
+			},
+			"text": " It can be changed without my permission."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 794000
+			},
+			"text": " So basically, the person who issued a claim about me, on my identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798000
+			},
+			"text": " once I approved it, they are technically in control, because they issued it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 801000
+			},
+			"text": " But if I don't, for example, if they change something about the claim,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 805000
+			},
+			"text": " and I'm not agreeing, I could always remove it, because it's on my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 809000
+			},
+			"text": " So I can allow it to add, but I can also take it off any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 814000
+			},
+			"text": " I would disagree with a change, or, for example, if they change the data hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 819000
+			},
+			"text": " and I never really was in their office again, or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 824000
+			},
+			"text": " And the important thing about the claim structure in this standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 830000
+			},
+			"text": " is that the claim itself contains an actual signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 833000
+			},
+			"text": " And the beauty about having it in the smart contract and having a signature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 836000
+			},
+			"text": " that this could be any kind of signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 840000
+			},
+			"text": " And if you would make a registry with claims, then it's always the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 843000
+			},
+			"text": " always have to be an Ethereum signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " It's an Ethereum transaction, and this smart contract registry will determine"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 848000
+			},
+			"text": " how these claims are added."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 853000
+			},
+			"text": " But this is a really open container, because it can be all kind of different type of signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 854000
+			},
+			"text": " in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 855000
+			},
+			"text": " It doesn't need to be the theorem one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 857000
+			},
+			"text": " It could be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 863000
+			},
+			"text": " And it obviously contains the actual claim reference, or claim data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 865000
+			},
+			"text": " It really depends on what kind of claim it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 869000
+			},
+			"text": " Most of the cases you don't want to store any kind of actual data on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 876000
+			},
+			"text": " You don't want to store an actual claim, like maybe here you're the bytes of your photo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 878000
+			},
+			"text": " or maybe your actual address."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 884000
+			},
+			"text": " You only want to claim, add the claim with the reference to the actual data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887000
+			},
+			"text": " So the actual data will still sit somewhere else, and this is to be debated."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 894000
+			},
+			"text": " This could be sitting in swarm, IPFS, or this could be sitting with the company directly still."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 899000
+			},
+			"text": " But in some cases, it might be you want to have a bitmask, or something which actually says"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 908000
+			},
+			"text": " something about you right in the bytes of the claim, where there's more detailed claim details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 910000
+			},
+			"text": " so to say in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " So basically how this could look like in detail, how it's currently in the standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 919000
+			},
+			"text": " and because it's a smart contract standard, it's obviously code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 922000
+			},
+			"text": " We have a claim type, and the claim type, for example, says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 928000
+			},
+			"text": " maybe it's a claim type zero, one, two, three, four, five, maybe we say zero is the claim for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 933000
+			},
+			"text": " biometric data, and one could be the claim for an address."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 940000
+			},
+			"text": " So if I see you on your smart contract, you have a claim type zero and a claim type one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 944000
+			},
+			"text": " and they are both issued by an issue I trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 949000
+			},
+			"text": " Maybe it's the German government, and maybe it's the Deutsche Post, which knows your address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 957000
+			},
+			"text": " and I trust them, then the only thing I have to check is does the signature actually contains"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 962000
+			},
+			"text": " actually the holder address, which is the address of me in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 967000
+			},
+			"text": " It contains this number here, the claim type, and it contains this little data, and it comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 972000
+			},
+			"text": " out to an address which is still owned by the Deutsche Post or the German state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 976000
+			},
+			"text": " Then I know that claim was actually issued by the Deutsche Post or the German state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 983000
+			},
+			"text": " and as long as any external party trusts that issue, he can be completely confident that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 989000
+			},
+			"text": " you have an address and that you're a human, or maybe some kind of flesh thing, if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 995000
+			},
+			"text": " biometric data, and that might be fully enough to allow you access to something to issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1001000
+			},
+			"text": " credit or to issue an account or whatever you want to do in an automated process."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1008000
+			},
+			"text": " It's all about basically trusting the claim issuers, and it obviously depends on what"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " kind of issues this could be, and on the beginning this probably will be big institutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1018000
+			},
+			"text": " but in the future this could also be peer-to-peer networks or other kind of reputation systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1024000
+			},
+			"text": " or whatever the claim can be, it's completely open, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1029000
+			},
+			"text": " How would the process look like, and I have three minutes, so I have to go faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1035000
+			},
+			"text": " For example, like an off-chain example could be here, I'm walking around with my smartphone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1042000
+			},
+			"text": " simple use case, I want to get into a disco, and the guy has to prove that I'm over 18 or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1048000
+			},
+			"text": " so he would basically send me from his phone a random string, and this random string is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1054000
+			},
+			"text": " I can sign, and I will sign this random string plus my identity address and send it back to him,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1060000
+			},
+			"text": " he would be able to verify, okay this was signed by this key, and he signed my random string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1065000
+			},
+			"text": " so obviously he had the private key, he could sign it properly, and yes, there is his address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1072000
+			},
+			"text": " his identity, so he goes check on the blockchain, gets the claim he needs, or whatever claim that is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1080000
+			},
+			"text": " right, maybe it's the H, whatever, or an H certificate that's over 18 or so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1090000
+			},
+			"text": " he basically checks the claim, and this means he checks the signature, and goes and checks on the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1094000
+			},
+			"text": " connector of the issue, that actually the key he's designed with is still there, so this would be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1100000
+			},
+			"text": " power for the issue to remove the claim, even though that I might not agree to, so as long as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1111000
+			},
+			"text": " signature is correct and returns a address still owned by the issuer, this person here, the bouncer"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1118000
+			},
+			"text": " can be confident that this person is whatever the claim says it does, and it might be a very abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:47,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1127000
+			},
+			"text": " information, maybe just over 18, that doesn't even mean he's 20, 30, 50, or 110, it just says it's over 18,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1127000,
+				"to": 1135000
+			},
+			"text": " or he's allowed to just go in, for whatever reason, right, so you could do this in the off-chain world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1140000
+			},
+			"text": " basically by going around and signing messages all the time, and then people can always go to your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1145000
+			},
+			"text": " blockchain identity and check, hey, who is that person, does he have the right requirements, and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1152000
+			},
+			"text": " verify these kind of requirements, if I do this on the blockchain, I basically can act through my"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1158000
+			},
+			"text": " identity, I can call a function on another smart contract, and this could be the super important"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1165000
+			},
+			"text": " smart contract, and I really want to use that function, but this function requires to check some"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1171000
+			},
+			"text": " identity stuff, otherwise it can't be used, so the smart contract will automatically realize, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1177000
+			},
+			"text": " an identity is calling me, so I get the claim from this identity smart contract back, I will verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1184000
+			},
+			"text": " that, and then just write in the smart contract, go to the issues smart corner and check that key is still"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1190000
+			},
+			"text": " there, I know the key is still there, so it's a valid claim still attached here, I trust the issuer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1195000
+			},
+			"text": " I don't even need to know the actual data, most of the time we don't care about the actual data, I don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:20:02,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1202000
+			},
+			"text": " care what your name is or how you look like, until as long as I know that you are a person, and that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1202000,
+				"to": 1208000
+			},
+			"text": " a resident somewhere where it's, maybe it's a country or whatever, or maybe it's just enough to know that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1217000
+			},
+			"text": " have a residence at all, and that's it, I can continue with the execution of the super cool function in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1225000
+			},
+			"text": " so you can use this on chain, and you can use it off chain, and my time is off, and you can basically do"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1234000
+			},
+			"text": " really simple steps of actually two, three steps to completely verify the claim, and it's attached to my identity, so I'm full in control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1242000
+			},
+			"text": " and this allows basically all of these interesting things, and it combines these two little rather simple standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1247000
+			},
+			"text": " and it gives enough flexibility that all kind of experimentation can happen, so we can figure out what kind of claims"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1252000
+			},
+			"text": " we trust, how these claims can look like in detail, where they are stored, how could you even verify the claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1260000
+			},
+			"text": " actually can't make the NSCK snark proof outside of the blockchain, people can come up with all kind of systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1266000
+			},
+			"text": " they want to claim about each other, and as long as we follow the simple standard, we have that into our probability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1274000
+			},
+			"text": " which can create all of this network effect we see with ERC-20, for example, so it's all about discussing and coming to an agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1281000
+			},
+			"text": " what makes sense, start playing around and making a huge experimentation around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1288000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1301000
+			},
+			"text": " [music]"
+		}
+	]
+}

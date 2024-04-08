@@ -1,0 +1,1891 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,100"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20100
+			},
+			"text": " The next person up is Jan Schia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,100",
+				"to": "00:00:23,900"
+			},
+			"offsets": {
+				"from": 20100,
+				"to": 23900
+			},
+			"text": " He is going to speak on Ethereum on Ruby."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,900",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 23900,
+				"to": 27000
+			},
+			"text": " Welcome Jan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 30000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 37000
+			},
+			"text": " Allow me to take a picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 44000
+			},
+			"text": " Thank you for coming to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 48000
+			},
+			"text": " It's time for some simple stuff, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 53000
+			},
+			"text": " I believe the organizer arranged me after loud for some reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 60000
+			},
+			"text": " [ Laughter ] So yeah. Okay, in the next 15 minutes I'll introduce you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 65000
+			},
+			"text": " Iserimon Ruby, which is the intersection of Iserim community and Ruby community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 67000
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 73000
+			},
+			"text": " Before that, a little bit about myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 78000
+			},
+			"text": " My name is Sia Hanjian, and I'm an Iserim developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 86000
+			},
+			"text": " In last year I created the Ruby Serum project, which is a full implementation of Iserim in Ruby."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 89000
+			},
+			"text": " And I'm also working on Pi Serum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 94000
+			},
+			"text": " And I'm running a blockchain technology startup named Crypt Tape."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 99000
+			},
+			"text": " And we are building underlying permission ledger, and we are also providing some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 109000
+			},
+			"text": " consultancies to our customers. And during our daily job we build some tools to help"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 111000
+			},
+			"text": " we develop depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 114000
+			},
+			"text": " Okay, so a little bit about Ruby."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 122000
+			},
+			"text": " Ruby is a language created by a Japanese named Yukihiro Masamoto, whose nickname is Matt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 130000
+			},
+			"text": " And the core principle of Ruby language I think you can get from this guy's face."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " That's happiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 139000
+			},
+			"text": " So Ruby is a language designed for human."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " It's very focused on readability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 149000
+			},
+			"text": " So in one of his talk, in one of Matt's talk, the presentation title is optimized for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 157000
+			},
+			"text": " programmer happiness. So if you make a spectrum of languages, in the one side may be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " west, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " ASM. And in the other side is Ruby, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 172000
+			},
+			"text": " So it's all optimized for human, and the source code written in Ruby will read very"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " naturally, and we will see that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " And the other good point of Ruby is flexibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 186000
+			},
+			"text": " So a lot of people are using Ruby to define internal DSL, the main specific language."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " So the most famous one is Rails."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 198000
+			},
+			"text": " Rails is a DSL for web development, and I believe we can also use Ruby to define some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " DSL for smart country."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 212000
+			},
+			"text": " So we created testing and deployment framework for smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 219000
+			},
+			"text": " After you install tests, you can open your console and type some command line like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " like test new big theme, big theme, the name of your next big project."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 237000
+			},
+			"text": " And this command will generate you a lot of files and directories."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " And among the directories, the most important one are contracts and tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 248000
+			},
+			"text": " Contracts will include the generated contract template, and tests will include a generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " test template."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " And then you can do test generate token."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 258000
+			},
+			"text": " Token is the name of your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 263000
+			},
+			"text": " So you can name it whatever, but we use token, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 268000
+			},
+			"text": " And here's the generated file."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " On your left side, you can see that's a solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 281000
+			},
+			"text": " It's empty, and on your right hand is the generated test for the left side smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 284000
+			},
+			"text": " And the generated test is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 287000
+			},
+			"text": " It includes an example test."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 296000
+			},
+			"text": " So it just has a third equation of a third that the contract address is not new."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 302000
+			},
+			"text": " A third that the contract has been deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 303000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 310000
+			},
+			"text": " So this is just generated out from the tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 311000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:23,520"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 323520
+			},
+			"text": " Before we jump into a real smart contract test, you need to know some tools at your hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,520",
+				"to": "00:05:26,520"
+			},
+			"offsets": {
+				"from": 323520,
+				"to": 326520
+			},
+			"text": " You can use these keywords in your test."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,520",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 326520,
+				"to": 332000
+			},
+			"text": " So we have some, we have some tools related to contacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:33,840"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 333840
+			},
+			"text": " You can, you have access to state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,840",
+				"to": "00:05:36,160"
+			},
+			"offsets": {
+				"from": 333840,
+				"to": 336160
+			},
+			"text": " State is a collection of accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,160",
+				"to": "00:05:38,080"
+			},
+			"offsets": {
+				"from": 336160,
+				"to": 338080
+			},
+			"text": " And you have access to head."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,080",
+				"to": "00:05:45,120"
+			},
+			"offsets": {
+				"from": 338080,
+				"to": 345120
+			},
+			"text": " That is the most recent block of the chain, the current block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,120",
+				"to": "00:05:47,760"
+			},
+			"offsets": {
+				"from": 345120,
+				"to": 347760
+			},
+			"text": " And you have access to contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,760",
+				"to": "00:05:50,440"
+			},
+			"offsets": {
+				"from": 347760,
+				"to": 350440
+			},
+			"text": " Contract is the Ruby object."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,440",
+				"to": "00:05:54,960"
+			},
+			"offsets": {
+				"from": 350440,
+				"to": 354960
+			},
+			"text": " The test framework built for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,960",
+				"to": "00:05:59,720"
+			},
+			"offsets": {
+				"from": 354960,
+				"to": 359720
+			},
+			"text": " It's compiled from the solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,720",
+				"to": "00:06:03,560"
+			},
+			"offsets": {
+				"from": 359720,
+				"to": 363560
+			},
+			"text": " It extracts the ABI interface from the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,560",
+				"to": "00:06:07,280"
+			},
+			"offsets": {
+				"from": 363560,
+				"to": 367280
+			},
+			"text": " And the test framework will build a contract object for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,280",
+				"to": "00:06:13,320"
+			},
+			"offsets": {
+				"from": 367280,
+				"to": 373320
+			},
+			"text": " So you can use the object to do all kinds of things on the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,320",
+				"to": "00:06:16,720"
+			},
+			"offsets": {
+				"from": 373320,
+				"to": 376720
+			},
+			"text": " And you can take some actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,720",
+				"to": "00:06:19,560"
+			},
+			"offsets": {
+				"from": 376720,
+				"to": 379560
+			},
+			"text": " So you can transfer balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,560",
+				"to": "00:06:21,880"
+			},
+			"offsets": {
+				"from": 379560,
+				"to": 381880
+			},
+			"text": " You can transfer user between accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,880",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 381880,
+				"to": 386720
+			},
+			"text": " You can deploy contracts to the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 388000
+			},
+			"text": " Deploy is not implemented yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:30,280"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 390280
+			},
+			"text": " So it's in gray."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,280",
+				"to": "00:06:34,840"
+			},
+			"offsets": {
+				"from": 390280,
+				"to": 394840
+			},
+			"text": " And you can call all kinds of functions on the contract object."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,840",
+				"to": "00:06:40,360"
+			},
+			"offsets": {
+				"from": 394840,
+				"to": 400360
+			},
+			"text": " And there are some pre-generated, randomly generated accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,360",
+				"to": "00:06:45,840"
+			},
+			"offsets": {
+				"from": 400360,
+				"to": 405840
+			},
+			"text": " You can reference to them by using private keys, pop keys, addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,840",
+				"to": "00:06:52,520"
+			},
+			"offsets": {
+				"from": 405840,
+				"to": 412520
+			},
+			"text": " And as a tester yourself, you can reference to your own private key using private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,520",
+				"to": "00:06:54,320"
+			},
+			"offsets": {
+				"from": 412520,
+				"to": 414320
+			},
+			"text": " pop key, and address."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,320",
+				"to": "00:06:59,680"
+			},
+			"offsets": {
+				"from": 414320,
+				"to": 419680
+			},
+			"text": " And we also define aliases to these randomly generated accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,680",
+				"to": "00:07:08,840"
+			},
+			"offsets": {
+				"from": 419680,
+				"to": 428840
+			},
+			"text": " So you can use the well-known names like Alice, Bob, Carol, to reference to those generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,840",
+				"to": "00:07:12,400"
+			},
+			"offsets": {
+				"from": 428840,
+				"to": 432400
+			},
+			"text": " accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,400",
+				"to": "00:07:17,480"
+			},
+			"offsets": {
+				"from": 432400,
+				"to": 437480
+			},
+			"text": " So here's a real test."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,480",
+				"to": "00:07:22,560"
+			},
+			"offsets": {
+				"from": 437480,
+				"to": 442560
+			},
+			"text": " In the left, it's standard token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,560",
+				"to": "00:07:27,120"
+			},
+			"offsets": {
+				"from": 442560,
+				"to": 447120
+			},
+			"text": " The token contract has issue function, transfer function, and get balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,120",
+				"to": "00:07:32,280"
+			},
+			"offsets": {
+				"from": 447120,
+				"to": 452280
+			},
+			"text": " And on your right hand, it's the test for the corresponding contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,280",
+				"to": "00:07:38,840"
+			},
+			"offsets": {
+				"from": 452280,
+				"to": 458840
+			},
+			"text": " And you can say at the first line, we use a contract.issue.Bob, 100."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,840",
+				"to": "00:07:45,560"
+			},
+			"offsets": {
+				"from": 458840,
+				"to": 465560
+			},
+			"text": " And that means we invoke the issue function to issue Bob 100 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,560",
+				"to": "00:07:49,600"
+			},
+			"offsets": {
+				"from": 465560,
+				"to": 469600
+			},
+			"text": " And then we transfer Carol, 90 tokens, from Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,600",
+				"to": "00:08:00,320"
+			},
+			"offsets": {
+				"from": 469600,
+				"to": 480320
+			},
+			"text": " And then we make sure that the Carol's account has 19 tokens in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,320",
+				"to": "00:08:03,960"
+			},
+			"offsets": {
+				"from": 480320,
+				"to": 483960
+			},
+			"text": " And then we do the transfer again."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,960",
+				"to": "00:08:06,480"
+			},
+			"offsets": {
+				"from": 483960,
+				"to": 486480
+			},
+			"text": " We want to make sure that it can be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,480",
+				"to": "00:08:08,840"
+			},
+			"offsets": {
+				"from": 486480,
+				"to": 488840
+			},
+			"text": " It will raise some exceptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,840",
+				"to": "00:08:19,960"
+			},
+			"offsets": {
+				"from": 488840,
+				"to": 499960
+			},
+			"text": " So in the contract test, you can find one thing is that it's really -- the test is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,960",
+				"to": "00:08:22,800"
+			},
+			"offsets": {
+				"from": 499960,
+				"to": 502800
+			},
+			"text": " compact, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,800",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 502800,
+				"to": 506640
+			},
+			"text": " You don't -- there's no asynchronous in this test."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:28,160"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 508160
+			},
+			"text": " There's no callbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,160",
+				"to": "00:08:29,480"
+			},
+			"offsets": {
+				"from": 508160,
+				"to": 509480
+			},
+			"text": " There's no mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,480",
+				"to": "00:08:31,080"
+			},
+			"offsets": {
+				"from": 509480,
+				"to": 511080
+			},
+			"text": " You don't need to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,080",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 511080,
+				"to": 519000
+			},
+			"text": " You just write the test and you run the test just like you do in Java or C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:44,800"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 524800
+			},
+			"text": " It will run instantly and give you feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,800",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 524800,
+				"to": 535000
+			},
+			"text": " So we find this will speed up your development cycle largely because now you can trick with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:02,840"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 542840
+			},
+			"text": " the contract on the left side and then you just run your test and you get the result"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,840",
+				"to": "00:09:04,640"
+			},
+			"offsets": {
+				"from": 542840,
+				"to": 544640
+			},
+			"text": " from your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,640",
+				"to": "00:09:07,240"
+			},
+			"offsets": {
+				"from": 544640,
+				"to": 547240
+			},
+			"text": " You just return instantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,240",
+				"to": "00:09:14,960"
+			},
+			"offsets": {
+				"from": 547240,
+				"to": 554960
+			},
+			"text": " And when there's something wrong, you can go back to your code and do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,960",
+				"to": "00:09:23,280"
+			},
+			"offsets": {
+				"from": 554960,
+				"to": 563280
+			},
+			"text": " This feedback circle is much shorter than if you deploy a contract to test net or if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,280",
+				"to": "00:09:29,760"
+			},
+			"offsets": {
+				"from": 563280,
+				"to": 569760
+			},
+			"text": " use other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,760",
+				"to": "00:09:32,600"
+			},
+			"offsets": {
+				"from": 569760,
+				"to": 572600
+			},
+			"text": " And there's better stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,600",
+				"to": "00:09:38,400"
+			},
+			"offsets": {
+				"from": 572600,
+				"to": 578400
+			},
+			"text": " What if -- what if you forget to write the first line, you forget to issue Bob 100 tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,400",
+				"to": "00:09:42,240"
+			},
+			"offsets": {
+				"from": 578400,
+				"to": 582240
+			},
+			"text": " at first, but you just chance for Carol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,240",
+				"to": "00:09:46,040"
+			},
+			"offsets": {
+				"from": 582240,
+				"to": 586040
+			},
+			"text": " Now you will get a failure in test."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,040",
+				"to": "00:09:47,920"
+			},
+			"offsets": {
+				"from": 586040,
+				"to": 587920
+			},
+			"text": " Then what you do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,920",
+				"to": "00:09:52,360"
+			},
+			"offsets": {
+				"from": 587920,
+				"to": 592360
+			},
+			"text": " How do you debug this problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,360",
+				"to": "00:10:00,800"
+			},
+			"offsets": {
+				"from": 592360,
+				"to": 600800
+			},
+			"text": " In traditional programming context, we may find -- we may open some debugger, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,800",
+				"to": "00:10:05,240"
+			},
+			"offsets": {
+				"from": 600800,
+				"to": 605240
+			},
+			"text": " But someone said, \"Logger is the ultimate debugger."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,240",
+				"to": "00:10:08,600"
+			},
+			"offsets": {
+				"from": 605240,
+				"to": 608600
+			},
+			"text": " I don't remember whom.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,600",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 608600,
+				"to": 614000
+			},
+			"text": " And we find that in insolidity, we have log."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:21,120"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 621120
+			},
+			"text": " Although the log is some kind of different than the logger's log in traditional programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,120",
+				"to": "00:10:25,320"
+			},
+			"offsets": {
+				"from": 621120,
+				"to": 625320
+			},
+			"text": " world, but there's logger, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,320",
+				"to": "00:10:29,640"
+			},
+			"offsets": {
+				"from": 625320,
+				"to": 629640
+			},
+			"text": " So we can add a log."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,640",
+				"to": "00:10:37,440"
+			},
+			"offsets": {
+				"from": 629640,
+				"to": 637440
+			},
+			"text": " We can write a log in contracts and the test framework, when you run the test, the test"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,440",
+				"to": "00:10:46,800"
+			},
+			"offsets": {
+				"from": 637440,
+				"to": 646800
+			},
+			"text": " framework will print the log in your console so you can know what's happening in your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,800",
+				"to": "00:10:54,680"
+			},
+			"offsets": {
+				"from": 646800,
+				"to": 654680
+			},
+			"text": " You can know immediately if the address, too, is correct, pass in, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,680",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 654680,
+				"to": 663160
+			},
+			"text": " You can do all kinds of things to inspect your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:12,880"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 672880
+			},
+			"text": " And this is very important for debugging, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,880",
+				"to": "00:11:20,320"
+			},
+			"offsets": {
+				"from": 672880,
+				"to": 680320
+			},
+			"text": " In test by default, logs will be print to console, but events won't."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,320",
+				"to": "00:11:23,640"
+			},
+			"offsets": {
+				"from": 680320,
+				"to": 683640
+			},
+			"text": " Although events are also some kinds of logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,640",
+				"to": "00:11:30,240"
+			},
+			"offsets": {
+				"from": 683640,
+				"to": 690240
+			},
+			"text": " But you can trick those options to enable events printing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,240",
+				"to": "00:11:37,040"
+			},
+			"offsets": {
+				"from": 690240,
+				"to": 697040
+			},
+			"text": " So if you set print events to true, then if there's an event in your contract, you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,040",
+				"to": "00:11:43,040"
+			},
+			"offsets": {
+				"from": 697040,
+				"to": 703040
+			},
+			"text": " see the below lines like this in your console."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,040",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 703040,
+				"to": 712560
+			},
+			"text": " And here you can see the issue from account and amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:12:03,160"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 723160
+			},
+			"text": " And better, test is a language agnostic framework, so it also supports SERPAN."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,160",
+				"to": "00:12:12,200"
+			},
+			"offsets": {
+				"from": 723160,
+				"to": 732200
+			},
+			"text": " I don't know how many SERPAN developers here, but, whoa, italic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,200",
+				"to": "00:12:21,800"
+			},
+			"offsets": {
+				"from": 732200,
+				"to": 741800
+			},
+			"text": " But SERPAN is also a very good smart contract language."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,800",
+				"to": "00:12:30,120"
+			},
+			"offsets": {
+				"from": 741800,
+				"to": 750120
+			},
+			"text": " So the test is possible because we created Ruby Serum, which is a full implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,120",
+				"to": "00:12:33,920"
+			},
+			"offsets": {
+				"from": 750120,
+				"to": 753920
+			},
+			"text": " of a SERPAN protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,920",
+				"to": "00:12:35,600"
+			},
+			"offsets": {
+				"from": 753920,
+				"to": 755600
+			},
+			"text": " It includes a lot of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,600",
+				"to": "00:12:43,640"
+			},
+			"offsets": {
+				"from": 755600,
+				"to": 763640
+			},
+			"text": " So what behind test is test will compile the contracts and run the bytecode on Ruby"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,640",
+				"to": "00:12:46,040"
+			},
+			"offsets": {
+				"from": 763640,
+				"to": 766040
+			},
+			"text": " Serum virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,040",
+				"to": "00:12:54,200"
+			},
+			"offsets": {
+				"from": 766040,
+				"to": 774200
+			},
+			"text": " And it doesn't involve any mining and block creation, it just runs the code on VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,200",
+				"to": "00:12:55,480"
+			},
+			"offsets": {
+				"from": 774200,
+				"to": 775480
+			},
+			"text": " That's very simple, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,480",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 775480,
+				"to": 781000
+			},
+			"text": " So you can get instantaneous feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:09,720"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 789720
+			},
+			"text": " And at this time, Ruby Serum has evolved into many, has inspired many projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,720",
+				"to": "00:13:22,600"
+			},
+			"offsets": {
+				"from": 789720,
+				"to": 802600
+			},
+			"text": " So inside Ruby Serum, we have modules in charge of data, like block transaction, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,600",
+				"to": "00:13:27,880"
+			},
+			"offsets": {
+				"from": 802600,
+				"to": 807880
+			},
+			"text": " And EVM is a full implementation of EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,880",
+				"to": "00:13:34,720"
+			},
+			"offsets": {
+				"from": 807880,
+				"to": 814720
+			},
+			"text": " So there's people using the code inside Ruby Serum to extract ABI from contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,720",
+				"to": "00:13:40,440"
+			},
+			"offsets": {
+				"from": 814720,
+				"to": 820440
+			},
+			"text": " And there are also utilities like address, public key, private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,440",
+				"to": "00:13:46,640"
+			},
+			"offsets": {
+				"from": 820440,
+				"to": 826640
+			},
+			"text": " They are very convenient tools to help you convert data between address, public key and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,640",
+				"to": "00:13:48,560"
+			},
+			"offsets": {
+				"from": 826640,
+				"to": 828560
+			},
+			"text": " private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,560",
+				"to": "00:13:59,400"
+			},
+			"offsets": {
+				"from": 828560,
+				"to": 839400
+			},
+			"text": " And Ruby Serum also has many dependencies like RLP, search, SERPAN and SCCP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,400",
+				"to": "00:14:03,760"
+			},
+			"offsets": {
+				"from": 839400,
+				"to": 843760
+			},
+			"text": " And based on Ruby Serum, we are now building REST."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,760",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 843760,
+				"to": 848560
+			},
+			"text": " REST is a full Ruby client."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:12,520"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 852520
+			},
+			"text": " So it's some kind like a GoE Serum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,520",
+				"to": "00:14:20,440"
+			},
+			"offsets": {
+				"from": 852520,
+				"to": 860440
+			},
+			"text": " So besides Ruby Serum, we also need Ruby dev P2P, the network layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,440",
+				"to": "00:14:24,280"
+			},
+			"offsets": {
+				"from": 860440,
+				"to": 864280
+			},
+			"text": " Combined the network layer with Ruby Serum, we can build REST."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,280",
+				"to": "00:14:27,560"
+			},
+			"offsets": {
+				"from": 864280,
+				"to": 867560
+			},
+			"text": " And then we have test, the testing framework."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,560",
+				"to": "00:14:30,560"
+			},
+			"offsets": {
+				"from": 867560,
+				"to": 870560
+			},
+			"text": " And we have Ruby ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,560",
+				"to": "00:14:37,600"
+			},
+			"offsets": {
+				"from": 870560,
+				"to": 877600
+			},
+			"text": " Ruby ETH is a small tool extracted from, not extracted, but built based on Ruby Serum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,600",
+				"to": "00:14:41,120"
+			},
+			"offsets": {
+				"from": 877600,
+				"to": 881120
+			},
+			"text": " to help you create and sign transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,120",
+				"to": "00:14:50,240"
+			},
+			"offsets": {
+				"from": 881120,
+				"to": 890240
+			},
+			"text": " And we have ETH JSON RPC, which is a JSON RPC client, talked to Ethereum server, Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,240",
+				"to": "00:14:53,040"
+			},
+			"offsets": {
+				"from": 890240,
+				"to": 893040
+			},
+			"text": " node."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,040",
+				"to": "00:15:01,840"
+			},
+			"offsets": {
+				"from": 893040,
+				"to": 901840
+			},
+			"text": " And there are some projects extracted from Ruby Serum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,840",
+				"to": "00:15:04,240"
+			},
+			"offsets": {
+				"from": 901840,
+				"to": 904240
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,240",
+				"to": "00:15:06,480"
+			},
+			"offsets": {
+				"from": 904240,
+				"to": 906480
+			},
+			"text": " (applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,480",
+				"to": "00:15:08,480"
+			},
+			"offsets": {
+				"from": 906480,
+				"to": 908480
+			},
+			"text": " (applause)"
+		}
+	]
+}

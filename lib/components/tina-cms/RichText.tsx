@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import { Button } from "lib/components/button";
 import css from "./rich-text.module.scss";
+import Link from "next/link";
 
 const TwoColumns = (data: any) => {
   return (
-    <div className="grid grid-cols-2 gap-8 w-full">
+    <div className="grid md:grid-cols-2 gap-8 w-full grid-cols-1">
       <div className="grow">
         <TinaMarkdown content={data?.left} />
       </div>
@@ -15,12 +17,33 @@ const TwoColumns = (data: any) => {
   );
 };
 
+const Buttons = (data: any) => {
+  if (!data.Button) return null;
+
+  return (
+    <div className="flex gap-4">
+      {data.Button.map(({ text, url }: any) => {
+        if (!url || !text) return null;
+
+        return (
+          <Link href={url} key={text}>
+            <Button fat color="purple-1" fill>
+              {text}
+            </Button>
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
 export default ({ content }: { content: TinaMarkdownContent }) => {
   return (
     <div className={css["rich-text"]}>
       <TinaMarkdown
         components={{
           TwoColumns,
+          Buttons,
           img: (img: any) => {
             return (
               <div className="w-full relative">
@@ -36,7 +59,7 @@ export default ({ content }: { content: TinaMarkdownContent }) => {
           // p: ({ children }: any) => {
           //   return <div>{children}</div>;
           // },
-          // Different font sizes don't really make semantic sense as headers - we normalize all markdown headers to paragraphs, and will add header functionality separately
+          // Different font sizes don't really make semantic sense as headers - we normalize all markdown headers to paragraphs (so it's really just a size picker)
           h1: ({ children }: any) => {
             return (
               <p data-cms-header="h1" className="text-3xl">
@@ -60,23 +83,17 @@ export default ({ content }: { content: TinaMarkdownContent }) => {
           },
           h4: ({ children }: any) => {
             return (
-              <p data-cms-header="h4" className="text-lg">
-                {children}
-              </p>
+              <p /*data-cms-header="h4"*/ className="text-lg">{children}</p>
             );
           },
           h5: ({ children }: any) => {
             return (
-              <p data-cms-header="h5" className="text-base">
-                {children}
-              </p>
+              <p /*data-cms-header="h5"*/ className="text-base">{children}</p>
             );
           },
           h6: ({ children }: any) => {
             return (
-              <p data-cms-header="h6" className="text-base">
-                {children}
-              </p>
+              <p /*data-cms-header="h6"*/ className="text-sm">{children}</p>
             );
           },
         }}

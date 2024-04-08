@@ -1,0 +1,5510 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5360
+			},
+			"text": " Really, the point of this talk is how do you evaluate privacy in cryptocurrencies?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,360",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 5360,
+				"to": 7000
+			},
+			"text": " The point is not the shell Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:08,640"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 8640
+			},
+			"text": " I am one of the co-founders of Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,640",
+				"to": "00:00:13,040"
+			},
+			"offsets": {
+				"from": 8640,
+				"to": 13040
+			},
+			"text": " I am on the board of directors of the foundation, but that's not why I'm here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,040",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 13040,
+				"to": 18040
+			},
+			"text": " The point is that we as a community have done a very poor job evaluating privacy approaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:19,960"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 19960
+			},
+			"text": " for cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,960",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19960,
+				"to": 22000
+			},
+			"text": " And the problem is that we need to get better at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 27800
+			},
+			"text": " We need to get better at it now because at least one of these, Ethereum, Bitcoin, Zcash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,800",
+				"to": "00:00:31,880"
+			},
+			"offsets": {
+				"from": 27800,
+				"to": 31880
+			},
+			"text": " something none of us have ever heard of, maybe Dogecoin, I don't know, is going to be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,880",
+				"to": "00:00:32,880"
+			},
+			"offsets": {
+				"from": 31880,
+				"to": 32880
+			},
+			"text": " future of payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,880",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 32880,
+				"to": 35560
+			},
+			"text": " And it's going to take a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 38160
+			},
+			"text": " But at some point when this happens, we're going to realize that this is a major privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 39160
+			},
+			"text": " problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 43360
+			},
+			"text": " If we wait until then to actually address it, it will be far too late."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:48,480"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 48480
+			},
+			"text": " So I've been working on privacy in cryptocurrency since 2011 for precisely that reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,480",
+				"to": "00:00:51,720"
+			},
+			"offsets": {
+				"from": 48480,
+				"to": 51720
+			},
+			"text": " It wasn't clear to me that Bitcoin was going to succeed, but it was clear to me that if"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,720",
+				"to": "00:00:54,240"
+			},
+			"offsets": {
+				"from": 51720,
+				"to": 54240
+			},
+			"text": " it did, it was going to have a pretty big privacy problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,240",
+				"to": "00:00:57,080"
+			},
+			"offsets": {
+				"from": 54240,
+				"to": 57080
+			},
+			"text": " And at the time, everyone basically believed it was private."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,080",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 57080,
+				"to": 60240
+			},
+			"text": " This was sort of the best logic that everybody had."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 63080
+			},
+			"text": " And of course, we know now how laughable that is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 70000
+			},
+			"text": " Not only are there a bunch of academic research that identifies privacy flaws in Bitcoin and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,360"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73360
+			},
+			"text": " other cryptocurrencies, there are actually commercial companies in the business of doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,360",
+				"to": "00:01:15,760"
+			},
+			"offsets": {
+				"from": 73360,
+				"to": 75760
+			},
+			"text": " analytics and figuring out what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,760",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 75760,
+				"to": 77800
+			},
+			"text": " So this is laughable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:19,520"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 79520
+			},
+			"text": " Don't believe it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,520",
+				"to": "00:01:24,440"
+			},
+			"offsets": {
+				"from": 79520,
+				"to": 84440
+			},
+			"text": " In fact, far from being anonymous, it is in fact Twitter for your bank account, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,440",
+				"to": "00:01:28,320"
+			},
+			"offsets": {
+				"from": 84440,
+				"to": 88320
+			},
+			"text": " Your cryptocurrencies expose all of your spending habits to everybody, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,320",
+				"to": "00:01:30,160"
+			},
+			"offsets": {
+				"from": 88320,
+				"to": 90160
+			},
+			"text": " And by everybody, I mean everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,160",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 90160,
+				"to": 94200
+			},
+			"text": " Your creepy ex-girlfriend or boyfriend, your business competitors, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:37,120"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 97120
+			},
+			"text": " If you're trying to compete with someone, they can figure out what your supply chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,120",
+				"to": "00:01:41,800"
+			},
+			"offsets": {
+				"from": 97120,
+				"to": 101800
+			},
+			"text": " is, how much you're paying your employees, use that to poke some, et cetera, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,800",
+				"to": "00:01:42,800"
+			},
+			"offsets": {
+				"from": 101800,
+				"to": 102800
+			},
+			"text": " Everybody, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,800",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 102800,
+				"to": 106160
+			},
+			"text": " If you're a government, right, and you think you want, you don't want privacy for cryptocurrencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 110520
+			},
+			"text": " I think again, because there are other governments out there that don't like your government."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 114360
+			},
+			"text": " I don't care if you're the Chinese, the Russians, or the Americans somewhere in that triangle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 118400
+			},
+			"text": " there's someone out to get you, and they also would love to have economic information about"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 119400
+			},
+			"text": " how to cripple you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 123800
+			},
+			"text": " So nobody wants this information to be public to everybody, and it really is today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:06,600"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 126600
+			},
+			"text": " That's the nature of a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,600",
+				"to": "00:02:12,440"
+			},
+			"offsets": {
+				"from": 126600,
+				"to": 132440
+			},
+			"text": " And so as a result of this, there have been a lot of proposals on how to add some amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,440",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132440,
+				"to": 135000
+			},
+			"text": " of privacy to cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " And these range from very mundane systems that have no chance of actually working all"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:20,840"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 140840
+			},
+			"text": " the way up to very sophisticated ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,840",
+				"to": "00:02:23,840"
+			},
+			"offsets": {
+				"from": 140840,
+				"to": 143840
+			},
+			"text": " Zero cash on there was actually my doctoral thesis, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,840",
+				"to": "00:02:27,920"
+			},
+			"offsets": {
+				"from": 143840,
+				"to": 147920
+			},
+			"text": " It took me about five years to finish all the details of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,920",
+				"to": "00:02:30,040"
+			},
+			"offsets": {
+				"from": 147920,
+				"to": 150040
+			},
+			"text": " The question is, how will of these things work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,040",
+				"to": "00:02:33,560"
+			},
+			"offsets": {
+				"from": 150040,
+				"to": 153560
+			},
+			"text": " Because no matter who you are, if you're designing a cryptocurrency, at some point, you're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,560",
+				"to": "00:02:37,200"
+			},
+			"offsets": {
+				"from": 153560,
+				"to": 157200
+			},
+			"text": " to need to add privacy to it, and you're going to need to use one of these techniques or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,200",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 157200,
+				"to": 161680
+			},
+			"text": " something else that's come along, and you need to know if it's actually private."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:45,200"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 165200
+			},
+			"text": " And this is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,200",
+				"to": "00:02:47,480"
+			},
+			"offsets": {
+				"from": 165200,
+				"to": 167480
+			},
+			"text": " Evaluating privacy for cryptocurrencies is not easy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,480",
+				"to": "00:02:53,360"
+			},
+			"offsets": {
+				"from": 167480,
+				"to": 173360
+			},
+			"text": " To do it empirically would be akin to trying to evaluate privacy for the internet in 1992"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,360",
+				"to": "00:02:55,960"
+			},
+			"offsets": {
+				"from": 173360,
+				"to": 175960
+			},
+			"text": " when everything was just started, when the first things that were running were only yet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,960",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 175960,
+				"to": 177440
+			},
+			"text": " certain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 179280
+			},
+			"text": " We can't measure it empirically, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:03,800"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 183800
+			},
+			"text": " We don't have really real world usage that isn't just speculative, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,800",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 183800,
+				"to": 185400
+			},
+			"text": " We don't have day-to-day usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 190120
+			},
+			"text": " We don't have this rich tapestry of data where I buy a coffee, I go to the subway, I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:13,520"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 193520
+			},
+			"text": " check into the metro, then I buy stuff at lunch, which has some structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,520",
+				"to": "00:03:16,360"
+			},
+			"offsets": {
+				"from": 193520,
+				"to": 196360
+			},
+			"text": " None of that exists, so there is no way to do this empirically."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:19,920"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 199920
+			},
+			"text": " And moreover, I, as a researcher, even what little data there is out there, I don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,920",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 199920,
+				"to": 200920
+			},
+			"text": " access to, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:24,560"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 204560
+			},
+			"text": " I have budgetary limitations, I have ethics limitations, I can't buy these third-party"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,560",
+				"to": "00:03:27,720"
+			},
+			"offsets": {
+				"from": 204560,
+				"to": 207720
+			},
+			"text": " data sets that channelisists and other people use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,720",
+				"to": "00:03:31,560"
+			},
+			"offsets": {
+				"from": 207720,
+				"to": 211560
+			},
+			"text": " So we really have no way to do this empirically, and as a result, what we have to do is we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,560",
+				"to": "00:03:33,280"
+			},
+			"offsets": {
+				"from": 211560,
+				"to": 213280
+			},
+			"text": " to result to thought experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,280",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 213280,
+				"to": 217000
+			},
+			"text": " This is somewhat unsatisfactory because it's not in POCO evidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:39,200"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 219200
+			},
+			"text": " It's very easy to accuse people of being biased."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,200",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 219200,
+				"to": 223440
+			},
+			"text": " At some point, Twitter will probably start going on about that as people start tweeting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:47,080"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 227080
+			},
+			"text": " slides right now about me, but it's the only thing we have, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,080",
+				"to": "00:03:51,240"
+			},
+			"offsets": {
+				"from": 227080,
+				"to": 231240
+			},
+			"text": " And to do that, you need to understand what attacks really look like, and we need to look"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,240",
+				"to": "00:03:56,360"
+			},
+			"offsets": {
+				"from": 231240,
+				"to": 236360
+			},
+			"text": " to other things where you've had privacy problems as inspiration, because we're looking 10, 20"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,360",
+				"to": "00:03:59,600"
+			},
+			"offsets": {
+				"from": 236360,
+				"to": 239600
+			},
+			"text": " years down the line for this, and so we can't look at cryptocurrency today to find out what"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,600",
+				"to": "00:04:03,680"
+			},
+			"offsets": {
+				"from": 239600,
+				"to": 243680
+			},
+			"text": " the problems are going to be in 10 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,680",
+				"to": "00:04:05,520"
+			},
+			"offsets": {
+				"from": 243680,
+				"to": 245520
+			},
+			"text": " And so what are real-world threats?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,520",
+				"to": "00:04:10,320"
+			},
+			"offsets": {
+				"from": 245520,
+				"to": 250320
+			},
+			"text": " Well, the easiest thing to look at is what advertisers do with payment data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,320",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 250320,
+				"to": 254640
+			},
+			"text": " So you've seen advertisers such as Google collecting all kinds of data about payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:18,960"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 258960
+			},
+			"text": " you make, not just online, but these are actually trying to get real-world payments you make"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,960",
+				"to": "00:04:24,200"
+			},
+			"offsets": {
+				"from": 258960,
+				"to": 264200
+			},
+			"text": " when you walk into Walmart or all the year of something and try to make a purchase."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,200",
+				"to": "00:04:27,320"
+			},
+			"offsets": {
+				"from": 264200,
+				"to": 267320
+			},
+			"text": " And Google's gotten a lot of headlines about this because, hey, Google is evil."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,320",
+				"to": "00:04:28,600"
+			},
+			"offsets": {
+				"from": 267320,
+				"to": 268600
+			},
+			"text": " It's a very good one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,600",
+				"to": "00:04:31,040"
+			},
+			"offsets": {
+				"from": 268600,
+				"to": 271040
+			},
+			"text": " But the reality of the matter is everybody's doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,040",
+				"to": "00:04:33,680"
+			},
+			"offsets": {
+				"from": 271040,
+				"to": 273680
+			},
+			"text": " And in fact, Google is probably one of the more scrupulous people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,680",
+				"to": "00:04:36,960"
+			},
+			"offsets": {
+				"from": 273680,
+				"to": 276960
+			},
+			"text": " At the moment that they're doing it, you can be assured that there are people doing far"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,960",
+				"to": "00:04:40,120"
+			},
+			"offsets": {
+				"from": 276960,
+				"to": 280120
+			},
+			"text": " sketchy of things with this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,120",
+				"to": "00:04:41,480"
+			},
+			"offsets": {
+				"from": 280120,
+				"to": 281480
+			},
+			"text": " And what can you do with it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,480",
+				"to": "00:04:44,080"
+			},
+			"offsets": {
+				"from": 281480,
+				"to": 284080
+			},
+			"text": " Well, one thing that actually is a pretty old story."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,080",
+				"to": "00:04:48,280"
+			},
+			"offsets": {
+				"from": 284080,
+				"to": 288280
+			},
+			"text": " You can use payment shopping data to figure out, for example, when someone is pregnant."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,280",
+				"to": "00:04:53,320"
+			},
+			"offsets": {
+				"from": 288280,
+				"to": 293320
+			},
+			"text": " This case, you can target was building up profiles based on customer loyalty cards of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,320",
+				"to": "00:04:54,640"
+			},
+			"offsets": {
+				"from": 293320,
+				"to": 294640
+			},
+			"text": " who bought what."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,640",
+				"to": "00:05:00,120"
+			},
+			"offsets": {
+				"from": 294640,
+				"to": 300120
+			},
+			"text": " And then they would identify, for example, pregnant women and send them ads for baby products."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,120",
+				"to": "00:05:04,520"
+			},
+			"offsets": {
+				"from": 300120,
+				"to": 304520
+			},
+			"text": " And in this particular case, they did this to a teenager, Cynthia adds to our house."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,520",
+				"to": "00:05:05,840"
+			},
+			"offsets": {
+				"from": 304520,
+				"to": 305840
+			},
+			"text": " Her father saw them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,840",
+				"to": "00:05:11,320"
+			},
+			"offsets": {
+				"from": 305840,
+				"to": 311320
+			},
+			"text": " And from there, well, father found out that her daughter was having sex and was pregnant."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,320",
+				"to": "00:05:12,840"
+			},
+			"offsets": {
+				"from": 311320,
+				"to": 312840
+			},
+			"text": " Kind of a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,840",
+				"to": "00:05:14,840"
+			},
+			"offsets": {
+				"from": 312840,
+				"to": 314840
+			},
+			"text": " And so this is the kind of thing we're looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,840",
+				"to": "00:05:18,960"
+			},
+			"offsets": {
+				"from": 314840,
+				"to": 318960
+			},
+			"text": " And in fact, we've seen stuff closer to home with payment systems where Venmo, which for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,960",
+				"to": "00:05:23,680"
+			},
+			"offsets": {
+				"from": 318960,
+				"to": 323680
+			},
+			"text": " those of you who don't know, Venmo is a way that you can pay your friends, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,680",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 323680,
+				"to": 328240
+			},
+			"text": " for dinner, common in the States when we don't have very effective payment systems like European"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:29,240"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 329240
+			},
+			"text": " banking."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,240",
+				"to": "00:05:35,080"
+			},
+			"offsets": {
+				"from": 329240,
+				"to": 335080
+			},
+			"text": " But anyway, Venmo, US startup, had a social feed because everything is social these days"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,080",
+				"to": "00:05:39,440"
+			},
+			"offsets": {
+				"from": 335080,
+				"to": 339440
+			},
+			"text": " of payments you made, of who, from who, to who, and why."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,440",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339440,
+				"to": 341000
+			},
+			"text": " And this was by default public."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,600"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344600
+			},
+			"text": " And so people found out about this and started writing things like here, he was a nice guy"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,600",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344600,
+				"to": 348000
+			},
+			"text": " to how to stock your ex-boyfriend."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:49,800"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 349800
+			},
+			"text": " And of course, this is kind of cute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,800",
+				"to": "00:05:51,520"
+			},
+			"offsets": {
+				"from": 349800,
+				"to": 351520
+			},
+			"text": " It's got a fun, laughy picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,520",
+				"to": "00:05:55,640"
+			},
+			"offsets": {
+				"from": 351520,
+				"to": 355640
+			},
+			"text": " But if I flipped the genders on this or really gave it any kind of appropriate treatment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,640",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 355640,
+				"to": 357520
+			},
+			"text": " you'd realize this is completely creepy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 361000
+			},
+			"text": " And this is really someone actually doing this, not tongue in cheek."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,200"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364200
+			},
+			"text": " And so no later, if we keep doing this, you end up with the same thing, but how to stock"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,200",
+				"to": "00:06:09,480"
+			},
+			"offsets": {
+				"from": 364200,
+				"to": 369480
+			},
+			"text": " your ex using Ethereum or Bitcoin or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,480",
+				"to": "00:06:11,240"
+			},
+			"offsets": {
+				"from": 369480,
+				"to": 371240
+			},
+			"text": " And this is the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,240",
+				"to": "00:06:12,240"
+			},
+			"offsets": {
+				"from": 371240,
+				"to": 372240
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,240",
+				"to": "00:06:16,600"
+			},
+			"offsets": {
+				"from": 372240,
+				"to": 376600
+			},
+			"text": " So when I said cryptocurrency was Twitter for your bank account, it's an accurate statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,600",
+				"to": "00:06:18,840"
+			},
+			"offsets": {
+				"from": 376600,
+				"to": 378840
+			},
+			"text": " but it doesn't entirely tell you how things go wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,840",
+				"to": "00:06:23,200"
+			},
+			"offsets": {
+				"from": 378840,
+				"to": 383200
+			},
+			"text": " And I think one of the things you should think of is that it's a tracking cookie in real life."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,200",
+				"to": "00:06:24,200"
+			},
+			"offsets": {
+				"from": 383200,
+				"to": 384200
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,200",
+				"to": "00:06:26,280"
+			},
+			"offsets": {
+				"from": 384200,
+				"to": 386280
+			},
+			"text": " So we're used to these notions of we are tracked on the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,280",
+				"to": "00:06:30,640"
+			},
+			"offsets": {
+				"from": 386280,
+				"to": 390640
+			},
+			"text": " Everything we do on a day-to-day basis is cataloged by Google, by double click, by Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,640",
+				"to": "00:06:36,560"
+			},
+			"offsets": {
+				"from": 390640,
+				"to": 396560
+			},
+			"text": " Well, cryptocurrency takes that and it's like Web 3.0, but in reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,560",
+				"to": "00:06:39,480"
+			},
+			"offsets": {
+				"from": 396560,
+				"to": 399480
+			},
+			"text": " And this is clearly incredibly problematic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,480",
+				"to": "00:06:43,560"
+			},
+			"offsets": {
+				"from": 399480,
+				"to": 403560
+			},
+			"text": " So we really need to get this to work to stop this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,560",
+				"to": "00:06:44,560"
+			},
+			"offsets": {
+				"from": 403560,
+				"to": 404560
+			},
+			"text": " And so how do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,560",
+				"to": "00:06:45,800"
+			},
+			"offsets": {
+				"from": 404560,
+				"to": 405800
+			},
+			"text": " What are the defenses?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,800",
+				"to": "00:06:50,280"
+			},
+			"offsets": {
+				"from": 405800,
+				"to": 410280
+			},
+			"text": " Well, the first thing, if you take nothing else from this talk, is that in a world of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,280",
+				"to": "00:06:54,320"
+			},
+			"offsets": {
+				"from": 410280,
+				"to": 414320
+			},
+			"text": " AI, social credit systems, you've probably seen that video going around on Twitter from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,320",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 414320,
+				"to": 419760
+			},
+			"text": " the train in China, and targeted advertising, plausible deniability is not a plausible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:00,760"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 420760
+			},
+			"text": " defense."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,760",
+				"to": "00:07:01,760"
+			},
+			"offsets": {
+				"from": 420760,
+				"to": 421760
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,760",
+				"to": "00:07:06,440"
+			},
+			"offsets": {
+				"from": 421760,
+				"to": 426440
+			},
+			"text": " So the original model for privacy in Bitcoin in particular was this idea of if someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,440",
+				"to": "00:07:10,080"
+			},
+			"offsets": {
+				"from": 426440,
+				"to": 430080
+			},
+			"text": " shows up and says, \"Hey, did you buy weed at a corner store?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,080",
+				"to": "00:07:13,680"
+			},
+			"offsets": {
+				"from": 430080,
+				"to": 433680
+			},
+			"text": " or whatever, you can point to it and go, \"Oh, well, you can't prove that transaction was"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:14,680"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 434680
+			},
+			"text": " mine.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,680",
+				"to": "00:07:18,720"
+			},
+			"offsets": {
+				"from": 434680,
+				"to": 438720
+			},
+			"text": " And this is sort of the kind of mentality that someone who lives in their parents' basement"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,720",
+				"to": "00:07:22,360"
+			},
+			"offsets": {
+				"from": 438720,
+				"to": 442360
+			},
+			"text": " and has been mining cryptocurrency and what they used to use to play Counter Strike would"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,360",
+				"to": "00:07:23,360"
+			},
+			"offsets": {
+				"from": 442360,
+				"to": 443360
+			},
+			"text": " come up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,360",
+				"to": "00:07:24,360"
+			},
+			"offsets": {
+				"from": 443360,
+				"to": 444360
+			},
+			"text": " But it doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,360",
+				"to": "00:07:25,360"
+			},
+			"offsets": {
+				"from": 444360,
+				"to": 445360
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,360",
+				"to": "00:07:28,200"
+			},
+			"offsets": {
+				"from": 445360,
+				"to": 448200
+			},
+			"text": " It doesn't work in reality now, and it didn't work in reality then, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,200",
+				"to": "00:07:32,360"
+			},
+			"offsets": {
+				"from": 448200,
+				"to": 452360
+			},
+			"text": " Because, look, if the police are going to show up at your door and ask you what you're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,360",
+				"to": "00:07:34,360"
+			},
+			"offsets": {
+				"from": 452360,
+				"to": 454360
+			},
+			"text": " plausible deniability isn't going to get you out of a search warrant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,360",
+				"to": "00:07:36,040"
+			},
+			"offsets": {
+				"from": 454360,
+				"to": 456040
+			},
+			"text": " Is it going to get you out of what they find on the search?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,040",
+				"to": "00:07:39,920"
+			},
+			"offsets": {
+				"from": 456040,
+				"to": 459920
+			},
+			"text": " This is not a good way to do ops-second, anyway, shape or form, but it was what people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,920",
+				"to": "00:07:40,920"
+			},
+			"offsets": {
+				"from": 459920,
+				"to": 460920
+			},
+			"text": " were trying to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,920",
+				"to": "00:07:42,400"
+			},
+			"offsets": {
+				"from": 460920,
+				"to": 462400
+			},
+			"text": " So don't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,400",
+				"to": "00:07:45,800"
+			},
+			"offsets": {
+				"from": 462400,
+				"to": 465800
+			},
+			"text": " Do something at least slightly better."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,800",
+				"to": "00:07:49,800"
+			},
+			"offsets": {
+				"from": 465800,
+				"to": 469800
+			},
+			"text": " And the problem with what is better is that blockchain privacy is, in fact, not intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,800",
+				"to": "00:07:50,800"
+			},
+			"offsets": {
+				"from": 469800,
+				"to": 470800
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,800",
+				"to": "00:07:55,480"
+			},
+			"offsets": {
+				"from": 470800,
+				"to": 475480
+			},
+			"text": " Cryptocurrency's broadcast all of your transactions to everybody, and this is the thing that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,480",
+				"to": "00:07:59,360"
+			},
+			"offsets": {
+				"from": 475480,
+				"to": 479360
+			},
+			"text": " sort of revolt on, like you had a gag in your mouth and go, \"Well, we got to fix that.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,360",
+				"to": "00:08:04,520"
+			},
+			"offsets": {
+				"from": 479360,
+				"to": 484520
+			},
+			"text": " And it actually turns out to be easy enough to obscure the data on a blockchain from passive"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,520",
+				"to": "00:08:07,280"
+			},
+			"offsets": {
+				"from": 484520,
+				"to": 487280
+			},
+			"text": " observers who have nothing to do with you and know nothing about you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,280",
+				"to": "00:08:10,480"
+			},
+			"offsets": {
+				"from": 487280,
+				"to": 490480
+			},
+			"text": " It's not easy to do perfectly, but you can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,480",
+				"to": "00:08:12,480"
+			},
+			"offsets": {
+				"from": 490480,
+				"to": 492480
+			},
+			"text": " But that's not who you need privacy from."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,480",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492480,
+				"to": 497000
+			},
+			"text": " You need privacy from people who send you payments, and people you send payments to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 498000
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 499000
+			},
+			"text": " Merchants."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 500000
+			},
+			"text": " You don't want to be able to track you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:23,760"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 503760
+			},
+			"text": " You don't want people to identify you based on putting payment information up online."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,760",
+				"to": "00:08:30,120"
+			},
+			"offsets": {
+				"from": 503760,
+				"to": 510120
+			},
+			"text": " And once you get to that, hiding transaction values, confidential transactions, or whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,120",
+				"to": "00:08:31,600"
+			},
+			"offsets": {
+				"from": 510120,
+				"to": 511600
+			},
+			"text": " or hiding your IP addresses in an off."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,600",
+				"to": "00:08:33,040"
+			},
+			"offsets": {
+				"from": 511600,
+				"to": 513040
+			},
+			"text": " You need to hide the transaction graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,040",
+				"to": "00:08:38,160"
+			},
+			"offsets": {
+				"from": 513040,
+				"to": 518160
+			},
+			"text": " And this turns out to be really what a lot of the more promising things in here focus"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,160",
+				"to": "00:08:40,880"
+			},
+			"offsets": {
+				"from": 518160,
+				"to": 520880
+			},
+			"text": " on, but even then they don't do that good a job."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,880",
+				"to": "00:08:41,880"
+			},
+			"offsets": {
+				"from": 520880,
+				"to": 521880
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,880",
+				"to": "00:08:45,240"
+			},
+			"offsets": {
+				"from": 521880,
+				"to": 525240
+			},
+			"text": " So there's sort of three sets of approaches to privacy you can think of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,240",
+				"to": "00:08:49,920"
+			},
+			"offsets": {
+				"from": 525240,
+				"to": 529920
+			},
+			"text": " There's Bitcoin, Ethereum, et cetera, where you just explicitly identify the origin of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,920",
+				"to": "00:08:52,480"
+			},
+			"offsets": {
+				"from": 529920,
+				"to": 532480
+			},
+			"text": " your payment, either the UTXO or the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,480",
+				"to": "00:08:54,240"
+			},
+			"offsets": {
+				"from": 532480,
+				"to": 534240
+			},
+			"text": " This leaks the transaction graph completely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,240",
+				"to": "00:08:55,240"
+			},
+			"offsets": {
+				"from": 534240,
+				"to": 535240
+			},
+			"text": " There is no privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,240",
+				"to": "00:08:56,240"
+			},
+			"offsets": {
+				"from": 535240,
+				"to": 536240
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,240",
+				"to": "00:09:00,480"
+			},
+			"offsets": {
+				"from": 536240,
+				"to": 540480
+			},
+			"text": " Then there are the so-called decoy transaction based systems which try to obscure the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,480",
+				"to": "00:09:01,480"
+			},
+			"offsets": {
+				"from": 540480,
+				"to": 541480
+			},
+			"text": " graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,480",
+				"to": "00:09:05,560"
+			},
+			"offsets": {
+				"from": 541480,
+				"to": 545560
+			},
+			"text": " These look like something where you pick five possible decoy sources and say, \"Look, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,560",
+				"to": "00:09:10,160"
+			},
+			"offsets": {
+				"from": 545560,
+				"to": 550160
+			},
+			"text": " is the real origin for my payment, but hero five other things which it could have been,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,160",
+				"to": "00:09:11,520"
+			},
+			"offsets": {
+				"from": 550160,
+				"to": 551520
+			},
+			"text": " and no one knows which one's which."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,520",
+				"to": "00:09:14,120"
+			},
+			"offsets": {
+				"from": 551520,
+				"to": 554120
+			},
+			"text": " It's just sort of a mess.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,120",
+				"to": "00:09:18,720"
+			},
+			"offsets": {
+				"from": 554120,
+				"to": 558720
+			},
+			"text": " And this looks like coin join, mimble, wimble, et cetera, or crypto, no ring CT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,720",
+				"to": "00:09:19,720"
+			},
+			"offsets": {
+				"from": 558720,
+				"to": 559720
+			},
+			"text": " monero."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,720",
+				"to": "00:09:20,880"
+			},
+			"offsets": {
+				"from": 559720,
+				"to": 560880
+			},
+			"text": " And so that's one set of approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,880",
+				"to": "00:09:23,960"
+			},
+			"offsets": {
+				"from": 560880,
+				"to": 563960
+			},
+			"text": " And then finally, though, the approaches of zero coin and zero cash, which are deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,960",
+				"to": "00:09:28,200"
+			},
+			"offsets": {
+				"from": 563960,
+				"to": 568200
+			},
+			"text": " in a couple of different cryptocurrencies, where you don't identify the origin at all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,200",
+				"to": "00:09:31,880"
+			},
+			"offsets": {
+				"from": 568200,
+				"to": 571880
+			},
+			"text": " and you have no transaction graph to recover, at least if you use the privacy preserving"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,880",
+				"to": "00:09:32,880"
+			},
+			"offsets": {
+				"from": 571880,
+				"to": 572880
+			},
+			"text": " transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,880",
+				"to": "00:09:33,880"
+			},
+			"offsets": {
+				"from": 572880,
+				"to": 573880
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,880",
+				"to": "00:09:34,880"
+			},
+			"offsets": {
+				"from": 573880,
+				"to": 574880
+			},
+			"text": " So what does this look like visually?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,880",
+				"to": "00:09:41,240"
+			},
+			"offsets": {
+				"from": 574880,
+				"to": 581240
+			},
+			"text": " Well, in Bitcoin, if you're paying a merchant, you have to identify the exact origin."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,240",
+				"to": "00:09:45,360"
+			},
+			"offsets": {
+				"from": 581240,
+				"to": 585360
+			},
+			"text": " In decoy-based systems such as Monero, same thing, you have to identify the origin, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,360",
+				"to": "00:09:48,280"
+			},
+			"offsets": {
+				"from": 585360,
+				"to": 588280
+			},
+			"text": " it hides amongst a couple of different locations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,280",
+				"to": "00:09:49,440"
+			},
+			"offsets": {
+				"from": 588280,
+				"to": 589440
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,440",
+				"to": "00:09:52,080"
+			},
+			"offsets": {
+				"from": 589440,
+				"to": 592080
+			},
+			"text": " And then that's sort of, this is what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,080",
+				"to": "00:09:53,080"
+			},
+			"offsets": {
+				"from": 592080,
+				"to": 593080
+			},
+			"text": " You're adding noise, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,080",
+				"to": "00:09:54,080"
+			},
+			"offsets": {
+				"from": 593080,
+				"to": 594080
+			},
+			"text": " It's chaff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,080",
+				"to": "00:09:57,320"
+			},
+			"offsets": {
+				"from": 594080,
+				"to": 597320
+			},
+			"text": " The real transaction is somewhere in there, but hopefully if you don't have very good"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,320",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 597320,
+				"to": 600680
+			},
+			"text": " vision, you can't figure out where it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:05,040"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 605040
+			},
+			"text": " And then there are things like zero cash, decash where this data just is not there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,040",
+				"to": "00:10:06,040"
+			},
+			"offsets": {
+				"from": 605040,
+				"to": 606040
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,040",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 606040,
+				"to": 609320
+			},
+			"text": " And so we know that Bitcoin isn't private."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:12,560"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 612560
+			},
+			"text": " There's been a lot of analysis on zero cash, both academically and empirically."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,560",
+				"to": "00:10:17,120"
+			},
+			"offsets": {
+				"from": 612560,
+				"to": 617120
+			},
+			"text": " We know that the privacy holds up if you use the shielded features and use them well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,120",
+				"to": "00:10:19,880"
+			},
+			"offsets": {
+				"from": 617120,
+				"to": 619880
+			},
+			"text": " The question is, do these decoy-based approaches work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,880",
+				"to": "00:10:22,320"
+			},
+			"offsets": {
+				"from": 619880,
+				"to": 622320
+			},
+			"text": " And spoiler is the answer is no."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,320",
+				"to": "00:10:24,520"
+			},
+			"offsets": {
+				"from": 622320,
+				"to": 624520
+			},
+			"text": " But are they private?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,520",
+				"to": "00:10:28,120"
+			},
+			"offsets": {
+				"from": 624520,
+				"to": 628120
+			},
+			"text": " And the reason they aren't is because there's some interesting structure you can get out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,120",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 628120,
+				"to": 630000
+			},
+			"text": " of this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,240"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635240
+			},
+			"text": " When you make a payment to a merchant, what they see is not these three decoys."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,240",
+				"to": "00:10:38,400"
+			},
+			"offsets": {
+				"from": 635240,
+				"to": 638400
+			},
+			"text": " They see those decoys and their possible origins as well, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,400",
+				"to": "00:10:41,240"
+			},
+			"offsets": {
+				"from": 638400,
+				"to": 641240
+			},
+			"text": " There's, you know, each payment has a possible source."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,240",
+				"to": "00:10:44,080"
+			},
+			"offsets": {
+				"from": 641240,
+				"to": 644080
+			},
+			"text": " Each one of those is three possible sources of five or 11 or whatever it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,080",
+				"to": "00:10:47,640"
+			},
+			"offsets": {
+				"from": 644080,
+				"to": 647640
+			},
+			"text": " And it sort of fans out backwards and this sort of tree of possible things that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,640",
+				"to": "00:10:49,200"
+			},
+			"offsets": {
+				"from": 647640,
+				"to": 649200
+			},
+			"text": " were an interacted with, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,200",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 649200,
+				"to": 652240
+			},
+			"text": " You can call it like a, think of it as a taint tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:54,080"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 654080
+			},
+			"text": " And you can also use this going forwards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,080",
+				"to": "00:10:57,440"
+			},
+			"offsets": {
+				"from": 654080,
+				"to": 657440
+			},
+			"text": " If I pay a merchant, right, I see where the money goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,440",
+				"to": "00:10:59,720"
+			},
+			"offsets": {
+				"from": 657440,
+				"to": 659720
+			},
+			"text": " And then I see everyone who tries to spend that dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,720",
+				"to": "00:11:02,040"
+			},
+			"offsets": {
+				"from": 659720,
+				"to": 662040
+			},
+			"text": " And some of those people are going to be spending it as a decoy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,040",
+				"to": "00:11:03,560"
+			},
+			"offsets": {
+				"from": 662040,
+				"to": 663560
+			},
+			"text": " It won't be legitimately theirs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,560",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 663560,
+				"to": 665000
+			},
+			"text": " But one of those will be the merchants."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:06,680"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 666680
+			},
+			"text": " And again, this fans out, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,680",
+				"to": "00:11:08,320"
+			},
+			"offsets": {
+				"from": 666680,
+				"to": 668320
+			},
+			"text": " There are three possible things that were spent in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,320",
+				"to": "00:11:10,400"
+			},
+			"offsets": {
+				"from": 668320,
+				"to": 670400
+			},
+			"text": " Each one of those has three possible things that were spent in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,400",
+				"to": "00:11:11,480"
+			},
+			"offsets": {
+				"from": 670400,
+				"to": 671480
+			},
+			"text": " And then we just keep going forwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,480",
+				"to": "00:11:15,320"
+			},
+			"offsets": {
+				"from": 671480,
+				"to": 675320
+			},
+			"text": " So it's cone going back, cone going forwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,320",
+				"to": "00:11:21,360"
+			},
+			"offsets": {
+				"from": 675320,
+				"to": 681360
+			},
+			"text": " And so this has a couple of immediate problems that should make it clear that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,360",
+				"to": "00:11:22,400"
+			},
+			"offsets": {
+				"from": 681360,
+				"to": 682400
+			},
+			"text": " things are not what you think."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,400",
+				"to": "00:11:24,240"
+			},
+			"offsets": {
+				"from": 682400,
+				"to": 684240
+			},
+			"text": " Things are not completely private, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,240",
+				"to": "00:11:27,160"
+			},
+			"offsets": {
+				"from": 684240,
+				"to": 687160
+			},
+			"text": " And so the most obvious one is what I'm going to call an overseer attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,160",
+				"to": "00:11:31,240"
+			},
+			"offsets": {
+				"from": 687160,
+				"to": 691240
+			},
+			"text": " which is suppose you're a merchant, say you're Starbucks, and you have someone coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,240",
+				"to": "00:11:33,760"
+			},
+			"offsets": {
+				"from": 691240,
+				"to": 693760
+			},
+			"text": " in and buying coffee every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,760",
+				"to": "00:11:36,800"
+			},
+			"offsets": {
+				"from": 693760,
+				"to": 696800
+			},
+			"text": " And they're buying it with a cryptocurrency that's private, should Starbucks be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,800",
+				"to": "00:11:39,360"
+			},
+			"offsets": {
+				"from": 696800,
+				"to": 699360
+			},
+			"text": " to build a profile of how much caffeine you're drinking on a week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,360",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 699360,
+				"to": 703000
+			},
+			"text": " maybe sell it to your health insurance company or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 704000
+			},
+			"text": " Ideally, no, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:46,440"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 706440
+			},
+			"text": " Privacy should mean that it's possible they learn nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,440",
+				"to": "00:11:47,760"
+			},
+			"offsets": {
+				"from": 706440,
+				"to": 707760
+			},
+			"text": " It should be as private as cash."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,760",
+				"to": "00:11:48,880"
+			},
+			"offsets": {
+				"from": 707760,
+				"to": 708880
+			},
+			"text": " Except that's not true, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,880",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 708880,
+				"to": 712560
+			},
+			"text": " Because if you make one payment into Starbucks and then you make another,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:11:55,520"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 715520
+			},
+			"text": " and you make a third, they're going to see these different can't trees"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,520",
+				"to": "00:11:57,480"
+			},
+			"offsets": {
+				"from": 715520,
+				"to": 717480
+			},
+			"text": " for each one of these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,480",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 717480,
+				"to": 720720
+			},
+			"text": " And there's no immediate linkage between them, so you might think it's private."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,720",
+				"to": "00:12:05,320"
+			},
+			"offsets": {
+				"from": 720720,
+				"to": 725320
+			},
+			"text": " But of course, if you look through this entire graph, you're going to see intersections"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,320",
+				"to": "00:12:08,120"
+			},
+			"offsets": {
+				"from": 725320,
+				"to": 728120
+			},
+			"text": " in it because the payments are going to have common origins, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,120",
+				"to": "00:12:10,280"
+			},
+			"offsets": {
+				"from": 728120,
+				"to": 730280
+			},
+			"text": " You're going to have loaded all the funds off of some transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,280",
+				"to": "00:12:13,160"
+			},
+			"offsets": {
+				"from": 730280,
+				"to": 733160
+			},
+			"text": " on Coinbase or Shapeshifter or whatever at one point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,160",
+				"to": "00:12:15,040"
+			},
+			"offsets": {
+				"from": 733160,
+				"to": 735040
+			},
+			"text": " or your change transactions in the reuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,040",
+				"to": "00:12:18,640"
+			},
+			"offsets": {
+				"from": 735040,
+				"to": 738640
+			},
+			"text": " So this is a basic intersection attack, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,640",
+				"to": "00:12:20,240"
+			},
+			"offsets": {
+				"from": 738640,
+				"to": 740240
+			},
+			"text": " So there's that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,240",
+				"to": "00:12:21,120"
+			},
+			"offsets": {
+				"from": 740240,
+				"to": 741120
+			},
+			"text": " Here's another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,120",
+				"to": "00:12:22,800"
+			},
+			"offsets": {
+				"from": 741120,
+				"to": 742800
+			},
+			"text": " Let's suppose you're a dissident, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,800",
+				"to": "00:12:28,040"
+			},
+			"offsets": {
+				"from": 742800,
+				"to": 748040
+			},
+			"text": " In Saudi Arabia, you have a website on the dark web that you use to take donations, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,040",
+				"to": "00:12:29,280"
+			},
+			"offsets": {
+				"from": 748040,
+				"to": 749280
+			},
+			"text": " Core, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,280",
+				"to": "00:12:30,880"
+			},
+			"offsets": {
+				"from": 749280,
+				"to": 750880
+			},
+			"text": " Take an anonymous, put it in a dress up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,880",
+				"to": "00:12:31,800"
+			},
+			"offsets": {
+				"from": 750880,
+				"to": 751800
+			},
+			"text": " You're anonymous."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,800",
+				"to": "00:12:33,200"
+			},
+			"offsets": {
+				"from": 751800,
+				"to": 753200
+			},
+			"text": " You should be completely safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,200",
+				"to": "00:12:34,880"
+			},
+			"offsets": {
+				"from": 753200,
+				"to": 754880
+			},
+			"text": " They're never going to figure who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,880",
+				"to": "00:12:37,200"
+			},
+			"offsets": {
+				"from": 754880,
+				"to": 757200
+			},
+			"text": " And so because you think it's private, you take that money"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,200",
+				"to": "00:12:41,040"
+			},
+			"offsets": {
+				"from": 757200,
+				"to": 761040
+			},
+			"text": " and you immediately deposit it in a cryptocurrency exchange in the mid-east"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,040",
+				"to": "00:12:42,720"
+			},
+			"offsets": {
+				"from": 761040,
+				"to": 762720
+			},
+			"text": " that actually has all your KYC data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,720",
+				"to": "00:12:44,080"
+			},
+			"offsets": {
+				"from": 762720,
+				"to": 764080
+			},
+			"text": " They know who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,080",
+				"to": "00:12:47,960"
+			},
+			"offsets": {
+				"from": 764080,
+				"to": 767960
+			},
+			"text": " Because of things private, no one should be able to link the address online"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,960",
+				"to": "00:12:51,440"
+			},
+			"offsets": {
+				"from": 767960,
+				"to": 771440
+			},
+			"text": " that's receiving payments with your deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,440",
+				"to": "00:12:55,120"
+			},
+			"offsets": {
+				"from": 771440,
+				"to": 775120
+			},
+			"text": " That would be another thing you'd expect from a private cryptocurrency, yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,120",
+				"to": "00:12:57,960"
+			},
+			"offsets": {
+				"from": 775120,
+				"to": 777960
+			},
+			"text": " And well, you don't get it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,960",
+				"to": "00:13:03,120"
+			},
+			"offsets": {
+				"from": 777960,
+				"to": 783120
+			},
+			"text": " A reason for this is that, say, Bob is this dissident and he's taking funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,120",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 783120,
+				"to": 785000
+			},
+			"text": " and he's going to deposit all of them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:10,640"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 790640
+			},
+			"text": " But again, if you pay Bob two or three or four times and you deposit these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,640",
+				"to": "00:13:12,160"
+			},
+			"offsets": {
+				"from": 790640,
+				"to": 792160
+			},
+			"text": " and you look at the taint tree, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,160",
+				"to": "00:13:15,480"
+			},
+			"offsets": {
+				"from": 792160,
+				"to": 795480
+			},
+			"text": " If you are the Saudis and you compromise this exchange, you subpoena it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,480",
+				"to": "00:13:19,800"
+			},
+			"offsets": {
+				"from": 795480,
+				"to": 799800
+			},
+			"text": " you hack into it, whatever it is, you're going to get for every customer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,800",
+				"to": "00:13:22,520"
+			},
+			"offsets": {
+				"from": 799800,
+				"to": 802520
+			},
+			"text": " these taint trees of every possible payment they got."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,520",
+				"to": "00:13:25,720"
+			},
+			"offsets": {
+				"from": 802520,
+				"to": 805720
+			},
+			"text": " And if you see someone who got one of these like tracking payments you made,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,720",
+				"to": "00:13:28,960"
+			},
+			"offsets": {
+				"from": 805720,
+				"to": 808960
+			},
+			"text": " say the green one, there'll be a couple of people who got those, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,960",
+				"to": "00:13:31,320"
+			},
+			"offsets": {
+				"from": 808960,
+				"to": 811320
+			},
+			"text": " Because everyone picks decoys at random."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,320",
+				"to": "00:13:33,840"
+			},
+			"offsets": {
+				"from": 811320,
+				"to": 813840
+			},
+			"text": " Someone might have just picked that by accident, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,840",
+				"to": "00:13:37,480"
+			},
+			"offsets": {
+				"from": 813840,
+				"to": 817480
+			},
+			"text": " And at least right now things aren't bad enough you're willing to just go shoot anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,480",
+				"to": "00:13:41,080"
+			},
+			"offsets": {
+				"from": 817480,
+				"to": 821080
+			},
+			"text": " based on the like 5% chance that they were actually your target."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,080",
+				"to": "00:13:43,080"
+			},
+			"offsets": {
+				"from": 821080,
+				"to": 823080
+			},
+			"text": " However, you didn't send one payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,080",
+				"to": "00:13:44,160"
+			},
+			"offsets": {
+				"from": 823080,
+				"to": 824160
+			},
+			"text": " You sent a bunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,160",
+				"to": "00:13:47,880"
+			},
+			"offsets": {
+				"from": 824160,
+				"to": 827880
+			},
+			"text": " And so what are the odds that some person has all of those payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,880",
+				"to": "00:13:48,920"
+			},
+			"offsets": {
+				"from": 827880,
+				"to": 828920
+			},
+			"text": " in their taint trees, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,920",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 828920,
+				"to": 831520
+			},
+			"text": " That all of these things are deposited in their account."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:52,640"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 832640
+			},
+			"text": " They're approximately zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,640",
+				"to": "00:13:55,520"
+			},
+			"offsets": {
+				"from": 832640,
+				"to": 835520
+			},
+			"text": " And so now you have, with high probability, identified the person."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,520",
+				"to": "00:13:56,760"
+			},
+			"offsets": {
+				"from": 835520,
+				"to": 836760
+			},
+			"text": " And so this is really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,760",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 836760,
+				"to": 841000
+			},
+			"text": " This is going to get you arrested or worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:02,440"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 842440
+			},
+			"text": " Again, you thought it was private."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,440",
+				"to": "00:14:03,640"
+			},
+			"offsets": {
+				"from": 842440,
+				"to": 843640
+			},
+			"text": " It's not, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,640",
+				"to": "00:14:07,400"
+			},
+			"offsets": {
+				"from": 843640,
+				"to": 847400
+			},
+			"text": " And so it turns out that repeated interactions with a synderer or recipient are dangerous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,400",
+				"to": "00:14:08,400"
+			},
+			"offsets": {
+				"from": 847400,
+				"to": 848400
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,400",
+				"to": "00:14:11,600"
+			},
+			"offsets": {
+				"from": 848400,
+				"to": 851600
+			},
+			"text": " And this is where most privacy coins break, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,600",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 851600,
+				"to": 854000
+			},
+			"text": " And this is just because no one is thinking about these things in the context"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:15,320"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 855320
+			},
+			"text": " that we're going to be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,320",
+				"to": "00:14:17,840"
+			},
+			"offsets": {
+				"from": 855320,
+				"to": 857840
+			},
+			"text": " But that's not even the worst thing you can do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,840",
+				"to": "00:14:20,880"
+			},
+			"offsets": {
+				"from": 857840,
+				"to": 860880
+			},
+			"text": " So remember how I said there's a taint tree looking backwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,880",
+				"to": "00:14:22,560"
+			},
+			"offsets": {
+				"from": 860880,
+				"to": 862560
+			},
+			"text": " You can see where the coins have gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,560",
+				"to": "00:14:24,960"
+			},
+			"offsets": {
+				"from": 862560,
+				"to": 864960
+			},
+			"text": " Well, also looking forwards when you pay someone, as I mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,960",
+				"to": "00:14:27,120"
+			},
+			"offsets": {
+				"from": 864960,
+				"to": 867120
+			},
+			"text": " you can see where payments may have gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,120",
+				"to": "00:14:30,480"
+			},
+			"offsets": {
+				"from": 867120,
+				"to": 870480
+			},
+			"text": " And this is, again, it's uncertain at some kind of sort of weird quantum foam,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,480",
+				"to": "00:14:33,320"
+			},
+			"offsets": {
+				"from": 870480,
+				"to": 873320
+			},
+			"text": " but there's a little bit of information in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,320",
+				"to": "00:14:39,160"
+			},
+			"offsets": {
+				"from": 873320,
+				"to": 879160
+			},
+			"text": " And what can happen is, let's suppose you want to find out if a friend of yours is making"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,160",
+				"to": "00:14:41,840"
+			},
+			"offsets": {
+				"from": 879160,
+				"to": 881840
+			},
+			"text": " repeated payments to a particular merchant."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,840",
+				"to": "00:14:45,680"
+			},
+			"offsets": {
+				"from": 881840,
+				"to": 885680
+			},
+			"text": " So you send the merchant one transaction and you send your friend one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,680",
+				"to": "00:14:47,160"
+			},
+			"offsets": {
+				"from": 885680,
+				"to": 887160
+			},
+			"text": " And these can be dust, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,160",
+				"to": "00:14:48,160"
+			},
+			"offsets": {
+				"from": 887160,
+				"to": 888160
+			},
+			"text": " Little tiny amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,160",
+				"to": "00:14:52,120"
+			},
+			"offsets": {
+				"from": 888160,
+				"to": 892120
+			},
+			"text": " And you're going to see these two sort of things fan out over time of where the money"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,120",
+				"to": "00:14:53,120"
+			},
+			"offsets": {
+				"from": 892120,
+				"to": 893120
+			},
+			"text": " goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,120",
+				"to": "00:14:56,400"
+			},
+			"offsets": {
+				"from": 893120,
+				"to": 896400
+			},
+			"text": " And then, you know, you don't learn anything until maybe some of the money you paid your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,400",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 896400,
+				"to": 901000
+			},
+			"text": " friend ends up in the same address as something you paid the merchant."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:02,440"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 902440
+			},
+			"text": " And this doesn't tell you much."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,440",
+				"to": "00:15:05,680"
+			},
+			"offsets": {
+				"from": 902440,
+				"to": 905680
+			},
+			"text": " It could be that someone just picked a decoy that happened to overlap."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,680",
+				"to": "00:15:09,640"
+			},
+			"offsets": {
+				"from": 905680,
+				"to": 909640
+			},
+			"text": " It could be that your friend paid the merchant and was moving their money"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,640",
+				"to": "00:15:13,920"
+			},
+			"offsets": {
+				"from": 909640,
+				"to": 913920
+			},
+			"text": " into off of their hot wallet, into a cold store or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,920",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 913920,
+				"to": 914920
+			},
+			"text": " You don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,920",
+				"to": "00:15:17,200"
+			},
+			"offsets": {
+				"from": 914920,
+				"to": 917200
+			},
+			"text": " There's not enough information here to really pound, but you suggest something might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,200",
+				"to": "00:15:18,200"
+			},
+			"offsets": {
+				"from": 917200,
+				"to": 918200
+			},
+			"text": " going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,200",
+				"to": "00:15:19,200"
+			},
+			"offsets": {
+				"from": 918200,
+				"to": 919200
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,200",
+				"to": "00:15:21,920"
+			},
+			"offsets": {
+				"from": 919200,
+				"to": 921920
+			},
+			"text": " But what happens if this, again, happens multiple times?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,920",
+				"to": "00:15:23,640"
+			},
+			"offsets": {
+				"from": 921920,
+				"to": 923640
+			},
+			"text": " Now you know that something is wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,640",
+				"to": "00:15:28,360"
+			},
+			"offsets": {
+				"from": 923640,
+				"to": 928360
+			},
+			"text": " Now you actually have information because, again, the odds of this happening by happenstance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,360",
+				"to": "00:15:31,960"
+			},
+			"offsets": {
+				"from": 928360,
+				"to": 931960
+			},
+			"text": " because it's repeated interactions, are approximately zero, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,960",
+				"to": "00:15:34,840"
+			},
+			"offsets": {
+				"from": 931960,
+				"to": 934840
+			},
+			"text": " And then you can watch this happen three, four, five, ten, twenty times."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,840",
+				"to": "00:15:36,920"
+			},
+			"offsets": {
+				"from": 934840,
+				"to": 936920
+			},
+			"text": " And now you really know for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,920",
+				"to": "00:15:42,120"
+			},
+			"offsets": {
+				"from": 936920,
+				"to": 942120
+			},
+			"text": " And so, for example, you could use this to, you know, if the merchant was Pornhub, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,120",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 942120,
+				"to": 945200
+			},
+			"text": " would use this to confirm that your friend was in fact subscribing to Pornhub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:46,760"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 946760
+			},
+			"text": " And that would be someone embarrassing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,760",
+				"to": "00:15:48,360"
+			},
+			"offsets": {
+				"from": 946760,
+				"to": 948360
+			},
+			"text": " A, he's looking at porn."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,360",
+				"to": "00:15:50,080"
+			},
+			"offsets": {
+				"from": 948360,
+				"to": 950080
+			},
+			"text": " B, he's paying for porn."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,080",
+				"to": "00:15:57,840"
+			},
+			"offsets": {
+				"from": 950080,
+				"to": 957840
+			},
+			"text": " And I guess worse, actually, he's probably paying for porn with Verge, which really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,840",
+				"to": "00:16:03,480"
+			},
+			"offsets": {
+				"from": 957840,
+				"to": 963480
+			},
+			"text": " like, you have better taste in friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,480",
+				"to": "00:16:06,920"
+			},
+			"offsets": {
+				"from": 963480,
+				"to": 966920
+			},
+			"text": " So again, this is, again, I think fundamentally violates what you'd expect from a privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,920",
+				"to": "00:16:07,920"
+			},
+			"offsets": {
+				"from": 966920,
+				"to": 967920
+			},
+			"text": " coin, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,920",
+				"to": "00:16:11,200"
+			},
+			"offsets": {
+				"from": 967920,
+				"to": 971200
+			},
+			"text": " It shouldn't be the case that random people, by sending you, you know, tainted dust to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,200",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 971200,
+				"to": 974560
+			},
+			"text": " a bunch of different addresses, can recover how things are being spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:16,640"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 976640
+			},
+			"text": " But in fact, you can do that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,640",
+				"to": "00:16:20,360"
+			},
+			"offsets": {
+				"from": 976640,
+				"to": 980360
+			},
+			"text": " And so our decoy-based systems, private, the answer is no, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,360",
+				"to": "00:16:21,360"
+			},
+			"offsets": {
+				"from": 980360,
+				"to": 981360
+			},
+			"text": " With a little bit of thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,360",
+				"to": "00:16:23,960"
+			},
+			"offsets": {
+				"from": 981360,
+				"to": 983960
+			},
+			"text": " And I emphasize that this is a little bit of thought, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,960",
+				"to": "00:16:26,920"
+			},
+			"offsets": {
+				"from": 983960,
+				"to": 986920
+			},
+			"text": " We've come up with three plausible attacks that can break these things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,920",
+				"to": "00:16:29,600"
+			},
+			"offsets": {
+				"from": 986920,
+				"to": 989600
+			},
+			"text": " And I'm not saying you can execute these in practice in every case."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,600",
+				"to": "00:16:33,400"
+			},
+			"offsets": {
+				"from": 989600,
+				"to": 993400
+			},
+			"text": " Again, we don't have enough empirical data to evaluate any of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,400",
+				"to": "00:16:36,520"
+			},
+			"offsets": {
+				"from": 993400,
+				"to": 996520
+			},
+			"text": " But at least as hypotheticals, these things don't pass the smell test."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,520",
+				"to": "00:16:39,760"
+			},
+			"offsets": {
+				"from": 996520,
+				"to": 999760
+			},
+			"text": " And so we shouldn't be using them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,760",
+				"to": "00:16:42,480"
+			},
+			"offsets": {
+				"from": 999760,
+				"to": 1002480
+			},
+			"text": " And so why is it that these things are used?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,480",
+				"to": "00:16:47,480"
+			},
+			"offsets": {
+				"from": 1002480,
+				"to": 1007480
+			},
+			"text": " Why is it that these are regarded by credible people as viable approaches to privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,480",
+				"to": "00:16:48,480"
+			},
+			"offsets": {
+				"from": 1007480,
+				"to": 1008480
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,480",
+				"to": "00:16:51,240"
+			},
+			"offsets": {
+				"from": 1008480,
+				"to": 1011240
+			},
+			"text": " Like, I basically just told you, like Satoshi really has no clothes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,240",
+				"to": "00:16:54,080"
+			},
+			"offsets": {
+				"from": 1011240,
+				"to": 1014080
+			},
+			"text": " So, well, God, that's a horrible overlap or phrase with that slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,080",
+				"to": "00:16:58,720"
+			},
+			"offsets": {
+				"from": 1014080,
+				"to": 1018720
+			},
+			"text": " But why are we still using them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,720",
+				"to": "00:17:02,040"
+			},
+			"offsets": {
+				"from": 1018720,
+				"to": 1022040
+			},
+			"text": " And the answer is in part because privacy is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,040",
+				"to": "00:17:05,800"
+			},
+			"offsets": {
+				"from": 1022040,
+				"to": 1025800
+			},
+			"text": " It's hard to understand the people who are building these things are trying really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,800",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1025800,
+				"to": 1028080
+			},
+			"text": " They're doing very impressive things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1030000
+			},
+			"text": " It's building up impressive communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:13,320"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1033320
+			},
+			"text": " But if you don't understand privacy, it's a little tricky to get right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,320",
+				"to": "00:17:15,480"
+			},
+			"offsets": {
+				"from": 1033320,
+				"to": 1035480
+			},
+			"text": " So that's just, you know, to air as human."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,480",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1035480,
+				"to": 1039080
+			},
+			"text": " But part of it is the way that, you know, self-promotion works in cryptocurrencies, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:22,280"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1042280
+			},
+			"text": " That we have this like, you've got to be better than the other one kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,280",
+				"to": "00:17:24,920"
+			},
+			"offsets": {
+				"from": 1042280,
+				"to": 1044920
+			},
+			"text": " And this ends up with sort of privacy theater, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,920",
+				"to": "00:17:28,840"
+			},
+			"offsets": {
+				"from": 1044920,
+				"to": 1048840
+			},
+			"text": " One of the typical things that happens when you interact with someone who's an advocate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,840",
+				"to": "00:17:33,400"
+			},
+			"offsets": {
+				"from": 1048840,
+				"to": 1053400
+			},
+			"text": " for privacy coin, particularly on Twitter, which I guess is not a good way to get normal"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,400",
+				"to": "00:17:38,040"
+			},
+			"offsets": {
+				"from": 1053400,
+				"to": 1058040
+			},
+			"text": " behavior, but whatever, is that they'll give you these list of features that the coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,040",
+				"to": "00:17:39,040"
+			},
+			"offsets": {
+				"from": 1058040,
+				"to": 1059040
+			},
+			"text": " has, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,040",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1059040,
+				"to": 1063520
+			},
+			"text": " It has stealth addresses, it has ring signatures, it has cut-throughs, it has ZK snarks, it uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:45,280"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1065280
+			},
+			"text": " VPNs or poor, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,280",
+				"to": "00:17:49,160"
+			},
+			"offsets": {
+				"from": 1065280,
+				"to": 1069160
+			},
+			"text": " And this whole list of features, right, doesn't tell you anything about what actual privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,160",
+				"to": "00:17:50,160"
+			},
+			"offsets": {
+				"from": 1069160,
+				"to": 1070160
+			},
+			"text": " you get."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,160",
+				"to": "00:17:52,920"
+			},
+			"offsets": {
+				"from": 1070160,
+				"to": 1072920
+			},
+			"text": " And it sounds really impressive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,920",
+				"to": "00:17:55,200"
+			},
+			"offsets": {
+				"from": 1072920,
+				"to": 1075200
+			},
+			"text": " And this is the thing that we just need to stop doing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,200",
+				"to": "00:17:58,240"
+			},
+			"offsets": {
+				"from": 1075200,
+				"to": 1078240
+			},
+			"text": " And this applies, you know, to some of these techniques really don't work at all, to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,240",
+				"to": "00:18:01,080"
+			},
+			"offsets": {
+				"from": 1078240,
+				"to": 1081080
+			},
+			"text": " ones like ZK snarks are quite promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,080",
+				"to": "00:18:03,400"
+			},
+			"offsets": {
+				"from": 1081080,
+				"to": 1083400
+			},
+			"text": " But the technique isn't the solution, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,400",
+				"to": "00:18:04,400"
+			},
+			"offsets": {
+				"from": 1083400,
+				"to": 1084400
+			},
+			"text": " This is a technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,400",
+				"to": "00:18:06,680"
+			},
+			"offsets": {
+				"from": 1084400,
+				"to": 1086680
+			},
+			"text": " The whole protocol is what you actually have to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,680",
+				"to": "00:18:09,900"
+			},
+			"offsets": {
+				"from": 1086680,
+				"to": 1089900
+			},
+			"text": " And when you build a whole protocol, you need to actually evaluate it not based on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,900",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089900,
+				"to": 1094000
+			},
+			"text": " features it has, but based on, you know, what it actually does, what does it use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:17,760"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1097760
+			},
+			"text": " And so you should really ask yourself, like, here's all these features, what are they hiding?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,760",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1097760,
+				"to": 1099520
+			},
+			"text": " And do they actually accomplish it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:22,960"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1102960
+			},
+			"text": " And the answer is typically they don't hide much and they don't actually hide it very"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,960",
+				"to": "00:18:23,960"
+			},
+			"offsets": {
+				"from": 1102960,
+				"to": 1103960
+			},
+			"text": " well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,960",
+				"to": "00:18:26,240"
+			},
+			"offsets": {
+				"from": 1103960,
+				"to": 1106240
+			},
+			"text": " Does it hide everything else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,240",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1106240,
+				"to": 1108000
+			},
+			"text": " And the answer there is almost certainly not."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,160"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110160
+			},
+			"text": " And then, like, really, how is this thing being used?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,160",
+				"to": "00:18:35,720"
+			},
+			"offsets": {
+				"from": 1110160,
+				"to": 1115720
+			},
+			"text": " And the answer there is going to be in a way that probably isn't safe, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,720",
+				"to": "00:18:39,200"
+			},
+			"offsets": {
+				"from": 1115720,
+				"to": 1119200
+			},
+			"text": " And what this comes down to is cryptocurrency is Twitter for your bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,200",
+				"to": "00:18:40,400"
+			},
+			"offsets": {
+				"from": 1119200,
+				"to": 1120400
+			},
+			"text": " It's a total privacy void."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,400",
+				"to": "00:18:41,400"
+			},
+			"offsets": {
+				"from": 1120400,
+				"to": 1121400
+			},
+			"text": " It's a vacuum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,400",
+				"to": "00:18:44,640"
+			},
+			"offsets": {
+				"from": 1121400,
+				"to": 1124640
+			},
+			"text": " The thing, everything is broadcast to everybody, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,640",
+				"to": "00:18:48,760"
+			},
+			"offsets": {
+				"from": 1124640,
+				"to": 1128760
+			},
+			"text": " This is the akin to me telling you you were standing naked in Times Square, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,760",
+				"to": "00:18:53,120"
+			},
+			"offsets": {
+				"from": 1128760,
+				"to": 1133120
+			},
+			"text": " And what most of these privacy coins want to do is hand you a band-aid, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,120",
+				"to": "00:18:56,160"
+			},
+			"offsets": {
+				"from": 1133120,
+				"to": 1136160
+			},
+			"text": " And like, given the magnitude of exposure, right, that, you know, that's not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,160",
+				"to": "00:18:57,160"
+			},
+			"offsets": {
+				"from": 1136160,
+				"to": 1137160
+			},
+			"text": " going to cover everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,160",
+				"to": "00:18:59,680"
+			},
+			"offsets": {
+				"from": 1137160,
+				"to": 1139680
+			},
+			"text": " That doesn't really work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,680",
+				"to": "00:19:03,280"
+			},
+			"offsets": {
+				"from": 1139680,
+				"to": 1143280
+			},
+			"text": " And it's, you know, it's like trying to build a space shoot out of duct tape and overalls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,280",
+				"to": "00:19:04,280"
+			},
+			"offsets": {
+				"from": 1143280,
+				"to": 1144280
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,280",
+				"to": "00:19:07,800"
+			},
+			"offsets": {
+				"from": 1144280,
+				"to": 1147800
+			},
+			"text": " That's not how you go about protecting yourself from a very hostile and very exposed environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,800",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1147800,
+				"to": 1148800
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:10,320"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1150320
+			},
+			"text": " You need to actually do this to the ground up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,320",
+				"to": "00:19:12,960"
+			},
+			"offsets": {
+				"from": 1150320,
+				"to": 1152960
+			},
+			"text": " And we do actually have strong approaches to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,960",
+				"to": "00:19:17,320"
+			},
+			"offsets": {
+				"from": 1152960,
+				"to": 1157320
+			},
+			"text": " I said the point wasn't to shell Zcash, but I am going through for just a second because"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,320",
+				"to": "00:19:20,200"
+			},
+			"offsets": {
+				"from": 1157320,
+				"to": 1160200
+			},
+			"text": " you can use these techniques too in your cryptocurrency, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,200",
+				"to": "00:19:22,040"
+			},
+			"offsets": {
+				"from": 1160200,
+				"to": 1162040
+			},
+			"text": " We've gotten, you know, strong privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,040",
+				"to": "00:19:26,200"
+			},
+			"offsets": {
+				"from": 1162040,
+				"to": 1166200
+			},
+			"text": " It's actually quick, less than two seconds to create a transaction, less than 40 megabytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,200",
+				"to": "00:19:27,200"
+			},
+			"offsets": {
+				"from": 1166200,
+				"to": 1167200
+			},
+			"text": " of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,200",
+				"to": "00:19:29,520"
+			},
+			"offsets": {
+				"from": 1167200,
+				"to": 1169520
+			},
+			"text": " This went live sometime in the last two days."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,520",
+				"to": "00:19:33,520"
+			},
+			"offsets": {
+				"from": 1169520,
+				"to": 1173520
+			},
+			"text": " I haven't gotten much sleep, so not sure what day it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,520",
+				"to": "00:19:35,840"
+			},
+			"offsets": {
+				"from": 1173520,
+				"to": 1175840
+			},
+			"text": " And we also have strong privacy techniques for other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,840",
+				"to": "00:19:38,640"
+			},
+			"offsets": {
+				"from": 1175840,
+				"to": 1178640
+			},
+			"text": " These aren't deployed yet, but, you know, zero cash for layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,640",
+				"to": "00:19:40,880"
+			},
+			"offsets": {
+				"from": 1178640,
+				"to": 1180880
+			},
+			"text": " Again, use this in whatever cryptocurrency you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,880",
+				"to": "00:19:43,480"
+			},
+			"offsets": {
+				"from": 1180880,
+				"to": 1183480
+			},
+			"text": " We have bolt, blind off chain, lightweight transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,480",
+				"to": "00:19:46,960"
+			},
+			"offsets": {
+				"from": 1183480,
+				"to": 1186960
+			},
+			"text": " This is strongly private layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,960",
+				"to": "00:19:49,520"
+			},
+			"offsets": {
+				"from": 1186960,
+				"to": 1189520
+			},
+			"text": " And a thing called bolt labs that were in the process of setting up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,520",
+				"to": "00:19:51,920"
+			},
+			"offsets": {
+				"from": 1189520,
+				"to": 1191920
+			},
+			"text": " And then lastly, this is actually academic work so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,920",
+				"to": "00:19:56,520"
+			},
+			"offsets": {
+				"from": 1191920,
+				"to": 1196520
+			},
+			"text": " A thing called ZEXE, which enables centralized private computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,520",
+				"to": "00:19:57,520"
+			},
+			"offsets": {
+				"from": 1196520,
+				"to": 1197520
+			},
+			"text": " Both of these are papers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,520",
+				"to": "00:20:00,440"
+			},
+			"offsets": {
+				"from": 1197520,
+				"to": 1200440
+			},
+			"text": " Those QR codes go to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,440",
+				"to": "00:20:06,760"
+			},
+			"offsets": {
+				"from": 1200440,
+				"to": 1206760
+			},
+			"text": " And the point is, the really isn't an excuse these days for using weak privacy techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,760",
+				"to": "00:20:07,840"
+			},
+			"offsets": {
+				"from": 1206760,
+				"to": 1207840
+			},
+			"text": " We have strong ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,840",
+				"to": "00:20:09,800"
+			},
+			"offsets": {
+				"from": 1207840,
+				"to": 1209800
+			},
+			"text": " We have strong ones that use EK Snarks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,800",
+				"to": "00:20:10,800"
+			},
+			"offsets": {
+				"from": 1209800,
+				"to": 1210800
+			},
+			"text": " You could do these with bulletproofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,800",
+				"to": "00:20:14,240"
+			},
+			"offsets": {
+				"from": 1210800,
+				"to": 1214240
+			},
+			"text": " You could use these with other crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,240",
+				"to": "00:20:15,240"
+			},
+			"offsets": {
+				"from": 1214240,
+				"to": 1215240
+			},
+			"text": " And you should do them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,240",
+				"to": "00:20:16,240"
+			},
+			"offsets": {
+				"from": 1215240,
+				"to": 1216240
+			},
+			"text": " You shouldn't be using half measures."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,240",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1216240,
+				"to": 1220000
+			},
+			"text": " And you shouldn't be telling people your things are private when they're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:22,320"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1222320
+			},
+			"text": " I'd like to briefly touch on a different problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,320",
+				"to": "00:20:24,480"
+			},
+			"offsets": {
+				"from": 1222320,
+				"to": 1224480
+			},
+			"text": " Because I said I wasn't going to show cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,480",
+				"to": "00:20:26,760"
+			},
+			"offsets": {
+				"from": 1224480,
+				"to": 1226760
+			},
+			"text": " I'm not going to call any of that name."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,760",
+				"to": "00:20:28,960"
+			},
+			"offsets": {
+				"from": 1226760,
+				"to": 1228960
+			},
+			"text": " But usability is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,960",
+				"to": "00:20:32,280"
+			},
+			"offsets": {
+				"from": 1228960,
+				"to": 1232280
+			},
+			"text": " It's actually one that we at ZEXE have had issues with ourselves, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,280",
+				"to": "00:20:34,800"
+			},
+			"offsets": {
+				"from": 1232280,
+				"to": 1234800
+			},
+			"text": " Turns out if you have strong privacy, that isn't enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,800",
+				"to": "00:20:36,880"
+			},
+			"offsets": {
+				"from": 1234800,
+				"to": 1236880
+			},
+			"text": " You actually need good UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,880",
+				"to": "00:20:41,240"
+			},
+			"offsets": {
+				"from": 1236880,
+				"to": 1241240
+			},
+			"text": " You need also to discourage people from doing meaningless behavior, like say, shape shifting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,240",
+				"to": "00:20:46,920"
+			},
+			"offsets": {
+				"from": 1241240,
+				"to": 1246920
+			},
+			"text": " and bringing $53.52 into shape shift into say, Monero, Zcash, Dash, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,920",
+				"to": "00:20:49,800"
+			},
+			"offsets": {
+				"from": 1246920,
+				"to": 1249800
+			},
+			"text": " And then immediately shifting it back out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,800",
+				"to": "00:20:51,320"
+			},
+			"offsets": {
+				"from": 1249800,
+				"to": 1251320
+			},
+			"text": " Because that gets you no privacy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,320",
+				"to": "00:20:53,720"
+			},
+			"offsets": {
+				"from": 1251320,
+				"to": 1253720
+			},
+			"text": " You sit there and you look and anyone can see what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,720",
+				"to": "00:20:54,880"
+			},
+			"offsets": {
+				"from": 1253720,
+				"to": 1254880
+			},
+			"text": " And yet people do this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,880",
+				"to": "00:20:57,120"
+			},
+			"offsets": {
+				"from": 1254880,
+				"to": 1257120
+			},
+			"text": " We've seen this happen across a number of cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,120",
+				"to": "00:21:00,600"
+			},
+			"offsets": {
+				"from": 1257120,
+				"to": 1260600
+			},
+			"text": " And that isn't their fault, but you need to educate users."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,600",
+				"to": "00:21:02,720"
+			},
+			"offsets": {
+				"from": 1260600,
+				"to": 1262720
+			},
+			"text": " You need to have full privacy on mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,720",
+				"to": "00:21:03,720"
+			},
+			"offsets": {
+				"from": 1262720,
+				"to": 1263720
+			},
+			"text": " That's a protocol issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,720",
+				"to": "00:21:07,600"
+			},
+			"offsets": {
+				"from": 1263720,
+				"to": 1267600
+			},
+			"text": " And you can't require people sinking the whole database just to get private payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,600",
+				"to": "00:21:08,600"
+			},
+			"offsets": {
+				"from": 1267600,
+				"to": 1268600
+			},
+			"text": " And this is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,600",
+				"to": "00:21:12,960"
+			},
+			"offsets": {
+				"from": 1268600,
+				"to": 1272960
+			},
+			"text": " This is probably actually the hardest thing that we have left for building privacy is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,960",
+				"to": "00:21:15,680"
+			},
+			"offsets": {
+				"from": 1272960,
+				"to": 1275680
+			},
+			"text": " getting good usability and getting good answers on mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,680",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1275680,
+				"to": 1280000
+			},
+			"text": " The core protocols, in my admittedly somewhat biased opinion, are mostly done."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:21,800"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1281800
+			},
+			"text": " You can do tweaks to make them more performant."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,800",
+				"to": "00:21:26,360"
+			},
+			"offsets": {
+				"from": 1281800,
+				"to": 1286360
+			},
+			"text": " You can develop novel new cryptographic underpinnings to make them faster or have better"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,360",
+				"to": "00:21:27,360"
+			},
+			"offsets": {
+				"from": 1286360,
+				"to": 1287360
+			},
+			"text": " trust assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,360",
+				"to": "00:21:28,960"
+			},
+			"offsets": {
+				"from": 1287360,
+				"to": 1288960
+			},
+			"text": " But we know basically how to build these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,960",
+				"to": "00:21:31,760"
+			},
+			"offsets": {
+				"from": 1288960,
+				"to": 1291760
+			},
+			"text": " We know the basic parts you want to assemble."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,760",
+				"to": "00:21:32,760"
+			},
+			"offsets": {
+				"from": 1291760,
+				"to": 1292760
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,760",
+				"to": "00:21:37,560"
+			},
+			"offsets": {
+				"from": 1292760,
+				"to": 1297560
+			},
+			"text": " So in conclusion, we need to critically evaluate privacy vulnerabilities and cryptocurrencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,560",
+				"to": "00:21:38,560"
+			},
+			"offsets": {
+				"from": 1297560,
+				"to": 1298560
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,560",
+				"to": "00:21:41,920"
+			},
+			"offsets": {
+				"from": 1298560,
+				"to": 1301920
+			},
+			"text": " The privacy-preserving cryptocurrencies have terrible privacy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,920",
+				"to": "00:21:44,600"
+			},
+			"offsets": {
+				"from": 1301920,
+				"to": 1304600
+			},
+			"text": " Like merchants can trace you when you make payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,600",
+				"to": "00:21:47,640"
+			},
+			"offsets": {
+				"from": 1304600,
+				"to": 1307640
+			},
+			"text": " Governments can identify who you are if you put a single address up online."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,640",
+				"to": "00:21:50,440"
+			},
+			"offsets": {
+				"from": 1307640,
+				"to": 1310440
+			},
+			"text": " I mean, that would really surprise a bunch of people for how these things are getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,440",
+				"to": "00:21:51,440"
+			},
+			"offsets": {
+				"from": 1310440,
+				"to": 1311440
+			},
+			"text": " used."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,440",
+				"to": "00:21:52,440"
+			},
+			"offsets": {
+				"from": 1311440,
+				"to": 1312440
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,440",
+				"to": "00:21:55,920"
+			},
+			"offsets": {
+				"from": 1312440,
+				"to": 1315920
+			},
+			"text": " Your friends can find out if you're making repeated payments to Cornhub."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,920",
+				"to": "00:21:58,560"
+			},
+			"offsets": {
+				"from": 1315920,
+				"to": 1318560
+			},
+			"text": " That's kind of embarrassing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,560",
+				"to": "00:22:02,680"
+			},
+			"offsets": {
+				"from": 1318560,
+				"to": 1322680
+			},
+			"text": " These decoy-based approaches just don't work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,680",
+				"to": "00:22:05,320"
+			},
+			"offsets": {
+				"from": 1322680,
+				"to": 1325320
+			},
+			"text": " And in general, we need to get better at evaluating these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,320",
+				"to": "00:22:08,360"
+			},
+			"offsets": {
+				"from": 1325320,
+				"to": 1328360
+			},
+			"text": " We need to avoid having people do privacy theater, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,360",
+				"to": "00:22:12,240"
+			},
+			"offsets": {
+				"from": 1328360,
+				"to": 1332240
+			},
+			"text": " A lot of these cryptocurrencies are effectively like the TSA, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,240",
+				"to": "00:22:14,640"
+			},
+			"offsets": {
+				"from": 1332240,
+				"to": 1334640
+			},
+			"text": " They have a lot of things that look really shiny."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,640",
+				"to": "00:22:16,480"
+			},
+			"offsets": {
+				"from": 1334640,
+				"to": 1336480
+			},
+			"text": " They make you maybe feel a little safer."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,480",
+				"to": "00:22:19,080"
+			},
+			"offsets": {
+				"from": 1336480,
+				"to": 1339080
+			},
+			"text": " But at the end of the day, they don't actually fix the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,080",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1339080,
+				"to": 1342000
+			},
+			"text": " They don't actually give you protections."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:23,520"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1343520
+			},
+			"text": " And that's just bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,520",
+				"to": "00:22:24,920"
+			},
+			"offsets": {
+				"from": 1343520,
+				"to": 1344920
+			},
+			"text": " And lastly, usability is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,920",
+				"to": "00:22:28,880"
+			},
+			"offsets": {
+				"from": 1344920,
+				"to": 1348880
+			},
+			"text": " And that really is probably the thing that we need a lot of work on the space more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,880",
+				"to": "00:22:30,640"
+			},
+			"offsets": {
+				"from": 1348880,
+				"to": 1350640
+			},
+			"text": " anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,640",
+				"to": "00:22:34,640"
+			},
+			"offsets": {
+				"from": 1350640,
+				"to": 1354640
+			},
+			"text": " And so with that, I'll take questions, comments, rotten tomatoes, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,640",
+				"to": "00:22:36,640"
+			},
+			"offsets": {
+				"from": 1354640,
+				"to": 1356640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,640",
+				"to": "00:22:38,840"
+			},
+			"offsets": {
+				"from": 1356640,
+				"to": 1358840
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,840",
+				"to": "00:22:43,560"
+			},
+			"offsets": {
+				"from": 1358840,
+				"to": 1363560
+			},
+			"text": " I'm curious about Grinn specifically and Mabel Wimble."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,560",
+				"to": "00:22:52,600"
+			},
+			"offsets": {
+				"from": 1363560,
+				"to": 1372600
+			},
+			"text": " As far as I know, with the decoy-based approach that uses different blinding factors for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,600",
+				"to": "00:22:53,600"
+			},
+			"offsets": {
+				"from": 1372600,
+				"to": 1373600
+			},
+			"text": " transaction, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,600",
+				"to": "00:22:58,800"
+			},
+			"offsets": {
+				"from": 1373600,
+				"to": 1378800
+			},
+			"text": " I'm curious if that changes at all in improvement over-- if not even talking about the coin-join"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,800",
+				"to": "00:23:02,640"
+			},
+			"offsets": {
+				"from": 1378800,
+				"to": 1382640
+			},
+			"text": " aspect of the transactions, just with the blinding factors, does that change at all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,640",
+				"to": "00:23:04,400"
+			},
+			"offsets": {
+				"from": 1382640,
+				"to": 1384400
+			},
+			"text": " privacy assumptions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,400",
+				"to": "00:23:05,400"
+			},
+			"offsets": {
+				"from": 1384400,
+				"to": 1385400
+			},
+			"text": " Not really."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,400",
+				"to": "00:23:09,960"
+			},
+			"offsets": {
+				"from": 1385400,
+				"to": 1389960
+			},
+			"text": " So the problem with Mabel Wimble and Grinn so far-- it's really promising techniques for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,960",
+				"to": "00:23:16,120"
+			},
+			"offsets": {
+				"from": 1389960,
+				"to": 1396120
+			},
+			"text": " compression-- is that a Mabel Wimble transaction is you identify the UTXO you're spending and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,120",
+				"to": "00:23:17,440"
+			},
+			"offsets": {
+				"from": 1396120,
+				"to": 1397440
+			},
+			"text": " you generate a new output."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,440",
+				"to": "00:23:20,760"
+			},
+			"offsets": {
+				"from": 1397440,
+				"to": 1400760
+			},
+			"text": " You hide the values, you hide the addresses, but the transaction graph is still there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,760",
+				"to": "00:23:25,040"
+			},
+			"offsets": {
+				"from": 1400760,
+				"to": 1405040
+			},
+			"text": " The way they get privacy is, in theory, you can non-interactively aggregate all those"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,040",
+				"to": "00:23:27,800"
+			},
+			"offsets": {
+				"from": 1405040,
+				"to": 1407800
+			},
+			"text": " transactions together and get a bigger mix."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,800",
+				"to": "00:23:34,240"
+			},
+			"offsets": {
+				"from": 1407800,
+				"to": 1414240
+			},
+			"text": " The problem is that those transactions are broadcast or open, Peter Peer Networking, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,240",
+				"to": "00:23:38,560"
+			},
+			"offsets": {
+				"from": 1414240,
+				"to": 1418560
+			},
+			"text": " the UTX can just download and see every individual transaction and recover the transaction graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,560",
+				"to": "00:23:40,160"
+			},
+			"offsets": {
+				"from": 1418560,
+				"to": 1420160
+			},
+			"text": " If you're a researcher, this is easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,160",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1420160,
+				"to": 1425000
+			},
+			"text": " If you're an intelligent service, this is really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1426000
+			},
+			"text": " That's not a privacy answer yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:48,400"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1428400
+			},
+			"text": " They need an answer for that and they don't have one so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,400",
+				"to": "00:23:58,400"
+			},
+			"offsets": {
+				"from": 1428400,
+				"to": 1438400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,400",
+				"to": "00:24:08,400"
+			},
+			"offsets": {
+				"from": 1438400,
+				"to": 1448400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,400",
+				"to": "00:24:18,400"
+			},
+			"offsets": {
+				"from": 1448400,
+				"to": 1458400
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

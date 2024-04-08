@@ -1,0 +1,2397 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,200"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9200
+			},
+			"text": " >> Hey, everybody. My name is Matt Slipper. I'm the CTO co-founder of a company called"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,200",
+				"to": "00:00:13,880"
+			},
+			"offsets": {
+				"from": 9200,
+				"to": 13880
+			},
+			"text": " Kioken. For those of you who don't know who we are or what we do, we're a full stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,880",
+				"to": "00:00:18,760"
+			},
+			"offsets": {
+				"from": 13880,
+				"to": 18760
+			},
+			"text": " crypto native software development consultancy. We've worked with a lot of notable people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,760",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 18760,
+				"to": 23040
+			},
+			"text": " in the space, both on Ethereum as well as a variety of other chains. And when I say full"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:27,560"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 27560
+			},
+			"text": " stack, I mean we do everything from protocol design and development to UI implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,560",
+				"to": "00:00:33,920"
+			},
+			"offsets": {
+				"from": 27560,
+				"to": 33920
+			},
+			"text": " We've also worked with Molik Dow, building a bunch of reports that are designed to accelerate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,920",
+				"to": "00:00:40,240"
+			},
+			"offsets": {
+				"from": 33920,
+				"to": 40240
+			},
+			"text": " the E2 roadmap as well as with Rick Dudley to help accelerate the creation and implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,240",
+				"to": "00:00:46,880"
+			},
+			"offsets": {
+				"from": 40240,
+				"to": 46880
+			},
+			"text": " of it 1559. So as for me, usually there's supposed to be a slide with my face on it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,880",
+				"to": "00:00:51,480"
+			},
+			"offsets": {
+				"from": 46880,
+				"to": 51480
+			},
+			"text": " an enumeration of all of my incredible career accomplishments. Rather than do that because"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,480",
+				"to": "00:00:56,320"
+			},
+			"offsets": {
+				"from": 51480,
+				"to": 56320
+			},
+			"text": " I think everyone in here knows how to use LinkedIn, I'm going to tell you a quick story."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,320",
+				"to": "00:01:00,760"
+			},
+			"offsets": {
+				"from": 56320,
+				"to": 60760
+			},
+			"text": " And this will set the stage for both my talk and also how I think about building software"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,760",
+				"to": "00:01:06,040"
+			},
+			"offsets": {
+				"from": 60760,
+				"to": 66040
+			},
+			"text": " and why mainstream adoption for ETH matters. So when I was 16, I built this thing. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,040",
+				"to": "00:01:10,200"
+			},
+			"offsets": {
+				"from": 66040,
+				"to": 70200
+			},
+			"text": " called transmute. And it was a little web app. And what it did was it let you drag a video"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,200",
+				"to": "00:01:15,560"
+			},
+			"offsets": {
+				"from": 70200,
+				"to": 75560
+			},
+			"text": " from your desktop onto your web browser and drop it on top of the device that you wanted"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,560",
+				"to": "00:01:19,720"
+			},
+			"offsets": {
+				"from": 75560,
+				"to": 79720
+			},
+			"text": " the video to be playable on. So you can take a video on your desktop, drop it on the iPod,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,720",
+				"to": "00:01:25,760"
+			},
+			"offsets": {
+				"from": 79720,
+				"to": 85760
+			},
+			"text": " bam. You can now play it on an iPod. So I begged my mom to pay for a press release and some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,760",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 85760,
+				"to": 89200
+			},
+			"text": " Google ads and I managed to get some users. I had a couple hundred people using it for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:34,360"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 94360
+			},
+			"text": " a while. And there was this one guy who went through and he uploaded something like 350"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,360",
+				"to": "00:01:39,880"
+			},
+			"offsets": {
+				"from": 94360,
+				"to": 99880
+			},
+			"text": " or so videos and they were of him flying model airplanes in Los Angeles. And that was really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,880",
+				"to": "00:01:46,320"
+			},
+			"offsets": {
+				"from": 99880,
+				"to": 106320
+			},
+			"text": " really cool. It was really, really cool because here's this guy, he's in his 60s. He flies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,320",
+				"to": "00:01:51,840"
+			},
+			"offsets": {
+				"from": 106320,
+				"to": 111840
+			},
+			"text": " model airplanes for fun. So he doesn't -- he's clearly retired. He doesn't care about my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,840",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 111840,
+				"to": 116400
+			},
+			"text": " technology. He doesn't care whether I use FFmpeg or LivAV. You're like what the container"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:02:01,480"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 121480
+			},
+			"text": " protocol that it is that I'm using. He just cared that I was able to solve his problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,480",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 121480,
+				"to": 127200
+			},
+			"text": " And he's an example of someone that I would call a mainstream user. Someone who doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:12,360"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 132360
+			},
+			"text": " care about your protocol, doesn't care about your technology, but wants to solve a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,360",
+				"to": "00:02:18,520"
+			},
+			"offsets": {
+				"from": 132360,
+				"to": 138520
+			},
+			"text": " using it. And that brings us to today's topic. So how do we build daps that are ready for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,520",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 138520,
+				"to": 143520
+			},
+			"text": " mainstream users right here, right now without waiting for additional protocols or new research"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 148000
+			},
+			"text": " to be developed? So to get really specific and reiterate what I mean by mainstream user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,800"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151800
+			},
+			"text": " I'm talking about people who use applications for the benefits they provide rather than the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,800",
+				"to": "00:02:37,440"
+			},
+			"offsets": {
+				"from": 151800,
+				"to": 157440
+			},
+			"text": " technology that powers them. This includes things like decentralization. So a performer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,440",
+				"to": "00:02:42,160"
+			},
+			"offsets": {
+				"from": 157440,
+				"to": 162160
+			},
+			"text": " on Spankchain doesn't use the platform because she thinks crypto's cool. She uses it because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,160",
+				"to": "00:02:46,080"
+			},
+			"offsets": {
+				"from": 162160,
+				"to": 166080
+			},
+			"text": " she's able to custody her own funds and the financial system can't come in, decide they"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,080",
+				"to": "00:02:50,720"
+			},
+			"offsets": {
+				"from": 166080,
+				"to": 170720
+			},
+			"text": " don't like her job and all of a sudden delete her access to the financial system. She does"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,720",
+				"to": "00:02:54,880"
+			},
+			"offsets": {
+				"from": 170720,
+				"to": 174880
+			},
+			"text": " it because there's no chargebacks on crypto and it means that rather than charging a 20%"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,880",
+				"to": "00:02:58,560"
+			},
+			"offsets": {
+				"from": 174880,
+				"to": 178560
+			},
+			"text": " fee per transaction, they're able to get five. And that can mean the difference between"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,560",
+				"to": "00:03:03,160"
+			},
+			"offsets": {
+				"from": 178560,
+				"to": 183160
+			},
+			"text": " someone paying rent or someone not being able to pay rent. The point is these are people"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,160",
+				"to": "00:03:08,360"
+			},
+			"offsets": {
+				"from": 183160,
+				"to": 188360
+			},
+			"text": " that are being enabled by the technology. And in the past, historically, crypto has focused"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,360",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 188360,
+				"to": 194000
+			},
+			"text": " on the technology rather than what the people are able to do with it. I think a great example"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:23,480"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 203480
+			},
+			"text": " is Bit Square. So anyone in the audience know what Bit Square is? Okay, absolutely nobody,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,480",
+				"to": "00:03:28,960"
+			},
+			"offsets": {
+				"from": 203480,
+				"to": 208960
+			},
+			"text": " except Jackie. Awesome. So Bit Square is sort of the granddaddy of decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,960",
+				"to": "00:03:34,720"
+			},
+			"offsets": {
+				"from": 208960,
+				"to": 214720
+			},
+			"text": " It launched in May 2016. The cool thing about Bit Square was that as far as decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,720",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 214720,
+				"to": 219120
+			},
+			"text": " goes, it was a showcase of all of the things that we consider now to be sort of the forefront"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:45,640"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 225640
+			},
+			"text": " of decentralization of thought. It uses a big Java app to talk to a peer-to-peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,640",
+				"to": "00:03:49,280"
+			},
+			"offsets": {
+				"from": 225640,
+				"to": 229280
+			},
+			"text": " That peer-to-peer network is only available over tour. So you have to be connected to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,280",
+				"to": "00:03:53,160"
+			},
+			"offsets": {
+				"from": 229280,
+				"to": 233160
+			},
+			"text": " tour to get the order book and get the orders and all the other things that make it a centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,160",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 233160,
+				"to": 239760
+			},
+			"text": " exchange and exchange. It uses fiat and crypto exchange. It's a fiat to crypto exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:03,560"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 243560
+			},
+			"text": " So how do you do that, trustlessly? When people have the ability to cheat you in the fiat world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,560",
+				"to": "00:04:10,560"
+			},
+			"offsets": {
+				"from": 243560,
+				"to": 250560
+			},
+			"text": " it had a doubt. You could stake BSQ tokens in order to become an arbitrator and then arbitrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,560",
+				"to": "00:04:16,240"
+			},
+			"offsets": {
+				"from": 250560,
+				"to": 256240
+			},
+			"text": " any failed transactions that occur on Bit Square. So they've been around for a while. They renamed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,240",
+				"to": "00:04:22,320"
+			},
+			"offsets": {
+				"from": 256240,
+				"to": 262320
+			},
+			"text": " to BISC, like the soup. But there's only one problem with that. And I'm sure you can kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,320",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 262320,
+				"to": 269000
+			},
+			"text": " guess what that is. Nobody uses BISC. And the reason nobody uses BISC is because not because"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,800"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272800
+			},
+			"text": " they don't like decentralization or because they're stupid, but it's because it's complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,800",
+				"to": "00:04:39,560"
+			},
+			"offsets": {
+				"from": 272800,
+				"to": 279560
+			},
+			"text": " and it makes them feel stupid. They all used centralized exchanges, Coinbase, Kraken, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,560",
+				"to": "00:04:45,440"
+			},
+			"offsets": {
+				"from": 279560,
+				"to": 285440
+			},
+			"text": " And if I were to put on a number line here where BISC and Coinbase fall as far as decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,440",
+				"to": "00:04:50,200"
+			},
+			"offsets": {
+				"from": 285440,
+				"to": 290200
+			},
+			"text": " and users go, it would look something like this. You've got BISC, which is decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,200",
+				"to": "00:04:54,760"
+			},
+			"offsets": {
+				"from": 290200,
+				"to": 294760
+			},
+			"text": " out the Wozou. In fact, the founders were thinking about going full Satoshi and disappearing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,760",
+				"to": "00:05:00,400"
+			},
+			"offsets": {
+				"from": 294760,
+				"to": 300400
+			},
+			"text": " at one point. And they've got fewer users and then you've got Coinbase, which asks for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,400",
+				"to": "00:05:05,520"
+			},
+			"offsets": {
+				"from": 300400,
+				"to": 305520
+			},
+			"text": " your passport and what you did last night to let you trade, but it has a lot of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,520",
+				"to": "00:05:09,320"
+			},
+			"offsets": {
+				"from": 305520,
+				"to": 309320
+			},
+			"text": " I've deliberately chosen some somewhat polarizing examples here in order to illustrate a wider"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,320",
+				"to": "00:05:15,080"
+			},
+			"offsets": {
+				"from": 309320,
+				"to": 315080
+			},
+			"text": " point, which is that if you pick any individual DAP or thing that we're building on crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,080",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 315080,
+				"to": 320920
+			},
+			"text": " generally speaking, it's going to occupy one of the poles of this spectrum. So how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:24,400"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 324400
+			},
+			"text": " build things that are more in the middle that can be appealing to mainstream users? Well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,400",
+				"to": "00:05:28,480"
+			},
+			"offsets": {
+				"from": 324400,
+				"to": 328480
+			},
+			"text": " I think the first step is to actually understand what attributes of decentralization and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,480",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 328480,
+				"to": 335000
+			},
+			"text": " conveniences afforded by centralized platforms, users want, and what those things are. So for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:40,200"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 340200
+			},
+			"text": " decentralized platforms, that's usually things like this. Self sovereignty. I'm the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,200",
+				"to": "00:05:45,440"
+			},
+			"offsets": {
+				"from": 340200,
+				"to": 345440
+			},
+			"text": " one that can spend my funds, no one can take them away from me. Transparency and auditability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,440",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 345440,
+				"to": 350120
+			},
+			"text": " If the operator or counterparty or me decides to go and do something bad, everybody's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:55,120"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 355120
+			},
+			"text": " to find out about it and they're going to yell at me. And finally, portability. I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,120",
+				"to": "00:05:59,120"
+			},
+			"offsets": {
+				"from": 355120,
+				"to": 359120
+			},
+			"text": " take my funds and leave a platform that's starting to exploit me. Someone in a previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,120",
+				"to": "00:06:03,600"
+			},
+			"offsets": {
+				"from": 359120,
+				"to": 363600
+			},
+			"text": " talk talked about, it was a wire line, guys. They talked about how once the Gmail platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,600",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 363600,
+				"to": 368920
+			},
+			"text": " got big enough, it was time for Google to start exploiting its own users with the portable"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:13,200"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 373200
+			},
+			"text": " crypto platform that becomes impossible. And these are things that are only possible using"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,200",
+				"to": "00:06:21,200"
+			},
+			"offsets": {
+				"from": 373200,
+				"to": 381200
+			},
+			"text": " a robust cryptocurrency system. However, and it's a big, however, users don't necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,200",
+				"to": "00:06:26,560"
+			},
+			"offsets": {
+				"from": 381200,
+				"to": 386560
+			},
+			"text": " know about those things. What users see when they interact with DAPs on a daily basis is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,560",
+				"to": "00:06:32,120"
+			},
+			"offsets": {
+				"from": 386560,
+				"to": 392120
+			},
+			"text": " they don't have these things and they really, really like these things. They really like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,120",
+				"to": "00:06:36,280"
+			},
+			"offsets": {
+				"from": 392120,
+				"to": 396280
+			},
+			"text": " username, password, authentication, the ability to get all their funds back. I think my ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,280",
+				"to": "00:06:41,480"
+			},
+			"offsets": {
+				"from": 396280,
+				"to": 401480
+			},
+			"text": " wallet has six or seven warnings reminding you that, you know, if you, you know, lose"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,480",
+				"to": "00:06:46,400"
+			},
+			"offsets": {
+				"from": 401480,
+				"to": 406400
+			},
+			"text": " your seed words, all your funds are gone. That really scares people. People like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,400",
+				"to": "00:06:50,120"
+			},
+			"offsets": {
+				"from": 406400,
+				"to": 410120
+			},
+			"text": " ability to go to a website on their phone or on their iPad or whatever else and have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,120",
+				"to": "00:06:54,520"
+			},
+			"offsets": {
+				"from": 410120,
+				"to": 414520
+			},
+			"text": " all their data right there and the ability to log right in. They also want performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,520",
+				"to": "00:06:59,800"
+			},
+			"offsets": {
+				"from": 414520,
+				"to": 419800
+			},
+			"text": " It has to be fast. It has to feel instant in order for it to be fun. And finally, actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:06,240"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 426240
+			},
+			"text": " shouldn't have to be paid for. And so these are really ingrained user expectations. If"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,240",
+				"to": "00:07:09,880"
+			},
+			"offsets": {
+				"from": 426240,
+				"to": 429880
+			},
+			"text": " your application doesn't have those things, you're not going to be able to get over the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,880",
+				"to": "00:07:14,080"
+			},
+			"offsets": {
+				"from": 429880,
+				"to": 434080
+			},
+			"text": " hump and users won't be able to get over that hump to actually start exploring what your"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,080",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 434080,
+				"to": 440480
+			},
+			"text": " application has to offer. And so until user behavior has changed significantly, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:24,680"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 444680
+			},
+			"text": " to honor these things and figure out where the appropriate trade-offs are in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,680",
+				"to": "00:07:28,920"
+			},
+			"offsets": {
+				"from": 444680,
+				"to": 448920
+			},
+			"text": " get mainstream adoption to happen. And I would say this happens is we need to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,920",
+				"to": "00:07:33,840"
+			},
+			"offsets": {
+				"from": 448920,
+				"to": 453840
+			},
+			"text": " multiple access points from users with varying needs. So to illustrate this a little more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,840",
+				"to": "00:07:39,720"
+			},
+			"offsets": {
+				"from": 453840,
+				"to": 459720
+			},
+			"text": " who's seen this screen before? Yeah, pretty much everybody. So I pulled this one from"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,720",
+				"to": "00:07:45,800"
+			},
+			"offsets": {
+				"from": 459720,
+				"to": 465800
+			},
+			"text": " the EF's website for the auctioned by tickets using the on-chain auction contract that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,800",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 465800,
+				"to": 470880
+			},
+			"text": " put together for DevCon. And it's the screen that says you have to install this other thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:56,480"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 476480
+			},
+			"text": " before you're allowed to use my thing. Users really don't like this. And this isn't a dig"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,480",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 476480,
+				"to": 480800
+			},
+			"text": " at MetaMask. MetaMask is responsible for a lot of the adoption that Ethereum has already"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:07,520"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 487520
+			},
+			"text": " had. But MetaMasked risk profile is different from the majority of decentralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,520",
+				"to": "00:08:11,920"
+			},
+			"offsets": {
+				"from": 487520,
+				"to": 491920
+			},
+			"text": " If you're a crypto kitties, your users are not going to be storing arbitrary amounts on"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,920",
+				"to": "00:08:16,200"
+			},
+			"offsets": {
+				"from": 491920,
+				"to": 496200
+			},
+			"text": " your platform. They're not going to be using your platform in arbitrary ways. They're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,200",
+				"to": "00:08:22,480"
+			},
+			"offsets": {
+				"from": 496200,
+				"to": 502480
+			},
+			"text": " using your platform for a free infura either. And so as a result, if you have a MetaMasked"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,480",
+				"to": "00:08:28,880"
+			},
+			"offsets": {
+				"from": 502480,
+				"to": 508880
+			},
+			"text": " only login, since MetaMasked has to be maximally paranoid in order to serve its users, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,880",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508880,
+				"to": 513000
+			},
+			"text": " a little bit like you want to play with your crypto kitty, but you got to go to some bank"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:41,280"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 521280
+			},
+			"text": " default in the Swiss Alps. Maybe talk to this guy with a gun. And people really find that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,280",
+				"to": "00:08:45,680"
+			},
+			"offsets": {
+				"from": 521280,
+				"to": 525680
+			},
+			"text": " off-putting. Not only does it scare them, like I mentioned before, but it also makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,680",
+				"to": "00:08:51,600"
+			},
+			"offsets": {
+				"from": 525680,
+				"to": 531600
+			},
+			"text": " them feel kind of stupid. And no one wants to feel stupid while they're using an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,600",
+				"to": "00:08:56,840"
+			},
+			"offsets": {
+				"from": 531600,
+				"to": 536840
+			},
+			"text": " So I've provided enough atmospherics, I hope, for like, you know, me to actually start talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,840",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 536840,
+				"to": 541720
+			},
+			"text": " about various solutions to these problems. And the first is, well, we can borrow from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 546280
+			},
+			"text": " these applications that have already tread this path before. And those are end-to-end encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:10,760"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 550760
+			},
+			"text": " messengers. I've worked at several end-to-end encrypted messenger companies, and they generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,760",
+				"to": "00:09:14,920"
+			},
+			"offsets": {
+				"from": 550760,
+				"to": 554920
+			},
+			"text": " do something like this. You have a user make up a password, you strengthen that password"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,920",
+				"to": "00:09:19,960"
+			},
+			"offsets": {
+				"from": 554920,
+				"to": 559960
+			},
+			"text": " using a KDF, you encrypt whatever ciphertext it is, shove it on the server, and now as long"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,960",
+				"to": "00:09:23,520"
+			},
+			"offsets": {
+				"from": 559960,
+				"to": 563520
+			},
+			"text": " as the user has that password, they're able to sync that data everywhere they decide to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,520",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 563520,
+				"to": 571000
+			},
+			"text": " go. But this doesn't solve password recovery. To do that, you need to either have a version"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:35,600"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 575600
+			},
+			"text": " of the key yourself that you're able to decrypt. So that does violate the first tenant which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,600",
+				"to": "00:09:39,720"
+			},
+			"offsets": {
+				"from": 575600,
+				"to": 579720
+			},
+			"text": " is self-sovereignty because technically speaking, the operator could go in and steal all your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,720",
+				"to": "00:09:45,320"
+			},
+			"offsets": {
+				"from": 579720,
+				"to": 585320
+			},
+			"text": " money if it wanted to. But at least the user's going to be able to recover. And to be honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,320",
+				"to": "00:09:49,320"
+			},
+			"offsets": {
+				"from": 585320,
+				"to": 589320
+			},
+			"text": " when you have a non-technical person using crypto, I generally trust the operator more"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,320",
+				"to": "00:09:54,760"
+			},
+			"offsets": {
+				"from": 589320,
+				"to": 594760
+			},
+			"text": " than the user. Or you can use something like a fund custody smart contract. The way these"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,760",
+				"to": "00:09:58,920"
+			},
+			"offsets": {
+				"from": 594760,
+				"to": 598920
+			},
+			"text": " work, it's a little bit like a notice is safe, where user funds are actually stored in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,920",
+				"to": "00:10:03,560"
+			},
+			"offsets": {
+				"from": 598920,
+				"to": 603560
+			},
+			"text": " smart contract. That smart contract then has the ability to delegate ownership of those funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,560",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 603560,
+				"to": 609320
+			},
+			"text": " to a separate address. And it enables you to call recover with a new owner that initiates"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:14,280"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 614280
+			},
+			"text": " a challenge timer when called. The user gains the ability to in the event of operator malfeasance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,280",
+				"to": "00:10:18,680"
+			},
+			"offsets": {
+				"from": 614280,
+				"to": 618680
+			},
+			"text": " cancel the transfer of ownership and eject all those funds from the contract. So even though the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,680",
+				"to": "00:10:24,280"
+			},
+			"offsets": {
+				"from": 618680,
+				"to": 624280
+			},
+			"text": " operator does have a window of time in which it can try to steal your funds, if you're watching it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,280",
+				"to": "00:10:29,240"
+			},
+			"offsets": {
+				"from": 624280,
+				"to": 629240
+			},
+			"text": " it can't. But we're still not changing user behaviors with these things, we're accepting them. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,240",
+				"to": "00:10:35,480"
+			},
+			"offsets": {
+				"from": 629240,
+				"to": 635480
+			},
+			"text": " we're able to get short-term user value and user adoption using these solutions. But it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,480",
+				"to": "00:10:39,800"
+			},
+			"offsets": {
+				"from": 635480,
+				"to": 639800
+			},
+			"text": " what we want long-term. We want people to be able to change their behaviors to be more congruent"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,800",
+				"to": "00:10:43,720"
+			},
+			"offsets": {
+				"from": 639800,
+				"to": 643720
+			},
+			"text": " with what crypto is going to require in the future. And so for that, you can use something like Wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,720",
+				"to": "00:10:47,240"
+			},
+			"offsets": {
+				"from": 643720,
+				"to": 647240
+			},
+			"text": " Connect. So for those of you who are unfamiliar with Wallet Connect, Pedro Gomez has done an"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,240",
+				"to": "00:10:52,360"
+			},
+			"offsets": {
+				"from": 647240,
+				"to": 652360
+			},
+			"text": " amazing job of this. It's a standard that allows you to share keys and signature data between various"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,360",
+				"to": "00:10:57,160"
+			},
+			"offsets": {
+				"from": 652360,
+				"to": 657160
+			},
+			"text": " wallets. For users that have an existing wallet, they can import it directly into your DAP. For"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,160",
+				"to": "00:11:01,800"
+			},
+			"offsets": {
+				"from": 657160,
+				"to": 661800
+			},
+			"text": " users that are on your DAP that start storing more value and becoming more accustomed to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,800",
+				"to": "00:11:07,320"
+			},
+			"offsets": {
+				"from": 661800,
+				"to": 667320
+			},
+			"text": " crypto space and wants to self-custody, they can eject. And that's going to solve the third tenant"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,320",
+				"to": "00:11:12,360"
+			},
+			"offsets": {
+				"from": 667320,
+				"to": 672360
+			},
+			"text": " of why decentralization matters, the portability bit. So you should check out Wallet Connect if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,360",
+				"to": "00:11:19,160"
+			},
+			"offsets": {
+				"from": 672360,
+				"to": 679160
+			},
+			"text": " can, because it's going to slowly start changing user behavior. Recapping. What do we fix so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,160",
+				"to": "00:11:23,720"
+			},
+			"offsets": {
+				"from": 679160,
+				"to": 683720
+			},
+			"text": " So we've done onboarding, we've done authentication and sync, but we haven't solved performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,720",
+				"to": "00:11:30,040"
+			},
+			"offsets": {
+				"from": 683720,
+				"to": 690040
+			},
+			"text": " and we haven't solved gas. So to do that, we need to go off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,040",
+				"to": "00:11:36,840"
+			},
+			"offsets": {
+				"from": 690040,
+				"to": 696840
+			},
+			"text": " This is the Gartner hype curve. You've all probably seen it before. This is where I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,840",
+				"to": "00:11:41,640"
+			},
+			"offsets": {
+				"from": 696840,
+				"to": 701640
+			},
+			"text": " lots of different L2 solutions sit on the Gartner hype curve. This isn't a dig at each one of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,640",
+				"to": "00:11:46,440"
+			},
+			"offsets": {
+				"from": 701640,
+				"to": 706440
+			},
+			"text": " solutions. It just means that of the various L2s that are available to the world right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,440",
+				"to": "00:11:50,120"
+			},
+			"offsets": {
+				"from": 706440,
+				"to": 710120
+			},
+			"text": " state channels are the ones that are ready for production and on mainnet. And the reason you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,120",
+				"to": "00:11:54,600"
+			},
+			"offsets": {
+				"from": 710120,
+				"to": 714600
+			},
+			"text": " not hearing about them and are instead seeing people on Twitter saying that L2 isn't here yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,600",
+				"to": "00:11:59,400"
+			},
+			"offsets": {
+				"from": 714600,
+				"to": 719400
+			},
+			"text": " what the hell happened is because once things are production ready, they start getting boring."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,400",
+				"to": "00:12:03,160"
+			},
+			"offsets": {
+				"from": 719400,
+				"to": 723160
+			},
+			"text": " And I think boring is awesome, because it means you can use them for real value."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,160",
+				"to": "00:12:08,920"
+			},
+			"offsets": {
+				"from": 723160,
+				"to": 728920
+			},
+			"text": " So an example of this is a ticketing application. And by the way, if you're using payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,920",
+				"to": "00:12:11,880"
+			},
+			"offsets": {
+				"from": 728920,
+				"to": 731880
+			},
+			"text": " you can just take off-the-shelf stuff for this. You don't have to build anything special."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,440",
+				"to": "00:12:16,520"
+			},
+			"offsets": {
+				"from": 732440,
+				"to": 736520
+			},
+			"text": " You can use the die card, but I'm talking about an asset transfer system here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,520",
+				"to": "00:12:20,200"
+			},
+			"offsets": {
+				"from": 736520,
+				"to": 740200
+			},
+			"text": " So for a ticketing application, you have a general flow that looks something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,200",
+				"to": "00:12:26,440"
+			},
+			"offsets": {
+				"from": 740200,
+				"to": 746440
+			},
+			"text": " So you've got a user, he goes to your DAP, and he wants to buy a ticket for something."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,440",
+				"to": "00:12:31,080"
+			},
+			"offsets": {
+				"from": 746440,
+				"to": 751080
+			},
+			"text": " Your DAP mince a token, and either if there's enough collateral, deposits it directly into a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,080",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 751080,
+				"to": 755400
+			},
+			"text": " channel and credits the user's balance, or makes an on-chain transaction on the user's behalf in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:40,280"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 760280
+			},
+			"text": " order to make sure that that token exists. The user's made no on-chain transactions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,280",
+				"to": "00:12:44,120"
+			},
+			"offsets": {
+				"from": 760280,
+				"to": 764120
+			},
+			"text": " They haven't paid for any gas. If the channel is adequately collateralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,120",
+				"to": "00:12:48,680"
+			},
+			"offsets": {
+				"from": 764120,
+				"to": 768680
+			},
+			"text": " they get that token immediately. And now they can actually start doing things with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,680",
+				"to": "00:12:51,560"
+			},
+			"offsets": {
+				"from": 768680,
+				"to": 771560
+			},
+			"text": " just like they would on something like Ticketmaster."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,560",
+				"to": "00:12:58,680"
+			},
+			"offsets": {
+				"from": 771560,
+				"to": 778680
+			},
+			"text": " But something that's important to note is after that little dotted line on the user column,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,680",
+				"to": "00:13:03,320"
+			},
+			"offsets": {
+				"from": 778680,
+				"to": 783320
+			},
+			"text": " the user can close the channel, and they can get delivery of that token."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,320",
+				"to": "00:13:08,200"
+			},
+			"offsets": {
+				"from": 783320,
+				"to": 788200
+			},
+			"text": " So something that's kind of unique to Ethereum. There's been a lot of talk and like rumbling"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,200",
+				"to": "00:13:14,600"
+			},
+			"offsets": {
+				"from": 788200,
+				"to": 794600
+			},
+			"text": " about how ETH is money. If ETH is money, then ERC20 is an ERC721s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,600",
+				"to": "00:13:19,560"
+			},
+			"offsets": {
+				"from": 794600,
+				"to": 799560
+			},
+			"text": " are its medium of exchange. And receiving delivery of that token means that it sort of doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,560",
+				"to": "00:13:25,080"
+			},
+			"offsets": {
+				"from": 799560,
+				"to": 805080
+			},
+			"text": " really matter how complicated or even how centralized the system is that creates those tokens, as long"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,080",
+				"to": "00:13:29,320"
+			},
+			"offsets": {
+				"from": 805080,
+				"to": 809320
+			},
+			"text": " as you're able to eventually take sovereign custody of those tokens, you can play with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,320",
+				"to": "00:13:34,280"
+			},
+			"offsets": {
+				"from": 809320,
+				"to": 814280
+			},
+			"text": " rest of the Ethereum ecosystem. So to tie it all back together to this ticketing application that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,280",
+				"to": "00:13:38,840"
+			},
+			"offsets": {
+				"from": 814280,
+				"to": 818840
+			},
+			"text": " I'm talking about, once you receive that NFT or that ERC20 that represents your ticket,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,840",
+				"to": "00:13:42,840"
+			},
+			"offsets": {
+				"from": 818840,
+				"to": 822840
+			},
+			"text": " you could stake it on a Uniswap if you want, or sorry, put it in a Uniswap pool if you wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,840",
+				"to": "00:13:47,320"
+			},
+			"offsets": {
+				"from": 822840,
+				"to": 827320
+			},
+			"text": " You could perform an atomic swap with it if you wanted to. The sky is limit because you received"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,320",
+				"to": "00:13:53,320"
+			},
+			"offsets": {
+				"from": 827320,
+				"to": 833320
+			},
+			"text": " delivery. I mentioned centralization earlier. And there are a class of applications for which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,320",
+				"to": "00:13:58,760"
+			},
+			"offsets": {
+				"from": 833320,
+				"to": 838760
+			},
+			"text": " it probably just makes sense to centralize it at this particular juncture. So if you're the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,760",
+				"to": "00:14:03,880"
+			},
+			"offsets": {
+				"from": 838760,
+				"to": 843880
+			},
+			"text": " mentor of the token, you're the only place that can use the token. If your company were to go up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,880",
+				"to": "00:14:09,560"
+			},
+			"offsets": {
+				"from": 843880,
+				"to": 849560
+			},
+			"text": " and smoke, your token becomes meaningless bytes on a blockchain. You should probably centralize"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,560",
+				"to": "00:14:18,360"
+			},
+			"offsets": {
+				"from": 849560,
+				"to": 858360
+			},
+			"text": " and just allow people to settle onto Ethereum using ERC20 or ERC721s. And it seems kind of like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,360",
+				"to": "00:14:23,640"
+			},
+			"offsets": {
+				"from": 858360,
+				"to": 863640
+			},
+			"text": " sad, like an acceptance of defeat, but it's not. Because at the end of the day, daps are businesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,640",
+				"to": "00:14:27,640"
+			},
+			"offsets": {
+				"from": 863640,
+				"to": 867640
+			},
+			"text": " and they're trying to find product market fit and they're trying to get people to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,640",
+				"to": "00:14:31,640"
+			},
+			"offsets": {
+				"from": 867640,
+				"to": 871640
+			},
+			"text": " That's the important part, people to use them. And they're more likely to fail as a result of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,640",
+				"to": "00:14:37,960"
+			},
+			"offsets": {
+				"from": 871640,
+				"to": 877960
+			},
+			"text": " no one using them than they are people finding them to be insufficiently decentralized. And so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,960",
+				"to": "00:14:42,920"
+			},
+			"offsets": {
+				"from": 877960,
+				"to": 882920
+			},
+			"text": " if eventually your dap becomes something that could be a public good, go ahead and start teasing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,920",
+				"to": "00:14:47,640"
+			},
+			"offsets": {
+				"from": 882920,
+				"to": 887640
+			},
+			"text": " it apart and decentralizing it and making it more robust. But until then, you want to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,640",
+				"to": "00:14:51,160"
+			},
+			"offsets": {
+				"from": 887640,
+				"to": 891160
+			},
+			"text": " you're building the right thing before you're building the best thing. And I can say from"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,160",
+				"to": "00:14:57,480"
+			},
+			"offsets": {
+				"from": 891160,
+				"to": 897480
+			},
+			"text": " experience, having built several L2 solutions, both generic and specific, it costs hundreds of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,480",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 897480,
+				"to": 903000
+			},
+			"text": " thousands of dollars to build a rigorous, audited production-ready, decentralized L2"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:08,920"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 908920
+			},
+			"text": " that users really want to use. And that's a huge risk, particularly for a tiny company."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,920",
+				"to": "00:15:17,640"
+			},
+			"offsets": {
+				"from": 908920,
+				"to": 917640
+			},
+			"text": " So continuing, we've ticked all of our boxes, but there's sort of a big question remaining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,640",
+				"to": "00:15:22,760"
+			},
+			"offsets": {
+				"from": 917640,
+				"to": 922760
+			},
+			"text": " which is like, what's next and why does this matter? This is not fun crypto, this is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,760",
+				"to": "00:15:28,280"
+			},
+			"offsets": {
+				"from": 922760,
+				"to": 928280
+			},
+			"text": " ZK Snarks, it's just sort of boring solutions to get people to start using Ethereum. Why does"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,280",
+				"to": "00:15:33,720"
+			},
+			"offsets": {
+				"from": 928280,
+				"to": 933720
+			},
+			"text": " getting people to start using Ethereum actually matter? Well, let's tie it all back together."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,720",
+				"to": "00:15:41,480"
+			},
+			"offsets": {
+				"from": 933720,
+				"to": 941480
+			},
+			"text": " People talk in the abstract about an Ethereum killer app. The reason an Ethereum killer app is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,480",
+				"to": "00:15:46,120"
+			},
+			"offsets": {
+				"from": 941480,
+				"to": 946120
+			},
+			"text": " interesting and useful is that unlike, say, a Silicon Valley venture-backed company where"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,120",
+				"to": "00:15:50,760"
+			},
+			"offsets": {
+				"from": 946120,
+				"to": 950760
+			},
+			"text": " to the victor goes the spoils and the goal is you grow your platform, you engage with your users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,760",
+				"to": "00:15:55,160"
+			},
+			"offsets": {
+				"from": 950760,
+				"to": 955160
+			},
+			"text": " and then you exploit them and you crush them under the heel of your boot. Every startup that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,160",
+				"to": "00:16:00,760"
+			},
+			"offsets": {
+				"from": 955160,
+				"to": 960760
+			},
+			"text": " launches on Ethereum has a unique opportunity to find fit for itself, but also find fit for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,760",
+				"to": "00:16:07,080"
+			},
+			"offsets": {
+				"from": 960760,
+				"to": 967080
+			},
+			"text": " entire chain. We don't talk about Uniswap in the context of as if Uniswap is the only DeFi thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,080",
+				"to": "00:16:12,840"
+			},
+			"offsets": {
+				"from": 967080,
+				"to": 972840
+			},
+			"text": " we talk about DeFi as a whole. So if something succeeding on Ethereum grows the pie for everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,840",
+				"to": "00:16:20,440"
+			},
+			"offsets": {
+				"from": 972840,
+				"to": 980440
+			},
+			"text": " else, and the best way to do that is to build lots of MVPs that provide user value and talk to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,440",
+				"to": "00:16:25,720"
+			},
+			"offsets": {
+				"from": 980440,
+				"to": 985720
+			},
+			"text": " those users. And those users have to be mainstream users that are solving a problem because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,720",
+				"to": "00:16:30,120"
+			},
+			"offsets": {
+				"from": 985720,
+				"to": 990120
+			},
+			"text": " number of people that are interested in crypto for crypto's sake is extraordinarily small."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,120",
+				"to": "00:16:37,720"
+			},
+			"offsets": {
+				"from": 990120,
+				"to": 997720
+			},
+			"text": " I really, really like this graphic because it talks about what a successful MVP is. So in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,720",
+				"to": "00:16:42,840"
+			},
+			"offsets": {
+				"from": 997720,
+				"to": 1002840
+			},
+			"text": " case, the MVP is a transportation device, and so on the bottom they start with a skateboard and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,840",
+				"to": "00:16:46,680"
+			},
+			"offsets": {
+				"from": 1002840,
+				"to": 1006680
+			},
+			"text": " eventually emerges into a car, and on the top they start with a wheel, and then eventually they"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,680",
+				"to": "00:16:53,080"
+			},
+			"offsets": {
+				"from": 1006680,
+				"to": 1013080
+			},
+			"text": " put together a car. Anyway, the bit's gone on a little bit too long. But the idea is up until"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,080",
+				"to": "00:16:58,120"
+			},
+			"offsets": {
+				"from": 1013080,
+				"to": 1018120
+			},
+			"text": " relatively recently, and this is a testament to the Ethereum community, we didn't even have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,120",
+				"to": "00:17:03,480"
+			},
+			"offsets": {
+				"from": 1018120,
+				"to": 1023480
+			},
+			"text": " wheels. We didn't have the primitives to actually choose between which model of MVP we wanted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,480",
+				"to": "00:17:10,360"
+			},
+			"offsets": {
+				"from": 1023480,
+				"to": 1030360
+			},
+			"text": " go about building in order to build mainstream decentralized applications. We do now, with L2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,360",
+				"to": "00:17:13,160"
+			},
+			"offsets": {
+				"from": 1030360,
+				"to": 1033160
+			},
+			"text": " with all of the open source work that's been done, with many of the things that have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,160",
+				"to": "00:17:17,640"
+			},
+			"offsets": {
+				"from": 1033160,
+				"to": 1037640
+			},
+			"text": " described at this very conference, we have the ability to do things at this very moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,640",
+				"to": "00:17:23,320"
+			},
+			"offsets": {
+				"from": 1037640,
+				"to": 1043320
+			},
+			"text": " So it's a watershed moment in Ethereum. To get to the next 10 million users in Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,320",
+				"to": "00:17:27,800"
+			},
+			"offsets": {
+				"from": 1043320,
+				"to": 1047800
+			},
+			"text": " we need to find that killer app. Removing barriers and not forcing users to change their"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,800",
+				"to": "00:17:33,880"
+			},
+			"offsets": {
+				"from": 1047800,
+				"to": 1053880
+			},
+			"text": " behaviors lets us validate more hypotheses about what users want to use Ethereum for more quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,880",
+				"to": "00:17:38,600"
+			},
+			"offsets": {
+				"from": 1053880,
+				"to": 1058600
+			},
+			"text": " So that over time we can, in fact, to make people care more about decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,720",
+				"to": "00:17:45,960"
+			},
+			"offsets": {
+				"from": 1059720,
+				"to": 1065960
+			},
+			"text": " than just convenience. So that's the end. I hope we found it helpful and interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,960",
+				"to": "00:17:50,600"
+			},
+			"offsets": {
+				"from": 1065960,
+				"to": 1070600
+			},
+			"text": " This is usually also the bit where I try and sell you stuff, but I don't actually have anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,600",
+				"to": "00:17:54,760"
+			},
+			"offsets": {
+				"from": 1070600,
+				"to": 1074760
+			},
+			"text": " I want to sell you. Instead, I'm working on a lot of interesting stuff at Kioken. Shoot me a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,760",
+				"to": "00:18:00,760"
+			},
+			"offsets": {
+				"from": 1074760,
+				"to": 1080760
+			},
+			"text": " DM on Twitter if you want to hear more about it. Otherwise, yeah, I would love to hear more about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,760",
+				"to": "00:18:04,840"
+			},
+			"offsets": {
+				"from": 1080760,
+				"to": 1084840
+			},
+			"text": " what people think of these concepts. And if you're talking about, or you're interested in talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,840",
+				"to": "00:18:11,800"
+			},
+			"offsets": {
+				"from": 1084840,
+				"to": 1091800
+			},
+			"text": " about UX adoption and L2, feel free to reach out. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,800",
+				"to": "00:18:21,800"
+			},
+			"offsets": {
+				"from": 1091800,
+				"to": 1101800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,800",
+				"to": "00:18:31,800"
+			},
+			"offsets": {
+				"from": 1101800,
+				"to": 1111800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,800",
+				"to": "00:18:41,800"
+			},
+			"offsets": {
+				"from": 1111800,
+				"to": 1121800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,800",
+				"to": "00:18:51,800"
+			},
+			"offsets": {
+				"from": 1121800,
+				"to": 1131800
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

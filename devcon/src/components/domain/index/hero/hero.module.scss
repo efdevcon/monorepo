@@ -305,17 +305,6 @@ $logo-offset: 50px;
   height: 100%;
 }
 
-.clouds {
-  position: relative;
-  background-image: url('./images/clouds.png');
-  background-size: auto max(100px, 11%);
-  background-position: center bottom;
-  background-repeat: repeat-x;
-  bottom: 0px;
-  height: 100%;
-  width: 100%;
-}
-
 .date-calendar {
   display: flex;
   flex-direction: column;
@@ -1092,6 +1081,18 @@ $logo-offset: 50px;
       height: auto;
       filter: drop-shadow(0px 0px 2px #000000);
       object-fit: cover;
+
+      // &.mobile {
+      //   display: none !important;
+
+      //   @media (max-width: $breakpoints-lg) {
+      //     display: block !important;
+      //   }
+      // }
+
+      // @media (max-width: $breakpoints-lg) {
+      //   display: none;
+      // }
     }
   }
 }

@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6880
+			},
+			"text": " Hi, my name is Michael Sproul."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,880",
+				"to": "00:00:13,200"
+			},
+			"offsets": {
+				"from": 6880,
+				"to": 13200
+			},
+			"text": " I work at Sigma Prime in Australia, all that distance away, on the Lighthouse F2 client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,200",
+				"to": "00:00:18,200"
+			},
+			"offsets": {
+				"from": 13200,
+				"to": 18200
+			},
+			"text": " And today I'm going to be talking about optimizing Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,200",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 18200,
+				"to": 24400
+			},
+			"text": " So with Ethereum 2, we have the benefit of having a nice executable specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 31200
+			},
+			"text": " It's written in Python, and it's written with a focus on being very clear, very readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:35,720"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 35720
+			},
+			"text": " Now with Lighthouse, our implementation is in Rust, and we have a focus on being fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,720",
+				"to": "00:00:39,880"
+			},
+			"offsets": {
+				"from": 35720,
+				"to": 39880
+			},
+			"text": " and secure, which, you know, we also want to be readable, but most of all we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,880",
+				"to": "00:00:41,240"
+			},
+			"offsets": {
+				"from": 39880,
+				"to": 41240
+			},
+			"text": " be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,240",
+				"to": "00:00:46,120"
+			},
+			"offsets": {
+				"from": 41240,
+				"to": 46120
+			},
+			"text": " And performance also helps with security because it helps us avoid denial of service attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,120",
+				"to": "00:00:50,640"
+			},
+			"offsets": {
+				"from": 46120,
+				"to": 50640
+			},
+			"text": " So where the spec might prioritize readability and use some quadratic time algorithms, in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,640",
+				"to": "00:00:54,360"
+			},
+			"offsets": {
+				"from": 50640,
+				"to": 54360
+			},
+			"text": " Lighthouse and in most F2 clients, you really want to make sure that you're running quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,360",
+				"to": "00:00:58,800"
+			},
+			"offsets": {
+				"from": 54360,
+				"to": 58800
+			},
+			"text": " quickly, and using linear time algorithms are pretty close to that, particularly over"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,800",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 58800,
+				"to": 66000
+			},
+			"text": " the set of validators, which could be, you know, up to 4 million validators in a list."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,520"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71520
+			},
+			"text": " So first of all, one example of where the spec is slightly inefficient in how it phrases"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,520",
+				"to": "00:01:15,280"
+			},
+			"offsets": {
+				"from": 71520,
+				"to": 75280
+			},
+			"text": " things is the shuffling of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,280",
+				"to": "00:01:20,440"
+			},
+			"offsets": {
+				"from": 75280,
+				"to": 80440
+			},
+			"text": " So we use this one at a time, sort of shuffling in the spec, the swap or not shuffling, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,440",
+				"to": "00:01:24,720"
+			},
+			"offsets": {
+				"from": 80440,
+				"to": 84720
+			},
+			"text": " the spec says, you know, for H index, which index does this get shuffled to, and it does"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,720",
+				"to": "00:01:27,600"
+			},
+			"offsets": {
+				"from": 84720,
+				"to": 87600
+			},
+			"text": " H index one at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,600",
+				"to": "00:01:32,520"
+			},
+			"offsets": {
+				"from": 87600,
+				"to": 92520
+			},
+			"text": " And it also does this thing where it will extract committees on demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,520",
+				"to": "00:01:36,680"
+			},
+			"offsets": {
+				"from": 92520,
+				"to": 96680
+			},
+			"text": " So if you get an attestation from the network and you need to know, well, who the validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,680",
+				"to": "00:01:41,840"
+			},
+			"offsets": {
+				"from": 96680,
+				"to": 101840
+			},
+			"text": " in this committee for this attestation, it will compute the shuffling and then extract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,840",
+				"to": "00:01:45,880"
+			},
+			"offsets": {
+				"from": 101840,
+				"to": 105880
+			},
+			"text": " the committee on demand and then throw it away and recompute it when you get another attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,880",
+				"to": "00:01:49,040"
+			},
+			"offsets": {
+				"from": 105880,
+				"to": 109040
+			},
+			"text": " for the same committee, which is not so efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,040",
+				"to": "00:01:55,440"
+			},
+			"offsets": {
+				"from": 109040,
+				"to": 115440
+			},
+			"text": " So why not just shuffle all the validators once at the beginning of the epoch, cache that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,440",
+				"to": "00:01:59,280"
+			},
+			"offsets": {
+				"from": 115440,
+				"to": 119280
+			},
+			"text": " shuffling and then read the committees off that on demand as you need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,280",
+				"to": "00:02:01,200"
+			},
+			"offsets": {
+				"from": 119280,
+				"to": 121200
+			},
+			"text": " And that's exactly what we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,200",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121200,
+				"to": 125000
+			},
+			"text": " And we use an algorithm that ProtoLambir came up with, I think Proto is probably here"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,880"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131880
+			},
+			"text": " somewhere, and it ends up being 250 times faster than shuffling the list one at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,880",
+				"to": "00:02:14,480"
+			},
+			"offsets": {
+				"from": 131880,
+				"to": 134480
+			},
+			"text": " So 250 times speed up is not bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,480",
+				"to": "00:02:19,760"
+			},
+			"offsets": {
+				"from": 134480,
+				"to": 139760
+			},
+			"text": " And then there's also the benefit of not redoing the computation each time you get an attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,760",
+				"to": "00:02:24,640"
+			},
+			"offsets": {
+				"from": 139760,
+				"to": 144640
+			},
+			"text": " So it's 250 times or better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,640",
+				"to": "00:02:29,840"
+			},
+			"offsets": {
+				"from": 144640,
+				"to": 149840
+			},
+			"text": " In Lighthouse, what this looks like is we have three caches of shuffled validators, one"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,840",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 149840,
+				"to": 154120
+			},
+			"text": " for the previous epoch, the current epoch, and for the next epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 159000
+			},
+			"text": " And when we hit an epoch transition, so when we move from one epoch to the next, we update"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:45,480"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 165480
+			},
+			"text": " these caches by shifting them along by one and then computing from scratch the shuffling"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,480",
+				"to": "00:02:47,760"
+			},
+			"offsets": {
+				"from": 165480,
+				"to": 167760
+			},
+			"text": " for the next epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,760",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 167760,
+				"to": 173680
+			},
+			"text": " And this works perfectly, so long as you do know the seed for the next epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 177120
+			},
+			"text": " And by design in ES2, we are meant to know the seed for the next epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 183560
+			},
+			"text": " So when we're transitioning from B to C into the current epoch, we already know the round"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:08,280"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 188280
+			},
+			"text": " our mix and the seed for the next epoch, and we're able to compute that shuffling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,280",
+				"to": "00:03:11,520"
+			},
+			"offsets": {
+				"from": 188280,
+				"to": 191520
+			},
+			"text": " At least that's the case with the spec today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,520",
+				"to": "00:03:17,520"
+			},
+			"offsets": {
+				"from": 191520,
+				"to": 197520
+			},
+			"text": " When we were implementing V0.8 of the spec, we noticed that our next epoch cache actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,520",
+				"to": "00:03:18,520"
+			},
+			"offsets": {
+				"from": 197520,
+				"to": 198520
+			},
+			"text": " broke."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,520",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 198520,
+				"to": 199840
+			},
+			"text": " And we were going, oh, this is weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 203000
+			},
+			"text": " Like, maybe the spec isn't meant to be like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,160"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206160
+			},
+			"text": " And we went digging through some docs and we were going, oh, this is really strange."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,160",
+				"to": "00:03:31,160"
+			},
+			"offsets": {
+				"from": 206160,
+				"to": 211160
+			},
+			"text": " The round our mix is updating right to the red arrow just before the start of the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,160",
+				"to": "00:03:36,160"
+			},
+			"offsets": {
+				"from": 211160,
+				"to": 216160
+			},
+			"text": " epoch, which means that the block proposer at the start of the current epoch here has"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,160",
+				"to": "00:03:40,040"
+			},
+			"offsets": {
+				"from": 216160,
+				"to": 220040
+			},
+			"text": " less than one slot of notice that they are the block proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,040",
+				"to": "00:03:44,760"
+			},
+			"offsets": {
+				"from": 220040,
+				"to": 224760
+			},
+			"text": " So they're kind of doing their epoch transition and then they're going, oh crap, I'm the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,760",
+				"to": "00:03:45,760"
+			},
+			"offsets": {
+				"from": 224760,
+				"to": 225760
+			},
+			"text": " proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,760",
+				"to": "00:03:48,560"
+			},
+			"offsets": {
+				"from": 225760,
+				"to": 228560
+			},
+			"text": " I better get on this and propose a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:53,120"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 233120
+			},
+			"text": " So we clarified this with the spec and found out that actually no, it's not meant to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,120",
+				"to": "00:03:54,360"
+			},
+			"offsets": {
+				"from": 233120,
+				"to": 234360
+			},
+			"text": " like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,360",
+				"to": "00:03:59,980"
+			},
+			"offsets": {
+				"from": 234360,
+				"to": 239980
+			},
+			"text": " And really, we should be looking at the, the random mix from two epochs back, so where"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,980",
+				"to": "00:04:01,400"
+			},
+			"offsets": {
+				"from": 239980,
+				"to": 241400
+			},
+			"text": " the green arrow is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,400",
+				"to": "00:04:04,800"
+			},
+			"offsets": {
+				"from": 241400,
+				"to": 244800
+			},
+			"text": " And that was fixed in V0.8.3 of the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,800",
+				"to": "00:04:10,240"
+			},
+			"offsets": {
+				"from": 244800,
+				"to": 250240
+			},
+			"text": " So something surprising here is that by implementing an optimization, it actually allowed us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,240",
+				"to": "00:04:13,720"
+			},
+			"offsets": {
+				"from": 250240,
+				"to": 253720
+			},
+			"text": " discover a bug in the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,720",
+				"to": "00:04:18,280"
+			},
+			"offsets": {
+				"from": 253720,
+				"to": 258280
+			},
+			"text": " And I think this speaks to something more general in the Ethereum space, which is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,280",
+				"to": "00:04:22,880"
+			},
+			"offsets": {
+				"from": 258280,
+				"to": 262880
+			},
+			"text": " by having a diversity of implementations in different languages and with different optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,880",
+				"to": "00:04:28,080"
+			},
+			"offsets": {
+				"from": 262880,
+				"to": 268080
+			},
+			"text": " phrasing the same thing in different ways, that can actually lead to clarity of the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,080",
+				"to": "00:04:32,880"
+			},
+			"offsets": {
+				"from": 268080,
+				"to": 272880
+			},
+			"text": " And I think that's something that's really important and it's a good way to design software."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,880",
+				"to": "00:04:37,240"
+			},
+			"offsets": {
+				"from": 272880,
+				"to": 277240
+			},
+			"text": " Let's talk a bit more about epoch processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,240",
+				"to": "00:04:40,800"
+			},
+			"offsets": {
+				"from": 277240,
+				"to": 280800
+			},
+			"text": " Because there's a few more optimizations that we do around this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,800",
+				"to": "00:04:45,360"
+			},
+			"offsets": {
+				"from": 280800,
+				"to": 285360
+			},
+			"text": " Maybe less important than the shuffling one, which is such a massive speed up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,360",
+				"to": "00:04:51,440"
+			},
+			"offsets": {
+				"from": 285360,
+				"to": 291440
+			},
+			"text": " With the epoch processing, the spec occasionally will iterate over lists of attestations and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,440",
+				"to": "00:04:54,640"
+			},
+			"offsets": {
+				"from": 291440,
+				"to": 294640
+			},
+			"text": " validators kind of redundantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,640",
+				"to": "00:05:01,360"
+			},
+			"offsets": {
+				"from": 294640,
+				"to": 301360
+			},
+			"text": " And one example of this is when you're calculating the reward for a proposer based on the attestations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,360",
+				"to": "00:05:07,480"
+			},
+			"offsets": {
+				"from": 301360,
+				"to": 307480
+			},
+			"text": " that they've included in their blocks, it uses time O V times A. So it's kind of a quadratic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,480",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 307480,
+				"to": 311000
+			},
+			"text": " key time where V is the validators and A is the pending attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,520"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314520
+			},
+			"text": " And really that validators, because that list is so large, we really don't want any sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,520",
+				"to": "00:05:17,600"
+			},
+			"offsets": {
+				"from": 314520,
+				"to": 317600
+			},
+			"text": " of quadratic factor in there with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,600",
+				"to": "00:05:21,480"
+			},
+			"offsets": {
+				"from": 317600,
+				"to": 321480
+			},
+			"text": " This is the code from the spec where you can see the nested for loops giving you the quadratic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,480",
+				"to": "00:05:22,480"
+			},
+			"offsets": {
+				"from": 321480,
+				"to": 322480
+			},
+			"text": " time thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,480",
+				"to": "00:05:27,720"
+			},
+			"offsets": {
+				"from": 322480,
+				"to": 327720
+			},
+			"text": " So there's the loop over the validators and then the loop over the attestations within"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,720",
+				"to": "00:05:30,080"
+			},
+			"offsets": {
+				"from": 327720,
+				"to": 330080
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,080",
+				"to": "00:05:34,280"
+			},
+			"offsets": {
+				"from": 330080,
+				"to": 334280
+			},
+			"text": " So rather than doing that quadratic time thing in Lighthouse, what we do is just a linear"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,280",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334280,
+				"to": 338000
+			},
+			"text": " pass over the validators and the attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:39,920"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 339920
+			},
+			"text": " So we do it in three parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,920",
+				"to": "00:05:43,200"
+			},
+			"offsets": {
+				"from": 339920,
+				"to": 343200
+			},
+			"text": " We first go over the validators, get some basic info, like whether they're active in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,200",
+				"to": "00:05:45,200"
+			},
+			"offsets": {
+				"from": 343200,
+				"to": 345200
+			},
+			"text": " the current epoch, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,200",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 345200,
+				"to": 350080
+			},
+			"text": " Then we iterate over the attestations to find out how people voted in things, whether they"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:53,920"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 353920
+			},
+			"text": " voted on the correct CASPER FFG targets and sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,920",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 353920,
+				"to": 358520
+			},
+			"text": " And then we do one final pass to sum up some balances, so different types of total balances"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:05:59,840"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 359840
+			},
+			"text": " for validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,840",
+				"to": "00:06:04,120"
+			},
+			"offsets": {
+				"from": 359840,
+				"to": 364120
+			},
+			"text": " And in total that's order V plus A time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,120",
+				"to": "00:06:09,200"
+			},
+			"offsets": {
+				"from": 364120,
+				"to": 369200
+			},
+			"text": " And some of the total balances, just as an example, these are the totals we compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,200",
+				"to": "00:06:14,280"
+			},
+			"offsets": {
+				"from": 369200,
+				"to": 374280
+			},
+			"text": " So the total balance of all the people who were active in the current epoch, all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,280",
+				"to": "00:06:19,440"
+			},
+			"offsets": {
+				"from": 374280,
+				"to": 379440
+			},
+			"text": " validators who attested in the current epoch, who were tested to the correct target, et"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,440",
+				"to": "00:06:23,360"
+			},
+			"offsets": {
+				"from": 379440,
+				"to": 383360
+			},
+			"text": " cetera, so on and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,360",
+				"to": "00:06:29,120"
+			},
+			"offsets": {
+				"from": 383360,
+				"to": 389120
+			},
+			"text": " As I said before, usually when you implement an optimization, you run the risk of breaking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,120",
+				"to": "00:06:35,800"
+			},
+			"offsets": {
+				"from": 389120,
+				"to": 395800
+			},
+			"text": " your client and running a file of what the spec says you should be doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,800",
+				"to": "00:06:41,960"
+			},
+			"offsets": {
+				"from": 395800,
+				"to": 401960
+			},
+			"text": " So what we really need to do is when we implement an optimization, we need to guarantee that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,960",
+				"to": "00:06:44,840"
+			},
+			"offsets": {
+				"from": 401960,
+				"to": 404840
+			},
+			"text": " it has the correct behavior and isn't going to break our client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,840",
+				"to": "00:06:50,160"
+			},
+			"offsets": {
+				"from": 404840,
+				"to": 410160
+			},
+			"text": " So in roughly increasing order of strength, we've got looking at the code, looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,160",
+				"to": "00:06:53,440"
+			},
+			"offsets": {
+				"from": 410160,
+				"to": 413440
+			},
+			"text": " the spec, looking at the optimized version and just kind of groking that they're the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,440",
+				"to": "00:06:54,440"
+			},
+			"offsets": {
+				"from": 413440,
+				"to": 414440
+			},
+			"text": " same."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,440",
+				"to": "00:06:58,880"
+			},
+			"offsets": {
+				"from": 414440,
+				"to": 418880
+			},
+			"text": " That's the weakest guarantee you can do because people are pretty terrible at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,880",
+				"to": "00:07:02,840"
+			},
+			"offsets": {
+				"from": 418880,
+				"to": 422840
+			},
+			"text": " And then moving into unit tests, the Ethereum Foundation's test vectors, which have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,840",
+				"to": "00:07:06,920"
+			},
+			"offsets": {
+				"from": 422840,
+				"to": 426920
+			},
+			"text": " super useful, and then into fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,920",
+				"to": "00:07:11,640"
+			},
+			"offsets": {
+				"from": 426920,
+				"to": 431640
+			},
+			"text": " So we've been doing quite a bit of fuzzing on Lighthouse, both crash fuzzing to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,640",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 431640,
+				"to": 436000
+			},
+			"text": " functions never crash regardless of what inputs you give them and differential fuzzing comparing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:17,480"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 437480
+			},
+			"text": " two different implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,480",
+				"to": "00:07:22,320"
+			},
+			"offsets": {
+				"from": 437480,
+				"to": 442320
+			},
+			"text": " And Metis doing more work along those lines in the next couple of months."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,320",
+				"to": "00:07:27,440"
+			},
+			"offsets": {
+				"from": 442320,
+				"to": 447440
+			},
+			"text": " And also similar to that randomized testing, property testing, similar to quick check."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,440",
+				"to": "00:07:31,800"
+			},
+			"offsets": {
+				"from": 447440,
+				"to": 451800
+			},
+			"text": " And because I've got a bit of a formal verification background, I've got this itch that I haven't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,800",
+				"to": "00:07:34,240"
+			},
+			"offsets": {
+				"from": 451800,
+				"to": 454240
+			},
+			"text": " scratched yet for formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,240",
+				"to": "00:07:38,560"
+			},
+			"offsets": {
+				"from": 454240,
+				"to": 458560
+			},
+			"text": " And we'll see if I get around to scratching that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,560",
+				"to": "00:07:39,560"
+			},
+			"offsets": {
+				"from": 458560,
+				"to": 459560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,560",
+				"to": "00:07:45,080"
+			},
+			"offsets": {
+				"from": 459560,
+				"to": 465080
+			},
+			"text": " I think I've got time, so I'm going to do this section as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,080",
+				"to": "00:07:47,160"
+			},
+			"offsets": {
+				"from": 465080,
+				"to": 467160
+			},
+			"text": " As well as optimizing for performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,160",
+				"to": "00:07:52,640"
+			},
+			"offsets": {
+				"from": 467160,
+				"to": 472640
+			},
+			"text": " Another thing we can optimize for when we're making an F2 client is the profit that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,640",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 472640,
+				"to": 476000
+			},
+			"text": " validator will bring in for being a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:58,760"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 478760
+			},
+			"text": " And there's one interesting problem here that caught my eye a few months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,760",
+				"to": "00:08:03,760"
+			},
+			"offsets": {
+				"from": 478760,
+				"to": 483760
+			},
+			"text": " And I'm maybe a bit obsessed with it if you talk to anyone around CP."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,760",
+				"to": "00:08:07,200"
+			},
+			"offsets": {
+				"from": 483760,
+				"to": 487200
+			},
+			"text": " And that is the attestation inclusion problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,200",
+				"to": "00:08:13,280"
+			},
+			"offsets": {
+				"from": 487200,
+				"to": 493280
+			},
+			"text": " So this problem is kind of leading on from what we were talking about before with aggregating"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:20,160"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 500160
+			},
+			"text": " attestations is if you've got a whole bunch of attestations from the network and you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,160",
+				"to": "00:08:25,720"
+			},
+			"offsets": {
+				"from": 500160,
+				"to": 505720
+			},
+			"text": " got more than you can fit in a single block, deciding which ones to include in the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,720",
+				"to": "00:08:30,560"
+			},
+			"offsets": {
+				"from": 505720,
+				"to": 510560
+			},
+			"text": " and such that you maximize the profit that you get from the rewards is actually an NP"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,560",
+				"to": "00:08:32,320"
+			},
+			"offsets": {
+				"from": 510560,
+				"to": 512320
+			},
+			"text": " hard problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,320",
+				"to": "00:08:38,200"
+			},
+			"offsets": {
+				"from": 512320,
+				"to": 518200
+			},
+			"text": " And it's an instance of this classical computer science problem called maximum coverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,200",
+				"to": "00:08:40,400"
+			},
+			"offsets": {
+				"from": 518200,
+				"to": 520400
+			},
+			"text": " And just to show you exactly what that looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,400",
+				"to": "00:08:46,260"
+			},
+			"offsets": {
+				"from": 520400,
+				"to": 526260
+			},
+			"text": " So attestation inclusion says something like we have a whole bunch of attestations and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,260",
+				"to": "00:08:53,200"
+			},
+			"offsets": {
+				"from": 526260,
+				"to": 533200
+			},
+			"text": " attestations and we need to find a subset of these of some maximum size such that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,200",
+				"to": "00:08:57,840"
+			},
+			"offsets": {
+				"from": 533200,
+				"to": 537840
+			},
+			"text": " sum of the rewards we get for all the validators that we've covered with those attestations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,840",
+				"to": "00:09:00,080"
+			},
+			"offsets": {
+				"from": 537840,
+				"to": 540080
+			},
+			"text": " is maximal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,080",
+				"to": "00:09:04,520"
+			},
+			"offsets": {
+				"from": 540080,
+				"to": 544520
+			},
+			"text": " And the abstract version of this problem, weighted maximum coverage says we have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,520",
+				"to": "00:09:09,960"
+			},
+			"offsets": {
+				"from": 544520,
+				"to": 549960
+			},
+			"text": " set of sets and we need to find a subset of those sets of the maximum size so that when"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,960",
+				"to": "00:09:16,440"
+			},
+			"offsets": {
+				"from": 549960,
+				"to": 556440
+			},
+			"text": " we union all the sets in that subset together, the combined weight of all those elements"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,440",
+				"to": "00:09:20,320"
+			},
+			"offsets": {
+				"from": 556440,
+				"to": 560320
+			},
+			"text": " is maximal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,320",
+				"to": "00:09:28,120"
+			},
+			"offsets": {
+				"from": 560320,
+				"to": 568120
+			},
+			"text": " The problem with NP hard problems is that they're hard and usually solving them exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,120",
+				"to": "00:09:32,360"
+			},
+			"offsets": {
+				"from": 568120,
+				"to": 572360
+			},
+			"text": " requires a sort of exponential or semi-exponential time algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,360",
+				"to": "00:09:38,640"
+			},
+			"offsets": {
+				"from": 572360,
+				"to": 578640
+			},
+			"text": " So for now we're using a greedy algorithm that works quite simply by just starting with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,640",
+				"to": "00:09:45,240"
+			},
+			"offsets": {
+				"from": 578640,
+				"to": 585240
+			},
+			"text": " an empty solution, looking at the list of attestations that you've got and greedily choosing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,240",
+				"to": "00:09:49,680"
+			},
+			"offsets": {
+				"from": 585240,
+				"to": 589680
+			},
+			"text": " the best attestations repeatedly and adding them to your solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,680",
+				"to": "00:09:53,280"
+			},
+			"offsets": {
+				"from": 589680,
+				"to": 593280
+			},
+			"text": " And so the best attestations are going to be the ones that cover new validators that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,280",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 593280,
+				"to": 597520
+			},
+			"text": " are not yet covered by attestations included on chain or attestations already in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:10:02,960"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 602960
+			},
+			"text": " solution and that include of those validators the ones that include the most high balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,960",
+				"to": "00:10:07,880"
+			},
+			"offsets": {
+				"from": 602960,
+				"to": 607880
+			},
+			"text": " validators because the reward that you get paid is proportional to the balance of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,880",
+				"to": "00:10:12,080"
+			},
+			"offsets": {
+				"from": 607880,
+				"to": 612080
+			},
+			"text": " validator whose attestation you include."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,080",
+				"to": "00:10:18,280"
+			},
+			"offsets": {
+				"from": 612080,
+				"to": 618280
+			},
+			"text": " This greedy algorithm performs quite well within a factor of 1 minus 1 on a of optimality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,280",
+				"to": "00:10:24,280"
+			},
+			"offsets": {
+				"from": 618280,
+				"to": 624280
+			},
+			"text": " So it's always going to get you at least 63% of the maximal reward that you could get"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,280",
+				"to": "00:10:27,120"
+			},
+			"offsets": {
+				"from": 624280,
+				"to": 627120
+			},
+			"text": " and in a lot of cases it will do better than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,120",
+				"to": "00:10:32,800"
+			},
+			"offsets": {
+				"from": 627120,
+				"to": 632800
+			},
+			"text": " There's the sort of pathological cases that hit this lower bound are kind of unusual."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,800",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632800,
+				"to": 638000
+			},
+			"text": " But nonetheless I would like to look into doing some exact solving using intergilinear"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:39,200"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 639200
+			},
+			"text": " programming at some point in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,200",
+				"to": "00:10:41,080"
+			},
+			"offsets": {
+				"from": 639200,
+				"to": 641080
+			},
+			"text": " I think that could be fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,080",
+				"to": "00:10:45,400"
+			},
+			"offsets": {
+				"from": 641080,
+				"to": 645400
+			},
+			"text": " But it might require kind of scheduling your block reduction well in advance of when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,400",
+				"to": "00:10:50,680"
+			},
+			"offsets": {
+				"from": 645400,
+				"to": 650680
+			},
+			"text": " actually need to produce the block which could be not so good."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,680",
+				"to": "00:10:56,360"
+			},
+			"offsets": {
+				"from": 650680,
+				"to": 656360
+			},
+			"text": " Yeah, so in conclusion optimising S2 is a lot of fun and all the clients should definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,360",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 656360,
+				"to": 660000
+			},
+			"text": " be doing it and I'm sure they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:03,720"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 663720
+			},
+			"text": " There's a link between performance and security."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,720",
+				"to": "00:11:07,080"
+			},
+			"offsets": {
+				"from": 663720,
+				"to": 667080
+			},
+			"text": " So avoiding denial of service optimisation is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,080",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 667080,
+				"to": 670560
+			},
+			"text": " And if we are all optimising and writing things in different ways there's a chance we might"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:13,280"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 673280
+			},
+			"text": " find some more spec bugs which is also lots of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,280",
+				"to": "00:11:14,480"
+			},
+			"offsets": {
+				"from": 673280,
+				"to": 674480
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,560",
+				"to": "00:11:19,480"
+			},
+			"offsets": {
+				"from": 674560,
+				"to": 679480
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,480",
+				"to": "00:11:26,480"
+			},
+			"offsets": {
+				"from": 679480,
+				"to": 686480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,480",
+				"to": "00:11:33,480"
+			},
+			"offsets": {
+				"from": 686480,
+				"to": 693480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,480",
+				"to": "00:11:40,480"
+			},
+			"offsets": {
+				"from": 693480,
+				"to": 700480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,480",
+				"to": "00:11:47,480"
+			},
+			"offsets": {
+				"from": 700480,
+				"to": 707480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,480",
+				"to": "00:11:54,480"
+			},
+			"offsets": {
+				"from": 707480,
+				"to": 714480
+			},
+			"text": " [Music]"
+		}
+	]
+}

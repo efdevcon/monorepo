@@ -1,0 +1,3475 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:23,680"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 23680
+			},
+			"text": " So I'm Martin Svenda."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,680",
+				"to": "00:00:28,320"
+			},
+			"offsets": {
+				"from": 23680,
+				"to": 28320
+			},
+			"text": " I'm going to talk about Ethereum security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,320",
+				"to": "00:00:34,320"
+			},
+			"offsets": {
+				"from": 28320,
+				"to": 34320
+			},
+			"text": " So can we turn this volume up a little bit, please?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,320",
+				"to": "00:00:44,240"
+			},
+			"offsets": {
+				"from": 34320,
+				"to": 44240
+			},
+			"text": " To start off with security is like this big, pretty vague term."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,240",
+				"to": "00:00:44,840"
+			},
+			"offsets": {
+				"from": 44240,
+				"to": 44840
+			},
+			"text": " So what is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,840",
+				"to": "00:00:47,440"
+			},
+			"offsets": {
+				"from": 44840,
+				"to": 47440
+			},
+			"text": " So when we talk about security, it's easier sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,440",
+				"to": "00:00:49,200"
+			},
+			"offsets": {
+				"from": 47440,
+				"to": 49200
+			},
+			"text": " to think about risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,200",
+				"to": "00:00:54,480"
+			},
+			"offsets": {
+				"from": 49200,
+				"to": 54480
+			},
+			"text": " And the risk is something which could potentially cause a loss,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,480",
+				"to": "00:00:57,720"
+			},
+			"offsets": {
+				"from": 54480,
+				"to": 57720
+			},
+			"text": " a risk, something a possible event which would be bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,720",
+				"to": "00:01:01,480"
+			},
+			"offsets": {
+				"from": 57720,
+				"to": 61480
+			},
+			"text": " And typically, the risk level depends"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,480",
+				"to": "00:01:05,040"
+			},
+			"offsets": {
+				"from": 61480,
+				"to": 65040
+			},
+			"text": " on the likelihood of that bad thing occurring."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,040",
+				"to": "00:01:09,280"
+			},
+			"offsets": {
+				"from": 65040,
+				"to": 69280
+			},
+			"text": " And the impact if that bad thing did occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,280",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 69280,
+				"to": 73600
+			},
+			"text": " So if we want to reduce risk, we can reduce the likelihood"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:15,240"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 75240
+			},
+			"text": " that bad thing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,240",
+				"to": "00:01:18,880"
+			},
+			"offsets": {
+				"from": 75240,
+				"to": 78880
+			},
+			"text": " Or we can reduce the impact if it occurs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,880",
+				"to": "00:01:22,600"
+			},
+			"offsets": {
+				"from": 78880,
+				"to": 82600
+			},
+			"text": " So if we reduce risk that way, we increase security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,600",
+				"to": "00:01:26,920"
+			},
+			"offsets": {
+				"from": 82600,
+				"to": 86920
+			},
+			"text": " Common ways to do that is to separate things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,920",
+				"to": "00:01:31,200"
+			},
+			"offsets": {
+				"from": 86920,
+				"to": 91200
+			},
+			"text": " isolate them, and apply several layers of defense."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,200",
+				"to": "00:01:38,760"
+			},
+			"offsets": {
+				"from": 91200,
+				"to": 98760
+			},
+			"text": " And some typical security concerns"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,760",
+				"to": "00:01:43,560"
+			},
+			"offsets": {
+				"from": 98760,
+				"to": 103560
+			},
+			"text": " in the overall Ethereum ecosystem is like end-user security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,560",
+				"to": "00:01:48,880"
+			},
+			"offsets": {
+				"from": 103560,
+				"to": 108880
+			},
+			"text": " When you handle wallets and interact with contracts and dApps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,880",
+				"to": "00:01:52,520"
+			},
+			"offsets": {
+				"from": 108880,
+				"to": 112520
+			},
+			"text": " and also for developers, hardware develops secure contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,520",
+				"to": "00:01:53,880"
+			},
+			"offsets": {
+				"from": 112520,
+				"to": 113880
+			},
+			"text": " and dApps."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,880",
+				"to": "00:02:00,680"
+			},
+			"offsets": {
+				"from": 113880,
+				"to": 120680
+			},
+			"text": " And on a macro scale, the network security overall."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,680",
+				"to": "00:02:05,640"
+			},
+			"offsets": {
+				"from": 120680,
+				"to": 125640
+			},
+			"text": " And these are all different security concerns."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,640",
+				"to": "00:02:08,280"
+			},
+			"offsets": {
+				"from": 125640,
+				"to": 128280
+			},
+			"text": " And the threats they vary."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,280",
+				"to": "00:02:12,720"
+			},
+			"offsets": {
+				"from": 128280,
+				"to": 132720
+			},
+			"text": " Some of them are game theoretical incentivization"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,720",
+				"to": "00:02:22,400"
+			},
+			"offsets": {
+				"from": 132720,
+				"to": 142400
+			},
+			"text": " of miners or seared exploits or protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,400",
+				"to": "00:02:26,480"
+			},
+			"offsets": {
+				"from": 142400,
+				"to": 146480
+			},
+			"text": " Yeah, stuff in the protocol which makes the communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,480",
+				"to": "00:02:29,640"
+			},
+			"offsets": {
+				"from": 146480,
+				"to": 149640
+			},
+			"text": " between nodes, lags, stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,640",
+				"to": "00:02:31,400"
+			},
+			"offsets": {
+				"from": 149640,
+				"to": 151400
+			},
+			"text": " Very wide variety of threats."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,400",
+				"to": "00:02:39,120"
+			},
+			"offsets": {
+				"from": 151400,
+				"to": 159120
+			},
+			"text": " I'm going to start with end-users dealing with wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,120",
+				"to": "00:02:43,240"
+			},
+			"offsets": {
+				"from": 159120,
+				"to": 163240
+			},
+			"text": " So when you deal with wallets, a good model for security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,240",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163240,
+				"to": 167000
+			},
+			"text": " is to isolate them, have hot cold and frozen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:51,560"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 171560
+			},
+			"text": " where hot wallet is what we use for everyday cash"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,560",
+				"to": "00:02:54,280"
+			},
+			"offsets": {
+				"from": 171560,
+				"to": 174280
+			},
+			"text": " on your everyday computer interacting with dApps"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,280",
+				"to": "00:02:57,080"
+			},
+			"offsets": {
+				"from": 174280,
+				"to": 177080
+			},
+			"text": " or whatever you do with your ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,080",
+				"to": "00:03:00,440"
+			},
+			"offsets": {
+				"from": 177080,
+				"to": 180440
+			},
+			"text": " And then have a cold wallet which you would more consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,440",
+				"to": "00:03:01,240"
+			},
+			"offsets": {
+				"from": 180440,
+				"to": 181240
+			},
+			"text": " your bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,240",
+				"to": "00:03:02,960"
+			},
+			"offsets": {
+				"from": 181240,
+				"to": 182960
+			},
+			"text": " If you need more money in your wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,960",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 182960,
+				"to": 187440
+			},
+			"text": " you take some money from the bank and put it in the hot wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 190240
+			},
+			"text": " And you would naturally need to back up of the cold wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:12,400"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 192400
+			},
+			"text": " And that's what I call the frozen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,400",
+				"to": "00:03:14,360"
+			},
+			"offsets": {
+				"from": 192400,
+				"to": 194360
+			},
+			"text": " So then you have done the reduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,360",
+				"to": "00:03:17,080"
+			},
+			"offsets": {
+				"from": 194360,
+				"to": 197080
+			},
+			"text": " You've done reduced the impact of the hot wallet compromise."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,080",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 197080,
+				"to": 199840
+			},
+			"text": " You reduce the likelihood of the cold wallet compromise."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 204200
+			},
+			"text": " And you reduce the impact in case your cold wallet burns up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:28,920"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 208920
+			},
+			"text": " And if you don't deal with wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,920",
+				"to": "00:03:30,880"
+			},
+			"offsets": {
+				"from": 208920,
+				"to": 210880
+			},
+			"text": " maybe you're having the money on an exchange, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,880",
+				"to": "00:03:33,720"
+			},
+			"offsets": {
+				"from": 210880,
+				"to": 213720
+			},
+			"text": " is perfectly fine if you're money that you have accepted"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,720",
+				"to": "00:03:35,240"
+			},
+			"offsets": {
+				"from": 213720,
+				"to": 215240
+			},
+			"text": " that you may lose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,240",
+				"to": "00:03:39,960"
+			},
+			"offsets": {
+				"from": 215240,
+				"to": 219960
+			},
+			"text": " You should not store more than you can accept"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,960",
+				"to": "00:03:40,880"
+			},
+			"offsets": {
+				"from": 219960,
+				"to": 220880
+			},
+			"text": " the risk of losing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,880",
+				"to": "00:03:48,920"
+			},
+			"offsets": {
+				"from": 220880,
+				"to": 228920
+			},
+			"text": " Cold electronic wallets put together kind of a feature list"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,920",
+				"to": "00:03:52,120"
+			},
+			"offsets": {
+				"from": 228920,
+				"to": 232120
+			},
+			"text": " of things that we want from a cold electronic wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,120",
+				"to": "00:03:55,360"
+			},
+			"offsets": {
+				"from": 232120,
+				"to": 235360
+			},
+			"text": " is that it should be safe to use with untrusted devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,360",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 235360,
+				"to": 238000
+			},
+			"text": " So if you're using an internet kiosk"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:01,240"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 241240
+			},
+			"text": " or your normal laptop has been compromised,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,240",
+				"to": "00:04:04,760"
+			},
+			"offsets": {
+				"from": 241240,
+				"to": 244760
+			},
+			"text": " we don't want that to be able to compromise your cold wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,760",
+				"to": "00:04:07,560"
+			},
+			"offsets": {
+				"from": 244760,
+				"to": 247560
+			},
+			"text": " You should still be safe to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,560",
+				"to": "00:04:09,720"
+			},
+			"offsets": {
+				"from": 247560,
+				"to": 249720
+			},
+			"text": " And if someone should steal it, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,720",
+				"to": "00:04:14,320"
+			},
+			"offsets": {
+				"from": 249720,
+				"to": 254320
+			},
+			"text": " wanted to resist key extraction, typically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,320",
+				"to": "00:04:19,960"
+			},
+			"offsets": {
+				"from": 254320,
+				"to": 259960
+			},
+			"text": " by a race on tamper, also HSM, a secure element."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,960",
+				"to": "00:04:25,760"
+			},
+			"offsets": {
+				"from": 259960,
+				"to": 265760
+			},
+			"text": " For all you tech nomads traveling in the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,760",
+				"to": "00:04:28,240"
+			},
+			"offsets": {
+				"from": 265760,
+				"to": 268240
+			},
+			"text": " is good if it's small enough to carry in your pocket."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,240",
+				"to": "00:04:29,960"
+			},
+			"offsets": {
+				"from": 268240,
+				"to": 269960
+			},
+			"text": " So you don't have to leave it in the hotel room."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,960",
+				"to": "00:04:34,920"
+			},
+			"offsets": {
+				"from": 269960,
+				"to": 274920
+			},
+			"text": " There are some of these products coming up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,920",
+				"to": "00:04:38,080"
+			},
+			"offsets": {
+				"from": 274920,
+				"to": 278080
+			},
+			"text": " The legend on OS has been released."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,080",
+				"to": "00:04:40,880"
+			},
+			"offsets": {
+				"from": 278080,
+				"to": 280880
+			},
+			"text": " Trestor is a Bitcoin wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,880",
+				"to": "00:04:45,800"
+			},
+			"offsets": {
+				"from": 280880,
+				"to": 285800
+			},
+			"text": " They have announced Ethereum integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,800",
+				"to": "00:04:47,160"
+			},
+			"offsets": {
+				"from": 285800,
+				"to": 287160
+			},
+			"text": " USB armory."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,160",
+				"to": "00:04:50,400"
+			},
+			"offsets": {
+				"from": 287160,
+				"to": 290400
+			},
+			"text": " This is the generic computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,400",
+				"to": "00:04:52,600"
+			},
+			"offsets": {
+				"from": 290400,
+				"to": 292600
+			},
+			"text": " The interesting part of it is that when you plug it in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,600",
+				"to": "00:04:55,400"
+			},
+			"offsets": {
+				"from": 292600,
+				"to": 295400
+			},
+			"text": " it spins up a new network interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,400",
+				"to": "00:05:00,800"
+			},
+			"offsets": {
+				"from": 295400,
+				"to": 300800
+			},
+			"text": " So you can plug it in in USB and then you can SSH into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,800",
+				"to": "00:05:03,920"
+			},
+			"offsets": {
+				"from": 300800,
+				"to": 303920
+			},
+			"text": " Or will this open source secure computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,920",
+				"to": "00:05:06,360"
+			},
+			"offsets": {
+				"from": 303920,
+				"to": 306360
+			},
+			"text": " and attempt a secure computer to completely open?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,640",
+				"to": "00:05:10,880"
+			},
+			"offsets": {
+				"from": 309640,
+				"to": 310880
+			},
+			"text": " Moving on, frozen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,880",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 310880,
+				"to": 314000
+			},
+			"text": " So the backup, if you want to back up your cold wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:15,600"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 315600
+			},
+			"text": " you want to do it securely."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,600",
+				"to": "00:05:18,480"
+			},
+			"offsets": {
+				"from": 315600,
+				"to": 318480
+			},
+			"text": " You don't want the seeds or the private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,480",
+				"to": "00:05:23,680"
+			},
+			"offsets": {
+				"from": 318480,
+				"to": 323680
+			},
+			"text": " to be able to burn or get broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,680",
+				"to": "00:05:29,560"
+			},
+			"offsets": {
+				"from": 323680,
+				"to": 329560
+			},
+			"text": " You could put it in the cloud, cryptographic and encrypted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,560",
+				"to": "00:05:34,680"
+			},
+			"offsets": {
+				"from": 329560,
+				"to": 334680
+			},
+			"text": " and only have a very hard password, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,680",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 334680,
+				"to": 336120
+			},
+			"text": " may not be a good idea, because you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 340000
+			},
+			"text": " can't lose your memory or get hit by a car or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 342000
+			},
+			"text": " The one solution is to use something like the crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,600"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346600
+			},
+			"text": " steel and put it in a bank vault or dig it down"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,600",
+				"to": "00:05:50,640"
+			},
+			"offsets": {
+				"from": 346600,
+				"to": 350640
+			},
+			"text": " in the backyard in the outback."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,640",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 350640,
+				"to": 353480
+			},
+			"text": " Or you can just maybe buy an old laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:55,640"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 355640
+			},
+			"text": " This is the cheaper solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,640",
+				"to": "00:05:58,920"
+			},
+			"offsets": {
+				"from": 355640,
+				"to": 358920
+			},
+			"text": " Never let it touch the internet and then just print out"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,920",
+				"to": "00:06:01,720"
+			},
+			"offsets": {
+				"from": 358920,
+				"to": 361720
+			},
+			"text": " the seeds and put it in the bank vault."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,680",
+				"to": "00:06:06,040"
+			},
+			"offsets": {
+				"from": 364680,
+				"to": 366040
+			},
+			"text": " You can also use the force."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,040",
+				"to": "00:06:08,440"
+			},
+			"offsets": {
+				"from": 366040,
+				"to": 368440
+			},
+			"text": " We have Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,440",
+				"to": "00:06:10,560"
+			},
+			"offsets": {
+				"from": 368440,
+				"to": 370560
+			},
+			"text": " So there are native tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,560",
+				"to": "00:06:13,520"
+			},
+			"offsets": {
+				"from": 370560,
+				"to": 373520
+			},
+			"text": " Nick Johnson, who's going to present after me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,520",
+				"to": "00:06:16,280"
+			},
+			"offsets": {
+				"from": 373520,
+				"to": 376280
+			},
+			"text": " he's done an implementation of an Ethereum vault,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,280",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 376280,
+				"to": 378360
+			},
+			"text": " which is a time lock."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 382920
+			},
+			"text": " So you can only use a certain amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 387000
+			},
+			"text": " at every predefined time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,840"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389840
+			},
+			"text": " And you do that using your hotkey."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,840",
+				"to": "00:06:32,040"
+			},
+			"offsets": {
+				"from": 389840,
+				"to": 392040
+			},
+			"text": " And then you also have the recovery key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,040",
+				"to": "00:06:33,920"
+			},
+			"offsets": {
+				"from": 392040,
+				"to": 393920
+			},
+			"text": " And you can only use that once."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,920",
+				"to": "00:06:36,360"
+			},
+			"offsets": {
+				"from": 393920,
+				"to": 396360
+			},
+			"text": " And when you do use that, it destroys the vault"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,360",
+				"to": "00:06:39,200"
+			},
+			"offsets": {
+				"from": 396360,
+				"to": 399200
+			},
+			"text": " and sends all the ether to the recovery address."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,200",
+				"to": "00:06:43,280"
+			},
+			"offsets": {
+				"from": 399200,
+				"to": 403280
+			},
+			"text": " So if the bad guy has got hold of your hotkey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,280",
+				"to": "00:06:46,640"
+			},
+			"offsets": {
+				"from": 403280,
+				"to": 406640
+			},
+			"text": " then you just nuke the vault and get the money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,640",
+				"to": "00:06:51,200"
+			},
+			"offsets": {
+				"from": 406640,
+				"to": 411200
+			},
+			"text": " So you should store that recovery key in some kind of safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,200",
+				"to": "00:06:51,920"
+			},
+			"offsets": {
+				"from": 411200,
+				"to": 411920
+			},
+			"text": " pro-symbaka."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,920",
+				"to": "00:06:58,840"
+			},
+			"offsets": {
+				"from": 411920,
+				"to": 418840
+			},
+			"text": " There's also the multi-sig contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,840",
+				"to": "00:07:01,920"
+			},
+			"offsets": {
+				"from": 418840,
+				"to": 421920
+			},
+			"text": " And you spread the trust across several people."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,920",
+				"to": "00:07:04,400"
+			},
+			"offsets": {
+				"from": 421920,
+				"to": 424400
+			},
+			"text": " So in the one of them, you reduce the impact."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,400",
+				"to": "00:07:06,160"
+			},
+			"offsets": {
+				"from": 424400,
+				"to": 426160
+			},
+			"text": " And the other, you reduce the likelihood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,160",
+				"to": "00:07:08,760"
+			},
+			"offsets": {
+				"from": 426160,
+				"to": 428760
+			},
+			"text": " if it's the likelihood of all of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,760",
+				"to": "00:07:10,400"
+			},
+			"offsets": {
+				"from": 428760,
+				"to": 430400
+			},
+			"text": " trusted people getting compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,400",
+				"to": "00:07:15,560"
+			},
+			"offsets": {
+				"from": 430400,
+				"to": 435560
+			},
+			"text": " And don't get hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,560",
+				"to": "00:07:17,920"
+			},
+			"offsets": {
+				"from": 435560,
+				"to": 437920
+			},
+			"text": " Try not to get hacked in your ordinary laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,920",
+				"to": "00:07:23,920"
+			},
+			"offsets": {
+				"from": 437920,
+				"to": 443920
+			},
+			"text": " If you're running a miner, remember that a miner is 24/7"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,920",
+				"to": "00:07:28,760"
+			},
+			"offsets": {
+				"from": 443920,
+				"to": 448760
+			},
+			"text": " connected to this network of potentially hostile beers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,760",
+				"to": "00:07:30,880"
+			},
+			"offsets": {
+				"from": 448760,
+				"to": 450880
+			},
+			"text": " I'm guessing it's most often unsupervised."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,880",
+				"to": "00:07:33,480"
+			},
+			"offsets": {
+				"from": 450880,
+				"to": 453480
+			},
+			"text": " So don't put anything of value on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,480",
+				"to": "00:07:34,720"
+			},
+			"offsets": {
+				"from": 453480,
+				"to": 454720
+			},
+			"text": " including your Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,720",
+				"to": "00:07:36,600"
+			},
+			"offsets": {
+				"from": 454720,
+				"to": 456600
+			},
+			"text": " It shouldn't be on the miner."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,600",
+				"to": "00:07:40,400"
+			},
+			"offsets": {
+				"from": 456600,
+				"to": 460400
+			},
+			"text": " It shouldn't mind to a Coinbase somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,400",
+				"to": "00:07:43,720"
+			},
+			"offsets": {
+				"from": 460400,
+				"to": 463720
+			},
+			"text": " Use virtual machines and firewalls."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,720",
+				"to": "00:07:45,680"
+			},
+			"offsets": {
+				"from": 463720,
+				"to": 465680
+			},
+			"text": " Drop everything coming to your host,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,680",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 465680,
+				"to": 469000
+			},
+			"text": " which you are not originating."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:51,760"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 471760
+			},
+			"text": " Just do a sanity check of what you expose."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,760",
+				"to": "00:07:53,760"
+			},
+			"offsets": {
+				"from": 471760,
+				"to": 473760
+			},
+			"text": " If you're a developer, you're probably exposing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,760",
+				"to": "00:07:59,280"
+			},
+			"offsets": {
+				"from": 473760,
+				"to": 479280
+			},
+			"text": " like, MySQL or Apache or Tomcat or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,280",
+				"to": "00:08:00,120"
+			},
+			"offsets": {
+				"from": 479280,
+				"to": 480120
+			},
+			"text": " Limit that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,120",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 480120,
+				"to": 484280
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:07,200"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 487200
+			},
+			"text": " Interacting with contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,200",
+				"to": "00:08:10,200"
+			},
+			"offsets": {
+				"from": 487200,
+				"to": 490200
+			},
+			"text": " So a verified contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,200",
+				"to": "00:08:10,960"
+			},
+			"offsets": {
+				"from": 490200,
+				"to": 490960
+			},
+			"text": " What does that mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,960",
+				"to": "00:08:16,960"
+			},
+			"offsets": {
+				"from": 490960,
+				"to": 496960
+			},
+			"text": " It means that what is deployed on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,960",
+				"to": "00:08:18,040"
+			},
+			"offsets": {
+				"from": 496960,
+				"to": 498040
+			},
+			"text": " there is a source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,040",
+				"to": "00:08:20,800"
+			},
+			"offsets": {
+				"from": 498040,
+				"to": 500800
+			},
+			"text": " And it can be verified that the source code, when compiled"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,800",
+				"to": "00:08:23,240"
+			},
+			"offsets": {
+				"from": 500800,
+				"to": 503240
+			},
+			"text": " and deployed, will correspond to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,240",
+				"to": "00:08:24,920"
+			},
+			"offsets": {
+				"from": 503240,
+				"to": 504920
+			},
+			"text": " It doesn't mean anything more than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,920",
+				"to": "00:08:26,480"
+			},
+			"offsets": {
+				"from": 504920,
+				"to": 506480
+			},
+			"text": " It doesn't mean that there's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,480",
+				"to": "00:08:30,160"
+			},
+			"offsets": {
+				"from": 506480,
+				"to": 510160
+			},
+			"text": " it has been audited by a third party or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,160",
+				"to": "00:08:33,120"
+			},
+			"offsets": {
+				"from": 510160,
+				"to": 513120
+			},
+			"text": " Only that the source code is available."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,120",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 513120,
+				"to": 515760
+			},
+			"text": " Some things to watch out for, if you're interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 517600
+			},
+			"text": " with the contract and have the source code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:41,920"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 521920
+			},
+			"text": " is does it use randomness in any way, shape, or form?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,920",
+				"to": "00:08:45,880"
+			},
+			"offsets": {
+				"from": 521920,
+				"to": 525880
+			},
+			"text": " And if it does, where does that random come from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,880",
+				"to": "00:08:48,960"
+			},
+			"offsets": {
+				"from": 525880,
+				"to": 528960
+			},
+			"text": " And can the source of that random be gained?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,960",
+				"to": "00:08:51,520"
+			},
+			"offsets": {
+				"from": 528960,
+				"to": 531520
+			},
+			"text": " And can anyone access it before you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,520",
+				"to": "00:08:53,360"
+			},
+			"offsets": {
+				"from": 531520,
+				"to": 533360
+			},
+			"text": " And in many cases, they can."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,360",
+				"to": "00:08:55,440"
+			},
+			"offsets": {
+				"from": 533360,
+				"to": 535440
+			},
+			"text": " So some sources of random that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,440",
+				"to": "00:08:58,760"
+			},
+			"offsets": {
+				"from": 535440,
+				"to": 538760
+			},
+			"text": " be used are block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,760",
+				"to": "00:09:03,400"
+			},
+			"offsets": {
+				"from": 538760,
+				"to": 543400
+			},
+			"text": " It can be also imported hashes from the Bitcoin blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,400",
+				"to": "00:09:06,160"
+			},
+			"offsets": {
+				"from": 543400,
+				"to": 546160
+			},
+			"text": " via BTC, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,160",
+				"to": "00:09:08,960"
+			},
+			"offsets": {
+				"from": 546160,
+				"to": 548960
+			},
+			"text": " In which case, there are a number of other people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,960",
+				"to": "00:09:11,520"
+			},
+			"offsets": {
+				"from": 548960,
+				"to": 551520
+			},
+			"text": " which can see the headers before they actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,520",
+				"to": "00:09:14,080"
+			},
+			"offsets": {
+				"from": 551520,
+				"to": 554080
+			},
+			"text": " get deployed on the ether chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,080",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 554080,
+				"to": 556760
+			},
+			"text": " And even if the source of the random"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:22,800"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 562800
+			},
+			"text": " is some user on Ethereum, some game operator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,800",
+				"to": "00:09:26,160"
+			},
+			"offsets": {
+				"from": 562800,
+				"to": 566160
+			},
+			"text": " remember that the transaction goes out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,160",
+				"to": "00:09:28,640"
+			},
+			"offsets": {
+				"from": 566160,
+				"to": 568640
+			},
+			"text": " and then it takes 14 seconds before it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,640",
+				"to": "00:09:30,120"
+			},
+			"offsets": {
+				"from": 568640,
+				"to": 570120
+			},
+			"text": " getting included in block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,120",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570120,
+				"to": 573000
+			},
+			"text": " So anyone can just use that information"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 577440
+			},
+			"text": " and front run that source."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:42,280"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 582280
+			},
+			"text": " So unless they are actually defined time slots for random"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,280",
+				"to": "00:09:49,480"
+			},
+			"offsets": {
+				"from": 582280,
+				"to": 589480
+			},
+			"text": " and then acting on that random, it can probably be gained."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,480",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 589480,
+				"to": 591480
+			},
+			"text": " You should also watch out for similar tags."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:55,160"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 595160
+			},
+			"text": " So a similar tag is when an attacker is using several identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,160",
+				"to": "00:09:58,720"
+			},
+			"offsets": {
+				"from": 595160,
+				"to": 598720
+			},
+			"text": " Imagine that you're sitting at a poker table playing against five"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,720",
+				"to": "00:09:59,640"
+			},
+			"offsets": {
+				"from": 598720,
+				"to": 599640
+			},
+			"text": " other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,640",
+				"to": "00:10:02,520"
+			},
+			"offsets": {
+				"from": 599640,
+				"to": 602520
+			},
+			"text": " And what you don't know is that they're all colluding against you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,520",
+				"to": "00:10:03,560"
+			},
+			"offsets": {
+				"from": 602520,
+				"to": 603560
+			},
+			"text": " They're all the same person."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,560",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 603560,
+				"to": 608000
+			},
+			"text": " You should watch out for rage quitting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:12,360"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 612360
+			},
+			"text": " So if you're using some kind of service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,360",
+				"to": "00:10:15,840"
+			},
+			"offsets": {
+				"from": 612360,
+				"to": 615840
+			},
+			"text": " which has several states, which it moves between,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,840",
+				"to": "00:10:20,360"
+			},
+			"offsets": {
+				"from": 615840,
+				"to": 620360
+			},
+			"text": " if the state transition depends on someone doing their part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,360",
+				"to": "00:10:23,720"
+			},
+			"offsets": {
+				"from": 620360,
+				"to": 623720
+			},
+			"text": " for example, the operator providing the seeds for the next round"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,720",
+				"to": "00:10:27,600"
+			},
+			"offsets": {
+				"from": 623720,
+				"to": 627600
+			},
+			"text": " or the operator cashing out, what happens if it doesn't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,600",
+				"to": "00:10:29,240"
+			},
+			"offsets": {
+				"from": 627600,
+				"to": 629240
+			},
+			"text": " if it just stops?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,240",
+				"to": "00:10:32,600"
+			},
+			"offsets": {
+				"from": 629240,
+				"to": 632600
+			},
+			"text": " Or can he suicide the contract and just collect the bank?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,600",
+				"to": "00:10:40,080"
+			},
+			"offsets": {
+				"from": 632600,
+				"to": 640080
+			},
+			"text": " I move on to DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,080",
+				"to": "00:10:44,360"
+			},
+			"offsets": {
+				"from": 640080,
+				"to": 644360
+			},
+			"text": " So DAPs, I'm sure most of you know, probably all of you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,360",
+				"to": "00:10:48,800"
+			},
+			"offsets": {
+				"from": 644360,
+				"to": 648800
+			},
+			"text": " HTML JavaScript pages, which have access to this web 3 API,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,800",
+				"to": "00:10:52,040"
+			},
+			"offsets": {
+				"from": 648800,
+				"to": 652040
+			},
+			"text": " and they can interact with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,040",
+				"to": "00:10:58,080"
+			},
+			"offsets": {
+				"from": 652040,
+				"to": 658080
+			},
+			"text": " So DAPs residing in the browser could be missed or parrot based."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,080",
+				"to": "00:11:01,240"
+			},
+			"offsets": {
+				"from": 658080,
+				"to": 661240
+			},
+			"text": " And the browser has an extensive attack service"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,240",
+				"to": "00:11:03,840"
+			},
+			"offsets": {
+				"from": 661240,
+				"to": 663840
+			},
+			"text": " because the web is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,840",
+				"to": "00:11:07,320"
+			},
+			"offsets": {
+				"from": 663840,
+				"to": 667320
+			},
+			"text": " It's a centralized trust model based on the CA authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,320",
+				"to": "00:11:11,920"
+			},
+			"offsets": {
+				"from": 667320,
+				"to": 671920
+			},
+			"text": " And mainly, the browser tries to render things"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,920",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 671920,
+				"to": 674800
+			},
+			"text": " not based on specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:18,880"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 678880
+			},
+			"text": " It's more like the specification tries to document"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:21,960"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 681960
+			},
+			"text": " what we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,960",
+				"to": "00:11:24,040"
+			},
+			"offsets": {
+				"from": 681960,
+				"to": 684040
+			},
+			"text": " They've been specified post-factum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,040",
+				"to": "00:11:26,640"
+			},
+			"offsets": {
+				"from": 684040,
+				"to": 686640
+			},
+			"text": " And there's no real governing security model"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,640",
+				"to": "00:11:30,560"
+			},
+			"offsets": {
+				"from": 686640,
+				"to": 690560
+			},
+			"text": " for how anything is handled on the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,560",
+				"to": "00:11:31,960"
+			},
+			"offsets": {
+				"from": 690560,
+				"to": 691960
+			},
+			"text": " So there are a lot of vulnerabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,960",
+				"to": "00:11:35,520"
+			},
+			"offsets": {
+				"from": 691960,
+				"to": 695520
+			},
+			"text": " and a lot of possible exploits."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,520",
+				"to": "00:11:40,440"
+			},
+			"offsets": {
+				"from": 695520,
+				"to": 700440
+			},
+			"text": " So a DAP browser connects this broken web with your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,440",
+				"to": "00:11:42,960"
+			},
+			"offsets": {
+				"from": 700440,
+				"to": 702960
+			},
+			"text": " So I would recommend, don't capture the internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,960",
+				"to": "00:11:44,600"
+			},
+			"offsets": {
+				"from": 702960,
+				"to": 704600
+			},
+			"text": " with your DAP browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,600",
+				"to": "00:11:52,720"
+			},
+			"offsets": {
+				"from": 704600,
+				"to": 712720
+			},
+			"text": " And verify that resources are fed securely over HTTPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,720",
+				"to": "00:11:55,800"
+			},
+			"offsets": {
+				"from": 712720,
+				"to": 715800
+			},
+			"text": " And when you're signing something in a DAP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,800",
+				"to": "00:11:58,760"
+			},
+			"offsets": {
+				"from": 715800,
+				"to": 718760
+			},
+			"text": " you should verify that the recipient address does actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,760",
+				"to": "00:12:02,040"
+			},
+			"offsets": {
+				"from": 718760,
+				"to": 722040
+			},
+			"text": " correspond to the contract that you intend to interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,040",
+				"to": "00:12:07,640"
+			},
+			"offsets": {
+				"from": 722040,
+				"to": 727640
+			},
+			"text": " For building DAPs, the same applies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,640",
+				"to": "00:12:13,840"
+			},
+			"offsets": {
+				"from": 727640,
+				"to": 733840
+			},
+			"text": " Use HTTPS certificates, STS, strict transport security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,840",
+				"to": "00:12:17,880"
+			},
+			"offsets": {
+				"from": 733840,
+				"to": 737880
+			},
+			"text": " And try not to use CDN's content delivery network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,880",
+				"to": "00:12:21,640"
+			},
+			"offsets": {
+				"from": 737880,
+				"to": 741640
+			},
+			"text": " because that means that someone else is delivering code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,640",
+				"to": "00:12:24,880"
+			},
+			"offsets": {
+				"from": 741640,
+				"to": 744880
+			},
+			"text": " And if someone else can execute JavaScript on your DAP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,880",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 744880,
+				"to": 748080
+			},
+			"text": " either because they can inject the traffic"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:29,960"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 749960
+			},
+			"text": " at where the client is sitting because you're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,960",
+				"to": "00:12:36,800"
+			},
+			"offsets": {
+				"from": 749960,
+				"to": 756800
+			},
+			"text": " using HTTPS, or because they're serving the content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,800",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 756800,
+				"to": 759520
+			},
+			"text": " or because it's a cross-site scripting vulnerability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:41,120"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 761120
+			},
+			"text": " if they can execute JavaScript, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,120",
+				"to": "00:12:42,520"
+			},
+			"offsets": {
+				"from": 761120,
+				"to": 762520
+			},
+			"text": " can do whatever they want with the DAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,520",
+				"to": "00:12:45,160"
+			},
+			"offsets": {
+				"from": 762520,
+				"to": 765160
+			},
+			"text": " and they can send the payments to another address."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,160",
+				"to": "00:12:47,880"
+			},
+			"offsets": {
+				"from": 765160,
+				"to": 767880
+			},
+			"text": " You should learn about web security, typically starting"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,880",
+				"to": "00:12:50,880"
+			},
+			"offsets": {
+				"from": 767880,
+				"to": 770880
+			},
+			"text": " with OWAS Top 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,880",
+				"to": "00:12:52,600"
+			},
+			"offsets": {
+				"from": 770880,
+				"to": 772600
+			},
+			"text": " And there are a lot more than OWAS Top 10,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,600",
+				"to": "00:12:53,520"
+			},
+			"offsets": {
+				"from": 772600,
+				"to": 773520
+			},
+			"text": " but that's a good start."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,520",
+				"to": "00:13:00,480"
+			},
+			"offsets": {
+				"from": 773520,
+				"to": 780480
+			},
+			"text": " So building contracts, just a child has mentioned a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,480",
+				"to": "00:13:04,560"
+			},
+			"offsets": {
+				"from": 780480,
+				"to": 784560
+			},
+			"text": " about this, but auditing and testing is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,560",
+				"to": "00:13:07,600"
+			},
+			"offsets": {
+				"from": 784560,
+				"to": 787600
+			},
+			"text": " You need to learn the inner workings of the VM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,600",
+				"to": "00:13:08,840"
+			},
+			"offsets": {
+				"from": 787600,
+				"to": 788840
+			},
+			"text": " unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,840",
+				"to": "00:13:13,760"
+			},
+			"offsets": {
+				"from": 788840,
+				"to": 793760
+			},
+			"text": " But also, it's pretty easy to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,760",
+				"to": "00:13:16,760"
+			},
+			"offsets": {
+				"from": 793760,
+				"to": 796760
+			},
+			"text": " I'd recommend you to start with the VM source code of Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,760",
+				"to": "00:13:21,120"
+			},
+			"offsets": {
+				"from": 796760,
+				"to": 801120
+			},
+			"text": " It's very small, 600 lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,120",
+				"to": "00:13:24,120"
+			},
+			"offsets": {
+				"from": 801120,
+				"to": 804120
+			},
+			"text": " Try to have an upgrade path, and not only for the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,120",
+				"to": "00:13:26,600"
+			},
+			"offsets": {
+				"from": 804120,
+				"to": 806600
+			},
+			"text": " in your contracts, potentially also for all your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,600",
+				"to": "00:13:32,200"
+			},
+			"offsets": {
+				"from": 806600,
+				"to": 812200
+			},
+			"text": " How do you move that into the next version of your contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,200",
+				"to": "00:13:34,840"
+			},
+			"offsets": {
+				"from": 812200,
+				"to": 814840
+			},
+			"text": " As Joseph mentioned, check the invariance, escape"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,840",
+				"to": "00:13:40,320"
+			},
+			"offsets": {
+				"from": 814840,
+				"to": 820320
+			},
+			"text": " patches, emergency breaks, and try to make things foolproofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,320",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 820320,
+				"to": 826000
+			},
+			"text": " So even fools can use them and allow users to make errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:51,640"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 831640
+			},
+			"text": " So this is from one of the splitters after the hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,640",
+				"to": "00:13:57,120"
+			},
+			"offsets": {
+				"from": 831640,
+				"to": 837120
+			},
+			"text": " And what's highlighted here is 1,493 Ether, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,120",
+				"to": "00:14:01,520"
+			},
+			"offsets": {
+				"from": 837120,
+				"to": 841520
+			},
+			"text": " has been successfully split into the zero address."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,520",
+				"to": "00:14:06,280"
+			},
+			"offsets": {
+				"from": 841520,
+				"to": 846280
+			},
+			"text": " So someone who probably wanted to split away his ETC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,280",
+				"to": "00:14:12,880"
+			},
+			"offsets": {
+				"from": 846280,
+				"to": 852880
+			},
+			"text": " but keep his ETH ether and didn't put anything in that field."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,880",
+				"to": "00:14:17,440"
+			},
+			"offsets": {
+				"from": 852880,
+				"to": 857440
+			},
+			"text": " So basically, it became zero, and all his ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,440",
+				"to": "00:14:18,320"
+			},
+			"offsets": {
+				"from": 857440,
+				"to": 858320
+			},
+			"text": " went up in smoke."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,320",
+				"to": "00:14:21,600"
+			},
+			"offsets": {
+				"from": 858320,
+				"to": 861600
+			},
+			"text": " And in total, there's been about 1,800 ethers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,600",
+				"to": "00:14:24,040"
+			},
+			"offsets": {
+				"from": 861600,
+				"to": 864040
+			},
+			"text": " sent to the zero address via the splitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,040",
+				"to": "00:14:29,480"
+			},
+			"offsets": {
+				"from": 864040,
+				"to": 869480
+			},
+			"text": " Right, there are several vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,480",
+				"to": "00:14:31,080"
+			},
+			"offsets": {
+				"from": 869480,
+				"to": 871080
+			},
+			"text": " Joseph's talked about most of them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,080",
+				"to": "00:14:33,560"
+			},
+			"offsets": {
+				"from": 871080,
+				"to": 873560
+			},
+			"text": " and I don't have time to go into them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,560",
+				"to": "00:14:36,960"
+			},
+			"offsets": {
+				"from": 873560,
+				"to": 876960
+			},
+			"text": " I've mentioned some of them, so not robust against chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,960",
+				"to": "00:14:39,040"
+			},
+			"offsets": {
+				"from": 876960,
+				"to": 879040
+			},
+			"text": " reordering."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,040",
+				"to": "00:14:43,680"
+			},
+			"offsets": {
+				"from": 879040,
+				"to": 883680
+			},
+			"text": " That, for example, if you have a commit reveal scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,680",
+				"to": "00:14:45,920"
+			},
+			"offsets": {
+				"from": 883680,
+				"to": 885920
+			},
+			"text": " what could happen is that you commit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,920",
+				"to": "00:14:48,200"
+			},
+			"offsets": {
+				"from": 885920,
+				"to": 888200
+			},
+			"text": " and then comes the reveal phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,200",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 888200,
+				"to": 891000
+			},
+			"text": " And then the malicious miner rolls back"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,320"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894320
+			},
+			"text": " and starts mining a step back and uses the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,320",
+				"to": "00:14:59,040"
+			},
+			"offsets": {
+				"from": 894320,
+				"to": 899040
+			},
+			"text": " that has been revealed and starts the new version."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,040",
+				"to": "00:15:06,360"
+			},
+			"offsets": {
+				"from": 899040,
+				"to": 906360
+			},
+			"text": " Right, here's a simple double function"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,360",
+				"to": "00:15:10,400"
+			},
+			"offsets": {
+				"from": 906360,
+				"to": 910400
+			},
+			"text": " which tries to double the input, a Uint8."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,400",
+				"to": "00:15:14,160"
+			},
+			"offsets": {
+				"from": 910400,
+				"to": 914160
+			},
+			"text": " And it puts it into Uint64, so it should be fine, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,160",
+				"to": "00:15:18,680"
+			},
+			"offsets": {
+				"from": 914160,
+				"to": 918680
+			},
+			"text": " But when we run the test and send in OX80, it returns zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,680",
+				"to": "00:15:23,480"
+			},
+			"offsets": {
+				"from": 918680,
+				"to": 923480
+			},
+			"text": " So you should learn the details of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,480",
+				"to": "00:15:27,080"
+			},
+			"offsets": {
+				"from": 923480,
+				"to": 927080
+			},
+			"text": " Solidity works if you want to make secure smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,080",
+				"to": "00:15:32,080"
+			},
+			"offsets": {
+				"from": 928080,
+				"to": 932080
+			},
+			"text": " There are several patterns, also mentioned earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,080",
+				"to": "00:15:37,080"
+			},
+			"offsets": {
+				"from": 932080,
+				"to": 937080
+			},
+			"text": " And you should also think about that private networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,080",
+				"to": "00:15:39,080"
+			},
+			"offsets": {
+				"from": 937080,
+				"to": 939080
+			},
+			"text": " are not really private, OK?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,080",
+				"to": "00:15:44,080"
+			},
+			"offsets": {
+				"from": 939080,
+				"to": 944080
+			},
+			"text": " They call private networks, but that does not mean that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,080",
+				"to": "00:15:48,080"
+			},
+			"offsets": {
+				"from": 944080,
+				"to": 948080
+			},
+			"text": " that someone cannot come into them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,080",
+				"to": "00:15:52,080"
+			},
+			"offsets": {
+				"from": 948080,
+				"to": 952080
+			},
+			"text": " Everything is sent of them, can be seen and studied."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,080",
+				"to": "00:15:56,080"
+			},
+			"offsets": {
+				"from": 952080,
+				"to": 956080
+			},
+			"text": " And if you're using the original genesis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,080",
+				"to": "00:16:01,080"
+			},
+			"offsets": {
+				"from": 956080,
+				"to": 961080
+			},
+			"text": " there might even be people who have access and can interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,080",
+				"to": "00:16:03,080"
+			},
+			"offsets": {
+				"from": 961080,
+				"to": 963080
+			},
+			"text": " and have ether on that private network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,080",
+				"to": "00:16:09,080"
+			},
+			"offsets": {
+				"from": 963080,
+				"to": 969080
+			},
+			"text": " Some final notes, you should think about your risks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,080",
+				"to": "00:16:11,080"
+			},
+			"offsets": {
+				"from": 969080,
+				"to": 971080
+			},
+			"text": " and your exposures, OK?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,080",
+				"to": "00:16:15,080"
+			},
+			"offsets": {
+				"from": 971080,
+				"to": 975080
+			},
+			"text": " And your threats, according to what you are doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,080",
+				"to": "00:16:18,080"
+			},
+			"offsets": {
+				"from": 975080,
+				"to": 978080
+			},
+			"text": " and what your assets are."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,080",
+				"to": "00:16:21,080"
+			},
+			"offsets": {
+				"from": 978080,
+				"to": 981080
+			},
+			"text": " And the way to increase security is to minimize"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,080",
+				"to": "00:16:25,080"
+			},
+			"offsets": {
+				"from": 981080,
+				"to": 985080
+			},
+			"text": " the likelihood and the impacts, and that's minimize the risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,080",
+				"to": "00:16:28,080"
+			},
+			"offsets": {
+				"from": 985080,
+				"to": 988080
+			},
+			"text": " And to do that, you typically separate, isolate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,080",
+				"to": "00:16:33,080"
+			},
+			"offsets": {
+				"from": 988080,
+				"to": 993080
+			},
+			"text": " and defend everywhere possible and harden your environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,080",
+				"to": "00:16:37,080"
+			},
+			"offsets": {
+				"from": 993080,
+				"to": 997080
+			},
+			"text": " So study the VM and learn Solidity, use the best practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,080",
+				"to": "00:16:42,080"
+			},
+			"offsets": {
+				"from": 997080,
+				"to": 1002080
+			},
+			"text": " And if you're worried about consensus issues on network attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,080",
+				"to": "00:16:44,080"
+			},
+			"offsets": {
+				"from": 1002080,
+				"to": 1004080
+			},
+			"text": " just run several clients in parallel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,080",
+				"to": "00:16:46,080"
+			},
+			"offsets": {
+				"from": 1004080,
+				"to": 1006080
+			},
+			"text": " and that's a big strength that we have in Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,080",
+				"to": "00:16:49,080"
+			},
+			"offsets": {
+				"from": 1006080,
+				"to": 1009080
+			},
+			"text": " that there are so many different client versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,080",
+				"to": "00:16:51,080"
+			},
+			"offsets": {
+				"from": 1009080,
+				"to": 1011080
+			},
+			"text": " So that one network attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,080",
+				"to": "00:16:58,080"
+			},
+			"offsets": {
+				"from": 1014080,
+				"to": 1018080
+			},
+			"text": " touch and wood, doesn't affect the whole network at once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,080",
+				"to": "00:17:00,080"
+			},
+			"offsets": {
+				"from": 1018080,
+				"to": 1020080
+			},
+			"text": " but only parts of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,080",
+				"to": "00:17:03,080"
+			},
+			"offsets": {
+				"from": 1020080,
+				"to": 1023080
+			},
+			"text": " Try to build things that anyone can use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,080",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1023080,
+				"to": 1028080
+			},
+			"text": " not just us tech geeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:11,080"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1031080
+			},
+			"text": " There's lots of work going on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,080",
+				"to": "00:17:14,080"
+			},
+			"offsets": {
+				"from": 1031080,
+				"to": 1034080
+			},
+			"text": " which I would hope that more people get involved in."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,080",
+				"to": "00:17:16,080"
+			},
+			"offsets": {
+				"from": 1034080,
+				"to": 1036080
+			},
+			"text": " Here are a couple of discussions that are happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,080",
+				"to": "00:17:20,080"
+			},
+			"offsets": {
+				"from": 1036080,
+				"to": 1040080
+			},
+			"text": " in the form of Ethereum improvement protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,080",
+				"to": "00:17:24,080"
+			},
+			"offsets": {
+				"from": 1040080,
+				"to": 1044080
+			},
+			"text": " There's 134 in discussion about how we can prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,080",
+				"to": "00:17:28,080"
+			},
+			"offsets": {
+				"from": 1044080,
+				"to": 1048080
+			},
+			"text": " cross-chain replay attacks using,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,080",
+				"to": "00:17:32,080"
+			},
+			"offsets": {
+				"from": 1048080,
+				"to": 1052080
+			},
+			"text": " by changing how transactions the fields in them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,080",
+				"to": "00:17:36,080"
+			},
+			"offsets": {
+				"from": 1052080,
+				"to": 1056080
+			},
+			"text": " that they're only valid after a particular hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,080",
+				"to": "00:17:39,080"
+			},
+			"offsets": {
+				"from": 1056080,
+				"to": 1059080
+			},
+			"text": " 138 concerning the bomb."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,080",
+				"to": "00:17:45,080"
+			},
+			"offsets": {
+				"from": 1059080,
+				"to": 1065080
+			},
+			"text": " 140, how we can implement throw in a cheaper way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,080",
+				"to": "00:17:49,080"
+			},
+			"offsets": {
+				"from": 1065080,
+				"to": 1069080
+			},
+			"text": " 116, where we can add a static call upcode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,080",
+				"to": "00:17:53,080"
+			},
+			"offsets": {
+				"from": 1069080,
+				"to": 1073080
+			},
+			"text": " which would make it, you could call a contract from a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,080",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1073080,
+				"to": 1077080
+			},
+			"text": " but that contract cannot modify state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:18:03,080"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1083080
+			},
+			"text": " So it would make re-entrance attacks impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,080",
+				"to": "00:18:06,080"
+			},
+			"offsets": {
+				"from": 1083080,
+				"to": 1086080
+			},
+			"text": " Well, they can re-enter, but they can't modify the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,080",
+				"to": "00:18:08,080"
+			},
+			"offsets": {
+				"from": 1086080,
+				"to": 1088080
+			},
+			"text": " while re-entering."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,080",
+				"to": "00:18:12,080"
+			},
+			"offsets": {
+				"from": 1088080,
+				"to": 1092080
+			},
+			"text": " 102, making it possible to do ring signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,080",
+				"to": "00:18:15,080"
+			},
+			"offsets": {
+				"from": 1092080,
+				"to": 1095080
+			},
+			"text": " elliptic curve cryptography on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,080",
+				"to": "00:18:19,080"
+			},
+			"offsets": {
+				"from": 1095080,
+				"to": 1099080
+			},
+			"text": " And 101 is one that I really like, big into mathematics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,080",
+				"to": "00:18:23,080"
+			},
+			"offsets": {
+				"from": 1099080,
+				"to": 1103080
+			},
+			"text": " would enable, make it possible to do RSA cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,080",
+				"to": "00:18:26,080"
+			},
+			"offsets": {
+				"from": 1103080,
+				"to": 1106080
+			},
+			"text": " and thus, PDP verification on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,080",
+				"to": "00:18:32,080"
+			},
+			"offsets": {
+				"from": 1106080,
+				"to": 1112080
+			},
+			"text": " So, I urge you all to get involved in the ongoing discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,080",
+				"to": "00:18:35,080"
+			},
+			"offsets": {
+				"from": 1112080,
+				"to": 1115080
+			},
+			"text": " That's all for me. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,080",
+				"to": "00:18:37,080"
+			},
+			"offsets": {
+				"from": 1115080,
+				"to": 1117080
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,080",
+				"to": "00:18:44,080"
+			},
+			"offsets": {
+				"from": 1117080,
+				"to": 1124080
+			},
+			"text": " [music]"
+		}
+	]
+}

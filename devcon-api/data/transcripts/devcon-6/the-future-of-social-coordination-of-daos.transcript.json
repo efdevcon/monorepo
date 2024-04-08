@@ -1,0 +1,3112 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,300"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17300
+			},
+			"text": " >> Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,300",
+				"to": "00:00:19,400"
+			},
+			"offsets": {
+				"from": 17300,
+				"to": 19400
+			},
+			"text": " If you're here, I'm introducing him again."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,400",
+				"to": "00:00:24,300"
+			},
+			"offsets": {
+				"from": 19400,
+				"to": 24300
+			},
+			"text": " But this talk is on the future of social coordination of Dows"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,300",
+				"to": "00:00:26,900"
+			},
+			"offsets": {
+				"from": 24300,
+				"to": 26900
+			},
+			"text": " and the talk is being hosted by Chandler DeCock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,900",
+				"to": "00:00:29,200"
+			},
+			"offsets": {
+				"from": 26900,
+				"to": 29200
+			},
+			"text": " who does growth strategy at Astaria."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,200",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29200,
+				"to": 32000
+			},
+			"text": " Chandler focuses on building the future of Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,100"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34100
+			},
+			"text": " by solving the problems that matter to people"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,100",
+				"to": "00:00:35,800"
+			},
+			"offsets": {
+				"from": 34100,
+				"to": 35800
+			},
+			"text": " that work in this space every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,800",
+				"to": "00:00:37,600"
+			},
+			"offsets": {
+				"from": 35800,
+				"to": 37600
+			},
+			"text": " Please welcome Chandler to the stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,600",
+				"to": "00:00:43,400"
+			},
+			"offsets": {
+				"from": 37600,
+				"to": 43400
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,400",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 43400,
+				"to": 44400
+			},
+			"text": " >> All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:47,500"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 47500
+			},
+			"text": " Just a quick shout-out before I get into my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,500",
+				"to": "00:00:49,400"
+			},
+			"offsets": {
+				"from": 47500,
+				"to": 49400
+			},
+			"text": " The previous panel that we had before this was"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,400",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49400,
+				"to": 52000
+			},
+			"text": " Wipe Web3 Adoption in Africa."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 53200
+			},
+			"text": " I really love that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:54,400"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 54400
+			},
+			"text": " It was really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,400",
+				"to": "00:00:56,400"
+			},
+			"offsets": {
+				"from": 54400,
+				"to": 56400
+			},
+			"text": " And a shout-out to the fellow Africans."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,400",
+				"to": "00:00:58,200"
+			},
+			"offsets": {
+				"from": 56400,
+				"to": 58200
+			},
+			"text": " I help from South Africa."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,200",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 58200,
+				"to": 60000
+			},
+			"text": " So that meant a lot to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:02,200"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 62200
+			},
+			"text": " It's really great to see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,200",
+				"to": "00:01:07,200"
+			},
+			"offsets": {
+				"from": 62200,
+				"to": 67200
+			},
+			"text": " Today's talk is really just around why do we need Dows"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,200",
+				"to": "00:01:09,800"
+			},
+			"offsets": {
+				"from": 67200,
+				"to": 69800
+			},
+			"text": " and why do we need to make them better, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,800",
+				"to": "00:01:11,800"
+			},
+			"offsets": {
+				"from": 69800,
+				"to": 71800
+			},
+			"text": " Many of us here are probably in Dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,800",
+				"to": "00:01:15,200"
+			},
+			"offsets": {
+				"from": 71800,
+				"to": 75200
+			},
+			"text": " And I think we owe it to ourselves to actually make them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,200",
+				"to": "00:01:19,200"
+			},
+			"offsets": {
+				"from": 75200,
+				"to": 79200
+			},
+			"text": " design them for humans and kind of create a more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,200",
+				"to": "00:01:21,700"
+			},
+			"offsets": {
+				"from": 79200,
+				"to": 81700
+			},
+			"text": " sustainable system for how Dows work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,700",
+				"to": "00:01:22,700"
+			},
+			"offsets": {
+				"from": 81700,
+				"to": 82700
+			},
+			"text": " My name is Chandler."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,700",
+				"to": "00:01:24,200"
+			},
+			"offsets": {
+				"from": 82700,
+				"to": 84200
+			},
+			"text": " I lead growth at Astaria."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,200",
+				"to": "00:01:31,200"
+			},
+			"offsets": {
+				"from": 84200,
+				"to": 91200
+			},
+			"text": " And today's lesson, just thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,200",
+				"to": "00:01:33,200"
+			},
+			"offsets": {
+				"from": 91200,
+				"to": 93200
+			},
+			"text": " Why the Dows experience sucks today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,200",
+				"to": "00:01:37,200"
+			},
+			"offsets": {
+				"from": 93200,
+				"to": 97200
+			},
+			"text": " It's a story of things that I've been through in the Dows ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,200",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 97200,
+				"to": 101200
+			},
+			"text": " And really the three main topics I want to cover today is just things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:46,200"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 106200
+			},
+			"text": " around governance, incentives, and the organization around Dows"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,200",
+				"to": "00:01:48,200"
+			},
+			"offsets": {
+				"from": 106200,
+				"to": 108200
+			},
+			"text": " as we know them today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,200",
+				"to": "00:01:50,200"
+			},
+			"offsets": {
+				"from": 108200,
+				"to": 110200
+			},
+			"text": " A little bit about what I've been up to."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,200",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 110200,
+				"to": 112200
+			},
+			"text": " I've worked in over 20,000 projects at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:55,200"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 115200
+			},
+			"text": " I used to help implement UMA's KPI options."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,200",
+				"to": "00:01:58,200"
+			},
+			"offsets": {
+				"from": 115200,
+				"to": 118200
+			},
+			"text": " That will tie quite heavily into whatever we talk about today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,200",
+				"to": "00:02:01,200"
+			},
+			"offsets": {
+				"from": 118200,
+				"to": 121200
+			},
+			"text": " I used to work on an optimistic governor module"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,200",
+				"to": "00:02:04,200"
+			},
+			"offsets": {
+				"from": 121200,
+				"to": 124200
+			},
+			"text": " and help spread awareness around just what optimistic governance is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,200",
+				"to": "00:02:10,200"
+			},
+			"offsets": {
+				"from": 124200,
+				"to": 130200
+			},
+			"text": " And I've done a ton of research around governance and incentive programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,200",
+				"to": "00:02:12,200"
+			},
+			"offsets": {
+				"from": 130200,
+				"to": 132200
+			},
+			"text": " So we all know what a DOW is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,200",
+				"to": "00:02:16,200"
+			},
+			"offsets": {
+				"from": 132200,
+				"to": 136200
+			},
+			"text": " I think this group is a little bit more advanced than most of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,200",
+				"to": "00:02:21,200"
+			},
+			"offsets": {
+				"from": 136200,
+				"to": 141200
+			},
+			"text": " But this is kind of like a very TLDR version of how I see the life cycle of a DOW start, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,200",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 141200,
+				"to": 142200
+			},
+			"text": " That was created."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:23,200"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 143200
+			},
+			"text": " Everyone joins."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,200",
+				"to": "00:02:24,200"
+			},
+			"offsets": {
+				"from": 143200,
+				"to": 144200
+			},
+			"text": " They're excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,200",
+				"to": "00:02:28,200"
+			},
+			"offsets": {
+				"from": 144200,
+				"to": 148200
+			},
+			"text": " There's a lot of hype, a lot of participation, and a lot of contribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,200",
+				"to": "00:02:32,200"
+			},
+			"offsets": {
+				"from": 148200,
+				"to": 152200
+			},
+			"text": " This is actually the most formative part of the DOW."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,200",
+				"to": "00:02:36,200"
+			},
+			"offsets": {
+				"from": 152200,
+				"to": 156200
+			},
+			"text": " And then we kind of move over to when Dows really start to operate, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,200",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 156200,
+				"to": 158200
+			},
+			"text": " And this is where the dynamics change a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:41,200"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 161200
+			},
+			"text": " Different types of incentive structures are at play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,200",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 161200,
+				"to": 164200
+			},
+			"text": " different types of contribution levels and skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:48,200"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 168200
+			},
+			"text": " And then you kind of get to a point where the Dows are in a sort of a happy, medium state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,200",
+				"to": "00:02:51,200"
+			},
+			"offsets": {
+				"from": 168200,
+				"to": 171200
+			},
+			"text": " And we kind of continue to see Dows operate in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,200",
+				"to": "00:02:54,200"
+			},
+			"offsets": {
+				"from": 171200,
+				"to": 174200
+			},
+			"text": " and their life cycle really is captured in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,200",
+				"to": "00:02:56,200"
+			},
+			"offsets": {
+				"from": 174200,
+				"to": 176200
+			},
+			"text": " So if a Dows operating, you're in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,200",
+				"to": "00:02:59,200"
+			},
+			"offsets": {
+				"from": 176200,
+				"to": 179200
+			},
+			"text": " But really then it kind of moves over to when the DOW explodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,200",
+				"to": "00:03:04,200"
+			},
+			"offsets": {
+				"from": 179200,
+				"to": 184200
+			},
+			"text": " And there are many examples of those that we'll kind of like just touch on very briefly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,200",
+				"to": "00:03:08,200"
+			},
+			"offsets": {
+				"from": 184200,
+				"to": 188200
+			},
+			"text": " This is where some incentive dynamics are at play."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,200",
+				"to": "00:03:11,200"
+			},
+			"offsets": {
+				"from": 188200,
+				"to": 191200
+			},
+			"text": " This is where some of the governance frustrations come into play."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,200",
+				"to": "00:03:15,200"
+			},
+			"offsets": {
+				"from": 191200,
+				"to": 195200
+			},
+			"text": " And then this is also around some of the concepts around like infighting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,200",
+				"to": "00:03:19,200"
+			},
+			"offsets": {
+				"from": 195200,
+				"to": 199200
+			},
+			"text": " and who has rights in the space and who can contribute and who can participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,200",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 199200,
+				"to": 204200
+			},
+			"text": " and some of the reasons why DOW's explode really starts around that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:26,200"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 206200
+			},
+			"text": " So we'll get into some of those in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,200",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 206200,
+				"to": 209200
+			},
+			"text": " But I think the one thing that's..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:35,200"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 215200
+			},
+			"text": " One second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,200",
+				"to": "00:03:40,200"
+			},
+			"offsets": {
+				"from": 215200,
+				"to": 220200
+			},
+			"text": " I think the thing that's really important here is the things that don't work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,200",
+				"to": "00:03:44,200"
+			},
+			"offsets": {
+				"from": 220200,
+				"to": 224200
+			},
+			"text": " So I spoke about community contributions and participation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,200",
+				"to": "00:03:48,200"
+			},
+			"offsets": {
+				"from": 224200,
+				"to": 228200
+			},
+			"text": " and those two things are actually fundamentally different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,200",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 228200,
+				"to": 232200
+			},
+			"text": " My participation in a DOW is very different to my contribution in a DOW."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:58,200"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 238200
+			},
+			"text": " And I think the way that DOW's restructured at the moment in these big, monolithic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,200",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 238200,
+				"to": 241200
+			},
+			"text": " one token, one vote systems don't really work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 245200
+			},
+			"text": " because you're always going to have a sub-optimal level of contribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:08,200"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 248200
+			},
+			"text": " Why? Why do I say that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,200",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 248200,
+				"to": 250200
+			},
+			"text": " Participation is not the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:17,200"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 257200
+			},
+			"text": " So when I have a token vote or a token in a DOW and I can vote on some of the governance actions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,200",
+				"to": "00:04:22,200"
+			},
+			"offsets": {
+				"from": 257200,
+				"to": 262200
+			},
+			"text": " I will always give the bare minimum effort that it takes to be considered a contributor"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,200",
+				"to": "00:04:27,200"
+			},
+			"offsets": {
+				"from": 262200,
+				"to": 267200
+			},
+			"text": " for future rewards and future incentive programs and kind of just be known in the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,200",
+				"to": "00:04:34,200"
+			},
+			"offsets": {
+				"from": 267200,
+				"to": 274200
+			},
+			"text": " Most organizations actually thrive and do better by individuals contributing above and beyond what's expected, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,200",
+				"to": "00:04:39,200"
+			},
+			"offsets": {
+				"from": 274200,
+				"to": 279200
+			},
+			"text": " Like if you think about your job, you work for an intrinsic value and an extrinsic value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,200",
+				"to": "00:04:42,200"
+			},
+			"offsets": {
+				"from": 279200,
+				"to": 282200
+			},
+			"text": " and those values combine to kind of give you what your output is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,200",
+				"to": "00:04:46,200"
+			},
+			"offsets": {
+				"from": 282200,
+				"to": 286200
+			},
+			"text": " and sometimes the job is that you don't like doing, you need some extrinsic motivation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,200",
+				"to": "00:04:50,200"
+			},
+			"offsets": {
+				"from": 286200,
+				"to": 290200
+			},
+			"text": " and the stuff that you really like doing, you can kind of just do for free, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,200",
+				"to": "00:04:54,200"
+			},
+			"offsets": {
+				"from": 290200,
+				"to": 294200
+			},
+			"text": " And so if you think about how DOW and a sense of structures are set up at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,200",
+				"to": "00:05:03,200"
+			},
+			"offsets": {
+				"from": 294200,
+				"to": 303200
+			},
+			"text": " there really is no way to effectively convert people's lack of willingness to participate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,200",
+				"to": "00:05:08,200"
+			},
+			"offsets": {
+				"from": 303200,
+				"to": 308200
+			},
+			"text": " sorry, lack of willingness to contribute on things that they might not be so excited about, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,200",
+				"to": "00:05:13,200"
+			},
+			"offsets": {
+				"from": 308200,
+				"to": 313200
+			},
+			"text": " And if you look at the vast majority of how DOW participation works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,200",
+				"to": "00:05:15,200"
+			},
+			"offsets": {
+				"from": 313200,
+				"to": 315200
+			},
+			"text": " it's really around token rewards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,200",
+				"to": "00:05:21,200"
+			},
+			"offsets": {
+				"from": 315200,
+				"to": 321200
+			},
+			"text": " Not every DOW has this, but the majority of the ones that we all know today have like a token reward distribution mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,200",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 321200,
+				"to": 324200
+			},
+			"text": " that actually just is fundamentally flawed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:29,200"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 329200
+			},
+			"text": " If you think about taking your token that's going to ultimately govern your system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,200",
+				"to": "00:05:36,200"
+			},
+			"offsets": {
+				"from": 329200,
+				"to": 336200
+			},
+			"text": " and air dropping it, put it out for liquidity mining rewards, rewards maximizing individuals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,200",
+				"to": "00:05:41,200"
+			},
+			"offsets": {
+				"from": 336200,
+				"to": 341200
+			},
+			"text": " they're kind of like just do the very least that they can to get the reward,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,200",
+				"to": "00:05:48,200"
+			},
+			"offsets": {
+				"from": 341200,
+				"to": 348200
+			},
+			"text": " ground scraping, all of these kind of concepts provide governance rights to people in the DOW"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,200",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 348200,
+				"to": 351200
+			},
+			"text": " that might not actually be there for the best interest of the DOW,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:56,200"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 356200
+			},
+			"text": " and we can kind of see that like the reward mechanism for something like a liquidity mining"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,200",
+				"to": "00:05:59,200"
+			},
+			"offsets": {
+				"from": 356200,
+				"to": 359200
+			},
+			"text": " is not really tied into the longevity of the DOW."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,200",
+				"to": "00:06:02,200"
+			},
+			"offsets": {
+				"from": 359200,
+				"to": 362200
+			},
+			"text": " Why do I say that in kind of the broader concept?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,200",
+				"to": "00:06:08,200"
+			},
+			"offsets": {
+				"from": 362200,
+				"to": 368200
+			},
+			"text": " Well, like you're just rewarding capital for your DOW and you're paying an extreme cost for that liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,200",
+				"to": "00:06:13,200"
+			},
+			"offsets": {
+				"from": 368200,
+				"to": 373200
+			},
+			"text": " show your protocol needs to function, ensure liquidity is king in most of the DeFi ecosystems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,200",
+				"to": "00:06:19,200"
+			},
+			"offsets": {
+				"from": 373200,
+				"to": 379200
+			},
+			"text": " but ultimately you're actually giving away governance rights to somebody that's not going to have a long-term and aligned incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,200",
+				"to": "00:06:22,200"
+			},
+			"offsets": {
+				"from": 379200,
+				"to": 382200
+			},
+			"text": " with your ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,200",
+				"to": "00:06:30,200"
+			},
+			"offsets": {
+				"from": 382200,
+				"to": 390200
+			},
+			"text": " Okay, the things that do work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,200",
+				"to": "00:06:39,200"
+			},
+			"offsets": {
+				"from": 390200,
+				"to": 399200
+			},
+			"text": " Now, most of the protocols that exist today that are highly successful have this concept of insert your protocol name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,200",
+				"to": "00:06:42,200"
+			},
+			"offsets": {
+				"from": 399200,
+				"to": 402200
+			},
+			"text": " labs, and that's this foundation that works on the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,200",
+				"to": "00:06:44,200"
+			},
+			"offsets": {
+				"from": 402200,
+				"to": 404200
+			},
+			"text": " You need to swap labs, works on uni swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,200",
+				"to": "00:06:50,200"
+			},
+			"offsets": {
+				"from": 404200,
+				"to": 410200
+			},
+			"text": " I used to work at UMA, we were at UMA risk labs that helped build out UMA protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,200",
+				"to": "00:06:53,200"
+			},
+			"offsets": {
+				"from": 410200,
+				"to": 413200
+			},
+			"text": " and these are normally highly skilled teams that are well compensated"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,200",
+				"to": "00:06:56,200"
+			},
+			"offsets": {
+				"from": 413200,
+				"to": 416200
+			},
+			"text": " and have both intrinsic and extrinsic motivation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,200",
+				"to": "00:07:03,200"
+			},
+			"offsets": {
+				"from": 416200,
+				"to": 423200
+			},
+			"text": " And those kinds of concepts have been extremely successful at building really highly effective products and protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,200",
+				"to": "00:07:09,200"
+			},
+			"offsets": {
+				"from": 423200,
+				"to": 429200
+			},
+			"text": " How do we translate this into the DOW space is actually going to be an important part of what I want to kind of get towards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,200",
+				"to": "00:07:18,200"
+			},
+			"offsets": {
+				"from": 429200,
+				"to": 438200
+			},
+			"text": " but most of the time relative to the size of DOWs is that there are small, highly motivated teams working on a particular problem, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,200",
+				"to": "00:07:23,200"
+			},
+			"offsets": {
+				"from": 438200,
+				"to": 443200
+			},
+			"text": " And if you think about some of the DOWs that set up this whole conference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,200",
+				"to": "00:07:28,200"
+			},
+			"offsets": {
+				"from": 443200,
+				"to": 448200
+			},
+			"text": " the shelling point, DOW, small, highly effective team, community organizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,200",
+				"to": "00:07:34,200"
+			},
+			"offsets": {
+				"from": 448200,
+				"to": 454200
+			},
+			"text": " the Ethereum Foundation, again, same small relative just to the level of participation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,200",
+				"to": "00:07:41,200"
+			},
+			"offsets": {
+				"from": 454200,
+				"to": 461200
+			},
+			"text": " and most of the people that work on these protocols or these DOWs or these kind of groups are verifiably credible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,200",
+				"to": "00:07:48,200"
+			},
+			"offsets": {
+				"from": 461200,
+				"to": 468200
+			},
+			"text": " So, you know, if I want to work on a developer DOW, I really need to be able to know how to develop."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,200",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 468200,
+				"to": 471200
+			},
+			"text": " So what are some of the lessons I learned?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 480200
+			},
+			"text": " In my time working with all the DOWs and kind of figuring out some of the dynamics on like what makes some DOW successful versus others."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:08,200"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 488200
+			},
+			"text": " And I think the one key message that I mentioned a bit earlier is around passing the access to the governance within your ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,200",
+				"to": "00:08:13,200"
+			},
+			"offsets": {
+				"from": 488200,
+				"to": 493200
+			},
+			"text": " We do that far too cheaply at the moment. We do it for the wrong reasons and we reward the wrong types of behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,200",
+				"to": "00:08:23,200"
+			},
+			"offsets": {
+				"from": 493200,
+				"to": 503200
+			},
+			"text": " And I think there's a very big difference between what is effective for your protocol versus what is effective for your governance and your long-term management of your DOW."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,200",
+				"to": "00:08:32,200"
+			},
+			"offsets": {
+				"from": 503200,
+				"to": 512200
+			},
+			"text": " I also fundamentally do believe that the kind of examples that we have at the moment, I put up here the SushiSwap example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,200",
+				"to": "00:08:41,200"
+			},
+			"offsets": {
+				"from": 512200,
+				"to": 521200
+			},
+			"text": " that was like the, it should be pretty much studied in every DOW business school when we eventually get to the size of the ecosystem for us to have like DOW business schools."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,200",
+				"to": "00:08:49,200"
+			},
+			"offsets": {
+				"from": 521200,
+				"to": 529200
+			},
+			"text": " And SushiSwap will most likely be the core fundamental case study on what went wrong and what are the things that we could do better about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,200",
+				"to": "00:09:01,200"
+			},
+			"offsets": {
+				"from": 529200,
+				"to": 541200
+			},
+			"text": " And again, token reward incentive programs, a governance system that was extremely monolithic and the participation in that DOW was the individual that had the most context of what they were doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,200",
+				"to": "00:09:10,200"
+			},
+			"offsets": {
+				"from": 541200,
+				"to": 550200
+			},
+			"text": " We're being stifled by members of the community that really didn't actually have the best kind of input in that particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,200",
+				"to": "00:09:17,200"
+			},
+			"offsets": {
+				"from": 550200,
+				"to": 557200
+			},
+			"text": " So the other one is governance is not easy. I think monolithic DOWs as they exist today are a huge issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,200",
+				"to": "00:09:24,200"
+			},
+			"offsets": {
+				"from": 557200,
+				"to": 564200
+			},
+			"text": " I don't think we should be getting rid of big monolithic DOWs. We'll get into some of the dynamics of how I think they can change."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,200",
+				"to": "00:09:27,200"
+			},
+			"offsets": {
+				"from": 564200,
+				"to": 567200
+			},
+			"text": " But really right now I think they're extremely painful."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,200",
+				"to": "00:09:36,200"
+			},
+			"offsets": {
+				"from": 567200,
+				"to": 576200
+			},
+			"text": " Context is missing for everyone. I think if you have to vote on every single vote, you're not going to know everything that you need to do and why this vote is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,200",
+				"to": "00:09:42,200"
+			},
+			"offsets": {
+				"from": 576200,
+				"to": 582200
+			},
+			"text": " And kind of like some of the decisions that get made on chain through governance votes are also kind of, they don't actually need to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,200",
+				"to": "00:09:56,200"
+			},
+			"offsets": {
+				"from": 582200,
+				"to": 596200
+			},
+			"text": " There's a big difference between being able to have like a verifiable trusted execution of a particular outcome versus actually something where you can just kind of agree as long as like, you know, there's some sort of like soft consensus around something, you can kind of move on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,200",
+				"to": "00:10:06,200"
+			},
+			"offsets": {
+				"from": 596200,
+				"to": 606200
+			},
+			"text": " And I don't think everything needs to be voted on. And I think one of the more important elements here is that attention in a DOW, especially if you're in many, like I've been, is a fading asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,200",
+				"to": "00:10:13,200"
+			},
+			"offsets": {
+				"from": 606200,
+				"to": 613200
+			},
+			"text": " Your token isn't the most valuable part of your DOW. The number of people are not the most important thing in your DOW."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,200",
+				"to": "00:10:20,200"
+			},
+			"offsets": {
+				"from": 613200,
+				"to": 620200
+			},
+			"text": " The attention that you can garner from people and of particular types of skill sets is the most important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,200",
+				"to": "00:10:33,200"
+			},
+			"offsets": {
+				"from": 620200,
+				"to": 633200
+			},
+			"text": " And then I kind of also briefly touched that not everything needs to be a blockchain vote. Like really, there are many elements around like how we can, what gets put towards a vote and gets discussed is sometimes a bit over the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,200",
+				"to": "00:10:38,200"
+			},
+			"offsets": {
+				"from": 633200,
+				"to": 638200
+			},
+			"text": " Bigger is not better. Size isn't really that important in terms of DOWs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,200",
+				"to": "00:10:45,200"
+			},
+			"offsets": {
+				"from": 638200,
+				"to": 645200
+			},
+			"text": " If you look at some of the most effective teams, I remember how I drew parallels to like highly effective teams building out something."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,200",
+				"to": "00:10:53,200"
+			},
+			"offsets": {
+				"from": 645200,
+				"to": 653200
+			},
+			"text": " If you look at the size of Uniswap, their team is famously small. Yet they're the biggest asset swapper in the DeFi space."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,200",
+				"to": "00:10:59,200"
+			},
+			"offsets": {
+				"from": 653200,
+				"to": 659200
+			},
+			"text": " And if you look at some team like Coinbase, famously large, and they roughly do the same amount of volume."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,200",
+				"to": "00:11:03,200"
+			},
+			"offsets": {
+				"from": 659200,
+				"to": 663200
+			},
+			"text": " Sure, they've got differentiating products and sure it's not apples for apples here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,200",
+				"to": "00:11:07,200"
+			},
+			"offsets": {
+				"from": 663200,
+				"to": 667200
+			},
+			"text": " But really, the concept here is that bigger DOWs are not necessarily better."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,200",
+				"to": "00:11:18,200"
+			},
+			"offsets": {
+				"from": 667200,
+				"to": 678200
+			},
+			"text": " The more people that you introduce into the DOW, the more elements of having a stifling force in your DOW starts to become prevalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,200",
+				"to": "00:11:24,200"
+			},
+			"offsets": {
+				"from": 678200,
+				"to": 684200
+			},
+			"text": " And these mass air drops and these mass token distributions kind of just go out willy-nilly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,200",
+				"to": "00:11:29,200"
+			},
+			"offsets": {
+				"from": 684200,
+				"to": 689200
+			},
+			"text": " They typically kind of help perpetuate these large DOWs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,200",
+				"to": "00:11:31,200"
+			},
+			"offsets": {
+				"from": 689200,
+				"to": 691200
+			},
+			"text": " And it's not really designed for humans, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,200",
+				"to": "00:11:37,200"
+			},
+			"offsets": {
+				"from": 691200,
+				"to": 697200
+			},
+			"text": " We as individual humans only can have X number of contacts between ourselves, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,200",
+				"to": "00:11:43,200"
+			},
+			"offsets": {
+				"from": 697200,
+				"to": 703200
+			},
+			"text": " Sure, you might have 10,000 Twitter followers, but you actually only talk to five people in your Discord or five people in your Telegram."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,200",
+				"to": "00:11:45,200"
+			},
+			"offsets": {
+				"from": 703200,
+				"to": 705200
+			},
+			"text": " And then you ignore all the rest of the group chats, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,200",
+				"to": "00:11:48,200"
+			},
+			"offsets": {
+				"from": 705200,
+				"to": 708200
+			},
+			"text": " So DOWs are built by humans and are for humans."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,200",
+				"to": "00:11:54,200"
+			},
+			"offsets": {
+				"from": 708200,
+				"to": 714200
+			},
+			"text": " And we should always kind of keep that as a core premise of how we design our interactions even in the DOW space."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,200",
+				"to": "00:11:58,200"
+			},
+			"offsets": {
+				"from": 714200,
+				"to": 718200
+			},
+			"text": " So I've had some experience with some tools. I'm going to go through three of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,200",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 718200,
+				"to": 723200
+			},
+			"text": " This is just from my point of view on some of the things that worked and what never worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:07,200"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 727200
+			},
+			"text": " So the first one was KPI options from the UMA protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,200",
+				"to": "00:12:17,200"
+			},
+			"offsets": {
+				"from": 727200,
+				"to": 737200
+			},
+			"text": " What a KPI option was was basically a conditional payout token, where, let's say, for example, I was a DFI protocol that wanted to get increased my TVL."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,200",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 737200,
+				"to": 743200
+			},
+			"text": " Instead of just distributing liquidity mining rewards or doing an air drop to kind of help promote this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 749200
+			},
+			"text": " you built in a conditional metric and you gave that token to your community members or the stakeholders that can actually improve that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:34,200"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 754200
+			},
+			"text": " And then, depending on how that metric got achieved over a period of time, you could get more rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,200",
+				"to": "00:12:41,200"
+			},
+			"offsets": {
+				"from": 754200,
+				"to": 761200
+			},
+			"text": " And you can kind of think of this as a really powerful primitive to incentivize people kind of in a decentralized way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,200",
+				"to": "00:12:46,200"
+			},
+			"offsets": {
+				"from": 761200,
+				"to": 766200
+			},
+			"text": " It was really great for community compensations because you compensated people for an outcome that you got."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,200",
+				"to": "00:12:52,200"
+			},
+			"offsets": {
+				"from": 766200,
+				"to": 772200
+			},
+			"text": " And so that outcome really, really helped motivate each individual kind of on an extrinsic level."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,200",
+				"to": "00:12:56,200"
+			},
+			"offsets": {
+				"from": 772200,
+				"to": 776200
+			},
+			"text": " So you kind of gave that reward for a total outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,200",
+				"to": "00:13:00,200"
+			},
+			"offsets": {
+				"from": 776200,
+				"to": 780200
+			},
+			"text": " Token rewards and outcome-based results were really, really useful for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,200",
+				"to": "00:13:06,200"
+			},
+			"offsets": {
+				"from": 780200,
+				"to": 786200
+			},
+			"text": " So let's say you as a DAAR really wanted to get something done and you would give a reward or a bounty out for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,200",
+				"to": "00:13:13,200"
+			},
+			"offsets": {
+				"from": 786200,
+				"to": 793200
+			},
+			"text": " depending on how well that outcome was achieved, you would end up getting a better result."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,200",
+				"to": "00:13:17,200"
+			},
+			"offsets": {
+				"from": 793200,
+				"to": 797200
+			},
+			"text": " And we found this to be quite a powerful, like, primitive mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,200",
+				"to": "00:13:22,200"
+			},
+			"offsets": {
+				"from": 797200,
+				"to": 802200
+			},
+			"text": " But then, in my experience, I found that there were a lot of issues with these conditional tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,200",
+				"to": "00:13:27,200"
+			},
+			"offsets": {
+				"from": 802200,
+				"to": 807200
+			},
+			"text": " Firstly, in DAARs, no one actually knows, in a DAAR, what your most important metrics are."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,200",
+				"to": "00:13:30,200"
+			},
+			"offsets": {
+				"from": 807200,
+				"to": 810200
+			},
+			"text": " And this was the most shocking thing I ever experienced."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,200",
+				"to": "00:13:35,200"
+			},
+			"offsets": {
+				"from": 810200,
+				"to": 815200
+			},
+			"text": " I'd walk up to a team and say, \"Hey, they would come to me and say, \"Hey, do you want to do KPI options?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,200",
+				"to": "00:13:37,200"
+			},
+			"offsets": {
+				"from": 815200,
+				"to": 817200
+			},
+			"text": " And I'd say, \"Yes, great. I'm here to help.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,200",
+				"to": "00:13:41,200"
+			},
+			"offsets": {
+				"from": 817200,
+				"to": 821200
+			},
+			"text": " And they would end up, our first question I'd ask is, \"What's your most important metric?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,200",
+				"to": "00:13:46,200"
+			},
+			"offsets": {
+				"from": 821200,
+				"to": 826200
+			},
+			"text": " And they kind of, like, just stood there and didn't know what exactly had answered that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,200",
+				"to": "00:13:50,200"
+			},
+			"offsets": {
+				"from": 826200,
+				"to": 830200
+			},
+			"text": " And then, there were competing discussions amongst team members."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,200",
+				"to": "00:13:58,200"
+			},
+			"offsets": {
+				"from": 830200,
+				"to": 838200
+			},
+			"text": " And so, finding a core metric in terms of what you could do in a DAAR might not necessarily be the most valuable thing for that DAAR,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,200",
+				"to": "00:14:01,200"
+			},
+			"offsets": {
+				"from": 838200,
+				"to": 841200
+			},
+			"text": " because there's a wide array of things that DAARs can target."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,200",
+				"to": "00:14:11,200"
+			},
+			"offsets": {
+				"from": 841200,
+				"to": 851200
+			},
+			"text": " But really, when you have too big a DAAR or too big an infrastructure, it's really hard to figure out what's that core premise of what that DAAR is ultimately achieving."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,200",
+				"to": "00:14:17,200"
+			},
+			"offsets": {
+				"from": 851200,
+				"to": 857200
+			},
+			"text": " And then, on the other side of this is that these KPI options were smart contracts and tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,200",
+				"to": "00:14:23,200"
+			},
+			"offsets": {
+				"from": 857200,
+				"to": 863200
+			},
+			"text": " There was a lot of effort to put into place for smaller incentive programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,200",
+				"to": "00:14:29,200"
+			},
+			"offsets": {
+				"from": 863200,
+				"to": 869200
+			},
+			"text": " And in the case of, like, something like Sushi, where the community really mistrusted the team in, there was this conflict,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,200",
+				"to": "00:14:33,200"
+			},
+			"offsets": {
+				"from": 869200,
+				"to": 873200
+			},
+			"text": " KPI options made sense there, because it was kind of like an on-chain guarantee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,200",
+				"to": "00:14:36,200"
+			},
+			"offsets": {
+				"from": 873200,
+				"to": 876200
+			},
+			"text": " whereas most DAARs and most community members really do trust their DAARs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,200",
+				"to": "00:14:45,200"
+			},
+			"offsets": {
+				"from": 876200,
+				"to": 885200
+			},
+			"text": " So, just saying, hey, we can do this and we'll give you a reward out if we achieve these results is actually something that is a lot more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,200",
+				"to": "00:14:54,200"
+			},
+			"offsets": {
+				"from": 885200,
+				"to": 894200
+			},
+			"text": " And I think taking that out of the small contract side and putting it in the social layer actually proved to be a little bit more effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,200",
+				"to": "00:14:58,200"
+			},
+			"offsets": {
+				"from": 894200,
+				"to": 898200
+			},
+			"text": " The other topic that I worked on for a while was optimistic governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,200",
+				"to": "00:15:01,200"
+			},
+			"offsets": {
+				"from": 898200,
+				"to": 901200
+			},
+			"text": " I call this the lazy DAARs choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,200",
+				"to": "00:15:08,200"
+			},
+			"offsets": {
+				"from": 901200,
+				"to": 908200
+			},
+			"text": " Optimistic governance for anyone that doesn't know is most actions of governance get executed by multisigs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,200",
+				"to": "00:15:14,200"
+			},
+			"offsets": {
+				"from": 908200,
+				"to": 914200
+			},
+			"text": " multisigs are a legal liability for the signer, and also a security hole."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,200",
+				"to": "00:15:23,200"
+			},
+			"offsets": {
+				"from": 914200,
+				"to": 923200
+			},
+			"text": " And so, what you can then do is instead of actually submitting everyone sign that, and again, attention is the most important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,200",
+				"to": "00:15:30,200"
+			},
+			"offsets": {
+				"from": 923200,
+				"to": 930200
+			},
+			"text": " The multisig sign is ultimately really a struggle to keep up with the context of everything that they're signing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,200",
+				"to": "00:15:33,200"
+			},
+			"offsets": {
+				"from": 930200,
+				"to": 933200
+			},
+			"text": " Just like every vote, you don't have all the context."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,200",
+				"to": "00:15:36,200"
+			},
+			"offsets": {
+				"from": 933200,
+				"to": 936200
+			},
+			"text": " Every signature for a multi-sig executed is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,200",
+				"to": "00:15:47,200"
+			},
+			"offsets": {
+				"from": 936200,
+				"to": 947200
+			},
+			"text": " So, what you can then do with an optimistic governor is basically submit the transactions that would execute on the wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,200",
+				"to": "00:15:51,200"
+			},
+			"offsets": {
+				"from": 947200,
+				"to": 951200
+			},
+			"text": " and that execution can be vetoed by someone in an optimistic sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,200",
+				"to": "00:15:57,200"
+			},
+			"offsets": {
+				"from": 951200,
+				"to": 957200
+			},
+			"text": " So, transactions can be submitted, and all you have to do is have one person disagree with it if there's anything wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,200",
+				"to": "00:16:02,200"
+			},
+			"offsets": {
+				"from": 957200,
+				"to": 962200
+			},
+			"text": " So, less votes, less on-chain actions, so great idea, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,200",
+				"to": "00:16:07,200"
+			},
+			"offsets": {
+				"from": 962200,
+				"to": 967200
+			},
+			"text": " There was actually a talk on this stage yesterday by someone called Isaac that went into a lot more details."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,200",
+				"to": "00:16:15,200"
+			},
+			"offsets": {
+				"from": 967200,
+				"to": 975200
+			},
+			"text": " So, if you want to know more details of how that all plugs in from Snafesap to reality.eth, and how that -- and the configuration of one of these are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,200",
+				"to": "00:16:17,200"
+			},
+			"offsets": {
+				"from": 975200,
+				"to": 977200
+			},
+			"text": " that's a great idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,200",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 977200,
+				"to": 985200
+			},
+			"text": " But really, these are extremely new and untested, and one of the biggest issues that you can have is you could actually submit a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:28,200"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 988200
+			},
+			"text": " and if no one is watching, steal some funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,200",
+				"to": "00:16:39,200"
+			},
+			"offsets": {
+				"from": 988200,
+				"to": 999200
+			},
+			"text": " Remember how I said, like, attention is the most important part of governance, even in a tool that allows you to govern in a more optimistic sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,200",
+				"to": "00:16:45,200"
+			},
+			"offsets": {
+				"from": 999200,
+				"to": 1005200
+			},
+			"text": " There's a security hole there because the security is based on the assumption that everyone is watching these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,200",
+				"to": "00:16:50,200"
+			},
+			"offsets": {
+				"from": 1005200,
+				"to": 1010200
+			},
+			"text": " So, optimistic governance, I think, also induces a lot of anxiety for individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,200",
+				"to": "00:16:57,200"
+			},
+			"offsets": {
+				"from": 1010200,
+				"to": 1017200
+			},
+			"text": " When you, as an executed transaction, on a multi-sig, you know when you have to do it, you can see that transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,200",
+				"to": "00:16:59,200"
+			},
+			"offsets": {
+				"from": 1017200,
+				"to": 1019200
+			},
+			"text": " you know nothing's going to happen if you don't do something."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,200",
+				"to": "00:17:07,200"
+			},
+			"offsets": {
+				"from": 1019200,
+				"to": 1027200
+			},
+			"text": " The dynamic with optimistic governance is flipped around where if you don't look at something, something might happen without you kind of like paying attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,200",
+				"to": "00:17:09,200"
+			},
+			"offsets": {
+				"from": 1027200,
+				"to": 1029200
+			},
+			"text": " And that's hugely scary, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,200",
+				"to": "00:17:15,200"
+			},
+			"offsets": {
+				"from": 1029200,
+				"to": 1035200
+			},
+			"text": " You're now going to be sitting here going every single time, checking your multi-sig if there's a new proposal for a transaction coming through."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,200",
+				"to": "00:17:22,200"
+			},
+			"offsets": {
+				"from": 1035200,
+				"to": 1042200
+			},
+			"text": " And so, conceptually, I think optimistic governance doesn't really sit so well for doubts that are lacking in attention or super monolithic."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,200",
+				"to": "00:17:28,200"
+			},
+			"offsets": {
+				"from": 1042200,
+				"to": 1048200
+			},
+			"text": " And maybe they can be a bit more effective at the smaller scale and also smaller treasury size."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,200",
+				"to": "00:17:37,200"
+			},
+			"offsets": {
+				"from": 1048200,
+				"to": 1057200
+			},
+			"text": " So, as a guest today spoke about how he stole 7 ETH ethically, he returned it because the safe snap team weren't paying attention, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,200",
+				"to": "00:17:42,200"
+			},
+			"offsets": {
+				"from": 1057200,
+				"to": 1062200
+			},
+			"text": " And they even paid attention, tried to catch him out, and so they blocked the transaction, he re-initiated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,200",
+				"to": "00:17:47,200"
+			},
+			"offsets": {
+				"from": 1062200,
+				"to": 1067200
+			},
+			"text": " and then they forgot to pay attention again, and then he ended up draining that small honeypot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,200",
+				"to": "00:17:56,200"
+			},
+			"offsets": {
+				"from": 1067200,
+				"to": 1076200
+			},
+			"text": " And so, optimistic governance, again kind of an interesting dynamic on how you can improve just that monolithic governance size."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,200",
+				"to": "00:18:04,200"
+			},
+			"offsets": {
+				"from": 1076200,
+				"to": 1084200
+			},
+			"text": " But really the most important thing that I think I've seen be a lot more effective in my time is this concept of pods unit to cores."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,200",
+				"to": "00:18:13,200"
+			},
+			"offsets": {
+				"from": 1084200,
+				"to": 1093200
+			},
+			"text": " There's not a clear vernacular on exactly what we're going to call this, but these small, highly effective teams that fit together within a larger organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,200",
+				"to": "00:18:19,200"
+			},
+			"offsets": {
+				"from": 1093200,
+				"to": 1099200
+			},
+			"text": " And these effective teams basically are focusing on one core element, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,200",
+				"to": "00:18:28,200"
+			},
+			"offsets": {
+				"from": 1099200,
+				"to": 1108200
+			},
+			"text": " Make it does this in their kind of units breakup, and that somewhat has somewhat been effective, and they largely live within the make-a-e- ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,200",
+				"to": "00:18:43,200"
+			},
+			"offsets": {
+				"from": 1108200,
+				"to": 1123200
+			},
+			"text": " But if you look at something on how you can kind of compose these core units into something that's far more effective, you can actually start moving your core mini-dow, or core mini-units of pod to other dows, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,200",
+				"to": "00:18:55,200"
+			},
+			"offsets": {
+				"from": 1123200,
+				"to": 1135200
+			},
+			"text": " So not only can you live with a dow within isolation, you can start having this hub and spoke mechanism where you get dows within dows, and those dows help out other dows, and you can kind of see a far more interconnected world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,200",
+				"to": "00:19:07,200"
+			},
+			"offsets": {
+				"from": 1135200,
+				"to": 1147200
+			},
+			"text": " The teams are far more efficient and far more effective because they're smaller, they govern themselves, they choose the tools that they want to do with, and the tooling that exists right now can kind of help input them into a lot more of the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,200",
+				"to": "00:19:16,200"
+			},
+			"offsets": {
+				"from": 1147200,
+				"to": 1156200
+			},
+			"text": " They can govern themselves whether they choose that to be optimistic or not, or if they do it on a contract layer, or the multi-sig, or they just trust someone intrinsically."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,200",
+				"to": "00:19:31,200"
+			},
+			"offsets": {
+				"from": 1156200,
+				"to": 1171200
+			},
+			"text": " But we can kind of see that these core units become really effective. And I'm sure many of you have been to some of the side events that happen at this conference, and many of those side events actually are done by core units, and those core units can actually be helpful to other teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,200",
+				"to": "00:19:47,200"
+			},
+			"offsets": {
+				"from": 1171200,
+				"to": 1187200
+			},
+			"text": " So the one example is that Divinity event last night, I went to it for a little bit, and that team, really highly effective, can do side events for a bunch of other dows or projects if they choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,200",
+				"to": "00:19:59,200"
+			},
+			"offsets": {
+				"from": 1187200,
+				"to": 1199200
+			},
+			"text": " Highly effective core units that govern themselves, that fit within a larger organization, or can be part of multiple organizations, is extremely far more effective and a better return to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,200",
+				"to": "00:20:08,200"
+			},
+			"offsets": {
+				"from": 1199200,
+				"to": 1208200
+			},
+			"text": " And so ultimately what I kind of get towards is, what does the future look like with the kind of lessons that I've learned and some of the things that I've seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,200",
+				"to": "00:20:10,200"
+			},
+			"offsets": {
+				"from": 1208200,
+				"to": 1210200
+			},
+			"text": " So what does the future look like to me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,200",
+				"to": "00:20:19,200"
+			},
+			"offsets": {
+				"from": 1210200,
+				"to": 1219200
+			},
+			"text": " I think any sort of dows structure needs three core elements, it's incentive, it's an incentive program, it's governance and it's organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,200",
+				"to": "00:20:39,200"
+			},
+			"offsets": {
+				"from": 1219200,
+				"to": 1239200
+			},
+			"text": " You really want a small team of highly effective and motivated individuals to work on a particular project or a particular problem that they all agree is the common goal that they're wanting to work on, and that the smaller your unit, the more effective your unit, the more you can do in a daily basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,200",
+				"to": "00:20:54,200"
+			},
+			"offsets": {
+				"from": 1239200,
+				"to": 1254200
+			},
+			"text": " And the other side of that is, you can even have the small units within a larger organization, right? People naturally like to fit within a small group, and that small group can identify as part of a big ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,200",
+				"to": "00:21:04,200"
+			},
+			"offsets": {
+				"from": 1254200,
+				"to": 1264200
+			},
+			"text": " And then the other one was being clear on participation versus contribution, right? I can participate in the Ethereum ecosystem, I can also contribute to the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,200",
+				"to": "00:21:12,200"
+			},
+			"offsets": {
+				"from": 1264200,
+				"to": 1272200
+			},
+			"text": " Those two things I think are really, really, really important to be very clear on when you're kind of working in a doubt, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,200",
+				"to": "00:21:21,200"
+			},
+			"offsets": {
+				"from": 1272200,
+				"to": 1281200
+			},
+			"text": " I'm part of a mini discord, sometimes it gets a bit noisy, and so I don't necessarily contribute to every single one, but I do participate in many of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,200",
+				"to": "00:21:27,200"
+			},
+			"offsets": {
+				"from": 1281200,
+				"to": 1287200
+			},
+			"text": " And keep up with the news, and as a participant in many doubts, I know what my role would there be."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,200",
+				"to": "00:21:36,200"
+			},
+			"offsets": {
+				"from": 1287200,
+				"to": 1296200
+			},
+			"text": " I have a vested interest, whether it be intrinsic or extrinsic, to make sure that that doubt survives and grows and becomes a vibrant ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,200",
+				"to": "00:21:42,200"
+			},
+			"offsets": {
+				"from": 1296200,
+				"to": 1302200
+			},
+			"text": " But then the contribution side should be an active decision from my side to contribute in that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,200",
+				"to": "00:21:56,200"
+			},
+			"offsets": {
+				"from": 1302200,
+				"to": 1316200
+			},
+			"text": " And I think that right now a lot of people mistrude being a contributor versus a participant, and you get a lot of armchair commentary from participants, pretending to be contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,200",
+				"to": "00:22:01,200"
+			},
+			"offsets": {
+				"from": 1316200,
+				"to": 1321200
+			},
+			"text": " And I feel like that often is quite a stifling force with any sort of governance issue and action."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,200",
+				"to": "00:22:07,200"
+			},
+			"offsets": {
+				"from": 1321200,
+				"to": 1327200
+			},
+			"text": " Now, being a participant that raises a valid concern and a valid issue is not kind of the point I'm touching on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,200",
+				"to": "00:22:18,200"
+			},
+			"offsets": {
+				"from": 1327200,
+				"to": 1338200
+			},
+			"text": " The point is when a participant that has no understanding of the problem that the contributors are working on is a big issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,200",
+				"to": "00:22:27,200"
+			},
+			"offsets": {
+				"from": 1338200,
+				"to": 1347200
+			},
+			"text": " I can't tell you how many times you've seen these long, well-fought-out forum posts, and you just see two, three people go, \"No, this doesn't make sense to me. I don't like it in forum posts.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,200",
+				"to": "00:22:33,200"
+			},
+			"offsets": {
+				"from": 1347200,
+				"to": 1353200
+			},
+			"text": " And that governance happens on a lot of these forum posts, and that's so like disheartening to the actual contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,200",
+				"to": "00:22:37,200"
+			},
+			"offsets": {
+				"from": 1353200,
+				"to": 1357200
+			},
+			"text": " That leads to the inviting and the ultimate explosion of the down."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,200",
+				"to": "00:22:45,200"
+			},
+			"offsets": {
+				"from": 1357200,
+				"to": 1365200
+			},
+			"text": " Cool, so that's mainly what I want to do and talk about today. I have one last shout out to do not really related to my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,200",
+				"to": "00:22:58,200"
+			},
+			"offsets": {
+				"from": 1365200,
+				"to": 1378200
+			},
+			"text": " But my ex- colleague, Clayton at Ume, sent out this tweet where he is asking everyone for laptops, phones, for everyone that's upsec secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,200",
+				"to": "00:23:03,200"
+			},
+			"offsets": {
+				"from": 1378200,
+				"to": 1383200
+			},
+			"text": " They're brought a new phone, brought a new laptop for Columbia. You can actually put that to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,200",
+				"to": "00:23:14,200"
+			},
+			"offsets": {
+				"from": 1383200,
+				"to": 1394200
+			},
+			"text": " These are going to students on an education path to basically have the access to the internet to kind of just learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,200",
+				"to": "00:23:19,200"
+			},
+			"offsets": {
+				"from": 1394200,
+				"to": 1399200
+			},
+			"text": " And there's going to be web-3 focused, so it's basically onboarding more people in the web-3 for people that are in need."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,200",
+				"to": "00:23:26,200"
+			},
+			"offsets": {
+				"from": 1399200,
+				"to": 1406200
+			},
+			"text": " He's already collected over 20 devices. I think actually I checked with him yesterday. It's closer to 50 at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,200",
+				"to": "00:23:37,200"
+			},
+			"offsets": {
+				"from": 1406200,
+				"to": 1417200
+			},
+			"text": " If you have an old phone or an old laptop or an old iPad, any internet connected device downstairs in the vibes room with the chair and the music,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,200",
+				"to": "00:23:40,200"
+			},
+			"offsets": {
+				"from": 1417200,
+				"to": 1420200
+			},
+			"text": " there's a guy there that's called John, you can drop your device there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,200",
+				"to": "00:23:48,200"
+			},
+			"offsets": {
+				"from": 1420200,
+				"to": 1428200
+			},
+			"text": " If you do want to still contribute to this and you don't have your device here, I also recommend handing it over into someone in Miami."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,200",
+				"to": "00:23:51,200"
+			},
+			"offsets": {
+				"from": 1428200,
+				"to": 1431200
+			},
+			"text": " They do have an office there, so if you're in the US, you can also contribute to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,200",
+				"to": "00:23:58,200"
+			},
+			"offsets": {
+				"from": 1431200,
+				"to": 1438200
+			},
+			"text": " This is a really great way to say thanks to the team in Bogota and the entire city for hosting us."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,200",
+				"to": "00:24:02,200"
+			},
+			"offsets": {
+				"from": 1438200,
+				"to": 1442200
+			},
+			"text": " It's been a really exciting experience and I've really loved my time here in Bogota."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,200",
+				"to": "00:24:08,200"
+			},
+			"offsets": {
+				"from": 1442200,
+				"to": 1448200
+			},
+			"text": " Thank you to Bogota. This is a good way, I think, that you can say thanks to the Columbia people for hosting a really awesome DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,200",
+				"to": "00:24:12,200"
+			},
+			"offsets": {
+				"from": 1448200,
+				"to": 1452200
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,200",
+				"to": "00:24:15,200"
+			},
+			"offsets": {
+				"from": 1452200,
+				"to": 1455200
+			},
+			"text": " I've got a bunch of time for questions if you'd like."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,200",
+				"to": "00:24:16,200"
+			},
+			"offsets": {
+				"from": 1455200,
+				"to": 1456200
+			},
+			"text": " One question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,200",
+				"to": "00:24:35,200"
+			},
+			"offsets": {
+				"from": 1456200,
+				"to": 1475200
+			},
+			"text": " You mentioned small teams working towards a common goal, but I didn't see you talk much about how you come up with that common goal and how all these small teams could agree on that common goal because that's, in my experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,200",
+				"to": "00:24:45,200"
+			},
+			"offsets": {
+				"from": 1475200,
+				"to": 1485200
+			},
+			"text": " has been a big problem and a couple of hours where they don't agree on the common goal and so then they break apart in their own ways and the argument starts to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,200",
+				"to": "00:24:47,200"
+			},
+			"offsets": {
+				"from": 1485200,
+				"to": 1487200
+			},
+			"text": " It starts happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,200",
+				"to": "00:24:56,200"
+			},
+			"offsets": {
+				"from": 1487200,
+				"to": 1496200
+			},
+			"text": " Yeah, I think naturally when like-minded individuals get in a room, they're often like, \"Oh, this is the problem that we're working on, this is the kind of solution that we're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,200",
+				"to": "00:24:58,200"
+			},
+			"offsets": {
+				"from": 1496200,
+				"to": 1498200
+			},
+			"text": " Let's go do that.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,200",
+				"to": "00:25:00,200"
+			},
+			"offsets": {
+				"from": 1498200,
+				"to": 1500200
+			},
+			"text": " I'm going to use the sharing point example again."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,200",
+				"to": "00:25:11,200"
+			},
+			"offsets": {
+				"from": 1500200,
+				"to": 1511200
+			},
+			"text": " They're fundamentally there to help public goods and the conversation, the discourse and the whole dynamic around public goods funding and so they all work towards that common goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,200",
+				"to": "00:25:15,200"
+			},
+			"offsets": {
+				"from": 1511200,
+				"to": 1515200
+			},
+			"text": " If you no longer want to work on that common goal, you can go in and out."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,200",
+				"to": "00:25:18,200"
+			},
+			"offsets": {
+				"from": 1515200,
+				"to": 1518200
+			},
+			"text": " That was like an organic formation based on people just coming together."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,200",
+				"to": "00:25:24,200"
+			},
+			"offsets": {
+				"from": 1518200,
+				"to": 1524200
+			},
+			"text": " I think those that come together that aren't part of a common goal, they just want to get together."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,200",
+				"to": "00:25:33,200"
+			},
+			"offsets": {
+				"from": 1524200,
+				"to": 1533200
+			},
+			"text": " I think that's more like a social club and so I think being intentional about what you want to do with a group of individuals is extremely important."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,200",
+				"to": "00:25:43,200"
+			},
+			"offsets": {
+				"from": 1533200,
+				"to": 1543200
+			},
+			"text": " You can direct your effort, you can direct your attention, you can direct your common collective outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,200",
+				"to": "00:25:45,200"
+			},
+			"offsets": {
+				"from": 1543200,
+				"to": 1545200
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,200",
+				"to": "00:25:47,200"
+			},
+			"offsets": {
+				"from": 1545200,
+				"to": 1547200
+			},
+			"text": " Thanks guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,200",
+				"to": "00:25:50,200"
+			},
+			"offsets": {
+				"from": 1548200,
+				"to": 1550200
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,200",
+				"to": "00:25:57,200"
+			},
+			"offsets": {
+				"from": 1550200,
+				"to": 1557200
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,200",
+				"to": "00:26:04,200"
+			},
+			"offsets": {
+				"from": 1557200,
+				"to": 1564200
+			},
+			"text": " [end of transcript]"
+		}
+	]
+}

@@ -1,0 +1,2254 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 24000
+			},
+			"text": " The patterns by the Gang of Four is very famous and also outside of the field of developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 31000
+			},
+			"text": " you have patterns. So if I want to need a Celtic pillow, I wouldn't know where to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 35000
+			},
+			"text": " So first I Google and then I get this kind of stuff. I'm not sure what it is. It looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 40000
+			},
+			"text": " brain fog codes, but probably it tells me how to need a pillow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 50000
+			},
+			"text": " So what is a pattern? A pattern is a reusable solution for common occurring problems that you can apply."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 54000
+			},
+			"text": " It's not some boilerplate piece of code that you just copy paste and you don't with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " You apply it to your own cortex, but you try to reuse it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61000
+			},
+			"text": " You try to see when does it make sense, when does it make sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 67000
+			},
+			"text": " And in the pattern description, the pattern language, we mentioned when is the good problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 72000
+			},
+			"text": " to apply this pattern, when you shouldn't do it, and if you're applying it, what are the considerations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 76000
+			},
+			"text": " And of course, some code examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " Yeah, Microsoft guys with their Azure Cloud, they also release all kinds of patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85000
+			},
+			"text": " So in all kinds of software engineering fields, you have this pattern system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 91000
+			},
+			"text": " So probably the next version of these slides will have the blockchain pattern in here as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 95000
+			},
+			"text": " So when looking at the patterns, we discover three areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 101000
+			},
+			"text": " We have data patterns, transaction of value patterns, and we have action and control patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106000
+			},
+			"text": " Maybe there are much more different categories, but these are the three distinctions that we came up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " And I'm going to mention six examples from these sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " Actually this morning, we've seen the fan-in and fan-out pattern from the block apps demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119000
+			},
+			"text": " We've seen the escrow example earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 124000
+			},
+			"text": " So already during this day, you have witnessed a couple of patterns without even realizing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " So for each of these patterns, we'll mention, well, of course, the name of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 131000
+			},
+			"text": " a definition of the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " So when can you apply this pattern?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " And then if you're going to apply it, what kind of context, what kind of considerations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 146000
+			},
+			"text": " what kind of constraints are there to be assured of, followed by an actual solution of this pattern,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 151000
+			},
+			"text": " and a couple examples out of all the code that is publicly available on GitHub already."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 155000
+			},
+			"text": " And you see these patterns are quite often related to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 160000
+			},
+			"text": " So if you apply it to each other, you might consider it as a non-pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 162000
+			},
+			"text": " You might consider it as a non-pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 164000
+			},
+			"text": " You might consider it as a non-pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 167000
+			},
+			"text": " Or even use them in combination of each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " So first of all, the data patterns, two examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " The first one is the name registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 180000
+			},
+			"text": " You need this if you're looking for a human readable name for its area address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " And you might need this human readable name because you want to display it in your user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " Maybe you have a wallet application and you want to show the person that you're transferring something to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 196000
+			},
+			"text": " Or you have a game and you want to show the nickname of the person that was just winning your contest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " Or because your depth consists of a cluster of contracts that are related with each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 205000
+			},
+			"text": " you want to make a reference from one contract to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 208000
+			},
+			"text": " But this relationship is a non-appront."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 214000
+			},
+			"text": " So you want to refer to the other contract by name instead of hard coding address in your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " And of course that's the advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 225000
+			},
+			"text": " That if you update the name registry, you can also update the code of your code constructs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 232000
+			},
+			"text": " And you can even apply heroic patterns here where you get some kind of zip domain registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 242000
+			},
+			"text": " You can point a registry for domain and then for every household within an area that would be a nodal reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 247000
+			},
+			"text": " to another name registry for the individual people living there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " Of course, there's some issues with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 255000
+			},
+			"text": " You have the traditional kind of problems that you're also seeing in the DNS name registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 258000
+			},
+			"text": " So you have this name squatting potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262000
+			},
+			"text": " What happens if you lose your key? Is this name going to be lost?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 264000
+			},
+			"text": " And we're going to expire it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 270000
+			},
+			"text": " Maybe you can outbid somebody else. So there's all these complex things to think of as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 274000
+			},
+			"text": " So a solution here is to create a contract registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " And this could either be a global one that you use in all your Ethereum applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " or it could be one specific for your context or for your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 288000
+			},
+			"text": " And it has a reference from a name to an address. It's just a big hash map."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " It just looks in the contract storage for the given name."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " What is the address that is associated with it? And then it returns the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " And you can extend this by giving a reverse look up."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 306000
+			},
+			"text": " So you can query it for an address and then you can see what is the name that belongs to this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 314000
+			},
+			"text": " And a good example here is the name rack contracts that is actually implemented by Gavin."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 321000
+			},
+			"text": " I think it's in the depth bin getter projects in the Ethereum repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " And here you have the name register implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330000
+			},
+			"text": " So you can take a look at this and see how Gavin does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335000
+			},
+			"text": " So the second data pattern is this data feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339000
+			},
+			"text": " Smart contracts, they cannot reach out to the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 345000
+			},
+			"text": " You cannot make HTTP call and see what the website returns as a value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 348000
+			},
+			"text": " You cannot directly connect the camera to it so you can make a picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " So you need to actually feed the data to your contracts to get some kind of value out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 359000
+			},
+			"text": " So what if if you're making an application that needs to know the weather for a certain area"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 364000
+			},
+			"text": " or it needs to know an exchange rate so you can exchange your ether for Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " or your Pfizer-Prouser."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " And yeah, there's this limitation of this theorem virtual machine where because it's deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " you cannot look outside and fetch data into the blockchain by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384000
+			},
+			"text": " So what you need to do, you actually need to feed this data into Ethereum onto the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 390000
+			},
+			"text": " And then once it is there, every other application on the Ethereum blockchain can actually use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 395000
+			},
+			"text": " And use the fashion that you really didn't think of yourself before."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 406000
+			},
+			"text": " So typically you'll need an automated process, some kind of demon that frequently publishes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " updates to this data feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 413000
+			},
+			"text": " So maybe once every day what the weather was or what exchange rate was or more frequent"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 418000
+			},
+			"text": " or less frequent depending on your usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 427000
+			},
+			"text": " And of course you can publish this as a free service but you can also ask for a fee if people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 429000
+			},
+			"text": " are getting the data out of this data feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " So of course there's some cost associating with sapling up such a process that keeps updating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " keeps pushing data to the Ethereum contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " At least you need to pay the guess and also some kind of hosting fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 447000
+			},
+			"text": " So you could actually charge every contract that is using this and that could be a viable revenue"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " model for data feeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " Yeah, I've given you these examples already."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 461000
+			},
+			"text": " And a much more advanced example is the BTC relay contracts where it's actually storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " blocks and transactions from the Bitcoin onto Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 470000
+			},
+			"text": " So then you can use this on the Ethereum blockchain as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 477000
+			},
+			"text": " And as an example here we have the price feed example from Nick Dodson."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " I think he's also here, I might be presenting later this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 490000
+			},
+			"text": " So here they're pushing free at currency prices on the blockchain and then you can use that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 496000
+			},
+			"text": " for some kind of trade, some set up some kind of escrow without having to rely on the exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 499000
+			},
+			"text": " rate of Ether itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 507000
+			},
+			"text": " So looking at these transaction and value related patterns, two examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " The asset token, we have seen that in Peter's presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 519000
+			},
+			"text": " So you need to have some kind of representation from either virtual or physical assets on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 525000
+			},
+			"text": " blockchain so you can, for crowdfunding purposes, so you can sell it or maybe so you can lease"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 532000
+			},
+			"text": " your car or you can trade it with somebody else or you can track it for auditing purposes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 540000
+			},
+			"text": " And typically these assets are equal in kind so you can enumerate them and you can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 542000
+			},
+			"text": " multiple of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 550000
+			},
+			"text": " And for this, if you use a standard interface and there's the meta currency API description"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 555000
+			},
+			"text": " here in Wicke, if you use the same kind of interface for this, then you can use all kinds of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 564000
+			},
+			"text": " wallets and exchanges to track your sub currency, to track your assets without the wallet itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 573000
+			},
+			"text": " having to specifically support you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 579000
+			},
+			"text": " So what you do, you create a contract and based on your track per account, how much of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " assets they have in the contract storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 590000
+			},
+			"text": " And then you set up maybe at least two functions, one to transfer these assets from one account"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 597000
+			},
+			"text": " to your account and one to return the balance of one of these account holders in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 605000
+			},
+			"text": " And if you have this, you can use this to create crowdfunding tokens, set up IOU constructions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 613000
+			},
+			"text": " track fiat currencies, US dollars, euros, whatever, or even as Digix is doing, keep track of gold"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 618000
+			},
+			"text": " certificates on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 625000
+			},
+			"text": " And here as an example is from Flocket, they are crowdfunding contracts, they are also using"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 626000
+			},
+			"text": " this pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630000
+			},
+			"text": " So they're doing some kind of crowdfunding, probably we'll hear more about this later on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 642000
+			},
+			"text": " but you can transfer these tokens to somebody else and you can also see what your balance is."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 649000
+			},
+			"text": " Another one of these value and transaction related patterns is the exchange or market."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 653000
+			},
+			"text": " So you have one of these assets tokens, so that's actually from the previous example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 657000
+			},
+			"text": " and you want to sell it, buy it, exchange it for something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " So you can set up an exchange on the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " You don't need any kind of central websites that will do this exchange for you and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 674000
+			},
+			"text": " lose your money and run away with it, but you can do all of this on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 682000
+			},
+			"text": " And typically both the assets for a one-on-one exchange will be one of these assets on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 690000
+			},
+			"text": " or one of the two could be just the eater currency itself, but I guess that's less common."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 696000
+			},
+			"text": " And then of course the trick is how are you going to do this settlement if you have a huge ledger?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 703000
+			},
+			"text": " Maybe it's very good to have the user indicate which is the winning pair and have it match that way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 710000
+			},
+			"text": " or you need some kind of external trigger that will be called to do the matching and the settlement payouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " But that's potentially expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " So what you need to do, you need to have a contract, you need to keep track of the bids or the buy orders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 724000
+			},
+			"text": " keep track of all the asks or the sell orders, and have some kind of matching mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 732000
+			},
+			"text": " and once the bid and ask is matched, you swap the assets from both account holders to the other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " An example of this is Vitalix Cyberdie Market."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 744000
+			},
+			"text": " It's written in a serpent instead of Solidity, so it's a good homework exercise to try to convert that from serpent to Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " And another example is the EtherX exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 755000
+			},
+			"text": " So here an example from a Cyberdyne, you see there's a buy function, there's a sell function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 763000
+			},
+			"text": " but you can use this market, this exchange, to exchange all kinds of assets that have the same interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 770000
+			},
+			"text": " without having to upfront implement support for this in your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 776000
+			},
+			"text": " So the third and final group that we have seen are these action-related patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 785000
+			},
+			"text": " Event log, so it's a feature of the EVM itself, you can emit events and they will be persisted on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 793000
+			},
+			"text": " and you can use them to track states or to track when some kind of action happens, and have the outside respond to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 801000
+			},
+			"text": " There's a limitation though with the EVM, from one contract you cannot inspect the event log of itself or of another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 808000
+			},
+			"text": " So you can only use this data from the outside, but this makes it ideal for user interface purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 818000
+			},
+			"text": " or if you have some kind of watchdog process that is looking at these event logs and acts upon them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 827000
+			},
+			"text": " So, yes, just a single line of Solidity code to emit an event if an action happens, and then you have a listening process"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833000
+			},
+			"text": " or a watching process and you use interface that will update its state accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 842000
+			},
+			"text": " So examples of this, if a buy order took place, pay one update, your crowdfunding website, if you just lease your car key to somebody else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 852000
+			},
+			"text": " you need to change the code, the public key on the log system, if an account is registered, maybe some other event takes place."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 862000
+			},
+			"text": " So a good example here is the Wi-funds, again from Nick Dotson, the Wi-fund crowdfunding contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 870000
+			},
+			"text": " So yes, these events are emitted when a new campaign is created, when a contribution is made, when a payout happens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 872000
+			},
+			"text": " and even when a refund happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 881000
+			},
+			"text": " Maybe he doesn't even use these kind of events himself, but by just sharing them, you allow orders to consume them"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 888000
+			},
+			"text": " and create all kinds of user interface and interactions with them that you didn't think of yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 896000
+			},
+			"text": " So, yeah, there's a bit of an issue with Ethereum, there's no alarm upcode."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 907000
+			},
+			"text": " You cannot trigger some kind of future event to happen automatically, so every action in a contract needs to be triggered by a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 910000
+			},
+			"text": " that is eventually being sent from a user."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 912000
+			},
+			"text": " So what if something needs to happen in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 916000
+			},
+			"text": " How are you going to make sure that this happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 926000
+			},
+			"text": " An example of this is if you need some kind of, I don't know, expiration of your lottery ticket, doing frequent dividend payouts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 931000
+			},
+			"text": " other kinds of cleanups, how are you going to make sure that this will happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 938000
+			},
+			"text": " So the solution here is to reward the caller for actually triggering this mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 945000
+			},
+			"text": " So you create a function, anybody can trigger this, but once they do this, they get rewarded for doing so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 951000
+			},
+			"text": " and that way you hope, of course, you cannot guarantee that somebody will do it, but they have a strong economic incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 956000
+			},
+			"text": " for triggering this method and making sure that it will be called."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 965000
+			},
+			"text": " So an example here from Gefin's casino contract is this recycle method, which anybody can trigger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 974000
+			},
+			"text": " and if there's some kind of expiration event, the person that was triggering this gets rewarded with half a percent of the difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 978000
+			},
+			"text": " So it makes sense there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 983000
+			},
+			"text": " So combining these things together, you can come up with all kinds of use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 989000
+			},
+			"text": " So say you have a betting website where you want to allow your users to bet on soccer scores,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 996000
+			},
+			"text": " you would use a name registry to keep track of the different user names, so you can have a top scoring list,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 999000
+			},
+			"text": " how will fame on your side or on your depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1005000
+			},
+			"text": " You need some kind of data feed to know which soccer events happened and what scoring was there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1013000
+			},
+			"text": " Event lock, so if somebody takes a bet or if you want to update, again, your website or your depth accordingly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1016000
+			},
+			"text": " so you use event lock to get the outputs from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1022000
+			},
+			"text": " So whether you see with such a system, you're combining multiple of these patterns together."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1029000
+			},
+			"text": " Again, from market, if you have some kind of manufacturing site and you do some kind of internal research optimization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1035000
+			},
+			"text": " you can try to centralize this, but you can also think about, can we do this on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1043000
+			},
+			"text": " using asset token to indicate resources, having an exchange contract where people can bid and ask for resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1051000
+			},
+			"text": " and then, of course, having some kind of incentivized trigger for making sure that frequent updates, such as market settlements happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1059000
+			},
+			"text": " Another example is if you want to have your depth interact with real hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1065000
+			},
+			"text": " So in this case, it's a smart meter in my utility cluster that I connect with my Ethereum Raspberry Pi."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1071000
+			},
+			"text": " I get data out of it, but how do you know that this device belongs to me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1077000
+			},
+			"text": " So I need some kind of notary data pattern that makes this association."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1086000
+			},
+			"text": " I have this data feed, so for every energy consumption update, a contract is updated with my data usage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1095000
+			},
+			"text": " and if I want to display this in my depth, I need to emit event locks using the event lock pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1097000
+			},
+			"text": " So what's next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1102000
+			},
+			"text": " For you guys, take a look at existing code in GitHub, existing contracts, study them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1110000
+			},
+			"text": " and see what kind of common patterns do you see are used and can be used for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1120000
+			},
+			"text": " And also, we're trying as a community effort to get this stack overflow, stack exchange site set up for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1124000
+			},
+			"text": " So if you go to Area 31 on the stack exchange, please vote for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1129000
+			},
+			"text": " As of this morning, I think we were at almost 70%."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1134000
+			},
+			"text": " So a couple more votes, and we have a community site for all kinds of Q&A, all kinds of discussions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1139000
+			},
+			"text": " around best practices about patterns, sharing code, sharing knowledge with each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1146000
+			},
+			"text": " and this will be a great place to exchange Ethereum or depth patterns as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1147000
+			},
+			"text": " Thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1151000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1158000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:20,080"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1160080
+			},
+			"text": " (buzzer)"
+		}
+	]
+}

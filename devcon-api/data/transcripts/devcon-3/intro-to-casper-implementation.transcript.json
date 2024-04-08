@@ -1,0 +1,2562 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,500"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21500
+			},
+			"text": " So, thanks for coming to the first talk at the break."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,500",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 21500,
+				"to": 22000
+			},
+			"text": " I'll hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " So, today I'm going to talk about CASPER implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " and I will update the latest data of development"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " that in our research team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 37000
+			},
+			"text": " Okay, about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " Actually, I'm Chang-Wu Chen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " So, right now I'm working in Metallica 3 research team"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 46000
+			},
+			"text": " as an e-series researcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " So, actually my background is coming from security and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " And most of focus on wireless networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57000
+			},
+			"text": " and the vehicular networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " So, I'm also a Type A0-MIA organizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63000
+			},
+			"text": " So, if you have any chance to come with Type A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 66000
+			},
+			"text": " maybe you can contact with me directly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " then I will happy to have you have a presentation there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " And so, right now I'm working on a CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 78000
+			},
+			"text": " So, that's why today I'm going to give you a brief introduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 81000
+			},
+			"text": " on what we are going right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85000
+			},
+			"text": " And I also use Pi Ziren and the Pi Zab to, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 86000
+			},
+			"text": " Europe CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 90000
+			},
+			"text": " So, the right corner actually is our Taiwan's logo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 91000
+			},
+			"text": " Taiwan Island's logo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " It's made by the YSiren."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " So, it's designed by a staff company called Ami,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 102000
+			},
+			"text": " which is also from Taiwan."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106000
+			},
+			"text": " Okay, so, why is CASPER?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " So, CASPER actually is a next generation consensus support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " proof their consensus protocol in YSiren."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " So, it says it's a deposit base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 123000
+			},
+			"text": " means that you need to put your deposit into a smart country,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " so then you can become a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 132000
+			},
+			"text": " And now, so you can start towards for a particular checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " So, why do we need to have a deposit into the smart country?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " Because the validator could do some bad things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " So, if we do some bad things, we can delete their deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " And also, it's the proof that is based on the vision time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 152000
+			},
+			"text": " for torrents."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " So, that means that if more than two-thirds validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 161000
+			},
+			"text": " to follow the protocol, then no comforting block will be finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " Otherwise, I mean, if the majority is less than two-thirds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " that means the system will get stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171000
+			},
+			"text": " So, this is called like a life-ness."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 176000
+			},
+			"text": " And this is a kind of situation we want to avoid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " So, I think maybe it kind of confusing person."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 185000
+			},
+			"text": " Right now, we have two kinds of versions of CASPER in our internal research team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 187000
+			},
+			"text": " And one is designed by Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 194000
+			},
+			"text": " We call it CASPER-friendly finality gajah CASPER FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 200000
+			},
+			"text": " And also, we have another CASPER design, which is by Voila,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 202000
+			},
+			"text": " which is called CASPER-CBC."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " I think he will have a presentation this afternoon."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 211000
+			},
+			"text": " So, yeah, Voila's CASPER design is super cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 215000
+			},
+			"text": " So, yeah, so don't miss it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 223000
+			},
+			"text": " So, today I want to give you a brief introduction of how does CASPER work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 233000
+			},
+			"text": " Yeah, because I think people have already learned some of CASPER work on our wiki"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 238000
+			},
+			"text": " or on some of the article, but because we have two versions of CASPER,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 242000
+			},
+			"text": " I mean, two implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244000
+			},
+			"text": " So, it kind of confusing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " I just want to introduce you the CASPER FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 258000
+			},
+			"text": " So, hopefully after this presentation, I can make you to the CASPER more friendly today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " Okay, so what is advantage of the CASPER?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 266000
+			},
+			"text": " So, basically, because it's a proof of stake protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " it doesn't like -- it's not like proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 275000
+			},
+			"text": " So, it means that you don't need to buy the hardware to have more, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 281000
+			},
+			"text": " computation power to solve the problem that we call mining."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 284000
+			},
+			"text": " So, you can get a reward from the proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " So, it is kind of like, you know, wasting some electricity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 294000
+			},
+			"text": " So, for the green purpose, so let's just say why we want to have a proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 299000
+			},
+			"text": " We want to have a CASPER because it's more energy efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " And the second reason we want to have a CASPER is because it's an economy of fine energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 311000
+			},
+			"text": " It's a pretty -- I mean, normality concept of the CASPER because just like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 316000
+			},
+			"text": " as I said before, because you need to put your deposit into the smart country,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 322000
+			},
+			"text": " so once you -- the validator misbehave, then we can delete all of the estate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " and the data deposit on the smart country."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 332000
+			},
+			"text": " But, you know, in the proof of work, even the miner have more than, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 336000
+			},
+			"text": " 51% computation power."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 339000
+			},
+			"text": " You cannot just punish them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 342000
+			},
+			"text": " How you can do is just fork the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346000
+			},
+			"text": " Okay, the third reason is we want to reduce the risk of centralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 355000
+			},
+			"text": " because in the proof stack is -- the vote rate is actually is dollar by dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 356000
+			},
+			"text": " Dollar by dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 363000
+			},
+			"text": " It means that if you pay one dollar, you only can, I mean, get the one dollar benefit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 369000
+			},
+			"text": " But in the proof of work, if you have more -- if you have pretty high computation power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 375000
+			},
+			"text": " it means once -- later, if you want to have more computation power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 380000
+			},
+			"text": " the price you need to pay or the cost you need to pay is quite cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 385000
+			},
+			"text": " So this is very different from the proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 386000
+			},
+			"text": " Okay, so, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 393000
+			},
+			"text": " So -- and I think we need to know -- this is because this is a bit of time for torrents based."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " So, yeah, once again, more than to serve a validator need to follow the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 402000
+			},
+			"text": " so no conflicting bugs will be finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 407000
+			},
+			"text": " And we need to keep in mind because validator could misbehave."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 411000
+			},
+			"text": " So they maybe want to try to get the system stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 414000
+			},
+			"text": " Or maybe they will, I mean, speak into two groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 424000
+			},
+			"text": " And in each two groups, the vote rate maybe is draw, so the system can get stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 431000
+			},
+			"text": " So, yeah, as for this kind of situation, we need to avoid."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " So, what is the change of the CASPER?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 444000
+			},
+			"text": " So, basically, our goal is to want to have an ever-growing canonical change just like we have in proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 447000
+			},
+			"text": " So the bar could be coming one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " So, everybody will see the same change."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 454000
+			},
+			"text": " That means we can have data consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 459000
+			},
+			"text": " However, you know, because this is very different from the proof of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 463000
+			},
+			"text": " because everybody needs to reach the consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 472000
+			},
+			"text": " So, in the proof of work, if there is only one minor, even he has a very low computation power."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 475000
+			},
+			"text": " He can still suffer the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 477000
+			},
+			"text": " Maybe it just takes a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 483000
+			},
+			"text": " But in the proof stack, if a validator does some kind of misbehave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 488000
+			},
+			"text": " or they are malfunction, then the system could, I mean, get stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 496000
+			},
+			"text": " So, the change problem we need to solve is accountable safety and the possible liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " And I will explain them later."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 501000
+			},
+			"text": " So, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 505000
+			},
+			"text": " So, now I will give you, so what is the validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 509000
+			},
+			"text": " How to become a participant into the CASPER?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 515000
+			},
+			"text": " So, if you want to start to run in the CASPER, you need to become a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " So, right now, any ease holder can become a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 525000
+			},
+			"text": " So, for example, if you have a, if we can set a fixed amount of ease,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 535000
+			},
+			"text": " like a threshold to make you become a validator, like maybe $5,000 ease."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 539000
+			},
+			"text": " So, if you have a $5,000 ease, you can become one of the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 547000
+			},
+			"text": " So, basically, if you want to become a validator, you can just send a request message to the smart country here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 549000
+			},
+			"text": " Then you put your money inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 553000
+			},
+			"text": " So, the smart country actually will record your signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 559000
+			},
+			"text": " And also, it will record you how many deposits are you put into the smart country."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 568000
+			},
+			"text": " So, it could be used to, I mean, used to reward or used to penalize."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 572000
+			},
+			"text": " So, what is the law of a validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 578000
+			},
+			"text": " So, just like I mentioned before, the validator's job is to reach a consensus via a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 589000
+			},
+			"text": " So, each time when the validator see the checkpoint is generating, so they will vote for the checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 595000
+			},
+			"text": " So, because the checkpoints will come one by one, so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 599000
+			},
+			"text": " they will vote for the checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 615000
+			},
+			"text": " However, sometimes because the chain could be fork, so maybe the validator could see two different checking points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:30,980"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 630980
+			},
+			"text": " and then the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,980",
+				"to": "00:10:32,980"
+			},
+			"offsets": {
+				"from": 630980,
+				"to": 632980
+			},
+			"text": " code is going to be fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,980",
+				"to": "00:10:36,980"
+			},
+			"offsets": {
+				"from": 632980,
+				"to": 636980
+			},
+			"text": " Yeah, because this is a bit, present time for torrents feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,980",
+				"to": "00:10:46,980"
+			},
+			"offsets": {
+				"from": 636980,
+				"to": 646980
+			},
+			"text": " However, if the validator is paid into the two groups, and each two groups are less than two-third,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,980",
+				"to": "00:10:49,980"
+			},
+			"offsets": {
+				"from": 646980,
+				"to": 649980
+			},
+			"text": " then systems will be, I mean, stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,980",
+				"to": "00:10:54,980"
+			},
+			"offsets": {
+				"from": 649980,
+				"to": 654980
+			},
+			"text": " So, this is the problem we need to avoid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,980",
+				"to": "00:11:11,980"
+			},
+			"offsets": {
+				"from": 654980,
+				"to": 671980
+			},
+			"text": " So, what is the vote weight?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,980",
+				"to": "00:11:17,980"
+			},
+			"offsets": {
+				"from": 671980,
+				"to": 677980
+			},
+			"text": " So, actually, the vote weight is not everyone, hence the same vote weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,980",
+				"to": "00:11:25,980"
+			},
+			"offsets": {
+				"from": 677980,
+				"to": 685980
+			},
+			"text": " Actually, it's proportional to the total departsis sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,980",
+				"to": "00:11:28,980"
+			},
+			"offsets": {
+				"from": 685980,
+				"to": 688980
+			},
+			"text": " So, let me give an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,980",
+				"to": "00:11:35,980"
+			},
+			"offsets": {
+				"from": 688980,
+				"to": 695980
+			},
+			"text": " So, here we have five validators, and each one has $10, $30, $10, $40."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,980",
+				"to": "00:11:40,980"
+			},
+			"offsets": {
+				"from": 695980,
+				"to": 700980
+			},
+			"text": " So, that means they do not have the same vote weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,980",
+				"to": "00:11:47,980"
+			},
+			"offsets": {
+				"from": 700980,
+				"to": 707980
+			},
+			"text": " The vote weight should be 1, 2, 3, 2, 1, 2, 1, and 4."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,980",
+				"to": "00:11:50,980"
+			},
+			"offsets": {
+				"from": 707980,
+				"to": 710980
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,980",
+				"to": "00:11:52,980"
+			},
+			"offsets": {
+				"from": 710980,
+				"to": 712980
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,980",
+				"to": "00:11:55,980"
+			},
+			"offsets": {
+				"from": 712980,
+				"to": 715980
+			},
+			"text": " So, what is the validator's job?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,980",
+				"to": "00:12:00,980"
+			},
+			"offsets": {
+				"from": 715980,
+				"to": 720980
+			},
+			"text": " So, if they vote for the particular checkpoint, if this checkpoint is getting finalized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,980",
+				"to": "00:12:05,980"
+			},
+			"offsets": {
+				"from": 720980,
+				"to": 725980
+			},
+			"text": " then the validator can get the reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,980",
+				"to": "00:12:10,980"
+			},
+			"offsets": {
+				"from": 725980,
+				"to": 730980
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,980",
+				"to": "00:12:21,980"
+			},
+			"offsets": {
+				"from": 730980,
+				"to": 741980
+			},
+			"text": " And in our smart country, we need -- because in each time, validator can send a request"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,980",
+				"to": "00:12:28,980"
+			},
+			"offsets": {
+				"from": 741980,
+				"to": 748980
+			},
+			"text": " message to say, \"Hey, I want to join into the CASPER to get the reward,\" or being a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,980",
+				"to": "00:12:31,980"
+			},
+			"offsets": {
+				"from": 748980,
+				"to": 751980
+			},
+			"text": " So, we will have a tight period."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,980",
+				"to": "00:12:33,980"
+			},
+			"offsets": {
+				"from": 751980,
+				"to": 753980
+			},
+			"text": " So, every time you can send a request."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,980",
+				"to": "00:12:43,980"
+			},
+			"offsets": {
+				"from": 753980,
+				"to": 763980
+			},
+			"text": " But also, if you think that the investment into the CASPER is not worthy to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,980",
+				"to": "00:12:46,980"
+			},
+			"offsets": {
+				"from": 763980,
+				"to": 766980
+			},
+			"text": " also you can make a request to leave the group."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,980",
+				"to": "00:12:54,980"
+			},
+			"offsets": {
+				"from": 766980,
+				"to": 774980
+			},
+			"text": " So, it's more like a dynamic of validator states."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,980",
+				"to": "00:12:55,980"
+			},
+			"offsets": {
+				"from": 774980,
+				"to": 775980
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,980",
+				"to": "00:13:02,980"
+			},
+			"offsets": {
+				"from": 775980,
+				"to": 782980
+			},
+			"text": " So, right now the CASPER is called hybrid CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,980",
+				"to": "00:13:06,980"
+			},
+			"offsets": {
+				"from": 782980,
+				"to": 786980
+			},
+			"text": " That's because -- can we see this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,980",
+				"to": "00:13:10,980"
+			},
+			"offsets": {
+				"from": 786980,
+				"to": 790980
+			},
+			"text": " Because the validator needs to vote for the checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,980",
+				"to": "00:13:14,980"
+			},
+			"offsets": {
+				"from": 790980,
+				"to": 794980
+			},
+			"text": " So, actually, where is the checkpoint from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,980",
+				"to": "00:13:21,980"
+			},
+			"offsets": {
+				"from": 794980,
+				"to": 801980
+			},
+			"text": " Right now, because we are laying POS on top of PORW, means the checkpoint points, H8 is coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,980",
+				"to": "00:13:24,980"
+			},
+			"offsets": {
+				"from": 801980,
+				"to": 804980
+			},
+			"text": " from the PORW."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,980",
+				"to": "00:13:32,980"
+			},
+			"offsets": {
+				"from": 804980,
+				"to": 812980
+			},
+			"text": " Every 100 blocks could be a tight period."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,980",
+				"to": "00:13:34,980"
+			},
+			"offsets": {
+				"from": 812980,
+				"to": 814980
+			},
+			"text": " We call it an epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,980",
+				"to": "00:13:39,980"
+			},
+			"offsets": {
+				"from": 814980,
+				"to": 819980
+			},
+			"text": " And then in each epoch, we will have a checkpoint here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,980",
+				"to": "00:13:43,980"
+			},
+			"offsets": {
+				"from": 819980,
+				"to": 823980
+			},
+			"text": " So, this is a validator, they need to vote for."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,980",
+				"to": "00:13:44,980"
+			},
+			"offsets": {
+				"from": 823980,
+				"to": 824980
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,980",
+				"to": "00:13:47,980"
+			},
+			"offsets": {
+				"from": 824980,
+				"to": 827980
+			},
+			"text": " And then why we want to do the hybrid CASPER?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,980",
+				"to": "00:13:53,980"
+			},
+			"offsets": {
+				"from": 827980,
+				"to": 833980
+			},
+			"text": " One -- the other reason is we want to incentive minor to migrate to PORW's more smoothly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,980",
+				"to": "00:14:04,980"
+			},
+			"offsets": {
+				"from": 833980,
+				"to": 844980
+			},
+			"text": " Because we can -- if they are doing the proof of work, the reward they can get, maybe it's less"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,980",
+				"to": "00:14:07,980"
+			},
+			"offsets": {
+				"from": 844980,
+				"to": 847980
+			},
+			"text": " than the reward they can get from the PORW's."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,980",
+				"to": "00:14:17,980"
+			},
+			"offsets": {
+				"from": 847980,
+				"to": 857980
+			},
+			"text": " So, this can make them, I mean, have an incentive to move the migrate to PORW's."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,980",
+				"to": "00:14:26,980"
+			},
+			"offsets": {
+				"from": 857980,
+				"to": 866980
+			},
+			"text": " So, we want to hopefully make a canonical chain and the checkpoint could be finalized one by one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,980",
+				"to": "00:14:36,980"
+			},
+			"offsets": {
+				"from": 866980,
+				"to": 876980
+			},
+			"text": " The more checkpoint getting finalized, that means that we can guarantee the more secure this system could have."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,980",
+				"to": "00:14:37,980"
+			},
+			"offsets": {
+				"from": 876980,
+				"to": 877980
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,980",
+				"to": "00:14:41,980"
+			},
+			"offsets": {
+				"from": 877980,
+				"to": 881980
+			},
+			"text": " So, let's dive into the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,980",
+				"to": "00:14:44,980"
+			},
+			"offsets": {
+				"from": 881980,
+				"to": 884980
+			},
+			"text": " So, what is votes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,980",
+				"to": "00:14:49,980"
+			},
+			"offsets": {
+				"from": 884980,
+				"to": 889980
+			},
+			"text": " So, both is basically the -- the basic elements into the smart country."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,980",
+				"to": "00:14:56,980"
+			},
+			"offsets": {
+				"from": 889980,
+				"to": 896980
+			},
+			"text": " So, just like I mentioned before, every day to -- every day to have a different vote's weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,980",
+				"to": "00:15:05,980"
+			},
+			"offsets": {
+				"from": 896980,
+				"to": 905980
+			},
+			"text": " So, but each time when they vote for a particular checkpoint, this kind of vote will recall into the smart country."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,980",
+				"to": "00:15:11,980"
+			},
+			"offsets": {
+				"from": 905980,
+				"to": 911980
+			},
+			"text": " So, how does the vote stand for and how does it go?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,980",
+				"to": "00:15:20,980"
+			},
+			"offsets": {
+				"from": 911980,
+				"to": 920980
+			},
+			"text": " So, in our system implementation, we will have a vote message."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,980",
+				"to": "00:15:24,980"
+			},
+			"offsets": {
+				"from": 920980,
+				"to": 924980
+			},
+			"text": " And this vote message will have four parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,980",
+				"to": "00:15:33,980"
+			},
+			"offsets": {
+				"from": 924980,
+				"to": 933980
+			},
+			"text": " So, the first is the -- the -- the -- the epoch -- epoch target and the hash target and the epoch source and the hash source."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,980",
+				"to": "00:15:37,980"
+			},
+			"offsets": {
+				"from": 933980,
+				"to": 937980
+			},
+			"text": " So, let me give you an example of what does it mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,980",
+				"to": "00:15:45,980"
+			},
+			"offsets": {
+				"from": 937980,
+				"to": 945980
+			},
+			"text": " So, each time when the checkpoint is -- when the new checkpoint is generating."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,980",
+				"to": "00:15:50,980"
+			},
+			"offsets": {
+				"from": 945980,
+				"to": 950980
+			},
+			"text": " So, the vote -- the validator could see the new checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,980",
+				"to": "00:16:00,980"
+			},
+			"offsets": {
+				"from": 950980,
+				"to": 960980
+			},
+			"text": " So, like, if they want to vote for a particular checkpoint, they need to include its target and its source."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,980",
+				"to": "00:16:02,980"
+			},
+			"offsets": {
+				"from": 960980,
+				"to": 962980
+			},
+			"text": " So, what does target means?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,980",
+				"to": "00:16:05,980"
+			},
+			"offsets": {
+				"from": 962980,
+				"to": 965980
+			},
+			"text": " I want to vote this target checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,980",
+				"to": "00:16:14,980"
+			},
+			"offsets": {
+				"from": 965980,
+				"to": 974980
+			},
+			"text": " So, basically, its hash is 1A5E and its epoch is equal to -- and which is a reference from the source."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,980",
+				"to": "00:16:19,980"
+			},
+			"offsets": {
+				"from": 974980,
+				"to": 979980
+			},
+			"text": " The G is a stencil for a general spark."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,980",
+				"to": "00:16:30,980"
+			},
+			"offsets": {
+				"from": 979980,
+				"to": 990980
+			},
+			"text": " So, the first thing that we're going to do is put the hash is h5 and h1."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,980",
+				"to": "00:16:42,980"
+			},
+			"offsets": {
+				"from": 990980,
+				"to": 1002980
+			},
+			"text": " So, the vote message is kind of like -- it needs to include the target hash and its source hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,980",
+				"to": "00:16:53,980"
+			},
+			"offsets": {
+				"from": 1002980,
+				"to": 1013980
+			},
+			"text": " So, the first thing that we're going to do is put the hash target hash and it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,980",
+				"to": "00:17:01,980"
+			},
+			"offsets": {
+				"from": 1013980,
+				"to": 1021980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,980",
+				"to": "00:17:07,980"
+			},
+			"offsets": {
+				"from": 1021980,
+				"to": 1027980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,980",
+				"to": "00:17:16,980"
+			},
+			"offsets": {
+				"from": 1027980,
+				"to": 1036980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,980",
+				"to": "00:17:25,980"
+			},
+			"offsets": {
+				"from": 1036980,
+				"to": 1045980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,980",
+				"to": "00:17:32,980"
+			},
+			"offsets": {
+				"from": 1045980,
+				"to": 1052980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,980",
+				"to": "00:17:36,980"
+			},
+			"offsets": {
+				"from": 1052980,
+				"to": 1056980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,980",
+				"to": "00:17:42,980"
+			},
+			"offsets": {
+				"from": 1056980,
+				"to": 1062980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,980",
+				"to": "00:17:47,980"
+			},
+			"offsets": {
+				"from": 1062980,
+				"to": 1067980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,980",
+				"to": "00:17:54,980"
+			},
+			"offsets": {
+				"from": 1067980,
+				"to": 1074980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,980",
+				"to": "00:17:58,980"
+			},
+			"offsets": {
+				"from": 1074980,
+				"to": 1078980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,980",
+				"to": "00:18:00,980"
+			},
+			"offsets": {
+				"from": 1078980,
+				"to": 1080980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,980",
+				"to": "00:18:02,980"
+			},
+			"offsets": {
+				"from": 1080980,
+				"to": 1082980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,980",
+				"to": "00:18:08,980"
+			},
+			"offsets": {
+				"from": 1082980,
+				"to": 1088980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,980",
+				"to": "00:18:08,980"
+			},
+			"offsets": {
+				"from": 1088980,
+				"to": 1088980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,980",
+				"to": "00:18:38,980"
+			},
+			"offsets": {
+				"from": 1088980,
+				"to": 1118980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,980",
+				"to": "00:19:08,980"
+			},
+			"offsets": {
+				"from": 1118980,
+				"to": 1148980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,980",
+				"to": "00:19:38,980"
+			},
+			"offsets": {
+				"from": 1148980,
+				"to": 1178980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,980",
+				"to": "00:19:44,980"
+			},
+			"offsets": {
+				"from": 1178980,
+				"to": 1184980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,980",
+				"to": "00:19:44,980"
+			},
+			"offsets": {
+				"from": 1184980,
+				"to": 1184980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,980",
+				"to": "00:20:14,980"
+			},
+			"offsets": {
+				"from": 1184980,
+				"to": 1214980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,980",
+				"to": "00:20:44,980"
+			},
+			"offsets": {
+				"from": 1214980,
+				"to": 1244980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,980",
+				"to": "00:21:14,980"
+			},
+			"offsets": {
+				"from": 1244980,
+				"to": 1274980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,980",
+				"to": "00:21:44,980"
+			},
+			"offsets": {
+				"from": 1274980,
+				"to": 1304980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,980",
+				"to": "00:22:14,980"
+			},
+			"offsets": {
+				"from": 1304980,
+				"to": 1334980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,980",
+				"to": "00:22:44,980"
+			},
+			"offsets": {
+				"from": 1334980,
+				"to": 1364980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,980",
+				"to": "00:23:14,980"
+			},
+			"offsets": {
+				"from": 1364980,
+				"to": 1394980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,980",
+				"to": "00:23:44,980"
+			},
+			"offsets": {
+				"from": 1394980,
+				"to": 1424980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,980",
+				"to": "00:23:50,980"
+			},
+			"offsets": {
+				"from": 1424980,
+				"to": 1430980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,980",
+				"to": "00:23:57,980"
+			},
+			"offsets": {
+				"from": 1430980,
+				"to": 1437980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,980",
+				"to": "00:24:03,980"
+			},
+			"offsets": {
+				"from": 1437980,
+				"to": 1443980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be --"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,980",
+				"to": "00:24:07,980"
+			},
+			"offsets": {
+				"from": 1443980,
+				"to": 1447980
+			},
+			"text": " it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,980",
+				"to": "00:24:09,980"
+			},
+			"offsets": {
+				"from": 1447980,
+				"to": 1449980
+			},
+			"text": " to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,980",
+				"to": "00:24:09,980"
+			},
+			"offsets": {
+				"from": 1449980,
+				"to": 1449980
+			},
+			"text": " to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,980",
+				"to": "00:24:39,980"
+			},
+			"offsets": {
+				"from": 1449980,
+				"to": 1479980
+			},
+			"text": " to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it needs to be -- it"
+		}
+	]
+}

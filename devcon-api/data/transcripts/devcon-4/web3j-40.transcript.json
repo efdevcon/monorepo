@@ -1,0 +1,692 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6760
+			},
+			"text": " So I'm Connes Vincent, this is a Viola Kirilov. I'm the founder of a company"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,760",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 6760,
+				"to": 14440
+			},
+			"text": " called BLK.io and we also maintain and created Web3J the Java library for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:21,600"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 21600
+			},
+			"text": " integrating with Ethereum clients. So Web3J was initially launched just before"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,600",
+				"to": "00:00:26,360"
+			},
+			"offsets": {
+				"from": 21600,
+				"to": 26360
+			},
+			"text": " DevCon 2, so it's been around for a couple of years now. It started off as"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,360",
+				"to": "00:00:32,160"
+			},
+			"offsets": {
+				"from": 26360,
+				"to": 32160
+			},
+			"text": " just being that into an implementation of the JSON RPC API but then when we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,160",
+				"to": "00:00:37,600"
+			},
+			"offsets": {
+				"from": 32160,
+				"to": 37600
+			},
+			"text": " started thinking in terms of smart contracts and digging below the surface"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,600",
+				"to": "00:00:43,680"
+			},
+			"offsets": {
+				"from": 37600,
+				"to": 43680
+			},
+			"text": " of it, we added in things like the transaction signing capabilities and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,680",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 43680,
+				"to": 49000
+			},
+			"text": " then bindings, creation of bindings in Java so that you can basically, once"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " you've got your smart contract ready and you can do everything else within the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:58,960"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 58960
+			},
+			"text": " actual JVM. It works as well nicely with Truffle too, so it uses contract API"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,960",
+				"to": "00:01:03,680"
+			},
+			"offsets": {
+				"from": 58960,
+				"to": 63680
+			},
+			"text": " metadata files whether they come out of solidity or Truffle, we can use that to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,680",
+				"to": "00:01:07,560"
+			},
+			"offsets": {
+				"from": 63680,
+				"to": 67560
+			},
+			"text": " generate the smart contract bindings. It's a reactive functional API which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,560",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 67560,
+				"to": 73600
+			},
+			"text": " basically means it's easy to compose streams as per RxJava to operate on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:18,960"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 78960
+			},
+			"text": " events that are taking place on the blockchain as they happen and it provides"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,960",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 78960,
+				"to": 84600
+			},
+			"text": " full ENS support as well which was added last year. I'll then pass over to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:28,360"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 88360
+			},
+			"text": " Avhilah who's gonna say a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,360",
+				"to": "00:01:35,160"
+			},
+			"offsets": {
+				"from": 88360,
+				"to": 95160
+			},
+			"text": " Yes, the Web3J ecosystem, it's got many components with it. The core Web3J is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,160",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 95160,
+				"to": 101160
+			},
+			"text": " written in Java so it's compatible with Kotlin, Scala and Android as well. We've"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:44,520"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 104520
+			},
+			"text": " got build tools, Maven and Gradle so you can generate your smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,520",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104520,
+				"to": 111000
+			},
+			"text": " wrappers within your build pipeline. We support the core client, parity and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,760"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115760
+			},
+			"text": " guest clients as well and the recently announced Pantheon client from consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,760",
+				"to": "00:01:59,680"
+			},
+			"offsets": {
+				"from": 115760,
+				"to": 119680
+			},
+			"text": " We've got some framework integrations with Spring to easily create RESTful"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,680",
+				"to": "00:02:04,760"
+			},
+			"offsets": {
+				"from": 119680,
+				"to": 124760
+			},
+			"text": " APIs and Apache Camo for your enterprise applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,760",
+				"to": "00:02:10,800"
+			},
+			"offsets": {
+				"from": 124760,
+				"to": 130800
+			},
+			"text": " We released Web3J 4.0, really excited about it. Some of the main things that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,800",
+				"to": "00:02:17,040"
+			},
+			"offsets": {
+				"from": 130800,
+				"to": 137040
+			},
+			"text": " updated is now we're using RxJava 2, the Flowable API. We have HD Wallace"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,040",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 137040,
+				"to": 144720
+			},
+			"text": " support, Web32 and Web44 standards were implemented and another main thing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:28,240"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 148240
+			},
+			"text": " we've got snapshot releases that are now available so that you can stay more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,240",
+				"to": "00:02:34,280"
+			},
+			"offsets": {
+				"from": 148240,
+				"to": 154280
+			},
+			"text": " current with what we're doing. I'll hand it over back to Connor to wrap up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,280",
+				"to": "00:02:39,400"
+			},
+			"offsets": {
+				"from": 154280,
+				"to": 159400
+			},
+			"text": " We're gonna keep this brief, it's a lightning talk and just to give you a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,400",
+				"to": "00:02:43,480"
+			},
+			"offsets": {
+				"from": 159400,
+				"to": 163480
+			},
+			"text": " metrics as well about the library. We've had 75 different contributors now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,480",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 163480,
+				"to": 168480
+			},
+			"text": " who have actually contributed to it. It gets over 20,000 downloads a month as"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:52,920"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 172920
+			},
+			"text": " well so all in, if you can, all the different components. It's over 100,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,920",
+				"to": "00:02:56,320"
+			},
+			"offsets": {
+				"from": 172920,
+				"to": 176320
+			},
+			"text": " downloads but the actual core library itself so there's a very significant use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,320",
+				"to": "00:03:01,240"
+			},
+			"offsets": {
+				"from": 176320,
+				"to": 181240
+			},
+			"text": " of basically globally for it and projects got over 2,000 GitHub stars."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,240",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 181240,
+				"to": 187440
+			},
+			"text": " A few months ago as well we received funding from the Ethereum Community Fund"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:11,120"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 191120
+			},
+			"text": " which we're very grateful for because this has enabled us to actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,120",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 191120,
+				"to": 196600
+			},
+			"text": " someone working on the library full-time. We really want to continue supporting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:21,480"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 201480
+			},
+			"text": " the JVM ecosystem for working with Ethereum and just improve on it so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,480",
+				"to": "00:03:26,760"
+			},
+			"offsets": {
+				"from": 201480,
+				"to": 206760
+			},
+			"text": " know our plan is very much to grow the actual team and the amount of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,760",
+				"to": "00:03:33,120"
+			},
+			"offsets": {
+				"from": 206760,
+				"to": 213120
+			},
+			"text": " that we're doing here. We're also to the Bitcoin, well, good Bitcoin have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,120",
+				"to": "00:03:36,840"
+			},
+			"offsets": {
+				"from": 213120,
+				"to": 216840
+			},
+			"text": " great too in terms of offering a Spounsis 2 and will continue to for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,840",
+				"to": "00:03:42,960"
+			},
+			"offsets": {
+				"from": 216840,
+				"to": 222960
+			},
+			"text": " smaller issues as well so that we can just get more people involved and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,960",
+				"to": "00:03:47,960"
+			},
+			"offsets": {
+				"from": 222960,
+				"to": 227960
+			},
+			"text": " continue just to maintain and just make it even easier for a wider number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,960",
+				"to": "00:03:53,360"
+			},
+			"offsets": {
+				"from": 227960,
+				"to": 233360
+			},
+			"text": " people to work with the library. As we wanted to say if you want to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,360",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233360,
+				"to": 237000
+			},
+			"text": " chat come say hi we've got stickers and all the usual swag things as well if"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,800"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240800
+			},
+			"text": " you want any of those. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,800",
+				"to": "00:04:02,860"
+			},
+			"offsets": {
+				"from": 240800,
+				"to": 242860
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,860",
+				"to": "00:04:04,920"
+			},
+			"offsets": {
+				"from": 242860,
+				"to": 244920
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,920",
+				"to": "00:04:06,920"
+			},
+			"offsets": {
+				"from": 244920,
+				"to": 246920
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,920",
+				"to": "00:04:08,980"
+			},
+			"offsets": {
+				"from": 246920,
+				"to": 248980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,980",
+				"to": "00:04:10,980"
+			},
+			"offsets": {
+				"from": 248980,
+				"to": 250980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,980",
+				"to": "00:04:12,980"
+			},
+			"offsets": {
+				"from": 250980,
+				"to": 252980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,980",
+				"to": "00:04:14,980"
+			},
+			"offsets": {
+				"from": 252980,
+				"to": 254980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,980",
+				"to": "00:04:16,980"
+			},
+			"offsets": {
+				"from": 254980,
+				"to": 256980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,980",
+				"to": "00:04:18,980"
+			},
+			"offsets": {
+				"from": 256980,
+				"to": 258980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,980",
+				"to": "00:04:20,980"
+			},
+			"offsets": {
+				"from": 258980,
+				"to": 260980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,980",
+				"to": "00:04:22,980"
+			},
+			"offsets": {
+				"from": 260980,
+				"to": 262980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,980",
+				"to": "00:04:24,980"
+			},
+			"offsets": {
+				"from": 262980,
+				"to": 264980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,980",
+				"to": "00:04:26,980"
+			},
+			"offsets": {
+				"from": 264980,
+				"to": 266980
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,980",
+				"to": "00:04:30,980"
+			},
+			"offsets": {
+				"from": 266980,
+				"to": 270980
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

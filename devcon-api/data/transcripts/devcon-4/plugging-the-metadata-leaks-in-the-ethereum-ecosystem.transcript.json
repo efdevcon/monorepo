@@ -1,0 +1,4333 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7400
+			},
+			"text": " If you, essentially, the ethermic system has been growing at a very steady pace in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,400",
+				"to": "00:00:09,500"
+			},
+			"offsets": {
+				"from": 7400,
+				"to": 9500
+			},
+			"text": " last couple of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,500",
+				"to": "00:00:13,920"
+			},
+			"offsets": {
+				"from": 9500,
+				"to": 13920
+			},
+			"text": " But if you look at some of these ether nodes websites which track the number of full nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,920",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 13920,
+				"to": 18000
+			},
+			"text": " you'll see that that one is kind of constant or maybe even decreasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,920"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19920
+			},
+			"text": " And why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,920",
+				"to": "00:00:23,480"
+			},
+			"offsets": {
+				"from": 19920,
+				"to": 23480
+			},
+			"text": " Well first up, because running a full node sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,480",
+				"to": "00:00:27,800"
+			},
+			"offsets": {
+				"from": 23480,
+				"to": 27800
+			},
+			"text": " And even though we are trying to solve that, the issue is that people will always prefer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,800",
+				"to": "00:00:32,120"
+			},
+			"offsets": {
+				"from": 27800,
+				"to": 32120
+			},
+			"text": " running a light client to post running a full client or running infuer or post running"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,120",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 32120,
+				"to": 38880
+			},
+			"text": " a light client or even just using a restful API versus actually connecting to Infura."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:40,400"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 40400
+			},
+			"text": " And this is kind of fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,400",
+				"to": "00:00:44,360"
+			},
+			"offsets": {
+				"from": 40400,
+				"to": 44360
+			},
+			"text": " People are kind of more or less aware of the implications security-wise that, okay, if"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,360",
+				"to": "00:00:47,240"
+			},
+			"offsets": {
+				"from": 44360,
+				"to": 47240
+			},
+			"text": " you use your light client, then the security is not the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,240",
+				"to": "00:00:49,560"
+			},
+			"offsets": {
+				"from": 47240,
+				"to": 49560
+			},
+			"text": " If you use Infuer, then you kind of trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,560",
+				"to": "00:00:52,880"
+			},
+			"offsets": {
+				"from": 49560,
+				"to": 52880
+			},
+			"text": " You can maybe make a few proofs, but you still trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,880",
+				"to": "00:00:57,560"
+			},
+			"offsets": {
+				"from": 52880,
+				"to": 57560
+			},
+			"text": " And if you use something like ether scan, then you know that you cannot trust them, but yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,560",
+				"to": "00:00:58,920"
+			},
+			"offsets": {
+				"from": 57560,
+				"to": 58920
+			},
+			"text": " you kind of trust them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,920",
+				"to": "00:01:01,440"
+			},
+			"offsets": {
+				"from": 58920,
+				"to": 61440
+			},
+			"text": " So people can make balanced decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,440",
+				"to": "00:01:07,320"
+			},
+			"offsets": {
+				"from": 61440,
+				"to": 67320
+			},
+			"text": " However, one thing that people don't really talk much about is what happens, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,320",
+				"to": "00:01:08,320"
+			},
+			"offsets": {
+				"from": 67320,
+				"to": 68320
+			},
+			"text": " to metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,320",
+				"to": "00:01:13,240"
+			},
+			"offsets": {
+				"from": 68320,
+				"to": 73240
+			},
+			"text": " What happens when you actually go from running a full node down to running a restful service"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,240",
+				"to": "00:01:19,160"
+			},
+			"offsets": {
+				"from": 73240,
+				"to": 79160
+			},
+			"text": " and how that actually changes the behaviors or the traits that you leave behind you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,160",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 79160,
+				"to": 84560
+			},
+			"text": " And that's exactly what I would like to talk about a bit in this talk, specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:27,280"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 87280
+			},
+			"text": " Let's start with Web 2.0 interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,280",
+				"to": "00:01:32,800"
+			},
+			"offsets": {
+				"from": 87280,
+				"to": 92800
+			},
+			"text": " Now, my talk is relevant for almost any depth that uses a restful service as a background."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,800",
+				"to": "00:01:37,280"
+			},
+			"offsets": {
+				"from": 92800,
+				"to": 97280
+			},
+			"text": " The reason I'm picking ether scan is not to pick on them, rather, because everybody knows"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,280",
+				"to": "00:01:39,960"
+			},
+			"offsets": {
+				"from": 97280,
+				"to": 99960
+			},
+			"text": " what ether scan is and how ether scan works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,960",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 99960,
+				"to": 100960
+			},
+			"text": " So what is ether scan?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:45,800"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 105800
+			},
+			"text": " Just to quit in a two-word summary, basically, that allows you to check your balances, your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,800",
+				"to": "00:01:50,160"
+			},
+			"offsets": {
+				"from": 105800,
+				"to": 110160
+			},
+			"text": " tokens, transactions, events, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,160",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 110160,
+				"to": 115000
+			},
+			"text": " And apart from that, it also allows you to comment on certain accounts if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:56,560"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 116560
+			},
+			"text": " Now this is the surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,560",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 116560,
+				"to": 118280
+			},
+			"text": " What happens behind the scenes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:02:03,640"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 123640
+			},
+			"text": " Well, whenever you, for example, you want to check your balance on ether scan, you try"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,640",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 123640,
+				"to": 127320
+			},
+			"text": " to load the ether scan website, which goes through CloudFare, because CloudFare is ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:11,640"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 131640
+			},
+			"text": " scan accelerator, ether scan returns the balance, and everything, plus it also returns"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,640",
+				"to": "00:02:16,240"
+			},
+			"offsets": {
+				"from": 131640,
+				"to": 136240
+			},
+			"text": " the tracker code for Google Analytics, plus the embedded discuss forum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,240",
+				"to": "00:02:21,200"
+			},
+			"offsets": {
+				"from": 136240,
+				"to": 141200
+			},
+			"text": " And this might sound like a really nice design, really elegant, not too many external things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,200",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 141200,
+				"to": 142200
+			},
+			"text": " included."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:27,360"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 147360
+			},
+			"text": " But if we start digging a bit into the HTTP protocol, we'll see a few surprises."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,360",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 147360,
+				"to": 150280
+			},
+			"text": " Notably, HTTP has a concept of referrer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:35,880"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 155880
+			},
+			"text": " Every time you visit a web page from another web page, you get a tiny extra header saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,880",
+				"to": "00:02:37,760"
+			},
+			"offsets": {
+				"from": 155880,
+				"to": 157760
+			},
+			"text": " that you came from this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,760",
+				"to": "00:02:39,920"
+			},
+			"offsets": {
+				"from": 157760,
+				"to": 159920
+			},
+			"text": " The same happens if you embed something."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,920",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 159920,
+				"to": 164600
+			},
+			"text": " Every time you embed an iframe into your own little website, that iframe will get a ping"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:48,960"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 168960
+			},
+			"text": " that you were actually coming from another website."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,960",
+				"to": "00:02:50,200"
+			},
+			"offsets": {
+				"from": 168960,
+				"to": 170200
+			},
+			"text": " And why is this bad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,200",
+				"to": "00:02:58,080"
+			},
+			"offsets": {
+				"from": 170200,
+				"to": 178080
+			},
+			"text": " Well, when you actually load, for example, in this page, it's ether scan.io/address/zerwax"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,080",
+				"to": "00:03:05,360"
+			},
+			"offsets": {
+				"from": 178080,
+				"to": 185360
+			},
+			"text": " whatever, when you load that, Google Analytics will actually have a ping that you, this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,360",
+				"to": "00:03:09,280"
+			},
+			"offsets": {
+				"from": 185360,
+				"to": 189280
+			},
+			"text": " IP address, loaded that particular Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,280",
+				"to": "00:03:14,640"
+			},
+			"offsets": {
+				"from": 189280,
+				"to": 194640
+			},
+			"text": " Similarly, discuss also gets a similar ping that this IP address loaded that particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,640",
+				"to": "00:03:15,800"
+			},
+			"offsets": {
+				"from": 194640,
+				"to": 195800
+			},
+			"text": " Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,800",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 195800,
+				"to": 197200
+			},
+			"text": " And is that bad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:23,800"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 203800
+			},
+			"text": " Well, if we explore what discuss loads, things start to get a bit weird."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,800",
+				"to": "00:03:27,880"
+			},
+			"offsets": {
+				"from": 203800,
+				"to": 207880
+			},
+			"text": " Particularly, discuss has three types of integrations, has social logins to Facebook, Google and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,880",
+				"to": "00:03:33,880"
+			},
+			"offsets": {
+				"from": 207880,
+				"to": 213880
+			},
+			"text": " Twitter, which means that discuss actually reveals the IP to Ethereum address, MacPink,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,880",
+				"to": "00:03:36,960"
+			},
+			"offsets": {
+				"from": 213880,
+				"to": 216960
+			},
+			"text": " to Facebook, Twitter and Google+."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,960",
+				"to": "00:03:43,760"
+			},
+			"offsets": {
+				"from": 216960,
+				"to": 223760
+			},
+			"text": " And it also has these other weird trackers kind of like people market, AI mining market"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,760",
+				"to": "00:03:47,680"
+			},
+			"offsets": {
+				"from": 223760,
+				"to": 227680
+			},
+			"text": " and all kinds of weird, I can't read it with time here, but you get the picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,680",
+				"to": "00:03:52,800"
+			},
+			"offsets": {
+				"from": 227680,
+				"to": 232800
+			},
+			"text": " So it loads a lot of trackers and not only that, but it also loads a lot of, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,800",
+				"to": "00:03:58,360"
+			},
+			"offsets": {
+				"from": 232800,
+				"to": 238360
+			},
+			"text": " discuss has 11 integrations with YouTube, Vimeo and all kinds of other services."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,360",
+				"to": "00:04:04,640"
+			},
+			"offsets": {
+				"from": 238360,
+				"to": 244640
+			},
+			"text": " And this is an issue because you are essentially associating your IP to Ethereum address, MacPink,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,640",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 244640,
+				"to": 248480
+			},
+			"text": " and you're revealing that to a whole lot of external services."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:12,560"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 252560
+			},
+			"text": " And again, this is not to pick on ether scan here, any depth is vulnerable to the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,560",
+				"to": "00:04:16,200"
+			},
+			"offsets": {
+				"from": 252560,
+				"to": 256200
+			},
+			"text": " thing, it's just a bit clearer to use with ether scan."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,200",
+				"to": "00:04:21,880"
+			},
+			"offsets": {
+				"from": 256200,
+				"to": 261880
+			},
+			"text": " And okay, now we know that there's a problem, but what can we do to actually fix it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,880",
+				"to": "00:04:25,840"
+			},
+			"offsets": {
+				"from": 261880,
+				"to": 265840
+			},
+			"text": " So one of the possibilities is, well, first of all, if you're a provider, any kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,840",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 265840,
+				"to": 272840
+			},
+			"text": " a depth or service provider, first up, do not integrate legacy WAP 2.0 services."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 278760
+			},
+			"text": " And this might sound like a no-brainer, but if you think about it in ether scan, ether scan"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,760",
+				"to": "00:04:41,680"
+			},
+			"offsets": {
+				"from": 278760,
+				"to": 281680
+			},
+			"text": " has this possibility to comment on account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,680",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 281680,
+				"to": 285480
+			},
+			"text": " Is that genuinely a useful feature for a block explorer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:50,680"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 290680
+			},
+			"text": " But if you look through the comments, it's pretty noisy, it's pretty spammy, there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,680",
+				"to": "00:04:56,680"
+			},
+			"offsets": {
+				"from": 290680,
+				"to": 296680
+			},
+			"text": " a few scams going on and off, so it's not the best feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,680",
+				"to": "00:04:59,280"
+			},
+			"offsets": {
+				"from": 296680,
+				"to": 299280
+			},
+			"text": " So maybe it would be worth to cut it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,280",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 299280,
+				"to": 304280
+			},
+			"text": " The second thing is that even if you don't integrate external services or try to keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:08,520"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 308520
+			},
+			"text": " it to the minimum, you should always wonder whether it is worthwhile to reveal identifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,520",
+				"to": "00:05:09,760"
+			},
+			"offsets": {
+				"from": 308520,
+				"to": 309760
+			},
+			"text": " information in the URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,760",
+				"to": "00:05:13,800"
+			},
+			"offsets": {
+				"from": 309760,
+				"to": 313800
+			},
+			"text": " You should always consider that anyone can access the URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,800",
+				"to": "00:05:16,240"
+			},
+			"offsets": {
+				"from": 313800,
+				"to": 316240
+			},
+			"text": " Anyone can access the IP to URL mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,240",
+				"to": "00:05:20,400"
+			},
+			"offsets": {
+				"from": 316240,
+				"to": 320400
+			},
+			"text": " Do you want your customers' data to be leaked that way or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,400",
+				"to": "00:05:24,280"
+			},
+			"offsets": {
+				"from": 320400,
+				"to": 324280
+			},
+			"text": " Maybe for a block explorer, maybe this cannot be circumvented."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,280",
+				"to": "00:05:26,400"
+			},
+			"offsets": {
+				"from": 324280,
+				"to": 326400
+			},
+			"text": " But for another depth, maybe it should be."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,400",
+				"to": "00:05:32,240"
+			},
+			"offsets": {
+				"from": 326400,
+				"to": 332240
+			},
+			"text": " And last but not least, please do use HTTP-refer policy restrictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,240",
+				"to": "00:05:38,440"
+			},
+			"offsets": {
+				"from": 332240,
+				"to": 338440
+			},
+			"text": " For example, ether scan uses a policy whereby HTTPS to HTTP downgrades forbid the referral"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,440",
+				"to": "00:05:40,440"
+			},
+			"offsets": {
+				"from": 338440,
+				"to": 340440
+			},
+			"text": " header from being forwarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,440",
+				"to": "00:05:45,520"
+			},
+			"offsets": {
+				"from": 340440,
+				"to": 345520
+			},
+			"text": " There are much more stricter policies which actually forbid everything being forwarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,520",
+				"to": "00:05:47,520"
+			},
+			"offsets": {
+				"from": 345520,
+				"to": 347520
+			},
+			"text": " Okay, we can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,520",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 347520,
+				"to": 351200
+			},
+			"text": " And ether scan is actually they are trying to fix these issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:55,640"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 355640
+			},
+			"text": " Original ether scan integrated an external ad network that they replaced with an internal"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,640",
+				"to": "00:05:56,640"
+			},
+			"offsets": {
+				"from": 355640,
+				"to": 356640
+			},
+			"text": " one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,640",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 356640,
+				"to": 360720
+			},
+			"text": " Original, now currently they are using Google Analytics, but they want to replace that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:03,200"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 363200
+			},
+			"text": " So they are really open to fixing issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,200",
+				"to": "00:06:09,560"
+			},
+			"offsets": {
+				"from": 363200,
+				"to": 369560
+			},
+			"text": " However, the issue is that providers fixing it is not really enough because we can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,560",
+				"to": "00:06:14,920"
+			},
+			"offsets": {
+				"from": 369560,
+				"to": 374920
+			},
+			"text": " ether scan to fix it, but can we get random depth number 2000 to fix it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,920",
+				"to": "00:06:15,920"
+			},
+			"offsets": {
+				"from": 374920,
+				"to": 375920
+			},
+			"text": " Probably not."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,920",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 375920,
+				"to": 378360
+			},
+			"text": " So users need to protect themselves too."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:22,480"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 382480
+			},
+			"text": " And the obvious choices here are browser extensions that block all kinds of trackers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,480",
+				"to": "00:06:26,760"
+			},
+			"offsets": {
+				"from": 382480,
+				"to": 386760
+			},
+			"text": " Or if you're on a mobile device, you could, for example, use a brave browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,760",
+				"to": "00:06:29,720"
+			},
+			"offsets": {
+				"from": 386760,
+				"to": 389720
+			},
+			"text": " But these can only block so many things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,720",
+				"to": "00:06:34,920"
+			},
+			"offsets": {
+				"from": 389720,
+				"to": 394920
+			},
+			"text": " For example, if I have YouTube integrated, none of the extensions or browsers will block"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,920",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 394920,
+				"to": 395920
+			},
+			"text": " YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:37,840"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 397840
+			},
+			"text": " Which gets us to the second point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,840",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 397840,
+				"to": 402000
+			},
+			"text": " That's supposed we managed to block all the external services."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:47,400"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 407400
+			},
+			"text": " Even YouTube, let's suppose we handle HTTP refers correctly and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,400",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 407400,
+				"to": 412800
+			},
+			"text": " Even then we have this fairly complex flow of information whereby whenever we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:06:59,600"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 419600
+			},
+			"text": " access anything related to our data, either via Metamask, or via microto or my ether wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,600",
+				"to": "00:07:04,800"
+			},
+			"offsets": {
+				"from": 419600,
+				"to": 424800
+			},
+			"text": " we still reach out to ether scan or info or cloud pharing between."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,800",
+				"to": "00:07:08,640"
+			},
+			"offsets": {
+				"from": 424800,
+				"to": 428640
+			},
+			"text": " And what this means is that ether scan info and cloud pharing still have access to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,640",
+				"to": "00:07:14,240"
+			},
+			"offsets": {
+				"from": 428640,
+				"to": 434240
+			},
+			"text": " exact same information, the exact same IP address to Ethereum account mappings."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,240",
+				"to": "00:07:18,440"
+			},
+			"offsets": {
+				"from": 434240,
+				"to": 438440
+			},
+			"text": " Now you may trust them or you may not trust them that is up to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,440",
+				"to": "00:07:19,640"
+			},
+			"offsets": {
+				"from": 438440,
+				"to": 439640
+			},
+			"text": " It's an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,640",
+				"to": "00:07:24,800"
+			},
+			"offsets": {
+				"from": 439640,
+				"to": 444800
+			},
+			"text": " And unfortunately, the only current solution that you can do is if you use an anonymizer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,800",
+				"to": "00:07:30,600"
+			},
+			"offsets": {
+				"from": 444800,
+				"to": 450600
+			},
+			"text": " service, which is willing to hide your IP address behind a mixing network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,600",
+				"to": "00:07:34,160"
+			},
+			"offsets": {
+				"from": 450600,
+				"to": 454160
+			},
+			"text": " But that's your best chance currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,160",
+				"to": "00:07:39,600"
+			},
+			"offsets": {
+				"from": 454160,
+				"to": 459600
+			},
+			"text": " So bottom line is using RESTful services is not the best thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,600",
+				"to": "00:07:46,360"
+			},
+			"offsets": {
+				"from": 459600,
+				"to": 466360
+			},
+			"text": " And if you think now my conclusion would be to please use Lite clients, yeah, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,360",
+				"to": "00:07:49,200"
+			},
+			"offsets": {
+				"from": 466360,
+				"to": 469200
+			},
+			"text": " going to get even more messy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,200",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 469200,
+				"to": 472000
+			},
+			"text": " So let's dig into Lite clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:55,600"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 475600
+			},
+			"text": " Forget the RESTful services altogether, all kinds of depths and web stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,600",
+				"to": "00:07:59,760"
+			},
+			"offsets": {
+				"from": 475600,
+				"to": 479760
+			},
+			"text": " Lite clients are supposed to be the way to access Ethereum so that you don't have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,760",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 479760,
+				"to": 480760
+			},
+			"text": " run a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:05,360"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 485360
+			},
+			"text": " You can just run this really nice little thing, which is essentially kind of feels like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,360",
+				"to": "00:08:07,640"
+			},
+			"offsets": {
+				"from": 485360,
+				"to": 487640
+			},
+			"text": " full node, just this not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,640",
+				"to": "00:08:11,240"
+			},
+			"offsets": {
+				"from": 487640,
+				"to": 491240
+			},
+			"text": " And it has actually two significant problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,240",
+				"to": "00:08:14,960"
+			},
+			"offsets": {
+				"from": 491240,
+				"to": 494960
+			},
+			"text": " One of them is in the discovery protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,960",
+				"to": "00:08:18,480"
+			},
+			"offsets": {
+				"from": 494960,
+				"to": 498480
+			},
+			"text": " I'm not sure how many of you are aware of how the discovery protocol, discovery layer, works"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,480",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 498480,
+				"to": 502000
+			},
+			"text": " in Ethereum or in peer-to-peer networks in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:28,320"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 508320
+			},
+			"text": " But in short, you have a few boot nodes hard-coded into the client when you boot up your node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,320",
+				"to": "00:08:32,560"
+			},
+			"offsets": {
+				"from": 508320,
+				"to": 512560
+			},
+			"text": " It reaches out to those few seed nodes, gets a whole bunch of peers in the network, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,560",
+				"to": "00:08:34,560"
+			},
+			"offsets": {
+				"from": 512560,
+				"to": 514560
+			},
+			"text": " then you're connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,560",
+				"to": "00:08:38,880"
+			},
+			"offsets": {
+				"from": 514560,
+				"to": 518880
+			},
+			"text": " Now in reality, what happens under the hood is that these boot nodes aren't some magical"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,880",
+				"to": "00:08:41,600"
+			},
+			"offsets": {
+				"from": 518880,
+				"to": 521600
+			},
+			"text": " special databases that track the entire network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,600",
+				"to": "00:08:46,920"
+			},
+			"offsets": {
+				"from": 521600,
+				"to": 526920
+			},
+			"text": " Rather, the network itself, boot nodes, included, and only other peers included, they maintain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,920",
+				"to": "00:08:52,080"
+			},
+			"offsets": {
+				"from": 526920,
+				"to": 532080
+			},
+			"text": " a so-called routing table on cadmium DHT, which is kind of a fancy way of putting that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,080",
+				"to": "00:08:55,600"
+			},
+			"offsets": {
+				"from": 532080,
+				"to": 535600
+			},
+			"text": " everyone knows a little piece about the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,600",
+				"to": "00:08:59,280"
+			},
+			"offsets": {
+				"from": 535600,
+				"to": 539280
+			},
+			"text": " So nobody knows the entire network, but we know little pieces of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,280",
+				"to": "00:09:05,280"
+			},
+			"offsets": {
+				"from": 539280,
+				"to": 545280
+			},
+			"text": " And if you reach out to enough of them, then eventually you can discover and you can discover"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,280",
+				"to": "00:09:12,800"
+			},
+			"offsets": {
+				"from": 545280,
+				"to": 552800
+			},
+			"text": " enough nodes to have good connections and have a stable connectivitence, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,800",
+				"to": "00:09:22,040"
+			},
+			"offsets": {
+				"from": 552800,
+				"to": 562040
+			},
+			"text": " The issue here is that in order to do that, so essentially a routing table requires to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,040",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 562040,
+				"to": 567440
+			},
+			"text": " be able to tell that this particular machine is at this particular IP address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:29,360"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 569360
+			},
+			"text": " That's what a routing table does."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,360",
+				"to": "00:09:34,120"
+			},
+			"offsets": {
+				"from": 569360,
+				"to": 574120
+			},
+			"text": " The problem is what happens if my IP address is changing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,120",
+				"to": "00:09:38,120"
+			},
+			"offsets": {
+				"from": 574120,
+				"to": 578120
+			},
+			"text": " What happens if I have a laptop and not -- I'm not running Ethereum on my home server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,120",
+				"to": "00:09:42,760"
+			},
+			"offsets": {
+				"from": 578120,
+				"to": 582760
+			},
+			"text": " rather on my laptop, and I keep connecting to the theorem network from all over the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,760",
+				"to": "00:09:48,840"
+			},
+			"offsets": {
+				"from": 582760,
+				"to": 588840
+			},
+			"text": " So, if I, for example, go -- last month I was in San Francisco, last week I was in Berlin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,840",
+				"to": "00:09:53,520"
+			},
+			"offsets": {
+				"from": 588840,
+				"to": 593520
+			},
+			"text": " now I'm in Prague, next week I'll be in -- I don't know, London, the month afterwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,520",
+				"to": "00:09:58,300"
+			},
+			"offsets": {
+				"from": 593520,
+				"to": 598300
+			},
+			"text": " in Shanghai, and I keep connecting to the theorem network via light client, be that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,300",
+				"to": "00:10:02,720"
+			},
+			"offsets": {
+				"from": 598300,
+				"to": 602720
+			},
+			"text": " mobile device, be that laptop or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,720",
+				"to": "00:10:07,760"
+			},
+			"offsets": {
+				"from": 602720,
+				"to": 607760
+			},
+			"text": " Or I can even run a full node on my laptop and do the same thing that's completely equivalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,760",
+				"to": "00:10:11,360"
+			},
+			"offsets": {
+				"from": 607760,
+				"to": 611360
+			},
+			"text": " What the result will be is that every time I connect to the network, I am actually revealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,360",
+				"to": "00:10:17,320"
+			},
+			"offsets": {
+				"from": 611360,
+				"to": 617320
+			},
+			"text": " to the network that this machine, which last week was in Berlin, this week is in Prague."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,320",
+				"to": "00:10:21,240"
+			},
+			"offsets": {
+				"from": 617320,
+				"to": 621240
+			},
+			"text": " And next month I will reveal that this machine, which last month was in Prague, this month"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,240",
+				"to": "00:10:23,960"
+			},
+			"offsets": {
+				"from": 621240,
+				"to": 623960
+			},
+			"text": " is in Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,960",
+				"to": "00:10:28,280"
+			},
+			"offsets": {
+				"from": 623960,
+				"to": 628280
+			},
+			"text": " And this is an issue because this is public information."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,280",
+				"to": "00:10:34,920"
+			},
+			"offsets": {
+				"from": 628280,
+				"to": 634920
+			},
+			"text": " So anyone in the theorem network can at any moment in time see where certain IDs are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,920",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 634920,
+				"to": 639000
+			},
+			"text": " and not only that, but if you are willing to do this, for example, every day, just try"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:44,960"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 644960
+			},
+			"text": " to scan the network every day, then actually you can create an extremely accurate history"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,960",
+				"to": "00:10:51,640"
+			},
+			"offsets": {
+				"from": 644960,
+				"to": 651640
+			},
+			"text": " of where each individual theorem node was moving over time and just nicely plotted on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,640",
+				"to": "00:10:52,640"
+			},
+			"offsets": {
+				"from": 651640,
+				"to": 652640
+			},
+			"text": " the world map."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,640",
+				"to": "00:10:57,960"
+			},
+			"offsets": {
+				"from": 652640,
+				"to": 657960
+			},
+			"text": " Now I'm not sure most people here will be comfortable having their three years of history"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,960",
+				"to": "00:11:01,380"
+			},
+			"offsets": {
+				"from": 657960,
+				"to": 661380
+			},
+			"text": " usage mapped out on a world map."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,380",
+				"to": "00:11:03,520"
+			},
+			"offsets": {
+				"from": 661380,
+				"to": 663520
+			},
+			"text": " But how can we solve this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,520",
+				"to": "00:11:06,920"
+			},
+			"offsets": {
+				"from": 663520,
+				"to": 666920
+			},
+			"text": " Again, it's not an obvious solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,920",
+				"to": "00:11:11,680"
+			},
+			"offsets": {
+				"from": 666920,
+				"to": 671680
+			},
+			"text": " One of the simplest things is that, as I said, the main vulnerability is that machines have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,680",
+				"to": "00:11:16,280"
+			},
+			"offsets": {
+				"from": 671680,
+				"to": 676280
+			},
+			"text": " a fixed IP address assigned to them, and if you move the machine around, then that ID"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,280",
+				"to": "00:11:18,760"
+			},
+			"offsets": {
+				"from": 676280,
+				"to": 678760
+			},
+			"text": " is essentially the global tracker."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,760",
+				"to": "00:11:22,560"
+			},
+			"offsets": {
+				"from": 678760,
+				"to": 682560
+			},
+			"text": " So we kind of made a cookie tracking on top of this recovery protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,560",
+				"to": "00:11:25,080"
+			},
+			"offsets": {
+				"from": 682560,
+				"to": 685080
+			},
+			"text": " So the obvious solution, let's get rid of the IDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,080",
+				"to": "00:11:26,400"
+			},
+			"offsets": {
+				"from": 685080,
+				"to": 686400
+			},
+			"text": " So just bin it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,400",
+				"to": "00:11:30,120"
+			},
+			"offsets": {
+				"from": 686400,
+				"to": 690120
+			},
+			"text": " Now we cannot really bin it because it's part of the theorem protocol, but what we can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,120",
+				"to": "00:11:35,240"
+			},
+			"offsets": {
+				"from": 690120,
+				"to": 695240
+			},
+			"text": " is make it a firmware row so that every time we restart the machine we get a new IP and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,240",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 695240,
+				"to": 697000
+			},
+			"text": " we get a new ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:39,720"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 699720
+			},
+			"text": " And this has certain implications."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,720",
+				"to": "00:11:44,360"
+			},
+			"offsets": {
+				"from": 699720,
+				"to": 704360
+			},
+			"text": " One of the implications is that obviously if I'm running a boot node, the ID cannot change."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,360",
+				"to": "00:11:49,800"
+			},
+			"offsets": {
+				"from": 704360,
+				"to": 709800
+			},
+			"text": " So boot nodes need to have special functionality whereby the ID remains the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,800",
+				"to": "00:11:54,840"
+			},
+			"offsets": {
+				"from": 709800,
+				"to": 714840
+			},
+			"text": " What happens, however, if I run a full node and I just restarted, I did an update, I restarted"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,840",
+				"to": "00:11:55,840"
+			},
+			"offsets": {
+				"from": 714840,
+				"to": 715840
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,840",
+				"to": "00:11:58,840"
+			},
+			"offsets": {
+				"from": 715840,
+				"to": 718840
+			},
+			"text": " Normally, if the ID changes, that's not such a big problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,840",
+				"to": "00:12:06,880"
+			},
+			"offsets": {
+				"from": 718840,
+				"to": 726880
+			},
+			"text": " In practice, last minute we told in the network that this IP address belongs to a certain ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,880",
+				"to": "00:12:09,840"
+			},
+			"offsets": {
+				"from": 726880,
+				"to": 729840
+			},
+			"text": " and now we're telling conflicting information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,840",
+				"to": "00:12:13,200"
+			},
+			"offsets": {
+				"from": 729840,
+				"to": 733200
+			},
+			"text": " And currently, the theorem discovery protocol cannot handle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,200",
+				"to": "00:12:17,160"
+			},
+			"offsets": {
+				"from": 733200,
+				"to": 737160
+			},
+			"text": " So if you keep sending in that, you restart your machine four times and you're sending"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,160",
+				"to": "00:12:20,880"
+			},
+			"offsets": {
+				"from": 737160,
+				"to": 740880
+			},
+			"text": " in four completely conflicting information into a discovery protocol, then the discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,880",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 740880,
+				"to": 743000
+			},
+			"text": " protocol will just go haywire."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:27,160"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 747160
+			},
+			"text": " And you will have a very hard time to connect to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,160",
+				"to": "00:12:31,520"
+			},
+			"offsets": {
+				"from": 747160,
+				"to": 751520
+			},
+			"text": " This eventually, maybe five minutes, ten minutes, everything will settle down, but it is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,520",
+				"to": "00:12:32,520"
+			},
+			"offsets": {
+				"from": 751520,
+				"to": 752520
+			},
+			"text": " issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,520",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 752520,
+				"to": 759000
+			},
+			"text": " And last but not least, if we actually do the same thing with light clients, then we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:41,880"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 761880
+			},
+			"text": " breaking projects that rely on this behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,880",
+				"to": "00:12:44,840"
+			},
+			"offsets": {
+				"from": 761880,
+				"to": 764840
+			},
+			"text": " For example, one of them is VIP node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,840",
+				"to": "00:12:49,320"
+			},
+			"offsets": {
+				"from": 764840,
+				"to": 769320
+			},
+			"text": " And they are essentially trying to incentivize running full nodes by providing light servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,320",
+				"to": "00:12:50,480"
+			},
+			"offsets": {
+				"from": 769320,
+				"to": 770480
+			},
+			"text": " for payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,480",
+				"to": "00:12:57,360"
+			},
+			"offsets": {
+				"from": 770480,
+				"to": 777360
+			},
+			"text": " And then light clients can pay a bit, and then they get the light server services."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,360",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 777360,
+				"to": 781800
+			},
+			"text": " The issue here is that the authentication mechanism they use is that their payment is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,800",
+				"to": "00:13:04,400"
+			},
+			"offsets": {
+				"from": 781800,
+				"to": 784400
+			},
+			"text": " associated with their node ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,400",
+				"to": "00:13:10,640"
+			},
+			"offsets": {
+				"from": 784400,
+				"to": 790640
+			},
+			"text": " So take away their node ID, and we just blew up the VIP node business model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,640",
+				"to": "00:13:13,680"
+			},
+			"offsets": {
+				"from": 790640,
+				"to": 793680
+			},
+			"text": " And this is -- I'm not saying that this cannot be solved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,680",
+				"to": "00:13:18,800"
+			},
+			"offsets": {
+				"from": 793680,
+				"to": 798800
+			},
+			"text": " What I'm trying to say here is that these really trivial issues and trivial fixes can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,800",
+				"to": "00:13:23,120"
+			},
+			"offsets": {
+				"from": 798800,
+				"to": 803120
+			},
+			"text": " have very, very heavy implications on certain players in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,120",
+				"to": "00:13:29,280"
+			},
+			"offsets": {
+				"from": 803120,
+				"to": 809280
+			},
+			"text": " And often, we as client developers don't want to ruin people's days and people's projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,280",
+				"to": "00:13:32,120"
+			},
+			"offsets": {
+				"from": 809280,
+				"to": 812120
+			},
+			"text": " Anyway, so that's the discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,120",
+				"to": "00:13:36,120"
+			},
+			"offsets": {
+				"from": 812120,
+				"to": 816120
+			},
+			"text": " It is an interesting problem to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,120",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 816120,
+				"to": 822240
+			},
+			"text": " Now if we go further deep into the light clients, then how do light clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 824000
+			},
+			"text": " What less do I suppose we forget about discovery?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:45,920"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 825920
+			},
+			"text": " Let's suppose we somehow fix discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,920",
+				"to": "00:13:51,400"
+			},
+			"offsets": {
+				"from": 825920,
+				"to": 831400
+			},
+			"text": " Well, light clients, essentially, they connect with full nodes, full servers, which actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,400",
+				"to": "00:13:52,760"
+			},
+			"offsets": {
+				"from": 831400,
+				"to": 832760
+			},
+			"text": " have all the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,760",
+				"to": "00:13:56,480"
+			},
+			"offsets": {
+				"from": 832760,
+				"to": 836480
+			},
+			"text": " And instead of downloading the blocks and processing them, they are just randomly picking"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,480",
+				"to": "00:14:02,480"
+			},
+			"offsets": {
+				"from": 836480,
+				"to": 842480
+			},
+			"text": " the block headers, which are kind of -- is a nice enough proof that the chain is valid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,480",
+				"to": "00:14:04,200"
+			},
+			"offsets": {
+				"from": 842480,
+				"to": 844200
+			},
+			"text": " but they do not download the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,200",
+				"to": "00:14:10,760"
+			},
+			"offsets": {
+				"from": 844200,
+				"to": 850760
+			},
+			"text": " And then when we start missed or any other deck that we really care about, then the light"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,760",
+				"to": "00:14:12,760"
+			},
+			"offsets": {
+				"from": 850760,
+				"to": 852760
+			},
+			"text": " client will actually fetch the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,760",
+				"to": "00:14:17,120"
+			},
+			"offsets": {
+				"from": 852760,
+				"to": 857120
+			},
+			"text": " For example, if I have three accounts in missed, then every time a new block arrives, missed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,120",
+				"to": "00:14:22,440"
+			},
+			"offsets": {
+				"from": 857120,
+				"to": 862440
+			},
+			"text": " will actually fetch those balances for those three accounts I care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,440",
+				"to": "00:14:24,200"
+			},
+			"offsets": {
+				"from": 862440,
+				"to": 864200
+			},
+			"text": " And again, this seems like completely logical."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,200",
+				"to": "00:14:29,160"
+			},
+			"offsets": {
+				"from": 864200,
+				"to": 869160
+			},
+			"text": " This is the most optimal way to reduce latency, reduce bandwidth, and just make all the traffic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,160",
+				"to": "00:14:38,200"
+			},
+			"offsets": {
+				"from": 869160,
+				"to": 878200
+			},
+			"text": " useful, except now, all of a sudden, the light server knows that I am -- this IP address"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,200",
+				"to": "00:14:40,680"
+			},
+			"offsets": {
+				"from": 878200,
+				"to": 880680
+			},
+			"text": " is interested in that particular account."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,680",
+				"to": "00:14:44,520"
+			},
+			"offsets": {
+				"from": 880680,
+				"to": 884520
+			},
+			"text": " Oh, and one more -- I think I want a bit ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,520",
+				"to": "00:14:48,600"
+			},
+			"offsets": {
+				"from": 884520,
+				"to": 888600
+			},
+			"text": " So two more things that I wanted to say about how the light clients work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,600",
+				"to": "00:14:52,440"
+			},
+			"offsets": {
+				"from": 888600,
+				"to": 892440
+			},
+			"text": " So one of them was that they are obviously synchronizing header and then retrieving data"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,440",
+				"to": "00:14:55,240"
+			},
+			"offsets": {
+				"from": 892440,
+				"to": 895240
+			},
+			"text": " on demand, only interesting data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,240",
+				"to": "00:14:59,920"
+			},
+			"offsets": {
+				"from": 895240,
+				"to": 899920
+			},
+			"text": " Another really interesting aspect of the light client that I think, apart from protocol developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,920",
+				"to": "00:15:04,560"
+			},
+			"offsets": {
+				"from": 899920,
+				"to": 904560
+			},
+			"text": " most people are unaware of, is that light clients cannot verify the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,560",
+				"to": "00:15:08,560"
+			},
+			"offsets": {
+				"from": 904560,
+				"to": 908560
+			},
+			"text": " So they are verifying the proof of work, but they blindly trust that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,560",
+				"to": "00:15:12,400"
+			},
+			"offsets": {
+				"from": 908560,
+				"to": 912400
+			},
+			"text": " So every time you get a new block, you just assume if the proof of work is valid, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,400",
+				"to": "00:15:16,360"
+			},
+			"offsets": {
+				"from": 912400,
+				"to": 916360
+			},
+			"text": " whatever state that block is associated with will be valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,360",
+				"to": "00:15:20,520"
+			},
+			"offsets": {
+				"from": 916360,
+				"to": 920520
+			},
+			"text": " And this works because if you have a good connectivity to the network and you have many"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,520",
+				"to": "00:15:24,520"
+			},
+			"offsets": {
+				"from": 920520,
+				"to": 924520
+			},
+			"text": " people sending you blocks, then it's really hard for somebody to forge a block because,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,520",
+				"to": "00:15:28,880"
+			},
+			"offsets": {
+				"from": 924520,
+				"to": 928880
+			},
+			"text": " yeah, they could forge a block, but the entire -- the network, the rest of the network won't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,880",
+				"to": "00:15:29,880"
+			},
+			"offsets": {
+				"from": 928880,
+				"to": 929880
+			},
+			"text": " accept it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,880",
+				"to": "00:15:34,480"
+			},
+			"offsets": {
+				"from": 929880,
+				"to": 934480
+			},
+			"text": " So after a few more blocks, it will just get re-oaked out of your chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,480",
+				"to": "00:15:37,240"
+			},
+			"offsets": {
+				"from": 934480,
+				"to": 937240
+			},
+			"text": " So nobody can really keep attacking you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,240",
+				"to": "00:15:41,360"
+			},
+			"offsets": {
+				"from": 937240,
+				"to": 941360
+			},
+			"text": " As long as your connectivity is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,360",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 941360,
+				"to": 946320
+			},
+			"text": " So what happens -- yeah, I went a bit previously with the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:50,720"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 950720
+			},
+			"text": " But essentially with the light clients and on-demand retrieval, the issue is that whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,720",
+				"to": "00:15:56,760"
+			},
+			"offsets": {
+				"from": 950720,
+				"to": 956760
+			},
+			"text": " if I have misconnected and whenever I have an updated block, it keeps requesting the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,760",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 956760,
+				"to": 961000
+			},
+			"text": " balance for the same account over and over and over and over again, then light servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 966000
+			},
+			"text": " will be able to create -- to statistically map out that this particular IP address is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:09,320"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 969320
+			},
+			"text": " interested in one particular address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,320",
+				"to": "00:16:14,720"
+			},
+			"offsets": {
+				"from": 969320,
+				"to": 974720
+			},
+			"text": " And that's a problem because we get back to the exact same issue and exact same behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,720",
+				"to": "00:16:17,240"
+			},
+			"offsets": {
+				"from": 974720,
+				"to": 977240
+			},
+			"text": " that we had with the discovery protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,240",
+				"to": "00:16:22,200"
+			},
+			"offsets": {
+				"from": 977240,
+				"to": 982200
+			},
+			"text": " Only now we don't have a map -- a world map of moving IDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,200",
+				"to": "00:16:25,640"
+			},
+			"offsets": {
+				"from": 982200,
+				"to": 985640
+			},
+			"text": " Now we have a world map of moving Ethereum addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,640",
+				"to": "00:16:30,520"
+			},
+			"offsets": {
+				"from": 985640,
+				"to": 990520
+			},
+			"text": " And again, similarly to the discovery protocol, this can be done exactly the same way publicly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,520",
+				"to": "00:16:31,520"
+			},
+			"offsets": {
+				"from": 990520,
+				"to": 991520
+			},
+			"text": " by everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,520",
+				"to": "00:16:34,640"
+			},
+			"offsets": {
+				"from": 991520,
+				"to": 994640
+			},
+			"text": " It's a bit more expensive because you need to run a light server."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,640",
+				"to": "00:16:36,280"
+			},
+			"offsets": {
+				"from": 994640,
+				"to": 996280
+			},
+			"text": " So at least you're having the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,280",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 996280,
+				"to": 1001000
+			},
+			"text": " So please, if you want to attack Ethereum, do this and not the other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1004000
+			},
+			"text": " So how can -- how can we solve this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:49,240"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1009240
+			},
+			"text": " And again, it's a -- it's a part question to answer because it's not -- it's kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,240",
+				"to": "00:16:51,200"
+			},
+			"offsets": {
+				"from": 1009240,
+				"to": 1011200
+			},
+			"text": " this is how the protocol was meant to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,200",
+				"to": "00:16:52,840"
+			},
+			"offsets": {
+				"from": 1011200,
+				"to": 1012840
+			},
+			"text": " This is the optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,840",
+				"to": "00:16:56,720"
+			},
+			"offsets": {
+				"from": 1012840,
+				"to": 1016720
+			},
+			"text": " So we're trying to somehow obfuscate the optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,720",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1016720,
+				"to": 1023000
+			},
+			"text": " And one of them is, again, similarly to how we try to hide our IP address from Etherscan"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:08,040"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1028040
+			},
+			"text": " or from centralized RESTful services, we can try to do the same thing and maybe run"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,040",
+				"to": "00:17:10,720"
+			},
+			"offsets": {
+				"from": 1028040,
+				"to": 1030720
+			},
+			"text": " light clients up over a Tor."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,720",
+				"to": "00:17:14,320"
+			},
+			"offsets": {
+				"from": 1030720,
+				"to": 1034320
+			},
+			"text": " But what happens if I have an embedded device?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,320",
+				"to": "00:17:19,400"
+			},
+			"offsets": {
+				"from": 1034320,
+				"to": 1039400
+			},
+			"text": " So about two weeks ago -- no, sorry, two years ago, we already had Raspberry Pi zeros"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,400",
+				"to": "00:17:21,560"
+			},
+			"offsets": {
+				"from": 1039400,
+				"to": 1041560
+			},
+			"text": " as light clients on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,560",
+				"to": "00:17:25,800"
+			},
+			"offsets": {
+				"from": 1041560,
+				"to": 1045800
+			},
+			"text": " Somebody even had these little Intel embedded chips put on Mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,800",
+				"to": "00:17:29,760"
+			},
+			"offsets": {
+				"from": 1045800,
+				"to": 1049760
+			},
+			"text": " And they were really happy that they could -- they can use the light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,760",
+				"to": "00:17:31,920"
+			},
+			"offsets": {
+				"from": 1049760,
+				"to": 1051920
+			},
+			"text": " But these devices aren't really compatible with Tor."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,920",
+				"to": "00:17:35,760"
+			},
+			"offsets": {
+				"from": 1051920,
+				"to": 1055760
+			},
+			"text": " So Tor has a huge overhead, cryptographic overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,760",
+				"to": "00:17:36,760"
+			},
+			"offsets": {
+				"from": 1055760,
+				"to": 1056760
+			},
+			"text": " That's one problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,760",
+				"to": "00:17:43,920"
+			},
+			"offsets": {
+				"from": 1056760,
+				"to": 1063920
+			},
+			"text": " The other problem is that if we start adding these IP mixers into the soup and trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,920",
+				"to": "00:17:49,480"
+			},
+			"offsets": {
+				"from": 1063920,
+				"to": 1069480
+			},
+			"text": " just create -- trying to just tunnel the light client traffic all over the place, the issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,480",
+				"to": "00:17:51,520"
+			},
+			"offsets": {
+				"from": 1069480,
+				"to": 1071520
+			},
+			"text": " is that you will have connectivity issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,520",
+				"to": "00:17:56,640"
+			},
+			"offsets": {
+				"from": 1071520,
+				"to": 1076640
+			},
+			"text": " So again, maybe you will find less peers, maybe the latency will go up, the bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,640",
+				"to": "00:17:59,760"
+			},
+			"offsets": {
+				"from": 1076640,
+				"to": 1079760
+			},
+			"text": " will go down, you will keep dropping peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,760",
+				"to": "00:18:04,880"
+			},
+			"offsets": {
+				"from": 1079760,
+				"to": 1084880
+			},
+			"text": " But the issue here is that as I said previously, light clients depend on relatively good connectivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,880",
+				"to": "00:18:10,600"
+			},
+			"offsets": {
+				"from": 1084880,
+				"to": 1090600
+			},
+			"text": " If you have an obfuscation layer that essentially kills your connectivity, then all of a sudden"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,600",
+				"to": "00:18:16,160"
+			},
+			"offsets": {
+				"from": 1090600,
+				"to": 1096160
+			},
+			"text": " you kind of raise your vulnerability against these kinds of Eclipse attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,160",
+				"to": "00:18:22,400"
+			},
+			"offsets": {
+				"from": 1096160,
+				"to": 1102400
+			},
+			"text": " So again, although it seems that there would be a simple enough solution, in practice it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,400",
+				"to": "00:18:24,880"
+			},
+			"offsets": {
+				"from": 1102400,
+				"to": 1104880
+			},
+			"text": " not so trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,880",
+				"to": "00:18:33,280"
+			},
+			"offsets": {
+				"from": 1104880,
+				"to": 1113280
+			},
+			"text": " So with that said, I think this was the first talk that I did where I kind of raised more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,280",
+				"to": "00:18:36,960"
+			},
+			"offsets": {
+				"from": 1113280,
+				"to": 1116960
+			},
+			"text": " questions than Torx than solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,960",
+				"to": "00:18:44,960"
+			},
+			"offsets": {
+				"from": 1116960,
+				"to": 1124960
+			},
+			"text": " But I still I figured that I would like to formulate a few takeaways for you, just so"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,960",
+				"to": "00:18:51,920"
+			},
+			"offsets": {
+				"from": 1124960,
+				"to": 1131920
+			},
+			"text": " that you don't leave with the concept that OK theorem sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,920",
+				"to": "00:18:58,440"
+			},
+			"offsets": {
+				"from": 1131920,
+				"to": 1138440
+			},
+			"text": " And essentially the three things that I would really like to highlight as the summary of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,440",
+				"to": "00:19:04,560"
+			},
+			"offsets": {
+				"from": 1138440,
+				"to": 1144560
+			},
+			"text": " this talk is that although people don't feel like full notes, full notes are actually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,560",
+				"to": "00:19:07,360"
+			},
+			"offsets": {
+				"from": 1144560,
+				"to": 1147360
+			},
+			"text": " best anonymizers in the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,360",
+				"to": "00:19:11,960"
+			},
+			"offsets": {
+				"from": 1147360,
+				"to": 1151960
+			},
+			"text": " If you are running a full note, then nobody knows what data you are interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,960",
+				"to": "00:19:15,600"
+			},
+			"offsets": {
+				"from": 1151960,
+				"to": 1155600
+			},
+			"text": " You can't poke in whatever contract you want, you can check your balance as many times per"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,600",
+				"to": "00:19:21,880"
+			},
+			"offsets": {
+				"from": 1155600,
+				"to": 1161880
+			},
+			"text": " second as you want, and nobody from the outside will know that you are actually doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,880",
+				"to": "00:19:27,800"
+			},
+			"offsets": {
+				"from": 1161880,
+				"to": 1167800
+			},
+			"text": " Secondly, privacy on Ethereum is bad, really, really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,800",
+				"to": "00:19:32,120"
+			},
+			"offsets": {
+				"from": 1167800,
+				"to": 1172120
+			},
+			"text": " And that but this doesn't mean that it's an impossible task to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,120",
+				"to": "00:19:36,280"
+			},
+			"offsets": {
+				"from": 1172120,
+				"to": 1176280
+			},
+			"text": " So there have been existing projects, at least two major ones, the Tor network, the onion"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,280",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1176280,
+				"to": 1180000
+			},
+			"text": " routing network, I mean, and I2P."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:44,760"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1184760
+			},
+			"text": " And both these networks try to solve this exact problem of how to anonymize data so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,760",
+				"to": "00:19:47,720"
+			},
+			"offsets": {
+				"from": 1184760,
+				"to": 1187720
+			},
+			"text": " that you don't reveal too much about yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,720",
+				"to": "00:19:52,800"
+			},
+			"offsets": {
+				"from": 1187720,
+				"to": 1192800
+			},
+			"text": " Now I'm not saying that we should all of a sudden put Ethereum on top of these networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,800",
+				"to": "00:19:57,480"
+			},
+			"offsets": {
+				"from": 1192800,
+				"to": 1197480
+			},
+			"text": " These networks have a very, very broad scope, and it might be too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,480",
+				"to": "00:20:02,320"
+			},
+			"offsets": {
+				"from": 1197480,
+				"to": 1202320
+			},
+			"text": " But nonetheless, there have been 20 years of research going into how to do this properly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,320",
+				"to": "00:20:08,560"
+			},
+			"offsets": {
+				"from": 1202320,
+				"to": 1208560
+			},
+			"text": " so let's try to at least learn from their results and try to fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,560",
+				"to": "00:20:14,280"
+			},
+			"offsets": {
+				"from": 1208560,
+				"to": 1214280
+			},
+			"text": " And last but not least, I've seen it many times in the community and I see it many times"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,280",
+				"to": "00:20:18,800"
+			},
+			"offsets": {
+				"from": 1214280,
+				"to": 1218800
+			},
+			"text": " even with myself that as a developer it's all too easy to just say that while the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,800",
+				"to": "00:20:21,080"
+			},
+			"offsets": {
+				"from": 1218800,
+				"to": 1221080
+			},
+			"text": " are doing it wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,080",
+				"to": "00:20:25,240"
+			},
+			"offsets": {
+				"from": 1221080,
+				"to": 1225240
+			},
+			"text": " And for example, it would be nice to say that, well, just use Tor, figure it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,240",
+				"to": "00:20:29,040"
+			},
+			"offsets": {
+				"from": 1225240,
+				"to": 1229040
+			},
+			"text": " And that's a problem because most users don't know what Tor is and most users who are probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,040",
+				"to": "00:20:33,440"
+			},
+			"offsets": {
+				"from": 1229040,
+				"to": 1233440
+			},
+			"text": " never in their lives use Tor, even though that would be the obvious solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,440",
+				"to": "00:20:38,120"
+			},
+			"offsets": {
+				"from": 1233440,
+				"to": 1238120
+			},
+			"text": " And it's kind of up to us to as depth and platform developers to figure it out and to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,120",
+				"to": "00:20:39,440"
+			},
+			"offsets": {
+				"from": 1238120,
+				"to": 1239440
+			},
+			"text": " fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,440",
+				"to": "00:20:45,920"
+			},
+			"offsets": {
+				"from": 1239440,
+				"to": 1245920
+			},
+			"text": " And we don't really want to fix it to protect the users from not only from external attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,920",
+				"to": "00:20:49,320"
+			},
+			"offsets": {
+				"from": 1245920,
+				"to": 1249320
+			},
+			"text": " I think it's really important to also highlight that we want to protect users from ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,320",
+				"to": "00:20:55,600"
+			},
+			"offsets": {
+				"from": 1249320,
+				"to": 1255600
+			},
+			"text": " too, because I just to give you a really nice example, I don't think Facebook was created"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,600",
+				"to": "00:20:56,600"
+			},
+			"offsets": {
+				"from": 1255600,
+				"to": 1256600
+			},
+			"text": " to gather user data."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,600",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1256600,
+				"to": 1260520
+			},
+			"text": " It wasn't created to abuse elections."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:06,800"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1266800
+			},
+			"text": " That one just kind of happened when there was too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,800",
+				"to": "00:21:11,240"
+			},
+			"offsets": {
+				"from": 1266800,
+				"to": 1271240
+			},
+			"text": " So with that, I'd like to conclude my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,240",
+				"to": "00:21:18,920"
+			},
+			"offsets": {
+				"from": 1271240,
+				"to": 1278920
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,920",
+				"to": "00:21:22,160"
+			},
+			"offsets": {
+				"from": 1278920,
+				"to": 1282160
+			},
+			"text": " And I guess we have a few possible questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,160",
+				"to": "00:21:23,720"
+			},
+			"offsets": {
+				"from": 1282160,
+				"to": 1283720
+			},
+			"text": " We have a few minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,720",
+				"to": "00:21:25,720"
+			},
+			"offsets": {
+				"from": 1283720,
+				"to": 1285720
+			},
+			"text": " If everybody has any."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,720",
+				"to": "00:21:32,320"
+			},
+			"offsets": {
+				"from": 1285720,
+				"to": 1292320
+			},
+			"text": " Does anyone look like we have any?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,320",
+				"to": "00:21:37,600"
+			},
+			"offsets": {
+				"from": 1292320,
+				"to": 1297600
+			},
+			"text": " >> Hey, could you talk more about helpful nodes or the most powerful and itemizers in"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,600",
+				"to": "00:21:40,920"
+			},
+			"offsets": {
+				"from": 1297600,
+				"to": 1300920
+			},
+			"text": " the network with that takeaway?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,920",
+				"to": "00:21:46,680"
+			},
+			"offsets": {
+				"from": 1300920,
+				"to": 1306680
+			},
+			"text": " >> So essentially, all these meta data leaks are possible because you are doing something"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,680",
+				"to": "00:21:49,120"
+			},
+			"offsets": {
+				"from": 1306680,
+				"to": 1309120
+			},
+			"text": " in your optimizing your traffic in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,120",
+				"to": "00:21:53,800"
+			},
+			"offsets": {
+				"from": 1309120,
+				"to": 1313800
+			},
+			"text": " The only way to optimize your traffic is to request only data that interests you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,800",
+				"to": "00:21:57,680"
+			},
+			"offsets": {
+				"from": 1313800,
+				"to": 1317680
+			},
+			"text": " So every time you are only requesting data that interests you, it means that the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,680",
+				"to": "00:22:02,480"
+			},
+			"offsets": {
+				"from": 1317680,
+				"to": 1322480
+			},
+			"text": " itself knows that that particular data for some reason is interesting for that particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,480",
+				"to": "00:22:03,960"
+			},
+			"offsets": {
+				"from": 1322480,
+				"to": 1323960
+			},
+			"text": " IP address."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,960",
+				"to": "00:22:07,640"
+			},
+			"offsets": {
+				"from": 1323960,
+				"to": 1327640
+			},
+			"text": " And this thing you can completely hide with the phone node, because the phone node essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,640",
+				"to": "00:22:08,640"
+			},
+			"offsets": {
+				"from": 1327640,
+				"to": 1328640
+			},
+			"text": " gets everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,640",
+				"to": "00:22:10,560"
+			},
+			"offsets": {
+				"from": 1328640,
+				"to": 1330560
+			},
+			"text": " >> But this is only for either accesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,560",
+				"to": "00:22:15,400"
+			},
+			"offsets": {
+				"from": 1330560,
+				"to": 1335400
+			},
+			"text": " So when you write the anonymity problems to exist, phone nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,400",
+				"to": "00:22:16,400"
+			},
+			"offsets": {
+				"from": 1335400,
+				"to": 1336400
+			},
+			"text": " >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,400",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1336400,
+				"to": 1342000
+			},
+			"text": " So that's again another interesting question that while we are just reading the chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:23,680"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1343680
+			},
+			"text": " this completely solves the phone node."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,680",
+				"to": "00:22:29,840"
+			},
+			"offsets": {
+				"from": 1343680,
+				"to": 1349840
+			},
+			"text": " When we are trying to transact with the chain, then if for example somebody manages, if I"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,840",
+				"to": "00:22:36,520"
+			},
+			"offsets": {
+				"from": 1349840,
+				"to": 1356520
+			},
+			"text": " am, let's say I run a thousand phone nodes and I start monitoring where certain transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,520",
+				"to": "00:22:41,360"
+			},
+			"offsets": {
+				"from": 1356520,
+				"to": 1361360
+			},
+			"text": " are coming from, then that can be used to eventually statistically hone in on a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,360",
+				"to": "00:22:42,360"
+			},
+			"offsets": {
+				"from": 1361360,
+				"to": 1362360
+			},
+			"text": " IP address."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,360",
+				"to": "00:22:47,240"
+			},
+			"offsets": {
+				"from": 1362360,
+				"to": 1367240
+			},
+			"text": " That this IP address is usually originating some transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,240",
+				"to": "00:22:53,640"
+			},
+			"offsets": {
+				"from": 1367240,
+				"to": 1373640
+			},
+			"text": " And here my solution is, I think, for example, IPFS is also looking into exactly the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,640",
+				"to": "00:22:55,240"
+			},
+			"offsets": {
+				"from": 1373640,
+				"to": 1375240
+			},
+			"text": " problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,240",
+				"to": "00:23:02,240"
+			},
+			"offsets": {
+				"from": 1375240,
+				"to": 1382240
+			},
+			"text": " And their solution or let's suppose their ideas are all revolved around the I2P protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,240",
+				"to": "00:23:08,480"
+			},
+			"offsets": {
+				"from": 1382240,
+				"to": 1388480
+			},
+			"text": " because it's essentially a message-based protocol that does, tries to somehow mix the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,480",
+				"to": "00:23:10,920"
+			},
+			"offsets": {
+				"from": 1388480,
+				"to": 1390920
+			},
+			"text": " a bit in the network before popping it out somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,920",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1390920,
+				"to": 1395000
+			},
+			"text": " And as far as I know Monero does the same thing for the same reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:20,680"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1400680
+			},
+			"text": " So that's possibly, that's again something that many people before us did and people"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,680",
+				"to": "00:23:22,600"
+			},
+			"offsets": {
+				"from": 1400680,
+				"to": 1402600
+			},
+			"text": " are doing concurrently with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,600",
+				"to": "00:23:26,880"
+			},
+			"offsets": {
+				"from": 1402600,
+				"to": 1406880
+			},
+			"text": " So it's not an unsolvable research problem, it's just an engineering problem that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,880",
+				"to": "00:23:28,320"
+			},
+			"offsets": {
+				"from": 1406880,
+				"to": 1408320
+			},
+			"text": " to pay attention to."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,320",
+				"to": "00:23:29,320"
+			},
+			"offsets": {
+				"from": 1408320,
+				"to": 1409320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,320",
+				"to": "00:23:31,120"
+			},
+			"offsets": {
+				"from": 1409320,
+				"to": 1411120
+			},
+			"text": " Thanks for your talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,120",
+				"to": "00:23:32,800"
+			},
+			"offsets": {
+				"from": 1411120,
+				"to": 1412800
+			},
+			"text": " It was really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,800",
+				"to": "00:23:37,560"
+			},
+			"offsets": {
+				"from": 1412800,
+				"to": 1417560
+			},
+			"text": " I think probably most people in this room have done all the bad things that you mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,560",
+				"to": "00:23:38,560"
+			},
+			"offsets": {
+				"from": 1417560,
+				"to": 1418560
+			},
+			"text": " throughout the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,560",
+				"to": "00:23:43,480"
+			},
+			"offsets": {
+				"from": 1418560,
+				"to": 1423480
+			},
+			"text": " So is there anything you recommend, aside from running a full node to either go forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,480",
+				"to": "00:23:48,120"
+			},
+			"offsets": {
+				"from": 1423480,
+				"to": 1428120
+			},
+			"text": " or perhaps anonymize things with these services more?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,120",
+				"to": "00:23:49,120"
+			},
+			"offsets": {
+				"from": 1428120,
+				"to": 1429120
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,120",
+				"to": "00:23:54,400"
+			},
+			"offsets": {
+				"from": 1429120,
+				"to": 1434400
+			},
+			"text": " Well, I guess my recommendation, I can not recommend what I already recommended within"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,400",
+				"to": "00:24:01,240"
+			},
+			"offsets": {
+				"from": 1434400,
+				"to": 1441240
+			},
+			"text": " the slides that if you are running, if you are accessing block explorers, I think browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,240",
+				"to": "00:24:04,280"
+			},
+			"offsets": {
+				"from": 1441240,
+				"to": 1444280
+			},
+			"text": " extensions are the single most important thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,280",
+				"to": "00:24:08,040"
+			},
+			"offsets": {
+				"from": 1444280,
+				"to": 1448040
+			},
+			"text": " If you are really paranoid, then Tor network is also an essential thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,040",
+				"to": "00:24:15,680"
+			},
+			"offsets": {
+				"from": 1448040,
+				"to": 1455680
+			},
+			"text": " So with the Tor network, you can completely protect yourself against typical browser-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,680",
+				"to": "00:24:18,840"
+			},
+			"offsets": {
+				"from": 1455680,
+				"to": 1458840
+			},
+			"text": " daps from tracking you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,840",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1458840,
+				"to": 1463000
+			},
+			"text": " If you are actually willing to run a light client, that's a hard problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:25,960"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1465960
+			},
+			"text": " That's up to the client developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,960",
+				"to": "00:24:38,680"
+			},
+			"offsets": {
+				"from": 1465960,
+				"to": 1478680
+			},
+			"text": " Would you recommend us a general rule to regularly clean out the node key?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,680",
+				"to": "00:24:42,520"
+			},
+			"offsets": {
+				"from": 1478680,
+				"to": 1482520
+			},
+			"text": " So as long as your server is stable, the node key is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,520",
+				"to": "00:24:43,520"
+			},
+			"offsets": {
+				"from": 1482520,
+				"to": 1483520
+			},
+			"text": " I mean..."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,520",
+				"to": "00:24:44,680"
+			},
+			"offsets": {
+				"from": 1483520,
+				"to": 1484680
+			},
+			"text": " Yeah, on the laptop, move around."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,680",
+				"to": "00:24:49,360"
+			},
+			"offsets": {
+				"from": 1484680,
+				"to": 1489360
+			},
+			"text": " Yeah, so if you are on the laptop, I think that would be the first no-brainer solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,360",
+				"to": "00:24:52,040"
+			},
+			"offsets": {
+				"from": 1489360,
+				"to": 1492040
+			},
+			"text": " that we have to do is we have to keep..."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,040",
+				"to": "00:24:56,760"
+			},
+			"offsets": {
+				"from": 1492040,
+				"to": 1496760
+			},
+			"text": " So for example, if you run a light client, every time you run a light client, we should"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,760",
+				"to": "00:24:57,840"
+			},
+			"offsets": {
+				"from": 1496760,
+				"to": 1497840
+			},
+			"text": " reset the node keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,840",
+				"to": "00:25:00,920"
+			},
+			"offsets": {
+				"from": 1497840,
+				"to": 1500920
+			},
+			"text": " We should use a firmware on node keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,920",
+				"to": "00:25:04,560"
+			},
+			"offsets": {
+				"from": 1500920,
+				"to": 1504560
+			},
+			"text": " Even better, I would suggest that maybe even for full nodes, we can use a firmware on"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,560",
+				"to": "00:25:10,240"
+			},
+			"offsets": {
+				"from": 1504560,
+				"to": 1510240
+			},
+			"text": " node keys and just if we restart them, yeah, maybe it will have a bit harder time connecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,240",
+				"to": "00:25:13,240"
+			},
+			"offsets": {
+				"from": 1510240,
+				"to": 1513240
+			},
+			"text": " to the network for the first couple of minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,240",
+				"to": "00:25:17,560"
+			},
+			"offsets": {
+				"from": 1513240,
+				"to": 1517560
+			},
+			"text": " But I think apart from boot nodes, nothing in the network really requires stable keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,560",
+				"to": "00:25:21,400"
+			},
+			"offsets": {
+				"from": 1517560,
+				"to": 1521400
+			},
+			"text": " Okay, can we please another round of applause for Peter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,400",
+				"to": "00:25:21,880"
+			},
+			"offsets": {
+				"from": 1521400,
+				"to": 1521880
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,880",
+				"to": "00:25:22,880"
+			},
+			"offsets": {
+				"from": 1521880,
+				"to": 1522880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,880",
+				"to": "00:25:23,880"
+			},
+			"offsets": {
+				"from": 1522880,
+				"to": 1523880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,880",
+				"to": "00:25:25,880"
+			},
+			"offsets": {
+				"from": 1523880,
+				"to": 1525880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,880",
+				"to": "00:25:27,880"
+			},
+			"offsets": {
+				"from": 1525880,
+				"to": 1527880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,880",
+				"to": "00:25:29,880"
+			},
+			"offsets": {
+				"from": 1527880,
+				"to": 1529880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,880",
+				"to": "00:25:31,880"
+			},
+			"offsets": {
+				"from": 1529880,
+				"to": 1531880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,880",
+				"to": "00:25:33,880"
+			},
+			"offsets": {
+				"from": 1531880,
+				"to": 1533880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,880",
+				"to": "00:25:35,880"
+			},
+			"offsets": {
+				"from": 1533880,
+				"to": 1535880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,880",
+				"to": "00:25:37,880"
+			},
+			"offsets": {
+				"from": 1535880,
+				"to": 1537880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,880",
+				"to": "00:25:39,880"
+			},
+			"offsets": {
+				"from": 1537880,
+				"to": 1539880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,880",
+				"to": "00:25:41,880"
+			},
+			"offsets": {
+				"from": 1539880,
+				"to": 1541880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,880",
+				"to": "00:25:43,880"
+			},
+			"offsets": {
+				"from": 1541880,
+				"to": 1543880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,880",
+				"to": "00:25:45,880"
+			},
+			"offsets": {
+				"from": 1543880,
+				"to": 1545880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,880",
+				"to": "00:25:47,880"
+			},
+			"offsets": {
+				"from": 1545880,
+				"to": 1547880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,880",
+				"to": "00:25:49,880"
+			},
+			"offsets": {
+				"from": 1547880,
+				"to": 1549880
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,880",
+				"to": "00:26:18,880"
+			},
+			"offsets": {
+				"from": 1549880,
+				"to": 1578880
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

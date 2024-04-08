@@ -1,0 +1,2936 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15840
+			},
+			"text": " So I'm going to get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 20000
+			},
+			"text": " I'm very excited to be here today to talk to you about Zero X."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,840"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24840
+			},
+			"text": " This project has been a long time in the coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,840",
+				"to": "00:00:32,680"
+			},
+			"offsets": {
+				"from": 24840,
+				"to": 32680
+			},
+			"text": " And I hope that we can get some people excited about it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,680",
+				"to": "00:00:37,200"
+			},
+			"offsets": {
+				"from": 32680,
+				"to": 37200
+			},
+			"text": " So just to outline this presentation, I'm going to quickly give a little bit of background"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,200",
+				"to": "00:00:44,240"
+			},
+			"offsets": {
+				"from": 37200,
+				"to": 44240
+			},
+			"text": " and timeline on Zero X protocol, motivate the problem we are trying to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,240",
+				"to": "00:00:47,920"
+			},
+			"offsets": {
+				"from": 44240,
+				"to": 47920
+			},
+			"text": " Talk a little bit about the existing work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,920",
+				"to": "00:00:49,800"
+			},
+			"offsets": {
+				"from": 47920,
+				"to": 49800
+			},
+			"text": " Then we'll go into Zero X protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,800",
+				"to": "00:00:53,120"
+			},
+			"offsets": {
+				"from": 49800,
+				"to": 53120
+			},
+			"text": " We'll talk about the benefits of an open standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,120",
+				"to": "00:00:59,040"
+			},
+			"offsets": {
+				"from": 53120,
+				"to": 59040
+			},
+			"text": " We'll cover the developer ecosystem that we see developing today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,040",
+				"to": "00:01:04,280"
+			},
+			"offsets": {
+				"from": 59040,
+				"to": 64280
+			},
+			"text": " And we'll quickly discuss the need for governance for open protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,280",
+				"to": "00:01:13,360"
+			},
+			"offsets": {
+				"from": 64280,
+				"to": 73360
+			},
+			"text": " Then we'll go into DAP integrations and something that we like to call token abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,360",
+				"to": "00:01:19,040"
+			},
+			"offsets": {
+				"from": 73360,
+				"to": 79040
+			},
+			"text": " So my co-founder Amir and I started working on Zero X just over a year ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,040",
+				"to": "00:01:23,680"
+			},
+			"offsets": {
+				"from": 79040,
+				"to": 83680
+			},
+			"text": " We released our white paper in February of this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,680",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 83680,
+				"to": 89200
+			},
+			"text": " And since then have put together a really talented and awesome team, all eight of us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:31,360"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 91360
+			},
+			"text": " are here at the conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,360",
+				"to": "00:01:35,880"
+			},
+			"offsets": {
+				"from": 91360,
+				"to": 95880
+			},
+			"text": " We love chatting with people, so feel free to come up and say hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,880",
+				"to": "00:01:40,320"
+			},
+			"offsets": {
+				"from": 95880,
+				"to": 100320
+			},
+			"text": " And we're happy to answer any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,320",
+				"to": "00:01:46,480"
+			},
+			"offsets": {
+				"from": 100320,
+				"to": 106480
+			},
+			"text": " So really the motivation behind creating Zero X protocol was this long term theme that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:53,800"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 113800
+			},
+			"text": " we see coming into existence where anything that can be assigned to value in the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,800",
+				"to": "00:01:59,280"
+			},
+			"offsets": {
+				"from": 113800,
+				"to": 119280
+			},
+			"text": " is going to eventually be tokenized and moved on to an open financial network like the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,280",
+				"to": "00:02:00,840"
+			},
+			"offsets": {
+				"from": 119280,
+				"to": 120840
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,840",
+				"to": "00:02:07,760"
+			},
+			"offsets": {
+				"from": 120840,
+				"to": 127760
+			},
+			"text": " So this can be things like traditional assets like fiat currencies, stocks and bonds, debt"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,760",
+				"to": "00:02:14,480"
+			},
+			"offsets": {
+				"from": 127760,
+				"to": 134480
+			},
+			"text": " assets, all the way to scarce digital goods like video game items and loyalty points and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,480",
+				"to": "00:02:21,680"
+			},
+			"offsets": {
+				"from": 134480,
+				"to": 141680
+			},
+			"text": " airline miles and even things that are more abstract like attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,680",
+				"to": "00:02:25,840"
+			},
+			"offsets": {
+				"from": 141680,
+				"to": 145840
+			},
+			"text": " So naturally with all of these different tokens that are going to eventually find their way"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,840",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 145840,
+				"to": 150600
+			},
+			"text": " onto the Ethereum blockchain, there needs to be a very low friction way to exchange these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:34,480"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 154480
+			},
+			"text": " tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,480",
+				"to": "00:02:43,520"
+			},
+			"offsets": {
+				"from": 154480,
+				"to": 163520
+			},
+			"text": " So just taking a quick look at the exchange ecosystem on the Ethereum blockchain, kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,520",
+				"to": "00:02:47,720"
+			},
+			"offsets": {
+				"from": 163520,
+				"to": 167720
+			},
+			"text": " of this is kind of the state of the Ethereum blockchain back when we started."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,720",
+				"to": "00:02:51,520"
+			},
+			"offsets": {
+				"from": 167720,
+				"to": 171520
+			},
+			"text": " There's been quite a few developments recently as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,520",
+				"to": "00:02:58,320"
+			},
+			"offsets": {
+				"from": 171520,
+				"to": 178320
+			},
+			"text": " But there's a handful of existing decentralized exchanges and there's a lot of decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,320",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 178320,
+				"to": 183360
+			},
+			"text": " applications that require exchange functionality in order to operate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,360",
+				"to": "00:03:09,680"
+			},
+			"offsets": {
+				"from": 183360,
+				"to": 189680
+			},
+			"text": " So things like prediction markets or stable coins or decentralized fund management platforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,680",
+				"to": "00:03:13,840"
+			},
+			"offsets": {
+				"from": 189680,
+				"to": 193840
+			},
+			"text": " all of these things require exchange functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,840",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 193840,
+				"to": 200000
+			},
+			"text": " So the problem that we identified in the ecosystem was that every single one of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,560"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205560
+			},
+			"text": " exchanges and dapps was creating their own proprietary and custom smart contracts from"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,560",
+				"to": "00:03:27,120"
+			},
+			"offsets": {
+				"from": 205560,
+				"to": 207120
+			},
+			"text": " scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,120",
+				"to": "00:03:31,480"
+			},
+			"offsets": {
+				"from": 207120,
+				"to": 211480
+			},
+			"text": " And what this meant is that not only would each exchange have to bootstrap liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,480",
+				"to": "00:03:37,440"
+			},
+			"offsets": {
+				"from": 211480,
+				"to": 217440
+			},
+			"text": " from scratch, but it would also expose end users to a bunch of different smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,440",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 217440,
+				"to": 221560
+			},
+			"text": " that have varying levels of security and efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:43,840"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 223840
+			},
+			"text": " And they all do the exact same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,840",
+				"to": "00:03:47,120"
+			},
+			"offsets": {
+				"from": 223840,
+				"to": 227120
+			},
+			"text": " So that's not a very efficient approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,120",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 227120,
+				"to": 231680
+			},
+			"text": " Another issue with having a bunch of different implementations of exchange smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:55,160"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 235160
+			},
+			"text": " is that there's no interoperability between any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,160",
+				"to": "00:04:00,720"
+			},
+			"offsets": {
+				"from": 235160,
+				"to": 240720
+			},
+			"text": " So it fractures the ecosystem and it kind of results in less liquidity for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,720",
+				"to": "00:04:08,200"
+			},
+			"offsets": {
+				"from": 240720,
+				"to": 248200
+			},
+			"text": " So in our view, smart contracts should really behave like modular building blocks that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,200",
+				"to": "00:04:11,080"
+			},
+			"offsets": {
+				"from": 248200,
+				"to": 251080
+			},
+			"text": " be assembled and reconfigured."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,080",
+				"to": "00:04:18,160"
+			},
+			"offsets": {
+				"from": 251080,
+				"to": 258160
+			},
+			"text": " And we also believe that open standards tend to win out in the long run."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,160",
+				"to": "00:04:23,600"
+			},
+			"offsets": {
+				"from": 258160,
+				"to": 263600
+			},
+			"text": " So I'm just going to briefly talk about the different approaches to decentralized exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,600",
+				"to": "00:04:28,160"
+			},
+			"offsets": {
+				"from": 263600,
+				"to": 268160
+			},
+			"text": " that exist and give like a high level view of the pros and cons."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,160",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 268160,
+				"to": 272840
+			},
+			"text": " So the very first decentralized exchanges that were created on the Ethereum blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:36,640"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 276640
+			},
+			"text": " kind of took the same functionality of a centralized exchange and pulled it into an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,640",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 276640,
+				"to": 278800
+			},
+			"text": " Ethereum smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 285840
+			},
+			"text": " So the Ethereum smart contract would store an order book within the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:52,080"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 292080
+			},
+			"text": " So what this means is that every time someone wants to post, modify, or cancel an order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,080",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 292080,
+				"to": 296040
+			},
+			"text": " they must pay gas costs and create an Ethereum transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:05:02,440"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 302440
+			},
+			"text": " And this becomes completely unrealistic, expensive for any sort of market maker to create liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,440",
+				"to": "00:05:05,120"
+			},
+			"offsets": {
+				"from": 302440,
+				"to": 305120
+			},
+			"text": " using an on-chain order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,120",
+				"to": "00:05:10,720"
+			},
+			"offsets": {
+				"from": 305120,
+				"to": 310720
+			},
+			"text": " Not only is it really expensive, but you also bloat the blockchain with tons of unnecessary"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,720",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 310720,
+				"to": 315120
+			},
+			"text": " transactions that aren't necessarily moving any value."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 317000
+			},
+			"text": " They're also high latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,280"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322280
+			},
+			"text": " A second class of decentralized exchanges are automated market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,280",
+				"to": "00:05:28,600"
+			},
+			"offsets": {
+				"from": 322280,
+				"to": 328600
+			},
+			"text": " And automated market makers, instead of having two parties on either side of a market trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,600",
+				"to": "00:05:33,160"
+			},
+			"offsets": {
+				"from": 328600,
+				"to": 333160
+			},
+			"text": " directly, both parties trade with a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,160",
+				"to": "00:05:40,360"
+			},
+			"offsets": {
+				"from": 333160,
+				"to": 340360
+			},
+			"text": " And the exchange rate that is offered by that smart contract is modified deterministically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,360",
+				"to": "00:05:47,560"
+			},
+			"offsets": {
+				"from": 340360,
+				"to": 347560
+			},
+			"text": " according to how strong the market forces are on either side of the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,560",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 347560,
+				"to": 353480
+			},
+			"text": " They're spent a long time working on finding working implementations of automated market"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:57,920"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 357920
+			},
+			"text": " makers and found that they're really subject to front running."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,920",
+				"to": "00:05:59,400"
+			},
+			"offsets": {
+				"from": 357920,
+				"to": 359400
+			},
+			"text": " They can be gameable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,400",
+				"to": "00:06:01,400"
+			},
+			"offsets": {
+				"from": 359400,
+				"to": 361400
+			},
+			"text": " And they're really low throughput."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,400",
+				"to": "00:06:06,800"
+			},
+			"offsets": {
+				"from": 361400,
+				"to": 366800
+			},
+			"text": " So if you have one party with a large pot of some kind of token and another counterparty"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,800",
+				"to": "00:06:11,880"
+			},
+			"offsets": {
+				"from": 366800,
+				"to": 371880
+			},
+			"text": " that would like to trade with them, instead of just doing one big trade directly, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,880",
+				"to": "00:06:16,760"
+			},
+			"offsets": {
+				"from": 371880,
+				"to": 376760
+			},
+			"text": " must shop up that trade into little tiny pieces and trade with the smart contract back and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,760",
+				"to": "00:06:17,760"
+			},
+			"offsets": {
+				"from": 376760,
+				"to": 377760
+			},
+			"text": " forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,760",
+				"to": "00:06:19,720"
+			},
+			"offsets": {
+				"from": 377760,
+				"to": 379720
+			},
+			"text": " So it's really inefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,720",
+				"to": "00:06:24,480"
+			},
+			"offsets": {
+				"from": 379720,
+				"to": 384480
+			},
+			"text": " The third approach to decentralized exchange, and we haven't seen any examples in production"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,480",
+				"to": "00:06:28,040"
+			},
+			"offsets": {
+				"from": 384480,
+				"to": 388040
+			},
+			"text": " yet, but we will see and I'm sure, are state channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,040",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 388040,
+				"to": 394600
+			},
+			"text": " And so state channels are amazing for reducing latency and increasing throughput because with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:39,320"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 399320
+			},
+			"text": " state channels, transactions occur off of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,320",
+				"to": "00:06:45,400"
+			},
+			"offsets": {
+				"from": 399320,
+				"to": 405400
+			},
+			"text": " And you can sort of accumulate a series of intermediate state changes, aggregate them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,400",
+				"to": "00:06:49,040"
+			},
+			"offsets": {
+				"from": 405400,
+				"to": 409040
+			},
+			"text": " and settle them all in the blockchain in a single transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,040",
+				"to": "00:06:54,560"
+			},
+			"offsets": {
+				"from": 409040,
+				"to": 414560
+			},
+			"text": " The issue with state channels is that they're great if you want to do day trading, but if"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,560",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 414560,
+				"to": 419760
+			},
+			"text": " you want to just do one block trade, you just want to buy a big chunk of tokens and immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:01,680"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 421680
+			},
+			"text": " use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,680",
+				"to": "00:07:04,360"
+			},
+			"offsets": {
+				"from": 421680,
+				"to": 424360
+			},
+			"text": " There's a lot of friction around using a state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,360",
+				"to": "00:07:07,040"
+			},
+			"offsets": {
+				"from": 424360,
+				"to": 427040
+			},
+			"text": " You have to move your funds into the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,040",
+				"to": "00:07:10,680"
+			},
+			"offsets": {
+				"from": 427040,
+				"to": 430680
+			},
+			"text": " You have to place down a security deposit to ensure that everyone is behaving honestly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,680",
+				"to": "00:07:12,160"
+			},
+			"offsets": {
+				"from": 430680,
+				"to": 432160
+			},
+			"text": " within that channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,160",
+				"to": "00:07:16,440"
+			},
+			"offsets": {
+				"from": 432160,
+				"to": 436440
+			},
+			"text": " And then when you want to move your funds out of the state channel, there's a challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,440",
+				"to": "00:07:21,720"
+			},
+			"offsets": {
+				"from": 436440,
+				"to": 441720
+			},
+			"text": " period which is required also to ensure people are behaving honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,720",
+				"to": "00:07:25,720"
+			},
+			"offsets": {
+				"from": 441720,
+				"to": 445720
+			},
+			"text": " Another downside to state channels is that when you move into a state channel off of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,720",
+				"to": "00:07:30,520"
+			},
+			"offsets": {
+				"from": 445720,
+				"to": 450520
+			},
+			"text": " blockchain, you isolate yourself from all of the cool and interesting smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,520",
+				"to": "00:07:33,320"
+			},
+			"offsets": {
+				"from": 450520,
+				"to": 453320
+			},
+			"text": " that exist on the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,320",
+				"to": "00:07:36,280"
+			},
+			"offsets": {
+				"from": 453320,
+				"to": 456280
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,280",
+				"to": "00:07:43,320"
+			},
+			"offsets": {
+				"from": 456280,
+				"to": 463320
+			},
+			"text": " So Zach pioneered the off-chain order book with on-chain settlement approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,320",
+				"to": "00:07:49,600"
+			},
+			"offsets": {
+				"from": 463320,
+				"to": 469600
+			},
+			"text": " Around a little while after, we came up with a similar approach, but it's really a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,600",
+				"to": "00:07:52,240"
+			},
+			"offsets": {
+				"from": 469600,
+				"to": 472240
+			},
+			"text": " instead of an on-chain order book."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,240",
+				"to": "00:07:58,880"
+			},
+			"offsets": {
+				"from": 472240,
+				"to": 478880
+			},
+			"text": " So Xerox Protocol really is comprised of a standard order schema that represents the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,880",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 478880,
+				"to": 483000
+			},
+			"text": " different parameters associated with a given order."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:08,120"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 488120
+			},
+			"text": " So the two assets that are being exchanged, the exchange rate, the expiration time for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,120",
+				"to": "00:08:14,520"
+			},
+			"offsets": {
+				"from": 488120,
+				"to": 494520
+			},
+			"text": " this order, and a cryptographic signature of the above parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,520",
+				"to": "00:08:19,600"
+			},
+			"offsets": {
+				"from": 494520,
+				"to": 499600
+			},
+			"text": " And that is coupled with a smart contract system that is responsible for settling these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,600",
+				"to": "00:08:23,360"
+			},
+			"offsets": {
+				"from": 499600,
+				"to": 503360
+			},
+			"text": " trades directly on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,360",
+				"to": "00:08:29,720"
+			},
+			"offsets": {
+				"from": 503360,
+				"to": 509720
+			},
+			"text": " What really makes Xerox a protocol is that there really aren't any rules about how you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,720",
+				"to": "00:08:35,680"
+			},
+			"offsets": {
+				"from": 509720,
+				"to": 515680
+			},
+			"text": " choose to pass these cryptographically signed chunks of data around off of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,680",
+				"to": "00:08:38,600"
+			},
+			"offsets": {
+				"from": 515680,
+				"to": 518600
+			},
+			"text": " So the transport layer is arbitrary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,600",
+				"to": "00:08:43,200"
+			},
+			"offsets": {
+				"from": 518600,
+				"to": 523200
+			},
+			"text": " You can generate one of these cryptographically signed orders, and you can send it to a counterparty"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,200",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 523200,
+				"to": 528640
+			},
+			"text": " in an email or over Facebook, or you can write it down on a piece of paper and send it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:50,360"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 530360
+			},
+			"text": " them using a carrier pigeon."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,360",
+				"to": "00:08:51,360"
+			},
+			"offsets": {
+				"from": 530360,
+				"to": 531360
+			},
+			"text": " It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,360",
+				"to": "00:08:55,760"
+			},
+			"offsets": {
+				"from": 531360,
+				"to": 535760
+			},
+			"text": " The cryptographic signature just needs to be valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,760",
+				"to": "00:08:59,960"
+			},
+			"offsets": {
+				"from": 535760,
+				"to": 539960
+			},
+			"text": " Another thing that is different is that the message passing semantics are arbitrary, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,960",
+				"to": "00:09:05,240"
+			},
+			"offsets": {
+				"from": 539960,
+				"to": 545240
+			},
+			"text": " you can choose to use a variety of different strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,240",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 545240,
+				"to": 551000
+			},
+			"text": " So if I wanted to trade directly with a counterparty in a peer-to-peer fashion, like an over-the-counter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:17,720"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 557720
+			},
+			"text": " trade, I can just create this order that specifies the parameters I am interested in trading"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,720",
+				"to": "00:09:22,320"
+			},
+			"offsets": {
+				"from": 557720,
+				"to": 562320
+			},
+			"text": " at, and I can cryptographically sign it, and I can send it to my counterparty, and we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,320",
+				"to": "00:09:26,280"
+			},
+			"offsets": {
+				"from": 562320,
+				"to": 566280
+			},
+			"text": " settle that trade directly on the blockchain completely free."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,280",
+				"to": "00:09:30,280"
+			},
+			"offsets": {
+				"from": 566280,
+				"to": 570280
+			},
+			"text": " There's no fees involved other than the gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,280",
+				"to": "00:09:35,880"
+			},
+			"offsets": {
+				"from": 570280,
+				"to": 575880
+			},
+			"text": " But naturally, people need to go to a location where a bunch of different parties are interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,880",
+				"to": "00:09:40,680"
+			},
+			"offsets": {
+				"from": 575880,
+				"to": 580680
+			},
+			"text": " in trading, and where these orders are aggregated in a single location."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,680",
+				"to": "00:09:43,040"
+			},
+			"offsets": {
+				"from": 580680,
+				"to": 583040
+			},
+			"text": " And we call these relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,040",
+				"to": "00:09:46,400"
+			},
+			"offsets": {
+				"from": 583040,
+				"to": 586400
+			},
+			"text": " They're very similar to decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,400",
+				"to": "00:09:54,280"
+			},
+			"offsets": {
+				"from": 586400,
+				"to": 594280
+			},
+			"text": " What's really cool about zero X is that anyone can be a relayer, anyone can create a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,280",
+				"to": "00:09:59,120"
+			},
+			"offsets": {
+				"from": 594280,
+				"to": 599120
+			},
+			"text": " exchange and charge trading fees on all the volume that they create."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,120",
+				"to": "00:10:05,680"
+			},
+			"offsets": {
+				"from": 599120,
+				"to": 605680
+			},
+			"text": " They keep 100% of the fees that they charge."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,680",
+				"to": "00:10:10,480"
+			},
+			"offsets": {
+				"from": 605680,
+				"to": 610480
+			},
+			"text": " There's also a variety of different relayer strategies that a relayer can decide to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,480",
+				"to": "00:10:15,440"
+			},
+			"offsets": {
+				"from": 610480,
+				"to": 615440
+			},
+			"text": " So you can use an open order book strategy, kind of like Ether Delta, where there's a public"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,440",
+				"to": "00:10:19,560"
+			},
+			"offsets": {
+				"from": 615440,
+				"to": 619560
+			},
+			"text": " post-it board, and people can put their orders up and anyone can take them down."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,560",
+				"to": "00:10:25,520"
+			},
+			"offsets": {
+				"from": 619560,
+				"to": 625520
+			},
+			"text": " You can also do a centralized matching strategy where a relayer will only accept orders onto"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,520",
+				"to": "00:10:31,240"
+			},
+			"offsets": {
+				"from": 625520,
+				"to": 631240
+			},
+			"text": " their order book if they are specified as the only entity able to fill those orders."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,240",
+				"to": "00:10:36,240"
+			},
+			"offsets": {
+				"from": 631240,
+				"to": 636240
+			},
+			"text": " And when they find two orders on either side of the market, they can batch fill them simultaneously"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,240",
+				"to": "00:10:41,520"
+			},
+			"offsets": {
+				"from": 636240,
+				"to": 641520
+			},
+			"text": " and synchronously on the blockchain, and you can eliminate things like front running."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,520",
+				"to": "00:10:46,320"
+			},
+			"offsets": {
+				"from": 641520,
+				"to": 646320
+			},
+			"text": " A third option is a shape shift type exchange where someone essentially acts as a reserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,320",
+				"to": "00:10:51,640"
+			},
+			"offsets": {
+				"from": 646320,
+				"to": 651640
+			},
+			"text": " manager and they just post a bit in an ask for a single trading pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,640",
+				"to": "00:10:54,400"
+			},
+			"offsets": {
+				"from": 651640,
+				"to": 654400
+			},
+			"text": " So why create an open standard?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,400",
+				"to": "00:10:55,400"
+			},
+			"offsets": {
+				"from": 654400,
+				"to": 655400
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,400",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 655400,
+				"to": 660920
+			},
+			"text": " Well, one of the reasons is because if you have an open standard, you can create really"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,920",
+				"to": "00:11:03,280"
+			},
+			"offsets": {
+				"from": 660920,
+				"to": 663280
+			},
+			"text": " robust developer tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,280",
+				"to": "00:11:09,080"
+			},
+			"offsets": {
+				"from": 663280,
+				"to": 669080
+			},
+			"text": " So things like zero XJS, our JavaScript library, and things like our standard relayer API."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,080",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 669080,
+				"to": 674800
+			},
+			"text": " And with these tools, you massively lower the barrier to entry for new people and developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:19,480"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 679480
+			},
+			"text": " that want to create decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,480",
+				"to": "00:11:24,560"
+			},
+			"offsets": {
+				"from": 679480,
+				"to": 684560
+			},
+			"text": " And so what you end up getting are a variety of different decentralized exchanges that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,560",
+				"to": "00:11:28,080"
+			},
+			"offsets": {
+				"from": 684560,
+				"to": 688080
+			},
+			"text": " are highly competitive on fees as well as user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,080",
+				"to": "00:11:33,240"
+			},
+			"offsets": {
+				"from": 688080,
+				"to": 693240
+			},
+			"text": " They also find and target different market niches, and you end up with a diversity of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,240",
+				"to": "00:11:36,080"
+			},
+			"offsets": {
+				"from": 693240,
+				"to": 696080
+			},
+			"text": " different decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,080",
+				"to": "00:11:40,840"
+			},
+			"offsets": {
+				"from": 696080,
+				"to": 700840
+			},
+			"text": " A second reason to create an open standard is that if every single decentralized exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,840",
+				"to": "00:11:46,440"
+			},
+			"offsets": {
+				"from": 700840,
+				"to": 706440
+			},
+			"text": " is speaking the exact same language, it creates these network effects around liquidity where"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,440",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 706440,
+				"to": 709360
+			},
+			"text": " each relayer isn't necessarily competing with the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:56,040"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 716040
+			},
+			"text": " They could actually benefit from a new relayer entering the ecosystem as arbitrages are taken"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,040",
+				"to": "00:12:01,400"
+			},
+			"offsets": {
+				"from": 716040,
+				"to": 721400
+			},
+			"text": " advantage of across different exchanges risk free and atomically."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,400",
+				"to": "00:12:06,160"
+			},
+			"offsets": {
+				"from": 721400,
+				"to": 726160
+			},
+			"text": " decentralized applications can also be a source of customers for these decentralized exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,160",
+				"to": "00:12:09,760"
+			},
+			"offsets": {
+				"from": 726160,
+				"to": 729760
+			},
+			"text": " or relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,760",
+				"to": "00:12:17,680"
+			},
+			"offsets": {
+				"from": 729760,
+				"to": 737680
+			},
+			"text": " So since deploying zero X protocol on the Ethereum mainnet in August 15th, we've seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,680",
+				"to": "00:12:23,080"
+			},
+			"offsets": {
+				"from": 737680,
+				"to": 743080
+			},
+			"text": " just a crazy explosion of development activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,080",
+				"to": "00:12:28,920"
+			},
+			"offsets": {
+				"from": 743080,
+				"to": 748920
+			},
+			"text": " There are upwards of 10 different completely independent developer teams creating relayers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,920",
+				"to": "00:12:32,760"
+			},
+			"offsets": {
+				"from": 748920,
+				"to": 752760
+			},
+			"text": " on top of zero X protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,760",
+				"to": "00:12:37,680"
+			},
+			"offsets": {
+				"from": 752760,
+				"to": 757680
+			},
+			"text": " So I'm just going to give you a closer look at a few of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,680",
+				"to": "00:12:43,600"
+			},
+			"offsets": {
+				"from": 757680,
+				"to": 763600
+			},
+			"text": " So the first relayer to go live on the Ethereum mainnet is KinAlpha."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,600",
+				"to": "00:12:49,080"
+			},
+			"offsets": {
+				"from": 763600,
+				"to": 769080
+			},
+			"text": " And this was created by a single developer in their spare time over the course of a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,080",
+				"to": "00:12:50,760"
+			},
+			"offsets": {
+				"from": 769080,
+				"to": 770760
+			},
+			"text": " weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,760",
+				"to": "00:12:55,760"
+			},
+			"offsets": {
+				"from": 770760,
+				"to": 775760
+			},
+			"text": " You can see that it leaves a little bit to be desired in terms of the user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,760",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 775760,
+				"to": 781000
+			},
+			"text": " but we just thought it was pretty amazing that someone could go and create this on their"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,520"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784520
+			},
+			"text": " own in a matter of weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,520",
+				"to": "00:13:09,120"
+			},
+			"offsets": {
+				"from": 784520,
+				"to": 789120
+			},
+			"text": " Another really cool relayer that's worth checking out is radar relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,120",
+				"to": "00:13:11,040"
+			},
+			"offsets": {
+				"from": 789120,
+				"to": 791040
+			},
+			"text": " They're live on the mainnet today."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,040",
+				"to": "00:13:14,240"
+			},
+			"offsets": {
+				"from": 791040,
+				"to": 794240
+			},
+			"text": " You can go to reedarerelay.com and check them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,240",
+				"to": "00:13:21,760"
+			},
+			"offsets": {
+				"from": 794240,
+				"to": 801760
+			},
+			"text": " They're doing a little bit of volume, but their API should be up soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,760",
+				"to": "00:13:24,120"
+			},
+			"offsets": {
+				"from": 801760,
+				"to": 804120
+			},
+			"text": " And third is paradex."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,120",
+				"to": "00:13:30,360"
+			},
+			"offsets": {
+				"from": 804120,
+				"to": 810360
+			},
+			"text": " It has created this beautiful user interface, and they're expecting to launch their beta"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,360",
+				"to": "00:13:33,320"
+			},
+			"offsets": {
+				"from": 810360,
+				"to": 813320
+			},
+			"text": " on the mainnet this month."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,320",
+				"to": "00:13:36,480"
+			},
+			"offsets": {
+				"from": 813320,
+				"to": 816480
+			},
+			"text": " And they're using a centralized matching strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,480",
+				"to": "00:13:40,120"
+			},
+			"offsets": {
+				"from": 816480,
+				"to": 820120
+			},
+			"text": " So we're really excited to see all this development activity going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,120",
+				"to": "00:13:47,120"
+			},
+			"offsets": {
+				"from": 820120,
+				"to": 827120
+			},
+			"text": " And I think that we will see a dent put into the centralized exchange industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,120",
+				"to": "00:13:58,680"
+			},
+			"offsets": {
+				"from": 827120,
+				"to": 838680
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,680",
+				"to": "00:14:03,880"
+			},
+			"offsets": {
+				"from": 838680,
+				"to": 843880
+			},
+			"text": " Some other interesting development that we've seen are just independent developers out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,880",
+				"to": "00:14:08,920"
+			},
+			"offsets": {
+				"from": 843880,
+				"to": 848920
+			},
+			"text": " creating trade explorers that allow you to view and explore the various trading activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,920",
+				"to": "00:14:12,800"
+			},
+			"offsets": {
+				"from": 848920,
+				"to": 852800
+			},
+			"text": " going on on top of your X protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,800",
+				"to": "00:14:18,040"
+			},
+			"offsets": {
+				"from": 852800,
+				"to": 858040
+			},
+			"text": " And you can sort of sort trades by different relayers and by different trading pairs, et"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,040",
+				"to": "00:14:19,040"
+			},
+			"offsets": {
+				"from": 858040,
+				"to": 859040
+			},
+			"text": " cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,040",
+				"to": "00:14:23,360"
+			},
+			"offsets": {
+				"from": 859040,
+				"to": 863360
+			},
+			"text": " It's been really exciting for us to see people building things completely independently on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:28,880"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 868880
+			},
+			"text": " top of the protocol and just finding out about it on Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,880",
+				"to": "00:14:33,640"
+			},
+			"offsets": {
+				"from": 868880,
+				"to": 873640
+			},
+			"text": " So now I want to talk about something that is a little bit different, that Xerox protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,640",
+				"to": "00:14:35,080"
+			},
+			"offsets": {
+				"from": 873640,
+				"to": 875080
+			},
+			"text": " enables."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,080",
+				"to": "00:14:39,400"
+			},
+			"offsets": {
+				"from": 875080,
+				"to": 879400
+			},
+			"text": " And I think this is something that's pretty unique compared to the other approaches and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,400",
+				"to": "00:14:42,320"
+			},
+			"offsets": {
+				"from": 879400,
+				"to": 882320
+			},
+			"text": " implementations that are out there today."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,320",
+				"to": "00:14:50,040"
+			},
+			"offsets": {
+				"from": 882320,
+				"to": 890040
+			},
+			"text": " So Xerox protocol allows smart contracts to natively execute trades in a single line of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,040",
+				"to": "00:14:52,240"
+			},
+			"offsets": {
+				"from": 890040,
+				"to": 892240
+			},
+			"text": " smart contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,240",
+				"to": "00:14:57,520"
+			},
+			"offsets": {
+				"from": 892240,
+				"to": 897520
+			},
+			"text": " And this is really powerful because this essentially allows Xerox protocol to act as"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,520",
+				"to": "00:15:02,400"
+			},
+			"offsets": {
+				"from": 897520,
+				"to": 902400
+			},
+			"text": " an exchange module that exists natively within the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,400",
+				"to": "00:15:08,120"
+			},
+			"offsets": {
+				"from": 902400,
+				"to": 908120
+			},
+			"text": " And this allows Xerox to be treated as a sort of fundamental building block that can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,120",
+				"to": "00:15:13,360"
+			},
+			"offsets": {
+				"from": 908120,
+				"to": 913360
+			},
+			"text": " combined and built upon by other developers creating their own protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,360",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 913360,
+				"to": 918960
+			},
+			"text": " And to date we've seen two examples of completely independent protocols being created on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:22,720"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 922720
+			},
+			"text": " of Xerox, dydx and Dharma."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,720",
+				"to": "00:15:27,160"
+			},
+			"offsets": {
+				"from": 922720,
+				"to": 927160
+			},
+			"text": " I would encourage you to go check them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,160",
+				"to": "00:15:35,200"
+			},
+			"offsets": {
+				"from": 927160,
+				"to": 935200
+			},
+			"text": " There are also a variety of other decentralized applications that have decided to either right"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,200",
+				"to": "00:15:40,880"
+			},
+			"offsets": {
+				"from": 935200,
+				"to": 940880
+			},
+			"text": " now or at some point in the future integrate Xerox protocol because it will allow them"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,880",
+				"to": "00:15:48,800"
+			},
+			"offsets": {
+				"from": 940880,
+				"to": 948800
+			},
+			"text": " to get the functionality they need without having to write any code from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,800",
+				"to": "00:15:51,800"
+			},
+			"offsets": {
+				"from": 948800,
+				"to": 951800
+			},
+			"text": " So now I want to talk a little bit about governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,800",
+				"to": "00:15:57,480"
+			},
+			"offsets": {
+				"from": 951800,
+				"to": 957480
+			},
+			"text": " So Xerox is an open system and there are a variety of stakeholders and they each have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,480",
+				"to": "00:16:03,240"
+			},
+			"offsets": {
+				"from": 957480,
+				"to": 963240
+			},
+			"text": " their own motives and their own desires that they need out of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,240",
+				"to": "00:16:09,280"
+			},
+			"offsets": {
+				"from": 963240,
+				"to": 969280
+			},
+			"text": " But they all benefit from the network effects of building on top of the same shared standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,280",
+				"to": "00:16:13,840"
+			},
+			"offsets": {
+				"from": 969280,
+				"to": 973840
+			},
+			"text": " And at the same time, Xerox protocol is a system of Ethereum smart contracts that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,840",
+				"to": "00:16:18,360"
+			},
+			"offsets": {
+				"from": 973840,
+				"to": 978360
+			},
+			"text": " immutable but they must remain future proof over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,360",
+				"to": "00:16:23,480"
+			},
+			"offsets": {
+				"from": 978360,
+				"to": 983480
+			},
+			"text": " So how do you decide on protocol upgrades?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,480",
+				"to": "00:16:28,680"
+			},
+			"offsets": {
+				"from": 983480,
+				"to": 988680
+			},
+			"text": " You can either allow a small group of developers to make all the decisions about the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,680",
+				"to": "00:16:33,520"
+			},
+			"offsets": {
+				"from": 988680,
+				"to": 993520
+			},
+			"text": " direction of the protocol or you can allow all of the stakeholders in the system to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,520",
+				"to": "00:16:35,640"
+			},
+			"offsets": {
+				"from": 993520,
+				"to": 995640
+			},
+			"text": " this fair say."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,640",
+				"to": "00:16:43,720"
+			},
+			"offsets": {
+				"from": 995640,
+				"to": 1003720
+			},
+			"text": " So what we decided to do is to create a decentralized governance mechanism that uses token voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,720",
+				"to": "00:16:50,240"
+			},
+			"offsets": {
+				"from": 1003720,
+				"to": 1010240
+			},
+			"text": " for future upgrades to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,240",
+				"to": "00:16:56,600"
+			},
+			"offsets": {
+				"from": 1010240,
+				"to": 1016600
+			},
+			"text": " So I understand that everyone here is probably a little bit sick of all the tokens that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,600",
+				"to": "00:17:00,480"
+			},
+			"offsets": {
+				"from": 1016600,
+				"to": 1020480
+			},
+			"text": " out there today and they might not want to deal with another token."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,480",
+				"to": "00:17:05,880"
+			},
+			"offsets": {
+				"from": 1020480,
+				"to": 1025880
+			},
+			"text": " So I'm going to just briefly talk about something called token abstraction that Xerox enables"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,880",
+				"to": "00:17:08,480"
+			},
+			"offsets": {
+				"from": 1025880,
+				"to": 1028480
+			},
+			"text": " and I think is really exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,480",
+				"to": "00:17:12,680"
+			},
+			"offsets": {
+				"from": 1028480,
+				"to": 1032680
+			},
+			"text": " But we're going to have to think about five or ten years out from now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,680",
+				"to": "00:17:20,360"
+			},
+			"offsets": {
+				"from": 1032680,
+				"to": 1040360
+			},
+			"text": " So when we think about decentralized applications, you know, we used to think of them as sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,360",
+				"to": "00:17:25,640"
+			},
+			"offsets": {
+				"from": 1040360,
+				"to": 1045640
+			},
+			"text": " of these vertically integrated monoliths that might have been built on the Bitcoin blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,640",
+				"to": "00:17:27,680"
+			},
+			"offsets": {
+				"from": 1045640,
+				"to": 1047680
+			},
+			"text": " or the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,680",
+				"to": "00:17:32,680"
+			},
+			"offsets": {
+				"from": 1047680,
+				"to": 1052680
+			},
+			"text": " But I think what we're starting to see is an unbundling where there's many layers in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,680",
+				"to": "00:17:39,160"
+			},
+			"offsets": {
+				"from": 1052680,
+				"to": 1059160
+			},
+			"text": " the decentralized application stack and they're all specialized networks with distinct incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,160",
+				"to": "00:17:40,600"
+			},
+			"offsets": {
+				"from": 1059160,
+				"to": 1060600
+			},
+			"text": " and tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,600",
+				"to": "00:17:46,240"
+			},
+			"offsets": {
+				"from": 1060600,
+				"to": 1066240
+			},
+			"text": " So you might imagine that a decentralized application requires a consensus layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,240",
+				"to": "00:17:52,560"
+			},
+			"offsets": {
+				"from": 1066240,
+				"to": 1072560
+			},
+			"text": " It might require some file storage and some computation and it might require some oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,560",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1072560,
+				"to": 1078000
+			},
+			"text": " to inject external data into that DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:02,640"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1082640
+			},
+			"text": " So if we have all of these different layers in the decentralized application stack and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,640",
+				"to": "00:18:09,160"
+			},
+			"offsets": {
+				"from": 1082640,
+				"to": 1089160
+			},
+			"text": " you're the end user of this DAP, it's going to require you to have a bunch of these different"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,160",
+				"to": "00:18:11,480"
+			},
+			"offsets": {
+				"from": 1089160,
+				"to": 1091480
+			},
+			"text": " tokens for each layer of the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,480",
+				"to": "00:18:15,920"
+			},
+			"offsets": {
+				"from": 1091480,
+				"to": 1095920
+			},
+			"text": " And that's something that I don't think very many people are excited about."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,920",
+				"to": "00:18:21,600"
+			},
+			"offsets": {
+				"from": 1095920,
+				"to": 1101600
+			},
+			"text": " So in this example, you can see there's some sort of decentralized application and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,600",
+				"to": "00:18:29,080"
+			},
+			"offsets": {
+				"from": 1101600,
+				"to": 1109080
+			},
+			"text": " it wants to do is it wants to take a data set from, say, IPFS, it wants to run some computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,080",
+				"to": "00:18:34,640"
+			},
+			"offsets": {
+				"from": 1109080,
+				"to": 1114640
+			},
+			"text": " on that data set using something like TrueBit and the result of that computation is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,640",
+				"to": "00:18:39,600"
+			},
+			"offsets": {
+				"from": 1114640,
+				"to": 1119600
+			},
+			"text": " to be injected into a smart contract which makes some sort of decision depending upon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,600",
+				"to": "00:18:44,520"
+			},
+			"offsets": {
+				"from": 1119600,
+				"to": 1124520
+			},
+			"text": " the result, something that just would not be feasible within the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,520",
+				"to": "00:18:49,920"
+			},
+			"offsets": {
+				"from": 1124520,
+				"to": 1129920
+			},
+			"text": " In order to power some sort of sophisticated decentralized application like this, you might"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,920",
+				"to": "00:18:57,120"
+			},
+			"offsets": {
+				"from": 1129920,
+				"to": 1137120
+			},
+			"text": " be required to have a handful of different tokens and that's not a very good user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,120",
+				"to": "00:19:01,960"
+			},
+			"offsets": {
+				"from": 1137120,
+				"to": 1141960
+			},
+			"text": " So something that we're really excited about that we think 0x will play a role in in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,960",
+				"to": "00:19:05,760"
+			},
+			"offsets": {
+				"from": 1141960,
+				"to": 1145760
+			},
+			"text": " future is something called token abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,760",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1145760,
+				"to": 1152560
+			},
+			"text": " So as the end user of a decentralized application, instead of having to hold a variety of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:17,720"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1157720
+			},
+			"text": " tokens that you may not know or care about or really have any vested interest in, huge"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,720",
+				"to": "00:19:24,600"
+			},
+			"offsets": {
+				"from": 1157720,
+				"to": 1164600
+			},
+			"text": " can just hold on to some tokenized fiat and you can pass in this fiat along with a thick"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,600",
+				"to": "00:19:29,520"
+			},
+			"offsets": {
+				"from": 1164600,
+				"to": 1169520
+			},
+			"text": " stack of 0x orders into the decentralized application that you want to use into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,520",
+				"to": "00:19:31,120"
+			},
+			"offsets": {
+				"from": 1169520,
+				"to": 1171120
+			},
+			"text": " smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,120",
+				"to": "00:19:38,200"
+			},
+			"offsets": {
+				"from": 1171120,
+				"to": 1178200
+			},
+			"text": " It will forward those fiat tokens and the 0x orders onto the 0x smart contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,200",
+				"to": "00:19:43,720"
+			},
+			"offsets": {
+				"from": 1178200,
+				"to": 1183720
+			},
+			"text": " the smart contract will synchronously and immediately receive the variety of tokens that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,720",
+				"to": "00:19:47,680"
+			},
+			"offsets": {
+				"from": 1183720,
+				"to": 1187680
+			},
+			"text": " it needs to power that decentralized application."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,680",
+				"to": "00:19:53,280"
+			},
+			"offsets": {
+				"from": 1187680,
+				"to": 1193280
+			},
+			"text": " The smart contract will immediately go on its merry way using them as it needs to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,280",
+				"to": "00:19:58,600"
+			},
+			"offsets": {
+				"from": 1193280,
+				"to": 1198600
+			},
+			"text": " So you can imagine that the takeaway from this is that instead of having to have a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,600",
+				"to": "00:20:03,120"
+			},
+			"offsets": {
+				"from": 1198600,
+				"to": 1203120
+			},
+			"text": " of different tokens as an end user in the future, you might just go to a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,120",
+				"to": "00:20:09,200"
+			},
+			"offsets": {
+				"from": 1203120,
+				"to": 1209200
+			},
+			"text": " application and see that it's going to cost you $3.50 in fiat tokens in order to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,200",
+				"to": "00:20:12,560"
+			},
+			"offsets": {
+				"from": 1209200,
+				"to": 1212560
+			},
+			"text": " some of its functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,560",
+				"to": "00:20:20,600"
+			},
+			"offsets": {
+				"from": 1212560,
+				"to": 1220600
+			},
+			"text": " So lastly, we're working on version 2 of 0x protocol today and we would love to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,600",
+				"to": "00:20:23,920"
+			},
+			"offsets": {
+				"from": 1220600,
+				"to": 1223920
+			},
+			"text": " some community involvement and feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,920",
+				"to": "00:20:29,920"
+			},
+			"offsets": {
+				"from": 1223920,
+				"to": 1229920
+			},
+			"text": " Some of the things that we're really excited about including in our 0x improvement proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,920",
+				"to": "00:20:36,640"
+			},
+			"offsets": {
+				"from": 1229920,
+				"to": 1236640
+			},
+			"text": " are things like support for non-fungible tokens, atomic order matching, order generation by"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,640",
+				"to": "00:20:40,440"
+			},
+			"offsets": {
+				"from": 1236640,
+				"to": 1240440
+			},
+			"text": " smart contracts and a variety of other things as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,440",
+				"to": "00:20:45,920"
+			},
+			"offsets": {
+				"from": 1240440,
+				"to": 1245920
+			},
+			"text": " So we welcome you to come and contribute to the protocol and shape its future."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,920",
+				"to": "00:20:47,080"
+			},
+			"offsets": {
+				"from": 1245920,
+				"to": 1247080
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,080",
+				"to": "00:20:48,160"
+			},
+			"offsets": {
+				"from": 1247080,
+				"to": 1248160
+			},
+			"text": " I appreciate the attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,160",
+				"to": "00:20:50,160"
+			},
+			"offsets": {
+				"from": 1248160,
+				"to": 1250160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,160",
+				"to": "00:20:52,160"
+			},
+			"offsets": {
+				"from": 1250160,
+				"to": 1252160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,160",
+				"to": "00:20:54,160"
+			},
+			"offsets": {
+				"from": 1252160,
+				"to": 1254160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,160",
+				"to": "00:20:56,160"
+			},
+			"offsets": {
+				"from": 1254160,
+				"to": 1256160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,160",
+				"to": "00:20:58,900"
+			},
+			"offsets": {
+				"from": 1256160,
+				"to": 1258900
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,900",
+				"to": "00:21:01,160"
+			},
+			"offsets": {
+				"from": 1258900,
+				"to": 1261160
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

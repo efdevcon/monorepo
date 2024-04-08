@@ -1,0 +1,5884 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,300"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3300
+			},
+			"text": " I'm going to talk about the Pella consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,300",
+				"to": "00:00:06,240"
+			},
+			"offsets": {
+				"from": 3300,
+				"to": 6240
+			},
+			"text": " This is joint work with the Hilbert channel Raphael Pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,240",
+				"to": "00:00:10,440"
+			},
+			"offsets": {
+				"from": 6240,
+				"to": 10440
+			},
+			"text": " So in Chinese, Pella is the sound of thunder."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,440",
+				"to": "00:00:15,040"
+			},
+			"offsets": {
+				"from": 10440,
+				"to": 15040
+			},
+			"text": " It also means fast, furious, and streamlined."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,040",
+				"to": "00:00:16,040"
+			},
+			"offsets": {
+				"from": 15040,
+				"to": 16040
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,040",
+				"to": "00:00:19,200"
+			},
+			"offsets": {
+				"from": 16040,
+				"to": 19200
+			},
+			"text": " So I will begin by explaining the problem I'm trying to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,200",
+				"to": "00:00:21,640"
+			},
+			"offsets": {
+				"from": 19200,
+				"to": 21640
+			},
+			"text": " So in all these cryptocurrency systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,640",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 21640,
+				"to": 25160
+			},
+			"text": " the core abstraction is called state-to-machine replication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:28,200"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 28200
+			},
+			"text": " also referred to as blockchain, or consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,200",
+				"to": "00:00:32,480"
+			},
+			"offsets": {
+				"from": 28200,
+				"to": 32480
+			},
+			"text": " So in the rest of the talk, these terms are used interchangeably."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,480",
+				"to": "00:00:35,880"
+			},
+			"offsets": {
+				"from": 32480,
+				"to": 35880
+			},
+			"text": " We have a set of decentralized notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,880",
+				"to": "00:00:38,360"
+			},
+			"offsets": {
+				"from": 35880,
+				"to": 38360
+			},
+			"text": " And these notes are trying to reach agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,360",
+				"to": "00:00:43,960"
+			},
+			"offsets": {
+				"from": 38360,
+				"to": 43960
+			},
+			"text": " on an ever growing linearly-arded log of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,960",
+				"to": "00:00:45,880"
+			},
+			"offsets": {
+				"from": 43960,
+				"to": 45880
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,880",
+				"to": "00:00:47,680"
+			},
+			"offsets": {
+				"from": 45880,
+				"to": 47680
+			},
+			"text": " There are two important security properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,680",
+				"to": "00:00:51,280"
+			},
+			"offsets": {
+				"from": 47680,
+				"to": 51280
+			},
+			"text": " that we care about, namely consistency and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,280",
+				"to": "00:00:53,600"
+			},
+			"offsets": {
+				"from": 51280,
+				"to": 53600
+			},
+			"text": " Consistency says that all of the honest notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,600",
+				"to": "00:00:55,480"
+			},
+			"offsets": {
+				"from": 53600,
+				"to": 55480
+			},
+			"text": " must agree on the same log."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,480",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 55480,
+				"to": 58040
+			},
+			"text": " So it could be your log is a little faster than mine"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 59120
+			},
+			"text": " because the network has delayed."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:00,960"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 60960
+			},
+			"text": " But nonetheless, at the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,960",
+				"to": "00:01:02,720"
+			},
+			"offsets": {
+				"from": 60960,
+				"to": 62720
+			},
+			"text": " we have to all agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,720",
+				"to": "00:01:05,720"
+			},
+			"offsets": {
+				"from": 62720,
+				"to": 65720
+			},
+			"text": " Life this says that whenever I want to buy coffee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,720",
+				"to": "00:01:08,760"
+			},
+			"offsets": {
+				"from": 65720,
+				"to": 68760
+			},
+			"text": " the transaction will appear in all of the honest notes logs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,760",
+				"to": "00:01:09,800"
+			},
+			"offsets": {
+				"from": 68760,
+				"to": 69800
+			},
+			"text": " very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,800",
+				"to": "00:01:12,680"
+			},
+			"offsets": {
+				"from": 69800,
+				"to": 72680
+			},
+			"text": " It's not like I want to wait forever for my coffee."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,680",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 72680,
+				"to": 72920
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:17,920"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 77920
+			},
+			"text": " Now initially, the problem may seem somewhat boring, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,920",
+				"to": "00:01:22,240"
+			},
+			"offsets": {
+				"from": 77920,
+				"to": 82240
+			},
+			"text": " So what's so exciting about building a linearly-arded log?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,240",
+				"to": "00:01:25,080"
+			},
+			"offsets": {
+				"from": 82240,
+				"to": 85080
+			},
+			"text": " Well, indeed, if all of these notes were honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,080",
+				"to": "00:01:26,480"
+			},
+			"offsets": {
+				"from": 85080,
+				"to": 86480
+			},
+			"text": " and they correctly follow the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,480",
+				"to": "00:01:27,960"
+			},
+			"offsets": {
+				"from": 86480,
+				"to": 87960
+			},
+			"text": " the problem would have been trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,960",
+				"to": "00:01:30,040"
+			},
+			"offsets": {
+				"from": 87960,
+				"to": 90040
+			},
+			"text": " But what's challenging about it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,040",
+				"to": "00:01:32,160"
+			},
+			"offsets": {
+				"from": 90040,
+				"to": 92160
+			},
+			"text": " when some of these notes can be corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,160",
+				"to": "00:01:34,120"
+			},
+			"offsets": {
+				"from": 92160,
+				"to": 94120
+			},
+			"text": " And these corrupt notes can behave arbitrarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,120",
+				"to": "00:01:36,080"
+			},
+			"offsets": {
+				"from": 94120,
+				"to": 96080
+			},
+			"text": " and deviate arbitrarily from the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,080",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96080,
+				"to": 99000
+			},
+			"text": " And even in such adversarial conditions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 102320
+			},
+			"text": " we want to make sure that the remaining honest notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:45,640"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 105640
+			},
+			"text": " must nonetheless satisfy these security properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,640",
+				"to": "00:01:47,520"
+			},
+			"offsets": {
+				"from": 105640,
+				"to": 107520
+			},
+			"text": " So in the rest of the talk, we are always"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,520",
+				"to": "00:01:50,840"
+			},
+			"offsets": {
+				"from": 107520,
+				"to": 110840
+			},
+			"text": " going to assume that less than one third of the notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,840",
+				"to": "00:01:51,440"
+			},
+			"offsets": {
+				"from": 110840,
+				"to": 111440
+			},
+			"text": " are corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,440",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 111440,
+				"to": 115600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:01:58,240"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 118240
+			},
+			"text": " So I will tell you a very simple consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,240",
+				"to": "00:02:00,320"
+			},
+			"offsets": {
+				"from": 118240,
+				"to": 120320
+			},
+			"text": " that satisfies these two properties, consistency"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,320",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 120320,
+				"to": 121240
+			},
+			"text": " and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:05,280"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 125280
+			},
+			"text": " And to begin with, I will first explain somewhat"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,280",
+				"to": "00:02:06,880"
+			},
+			"offsets": {
+				"from": 125280,
+				"to": 126880
+			},
+			"text": " of a straw man scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,880",
+				"to": "00:02:10,400"
+			},
+			"offsets": {
+				"from": 126880,
+				"to": 130400
+			},
+			"text": " A protocol that's very natural, it works by single round"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,400",
+				"to": "00:02:11,360"
+			},
+			"offsets": {
+				"from": 130400,
+				"to": 131360
+			},
+			"text": " of voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,360",
+				"to": "00:02:14,680"
+			},
+			"offsets": {
+				"from": 131360,
+				"to": 134680
+			},
+			"text": " This is actually Sanders' fast path consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,680",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134680,
+				"to": 137000
+			},
+			"text": " protocol, the previous version."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:19,280"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 139280
+			},
+			"text": " If you are not familiar with the Sanders protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,280",
+				"to": "00:02:21,200"
+			},
+			"offsets": {
+				"from": 139280,
+				"to": 141200
+			},
+			"text": " it doesn't matter because the entire talk is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,200",
+				"to": "00:02:22,640"
+			},
+			"offsets": {
+				"from": 141200,
+				"to": 142640
+			},
+			"text": " going to be self-contained."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,640",
+				"to": "00:02:23,240"
+			},
+			"offsets": {
+				"from": 142640,
+				"to": 143240
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,240",
+				"to": "00:02:27,760"
+			},
+			"offsets": {
+				"from": 143240,
+				"to": 147760
+			},
+			"text": " So let's start with this very simple voting-based protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,760",
+				"to": "00:02:29,320"
+			},
+			"offsets": {
+				"from": 147760,
+				"to": 149320
+			},
+			"text": " And before I talk about the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,320",
+				"to": "00:02:33,320"
+			},
+			"offsets": {
+				"from": 149320,
+				"to": 153320
+			},
+			"text": " I will very quickly explain the block formats"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,320",
+				"to": "00:02:36,160"
+			},
+			"offsets": {
+				"from": 153320,
+				"to": 156160
+			},
+			"text": " we are going to assume throughout the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,160",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 156160,
+				"to": 161400
+			},
+			"text": " So in the talk, we are going to assume every block contains"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:42,680"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 162680
+			},
+			"text": " the parent hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,680",
+				"to": "00:02:44,760"
+			},
+			"offsets": {
+				"from": 162680,
+				"to": 164760
+			},
+			"text": " Basically, it's a cryptographic digest"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,760",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 164760,
+				"to": 167400
+			},
+			"text": " of the entire prefix of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:49,400"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 169400
+			},
+			"text": " It has an epic number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,400",
+				"to": "00:02:53,360"
+			},
+			"offsets": {
+				"from": 169400,
+				"to": 173360
+			},
+			"text": " So we are going to assume every epic is one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,360",
+				"to": "00:02:55,520"
+			},
+			"offsets": {
+				"from": 173360,
+				"to": 175520
+			},
+			"text": " And whenever Honest notes send a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,520",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 175520,
+				"to": 178840
+			},
+			"text": " the message is going to get delivered in, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:00,920"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 180920
+			},
+			"text": " a quarter of the second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,920",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 180920,
+				"to": 182920
+			},
+			"text": " So in one epoch, you can have four round trips."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:07,480"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 187480
+			},
+			"text": " For simplicity, in this talk, I'm just"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,480",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 187480,
+				"to": 188960
+			},
+			"text": " going to assume the synchronous model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:11,920"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 191920
+			},
+			"text": " Basically, every honest message will get delivered very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,920",
+				"to": "00:03:14,320"
+			},
+			"offsets": {
+				"from": 191920,
+				"to": 194320
+			},
+			"text": " But at the end of the talk, I will mention it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,320",
+				"to": "00:03:17,240"
+			},
+			"offsets": {
+				"from": 194320,
+				"to": 197240
+			},
+			"text": " very easy to extend the approach to partially synchronous setting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,240",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 197240,
+				"to": 198200
+			},
+			"text": " too."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:18,720"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 198720
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,720",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 198720,
+				"to": 200400
+			},
+			"text": " So now, of course, the block is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:24,680"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 204680
+			},
+			"text": " to contain the transactions you want to confirm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,680",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 204680,
+				"to": 207160
+			},
+			"text": " So very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:29,560"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 209560
+			},
+			"text": " OK, to make it more fun, this is the scenario"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,560",
+				"to": "00:03:30,840"
+			},
+			"offsets": {
+				"from": 209560,
+				"to": 210840
+			},
+			"text": " we are going to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,840",
+				"to": "00:03:34,480"
+			},
+			"offsets": {
+				"from": 210840,
+				"to": 214480
+			},
+			"text": " Vitalik acts as the proposer, and everyone else is a voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,480",
+				"to": "00:03:36,400"
+			},
+			"offsets": {
+				"from": 214480,
+				"to": 216400
+			},
+			"text": " So some of these notes can be corrupt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,400",
+				"to": "00:03:38,600"
+			},
+			"offsets": {
+				"from": 216400,
+				"to": 218600
+			},
+			"text": " like in this case, low key is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,600",
+				"to": "00:03:41,040"
+			},
+			"offsets": {
+				"from": 218600,
+				"to": 221040
+			},
+			"text": " And the proposer can also be corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,040",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 221040,
+				"to": 226240
+			},
+			"text": " So here's how a very natural protocol would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:49,400"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 229400
+			},
+			"text": " Step number one, the proposer makes a proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,400",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 229400,
+				"to": 231680
+			},
+			"text": " The proposal contains a block, and the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:56,840"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 236840
+			},
+			"text": " is tagged with the epoch number, indicating the current epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,840",
+				"to": "00:03:57,560"
+			},
+			"offsets": {
+				"from": 236840,
+				"to": 237560
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,560",
+				"to": "00:04:02,280"
+			},
+			"offsets": {
+				"from": 237560,
+				"to": 242280
+			},
+			"text": " Now, when the voters receive the proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,280",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 242280,
+				"to": 245200
+			},
+			"text": " they are going to vote on the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:10,880"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 250880
+			},
+			"text": " And in this case, Vitalik proposed an orange block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,880",
+				"to": "00:04:12,360"
+			},
+			"offsets": {
+				"from": 250880,
+				"to": 252360
+			},
+			"text": " So if you are honest, you are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,360",
+				"to": "00:04:16,160"
+			},
+			"offsets": {
+				"from": 252360,
+				"to": 256160
+			},
+			"text": " to vote exactly the proposal you have received."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,160",
+				"to": "00:04:20,480"
+			},
+			"offsets": {
+				"from": 256160,
+				"to": 260480
+			},
+			"text": " So almost everyone casts an orange vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,480",
+				"to": "00:04:21,520"
+			},
+			"offsets": {
+				"from": 260480,
+				"to": 261520
+			},
+			"text": " except for low key, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,520",
+				"to": "00:04:23,200"
+			},
+			"offsets": {
+				"from": 261520,
+				"to": 263200
+			},
+			"text": " Low key is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,200",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 263200,
+				"to": 271000
+			},
+			"text": " And instead of voting honestly, he voted for two blue blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:31,560"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 271560
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,560",
+				"to": "00:04:34,800"
+			},
+			"offsets": {
+				"from": 271560,
+				"to": 274800
+			},
+			"text": " So now, we have voted."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,800",
+				"to": "00:04:36,200"
+			},
+			"offsets": {
+				"from": 274800,
+				"to": 276200
+			},
+			"text": " What do we do next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,200",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 276200,
+				"to": 277760
+			},
+			"text": " We basically wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:42,320"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 282320
+			},
+			"text": " We wait until we collect enough votes on the same block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,320",
+				"to": "00:04:44,040"
+			},
+			"offsets": {
+				"from": 282320,
+				"to": 284040
+			},
+			"text": " And when there are enough votes on the same block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,040",
+				"to": "00:04:45,360"
+			},
+			"offsets": {
+				"from": 284040,
+				"to": 285360
+			},
+			"text": " we have high enough confidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,360",
+				"to": "00:04:47,400"
+			},
+			"offsets": {
+				"from": 285360,
+				"to": 287400
+			},
+			"text": " And we can confirm that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,400",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 287400,
+				"to": 288800
+			},
+			"text": " So what is enough?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,800",
+				"to": "00:04:53,040"
+			},
+			"offsets": {
+				"from": 288800,
+				"to": 293040
+			},
+			"text": " In this talk, I'm going to assume votes from 2/3"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,040",
+				"to": "00:04:55,680"
+			},
+			"offsets": {
+				"from": 293040,
+				"to": 295680
+			},
+			"text": " of the committee is considered enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,680",
+				"to": "00:04:59,800"
+			},
+			"offsets": {
+				"from": 295680,
+				"to": 299800
+			},
+			"text": " And in fact, if we have 2/3 votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,800",
+				"to": "00:05:02,960"
+			},
+			"offsets": {
+				"from": 299800,
+				"to": 302960
+			},
+			"text": " we are going to call that a notarization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,960",
+				"to": "00:05:05,600"
+			},
+			"offsets": {
+				"from": 302960,
+				"to": 305600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:09,720"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 309720
+			},
+			"text": " So a very important thing to remember about this protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,720",
+				"to": "00:05:12,680"
+			},
+			"offsets": {
+				"from": 309720,
+				"to": 312680
+			},
+			"text": " is that all of the honest notes are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,680",
+				"to": "00:05:15,240"
+			},
+			"offsets": {
+				"from": 312680,
+				"to": 315240
+			},
+			"text": " going to vote uniquely in every epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,240",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 315240,
+				"to": 317560
+			},
+			"text": " This means that in every epoch, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:22,200"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 322200
+			},
+			"text": " going to wait until I hear the first proposal from the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,200",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 322200,
+				"to": 325120
+			},
+			"text": " I'm going to vote on that proposal, and only that proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:27,160"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 327160
+			},
+			"text": " I'm not going to vote on anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,160",
+				"to": "00:05:30,120"
+			},
+			"offsets": {
+				"from": 327160,
+				"to": 330120
+			},
+			"text": " So this invariant is very important for consistency."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,120",
+				"to": "00:05:32,520"
+			},
+			"offsets": {
+				"from": 330120,
+				"to": 332520
+			},
+			"text": " And in fact, given this invariant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,520",
+				"to": "00:05:37,400"
+			},
+			"offsets": {
+				"from": 332520,
+				"to": 337400
+			},
+			"text": " I can give you a very simple consistency proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,400",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 337400,
+				"to": 338320
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:40,840"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 340840
+			},
+			"text": " So imagine-- let's fix an epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,840",
+				"to": "00:05:41,120"
+			},
+			"offsets": {
+				"from": 340840,
+				"to": 341120
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,120",
+				"to": "00:05:45,560"
+			},
+			"offsets": {
+				"from": 341120,
+				"to": 345560
+			},
+			"text": " So imagine, for this epoch, the blue block obtained"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,560",
+				"to": "00:05:49,480"
+			},
+			"offsets": {
+				"from": 345560,
+				"to": 349480
+			},
+			"text": " notarization, and the orange block obtained notarization, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,480",
+				"to": "00:05:51,720"
+			},
+			"offsets": {
+				"from": 349480,
+				"to": 351720
+			},
+			"text": " And what I want to prove is that the blue block must"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,720",
+				"to": "00:05:53,960"
+			},
+			"offsets": {
+				"from": 351720,
+				"to": 353960
+			},
+			"text": " be the same as the orange block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,960",
+				"to": "00:05:56,280"
+			},
+			"offsets": {
+				"from": 353960,
+				"to": 356280
+			},
+			"text": " And remember, as I said in the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,280",
+				"to": "00:06:00,120"
+			},
+			"offsets": {
+				"from": 356280,
+				"to": 360120
+			},
+			"text": " we are going to assume less than 1/3 nodes are corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,120",
+				"to": "00:06:00,600"
+			},
+			"offsets": {
+				"from": 360120,
+				"to": 360600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,600",
+				"to": "00:06:02,600"
+			},
+			"offsets": {
+				"from": 360600,
+				"to": 362600
+			},
+			"text": " So how does the proof work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,600",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 362600,
+				"to": 366200
+			},
+			"text": " If you look at the blue set and orange set--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:08,680"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 368680
+			},
+			"text": " and remember, there are only n nodes in total, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,680",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 368680,
+				"to": 371000
+			},
+			"text": " So it must be the case that the intersection contains"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:14,800"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 374800
+			},
+			"text": " at least 1/3 n nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,800",
+				"to": "00:06:18,800"
+			},
+			"offsets": {
+				"from": 374800,
+				"to": 378800
+			},
+			"text": " And now, because the adversary controls less than 1/3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,800",
+				"to": "00:06:22,640"
+			},
+			"offsets": {
+				"from": 378800,
+				"to": 382640
+			},
+			"text": " this means there must be an honest node in this intersection."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,640",
+				"to": "00:06:22,800"
+			},
+			"offsets": {
+				"from": 382640,
+				"to": 382800
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,800",
+				"to": "00:06:24,880"
+			},
+			"offsets": {
+				"from": 382800,
+				"to": 384880
+			},
+			"text": " Now remember what I said about honest nodes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,880",
+				"to": "00:06:26,960"
+			},
+			"offsets": {
+				"from": 384880,
+				"to": 386960
+			},
+			"text": " They are going to vote uniquely."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,960",
+				"to": "00:06:29,360"
+			},
+			"offsets": {
+				"from": 386960,
+				"to": 389360
+			},
+			"text": " And if this honest guy in the intersection"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,360",
+				"to": "00:06:31,400"
+			},
+			"offsets": {
+				"from": 389360,
+				"to": 391400
+			},
+			"text": " voted for both the blue and the orange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,400",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 391400,
+				"to": 394600
+			},
+			"text": " there is only one explanation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:38,960"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 398960
+			},
+			"text": " Basically, the blue block must be the same as orange."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,960",
+				"to": "00:06:39,600"
+			},
+			"offsets": {
+				"from": 398960,
+				"to": 399600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,600",
+				"to": "00:06:43,920"
+			},
+			"offsets": {
+				"from": 399600,
+				"to": 403920
+			},
+			"text": " So this establishes the fact that with this very simple protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,920",
+				"to": "00:06:47,600"
+			},
+			"offsets": {
+				"from": 403920,
+				"to": 407600
+			},
+			"text": " for every epoch, only one block can get notarization."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,600",
+				"to": "00:06:55,280"
+			},
+			"offsets": {
+				"from": 407600,
+				"to": 415280
+			},
+			"text": " And another thing to note is that this consistency proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,280",
+				"to": "00:06:57,960"
+			},
+			"offsets": {
+				"from": 415280,
+				"to": 417960
+			},
+			"text": " doesn't rely on the proposal being honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,960",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 417960,
+				"to": 419760
+			},
+			"text": " The only thing it relies on is the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:02,640"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 422640
+			},
+			"text": " that honest nodes vote uniquely."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,640",
+				"to": "00:07:02,920"
+			},
+			"offsets": {
+				"from": 422640,
+				"to": 422920
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,920",
+				"to": "00:07:06,240"
+			},
+			"offsets": {
+				"from": 422920,
+				"to": 426240
+			},
+			"text": " So with this in mind, let's take a step back"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,240",
+				"to": "00:07:08,840"
+			},
+			"offsets": {
+				"from": 426240,
+				"to": 428840
+			},
+			"text": " and think about this very simple protocol, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,840",
+				"to": "00:07:11,160"
+			},
+			"offsets": {
+				"from": 428840,
+				"to": 431160
+			},
+			"text": " As I said, we are going to assume 2/3 of the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,160",
+				"to": "00:07:12,720"
+			},
+			"offsets": {
+				"from": 431160,
+				"to": 432720
+			},
+			"text": " are honest and online."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,720",
+				"to": "00:07:16,880"
+			},
+			"offsets": {
+				"from": 432720,
+				"to": 436880
+			},
+			"text": " And when the proposal is honest, life is all good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,880",
+				"to": "00:07:19,040"
+			},
+			"offsets": {
+				"from": 436880,
+				"to": 439040
+			},
+			"text": " We have both consistency and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,040",
+				"to": "00:07:21,320"
+			},
+			"offsets": {
+				"from": 439040,
+				"to": 441320
+			},
+			"text": " Consistency, I've just proved to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,320",
+				"to": "00:07:23,880"
+			},
+			"offsets": {
+				"from": 441320,
+				"to": 443880
+			},
+			"text": " liveness is also simple because if the proposal is honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,880",
+				"to": "00:07:25,960"
+			},
+			"offsets": {
+				"from": 443880,
+				"to": 445960
+			},
+			"text": " it's going to propose the same thing to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,960",
+				"to": "00:07:29,320"
+			},
+			"offsets": {
+				"from": 445960,
+				"to": 449320
+			},
+			"text": " And because 2/3 of the nodes are honest, soon enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,320",
+				"to": "00:07:33,160"
+			},
+			"offsets": {
+				"from": 449320,
+				"to": 453160
+			},
+			"text": " you are going to collect enough votes and you make progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,160",
+				"to": "00:07:36,320"
+			},
+			"offsets": {
+				"from": 453160,
+				"to": 456320
+			},
+			"text": " So when the proposal is cropped, what happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,320",
+				"to": "00:07:38,080"
+			},
+			"offsets": {
+				"from": 456320,
+				"to": 458080
+			},
+			"text": " In this case, we still have consistency"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,080",
+				"to": "00:07:40,280"
+			},
+			"offsets": {
+				"from": 458080,
+				"to": 460280
+			},
+			"text": " because, as I argued, the consistency proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,280",
+				"to": "00:07:44,080"
+			},
+			"offsets": {
+				"from": 460280,
+				"to": 464080
+			},
+			"text": " doesn't rely on proposal being honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,080",
+				"to": "00:07:47,200"
+			},
+			"offsets": {
+				"from": 464080,
+				"to": 467200
+			},
+			"text": " But we don't have liveness because the proposal can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,200",
+				"to": "00:07:49,720"
+			},
+			"offsets": {
+				"from": 467200,
+				"to": 469720
+			},
+			"text": " crash and fail to propose anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,720",
+				"to": "00:07:51,840"
+			},
+			"offsets": {
+				"from": 469720,
+				"to": 471840
+			},
+			"text": " Or maybe he can propose different things to different people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,840",
+				"to": "00:07:54,520"
+			},
+			"offsets": {
+				"from": 471840,
+				"to": 474520
+			},
+			"text": " and everyone will end up voting on a different block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,520",
+				"to": "00:07:58,400"
+			},
+			"offsets": {
+				"from": 474520,
+				"to": 478400
+			},
+			"text": " And no block will get notarization in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,400",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 478400,
+				"to": 480800
+			},
+			"text": " So now if you look at this picture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:03,240"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 483240
+			},
+			"text": " we have three out of the four properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,240",
+				"to": "00:08:04,640"
+			},
+			"offsets": {
+				"from": 483240,
+				"to": 484640
+			},
+			"text": " And the only thing we need to fix"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,640",
+				"to": "00:08:08,200"
+			},
+			"offsets": {
+				"from": 484640,
+				"to": 488200
+			},
+			"text": " is the liveness issue when the proposal is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,200",
+				"to": "00:08:12,440"
+			},
+			"offsets": {
+				"from": 488200,
+				"to": 492440
+			},
+			"text": " And if we can fix that, we can get a full consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,440",
+				"to": "00:08:17,800"
+			},
+			"offsets": {
+				"from": 492440,
+				"to": 497800
+			},
+			"text": " OK, before I talk about Pala, I want to quickly mention"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,800",
+				"to": "00:08:20,520"
+			},
+			"offsets": {
+				"from": 497800,
+				"to": 500520
+			},
+			"text": " the approach that's used by the previous version"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,520",
+				"to": "00:08:21,640"
+			},
+			"offsets": {
+				"from": 500520,
+				"to": 501640
+			},
+			"text": " of the Thunder protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,640",
+				"to": "00:08:24,360"
+			},
+			"offsets": {
+				"from": 501640,
+				"to": 504360
+			},
+			"text": " In the previous version of the Thunder protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,360",
+				"to": "00:08:28,440"
+			},
+			"offsets": {
+				"from": 504360,
+				"to": 508440
+			},
+			"text": " the idea is that we have the fast path and the slouching."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,440",
+				"to": "00:08:32,280"
+			},
+			"offsets": {
+				"from": 508440,
+				"to": 512280
+			},
+			"text": " The slouching is basically think of it as Ethereum as Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,280",
+				"to": "00:08:35,440"
+			},
+			"offsets": {
+				"from": 512280,
+				"to": 515440
+			},
+			"text": " but it can also be a proof of stake slouching."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,440",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 515440,
+				"to": 518560
+			},
+			"text": " So on the fast path, we run this voting-based protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:40,240"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 520240
+			},
+			"text": " like I just explained."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,240",
+				"to": "00:08:42,440"
+			},
+			"offsets": {
+				"from": 520240,
+				"to": 522440
+			},
+			"text": " But when the proposal crashes and the fast path"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,440",
+				"to": "00:08:46,920"
+			},
+			"offsets": {
+				"from": 522440,
+				"to": 526920
+			},
+			"text": " doesn't have liveness, we will fall back to the slouching"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,920",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 526920,
+				"to": 529000
+			},
+			"text": " and we use the slouching to resolve the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,080"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532080
+			},
+			"text": " and to re-elect the next proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,080",
+				"to": "00:08:55,160"
+			},
+			"offsets": {
+				"from": 532080,
+				"to": 535160
+			},
+			"text": " And then you can reboot-strap the fast path."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,160",
+				"to": "00:08:58,880"
+			},
+			"offsets": {
+				"from": 535160,
+				"to": 538880
+			},
+			"text": " OK, so this is a very simple and powerful idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,880",
+				"to": "00:09:03,200"
+			},
+			"offsets": {
+				"from": 538880,
+				"to": 543200
+			},
+			"text": " So one drawback is that if you use this approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,200",
+				"to": "00:09:07,320"
+			},
+			"offsets": {
+				"from": 543200,
+				"to": 547320
+			},
+			"text": " to fall back to the slouching to fix the proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,320",
+				"to": "00:09:11,160"
+			},
+			"offsets": {
+				"from": 547320,
+				"to": 551160
+			},
+			"text": " then the proposal switch is going to take about 10 minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,160",
+				"to": "00:09:13,880"
+			},
+			"offsets": {
+				"from": 551160,
+				"to": 553880
+			},
+			"text": " if, let's say, we use Ethereum as a slouching."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,880",
+				"to": "00:09:15,480"
+			},
+			"offsets": {
+				"from": 553880,
+				"to": 555480
+			},
+			"text": " And that's rather slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,480",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 555480,
+				"to": 562000
+			},
+			"text": " And one implication of this is that if we want the proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 565240
+			},
+			"text": " to be decentralized on the fast path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:27,680"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 567680
+			},
+			"text": " it's kind of impossible because every time we switch"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,680",
+				"to": "00:09:30,640"
+			},
+			"offsets": {
+				"from": 567680,
+				"to": 570640
+			},
+			"text": " the proposal, it's going to cause interruption for 10 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,640",
+				"to": "00:09:33,680"
+			},
+			"offsets": {
+				"from": 570640,
+				"to": 573680
+			},
+			"text": " And that's not going to be OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,680",
+				"to": "00:09:37,480"
+			},
+			"offsets": {
+				"from": 573680,
+				"to": 577480
+			},
+			"text": " OK, so what we want is a mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,480",
+				"to": "00:09:41,360"
+			},
+			"offsets": {
+				"from": 577480,
+				"to": 581360
+			},
+			"text": " to allow us to rotate the proposal on the fast path"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,360",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 581360,
+				"to": 583000
+			},
+			"text": " in a seamless manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:45,040"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 585040
+			},
+			"text": " And that's what I'm going to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,040",
+				"to": "00:09:47,600"
+			},
+			"offsets": {
+				"from": 585040,
+				"to": 587600
+			},
+			"text": " I'm going to talk about the Paila protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,600",
+				"to": "00:09:48,600"
+			},
+			"offsets": {
+				"from": 587600,
+				"to": 588600
+			},
+			"text": " Paila is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,600",
+				"to": "00:09:51,400"
+			},
+			"offsets": {
+				"from": 588600,
+				"to": 591400
+			},
+			"text": " then there's new fast path consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,400",
+				"to": "00:09:53,280"
+			},
+			"offsets": {
+				"from": 591400,
+				"to": 593280
+			},
+			"text": " It's actually a full-fledged consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,280",
+				"to": "00:09:56,720"
+			},
+			"offsets": {
+				"from": 593280,
+				"to": 596720
+			},
+			"text": " It gives you both consistency and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,720",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 596720,
+				"to": 602320
+			},
+			"text": " And in fact, you can just run Paila in a standalone fashion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:03,960"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 603960
+			},
+			"text": " even without the slouching."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,960",
+				"to": "00:10:07,600"
+			},
+			"offsets": {
+				"from": 603960,
+				"to": 607600
+			},
+			"text": " And one question you might want to ask is, since now Paila"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,600",
+				"to": "00:10:09,520"
+			},
+			"offsets": {
+				"from": 607600,
+				"to": 609520
+			},
+			"text": " itself is a full-fledged consensus protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,520",
+				"to": "00:10:11,120"
+			},
+			"offsets": {
+				"from": 609520,
+				"to": 611120
+			},
+			"text": " do we still need a slouching?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,120",
+				"to": "00:10:14,440"
+			},
+			"offsets": {
+				"from": 611120,
+				"to": 614440
+			},
+			"text": " And the answer is, it still makes sense to have a slouching"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,440",
+				"to": "00:10:17,400"
+			},
+			"offsets": {
+				"from": 614440,
+				"to": 617400
+			},
+			"text": " because the slouching is a more decentralized backing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,400",
+				"to": "00:10:21,800"
+			},
+			"offsets": {
+				"from": 617400,
+				"to": 621800
+			},
+			"text": " You can have decentralized monitoring of the fast path"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,800",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 621800,
+				"to": 623200
+			},
+			"text": " through the slouching."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:26,960"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 626960
+			},
+			"text": " And whenever, under these extraordinary circumstances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,960",
+				"to": "00:10:29,880"
+			},
+			"offsets": {
+				"from": 626960,
+				"to": 629880
+			},
+			"text": " let's say maybe the entire committee can be corrupt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,880",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 629880,
+				"to": 633960
+			},
+			"text": " in these cases, you can still use the slouching to recover."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:36,960"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 636960
+			},
+			"text": " OK, so again, if you are not familiar with thunder's current"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,960",
+				"to": "00:10:38,680"
+			},
+			"offsets": {
+				"from": 636960,
+				"to": 638680
+			},
+			"text": " approach, it doesn't matter because the protocol I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,680",
+				"to": "00:10:41,680"
+			},
+			"offsets": {
+				"from": 638680,
+				"to": 641680
+			},
+			"text": " going to explain, as I said, is self-contained"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,680",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641680,
+				"to": 645000
+			},
+			"text": " and the full-fledged consensus protocol in itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:47,680"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 647680
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,680",
+				"to": "00:10:52,200"
+			},
+			"offsets": {
+				"from": 647680,
+				"to": 652200
+			},
+			"text": " So since we are going to talk about proposal rotation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,200",
+				"to": "00:10:56,520"
+			},
+			"offsets": {
+				"from": 652200,
+				"to": 656520
+			},
+			"text": " the most challenging case is if every block can allow a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,520",
+				"to": "00:10:57,680"
+			},
+			"offsets": {
+				"from": 656520,
+				"to": 657680
+			},
+			"text": " proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,680",
+				"to": "00:11:01,280"
+			},
+			"offsets": {
+				"from": 657680,
+				"to": 661280
+			},
+			"text": " And that's what we are going to stick to in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,280",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 661280,
+				"to": 664880
+			},
+			"text": " We are going to assume a very simple round-robing policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:08,640"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 668640
+			},
+			"text": " In Epic, I, node I is the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,640",
+				"to": "00:11:10,960"
+			},
+			"offsets": {
+				"from": 668640,
+				"to": 670960
+			},
+			"text": " So if we can solve this extreme case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,960",
+				"to": "00:11:12,680"
+			},
+			"offsets": {
+				"from": 670960,
+				"to": 672680
+			},
+			"text": " then the other cases are simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,680",
+				"to": "00:11:16,280"
+			},
+			"offsets": {
+				"from": 672680,
+				"to": 676280
+			},
+			"text": " Like, for instance, you can have a stability-favouring policy"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,280",
+				"to": "00:11:19,520"
+			},
+			"offsets": {
+				"from": 676280,
+				"to": 679520
+			},
+			"text": " where you only switch the proposal when the current one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,520",
+				"to": "00:11:20,800"
+			},
+			"offsets": {
+				"from": 679520,
+				"to": 680800
+			},
+			"text": " doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,800",
+				"to": "00:11:23,320"
+			},
+			"offsets": {
+				"from": 680800,
+				"to": 683320
+			},
+			"text": " OK, but this is what we are going to stick to in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,320",
+				"to": "00:11:32,360"
+			},
+			"offsets": {
+				"from": 683320,
+				"to": 692360
+			},
+			"text": " OK, so let's kind of quickly recap the fast path, the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,360",
+				"to": "00:11:33,960"
+			},
+			"offsets": {
+				"from": 692360,
+				"to": 693960
+			},
+			"text": " round voting protocol we mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,960",
+				"to": "00:11:36,560"
+			},
+			"offsets": {
+				"from": 693960,
+				"to": 696560
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,560",
+				"to": "00:11:38,400"
+			},
+			"offsets": {
+				"from": 696560,
+				"to": 698400
+			},
+			"text": " And let's try to work the proposal rotation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,400",
+				"to": "00:11:39,480"
+			},
+			"offsets": {
+				"from": 698400,
+				"to": 699480
+			},
+			"text": " into this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,480",
+				"to": "00:11:43,120"
+			},
+			"offsets": {
+				"from": 699480,
+				"to": 703120
+			},
+			"text": " So as I said, the protocol goes by Epic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,120",
+				"to": "00:11:46,560"
+			},
+			"offsets": {
+				"from": 703120,
+				"to": 706560
+			},
+			"text": " In every Epic, we are going to do the following, very natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,560",
+				"to": "00:11:48,840"
+			},
+			"offsets": {
+				"from": 706560,
+				"to": 708840
+			},
+			"text": " If I'm the proposal of this Epic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,840",
+				"to": "00:11:52,160"
+			},
+			"offsets": {
+				"from": 708840,
+				"to": 712160
+			},
+			"text": " I will take my freshest notarized chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,160",
+				"to": "00:11:55,200"
+			},
+			"offsets": {
+				"from": 712160,
+				"to": 715200
+			},
+			"text": " and I will propose the next block extending the freshest"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,200",
+				"to": "00:11:56,200"
+			},
+			"offsets": {
+				"from": 715200,
+				"to": 716200
+			},
+			"text": " notarized chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,200",
+				"to": "00:11:57,200"
+			},
+			"offsets": {
+				"from": 716200,
+				"to": 717200
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,200",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 717200,
+				"to": 718000
+			},
+			"text": " So very natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,720"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721720
+			},
+			"text": " When people receive the proposal, they are going to vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,720",
+				"to": "00:12:05,240"
+			},
+			"offsets": {
+				"from": 721720,
+				"to": 725240
+			},
+			"text": " As I explained earlier, everyone votes uniquely in each"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,240",
+				"to": "00:12:06,280"
+			},
+			"offsets": {
+				"from": 725240,
+				"to": 726280
+			},
+			"text": " Epic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,280",
+				"to": "00:12:10,200"
+			},
+			"offsets": {
+				"from": 726280,
+				"to": 730200
+			},
+			"text": " But I'm also going to assume that when people vote on the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,200",
+				"to": "00:12:13,280"
+			},
+			"offsets": {
+				"from": 730200,
+				"to": 733280
+			},
+			"text": " they are going to check that the parent chain has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,280",
+				"to": "00:12:14,280"
+			},
+			"offsets": {
+				"from": 733280,
+				"to": 734280
+			},
+			"text": " notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,280",
+				"to": "00:12:17,200"
+			},
+			"offsets": {
+				"from": 734280,
+				"to": 737200
+			},
+			"text": " Because if the block extends from an invalid parent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,200",
+				"to": "00:12:19,320"
+			},
+			"offsets": {
+				"from": 737200,
+				"to": 739320
+			},
+			"text": " you shouldn't vote on that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,320",
+				"to": "00:12:23,160"
+			},
+			"offsets": {
+				"from": 739320,
+				"to": 743160
+			},
+			"text": " OK, so the protocol goes by proposed vote, proposed vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,160",
+				"to": "00:12:23,760"
+			},
+			"offsets": {
+				"from": 743160,
+				"to": 743760
+			},
+			"text": " very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,760",
+				"to": "00:12:26,960"
+			},
+			"offsets": {
+				"from": 743760,
+				"to": 746960
+			},
+			"text": " Of course, it doesn't quite work yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,960",
+				"to": "00:12:32,120"
+			},
+			"offsets": {
+				"from": 746960,
+				"to": 752120
+			},
+			"text": " And what I'm going to do next is to kind of describe"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,120",
+				"to": "00:12:34,200"
+			},
+			"offsets": {
+				"from": 752120,
+				"to": 754200
+			},
+			"text": " the problems with this protocol and introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,200",
+				"to": "00:12:39,160"
+			},
+			"offsets": {
+				"from": 754200,
+				"to": 759160
+			},
+			"text": " two very simple fixes to this very simple protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,160",
+				"to": "00:12:41,560"
+			},
+			"offsets": {
+				"from": 759160,
+				"to": 761560
+			},
+			"text": " And then the resulting protocol would be actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,560",
+				"to": "00:12:43,880"
+			},
+			"offsets": {
+				"from": 761560,
+				"to": 763880
+			},
+			"text": " provably correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,880",
+				"to": "00:12:44,840"
+			},
+			"offsets": {
+				"from": 763880,
+				"to": 764840
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,840",
+				"to": "00:12:49,600"
+			},
+			"offsets": {
+				"from": 764840,
+				"to": 769600
+			},
+			"text": " Well, the nice thing is that this very simple protocol already"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,600",
+				"to": "00:12:52,360"
+			},
+			"offsets": {
+				"from": 769600,
+				"to": 772360
+			},
+			"text": " works in ideal world when everyone is honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,360",
+				"to": "00:12:56,320"
+			},
+			"offsets": {
+				"from": 772360,
+				"to": 776320
+			},
+			"text": " If everyone is honest, what you should expect"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,320",
+				"to": "00:13:00,320"
+			},
+			"offsets": {
+				"from": 776320,
+				"to": 780320
+			},
+			"text": " is that as the epochs go by, these blocks get notarized one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,320",
+				"to": "00:13:06,080"
+			},
+			"offsets": {
+				"from": 780320,
+				"to": 786080
+			},
+			"text": " by one, and nothing will be skipped, and things are all good."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,080",
+				"to": "00:13:08,520"
+			},
+			"offsets": {
+				"from": 786080,
+				"to": 788520
+			},
+			"text": " But when some of these people can be corrupt--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,520",
+				"to": "00:13:10,680"
+			},
+			"offsets": {
+				"from": 788520,
+				"to": 790680
+			},
+			"text": " so by the way, I forgot to mention,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,680",
+				"to": "00:13:14,080"
+			},
+			"offsets": {
+				"from": 790680,
+				"to": 794080
+			},
+			"text": " I'm just going to assume the committee itself will act"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,080",
+				"to": "00:13:14,800"
+			},
+			"offsets": {
+				"from": 794080,
+				"to": 794800
+			},
+			"text": " as the proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,800",
+				"to": "00:13:16,240"
+			},
+			"offsets": {
+				"from": 794800,
+				"to": 796240
+			},
+			"text": " I'm not going to distinguish the committee"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,240",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 796240,
+				"to": 797800
+			},
+			"text": " and the proposer anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:20,600"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 800600
+			},
+			"text": " OK, because the proposer is like by rotation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,600",
+				"to": "00:13:24,640"
+			},
+			"offsets": {
+				"from": 800600,
+				"to": 804640
+			},
+			"text": " OK, now when some of these nodes are corrupt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,640",
+				"to": "00:13:28,520"
+			},
+			"offsets": {
+				"from": 804640,
+				"to": 808520
+			},
+			"text": " then you're running to these somewhat tricky problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,520",
+				"to": "00:13:32,240"
+			},
+			"offsets": {
+				"from": 808520,
+				"to": 812240
+			},
+			"text": " And I will use this as a running example"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,240",
+				"to": "00:13:38,080"
+			},
+			"offsets": {
+				"from": 812240,
+				"to": 818080
+			},
+			"text": " to illustrate the problems and to introduce the two simple fixes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,080",
+				"to": "00:13:41,920"
+			},
+			"offsets": {
+				"from": 818080,
+				"to": 821920
+			},
+			"text": " OK, so let's look at this scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,920",
+				"to": "00:13:44,440"
+			},
+			"offsets": {
+				"from": 821920,
+				"to": 824440
+			},
+			"text": " So imagine this is a notarized chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,440",
+				"to": "00:13:47,600"
+			},
+			"offsets": {
+				"from": 824440,
+				"to": 827600
+			},
+			"text": " that I see during the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,600",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 827600,
+				"to": 830280
+			},
+			"text": " What are the problems here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:53,240"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 833240
+			},
+			"text": " One problem is that the block number two is being skipped."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,240",
+				"to": "00:13:55,800"
+			},
+			"offsets": {
+				"from": 833240,
+				"to": 835800
+			},
+			"text": " There is no block number two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,800",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 835800,
+				"to": 840000
+			},
+			"text": " And another problem is that the fifth block"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:04,520"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 844520
+			},
+			"text": " is extending from three and not extending from four."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,520",
+				"to": "00:14:06,200"
+			},
+			"offsets": {
+				"from": 844520,
+				"to": 846200
+			},
+			"text": " So this actually creates a fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,200",
+				"to": "00:14:11,640"
+			},
+			"offsets": {
+				"from": 846200,
+				"to": 851640
+			},
+			"text": " What I really want to talk about is the second problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,640",
+				"to": "00:14:15,200"
+			},
+			"offsets": {
+				"from": 851640,
+				"to": 855200
+			},
+			"text": " but let me just very quickly explain the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,200",
+				"to": "00:14:18,560"
+			},
+			"offsets": {
+				"from": 855200,
+				"to": 858560
+			},
+			"text": " So how can a block two be skipped?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,560",
+				"to": "00:14:21,680"
+			},
+			"offsets": {
+				"from": 858560,
+				"to": 861680
+			},
+			"text": " So if proposer two is corrupt, let's say he just crashes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,680",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 861680,
+				"to": 865000
+			},
+			"text": " and he didn't make any proposal, I mean, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:28,960"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 868960
+			},
+			"text": " no epic two block will get notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,960",
+				"to": "00:14:33,160"
+			},
+			"offsets": {
+				"from": 868960,
+				"to": 873160
+			},
+			"text": " So what we don't want is for a single bad guy"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,160",
+				"to": "00:14:35,080"
+			},
+			"offsets": {
+				"from": 873160,
+				"to": 875080
+			},
+			"text": " to kill liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,080",
+				"to": "00:14:39,080"
+			},
+			"offsets": {
+				"from": 875080,
+				"to": 879080
+			},
+			"text": " And we can do this if we just basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,080",
+				"to": "00:14:40,720"
+			},
+			"offsets": {
+				"from": 879080,
+				"to": 880720
+			},
+			"text": " we're just going to allow skipping."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,720",
+				"to": "00:14:43,120"
+			},
+			"offsets": {
+				"from": 880720,
+				"to": 883120
+			},
+			"text": " In a notarized chain, the epic numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,120",
+				"to": "00:14:44,240"
+			},
+			"offsets": {
+				"from": 883120,
+				"to": 884240
+			},
+			"text": " don't have to be consecutive."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,240",
+				"to": "00:14:45,880"
+			},
+			"offsets": {
+				"from": 884240,
+				"to": 885880
+			},
+			"text": " You can skip."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,880",
+				"to": "00:14:48,080"
+			},
+			"offsets": {
+				"from": 885880,
+				"to": 888080
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,080",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 888080,
+				"to": 893080
+			},
+			"text": " But the skipping behavior kind of introduces the second problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:55,480"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 895480
+			},
+			"text": " which is what I want to focus on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,480",
+				"to": "00:14:59,200"
+			},
+			"offsets": {
+				"from": 895480,
+				"to": 899200
+			},
+			"text": " In this case, you may ask, why does the block number five"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,200",
+				"to": "00:15:02,680"
+			},
+			"offsets": {
+				"from": 899200,
+				"to": 902680
+			},
+			"text": " extend from three and not from four?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,680",
+				"to": "00:15:03,920"
+			},
+			"offsets": {
+				"from": 902680,
+				"to": 903920
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,920",
+				"to": "00:15:05,360"
+			},
+			"offsets": {
+				"from": 903920,
+				"to": 905360
+			},
+			"text": " So let's think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,360",
+				"to": "00:15:09,320"
+			},
+			"offsets": {
+				"from": 905360,
+				"to": 909320
+			},
+			"text": " One very natural explanation is that perhaps the proposer"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,320",
+				"to": "00:15:11,480"
+			},
+			"offsets": {
+				"from": 909320,
+				"to": 911480
+			},
+			"text": " five is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,480",
+				"to": "00:15:14,880"
+			},
+			"offsets": {
+				"from": 911480,
+				"to": 914880
+			},
+			"text": " Although he sees block four notarized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,880",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 914880,
+				"to": 921000
+			},
+			"text": " he tries to undo block four by extending from a previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:21,200"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 921200
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,200",
+				"to": "00:15:24,560"
+			},
+			"offsets": {
+				"from": 921200,
+				"to": 924560
+			},
+			"text": " And that's not going to be OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,560",
+				"to": "00:15:27,400"
+			},
+			"offsets": {
+				"from": 924560,
+				"to": 927400
+			},
+			"text": " And in fact, in the extreme case, if I'm malicious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,400",
+				"to": "00:15:30,560"
+			},
+			"offsets": {
+				"from": 927400,
+				"to": 930560
+			},
+			"text": " I can extend from a very, very ancient block from the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,560",
+				"to": "00:15:33,320"
+			},
+			"offsets": {
+				"from": 930560,
+				"to": 933320
+			},
+			"text": " And that's not going to be OK, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,320",
+				"to": "00:15:37,480"
+			},
+			"offsets": {
+				"from": 933320,
+				"to": 937480
+			},
+			"text": " So the fix is actually very natural."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,480",
+				"to": "00:15:41,240"
+			},
+			"offsets": {
+				"from": 937480,
+				"to": 941240
+			},
+			"text": " This was the protocol we had earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,240",
+				"to": "00:15:43,960"
+			},
+			"offsets": {
+				"from": 941240,
+				"to": 943960
+			},
+			"text": " And I'm just going to add an additional route to the voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,960",
+				"to": "00:15:47,280"
+			},
+			"offsets": {
+				"from": 943960,
+				"to": 947280
+			},
+			"text": " to say, whenever I vote for a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,280",
+				"to": "00:15:51,160"
+			},
+			"offsets": {
+				"from": 947280,
+				"to": 951160
+			},
+			"text": " I will make sure that the parent's chain is fresh enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,160",
+				"to": "00:15:54,640"
+			},
+			"offsets": {
+				"from": 951160,
+				"to": 954640
+			},
+			"text": " If this proposed block is extending from something way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,640",
+				"to": "00:15:59,440"
+			},
+			"offsets": {
+				"from": 954640,
+				"to": 959440
+			},
+			"text": " way, way back in the past, I'm going to refuse to vote on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,440",
+				"to": "00:16:02,640"
+			},
+			"offsets": {
+				"from": 959440,
+				"to": 962640
+			},
+			"text": " So technically, we have to specify what it means"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,640",
+				"to": "00:16:04,760"
+			},
+			"offsets": {
+				"from": 962640,
+				"to": 964760
+			},
+			"text": " to be fresh enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,760",
+				"to": "00:16:09,200"
+			},
+			"offsets": {
+				"from": 964760,
+				"to": 969200
+			},
+			"text": " And the most natural, strong man kind of idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,200",
+				"to": "00:16:13,200"
+			},
+			"offsets": {
+				"from": 969200,
+				"to": 973200
+			},
+			"text": " is to say I will compare the parent block with the freshest"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,200",
+				"to": "00:16:16,560"
+			},
+			"offsets": {
+				"from": 973200,
+				"to": 976560
+			},
+			"text": " notarized chain I've seen so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,560",
+				"to": "00:16:21,400"
+			},
+			"offsets": {
+				"from": 976560,
+				"to": 981400
+			},
+			"text": " And I want that the parent block be at least as fresh."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,400",
+				"to": "00:16:24,720"
+			},
+			"offsets": {
+				"from": 981400,
+				"to": 984720
+			},
+			"text": " So this almost works, but not quite so."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,720",
+				"to": "00:16:29,880"
+			},
+			"offsets": {
+				"from": 984720,
+				"to": 989880
+			},
+			"text": " Because one thing is that the proposal was made, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,880",
+				"to": "00:16:32,200"
+			},
+			"offsets": {
+				"from": 989880,
+				"to": 992200
+			},
+			"text": " half a second ago, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,200",
+				"to": "00:16:36,360"
+			},
+			"offsets": {
+				"from": 992200,
+				"to": 996360
+			},
+			"text": " And if I'm comparing the proposal with my current freshest"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,360",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 996360,
+				"to": 999000
+			},
+			"text": " notarized chain, that's kind of unfair to the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:42,840"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1002840
+			},
+			"text": " Because a lot can have happened during that half second, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,840",
+				"to": "00:16:44,840"
+			},
+			"offsets": {
+				"from": 1002840,
+				"to": 1004840
+			},
+			"text": " I could have seen new notarized blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,840",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1004840,
+				"to": 1008000
+			},
+			"text": " during that half second."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1011000
+			},
+			"text": " So what the protocol actually does"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:16:53,640"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1013640
+			},
+			"text": " is to have a slightly relaxed condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,640",
+				"to": "00:16:56,360"
+			},
+			"offsets": {
+				"from": 1013640,
+				"to": 1016360
+			},
+			"text": " Instead of comparing with the present myself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,360",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1016360,
+				"to": 1019760
+			},
+			"text": " I'm going to compare the parent block with myself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:01,720"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1021720
+			},
+			"text": " but a second ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,720",
+				"to": "00:17:04,280"
+			},
+			"offsets": {
+				"from": 1021720,
+				"to": 1024280
+			},
+			"text": " So a second is like a parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,280",
+				"to": "00:17:07,920"
+			},
+			"offsets": {
+				"from": 1024280,
+				"to": 1027920
+			},
+			"text": " It actually captures the tension between consistency"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,920",
+				"to": "00:17:09,240"
+			},
+			"offsets": {
+				"from": 1027920,
+				"to": 1029240
+			},
+			"text": " and liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,240",
+				"to": "00:17:11,720"
+			},
+			"offsets": {
+				"from": 1029240,
+				"to": 1031720
+			},
+			"text": " And the actual proof to show that this parameter works"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,720",
+				"to": "00:17:15,160"
+			},
+			"offsets": {
+				"from": 1031720,
+				"to": 1035160
+			},
+			"text": " is-- it needs a little bit more work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,160",
+				"to": "00:17:18,800"
+			},
+			"offsets": {
+				"from": 1035160,
+				"to": 1038800
+			},
+			"text": " But for the talk, I'm going to ask you to take my word for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,800",
+				"to": "00:17:23,120"
+			},
+			"offsets": {
+				"from": 1038800,
+				"to": 1043120
+			},
+			"text": " If you set this to be one second, it'll all work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,120",
+				"to": "00:17:25,120"
+			},
+			"offsets": {
+				"from": 1043120,
+				"to": 1045120
+			},
+			"text": " OK, so that's the first fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,120",
+				"to": "00:17:26,760"
+			},
+			"offsets": {
+				"from": 1045120,
+				"to": 1046760
+			},
+			"text": " And we are almost there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,760",
+				"to": "00:17:31,120"
+			},
+			"offsets": {
+				"from": 1046760,
+				"to": 1051120
+			},
+			"text": " We just need one additional minor fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,120",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1051120,
+				"to": 1054000
+			},
+			"text": " OK, and I'm going to use exactly the same scenario,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:37,560"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1057560
+			},
+			"text": " same question to motivate the second fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,560",
+				"to": "00:17:41,400"
+			},
+			"offsets": {
+				"from": 1057560,
+				"to": 1061400
+			},
+			"text": " So remember what we asked is why does the block number five"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,400",
+				"to": "00:17:44,280"
+			},
+			"offsets": {
+				"from": 1061400,
+				"to": 1064280
+			},
+			"text": " extend from three and not four?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,280",
+				"to": "00:17:47,720"
+			},
+			"offsets": {
+				"from": 1064280,
+				"to": 1067720
+			},
+			"text": " And earlier we said perhaps the proposal five is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,720",
+				"to": "00:17:50,160"
+			},
+			"offsets": {
+				"from": 1067720,
+				"to": 1070160
+			},
+			"text": " Now I'm going to ask you to erase everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,160",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1070160,
+				"to": 1072000
+			},
+			"text": " from your mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:54,480"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1074480
+			},
+			"text": " Forget about everything I explained."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,480",
+				"to": "00:17:56,680"
+			},
+			"offsets": {
+				"from": 1074480,
+				"to": 1076680
+			},
+			"text": " And let's start from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,680",
+				"to": "00:17:59,920"
+			},
+			"offsets": {
+				"from": 1076680,
+				"to": 1079920
+			},
+			"text": " Here's another possible explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,920",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1079920,
+				"to": 1083000
+			},
+			"text": " It actually could be the case that proposal five is honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:06,840"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1086840
+			},
+			"text": " And it is proposal four who is corrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,840",
+				"to": "00:18:11,200"
+			},
+			"offsets": {
+				"from": 1086840,
+				"to": 1091200
+			},
+			"text": " And this scenario can also happen when proposal four"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,200",
+				"to": "00:18:13,040"
+			},
+			"offsets": {
+				"from": 1091200,
+				"to": 1093040
+			},
+			"text": " is the bad guy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,040",
+				"to": "00:18:14,680"
+			},
+			"offsets": {
+				"from": 1093040,
+				"to": 1094680
+			},
+			"text": " And how can it happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,680",
+				"to": "00:18:16,960"
+			},
+			"offsets": {
+				"from": 1094680,
+				"to": 1096960
+			},
+			"text": " Here's the concrete attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,960",
+				"to": "00:18:19,440"
+			},
+			"offsets": {
+				"from": 1096960,
+				"to": 1099440
+			},
+			"text": " So let's say Loki is our proposal four."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,440",
+				"to": "00:18:23,080"
+			},
+			"offsets": {
+				"from": 1099440,
+				"to": 1103080
+			},
+			"text": " He proposes two blocks in epoch four, the blue block"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,080",
+				"to": "00:18:26,600"
+			},
+			"offsets": {
+				"from": 1103080,
+				"to": 1106600
+			},
+			"text": " to the blue guys, and the red block to the red guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,600",
+				"to": "00:18:30,760"
+			},
+			"offsets": {
+				"from": 1106600,
+				"to": 1110760
+			},
+			"text": " Now we have six people on the committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,760",
+				"to": "00:18:33,720"
+			},
+			"offsets": {
+				"from": 1110760,
+				"to": 1113720
+			},
+			"text": " So you need four votes to have a notarization."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,720",
+				"to": "00:18:36,880"
+			},
+			"offsets": {
+				"from": 1113720,
+				"to": 1116880
+			},
+			"text": " In this case, if you collect all of the honest notes votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,880",
+				"to": "00:18:40,080"
+			},
+			"offsets": {
+				"from": 1116880,
+				"to": 1120080
+			},
+			"text": " it's not enough to make a notarization for either the blue"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,080",
+				"to": "00:18:45,240"
+			},
+			"offsets": {
+				"from": 1120080,
+				"to": 1125240
+			},
+			"text": " or the red block, because we have three for blue and two for red."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,240",
+				"to": "00:18:49,320"
+			},
+			"offsets": {
+				"from": 1125240,
+				"to": 1129320
+			},
+			"text": " But remember that the corrupt guy also has a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,320",
+				"to": "00:18:53,240"
+			},
+			"offsets": {
+				"from": 1129320,
+				"to": 1133240
+			},
+			"text": " Now if the corrupt guy votes for blue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,240",
+				"to": "00:18:56,160"
+			},
+			"offsets": {
+				"from": 1133240,
+				"to": 1136160
+			},
+			"text": " he can have a notarization for the blue block."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,160",
+				"to": "00:18:59,520"
+			},
+			"offsets": {
+				"from": 1136160,
+				"to": 1139520
+			},
+			"text": " And the bad thing here is that the corrupt guy"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,520",
+				"to": "00:19:04,560"
+			},
+			"offsets": {
+				"from": 1139520,
+				"to": 1144560
+			},
+			"text": " is the only guy who knows a notarization for blue."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,560",
+				"to": "00:19:08,480"
+			},
+			"offsets": {
+				"from": 1144560,
+				"to": 1148480
+			},
+			"text": " And no one else has seen a notarization for blue yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,480",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1148480,
+				"to": 1151000
+			},
+			"text": " So now he can play it to his advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:13,680"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1153680
+			},
+			"text": " In particular, he can time the release."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,680",
+				"to": "00:19:17,280"
+			},
+			"offsets": {
+				"from": 1153680,
+				"to": 1157280
+			},
+			"text": " He can, let's say, release the last vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,280",
+				"to": "00:19:19,200"
+			},
+			"offsets": {
+				"from": 1157280,
+				"to": 1159200
+			},
+			"text": " to a subset of the notes first."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,200",
+				"to": "00:19:21,760"
+			},
+			"offsets": {
+				"from": 1159200,
+				"to": 1161760
+			},
+			"text": " So some of the people will see notarization"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,760",
+				"to": "00:19:24,960"
+			},
+			"offsets": {
+				"from": 1161760,
+				"to": 1164960
+			},
+			"text": " for this block first before others see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,840",
+				"to": "00:19:27,760"
+			},
+			"offsets": {
+				"from": 1165840,
+				"to": 1167760
+			},
+			"text": " OK, so concrete lay--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,760",
+				"to": "00:19:32,680"
+			},
+			"offsets": {
+				"from": 1167760,
+				"to": 1172680
+			},
+			"text": " OK, so this is the only guy who knows a notarization"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,680",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1172680,
+				"to": 1174000
+			},
+			"text": " for the blue block."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:38,040"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1178040
+			},
+			"text": " So concrete lay, he's going to exploit this advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,040",
+				"to": "00:19:39,440"
+			},
+			"offsets": {
+				"from": 1178040,
+				"to": 1179440
+			},
+			"text": " in the following way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,440",
+				"to": "00:19:44,920"
+			},
+			"offsets": {
+				"from": 1179440,
+				"to": 1184920
+			},
+			"text": " So at some instant, the bad guy chooses one victim,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,920",
+				"to": "00:19:46,960"
+			},
+			"offsets": {
+				"from": 1184920,
+				"to": 1186960
+			},
+			"text": " in this case, Spiderman."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,960",
+				"to": "00:19:49,160"
+			},
+			"offsets": {
+				"from": 1186960,
+				"to": 1189160
+			},
+			"text": " And he's going to tell Spiderman a notarization"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,160",
+				"to": "00:19:51,760"
+			},
+			"offsets": {
+				"from": 1189160,
+				"to": 1191760
+			},
+			"text": " for the fourth block."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,760",
+				"to": "00:19:52,760"
+			},
+			"offsets": {
+				"from": 1191760,
+				"to": 1192760
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,760",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1192760,
+				"to": 1197000
+			},
+			"text": " But at the same instant, everyone else"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:19:59,680"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1199680
+			},
+			"text": " hasn't seen a notarization for four yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,680",
+				"to": "00:20:03,440"
+			},
+			"offsets": {
+				"from": 1199680,
+				"to": 1203440
+			},
+			"text": " They've only seen notarization for the prefix up to three."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,440",
+				"to": "00:20:06,400"
+			},
+			"offsets": {
+				"from": 1203440,
+				"to": 1206400
+			},
+			"text": " So now what's going to happen is that these guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,400",
+				"to": "00:20:08,640"
+			},
+			"offsets": {
+				"from": 1206400,
+				"to": 1208640
+			},
+			"text": " are going to vote for the block five."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,640",
+				"to": "00:20:12,680"
+			},
+			"offsets": {
+				"from": 1208640,
+				"to": 1212680
+			},
+			"text": " And because the fifth proposal is honest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,680",
+				"to": "00:20:15,680"
+			},
+			"offsets": {
+				"from": 1212680,
+				"to": 1215680
+			},
+			"text": " and he hasn't seen notarization for four yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,680",
+				"to": "00:20:20,920"
+			},
+			"offsets": {
+				"from": 1215680,
+				"to": 1220920
+			},
+			"text": " so he's going to build this block from three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,920",
+				"to": "00:20:25,360"
+			},
+			"offsets": {
+				"from": 1220920,
+				"to": 1225360
+			},
+			"text": " and then this block can get notarization in this very instant."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,360",
+				"to": "00:20:27,640"
+			},
+			"offsets": {
+				"from": 1225360,
+				"to": 1227640
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,640",
+				"to": "00:20:32,240"
+			},
+			"offsets": {
+				"from": 1227640,
+				"to": 1232240
+			},
+			"text": " So what is problematic about this scenario?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,240",
+				"to": "00:20:37,120"
+			},
+			"offsets": {
+				"from": 1232240,
+				"to": 1237120
+			},
+			"text": " The problem here is that suppose at the instant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,120",
+				"to": "00:20:39,840"
+			},
+			"offsets": {
+				"from": 1237120,
+				"to": 1239840
+			},
+			"text": " when Spiderman sees notarization for four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,840",
+				"to": "00:20:43,560"
+			},
+			"offsets": {
+				"from": 1239840,
+				"to": 1243560
+			},
+			"text": " if he hastily confirms block four, then he's in trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,560",
+				"to": "00:20:46,080"
+			},
+			"offsets": {
+				"from": 1243560,
+				"to": 1246080
+			},
+			"text": " Because at the end of the time, he'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,080",
+				"to": "00:20:49,840"
+			},
+			"offsets": {
+				"from": 1246080,
+				"to": 1249840
+			},
+			"text": " live to discover that, in fact, this other fork"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,840",
+				"to": "00:20:53,840"
+			},
+			"offsets": {
+				"from": 1249840,
+				"to": 1253840
+			},
+			"text": " survived to the end of time, and four is abandoned."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,840",
+				"to": "00:20:57,400"
+			},
+			"offsets": {
+				"from": 1253840,
+				"to": 1257400
+			},
+			"text": " So he risks inconsistency with the rest of the notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,400",
+				"to": "00:21:00,080"
+			},
+			"offsets": {
+				"from": 1257400,
+				"to": 1260080
+			},
+			"text": " at the end of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,080",
+				"to": "00:21:02,080"
+			},
+			"offsets": {
+				"from": 1260080,
+				"to": 1262080
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,080",
+				"to": "00:21:04,960"
+			},
+			"offsets": {
+				"from": 1262080,
+				"to": 1264960
+			},
+			"text": " So what do we do now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,960",
+				"to": "00:21:08,160"
+			},
+			"offsets": {
+				"from": 1264960,
+				"to": 1268160
+			},
+			"text": " Well, the moral of the story is that perhaps I"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,160",
+				"to": "00:21:13,760"
+			},
+			"offsets": {
+				"from": 1268160,
+				"to": 1273760
+			},
+			"text": " shouldn't confirm a block the moment I see the notarization."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,760",
+				"to": "00:21:17,360"
+			},
+			"offsets": {
+				"from": 1273760,
+				"to": 1277360
+			},
+			"text": " For me to confirm a block, not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,360",
+				"to": "00:21:19,880"
+			},
+			"offsets": {
+				"from": 1277360,
+				"to": 1279880
+			},
+			"text": " do I want to see a notarization for the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,880",
+				"to": "00:21:22,680"
+			},
+			"offsets": {
+				"from": 1279880,
+				"to": 1282680
+			},
+			"text": " I also want to know that many other people have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,680",
+				"to": "00:21:24,760"
+			},
+			"offsets": {
+				"from": 1282680,
+				"to": 1284760
+			},
+			"text": " a notarization for the block, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,760",
+				"to": "00:21:28,960"
+			},
+			"offsets": {
+				"from": 1284760,
+				"to": 1288960
+			},
+			"text": " So I want a higher degree of confidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,960",
+				"to": "00:21:30,080"
+			},
+			"offsets": {
+				"from": 1288960,
+				"to": 1290080
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,080",
+				"to": "00:21:35,520"
+			},
+			"offsets": {
+				"from": 1290080,
+				"to": 1295520
+			},
+			"text": " So now to implement this idea, the question we have to answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,520",
+				"to": "00:21:38,240"
+			},
+			"offsets": {
+				"from": 1295520,
+				"to": 1298240
+			},
+			"text": " is, how do I know that many other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,240",
+				"to": "00:21:39,560"
+			},
+			"offsets": {
+				"from": 1298240,
+				"to": 1299560
+			},
+			"text": " have seen the notarization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,560",
+				"to": "00:21:41,720"
+			},
+			"offsets": {
+				"from": 1299560,
+				"to": 1301720
+			},
+			"text": " I know when I see the notarization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,720",
+				"to": "00:21:43,200"
+			},
+			"offsets": {
+				"from": 1301720,
+				"to": 1303200
+			},
+			"text": " but how can I tell that you guys have"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,200",
+				"to": "00:21:46,200"
+			},
+			"offsets": {
+				"from": 1303200,
+				"to": 1306200
+			},
+			"text": " seen the notarization, too?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,200",
+				"to": "00:21:49,640"
+			},
+			"offsets": {
+				"from": 1306200,
+				"to": 1309640
+			},
+			"text": " In fact, we can do this also very simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,640",
+				"to": "00:21:54,160"
+			},
+			"offsets": {
+				"from": 1309640,
+				"to": 1314160
+			},
+			"text": " So imagine we have two consecutive blocks, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,160",
+				"to": "00:21:59,320"
+			},
+			"offsets": {
+				"from": 1314160,
+				"to": 1319320
+			},
+			"text": " three and four, and I've seen both of them notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,320",
+				"to": "00:22:01,760"
+			},
+			"offsets": {
+				"from": 1319320,
+				"to": 1321760
+			},
+			"text": " So remember, the honest notes are only"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,760",
+				"to": "00:22:05,160"
+			},
+			"offsets": {
+				"from": 1321760,
+				"to": 1325160
+			},
+			"text": " going to vote for block four if they have seen notarization"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,160",
+				"to": "00:22:05,960"
+			},
+			"offsets": {
+				"from": 1325160,
+				"to": 1325960
+			},
+			"text": " for three."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,960",
+				"to": "00:22:07,680"
+			},
+			"offsets": {
+				"from": 1325960,
+				"to": 1327680
+			},
+			"text": " I must see the notarization for the parent"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,680",
+				"to": "00:22:09,280"
+			},
+			"offsets": {
+				"from": 1327680,
+				"to": 1329280
+			},
+			"text": " before I vote for the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,280",
+				"to": "00:22:11,160"
+			},
+			"offsets": {
+				"from": 1329280,
+				"to": 1331160
+			},
+			"text": " So this means by voting for four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,160",
+				"to": "00:22:14,440"
+			},
+			"offsets": {
+				"from": 1331160,
+				"to": 1334440
+			},
+			"text": " I'm also attesting to the fact that I've seen notarization"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,440",
+				"to": "00:22:18,240"
+			},
+			"offsets": {
+				"from": 1334440,
+				"to": 1338240
+			},
+			"text": " for three in epoch four."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,240",
+				"to": "00:22:21,240"
+			},
+			"offsets": {
+				"from": 1338240,
+				"to": 1341240
+			},
+			"text": " So whenever I see this pattern, two consecutive blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,240",
+				"to": "00:22:25,560"
+			},
+			"offsets": {
+				"from": 1341240,
+				"to": 1345560
+			},
+			"text": " get both getting notarized, I can draw the conclusion"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,560",
+				"to": "00:22:28,840"
+			},
+			"offsets": {
+				"from": 1345560,
+				"to": 1348840
+			},
+			"text": " that many honest people must have seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,840",
+				"to": "00:22:32,680"
+			},
+			"offsets": {
+				"from": 1348840,
+				"to": 1352680
+			},
+			"text": " a notarization for three in their epoch four."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,680",
+				"to": "00:22:34,280"
+			},
+			"offsets": {
+				"from": 1352680,
+				"to": 1354280
+			},
+			"text": " Not only have they seen the notarization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,280",
+				"to": "00:22:35,320"
+			},
+			"offsets": {
+				"from": 1354280,
+				"to": 1355320
+			},
+			"text": " they see it very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,320",
+				"to": "00:22:37,360"
+			},
+			"offsets": {
+				"from": 1355320,
+				"to": 1357360
+			},
+			"text": " They see it in epoch four."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,360",
+				"to": "00:22:43,360"
+			},
+			"offsets": {
+				"from": 1357360,
+				"to": 1363360
+			},
+			"text": " So this is very nice, because for any future block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,360",
+				"to": "00:22:46,200"
+			},
+			"offsets": {
+				"from": 1363360,
+				"to": 1366200
+			},
+			"text": " since many people have seen notarization for three"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,200",
+				"to": "00:22:50,960"
+			},
+			"offsets": {
+				"from": 1366200,
+				"to": 1370960
+			},
+			"text": " very quickly, they are going to insist on the prefix ending"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,960",
+				"to": "00:22:54,560"
+			},
+			"offsets": {
+				"from": 1370960,
+				"to": 1374560
+			},
+			"text": " as three being included in any future chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,560",
+				"to": "00:22:56,680"
+			},
+			"offsets": {
+				"from": 1374560,
+				"to": 1376680
+			},
+			"text": " And that's how the block is going to stick around and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,680",
+				"to": "00:22:57,680"
+			},
+			"offsets": {
+				"from": 1376680,
+				"to": 1377680
+			},
+			"text": " be lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,680",
+				"to": "00:23:03,560"
+			},
+			"offsets": {
+				"from": 1377680,
+				"to": 1383560
+			},
+			"text": " So for instance, in epoch five or any future epoch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,560",
+				"to": "00:23:06,600"
+			},
+			"offsets": {
+				"from": 1383560,
+				"to": 1386600
+			},
+			"text": " if anyone makes a proposal, this proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,600",
+				"to": "00:23:10,000"
+			},
+			"offsets": {
+				"from": 1386600,
+				"to": 1390000
+			},
+			"text": " must include the prefix ending as three."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,000",
+				"to": "00:23:12,800"
+			},
+			"offsets": {
+				"from": 1390000,
+				"to": 1392800
+			},
+			"text": " Otherwise, people are just going to refuse to vote on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,800",
+				"to": "00:23:17,200"
+			},
+			"offsets": {
+				"from": 1392800,
+				"to": 1397200
+			},
+			"text": " Remember, people check that the parent block must be fresh"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,200",
+				"to": "00:23:19,600"
+			},
+			"offsets": {
+				"from": 1397200,
+				"to": 1399600
+			},
+			"text": " enough when they cast the vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,600",
+				"to": "00:23:30,120"
+			},
+			"offsets": {
+				"from": 1399600,
+				"to": 1410120
+			},
+			"text": " So essentially, this motivates the second very simple fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,120",
+				"to": "00:23:36,040"
+			},
+			"offsets": {
+				"from": 1410120,
+				"to": 1416040
+			},
+			"text": " And all we need to do is to add the following modification"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,040",
+				"to": "00:23:37,160"
+			},
+			"offsets": {
+				"from": 1416040,
+				"to": 1417160
+			},
+			"text": " to finalization."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,160",
+				"to": "00:23:40,480"
+			},
+			"offsets": {
+				"from": 1417160,
+				"to": 1420480
+			},
+			"text": " So remember, in Bitcoin, whenever we see a chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,480",
+				"to": "00:23:42,520"
+			},
+			"offsets": {
+				"from": 1420480,
+				"to": 1422520
+			},
+			"text": " output, we don't confirm the whole chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,520",
+				"to": "00:23:45,520"
+			},
+			"offsets": {
+				"from": 1422520,
+				"to": 1425520
+			},
+			"text": " we chop off the trailing six blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,520",
+				"to": "00:23:47,960"
+			},
+			"offsets": {
+				"from": 1425520,
+				"to": 1427960
+			},
+			"text": " The trailing six blocks are not stable yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,960",
+				"to": "00:23:50,080"
+			},
+			"offsets": {
+				"from": 1427960,
+				"to": 1430080
+			},
+			"text": " And here, it's a little bit similar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,080",
+				"to": "00:23:52,920"
+			},
+			"offsets": {
+				"from": 1430080,
+				"to": 1432920
+			},
+			"text": " except that we don't chop off six blocks whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,920",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1432920,
+				"to": 1435000
+			},
+			"text": " I see a notarized chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:57,480"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1437480
+			},
+			"text": " And let's say the notarized chain ends"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,480",
+				"to": "00:24:01,640"
+			},
+			"offsets": {
+				"from": 1437480,
+				"to": 1441640
+			},
+			"text": " at a streak of consecutively notarized blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,640",
+				"to": "00:24:05,880"
+			},
+			"offsets": {
+				"from": 1441640,
+				"to": 1445880
+			},
+			"text": " So basically, everything except the last block is final."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,880",
+				"to": "00:24:10,560"
+			},
+			"offsets": {
+				"from": 1445880,
+				"to": 1450560
+			},
+			"text": " So if at any time I see a notarized chain ending"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,560",
+				"to": "00:24:15,200"
+			},
+			"offsets": {
+				"from": 1450560,
+				"to": 1455200
+			},
+			"text": " at a streak of consecutively notarized blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,200",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1455200,
+				"to": 1457000
+			},
+			"text": " I only have to chop off the last one."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:18,720"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1458720
+			},
+			"text": " And then the prefix is notarized."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,720",
+				"to": "00:24:20,640"
+			},
+			"offsets": {
+				"from": 1458720,
+				"to": 1460640
+			},
+			"text": " The prefix is final."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,640",
+				"to": "00:24:22,360"
+			},
+			"offsets": {
+				"from": 1460640,
+				"to": 1462360
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,360",
+				"to": "00:24:24,400"
+			},
+			"offsets": {
+				"from": 1462360,
+				"to": 1464400
+			},
+			"text": " So that's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,400",
+				"to": "00:24:28,080"
+			},
+			"offsets": {
+				"from": 1464400,
+				"to": 1468080
+			},
+			"text": " And just to quickly recap, the protocol is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,080",
+				"to": "00:24:30,480"
+			},
+			"offsets": {
+				"from": 1468080,
+				"to": 1470480
+			},
+			"text": " You go by proposed vote, proposed vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,480",
+				"to": "00:24:35,040"
+			},
+			"offsets": {
+				"from": 1470480,
+				"to": 1475040
+			},
+			"text": " And you need to check a couple of things when you vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,040",
+				"to": "00:24:38,720"
+			},
+			"offsets": {
+				"from": 1475040,
+				"to": 1478720
+			},
+			"text": " And then this very simple proposed vote-based protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,720",
+				"to": "00:24:42,200"
+			},
+			"offsets": {
+				"from": 1478720,
+				"to": 1482200
+			},
+			"text": " combined with this finalization rule,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,200",
+				"to": "00:24:46,840"
+			},
+			"offsets": {
+				"from": 1482200,
+				"to": 1486840
+			},
+			"text": " actually gives you a provably correct consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,840",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1486840,
+				"to": 1491000
+			},
+			"text": " And I'm now going to go through the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:53,760"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1493760
+			},
+			"text": " and to quickly conclude."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,760",
+				"to": "00:24:57,760"
+			},
+			"offsets": {
+				"from": 1493760,
+				"to": 1497760
+			},
+			"text": " In this talk, I talked about asynchronous protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,760",
+				"to": "00:25:03,080"
+			},
+			"offsets": {
+				"from": 1497760,
+				"to": 1503080
+			},
+			"text": " that tolerates one third corruptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,080",
+				"to": "00:25:06,760"
+			},
+			"offsets": {
+				"from": 1503080,
+				"to": 1506760
+			},
+			"text": " For some new fast path consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,760",
+				"to": "00:25:08,800"
+			},
+			"offsets": {
+				"from": 1506760,
+				"to": 1508800
+			},
+			"text": " it's not too difficult to extend this protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,800",
+				"to": "00:25:11,440"
+			},
+			"offsets": {
+				"from": 1508800,
+				"to": 1511440
+			},
+			"text": " to the partial asynchronous setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,440",
+				"to": "00:25:14,320"
+			},
+			"offsets": {
+				"from": 1511440,
+				"to": 1514320
+			},
+			"text": " And as I said, the protocol is extremely simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,320",
+				"to": "00:25:16,520"
+			},
+			"offsets": {
+				"from": 1514320,
+				"to": 1516520
+			},
+			"text": " It's like almost the most natural protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,520",
+				"to": "00:25:21,080"
+			},
+			"offsets": {
+				"from": 1516520,
+				"to": 1521080
+			},
+			"text": " combined with a carefully thought out finalization rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,080",
+				"to": "00:25:23,800"
+			},
+			"offsets": {
+				"from": 1521080,
+				"to": 1523800
+			},
+			"text": " And what's cool about this protocol is every block"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,800",
+				"to": "00:25:26,400"
+			},
+			"offsets": {
+				"from": 1523800,
+				"to": 1526400
+			},
+			"text": " requires only a single round of voting to confirm."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,400",
+				"to": "00:25:32,200"
+			},
+			"offsets": {
+				"from": 1526400,
+				"to": 1532200
+			},
+			"text": " OK, just one more minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,200",
+				"to": "00:25:33,560"
+			},
+			"offsets": {
+				"from": 1532200,
+				"to": 1533560
+			},
+			"text": " Oh, OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,560",
+				"to": "00:25:38,880"
+			},
+			"offsets": {
+				"from": 1533560,
+				"to": 1538880
+			},
+			"text": " I'm just going to-- OK, so let me just quickly conclude."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,880",
+				"to": "00:25:40,080"
+			},
+			"offsets": {
+				"from": 1538880,
+				"to": 1540080
+			},
+			"text": " Try out our test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,080",
+				"to": "00:25:42,520"
+			},
+			"offsets": {
+				"from": 1540080,
+				"to": 1542520
+			},
+			"text": " And also, thunder is currently hiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,520",
+				"to": "00:25:44,080"
+			},
+			"offsets": {
+				"from": 1542520,
+				"to": 1544080
+			},
+			"text": " And we have all sorts of positions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,080",
+				"to": "00:25:47,920"
+			},
+			"offsets": {
+				"from": 1544080,
+				"to": 1547920
+			},
+			"text": " including executive level positions like CMO and COO."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,920",
+				"to": "00:25:49,840"
+			},
+			"offsets": {
+				"from": 1547920,
+				"to": 1549840
+			},
+			"text": " And contact me if you are interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,840",
+				"to": "00:25:51,280"
+			},
+			"offsets": {
+				"from": 1549840,
+				"to": 1551280
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,280",
+				"to": "00:25:53,240"
+			},
+			"offsets": {
+				"from": 1551280,
+				"to": 1553240
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,240",
+				"to": "00:25:56,600"
+			},
+			"offsets": {
+				"from": 1553240,
+				"to": 1556600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,600",
+				"to": "00:25:59,960"
+			},
+			"offsets": {
+				"from": 1556600,
+				"to": 1559960
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,960",
+				"to": "00:26:03,320"
+			},
+			"offsets": {
+				"from": 1559960,
+				"to": 1563320
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,320",
+				"to": "00:26:06,680"
+			},
+			"offsets": {
+				"from": 1563320,
+				"to": 1566680
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,680",
+				"to": "00:26:10,040"
+			},
+			"offsets": {
+				"from": 1566680,
+				"to": 1570040
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,040",
+				"to": "00:26:13,400"
+			},
+			"offsets": {
+				"from": 1570040,
+				"to": 1573400
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,400",
+				"to": "00:26:16,760"
+			},
+			"offsets": {
+				"from": 1573400,
+				"to": 1576760
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,760",
+				"to": "00:26:20,120"
+			},
+			"offsets": {
+				"from": 1576760,
+				"to": 1580120
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,120",
+				"to": "00:26:49,120"
+			},
+			"offsets": {
+				"from": 1580120,
+				"to": 1609120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

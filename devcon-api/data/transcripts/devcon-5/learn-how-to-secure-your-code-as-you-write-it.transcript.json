@@ -1,0 +1,2485 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 13000
+			},
+			"text": " Okay guys, good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14000
+			},
+			"text": " Good morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 16000
+			},
+			"text": " I was last night."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18000
+			},
+			"text": " You go to the Orchid Party."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 22000
+			},
+			"text": " Who went here to the Orchid Party?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " You only talk it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 25000
+			},
+			"text": " That stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " I heard that it was quite crowded and people went to bed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 30000
+			},
+			"text": " quite late."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 33000
+			},
+			"text": " So thank you very much for coming to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " I will introduce myself first."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " I am Manoj Garcia from Argentina."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42000
+			},
+			"text": " I work at World of Fire."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47000
+			},
+			"text": " We are a government shop that help other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " We build things for other people to deliver."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 58000
+			},
+			"text": " This talk will be about specific tools to help developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61000
+			},
+			"text": " to improve to things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 64000
+			},
+			"text": " What is the quality of the code and most importantly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " the education and how to learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 69000
+			},
+			"text": " Why do you do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 78000
+			},
+			"text": " The agenda will be to talk about what is an introduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " and why should we care about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 87000
+			},
+			"text": " Some issues that many developers run into"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " that this tool can help."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " Some rules on how we can categorize them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " Then go into a specific tool that is called Solving."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 105000
+			},
+			"text": " To learn a little bit about it and how to use it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 113000
+			},
+			"text": " extend it and also what is next with this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 118000
+			},
+			"text": " First of all, to set up the grounds, many of you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " developers, many of you probably develop in other languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " before Solvingty."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 128000
+			},
+			"text": " You have great tooling and then you went into Solvingty"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 133000
+			},
+			"text": " and probably spent a lot of time that could have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " spent in features, building, delivering."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " Well, with tooling, debugging, I heard that some guys from"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 147000
+			},
+			"text": " Bido, they created a stack trace recently, they announced it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " And also, Truffle announced a debugger, more advanced debugger."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 158000
+			},
+			"text": " I remember back in the '23, that the tech clip from August said"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 161000
+			},
+			"text": " that he was going to pay, I don't know how much."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 168000
+			},
+			"text": " They had to anybody who can build a debugger, but it took a couple of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " In the winter, it's targeted to analyze static code and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 177000
+			},
+			"text": " analyze all the structure, micro-ding the text,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " applying a grammar, and from that grammar being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 182000
+			},
+			"text": " analyze many, many, many things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " So this, what it does is it's starting to do in a white box"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " testing, as it is considered, some practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 197000
+			},
+			"text": " And a tool like Solvingty will allow you specifically to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " go through all the structure of the solvity code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " be able to analyze the specific semantics of the language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 212000
+			},
+			"text": " and run it through a bottle of rules and see what kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " what warning errors you can be avoiding."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 221000
+			},
+			"text": " And all of these, of course, without having to go to compile"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 226000
+			},
+			"text": " the broadest, smart contracts, which is much more time consuming."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 230000
+			},
+			"text": " And with no logs, no keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 237000
+			},
+			"text": " Some benefits from using a tool like this are that you get to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " increase the productivity, you get to the liver more things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " get more shit done."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 250000
+			},
+			"text": " And as a team, you can share some decisions about what you care,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " what you don't care, and if it is not included, let's build it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " let's extend it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 262000
+			},
+			"text": " This is more, you get code that is more readable, not only for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 267000
+			},
+			"text": " for the team, but also given that 20, 95% of the code is open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 274000
+			},
+			"text": " and out there, when we do open source, well, we tend to do things right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " I have seen that many, many times."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 283000
+			},
+			"text": " People becoming great developers when they started working on open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 288000
+			},
+			"text": " You get to have pre-code reviews, even though many things just appear there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 293000
+			},
+			"text": " before getting the PR to be reviewed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 298000
+			},
+			"text": " That, of course, makes the life cycle so they live very much, much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 304000
+			},
+			"text": " And one of the very important things is that you might be many developers in the team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 310000
+			},
+			"text": " but the code is coming from one team, you don't care from who,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 315000
+			},
+			"text": " the code is the same, following the same standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318000
+			},
+			"text": " That is about coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 325000
+			},
+			"text": " Also, you get to know very heavily and be able to identify problematic patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 330000
+			},
+			"text": " instead of working a few weeks and then identifying in many files"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333000
+			},
+			"text": " and you know the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 338000
+			},
+			"text": " And most importantly, here, at least I find more importantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 344000
+			},
+			"text": " because I've been using interesting Java for the days."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 350000
+			},
+			"text": " We don't go to the documentation too often."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 356000
+			},
+			"text": " With an inter that can give you a feedback on what you're doing wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 360000
+			},
+			"text": " you can get very easy to take the documentation of what you're doing wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 367000
+			},
+			"text": " You learn and you don't have to run again into this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " So by having this feedback, you learn and you learn a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 384000
+			},
+			"text": " Some of the issues that, at least I think that many developers run into,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 391000
+			},
+			"text": " they are at least well, if I talk, then I talk five."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " When you don't have conventions, you get to have a code that is quite different"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 401000
+			},
+			"text": " for each other, for all the files, the developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 403000
+			},
+			"text": " people get very angry."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 407000
+			},
+			"text": " They say, \"Fuckin' shoot here, what is he doing this?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 410000
+			},
+			"text": " Low reliability and efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " This goes much for the code style, but also for some patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 422000
+			},
+			"text": " that are not effective as execution complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 427000
+			},
+			"text": " and that can be completely avoidable from the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 431000
+			},
+			"text": " And then say, \"Okay, I didn't know about this bunch of practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " I didn't know about this bunch of security vulnerabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 441000
+			},
+			"text": " that are already documented and explain how to be avoided.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 444000
+			},
+			"text": " I don't intentionally add that to the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " but well, if I had somebody watching there and if it is a robot that tells me"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 453000
+			},
+			"text": " that I don't have to spend time from other coworkers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " then the code reviews take too long because you have reviewers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " each reviewer saying, \"No, I like things to be done this way.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466000
+			},
+			"text": " Or, \"Come on, this is an issue that is very well known.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 474000
+			},
+			"text": " Or you are evaluating other practices that can be identified as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 480000
+			},
+			"text": " What rules this tool has so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 488000
+			},
+			"text": " By the way, this tool has like two years now, around two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 493000
+			},
+			"text": " Yeah. So we can categorize them in three."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 501000
+			},
+			"text": " One are style guys, second are best practices that are this first tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 507000
+			},
+			"text": " all the first is more orientated, the second is like any programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 510000
+			},
+			"text": " And the third are security."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 514000
+			},
+			"text": " Some examples there are like, \"Okay, I mean, staffs with spaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " I mean, in the presentation, and many other rules.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 524000
+			},
+			"text": " Best practice is diplomatic complexity, unused variables, functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 530000
+			},
+			"text": " And security, most importantly, some very well known and documented rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 539000
+			},
+			"text": " such as re-engineering, knocking here, what you call contracts that are not written by yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 541000
+			},
+			"text": " So, yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " And here, okay, we have some references."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " They are consensus with the guy a lot of time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " So that guy is quite well documented."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 559000
+			},
+			"text": " And we were able to program those rules into this leader."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 565000
+			},
+			"text": " And the second one is a solidity style guy by the language itself, the recommendation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 578000
+			},
+			"text": " I wanted to show you some rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 593000
+			},
+			"text": " So if you go to the documentation, you can see a lot of rules that are already implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 597000
+			},
+			"text": " Well, there are quite many."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 599000
+			},
+			"text": " And some references."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 604000
+			},
+			"text": " This is great that if you have more references that are written in text documentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 608000
+			},
+			"text": " we can go and program them and in the leader."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 615000
+			},
+			"text": " And when I say \"we\" it's completely open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 625000
+			},
+			"text": " This recommended, okay, I would be getting back to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 633000
+			},
+			"text": " So this is about a tool that was built more than two years ago by a guy who was migrating"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " from Java to Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 640000
+			},
+			"text": " And he found a lack of these very basic tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 650000
+			},
+			"text": " He got into a parser of grammar parser by some Solidity grammar that was built by Federico"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 651000
+			},
+			"text": " one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 652000
+			},
+			"text": " I don't know, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 653000
+			},
+			"text": " You two guys know."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 658000
+			},
+			"text": " Another one by a guy from Argentina."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 663000
+			},
+			"text": " Well, every discovery is priceless."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 672000
+			},
+			"text": " It increases the willingness and happiness of doing code reviews, given that the reasons"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 679000
+			},
+			"text": " that I explained and shared earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 686000
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 691000
+			},
+			"text": " This is the solving and you just go to GitHub solving."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " It's not that much important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 695000
+			},
+			"text": " How do you use this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 696000
+			},
+			"text": " It's extremely simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 700000
+			},
+			"text": " You just install it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 706000
+			},
+			"text": " And you have to initiate the config file for that specific project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 710000
+			},
+			"text": " Then you can add it to your tooling to bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " I don't know, but it's just like a choice to say, okay, run later inside the cycle of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 716000
+			},
+			"text": " a continuous integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 723000
+			},
+			"text": " So you don't only run it locally, but you also run in the NDSCI."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 730000
+			},
+			"text": " And from there, this configuration file is quite open."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 738000
+			},
+			"text": " Previously, it was more opinionated, but we had some feedback that it was like too noisy"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 739000
+			},
+			"text": " sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 744000
+			},
+			"text": " So some teams suggested to remove everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " And this thing was an open sampling."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 758000
+			},
+			"text": " By default, we remove all the warnings so you can go there and start setting up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 761000
+			},
+			"text": " The configurations are presents of rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765000
+			},
+			"text": " You can have the rules by default are like none."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 771000
+			},
+			"text": " And you have recommended rules that when I show you the rules, there was a column."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 782000
+			},
+			"text": " We check which are the rules that are recommended and the other ones that you can add manually."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 790000
+			},
+			"text": " Also, it had quite a bit prefactor recently to allow plugins such as other leaders."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 795000
+			},
+			"text": " So, the first plugin is Prettier."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 800000
+			},
+			"text": " And that allows you to extend with some other rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " So basically, three properties right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 810000
+			},
+			"text": " I would involve recommended to start with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 815000
+			},
+			"text": " What I'm doing, I don't have any rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 819000
+			},
+			"text": " Probably in the future we will change this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 829000
+			},
+			"text": " If you don't agree with the Prettier, you can customize this to get different type of errors"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 831000
+			},
+			"text": " or different type of rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 832000
+			},
+			"text": " You can add more rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 837000
+			},
+			"text": " It's quite flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 842000
+			},
+			"text": " How can you extend this and some other information?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 852000
+			},
+			"text": " There has a plugin reference that you can follow and implement your own plugins and contribute back."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 854000
+			},
+			"text": " You can create rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 856000
+			},
+			"text": " It's just JavaScript files."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 858000
+			},
+			"text": " I can show you later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 865000
+			},
+			"text": " And one important thing that the guys from Aragon, we send them a VR and the Prett set it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 868000
+			},
+			"text": " It's very nice, but we have many projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 874000
+			},
+			"text": " So we would like to have one definition because we have one team operating program in many projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 879000
+			},
+			"text": " And we created a concept of shared coffee."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 884000
+			},
+			"text": " Which you create a file and you just publish to NPM."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 887000
+			},
+			"text": " And there you go with some Prettier in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 895000
+			},
+			"text": " You can start your project and I would say, \"Okay, I will use Aragon, down Prettset or notice Prettset.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 901000
+			},
+			"text": " It has integrations with many ID IDs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 907000
+			},
+			"text": " Some of them are kind of a pain to do, but it is evolving."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 917000
+			},
+			"text": " The core developer of this use PIMM sometimes he gives a shit about the other ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 931000
+			},
+			"text": " And it has been integrated by default in Open Sepulant and soon with a new version of Truffle that allows plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 934000
+			},
+			"text": " And that you will have like optional in default plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 938000
+			},
+			"text": " It will be one of the first plugins to be installed by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 945000
+			},
+			"text": " We have been working with these guys for quite some months."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 953000
+			},
+			"text": " So let's see if I can do some of them here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 978000
+			},
+			"text": " These are the contracts of a project that we worked some time ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 985000
+			},
+			"text": " It is a decentralized exchange based on the Dutch functions, not for the book."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991000
+			},
+			"text": " The file was all that was looking for a project is, I don't know, this actually is a project like downtime ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 997000
+			},
+			"text": " So the code is completely not the code that you have right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " You install a lot of data and you..."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " Okay, I have to wait a minute so I will jump this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1017000
+			},
+			"text": " And you get an output like this, but such as ES Inter, you can format the output."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:06,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1026000
+			},
+			"text": " So I can run like in somewhere here, there, format table."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1026000,
+				"to": 1030000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1032000
+			},
+			"text": " For the tool size."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1041000
+			},
+			"text": " And you can see here contract by contract, some time of the lines where this is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1049000
+			},
+			"text": " Of course, if you can integrate it with an IDE, you can just jump into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1055000
+			},
+			"text": " The rules that you are breaking here from this rule, you can go to the documentation, learn about it, you don't do it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1062000
+			},
+			"text": " And you cycle, you cycle, you cycle until at least you get to know this set of rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1077000
+			},
+			"text": " Here are some examples that I shared in the presentation because we are not going to have time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1084000
+			},
+			"text": " Again, these are JavaScript files, I'm not wearing a card to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1095000
+			},
+			"text": " I wanted to share this with you. We applied for an ethyl foundation grant, given that this is made with a lot of law, but we have to pay this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1100000
+			},
+			"text": " And we will be adding these features."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1108000
+			},
+			"text": " One of the things is to separate it from the CLI, so if we have a library, we can embed it in things like graphics."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1113000
+			},
+			"text": " The graphics team approach to us to do this and we need to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1121000
+			},
+			"text": " It's coming the traffic plugin, also some refactoring, and very important to have an out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1130000
+			},
+			"text": " However, this is dangerous because if I got a fix and I don't know what I did wrong, I had a losing opportunity to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1137000
+			},
+			"text": " Well, improve the documentation a lot. That is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1146000
+			},
+			"text": " And some of it is having a grad pick that is extremely awesome to have a meaningful output when you have a resource or when you need the right to contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1149000
+			},
+			"text": " And more things that are requested by..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1152000
+			},
+			"text": " Secondly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " Okay, this would be all..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1159000
+			},
+			"text": " I'm going to shoot half in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1162000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1165000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1180000
+			},
+			"text": " [Music]"
+		}
+	]
+}

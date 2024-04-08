@@ -262,7 +262,13 @@ export const Hero = () => {
                 <div className={`${css['butterflies']} hidden lg:block`}>
                   <Butterflies2 />
                 </div>
-                <Image className={css['dc7-logo-text']} src={DC7OverlayRight} alt="Event location" priority />
+                <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority />
+                {/* <Image
+                  className={`${css['dc7-logo-text']} ${css['mobile']}`}
+                  src={DC7OverlayRightLeftAligned}
+                  alt="Event location"
+                  priority
+                /> */}
               </div>
             </div>
           </div>

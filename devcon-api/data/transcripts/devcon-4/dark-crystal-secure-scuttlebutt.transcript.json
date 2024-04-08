@@ -1,0 +1,1352 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " Hello. I'm really happy to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 9000
+			},
+			"text": " So I'm part of a small team called MMT."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 12000
+			},
+			"text": " Most of who are based in the Southern Hemisphere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15000
+			},
+			"text": " so they can't, unfortunately, can't be here with me."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19000
+			},
+			"text": " We've been working on some collaborative finance projects for about a year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22000
+			},
+			"text": " and our current project is called Dark Crystal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25000
+			},
+			"text": " It's appeared to be a tool for securely backing up secrets"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27000
+			},
+			"text": " using the power of community networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " And we're really grateful that we've got a grant and we can make this project happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " So the private key custody problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 42000
+			},
+			"text": " People are finally waking up to the idea that there's limitations of centralized services"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " and they want more control over their data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 52000
+			},
+			"text": " Encryption tools are becoming more popular, smart contracts in cryptocurrency, digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 57000
+			},
+			"text": " There's a lot of tools now which rely on you having a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 61000
+			},
+			"text": " And the more we, these tools have got, give us massive advantages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 67000
+			},
+			"text": " but they come at a cost and the cost is you need to look after your private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 72000
+			},
+			"text": " and the more we rely on them, the bigger the implications are when you lose your key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 74000
+			},
+			"text": " So what can we do about this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 77000
+			},
+			"text": " You can make personal backups, you need to be careful where you keep them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " You can use a cloud service, but probably you want to encrypt your key with another key"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 85000
+			},
+			"text": " so it kind of fits the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 88000
+			},
+			"text": " Deterministic password generators are quite interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 90000
+			},
+			"text": " but they've got some limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92000
+			},
+			"text": " I'm not going to go into that now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " There's Uport, which is something that we're very interested in and looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " But the thing which has been getting us jumping up and down with excitement"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " is secret sharding tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " So if you don't know who AD Shamir is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 114000
+			},
+			"text": " maybe you've heard of RSA public key encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 117000
+			},
+			"text": " Shamir is the S in RSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 122000
+			},
+			"text": " He published a paper in the late '70s called \"How to Share a Secret\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 127000
+			},
+			"text": " Blakely is less well known but published a very similar paper around the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " So the idea is you split a secret into shards, which are pieces of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 135000
+			},
+			"text": " and you give one to each friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 140000
+			},
+			"text": " The important thing is that each individual shard has no information about the secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 147000
+			},
+			"text": " So we can visualize it, kind of simplified on a 2D graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " In this case, so if we can imagine our secret is the green line."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " The point where it crosses x equals zero would be our secret,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 160000
+			},
+			"text": " which is essentially a number, but it's a piece of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 164000
+			},
+			"text": " In this case, we've got two points plotted on the graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166000
+			},
+			"text": " and there would be two shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 169000
+			},
+			"text": " There's an infinite number of different curves which pass through those two points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 174000
+			},
+			"text": " but as soon as we get a third one, we can map our curve and we've got our secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 179000
+			},
+			"text": " So in this case, the quorum is three, but you can have whatever quorum you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 184000
+			},
+			"text": " depending on the mathematical function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187000
+			},
+			"text": " And you might have more than three shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " You could have, say, five friends and three of them need to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " you need a minimum of three, so if you, two of them, you lose contact with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 197000
+			},
+			"text": " you're still safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 199000
+			},
+			"text": " You can still get back your secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 201000
+			},
+			"text": " So I mentioned that there's already tools which do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 204000
+			},
+			"text": " It's been around with the 70s, since the 70s, it's not anything new."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 207000
+			},
+			"text": " So what is it that we're doing that's new?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 213000
+			},
+			"text": " So generally, you put in your secret and you get out the shards, which are long strings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 217000
+			},
+			"text": " and you then need to find a way of giving them to your friends and your friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 219000
+			},
+			"text": " need to store them and need to give them back to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 222000
+			},
+			"text": " I'm going to try doing this, and when you've got a lot of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 226000
+			},
+			"text": " shards from different people for different things, it's very, you can get in a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 227000
+			},
+			"text": " model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " And so we're trying to automate things a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232000
+			},
+			"text": " and we're also trying to keep things secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " So we are using Secure Scuttlebutt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 242000
+			},
+			"text": " It's a decentralized peer-to-peer protocol for social networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244000
+			},
+			"text": " It's offline first."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 245000
+			},
+			"text": " It was developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " It was started by somebody living on a sailing boat who wanted to keep in touch"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " with his friends when not always having connection to Internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 256000
+			},
+			"text": " It's got a really vibrant community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " But the thing which makes it really interesting for us for this project is it's gossip"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 262000
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 269000
+			},
+			"text": " So it's not like a blockchain, and it's not like content-centered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " distributed storage systems like that IPFS or BitTorrent, which typically are using"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " distributed hash table to mean that everybody can connect to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 283000
+			},
+			"text": " Everybody has at least in theory access to a ubiquitous data set."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 288000
+			},
+			"text": " And Scuttlebutt, it's using gossip."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 298000
+			},
+			"text": " It's kind of -- each user publishes messages on a feed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 305000
+			},
+			"text": " And it's replicated by their friends and friends of friends until a specified number"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 307000
+			},
+			"text": " of hops away from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 315000
+			},
+			"text": " So we wanted some replication because we didn't want some -- we didn't want danger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " kind of, if people lose their shards, but we didn't want to make things totally public."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 324000
+			},
+			"text": " Even though they're encrypted, you could publish these shards to a blockchain or make them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " really in some way because they're encrypted, but we wanted to kind of keep them within"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 334000
+			},
+			"text": " your social network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 338000
+			},
+			"text": " So that's what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " So we've got a working prototype."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 345000
+			},
+			"text": " It's embedded into a popular Scuttlebutt client called Patchbay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 350000
+			},
+			"text": " And it's been since a few months in the world with people using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 356000
+			},
+			"text": " So you just give your secret a name, you put your secret, you choose who gets it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 362000
+			},
+			"text": " and the quorum, the number that needs to be constructed, encrypts the shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 367000
+			},
+			"text": " publishes them, but there's still a lot of things that it doesn't do yet and that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 376000
+			},
+			"text": " hopefully are going to make happen in the next few months."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 382000
+			},
+			"text": " So what can you use this for, other than just being useful for backing up keys and secrets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 388000
+			},
+			"text": " One thing we've been doing is managing our group funds in a multi-sig wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 394000
+			},
+			"text": " and if there's a lot of funds in the wallet, we want to have a large number of cosigners"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 399000
+			},
+			"text": " to gain consensus about payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 403000
+			},
+			"text": " And the more cosigners required, the bigger the danger when people lose their keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 409000
+			},
+			"text": " Because we're kind of all based in different countries, we don't know each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 414000
+			},
+			"text": " We do know each other well, but there's always a kind of danger you can lose touch with people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 420000
+			},
+			"text": " So as a kind of extra step, we're kind of sharding our keys and giving them to each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424000
+			},
+			"text": " which kind of essentially means one less signature is required in a sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 430000
+			},
+			"text": " but it means there's kind of also an extra level of consensus needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " So it's kind of useful in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " Another one is inheritance planning, like what happens to your cryptocurrency if you die"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 443000
+			},
+			"text": " or what happens to your email account or access to some other online service."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 449000
+			},
+			"text": " And another one is if you have got some information which is very, very sensitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 453000
+			},
+			"text": " and might put you in danger depending on in a particular situation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 457000
+			},
+			"text": " you might want to distribute the custody of that information among a small group"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " or maybe you need to cross a border with a device which has got no encryption keys on it whatsoever"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 467000
+			},
+			"text": " and kind of recombine your secrets later."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 469000
+			},
+			"text": " So it's a trustful model."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472000
+			},
+			"text": " One thing we're a little bit kind of critical of is this idea of trustlessness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 478000
+			},
+			"text": " that you can automate everything and have so much strong encryption and algorithms"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 480000
+			},
+			"text": " that you don't need trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 483000
+			},
+			"text": " We think human trust is really important and really powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 488000
+			},
+			"text": " and we want to bring a sense of community to the digital world."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 494000
+			},
+			"text": " So we do all our development discussions in the open."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " You can find us on the Scuttlebutt channels and we all are, these are our repos,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " all our codes in Node.js and thank you very much for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 515000
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 535000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

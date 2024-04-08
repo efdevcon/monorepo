@@ -1,0 +1,2397 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23000
+			},
+			"text": " Hello. My name is Connor, and I am a developer at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 28000
+			},
+			"text": " Consensus. I have been working on a platform for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " having threaded discussions that are difficult to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " Sensor. They are built using ethereum, ipf and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " Whisper. I am the first part of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " I am going to explain how you could use this as a foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " For building a decentralized reddit, really like an ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " More than one particular app. Later i will give a demo and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54000
+			},
+			"text": " Explain some more technical details. The working title is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " Easy to sensor. Why would we want a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 62000
+			},
+			"text": " Reddit? Many people here probably venture into our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 65000
+			},
+			"text": " Bitcoin sometimes and have noticed that they generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69000
+			},
+			"text": " The moderators receive a lot of heat for questionable"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " Moderation policies. I personally noticed that as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 77000
+			},
+			"text": " Community grew during the rise of bitcoin, that the quality of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81000
+			},
+			"text": " The content on the site actually suffered more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 87000
+			},
+			"text": " Due to the moderators expressing their own agendas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 91000
+			},
+			"text": " This even applies to people who are deeply involved in bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 95000
+			},
+			"text": " Space, who are not being able to voice their own opinions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 99000
+			},
+			"text": " That is one reason, but that same thing applies to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 104000
+			},
+			"text": " Pretty much any open public online forum. You can see the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 110000
+			},
+			"text": " Ways that companies or investors or corporations or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 117000
+			},
+			"text": " Organizations with legal agendas may sensor certain voices on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 121000
+			},
+			"text": " The internet. I think that we should change the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 127000
+			},
+			"text": " Paradigm and look for ways to have censorship to be hard by"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 131000
+			},
+			"text": " Default. How could you do this on ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " When i've built it uses the middle pieces, ipfs, whisper in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " Ethereum to structure a very basic threat of discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 143000
+			},
+			"text": " System. One of the benefits of building on a public"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " Blockchain, julian alluded to this earlier in the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " Panel, developer panel, that on ethereum it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 157000
+			},
+			"text": " Understranded for any third party to build services on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " Content that is on the blockchain or ipfs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " That is one way i could definitely see a reddit type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 169000
+			},
+			"text": " Ecosystem developing serving all of these pieces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " Permissions, moderation, notification search and so on"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 177000
+			},
+			"text": " Are currently done by the centralize reddit or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " Facebook or twitter organizations and on ethereum we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 184000
+			},
+			"text": " Actually have competing services in each of those areas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 189000
+			},
+			"text": " Offering different services for a discussion platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " So the colors mean briefly that the blue is stuff that has to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 196000
+			},
+			"text": " Be on chain and trustless and you have to pay for it but the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 200000
+			},
+			"text": " Purple is a combination of on chain and or off chain or both"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " And ipfs, whisper notifications are off chain services that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " Could be provided. So that's how i see that evolving."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 214000
+			},
+			"text": " I'll go ahead and talk about what i built and how on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217000
+			},
+			"text": " Storage works. So there's two ways you could do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " One is with contract structs that we all know and love."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " The other way is logs and i'll describe the trade-offs between"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " Those. So for on chain storage, basically there's two methods"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 233000
+			},
+			"text": " That are important, add and edit. When you add a post you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " Are designating a parent that that post will be referenced to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " As a child and a string of data which could be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " I like using strings there because they could be a ipfs hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " A url or potentially raw text. So then that will create a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 256000
+			},
+			"text": " Struct which will be saved in this array right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " It just expands with each new post and that index of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 264000
+			},
+			"text": " Array is implicitly the idea of the post which is used in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 270000
+			},
+			"text": " Mapping of post to children. And edit is a method i wanted to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " So if you submit a post you can edit the content of it if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " Are the owner. So that is checked from this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 282000
+			},
+			"text": " I'll go through the other data types. So we have two units for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " Time stamps for when the post is created and when it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 289000
+			},
+			"text": " Added. We also have a number of children which makes look up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " Easy if you're looking up an array. You would like to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " You don't want to look up ten if there's only two objects in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 301000
+			},
+			"text": " The children and then the data type. So just to point out something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 305000
+			},
+			"text": " I wanted to cast these to uint 32s."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " There are uints on the environment variables to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " Contracts and it would make sense to store time stamps as uints and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " I was able to save a storage slot by doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 318000
+			},
+			"text": " But it does limit me to 90 years. So maybe you would want to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 322000
+			},
+			"text": " Into new uint 40s. That's worth considering if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325000
+			},
+			"text": " Developer. Also, yeah, i already mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 328000
+			},
+			"text": " Data strings are very flexible. So what's the up side of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330000
+			},
+			"text": " Events? Why would you use events instead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 333000
+			},
+			"text": " Strucks? Events are much cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 339000
+			},
+			"text": " They require a lot less gas to use. They are pin only logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 344000
+			},
+			"text": " And the other up side is that they are very light client friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " So the downside of using a log though is that they are more"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 352000
+			},
+			"text": " Difficult to edit. So with the struct for posts, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 355000
+			},
+			"text": " Store the owner in one of the fields and the contract can look"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 359000
+			},
+			"text": " That up and verify the only mesh eds sender that equals that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 364000
+			},
+			"text": " Owner can change the data for a post event or log."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 367000
+			},
+			"text": " The contract doesn't have any way to read the data from"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 370000
+			},
+			"text": " Past log. So it can't verify that the mesh"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373000
+			},
+			"text": " Sender is equal to the owner of a particular log."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 376000
+			},
+			"text": " So what you can do, maybe to get around this, is have an event"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 380000
+			},
+			"text": " For editing and let the front end filter through the edits to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 385000
+			},
+			"text": " Define the ones where the owner matches the original log id."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " But that seems a little bit annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " And it just kind of depends on what your use case is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 394000
+			},
+			"text": " If you're an application that doesn't want to allow edits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 396000
+			},
+			"text": " Then logs would probably be the way to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 399000
+			},
+			"text": " If you do want to allow them, you may have to consider the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 403000
+			},
+			"text": " Post count is necessary here so that each event would have its"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 407000
+			},
+			"text": " Own id. Right. And those are the gas cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 414000
+			},
+			"text": " Tradeoffs for logs versus s stores where each log is 375 plus"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 419000
+			},
+			"text": " 375 per topic, which i think you can go to three or four"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " Topics, and then eight gas per byte. All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 430000
+			},
+			"text": " So i'll show you a very alpha demo of what i've built so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 435000
+			},
+			"text": " This is video. So we'll start by adding a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " Of accounts that i already generated with these seeds that i"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 443000
+			},
+			"text": " Was able to get using co-worker christian lunquist library"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 446000
+			},
+			"text": " Eat the hash light wallet. So this is how you would create one"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 450000
+			},
+			"text": " In the app. But i'll just go ahead and import an existing one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " These seeds have been preloaded with samitha."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " I'll add a password to encrypt them in my browser so i can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 461000
+			},
+			"text": " Unencrypt them when i need to sign transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 465000
+			},
+			"text": " And you can see my initials, ck, under the accounts comes from"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 469000
+			},
+			"text": " The uport persona schema that's saved in ipfs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 475000
+			},
+			"text": " I use that to associate names and images with ether addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 478000
+			},
+			"text": " So add the second account to demonstrate one without a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 482000
+			},
+			"text": " Persona and you'll see that in the next videos."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 486000
+			},
+			"text": " So that is adding an account. And this is the identity schema"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 491000
+			},
+			"text": " For the uport where we have name and content url are really the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 495000
+			},
+			"text": " Important fields there. But this is cool because it's just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 499000
+			},
+			"text": " A JSON so you can add other schemas for different use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 502000
+			},
+			"text": " And they could all be derived from one the same ether address."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 510000
+			},
+			"text": " So now i'll create a couple threads. So i'll use my name"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 514000
+			},
+			"text": " Account and enter in a thread name. This is going to use a string"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 518000
+			},
+			"text": " Data type. So i found the exact gas cost per"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " Character count. You'll see that transaction price"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 523000
+			},
+			"text": " Increases with each character that i add."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 527000
+			},
+			"text": " So this is going to be half a cent. And i'll make a random one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 530000
+			},
+			"text": " And a meta one. And this bubble on the left means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 533000
+			},
+			"text": " Transaction is pending. It hasn't been received in a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 536000
+			},
+			"text": " Real quick. I'll do a refresh on the browser just to prove that i"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " Keep that data around associated with the transaction before it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 542000
+			},
+			"text": " Gets received in a block. So that seems to be something"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 544000
+			},
+			"text": " That users like to do when they don't understand what's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " On the refresh the page. And if it's just blank, because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " Data is not on chain yet, then i wanted to prevent that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 555000
+			},
+			"text": " Scenario. So it will get received. And i have another method"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 559000
+			},
+			"text": " That you can use to wrap components that use that mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 564000
+			},
+			"text": " For tracking state to determine based on the current block, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 569000
+			},
+			"text": " They'll receive as updates what the percentage of confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " Is given some confirmed count. So this will increment up to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 578000
+			},
+			"text": " Height of the div. And i'll skip through."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 582000
+			},
+			"text": " So this is the utility i mentioned. It's a way to keep track of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " Transaction state. You add transaction hashes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 590000
+			},
+			"text": " You associate some data with those hashes and you can filter"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 594000
+			},
+			"text": " Through that data to match those transactions to components on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 598000
+			},
+			"text": " Your front end and select to receive any updates from these"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " States from transactions that match that filter."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 605000
+			},
+			"text": " So for this i'm just using pending and received."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " The arrows indicate the different directions that those"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 611000
+			},
+			"text": " Transitions can happen. And that's been really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 616000
+			},
+			"text": " So let's do some chat and comment and example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 623000
+			},
+			"text": " So we'll go into the random thread. And with the ck"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 628000
+			},
+			"text": " Account, we'll write some -- yes, this is .7 cents at current"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " Cost. So first post, sign the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 636000
+			},
+			"text": " And it will do the same thing. And you see a picture that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 640000
+			},
+			"text": " Associated with that account there. And now we're going to send a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 643000
+			},
+			"text": " Whisper message while waiting to receive a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 646000
+			},
+			"text": " It's as much faster and free. Some people might find ease for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " That. If they don't have an ether or don't want their message"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 653000
+			},
+			"text": " To live forever. So i'll demonstrate how this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 657000
+			},
+			"text": " Whizziwig editor can throw in arbitrary html that my front end"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " Will sanitize when it picks it up. And also add an array of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 665000
+			},
+			"text": " Files. Just one for this demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 668000
+			},
+			"text": " But you can add multiple. You can rename the file name, add a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 673000
+			},
+			"text": " Description to the moon. And so you actually also sign these"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 677000
+			},
+			"text": " Whisper messages with your same light walled accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 680000
+			},
+			"text": " So that signature gets appended to the payload."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " So the front end can derive the ether address of the cinder."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 688000
+			},
+			"text": " Otherwise it's stored on the client. It's not really usable for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " These types of apps. So i switch accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " I'm going to apply. Very cool. I'm going to save this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 697000
+			},
+			"text": " And you see how there's an adjacant account associated with"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 700000
+			},
+			"text": " That. I saved the other accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 705000
+			},
+			"text": " Whisper message into ipfests and stored that ipfests hash on"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 709000
+			},
+			"text": " Chain. And the front end was able to figure that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 712000
+			},
+			"text": " That this was a whisper object. Looks at the signature and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 717000
+			},
+			"text": " Drives the cinder address and uses ck as the cinder of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 726000
+			},
+			"text": " Post object. So offer a thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 731000
+			},
+			"text": " And that's pretty much the meat of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 734000
+			},
+			"text": " The rest is i'll just go through and show that you can chat and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 740000
+			},
+			"text": " Comment on any of these on chain posts or whisper messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 745000
+			},
+			"text": " But yeah, so we'll move on. This is a scheme of the ipfests"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 748000
+			},
+			"text": " Content that i save. Pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 753000
+			},
+			"text": " Just an html string and an array of file descriptions and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 756000
+			},
+			"text": " IPfests hashes. And then on the right is the whisper"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 759000
+			},
+			"text": " Object that i've modified a little bit with the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 765000
+			},
+			"text": " Recovery parameter and the hash. The topic that i use for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 769000
+			},
+			"text": " Whisper is the hash of the contract address and the post id"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " That you're whispering to. And these are the libraries that i"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 777000
+			},
+			"text": " Use that were really helpful for me. Obviously web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 781000
+			},
+			"text": " The ipfests teams, ipnode ipfst api exposes pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785000
+			},
+			"text": " Every ipfst command to http. So that was really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 787000
+			},
+			"text": " Hooked web 3 provider, tim colter wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 791000
+			},
+			"text": " So super easy way to sign transactions in your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 794000
+			},
+			"text": " E-flight wallet is what christian wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798000
+			},
+			"text": " And that's a key store and manager for signing transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 802000
+			},
+			"text": " Those that and hooked web 3 go really easily together."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 806000
+			},
+			"text": " And finally reflect tx is the transaction manager i wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " So that's all. If there are any questions, i have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 813000
+			},
+			"text": " A few minutes. Two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 820000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " >> Yeah, we have time for one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 832000
+			},
+			"text": " >> So i think one of the bigger problems we've read it and any"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 838000
+			},
+			"text": " Dread is the matter of how do you get reputation, how do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 842000
+			},
+			"text": " Count karma, and any sort of system on how do you fight"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 846000
+			},
+			"text": " Spam while keeping good content on the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 853000
+			},
+			"text": " How do you plan to solve that in a system without having single"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 857000
+			},
+			"text": " User or single person?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 861000
+			},
+			"text": " >> Yeah, so i think that is a really hard problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 864000
+			},
+			"text": " I don't claim to know the answer, but i think that we should"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 867000
+			},
+			"text": " All anybody interested should try to build something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 870000
+			},
+			"text": " And i'd advocate using some of these tools to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 873000
+			},
+			"text": " I'll also be working on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 875000
+			},
+			"text": " >> Unfortunately, we do not have any more time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 877000
+			},
+			"text": " Thank you so much, counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 887000
+			},
+			"text": " [ Applause ]"
+		}
+	]
+}

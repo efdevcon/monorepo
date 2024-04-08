@@ -1,0 +1,2254 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15360
+			},
+			"text": " I'm honored to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:21,840"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 21840
+			},
+			"text": " I'm Jordan Bailina, I'm a developer and a theorem fan and founder of Gives."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,840",
+				"to": "00:00:26,960"
+			},
+			"offsets": {
+				"from": 21840,
+				"to": 26960
+			},
+			"text": " I'm a little distracted today because just now in Catalonia there were eight members of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,960",
+				"to": "00:00:33,680"
+			},
+			"offsets": {
+				"from": 26960,
+				"to": 33680
+			},
+			"text": " my government, the Tynet for defending democracy and my people right of self-determination."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,680",
+				"to": "00:00:39,400"
+			},
+			"offsets": {
+				"from": 33680,
+				"to": 39400
+			},
+			"text": " We have a huge opportunity to bring this into light's tools, minus streaming Catalonia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,400",
+				"to": "00:00:41,360"
+			},
+			"offsets": {
+				"from": 39400,
+				"to": 41360
+			},
+			"text": " We need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,360",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 41360,
+				"to": 47280
+			},
+			"text": " But I'm here to share a bit of my passion for smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 53200
+			},
+			"text": " In this presentation I will first talk about the Minimy token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:00:59,320"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 59320
+			},
+			"text": " Minim gives you some highlights on how I see the future of token contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,320",
+				"to": "00:01:06,120"
+			},
+			"offsets": {
+				"from": 59320,
+				"to": 66120
+			},
+			"text": " And finally I will briefly introduce my latest developed men, the liquid pledging contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,120",
+				"to": "00:01:11,840"
+			},
+			"offsets": {
+				"from": 66120,
+				"to": 71840
+			},
+			"text": " which we are currently using at Gives."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,840",
+				"to": "00:01:15,520"
+			},
+			"offsets": {
+				"from": 71840,
+				"to": 75520
+			},
+			"text": " Let's start with the Minimy contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,520",
+				"to": "00:01:18,800"
+			},
+			"offsets": {
+				"from": 75520,
+				"to": 78800
+			},
+			"text": " Minimy has been developed a year ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,800",
+				"to": "00:01:26,040"
+			},
+			"offsets": {
+				"from": 78800,
+				"to": 86040
+			},
+			"text": " It follows the ERC20 token standard and has been used extensively by many important projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,040",
+				"to": "00:01:27,760"
+			},
+			"offsets": {
+				"from": 86040,
+				"to": 87760
+			},
+			"text": " in the theorem space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,760",
+				"to": "00:01:30,320"
+			},
+			"offsets": {
+				"from": 87760,
+				"to": 90320
+			},
+			"text": " Here you can see some of these projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,320",
+				"to": "00:01:36,640"
+			},
+			"offsets": {
+				"from": 90320,
+				"to": 96640
+			},
+			"text": " Swarm City, Aragon, Status, Gives, District 0x and many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,640",
+				"to": "00:01:40,480"
+			},
+			"offsets": {
+				"from": 96640,
+				"to": 100480
+			},
+			"text": " So what makes Minimy contract different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,480",
+				"to": "00:01:45,360"
+			},
+			"offsets": {
+				"from": 100480,
+				"to": 105360
+			},
+			"text": " It's more than just a simple ERC20 token contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,360",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 105360,
+				"to": 110520
+			},
+			"text": " The token has many functionalities that any DAB may need."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:54,720"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 114720
+			},
+			"text": " These functionalities includes creating and destroying tokens, black or white listing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,720",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 114720,
+				"to": 118280
+			},
+			"text": " addresses, freezing transfers among others."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:02:05,480"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 125480
+			},
+			"text": " But let's get to the real innovation of what this is a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,480",
+				"to": "00:02:10,160"
+			},
+			"offsets": {
+				"from": 125480,
+				"to": 130160
+			},
+			"text": " The contract tracks the token distribution history on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,160",
+				"to": "00:02:17,920"
+			},
+			"offsets": {
+				"from": 130160,
+				"to": 137920
+			},
+			"text": " This property is what makes Minimy contract different and allows this token to be clonable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,920",
+				"to": "00:02:22,320"
+			},
+			"offsets": {
+				"from": 137920,
+				"to": 142320
+			},
+			"text": " forkable if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,320",
+				"to": "00:02:27,680"
+			},
+			"offsets": {
+				"from": 142320,
+				"to": 147680
+			},
+			"text": " That means that you can create a new token whose initial distribution is the same as"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,680",
+				"to": "00:02:29,440"
+			},
+			"offsets": {
+				"from": 147680,
+				"to": 149440
+			},
+			"text": " the original token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,440",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 149440,
+				"to": 157000
+			},
+			"text": " This cloned fork can be done at any given block in the past or can be set for the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:45,960"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 165960
+			},
+			"text": " For the fork, each cloned token is independent of each other, much like it is a fork or Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,960",
+				"to": "00:02:48,240"
+			},
+			"offsets": {
+				"from": 165960,
+				"to": 168240
+			},
+			"text": " cash fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,240",
+				"to": "00:02:50,960"
+			},
+			"offsets": {
+				"from": 168240,
+				"to": 170960
+			},
+			"text": " All these properties do not count for free."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,960",
+				"to": "00:02:56,800"
+			},
+			"offsets": {
+				"from": 170960,
+				"to": 176800
+			},
+			"text": " And the main disadvantage of choosing Minimy token is that the gas cost of each transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,800",
+				"to": "00:03:03,440"
+			},
+			"offsets": {
+				"from": 176800,
+				"to": 183440
+			},
+			"text": " is a little bit higher than the non-cloned ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,440",
+				"to": "00:03:07,240"
+			},
+			"offsets": {
+				"from": 183440,
+				"to": 187240
+			},
+			"text": " What these functionalities are important for the next use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,240",
+				"to": "00:03:13,440"
+			},
+			"offsets": {
+				"from": 187240,
+				"to": 193440
+			},
+			"text": " The first one, and one of the most important ones, is the voting application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,440",
+				"to": "00:03:16,680"
+			},
+			"offsets": {
+				"from": 193440,
+				"to": 196680
+			},
+			"text": " Use it in many governance systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,680",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 196680,
+				"to": 202880
+			},
+			"text": " This means that at the beginning of a voting process, a cloned token is generated and burned"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:29,560"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 209560
+			},
+			"text": " after the token holder votes, making it impossible for him to vote twice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,560",
+				"to": "00:03:38,480"
+			},
+			"offsets": {
+				"from": 209560,
+				"to": 218480
+			},
+			"text": " Using the token contract this way prevents having to lock the Minimy token while the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,480",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 218480,
+				"to": 221880
+			},
+			"text": " voting takes place."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:47,640"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 227640
+			},
+			"text": " Another interesting application is the distribution of rewards among token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,640",
+				"to": "00:03:53,160"
+			},
+			"offsets": {
+				"from": 227640,
+				"to": 233160
+			},
+			"text": " When you want to distribute rewards on a regular basis, it's possible that you run in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,160",
+				"to": "00:04:01,120"
+			},
+			"offsets": {
+				"from": 233160,
+				"to": 241120
+			},
+			"text": " problem that the distribution of the token may change as token holders trade the coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,120",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 241120,
+				"to": 247720
+			},
+			"text": " Minimy solves this problem because you know the balance of any token holder at any time"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 249160
+			},
+			"text": " in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:15,360"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 255360
+			},
+			"text": " So you can easily create a contract that distributes rewards according to the holdings that each"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,360",
+				"to": "00:04:21,800"
+			},
+			"offsets": {
+				"from": 255360,
+				"to": 261800
+			},
+			"text": " token holder had at the moment each reward was issued."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,800",
+				"to": "00:04:26,200"
+			},
+			"offsets": {
+				"from": 261800,
+				"to": 266200
+			},
+			"text": " The same way you create a voting token, you can also create many functionalities like"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,200",
+				"to": "00:04:28,640"
+			},
+			"offsets": {
+				"from": 266200,
+				"to": 268640
+			},
+			"text": " discount token or reputation token."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:32,480"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 272480
+			},
+			"text": " At discount token, would work this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,480",
+				"to": "00:04:37,240"
+			},
+			"offsets": {
+				"from": 272480,
+				"to": 277240
+			},
+			"text": " The discount token may be used to buy another token at a given discount."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,240",
+				"to": "00:04:45,920"
+			},
+			"offsets": {
+				"from": 277240,
+				"to": 285920
+			},
+			"text": " And it will be redeemed when the new tokens are purchased and the discount is applied."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 293000
+			},
+			"text": " Another usage is to create a token for a spin-off Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:59,040"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 299040
+			},
+			"text": " The Minimy token also makes your project future-proof, making it easy to upgrade to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,040",
+				"to": "00:05:01,440"
+			},
+			"offsets": {
+				"from": 299040,
+				"to": 301440
+			},
+			"text": " a new version of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,440",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 301440,
+				"to": 307880
+			},
+			"text": " But probably the most incredible facet of this token is that anyone can create a clone"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:17,520"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 317520
+			},
+			"text": " token in permissionless way so that anyone can add value to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,520",
+				"to": "00:05:22,640"
+			},
+			"offsets": {
+				"from": 317520,
+				"to": 322640
+			},
+			"text": " Let's talk now a little bit about the future of the token smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,640",
+				"to": "00:05:27,840"
+			},
+			"offsets": {
+				"from": 322640,
+				"to": 327840
+			},
+			"text": " The future clearly points to the ERC to two three standard proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,840",
+				"to": "00:05:30,880"
+			},
+			"offsets": {
+				"from": 327840,
+				"to": 330880
+			},
+			"text": " There is mainly one operation in this standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,880",
+				"to": "00:05:32,880"
+			},
+			"offsets": {
+				"from": 330880,
+				"to": 332880
+			},
+			"text": " That operation is transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,880",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 332880,
+				"to": 337160
+			},
+			"text": " And with this transfer, you can attach data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:42,440"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 342440
+			},
+			"text": " Since the transfer is done, if the recipient is a contract, the token fallback function"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,440",
+				"to": "00:05:46,360"
+			},
+			"offsets": {
+				"from": 342440,
+				"to": 346360
+			},
+			"text": " of the recipient is called with this extra data."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,360",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 346360,
+				"to": 351000
+			},
+			"text": " As you can see, the main idea of this standard is to work very much like ether works right"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 352000
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,080"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356080
+			},
+			"text": " This standard is not ready yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,080",
+				"to": "00:06:04,280"
+			},
+			"offsets": {
+				"from": 356080,
+				"to": 364280
+			},
+			"text": " To get there, the two main points that needs to be resolved are first bug-worths compatibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,280",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 364280,
+				"to": 366200
+			},
+			"text": " which I think is solvable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:11,360"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 371360
+			},
+			"text": " For example, you can always create wrapper contracts in the worst case."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,360",
+				"to": "00:06:18,160"
+			},
+			"offsets": {
+				"from": 371360,
+				"to": 378160
+			},
+			"text": " And the other point that is necessary, in my opinion, is to define a pseudo-instrumental"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,160",
+				"to": "00:06:19,160"
+			},
+			"offsets": {
+				"from": 378160,
+				"to": 379160
+			},
+			"text": " standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,160",
+				"to": "00:06:25,360"
+			},
+			"offsets": {
+				"from": 379160,
+				"to": 385360
+			},
+			"text": " Mainly pseudo-instrumental means that you can ask to a smart contract about the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,360",
+				"to": "00:06:28,400"
+			},
+			"offsets": {
+				"from": 385360,
+				"to": 388400
+			},
+			"text": " of a specific interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,400",
+				"to": "00:06:33,280"
+			},
+			"offsets": {
+				"from": 388400,
+				"to": 393280
+			},
+			"text": " To standardize this, we currently have two very different proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,280",
+				"to": "00:06:37,920"
+			},
+			"offsets": {
+				"from": 393280,
+				"to": 397920
+			},
+			"text": " EAP 165 and EAP 672."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,920",
+				"to": "00:06:42,480"
+			},
+			"offsets": {
+				"from": 397920,
+				"to": 402480
+			},
+			"text": " EAP 165 is very straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,480",
+				"to": "00:06:50,880"
+			},
+			"offsets": {
+				"from": 402480,
+				"to": 410880
+			},
+			"text": " You just define a support interface function that is the smart contract may implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,880",
+				"to": "00:06:55,480"
+			},
+			"offsets": {
+				"from": 410880,
+				"to": 415480
+			},
+			"text": " Then anyone can use this function to query if this contract implements a specific interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,480",
+				"to": "00:06:58,440"
+			},
+			"offsets": {
+				"from": 415480,
+				"to": 418440
+			},
+			"text": " or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,440",
+				"to": "00:07:05,760"
+			},
+			"offsets": {
+				"from": 418440,
+				"to": 425760
+			},
+			"text": " The other proposal, EAP 672, in my opinion, makes more sense and it's much more scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,760",
+				"to": "00:07:14,480"
+			},
+			"offsets": {
+				"from": 425760,
+				"to": 434480
+			},
+			"text": " The idea of EAP 672 is to use reverse ENS to keep a database of interfaces implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,480",
+				"to": "00:07:17,240"
+			},
+			"offsets": {
+				"from": 434480,
+				"to": 437240
+			},
+			"text": " on each existing contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,240",
+				"to": "00:07:21,360"
+			},
+			"offsets": {
+				"from": 437240,
+				"to": 441360
+			},
+			"text": " Let me give you an example of how this would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,360",
+				"to": "00:07:26,720"
+			},
+			"offsets": {
+				"from": 441360,
+				"to": 446720
+			},
+			"text": " Imagine that a contract implements a token fallback interface and the constructor of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,720",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 446720,
+				"to": 454000
+			},
+			"text": " token would add this entry in the reverse ENS."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:40,240"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 460240
+			},
+			"text": " For people that don't know how reverse ENS works, it mainly defines a domain for each"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,240",
+				"to": "00:07:41,240"
+			},
+			"offsets": {
+				"from": 460240,
+				"to": 461240
+			},
+			"text": " address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,240",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 461240,
+				"to": 465520
+			},
+			"text": " Normally this address is assigned to a human readable name, so you can set a name for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:46,720"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 466720
+			},
+			"text": " address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,720",
+				"to": "00:07:52,640"
+			},
+			"offsets": {
+				"from": 466720,
+				"to": 472640
+			},
+			"text": " But you have full control of this special domain assigned to your address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,640",
+				"to": "00:07:55,280"
+			},
+			"offsets": {
+				"from": 472640,
+				"to": 475280
+			},
+			"text": " So you can create subdomains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,280",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 475280,
+				"to": 481440
+			},
+			"text": " In our case, we define a subdomain with the interface name that the contract implements"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:06,240"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 486240
+			},
+			"text": " and make it point to the address responsible for implementing the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,240",
+				"to": "00:08:14,480"
+			},
+			"offsets": {
+				"from": 486240,
+				"to": 494480
+			},
+			"text": " In most cases, this will point to itself if the contract implements the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,480",
+				"to": "00:08:20,880"
+			},
+			"offsets": {
+				"from": 494480,
+				"to": 500880
+			},
+			"text": " But that's not strictly necessary and this is where the standard gets interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,880",
+				"to": "00:08:25,200"
+			},
+			"offsets": {
+				"from": 500880,
+				"to": 505200
+			},
+			"text": " This entry can point to a different proxy contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,200",
+				"to": "00:08:27,280"
+			},
+			"offsets": {
+				"from": 505200,
+				"to": 507280
+			},
+			"text": " Think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,280",
+				"to": "00:08:34,040"
+			},
+			"offsets": {
+				"from": 507280,
+				"to": 514040
+			},
+			"text": " This allows for future functionalities and future interface to be easily supported when"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,040",
+				"to": "00:08:36,560"
+			},
+			"offsets": {
+				"from": 514040,
+				"to": 516560
+			},
+			"text": " they come."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,560",
+				"to": "00:08:42,240"
+			},
+			"offsets": {
+				"from": 516560,
+				"to": 522240
+			},
+			"text": " Coming back to the ERC 2 to 3 standard, one of the biggest shortcomings is that it cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,240",
+				"to": "00:08:48,520"
+			},
+			"offsets": {
+				"from": 522240,
+				"to": 528520
+			},
+			"text": " transfer tokens to the current multi-sec implementation because they are contracts that don't implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,520",
+				"to": "00:08:51,680"
+			},
+			"offsets": {
+				"from": 528520,
+				"to": 531680
+			},
+			"text": " the token fallback function."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,680",
+				"to": "00:08:56,760"
+			},
+			"offsets": {
+				"from": 531680,
+				"to": 536760
+			},
+			"text": " To work around this, a new version of the multi-sec should be deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,760",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 536760,
+				"to": 546280
+			},
+			"text": " But this can't be solved easily with EIP 6.7.2 by creating a reverse DNS entry for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:13,200"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 553200
+			},
+			"text": " eye token fallback interface that points to a proxy contract that just accepts the transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,200",
+				"to": "00:09:14,640"
+			},
+			"offsets": {
+				"from": 553200,
+				"to": 554640
+			},
+			"text": " And this is very exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,640",
+				"to": "00:09:20,880"
+			},
+			"offsets": {
+				"from": 554640,
+				"to": 560880
+			},
+			"text": " This also gives the possibility of executing some code not only when tokens are sent to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,880",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 560880,
+				"to": 567000
+			},
+			"text": " a contract, but also when tokens are sent to a regular account."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:34,320"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 574320
+			},
+			"text": " If you assign a proxy to a regular account, you can, for example, prevent receiving a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,320",
+				"to": "00:09:40,120"
+			},
+			"offsets": {
+				"from": 574320,
+				"to": 580120
+			},
+			"text": " payment you don't want or trigger any code you desire when a regular account receives"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,120",
+				"to": "00:09:47,360"
+			},
+			"offsets": {
+				"from": 580120,
+				"to": 587360
+			},
+			"text": " tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,360",
+				"to": "00:09:53,080"
+			},
+			"offsets": {
+				"from": 587360,
+				"to": 593080
+			},
+			"text": " At this point, if you put together all the minimifunctionality and the ERC 2 to 3 token"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,080",
+				"to": "00:10:00,960"
+			},
+			"offsets": {
+				"from": 593080,
+				"to": 600960
+			},
+			"text": " with the EIP 6.7.2, we get a super flexible contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,960",
+				"to": "00:10:05,680"
+			},
+			"offsets": {
+				"from": 600960,
+				"to": 605680
+			},
+			"text": " This is the new token contract given it is working on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,680",
+				"to": "00:10:08,200"
+			},
+			"offsets": {
+				"from": 605680,
+				"to": 608200
+			},
+			"text": " We call it internally yoga token."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,200",
+				"to": "00:10:11,560"
+			},
+			"offsets": {
+				"from": 608200,
+				"to": 611560
+			},
+			"text": " You can imagine in choir."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,560",
+				"to": "00:10:17,520"
+			},
+			"offsets": {
+				"from": 611560,
+				"to": 617520
+			},
+			"text": " In my opinion, this yoga token could be a perfect candidate to be considered for a standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,520",
+				"to": "00:10:23,200"
+			},
+			"offsets": {
+				"from": 617520,
+				"to": 623200
+			},
+			"text": " Ethereum token, especially if Ethereum-based government systems, like carbon boating or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,200",
+				"to": "00:10:26,280"
+			},
+			"offsets": {
+				"from": 623200,
+				"to": 626280
+			},
+			"text": " protocol boating, are to be developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,280",
+				"to": "00:10:31,860"
+			},
+			"offsets": {
+				"from": 626280,
+				"to": 631860
+			},
+			"text": " Of course, the gas problem may still be an issue, but this can be minimized by enforcing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,860",
+				"to": "00:10:38,760"
+			},
+			"offsets": {
+				"from": 631860,
+				"to": 638760
+			},
+			"text": " only EIPOC snapshots instead of block snapshots."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,760",
+				"to": "00:10:42,160"
+			},
+			"offsets": {
+				"from": 638760,
+				"to": 642160
+			},
+			"text": " How do you finish this talk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,160",
+				"to": "00:10:44,560"
+			},
+			"offsets": {
+				"from": 642160,
+				"to": 644560
+			},
+			"text": " I would like to introduce liquid pledging."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,560",
+				"to": "00:10:49,680"
+			},
+			"offsets": {
+				"from": 644560,
+				"to": 649680
+			},
+			"text": " This is one of the main open source smart contracts that have been developed at GIBF."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,680",
+				"to": "00:10:55,040"
+			},
+			"offsets": {
+				"from": 649680,
+				"to": 655040
+			},
+			"text": " While not exactly a token contract, it extends some powerful functionality that can be applied"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,040",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 655040,
+				"to": 656880
+			},
+			"text": " to any token."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:10:59,800"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 659800
+			},
+			"text": " What's liquid pledging about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,800",
+				"to": "00:11:04,840"
+			},
+			"offsets": {
+				"from": 659800,
+				"to": 664840
+			},
+			"text": " Liquid pledging is where liquid democracy meets fund management."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,840",
+				"to": "00:11:12,320"
+			},
+			"offsets": {
+				"from": 664840,
+				"to": 672320
+			},
+			"text": " Essentially, you can manage your tokens or let someone else manage them with oversight."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,320",
+				"to": "00:11:14,840"
+			},
+			"offsets": {
+				"from": 672320,
+				"to": 674840
+			},
+			"text": " With a normal wallet, you manage your tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,840",
+				"to": "00:11:20,960"
+			},
+			"offsets": {
+				"from": 674840,
+				"to": 680960
+			},
+			"text": " You have a balance, you have transfer functions, inputs, outputs, and that's effectively all."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,960",
+				"to": "00:11:27,440"
+			},
+			"offsets": {
+				"from": 680960,
+				"to": 687440
+			},
+			"text": " With liquid pledging, not only you can manage your own tokens, but you can also manage someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,440",
+				"to": "00:11:29,800"
+			},
+			"offsets": {
+				"from": 687440,
+				"to": 689800
+			},
+			"text": " else's tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,800",
+				"to": "00:11:34,200"
+			},
+			"offsets": {
+				"from": 689800,
+				"to": 694200
+			},
+			"text": " You do this by creating a hierarchical chain of delegation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,200",
+				"to": "00:11:37,520"
+			},
+			"offsets": {
+				"from": 694200,
+				"to": 697520
+			},
+			"text": " You can give the authority of the tokens to a delegate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,520",
+				"to": "00:11:43,120"
+			},
+			"offsets": {
+				"from": 697520,
+				"to": 703120
+			},
+			"text": " The delegate can do the same with a sub-delegate and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,120",
+				"to": "00:11:48,800"
+			},
+			"offsets": {
+				"from": 703120,
+				"to": 708800
+			},
+			"text": " The most important feature is that after good delegate the tokens, you are still empowered"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,800",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 708800,
+				"to": 713000
+			},
+			"text": " to make decisions regarding the use of these tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:57,480"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 717480
+			},
+			"text": " As the owner, you have the complete oversight."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,480",
+				"to": "00:12:04,040"
+			},
+			"offsets": {
+				"from": 717480,
+				"to": 724040
+			},
+			"text": " To make it clear, let me give you an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,040",
+				"to": "00:12:10,640"
+			},
+			"offsets": {
+				"from": 724040,
+				"to": 730640
+			},
+			"text": " One is a community member that's very concerned for security in the blockchain and wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,640",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 730640,
+				"to": 737000
+			},
+			"text": " donate 100 Ether to projects that improve security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:23,480"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 743480
+			},
+			"text": " He wants to do good, but he's a very busy person and don't have the time to analyze"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,480",
+				"to": "00:12:26,280"
+			},
+			"offsets": {
+				"from": 743480,
+				"to": 746280
+			},
+			"text": " all the projects in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,280",
+				"to": "00:12:31,760"
+			},
+			"offsets": {
+				"from": 746280,
+				"to": 751760
+			},
+			"text": " On the other hand, we have Wookie, who is a very active member of the community and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,760",
+				"to": "00:12:34,960"
+			},
+			"offsets": {
+				"from": 751760,
+				"to": 754960
+			},
+			"text": " very much concerned with security."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,960",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 754960,
+				"to": 761360
+			},
+			"text": " He has complete overview of all the projects in the space and now which key projects should"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:43,480"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 763480
+			},
+			"text": " be supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,480",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 763480,
+				"to": 771000
+			},
+			"text": " With liquid pledging, GAB can delegate the authority over his 100 Ether to Bokey so he"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:53,600"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 773600
+			},
+			"text": " can select the right project."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,600",
+				"to": "00:13:01,400"
+			},
+			"offsets": {
+				"from": 773600,
+				"to": 781400
+			},
+			"text": " Bokey decides that the best one to support is the two-factor authentication project for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,400",
+				"to": "00:13:02,840"
+			},
+			"offsets": {
+				"from": 781400,
+				"to": 782840
+			},
+			"text": " my Ether wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,840",
+				"to": "00:13:06,600"
+			},
+			"offsets": {
+				"from": 782840,
+				"to": 786600
+			},
+			"text": " So he pre-commits the Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,600",
+				"to": "00:13:16,160"
+			},
+			"offsets": {
+				"from": 786600,
+				"to": 796160
+			},
+			"text": " At this point, GAB has three days or any time pre-configured to veto if he does not agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,160",
+				"to": "00:13:18,160"
+			},
+			"offsets": {
+				"from": 796160,
+				"to": 798160
+			},
+			"text": " with Bokey's choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,160",
+				"to": "00:13:25,880"
+			},
+			"offsets": {
+				"from": 798160,
+				"to": 805880
+			},
+			"text": " But if he does nothing, my Ether wallet project is a great supporter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,880",
+				"to": "00:13:33,080"
+			},
+			"offsets": {
+				"from": 805880,
+				"to": 813080
+			},
+			"text": " This can be a normal account or can have a smart contract plugin attached where a reviewer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,080",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 813080,
+				"to": 822000
+			},
+			"text": " let's call this reviewer, if GRIF decides that the work is done, the Ether go to Taylor"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 827000
+			},
+			"text": " for successfully implementing two-factor authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,760"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833760
+			},
+			"text": " But if the project does not meet the conditions in the given amount of time, he can cancel"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,760",
+				"to": "00:14:03,400"
+			},
+			"offsets": {
+				"from": 833760,
+				"to": 843400
+			},
+			"text": " the project and the money goes back to Bokey and GAB has again oversight over how the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,400",
+				"to": "00:14:07,400"
+			},
+			"offsets": {
+				"from": 843400,
+				"to": 847400
+			},
+			"text": " 100 Ether can be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,400",
+				"to": "00:14:12,080"
+			},
+			"offsets": {
+				"from": 847400,
+				"to": 852080
+			},
+			"text": " As you can see, this contract has many advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,080",
+				"to": "00:14:15,960"
+			},
+			"offsets": {
+				"from": 852080,
+				"to": 855960
+			},
+			"text": " The owner has full control of the tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,960",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 855960,
+				"to": 860000
+			},
+			"text": " Also transparency and knowledge of where their funds go."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,360"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866360
+			},
+			"text": " I want to mention that this contract is also extensible contract via plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,360",
+				"to": "00:14:32,120"
+			},
+			"offsets": {
+				"from": 866360,
+				"to": 872120
+			},
+			"text": " In these plugins, you cannot specific condition like token allocation when a project is found"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,120",
+				"to": "00:14:37,400"
+			},
+			"offsets": {
+				"from": 872120,
+				"to": 877400
+			},
+			"text": " or setting a hard pack for a given project."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,400",
+				"to": "00:14:44,240"
+			},
+			"offsets": {
+				"from": 877400,
+				"to": 884240
+			},
+			"text": " The liquid-plagic contract can be used not only for donations, but also for organizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,240",
+				"to": "00:14:45,240"
+			},
+			"offsets": {
+				"from": 884240,
+				"to": 885240
+			},
+			"text": " management."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,240",
+				"to": "00:14:51,440"
+			},
+			"offsets": {
+				"from": 885240,
+				"to": 891440
+			},
+			"text": " In an organization, the investors delegate the funds to CEO, the CEO delegates the budget"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,440",
+				"to": "00:14:56,880"
+			},
+			"offsets": {
+				"from": 891440,
+				"to": 896880
+			},
+			"text": " to the directors, the CTO delegates to the system department and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,880",
+				"to": "00:15:03,520"
+			},
+			"offsets": {
+				"from": 896880,
+				"to": 903520
+			},
+			"text": " And the investors still have full control on where the funds are spent and invested."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,520",
+				"to": "00:15:10,240"
+			},
+			"offsets": {
+				"from": 903520,
+				"to": 910240
+			},
+			"text": " The same idea applies in fund management where a delegate procomits the Ether to a specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,240",
+				"to": "00:15:16,960"
+			},
+			"offsets": {
+				"from": 910240,
+				"to": 916960
+			},
+			"text": " project and the investors have the last word on where the investment goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,960",
+				"to": "00:15:19,520"
+			},
+			"offsets": {
+				"from": 916960,
+				"to": 919520
+			},
+			"text": " There are many other great ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,520",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 919520,
+				"to": 926760
+			},
+			"text": " One that I like a lot is liquid lending and by the way, this is done from a startup from"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:27,760"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 927760
+			},
+			"text": " Mexico."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,760",
+				"to": "00:15:30,160"
+			},
+			"offsets": {
+				"from": 927760,
+				"to": 930160
+			},
+			"text": " It's called Aurora Libre."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,160",
+				"to": "00:15:40,840"
+			},
+			"offsets": {
+				"from": 930160,
+				"to": 940840
+			},
+			"text": " In this concept, a microcredit is made via a hierarchical delegation chain of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,840",
+				"to": "00:15:46,600"
+			},
+			"offsets": {
+				"from": 940840,
+				"to": 946600
+			},
+			"text": " To wrap up, I would like to leave you with three key takeaways."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,600",
+				"to": "00:15:53,800"
+			},
+			"offsets": {
+				"from": 946600,
+				"to": 953800
+			},
+			"text": " First, if you need an advanced token contract, consider the minimi contract which has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,800",
+				"to": "00:15:56,240"
+			},
+			"offsets": {
+				"from": 953800,
+				"to": 956240
+			},
+			"text": " fully tested and implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,240",
+				"to": "00:15:59,280"
+			},
+			"offsets": {
+				"from": 956240,
+				"to": 959280
+			},
+			"text": " Second, the yoga token."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,280",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 959280,
+				"to": 966960
+			},
+			"text": " It brings together the features of minimi plus the ERC223 with EIP672."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,960",
+				"to": "00:16:11,960"
+			},
+			"offsets": {
+				"from": 966960,
+				"to": 971960
+			},
+			"text": " This is a powerful token to be considered as a standard for the Ethereum community once"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,960",
+				"to": "00:16:14,640"
+			},
+			"offsets": {
+				"from": 971960,
+				"to": 974640
+			},
+			"text": " the standards are approved."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,640",
+				"to": "00:16:23,440"
+			},
+			"offsets": {
+				"from": 974640,
+				"to": 983440
+			},
+			"text": " And third, the liquid pledging contract could be ideal for many usages."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,440",
+				"to": "00:16:29,720"
+			},
+			"offsets": {
+				"from": 983440,
+				"to": 989720
+			},
+			"text": " It's especially sweeter or blockchain-based donation systems that can make a world a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,720",
+				"to": "00:16:38,360"
+			},
+			"offsets": {
+				"from": 989720,
+				"to": 998360
+			},
+			"text": " better place, but it could also add interesting functionalities for many dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,360",
+				"to": "00:16:41,760"
+			},
+			"offsets": {
+				"from": 998360,
+				"to": 1001760
+			},
+			"text": " And now we have reached the end of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,760",
+				"to": "00:16:44,520"
+			},
+			"offsets": {
+				"from": 1001760,
+				"to": 1004520
+			},
+			"text": " I welcome comments and feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,520",
+				"to": "00:16:50,640"
+			},
+			"offsets": {
+				"from": 1004520,
+				"to": 1010640
+			},
+			"text": " Please feel free to reach out to me, to grief or to any give with team members."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,640",
+				"to": "00:16:57,360"
+			},
+			"offsets": {
+				"from": 1010640,
+				"to": 1017360
+			},
+			"text": " If you want to learn more about our open source contracts, you can always check or give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,360",
+				"to": "00:17:00,920"
+			},
+			"offsets": {
+				"from": 1017360,
+				"to": 1020920
+			},
+			"text": " dot IO website."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,920",
+				"to": "00:17:04,120"
+			},
+			"offsets": {
+				"from": 1020920,
+				"to": 1024120
+			},
+			"text": " Here are some links."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,120",
+				"to": "00:17:08,440"
+			},
+			"offsets": {
+				"from": 1024120,
+				"to": 1028440
+			},
+			"text": " And thank you to the foundation for having me here and thank you to all of you for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,440",
+				"to": "00:17:09,440"
+			},
+			"offsets": {
+				"from": 1028440,
+				"to": 1029440
+			},
+			"text": " attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,440",
+				"to": "00:17:23,440"
+			},
+			"offsets": {
+				"from": 1029440,
+				"to": 1043440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,440",
+				"to": "00:17:25,700"
+			},
+			"offsets": {
+				"from": 1043440,
+				"to": 1045700
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

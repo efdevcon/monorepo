@@ -1,0 +1,3046 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,500"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5500
+			},
+			"text": " >> Great. So I'm going to be talking about counterfactual. It's an open source initiative"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,500",
+				"to": "00:00:09,840"
+			},
+			"offsets": {
+				"from": 5500,
+				"to": 9840
+			},
+			"text": " to make secure off-kin applications easy to build in Ethereum. So you just saw two talks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,840",
+				"to": "00:00:13,720"
+			},
+			"offsets": {
+				"from": 9840,
+				"to": 13720
+			},
+			"text": " about building a payment channel network and about building a production application specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,720",
+				"to": "00:00:20,460"
+			},
+			"offsets": {
+				"from": 13720,
+				"to": 20460
+			},
+			"text": " state channel, casino game kind of application. We want to try and make those types of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,460",
+				"to": "00:00:24,600"
+			},
+			"offsets": {
+				"from": 20460,
+				"to": 24600
+			},
+			"text": " as easy as possible to build for the developers that build it. So Jeremy, for example, from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,600",
+				"to": "00:00:28,540"
+			},
+			"offsets": {
+				"from": 24600,
+				"to": 28540
+			},
+			"text": " Fundfarer's our target kind of developer that we want to like help make their life easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,540",
+				"to": "00:00:33,520"
+			},
+			"offsets": {
+				"from": 28540,
+				"to": 33520
+			},
+			"text": " and the whole Fundfarer team in front of me. So first of all, who am I? My name is Liam"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,520",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 33520,
+				"to": 39200
+			},
+			"text": " Horn. I am the co-founder or one of the co-founders of L4. We're a company that tried to do a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 44000
+			},
+			"text": " in this industry, basically promoting kind of the web three vision. We helped build this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 49000
+			},
+			"text": " project. We helped build ETH Global and a handful of other initiatives. But I'm also"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:53,520"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 53520
+			},
+			"text": " an engineer on the counterfactual project. The distinction for which is not even so clear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,520",
+				"to": "00:00:57,760"
+			},
+			"offsets": {
+				"from": 53520,
+				"to": 57760
+			},
+			"text": " but I'm going to try to articulate in this talk. So what am I talking about? I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,760",
+				"to": "00:01:01,580"
+			},
+			"offsets": {
+				"from": 57760,
+				"to": 61580
+			},
+			"text": " to go through four things. Basically, what are generalized state channels? You just saw"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,580",
+				"to": "00:01:05,700"
+			},
+			"offsets": {
+				"from": 61580,
+				"to": 65700
+			},
+			"text": " use cases of payment channels and you saw use cases of what I'm going to show is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,700",
+				"to": "00:01:09,700"
+			},
+			"offsets": {
+				"from": 65700,
+				"to": 69700
+			},
+			"text": " application specific state channel. I want to show what generalized state channels are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,700",
+				"to": "00:01:15,980"
+			},
+			"offsets": {
+				"from": 69700,
+				"to": 75980
+			},
+			"text": " A layer two solution that uses this technique in general for blockchain transactions. What"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,980",
+				"to": "00:01:20,540"
+			},
+			"offsets": {
+				"from": 75980,
+				"to": 80540
+			},
+			"text": " counterfactual the project is. I explain how we've approached engineering a framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,540",
+				"to": "00:01:27,100"
+			},
+			"offsets": {
+				"from": 80540,
+				"to": 87100
+			},
+			"text": " for this stuff and then how you can too. So basic agenda, background, generalized state"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,100",
+				"to": "00:01:34,460"
+			},
+			"offsets": {
+				"from": 87100,
+				"to": 94460
+			},
+			"text": " channels, engineering and counterfactual. Let's jump in. Initially, when I first came into"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,460",
+				"to": "00:01:40,100"
+			},
+			"offsets": {
+				"from": 94460,
+				"to": 100100
+			},
+			"text": " this space, I asked the question of why is it not the case that this stuff is being used"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,100",
+				"to": "00:01:45,820"
+			},
+			"offsets": {
+				"from": 100100,
+				"to": 105820
+			},
+			"text": " by everyday people yet. The answer I got was basically that scalability is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,820",
+				"to": "00:01:49,340"
+			},
+			"offsets": {
+				"from": 105820,
+				"to": 109340
+			},
+			"text": " This was about a year and a half ago. There were a handful of problems that needed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,340",
+				"to": "00:01:55,940"
+			},
+			"offsets": {
+				"from": 109340,
+				"to": 115940
+			},
+			"text": " be worked on, including sharding. One of them was state channels. I was wondering why is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,940",
+				"to": "00:02:00,340"
+			},
+			"offsets": {
+				"from": 115940,
+				"to": 120340
+			},
+			"text": " it not the case that anyone is tackling this, not necessarily as an app specific technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,340",
+				"to": "00:02:06,220"
+			},
+			"offsets": {
+				"from": 120340,
+				"to": 126220
+			},
+			"text": " you can do to make your app go faster, but as a general solution for scaling on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,220",
+				"to": "00:02:09,460"
+			},
+			"offsets": {
+				"from": 126220,
+				"to": 129460
+			},
+			"text": " Why is it not the case that anyone that wants to build an application can take advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,460",
+				"to": "00:02:14,380"
+			},
+			"offsets": {
+				"from": 129460,
+				"to": 134380
+			},
+			"text": " of this technique to make their application just by default be really fast? I stumbled"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,380",
+				"to": "00:02:19,620"
+			},
+			"offsets": {
+				"from": 134380,
+				"to": 139620
+			},
+			"text": " upon this post, got introduced to the guy that wrote it, Jeff Coleman, and realized a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,620",
+				"to": "00:02:23,900"
+			},
+			"offsets": {
+				"from": 139620,
+				"to": 143900
+			},
+			"text": " lot of the ideas were there for how you could build state channels into a layer two kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,900",
+				"to": "00:02:27,900"
+			},
+			"offsets": {
+				"from": 143900,
+				"to": 147900
+			},
+			"text": " of scaling technique, but not a lot of the implementation had been there yet. I wondered"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,900",
+				"to": "00:02:35,740"
+			},
+			"offsets": {
+				"from": 147900,
+				"to": 155740
+			},
+			"text": " why. After lots of thought and research, we basically realized that this is an opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,740",
+				"to": "00:02:40,340"
+			},
+			"offsets": {
+				"from": 155740,
+				"to": 160340
+			},
+			"text": " to try and build something great. What we did is we tackled it very much with the mindset"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,340",
+				"to": "00:02:45,940"
+			},
+			"offsets": {
+				"from": 160340,
+				"to": 165940
+			},
+			"text": " of, like I mentioned, how do you build a layer two scalability solution using this technique?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,940",
+				"to": "00:02:51,340"
+			},
+			"offsets": {
+				"from": 165940,
+				"to": 171340
+			},
+			"text": " Generalize enough to allow for arbitrary applications with maximum off-chain interactions without"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,340",
+				"to": "00:02:55,660"
+			},
+			"offsets": {
+				"from": 171340,
+				"to": 175660
+			},
+			"text": " necessarily having to build it as a one-off kind of implementation technique for your"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,660",
+				"to": "00:03:02,020"
+			},
+			"offsets": {
+				"from": 175660,
+				"to": 182020
+			},
+			"text": " particular application. We started off by writing this paper, which is basically the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,020",
+				"to": "00:03:07,740"
+			},
+			"offsets": {
+				"from": 182020,
+				"to": 187740
+			},
+			"text": " formal version of the post that Jeff had put on. It goes in a ton of depth of how you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,740",
+				"to": "00:03:11,540"
+			},
+			"offsets": {
+				"from": 187740,
+				"to": 191540
+			},
+			"text": " do this, what if the security models need to be thinking about, what are the general"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,540",
+				"to": "00:03:17,100"
+			},
+			"offsets": {
+				"from": 191540,
+				"to": 197100
+			},
+			"text": " parameters you want to be aiming for, how can you maximally have off-chain interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,100",
+				"to": "00:03:20,700"
+			},
+			"offsets": {
+				"from": 197100,
+				"to": 200700
+			},
+			"text": " using state channels for any application? A very abstract kind of notion, but one that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,700",
+				"to": "00:03:24,860"
+			},
+			"offsets": {
+				"from": 200700,
+				"to": 204860
+			},
+			"text": " if you can get right enables an enormously powerful technique to be used, and I'll show"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,860",
+				"to": "00:03:32,220"
+			},
+			"offsets": {
+				"from": 204860,
+				"to": 212220
+			},
+			"text": " you how it's useful. So that's a long paper, but it basically summarizes this into some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,220",
+				"to": "00:03:38,060"
+			},
+			"offsets": {
+				"from": 212220,
+				"to": 218060
+			},
+			"text": " very simple idea. So I'm going to go through it very briefly. You already know what payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,060",
+				"to": "00:03:43,540"
+			},
+			"offsets": {
+				"from": 218060,
+				"to": 223540
+			},
+			"text": " channels are, but just to set up, you're pretty familiar with this technique. You have a blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,540",
+				"to": "00:03:49,060"
+			},
+			"offsets": {
+				"from": 223540,
+				"to": 229060
+			},
+			"text": " you put some money into a channel, A balance, B balance, you wait some time off-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,060",
+				"to": "00:03:54,700"
+			},
+			"offsets": {
+				"from": 229060,
+				"to": 234700
+			},
+			"text": " Alice and Bob move basically over some communication protocol, they update some balances between"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,700",
+				"to": "00:03:59,620"
+			},
+			"offsets": {
+				"from": 234700,
+				"to": 239620
+			},
+			"text": " them, you know, from version zero all the way up to end basically. And then whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,620",
+				"to": "00:04:04,100"
+			},
+			"offsets": {
+				"from": 239620,
+				"to": 244100
+			},
+			"text": " they're done, they go back to the chain, they put that latest state on, and the balances"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,100",
+				"to": "00:04:09,060"
+			},
+			"offsets": {
+				"from": 244100,
+				"to": 249060
+			},
+			"text": " get paid out. We're very familiar with that here. And so that's a payment channel. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,060",
+				"to": "00:04:13,740"
+			},
+			"offsets": {
+				"from": 249060,
+				"to": 253740
+			},
+			"text": " what's an app-specific state channel? What's fun for doing? It's very similar, but what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,740",
+				"to": "00:04:18,020"
+			},
+			"offsets": {
+				"from": 253740,
+				"to": 258020
+			},
+			"text": " they're doing is that they have arbitrary state. They have different state per application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,020",
+				"to": "00:04:21,660"
+			},
+			"offsets": {
+				"from": 258020,
+				"to": 261660
+			},
+			"text": " whether it's rule, error, black check, or whatever they might be playing. And they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,660",
+				"to": "00:04:27,460"
+			},
+			"offsets": {
+				"from": 261660,
+				"to": 267460
+			},
+			"text": " this added thing on the chain, which is they have the application logic to handle disputes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,460",
+				"to": "00:04:31,620"
+			},
+			"offsets": {
+				"from": 267460,
+				"to": 271620
+			},
+			"text": " essentially, or cases where someone's deviating from the protocol and they need to figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,620",
+				"to": "00:04:35,220"
+			},
+			"offsets": {
+				"from": 271620,
+				"to": 275220
+			},
+			"text": " who won the game actually. That's how they get the provable fairness. It was very similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,220",
+				"to": "00:04:40,460"
+			},
+			"offsets": {
+				"from": 275220,
+				"to": 280460
+			},
+			"text": " in a payment channel. So that's what you can do with application state, but what's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,460",
+				"to": "00:04:44,460"
+			},
+			"offsets": {
+				"from": 280460,
+				"to": 284460
+			},
+			"text": " generalized state channel? And as I mentioned, you have the application logic. But what"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,460",
+				"to": "00:04:48,260"
+			},
+			"offsets": {
+				"from": 284460,
+				"to": 288260
+			},
+			"text": " is the generalized state channel? In a generalized state channel, you have the same setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,260",
+				"to": "00:04:53,460"
+			},
+			"offsets": {
+				"from": 288260,
+				"to": 293460
+			},
+			"text": " blockchain contract. You put some deposit in there, and again, the E3 or C20, whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,460",
+				"to": "00:04:58,380"
+			},
+			"offsets": {
+				"from": 293460,
+				"to": 298380
+			},
+			"text": " it is you want to be using off-chain. But you do this interesting thing. As time goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,380",
+				"to": "00:05:04,380"
+			},
+			"offsets": {
+				"from": 298380,
+				"to": 304380
+			},
+			"text": " on, you actually create for yourself, you kind of sign transactions that purport to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,380",
+				"to": "00:05:11,620"
+			},
+			"offsets": {
+				"from": 304380,
+				"to": 311620
+			},
+			"text": " allocating some subset of that state, the sub-deposit, into what we can call an off-chain application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,620",
+				"to": "00:05:15,220"
+			},
+			"offsets": {
+				"from": 311620,
+				"to": 315220
+			},
+			"text": " And you do this in very much the same way in the application specific state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,220",
+				"to": "00:05:20,940"
+			},
+			"offsets": {
+				"from": 315220,
+				"to": 320940
+			},
+			"text": " But because you can push it down to the application agnostic to what's on-chain, you can do it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,940",
+				"to": "00:05:26,980"
+			},
+			"offsets": {
+				"from": 320940,
+				"to": 326980
+			},
+			"text": " multiple times. So the key benefit is that you can now install and update and uninstall"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,980",
+				"to": "00:05:31,660"
+			},
+			"offsets": {
+				"from": 326980,
+				"to": 331660
+			},
+			"text": " applications, arbitrary applications that you would say, you know, a rule of game, take"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,660",
+				"to": "00:05:38,380"
+			},
+			"offsets": {
+				"from": 331660,
+				"to": 338380
+			},
+			"text": " that toe, you know, blackjack payment channel, whatever you want, in the same on-chain state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,380",
+				"to": "00:05:42,180"
+			},
+			"offsets": {
+				"from": 338380,
+				"to": 342180
+			},
+			"text": " channel. And with the same single contract on-chain, you can do multiple applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,180",
+				"to": "00:05:45,780"
+			},
+			"offsets": {
+				"from": 342180,
+				"to": 345780
+			},
+			"text": " That's the key insight of generalized state channels. It's very cool. If you do it this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,780",
+				"to": "00:05:50,700"
+			},
+			"offsets": {
+				"from": 345780,
+				"to": 350700
+			},
+			"text": " way, then it becomes less of a quick technique for one app. It becomes a generalized scalability"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,700",
+				"to": "00:05:56,460"
+			},
+			"offsets": {
+				"from": 350700,
+				"to": 356460
+			},
+			"text": " solution. It's very powerful. And then disputes, actually, or deviation from the protocol are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,460",
+				"to": "00:06:01,780"
+			},
+			"offsets": {
+				"from": 356460,
+				"to": 361780
+			},
+			"text": " very similar to the application specific case. You just take one of those states, whichever"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,780",
+				"to": "00:06:07,940"
+			},
+			"offsets": {
+				"from": 361780,
+				"to": 367940
+			},
+			"text": " one is the one that's being, you need to kind of ensure the fairness of and educate on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,940",
+				"to": "00:06:13,180"
+			},
+			"offsets": {
+				"from": 367940,
+				"to": 373180
+			},
+			"text": " But the key idea is that off-chain, you're installing and un-installing applications with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,180",
+				"to": "00:06:20,420"
+			},
+			"offsets": {
+				"from": 373180,
+				"to": 380420
+			},
+			"text": " zero fees, no on-chain transactions, and that's great. So two FAQs that I always get"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,420",
+				"to": "00:06:25,420"
+			},
+			"offsets": {
+				"from": 380420,
+				"to": 385420
+			},
+			"text": " asked, one, how do you ensure all the sub-deposits add up? Isn't this really complicated? Yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,420",
+				"to": "00:06:31,180"
+			},
+			"offsets": {
+				"from": 385420,
+				"to": 391180
+			},
+			"text": " it's complicated, and that's what warrants, as Jeremy rightly mentioned, a protocol to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,180",
+				"to": "00:06:36,300"
+			},
+			"offsets": {
+				"from": 391180,
+				"to": 396300
+			},
+			"text": " be defined. You need a protocol for participants of a state channel to speak to each other to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,300",
+				"to": "00:06:41,500"
+			},
+			"offsets": {
+				"from": 396300,
+				"to": 401500
+			},
+			"text": " say, how do you install an application? How do we uninstall it? What are we saying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,500",
+				"to": "00:06:44,820"
+			},
+			"offsets": {
+				"from": 401500,
+				"to": 404820
+			},
+			"text": " each other? What are the specific commitments? And it gets a little bit complicated, so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,820",
+				"to": "00:06:49,140"
+			},
+			"offsets": {
+				"from": 404820,
+				"to": 409140
+			},
+			"text": " need a well-specified protocol, which I will get into. And the second thing is, and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,140",
+				"to": "00:06:52,300"
+			},
+			"offsets": {
+				"from": 409140,
+				"to": 412300
+			},
+			"text": " been a bit of misinterpretation if you've seen the paper, is this notion, don't you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,300",
+				"to": "00:06:56,660"
+			},
+			"offsets": {
+				"from": 412300,
+				"to": 416660
+			},
+			"text": " to deploy the contract every time, and isn't it absurdly expensive? The answer is no very"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,660",
+				"to": "00:07:00,820"
+			},
+			"offsets": {
+				"from": 416660,
+				"to": 420820
+			},
+			"text": " similar to Jeremy in practice. Of course, you deploy a contract on-chain that has the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,820",
+				"to": "00:07:05,300"
+			},
+			"offsets": {
+				"from": 420820,
+				"to": 425300
+			},
+			"text": " rules that are finding the game ahead of time, but that's a one-time thing for application."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,300",
+				"to": "00:07:10,380"
+			},
+			"offsets": {
+				"from": 425300,
+				"to": 430380
+			},
+			"text": " We have introduced in the paper a notion of this term that's called counterfactual instantiation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,380",
+				"to": "00:07:15,060"
+			},
+			"offsets": {
+				"from": 430380,
+				"to": 435060
+			},
+			"text": " which maybe you've heard, which allows you to do this off-chain, but it's a useful technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,060",
+				"to": "00:07:18,580"
+			},
+			"offsets": {
+				"from": 435060,
+				"to": 438580
+			},
+			"text": " for performance and upgradability, but it's not necessarily a must-have. So it's very"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,580",
+				"to": "00:07:24,740"
+			},
+			"offsets": {
+				"from": 438580,
+				"to": 444740
+			},
+			"text": " performant in much the same way as an app-specific state channel might be. So great. So very quickly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,740",
+				"to": "00:07:28,660"
+			},
+			"offsets": {
+				"from": 444740,
+				"to": 448660
+			},
+			"text": " what is counterfactual, and what are we doing about all this? Why is this something we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,660",
+				"to": "00:07:35,020"
+			},
+			"offsets": {
+				"from": 448660,
+				"to": 455020
+			},
+			"text": " talking about? Basically, the most important thing is that we are an open-source project."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,020",
+				"to": "00:07:39,500"
+			},
+			"offsets": {
+				"from": 455020,
+				"to": 459500
+			},
+			"text": " Our goal, our vision, is that these types of applications, like I've mentioned, should"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,500",
+				"to": "00:07:44,020"
+			},
+			"offsets": {
+				"from": 459500,
+				"to": 464020
+			},
+			"text": " be as easy as possible to build. In the future, it should be the case that a developer goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,020",
+				"to": "00:07:49,420"
+			},
+			"offsets": {
+				"from": 464020,
+				"to": 469420
+			},
+			"text": " to a hackathon and says, \"I want to write an application and I want it to be really fast,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,420",
+				"to": "00:07:53,180"
+			},
+			"offsets": {
+				"from": 469420,
+				"to": 473180
+			},
+			"text": " and they should be able to build a great user experience in 36 hours. It should be as simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,180",
+				"to": "00:07:58,020"
+			},
+			"offsets": {
+				"from": 473180,
+				"to": 478020
+			},
+			"text": " as possible for that to be the case. So our vision is to get to that. Our mission, in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,020",
+				"to": "00:08:01,460"
+			},
+			"offsets": {
+				"from": 478020,
+				"to": 481460
+			},
+			"text": " terms of what the project's goals are, is to build that framework. We want to make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,460",
+				"to": "00:08:06,180"
+			},
+			"offsets": {
+				"from": 481460,
+				"to": 486180
+			},
+			"text": " as easy as possible for this entire community to benefit from this technique that is described."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,180",
+				"to": "00:08:11,460"
+			},
+			"offsets": {
+				"from": 486180,
+				"to": 491460
+			},
+			"text": " And so we're not a company, we're not any particular business model behind this. We're"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,460",
+				"to": "00:08:15,620"
+			},
+			"offsets": {
+				"from": 491460,
+				"to": 495620
+			},
+			"text": " an open-source project trying our best to give something to the community, and so that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,620",
+				"to": "00:08:21,460"
+			},
+			"offsets": {
+				"from": 495620,
+				"to": 501460
+			},
+			"text": " the key takeaway of the project. So what is encompassed within that is three core pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,460",
+				"to": "00:08:27,380"
+			},
+			"offsets": {
+				"from": 501460,
+				"to": 507380
+			},
+			"text": " of infrastructure that basically needed to be implemented and need to be available for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,380",
+				"to": "00:08:34,060"
+			},
+			"offsets": {
+				"from": 507380,
+				"to": 514060
+			},
+			"text": " people to build using this technique. And they are a minimalist contracts layer. The absolute"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,060",
+				"to": "00:08:40,540"
+			},
+			"offsets": {
+				"from": 514060,
+				"to": 520540
+			},
+			"text": " most bare bones, simple to read, simple to deploy, small ends of code, set of contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,540",
+				"to": "00:08:44,540"
+			},
+			"offsets": {
+				"from": 520540,
+				"to": 524540
+			},
+			"text": " that need to be there, on top of which you can design a protocol that does kind of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,540",
+				"to": "00:08:50,420"
+			},
+			"offsets": {
+				"from": 524540,
+				"to": 530420
+			},
+			"text": " I described. A protocol for state channels, you need something that defines how you install"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,420",
+				"to": "00:08:54,820"
+			},
+			"offsets": {
+				"from": 530420,
+				"to": 534820
+			},
+			"text": " applications, how you want to install them, how you update them, and an application library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,820",
+				"to": "00:08:58,340"
+			},
+			"offsets": {
+				"from": 534820,
+				"to": 538340
+			},
+			"text": " something that allows developers to interface using this protocol. So you can think very"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,340",
+				"to": "00:09:02,420"
+			},
+			"offsets": {
+				"from": 538340,
+				"to": 542420
+			},
+			"text": " similarly, this kind of looks like the Web3 stack, in the sense that you have the underlying"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,420",
+				"to": "00:09:05,740"
+			},
+			"offsets": {
+				"from": 542420,
+				"to": 545740
+			},
+			"text": " blockchain, you have the protocol layer following of Ethereum, you have an application library"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,740",
+				"to": "00:09:10,740"
+			},
+			"offsets": {
+				"from": 545740,
+				"to": 550740
+			},
+			"text": " like Web3, we're trying to emulate a similar developer experience for layer two. So let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,740",
+				"to": "00:09:16,060"
+			},
+			"offsets": {
+				"from": 550740,
+				"to": 556060
+			},
+			"text": " dive into some of the details of how we've approached it and what it looks like. First"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,060",
+				"to": "00:09:22,780"
+			},
+			"offsets": {
+				"from": 556060,
+				"to": 562780
+			},
+			"text": " of all, the on-chain library, the actual contracts layer consists of a very basic on-chain library"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,780",
+				"to": "00:09:26,300"
+			},
+			"offsets": {
+				"from": 562780,
+				"to": 566300
+			},
+			"text": " for conditional transactions. You may have heard of the term conditional payments or immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,300",
+				"to": "00:09:34,180"
+			},
+			"offsets": {
+				"from": 566300,
+				"to": 574180
+			},
+			"text": " a transfer. Basically the idea here is that you put the most minimal component for unanimous"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,180",
+				"to": "00:09:39,940"
+			},
+			"offsets": {
+				"from": 574180,
+				"to": 579940
+			},
+			"text": " consent as possible in the chain, a multi signature wallet that achieves N of N consensus. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,940",
+				"to": "00:09:43,780"
+			},
+			"offsets": {
+				"from": 579940,
+				"to": 583780
+			},
+			"text": " then what we have in addition to that is a very basic way to use that multi signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,780",
+				"to": "00:09:49,220"
+			},
+			"offsets": {
+				"from": 583780,
+				"to": 589220
+			},
+			"text": " wallet to sign conditional transactions. And using kind of the best in class research from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,220",
+				"to": "00:09:54,340"
+			},
+			"offsets": {
+				"from": 589220,
+				"to": 594340
+			},
+			"text": " a lot of the people that you're going to hear I think after me and have already spoken about"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,340",
+				"to": "00:09:58,860"
+			},
+			"offsets": {
+				"from": 594340,
+				"to": 598860
+			},
+			"text": " how you can adjudicate a state channel in a very optimal kind of way. So we've taken"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,860",
+				"to": "00:10:02,660"
+			},
+			"offsets": {
+				"from": 598860,
+				"to": 602660
+			},
+			"text": " a lot of the best research from all those things and built a simple component to enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,660",
+				"to": "00:10:08,940"
+			},
+			"offsets": {
+				"from": 602660,
+				"to": 608940
+			},
+			"text": " this to work on chain. And we've already released all of this. The great thing is it's built"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,940",
+				"to": "00:10:12,300"
+			},
+			"offsets": {
+				"from": 608940,
+				"to": 612300
+			},
+			"text": " to support all of this stuff, unidirectional payment channels, bidirectional payment channels,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,300",
+				"to": "00:10:18,340"
+			},
+			"offsets": {
+				"from": 612300,
+				"to": 618340
+			},
+			"text": " N-party, hub and spoke, plasma, ETH, ERC20, 2721, you name it. The main idea is that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,340",
+				"to": "00:10:22,900"
+			},
+			"offsets": {
+				"from": 618340,
+				"to": 622900
+			},
+			"text": " not assuming any particular type of transaction besides the most primitive unit of transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,900",
+				"to": "00:10:28,820"
+			},
+			"offsets": {
+				"from": 622900,
+				"to": 628820
+			},
+			"text": " and Ethereum to value data. That's all that we're assuming, which means as time goes on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,820",
+				"to": "00:10:32,020"
+			},
+			"offsets": {
+				"from": 628820,
+				"to": 632020
+			},
+			"text": " this framework is agnostic to protocol updates. As long as you don't change the idea of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,020",
+				"to": "00:10:38,820"
+			},
+			"offsets": {
+				"from": 632020,
+				"to": 638820
+			},
+			"text": " transaction on Ethereum the protocol will still run and we can incrementally improve this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,820",
+				"to": "00:10:42,660"
+			},
+			"offsets": {
+				"from": 638820,
+				"to": 642660
+			},
+			"text": " protocol as Ethereum develops over time without necessarily having to have massive upgrades"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,660",
+				"to": "00:10:51,540"
+			},
+			"offsets": {
+				"from": 642660,
+				"to": 651540
+			},
+			"text": " per EIP, for example. What we've done separately to the generic on-chain components, we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,540",
+				"to": "00:10:56,460"
+			},
+			"offsets": {
+				"from": 651540,
+				"to": 656460
+			},
+			"text": " created a very basic state machine-based library and you can see again from first presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,460",
+				"to": "00:11:00,420"
+			},
+			"offsets": {
+				"from": 656460,
+				"to": 660420
+			},
+			"text": " this is kind of what they've landed on too in terms of what's the optimal way of describing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,420",
+				"to": "00:11:07,660"
+			},
+			"offsets": {
+				"from": 660420,
+				"to": 667660
+			},
+			"text": " applications. State, action, new state. This is the type of way in which we are assuming"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,660",
+				"to": "00:11:12,940"
+			},
+			"offsets": {
+				"from": 667660,
+				"to": 672940
+			},
+			"text": " someone can design their application and we support this out of the box. We've also"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,940",
+				"to": "00:11:18,380"
+			},
+			"offsets": {
+				"from": 672940,
+				"to": 678380
+			},
+			"text": " added three very simple methods to enable your blockchain application to kind of benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,380",
+				"to": "00:11:24,260"
+			},
+			"offsets": {
+				"from": 678380,
+				"to": 684260
+			},
+			"text": " from basically be easy to define using this framework. A resolver, something that can take"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,260",
+				"to": "00:11:29,740"
+			},
+			"offsets": {
+				"from": 684260,
+				"to": 689740
+			},
+			"text": " your state and the pre-commitment, the sub-deposit pre-commitment that you've made and figure"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,740",
+				"to": "00:11:35,460"
+			},
+			"offsets": {
+				"from": 689740,
+				"to": 695460
+			},
+			"text": " out what transactions seem to be made. Is terminal clause something that says is this game over"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,460",
+				"to": "00:11:39,700"
+			},
+			"offsets": {
+				"from": 695460,
+				"to": 699700
+			},
+			"text": " and I'll show you how all these are relevant in a second and kind of a turn-taking mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,700",
+				"to": "00:11:45,940"
+			},
+			"offsets": {
+				"from": 699700,
+				"to": 705940
+			},
+			"text": " which you can define, is it a valid update or not? The key point here, four very simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,940",
+				"to": "00:11:50,660"
+			},
+			"offsets": {
+				"from": 705940,
+				"to": 710660
+			},
+			"text": " functions that you can implement for arbitrary applications, if you implement them, the framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,660",
+				"to": "00:11:56,940"
+			},
+			"offsets": {
+				"from": 710660,
+				"to": 716940
+			},
+			"text": " supports that of the box. So, very simple high-level example, a bidirectional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,940",
+				"to": "00:12:02,740"
+			},
+			"offsets": {
+				"from": 716940,
+				"to": 722740
+			},
+			"text": " channel for example. Basically here, it's the most basic possible state machine. You have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,740",
+				"to": "00:12:09,060"
+			},
+			"offsets": {
+				"from": 722740,
+				"to": 729060
+			},
+			"text": " one state and people can just update the version of where you're at with that. In this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,060",
+				"to": "00:12:14,100"
+			},
+			"offsets": {
+				"from": 729060,
+				"to": 734100
+			},
+			"text": " it's end-party state channel and in the case, there's two in the array. All you do is update"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,100",
+				"to": "00:12:18,740"
+			},
+			"offsets": {
+				"from": 734100,
+				"to": 738740
+			},
+			"text": " it, both basic case. So, what if you wanted something more complicated for which there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,740",
+				"to": "00:12:22,620"
+			},
+			"offsets": {
+				"from": 738740,
+				"to": 742620
+			},
+			"text": " all kinds of different separate bespoke applications like unidirectional payment channel? Well, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,620",
+				"to": "00:12:28,060"
+			},
+			"offsets": {
+				"from": 742620,
+				"to": 748060
+			},
+			"text": " just write a state machine that looks like this. You start in an open state, send, embed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,060",
+				"to": "00:12:32,500"
+			},
+			"offsets": {
+				"from": 748060,
+				"to": 752500
+			},
+			"text": " it, and as a bit of context, unidirectional payment channel is one of the kind where only"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,500",
+				"to": "00:12:37,500"
+			},
+			"offsets": {
+				"from": 752500,
+				"to": 757500
+			},
+			"text": " one, payments can only be sent in one direction. So A and B, A can send to B, B can't send to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,500",
+				"to": "00:12:42,140"
+			},
+			"offsets": {
+				"from": 757500,
+				"to": 762140
+			},
+			"text": " A. And the idea is that B is the recipient and if they want to just leave, they can instantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,140",
+				"to": "00:12:47,740"
+			},
+			"offsets": {
+				"from": 762140,
+				"to": 767740
+			},
+			"text": " leave. So, how can you define that? You can define a machine where in the open state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,740",
+				"to": "00:12:52,820"
+			},
+			"offsets": {
+				"from": 767740,
+				"to": 772820
+			},
+			"text": " the sender can send, and that's a valid action. And you can get to the point where you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,820",
+				"to": "00:12:57,780"
+			},
+			"offsets": {
+				"from": 772820,
+				"to": 777780
+			},
+			"text": " done in a terminal state, which is what I would represent with this orange ring, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,780",
+				"to": "00:13:02,820"
+			},
+			"offsets": {
+				"from": 777780,
+				"to": 782820
+			},
+			"text": " if you are the receiver and you call the close action, you can instantly exit. So, you define"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,820",
+				"to": "00:13:05,740"
+			},
+			"offsets": {
+				"from": 782820,
+				"to": 785740
+			},
+			"text": " your state machine in this way and you get all of the properties of unidirectional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,740",
+				"to": "00:13:10,660"
+			},
+			"offsets": {
+				"from": 785740,
+				"to": 790660
+			},
+			"text": " channels without having to implement anything different from the generalized framework. Take"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,660",
+				"to": "00:13:15,740"
+			},
+			"offsets": {
+				"from": 790660,
+				"to": 795740
+			},
+			"text": " TACTO, a bit more complicated, but it's the same general idea, right? You define what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,740",
+				"to": "00:13:21,100"
+			},
+			"offsets": {
+				"from": 795740,
+				"to": 801100
+			},
+			"text": " your state machine? It's an X-turn, it's an O's turn, X can place an X and he can win,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,100",
+				"to": "00:13:25,220"
+			},
+			"offsets": {
+				"from": 801100,
+				"to": 805220
+			},
+			"text": " or X can place an X and it can be a draw, you get the idea. And again, you are defining"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,220",
+				"to": "00:13:32,700"
+			},
+			"offsets": {
+				"from": 805220,
+				"to": 812700
+			},
+			"text": " your state in this very simple way. So, in designing that framework, in addition to making"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,700",
+				"to": "00:13:36,220"
+			},
+			"offsets": {
+				"from": 812700,
+				"to": 816220
+			},
+			"text": " it very generic and possible to build all kinds of state channel applications using it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,220",
+				"to": "00:13:40,060"
+			},
+			"offsets": {
+				"from": 816220,
+				"to": 820060
+			},
+			"text": " we've also spent a significant amount of time in the engineering side to make this as easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,060",
+				"to": "00:13:44,300"
+			},
+			"offsets": {
+				"from": 820060,
+				"to": 824300
+			},
+			"text": " as possible for developers to build on top of. And you can see this in kind of the implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,300",
+				"to": "00:13:48,380"
+			},
+			"offsets": {
+				"from": 824300,
+				"to": 828380
+			},
+			"text": " details of some example applications. So, I'll show you very quick snippets of some code"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,380",
+				"to": "00:13:52,940"
+			},
+			"offsets": {
+				"from": 828380,
+				"to": 832940
+			},
+			"text": " from a counter application, one where basically you have a counter, you can implement it, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,940",
+				"to": "00:13:59,180"
+			},
+			"offsets": {
+				"from": 832940,
+				"to": 839180
+			},
+			"text": " can document it, the basic kind of example app. And basically, it looks just like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,180",
+				"to": "00:14:02,700"
+			},
+			"offsets": {
+				"from": 839180,
+				"to": 842700
+			},
+			"text": " it's a stateless contract and there's three slides here, I'll go through this, a stateless"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,700",
+				"to": "00:14:09,700"
+			},
+			"offsets": {
+				"from": 842700,
+				"to": 849700
+			},
+			"text": " contract, you just define what is the structure of your state and kind of like Jeremy mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,700",
+				"to": "00:14:15,100"
+			},
+			"offsets": {
+				"from": 849700,
+				"to": 855100
+			},
+			"text": " it's as simple as this. We actually had a, we actually have a hacky solution to get around"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,100",
+				"to": "00:14:18,740"
+			},
+			"offsets": {
+				"from": 855100,
+				"to": 858740
+			},
+			"text": " the necessity for abi.decode in the code base right now, but when it comes out, that'll be"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,740",
+				"to": "00:14:24,220"
+			},
+			"offsets": {
+				"from": 858740,
+				"to": 864220
+			},
+			"text": " great too. And you just define your state as a struct and you define the actions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,220",
+				"to": "00:14:28,020"
+			},
+			"offsets": {
+				"from": 864220,
+				"to": 868020
+			},
+			"text": " you can use to modify it. And again, this function signature allows you to mimic what"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,020",
+				"to": "00:14:34,020"
+			},
+			"offsets": {
+				"from": 868020,
+				"to": 874020
+			},
+			"text": " a state machine does. You have a simple function, apply action like I mentioned, you take the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,020",
+				"to": "00:14:38,020"
+			},
+			"offsets": {
+				"from": 874020,
+				"to": 878020
+			},
+			"text": " state, you take the action, you decide what to do about it, it's a very simple control"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,020",
+				"to": "00:14:43,380"
+			},
+			"offsets": {
+				"from": 878020,
+				"to": 883380
+			},
+			"text": " flow. And then there's just very basic implementation. So, this is literally the entire contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,380",
+				"to": "00:14:49,620"
+			},
+			"offsets": {
+				"from": 883380,
+				"to": 889620
+			},
+			"text": " for a very basic counter app. So, the great thing about this, again, as Jeremy rightly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,620",
+				"to": "00:14:56,980"
+			},
+			"offsets": {
+				"from": 889620,
+				"to": 896980
+			},
+			"text": " mentioned, is that state machines encompass arbitrary things that you can run on the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,980",
+				"to": "00:15:00,980"
+			},
+			"offsets": {
+				"from": 896980,
+				"to": 900980
+			},
+			"text": " That are basically pure and content functions. There's an aspect of time dimension here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,980",
+				"to": "00:15:04,380"
+			},
+			"offsets": {
+				"from": 900980,
+				"to": 904380
+			},
+			"text": " which I think probably one of the future speakers will talk about, they add some complexity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,380",
+				"to": "00:15:10,420"
+			},
+			"offsets": {
+				"from": 904380,
+				"to": 910420
+			},
+			"text": " but for things that you can run that are EVM based, this encompasses everything, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,420",
+				"to": "00:15:16,580"
+			},
+			"offsets": {
+				"from": 910420,
+				"to": 916580
+			},
+			"text": " is great. And so, that's the minimalist contracts layer. On top of that, we've had the device"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,580",
+				"to": "00:15:21,180"
+			},
+			"offsets": {
+				"from": 916580,
+				"to": 921180
+			},
+			"text": " of a protocol for this whole generalized state channel concept. And without going into too"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,180",
+				"to": "00:15:26,500"
+			},
+			"offsets": {
+				"from": 921180,
+				"to": 926500
+			},
+			"text": " much detail, we've essentially done that. This is basically a generic software that clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,500",
+				"to": "00:15:30,460"
+			},
+			"offsets": {
+				"from": 926500,
+				"to": 930460
+			},
+			"text": " can run and it's all possible in that message that you can receive using channels. And it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,460",
+				"to": "00:15:34,060"
+			},
+			"offsets": {
+				"from": 930460,
+				"to": 934060
+			},
+			"text": " designed to be as portable as possible. So, this is not like a full-note software that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,060",
+				"to": "00:15:41,060"
+			},
+			"offsets": {
+				"from": 934060,
+				"to": 941060
+			},
+			"text": " we've developed. This is just a basic, very basic implementation of a protocol that says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,060",
+				"to": "00:15:46,060"
+			},
+			"offsets": {
+				"from": 941060,
+				"to": 946060
+			},
+			"text": " you know, different kinds of messages that someone can send to another to use their on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,060",
+				"to": "00:15:52,860"
+			},
+			"offsets": {
+				"from": 946060,
+				"to": 952860
+			},
+			"text": " state deposit to install applications and so on and so forth. And it's very practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,860",
+				"to": "00:15:58,180"
+			},
+			"offsets": {
+				"from": 952860,
+				"to": 958180
+			},
+			"text": " We've tried to make it be the case that there's no unnecessary network overhead. It's a sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,180",
+				"to": "00:16:03,820"
+			},
+			"offsets": {
+				"from": 958180,
+				"to": 963820
+			},
+			"text": " of b. They get a response back for all of the protocols in the entire construction. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,820",
+				"to": "00:16:08,180"
+			},
+			"offsets": {
+				"from": 963820,
+				"to": 968180
+			},
+			"text": " so it's practical and can be deployed today. If you want to look at the specifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,180",
+				"to": "00:16:15,020"
+			},
+			"offsets": {
+				"from": 968180,
+				"to": 975020
+			},
+			"text": " of the protocol, we have a whole spec stock on the website, well, on GitHub. And you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,020",
+				"to": "00:16:19,860"
+			},
+			"offsets": {
+				"from": 975020,
+				"to": 979860
+			},
+			"text": " dive into there. This is kind of the beginnings of what we hope will become a very good standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,860",
+				"to": "00:16:23,420"
+			},
+			"offsets": {
+				"from": 979860,
+				"to": 983420
+			},
+			"text": " for what is the best that you can get for state channels in Ethereum. And eventually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,420",
+				"to": "00:16:28,260"
+			},
+			"offsets": {
+				"from": 983420,
+				"to": 988260
+			},
+			"text": " it would be nice if we can build on top of this common standard. And hopefully, a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,260",
+				"to": "00:16:32,020"
+			},
+			"offsets": {
+				"from": 988260,
+				"to": 992020
+			},
+			"text": " of the research can end up here. That's our goal at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,020",
+				"to": "00:16:36,580"
+			},
+			"offsets": {
+				"from": 992020,
+				"to": 996580
+			},
+			"text": " So finally, an application library. And this is basically the thing I mentioned in analogous"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,580",
+				"to": "00:16:43,940"
+			},
+			"offsets": {
+				"from": 996580,
+				"to": 1003940
+			},
+			"text": " to Web3. It's an application library that a developer pulls into their adapt. They simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,940",
+				"to": "00:16:48,700"
+			},
+			"offsets": {
+				"from": 1003940,
+				"to": 1008700
+			},
+			"text": " interact not with their wallet in a way that is kind of through the Web3 interface, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,700",
+				"to": "00:16:53,180"
+			},
+			"offsets": {
+				"from": 1008700,
+				"to": 1013180
+			},
+			"text": " with kind of this counterfactual interface with this layer 2 interface. You do things"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,180",
+				"to": "00:16:58,260"
+			},
+			"offsets": {
+				"from": 1013180,
+				"to": 1018260
+			},
+			"text": " like update state to your wallet and the wallet with the implementation of the protocol, figures"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,260",
+				"to": "00:17:01,380"
+			},
+			"offsets": {
+				"from": 1018260,
+				"to": 1021380
+			},
+			"text": " that had to interact with its counterparties. And again, this is a little bit of a shock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,380",
+				"to": "00:17:06,340"
+			},
+			"offsets": {
+				"from": 1021380,
+				"to": 1026340
+			},
+			"text": " but it's this entire full stack suite that proves that the use case is possible. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,340",
+				"to": "00:17:11,340"
+			},
+			"offsets": {
+				"from": 1026340,
+				"to": 1031340
+			},
+			"text": " all of this has been designed in mind to be as easy as possible for a developer. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,340",
+				"to": "00:17:15,860"
+			},
+			"offsets": {
+				"from": 1031340,
+				"to": 1035860
+			},
+			"text": " like I mentioned earlier, we actually run hackathons. And so we spend enormous amounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,860",
+				"to": "00:17:18,980"
+			},
+			"offsets": {
+				"from": 1035860,
+				"to": 1038980
+			},
+			"text": " of time with developers to understand what is it that we'll kind of get people caught"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,980",
+				"to": "00:17:24,500"
+			},
+			"offsets": {
+				"from": 1038980,
+				"to": 1044500
+			},
+			"text": " up? So why? Why is it that we're doing any of these things? And what are the kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,500",
+				"to": "00:17:29,700"
+			},
+			"offsets": {
+				"from": 1044500,
+				"to": 1049700
+			},
+			"text": " values that align us for this? As mentioned earlier, kind of Fachel's open source project"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,700",
+				"to": "00:17:33,340"
+			},
+			"offsets": {
+				"from": 1049700,
+				"to": 1053340
+			},
+			"text": " is multiple contributors and we'll get into who they are. But we think this is just plain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,340",
+				"to": "00:17:38,180"
+			},
+			"offsets": {
+				"from": 1053340,
+				"to": 1058180
+			},
+			"text": " old open source. We really just want to be able to work with the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,180",
+				"to": "00:17:40,940"
+			},
+			"offsets": {
+				"from": 1058180,
+				"to": 1060940
+			},
+			"text": " the people that are here and people that are at DevCon and try to just take a lot of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,940",
+				"to": "00:17:44,660"
+			},
+			"offsets": {
+				"from": 1060940,
+				"to": 1064660
+			},
+			"text": " great research that we've talked about over the years and then have, you know, e3search"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,660",
+				"to": "00:17:49,780"
+			},
+			"offsets": {
+				"from": 1064660,
+				"to": 1069780
+			},
+			"text": " posts about, make it concrete, arrive at standards, arrive at things that we can agree or kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,780",
+				"to": "00:17:53,820"
+			},
+			"offsets": {
+				"from": 1069780,
+				"to": 1073820
+			},
+			"text": " of best in class research and build on top of that. There's no one necessary ego and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,820",
+				"to": "00:17:57,900"
+			},
+			"offsets": {
+				"from": 1073820,
+				"to": 1077900
+			},
+			"text": " no one necessary lock in. It's just a matter of how do we build open standards that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,900",
+				"to": "00:18:02,300"
+			},
+			"offsets": {
+				"from": 1077900,
+				"to": 1082300
+			},
+			"text": " helpful for everybody. And we want to do that as just plain old open source. We don't think"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,300",
+				"to": "00:18:06,380"
+			},
+			"offsets": {
+				"from": 1082300,
+				"to": 1086380
+			},
+			"text": " there's any necessity for a business or a token. We think that there's just plain old"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,380",
+				"to": "00:18:10,860"
+			},
+			"offsets": {
+				"from": 1086380,
+				"to": 1090860
+			},
+			"text": " open source. And developer focused mentioned is a handful of times and you can see through"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,860",
+				"to": "00:18:14,500"
+			},
+			"offsets": {
+				"from": 1090860,
+				"to": 1094500
+			},
+			"text": " the way that we've designed this. This is meant to be something as easy as possible for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,500",
+				"to": "00:18:19,620"
+			},
+			"offsets": {
+				"from": 1094500,
+				"to": 1099620
+			},
+			"text": " developers to use. And we want to drive for compatibility. We want to make it be the case"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,620",
+				"to": "00:18:23,580"
+			},
+			"offsets": {
+				"from": 1099620,
+				"to": 1103580
+			},
+			"text": " that Ethereum can have the hand of the best in class, state channels protocol before any"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,580",
+				"to": "00:18:27,900"
+			},
+			"offsets": {
+				"from": 1103580,
+				"to": 1107900
+			},
+			"text": " other chain and that we can do this basically together and be interoperable with each other's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,900",
+				"to": "00:18:35,140"
+			},
+			"offsets": {
+				"from": 1107900,
+				"to": 1115140
+			},
+			"text": " software. Great. So who was involved in this? I mentioned it's an open source project. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,140",
+				"to": "00:18:39,300"
+			},
+			"offsets": {
+				"from": 1115140,
+				"to": 1119300
+			},
+			"text": " do want to give kudos to a bunch of people. This is right now mostly been a collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,300",
+				"to": "00:18:44,820"
+			},
+			"offsets": {
+				"from": 1119300,
+				"to": 1124820
+			},
+			"text": " between L4 and prototype. A handful of people from each of the teams and a bunch of independent"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,820",
+				"to": "00:18:50,580"
+			},
+			"offsets": {
+				"from": 1124820,
+				"to": 1130580
+			},
+			"text": " contributors. We recently even had a whole bunch in the past few weeks that are just ramping"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,580",
+				"to": "00:18:55,060"
+			},
+			"offsets": {
+				"from": 1130580,
+				"to": 1135060
+			},
+			"text": " up now. All sharing the same general vision of like let's take all these ideas, have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,060",
+				"to": "00:18:59,660"
+			},
+			"offsets": {
+				"from": 1135060,
+				"to": 1139660
+			},
+			"text": " a common place that we can write them down and make something that people can use. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,660",
+				"to": "00:19:04,260"
+			},
+			"offsets": {
+				"from": 1139660,
+				"to": 1144260
+			},
+			"text": " really thanks to everyone that's contributed over the year. And we're also working with"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,260",
+				"to": "00:19:08,500"
+			},
+			"offsets": {
+				"from": 1144260,
+				"to": 1148500
+			},
+			"text": " some of the best. We've over the past year we spent a bunch of time with a lot of great"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,500",
+				"to": "00:19:12,340"
+			},
+			"offsets": {
+				"from": 1148500,
+				"to": 1152340
+			},
+			"text": " people in this space. Meta mass we've been recently spending a ton of time with trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,340",
+				"to": "00:19:17,220"
+			},
+			"offsets": {
+				"from": 1152340,
+				"to": 1157220
+			},
+			"text": " to figure out practically how we're going to get this implemented in web walls today."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,220",
+				"to": "00:19:22,420"
+			},
+			"offsets": {
+				"from": 1157220,
+				"to": 1162420
+			},
+			"text": " We spent a ton of time with Mo especially looking at the underlying research of how you build"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,420",
+				"to": "00:19:26,660"
+			},
+			"offsets": {
+				"from": 1162420,
+				"to": 1166660
+			},
+			"text": " generalized state channels. We're hoping we can arrive at common interfaces over the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,660",
+				"to": "00:19:31,540"
+			},
+			"offsets": {
+				"from": 1166660,
+				"to": 1171540
+			},
+			"text": " next little while. PISA which has done a phenomenal job in their speaking later about how to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,540",
+				"to": "00:19:36,500"
+			},
+			"offsets": {
+				"from": 1171540,
+				"to": 1176500
+			},
+			"text": " really optimal watch towers with state channels. We're also going to try and fold that in. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,500",
+				"to": "00:19:41,780"
+			},
+			"offsets": {
+				"from": 1176500,
+				"to": 1181780
+			},
+			"text": " magma as well, a phenomenal kind of state channels engineering team through which a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,780",
+				"to": "00:19:46,860"
+			},
+			"offsets": {
+				"from": 1181780,
+				"to": 1186860
+			},
+			"text": " of the state machine based designs have been kind of inspired by."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,860",
+				"to": "00:19:51,140"
+			},
+			"offsets": {
+				"from": 1186860,
+				"to": 1191140
+			},
+			"text": " So yeah, if you want to get involved, we have a bunch of code on GitHub. We just released"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,140",
+				"to": "00:19:55,460"
+			},
+			"offsets": {
+				"from": 1191140,
+				"to": 1195460
+			},
+			"text": " a whole bunch recently as well. The whole everything I just mentioned is a full implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,460",
+				"to": "00:19:59,540"
+			},
+			"offsets": {
+				"from": 1195460,
+				"to": 1199540
+			},
+			"text": " of and then we have running. We don't have a big demo environment yet. That's one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,540",
+				"to": "00:20:04,100"
+			},
+			"offsets": {
+				"from": 1199540,
+				"to": 1204100
+			},
+			"text": " our major kind of next goal but we do have it running locally and you can test it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,100",
+				"to": "00:20:09,220"
+			},
+			"offsets": {
+				"from": 1204100,
+				"to": 1209220
+			},
+			"text": " And we're actively developing this very fast pace. If you want to chat with us, we're available"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,220",
+				"to": "00:20:14,300"
+			},
+			"offsets": {
+				"from": 1209220,
+				"to": 1214300
+			},
+			"text": " all the time. You can go to our chat group, counterfattual.com/chat. We're very friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,300",
+				"to": "00:20:20,020"
+			},
+			"offsets": {
+				"from": 1214300,
+				"to": 1220020
+			},
+			"text": " We really just want to try to help out the community as much as possible. So come in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,020",
+				"to": "00:20:24,140"
+			},
+			"offsets": {
+				"from": 1220020,
+				"to": 1224140
+			},
+			"text": " whatever you want to talk about. And if you want to just learn more about the product"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,140",
+				"to": "00:20:29,540"
+			},
+			"offsets": {
+				"from": 1224140,
+				"to": 1229540
+			},
+			"text": " in general, check it out, counterfattual.com. And yeah, that's it. Thanks so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,540",
+				"to": "00:20:31,540"
+			},
+			"offsets": {
+				"from": 1229540,
+				"to": 1231540
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,540",
+				"to": "00:20:40,780"
+			},
+			"offsets": {
+				"from": 1231540,
+				"to": 1240780
+			},
+			"text": " I do have a minute and 20 seconds left. So if there's a question I can take one or I"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,780",
+				"to": "00:20:47,780"
+			},
+			"offsets": {
+				"from": 1240780,
+				"to": 1247780
+			},
+			"text": " can kind of awkwardly walk off stage. Yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,780",
+				"to": "00:20:49,780"
+			},
+			"offsets": {
+				"from": 1247780,
+				"to": 1249780
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,780",
+				"to": "00:20:58,780"
+			},
+			"offsets": {
+				"from": 1249780,
+				"to": 1258780
+			},
+			"text": " What's the like 30 second different explanation between a state channel and a plasma chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,780",
+				"to": "00:20:59,780"
+			},
+			"offsets": {
+				"from": 1258780,
+				"to": 1259780
+			},
+			"text": " Is it a nice set?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,780",
+				"to": "00:21:05,540"
+			},
+			"offsets": {
+				"from": 1259780,
+				"to": 1265540
+			},
+			"text": " Yeah, I had that in the slides. There's a really great talk by the guy who just gave"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,540",
+				"to": "00:21:09,420"
+			},
+			"offsets": {
+				"from": 1265540,
+				"to": 1269420
+			},
+			"text": " you the microphone, Josh Stark, yesterday called Making Sense of Layer 2, which gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,420",
+				"to": "00:21:15,740"
+			},
+			"offsets": {
+				"from": 1269420,
+				"to": 1275740
+			},
+			"text": " like the 30 second basic difference. The way I like to describe it is that from technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,740",
+				"to": "00:21:20,140"
+			},
+			"offsets": {
+				"from": 1275740,
+				"to": 1280140
+			},
+			"text": " standpoint, in state channels, a fixed group of people put state into an on-chain contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,140",
+				"to": "00:21:25,940"
+			},
+			"offsets": {
+				"from": 1280140,
+				"to": 1285940
+			},
+			"text": " and then they agree unanimously off-chain. And then at some point, they all go back off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,940",
+				"to": "00:21:30,420"
+			},
+			"offsets": {
+				"from": 1285940,
+				"to": 1290420
+			},
+			"text": " take all that state, put it back on the chain or they stay off-chain. And it's all off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,420",
+				"to": "00:21:34,940"
+			},
+			"offsets": {
+				"from": 1290420,
+				"to": 1294940
+			},
+			"text": " the whole time. With plasma, a bunch of people put state into a contract. And there's two"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,940",
+				"to": "00:21:39,380"
+			},
+			"offsets": {
+				"from": 1294940,
+				"to": 1299380
+			},
+			"text": " types of people. There's an operator and then there's the users. And the operator periodically"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,380",
+				"to": "00:21:44,260"
+			},
+			"offsets": {
+				"from": 1299380,
+				"to": 1304260
+			},
+			"text": " puts a Merkle proof on the chain that lets the users have finality. So every time the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,260",
+				"to": "00:21:47,940"
+			},
+			"offsets": {
+				"from": 1304260,
+				"to": 1307940
+			},
+			"text": " Merkle proof is put on chain, that is the notion of this is now the final state. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,940",
+				"to": "00:21:51,380"
+			},
+			"offsets": {
+				"from": 1307940,
+				"to": 1311380
+			},
+			"text": " there's this periodic checkpointing kind of mechanism. So the main difference is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,380",
+				"to": "00:21:54,940"
+			},
+			"offsets": {
+				"from": 1311380,
+				"to": 1314940
+			},
+			"text": " state channels, it's instant finality all of the time. Plasma, you have a bit of a delay"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,940",
+				"to": "00:21:58,820"
+			},
+			"offsets": {
+				"from": 1314940,
+				"to": 1318820
+			},
+			"text": " because it's the checkpoint. And then technically they're implemented differently. But they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,820",
+				"to": "00:22:03,940"
+			},
+			"offsets": {
+				"from": 1318820,
+				"to": 1323940
+			},
+			"text": " both very useful scalability solutions. I recommend watching Josh's talk though. Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,940",
+				"to": "00:22:05,300"
+			},
+			"offsets": {
+				"from": 1323940,
+				"to": 1325300
+			},
+			"text": " All right, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,300",
+				"to": "00:22:07,300"
+			},
+			"offsets": {
+				"from": 1325300,
+				"to": 1327300
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,300",
+				"to": "00:22:17,300"
+			},
+			"offsets": {
+				"from": 1327300,
+				"to": 1337300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,300",
+				"to": "00:22:27,300"
+			},
+			"offsets": {
+				"from": 1337300,
+				"to": 1347300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,300",
+				"to": "00:22:37,300"
+			},
+			"offsets": {
+				"from": 1347300,
+				"to": 1357300
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,300",
+				"to": "00:22:39,300"
+			},
+			"offsets": {
+				"from": 1357300,
+				"to": 1359300
+			},
+			"text": " [ ]"
+		}
+	]
+}

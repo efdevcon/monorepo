@@ -1,0 +1,934 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 16000
+			},
+			"text": " Hello everyone, my name is Kala Kapanese. I'm a part developer at OpenSEBLE."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 20000
+			},
+			"text": " You may know OpenSEBLE because of the security of ice we perform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " We audited the Solidity compiler, we audited the Sero-Koshitz form Coinbase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 30000
+			},
+			"text": " we audited them rogue, serpent, but in days."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 35000
+			},
+			"text": " Most recently we audited a compound and instead of."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 38000
+			},
+			"text": " You also may know us because of the OpenSEBLE in contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " AKA OpenSEBLE in Solidity repo, which you may know about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 50000
+			},
+			"text": " one of the most useful libraries in the system with more than 22K downloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 55000
+			},
+			"text": " Today I'm going to talk about security, I'm going to talk about the contracts repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " I'm going to talk about two tools we have been developing with our team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 64000
+			},
+			"text": " which are the OpenSEBLE in SDK and the OpenSEBLE in Solidity Kids."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " So first of all, why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 74000
+			},
+			"text": " Well, we really think that development tools right now in the system are still green compared to other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 81000
+			},
+			"text": " you know, ecosystems to other industries and wheel out to build things for you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " That's why we basically built these two tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " We are going to start with the OpenSEBLE in SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 92000
+			},
+			"text": " The OpenSEBLE in SDK is basically a software development kit or a developer tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " which has a CLI that will let you develop your support contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 100000
+			},
+			"text": " compile them using any Solidity version you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 106000
+			},
+			"text": " deploy them with this, upgrade them, interact with them, again, using the CLI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " and start that in only five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 111000
+			},
+			"text": " But how right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 117000
+			},
+			"text": " Well, this is an npm bucket, so just run an npm install at OpenSEBLE in the last CLI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 120000
+			},
+			"text": " we will do the trick."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " Well, so how you can start your approach?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 129000
+			},
+			"text": " Super easy after installing it, just running OpenSEBLE in Unity will start up everything you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 131000
+			},
+			"text": " to start coding your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 136000
+			},
+			"text": " You then probably will want to code your contract, which, for example, could be a My Contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:38,520"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 158520
+			},
+			"text": " with a function that is called a Sound In-the-Rissive-S"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,520",
+				"to": "00:02:44,520"
+			},
+			"offsets": {
+				"from": 158520,
+				"to": 164520
+			},
+			"text": " and it will deploy only with that command, the contracting database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,520",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 164520,
+				"to": 170520
+			},
+			"text": " And now that we have our contract deployed, we probably want to sub with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:52,520"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 172520
+			},
+			"text": " which is, again, super easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,520",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 172520,
+				"to": 177520
+			},
+			"text": " The OpenSEBLE in CLI has two super handy commands, which are call and send"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:00,520"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 180520
+			},
+			"text": " a transaction called basically for calling pure on-view functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,520",
+				"to": "00:03:05,520"
+			},
+			"offsets": {
+				"from": 180520,
+				"to": 185520
+			},
+			"text": " and send a transaction for calling any other public function that will actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,520",
+				"to": "00:03:11,520"
+			},
+			"offsets": {
+				"from": 185520,
+				"to": 191520
+			},
+			"text": " make a transaction to the blockchain, and our super-subruy city to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,520",
+				"to": "00:03:21,520"
+			},
+			"offsets": {
+				"from": 191520,
+				"to": 201520
+			},
+			"text": " And as we all know, development software development has its problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,520",
+				"to": "00:03:24,520"
+			},
+			"offsets": {
+				"from": 201520,
+				"to": 204520
+			},
+			"text": " We are humans, developers, about humans, as we come in new states,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,520",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 204520,
+				"to": 209520
+			},
+			"text": " and we know that by just seeing the history of smart contract development"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:32,520"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 212520
+			},
+			"text": " and all the money that was lost in a lot of security regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,520",
+				"to": "00:03:37,520"
+			},
+			"offsets": {
+				"from": 212520,
+				"to": 217520
+			},
+			"text": " So maybe we want to update, upgrade our broken contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,520",
+				"to": "00:03:39,520"
+			},
+			"offsets": {
+				"from": 217520,
+				"to": 219520
+			},
+			"text": " which is, again, super easy with this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,520",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 219520,
+				"to": 225520
+			},
+			"text": " You just have to modify your broken function, add new awesome code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:49,520"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 229520
+			},
+			"text": " and just run OpenSEBLE in upgrade, specify your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,520",
+				"to": "00:03:50,520"
+			},
+			"offsets": {
+				"from": 229520,
+				"to": 230520
+			},
+			"text": " And that's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,520",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 230520,
+				"to": 234520
+			},
+			"text": " The CLI will upgrade your contract, and as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:03:59,520"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 239520
+			},
+			"text": " it is deployed in exactly the same address as it was created the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,520",
+				"to": "00:04:03,520"
+			},
+			"offsets": {
+				"from": 239520,
+				"to": 243520
+			},
+			"text": " I'm not going to go over it even this topic, but if you want to read more"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,520",
+				"to": "00:04:07,520"
+			},
+			"offsets": {
+				"from": 243520,
+				"to": 247520
+			},
+			"text": " on how we are implemented, please go to zelbl.app.grates."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,520",
+				"to": "00:04:09,520"
+			},
+			"offsets": {
+				"from": 247520,
+				"to": 249520
+			},
+			"text": " But anything else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,520",
+				"to": "00:04:12,520"
+			},
+			"offsets": {
+				"from": 249520,
+				"to": 252520
+			},
+			"text": " That's the CLI, how's the new files here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,520",
+				"to": "00:04:16,520"
+			},
+			"offsets": {
+				"from": 252520,
+				"to": 256520
+			},
+			"text": " Apart from the commands in the left, we have other super-handic commands"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,520",
+				"to": "00:04:20,520"
+			},
+			"offsets": {
+				"from": 256520,
+				"to": 260520
+			},
+			"text": " compiled from compiling your contracts with any version of the utility you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,520",
+				"to": "00:04:26,520"
+			},
+			"offsets": {
+				"from": 260520,
+				"to": 266520
+			},
+			"text": " verify it, for verifying them to either Skype or either chain opens up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,520",
+				"to": "00:04:29,520"
+			},
+			"offsets": {
+				"from": 266520,
+				"to": 269520
+			},
+			"text": " the accounts for a listen or your account in a specific network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,520",
+				"to": "00:04:34,520"
+			},
+			"offsets": {
+				"from": 269520,
+				"to": 274520
+			},
+			"text": " transfer or transfer an ether or your C20 tokens to any account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,520",
+				"to": "00:04:40,520"
+			},
+			"offsets": {
+				"from": 274520,
+				"to": 280520
+			},
+			"text": " balance to query the balance on any of your C20 tokens or ether of any account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,520",
+				"to": "00:04:43,520"
+			},
+			"offsets": {
+				"from": 280520,
+				"to": 283520
+			},
+			"text": " And I have added this last command, the unpack command,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,520",
+				"to": "00:04:48,520"
+			},
+			"offsets": {
+				"from": 283520,
+				"to": 288520
+			},
+			"text": " because this is the link we have with OpenSEBLE in start-up keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,520",
+				"to": "00:04:53,520"
+			},
+			"offsets": {
+				"from": 288520,
+				"to": 293520
+			},
+			"text": " which are basically DAPS components for you to start your DAPS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,520",
+				"to": "00:04:57,520"
+			},
+			"offsets": {
+				"from": 293520,
+				"to": 297520
+			},
+			"text": " or to centralize applications, just running a couple of commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,520",
+				"to": "00:05:01,520"
+			},
+			"offsets": {
+				"from": 297520,
+				"to": 301520
+			},
+			"text": " So the components of the start-up gates are the OpenSEBLE in contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,520",
+				"to": "00:05:06,520"
+			},
+			"offsets": {
+				"from": 301520,
+				"to": 306520
+			},
+			"text": " which you all are on OpenSEBLE in a security that we have been talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,520",
+				"to": "00:05:09,520"
+			},
+			"offsets": {
+				"from": 306520,
+				"to": 309520
+			},
+			"text": " in FURA for Connecting Training Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,520",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 309520,
+				"to": 315520
+			},
+			"text": " A one-liner, killer one-liner web3 adapter that you can use to avoid"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,520",
+				"to": "00:05:22,520"
+			},
+			"offsets": {
+				"from": 315520,
+				"to": 322520
+			},
+			"text": " the cumbersome process of developing the first part of web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,520",
+				"to": "00:05:27,520"
+			},
+			"offsets": {
+				"from": 322520,
+				"to": 327520
+			},
+			"text": " React and ReML for managing your phone's components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,520",
+				"to": "00:05:31,520"
+			},
+			"offsets": {
+				"from": 327520,
+				"to": 331520
+			},
+			"text": " and the OpenSEBLE in code load, which is a super cool tool we develop"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,520",
+				"to": "00:05:34,520"
+			},
+			"offsets": {
+				"from": 331520,
+				"to": 334520
+			},
+			"text": " that will let you modify your contracts on the go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,520",
+				"to": "00:05:39,520"
+			},
+			"offsets": {
+				"from": 334520,
+				"to": 339520
+			},
+			"text": " and after saving them, you will be able to see in your website those changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,520",
+				"to": "00:05:42,520"
+			},
+			"offsets": {
+				"from": 339520,
+				"to": 342520
+			},
+			"text": " I mean, if you are, for example, within the AVI, you save your contract with a different AVI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,520",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 342520,
+				"to": 348520
+			},
+			"text": " you will be able to see that same information, the new information within your website."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:53,520"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 353520
+			},
+			"text": " The usage is, again, super easy with the CLI, running OpenSEBLE in Unbound Starter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,520",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 353520,
+				"to": 358520
+			},
+			"text": " or OpenSEBLE in Unbound Tutorial with the trick, being the starter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:06:03,520"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 363520
+			},
+			"text": " the starter gate, which will let you start approaching from scratch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,520",
+				"to": "00:06:10,520"
+			},
+			"offsets": {
+				"from": 363520,
+				"to": 370520
+			},
+			"text": " and tutorial, a simple demo on how to use the CLI with two super useful examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,520",
+				"to": "00:06:13,520"
+			},
+			"offsets": {
+				"from": 370520,
+				"to": 373520
+			},
+			"text": " that are counter and EVM packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,520",
+				"to": "00:06:18,520"
+			},
+			"offsets": {
+				"from": 373520,
+				"to": 378520
+			},
+			"text": " You can read more, go into a ZELPANES/STORIGUE/ZELPANES/ISICATE,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,520",
+				"to": "00:06:21,520"
+			},
+			"offsets": {
+				"from": 378520,
+				"to": 381520
+			},
+			"text": " and that's all. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,520",
+				"to": "00:06:23,520"
+			},
+			"offsets": {
+				"from": 381520,
+				"to": 383520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,520",
+				"to": "00:06:38,520"
+			},
+			"offsets": {
+				"from": 383520,
+				"to": 398520
+			},
+			"text": " [Music]"
+		}
+	]
+}

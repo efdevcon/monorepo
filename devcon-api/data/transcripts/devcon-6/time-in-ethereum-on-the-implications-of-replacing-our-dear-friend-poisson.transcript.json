@@ -1,0 +1,4311 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:13,400"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 13400
+			},
+			"text": " >> I'm Kasper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,400",
+				"to": "00:00:17,360"
+			},
+			"offsets": {
+				"from": 13400,
+				"to": 17360
+			},
+			"text": " I'm with the Ethereum Foundation working as a researcher"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,360",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17360,
+				"to": 19000
+			},
+			"text": " at the Robust and Centers group."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,340"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21340
+			},
+			"text": " We kind of work on anything in centers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,340",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 21340,
+				"to": 25160
+			},
+			"text": " which is in a Theorem's case a good excuse to kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:27,140"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 27140
+			},
+			"text": " of look at anything you're really interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,140",
+				"to": "00:00:28,860"
+			},
+			"offsets": {
+				"from": 27140,
+				"to": 28860
+			},
+			"text": " And centers are all over the place."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,560",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 29560,
+				"to": 34000
+			},
+			"text": " I'll be talking about time in Ethereum in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:39,340"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 39340
+			},
+			"text": " I mean, this talk title talk title is a bit mysterious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,340",
+				"to": "00:00:43,320"
+			},
+			"offsets": {
+				"from": 39340,
+				"to": 43320
+			},
+			"text": " so let me maybe clarify what I intend to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,320",
+				"to": "00:00:45,520"
+			},
+			"offsets": {
+				"from": 43320,
+				"to": 45520
+			},
+			"text": " As you probably all know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,520",
+				"to": "00:00:49,560"
+			},
+			"offsets": {
+				"from": 45520,
+				"to": 49560
+			},
+			"text": " in proof of working theorem, block production was a random"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,560",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 49560,
+				"to": 52960
+			},
+			"text": " process called AKA ProSOR process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:00:55,660"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 55660
+			},
+			"text": " hence the subtitle implications"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,660",
+				"to": "00:00:57,940"
+			},
+			"offsets": {
+				"from": 55660,
+				"to": 57940
+			},
+			"text": " of replacing our dear friend ProSOR."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,560",
+				"to": "00:01:02,300"
+			},
+			"offsets": {
+				"from": 58560,
+				"to": 62300
+			},
+			"text": " And which basically means nothing else that other"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,300",
+				"to": "00:01:04,400"
+			},
+			"offsets": {
+				"from": 62300,
+				"to": 64400
+			},
+			"text": " than that at a constant average rate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,400",
+				"to": "00:01:06,660"
+			},
+			"offsets": {
+				"from": 64400,
+				"to": 66660
+			},
+			"text": " a minor would find a new block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,660",
+				"to": "00:01:11,120"
+			},
+			"offsets": {
+				"from": 66660,
+				"to": 71120
+			},
+			"text": " Sometimes it takes three seconds, sometimes 13 or 23,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,120",
+				"to": "00:01:12,540"
+			},
+			"offsets": {
+				"from": 71120,
+				"to": 72540
+			},
+			"text": " but on average roughly 13."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,540",
+				"to": "00:01:18,920"
+			},
+			"offsets": {
+				"from": 72540,
+				"to": 78920
+			},
+			"text": " And today in proof of stake theorem as we had already blocked"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,920",
+				"to": "00:01:20,880"
+			},
+			"offsets": {
+				"from": 78920,
+				"to": 80880
+			},
+			"text": " show up every 12 seconds like clockwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,880",
+				"to": "00:01:24,680"
+			},
+			"offsets": {
+				"from": 80880,
+				"to": 84680
+			},
+			"text": " So there's no randomness in this round time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,180",
+				"to": "00:01:28,240"
+			},
+			"offsets": {
+				"from": 85180,
+				"to": 88240
+			},
+			"text": " But block timeness doesn't necessarily --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,240",
+				"to": "00:01:33,160"
+			},
+			"offsets": {
+				"from": 88240,
+				"to": 93160
+			},
+			"text": " it doesn't necessarily -- it's not necessarily 12 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,160",
+				"to": "00:01:37,660"
+			},
+			"offsets": {
+				"from": 93160,
+				"to": 97660
+			},
+			"text": " But so basically this difference in randomness"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,660",
+				"to": "00:01:41,620"
+			},
+			"offsets": {
+				"from": 97660,
+				"to": 101620
+			},
+			"text": " versus deterministic time may not immediately appear"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,620",
+				"to": "00:01:45,340"
+			},
+			"offsets": {
+				"from": 101620,
+				"to": 105340
+			},
+			"text": " as a big deal, but it comes with some implications"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,340",
+				"to": "00:01:47,620"
+			},
+			"offsets": {
+				"from": 105340,
+				"to": 107620
+			},
+			"text": " that I want to explore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,620",
+				"to": "00:01:50,700"
+			},
+			"offsets": {
+				"from": 107620,
+				"to": 110700
+			},
+			"text": " There's some good and some bad implications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:55,540"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 115540
+			},
+			"text": " At first hand it might seem that it should only"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,540",
+				"to": "00:01:59,080"
+			},
+			"offsets": {
+				"from": 115540,
+				"to": 119080
+			},
+			"text": " or predominantly be good in terms of load balancing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,080",
+				"to": "00:02:01,820"
+			},
+			"offsets": {
+				"from": 119080,
+				"to": 121820
+			},
+			"text": " The gas fee market should be a bit more relaxed, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,820",
+				"to": "00:02:07,360"
+			},
+			"offsets": {
+				"from": 121820,
+				"to": 127360
+			},
+			"text": " But basically in proof of stake having these slots"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,360",
+				"to": "00:02:09,260"
+			},
+			"offsets": {
+				"from": 127360,
+				"to": 129260
+			},
+			"text": " and a single proposal for each slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,260",
+				"to": "00:02:12,680"
+			},
+			"offsets": {
+				"from": 129260,
+				"to": 132680
+			},
+			"text": " we kind of give this proposal some kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,680",
+				"to": "00:02:14,660"
+			},
+			"offsets": {
+				"from": 132680,
+				"to": 134660
+			},
+			"text": " of monopoly, guaranteed monopoly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,660",
+				"to": "00:02:19,200"
+			},
+			"offsets": {
+				"from": 134660,
+				"to": 139200
+			},
+			"text": " And this monopoly power can kind of be at least good"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,200",
+				"to": "00:02:21,980"
+			},
+			"offsets": {
+				"from": 139200,
+				"to": 141980
+			},
+			"text": " to some extent to the advantage of the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,980",
+				"to": "00:02:26,900"
+			},
+			"offsets": {
+				"from": 141980,
+				"to": 146900
+			},
+			"text": " If that doesn't make sense right now, hopefully it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,900",
+				"to": "00:02:27,820"
+			},
+			"offsets": {
+				"from": 146900,
+				"to": 147820
+			},
+			"text": " at the end of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,820",
+				"to": "00:02:29,320"
+			},
+			"offsets": {
+				"from": 147820,
+				"to": 149320
+			},
+			"text": " So what the hell is time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,320",
+				"to": "00:02:35,640"
+			},
+			"offsets": {
+				"from": 149320,
+				"to": 155640
+			},
+			"text": " Time is a funny business, very confusing, at least to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,640",
+				"to": "00:02:38,080"
+			},
+			"offsets": {
+				"from": 155640,
+				"to": 158080
+			},
+			"text": " But when I talk about time in this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,080",
+				"to": "00:02:41,600"
+			},
+			"offsets": {
+				"from": 158080,
+				"to": 161600
+			},
+			"text": " I don't intend to be clever or philosophical about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,600",
+				"to": "00:02:45,940"
+			},
+			"offsets": {
+				"from": 161600,
+				"to": 165940
+			},
+			"text": " I really just mean how do we make progress in our chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,360",
+				"to": "00:02:50,700"
+			},
+			"offsets": {
+				"from": 166360,
+				"to": 170700
+			},
+			"text": " Improve of work, this progress was random in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,700",
+				"to": "00:02:54,100"
+			},
+			"offsets": {
+				"from": 170700,
+				"to": 174100
+			},
+			"text": " Sometimes blocks come up very quickly after three seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,100",
+				"to": "00:02:56,820"
+			},
+			"offsets": {
+				"from": 174100,
+				"to": 176820
+			},
+			"text": " or 20 seconds but on average 13 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,820",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 176820,
+				"to": 178840
+			},
+			"text": " Improve of stake, it's constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:04,400"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 184400
+			},
+			"text": " Every 12 seconds, assuming that a block proposal shows up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,400",
+				"to": "00:03:10,060"
+			},
+			"offsets": {
+				"from": 184400,
+				"to": 190060
+			},
+			"text": " And basically when I talk about deterministic versus random time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,060",
+				"to": "00:03:12,780"
+			},
+			"offsets": {
+				"from": 190060,
+				"to": 192780
+			},
+			"text": " I talk about how we make progress in our chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,780",
+				"to": "00:03:14,220"
+			},
+			"offsets": {
+				"from": 192780,
+				"to": 194220
+			},
+			"text": " That's kind of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,820",
+				"to": "00:03:18,040"
+			},
+			"offsets": {
+				"from": 194820,
+				"to": 198040
+			},
+			"text": " Now how do we make progress in Ethereum today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,040",
+				"to": "00:03:19,380"
+			},
+			"offsets": {
+				"from": 198040,
+				"to": 199380
+			},
+			"text": " It really is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,380",
+				"to": "00:03:24,580"
+			},
+			"offsets": {
+				"from": 199380,
+				"to": 204580
+			},
+			"text": " We have this available chain which we then try to finalize."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,580",
+				"to": "00:03:30,520"
+			},
+			"offsets": {
+				"from": 204580,
+				"to": 210520
+			},
+			"text": " But for this talk, we can safely ignore the finality gadget"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,520",
+				"to": "00:03:32,340"
+			},
+			"offsets": {
+				"from": 210520,
+				"to": 212340
+			},
+			"text": " that lives on top of this available chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,340",
+				"to": "00:03:34,980"
+			},
+			"offsets": {
+				"from": 212340,
+				"to": 214980
+			},
+			"text": " and just look at how the available chain grows."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,980",
+				"to": "00:03:38,960"
+			},
+			"offsets": {
+				"from": 214980,
+				"to": 218960
+			},
+			"text": " And again, we have this time unit called slots"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,960",
+				"to": "00:03:41,400"
+			},
+			"offsets": {
+				"from": 218960,
+				"to": 221400
+			},
+			"text": " which is 12 seconds long."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,700",
+				"to": "00:03:44,540"
+			},
+			"offsets": {
+				"from": 221700,
+				"to": 224540
+			},
+			"text": " And so every 12 seconds we slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,540",
+				"to": "00:03:49,260"
+			},
+			"offsets": {
+				"from": 224540,
+				"to": 229260
+			},
+			"text": " And so when the block proposal shows up like here in slot N,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,260",
+				"to": "00:03:55,220"
+			},
+			"offsets": {
+				"from": 229260,
+				"to": 235220
+			},
+			"text": " we just chug along, people will vote for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,220",
+				"to": "00:03:57,940"
+			},
+			"offsets": {
+				"from": 235220,
+				"to": 237940
+			},
+			"text": " next slot comes along, we build on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,940",
+				"to": "00:04:00,740"
+			},
+			"offsets": {
+				"from": 237940,
+				"to": 240740
+			},
+			"text": " And then here we have this scenario that was discussed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,740",
+				"to": "00:04:04,340"
+			},
+			"offsets": {
+				"from": 240740,
+				"to": 244340
+			},
+			"text": " If the block proposal doesn't show up, that's okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,340",
+				"to": "00:04:07,140"
+			},
+			"offsets": {
+				"from": 244340,
+				"to": 247140
+			},
+			"text": " the next block will just build on the previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,140",
+				"to": "00:04:08,100"
+			},
+			"offsets": {
+				"from": 247140,
+				"to": 248100
+			},
+			"text": " Simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,100",
+				"to": "00:04:11,580"
+			},
+			"offsets": {
+				"from": 248100,
+				"to": 251580
+			},
+			"text": " I want to kind of briefly touch upon where does this deterministic"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,580",
+				"to": "00:04:13,020"
+			},
+			"offsets": {
+				"from": 251580,
+				"to": 253020
+			},
+			"text": " nature of time actually come from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,020",
+				"to": "00:04:16,500"
+			},
+			"offsets": {
+				"from": 253020,
+				"to": 256500
+			},
+			"text": " And so basically in any proof of stake system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,500",
+				"to": "00:04:21,060"
+			},
+			"offsets": {
+				"from": 256500,
+				"to": 261060
+			},
+			"text": " we need a mechanism to select a proposal for a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,060",
+				"to": "00:04:23,500"
+			},
+			"offsets": {
+				"from": 261060,
+				"to": 263500
+			},
+			"text": " from a set of bonded validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,500",
+				"to": "00:04:27,540"
+			},
+			"offsets": {
+				"from": 263500,
+				"to": 267540
+			},
+			"text": " And improve of work, this is clearly happening randomly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,540",
+				"to": "00:04:29,900"
+			},
+			"offsets": {
+				"from": 267540,
+				"to": 269900
+			},
+			"text": " just by nature of it being a race."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,900",
+				"to": "00:04:33,340"
+			},
+			"offsets": {
+				"from": 269900,
+				"to": 273340
+			},
+			"text": " Every miner tries to create a block, but on average,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,340",
+				"to": "00:04:38,100"
+			},
+			"offsets": {
+				"from": 273340,
+				"to": 278100
+			},
+			"text": " only one miner succeeded every 13 seconds, roughly improve work in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,380",
+				"to": "00:04:41,860"
+			},
+			"offsets": {
+				"from": 278380,
+				"to": 281860
+			},
+			"text": " And importantly, you don't actually know who will win the next round."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,860",
+				"to": "00:04:46,820"
+			},
+			"offsets": {
+				"from": 281860,
+				"to": 286820
+			},
+			"text": " Improve of stake, this random selection needs to be explicit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,820",
+				"to": "00:04:51,300"
+			},
+			"offsets": {
+				"from": 286820,
+				"to": 291300
+			},
+			"text": " Now clearly there is no true randomness in a blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,300",
+				"to": "00:04:54,420"
+			},
+			"offsets": {
+				"from": 291300,
+				"to": 294420
+			},
+			"text": " since all nodes must come to consensus on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,420",
+				"to": "00:04:58,500"
+			},
+			"offsets": {
+				"from": 294420,
+				"to": 298500
+			},
+			"text": " And so different nodes calling random, a randomness function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,500",
+				"to": "00:05:04,820"
+			},
+			"offsets": {
+				"from": 298500,
+				"to": 304820
+			},
+			"text": " which is created chaos by basically outputting different results in each case."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,180",
+				"to": "00:05:09,020"
+			},
+			"offsets": {
+				"from": 305180,
+				"to": 309020
+			},
+			"text": " So instead, what we do is we generate pseudo randomness on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,020",
+				"to": "00:05:13,140"
+			},
+			"offsets": {
+				"from": 309020,
+				"to": 313140
+			},
+			"text": " from a seed that is computed and updated as part of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,140",
+				"to": "00:05:17,260"
+			},
+			"offsets": {
+				"from": 313140,
+				"to": 317260
+			},
+			"text": " And the challenge is basically to make this seed unpredictable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,260",
+				"to": "00:05:23,220"
+			},
+			"offsets": {
+				"from": 317260,
+				"to": 323220
+			},
+			"text": " Now for the purpose of this talk, we can safely treat it as a box"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,220",
+				"to": "00:05:25,340"
+			},
+			"offsets": {
+				"from": 323220,
+				"to": 325340
+			},
+			"text": " and just pretend it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,340",
+				"to": "00:05:26,580"
+			},
+			"offsets": {
+				"from": 325340,
+				"to": 326580
+			},
+			"text": " It actually does."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,580",
+				"to": "00:05:31,660"
+			},
+			"offsets": {
+				"from": 326580,
+				"to": 331660
+			},
+			"text": " And so essentially what we do is we generate pseudo randomness"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,660",
+				"to": "00:05:34,860"
+			},
+			"offsets": {
+				"from": 331660,
+				"to": 334860
+			},
+			"text": " on chain to sign and schedule duties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,420",
+				"to": "00:05:38,980"
+			},
+			"offsets": {
+				"from": 335420,
+				"to": 338980
+			},
+			"text": " And this sequence of duties is scheduled deterministically."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,980",
+				"to": "00:05:45,180"
+			},
+			"offsets": {
+				"from": 338980,
+				"to": 345180
+			},
+			"text": " So we as validators, we need to agree on a view of when duties are scheduled"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,180",
+				"to": "00:05:46,700"
+			},
+			"offsets": {
+				"from": 345180,
+				"to": 346700
+			},
+			"text": " and also of their time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,700",
+				"to": "00:05:52,740"
+			},
+			"offsets": {
+				"from": 346700,
+				"to": 352740
+			},
+			"text": " And so in Ethereum, we chose this arbitrary parameter of 12 seconds as our block time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,740",
+				"to": "00:05:58,140"
+			},
+			"offsets": {
+				"from": 352740,
+				"to": 358140
+			},
+			"text": " It's not completely arbitrary because obviously things like latency, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,140",
+				"to": "00:06:01,900"
+			},
+			"offsets": {
+				"from": 358140,
+				"to": 361900
+			},
+			"text": " Block processing are considered, but it could have been 11 or 13."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,060",
+				"to": "00:06:05,260"
+			},
+			"offsets": {
+				"from": 363060,
+				"to": 365260
+			},
+			"text": " And it would probably work just fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,260",
+				"to": "00:06:10,900"
+			},
+			"offsets": {
+				"from": 365260,
+				"to": 370900
+			},
+			"text": " Now to kind of boil this down a bit more heavily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,900",
+				"to": "00:06:15,820"
+			},
+			"offsets": {
+				"from": 370900,
+				"to": 375820
+			},
+			"text": " improve of work, we are fed this exogenous randomness into our system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,820",
+				"to": "00:06:18,700"
+			},
+			"offsets": {
+				"from": 375820,
+				"to": 378700
+			},
+			"text": " which gives us this random block time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,700",
+				"to": "00:06:22,340"
+			},
+			"offsets": {
+				"from": 378700,
+				"to": 382340
+			},
+			"text": " And in proof of stake, we have to generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,340",
+				"to": "00:06:30,020"
+			},
+			"offsets": {
+				"from": 382340,
+				"to": 390020
+			},
+			"text": " this on-chain pseudo randomness, giving us this notion of deterministic time in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,700",
+				"to": "00:06:34,500"
+			},
+			"offsets": {
+				"from": 390700,
+				"to": 394500
+			},
+			"text": " And to make it even more blunt,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,500",
+				"to": "00:06:38,180"
+			},
+			"offsets": {
+				"from": 394500,
+				"to": 398180
+			},
+			"text": " basically you can think of proof of work as a continuous race."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,180",
+				"to": "00:06:42,300"
+			},
+			"offsets": {
+				"from": 398180,
+				"to": 402300
+			},
+			"text": " You never know who will win and when could be anyone at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,300",
+				"to": "00:06:45,980"
+			},
+			"offsets": {
+				"from": 402300,
+				"to": 405980
+			},
+			"text": " Whereas in proof of stake, we have the scheduled sequence of duties."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,980",
+				"to": "00:06:53,460"
+			},
+			"offsets": {
+				"from": 405980,
+				"to": 413460
+			},
+			"text": " And this difference here already implies what the core of the problem is that I will talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,460",
+				"to": "00:06:56,100"
+			},
+			"offsets": {
+				"from": 413460,
+				"to": 416100
+			},
+			"text": " In proof of work, there's no notion of late."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,100",
+				"to": "00:06:57,900"
+			},
+			"offsets": {
+				"from": 416100,
+				"to": 417900
+			},
+			"text": " Whereas in proof of stake, there is."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,100",
+				"to": "00:07:02,580"
+			},
+			"offsets": {
+				"from": 418100,
+				"to": 422580
+			},
+			"text": " You can basically show up late for your duties, such as block proposing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,580",
+				"to": "00:07:08,700"
+			},
+			"offsets": {
+				"from": 422580,
+				"to": 428700
+			},
+			"text": " And you can basically show up late, but early enough to still become canonical."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,700",
+				"to": "00:07:15,060"
+			},
+			"offsets": {
+				"from": 428700,
+				"to": 435060
+			},
+			"text": " And that's basically the wiggle room that a proposer has and can abuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,060",
+				"to": "00:07:22,980"
+			},
+			"offsets": {
+				"from": 435060,
+				"to": 442980
+			},
+			"text": " So, yeah, basically this nice graph by Martin here, not sure if he's here, but I saw him earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,980",
+				"to": "00:07:27,260"
+			},
+			"offsets": {
+				"from": 442980,
+				"to": 447260
+			},
+			"text": " Essentially, it's about block time around the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,460",
+				"to": "00:07:32,660"
+			},
+			"offsets": {
+				"from": 447460,
+				"to": 452660
+			},
+			"text": " You can easily see here, yeah, improve of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,660",
+				"to": "00:07:36,980"
+			},
+			"offsets": {
+				"from": 452660,
+				"to": 456980
+			},
+			"text": " Obviously, you have this very large variance in block time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,980",
+				"to": "00:07:42,620"
+			},
+			"offsets": {
+				"from": 456980,
+				"to": 462620
+			},
+			"text": " And as soon as we hit merge, we have this very boring, beautiful 12 second slot time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,620",
+				"to": "00:07:46,260"
+			},
+			"offsets": {
+				"from": 462620,
+				"to": 466260
+			},
+			"text": " block showing up beautifully until there's one missed slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,260",
+				"to": "00:07:51,780"
+			},
+			"offsets": {
+				"from": 466260,
+				"to": 471780
+			},
+			"text": " So, block time jumps up to 24 seconds once, but that's kind of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,780",
+				"to": "00:07:57,140"
+			},
+			"offsets": {
+				"from": 471780,
+				"to": 477140
+			},
+			"text": " Now, let's think about the implications of this deterministic time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,340",
+				"to": "00:08:02,180"
+			},
+			"offsets": {
+				"from": 477340,
+				"to": 482180
+			},
+			"text": " And this plot really kind of illustrates it quite well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,180",
+				"to": "00:08:05,540"
+			},
+			"offsets": {
+				"from": 482180,
+				"to": 485540
+			},
+			"text": " And I want to kind of continue on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,540",
+				"to": "00:08:10,420"
+			},
+			"offsets": {
+				"from": 485540,
+				"to": 490420
+			},
+			"text": " Vitalik here notes basically, I'm actually in the way I'm not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,420",
+				"to": "00:08:15,700"
+			},
+			"offsets": {
+				"from": 490420,
+				"to": 495700
+			},
+			"text": " Basically, it's immediately obvious that this block time is less volatile"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,700",
+				"to": "00:08:21,060"
+			},
+			"offsets": {
+				"from": 495700,
+				"to": 501060
+			},
+			"text": " and this less decreased volatility means that the Gaussian market is more stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,060",
+				"to": "00:08:26,060"
+			},
+			"offsets": {
+				"from": 501060,
+				"to": 506060
+			},
+			"text": " And as Vitalik points out, basically, EIP 1559 works better."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,260",
+				"to": "00:08:32,220"
+			},
+			"offsets": {
+				"from": 506260,
+				"to": 512220
+			},
+			"text": " Since we hit the two X gas limit of 30 million gas less often."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,220",
+				"to": "00:08:34,420"
+			},
+			"offsets": {
+				"from": 512220,
+				"to": 514420
+			},
+			"text": " And basically, removing this huge"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,420",
+				"to": "00:08:39,700"
+			},
+			"offsets": {
+				"from": 514420,
+				"to": 519700
+			},
+			"text": " variance of block time leads to a more stable Gaussian market with fewer people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,700",
+				"to": "00:08:48,580"
+			},
+			"offsets": {
+				"from": 519700,
+				"to": 528580
+			},
+			"text": " over pairing compared to, yeah, when basically base fee hikes hits the limit every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,580",
+				"to": "00:08:52,260"
+			},
+			"offsets": {
+				"from": 528580,
+				"to": 532260
+			},
+			"text": " There's a block that shows up after a long time, improve of works case."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,460",
+				"to": "00:09:00,220"
+			},
+			"offsets": {
+				"from": 532460,
+				"to": 540220
+			},
+			"text": " So basically, there's another tweet here by Barnaby who's sitting right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,220",
+				"to": "00:09:02,780"
+			},
+			"offsets": {
+				"from": 540220,
+				"to": 542780
+			},
+			"text": " Basically, just visualised again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,780",
+				"to": "00:09:08,580"
+			},
+			"offsets": {
+				"from": 542780,
+				"to": 548580
+			},
+			"text": " It's not as immediately obvious, but you can basically see the gas limit is not hit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,580",
+				"to": "00:09:12,540"
+			},
+			"offsets": {
+				"from": 548580,
+				"to": 552540
+			},
+			"text": " as often in the second half of the plot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,540",
+				"to": "00:09:16,340"
+			},
+			"offsets": {
+				"from": 552540,
+				"to": 556340
+			},
+			"text": " And essentially, we can just summarise this as better load balancing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,340",
+				"to": "00:09:20,220"
+			},
+			"offsets": {
+				"from": 556340,
+				"to": 560220
+			},
+			"text": " And I've now talked about transaction load balancing, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,420",
+				"to": "00:09:25,060"
+			},
+			"offsets": {
+				"from": 560420,
+				"to": 565060
+			},
+			"text": " But this really kind of translates throughout the stack on the P2P layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,060",
+				"to": "00:09:27,860"
+			},
+			"offsets": {
+				"from": 565060,
+				"to": 567860
+			},
+			"text": " in terms of messaging load, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,860",
+				"to": "00:09:33,900"
+			},
+			"offsets": {
+				"from": 567860,
+				"to": 573900
+			},
+			"text": " So there are huge benefits to this constant progress that we make,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,900",
+				"to": "00:09:34,980"
+			},
+			"offsets": {
+				"from": 573900,
+				"to": 574980
+			},
+			"text": " improve of staking theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,980",
+				"to": "00:09:37,700"
+			},
+			"offsets": {
+				"from": 574980,
+				"to": 577700
+			},
+			"text": " But obviously, that's not the end of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,700",
+				"to": "00:09:42,340"
+			},
+			"offsets": {
+				"from": 577700,
+				"to": 582340
+			},
+			"text": " Otherwise, I wouldn't be talking about it probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,340",
+				"to": "00:09:46,540"
+			},
+			"offsets": {
+				"from": 582340,
+				"to": 586540
+			},
+			"text": " Essentially, proposals can abuse their guaranteed monopoly power."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,740",
+				"to": "00:09:51,780"
+			},
+			"offsets": {
+				"from": 586740,
+				"to": 591780
+			},
+			"text": " And what I really mean is that what do I mean by guaranteed monopoly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,780",
+				"to": "00:09:56,380"
+			},
+			"offsets": {
+				"from": 591780,
+				"to": 596380
+			},
+			"text": " I mean that improve of stake, there's only a single unique validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,380",
+				"to": "00:10:01,060"
+			},
+			"offsets": {
+				"from": 596380,
+				"to": 601060
+			},
+			"text": " that has the right to propose a valid block in a given slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,060",
+				"to": "00:10:03,700"
+			},
+			"offsets": {
+				"from": 601060,
+				"to": 603700
+			},
+			"text": " And improve of work that obviously is not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,700",
+				"to": "00:10:09,220"
+			},
+			"offsets": {
+				"from": 603700,
+				"to": 609220
+			},
+			"text": " And this guarantee, basically, now that we have this unique proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,220",
+				"to": "00:10:14,500"
+			},
+			"offsets": {
+				"from": 609220,
+				"to": 614500
+			},
+			"text": " that is allowed to propose a block for the duration of a slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,700",
+				"to": "00:10:19,340"
+			},
+			"offsets": {
+				"from": 614700,
+				"to": 619340
+			},
+			"text": " there's this leeway of timing your block that is possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,340",
+				"to": "00:10:27,100"
+			},
+			"offsets": {
+				"from": 619340,
+				"to": 627100
+			},
+			"text": " But before going there, I need to briefly introduce some theorem basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,100",
+				"to": "00:10:31,900"
+			},
+			"offsets": {
+				"from": 627100,
+				"to": 631900
+			},
+			"text": " Basically, a slot, there's several things happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,900",
+				"to": "00:10:34,180"
+			},
+			"offsets": {
+				"from": 631900,
+				"to": 634180
+			},
+			"text": " On the one hand, we have a block proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,180",
+				"to": "00:10:37,620"
+			},
+			"offsets": {
+				"from": 634180,
+				"to": 637620
+			},
+			"text": " On another hand, we have a committee of testers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,620",
+				"to": "00:10:40,660"
+			},
+			"offsets": {
+				"from": 637620,
+				"to": 640660
+			},
+			"text": " voting for what they consider as head of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,660",
+				"to": "00:10:42,900"
+			},
+			"offsets": {
+				"from": 640660,
+				"to": 642900
+			},
+			"text": " And then we have the aggregation phase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,100",
+				"to": "00:10:47,580"
+			},
+			"offsets": {
+				"from": 643100,
+				"to": 647580
+			},
+			"text": " which we can kind of ignore, but it's just a way of efficiently packaging"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,580",
+				"to": "00:10:51,780"
+			},
+			"offsets": {
+				"from": 647580,
+				"to": 651780
+			},
+			"text": " and attestation so that we can actually fit them on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,780",
+				"to": "00:10:57,820"
+			},
+			"offsets": {
+				"from": 651780,
+				"to": 657820
+			},
+			"text": " So the honest validator spec guide basically specifies that a validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,820",
+				"to": "00:11:02,780"
+			},
+			"offsets": {
+				"from": 657820,
+				"to": 662780
+			},
+			"text": " is expected to propose a signed beacon block at the beginning of any slot"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,780",
+				"to": "00:11:06,700"
+			},
+			"offsets": {
+				"from": 662780,
+				"to": 666700
+			},
+			"text": " during which its proposal, yada yada, returns true."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,700",
+				"to": "00:11:10,380"
+			},
+			"offsets": {
+				"from": 666700,
+				"to": 670380
+			},
+			"text": " So basically, if you're the elected"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,580",
+				"to": "00:11:14,060"
+			},
+			"offsets": {
+				"from": 670580,
+				"to": 674060
+			},
+			"text": " proposal, propose a block at the beginning of the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,060",
+				"to": "00:11:16,380"
+			},
+			"offsets": {
+				"from": 674060,
+				"to": 676380
+			},
+			"text": " So zero seconds into the slot, ideally."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,380",
+				"to": "00:11:20,300"
+			},
+			"offsets": {
+				"from": 676380,
+				"to": 680300
+			},
+			"text": " Now, then the next phase is basically testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,300",
+				"to": "00:11:25,740"
+			},
+			"offsets": {
+				"from": 680300,
+				"to": 685740
+			},
+			"text": " And we have the attestation deadline, four seconds into the slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,740",
+				"to": "00:11:29,860"
+			},
+			"offsets": {
+				"from": 685740,
+				"to": 689860
+			},
+			"text": " which basically the rule or the spec says"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,860",
+				"to": "00:11:34,660"
+			},
+			"offsets": {
+				"from": 689860,
+				"to": 694660
+			},
+			"text": " \"a test as soon as you hear a valid block or four seconds into the slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,660",
+				"to": "00:11:36,220"
+			},
+			"offsets": {
+				"from": 694660,
+				"to": 696220
+			},
+			"text": " whatever comes first.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,220",
+				"to": "00:11:40,100"
+			},
+			"offsets": {
+				"from": 696220,
+				"to": 700100
+			},
+			"text": " So if the slot, if the blocks on time you hit after one second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,300",
+				"to": "00:11:41,540"
+			},
+			"offsets": {
+				"from": 700300,
+				"to": 701540
+			},
+			"text": " you immediately attest to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,540",
+				"to": "00:11:43,820"
+			},
+			"offsets": {
+				"from": 701540,
+				"to": 703820
+			},
+			"text": " If you don't hear anything until four seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,820",
+				"to": "00:11:48,420"
+			},
+			"offsets": {
+				"from": 703820,
+				"to": 708420
+			},
+			"text": " you attest probably to the previous block that you heard."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,420",
+				"to": "00:11:51,900"
+			},
+			"offsets": {
+				"from": 708420,
+				"to": 711900
+			},
+			"text": " And in order to know what to attest for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,900",
+				"to": "00:11:55,580"
+			},
+			"offsets": {
+				"from": 711900,
+				"to": 715580
+			},
+			"text": " these testers run our beloved fork choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,580",
+				"to": "00:11:57,980"
+			},
+			"offsets": {
+				"from": 715580,
+				"to": 717980
+			},
+			"text": " I see photos here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,980",
+				"to": "00:12:05,780"
+			},
+			"offsets": {
+				"from": 717980,
+				"to": 725780
+			},
+			"text": " And basically, this fork choice rule is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,780",
+				"to": "00:12:08,860"
+			},
+			"offsets": {
+				"from": 725780,
+				"to": 728860
+			},
+			"text": " a function that takes as input the block tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,060",
+				"to": "00:12:12,820"
+			},
+			"offsets": {
+				"from": 729060,
+				"to": 732820
+			},
+			"text": " and some previous attestations and gives you the head of the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,820",
+				"to": "00:12:17,500"
+			},
+			"offsets": {
+				"from": 732820,
+				"to": 737500
+			},
+			"text": " as output that you will then vote for or build on top of if you're a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,500",
+				"to": "00:12:23,380"
+			},
+			"offsets": {
+				"from": 737500,
+				"to": 743380
+			},
+			"text": " proposal. So the fork choice is a flavor of LMD Ghost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,380",
+				"to": "00:12:26,100"
+			},
+			"offsets": {
+				"from": 743380,
+				"to": 746100
+			},
+			"text": " which stands for latest message driven,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,100",
+				"to": "00:12:30,940"
+			},
+			"offsets": {
+				"from": 746100,
+				"to": 750940
+			},
+			"text": " greediest, heaviest of the sub tree, which is a mouthful."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,940",
+				"to": "00:12:33,620"
+			},
+			"offsets": {
+				"from": 750940,
+				"to": 753620
+			},
+			"text": " But it really intuitively is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,620",
+				"to": "00:12:37,020"
+			},
+			"offsets": {
+				"from": 753620,
+				"to": 757020
+			},
+			"text": " If you look at the block tree here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,220",
+				"to": "00:12:43,380"
+			},
+			"offsets": {
+				"from": 757220,
+				"to": 763380
+			},
+			"text": " essentially, as long as there's no fork, you just extend the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,380",
+				"to": "00:12:46,380"
+			},
+			"offsets": {
+				"from": 763380,
+				"to": 766380
+			},
+			"text": " And here you see the scenario once we get to n plus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,380",
+				"to": "00:12:50,060"
+			},
+			"offsets": {
+				"from": 766380,
+				"to": 770060
+			},
+			"text": " extending block n easy, but then comes n plus two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,060",
+				"to": "00:12:53,660"
+			},
+			"offsets": {
+				"from": 770060,
+				"to": 773660
+			},
+			"text": " And for whatever reason, the proposal builds on top of n,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,660",
+				"to": "00:12:56,860"
+			},
+			"offsets": {
+				"from": 773660,
+				"to": 776860
+			},
+			"text": " creating a split in the block tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,860",
+				"to": "00:13:02,500"
+			},
+			"offsets": {
+				"from": 776860,
+				"to": 782500
+			},
+			"text": " Now that might happen if the proposal was offline for whatever reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,500",
+				"to": "00:13:06,620"
+			},
+			"offsets": {
+				"from": 782500,
+				"to": 786620
+			},
+			"text": " But now basically, the committee in n plus two has to make a decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,820",
+				"to": "00:13:10,180"
+			},
+			"offsets": {
+				"from": 786820,
+				"to": 790180
+			},
+			"text": " Will I vote for block n plus two or will I vote for block n plus one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,180",
+				"to": "00:13:14,500"
+			},
+			"offsets": {
+				"from": 790180,
+				"to": 794500
+			},
+			"text": " And the LMD Ghost will basically tells you to walk down the block tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,500",
+				"to": "00:13:18,220"
+			},
+			"offsets": {
+				"from": 794500,
+				"to": 798220
+			},
+			"text": " and go down the heavier sub tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,220",
+				"to": "00:13:22,660"
+			},
+			"offsets": {
+				"from": 798220,
+				"to": 802660
+			},
+			"text": " which means basically going down the path where more votes have been accumulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,660",
+				"to": "00:13:28,500"
+			},
+			"offsets": {
+				"from": 802660,
+				"to": 808500
+			},
+			"text": " And here you can see that block n plus one actually accumulated 100% of the votes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,500",
+				"to": "00:13:32,500"
+			},
+			"offsets": {
+				"from": 808500,
+				"to": 812500
+			},
+			"text": " in that slot. And so it's heavier than block n plus two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,500",
+				"to": "00:13:36,540"
+			},
+			"offsets": {
+				"from": 812500,
+				"to": 816540
+			},
+			"text": " And so as the committee in n plus two, you will vote for n plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,740",
+				"to": "00:13:41,740"
+			},
+			"offsets": {
+				"from": 816740,
+				"to": 821740
+			},
+			"text": " And then n plus three sees these words and makes a similar decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,740",
+				"to": "00:13:46,860"
+			},
+			"offsets": {
+				"from": 821740,
+				"to": 826860
+			},
+			"text": " And so basically n plus two gets kicked out of the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,860",
+				"to": "00:13:49,580"
+			},
+			"offsets": {
+				"from": 826860,
+				"to": 829580
+			},
+			"text": " Now we have the basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,580",
+				"to": "00:13:53,140"
+			},
+			"offsets": {
+				"from": 829580,
+				"to": 833140
+			},
+			"text": " And so let's talk basically about what the proposal can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,140",
+				"to": "00:13:54,420"
+			},
+			"offsets": {
+				"from": 833140,
+				"to": 834420
+			},
+			"text": " I've mentioned it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,420",
+				"to": "00:13:58,460"
+			},
+			"offsets": {
+				"from": 834420,
+				"to": 838460
+			},
+			"text": " It's basically about timing their block releases."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,460",
+				"to": "00:14:01,940"
+			},
+			"offsets": {
+				"from": 838460,
+				"to": 841940
+			},
+			"text": " And there's basically different notions of on time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,940",
+				"to": "00:14:05,820"
+			},
+			"offsets": {
+				"from": 841940,
+				"to": 845820
+			},
+			"text": " Like, ideally you release your block zero seconds into the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,020",
+				"to": "00:14:11,540"
+			},
+			"offsets": {
+				"from": 846020,
+				"to": 851540
+			},
+			"text": " Then some validate that notes will on the P2P layer receive them at different times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,540",
+				"to": "00:14:16,220"
+			},
+			"offsets": {
+				"from": 851540,
+				"to": 856220
+			},
+			"text": " probably one second in, two seconds, probably everyone has heard it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,220",
+				"to": "00:14:22,420"
+			},
+			"offsets": {
+				"from": 856220,
+				"to": 862420
+			},
+			"text": " But so as long as you hear the block zero or four seconds into the slot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,420",
+				"to": "00:14:26,740"
+			},
+			"offsets": {
+				"from": 862420,
+				"to": 866740
+			},
+			"text": " a block is basically considered on time in terms of testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,740",
+				"to": "00:14:31,140"
+			},
+			"offsets": {
+				"from": 866740,
+				"to": 871140
+			},
+			"text": " because you hear about the block before a validator tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,140",
+				"to": "00:14:34,580"
+			},
+			"offsets": {
+				"from": 871140,
+				"to": 874580
+			},
+			"text": " So in this case, nothing really happens business as usual."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,780",
+				"to": "00:14:39,260"
+			},
+			"offsets": {
+				"from": 874780,
+				"to": 879260
+			},
+			"text": " But the more interesting case is what happens if the block proposal is really late?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,260",
+				"to": "00:14:42,220"
+			},
+			"offsets": {
+				"from": 879260,
+				"to": 882220
+			},
+			"text": " Say 11 seconds into the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,220",
+				"to": "00:14:47,620"
+			},
+			"offsets": {
+				"from": 882220,
+				"to": 887620
+			},
+			"text": " Essentially, as you can see on this diagram,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,620",
+				"to": "00:14:51,140"
+			},
+			"offsets": {
+				"from": 887620,
+				"to": 891140
+			},
+			"text": " you have this attestation deadline for seconds into the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,140",
+				"to": "00:14:56,060"
+			},
+			"offsets": {
+				"from": 891140,
+				"to": 896060
+			},
+			"text": " And because they haven't seen a block yet, they will just vote for block n."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,060",
+				"to": "00:14:59,980"
+			},
+			"offsets": {
+				"from": 896060,
+				"to": 899980
+			},
+			"text": " Now at some point, block n plus one comes along."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,180",
+				"to": "00:15:04,980"
+			},
+			"offsets": {
+				"from": 900180,
+				"to": 904980
+			},
+			"text": " And once we get to the next slot, block n plus two has to make a decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,980",
+				"to": "00:15:11,580"
+			},
+			"offsets": {
+				"from": 904980,
+				"to": 911580
+			},
+			"text": " what block to extend, on what basically to build on block n or n plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,580",
+				"to": "00:15:14,700"
+			},
+			"offsets": {
+				"from": 911580,
+				"to": 914700
+			},
+			"text": " You might think that n plus one shouldn't become part of the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,700",
+				"to": "00:15:16,340"
+			},
+			"offsets": {
+				"from": 914700,
+				"to": 916340
+			},
+			"text": " because no one actually voted for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,340",
+				"to": "00:15:24,020"
+			},
+			"offsets": {
+				"from": 916340,
+				"to": 924020
+			},
+			"text": " But in terms of fork choice, the weight of block n is actually inherited by block n plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,020",
+				"to": "00:15:27,700"
+			},
+			"offsets": {
+				"from": 924020,
+				"to": 927700
+			},
+			"text": " And so n plus two will extend that chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,700",
+				"to": "00:15:30,100"
+			},
+			"offsets": {
+				"from": 927700,
+				"to": 930100
+			},
+			"text": " for a good reason, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,980",
+				"to": "00:15:37,300"
+			},
+			"offsets": {
+				"from": 930980,
+				"to": 937300
+			},
+			"text": " So we have maybe to go back, how does this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,300",
+				"to": "00:15:38,860"
+			},
+			"offsets": {
+				"from": 937300,
+				"to": 938860
+			},
+			"text": " Here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,860",
+				"to": "00:15:42,140"
+			},
+			"offsets": {
+				"from": 938860,
+				"to": 942140
+			},
+			"text": " So what basically happened here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,140",
+				"to": "00:15:46,940"
+			},
+			"offsets": {
+				"from": 942140,
+				"to": 946940
+			},
+			"text": " We have a very late block proposal, 11 seconds late."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,940",
+				"to": "00:15:48,300"
+			},
+			"offsets": {
+				"from": 946940,
+				"to": 948300
+			},
+			"text": " Why is this bad?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,300",
+				"to": "00:15:52,020"
+			},
+			"offsets": {
+				"from": 948300,
+				"to": 952020
+			},
+			"text": " This is bad because it's simply unfair to the next block proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,020",
+				"to": "00:15:53,420"
+			},
+			"offsets": {
+				"from": 952020,
+				"to": 953420
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,420",
+				"to": "00:15:57,940"
+			},
+			"offsets": {
+				"from": 953420,
+				"to": 957940
+			},
+			"text": " Because basically listening time to the transaction mempool is valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,140",
+				"to": "00:16:01,700"
+			},
+			"offsets": {
+				"from": 958140,
+				"to": 961700
+			},
+			"text": " Transactions have transaction fees, priority fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,700",
+				"to": "00:16:10,140"
+			},
+			"offsets": {
+				"from": 961700,
+				"to": 970140
+			},
+			"text": " But obviously, MEV dramatically increases this notion of unfairness in this sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,140",
+				"to": "00:16:14,380"
+			},
+			"offsets": {
+				"from": 970140,
+				"to": 974380
+			},
+			"text": " that more listening time to the mempool basically gives you more transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,380",
+				"to": "00:16:18,860"
+			},
+			"offsets": {
+				"from": 974380,
+				"to": 978860
+			},
+			"text": " to extract MEV from, which basically means that if as a block proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,860",
+				"to": "00:16:24,020"
+			},
+			"offsets": {
+				"from": 978860,
+				"to": 984020
+			},
+			"text": " I only have two seconds worth of listening time that my previous proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,220",
+				"to": "00:16:29,220"
+			},
+			"offsets": {
+				"from": 984220,
+				"to": 989220
+			},
+			"text": " didn't have available to include in their block, I'm worse off."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,220",
+				"to": "00:16:35,420"
+			},
+			"offsets": {
+				"from": 989220,
+				"to": 995420
+			},
+			"text": " And so basically anyone following the honest spec guide will actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,420",
+				"to": "00:16:37,580"
+			},
+			"offsets": {
+				"from": 995420,
+				"to": 997580
+			},
+			"text": " less MEV to extract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,580",
+				"to": "00:16:43,820"
+			},
+			"offsets": {
+				"from": 997580,
+				"to": 1003820
+			},
+			"text": " Now that obviously can lead to centralizing effects that if you're not a sophisticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,020",
+				"to": "00:16:49,020"
+			},
+			"offsets": {
+				"from": 1004020,
+				"to": 1009020
+			},
+			"text": " proposal, you simply are less than sophisticated ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,020",
+				"to": "00:16:52,020"
+			},
+			"offsets": {
+				"from": 1009020,
+				"to": 1012020
+			},
+			"text": " So what can we do about it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,020",
+				"to": "00:16:57,220"
+			},
+			"offsets": {
+				"from": 1012020,
+				"to": 1017220
+			},
+			"text": " Essentially, there's roughly three categories to think in."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,220",
+				"to": "00:17:00,420"
+			},
+			"offsets": {
+				"from": 1017220,
+				"to": 1020420
+			},
+			"text": " One is containing this monopoly power."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,420",
+				"to": "00:17:03,620"
+			},
+			"offsets": {
+				"from": 1020420,
+				"to": 1023620
+			},
+			"text": " Right now, basically, you can release a block at the end of the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,620",
+				"to": "00:17:09,220"
+			},
+			"offsets": {
+				"from": 1023620,
+				"to": 1029220
+			},
+			"text": " What about making it so that we can kind of enforce a shorter time frame"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,420",
+				"to": "00:17:14,420"
+			},
+			"offsets": {
+				"from": 1029420,
+				"to": 1034420
+			},
+			"text": " where a block can still be released but become canonical?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,420",
+				"to": "00:17:17,620"
+			},
+			"offsets": {
+				"from": 1034420,
+				"to": 1037620
+			},
+			"text": " I will go through some things in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,620",
+				"to": "00:17:22,620"
+			},
+			"offsets": {
+				"from": 1037620,
+				"to": 1042620
+			},
+			"text": " Another one is explicitly incentivizing timeliness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,620",
+				"to": "00:17:26,420"
+			},
+			"offsets": {
+				"from": 1042620,
+				"to": 1046420
+			},
+			"text": " which we currently don't do in our protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,420",
+				"to": "00:17:30,620"
+			},
+			"offsets": {
+				"from": 1046420,
+				"to": 1050620
+			},
+			"text": " And the third one is I'm not actually going to talk too much about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,620",
+				"to": "00:17:36,820"
+			},
+			"offsets": {
+				"from": 1050620,
+				"to": 1056820
+			},
+			"text": " but is trying to think about how can we maybe introduce competition to propose this again."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,020",
+				"to": "00:17:42,020"
+			},
+			"offsets": {
+				"from": 1057020,
+				"to": 1062020
+			},
+			"text": " In the sense of right now we have this guaranteed monopoly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,020",
+				"to": "00:17:47,220"
+			},
+			"offsets": {
+				"from": 1062020,
+				"to": 1067220
+			},
+			"text": " Maybe there's a way the protocol can introduce some notion of competition"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,220",
+				"to": "00:17:53,420"
+			},
+			"offsets": {
+				"from": 1067220,
+				"to": 1073420
+			},
+			"text": " where the proposal can't rest assured that they have 12 seconds to release their block."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,420",
+				"to": "00:17:57,620"
+			},
+			"offsets": {
+				"from": 1073420,
+				"to": 1077620
+			},
+			"text": " But that would require fundamental changes to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,620",
+				"to": "00:18:04,820"
+			},
+			"offsets": {
+				"from": 1077620,
+				"to": 1084820
+			},
+			"text": " And I'm actually not entirely sure if it even is possible in a world where we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,020",
+				"to": "00:18:10,020"
+			},
+			"offsets": {
+				"from": 1085020,
+				"to": 1090020
+			},
+			"text": " in a world where we have thousands of attestations happening each slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,020",
+				"to": "00:18:12,220"
+			},
+			"offsets": {
+				"from": 1090020,
+				"to": 1092220
+			},
+			"text": " What can we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,220",
+				"to": "00:18:16,420"
+			},
+			"offsets": {
+				"from": 1092220,
+				"to": 1096420
+			},
+			"text": " There's some fork choice fun that we can do today."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,420",
+				"to": "00:18:22,620"
+			},
+			"offsets": {
+				"from": 1096420,
+				"to": 1102620
+			},
+			"text": " For reasons unrelated to this is a proposal boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,620",
+				"to": "00:18:32,620"
+			},
+			"offsets": {
+				"from": 1102620,
+				"to": 1112620
+			},
+			"text": " And essentially, proposal boost is something that's part of the fork choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,820",
+				"to": "00:18:37,220"
+			},
+			"offsets": {
+				"from": 1112820,
+				"to": 1117220
+			},
+			"text": " where if you propose a block on time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,220",
+				"to": "00:18:43,420"
+			},
+			"offsets": {
+				"from": 1117220,
+				"to": 1123420
+			},
+			"text": " the block will be treated as if it had already received 40% of committee votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,420",
+				"to": "00:18:46,620"
+			},
+			"offsets": {
+				"from": 1123420,
+				"to": 1126620
+			},
+			"text": " Basically, you have a head start in terms of fork choice weight,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,620",
+				"to": "00:18:49,820"
+			},
+			"offsets": {
+				"from": 1126620,
+				"to": 1129820
+			},
+			"text": " but only for the duration of the slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,820",
+				"to": "00:18:58,620"
+			},
+			"offsets": {
+				"from": 1129820,
+				"to": 1138620
+			},
+			"text": " Now, how can we basically use this to defend against this \"guaranteed monopoly\"?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,820",
+				"to": "00:19:03,220"
+			},
+			"offsets": {
+				"from": 1138820,
+				"to": 1143220
+			},
+			"text": " Here in this scenario we see block n plus one is relatively late,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,220",
+				"to": "00:19:10,220"
+			},
+			"offsets": {
+				"from": 1143220,
+				"to": 1150220
+			},
+			"text": " around the four second deadline, such that some of the committee votes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,220",
+				"to": "00:19:15,620"
+			},
+			"offsets": {
+				"from": 1150220,
+				"to": 1155620
+			},
+			"text": " doesn't hear it in time before they attest, and so they vote for block n, 70%."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,620",
+				"to": "00:19:21,420"
+			},
+			"offsets": {
+				"from": 1155620,
+				"to": 1161420
+			},
+			"text": " And 30% hear it before they attest, so they test for block n plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,420",
+				"to": "00:19:26,620"
+			},
+			"offsets": {
+				"from": 1161420,
+				"to": 1166620
+			},
+			"text": " Now, block n plus two basically with proposal boost has an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,820",
+				"to": "00:19:31,620"
+			},
+			"offsets": {
+				"from": 1166820,
+				"to": 1171620
+			},
+			"text": " They can choose to either extend the chain by building on top of block n plus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,620",
+				"to": "00:19:35,620"
+			},
+			"offsets": {
+				"from": 1171620,
+				"to": 1175620
+			},
+			"text": " or they can try to reorg it out by building on top of block n."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,620",
+				"to": "00:19:40,820"
+			},
+			"offsets": {
+				"from": 1175620,
+				"to": 1180820
+			},
+			"text": " And because of this proposal boost, we actually have the power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,820",
+				"to": "00:19:46,820"
+			},
+			"offsets": {
+				"from": 1180820,
+				"to": 1186820
+			},
+			"text": " because 30% greater than 30%, you can basically overpower the block proposal of n plus one"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,820",
+				"to": "00:19:48,820"
+			},
+			"offsets": {
+				"from": 1186820,
+				"to": 1188820
+			},
+			"text": " and reorg them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,820",
+				"to": "00:19:54,820"
+			},
+			"offsets": {
+				"from": 1188820,
+				"to": 1194820
+			},
+			"text": " And essentially, what this does is it enforces a kind of soft four second deadline"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,020",
+				"to": "00:20:01,020"
+			},
+			"offsets": {
+				"from": 1195020,
+				"to": 1201020
+			},
+			"text": " in terms of being able to release your block late while still becoming canonical."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,020",
+				"to": "00:20:03,820"
+			},
+			"offsets": {
+				"from": 1201020,
+				"to": 1203820
+			},
+			"text": " Because if you release at four seconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,820",
+				"to": "00:20:10,020"
+			},
+			"offsets": {
+				"from": 1203820,
+				"to": 1210020
+			},
+			"text": " at tests, this will have already voted, and you won't manage to accumulate at least 40% of the attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,020",
+				"to": "00:20:15,020"
+			},
+			"offsets": {
+				"from": 1210020,
+				"to": 1215020
+			},
+			"text": " And some clients are actually starting to work on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,020",
+				"to": "00:20:21,020"
+			},
+			"offsets": {
+				"from": 1215020,
+				"to": 1221020
+			},
+			"text": " I actually saw Michael Sproul made a commit earlier, who unfortunately couldn't make it to Defcon this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,020",
+				"to": "00:20:28,020"
+			},
+			"offsets": {
+				"from": 1224020,
+				"to": 1228020
+			},
+			"text": " The Fauxfauxfauxf is fun that we can do tomorrow, or in some time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,020",
+				"to": "00:20:32,020"
+			},
+			"offsets": {
+				"from": 1228020,
+				"to": 1232020
+			},
+			"text": " is basically a similar idea, block slot voting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,020",
+				"to": "00:20:38,020"
+			},
+			"offsets": {
+				"from": 1232020,
+				"to": 1238020
+			},
+			"text": " where we also basically soft enforce this four second deadline."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,020",
+				"to": "00:20:40,620"
+			},
+			"offsets": {
+				"from": 1238020,
+				"to": 1240620
+			},
+			"text": " Here it works a bit differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,620",
+				"to": "00:20:46,420"
+			},
+			"offsets": {
+				"from": 1240620,
+				"to": 1246420
+			},
+			"text": " Essentially, what we're trying to do is that if I don't see a block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,420",
+				"to": "00:20:50,020"
+			},
+			"offsets": {
+				"from": 1246420,
+				"to": 1250020
+			},
+			"text": " instead of just voting for block n, like I did previously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,220",
+				"to": "00:20:56,420"
+			},
+			"offsets": {
+				"from": 1250220,
+				"to": 1256420
+			},
+			"text": " I basically vote for block n while also saying I want to vote and enshrine emptiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,420",
+				"to": "00:21:01,220"
+			},
+			"offsets": {
+				"from": 1256420,
+				"to": 1261220
+			},
+			"text": " So here what you can see is block n,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,220",
+				"to": "00:21:09,220"
+			},
+			"offsets": {
+				"from": 1261220,
+				"to": 1269220
+			},
+			"text": " you basically in block n plus one, you vote for block n with the information that this is from slot n plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,220",
+				"to": "00:21:16,220"
+			},
+			"offsets": {
+				"from": 1269220,
+				"to": 1276220
+			},
+			"text": " And essentially, what you're doing is you're creating a Faux that competes with this late block then."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,420",
+				"to": "00:21:21,420"
+			},
+			"offsets": {
+				"from": 1276420,
+				"to": 1281420
+			},
+			"text": " And you have the similar effect that now instead of the 60% voting for block n,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,420",
+				"to": "00:21:26,620"
+			},
+			"offsets": {
+				"from": 1281420,
+				"to": 1286620
+			},
+			"text": " like on this side here, you have them vote on this kind of block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,620",
+				"to": "00:21:29,820"
+			},
+			"offsets": {
+				"from": 1286620,
+				"to": 1289820
+			},
+			"text": " which is not a new block as such in terms of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,820",
+				"to": "00:21:33,020"
+			},
+			"offsets": {
+				"from": 1289820,
+				"to": 1293020
+			},
+			"text": " but it's just like saying I want to enshrine emptiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,220",
+				"to": "00:21:41,420"
+			},
+			"offsets": {
+				"from": 1293220,
+				"to": 1301420
+			},
+			"text": " And now block n plus two, the proposal runs the Faux choice C's 60 versus 40, and so they will vote for the 60%."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,420",
+				"to": "00:21:51,020"
+			},
+			"offsets": {
+				"from": 1301420,
+				"to": 1311020
+			},
+			"text": " Now, yeah, there is some nuance that I could add, but I think in terms of time I need to keep going."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,020",
+				"to": "00:21:55,820"
+			},
+			"offsets": {
+				"from": 1311020,
+				"to": 1315820
+			},
+			"text": " Another idea that I mentioned briefly is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,820",
+				"to": "00:22:00,220"
+			},
+			"offsets": {
+				"from": 1315820,
+				"to": 1320220
+			},
+			"text": " why don't we try to incentivize timeliness explicitly."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,420",
+				"to": "00:22:10,220"
+			},
+			"offsets": {
+				"from": 1320420,
+				"to": 1330220
+			},
+			"text": " Today, a block proposal is basically they're rewarded in proportion to the profitability of attestations they include in their block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,220",
+				"to": "00:22:16,820"
+			},
+			"offsets": {
+				"from": 1330220,
+				"to": 1336820
+			},
+			"text": " So basically attestations that already exist floating around, the fresher they are, the better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,820",
+				"to": "00:22:23,020"
+			},
+			"offsets": {
+				"from": 1336820,
+				"to": 1343020
+			},
+			"text": " and so they are included and these incentives are good because we need to make create incentives for them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,020",
+				"to": "00:22:29,020"
+			},
+			"offsets": {
+				"from": 1343020,
+				"to": 1349020
+			},
+			"text": " for the attestations to actually land on chain so that we have this notion of finality on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,220",
+				"to": "00:22:35,220"
+			},
+			"offsets": {
+				"from": 1349220,
+				"to": 1355220
+			},
+			"text": " But why don't we try to incentivize timeliness?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,220",
+				"to": "00:22:42,220"
+			},
+			"offsets": {
+				"from": 1355220,
+				"to": 1362220
+			},
+			"text": " Now, the obvious problem is basically what does timeliness mean in terms of on chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,220",
+				"to": "00:22:46,020"
+			},
+			"offsets": {
+				"from": 1362220,
+				"to": 1366020
+			},
+			"text": " Like how do we define timeliness on chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,020",
+				"to": "00:22:53,220"
+			},
+			"offsets": {
+				"from": 1366020,
+				"to": 1373220
+			},
+			"text": " And an idea could be to scale the proposal reward by the share of same slot attestations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,420",
+				"to": "00:22:58,420"
+			},
+			"offsets": {
+				"from": 1373420,
+				"to": 1378420
+			},
+			"text": " that the block receives and are included in the subsequent block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,420",
+				"to": "00:23:03,420"
+			},
+			"offsets": {
+				"from": 1378420,
+				"to": 1383420
+			},
+			"text": " Now that sounds more complicated than it has to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,420",
+				"to": "00:23:12,420"
+			},
+			"offsets": {
+				"from": 1383420,
+				"to": 1392420
+			},
+			"text": " Essentially, the idea is we have block rewards as of today and we scale them by the share of same slot attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,420",
+				"to": "00:23:20,420"
+			},
+			"offsets": {
+				"from": 1392420,
+				"to": 1400420
+			},
+			"text": " What I mean is here in slot N, block proposal seems to be on time such that 100% of the committee votes for that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,620",
+				"to": "00:23:27,620"
+			},
+			"offsets": {
+				"from": 1400620,
+				"to": 1407620
+			},
+			"text": " And so what we would do with this idea is we would scale them by a factor of one, so nothing changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,620",
+				"to": "00:23:30,620"
+			},
+			"offsets": {
+				"from": 1407620,
+				"to": 1410620
+			},
+			"text": " You're on time, nice, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,620",
+				"to": "00:23:34,620"
+			},
+			"offsets": {
+				"from": 1410620,
+				"to": 1414620
+			},
+			"text": " Block N plus one on the other hand seems to be slightly late."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,620",
+				"to": "00:23:42,620"
+			},
+			"offsets": {
+				"from": 1414620,
+				"to": 1422620
+			},
+			"text": " Only 90% vote for that block, 10% probably didn't hear it in time, so they vote for block N."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,820",
+				"to": "00:23:49,820"
+			},
+			"offsets": {
+				"from": 1422820,
+				"to": 1429820
+			},
+			"text": " Now, with this idea, what we would basically do is scale the reward of today by a factor of 0.9,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,820",
+				"to": "00:23:53,820"
+			},
+			"offsets": {
+				"from": 1429820,
+				"to": 1433820
+			},
+			"text": " effectively decreasing the reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,820",
+				"to": "00:23:59,820"
+			},
+			"offsets": {
+				"from": 1433820,
+				"to": 1439820
+			},
+			"text": " The idea is basically to punish people for being too late."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,820",
+				"to": "00:24:11,820"
+			},
+			"offsets": {
+				"from": 1439820,
+				"to": 1451820
+			},
+			"text": " Now, some, like, what I want to say is basically that it should be incentive compatible in the sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,020",
+				"to": "00:24:19,020"
+			},
+			"offsets": {
+				"from": 1452020,
+				"to": 1459020
+			},
+			"text": " that the next block proposal is also incentivized to include these attestations on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,020",
+				"to": "00:24:23,220"
+			},
+			"offsets": {
+				"from": 1459020,
+				"to": 1463220
+			},
+			"text": " because they're fresh and so they're more profitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,220",
+				"to": "00:24:30,420"
+			},
+			"offsets": {
+				"from": 1463220,
+				"to": 1470420
+			},
+			"text": " And I don't see an immediate way to basically grief one way or the other, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,420",
+				"to": "00:24:40,620"
+			},
+			"offsets": {
+				"from": 1470420,
+				"to": 1480620
+			},
+			"text": " Another, the one problem that it does have is that MEV rewards may actually be able to dominate these timeliness rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,820",
+				"to": "00:24:45,820"
+			},
+			"offsets": {
+				"from": 1480820,
+				"to": 1485820
+			},
+			"text": " That is probably, in some cases, always going to be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,820",
+				"to": "00:24:52,420"
+			},
+			"offsets": {
+				"from": 1485820,
+				"to": 1492420
+			},
+			"text": " But regardless, I think rewarding timeliness makes intuitive sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,420",
+				"to": "00:25:00,420"
+			},
+			"offsets": {
+				"from": 1492420,
+				"to": 1500420
+			},
+			"text": " regardless of this problem as such, it just seems like it's a bit strange that we actually don't do it, in my opinion."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,420",
+				"to": "00:25:06,020"
+			},
+			"offsets": {
+				"from": 1500420,
+				"to": 1506020
+			},
+			"text": " And a spicy hot take that I don't actually personally agree with would also be something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,220",
+				"to": "00:25:16,220"
+			},
+			"offsets": {
+				"from": 1506220,
+				"to": 1516220
+			},
+			"text": " in a world of MEV smoothing where we have an on-chain oracle of MEV, of the value of MEV in a given slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,220",
+				"to": "00:25:27,820"
+			},
+			"offsets": {
+				"from": 1516220,
+				"to": 1527820
+			},
+			"text": " We could think about using that oracle to scale timeliness rewards to ensure they are dominating MEV effects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,820",
+				"to": "00:25:35,020"
+			},
+			"offsets": {
+				"from": 1527820,
+				"to": 1535020
+			},
+			"text": " basically making sure that the timeliness rewards are big enough to fight off any kind of MEV dynamics."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,220",
+				"to": "00:25:45,220"
+			},
+			"offsets": {
+				"from": 1535220,
+				"to": 1545220
+			},
+			"text": " But honestly, it seems like a dangerous path in terms of making consensus decisions on some oracle like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,220",
+				"to": "00:26:00,820"
+			},
+			"offsets": {
+				"from": 1545220,
+				"to": 1560820
+			},
+			"text": " Basically, in short, we can summarize this as load stability being a good thing and a guaranteed monopoly being a bad thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,020",
+				"to": "00:26:11,420"
+			},
+			"offsets": {
+				"from": 1561020,
+				"to": 1571420
+			},
+			"text": " Thankfully, we have things we can do about it and things we can do today, things we can improve going forward even further."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,420",
+				"to": "00:26:23,020"
+			},
+			"offsets": {
+				"from": 1571420,
+				"to": 1583020
+			},
+			"text": " And I just wanted to put this out there a bit more and I will certainly be thinking about it more going forward as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,220",
+				"to": "00:26:33,220"
+			},
+			"offsets": {
+				"from": 1583220,
+				"to": 1593220
+			},
+			"text": " And yeah, thank you and if any of these kinds of incentive games are of interest to you, then yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,220",
+				"to": "00:26:42,420"
+			},
+			"offsets": {
+				"from": 1593220,
+				"to": 1602420
+			},
+			"text": " the Robuston Center School is actually hiring right now, so feel free to reach out and apply if you feel like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,420",
+				"to": "00:26:43,620"
+			},
+			"offsets": {
+				"from": 1602420,
+				"to": 1603620
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,820",
+				"to": "00:26:54,820"
+			},
+			"offsets": {
+				"from": 1609820,
+				"to": 1614820
+			},
+			"text": " If there are any questions, so many audience, now is your chance? Yeah, over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,820",
+				"to": "00:26:57,820"
+			},
+			"offsets": {
+				"from": 1614820,
+				"to": 1617820
+			},
+			"text": " Please talk into the microphone for the stream."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,820",
+				"to": "00:27:01,820"
+			},
+			"offsets": {
+				"from": 1617820,
+				"to": 1621820
+			},
+			"text": " Thank you for the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,820",
+				"to": "00:27:12,820"
+			},
+			"offsets": {
+				"from": 1621820,
+				"to": 1632820
+			},
+			"text": " I'm just curious about the fork choice rules like currently as a validator, I will either sign something or I will not if it's too late, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,020",
+				"to": "00:27:27,220"
+			},
+			"offsets": {
+				"from": 1633020,
+				"to": 1647220
+			},
+			"text": " But if we're looking at the PDB proposal, there are some other states where you will get like a 40% boost of the vote if you are enough in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,220",
+				"to": "00:27:31,820"
+			},
+			"offsets": {
+				"from": 1647220,
+				"to": 1651820
+			},
+			"text": " How do we deal with time actually being subjective to validators?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,820",
+				"to": "00:27:37,820"
+			},
+			"offsets": {
+				"from": 1651820,
+				"to": 1657820
+			},
+			"text": " As you understand, there's no global view of time of such greater clarity between the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,020",
+				"to": "00:27:47,020"
+			},
+			"offsets": {
+				"from": 1658020,
+				"to": 1667020
+			},
+			"text": " We have them globally distributed and latency and all that. Like how does that not result in us getting a lot of chain splits?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,020",
+				"to": "00:27:51,020"
+			},
+			"offsets": {
+				"from": 1667020,
+				"to": 1671020
+			},
+			"text": " If I understand correctly, yes, there's no global notion of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,020",
+				"to": "00:27:54,020"
+			},
+			"offsets": {
+				"from": 1671020,
+				"to": 1674020
+			},
+			"text": " It's essentially a local property of your note."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,020",
+				"to": "00:28:01,220"
+			},
+			"offsets": {
+				"from": 1674020,
+				"to": 1681220
+			},
+			"text": " And there needs to be some notion of being synchronized with your peers in that sense, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,220",
+				"to": "00:28:03,420"
+			},
+			"offsets": {
+				"from": 1681220,
+				"to": 1683420
+			},
+			"text": " But it's a local property."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,220",
+				"to": "00:28:10,020"
+			},
+			"offsets": {
+				"from": 1687220,
+				"to": 1690020
+			},
+			"text": " Okay, another one in the front here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,020",
+				"to": "00:28:11,220"
+			},
+			"offsets": {
+				"from": 1690020,
+				"to": 1691220
+			},
+			"text": " Over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,220",
+				"to": "00:28:19,220"
+			},
+			"offsets": {
+				"from": 1691220,
+				"to": 1699220
+			},
+			"text": " Hi. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,220",
+				"to": "00:28:30,620"
+			},
+			"offsets": {
+				"from": 1699220,
+				"to": 1710620
+			},
+			"text": " So I had two questions. One was on one of the later slides about incentivizing timeliness, kind of reducing the reward for a proposal that proposes their block a little late."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,820",
+				"to": "00:28:40,620"
+			},
+			"offsets": {
+				"from": 1710820,
+				"to": 1720620
+			},
+			"text": " Why would we not give the subtracted reward to the next proposal given that they were the ones kind of robbed of some MEV opportunity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,620",
+				"to": "00:28:47,820"
+			},
+			"offsets": {
+				"from": 1720620,
+				"to": 1727820
+			},
+			"text": " Is that kind of a problem of just you only have the current chain state and you kind of only go back to the one that already happened?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,020",
+				"to": "00:28:59,020"
+			},
+			"offsets": {
+				"from": 1728020,
+				"to": 1739020
+			},
+			"text": " I didn't catch the last part. So you're saying why don't we give the part that we subtract from the current proposal to the proposal of the next slot?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,020",
+				"to": "00:29:02,020"
+			},
+			"offsets": {
+				"from": 1739020,
+				"to": 1742020
+			},
+			"text": " Yeah, to the child rather than the parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,020",
+				"to": "00:29:16,020"
+			},
+			"offsets": {
+				"from": 1742020,
+				"to": 1756020
+			},
+			"text": " You mean the idea would be to basically, because the blocks late but still becomes canonical to kind of compensate for the lateness of the previous block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,220",
+				"to": "00:29:17,220"
+			},
+			"offsets": {
+				"from": 1756220,
+				"to": 1757220
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,220",
+				"to": "00:29:21,220"
+			},
+			"offsets": {
+				"from": 1757220,
+				"to": 1761220
+			},
+			"text": " It might be a fun thing to actually think about. I don't know. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,220",
+				"to": "00:29:22,020"
+			},
+			"offsets": {
+				"from": 1761220,
+				"to": 1762020
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,020",
+				"to": "00:29:26,220"
+			},
+			"offsets": {
+				"from": 1762020,
+				"to": 1766220
+			},
+			"text": " I mean, to be honest, this is more of an idea at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,220",
+				"to": "00:29:36,220"
+			},
+			"offsets": {
+				"from": 1766220,
+				"to": 1776220
+			},
+			"text": " It's not a formalized proposal, but it's more like putting out ideas of how to think about timeliness going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,220",
+				"to": "00:29:37,220"
+			},
+			"offsets": {
+				"from": 1776220,
+				"to": 1777220
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,420",
+				"to": "00:29:45,420"
+			},
+			"offsets": {
+				"from": 1777420,
+				"to": 1785420
+			},
+			"text": " And then one more question is to better understand why more validators don't propose their block late."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,420",
+				"to": "00:29:51,420"
+			},
+			"offsets": {
+				"from": 1785420,
+				"to": 1791420
+			},
+			"text": " Like what is the additional incentive for proposals to propose their block on time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,420",
+				"to": "00:29:58,420"
+			},
+			"offsets": {
+				"from": 1791420,
+				"to": 1798420
+			},
+			"text": " Like we're discussing potential ideas for it, but I guess in the current state, why do more validators not propose late?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,420",
+				"to": "00:29:59,420"
+			},
+			"offsets": {
+				"from": 1798420,
+				"to": 1799420
+			},
+			"text": " Good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,420",
+				"to": "00:30:00,620"
+			},
+			"offsets": {
+				"from": 1799420,
+				"to": 1800620
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,620",
+				"to": "00:30:01,820"
+			},
+			"offsets": {
+				"from": 1800620,
+				"to": 1801820
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,820",
+				"to": "00:30:04,420"
+			},
+			"offsets": {
+				"from": 1801820,
+				"to": 1804420
+			},
+			"text": " Thank you, Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,420",
+				"to": "00:30:05,620"
+			},
+			"offsets": {
+				"from": 1804420,
+				"to": 1805620
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,820",
+				"to": "00:30:06,820"
+			},
+			"offsets": {
+				"from": 1805820,
+				"to": 1806820
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,820",
+				"to": "00:30:08,820"
+			},
+			"offsets": {
+				"from": 1806820,
+				"to": 1808820
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,820",
+				"to": "00:30:10,820"
+			},
+			"offsets": {
+				"from": 1809820,
+				"to": 1810820
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,820",
+				"to": "00:30:12,820"
+			},
+			"offsets": {
+				"from": 1810820,
+				"to": 1812820
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:12,820",
+				"to": "00:30:14,820"
+			},
+			"offsets": {
+				"from": 1812820,
+				"to": 1814820
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,820",
+				"to": "00:30:16,820"
+			},
+			"offsets": {
+				"from": 1814820,
+				"to": 1816820
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,820",
+				"to": "00:30:21,820"
+			},
+			"offsets": {
+				"from": 1816820,
+				"to": 1821820
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

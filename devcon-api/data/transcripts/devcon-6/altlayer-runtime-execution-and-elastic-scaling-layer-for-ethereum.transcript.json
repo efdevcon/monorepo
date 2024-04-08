@@ -1,0 +1,1946 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:16,680"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 16680
+			},
+			"text": " - So I'm Yauchi, the founder of All Year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,680",
+				"to": "00:00:18,680"
+			},
+			"offsets": {
+				"from": 16680,
+				"to": 18680
+			},
+			"text": " So at All Year, we are basically building"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,680",
+				"to": "00:00:22,360"
+			},
+			"offsets": {
+				"from": 18680,
+				"to": 22360
+			},
+			"text": " the runtime execution and the elastic scaling layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,360",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 22360,
+				"to": 23560
+			},
+			"text": " for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 25960
+			},
+			"text": " So before we dive into All Year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:28,120"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 28120
+			},
+			"text": " we want to know what kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,120",
+				"to": "00:00:30,600"
+			},
+			"offsets": {
+				"from": 28120,
+				"to": 30600
+			},
+			"text": " fundamental problems we want to solve, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,600",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 30600,
+				"to": 33200
+			},
+			"text": " So right now we know like Ethereum post-emerge"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:34,960"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 34960
+			},
+			"text": " and later on we also have these"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,960",
+				"to": "00:00:37,540"
+			},
+			"offsets": {
+				"from": 34960,
+				"to": 37540
+			},
+			"text": " proto-dank sharding and lots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,540",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37540,
+				"to": 40000
+			},
+			"text": " like scaling solutions will be applied"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 41160
+			},
+			"text": " like sort of on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:43,840"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 43840
+			},
+			"text": " At the same time we have a bunch of L1s"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,840",
+				"to": "00:00:46,240"
+			},
+			"offsets": {
+				"from": 43840,
+				"to": 46240
+			},
+			"text": " can achieve some sort of head-to-approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,240",
+				"to": "00:00:47,760"
+			},
+			"offsets": {
+				"from": 46240,
+				"to": 47760
+			},
+			"text": " with low latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,760",
+				"to": "00:00:50,120"
+			},
+			"offsets": {
+				"from": 47760,
+				"to": 50120
+			},
+			"text": " But at the same time as we can see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,120",
+				"to": "00:00:51,800"
+			},
+			"offsets": {
+				"from": 50120,
+				"to": 51800
+			},
+			"text": " For the past two years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,800",
+				"to": "00:00:54,240"
+			},
+			"offsets": {
+				"from": 51800,
+				"to": 54240
+			},
+			"text": " there are more and more popular applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,240",
+				"to": "00:00:56,880"
+			},
+			"offsets": {
+				"from": 54240,
+				"to": 56880
+			},
+			"text": " like X infinity, DIY DX"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,880",
+				"to": "00:00:59,040"
+			},
+			"offsets": {
+				"from": 56880,
+				"to": 59040
+			},
+			"text": " and also upcoming more and more games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,040",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 59040,
+				"to": 62280
+			},
+			"text": " which already have like millions of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:05,800"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 65800
+			},
+			"text": " and have to handle like sort of tons of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,800",
+				"to": "00:01:07,840"
+			},
+			"offsets": {
+				"from": 65800,
+				"to": 67840
+			},
+			"text": " million requests every day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,840",
+				"to": "00:01:10,440"
+			},
+			"offsets": {
+				"from": 67840,
+				"to": 70440
+			},
+			"text": " So in that case, as you can see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,440",
+				"to": "00:01:11,640"
+			},
+			"offsets": {
+				"from": 70440,
+				"to": 71640
+			},
+			"text": " Like for the past two years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,640",
+				"to": "00:01:14,320"
+			},
+			"offsets": {
+				"from": 71640,
+				"to": 74320
+			},
+			"text": " we encounter a lot of network congestion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,320",
+				"to": "00:01:17,480"
+			},
+			"offsets": {
+				"from": 74320,
+				"to": 77480
+			},
+			"text": " gas war even for some FTE, like sort of means."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,480",
+				"to": "00:01:20,120"
+			},
+			"offsets": {
+				"from": 77480,
+				"to": 80120
+			},
+			"text": " Like one example on Ethereum is this other D,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,120",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 80120,
+				"to": 81560
+			},
+			"text": " like FTE mean, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:24,320"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 84320
+			},
+			"text": " So basically people probably pay more gas fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,320",
+				"to": "00:01:26,120"
+			},
+			"offsets": {
+				"from": 84320,
+				"to": 86120
+			},
+			"text": " than the meat fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,120",
+				"to": "00:01:29,760"
+			},
+			"offsets": {
+				"from": 86120,
+				"to": 89760
+			},
+			"text": " It's not just sort of the scenario on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,760",
+				"to": "00:01:33,920"
+			},
+			"offsets": {
+				"from": 89760,
+				"to": 93920
+			},
+			"text": " but also on some highly scalable blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,920",
+				"to": "00:01:38,800"
+			},
+			"offsets": {
+				"from": 93920,
+				"to": 98800
+			},
+			"text": " Like Polygon, we had these sort of sunflower game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,800",
+				"to": "00:01:41,240"
+			},
+			"offsets": {
+				"from": 98800,
+				"to": 101240
+			},
+			"text": " But at the same time, just like so many transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,240",
+				"to": "00:01:43,440"
+			},
+			"offsets": {
+				"from": 101240,
+				"to": 103440
+			},
+			"text": " and the congestion in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,440",
+				"to": "00:01:45,080"
+			},
+			"offsets": {
+				"from": 103440,
+				"to": 105080
+			},
+			"text": " Same issue to Abitrom."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,080",
+				"to": "00:01:48,120"
+			},
+			"offsets": {
+				"from": 105080,
+				"to": 108120
+			},
+			"text": " Basically, we had a very successful campaign"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,120",
+				"to": "00:01:49,640"
+			},
+			"offsets": {
+				"from": 108120,
+				"to": 109640
+			},
+			"text": " to onboard more users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,640",
+				"to": "00:01:52,400"
+			},
+			"offsets": {
+				"from": 109640,
+				"to": 112400
+			},
+			"text": " But at the same time, it's just like so popular."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,400",
+				"to": "00:01:55,440"
+			},
+			"offsets": {
+				"from": 112400,
+				"to": 115440
+			},
+			"text": " And at the same time, the network was so congested"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,440",
+				"to": "00:02:00,280"
+			},
+			"offsets": {
+				"from": 115440,
+				"to": 120280
+			},
+			"text": " and then they have to pause until the Abitrom natural came out"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,280",
+				"to": "00:02:03,440"
+			},
+			"offsets": {
+				"from": 120280,
+				"to": 123440
+			},
+			"text": " so they can resume such campaign."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,440",
+				"to": "00:02:06,800"
+			},
+			"offsets": {
+				"from": 123440,
+				"to": 126800
+			},
+			"text": " So how we solve these kind of network congestion problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,800",
+				"to": "00:02:08,840"
+			},
+			"offsets": {
+				"from": 126800,
+				"to": 128840
+			},
+			"text": " for general purpose at once?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,840",
+				"to": "00:02:12,080"
+			},
+			"offsets": {
+				"from": 128840,
+				"to": 132080
+			},
+			"text": " So one sort of thing we observe"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,080",
+				"to": "00:02:14,680"
+			},
+			"offsets": {
+				"from": 132080,
+				"to": 134680
+			},
+			"text": " and basically on our side, we want to propose"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,680",
+				"to": "00:02:17,680"
+			},
+			"offsets": {
+				"from": 134680,
+				"to": 137680
+			},
+			"text": " is about this application tailored"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,680",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137680,
+				"to": 140000
+			},
+			"text": " to execution layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:22,600"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 142600
+			},
+			"text": " That's something like when we feel like there will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,600",
+				"to": "00:02:25,480"
+			},
+			"offsets": {
+				"from": 142600,
+				"to": 145480
+			},
+			"text": " some network congestion for the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,480",
+				"to": "00:02:27,120"
+			},
+			"offsets": {
+				"from": 145480,
+				"to": 147120
+			},
+			"text": " So the application probably can just be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,120",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 147120,
+				"to": 150920
+			},
+			"text": " of a dedicated layer for them to handle these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:33,920"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 153920
+			},
+			"text": " And in that case, all the transactions and requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,920",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 153920,
+				"to": 155920
+			},
+			"text": " can be handled on dedicated layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 160000
+			},
+			"text": " And later, we can roll up all the states back to the L1s."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:43,720"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 163720
+			},
+			"text": " That's all we call-- either we call this elastic layer too"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,720",
+				"to": "00:02:46,080"
+			},
+			"offsets": {
+				"from": 163720,
+				"to": 166080
+			},
+			"text": " or we can call L3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,080",
+				"to": "00:02:48,280"
+			},
+			"offsets": {
+				"from": 166080,
+				"to": 168280
+			},
+			"text": " So some metrics, as you can see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,280",
+				"to": "00:02:51,400"
+			},
+			"offsets": {
+				"from": 168280,
+				"to": 171400
+			},
+			"text": " Earlier, we can really provide a very high throughput,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,400",
+				"to": "00:02:53,320"
+			},
+			"offsets": {
+				"from": 171400,
+				"to": 173320
+			},
+			"text": " like sort of execution environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,320",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 173320,
+				"to": 177240
+			},
+			"text": " with very low sort of transaction fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 179920
+			},
+			"text": " with very fast affinity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:02,960"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 182960
+			},
+			"text": " Like right now, some metrics with some updated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,960",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 182960,
+				"to": 185400
+			},
+			"text": " And basically, we can re-achieve sub-second"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:08,200"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 188200
+			},
+			"text": " the block time and even with tons of thousands"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,200",
+				"to": "00:03:09,680"
+			},
+			"offsets": {
+				"from": 188200,
+				"to": 189680
+			},
+			"text": " transaction per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,680",
+				"to": "00:03:12,800"
+			},
+			"offsets": {
+				"from": 189680,
+				"to": 192800
+			},
+			"text": " Meanwhile, also, both EVM and also Wazan."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,800",
+				"to": "00:03:15,720"
+			},
+			"offsets": {
+				"from": 192800,
+				"to": 195720
+			},
+			"text": " So there are two products we would like to provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,720",
+				"to": "00:03:18,520"
+			},
+			"offsets": {
+				"from": 195720,
+				"to": 198520
+			},
+			"text": " The first one is sort of short-lived application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,520",
+				"to": "00:03:20,120"
+			},
+			"offsets": {
+				"from": 198520,
+				"to": 200120
+			},
+			"text": " dedicated role app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,120",
+				"to": "00:03:21,760"
+			},
+			"offsets": {
+				"from": 200120,
+				"to": 201760
+			},
+			"text": " And we call flash layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:23,560"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 203560
+			},
+			"text": " And later on, I will just share with you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,560",
+				"to": "00:03:27,200"
+			},
+			"offsets": {
+				"from": 203560,
+				"to": 207200
+			},
+			"text": " why we want to have these short-lived flash layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,200",
+				"to": "00:03:30,040"
+			},
+			"offsets": {
+				"from": 207200,
+				"to": 210040
+			},
+			"text": " I mean, well, there's a persistent role app solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,040",
+				"to": "00:03:33,340"
+			},
+			"offsets": {
+				"from": 210040,
+				"to": 213340
+			},
+			"text": " that's quite similar to the other existing optimist"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,340",
+				"to": "00:03:34,600"
+			},
+			"offsets": {
+				"from": 213340,
+				"to": 214600
+			},
+			"text": " role apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,600",
+				"to": "00:03:38,200"
+			},
+			"offsets": {
+				"from": 214600,
+				"to": 218200
+			},
+			"text": " The idea to have the flash layers is quite straightforward"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,200",
+				"to": "00:03:41,920"
+			},
+			"offsets": {
+				"from": 218200,
+				"to": 221920
+			},
+			"text": " for lots of demands and requirements from the applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,920",
+				"to": "00:03:44,480"
+			},
+			"offsets": {
+				"from": 221920,
+				"to": 224480
+			},
+			"text": " Because we can see, right, for a lot of empty projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,480",
+				"to": "00:03:48,640"
+			},
+			"offsets": {
+				"from": 224480,
+				"to": 228640
+			},
+			"text": " one of the biggest sort of campaigns is the empty mint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,640",
+				"to": "00:03:51,120"
+			},
+			"offsets": {
+				"from": 228640,
+				"to": 231120
+			},
+			"text": " And also, sometimes, it's an air drop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,120",
+				"to": "00:03:52,840"
+			},
+			"offsets": {
+				"from": 231120,
+				"to": 232840
+			},
+			"text": " For this short-lived campaign, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,840",
+				"to": "00:03:56,240"
+			},
+			"offsets": {
+				"from": 232840,
+				"to": 236240
+			},
+			"text": " typically only lasts for a few seconds or a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,240",
+				"to": "00:04:00,080"
+			},
+			"offsets": {
+				"from": 236240,
+				"to": 240080
+			},
+			"text": " In that case, they can just sort of click a bunch of buttons"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,080",
+				"to": "00:04:01,520"
+			},
+			"offsets": {
+				"from": 240080,
+				"to": 241520
+			},
+			"text": " via our dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,520",
+				"to": "00:04:05,280"
+			},
+			"offsets": {
+				"from": 241520,
+				"to": 245280
+			},
+			"text": " And protocol will automatically spin off a dedicated layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,280",
+				"to": "00:04:08,640"
+			},
+			"offsets": {
+				"from": 245280,
+				"to": 248640
+			},
+			"text": " to handle the meaningful requests for the empty mint."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,640",
+				"to": "00:04:10,560"
+			},
+			"offsets": {
+				"from": 248640,
+				"to": 250560
+			},
+			"text": " The user can just do the empty mint."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,560",
+				"to": "00:04:13,120"
+			},
+			"offsets": {
+				"from": 250560,
+				"to": 253120
+			},
+			"text": " And everything will be handled properly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,120",
+				"to": "00:04:15,080"
+			},
+			"offsets": {
+				"from": 253120,
+				"to": 255080
+			},
+			"text": " within a few seconds or minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,080",
+				"to": "00:04:17,520"
+			},
+			"offsets": {
+				"from": 255080,
+				"to": 257520
+			},
+			"text": " After that, protocol will automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,520",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 257520,
+				"to": 260800
+			},
+			"text": " roll up all the states and FT is back to Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:26,240"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 266240
+			},
+			"text": " without any third-party interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,240",
+				"to": "00:04:30,040"
+			},
+			"offsets": {
+				"from": 266240,
+				"to": 270040
+			},
+			"text": " Like, at the same time, apart from the empty mint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,040",
+				"to": "00:04:33,160"
+			},
+			"offsets": {
+				"from": 270040,
+				"to": 273160
+			},
+			"text": " we also want to provide very smooth user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,160",
+				"to": "00:04:36,440"
+			},
+			"offsets": {
+				"from": 273160,
+				"to": 276440
+			},
+			"text": " In that case, there will be a sort of first-confused serve"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,440",
+				"to": "00:04:39,520"
+			},
+			"offsets": {
+				"from": 276440,
+				"to": 279520
+			},
+			"text": " and also a bunch of items to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,520",
+				"to": "00:04:43,080"
+			},
+			"offsets": {
+				"from": 279520,
+				"to": 283080
+			},
+			"text": " it can relatively easy to unbolt empty projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,080",
+				"to": "00:04:45,720"
+			},
+			"offsets": {
+				"from": 283080,
+				"to": 285720
+			},
+			"text": " and also for some game projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,720",
+				"to": "00:04:48,240"
+			},
+			"offsets": {
+				"from": 285720,
+				"to": 288240
+			},
+			"text": " Beyond Edge, as you know, for a lot of games"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,240",
+				"to": "00:04:50,840"
+			},
+			"offsets": {
+				"from": 288240,
+				"to": 290840
+			},
+			"text": " or even some directed exchanges, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,840",
+				"to": "00:04:55,040"
+			},
+			"offsets": {
+				"from": 290840,
+				"to": 295040
+			},
+			"text": " want a dedicated layer, not just for a short period time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,040",
+				"to": "00:04:59,440"
+			},
+			"offsets": {
+				"from": 295040,
+				"to": 299440
+			},
+			"text": " also for a long time, for months or even years."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,440",
+				"to": "00:05:02,600"
+			},
+			"offsets": {
+				"from": 299440,
+				"to": 302600
+			},
+			"text": " In that case, we will have this typical optimist"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,600",
+				"to": "00:05:03,600"
+			},
+			"offsets": {
+				"from": 302600,
+				"to": 303600
+			},
+			"text": " user role for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,600",
+				"to": "00:05:05,800"
+			},
+			"offsets": {
+				"from": 303600,
+				"to": 305800
+			},
+			"text": " It's just like our platform, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,800",
+				"to": "00:05:08,120"
+			},
+			"offsets": {
+				"from": 305800,
+				"to": 308120
+			},
+			"text": " The performance is quite good at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,120",
+				"to": "00:05:12,720"
+			},
+			"offsets": {
+				"from": 308120,
+				"to": 312720
+			},
+			"text": " It's both EVM equivalent and also was incompatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,720",
+				"to": "00:05:16,040"
+			},
+			"offsets": {
+				"from": 312720,
+				"to": 316040
+			},
+			"text": " Beyond Edge, we also have a bunch of implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,040",
+				"to": "00:05:17,960"
+			},
+			"offsets": {
+				"from": 316040,
+				"to": 317960
+			},
+			"text": " for the lifelines."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,960",
+				"to": "00:05:20,800"
+			},
+			"offsets": {
+				"from": 317960,
+				"to": 320800
+			},
+			"text": " For example, in the future, users or developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,800",
+				"to": "00:05:24,880"
+			},
+			"offsets": {
+				"from": 320800,
+				"to": 324880
+			},
+			"text": " can just run the lifeline or the verfares in their browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,880",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 324880,
+				"to": 327600
+			},
+			"text": " In that case, they don't need to wait for the confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:30,640"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 330640
+			},
+			"text": " from the L2 network, so they can quickly verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,640",
+				"to": "00:05:34,200"
+			},
+			"offsets": {
+				"from": 330640,
+				"to": 334200
+			},
+			"text": " the latest transaction or the latest block themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,200",
+				"to": "00:05:37,080"
+			},
+			"offsets": {
+				"from": 334200,
+				"to": 337080
+			},
+			"text": " In that case, it can further shorten the sort of challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,080",
+				"to": "00:05:40,640"
+			},
+			"offsets": {
+				"from": 337080,
+				"to": 340640
+			},
+			"text": " period and plus with some hardware-hardened"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,640",
+				"to": "00:05:42,880"
+			},
+			"offsets": {
+				"from": 340640,
+				"to": 342880
+			},
+			"text": " sort of verfares as the challenges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,880",
+				"to": "00:05:47,760"
+			},
+			"offsets": {
+				"from": 342880,
+				"to": 347760
+			},
+			"text": " so we can further reduce the verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,760",
+				"to": "00:05:50,440"
+			},
+			"offsets": {
+				"from": 347760,
+				"to": 350440
+			},
+			"text": " or even the challenge period."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,440",
+				"to": "00:05:51,960"
+			},
+			"offsets": {
+				"from": 350440,
+				"to": 351960
+			},
+			"text": " Beyond Edge, as we all know, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,960",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 351960,
+				"to": 356000
+			},
+			"text": " are a bunch of state-of-art and new ZK libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:59,520"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 359520
+			},
+			"text": " and also a bunch of game and metaverse SDKs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,520",
+				"to": "00:06:02,640"
+			},
+			"offsets": {
+				"from": 359520,
+				"to": 362640
+			},
+			"text": " which are not already compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,640",
+				"to": "00:06:05,360"
+			},
+			"offsets": {
+				"from": 362640,
+				"to": 365360
+			},
+			"text": " In that case, we still want to support these libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,360",
+				"to": "00:06:09,480"
+			},
+			"offsets": {
+				"from": 365360,
+				"to": 369480
+			},
+			"text": " So we have these Wasm compatibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,480",
+				"to": "00:06:12,880"
+			},
+			"offsets": {
+				"from": 369480,
+				"to": 372880
+			},
+			"text": " so we can allow the developers to deploy these libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,880",
+				"to": "00:06:14,960"
+			},
+			"offsets": {
+				"from": 372880,
+				"to": 374960
+			},
+			"text": " And later, they can use a solid contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,960",
+				"to": "00:06:18,800"
+			},
+			"offsets": {
+				"from": 374960,
+				"to": 378800
+			},
+			"text": " to call these libraries to really have versatile execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,800",
+				"to": "00:06:21,480"
+			},
+			"offsets": {
+				"from": 378800,
+				"to": 381480
+			},
+			"text": " environment for the applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,480",
+				"to": "00:06:23,960"
+			},
+			"offsets": {
+				"from": 381480,
+				"to": 383960
+			},
+			"text": " Beyond that, right, we also did a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,960",
+				"to": "00:06:28,040"
+			},
+			"offsets": {
+				"from": 383960,
+				"to": 388040
+			},
+			"text": " of campaigns and use cases ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,040",
+				"to": "00:06:32,200"
+			},
+			"offsets": {
+				"from": 388040,
+				"to": 392200
+			},
+			"text": " to show up the capabilities of our layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,200",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 392200,
+				"to": 395680
+			},
+			"text": " One night, we did one of these OG badge mints"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:37,120"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 397120
+			},
+			"text": " like two months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,120",
+				"to": "00:06:41,280"
+			},
+			"offsets": {
+				"from": 397120,
+				"to": 401280
+			},
+			"text": " We got over 12,000 people participating in this campaign,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,280",
+				"to": "00:06:44,640"
+			},
+			"offsets": {
+				"from": 401280,
+				"to": 404640
+			},
+			"text": " and other FTS mints within 18 seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,640",
+				"to": "00:06:48,680"
+			},
+			"offsets": {
+				"from": 404640,
+				"to": 408680
+			},
+			"text": " on the dedicated flash layer, as I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,680",
+				"to": "00:06:51,760"
+			},
+			"offsets": {
+				"from": 408680,
+				"to": 411760
+			},
+			"text": " So after the FTS mint mints within minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,760",
+				"to": "00:06:53,840"
+			},
+			"offsets": {
+				"from": 411760,
+				"to": 413840
+			},
+			"text": " so the protocol can automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,840",
+				"to": "00:06:55,960"
+			},
+			"offsets": {
+				"from": 413840,
+				"to": 415960
+			},
+			"text": " roll up the FTS back to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,960",
+				"to": "00:06:58,160"
+			},
+			"offsets": {
+				"from": 415960,
+				"to": 418160
+			},
+			"text": " So right now, everyone can just treat"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,160",
+				"to": "00:07:04,680"
+			},
+			"offsets": {
+				"from": 418160,
+				"to": 424680
+			},
+			"text": " the FTS around the floor price of 0.6, either or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,680",
+				"to": "00:07:08,800"
+			},
+			"offsets": {
+				"from": 424680,
+				"to": 428800
+			},
+			"text": " And another sort of example is about game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,800",
+				"to": "00:07:14,200"
+			},
+			"offsets": {
+				"from": 428800,
+				"to": 434200
+			},
+			"text": " And we hosted this community run for that four weeks ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,200",
+				"to": "00:07:18,800"
+			},
+			"offsets": {
+				"from": 434200,
+				"to": 438800
+			},
+			"text": " And we attracted tons of 100 players to play the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,800",
+				"to": "00:07:22,640"
+			},
+			"offsets": {
+				"from": 438800,
+				"to": 442640
+			},
+			"text": " And basically, we precise around 100,000 transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,640",
+				"to": "00:07:23,320"
+			},
+			"offsets": {
+				"from": 442640,
+				"to": 443320
+			},
+			"text": " per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,320",
+				"to": "00:07:25,280"
+			},
+			"offsets": {
+				"from": 443320,
+				"to": 445280
+			},
+			"text": " The feedback we got from the players"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,280",
+				"to": "00:07:29,200"
+			},
+			"offsets": {
+				"from": 445280,
+				"to": 449200
+			},
+			"text": " that I basically didn't really notice is fully launching games."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,200",
+				"to": "00:07:32,600"
+			},
+			"offsets": {
+				"from": 449200,
+				"to": 452600
+			},
+			"text": " So the performance and also experiments are quite good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,600",
+				"to": "00:07:37,520"
+			},
+			"offsets": {
+				"from": 452600,
+				"to": 457520
+			},
+			"text": " And in that case, as you can see, apart from these good performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,520",
+				"to": "00:07:41,640"
+			},
+			"offsets": {
+				"from": 457520,
+				"to": 461640
+			},
+			"text": " and also seamless experience, we can definitely support both NFT"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,640",
+				"to": "00:07:44,160"
+			},
+			"offsets": {
+				"from": 461640,
+				"to": 464160
+			},
+			"text": " and also game projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,160",
+				"to": "00:07:48,720"
+			},
+			"offsets": {
+				"from": 464160,
+				"to": 468720
+			},
+			"text": " And right now, last week, we launched the EVM equivalent test"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,720",
+				"to": "00:07:51,800"
+			},
+			"offsets": {
+				"from": 468720,
+				"to": 471800
+			},
+			"text": " net, so everyone can just try to let"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,800",
+				"to": "00:07:55,560"
+			},
+			"offsets": {
+				"from": 471800,
+				"to": 475560
+			},
+			"text": " sort of the product for both of the systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,560",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 475560,
+				"to": 480800
+			},
+			"text": " And beyond that, soon, we will just connect to more L1s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:02,680"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 482680
+			},
+			"text": " especially the EVM compatible ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,680",
+				"to": "00:08:08,840"
+			},
+			"offsets": {
+				"from": 482680,
+				"to": 488840
+			},
+			"text": " and just try to provide a much better solution for both FTS"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,840",
+				"to": "00:08:12,800"
+			},
+			"offsets": {
+				"from": 488840,
+				"to": 492800
+			},
+			"text": " and the game and also derivatives exchange applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,800",
+				"to": "00:08:15,400"
+			},
+			"offsets": {
+				"from": 492800,
+				"to": 495400
+			},
+			"text": " Yeah, that's sort of all about it earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,400",
+				"to": "00:08:18,120"
+			},
+			"offsets": {
+				"from": 495400,
+				"to": 498120
+			},
+			"text": " And if you want to find more information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,120",
+				"to": "00:08:21,120"
+			},
+			"offsets": {
+				"from": 498120,
+				"to": 501120
+			},
+			"text": " just feel free to DM me on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,120",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 501120,
+				"to": 503120
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:24,400"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 504400
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,400",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 504400,
+				"to": 506640
+			},
+			"text": " Big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:28,640"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 508640
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,640",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 508640,
+				"to": 510640
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:32,640"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 512640
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,640",
+				"to": "00:08:34,640"
+			},
+			"offsets": {
+				"from": 512640,
+				"to": 514640
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,640",
+				"to": "00:08:38,640"
+			},
+			"offsets": {
+				"from": 514640,
+				"to": 518640
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

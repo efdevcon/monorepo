@@ -1,0 +1,2848 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 21000
+			},
+			"text": " >> Okay, our next talk is on mental health and avoiding burnout in your crypto gig."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " And it is going to be hosted by Hudson Jameson."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 27000
+			},
+			"text": " Hudson is a long time Ethereum contributor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " who has previously worked at Ethereum Foundation for five years on numerous efforts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 35000
+			},
+			"text": " including Protocol Development Coordination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 39000
+			},
+			"text": " specifications and co-running DevCon's 2, 3, and 4."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 43000
+			},
+			"text": " He co-founded the Ethereum Educational and Coordination Group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " Ethereum Cat herders. He has three cats and five chickens"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 49000
+			},
+			"text": " and lives in Texas with his spouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " Please help me and welcome me Hudson to the stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 56000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " >> Well, hello. Thank you so much for the introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 63000
+			},
+			"text": " All right, so before we start, I got to apologize."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " I kind of partied too hard last night at the Element Lido thing, so my voice is out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 71000
+			},
+			"text": " However, dead ass, I was just at the coffee table and I had honey."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 74000
+			},
+			"text": " I just grabbed it and just like scored a bunch of my throat."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 76000
+			},
+			"text": " So I should be okay. All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 81000
+			},
+			"text": " So yeah, today we're going to be talking about mental health and avoiding burnout."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " Next slide. I also -- the clicker's not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " I'm going to be like, click a lot because there's animations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " Click. All right. So just a bit about me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " I've been in crypto since 2011."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 100000
+			},
+			"text": " I am -- I've been in the Ethereum community since 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " Mostly at the Ethereum Foundation doing stuff like the Alcor Devs calls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 106000
+			},
+			"text": " EIP management and DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110000
+			},
+			"text": " I left in 2021 enjoying Flashbots for a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 113000
+			},
+			"text": " And then I also co-founded Oken Innovations in Ethereum Cat herders."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 115000
+			},
+			"text": " If you've heard of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 117000
+			},
+			"text": " I'm trying to get a hobby outside of crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119000
+			},
+			"text": " That's hard. We'll come back to that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 125000
+			},
+			"text": " But I like ice cream whiskey and take it VHS tapes and make them put in on YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130000
+			},
+			"text": " Also, can we start the timer?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 133000
+			},
+			"text": " Okay. So before we begin, just a quick heads up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " Presentation is going to be on some heavier topics around mental health."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138000
+			},
+			"text": " Maybe like mentioning self-harm."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141000
+			},
+			"text": " Completely relate to not being a place to want to hear that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " You can just walk out at any time or turn off the video"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149000
+			},
+			"text": " if you're watching on the internet until you're more comfortable hearing it or never."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153000
+			},
+			"text": " I'm also not a doctor. I'm not trained in mental health."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 159000
+			},
+			"text": " This just draws from my real life experiences in mental health and should not be taken as medical or legal advice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " Click. All right. So let's get to some mental health tips."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 169000
+			},
+			"text": " Today I'm kind of like structuring this just not to be like websters defines mental health as,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 177000
+			},
+			"text": " but just kind of doing things that I thought were important to say to people that it's not always talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 180000
+			},
+			"text": " Next slide. So tip number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 186000
+			},
+			"text": " Adjust your perspective on mental health. It should be treated as serious as a physical injury."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 189000
+			},
+			"text": " So like if you broke your hand and you can't code anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " you're going to do everything you can to like heal that hand until you can code again."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 200000
+			},
+			"text": " It seems like there's like a stigma though, especially in some workplaces where it's like mental health things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 206000
+			},
+			"text": " like severe anxiety, depression, other stuff like aren't taken as seriously in some parts of the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 213000
+			},
+			"text": " When really that's going to cognitively affect your work much more sometimes than a lot of physical injuries."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " So it's a taboo subject, but talking about it helps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 223000
+			},
+			"text": " There are many places around the world where like it's kind of like a suck it up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 226000
+			},
+			"text": " you know, just be stronger, that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 233000
+			},
+			"text": " I really don't believe in that. I think that, you know, if you're not okay, it's okay to be not okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 236000
+			},
+			"text": " You can talk about it. You can reach out and get help for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " So the first thing, yeah, first tip, adjust your perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 243000
+			},
+			"text": " It's as bad as a physical injury. We should treat it more seriously."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 245000
+			},
+			"text": " Next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 249000
+			},
+			"text": " Okay, build and maintain a support system. Click."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 254000
+			},
+			"text": " I do not mean this support system. We are all addicted to crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 261000
+			},
+			"text": " And if you were just in, if all your support is people who are also in the same echo chamber as you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 265000
+			},
+			"text": " then that's not going to be as effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 267000
+			},
+			"text": " Next."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270000
+			},
+			"text": " So don't do that. Next."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 274000
+			},
+			"text": " Instead, next."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 281000
+			},
+			"text": " Do something like this. My support system is my parents, my friends in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 283000
+			},
+			"text": " And I have a therapist."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 288000
+			},
+			"text": " A therapist has been one of the most helpful things for me, but again, it's just one piece of your support system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 292000
+			},
+			"text": " And hit one more time. Click."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 295000
+			},
+			"text": " And you can have little crypto friends support as a treat."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 301000
+			},
+			"text": " Like if you want it, like there are some really good discord groups on where we have a mental health channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 304000
+			},
+			"text": " And we can just be really open about what we're feeling that day."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 306000
+			},
+			"text": " And everyone's support system is going to look different."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 311000
+			},
+			"text": " I mean, maybe you're just like a total introvert and you just have like your cat."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " Great. That's part of your support system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 320000
+			},
+			"text": " Everyone should make sure that work isn't encompassing their life and that they have some kind of support system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 329000
+			},
+			"text": " that they can like actually say this is what I do to clear out by mind and to make myself understand the issues I'm having."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 331000
+			},
+			"text": " Click."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 336000
+			},
+			"text": " All right. Don't be afraid to ask for help. I kind of alluded to this in tip number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 338000
+			},
+			"text": " You're not weak."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 345000
+			},
+			"text": " People around you, especially people from different generations than your own might not understand what you're going through."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 346000
+			},
+			"text": " And that's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 350000
+			},
+			"text": " Like you should be the number one priority to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 354000
+			},
+			"text": " I had this problem for a really, really long time. It was very difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " I was helping a lot of different people not taking care of myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 366000
+			},
+			"text": " Still struggling with that to this day, but I'm starting to finally come to an understanding myself that like if I can't help myself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 372000
+			},
+			"text": " others are going to be affected as well. And if I don't help myself, I'm just going to keep burning out harder and harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " So yeah, that's kind of, yeah, the tip is just don't be afraid to ask for help."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 386000
+			},
+			"text": " Now we're going to talk about burnout. Next."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 393000
+			},
+			"text": " All right. So burnout is individualized. It is different for different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " I will, I've never admitted this publicly, but some, a mistake I made early on and working for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 403000
+			},
+			"text": " I was at the Ethereum Foundation early, like 2015, 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 408000
+			},
+			"text": " And I would travel with Vitalik a lot. And we've all seen how Vitalik works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 414000
+			},
+			"text": " So in my mind, I was like, oh, if I'm not matching Vitalik, I'm not doing good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 422000
+			},
+			"text": " But in reality, Vitalik does take time to himself. He does take care of his health and his body and rest and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 428000
+			},
+			"text": " But I was kind of naive and just thought I just need to be pushing myself harder and harder and harder to accomplish things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 435000
+			},
+			"text": " And I mean, I'd be lying if I didn't say that got me places, but it was at the toll of my mental health."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 439000
+			},
+			"text": " And I've had a multi-year, mostly burnout period because of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 445000
+			},
+			"text": " Like 16, 18 hour days of nothing but Ethereum for like three to four or five years gets to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 449000
+			},
+			"text": " So yeah, don't, don't compare yourself to others and do self check-ins."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 454000
+			},
+			"text": " This is something where a lot of people I find in the crypto space are very analytical."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 458000
+			},
+			"text": " They aren't going to do like a body check of like their emotions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " I had a lot of therapy before I could come to empathize with myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " And I think that's something more people should do to maybe put a reminder in their calendar and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 474000
+			},
+			"text": " you know, how am I feeling? Like, is everything good? Do I need to adjust things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 479000
+			},
+			"text": " So yeah, check it with your support system too. My spouse, Lilith, is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 483000
+			},
+			"text": " I'll go up and I'll be like, hey, am I manic? And they're like, yeah, you're manic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 487000
+			},
+			"text": " I was like, I had no idea. And they're like, you've been up for 20 hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 492000
+			},
+			"text": " I'm like, okay. So yeah. Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " Here's some resources. Also, just by the way, start thinking of questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 500000
+			},
+			"text": " We're going to have a good amount of time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 507000
+			},
+			"text": " Additionally, if people don't have exactly questions, but like under 30 second personal experience that they want to share,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " that's fine too at the end of this. Okay. Resources. Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 516000
+			},
+			"text": " All right. Internet's your friend. There's online therapy that I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 522000
+			},
+			"text": " A lot of people have found very helpful. I have a therapist in my town, but we work remotely."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " It's not like super expensive, and you can sometimes get work to pay for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 533000
+			},
+			"text": " So I'll talk to that about that in a second. Also, something that was really good for me in understanding myself"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 539000
+			},
+			"text": " and coming to terms with how I operate as a person is taking a neuropsychological test."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 544000
+			},
+			"text": " One of them was a general one, and that one they said, you have bipolar two."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 552000
+			},
+			"text": " You have ADHD. You have OCD. And I was like, okay, cool. And then years went by, and everyone in my life was like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 558000
+			},
+			"text": " hey, you really seem autistic. And I was like, you're diagnosed, right? I was like, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 562000
+			},
+			"text": " And so I'm not the kind of person who likes to self-diagnose when it comes to medical stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 567000
+			},
+			"text": " So I did that test, and the autistic testing people came back. We're like, yeah, you're autistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 575000
+			},
+			"text": " However, you're so good at masking and mimicry that -- and I contact that, like, you just naturally -- or, like, do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " but it's -- or unnaturally do that, but it's taken you a while to get there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 586000
+			},
+			"text": " I didn't have any friends until high school. No one wanted to talk to me. So I kind of just learned -- and I think a lot of us do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " what facial expressions we have to do to get a positive response from people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 597000
+			},
+			"text": " So, yeah, join or start chat rooms that are crypto or non-crypto to build a support system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " Those are really important. Don't let all your chat rooms be work-related. That'll just drain you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 611000
+			},
+			"text": " Touch grass. Go outside. Don't -- I mean, you can walk with your laptop. It's not the weirdest thing in the world, maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 617000
+			},
+			"text": " And being outside and getting exercise is a very important thing. I've also heard there's, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 622000
+			},
+			"text": " some of my sudden lamps or something that might be helpful. I'm actually really bad at this, so, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 630000
+			},
+			"text": " do as I say, not as I do, but going outside and getting exercise really does do physical and chemical things to the body to help"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 634000
+			},
+			"text": " with a lot of the emotions we struggle with. Slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 642000
+			},
+			"text": " Okay. So in our ecosystem in Ethereum, what can we be doing to push the topic of mental health forward?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 647000
+			},
+			"text": " Slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 654000
+			},
+			"text": " So, if your company doesn't have proactive mental health measures, advocate for them. We need to make them common."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 661000
+			},
+			"text": " Some examples. Mandatory vacation days. I've heard of this working more so recently for people who are truly workaholics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 667000
+			},
+			"text": " I mean, it's going to be an interesting subject, but when, you know, if you're approached about it or if you talk to your work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 674000
+			},
+			"text": " I've heard it works. Stipans for therapy or psychological services. I mean, they give you, like, what, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 679000
+			},
+			"text": " a couple thousand dollars for a new MacBook and you get, like, a Rolle chair that's really cool if you're working from home."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 686000
+			},
+			"text": " Why not monthly stipends for therapy? I think that's going to be really important going on. Like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 692000
+			},
+			"text": " everyone's going to have to be doing that eventually. And then the last one's very important and close to me because"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 700000
+			},
+			"text": " behind the scenes, because I've been in Ethereum so long, I've dealt with a lot of mediation and major projects where they didn't have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 710000
+			},
+			"text": " like, a traditional HR or anyone that would mediate conflicts within their organization. So, I don't like the term HR because, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 717000
+			},
+			"text": " HR is hired by the company to protect the company's interest. So, sometimes they're great and they really do go to bat for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 726000
+			},
+			"text": " But there needs to be, like, a new term or new kind of person that is, like, paid by the company but is, like, legally and in all other ways separate from the company"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 734000
+			},
+			"text": " so that they, like, if you have a problem with the highest levels, you can go to them instead of having to escalate it through other means or being too scared to escalate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 742000
+			},
+			"text": " So, if you're a crypto company right now and you have employees, see what your employees need. Maybe they don't need any of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 749000
+			},
+			"text": " They probably need number three at minimum and I've talked to a few companies about them implementing this and I'm going to see how this goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 758000
+			},
+			"text": " But, yeah, just really advocate for this stuff because, I mean, they're going to be pricks if they say no, right? So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 761000
+			},
+			"text": " All right, next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765000
+			},
+			"text": " Okay, be kind. Take care of yourself in Ethereum. We'll continue to have a soul."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 780000
+			},
+			"text": " Ethereum is the best cryptocurrency ecosystem project because it has a soul and what I mean by that is that unlike other projects that kind of, like, have devs, they hire just for a short amount of time and then they get uninterested and drop them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 794000
+			},
+			"text": " There's a lot of fun, cool things. There's a lot of great people. There's a lot of good discussion in Ethereum and there's values that the earliest people in Ethereum have, like, instilled in us around censorship resistance and decentralization and other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 802000
+			},
+			"text": " But also just like not being a dick. Like, you see it with Vitalik, you see it with Danny Ryan, you see it with Timbico."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 810000
+			},
+			"text": " Like, they all exude this value of, like, not getting into sticky situations or, you know, having useless fighting with people."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 821000
+			},
+			"text": " So, yeah, and also, like, when you're on Twitter, just stop for a second when you're about to, like, just post that rage tweet, like, to reply to someone and think, like, they might be going through a hard time right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 829000
+			},
+			"text": " I've actually reached out to people on DM if someone's acting a little off about something they're saying and I'm like, \"Hey, are you cool?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 838000
+			},
+			"text": " And sometimes they're not, sometimes they're in a manic phase. Sometimes they just had a rough thing happen and they're just trying to escape that by going to Twitter and being off-kilter."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 845000
+			},
+			"text": " So, yeah, just like, have empathy in that area. I guess is the best way to put that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 847000
+			},
+			"text": " Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " Thank you so much. We're going to do questions now. We have at least 13 minutes. So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 853000
+			},
+			"text": " Oh, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 860000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866000
+			},
+			"text": " Hudson, thanks for the talk. I like your T-shirt. What's your take on psilocybin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 871000
+			},
+			"text": " Psilocybin. Ooh. Oh, I'm not working with you right now. I can talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 878000
+			},
+			"text": " [laughter]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 883000
+			},
+			"text": " So, psilocybin is an amazing, amazing tool for mental health. I've tried a lot of non-traditional things for my bipolar II in depression."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 889000
+			},
+			"text": " One of them is IV ketamine. It's very expensive. It's legal in the U.S. but it's very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 896000
+			},
+			"text": " That is, it's helped me a ton sometimes. Other times it doesn't help me at all. Additionally, psilocybin."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 902000
+			},
+			"text": " I've heard when you take a major trip, it can do a lot of things. In my case, when I took a major trip on mushrooms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 909000
+			},
+			"text": " it gave me more empathy because that was a hard thing for me. Additionally, in a very dark, dark time, when I was had to be working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 918000
+			},
+			"text": " I microdive psilocybin for a year. And it was one of the only things that helped me because the prescription medicine wasn't doing its job exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 923000
+			},
+			"text": " And I was doing them together, but, you know, I just was on the wrong stuff for a while. So, yeah. Love psilocybin."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 925000
+			},
+			"text": " Next up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 927000
+			},
+			"text": " Excellent."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 935000
+			},
+			"text": " So psilocybin is like a scientific term for magic mushrooms."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 946000
+			},
+			"text": " Wonderful talk, Hudson. I wondered what your recommendation for post-Devcon recovery is because like, Devcon, you come here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 951000
+			},
+			"text": " It's like really intense. I'm like really tired. It's like, you know, doing this stuff. I haven't always seen such interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 960000
+			},
+			"text": " And then after this, I'm going to get on them, do 18 hours of travel, and then like sit in my house again. Like, how do I recover from that drop?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 966000
+			},
+			"text": " Yeah, there's going to, I mean, a lot of people actually go into a little bit of a depressive slump or anxiety slump after a big conference"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 973000
+			},
+			"text": " where they're like overly social for a week. I used to go way harder at Devcon's and I would crash for a whole week afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 978000
+			},
+			"text": " I'm actually pacing myself this time, but to answer your question, everyone's going to be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 983000
+			},
+			"text": " Some people like just want to watch Netflix all day after they get back from a conference and just not do work for a day or two."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 986000
+			},
+			"text": " Others need like multiple days to sleep depending on where they came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 994000
+			},
+			"text": " Others want to get right back to work because they stay energized. I don't understand those people some of the time, but you know, it's different for different people."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 1001000
+			},
+			"text": " So just kind of like really focus on what you think is the most relaxing thing for you and what will help you recharge."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1012000
+			},
+			"text": " Okay. Yeah, thank you. So in the title of the talk, there was like your cryptocurrency or gig, your Ethereum gig."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1021000
+			},
+			"text": " You have any particular advice for people who are doing gig work where they might have multiple projects or not just have like one full-time job?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1031000
+			},
+			"text": " That's a really good question. So, yeah, if you're just doing gig work, there's good and bad with it because I've also been there to an extent as a contractor and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1036000
+			},
+			"text": " Usually, depending on where you are in the world, you might not get benefits, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1042000
+			},
+			"text": " I would set aside a little bit of money for like therapy and stuff like that, especially if health insurance in your country."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1051000
+			},
+			"text": " If you're lucky enough to be in a country that just does it for free, great, but like for US, you know, you need to like set aside some money and time for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1059000
+			},
+			"text": " Yeah, also like one thing, I'm not going to show this company because I don't know the ins and outs of it, but as a gig employee, check out Opelis."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1066000
+			},
+			"text": " They do some stuff around having gig employees get group healthcare through them in a cryptocurrency way."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1073000
+			},
+			"text": " It's actually the Ethan Vergai, John Powell runs it. So, yeah, check that out. That might be a good thing for gig employees."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1076000
+			},
+			"text": " Hi, Dustin. Amazing talk. Thanks so much. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1084000
+			},
+			"text": " I noticed that a lot of people in crypto often have like mania or like sometimes just a little bit, like myself included when I first got into crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1089000
+			},
+			"text": " Like very manic and people tried reaching out to me, but no, no, I'm fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1094000
+			},
+			"text": " So I was wondering like what is a good approach to dealing with like someone that you care about who may be manic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1102000
+			},
+			"text": " Yeah, so if you yourself are manic and you're kind of coming to that realization, definitely talk to medical people."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1110000
+			},
+			"text": " The ones that I would recommend to look up for would be like therapists can do so much, but then there's other ones who can prescribe medicine like psychiatrists."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1117000
+			},
+			"text": " And sometimes them working together or getting a piece of paper that the therapist says like, yeah, this person's manic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1122000
+			},
+			"text": " And then the psychiatrist is like, I agree and then they get you something. That's one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1134000
+			},
+			"text": " As far as other people in your life, just like if they were having any other things that you were concerned about, in my case, I think I would just message and be like, hey, I'm concerned and wanted to get your take on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1142000
+			},
+			"text": " I've done that line a lot. And also it's going to depend on the person. Some of them are much more responsive with that kind of feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1145000
+			},
+			"text": " Some of them are like, no, no, talk about health. Don't talk about health."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1151000
+			},
+			"text": " So like showing that you care is usually going to break down a lot of barriers to people. So that's kind of what I've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1169000
+			},
+			"text": " So quitting a position for mental health. After a certain period of time, how do you deal with the sort of the drudgery of not doing anything and not triggering further mental health issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1176000
+			},
+			"text": " Yeah, that's a tough one because I've actually been on a mental health break since February and I know other people who are struggling with this too."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1184000
+			},
+			"text": " One thing that I did was try to make myself busy with non-crypto stuff, like explicitly non-crypto stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1191000
+			},
+			"text": " So we had a friend move in with us temporarily, so we were getting their room together. In the last year we've acquired nine chickens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1199000
+			},
+			"text": " Please don't tell where my county in Texas that we did this. We technically have an illegal chicken. There's always supposed to be eight."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1206000
+			},
+			"text": " But so, yeah, so like just dealing with like, you know, and there's like a garden we have, like there's a lot of things to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1213000
+			},
+			"text": " And so it's like manual work like that gets your mind off it. Additionally, rekindling old friendships is a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1218000
+			},
+			"text": " Like finding, you know, support groups that are in or outside of crypto to just kind of stay up to date."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1228000
+			},
+			"text": " And for people who are just getting out, if there are opportunities for little bits to help, little advisory roles or like thrown in a few GitHub commits, that can kind of help a little bit with like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:35,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1235000
+			},
+			"text": " I'm still here. I'm still doing stuff. But yeah, don't ever rush getting back into something just because there's that kind of void."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1235000,
+				"to": 1241000
+			},
+			"text": " That's just something that maybe a therapist can work out or you can find by doing other little tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1248000
+			},
+			"text": " Thank you so much. Such a great talk. My question is somewhat related to that is with your spouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1256000
+			},
+			"text": " How do you, you guys have three cats? I'm kind of getting in that direction as well. So what's it like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1266000
+			},
+			"text": " Like when you're when you're off the mental break and you guys discuss crypto, do you not intentionally just leave it there or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1270000
+			},
+			"text": " Yeah, if you get this, if I don't mean to prior to prior to."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1276000
+			},
+			"text": " Yeah, it's kind of like how do you interact with those closest to you about this while you're going through this is kind of what I take from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1285000
+			},
+			"text": " So I can kind of give my personal thing. I really don't mind. So my spouse, Lillit, who's amazing, does isn't exactly like crypto that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1293000
+			},
+			"text": " To be fair, they did volunteer and actually work on dev cons two and three, which wasn't the best experience behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1300000
+			},
+			"text": " So that was a little bad, but also like they just they don't jive with many people in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1305000
+			},
+			"text": " It's just not their interest. They're just like artists and artists and stuff. So and not into NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1311000
+			},
+			"text": " So basically what I do is I don't really talk about crypto that much."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1322000
+			},
+			"text": " I don't have like interesting conflict resolutions or like hot tea for crypto. Like I bring it to them because it's kind of just fun to talk about like, Oh, I can't believe this conference video is ridiculous."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1327000
+			},
+			"text": " I can't believe what's what's one that I showed them. Oh, like a."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1332000
+			},
+			"text": " The affinity, the launch video and stuff. I was like, they look like robots. So like showing cool stuff like that is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1337000
+			},
+			"text": " But like, yeah, in general, there are some crypto power couples that make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1345000
+			},
+			"text": " But for the most part, most people I know that are happiest with their spouse and crypto try to keep their work separate and because it can blend so easily that can cause further problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1359000
+			},
+			"text": " So yeah, and then also I to you had one more point, which was when you start getting back into it after leaving just being close communication with that person to say, let me know if it's too much or like, Hey, today, am I spending enough time with you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1373000
+			},
+			"text": " I had a lot of problems early on where like a theorem would replace my friends and family. So I'm now like, Hey, are you feeling? Do we need? Are you feeling connected today? Like, do you want to watch a movie like that kind of stuff? And that's helped a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1377000
+			},
+			"text": " We have time for one more question. You know, hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1394000
+			},
+			"text": " Great talk. Thank you so much. I would just really love to hear you riff a little bit on how managers can be empathetic and caring when they have to give corrective feedback or sometimes even help an employee realize that it's time for them to part ways with the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1401000
+			},
+			"text": " Yeah, I can riff a little bit on that. Empathy is really important. Managers should have that. And my personal experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1418000
+			},
+			"text": " My two most recent full time employments were the Ethereum Foundation and flash bots. The Ethereum Foundation, I had to, I broke down and I was getting sent to, I took a grippy sock vacation to brain jail, a.k.a. the mental hospital."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1426000
+			},
+			"text": " So I was getting sent there and I messaged the leadership at the EF and was like, Hey, I'm coming here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1440000
+			},
+			"text": " I'm like, so sorry, I feel like I'm letting you all down. And they're like, No, you take as much time as you need. You will have a job when you come back. That is the number one thing I think managers may not realize is that they think, Oh, if I'm going away for one, two, three, four weeks at a mental health ward,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1453000
+			},
+			"text": " you know, I will lose my job because of what I'm doing. But though they said you take as much time as you need, we're here to support you. Everyone's covering your back. So shout out to the EF for that. And then later I worked for flash bots first, but I got into it too quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1468000
+			},
+			"text": " And there was a point in late last year where I was just like, absolutely a mess with like, home life stuff and family stuff and other things. And I just was like, balling on the phone till Phil died. And I was like, I can't do this. I can't do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1477000
+			},
+			"text": " And he said, there's nothing we have full support. You were getting a two month paid mental health break. And at the end of it, you can come back if you want or if not, we're totally cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1492000
+			},
+			"text": " So like flash bots had a policy in place to like, you know, deal with this. And I was really happy about that. And it took me a while. In February, when it was over, I said, I can't come back yet. My medicines aren't right, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1502000
+			},
+			"text": " Since then I've been doing a lot better, but like, it was just amazing to me that like, they're so progressive in that. So as a manager, yeah, you need to just people put people first."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1511000
+			},
+			"text": " That's what like the EF has done in various ways and flash bots does in amazing ways. So yeah, put people first, be empathetic and make sure they know they have a job."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1513000
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1516000
+			},
+			"text": " Thank you so much for your talking, for sharing your story."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:18,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1518000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1518000,
+				"to": 1528000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1557000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

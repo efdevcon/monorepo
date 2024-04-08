@@ -1,0 +1,1143 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:01,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 1640
+			},
+			"text": " >> So yeah, I'm Stefan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:01,640",
+				"to": "00:00:04,060"
+			},
+			"offsets": {
+				"from": 1640,
+				"to": 4060
+			},
+			"text": " I'm here representing Lib Submarine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,060",
+				"to": "00:00:07,040"
+			},
+			"offsets": {
+				"from": 4060,
+				"to": 7040
+			},
+			"text": " I spend most of my time thinking about security tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,040",
+				"to": "00:00:08,300"
+			},
+			"offsets": {
+				"from": 7040,
+				"to": 8300
+			},
+			"text": " So these financial securities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,300",
+				"to": "00:00:10,280"
+			},
+			"offsets": {
+				"from": 8300,
+				"to": 10280
+			},
+			"text": " how do we actually represent them on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,280",
+				"to": "00:00:13,040"
+			},
+			"offsets": {
+				"from": 10280,
+				"to": 13040
+			},
+			"text": " But I've been fortunate enough over the last few months to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,040",
+				"to": "00:00:16,200"
+			},
+			"offsets": {
+				"from": 13040,
+				"to": 16200
+			},
+			"text": " with some incredible people in implementing Lib Submarine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,200",
+				"to": "00:00:21,340"
+			},
+			"offsets": {
+				"from": 16200,
+				"to": 21340
+			},
+			"text": " which comes off of the work that has been done at IC3 out of Cornell."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,340",
+				"to": "00:00:25,480"
+			},
+			"offsets": {
+				"from": 21340,
+				"to": 25480
+			},
+			"text": " So Lib Submarine, there was a previous talk earlier today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,480",
+				"to": "00:00:28,120"
+			},
+			"offsets": {
+				"from": 25480,
+				"to": 28120
+			},
+			"text": " describing how the mechanism is actually used to prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,120",
+				"to": "00:00:30,680"
+			},
+			"offsets": {
+				"from": 28120,
+				"to": 30680
+			},
+			"text": " front-running on decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,680",
+				"to": "00:00:34,920"
+			},
+			"offsets": {
+				"from": 30680,
+				"to": 34920
+			},
+			"text": " My talk today is going to talk about how do we actually implement those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,920",
+				"to": "00:00:37,440"
+			},
+			"offsets": {
+				"from": 34920,
+				"to": 37440
+			},
+			"text": " What does it look like from the smart contracts perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,440",
+				"to": "00:00:41,600"
+			},
+			"offsets": {
+				"from": 37440,
+				"to": 41600
+			},
+			"text": " and how does it look like from the DAP perspective to work with Lib Submarine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,600",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 41600,
+				"to": 43360
+			},
+			"text": " So let's jump into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:47,040"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 47040
+			},
+			"text": " Quick overview, I'm not going to go into detail about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,040",
+				"to": "00:00:50,960"
+			},
+			"offsets": {
+				"from": 47040,
+				"to": 50960
+			},
+			"text": " Lib Submarine is the right solution to prevent reordering attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,960",
+				"to": "00:00:55,080"
+			},
+			"offsets": {
+				"from": 50960,
+				"to": 55080
+			},
+			"text": " and also to increase the level of privacy in a commit reveal scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,080",
+				"to": "00:00:58,520"
+			},
+			"offsets": {
+				"from": 55080,
+				"to": 58520
+			},
+			"text": " and really eliminate the signal that the commit is going to provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,520",
+				"to": "00:01:00,520"
+			},
+			"offsets": {
+				"from": 58520,
+				"to": 60520
+			},
+			"text": " So on the left side of the screen here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,520",
+				"to": "00:01:02,880"
+			},
+			"offsets": {
+				"from": 60520,
+				"to": 62880
+			},
+			"text": " you can see what a regular commit reveal scheme will be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,880",
+				"to": "00:01:05,920"
+			},
+			"offsets": {
+				"from": 62880,
+				"to": 65920
+			},
+			"text": " which is you have the commit that hashes the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,920",
+				"to": "00:01:10,720"
+			},
+			"offsets": {
+				"from": 65920,
+				"to": 70720
+			},
+			"text": " but you still see the participation as well as the value that's being committed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,720",
+				"to": "00:01:13,120"
+			},
+			"offsets": {
+				"from": 70720,
+				"to": 73120
+			},
+			"text": " Then during the reveal stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,120",
+				"to": "00:01:14,960"
+			},
+			"offsets": {
+				"from": 73120,
+				"to": 74960
+			},
+			"text": " you reveal what the data contains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,960",
+				"to": "00:01:17,480"
+			},
+			"offsets": {
+				"from": 74960,
+				"to": 77480
+			},
+			"text": " and maybe this is like a voting mechanism, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,480",
+				"to": "00:01:19,120"
+			},
+			"offsets": {
+				"from": 77480,
+				"to": 79120
+			},
+			"text": " On the right side of the screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,120",
+				"to": "00:01:22,400"
+			},
+			"offsets": {
+				"from": 79120,
+				"to": 82400
+			},
+			"text": " you actually see what it would look like from a submarine perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,400",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 82400,
+				"to": 85000
+			},
+			"text": " which is the entire commit period is completely hidden,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:27,160"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 87160
+			},
+			"text": " it's masked, you don't see who's participating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,160",
+				"to": "00:01:28,840"
+			},
+			"offsets": {
+				"from": 87160,
+				"to": 88840
+			},
+			"text": " you don't see the value that's being committed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,840",
+				"to": "00:01:31,560"
+			},
+			"offsets": {
+				"from": 88840,
+				"to": 91560
+			},
+			"text": " and of course you don't see the data that's being committed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,560",
+				"to": "00:01:35,200"
+			},
+			"offsets": {
+				"from": 91560,
+				"to": 95200
+			},
+			"text": " But again, everything is revealed at the end of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,200",
+				"to": "00:01:38,080"
+			},
+			"offsets": {
+				"from": 95200,
+				"to": 98080
+			},
+			"text": " So how do you actually implement it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,080",
+				"to": "00:01:40,200"
+			},
+			"offsets": {
+				"from": 98080,
+				"to": 100200
+			},
+			"text": " Here on the left side of the screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,200",
+				"to": "00:01:43,800"
+			},
+			"offsets": {
+				"from": 100200,
+				"to": 103800
+			},
+			"text": " we have a very simple auction contract that's implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,800",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 103800,
+				"to": 107600
+			},
+			"text": " as an ERC721 token receiver hook."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:51,760"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 111760
+			},
+			"text": " We took out a lot of the basic storage and like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,760",
+				"to": "00:01:54,120"
+			},
+			"offsets": {
+				"from": 111760,
+				"to": 114120
+			},
+			"text": " set up functions that are required for the auction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,120",
+				"to": "00:01:56,360"
+			},
+			"offsets": {
+				"from": 114120,
+				"to": 116360
+			},
+			"text": " and only left this bid function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,360",
+				"to": "00:01:59,040"
+			},
+			"offsets": {
+				"from": 116360,
+				"to": 119040
+			},
+			"text": " which is the one that people would monitor to get an idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,040",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 119040,
+				"to": 121920
+			},
+			"text": " what the active bids are on this auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:05,840"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 125840
+			},
+			"text": " So what someone that's monitoring the chain would see is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,840",
+				"to": "00:02:10,120"
+			},
+			"offsets": {
+				"from": 125840,
+				"to": 130120
+			},
+			"text": " when someone commits a new bid to the mem pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,120",
+				"to": "00:02:13,560"
+			},
+			"offsets": {
+				"from": 130120,
+				"to": 133560
+			},
+			"text": " they could see it and then make sure that they place a transaction right after"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,560",
+				"to": "00:02:18,200"
+			},
+			"offsets": {
+				"from": 133560,
+				"to": 138200
+			},
+			"text": " that kind of beats the bid and make sure that they're on top of the auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,200",
+				"to": "00:02:20,880"
+			},
+			"offsets": {
+				"from": 138200,
+				"to": 140880
+			},
+			"text": " So what you want to do is be able to mask the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,880",
+				"to": "00:02:23,800"
+			},
+			"offsets": {
+				"from": 140880,
+				"to": 143800
+			},
+			"text": " and really the participation inside of this bidding"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,800",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 143800,
+				"to": 146440
+			},
+			"text": " and create what is called a seal bid auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:28,440"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 148440
+			},
+			"text": " So this can be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,440",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 148440,
+				"to": 151280
+			},
+			"text": " The only function that you end up needing to change is this bid function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:34,560"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 154560
+			},
+			"text": " So you actually implement it as an event receiver hook"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,560",
+				"to": "00:02:37,960"
+			},
+			"offsets": {
+				"from": 154560,
+				"to": 157960
+			},
+			"text": " based off of this lib submarine contract that you inherit from."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,960",
+				"to": "00:02:41,280"
+			},
+			"offsets": {
+				"from": 157960,
+				"to": 161280
+			},
+			"text": " So you can see at the top you inherit the new contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,280",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 161280,
+				"to": 165800
+			},
+			"text": " and then you implement this function called onsubmarine reveal"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:47,080"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 167080
+			},
+			"text": " with these data parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,080",
+				"to": "00:02:50,200"
+			},
+			"offsets": {
+				"from": 167080,
+				"to": 170200
+			},
+			"text": " So the submarine ID is what kind of identifies the bid"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,200",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 170200,
+				"to": 173680
+			},
+			"text": " and then you have the embedded data which is that data that was previously"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:54,960"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 174960
+			},
+			"text": " hash and commit reveal scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,960",
+				"to": "00:02:57,480"
+			},
+			"offsets": {
+				"from": 174960,
+				"to": 177480
+			},
+			"text": " In this scheme you have it through this function"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,480",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 177480,
+				"to": 178840
+			},
+			"text": " and as well as the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:01,520"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 181520
+			},
+			"text": " Then the logic of your function actually kind of remains the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,520",
+				"to": "00:03:04,880"
+			},
+			"offsets": {
+				"from": 181520,
+				"to": 184880
+			},
+			"text": " You still have the same logical checks, the same storage changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,880",
+				"to": "00:03:08,640"
+			},
+			"offsets": {
+				"from": 184880,
+				"to": 188640
+			},
+			"text": " and the new logic for calculating who is the winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,640",
+				"to": "00:03:13,040"
+			},
+			"offsets": {
+				"from": 188640,
+				"to": 193040
+			},
+			"text": " So this would actually happen on the reveal stage of your commit reveal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,040",
+				"to": "00:03:16,760"
+			},
+			"offsets": {
+				"from": 193040,
+				"to": 196760
+			},
+			"text": " So you make sure that you're not liable to someone that's watching all the commits"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,760",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 196760,
+				"to": 201600
+			},
+			"text": " and able to make bids accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:26,840"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 206840
+			},
+			"text": " So from the user perspective, if you're just modifying a traditional commit reveal scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,840",
+				"to": "00:03:29,800"
+			},
+			"offsets": {
+				"from": 206840,
+				"to": 209800
+			},
+			"text": " it actually doesn't look very much different from a user perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,800",
+				"to": "00:03:33,320"
+			},
+			"offsets": {
+				"from": 209800,
+				"to": 213320
+			},
+			"text": " It still needs to do two sign transaction from the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,320",
+				"to": "00:03:36,520"
+			},
+			"offsets": {
+				"from": 213320,
+				"to": 216520
+			},
+			"text": " and then you have this third transaction which is the unlocked transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,520",
+				"to": "00:03:41,480"
+			},
+			"offsets": {
+				"from": 216520,
+				"to": 221480
+			},
+			"text": " which is generated as kind of a raw sign transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,480",
+				"to": "00:03:44,520"
+			},
+			"offsets": {
+				"from": 221480,
+				"to": 224520
+			},
+			"text": " and can be relayed by anyone that's communicating with the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,400",
+				"to": "00:03:52,240"
+			},
+			"offsets": {
+				"from": 225400,
+				"to": 232240
+			},
+			"text": " So from a client perspective then what you have to do is you have to also have your commit"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,240",
+				"to": "00:03:57,280"
+			},
+			"offsets": {
+				"from": 232240,
+				"to": 237280
+			},
+			"text": " that gets generated on the off chain and then also you have to generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,280",
+				"to": "00:04:00,280"
+			},
+			"offsets": {
+				"from": 237280,
+				"to": 240280
+			},
+			"text": " a miracle Patricia proof of that commit off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,280",
+				"to": "00:04:05,320"
+			},
+			"offsets": {
+				"from": 240280,
+				"to": 245320
+			},
+			"text": " And we've added some Python scripts inside of a repository that actually does this for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,320",
+				"to": "00:04:09,080"
+			},
+			"offsets": {
+				"from": 245320,
+				"to": 249080
+			},
+			"text": " and then on chain we have implemented all the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,080",
+				"to": "00:04:12,120"
+			},
+			"offsets": {
+				"from": 249080,
+				"to": 252120
+			},
+			"text": " that actually execute this submarine commit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,120",
+				"to": "00:04:16,280"
+			},
+			"offsets": {
+				"from": 252120,
+				"to": 256280
+			},
+			"text": " and then also verify that the commit is done through doing on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,280",
+				"to": "00:04:19,080"
+			},
+			"offsets": {
+				"from": 256280,
+				"to": 259080
+			},
+			"text": " miracle proof verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,080",
+				"to": "00:04:23,840"
+			},
+			"offsets": {
+				"from": 259080,
+				"to": 263840
+			},
+			"text": " So all in all if you compare kind of the gas consumption of just a regular transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,840",
+				"to": "00:04:27,720"
+			},
+			"offsets": {
+				"from": 263840,
+				"to": 267720
+			},
+			"text": " with the gas consumption of a submarine sends or lib submarine"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,720",
+				"to": "00:04:34,840"
+			},
+			"offsets": {
+				"from": 267720,
+				"to": 274840
+			},
+			"text": " you have approximately 200 k gas additional per commit reveal kind of process"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,840",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 274840,
+				"to": 278160
+			},
+			"text": " but on the flip side you get front running protection"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:41,400"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 281400
+			},
+			"text": " and you also get protection against signaling schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,400",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 281400,
+				"to": 284640
+			},
+			"text": " So we have one DEX that's looking to integrate with us already"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:47,840"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 287840
+			},
+			"text": " to help them prevent their front running problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,840",
+				"to": "00:04:51,800"
+			},
+			"offsets": {
+				"from": 287840,
+				"to": 291800
+			},
+			"text": " and we encourage anyone that's looking on implementing these kinds of techniques"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,800",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 291800,
+				"to": 293000
+			},
+			"text": " to reach out to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,960"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296960
+			},
+			"text": " These are our Twitter hashtags or Twitter handles."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,960",
+				"to": "00:05:00,680"
+			},
+			"offsets": {
+				"from": 296960,
+				"to": 300680
+			},
+			"text": " So reach out to us we'll be happy to answer questions how to integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,680",
+				"to": "00:05:03,240"
+			},
+			"offsets": {
+				"from": 300680,
+				"to": 303240
+			},
+			"text": " and you can also check out libsomerin.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,240",
+				"to": "00:05:06,080"
+			},
+			"offsets": {
+				"from": 303240,
+				"to": 306080
+			},
+			"text": " This is just open source code that we're working on for fun"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,080",
+				"to": "00:05:10,920"
+			},
+			"offsets": {
+				"from": 306080,
+				"to": 310920
+			},
+			"text": " no fees no token no nothing take a look implement it and see online."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,800",
+				"to": "00:05:13,480"
+			},
+			"offsets": {
+				"from": 311800,
+				"to": 313480
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,480",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 313480,
+				"to": 315480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:17,480"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 317480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,480",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 317480,
+				"to": 319480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:21,480"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 321480
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,480",
+				"to": "00:05:43,480"
+			},
+			"offsets": {
+				"from": 321480,
+				"to": 343480
+			},
+			"text": " [Music]"
+		}
+	]
+}

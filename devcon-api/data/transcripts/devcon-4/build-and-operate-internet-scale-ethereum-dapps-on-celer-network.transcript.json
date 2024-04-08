@@ -1,0 +1,6027 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " All right, good morning everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:03,560"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 3560
+			},
+			"text": " It's great to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,560",
+				"to": "00:00:04,400"
+			},
+			"offsets": {
+				"from": 3560,
+				"to": 4400
+			},
+			"text": " It's my first DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,400",
+				"to": "00:00:05,400"
+			},
+			"offsets": {
+				"from": 4400,
+				"to": 5400
+			},
+			"text": " Super excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,400",
+				"to": "00:00:08,520"
+			},
+			"offsets": {
+				"from": 5400,
+				"to": 8520
+			},
+			"text": " And today I'm going to talk about basically build and operate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,520",
+				"to": "00:00:10,560"
+			},
+			"offsets": {
+				"from": 8520,
+				"to": 10560
+			},
+			"text": " Internet-scale DApps on setter network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,560",
+				"to": "00:00:12,400"
+			},
+			"offsets": {
+				"from": 10560,
+				"to": 12400
+			},
+			"text": " But before I go to the technical content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,400",
+				"to": "00:00:14,960"
+			},
+			"offsets": {
+				"from": 12400,
+				"to": 14960
+			},
+			"text": " I just want to say that we have a testnet up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,960",
+				"to": "00:00:16,920"
+			},
+			"offsets": {
+				"from": 14960,
+				"to": 16920
+			},
+			"text": " And the testnet is not a black window that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,920",
+				"to": "00:00:18,080"
+			},
+			"offsets": {
+				"from": 16920,
+				"to": 18080
+			},
+			"text": " with awesome numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,080",
+				"to": "00:00:20,800"
+			},
+			"offsets": {
+				"from": 18080,
+				"to": 20800
+			},
+			"text": " But an actual app you can download and try today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,800",
+				"to": "00:00:23,880"
+			},
+			"offsets": {
+				"from": 20800,
+				"to": 23880
+			},
+			"text": " And you can play some board games in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,880",
+				"to": "00:00:27,520"
+			},
+			"offsets": {
+				"from": 23880,
+				"to": 27520
+			},
+			"text": " But we only have it in Android available right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,520",
+				"to": "00:00:31,240"
+			},
+			"offsets": {
+				"from": 27520,
+				"to": 31240
+			},
+			"text": " So we're just going to show basically a quick demo here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,240",
+				"to": "00:00:33,960"
+			},
+			"offsets": {
+				"from": 31240,
+				"to": 33960
+			},
+			"text": " What this is about is this is like a game running"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,960",
+				"to": "00:00:35,240"
+			},
+			"offsets": {
+				"from": 33960,
+				"to": 35240
+			},
+			"text": " on general state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,240",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 35240,
+				"to": 36000
+			},
+			"text": " It's a board game."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 37360
+			},
+			"text": " It's basically connecting five."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 38560
+			},
+			"text": " And you can create a game."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:41,800"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 41800
+			},
+			"text": " And you can bandwidth your friend for 0.1 testnet ease."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,800",
+				"to": "00:00:44,840"
+			},
+			"offsets": {
+				"from": 41800,
+				"to": 44840
+			},
+			"text": " And now off you go, you can start to play."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,840",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 44840,
+				"to": 47560
+			},
+			"text": " And the important thing here is that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:49,320"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 49320
+			},
+			"text": " want to show that state channel is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,320",
+				"to": "00:00:51,280"
+			},
+			"offsets": {
+				"from": 49320,
+				"to": 51280
+			},
+			"text": " going to help in terms of user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,280",
+				"to": "00:00:53,600"
+			},
+			"offsets": {
+				"from": 51280,
+				"to": 53600
+			},
+			"text": " because you can see that each of the state transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,600",
+				"to": "00:00:55,920"
+			},
+			"offsets": {
+				"from": 53600,
+				"to": 55920
+			},
+			"text": " in this kind of game is already implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,920",
+				"to": "00:00:58,400"
+			},
+			"offsets": {
+				"from": 55920,
+				"to": 58400
+			},
+			"text": " as general state channel, often smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,400",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 58400,
+				"to": 60240
+			},
+			"text": " as what we call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 63080
+			},
+			"text": " So this is kind of the user experience you can experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:05,280"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 65280
+			},
+			"text": " And we also have the dispute protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,280",
+				"to": "00:01:08,520"
+			},
+			"offsets": {
+				"from": 65280,
+				"to": 68520
+			},
+			"text": " and the full field open fully implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,520",
+				"to": "00:01:13,120"
+			},
+			"offsets": {
+				"from": 68520,
+				"to": 73120
+			},
+			"text": " Now with this, we launched this testnet app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,120",
+				"to": "00:01:15,880"
+			},
+			"offsets": {
+				"from": 73120,
+				"to": 75880
+			},
+			"text": " including this application on Ethereum San Francisco."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,880",
+				"to": "00:01:22,320"
+			},
+			"offsets": {
+				"from": 75880,
+				"to": 82320
+			},
+			"text": " And after about three weeks, we have 900 installs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,320",
+				"to": "00:01:25,280"
+			},
+			"offsets": {
+				"from": 82320,
+				"to": 85280
+			},
+			"text": " 15,000 in the payment send."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 90600
+			},
+			"text": " And amazingly, 17,000 games played over this 900 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 95520
+			},
+			"text": " And the interesting thing I want to highlight"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:37,520"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 97520
+			},
+			"text": " is that this is all on testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,520",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 97520,
+				"to": 100000
+			},
+			"text": " If we put all these transactions back to back"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102320
+			},
+			"text": " into this entire blockchain, it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 104960
+			},
+			"text": " take 57 days to finish all these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 108800
+			},
+			"text": " But amazingly, we have a 15% user retention"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:51,040"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 111040
+			},
+			"text": " ratio for a seven day user retention ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,040",
+				"to": "00:01:53,160"
+			},
+			"offsets": {
+				"from": 111040,
+				"to": 113160
+			},
+			"text": " Even if people know this is fake money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,160",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 113160,
+				"to": 114360
+			},
+			"text": " they still stick on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 117000
+			},
+			"text": " So this is kind of amazing thing that we think"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:58,680"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 118680
+			},
+			"text": " general state channel can bring to the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,680",
+				"to": "00:02:02,080"
+			},
+			"offsets": {
+				"from": 118680,
+				"to": 122080
+			},
+			"text": " that is real mass user adoption that is pending."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,080",
+				"to": "00:02:04,640"
+			},
+			"offsets": {
+				"from": 122080,
+				"to": 124640
+			},
+			"text": " And we have the SDK already released today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,640",
+				"to": "00:02:07,600"
+			},
+			"offsets": {
+				"from": 124640,
+				"to": 127600
+			},
+			"text": " And multiple teams are already building on top of the SDK"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,600",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 127600,
+				"to": 131000
+			},
+			"text": " with off-chain prediction market, some more board games,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,640"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135640
+			},
+			"text": " and some SLA micro payment or basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,640",
+				"to": "00:02:17,880"
+			},
+			"offsets": {
+				"from": 135640,
+				"to": 137880
+			},
+			"text": " a micro services solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,880",
+				"to": "00:02:20,600"
+			},
+			"offsets": {
+				"from": 137880,
+				"to": 140600
+			},
+			"text": " So you're very welcome to look up our GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,600",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 140600,
+				"to": 142200
+			},
+			"text": " and there are tutorials about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 144920
+			},
+			"text": " So jumping to a certain network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:27,640"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 147640
+			},
+			"text": " What is a certain network is a coherent off-chain scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,640",
+				"to": "00:02:28,600"
+			},
+			"offsets": {
+				"from": 147640,
+				"to": 148600
+			},
+			"text": " architecture?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,600",
+				"to": "00:02:31,880"
+			},
+			"offsets": {
+				"from": 148600,
+				"to": 151880
+			},
+			"text": " What we mean by that is that our network has two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,880",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 151880,
+				"to": 155920
+			},
+			"text": " One is the technology part called CStack."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 158600
+			},
+			"text": " We propose a layer technology architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:40,400"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 160400
+			},
+			"text": " and the other part is the economics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,400",
+				"to": "00:02:42,400"
+			},
+			"offsets": {
+				"from": 160400,
+				"to": 162400
+			},
+			"text": " which we propose some crypto economic construct"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,400",
+				"to": "00:02:45,400"
+			},
+			"offsets": {
+				"from": 162400,
+				"to": 165400
+			},
+			"text": " to solve some challenges in the state channel networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,400",
+				"to": "00:02:49,120"
+			},
+			"offsets": {
+				"from": 165400,
+				"to": 169120
+			},
+			"text": " And for CStack, we basically solve the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,120",
+				"to": "00:02:51,600"
+			},
+			"offsets": {
+				"from": 169120,
+				"to": 171600
+			},
+			"text": " of how to support generalized off-chain scaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,600",
+				"to": "00:02:54,080"
+			},
+			"offsets": {
+				"from": 171600,
+				"to": 174080
+			},
+			"text": " how to route a transfer efficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,080",
+				"to": "00:02:56,280"
+			},
+			"offsets": {
+				"from": 174080,
+				"to": 176280
+			},
+			"text": " today in this kind of off-chain scaling networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,280",
+				"to": "00:02:59,200"
+			},
+			"offsets": {
+				"from": 176280,
+				"to": 179200
+			},
+			"text": " and how to bring mass adoption to off-chain DApps"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,200",
+				"to": "00:03:01,320"
+			},
+			"offsets": {
+				"from": 179200,
+				"to": 181320
+			},
+			"text": " by providing a better user interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,320",
+				"to": "00:03:02,800"
+			},
+			"offsets": {
+				"from": 181320,
+				"to": 182800
+			},
+			"text": " and developer applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,800",
+				"to": "00:03:05,360"
+			},
+			"offsets": {
+				"from": 182800,
+				"to": 185360
+			},
+			"text": " So C Channel is the lowest layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,360",
+				"to": "00:03:08,400"
+			},
+			"offsets": {
+				"from": 185360,
+				"to": 188400
+			},
+			"text": " What is C Channel is basically our generalized state"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,400",
+				"to": "00:03:10,440"
+			},
+			"offsets": {
+				"from": 188400,
+				"to": 190440
+			},
+			"text": " channel construct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,440",
+				"to": "00:03:13,320"
+			},
+			"offsets": {
+				"from": 190440,
+				"to": 193320
+			},
+			"text": " We came to this generalized channel construct"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,320",
+				"to": "00:03:15,720"
+			},
+			"offsets": {
+				"from": 193320,
+				"to": 195720
+			},
+			"text": " from the concept of conditional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,720",
+				"to": "00:03:17,240"
+			},
+			"offsets": {
+				"from": 195720,
+				"to": 197240
+			},
+			"text": " and conditional dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,240",
+				"to": "00:03:22,080"
+			},
+			"offsets": {
+				"from": 197240,
+				"to": 202080
+			},
+			"text": " So let me just give a quick overview here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,080",
+				"to": "00:03:24,440"
+			},
+			"offsets": {
+				"from": 202080,
+				"to": 204440
+			},
+			"text": " This is like a channel spec you can write."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,440",
+				"to": "00:03:26,440"
+			},
+			"offsets": {
+				"from": 204440,
+				"to": 206440
+			},
+			"text": " So when you're writing a generalized state channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,440",
+				"to": "00:03:28,720"
+			},
+			"offsets": {
+				"from": 206440,
+				"to": 208720
+			},
+			"text": " application, what you're writing is first part"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,720",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 208720,
+				"to": 210480
+			},
+			"text": " is a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:33,280"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 213280
+			},
+			"text": " So to write a generalized state channel smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,280",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 213280,
+				"to": 214960
+			},
+			"text": " et cetera, you basically need to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:38,520"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 218520
+			},
+			"text": " these kind of functions and also have these kind of states"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,520",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 218520,
+				"to": 219000
+			},
+			"text": " in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221880
+			},
+			"text": " So I'm going to not talk too much in detail about that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:44,560"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 224560
+			},
+			"text": " but we have a separate talk I will refer to later."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,560",
+				"to": "00:03:48,280"
+			},
+			"offsets": {
+				"from": 224560,
+				"to": 228280
+			},
+			"text": " But a key part here is that this kind of construct"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,280",
+				"to": "00:03:50,800"
+			},
+			"offsets": {
+				"from": 228280,
+				"to": 230800
+			},
+			"text": " enable generalized state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,800",
+				"to": "00:03:52,840"
+			},
+			"offsets": {
+				"from": 230800,
+				"to": 232840
+			},
+			"text": " Generize conditional state transitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,840",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232840,
+				"to": 235000
+			},
+			"text": " That is like you can make your transition in your state"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 236640
+			},
+			"text": " channel and conditionally depends"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:04:00,040"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 240040
+			},
+			"text": " on some other transitions in some other state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,040",
+				"to": "00:04:02,880"
+			},
+			"offsets": {
+				"from": 240040,
+				"to": 242880
+			},
+			"text": " And ultimately, you can build this rather complex conditional"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,880",
+				"to": "00:04:07,240"
+			},
+			"offsets": {
+				"from": 242880,
+				"to": 247240
+			},
+			"text": " dependency deck to implement the complex generalized state"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,240",
+				"to": "00:04:08,680"
+			},
+			"offsets": {
+				"from": 247240,
+				"to": 248680
+			},
+			"text": " channel application logics."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,680",
+				"to": "00:04:11,600"
+			},
+			"offsets": {
+				"from": 248680,
+				"to": 251600
+			},
+			"text": " And to just make it a little bit more concrete here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,600",
+				"to": "00:04:14,920"
+			},
+			"offsets": {
+				"from": 251600,
+				"to": 254920
+			},
+			"text": " to talk about what we did in the game, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,920",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 254920,
+				"to": 257800
+			},
+			"text": " so let's say Alice and Bob have the channel and--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:20,360"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 260360
+			},
+			"text": " sorry, Alice and Mo have a channel, Mo and Bob have a channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,360",
+				"to": "00:04:22,760"
+			},
+			"offsets": {
+				"from": 260360,
+				"to": 262760
+			},
+			"text": " And Alice wants to play a game with Bob"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,760",
+				"to": "00:04:25,080"
+			},
+			"offsets": {
+				"from": 262760,
+				"to": 265080
+			},
+			"text": " and while betting on 0.1 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,080",
+				"to": "00:04:28,120"
+			},
+			"offsets": {
+				"from": 265080,
+				"to": 268120
+			},
+			"text": " So betting on $5 here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,120",
+				"to": "00:04:31,360"
+			},
+			"offsets": {
+				"from": 268120,
+				"to": 271360
+			},
+			"text": " So what's going to happen is that Alice is going to send Bob"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,360",
+				"to": "00:04:35,160"
+			},
+			"offsets": {
+				"from": 271360,
+				"to": 275160
+			},
+			"text": " a conditional payment of $5 related via Mo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,160",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 275160,
+				"to": 276800
+			},
+			"text": " And in the beginning, the conditional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:39,960"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 279960
+			},
+			"text": " will be like a Boolean and the condition group."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,960",
+				"to": "00:04:42,120"
+			},
+			"offsets": {
+				"from": 279960,
+				"to": 282120
+			},
+			"text": " There is a Boolean and the conditional group on top of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,120",
+				"to": "00:04:45,720"
+			},
+			"offsets": {
+				"from": 282120,
+				"to": 285720
+			},
+			"text": " What it means is that only if conditional C1 and C2"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,720",
+				"to": "00:04:48,280"
+			},
+			"offsets": {
+				"from": 285720,
+				"to": 288280
+			},
+			"text": " both evaluate the true, then this conditional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,280",
+				"to": "00:04:49,520"
+			},
+			"offsets": {
+				"from": 288280,
+				"to": 289520
+			},
+			"text": " actually goes through."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,520",
+				"to": "00:04:51,280"
+			},
+			"offsets": {
+				"from": 289520,
+				"to": 291280
+			},
+			"text": " So there are two conditions in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,280",
+				"to": "00:04:54,600"
+			},
+			"offsets": {
+				"from": 291280,
+				"to": 294600
+			},
+			"text": " One is the standard multi-help intermediate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,600",
+				"to": "00:04:56,880"
+			},
+			"offsets": {
+				"from": 294600,
+				"to": 296880
+			},
+			"text": " transfer HDL registry condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,880",
+				"to": "00:04:59,440"
+			},
+			"offsets": {
+				"from": 296880,
+				"to": 299440
+			},
+			"text": " And so basically, we generalize that HDL part also"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,440",
+				"to": "00:05:00,840"
+			},
+			"offsets": {
+				"from": 299440,
+				"to": 300840
+			},
+			"text": " as a condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,840",
+				"to": "00:05:02,960"
+			},
+			"offsets": {
+				"from": 300840,
+				"to": 302960
+			},
+			"text": " And also the Alice and Bob game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,960",
+				"to": "00:05:09,160"
+			},
+			"offsets": {
+				"from": 302960,
+				"to": 309160
+			},
+			"text": " After this kind of a pass got set up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,160",
+				"to": "00:05:11,520"
+			},
+			"offsets": {
+				"from": 309160,
+				"to": 311520
+			},
+			"text": " you will see only one-- we peel off the first condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,520",
+				"to": "00:05:14,680"
+			},
+			"offsets": {
+				"from": 311520,
+				"to": 314680
+			},
+			"text": " and only one condition left which is like the Alice and Bob's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,680",
+				"to": "00:05:15,960"
+			},
+			"offsets": {
+				"from": 314680,
+				"to": 315960
+			},
+			"text": " game condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,960",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 315960,
+				"to": 319480
+			},
+			"text": " And when the game finally finishes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:22,280"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 322280
+			},
+			"text": " the Alice and Bob's condition or state"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,280",
+				"to": "00:05:24,720"
+			},
+			"offsets": {
+				"from": 322280,
+				"to": 324720
+			},
+			"text": " is entirely a pure option object that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,720",
+				"to": "00:05:26,240"
+			},
+			"offsets": {
+				"from": 324720,
+				"to": 326240
+			},
+			"text": " translate entirely often."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,240",
+				"to": "00:05:28,560"
+			},
+			"offsets": {
+				"from": 326240,
+				"to": 328560
+			},
+			"text": " And when this entire game finishes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,560",
+				"to": "00:05:31,640"
+			},
+			"offsets": {
+				"from": 328560,
+				"to": 331640
+			},
+			"text": " this game gets resolved to a unconditional payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,640",
+				"to": "00:05:33,760"
+			},
+			"offsets": {
+				"from": 331640,
+				"to": 333760
+			},
+			"text": " So this is kind of like a process of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,760",
+				"to": "00:05:35,600"
+			},
+			"offsets": {
+				"from": 333760,
+				"to": 335600
+			},
+			"text": " you can think about the general state channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,600",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 335600,
+				"to": 338320
+			},
+			"text": " in the conditional payment sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:41,280"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 341280
+			},
+			"text": " So in C-channel, we have a bunch of out-of-box features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,280",
+				"to": "00:05:43,800"
+			},
+			"offsets": {
+				"from": 341280,
+				"to": 343800
+			},
+			"text": " including often just translators to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,800",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 343800,
+				"to": 348520
+			},
+			"text": " this kind of pure option object, meaning that this kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 352000
+			},
+			"text": " option smart contract doesn't need to be exist on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:53,680"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 353680
+			},
+			"text": " unless there are some dispute happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,680",
+				"to": "00:05:54,920"
+			},
+			"offsets": {
+				"from": 353680,
+				"to": 354920
+			},
+			"text": " We have cooperative settling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,920",
+				"to": "00:05:56,840"
+			},
+			"offsets": {
+				"from": 354920,
+				"to": 356840
+			},
+			"text": " We have single channel setup, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,840",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 356840,
+				"to": 360200
+			},
+			"text": " you can set up the entire channel with just one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:03,200"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 363200
+			},
+			"text": " We have some direct to final state claim functionality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,200",
+				"to": "00:06:04,760"
+			},
+			"offsets": {
+				"from": 363200,
+				"to": 364760
+			},
+			"text": " dynamic deposit, and withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,760",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364760,
+				"to": 368000
+			},
+			"text": " And for the conditions, we implement some out-of-box condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370800
+			},
+			"text": " groups that call a boarding and a boarding circuit condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:12,760"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 372760
+			},
+			"text": " and find a fond assignment condition groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,760",
+				"to": "00:06:15,480"
+			},
+			"offsets": {
+				"from": 372760,
+				"to": 375480
+			},
+			"text": " And they are all documented in our docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,480",
+				"to": "00:06:18,320"
+			},
+			"offsets": {
+				"from": 375480,
+				"to": 378320
+			},
+			"text": " Now, this is like a quick review of the general state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,320",
+				"to": "00:06:19,800"
+			},
+			"offsets": {
+				"from": 378320,
+				"to": 379800
+			},
+			"text": " channel construct we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,800",
+				"to": "00:06:23,200"
+			},
+			"offsets": {
+				"from": 379800,
+				"to": 383200
+			},
+			"text": " And the second layer of setters technology architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,200",
+				"to": "00:06:24,360"
+			},
+			"offsets": {
+				"from": 383200,
+				"to": 384360
+			},
+			"text": " is called C-ROT."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,360",
+				"to": "00:06:27,080"
+			},
+			"offsets": {
+				"from": 384360,
+				"to": 387080
+			},
+			"text": " So the reason that we need a routing architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,080",
+				"to": "00:06:30,400"
+			},
+			"offsets": {
+				"from": 387080,
+				"to": 390400
+			},
+			"text": " is because we really want this kind of mechanism or semantic"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,400",
+				"to": "00:06:33,240"
+			},
+			"offsets": {
+				"from": 390400,
+				"to": 393240
+			},
+			"text": " to connect to this off-chain state channel network once"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,240",
+				"to": "00:06:34,520"
+			},
+			"offsets": {
+				"from": 393240,
+				"to": 394520
+			},
+			"text": " and use it forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,520",
+				"to": "00:06:39,920"
+			},
+			"offsets": {
+				"from": 394520,
+				"to": 399920
+			},
+			"text": " So now, why this off-chain payment routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,920",
+				"to": "00:06:41,960"
+			},
+			"offsets": {
+				"from": 399920,
+				"to": 401960
+			},
+			"text": " is so challenging?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,960",
+				"to": "00:06:44,400"
+			},
+			"offsets": {
+				"from": 401960,
+				"to": 404400
+			},
+			"text": " We have written a folks talk about basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,400",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 404400,
+				"to": 409680
+			},
+			"text": " why we need the optimal routing, but why it is challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:52,160"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 412160
+			},
+			"text": " The reason is that the state channel network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,160",
+				"to": "00:06:55,480"
+			},
+			"offsets": {
+				"from": 412160,
+				"to": 415480
+			},
+			"text": " is very different from a data network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,480",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415480,
+				"to": 418000
+			},
+			"text": " So for data network, the entire network is stateless."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:06:59,440"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 419440
+			},
+			"text": " If you say it's 100 megabit per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,440",
+				"to": "00:07:01,440"
+			},
+			"offsets": {
+				"from": 419440,
+				"to": 421440
+			},
+			"text": " the link is going to stay 100 megabit per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,440",
+				"to": "00:07:03,920"
+			},
+			"offsets": {
+				"from": 421440,
+				"to": 423920
+			},
+			"text": " no matter how much data will deliver through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,920",
+				"to": "00:07:07,720"
+			},
+			"offsets": {
+				"from": 423920,
+				"to": 427720
+			},
+			"text": " But for a payment network, the capacity actually changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,720",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 427720,
+				"to": 430120
+			},
+			"text": " as you deliver payment through each direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:13,560"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 433560
+			},
+			"text": " And using simple algorithms like Shout His Pass routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,560",
+				"to": "00:07:15,880"
+			},
+			"offsets": {
+				"from": 433560,
+				"to": 435880
+			},
+			"text": " can break down the channel very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,880",
+				"to": "00:07:20,120"
+			},
+			"offsets": {
+				"from": 435880,
+				"to": 440120
+			},
+			"text": " And when this entire network topology is constantly changing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,120",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 440120,
+				"to": 443280
+			},
+			"text": " there is no way a decentralized routing algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:24,640"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 444640
+			},
+			"text": " can actually work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,640",
+				"to": "00:07:28,640"
+			},
+			"offsets": {
+				"from": 444640,
+				"to": 448640
+			},
+			"text": " So what we proposed is called C-ROT."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,640",
+				"to": "00:07:31,080"
+			},
+			"offsets": {
+				"from": 448640,
+				"to": 451080
+			},
+			"text": " And the principle of C-ROT is to basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,080",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 451080,
+				"to": 453960
+			},
+			"text": " use the-- follow the congestion gradient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:37,680"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 457680
+			},
+			"text": " or basically try to figure out, OK, this channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,680",
+				"to": "00:07:38,840"
+			},
+			"offsets": {
+				"from": 457680,
+				"to": 458840
+			},
+			"text": " is too imbalanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,840",
+				"to": "00:07:41,880"
+			},
+			"offsets": {
+				"from": 458840,
+				"to": 461880
+			},
+			"text": " And then maybe we shouldn't go through that pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,880",
+				"to": "00:07:44,840"
+			},
+			"offsets": {
+				"from": 461880,
+				"to": 464840
+			},
+			"text": " And we should maybe not go following the Shout His Pass,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,840",
+				"to": "00:07:48,560"
+			},
+			"offsets": {
+				"from": 464840,
+				"to": 468560
+			},
+			"text": " but follow a longer pass to basically try"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,560",
+				"to": "00:07:52,080"
+			},
+			"offsets": {
+				"from": 468560,
+				"to": 472080
+			},
+			"text": " to maintain this overall balance of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,080",
+				"to": "00:07:56,320"
+			},
+			"offsets": {
+				"from": 472080,
+				"to": 476320
+			},
+			"text": " And the second principle is that it will keep the channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,320",
+				"to": "00:07:57,040"
+			},
+			"offsets": {
+				"from": 476320,
+				"to": 477040
+			},
+			"text": " balanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,040",
+				"to": "00:07:59,800"
+			},
+			"offsets": {
+				"from": 477040,
+				"to": 479800
+			},
+			"text": " And the key part here is that the C-ROT is still"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,800",
+				"to": "00:08:01,680"
+			},
+			"offsets": {
+				"from": 479800,
+				"to": 481680
+			},
+			"text": " a decentralized algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,680",
+				"to": "00:08:04,520"
+			},
+			"offsets": {
+				"from": 481680,
+				"to": 484520
+			},
+			"text": " Basically, you talk to your neighbor about the pressure"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,520",
+				"to": "00:08:06,720"
+			},
+			"offsets": {
+				"from": 484520,
+				"to": 486720
+			},
+			"text": " you're delivering to each of the peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,720",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 486720,
+				"to": 490640
+			},
+			"text": " And the pressure information gets propagated through the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:13,880"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 493880
+			},
+			"text": " And we can basically construct a routing algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,880",
+				"to": "00:08:14,840"
+			},
+			"offsets": {
+				"from": 493880,
+				"to": 494840
+			},
+			"text": " on top of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,840",
+				"to": "00:08:17,880"
+			},
+			"offsets": {
+				"from": 494840,
+				"to": 497880
+			},
+			"text": " Now, the interesting thing about C-ROT"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,880",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 497880,
+				"to": 501160
+			},
+			"text": " is that it is the first ever proveable optimal routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:25,400"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 505400
+			},
+			"text": " algorithm, meaning that we can prove in theory"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,400",
+				"to": "00:08:29,120"
+			},
+			"offsets": {
+				"from": 505400,
+				"to": 509120
+			},
+			"text": " that given any kind of arrival process of the payment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,120",
+				"to": "00:08:31,600"
+			},
+			"offsets": {
+				"from": 509120,
+				"to": 511600
+			},
+			"text": " there is no other algorithm that can exceed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,600",
+				"to": "00:08:34,040"
+			},
+			"offsets": {
+				"from": 511600,
+				"to": 514040
+			},
+			"text": " the performance of the route in theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,040",
+				"to": "00:08:37,440"
+			},
+			"offsets": {
+				"from": 514040,
+				"to": 517440
+			},
+			"text": " But there are a lot of implementation challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,440",
+				"to": "00:08:41,640"
+			},
+			"offsets": {
+				"from": 517440,
+				"to": 521640
+			},
+			"text": " and things we need to do to carry this forward in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,640",
+				"to": "00:08:44,680"
+			},
+			"offsets": {
+				"from": 521640,
+				"to": 524680
+			},
+			"text": " And there are several layers in the C-ROT as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,680",
+				"to": "00:08:47,280"
+			},
+			"offsets": {
+				"from": 524680,
+				"to": 527280
+			},
+			"text": " but that's the most important part."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,280",
+				"to": "00:08:49,080"
+			},
+			"offsets": {
+				"from": 527280,
+				"to": 529080
+			},
+			"text": " In the simulation, we have observed"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,080",
+				"to": "00:08:51,920"
+			},
+			"offsets": {
+				"from": 529080,
+				"to": 531920
+			},
+			"text": " that C-ROT can achieve more than 20 times the higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,920",
+				"to": "00:08:54,080"
+			},
+			"offsets": {
+				"from": 531920,
+				"to": 534080
+			},
+			"text": " performance compared to naive routing algorithms"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,080",
+				"to": "00:08:57,280"
+			},
+			"offsets": {
+				"from": 534080,
+				"to": 537280
+			},
+			"text": " like Shout His Pass routing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,280",
+				"to": "00:08:58,880"
+			},
+			"offsets": {
+				"from": 537280,
+				"to": 538880
+			},
+			"text": " OK, so COS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,880",
+				"to": "00:09:02,440"
+			},
+			"offsets": {
+				"from": 538880,
+				"to": 542440
+			},
+			"text": " What you see is a developer frameworks for C apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,440",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 542440,
+				"to": 545000
+			},
+			"text": " It is basically the protocol layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:06,480"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 546480
+			},
+			"text": " Liam also talked about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,480",
+				"to": "00:09:10,040"
+			},
+			"offsets": {
+				"from": 546480,
+				"to": 550040
+			},
+			"text": " And it is handling all the complexity for the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,040",
+				"to": "00:09:14,840"
+			},
+			"offsets": {
+				"from": 550040,
+				"to": 554840
+			},
+			"text": " to hide away conditional payment setup, state channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,840",
+				"to": "00:09:17,760"
+			},
+			"offsets": {
+				"from": 554840,
+				"to": 557760
+			},
+			"text": " setup, and resolution protocols among them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,760",
+				"to": "00:09:20,600"
+			},
+			"offsets": {
+				"from": 557760,
+				"to": 560600
+			},
+			"text": " And it is also bridging the on-chain and off-chain byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,600",
+				"to": "00:09:23,600"
+			},
+			"offsets": {
+				"from": 560600,
+				"to": 563600
+			},
+			"text": " code, meaning that today, how do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,600",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 563600,
+				"to": 567160
+			},
+			"text": " write an off-chain smart contract or a state"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:30,400"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 570400
+			},
+			"text": " channel application is that you write a smart contract first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,400",
+				"to": "00:09:34,120"
+			},
+			"offsets": {
+				"from": 570400,
+				"to": 574120
+			},
+			"text": " which support all these interfaces of off-chain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,120",
+				"to": "00:09:36,720"
+			},
+			"offsets": {
+				"from": 574120,
+				"to": 576720
+			},
+			"text": " And then you write a native app, which also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,720",
+				"to": "00:09:38,480"
+			},
+			"offsets": {
+				"from": 576720,
+				"to": 578480
+			},
+			"text": " contains similar logics."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,480",
+				"to": "00:09:40,680"
+			},
+			"offsets": {
+				"from": 578480,
+				"to": 580680
+			},
+			"text": " Now, what we are aiming to achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,680",
+				"to": "00:09:43,200"
+			},
+			"offsets": {
+				"from": 580680,
+				"to": 583200
+			},
+			"text": " is that we hope to write one set of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,200",
+				"to": "00:09:47,160"
+			},
+			"offsets": {
+				"from": 583200,
+				"to": 587160
+			},
+			"text": " So you can just write one set of a VM code, like EVM code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,160",
+				"to": "00:09:49,920"
+			},
+			"offsets": {
+				"from": 587160,
+				"to": 589920
+			},
+			"text": " and let EVM also running on mobile devices and web"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,920",
+				"to": "00:09:53,360"
+			},
+			"offsets": {
+				"from": 589920,
+				"to": 593360
+			},
+			"text": " applications to act as a real backend for these web"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,360",
+				"to": "00:09:54,760"
+			},
+			"offsets": {
+				"from": 593360,
+				"to": 594760
+			},
+			"text": " applications and mobile devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,760",
+				"to": "00:09:57,280"
+			},
+			"offsets": {
+				"from": 594760,
+				"to": 597280
+			},
+			"text": " So there is no need to write two set of applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,280",
+				"to": "00:09:59,720"
+			},
+			"offsets": {
+				"from": 597280,
+				"to": 599720
+			},
+			"text": " that create bugs at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,720",
+				"to": "00:10:04,480"
+			},
+			"offsets": {
+				"from": 599720,
+				"to": 604480
+			},
+			"text": " So it is also easy to use the runtime, which is a seawater"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,480",
+				"to": "00:10:05,560"
+			},
+			"offsets": {
+				"from": 604480,
+				"to": 605560
+			},
+			"text": " I just talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,560",
+				"to": "00:10:07,400"
+			},
+			"offsets": {
+				"from": 605560,
+				"to": 607400
+			},
+			"text": " So this is like we talked about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,400",
+				"to": "00:10:09,920"
+			},
+			"offsets": {
+				"from": 607400,
+				"to": 609920
+			},
+			"text": " to support generalize conditional payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,920",
+				"to": "00:10:11,840"
+			},
+			"offsets": {
+				"from": 609920,
+				"to": 611840
+			},
+			"text": " and high-performance routing, and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,840",
+				"to": "00:10:14,640"
+			},
+			"offsets": {
+				"from": 611840,
+				"to": 614640
+			},
+			"text": " the operating system side of center network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,640",
+				"to": "00:10:17,080"
+			},
+			"offsets": {
+				"from": 614640,
+				"to": 617080
+			},
+			"text": " Now, we'll move on to the C economy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,080",
+				"to": "00:10:20,320"
+			},
+			"offsets": {
+				"from": 617080,
+				"to": 620320
+			},
+			"text": " which is the crypto-economic construct of center."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,320",
+				"to": "00:10:25,160"
+			},
+			"offsets": {
+				"from": 620320,
+				"to": 625160
+			},
+			"text": " And off-chain scaling or state-channel achieves"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,160",
+				"to": "00:10:28,080"
+			},
+			"offsets": {
+				"from": 625160,
+				"to": 628080
+			},
+			"text": " a huge amount of scalability, but it comes with trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,080",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 628080,
+				"to": 629000
+			},
+			"text": " What are these trade-offs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:31,040"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 631040
+			},
+			"text": " First thing is state availability challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,040",
+				"to": "00:10:33,400"
+			},
+			"offsets": {
+				"from": 631040,
+				"to": 633400
+			},
+			"text": " which is how to make off-chain state always available"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,400",
+				"to": "00:10:34,520"
+			},
+			"offsets": {
+				"from": 633400,
+				"to": 634520
+			},
+			"text": " for un-chain dispute."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,520",
+				"to": "00:10:36,320"
+			},
+			"offsets": {
+				"from": 634520,
+				"to": 636320
+			},
+			"text": " So this is basically a Chinese."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,320",
+				"to": "00:10:38,920"
+			},
+			"offsets": {
+				"from": 636320,
+				"to": 638920
+			},
+			"text": " Alice and Bob are transacting each other's money,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,920",
+				"to": "00:10:42,480"
+			},
+			"offsets": {
+				"from": 638920,
+				"to": 642480
+			},
+			"text": " and their newest state is sequenced with sequence 49."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,480",
+				"to": "00:10:44,360"
+			},
+			"offsets": {
+				"from": 642480,
+				"to": 644360
+			},
+			"text": " And Bob goes offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,360",
+				"to": "00:10:46,680"
+			},
+			"offsets": {
+				"from": 644360,
+				"to": 646680
+			},
+			"text": " And what's going to happen is that Alice can go to the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,680",
+				"to": "00:10:48,520"
+			},
+			"offsets": {
+				"from": 646680,
+				"to": 648520
+			},
+			"text": " and be malicious and set away order state, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,520",
+				"to": "00:10:50,160"
+			},
+			"offsets": {
+				"from": 648520,
+				"to": 650160
+			},
+			"text": " is more favorable to Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,160",
+				"to": "00:10:52,600"
+			},
+			"offsets": {
+				"from": 650160,
+				"to": 652600
+			},
+			"text": " Centralized monitoring is definitely a bad solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,600",
+				"to": "00:10:54,520"
+			},
+			"offsets": {
+				"from": 652600,
+				"to": 654520
+			},
+			"text": " But what about trans-free monitoring?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,520",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 654520,
+				"to": 657000
+			},
+			"text": " Well, trans-free monitoring you can do basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:00,800"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 660800
+			},
+			"text": " by letting Bob submit the current state to a trust-free monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,800",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 660800,
+				"to": 663000
+			},
+			"text": " services, and the trust-free monitoring services"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:05,520"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 665520
+			},
+			"text": " is trust-free because the trust-free monitoring services"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,520",
+				"to": "00:11:08,800"
+			},
+			"offsets": {
+				"from": 665520,
+				"to": 668800
+			},
+			"text": " will also deposit it on his bond to the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,800",
+				"to": "00:11:13,560"
+			},
+			"offsets": {
+				"from": 668800,
+				"to": 673560
+			},
+			"text": " And Alice submitted this malicious intent"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,560",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 673560,
+				"to": 674800
+			},
+			"text": " to the trust-free monitoring services"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 678360
+			},
+			"text": " will submit the most current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,360",
+				"to": "00:11:20,880"
+			},
+			"offsets": {
+				"from": 678360,
+				"to": 680880
+			},
+			"text": " But if the trust-free monitoring services is malicious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,880",
+				"to": "00:11:23,680"
+			},
+			"offsets": {
+				"from": 680880,
+				"to": 683680
+			},
+			"text": " the user can go online afterwards and basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,680",
+				"to": "00:11:25,160"
+			},
+			"offsets": {
+				"from": 683680,
+				"to": 685160
+			},
+			"text": " claim the honesty bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,160",
+				"to": "00:11:29,440"
+			},
+			"offsets": {
+				"from": 685160,
+				"to": 689440
+			},
+			"text": " But the problem about this is that it doubles overall liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,440",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 689440,
+				"to": 691440
+			},
+			"text": " lock-up for this entire state channel network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 694160
+			},
+			"text": " because now we not only need to ever want to lock up money"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:36,080"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 696080
+			},
+			"text": " on the state channel, but also need"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,080",
+				"to": "00:11:38,400"
+			},
+			"offsets": {
+				"from": 696080,
+				"to": 698400
+			},
+			"text": " these monitoring services to lock up money on the channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,400",
+				"to": "00:11:39,240"
+			},
+			"offsets": {
+				"from": 698400,
+				"to": 699240
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,240",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 699240,
+				"to": 701520
+			},
+			"text": " It creates a heterogeneous interface for state guarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:44,840"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 704840
+			},
+			"text": " because maybe sometimes you're guarding this kind of token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,840",
+				"to": "00:11:47,120"
+			},
+			"offsets": {
+				"from": 704840,
+				"to": 707120
+			},
+			"text": " or other kind of tokens, or some other kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,120",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 707120,
+				"to": 709360
+			},
+			"text": " of intermediate state that is hard to reason about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:52,360"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 712360
+			},
+			"text": " is the actual value underling the stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,360",
+				"to": "00:11:55,840"
+			},
+			"offsets": {
+				"from": 712360,
+				"to": 715840
+			},
+			"text": " And it is very obscure and expensive pricing model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,840",
+				"to": "00:11:58,160"
+			},
+			"offsets": {
+				"from": 715840,
+				"to": 718160
+			},
+			"text": " because it involves locking up your liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,160",
+				"to": "00:12:01,480"
+			},
+			"offsets": {
+				"from": 718160,
+				"to": 721480
+			},
+			"text": " and also we need to kind of do peer-wise negotiating"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,480",
+				"to": "00:12:05,080"
+			},
+			"offsets": {
+				"from": 721480,
+				"to": 725080
+			},
+			"text": " with the monitoring services about the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,080",
+				"to": "00:12:09,640"
+			},
+			"offsets": {
+				"from": 725080,
+				"to": 729640
+			},
+			"text": " And it increases some complex on-chain-offchain interaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,640",
+				"to": "00:12:11,920"
+			},
+			"offsets": {
+				"from": 729640,
+				"to": 731920
+			},
+			"text": " and gives you finally a rigid insurance model."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,920",
+				"to": "00:12:15,600"
+			},
+			"offsets": {
+				"from": 731920,
+				"to": 735600
+			},
+			"text": " You're basically insured with X percent for Y price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,600",
+				"to": "00:12:17,520"
+			},
+			"offsets": {
+				"from": 735600,
+				"to": 737520
+			},
+			"text": " So how do we solve this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,520",
+				"to": "00:12:19,360"
+			},
+			"offsets": {
+				"from": 737520,
+				"to": 739360
+			},
+			"text": " We solve this by introducing something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,360",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 739360,
+				"to": 742000
+			},
+			"text": " called Setter's State Guardian Network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:24,840"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 744840
+			},
+			"text": " A state guardian network is a special kind of side-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,840",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 744840,
+				"to": 748080
+			},
+			"text": " You become a guardian by staking your setter token"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:29,680"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 749680
+			},
+			"text": " into the side-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,680",
+				"to": "00:12:33,520"
+			},
+			"offsets": {
+				"from": 749680,
+				"to": 753520
+			},
+			"text": " Now, when user is going offline or a device"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,520",
+				"to": "00:12:36,160"
+			},
+			"offsets": {
+				"from": 753520,
+				"to": 756160
+			},
+			"text": " is checking in his state, what it will do"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,160",
+				"to": "00:12:37,400"
+			},
+			"offsets": {
+				"from": 756160,
+				"to": 757400
+			},
+			"text": " is that it will stop me at the state point."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,400",
+				"to": "00:12:39,160"
+			},
+			"offsets": {
+				"from": 757400,
+				"to": 759160
+			},
+			"text": " And the state proof can be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,160",
+				"to": "00:12:41,160"
+			},
+			"offsets": {
+				"from": 759160,
+				"to": 761160
+			},
+			"text": " It can be a game state, it can be a sign agreement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,160",
+				"to": "00:12:43,920"
+			},
+			"offsets": {
+				"from": 761160,
+				"to": 763920
+			},
+			"text": " it can be auction acknowledgment, all that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,920",
+				"to": "00:12:46,360"
+			},
+			"offsets": {
+				"from": 763920,
+				"to": 766360
+			},
+			"text": " And the first question to figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,360",
+				"to": "00:12:48,560"
+			},
+			"offsets": {
+				"from": 766360,
+				"to": 768560
+			},
+			"text": " is who is guarding the state then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,560",
+				"to": "00:12:52,200"
+			},
+			"offsets": {
+				"from": 768560,
+				"to": 772200
+			},
+			"text": " So now, a randomly selected set of state guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,200",
+				"to": "00:12:53,360"
+			},
+			"offsets": {
+				"from": 772200,
+				"to": 773360
+			},
+			"text": " will be guarding the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,360",
+				"to": "00:12:55,720"
+			},
+			"offsets": {
+				"from": 773360,
+				"to": 775720
+			},
+			"text": " And the amount of state guardian or the amount of setter"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,720",
+				"to": "00:12:58,840"
+			},
+			"offsets": {
+				"from": 775720,
+				"to": 778840
+			},
+			"text": " token at stake for this state is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,840",
+				"to": "00:13:01,520"
+			},
+			"offsets": {
+				"from": 778840,
+				"to": 781520
+			},
+			"text": " determined by the income flow generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,520",
+				"to": "00:13:04,080"
+			},
+			"offsets": {
+				"from": 781520,
+				"to": 784080
+			},
+			"text": " by this particular user comparing to the income flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,080",
+				"to": "00:13:05,680"
+			},
+			"offsets": {
+				"from": 784080,
+				"to": 785680
+			},
+			"text": " generated by this internal network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,680",
+				"to": "00:13:08,240"
+			},
+			"offsets": {
+				"from": 785680,
+				"to": 788240
+			},
+			"text": " So in this case, this user is paying $1 per hour,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,240",
+				"to": "00:13:10,640"
+			},
+			"offsets": {
+				"from": 788240,
+				"to": 790640
+			},
+			"text": " and the internal network is receiving $2 per hour,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,640",
+				"to": "00:13:14,160"
+			},
+			"offsets": {
+				"from": 790640,
+				"to": 794160
+			},
+			"text": " and the user is basically have half of the state guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,160",
+				"to": "00:13:15,240"
+			},
+			"offsets": {
+				"from": 794160,
+				"to": 795240
+			},
+			"text": " covering for him."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,240",
+				"to": "00:13:21,920"
+			},
+			"offsets": {
+				"from": 795240,
+				"to": 801920
+			},
+			"text": " And of course, if you have a more token state in this network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,920",
+				"to": "00:13:25,400"
+			},
+			"offsets": {
+				"from": 801920,
+				"to": 805400
+			},
+			"text": " you get more work to do, and therefore get"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,400",
+				"to": "00:13:27,400"
+			},
+			"offsets": {
+				"from": 805400,
+				"to": 807400
+			},
+			"text": " overall more income as a state guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,400",
+				"to": "00:13:31,280"
+			},
+			"offsets": {
+				"from": 807400,
+				"to": 811280
+			},
+			"text": " to perform the job to help user guard the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,280",
+				"to": "00:13:33,080"
+			},
+			"offsets": {
+				"from": 811280,
+				"to": 813080
+			},
+			"text": " Now, how this works in practice then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,080",
+				"to": "00:13:37,160"
+			},
+			"offsets": {
+				"from": 813080,
+				"to": 817160
+			},
+			"text": " So Alice become anxious again, submit the older state."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,160",
+				"to": "00:13:39,400"
+			},
+			"offsets": {
+				"from": 817160,
+				"to": 819400
+			},
+			"text": " Now, each of the state guardian randomly assigned"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,400",
+				"to": "00:13:41,840"
+			},
+			"offsets": {
+				"from": 819400,
+				"to": 821840
+			},
+			"text": " will have a designated dispute slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,840",
+				"to": "00:13:44,520"
+			},
+			"offsets": {
+				"from": 821840,
+				"to": 824520
+			},
+			"text": " And there is an anti-collusion built in this process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,520",
+				"to": "00:13:47,080"
+			},
+			"offsets": {
+				"from": 824520,
+				"to": 827080
+			},
+			"text": " meaning that if the first state guardian is malicious,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,080",
+				"to": "00:13:50,200"
+			},
+			"offsets": {
+				"from": 827080,
+				"to": 830200
+			},
+			"text": " and the second guardian can jump in and submit the state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,200",
+				"to": "00:13:52,320"
+			},
+			"offsets": {
+				"from": 830200,
+				"to": 832320
+			},
+			"text": " and the incentive for the second guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,320",
+				"to": "00:13:54,720"
+			},
+			"offsets": {
+				"from": 832320,
+				"to": 834720
+			},
+			"text": " is not only just take the fee from the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,720",
+				"to": "00:13:58,720"
+			},
+			"offsets": {
+				"from": 834720,
+				"to": 838720
+			},
+			"text": " but also taking the state guardian who didn't do his job"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,720",
+				"to": "00:14:03,840"
+			},
+			"offsets": {
+				"from": 838720,
+				"to": 843840
+			},
+			"text": " properly, all his set of tokens away, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,840",
+				"to": "00:14:08,200"
+			},
+			"offsets": {
+				"from": 843840,
+				"to": 848200
+			},
+			"text": " And in the worst case, all the state guardians"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,200",
+				"to": "00:14:10,840"
+			},
+			"offsets": {
+				"from": 848200,
+				"to": 850840
+			},
+			"text": " can be malicious, and they can basically not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,840",
+				"to": "00:14:13,640"
+			},
+			"offsets": {
+				"from": 850840,
+				"to": 853640
+			},
+			"text": " dispute for a user's state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,640",
+				"to": "00:14:20,720"
+			},
+			"offsets": {
+				"from": 853640,
+				"to": 860720
+			},
+			"text": " And what will happen, finally, is that when user comes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,720",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 860720,
+				"to": 864160
+			},
+			"text": " online later on, user can submit a proof of malicious behavior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:26,120"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 866120
+			},
+			"text": " and all the error set of tokens will be compensated"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,120",
+				"to": "00:14:26,640"
+			},
+			"offsets": {
+				"from": 866120,
+				"to": 866640
+			},
+			"text": " for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,640",
+				"to": "00:14:28,280"
+			},
+			"offsets": {
+				"from": 866640,
+				"to": 868280
+			},
+			"text": " Now, what is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,280",
+				"to": "00:14:31,600"
+			},
+			"offsets": {
+				"from": 868280,
+				"to": 871600
+			},
+			"text": " This is actually a very, very efficient pricing mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,600",
+				"to": "00:14:34,440"
+			},
+			"offsets": {
+				"from": 871600,
+				"to": 874440
+			},
+			"text": " combined with a new kind of insurance model."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,440",
+				"to": "00:14:39,720"
+			},
+			"offsets": {
+				"from": 874440,
+				"to": 879720
+			},
+			"text": " So because user is trying to submit a state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,720",
+				"to": "00:14:41,440"
+			},
+			"offsets": {
+				"from": 879720,
+				"to": 881440
+			},
+			"text": " user is also trying to submit what"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,440",
+				"to": "00:14:43,760"
+			},
+			"offsets": {
+				"from": 881440,
+				"to": 883760
+			},
+			"text": " is the payment associated with state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,760",
+				"to": "00:14:46,320"
+			},
+			"offsets": {
+				"from": 883760,
+				"to": 886320
+			},
+			"text": " So user can increase the level of payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,320",
+				"to": "00:14:48,960"
+			},
+			"offsets": {
+				"from": 886320,
+				"to": 888960
+			},
+			"text": " to have more state guardians guarding for the users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,960",
+				"to": "00:14:52,720"
+			},
+			"offsets": {
+				"from": 888960,
+				"to": 892720
+			},
+			"text": " or user can try to choose to use a small amount of payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,720",
+				"to": "00:14:56,200"
+			},
+			"offsets": {
+				"from": 892720,
+				"to": 896200
+			},
+			"text": " to have a smaller amount of guardian guarding for the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,200",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 896200,
+				"to": 899000
+			},
+			"text": " Now, the reason that this is a new kind of insurance model"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:00,760"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 900760
+			},
+			"text": " is because what is their token here"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,760",
+				"to": "00:15:02,640"
+			},
+			"offsets": {
+				"from": 900760,
+				"to": 902640
+			},
+			"text": " is basically representing the income flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,640",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 902640,
+				"to": 905000
+			},
+			"text": " if you do the work in the state guardian network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:08,080"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 908080
+			},
+			"text": " And therefore, user is not ensuring against x%"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,080",
+				"to": "00:15:14,320"
+			},
+			"offsets": {
+				"from": 908080,
+				"to": 914320
+			},
+			"text": " but ensuring with a speed to recover potential loss,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,320",
+				"to": "00:15:18,200"
+			},
+			"offsets": {
+				"from": 914320,
+				"to": 918200
+			},
+			"text": " there is this kind of a worst case happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,200",
+				"to": "00:15:20,400"
+			},
+			"offsets": {
+				"from": 918200,
+				"to": 920400
+			},
+			"text": " even with anti-clusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,400",
+				"to": "00:15:24,560"
+			},
+			"offsets": {
+				"from": 920400,
+				"to": 924560
+			},
+			"text": " So this is how we solve this state availability challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,560",
+				"to": "00:15:27,800"
+			},
+			"offsets": {
+				"from": 924560,
+				"to": 927800
+			},
+			"text": " using a side-chain structure effectively."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,800",
+				"to": "00:15:30,640"
+			},
+			"offsets": {
+				"from": 927800,
+				"to": 930640
+			},
+			"text": " Now, the second challenge is called state connectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,640",
+				"to": "00:15:31,800"
+			},
+			"offsets": {
+				"from": 930640,
+				"to": 931800
+			},
+			"text": " challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,800",
+				"to": "00:15:34,040"
+			},
+			"offsets": {
+				"from": 931800,
+				"to": 934040
+			},
+			"text": " What is connective challenge is this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,040",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 934040,
+				"to": 938160
+			},
+			"text": " Basically, you have Alice and Bob playing a board game"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:39,080"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 939080
+			},
+			"text": " on the state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,080",
+				"to": "00:15:41,760"
+			},
+			"offsets": {
+				"from": 939080,
+				"to": 941760
+			},
+			"text": " And Alice is sending the winning proof to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,760",
+				"to": "00:15:43,440"
+			},
+			"offsets": {
+				"from": 941760,
+				"to": 943440
+			},
+			"text": " So basically, Alice made the winning move"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,440",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 943440,
+				"to": 945200
+			},
+			"text": " and sent the proof to the Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:48,040"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 948040
+			},
+			"text": " But Bob is refusing to sign it and reach quit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,040",
+				"to": "00:15:49,400"
+			},
+			"offsets": {
+				"from": 948040,
+				"to": 949400
+			},
+			"text": " Now, what do we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,400",
+				"to": "00:15:52,440"
+			},
+			"offsets": {
+				"from": 949400,
+				"to": 952440
+			},
+			"text": " Should Alice just submit this state to the min-ching"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,440",
+				"to": "00:15:55,200"
+			},
+			"offsets": {
+				"from": 952440,
+				"to": 955200
+			},
+			"text": " and try to punish Bob at the same time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,200",
+				"to": "00:15:55,880"
+			},
+			"offsets": {
+				"from": 955200,
+				"to": 955880
+			},
+			"text": " Well, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,880",
+				"to": "00:15:57,640"
+			},
+			"offsets": {
+				"from": 955880,
+				"to": 957640
+			},
+			"text": " Because blockchain cannot differentiate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,640",
+				"to": "00:15:59,600"
+			},
+			"offsets": {
+				"from": 957640,
+				"to": 959600
+			},
+			"text": " between these three scenarios."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,600",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 959600,
+				"to": 961000
+			},
+			"text": " The first case is Bob bridge quitting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:03,760"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 963760
+			},
+			"text": " The second case is that Alice is actually maliciously"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,760",
+				"to": "00:16:07,440"
+			},
+			"offsets": {
+				"from": 963760,
+				"to": 967440
+			},
+			"text": " trying to submit a state to the Ethereum min-ching."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,440",
+				"to": "00:16:08,880"
+			},
+			"offsets": {
+				"from": 967440,
+				"to": 968880
+			},
+			"text": " Or there's no one's fault."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,880",
+				"to": "00:16:11,680"
+			},
+			"offsets": {
+				"from": 968880,
+				"to": 971680
+			},
+			"text": " It's just in the middle, there is some network problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,680",
+				"to": "00:16:12,920"
+			},
+			"offsets": {
+				"from": 971680,
+				"to": 972920
+			},
+			"text": " between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,920",
+				"to": "00:16:15,520"
+			},
+			"offsets": {
+				"from": 972920,
+				"to": 975520
+			},
+			"text": " So we need a full-back data exchange fabric"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,520",
+				"to": "00:16:17,200"
+			},
+			"offsets": {
+				"from": 975520,
+				"to": 977200
+			},
+			"text": " that is reasonably available."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,200",
+				"to": "00:16:20,600"
+			},
+			"offsets": {
+				"from": 977200,
+				"to": 980600
+			},
+			"text": " And it can actually be able to have attribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,600",
+				"to": "00:16:22,440"
+			},
+			"offsets": {
+				"from": 980600,
+				"to": 982440
+			},
+			"text": " of state availability time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,440",
+				"to": "00:16:24,520"
+			},
+			"offsets": {
+				"from": 982440,
+				"to": 984520
+			},
+			"text": " And it also costs the effective and doesn't require"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,520",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 984520,
+				"to": 987000
+			},
+			"text": " large amount of resource from the end the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:29,960"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 989960
+			},
+			"text": " Now, blockchain as data availability service"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,960",
+				"to": "00:16:31,560"
+			},
+			"offsets": {
+				"from": 989960,
+				"to": 991560
+			},
+			"text": " is the most straightforward answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,560",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 991560,
+				"to": 994000
+			},
+			"text": " It is definitely available."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:35,480"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 995480
+			},
+			"text": " Basically, we're assuming that everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,480",
+				"to": "00:16:40,400"
+			},
+			"offsets": {
+				"from": 995480,
+				"to": 1000400
+			},
+			"text": " has some availability to this blockchain infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,400",
+				"to": "00:16:42,800"
+			},
+			"offsets": {
+				"from": 1000400,
+				"to": 1002800
+			},
+			"text": " And it also has attribution availability time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,800",
+				"to": "00:16:45,240"
+			},
+			"offsets": {
+				"from": 1002800,
+				"to": 1005240
+			},
+			"text": " But the problem is that it increases on-ching storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,240",
+				"to": "00:16:50,040"
+			},
+			"offsets": {
+				"from": 1005240,
+				"to": 1010040
+			},
+			"text": " And we cannot even basically purge that storage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,040",
+				"to": "00:16:53,560"
+			},
+			"offsets": {
+				"from": 1010040,
+				"to": 1013560
+			},
+			"text": " relatively efficiently, and it requires O and monitoring."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,560",
+				"to": "00:16:56,600"
+			},
+			"offsets": {
+				"from": 1013560,
+				"to": 1016600
+			},
+			"text": " So we can basically piggyback the state of Ghana."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,600",
+				"to": "00:16:57,720"
+			},
+			"offsets": {
+				"from": 1016600,
+				"to": 1017720
+			},
+			"text": " And that's what we just mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,720",
+				"to": "00:16:59,480"
+			},
+			"offsets": {
+				"from": 1017720,
+				"to": 1019480
+			},
+			"text": " Also, as a data availability service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,480",
+				"to": "00:17:00,960"
+			},
+			"offsets": {
+				"from": 1019480,
+				"to": 1020960
+			},
+			"text": " our data connectivity service."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,960",
+				"to": "00:17:03,680"
+			},
+			"offsets": {
+				"from": 1020960,
+				"to": 1023680
+			},
+			"text": " It is reasonably available as attribution of availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,680",
+				"to": "00:17:07,200"
+			},
+			"offsets": {
+				"from": 1023680,
+				"to": 1027200
+			},
+			"text": " time because it constructed the sort of like a plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,200",
+				"to": "00:17:10,320"
+			},
+			"offsets": {
+				"from": 1027200,
+				"to": 1030320
+			},
+			"text": " And it doesn't have any on-ching storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,320",
+				"to": "00:17:13,160"
+			},
+			"offsets": {
+				"from": 1030320,
+				"to": 1033160
+			},
+			"text": " And therefore, it solves the kind of expensive problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,160",
+				"to": "00:17:14,680"
+			},
+			"offsets": {
+				"from": 1033160,
+				"to": 1034680
+			},
+			"text": " we're facing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,680",
+				"to": "00:17:18,560"
+			},
+			"offsets": {
+				"from": 1034680,
+				"to": 1038560
+			},
+			"text": " And it requires actually-- oh, I made a typo, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,560",
+				"to": "00:17:21,760"
+			},
+			"offsets": {
+				"from": 1038560,
+				"to": 1041760
+			},
+			"text": " It actually requires O log and monitoring."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,760",
+				"to": "00:17:25,040"
+			},
+			"offsets": {
+				"from": 1041760,
+				"to": 1045040
+			},
+			"text": " We can introduce similar ideas of plasma cache"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,040",
+				"to": "00:17:28,240"
+			},
+			"offsets": {
+				"from": 1045040,
+				"to": 1048240
+			},
+			"text": " for this kind of state guarding or a data connectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,240",
+				"to": "00:17:31,320"
+			},
+			"offsets": {
+				"from": 1048240,
+				"to": 1051320
+			},
+			"text": " problem, which I'm not going to detail too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,320",
+				"to": "00:17:34,920"
+			},
+			"offsets": {
+				"from": 1051320,
+				"to": 1054920
+			},
+			"text": " So basically, how it works is that if Addisonk Bob is offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,920",
+				"to": "00:17:36,900"
+			},
+			"offsets": {
+				"from": 1054920,
+				"to": 1056900
+			},
+			"text": " Addison would just submit a state proof to this state"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,900",
+				"to": "00:17:39,800"
+			},
+			"offsets": {
+				"from": 1056900,
+				"to": 1059800
+			},
+			"text": " guardian network and wait for timeout."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,800",
+				"to": "00:17:41,760"
+			},
+			"offsets": {
+				"from": 1059800,
+				"to": 1061760
+			},
+			"text": " And later on, Addison would just go on-ching"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,760",
+				"to": "00:17:44,320"
+			},
+			"offsets": {
+				"from": 1061760,
+				"to": 1064320
+			},
+			"text": " and start a true bit like one bit claim challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,320",
+				"to": "00:17:45,400"
+			},
+			"offsets": {
+				"from": 1064320,
+				"to": 1065400
+			},
+			"text": " with money bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,400",
+				"to": "00:17:49,240"
+			},
+			"offsets": {
+				"from": 1065400,
+				"to": 1069240
+			},
+			"text": " If Bob just responds with actual--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,240",
+				"to": "00:17:53,640"
+			},
+			"offsets": {
+				"from": 1069240,
+				"to": 1073640
+			},
+			"text": " if Bob responds with also money bond,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,640",
+				"to": "00:17:55,280"
+			},
+			"offsets": {
+				"from": 1073640,
+				"to": 1075280
+			},
+			"text": " what Addisonk can do is that it basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,280",
+				"to": "00:17:58,480"
+			},
+			"offsets": {
+				"from": 1075280,
+				"to": 1078480
+			},
+			"text": " pull out the stateability testament from the side-ching"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,480",
+				"to": "00:18:00,200"
+			},
+			"offsets": {
+				"from": 1078480,
+				"to": 1080200
+			},
+			"text": " and Bob will use money."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,200",
+				"to": "00:18:04,400"
+			},
+			"offsets": {
+				"from": 1080200,
+				"to": 1084400
+			},
+			"text": " So-- and if Addisonk is malicious and submitted state"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,400",
+				"to": "00:18:06,200"
+			},
+			"offsets": {
+				"from": 1084400,
+				"to": 1086200
+			},
+			"text": " proof, before the timeout actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,200",
+				"to": "00:18:08,200"
+			},
+			"offsets": {
+				"from": 1086200,
+				"to": 1088200
+			},
+			"text": " run out, Bob will observe the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,200",
+				"to": "00:18:11,120"
+			},
+			"offsets": {
+				"from": 1088200,
+				"to": 1091120
+			},
+			"text": " and respond also in the state guardian network"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,120",
+				"to": "00:18:14,200"
+			},
+			"offsets": {
+				"from": 1091120,
+				"to": 1094200
+			},
+			"text": " for this kind of a data connectivity challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,200",
+				"to": "00:18:15,760"
+			},
+			"offsets": {
+				"from": 1094200,
+				"to": 1095760
+			},
+			"text": " Now, we talked about the state guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,760",
+				"to": "00:18:18,800"
+			},
+			"offsets": {
+				"from": 1095760,
+				"to": 1098800
+			},
+			"text": " which is a compact side-ching created decentralized trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,800",
+				"to": "00:18:21,920"
+			},
+			"offsets": {
+				"from": 1098800,
+				"to": 1101920
+			},
+			"text": " And it has some collusion resistant."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,920",
+				"to": "00:18:23,920"
+			},
+			"offsets": {
+				"from": 1101920,
+				"to": 1103920
+			},
+			"text": " It explores a very simple unified interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,920",
+				"to": "00:18:25,920"
+			},
+			"offsets": {
+				"from": 1103920,
+				"to": 1105920
+			},
+			"text": " There's no additional liquidity lock up."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,920",
+				"to": "00:18:29,480"
+			},
+			"offsets": {
+				"from": 1105920,
+				"to": 1109480
+			},
+			"text": " It creates a very flexible economic dynamics for pricing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,480",
+				"to": "00:18:32,680"
+			},
+			"offsets": {
+				"from": 1109480,
+				"to": 1112680
+			},
+			"text": " and also for kind of insurance model for your state."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,680",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1112680,
+				"to": 1115960
+			},
+			"text": " And it also piggyback with a solution for data connectivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:37,880"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1117880
+			},
+			"text": " And you state, et cetera, talking into the state guardian"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,880",
+				"to": "00:18:41,080"
+			},
+			"offsets": {
+				"from": 1117880,
+				"to": 1121080
+			},
+			"text": " network and earn some service fees, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,080",
+				"to": "00:18:43,640"
+			},
+			"offsets": {
+				"from": 1121080,
+				"to": 1123640
+			},
+			"text": " Now, the third challenge we have is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,640",
+				"to": "00:18:45,080"
+			},
+			"offsets": {
+				"from": 1123640,
+				"to": 1125080
+			},
+			"text": " network liquidity challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,080",
+				"to": "00:18:48,560"
+			},
+			"offsets": {
+				"from": 1125080,
+				"to": 1128560
+			},
+			"text": " We envision in the future a state-channel network"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,560",
+				"to": "00:18:49,600"
+			},
+			"offsets": {
+				"from": 1128560,
+				"to": 1129600
+			},
+			"text": " will look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,600",
+				"to": "00:18:51,440"
+			},
+			"offsets": {
+				"from": 1129600,
+				"to": 1131440
+			},
+			"text": " You have a bunch of big nodes which"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,440",
+				"to": "00:18:53,720"
+			},
+			"offsets": {
+				"from": 1131440,
+				"to": 1133720
+			},
+			"text": " are the off-ching service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,720",
+				"to": "00:18:55,840"
+			},
+			"offsets": {
+				"from": 1133720,
+				"to": 1135840
+			},
+			"text": " and smaller nodes which are the end users."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,840",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1135840,
+				"to": 1138000
+			},
+			"text": " And how a state-channel works is like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:01,360"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1141360
+			},
+			"text": " So you basically have some deposited form on each side."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,360",
+				"to": "00:19:04,040"
+			},
+			"offsets": {
+				"from": 1141360,
+				"to": 1144040
+			},
+			"text": " And the problem about this is like an off-ching service"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,040",
+				"to": "00:19:06,880"
+			},
+			"offsets": {
+				"from": 1144040,
+				"to": 1146880
+			},
+			"text": " provider can run out of money pretty soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,880",
+				"to": "00:19:08,400"
+			},
+			"offsets": {
+				"from": 1146880,
+				"to": 1148400
+			},
+			"text": " And sometimes there is a mismatch"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,400",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1148400,
+				"to": 1152560
+			},
+			"text": " between the off-ching service providers' technical capability"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:15,840"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1155840
+			},
+			"text": " and their capability to wail out like a capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,840",
+				"to": "00:19:19,080"
+			},
+			"offsets": {
+				"from": 1155840,
+				"to": 1159080
+			},
+			"text": " And they will eventually result to centralization, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,080",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1159080,
+				"to": 1161000
+			},
+			"text": " is something that we don't want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:23,520"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1163520
+			},
+			"text": " And how to solve that is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,520",
+				"to": "00:19:25,640"
+			},
+			"offsets": {
+				"from": 1163520,
+				"to": 1165640
+			},
+			"text": " we construct something called a proof of liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,640",
+				"to": "00:19:27,320"
+			},
+			"offsets": {
+				"from": 1165640,
+				"to": 1167320
+			},
+			"text": " commitment mining process."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,320",
+				"to": "00:19:29,920"
+			},
+			"offsets": {
+				"from": 1167320,
+				"to": 1169920
+			},
+			"text": " That is to say, we try to first incentivize"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,920",
+				"to": "00:19:31,760"
+			},
+			"offsets": {
+				"from": 1169920,
+				"to": 1171760
+			},
+			"text": " a stable and a abundant liquidity pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,760",
+				"to": "00:19:33,200"
+			},
+			"offsets": {
+				"from": 1171760,
+				"to": 1173200
+			},
+			"text": " for this entire network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,200",
+				"to": "00:19:34,480"
+			},
+			"offsets": {
+				"from": 1173200,
+				"to": 1174480
+			},
+			"text": " There are some liquidity backers who"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,480",
+				"to": "00:19:35,560"
+			},
+			"offsets": {
+				"from": 1174480,
+				"to": 1175560
+			},
+			"text": " have some idle liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,560",
+				"to": "00:19:38,800"
+			},
+			"offsets": {
+				"from": 1175560,
+				"to": 1178800
+			},
+			"text": " And they can just lock it up in the setter network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,800",
+				"to": "00:19:41,600"
+			},
+			"offsets": {
+				"from": 1178800,
+				"to": 1181600
+			},
+			"text": " And for example, some lock-up 10 is for three years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,600",
+				"to": "00:19:45,040"
+			},
+			"offsets": {
+				"from": 1181600,
+				"to": 1185040
+			},
+			"text": " some lock-up for 30 years for the two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,040",
+				"to": "00:19:47,960"
+			},
+			"offsets": {
+				"from": 1185040,
+				"to": 1187960
+			},
+			"text": " And their virtual mining power is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,960",
+				"to": "00:19:49,440"
+			},
+			"offsets": {
+				"from": 1187960,
+				"to": 1189440
+			},
+			"text": " the multiplication of these two."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,440",
+				"to": "00:19:51,560"
+			},
+			"offsets": {
+				"from": 1189440,
+				"to": 1191560
+			},
+			"text": " And the newly generated setter token will be distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,560",
+				"to": "00:19:53,360"
+			},
+			"offsets": {
+				"from": 1191560,
+				"to": 1193360
+			},
+			"text": " proportionally according to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,360",
+				"to": "00:19:56,280"
+			},
+			"offsets": {
+				"from": 1193360,
+				"to": 1196280
+			},
+			"text": " Now, when someone actually needs liquidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,280",
+				"to": "00:19:58,320"
+			},
+			"offsets": {
+				"from": 1196280,
+				"to": 1198320
+			},
+			"text": " they will just start an auction process."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,320",
+				"to": "00:20:01,040"
+			},
+			"offsets": {
+				"from": 1198320,
+				"to": 1201040
+			},
+			"text": " And different people will just start to bid in this auction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,040",
+				"to": "00:20:04,360"
+			},
+			"offsets": {
+				"from": 1201040,
+				"to": 1204360
+			},
+			"text": " with different kind of interest rates ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,360",
+				"to": "00:20:07,680"
+			},
+			"offsets": {
+				"from": 1204360,
+				"to": 1207680
+			},
+			"text": " and also with different number of setter tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,680",
+				"to": "00:20:10,520"
+			},
+			"offsets": {
+				"from": 1207680,
+				"to": 1210520
+			},
+			"text": " We'll rank these bids by interest rate first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,520",
+				"to": "00:20:12,880"
+			},
+			"offsets": {
+				"from": 1210520,
+				"to": 1212880
+			},
+			"text": " and also then by amount of setter tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,880",
+				"to": "00:20:14,960"
+			},
+			"offsets": {
+				"from": 1212880,
+				"to": 1214960
+			},
+			"text": " So setter tokens here in this process"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,960",
+				"to": "00:20:19,200"
+			},
+			"offsets": {
+				"from": 1214960,
+				"to": 1219200
+			},
+			"text": " also act as kind of a frequent flyer of mileage token"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,200",
+				"to": "00:20:19,960"
+			},
+			"offsets": {
+				"from": 1219200,
+				"to": 1219960
+			},
+			"text": " kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,960",
+				"to": "00:20:22,720"
+			},
+			"offsets": {
+				"from": 1219960,
+				"to": 1222720
+			},
+			"text": " And for example, this guy will finally win the bid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,720",
+				"to": "00:20:25,880"
+			},
+			"offsets": {
+				"from": 1222720,
+				"to": 1225880
+			},
+			"text": " and this entire bidding process will be a second price auction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,880",
+				"to": "00:20:28,920"
+			},
+			"offsets": {
+				"from": 1225880,
+				"to": 1228920
+			},
+			"text": " to get enough liquidity for this auction service provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,920",
+				"to": "00:20:29,600"
+			},
+			"offsets": {
+				"from": 1228920,
+				"to": 1229600
+			},
+			"text": " to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,600",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1229600,
+				"to": 1231000
+			},
+			"text": " And there are tons of details on how"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:34,200"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1234200
+			},
+			"text": " to ensure security or enhance the security of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,200",
+				"to": "00:20:37,720"
+			},
+			"offsets": {
+				"from": 1234200,
+				"to": 1237720
+			},
+			"text": " which I'm not going into today."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,720",
+				"to": "00:20:40,160"
+			},
+			"offsets": {
+				"from": 1237720,
+				"to": 1240160
+			},
+			"text": " Now, we have the profile liquidity committee mining,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,160",
+				"to": "00:20:43,160"
+			},
+			"offsets": {
+				"from": 1240160,
+				"to": 1243160
+			},
+			"text": " basically mine setter token by locking idle liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,160",
+				"to": "00:20:45,720"
+			},
+			"offsets": {
+				"from": 1243160,
+				"to": 1245720
+			},
+			"text": " in the auction platform at the incentivize and abundant"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,720",
+				"to": "00:20:47,040"
+			},
+			"offsets": {
+				"from": 1245720,
+				"to": 1247040
+			},
+			"text": " and stable liquidity pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,040",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1247040,
+				"to": 1249000
+			},
+			"text": " And also this liquidity backing auction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1251360
+			},
+			"text": " to actually finish this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,360",
+				"to": "00:20:55,040"
+			},
+			"offsets": {
+				"from": 1251360,
+				"to": 1255040
+			},
+			"text": " So again, we have the setter wallet running."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,040",
+				"to": "00:20:59,400"
+			},
+			"offsets": {
+				"from": 1255040,
+				"to": 1259400
+			},
+			"text": " Feel free to download it at get.setter.app."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,400",
+				"to": "00:21:02,400"
+			},
+			"offsets": {
+				"from": 1259400,
+				"to": 1262400
+			},
+			"text": " But before my talk end, I just want"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,400",
+				"to": "00:21:07,400"
+			},
+			"offsets": {
+				"from": 1262400,
+				"to": 1267400
+			},
+			"text": " to also throw a quick vision of what we call setter network 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,400",
+				"to": "00:21:11,480"
+			},
+			"offsets": {
+				"from": 1267400,
+				"to": 1271480
+			},
+			"text": " We have seen a lot of these things popping up"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,480",
+				"to": "00:21:13,400"
+			},
+			"offsets": {
+				"from": 1271480,
+				"to": 1273400
+			},
+			"text": " of off-chain scaling technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,400",
+				"to": "00:21:15,760"
+			},
+			"offsets": {
+				"from": 1273400,
+				"to": 1275760
+			},
+			"text": " So we have a state channel, we have plasma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,760",
+				"to": "00:21:19,960"
+			},
+			"offsets": {
+				"from": 1275760,
+				"to": 1279960
+			},
+			"text": " we have side-ching, which is not quite plasma-like state"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,960",
+				"to": "00:21:20,640"
+			},
+			"offsets": {
+				"from": 1279960,
+				"to": 1280640
+			},
+			"text": " guardian network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,640",
+				"to": "00:21:24,280"
+			},
+			"offsets": {
+				"from": 1280640,
+				"to": 1284280
+			},
+			"text": " And also we have a true bit like interactive computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,280",
+				"to": "00:21:25,760"
+			},
+			"offsets": {
+				"from": 1284280,
+				"to": 1285760
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,760",
+				"to": "00:21:28,640"
+			},
+			"offsets": {
+				"from": 1285760,
+				"to": 1288640
+			},
+			"text": " So each of the team is kind of working separately"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,640",
+				"to": "00:21:29,960"
+			},
+			"offsets": {
+				"from": 1288640,
+				"to": 1289960
+			},
+			"text": " in different domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,960",
+				"to": "00:21:32,920"
+			},
+			"offsets": {
+				"from": 1289960,
+				"to": 1292920
+			},
+			"text": " What we think is that off-chain scaling solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,920",
+				"to": "00:21:36,720"
+			},
+			"offsets": {
+				"from": 1292920,
+				"to": 1296720
+			},
+			"text": " are sharing similar high-level philosophies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,720",
+				"to": "00:21:39,920"
+			},
+			"offsets": {
+				"from": 1296720,
+				"to": 1299920
+			},
+			"text": " and they can be combined as a coherent solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,920",
+				"to": "00:21:43,600"
+			},
+			"offsets": {
+				"from": 1299920,
+				"to": 1303600
+			},
+			"text": " as we are already starting to see in the setter"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,600",
+				"to": "00:21:47,160"
+			},
+			"offsets": {
+				"from": 1303600,
+				"to": 1307160
+			},
+			"text": " network construct that we use the side-ching as kind of a part"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,160",
+				"to": "00:21:49,680"
+			},
+			"offsets": {
+				"from": 1307160,
+				"to": 1309680
+			},
+			"text": " of the crypto-economic construct."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,680",
+				"to": "00:21:51,880"
+			},
+			"offsets": {
+				"from": 1309680,
+				"to": 1311880
+			},
+			"text": " So that ends my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,880",
+				"to": "00:21:56,800"
+			},
+			"offsets": {
+				"from": 1311880,
+				"to": 1316800
+			},
+			"text": " We have a very good team of researchers, designers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,800",
+				"to": "00:21:59,120"
+			},
+			"offsets": {
+				"from": 1316800,
+				"to": 1319120
+			},
+			"text": " and also engineers on board."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,120",
+				"to": "00:22:00,920"
+			},
+			"offsets": {
+				"from": 1319120,
+				"to": 1320920
+			},
+			"text": " And we are always hiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,920",
+				"to": "00:22:04,360"
+			},
+			"offsets": {
+				"from": 1320920,
+				"to": 1324360
+			},
+			"text": " Feel free to send email to hiring.setter.network."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,360",
+				"to": "00:22:07,160"
+			},
+			"offsets": {
+				"from": 1324360,
+				"to": 1327160
+			},
+			"text": " And it will go directly to my mailbox, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,160",
+				"to": "00:22:08,320"
+			},
+			"offsets": {
+				"from": 1327160,
+				"to": 1328320
+			},
+			"text": " All right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,320",
+				"to": "00:22:09,640"
+			},
+			"offsets": {
+				"from": 1328320,
+				"to": 1329640
+			},
+			"text": " OK, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,640",
+				"to": "00:22:12,640"
+			},
+			"offsets": {
+				"from": 1329640,
+				"to": 1332640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,640",
+				"to": "00:22:20,280"
+			},
+			"offsets": {
+				"from": 1332640,
+				"to": 1340280
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,280",
+				"to": "00:22:21,600"
+			},
+			"offsets": {
+				"from": 1340280,
+				"to": 1341600
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,600",
+				"to": "00:22:22,600"
+			},
+			"offsets": {
+				"from": 1341600,
+				"to": 1342600
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,600",
+				"to": "00:22:23,100"
+			},
+			"offsets": {
+				"from": 1342600,
+				"to": 1343100
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,100",
+				"to": "00:22:32,880"
+			},
+			"offsets": {
+				"from": 1343100,
+				"to": 1352880
+			},
+			"text": " So I have two questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,880",
+				"to": "00:22:39,600"
+			},
+			"offsets": {
+				"from": 1352880,
+				"to": 1359600
+			},
+			"text": " First, you have implemented an EVM here in your platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,600",
+				"to": "00:22:40,560"
+			},
+			"offsets": {
+				"from": 1359600,
+				"to": 1360560
+			},
+			"text": " I saw it in the white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,560",
+				"to": "00:22:42,560"
+			},
+			"offsets": {
+				"from": 1360560,
+				"to": 1362560
+			},
+			"text": " Is that still happening?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,560",
+				"to": "00:22:43,080"
+			},
+			"offsets": {
+				"from": 1362560,
+				"to": 1363080
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,080",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1363080,
+				"to": 1365000
+			},
+			"text": " That is in the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1369000
+			},
+			"text": " We're thinking about doing-- you know, you are some, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:51,760"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1371760
+			},
+			"text": " OK, so the EVM part is basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,760",
+				"to": "00:22:54,760"
+			},
+			"offsets": {
+				"from": 1371760,
+				"to": 1374760
+			},
+			"text": " how can we make one set of code instead of two set of code"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,760",
+				"to": "00:22:57,560"
+			},
+			"offsets": {
+				"from": 1374760,
+				"to": 1377560
+			},
+			"text": " for off-chain applications?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,560",
+				"to": "00:23:01,800"
+			},
+			"offsets": {
+				"from": 1377560,
+				"to": 1381800
+			},
+			"text": " The reason that we are doing an EVM inside of mobile devices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,800",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1381800,
+				"to": 1384120
+			},
+			"text": " you can run EVM in mobile devices today."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:05,560"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1385560
+			},
+			"text": " But what's the challenging part is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,560",
+				"to": "00:23:09,440"
+			},
+			"offsets": {
+				"from": 1385560,
+				"to": 1389440
+			},
+			"text": " to use that EVM as a back-end for all the front-end interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,440",
+				"to": "00:23:10,800"
+			},
+			"offsets": {
+				"from": 1389440,
+				"to": 1390800
+			},
+			"text": " for the mobile platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,800",
+				"to": "00:23:12,040"
+			},
+			"offsets": {
+				"from": 1390800,
+				"to": 1392040
+			},
+			"text": " So basically, you click a button."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,040",
+				"to": "00:23:15,520"
+			},
+			"offsets": {
+				"from": 1392040,
+				"to": 1395520
+			},
+			"text": " It talks to not the Java code, but actually the EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,520",
+				"to": "00:23:18,520"
+			},
+			"offsets": {
+				"from": 1395520,
+				"to": 1398520
+			},
+			"text": " So that's kind of like the process we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,520",
+				"to": "00:23:20,240"
+			},
+			"offsets": {
+				"from": 1398520,
+				"to": 1400240
+			},
+			"text": " And that's still in progress, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,240",
+				"to": "00:23:27,400"
+			},
+			"offsets": {
+				"from": 1400240,
+				"to": 1407400
+			},
+			"text": " OK, so you're not going to implement EVM in the near future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,400",
+				"to": "00:23:30,480"
+			},
+			"offsets": {
+				"from": 1407400,
+				"to": 1410480
+			},
+			"text": " or you are going to implement EVM in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,480",
+				"to": "00:23:36,200"
+			},
+			"offsets": {
+				"from": 1410480,
+				"to": 1416200
+			},
+			"text": " So OK, so let me just clarify that it has the capability"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,200",
+				"to": "00:23:38,600"
+			},
+			"offsets": {
+				"from": 1416200,
+				"to": 1418600
+			},
+			"text": " to wrong-generize the state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,600",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1418600,
+				"to": 1422000
+			},
+			"text": " Applications implemented as an EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:46,840"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1426840
+			},
+			"text": " So we are in the process of combining these two things together."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,840",
+				"to": "00:23:49,920"
+			},
+			"offsets": {
+				"from": 1426840,
+				"to": 1429920
+			},
+			"text": " Basically, the mobile platform or the user-client part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,920",
+				"to": "00:23:51,040"
+			},
+			"offsets": {
+				"from": 1429920,
+				"to": 1431040
+			},
+			"text": " and also the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,040",
+				"to": "00:23:53,680"
+			},
+			"offsets": {
+				"from": 1431040,
+				"to": 1433680
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,680",
+				"to": "00:23:54,760"
+			},
+			"offsets": {
+				"from": 1433680,
+				"to": 1434760
+			},
+			"text": " OK, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,760",
+				"to": "00:23:56,400"
+			},
+			"offsets": {
+				"from": 1434760,
+				"to": 1436400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,760",
+				"to": "00:23:59,160"
+			},
+			"offsets": {
+				"from": 1436760,
+				"to": 1439160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,160",
+				"to": "00:24:02,520"
+			},
+			"offsets": {
+				"from": 1439160,
+				"to": 1442520
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,520",
+				"to": "00:24:05,880"
+			},
+			"offsets": {
+				"from": 1442520,
+				"to": 1445880
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,880",
+				"to": "00:24:09,240"
+			},
+			"offsets": {
+				"from": 1445880,
+				"to": 1449240
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,240",
+				"to": "00:24:12,600"
+			},
+			"offsets": {
+				"from": 1449240,
+				"to": 1452600
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,600",
+				"to": "00:24:15,960"
+			},
+			"offsets": {
+				"from": 1452600,
+				"to": 1455960
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,960",
+				"to": "00:24:19,320"
+			},
+			"offsets": {
+				"from": 1455960,
+				"to": 1459320
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,320",
+				"to": "00:24:22,680"
+			},
+			"offsets": {
+				"from": 1459320,
+				"to": 1462680
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,680",
+				"to": "00:24:26,040"
+			},
+			"offsets": {
+				"from": 1462680,
+				"to": 1466040
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,040",
+				"to": "00:24:55,040"
+			},
+			"offsets": {
+				"from": 1466040,
+				"to": 1495040
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

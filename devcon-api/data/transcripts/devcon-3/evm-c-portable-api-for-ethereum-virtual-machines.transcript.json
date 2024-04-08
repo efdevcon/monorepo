@@ -1,0 +1,1605 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 25000
+			},
+			"text": " Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:36,720"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 36720
+			},
+			"text": " So I'm Pavel Bolitza and this talk will be about EVM and EVMC, which is a portable API"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,720",
+				"to": "00:00:40,400"
+			},
+			"offsets": {
+				"from": 36720,
+				"to": 40400
+			},
+			"text": " for Ethereum virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,400",
+				"to": "00:00:44,200"
+			},
+			"offsets": {
+				"from": 40400,
+				"to": 44200
+			},
+			"text": " I'm a software developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,200",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 44200,
+				"to": 47560
+			},
+			"text": " I'm specialized in C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 58760
+			},
+			"text": " Currently I'm working mostly in the CPP Ethereum project and I'm also the author of EVM GIT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:01:12,120"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 72120
+			},
+			"text": " which is an alternative EVM implementation that translates EVM bytecode to native machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,120",
+				"to": "00:01:16,160"
+			},
+			"offsets": {
+				"from": 72120,
+				"to": 76160
+			},
+			"text": " language."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,160",
+				"to": "00:01:26,520"
+			},
+			"offsets": {
+				"from": 76160,
+				"to": 86520
+			},
+			"text": " And I also try to come up with the API for EVM that is called EVMC."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,520",
+				"to": "00:01:31,200"
+			},
+			"offsets": {
+				"from": 86520,
+				"to": 91200
+			},
+			"text": " So this talk will have two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,200",
+				"to": "00:01:39,880"
+			},
+			"offsets": {
+				"from": 91200,
+				"to": 99880
+			},
+			"text": " First one I would like to explain what exactly am I talking about and what I mean by EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,880",
+				"to": "00:01:44,040"
+			},
+			"offsets": {
+				"from": 99880,
+				"to": 104040
+			},
+			"text": " API and EVM interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,040",
+				"to": "00:01:51,640"
+			},
+			"offsets": {
+				"from": 104040,
+				"to": 111640
+			},
+			"text": " And in the second part I would like to show what have been done so far, what we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,640",
+				"to": "00:02:00,800"
+			},
+			"offsets": {
+				"from": 111640,
+				"to": 120800
+			},
+			"text": " do in the near future and explain some design decisions we made so far to be able for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,800",
+				"to": "00:02:11,080"
+			},
+			"offsets": {
+				"from": 120800,
+				"to": 131080
+			},
+			"text": " to better understand why things look as they look at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,080",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 131080,
+				"to": 140080
+			},
+			"text": " So EVM, the Ethereum virtual machine, one of the most important components of Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:24,360"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 144360
+			},
+			"text": " software and Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,360",
+				"to": "00:02:35,840"
+			},
+			"offsets": {
+				"from": 144360,
+				"to": 155840
+			},
+			"text": " So it's in short words, virtual machine that actually can execute small programs or small"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,840",
+				"to": "00:02:41,280"
+			},
+			"offsets": {
+				"from": 155840,
+				"to": 161280
+			},
+			"text": " scripts called smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,280",
+				"to": "00:02:44,880"
+			},
+			"offsets": {
+				"from": 161280,
+				"to": 164880
+			},
+			"text": " And yeah, where it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,880",
+				"to": "00:02:53,240"
+			},
+			"offsets": {
+				"from": 164880,
+				"to": 173240
+			},
+			"text": " Every Ethereum client at least for full notes have EVM somewhere inside."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,240",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 173240,
+				"to": 181000
+			},
+			"text": " Usually there is one implementation of that but we have some examples where EVM clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186040
+			},
+			"text": " can actually have more of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 191280
+			},
+			"text": " And CPP Ethereum is one of the examples here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,280",
+				"to": "00:03:18,160"
+			},
+			"offsets": {
+				"from": 191280,
+				"to": 198160
+			},
+			"text": " But the problem I would like to address is the fact that EVMs are somehow embedded inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,160",
+				"to": "00:03:19,600"
+			},
+			"offsets": {
+				"from": 198160,
+				"to": 199600
+			},
+			"text": " the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,600",
+				"to": "00:03:29,040"
+			},
+			"offsets": {
+				"from": 199600,
+				"to": 209040
+			},
+			"text": " You can have more or less indirect access to it to EVM through JSON RPC, some test RPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,040",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 209040,
+				"to": 219480
+			},
+			"text": " systems, VM tracing, storage, backlog and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:47,360"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 227360
+			},
+			"text": " But what I try to address is I would like this composition to be look more or less like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,360",
+				"to": "00:03:49,040"
+			},
+			"offsets": {
+				"from": 227360,
+				"to": 229040
+			},
+			"text": " this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,040",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 229040,
+				"to": 240000
+			},
+			"text": " So this thin layer that actually connects EVMs to Ethereum clients to be very well specified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:13,040"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 253040
+			},
+			"text": " very well documented and to be also usable from different programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,040",
+				"to": "00:04:24,560"
+			},
+			"offsets": {
+				"from": 253040,
+				"to": 264560
+			},
+			"text": " And also what we can add to this scheme is to be able to actually plug in the same EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,560",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 264560,
+				"to": 269320
+			},
+			"text": " implementation to different clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:40,640"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 280640
+			},
+			"text": " Okay, so EVMC is one of the possible solutions to this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,640",
+				"to": "00:04:52,760"
+			},
+			"offsets": {
+				"from": 280640,
+				"to": 292760
+			},
+			"text": " And it's exactly what I meant before it's EVM API that uses C language to connect these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,760",
+				"to": "00:05:01,840"
+			},
+			"offsets": {
+				"from": 292760,
+				"to": 301840
+			},
+			"text": " two now separated components, the EVM Ethereum virtual machine to be connected with Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,840",
+				"to": "00:05:06,680"
+			},
+			"offsets": {
+				"from": 301840,
+				"to": 306680
+			},
+			"text": " client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,680",
+				"to": "00:05:10,600"
+			},
+			"offsets": {
+				"from": 306680,
+				"to": 310600
+			},
+			"text": " And why is C language was chosen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,600",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 310600,
+				"to": 318920
+			},
+			"text": " Not because it's the most beautiful one, but it happens that C is actually accessible for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 322960
+			},
+			"text": " many programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:31,680"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 331680
+			},
+			"text": " The obvious examples are C and C++, but for many popular languages that are around, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,680",
+				"to": "00:05:39,600"
+			},
+			"offsets": {
+				"from": 331680,
+				"to": 339600
+			},
+			"text": " can actually at least use some C libraries and use execute functions from C libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,600",
+				"to": "00:05:42,840"
+			},
+			"offsets": {
+				"from": 339600,
+				"to": 342840
+			},
+			"text": " from that languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,840",
+				"to": "00:05:55,920"
+			},
+			"offsets": {
+				"from": 342840,
+				"to": 355920
+			},
+			"text": " I tried all this stuff with Go using the C Go tool and also in Python using CFFI library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,920",
+				"to": "00:06:06,480"
+			},
+			"offsets": {
+				"from": 355920,
+				"to": 366480
+			},
+			"text": " but I'm sure there are other examples when you can at least use C libraries in more high"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,480",
+				"to": "00:06:11,640"
+			},
+			"offsets": {
+				"from": 366480,
+				"to": 371640
+			},
+			"text": " level, more abstract languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,640",
+				"to": "00:06:20,160"
+			},
+			"offsets": {
+				"from": 371640,
+				"to": 380160
+			},
+			"text": " And second important part of that is we want to have polymorphic interfaces there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,160",
+				"to": "00:06:29,400"
+			},
+			"offsets": {
+				"from": 380160,
+				"to": 389400
+			},
+			"text": " So we would like to be able to use different, to switch between different EVM implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,400",
+				"to": "00:06:30,880"
+			},
+			"offsets": {
+				"from": 389400,
+				"to": 390880
+			},
+			"text": " and runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,880",
+				"to": "00:06:38,080"
+			},
+			"offsets": {
+				"from": 390880,
+				"to": 398080
+			},
+			"text": " Not that we want to build a client with this one and decide on the build time what actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,080",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398080,
+				"to": 402000
+			},
+			"text": " implementation we like to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:50,400"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 410400
+			},
+			"text": " We want to have a switch that user can actually use to decide what kind of backend they want"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,400",
+				"to": "00:06:53,960"
+			},
+			"offsets": {
+				"from": 410400,
+				"to": 413960
+			},
+			"text": " for its task."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,960",
+				"to": "00:07:05,920"
+			},
+			"offsets": {
+				"from": 413960,
+				"to": 425920
+			},
+			"text": " And third important part we took account of to make some design decisions is a composability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,920",
+				"to": "00:07:12,480"
+			},
+			"offsets": {
+				"from": 425920,
+				"to": 432480
+			},
+			"text": " So the composability means actually we can do something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,480",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 432480,
+				"to": 441000
+			},
+			"text": " When having some concrete implementations of VM, we can add more and more layers on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:26,800"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 446800
+			},
+			"text": " of that that actually delegate the execution to the lower layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,800",
+				"to": "00:07:33,560"
+			},
+			"offsets": {
+				"from": 446800,
+				"to": 453560
+			},
+			"text": " But on the upper layer you can make some additional decisions where you actually want"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,560",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 453560,
+				"to": 456520
+			},
+			"text": " to send your code to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 469280
+			},
+			"text": " So for example, if we can consider interpreter and JIT-like EVM, you might want to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:59,400"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 479400
+			},
+			"text": " have a top layer that actually decides if the code should go to the JIT one or to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,400",
+				"to": "00:08:01,640"
+			},
+			"offsets": {
+				"from": 479400,
+				"to": 481640
+			},
+			"text": " interpreter one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,640",
+				"to": "00:08:08,120"
+			},
+			"offsets": {
+				"from": 481640,
+				"to": 488120
+			},
+			"text": " And the top layer can actually, for example, count the number of executions of particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,120",
+				"to": "00:08:10,120"
+			},
+			"offsets": {
+				"from": 488120,
+				"to": 490120
+			},
+			"text": " code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,120",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 490120,
+				"to": 496560
+			},
+			"text": " If we have some hot code that is executed in many transactions, you might want to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:25,160"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 505160
+			},
+			"text": " translate that using the JIT- EVM to some native machine code and speed up the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,160",
+				"to": "00:08:35,040"
+			},
+			"offsets": {
+				"from": 505160,
+				"to": 515040
+			},
+			"text": " But that may not have sense if the code is not frequent enough to actually pay the cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,040",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 515040,
+				"to": 523920
+			},
+			"text": " of overhead of doing the translation upfront and not having, yeah, may not make a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:45,720"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 525720
+			},
+			"text": " sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,720",
+				"to": "00:08:56,120"
+			},
+			"offsets": {
+				"from": 525720,
+				"to": 536120
+			},
+			"text": " And the second example of such composition can be having actually different languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,120",
+				"to": "00:08:58,240"
+			},
+			"offsets": {
+				"from": 536120,
+				"to": 538240
+			},
+			"text": " in the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,240",
+				"to": "00:09:12,200"
+			},
+			"offsets": {
+				"from": 538240,
+				"to": 552200
+			},
+			"text": " If we consider the proposed EVM and EVM 1.0, we can just add very simple layer on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,200",
+				"to": "00:09:19,080"
+			},
+			"offsets": {
+				"from": 552200,
+				"to": 559080
+			},
+			"text": " that that actually can recognize if the smart contract uses the web assembly-like language"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,080",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 559080,
+				"to": 565240
+			},
+			"text": " or EVM 1 bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:30,800"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 570800
+			},
+			"text": " So how actually this EVM looks like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,800",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 570800,
+				"to": 580000
+			},
+			"text": " This is actually the single file, a single C header file, and it includes declarations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:42,400"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 582400
+			},
+			"text": " of functions and strikes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,400",
+				"to": "00:09:48,560"
+			},
+			"offsets": {
+				"from": 582400,
+				"to": 588560
+			},
+			"text": " And also all the documentation is this file in the form of comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,560",
+				"to": "00:09:56,080"
+			},
+			"offsets": {
+				"from": 588560,
+				"to": 596080
+			},
+			"text": " So this is actually the only source you should care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,080",
+				"to": "00:10:02,240"
+			},
+			"offsets": {
+				"from": 596080,
+				"to": 602240
+			},
+			"text": " And I paid attention to actually have good enough documentation to understand how it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,240",
+				"to": "00:10:07,800"
+			},
+			"offsets": {
+				"from": 602240,
+				"to": 607800
+			},
+			"text": " works, just reading the single file."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,800",
+				"to": "00:10:18,480"
+			},
+			"offsets": {
+				"from": 607800,
+				"to": 618480
+			},
+			"text": " And at the moment, this is part of my EVM-G project where as long I am experimenting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,480",
+				"to": "00:10:30,520"
+			},
+			"offsets": {
+				"from": 618480,
+				"to": 630520
+			},
+			"text": " with that and the API is not finished yet, it's included in this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,520",
+				"to": "00:10:40,880"
+			},
+			"offsets": {
+				"from": 630520,
+				"to": 640880
+			},
+			"text": " Okay, so the whole design has some kind of two parts, two sides."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,880",
+				"to": "00:10:50,720"
+			},
+			"offsets": {
+				"from": 640880,
+				"to": 650720
+			},
+			"text": " And one is related to the client side and one is related to the EVM itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,720",
+				"to": "00:11:00,040"
+			},
+			"offsets": {
+				"from": 650720,
+				"to": 660040
+			},
+			"text": " On the client side, what have to be done, you need to implement some context class."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,040",
+				"to": "00:11:11,120"
+			},
+			"offsets": {
+				"from": 660040,
+				"to": 671120
+			},
+			"text": " And context class provides virtual methods and can answer questions coming from EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,120",
+				"to": "00:11:17,440"
+			},
+			"offsets": {
+				"from": 671120,
+				"to": 677440
+			},
+			"text": " And these questions are something like, \"Get me the balance of given account,\" or \"Get"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,440",
+				"to": "00:11:22,520"
+			},
+			"offsets": {
+				"from": 677440,
+				"to": 682520
+			},
+			"text": " me the storage at the given slot for a given contract.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,520",
+				"to": "00:11:29,680"
+			},
+			"offsets": {
+				"from": 682520,
+				"to": 689680
+			},
+			"text": " All this information cannot be provided to the EVM upfront because we don't want to send"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,680",
+				"to": "00:11:34,720"
+			},
+			"offsets": {
+				"from": 689680,
+				"to": 694720
+			},
+			"text": " the whole state to the EVM to execute smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,720",
+				"to": "00:11:44,160"
+			},
+			"offsets": {
+				"from": 694720,
+				"to": 704160
+			},
+			"text": " But the EVM need a way to actually extract this information on demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,160",
+				"to": "00:11:52,440"
+			},
+			"offsets": {
+				"from": 704160,
+				"to": 712440
+			},
+			"text": " And on the second side, on the EVM side, there is EVM class."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,440",
+				"to": "00:11:57,440"
+			},
+			"offsets": {
+				"from": 712440,
+				"to": 717440
+			},
+			"text": " And EVM class, it's quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,440",
+				"to": "00:12:03,840"
+			},
+			"offsets": {
+				"from": 717440,
+				"to": 723840
+			},
+			"text": " There is a way to actually construct the EVM instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,840",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 723840,
+				"to": 727760
+			},
+			"text": " And there is a way to destroy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:12,520"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 732520
+			},
+			"text": " And the core function is actually execute function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,520",
+				"to": "00:12:20,600"
+			},
+			"offsets": {
+				"from": 732520,
+				"to": 740600
+			},
+			"text": " When the information, what is to be executed, is encoded in a new message object."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,600",
+				"to": "00:12:26,640"
+			},
+			"offsets": {
+				"from": 740600,
+				"to": 746640
+			},
+			"text": " And also, the context is provided for the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,640",
+				"to": "00:12:40,400"
+			},
+			"offsets": {
+				"from": 746640,
+				"to": 760400
+			},
+			"text": " And EVM uses this context interface to ask for more data if needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,400",
+				"to": "00:12:48,040"
+			},
+			"offsets": {
+				"from": 760400,
+				"to": 768040
+			},
+			"text": " So in case you would like to implement new client, but you don't want to, in the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,040",
+				"to": "00:12:57,120"
+			},
+			"offsets": {
+				"from": 768040,
+				"to": 777120
+			},
+			"text": " time, implement EVM there, you would like to use some of EVM C compatible EVMs available."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,120",
+				"to": "00:12:58,960"
+			},
+			"offsets": {
+				"from": 777120,
+				"to": 778960
+			},
+			"text": " What you have to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,960",
+				"to": "00:13:02,200"
+			},
+			"offsets": {
+				"from": 778960,
+				"to": 782200
+			},
+			"text": " Your job is to implement the context class."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,200",
+				"to": "00:13:09,760"
+			},
+			"offsets": {
+				"from": 782200,
+				"to": 789760
+			},
+			"text": " And there are eight virtual methods that have to be implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,760",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 789760,
+				"to": 797800
+			},
+			"text": " And you have also encode your information, what to execute in the message structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:26,800"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 806800
+			},
+			"text": " And if you would like to, for example, implement the EVM, but you don't care about the rest"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,800",
+				"to": "00:13:36,560"
+			},
+			"offsets": {
+				"from": 806800,
+				"to": 816560
+			},
+			"text": " of the Ethereum client, like network stack, non-storage, database, and so on, all you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,560",
+				"to": "00:13:45,560"
+			},
+			"offsets": {
+				"from": 816560,
+				"to": 825560
+			},
+			"text": " to do is to implement the create and destroy pair of functions and the execute one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,560",
+				"to": "00:13:57,400"
+			},
+			"offsets": {
+				"from": 825560,
+				"to": 837400
+			},
+			"text": " So not to be confused, this design operates on the object-oriented concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,400",
+				"to": "00:14:00,440"
+			},
+			"offsets": {
+				"from": 837400,
+				"to": 840440
+			},
+			"text": " But on the way, you will do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,440",
+				"to": "00:14:11,240"
+			},
+			"offsets": {
+				"from": 840440,
+				"to": 851240
+			},
+			"text": " You will have to translate it down to the C. So it gets more obscure and complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,240",
+				"to": "00:14:15,320"
+			},
+			"offsets": {
+				"from": 851240,
+				"to": 855320
+			},
+			"text": " So what we have so far with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,320",
+				"to": "00:14:24,480"
+			},
+			"offsets": {
+				"from": 855320,
+				"to": 864480
+			},
+			"text": " So as I mentioned at the beginning, the C++ client have actually two EVMs and one is classic"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,480",
+				"to": "00:14:26,480"
+			},
+			"offsets": {
+				"from": 864480,
+				"to": 866480
+			},
+			"text": " interpreter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,480",
+				"to": "00:14:34,480"
+			},
+			"offsets": {
+				"from": 866480,
+				"to": 874480
+			},
+			"text": " And it actually does not use the EVM C, but we plan to do it in the next, in the near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,480",
+				"to": "00:14:40,560"
+			},
+			"offsets": {
+				"from": 874480,
+				"to": 880560
+			},
+			"text": " But EVM GIT, the GIT-like EVM uses the EVM C interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,560",
+				"to": "00:14:47,600"
+			},
+			"offsets": {
+				"from": 880560,
+				"to": 887600
+			},
+			"text": " And it's compatible with the recent hard fork of Byzantium."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,600",
+				"to": "00:14:56,880"
+			},
+			"offsets": {
+				"from": 887600,
+				"to": 896880
+			},
+			"text": " There is also the Hura project that a prototype of a Ethereum client with Ewasm backend."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,880",
+				"to": "00:15:05,760"
+			},
+			"offsets": {
+				"from": 896880,
+				"to": 905760
+			},
+			"text": " And there is also a prototype of EVM implemented purely in C language."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,760",
+				"to": "00:15:14,880"
+			},
+			"offsets": {
+				"from": 905760,
+				"to": 914880
+			},
+			"text": " I also prepared some time ago a prototype of GAF with the EVM GIT plugged in and the Python"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,880",
+				"to": "00:15:18,120"
+			},
+			"offsets": {
+				"from": 914880,
+				"to": 918120
+			},
+			"text": " client with EVM GIT plugged in."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,120",
+				"to": "00:15:25,120"
+			},
+			"offsets": {
+				"from": 918120,
+				"to": 925120
+			},
+			"text": " This still needs some work and it requires updates to the current status of the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,120",
+				"to": "00:15:29,160"
+			},
+			"offsets": {
+				"from": 925120,
+				"to": 929160
+			},
+			"text": " but it's quite fun to play with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,160",
+				"to": "00:15:33,680"
+			},
+			"offsets": {
+				"from": 929160,
+				"to": 933680
+			},
+			"text": " And what we want to do next."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,680",
+				"to": "00:15:41,040"
+			},
+			"offsets": {
+				"from": 933680,
+				"to": 941040
+			},
+			"text": " The missing piece of EVM C API is VM tracing and this is a showstopper for a moment because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,040",
+				"to": "00:15:48,440"
+			},
+			"offsets": {
+				"from": 941040,
+				"to": 948440
+			},
+			"text": " we cannot replace existing VMs completely because this missing feature is important in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,440",
+				"to": "00:15:51,440"
+			},
+			"offsets": {
+				"from": 948440,
+				"to": 951440
+			},
+			"text": " other places."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,440",
+				"to": "00:16:01,360"
+			},
+			"offsets": {
+				"from": 951440,
+				"to": 961360
+			},
+			"text": " If this is in place, we would like to move the CPP interpreter to use the EVM C interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,360",
+				"to": "00:16:03,240"
+			},
+			"offsets": {
+				"from": 961360,
+				"to": 963240
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,240",
+				"to": "00:16:13,840"
+			},
+			"offsets": {
+				"from": 963240,
+				"to": 973840
+			},
+			"text": " And I also plan to release experimental GAF with EVM GIT as a virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,840",
+				"to": "00:16:23,880"
+			},
+			"offsets": {
+				"from": 973840,
+				"to": 983880
+			},
+			"text": " Recently also someone considered to using this interface together with fast testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,880",
+				"to": "00:16:25,360"
+			},
+			"offsets": {
+				"from": 983880,
+				"to": 985360
+			},
+			"text": " project."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,360",
+				"to": "00:16:27,400"
+			},
+			"offsets": {
+				"from": 985360,
+				"to": 987400
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,400",
+				"to": "00:16:30,480"
+			},
+			"offsets": {
+				"from": 987400,
+				"to": 990480
+			},
+			"text": " That was all from mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,480",
+				"to": "00:16:37,640"
+			},
+			"offsets": {
+				"from": 990480,
+				"to": 997640
+			},
+			"text": " Thank you for your attention and in case some questions I'm available for, yeah, for how"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,640",
+				"to": "00:16:38,640"
+			},
+			"offsets": {
+				"from": 997640,
+				"to": 998640
+			},
+			"text": " Devcom around."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,640",
+				"to": "00:16:39,640"
+			},
+			"offsets": {
+				"from": 998640,
+				"to": 999640
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,640",
+				"to": "00:16:39,640"
+			},
+			"offsets": {
+				"from": 999640,
+				"to": 999640
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,640",
+				"to": "00:16:46,640"
+			},
+			"offsets": {
+				"from": 999640,
+				"to": 1006640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,640",
+				"to": "00:16:53,640"
+			},
+			"offsets": {
+				"from": 1006640,
+				"to": 1013640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,640",
+				"to": "00:17:00,640"
+			},
+			"offsets": {
+				"from": 1013640,
+				"to": 1020640
+			},
+			"text": " [Music]"
+		}
+	]
+}

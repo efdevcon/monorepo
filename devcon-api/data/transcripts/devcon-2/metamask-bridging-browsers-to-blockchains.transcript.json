@@ -1,0 +1,3772 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,480",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 2480,
+				"to": 21080
+			},
+			"text": " Hey, how's everybody doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 22000
+			},
+			"text": " I'm Aaron Davis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,840"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24840
+			},
+			"text": " I also go by Kamavas, whichever you prefer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,840",
+				"to": "00:00:27,320"
+			},
+			"offsets": {
+				"from": 24840,
+				"to": 27320
+			},
+			"text": " And today we're going to be talking about Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,320",
+				"to": "00:00:31,880"
+			},
+			"offsets": {
+				"from": 27320,
+				"to": 31880
+			},
+			"text": " and how we get Ethereum into the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,880",
+				"to": "00:00:35,800"
+			},
+			"offsets": {
+				"from": 31880,
+				"to": 35800
+			},
+			"text": " So our core goal is ease of adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,800",
+				"to": "00:00:40,480"
+			},
+			"offsets": {
+				"from": 35800,
+				"to": 40480
+			},
+			"text": " And one way we measure that is time from first account"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,480",
+				"to": "00:00:42,760"
+			},
+			"offsets": {
+				"from": 40480,
+				"to": 42760
+			},
+			"text": " to first ether to first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,760",
+				"to": "00:00:48,920"
+			},
+			"offsets": {
+				"from": 42760,
+				"to": 48920
+			},
+			"text": " And I'm going to bring Frankie and Kevin on to talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,920",
+				"to": "00:00:49,720"
+			},
+			"offsets": {
+				"from": 48920,
+				"to": 49720
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,720",
+				"to": "00:00:50,640"
+			},
+			"offsets": {
+				"from": 49720,
+				"to": 50640
+			},
+			"text": " Hello, dear devs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,640",
+				"to": "00:00:52,840"
+			},
+			"offsets": {
+				"from": 50640,
+				"to": 52840
+			},
+			"text": " Let us make you roar about Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,840",
+				"to": "00:00:55,840"
+			},
+			"offsets": {
+				"from": 52840,
+				"to": 55840
+			},
+			"text": " [BEEPING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,840",
+				"to": "00:00:57,480"
+			},
+			"offsets": {
+				"from": 55840,
+				"to": 57480
+			},
+			"text": " Made by us four."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,480",
+				"to": "00:00:59,040"
+			},
+			"offsets": {
+				"from": 57480,
+				"to": 59040
+			},
+			"text": " I'm sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,040",
+				"to": "00:01:00,040"
+			},
+			"offsets": {
+				"from": 59040,
+				"to": 60040
+			},
+			"text": " OK, this is not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,040",
+				"to": "00:01:01,560"
+			},
+			"offsets": {
+				"from": 60040,
+				"to": 61560
+			},
+			"text": " [LAUGHTER]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,560",
+				"to": "00:01:05,720"
+			},
+			"offsets": {
+				"from": 61560,
+				"to": 65720
+			},
+			"text": " OK, oh yeah, OK, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,720",
+				"to": "00:01:07,840"
+			},
+			"offsets": {
+				"from": 65720,
+				"to": 67840
+			},
+			"text": " A browser extension for Chrome and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,840",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 67840,
+				"to": 71200
+			},
+			"text": " But there's even more browsers and mobile coming up in store."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:14,960"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 74960
+			},
+			"text": " Metamask injects web3 in your pages real lazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,960",
+				"to": "00:01:17,760"
+			},
+			"offsets": {
+				"from": 74960,
+				"to": 77760
+			},
+			"text": " Web apps running in a normal browser, that's crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,760",
+				"to": "00:01:19,800"
+			},
+			"offsets": {
+				"from": 77760,
+				"to": 79800
+			},
+			"text": " There's no need for a local full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,800",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79800,
+				"to": 82000
+			},
+			"text": " First time user, you hit the mother load."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:24,720"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 84720
+			},
+			"text": " We protect you with conferencing screens"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,720",
+				"to": "00:01:27,640"
+			},
+			"offsets": {
+				"from": 84720,
+				"to": 87640
+			},
+			"text": " so that you don't lose your ether like spilling the beans."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,640",
+				"to": "00:01:29,840"
+			},
+			"offsets": {
+				"from": 87640,
+				"to": 89840
+			},
+			"text": " On top of that here, have some wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,840",
+				"to": "00:01:32,160"
+			},
+			"offsets": {
+				"from": 89840,
+				"to": 92160
+			},
+			"text": " to hold all that ether so that you can hold it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,160",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 92160,
+				"to": 93000
+			},
+			"text": " We love dabs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,280"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94280
+			},
+			"text": " Ether needs them in stacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,280",
+				"to": "00:01:36,760"
+			},
+			"offsets": {
+				"from": 94280,
+				"to": 96760
+			},
+			"text": " Give us more of them like flapjack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,760",
+				"to": "00:01:38,760"
+			},
+			"offsets": {
+				"from": 96760,
+				"to": 98760
+			},
+			"text": " I don't have anything else to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,760",
+				"to": "00:01:40,360"
+			},
+			"offsets": {
+				"from": 98760,
+				"to": 100360
+			},
+			"text": " So here's Frankie."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,360",
+				"to": "00:01:40,860"
+			},
+			"offsets": {
+				"from": 100360,
+				"to": 100860
+			},
+			"text": " Yay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,860",
+				"to": "00:01:43,360"
+			},
+			"offsets": {
+				"from": 100860,
+				"to": 103360
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,360",
+				"to": "00:01:47,760"
+			},
+			"offsets": {
+				"from": 103360,
+				"to": 107760
+			},
+			"text": " Thanks, Kevin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,760",
+				"to": "00:01:48,480"
+			},
+			"offsets": {
+				"from": 107760,
+				"to": 108480
+			},
+			"text": " Hi, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,480",
+				"to": "00:01:49,280"
+			},
+			"offsets": {
+				"from": 108480,
+				"to": 109280
+			},
+			"text": " I'm Frankie."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,280",
+				"to": "00:01:52,360"
+			},
+			"offsets": {
+				"from": 109280,
+				"to": 112360
+			},
+			"text": " And I'm going to talk about Metamask from the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,360",
+				"to": "00:01:54,960"
+			},
+			"offsets": {
+				"from": 112360,
+				"to": 114960
+			},
+			"text": " experience from first installation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,960",
+				"to": "00:01:58,200"
+			},
+			"offsets": {
+				"from": 114960,
+				"to": 118200
+			},
+			"text": " to DAP use to first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,200",
+				"to": "00:01:59,040"
+			},
+			"offsets": {
+				"from": 118200,
+				"to": 119040
+			},
+			"text": " Louder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,040",
+				"to": "00:02:00,920"
+			},
+			"offsets": {
+				"from": 119040,
+				"to": 120920
+			},
+			"text": " Even louder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,920",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 120920,
+				"to": 122040
+			},
+			"text": " God."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:02,800"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 122800
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,800",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122800,
+				"to": 125000
+			},
+			"text": " We are live on the Chrome store."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,440"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128440
+			},
+			"text": " So user goes and downloads Metamask."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,440",
+				"to": "00:02:09,680"
+			},
+			"offsets": {
+				"from": 128440,
+				"to": 129680
+			},
+			"text": " And we create a vault."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,680",
+				"to": "00:02:14,040"
+			},
+			"offsets": {
+				"from": 129680,
+				"to": 134040
+			},
+			"text": " It is a deterministic key ring."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,040",
+				"to": "00:02:17,400"
+			},
+			"offsets": {
+				"from": 134040,
+				"to": 137400
+			},
+			"text": " I had to remember this this morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,400",
+				"to": "00:02:21,080"
+			},
+			"offsets": {
+				"from": 137400,
+				"to": 141080
+			},
+			"text": " After copying the 12 word C phrase to a safe spot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,080",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 141080,
+				"to": 143160
+			},
+			"text": " we now head over to token factory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:28,240"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 148240
+			},
+			"text": " which is a DAP that generates your own tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,240",
+				"to": "00:02:31,040"
+			},
+			"offsets": {
+				"from": 148240,
+				"to": 151040
+			},
+			"text": " We go through, we fill it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,040",
+				"to": "00:02:32,280"
+			},
+			"offsets": {
+				"from": 151040,
+				"to": 152280
+			},
+			"text": " We hit Create Token."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,280",
+				"to": "00:02:35,280"
+			},
+			"offsets": {
+				"from": 152280,
+				"to": 155280
+			},
+			"text": " And our beautiful Metamask confirmation screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,280",
+				"to": "00:02:36,600"
+			},
+			"offsets": {
+				"from": 155280,
+				"to": 156600
+			},
+			"text": " will pop up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,600",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 156600,
+				"to": 158600
+			},
+			"text": " And you can either accept or reject it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:41,680"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 161680
+			},
+			"text": " Now, in the case that you don't have enough ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,680",
+				"to": "00:02:43,320"
+			},
+			"offsets": {
+				"from": 161680,
+				"to": 163320
+			},
+			"text": " a buy ether button will pop up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,320",
+				"to": "00:02:45,120"
+			},
+			"offsets": {
+				"from": 163320,
+				"to": 165120
+			},
+			"text": " And you have two options."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,120",
+				"to": "00:02:46,680"
+			},
+			"offsets": {
+				"from": 165120,
+				"to": 166680
+			},
+			"text": " If you're in the US, you have Coinbase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,680",
+				"to": "00:02:48,840"
+			},
+			"offsets": {
+				"from": 166680,
+				"to": 168840
+			},
+			"text": " or you have Shapeshift."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,840",
+				"to": "00:02:49,680"
+			},
+			"offsets": {
+				"from": 168840,
+				"to": 169680
+			},
+			"text": " Very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,680",
+				"to": "00:02:52,320"
+			},
+			"offsets": {
+				"from": 169680,
+				"to": 172320
+			},
+			"text": " Just enter your email in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,320",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 172320,
+				"to": 174000
+			},
+			"text": " Confirm your email."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:55,040"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 175040
+			},
+			"text": " Enter your phone number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,040",
+				"to": "00:02:56,520"
+			},
+			"offsets": {
+				"from": 175040,
+				"to": 176520
+			},
+			"text": " Confirm phone number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,520",
+				"to": "00:03:00,240"
+			},
+			"offsets": {
+				"from": 176520,
+				"to": 180240
+			},
+			"text": " And then enter your credit card information."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,240",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 180240,
+				"to": 184000
+			},
+			"text": " This has a $5 a day limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,760"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187760
+			},
+			"text": " Very-- goes straight to your account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,760",
+				"to": "00:03:10,560"
+			},
+			"offsets": {
+				"from": 187760,
+				"to": 190560
+			},
+			"text": " Unfortunately, when you get there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,560",
+				"to": "00:03:12,520"
+			},
+			"offsets": {
+				"from": 190560,
+				"to": 192520
+			},
+			"text": " you can accept and reject once you've gotten your ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,520",
+				"to": "00:03:13,880"
+			},
+			"offsets": {
+				"from": 192520,
+				"to": 193880
+			},
+			"text": " We'll hold the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,880",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 193880,
+				"to": 196600
+			},
+			"text": " And voila, you've created your token."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 200400
+			},
+			"text": " Unfortunately, though, if you are not in the US,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:22,120"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 202120
+			},
+			"text": " you don't have access to Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,120",
+				"to": "00:03:24,680"
+			},
+			"offsets": {
+				"from": 202120,
+				"to": 204680
+			},
+			"text": " So if you guys know any products or are"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,680",
+				"to": "00:03:28,520"
+			},
+			"offsets": {
+				"from": 204680,
+				"to": 208520
+			},
+			"text": " working on something that offers fiat to ETH, that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,520",
+				"to": "00:03:30,320"
+			},
+			"offsets": {
+				"from": 208520,
+				"to": 210320
+			},
+			"text": " be amazing, please come talk to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,320",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 210320,
+				"to": 212880
+			},
+			"text": " We would love to hear from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:36,040"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 216040
+			},
+			"text": " Our status right now is public beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,040",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 216040,
+				"to": 219640
+			},
+			"text": " We have done 44 releases since March."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:41,160"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 221160
+			},
+			"text": " We have weekly updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,160",
+				"to": "00:03:44,120"
+			},
+			"offsets": {
+				"from": 221160,
+				"to": 224120
+			},
+			"text": " We have over 2,000 users and 14 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,120",
+				"to": "00:03:49,240"
+			},
+			"offsets": {
+				"from": 224120,
+				"to": 229240
+			},
+			"text": " RP receive requests per day thanks to Infira."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,240",
+				"to": "00:03:53,200"
+			},
+			"offsets": {
+				"from": 229240,
+				"to": 233200
+			},
+			"text": " We are Chrome Live, Opera Edge and Firefox."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,200",
+				"to": "00:03:54,600"
+			},
+			"offsets": {
+				"from": 233200,
+				"to": 234600
+			},
+			"text": " We are pending and ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,600",
+				"to": "00:03:56,920"
+			},
+			"offsets": {
+				"from": 234600,
+				"to": 236920
+			},
+			"text": " We're just going through the process of getting it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,920",
+				"to": "00:04:02,200"
+			},
+			"offsets": {
+				"from": 236920,
+				"to": 242200
+			},
+			"text": " into the extension store."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,200",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 242200,
+				"to": 244560
+			},
+			"text": " Unfortunately, we won't really be pursuing Safari."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:06,720"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 246720
+			},
+			"text": " They don't follow the extension standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,720",
+				"to": "00:04:09,880"
+			},
+			"offsets": {
+				"from": 246720,
+				"to": 249880
+			},
+			"text": " And as far as mobile goes, it's hard to get--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,880",
+				"to": "00:04:14,680"
+			},
+			"offsets": {
+				"from": 249880,
+				"to": 254680
+			},
+			"text": " we really don't have any mobile browsers that support"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,680",
+				"to": "00:04:16,320"
+			},
+			"offsets": {
+				"from": 254680,
+				"to": 256320
+			},
+			"text": " extensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,320",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 256320,
+				"to": 257800
+			},
+			"text": " And now to talk about how it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:19,440"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 259440
+			},
+			"text": " I'd like to pass it off to Aaron."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,440",
+				"to": "00:04:22,440"
+			},
+			"offsets": {
+				"from": 259440,
+				"to": 262440
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,440",
+				"to": "00:04:23,200"
+			},
+			"offsets": {
+				"from": 262440,
+				"to": 263200
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,200",
+				"to": "00:04:25,280"
+			},
+			"offsets": {
+				"from": 263200,
+				"to": 265280
+			},
+			"text": " Hello, hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,280",
+				"to": "00:04:25,600"
+			},
+			"offsets": {
+				"from": 265280,
+				"to": 265600
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,600",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 265600,
+				"to": 269840
+			},
+			"text": " So Minimask, how does it do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:32,360"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 272360
+			},
+			"text": " So yeah, you want an Ethereum in your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,360",
+				"to": "00:04:34,160"
+			},
+			"offsets": {
+				"from": 272360,
+				"to": 274160
+			},
+			"text": " So just taking Ethereum client and throwing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,160",
+				"to": "00:04:36,360"
+			},
+			"offsets": {
+				"from": 274160,
+				"to": 276360
+			},
+			"text": " in an extension, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,360",
+				"to": "00:04:37,600"
+			},
+			"offsets": {
+				"from": 276360,
+				"to": 277600
+			},
+			"text": " Unfortunately, that won't quite work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,600",
+				"to": "00:04:39,080"
+			},
+			"offsets": {
+				"from": 277600,
+				"to": 279080
+			},
+			"text": " You're blocked on networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,080",
+				"to": "00:04:41,280"
+			},
+			"offsets": {
+				"from": 279080,
+				"to": 281280
+			},
+			"text": " The networking uses TCP, UDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,280",
+				"to": "00:04:43,440"
+			},
+			"offsets": {
+				"from": 281280,
+				"to": 283440
+			},
+			"text": " You don't have access to that in the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,440",
+				"to": "00:04:45,880"
+			},
+			"offsets": {
+				"from": 283440,
+				"to": 285880
+			},
+			"text": " even in extensions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,880",
+				"to": "00:04:47,320"
+			},
+			"offsets": {
+				"from": 285880,
+				"to": 287320
+			},
+			"text": " So what are you going to do instead?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,320",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 287320,
+				"to": 287880
+			},
+			"text": " Oh, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:50,680"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 290680
+			},
+			"text": " Also, for the kind of adoption flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,680",
+				"to": "00:04:53,240"
+			},
+			"offsets": {
+				"from": 290680,
+				"to": 293240
+			},
+			"text": " we're looking for, the mandatory sync time"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,240",
+				"to": "00:04:54,720"
+			},
+			"offsets": {
+				"from": 293240,
+				"to": 294720
+			},
+			"text": " is kind of a non-starter."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,720",
+				"to": "00:04:59,040"
+			},
+			"offsets": {
+				"from": 294720,
+				"to": 299040
+			},
+			"text": " I mean, the like client protocol has improved that significantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,040",
+				"to": "00:05:00,280"
+			},
+			"offsets": {
+				"from": 299040,
+				"to": 300280
+			},
+			"text": " But so what do we left with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,280",
+				"to": "00:05:02,280"
+			},
+			"offsets": {
+				"from": 300280,
+				"to": 302280
+			},
+			"text": " We can do RPC against the trusted node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,280",
+				"to": "00:05:03,760"
+			},
+			"offsets": {
+				"from": 302280,
+				"to": 303760
+			},
+			"text": " where we'll run the nodes for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,760",
+				"to": "00:05:06,480"
+			},
+			"offsets": {
+				"from": 303760,
+				"to": 306480
+			},
+			"text": " And so you have the zero sync time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,480",
+				"to": "00:05:08,080"
+			},
+			"offsets": {
+				"from": 306480,
+				"to": 308080
+			},
+			"text": " What do you do for ID management?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,080",
+				"to": "00:05:09,640"
+			},
+			"offsets": {
+				"from": 308080,
+				"to": 309640
+			},
+			"text": " We do RPC interceptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,640",
+				"to": "00:05:11,320"
+			},
+			"offsets": {
+				"from": 309640,
+				"to": 311320
+			},
+			"text": " So anything like send transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,320",
+				"to": "00:05:15,240"
+			},
+			"offsets": {
+				"from": 311320,
+				"to": 315240
+			},
+			"text": " or signing a message that involves usage of private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,240",
+				"to": "00:05:19,400"
+			},
+			"offsets": {
+				"from": 315240,
+				"to": 319400
+			},
+			"text": " We intercept that, sign the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,400",
+				"to": "00:05:23,520"
+			},
+			"offsets": {
+				"from": 319400,
+				"to": 323520
+			},
+			"text": " and pass that on as a raw transaction to the trusted endpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,520",
+				"to": "00:05:26,240"
+			},
+			"offsets": {
+				"from": 323520,
+				"to": 326240
+			},
+			"text": " So here's a little chart of how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,240",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 326240,
+				"to": 327600
+			},
+			"text": " You have the user at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:32,080"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 332080
+			},
+			"text": " They're looking at the DAP in the browser and the Minimask UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,080",
+				"to": "00:05:35,560"
+			},
+			"offsets": {
+				"from": 332080,
+				"to": 335560
+			},
+			"text": " The DAP has the UI code in it, as well as the web 3"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,560",
+				"to": "00:05:38,520"
+			},
+			"offsets": {
+				"from": 335560,
+				"to": 338520
+			},
+			"text": " injected by Minimask, much like you'd see in Mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,520",
+				"to": "00:05:42,480"
+			},
+			"offsets": {
+				"from": 338520,
+				"to": 342480
+			},
+			"text": " The web 3 generates RPC requests that are forwarded"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,480",
+				"to": "00:05:44,760"
+			},
+			"offsets": {
+				"from": 342480,
+				"to": 344760
+			},
+			"text": " onto the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,760",
+				"to": "00:05:46,120"
+			},
+			"offsets": {
+				"from": 344760,
+				"to": 346120
+			},
+			"text": " This goes to the provider engine, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,120",
+				"to": "00:05:51,240"
+			},
+			"offsets": {
+				"from": 346120,
+				"to": 351240
+			},
+			"text": " I'll explain in a second, and onwards onto the trusted RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,240",
+				"to": "00:05:54,840"
+			},
+			"offsets": {
+				"from": 351240,
+				"to": 354840
+			},
+			"text": " So the provider engine is a tool for making your own web 3"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,840",
+				"to": "00:05:55,720"
+			},
+			"offsets": {
+				"from": 354840,
+				"to": 355720
+			},
+			"text": " provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,720",
+				"to": "00:05:58,920"
+			},
+			"offsets": {
+				"from": 355720,
+				"to": 358920
+			},
+			"text": " It's basically a stack of RPC handling middleware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,920",
+				"to": "00:06:00,240"
+			},
+			"offsets": {
+				"from": 358920,
+				"to": 360240
+			},
+			"text": " It might look something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,240",
+				"to": "00:06:01,120"
+			},
+			"offsets": {
+				"from": 360240,
+				"to": 361120
+			},
+			"text": " You have a cache layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,120",
+				"to": "00:06:03,680"
+			},
+			"offsets": {
+				"from": 361120,
+				"to": 363680
+			},
+			"text": " For example, if you're asking for the balance of an account"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,680",
+				"to": "00:06:05,520"
+			},
+			"offsets": {
+				"from": 363680,
+				"to": 365520
+			},
+			"text": " twice in the same block, it's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,520",
+				"to": "00:06:06,480"
+			},
+			"offsets": {
+				"from": 365520,
+				"to": 366480
+			},
+			"text": " it's going to be the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,480",
+				"to": "00:06:08,400"
+			},
+			"offsets": {
+				"from": 366480,
+				"to": 368400
+			},
+			"text": " You don't need to hit the network for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,400",
+				"to": "00:06:10,600"
+			},
+			"offsets": {
+				"from": 368400,
+				"to": 370600
+			},
+			"text": " Then you've got your ID management."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,600",
+				"to": "00:06:12,320"
+			},
+			"offsets": {
+				"from": 370600,
+				"to": 372320
+			},
+			"text": " That's where your private keys are."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,320",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 372320,
+				"to": 374000
+			},
+			"text": " And then the rest of the data lookups"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:17,880"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 377880
+			},
+			"text": " fall back to the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,880",
+				"to": "00:06:20,320"
+			},
+			"offsets": {
+				"from": 377880,
+				"to": 380320
+			},
+			"text": " A node on filters and load balancers filters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,320",
+				"to": "00:06:22,480"
+			},
+			"offsets": {
+				"from": 380320,
+				"to": 382480
+			},
+			"text": " you install them, and then you check them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,480",
+				"to": "00:06:23,760"
+			},
+			"offsets": {
+				"from": 382480,
+				"to": 383760
+			},
+			"text": " You pull against them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,760",
+				"to": "00:06:26,200"
+			},
+			"offsets": {
+				"from": 383760,
+				"to": 386200
+			},
+			"text": " As soon as you start using a load balancer like we do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,200",
+				"to": "00:06:27,680"
+			},
+			"offsets": {
+				"from": 386200,
+				"to": 387680
+			},
+			"text": " where we have a bunch of geth nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,680",
+				"to": "00:06:29,280"
+			},
+			"offsets": {
+				"from": 387680,
+				"to": 389280
+			},
+			"text": " you'll end up installing on one machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,280",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 389280,
+				"to": 390520
+			},
+			"text": " and then checking on another."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:31,840"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 391840
+			},
+			"text": " But this turns out to be something that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,840",
+				"to": "00:06:38,280"
+			},
+			"offsets": {
+				"from": 391840,
+				"to": 398280
+			},
+			"text": " pretty easy to solve in the provider engine level."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,280",
+				"to": "00:06:41,200"
+			},
+			"offsets": {
+				"from": 398280,
+				"to": 401200
+			},
+			"text": " So MetaMask has a bit of a different trust model"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,200",
+				"to": "00:06:43,480"
+			},
+			"offsets": {
+				"from": 401200,
+				"to": 403480
+			},
+			"text": " than, say, Mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,480",
+				"to": "00:06:46,360"
+			},
+			"offsets": {
+				"from": 403480,
+				"to": 406360
+			},
+			"text": " Because we provide out of the box by default"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,360",
+				"to": "00:06:51,760"
+			},
+			"offsets": {
+				"from": 406360,
+				"to": 411760
+			},
+			"text": " these trusted nodes, the trust model is different."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,760",
+				"to": "00:06:54,600"
+			},
+			"offsets": {
+				"from": 411760,
+				"to": 414600
+			},
+			"text": " But we could add optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,600",
+				"to": "00:06:57,400"
+			},
+			"offsets": {
+				"from": 414600,
+				"to": 417400
+			},
+			"text": " New features quite easily using custom API."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,400",
+				"to": "00:07:00,640"
+			},
+			"offsets": {
+				"from": 417400,
+				"to": 420640
+			},
+			"text": " But we want you to be able to switch over"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,640",
+				"to": "00:07:03,400"
+			},
+			"offsets": {
+				"from": 420640,
+				"to": 423400
+			},
+			"text": " to your own local node at any time, if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,400",
+				"to": "00:07:10,040"
+			},
+			"offsets": {
+				"from": 423400,
+				"to": 430040
+			},
+			"text": " So we use 100% RPC to maintain that standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,040",
+				"to": "00:07:11,640"
+			},
+			"offsets": {
+				"from": 430040,
+				"to": 431640
+			},
+			"text": " Again, if we use custom API, you'd"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,640",
+				"to": "00:07:14,040"
+			},
+			"offsets": {
+				"from": 431640,
+				"to": 434040
+			},
+			"text": " kind of be locked into our MetaMask servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,040",
+				"to": "00:07:18,960"
+			},
+			"offsets": {
+				"from": 434040,
+				"to": 438960
+			},
+			"text": " And we think the lock-in sort of devalues the product."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,960",
+				"to": "00:07:20,880"
+			},
+			"offsets": {
+				"from": 438960,
+				"to": 440880
+			},
+			"text": " And now Dan's going to talk about the lessons"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,880",
+				"to": "00:07:24,440"
+			},
+			"offsets": {
+				"from": 440880,
+				"to": 444440
+			},
+			"text": " from working with DAP developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,440",
+				"to": "00:07:25,040"
+			},
+			"offsets": {
+				"from": 444440,
+				"to": 445040
+			},
+			"text": " Thanks, there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,040",
+				"to": "00:07:28,080"
+			},
+			"offsets": {
+				"from": 445040,
+				"to": 448080
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,080",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 448080,
+				"to": 449000
+			},
+			"text": " Hey, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:32,800"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 452800
+			},
+			"text": " So since we make a product that injects web3 into a browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,800",
+				"to": "00:07:35,440"
+			},
+			"offsets": {
+				"from": 452800,
+				"to": 455440
+			},
+			"text": " we get to talk to web developers pretty much all day."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,440",
+				"to": "00:07:37,080"
+			},
+			"offsets": {
+				"from": 455440,
+				"to": 457080
+			},
+			"text": " And that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,080",
+				"to": "00:07:39,040"
+			},
+			"offsets": {
+				"from": 457080,
+				"to": 459040
+			},
+			"text": " Not just web developers, web DAP developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,040",
+				"to": "00:07:40,960"
+			},
+			"offsets": {
+				"from": 459040,
+				"to": 460960
+			},
+			"text": " And so we hear cool projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,960",
+				"to": "00:07:44,920"
+			},
+			"offsets": {
+				"from": 460960,
+				"to": 464920
+			},
+			"text": " And that makes the job very inspiring and a lot of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,920",
+				"to": "00:07:50,200"
+			},
+			"offsets": {
+				"from": 464920,
+				"to": 470200
+			},
+			"text": " And also, we end up being kind of the front guard of questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,200",
+				"to": "00:07:53,120"
+			},
+			"offsets": {
+				"from": 470200,
+				"to": 473120
+			},
+			"text": " and frustrations and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,120",
+				"to": "00:07:55,320"
+			},
+			"offsets": {
+				"from": 473120,
+				"to": 475320
+			},
+			"text": " So I'm going to talk a little bit about the lessons"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,320",
+				"to": "00:07:57,520"
+			},
+			"offsets": {
+				"from": 475320,
+				"to": 477520
+			},
+			"text": " and things that we've learned about the expectations"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,520",
+				"to": "00:08:00,160"
+			},
+			"offsets": {
+				"from": 477520,
+				"to": 480160
+			},
+			"text": " of a web developer in the context of writing Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,160",
+				"to": "00:08:01,720"
+			},
+			"offsets": {
+				"from": 480160,
+				"to": 481720
+			},
+			"text": " web apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,720",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 481720,
+				"to": 484280
+			},
+			"text": " So web3 right now, it's your portal to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:05,240"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 485240
+			},
+			"text": " So it's so cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,240",
+				"to": "00:08:08,160"
+			},
+			"offsets": {
+				"from": 485240,
+				"to": 488160
+			},
+			"text": " But right now, it has a very constrictive API surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,160",
+				"to": "00:08:13,720"
+			},
+			"offsets": {
+				"from": 488160,
+				"to": 493720
+			},
+			"text": " So we want to find ways to make that do what we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,720",
+				"to": "00:08:16,120"
+			},
+			"offsets": {
+				"from": 493720,
+				"to": 496120
+			},
+			"text": " One way that it's kind of opinionated right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,120",
+				"to": "00:08:19,440"
+			},
+			"offsets": {
+				"from": 496120,
+				"to": 499440
+			},
+			"text": " and it may not reflect the truth of a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,440",
+				"to": "00:08:22,760"
+			},
+			"offsets": {
+				"from": 499440,
+				"to": 502760
+			},
+			"text": " is that it kind of has a single callback nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,760",
+				"to": "00:08:24,040"
+			},
+			"offsets": {
+				"from": 502760,
+				"to": 504040
+			},
+			"text": " We've got callbacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,040",
+				"to": "00:08:26,920"
+			},
+			"offsets": {
+				"from": 504040,
+				"to": 506920
+			},
+			"text": " We've got putting to wrap things and promises."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,920",
+				"to": "00:08:29,920"
+			},
+			"offsets": {
+				"from": 506920,
+				"to": 509920
+			},
+			"text": " But these paradigms that work well in web development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,920",
+				"to": "00:08:32,080"
+			},
+			"offsets": {
+				"from": 509920,
+				"to": 512080
+			},
+			"text": " where there's a single resolution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,080",
+				"to": "00:08:36,440"
+			},
+			"offsets": {
+				"from": 512080,
+				"to": 516440
+			},
+			"text": " aren't completely representative of the statistical certainty"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,440",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 516440,
+				"to": 520120
+			},
+			"text": " of a blockchain, where you might have a single confirmation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:42,320"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 522320
+			},
+			"text": " But you don't know how many blocks forward it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,320",
+				"to": "00:08:44,560"
+			},
+			"offsets": {
+				"from": 522320,
+				"to": 524560
+			},
+			"text": " or how many additional confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,560",
+				"to": "00:08:45,920"
+			},
+			"offsets": {
+				"from": 524560,
+				"to": 525920
+			},
+			"text": " There's a lot more--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,920",
+				"to": "00:08:48,320"
+			},
+			"offsets": {
+				"from": 525920,
+				"to": 528320
+			},
+			"text": " there's kind of a gradual trust process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,320",
+				"to": "00:08:50,320"
+			},
+			"offsets": {
+				"from": 528320,
+				"to": 530320
+			},
+			"text": " So yeah, if you want one callback,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,320",
+				"to": "00:08:51,320"
+			},
+			"offsets": {
+				"from": 530320,
+				"to": 531320
+			},
+			"text": " you're kind of trusting it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,320",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 531320,
+				"to": 533320
+			},
+			"text": " But what else could that look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:54,960"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 534960
+			},
+			"text": " Well, coming from JavaScript and Node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,960",
+				"to": "00:08:57,200"
+			},
+			"offsets": {
+				"from": 534960,
+				"to": 537200
+			},
+			"text": " sometimes you might want an event listener."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,200",
+				"to": "00:08:59,480"
+			},
+			"offsets": {
+				"from": 537200,
+				"to": 539480
+			},
+			"text": " So this is a kind of suggestion."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,480",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 539480,
+				"to": 542240
+			},
+			"text": " This could be done as a layer on top of web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:03,680"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 543680
+			},
+			"text": " But it could be optimized much better"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,680",
+				"to": "00:09:07,320"
+			},
+			"offsets": {
+				"from": 543680,
+				"to": 547320
+			},
+			"text": " if it was implemented at the RPC layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,320",
+				"to": "00:09:09,640"
+			},
+			"offsets": {
+				"from": 547320,
+				"to": 549640
+			},
+			"text": " So in this case, you might get an additional callback."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,640",
+				"to": "00:09:11,320"
+			},
+			"offsets": {
+				"from": 549640,
+				"to": 551320
+			},
+			"text": " Whenever there's an additional confirmation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,320",
+				"to": "00:09:12,920"
+			},
+			"offsets": {
+				"from": 551320,
+				"to": 552920
+			},
+			"text": " or whenever there's an additional block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,920",
+				"to": "00:09:14,480"
+			},
+			"offsets": {
+				"from": 552920,
+				"to": 554480
+			},
+			"text": " or maybe there could be a callback"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,480",
+				"to": "00:09:15,880"
+			},
+			"offsets": {
+				"from": 554480,
+				"to": 555880
+			},
+			"text": " when there's a fork in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,880",
+				"to": "00:09:17,680"
+			},
+			"offsets": {
+				"from": 555880,
+				"to": 557680
+			},
+			"text": " Because right now, the RPC doesn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,680",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 557680,
+				"to": 561120
+			},
+			"text": " give you any indication when there's a block fork, short"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:24,040"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 564040
+			},
+			"text": " of you querying the latest block and going back."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,040",
+				"to": "00:09:27,040"
+			},
+			"offsets": {
+				"from": 564040,
+				"to": 567040
+			},
+			"text": " Because you're querying by block number, not by hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,040",
+				"to": "00:09:31,560"
+			},
+			"offsets": {
+				"from": 567040,
+				"to": 571560
+			},
+			"text": " So for an RPC-trust-in client, like a web browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,560",
+				"to": "00:09:35,120"
+			},
+			"offsets": {
+				"from": 571560,
+				"to": 575120
+			},
+			"text": " you have to pound your server very hard just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,120",
+				"to": "00:09:36,880"
+			},
+			"offsets": {
+				"from": 575120,
+				"to": 576880
+			},
+			"text": " to answer these very basic questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,880",
+				"to": "00:09:38,560"
+			},
+			"offsets": {
+				"from": 576880,
+				"to": 578560
+			},
+			"text": " And these are things that the user interface should"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,560",
+				"to": "00:09:41,080"
+			},
+			"offsets": {
+				"from": 578560,
+				"to": 581080
+			},
+			"text": " reflect anyways."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,080",
+				"to": "00:09:43,920"
+			},
+			"offsets": {
+				"from": 581080,
+				"to": 583920
+			},
+			"text": " Also, web developers always want to just query the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,920",
+				"to": "00:09:45,960"
+			},
+			"offsets": {
+				"from": 583920,
+				"to": 585960
+			},
+			"text": " And some things are very simple questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,960",
+				"to": "00:09:47,920"
+			},
+			"offsets": {
+				"from": 585960,
+				"to": 587920
+			},
+			"text": " in relational databases, but end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,920",
+				"to": "00:09:50,480"
+			},
+			"offsets": {
+				"from": 587920,
+				"to": 590480
+			},
+			"text": " being very difficult on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,480",
+				"to": "00:09:52,680"
+			},
+			"offsets": {
+				"from": 590480,
+				"to": 592680
+			},
+			"text": " Consider the case of a decentralized Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,680",
+				"to": "00:09:54,480"
+			},
+			"offsets": {
+				"from": 592680,
+				"to": 594480
+			},
+			"text": " You just want the 50 latest tweets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,480",
+				"to": "00:09:56,880"
+			},
+			"offsets": {
+				"from": 594480,
+				"to": 596880
+			},
+			"text": " The current basic model is somebody basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,880",
+				"to": "00:10:00,200"
+			},
+			"offsets": {
+				"from": 596880,
+				"to": 600200
+			},
+			"text": " querying all the tweets in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,200",
+				"to": "00:10:02,480"
+			},
+			"offsets": {
+				"from": 600200,
+				"to": 602480
+			},
+			"text": " A lot of developers are coming in and they're saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,480",
+				"to": "00:10:04,320"
+			},
+			"offsets": {
+				"from": 602480,
+				"to": 604320
+			},
+			"text": " oh, the cheapest gas thing is logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,320",
+				"to": "00:10:06,400"
+			},
+			"offsets": {
+				"from": 604320,
+				"to": 606400
+			},
+			"text": " So I'm just going to use logs as my database."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,400",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 606400,
+				"to": 609320
+			},
+			"text": " And then the method is basically logs since the genesis block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:11,920"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 611920
+			},
+			"text": " And now the server gets every tweet of all time"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,920",
+				"to": "00:10:12,560"
+			},
+			"offsets": {
+				"from": 611920,
+				"to": 612560
+			},
+			"text": " and then sends it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,560",
+				"to": "00:10:14,160"
+			},
+			"offsets": {
+				"from": 612560,
+				"to": 614160
+			},
+			"text": " And it all gets loaded up in the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,160",
+				"to": "00:10:17,160"
+			},
+			"offsets": {
+				"from": 614160,
+				"to": 617160
+			},
+			"text": " which is the interface thread, which then does all the sorting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,160",
+				"to": "00:10:18,360"
+			},
+			"offsets": {
+				"from": 617160,
+				"to": 618360
+			},
+			"text": " It's impractical, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,360",
+				"to": "00:10:21,280"
+			},
+			"offsets": {
+				"from": 618360,
+				"to": 621280
+			},
+			"text": " So what are solutions to that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,280",
+				"to": "00:10:24,200"
+			},
+			"offsets": {
+				"from": 621280,
+				"to": 624200
+			},
+			"text": " One solution is to write your sorting logic in the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,200",
+				"to": "00:10:24,640"
+			},
+			"offsets": {
+				"from": 624200,
+				"to": 624640
+			},
+			"text": " layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,640",
+				"to": "00:10:29,560"
+			},
+			"offsets": {
+				"from": 624640,
+				"to": 629560
+			},
+			"text": " And so now it's kind of inflexible and it gets run on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,560",
+				"to": "00:10:31,640"
+			},
+			"offsets": {
+				"from": 629560,
+				"to": 631640
+			},
+			"text": " It's still one batch, but you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,640",
+				"to": "00:10:35,800"
+			},
+			"offsets": {
+				"from": 631640,
+				"to": 635800
+			},
+			"text": " write some kind of pagination logic maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,800",
+				"to": "00:10:37,680"
+			},
+			"offsets": {
+				"from": 635800,
+				"to": 637680
+			},
+			"text": " There's a cool EIP out there, 144,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,680",
+				"to": "00:10:41,640"
+			},
+			"offsets": {
+				"from": 637680,
+				"to": 641640
+			},
+			"text": " which would let you send some custom bytecode, some EVN byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,640",
+				"to": "00:10:43,520"
+			},
+			"offsets": {
+				"from": 641640,
+				"to": 643520
+			},
+			"text": " code up to the server that it would run."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,520",
+				"to": "00:10:46,320"
+			},
+			"offsets": {
+				"from": 643520,
+				"to": 646320
+			},
+			"text": " So you could actually request a custom result"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,320",
+				"to": "00:10:47,960"
+			},
+			"offsets": {
+				"from": 646320,
+				"to": 647960
+			},
+			"text": " for the state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,960",
+				"to": "00:10:49,080"
+			},
+			"offsets": {
+				"from": 647960,
+				"to": 649080
+			},
+			"text": " That's an interesting one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,080",
+				"to": "00:10:52,440"
+			},
+			"offsets": {
+				"from": 649080,
+				"to": 652440
+			},
+			"text": " I encourage you to check it out, throw in your two cents."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,440",
+				"to": "00:10:54,360"
+			},
+			"offsets": {
+				"from": 652440,
+				"to": 654360
+			},
+			"text": " Oh, there's also another idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,360",
+				"to": "00:10:56,840"
+			},
+			"offsets": {
+				"from": 654360,
+				"to": 656840
+			},
+			"text": " Like maybe there could be an additional method on the RPC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,840",
+				"to": "00:10:58,960"
+			},
+			"offsets": {
+				"from": 656840,
+				"to": 658960
+			},
+			"text": " like a SQL like query method."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,960",
+				"to": "00:11:01,280"
+			},
+			"offsets": {
+				"from": 658960,
+				"to": 661280
+			},
+			"text": " But this kind of requires indexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,280",
+				"to": "00:11:05,040"
+			},
+			"offsets": {
+				"from": 661280,
+				"to": 665040
+			},
+			"text": " So maybe we need, you know, incentivized indexes because,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,040",
+				"to": "00:11:07,640"
+			},
+			"offsets": {
+				"from": 665040,
+				"to": 667640
+			},
+			"text": " you know, logs aren't incentivized indexes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,640",
+				"to": "00:11:09,280"
+			},
+			"offsets": {
+				"from": 667640,
+				"to": 669280
+			},
+			"text": " Maybe they could be a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,280",
+				"to": "00:11:10,880"
+			},
+			"offsets": {
+				"from": 669280,
+				"to": 670880
+			},
+			"text": " Maybe we should have standards around those."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,880",
+				"to": "00:11:12,760"
+			},
+			"offsets": {
+				"from": 670880,
+				"to": 672760
+			},
+			"text": " Those could be helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,760",
+				"to": "00:11:15,640"
+			},
+			"offsets": {
+				"from": 672760,
+				"to": 675640
+			},
+			"text": " Sometimes people ask us, oh, why is this method not acting"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,640",
+				"to": "00:11:16,560"
+			},
+			"offsets": {
+				"from": 675640,
+				"to": 676560
+			},
+			"text": " like Geth?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,560",
+				"to": "00:11:19,600"
+			},
+			"offsets": {
+				"from": 676560,
+				"to": 679600
+			},
+			"text": " And it turns out that there isn't really a standard right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,600",
+				"to": "00:11:20,920"
+			},
+			"offsets": {
+				"from": 679600,
+				"to": 680920
+			},
+			"text": " We go to the wiki."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,920",
+				"to": "00:11:23,040"
+			},
+			"offsets": {
+				"from": 680920,
+				"to": 683040
+			},
+			"text": " And then if that doesn't do it, then sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,040",
+				"to": "00:11:25,120"
+			},
+			"offsets": {
+				"from": 683040,
+				"to": 685120
+			},
+			"text": " we have to go to the individual GitHub repos,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,120",
+				"to": "00:11:27,240"
+			},
+			"offsets": {
+				"from": 685120,
+				"to": 687240
+			},
+			"text": " or, oh, it turns out they were using parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,240",
+				"to": "00:11:29,320"
+			},
+			"offsets": {
+				"from": 687240,
+				"to": 689320
+			},
+			"text": " There are fine distinctions, and there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,320",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 689320,
+				"to": 691440
+			},
+			"text": " isn't a singular source of truth right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:34,040"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 694040
+			},
+			"text": " So I would just kind of like to take this opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,040",
+				"to": "00:11:37,640"
+			},
+			"offsets": {
+				"from": 694040,
+				"to": 697640
+			},
+			"text": " to say, hey, how about we develop a web3 standards body?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,640",
+				"to": "00:11:39,560"
+			},
+			"offsets": {
+				"from": 697640,
+				"to": 699560
+			},
+			"text": " Maybe we could be decentralized and cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,560",
+				"to": "00:11:41,120"
+			},
+			"offsets": {
+				"from": 699560,
+				"to": 701120
+			},
+			"text": " on a blockchain or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,120",
+				"to": "00:11:42,600"
+			},
+			"offsets": {
+				"from": 701120,
+				"to": 702600
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,600",
+				"to": "00:11:43,800"
+			},
+			"offsets": {
+				"from": 702600,
+				"to": 703800
+			},
+			"text": " Have votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,800",
+				"to": "00:11:47,600"
+			},
+			"offsets": {
+				"from": 703800,
+				"to": 707600
+			},
+			"text": " You know, have maybe signing key per implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,600",
+				"to": "00:11:49,920"
+			},
+			"offsets": {
+				"from": 707600,
+				"to": 709920
+			},
+			"text": " And they could say we definitely support this implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,920",
+				"to": "00:11:52,040"
+			},
+			"offsets": {
+				"from": 709920,
+				"to": 712040
+			},
+			"text": " And maybe there could be on-chain validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,040",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 712040,
+				"to": 712560
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:11:53,060"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 713060
+			},
+			"text": " Whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,060",
+				"to": "00:11:56,320"
+			},
+			"offsets": {
+				"from": 713060,
+				"to": 716320
+			},
+			"text": " I'm sure you guys have lots of great ideas about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,320",
+				"to": "00:12:02,280"
+			},
+			"offsets": {
+				"from": 716320,
+				"to": 722280
+			},
+			"text": " MDN is a great example of a standard documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,280",
+				"to": "00:12:04,520"
+			},
+			"offsets": {
+				"from": 722280,
+				"to": 724520
+			},
+			"text": " So that's the time I'm going to spend on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,520",
+				"to": "00:12:06,840"
+			},
+			"offsets": {
+				"from": 724520,
+				"to": 726840
+			},
+			"text": " Now to talk about the future of MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,840",
+				"to": "00:12:09,240"
+			},
+			"offsets": {
+				"from": 726840,
+				"to": 729240
+			},
+			"text": " Here's a cumavis."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,240",
+				"to": "00:12:10,080"
+			},
+			"offsets": {
+				"from": 729240,
+				"to": 730080
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,080",
+				"to": "00:12:12,400"
+			},
+			"offsets": {
+				"from": 730080,
+				"to": 732400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,400",
+				"to": "00:12:17,400"
+			},
+			"offsets": {
+				"from": 732400,
+				"to": 737400
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,400",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 737400,
+				"to": 738000
+			},
+			"text": " - Hello?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:19,960"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 739960
+			},
+			"text": " Oh, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,960",
+				"to": "00:12:23,960"
+			},
+			"offsets": {
+				"from": 739960,
+				"to": 743960
+			},
+			"text": " The future in space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,960",
+				"to": "00:12:25,600"
+			},
+			"offsets": {
+				"from": 743960,
+				"to": 745600
+			},
+			"text": " So one thing we've been asked for a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,600",
+				"to": "00:12:27,280"
+			},
+			"offsets": {
+				"from": 745600,
+				"to": 747280
+			},
+			"text": " is multiple account types."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,280",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747280,
+				"to": 751000
+			},
+			"text": " Right now, we just do the deterministic key chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:33,920"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 753920
+			},
+			"text": " And that's nice, really easy to back up and recover."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,920",
+				"to": "00:12:37,560"
+			},
+			"offsets": {
+				"from": 753920,
+				"to": 757560
+			},
+			"text": " But people want to use proxy contract identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,560",
+				"to": "00:12:39,520"
+			},
+			"offsets": {
+				"from": 757560,
+				"to": 759520
+			},
+			"text": " like those being developed by Uport."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,520",
+				"to": "00:12:40,840"
+			},
+			"offsets": {
+				"from": 759520,
+				"to": 760840
+			},
+			"text": " Maybe remote key stores."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,840",
+				"to": "00:12:43,480"
+			},
+			"offsets": {
+				"from": 760840,
+				"to": 763480
+			},
+			"text": " Like you have Coinbase hold your private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,480",
+				"to": "00:12:46,520"
+			},
+			"offsets": {
+				"from": 763480,
+				"to": 766520
+			},
+			"text": " and we use an API to get over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,520",
+				"to": "00:12:52,240"
+			},
+			"offsets": {
+				"from": 766520,
+				"to": 772240
+			},
+			"text": " That's in the near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,240",
+				"to": "00:12:54,760"
+			},
+			"offsets": {
+				"from": 772240,
+				"to": 774760
+			},
+			"text": " Also, there's some experiments coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,760",
+				"to": "00:12:57,520"
+			},
+			"offsets": {
+				"from": 774760,
+				"to": 777520
+			},
+			"text": " from the Ethereum JS community, like turning the browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,520",
+				"to": "00:13:01,680"
+			},
+			"offsets": {
+				"from": 777520,
+				"to": 781680
+			},
+			"text": " into a light client by having a separate web or TC-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,680",
+				"to": "00:13:06,680"
+			},
+			"offsets": {
+				"from": 781680,
+				"to": 786680
+			},
+			"text": " peer-to-peer network and some bridge nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,680",
+				"to": "00:13:08,040"
+			},
+			"offsets": {
+				"from": 786680,
+				"to": 788040
+			},
+			"text": " A little experiment we've been working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,040",
+				"to": "00:13:12,920"
+			},
+			"offsets": {
+				"from": 788040,
+				"to": 792920
+			},
+			"text": " is the Ethereum transaction visualizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,920",
+				"to": "00:13:14,320"
+			},
+			"offsets": {
+				"from": 792920,
+				"to": 794320
+			},
+			"text": " Yes, it looks a little something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,320",
+				"to": "00:13:16,360"
+			},
+			"offsets": {
+				"from": 794320,
+				"to": 796360
+			},
+			"text": " This is one of the DAO attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,360",
+				"to": "00:13:17,640"
+			},
+			"offsets": {
+				"from": 796360,
+				"to": 797640
+			},
+			"text": " And so when you play this one, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,640",
+				"to": "00:13:22,600"
+			},
+			"offsets": {
+				"from": 797640,
+				"to": 802600
+			},
+			"text": " can see it spiraling in this circle using that attack vector."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,600",
+				"to": "00:13:26,960"
+			},
+			"offsets": {
+				"from": 802600,
+				"to": 806960
+			},
+			"text": " And so my favorite project right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,960",
+				"to": "00:13:28,720"
+			},
+			"offsets": {
+				"from": 806960,
+				"to": 808720
+			},
+			"text": " is this little thing we're calling Mascara,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,720",
+				"to": "00:13:32,040"
+			},
+			"offsets": {
+				"from": 808720,
+				"to": 812040
+			},
+			"text": " and it's sort of a polyfill for MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,040",
+				"to": "00:13:33,720"
+			},
+			"offsets": {
+				"from": 812040,
+				"to": 813720
+			},
+			"text": " So if you have MetaMask, oh, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,720",
+				"to": "00:13:35,160"
+			},
+			"offsets": {
+				"from": 813720,
+				"to": 815160
+			},
+			"text": " So it's a little JavaScript file."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,160",
+				"to": "00:13:36,560"
+			},
+			"offsets": {
+				"from": 815160,
+				"to": 816560
+			},
+			"text": " You just drop in your DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,560",
+				"to": "00:13:41,840"
+			},
+			"offsets": {
+				"from": 816560,
+				"to": 821840
+			},
+			"text": " And if you're using Mists or MetaMask, it works fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,840",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 821840,
+				"to": 824000
+			},
+			"text": " And if your user doesn't have MetaMask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:45,880"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 825880
+			},
+			"text": " but you have Mascara installed, it'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,880",
+				"to": "00:13:48,320"
+			},
+			"offsets": {
+				"from": 825880,
+				"to": 828320
+			},
+			"text": " work just as if MetaMask was there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,320",
+				"to": "00:13:52,080"
+			},
+			"offsets": {
+				"from": 828320,
+				"to": 832080
+			},
+			"text": " You get a little pop-up with your identity management."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,080",
+				"to": "00:13:54,320"
+			},
+			"offsets": {
+				"from": 832080,
+				"to": 834320
+			},
+			"text": " The keys are stored in a separate context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,320",
+				"to": "00:13:55,960"
+			},
+			"offsets": {
+				"from": 834320,
+				"to": 835960
+			},
+			"text": " so the DAP can access them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,960",
+				"to": "00:14:00,800"
+			},
+			"offsets": {
+				"from": 835960,
+				"to": 840800
+			},
+			"text": " We still assume the DAP is a potentially evil actor."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,800",
+				"to": "00:14:04,840"
+			},
+			"offsets": {
+				"from": 840800,
+				"to": 844840
+			},
+			"text": " And likewise, you can any DAP that uses that polyfill"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,840",
+				"to": "00:14:08,320"
+			},
+			"offsets": {
+				"from": 844840,
+				"to": 848320
+			},
+			"text": " can have send transactions that thing and your accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,320",
+				"to": "00:14:11,160"
+			},
+			"offsets": {
+				"from": 848320,
+				"to": 851160
+			},
+			"text": " are already there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,160",
+				"to": "00:14:12,640"
+			},
+			"offsets": {
+				"from": 851160,
+				"to": 852640
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,640",
+				"to": "00:14:19,320"
+			},
+			"offsets": {
+				"from": 852640,
+				"to": 859320
+			},
+			"text": " Thank you, team."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,320",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 859320,
+				"to": 860320
+			},
+			"text": " MetaMask."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:22,920"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 862920
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,920",
+				"to": "00:14:25,500"
+			},
+			"offsets": {
+				"from": 862920,
+				"to": 865500
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,500",
+				"to": "00:14:27,740"
+			},
+			"offsets": {
+				"from": 865500,
+				"to": 867740
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

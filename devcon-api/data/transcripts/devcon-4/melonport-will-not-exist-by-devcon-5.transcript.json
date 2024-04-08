@@ -1,0 +1,3684 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6360
+			},
+			"text": " Hello everyone, my name is Jenna and I work with Melonport and I'm here today to tell"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,360",
+				"to": "00:00:10,040"
+			},
+			"offsets": {
+				"from": 6360,
+				"to": 10040
+			},
+			"text": " you that Melonport will not exist by Defcon 5."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,040",
+				"to": "00:00:14,640"
+			},
+			"offsets": {
+				"from": 10040,
+				"to": 14640
+			},
+			"text": " So I would like to start with a quick question to the audience, who knew already before that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,640",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14640,
+				"to": 19000
+			},
+			"text": " Melonport would not stick around for a couple more years?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,360"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22360
+			},
+			"text": " One, two, three, this is the Melonport team, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,360",
+				"to": "00:00:24,800"
+			},
+			"offsets": {
+				"from": 22360,
+				"to": 24800
+			},
+			"text": " So not so many."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,800",
+				"to": "00:00:32,360"
+			},
+			"offsets": {
+				"from": 24800,
+				"to": 32360
+			},
+			"text": " That's normal because Melonport is actually one of the first DEP protocol which is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,360",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 32360,
+				"to": 38000
+			},
+			"text": " to wind down the company that built it after two years of development and completely let"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:40,960"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 40960
+			},
+			"text": " go of the control of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,960",
+				"to": "00:00:48,840"
+			},
+			"offsets": {
+				"from": 40960,
+				"to": 48840
+			},
+			"text": " So really Melonport is a Swiss-based company that was mandated in February 2017 for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,840",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 48840,
+				"to": 54560
+			},
+			"text": " development of the Melon protocol and Melonport took the commitment to wind down the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:59,360"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 59360
+			},
+			"text": " company once the protocol would be ready to deploy it on the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,360",
+				"to": "00:01:04,840"
+			},
+			"offsets": {
+				"from": 59360,
+				"to": 64840
+			},
+			"text": " So in February 2019, which is two years later, in a couple of months from now, we are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,840",
+				"to": "00:01:11,600"
+			},
+			"offsets": {
+				"from": 64840,
+				"to": 71600
+			},
+			"text": " to deploy it to the mainnet, wind down the company and decentralize the governance and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,600",
+				"to": "00:01:13,960"
+			},
+			"offsets": {
+				"from": 71600,
+				"to": 73960
+			},
+			"text": " future maintenance of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,960",
+				"to": "00:01:19,760"
+			},
+			"offsets": {
+				"from": 73960,
+				"to": 79760
+			},
+			"text": " So really what this presentation is about is how can we get rid of Melonport?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,760",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 79760,
+				"to": 86560
+			},
+			"text": " Or in other words, how do we make it so that the Melon protocol can be self-sustainable"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 92760
+			},
+			"text": " and succeed without the existence of the company that initially built it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:35,200"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 95200
+			},
+			"text": " So this is threefold."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,200",
+				"to": "00:01:39,960"
+			},
+			"offsets": {
+				"from": 95200,
+				"to": 99960
+			},
+			"text": " The first part we are going to talk about how can we create a healthy ground for network"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,960",
+				"to": "00:01:41,360"
+			},
+			"offsets": {
+				"from": 99960,
+				"to": 101360
+			},
+			"text": " effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,360",
+				"to": "00:01:47,480"
+			},
+			"offsets": {
+				"from": 101360,
+				"to": 107480
+			},
+			"text": " Then we are going to see how do we provide the proper economic incentives for the participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,480",
+				"to": "00:01:53,440"
+			},
+			"offsets": {
+				"from": 107480,
+				"to": 113440
+			},
+			"text": " in the network and the third part is the governance and maintenance framework that we put in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,440",
+				"to": "00:01:57,520"
+			},
+			"offsets": {
+				"from": 113440,
+				"to": 117520
+			},
+			"text": " place to support the future of the Melon protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,520",
+				"to": "00:02:00,280"
+			},
+			"offsets": {
+				"from": 117520,
+				"to": 120280
+			},
+			"text": " So first, what is Melon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,280",
+				"to": "00:02:06,760"
+			},
+			"offsets": {
+				"from": 120280,
+				"to": 126760
+			},
+			"text": " I'm going to give a quick Melon 101 for the people not familiar with the Melon protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,760",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 126760,
+				"to": 131120
+			},
+			"text": " So Melon is an open source protocol for on-chain asset management."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:17,320"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 137320
+			},
+			"text": " It allows anyone to set up and manage a fund on the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,320",
+				"to": "00:02:23,080"
+			},
+			"offsets": {
+				"from": 137320,
+				"to": 143080
+			},
+			"text": " So technically what it is, it is a set of rules implementing the behavior of an investment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,080",
+				"to": "00:02:27,720"
+			},
+			"offsets": {
+				"from": 143080,
+				"to": 147720
+			},
+			"text": " fund as a set of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,720",
+				"to": "00:02:33,080"
+			},
+			"offsets": {
+				"from": 147720,
+				"to": 153080
+			},
+			"text": " So another way to understand what Melon is is to see how you would actually create a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,080",
+				"to": "00:02:35,080"
+			},
+			"offsets": {
+				"from": 153080,
+				"to": 155080
+			},
+			"text": " fund on our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,080",
+				"to": "00:02:36,480"
+			},
+			"offsets": {
+				"from": 155080,
+				"to": 156480
+			},
+			"text": " So it's very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,480",
+				"to": "00:02:38,480"
+			},
+			"offsets": {
+				"from": 156480,
+				"to": 158480
+			},
+			"text": " It takes a few seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,480",
+				"to": "00:02:43,120"
+			},
+			"offsets": {
+				"from": 158480,
+				"to": 163120
+			},
+			"text": " You go on the platform, give your fund a name, select the exchanges that you want your"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,120",
+				"to": "00:02:49,880"
+			},
+			"offsets": {
+				"from": 163120,
+				"to": 169880
+			},
+			"text": " fund to be allowed to trade with, then you are going to be able to define your fee structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,880",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 169880,
+				"to": 174160
+			},
+			"text": " so that is the management and performance fee are your funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:03:01,800"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 181800
+			},
+			"text": " So just as in the traditional world except that here this is encoded in the smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,800",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 181800,
+				"to": 187440
+			},
+			"text": " then you will also have the possibility to configure your risk management profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 194040
+			},
+			"text": " So those are pre-trade clearance rules that are going to be encoded in the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,040",
+				"to": "00:03:16,480"
+			},
+			"offsets": {
+				"from": 194040,
+				"to": 196480
+			},
+			"text": " and enforced by the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,480",
+				"to": "00:03:22,800"
+			},
+			"offsets": {
+				"from": 196480,
+				"to": 202800
+			},
+			"text": " So it can be maximum number of positions, it could be price tolerance, maximum concentration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,800",
+				"to": "00:03:27,520"
+			},
+			"offsets": {
+				"from": 202800,
+				"to": 207520
+			},
+			"text": " you could have, you could wait list assets, you could wait list assets if you want to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,520",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 207520,
+				"to": 212640
+			},
+			"text": " the guarantee to your investors that you are not going to trade anything dodgy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 219120
+			},
+			"text": " And then really you are going to have the overview of the rule set that you defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:44,320"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 224320
+			},
+			"text": " And as soon as you hit create funds, you are actually going to be deploying a fund to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,320",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 224320,
+				"to": 226240
+			},
+			"text": " Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 229600
+			},
+			"text": " So really on the blockchain, how does it look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:53,800"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 233800
+			},
+			"text": " You get what we call a technology regulated and operated funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,800",
+				"to": "00:03:57,160"
+			},
+			"offsets": {
+				"from": 233800,
+				"to": 237160
+			},
+			"text": " So it is a set of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,160",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 237160,
+				"to": 239760
+			},
+			"text": " And each contract is a component of the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 244560
+			},
+			"text": " So you have a component that takes care of the internal accounting and nav calculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:09,680"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 249680
+			},
+			"text": " You have a component that takes care of the fee calculation and distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,680",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 249680,
+				"to": 253000
+			},
+			"text": " You have a component that takes care of the trading, etc., etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:18,560"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 258560
+			},
+			"text": " So you as a fund manager on top, you control your funds and can make various interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,560",
+				"to": "00:04:22,720"
+			},
+			"offsets": {
+				"from": 258560,
+				"to": 262720
+			},
+			"text": " such as trading on behalf of your investors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,720",
+				"to": "00:04:28,120"
+			},
+			"offsets": {
+				"from": 262720,
+				"to": 268120
+			},
+			"text": " So you can have external investors on the left that can come in and directly invest in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,120",
+				"to": "00:04:32,760"
+			},
+			"offsets": {
+				"from": 268120,
+				"to": 272760
+			},
+			"text": " your fund by calling a function in the participation component."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,760",
+				"to": "00:04:39,120"
+			},
+			"offsets": {
+				"from": 272760,
+				"to": 279120
+			},
+			"text": " And the valuation of your fund is going to be calculated on chain using on chain prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,120",
+				"to": "00:04:43,160"
+			},
+			"offsets": {
+				"from": 279120,
+				"to": 283160
+			},
+			"text": " that we get from the cable network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,160",
+				"to": "00:04:47,440"
+			},
+			"offsets": {
+				"from": 283160,
+				"to": 287440
+			},
+			"text": " And then the other external interaction that you have are the decentralized exchanges that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,440",
+				"to": "00:04:49,120"
+			},
+			"offsets": {
+				"from": 287440,
+				"to": 289120
+			},
+			"text": " you can trade with."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,120",
+				"to": "00:04:56,760"
+			},
+			"offsets": {
+				"from": 289120,
+				"to": 296760
+			},
+			"text": " So right now we have integrated Oasis decks, zero X and cable and we have the S/VNX integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,760",
+				"to": "00:04:57,760"
+			},
+			"offsets": {
+				"from": 296760,
+				"to": 297760
+			},
+			"text": " coming up soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,760",
+				"to": "00:05:02,200"
+			},
+			"offsets": {
+				"from": 297760,
+				"to": 302200
+			},
+			"text": " So that is how a fund looks like on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,200",
+				"to": "00:05:07,800"
+			},
+			"offsets": {
+				"from": 302200,
+				"to": 307800
+			},
+			"text": " And what I think is really nice is that in the past two years we have seen an explosion"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,800",
+				"to": "00:05:10,880"
+			},
+			"offsets": {
+				"from": 307800,
+				"to": 310880
+			},
+			"text": " of open source finance protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,880",
+				"to": "00:05:18,480"
+			},
+			"offsets": {
+				"from": 310880,
+				"to": 318480
+			},
+			"text": " And Mellon comes nicely on top of that and nicely integrates and connects those different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,480",
+				"to": "00:05:19,480"
+			},
+			"offsets": {
+				"from": 318480,
+				"to": 319480
+			},
+			"text": " protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,480",
+				"to": "00:05:26,520"
+			},
+			"offsets": {
+				"from": 319480,
+				"to": 326520
+			},
+			"text": " So Mellon allows you to manage crypto assets, trade on decentralized exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,520",
+				"to": "00:05:33,760"
+			},
+			"offsets": {
+				"from": 326520,
+				"to": 333760
+			},
+			"text": " In the future we envision integration with credit, lending, on-chain, margin, derivatives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,760",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 333760,
+				"to": 337520
+			},
+			"text": " all those type of new protocols that we have seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:43,960"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 343960
+			},
+			"text": " And we have also people working on blockchain-based identity systems which is really important"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,960",
+				"to": "00:05:48,560"
+			},
+			"offsets": {
+				"from": 343960,
+				"to": 348560
+			},
+			"text": " if you want to be able to identify the investors in your fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,560",
+				"to": "00:05:51,200"
+			},
+			"offsets": {
+				"from": 348560,
+				"to": 351200
+			},
+			"text": " So that is for the Mellon 101."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,200",
+				"to": "00:05:54,640"
+			},
+			"offsets": {
+				"from": 351200,
+				"to": 354640
+			},
+			"text": " So now we can actually get into the subject of today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,640",
+				"to": "00:06:01,520"
+			},
+			"offsets": {
+				"from": 354640,
+				"to": 361520
+			},
+			"text": " So when we design a system that needs to be self-sustainable and decentralized, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,520",
+				"to": "00:06:06,040"
+			},
+			"offsets": {
+				"from": 361520,
+				"to": 366040
+			},
+			"text": " you really want to do is identify the different stakeholders that you have in your network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,040",
+				"to": "00:06:12,120"
+			},
+			"offsets": {
+				"from": 366040,
+				"to": 372120
+			},
+			"text": " And make sure that your model caters to the needs of each of your stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,120",
+				"to": "00:06:18,760"
+			},
+			"offsets": {
+				"from": 372120,
+				"to": 378760
+			},
+			"text": " So for in our case we have a couple of stakeholders and they are the token holders, the project"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,760",
+				"to": "00:06:22,240"
+			},
+			"offsets": {
+				"from": 378760,
+				"to": 382240
+			},
+			"text": " and developers who build on top of Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,240",
+				"to": "00:06:27,840"
+			},
+			"offsets": {
+				"from": 382240,
+				"to": 387840
+			},
+			"text": " We have the users and we have the maintainers, the people who are going to make decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,840",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 387840,
+				"to": 390520
+			},
+			"text": " in the future for the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:37,760"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 397760
+			},
+			"text": " So throughout this presentation we're going to see how we make sure that we cater to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,760",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 397760,
+				"to": 401000
+			},
+			"text": " needs of all of those stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,960"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405960
+			},
+			"text": " So first of all we want to be able to maximize the network effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,960",
+				"to": "00:06:52,800"
+			},
+			"offsets": {
+				"from": 405960,
+				"to": 412800
+			},
+			"text": " In the past couple of months we have seen more and more projects reaching out to us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,800",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 412800,
+				"to": 416600
+			},
+			"text": " projects and team wanting to build new things on top of Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 418000
+			},
+			"text": " And that is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,760"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422760
+			},
+			"text": " It doesn't really come as a surprise to us because asset management has a lot of use"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,760",
+				"to": "00:07:03,760"
+			},
+			"offsets": {
+				"from": 422760,
+				"to": 423760
+			},
+			"text": " cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,760",
+				"to": "00:07:10,600"
+			},
+			"offsets": {
+				"from": 423760,
+				"to": 430600
+			},
+			"text": " We are focusing on the hedge fund use case but you can have VC funds, pension funds, insurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,600",
+				"to": "00:07:16,600"
+			},
+			"offsets": {
+				"from": 430600,
+				"to": 436600
+			},
+			"text": " funds, we also have people working on the gamification of asset management."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,600",
+				"to": "00:07:22,520"
+			},
+			"offsets": {
+				"from": 436600,
+				"to": 442520
+			},
+			"text": " And it's really nice but the problem is that each of these projects needs to get funding"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,520",
+				"to": "00:07:28,760"
+			},
+			"offsets": {
+				"from": 442520,
+				"to": 448760
+			},
+			"text": " and what they plan to do rightfully so is to run another ICO to get funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,760",
+				"to": "00:07:33,320"
+			},
+			"offsets": {
+				"from": 448760,
+				"to": 453320
+			},
+			"text": " And what you get with that is that you get different projects sharing the same underlying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,320",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 453320,
+				"to": 460000
+			},
+			"text": " infrastructure but each of that project has a token, a token economy, a different governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:42,320"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 462320
+			},
+			"text": " system, a different maintenance system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,320",
+				"to": "00:07:49,600"
+			},
+			"offsets": {
+				"from": 462320,
+				"to": 469600
+			},
+			"text": " So you have one infrastructure but isolated sub-ecosystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,600",
+				"to": "00:07:56,480"
+			},
+			"offsets": {
+				"from": 469600,
+				"to": 476480
+			},
+			"text": " And that we believe is not great because we think isolation brings inefficiencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,480",
+				"to": "00:08:05,520"
+			},
+			"offsets": {
+				"from": 476480,
+				"to": 485520
+			},
+			"text": " So if we find a way to actually have synergies between those projects and to make it so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,520",
+				"to": "00:08:10,800"
+			},
+			"offsets": {
+				"from": 485520,
+				"to": 490800
+			},
+			"text": " they can share more than just the infrastructure, we believe that all of our ecosystem could"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,800",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490800,
+				"to": 494000
+			},
+			"text": " benefit from economies of scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 499480
+			},
+			"text": " So earlier this year we decided to open up the Mellon token to other teams and other"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:26,160"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 506160
+			},
+			"text": " projects in order to benefit from synergies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,160",
+				"to": "00:08:31,280"
+			},
+			"offsets": {
+				"from": 506160,
+				"to": 511280
+			},
+			"text": " So basically the Mellon token has a yearly inflation fee which is a fixed amount of token"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,280",
+				"to": "00:08:39,040"
+			},
+			"offsets": {
+				"from": 511280,
+				"to": 519040
+			},
+			"text": " that gets minted each year and this inflation pool is going to be used to fund different"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,040",
+				"to": "00:08:40,040"
+			},
+			"offsets": {
+				"from": 519040,
+				"to": 520040
+			},
+			"text": " things."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,040",
+				"to": "00:08:46,120"
+			},
+			"offsets": {
+				"from": 520040,
+				"to": 526120
+			},
+			"text": " So the first thing is compensating developers who complete MAPs which are Mellon improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,120",
+				"to": "00:08:50,040"
+			},
+			"offsets": {
+				"from": 526120,
+				"to": 530040
+			},
+			"text": " proposal inspired by the Ethereum EIPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,040",
+				"to": "00:08:54,040"
+			},
+			"offsets": {
+				"from": 530040,
+				"to": 534040
+			},
+			"text": " So if you're a developer and you see that there is this feature like yeah I think this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,040",
+				"to": "00:08:58,840"
+			},
+			"offsets": {
+				"from": 534040,
+				"to": 538840
+			},
+			"text": " is cool, I want to solve that problem or I want to make this integration, you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,840",
+				"to": "00:09:01,920"
+			},
+			"offsets": {
+				"from": 538840,
+				"to": 541920
+			},
+			"text": " it and get compensated in Mellon for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,920",
+				"to": "00:09:07,880"
+			},
+			"offsets": {
+				"from": 541920,
+				"to": 547880
+			},
+			"text": " The second thing is for a project who want to build on Mellon and who need to get funding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,880",
+				"to": "00:09:13,520"
+			},
+			"offsets": {
+				"from": 547880,
+				"to": 553520
+			},
+			"text": " instead of doing an ICO what they could do is make a funding request to the Mellon governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,520",
+				"to": "00:09:19,400"
+			},
+			"offsets": {
+				"from": 553520,
+				"to": 559400
+			},
+			"text": " system and if the governance system agrees that they could get their funding through"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,400",
+				"to": "00:09:22,440"
+			},
+			"offsets": {
+				"from": 559400,
+				"to": 562440
+			},
+			"text": " the Mellon inflation pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,440",
+				"to": "00:09:27,320"
+			},
+			"offsets": {
+				"from": 562440,
+				"to": 567320
+			},
+			"text": " And the third thing is a little bit more exotic I would say and maybe a little bit more forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,320",
+				"to": "00:09:33,760"
+			},
+			"offsets": {
+				"from": 567320,
+				"to": 573760
+			},
+			"text": " thinking, those are token swaps and token mergers, inspired by what happened very often"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,760",
+				"to": "00:09:37,240"
+			},
+			"offsets": {
+				"from": 573760,
+				"to": 577240
+			},
+			"text": " in the traditional investment banking world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,240",
+				"to": "00:09:41,840"
+			},
+			"offsets": {
+				"from": 577240,
+				"to": 581840
+			},
+			"text": " So in the case of the token swap it would be the case where you have a project that already"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,840",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 581840,
+				"to": 590200
+			},
+			"text": " has a token and we identify potential synergies between Mellon and that other project."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:56,640"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 596640
+			},
+			"text": " If that other project has a smaller market cap than Mellon what we could do provided that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,640",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 596640,
+				"to": 602800
+			},
+			"text": " both governance systems pre-agree to it, this project could burn all of their token and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 608720
+			},
+			"text": " in exchange they could get Mellon token and we kind of like join forces between the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:14,040"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 614040
+			},
+			"text": " project and create a stronger and bigger ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,040",
+				"to": "00:10:18,720"
+			},
+			"offsets": {
+				"from": 614040,
+				"to": 618720
+			},
+			"text": " And the last thing is the token merger request, so that is the case that you have another"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,720",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 618720,
+				"to": 624560
+			},
+			"text": " project that has another token but it's like a project of a similar size, similar market"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:25,560"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 625560
+			},
+			"text": " cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,560",
+				"to": "00:10:30,360"
+			},
+			"offsets": {
+				"from": 625560,
+				"to": 630360
+			},
+			"text": " So in this case this would not require anything from the inflation actually, it would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,360",
+				"to": "00:10:37,760"
+			},
+			"offsets": {
+				"from": 630360,
+				"to": 637760
+			},
+			"text": " require both projects to actually burn their tokens in order to create a new token that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,760",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637760,
+				"to": 642000
+			},
+			"text": " encompasses both economies and both communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:50,680"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 650680
+			},
+			"text": " So opening up the Mellon token allows us to benefit from synergies but also to align the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,680",
+				"to": "00:10:54,040"
+			},
+			"offsets": {
+				"from": 650680,
+				"to": 654040
+			},
+			"text": " interests of the participants across the networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,040",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 654040,
+				"to": 663160
+			},
+			"text": " So this part caters to the needs of the project and developers that build on top of Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:08,440"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 668440
+			},
+			"text": " So now that we have seen how to maximize network effects we actually compensate people with"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,440",
+				"to": "00:11:15,680"
+			},
+			"offsets": {
+				"from": 668440,
+				"to": 675680
+			},
+			"text": " Mellon tokens we need to make sure that we build in the right economic mechanism in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,680",
+				"to": "00:11:21,320"
+			},
+			"offsets": {
+				"from": 675680,
+				"to": 681320
+			},
+			"text": " token so that the token is actually something that is desirable from those developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,320",
+				"to": "00:11:26,880"
+			},
+			"offsets": {
+				"from": 681320,
+				"to": 686880
+			},
+			"text": " Today is providing proper economic incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,880",
+				"to": "00:11:30,400"
+			},
+			"offsets": {
+				"from": 686880,
+				"to": 690400
+			},
+			"text": " So this relates to the token economic design."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,400",
+				"to": "00:11:35,640"
+			},
+			"offsets": {
+				"from": 690400,
+				"to": 695640
+			},
+			"text": " So when we were working on that we really had three goals in mind that we wanted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,640",
+				"to": "00:11:36,640"
+			},
+			"offsets": {
+				"from": 695640,
+				"to": 696640
+			},
+			"text": " fulfill."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,640",
+				"to": "00:11:43,480"
+			},
+			"offsets": {
+				"from": 696640,
+				"to": 703480
+			},
+			"text": " So the first one was ensuring that the Mellon token would be desirable and would have integrity"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,480",
+				"to": "00:11:49,520"
+			},
+			"offsets": {
+				"from": 703480,
+				"to": 709520
+			},
+			"text": " in order to be able to provide proper economic incentives to the user and developer needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,520",
+				"to": "00:11:51,240"
+			},
+			"offsets": {
+				"from": 709520,
+				"to": 711240
+			},
+			"text": " of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,240",
+				"to": "00:11:57,200"
+			},
+			"offsets": {
+				"from": 711240,
+				"to": 717200
+			},
+			"text": " And last but not least we also wanted to avoid the pitfalls of the high velocity token model"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,200",
+				"to": "00:12:03,640"
+			},
+			"offsets": {
+				"from": 717200,
+				"to": 723640
+			},
+			"text": " which is a problem that has been written a lot about by different people such as Vitalik"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,640",
+				"to": "00:12:05,800"
+			},
+			"offsets": {
+				"from": 723640,
+				"to": 725800
+			},
+			"text": " or Chris Bronesky or others."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,800",
+				"to": "00:12:12,880"
+			},
+			"offsets": {
+				"from": 725800,
+				"to": 732880
+			},
+			"text": " We published a very long and detailed blog on that if you are interested on that part."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,880",
+				"to": "00:12:18,480"
+			},
+			"offsets": {
+				"from": 732880,
+				"to": 738480
+			},
+			"text": " So with these goals in mind our solution to the token economics is called the Mellon"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,480",
+				"to": "00:12:19,640"
+			},
+			"offsets": {
+				"from": 738480,
+				"to": 739640
+			},
+			"text": " and Jane."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,640",
+				"to": "00:12:24,040"
+			},
+			"offsets": {
+				"from": 739640,
+				"to": 744040
+			},
+			"text": " So let's take just a step back."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,040",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 744040,
+				"to": 750000
+			},
+			"text": " When you use when you interact with a smart contract on Ethereum you pay you pay gas to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:35,800"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 755800
+			},
+			"text": " the Ethereum network and that gas is calculated as the number of gas units that are consumed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,800",
+				"to": "00:12:42,760"
+			},
+			"offsets": {
+				"from": 755800,
+				"to": 762760
+			},
+			"text": " by the function that you're calling and that is multiplied by the Ethereum gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,760",
+				"to": "00:12:47,320"
+			},
+			"offsets": {
+				"from": 762760,
+				"to": 767320
+			},
+			"text": " So we came up with the idea that when you interact with Mellon smart contracts in addition"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,320",
+				"to": "00:12:52,680"
+			},
+			"offsets": {
+				"from": 767320,
+				"to": 772680
+			},
+			"text": " to paying gas to the Ethereum network you're also going to pay what we call the asset management"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,680",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 772680,
+				"to": 776000
+			},
+			"text": " gas and you're going to pay that to the Mellon network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:00,520"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 780520
+			},
+			"text": " So the way it's calculated is very similar to how it's done on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,520",
+				"to": "00:13:06,920"
+			},
+			"offsets": {
+				"from": 780520,
+				"to": 786920
+			},
+			"text": " So we take the same number of gas units that are consumed by the function on the EVM and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,920",
+				"to": "00:13:12,560"
+			},
+			"offsets": {
+				"from": 786920,
+				"to": 792560
+			},
+			"text": " instead of multiplying that by the Ethereum gas price we multiply it by the Mellon gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,560",
+				"to": "00:13:15,440"
+			},
+			"offsets": {
+				"from": 792560,
+				"to": 795440
+			},
+			"text": " price or the asset management gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,440",
+				"to": "00:13:17,960"
+			},
+			"offsets": {
+				"from": 795440,
+				"to": 797960
+			},
+			"text": " So how does it look in more details?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,960",
+				"to": "00:13:23,920"
+			},
+			"offsets": {
+				"from": 797960,
+				"to": 803920
+			},
+			"text": " So you're a user and you're about to use some Mellon smart contracts on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,920",
+				"to": "00:13:29,120"
+			},
+			"offsets": {
+				"from": 803920,
+				"to": 809120
+			},
+			"text": " So we impose that asset management gas on certain functions, not all of them because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,120",
+				"to": "00:13:36,280"
+			},
+			"offsets": {
+				"from": 809120,
+				"to": 816280
+			},
+			"text": " we want to say cheap, affordable and competitive compared to other alternatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,280",
+				"to": "00:13:42,320"
+			},
+			"offsets": {
+				"from": 816280,
+				"to": 822320
+			},
+			"text": " So on a few functions you're going to pay your gas to the Ethereum network as usual."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,320",
+				"to": "00:13:46,600"
+			},
+			"offsets": {
+				"from": 822320,
+				"to": 826600
+			},
+			"text": " And in addition to that you're also going to pay your asset management gas to the Mellon"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,600",
+				"to": "00:13:47,600"
+			},
+			"offsets": {
+				"from": 826600,
+				"to": 827600
+			},
+			"text": " network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,600",
+				"to": "00:13:51,720"
+			},
+			"offsets": {
+				"from": 827600,
+				"to": 831720
+			},
+			"text": " And instead of paying that gas, and this is really important here, instead of paying"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,720",
+				"to": "00:13:58,080"
+			},
+			"offsets": {
+				"from": 831720,
+				"to": 838080
+			},
+			"text": " that gas in Mellon you're going to pay that gas, the asset management gas in Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,080",
+				"to": "00:14:04,840"
+			},
+			"offsets": {
+				"from": 838080,
+				"to": 844840
+			},
+			"text": " That Ether is sent to the Mellon engine smart contract and that contract is very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,840",
+				"to": "00:14:06,800"
+			},
+			"offsets": {
+				"from": 844840,
+				"to": 846800
+			},
+			"text": " It only does two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,800",
+				"to": "00:14:12,200"
+			},
+			"offsets": {
+				"from": 846800,
+				"to": 852200
+			},
+			"text": " The first thing is that when it receives Ether from the user interaction it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,200",
+				"to": "00:14:16,520"
+			},
+			"offsets": {
+				"from": 852200,
+				"to": 856520
+			},
+			"text": " to sell this Ether and buy Mellon at a premium on the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,520",
+				"to": "00:14:21,800"
+			},
+			"offsets": {
+				"from": 856520,
+				"to": 861800
+			},
+			"text": " So it's basically a contract that is a uni-directional liquidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,800",
+				"to": "00:14:24,360"
+			},
+			"offsets": {
+				"from": 861800,
+				"to": 864360
+			},
+			"text": " It's a contract that is a market itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,360",
+				"to": "00:14:31,320"
+			},
+			"offsets": {
+				"from": 864360,
+				"to": 871320
+			},
+			"text": " So it's going to sell the ETH by Mellon at a premium and once it has Mellon in the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,320",
+				"to": "00:14:33,480"
+			},
+			"offsets": {
+				"from": 871320,
+				"to": 873480
+			},
+			"text": " it's just going to burn those Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:39,760"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 879760
+			},
+			"text": " So sending them to a probably inaccessible address, you know how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,760",
+				"to": "00:14:47,880"
+			},
+			"offsets": {
+				"from": 879760,
+				"to": 887880
+			},
+			"text": " So what we have here is that when the network is used absent inflation, the Mellon total"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,880",
+				"to": "00:14:52,280"
+			},
+			"offsets": {
+				"from": 887880,
+				"to": 892280
+			},
+			"text": " supply is going to be decreasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,280",
+				"to": "00:14:55,640"
+			},
+			"offsets": {
+				"from": 892280,
+				"to": 895640
+			},
+			"text": " So this mechanism gives us two very nice things."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,640",
+				"to": "00:15:01,920"
+			},
+			"offsets": {
+				"from": 895640,
+				"to": 901920
+			},
+			"text": " The first thing is we manage to reduce friction, inconvenience and costs on the user because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,920",
+				"to": "00:15:09,720"
+			},
+			"offsets": {
+				"from": 901920,
+				"to": 909720
+			},
+			"text": " instead of having to own Mellon and Ether when you use Mellon on Ethereum, you only need"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,720",
+				"to": "00:15:15,920"
+			},
+			"offsets": {
+				"from": 909720,
+				"to": 915920
+			},
+			"text": " it as a user to have Ether just as if you were using any smart contract in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,920",
+				"to": "00:15:22,160"
+			},
+			"offsets": {
+				"from": 915920,
+				"to": 922160
+			},
+			"text": " And the second thing and arguably much more important is that we manage to align the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,160",
+				"to": "00:15:25,240"
+			},
+			"offsets": {
+				"from": 922160,
+				"to": 925240
+			},
+			"text": " value with the usage of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,240",
+				"to": "00:15:30,240"
+			},
+			"offsets": {
+				"from": 925240,
+				"to": 930240
+			},
+			"text": " And we do that without having a high-velocity token model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,240",
+				"to": "00:15:32,840"
+			},
+			"offsets": {
+				"from": 930240,
+				"to": 932840
+			},
+			"text": " So that's really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,840",
+				"to": "00:15:38,560"
+			},
+			"offsets": {
+				"from": 932840,
+				"to": 938560
+			},
+			"text": " We think that we're the first DAP protocol to have managed to do something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,560",
+				"to": "00:15:44,320"
+			},
+			"offsets": {
+				"from": 938560,
+				"to": 944320
+			},
+			"text": " So we are very proud of our work there and I encourage anyone who is interested to read"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,320",
+				"to": "00:15:48,040"
+			},
+			"offsets": {
+				"from": 944320,
+				"to": 948040
+			},
+			"text": " the Mellon mix two piece that we wrote about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,040",
+				"to": "00:15:53,160"
+			},
+			"offsets": {
+				"from": 948040,
+				"to": 953160
+			},
+			"text": " So that part as you might have understood by now takes care of the token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,160",
+				"to": "00:15:59,120"
+			},
+			"offsets": {
+				"from": 953160,
+				"to": 959120
+			},
+			"text": " So it seems like the token holders are interested by the return on investment on the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,120",
+				"to": "00:16:06,320"
+			},
+			"offsets": {
+				"from": 959120,
+				"to": 966320
+			},
+			"text": " And if the network is successful, this mechanism should cater to the needs of the token holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,320",
+				"to": "00:16:09,880"
+			},
+			"offsets": {
+				"from": 966320,
+				"to": 969880
+			},
+			"text": " and please them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,880",
+				"to": "00:16:17,720"
+			},
+			"offsets": {
+				"from": 969880,
+				"to": 977720
+			},
+			"text": " So now that we've seen how to maximize network effects and to provide proper economic incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,720",
+				"to": "00:16:23,040"
+			},
+			"offsets": {
+				"from": 977720,
+				"to": 983040
+			},
+			"text": " the last part that we need to go through is the governance and maintenance system of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,040",
+				"to": "00:16:24,040"
+			},
+			"offsets": {
+				"from": 983040,
+				"to": 984040
+			},
+			"text": " Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,040",
+				"to": "00:16:31,200"
+			},
+			"offsets": {
+				"from": 984040,
+				"to": 991200
+			},
+			"text": " So when Mellon Port is going to disappear in February 2019, we need to have a way to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,200",
+				"to": "00:16:33,400"
+			},
+			"offsets": {
+				"from": 991200,
+				"to": 993400
+			},
+			"text": " decisions for the future of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,400",
+				"to": "00:16:36,520"
+			},
+			"offsets": {
+				"from": 993400,
+				"to": 996520
+			},
+			"text": " So that's what we're going to see now."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,520",
+				"to": "00:16:44,160"
+			},
+			"offsets": {
+				"from": 996520,
+				"to": 1004160
+			},
+			"text": " So first of all, when designing the system, we really ask ourselves, okay, why are we"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,160",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1004160,
+				"to": 1005160
+			},
+			"text": " doing that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:53,600"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1013600
+			},
+			"text": " Like, what are the goals that we want this governance model to complete, basically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,600",
+				"to": "00:16:55,720"
+			},
+			"offsets": {
+				"from": 1013600,
+				"to": 1015720
+			},
+			"text": " So those are three-fold as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,720",
+				"to": "00:17:00,360"
+			},
+			"offsets": {
+				"from": 1015720,
+				"to": 1020360
+			},
+			"text": " So the first one is that we want to preserve the integrity and security of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,360",
+				"to": "00:17:04,440"
+			},
+			"offsets": {
+				"from": 1020360,
+				"to": 1024440
+			},
+			"text": " This is extremely important when you're speaking about asset management."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,440",
+				"to": "00:17:09,360"
+			},
+			"offsets": {
+				"from": 1024440,
+				"to": 1029360
+			},
+			"text": " The second thing is that we want to maximize user adoption and protect the user as much"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,360",
+				"to": "00:17:11,400"
+			},
+			"offsets": {
+				"from": 1029360,
+				"to": 1031400
+			},
+			"text": " as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,400",
+				"to": "00:17:17,840"
+			},
+			"offsets": {
+				"from": 1031400,
+				"to": 1037840
+			},
+			"text": " And the third thing is that we want to foster innovation in order to make the network more"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,840",
+				"to": "00:17:20,360"
+			},
+			"offsets": {
+				"from": 1037840,
+				"to": 1040360
+			},
+			"text": " attractive."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,360",
+				"to": "00:17:23,440"
+			},
+			"offsets": {
+				"from": 1040360,
+				"to": 1043440
+			},
+			"text": " So how do we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,440",
+				"to": "00:17:29,360"
+			},
+			"offsets": {
+				"from": 1043440,
+				"to": 1049360
+			},
+			"text": " So when I talked about our different stakeholders in this space, we're going to talk about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,360",
+				"to": "00:17:30,800"
+			},
+			"offsets": {
+				"from": 1049360,
+				"to": 1050800
+			},
+			"text": " again now."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,800",
+				"to": "00:17:35,560"
+			},
+			"offsets": {
+				"from": 1050800,
+				"to": 1055560
+			},
+			"text": " So when you're building a governance model, I think that really what you want to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,560",
+				"to": "00:17:41,720"
+			},
+			"offsets": {
+				"from": 1055560,
+				"to": 1061720
+			},
+			"text": " identify what is the most vulnerable stakeholder group in your ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,720",
+				"to": "00:17:44,080"
+			},
+			"offsets": {
+				"from": 1061720,
+				"to": 1064080
+			},
+			"text": " And so that's how we worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,080",
+				"to": "00:17:47,320"
+			},
+			"offsets": {
+				"from": 1064080,
+				"to": 1067320
+			},
+			"text": " Our most vulnerable group are the users here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,320",
+				"to": "00:17:54,440"
+			},
+			"offsets": {
+				"from": 1067320,
+				"to": 1074440
+			},
+			"text": " So the users are the people who manage Mellon funds, so asset managers, and also the investors"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,440",
+				"to": "00:17:57,360"
+			},
+			"offsets": {
+				"from": 1074440,
+				"to": 1077360
+			},
+			"text": " who are invested in those Mellon funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,360",
+				"to": "00:18:02,600"
+			},
+			"offsets": {
+				"from": 1077360,
+				"to": 1082600
+			},
+			"text": " So from this assumption that the users are the most vulnerable, we worked out a model"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,600",
+				"to": "00:18:09,600"
+			},
+			"offsets": {
+				"from": 1082600,
+				"to": 1089600
+			},
+			"text": " that is user-centric, so we focused on protecting the user, but also making sure that their"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,600",
+				"to": "00:18:16,800"
+			},
+			"offsets": {
+				"from": 1089600,
+				"to": 1096800
+			},
+			"text": " voices are heard, and will be heard in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,800",
+				"to": "00:18:24,040"
+			},
+			"offsets": {
+				"from": 1096800,
+				"to": 1104040
+			},
+			"text": " And we also wanted to make sure that the users would be supported by technically skilled"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,040",
+				"to": "00:18:28,800"
+			},
+			"offsets": {
+				"from": 1104040,
+				"to": 1108800
+			},
+			"text": " people."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,800",
+				"to": "00:18:33,680"
+			},
+			"offsets": {
+				"from": 1108800,
+				"to": 1113680
+			},
+			"text": " So we come up with a user-centric and skill-based governance model."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,680",
+				"to": "00:18:35,760"
+			},
+			"offsets": {
+				"from": 1113680,
+				"to": 1115760
+			},
+			"text": " So how does that look?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,760",
+				"to": "00:18:39,960"
+			},
+			"offsets": {
+				"from": 1115760,
+				"to": 1119960
+			},
+			"text": " So I introduced you to the Mellon Council now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,960",
+				"to": "00:18:45,120"
+			},
+			"offsets": {
+				"from": 1119960,
+				"to": 1125120
+			},
+			"text": " So the Mellon Council is a body that is going to be responsible for the future development"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,120",
+				"to": "00:18:47,960"
+			},
+			"offsets": {
+				"from": 1125120,
+				"to": 1127960
+			},
+			"text": " and maintenance of the Mellon Protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,960",
+				"to": "00:18:50,240"
+			},
+			"offsets": {
+				"from": 1127960,
+				"to": 1130240
+			},
+			"text": " It is composed of two subgroups."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,240",
+				"to": "00:18:52,920"
+			},
+			"offsets": {
+				"from": 1130240,
+				"to": 1132920
+			},
+			"text": " The first one is the Mellon Technical Council."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,920",
+				"to": "00:18:58,720"
+			},
+			"offsets": {
+				"from": 1132920,
+				"to": 1138720
+			},
+			"text": " So this is a group of technically skilled people, or people who have expertise on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,720",
+				"to": "00:19:08,200"
+			},
+			"offsets": {
+				"from": 1138720,
+				"to": 1148200
+			},
+			"text": " Mellon Protocol or other finance-related protocols on Ethereum, or people who have contributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,200",
+				"to": "00:19:10,680"
+			},
+			"offsets": {
+				"from": 1148200,
+				"to": 1150680
+			},
+			"text": " to the Mellon code base in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,680",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1150680,
+				"to": 1156280
+			},
+			"text": " So this subgroup is going to be responsible for the technical parts of the decisions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:18,600"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1158600
+			},
+			"text": " we're going to have to make in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,600",
+				"to": "00:19:22,480"
+			},
+			"offsets": {
+				"from": 1158600,
+				"to": 1162480
+			},
+			"text": " The second subgroup is what we call the MEB representatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,480",
+				"to": "00:19:25,720"
+			},
+			"offsets": {
+				"from": 1162480,
+				"to": 1165720
+			},
+			"text": " So those are the Mellon Exposed Businesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,720",
+				"to": "00:19:33,320"
+			},
+			"offsets": {
+				"from": 1165720,
+				"to": 1173320
+			},
+			"text": " So this is a self-organized entity where you will have all of the users who can prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,320",
+				"to": "00:19:39,600"
+			},
+			"offsets": {
+				"from": 1173320,
+				"to": 1179600
+			},
+			"text": " that they are users of the network, either by proving that they have asset under management,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,600",
+				"to": "00:19:44,760"
+			},
+			"offsets": {
+				"from": 1179600,
+				"to": 1184760
+			},
+			"text": " subsequent asset under management on Mellon, or proving that they have used this amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,760",
+				"to": "00:19:48,800"
+			},
+			"offsets": {
+				"from": 1184760,
+				"to": 1188800
+			},
+			"text": " of asset management gas over the past year."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,800",
+				"to": "00:19:56,280"
+			},
+			"offsets": {
+				"from": 1188800,
+				"to": 1196280
+			},
+			"text": " So this group is going to be able to elect among themselves their representatives to sit"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,280",
+				"to": "00:20:00,560"
+			},
+			"offsets": {
+				"from": 1196280,
+				"to": 1200560
+			},
+			"text": " on the Mellon Council together with the Mellon Technical Council members."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,560",
+				"to": "00:20:10,400"
+			},
+			"offsets": {
+				"from": 1200560,
+				"to": 1210400
+			},
+			"text": " So with this Mellon Council, what we hope to achieve is that by combining the user representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,400",
+				"to": "00:20:16,040"
+			},
+			"offsets": {
+				"from": 1210400,
+				"to": 1216040
+			},
+			"text": " and people who are technically skilled and informed, we hope that we are able to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,040",
+				"to": "00:20:22,160"
+			},
+			"offsets": {
+				"from": 1216040,
+				"to": 1222160
+			},
+			"text": " the best decisions possible for the protocol and for the users of Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,160",
+				"to": "00:20:23,640"
+			},
+			"offsets": {
+				"from": 1222160,
+				"to": 1223640
+			},
+			"text": " So how does that work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,640",
+				"to": "00:20:25,840"
+			},
+			"offsets": {
+				"from": 1223640,
+				"to": 1225840
+			},
+			"text": " How does-- how do we form the Council?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,840",
+				"to": "00:20:30,320"
+			},
+			"offsets": {
+				"from": 1225840,
+				"to": 1230320
+			},
+			"text": " So I told you how the Mellon Exposed Businesses is formed."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,320",
+				"to": "00:20:33,160"
+			},
+			"offsets": {
+				"from": 1230320,
+				"to": 1233160
+			},
+			"text": " For the Mellon Technical Council, it's a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,160",
+				"to": "00:20:43,240"
+			},
+			"offsets": {
+				"from": 1233160,
+				"to": 1243240
+			},
+			"text": " So in February 2019, Mellon Port is going to assign 5 to 7 seats for the Mellon Technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,240",
+				"to": "00:20:52,480"
+			},
+			"offsets": {
+				"from": 1243240,
+				"to": 1252480
+			},
+			"text": " Council to external people, to people that we believe have the skills or expertise to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,480",
+				"to": "00:20:57,840"
+			},
+			"offsets": {
+				"from": 1252480,
+				"to": 1257840
+			},
+			"text": " do that and also the ethical standards that go with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,840",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1257840,
+				"to": 1260520
+			},
+			"text": " So we're going to assign the initial seats."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:06,040"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1266040
+			},
+			"text": " And then from there on, the Council is going to be able to self-expense, so to grow by"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,040",
+				"to": "00:21:14,080"
+			},
+			"offsets": {
+				"from": 1266040,
+				"to": 1274080
+			},
+			"text": " itself, based on the consensus of its members, following a 5 to 2 ratios."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,080",
+				"to": "00:21:21,560"
+			},
+			"offsets": {
+				"from": 1274080,
+				"to": 1281560
+			},
+			"text": " So for five Mellon Technical Council members will be able to have two MMB representatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,560",
+				"to": "00:21:26,840"
+			},
+			"offsets": {
+				"from": 1281560,
+				"to": 1286840
+			},
+			"text": " It's worth noting here that the Mellon Technical Council are going to be compensated with Mellon"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,840",
+				"to": "00:21:35,040"
+			},
+			"offsets": {
+				"from": 1286840,
+				"to": 1295040
+			},
+			"text": " token from the inflation pool that are going to be invested over a couple of years."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,040",
+				"to": "00:21:38,120"
+			},
+			"offsets": {
+				"from": 1295040,
+				"to": 1298120
+			},
+			"text": " And that those people are unknown."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,120",
+				"to": "00:21:39,840"
+			},
+			"offsets": {
+				"from": 1298120,
+				"to": 1299840
+			},
+			"text": " So we know who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,840",
+				"to": "00:21:44,480"
+			},
+			"offsets": {
+				"from": 1299840,
+				"to": 1304480
+			},
+			"text": " Their identities are revealed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,480",
+				"to": "00:21:47,400"
+			},
+			"offsets": {
+				"from": 1304480,
+				"to": 1307400
+			},
+			"text": " So now what is-- what are the responsibilities of that Council?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,400",
+				"to": "00:21:48,760"
+			},
+			"offsets": {
+				"from": 1307400,
+				"to": 1308760
+			},
+			"text": " You might be wondering."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,760",
+				"to": "00:21:50,760"
+			},
+			"offsets": {
+				"from": 1308760,
+				"to": 1310760
+			},
+			"text": " So those are three also."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,760",
+				"to": "00:21:53,680"
+			},
+			"offsets": {
+				"from": 1310760,
+				"to": 1313680
+			},
+			"text": " The first one are protocol upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,680",
+				"to": "00:21:58,040"
+			},
+			"offsets": {
+				"from": 1313680,
+				"to": 1318040
+			},
+			"text": " The Mellon code base will need to evolve from February onwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,040",
+				"to": "00:22:03,480"
+			},
+			"offsets": {
+				"from": 1318040,
+				"to": 1323480
+			},
+			"text": " So the Mellon Council is going to be responsible for deploying new contracts and most importantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,480",
+				"to": "00:22:11,320"
+			},
+			"offsets": {
+				"from": 1323480,
+				"to": 1331320
+			},
+			"text": " managing the ENS subdomain names that point to the official Mellon contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,320",
+				"to": "00:22:16,960"
+			},
+			"offsets": {
+				"from": 1331320,
+				"to": 1336960
+			},
+			"text": " Important to note here, all upgrades are obtained only, which means that the user will never"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,960",
+				"to": "00:22:24,160"
+			},
+			"offsets": {
+				"from": 1336960,
+				"to": 1344160
+			},
+			"text": " be forced into an upgrade and it will require explicit and voluntary action from the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,160",
+				"to": "00:22:27,080"
+			},
+			"offsets": {
+				"from": 1344160,
+				"to": 1347080
+			},
+			"text": " to upgrade to new contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,080",
+				"to": "00:22:31,600"
+			},
+			"offsets": {
+				"from": 1347080,
+				"to": 1351600
+			},
+			"text": " So the second thing are resource allocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,600",
+				"to": "00:22:35,840"
+			},
+			"offsets": {
+				"from": 1351600,
+				"to": 1355840
+			},
+			"text": " So as I mentioned in the beginning of the presentation, we have the inflation pool, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,840",
+				"to": "00:22:37,960"
+			},
+			"offsets": {
+				"from": 1355840,
+				"to": 1357960
+			},
+			"text": " can be used for various things."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,960",
+				"to": "00:22:42,840"
+			},
+			"offsets": {
+				"from": 1357960,
+				"to": 1362840
+			},
+			"text": " And the Mellon Council is going to be responsible for making decisions as to what to fund or"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,840",
+				"to": "00:22:50,400"
+			},
+			"offsets": {
+				"from": 1362840,
+				"to": 1370400
+			},
+			"text": " not, which project to accept in as a funding request or token swap or merger, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,400",
+				"to": "00:22:54,120"
+			},
+			"offsets": {
+				"from": 1370400,
+				"to": 1374120
+			},
+			"text": " So that's going to be a Mellon Council responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,120",
+				"to": "00:22:57,360"
+			},
+			"offsets": {
+				"from": 1374120,
+				"to": 1377360
+			},
+			"text": " And the last one are network parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,360",
+				"to": "00:23:04,280"
+			},
+			"offsets": {
+				"from": 1377360,
+				"to": 1384280
+			},
+			"text": " So when I presented the Mellon engine, I mentioned the asset management gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,280",
+				"to": "00:23:08,920"
+			},
+			"offsets": {
+				"from": 1384280,
+				"to": 1388920
+			},
+			"text": " And what I didn't say is that this is actually a variable that we can change and that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,920",
+				"to": "00:23:10,280"
+			},
+			"offsets": {
+				"from": 1388920,
+				"to": 1390280
+			},
+			"text": " can adjust."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,280",
+				"to": "00:23:15,480"
+			},
+			"offsets": {
+				"from": 1390280,
+				"to": 1395480
+			},
+			"text": " So based on our financial modeling, it is not expected that this asset management gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,480",
+				"to": "00:23:18,400"
+			},
+			"offsets": {
+				"from": 1395480,
+				"to": 1398400
+			},
+			"text": " price would need to change very often."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,400",
+				"to": "00:23:24,920"
+			},
+			"offsets": {
+				"from": 1398400,
+				"to": 1404920
+			},
+			"text": " Actually, I think it would be quite rare because it is expected that market dynamics"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,920",
+				"to": "00:23:29,080"
+			},
+			"offsets": {
+				"from": 1404920,
+				"to": 1409080
+			},
+			"text": " will make natural adjustments."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,080",
+				"to": "00:23:33,240"
+			},
+			"offsets": {
+				"from": 1409080,
+				"to": 1413240
+			},
+			"text": " But we can't predict -- there are some scenarios that we can't really predict."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,240",
+				"to": "00:23:40,240"
+			},
+			"offsets": {
+				"from": 1413240,
+				"to": 1420240
+			},
+			"text": " So we want to have the option to adjust the gas price basically to reduce it in two cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,240",
+				"to": "00:23:46,080"
+			},
+			"offsets": {
+				"from": 1420240,
+				"to": 1426080
+			},
+			"text": " The first one is if there is a network usage spike overnight, you might want to reduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,080",
+				"to": "00:23:47,400"
+			},
+			"offsets": {
+				"from": 1426080,
+				"to": 1427400
+			},
+			"text": " the gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,400",
+				"to": "00:23:49,560"
+			},
+			"offsets": {
+				"from": 1427400,
+				"to": 1429560
+			},
+			"text": " And the second one is market volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,560",
+				"to": "00:23:54,840"
+			},
+			"offsets": {
+				"from": 1429560,
+				"to": 1434840
+			},
+			"text": " So here we're exposed to the Mellon ETH price, but also the ETH USD price."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,840",
+				"to": "00:23:57,560"
+			},
+			"offsets": {
+				"from": 1434840,
+				"to": 1437560
+			},
+			"text": " So the Mellon USD price."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,560",
+				"to": "00:24:03,880"
+			},
+			"offsets": {
+				"from": 1437560,
+				"to": 1443880
+			},
+			"text": " And if there is extreme market conditions or volatility, you might want to reduce the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,880",
+				"to": "00:24:09,040"
+			},
+			"offsets": {
+				"from": 1443880,
+				"to": 1449040
+			},
+			"text": " asset management gas price in order to stay affordable for the user and competitive compared"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,040",
+				"to": "00:24:11,760"
+			},
+			"offsets": {
+				"from": 1449040,
+				"to": 1451760
+			},
+			"text": " to other alternatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,760",
+				"to": "00:24:19,520"
+			},
+			"offsets": {
+				"from": 1451760,
+				"to": 1459520
+			},
+			"text": " So that part, under governance, caters to the maintainers of the network and to the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,520",
+				"to": "00:24:22,280"
+			},
+			"offsets": {
+				"from": 1459520,
+				"to": 1462280
+			},
+			"text": " as you might have understood by now."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,280",
+				"to": "00:24:30,040"
+			},
+			"offsets": {
+				"from": 1462280,
+				"to": 1470040
+			},
+			"text": " So to wrap up, our model, both token economic and governance, addresses the needs of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,040",
+				"to": "00:24:32,400"
+			},
+			"offsets": {
+				"from": 1470040,
+				"to": 1472400
+			},
+			"text": " of the stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,400",
+				"to": "00:24:39,040"
+			},
+			"offsets": {
+				"from": 1472400,
+				"to": 1479040
+			},
+			"text": " We maximize network effect by opening up the Mellon token so that we can align interest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,040",
+				"to": "00:24:41,760"
+			},
+			"offsets": {
+				"from": 1479040,
+				"to": 1481760
+			},
+			"text": " participant interest across the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,760",
+				"to": "00:24:48,360"
+			},
+			"offsets": {
+				"from": 1481760,
+				"to": 1488360
+			},
+			"text": " And we managed to have a token model that is aligning the token value with the usage"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,360",
+				"to": "00:24:49,840"
+			},
+			"offsets": {
+				"from": 1488360,
+				"to": 1489840
+			},
+			"text": " of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,840",
+				"to": "00:24:56,720"
+			},
+			"offsets": {
+				"from": 1489840,
+				"to": 1496720
+			},
+			"text": " And finally, we recognize that the users are the most important, really the key player in"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,720",
+				"to": "00:25:01,120"
+			},
+			"offsets": {
+				"from": 1496720,
+				"to": 1501120
+			},
+			"text": " our ecosystem without users at the end of the day, we fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,120",
+				"to": "00:25:07,840"
+			},
+			"offsets": {
+				"from": 1501120,
+				"to": 1507840
+			},
+			"text": " So we designed a system that makes sure that the users are valued properly and supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,840",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1507840,
+				"to": 1510000
+			},
+			"text": " by technical skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:15,840"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1515840
+			},
+			"text": " So with that, I would like to announce that the Mellon Technical Council applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,840",
+				"to": "00:25:18,480"
+			},
+			"offsets": {
+				"from": 1515840,
+				"to": 1518480
+			},
+			"text": " start today."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,480",
+				"to": "00:25:24,040"
+			},
+			"offsets": {
+				"from": 1518480,
+				"to": 1524040
+			},
+			"text": " So really, the technical council is supposed to be inclusive and open."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,040",
+				"to": "00:25:30,760"
+			},
+			"offsets": {
+				"from": 1524040,
+				"to": 1530760
+			},
+			"text": " So if they are excellent developers who have the skills or feel like competent for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,760",
+				"to": "00:25:35,840"
+			},
+			"offsets": {
+				"from": 1530760,
+				"to": 1535840
+			},
+			"text": " role, we would be really happy to receive applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,840",
+				"to": "00:25:39,160"
+			},
+			"offsets": {
+				"from": 1535840,
+				"to": 1539160
+			},
+			"text": " So you can reach out to MTC@melanport.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,160",
+				"to": "00:25:42,680"
+			},
+			"offsets": {
+				"from": 1539160,
+				"to": 1542680
+			},
+			"text": " But all of the Mellon Team is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,680",
+				"to": "00:25:44,520"
+			},
+			"offsets": {
+				"from": 1542680,
+				"to": 1544520
+			},
+			"text": " Everyone is wearing leather jackets."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,520",
+				"to": "00:25:47,840"
+			},
+			"offsets": {
+				"from": 1544520,
+				"to": 1547840
+			},
+			"text": " So if you want to reach out in person, use DevCon for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,840",
+				"to": "00:25:49,560"
+			},
+			"offsets": {
+				"from": 1547840,
+				"to": 1549560
+			},
+			"text": " We would be very happy as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,560",
+				"to": "00:25:55,480"
+			},
+			"offsets": {
+				"from": 1549560,
+				"to": 1555480
+			},
+			"text": " So this was the last Mellon Port presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,480",
+				"to": "00:25:59,040"
+			},
+			"offsets": {
+				"from": 1555480,
+				"to": 1559040
+			},
+			"text": " It was another for me to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,040",
+				"to": "00:26:04,320"
+			},
+			"offsets": {
+				"from": 1559040,
+				"to": 1564320
+			},
+			"text": " Mellon Port will not exist by DevCon 5, but that doesn't mean that it's the end of Mellon."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,320",
+				"to": "00:26:06,720"
+			},
+			"offsets": {
+				"from": 1564320,
+				"to": 1566720
+			},
+			"text": " It's actually just the beginning, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,720",
+				"to": "00:26:07,720"
+			},
+			"offsets": {
+				"from": 1566720,
+				"to": 1567720
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,720",
+				"to": "00:26:12,160"
+			},
+			"offsets": {
+				"from": 1567720,
+				"to": 1572160
+			},
+			"text": " And I think we can upload the Mellon Team for the incredible work to make this a reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,160",
+				"to": "00:26:13,160"
+			},
+			"offsets": {
+				"from": 1572160,
+				"to": 1573160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,160",
+				"to": "00:26:23,160"
+			},
+			"offsets": {
+				"from": 1573160,
+				"to": 1583160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,160",
+				"to": "00:26:33,160"
+			},
+			"offsets": {
+				"from": 1583160,
+				"to": 1593160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,160",
+				"to": "00:26:43,160"
+			},
+			"offsets": {
+				"from": 1593160,
+				"to": 1603160
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

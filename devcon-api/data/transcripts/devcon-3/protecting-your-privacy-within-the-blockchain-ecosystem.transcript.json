@@ -1,0 +1,2133 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:12,360"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 12360
+			},
+			"text": " Testing, testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,360",
+				"to": "00:00:14,760"
+			},
+			"offsets": {
+				"from": 12360,
+				"to": 14760
+			},
+			"text": " Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,760",
+				"to": "00:00:16,280"
+			},
+			"offsets": {
+				"from": 14760,
+				"to": 16280
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,280",
+				"to": "00:00:18,080"
+			},
+			"offsets": {
+				"from": 16280,
+				"to": 18080
+			},
+			"text": " Nice to meet you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,080",
+				"to": "00:00:19,240"
+			},
+			"offsets": {
+				"from": 18080,
+				"to": 19240
+			},
+			"text": " My name is Robert."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,240",
+				"to": "00:00:21,080"
+			},
+			"offsets": {
+				"from": 19240,
+				"to": 21080
+			},
+			"text": " I would miss your MTM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,080",
+				"to": "00:00:27,400"
+			},
+			"offsets": {
+				"from": 21080,
+				"to": 27400
+			},
+			"text": " And I guess this DEF CON has been a lot about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,400",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 27400,
+				"to": 32800
+			},
+			"text": " And you have seen a lot technical talks about privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:34,520"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 34520
+			},
+			"text": " And this is ending."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,520",
+				"to": "00:00:35,440"
+			},
+			"offsets": {
+				"from": 34520,
+				"to": 35440
+			},
+			"text": " DEF CON is ending."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,440",
+				"to": "00:00:41,280"
+			},
+			"offsets": {
+				"from": 35440,
+				"to": 41280
+			},
+			"text": " So I would love to leave you with some fundamental thoughts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,280",
+				"to": "00:00:43,640"
+			},
+			"offsets": {
+				"from": 41280,
+				"to": 43640
+			},
+			"text": " about what privacy means, what does it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,640",
+				"to": "00:00:46,520"
+			},
+			"offsets": {
+				"from": 43640,
+				"to": 46520
+			},
+			"text": " mean in our daily lives, what does it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,520",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46520,
+				"to": 51000
+			},
+			"text": " mean in our every day use of blockchain and internet apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:56,840"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 56840
+			},
+			"text": " and if it's even possible to protect it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,840",
+				"to": "00:00:58,480"
+			},
+			"offsets": {
+				"from": 56840,
+				"to": 58480
+			},
+			"text": " So let's start off."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,480",
+				"to": "00:01:00,200"
+			},
+			"offsets": {
+				"from": 58480,
+				"to": 60200
+			},
+			"text": " What is privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,200",
+				"to": "00:01:01,280"
+			},
+			"offsets": {
+				"from": 60200,
+				"to": 61280
+			},
+			"text": " What is anonymity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,280",
+				"to": "00:01:02,080"
+			},
+			"offsets": {
+				"from": 61280,
+				"to": 62080
+			},
+			"text": " Are they different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,080",
+				"to": "00:01:03,960"
+			},
+			"offsets": {
+				"from": 62080,
+				"to": 63960
+			},
+			"text": " Are they the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,960",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63960,
+				"to": 68000
+			},
+			"text": " And how do they apply on our everyday life?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 69480
+			},
+			"text": " Privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:12,720"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 72720
+			},
+			"text": " Well, what does it mean to have privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,720",
+				"to": "00:01:17,080"
+			},
+			"offsets": {
+				"from": 72720,
+				"to": 77080
+			},
+			"text": " When you engage in an activity, let's say an online activity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,080",
+				"to": "00:01:20,080"
+			},
+			"offsets": {
+				"from": 77080,
+				"to": 80080
+			},
+			"text": " you log into your bank account, you log into your Facebook"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,080",
+				"to": "00:01:26,760"
+			},
+			"offsets": {
+				"from": 80080,
+				"to": 86760
+			},
+			"text": " account, you talk to somebody, you go into the bathroom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,760",
+				"to": "00:01:29,520"
+			},
+			"offsets": {
+				"from": 86760,
+				"to": 89520
+			},
+			"text": " when you engage into an activity, privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,520",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 89520,
+				"to": 95000
+			},
+			"text": " means having control of who has access to that activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:37,080"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 97080
+			},
+			"text": " together with you, if anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,080",
+				"to": "00:01:40,160"
+			},
+			"offsets": {
+				"from": 97080,
+				"to": 100160
+			},
+			"text": " When you're creating your private keys for the wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,160",
+				"to": "00:01:43,600"
+			},
+			"offsets": {
+				"from": 100160,
+				"to": 103600
+			},
+			"text": " you don't want to give access to anybody unless--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,600",
+				"to": "00:01:46,520"
+			},
+			"offsets": {
+				"from": 103600,
+				"to": 106520
+			},
+			"text": " I don't know, it's your wife."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,520",
+				"to": "00:01:49,360"
+			},
+			"offsets": {
+				"from": 106520,
+				"to": 109360
+			},
+			"text": " But when you log into Facebook, you give Facebook"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,360",
+				"to": "00:01:51,200"
+			},
+			"offsets": {
+				"from": 109360,
+				"to": 111200
+			},
+			"text": " the right to change things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:55,520"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 115520
+			},
+			"text": " But you trust Facebook to not change things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,520",
+				"to": "00:01:59,680"
+			},
+			"offsets": {
+				"from": 115520,
+				"to": 119680
+			},
+			"text": " beyond what you tell them to clicking on the like button."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,680",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 119680,
+				"to": 124040
+			},
+			"text": " And if there is any entity, third party entity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:10,200"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 130200
+			},
+			"text": " unauthorized entity, which is monitoring your actions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,200",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 130200,
+				"to": 132040
+			},
+			"text": " that means you've lost your privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,720"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134720
+			},
+			"text": " And if that entity can monitor your actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,720",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 134720,
+				"to": 138280
+			},
+			"text": " and even change things like block you from going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:20,880"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 140880
+			},
+			"text": " into Facebook, if you're in China, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,880",
+				"to": "00:02:24,440"
+			},
+			"offsets": {
+				"from": 140880,
+				"to": 144440
+			},
+			"text": " well, that means you really lost your privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,440",
+				"to": "00:02:27,080"
+			},
+			"offsets": {
+				"from": 144440,
+				"to": 147080
+			},
+			"text": " On an entity, on the other hand, is a little bit different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,080",
+				"to": "00:02:28,200"
+			},
+			"offsets": {
+				"from": 147080,
+				"to": 148200
+			},
+			"text": " concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,200",
+				"to": "00:02:33,240"
+			},
+			"offsets": {
+				"from": 148200,
+				"to": 153240
+			},
+			"text": " On an enemity means you go out into the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,240",
+				"to": "00:02:36,120"
+			},
+			"offsets": {
+				"from": 153240,
+				"to": 156120
+			},
+			"text": " and you want the world to see what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,120",
+				"to": "00:02:38,120"
+			},
+			"offsets": {
+				"from": 156120,
+				"to": 158120
+			},
+			"text": " You just don't want the world to know who you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,120",
+				"to": "00:02:45,800"
+			},
+			"offsets": {
+				"from": 158120,
+				"to": 165800
+			},
+			"text": " And like we're sending eaters on blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,800",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165800,
+				"to": 169000
+			},
+			"text": " everybody can see those eaters being sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 171920
+			},
+			"text": " Nobody knows who is the person sending them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:53,960"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 173960
+			},
+			"text": " or who is the entity doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,960",
+				"to": "00:02:56,600"
+			},
+			"offsets": {
+				"from": 173960,
+				"to": 176600
+			},
+			"text": " And both concepts are really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,600",
+				"to": "00:03:03,320"
+			},
+			"offsets": {
+				"from": 176600,
+				"to": 183320
+			},
+			"text": " Privacy is there for us to be calm, to calm down."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,320",
+				"to": "00:03:07,280"
+			},
+			"offsets": {
+				"from": 183320,
+				"to": 187280
+			},
+			"text": " And anonymity is there for the society."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,280",
+				"to": "00:03:09,200"
+			},
+			"offsets": {
+				"from": 187280,
+				"to": 189200
+			},
+			"text": " It's a catalyst of change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,200",
+				"to": "00:03:12,520"
+			},
+			"offsets": {
+				"from": 189200,
+				"to": 192520
+			},
+			"text": " Without one, we would not have freedoms of speech,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,520",
+				"to": "00:03:16,880"
+			},
+			"offsets": {
+				"from": 192520,
+				"to": 196880
+			},
+			"text": " or at least we would be very afraid to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,880",
+				"to": "00:03:21,120"
+			},
+			"offsets": {
+				"from": 196880,
+				"to": 201120
+			},
+			"text": " So on the fundamental level, anything that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,120",
+				"to": "00:03:24,480"
+			},
+			"offsets": {
+				"from": 201120,
+				"to": 204480
+			},
+			"text": " happens on the internet is basically communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,480",
+				"to": "00:03:29,360"
+			},
+			"offsets": {
+				"from": 204480,
+				"to": 209360
+			},
+			"text": " Entity A is talking to entity B. And they create"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,360",
+				"to": "00:03:32,560"
+			},
+			"offsets": {
+				"from": 209360,
+				"to": 212560
+			},
+			"text": " a communication channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,560",
+				"to": "00:03:35,640"
+			},
+			"offsets": {
+				"from": 212560,
+				"to": 215640
+			},
+			"text": " And over the last couple of decades,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,640",
+				"to": "00:03:37,880"
+			},
+			"offsets": {
+				"from": 215640,
+				"to": 217880
+			},
+			"text": " this channel has been--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,880",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 217880,
+				"to": 219480
+			},
+			"text": " well, I don't know how to say it--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:42,800"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 222800
+			},
+			"text": " breached, to be the least."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,800",
+				"to": "00:03:50,400"
+			},
+			"offsets": {
+				"from": 222800,
+				"to": 230400
+			},
+			"text": " You can monitor what's happening and sometimes even interrupt"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,400",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 230400,
+				"to": 233000
+			},
+			"text": " the communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:56,880"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 236880
+			},
+			"text": " Let's talk about the same example, Facebook app"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,880",
+				"to": "00:03:58,320"
+			},
+			"offsets": {
+				"from": 236880,
+				"to": 238320
+			},
+			"text": " to Facebook server."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,320",
+				"to": "00:04:00,720"
+			},
+			"offsets": {
+				"from": 238320,
+				"to": 240720
+			},
+			"text": " When you're in certain countries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,720",
+				"to": "00:04:02,880"
+			},
+			"offsets": {
+				"from": 240720,
+				"to": 242880
+			},
+			"text": " you just can't reach that server."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,880",
+				"to": "00:04:03,240"
+			},
+			"offsets": {
+				"from": 242880,
+				"to": 243240
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,240",
+				"to": "00:04:07,520"
+			},
+			"offsets": {
+				"from": 243240,
+				"to": 247520
+			},
+			"text": " Because somebody can see that communication channel being"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,520",
+				"to": "00:04:10,680"
+			},
+			"offsets": {
+				"from": 247520,
+				"to": 250680
+			},
+			"text": " opened up and they cut it right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,680",
+				"to": "00:04:14,600"
+			},
+			"offsets": {
+				"from": 250680,
+				"to": 254600
+			},
+			"text": " So the question is, is it possible to even protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,600",
+				"to": "00:04:16,480"
+			},
+			"offsets": {
+				"from": 254600,
+				"to": 256480
+			},
+			"text": " this channel between those two entities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,480",
+				"to": "00:04:18,320"
+			},
+			"offsets": {
+				"from": 256480,
+				"to": 258320
+			},
+			"text": " And those two entities can be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,320",
+				"to": "00:04:21,120"
+			},
+			"offsets": {
+				"from": 258320,
+				"to": 261120
+			},
+			"text": " It could be a device talking to a server app to app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,120",
+				"to": "00:04:24,320"
+			},
+			"offsets": {
+				"from": 261120,
+				"to": 264320
+			},
+			"text": " app to server, server to server, anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,320",
+				"to": "00:04:29,040"
+			},
+			"offsets": {
+				"from": 264320,
+				"to": 269040
+			},
+			"text": " So is it possible to protect identities of these two?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,040",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 269040,
+				"to": 271080
+			},
+			"text": " That would mean anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:34,920"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 274920
+			},
+			"text": " And to protect the content of the communication happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,920",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 274920,
+				"to": 278160
+			},
+			"text": " between those two, that would mean privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:39,480"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 279480
+			},
+			"text": " And we believe it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,480",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279480,
+				"to": 283000
+			},
+			"text": " And that's what we set out as a mission for ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:48,800"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 288800
+			},
+			"text": " To protect the identities and to protect the content"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,800",
+				"to": "00:04:52,840"
+			},
+			"offsets": {
+				"from": 288800,
+				"to": 292840
+			},
+			"text": " so that no third party unauthorized third party entity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,840",
+				"to": "00:04:56,320"
+			},
+			"offsets": {
+				"from": 292840,
+				"to": 296320
+			},
+			"text": " could take a look, see who is talking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,320",
+				"to": "00:04:58,440"
+			},
+			"offsets": {
+				"from": 296320,
+				"to": 298440
+			},
+			"text": " and understand what they're talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,440",
+				"to": "00:05:00,720"
+			},
+			"offsets": {
+				"from": 298440,
+				"to": 300720
+			},
+			"text": " So protecting privacy and anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,720",
+				"to": "00:05:04,640"
+			},
+			"offsets": {
+				"from": 300720,
+				"to": 304640
+			},
+			"text": " The question is, of course, how to achieve this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,640",
+				"to": "00:05:10,080"
+			},
+			"offsets": {
+				"from": 304640,
+				"to": 310080
+			},
+			"text": " And we suggest to do it in a couple phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,080",
+				"to": "00:05:12,520"
+			},
+			"offsets": {
+				"from": 310080,
+				"to": 312520
+			},
+			"text": " As a phase one, we're going to be building"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,520",
+				"to": "00:05:16,720"
+			},
+			"offsets": {
+				"from": 312520,
+				"to": 316720
+			},
+			"text": " a decentralized network of VPN nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,720",
+				"to": "00:05:20,400"
+			},
+			"offsets": {
+				"from": 316720,
+				"to": 320400
+			},
+			"text": " which means basically that anybody can become a VPN node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,400",
+				"to": "00:05:26,240"
+			},
+			"offsets": {
+				"from": 320400,
+				"to": 326240
+			},
+			"text": " Just download an open source app, run it on your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,240",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 326240,
+				"to": 327000
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,840"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331840
+			},
+			"text": " Anybody can connect through you if they need that communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,840",
+				"to": "00:05:37,440"
+			},
+			"offsets": {
+				"from": 331840,
+				"to": 337440
+			},
+			"text": " And you'll be paid to serve this service."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,440",
+				"to": "00:05:40,200"
+			},
+			"offsets": {
+				"from": 337440,
+				"to": 340200
+			},
+			"text": " On top of it, we're going to add a couple layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,200",
+				"to": "00:05:44,880"
+			},
+			"offsets": {
+				"from": 340200,
+				"to": 344880
+			},
+			"text": " For example, a decentralized discovery mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,880",
+				"to": "00:05:48,640"
+			},
+			"offsets": {
+				"from": 344880,
+				"to": 348640
+			},
+			"text": " so it wouldn't have a single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,640",
+				"to": "00:05:52,920"
+			},
+			"offsets": {
+				"from": 348640,
+				"to": 352920
+			},
+			"text": " An anonymous identity management so that you would know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,920",
+				"to": "00:05:56,920"
+			},
+			"offsets": {
+				"from": 352920,
+				"to": 356920
+			},
+			"text": " like if entity A is using those three nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,920",
+				"to": "00:05:58,960"
+			},
+			"offsets": {
+				"from": 356920,
+				"to": 358960
+			},
+			"text": " they would know whom to pay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,960",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 358960,
+				"to": 362480
+			},
+			"text": " And of course, an anonymous payment mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 365480
+			},
+			"text": " so that, again, it could not be tracked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:10,640"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 370640
+			},
+			"text": " In this case, entity, if they want to talk to an entity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,640",
+				"to": "00:06:14,600"
+			},
+			"offsets": {
+				"from": 370640,
+				"to": 374600
+			},
+			"text": " let's say a Facebook app to a server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,600",
+				"to": "00:06:16,920"
+			},
+			"offsets": {
+				"from": 374600,
+				"to": 376920
+			},
+			"text": " they would connect to a first node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,920",
+				"to": "00:06:21,520"
+			},
+			"offsets": {
+				"from": 376920,
+				"to": 381520
+			},
+			"text": " And let's imagine, I don't know, a Catalan situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,520",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 381520,
+				"to": 387160
+			},
+			"text": " And let's think there's a bit of a crisis taking place"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:28,120"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 388120
+			},
+			"text": " right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,120",
+				"to": "00:06:30,880"
+			},
+			"offsets": {
+				"from": 388120,
+				"to": 390880
+			},
+			"text": " And if the communication would be blocked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,880",
+				"to": "00:06:33,320"
+			},
+			"offsets": {
+				"from": 390880,
+				"to": 393320
+			},
+			"text": " so they would connect to a first node somewhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,320",
+				"to": "00:06:36,320"
+			},
+			"offsets": {
+				"from": 393320,
+				"to": 396320
+			},
+			"text": " in the Catalan, then the connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,320",
+				"to": "00:06:41,040"
+			},
+			"offsets": {
+				"from": 396320,
+				"to": 401040
+			},
+			"text": " would be encrypted and the contents would be hidden."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,040",
+				"to": "00:06:44,120"
+			},
+			"offsets": {
+				"from": 401040,
+				"to": 404120
+			},
+			"text": " Identity would be hidden."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,120",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 404120,
+				"to": 407320
+			},
+			"text": " From this node, it would go to the next node, I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:50,600"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 410600
+			},
+			"text": " Here into Mexico, finally to the third node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,600",
+				"to": "00:06:52,640"
+			},
+			"offsets": {
+				"from": 410600,
+				"to": 412640
+			},
+			"text": " right next to Facebook headquarters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,640",
+				"to": "00:06:57,200"
+			},
+			"offsets": {
+				"from": 412640,
+				"to": 417200
+			},
+			"text": " and then unencrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,200",
+				"to": "00:07:00,240"
+			},
+			"offsets": {
+				"from": 417200,
+				"to": 420240
+			},
+			"text": " In this place, all the way up to the third node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,240",
+				"to": "00:07:02,480"
+			},
+			"offsets": {
+				"from": 420240,
+				"to": 422480
+			},
+			"text": " the traffic is encrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,480",
+				"to": "00:07:05,080"
+			},
+			"offsets": {
+				"from": 422480,
+				"to": 425080
+			},
+			"text": " And after the third node, third node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,080",
+				"to": "00:07:10,840"
+			},
+			"offsets": {
+				"from": 425080,
+				"to": 430840
+			},
+			"text": " has the keys as well as entity A. They decrypt the traffic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,840",
+				"to": "00:07:17,800"
+			},
+			"offsets": {
+				"from": 430840,
+				"to": 437800
+			},
+			"text": " and it goes to node B. It's an amazing technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,800",
+				"to": "00:07:19,600"
+			},
+			"offsets": {
+				"from": 437800,
+				"to": 439600
+			},
+			"text": " It can open up borders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,600",
+				"to": "00:07:24,080"
+			},
+			"offsets": {
+				"from": 439600,
+				"to": 444080
+			},
+			"text": " It can go around--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,080",
+				"to": "00:07:28,720"
+			},
+			"offsets": {
+				"from": 444080,
+				"to": 448720
+			},
+			"text": " I forgot the word-- basically, you cannot block content"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,720",
+				"to": "00:07:33,520"
+			},
+			"offsets": {
+				"from": 448720,
+				"to": 453520
+			},
+			"text": " anymore because you cannot see what is taking place."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,520",
+				"to": "00:07:36,360"
+			},
+			"offsets": {
+				"from": 453520,
+				"to": 456360
+			},
+			"text": " But of course, there is a little bit of--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,360",
+				"to": "00:07:41,680"
+			},
+			"offsets": {
+				"from": 456360,
+				"to": 461680
+			},
+			"text": " like the final stretch is still not fully protected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,680",
+				"to": "00:07:45,680"
+			},
+			"offsets": {
+				"from": 461680,
+				"to": 465680
+			},
+			"text": " because you still have, for example, a third node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,680",
+				"to": "00:07:48,360"
+			},
+			"offsets": {
+				"from": 465680,
+				"to": 468360
+			},
+			"text": " can still become the node that's rogue"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,360",
+				"to": "00:07:52,760"
+			},
+			"offsets": {
+				"from": 468360,
+				"to": 472760
+			},
+			"text": " and can contribute to the cause of tracking data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,760",
+				"to": "00:07:56,640"
+			},
+			"offsets": {
+				"from": 472760,
+				"to": 476640
+			},
+			"text": " and blocking data and man-in-a-middle attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,640",
+				"to": "00:08:00,120"
+			},
+			"offsets": {
+				"from": 476640,
+				"to": 480120
+			},
+			"text": " and all the other things happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,120",
+				"to": "00:08:04,840"
+			},
+			"offsets": {
+				"from": 480120,
+				"to": 484840
+			},
+			"text": " And between this node and the final destination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,840",
+				"to": "00:08:09,680"
+			},
+			"offsets": {
+				"from": 484840,
+				"to": 489680
+			},
+			"text": " there could be an ISPs, which again act as malicious ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,680",
+				"to": "00:08:11,600"
+			},
+			"offsets": {
+				"from": 489680,
+				"to": 491600
+			},
+			"text": " and vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,600",
+				"to": "00:08:14,600"
+			},
+			"offsets": {
+				"from": 491600,
+				"to": 494600
+			},
+			"text": " So is it possible to completely protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,600",
+				"to": "00:08:19,960"
+			},
+			"offsets": {
+				"from": 494600,
+				"to": 499960
+			},
+			"text": " the channel between A and B so that it would not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,960",
+				"to": "00:08:23,800"
+			},
+			"offsets": {
+				"from": 499960,
+				"to": 503800
+			},
+			"text": " be possible to see who is talking and what they're talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,800",
+				"to": "00:08:24,920"
+			},
+			"offsets": {
+				"from": 503800,
+				"to": 504920
+			},
+			"text": " about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,920",
+				"to": "00:08:28,960"
+			},
+			"offsets": {
+				"from": 504920,
+				"to": 508960
+			},
+			"text": " And we believe it is, and that's what we are offering."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,960",
+				"to": "00:08:32,040"
+			},
+			"offsets": {
+				"from": 508960,
+				"to": 512040
+			},
+			"text": " Basically, after phase one, when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,040",
+				"to": "00:08:38,240"
+			},
+			"offsets": {
+				"from": 512040,
+				"to": 518240
+			},
+			"text": " building this infrastructure, when this is done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,240",
+				"to": "00:08:41,640"
+			},
+			"offsets": {
+				"from": 518240,
+				"to": 521640
+			},
+			"text": " what we're going to do is we're going to open up a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,640",
+				"to": "00:08:44,640"
+			},
+			"offsets": {
+				"from": 521640,
+				"to": 524640
+			},
+			"text": " and any app developer who is wishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,640",
+				"to": "00:08:48,160"
+			},
+			"offsets": {
+				"from": 524640,
+				"to": 528160
+			},
+			"text": " to protect their users talking to each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,160",
+				"to": "00:08:50,400"
+			},
+			"offsets": {
+				"from": 528160,
+				"to": 530400
+			},
+			"text": " to protect their servers talking to each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,400",
+				"to": "00:08:53,160"
+			},
+			"offsets": {
+				"from": 530400,
+				"to": 533160
+			},
+			"text": " protect their users talking to servers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,160",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533160,
+				"to": 537000
+			},
+			"text": " we'll be able to do so by integrating this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:01,880"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 541880
+			},
+			"text": " And at this stage, the messages going out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,880",
+				"to": "00:09:05,800"
+			},
+			"offsets": {
+				"from": 541880,
+				"to": 545800
+			},
+			"text": " from the first place would be encrypted here, shredded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,800",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 545800,
+				"to": 550000
+			},
+			"text": " sent through multiple nodes, recollected at the exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:16,920"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 556920
+			},
+			"text": " node at the destination place with private keys, which A and B"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,920",
+				"to": "00:09:17,880"
+			},
+			"offsets": {
+				"from": 556920,
+				"to": 557880
+			},
+			"text": " have."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,880",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 557880,
+				"to": 561320
+			},
+			"text": " They could be reassembled into a coherent message"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,320",
+				"to": "00:09:24,160"
+			},
+			"offsets": {
+				"from": 561320,
+				"to": 564160
+			},
+			"text": " and consumed A and B trust each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,160",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 564160,
+				"to": 567440
+			},
+			"text": " so they have no problem of sharing this information."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:31,240"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 571240
+			},
+			"text": " Everything from outside would look like lots of gibberish."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,240",
+				"to": "00:09:35,720"
+			},
+			"offsets": {
+				"from": 571240,
+				"to": 575720
+			},
+			"text": " Every node would have, for example, node five would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,720",
+				"to": "00:09:40,560"
+			},
+			"offsets": {
+				"from": 575720,
+				"to": 580560
+			},
+			"text": " see node four as some node, and they would relate the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,560",
+				"to": "00:09:44,480"
+			},
+			"offsets": {
+				"from": 580560,
+				"to": 584480
+			},
+			"text": " to B without ever knowing if B is another node"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,480",
+				"to": "00:09:46,240"
+			},
+			"offsets": {
+				"from": 584480,
+				"to": 586240
+			},
+			"text": " or the final recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,240",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 586240,
+				"to": 589040
+			},
+			"text": " And the same way goes for the node four."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:53,240"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 593240
+			},
+			"text": " And node four would never know if A was just another node"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,240",
+				"to": "00:09:57,600"
+			},
+			"offsets": {
+				"from": 593240,
+				"to": 597600
+			},
+			"text": " or original sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,600",
+				"to": "00:10:00,360"
+			},
+			"offsets": {
+				"from": 597600,
+				"to": 600360
+			},
+			"text": " In this case, what we would have is we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,360",
+				"to": "00:10:06,280"
+			},
+			"offsets": {
+				"from": 600360,
+				"to": 606280
+			},
+			"text": " will have a privacy protected because of the communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,280",
+				"to": "00:10:11,600"
+			},
+			"offsets": {
+				"from": 606280,
+				"to": 611600
+			},
+			"text": " content is not recognizable for any third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,600",
+				"to": "00:10:15,360"
+			},
+			"offsets": {
+				"from": 611600,
+				"to": 615360
+			},
+			"text": " not even a node, not us, not anybody,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,360",
+				"to": "00:10:18,520"
+			},
+			"offsets": {
+				"from": 615360,
+				"to": 618520
+			},
+			"text": " anonymous because identities would be protected"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,520",
+				"to": "00:10:22,360"
+			},
+			"offsets": {
+				"from": 618520,
+				"to": 622360
+			},
+			"text": " because only them would know who is each other and trustless"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,360",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 622360,
+				"to": 625960
+			},
+			"text": " because no node would ever be possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:31,080"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 631080
+			},
+			"text": " to take this information and make any meaning of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,080",
+				"to": "00:10:34,320"
+			},
+			"offsets": {
+				"from": 631080,
+				"to": 634320
+			},
+			"text": " So yeah, this will enable any app developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,320",
+				"to": "00:10:39,560"
+			},
+			"offsets": {
+				"from": 634320,
+				"to": 639560
+			},
+			"text": " to integrate this private communication channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,560",
+				"to": "00:10:45,440"
+			},
+			"offsets": {
+				"from": 639560,
+				"to": 645440
+			},
+			"text": " into their apps and making well-making an unstoppable app."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,440",
+				"to": "00:10:46,960"
+			},
+			"offsets": {
+				"from": 645440,
+				"to": 646960
+			},
+			"text": " So that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,960",
+				"to": "00:10:48,200"
+			},
+			"offsets": {
+				"from": 646960,
+				"to": 648200
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,200",
+				"to": "00:10:50,120"
+			},
+			"offsets": {
+				"from": 648200,
+				"to": 650120
+			},
+			"text": " And let's work together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,120",
+				"to": "00:10:52,120"
+			},
+			"offsets": {
+				"from": 650120,
+				"to": 652120
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,120",
+				"to": "00:10:55,600"
+			},
+			"offsets": {
+				"from": 652120,
+				"to": 655600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,600",
+				"to": "00:10:58,960"
+			},
+			"offsets": {
+				"from": 655600,
+				"to": 658960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,960",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 658960,
+				"to": 662320
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:04,560"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 664560
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

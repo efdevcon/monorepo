@@ -1,0 +1,6203 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12240
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 13520
+			},
+			"text": " Hello everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:16,360"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 16360
+			},
+			"text": " Thanks for joining our workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,360",
+				"to": "00:00:18,280"
+			},
+			"offsets": {
+				"from": 16360,
+				"to": 18280
+			},
+			"text": " We are People of Skilt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,280",
+				"to": "00:00:20,920"
+			},
+			"offsets": {
+				"from": 18280,
+				"to": 20920
+			},
+			"text": " It's really privilege to be able to speak at DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,920",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 20920,
+				"to": 23360
+			},
+			"text": " and share with you what we're all passionate about."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:25,720"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 25720
+			},
+			"text": " Oh, sorry, I'm short of breath."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,720",
+				"to": "00:00:26,920"
+			},
+			"offsets": {
+				"from": 25720,
+				"to": 26920
+			},
+			"text": " I was just running from bathroom."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,400",
+				"to": "00:00:34,200"
+			},
+			"offsets": {
+				"from": 27400,
+				"to": 34200
+			},
+			"text": " Anyways, I think we will give you a little bit of introduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,200",
+				"to": "00:00:37,640"
+			},
+			"offsets": {
+				"from": 34200,
+				"to": 37640
+			},
+			"text": " what this is about, but pretty much we're going to have two hours,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,640",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 37640,
+				"to": 40600
+			},
+			"text": " which are going to be quite easy going."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 42880
+			},
+			"text": " We thought of four different workstations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:45,280"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 45280
+			},
+			"text": " that we will split into afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,280",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 45280,
+				"to": 51520
+			},
+			"text": " But to begin with, we'll look into the topic we're actually covering here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:55,840"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 55840
+			},
+			"text": " And with some all of you are interested in building the talent inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,840",
+				"to": "00:00:56,920"
+			},
+			"offsets": {
+				"from": 55840,
+				"to": 56920
+			},
+			"text": " of your organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,560",
+				"to": "00:01:02,400"
+			},
+			"offsets": {
+				"from": 57560,
+				"to": 62400
+			},
+			"text": " You're either a DAO operator, an educator, a leader,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,400",
+				"to": "00:01:05,760"
+			},
+			"offsets": {
+				"from": 62400,
+				"to": 65760
+			},
+			"text": " or someone who's just really passionate about building talent in your arc."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,760",
+				"to": "00:01:09,760"
+			},
+			"offsets": {
+				"from": 65760,
+				"to": 69760
+			},
+			"text": " So that instead of always looking for talent from outside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,760",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 69760,
+				"to": 73600
+			},
+			"text": " you can bring in some people who are maybe not as experienced at work three"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:17,200"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 77200
+			},
+			"text": " or not at the senior level, and you can build them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,200",
+				"to": "00:01:22,120"
+			},
+			"offsets": {
+				"from": 77200,
+				"to": 82120
+			},
+			"text": " and help them evolve inside of your arc, becoming much stronger"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,120",
+				"to": "00:01:24,200"
+			},
+			"offsets": {
+				"from": 82120,
+				"to": 84200
+			},
+			"text": " and happier and successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,640",
+				"to": "00:01:29,520"
+			},
+			"offsets": {
+				"from": 84640,
+				"to": 89520
+			},
+			"text": " And also contributing to your project overall success."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,520",
+				"to": "00:01:34,080"
+			},
+			"offsets": {
+				"from": 89520,
+				"to": 94080
+			},
+			"text": " So to begin with, Loi, do you want to continue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,080",
+				"to": "00:01:39,280"
+			},
+			"offsets": {
+				"from": 94080,
+				"to": 99280
+			},
+			"text": " Yeah, yeah, I'll give a little bit of background context to about who we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,280",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 99280,
+				"to": 107000
+			},
+			"text": " So I've been doing people operations in the crypto space for about four and a half years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,840"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111840
+			},
+			"text": " And I often felt like an island in my project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,840",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 111840,
+				"to": 115600
+			},
+			"text": " There's like nobody else who is working on people issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:02:00,960"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 120960
+			},
+			"text": " And it can feel like, wow, these other people have a different mentality."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,960",
+				"to": "00:02:02,560"
+			},
+			"offsets": {
+				"from": 120960,
+				"to": 122560
+			},
+			"text": " And I just wanted peers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,560",
+				"to": "00:02:08,120"
+			},
+			"offsets": {
+				"from": 122560,
+				"to": 128120
+			},
+			"text": " So I found out that there were many other little islands in other crypto orgs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,120",
+				"to": "00:02:15,040"
+			},
+			"offsets": {
+				"from": 128120,
+				"to": 135040
+			},
+			"text": " Turns out we're in archipelago of people ops staff in various entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,040",
+				"to": "00:02:21,120"
+			},
+			"offsets": {
+				"from": 135040,
+				"to": 141120
+			},
+			"text": " people with backgrounds in Oregon and get coin and give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,120",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 141120,
+				"to": 148000
+			},
+			"text": " and people currently in pocket and give it and chain safe currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:33,520"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 153520
+			},
+			"text": " and get coin and DX down and maker down and many more."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,520",
+				"to": "00:02:42,120"
+			},
+			"offsets": {
+				"from": 153520,
+				"to": 162120
+			},
+			"text": " And so we try to bring together the wisdom of what's going on in the realm"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,120",
+				"to": "00:02:44,480"
+			},
+			"offsets": {
+				"from": 162120,
+				"to": 164480
+			},
+			"text": " of like managing people in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,480",
+				"to": "00:02:46,440"
+			},
+			"offsets": {
+				"from": 164480,
+				"to": 166440
+			},
+			"text": " It's pretty different, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,840",
+				"to": "00:02:53,320"
+			},
+			"offsets": {
+				"from": 166840,
+				"to": 173320
+			},
+			"text": " Whether you're a Dow or your crypto company, even if you have like a company structure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,320",
+				"to": "00:02:57,760"
+			},
+			"offsets": {
+				"from": 173320,
+				"to": 177760
+			},
+			"text": " still like half of your people are like crypto anarchists, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,760",
+				"to": "00:03:02,120"
+			},
+			"offsets": {
+				"from": 177760,
+				"to": 182120
+			},
+			"text": " So they don't really align to traditional structures of management"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,120",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 182120,
+				"to": 187720
+			},
+			"text": " and what it takes to build a healthy team and maintain a healthy team is pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,720",
+				"to": "00:03:09,920"
+			},
+			"offsets": {
+				"from": 187720,
+				"to": 189920
+			},
+			"text": " different than in the trad world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,920",
+				"to": "00:03:14,840"
+			},
+			"offsets": {
+				"from": 189920,
+				"to": 194840
+			},
+			"text": " So that's why we've all come together and we face our problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,320",
+				"to": "00:03:21,960"
+			},
+			"offsets": {
+				"from": 195320,
+				"to": 201960
+			},
+			"text": " As they arise, we find we're often facing some of the same problems at the same times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,960",
+				"to": "00:03:27,200"
+			},
+			"offsets": {
+				"from": 201960,
+				"to": 207200
+			},
+			"text": " You know, last year we all went through swells in recruitment and trying to stay"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,200",
+				"to": "00:03:29,600"
+			},
+			"offsets": {
+				"from": 207200,
+				"to": 209600
+			},
+			"text": " balanced and how do you do that ethically?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,600",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 209600,
+				"to": 216720
+			},
+			"text": " We've also gone through a lot of themes of compensation as the bear market started"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:37,320"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 217320
+			},
+			"text": " to hit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,320",
+				"to": "00:03:44,440"
+			},
+			"offsets": {
+				"from": 217320,
+				"to": 224440
+			},
+			"text": " How do we build, you know, ways of assessing compensation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,440",
+				"to": "00:03:51,600"
+			},
+			"offsets": {
+				"from": 224440,
+				"to": 231600
+			},
+			"text": " assessing competency that is crypto native, but really helps us budget well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,600",
+				"to": "00:03:58,240"
+			},
+			"offsets": {
+				"from": 231600,
+				"to": 238240
+			},
+			"text": " So we've we've faced many of these themes, many of these people problems that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,240",
+				"to": "00:03:59,520"
+			},
+			"offsets": {
+				"from": 238240,
+				"to": 239520
+			},
+			"text": " space encounters."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,520",
+				"to": "00:04:06,680"
+			},
+			"offsets": {
+				"from": 239520,
+				"to": 246680
+			},
+			"text": " And today we want to talk about building the builders, biddling the biddlers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:16,160"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 256160
+			},
+			"text": " And it's really timely, I think, because as we settle into a bear market, it's this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,160",
+				"to": "00:04:21,280"
+			},
+			"offsets": {
+				"from": 256160,
+				"to": 261280
+			},
+			"text": " natural time for professional development and growth within."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,280",
+				"to": "00:04:26,680"
+			},
+			"offsets": {
+				"from": 261280,
+				"to": 266680
+			},
+			"text": " You're not going to be hiring as many people from external to the crypto space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,680",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266680,
+				"to": 273000
+			},
+			"text": " We can't just rely on, you know, yanking experts from web to anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,480"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277480
+			},
+			"text": " Those people are expensive and out of touch sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,120",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 278120,
+				"to": 285840
+			},
+			"text": " And so there's this natural phase where in crunch mode and bear market times, contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:52,440"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 292440
+			},
+			"text": " who do stay, they have to step up to the plate to take on new responsibilities, new"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,440",
+				"to": "00:04:55,800"
+			},
+			"offsets": {
+				"from": 292440,
+				"to": 295800
+			},
+			"text": " levels of professionalism and proficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,800",
+				"to": "00:05:05,240"
+			},
+			"offsets": {
+				"from": 295800,
+				"to": 305240
+			},
+			"text": " And it's up to us as org leads, Dow operators, or even just contributors who care."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,680",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 305680,
+				"to": 312880
+			},
+			"text": " It's up to us to to help our organizations foster that environment of growth, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:15,600"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 315600
+			},
+			"text": " So that's why we're here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,600",
+				"to": "00:05:24,280"
+			},
+			"offsets": {
+				"from": 315600,
+				"to": 324280
+			},
+			"text": " As like I said, we've got four different breakout stations that we'll go into at like 30 minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,280",
+				"to": "00:05:25,880"
+			},
+			"offsets": {
+				"from": 324280,
+				"to": 325880
+			},
+			"text": " after the hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,880",
+				"to": "00:05:35,240"
+			},
+			"offsets": {
+				"from": 325880,
+				"to": 335240
+			},
+			"text": " And we'll get into the description of those in a little bit, but I want to take us through"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,240",
+				"to": "00:05:38,120"
+			},
+			"offsets": {
+				"from": 335240,
+				"to": 338120
+			},
+			"text": " the lifecycle of people operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,120",
+				"to": "00:05:39,360"
+			},
+			"offsets": {
+				"from": 338120,
+				"to": 339360
+			},
+			"text": " Do we have a clicker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,360",
+				"to": "00:05:41,440"
+			},
+			"offsets": {
+				"from": 339360,
+				"to": 341440
+			},
+			"text": " I don't think we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,440",
+				"to": "00:05:44,520"
+			},
+			"offsets": {
+				"from": 341440,
+				"to": 344520
+			},
+			"text": " Is anyone here helping us with the slides?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,520",
+				"to": "00:05:52,040"
+			},
+			"offsets": {
+				"from": 344520,
+				"to": 352040
+			},
+			"text": " OK, while we're waiting for technical things, I want to just hear a couple shoutouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,040",
+				"to": "00:05:56,800"
+			},
+			"offsets": {
+				"from": 352040,
+				"to": 356800
+			},
+			"text": " Like, what's a big people problem that you notice happening in this space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,800",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 356800,
+				"to": 360200
+			},
+			"text": " Team health, you know, rage quiz."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:00,920"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 360920
+			},
+			"text": " It could be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,920",
+				"to": "00:06:08,800"
+			},
+			"offsets": {
+				"from": 360920,
+				"to": 368800
+			},
+			"text": " Anybody? What kind of people problems are you seeing happen in teams?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,800",
+				"to": "00:06:10,960"
+			},
+			"offsets": {
+				"from": 368800,
+				"to": 370960
+			},
+			"text": " Yeah, anybody has a people problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,960",
+				"to": "00:06:12,280"
+			},
+			"offsets": {
+				"from": 370960,
+				"to": 372280
+			},
+			"text": " Just tell me when you want to change it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,280",
+				"to": "00:06:15,040"
+			},
+			"offsets": {
+				"from": 372280,
+				"to": 375040
+			},
+			"text": " Yeah, go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,040",
+				"to": "00:06:19,800"
+			},
+			"offsets": {
+				"from": 375040,
+				"to": 379800
+			},
+			"text": " Five thumbs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,800",
+				"to": "00:06:21,360"
+			},
+			"offsets": {
+				"from": 379800,
+				"to": 381360
+			},
+			"text": " Oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,360",
+				"to": "00:06:22,560"
+			},
+			"offsets": {
+				"from": 381360,
+				"to": 382560
+			},
+			"text": " few thumbs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,560",
+				"to": "00:06:23,160"
+			},
+			"offsets": {
+				"from": 382560,
+				"to": 383160
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,160",
+				"to": "00:06:23,640"
+			},
+			"offsets": {
+				"from": 383160,
+				"to": 383640
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,640",
+				"to": "00:06:25,280"
+			},
+			"offsets": {
+				"from": 383640,
+				"to": 385280
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,280",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 385280,
+				"to": 388000
+			},
+			"text": " So power structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:28,880"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 388880
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,880",
+				"to": "00:06:29,880"
+			},
+			"offsets": {
+				"from": 388880,
+				"to": 389880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,880",
+				"to": "00:06:38,480"
+			},
+			"offsets": {
+				"from": 389880,
+				"to": 398480
+			},
+			"text": " Sometimes what people want to do doesn't align with the best interests of the Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,480",
+				"to": "00:06:39,880"
+			},
+			"offsets": {
+				"from": 398480,
+				"to": 399880
+			},
+			"text": " Mm."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,880",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 399880,
+				"to": 400600
+			},
+			"text": " Good one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:42,440"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 402440
+			},
+			"text": " Anybody else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,440",
+				"to": "00:06:51,440"
+			},
+			"offsets": {
+				"from": 402440,
+				"to": 411440
+			},
+			"text": " Sometimes people come for instant for incentives and when they dry out, they can go"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,440",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 411440,
+				"to": 417000
+			},
+			"text": " elsewhere or they come for instant instant gain instead of long term growth of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:06:57,480"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 417480
+			},
+			"text": " Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,800",
+				"to": "00:07:00,120"
+			},
+			"offsets": {
+				"from": 417800,
+				"to": 420120
+			},
+			"text": " Yeah, isn't that why we love bear market building?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,120",
+				"to": "00:07:02,320"
+			},
+			"offsets": {
+				"from": 420120,
+				"to": 422320
+			},
+			"text": " OK, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,320",
+				"to": "00:07:04,200"
+			},
+			"offsets": {
+				"from": 422320,
+				"to": 424200
+			},
+			"text": " I have my slides now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,200",
+				"to": "00:07:07,360"
+			},
+			"offsets": {
+				"from": 424200,
+				"to": 427360
+			},
+			"text": " So so I think we'll just move to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,360",
+				"to": "00:07:15,400"
+			},
+			"offsets": {
+				"from": 427360,
+				"to": 435400
+			},
+			"text": " Yeah, so I talked a little bit about what we do as the people up skilled, where we come from."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,400",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 435400,
+				"to": 440160
+			},
+			"text": " But yeah, we we try to educate this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,160",
+				"to": "00:07:23,560"
+			},
+			"offsets": {
+				"from": 440160,
+				"to": 443560
+			},
+			"text": " We try to educate ourselves and just be a learning hub together."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,680",
+				"to": "00:07:27,960"
+			},
+			"offsets": {
+				"from": 443680,
+				"to": 447960
+			},
+			"text": " We're also available to anyone who needs some help."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,960",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 447960,
+				"to": 456000
+			},
+			"text": " If you have like consult that you want to request, we're happy to share our resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 462040
+			},
+			"text": " There's a few different educational resources that we have put out some like"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:48,640"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 468640
+			},
+			"text": " worksheets and an article, but we're also down to take people's questions and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,640",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 468640,
+				"to": 475000
+			},
+			"text": " reach us by scanning QR code. There'll be also more opportunities for that QR code later, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:01,520"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 481520
+			},
+			"text": " OK, so I'm going to stand up so I can see this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,520",
+				"to": "00:08:11,320"
+			},
+			"offsets": {
+				"from": 481520,
+				"to": 491320
+			},
+			"text": " Hi. OK, so this to me is the whole life cycle of people operations in the crypto space."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,320",
+				"to": "00:08:14,080"
+			},
+			"offsets": {
+				"from": 491320,
+				"to": 494080
+			},
+			"text": " A lot of people are like, what the heck is people ups?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,080",
+				"to": "00:08:14,840"
+			},
+			"offsets": {
+				"from": 494080,
+				"to": 494840
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,840",
+				"to": "00:08:15,760"
+			},
+			"offsets": {
+				"from": 494840,
+				"to": 495760
+			},
+			"text": " Are you HR?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,760",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 495760,
+				"to": 497000
+			},
+			"text": " That sounds stuffy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:17,760"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 497760
+			},
+			"text": " I hate HR."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,760",
+				"to": "00:08:18,760"
+			},
+			"offsets": {
+				"from": 497760,
+				"to": 498760
+			},
+			"text": " What is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,760",
+				"to": "00:08:22,520"
+			},
+			"offsets": {
+				"from": 498760,
+				"to": 502520
+			},
+			"text": " But it's a little bit different in crypto orgs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,520",
+				"to": "00:08:29,520"
+			},
+			"offsets": {
+				"from": 502520,
+				"to": 509520
+			},
+			"text": " So kind of at the entry at the 12 o'clock, we have like the hiring process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,520",
+				"to": "00:08:35,720"
+			},
+			"offsets": {
+				"from": 509520,
+				"to": 515720
+			},
+			"text": " We have like the discussion of compensation and benefits, which often is left out in crypto jobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,720",
+				"to": "00:08:41,120"
+			},
+			"offsets": {
+				"from": 515720,
+				"to": 521120
+			},
+			"text": " We have onboarding processes can be kind of hard and douse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,120",
+				"to": "00:08:44,720"
+			},
+			"offsets": {
+				"from": 521120,
+				"to": 524720
+			},
+			"text": " We have role definition and work contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,720",
+				"to": "00:08:52,560"
+			},
+			"offsets": {
+				"from": 524720,
+				"to": 532560
+			},
+			"text": " Work contracts can be super different in like nonlegal entities or in very inventive legal entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,560",
+				"to": "00:08:56,840"
+			},
+			"offsets": {
+				"from": 532560,
+				"to": 536840
+			},
+			"text": " Then we have, you know, the maintenance of culture."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,840",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 536840,
+				"to": 542240
+			},
+			"text": " Once people are really in the org, we got team building and and vibe maintenance."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:05,400"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 545400
+			},
+			"text": " We got IRL time with our teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,400",
+				"to": "00:09:07,640"
+			},
+			"offsets": {
+				"from": 545400,
+				"to": 547640
+			},
+			"text": " These are all things that people operations do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,640",
+				"to": "00:09:13,040"
+			},
+			"offsets": {
+				"from": 547640,
+				"to": 553040
+			},
+			"text": " Then we come to professional development opportunities for our contributors as they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,040",
+				"to": "00:09:16,720"
+			},
+			"offsets": {
+				"from": 553040,
+				"to": 556720
+			},
+			"text": " already settled into their role and they need some time to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,720",
+				"to": "00:09:21,800"
+			},
+			"offsets": {
+				"from": 556720,
+				"to": 561800
+			},
+			"text": " How are they going to know if they need to grow performance review?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,800",
+				"to": "00:09:28,080"
+			},
+			"offsets": {
+				"from": 561800,
+				"to": 568080
+			},
+			"text": " But it doesn't usually work in a typical managerial sense in all crypto orgs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,080",
+				"to": "00:09:32,480"
+			},
+			"offsets": {
+				"from": 568080,
+				"to": 572480
+			},
+			"text": " So a lot of us have some form of decentralized peer review."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,480",
+				"to": "00:09:40,120"
+			},
+			"offsets": {
+				"from": 572480,
+				"to": 580120
+			},
+			"text": " We also have conflict resolution as well as like one on one contributor support for hard times."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,400",
+				"to": "00:09:48,080"
+			},
+			"offsets": {
+				"from": 580400,
+				"to": 588080
+			},
+			"text": " These are things that people operations provides and some orgs have a code of conduct too."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,080",
+				"to": "00:09:51,680"
+			},
+			"offsets": {
+				"from": 588080,
+				"to": 591680
+			},
+			"text": " And this is something that's tended by people operations staff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,680",
+				"to": "00:10:00,560"
+			},
+			"offsets": {
+				"from": 591680,
+				"to": 600560
+			},
+			"text": " So when we look at this whole life cycle, I see the main things for contributor development being"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,560",
+				"to": "00:10:04,840"
+			},
+			"offsets": {
+				"from": 600560,
+				"to": 604840
+			},
+			"text": " obviously the professional development and the peer review."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,400",
+				"to": "00:10:12,280"
+			},
+			"offsets": {
+				"from": 605400,
+				"to": 612280
+			},
+			"text": " And sometimes actually a lot of the team building and team IRL time because you get a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,280",
+				"to": "00:10:14,440"
+			},
+			"offsets": {
+				"from": 612280,
+				"to": 614440
+			},
+			"text": " of educational opportunities in that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,440",
+				"to": "00:10:16,640"
+			},
+			"offsets": {
+				"from": 614440,
+				"to": 616640
+			},
+			"text": " We're all here learning at DevCon, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,640",
+				"to": "00:10:19,240"
+			},
+			"offsets": {
+				"from": 616640,
+				"to": 619240
+			},
+			"text": " We're growing so much just by being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,240",
+				"to": "00:10:26,360"
+			},
+			"offsets": {
+				"from": 619240,
+				"to": 626360
+			},
+			"text": " And so education and professional development and peer review are the main things that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,360",
+				"to": "00:10:29,040"
+			},
+			"offsets": {
+				"from": 626360,
+				"to": 629040
+			},
+			"text": " going to talk about today for contributor development."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,040",
+				"to": "00:10:34,800"
+			},
+			"offsets": {
+				"from": 629040,
+				"to": 634800
+			},
+			"text": " And now I want to invite some of our guilds to speak about their experiences with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,800",
+				"to": "00:10:36,560"
+			},
+			"offsets": {
+				"from": 635800,
+				"to": 636560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,560",
+				"to": "00:10:39,120"
+			},
+			"offsets": {
+				"from": 636560,
+				"to": 639120
+			},
+			"text": " Hi guys, I'm Lanka."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,120",
+				"to": "00:10:44,640"
+			},
+			"offsets": {
+				"from": 639120,
+				"to": 644640
+			},
+			"text": " I'm basically not officially a people ops person."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,640",
+				"to": "00:10:49,400"
+			},
+			"offsets": {
+				"from": 644640,
+				"to": 649400
+			},
+			"text": " So I always feel like like a black sheep in this group, but it's kind of fun because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,400",
+				"to": "00:10:51,080"
+			},
+			"offsets": {
+				"from": 649400,
+				"to": 651080
+			},
+			"text": " something I'm passionate about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,080",
+				"to": "00:10:58,280"
+			},
+			"offsets": {
+				"from": 651080,
+				"to": 658280
+			},
+			"text": " And I got close to this topic while I was working on a project together with my teammates."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,280",
+				"to": "00:11:01,640"
+			},
+			"offsets": {
+				"from": 658280,
+				"to": 661640
+			},
+			"text": " We called it X-ray and we were researching decentralized workforce."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,960",
+				"to": "00:11:07,880"
+			},
+			"offsets": {
+				"from": 661960,
+				"to": 667880
+			},
+			"text": " We were researching the ways to best attract on board and retain talent."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,880",
+				"to": "00:11:13,560"
+			},
+			"offsets": {
+				"from": 667880,
+				"to": 673560
+			},
+			"text": " And the team I'm at in our language core unit, it's called SES sustainable"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,560",
+				"to": "00:11:16,040"
+			},
+			"offsets": {
+				"from": 673560,
+				"to": 676040
+			},
+			"text": " ecosystem scaling at MakerDAU."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,040",
+				"to": "00:11:25,600"
+			},
+			"offsets": {
+				"from": 676040,
+				"to": 685600
+			},
+			"text": " And yeah, the personal story I want to share here with you is actually my time when I"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,600",
+				"to": "00:11:30,840"
+			},
+			"offsets": {
+				"from": 685600,
+				"to": 690840
+			},
+			"text": " learned that the maker foundation, as you probably know, is closing down."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:36,600"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 696600
+			},
+			"text": " And basically there's this completely new structure where people should kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,600",
+				"to": "00:11:41,360"
+			},
+			"offsets": {
+				"from": 696600,
+				"to": 701360
+			},
+			"text": " sell themselves as contributors to the Dow and be voted in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,360",
+				"to": "00:11:44,240"
+			},
+			"offsets": {
+				"from": 701360,
+				"to": 704240
+			},
+			"text": " So it was like a really big change in transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,240",
+				"to": "00:11:50,200"
+			},
+			"offsets": {
+				"from": 704240,
+				"to": 710200
+			},
+			"text": " But we kind of knew this is coming because our organization has always committed to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,200",
+				"to": "00:11:51,680"
+			},
+			"offsets": {
+				"from": 710200,
+				"to": 711680
+			},
+			"text": " progressive decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,680",
+				"to": "00:11:57,720"
+			},
+			"offsets": {
+				"from": 711680,
+				"to": 717720
+			},
+			"text": " And when the time came, I just want to share that the good experience I had from my"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,720",
+				"to": "00:12:06,040"
+			},
+			"offsets": {
+				"from": 717720,
+				"to": 726040
+			},
+			"text": " org because on one hand, if you are a bit more centralised organization, you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,040",
+				"to": "00:12:14,600"
+			},
+			"offsets": {
+				"from": 726040,
+				"to": 734600
+			},
+			"text": " do not want to have like you don't want to mess with the process of Dow contributor"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,600",
+				"to": "00:12:15,440"
+			},
+			"offsets": {
+				"from": 734600,
+				"to": 735440
+			},
+			"text": " onboarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,440",
+				"to": "00:12:20,440"
+			},
+			"offsets": {
+				"from": 735440,
+				"to": 740440
+			},
+			"text": " So you actually do not want to influence or wait in when it comes to making this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,440",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 740440,
+				"to": 741040
+			},
+			"text": " decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:26,520"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 746520
+			},
+			"text": " But I was super fortunate that we were led some sort of a wiggle room where we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,520",
+				"to": "00:12:32,680"
+			},
+			"offsets": {
+				"from": 746520,
+				"to": 752680
+			},
+			"text": " actually in a bit more peace and less stress, figure out whether we want to transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,680",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 752680,
+				"to": 755400
+			},
+			"text": " into Dow, how do we want to transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:42,240"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 762240
+			},
+			"text": " And basically we were allowed that space without the foundation kind of like abusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,240",
+				"to": "00:12:47,640"
+			},
+			"offsets": {
+				"from": 762240,
+				"to": 767640
+			},
+			"text": " its, it could abuse its power because they, you know, they have a lot of influence."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,640",
+				"to": "00:12:54,800"
+			},
+			"offsets": {
+				"from": 767640,
+				"to": 774800
+			},
+			"text": " So basically I was in a situation where I had bit more time and space to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,800",
+				"to": "00:13:01,080"
+			},
+			"offsets": {
+				"from": 774800,
+				"to": 781080
+			},
+			"text": " figure this out and get the support from the foundation side, but not the support of helping"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,080",
+				"to": "00:13:10,120"
+			},
+			"offsets": {
+				"from": 781080,
+				"to": 790120
+			},
+			"text": " me get there, but checking on me and hearing my plans and figuring out what other work"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,120",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 790120,
+				"to": 795000
+			},
+			"text": " and important things are managing, I'm leaving behind so that the transition is smooth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:18,320"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 798320
+			},
+			"text": " So I think that's a really good example to share with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,680",
+				"to": "00:13:25,040"
+			},
+			"offsets": {
+				"from": 798680,
+				"to": 805040
+			},
+			"text": " If you are in a situation where you have a bit more startup, traditional organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,040",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 805040,
+				"to": 809000
+			},
+			"text": " and you're looking into how you want to decentralize, so I think that was a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:34,960"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 814960
+			},
+			"text": " nice approach to offer that safe space, but do not interfere with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,960",
+				"to": "00:13:40,240"
+			},
+			"offsets": {
+				"from": 814960,
+				"to": 820240
+			},
+			"text": " And yeah, the funny thing is that I used to do, I was part of the Markham's team and I used"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,240",
+				"to": "00:13:43,520"
+			},
+			"offsets": {
+				"from": 820240,
+				"to": 823520
+			},
+			"text": " to do like events management and community building."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,520",
+				"to": "00:13:47,920"
+			},
+			"offsets": {
+				"from": 823520,
+				"to": 827920
+			},
+			"text": " And when I transitioned to the Dow, I just said, okay, I want to try something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:52,600"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 832600
+			},
+			"text": " And I kind of had to figure out a way to apply myself and I became a project lead."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,600",
+				"to": "00:13:54,360"
+			},
+			"offsets": {
+				"from": 832600,
+				"to": 834360
+			},
+			"text": " So completely different thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,360",
+				"to": "00:13:57,880"
+			},
+			"offsets": {
+				"from": 834360,
+				"to": 837880
+			},
+			"text": " You can have some experiences, but it's really nice, this opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,880",
+				"to": "00:14:00,360"
+			},
+			"offsets": {
+				"from": 837880,
+				"to": 840360
+			},
+			"text": " So that's what I wanted to share with you, this short thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,360",
+				"to": "00:14:02,640"
+			},
+			"offsets": {
+				"from": 840360,
+				"to": 842640
+			},
+			"text": " Who do we have next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,640",
+				"to": "00:14:09,640"
+			},
+			"offsets": {
+				"from": 842640,
+				"to": 849640
+			},
+			"text": " What?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,640",
+				"to": "00:14:13,120"
+			},
+			"offsets": {
+				"from": 849640,
+				"to": 853120
+			},
+			"text": " So who wants to go next?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,120",
+				"to": "00:14:15,120"
+			},
+			"offsets": {
+				"from": 853120,
+				"to": 855120
+			},
+			"text": " This one works."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,120",
+				"to": "00:14:18,120"
+			},
+			"offsets": {
+				"from": 855120,
+				"to": 858120
+			},
+			"text": " So thanks to you for sharing that, Linka."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,120",
+				"to": "00:14:29,120"
+			},
+			"offsets": {
+				"from": 858120,
+				"to": 869120
+			},
+			"text": " I didn't prepare a share for you guys, but I just want to tell you a little bit about who I am and what I do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,120",
+				"to": "00:14:30,240"
+			},
+			"offsets": {
+				"from": 869120,
+				"to": 870240
+			},
+			"text": " My name is Melanie."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,240",
+				"to": "00:14:33,280"
+			},
+			"offsets": {
+				"from": 870240,
+				"to": 873280
+			},
+			"text": " I am a contributor to DX Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,280",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 873280,
+				"to": 876000
+			},
+			"text": " I lead the contributor experience there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,640"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879640
+			},
+			"text": " I have a traditional background in HR."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,640",
+				"to": "00:14:46,360"
+			},
+			"offsets": {
+				"from": 879640,
+				"to": 886360
+			},
+			"text": " So pretty much my entire career, I've covered all things under the HR umbrella, like recruiting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,360",
+				"to": "00:14:50,320"
+			},
+			"offsets": {
+				"from": 886360,
+				"to": 890320
+			},
+			"text": " compliance, performance management, all the way to talent management."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,320",
+				"to": "00:15:06,200"
+			},
+			"offsets": {
+				"from": 890320,
+				"to": 906200
+			},
+			"text": " And coming into a Dow has been a completely different experience, but definitely learning these skills and like gaining that type of knowledge has given me the skill set to really help support my team, help support my squad and my Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,520",
+				"to": "00:15:10,520"
+			},
+			"offsets": {
+				"from": 906520,
+				"to": 910520
+			},
+			"text": " So today, I'm actually going to be at the peer review workstation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,520",
+				"to": "00:15:21,160"
+			},
+			"offsets": {
+				"from": 910520,
+				"to": 921160
+			},
+			"text": " And we're going to be talking about building a culture of feedback, introducing some mechanisms that you guys can use within your Dow and then applying them to certain cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,160",
+				"to": "00:15:23,920"
+			},
+			"offsets": {
+				"from": 921160,
+				"to": 923920
+			},
+			"text": " But that's a little bit about me and who I am."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:26,600"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 926600
+			},
+			"text": " And yeah, thank you for joining."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,600",
+				"to": "00:15:32,080"
+			},
+			"offsets": {
+				"from": 926600,
+				"to": 932080
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,080",
+				"to": "00:15:33,200"
+			},
+			"offsets": {
+				"from": 932080,
+				"to": 933200
+			},
+			"text": " Yeah, thank you all for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,200",
+				"to": "00:15:36,520"
+			},
+			"offsets": {
+				"from": 933200,
+				"to": 936520
+			},
+			"text": " I'm Saf. I do people ops at get coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,520",
+				"to": "00:15:38,720"
+			},
+			"offsets": {
+				"from": 936520,
+				"to": 938720
+			},
+			"text": " Get coins, an example of an organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,720",
+				"to": "00:15:43,680"
+			},
+			"offsets": {
+				"from": 938720,
+				"to": 943680
+			},
+			"text": " I think we've like gone through all of the things that Lowy mentioned earlier, where we've grown really quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,680",
+				"to": "00:15:47,760"
+			},
+			"offsets": {
+				"from": 943680,
+				"to": 947760
+			},
+			"text": " We're up to like 45 full time contributors in the past year."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,760",
+				"to": "00:15:57,600"
+			},
+			"offsets": {
+				"from": 947760,
+				"to": 957600
+			},
+			"text": " And yeah, like, you know, being the people, a people ops person, I have gone through sort of like many of the different pieces of the contributor lifecycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:11,840"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 971840
+			},
+			"text": " Yeah, like just doing a lot of hiring and when we were still in bull times and then realizing that there's a lot of work debt that we've accumulated in the bull times that we now kind of have to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,840",
+				"to": "00:16:16,680"
+			},
+			"offsets": {
+				"from": 971840,
+				"to": 976680
+			},
+			"text": " Yeah, like set up structure and processes for."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,680",
+				"to": "00:16:22,080"
+			},
+			"offsets": {
+				"from": 976680,
+				"to": 982080
+			},
+			"text": " So yeah, I've been involved with like compensation creation at get coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,080",
+				"to": "00:16:27,720"
+			},
+			"offsets": {
+				"from": 982080,
+				"to": 987720
+			},
+			"text": " And today I'm just I'm here with Anna and Melanie at the peer review station."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,560",
+				"to": "00:16:29,160"
+			},
+			"offsets": {
+				"from": 988560,
+				"to": 989160
+			},
+			"text": " Yeah, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,160",
+				"to": "00:16:35,080"
+			},
+			"offsets": {
+				"from": 989160,
+				"to": 995080
+			},
+			"text": " Hey guys, thanks for being here with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,080",
+				"to": "00:16:35,880"
+			},
+			"offsets": {
+				"from": 995080,
+				"to": 995880
+			},
+			"text": " I'm Anna."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,880",
+				"to": "00:16:52,120"
+			},
+			"offsets": {
+				"from": 995880,
+				"to": 1012120
+			},
+			"text": " I work at chainsafe and I come from traditional web to space and came into web three two years ago with, you know, a bunch of tools from web to can be implemented in web three, just with different, different outlooks and basically adjusting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,120",
+				"to": "00:16:54,840"
+			},
+			"offsets": {
+				"from": 1012120,
+				"to": 1014840
+			},
+			"text": " Making it work as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,840",
+				"to": "00:16:57,960"
+			},
+			"offsets": {
+				"from": 1014840,
+				"to": 1017960
+			},
+			"text": " So happy to be here and talk about that today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,680",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1018680,
+				"to": 1020000
+			},
+			"text": " I'll keep a brief and short and."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:03,720"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1023720
+			},
+			"text": " Yeah, the the peer review."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,720",
+				"to": "00:17:10,520"
+			},
+			"offsets": {
+				"from": 1023720,
+				"to": 1030520
+			},
+			"text": " The peer review station is super robust and it's going to be a great breakout group."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,520",
+				"to": "00:17:17,520"
+			},
+			"offsets": {
+				"from": 1030520,
+				"to": 1037520
+			},
+			"text": " So Heather, I don't know if you want to say just a little bit about recruitment and what you guys will talk about there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,520",
+				"to": "00:17:25,920"
+			},
+			"offsets": {
+				"from": 1037520,
+				"to": 1045920
+			},
+			"text": " Hi, my name is Heather and I'll be filling in for Francis at the recruitment station station."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,200",
+				"to": "00:17:28,400"
+			},
+			"offsets": {
+				"from": 1046200,
+				"to": 1048400
+			},
+			"text": " And I currently work for Givith."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,400",
+				"to": "00:17:32,480"
+			},
+			"offsets": {
+				"from": 1048400,
+				"to": 1052480
+			},
+			"text": " Oh, I forgot to mention like thanks well for showing up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,480",
+				"to": "00:17:44,360"
+			},
+			"offsets": {
+				"from": 1052480,
+				"to": 1064360
+			},
+			"text": " I thought we would be speaking to a room of crickets, but it's really awesome that there's like so many people in here that are like really passionate about this or at least interested as we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,360",
+				"to": "00:17:50,200"
+			},
+			"offsets": {
+				"from": 1064360,
+				"to": 1070200
+			},
+			"text": " And a little bit about myself is I don't come from HR at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,080",
+				"to": "00:17:55,840"
+			},
+			"offsets": {
+				"from": 1072080,
+				"to": 1075840
+			},
+			"text": " Yeah, I'm actually trained as a clinical."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,840",
+				"to": "00:17:59,240"
+			},
+			"offsets": {
+				"from": 1075840,
+				"to": 1079240
+			},
+			"text": " I also stutter."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,240",
+				"to": "00:18:08,880"
+			},
+			"offsets": {
+				"from": 1079240,
+				"to": 1088880
+			},
+			"text": " So if I stutter during our breakout session, that's just me, but I come from a clinical mental health counselor background."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,880",
+				"to": "00:18:17,840"
+			},
+			"offsets": {
+				"from": 1088880,
+				"to": 1097840
+			},
+			"text": " So I got my masters in that and I worked in an adult psychiatric hospital, a locked unit for five years over in Denver."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,240",
+				"to": "00:18:29,040"
+			},
+			"offsets": {
+				"from": 1098240,
+				"to": 1109040
+			},
+			"text": " And it sounds like maybe it's not transferable, but I think in this like Wild West of Web 3, they're definitely as I'm like, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,040",
+				"to": "00:18:33,200"
+			},
+			"offsets": {
+				"from": 1109040,
+				"to": 1113200
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,200",
+				"to": "00:18:45,200"
+			},
+			"offsets": {
+				"from": 1113200,
+				"to": 1125200
+			},
+			"text": " So I think through that experience, what taught me a lot about that is how important job satisfaction is to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,240",
+				"to": "00:18:51,040"
+			},
+			"offsets": {
+				"from": 1125240,
+				"to": 1131040
+			},
+			"text": " You know, it's like you have purpose in life. If you have a job that you like, you're probably going to be happy overall."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,040",
+				"to": "00:18:56,960"
+			},
+			"offsets": {
+				"from": 1131040,
+				"to": 1136960
+			},
+			"text": " And I think it's really important that like we try and create like a curated workspace."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,960",
+				"to": "00:19:02,840"
+			},
+			"offsets": {
+				"from": 1136960,
+				"to": 1142840
+			},
+			"text": " So like people show up excited for their jobs that they're having fun with their teams that they're laughing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,840",
+				"to": "00:19:10,600"
+			},
+			"offsets": {
+				"from": 1142840,
+				"to": 1150600
+			},
+			"text": " And if like you have that like good vibe going on in your team, chances are you're going to be more productive."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,600",
+				"to": "00:19:17,320"
+			},
+			"offsets": {
+				"from": 1150600,
+				"to": 1157320
+			},
+			"text": " You're going to have more retention and like people are going to be proud to like work for your org."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,320",
+				"to": "00:19:33,960"
+			},
+			"offsets": {
+				"from": 1157320,
+				"to": 1173960
+			},
+			"text": " So and I think the very part of that starts at the recruitment process where like I get to use my like bullshit detector and just really choose like the outstanding candidates that can fit in your teams the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,960",
+				"to": "00:19:35,800"
+			},
+			"offsets": {
+				"from": 1173960,
+				"to": 1175800
+			},
+			"text": " And I'll pass it on to Ben."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,800",
+				"to": "00:19:36,880"
+			},
+			"offsets": {
+				"from": 1175800,
+				"to": 1176880
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,880",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1176880,
+				"to": 1184000
+			},
+			"text": " Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:45,040"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1185040
+			},
+			"text": " So I'm Ben Perez."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,040",
+				"to": "00:19:51,600"
+			},
+			"offsets": {
+				"from": 1185040,
+				"to": 1191600
+			},
+			"text": " I work at Pocket Network, which is a protocol for decentralized node infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,600",
+				"to": "00:19:56,800"
+			},
+			"offsets": {
+				"from": 1191600,
+				"to": 1196800
+			},
+			"text": " If you don't know what that is, you can come and talk to me and we can talk about together."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,800",
+				"to": "00:19:59,600"
+			},
+			"offsets": {
+				"from": 1196800,
+				"to": 1199600
+			},
+			"text": " I'm looking forward to meeting lots of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,600",
+				"to": "00:20:01,280"
+			},
+			"offsets": {
+				"from": 1199600,
+				"to": 1201280
+			},
+			"text": " I'm an incredibly awkward person."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,280",
+				"to": "00:20:05,520"
+			},
+			"offsets": {
+				"from": 1201280,
+				"to": 1205520
+			},
+			"text": " So if I look to hug you and you put a hand out for a handshake, just warn you upfront."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,520",
+				"to": "00:20:06,280"
+			},
+			"offsets": {
+				"from": 1205520,
+				"to": 1206280
+			},
+			"text": " That's who I am."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,280",
+				"to": "00:20:11,480"
+			},
+			"offsets": {
+				"from": 1206280,
+				"to": 1211480
+			},
+			"text": " And yeah, I think there's like lots of ways to think about Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,480",
+				"to": "00:20:22,360"
+			},
+			"offsets": {
+				"from": 1211480,
+				"to": 1222360
+			},
+			"text": " But one that I think about often is that it might be like the largest human reeducation program since like the industrial revolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,360",
+				"to": "00:20:27,800"
+			},
+			"offsets": {
+				"from": 1222360,
+				"to": 1227800
+			},
+			"text": " I think the fact we're here today talking about different ways that we can develop people and upskill them is."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,800",
+				"to": "00:20:29,640"
+			},
+			"offsets": {
+				"from": 1227800,
+				"to": 1229640
+			},
+			"text": " It's a really important topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,640",
+				"to": "00:20:41,800"
+			},
+			"offsets": {
+				"from": 1230640,
+				"to": 1241800
+			},
+			"text": " The really important part, I think, is to also not teach them all of the patriarchal power structures that are built into our existing educational systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,800",
+				"to": "00:20:44,240"
+			},
+			"offsets": {
+				"from": 1241800,
+				"to": 1244240
+			},
+			"text": " So I'm really looking forward to talking about that a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,240",
+				"to": "00:20:47,160"
+			},
+			"offsets": {
+				"from": 1244240,
+				"to": 1247160
+			},
+			"text": " My station is about tactical development."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,160",
+				"to": "00:20:53,520"
+			},
+			"offsets": {
+				"from": 1247160,
+				"to": 1253520
+			},
+			"text": " It's with a bunch of experts who are working on educational programs that you can potentially work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,520",
+				"to": "00:20:56,120"
+			},
+			"offsets": {
+				"from": 1253520,
+				"to": 1256120
+			},
+			"text": " So yeah, looking forward to training about that today."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,120",
+				"to": "00:20:58,120"
+			},
+			"offsets": {
+				"from": 1256120,
+				"to": 1258120
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,120",
+				"to": "00:21:06,680"
+			},
+			"offsets": {
+				"from": 1258120,
+				"to": 1266680
+			},
+			"text": " Okay, so we were going to have you guys pepper out questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,680",
+				"to": "00:21:17,400"
+			},
+			"offsets": {
+				"from": 1266680,
+				"to": 1277400
+			},
+			"text": " I think we'll still do just like five minutes of that because we want y'all to have a good idea of what workstations you should go into."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,440",
+				"to": "00:21:28,960"
+			},
+			"offsets": {
+				"from": 1279440,
+				"to": 1288960
+			},
+			"text": " And I might just make a little bit of distinction between the workstations before I have you guys give questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,960",
+				"to": "00:21:34,800"
+			},
+			"offsets": {
+				"from": 1288960,
+				"to": 1294800
+			},
+			"text": " So as you know, these three folks are really focusing on peer review."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,800",
+				"to": "00:21:38,080"
+			},
+			"offsets": {
+				"from": 1294800,
+				"to": 1298080
+			},
+			"text": " I think that one is pretty self-explanatory."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,080",
+				"to": "00:21:45,520"
+			},
+			"offsets": {
+				"from": 1298080,
+				"to": 1305520
+			},
+			"text": " Recruitment, you know, for like a life recruiting for a lifelong growth journey for any contributor."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,880",
+				"to": "00:21:57,640"
+			},
+			"offsets": {
+				"from": 1306880,
+				"to": 1317640
+			},
+			"text": " And then the two that I want to give you a little more distinction on is continuing education, which is me and Lanka, and tactical development, which has been."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,640",
+				"to": "00:22:05,680"
+			},
+			"offsets": {
+				"from": 1317640,
+				"to": 1325680
+			},
+			"text": " So at our station, we're going to talk a little bit more about the learning environment in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,680",
+				"to": "00:22:11,920"
+			},
+			"offsets": {
+				"from": 1325680,
+				"to": 1331920
+			},
+			"text": " We're going to talk about like brain plasticity and how to build like a culture of learning in your workplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,120",
+				"to": "00:22:23,200"
+			},
+			"offsets": {
+				"from": 1332120,
+				"to": 1343200
+			},
+			"text": " We'll talk a little bit more about like the philosophical education around crypto, the movement and what's important to know about that and how people can develop kind of as."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,200",
+				"to": "00:22:35,560"
+			},
+			"offsets": {
+				"from": 1343200,
+				"to": 1355560
+			},
+			"text": " You know, thought leaders in web three, as well as just doing a good job of being in these organizations and what it's like to develop those skills to exist and to our wherever else."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,200",
+				"to": "00:22:45,320"
+			},
+			"offsets": {
+				"from": 1356200,
+				"to": 1365320
+			},
+			"text": " Versus Ben station is more about the technical skills. It's going to be about more tactical professional development stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,320",
+				"to": "00:22:56,640"
+			},
+			"offsets": {
+				"from": 1365320,
+				"to": 1376640
+			},
+			"text": " And like he said, he's got some visitors from various different developer education and other really tactical web three skill education cohorts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,640",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1376640,
+				"to": 1380000
+			},
+			"text": " So just so you know, kind of the difference between those two."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,360",
+				"to": "00:23:23,200"
+			},
+			"offsets": {
+				"from": 1381360,
+				"to": 1403200
+			},
+			"text": " And before we go into breakouts, I'd love to just open up for a few questions. These can be questions about like, you know, how do I how do I execute like a decentralized performance review or how do I convince people in my org that this thing is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,760",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1403760,
+				"to": 1411000
+			},
+			"text": " Just I just want to hear a few questions from you guys so so that we can see you melding into these breakouts better."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:23:34,840"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1414840
+			},
+			"text": " You can just raise your hand and I come with the microphone. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,840",
+				"to": "00:23:44,040"
+			},
+			"offsets": {
+				"from": 1414840,
+				"to": 1424040
+			},
+			"text": " Hey, I'm Alex a question from my side. I come from web two being in web three for one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,040",
+				"to": "00:23:51,760"
+			},
+			"offsets": {
+				"from": 1424040,
+				"to": 1431760
+			},
+			"text": " I was fortunate to be in a web two company that focused a lot on growth and HR and just helping us in the company."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,760",
+				"to": "00:23:58,480"
+			},
+			"offsets": {
+				"from": 1431760,
+				"to": 1438480
+			},
+			"text": " We were 200 people there coming in web three. I see it very focused on financial and technical part and missing that human side."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,480",
+				"to": "00:24:01,760"
+			},
+			"offsets": {
+				"from": 1438480,
+				"to": 1441760
+			},
+			"text": " I try to bring that in the company. It's not easy. How to do that? Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,760",
+				"to": "00:24:13,560"
+			},
+			"offsets": {
+				"from": 1441760,
+				"to": 1453560
+			},
+			"text": " That's a great question. And honestly, I think it steeped in the culture overall and kind of involves all of these aspects."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,480",
+				"to": "00:24:26,320"
+			},
+			"offsets": {
+				"from": 1454480,
+				"to": 1466320
+			},
+			"text": " But I would say if I were you, I would go to either like continuing education or to peer review. I think those stations will have some some good answers for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,320",
+				"to": "00:24:33,120"
+			},
+			"offsets": {
+				"from": 1466320,
+				"to": 1473120
+			},
+			"text": " Okay, do I see another hand? Okay, there. Sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,120",
+				"to": "00:24:43,840"
+			},
+			"offsets": {
+				"from": 1473120,
+				"to": 1483840
+			},
+			"text": " Thank you. Really fascinating. I have my question is how do you work during this bear market as a team and avoiding people burning out or"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,480",
+				"to": "00:24:50,000"
+			},
+			"offsets": {
+				"from": 1484480,
+				"to": 1490000
+			},
+			"text": " not delivering or just a number of human issues during this bear market? Really?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,000",
+				"to": "00:25:10,480"
+			},
+			"offsets": {
+				"from": 1490000,
+				"to": 1510480
+			},
+			"text": " Yeah, I think it's very important to talk to your people and actually hear out what's going on, what's going on and be in one-on-one setting or through some sort of survey anonymous or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,520",
+				"to": "00:25:20,720"
+			},
+			"offsets": {
+				"from": 1511520,
+				"to": 1520720
+			},
+			"text": " And just hear your people and like come up with things that you can do together to address some of the issues we're all facing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,720",
+				"to": "00:25:27,200"
+			},
+			"offsets": {
+				"from": 1520720,
+				"to": 1527200
+			},
+			"text": " Burnout, wellness, you know, disconnecting from your laptop. That's a big one. I think for everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,200",
+				"to": "00:25:36,640"
+			},
+			"offsets": {
+				"from": 1527200,
+				"to": 1536640
+			},
+			"text": " All out to that. So I like to call myself an emotional support human."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,520",
+				"to": "00:25:47,200"
+			},
+			"offsets": {
+				"from": 1539520,
+				"to": 1547200
+			},
+			"text": " And I think in at least in at Givith, what I do is like someone's having a hard time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,200",
+				"to": "00:25:56,160"
+			},
+			"offsets": {
+				"from": 1547200,
+				"to": 1556160
+			},
+			"text": " Like I come in and like have a checkup call with them. I'm like, hey, what's going on? Like your productivity is down."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,160",
+				"to": "00:26:01,920"
+			},
+			"offsets": {
+				"from": 1556160,
+				"to": 1561920
+			},
+			"text": " Like you seem kind of sad on calls. Like you're not showing up and it's like a private neutral space."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,560",
+				"to": "00:26:09,120"
+			},
+			"offsets": {
+				"from": 1562560,
+				"to": 1569120
+			},
+			"text": " So we can just talk candidly about what's going on in their personal lives or if it's something internally going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,120",
+				"to": "00:26:26,320"
+			},
+			"offsets": {
+				"from": 1569120,
+				"to": 1586320
+			},
+			"text": " And then we like don't really dwell on the problem so much. It's more like focused on solutions and like brainstorming how they can like communicate better or how they can like propose different ideas that they're kind of like struggling with."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,320",
+				"to": "00:26:33,600"
+			},
+			"offsets": {
+				"from": 1586320,
+				"to": 1593600
+			},
+			"text": " So I think it's especially in like this digital space. It's really important to have like that human touch that we lose."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,600",
+				"to": "00:26:40,800"
+			},
+			"offsets": {
+				"from": 1593600,
+				"to": 1600800
+			},
+			"text": " And when when we start losing that human touch is when people start feeling more isolated, disconnected from teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,800",
+				"to": "00:26:56,240"
+			},
+			"offsets": {
+				"from": 1600800,
+				"to": 1616240
+			},
+			"text": " I have one more answer to this question and then we'll pass it. I think that it's really advantageous to have like connection moments in your team and like a fun educational moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,640",
+				"to": "00:27:12,560"
+			},
+			"offsets": {
+				"from": 1616640,
+				"to": 1632560
+			},
+			"text": " Because sometimes when it's like not that fun to be at work, it's more fun to be at school and to remember that like even in the struggle of trying to have a successful business that you're in a place where you're developing yourself so much and you're learning and that's thrilling."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,560",
+				"to": "00:27:21,920"
+			},
+			"offsets": {
+				"from": 1632560,
+				"to": 1641920
+			},
+			"text": " And you are developing a sense of community. And so that's like something that we're going to talk a lot about how to do at the Continuing Education Station."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,920",
+				"to": "00:27:27,440"
+			},
+			"offsets": {
+				"from": 1641920,
+				"to": 1647440
+			},
+			"text": " I really think you could take your pick from any station for this question. But yeah, just so you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,440",
+				"to": "00:27:32,160"
+			},
+			"offsets": {
+				"from": 1647440,
+				"to": 1652160
+			},
+			"text": " Okay. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,160",
+				"to": "00:27:43,920"
+			},
+			"offsets": {
+				"from": 1652160,
+				"to": 1663920
+			},
+			"text": " Okay. We are a traditional organization and we have recently kick started our progressive decentralization process."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,920",
+				"to": "00:27:50,640"
+			},
+			"offsets": {
+				"from": 1663920,
+				"to": 1670640
+			},
+			"text": " And I can definitely see some resistance internally from some of the some of the colleagues"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,680",
+				"to": "00:27:57,360"
+			},
+			"offsets": {
+				"from": 1671680,
+				"to": 1677360
+			},
+			"text": " from the perspective of being judged and seen by everybody else in the public basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,360",
+				"to": "00:28:01,360"
+			},
+			"offsets": {
+				"from": 1677360,
+				"to": 1681360
+			},
+			"text": " Because I mean, yeah, when you're in a traditional organization, everything is a pack."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,360",
+				"to": "00:28:05,520"
+			},
+			"offsets": {
+				"from": 1681360,
+				"to": 1685520
+			},
+			"text": " You are like, you just work with your colleagues, like you have your manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,520",
+				"to": "00:28:10,560"
+			},
+			"offsets": {
+				"from": 1685520,
+				"to": 1690560
+			},
+			"text": " But when you're a contributor, when you're working in building in public, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,560",
+				"to": "00:28:20,320"
+			},
+			"offsets": {
+				"from": 1690560,
+				"to": 1700320
+			},
+			"text": " anybody can can look at what you're doing. Everybody can see your performance. So there's definitely a mindset that some people do not have"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,120",
+				"to": "00:28:27,600"
+			},
+			"offsets": {
+				"from": 1701120,
+				"to": 1707600
+			},
+			"text": " coming from 10 years of experience in a traditional organization. How can we help them to kind of be"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,600",
+				"to": "00:28:34,080"
+			},
+			"offsets": {
+				"from": 1707600,
+				"to": 1714080
+			},
+			"text": " feel safe and feel not judged, let's say? Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,080",
+				"to": "00:28:40,320"
+			},
+			"offsets": {
+				"from": 1714080,
+				"to": 1720320
+			},
+			"text": " Thank you for your question. Who wants to take this one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,840",
+				"to": "00:28:52,720"
+			},
+			"offsets": {
+				"from": 1725840,
+				"to": 1732720
+			},
+			"text": " Hello, there we go. The first thing I would try and say to those people is it's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,720",
+				"to": "00:29:01,920"
+			},
+			"offsets": {
+				"from": 1732720,
+				"to": 1741920
+			},
+			"text": " One of the things that I find about the experience of being in web three is that it does challenge you."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,920",
+				"to": "00:29:10,320"
+			},
+			"offsets": {
+				"from": 1741920,
+				"to": 1750320
+			},
+			"text": " But usually it challenges you by allowing you to see things that were sort of kept from you in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,520",
+				"to": "00:29:17,920"
+			},
+			"offsets": {
+				"from": 1751520,
+				"to": 1757920
+			},
+			"text": " And I think it's really important that people understand that maybe challenges around their"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,920",
+				"to": "00:29:23,360"
+			},
+			"offsets": {
+				"from": 1757920,
+				"to": 1763360
+			},
+			"text": " development or their capability are okay and that the conversations were happening before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,360",
+				"to": "00:29:29,360"
+			},
+			"offsets": {
+				"from": 1763360,
+				"to": 1769360
+			},
+			"text": " often behind their back. So I think it's like a really good, healthy culture to have that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,360",
+				"to": "00:29:34,320"
+			},
+			"offsets": {
+				"from": 1769360,
+				"to": 1774320
+			},
+			"text": " transparency. It gives people the opportunity to lean into developing themselves and growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:34,320",
+				"to": "00:29:39,120"
+			},
+			"offsets": {
+				"from": 1774320,
+				"to": 1779120
+			},
+			"text": " I think the part that you're saying though, which is really tricky, is them feeling judged."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,760",
+				"to": "00:29:43,520"
+			},
+			"offsets": {
+				"from": 1779760,
+				"to": 1783520
+			},
+			"text": " And I think often that comes from the way that we communicate with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,520",
+				"to": "00:29:47,920"
+			},
+			"offsets": {
+				"from": 1783520,
+				"to": 1787920
+			},
+			"text": " So I think communication is a huge part of what we need to do to create safe environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,920",
+				"to": "00:29:54,080"
+			},
+			"offsets": {
+				"from": 1787920,
+				"to": 1794080
+			},
+			"text": " And I think in this space, if anyone's ever heard of non-violent communication by"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,080",
+				"to": "00:30:03,360"
+			},
+			"offsets": {
+				"from": 1794080,
+				"to": 1803360
+			},
+			"text": " Dr. Marshall Rosenberg Rosenthal, yeah, definitely great to pick up that book. It will not only change"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,360",
+				"to": "00:30:10,880"
+			},
+			"offsets": {
+				"from": 1803360,
+				"to": 1810880
+			},
+			"text": " like how you communicate and like your job and life. But I think when people feel judged,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,880",
+				"to": "00:30:15,360"
+			},
+			"offsets": {
+				"from": 1810880,
+				"to": 1815360
+			},
+			"text": " they tend to shut down. And that's really easy to shut down when you're on a screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,360",
+				"to": "00:30:18,640"
+			},
+			"offsets": {
+				"from": 1815360,
+				"to": 1818640
+			},
+			"text": " And like you can literally just close and not engage with your team."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,640",
+				"to": "00:30:23,760"
+			},
+			"offsets": {
+				"from": 1818640,
+				"to": 1823760
+			},
+			"text": " I know we have another question coming to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,760",
+				"to": "00:30:33,120"
+			},
+			"offsets": {
+				"from": 1823760,
+				"to": 1833120
+			},
+			"text": " I mean, I was definitely going to second that about clearly communicating. I think it's important"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:33,120",
+				"to": "00:30:38,800"
+			},
+			"offsets": {
+				"from": 1833120,
+				"to": 1838800
+			},
+			"text": " to communicate some type of roadmap, maybe introduce some phases into the transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,800",
+				"to": "00:30:43,120"
+			},
+			"offsets": {
+				"from": 1838800,
+				"to": 1843120
+			},
+			"text": " and transparencies, of course, really important as well. So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,120",
+				"to": "00:30:52,240"
+			},
+			"offsets": {
+				"from": 1843120,
+				"to": 1852240
+			},
+			"text": " Thank you. I'll be really quick. It's mostly just a question that's clarifying, I hope."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,240",
+				"to": "00:30:58,320"
+			},
+			"offsets": {
+				"from": 1852240,
+				"to": 1858320
+			},
+			"text": " Ben, I think this is mostly directed to you. I noted that Lowey mentioned that this was kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,320",
+				"to": "00:31:04,160"
+			},
+			"offsets": {
+				"from": 1858320,
+				"to": 1864160
+			},
+			"text": " like the tactical or more technical skills. I'm curious if that's like really just geared to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,160",
+				"to": "00:31:10,960"
+			},
+			"offsets": {
+				"from": 1864160,
+				"to": 1870960
+			},
+			"text": " developers and like those hard skills in the space or if your workshop will also cover"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,960",
+				"to": "00:31:16,960"
+			},
+			"offsets": {
+				"from": 1870960,
+				"to": 1876960
+			},
+			"text": " some of the kind of like frameworks that are necessary that may be for non-technical contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,960",
+				"to": "00:31:26,080"
+			},
+			"offsets": {
+				"from": 1876960,
+				"to": 1886080
+			},
+			"text": " Yeah. So we will talk about one framework, just a way to think about your development and your"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:26,080",
+				"to": "00:31:33,680"
+			},
+			"offsets": {
+				"from": 1886080,
+				"to": 1893680
+			},
+			"text": " capability. Our experts are our speakers working on projects which are around technical skill"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,680",
+				"to": "00:31:38,480"
+			},
+			"offsets": {
+				"from": 1893680,
+				"to": 1898480
+			},
+			"text": " development. But they will talk about two things. They will talk about what their project is and"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,480",
+				"to": "00:31:44,240"
+			},
+			"offsets": {
+				"from": 1898480,
+				"to": 1904240
+			},
+			"text": " does as something that you can think about the way people are addressing these challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,240",
+				"to": "00:31:49,360"
+			},
+			"offsets": {
+				"from": 1904240,
+				"to": 1909360
+			},
+			"text": " And then they'll look to share their insights or expertise around what they've learned from"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,360",
+				"to": "00:31:54,800"
+			},
+			"offsets": {
+				"from": 1909360,
+				"to": 1914800
+			},
+			"text": " that experience, which would be generally applicable to any type of skill development. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,600",
+				"to": "00:31:59,920"
+			},
+			"offsets": {
+				"from": 1915600,
+				"to": 1919920
+			},
+			"text": " yeah, they're a little bit more on the technical side. So I'm not sure how that answers your question."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,920",
+				"to": "00:32:01,200"
+			},
+			"offsets": {
+				"from": 1919920,
+				"to": 1921200
+			},
+			"text": " Yeah. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,200",
+				"to": "00:32:09,920"
+			},
+			"offsets": {
+				"from": 1921200,
+				"to": 1929920
+			},
+			"text": " Right. Yeah. And so anyone who's like really feeling that the non-technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,920",
+				"to": "00:32:14,720"
+			},
+			"offsets": {
+				"from": 1929920,
+				"to": 1934720
+			},
+			"text": " like skill journey, you could consider coming to continuing education too."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:14,720",
+				"to": "00:32:22,560"
+			},
+			"offsets": {
+				"from": 1934720,
+				"to": 1942560
+			},
+			"text": " And I think that means it's really time for us to start these breakouts. We have a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,560",
+				"to": "00:32:29,760"
+			},
+			"offsets": {
+				"from": 1942560,
+				"to": 1949760
+			},
+			"text": " people in here than we were expecting. Thank you all. You guys are great. So we had originally"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,760",
+				"to": "00:32:38,320"
+			},
+			"offsets": {
+				"from": 1949760,
+				"to": 1958320
+			},
+			"text": " made four different like groups of two tables. I'm going to say you guys might need to pull more"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:38,320",
+				"to": "00:32:44,560"
+			},
+			"offsets": {
+				"from": 1958320,
+				"to": 1964560
+			},
+			"text": " chairs around or you know, if you even want to add a third table, if the group is getting big,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:45,120",
+				"to": "00:32:53,920"
+			},
+			"offsets": {
+				"from": 1965120,
+				"to": 1973920
+			},
+			"text": " that's permissionless in my opinion. But let's just name these sections. So here we'll have"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,920",
+				"to": "00:32:59,440"
+			},
+			"offsets": {
+				"from": 1973920,
+				"to": 1979440
+			},
+			"text": " peer review. So Saaf, Melanie and Anna will be at this huddle here."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,440",
+				"to": "00:33:08,080"
+			},
+			"offsets": {
+				"from": 1979440,
+				"to": 1988080
+			},
+			"text": " In the back, we will have recruitment. So Heather is going to be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,520",
+				"to": "00:33:17,920"
+			},
+			"offsets": {
+				"from": 1989520,
+				"to": 1997920
+			},
+			"text": " And then let's see. Up on this side, let's do continuing education. So that's me and Linka."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,920",
+				"to": "00:33:25,360"
+			},
+			"offsets": {
+				"from": 1997920,
+				"to": 2005360
+			},
+			"text": " And then this group of two tables here will be tactical development and then we'll be"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,360",
+				"to": "00:33:30,320"
+			},
+			"offsets": {
+				"from": 2005360,
+				"to": 2010320
+			},
+			"text": " anchoring you guys over here. So I'm just going to change these titles here."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,320",
+				"to": "00:33:35,840"
+			},
+			"offsets": {
+				"from": 2010320,
+				"to": 2015840
+			},
+			"text": " Did you guys have fun in those breakout sessions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:36,800",
+				"to": "00:33:47,920"
+			},
+			"offsets": {
+				"from": 2016800,
+				"to": 2027920
+			},
+			"text": " Yeah. Okay. Good. I'm glad. So we'd love to hear just some learnings from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,920",
+				"to": "00:33:55,440"
+			},
+			"offsets": {
+				"from": 2027920,
+				"to": 2035440
+			},
+			"text": " Before we go into that, I think we're going to just do the very last portion of continuing education."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,440",
+				"to": "00:34:02,080"
+			},
+			"offsets": {
+				"from": 2035440,
+				"to": 2042080
+			},
+			"text": " All is one group together because it's about events. It's about the importance of being here"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:02,080",
+				"to": "00:34:09,120"
+			},
+			"offsets": {
+				"from": 2042080,
+				"to": 2049120
+			},
+			"text": " at these conferences, at off sites. And Linka wanted to share a little bit about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,120",
+				"to": "00:34:16,640"
+			},
+			"offsets": {
+				"from": 2049120,
+				"to": 2056640
+			},
+			"text": " being IRL at events really feeds into contributor education and development. And then after that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,640",
+				"to": "00:34:20,560"
+			},
+			"offsets": {
+				"from": 2056640,
+				"to": 2060560
+			},
+			"text": " we'll hear from you guys what you learned in your stations."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,560",
+				"to": "00:34:26,960"
+			},
+			"offsets": {
+				"from": 2060560,
+				"to": 2066960
+			},
+			"text": " Yeah. Thank you guys. So we also have a couple of handouts. So if you didn't get the physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:26,960",
+				"to": "00:34:32,720"
+			},
+			"offsets": {
+				"from": 2066960,
+				"to": 2072720
+			},
+			"text": " copy, you can just scan the QR and then you'll be able to get it. The one that is continuing"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,720",
+				"to": "00:34:37,840"
+			},
+			"offsets": {
+				"from": 2072720,
+				"to": 2077840
+			},
+			"text": " education we've been doing, this is the last bit of it. And it's basically talking about events"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:37,840",
+				"to": "00:34:42,640"
+			},
+			"offsets": {
+				"from": 2077840,
+				"to": 2082640
+			},
+			"text": " because we're here at DevCon. And we're also learning something new and sharing together. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,640",
+				"to": "00:34:50,880"
+			},
+			"offsets": {
+				"from": 2082640,
+				"to": 2090880
+			},
+			"text": " it's quite interesting to actually consider like in which ways do you think that having people as"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,880",
+				"to": "00:34:58,080"
+			},
+			"offsets": {
+				"from": 2090880,
+				"to": 2098080
+			},
+			"text": " part of the events is helpful to your organization. And then it's also interesting to think like"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:58,080",
+				"to": "00:35:03,440"
+			},
+			"offsets": {
+				"from": 2098080,
+				"to": 2103440
+			},
+			"text": " not only one-sided that they're representing your organization, but also at the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,440",
+				"to": "00:35:10,320"
+			},
+			"offsets": {
+				"from": 2103440,
+				"to": 2110320
+			},
+			"text": " that you help them to learn and grow. So I have actually like three examples I would like to share"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,320",
+				"to": "00:35:18,000"
+			},
+			"offsets": {
+				"from": 2110320,
+				"to": 2118000
+			},
+			"text": " with you that might inspire you. But I would also like love to hear from you or maybe you can try to"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:18,000",
+				"to": "00:35:25,920"
+			},
+			"offsets": {
+				"from": 2118000,
+				"to": 2125920
+			},
+			"text": " feel that empty box in the table yourself later on. So it can inspire you like how can you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,920",
+				"to": "00:35:34,080"
+			},
+			"offsets": {
+				"from": 2125920,
+				"to": 2134080
+			},
+			"text": " use events for continuing education to both enable your contributors, but also like gain something"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,080",
+				"to": "00:35:43,760"
+			},
+			"offsets": {
+				"from": 2134080,
+				"to": 2143760
+			},
+			"text": " as a secondary product of that as an organization. So of course I have this marketing background."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,760",
+				"to": "00:35:49,520"
+			},
+			"offsets": {
+				"from": 2143760,
+				"to": 2149520
+			},
+			"text": " So this is very close to me. And the first thing I would like to share out of the three takeaways"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:49,520",
+				"to": "00:35:58,880"
+			},
+			"offsets": {
+				"from": 2149520,
+				"to": 2158880
+			},
+			"text": " is that I have been hired to work for a distributed organization to do community building for Europe."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,880",
+				"to": "00:36:05,840"
+			},
+			"offsets": {
+				"from": 2158880,
+				"to": 2165840
+			},
+			"text": " And that's quite a large area to cover. I don't know where the noise comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,080",
+				"to": "00:36:14,880"
+			},
+			"offsets": {
+				"from": 2168080,
+				"to": 2174880
+			},
+			"text": " I think this one's better. Thank you. So basically I was three months into my job and I went to my"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,880",
+				"to": "00:36:21,760"
+			},
+			"offsets": {
+				"from": 2174880,
+				"to": 2181760
+			},
+			"text": " first in real life event. I have barely met anyone from my team or I barely have been to like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,760",
+				"to": "00:36:28,720"
+			},
+			"offsets": {
+				"from": 2181760,
+				"to": 2188720
+			},
+			"text": " real crypto community event other than like what I knew in my area or something online. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,720",
+				"to": "00:36:37,120"
+			},
+			"offsets": {
+				"from": 2188720,
+				"to": 2197120
+			},
+			"text": " my first event was Eid Berlin. And I remember that I was in 18. And I just remember I was like"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:37,120",
+				"to": "00:36:42,800"
+			},
+			"offsets": {
+				"from": 2197120,
+				"to": 2202800
+			},
+			"text": " really unsure like am I doing the job well am I really building the community am I really connecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:42,800",
+				"to": "00:36:48,320"
+			},
+			"offsets": {
+				"from": 2202800,
+				"to": 2208320
+			},
+			"text": " to people. And by actually being like at the first hackathon I actually understand what does it mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,320",
+				"to": "00:36:55,760"
+			},
+			"offsets": {
+				"from": 2208320,
+				"to": 2215760
+			},
+			"text": " to be part of Ethereum community. I also understood you know like all these practice rounds you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,760",
+				"to": "00:37:01,280"
+			},
+			"offsets": {
+				"from": 2215760,
+				"to": 2221280
+			},
+			"text": " to to promote your project and like meet people who don't know about your project and you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,280",
+				"to": "00:37:06,880"
+			},
+			"offsets": {
+				"from": 2221280,
+				"to": 2226880
+			},
+			"text": " as we talked about like learning the basics teaching the basics to the people who never heard"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,880",
+				"to": "00:37:11,040"
+			},
+			"offsets": {
+				"from": 2226880,
+				"to": 2231040
+			},
+			"text": " of your project. That's like quite challenge. And it's like exercising need to do over and over."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:11,040",
+				"to": "00:37:18,880"
+			},
+			"offsets": {
+				"from": 2231040,
+				"to": 2238880
+			},
+			"text": " So after I came from Eid Berlin I felt like okay I have met the people I actually work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:18,880",
+				"to": "00:37:24,400"
+			},
+			"offsets": {
+				"from": 2238880,
+				"to": 2244400
+			},
+			"text": " I understand the community better. I met other people in the same situation and I have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:24,400",
+				"to": "00:37:30,400"
+			},
+			"offsets": {
+				"from": 2244400,
+				"to": 2250400
+			},
+			"text": " contacts I actually need to actually make some events and initiatives happen. And it's so much"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,400",
+				"to": "00:37:35,600"
+			},
+			"offsets": {
+				"from": 2250400,
+				"to": 2255600
+			},
+			"text": " easier than trying to cold call or cold email someone because you met them at the party and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,600",
+				"to": "00:37:42,720"
+			},
+			"offsets": {
+				"from": 2255600,
+				"to": 2262720
+			},
+			"text": " are sitting on a van together at one of the closing events or something. So this is really good for"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,720",
+				"to": "00:37:49,600"
+			},
+			"offsets": {
+				"from": 2262720,
+				"to": 2269600
+			},
+			"text": " roles that are outward facing a community roles, BD roles, marketing roles, anyone who really need"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:49,600",
+				"to": "00:37:55,440"
+			},
+			"offsets": {
+				"from": 2269600,
+				"to": 2275440
+			},
+			"text": " to connect with other people other projects in the communities. It's really really important. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,440",
+				"to": "00:38:03,440"
+			},
+			"offsets": {
+				"from": 2275440,
+				"to": 2283440
+			},
+			"text": " make sure to include this as part of their onboarding or personal growth professional growth because"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,440",
+				"to": "00:38:09,600"
+			},
+			"offsets": {
+				"from": 2283440,
+				"to": 2289600
+			},
+			"text": " it really makes an impact. After those after that event I felt like a lot of things have changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,600",
+				"to": "00:38:16,240"
+			},
+			"offsets": {
+				"from": 2289600,
+				"to": 2296240
+			},
+			"text": " Plus I had a lot of motivation and like the energy to keep going forward because like it"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,240",
+				"to": "00:38:21,520"
+			},
+			"offsets": {
+				"from": 2296240,
+				"to": 2301520
+			},
+			"text": " really recharged me. So I think this works for many people as well. That's the first option."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:21,520",
+				"to": "00:38:27,840"
+			},
+			"offsets": {
+				"from": 2301520,
+				"to": 2307840
+			},
+			"text": " Second thing is I was also managing events and you know I really do not like if people go by title"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:27,840",
+				"to": "00:38:33,760"
+			},
+			"offsets": {
+				"from": 2307840,
+				"to": 2313760
+			},
+			"text": " or CXO levels etc and everyone wanted room to speak but I never wanted to do that. I was always"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:33,760",
+				"to": "00:38:40,400"
+			},
+			"offsets": {
+				"from": 2313760,
+				"to": 2320400
+			},
+			"text": " looking for what is the opportunity and who would be the best person who could be the most know"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:40,400",
+				"to": "00:38:46,400"
+			},
+			"offsets": {
+				"from": 2320400,
+				"to": 2326400
+			},
+			"text": " ageable on this. And you know not always we had people who joined the org who are trained speakers"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,400",
+				"to": "00:38:53,520"
+			},
+			"offsets": {
+				"from": 2326400,
+				"to": 2333520
+			},
+			"text": " but I always try to like combine the two and if they needed some support to be confident"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:53,520",
+				"to": "00:38:59,920"
+			},
+			"offsets": {
+				"from": 2333520,
+				"to": 2339920
+			},
+			"text": " and comfortable on the stage I wanted to provide them with. So it's a great way for people to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:59,920",
+				"to": "00:39:05,200"
+			},
+			"offsets": {
+				"from": 2339920,
+				"to": 2345200
+			},
+			"text": " share their learning, share their experiences like being with like-minded people and also like"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:05,200",
+				"to": "00:39:10,960"
+			},
+			"offsets": {
+				"from": 2345200,
+				"to": 2350960
+			},
+			"text": " overcome this. And through this process of starting at a small event coming to another one and another"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,960",
+				"to": "00:39:16,480"
+			},
+			"offsets": {
+				"from": 2350960,
+				"to": 2356480
+			},
+			"text": " one they can actually become like thought leaders and many of the people as we call them maker mafia"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,480",
+				"to": "00:39:22,800"
+			},
+			"offsets": {
+				"from": 2356480,
+				"to": 2362800
+			},
+			"text": " have been starting that little stage with their nervous city. You know so just support people"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:22,800",
+				"to": "00:39:28,240"
+			},
+			"offsets": {
+				"from": 2362800,
+				"to": 2368240
+			},
+			"text": " enable them to become speakers, give them the courage, give them the dress rehearsal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:28,240",
+				"to": "00:39:33,920"
+			},
+			"offsets": {
+				"from": 2368240,
+				"to": 2373920
+			},
+			"text": " help them with slides, help them with some practicalities and show them grow on the stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:33,920",
+				"to": "00:39:37,760"
+			},
+			"offsets": {
+				"from": 2373920,
+				"to": 2377760
+			},
+			"text": " It's really awesome. And what was the third example?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:37,760",
+				"to": "00:39:49,840"
+			},
+			"offsets": {
+				"from": 2377760,
+				"to": 2389840
+			},
+			"text": " Sorry. Oh yeah. So you probably love to talk about crypto and blockchain so you imagine that"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:49,840",
+				"to": "00:39:54,080"
+			},
+			"offsets": {
+				"from": 2389840,
+				"to": 2394080
+			},
+			"text": " many people are in this space. Then imagine they have like some super niche area they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:54,080",
+				"to": "00:40:01,520"
+			},
+			"offsets": {
+				"from": 2394080,
+				"to": 2401520
+			},
+			"text": " nerding in and they're working with. Where can they talk to like many people at the events that focus"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:01,520",
+				"to": "00:40:08,560"
+			},
+			"offsets": {
+				"from": 2401520,
+				"to": 2408560
+			},
+			"text": " on that specific topic at that specific level. So if you enable them to go to these events they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:08,560",
+				"to": "00:40:13,840"
+			},
+			"offsets": {
+				"from": 2408560,
+				"to": 2413840
+			},
+			"text": " not only are gonna like build the good network where they can spare with these people but they"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:13,840",
+				"to": "00:40:20,640"
+			},
+			"offsets": {
+				"from": 2413840,
+				"to": 2420640
+			},
+			"text": " also get to bounce ideas and maybe get inspired to like come with the next best product. So I give"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:20,640",
+				"to": "00:40:26,080"
+			},
+			"offsets": {
+				"from": 2420640,
+				"to": 2426080
+			},
+			"text": " you like a three examples of how I think like events were really helpful personally for growth"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:26,080",
+				"to": "00:40:32,240"
+			},
+			"offsets": {
+				"from": 2426080,
+				"to": 2432240
+			},
+			"text": " for different types of contributors and how you as a person in your org who cares about building"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:32,240",
+				"to": "00:40:40,000"
+			},
+			"offsets": {
+				"from": 2432240,
+				"to": 2440000
+			},
+			"text": " the talent inside couldn't get inspired. So hopefully this was helpful. And it's very very good to"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:40,000",
+				"to": "00:40:49,520"
+			},
+			"offsets": {
+				"from": 2440000,
+				"to": 2449520
+			},
+			"text": " consider events being a part of your budget or plan how you actually manage your team or how you grow"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:49,520",
+				"to": "00:40:54,880"
+			},
+			"offsets": {
+				"from": 2449520,
+				"to": 2454880
+			},
+			"text": " your team. Of course there always has to be a good connection. Why are you sending this person?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,880",
+				"to": "00:40:59,520"
+			},
+			"offsets": {
+				"from": 2454880,
+				"to": 2459520
+			},
+			"text": " And is this person going to appreciate and be happy for it? But it's a really good thing to"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:59,520",
+				"to": "00:41:06,320"
+			},
+			"offsets": {
+				"from": 2459520,
+				"to": 2466320
+			},
+			"text": " consider if you want to have a strong team that really enjoys the work that they're doing. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:06,320",
+				"to": "00:41:13,520"
+			},
+			"offsets": {
+				"from": 2466320,
+				"to": 2473520
+			},
+			"text": " is grateful to be in the org that they are in. So it was a quite a long example of why events are"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,520",
+				"to": "00:41:18,800"
+			},
+			"offsets": {
+				"from": 2473520,
+				"to": 2478800
+			},
+			"text": " important but we're all here at DevCon. We're learning together. We're sharing together. So I"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:18,800",
+				"to": "00:41:24,880"
+			},
+			"offsets": {
+				"from": 2478800,
+				"to": 2484880
+			},
+			"text": " just thought to share this with you. Please don't be shy to ask your team lead or whoever it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:24,880",
+				"to": "00:41:29,840"
+			},
+			"offsets": {
+				"from": 2484880,
+				"to": 2489840
+			},
+			"text": " whether you can go to the event and represent the org. I think most of the time you meet with"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:29,840",
+				"to": "00:41:35,520"
+			},
+			"offsets": {
+				"from": 2489840,
+				"to": 2495520
+			},
+			"text": " very positive response and you can always call back on like as examples right. We have lots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:35,520",
+				"to": "00:41:41,520"
+			},
+			"offsets": {
+				"from": 2495520,
+				"to": 2501520
+			},
+			"text": " examples of why this is important. I can tell you that's part of what we want to do in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:41,520",
+				"to": "00:41:48,160"
+			},
+			"offsets": {
+				"from": 2501520,
+				"to": 2508160
+			},
+			"text": " workshop is give you guys ways to argue for these elements, ways to argue for professional"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:48,160",
+				"to": "00:41:54,400"
+			},
+			"offsets": {
+				"from": 2508160,
+				"to": 2514400
+			},
+			"text": " development, ways to argue for an events budget, ways to argue for time spent connecting and"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:54,400",
+				"to": "00:42:00,000"
+			},
+			"offsets": {
+				"from": 2514400,
+				"to": 2520000
+			},
+			"text": " educating right because sometimes it can be hard to prioritize that to budget in but there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,000",
+				"to": "00:42:06,000"
+			},
+			"offsets": {
+				"from": 2520000,
+				"to": 2526000
+			},
+			"text": " absolutely a business case for it. And y'all whether you are org leaders being convinced"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:06,000",
+				"to": "00:42:13,680"
+			},
+			"offsets": {
+				"from": 2526000,
+				"to": 2533680
+			},
+			"text": " yourselves or you have a leader you can go convince. Now you have some tools and some facts to share"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:13,680",
+				"to": "00:42:20,320"
+			},
+			"offsets": {
+				"from": 2533680,
+				"to": 2540320
+			},
+			"text": " there. And just so you know that like last prompt that Lenga responded to, this is kind of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:20,320",
+				"to": "00:42:26,720"
+			},
+			"offsets": {
+				"from": 2540320,
+				"to": 2546720
+			},
+			"text": " homework item that we left for you guys. It's on the continuing education worksheet and the prompts"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:26,720",
+				"to": "00:42:32,240"
+			},
+			"offsets": {
+				"from": 2546720,
+				"to": 2552240
+			},
+			"text": " are like in what ways have you benefited from going to events and like what roles do you think"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:32,240",
+				"to": "00:42:38,640"
+			},
+			"offsets": {
+				"from": 2552240,
+				"to": 2558640
+			},
+			"text": " benefit the most from that. So great reflections to have especially continuing education folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:38,640",
+				"to": "00:42:45,120"
+			},
+			"offsets": {
+				"from": 2558640,
+				"to": 2565120
+			},
+			"text": " Love for you to reflect on that. And any of you can scan the QR codes that we've provided. It'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:45,120",
+				"to": "00:42:50,640"
+			},
+			"offsets": {
+				"from": 2565120,
+				"to": 2570640
+			},
+			"text": " take you to the the notion site for the people up skilled and you can see all of the all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:50,640",
+				"to": "00:42:58,720"
+			},
+			"offsets": {
+				"from": 2570640,
+				"to": 2578720
+			},
+			"text": " worksheets that we have there. So with that I'd love to just hear from you guys like a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:58,720",
+				"to": "00:43:06,240"
+			},
+			"offsets": {
+				"from": 2578720,
+				"to": 2586240
+			},
+			"text": " of what you learned. What were your takeaways from these workstations you were at and I can I"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:06,240",
+				"to": "00:43:12,080"
+			},
+			"offsets": {
+				"from": 2586240,
+				"to": 2592080
+			},
+			"text": " can go around and pass Mike. So which is the first workstation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:18,080",
+				"to": "00:43:24,400"
+			},
+			"offsets": {
+				"from": 2598080,
+				"to": 2604400
+			},
+			"text": " We were the continuing education workstream and I guess one of the main takeaways were one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:24,400",
+				"to": "00:43:28,640"
+			},
+			"offsets": {
+				"from": 2604400,
+				"to": 2608640
+			},
+			"text": " things that's going to stick with me is the idea of incorporating some sort of 80/20 role"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:28,640",
+				"to": "00:43:36,880"
+			},
+			"offsets": {
+				"from": 2608640,
+				"to": 2616880
+			},
+			"text": " into how we ask contributors to invest their time to allow them at least 20% of their time to go out"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:36,880",
+				"to": "00:43:42,800"
+			},
+			"offsets": {
+				"from": 2616880,
+				"to": 2622800
+			},
+			"text": " and actually learn and contribute to other orgs and bring and actually bring that learning back"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:42,800",
+				"to": "00:43:52,720"
+			},
+			"offsets": {
+				"from": 2622800,
+				"to": 2632720
+			},
+			"text": " also just for their personal growth and development. I also just want to say continuing education"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:52,720",
+				"to": "00:43:58,000"
+			},
+			"offsets": {
+				"from": 2632720,
+				"to": 2638000
+			},
+			"text": " station if any of you guys want to share what game you came up with you're welcome to."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:58,000",
+				"to": "00:44:06,240"
+			},
+			"offsets": {
+				"from": 2638000,
+				"to": 2646240
+			},
+			"text": " I passed by a couple of stations but my first and main one was the recruitment one."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:07,040",
+				"to": "00:44:15,680"
+			},
+			"offsets": {
+				"from": 2647040,
+				"to": 2655680
+			},
+			"text": " It was amazing. Thank you for that. So I learned how to like search for people with a spark of"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:15,680",
+				"to": "00:44:21,760"
+			},
+			"offsets": {
+				"from": 2655680,
+				"to": 2661760
+			},
+			"text": " interest to like start a community from scratch because we can't do this alone. We need"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:21,760",
+				"to": "00:44:30,000"
+			},
+			"offsets": {
+				"from": 2661760,
+				"to": 2670000
+			},
+			"text": " to build builders and we learned how to search for these people, how to retain them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:30,880",
+				"to": "00:44:38,960"
+			},
+			"offsets": {
+				"from": 2670880,
+				"to": 2678960
+			},
+			"text": " how to keep them engaged and inspire them to teach more people later which is like the seed"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:38,960",
+				"to": "00:44:44,560"
+			},
+			"offsets": {
+				"from": 2678960,
+				"to": 2684560
+			},
+			"text": " that you plan to like grow everything after. Yeah that was amazing. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:44,560",
+				"to": "00:44:46,800"
+			},
+			"offsets": {
+				"from": 2684560,
+				"to": 2686800
+			},
+			"text": " Well done Heather."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:46,800",
+				"to": "00:44:57,280"
+			},
+			"offsets": {
+				"from": 2686800,
+				"to": 2697280
+			},
+			"text": " Thank you so much for the continuing education workshop. I was there to contribute but I think I"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,280",
+				"to": "00:45:02,720"
+			},
+			"offsets": {
+				"from": 2697280,
+				"to": 2702720
+			},
+			"text": " actually gained so much that I was not expecting. Really I was just like oh just tune into this but"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:02,720",
+				"to": "00:45:10,560"
+			},
+			"offsets": {
+				"from": 2702720,
+				"to": 2710560
+			},
+			"text": " I've been doing this for a couple of years mostly on my own but I somehow have managed to gather"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:10,560",
+				"to": "00:45:18,000"
+			},
+			"offsets": {
+				"from": 2710560,
+				"to": 2718000
+			},
+			"text": " contributors, volunteers for now around me that are supporting me and I'm a bit emotional just"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:18,000",
+				"to": "00:45:23,760"
+			},
+			"offsets": {
+				"from": 2718000,
+				"to": 2723760
+			},
+			"text": " thinking that I would have wished them to be here with yet deaf-calling because they've done so much"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:23,760",
+				"to": "00:45:28,640"
+			},
+			"offsets": {
+				"from": 2723760,
+				"to": 2728640
+			},
+			"text": " to support me and I just wish that I can get to that point where I would bring them on and I"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:28,640",
+				"to": "00:45:33,920"
+			},
+			"offsets": {
+				"from": 2728640,
+				"to": 2733920
+			},
+			"text": " want to include events for them. I'm already like thinking where they should all go and grow in"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:33,920",
+				"to": "00:45:40,560"
+			},
+			"offsets": {
+				"from": 2733920,
+				"to": 2740560
+			},
+			"text": " their own respective areas of interest because apparently they like to be around me already"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:40,560",
+				"to": "00:45:44,960"
+			},
+			"offsets": {
+				"from": 2740560,
+				"to": 2744960
+			},
+			"text": " without me paying them but I think just you know I'm thinking like bringing merch back for them"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:44,960",
+				"to": "00:45:50,160"
+			},
+			"offsets": {
+				"from": 2744960,
+				"to": 2750160
+			},
+			"text": " and stickers just something like just little snippets but next time I want them at DefCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:50,160",
+				"to": "00:45:55,440"
+			},
+			"offsets": {
+				"from": 2750160,
+				"to": 2755440
+			},
+			"text": " with me and the second thing is the social gathering hour. I think that's such a brilliant idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:55,440",
+				"to": "00:46:01,520"
+			},
+			"offsets": {
+				"from": 2755440,
+				"to": 2761520
+			},
+			"text": " I think I was doing it sort of in a very loose casual way but to actually make time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:01,520",
+				"to": "00:46:08,000"
+			},
+			"offsets": {
+				"from": 2761520,
+				"to": 2768000
+			},
+			"text": " spend an hour to just connect, share books, share the latest crypto news together and just have"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:08,000",
+				"to": "00:46:13,840"
+			},
+			"offsets": {
+				"from": 2768000,
+				"to": 2773840
+			},
+			"text": " that moment and to make time for that is what I'm going to be implementing moving forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:13,840",
+				"to": "00:46:18,960"
+			},
+			"offsets": {
+				"from": 2773840,
+				"to": 2778960
+			},
+			"text": " So thank you so much and I might hire you for this social gathering just to launch it and do"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:18,960",
+				"to": "00:46:22,960"
+			},
+			"offsets": {
+				"from": 2778960,
+				"to": 2782960
+			},
+			"text": " games together. Well this is why we need to pay educators like you right and we need to put"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:22,960",
+				"to": "00:46:28,160"
+			},
+			"offsets": {
+				"from": 2782960,
+				"to": 2788160
+			},
+			"text": " education budgets into our team so that like your project and the contributors who volunteer for"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:28,160",
+				"to": "00:46:32,560"
+			},
+			"offsets": {
+				"from": 2788160,
+				"to": 2792560
+			},
+			"text": " you can come to these places and keep doing more of what they're doing and be funded to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:32,560",
+				"to": "00:46:39,360"
+			},
+			"offsets": {
+				"from": 2792560,
+				"to": 2799360
+			},
+			"text": " Cryptoconal by the way. Oh yeah, who is"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:44,000",
+				"to": "00:46:48,880"
+			},
+			"offsets": {
+				"from": 2804000,
+				"to": 2808880
+			},
+			"text": " so we came up with a fun game for engaging with people and that would be to have their"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:48,880",
+				"to": "00:46:58,400"
+			},
+			"offsets": {
+				"from": 2808880,
+				"to": 2818400
+			},
+			"text": " co-workers describe them as a cryptocurrency. Might be a little shady but all in good fun we"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,400",
+				"to": "00:47:06,320"
+			},
+			"offsets": {
+				"from": 2818400,
+				"to": 2826320
+			},
+			"text": " promise. Yeah just thank you for this space. Thanks Faithan."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:06,320",
+				"to": "00:47:13,760"
+			},
+			"offsets": {
+				"from": 2826320,
+				"to": 2833760
+			},
+			"text": " Hi everyone I really want to say thank you to the peer review team. It was a lot of interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:13,760",
+				"to": "00:47:19,680"
+			},
+			"offsets": {
+				"from": 2833760,
+				"to": 2839680
+			},
+			"text": " insights and a lot of interesting discussions. The takeaway that I'm going away with is creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:19,680",
+				"to": "00:47:23,600"
+			},
+			"offsets": {
+				"from": 2839680,
+				"to": 2843600
+			},
+			"text": " that safe space for people. That people need to have a safe space just because we're in the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:23,600",
+				"to": "00:47:29,360"
+			},
+			"offsets": {
+				"from": 2843600,
+				"to": 2849360
+			},
+			"text": " three world doesn't mean we're different and from IRL so creating that safe space that one"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:29,360",
+				"to": "00:47:37,040"
+			},
+			"offsets": {
+				"from": 2849360,
+				"to": 2857040
+			},
+			"text": " on one conversation and building that human connection because that's what's most fragile and yeah I thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:42,080",
+				"to": "00:47:47,360"
+			},
+			"offsets": {
+				"from": 2862080,
+				"to": 2867360
+			},
+			"text": " In the peer review workshop we introduced a few frameworks for the participants to use while"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:47,360",
+				"to": "00:47:52,320"
+			},
+			"offsets": {
+				"from": 2867360,
+				"to": 2872320
+			},
+			"text": " giving feedback. That's one thing that's really difficult to do. It's easy to give"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:52,320",
+				"to": "00:47:57,280"
+			},
+			"offsets": {
+				"from": 2872320,
+				"to": 2877280
+			},
+			"text": " positive feedback. It's definitely difficult to give corrective feedback so we provided"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:57,280",
+				"to": "00:48:01,920"
+			},
+			"offsets": {
+				"from": 2877280,
+				"to": 2881920
+			},
+			"text": " some frameworks for them to use and I think it seemed really helpful. Unfortunately not everybody's"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:01,920",
+				"to": "00:48:06,240"
+			},
+			"offsets": {
+				"from": 2881920,
+				"to": 2886240
+			},
+			"text": " here from our workshop still but that's just a little bit about what we did there."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:09,600",
+				"to": "00:48:15,200"
+			},
+			"offsets": {
+				"from": 2889600,
+				"to": 2895200
+			},
+			"text": " Okay one more game that I wanted to suggest is only to have fun. It's a usual game but"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:15,200",
+				"to": "00:48:23,360"
+			},
+			"offsets": {
+				"from": 2895200,
+				"to": 2903360
+			},
+			"text": " in space like what did you do at DevCon and people who play the game like raising their hands"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:23,360",
+				"to": "00:48:29,120"
+			},
+			"offsets": {
+				"from": 2903360,
+				"to": 2909120
+			},
+			"text": " if they did the same and we will have less people who did the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:29,120",
+				"to": "00:48:33,040"
+			},
+			"offsets": {
+				"from": 2909120,
+				"to": 2913040
+			},
+			"text": " That's a cool one thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:35,680",
+				"to": "00:48:41,360"
+			},
+			"offsets": {
+				"from": 2915680,
+				"to": 2921360
+			},
+			"text": " Which station did we not hear from or is there anyone else? Oh yeah Ben."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:41,360",
+				"to": "00:48:53,840"
+			},
+			"offsets": {
+				"from": 2921360,
+				"to": 2933840
+			},
+			"text": " So I've sort of synthesized all of the answers partly because I know being in"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:53,840",
+				"to": "00:48:59,840"
+			},
+			"offsets": {
+				"from": 2933840,
+				"to": 2939840
+			},
+			"text": " my session that I had massive FOMO that I wasn't in the other sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:01,280",
+				"to": "00:49:06,880"
+			},
+			"offsets": {
+				"from": 2941280,
+				"to": 2946880
+			},
+			"text": " So actually on our board we've got the websites for the people who presented. I"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:06,880",
+				"to": "00:49:11,760"
+			},
+			"offsets": {
+				"from": 2946880,
+				"to": 2951760
+			},
+			"text": " thought they were all fantastic lots of great insights there so we just encourage you on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:11,760",
+				"to": "00:49:18,480"
+			},
+			"offsets": {
+				"from": 2951760,
+				"to": 2958480
+			},
+			"text": " way out to maybe take a screenshot of those websites that are up on the board. They're"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:18,480",
+				"to": "00:49:23,840"
+			},
+			"offsets": {
+				"from": 2958480,
+				"to": 2963840
+			},
+			"text": " doing really cool things and if you're looking to develop people or collaborate with experts in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:23,840",
+				"to": "00:49:25,760"
+			},
+			"offsets": {
+				"from": 2963840,
+				"to": 2965760
+			},
+			"text": " space yeah I think that's really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:28,640",
+				"to": "00:49:34,560"
+			},
+			"offsets": {
+				"from": 2968640,
+				"to": 2974560
+			},
+			"text": " Do we still have any of the educators here? Oh okay yeah I know you guys finished early."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:34,560",
+				"to": "00:49:45,600"
+			},
+			"offsets": {
+				"from": 2974560,
+				"to": 2985600
+			},
+			"text": " If there's not more takeaways I also have another question for you guys but I'm just going to scan"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:45,600",
+				"to": "00:49:48,960"
+			},
+			"offsets": {
+				"from": 2985600,
+				"to": 2988960
+			},
+			"text": " if anyone else wants to share another takeaway."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:52,160",
+				"to": "00:49:59,120"
+			},
+			"offsets": {
+				"from": 2992160,
+				"to": 2999120
+			},
+			"text": " Okay so I have a question for you guys. We would love to know for us as a guild"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:59,120",
+				"to": "00:50:05,280"
+			},
+			"offsets": {
+				"from": 2999120,
+				"to": 3005280
+			},
+			"text": " what else would you guys want from the People Operations Guild? We've already put out some"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:05,280",
+				"to": "00:50:15,680"
+			},
+			"offsets": {
+				"from": 3005280,
+				"to": 3015680
+			},
+			"text": " stuff on education and development here and we've put out like a couple of resources online but"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:15,680",
+				"to": "00:50:24,080"
+			},
+			"offsets": {
+				"from": 3015680,
+				"to": 3024080
+			},
+			"text": " we'd love to hear from y'all what's needed from a guild of decentralized HR folk."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:24,080",
+				"to": "00:50:32,400"
+			},
+			"offsets": {
+				"from": 3024080,
+				"to": 3032400
+			},
+			"text": " This will totally not come as a surprise that I bring this up in the sense that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:32,400",
+				"to": "00:50:39,200"
+			},
+			"offsets": {
+				"from": 3032400,
+				"to": 3039200
+			},
+			"text": " specialized in. It hasn't really come up I think yet but so we all work in remote organizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:39,200",
+				"to": "00:50:45,600"
+			},
+			"offsets": {
+				"from": 3039200,
+				"to": 3045600
+			},
+			"text": " which means that you cannot just go up to like a person's desk for like two minutes and be like"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:45,600",
+				"to": "00:50:51,280"
+			},
+			"offsets": {
+				"from": 3045600,
+				"to": 3051280
+			},
+			"text": " hey that thing in that meeting there was like this small disagreement or that misunderstanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:51,280",
+				"to": "00:50:57,520"
+			},
+			"offsets": {
+				"from": 3051280,
+				"to": 3057520
+			},
+			"text": " I wanted to explain what that was so what happens is that tensions build up and so I think having"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:57,520",
+				"to": "00:51:06,400"
+			},
+			"offsets": {
+				"from": 3057520,
+				"to": 3066400
+			},
+			"text": " all various forms of conflict resolution and remediation in DAOZ is massively important"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:06,400",
+				"to": "00:51:08,800"
+			},
+			"offsets": {
+				"from": 3066400,
+				"to": 3068800
+			},
+			"text": " and I was wondering if you could speak a little bit to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:12,160",
+				"to": "00:51:17,120"
+			},
+			"offsets": {
+				"from": 3072160,
+				"to": 3077120
+			},
+			"text": " So I definitely can. I'm very passionate about decentralized conflict resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:17,120",
+				"to": "00:51:27,840"
+			},
+			"offsets": {
+				"from": 3077120,
+				"to": 3087840
+			},
+			"text": " I would love to call out that there is a group dedicated to this gravity down. They run a cohort"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:27,840",
+				"to": "00:51:35,680"
+			},
+			"offsets": {
+				"from": 3087840,
+				"to": 3095680
+			},
+			"text": " of conflict resolution education called the Graviton Training. I think there's been two or three so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:35,680",
+				"to": "00:51:43,360"
+			},
+			"offsets": {
+				"from": 3095680,
+				"to": 3103360
+			},
+			"text": " to date and it's a great like discussion group on topics of conflict resolution but I also really"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:43,360",
+				"to": "00:51:51,440"
+			},
+			"offsets": {
+				"from": 3103360,
+				"to": 3111440
+			},
+			"text": " recommend just being aware of trained facilitators they exist in the space. I've collected a roster"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:51,440",
+				"to": "00:51:57,200"
+			},
+			"offsets": {
+				"from": 3111440,
+				"to": 3117200
+			},
+			"text": " of like 10 of them that are ready to provide this service to various crypto orgs so you can always"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:57,200",
+				"to": "00:52:05,200"
+			},
+			"offsets": {
+				"from": 3117200,
+				"to": 3125200
+			},
+			"text": " reach out to me to get in contact with those people and in general it's worth it to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:05,200",
+				"to": "00:52:13,840"
+			},
+			"offsets": {
+				"from": 3125200,
+				"to": 3133840
+			},
+			"text": " some training on reflective listening and safe communication and conflict resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:13,840",
+				"to": "00:52:20,160"
+			},
+			"offsets": {
+				"from": 3133840,
+				"to": 3140160
+			},
+			"text": " to your teammates. If you're going to have this time for team training or for connection hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:20,160",
+				"to": "00:52:26,720"
+			},
+			"offsets": {
+				"from": 3140160,
+				"to": 3146720
+			},
+			"text": " you could consider having a non-violent communication specialist come in. You could consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:26,720",
+				"to": "00:52:32,720"
+			},
+			"offsets": {
+				"from": 3146720,
+				"to": 3152720
+			},
+			"text": " watching some videos on restorative justice together or bringing in a practitioner to talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:32,720",
+				"to": "00:52:39,840"
+			},
+			"offsets": {
+				"from": 3152720,
+				"to": 3159840
+			},
+			"text": " about this and guide people through some exercises because the whole point of conflict resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:39,840",
+				"to": "00:52:45,200"
+			},
+			"offsets": {
+				"from": 3159840,
+				"to": 3165200
+			},
+			"text": " in a decentralized sense is that it belongs to us. It belongs to the people who are in conflict."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:45,200",
+				"to": "00:52:53,040"
+			},
+			"offsets": {
+				"from": 3165200,
+				"to": 3173040
+			},
+			"text": " It's not about some external judge or jury. It's about the people who are closest to an issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:52:53,040",
+				"to": "00:53:00,240"
+			},
+			"offsets": {
+				"from": 3173040,
+				"to": 3180240
+			},
+			"text": " having the most agency and how to solve it and I know that that will stick well with your teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:00,240",
+				"to": "00:53:06,720"
+			},
+			"offsets": {
+				"from": 3180240,
+				"to": 3186720
+			},
+			"text": " because most people who work in this space really value that self-agency and decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:06,720",
+				"to": "00:53:13,520"
+			},
+			"offsets": {
+				"from": 3186720,
+				"to": 3193520
+			},
+			"text": " I think that's a great point to make to bring in some type of external facilitation"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:13,520",
+				"to": "00:53:18,640"
+			},
+			"offsets": {
+				"from": 3193520,
+				"to": 3198640
+			},
+			"text": " in our peer review workshop. We introduced these frameworks of how to give feedback"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:18,640",
+				"to": "00:53:24,720"
+			},
+			"offsets": {
+				"from": 3198640,
+				"to": 3204720
+			},
+			"text": " but some people are asking what about if the person isn't receptive? What if I'm talking to my"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:24,720",
+				"to": "00:53:29,840"
+			},
+			"offsets": {
+				"from": 3204720,
+				"to": 3209840
+			},
+			"text": " founder and I'm nervous and I don't know how I can give him this feedback but he really needs to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:30,800",
+				"to": "00:53:34,960"
+			},
+			"offsets": {
+				"from": 3210800,
+				"to": 3214960
+			},
+			"text": " and that's what we suggested bringing in some type of facilitation, some type of mediation to"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:34,960",
+				"to": "00:53:40,400"
+			},
+			"offsets": {
+				"from": 3214960,
+				"to": 3220400
+			},
+			"text": " help support you through those difficult conversations because like I said giving any type of corrective"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:40,400",
+				"to": "00:53:46,960"
+			},
+			"offsets": {
+				"from": 3220400,
+				"to": 3226960
+			},
+			"text": " feedback is not easy. You may also not be fully equipped or have the skill set to do that so"
+		},
+		{
+			"timestamps": {
+				"from": "00:53:46,960",
+				"to": "00:53:50,480"
+			},
+			"offsets": {
+				"from": 3226960,
+				"to": 3230480
+			},
+			"text": " leaning on someone else I think is also really really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:57,760",
+				"to": "00:54:03,920"
+			},
+			"offsets": {
+				"from": 3237760,
+				"to": 3243920
+			},
+			"text": " Thank you. So we have people all across Europe at the moment and I would say in terms of diversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:03,920",
+				"to": "00:54:08,960"
+			},
+			"offsets": {
+				"from": 3243920,
+				"to": 3248960
+			},
+			"text": " we're doing okay there's still some more work to do. I don't feel like it's a focus in my organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:08,960",
+				"to": "00:54:13,680"
+			},
+			"offsets": {
+				"from": 3248960,
+				"to": 3253680
+			},
+			"text": " at the moment and I don't really know how to bring it up in terms of like intercultural"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:13,680",
+				"to": "00:54:18,320"
+			},
+			"offsets": {
+				"from": 3253680,
+				"to": 3258320
+			},
+			"text": " communication to have it like in a sensitive manner but also just like providing a place to"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:18,320",
+				"to": "00:54:23,040"
+			},
+			"offsets": {
+				"from": 3258320,
+				"to": 3263040
+			},
+			"text": " work from people from all types of background. So I'm wondering like do you have any like type of"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:23,040",
+				"to": "00:54:34,400"
+			},
+			"offsets": {
+				"from": 3263040,
+				"to": 3274400
+			},
+			"text": " information about that topic? We have people among us in the guild who work in DEI, diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:34,400",
+				"to": "00:54:41,920"
+			},
+			"offsets": {
+				"from": 3274400,
+				"to": 3281920
+			},
+			"text": " equity and inclusion and I would definitely defer to them as far as providing resources on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:41,920",
+				"to": "00:54:51,280"
+			},
+			"offsets": {
+				"from": 3281920,
+				"to": 3291280
+			},
+			"text": " I think that you know a lot of times it's about like just advocating to the decision makers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:51,280",
+				"to": "00:54:59,120"
+			},
+			"offsets": {
+				"from": 3291280,
+				"to": 3299120
+			},
+			"text": " this is important and worthwhile and if you can at least get them to say yes to a consultant"
+		},
+		{
+			"timestamps": {
+				"from": "00:54:59,120",
+				"to": "00:55:06,080"
+			},
+			"offsets": {
+				"from": 3299120,
+				"to": 3306080
+			},
+			"text": " then those consultants are the best folks to put it in the right lingo you know they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:06,080",
+				"to": "00:55:14,560"
+			},
+			"offsets": {
+				"from": 3306080,
+				"to": 3314560
+			},
+			"text": " they can speak to your to your founders on like the real business cases of having an inclusive"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:14,560",
+				"to": "00:55:20,480"
+			},
+			"offsets": {
+				"from": 3314560,
+				"to": 3320480
+			},
+			"text": " environment. They also can speak really sensitively to people that are just experiencing a hard time"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:20,480",
+				"to": "00:55:28,160"
+			},
+			"offsets": {
+				"from": 3320480,
+				"to": 3328160
+			},
+			"text": " in the work environment. So like I'm not a specialist in that myself but one of our guild members"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:28,160",
+				"to": "00:55:35,520"
+			},
+			"offsets": {
+				"from": 3328160,
+				"to": 3335520
+			},
+			"text": " Sandy has a background in DEI also a personal friend and colleague from Gitcoin, Gloria,"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:35,520",
+				"to": "00:55:42,320"
+			},
+			"offsets": {
+				"from": 3335520,
+				"to": 3342320
+			},
+			"text": " Kimballa has done a lot of DEI work so I certainly would just like recommend those people and if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:55:42,320",
+				"to": "00:55:47,280"
+			},
+			"offsets": {
+				"from": 3342320,
+				"to": 3347280
+			},
+			"text": " want to get in touch feel free to go through me if you need to. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:47,280",
+				"to": "00:55:58,240"
+			},
+			"offsets": {
+				"from": 3347280,
+				"to": 3358240
+			},
+			"text": " Okay that's that."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:58,240",
+				"to": "00:56:27,360"
+			},
+			"offsets": {
+				"from": 3358240,
+				"to": 3387360
+			},
+			"text": " ["
+		}
+	]
+}

@@ -1,0 +1,3937 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11880
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,880",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 11880,
+				"to": 14680
+			},
+			"text": " Okay, so in this workshop, I'm going to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:18,140"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 18140
+			},
+			"text": " with some definitions and definitions will help kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,140",
+				"to": "00:00:19,360"
+			},
+			"offsets": {
+				"from": 18140,
+				"to": 19360
+			},
+			"text": " of frame the conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,360",
+				"to": "00:00:22,220"
+			},
+			"offsets": {
+				"from": 19360,
+				"to": 22220
+			},
+			"text": " If by any chance you are triggered by any"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,220",
+				"to": "00:00:24,080"
+			},
+			"offsets": {
+				"from": 22220,
+				"to": 24080
+			},
+			"text": " of the conversation that we're having today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,080",
+				"to": "00:00:27,240"
+			},
+			"offsets": {
+				"from": 24080,
+				"to": 27240
+			},
+			"text": " I do have an ally here that is trained in helping you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,240",
+				"to": "00:00:29,080"
+			},
+			"offsets": {
+				"from": 27240,
+				"to": 29080
+			},
+			"text": " So if you want to have a conversation low,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,080",
+				"to": "00:00:29,920"
+			},
+			"offsets": {
+				"from": 29080,
+				"to": 29920
+			},
+			"text": " if you want to raise your hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,920",
+				"to": "00:00:33,060"
+			},
+			"offsets": {
+				"from": 29920,
+				"to": 33060
+			},
+			"text": " Lowie is available to you for a resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,060",
+				"to": "00:00:36,220"
+			},
+			"offsets": {
+				"from": 33060,
+				"to": 36220
+			},
+			"text": " If you want to use her, feel free to give her a talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,220",
+				"to": "00:00:39,500"
+			},
+			"offsets": {
+				"from": 36220,
+				"to": 39500
+			},
+			"text": " So after these definitions, we'll go ahead and talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,500",
+				"to": "00:00:42,240"
+			},
+			"offsets": {
+				"from": 39500,
+				"to": 42240
+			},
+			"text": " about why D and I is important in Web3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,240",
+				"to": "00:00:45,580"
+			},
+			"offsets": {
+				"from": 42240,
+				"to": 45580
+			},
+			"text": " and then we'll go on to a couple of different activities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,580",
+				"to": "00:00:52,060"
+			},
+			"offsets": {
+				"from": 45580,
+				"to": 52060
+			},
+			"text": " Okay, so for definitions, the first definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,060",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 52060,
+				"to": 56160
+			},
+			"text": " that we want to kind of think about is what is called privilege"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,560",
+				"to": "00:01:00,180"
+			},
+			"offsets": {
+				"from": 56560,
+				"to": 60180
+			},
+			"text": " and privilege is understanding like a difference within power"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,180",
+				"to": "00:01:03,340"
+			},
+			"offsets": {
+				"from": 60180,
+				"to": 63340
+			},
+			"text": " and understanding that there are some ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,340",
+				"to": "00:01:05,380"
+			},
+			"offsets": {
+				"from": 63340,
+				"to": 65380
+			},
+			"text": " where you naturally have power or privilege"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,380",
+				"to": "00:01:09,020"
+			},
+			"offsets": {
+				"from": 65380,
+				"to": 69020
+			},
+			"text": " in a situation where another group will not have power."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,020",
+				"to": "00:01:12,420"
+			},
+			"offsets": {
+				"from": 69020,
+				"to": 72420
+			},
+			"text": " And usually the group that has the power is the privileged group"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,420",
+				"to": "00:01:16,120"
+			},
+			"offsets": {
+				"from": 72420,
+				"to": 76120
+			},
+			"text": " and the group that does not have the power is called the oppressed group."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,120",
+				"to": "00:01:19,580"
+			},
+			"offsets": {
+				"from": 76120,
+				"to": 79580
+			},
+			"text": " These forces and powers can be racially divided,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,580",
+				"to": "00:01:21,940"
+			},
+			"offsets": {
+				"from": 79580,
+				"to": 81940
+			},
+			"text": " it can be gender divided."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,940",
+				"to": "00:01:24,540"
+			},
+			"offsets": {
+				"from": 81940,
+				"to": 84540
+			},
+			"text": " Here at DevCon, the privileged groups are --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,100",
+				"to": "00:01:27,260"
+			},
+			"offsets": {
+				"from": 85100,
+				"to": 87260
+			},
+			"text": " Can you think of a privileged group here at DevCon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,260",
+				"to": "00:01:28,460"
+			},
+			"offsets": {
+				"from": 87260,
+				"to": 88460
+			},
+			"text": " >> White men."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,460",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 88460,
+				"to": 90480
+			},
+			"text": " >> White men, that might work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 92920
+			},
+			"text": " Okay, what else would be a privileged group here at DevCon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:38,900"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 98900
+			},
+			"text": " >> Sisk guys, okay, VCs, okay, rich people, okay, what else would be a privilege?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,900",
+				"to": "00:01:40,440"
+			},
+			"offsets": {
+				"from": 98900,
+				"to": 100440
+			},
+			"text": " >> Good passports."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,440",
+				"to": "00:01:42,360"
+			},
+			"offsets": {
+				"from": 100440,
+				"to": 102360
+			},
+			"text": " >> Good passports, that would be one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,360",
+				"to": "00:01:43,680"
+			},
+			"offsets": {
+				"from": 102360,
+				"to": 103680
+			},
+			"text": " What else would be a privilege?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,680",
+				"to": "00:01:47,180"
+			},
+			"offsets": {
+				"from": 103680,
+				"to": 107180
+			},
+			"text": " How about speaking English first?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,180",
+				"to": "00:01:49,440"
+			},
+			"offsets": {
+				"from": 107180,
+				"to": 109440
+			},
+			"text": " Language is a privilege, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,440",
+				"to": "00:01:54,580"
+			},
+			"offsets": {
+				"from": 109440,
+				"to": 114580
+			},
+			"text": " So you have all of this -- how about physical abilities going up and down the stairs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,580",
+				"to": "00:01:56,020"
+			},
+			"offsets": {
+				"from": 114580,
+				"to": 116020
+			},
+			"text": " like there are a lot of different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,020",
+				"to": "00:01:58,920"
+			},
+			"offsets": {
+				"from": 116020,
+				"to": 118920
+			},
+			"text": " If you're someone who might be like narrow, atypical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,920",
+				"to": "00:02:03,760"
+			},
+			"offsets": {
+				"from": 118920,
+				"to": 123760
+			},
+			"text": " this is a very overstimulating place, you might have privilege on that aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,760",
+				"to": "00:02:07,660"
+			},
+			"offsets": {
+				"from": 123760,
+				"to": 127660
+			},
+			"text": " So there's a lot of aspects of privilege that are in play all the time around us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,660",
+				"to": "00:02:10,860"
+			},
+			"offsets": {
+				"from": 127660,
+				"to": 130860
+			},
+			"text": " And so that's something that we might just want to be aware of is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,860",
+				"to": "00:02:12,120"
+			},
+			"offsets": {
+				"from": 130860,
+				"to": 132120
+			},
+			"text": " where your privilege is coming through."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,120",
+				"to": "00:02:16,620"
+			},
+			"offsets": {
+				"from": 132120,
+				"to": 136620
+			},
+			"text": " After privilege, we have bias."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,620",
+				"to": "00:02:19,440"
+			},
+			"offsets": {
+				"from": 136620,
+				"to": 139440
+			},
+			"text": " Does anyone know what bias is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,140",
+				"to": "00:02:29,700"
+			},
+			"offsets": {
+				"from": 144140,
+				"to": 149700
+			},
+			"text": " Bias are like the way that -- are kind of almost unconscious privileges kind of show up per se."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,700",
+				"to": "00:02:35,940"
+			},
+			"offsets": {
+				"from": 149700,
+				"to": 155940
+			},
+			"text": " So one of the things that I would definitely encourage you to do is there is a Harvard implicit bias test."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,940",
+				"to": "00:02:40,920"
+			},
+			"offsets": {
+				"from": 155940,
+				"to": 160920
+			},
+			"text": " And like one of the ways it shows up within our workplace is like holidays, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,920",
+				"to": "00:02:44,560"
+			},
+			"offsets": {
+				"from": 160920,
+				"to": 164560
+			},
+			"text": " So everyone knows we get Christmas and New Year's off, which is great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,560",
+				"to": "00:02:48,940"
+			},
+			"offsets": {
+				"from": 164560,
+				"to": 168940
+			},
+			"text": " but it's also religious bias because it's not just Christians that sell have celebrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,940",
+				"to": "00:02:49,460"
+			},
+			"offsets": {
+				"from": 168940,
+				"to": 169460
+			},
+			"text": " throughout the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,820",
+				"to": "00:02:55,540"
+			},
+			"offsets": {
+				"from": 169820,
+				"to": 175540
+			},
+			"text": " So you can take the Harvard implicit bias test to just kind of know where your biases are showing up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,540",
+				"to": "00:03:00,100"
+			},
+			"offsets": {
+				"from": 175540,
+				"to": 180100
+			},
+			"text": " And it's important to know where your biases show up so that when you create policies or procedures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,100",
+				"to": "00:03:02,580"
+			},
+			"offsets": {
+				"from": 180100,
+				"to": 182580
+			},
+			"text": " you're just aware of where your biases are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,580",
+				"to": "00:03:09,300"
+			},
+			"offsets": {
+				"from": 182580,
+				"to": 189300
+			},
+			"text": " You try to like not -- if you're aware of your biases, you're trying to not intentionally do harm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,300",
+				"to": "00:03:11,940"
+			},
+			"offsets": {
+				"from": 189300,
+				"to": 191940
+			},
+			"text": " And like being aware of your biases are those steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,940",
+				"to": "00:03:16,460"
+			},
+			"offsets": {
+				"from": 191940,
+				"to": 196460
+			},
+			"text": " Does anyone know where biases show up within the workplaces?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,380",
+				"to": "00:03:20,620"
+			},
+			"offsets": {
+				"from": 199380,
+				"to": 200620
+			},
+			"text": " It shows up a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,620",
+				"to": "00:03:27,380"
+			},
+			"offsets": {
+				"from": 200620,
+				"to": 207380
+			},
+			"text": " One of the biases that shows up a lot within Web2 and Web3 is college degrees or undergrad backgrounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,380",
+				"to": "00:03:29,540"
+			},
+			"offsets": {
+				"from": 207380,
+				"to": 209540
+			},
+			"text": " That kind of also will have biases as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,540",
+				"to": "00:03:35,380"
+			},
+			"offsets": {
+				"from": 209540,
+				"to": 215380
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,380",
+				"to": "00:03:36,980"
+			},
+			"offsets": {
+				"from": 215380,
+				"to": 216980
+			},
+			"text": " That's a bias for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,980",
+				"to": "00:03:39,180"
+			},
+			"offsets": {
+				"from": 216980,
+				"to": 219180
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,180",
+				"to": "00:03:47,860"
+			},
+			"offsets": {
+				"from": 219180,
+				"to": 227860
+			},
+			"text": " Okay. So when we talk about biases and privileges, we start to realize that there is that definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,860",
+				"to": "00:03:54,180"
+			},
+			"offsets": {
+				"from": 227860,
+				"to": 234180
+			},
+			"text": " between the power struggles that happen and that if you want to try to leverage and make it like level for everybody,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,180",
+				"to": "00:03:55,620"
+			},
+			"offsets": {
+				"from": 234180,
+				"to": 235620
+			},
+			"text": " then you need to have an ally."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,620",
+				"to": "00:04:01,420"
+			},
+			"offsets": {
+				"from": 235620,
+				"to": 241420
+			},
+			"text": " And an ally is someone who recognizes like, hey, there is a power indifference and I'm going to fight --"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,420",
+				"to": "00:04:06,540"
+			},
+			"offsets": {
+				"from": 241420,
+				"to": 246540
+			},
+			"text": " and I want for that power to be removed so that you have a just role just as much as I do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,540",
+				"to": "00:04:08,820"
+			},
+			"offsets": {
+				"from": 246540,
+				"to": 248820
+			},
+			"text": " So that is what's called an ally."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,820",
+				"to": "00:04:11,860"
+			},
+			"offsets": {
+				"from": 248820,
+				"to": 251860
+			},
+			"text": " And sometimes you'll hear like if you're around me, I'll say like, oh, I need an ally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,860",
+				"to": "00:04:17,140"
+			},
+			"offsets": {
+				"from": 251860,
+				"to": 257140
+			},
+			"text": " which means like I need someone who is not like me and who has that power to use their power in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,140",
+				"to": "00:04:23,060"
+			},
+			"offsets": {
+				"from": 257140,
+				"to": 263060
+			},
+			"text": " that benefits the situation and leverages the injustice of power that I would have or the other person"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,060",
+				"to": "00:04:23,980"
+			},
+			"offsets": {
+				"from": 263060,
+				"to": 263980
+			},
+			"text": " who without power has."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,980",
+				"to": "00:04:29,100"
+			},
+			"offsets": {
+				"from": 263980,
+				"to": 269100
+			},
+			"text": " But a step beyond allies is actually a called accomplice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,100",
+				"to": "00:04:31,180"
+			},
+			"offsets": {
+				"from": 269100,
+				"to": 271180
+			},
+			"text": " And that's what I would really want you all to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,180",
+				"to": "00:04:36,580"
+			},
+			"offsets": {
+				"from": 271180,
+				"to": 276580
+			},
+			"text": " And accomplice is someone who like says, yes, you do have a power indifference and I'm going to level it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,580",
+				"to": "00:04:42,340"
+			},
+			"offsets": {
+				"from": 276580,
+				"to": 282340
+			},
+			"text": " and use all my power to level it as much as I'm going to be in the trenches with you as we move this forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,340",
+				"to": "00:04:46,580"
+			},
+			"offsets": {
+				"from": 282340,
+				"to": 286580
+			},
+			"text": " And so there's one aspect where you're recognizing like, oh, there is a power indifference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,580",
+				"to": "00:04:49,100"
+			},
+			"offsets": {
+				"from": 286580,
+				"to": 289100
+			},
+			"text": " and it's not really fair and I hope that works out for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,100",
+				"to": "00:04:53,020"
+			},
+			"offsets": {
+				"from": 289100,
+				"to": 293020
+			},
+			"text": " And then there's a difference with, hey, there is a power indifference that's not really fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,020",
+				"to": "00:04:56,020"
+			},
+			"offsets": {
+				"from": 293020,
+				"to": 296020
+			},
+			"text": " I'm going to do everything I can to justify that power indifference."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,020",
+				"to": "00:04:57,940"
+			},
+			"offsets": {
+				"from": 296020,
+				"to": 297940
+			},
+			"text": " And that's where I hope we all become in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,940",
+				"to": "00:05:03,260"
+			},
+			"offsets": {
+				"from": 297940,
+				"to": 303260
+			},
+			"text": " So why is it important to -- in Web 3?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,260",
+				"to": "00:05:10,580"
+			},
+			"offsets": {
+				"from": 303260,
+				"to": 310580
+			},
+			"text": " These are like generally like over the top issues that we kind of think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,580",
+				"to": "00:05:16,380"
+			},
+			"offsets": {
+				"from": 310580,
+				"to": 316380
+			},
+			"text": " One of the things is like 30 -- racially diverse teams perform 35% better."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,380",
+				"to": "00:05:18,060"
+			},
+			"offsets": {
+				"from": 316380,
+				"to": 318060
+			},
+			"text": " Then non racially diverse teams."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,060",
+				"to": "00:05:22,620"
+			},
+			"offsets": {
+				"from": 318060,
+				"to": 322620
+			},
+			"text": " So if you want to like easily have a better performing team, have diversity on your team."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,620",
+				"to": "00:05:24,300"
+			},
+			"offsets": {
+				"from": 322620,
+				"to": 324300
+			},
+			"text": " That's like one of the easiest way to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,300",
+				"to": "00:05:34,940"
+			},
+			"offsets": {
+				"from": 324300,
+				"to": 334940
+			},
+			"text": " Again, teams where women and men earn equally will actually have 40% -- 41% higher revenue generated for the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,940",
+				"to": "00:05:41,980"
+			},
+			"offsets": {
+				"from": 334940,
+				"to": 341980
+			},
+			"text": " So if your org wants to easily have -- make more money, have equally diverse teams from a gender perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,980",
+				"to": "00:05:46,940"
+			},
+			"offsets": {
+				"from": 341980,
+				"to": 346940
+			},
+			"text": " don't have a gender pay gap, it would be another way to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,940",
+				"to": "00:05:53,700"
+			},
+			"offsets": {
+				"from": 346940,
+				"to": 353700
+			},
+			"text": " But the key reasons that these are important to Web 3 are the actual ethos of Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,700",
+				"to": "00:05:59,540"
+			},
+			"offsets": {
+				"from": 353700,
+				"to": 359540
+			},
+			"text": " So when you think of like decentralization, you think of identity, you think of plurality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,540",
+				"to": "00:06:02,900"
+			},
+			"offsets": {
+				"from": 359540,
+				"to": 362900
+			},
+			"text": " all of the time you talk about this from a tactical perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,900",
+				"to": "00:06:05,460"
+			},
+			"offsets": {
+				"from": 362900,
+				"to": 365460
+			},
+			"text": " but this is also like a human perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,460",
+				"to": "00:06:10,700"
+			},
+			"offsets": {
+				"from": 365460,
+				"to": 370700
+			},
+			"text": " So when you think of decentralization, like we always talk about nodes, having all these nodes decentralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,700",
+				"to": "00:06:13,740"
+			},
+			"offsets": {
+				"from": 370700,
+				"to": 373740
+			},
+			"text": " but if we're starting to create like systems and procedures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,740",
+				"to": "00:06:17,260"
+			},
+			"offsets": {
+				"from": 373740,
+				"to": 377260
+			},
+			"text": " you really want to have decentralization of thought as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,260",
+				"to": "00:06:21,340"
+			},
+			"offsets": {
+				"from": 377260,
+				"to": 381340
+			},
+			"text": " And so sometimes when we start to like think of decentralization of thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,340",
+				"to": "00:06:26,700"
+			},
+			"offsets": {
+				"from": 381340,
+				"to": 386700
+			},
+			"text": " or how are people we centralized, we kind of centralized as, well here, in your mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,700",
+				"to": "00:06:29,500"
+			},
+			"offsets": {
+				"from": 386700,
+				"to": 389500
+			},
+			"text": " I want you to think of like an event, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,500",
+				"to": "00:06:31,820"
+			},
+			"offsets": {
+				"from": 389500,
+				"to": 391820
+			},
+			"text": " And you're going to take five people to that event."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,820",
+				"to": "00:06:34,220"
+			},
+			"offsets": {
+				"from": 391820,
+				"to": 394220
+			},
+			"text": " You're best five people, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,220",
+				"to": "00:06:35,420"
+			},
+			"offsets": {
+				"from": 394220,
+				"to": 395420
+			},
+			"text": " Close your eyes, think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,420",
+				"to": "00:06:38,060"
+			},
+			"offsets": {
+				"from": 395420,
+				"to": 398060
+			},
+			"text": " Who are the five people you're going to take mentally to think about them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,060",
+				"to": "00:06:43,060"
+			},
+			"offsets": {
+				"from": 398060,
+				"to": 403060
+			},
+			"text": " What are their ages?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,060",
+				"to": "00:06:48,060"
+			},
+			"offsets": {
+				"from": 403060,
+				"to": 408060
+			},
+			"text": " Where do they live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,060",
+				"to": "00:06:50,060"
+			},
+			"offsets": {
+				"from": 408060,
+				"to": 410060
+			},
+			"text": " Where do they go to school?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,060",
+				"to": "00:06:53,060"
+			},
+			"offsets": {
+				"from": 410060,
+				"to": 413060
+			},
+			"text": " What gender are they?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,060",
+				"to": "00:06:57,060"
+			},
+			"offsets": {
+				"from": 413060,
+				"to": 417060
+			},
+			"text": " Are you yourself centralizing around any one of those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,060",
+				"to": "00:07:01,060"
+			},
+			"offsets": {
+				"from": 417060,
+				"to": 421060
+			},
+			"text": " Or do you have a diverse group around you making that decision?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,060",
+				"to": "00:07:06,060"
+			},
+			"offsets": {
+				"from": 421060,
+				"to": 426060
+			},
+			"text": " So as you make a decision, are you decentralizing itself and making a decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,060",
+				"to": "00:07:08,060"
+			},
+			"offsets": {
+				"from": 426060,
+				"to": 428060
+			},
+			"text": " that has a voice of a lot of people?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,060",
+				"to": "00:07:14,060"
+			},
+			"offsets": {
+				"from": 428060,
+				"to": 434060
+			},
+			"text": " Are you making an assumption for people that are centralized along one of those verticals?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,060",
+				"to": "00:07:20,060"
+			},
+			"offsets": {
+				"from": 434060,
+				"to": 440060
+			},
+			"text": " Decentralization helps you have a lot of people thinking about the best way to attack a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,060",
+				"to": "00:07:22,060"
+			},
+			"offsets": {
+				"from": 440060,
+				"to": 442060
+			},
+			"text": " and the best way to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,060",
+				"to": "00:07:26,060"
+			},
+			"offsets": {
+				"from": 442060,
+				"to": 446060
+			},
+			"text": " So the more that we can say like, is this decentralized as far as we're making like people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,060",
+				"to": "00:07:30,060"
+			},
+			"offsets": {
+				"from": 446060,
+				"to": 450060
+			},
+			"text": " processes or is this decentralized from a Web3 perspective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,060",
+				"to": "00:07:33,060"
+			},
+			"offsets": {
+				"from": 450060,
+				"to": 453060
+			},
+			"text": " You also want different types of people building different types of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,060",
+				"to": "00:07:38,060"
+			},
+			"offsets": {
+				"from": 453060,
+				"to": 458060
+			},
+			"text": " from different types of perspectives and that helps be a stronger network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,060",
+				"to": "00:07:42,060"
+			},
+			"offsets": {
+				"from": 458060,
+				"to": 462060
+			},
+			"text": " That to me also reminds me of plurality where we say like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,060",
+				"to": "00:07:45,060"
+			},
+			"offsets": {
+				"from": 462060,
+				"to": 465060
+			},
+			"text": " hey, it's not trying to have one team make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,060",
+				"to": "00:07:53,060"
+			},
+			"offsets": {
+				"from": 465060,
+				"to": 473060
+			},
+			"text": " We all get stronger when everyone gets stronger and that ethos applies towards different types of peoples as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,060",
+				"to": "00:07:58,060"
+			},
+			"offsets": {
+				"from": 473060,
+				"to": 478060
+			},
+			"text": " So when you start to understand different Web3 ethos, you can apply them to technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,060",
+				"to": "00:08:02,060"
+			},
+			"offsets": {
+				"from": 478060,
+				"to": 482060
+			},
+			"text": " you can apply them to software, but you can also apply them to peoples and peoples' needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,060",
+				"to": "00:08:05,060"
+			},
+			"offsets": {
+				"from": 482060,
+				"to": 485060
+			},
+			"text": " So even if it's difficult for you to understand like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,060",
+				"to": "00:08:09,060"
+			},
+			"offsets": {
+				"from": 485060,
+				"to": 489060
+			},
+			"text": " I don't understand an Asian males perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,060",
+				"to": "00:08:12,060"
+			},
+			"offsets": {
+				"from": 489060,
+				"to": 492060
+			},
+			"text": " but I can fight for them because I believe in plurality."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,060",
+				"to": "00:08:16,060"
+			},
+			"offsets": {
+				"from": 492060,
+				"to": 496060
+			},
+			"text": " That might be a way to fight for the underdog per se."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,060",
+				"to": "00:08:19,060"
+			},
+			"offsets": {
+				"from": 496060,
+				"to": 499060
+			},
+			"text": " So we think about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,060",
+				"to": "00:08:24,060"
+			},
+			"offsets": {
+				"from": 499060,
+				"to": 504060
+			},
+			"text": " I also think about this as being extremely important from an identity perspective in Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,060",
+				"to": "00:08:29,060"
+			},
+			"offsets": {
+				"from": 504060,
+				"to": 509060
+			},
+			"text": " because in Web3 a lot of us are known through our ENS donates"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,060",
+				"to": "00:08:35,060"
+			},
+			"offsets": {
+				"from": 509060,
+				"to": 515060
+			},
+			"text": " or like our lens protocol donates or whatever you're using and our NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,060",
+				"to": "00:08:39,060"
+			},
+			"offsets": {
+				"from": 515060,
+				"to": 519060
+			},
+			"text": " So you could be interacting with a person's image in an etho name"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,060",
+				"to": "00:08:42,060"
+			},
+			"offsets": {
+				"from": 519060,
+				"to": 522060
+			},
+			"text": " and not really know the person behind it per se."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,060",
+				"to": "00:08:48,060"
+			},
+			"offsets": {
+				"from": 522060,
+				"to": 528060
+			},
+			"text": " And so you kind of just have to be realizing that that person might be going through a lot of different things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,060",
+				"to": "00:08:50,060"
+			},
+			"offsets": {
+				"from": 528060,
+				"to": 530060
+			},
+			"text": " but you don't even know what that person is going through."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,060",
+				"to": "00:08:55,060"
+			},
+			"offsets": {
+				"from": 530060,
+				"to": 535060
+			},
+			"text": " So the more that you can advocate holistically across the board for all different types of people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,060",
+				"to": "00:08:57,060"
+			},
+			"offsets": {
+				"from": 535060,
+				"to": 537060
+			},
+			"text": " the better it can be."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,060",
+				"to": "00:09:02,060"
+			},
+			"offsets": {
+				"from": 537060,
+				"to": 542060
+			},
+			"text": " And when you start to like minimize groups or think like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,060",
+				"to": "00:09:07,060"
+			},
+			"offsets": {
+				"from": 542060,
+				"to": 547060
+			},
+			"text": " oh, there's not someone with an LGBT background within our group"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,060",
+				"to": "00:09:11,060"
+			},
+			"offsets": {
+				"from": 547060,
+				"to": 551060
+			},
+			"text": " so we don't have to worry about it, that may or may not be true"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,060",
+				"to": "00:09:16,060"
+			},
+			"offsets": {
+				"from": 551060,
+				"to": 556060
+			},
+			"text": " because you don't know someone beyond again an NFT and an etho name."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,060",
+				"to": "00:09:20,060"
+			},
+			"offsets": {
+				"from": 556060,
+				"to": 560060
+			},
+			"text": " So the more that we can create better policies for everyone, the better off it can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,060",
+				"to": "00:09:23,060"
+			},
+			"offsets": {
+				"from": 560060,
+				"to": 563060
+			},
+			"text": " or at least be accomplices to people, the better off we will be."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,060",
+				"to": "00:09:28,060"
+			},
+			"offsets": {
+				"from": 566060,
+				"to": 568060
+			},
+			"text": " So here's to me in potatoes of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,060",
+				"to": "00:09:31,060"
+			},
+			"offsets": {
+				"from": 568060,
+				"to": 571060
+			},
+			"text": " We're going to talk about how can you be a hero?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,060",
+				"to": "00:09:35,060"
+			},
+			"offsets": {
+				"from": 571060,
+				"to": 575060
+			},
+			"text": " And for me, a hero is anybody who can like also be an accomplice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,060",
+				"to": "00:09:38,060"
+			},
+			"offsets": {
+				"from": 575060,
+				"to": 578060
+			},
+			"text": " I thought I would be like really cute so you get like a little superhero costume"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,060",
+				"to": "00:09:41,060"
+			},
+			"offsets": {
+				"from": 578060,
+				"to": 581060
+			},
+			"text": " and then I forgot this was around Halloween and we were also about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,060",
+				"to": "00:09:45,060"
+			},
+			"offsets": {
+				"from": 581060,
+				"to": 585060
+			},
+			"text": " So we're going to just be our own heroes and that will be fine today."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,060",
+				"to": "00:09:49,060"
+			},
+			"offsets": {
+				"from": 585060,
+				"to": 589060
+			},
+			"text": " Okay, so there's this concept of holding space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,060",
+				"to": "00:09:53,060"
+			},
+			"offsets": {
+				"from": 589060,
+				"to": 593060
+			},
+			"text": " And a holding space can be having a maining group to hold space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,060",
+				"to": "00:09:57,060"
+			},
+			"offsets": {
+				"from": 593060,
+				"to": 597060
+			},
+			"text": " It can be holding an opportunity for certain groups to learn together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,060",
+				"to": "00:10:03,060"
+			},
+			"offsets": {
+				"from": 597060,
+				"to": 603060
+			},
+			"text": " Holding space can be changing the panels on the boards or holding space"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,060",
+				"to": "00:10:09,060"
+			},
+			"offsets": {
+				"from": 603060,
+				"to": 609060
+			},
+			"text": " on a board or a panel for someone that has is coming from that oppressed group"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,060",
+				"to": "00:10:11,060"
+			},
+			"offsets": {
+				"from": 609060,
+				"to": 611060
+			},
+			"text": " and holding space for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,060",
+				"to": "00:10:16,060"
+			},
+			"offsets": {
+				"from": 611060,
+				"to": 616060
+			},
+			"text": " But it can also be opportunities like to hold space for a cohort to learn a technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,060",
+				"to": "00:10:21,060"
+			},
+			"offsets": {
+				"from": 616060,
+				"to": 621060
+			},
+			"text": " It can be being intentional about like your public facing things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,060",
+				"to": "00:10:24,060"
+			},
+			"offsets": {
+				"from": 621060,
+				"to": 624060
+			},
+			"text": " having specific cohorts for learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,060",
+				"to": "00:10:28,060"
+			},
+			"offsets": {
+				"from": 624060,
+				"to": 628060
+			},
+			"text": " So instead of having everybody thinking that everybody like enters the room the same way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,060",
+				"to": "00:10:34,060"
+			},
+			"offsets": {
+				"from": 628060,
+				"to": 634060
+			},
+			"text": " having specific targeted spaces for marginalized communities to learn that technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,060",
+				"to": "00:10:37,060"
+			},
+			"offsets": {
+				"from": 634060,
+				"to": 637060
+			},
+			"text": " So if you're going to, I'm going to use SheFi because SheFi is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,060",
+				"to": "00:10:43,060"
+			},
+			"offsets": {
+				"from": 637060,
+				"to": 643060
+			},
+			"text": " And let's say you wanted to like have a workshop that was open to like building on lens protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,060",
+				"to": "00:10:48,060"
+			},
+			"offsets": {
+				"from": 643060,
+				"to": 648060
+			},
+			"text": " It would be just specifically for the SheFi community to learn and realizing that that community"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,060",
+				"to": "00:10:54,060"
+			},
+			"offsets": {
+				"from": 648060,
+				"to": 654060
+			},
+			"text": " learns in a different way than the general population would be learning and creating a safe space for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,060",
+				"to": "00:11:02,060"
+			},
+			"offsets": {
+				"from": 654060,
+				"to": 662060
+			},
+			"text": " So holding safe space is extremely important when you're doing marginalized groups because it recognized that just by stepping in the room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,060",
+				"to": "00:11:07,060"
+			},
+			"offsets": {
+				"from": 662060,
+				"to": 667060
+			},
+			"text": " there are power dynamics that are in play."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,060",
+				"to": "00:11:10,060"
+			},
+			"offsets": {
+				"from": 667060,
+				"to": 670060
+			},
+			"text": " All right, environmental safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,060",
+				"to": "00:11:13,060"
+			},
+			"offsets": {
+				"from": 670060,
+				"to": 673060
+			},
+			"text": " This one is a huge one this week for me here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,060",
+				"to": "00:11:18,060"
+			},
+			"offsets": {
+				"from": 673060,
+				"to": 678060
+			},
+			"text": " So one of the things that we have talked about in the past is like the importance of having a code of conduct"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,060",
+				"to": "00:11:22,060"
+			},
+			"offsets": {
+				"from": 678060,
+				"to": 682060
+			},
+			"text": " and having procedures that actually follow those code of conduct."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,060",
+				"to": "00:11:30,060"
+			},
+			"offsets": {
+				"from": 682060,
+				"to": 690060
+			},
+			"text": " The reason why code of conduct are important is because as people, again, we have biases and the code of conduct is supposed to be the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,060",
+				"to": "00:11:39,060"
+			},
+			"offsets": {
+				"from": 690060,
+				"to": 699060
+			},
+			"text": " you know, the guidance and policies and procedures that are put in place to mitigate those biases or to be in place regardless of the biases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,060",
+				"to": "00:11:43,060"
+			},
+			"offsets": {
+				"from": 699060,
+				"to": 703060
+			},
+			"text": " So it's the steps that we take in order for things to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,060",
+				"to": "00:11:46,060"
+			},
+			"offsets": {
+				"from": 703060,
+				"to": 706060
+			},
+			"text": " Those steps mean nothing if we don't take them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,060",
+				"to": "00:11:53,060"
+			},
+			"offsets": {
+				"from": 706060,
+				"to": 713060
+			},
+			"text": " So having the code of conduct or seeing that there is a code of conduct is helpful, but you need to also be enforcing code of conduct too."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,060",
+				"to": "00:11:58,060"
+			},
+			"offsets": {
+				"from": 713060,
+				"to": 718060
+			},
+			"text": " Being aware of microaggressions, does anyone know what a microagression is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,060",
+				"to": "00:12:01,060"
+			},
+			"offsets": {
+				"from": 718060,
+				"to": 721060
+			},
+			"text": " Would it be helpful for me to explain it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,060",
+				"to": "00:12:02,060"
+			},
+			"offsets": {
+				"from": 721060,
+				"to": 722060
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,060",
+				"to": "00:12:04,060"
+			},
+			"offsets": {
+				"from": 722060,
+				"to": 724060
+			},
+			"text": " Lower you want to explain it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,060",
+				"to": "00:12:05,060"
+			},
+			"offsets": {
+				"from": 724060,
+				"to": 725060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,060",
+				"to": "00:12:18,060"
+			},
+			"offsets": {
+				"from": 725060,
+				"to": 738060
+			},
+			"text": " Okay, a microagression is like something that is like a small act that adds up to a feeling of oppression over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,060",
+				"to": "00:12:28,060"
+			},
+			"offsets": {
+				"from": 738060,
+				"to": 748060
+			},
+			"text": " Like for me as a woman, and I'm like someone might at work compliment me on my outfit or on my appearance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,060",
+				"to": "00:12:35,060"
+			},
+			"offsets": {
+				"from": 748060,
+				"to": 755060
+			},
+			"text": " and like that happens to women a lot, even though it's like nice to say like, hey, you look good today, but the fact that like as a woman,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,060",
+				"to": "00:12:39,060"
+			},
+			"offsets": {
+				"from": 755060,
+				"to": 759060
+			},
+			"text": " not so people always think of you, that's like a microagression."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,060",
+				"to": "00:12:48,060"
+			},
+			"offsets": {
+				"from": 759060,
+				"to": 768060
+			},
+			"text": " It might seem nice, but in the grandeur perspective of things, it's like adding to the fact that you're seeing this like a one-dimensional identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,060",
+				"to": "00:12:49,060"
+			},
+			"offsets": {
+				"from": 768060,
+				"to": 769060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,060",
+				"to": "00:12:50,060"
+			},
+			"offsets": {
+				"from": 769060,
+				"to": 770060
+			},
+			"text": " Okay, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,060",
+				"to": "00:12:51,060"
+			},
+			"offsets": {
+				"from": 770060,
+				"to": 771060
+			},
+			"text": " Yes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,060",
+				"to": "00:12:57,060"
+			},
+			"offsets": {
+				"from": 771060,
+				"to": 777060
+			},
+			"text": " Any of you all of them might need to pass you on the bread into the final game or something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,060",
+				"to": "00:12:58,060"
+			},
+			"offsets": {
+				"from": 777060,
+				"to": 778060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,060",
+				"to": "00:13:00,060"
+			},
+			"offsets": {
+				"from": 778060,
+				"to": 780060
+			},
+			"text": " Can you give me an example of what you would think?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,060",
+				"to": "00:13:11,060"
+			},
+			"offsets": {
+				"from": 780060,
+				"to": 791060
+			},
+			"text": " Uh, like for example when you are trying to tell someone something, that is, you are supposed to be looking like it's something not good, like for example that should be."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,060",
+				"to": "00:13:24,060"
+			},
+			"offsets": {
+				"from": 791060,
+				"to": 804060
+			},
+			"text": " But instead, like, oh, sorry, it's like, you are telling person something that is good for them, but you are not doing it in a happy way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,060",
+				"to": "00:13:28,060"
+			},
+			"offsets": {
+				"from": 804060,
+				"to": 808060
+			},
+			"text": " You are being aggressive, but you are saying something that is good for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,060",
+				"to": "00:13:29,060"
+			},
+			"offsets": {
+				"from": 808060,
+				"to": 809060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,060",
+				"to": "00:13:31,060"
+			},
+			"offsets": {
+				"from": 809060,
+				"to": 811060
+			},
+			"text": " So I think, so I can only speak."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,060",
+				"to": "00:13:32,060"
+			},
+			"offsets": {
+				"from": 811060,
+				"to": 812060
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,060",
+				"to": "00:13:44,060"
+			},
+			"offsets": {
+				"from": 812060,
+				"to": 824060
+			},
+			"text": " I think like, so I can think of some of the microaggressions that I get, and I think for someone, for me, I get like, you speak so well, which like seems like a compliment, but really, we flip it around."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,060",
+				"to": "00:13:53,060"
+			},
+			"offsets": {
+				"from": 824060,
+				"to": 833060
+			},
+			"text": " It's actually a microagression because there's a substance that I wouldn't speak well, you know, but there's a certain group of people that shouldn't speak well, or that vernacular of being well spoken only resolves it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,060",
+				"to": "00:14:02,060"
+			},
+			"offsets": {
+				"from": 833060,
+				"to": 842060
+			},
+			"text": " Or that even being well spoken is like, says something about someone where being not being well spoken doesn't, and it's not really that same."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,060",
+				"to": "00:14:08,060"
+			},
+			"offsets": {
+				"from": 842060,
+				"to": 848060
+			},
+			"text": " So just being aware of the different power dynamics is really helpful there, but yeah, there's a lot of different microaggressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,060",
+				"to": "00:14:17,060"
+			},
+			"offsets": {
+				"from": 848060,
+				"to": 857060
+			},
+			"text": " The main thing that if I could like give you a takeaway from environmental safety is when something is unsafe for someone, A, you believe them that is unsafe, and B, you speak up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,060",
+				"to": "00:14:22,060"
+			},
+			"offsets": {
+				"from": 857060,
+				"to": 862060
+			},
+			"text": " Especially if you're in the group that has the most power, speaking up is the most important thing that you can do at that moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,060",
+				"to": "00:14:23,060"
+			},
+			"offsets": {
+				"from": 862060,
+				"to": 863060
+			},
+			"text": " So."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,060",
+				"to": "00:14:30,060"
+			},
+			"offsets": {
+				"from": 863060,
+				"to": 870060
+			},
+			"text": " Okay, so another step for being a hero is to remove, reflect, and retain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,060",
+				"to": "00:14:39,060"
+			},
+			"offsets": {
+				"from": 870060,
+				"to": 879060
+			},
+			"text": " And these are like removing unnecessarily biased language from job descriptions, it helps, this is a big thing in Web 2 and Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,060",
+				"to": "00:14:52,060"
+			},
+			"offsets": {
+				"from": 879060,
+				"to": 892060
+			},
+			"text": " And we moved based biased requirements for jobs such as grade level, background, different types of location preferences can also be like that, or any type of vague requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,060",
+				"to": "00:15:00,060"
+			},
+			"offsets": {
+				"from": 892060,
+				"to": 900060
+			},
+			"text": " So one of the ways that that came up before was like, we used to have a hiring bar for engineers and be like, oh, this person types slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,060",
+				"to": "00:15:07,060"
+			},
+			"offsets": {
+				"from": 900060,
+				"to": 907060
+			},
+			"text": " And so they shouldn't get be onboarded, but then we had someone else that types slow and was onboarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,060",
+				"to": "00:15:09,060"
+			},
+			"offsets": {
+				"from": 907060,
+				"to": 909060
+			},
+			"text": " So we were like, well, what is types slow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,060",
+				"to": "00:15:14,060"
+			},
+			"offsets": {
+				"from": 909060,
+				"to": 914060
+			},
+			"text": " Like, what does that mean and why does it even matter when you're trying to interview for engineering?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,060",
+				"to": "00:15:19,060"
+			},
+			"offsets": {
+				"from": 914060,
+				"to": 919060
+			},
+			"text": " And so you had to be very defined with what are your actual requirements for the roles."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,060",
+				"to": "00:15:27,060"
+			},
+			"offsets": {
+				"from": 919060,
+				"to": 927060
+			},
+			"text": " So this is, do you see anything here that would be considered exclusive?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,060",
+				"to": "00:15:32,060"
+			},
+			"offsets": {
+				"from": 927060,
+				"to": 932060
+			},
+			"text": " Or maybe a necessary barrier?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,060",
+				"to": "00:15:39,060"
+			},
+			"offsets": {
+				"from": 932060,
+				"to": 939060
+			},
+			"text": " And I'll say background, again, this is for like a software engineering role."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,060",
+				"to": "00:15:44,060"
+			},
+			"offsets": {
+				"from": 939060,
+				"to": 944060
+			},
+			"text": " But does anyone want to share what they see would be a unnecessary barrier?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,060",
+				"to": "00:15:46,060"
+			},
+			"offsets": {
+				"from": 944060,
+				"to": 946060
+			},
+			"text": " I'm sorry, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,060",
+				"to": "00:15:58,060"
+			},
+			"offsets": {
+				"from": 946060,
+				"to": 958060
+			},
+			"text": " Degree? Degree in those backgrounds? Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,060",
+				"to": "00:16:01,060"
+			},
+			"offsets": {
+				"from": 958060,
+				"to": 961060
+			},
+			"text": " All right, exactly. Anything else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,060",
+				"to": "00:16:23,060"
+			},
+			"offsets": {
+				"from": 961060,
+				"to": 983060
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,060",
+				"to": "00:16:32,060"
+			},
+			"offsets": {
+				"from": 983060,
+				"to": 992060
+			},
+			"text": " Yeah. Yep. Let's see if there's anything else there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,060",
+				"to": "00:16:36,060"
+			},
+			"offsets": {
+				"from": 992060,
+				"to": 996060
+			},
+			"text": " I also think like building the right tools for the system. I'm like, well, what's the right tools?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,060",
+				"to": "00:16:40,060"
+			},
+			"offsets": {
+				"from": 996060,
+				"to": 1000060
+			},
+			"text": " That seems very subjective as well. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,060",
+				"to": "00:16:44,060"
+			},
+			"offsets": {
+				"from": 1000060,
+				"to": 1004060
+			},
+			"text": " So this is a little bit more of an inclusive statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,060",
+				"to": "00:16:47,060"
+			},
+			"offsets": {
+				"from": 1004060,
+				"to": 1007060
+			},
+			"text": " They're trying to be a little bit more inclusive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,060",
+				"to": "00:16:51,060"
+			},
+			"offsets": {
+				"from": 1007060,
+				"to": 1011060
+			},
+			"text": " Is there any type of inclusive statement there that stands out to you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,060",
+				"to": "00:16:55,060"
+			},
+			"offsets": {
+				"from": 1011060,
+				"to": 1015060
+			},
+			"text": " Well, I can compare to the other one if this is a job requirements section."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,060",
+				"to": "00:17:00,060"
+			},
+			"offsets": {
+				"from": 1015060,
+				"to": 1020060
+			},
+			"text": " The header was what excites us versus you have. It's more direct. It's more clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,060",
+				"to": "00:17:03,060"
+			},
+			"offsets": {
+				"from": 1020060,
+				"to": 1023060
+			},
+			"text": " Awesome. Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,060",
+				"to": "00:17:13,060"
+			},
+			"offsets": {
+				"from": 1023060,
+				"to": 1033060
+			},
+			"text": " Yeah. It's more about like your enthusiasm, the mission,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,060",
+				"to": "00:17:19,060"
+			},
+			"offsets": {
+				"from": 1033060,
+				"to": 1039060
+			},
+			"text": " or we believe in rather than things you actually have a privilege of working on in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,060",
+				"to": "00:17:22,060"
+			},
+			"offsets": {
+				"from": 1039060,
+				"to": 1042060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,060",
+				"to": "00:17:25,060"
+			},
+			"offsets": {
+				"from": 1042060,
+				"to": 1045060
+			},
+			"text": " And the other one was, do we mention it here as a strong, strong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,060",
+				"to": "00:17:29,060"
+			},
+			"offsets": {
+				"from": 1045060,
+				"to": 1049060
+			},
+			"text": " or a strong, or a strong, or? All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,060",
+				"to": "00:17:33,060"
+			},
+			"offsets": {
+				"from": 1049060,
+				"to": 1053060
+			},
+			"text": " I feel like this one's like your qualities, not your qualifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,060",
+				"to": "00:17:40,060"
+			},
+			"offsets": {
+				"from": 1053060,
+				"to": 1060060
+			},
+			"text": " And like even though the last one, like those qualifications are probably trying to just be a signal of the same qualities."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,060",
+				"to": "00:17:45,060"
+			},
+			"offsets": {
+				"from": 1060060,
+				"to": 1065060
+			},
+			"text": " Like, oh, you've worked on lots of interesting projects and like internships and whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,060",
+				"to": "00:17:53,060"
+			},
+			"offsets": {
+				"from": 1065060,
+				"to": 1073060
+			},
+			"text": " Well, not everybody has that privilege, but like they can still arrive to the same like excitement, experience, strong skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,060",
+				"to": "00:17:56,060"
+			},
+			"offsets": {
+				"from": 1073060,
+				"to": 1076060
+			},
+			"text": " Yeah. Hold on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,060",
+				"to": "00:18:05,060"
+			},
+			"offsets": {
+				"from": 1076060,
+				"to": 1085060
+			},
+			"text": " It's more specific. Like developing production software is a little bit more specific than the more they go into the other versions you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,060",
+				"to": "00:18:07,060"
+			},
+			"offsets": {
+				"from": 1085060,
+				"to": 1087060
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,060",
+				"to": "00:18:15,060"
+			},
+			"offsets": {
+				"from": 1087060,
+				"to": 1095060
+			},
+			"text": " And say this job description is more inclusive. It encourages like a brand or range of people to apply for the other one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,060",
+				"to": "00:18:25,060"
+			},
+			"offsets": {
+				"from": 1095060,
+				"to": 1105060
+			},
+			"text": " like it was more specific in ways that might be discouraging and just maybe encourage exclusively, which is just maybe not one thing to space."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,060",
+				"to": "00:18:27,060"
+			},
+			"offsets": {
+				"from": 1105060,
+				"to": 1107060
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,060",
+				"to": "00:18:37,060"
+			},
+			"offsets": {
+				"from": 1107060,
+				"to": 1117060
+			},
+			"text": " Also think that like, I want to read both of those examples. Even if I wasn't a bit for either of them, the brand, like attribution and like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,060",
+				"to": "00:18:49,060"
+			},
+			"offsets": {
+				"from": 1117060,
+				"to": 1129060
+			},
+			"text": " leaving positively like aligned to this brand versus the other one I would be with a better sense of working with, you know, this organization versus the previous one for future capital."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,060",
+				"to": "00:18:50,060"
+			},
+			"offsets": {
+				"from": 1129060,
+				"to": 1130060
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,060",
+				"to": "00:19:02,060"
+			},
+			"offsets": {
+				"from": 1130060,
+				"to": 1142060
+			},
+			"text": " All right. There was a mention about requirements and the list of requirements. And I just wanted to like highlight one thing when it comes to requirements and how it's perceived by different types of gender specifically here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,060",
+				"to": "00:19:09,060"
+			},
+			"offsets": {
+				"from": 1142060,
+				"to": 1149060
+			},
+			"text": " When it comes to men, men will see the list of requirements and meet 30% of them and apply for the job."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,060",
+				"to": "00:19:15,060"
+			},
+			"offsets": {
+				"from": 1149060,
+				"to": 1155060
+			},
+			"text": " And women will see the list of requirements and apply for the job after they met 70% of the requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,060",
+				"to": "00:19:23,060"
+			},
+			"offsets": {
+				"from": 1155060,
+				"to": 1163060
+			},
+			"text": " So there is a section of like self-weeding out that's happening when it comes to requirements. If you're just listing requirements and not being inclusive right from the get go."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,060",
+				"to": "00:19:33,060"
+			},
+			"offsets": {
+				"from": 1163060,
+				"to": 1173060
+			},
+			"text": " So if you're thinking about like, why don't we have more women like in our org, you might want to start by looking at like, how are you listing what you want to come into the org itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,060",
+				"to": "00:19:44,060"
+			},
+			"offsets": {
+				"from": 1173060,
+				"to": 1184060
+			},
+			"text": " I feel like this is probably my favorite job posting because there's always those times when we've seen like companies that were like, yes, I want to work there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,060",
+				"to": "00:19:51,060"
+			},
+			"offsets": {
+				"from": 1184060,
+				"to": 1191060
+			},
+			"text": " I could bring this. We could do this, but it doesn't fit into what they have listed into a job requirement."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,060",
+				"to": "00:19:59,060"
+			},
+			"offsets": {
+				"from": 1191060,
+				"to": 1199060
+			},
+			"text": " And this is kind of like an open door of like, well, you told us what you can bring to the table, what you see missing in our org and how you are a good fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,060",
+				"to": "00:20:05,060"
+			},
+			"offsets": {
+				"from": 1199060,
+				"to": 1205060
+			},
+			"text": " And I think that that happens to be a lot of a thing that will open up some doors."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,060",
+				"to": "00:20:15,060"
+			},
+			"offsets": {
+				"from": 1205060,
+				"to": 1215060
+			},
+			"text": " Okay, now we get to reflect and reflect sometimes comes in reporting. It can come in roles. It can become responsibilities and transparency."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,060",
+				"to": "00:20:21,060"
+			},
+			"offsets": {
+				"from": 1215060,
+				"to": 1221060
+			},
+			"text": " So this actually was a web three statement that came out and it was like super plotted, which is cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,060",
+				"to": "00:20:31,060"
+			},
+			"offsets": {
+				"from": 1221060,
+				"to": 1231060
+			},
+			"text": " And it's like, yeah, the building more inclusive financial systems and they're happy to report that there's 50% more or 5050 parity at the location."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,060",
+				"to": "00:20:41,060"
+			},
+			"offsets": {
+				"from": 1231060,
+				"to": 1241060
+			},
+			"text": " But I just didn't want I didn't know if any of y'all saw any problems with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,060",
+				"to": "00:20:45,060"
+			},
+			"offsets": {
+				"from": 1241060,
+				"to": 1245060
+			},
+			"text": " Okay, that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,060",
+				"to": "00:20:47,060"
+			},
+			"offsets": {
+				"from": 1245060,
+				"to": 1247060
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,060",
+				"to": "00:20:50,060"
+			},
+			"offsets": {
+				"from": 1247060,
+				"to": 1250060
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,060",
+				"to": "00:21:05,060"
+			},
+			"offsets": {
+				"from": 1250060,
+				"to": 1265060
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,060",
+				"to": "00:21:09,060"
+			},
+			"offsets": {
+				"from": 1265060,
+				"to": 1269060
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,060",
+				"to": "00:21:19,060"
+			},
+			"offsets": {
+				"from": 1269060,
+				"to": 1279060
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,060",
+				"to": "00:21:27,060"
+			},
+			"offsets": {
+				"from": 1279060,
+				"to": 1287060
+			},
+			"text": " I don't think anyone's doing great. So I'm like really not keen to give anyone a pat on the back, but I really don't like people giving themselves a pat in the back."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,060",
+				"to": "00:21:31,060"
+			},
+			"offsets": {
+				"from": 1287060,
+				"to": 1291060
+			},
+			"text": " So I think the sense is like we can always go better."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,060",
+				"to": "00:21:39,060"
+			},
+			"offsets": {
+				"from": 1291060,
+				"to": 1299060
+			},
+			"text": " Also by saying like, yeah, we're at 5050 parity with women to men. It really doesn't show like racial breakdown within the women."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,060",
+				"to": "00:21:50,060"
+			},
+			"offsets": {
+				"from": 1299060,
+				"to": 1310060
+			},
+			"text": " So there still could be a lot of power dynamics that are at play there too. So I had a lot of issues with this one specifically, but I had done reporting back when I was at square back in the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,060",
+				"to": "00:21:54,060"
+			},
+			"offsets": {
+				"from": 1310060,
+				"to": 1314060
+			},
+			"text": " And so I'll share a little bit of our pitfalls that we had to."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,060",
+				"to": "00:22:09,060"
+			},
+			"offsets": {
+				"from": 1314060,
+				"to": 1329060
+			},
+			"text": " I'm not a huge fan of reporting oddly enough, because I feel like it makes people, it reduces people back down to numbers and it doesn't really give us a whole perspective of the health of the organizations itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,060",
+				"to": "00:22:28,060"
+			},
+			"offsets": {
+				"from": 1329060,
+				"to": 1348060
+			},
+			"text": " And also was really difficult when we followed the actual guide on how to report your numbers. It didn't deal with any type of intersectionality. So if you were dealing with like racial reporting, like you had to choose, if you're a mixed person, you had to choose one side, like you had to choose one side of your identity and I just, it wasn't very truly reflective."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,060",
+				"to": "00:22:38,060"
+			},
+			"offsets": {
+				"from": 1348060,
+				"to": 1358060
+			},
+			"text": " It's not super inclusive and it puts a lot of focus on diversity, but it doesn't put a lot of focus on belonging or any type of things of that nature too."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,060",
+				"to": "00:22:45,060"
+			},
+			"offsets": {
+				"from": 1358060,
+				"to": 1365060
+			},
+			"text": " And it only focuses on numbers and matrices, which is like the worst thing that you can do. It's not really reflective."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,060",
+				"to": "00:22:59,060"
+			},
+			"offsets": {
+				"from": 1365060,
+				"to": 1379060
+			},
+			"text": " So other than that, we tried to do like DNI OKRs or priorities and try to look at that from a holistic level of how can we kind of embrace it from an OKR level and what are going to be our priorities for that year."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,060",
+				"to": "00:23:07,060"
+			},
+			"offsets": {
+				"from": 1379060,
+				"to": 1387060
+			},
+			"text": " And if you can do it that way, you can keep the focus on removing barriers and that is like what you're tied to."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,060",
+				"to": "00:23:18,060"
+			},
+			"offsets": {
+				"from": 1387060,
+				"to": 1398060
+			},
+			"text": " OK, oddly enough, I think this is the most important piece of DNI. We always talk about recruitment recruitment recruitment, but a lot of discussions never talked about why certain groups are leaving."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,060",
+				"to": "00:23:29,060"
+			},
+			"offsets": {
+				"from": 1398060,
+				"to": 1409060
+			},
+			"text": " And that is usually the bigger question. So yes, you can attract as many different types of people to your org, but if they're leaving right away or not having a great time, I think it's more important for you to figure out why that is."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,060",
+				"to": "00:23:38,060"
+			},
+			"offsets": {
+				"from": 1409060,
+				"to": 1418060
+			},
+			"text": " And what it might be like a toxic place to work or a place where you could make it people more comfortable. So in the web three space, I think like we do a great."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,060",
+				"to": "00:23:52,060"
+			},
+			"offsets": {
+				"from": 1418060,
+				"to": 1432060
+			},
+			"text": " We do a job of attracting people to their orgs that do a great job of attracting people too. But it's on to us to also figure out how we retain them and empower them in the space to do the work that they want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,060",
+				"to": "00:24:05,060"
+			},
+			"offsets": {
+				"from": 1432060,
+				"to": 1445060
+			},
+			"text": " Retention can be double checking salary levels. It can be a transparency with salary compensation. It can be looking at different policies and seeing if their policies actually empower different community groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,060",
+				"to": "00:24:14,060"
+			},
+			"offsets": {
+				"from": 1445060,
+				"to": 1454060
+			},
+			"text": " If you have maternity leave and don't have paternity leave, that could be a problem. It can just look at looking at a lot of the policies you have in place."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,060",
+				"to": "00:24:28,060"
+			},
+			"offsets": {
+				"from": 1454060,
+				"to": 1468060
+			},
+			"text": " So we have questions about policy actually low is really good. She was on our people team at get coin. And she was really good at trying to kind of go through a phone fine tooth comb with our policies and seeing if it's as inclusive as it could be."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,060",
+				"to": "00:24:35,060"
+			},
+			"offsets": {
+				"from": 1468060,
+				"to": 1475060
+			},
+			"text": " Okay, so now that we got through the R and heroes, we're going to go with O and thinking O is sinking outside of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,060",
+				"to": "00:24:48,060"
+			},
+			"offsets": {
+				"from": 1475060,
+				"to": 1488060
+			},
+			"text": " A lot of times within Web 3 or within Web 2, even when you talk about like, oh, there's no X, Y and Z type of people in the org. It's because we can't find them. And then you're only looking within your own network and you're not going outside of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,060",
+				"to": "00:25:02,060"
+			},
+			"offsets": {
+				"from": 1488060,
+				"to": 1502060
+			},
+			"text": " Go outside the box. Think of new solutions as different types of people. We grew from non traditional places, non traditional schools, whatever it was not working for you before. It wasn't not obviously working. So try something new. It's always fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,060",
+				"to": "00:25:17,060"
+			},
+			"offsets": {
+				"from": 1502060,
+				"to": 1517060
+			},
+			"text": " Find the people where they are. There's lots of orgs that have, you know, women engineers, women in crypto, women in STEM, Black in STEM, Black in crypto. Like, there are all these different orgs out there that are different groups marginalized are empowered in."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,060",
+				"to": "00:25:26,060"
+			},
+			"offsets": {
+				"from": 1517060,
+				"to": 1526060
+			},
+			"text": " And you can go engage with those groups, fund those groups and work with those groups in order to not only again attract, but also see like how can we retain the ones that we have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,060",
+				"to": "00:25:36,060"
+			},
+			"offsets": {
+				"from": 1526060,
+				"to": 1536060
+			},
+			"text": " Engaging with partnerships there would be really, really great. You know, Maggie's in the room. And I know that there are other people in the room that are also leaders with different DNI groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,060",
+				"to": "00:25:52,060"
+			},
+			"offsets": {
+				"from": 1536060,
+				"to": 1552060
+			},
+			"text": " So hearing their perspectives and engaging in them in a way that's not like how can we just source talent, but also how can we like, how can we get the knowledge that you have and shared with us, but also how can we fund the mission that you're doing is also extremely important."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,060",
+				"to": "00:26:08,060"
+			},
+			"offsets": {
+				"from": 1552060,
+				"to": 1568060
+			},
+			"text": " So I will give you an opportunity to put your money where your mouth is. And that is in get coins DNI rounds. This is a very easy way for you to fund different groups that are in this DNI space within Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,060",
+				"to": "00:26:15,060"
+			},
+			"offsets": {
+				"from": 1568060,
+				"to": 1575060
+			},
+			"text": " There's two ways you can do it. One is to encourage them to apply to be a grantee in the space. And then the other way is to fund them."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,060",
+				"to": "00:26:25,060"
+			},
+			"offsets": {
+				"from": 1575060,
+				"to": 1585060
+			},
+			"text": " This, if you don't realize that a lot of the people who do the work in this space, especially they are doing DNI work, the money for the work that they do comes out of their own pocketbooks."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,060",
+				"to": "00:26:38,060"
+			},
+			"offsets": {
+				"from": 1585060,
+				"to": 1598060
+			},
+			"text": " And it's not, it's like another layer of oppression to tell the group that is being oppressed to fix their own problems with themselves rather than having the people who have the power fund the groups that are oppressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,060",
+				"to": "00:26:57,060"
+			},
+			"offsets": {
+				"from": 1598060,
+				"to": 1617060
+			},
+			"text": " So if we can start to fund those groups, it's going to be much more impactful in this space. And funding in a way that's not conditional. So like not in the way that I have $100,000, I want you to go to the school and get all the women that are in that school, but saying, \"Hey, what do you need and how can I write the check to best amplify your work?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,060",
+				"to": "00:27:07,060"
+			},
+			"offsets": {
+				"from": 1617060,
+				"to": 1627060
+			},
+			"text": " That's the more important thing. You have to believe that the people who are doing the work know the work that they need to do. And the biggest barrier that they have to that is really just the financial barrier."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,060",
+				"to": "00:27:19,060"
+			},
+			"offsets": {
+				"from": 1627060,
+				"to": 1639060
+			},
+			"text": " That's been placed usually not on them. If you're asking a group of male VCs and having them wanting to fund women's work, and then I have to explain to you why it's important for women to be doing this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,060",
+				"to": "00:27:30,060"
+			},
+			"offsets": {
+				"from": 1639060,
+				"to": 1650060
+			},
+			"text": " And you're like, \"I don't get it. It's probably not me explaining it to you. You might just not get it from your perspective.\" So it's much more important to say, \"Hey, what can I do with investing y'all to do the work?\" And then appreciate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,060",
+				"to": "00:27:52,060"
+			},
+			"offsets": {
+				"from": 1650060,
+				"to": 1672060
+			},
+			"text": " Other things you need to do. If you're in a place where you can hire a D&I team or role, do that. You probably need it now and don't really even know it, but they have a champion team have a person dealing with it right now with as much money that we're flopping around doing swag and everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,060",
+				"to": "00:28:01,060"
+			},
+			"offsets": {
+				"from": 1672060,
+				"to": 1681060
+			},
+			"text": " You could call you like fund one person on your team to actually take this on and empower them to make the changes that they need to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,060",
+				"to": "00:28:09,060"
+			},
+			"offsets": {
+				"from": 1681060,
+				"to": 1689060
+			},
+			"text": " Okay, so I will give you an opportunity. These are the ones that I know that you can actually fund with, but I also know it is not an inclusive list."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,060",
+				"to": "00:28:20,060"
+			},
+			"offsets": {
+				"from": 1689060,
+				"to": 1700060
+			},
+			"text": " So if you know one that I should know, you can do one of two things. You can a tweet at me and say, \"Hey, Gloria, you should know this group.\" And then I will continue to build up the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,060",
+				"to": "00:28:36,060"
+			},
+			"offsets": {
+				"from": 1700060,
+				"to": 1716060
+			},
+			"text": " Another thing is when we start to break out into teams, I would love a team that would just take on the challenge of saying, \"Hey, let's create a doc that has as many of these D&I in Web3 lists that we can, and then we'll just share the doc after the session, and it will be one of the takeaways from the session too.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,060",
+				"to": "00:28:43,060"
+			},
+			"offsets": {
+				"from": 1716060,
+				"to": 1723060
+			},
+			"text": " So, yeah, whatever ones that you know, please feel free to amplify them. You can amplify themselves. You can do it that way too."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,060",
+				"to": "00:29:01,060"
+			},
+			"offsets": {
+				"from": 1723060,
+				"to": 1741060
+			},
+			"text": " The \"S\" in Heroes is for shout out. It's for support. The other way that you can shout out and actually kind of transits this whole power dynamic is also to amplify someone who is not like you, who does your work, doing the work that you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,060",
+				"to": "00:29:13,060"
+			},
+			"offsets": {
+				"from": 1741060,
+				"to": 1753060
+			},
+			"text": " Because a lot of times the people who are in the oppressed group, their work does not go notice. So whatever you can do to amplify the work of the oppressed group is absolutely amazing too."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,060",
+				"to": "00:29:23,060"
+			},
+			"offsets": {
+				"from": 1753060,
+				"to": 1763060
+			},
+			"text": " So if there are people who are, let's say, working in layer ones, let's just say, no, hold on a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,060",
+				"to": "00:29:33,060"
+			},
+			"offsets": {
+				"from": 1763060,
+				"to": 1773060
+			},
+			"text": " People who work, yeah, let's just say the layer ones. And there are like great women in layer ones that we should be following that have actual technical skills or that people should know about."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,060",
+				"to": "00:29:42,060"
+			},
+			"offsets": {
+				"from": 1773060,
+				"to": 1782060
+			},
+			"text": " Let's just create a list of the 50 women working on layer ones that you should know about. There's no reason we can't get all their Twitter names and send that out by the end of the conference today too."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,060",
+				"to": "00:29:49,060"
+			},
+			"offsets": {
+				"from": 1782060,
+				"to": 1789060
+			},
+			"text": " Like there's women doing work that should be amplified, but their voices aren't heard or they're drowned out because they're not in the powered group."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,060",
+				"to": "00:29:54,060"
+			},
+			"offsets": {
+				"from": 1789060,
+				"to": 1794060
+			},
+			"text": " So that's one of the other teams if you want to work on that. And the second one I let you break up, we can do that too."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,060",
+				"to": "00:30:03,060"
+			},
+			"offsets": {
+				"from": 1794060,
+				"to": 1803060
+			},
+			"text": " All right, so usually I say do the work. Do the work is the most important thing in this time. Do the work for these oppressed groups and not expect the oppressed groups to do the work for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,060",
+				"to": "00:30:08,060"
+			},
+			"offsets": {
+				"from": 1803060,
+				"to": 1808060
+			},
+			"text": " And so during the remaining time that we have in this workshop, I'm going to give you the opportunity to do the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,060",
+				"to": "00:30:15,060"
+			},
+			"offsets": {
+				"from": 1808060,
+				"to": 1815060
+			},
+			"text": " The do the work is going to come in multiple different ways. If you want to do the work, you can take the privilege test."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,060",
+				"to": "00:30:24,060"
+			},
+			"offsets": {
+				"from": 1815060,
+				"to": 1824060
+			},
+			"text": " The privilege test is a buzz fleet test on privilege. It kind of is great to see like where you have privilege, the different types of privileges, things of that nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,060",
+				"to": "00:30:29,060"
+			},
+			"offsets": {
+				"from": 1824060,
+				"to": 1829060
+			},
+			"text": " Then there's the Harvard implicit bias test. You can do that work as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,060",
+				"to": "00:30:39,060"
+			},
+			"offsets": {
+				"from": 1829060,
+				"to": 1839060
+			},
+			"text": " Then the other thing that you can do is to double check your code of conduct at your work and see if there's actual procedures that are in place in order to move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,060",
+				"to": "00:30:50,060"
+			},
+			"offsets": {
+				"from": 1839060,
+				"to": 1850060
+			},
+			"text": " You can look at your diverse roles and mods and see if there is diversity in your mods and your stewards in your board and recommend someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,060",
+				"to": "00:31:08,060"
+			},
+			"offsets": {
+				"from": 1850060,
+				"to": 1868060
+			},
+			"text": " The other way you can do is donate to a grant round. We talked about Twitter amplification, but the biggest thing that I would ask today, like if I could have NS work on anything, is there has been an issue for a group that's been oppressed and feeling very unsafe here at DEF CON."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,060",
+				"to": "00:31:16,060"
+			},
+			"offsets": {
+				"from": 1868060,
+				"to": 1876060
+			},
+			"text": " I would really like a group of us to think of a way that we can keep people safe here for the remaining of the two days and what that would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,060",
+				"to": "00:31:27,060"
+			},
+			"offsets": {
+				"from": 1876060,
+				"to": 1887060
+			},
+			"text": " If you want to try to think out ways that we can keep people safe for the remaining of the time at DEF CON while we're here, there will be a group that will go ahead and brainstorm that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,060",
+				"to": "00:31:39,060"
+			},
+			"offsets": {
+				"from": 1887060,
+				"to": 1899060
+			},
+			"text": " I don't mind if it's like hacker style or an unconfined style where we either have to get a list or have a board or have some type of way to report when people feel unsafe and have an actual follow through."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,060",
+				"to": "00:31:43,060"
+			},
+			"offsets": {
+				"from": 1899060,
+				"to": 1903060
+			},
+			"text": " But if that's something you want to tackle, we can tackle that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:43,060",
+				"to": "00:31:47,060"
+			},
+			"offsets": {
+				"from": 1903060,
+				"to": 1907060
+			},
+			"text": " Other than that too, if you all think of anything else that you want to tackle, that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,060",
+				"to": "00:31:59,060"
+			},
+			"offsets": {
+				"from": 1907060,
+				"to": 1919060
+			},
+			"text": " Unconfined style means that there's whiteboards and there's pens and there's post-its notes. And if you want to create a list of the 50 black people in Web 3 that you should follow, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,060",
+				"to": "00:32:08,060"
+			},
+			"offsets": {
+				"from": 1919060,
+				"to": 1928060
+			},
+			"text": " If you want to do any type of things, if you have an idea, I'm more than happy to hand over the mic. You can pitch your idea and people can start working together on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,060",
+				"to": "00:32:13,060"
+			},
+			"offsets": {
+				"from": 1928060,
+				"to": 1933060
+			},
+			"text": " Yeah, you want to go ahead and stand up and pitch it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:13,060",
+				"to": "00:32:27,060"
+			},
+			"offsets": {
+				"from": 1933060,
+				"to": 1947060
+			},
+			"text": " Yeah, so in my way to the background, there were definitely a lot of conversations we had like this, but a lot of the mostly guys around me were purely allergic to many of the reasons for privileges to safe spaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,060",
+				"to": "00:32:33,060"
+			},
+			"offsets": {
+				"from": 1947060,
+				"to": 1953060
+			},
+			"text": " And it's been really fun to sort of rediscover this lens, also through you, Maria."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,060",
+				"to": "00:32:41,060"
+			},
+			"offsets": {
+				"from": 1953060,
+				"to": 1961060
+			},
+			"text": " But I'm still wondering how to approach this type of conversation with all people who decided not to be here on the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,060",
+				"to": "00:32:46,060"
+			},
+			"offsets": {
+				"from": 1961060,
+				"to": 1966060
+			},
+			"text": " You just had experience of that or had some sort of idea of fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:46,060",
+				"to": "00:32:51,060"
+			},
+			"offsets": {
+				"from": 1966060,
+				"to": 1971060
+			},
+			"text": " All right, you want to move that, let's move yourself to a table and then people can come to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:51,060",
+				"to": "00:32:57,060"
+			},
+			"offsets": {
+				"from": 1971060,
+				"to": 1977060
+			},
+			"text": " Anybody else want to pitch an idea of a D&I thing that they want to work on here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,060",
+				"to": "00:32:59,060"
+			},
+			"offsets": {
+				"from": 1977060,
+				"to": 1979060
+			},
+			"text": " Yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,060",
+				"to": "00:33:12,060"
+			},
+			"offsets": {
+				"from": 1979060,
+				"to": 1992060
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,060",
+				"to": "00:33:16,060"
+			},
+			"offsets": {
+				"from": 1992060,
+				"to": 1996060
+			},
+			"text": " Okay, codes and contacts and procedures and DAOs. You want to take that table right there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,060",
+				"to": "00:33:20,060"
+			},
+			"offsets": {
+				"from": 1996060,
+				"to": 2000060
+			},
+			"text": " All right. Anyone else have an idea they want to explore?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,060",
+				"to": "00:33:25,060"
+			},
+			"offsets": {
+				"from": 2000060,
+				"to": 2005060
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,060",
+				"to": "00:33:32,060"
+			},
+			"offsets": {
+				"from": 2005060,
+				"to": 2012060
+			},
+			"text": " All right, let's say if you want to take the privilege test, I'm going to put it back in the back corner right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,060",
+				"to": "00:33:34,060"
+			},
+			"offsets": {
+				"from": 2012060,
+				"to": 2014060
+			},
+			"text": " I'll tell you how to get onto that site."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,060",
+				"to": "00:33:40,060"
+			},
+			"offsets": {
+				"from": 2014060,
+				"to": 2020060
+			},
+			"text": " If you want to explore safety at DevCon, I'm going to keep Lowy here and you can hang out with Lowy."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,060",
+				"to": "00:33:43,060"
+			},
+			"offsets": {
+				"from": 2020060,
+				"to": 2023060
+			},
+			"text": " I trust you to explore that. That would be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,060",
+				"to": "00:33:51,060"
+			},
+			"offsets": {
+				"from": 2023060,
+				"to": 2031060
+			},
+			"text": " If you would like to make a Twitter list of people we should follow of different types of D&I background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,060",
+				"to": "00:33:56,060"
+			},
+			"offsets": {
+				"from": 2031060,
+				"to": 2036060
+			},
+			"text": " let's try -- do you mind being Latin-M in the back? All right, let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,060",
+				"to": "00:34:00,060"
+			},
+			"offsets": {
+				"from": 2036060,
+				"to": 2040060
+			},
+			"text": " Can we get a black at one that will give us a black at list?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,060",
+				"to": "00:34:04,060"
+			},
+			"offsets": {
+				"from": 2040060,
+				"to": 2044060
+			},
+			"text": " Cash, you want to take that one? All right, cool. Cash, we'll keep that there."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:04,060",
+				"to": "00:34:07,060"
+			},
+			"offsets": {
+				"from": 2044060,
+				"to": 2047060
+			},
+			"text": " Women, do you want to do a women list, Maggie?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,060",
+				"to": "00:34:11,060"
+			},
+			"offsets": {
+				"from": 2047060,
+				"to": 2051060
+			},
+			"text": " Can I keep you in charge of the women to follow the list? Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,060",
+				"to": "00:34:16,060"
+			},
+			"offsets": {
+				"from": 2051060,
+				"to": 2056060
+			},
+			"text": " Neurodivergent or LGBT? Do we want any of those lists?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,060",
+				"to": "00:34:25,060"
+			},
+			"offsets": {
+				"from": 2056060,
+				"to": 2065060
+			},
+			"text": " Anybody want to do an organizational list? Okay, organizational list? Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:25,060",
+				"to": "00:34:29,060"
+			},
+			"offsets": {
+				"from": 2065060,
+				"to": 2069060
+			},
+			"text": " Okay, cool. I will let you all spread to wherever you want to spread."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,060",
+				"to": "00:34:34,060"
+			},
+			"offsets": {
+				"from": 2069060,
+				"to": 2074060
+			},
+			"text": " I'll give you this moment and then we'll also get started on any of the lists that you want to get on."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,060",
+				"to": "00:34:45,060"
+			},
+			"offsets": {
+				"from": 2074060,
+				"to": 2085060
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

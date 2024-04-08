@@ -1,0 +1,5466 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 15560
+			},
+			"text": " Welcome, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:16,520"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 16520
+			},
+			"text": " I'm Bautur."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,520",
+				"to": "00:00:20,640"
+			},
+			"offsets": {
+				"from": 16520,
+				"to": 20640
+			},
+			"text": " I will talk to you today about the history and future"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,640",
+				"to": "00:00:24,360"
+			},
+			"offsets": {
+				"from": 20640,
+				"to": 24360
+			},
+			"text": " of decentralized operations at MakerDAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,360",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 24360,
+				"to": 26800
+			},
+			"text": " First, a little bit of background."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:30,280"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 30280
+			},
+			"text": " So for those that are not familiar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,280",
+				"to": "00:00:33,480"
+			},
+			"offsets": {
+				"from": 30280,
+				"to": 33480
+			},
+			"text": " MakerDAO is the foundational DeFi project"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,480",
+				"to": "00:00:36,200"
+			},
+			"offsets": {
+				"from": 33480,
+				"to": 36200
+			},
+			"text": " behind the DAIS table coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,200",
+				"to": "00:00:40,440"
+			},
+			"offsets": {
+				"from": 36200,
+				"to": 40440
+			},
+			"text": " In 2014, this started with Roona Christensen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,440",
+				"to": "00:00:44,760"
+			},
+			"offsets": {
+				"from": 40440,
+				"to": 44760
+			},
+			"text": " one of the founders posting an eMoney post on Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,760",
+				"to": "00:00:48,360"
+			},
+			"offsets": {
+				"from": 44760,
+				"to": 48360
+			},
+			"text": " And then the years after that, we launched several products"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,360",
+				"to": "00:00:51,720"
+			},
+			"offsets": {
+				"from": 48360,
+				"to": 51720
+			},
+			"text": " such as a single collateral DAI, which is Maker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,720",
+				"to": "00:00:55,080"
+			},
+			"offsets": {
+				"from": 51720,
+				"to": 55080
+			},
+			"text": " but only with Ethereum as collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,080",
+				"to": "00:00:58,360"
+			},
+			"offsets": {
+				"from": 55080,
+				"to": 58360
+			},
+			"text": " In 2019, there was a launch of Multicultural DAI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,360",
+				"to": "00:01:01,160"
+			},
+			"offsets": {
+				"from": 58360,
+				"to": 61160
+			},
+			"text": " which also added other collateral types."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,160",
+				"to": "00:01:06,400"
+			},
+			"offsets": {
+				"from": 61160,
+				"to": 66400
+			},
+			"text": " And then after 2019, when Maker was still"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,400",
+				"to": "00:01:10,880"
+			},
+			"offsets": {
+				"from": 66400,
+				"to": 70880
+			},
+			"text": " functioning as a classic foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,880",
+				"to": "00:01:13,320"
+			},
+			"offsets": {
+				"from": 70880,
+				"to": 73320
+			},
+			"text": " we started to decentralize."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,320",
+				"to": "00:01:16,120"
+			},
+			"offsets": {
+				"from": 73320,
+				"to": 76120
+			},
+			"text": " And that simply means that we dissolved that foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,120",
+				"to": "00:01:19,560"
+			},
+			"offsets": {
+				"from": 76120,
+				"to": 79560
+			},
+			"text": " and we rebuilt everything in the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,560",
+				"to": "00:01:24,400"
+			},
+			"offsets": {
+				"from": 79560,
+				"to": 84400
+			},
+			"text": " So we have had almost two years of experience with that now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,400",
+				"to": "00:01:28,280"
+			},
+			"offsets": {
+				"from": 84400,
+				"to": 88280
+			},
+			"text": " And we are wondering what is coming for 2023?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,280",
+				"to": "00:01:30,600"
+			},
+			"offsets": {
+				"from": 88280,
+				"to": 90600
+			},
+			"text": " Will it be MakerDAO vNext?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,600",
+				"to": "00:01:33,240"
+			},
+			"offsets": {
+				"from": 90600,
+				"to": 93240
+			},
+			"text": " So very quickly myself, I have a background in software engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,240",
+				"to": "00:01:36,360"
+			},
+			"offsets": {
+				"from": 93240,
+				"to": 96360
+			},
+			"text": " I joined MakerDAO in November 2017."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,360",
+				"to": "00:01:38,560"
+			},
+			"offsets": {
+				"from": 96360,
+				"to": 98560
+			},
+			"text": " At the Maker Foundation, I was the head of engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,560",
+				"to": "00:01:42,560"
+			},
+			"offsets": {
+				"from": 98560,
+				"to": 102560
+			},
+			"text": " And after that, when I also joined the DAO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,560",
+				"to": "00:01:46,880"
+			},
+			"offsets": {
+				"from": 102560,
+				"to": 106880
+			},
+			"text": " I became the co-founders of one of the 20 core units,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,880",
+				"to": "00:01:50,040"
+			},
+			"offsets": {
+				"from": 106880,
+				"to": 110040
+			},
+			"text": " as we call them, the contributor teams at MakerDAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,040",
+				"to": "00:01:52,560"
+			},
+			"offsets": {
+				"from": 110040,
+				"to": 112560
+			},
+			"text": " My core unit is called MakerDAO SES."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,560",
+				"to": "00:01:56,800"
+			},
+			"offsets": {
+				"from": 112560,
+				"to": 116800
+			},
+			"text": " This is short for sustainable ecosystem scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,800",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 116800,
+				"to": 119720
+			},
+			"text": " We remove barriers between decentralized workforce capital"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:00,720"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 120720
+			},
+			"text": " and work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,720",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 120720,
+				"to": 122840
+			},
+			"text": " Lately, we have been thinking more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:05,520"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 125520
+			},
+			"text": " about decentralized operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,520",
+				"to": "00:02:07,960"
+			},
+			"offsets": {
+				"from": 125520,
+				"to": 127960
+			},
+			"text": " And while you may ask, why don't I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,960",
+				"to": "00:02:12,280"
+			},
+			"offsets": {
+				"from": 127960,
+				"to": 132280
+			},
+			"text": " use the term governance as any proper DAO member?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,280",
+				"to": "00:02:16,800"
+			},
+			"offsets": {
+				"from": 132280,
+				"to": 136800
+			},
+			"text": " Well, decentralized operations, I define it very simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,800",
+				"to": "00:02:19,800"
+			},
+			"offsets": {
+				"from": 136800,
+				"to": 139800
+			},
+			"text": " For me, it's the art of getting things done"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,800",
+				"to": "00:02:23,720"
+			},
+			"offsets": {
+				"from": 139800,
+				"to": 143720
+			},
+			"text": " in open, transparent, and decentralized organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,720",
+				"to": "00:02:27,440"
+			},
+			"offsets": {
+				"from": 143720,
+				"to": 147440
+			},
+			"text": " And by things, we like to have worked out"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,440",
+				"to": "00:02:30,320"
+			},
+			"offsets": {
+				"from": 147440,
+				"to": 150320
+			},
+			"text": " produces actual value, not just activity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,320",
+				"to": "00:02:33,120"
+			},
+			"offsets": {
+				"from": 150320,
+				"to": 153120
+			},
+			"text": " but actually creating value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,120",
+				"to": "00:02:35,480"
+			},
+			"offsets": {
+				"from": 153120,
+				"to": 155480
+			},
+			"text": " So why the term decentralized operations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,480",
+				"to": "00:02:38,880"
+			},
+			"offsets": {
+				"from": 155480,
+				"to": 158880
+			},
+			"text": " Well, DAO governance involves mostly discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,880",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 158880,
+				"to": 160080
+			},
+			"text": " and decision making."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:42,720"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 162720
+			},
+			"text": " It is not enough to get things done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,720",
+				"to": "00:02:44,280"
+			},
+			"offsets": {
+				"from": 162720,
+				"to": 164280
+			},
+			"text": " This decentralized decision making"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,280",
+				"to": "00:02:47,160"
+			},
+			"offsets": {
+				"from": 164280,
+				"to": 167160
+			},
+			"text": " needs to be supported by effective execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,160",
+				"to": "00:02:49,880"
+			},
+			"offsets": {
+				"from": 167160,
+				"to": 169880
+			},
+			"text": " And decentralized operations includes governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,880",
+				"to": "00:02:52,840"
+			},
+			"offsets": {
+				"from": 169880,
+				"to": 172840
+			},
+			"text": " but it emphasizes the execution part."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,840",
+				"to": "00:02:55,040"
+			},
+			"offsets": {
+				"from": 172840,
+				"to": 175040
+			},
+			"text": " So we will be talking a lot about voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,040",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 175040,
+				"to": 177240
+			},
+			"text": " We'll be talking a lot about governance stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 179280
+			},
+			"text": " But we say decentralized operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:02,840"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 182840
+			},
+			"text": " because we realize we need to execute and deliver."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,840",
+				"to": "00:03:08,200"
+			},
+			"offsets": {
+				"from": 182840,
+				"to": 188200
+			},
+			"text": " So let's return to MakerDAO then."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,200",
+				"to": "00:03:10,400"
+			},
+			"offsets": {
+				"from": 188200,
+				"to": 190400
+			},
+			"text": " What does operations and governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,400",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 190400,
+				"to": 192600
+			},
+			"text": " look like today at MakerDAO?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 194400
+			},
+			"text": " There are a number of well-known concepts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:17,400"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 197400
+			},
+			"text": " that have been implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,400",
+				"to": "00:03:22,200"
+			},
+			"offsets": {
+				"from": 197400,
+				"to": 202200
+			},
+			"text": " Basically, when the DAO first started for real,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,200",
+				"to": "00:03:25,040"
+			},
+			"offsets": {
+				"from": 202200,
+				"to": 205040
+			},
+			"text": " so one year and 10 months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,040",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 205040,
+				"to": 209000
+			},
+			"text": " And of course, the foundation of it all is token voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 213000
+			},
+			"text": " So Maker has token voting by MTR holders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:35,480"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 215480
+			},
+			"text": " and it also works with delegates."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,480",
+				"to": "00:03:37,480"
+			},
+			"offsets": {
+				"from": 215480,
+				"to": 217480
+			},
+			"text": " So MTR holders, they can improve changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,480",
+				"to": "00:03:39,600"
+			},
+			"offsets": {
+				"from": 217480,
+				"to": 219600
+			},
+			"text": " to the Maker protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,600",
+				"to": "00:03:41,240"
+			},
+			"offsets": {
+				"from": 219600,
+				"to": 221240
+			},
+			"text": " They have to approve these changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,240",
+				"to": "00:03:44,200"
+			},
+			"offsets": {
+				"from": 221240,
+				"to": 224200
+			},
+			"text": " because the Maker protocol is permissionless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,200",
+				"to": "00:03:48,080"
+			},
+			"offsets": {
+				"from": 224200,
+				"to": 228080
+			},
+			"text": " So without a majority of the vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,080",
+				"to": "00:03:51,520"
+			},
+			"offsets": {
+				"from": 228080,
+				"to": 231520
+			},
+			"text": " you will not be able to make any changes in any way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,520",
+				"to": "00:03:54,360"
+			},
+			"offsets": {
+				"from": 231520,
+				"to": 234360
+			},
+			"text": " These changes, they can range from simple parameters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,360",
+				"to": "00:03:57,600"
+			},
+			"offsets": {
+				"from": 234360,
+				"to": 237600
+			},
+			"text": " such as stability fees, debt ceilings, and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,600",
+				"to": "00:04:00,120"
+			},
+			"offsets": {
+				"from": 237600,
+				"to": 240120
+			},
+			"text": " but also bigger things, such as collateral onboarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,120",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 240120,
+				"to": 242000
+			},
+			"text": " and offboarding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,720"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246720
+			},
+			"text": " Today, about 15% of the total MTR supply is delegated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,720",
+				"to": "00:04:11,240"
+			},
+			"offsets": {
+				"from": 246720,
+				"to": 251240
+			},
+			"text": " And this is delegated by 222 addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,240",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 251240,
+				"to": 253680
+			},
+			"text": " We have to say addresses because we don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:15,960"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 255960
+			},
+			"text": " how many people are behind those addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,960",
+				"to": "00:04:19,800"
+			},
+			"offsets": {
+				"from": 255960,
+				"to": 259800
+			},
+			"text": " There are 24 recognized delegates, 92 shadow delegates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,800",
+				"to": "00:04:22,320"
+			},
+			"offsets": {
+				"from": 259800,
+				"to": 262320
+			},
+			"text": " and these recognized delegates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,320",
+				"to": "00:04:24,960"
+			},
+			"offsets": {
+				"from": 262320,
+				"to": 264960
+			},
+			"text": " they do receive compensation proportional"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,960",
+				"to": "00:04:27,560"
+			},
+			"offsets": {
+				"from": 264960,
+				"to": 267560
+			},
+			"text": " to the voting rate, although there is a limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,560",
+				"to": "00:04:30,200"
+			},
+			"offsets": {
+				"from": 267560,
+				"to": 270200
+			},
+			"text": " So for example, the current payout of the delegates"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,200",
+				"to": "00:04:34,640"
+			},
+			"offsets": {
+				"from": 270200,
+				"to": 274640
+			},
+			"text": " is around 120,000 in cost for the protocol per month."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,640",
+				"to": "00:04:36,320"
+			},
+			"offsets": {
+				"from": 274640,
+				"to": 276320
+			},
+			"text": " If you're interested in voting or delegates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,320",
+				"to": "00:04:38,320"
+			},
+			"offsets": {
+				"from": 276320,
+				"to": 278320
+			},
+			"text": " then definitely have a look at our voting portal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,320",
+				"to": "00:04:40,200"
+			},
+			"offsets": {
+				"from": 278320,
+				"to": 280200
+			},
+			"text": " vote on maker.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,200",
+				"to": "00:04:41,920"
+			},
+			"offsets": {
+				"from": 280200,
+				"to": 281920
+			},
+			"text": " The second piece of the puzzle today"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,920",
+				"to": "00:04:43,600"
+			},
+			"offsets": {
+				"from": 281920,
+				"to": 283600
+			},
+			"text": " are the Maker Improvement Proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,600",
+				"to": "00:04:44,800"
+			},
+			"offsets": {
+				"from": 283600,
+				"to": 284800
+			},
+			"text": " The MIPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,800",
+				"to": "00:04:48,680"
+			},
+			"offsets": {
+				"from": 284800,
+				"to": 288680
+			},
+			"text": " So Maker Governance Follow is a monthly governance cadence."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,680",
+				"to": "00:04:50,400"
+			},
+			"offsets": {
+				"from": 288680,
+				"to": 290400
+			},
+			"text": " The MIPS, they go through three phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,400",
+				"to": "00:04:53,640"
+			},
+			"offsets": {
+				"from": 290400,
+				"to": 293640
+			},
+			"text": " First, there is the request for comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,640",
+				"to": "00:04:56,920"
+			},
+			"offsets": {
+				"from": 293640,
+				"to": 296920
+			},
+			"text": " This lasts three weeks, and one week"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,920",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 296920,
+				"to": 300360
+			},
+			"text": " where the proposal is frozen so that the governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:05,080"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 305080
+			},
+			"text": " participants can properly form an opinion about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,080",
+				"to": "00:05:06,880"
+			},
+			"offsets": {
+				"from": 305080,
+				"to": 306880
+			},
+			"text": " is in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,880",
+				"to": "00:05:11,640"
+			},
+			"offsets": {
+				"from": 306880,
+				"to": 311640
+			},
+			"text": " If the RFC proceeds, then there will be a governance poll."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,640",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 311640,
+				"to": 313720
+			},
+			"text": " Typically, this is about three weeks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:17,160"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 317160
+			},
+			"text": " and this poll will then be up on the voting portal"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,160",
+				"to": "00:05:19,800"
+			},
+			"offsets": {
+				"from": 317160,
+				"to": 319800
+			},
+			"text": " that you just saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,800",
+				"to": "00:05:21,400"
+			},
+			"offsets": {
+				"from": 319800,
+				"to": 321400
+			},
+			"text": " MTR holders and delegates will then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,400",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 321400,
+				"to": 324200
+			},
+			"text": " be voting on the individual proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 327200
+			},
+			"text": " Could be that one proposal makes it, another doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:28,840"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 328840
+			},
+			"text": " All the proposals that make it then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,840",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 328840,
+				"to": 331000
+			},
+			"text": " are then bundled in the executive vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:36,520"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 336520
+			},
+			"text": " So this is one smart contract that bundles all the changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,520",
+				"to": "00:05:39,040"
+			},
+			"offsets": {
+				"from": 336520,
+				"to": 339040
+			},
+			"text": " that have been voted in by governance that month."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,040",
+				"to": "00:05:44,440"
+			},
+			"offsets": {
+				"from": 339040,
+				"to": 344440
+			},
+			"text": " And then, yeah, if MTR holders approve this executive vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,440",
+				"to": "00:05:48,720"
+			},
+			"offsets": {
+				"from": 344440,
+				"to": 348720
+			},
+			"text": " then these changes are applied to the blockchain protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,720",
+				"to": "00:05:50,560"
+			},
+			"offsets": {
+				"from": 348720,
+				"to": 350560
+			},
+			"text": " The MIPS system is quite advanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,560",
+				"to": "00:05:55,760"
+			},
+			"offsets": {
+				"from": 350560,
+				"to": 355760
+			},
+			"text": " For example, we use templates, which we call subproposal MIPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,760",
+				"to": "00:05:57,720"
+			},
+			"offsets": {
+				"from": 355760,
+				"to": 357720
+			},
+			"text": " There are hundreds of proposals that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,720",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 357720,
+				"to": 361280
+			},
+			"text": " have been voted on since early 2022."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 363000
+			},
+			"text": " You want to know about all the MIPS"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:04,360"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 364360
+			},
+			"text": " that went to Maker Governance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,360",
+				"to": "00:06:06,400"
+			},
+			"offsets": {
+				"from": 364360,
+				"to": 366400
+			},
+			"text": " Go to MIPS.makeitow.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,400",
+				"to": "00:06:08,640"
+			},
+			"offsets": {
+				"from": 366400,
+				"to": 368640
+			},
+			"text": " And the last piece of the puzzle are the contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,640",
+				"to": "00:06:10,880"
+			},
+			"offsets": {
+				"from": 368640,
+				"to": 370880
+			},
+			"text": " to core units."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,880",
+				"to": "00:06:13,240"
+			},
+			"offsets": {
+				"from": 370880,
+				"to": 373240
+			},
+			"text": " As you may know, Maker is a pretty big dow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,240",
+				"to": "00:06:17,520"
+			},
+			"offsets": {
+				"from": 373240,
+				"to": 377520
+			},
+			"text": " so we have 20 contributor teams, 100 full-time equivalents"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,520",
+				"to": "00:06:19,680"
+			},
+			"offsets": {
+				"from": 377520,
+				"to": 379680
+			},
+			"text": " of contributors around."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,680",
+				"to": "00:06:22,520"
+			},
+			"offsets": {
+				"from": 379680,
+				"to": 382520
+			},
+			"text": " And these core units, the way that they voted in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,520",
+				"to": "00:06:24,840"
+			},
+			"offsets": {
+				"from": 382520,
+				"to": 384840
+			},
+			"text": " it's with three proposal types."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,840",
+				"to": "00:06:27,040"
+			},
+			"offsets": {
+				"from": 384840,
+				"to": 387040
+			},
+			"text": " So they define or they propose a mandate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,040",
+				"to": "00:06:30,440"
+			},
+			"offsets": {
+				"from": 387040,
+				"to": 390440
+			},
+			"text": " they propose a budget, and they propose they have facilitator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,440",
+				"to": "00:06:33,320"
+			},
+			"offsets": {
+				"from": 390440,
+				"to": 393320
+			},
+			"text": " the person who will be responsible for interfacing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,320",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 393320,
+				"to": 396040
+			},
+			"text": " between governance and the core unit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:40,240"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 400240
+			},
+			"text": " So Maker Dow grew quite spectacularly in 2021."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,240",
+				"to": "00:06:44,080"
+			},
+			"offsets": {
+				"from": 400240,
+				"to": 404080
+			},
+			"text": " And as a result, the total expense has also grown"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,080",
+				"to": "00:06:46,840"
+			},
+			"offsets": {
+				"from": 404080,
+				"to": 406840
+			},
+			"text": " to a total of about 30 million a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,840",
+				"to": "00:06:51,960"
+			},
+			"offsets": {
+				"from": 406840,
+				"to": 411960
+			},
+			"text": " The scalability of the elements that we saw is reached now"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,960",
+				"to": "00:06:56,160"
+			},
+			"offsets": {
+				"from": 411960,
+				"to": 416160
+			},
+			"text": " in 2022 with the bear market that has kicked in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,160",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 416160,
+				"to": 418760
+			},
+			"text": " Maker has long been known as the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:00,440"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 420440
+			},
+			"text": " or one of the few protocols in DeFi that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,440",
+				"to": "00:07:03,600"
+			},
+			"offsets": {
+				"from": 420440,
+				"to": 423600
+			},
+			"text": " is actually profitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,600",
+				"to": "00:07:05,760"
+			},
+			"offsets": {
+				"from": 423600,
+				"to": 425760
+			},
+			"text": " In the longer run, if you average it out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,760",
+				"to": "00:07:06,600"
+			},
+			"offsets": {
+				"from": 425760,
+				"to": 426600
+			},
+			"text": " it's still the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,600",
+				"to": "00:07:09,200"
+			},
+			"offsets": {
+				"from": 426600,
+				"to": 429200
+			},
+			"text": " But if you look at the latest months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,200",
+				"to": "00:07:12,400"
+			},
+			"offsets": {
+				"from": 429200,
+				"to": 432400
+			},
+			"text": " that is no longer the case, because the bear market has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,400",
+				"to": "00:07:13,680"
+			},
+			"offsets": {
+				"from": 432400,
+				"to": 433680
+			},
+			"text": " taken its toll."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:17,880"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 437880
+			},
+			"text": " And you can see that the dye expenses remain around 30 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,880",
+				"to": "00:07:20,520"
+			},
+			"offsets": {
+				"from": 437880,
+				"to": 440520
+			},
+			"text": " So what are the challenges that we have faced in Maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,520",
+				"to": "00:07:21,520"
+			},
+			"offsets": {
+				"from": 440520,
+				"to": 441520
+			},
+			"text": " governance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,520",
+				"to": "00:07:23,520"
+			},
+			"offsets": {
+				"from": 441520,
+				"to": 443520
+			},
+			"text": " And what are some ideas that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,520",
+				"to": "00:07:27,760"
+			},
+			"offsets": {
+				"from": 443520,
+				"to": 447760
+			},
+			"text": " thinking about to improve on the current design?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,760",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 447760,
+				"to": 449360
+			},
+			"text": " The first challenge that I want to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:33,600"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 453600
+			},
+			"text": " is stakeholder alignment and political deadlock."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,600",
+				"to": "00:07:36,280"
+			},
+			"offsets": {
+				"from": 453600,
+				"to": 456280
+			},
+			"text": " So in a truly open and decentralized organization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,280",
+				"to": "00:07:39,560"
+			},
+			"offsets": {
+				"from": 456280,
+				"to": 459560
+			},
+			"text": " it is very difficult to agree on things, even the smallest"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,560",
+				"to": "00:07:43,160"
+			},
+			"offsets": {
+				"from": 459560,
+				"to": 463160
+			},
+			"text": " things, let alone long-term vision and strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,160",
+				"to": "00:07:46,080"
+			},
+			"offsets": {
+				"from": 463160,
+				"to": 466080
+			},
+			"text": " Maker has been experiencing that firsthand"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,080",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 466080,
+				"to": 468000
+			},
+			"text": " throughout the last two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:50,640"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 470640
+			},
+			"text": " There has been a lot of governance drama at Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,640",
+				"to": "00:07:53,400"
+			},
+			"offsets": {
+				"from": 470640,
+				"to": 473400
+			},
+			"text": " You've probably read about us, even if you're not following"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,400",
+				"to": "00:07:55,240"
+			},
+			"offsets": {
+				"from": 473400,
+				"to": 475240
+			},
+			"text": " the Dow up close."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,240",
+				"to": "00:07:57,480"
+			},
+			"offsets": {
+				"from": 475240,
+				"to": 477480
+			},
+			"text": " And at times core units, the contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,480",
+				"to": "00:07:59,880"
+			},
+			"offsets": {
+				"from": 477480,
+				"to": 479880
+			},
+			"text": " stayed really got sucked into this drama."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,880",
+				"to": "00:08:03,640"
+			},
+			"offsets": {
+				"from": 479880,
+				"to": 483640
+			},
+			"text": " And they broke down entirely in certain cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,640",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 483640,
+				"to": 486000
+			},
+			"text": " So there is an incredible noise factor."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:09,120"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 489120
+			},
+			"text": " There is a lot of distraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,120",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 489120,
+				"to": 492240
+			},
+			"text": " And this culminated a while ago when"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:16,440"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 496440
+			},
+			"text": " there was a standoff between two factions over a set of MIPS"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,440",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 496440,
+				"to": 501160
+			},
+			"text": " that were about real world finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 504000
+			},
+			"text": " So there was a new core unit that was up for vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:25,400"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 505400
+			},
+			"text": " to be voted in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,400",
+				"to": "00:08:27,720"
+			},
+			"offsets": {
+				"from": 505400,
+				"to": 507720
+			},
+			"text": " This was the landing oversight core unit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,720",
+				"to": "00:08:31,960"
+			},
+			"offsets": {
+				"from": 507720,
+				"to": 511960
+			},
+			"text": " And then there was a Maker Hathaway fund that was up for vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,960",
+				"to": "00:08:34,960"
+			},
+			"offsets": {
+				"from": 511960,
+				"to": 514960
+			},
+			"text": " I won't go into the details of what these proposals were about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,960",
+				"to": "00:08:40,760"
+			},
+			"offsets": {
+				"from": 514960,
+				"to": 520760
+			},
+			"text": " but they came to an ultimate standoff between the two factions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,760",
+				"to": "00:08:43,240"
+			},
+			"offsets": {
+				"from": 520760,
+				"to": 523240
+			},
+			"text": " And as you can see in the screenshot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,240",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 523240,
+				"to": 526000
+			},
+			"text": " there was a record MTR voter turnout."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:49,880"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 529880
+			},
+			"text": " And yeah, this attracted quite a bit of attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,880",
+				"to": "00:08:54,120"
+			},
+			"offsets": {
+				"from": 529880,
+				"to": 534120
+			},
+			"text": " And it caused a lot of distraction in the Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,120",
+				"to": "00:08:56,480"
+			},
+			"offsets": {
+				"from": 534120,
+				"to": 536480
+			},
+			"text": " At that time, definitely political rhetoric"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,480",
+				"to": "00:08:59,040"
+			},
+			"offsets": {
+				"from": 536480,
+				"to": 539040
+			},
+			"text": " rained supreme over the rational debate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,040",
+				"to": "00:09:01,160"
+			},
+			"offsets": {
+				"from": 539040,
+				"to": 541160
+			},
+			"text": " And one of the reasons is that Maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,160",
+				"to": "00:09:03,680"
+			},
+			"offsets": {
+				"from": 541160,
+				"to": 543680
+			},
+			"text": " Dow has very few consensus building tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,680",
+				"to": "00:09:06,080"
+			},
+			"offsets": {
+				"from": 543680,
+				"to": 546080
+			},
+			"text": " other than just a forum to have a discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,080",
+				"to": "00:09:08,200"
+			},
+			"offsets": {
+				"from": 546080,
+				"to": 548200
+			},
+			"text": " and then majority voting, which really"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,200",
+				"to": "00:09:10,400"
+			},
+			"offsets": {
+				"from": 548200,
+				"to": 550400
+			},
+			"text": " isn't a consensus building tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,400",
+				"to": "00:09:14,560"
+			},
+			"offsets": {
+				"from": 550400,
+				"to": 554560
+			},
+			"text": " You do that when you can't reach a consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,560",
+				"to": "00:09:19,440"
+			},
+			"offsets": {
+				"from": 554560,
+				"to": 559440
+			},
+			"text": " So what might be an idea to improve on this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,440",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 559440,
+				"to": 561000
+			},
+			"text": " Recently, there has been a lot of talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:24,360"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 564360
+			},
+			"text": " about the idea of decentralized voter committees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,360",
+				"to": "00:09:27,840"
+			},
+			"offsets": {
+				"from": 564360,
+				"to": 567840
+			},
+			"text": " In fact, this is a main element of the proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,840",
+				"to": "00:09:30,160"
+			},
+			"offsets": {
+				"from": 567840,
+				"to": 570160
+			},
+			"text": " that was put forward, called the end game plan"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,160",
+				"to": "00:09:35,560"
+			},
+			"offsets": {
+				"from": 570160,
+				"to": 575560
+			},
+			"text": " by one of the original founders, Rune Christensen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,560",
+				"to": "00:09:38,440"
+			},
+			"offsets": {
+				"from": 575560,
+				"to": 578440
+			},
+			"text": " Voter committees, they recognize, on the one hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,440",
+				"to": "00:09:41,760"
+			},
+			"offsets": {
+				"from": 578440,
+				"to": 581760
+			},
+			"text": " the political nature of decentralized organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,760",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 581760,
+				"to": 585000
+			},
+			"text": " But at the same time, they try to apply some structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:50,400"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 590400
+			},
+			"text": " They try to offer some mechanisms to form consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,400",
+				"to": "00:09:54,680"
+			},
+			"offsets": {
+				"from": 590400,
+				"to": 594680
+			},
+			"text": " and to reduce the conflicts that are going on all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,680",
+				"to": "00:09:59,080"
+			},
+			"offsets": {
+				"from": 594680,
+				"to": 599080
+			},
+			"text": " What it does is a voter committee is quite simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,080",
+				"to": "00:10:02,600"
+			},
+			"offsets": {
+				"from": 599080,
+				"to": 602600
+			},
+			"text": " It is just a group of MTR holders and delegates."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,600",
+				"to": "00:10:05,240"
+			},
+			"offsets": {
+				"from": 602600,
+				"to": 605240
+			},
+			"text": " And the important thing is they are self-selecting."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,240",
+				"to": "00:10:08,920"
+			},
+			"offsets": {
+				"from": 605240,
+				"to": 608920
+			},
+			"text": " So you have people in a group that are of the same mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,920",
+				"to": "00:10:10,960"
+			},
+			"offsets": {
+				"from": 608920,
+				"to": 610960
+			},
+			"text": " They think the same thing about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,960",
+				"to": "00:10:13,600"
+			},
+			"offsets": {
+				"from": 610960,
+				"to": 613600
+			},
+			"text": " Maker should do next, what the long term strategy should be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,600",
+				"to": "00:10:14,720"
+			},
+			"offsets": {
+				"from": 613600,
+				"to": 614720
+			},
+			"text": " et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,720",
+				"to": "00:10:17,320"
+			},
+			"offsets": {
+				"from": 614720,
+				"to": 617320
+			},
+			"text": " And of course, not everyone might agree with that group."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,320",
+				"to": "00:10:20,960"
+			},
+			"offsets": {
+				"from": 617320,
+				"to": 620960
+			},
+			"text": " So there might be multiple voter committees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,960",
+				"to": "00:10:22,640"
+			},
+			"offsets": {
+				"from": 620960,
+				"to": 622640
+			},
+			"text": " The idea is that these voter committees"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,640",
+				"to": "00:10:27,680"
+			},
+			"offsets": {
+				"from": 622640,
+				"to": 627680
+			},
+			"text": " will put forward strategies and that the MTR holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,680",
+				"to": "00:10:30,560"
+			},
+			"offsets": {
+				"from": 627680,
+				"to": 630560
+			},
+			"text": " can then vote in a liquid election system"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,560",
+				"to": "00:10:33,240"
+			},
+			"offsets": {
+				"from": 630560,
+				"to": 633240
+			},
+			"text": " on the combination of a strategy and the delegate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,240",
+				"to": "00:10:35,360"
+			},
+			"offsets": {
+				"from": 633240,
+				"to": 635360
+			},
+			"text": " that they believe in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,360",
+				"to": "00:10:39,160"
+			},
+			"offsets": {
+				"from": 635360,
+				"to": 639160
+			},
+			"text": " If you think that this is quite similar to political parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,160",
+				"to": "00:10:43,040"
+			},
+			"offsets": {
+				"from": 639160,
+				"to": 643040
+			},
+			"text": " or elections, then you're quite right."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,040",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 643040,
+				"to": 649120
+			},
+			"text": " I don't think it's a coincidence that we are re-discovering"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:52,200"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 652200
+			},
+			"text": " the same mechanisms that have been tried and tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,200",
+				"to": "00:10:54,280"
+			},
+			"offsets": {
+				"from": 652200,
+				"to": 654280
+			},
+			"text": " Another part of the voter committee setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,280",
+				"to": "00:11:03,560"
+			},
+			"offsets": {
+				"from": 654280,
+				"to": 663560
+			},
+			"text": " is that we want to restrict the flexibility and the possibilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,560",
+				"to": "00:11:06,360"
+			},
+			"offsets": {
+				"from": 663560,
+				"to": 666360
+			},
+			"text": " that these voter committees have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,360",
+				"to": "00:11:09,760"
+			},
+			"offsets": {
+				"from": 666360,
+				"to": 669760
+			},
+			"text": " Because if you leave all possibilities open,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,760",
+				"to": "00:11:15,600"
+			},
+			"offsets": {
+				"from": 669760,
+				"to": 675600
+			},
+			"text": " then there is a lot larger space for a disagreement."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,600",
+				"to": "00:11:17,560"
+			},
+			"offsets": {
+				"from": 675600,
+				"to": 677560
+			},
+			"text": " So another part of the design would"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,560",
+				"to": "00:11:21,960"
+			},
+			"offsets": {
+				"from": 677560,
+				"to": 681960
+			},
+			"text": " be a number of fixed scopes, a number of business activities"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,960",
+				"to": "00:11:25,200"
+			},
+			"offsets": {
+				"from": 681960,
+				"to": 685200
+			},
+			"text": " that Maker should focus on and not go outside of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,200",
+				"to": "00:11:28,240"
+			},
+			"offsets": {
+				"from": 685200,
+				"to": 688240
+			},
+			"text": " Maker is not an ice cream factory, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,240",
+				"to": "00:11:30,640"
+			},
+			"offsets": {
+				"from": 688240,
+				"to": 690640
+			},
+			"text": " The scopes that have been proposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,640",
+				"to": "00:11:32,720"
+			},
+			"offsets": {
+				"from": 690640,
+				"to": 692720
+			},
+			"text": " are so far protocol engineering, real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,720",
+				"to": "00:11:35,320"
+			},
+			"offsets": {
+				"from": 692720,
+				"to": 695320
+			},
+			"text": " collateral, permissionless collateral, and growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,320",
+				"to": "00:11:36,920"
+			},
+			"offsets": {
+				"from": 695320,
+				"to": 696920
+			},
+			"text": " This will probably not surprise."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,920",
+				"to": "00:11:40,880"
+			},
+			"offsets": {
+				"from": 696920,
+				"to": 700880
+			},
+			"text": " The strength of these is that they define the scope"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,880",
+				"to": "00:11:42,720"
+			},
+			"offsets": {
+				"from": 700880,
+				"to": 702720
+			},
+			"text": " and make it closed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,720",
+				"to": "00:11:47,640"
+			},
+			"offsets": {
+				"from": 702720,
+				"to": 707640
+			},
+			"text": " And then as a last element, these voter committees, MTR"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,640",
+				"to": "00:11:51,320"
+			},
+			"offsets": {
+				"from": 707640,
+				"to": 711320
+			},
+			"text": " holders and delegates, they need to deal with something else"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,320",
+				"to": "00:11:54,240"
+			},
+			"offsets": {
+				"from": 711320,
+				"to": 714240
+			},
+			"text": " that is challenging about Maker, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,240",
+				"to": "00:11:58,520"
+			},
+			"offsets": {
+				"from": 714240,
+				"to": 718520
+			},
+			"text": " is it's a very multidisciplinary organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,520",
+				"to": "00:12:01,720"
+			},
+			"offsets": {
+				"from": 718520,
+				"to": 721720
+			},
+			"text": " And you can't be at the same time in experts in engineering"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,720",
+				"to": "00:12:05,480"
+			},
+			"offsets": {
+				"from": 721720,
+				"to": 725480
+			},
+			"text": " and finance and all the other areas of expertise"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,480",
+				"to": "00:12:07,360"
+			},
+			"offsets": {
+				"from": 725480,
+				"to": 727360
+			},
+			"text": " that are needed in Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,360",
+				"to": "00:12:11,440"
+			},
+			"offsets": {
+				"from": 727360,
+				"to": 731440
+			},
+			"text": " So when these voter committees, they put forward their strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,440",
+				"to": "00:12:13,960"
+			},
+			"offsets": {
+				"from": 731440,
+				"to": 733960
+			},
+			"text": " they will define for each one of those scopes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,960",
+				"to": "00:12:16,120"
+			},
+			"offsets": {
+				"from": 733960,
+				"to": 736120
+			},
+			"text": " how they see the future for Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,120",
+				"to": "00:12:21,080"
+			},
+			"offsets": {
+				"from": 736120,
+				"to": 741080
+			},
+			"text": " But by doing so, they will be supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,080",
+				"to": "00:12:24,080"
+			},
+			"offsets": {
+				"from": 741080,
+				"to": 744080
+			},
+			"text": " by a number of expert councils that have been put forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,080",
+				"to": "00:12:26,920"
+			},
+			"offsets": {
+				"from": 744080,
+				"to": 746920
+			},
+			"text": " by the workforce, by the core units."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,920",
+				"to": "00:12:33,400"
+			},
+			"offsets": {
+				"from": 746920,
+				"to": 753400
+			},
+			"text": " And this is one idea to deal with the difficulties"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,400",
+				"to": "00:12:37,200"
+			},
+			"offsets": {
+				"from": 753400,
+				"to": 757200
+			},
+			"text": " within Maker to reach agreement about the long term vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,200",
+				"to": "00:12:38,360"
+			},
+			"offsets": {
+				"from": 757200,
+				"to": 758360
+			},
+			"text": " and strategy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,360",
+				"to": "00:12:39,320"
+			},
+			"offsets": {
+				"from": 758360,
+				"to": 759320
+			},
+			"text": " What is the next challenge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,320",
+				"to": "00:12:41,400"
+			},
+			"offsets": {
+				"from": 759320,
+				"to": 761400
+			},
+			"text": " The next challenge is broken transparency"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,400",
+				"to": "00:12:44,120"
+			},
+			"offsets": {
+				"from": 761400,
+				"to": 764120
+			},
+			"text": " and a breakdown of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,120",
+				"to": "00:12:46,640"
+			},
+			"offsets": {
+				"from": 764120,
+				"to": 766640
+			},
+			"text": " Maker is one of the most radically transparent organizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,640",
+				"to": "00:12:51,240"
+			},
+			"offsets": {
+				"from": 766640,
+				"to": 771240
+			},
+			"text": " not just within the crypto space, but I think globally."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,240",
+				"to": "00:12:52,720"
+			},
+			"offsets": {
+				"from": 771240,
+				"to": 772720
+			},
+			"text": " An important lesson that we've learned"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,720",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 772720,
+				"to": 775000
+			},
+			"text": " is that transparency in itself is not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:56,760"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 776760
+			},
+			"text": " The right information really needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,760",
+				"to": "00:12:58,600"
+			},
+			"offsets": {
+				"from": 776760,
+				"to": 778600
+			},
+			"text": " to be served to the right audiences"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,600",
+				"to": "00:13:00,520"
+			},
+			"offsets": {
+				"from": 778600,
+				"to": 780520
+			},
+			"text": " at the right abstraction level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,520",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 780520,
+				"to": 782000
+			},
+			"text": " People don't have time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:04,440"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 784440
+			},
+			"text": " Everyone has the time to read through long documents"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,440",
+				"to": "00:13:08,480"
+			},
+			"offsets": {
+				"from": 784440,
+				"to": 788480
+			},
+			"text": " and just distill the information that they may need."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,480",
+				"to": "00:13:10,280"
+			},
+			"offsets": {
+				"from": 788480,
+				"to": 790280
+			},
+			"text": " So standardized structured data needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,280",
+				"to": "00:13:14,080"
+			},
+			"offsets": {
+				"from": 790280,
+				"to": 794080
+			},
+			"text": " to be made available via APIs if it is to be analyzed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,080",
+				"to": "00:13:16,440"
+			},
+			"offsets": {
+				"from": 794080,
+				"to": 796440
+			},
+			"text": " summarized, and leveraged successfully."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,440",
+				"to": "00:13:20,160"
+			},
+			"offsets": {
+				"from": 796440,
+				"to": 800160
+			},
+			"text": " Today, this is the case for some types of data in Maker,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,160",
+				"to": "00:13:21,760"
+			},
+			"offsets": {
+				"from": 800160,
+				"to": 801760
+			},
+			"text": " but not all."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,760",
+				"to": "00:13:24,600"
+			},
+			"offsets": {
+				"from": 801760,
+				"to": 804600
+			},
+			"text": " So the clearest example of this was the core units"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,600",
+				"to": "00:13:25,960"
+			},
+			"offsets": {
+				"from": 804600,
+				"to": 805960
+			},
+			"text": " and their budgets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,960",
+				"to": "00:13:27,720"
+			},
+			"offsets": {
+				"from": 805960,
+				"to": 807720
+			},
+			"text": " All information was always available."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,720",
+				"to": "00:13:29,040"
+			},
+			"offsets": {
+				"from": 807720,
+				"to": 809040
+			},
+			"text": " It was on the forums."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,040",
+				"to": "00:13:31,720"
+			},
+			"offsets": {
+				"from": 809040,
+				"to": 811720
+			},
+			"text": " But it was very difficult to find."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,720",
+				"to": "00:13:34,160"
+			},
+			"offsets": {
+				"from": 811720,
+				"to": 814160
+			},
+			"text": " Our user research has shown that stakeholders were unable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,160",
+				"to": "00:13:36,400"
+			},
+			"offsets": {
+				"from": 814160,
+				"to": 816400
+			},
+			"text": " to find even the simplest relevant information."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,400",
+				"to": "00:13:37,680"
+			},
+			"offsets": {
+				"from": 816400,
+				"to": 817680
+			},
+			"text": " Which core units exist?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,680",
+				"to": "00:13:38,760"
+			},
+			"offsets": {
+				"from": 817680,
+				"to": 818760
+			},
+			"text": " What are they doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,760",
+				"to": "00:13:39,600"
+			},
+			"offsets": {
+				"from": 818760,
+				"to": 819600
+			},
+			"text": " What is their budget?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,600",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 819600,
+				"to": 823000
+			},
+			"text": " And what are they spending their money on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:45,600"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 825600
+			},
+			"text": " A result was a breakdown of trust between NPR holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,600",
+				"to": "00:13:48,760"
+			},
+			"offsets": {
+				"from": 825600,
+				"to": 828760
+			},
+			"text": " and core units and even NPR holders and delegates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,760",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 828760,
+				"to": 830280
+			},
+			"text": " because people had this impression"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:53,240"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 833240
+			},
+			"text": " that despite all the so-called transparency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,240",
+				"to": "00:13:56,200"
+			},
+			"offsets": {
+				"from": 833240,
+				"to": 836200
+			},
+			"text": " there was a lot of obfuscation going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,200",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 836200,
+				"to": 839000
+			},
+			"text": " So what is an idea how to deal with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,560"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843560
+			},
+			"text": " There's the idea of decentralized operations platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,560",
+				"to": "00:14:05,680"
+			},
+			"offsets": {
+				"from": 843560,
+				"to": 845680
+			},
+			"text": " We want to leverage the power of software"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,680",
+				"to": "00:14:08,680"
+			},
+			"offsets": {
+				"from": 845680,
+				"to": 848680
+			},
+			"text": " to serve the right information to the right audiences"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,680",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 848680,
+				"to": 852000
+			},
+			"text": " and automate processes and embed best practices."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:16,520"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 856520
+			},
+			"text": " This isn't exactly a very original idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,520",
+				"to": "00:14:21,960"
+			},
+			"offsets": {
+				"from": 856520,
+				"to": 861960
+			},
+			"text": " but it is one that we think will work properly for Maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,960",
+				"to": "00:14:23,640"
+			},
+			"offsets": {
+				"from": 861960,
+				"to": 863640
+			},
+			"text": " In fact, we have already been doing this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,640",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 863640,
+				"to": 865360
+			},
+			"text": " for the core units and the budgets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:30,080"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 870080
+			},
+			"text": " this piece of information that was so difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,080",
+				"to": "00:14:33,800"
+			},
+			"offsets": {
+				"from": 870080,
+				"to": 873800
+			},
+			"text": " to understand for stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,800",
+				"to": "00:14:40,080"
+			},
+			"offsets": {
+				"from": 873800,
+				"to": 880080
+			},
+			"text": " We created a limited prototype that focuses specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,080",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 880080,
+				"to": 880920
+			},
+			"text": " on that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:44,240"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 884240
+			},
+			"text": " So if you go to expenses.make-a-down.network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,240",
+				"to": "00:14:47,920"
+			},
+			"offsets": {
+				"from": 884240,
+				"to": 887920
+			},
+			"text": " you will see a clear overview of the core units."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,920",
+				"to": "00:14:50,240"
+			},
+			"offsets": {
+				"from": 887920,
+				"to": 890240
+			},
+			"text": " Right now, this platform is being used for core units"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,240",
+				"to": "00:14:51,640"
+			},
+			"offsets": {
+				"from": 890240,
+				"to": 891640
+			},
+			"text": " to submit their budgets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,640",
+				"to": "00:14:53,760"
+			},
+			"offsets": {
+				"from": 891640,
+				"to": 893760
+			},
+			"text": " And core units can use it to verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,760",
+				"to": "00:14:56,200"
+			},
+			"offsets": {
+				"from": 893760,
+				"to": 896200
+			},
+			"text": " that they've properly reported on their budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,200",
+				"to": "00:14:58,200"
+			},
+			"offsets": {
+				"from": 896200,
+				"to": 898200
+			},
+			"text": " This information is available on the forum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,200",
+				"to": "00:15:00,920"
+			},
+			"offsets": {
+				"from": 898200,
+				"to": 900920
+			},
+			"text": " but if you would want to collect the same information"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,920",
+				"to": "00:15:02,960"
+			},
+			"offsets": {
+				"from": 900920,
+				"to": 902960
+			},
+			"text": " that you have in five minutes here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,960",
+				"to": "00:15:06,760"
+			},
+			"offsets": {
+				"from": 902960,
+				"to": 906760
+			},
+			"text": " you would probably need five days or longer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,760",
+				"to": "00:15:08,360"
+			},
+			"offsets": {
+				"from": 906760,
+				"to": 908360
+			},
+			"text": " So what is the next challenge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,360",
+				"to": "00:15:10,880"
+			},
+			"offsets": {
+				"from": 908360,
+				"to": 910880
+			},
+			"text": " Coordination failure between core units."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,880",
+				"to": "00:15:13,760"
+			},
+			"offsets": {
+				"from": 910880,
+				"to": 913760
+			},
+			"text": " There is a construction error at the heart of Maker.dow"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,760",
+				"to": "00:15:16,840"
+			},
+			"offsets": {
+				"from": 913760,
+				"to": 916840
+			},
+			"text": " that we were not really aware of when we put forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,840",
+				"to": "00:15:18,840"
+			},
+			"offsets": {
+				"from": 916840,
+				"to": 918840
+			},
+			"text": " the first proposals for the Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,840",
+				"to": "00:15:20,200"
+			},
+			"offsets": {
+				"from": 918840,
+				"to": 920200
+			},
+			"text": " The mechanism goes like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,200",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 920200,
+				"to": 922000
+			},
+			"text": " So core units are voted individually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:24,080"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 924080
+			},
+			"text": " by MTR holders and delegates."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,080",
+				"to": "00:15:27,080"
+			},
+			"offsets": {
+				"from": 924080,
+				"to": 927080
+			},
+			"text": " For example, you may have the growth core unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,080",
+				"to": "00:15:31,280"
+			},
+			"offsets": {
+				"from": 927080,
+				"to": 931280
+			},
+			"text": " that is voted in separately, then from the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,280",
+				"to": "00:15:33,400"
+			},
+			"offsets": {
+				"from": 931280,
+				"to": 933400
+			},
+			"text": " or at the protocol engineering core unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,400",
+				"to": "00:15:38,320"
+			},
+			"offsets": {
+				"from": 933400,
+				"to": 938320
+			},
+			"text": " is voted in separately from the Oracle score unit, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,320",
+				"to": "00:15:40,920"
+			},
+			"offsets": {
+				"from": 938320,
+				"to": 940920
+			},
+			"text": " So one coordination is needed between these core units."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,920",
+				"to": "00:15:42,120"
+			},
+			"offsets": {
+				"from": 940920,
+				"to": 942120
+			},
+			"text": " And if you want to be successful"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,120",
+				"to": "00:15:43,560"
+			},
+			"offsets": {
+				"from": 942120,
+				"to": 943560
+			},
+			"text": " and if you want to deliver value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,560",
+				"to": "00:15:45,600"
+			},
+			"offsets": {
+				"from": 943560,
+				"to": 945600
+			},
+			"text": " a lot of coordination is needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,600",
+				"to": "00:15:48,960"
+			},
+			"offsets": {
+				"from": 945600,
+				"to": 948960
+			},
+			"text": " These core units I can only propose work to other core units,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,960",
+				"to": "00:15:52,280"
+			},
+			"offsets": {
+				"from": 948960,
+				"to": 952280
+			},
+			"text": " but they can't enforce a collaboration."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,280",
+				"to": "00:15:54,560"
+			},
+			"offsets": {
+				"from": 952280,
+				"to": 954560
+			},
+			"text": " So there is a constant negotiation that goes on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,560",
+				"to": "00:15:58,040"
+			},
+			"offsets": {
+				"from": 954560,
+				"to": 958040
+			},
+			"text": " between the core units, how things should be done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,040",
+				"to": "00:16:01,800"
+			},
+			"offsets": {
+				"from": 958040,
+				"to": 961800
+			},
+			"text": " what are the priorities, and if core units don't agree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,800",
+				"to": "00:16:03,760"
+			},
+			"offsets": {
+				"from": 961800,
+				"to": 963760
+			},
+			"text": " there is no one stepping in and saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,760",
+				"to": "00:16:06,080"
+			},
+			"offsets": {
+				"from": 963760,
+				"to": 966080
+			},
+			"text": " we're doing it this way or that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,080",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 966080,
+				"to": 968720
+			},
+			"text": " In fact, the core units then just walk away and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:10,680"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 970680
+			},
+			"text": " okay, you do you, I'll do me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,680",
+				"to": "00:16:14,240"
+			},
+			"offsets": {
+				"from": 970680,
+				"to": 974240
+			},
+			"text": " and we'll each just do our job."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,240",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 974240,
+				"to": 977000
+			},
+			"text": " The result is because these core units,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:18,800"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 978800
+			},
+			"text": " they have a defined mandate."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,800",
+				"to": "00:16:21,280"
+			},
+			"offsets": {
+				"from": 978800,
+				"to": 981280
+			},
+			"text": " They have a long-term work stream,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,280",
+				"to": "00:16:24,560"
+			},
+			"offsets": {
+				"from": 981280,
+				"to": 984560
+			},
+			"text": " but there are no end-to-end deliverables that are defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,560",
+				"to": "00:16:27,280"
+			},
+			"offsets": {
+				"from": 984560,
+				"to": 987280
+			},
+			"text": " So as a result, core units don't feel responsible"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,280",
+				"to": "00:16:29,400"
+			},
+			"offsets": {
+				"from": 987280,
+				"to": 989400
+			},
+			"text": " if coordination fails."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,400",
+				"to": "00:16:32,960"
+			},
+			"offsets": {
+				"from": 989400,
+				"to": 992960
+			},
+			"text": " So you might have a core unit that, say, builds a front-end"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,960",
+				"to": "00:16:35,200"
+			},
+			"offsets": {
+				"from": 992960,
+				"to": 995200
+			},
+			"text": " and does a tremendous job,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,200",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 995200,
+				"to": 997560
+			},
+			"text": " and then you might have a core unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:39,360"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 999360
+			},
+			"text": " who needs to promote the front-end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,360",
+				"to": "00:16:44,120"
+			},
+			"offsets": {
+				"from": 999360,
+				"to": 1004120
+			},
+			"text": " but they haven't been aware that it was built"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,120",
+				"to": "00:16:45,760"
+			},
+			"offsets": {
+				"from": 1004120,
+				"to": 1005760
+			},
+			"text": " or that where it is available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,760",
+				"to": "00:16:48,160"
+			},
+			"offsets": {
+				"from": 1005760,
+				"to": 1008160
+			},
+			"text": " and the marketing might fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,160",
+				"to": "00:16:51,960"
+			},
+			"offsets": {
+				"from": 1008160,
+				"to": 1011960
+			},
+			"text": " Or you might have disagreements between,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,960",
+				"to": "00:16:54,080"
+			},
+			"offsets": {
+				"from": 1011960,
+				"to": 1014080
+			},
+			"text": " for example, technical core units,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,080",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1014080,
+				"to": 1015440
+			},
+			"text": " which architectures to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:57,040"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1017040
+			},
+			"text": " and if they don't agree on that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,040",
+				"to": "00:16:59,320"
+			},
+			"offsets": {
+				"from": 1017040,
+				"to": 1019320
+			},
+			"text": " well, the end result will simply not work."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,320",
+				"to": "00:17:00,680"
+			},
+			"offsets": {
+				"from": 1019320,
+				"to": 1020680
+			},
+			"text": " So a lot of work is done."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,680",
+				"to": "00:17:04,240"
+			},
+			"offsets": {
+				"from": 1020680,
+				"to": 1024240
+			},
+			"text": " It's just that sometimes not a lot of value is created"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,240",
+				"to": "00:17:05,920"
+			},
+			"offsets": {
+				"from": 1024240,
+				"to": 1025920
+			},
+			"text": " because the pieces aren't integrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,920",
+				"to": "00:17:07,560"
+			},
+			"offsets": {
+				"from": 1025920,
+				"to": 1027560
+			},
+			"text": " or working together well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,560",
+				"to": "00:17:09,400"
+			},
+			"offsets": {
+				"from": 1027560,
+				"to": 1029400
+			},
+			"text": " So which idea can help with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,400",
+				"to": "00:17:11,640"
+			},
+			"offsets": {
+				"from": 1029400,
+				"to": 1031640
+			},
+			"text": " We have been talking a lot about project-based budgeting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,640",
+				"to": "00:17:14,040"
+			},
+			"offsets": {
+				"from": 1031640,
+				"to": 1034040
+			},
+			"text": " at Make It Out, and I believe that this will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,040",
+				"to": "00:17:16,600"
+			},
+			"offsets": {
+				"from": 1034040,
+				"to": 1036600
+			},
+			"text": " a much better structure to deal with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,600",
+				"to": "00:17:18,640"
+			},
+			"offsets": {
+				"from": 1036600,
+				"to": 1038640
+			},
+			"text": " So real value is really only produced"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,640",
+				"to": "00:17:21,640"
+			},
+			"offsets": {
+				"from": 1038640,
+				"to": 1041640
+			},
+			"text": " when delivering an integrated solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,640",
+				"to": "00:17:23,440"
+			},
+			"offsets": {
+				"from": 1041640,
+				"to": 1043440
+			},
+			"text": " Delegates and MPR holders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,440",
+				"to": "00:17:27,920"
+			},
+			"offsets": {
+				"from": 1043440,
+				"to": 1047920
+			},
+			"text": " they should approve these integrated solutions, projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,920",
+				"to": "00:17:29,600"
+			},
+			"offsets": {
+				"from": 1047920,
+				"to": 1049600
+			},
+			"text": " more so than mandates."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,600",
+				"to": "00:17:32,760"
+			},
+			"offsets": {
+				"from": 1049600,
+				"to": 1052760
+			},
+			"text": " So they wouldn't be paying for work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,760",
+				"to": "00:17:36,560"
+			},
+			"offsets": {
+				"from": 1052760,
+				"to": 1056560
+			},
+			"text": " like for coming to work every day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,560",
+				"to": "00:17:38,600"
+			},
+			"offsets": {
+				"from": 1056560,
+				"to": 1058600
+			},
+			"text": " but they would be paying for the actual results."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,600",
+				"to": "00:17:42,280"
+			},
+			"offsets": {
+				"from": 1058600,
+				"to": 1062280
+			},
+			"text": " Now, to partly proposing the solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,280",
+				"to": "00:17:43,960"
+			},
+			"offsets": {
+				"from": 1062280,
+				"to": 1063960
+			},
+			"text": " so proposing the project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,960",
+				"to": "00:17:46,160"
+			},
+			"offsets": {
+				"from": 1063960,
+				"to": 1066160
+			},
+			"text": " they should be responsible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,160",
+				"to": "00:17:48,640"
+			},
+			"offsets": {
+				"from": 1066160,
+				"to": 1068640
+			},
+			"text": " and this is critical for the end-to-end delivery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,640",
+				"to": "00:17:49,920"
+			},
+			"offsets": {
+				"from": 1068640,
+				"to": 1069920
+			},
+			"text": " not just the technical part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,920",
+				"to": "00:17:51,200"
+			},
+			"offsets": {
+				"from": 1069920,
+				"to": 1071200
+			},
+			"text": " not just the marketing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,200",
+				"to": "00:17:52,040"
+			},
+			"offsets": {
+				"from": 1071200,
+				"to": 1072040
+			},
+			"text": " not just the front end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,040",
+				"to": "00:17:53,200"
+			},
+			"offsets": {
+				"from": 1072040,
+				"to": 1073200
+			},
+			"text": " not just the back end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,200",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1073200,
+				"to": 1075000
+			},
+			"text": " the integrated solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:17:57,480"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1077480
+			},
+			"text": " because that's how you create value."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,480",
+				"to": "00:18:00,360"
+			},
+			"offsets": {
+				"from": 1077480,
+				"to": 1080360
+			},
+			"text": " And then responsibility comes with authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,360",
+				"to": "00:18:02,480"
+			},
+			"offsets": {
+				"from": 1080360,
+				"to": 1082480
+			},
+			"text": " over the full project budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,480",
+				"to": "00:18:04,520"
+			},
+			"offsets": {
+				"from": 1082480,
+				"to": 1084520
+			},
+			"text": " So if core units disagree how to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,520",
+				"to": "00:18:06,040"
+			},
+			"offsets": {
+				"from": 1084520,
+				"to": 1086040
+			},
+			"text": " a certain piece of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,040",
+				"to": "00:18:09,680"
+			},
+			"offsets": {
+				"from": 1086040,
+				"to": 1089680
+			},
+			"text": " then the party proposing the project"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,680",
+				"to": "00:18:10,800"
+			},
+			"offsets": {
+				"from": 1089680,
+				"to": 1090800
+			},
+			"text": " should have the authority to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,800",
+				"to": "00:18:13,800"
+			},
+			"offsets": {
+				"from": 1090800,
+				"to": 1093800
+			},
+			"text": " \"Well, we'll go with your solution and not yours.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,800",
+				"to": "00:18:16,440"
+			},
+			"offsets": {
+				"from": 1093800,
+				"to": 1096440
+			},
+			"text": " The current system that we have with MIP-40,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,440",
+				"to": "00:18:18,320"
+			},
+			"offsets": {
+				"from": 1096440,
+				"to": 1098320
+			},
+			"text": " which defines the budget of core units,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,320",
+				"to": "00:18:21,240"
+			},
+			"offsets": {
+				"from": 1098320,
+				"to": 1101240
+			},
+			"text": " and their MIP-39 with their mandate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,240",
+				"to": "00:18:22,840"
+			},
+			"offsets": {
+				"from": 1101240,
+				"to": 1102840
+			},
+			"text": " it will probably not go away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,840",
+				"to": "00:18:26,200"
+			},
+			"offsets": {
+				"from": 1102840,
+				"to": 1106200
+			},
+			"text": " but we will gradually try and transition it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,200",
+				"to": "00:18:28,600"
+			},
+			"offsets": {
+				"from": 1106200,
+				"to": 1108600
+			},
+			"text": " towards a system that is more balanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,600",
+				"to": "00:18:30,200"
+			},
+			"offsets": {
+				"from": 1108600,
+				"to": 1110200
+			},
+			"text": " As you can see in the diagram,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,200",
+				"to": "00:18:31,600"
+			},
+			"offsets": {
+				"from": 1110200,
+				"to": 1111600
+			},
+			"text": " you can think of today's budgets"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,600",
+				"to": "00:18:33,800"
+			},
+			"offsets": {
+				"from": 1111600,
+				"to": 1113800
+			},
+			"text": " as 100% retention budgets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,800",
+				"to": "00:18:35,920"
+			},
+			"offsets": {
+				"from": 1113800,
+				"to": 1115920
+			},
+			"text": " we're just paying you to do work for the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,920",
+				"to": "00:18:39,760"
+			},
+			"offsets": {
+				"from": 1115920,
+				"to": 1119760
+			},
+			"text": " Instead, we would be transitioning to a budget"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,760",
+				"to": "00:18:43,760"
+			},
+			"offsets": {
+				"from": 1119760,
+				"to": 1123760
+			},
+			"text": " that is split up between still partially retention budget"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,760",
+				"to": "00:18:45,400"
+			},
+			"offsets": {
+				"from": 1123760,
+				"to": 1125400
+			},
+			"text": " but separate from that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,400",
+				"to": "00:18:46,960"
+			},
+			"offsets": {
+				"from": 1125400,
+				"to": 1126960
+			},
+			"text": " clear project budgets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,960",
+				"to": "00:18:50,040"
+			},
+			"offsets": {
+				"from": 1126960,
+				"to": 1130040
+			},
+			"text": " where the cost items are directly related"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,040",
+				"to": "00:18:53,440"
+			},
+			"offsets": {
+				"from": 1130040,
+				"to": 1133440
+			},
+			"text": " to the integrated and valuable work that is delivered."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,440",
+				"to": "00:18:55,640"
+			},
+			"offsets": {
+				"from": 1133440,
+				"to": 1135640
+			},
+			"text": " Then for the last challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,640",
+				"to": "00:18:57,680"
+			},
+			"offsets": {
+				"from": 1135640,
+				"to": 1137680
+			},
+			"text": " talent acquisition, onboarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,680",
+				"to": "00:18:59,440"
+			},
+			"offsets": {
+				"from": 1137680,
+				"to": 1139440
+			},
+			"text": " and the compensation question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,440",
+				"to": "00:19:01,200"
+			},
+			"offsets": {
+				"from": 1139440,
+				"to": 1141200
+			},
+			"text": " Maker has been struggling a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,200",
+				"to": "00:19:04,040"
+			},
+			"offsets": {
+				"from": 1141200,
+				"to": 1144040
+			},
+			"text": " consistently with hiring, onboarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,040",
+				"to": "00:19:06,120"
+			},
+			"offsets": {
+				"from": 1144040,
+				"to": 1146120
+			},
+			"text": " and comp challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,120",
+				"to": "00:19:08,840"
+			},
+			"offsets": {
+				"from": 1146120,
+				"to": 1148840
+			},
+			"text": " Maker DAO SES, my core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,840",
+				"to": "00:19:11,400"
+			},
+			"offsets": {
+				"from": 1148840,
+				"to": 1151400
+			},
+			"text": " we have run an incubation program for some time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,400",
+				"to": "00:19:13,440"
+			},
+			"offsets": {
+				"from": 1151400,
+				"to": 1153440
+			},
+			"text": " but now we are winding that down."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,440",
+				"to": "00:19:14,440"
+			},
+			"offsets": {
+				"from": 1153440,
+				"to": 1154440
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,440",
+				"to": "00:19:16,400"
+			},
+			"offsets": {
+				"from": 1154440,
+				"to": 1156400
+			},
+			"text": " Well, it's very difficult and time-intensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,400",
+				"to": "00:19:18,640"
+			},
+			"offsets": {
+				"from": 1156400,
+				"to": 1158640
+			},
+			"text": " to coach teams throughout the long"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,640",
+				"to": "00:19:22,560"
+			},
+			"offsets": {
+				"from": 1158640,
+				"to": 1162560
+			},
+			"text": " and costly onboarding period."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,560",
+				"to": "00:19:25,840"
+			},
+			"offsets": {
+				"from": 1162560,
+				"to": 1165840
+			},
+			"text": " I already mentioned when you make a governance proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,840",
+				"to": "00:19:27,840"
+			},
+			"offsets": {
+				"from": 1165840,
+				"to": 1167840
+			},
+			"text": " it takes you all in all two months"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,840",
+				"to": "00:19:31,680"
+			},
+			"offsets": {
+				"from": 1167840,
+				"to": 1171680
+			},
+			"text": " to go from the RFC to the final vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,680",
+				"to": "00:19:34,960"
+			},
+			"offsets": {
+				"from": 1171680,
+				"to": 1174960
+			},
+			"text": " but if you really want to propose a core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,960",
+				"to": "00:19:36,240"
+			},
+			"offsets": {
+				"from": 1174960,
+				"to": 1176240
+			},
+			"text": " you need a lot more work than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,240",
+				"to": "00:19:37,960"
+			},
+			"offsets": {
+				"from": 1176240,
+				"to": 1177960
+			},
+			"text": " At least two months of preparation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,960",
+				"to": "00:19:40,200"
+			},
+			"offsets": {
+				"from": 1177960,
+				"to": 1180200
+			},
+			"text": " adds up to total of four."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,200",
+				"to": "00:19:42,560"
+			},
+			"offsets": {
+				"from": 1180200,
+				"to": 1182560
+			},
+			"text": " It's difficult for people to just do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,560",
+				"to": "00:19:45,880"
+			},
+			"offsets": {
+				"from": 1182560,
+				"to": 1185880
+			},
+			"text": " out of their own effort without compensation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,880",
+				"to": "00:19:47,200"
+			},
+			"offsets": {
+				"from": 1185880,
+				"to": 1187200
+			},
+			"text": " However, for a core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,200",
+				"to": "00:19:49,560"
+			},
+			"offsets": {
+				"from": 1187200,
+				"to": 1189560
+			},
+			"text": " it's also very difficult to make these calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,560",
+				"to": "00:19:52,080"
+			},
+			"offsets": {
+				"from": 1189560,
+				"to": 1192080
+			},
+			"text": " So we have been doing that for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,080",
+				"to": "00:19:55,800"
+			},
+			"offsets": {
+				"from": 1192080,
+				"to": 1195800
+			},
+			"text": " but we felt that the model really wasn't suited"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,800",
+				"to": "00:19:58,360"
+			},
+			"offsets": {
+				"from": 1195800,
+				"to": 1198360
+			},
+			"text": " for the new situation that we're in."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,360",
+				"to": "00:19:59,720"
+			},
+			"offsets": {
+				"from": 1198360,
+				"to": 1199720
+			},
+			"text": " And of course, a large element of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,720",
+				"to": "00:20:01,400"
+			},
+			"offsets": {
+				"from": 1199720,
+				"to": 1201400
+			},
+			"text": " is simply the bear market."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,400",
+				"to": "00:20:05,240"
+			},
+			"offsets": {
+				"from": 1201400,
+				"to": 1205240
+			},
+			"text": " This has ended the onboarding of new startup teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,240",
+				"to": "00:20:07,480"
+			},
+			"offsets": {
+				"from": 1205240,
+				"to": 1207480
+			},
+			"text": " and it also has created a lot more discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,480",
+				"to": "00:20:09,920"
+			},
+			"offsets": {
+				"from": 1207480,
+				"to": 1209920
+			},
+			"text": " about where the money should go."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,920",
+				"to": "00:20:11,480"
+			},
+			"offsets": {
+				"from": 1209920,
+				"to": 1211480
+			},
+			"text": " It's easy to get a budget approved"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,480",
+				"to": "00:20:15,600"
+			},
+			"offsets": {
+				"from": 1211480,
+				"to": 1215600
+			},
+			"text": " if there is enough budget to do everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,600",
+				"to": "00:20:17,920"
+			},
+			"offsets": {
+				"from": 1215600,
+				"to": 1217920
+			},
+			"text": " Comp questions in general, they're extremely difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,920",
+				"to": "00:20:20,600"
+			},
+			"offsets": {
+				"from": 1217920,
+				"to": 1220600
+			},
+			"text": " in a global, open and decentralized organization"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,600",
+				"to": "00:20:23,400"
+			},
+			"offsets": {
+				"from": 1220600,
+				"to": 1223400
+			},
+			"text": " with such diverse areas of expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,400",
+				"to": "00:20:26,160"
+			},
+			"offsets": {
+				"from": 1223400,
+				"to": 1226160
+			},
+			"text": " Even if you know how much an engineer is worth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,160",
+				"to": "00:20:29,280"
+			},
+			"offsets": {
+				"from": 1226160,
+				"to": 1229280
+			},
+			"text": " or how much a web designer is worth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,280",
+				"to": "00:20:31,640"
+			},
+			"offsets": {
+				"from": 1229280,
+				"to": 1231640
+			},
+			"text": " you may not know how much you should be paying"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,640",
+				"to": "00:20:35,080"
+			},
+			"offsets": {
+				"from": 1231640,
+				"to": 1235080
+			},
+			"text": " for a risk analyst, or someone working in banking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,080",
+				"to": "00:20:36,080"
+			},
+			"offsets": {
+				"from": 1235080,
+				"to": 1236080
+			},
+			"text": " for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,080",
+				"to": "00:20:40,120"
+			},
+			"offsets": {
+				"from": 1236080,
+				"to": 1240120
+			},
+			"text": " So we have attempted to ameliorate that by hiring"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,120",
+				"to": "00:20:42,600"
+			},
+			"offsets": {
+				"from": 1240120,
+				"to": 1242600
+			},
+			"text": " or incubating rather people core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,600",
+				"to": "00:20:44,400"
+			},
+			"offsets": {
+				"from": 1242600,
+				"to": 1244400
+			},
+			"text": " but this proves to be extremely difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,400",
+				"to": "00:20:46,200"
+			},
+			"offsets": {
+				"from": 1244400,
+				"to": 1246200
+			},
+			"text": " and has not succeeded so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,200",
+				"to": "00:20:47,880"
+			},
+			"offsets": {
+				"from": 1246200,
+				"to": 1247880
+			},
+			"text": " So what is the idea here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,880",
+				"to": "00:20:50,080"
+			},
+			"offsets": {
+				"from": 1247880,
+				"to": 1250080
+			},
+			"text": " The idea is to make a maker academy"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,080",
+				"to": "00:20:51,800"
+			},
+			"offsets": {
+				"from": 1250080,
+				"to": 1251800
+			},
+			"text": " instead of an incubation program."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,800",
+				"to": "00:20:54,480"
+			},
+			"offsets": {
+				"from": 1251800,
+				"to": 1254480
+			},
+			"text": " A maker academy would be a platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,480",
+				"to": "00:20:59,440"
+			},
+			"offsets": {
+				"from": 1254480,
+				"to": 1259440
+			},
+			"text": " that is open to everyone, and that is also permissionless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,440",
+				"to": "00:21:04,440"
+			},
+			"offsets": {
+				"from": 1259440,
+				"to": 1264440
+			},
+			"text": " meaning that it is out there in the open in the DAO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,440",
+				"to": "00:21:07,640"
+			},
+			"offsets": {
+				"from": 1264440,
+				"to": 1267640
+			},
+			"text": " and if you want to create a core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,640",
+				"to": "00:21:09,160"
+			},
+			"offsets": {
+				"from": 1267640,
+				"to": 1269160
+			},
+			"text": " or you have an idea for a project"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,160",
+				"to": "00:21:10,520"
+			},
+			"offsets": {
+				"from": 1269160,
+				"to": 1270520
+			},
+			"text": " that you want to see funded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,520",
+				"to": "00:21:16,600"
+			},
+			"offsets": {
+				"from": 1270520,
+				"to": 1276600
+			},
+			"text": " you need to know how do I fulfill the role"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,600",
+				"to": "00:21:18,840"
+			},
+			"offsets": {
+				"from": 1276600,
+				"to": 1278840
+			},
+			"text": " of being a good core unit facilitator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,840",
+				"to": "00:21:20,680"
+			},
+			"offsets": {
+				"from": 1278840,
+				"to": 1280680
+			},
+			"text": " What are my responsibilities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,680",
+				"to": "00:21:25,680"
+			},
+			"offsets": {
+				"from": 1280680,
+				"to": 1285680
+			},
+			"text": " How do I need to interact with governance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,680",
+				"to": "00:21:27,920"
+			},
+			"offsets": {
+				"from": 1285680,
+				"to": 1287920
+			},
+			"text": " And all these things that can be made available"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,920",
+				"to": "00:21:30,800"
+			},
+			"offsets": {
+				"from": 1287920,
+				"to": 1290800
+			},
+			"text": " in open platforms, open education platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,800",
+				"to": "00:21:34,400"
+			},
+			"offsets": {
+				"from": 1290800,
+				"to": 1294400
+			},
+			"text": " with specific courses, but also general topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,400",
+				"to": "00:21:36,720"
+			},
+			"offsets": {
+				"from": 1294400,
+				"to": 1296720
+			},
+			"text": " Especially today, when maker is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,720",
+				"to": "00:21:38,760"
+			},
+			"offsets": {
+				"from": 1296720,
+				"to": 1298760
+			},
+			"text": " through a lot of transition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,760",
+				"to": "00:21:40,720"
+			},
+			"offsets": {
+				"from": 1298760,
+				"to": 1300720
+			},
+			"text": " there is a lot of complexity on the technical side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,720",
+				"to": "00:21:43,920"
+			},
+			"offsets": {
+				"from": 1300720,
+				"to": 1303920
+			},
+			"text": " there is a lot of complexity on the real world finance side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,920",
+				"to": "00:21:46,800"
+			},
+			"offsets": {
+				"from": 1303920,
+				"to": 1306800
+			},
+			"text": " there is a lot of complexity on the organizational side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,800",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1306800,
+				"to": 1308000
+			},
+			"text": " and there is a lot of complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:51,400"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1311400
+			},
+			"text": " in the new proposals that are up for vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,400",
+				"to": "00:21:55,360"
+			},
+			"offsets": {
+				"from": 1311400,
+				"to": 1315360
+			},
+			"text": " So yeah, an open and available platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,360",
+				"to": "00:21:58,280"
+			},
+			"offsets": {
+				"from": 1315360,
+				"to": 1318280
+			},
+			"text": " for education and training may help people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,280",
+				"to": "00:22:01,360"
+			},
+			"offsets": {
+				"from": 1318280,
+				"to": 1321360
+			},
+			"text": " to acquire the skills they need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,360",
+				"to": "00:22:05,360"
+			},
+			"offsets": {
+				"from": 1321360,
+				"to": 1325360
+			},
+			"text": " and then if you combine it with the possibility of grants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,360",
+				"to": "00:22:07,640"
+			},
+			"offsets": {
+				"from": 1325360,
+				"to": 1327640
+			},
+			"text": " then you get a funding mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,640",
+				"to": "00:22:10,840"
+			},
+			"offsets": {
+				"from": 1327640,
+				"to": 1330840
+			},
+			"text": " that doesn't need to be inside a single core unit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,840",
+				"to": "00:22:12,920"
+			},
+			"offsets": {
+				"from": 1330840,
+				"to": 1332920
+			},
+			"text": " but that can be done out in the open,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,920",
+				"to": "00:22:16,280"
+			},
+			"offsets": {
+				"from": 1332920,
+				"to": 1336280
+			},
+			"text": " and so maker can continue to onboard the talent that it needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,280",
+				"to": "00:22:17,880"
+			},
+			"offsets": {
+				"from": 1336280,
+				"to": 1337880
+			},
+			"text": " So these were my four challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,880",
+				"to": "00:22:20,160"
+			},
+			"offsets": {
+				"from": 1337880,
+				"to": 1340160
+			},
+			"text": " So what does the future of these enterprise operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,160",
+				"to": "00:22:21,960"
+			},
+			"offsets": {
+				"from": 1340160,
+				"to": 1341960
+			},
+			"text": " that make it look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,960",
+				"to": "00:22:23,480"
+			},
+			"offsets": {
+				"from": 1341960,
+				"to": 1343480
+			},
+			"text": " No one knows, there are a lot of ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,480",
+				"to": "00:22:25,360"
+			},
+			"offsets": {
+				"from": 1343480,
+				"to": 1345360
+			},
+			"text": " that are floating around."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,360",
+				"to": "00:22:27,800"
+			},
+			"offsets": {
+				"from": 1345360,
+				"to": 1347800
+			},
+			"text": " We do believe that the solutions we're thinking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,800",
+				"to": "00:22:29,200"
+			},
+			"offsets": {
+				"from": 1347800,
+				"to": 1349200
+			},
+			"text": " the solutions we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,200",
+				"to": "00:22:30,840"
+			},
+			"offsets": {
+				"from": 1349200,
+				"to": 1350840
+			},
+			"text": " they're all open source software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,840",
+				"to": "00:22:34,960"
+			},
+			"offsets": {
+				"from": 1350840,
+				"to": 1354960
+			},
+			"text": " and they could be interesting for other projects as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,960",
+				"to": "00:22:37,160"
+			},
+			"offsets": {
+				"from": 1354960,
+				"to": 1357160
+			},
+			"text": " So yeah, thank you for coming to my talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,160",
+				"to": "00:22:39,480"
+			},
+			"offsets": {
+				"from": 1357160,
+				"to": 1359480
+			},
+			"text": " and let's continue the discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,480",
+				"to": "00:22:41,840"
+			},
+			"offsets": {
+				"from": 1359480,
+				"to": 1361840
+			},
+			"text": " - Thank you so much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,840",
+				"to": "00:22:45,920"
+			},
+			"offsets": {
+				"from": 1361840,
+				"to": 1365920
+			},
+			"text": " Walter Kanban from MakerDAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,920",
+				"to": "00:22:48,480"
+			},
+			"offsets": {
+				"from": 1365920,
+				"to": 1368480
+			},
+			"text": " We don't have time for questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,480",
+				"to": "00:22:53,200"
+			},
+			"offsets": {
+				"from": 1368480,
+				"to": 1373200
+			},
+			"text": " so feel free to reach out to Woodger outside,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,200",
+				"to": "00:22:56,480"
+			},
+			"offsets": {
+				"from": 1373200,
+				"to": 1376480
+			},
+			"text": " and we're having a launch stop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,480",
+				"to": "00:22:58,680"
+			},
+			"offsets": {
+				"from": 1376480,
+				"to": 1378680
+			},
+			"text": " so join again at 1.30."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,680",
+				"to": "00:22:59,520"
+			},
+			"offsets": {
+				"from": 1378680,
+				"to": 1379520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,520",
+				"to": "00:23:01,760"
+			},
+			"offsets": {
+				"from": 1379520,
+				"to": 1381760
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,760",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1381760,
+				"to": 1384000
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1386000
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1388000
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1392000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

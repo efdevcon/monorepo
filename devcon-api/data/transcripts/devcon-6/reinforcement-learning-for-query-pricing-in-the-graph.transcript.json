@@ -1,0 +1,3167 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 21000
+			},
+			"text": " All right, good morning everyone. How are you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " So, let's start. I'm Tom."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " I work for Semiotic Labs, and today I'll have the pleasure to present you our work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " on reinforcement learning in query pricing in the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 39000
+			},
+			"text": " So, first, let's start with the item. I will tell a few words about Semiotic, what we are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 45000
+			},
+			"text": " Then I'll introduce what's really we are doing in this area, automated prices covering."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 51000
+			},
+			"text": " I will formulate the problem. I will add a few words up when it comes to modeling, how we model that problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " Then I'll briefly went through reinforcement learning basics, let's say."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 61000
+			},
+			"text": " It's just a refresher for those ones of you who know or maybe don't know reinforcement learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 68000
+			},
+			"text": " Then agent-based modeling is the core of that talk when I will show how we are using that for testing system properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 75000
+			},
+			"text": " and for testing different behaviors when it comes to using single and multi-agent setups."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " Then I will show that actually we deploy that solution in production, what are the results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " and finish with a small summary. All right, so let's start."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 92000
+			},
+			"text": " The first Semiotic Labs was founded in 2020 by AI and cryptographic researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 100000
+			},
+			"text": " We are focusing on applied research, and we are one of the core depths of the graph protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 104000
+			},
+			"text": " Also, we are developers of others, the optimal text aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 111000
+			},
+			"text": " Actually, the lead of that product is giving a talk at the very moment on a different stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 114000
+			},
+			"text": " So, bad luck."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 119000
+			},
+			"text": " Okay, so our expertise, we combine cryptography with AI."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 123000
+			},
+			"text": " That's our core expertise, and of course there are software engineering involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " We focus mostly on building infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130000
+			},
+			"text": " We focus on cryptoeconomics. Today's talk is actually focusing on this on cryptoeconomics."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 135000
+			},
+			"text": " All right, so what's the scenario?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 140000
+			},
+			"text": " So the scenario in here is that I know which one of you know the graph, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 145000
+			},
+			"text": " Who knows the graph protocol? All right, 50/50, good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 152000
+			},
+			"text": " So, basically, in this scenario, we just focus on one part of the graph system, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " of the graph protocol. But imagine that you've got some customers that are sending queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 163000
+			},
+			"text": " right, and you've got indexers that are indexing blockchain and are serving those queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 170000
+			},
+			"text": " So, between those guys, there is an entity called the gateway, which is doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " which is kind of acting as a query market, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " So, depending on the price, depending on the quality of service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " a given query sent by the customer would be distributed to this or that indexer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 186000
+			},
+			"text": " And indexers earn money by serving queries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 193000
+			},
+			"text": " So, they can control the prices of the service queries and the core idea that I'm going to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 199000
+			},
+			"text": " Today's basically wanted to have dynamic pricing based on the query volume received by an indexer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 205000
+			},
+			"text": " And we call that outer-agra, and then I will explain in a second why we are calling that outer-agra."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " So, this is how we model the scenario, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 218000
+			},
+			"text": " It's simplified from one point of view because, as you can see, as you can see, there are no, let's say, agents in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " We get rid of the customers for the purpose of that voting, of those simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 226000
+			},
+			"text": " Instead, we've got a traffic generator, right? Something that just says, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 230000
+			},
+			"text": " a given time, this is the query volume that needs to be served, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " We also got query distributor, so something that basically look at the bits of the agents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " so the agents are putting their bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " And then, depending on those bits, the queries will be distributed across those different agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " And those bits are expressed in a domain specific language called agra."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 252000
+			},
+			"text": " That's why the product we call it outer-agra, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 254000
+			},
+			"text": " Because it automates that bidding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 264000
+			},
+			"text": " Otherwise, the index cells have to create those price models manually, which is kind of got tricky, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 269000
+			},
+			"text": " All right, so some assumptions, selected assumptions, what is happening in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 276000
+			},
+			"text": " So, this is only about how we generate that query volume, so we've got in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 280000
+			},
+			"text": " So, this is basically the shape that we model."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 287000
+			},
+			"text": " So, the x-axis, there is this price, query price/this is a customer, that customer is saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 290000
+			},
+			"text": " okay, this is how much I can pay for that query."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293000
+			},
+			"text": " This budget is unknown, right? That's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 300000
+			},
+			"text": " It's not sharing that with the agents, it's not sharing that with the indexers, it's something that is setting on its own."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " So, this is something that we want to discover, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 307000
+			},
+			"text": " And the budget can move, right, from left to right, which means that if the indexer was set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 312000
+			},
+			"text": " it's price, it's price bit higher than this, well, he won't be picked, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 322000
+			},
+			"text": " Also, there is some kind of a noise, we added a noise to that query volume, and it's important to know that there's a game happening, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 330000
+			},
+			"text": " And here, the game is, so the agent's goal is to maximize the revenue, but gateway's goal, and basically protocol goal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 332000
+			},
+			"text": " is actually quality of service, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 336000
+			},
+			"text": " All the queries to be served, you know, five nights and so on, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 338000
+			},
+			"text": " So, there is a game happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 345000
+			},
+			"text": " All right, so if you know how we model, it's not now switch gears to reinforcement learning, just one-on-one, most classical thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 350000
+			},
+			"text": " So, down there, in reinforcement learning, we've got two main entities, agents and environments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 357000
+			},
+			"text": " agents interact with environment by executing an action, then agents actions change the state of the environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " agents get reworked and observations after, after all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 370000
+			},
+			"text": " Oh, okay. And, agent can app their, its policy based on the received reward, in short, that's reinforcement learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " So, where is it different types of agents in our simulations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 380000
+			},
+			"text": " In here, I put two most important criterions, one are trainable, reinforcement learning, online learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 387000
+			},
+			"text": " and the other ones are like rule-based, so there are some predefined behaviors, and also we've got this second criterion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 390000
+			},
+			"text": " so agents can be stochastic or deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 398000
+			},
+			"text": " In here, I put some simplified classification of reinforcement learning algorithms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " and I highlighted the two that basically we'll be using in our simulations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 407000
+			},
+			"text": " so we'll be using vanilla policy gradients and mostly most of our agents will be using PPO."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 413000
+			},
+			"text": " Important, there is one important type of agents that actually we are mostly focusing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 416000
+			},
+			"text": " which are, we call them Gaussian bandits."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 423000
+			},
+			"text": " So, the idea that this is a trainable, stochastic agent with policy that is represented with a Gaussian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427000
+			},
+			"text": " and then when agent is supposed to perform an action in something from that Gaussian, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 435000
+			},
+			"text": " So, imagine that there is a distribution, and when the agent is supposed to make an action, it's just something, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 443000
+			},
+			"text": " And in this case, okay, the agent sample is 0.8, and from that blue distribution, second agent is sampled by 24, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 450000
+			},
+			"text": " And why band it? Band it is because the agent is not building an internal model, an internal representation of the environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 458000
+			},
+			"text": " All right, so going to the most important part, so testing based, testing properties with agents based modeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 466000
+			},
+			"text": " So, in here, so already can come, explain this, but in the first set of experiments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 470000
+			},
+			"text": " we focus on single agent simulation, just testing the properties of an agent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 477000
+			},
+			"text": " and this is a single Gaussian band it with a modified PPO policy update rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 484000
+			},
+			"text": " The query distributor is like a super naive, you know, let's say version of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 490000
+			},
+			"text": " what could happen here is that we've got just, okay, depending on the price business is just inversely proportional,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 495000
+			},
+			"text": " and in the first step, we've got a fixed customer budget, with some noise, of course, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 501000
+			},
+			"text": " And what we are checking in here is the following. We've got market conditions, we've got two criteria for every experiment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 505000
+			},
+			"text": " we've got some criteria, and a property that we want to test, whether the band it is fulfilling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 509000
+			},
+			"text": " that that criteria is operating the way we want or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " In this case, the criterion is customer budget discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " As I've highlighted before, the agents do not know the budgets, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " But so we want to discover that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " So first, so that will be lots of things happening, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " Because we are checking when I think there are simulations, so let me try to, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 536000
+			},
+			"text": " unfold that and go step by step explaining what you will be seeing in a moment in those animations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " in those videos that we captured during the experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 542000
+			},
+			"text": " So first, there are five plots, right, in a single video."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 544000
+			},
+			"text": " First one is kind of like the most important."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " So what we've got in here is that budget, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 554000
+			},
+			"text": " The query volume plus plus customer budget, the solid red line is the agent's current policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 559000
+			},
+			"text": " the dashed line is the initial policy that the agent is starting from."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 566000
+			},
+			"text": " Second, in the second plot from the top, this is basically query volume serviced agent at a given time step."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570000
+			},
+			"text": " So what happened in here is agent actually didn't serve a query, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 573000
+			},
+			"text": " Didn't get any queries because he sampled somewhere in here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 577000
+			},
+			"text": " Like a few steps ago, he sampled some, the price was too high, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 579000
+			},
+			"text": " So the agent didn't get any queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 587000
+			},
+			"text": " So which also is shown in here, so this is the aggregated query volume served by a given agent in red,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 592000
+			},
+			"text": " and the blue one shows basically how many queries were dropped, weren't served at all, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 598000
+			},
+			"text": " So you can see in here there's a tiny, tiny step, which is, which actually is associated with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 604000
+			},
+			"text": " Then in the next plot, we've got agents revenue and aggregated agents revenue over time, all right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 608000
+			},
+			"text": " So let's run our first experiment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 616000
+			},
+			"text": " So once again, what we are testing in here, what we are trying to discover is where that, where that, that budget is, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 619000
+			},
+			"text": " So as agent is, is learning, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 622000
+			},
+			"text": " So first the Gaussian is super wide, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 625000
+			},
+			"text": " Like it was like much, much wider."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 630000
+			},
+			"text": " And once the agents, as you can see, something from time to time somewhere in here, right, above the budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 634000
+			},
+			"text": " So it's getting more and more sure that, okay, this is the max that I can get, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 636000
+			},
+			"text": " That's the highest price."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 638000
+			},
+			"text": " That's the highest bit that I can make."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 641000
+			},
+			"text": " So as you can see, the agent is dropping some of the queries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 644000
+			},
+			"text": " What is revenues is nicely, nicely growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 646000
+			},
+			"text": " All right, so first property test, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " That was the static environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 651000
+			},
+			"text": " So how about dynamic environment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 656000
+			},
+			"text": " By dynamic, I mean that the customer budget can change, can vary over time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 662000
+			},
+			"text": " So in this case, we are also testing the same property, whether the customer budget can be discovered by the agent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 665000
+			},
+			"text": " but in more difficult market conditions, let's say."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 673000
+			},
+			"text": " Right, so once again, we are starting, agent is kind of converging, capturing the, the, the price, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 675000
+			},
+			"text": " Which is kind of optimal, and then the price changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 680000
+			},
+			"text": " So what happens is the agent is, it's, it's, it's not getting any queries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 682000
+			},
+			"text": " They're saying, okay, I don't know where am I."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 688000
+			},
+			"text": " So it's, it's pressed the Gaussian, and once the queries are once again captured, it, it moves to the left, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " So it's like, okay, I was above the budget, let me, let me go back."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " Right, and that's happened, that is happening over time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " So there are plenty of queries, queries dropped, but still we are, we are making some nice revenue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 703000
+			},
+			"text": " And we are reacting to the, to the dynamic, dynamic market."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 706000
+			},
+			"text": " Cool, second property check."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 711000
+			},
+			"text": " So in further experiment, we said, okay, so there are some sub graphs that actually have no queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 716000
+			},
+			"text": " Right, there is a moment where nobody's asking for queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 718000
+			},
+			"text": " So what will happen then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 720000
+			},
+			"text": " So that's a different scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 724000
+			},
+			"text": " In this case, we call that the market conditions, basically there is no demand for your services, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 727000
+			},
+			"text": " So we wonder how we should add."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 730000
+			},
+			"text": " So it will happen in a second, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " So there will be like three iterations, we're recording a few of those, those videos, but as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 738000
+			},
+			"text": " already there's a hint in the right hand corner that something is not right."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 744000
+			},
+			"text": " All right, Gaussian spread, this is great, and at times that 400, because every 200 steps were like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 747000
+			},
+			"text": " you write it, okay, so what just happened?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 751000
+			},
+			"text": " There are no queries, so according to the design, the agent just said, okay, let me spread, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 758000
+			},
+			"text": " So I can sample from wider distribution, but actually spread all across the price-based domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 762000
+			},
+			"text": " So we said, okay, actually this is not a good behavior, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 770000
+			},
+			"text": " If this is happening, then the agent can sample at the same probability, like some super small prices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 775000
+			},
+			"text": " price bids, and at the same super high, or over recover from that will take a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 777000
+			},
+			"text": " So we said, okay, can we improve that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 784000
+			},
+			"text": " So we implemented something that we called graceful init pool, which basically the idea is that, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 790000
+			},
+			"text": " there is this initial distribution that the agent is starting from, this is something that the indexer will parametrize the agent"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 797000
+			},
+			"text": " when the agent is deployed, and when there are no queries, it just slowly pulls towards that initial distribution, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 803000
+			},
+			"text": " And when the queries will appear once again, it will get from there and once again start, start sampling and updating."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " I'm losing from time to time, the voice, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 816000
+			},
+			"text": " Okay, cool, so we passed that property, so now let's move into multi-agent simulation, so this was great."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 821000
+			},
+			"text": " At that point, we weren't competing with anyone up till that moment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 825000
+			},
+			"text": " Now we are competing with some deterministic agents."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 833000
+			},
+			"text": " The idea is that right now all the indexers have that agramodels that are fixed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 836000
+			},
+			"text": " They are not changing the model, so it can be seen as a rule base, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 840000
+			},
+			"text": " So there's like, okay, that's my bid and I'm sticking with it no matter what."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 847000
+			},
+			"text": " So this is what we are trying to model here, competition with deterministic agents, and the property that we are testing is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 850000
+			},
+			"text": " Discover of Price Bids of Competitive Agents, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 861000
+			},
+			"text": " So we want to make sure that we also can, let's say, compete with them and discover what were their bids without actually knowing them, without having that explicit information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 875000
+			},
+			"text": " So those three lines in here, actually those are the three competitive agents with deterministic policies that they are just set, and the blue agent in this case is the one that is demanded, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 887000
+			},
+			"text": " And as you can see, after a while it's set up like a price just below the cheapest agents, which means that it's trying to once again snatch the whole market if you will see a number of total queries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 891000
+			},
+			"text": " You can see clearly see a difference, right? That agent is dominating, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894000
+			},
+			"text": " So I will say, okay, this is nice, check."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " Cool, so how about stochastic agents?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 908000
+			},
+			"text": " Similar experiments, we also want to discover the price bits of other agents, but their policies are stochastic, so we model them in a similar way as Gaussians, Gaussians distributions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 911000
+			},
+			"text": " But they do not change, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 927000
+			},
+			"text": " So we observe similar behavior, this is great, right? So the agent, our agent, right? Our bandit moves somewhere in here, and of course it's something, you know, that the red agent stochastic, heuristic agent is also something from that distribution, so it's changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 934000
+			},
+			"text": " But as we can see the agent can come up, move slightly below and try and once again to capture the market, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 947000
+			},
+			"text": " All right, great, I think we checked that property. Awesome, so how about if you'll right now compete with like make a competition where we've got plenty of those bandit's deployed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 956000
+			},
+			"text": " And we hope that actually this is the most interesting case, right? Because we want Altara to be run by all the indexers in the graphical system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 963000
+			},
+			"text": " So same property, slightly different market conditions. All right, so what is happening in here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 979000
+			},
+			"text": " Sadly, it's not good. It's not good. So the agents are actually as designed, but as you can see they're like fighting, fighting, fighting, going, moving to the left side, which means that they're lowering their prices all the time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 986000
+			},
+			"text": " And as you can see in here, oh, you can see the labels, but this is the revenue that they're getting, right? At a given time step."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 993000
+			},
+			"text": " Basically it's converging to zero, which means that after a while the agents would be basically serving for free, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 996000
+			},
+			"text": " And so that's not a good situation for the indexers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1003000
+			},
+			"text": " Because in here we are not even modeling the revenue, not the, not the, we are not modeling the costs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1010000
+			},
+			"text": " So other point agents will be, well, indexers will be actually paying for that instead of making money."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1018000
+			},
+			"text": " All right, so we call this phenomenon or this outcome raised to the bottom, and we run many simulations, we discussed that a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1023000
+			},
+			"text": " And actually we realized that, well, this is the expected behavior, right? This setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1031000
+			},
+			"text": " So we've got some agents that are basically trying to snatch the market, right? And they're purely driven by the query volume, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1038000
+			},
+			"text": " So if this is the case, and the environment just natively distributes, you know, the queries based on the price bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1042000
+			},
+			"text": " raised to the bottom is the expected outcome, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1047000
+			},
+			"text": " So it can be addressed in many ways, but we look at the graph protocol, what are the features, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1052000
+			},
+			"text": " And what are the assumptions? So one assumption is that all the indexers should have freedom of their pricing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1059000
+			},
+			"text": " There should be any limitations to that if they want to serve queries that are super expensive or super cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1062000
+			},
+			"text": " It's okay. And all the indexers should be able to make any profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1065000
+			},
+			"text": " So the conclusion was that actually is the gateway, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1070000
+			},
+			"text": " That the thing that controls the market should implement this kind of anti-dominant policy, and so it happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1076000
+			},
+			"text": " It does. It already does. So in our next step, what we did, we wrapped the existing ISA, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1080000
+			},
+			"text": " ISA's index selection algorithm is one of the components of the gateway, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1085000
+			},
+			"text": " So we just wrapped it in here, and using the simulation, we are once again testing the same conditions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1090000
+			},
+			"text": " Competing, you know, money-giversions, money-giversions, abundance, competing with each other, and the property, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1094000
+			},
+			"text": " can we discover each other prices and maximize our profits?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1097000
+			},
+			"text": " So the outcome is totally different, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1106000
+			},
+			"text": " We, by changing the way the queries are distributed, actually we reach a lot of consensus, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1111000
+			},
+			"text": " So all the agents are discovering the market, right? What was the market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1120000
+			},
+			"text": " At the same, the ISA is looking at their quality of service, at their prices, and trying to help feed everyone, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1124000
+			},
+			"text": " Not just, okay, you're the winner, you're snatching all the queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1129000
+			},
+			"text": " So this is really nice. So please note that the gate will also leave some kind of a budget, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1136000
+			},
+			"text": " But this design is such a way that actually it's not enabling the agents to consume all the budget, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1144000
+			},
+			"text": " So the budget is, there is a portion that is left to the customer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1147000
+			},
+			"text": " Okay, so we're on some more simulations, of course, like, okay, free."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1151000
+			},
+			"text": " Can we run that with 10, 20 agents, right? Will that still work? It seems, yes, it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1156000
+			},
+			"text": " So we are testing the same properties, right, which are just a little bit changing the market conditions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1164000
+			},
+			"text": " This is looking really good. If you look at the query serve and the revenue, it's like all the agents are, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1172000
+			},
+			"text": " are making money, which is the desired behavior, right? And they are rediscovering the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1182000
+			},
+			"text": " Cool. So what we also did, we started, we wanted to see whether, okay, so how about different initial conditions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1187000
+			},
+			"text": " So we are assuming that different, different in the estimates, okay, that's my mean price, that's my variance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1198000
+			},
+			"text": " I want to maybe move a bit more expensive or less expensive at the beginning, wanted to see whether the system will kind of converge to that equilibrium."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1204000
+			},
+			"text": " And it seems that this is really happening, right? So this regard the initial conditions, this is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1209000
+			},
+			"text": " We also run some additional experiments with frequently stronger policy updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1217000
+			},
+			"text": " So this one is our modified PPO agent. As you can see, it's much faster than, okay, the red agent is the vanilla policy gradients, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:27,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1227000
+			},
+			"text": " or elementary policy, or elementary update rule. And the other one is just pure PPO, right? So our agents kind of got dominating."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1227000,
+				"to": 1236000
+			},
+			"text": " It's kind of interesting to observe that it's serving less queries, right? The blue or C online is clearly below, and this is the number of queries that are served."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1248000
+			},
+			"text": " But it's making bigger revenue, right? So in short, it's making less work for more money. So policy really matters, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1256000
+			},
+			"text": " All right, so having those results, we are quite happy with those. We said, okay, so can we deploy that in production,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1263000
+			},
+			"text": " and actually it has our solution on a battlefield. So one thing, there are many things to unfold in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1272000
+			},
+			"text": " So let me try to focus on one thing at a time, right? So first, this is the mean. So this is kind of where the Gaussian is on that x-axis, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1280000
+			},
+			"text": " So what happens is that the initial value was too high. So the mean was going down first, but then steadily it was going up, up, up."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1288000
+			},
+			"text": " Good, so it was moving to the right. At the same time, variance was steadily going down, which means that the Gaussian was more and more narrower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1297000
+			},
+			"text": " which means that agents were like, okay, I think I'm there and I'm good, right? I'm more confident that I should sample from that smaller distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1305000
+			},
+			"text": " So the outcome is that the reward goes up. Maybe you cannot see it in here like super nicely, but that's the revenue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1311000
+			},
+			"text": " That's the total revenue, and you can clearly see that it's going up. There is the standard, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1322000
+			},
+			"text": " So we deployed that. The results were great. So I think we are, this is the month where I should start telling, okay, if you are an indexer, please go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1329000
+			},
+			"text": " There is a repository to download, play with it, and there are some additional materials. Okay, but actually in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1335000
+			},
+			"text": " Okay, so let me first summarize. So agent-based modeling for cryptoeconomics, that was the core of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1344000
+			},
+			"text": " In here we focus on the time and dynamic pricing for the applied to the graph protocol to optimize the price discovery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1352000
+			},
+			"text": " and we use reinforcement learning and multiple multi-agent simulation, multi-agent modeling for revenue maximization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:39,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1359000
+			},
+			"text": " So we can show how to use that for testing the properties of the protocol, right? We came with that framework that, okay, those are the market conditions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1359000,
+				"to": 1366000
+			},
+			"text": " those are the properties, and systemically started tests, right? Our agents are solutions against those."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1373000
+			},
+			"text": " And finally we have deployed out our graph in production, and I have shown that actually it makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1382000
+			},
+			"text": " So future works, of course, better policy, better updates, better policies, agents with multiple rewards of taking quality of service into account."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1392000
+			},
+			"text": " We are not doing that right now, just looking at the query volume. Modeling and putting consumer agents into play, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:20,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1400000
+			},
+			"text": " So that right-hand side that we simply fight actually putting that back in the simulation, it will give us some more insight in what is happening, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1400000,
+				"to": 1406000
+			},
+			"text": " So that will give us a simulator with higher fidelity. And it can be redesigning the game, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1414000
+			},
+			"text": " In this case there was no information, the agents were acting totally independently, the question is, if it will redesign the game, redesign a little bit the graph protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1421000
+			},
+			"text": " would that kind of get perfect information will help, right? There are some additional resources, so my friend Alexis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1427000
+			},
+			"text": " there is, he wrote this blog post which describes more the technical side of deploying out our current production."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:58,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1438000
+			},
+			"text": " He also gave a talk about this during the last rock-hark episode in June, I think. So there is a record on YouTube, and of course this is open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1438000,
+				"to": 1444000
+			},
+			"text": " So I encourage you, go ahead, play with it, right? All those visualizations are there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1450000
+			},
+			"text": " Basically you can reproduce that and try to be clear your out-targeting production, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1457000
+			},
+			"text": " Finally I wanted to highlight some of the other words that Samyotic is doing. So there is talk actually that's happening right now that our friend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1464000
+			},
+			"text": " Matt, is giving the product and research leader for us, he's giving it right now. So that's sad."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:37,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1477000
+			},
+			"text": " And Sevi is giving a talk today about our work and let's say our trip to the Snarks world, and we are focusing on cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1477000,
+				"to": 1481000
+			},
+			"text": " We are focusing on verifiable payments for the graph protocol as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1486000
+			},
+			"text": " So if you are interested in those topics, please come to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1495000
+			},
+			"text": " You've got plenty of positions open. If you are interested, please go ahead. Thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1499000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:08,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1508000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1508000,
+				"to": 1511000
+			},
+			"text": " Excuse me, there's a gentleman who wants to be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1516000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1522000
+			},
+			"text": " Hello and thank you for the talk. I was wondering if the customer has a very, very low budget."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:26,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1526000
+			},
+			"text": " Will you try to match it and make a loss or will you shut down?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1526000,
+				"to": 1530000
+			},
+			"text": " That's a great question. Actually I wasn't showing this in here, right? Because it's tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1539000
+			},
+			"text": " Like I said, the goal of graph is to have five nights. So right now we are working with the guys that are implementing the gate"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1546000
+			},
+			"text": " and updating that a little bit because for now, if the customer will say, \"Okay, I want that for basically free,\""
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1553000
+			},
+			"text": " the gateway will still try to distribute that. It's not the best outcome, I would say, for the index."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1561000
+			},
+			"text": " But we are changing that. We've got that tool right now. So you can think about, I was showing you that we are working in this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1567000
+			},
+			"text": " We are focusing on the agents, but we develop a tool that enables us to test the properties and the outcome of the whole thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1573000
+			},
+			"text": " when there are different players in the game, including gateway. So great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1578000
+			},
+			"text": " It's not tricky, right? That's tricky thing. What do we want to achieve? We want the indexer to make money, or we want five nights."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:22,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1582000
+			},
+			"text": " The quality of service to be super high."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1582000,
+				"to": 1587000
+			},
+			"text": " I have another question, sorry. Maybe more technical when you showed the experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1595000
+			},
+			"text": " Whenever the budget of the client was going down, the spread of the motion was widening, but the mean was thing the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1600000
+			},
+			"text": " which means that you are still sampling to the right side where you know it's not the right price."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:44,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1604000
+			},
+			"text": " It would be more effective to move the motion to the left as you spread it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,000",
+				"to": "00:26:52,000"
+			},
+			"offsets": {
+				"from": 1604000,
+				"to": 1612000
+			},
+			"text": " Yeah, so what's the question actually? Because you just repeated the design behavior, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,000",
+				"to": "00:27:00,000"
+			},
+			"offsets": {
+				"from": 1612000,
+				"to": 1620000
+			},
+			"text": " If we overshoot, if we overshoot with the price, then we don't know what the reason was there were no queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,000",
+				"to": "00:27:06,000"
+			},
+			"offsets": {
+				"from": 1620000,
+				"to": 1626000
+			},
+			"text": " or we were too expensive, right? So we spread because we want to sample from wider distribution, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,000",
+				"to": "00:27:17,000"
+			},
+			"offsets": {
+				"from": 1626000,
+				"to": 1637000
+			},
+			"text": " Alright, if there are any additional questions I'm here, I'll be delighted to answer your questions, but it seems that my time is up, so thank you for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,000",
+				"to": "00:27:22,000"
+			},
+			"offsets": {
+				"from": 1637000,
+				"to": 1642000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,000",
+				"to": "00:27:34,000"
+			},
+			"offsets": {
+				"from": 1642000,
+				"to": 1654000
+			},
+			"text": " [silence]"
+		}
+	]
+}

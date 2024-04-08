@@ -1,0 +1,4861 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,780"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5780
+			},
+			"text": " Those of you who are here last year and happen to come to our talk might recall Ethermint 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,780",
+				"to": "00:00:09,960"
+			},
+			"offsets": {
+				"from": 5780,
+				"to": 9960
+			},
+			"text": " Well, we're back and Ethermint is back, but this time it's better."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,960",
+				"to": "00:00:14,440"
+			},
+			"offsets": {
+				"from": 9960,
+				"to": 14440
+			},
+			"text": " So I'm going to talk about Ethermint 2.0, which combines the best features we think of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,440",
+				"to": "00:00:19,840"
+			},
+			"offsets": {
+				"from": 14440,
+				"to": 19840
+			},
+			"text": " Ethereum, the EVM, and the best features of the Cosmos SDK in Tendermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,840",
+				"to": "00:00:24,960"
+			},
+			"offsets": {
+				"from": 19840,
+				"to": 24960
+			},
+			"text": " In this presentation, first I'll give a quick overview of Cosmos, explain the network model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,960",
+				"to": "00:00:27,080"
+			},
+			"offsets": {
+				"from": 24960,
+				"to": 27080
+			},
+			"text": " the topology, why we think it makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,080",
+				"to": "00:00:32,160"
+			},
+			"offsets": {
+				"from": 27080,
+				"to": 32160
+			},
+			"text": " I'll talk about the feature set of the Cosmos SDK in particular and how it can be combined"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,160",
+				"to": "00:00:37,320"
+			},
+			"offsets": {
+				"from": 32160,
+				"to": 37320
+			},
+			"text": " with the EVM, and I'll give a quick background on Tendermint consensus and how it facilitates"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,320",
+				"to": "00:00:40,120"
+			},
+			"offsets": {
+				"from": 37320,
+				"to": 40120
+			},
+			"text": " this model of interconnected blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,120",
+				"to": "00:00:42,520"
+			},
+			"offsets": {
+				"from": 40120,
+				"to": 42520
+			},
+			"text": " Then we'll talk all about Ethermint 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,520",
+				"to": "00:00:47,040"
+			},
+			"offsets": {
+				"from": 42520,
+				"to": 47040
+			},
+			"text": " I'll outline the architecture, the chains that will be made from Ethermint 1.0 and why."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,040",
+				"to": "00:00:52,120"
+			},
+			"offsets": {
+				"from": 47040,
+				"to": 52120
+			},
+			"text": " I'll talk about how the EVM and the SDK can work together to give you native code and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,120",
+				"to": "00:00:55,200"
+			},
+			"offsets": {
+				"from": 52120,
+				"to": 55200
+			},
+			"text": " EVM contracts all in one blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,200",
+				"to": "00:01:00,680"
+			},
+			"offsets": {
+				"from": 55200,
+				"to": 60680
+			},
+			"text": " I'll talk about finally how you can move your DAPs or move parts of your DAPs onto the Ethermint"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,680",
+				"to": "00:01:06,480"
+			},
+			"offsets": {
+				"from": 60680,
+				"to": 66480
+			},
+			"text": " chain while preserving seamless UX, and I'll take any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,480",
+				"to": "00:01:12,360"
+			},
+			"offsets": {
+				"from": 66480,
+				"to": 72360
+			},
+			"text": " So first, the Cosmos model envisions a network of interconnected blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,360",
+				"to": "00:01:14,840"
+			},
+			"offsets": {
+				"from": 72360,
+				"to": 74840
+			},
+			"text": " In many ways, these blockchains will be application-specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,840",
+				"to": "00:01:17,520"
+			},
+			"offsets": {
+				"from": 74840,
+				"to": 77520
+			},
+			"text": " They will do lots of different things, but talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,520",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 77520,
+				"to": 82000
+			},
+			"text": " In order to facilitate this, we need to make it really easy to build an application-specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:23,240"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 83240
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,240",
+				"to": "00:01:25,960"
+			},
+			"offsets": {
+				"from": 83240,
+				"to": 85960
+			},
+			"text": " To do that, we've built the Cosmos SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,960",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 85960,
+				"to": 89600
+			},
+			"text": " The Cosmos SDK is a framework for building custom state machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:37,200"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 97200
+			},
+			"text": " It contains all the glue library code of blockchains, AVL trees, message handlers, all the logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,200",
+				"to": "00:01:40,200"
+			},
+			"offsets": {
+				"from": 97200,
+				"to": 100200
+			},
+			"text": " to knit modules together, super developer friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,200",
+				"to": "00:01:43,400"
+			},
+			"offsets": {
+				"from": 100200,
+				"to": 103400
+			},
+			"text": " It's written in Golang, which many of you are probably familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,400",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 103400,
+				"to": 105840
+			},
+			"text": " It's all open source on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 110000
+			},
+			"text": " The Cosmos SDK is designed in particular to be secure, to make it easy to use different"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:54,320"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 114320
+			},
+			"text": " modules which do different things, which can interact with each other, but where you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,320",
+				"to": "00:01:59,800"
+			},
+			"offsets": {
+				"from": 114320,
+				"to": 119800
+			},
+			"text": " control the ways in which they interact so you can mitigate unintended consequences."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,800",
+				"to": "00:02:02,880"
+			},
+			"offsets": {
+				"from": 119800,
+				"to": 122880
+			},
+			"text": " To do this, we use something called least-authority permissioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,880",
+				"to": "00:02:07,520"
+			},
+			"offsets": {
+				"from": 122880,
+				"to": 127520
+			},
+			"text": " You pass around keys from one module to the other, keys that control which stores can"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,520",
+				"to": "00:02:09,080"
+			},
+			"offsets": {
+				"from": 127520,
+				"to": 129080
+			},
+			"text": " be read or written to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,080",
+				"to": "00:02:13,520"
+			},
+			"offsets": {
+				"from": 129080,
+				"to": 133520
+			},
+			"text": " Unlike, for example, a call between contracts and the EVM, a call between modules in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,520",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 133520,
+				"to": 138480
+			},
+			"text": " Cosmos SDK can only execute reads or writes to the stores for which you give it permission"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:20,240"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 140240
+			},
+			"text": " to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,240",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 140240,
+				"to": 145400
+			},
+			"text": " We're trying to model the SDK as a sort of ruby on rails for blockchains, a way to take"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:30,840"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 150840
+			},
+			"text": " existing modules, add your own custom flavor for your particular application, and end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,840",
+				"to": "00:02:35,800"
+			},
+			"offsets": {
+				"from": 150840,
+				"to": 155800
+			},
+			"text": " really fast with something that's production ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,800",
+				"to": "00:02:38,840"
+			},
+			"offsets": {
+				"from": 155800,
+				"to": 158840
+			},
+			"text": " In order to do this, the SDK needs to be modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,840",
+				"to": "00:02:42,960"
+			},
+			"offsets": {
+				"from": 158840,
+				"to": 162960
+			},
+			"text": " We've built a system by which we can build particular components that you might want"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,960",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 162960,
+				"to": 165440
+			},
+			"text": " in your state machine as modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:49,920"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 169920
+			},
+			"text": " And eventually, not only us, we hope, but many other people who are building these application"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,920",
+				"to": "00:02:51,480"
+			},
+			"offsets": {
+				"from": 169920,
+				"to": 171480
+			},
+			"text": " specific blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,480",
+				"to": "00:02:55,640"
+			},
+			"offsets": {
+				"from": 171480,
+				"to": 175640
+			},
+			"text": " They can build modules as we've built for governance, staking, fee distribution, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,640",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 175640,
+				"to": 177360
+			},
+			"text": " inter-blockchain communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:03:01,560"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 181560
+			},
+			"text": " They could build a different module for a DAX or a different module for a different kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,560",
+				"to": "00:03:04,160"
+			},
+			"offsets": {
+				"from": 181560,
+				"to": 184160
+			},
+			"text": " of proof of stake algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,160",
+				"to": "00:03:08,800"
+			},
+			"offsets": {
+				"from": 184160,
+				"to": 188800
+			},
+			"text": " Then you can, using the Cosmos SDK, pick and choose which modules you want to use in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,800",
+				"to": "00:03:14,080"
+			},
+			"offsets": {
+				"from": 188800,
+				"to": 194080
+			},
+			"text": " blockchain, glue them together, and connect them using the least-authority permissioning"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,080",
+				"to": "00:03:16,640"
+			},
+			"offsets": {
+				"from": 194080,
+				"to": 196640
+			},
+			"text": " system to run your state machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,640",
+				"to": "00:03:20,160"
+			},
+			"offsets": {
+				"from": 196640,
+				"to": 200160
+			},
+			"text": " We hope, then, when you've done this, and when you've added your application-specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,160",
+				"to": "00:03:24,200"
+			},
+			"offsets": {
+				"from": 200160,
+				"to": 204200
+			},
+			"text": " flavor, the custom module for whatever your blockchain is going to do better than anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,200",
+				"to": "00:03:29,560"
+			},
+			"offsets": {
+				"from": 204200,
+				"to": 209560
+			},
+			"text": " else, you will share that or share parts of it upstream so that people upstream and downstream"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,560",
+				"to": "00:03:35,760"
+			},
+			"offsets": {
+				"from": 209560,
+				"to": 215760
+			},
+			"text": " so that people can build upon what you've done, improve it, and send it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,760",
+				"to": "00:03:40,640"
+			},
+			"offsets": {
+				"from": 215760,
+				"to": 220640
+			},
+			"text": " In order to facilitate this network of interconnected blockchains, we need a consensus algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,640",
+				"to": "00:03:42,640"
+			},
+			"offsets": {
+				"from": 220640,
+				"to": 222640
+			},
+			"text": " with particular properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,640",
+				"to": "00:03:44,400"
+			},
+			"offsets": {
+				"from": 222640,
+				"to": 224400
+			},
+			"text": " So we've built Tendermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,400",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 224400,
+				"to": 229600
+			},
+			"text": " Tendermint is the state-of-the-art generic Byzantine fault-tolerant blockchain engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:54,720"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 234720
+			},
+			"text": " It encapsulates the consensus in peer-to-peer layer coming to consensus on which transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,720",
+				"to": "00:03:59,400"
+			},
+			"offsets": {
+				"from": 234720,
+				"to": 239400
+			},
+			"text": " ought to be applied and which block and when a block needs to be appended to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,400",
+				"to": "00:04:03,680"
+			},
+			"offsets": {
+				"from": 239400,
+				"to": 243680
+			},
+			"text": " And it provides vertical layer one scaling for your state machine, super fast, two and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,680",
+				"to": "00:04:05,480"
+			},
+			"offsets": {
+				"from": 243680,
+				"to": 245480
+			},
+			"text": " a half second block times."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,480",
+				"to": "00:04:09,240"
+			},
+			"offsets": {
+				"from": 245480,
+				"to": 249240
+			},
+			"text": " Tendermint is fully peer-reviewed, and it offers one block finality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,240",
+				"to": "00:04:13,200"
+			},
+			"offsets": {
+				"from": 249240,
+				"to": 253200
+			},
+			"text": " As soon as the block is confirmed, it will never be reverted."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,200",
+				"to": "00:04:18,240"
+			},
+			"offsets": {
+				"from": 253200,
+				"to": 258240
+			},
+			"text": " Most importantly, for this model of application-specific blockchains, Tendermint is generic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,240",
+				"to": "00:04:20,080"
+			},
+			"offsets": {
+				"from": 258240,
+				"to": 260080
+			},
+			"text": " It can connect to any state machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,080",
+				"to": "00:04:25,800"
+			},
+			"offsets": {
+				"from": 260080,
+				"to": 265800
+			},
+			"text": " You could write using the Cosmos SDK or using a different SDK, any kind of state machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,800",
+				"to": "00:04:32,640"
+			},
+			"offsets": {
+				"from": 265800,
+				"to": 272640
+			},
+			"text": " you like operating whatever sort of application you want to operate and run it with Tendermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,640",
+				"to": "00:04:36,560"
+			},
+			"offsets": {
+				"from": 272640,
+				"to": 276560
+			},
+			"text": " So here's a picture of what the Tendermint stack looks like so you can see this in visual"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,560",
+				"to": "00:04:37,760"
+			},
+			"offsets": {
+				"from": 276560,
+				"to": 277760
+			},
+			"text": " form."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,760",
+				"to": "00:04:43,080"
+			},
+			"offsets": {
+				"from": 277760,
+				"to": 283080
+			},
+			"text": " The large green rectangle is Tendermint consensus and each of the circular disks is a validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,080",
+				"to": "00:04:49,280"
+			},
+			"offsets": {
+				"from": 283080,
+				"to": 289280
+			},
+			"text": " participating in the consensus algorithm sending messages to each other to vote in BFT rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,280",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 289280,
+				"to": 293400
+			},
+			"text": " Then in the smaller blue rectangle, we have the ABCI application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:58,320"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 298320
+			},
+			"text": " That's your state machine, written using the Cosmos SDK and perhaps featuring the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,320",
+				"to": "00:05:02,400"
+			},
+			"offsets": {
+				"from": 298320,
+				"to": 302400
+			},
+			"text": " which is talking to and from Tendermint, telling Tendermint which transactions are valid and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,400",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 302400,
+				"to": 307880
+			},
+			"text": " executing the transactions once they've been confirmed in a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:13,240"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 313240
+			},
+			"text": " So in order to make it as easy as possible for developers to start working on full function"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,240",
+				"to": "00:05:17,920"
+			},
+			"offsets": {
+				"from": 313240,
+				"to": 317920
+			},
+			"text": " blockchains using the SDK and Tendermint and in order to build the particular blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,920",
+				"to": "00:05:22,720"
+			},
+			"offsets": {
+				"from": 317920,
+				"to": 322720
+			},
+			"text": " we're working on, the Cosmos Hub, we've built some core modules which I'll talk about now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,720",
+				"to": "00:05:25,640"
+			},
+			"offsets": {
+				"from": 322720,
+				"to": 325640
+			},
+			"text": " The first module is bonded proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,640",
+				"to": "00:05:29,560"
+			},
+			"offsets": {
+				"from": 325640,
+				"to": 329560
+			},
+			"text": " Bounded proof of stake is the proof of stake mechanism which will be used by the Cosmos"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,560",
+				"to": "00:05:34,720"
+			},
+			"offsets": {
+				"from": 329560,
+				"to": 334720
+			},
+			"text": " Hub and which we invite any blockchains in the Cosmos ecosystem to use themselves with"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,720",
+				"to": "00:05:36,920"
+			},
+			"offsets": {
+				"from": 334720,
+				"to": 336920
+			},
+			"text": " their own staking token if they like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,920",
+				"to": "00:05:41,040"
+			},
+			"offsets": {
+				"from": 336920,
+				"to": 341040
+			},
+			"text": " Bounded proof of stake has delegation as we say with skin in the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,040",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 341040,
+				"to": 345000
+			},
+			"text": " So delegators are liable if their validator commits a protocol fault, their validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:48,560"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 348560
+			},
+			"text": " double signs or fails to participate in consensus for too long."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,560",
+				"to": "00:05:51,400"
+			},
+			"offsets": {
+				"from": 348560,
+				"to": 351400
+			},
+			"text": " The delegators too can be slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,400",
+				"to": "00:05:55,640"
+			},
+			"offsets": {
+				"from": 351400,
+				"to": 355640
+			},
+			"text": " Bounded proof of stake addresses the nothing at stake problem with an unbonding period."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,640",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 355640,
+				"to": 359600
+			},
+			"text": " Both validators and delegators when they want to participate to vote in consensus have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:04,720"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 364720
+			},
+			"text": " lock up tokens for it will be three weeks at launch for the Cosmos Hub but for a configurable"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,720",
+				"to": "00:06:09,560"
+			},
+			"offsets": {
+				"from": 364720,
+				"to": 369560
+			},
+			"text": " amount of time and as long as those tokens are locked up if an infraction is discovered"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,560",
+				"to": "00:06:11,920"
+			},
+			"offsets": {
+				"from": 369560,
+				"to": 371920
+			},
+			"text": " they can be slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,920",
+				"to": "00:06:16,840"
+			},
+			"offsets": {
+				"from": 371920,
+				"to": 376840
+			},
+			"text": " We've tried to build this module to be batteries included but extensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,840",
+				"to": "00:06:20,600"
+			},
+			"offsets": {
+				"from": 376840,
+				"to": 380600
+			},
+			"text": " You could import it as is and have a fully functional proof of stake algorithm for whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,600",
+				"to": "00:06:23,520"
+			},
+			"offsets": {
+				"from": 380600,
+				"to": 383520
+			},
+			"text": " state machine you're running or you can modify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,520",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 383520,
+				"to": 388320
+			},
+			"text": " You could add custom slashing conditions for different kinds of application level guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:33,480"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 393480
+			},
+			"text": " you want to provide or you could change the way we've parameterized our slashing and staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,480",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393480,
+				"to": 398000
+			},
+			"text": " conditions to alter the logic of delegation or punish people differently for committing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 400600
+			},
+			"text": " protocol faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:43,080"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 403080
+			},
+			"text": " The second core module is governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,080",
+				"to": "00:06:47,360"
+			},
+			"offsets": {
+				"from": 403080,
+				"to": 407360
+			},
+			"text": " Like our proof of stake module, governance is designed to be pretty flexible so it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,360",
+				"to": "00:06:49,840"
+			},
+			"offsets": {
+				"from": 407360,
+				"to": 409840
+			},
+			"text": " work for lots of different blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,840",
+				"to": "00:06:53,600"
+			},
+			"offsets": {
+				"from": 409840,
+				"to": 413600
+			},
+			"text": " Our governance module has different kinds of what we call governance proposals, proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,600",
+				"to": "00:06:56,400"
+			},
+			"offsets": {
+				"from": 413600,
+				"to": 416400
+			},
+			"text": " to change some way the chain works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,400",
+				"to": "00:06:58,680"
+			},
+			"offsets": {
+				"from": 416400,
+				"to": 418680
+			},
+			"text": " The first are simply text proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,680",
+				"to": "00:07:03,040"
+			},
+			"offsets": {
+				"from": 418680,
+				"to": 423040
+			},
+			"text": " They don't do anything in protocol, in-band but rather allow for the network to come to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,040",
+				"to": "00:07:08,920"
+			},
+			"offsets": {
+				"from": 423040,
+				"to": 428920
+			},
+			"text": " social consensus on maybe some change to make in a future software upgrade or on some way"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,920",
+				"to": "00:07:12,360"
+			},
+			"offsets": {
+				"from": 428920,
+				"to": 432360
+			},
+			"text": " in which we want to change the way we're operating this blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,360",
+				"to": "00:07:16,640"
+			},
+			"offsets": {
+				"from": 432360,
+				"to": 436640
+			},
+			"text": " The second are parameter change proposals which are in-band."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,640",
+				"to": "00:07:21,280"
+			},
+			"offsets": {
+				"from": 436640,
+				"to": 441280
+			},
+			"text": " So if a parameter change proposal is passed that might change the amount of stake which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,280",
+				"to": "00:07:26,320"
+			},
+			"offsets": {
+				"from": 441280,
+				"to": 446320
+			},
+			"text": " is slashed for double signing or it could change the annual network inflation rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,320",
+				"to": "00:07:31,200"
+			},
+			"offsets": {
+				"from": 446320,
+				"to": 451200
+			},
+			"text": " Third, and finally we have software upgrade proposals which actually upgrade the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,200",
+				"to": "00:07:35,640"
+			},
+			"offsets": {
+				"from": 451200,
+				"to": 455640
+			},
+			"text": " machine which the chain is running so upgrade in the case of your application specific blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,640",
+				"to": "00:07:41,760"
+			},
+			"offsets": {
+				"from": 455640,
+				"to": 461760
+			},
+			"text": " may be the logic of an exchange once everyone has come to consensus on that proposal at"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,760",
+				"to": "00:07:44,560"
+			},
+			"offsets": {
+				"from": 461760,
+				"to": 464560
+			},
+			"text": " a particular block height automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,560",
+				"to": "00:07:47,520"
+			},
+			"offsets": {
+				"from": 464560,
+				"to": 467520
+			},
+			"text": " For governance we've elected to use liquid democracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,520",
+				"to": "00:07:51,680"
+			},
+			"offsets": {
+				"from": 467520,
+				"to": 471680
+			},
+			"text": " So in tenderment blockchains there will be a few hundred or so validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,680",
+				"to": "00:07:55,920"
+			},
+			"offsets": {
+				"from": 471680,
+				"to": 475920
+			},
+			"text": " Those validators can vote and by default they will carry their delegators vote with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,920",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 475920,
+				"to": 476920
+			},
+			"text": " them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:08:01,040"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 481040
+			},
+			"text": " If your validator votes for a favor of a proposal and you as a delegator elect to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,040",
+				"to": "00:08:04,840"
+			},
+			"offsets": {
+				"from": 481040,
+				"to": 484840
+			},
+			"text": " nothing your stake will count in favor of the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,840",
+				"to": "00:08:10,400"
+			},
+			"offsets": {
+				"from": 484840,
+				"to": 490400
+			},
+			"text": " But delegators can also elect to override the vote of the validators if they disagree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,400",
+				"to": "00:08:14,520"
+			},
+			"offsets": {
+				"from": 490400,
+				"to": 494520
+			},
+			"text": " And they will have time to do that if they see what the validator votes for and decide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,520",
+				"to": "00:08:16,400"
+			},
+			"offsets": {
+				"from": 494520,
+				"to": 496400
+			},
+			"text": " they don't like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,400",
+				"to": "00:08:20,460"
+			},
+			"offsets": {
+				"from": 496400,
+				"to": 500460
+			},
+			"text": " Next up on the list of core modules is fee distribution, rewards and fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,460",
+				"to": "00:08:24,480"
+			},
+			"offsets": {
+				"from": 500460,
+				"to": 504480
+			},
+			"text": " We have decided that we need to use a pretty different system for fee distribution for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,480",
+				"to": "00:08:27,920"
+			},
+			"offsets": {
+				"from": 504480,
+				"to": 507920
+			},
+			"text": " tenderment than for most existing blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,920",
+				"to": "00:08:33,400"
+			},
+			"offsets": {
+				"from": 507920,
+				"to": 513400
+			},
+			"text": " We can't just give all the fees to the proposal because it would make it too much of an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,400",
+				"to": "00:08:37,800"
+			},
+			"offsets": {
+				"from": 513400,
+				"to": 517800
+			},
+			"text": " to buy a proposal or a DAAS the current elected proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,800",
+				"to": "00:08:44,600"
+			},
+			"offsets": {
+				"from": 517800,
+				"to": 524600
+			},
+			"text": " So we distribute most rewards proportionally to stake held by all the delegators and validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,600",
+				"to": "00:08:46,640"
+			},
+			"offsets": {
+				"from": 524600,
+				"to": 526640
+			},
+			"text": " on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,640",
+				"to": "00:08:50,200"
+			},
+			"offsets": {
+				"from": 526640,
+				"to": 530200
+			},
+			"text": " Like the staking module and the governance module our fee distribution module supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,200",
+				"to": "00:08:51,200"
+			},
+			"offsets": {
+				"from": 530200,
+				"to": 531200
+			},
+			"text": " any token."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,200",
+				"to": "00:08:55,800"
+			},
+			"offsets": {
+				"from": 531200,
+				"to": 535800
+			},
+			"text": " So you could integrate it into your application specific blockchain with your own token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,800",
+				"to": "00:08:58,720"
+			},
+			"offsets": {
+				"from": 535800,
+				"to": 538720
+			},
+			"text": " easy PZ, just change one string."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,720",
+				"to": "00:09:01,640"
+			},
+			"offsets": {
+				"from": 538720,
+				"to": 541640
+			},
+			"text": " And it also supports multi-coin fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,640",
+				"to": "00:09:06,400"
+			},
+			"offsets": {
+				"from": 541640,
+				"to": 546400
+			},
+			"text": " So we think the economic model of proof of stake may be a little different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,400",
+				"to": "00:09:10,680"
+			},
+			"offsets": {
+				"from": 546400,
+				"to": 550680
+			},
+			"text": " For example, for the Cosmos Hub, we plan to accept transactions or we plan to encourage"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,680",
+				"to": "00:09:15,280"
+			},
+			"offsets": {
+				"from": 550680,
+				"to": 555280
+			},
+			"text": " the validator set of the Cosmos Hub to accept transactions which pay fees and lots of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,280",
+				"to": "00:09:16,280"
+			},
+			"offsets": {
+				"from": 555280,
+				"to": 556280
+			},
+			"text": " denominations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,280",
+				"to": "00:09:19,800"
+			},
+			"offsets": {
+				"from": 556280,
+				"to": 559800
+			},
+			"text": " They don't need to be atoms."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,800",
+				"to": "00:09:24,120"
+			},
+			"offsets": {
+				"from": 559800,
+				"to": 564120
+			},
+			"text": " The final core module and my favorite is inter-blockchain communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,120",
+				"to": "00:09:28,120"
+			},
+			"offsets": {
+				"from": 564120,
+				"to": 568120
+			},
+			"text": " So this is the key part of what makes the Cosmos network model tick."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,120",
+				"to": "00:09:34,040"
+			},
+			"offsets": {
+				"from": 568120,
+				"to": 574040
+			},
+			"text": " We've exposed the IBC interface, which is a payload agnostic way of sending authenticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,040",
+				"to": "00:09:36,640"
+			},
+			"offsets": {
+				"from": 574040,
+				"to": 576640
+			},
+			"text": " messages exactly once to another blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,640",
+				"to": "00:09:40,360"
+			},
+			"offsets": {
+				"from": 576640,
+				"to": 580360
+			},
+			"text": " It's a little like TCP/IP for blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,360",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 580360,
+				"to": 585160
+			},
+			"text": " On top of this, authenticated exactly once, message delivery primitive, you can implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:48,040"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 588040
+			},
+			"text": " lots of different application level guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,040",
+				"to": "00:09:52,440"
+			},
+			"offsets": {
+				"from": 588040,
+				"to": 592440
+			},
+			"text": " You can implement token transfer, which means that you're conserving supply across two different"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,440",
+				"to": "00:09:53,440"
+			},
+			"offsets": {
+				"from": 592440,
+				"to": 593440
+			},
+			"text": " blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,440",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 593440,
+				"to": 598560
+			},
+			"text": " You could implement transfer of unique tokens, which means you're conserving the existence"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 604160
+			},
+			"text": " of the particular unique token on only one chain and only one account at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 608000
+			},
+			"text": " You could transfer data or you could even transfer code parts of your smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:11,760"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 611760
+			},
+			"text": " in some kind of sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,760",
+				"to": "00:10:15,840"
+			},
+			"offsets": {
+				"from": 611760,
+				"to": 615840
+			},
+			"text": " Then the special module for this presentation is the EV app."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,840",
+				"to": "00:10:20,480"
+			},
+			"offsets": {
+				"from": 615840,
+				"to": 620480
+			},
+			"text": " So in Ethereum and 2.0, we've taken the EVM, the Ethereum Virtual Machine, which is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,480",
+				"to": "00:10:25,640"
+			},
+			"offsets": {
+				"from": 620480,
+				"to": 625640
+			},
+			"text": " core part of the Ethereum blockchain that runs all your smart contracts and put it in a Cosmos"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,640",
+				"to": "00:10:27,280"
+			},
+			"offsets": {
+				"from": 625640,
+				"to": 627280
+			},
+			"text": " SDK module."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,280",
+				"to": "00:10:31,360"
+			},
+			"offsets": {
+				"from": 627280,
+				"to": 631360
+			},
+			"text": " As all the features you're used to in account database and estate tree, it can run Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,360",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 631360,
+				"to": 632360
+			},
+			"text": " transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,360",
+				"to": "00:10:36,200"
+			},
+			"offsets": {
+				"from": 632360,
+				"to": 636200
+			},
+			"text": " That's how we've been testing our EVM implementation by running the actual Ethereum transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,200",
+				"to": "00:10:38,080"
+			},
+			"offsets": {
+				"from": 636200,
+				"to": 638080
+			},
+			"text": " history."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,080",
+				"to": "00:10:43,280"
+			},
+			"offsets": {
+				"from": 638080,
+				"to": 643280
+			},
+			"text": " But most interestingly, it can call two and from Cosmos SDK modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,280",
+				"to": "00:10:47,120"
+			},
+			"offsets": {
+				"from": 643280,
+				"to": 647120
+			},
+			"text": " So if you have a blockchain with the EVM module, with the governance module, with the staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,120",
+				"to": "00:10:52,680"
+			},
+			"offsets": {
+				"from": 647120,
+				"to": 652680
+			},
+			"text": " module, contracts you write for the EVM module can talk to the staking module."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,680",
+				"to": "00:10:55,720"
+			},
+			"offsets": {
+				"from": 652680,
+				"to": 655720
+			},
+			"text": " Maybe they could delegate, maybe they could query balances, maybe they could see when"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,720",
+				"to": "00:10:59,080"
+			},
+			"offsets": {
+				"from": 655720,
+				"to": 659080
+			},
+			"text": " people got slashed or do things when that happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,080",
+				"to": "00:11:02,400"
+			},
+			"offsets": {
+				"from": 659080,
+				"to": 662400
+			},
+			"text": " Similar for governance, for fee distribution and for IBC."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,400",
+				"to": "00:11:09,200"
+			},
+			"offsets": {
+				"from": 662400,
+				"to": 669200
+			},
+			"text": " So if you have an EVM contract on a blockchain in the Cosmos SDK, along with the IBC module,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,200",
+				"to": "00:11:15,960"
+			},
+			"offsets": {
+				"from": 669200,
+				"to": 675960
+			},
+			"text": " contracts running on that EVM module can make calls through IBC to and from other blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,960",
+				"to": "00:11:19,840"
+			},
+			"offsets": {
+				"from": 675960,
+				"to": 679840
+			},
+			"text": " In order to enable this, we need and we have implemented a shared state view."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,840",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 679840,
+				"to": 685000
+			},
+			"text": " There is one token or only needs to be one token on this blockchain, which will be ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:30,240"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 690240
+			},
+			"text": " one on quote, in the EVM message.value for those of you familiar with solidity, but which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,240",
+				"to": "00:11:35,040"
+			},
+			"offsets": {
+				"from": 690240,
+				"to": 695040
+			},
+			"text": " will be the token used for governance, possibly for proof of stake and fee distribution and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,040",
+				"to": "00:11:38,800"
+			},
+			"offsets": {
+				"from": 695040,
+				"to": 698800
+			},
+			"text": " the other Cosmos SDK modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,800",
+				"to": "00:11:43,640"
+			},
+			"offsets": {
+				"from": 698800,
+				"to": 703640
+			},
+			"text": " So Ethermint, the whole package, combines the Cosmos SDK, all of these core modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,640",
+				"to": "00:11:48,280"
+			},
+			"offsets": {
+				"from": 703640,
+				"to": 708280
+			},
+			"text": " we've built, the EVM module and a Web3 API layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,280",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708280,
+				"to": 711000
+			},
+			"text": " We think this provides a pretty compelling deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:55,320"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 715320
+			},
+			"text": " You get the scalability of tenderment, Byzantine fault tolerant consensus, two second block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,320",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 715320,
+				"to": 720720
+			},
+			"text": " latency, inset finality, the power of the Cosmos SDK, the scalability security, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,720",
+				"to": "00:12:06,240"
+			},
+			"offsets": {
+				"from": 720720,
+				"to": 726240
+			},
+			"text": " ability to integrate all these modules and contribute downstream and the existing ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,240",
+				"to": "00:12:12,520"
+			},
+			"offsets": {
+				"from": 726240,
+				"to": 732520
+			},
+			"text": " of Ethereum contracts and development tooling, truffle, metamask, solidity, you name it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,520",
+				"to": "00:12:14,680"
+			},
+			"offsets": {
+				"from": 732520,
+				"to": 734680
+			},
+			"text": " But we've even done more than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,680",
+				"to": "00:12:19,640"
+			},
+			"offsets": {
+				"from": 734680,
+				"to": 739640
+			},
+			"text": " We have not just ported as an Ethermint 1.0, the EVM module from Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,640",
+				"to": "00:12:24,320"
+			},
+			"offsets": {
+				"from": 739640,
+				"to": 744320
+			},
+			"text": " We've ported the EVM module from TurboGeth, which Alexi is working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,320",
+				"to": "00:12:28,160"
+			},
+			"offsets": {
+				"from": 744320,
+				"to": 748160
+			},
+			"text": " That features a lot of improvements over the base EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,160",
+				"to": "00:12:29,160"
+			},
+			"offsets": {
+				"from": 748160,
+				"to": 749160
+			},
+			"text": " It's faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,160",
+				"to": "00:12:30,840"
+			},
+			"offsets": {
+				"from": 749160,
+				"to": 750840
+			},
+			"text": " We've changed up how the database works."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,840",
+				"to": "00:12:35,800"
+			},
+			"offsets": {
+				"from": 750840,
+				"to": 755800
+			},
+			"text": " Of course, it connects through the SDK module interface, so you can have what are like pre-compiles"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,800",
+				"to": "00:12:42,680"
+			},
+			"offsets": {
+				"from": 755800,
+				"to": 762680
+			},
+			"text": " in the EVM, but which would really call into other Cosmos SDK modules, or vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,680",
+				"to": "00:12:48,720"
+			},
+			"offsets": {
+				"from": 762680,
+				"to": 768720
+			},
+			"text": " TurboGeth, I will encourage you to take a stop at Alexi's talk, which is tomorrow, afternoon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,720",
+				"to": "00:12:52,760"
+			},
+			"offsets": {
+				"from": 768720,
+				"to": 772760
+			},
+			"text": " at the same time, but in brief, a TurboGeth, which is being developed in parallel as an"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,760",
+				"to": "00:12:58,680"
+			},
+			"offsets": {
+				"from": 772760,
+				"to": 778680
+			},
+			"text": " Ethereum client, along with the Cosmos SDK module, has numerous improvements over the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,680",
+				"to": "00:13:01,560"
+			},
+			"offsets": {
+				"from": 778680,
+				"to": 781560
+			},
+			"text": " current available EVM implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,560",
+				"to": "00:13:03,680"
+			},
+			"offsets": {
+				"from": 781560,
+				"to": 783680
+			},
+			"text": " It supports any binary search tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,680",
+				"to": "00:13:09,280"
+			},
+			"offsets": {
+				"from": 783680,
+				"to": 789280
+			},
+			"text": " It has structure preserving, custom serialization, as opposed to RLP, which is much faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,280",
+				"to": "00:13:13,720"
+			},
+			"offsets": {
+				"from": 789280,
+				"to": 793720
+			},
+			"text": " It allows you to use the same data structure for database indexing and Mergle has thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,720",
+				"to": "00:13:18,320"
+			},
+			"offsets": {
+				"from": 793720,
+				"to": 798320
+			},
+			"text": " also faster, and it implements some new caching strategies, in particular for state sync using"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,320",
+				"to": "00:13:22,520"
+			},
+			"offsets": {
+				"from": 798320,
+				"to": 802520
+			},
+			"text": " the benefit of hindsight, so using the fact that you know what future transactions are"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,520",
+				"to": "00:13:28,600"
+			},
+			"offsets": {
+				"from": 802520,
+				"to": 808600
+			},
+			"text": " or future states when you're trying to sync past transactions and verify them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,600",
+				"to": "00:13:32,400"
+			},
+			"offsets": {
+				"from": 808600,
+				"to": 812400
+			},
+			"text": " Now there are two ways to use the EVM module, as I've alluded to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,400",
+				"to": "00:13:37,880"
+			},
+			"offsets": {
+				"from": 812400,
+				"to": 817880
+			},
+			"text": " Ethermint will exist as a particular blockchain, as a proof-of-stake chain, with all the core"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,880",
+				"to": "00:13:42,960"
+			},
+			"offsets": {
+				"from": 817880,
+				"to": 822960
+			},
+			"text": " modules, with the EVM module and with the Web3 interface, for running smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,960",
+				"to": "00:13:45,640"
+			},
+			"offsets": {
+				"from": 822960,
+				"to": 825640
+			},
+			"text": " But the EVM module will also exist as a library."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,640",
+				"to": "00:13:51,240"
+			},
+			"offsets": {
+				"from": 825640,
+				"to": 831240
+			},
+			"text": " The EVM module as a library will allow you to deploy your own Cosmos chain with EVM support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,240",
+				"to": "00:13:57,080"
+			},
+			"offsets": {
+				"from": 831240,
+				"to": 837080
+			},
+			"text": " add in other SDK modules, in whichever combinations and parameter choices you like, and choose"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,080",
+				"to": "00:14:01,400"
+			},
+			"offsets": {
+				"from": 837080,
+				"to": 841400
+			},
+			"text": " whatever token and economic model you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,400",
+				"to": "00:14:05,280"
+			},
+			"offsets": {
+				"from": 841400,
+				"to": 845280
+			},
+			"text": " The Ethermint chain will also be launched with a term you might have heard, the hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,280",
+				"to": "00:14:06,440"
+			},
+			"offsets": {
+				"from": 845280,
+				"to": 846440
+			},
+			"text": " spoon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,440",
+				"to": "00:14:07,560"
+			},
+			"offsets": {
+				"from": 846440,
+				"to": 847560
+			},
+			"text": " What's a hard spoon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,560",
+				"to": "00:14:14,080"
+			},
+			"offsets": {
+				"from": 847560,
+				"to": 854080
+			},
+			"text": " A hard spoon is to copy the token distribution, including multi signatures, from another chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,080",
+				"to": "00:14:15,720"
+			},
+			"offsets": {
+				"from": 854080,
+				"to": 855720
+			},
+			"text": " onto a new chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,720",
+				"to": "00:14:20,640"
+			},
+			"offsets": {
+				"from": 855720,
+				"to": 860640
+			},
+			"text": " So in particular for Ethermint, we're planning to copy balance subject to approval by Cosmos"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,640",
+				"to": "00:14:25,880"
+			},
+			"offsets": {
+				"from": 860640,
+				"to": 865880
+			},
+			"text": " subgovernance, because to copy balances from the Ethereum chain, possibly also atoms from"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,880",
+				"to": "00:14:30,960"
+			},
+			"offsets": {
+				"from": 865880,
+				"to": 870960
+			},
+			"text": " the Cosmos chain, and use that to seed the photon token, which will be the native token"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,960",
+				"to": "00:14:32,800"
+			},
+			"offsets": {
+				"from": 870960,
+				"to": 872800
+			},
+			"text": " on Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,800",
+				"to": "00:14:37,720"
+			},
+			"offsets": {
+				"from": 872800,
+				"to": 877720
+			},
+			"text": " Ethermint will have, we plan, shared security with the Cosmos hub, meaning that anyone who"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,720",
+				"to": "00:14:43,360"
+			},
+			"offsets": {
+				"from": 877720,
+				"to": 883360
+			},
+			"text": " wants to attack Ethermint would have to pay the combined cost of attacking two blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,360",
+				"to": "00:14:46,720"
+			},
+			"offsets": {
+				"from": 883360,
+				"to": 886720
+			},
+			"text": " Of course, this will all need to be approved by Cosmos subgovernance, so we're focusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,720",
+				"to": "00:14:52,480"
+			},
+			"offsets": {
+				"from": 886720,
+				"to": 892480
+			},
+			"text": " on building the software to enable hard spoons in any configuration you want, or maybe even"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,480",
+				"to": "00:14:56,920"
+			},
+			"offsets": {
+				"from": 892480,
+				"to": 896920
+			},
+			"text": " a hard spork, which dices upstate and rearranges it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,920",
+				"to": "00:15:02,840"
+			},
+			"offsets": {
+				"from": 896920,
+				"to": 902840
+			},
+			"text": " But we do expect to propose this particular plan, and we expect photons will be accepted"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,840",
+				"to": "00:15:07,240"
+			},
+			"offsets": {
+				"from": 902840,
+				"to": 907240
+			},
+			"text": " as a fee token on the hub, which is super important for user experience, as I'll get"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,240",
+				"to": "00:15:09,280"
+			},
+			"offsets": {
+				"from": 907240,
+				"to": 909280
+			},
+			"text": " you later."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,280",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 909280,
+				"to": 914920
+			},
+			"text": " So Ethermint is a blockchain, is designed to be like Ethereum, one chain for many EVM applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,920",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 914920,
+				"to": 916000
+			},
+			"text": " at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 920000
+			},
+			"text": " Well, hard spoon account balances, so users can start out with tokens to start using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:21,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 921000
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,000",
+				"to": "00:15:24,360"
+			},
+			"offsets": {
+				"from": 921000,
+				"to": 924360
+			},
+			"text": " Ethermint will be a sovereign chain, having photons, you don't need anything other than"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,360",
+				"to": "00:15:26,320"
+			},
+			"offsets": {
+				"from": 924360,
+				"to": 926320
+			},
+			"text": " photons in order to use Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,320",
+				"to": "00:15:31,600"
+			},
+			"offsets": {
+				"from": 926320,
+				"to": 931600
+			},
+			"text": " It will also have the governance, staking, and slashing modules from the Cosmos SDK using"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,600",
+				"to": "00:15:33,480"
+			},
+			"offsets": {
+				"from": 931600,
+				"to": 933480
+			},
+			"text": " tenement consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,480",
+				"to": "00:15:38,080"
+			},
+			"offsets": {
+				"from": 933480,
+				"to": 938080
+			},
+			"text": " It will be fully web three compatible, so you can use truffle, meta-mass, solidity, all"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,080",
+				"to": "00:15:44,040"
+			},
+			"offsets": {
+				"from": 938080,
+				"to": 944040
+			},
+			"text": " your existing tooling, change a drop-down slider on meta-mass, connect to Ethermint instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,040",
+				"to": "00:15:48,160"
+			},
+			"offsets": {
+				"from": 944040,
+				"to": 948160
+			},
+			"text": " And it will have IBC connections to the Cosmos hub and to future zones, which will inhabit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,160",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 948160,
+				"to": 952000
+			},
+			"text": " the Cosmos network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:55,640"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 955640
+			},
+			"text": " The EVM module for SDK zones provides different trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,640",
+				"to": "00:16:00,760"
+			},
+			"offsets": {
+				"from": 955640,
+				"to": 960760
+			},
+			"text": " So in this case, you could elect to deploy a Cosmos chain, which includes some of our"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,760",
+				"to": "00:16:05,640"
+			},
+			"offsets": {
+				"from": 960760,
+				"to": 965640
+			},
+			"text": " base modules and some modules of your own, and also an EVM module."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,640",
+				"to": "00:16:08,400"
+			},
+			"offsets": {
+				"from": 965640,
+				"to": 968400
+			},
+			"text": " You could even add our web three interface if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,400",
+				"to": "00:16:12,200"
+			},
+			"offsets": {
+				"from": 968400,
+				"to": 972200
+			},
+			"text": " This means you can utilize existing solidity contracts as part of the logic on your new"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,200",
+				"to": "00:16:14,560"
+			},
+			"offsets": {
+				"from": 972200,
+				"to": 974560
+			},
+			"text": " application-specific blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,560",
+				"to": "00:16:17,880"
+			},
+			"offsets": {
+				"from": 974560,
+				"to": 977880
+			},
+			"text": " And it means that if you're trying to port an application which was previously targeted"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,880",
+				"to": "00:16:23,120"
+			},
+			"offsets": {
+				"from": 977880,
+				"to": 983120
+			},
+			"text": " towards the EVM to an application-specific blockchain, you can do it gradually."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,120",
+				"to": "00:16:28,240"
+			},
+			"offsets": {
+				"from": 983120,
+				"to": 988240
+			},
+			"text": " You can start out with your solidity code, perhaps, deployed to an EVM module, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,240",
+				"to": "00:16:32,600"
+			},
+			"offsets": {
+				"from": 988240,
+				"to": 992600
+			},
+			"text": " can replace the performance-critical parts of that code one at a time out with native"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,600",
+				"to": "00:16:35,600"
+			},
+			"offsets": {
+				"from": 992600,
+				"to": 995600
+			},
+			"text": " code, maybe all the way, maybe not."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,600",
+				"to": "00:16:38,920"
+			},
+			"offsets": {
+				"from": 995600,
+				"to": 998920
+			},
+			"text": " But we come to a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,920",
+				"to": "00:16:40,240"
+			},
+			"offsets": {
+				"from": 998920,
+				"to": 1000240
+			},
+			"text": " What if we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,240",
+				"to": "00:16:45,320"
+			},
+			"offsets": {
+				"from": 1000240,
+				"to": 1005320
+			},
+			"text": " You launch a new application-specific blockchain, but now your users are split or your potential"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,320",
+				"to": "00:16:46,320"
+			},
+			"offsets": {
+				"from": 1005320,
+				"to": 1006320
+			},
+			"text": " users are split."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,320",
+				"to": "00:16:47,320"
+			},
+			"offsets": {
+				"from": 1006320,
+				"to": 1007320
+			},
+			"text": " Some people are on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,320",
+				"to": "00:16:52,200"
+			},
+			"offsets": {
+				"from": 1007320,
+				"to": 1012200
+			},
+			"text": " They have state on Ethereum tokens, crypto collectibles, and some people want to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,200",
+				"to": "00:16:54,240"
+			},
+			"offsets": {
+				"from": 1012200,
+				"to": 1014240
+			},
+			"text": " using the EVM chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,240",
+				"to": "00:16:57,320"
+			},
+			"offsets": {
+				"from": 1014240,
+				"to": 1017320
+			},
+			"text": " We need a way to connect them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,320",
+				"to": "00:17:03,080"
+			},
+			"offsets": {
+				"from": 1017320,
+				"to": 1023080
+			},
+			"text": " We need a way to transfer state and assets in a two-way bridge where it's possible both"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,080",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1023080,
+				"to": 1028080
+			},
+			"text": " to deposit, if you will, from Ethereum onto Ethermint or onto a sovereign zone with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:13,360"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1033360
+			},
+			"text": " EVM module and to withdraw from the sovereign zone back to the Ethereum main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,360",
+				"to": "00:17:17,600"
+			},
+			"offsets": {
+				"from": 1033360,
+				"to": 1037600
+			},
+			"text": " Then you can select which parts of your logic are most improved by the new features of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,600",
+				"to": "00:17:22,320"
+			},
+			"offsets": {
+				"from": 1037600,
+				"to": 1042320
+			},
+			"text": " Ten Dement and the SDK and put those on Ethermint or put those on the sovereign chain and allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,320",
+				"to": "00:17:28,320"
+			},
+			"offsets": {
+				"from": 1042320,
+				"to": 1048320
+			},
+			"text": " your users to retain assets or wallet balances, at least for a little while, on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,320",
+				"to": "00:17:29,880"
+			},
+			"offsets": {
+				"from": 1048320,
+				"to": 1049880
+			},
+			"text": " How do we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,880",
+				"to": "00:17:34,760"
+			},
+			"offsets": {
+				"from": 1049880,
+				"to": 1054760
+			},
+			"text": " We've developed at Cosmos a technology called Inter-Blockchain Communication which allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,760",
+				"to": "00:17:37,480"
+			},
+			"offsets": {
+				"from": 1054760,
+				"to": 1057480
+			},
+			"text": " for this kind of generic two-way bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,480",
+				"to": "00:17:42,560"
+			},
+			"offsets": {
+				"from": 1057480,
+				"to": 1062560
+			},
+			"text": " In order to bridge Ethermint to Ethereum, we need two separate IBC connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,560",
+				"to": "00:17:46,840"
+			},
+			"offsets": {
+				"from": 1062560,
+				"to": 1066840
+			},
+			"text": " We need one IBC connection between Ethermint and the Cosmos Hub, which is a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,840",
+				"to": "00:17:48,720"
+			},
+			"offsets": {
+				"from": 1066840,
+				"to": 1068720
+			},
+			"text": " that we're launching soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,720",
+				"to": "00:17:52,520"
+			},
+			"offsets": {
+				"from": 1068720,
+				"to": 1072520
+			},
+			"text": " We need another IBC connection between the Cosmos Hub and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,520",
+				"to": "00:17:55,800"
+			},
+			"offsets": {
+				"from": 1072520,
+				"to": 1075800
+			},
+			"text": " Then tokens can flow through those two connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,800",
+				"to": "00:17:58,720"
+			},
+			"offsets": {
+				"from": 1075800,
+				"to": 1078720
+			},
+			"text": " Someone can deposit from Ethereum some Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,720",
+				"to": "00:18:02,920"
+			},
+			"offsets": {
+				"from": 1078720,
+				"to": 1082920
+			},
+			"text": " If they will head over the IBC connection to the Cosmos Hub and then it will be bounced"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,920",
+				"to": "00:18:07,400"
+			},
+			"offsets": {
+				"from": 1082920,
+				"to": 1087400
+			},
+			"text": " on from the Cosmos Hub to Ethermint where it can be used in smart contracts operating"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,400",
+				"to": "00:18:12,280"
+			},
+			"offsets": {
+				"from": 1087400,
+				"to": 1092280
+			},
+			"text": " on the EVM module on Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,280",
+				"to": "00:18:15,200"
+			},
+			"offsets": {
+				"from": 1092280,
+				"to": 1095200
+			},
+			"text": " What does this IBC bridge allow for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,200",
+				"to": "00:18:17,040"
+			},
+			"offsets": {
+				"from": 1095200,
+				"to": 1097040
+			},
+			"text": " The answer is pretty much anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,040",
+				"to": "00:18:22,760"
+			},
+			"offsets": {
+				"from": 1097040,
+				"to": 1102760
+			},
+			"text": " IBC is payload agnostic, so it will take some byte string from one chain to another or from"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,760",
+				"to": "00:18:26,400"
+			},
+			"offsets": {
+				"from": 1102760,
+				"to": 1106400
+			},
+			"text": " two across two bridges from Ethereum to Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,400",
+				"to": "00:18:32,400"
+			},
+			"offsets": {
+				"from": 1106400,
+				"to": 1112400
+			},
+			"text": " Then IBC modules on Ethereum and on Ethermint will expose this primitive to contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,400",
+				"to": "00:18:36,800"
+			},
+			"offsets": {
+				"from": 1112400,
+				"to": 1116800
+			},
+			"text": " You can write contracts which transfer tokens, which transfer assets, or which do much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,800",
+				"to": "00:18:41,480"
+			},
+			"offsets": {
+				"from": 1116800,
+				"to": 1121480
+			},
+			"text": " complicated things like execute cross-chain dependent smart contract logic or move code"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,480",
+				"to": "00:18:44,360"
+			},
+			"offsets": {
+				"from": 1121480,
+				"to": 1124360
+			},
+			"text": " between chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,360",
+				"to": "00:18:49,080"
+			},
+			"offsets": {
+				"from": 1124360,
+				"to": 1129080
+			},
+			"text": " Hopefully this will allow DAPs to put parts of their logic that are most fee sensitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,080",
+				"to": "00:18:56,960"
+			},
+			"offsets": {
+				"from": 1129080,
+				"to": 1136960
+			},
+			"text": " or most time sensitive in execution speed on Ethermint and leave some parts on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,960",
+				"to": "00:19:00,480"
+			},
+			"offsets": {
+				"from": 1136960,
+				"to": 1140480
+			},
+			"text": " For existing DAPs, we think, like I said, this is super compelling."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,480",
+				"to": "00:19:04,560"
+			},
+			"offsets": {
+				"from": 1140480,
+				"to": 1144560
+			},
+			"text": " You can move parts of your contract logic over time when you need to execute an expensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,560",
+				"to": "00:19:09,640"
+			},
+			"offsets": {
+				"from": 1144560,
+				"to": 1149640
+			},
+			"text": " transaction, you shift over to Ethermint, and the UX for users can be pretty seamless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,640",
+				"to": "00:19:14,040"
+			},
+			"offsets": {
+				"from": 1149640,
+				"to": 1154040
+			},
+			"text": " abstracted over in all the Web3 tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,040",
+				"to": "00:19:21,440"
+			},
+			"offsets": {
+				"from": 1154040,
+				"to": 1161440
+			},
+			"text": " A particular example would be putting a DEX, a decentralized exchange protocol like Xerox"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,440",
+				"to": "00:19:24,440"
+			},
+			"offsets": {
+				"from": 1161440,
+				"to": 1164440
+			},
+			"text": " or Wyvern to an Ethermint zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,440",
+				"to": "00:19:29,880"
+			},
+			"offsets": {
+				"from": 1164440,
+				"to": 1169880
+			},
+			"text": " You could copy the protocol contracts onto Ethermint, deploy them to the EVM module,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,880",
+				"to": "00:19:36,120"
+			},
+			"offsets": {
+				"from": 1169880,
+				"to": 1176120
+			},
+			"text": " get them running, then allow users to deposit tokens over the IBC bridge or even non-fungibles"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,120",
+				"to": "00:19:38,840"
+			},
+			"offsets": {
+				"from": 1176120,
+				"to": 1178840
+			},
+			"text": " from Ethereum to Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,840",
+				"to": "00:19:42,200"
+			},
+			"offsets": {
+				"from": 1178840,
+				"to": 1182200
+			},
+			"text": " Once they're deposited to Ethermint, they can be used and traded in the stacks and kept"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,200",
+				"to": "00:19:47,200"
+			},
+			"offsets": {
+				"from": 1182200,
+				"to": 1187200
+			},
+			"text": " there indefinitely, if you like, and if users want or want to have the option to withdraw"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,200",
+				"to": "00:19:53,880"
+			},
+			"offsets": {
+				"from": 1187200,
+				"to": 1193880
+			},
+			"text": " back to the Ethereum main chain, they can do so with no permission on your part."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,880",
+				"to": "00:19:58,920"
+			},
+			"offsets": {
+				"from": 1193880,
+				"to": 1198920
+			},
+			"text": " You could also implement a DEX as a sovereign zone using the EVM module with the same initial"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,920",
+				"to": "00:20:05,720"
+			},
+			"offsets": {
+				"from": 1198920,
+				"to": 1205720
+			},
+			"text": " starting procedure of porting the contracts from Solidity and deploying them onto the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,720",
+				"to": "00:20:09,120"
+			},
+			"offsets": {
+				"from": 1205720,
+				"to": 1209120
+			},
+			"text": " EVM module on the sovereign zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,120",
+				"to": "00:20:11,800"
+			},
+			"offsets": {
+				"from": 1209120,
+				"to": 1211800
+			},
+			"text": " But then you could add some improvements."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,800",
+				"to": "00:20:15,080"
+			},
+			"offsets": {
+				"from": 1211800,
+				"to": 1215080
+			},
+			"text": " First of all, you would have no competition for block space."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,080",
+				"to": "00:20:19,160"
+			},
+			"offsets": {
+				"from": 1215080,
+				"to": 1219160
+			},
+			"text": " So if you run a sovereign chain for just the DEX, only your DEX's transactions would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,160",
+				"to": "00:20:20,160"
+			},
+			"offsets": {
+				"from": 1219160,
+				"to": 1220160
+			},
+			"text": " settled there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,160",
+				"to": "00:20:25,680"
+			},
+			"offsets": {
+				"from": 1220160,
+				"to": 1225680
+			},
+			"text": " You could prevent anyone else, any crypto kitties hit of the month from crowding out your block"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,680",
+				"to": "00:20:29,400"
+			},
+			"offsets": {
+				"from": 1225680,
+				"to": 1229400
+			},
+			"text": " space and making it expensive for your users to trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,400",
+				"to": "00:20:34,480"
+			},
+			"offsets": {
+				"from": 1229400,
+				"to": 1234480
+			},
+			"text": " You could also start porting parts of the DEX protocol, probably trade settlement, execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,480",
+				"to": "00:20:40,760"
+			},
+			"offsets": {
+				"from": 1234480,
+				"to": 1240760
+			},
+			"text": " super gas expensive parts, to native code as SDK modules, which would make it much cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,760",
+				"to": "00:20:42,960"
+			},
+			"offsets": {
+				"from": 1240760,
+				"to": 1242960
+			},
+			"text": " And you could change more complex things."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,960",
+				"to": "00:20:46,640"
+			},
+			"offsets": {
+				"from": 1242960,
+				"to": 1246640
+			},
+			"text": " You could alter staking mechanics, maybe add new slashing conditions to prevent front"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,640",
+				"to": "00:20:51,680"
+			},
+			"offsets": {
+				"from": 1246640,
+				"to": 1251680
+			},
+			"text": " running or implement all to the state machine, implement threshold decryption so the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,680",
+				"to": "00:20:56,040"
+			},
+			"offsets": {
+				"from": 1251680,
+				"to": 1256040
+			},
+			"text": " are encrypted when they're submitted to the blockchain and decrypted later so no one can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,040",
+				"to": "00:20:57,040"
+			},
+			"offsets": {
+				"from": 1256040,
+				"to": 1257040
+			},
+			"text": " front run on the DEX."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,040",
+				"to": "00:21:01,240"
+			},
+			"offsets": {
+				"from": 1257040,
+				"to": 1261240
+			},
+			"text": " All of this is possible if you have a sovereign zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,240",
+				"to": "00:21:04,040"
+			},
+			"offsets": {
+				"from": 1261240,
+				"to": 1264040
+			},
+			"text": " So what's the state of all of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,040",
+				"to": "00:21:05,240"
+			},
+			"offsets": {
+				"from": 1264040,
+				"to": 1265240
+			},
+			"text": " Ethermint is not vaporware."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,240",
+				"to": "00:21:07,240"
+			},
+			"offsets": {
+				"from": 1265240,
+				"to": 1267240
+			},
+			"text": " You can find it on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,240",
+				"to": "00:21:11,320"
+			},
+			"offsets": {
+				"from": 1267240,
+				"to": 1271320
+			},
+			"text": " Ethermint is progressing exceptionally quickly, worked on by Bez, who's sitting in the audience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,320",
+				"to": "00:21:13,920"
+			},
+			"offsets": {
+				"from": 1271320,
+				"to": 1273920
+			},
+			"text": " and by Alexei, who will be giving a talk tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,920",
+				"to": "00:21:19,760"
+			},
+			"offsets": {
+				"from": 1273920,
+				"to": 1279760
+			},
+			"text": " We're anticipating a developer preview release, which will have a functional, or 99.9% functional,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,760",
+				"to": "00:21:25,040"
+			},
+			"offsets": {
+				"from": 1279760,
+				"to": 1285040
+			},
+			"text": " Web3 API, by the end of Q4 this year, and which will allow you to deploy solidity contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,040",
+				"to": "00:21:28,840"
+			},
+			"offsets": {
+				"from": 1285040,
+				"to": 1288840
+			},
+			"text": " to the EBM module and play around with Ethermint."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,840",
+				"to": "00:21:30,240"
+			},
+			"offsets": {
+				"from": 1288840,
+				"to": 1290240
+			},
+			"text": " And we encourage you to check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,240",
+				"to": "00:21:31,240"
+			},
+			"offsets": {
+				"from": 1290240,
+				"to": 1291240
+			},
+			"text": " Send us feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,240",
+				"to": "00:21:32,240"
+			},
+			"offsets": {
+				"from": 1291240,
+				"to": 1292240
+			},
+			"text": " Tell us what you would like."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,240",
+				"to": "00:21:38,280"
+			},
+			"offsets": {
+				"from": 1292240,
+				"to": 1298280
+			},
+			"text": " Tell us what the challenges facing this kind of application deployment process are."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,280",
+				"to": "00:21:41,160"
+			},
+			"offsets": {
+				"from": 1298280,
+				"to": 1301160
+			},
+			"text": " There are, of course, many questions we haven't answered yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,160",
+				"to": "00:21:45,400"
+			},
+			"offsets": {
+				"from": 1301160,
+				"to": 1305400
+			},
+			"text": " We're not quite sure how contract balances ought to work in proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,400",
+				"to": "00:21:49,160"
+			},
+			"offsets": {
+				"from": 1305400,
+				"to": 1309160
+			},
+			"text": " There are lots of contracts, say, on the Ethereum main chain right now, which hold a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,160",
+				"to": "00:21:50,640"
+			},
+			"offsets": {
+				"from": 1309160,
+				"to": 1310640
+			},
+			"text": " lot of Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,640",
+				"to": "00:21:52,440"
+			},
+			"offsets": {
+				"from": 1310640,
+				"to": 1312440
+			},
+			"text": " Should they be able to delegate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,440",
+				"to": "00:21:53,800"
+			},
+			"offsets": {
+				"from": 1312440,
+				"to": 1313800
+			},
+			"text": " What happens if they get slashed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,800",
+				"to": "00:21:57,440"
+			},
+			"offsets": {
+				"from": 1313800,
+				"to": 1317440
+			},
+			"text": " What happens if you deposit your tokens to a DEX contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,440",
+				"to": "00:21:59,920"
+			},
+			"offsets": {
+				"from": 1317440,
+				"to": 1319920
+			},
+			"text": " That DEX contract delegates, then they get slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,920",
+				"to": "00:22:00,920"
+			},
+			"offsets": {
+				"from": 1319920,
+				"to": 1320920
+			},
+			"text": " Are you responsible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,920",
+				"to": "00:22:03,040"
+			},
+			"offsets": {
+				"from": 1320920,
+				"to": 1323040
+			},
+			"text": " We want to figure that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,040",
+				"to": "00:22:08,040"
+			},
+			"offsets": {
+				"from": 1323040,
+				"to": 1328040
+			},
+			"text": " We haven't decided what the exact token models for fee-only tokens, since we have delegated"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,040",
+				"to": "00:22:09,800"
+			},
+			"offsets": {
+				"from": 1328040,
+				"to": 1329800
+			},
+			"text": " security, ought to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,800",
+				"to": "00:22:15,280"
+			},
+			"offsets": {
+				"from": 1329800,
+				"to": 1335280
+			},
+			"text": " Will they be the same or similar as proof of work rewards with the declining exponential?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,280",
+				"to": "00:22:20,360"
+			},
+			"offsets": {
+				"from": 1335280,
+				"to": 1340360
+			},
+			"text": " Maybe they will be flat 500 tokens per hour until the end of all time."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,360",
+				"to": "00:22:22,800"
+			},
+			"offsets": {
+				"from": 1340360,
+				"to": 1342800
+			},
+			"text": " Lots of opportunities to experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,800",
+				"to": "00:22:27,840"
+			},
+			"offsets": {
+				"from": 1342800,
+				"to": 1347840
+			},
+			"text": " Of course, I just went this morning to the Ethereum 2.0 talk, which was super interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,840",
+				"to": "00:22:30,040"
+			},
+			"offsets": {
+				"from": 1347840,
+				"to": 1350040
+			},
+			"text": " And I haven't had a chance to update this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,040",
+				"to": "00:22:32,960"
+			},
+			"offsets": {
+				"from": 1350040,
+				"to": 1352960
+			},
+			"text": " But it sounds like they're now switching to a version of proof of stake, which will provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,960",
+				"to": "00:22:37,840"
+			},
+			"offsets": {
+				"from": 1352960,
+				"to": 1357840
+			},
+			"text": " very fast finality, which we're thrilled about, because it will allow even faster IVC"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,840",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1357840,
+				"to": 1363000
+			},
+			"text": " connections from Ethereum 2.0 to Ethermint to Cosmos to any other chains, which implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:46,880"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1366880
+			},
+			"text": " this kind of interchange protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,880",
+				"to": "00:22:54,880"
+			},
+			"offsets": {
+				"from": 1366880,
+				"to": 1374880
+			},
+			"text": " So first, I will, my pitch or ask, is that you head on over to cosmos.net/devcon4, fill"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,880",
+				"to": "00:22:56,280"
+			},
+			"offsets": {
+				"from": 1374880,
+				"to": 1376280
+			},
+			"text": " out the survey."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,280",
+				"to": "00:22:57,960"
+			},
+			"offsets": {
+				"from": 1376280,
+				"to": 1377960
+			},
+			"text": " Maybe mention that you came to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,960",
+				"to": "00:23:03,360"
+			},
+			"offsets": {
+				"from": 1377960,
+				"to": 1383360
+			},
+			"text": " Ask us any questions, and that you head on over to our booth for a chance to win a sweet"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,360",
+				"to": "00:23:04,680"
+			},
+			"offsets": {
+				"from": 1383360,
+				"to": 1384680
+			},
+			"text": " cosmo study."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,680",
+				"to": "00:23:08,880"
+			},
+			"offsets": {
+				"from": 1384680,
+				"to": 1388880
+			},
+			"text": " But even more importantly, ask us questions about Ethermint, how you can use it, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,880",
+				"to": "00:23:11,280"
+			},
+			"offsets": {
+				"from": 1388880,
+				"to": 1391280
+			},
+			"text": " we're up to, how we can help."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,280",
+				"to": "00:23:12,280"
+			},
+			"offsets": {
+				"from": 1391280,
+				"to": 1392280
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,280",
+				"to": "00:23:13,280"
+			},
+			"offsets": {
+				"from": 1392280,
+				"to": 1393280
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,280",
+				"to": "00:23:15,280"
+			},
+			"offsets": {
+				"from": 1393280,
+				"to": 1395280
+			},
+			"text": " We have five minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,280",
+				"to": "00:23:24,640"
+			},
+			"offsets": {
+				"from": 1395280,
+				"to": 1404640
+			},
+			"text": " When is Ethermint going live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,640",
+				"to": "00:23:27,880"
+			},
+			"offsets": {
+				"from": 1404640,
+				"to": 1407880
+			},
+			"text": " When is Ethermint going live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,880",
+				"to": "00:23:28,880"
+			},
+			"offsets": {
+				"from": 1407880,
+				"to": 1408880
+			},
+			"text": " Excellent question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,880",
+				"to": "00:23:34,040"
+			},
+			"offsets": {
+				"from": 1408880,
+				"to": 1414040
+			},
+			"text": " So, we anticipate developer preview release at the end of Q4."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,040",
+				"to": "00:23:38,280"
+			},
+			"offsets": {
+				"from": 1414040,
+				"to": 1418280
+			},
+			"text": " And then the actual deployment of Ethermint will be up to Cosmos subgovernance."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,280",
+				"to": "00:23:44,040"
+			},
+			"offsets": {
+				"from": 1418280,
+				"to": 1424040
+			},
+			"text": " So that might be you, if you're voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,040",
+				"to": "00:23:51,760"
+			},
+			"offsets": {
+				"from": 1424040,
+				"to": 1431760
+			},
+			"text": " Was the status, or was the state of the development of the bridge between Cosmos Hub and the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,760",
+				"to": "00:23:53,240"
+			},
+			"offsets": {
+				"from": 1431760,
+				"to": 1433240
+			},
+			"text": " main chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,240",
+				"to": "00:23:55,440"
+			},
+			"offsets": {
+				"from": 1433240,
+				"to": 1435440
+			},
+			"text": " Really specified partially implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,440",
+				"to": "00:24:00,120"
+			},
+			"offsets": {
+				"from": 1435440,
+				"to": 1440120
+			},
+			"text": " You can find a spec on the Cosmos SDK GitHub repository, and you can also find a prototype"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,120",
+				"to": "00:24:02,920"
+			},
+			"offsets": {
+				"from": 1440120,
+				"to": 1442920
+			},
+			"text": " implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,920",
+				"to": "00:24:07,080"
+			},
+			"offsets": {
+				"from": 1442920,
+				"to": 1447080
+			},
+			"text": " Are you planning to support inter-blockchain communication with chains that are not part"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,080",
+				"to": "00:24:08,080"
+			},
+			"offsets": {
+				"from": 1447080,
+				"to": 1448080
+			},
+			"text": " of Cosmos?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,080",
+				"to": "00:24:09,720"
+			},
+			"offsets": {
+				"from": 1448080,
+				"to": 1449720
+			},
+			"text": " Yes, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,720",
+				"to": "00:24:14,960"
+			},
+			"offsets": {
+				"from": 1449720,
+				"to": 1454960
+			},
+			"text": " The spec for our IBC is already open, open source, and we encourage anyone to contribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,960",
+				"to": "00:24:18,880"
+			},
+			"offsets": {
+				"from": 1454960,
+				"to": 1458880
+			},
+			"text": " And we absolutely encourage people who are not Cosmos chains, not using Tundra, but not"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,880",
+				"to": "00:24:21,720"
+			},
+			"offsets": {
+				"from": 1458880,
+				"to": 1461720
+			},
+			"text": " using SDK to implement that protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,720",
+				"to": "00:24:24,040"
+			},
+			"offsets": {
+				"from": 1461720,
+				"to": 1464040
+			},
+			"text": " How portable is your EVM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,040",
+				"to": "00:24:29,880"
+			},
+			"offsets": {
+				"from": 1464040,
+				"to": 1469880
+			},
+			"text": " Can I use it from, for example, a hyperledger project or something else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,880",
+				"to": "00:24:31,560"
+			},
+			"offsets": {
+				"from": 1469880,
+				"to": 1471560
+			},
+			"text": " It will depend a little on the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,560",
+				"to": "00:24:33,960"
+			},
+			"offsets": {
+				"from": 1471560,
+				"to": 1473960
+			},
+			"text": " If the project doesn't go, it will be super easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,960",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1473960,
+				"to": 1478000
+			},
+			"text": " If the project is not a go, it will be slightly harder, but still possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:43,240"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1483240
+			},
+			"text": " If you deploy EVM module, it's the idea that you would restrict what contracts can be deployed"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,240",
+				"to": "00:24:49,400"
+			},
+			"offsets": {
+				"from": 1483240,
+				"to": 1489400
+			},
+			"text": " into that blockchain, essentially, so you're not competing for resources with other contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,400",
+				"to": "00:24:50,800"
+			},
+			"offsets": {
+				"from": 1489400,
+				"to": 1490800
+			},
+			"text": " that your users deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,800",
+				"to": "00:24:51,800"
+			},
+			"offsets": {
+				"from": 1490800,
+				"to": 1491800
+			},
+			"text": " Yes, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,800",
+				"to": "00:24:55,840"
+			},
+			"offsets": {
+				"from": 1491800,
+				"to": 1495840
+			},
+			"text": " So you could deploy an EVM module and not allow contract deployments at all after you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,840",
+				"to": "00:24:59,200"
+			},
+			"offsets": {
+				"from": 1495840,
+				"to": 1499200
+			},
+			"text": " launched the blockchain, which might be what you want to do in a sovereign zone, or you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,200",
+				"to": "00:25:02,560"
+			},
+			"offsets": {
+				"from": 1499200,
+				"to": 1502560
+			},
+			"text": " could allow limited contract deployment to require that it be approved by the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,560",
+				"to": "00:25:04,560"
+			},
+			"offsets": {
+				"from": 1502560,
+				"to": 1504560
+			},
+			"text": " set or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,560",
+				"to": "00:25:05,560"
+			},
+			"offsets": {
+				"from": 1504560,
+				"to": 1505560
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,560",
+				"to": "00:25:10,920"
+			},
+			"offsets": {
+				"from": 1505560,
+				"to": 1510920
+			},
+			"text": " Sorry if I missed this, but can you memorialize the interment state on the root chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,920",
+				"to": "00:25:15,400"
+			},
+			"offsets": {
+				"from": 1510920,
+				"to": 1515400
+			},
+			"text": " So for example, you could use the sole EVM to invalidate state transitions on the root"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,400",
+				"to": "00:25:16,400"
+			},
+			"offsets": {
+				"from": 1515400,
+				"to": 1516400
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,400",
+				"to": "00:25:18,320"
+			},
+			"offsets": {
+				"from": 1516400,
+				"to": 1518320
+			},
+			"text": " Is that possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,320",
+				"to": "00:25:21,320"
+			},
+			"offsets": {
+				"from": 1518320,
+				"to": 1521320
+			},
+			"text": " That is an extremely interesting question."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,320",
+				"to": "00:25:22,960"
+			},
+			"offsets": {
+				"from": 1521320,
+				"to": 1522960
+			},
+			"text": " In principle, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,960",
+				"to": "00:25:29,600"
+			},
+			"offsets": {
+				"from": 1522960,
+				"to": 1529600
+			},
+			"text": " The Cosmos IBC model doesn't have that, doesn't need state fraud proofs to work necessarily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,600",
+				"to": "00:25:32,640"
+			},
+			"offsets": {
+				"from": 1529600,
+				"to": 1532640
+			},
+			"text": " but if you wanted to implement something that did, or you just wanted them anyway for extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,640",
+				"to": "00:25:35,160"
+			},
+			"offsets": {
+				"from": 1532640,
+				"to": 1535160
+			},
+			"text": " security, I think that wouldn't be too hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,160",
+				"to": "00:25:40,200"
+			},
+			"offsets": {
+				"from": 1535160,
+				"to": 1540200
+			},
+			"text": " The EVM is spec compliant, so if you have a spec compliant interpreter on insulivity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,200",
+				"to": "00:25:42,480"
+			},
+			"offsets": {
+				"from": 1540200,
+				"to": 1542480
+			},
+			"text": " on the Ethereum main chain to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,480",
+				"to": "00:25:43,480"
+			},
+			"offsets": {
+				"from": 1542480,
+				"to": 1543480
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,480",
+				"to": "00:25:50,480"
+			},
+			"offsets": {
+				"from": 1543480,
+				"to": 1550480
+			},
+			"text": " If I want to make a transaction between two blockchains built with Cosmos SDK, do I need"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,480",
+				"to": "00:25:51,480"
+			},
+			"offsets": {
+				"from": 1550480,
+				"to": 1551480
+			},
+			"text": " the atoms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,480",
+				"to": "00:25:52,480"
+			},
+			"offsets": {
+				"from": 1551480,
+				"to": 1552480
+			},
+			"text": " Oh, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,480",
+				"to": "00:25:53,480"
+			},
+			"offsets": {
+				"from": 1552480,
+				"to": 1553480
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,480",
+				"to": "00:25:56,400"
+			},
+			"offsets": {
+				"from": 1553480,
+				"to": 1556400
+			},
+			"text": " I alluded to it and then forgot to answer that question, so thank you for asking it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,400",
+				"to": "00:25:59,400"
+			},
+			"offsets": {
+				"from": 1556400,
+				"to": 1559400
+			},
+			"text": " That's one of the reasons we think the photon hard spoon is super compelling, because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,400",
+				"to": "00:26:03,680"
+			},
+			"offsets": {
+				"from": 1559400,
+				"to": 1563680
+			},
+			"text": " will make that unnecessary, because if photons are accepted as a fee token on the hub and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,680",
+				"to": "00:26:09,400"
+			},
+			"offsets": {
+				"from": 1563680,
+				"to": 1569400
+			},
+			"text": " on Ethermint, then users can transfer assets over both of those IBC bridges without needing"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,400",
+				"to": "00:26:11,240"
+			},
+			"offsets": {
+				"from": 1569400,
+				"to": 1571240
+			},
+			"text": " to acquire any new tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,240",
+				"to": "00:26:12,240"
+			},
+			"offsets": {
+				"from": 1571240,
+				"to": 1572240
+			},
+			"text": " Last question."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,240",
+				"to": "00:26:17,400"
+			},
+			"offsets": {
+				"from": 1572240,
+				"to": 1577400
+			},
+			"text": " I'm curious what the user experience is like when you're moving across these chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,400",
+				"to": "00:26:19,040"
+			},
+			"offsets": {
+				"from": 1577400,
+				"to": 1579040
+			},
+			"text": " We hope that it will be seamless."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,040",
+				"to": "00:26:25,080"
+			},
+			"offsets": {
+				"from": 1579040,
+				"to": 1585080
+			},
+			"text": " It's not going to be seamless at first, but it's possible in principle to abstract over"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,080",
+				"to": "00:26:30,520"
+			},
+			"offsets": {
+				"from": 1585080,
+				"to": 1590520
+			},
+			"text": " most of the transactions, and because IBC already provides this cross-chain state verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,520",
+				"to": "00:26:33,960"
+			},
+			"offsets": {
+				"from": 1590520,
+				"to": 1593960
+			},
+			"text": " you can basically pay fees once and cover all of the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,960",
+				"to": "00:26:34,960"
+			},
+			"offsets": {
+				"from": 1593960,
+				"to": 1594960
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,960",
+				"to": "00:26:35,960"
+			},
+			"offsets": {
+				"from": 1594960,
+				"to": 1595960
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,960",
+				"to": "00:26:37,960"
+			},
+			"offsets": {
+				"from": 1595960,
+				"to": 1597960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,960",
+				"to": "00:26:38,960"
+			},
+			"offsets": {
+				"from": 1597960,
+				"to": 1598960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,960",
+				"to": "00:26:39,960"
+			},
+			"offsets": {
+				"from": 1598960,
+				"to": 1599960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,960",
+				"to": "00:26:40,960"
+			},
+			"offsets": {
+				"from": 1599960,
+				"to": 1600960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,960",
+				"to": "00:26:41,960"
+			},
+			"offsets": {
+				"from": 1600960,
+				"to": 1601960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,960",
+				"to": "00:26:42,960"
+			},
+			"offsets": {
+				"from": 1601960,
+				"to": 1602960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,960",
+				"to": "00:26:43,960"
+			},
+			"offsets": {
+				"from": 1602960,
+				"to": 1603960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,960",
+				"to": "00:26:44,960"
+			},
+			"offsets": {
+				"from": 1603960,
+				"to": 1604960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,960",
+				"to": "00:26:45,960"
+			},
+			"offsets": {
+				"from": 1604960,
+				"to": 1605960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,960",
+				"to": "00:26:46,960"
+			},
+			"offsets": {
+				"from": 1605960,
+				"to": 1606960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,960",
+				"to": "00:26:47,960"
+			},
+			"offsets": {
+				"from": 1606960,
+				"to": 1607960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,960",
+				"to": "00:26:48,960"
+			},
+			"offsets": {
+				"from": 1607960,
+				"to": 1608960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,960",
+				"to": "00:26:49,960"
+			},
+			"offsets": {
+				"from": 1608960,
+				"to": 1609960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,960",
+				"to": "00:26:50,960"
+			},
+			"offsets": {
+				"from": 1609960,
+				"to": 1610960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,960",
+				"to": "00:26:51,960"
+			},
+			"offsets": {
+				"from": 1610960,
+				"to": 1611960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,960",
+				"to": "00:26:52,960"
+			},
+			"offsets": {
+				"from": 1611960,
+				"to": 1612960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,960",
+				"to": "00:26:53,960"
+			},
+			"offsets": {
+				"from": 1612960,
+				"to": 1613960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,960",
+				"to": "00:26:54,960"
+			},
+			"offsets": {
+				"from": 1613960,
+				"to": 1614960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,960",
+				"to": "00:26:55,960"
+			},
+			"offsets": {
+				"from": 1614960,
+				"to": 1615960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,960",
+				"to": "00:26:56,960"
+			},
+			"offsets": {
+				"from": 1615960,
+				"to": 1616960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,960",
+				"to": "00:26:57,960"
+			},
+			"offsets": {
+				"from": 1616960,
+				"to": 1617960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,960",
+				"to": "00:26:58,960"
+			},
+			"offsets": {
+				"from": 1617960,
+				"to": 1618960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,960",
+				"to": "00:26:59,960"
+			},
+			"offsets": {
+				"from": 1618960,
+				"to": 1619960
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,960",
+				"to": "00:27:03,960"
+			},
+			"offsets": {
+				"from": 1619960,
+				"to": 1623960
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

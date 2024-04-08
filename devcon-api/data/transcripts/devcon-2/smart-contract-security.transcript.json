@@ -1,0 +1,2012 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 21000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23000
+			},
+			"text": " So, let's wait for a slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 28000
+			},
+			"text": " But yeah, first it's really nice to be here and I'm thankful to be invited to speak here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " So, why am I speaking about smart contract security?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 39000
+			},
+			"text": " Could be using a split ironic for them, but actually I worked for Ethereum since over two years now"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 43000
+			},
+			"text": " and actually my job was to prevent hard forks, so to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 49000
+			},
+			"text": " Because I was working on consensus tests and working on getting all the clients to think and wrote thousands of tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 55000
+			},
+			"text": " and would be so bold to say that I prevented a lot of hard forks in the sense of client consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 64000
+			},
+			"text": " And now through recent experiences, I learned the hard way how important smart conduct security is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 67000
+			},
+			"text": " and that's why I wanted to talk about it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 70000
+			},
+			"text": " See, so you know about the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 74000
+			},
+			"text": " I was mainly responsible for writing DAO smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 81000
+			},
+			"text": " So, on 17th June there was an attack robbing 3.5 million Ether out of this smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " by using the reentry exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 89000
+			},
+			"text": " We have heard about this before this conference, so I will not go into details how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 92000
+			},
+			"text": " But those were the lines of code in the DAO itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 101000
+			},
+			"text": " Basically there was this one function with 12 reward 4, which was vulnerable to this exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 104000
+			},
+			"text": " So, what can we learn from all of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 106000
+			},
+			"text": " There's a lot of things that happened yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 111000
+			},
+			"text": " I mean, I will repeat some of them of course, but give my personal perspective on some of those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " First of all, cap smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 122000
+			},
+			"text": " It's very early days and we lack experience, meaning we just need to learn some lessons"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " to know which kind of bugs we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131000
+			},
+			"text": " If you just look at the version numbers of the current software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 133000
+			},
+			"text": " you can get a feeling of how early it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 138000
+			},
+			"text": " Some Solidity actually hasn't been released yet as a 1.0 version."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141000
+			},
+			"text": " The front gen has been launched for about a year ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 143000
+			},
+			"text": " So, it's all very early days."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 149000
+			},
+			"text": " We have the number of operating decentralized applications also still very low."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153000
+			},
+			"text": " Rita Lick suggested in a blog post that for example right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 156000
+			},
+			"text": " a cap of about $10 million seems about, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 163000
+			},
+			"text": " It's an individual decision, but of course would have been nice if the DAO would have had such a cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " Of course, nobody did know that it would rise to such a size."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " So, next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 172000
+			},
+			"text": " Form a proof verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 173000
+			},
+			"text": " I will not go into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " We have heard about a lot of this yesterday, but yes, very important topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " I hope we make continuous progress on this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 182000
+			},
+			"text": " In-variant checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 187000
+			},
+			"text": " So, basically, you can see that your smart contract has certain invariants,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 191000
+			},
+			"text": " such as for the DAO, this would have been that the total supply is small"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 193000
+			},
+			"text": " and it's plus reward tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 199000
+			},
+			"text": " And then after every function, you can check if the invariants still hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 202000
+			},
+			"text": " It reduces of course the risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 206000
+			},
+			"text": " Then this is an interesting topic, centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " Of course, we want to build decentralized application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 210000
+			},
+			"text": " That's the main goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " And one of the weaknesses to say of the DAO was that it was really decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 218000
+			},
+			"text": " That we had no control, nobody had any control over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " And this was a problem in the end because nobody could save the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 228000
+			},
+			"text": " Only the community by doing a hard fork, which of course is a horrible option to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 232000
+			},
+			"text": " So, we need to go stepwise from centralization to decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 236000
+			},
+			"text": " If you think about Ethereum, we had Olympic test net, then we had the Francher test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " where we had those canaries, I had one of those keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 243000
+			},
+			"text": " There are basically two out of four key holders could more or less switch off the miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 247000
+			},
+			"text": " If they would listen to the canaries, we had have homestead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 251000
+			},
+			"text": " difficulty increase, which means we need to have a hard fork in about a year or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 256000
+			},
+			"text": " And there's only a couple of people able to code up the next version of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 259000
+			},
+			"text": " so it's also kind of centralized still."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 262000
+			},
+			"text": " And we will go step to step to more decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " For the DAO, there have been curators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " They have been given a lot of power except of the function split DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " because this was a function meant to, as it fails, they for malicious curators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " So, this is why I didn't have control over this function, couldn't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " There's all the other DAOs, Stitcho DAO, Mega DAO, and other DAOs in progress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 285000
+			},
+			"text": " which start centralized and will go into decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " Then the question is of course, who can control?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 290000
+			},
+			"text": " For a DAO, it was some token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 294000
+			},
+			"text": " It could be central-tested authorities, and there are more, but the slides don't show it up here right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 298000
+			},
+			"text": " But it could be something like community multi-sick, it could be something like a stake road"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 300000
+			},
+			"text": " that you build in something, a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 303000
+			},
+			"text": " when a certain amount of ether holders vote for it, stop something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " So there are certain ways of controlling this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 309000
+			},
+			"text": " But I think we need to go step by step, but also I think it's important"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 312000
+			},
+			"text": " that we really want to build decentralized application"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " and do not use the DAOs and excuse to only build centralized applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " Although it's good to start like this, I don't think it should end like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " We should move forward to full decentralization one day."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 329000
+			},
+			"text": " Okay, let's see if this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 332000
+			},
+			"text": " Establish security patterns, meaning learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 335000
+			},
+			"text": " We didn't know about the call stack depth attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 336000
+			},
+			"text": " Call stack depth attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 338000
+			},
+			"text": " We know about the block gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 340000
+			},
+			"text": " We don't have arbitrary links loops."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 342000
+			},
+			"text": " We know about re-enter exploit now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 352000
+			},
+			"text": " We know about that ether sent to a contract without any contract invocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " So even if you use this modifier payable, or you don't use it on any function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 360000
+			},
+			"text": " you try to avoid getting ether as a contract, you cannot avoid it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 364000
+			},
+			"text": " because you can use the suicide opcode to transfer ether to a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " without executing any code, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 374000
+			},
+			"text": " Specify the right amount of gas, then versus call, depending on what exactly you want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " You have to be careful with the block timestamp because it can be manipulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 384000
+			},
+			"text": " Trans-ex-origin versus message sender, for example, can be used for pishing attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 386000
+			},
+			"text": " and much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 389000
+			},
+			"text": " Actually, it's better the slides are not really working because there are links"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 391000
+			},
+			"text": " to the web site."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 393000
+			},
+			"text": " It's just very good resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " One is from the consensus website, best smart contractors, best practice of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 401000
+			},
+			"text": " or something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406000
+			},
+			"text": " You find on the consensus website, it's a really nice overview of all the things we need to learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 408000
+			},
+			"text": " and what we have learned up to now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " Also, the validity documentation has a section about security consideration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 415000
+			},
+			"text": " which is very good and very helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 418000
+			},
+			"text": " We should, as a community, learn and put all those things together"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " and can teach other developers what to look out for."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426000
+			},
+			"text": " Let's see if we can get to the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 431000
+			},
+			"text": " Yes, updateable contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 435000
+			},
+			"text": " The Dow had a possibility of updating the contracts through a road."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 441000
+			},
+			"text": " It did take two weeks debating time and Dow 1.1, so to say, was a work in progress,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 443000
+			},
+			"text": " but it was too late."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 449000
+			},
+			"text": " I would advise you when you write smart contracts to have an option to update them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 451000
+			},
+			"text": " The question is only who can update them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 453000
+			},
+			"text": " In the beginning, it can be you, of course, centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 458000
+			},
+			"text": " It can be the token holders if you have some in your application, depending on what you are building."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 461000
+			},
+			"text": " Again, it could be a multi-sick, maybe a community multi-sick."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 465000
+			},
+			"text": " There are different ways of doing this, but it's important to have at least this option"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 468000
+			},
+			"text": " of being able to update contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 470000
+			},
+			"text": " Time delays are also something important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 476000
+			},
+			"text": " When someone can restore Ether or take Ether out of a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 482000
+			},
+			"text": " if you have a time delay, this gives an option if you implement some authority to do something to act."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 488000
+			},
+			"text": " In case of the Dow, there was no such authority, and the least result was this awful hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 492000
+			},
+			"text": " Therefore, if you have time delays and this authority implemented,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 497000
+			},
+			"text": " then this can work nicely together to reduce the risk of your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 500000
+			},
+			"text": " Of course, minimal complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 505000
+			},
+			"text": " There are statistics out there which are saying there are 15 up to 50 bucks per thousand lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 510000
+			},
+			"text": " For a website, it's okay, you can fix it, but for a smart contract, it's really bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 516000
+			},
+			"text": " So, of course, we need a much, much more security for smart contracts than we need for normal stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 522000
+			},
+			"text": " So, this also means not everything needs decentralization and needs to be in a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 526000
+			},
+			"text": " Only put in what you really need to core elements of a decentralized application."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 530000
+			},
+			"text": " Everything else can be maybe in swarm, whisper, or even other techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 534000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 536000
+			},
+			"text": " And the other thing is to reuse trusted proven code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 538000
+			},
+			"text": " Can you also be dangerous?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 543000
+			},
+			"text": " For example, the standard token contract, which was also used in the Dow, which worked just nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:07,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 547000
+			},
+			"text": " You have the foundation modusic, which seems to hold up to now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 547000,
+				"to": 549000
+			},
+			"text": " So, it means also looks safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 554000
+			},
+			"text": " And maybe there will be even a Dow standard framework one day, just to reuseable, safe code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 559000
+			},
+			"text": " It's also common as a danger, because if someone finds a bug in this kind of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 561000
+			},
+			"text": " it will affect a lot of applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 563000
+			},
+			"text": " So, therefore, you also need to be careful with those things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 570000
+			},
+			"text": " And I think we as a community need to build trusted libraries which are refued by many of us for other developers to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " See?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 577000
+			},
+			"text": " If you can get to the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 578000
+			},
+			"text": " Better tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 580000
+			},
+			"text": " Yeah, for the about firm proof of education."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 582000
+			},
+			"text": " We need better compiler warnings."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 584000
+			},
+			"text": " I think this is all work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 586000
+			},
+			"text": " We need improved IDEs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 590000
+			},
+			"text": " We have seen remix yesterday, which looks really nice and promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 592000
+			},
+			"text": " We need trusted libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 595000
+			},
+			"text": " We did best practices literature, which is also work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 601000
+			},
+			"text": " And we also may need some centralization, which can be done by master keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 607000
+			},
+			"text": " Maybe we can do decentralized as K-patches or other things, which we can use in smart contracts for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 614000
+			},
+			"text": " as trusted source of information, who can update contracts or do certain things or stop a contract from working."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 621000
+			},
+			"text": " So, as a conclusion, I would say it is very early days, and we all need to be very, very careful."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 626000
+			},
+			"text": " But I think there is, of course, a lot of lessons to be learned from this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 631000
+			},
+			"text": " But being here the last couple of days got me really excited to see what came out of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 633000
+			},
+			"text": " We have a lot of security experts from academics."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " We have a lot of media attention, a lot of people looking at this, looking at the right things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 639000
+			},
+			"text": " developers being much more careful now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 643000
+			},
+			"text": " And it was also nice to see a lot of developers coming up to me and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 648000
+			},
+			"text": " \"You basically saved my project because I had the same bug in there, but I could fix it now.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 656000
+			},
+			"text": " And so, I think a lot of future applications, decentralized applications and smart contracts will avoid all of these issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " And we can really move into a prior future, although being careful in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " And it was really astonishing for me to see how this community is moving on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 671000
+			},
+			"text": " I think this was a really nice experience to talk to many of you last couple of days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 673000
+			},
+			"text": " and I also want to say a personal thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 675000
+			},
+			"text": " I mean, the last couple of months."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 679000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 685000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 695000
+			},
+			"text": " (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 698000
+			},
+			"text": " It can only really say thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " The last couple of months have been a person for me, my personal life, also as a company, horrible, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 709000
+			},
+			"text": " But it's only because of the people sitting here, because of the lot of the Ethereum community that I can stand here today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 711000
+			},
+			"text": " and give this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:53,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 713000
+			},
+			"text": " And I just want to say thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 713000,
+				"to": 715000
+			},
+			"text": " (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 716000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 717000
+			},
+			"text": " Great, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 723000
+			},
+			"text": " (Music)"
+		}
+	]
+}

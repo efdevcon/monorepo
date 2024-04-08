@@ -1,0 +1,3431 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:24,800"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 24800
+			},
+			"text": " My name is also Exec, as most people know me on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,800",
+				"to": "00:00:27,240"
+			},
+			"offsets": {
+				"from": 24800,
+				"to": 27240
+			},
+			"text": " So I'm going to talk about Mango, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,240",
+				"to": "00:00:29,440"
+			},
+			"offsets": {
+				"from": 27240,
+				"to": 29440
+			},
+			"text": " is making Git fully decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,440",
+				"to": "00:00:30,800"
+			},
+			"offsets": {
+				"from": 29440,
+				"to": 30800
+			},
+			"text": " And what does that means?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,800",
+				"to": "00:00:37,760"
+			},
+			"offsets": {
+				"from": 30800,
+				"to": 37760
+			},
+			"text": " It puts Git repositories onto Ethereum, swarm, and IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,760",
+				"to": "00:00:39,680"
+			},
+			"offsets": {
+				"from": 37760,
+				"to": 39680
+			},
+			"text": " And just a quick note about what Git is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,680",
+				"to": "00:00:42,360"
+			},
+			"offsets": {
+				"from": 39680,
+				"to": 42360
+			},
+			"text": " Git is a version control software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,360",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 42360,
+				"to": 46280
+			},
+			"text": " where most developers keep their source code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:48,040"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 48040
+			},
+			"text": " and they make changes to their source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,040",
+				"to": "00:00:51,880"
+			},
+			"offsets": {
+				"from": 48040,
+				"to": 51880
+			},
+			"text": " Other people can track these changes and contribute changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,880",
+				"to": "00:00:53,600"
+			},
+			"offsets": {
+				"from": 51880,
+				"to": 53600
+			},
+			"text": " So the first thing is about Git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,600",
+				"to": "00:00:56,520"
+			},
+			"offsets": {
+				"from": 53600,
+				"to": 56520
+			},
+			"text": " as it was created roughly 10 years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,520",
+				"to": "00:00:58,800"
+			},
+			"offsets": {
+				"from": 56520,
+				"to": 58800
+			},
+			"text": " And it was created with decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,800",
+				"to": "00:01:01,640"
+			},
+			"offsets": {
+				"from": 58800,
+				"to": 61640
+			},
+			"text": " and distributed systems in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,640",
+				"to": "00:01:04,880"
+			},
+			"offsets": {
+				"from": 61640,
+				"to": 64880
+			},
+			"text": " However, 10 years ago, decentralized systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,880",
+				"to": "00:01:06,600"
+			},
+			"offsets": {
+				"from": 64880,
+				"to": 66600
+			},
+			"text": " weren't ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,600",
+				"to": "00:01:07,680"
+			},
+			"offsets": {
+				"from": 66600,
+				"to": 67680
+			},
+			"text": " So you couldn't do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,680",
+				"to": "00:01:11,040"
+			},
+			"offsets": {
+				"from": 67680,
+				"to": 71040
+			},
+			"text": " You had to use a central part to Git."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,040",
+				"to": "00:01:15,120"
+			},
+			"offsets": {
+				"from": 71040,
+				"to": 75120
+			},
+			"text": " However, today, we have decentralized systems in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,120",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 75120,
+				"to": 77960
+			},
+			"text": " the Ethereum, IPFS, and swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:22,520"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 82520
+			},
+			"text": " So this is the time to accomplish the goal of Git."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,520",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 82520,
+				"to": 84960
+			},
+			"text": " Well, the first thing is, why do I care about Mango?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:27,840"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 87840
+			},
+			"text": " And why do I care about--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,840",
+				"to": "00:01:30,640"
+			},
+			"offsets": {
+				"from": 87840,
+				"to": 90640
+			},
+			"text": " sorry, why do I care about Mango?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,640",
+				"to": "00:01:33,120"
+			},
+			"offsets": {
+				"from": 90640,
+				"to": 93120
+			},
+			"text": " And why you should also care about Mango."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,120",
+				"to": "00:01:34,720"
+			},
+			"offsets": {
+				"from": 93120,
+				"to": 94720
+			},
+			"text": " There are a couple of reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,720",
+				"to": "00:01:37,400"
+			},
+			"offsets": {
+				"from": 94720,
+				"to": 97400
+			},
+			"text": " You don't really want to trust the central repository"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,400",
+				"to": "00:01:38,680"
+			},
+			"offsets": {
+				"from": 97400,
+				"to": 98680
+			},
+			"text": " with all your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,680",
+				"to": "00:01:40,120"
+			},
+			"offsets": {
+				"from": 98680,
+				"to": 100120
+			},
+			"text": " They could take it down."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,120",
+				"to": "00:01:42,600"
+			},
+			"offsets": {
+				"from": 100120,
+				"to": 102600
+			},
+			"text": " And you want more security than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,600",
+				"to": "00:01:46,680"
+			},
+			"offsets": {
+				"from": 102600,
+				"to": 106680
+			},
+			"text": " This is a very important fact that you get, by default,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,680",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 106680,
+				"to": 108080
+			},
+			"text": " if you use Mango."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:50,720"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 110720
+			},
+			"text": " You get proof of existence of your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,720",
+				"to": "00:01:55,520"
+			},
+			"offsets": {
+				"from": 110720,
+				"to": 115520
+			},
+			"text": " So whenever you push your changes or your code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,520",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 115520,
+				"to": 116520
+			},
+			"text": " is it better now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:02:00,600"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 120600
+			},
+			"text": " So whenever you push changes to your code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,600",
+				"to": "00:02:02,680"
+			},
+			"offsets": {
+				"from": 120600,
+				"to": 122680
+			},
+			"text": " it will be stored on the blockchain as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,680",
+				"to": "00:02:06,240"
+			},
+			"offsets": {
+				"from": 122680,
+				"to": 126240
+			},
+			"text": " And because of that, you get the timestamp according"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,240",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 126240,
+				"to": 127320
+			},
+			"text": " to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:11,080"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 131080
+			},
+			"text": " And you can prove that your code, with all its content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,080",
+				"to": "00:02:14,400"
+			},
+			"offsets": {
+				"from": 131080,
+				"to": 134400
+			},
+			"text": " existed at that point of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,400",
+				"to": "00:02:15,600"
+			},
+			"offsets": {
+				"from": 134400,
+				"to": 135600
+			},
+			"text": " You can see that's very important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,600",
+				"to": "00:02:18,320"
+			},
+			"offsets": {
+				"from": 135600,
+				"to": 138320
+			},
+			"text": " because you can prove, in case of legal issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,320",
+				"to": "00:02:20,520"
+			},
+			"offsets": {
+				"from": 138320,
+				"to": 140520
+			},
+			"text": " that you were the first implementing that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,520",
+				"to": "00:02:22,400"
+			},
+			"offsets": {
+				"from": 140520,
+				"to": 142400
+			},
+			"text": " and you have the prior art."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,400",
+				"to": "00:02:25,560"
+			},
+			"offsets": {
+				"from": 142400,
+				"to": 145560
+			},
+			"text": " And that's really important in open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,560",
+				"to": "00:02:29,680"
+			},
+			"offsets": {
+				"from": 145560,
+				"to": 149680
+			},
+			"text": " Another really good use for Mango, which Git cannot really do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,680",
+				"to": "00:02:31,680"
+			},
+			"offsets": {
+				"from": 149680,
+				"to": 151680
+			},
+			"text": " is storing large price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,680",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151680,
+				"to": 155000
+			},
+			"text": " So Git just stores large price as a single blob."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:36,840"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 156840
+			},
+			"text": " And whenever other people copy your Git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,840",
+				"to": "00:02:39,320"
+			},
+			"offsets": {
+				"from": 156840,
+				"to": 159320
+			},
+			"text": " or they make changes to that, or they store other files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,320",
+				"to": "00:02:43,640"
+			},
+			"offsets": {
+				"from": 159320,
+				"to": 163640
+			},
+			"text": " or they change the file, it will be a brand new, entire blob."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,640",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 163640,
+				"to": 165680
+			},
+			"text": " So if you have a file of like 10 megabytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:49,520"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 169520
+			},
+			"text": " which is the Solidity compiler, for every new compiler version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,520",
+				"to": "00:02:51,080"
+			},
+			"offsets": {
+				"from": 169520,
+				"to": 171080
+			},
+			"text": " you have the full file."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,080",
+				"to": "00:02:53,480"
+			},
+			"offsets": {
+				"from": 171080,
+				"to": 173480
+			},
+			"text": " Currently, the Solidity repository"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,480",
+				"to": "00:02:58,560"
+			},
+			"offsets": {
+				"from": 173480,
+				"to": 178560
+			},
+			"text": " is roughly 100 megabytes in Git, just for the compiler versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,560",
+				"to": "00:03:03,120"
+			},
+			"offsets": {
+				"from": 178560,
+				"to": 183120
+			},
+			"text": " With using IPFS or Swarm, you have the duplication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,120",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 183120,
+				"to": 187440
+			},
+			"text": " And whenever you store these files and use it in Mango,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:09,320"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 189320
+			},
+			"text": " only the differences are stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,320",
+				"to": "00:03:12,640"
+			},
+			"offsets": {
+				"from": 189320,
+				"to": 192640
+			},
+			"text": " This is something many people don't know about Git."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,640",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 192640,
+				"to": 193920
+			},
+			"text": " And the last really important point"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:19,680"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 199680
+			},
+			"text": " is Ethereum, as a cause, is building decentralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,680",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 199680,
+				"to": 201200
+			},
+			"text": " The whole source code of this cause"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:23,600"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 203600
+			},
+			"text": " should be available to decentralized systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,600",
+				"to": "00:03:32,720"
+			},
+			"offsets": {
+				"from": 203600,
+				"to": 212720
+			},
+			"text": " The last photo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,720",
+				"to": "00:03:34,080"
+			},
+			"offsets": {
+				"from": 212720,
+				"to": 214080
+			},
+			"text": " So what is Git itself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,080",
+				"to": "00:03:37,040"
+			},
+			"offsets": {
+				"from": 214080,
+				"to": 217040
+			},
+			"text": " Git is a content addressable file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,040",
+				"to": "00:03:38,080"
+			},
+			"offsets": {
+				"from": 217040,
+				"to": 218080
+			},
+			"text": " What is Swarm?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,080",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 218080,
+				"to": 219480
+			},
+			"text": " It is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 221000
+			},
+			"text": " What is IPFS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:42,440"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 222440
+			},
+			"text": " It is the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,440",
+				"to": "00:03:44,160"
+			},
+			"offsets": {
+				"from": 222440,
+				"to": 224160
+			},
+			"text": " There's a tiny bit of difference, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,160",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 224160,
+				"to": 226640
+			},
+			"text": " Git is working on your local system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:50,560"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 230560
+			},
+			"text": " What other two are working in a global decentralized way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,560",
+				"to": "00:03:52,680"
+			},
+			"offsets": {
+				"from": 230560,
+				"to": 232680
+			},
+			"text": " So you see, it makes sense to move your Git"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,680",
+				"to": "00:03:57,880"
+			},
+			"offsets": {
+				"from": 232680,
+				"to": 237880
+			},
+			"text": " repos to either Swarm or IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,880",
+				"to": "00:04:00,120"
+			},
+			"offsets": {
+				"from": 237880,
+				"to": 240120
+			},
+			"text": " This is something many people have seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,120",
+				"to": "00:04:02,600"
+			},
+			"offsets": {
+				"from": 240120,
+				"to": 242600
+			},
+			"text": " Git looks fairly complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,600",
+				"to": "00:04:04,760"
+			},
+			"offsets": {
+				"from": 242600,
+				"to": 244760
+			},
+			"text": " People mostly know a few commands,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,760",
+				"to": "00:04:06,640"
+			},
+			"offsets": {
+				"from": 244760,
+				"to": 246640
+			},
+			"text": " and they get afraid, they delete stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,640",
+				"to": "00:04:08,560"
+			},
+			"offsets": {
+				"from": 246640,
+				"to": 248560
+			},
+			"text": " and they start from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,560",
+				"to": "00:04:10,840"
+			},
+			"offsets": {
+				"from": 248560,
+				"to": 250840
+			},
+			"text": " I'm going to show you a few tricks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,840",
+				"to": "00:04:13,680"
+			},
+			"offsets": {
+				"from": 250840,
+				"to": 253680
+			},
+			"text": " or just try to explain how Git works internally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,680",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 253680,
+				"to": 258080
+			},
+			"text": " and that will help you to understand how Mango works."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 260560
+			},
+			"text": " Don't be afraid if it won't be long."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:22,800"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 262800
+			},
+			"text": " So in Git, everything is an object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,800",
+				"to": "00:04:25,120"
+			},
+			"offsets": {
+				"from": 262800,
+				"to": 265120
+			},
+			"text": " and every object has an identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,120",
+				"to": "00:04:28,160"
+			},
+			"offsets": {
+				"from": 265120,
+				"to": 268160
+			},
+			"text": " This identifier is a SHA-1 hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,160",
+				"to": "00:04:30,560"
+			},
+			"offsets": {
+				"from": 268160,
+				"to": 270560
+			},
+			"text": " So in this example, the first one example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,560",
+				"to": "00:04:33,760"
+			},
+			"offsets": {
+				"from": 270560,
+				"to": 273760
+			},
+			"text": " I'm just putting some data into Git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,760",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 273760,
+				"to": 275920
+			},
+			"text": " and you get back the identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:38,040"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 278040
+			},
+			"text": " And of course, once you notice identifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,040",
+				"to": "00:04:40,080"
+			},
+			"offsets": {
+				"from": 278040,
+				"to": 280080
+			},
+			"text": " you can print the details."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,080",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 280080,
+				"to": 282000
+			},
+			"text": " So there, I just loaded a file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 284560
+			},
+			"text": " which at the content Hello Ethereum, Hello Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,040",
+				"to": "00:04:48,440"
+			},
+			"offsets": {
+				"from": 286040,
+				"to": 288440
+			},
+			"text": " On the file system, all these data blobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,440",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 288440,
+				"to": 290960
+			},
+			"text": " are stored in a compressed format."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:54,160"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 294160
+			},
+			"text": " Okay, so now I have data in Git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,160",
+				"to": "00:04:57,760"
+			},
+			"offsets": {
+				"from": 294160,
+				"to": 297760
+			},
+			"text": " and the second thing I need is the file name for that data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,760",
+				"to": "00:05:00,080"
+			},
+			"offsets": {
+				"from": 297760,
+				"to": 300080
+			},
+			"text": " and probably permissions in some other details."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,080",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300080,
+				"to": 303000
+			},
+			"text": " So the second object in Git is called trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,920"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305920
+			},
+			"text": " Creating a new tree is simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,920",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 305920,
+				"to": 308720
+			},
+			"text": " You use the identifier of the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:11,680"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 311680
+			},
+			"text": " and you set the file name next to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,680",
+				"to": "00:05:14,840"
+			},
+			"offsets": {
+				"from": 311680,
+				"to": 314840
+			},
+			"text": " And as you see, printing this object works the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,840",
+				"to": "00:05:16,600"
+			},
+			"offsets": {
+				"from": 314840,
+				"to": 316600
+			},
+			"text": " as previously."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,600",
+				"to": "00:05:18,800"
+			},
+			"offsets": {
+				"from": 316600,
+				"to": 318800
+			},
+			"text": " Okay, at this stage, I know what my data is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,800",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 318800,
+				"to": 320640
+			},
+			"text": " I know what the file name is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:23,520"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 323520
+			},
+			"text": " but I don't know who created that file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,520",
+				"to": "00:05:26,440"
+			},
+			"offsets": {
+				"from": 323520,
+				"to": 326440
+			},
+			"text": " and when it was created, why it was created."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,440",
+				"to": "00:05:29,960"
+			},
+			"offsets": {
+				"from": 326440,
+				"to": 329960
+			},
+			"text": " So the third object we have is called a commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,960",
+				"to": "00:05:32,120"
+			},
+			"offsets": {
+				"from": 329960,
+				"to": 332120
+			},
+			"text": " And it's another simple command,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,120",
+				"to": "00:05:36,400"
+			},
+			"offsets": {
+				"from": 332120,
+				"to": 336400
+			},
+			"text": " which you can use, and you get back another simple hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,400",
+				"to": "00:05:39,040"
+			},
+			"offsets": {
+				"from": 336400,
+				"to": 339040
+			},
+			"text": " Similar to before, you can print that hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,040",
+				"to": "00:05:40,680"
+			},
+			"offsets": {
+				"from": 339040,
+				"to": 340680
+			},
+			"text": " and you get the familiar display,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,680",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 340680,
+				"to": 343360
+			},
+			"text": " which you already see in Git logs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:45,760"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 345760
+			},
+			"text": " So I'm not seeing all of you should use these commands"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,760",
+				"to": "00:05:47,440"
+			},
+			"offsets": {
+				"from": 345760,
+				"to": 347440
+			},
+			"text": " to manage Git, because you do have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,440",
+				"to": "00:05:49,600"
+			},
+			"offsets": {
+				"from": 347440,
+				"to": 349600
+			},
+			"text": " the higher level of systems to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,600",
+				"to": "00:05:51,680"
+			},
+			"offsets": {
+				"from": 349600,
+				"to": 351680
+			},
+			"text": " But because of these tree objects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,680",
+				"to": "00:05:53,600"
+			},
+			"offsets": {
+				"from": 351680,
+				"to": 353600
+			},
+			"text": " you can represent Git in a tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,600",
+				"to": "00:05:58,280"
+			},
+			"offsets": {
+				"from": 353600,
+				"to": 358280
+			},
+			"text": " And the leaf nodes in Git are the data blobs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,280",
+				"to": "00:06:00,840"
+			},
+			"offsets": {
+				"from": 358280,
+				"to": 360840
+			},
+			"text": " And then you associate those data blobs with a file name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,840",
+				"to": "00:06:02,960"
+			},
+			"offsets": {
+				"from": 360840,
+				"to": 362960
+			},
+			"text": " and finally with a commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,960",
+				"to": "00:06:06,680"
+			},
+			"offsets": {
+				"from": 362960,
+				"to": 366680
+			},
+			"text": " And subsequent commits can refer to previous commits, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,680",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 366680,
+				"to": 369280
+			},
+			"text": " And you see the tree is just a flat structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:11,440"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 371440
+			},
+			"text": " If you want to have multiple directories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,440",
+				"to": "00:06:14,320"
+			},
+			"offsets": {
+				"from": 371440,
+				"to": 374320
+			},
+			"text": " you can just chain trees together."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,320",
+				"to": "00:06:16,640"
+			},
+			"offsets": {
+				"from": 374320,
+				"to": 376640
+			},
+			"text": " When you create a merge or a pull request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,640",
+				"to": "00:06:20,480"
+			},
+			"offsets": {
+				"from": 376640,
+				"to": 380480
+			},
+			"text": " multiple commits will be referenced in the next commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,480",
+				"to": "00:06:22,320"
+			},
+			"offsets": {
+				"from": 380480,
+				"to": 382320
+			},
+			"text": " Okay, so that was the hard part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,320",
+				"to": "00:06:24,960"
+			},
+			"offsets": {
+				"from": 382320,
+				"to": 384960
+			},
+			"text": " only about what kind of objects we have in Git."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,960",
+				"to": "00:06:28,200"
+			},
+			"offsets": {
+				"from": 384960,
+				"to": 388200
+			},
+			"text": " But you can see we have all these simple bits of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,200",
+				"to": "00:06:30,400"
+			},
+			"offsets": {
+				"from": 388200,
+				"to": 390400
+			},
+			"text": " and for a single commit, an actual,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,400",
+				"to": "00:06:33,760"
+			},
+			"offsets": {
+				"from": 390400,
+				"to": 393760
+			},
+			"text": " you know, high level commit when you put files into your Git repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,760",
+				"to": "00:06:36,480"
+			},
+			"offsets": {
+				"from": 393760,
+				"to": 396480
+			},
+			"text": " you have at least four, five objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,480",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 396480,
+				"to": 400600
+			},
+			"text": " So my first implementation of Mango,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 402400
+			},
+			"text": " was just putting all these objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:47,480"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 407480
+			},
+			"text": " Putting all these objects into an Ethereum contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,480",
+				"to": "00:06:50,960"
+			},
+			"offsets": {
+				"from": 407480,
+				"to": 410960
+			},
+			"text": " that works, but probably it's not very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,960",
+				"to": "00:06:53,640"
+			},
+			"offsets": {
+				"from": 410960,
+				"to": 413640
+			},
+			"text": " For a simple repo of a couple of files"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,640",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 413640,
+				"to": 415680
+			},
+			"text": " with just a hello word in them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:06:58,240"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 418240
+			},
+			"text": " it takes roughly 50 million gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,240",
+				"to": "00:06:59,880"
+			},
+			"offsets": {
+				"from": 418240,
+				"to": 419880
+			},
+			"text": " Like developers earn a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,880",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 419880,
+				"to": 422000
+			},
+			"text": " but probably they don't have enough money"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:04,240"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 424240
+			},
+			"text": " to keep up with typo changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,240",
+				"to": "00:07:07,120"
+			},
+			"offsets": {
+				"from": 424240,
+				"to": 427120
+			},
+			"text": " and pushing them to an Ethereum contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,120",
+				"to": "00:07:10,120"
+			},
+			"offsets": {
+				"from": 427120,
+				"to": 430120
+			},
+			"text": " So better implementation is realizing the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,120",
+				"to": "00:07:13,360"
+			},
+			"offsets": {
+				"from": 430120,
+				"to": 433360
+			},
+			"text": " that we can use IPFS and Swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,360",
+				"to": "00:07:15,200"
+			},
+			"offsets": {
+				"from": 433360,
+				"to": 435200
+			},
+			"text": " So this is what I did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,200",
+				"to": "00:07:19,080"
+			},
+			"offsets": {
+				"from": 435200,
+				"to": 439080
+			},
+			"text": " and I put all these objects into IPFS and Swarm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,080",
+				"to": "00:07:23,120"
+			},
+			"offsets": {
+				"from": 439080,
+				"to": 443120
+			},
+			"text": " but as I have mentioned, Git uses SHA-1 hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,120",
+				"to": "00:07:25,520"
+			},
+			"offsets": {
+				"from": 443120,
+				"to": 445520
+			},
+			"text": " And probably all of you know that IPFS doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,520",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 445520,
+				"to": 447400
+			},
+			"text": " So SHA-1 isn't really good anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:32,120"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 452120
+			},
+			"text": " We could change Git to not use SHA-1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,120",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 452120,
+				"to": 454640
+			},
+			"text": " but unfortunately it's really tied in with SHA-1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:37,320"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 457320
+			},
+			"text": " and we want to keep backwards compatibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,320",
+				"to": "00:07:38,960"
+			},
+			"offsets": {
+				"from": 457320,
+				"to": 458960
+			},
+			"text": " with every tool you have today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,960",
+				"to": "00:07:41,720"
+			},
+			"offsets": {
+				"from": 458960,
+				"to": 461720
+			},
+			"text": " as well as solutions like GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,720",
+				"to": "00:07:43,720"
+			},
+			"offsets": {
+				"from": 461720,
+				"to": 463720
+			},
+			"text": " So we cannot change that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,720",
+				"to": "00:07:48,240"
+			},
+			"offsets": {
+				"from": 463720,
+				"to": 468240
+			},
+			"text": " Well, a simple solution is to map IPFS identifiers"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,240",
+				"to": "00:07:49,680"
+			},
+			"offsets": {
+				"from": 468240,
+				"to": 469680
+			},
+			"text": " to get identifiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,680",
+				"to": "00:07:55,920"
+			},
+			"offsets": {
+				"from": 469680,
+				"to": 475920
+			},
+			"text": " So what this means is I push every single object to IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,920",
+				"to": "00:07:57,680"
+			},
+			"offsets": {
+				"from": 475920,
+				"to": 477680
+			},
+			"text": " then I create the snapshot file"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,680",
+				"to": "00:08:00,240"
+			},
+			"offsets": {
+				"from": 477680,
+				"to": 480240
+			},
+			"text": " of the mapping of these identifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,240",
+				"to": "00:08:04,240"
+			},
+			"offsets": {
+				"from": 480240,
+				"to": 484240
+			},
+			"text": " and I push the snapshot file to IPFS as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,240",
+				"to": "00:08:06,440"
+			},
+			"offsets": {
+				"from": 484240,
+				"to": 486440
+			},
+			"text": " Okay, so why do you need Ethereum, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,440",
+				"to": "00:08:08,520"
+			},
+			"offsets": {
+				"from": 486440,
+				"to": 488520
+			},
+			"text": " Well, you don't actually need Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,520",
+				"to": "00:08:10,160"
+			},
+			"offsets": {
+				"from": 488520,
+				"to": 490160
+			},
+			"text": " at least to this level."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,160",
+				"to": "00:08:12,920"
+			},
+			"offsets": {
+				"from": 490160,
+				"to": 492920
+			},
+			"text": " When you push all your content to IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,920",
+				"to": "00:08:15,480"
+			},
+			"offsets": {
+				"from": 492920,
+				"to": 495480
+			},
+			"text": " you get this top-level snapshot file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,480",
+				"to": "00:08:19,160"
+			},
+			"offsets": {
+				"from": 495480,
+				"to": 499160
+			},
+			"text": " and you can give this snapshot identifier to anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,160",
+				"to": "00:08:20,680"
+			},
+			"offsets": {
+				"from": 499160,
+				"to": 500680
+			},
+			"text": " you want to give your code to."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,680",
+				"to": "00:08:23,240"
+			},
+			"offsets": {
+				"from": 500680,
+				"to": 503240
+			},
+			"text": " They can download your code that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,240",
+				"to": "00:08:26,640"
+			},
+			"offsets": {
+				"from": 503240,
+				"to": 506640
+			},
+			"text": " However, if they make changes or you make changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,640",
+				"to": "00:08:29,800"
+			},
+			"offsets": {
+				"from": 506640,
+				"to": 509800
+			},
+			"text": " you're going to get a new snapshot identifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,800",
+				"to": "00:08:32,800"
+			},
+			"offsets": {
+				"from": 509800,
+				"to": 512800
+			},
+			"text": " So then you have to give that identifier to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,800",
+				"to": "00:08:34,800"
+			},
+			"offsets": {
+				"from": 512800,
+				"to": 514800
+			},
+			"text": " They make changes, they give a new one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,800",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 514800,
+				"to": 517000
+			},
+			"text": " you make changes, give a new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:39,120"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 519120
+			},
+			"text": " It's not really practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,120",
+				"to": "00:08:41,480"
+			},
+			"offsets": {
+				"from": 519120,
+				"to": 521480
+			},
+			"text": " So this is where Ethereum comes into play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,480",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 521480,
+				"to": 523920
+			},
+			"text": " and it makes this a practical solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:48,080"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 528080
+			},
+			"text": " So at every Git push,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,080",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 528080,
+				"to": 532520
+			},
+			"text": " they push two DUTAs into a mango contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:54,840"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 534840
+			},
+			"text": " which is what was the latest commit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,840",
+				"to": "00:08:57,200"
+			},
+			"offsets": {
+				"from": 534840,
+				"to": 537200
+			},
+			"text": " which is the Git identifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,200",
+				"to": "00:08:59,600"
+			},
+			"offsets": {
+				"from": 537200,
+				"to": 539600
+			},
+			"text": " and the location of this snapshot file."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,600",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 539600,
+				"to": 543000
+			},
+			"text": " And today, it has cost 140,000 gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:05,840"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 545840
+			},
+			"text": " which is a big difference to 50 million."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,840",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 545840,
+				"to": 547920
+			},
+			"text": " And this contract isn't optimized yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:09,840"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 549840
+			},
+			"text": " so this could even go further down."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,840",
+				"to": "00:09:12,880"
+			},
+			"offsets": {
+				"from": 549840,
+				"to": 552880
+			},
+			"text": " So what is mango?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,880",
+				"to": "00:09:15,680"
+			},
+			"offsets": {
+				"from": 552880,
+				"to": 555680
+			},
+			"text": " And mango is actually a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,680",
+				"to": "00:09:17,280"
+			},
+			"offsets": {
+				"from": 555680,
+				"to": 557280
+			},
+			"text": " It defines the semantics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,280",
+				"to": "00:09:20,840"
+			},
+			"offsets": {
+				"from": 557280,
+				"to": 560840
+			},
+			"text": " how to store Git objects in IPFS or Swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,840",
+				"to": "00:09:26,080"
+			},
+			"offsets": {
+				"from": 560840,
+				"to": 566080
+			},
+			"text": " It also defines a contract interface for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,080",
+				"to": "00:09:28,800"
+			},
+			"offsets": {
+				"from": 566080,
+				"to": 568800
+			},
+			"text": " It gives you an implementation for the Git backend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,800",
+				"to": "00:09:33,240"
+			},
+			"offsets": {
+				"from": 568800,
+				"to": 573240
+			},
+			"text": " enabled to communicate with Ethereum and IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,160",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 574160,
+				"to": 578000
+			},
+			"text": " And it also gives you admin tools to create repos."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:44,560"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 584560
+			},
+			"text": " So every Git repo has its own contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,560",
+				"to": "00:09:46,440"
+			},
+			"offsets": {
+				"from": 584560,
+				"to": 586440
+			},
+			"text": " There's no point making this complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,440",
+				"to": "00:09:49,600"
+			},
+			"offsets": {
+				"from": 586440,
+				"to": 589600
+			},
+			"text": " and having a contract for a number of repositories."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,600",
+				"to": "00:09:54,080"
+			},
+			"offsets": {
+				"from": 589600,
+				"to": 594080
+			},
+			"text": " This has to be simple and secure as it can."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,080",
+				"to": "00:09:56,680"
+			},
+			"offsets": {
+				"from": 594080,
+				"to": 596680
+			},
+			"text": " So what the Ethereum does on top of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,680",
+				"to": "00:09:59,800"
+			},
+			"offsets": {
+				"from": 596680,
+				"to": 599800
+			},
+			"text": " it can manage access control,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,800",
+				"to": "00:10:02,680"
+			},
+			"offsets": {
+				"from": 599800,
+				"to": 602680
+			},
+			"text": " and you're also free to implement whatever else you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,680",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602680,
+				"to": 606000
+			},
+			"text": " And there's just a repo interface you have to conform to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:08,240"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 608240
+			},
+			"text": " but anything else you do is up to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,240",
+				"to": "00:10:12,520"
+			},
+			"offsets": {
+				"from": 608240,
+				"to": 612520
+			},
+			"text": " And for the actual repo contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,520",
+				"to": "00:10:14,760"
+			},
+			"offsets": {
+				"from": 612520,
+				"to": 614760
+			},
+			"text": " which uses 140,000 gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,760",
+				"to": "00:10:18,520"
+			},
+			"offsets": {
+				"from": 614760,
+				"to": 618520
+			},
+			"text": " there's an implementation in the mango admin tool chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,520",
+				"to": "00:10:23,480"
+			},
+			"offsets": {
+				"from": 618520,
+				"to": 623480
+			},
+			"text": " This is an actual example how to use a tool chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,480",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 623480,
+				"to": 626120
+			},
+			"text": " Once you install it, you can create repos."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:30,440"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 630440
+			},
+			"text": " This, of course, will need access to an Ethereum RPC node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,440",
+				"to": "00:10:32,760"
+			},
+			"offsets": {
+				"from": 630440,
+				"to": 632760
+			},
+			"text": " as well as to IPFS or Swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,760",
+				"to": "00:10:35,440"
+			},
+			"offsets": {
+				"from": 632760,
+				"to": 635440
+			},
+			"text": " So once you create it, you get an Ethereum address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,440",
+				"to": "00:10:38,160"
+			},
+			"offsets": {
+				"from": 635440,
+				"to": 638160
+			},
+			"text": " and that's the address of your repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,160",
+				"to": "00:10:40,520"
+			},
+			"offsets": {
+				"from": 638160,
+				"to": 640520
+			},
+			"text": " Then you can create new users, you can delete users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,520",
+				"to": "00:10:42,320"
+			},
+			"offsets": {
+				"from": 640520,
+				"to": 642320
+			},
+			"text": " you can set administration rights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,320",
+				"to": "00:10:44,320"
+			},
+			"offsets": {
+				"from": 642320,
+				"to": 644320
+			},
+			"text": " and a couple of other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,320",
+				"to": "00:10:47,480"
+			},
+			"offsets": {
+				"from": 644320,
+				"to": 647480
+			},
+			"text": " Okay, at this stage, you have your repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,480",
+				"to": "00:10:50,120"
+			},
+			"offsets": {
+				"from": 647480,
+				"to": 650120
+			},
+			"text": " So the next thing is to upload data into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,120",
+				"to": "00:10:53,400"
+			},
+			"offsets": {
+				"from": 650120,
+				"to": 653400
+			},
+			"text": " Assuming you have your repo already,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,400",
+				"to": "00:10:55,800"
+			},
+			"offsets": {
+				"from": 653400,
+				"to": 655800
+			},
+			"text": " you just have to set up the endpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,800",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 655800,
+				"to": 658240
+			},
+			"text": " which is your contract address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,240",
+				"to": "00:11:01,800"
+			},
+			"offsets": {
+				"from": 658240,
+				"to": 661800
+			},
+			"text": " And you can push data into this repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,800",
+				"to": "00:11:02,960"
+			},
+			"offsets": {
+				"from": 661800,
+				"to": 662960
+			},
+			"text": " Well, as mentioned before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,960",
+				"to": "00:11:04,960"
+			},
+			"offsets": {
+				"from": 662960,
+				"to": 664960
+			},
+			"text": " we don't really store the data in the repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,960",
+				"to": "00:11:08,520"
+			},
+			"offsets": {
+				"from": 664960,
+				"to": 668520
+			},
+			"text": " but we need to update the references in your repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,520",
+				"to": "00:11:14,560"
+			},
+			"offsets": {
+				"from": 668520,
+				"to": 674560
+			},
+			"text": " Okay, now you have all your content decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,560",
+				"to": "00:11:16,600"
+			},
+			"offsets": {
+				"from": 674560,
+				"to": 676600
+			},
+			"text": " So it's time to share it with your friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,600",
+				"to": "00:11:18,360"
+			},
+			"offsets": {
+				"from": 676600,
+				"to": 678360
+			},
+			"text": " and they can download it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,360",
+				"to": "00:11:22,040"
+			},
+			"offsets": {
+				"from": 678360,
+				"to": 682040
+			},
+			"text": " Since you are able to create multiple accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,040",
+				"to": "00:11:23,320"
+			},
+			"offsets": {
+				"from": 682040,
+				"to": 683320
+			},
+			"text": " in your repo contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,320",
+				"to": "00:11:26,560"
+			},
+			"offsets": {
+				"from": 683320,
+				"to": 686560
+			},
+			"text": " your friends are able to push changes to your repo"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,560",
+				"to": "00:11:27,440"
+			},
+			"offsets": {
+				"from": 686560,
+				"to": 687440
+			},
+			"text": " at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,960",
+				"to": "00:11:30,640"
+			},
+			"offsets": {
+				"from": 687960,
+				"to": 690640
+			},
+			"text": " (chuckles)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,640",
+				"to": "00:11:32,640"
+			},
+			"offsets": {
+				"from": 690640,
+				"to": 692640
+			},
+			"text": " While, you know, contract address is work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,640",
+				"to": "00:11:35,080"
+			},
+			"offsets": {
+				"from": 692640,
+				"to": 695080
+			},
+			"text": " I think there will be a better way to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,080",
+				"to": "00:11:38,280"
+			},
+			"offsets": {
+				"from": 695080,
+				"to": 698280
+			},
+			"text": " and I hope ENS or a similar system will come along soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,280",
+				"to": "00:11:41,400"
+			},
+			"offsets": {
+				"from": 698280,
+				"to": 701400
+			},
+			"text": " and you will have symbolic names for your repos,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,400",
+				"to": "00:11:44,320"
+			},
+			"offsets": {
+				"from": 701400,
+				"to": 704320
+			},
+			"text": " such as Solidity, that the Ethereum, that mango, that ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,320",
+				"to": "00:11:47,160"
+			},
+			"offsets": {
+				"from": 704320,
+				"to": 707160
+			},
+			"text": " I still need to convince the guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,160",
+				"to": "00:11:50,120"
+			},
+			"offsets": {
+				"from": 707160,
+				"to": 710120
+			},
+			"text": " to register five letter names in ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,120",
+				"to": "00:11:51,640"
+			},
+			"offsets": {
+				"from": 710120,
+				"to": 711640
+			},
+			"text": " but hopefully that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,640",
+				"to": "00:11:55,200"
+			},
+			"offsets": {
+				"from": 711640,
+				"to": 715200
+			},
+			"text": " So where are we with mango?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,200",
+				"to": "00:11:56,560"
+			},
+			"offsets": {
+				"from": 715200,
+				"to": 716560
+			},
+			"text": " Is it a replacement yet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,560",
+				"to": "00:11:59,080"
+			},
+			"offsets": {
+				"from": 716560,
+				"to": 719080
+			},
+			"text": " Of course, well, not entirely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,080",
+				"to": "00:12:02,680"
+			},
+			"offsets": {
+				"from": 719080,
+				"to": 722680
+			},
+			"text": " but there's certain use cases, it's already capable of."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,680",
+				"to": "00:12:06,080"
+			},
+			"offsets": {
+				"from": 722680,
+				"to": 726080
+			},
+			"text": " I would suggest that you use your tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,080",
+				"to": "00:12:07,480"
+			},
+			"offsets": {
+				"from": 726080,
+				"to": 727480
+			},
+			"text": " your familiar with today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,480",
+				"to": "00:12:10,160"
+			},
+			"offsets": {
+				"from": 727480,
+				"to": 730160
+			},
+			"text": " and your services your familiar with today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,160",
+				"to": "00:12:12,680"
+			},
+			"offsets": {
+				"from": 730160,
+				"to": 732680
+			},
+			"text": " but once you have a version of your software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,680",
+				"to": "00:12:15,280"
+			},
+			"offsets": {
+				"from": 732680,
+				"to": 735280
+			},
+			"text": " or a release, you wanna persist for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,280",
+				"to": "00:12:17,560"
+			},
+			"offsets": {
+				"from": 735280,
+				"to": 737560
+			},
+			"text": " an indefinite length of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,560",
+				"to": "00:12:20,080"
+			},
+			"offsets": {
+				"from": 737560,
+				"to": 740080
+			},
+			"text": " you could use mango, and you could push"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,080",
+				"to": "00:12:23,240"
+			},
+			"offsets": {
+				"from": 740080,
+				"to": 743240
+			},
+			"text": " that certain change set, the certain version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,240",
+				"to": "00:12:24,680"
+			},
+			"offsets": {
+				"from": 743240,
+				"to": 744680
+			},
+			"text": " of your software to mango."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,920",
+				"to": "00:12:27,800"
+			},
+			"offsets": {
+				"from": 745920,
+				"to": 747800
+			},
+			"text": " But this should change in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,800",
+				"to": "00:12:29,680"
+			},
+			"offsets": {
+				"from": 747800,
+				"to": 749680
+			},
+			"text": " so we have to improve mango,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,680",
+				"to": "00:12:33,160"
+			},
+			"offsets": {
+				"from": 749680,
+				"to": 753160
+			},
+			"text": " and we have to improve tools to provide full replacement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,160",
+				"to": "00:12:38,320"
+			},
+			"offsets": {
+				"from": 753160,
+				"to": 758320
+			},
+			"text": " full decentralized replacement, to social coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,320",
+				"to": "00:12:40,760"
+			},
+			"offsets": {
+				"from": 758320,
+				"to": 760760
+			},
+			"text": " So the first thing we have to do here is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,760",
+				"to": "00:12:43,800"
+			},
+			"offsets": {
+				"from": 760760,
+				"to": 763800
+			},
+			"text": " which is a tiny thing, you know, with each releasing git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,800",
+				"to": "00:12:46,600"
+			},
+			"offsets": {
+				"from": 763800,
+				"to": 766600
+			},
+			"text": " you can only set a version number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,600",
+				"to": "00:12:49,440"
+			},
+			"offsets": {
+				"from": 766600,
+				"to": 769440
+			},
+			"text": " but it would be really cool to also set a release note,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,440",
+				"to": "00:12:51,760"
+			},
+			"offsets": {
+				"from": 769440,
+				"to": 771760
+			},
+			"text": " what that version includes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,760",
+				"to": "00:12:53,920"
+			},
+			"offsets": {
+				"from": 771760,
+				"to": 773920
+			},
+			"text": " So that's actually possible with git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,920",
+				"to": "00:12:56,080"
+			},
+			"offsets": {
+				"from": 773920,
+				"to": 776080
+			},
+			"text": " there's a feature called git note,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,080",
+				"to": "00:13:00,440"
+			},
+			"offsets": {
+				"from": 776080,
+				"to": 780440
+			},
+			"text": " which you can use to put a note next to any object."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,440",
+				"to": "00:13:03,840"
+			},
+			"offsets": {
+				"from": 780440,
+				"to": 783840
+			},
+			"text": " It's kinda hard to use, so this has to be improved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,840",
+				"to": "00:13:08,440"
+			},
+			"offsets": {
+				"from": 783840,
+				"to": 788440
+			},
+			"text": " The second big thing is to have issue tracking within git."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,440",
+				"to": "00:13:11,920"
+			},
+			"offsets": {
+				"from": 788440,
+				"to": 791920
+			},
+			"text": " Google has a project to do that with git notes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,920",
+				"to": "00:13:14,480"
+			},
+			"offsets": {
+				"from": 791920,
+				"to": 794480
+			},
+			"text": " but it's a bit clumsy, so there's still room"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,480",
+				"to": "00:13:15,920"
+			},
+			"offsets": {
+				"from": 794480,
+				"to": 795920
+			},
+			"text": " for improvement here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,920",
+				"to": "00:13:20,560"
+			},
+			"offsets": {
+				"from": 795920,
+				"to": 800560
+			},
+			"text": " The really big work here is supporting pull requests,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,560",
+				"to": "00:13:25,200"
+			},
+			"offsets": {
+				"from": 800560,
+				"to": 805200
+			},
+			"text": " or merge requests, and as well as like git help-style forking."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,200",
+				"to": "00:13:27,640"
+			},
+			"offsets": {
+				"from": 805200,
+				"to": 807640
+			},
+			"text": " So if anyone has good ideas how to do it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,640",
+				"to": "00:13:30,640"
+			},
+			"offsets": {
+				"from": 807640,
+				"to": 810640
+			},
+			"text": " please talk to me, or anyone involved in improving git."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,640",
+				"to": "00:13:35,920"
+			},
+			"offsets": {
+				"from": 810640,
+				"to": 815920
+			},
+			"text": " And of course, we need user-friendly frontends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,920",
+				"to": "00:13:39,800"
+			},
+			"offsets": {
+				"from": 815920,
+				"to": 819800
+			},
+			"text": " 'cause yeah, some people are happy to use the common line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,800",
+				"to": "00:13:42,120"
+			},
+			"offsets": {
+				"from": 819800,
+				"to": 822120
+			},
+			"text": " but others would be much more happy to have a nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,120",
+				"to": "00:13:45,760"
+			},
+			"offsets": {
+				"from": 822120,
+				"to": 825760
+			},
+			"text": " web frontend to create, manage, view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,760",
+				"to": "00:13:47,520"
+			},
+			"offsets": {
+				"from": 825760,
+				"to": 827520
+			},
+			"text": " and interact with all these repos."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,200",
+				"to": "00:13:51,880"
+			},
+			"offsets": {
+				"from": 829200,
+				"to": 831880
+			},
+			"text": " What important aspect there with improving"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,880",
+				"to": "00:13:54,600"
+			},
+			"offsets": {
+				"from": 831880,
+				"to": 834600
+			},
+			"text": " the issue tracking and the pull requests with git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,600",
+				"to": "00:13:57,240"
+			},
+			"offsets": {
+				"from": 834600,
+				"to": 837240
+			},
+			"text": " this wouldn't be only four mango."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,240",
+				"to": "00:13:59,720"
+			},
+			"offsets": {
+				"from": 837240,
+				"to": 839720
+			},
+			"text": " If you have all these things within git itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,720",
+				"to": "00:14:02,240"
+			},
+			"offsets": {
+				"from": 839720,
+				"to": 842240
+			},
+			"text": " no matter where you take your repository"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,240",
+				"to": "00:14:05,480"
+			},
+			"offsets": {
+				"from": 842240,
+				"to": 845480
+			},
+			"text": " or your data including your issues and your pull request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,480",
+				"to": "00:14:06,480"
+			},
+			"offsets": {
+				"from": 845480,
+				"to": 846480
+			},
+			"text": " will stay with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,480",
+				"to": "00:14:10,480"
+			},
+			"offsets": {
+				"from": 846480,
+				"to": 850480
+			},
+			"text": " And I hope actually GitHub and GitLab,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,480",
+				"to": "00:14:12,640"
+			},
+			"offsets": {
+				"from": 850480,
+				"to": 852640
+			},
+			"text": " and other bigger companies using git,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,640",
+				"to": "00:14:15,280"
+			},
+			"offsets": {
+				"from": 852640,
+				"to": 855280
+			},
+			"text": " would be able to support some of these features."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,280",
+				"to": "00:14:19,160"
+			},
+			"offsets": {
+				"from": 855280,
+				"to": 859160
+			},
+			"text": " So you could freely move between mango and the decentralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,160",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859160,
+				"to": 862000
+			},
+			"text": " the website, or a decentralized app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:24,840"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 864840
+			},
+			"text": " and between these services, video at any hassle."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,840",
+				"to": "00:14:28,080"
+			},
+			"offsets": {
+				"from": 864840,
+				"to": 868080
+			},
+			"text": " Well, thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,080",
+				"to": "00:14:29,920"
+			},
+			"offsets": {
+				"from": 868080,
+				"to": 869920
+			},
+			"text": " I think now it's the time to check out mango,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,920",
+				"to": "00:14:32,480"
+			},
+			"offsets": {
+				"from": 869920,
+				"to": 872480
+			},
+			"text": " and actually no one believes this, but it works already."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,480",
+				"to": "00:14:34,320"
+			},
+			"offsets": {
+				"from": 872480,
+				"to": 874320
+			},
+			"text": " So you could try that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,320",
+				"to": "00:14:35,320"
+			},
+			"offsets": {
+				"from": 874320,
+				"to": 875320
+			},
+			"text": " And thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,320",
+				"to": "00:14:36,240"
+			},
+			"offsets": {
+				"from": 875320,
+				"to": 876240
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,240",
+				"to": "00:14:37,600"
+			},
+			"offsets": {
+				"from": 876240,
+				"to": 877600
+			},
+			"text": " - Thank you, Alex."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,600",
+				"to": "00:14:42,180"
+			},
+			"offsets": {
+				"from": 877600,
+				"to": 882180
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,180",
+				"to": "00:14:44,760"
+			},
+			"offsets": {
+				"from": 882180,
+				"to": 884760
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,760",
+				"to": "00:14:47,340"
+			},
+			"offsets": {
+				"from": 884760,
+				"to": 887340
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

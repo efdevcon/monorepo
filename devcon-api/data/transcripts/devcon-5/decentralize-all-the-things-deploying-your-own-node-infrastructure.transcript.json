@@ -1,0 +1,2474 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,120"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8120
+			},
+			"text": " Good morning, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,120",
+				"to": "00:00:10,320"
+			},
+			"offsets": {
+				"from": 8120,
+				"to": 10320
+			},
+			"text": " Thanks for coming bright and early."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,320",
+				"to": "00:00:14,080"
+			},
+			"offsets": {
+				"from": 10320,
+				"to": 14080
+			},
+			"text": " So I'm going to actually tempt the demo gods today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,080",
+				"to": "00:00:19,880"
+			},
+			"offsets": {
+				"from": 14080,
+				"to": 19880
+			},
+			"text": " It'll be interesting because the things that I'm going to show you today and demonstrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,880",
+				"to": "00:00:24,160"
+			},
+			"offsets": {
+				"from": 19880,
+				"to": 24160
+			},
+			"text": " take long enough to deploy that I kind of want to get started right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,160",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 24160,
+				"to": 38160
+			},
+			"text": " So I also want to thank the conference organizers for providing us with these free LTE connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:41,960"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 41960
+			},
+			"text": " because that's what I'm using right now to be able to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,960",
+				"to": "00:00:48,560"
+			},
+			"offsets": {
+				"from": 41960,
+				"to": 48560
+			},
+			"text": " The Wi-Fi hasn't been great, but fortunately we have these wireless hotspots we can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,560",
+				"to": "00:01:00,600"
+			},
+			"offsets": {
+				"from": 48560,
+				"to": 60600
+			},
+			"text": " So I'll just deploy this and then break into it in just a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,600",
+				"to": "00:01:08,600"
+			},
+			"offsets": {
+				"from": 60600,
+				"to": 68600
+			},
+			"text": " So I'm changing my config params to suit my needs, then going ahead and setting up my"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,600",
+				"to": "00:01:11,600"
+			},
+			"offsets": {
+				"from": 68600,
+				"to": 71600
+			},
+			"text": " dependencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,600",
+				"to": "00:01:33,200"
+			},
+			"offsets": {
+				"from": 71600,
+				"to": 93200
+			},
+			"text": " And then I go ahead and kick off this CloudFormation template that will deploy the solution that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,200",
+				"to": "00:01:34,920"
+			},
+			"offsets": {
+				"from": 93200,
+				"to": 94920
+			},
+			"text": " I'll be talking about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,920",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 94920,
+				"to": 99200
+			},
+			"text": " So you jump back into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 106160
+			},
+			"text": " I also want to say hi to one of my local counterparts from Tokyo, Yuki Nakatake, which is right"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:47,640"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 107640
+			},
+			"text": " here joining me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,640",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 107640,
+				"to": 110640
+			},
+			"text": " Thanks for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:52,600"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 112600
+			},
+			"text": " So I'm Carl Youngblood."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,600",
+				"to": "00:01:57,720"
+			},
+			"offsets": {
+				"from": 112600,
+				"to": 117720
+			},
+			"text": " I am a senior blockchain solutions architect with AWS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,720",
+				"to": "00:02:03,480"
+			},
+			"offsets": {
+				"from": 117720,
+				"to": 123480
+			},
+			"text": " And I've been doing work with blockchains for quite a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,480",
+				"to": "00:02:09,280"
+			},
+			"offsets": {
+				"from": 123480,
+				"to": 129280
+			},
+			"text": " I first became interested in blockchain in 2010 when I read Satoshi's white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,280",
+				"to": "00:02:13,720"
+			},
+			"offsets": {
+				"from": 129280,
+				"to": 133720
+			},
+			"text": " And it was one of the only white papers that actually came with working software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,720",
+				"to": "00:02:17,800"
+			},
+			"offsets": {
+				"from": 133720,
+				"to": 137800
+			},
+			"text": " It was really exciting to actually set it up and run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,800",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 137800,
+				"to": 145000
+			},
+			"text": " And I was lucky enough to be in living near London in 2014 around the time that like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 149360
+			},
+			"text": " first Ethereum meetups got started as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:37,600"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 157600
+			},
+			"text": " So before I joined AWS, my brother and I co-founded a consulting company called BlockScale."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,600",
+				"to": "00:02:45,400"
+			},
+			"offsets": {
+				"from": 157600,
+				"to": 165400
+			},
+			"text": " And we deployed some node infrastructure solutions for companies like MyCrypto and the Tezos"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,400",
+				"to": "00:02:46,760"
+			},
+			"offsets": {
+				"from": 165400,
+				"to": 166760
+			},
+			"text": " Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,760",
+				"to": "00:02:51,760"
+			},
+			"offsets": {
+				"from": 166760,
+				"to": 171760
+			},
+			"text": " And I'm going to be sharing some of the things we learned in that process today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,760",
+				"to": "00:02:57,040"
+			},
+			"offsets": {
+				"from": 171760,
+				"to": 177040
+			},
+			"text": " So first, I want to share some thoughts about decentralization and how it can sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,040",
+				"to": "00:02:59,480"
+			},
+			"offsets": {
+				"from": 177040,
+				"to": 179480
+			},
+			"text": " differ in theory and practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,480",
+				"to": "00:03:03,880"
+			},
+			"offsets": {
+				"from": 179480,
+				"to": 183880
+			},
+			"text": " So and after that, I'm going to explain a strategy that we used for deploying highly"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,880",
+				"to": "00:03:06,680"
+			},
+			"offsets": {
+				"from": 183880,
+				"to": 186680
+			},
+			"text": " available node infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,680",
+				"to": "00:03:12,240"
+			},
+			"offsets": {
+				"from": 186680,
+				"to": 192240
+			},
+			"text": " And then some ways that we mitigated against some different challenges and problems with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,240",
+				"to": "00:03:13,640"
+			},
+			"offsets": {
+				"from": 192240,
+				"to": 193640
+			},
+			"text": " EVMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,640",
+				"to": "00:03:18,600"
+			},
+			"offsets": {
+				"from": 193640,
+				"to": 198600
+			},
+			"text": " And also how we made our deployment more cost effective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,600",
+				"to": "00:03:24,240"
+			},
+			"offsets": {
+				"from": 198600,
+				"to": 204240
+			},
+			"text": " And then finally, I'll show you a little bit more of this solution that I just deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,240",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 204240,
+				"to": 212200
+			},
+			"text": " So one of the great promises of blockchain technology was that it enabled greater decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,200",
+				"to": "00:03:38,080"
+			},
+			"offsets": {
+				"from": 212200,
+				"to": 218080
+			},
+			"text": " So in the same way that anybody, the internet is a permissionless network that anybody with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,080",
+				"to": "00:03:42,560"
+			},
+			"offsets": {
+				"from": 218080,
+				"to": 222560
+			},
+			"text": " a computer and the right equipment can just hook up to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,560",
+				"to": "00:03:48,680"
+			},
+			"offsets": {
+				"from": 222560,
+				"to": 228680
+			},
+			"text": " And as long as they're speaking the right protocols, they can join in this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,680",
+				"to": "00:03:53,760"
+			},
+			"offsets": {
+				"from": 228680,
+				"to": 233760
+			},
+			"text": " Everything also eliminates the need to trust in these large central authorities to track"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,760",
+				"to": "00:03:57,360"
+			},
+			"offsets": {
+				"from": 233760,
+				"to": 237360
+			},
+			"text": " information."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,360",
+				"to": "00:04:02,880"
+			},
+			"offsets": {
+				"from": 237360,
+				"to": 242880
+			},
+			"text": " Even private permission blockchains have the goal of leveraging decentralization across"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,880",
+				"to": "00:04:09,760"
+			},
+			"offsets": {
+				"from": 242880,
+				"to": 249760
+			},
+			"text": " all the participants to increase the security and the reliability of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,760",
+				"to": "00:04:14,480"
+			},
+			"offsets": {
+				"from": 249760,
+				"to": 254480
+			},
+			"text": " But some of the initial ideas about decentralization have been kind of naive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,480",
+				"to": "00:04:21,160"
+			},
+			"offsets": {
+				"from": 254480,
+				"to": 261160
+			},
+			"text": " So Vitalik, his earlier claim that Ethereum should be able to achieve on-chain scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,160",
+				"to": "00:04:27,640"
+			},
+			"offsets": {
+				"from": 261160,
+				"to": 267640
+			},
+			"text": " while running on nothing other than consumer laptops has been forced to confront some perennial"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,640",
+				"to": "00:04:34,280"
+			},
+			"offsets": {
+				"from": 267640,
+				"to": 274280
+			},
+			"text": " challenges in computer science about data locality and constraints of networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,280",
+				"to": "00:04:39,880"
+			},
+			"offsets": {
+				"from": 274280,
+				"to": 279880
+			},
+			"text": " So while that scaling work is ongoing and I certainly applaud it and am grateful for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,880",
+				"to": "00:04:41,800"
+			},
+			"offsets": {
+				"from": 279880,
+				"to": 281800
+			},
+			"text": " their work there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,800",
+				"to": "00:04:48,560"
+			},
+			"offsets": {
+				"from": 281800,
+				"to": 288560
+			},
+			"text": " These still need practical blockchain solutions for deploying their infrastructure that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,560",
+				"to": "00:04:53,880"
+			},
+			"offsets": {
+				"from": 288560,
+				"to": 293880
+			},
+			"text": " robust and reliable enough for their applications right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,880",
+				"to": "00:04:58,960"
+			},
+			"offsets": {
+				"from": 293880,
+				"to": 298960
+			},
+			"text": " So some companies rely on third-party RPC services."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,960",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298960,
+				"to": 303000
+			},
+			"text": " And these are very helpful and they definitely have a place."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:08,680"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 308680
+			},
+			"text": " But they also represent a significant reduction in the overall level of decentralization in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,680",
+				"to": "00:05:10,400"
+			},
+			"offsets": {
+				"from": 308680,
+				"to": 310400
+			},
+			"text": " the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,400",
+				"to": "00:05:14,400"
+			},
+			"offsets": {
+				"from": 310400,
+				"to": 314400
+			},
+			"text": " So there are times when you're building an application that's important enough that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,400",
+				"to": "00:05:20,960"
+			},
+			"offsets": {
+				"from": 314400,
+				"to": 320960
+			},
+			"text": " want to reduce your reliance on external dependencies as much as possible by deploying your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,960",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 320960,
+				"to": 322960
+			},
+			"text": " infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:25,600"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 325600
+			},
+			"text": " Something that's fully under your control."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,600",
+				"to": "00:05:29,400"
+			},
+			"offsets": {
+				"from": 325600,
+				"to": 329400
+			},
+			"text": " And then you also have the added benefit when you do this that you're actually contributing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,400",
+				"to": "00:05:33,160"
+			},
+			"offsets": {
+				"from": 329400,
+				"to": 333160
+			},
+			"text": " to the overall decentralization of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,160",
+				"to": "00:05:38,480"
+			},
+			"offsets": {
+				"from": 333160,
+				"to": 338480
+			},
+			"text": " So in practice, we've kind of observed that the best way to birth tomorrow's decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,480",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 338480,
+				"to": 343880
+			},
+			"text": " infrastructure is to build on the reliable solutions of today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:48,960"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 348960
+			},
+			"text": " So if you need your DAP to be highly available, the underlying node infrastructure that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,960",
+				"to": "00:05:53,360"
+			},
+			"offsets": {
+				"from": 348960,
+				"to": 353360
+			},
+			"text": " relies on needs to also be highly available."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,360",
+				"to": "00:05:59,760"
+			},
+			"offsets": {
+				"from": 353360,
+				"to": 359760
+			},
+			"text": " By leveraging the services of an experienced cloud provider for your blockchain deployments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,760",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 359760,
+				"to": 364000
+			},
+			"text": " you're going to be able to take advantage of just a lot of different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:09,760"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 369760
+			},
+			"text": " So their unprecedented scale and efficiency in global reach and also the cost savings"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,760",
+				"to": "00:06:16,920"
+			},
+			"offsets": {
+				"from": 369760,
+				"to": 376920
+			},
+			"text": " that come from the pay as you go model instead of the sort of over-provisioning your resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,920",
+				"to": "00:06:19,560"
+			},
+			"offsets": {
+				"from": 376920,
+				"to": 379560
+			},
+			"text": " for periods of peak load."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,560",
+				"to": "00:06:26,560"
+			},
+			"offsets": {
+				"from": 379560,
+				"to": 386560
+			},
+			"text": " So before, if you're doing an on-prem solution, you have to kind of over-stock up on resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,560",
+				"to": "00:06:28,840"
+			},
+			"offsets": {
+				"from": 386560,
+				"to": 388840
+			},
+			"text": " just in case you need them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,840",
+				"to": "00:06:30,880"
+			},
+			"offsets": {
+				"from": 388840,
+				"to": 390880
+			},
+			"text": " And clearly, this is less efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,880",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 390880,
+				"to": 393000
+			},
+			"text": " It results in a lot of waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 399000
+			},
+			"text": " And one other huge benefit is that these cloud providers like AWS have been doing this for"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 400000
+			},
+			"text": " a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:41,600"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 401600
+			},
+			"text": " They really know what they're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,600",
+				"to": "00:06:50,960"
+			},
+			"offsets": {
+				"from": 401600,
+				"to": 410960
+			},
+			"text": " And they're already running on over 50% renewable energy and AWS is committed to getting that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,960",
+				"to": "00:06:51,960"
+			},
+			"offsets": {
+				"from": 410960,
+				"to": 411960
+			},
+			"text": " to 100%."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,960",
+				"to": "00:06:54,800"
+			},
+			"offsets": {
+				"from": 411960,
+				"to": 414800
+			},
+			"text": " So that's kind of a nice bonus."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,800",
+				"to": "00:06:58,680"
+			},
+			"offsets": {
+				"from": 414800,
+				"to": 418680
+			},
+			"text": " So I'm going to talk a little bit about how the infrastructure works."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,680",
+				"to": "00:07:05,200"
+			},
+			"offsets": {
+				"from": 418680,
+				"to": 425200
+			},
+			"text": " The AWS cloud is divided into several regions and each of them has something we call availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,200",
+				"to": "00:07:07,640"
+			},
+			"offsets": {
+				"from": 425200,
+				"to": 427640
+			},
+			"text": " zones or AZs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,640",
+				"to": "00:07:09,400"
+			},
+			"offsets": {
+				"from": 427640,
+				"to": 429400
+			},
+			"text": " So they have several of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,400",
+				"to": "00:07:15,520"
+			},
+			"offsets": {
+				"from": 429400,
+				"to": 435520
+			},
+			"text": " And these AZs consist of one or more discrete data centers and they each have redundant"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,520",
+				"to": "00:07:20,100"
+			},
+			"offsets": {
+				"from": 435520,
+				"to": 440100
+			},
+			"text": " power in networking and they're housed in separate facilities that are on stable flood"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,100",
+				"to": "00:07:22,240"
+			},
+			"offsets": {
+				"from": 440100,
+				"to": 442240
+			},
+			"text": " planes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,240",
+				"to": "00:07:27,480"
+			},
+			"offsets": {
+				"from": 442240,
+				"to": 447480
+			},
+			"text": " Though they're geographically isolated from each other for disaster recovery purposes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,480",
+				"to": "00:07:33,080"
+			},
+			"offsets": {
+				"from": 447480,
+				"to": 453080
+			},
+			"text": " they're also close enough that the ping times between them are very low."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,080",
+				"to": "00:07:37,720"
+			},
+			"offsets": {
+				"from": 453080,
+				"to": 457720
+			},
+			"text": " So the RPC service deployment that I'm going to be showing you today distributes Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,720",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 457720,
+				"to": 463000
+			},
+			"text": " nodes across different AZs to ensure that the service continues to function even if one"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:46,160"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 466160
+			},
+			"text": " of the AZs suffers an outage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,160",
+				"to": "00:07:53,080"
+			},
+			"offsets": {
+				"from": 466160,
+				"to": 473080
+			},
+			"text": " So I'm going to go through some of the architectural approach to this deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,080",
+				"to": "00:08:02,240"
+			},
+			"offsets": {
+				"from": 473080,
+				"to": 482240
+			},
+			"text": " First, we have requests that are coming into the Amazon API gateway."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,240",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 482240,
+				"to": 490520
+			},
+			"text": " And this gateway checks to make sure that the requests are recognized and it blocks certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:15,720"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 495720
+			},
+			"text": " forbidden methods that are not really needed for everyday use that might incur additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,720",
+				"to": "00:08:16,720"
+			},
+			"offsets": {
+				"from": 495720,
+				"to": 496720
+			},
+			"text": " overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,720",
+				"to": "00:08:21,720"
+			},
+			"offsets": {
+				"from": 496720,
+				"to": 501720
+			},
+			"text": " So it kind of keeps your waste down."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,720",
+				"to": "00:08:27,120"
+			},
+			"offsets": {
+				"from": 501720,
+				"to": 507120
+			},
+			"text": " And then if the call is valid, we pass it on to a network load balancer and that serves"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,120",
+				"to": "00:08:31,920"
+			},
+			"offsets": {
+				"from": 507120,
+				"to": 511920
+			},
+			"text": " the request to several container instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,920",
+				"to": "00:08:36,320"
+			},
+			"offsets": {
+				"from": 511920,
+				"to": 516320
+			},
+			"text": " And each of those container instances is running in a separate availability zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,320",
+				"to": "00:08:41,560"
+			},
+			"offsets": {
+				"from": 516320,
+				"to": 521560
+			},
+			"text": " So in our experience, the primary bottleneck that you incur when you run nodes is around"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,560",
+				"to": "00:08:42,560"
+			},
+			"offsets": {
+				"from": 521560,
+				"to": 522560
+			},
+			"text": " I/O."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,560",
+				"to": "00:08:46,800"
+			},
+			"offsets": {
+				"from": 522560,
+				"to": 526800
+			},
+			"text": " So these are storage optimized I-3 instances."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,800",
+				"to": "00:08:51,880"
+			},
+			"offsets": {
+				"from": 526800,
+				"to": 531880
+			},
+			"text": " They're optimized for very low latency, high random I/O performance and they each have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,880",
+				"to": "00:08:58,200"
+			},
+			"offsets": {
+				"from": 531880,
+				"to": 538200
+			},
+			"text": " like an SSD-based storage that you have access to on the container."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,200",
+				"to": "00:09:04,160"
+			},
+			"offsets": {
+				"from": 538200,
+				"to": 544160
+			},
+			"text": " So to optimize the resources, we run several processes or tasks per container depending"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,160",
+				"to": "00:09:05,880"
+			},
+			"offsets": {
+				"from": 544160,
+				"to": 545880
+			},
+			"text": " on the container size."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,880",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 545880,
+				"to": 549880
+			},
+			"text": " And that technique is sometimes called bin packing, but it's the idea that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:17,560"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 557560
+			},
+			"text": " the container size you have available to you may not be the perfect use of the resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,560",
+				"to": "00:09:19,760"
+			},
+			"offsets": {
+				"from": 557560,
+				"to": 559760
+			},
+			"text": " that each node requires."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,760",
+				"to": "00:09:25,720"
+			},
+			"offsets": {
+				"from": 559760,
+				"to": 565720
+			},
+			"text": " So we add, we choose how many nodes we want to run per container."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,720",
+				"to": "00:09:33,320"
+			},
+			"offsets": {
+				"from": 565720,
+				"to": 573320
+			},
+			"text": " And these ratios that I've listed up here are, you know, in our latest testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,320",
+				"to": "00:09:39,360"
+			},
+			"offsets": {
+				"from": 573320,
+				"to": 579360
+			},
+			"text": " These are the ones we recommended the moment, but they could change as block chain sizes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:40,800"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 580800
+			},
+			"text": " increase or change."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,800",
+				"to": "00:09:46,680"
+			},
+			"offsets": {
+				"from": 580800,
+				"to": 586680
+			},
+			"text": " So, or, you know, the efficiency of block chain storage changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,680",
+				"to": "00:09:54,120"
+			},
+			"offsets": {
+				"from": 586680,
+				"to": 594120
+			},
+			"text": " So one particular challenge that we ran into is how to get around the incredibly long sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,120",
+				"to": "00:09:56,360"
+			},
+			"offsets": {
+				"from": 594120,
+				"to": 596360
+			},
+			"text": " times for new nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,360",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 596360,
+				"to": 600680
+			},
+			"text": " So if one of our nodes becomes unhealthy, we want to be able to start up another node"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:02,280"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 602280
+			},
+			"text": " quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,280",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 602280,
+				"to": 608720
+			},
+			"text": " And with Geth taking several hours, like almost a day, to sync a new blockchain and parity"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:14,840"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 614840
+			},
+			"text": " taking several days, we needed a better strategy than just starting our nodes from scratch"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,840",
+				"to": "00:10:16,920"
+			},
+			"offsets": {
+				"from": 614840,
+				"to": 616920
+			},
+			"text": " and having them synced with the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,920",
+				"to": "00:10:22,400"
+			},
+			"offsets": {
+				"from": 616920,
+				"to": 622400
+			},
+			"text": " So we created a special task on one container that we call the updater task."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,400",
+				"to": "00:10:25,880"
+			},
+			"offsets": {
+				"from": 622400,
+				"to": 625880
+			},
+			"text": " It's down in the corner there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,880",
+				"to": "00:10:31,080"
+			},
+			"offsets": {
+				"from": 625880,
+				"to": 631080
+			},
+			"text": " And this task runs a node that's periodically taken offline every four hours or so and copied"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,080",
+				"to": "00:10:32,880"
+			},
+			"offsets": {
+				"from": 631080,
+				"to": 632880
+			},
+			"text": " to S3."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,880",
+				"to": "00:10:38,560"
+			},
+			"offsets": {
+				"from": 632880,
+				"to": 638560
+			},
+			"text": " And when you copy within the same region to S3, it doesn't cost any, you don't incur any"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,560",
+				"to": "00:10:40,720"
+			},
+			"offsets": {
+				"from": 638560,
+				"to": 640720
+			},
+			"text": " bandwidth charges."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,720",
+				"to": "00:10:44,800"
+			},
+			"offsets": {
+				"from": 640720,
+				"to": 644800
+			},
+			"text": " So when new nodes start up, they copy the contents of the blockchain state from that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,800",
+				"to": "00:10:48,960"
+			},
+			"offsets": {
+				"from": 644800,
+				"to": 648960
+			},
+			"text": " same S3 bucket to their local disk before they begin."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,960",
+				"to": "00:10:52,280"
+			},
+			"offsets": {
+				"from": 648960,
+				"to": 652280
+			},
+			"text": " And then this, you know, enables them to start up within a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,280",
+				"to": "00:10:58,040"
+			},
+			"offsets": {
+				"from": 652280,
+				"to": 658040
+			},
+			"text": " So if we're lucky, it'll be like actually running by the end of my talk here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,040",
+				"to": "00:11:08,160"
+			},
+			"offsets": {
+				"from": 658040,
+				"to": 668160
+			},
+			"text": " So let's take a look then at the code for just a sec."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,160",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 668160,
+				"to": 670560
+			},
+			"text": " So I've got the repo right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:14,960"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 674960
+			},
+			"text": " For those of you who, I'll leave it there for just a second longer, for those of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,960",
+				"to": "00:11:16,760"
+			},
+			"offsets": {
+				"from": 674960,
+				"to": 676760
+			},
+			"text": " who want the link."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,760",
+				"to": "00:11:21,160"
+			},
+			"offsets": {
+				"from": 676760,
+				"to": 681160
+			},
+			"text": " Of course, this will be published later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,160",
+				"to": "00:11:27,920"
+			},
+			"offsets": {
+				"from": 681160,
+				"to": 687920
+			},
+			"text": " And in here, you know, I'm a strong believer in a project having all the information that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,920",
+				"to": "00:11:34,040"
+			},
+			"offsets": {
+				"from": 687920,
+				"to": 694040
+			},
+			"text": " it needs in its README to be able to reproduce it and run it and execute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,040",
+				"to": "00:11:39,120"
+			},
+			"offsets": {
+				"from": 694040,
+				"to": 699120
+			},
+			"text": " I think Chris Wansdrath, one of the GitHub founders, called this README-driven development."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,120",
+				"to": "00:11:42,120"
+			},
+			"offsets": {
+				"from": 699120,
+				"to": 702120
+			},
+			"text": " But anyway, I think this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,120",
+				"to": "00:11:47,320"
+			},
+			"offsets": {
+				"from": 702120,
+				"to": 707320
+			},
+			"text": " So hopefully everything you need to be able to run this is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,320",
+				"to": "00:11:53,920"
+			},
+			"offsets": {
+				"from": 707320,
+				"to": 713920
+			},
+			"text": " And I'm going to just bounce over to my AWS management console to just see what the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,920",
+				"to": "00:11:59,560"
+			},
+			"offsets": {
+				"from": 713920,
+				"to": 719560
+			},
+			"text": " of this thing is going."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,560",
+				"to": "00:12:06,360"
+			},
+			"offsets": {
+				"from": 719560,
+				"to": 726360
+			},
+			"text": " We launched this additional stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,360",
+				"to": "00:12:15,720"
+			},
+			"offsets": {
+				"from": 726360,
+				"to": 735720
+			},
+			"text": " And it looks like the connection is so slow that it hasn't even fully kicked off here"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,720",
+				"to": "00:12:16,720"
+			},
+			"offsets": {
+				"from": 735720,
+				"to": 736720
+			},
+			"text": " yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,720",
+				"to": "00:12:21,480"
+			},
+			"offsets": {
+				"from": 736720,
+				"to": 741480
+			},
+			"text": " So it's probably not going to be finished by the time that I'm done."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,480",
+				"to": "00:12:27,040"
+			},
+			"offsets": {
+				"from": 741480,
+				"to": 747040
+			},
+			"text": " So for that purpose, I prepared a video just in case this was going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,040",
+				"to": "00:12:32,760"
+			},
+			"offsets": {
+				"from": 747040,
+				"to": 752760
+			},
+			"text": " I kind of had this feeling last night that I might run into this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,760",
+				"to": "00:12:35,880"
+			},
+			"offsets": {
+				"from": 752760,
+				"to": 755880
+			},
+			"text": " I tempted the demo gods, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,880",
+				"to": "00:12:41,080"
+			},
+			"offsets": {
+				"from": 755880,
+				"to": 761080
+			},
+			"text": " So I'm going to bounce over to kind of what you would see as this progresses a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,080",
+				"to": "00:12:43,720"
+			},
+			"offsets": {
+				"from": 761080,
+				"to": 763720
+			},
+			"text": " further along."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,720",
+				"to": "00:12:49,040"
+			},
+			"offsets": {
+				"from": 763720,
+				"to": 769040
+			},
+			"text": " So that kicks off this cloud formation template and you get this result saying, \"Okay, we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,040",
+				"to": "00:12:52,080"
+			},
+			"offsets": {
+				"from": 769040,
+				"to": 772080
+			},
+			"text": " just started this.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,080",
+				"to": "00:12:58,440"
+			},
+			"offsets": {
+				"from": 772080,
+				"to": 778440
+			},
+			"text": " And I've got a service that I've already pre-deployed that we can actually test against."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,440",
+				"to": "00:13:07,080"
+			},
+			"offsets": {
+				"from": 778440,
+				"to": 787080
+			},
+			"text": " So we're seeing some of the RPC calls now going out to this node cluster and they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,080",
+				"to": "00:13:10,400"
+			},
+			"offsets": {
+				"from": 787080,
+				"to": 790400
+			},
+			"text": " being responded successfully."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,400",
+				"to": "00:13:17,880"
+			},
+			"offsets": {
+				"from": 790400,
+				"to": 797880
+			},
+			"text": " And because I have another node cluster running already, I can actually do that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,880",
+				"to": "00:13:30,680"
+			},
+			"offsets": {
+				"from": 797880,
+				"to": 810680
+			},
+			"text": " So if I want to, for example, I first need to go to my API gateway and find out what"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,680",
+				"to": "00:13:40,600"
+			},
+			"offsets": {
+				"from": 810680,
+				"to": 820600
+			},
+			"text": " the URL of my services."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,600",
+				"to": "00:13:56,200"
+			},
+			"offsets": {
+				"from": 820600,
+				"to": 836200
+			},
+			"text": " So we'll do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,200",
+				"to": "00:14:10,400"
+			},
+			"offsets": {
+				"from": 836200,
+				"to": 850400
+			},
+			"text": " So while this is loading very slowly, I can take you through some of the things that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,400",
+				"to": "00:14:11,480"
+			},
+			"offsets": {
+				"from": 850400,
+				"to": 851480
+			},
+			"text": " still working on in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,480",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 851480,
+				"to": 854480
+			},
+			"text": " So this right now supports the parity client."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:18,200"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 858200
+			},
+			"text": " That was one of the, you know, at the time we first developed this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,200",
+				"to": "00:14:23,040"
+			},
+			"offsets": {
+				"from": 858200,
+				"to": 863040
+			},
+			"text": " Parity was a little more stable, so that was what we were focusing on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,040",
+				"to": "00:14:32,200"
+			},
+			"offsets": {
+				"from": 863040,
+				"to": 872200
+			},
+			"text": " And I am very close to releasing, to merging in a PR that will support Geth as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,200",
+				"to": "00:14:38,640"
+			},
+			"offsets": {
+				"from": 872200,
+				"to": 878640
+			},
+			"text": " But it's actually pretty easy because of our approach of just kind of copying the contents"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,640",
+				"to": "00:14:44,800"
+			},
+			"offsets": {
+				"from": 878640,
+				"to": 884800
+			},
+			"text": " of the blockchain state off-disk and syncing it with S3."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,800",
+				"to": "00:14:52,280"
+			},
+			"offsets": {
+				"from": 884800,
+				"to": 892280
+			},
+			"text": " It's very easy for us to kind of support whatever node service we want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,280",
+				"to": "00:14:58,280"
+			},
+			"offsets": {
+				"from": 892280,
+				"to": 898280
+			},
+			"text": " So as, you know, ETH 2.0 comes online and a lot of new EVM implementations are coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,280",
+				"to": "00:14:59,280"
+			},
+			"offsets": {
+				"from": 898280,
+				"to": 899280
+			},
+			"text": " out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,280",
+				"to": "00:15:03,200"
+			},
+			"offsets": {
+				"from": 899280,
+				"to": 903200
+			},
+			"text": " This shouldn't be too hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,200",
+				"to": "00:15:12,640"
+			},
+			"offsets": {
+				"from": 903200,
+				"to": 912640
+			},
+			"text": " So let's see where we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,640",
+				"to": "00:15:27,920"
+			},
+			"offsets": {
+				"from": 912640,
+				"to": 927920
+			},
+			"text": " All right, so grab that URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,920",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 927920,
+				"to": 949920
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,920",
+				"to": "00:16:07,760"
+			},
+			"offsets": {
+				"from": 949920,
+				"to": 967760
+			},
+			"text": " And we get a successful result very slowly because of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,760",
+				"to": "00:16:10,560"
+			},
+			"offsets": {
+				"from": 967760,
+				"to": 970560
+			},
+			"text": " It's not the service, I promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,560",
+				"to": "00:16:19,880"
+			},
+			"offsets": {
+				"from": 970560,
+				"to": 979880
+			},
+			"text": " Anyway, so this has been a very stable, successful deployment that's been running for a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,880",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 979880,
+				"to": 985000
+			},
+			"text": " some of those companies that I mentioned earlier for quite some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,160"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991160
+			},
+			"text": " We continue to maintain the TESUS Foundation's node infrastructure in a similar way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,160",
+				"to": "00:16:36,320"
+			},
+			"offsets": {
+				"from": 991160,
+				"to": 996320
+			},
+			"text": " And happy to answer questions about how we did anything and talk with you all offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,320",
+				"to": "00:16:37,320"
+			},
+			"offsets": {
+				"from": 996320,
+				"to": 997320
+			},
+			"text": " after this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,320",
+				"to": "00:16:38,480"
+			},
+			"offsets": {
+				"from": 997320,
+				"to": 998480
+			},
+			"text": " But thanks a lot for being with me today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,480",
+				"to": "00:16:39,480"
+			},
+			"offsets": {
+				"from": 998480,
+				"to": 999480
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,480",
+				"to": "00:16:40,480"
+			},
+			"offsets": {
+				"from": 999480,
+				"to": 1000480
+			},
+			"text": " [end of transcript]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,480",
+				"to": "00:16:41,480"
+			},
+			"offsets": {
+				"from": 1000480,
+				"to": 1001480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,480",
+				"to": "00:16:42,480"
+			},
+			"offsets": {
+				"from": 1001480,
+				"to": 1002480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,480",
+				"to": "00:16:43,480"
+			},
+			"offsets": {
+				"from": 1002480,
+				"to": 1003480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,480",
+				"to": "00:16:44,480"
+			},
+			"offsets": {
+				"from": 1003480,
+				"to": 1004480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,480",
+				"to": "00:16:45,480"
+			},
+			"offsets": {
+				"from": 1004480,
+				"to": 1005480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,480",
+				"to": "00:16:46,480"
+			},
+			"offsets": {
+				"from": 1006480,
+				"to": 1006480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,480",
+				"to": "00:16:47,480"
+			},
+			"offsets": {
+				"from": 1006480,
+				"to": 1007480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,480",
+				"to": "00:16:48,480"
+			},
+			"offsets": {
+				"from": 1007480,
+				"to": 1008480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,480",
+				"to": "00:16:49,480"
+			},
+			"offsets": {
+				"from": 1008480,
+				"to": 1009480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,480",
+				"to": "00:16:50,480"
+			},
+			"offsets": {
+				"from": 1009480,
+				"to": 1010480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,480",
+				"to": "00:16:51,480"
+			},
+			"offsets": {
+				"from": 1010480,
+				"to": 1011480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,480",
+				"to": "00:16:52,480"
+			},
+			"offsets": {
+				"from": 1011480,
+				"to": 1012480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,480",
+				"to": "00:16:53,480"
+			},
+			"offsets": {
+				"from": 1012480,
+				"to": 1013480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,480",
+				"to": "00:16:54,480"
+			},
+			"offsets": {
+				"from": 1013480,
+				"to": 1014480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,480",
+				"to": "00:16:55,480"
+			},
+			"offsets": {
+				"from": 1014480,
+				"to": 1015480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,480",
+				"to": "00:16:56,480"
+			},
+			"offsets": {
+				"from": 1015480,
+				"to": 1016480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,480",
+				"to": "00:16:57,480"
+			},
+			"offsets": {
+				"from": 1016480,
+				"to": 1017480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,480",
+				"to": "00:16:58,480"
+			},
+			"offsets": {
+				"from": 1017480,
+				"to": 1018480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,480",
+				"to": "00:16:59,480"
+			},
+			"offsets": {
+				"from": 1018480,
+				"to": 1019480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,480",
+				"to": "00:17:00,480"
+			},
+			"offsets": {
+				"from": 1019480,
+				"to": 1020480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,480",
+				"to": "00:17:01,480"
+			},
+			"offsets": {
+				"from": 1020480,
+				"to": 1021480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,480",
+				"to": "00:17:02,480"
+			},
+			"offsets": {
+				"from": 1021480,
+				"to": 1022480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,480",
+				"to": "00:17:03,480"
+			},
+			"offsets": {
+				"from": 1022480,
+				"to": 1023480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,480",
+				"to": "00:17:04,480"
+			},
+			"offsets": {
+				"from": 1023480,
+				"to": 1024480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,480",
+				"to": "00:17:05,480"
+			},
+			"offsets": {
+				"from": 1024480,
+				"to": 1025480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,480",
+				"to": "00:17:06,480"
+			},
+			"offsets": {
+				"from": 1025480,
+				"to": 1026480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,480",
+				"to": "00:17:07,480"
+			},
+			"offsets": {
+				"from": 1026480,
+				"to": 1027480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,480",
+				"to": "00:17:08,480"
+			},
+			"offsets": {
+				"from": 1027480,
+				"to": 1028480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,480",
+				"to": "00:17:09,480"
+			},
+			"offsets": {
+				"from": 1028480,
+				"to": 1029480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,480",
+				"to": "00:17:10,480"
+			},
+			"offsets": {
+				"from": 1029480,
+				"to": 1030480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,480",
+				"to": "00:17:11,480"
+			},
+			"offsets": {
+				"from": 1030480,
+				"to": 1031480
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,480",
+				"to": "00:17:15,480"
+			},
+			"offsets": {
+				"from": 1031480,
+				"to": 1035480
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,1583 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 17240
+			},
+			"text": " Guys, I'm really excited to present to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 20000
+			},
+			"text": " our new music case, NARC."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:24,440"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 24440
+			},
+			"text": " It's a joint effort with two other guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,440",
+				"to": "00:00:28,360"
+			},
+			"offsets": {
+				"from": 24440,
+				"to": 28360
+			},
+			"text": " with Helgar Lipma and Tiana Sim from Simula."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,360",
+				"to": "00:00:33,360"
+			},
+			"offsets": {
+				"from": 28360,
+				"to": 33360
+			},
+			"text": " So, in our paper, we presented a new ZK snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,360",
+				"to": "00:00:39,480"
+			},
+			"offsets": {
+				"from": 33360,
+				"to": 39480
+			},
+			"text": " called Vampir."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,480",
+				"to": "00:00:44,480"
+			},
+			"offsets": {
+				"from": 39480,
+				"to": 44480
+			},
+			"text": " It's a ZK snark for our optimization called as R1CS Lite."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,480",
+				"to": "00:00:48,760"
+			},
+			"offsets": {
+				"from": 44480,
+				"to": 48760
+			},
+			"text": " It's universal and updateable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,760",
+				"to": "00:00:53,360"
+			},
+			"offsets": {
+				"from": 48760,
+				"to": 53360
+			},
+			"text": " That means that you can have like one trusted setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,360",
+				"to": "00:00:57,160"
+			},
+			"offsets": {
+				"from": 53360,
+				"to": 57160
+			},
+			"text": " for every circuit up to given size."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,160",
+				"to": "00:01:00,280"
+			},
+			"offsets": {
+				"from": 57160,
+				"to": 60280
+			},
+			"text": " And if you don't trust that the trusted setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,280",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60280,
+				"to": 65000
+			},
+			"text": " was generated correctly or non maliciously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,080"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69080
+			},
+			"text": " you can always update the setup by your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,080",
+				"to": "00:01:12,400"
+			},
+			"offsets": {
+				"from": 69080,
+				"to": 72400
+			},
+			"text": " It's based on Marlin, another ZK snark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,400",
+				"to": "00:01:14,160"
+			},
+			"offsets": {
+				"from": 72400,
+				"to": 74160
+			},
+			"text": " but it's like really highly optimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,160",
+				"to": "00:01:16,360"
+			},
+			"offsets": {
+				"from": 74160,
+				"to": 76360
+			},
+			"text": " I would say it's a Marlin on steroids."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,360",
+				"to": "00:01:21,640"
+			},
+			"offsets": {
+				"from": 76360,
+				"to": 81640
+			},
+			"text": " It's so optimized that the proof is only"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,640",
+				"to": "00:01:24,640"
+			},
+			"offsets": {
+				"from": 81640,
+				"to": 84640
+			},
+			"text": " for group elements and to field elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,640",
+				"to": "00:01:28,560"
+			},
+			"offsets": {
+				"from": 84640,
+				"to": 88560
+			},
+			"text": " Like compared to Marlin, which has like seven group elements"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,560",
+				"to": "00:01:32,960"
+			},
+			"offsets": {
+				"from": 88560,
+				"to": 92960
+			},
+			"text": " or plunk, which also requires seven group elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,960",
+				"to": "00:01:37,040"
+			},
+			"offsets": {
+				"from": 92960,
+				"to": 97040
+			},
+			"text": " So communication wise, this ZK snark is really close"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,040",
+				"to": "00:01:38,480"
+			},
+			"offsets": {
+				"from": 97040,
+				"to": 98480
+			},
+			"text": " to graph 16."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,480",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 98480,
+				"to": 103480
+			},
+			"text": " So the difference in the proof size is about 500 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:49,200"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 109200
+			},
+			"text": " But graph 16 is neither universal nor updateable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,200",
+				"to": "00:01:51,920"
+			},
+			"offsets": {
+				"from": 109200,
+				"to": 111920
+			},
+			"text": " And it uses only two sum checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,920",
+				"to": "00:01:55,200"
+			},
+			"offsets": {
+				"from": 111920,
+				"to": 115200
+			},
+			"text": " And why I want to talk about sum checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,200",
+				"to": "00:01:58,440"
+			},
+			"offsets": {
+				"from": 115200,
+				"to": 118440
+			},
+			"text": " is because this optimization was possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,440",
+				"to": "00:02:03,280"
+			},
+			"offsets": {
+				"from": 118440,
+				"to": 123280
+			},
+			"text": " thanks to the fact that we invented a new subject,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,280",
+				"to": "00:02:05,880"
+			},
+			"offsets": {
+				"from": 123280,
+				"to": 125880
+			},
+			"text": " which we adopted a count."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,880",
+				"to": "00:02:07,960"
+			},
+			"offsets": {
+				"from": 125880,
+				"to": 127960
+			},
+			"text": " And so, univariate the sum check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,960",
+				"to": "00:02:11,640"
+			},
+			"offsets": {
+				"from": 127960,
+				"to": 131640
+			},
+			"text": " it has great communication efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,640",
+				"to": "00:02:15,720"
+			},
+			"offsets": {
+				"from": 131640,
+				"to": 135720
+			},
+			"text": " because the proof for the sum check is only one group element."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,720",
+				"to": "00:02:20,160"
+			},
+			"offsets": {
+				"from": 135720,
+				"to": 140160
+			},
+			"text": " Furthermore, the complexity of this sum check"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,160",
+				"to": "00:02:23,400"
+			},
+			"offsets": {
+				"from": 140160,
+				"to": 143400
+			},
+			"text": " is really good, is almost linear."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,400",
+				"to": "00:02:28,120"
+			},
+			"offsets": {
+				"from": 143400,
+				"to": 148120
+			},
+			"text": " What is much better than standard sum check we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,120",
+				"to": "00:02:32,560"
+			},
+			"offsets": {
+				"from": 148120,
+				"to": 152560
+			},
+			"text": " in snarks called Aurora, which requires FFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,560",
+				"to": "00:02:37,560"
+			},
+			"offsets": {
+				"from": 152560,
+				"to": 157560
+			},
+			"text": " Okay, so let me tell you how to make snarks shorter."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,560",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 157560,
+				"to": 162800
+			},
+			"text": " And how it was possible to deliver a snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 166200
+			},
+			"text": " that is only four group elements long."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:50,680"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 170680
+			},
+			"text": " So snarks, like a class of snarks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,680",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 170680,
+				"to": 175680
+			},
+			"text": " we were investigating, has a number of building blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 178840
+			},
+			"text": " So first, there's a relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 183840
+			},
+			"text": " So we need to pick what relation for snark we are proving."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:07,440"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 187440
+			},
+			"text": " And for example, the relation could be R1CS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,440",
+				"to": "00:03:10,280"
+			},
+			"offsets": {
+				"from": 187440,
+				"to": 190280
+			},
+			"text": " it could be R1CS light in our case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,280",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 190280,
+				"to": 192680
+			},
+			"text": " long has its own relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:17,680"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 197680
+			},
+			"text": " So, Artmetization matters, the Artmetization also tells you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,680",
+				"to": "00:03:21,880"
+			},
+			"offsets": {
+				"from": 197680,
+				"to": 201880
+			},
+			"text": " well, the proof size really highly depends"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,880",
+				"to": "00:03:23,560"
+			},
+			"offsets": {
+				"from": 201880,
+				"to": 203560
+			},
+			"text": " on the Artmetization UP."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,560",
+				"to": "00:03:25,560"
+			},
+			"offsets": {
+				"from": 203560,
+				"to": 205560
+			},
+			"text": " Then we have a sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,560",
+				"to": "00:03:28,440"
+			},
+			"offsets": {
+				"from": 205560,
+				"to": 208440
+			},
+			"text": " So basically, the question is how many sum checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,440",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 208440,
+				"to": 210480
+			},
+			"text": " do you need to show your result?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 211960
+			},
+			"text": " Then we have Lin check."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:35,200"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 215200
+			},
+			"text": " So the question here is, do we even need a Lin check?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,200",
+				"to": "00:03:36,440"
+			},
+			"offsets": {
+				"from": 215200,
+				"to": 216440
+			},
+			"text": " And the last but not least,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,440",
+				"to": "00:03:38,520"
+			},
+			"offsets": {
+				"from": 216440,
+				"to": 218520
+			},
+			"text": " the famous polynomial commitment scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,520",
+				"to": "00:03:42,660"
+			},
+			"offsets": {
+				"from": 218520,
+				"to": 222660
+			},
+			"text": " which also defines the size of the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,660",
+				"to": "00:03:47,400"
+			},
+			"offsets": {
+				"from": 222660,
+				"to": 227400
+			},
+			"text": " So we need to tell which polynomials are we committing to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,400",
+				"to": "00:03:51,020"
+			},
+			"offsets": {
+				"from": 227400,
+				"to": 231020
+			},
+			"text": " and what polynomial, what commitments do we open?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,020",
+				"to": "00:03:52,400"
+			},
+			"offsets": {
+				"from": 231020,
+				"to": 232400
+			},
+			"text": " Can we batch openings?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,400",
+				"to": "00:03:55,600"
+			},
+			"offsets": {
+				"from": 232400,
+				"to": 235600
+			},
+			"text": " Can we batch commitments?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,600",
+				"to": "00:04:00,600"
+			},
+			"offsets": {
+				"from": 235600,
+				"to": 240600
+			},
+			"text": " So to compare, to compare Marlin with our vampire,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,600",
+				"to": "00:04:04,360"
+			},
+			"offsets": {
+				"from": 240600,
+				"to": 244360
+			},
+			"text": " so there are some several differences."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,360",
+				"to": "00:04:08,300"
+			},
+			"offsets": {
+				"from": 244360,
+				"to": 248300
+			},
+			"text": " So first of all, Marlin is for R1CS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,300",
+				"to": "00:04:11,360"
+			},
+			"offsets": {
+				"from": 248300,
+				"to": 251360
+			},
+			"text": " while vampire is for R1CS light."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,360",
+				"to": "00:04:16,360"
+			},
+			"offsets": {
+				"from": 251360,
+				"to": 256360
+			},
+			"text": " And why it matters, I will say in a few slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,360",
+				"to": "00:04:19,460"
+			},
+			"offsets": {
+				"from": 256360,
+				"to": 259460
+			},
+			"text": " Then we have a sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,460",
+				"to": "00:04:23,460"
+			},
+			"offsets": {
+				"from": 259460,
+				"to": 263460
+			},
+			"text": " Both Marlin and vampire need two sum checks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,460",
+				"to": "00:04:26,700"
+			},
+			"offsets": {
+				"from": 263460,
+				"to": 266700
+			},
+			"text": " but Marlin uses Aurora sum check"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,700",
+				"to": "00:04:30,780"
+			},
+			"offsets": {
+				"from": 266700,
+				"to": 270780
+			},
+			"text": " and the vampire uses count and Aurora."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,780",
+				"to": "00:04:35,040"
+			},
+			"offsets": {
+				"from": 270780,
+				"to": 275040
+			},
+			"text": " Regarding Lin check, Marlin requires it, we don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,040",
+				"to": "00:04:39,260"
+			},
+			"offsets": {
+				"from": 275040,
+				"to": 279260
+			},
+			"text": " Then there's a batching of KZG,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,260",
+				"to": "00:04:41,580"
+			},
+			"offsets": {
+				"from": 279260,
+				"to": 281580
+			},
+			"text": " a cat, a polynomial commitment scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,580",
+				"to": "00:04:44,500"
+			},
+			"offsets": {
+				"from": 281580,
+				"to": 284500
+			},
+			"text": " So in case of Marlin, it is batched,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,500",
+				"to": "00:04:47,200"
+			},
+			"offsets": {
+				"from": 284500,
+				"to": 287200
+			},
+			"text": " but we manage to batch it better."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,200",
+				"to": "00:04:49,880"
+			},
+			"offsets": {
+				"from": 287200,
+				"to": 289880
+			},
+			"text": " Okay, so let me tell you about the difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,880",
+				"to": "00:04:53,240"
+			},
+			"offsets": {
+				"from": 289880,
+				"to": 293240
+			},
+			"text": " between R1CS and R1CS light."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,240",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 293240,
+				"to": 296040
+			},
+			"text": " So we start with arithmetic circuit as usual."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:05:02,900"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 302900
+			},
+			"text": " And we have some left input gates in the circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,900",
+				"to": "00:05:04,460"
+			},
+			"offsets": {
+				"from": 302900,
+				"to": 304460
+			},
+			"text": " we have some right input gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,460",
+				"to": "00:05:06,200"
+			},
+			"offsets": {
+				"from": 304460,
+				"to": 306200
+			},
+			"text": " we have some output gates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,260",
+				"to": "00:05:11,020"
+			},
+			"offsets": {
+				"from": 307260,
+				"to": 311020
+			},
+			"text": " And these gates are encoded into three matrices."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,020",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 311020,
+				"to": 314440
+			},
+			"text": " So matrix A corresponds to left input gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:18,380"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 318380
+			},
+			"text": " B corresponds to the right inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,380",
+				"to": "00:05:21,140"
+			},
+			"offsets": {
+				"from": 318380,
+				"to": 321140
+			},
+			"text": " and C corresponds to outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,140",
+				"to": "00:05:23,940"
+			},
+			"offsets": {
+				"from": 321140,
+				"to": 323940
+			},
+			"text": " And then we have the Z that corresponds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,940",
+				"to": "00:05:25,680"
+			},
+			"offsets": {
+				"from": 323940,
+				"to": 325680
+			},
+			"text": " to evaluations on these gates."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,680",
+				"to": "00:05:29,380"
+			},
+			"offsets": {
+				"from": 325680,
+				"to": 329380
+			},
+			"text": " Okay, and that's R1CS light."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,380",
+				"to": "00:05:33,580"
+			},
+			"offsets": {
+				"from": 329380,
+				"to": 333580
+			},
+			"text": " And the fact that we have three matrices basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,580",
+				"to": "00:05:36,860"
+			},
+			"offsets": {
+				"from": 333580,
+				"to": 336860
+			},
+			"text": " that we need to send three polynomial commitments"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,860",
+				"to": "00:05:40,660"
+			},
+			"offsets": {
+				"from": 336860,
+				"to": 340660
+			},
+			"text": " to each of these multiplications here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,660",
+				"to": "00:05:44,540"
+			},
+			"offsets": {
+				"from": 340660,
+				"to": 344540
+			},
+			"text": " While in R1CS light, the situation is a bit different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,540",
+				"to": "00:05:48,540"
+			},
+			"offsets": {
+				"from": 344540,
+				"to": 348540
+			},
+			"text": " because we are able to encode the whole circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,540",
+				"to": "00:05:51,020"
+			},
+			"offsets": {
+				"from": 348540,
+				"to": 351020
+			},
+			"text": " into a single matrix."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,020",
+				"to": "00:05:55,980"
+			},
+			"offsets": {
+				"from": 351020,
+				"to": 355980
+			},
+			"text": " So we have only one matrix that need to be sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,980",
+				"to": "00:06:00,740"
+			},
+			"offsets": {
+				"from": 355980,
+				"to": 360740
+			},
+			"text": " And we want to show that the vector with evaluations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,740",
+				"to": "00:06:03,780"
+			},
+			"offsets": {
+				"from": 360740,
+				"to": 363780
+			},
+			"text": " times this matrix gives zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,780",
+				"to": "00:06:08,140"
+			},
+			"offsets": {
+				"from": 363780,
+				"to": 368140
+			},
+			"text": " Okay, so let's look at this for a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,140",
+				"to": "00:06:13,140"
+			},
+			"offsets": {
+				"from": 368140,
+				"to": 373140
+			},
+			"text": " So W times Z equals zero basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,140",
+				"to": "00:06:18,500"
+			},
+			"offsets": {
+				"from": 373140,
+				"to": 378500
+			},
+			"text": " that for all Xs, some over Y of W X Y,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,500",
+				"to": "00:06:21,900"
+			},
+			"offsets": {
+				"from": 378500,
+				"to": 381900
+			},
+			"text": " so the elements of the W matrix"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,900",
+				"to": "00:06:25,380"
+			},
+			"offsets": {
+				"from": 381900,
+				"to": 385380
+			},
+			"text": " times element of a Z vector equals zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,380",
+				"to": "00:06:29,420"
+			},
+			"offsets": {
+				"from": 385380,
+				"to": 389420
+			},
+			"text": " And with some mathematical trickery, we can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,420",
+				"to": "00:06:32,060"
+			},
+			"offsets": {
+				"from": 389420,
+				"to": 392060
+			},
+			"text": " okay, so let's not talk about vectors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,060",
+				"to": "00:06:33,940"
+			},
+			"offsets": {
+				"from": 392060,
+				"to": 393940
+			},
+			"text": " let's talk about polynomials."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,940",
+				"to": "00:06:40,820"
+			},
+			"offsets": {
+				"from": 393940,
+				"to": 400820
+			},
+			"text": " And let's talk about some of some polynomial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,820",
+				"to": "00:06:44,460"
+			},
+			"offsets": {
+				"from": 400820,
+				"to": 404460
+			},
+			"text": " some over some Y for some polynomial F."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,460",
+				"to": "00:06:47,740"
+			},
+			"offsets": {
+				"from": 404460,
+				"to": 407740
+			},
+			"text": " And here comes the sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,740",
+				"to": "00:06:50,580"
+			},
+			"offsets": {
+				"from": 407740,
+				"to": 410580
+			},
+			"text": " So count is a new sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,580",
+				"to": "00:06:54,500"
+			},
+			"offsets": {
+				"from": 410580,
+				"to": 414500
+			},
+			"text": " So sum check argument basically states"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,500",
+				"to": "00:06:57,060"
+			},
+			"offsets": {
+				"from": 414500,
+				"to": 417060
+			},
+			"text": " that if you have a polynomial F"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,060",
+				"to": "00:07:00,540"
+			},
+			"offsets": {
+				"from": 417060,
+				"to": 420540
+			},
+			"text": " and you evaluate it at some elements A belonging"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,540",
+				"to": "00:07:04,420"
+			},
+			"offsets": {
+				"from": 420540,
+				"to": 424420
+			},
+			"text": " to a set H and you sum over all these elements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,420",
+				"to": "00:07:06,380"
+			},
+			"offsets": {
+				"from": 424420,
+				"to": 426380
+			},
+			"text": " then you get some value V."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,380",
+				"to": "00:07:09,420"
+			},
+			"offsets": {
+				"from": 426380,
+				"to": 429420
+			},
+			"text": " And compared to Aurora, as I mentioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,420",
+				"to": "00:07:11,580"
+			},
+			"offsets": {
+				"from": 429420,
+				"to": 431580
+			},
+			"text": " Aurora needs two group elements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,580",
+				"to": "00:07:13,700"
+			},
+			"offsets": {
+				"from": 431580,
+				"to": 433700
+			},
+			"text": " we need only one group element."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,700",
+				"to": "00:07:17,860"
+			},
+			"offsets": {
+				"from": 433700,
+				"to": 437860
+			},
+			"text": " So I'm not going into details of the sum check,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,860",
+				"to": "00:07:20,700"
+			},
+			"offsets": {
+				"from": 437860,
+				"to": 440700
+			},
+			"text": " maybe some other time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,700",
+				"to": "00:07:24,540"
+			},
+			"offsets": {
+				"from": 440700,
+				"to": 444540
+			},
+			"text": " So let me only say about batching KZG very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,540",
+				"to": "00:07:28,820"
+			},
+			"offsets": {
+				"from": 444540,
+				"to": 448820
+			},
+			"text": " So there are like two ways of batching polynomial commitments."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,820",
+				"to": "00:07:31,620"
+			},
+			"offsets": {
+				"from": 448820,
+				"to": 451620
+			},
+			"text": " First of all, we can batch openings"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,620",
+				"to": "00:07:35,380"
+			},
+			"offsets": {
+				"from": 451620,
+				"to": 455380
+			},
+			"text": " of multiple polynomials evaluated at the same point."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,380",
+				"to": "00:07:36,860"
+			},
+			"offsets": {
+				"from": 455380,
+				"to": 456860
+			},
+			"text": " And that's what Planck is doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,860",
+				"to": "00:07:39,740"
+			},
+			"offsets": {
+				"from": 456860,
+				"to": 459740
+			},
+			"text": " that's also what was done in Marlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,740",
+				"to": "00:07:43,660"
+			},
+			"offsets": {
+				"from": 459740,
+				"to": 463660
+			},
+			"text": " However, due to some new results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,660",
+				"to": "00:07:48,340"
+			},
+			"offsets": {
+				"from": 463660,
+				"to": 468340
+			},
+			"text": " we can also batch openings of multiple polynomials"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,340",
+				"to": "00:07:50,420"
+			},
+			"offsets": {
+				"from": 468340,
+				"to": 470420
+			},
+			"text": " at multiple points."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,420",
+				"to": "00:07:53,980"
+			},
+			"offsets": {
+				"from": 470420,
+				"to": 473980
+			},
+			"text": " If you want to learn more, please check our paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,980",
+				"to": "00:07:56,260"
+			},
+			"offsets": {
+				"from": 473980,
+				"to": 476260
+			},
+			"text": " and now I can take some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,260",
+				"to": "00:07:58,840"
+			},
+			"offsets": {
+				"from": 476260,
+				"to": 478840
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,840",
+				"to": "00:08:01,540"
+			},
+			"offsets": {
+				"from": 478840,
+				"to": 481540
+			},
+			"text": " Thank you so much, Mihal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,540",
+				"to": "00:08:06,260"
+			},
+			"offsets": {
+				"from": 481540,
+				"to": 486260
+			},
+			"text": " A lot of data and formula over there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,260",
+				"to": "00:08:09,860"
+			},
+			"offsets": {
+				"from": 486260,
+				"to": 489860
+			},
+			"text": " but people can talk to you after the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,860",
+				"to": "00:08:10,860"
+			},
+			"offsets": {
+				"from": 489860,
+				"to": 490860
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,860",
+				"to": "00:08:14,440"
+			},
+			"offsets": {
+				"from": 491860,
+				"to": 494440
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,440",
+				"to": "00:08:16,520"
+			},
+			"offsets": {
+				"from": 494440,
+				"to": 496520
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,520",
+				"to": "00:08:18,600"
+			},
+			"offsets": {
+				"from": 496520,
+				"to": 498600
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,600",
+				"to": "00:08:20,680"
+			},
+			"offsets": {
+				"from": 498600,
+				"to": 500680
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,680",
+				"to": "00:08:49,680"
+			},
+			"offsets": {
+				"from": 500680,
+				"to": 529680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

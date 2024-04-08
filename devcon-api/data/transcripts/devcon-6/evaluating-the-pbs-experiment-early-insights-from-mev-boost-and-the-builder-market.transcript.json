@@ -1,0 +1,5796 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 15000
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,560"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19560
+			},
+			"text": " My name is Jolene, and I work at FlashBoat's research."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,560",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19560,
+				"to": 22000
+			},
+			"text": " And today, I'm going to be talking to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,080"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25080
+			},
+			"text": " about evaluating the architecture called"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,080",
+				"to": "00:00:28,040"
+			},
+			"offsets": {
+				"from": 25080,
+				"to": 28040
+			},
+			"text": " Proposer Builder Separation, given the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,040",
+				"to": "00:00:31,440"
+			},
+			"offsets": {
+				"from": 28040,
+				"to": 31440
+			},
+			"text": " that we've learned on the insights that we've gained"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,440",
+				"to": "00:00:34,600"
+			},
+			"offsets": {
+				"from": 31440,
+				"to": 34600
+			},
+			"text": " since the deployment of Mev Boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,600",
+				"to": "00:00:38,720"
+			},
+			"offsets": {
+				"from": 34600,
+				"to": 38720
+			},
+			"text": " And I'm also happy to take some questions at the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,720",
+				"to": "00:00:39,720"
+			},
+			"offsets": {
+				"from": 38720,
+				"to": 39720
+			},
+			"text": " if we have time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,720",
+				"to": "00:00:43,520"
+			},
+			"offsets": {
+				"from": 39720,
+				"to": 43520
+			},
+			"text": " So as a brief introduction, what's the point of this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,520",
+				"to": "00:00:46,200"
+			},
+			"offsets": {
+				"from": 43520,
+				"to": 46200
+			},
+			"text": " How are PBS and Mev Boost linked?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,200",
+				"to": "00:00:48,200"
+			},
+			"offsets": {
+				"from": 46200,
+				"to": 48200
+			},
+			"text": " Or how are they different?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,200",
+				"to": "00:00:50,320"
+			},
+			"offsets": {
+				"from": 48200,
+				"to": 50320
+			},
+			"text": " So probably most of you are familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,320",
+				"to": "00:00:52,520"
+			},
+			"offsets": {
+				"from": 50320,
+				"to": 52520
+			},
+			"text": " with these ideas already, but just to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,520",
+				"to": "00:00:54,680"
+			},
+			"offsets": {
+				"from": 52520,
+				"to": 54680
+			},
+			"text": " that we're all on the same page."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,680",
+				"to": "00:00:58,320"
+			},
+			"offsets": {
+				"from": 54680,
+				"to": 58320
+			},
+			"text": " Proposer Builder Separation refers to an architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,320",
+				"to": "00:01:01,360"
+			},
+			"offsets": {
+				"from": 58320,
+				"to": 61360
+			},
+			"text": " that separates the functions of block building"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,360",
+				"to": "00:01:05,760"
+			},
+			"offsets": {
+				"from": 61360,
+				"to": 65760
+			},
+			"text": " and block proposing within the core Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,760",
+				"to": "00:01:09,400"
+			},
+			"offsets": {
+				"from": 65760,
+				"to": 69400
+			},
+			"text": " So instead of the block proposal-- in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,400",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 69400,
+				"to": 71200
+			},
+			"text": " the validator-- going to the mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:14,520"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 74520
+			},
+			"text": " and building their own block, which they would then propose"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,520",
+				"to": "00:01:18,400"
+			},
+			"offsets": {
+				"from": 74520,
+				"to": 78400
+			},
+			"text": " to the rest of the network, all block construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,400",
+				"to": "00:01:22,240"
+			},
+			"offsets": {
+				"from": 78400,
+				"to": 82240
+			},
+			"text": " would be outsourced to actors that we called block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,240",
+				"to": "00:01:25,920"
+			},
+			"offsets": {
+				"from": 82240,
+				"to": 85920
+			},
+			"text": " So the idea is that the only thing that the validator would"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,920",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 85920,
+				"to": 90080
+			},
+			"text": " have to do under full PBS would be to choose the highest value"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 93960
+			},
+			"text": " block that's presented to it when it's time for its slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 97160
+			},
+			"text": " Block building is a-- you can think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:39,840"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 99840
+			},
+			"text": " as a revenue generating activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,840",
+				"to": "00:01:41,720"
+			},
+			"offsets": {
+				"from": 99840,
+				"to": 101720
+			},
+			"text": " There are economies of scale involved in it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,720",
+				"to": "00:01:44,680"
+			},
+			"offsets": {
+				"from": 101720,
+				"to": 104680
+			},
+			"text": " and opportunities for things like private order flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,680",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 104680,
+				"to": 107600
+			},
+			"text": " that might give you an advantage over other builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:51,120"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 111120
+			},
+			"text": " So basically, there are incentives for block builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,120",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111120,
+				"to": 115000
+			},
+			"text": " to centralize and to become more powerful as time goes on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,680"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118680
+			},
+			"text": " So that's a tradeoff that was kind of known about and made"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,680",
+				"to": "00:02:00,880"
+			},
+			"offsets": {
+				"from": 118680,
+				"to": 120880
+			},
+			"text": " and accepted at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,880",
+				"to": "00:02:03,880"
+			},
+			"offsets": {
+				"from": 120880,
+				"to": 123880
+			},
+			"text": " The PBS would take this centralizing force out"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,880",
+				"to": "00:02:06,880"
+			},
+			"offsets": {
+				"from": 123880,
+				"to": 126880
+			},
+			"text": " of the Ethereum consensus layer and put it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,880",
+				"to": "00:02:08,640"
+			},
+			"offsets": {
+				"from": 126880,
+				"to": 128640
+			},
+			"text": " into the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,640",
+				"to": "00:02:13,440"
+			},
+			"offsets": {
+				"from": 128640,
+				"to": 133440
+			},
+			"text": " And then, logically, the only kind of interface point"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,440",
+				"to": "00:02:16,200"
+			},
+			"offsets": {
+				"from": 133440,
+				"to": 136200
+			},
+			"text": " would be where the validator is sending these calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,200",
+				"to": "00:02:18,080"
+			},
+			"offsets": {
+				"from": 136200,
+				"to": 138080
+			},
+			"text": " to the builder market on picking the best block that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,080",
+				"to": "00:02:19,400"
+			},
+			"offsets": {
+				"from": 138080,
+				"to": 139400
+			},
+			"text": " comes back, like I said."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,400",
+				"to": "00:02:22,720"
+			},
+			"offsets": {
+				"from": 139400,
+				"to": 142720
+			},
+			"text": " So the idea is that kind of stuff can get very ugly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,720",
+				"to": "00:02:24,800"
+			},
+			"offsets": {
+				"from": 142720,
+				"to": 144800
+			},
+			"text": " in the builder market, but we don't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,800",
+				"to": "00:02:28,680"
+			},
+			"offsets": {
+				"from": 144800,
+				"to": 148680
+			},
+			"text": " Because the core of Ethereum, the consensus layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,680",
+				"to": "00:02:31,120"
+			},
+			"offsets": {
+				"from": 148680,
+				"to": 151120
+			},
+			"text": " is safe from the effects of MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,120",
+				"to": "00:02:32,760"
+			},
+			"offsets": {
+				"from": 151120,
+				"to": 152760
+			},
+			"text": " So where does MEV booths come into this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,760",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 152760,
+				"to": 154000
+			},
+			"text": " And how is this related?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,040"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157040
+			},
+			"text": " So MEV Boost allows validators to engage"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,040",
+				"to": "00:02:40,720"
+			},
+			"offsets": {
+				"from": 157040,
+				"to": 160720
+			},
+			"text": " in an experimental version of PBS on this builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,720",
+				"to": "00:02:41,960"
+			},
+			"offsets": {
+				"from": 160720,
+				"to": 161960
+			},
+			"text": " So it's completely optional."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,960",
+				"to": "00:02:44,800"
+			},
+			"offsets": {
+				"from": 161960,
+				"to": 164800
+			},
+			"text": " But if you have a validator on your now running MEV Boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,800",
+				"to": "00:02:46,320"
+			},
+			"offsets": {
+				"from": 164800,
+				"to": 166320
+			},
+			"text": " you can add source to your block building"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,320",
+				"to": "00:02:50,680"
+			},
+			"offsets": {
+				"from": 166320,
+				"to": 170680
+			},
+			"text": " to a kind of a burgeoning market of block builders, relays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,680",
+				"to": "00:02:55,200"
+			},
+			"offsets": {
+				"from": 170680,
+				"to": 175200
+			},
+			"text": " searchers that are all competing to give you the best block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,200",
+				"to": "00:02:59,160"
+			},
+			"offsets": {
+				"from": 175200,
+				"to": 179160
+			},
+			"text": " And the reason that this happened was because if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,160",
+				"to": "00:03:00,880"
+			},
+			"offsets": {
+				"from": 179160,
+				"to": 180880
+			},
+			"text": " familiar with the old Flashbots auction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,880",
+				"to": "00:03:03,720"
+			},
+			"offsets": {
+				"from": 180880,
+				"to": 183720
+			},
+			"text": " this wasn't going to work after the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,720",
+				"to": "00:03:06,240"
+			},
+			"offsets": {
+				"from": 183720,
+				"to": 186240
+			},
+			"text": " So we knew that we needed to kind of upgrade it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,240",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 186240,
+				"to": 187720
+			},
+			"text": " and do something different."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,720",
+				"to": "00:03:10,200"
+			},
+			"offsets": {
+				"from": 187720,
+				"to": 190200
+			},
+			"text": " And so Flashbots worked with the Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,200",
+				"to": "00:03:12,640"
+			},
+			"offsets": {
+				"from": 190200,
+				"to": 192640
+			},
+			"text": " to make this piece of open source software that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,640",
+				"to": "00:03:18,840"
+			},
+			"offsets": {
+				"from": 192640,
+				"to": 198840
+			},
+			"text": " could act as a prototype for this longer term MEV solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,840",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 198840,
+				"to": 200920
+			},
+			"text": " for Ethereum, which was PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 207440
+			},
+			"text": " So in this way, we are able to test this idea of PBS"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:30,400"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 210400
+			},
+			"text": " through MEV Boost, rather than kind of putting it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,400",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 210400,
+				"to": 212880
+			},
+			"text": " in the protocol and then being in trouble"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:36,360"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 216360
+			},
+			"text": " if it doesn't work or something bad happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,360",
+				"to": "00:03:38,680"
+			},
+			"offsets": {
+				"from": 216360,
+				"to": 218680
+			},
+			"text": " Here's a quick diagram of what I'm talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,680",
+				"to": "00:03:41,640"
+			},
+			"offsets": {
+				"from": 218680,
+				"to": 221640
+			},
+			"text": " when I say the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,640",
+				"to": "00:03:43,600"
+			},
+			"offsets": {
+				"from": 221640,
+				"to": 223600
+			},
+			"text": " And I really just want to go through this quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,600",
+				"to": "00:03:45,480"
+			},
+			"offsets": {
+				"from": 223600,
+				"to": 225480
+			},
+			"text": " just to make sure that we're all on the same page"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,480",
+				"to": "00:03:48,720"
+			},
+			"offsets": {
+				"from": 225480,
+				"to": 228720
+			},
+			"text": " because the later things will be a little confusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,720",
+				"to": "00:03:50,040"
+			},
+			"offsets": {
+				"from": 228720,
+				"to": 230040
+			},
+			"text": " if you don't understand this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,040",
+				"to": "00:03:53,200"
+			},
+			"offsets": {
+				"from": 230040,
+				"to": 233200
+			},
+			"text": " So what we have right now, kind of on the left-hand side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,200",
+				"to": "00:03:54,800"
+			},
+			"offsets": {
+				"from": 233200,
+				"to": 234800
+			},
+			"text": " is a validator running MEV Boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,800",
+				"to": "00:03:57,640"
+			},
+			"offsets": {
+				"from": 234800,
+				"to": 237640
+			},
+			"text": " MEV Boost allows it to connect to this builder market"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,640",
+				"to": "00:03:59,760"
+			},
+			"offsets": {
+				"from": 237640,
+				"to": 239760
+			},
+			"text": " if the validator is not running MEV Boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,760",
+				"to": "00:04:02,240"
+			},
+			"offsets": {
+				"from": 239760,
+				"to": 242240
+			},
+			"text": " Officially, it should not be participating"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,240",
+				"to": "00:04:04,240"
+			},
+			"offsets": {
+				"from": 242240,
+				"to": 244240
+			},
+			"text": " in this builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,240",
+				"to": "00:04:06,160"
+			},
+			"offsets": {
+				"from": 244240,
+				"to": 246160
+			},
+			"text": " So in order for this to work, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,160",
+				"to": "00:04:07,960"
+			},
+			"offsets": {
+				"from": 246160,
+				"to": 247960
+			},
+			"text": " are certain roles that need to be carried out"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,960",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 247960,
+				"to": 249160
+			},
+			"text": " in the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:14,800"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 254800
+			},
+			"text": " So over on the right-hand side, we start with the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,800",
+				"to": "00:04:16,960"
+			},
+			"offsets": {
+				"from": 254800,
+				"to": 256960
+			},
+			"text": " So they originate transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,960",
+				"to": "00:04:21,240"
+			},
+			"offsets": {
+				"from": 256960,
+				"to": 261240
+			},
+			"text": " And those transactions either go to the public mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,240",
+				"to": "00:04:24,640"
+			},
+			"offsets": {
+				"from": 261240,
+				"to": 264640
+			},
+			"text": " on the top or maybe some private mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,640",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 264640,
+				"to": 269320
+			},
+			"text": " that searchers or builders are allowed to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 271000
+			},
+			"text": " And then we have searchers who would be monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,200"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274200
+			},
+			"text": " the public mempool as well as any private sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,200",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 274200,
+				"to": 275960
+			},
+			"text": " of transactions that they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 278760
+			},
+			"text": " And they would be forwarding their bundles along"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,760",
+				"to": "00:04:42,520"
+			},
+			"offsets": {
+				"from": 278760,
+				"to": 282520
+			},
+			"text": " to these specialized actors that we call block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,520",
+				"to": "00:04:46,800"
+			},
+			"offsets": {
+				"from": 282520,
+				"to": 286800
+			},
+			"text": " Block builders will be receiving bundles from searchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,800",
+				"to": "00:04:48,880"
+			},
+			"offsets": {
+				"from": 286800,
+				"to": 288880
+			},
+			"text": " Maybe they're also monitoring the public mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,880",
+				"to": "00:04:51,640"
+			},
+			"offsets": {
+				"from": 288880,
+				"to": 291640
+			},
+			"text": " Maybe they also have their own private sources of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,640",
+				"to": "00:04:54,560"
+			},
+			"offsets": {
+				"from": 291640,
+				"to": 294560
+			},
+			"text": " too, and they will be trying to build the most profitable block"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,560",
+				"to": "00:04:55,880"
+			},
+			"offsets": {
+				"from": 294560,
+				"to": 295880
+			},
+			"text": " for a slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,880",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 295880,
+				"to": 298800
+			},
+			"text": " So they'll forward blocks to relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:03,440"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 303440
+			},
+			"text": " And the relays here, it's different to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,440",
+				"to": "00:05:05,400"
+			},
+			"offsets": {
+				"from": 303440,
+				"to": 305400
+			},
+			"text": " if you're familiar with the Floshbots architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,400",
+				"to": "00:05:07,800"
+			},
+			"offsets": {
+				"from": 305400,
+				"to": 307800
+			},
+			"text": " before, the relay here kind of has a different role."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,800",
+				"to": "00:05:10,160"
+			},
+			"offsets": {
+				"from": 307800,
+				"to": 310160
+			},
+			"text": " So it allows validators to register with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,160",
+				"to": "00:05:12,120"
+			},
+			"offsets": {
+				"from": 310160,
+				"to": 312120
+			},
+			"text": " And then when a validator requests a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,120",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 312120,
+				"to": 315480
+			},
+			"text": " for a particular slot, the relay will forward the block that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:17,880"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 317880
+			},
+			"text": " has the highest payment attached to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,880",
+				"to": "00:05:20,040"
+			},
+			"offsets": {
+				"from": 317880,
+				"to": 320040
+			},
+			"text": " And then that validator will receive that payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,040",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 320040,
+				"to": 323080
+			},
+			"text": " for proposing this block to the rest of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 327000
+			},
+			"text": " So when I say the builder market experiment with Mev Boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:29,120"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 329120
+			},
+			"text": " this is what I mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,120",
+				"to": "00:05:31,600"
+			},
+			"offsets": {
+				"from": 329120,
+				"to": 331600
+			},
+			"text": " And when we talk about full and protocol PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,600",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 331600,
+				"to": 335400
+			},
+			"text": " we are trying to figure out a version of this that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:40,400"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 340400
+			},
+			"text": " has the important bits that enable this market baked"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,400",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 340400,
+				"to": 342000
+			},
+			"text": " into the Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:47,880"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 347880
+			},
+			"text": " So that means no Mev Boost and probably no relays as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,880",
+				"to": "00:05:51,440"
+			},
+			"offsets": {
+				"from": 347880,
+				"to": 351440
+			},
+			"text": " So the question that I wanted to ask and kind of answer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,440",
+				"to": "00:05:53,280"
+			},
+			"offsets": {
+				"from": 351440,
+				"to": 353280
+			},
+			"text": " try to answer in this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,280",
+				"to": "00:05:55,280"
+			},
+			"offsets": {
+				"from": 353280,
+				"to": 355280
+			},
+			"text": " is how is this experiment going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,280",
+				"to": "00:05:58,520"
+			},
+			"offsets": {
+				"from": 355280,
+				"to": 358520
+			},
+			"text": " So Mev Boost and this early version of the builder market"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,520",
+				"to": "00:05:59,520"
+			},
+			"offsets": {
+				"from": 358520,
+				"to": 359520
+			},
+			"text": " have been--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,520",
+				"to": "00:06:01,800"
+			},
+			"offsets": {
+				"from": 359520,
+				"to": 361800
+			},
+			"text": " it's been alive for about a month now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,800",
+				"to": "00:06:04,560"
+			},
+			"offsets": {
+				"from": 361800,
+				"to": 364560
+			},
+			"text": " So can we tell if things are going the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,560",
+				"to": "00:06:06,120"
+			},
+			"offsets": {
+				"from": 364560,
+				"to": 366120
+			},
+			"text": " that they thought we would?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,120",
+				"to": "00:06:11,200"
+			},
+			"offsets": {
+				"from": 366120,
+				"to": 371200
+			},
+			"text": " Would it be safe to put PBS in the core protocol today"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,200",
+				"to": "00:06:14,480"
+			},
+			"offsets": {
+				"from": 371200,
+				"to": 374480
+			},
+			"text": " as this experiment is without any further features"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,480",
+				"to": "00:06:16,320"
+			},
+			"offsets": {
+				"from": 374480,
+				"to": 376320
+			},
+			"text": " or enhancements?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,320",
+				"to": "00:06:20,400"
+			},
+			"offsets": {
+				"from": 376320,
+				"to": 380400
+			},
+			"text": " Are there any warning signs or maybe early indicators"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,400",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 380400,
+				"to": 383040
+			},
+			"text": " of things that we should be worried about?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 385400
+			},
+			"text": " When I was thinking about this question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:28,120"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 388120
+			},
+			"text": " like how could we tell if the experiment is working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,120",
+				"to": "00:06:30,360"
+			},
+			"offsets": {
+				"from": 388120,
+				"to": 390360
+			},
+			"text": " I started thinking about PBS as a kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,360",
+				"to": "00:06:32,440"
+			},
+			"offsets": {
+				"from": 390360,
+				"to": 392440
+			},
+			"text": " of an organizational principle."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,440",
+				"to": "00:06:34,400"
+			},
+			"offsets": {
+				"from": 392440,
+				"to": 394400
+			},
+			"text": " So it seems to be very widely accepted"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,400",
+				"to": "00:06:38,680"
+			},
+			"offsets": {
+				"from": 394400,
+				"to": 398680
+			},
+			"text": " that this kind of clean separation between the Mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,680",
+				"to": "00:06:41,640"
+			},
+			"offsets": {
+				"from": 398680,
+				"to": 401640
+			},
+			"text": " activity and the rest of Ethereum with only this market"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,640",
+				"to": "00:06:46,640"
+			},
+			"offsets": {
+				"from": 401640,
+				"to": 406640
+			},
+			"text": " in between as an interface point is desirable and also possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,640",
+				"to": "00:06:50,520"
+			},
+			"offsets": {
+				"from": 406640,
+				"to": 410520
+			},
+			"text": " So it's probably not very helpful that the idea of PBS"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,520",
+				"to": "00:06:54,600"
+			},
+			"offsets": {
+				"from": 410520,
+				"to": 414600
+			},
+			"text": " is, I think, relatively simple and easy to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,600",
+				"to": "00:06:56,400"
+			},
+			"offsets": {
+				"from": 414600,
+				"to": 416400
+			},
+			"text": " And sometimes we can be biased towards things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,400",
+				"to": "00:06:57,480"
+			},
+			"offsets": {
+				"from": 416400,
+				"to": 417480
+			},
+			"text": " that are like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,480",
+				"to": "00:06:59,960"
+			},
+			"offsets": {
+				"from": 417480,
+				"to": 419960
+			},
+			"text": " When the real problem that we're trying to address"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,960",
+				"to": "00:07:04,120"
+			},
+			"offsets": {
+				"from": 419960,
+				"to": 424120
+			},
+			"text": " is much more nuanced and complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,120",
+				"to": "00:07:06,720"
+			},
+			"offsets": {
+				"from": 424120,
+				"to": 426720
+			},
+			"text": " So the previous question kind of turned into these questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,720",
+				"to": "00:07:09,960"
+			},
+			"offsets": {
+				"from": 426720,
+				"to": 429960
+			},
+			"text": " is abstracting the Mev away from the core protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,960",
+				"to": "00:07:12,160"
+			},
+			"offsets": {
+				"from": 429960,
+				"to": 432160
+			},
+			"text": " a good abstraction, or does it leak?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,160",
+				"to": "00:07:14,920"
+			},
+			"offsets": {
+				"from": 432160,
+				"to": 434920
+			},
+			"text": " Are there more interface points between where the Mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,920",
+				"to": "00:07:18,120"
+			},
+			"offsets": {
+				"from": 434920,
+				"to": 438120
+			},
+			"text": " is happening on the core protocol than people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,120",
+				"to": "00:07:19,640"
+			},
+			"offsets": {
+				"from": 438120,
+				"to": 439640
+			},
+			"text": " would lead you to believe?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,640",
+				"to": "00:07:22,640"
+			},
+			"offsets": {
+				"from": 439640,
+				"to": 442640
+			},
+			"text": " And if things get very, very bad in the builder market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,640",
+				"to": "00:07:27,440"
+			},
+			"offsets": {
+				"from": 442640,
+				"to": 447440
+			},
+			"text": " maybe imagine a very small number of very powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,440",
+				"to": "00:07:30,480"
+			},
+			"offsets": {
+				"from": 447440,
+				"to": 450480
+			},
+			"text": " very centralized actors that dominate block building."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,480",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 450480,
+				"to": 454840
+			},
+			"text": " Are there really no knock-on effects on core Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:37,520"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 457520
+			},
+			"text": " Assuming, at some point in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,520",
+				"to": "00:07:40,840"
+			},
+			"offsets": {
+				"from": 457520,
+				"to": 460840
+			},
+			"text": " we have a full and protocol PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,840",
+				"to": "00:07:43,760"
+			},
+			"offsets": {
+				"from": 460840,
+				"to": 463760
+			},
+			"text": " In this, in protocol PBS world, I started"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,760",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 463760,
+				"to": 466040
+			},
+			"text": " thinking about what parts of Ethereum are still influenced"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:47,360"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 467360
+			},
+			"text": " by Mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,360",
+				"to": "00:07:50,360"
+			},
+			"offsets": {
+				"from": 467360,
+				"to": 470360
+			},
+			"text": " And I came up with two families of effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,360",
+				"to": "00:07:53,480"
+			},
+			"offsets": {
+				"from": 470360,
+				"to": 473480
+			},
+			"text": " So the first order effects are kind of the direct effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,480",
+				"to": "00:07:54,800"
+			},
+			"offsets": {
+				"from": 473480,
+				"to": 474800
+			},
+			"text": " on the core protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,800",
+				"to": "00:07:58,640"
+			},
+			"offsets": {
+				"from": 474800,
+				"to": 478640
+			},
+			"text": " So these are places where, even though this Mev is supposedly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,640",
+				"to": "00:08:02,440"
+			},
+			"offsets": {
+				"from": 478640,
+				"to": 482440
+			},
+			"text": " over on the other side of the room and it doesn't affect Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,440",
+				"to": "00:08:06,120"
+			},
+			"offsets": {
+				"from": 482440,
+				"to": 486120
+			},
+			"text": " it still influences part of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,120",
+				"to": "00:08:08,320"
+			},
+			"offsets": {
+				"from": 486120,
+				"to": 488320
+			},
+			"text": " And the other type are more kind of second order effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,320",
+				"to": "00:08:12,240"
+			},
+			"offsets": {
+				"from": 488320,
+				"to": 492240
+			},
+			"text": " So how are actors incentivized to try and influence"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,240",
+				"to": "00:08:15,280"
+			},
+			"offsets": {
+				"from": 492240,
+				"to": 495280
+			},
+			"text": " the base layer if it meant that they could gain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,280",
+				"to": "00:08:17,960"
+			},
+			"offsets": {
+				"from": 495280,
+				"to": 497960
+			},
+			"text": " more favorable conditions for themselves?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,960",
+				"to": "00:08:21,280"
+			},
+			"offsets": {
+				"from": 497960,
+				"to": 501280
+			},
+			"text": " So my idea for this was to try and identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,280",
+				"to": "00:08:23,600"
+			},
+			"offsets": {
+				"from": 501280,
+				"to": 503600
+			},
+			"text": " a few concrete examples of these effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,600",
+				"to": "00:08:26,960"
+			},
+			"offsets": {
+				"from": 503600,
+				"to": 506960
+			},
+			"text": " and then kind of check data to see if there is any indication"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,960",
+				"to": "00:08:29,760"
+			},
+			"offsets": {
+				"from": 506960,
+				"to": 509760
+			},
+			"text": " that these things are happening already."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,760",
+				"to": "00:08:31,720"
+			},
+			"offsets": {
+				"from": 509760,
+				"to": 511720
+			},
+			"text": " And then if these effects were to get more pronounced"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,720",
+				"to": "00:08:35,760"
+			},
+			"offsets": {
+				"from": 511720,
+				"to": 515760
+			},
+			"text": " as the builder market develops, are these really an issue?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,760",
+				"to": "00:08:39,680"
+			},
+			"offsets": {
+				"from": 515760,
+				"to": 519680
+			},
+			"text": " And if so, what kind of medications might we need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,680",
+				"to": "00:08:41,680"
+			},
+			"offsets": {
+				"from": 519680,
+				"to": 521680
+			},
+			"text": " So let's have a look at the first kind."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,680",
+				"to": "00:08:44,680"
+			},
+			"offsets": {
+				"from": 521680,
+				"to": 524680
+			},
+			"text": " What parts of Ethereum are still affected by Mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,680",
+				"to": "00:08:46,720"
+			},
+			"offsets": {
+				"from": 524680,
+				"to": 526720
+			},
+			"text": " under full and protocol PBS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,720",
+				"to": "00:08:48,880"
+			},
+			"offsets": {
+				"from": 526720,
+				"to": 528880
+			},
+			"text": " So it might be more than this, but these are the main ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,880",
+				"to": "00:08:50,360"
+			},
+			"offsets": {
+				"from": 528880,
+				"to": 530360
+			},
+			"text": " that I came up with for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,360",
+				"to": "00:08:53,480"
+			},
+			"offsets": {
+				"from": 530360,
+				"to": 533480
+			},
+			"text": " So the first one is the contents of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,480",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533480,
+				"to": 536000
+			},
+			"text": " So we are now getting these blocks from the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 537800
+			},
+			"text": " So now all transactions in the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:08:59,880"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 539880
+			},
+			"text": " can be directly influenced by Mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,880",
+				"to": "00:09:01,920"
+			},
+			"offsets": {
+				"from": 539880,
+				"to": 541920
+			},
+			"text": " And this wasn't the case before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,920",
+				"to": "00:09:04,120"
+			},
+			"offsets": {
+				"from": 541920,
+				"to": 544120
+			},
+			"text": " because it was possible for miners or validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,120",
+				"to": "00:09:07,080"
+			},
+			"offsets": {
+				"from": 544120,
+				"to": 547080
+			},
+			"text": " to kind of opt out of using Mev booster Mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,080",
+				"to": "00:09:09,560"
+			},
+			"offsets": {
+				"from": 547080,
+				"to": 549560
+			},
+			"text": " Keith if they really wanted to."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,560",
+				"to": "00:09:14,320"
+			},
+			"offsets": {
+				"from": 549560,
+				"to": 554320
+			},
+			"text": " So in the future, if most or all of the blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,320",
+				"to": "00:09:16,640"
+			},
+			"offsets": {
+				"from": 554320,
+				"to": 556640
+			},
+			"text": " come from the builder market, and the purpose of the builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,640",
+				"to": "00:09:19,160"
+			},
+			"offsets": {
+				"from": 556640,
+				"to": 559160
+			},
+			"text": " is to reorder and rearrange transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,160",
+				"to": "00:09:21,840"
+			},
+			"offsets": {
+				"from": 559160,
+				"to": 561840
+			},
+			"text": " their block can be as profitable as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,840",
+				"to": "00:09:23,600"
+			},
+			"offsets": {
+				"from": 561840,
+				"to": 563600
+			},
+			"text": " So hopefully that one's kind of straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,600",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 563600,
+				"to": 568000
+			},
+			"text": " This kind of idea of losing control of block content."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:29,840"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 569840
+			},
+			"text": " The second one is maybe not so obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,840",
+				"to": "00:09:32,600"
+			},
+			"offsets": {
+				"from": 569840,
+				"to": 572600
+			},
+			"text": " So the contents of the public mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,600",
+				"to": "00:09:35,760"
+			},
+			"offsets": {
+				"from": 572600,
+				"to": 575760
+			},
+			"text": " are influenced by Mev under full PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,760",
+				"to": "00:09:37,400"
+			},
+			"offsets": {
+				"from": 575760,
+				"to": 577400
+			},
+			"text": " So how can that be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,400",
+				"to": "00:09:41,400"
+			},
+			"offsets": {
+				"from": 577400,
+				"to": 581400
+			},
+			"text": " Well, in a world where we have full and protocol PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,400",
+				"to": "00:09:46,200"
+			},
+			"offsets": {
+				"from": 581400,
+				"to": 586200
+			},
+			"text": " builders are incentivized to have private sources of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,200",
+				"to": "00:09:47,560"
+			},
+			"offsets": {
+				"from": 586200,
+				"to": 587560
+			},
+			"text": " that we talked about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,560",
+				"to": "00:09:49,720"
+			},
+			"offsets": {
+				"from": 587560,
+				"to": 589720
+			},
+			"text": " And we call this exclusive order flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,720",
+				"to": "00:09:52,280"
+			},
+			"offsets": {
+				"from": 589720,
+				"to": 592280
+			},
+			"text": " So if builders are competing just on the contents"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,280",
+				"to": "00:09:55,280"
+			},
+			"offsets": {
+				"from": 592280,
+				"to": 595280
+			},
+			"text": " of the public mempool, there is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,280",
+				"to": "00:09:57,800"
+			},
+			"offsets": {
+				"from": 595280,
+				"to": 597800
+			},
+			"text": " and there's no difference between the kinds of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,800",
+				"to": "00:09:59,360"
+			},
+			"offsets": {
+				"from": 597800,
+				"to": 599360
+			},
+			"text": " that they have available to them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,360",
+				"to": "00:10:03,280"
+			},
+			"offsets": {
+				"from": 599360,
+				"to": 603280
+			},
+			"text": " then their success comes down to maybe their algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,280",
+				"to": "00:10:05,400"
+			},
+			"offsets": {
+				"from": 603280,
+				"to": 605400
+			},
+			"text": " or their trading strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,400",
+				"to": "00:10:07,680"
+			},
+			"offsets": {
+				"from": 605400,
+				"to": 607680
+			},
+			"text": " However, the more order flow that they have access to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,680",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 607680,
+				"to": 611000
+			},
+			"text": " that other builders do not, the more likely it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:14,520"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 614520
+			},
+			"text": " is that they can build a better block with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,520",
+				"to": "00:10:16,840"
+			},
+			"offsets": {
+				"from": 614520,
+				"to": 616840
+			},
+			"text": " And at Flashbots, we generally think"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,840",
+				"to": "00:10:20,080"
+			},
+			"offsets": {
+				"from": 616840,
+				"to": 620080
+			},
+			"text": " that order flow is going to be a big differentiator"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,080",
+				"to": "00:10:23,760"
+			},
+			"offsets": {
+				"from": 620080,
+				"to": 623760
+			},
+			"text": " in how successful block builders are going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,760",
+				"to": "00:10:26,920"
+			},
+			"offsets": {
+				"from": 623760,
+				"to": 626920
+			},
+			"text": " And if this order flow is exclusive in that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,920",
+				"to": "00:10:32,320"
+			},
+			"offsets": {
+				"from": 626920,
+				"to": 632320
+			},
+			"text": " it's going to a private mempool instead of the public mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,320",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 632320,
+				"to": 633960
+			},
+			"text": " It's not going into the public mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:38,800"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 638800
+			},
+			"text": " So you could have this situation where as there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,800",
+				"to": "00:10:46,400"
+			},
+			"offsets": {
+				"from": 638800,
+				"to": 646400
+			},
+			"text": " is more Mev activity because the builder--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,400",
+				"to": "00:10:47,720"
+			},
+			"offsets": {
+				"from": 646400,
+				"to": 647720
+			},
+			"text": " what is happening with the builders"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,720",
+				"to": "00:10:49,840"
+			},
+			"offsets": {
+				"from": 647720,
+				"to": 649840
+			},
+			"text": " is associated with this Mev, then the contents"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,840",
+				"to": "00:10:52,760"
+			},
+			"offsets": {
+				"from": 649840,
+				"to": 652760
+			},
+			"text": " of the public mempool might get smaller."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,760",
+				"to": "00:10:55,520"
+			},
+			"offsets": {
+				"from": 652760,
+				"to": 655520
+			},
+			"text": " And then the last one, which relates to the first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,520",
+				"to": "00:10:59,920"
+			},
+			"offsets": {
+				"from": 655520,
+				"to": 659920
+			},
+			"text": " but maybe a little bit of a different focus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,920",
+				"to": "00:11:05,200"
+			},
+			"offsets": {
+				"from": 659920,
+				"to": 665200
+			},
+			"text": " block proposers used to have control over what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,200",
+				"to": "00:11:07,760"
+			},
+			"offsets": {
+				"from": 665200,
+				"to": 667760
+			},
+			"text": " the contents of their block would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,760",
+				"to": "00:11:12,480"
+			},
+			"offsets": {
+				"from": 667760,
+				"to": 672480
+			},
+			"text": " So under full PBS, the big difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,480",
+				"to": "00:11:15,320"
+			},
+			"offsets": {
+				"from": 672480,
+				"to": 675320
+			},
+			"text": " would be that validators will now accept full blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,320",
+				"to": "00:11:16,320"
+			},
+			"offsets": {
+				"from": 675320,
+				"to": 676320
+			},
+			"text": " from the block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,320",
+				"to": "00:11:17,560"
+			},
+			"offsets": {
+				"from": 676320,
+				"to": 677560
+			},
+			"text": " And that didn't happen before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,560",
+				"to": "00:11:19,600"
+			},
+			"offsets": {
+				"from": 677560,
+				"to": 679600
+			},
+			"text": " When the old kind of Flashbots model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,600",
+				"to": "00:11:27,200"
+			},
+			"offsets": {
+				"from": 679600,
+				"to": 687200
+			},
+			"text": " you would never have full blocks coming from external sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,200",
+				"to": "00:11:29,720"
+			},
+			"offsets": {
+				"from": 687200,
+				"to": 689720
+			},
+			"text": " And then the second thing is that I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,720",
+				"to": "00:11:31,960"
+			},
+			"offsets": {
+				"from": 689720,
+				"to": 691960
+			},
+			"text": " not sure if this is for certain yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,960",
+				"to": "00:11:36,680"
+			},
+			"offsets": {
+				"from": 691960,
+				"to": 696680
+			},
+			"text": " but we think that under full protocol PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,680",
+				"to": "00:11:39,800"
+			},
+			"offsets": {
+				"from": 696680,
+				"to": 699800
+			},
+			"text": " there may not be an option for validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,800",
+				"to": "00:11:40,920"
+			},
+			"offsets": {
+				"from": 699800,
+				"to": 700920
+			},
+			"text": " to opt out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,920",
+				"to": "00:11:43,360"
+			},
+			"offsets": {
+				"from": 700920,
+				"to": 703360
+			},
+			"text": " So you might have no choice but to get your blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,360",
+				"to": "00:11:47,240"
+			},
+			"offsets": {
+				"from": 703360,
+				"to": 707240
+			},
+			"text": " from an external market."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,240",
+				"to": "00:11:49,880"
+			},
+			"offsets": {
+				"from": 707240,
+				"to": 709880
+			},
+			"text": " And then going on to the second family effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,880",
+				"to": "00:11:51,600"
+			},
+			"offsets": {
+				"from": 709880,
+				"to": 711600
+			},
+			"text": " So how are actors in the builder market"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,600",
+				"to": "00:11:55,640"
+			},
+			"offsets": {
+				"from": 711600,
+				"to": 715640
+			},
+			"text": " incentivized to mess with the base layer, the consensus layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,640",
+				"to": "00:11:57,280"
+			},
+			"offsets": {
+				"from": 715640,
+				"to": 717280
+			},
+			"text": " in order to gain an advantage?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,280",
+				"to": "00:11:58,880"
+			},
+			"offsets": {
+				"from": 717280,
+				"to": 718880
+			},
+			"text": " And the big issue that I see with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,880",
+				"to": "00:12:01,400"
+			},
+			"offsets": {
+				"from": 718880,
+				"to": 721400
+			},
+			"text": " is that the builder market is actually out of protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,400",
+				"to": "00:12:04,720"
+			},
+			"offsets": {
+				"from": 721400,
+				"to": 724720
+			},
+			"text": " So there's nothing enforcing participants in the builder"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,720",
+				"to": "00:12:08,080"
+			},
+			"offsets": {
+				"from": 724720,
+				"to": 728080
+			},
+			"text": " market to stick to the structure that we saw in the diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,080",
+				"to": "00:12:09,080"
+			},
+			"offsets": {
+				"from": 728080,
+				"to": 729080
+			},
+			"text": " earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,080",
+				"to": "00:12:11,200"
+			},
+			"offsets": {
+				"from": 729080,
+				"to": 731200
+			},
+			"text": " The Mev boost architecture that exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,200",
+				"to": "00:12:16,120"
+			},
+			"offsets": {
+				"from": 731200,
+				"to": 736120
+			},
+			"text": " is kind of a template for what is safest for independent ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,120",
+				"to": "00:12:18,280"
+			},
+			"offsets": {
+				"from": 736120,
+				"to": 738280
+			},
+			"text": " line parties like Flashbots to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,280",
+				"to": "00:12:21,480"
+			},
+			"offsets": {
+				"from": 738280,
+				"to": 741480
+			},
+			"text": " And there are a certain number of assumptions baked into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,480",
+				"to": "00:12:25,560"
+			},
+			"offsets": {
+				"from": 741480,
+				"to": 745560
+			},
+			"text": " In reality, we can't stop anyone from using, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,560",
+				"to": "00:12:29,080"
+			},
+			"offsets": {
+				"from": 745560,
+				"to": 749080
+			},
+			"text": " their profits to buy validators, their profits from building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,080",
+				"to": "00:12:32,560"
+			},
+			"offsets": {
+				"from": 749080,
+				"to": 752560
+			},
+			"text": " creating their own private version of Mev boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,560",
+				"to": "00:12:36,840"
+			},
+			"offsets": {
+				"from": 752560,
+				"to": 756840
+			},
+			"text": " or offering services around builders or other parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,840",
+				"to": "00:12:37,640"
+			},
+			"offsets": {
+				"from": 756840,
+				"to": 757640
+			},
+			"text": " of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,640",
+				"to": "00:12:41,920"
+			},
+			"offsets": {
+				"from": 757640,
+				"to": 761920
+			},
+			"text": " And as we're about to see, measuring what comes through a relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,920",
+				"to": "00:12:44,280"
+			},
+			"offsets": {
+				"from": 761920,
+				"to": 764280
+			},
+			"text": " might not necessarily be the full picture of what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,280",
+				"to": "00:12:45,760"
+			},
+			"offsets": {
+				"from": 764280,
+				"to": 765760
+			},
+			"text": " happening in the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,760",
+				"to": "00:12:48,040"
+			},
+			"offsets": {
+				"from": 765760,
+				"to": 768040
+			},
+			"text": " So the only part of the builder market that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,040",
+				"to": "00:12:52,200"
+			},
+			"offsets": {
+				"from": 768040,
+				"to": 772200
+			},
+			"text": " in the core protocol is this builder specification, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,200",
+				"to": "00:12:56,480"
+			},
+			"offsets": {
+				"from": 772200,
+				"to": 776480
+			},
+			"text": " defines the API calls and sequence between the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,480",
+				"to": "00:12:59,440"
+			},
+			"offsets": {
+				"from": 776480,
+				"to": 779440
+			},
+			"text": " and some software that looks like Mev boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,440",
+				"to": "00:13:02,080"
+			},
+			"offsets": {
+				"from": 779440,
+				"to": 782080
+			},
+			"text": " And outside of that, anything goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,080",
+				"to": "00:13:05,080"
+			},
+			"offsets": {
+				"from": 782080,
+				"to": 785080
+			},
+			"text": " By now, we have identified a few concrete areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,080",
+				"to": "00:13:06,440"
+			},
+			"offsets": {
+				"from": 785080,
+				"to": 786440
+			},
+			"text": " where we think that Mev might still"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,440",
+				"to": "00:13:08,760"
+			},
+			"offsets": {
+				"from": 786440,
+				"to": 788760
+			},
+			"text": " affect the core protocol under full PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,760",
+				"to": "00:13:10,360"
+			},
+			"offsets": {
+				"from": 788760,
+				"to": 790360
+			},
+			"text": " So what can we do with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,360",
+				"to": "00:13:13,440"
+			},
+			"offsets": {
+				"from": 790360,
+				"to": 793440
+			},
+			"text": " Well, there have been a lot of really awesome data collection"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,440",
+				"to": "00:13:15,640"
+			},
+			"offsets": {
+				"from": 793440,
+				"to": 795640
+			},
+			"text": " efforts by various parties in the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,640",
+				"to": "00:13:17,800"
+			},
+			"offsets": {
+				"from": 795640,
+				"to": 797800
+			},
+			"text": " in the last few weeks since the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,800",
+				"to": "00:13:19,320"
+			},
+			"offsets": {
+				"from": 797800,
+				"to": 799320
+			},
+			"text": " What if we took a look at some of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,320",
+				"to": "00:13:21,160"
+			},
+			"offsets": {
+				"from": 799320,
+				"to": 801160
+			},
+			"text": " and see if there are any clues based"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,160",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 801160,
+				"to": 803240
+			},
+			"text": " on these areas that we've identified it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,240",
+				"to": "00:13:25,920"
+			},
+			"offsets": {
+				"from": 803240,
+				"to": 805920
+			},
+			"text": " that this prototype builder market via Mev boost"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,920",
+				"to": "00:13:29,440"
+			},
+			"offsets": {
+				"from": 805920,
+				"to": 809440
+			},
+			"text": " is starting to affect the core protocol in an undesirable way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,440",
+				"to": "00:13:35,080"
+			},
+			"offsets": {
+				"from": 809440,
+				"to": 815080
+			},
+			"text": " And so the first question that we want to ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,080",
+				"to": "00:13:37,560"
+			},
+			"offsets": {
+				"from": 815080,
+				"to": 817560
+			},
+			"text": " is going back to what we identified previously."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,560",
+				"to": "00:13:39,520"
+			},
+			"offsets": {
+				"from": 817560,
+				"to": 819520
+			},
+			"text": " How much block content right now is currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,520",
+				"to": "00:13:41,200"
+			},
+			"offsets": {
+				"from": 819520,
+				"to": 821200
+			},
+			"text": " decided by the builder market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,200",
+				"to": "00:13:44,400"
+			},
+			"offsets": {
+				"from": 821200,
+				"to": 824400
+			},
+			"text": " So here is a graph that measures how many blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,400",
+				"to": "00:13:46,440"
+			},
+			"offsets": {
+				"from": 824400,
+				"to": 826440
+			},
+			"text": " have come from relays since the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,440",
+				"to": "00:13:51,520"
+			},
+			"offsets": {
+				"from": 826440,
+				"to": 831520
+			},
+			"text": " So as you can see, as of today, we're up to 60% of blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,520",
+				"to": "00:13:53,320"
+			},
+			"offsets": {
+				"from": 831520,
+				"to": 833320
+			},
+			"text": " coming through relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,320",
+				"to": "00:13:56,400"
+			},
+			"offsets": {
+				"from": 833320,
+				"to": 836400
+			},
+			"text": " And I looked at this graph last week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,400",
+				"to": "00:13:58,360"
+			},
+			"offsets": {
+				"from": 836400,
+				"to": 838360
+			},
+			"text": " and it was about 45%."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,360",
+				"to": "00:14:01,680"
+			},
+			"offsets": {
+				"from": 838360,
+				"to": 841680
+			},
+			"text": " So it's increasing quite quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,680",
+				"to": "00:14:03,720"
+			},
+			"offsets": {
+				"from": 841680,
+				"to": 843720
+			},
+			"text": " And again, it's important to note here"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,720",
+				"to": "00:14:06,120"
+			},
+			"offsets": {
+				"from": 843720,
+				"to": 846120
+			},
+			"text": " that this might not be the full picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,120",
+				"to": "00:14:10,320"
+			},
+			"offsets": {
+				"from": 846120,
+				"to": 850320
+			},
+			"text": " So many of these dashboards measure what comes from relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,320",
+				"to": "00:14:13,200"
+			},
+			"offsets": {
+				"from": 850320,
+				"to": 853200
+			},
+			"text": " And this might not be an accurate reflection"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,200",
+				"to": "00:14:17,400"
+			},
+			"offsets": {
+				"from": 853200,
+				"to": 857400
+			},
+			"text": " of what blocks are coming from the builder market as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,400",
+				"to": "00:14:24,200"
+			},
+			"offsets": {
+				"from": 857400,
+				"to": 864200
+			},
+			"text": " So it's probably best to think of this as a lower bound"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,200",
+				"to": "00:14:27,680"
+			},
+			"offsets": {
+				"from": 864200,
+				"to": 867680
+			},
+			"text": " on how much block content is coming from the builder market"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,680",
+				"to": "00:14:31,120"
+			},
+			"offsets": {
+				"from": 867680,
+				"to": 871120
+			},
+			"text": " that seems to be increasing over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,120",
+				"to": "00:14:32,400"
+			},
+			"offsets": {
+				"from": 871120,
+				"to": 872400
+			},
+			"text": " And then on to the second question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,400",
+				"to": "00:14:35,480"
+			},
+			"offsets": {
+				"from": 872400,
+				"to": 875480
+			},
+			"text": " So is the public mempool changing since Mev boost launched?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,480",
+				"to": "00:14:38,840"
+			},
+			"offsets": {
+				"from": 875480,
+				"to": 878840
+			},
+			"text": " So here is a graph of the count of unconfirmed transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,840",
+				"to": "00:14:40,920"
+			},
+			"offsets": {
+				"from": 878840,
+				"to": 880920
+			},
+			"text": " in the mempool over the last 30 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,920",
+				"to": "00:14:44,600"
+			},
+			"offsets": {
+				"from": 880920,
+				"to": 884600
+			},
+			"text": " And if we look back at when the merge happens, September 15,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,600",
+				"to": "00:14:46,920"
+			},
+			"offsets": {
+				"from": 884600,
+				"to": 886920
+			},
+			"text": " it looks like something may be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,920",
+				"to": "00:14:49,640"
+			},
+			"offsets": {
+				"from": 886920,
+				"to": 889640
+			},
+			"text": " The baseline seems to be a little bit lower."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,640",
+				"to": "00:14:52,920"
+			},
+			"offsets": {
+				"from": 889640,
+				"to": 892920
+			},
+			"text": " And what I would expect to see over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,920",
+				"to": "00:14:55,600"
+			},
+			"offsets": {
+				"from": 892920,
+				"to": 895600
+			},
+			"text": " if my speculation is correct, is this baseline"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,600",
+				"to": "00:14:57,080"
+			},
+			"offsets": {
+				"from": 895600,
+				"to": 897080
+			},
+			"text": " kind of trending downwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,080",
+				"to": "00:14:58,640"
+			},
+			"offsets": {
+				"from": 897080,
+				"to": 898640
+			},
+			"text": " However, I don't think I could say at this point"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,640",
+				"to": "00:15:02,120"
+			},
+			"offsets": {
+				"from": 898640,
+				"to": 902120
+			},
+			"text": " that this is definitely because of Mev."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,120",
+				"to": "00:15:04,160"
+			},
+			"offsets": {
+				"from": 902120,
+				"to": 904160
+			},
+			"text": " My plan is to keep monitoring this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,160",
+				"to": "00:15:07,360"
+			},
+			"offsets": {
+				"from": 904160,
+				"to": 907360
+			},
+			"text": " and look into other things that might be affecting the mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,360",
+				"to": "00:15:10,520"
+			},
+			"offsets": {
+				"from": 907360,
+				"to": 910520
+			},
+			"text": " since the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,520",
+				"to": "00:15:14,360"
+			},
+			"offsets": {
+				"from": 910520,
+				"to": 914360
+			},
+			"text": " And the next question is linked to the idea of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,360",
+				"to": "00:15:16,680"
+			},
+			"offsets": {
+				"from": 914360,
+				"to": 916680
+			},
+			"text": " kind of getting nasty in the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,680",
+				"to": "00:15:19,520"
+			},
+			"offsets": {
+				"from": 916680,
+				"to": 919520
+			},
+			"text": " And if there are actors with big advantages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,520",
+				"to": "00:15:23,160"
+			},
+			"offsets": {
+				"from": 919520,
+				"to": 923160
+			},
+			"text": " that they might be in a position to use those"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,160",
+				"to": "00:15:25,560"
+			},
+			"offsets": {
+				"from": 923160,
+				"to": 925560
+			},
+			"text": " to start to influence the base layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,560",
+				"to": "00:15:29,800"
+			},
+			"offsets": {
+				"from": 925560,
+				"to": 929800
+			},
+			"text": " So are there early indicators that builders are centralizing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,800",
+				"to": "00:15:33,720"
+			},
+			"offsets": {
+				"from": 929800,
+				"to": 933720
+			},
+			"text": " So this chart measures block builder success since the merge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,720",
+				"to": "00:15:36,320"
+			},
+			"offsets": {
+				"from": 933720,
+				"to": 936320
+			},
+			"text": " So percentage of blocks that landed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,320",
+				"to": "00:15:38,200"
+			},
+			"offsets": {
+				"from": 936320,
+				"to": 938200
+			},
+			"text": " came from a particular builder."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,200",
+				"to": "00:15:41,920"
+			},
+			"offsets": {
+				"from": 938200,
+				"to": 941920
+			},
+			"text": " So if we think of that 60% that we saw in the diagram"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,920",
+				"to": "00:15:46,200"
+			},
+			"offsets": {
+				"from": 941920,
+				"to": 946200
+			},
+			"text": " a few slides ago, how many of that 60%"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,200",
+				"to": "00:15:49,560"
+			},
+			"offsets": {
+				"from": 946200,
+				"to": 949560
+			},
+			"text": " came from a particular builder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,560",
+				"to": "00:15:51,320"
+			},
+			"offsets": {
+				"from": 949560,
+				"to": 951320
+			},
+			"text": " The orange one is flashbots."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,320",
+				"to": "00:15:54,560"
+			},
+			"offsets": {
+				"from": 951320,
+				"to": 954560
+			},
+			"text": " So that doesn't really look great right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,560",
+				"to": "00:15:58,720"
+			},
+			"offsets": {
+				"from": 954560,
+				"to": 958720
+			},
+			"text": " However, if you look closely, it does seem like flashbots"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,720",
+				"to": "00:16:01,720"
+			},
+			"offsets": {
+				"from": 958720,
+				"to": 961720
+			},
+			"text": " is losing its lead a little bit as time goes on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,720",
+				"to": "00:16:03,760"
+			},
+			"offsets": {
+				"from": 961720,
+				"to": 963760
+			},
+			"text": " Or as some other people have pointed out to me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,760",
+				"to": "00:16:07,840"
+			},
+			"offsets": {
+				"from": 963760,
+				"to": 967840
+			},
+			"text": " that the non-flashbot slice looks as though it might be"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,840",
+				"to": "00:16:10,240"
+			},
+			"offsets": {
+				"from": 967840,
+				"to": 970240
+			},
+			"text": " kind of diversifying a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,240",
+				"to": "00:16:11,920"
+			},
+			"offsets": {
+				"from": 970240,
+				"to": 971920
+			},
+			"text": " But the point that I'm trying to make with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,920",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 971920,
+				"to": 975000
+			},
+			"text": " is that it doesn't look like flashbots"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:19,800"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 979800
+			},
+			"text": " is as the dominant builder has a lead that's growing"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,800",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 979800,
+				"to": 982000
+			},
+			"text": " and growing over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:24,880"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 984880
+			},
+			"text": " But this is probably another good thing to keep an eye on."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,880",
+				"to": "00:16:30,400"
+			},
+			"offsets": {
+				"from": 984880,
+				"to": 990400
+			},
+			"text": " And so when I talked about actors"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,400",
+				"to": "00:16:32,320"
+			},
+			"offsets": {
+				"from": 990400,
+				"to": 992320
+			},
+			"text": " trying to influence core Ethereum in ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,320",
+				"to": "00:16:34,240"
+			},
+			"offsets": {
+				"from": 992320,
+				"to": 994240
+			},
+			"text": " that we haven't thought of yet, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,240",
+				"to": "00:16:36,880"
+			},
+			"offsets": {
+				"from": 994240,
+				"to": 996880
+			},
+			"text": " think the big one for me is whether builders and validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,880",
+				"to": "00:16:39,320"
+			},
+			"offsets": {
+				"from": 996880,
+				"to": 999320
+			},
+			"text": " will eventually decide not to bother"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,320",
+				"to": "00:16:42,200"
+			},
+			"offsets": {
+				"from": 999320,
+				"to": 1002200
+			},
+			"text": " with the out of protocol builder market"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,200",
+				"to": "00:16:44,840"
+			},
+			"offsets": {
+				"from": 1002200,
+				"to": 1004840
+			},
+			"text": " and just start making deals with each other directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,840",
+				"to": "00:16:47,520"
+			},
+			"offsets": {
+				"from": 1004840,
+				"to": 1007520
+			},
+			"text": " And this is the kind of activity that's much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,520",
+				"to": "00:16:48,760"
+			},
+			"offsets": {
+				"from": 1007520,
+				"to": 1008760
+			},
+			"text": " difficult to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,760",
+				"to": "00:16:51,200"
+			},
+			"offsets": {
+				"from": 1008760,
+				"to": 1011200
+			},
+			"text": " We really need to keep in mind that the builder market--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,200",
+				"to": "00:16:52,560"
+			},
+			"offsets": {
+				"from": 1011200,
+				"to": 1012560
+			},
+			"text": " so this thing that validators are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,560",
+				"to": "00:16:54,360"
+			},
+			"offsets": {
+				"from": 1012560,
+				"to": 1014360
+			},
+			"text": " able to send their requests to at the moment--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,360",
+				"to": "00:16:56,760"
+			},
+			"offsets": {
+				"from": 1014360,
+				"to": 1016760
+			},
+			"text": " and what goes through Mev Boost on the relays--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,760",
+				"to": "00:16:58,680"
+			},
+			"offsets": {
+				"from": 1016760,
+				"to": 1018680
+			},
+			"text": " is not the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,680",
+				"to": "00:17:00,800"
+			},
+			"offsets": {
+				"from": 1018680,
+				"to": 1020800
+			},
+			"text": " So what we would need to find out here"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,800",
+				"to": "00:17:04,640"
+			},
+			"offsets": {
+				"from": 1020800,
+				"to": 1024640
+			},
+			"text": " is if there is a way to tell if there are blocks produced"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,640",
+				"to": "00:17:08,680"
+			},
+			"offsets": {
+				"from": 1024640,
+				"to": 1028680
+			},
+			"text": " via some external source that are not going through Mev Boost"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,680",
+				"to": "00:17:09,560"
+			},
+			"offsets": {
+				"from": 1028680,
+				"to": 1029560
+			},
+			"text": " or a relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,560",
+				"to": "00:17:12,600"
+			},
+			"offsets": {
+				"from": 1029560,
+				"to": 1032600
+			},
+			"text": " And I think this is possible, but it managed to do it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,600",
+				"to": "00:17:14,120"
+			},
+			"offsets": {
+				"from": 1032600,
+				"to": 1034120
+			},
+			"text": " in time for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,120",
+				"to": "00:17:16,720"
+			},
+			"offsets": {
+				"from": 1034120,
+				"to": 1036720
+			},
+			"text": " But by examining this number over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,720",
+				"to": "00:17:19,600"
+			},
+			"offsets": {
+				"from": 1036720,
+				"to": 1039600
+			},
+			"text": " we could deduce that perhaps builders are being connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,600",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1039600,
+				"to": 1043000
+			},
+			"text": " directly to validators and bypassing the relay components"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:23,800"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1043800
+			},
+			"text": " entirely."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,800",
+				"to": "00:17:26,360"
+			},
+			"offsets": {
+				"from": 1043800,
+				"to": 1046360
+			},
+			"text": " Because if you're a big party with a lot of order flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,360",
+				"to": "00:17:28,760"
+			},
+			"offsets": {
+				"from": 1046360,
+				"to": 1048760
+			},
+			"text": " and either access to a lot of validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,760",
+				"to": "00:17:32,680"
+			},
+			"offsets": {
+				"from": 1048760,
+				"to": 1052680
+			},
+			"text": " or perhaps the means to acquire validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,680",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1052680,
+				"to": 1055320
+			},
+			"text": " you don't need to participate in all this relay and builder"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:36,760"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1056760
+			},
+			"text": " competition business."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,760",
+				"to": "00:17:41,200"
+			},
+			"offsets": {
+				"from": 1056760,
+				"to": 1061200
+			},
+			"text": " So I think we want to keep as much of this activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,200",
+				"to": "00:17:43,920"
+			},
+			"offsets": {
+				"from": 1061200,
+				"to": 1063920
+			},
+			"text": " in the light as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,920",
+				"to": "00:17:46,160"
+			},
+			"offsets": {
+				"from": 1063920,
+				"to": 1066160
+			},
+			"text": " This is something that I think is really important"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,160",
+				"to": "00:17:50,120"
+			},
+			"offsets": {
+				"from": 1066160,
+				"to": 1070120
+			},
+			"text": " and will continue to work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,120",
+				"to": "00:17:52,880"
+			},
+			"offsets": {
+				"from": 1070120,
+				"to": 1072880
+			},
+			"text": " So looking at the indicators that we found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,880",
+				"to": "00:17:54,920"
+			},
+			"offsets": {
+				"from": 1072880,
+				"to": 1074920
+			},
+			"text": " are these things actually problems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,920",
+				"to": "00:17:57,920"
+			},
+			"offsets": {
+				"from": 1074920,
+				"to": 1077920
+			},
+			"text": " If the trends that we identified continue and possibly"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,920",
+				"to": "00:18:02,800"
+			},
+			"offsets": {
+				"from": 1077920,
+				"to": 1082800
+			},
+			"text": " become more pronounced, what negative effects on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,800",
+				"to": "00:18:03,640"
+			},
+			"offsets": {
+				"from": 1082800,
+				"to": 1083640
+			},
+			"text": " could we expect?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,640",
+				"to": "00:18:10,400"
+			},
+			"offsets": {
+				"from": 1083640,
+				"to": 1090400
+			},
+			"text": " So we saw previously that we are currently around 60%"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,400",
+				"to": "00:18:12,720"
+			},
+			"offsets": {
+				"from": 1090400,
+				"to": 1092720
+			},
+			"text": " of Ethereum blocks now coming from the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,720",
+				"to": "00:18:15,680"
+			},
+			"offsets": {
+				"from": 1092720,
+				"to": 1095680
+			},
+			"text": " So extrapolating from this, should we"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,680",
+				"to": "00:18:20,040"
+			},
+			"offsets": {
+				"from": 1095680,
+				"to": 1100040
+			},
+			"text": " be worried if 90% of blocks are coming from the builder market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,040",
+				"to": "00:18:22,640"
+			},
+			"offsets": {
+				"from": 1100040,
+				"to": 1102640
+			},
+			"text": " And I think the main problem with this is censorship."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,640",
+				"to": "00:18:25,360"
+			},
+			"offsets": {
+				"from": 1102640,
+				"to": 1105360
+			},
+			"text": " And hopefully you can see by now why censorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,360",
+				"to": "00:18:29,240"
+			},
+			"offsets": {
+				"from": 1105360,
+				"to": 1109240
+			},
+			"text": " is the big topical issue with PBS that a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,240",
+				"to": "00:18:30,640"
+			},
+			"offsets": {
+				"from": 1109240,
+				"to": 1110640
+			},
+			"text": " are talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,640",
+				"to": "00:18:33,200"
+			},
+			"offsets": {
+				"from": 1110640,
+				"to": 1113200
+			},
+			"text": " If the centralizing dynamics that we're expecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,200",
+				"to": "00:18:37,160"
+			},
+			"offsets": {
+				"from": 1113200,
+				"to": 1117160
+			},
+			"text": " start to play out, it's possible that 90% plus of blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,160",
+				"to": "00:18:39,400"
+			},
+			"offsets": {
+				"from": 1117160,
+				"to": 1119400
+			},
+			"text": " start to come from a few actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,400",
+				"to": "00:18:43,160"
+			},
+			"offsets": {
+				"from": 1119400,
+				"to": 1123160
+			},
+			"text": " And as we know, it's easier to censor"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,160",
+				"to": "00:18:45,880"
+			},
+			"offsets": {
+				"from": 1123160,
+				"to": 1125880
+			},
+			"text": " at the block builder level than it is to censor"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,880",
+				"to": "00:18:47,400"
+			},
+			"offsets": {
+				"from": 1125880,
+				"to": 1127400
+			},
+			"text": " at the consensus level."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,400",
+				"to": "00:18:51,200"
+			},
+			"offsets": {
+				"from": 1127400,
+				"to": 1131200
+			},
+			"text": " We also saw that there seems to be a decrease in transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,200",
+				"to": "00:18:53,800"
+			},
+			"offsets": {
+				"from": 1131200,
+				"to": 1133800
+			},
+			"text": " volume in the public mempool post-March."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,800",
+				"to": "00:18:55,920"
+			},
+			"offsets": {
+				"from": 1133800,
+				"to": 1135920
+			},
+			"text": " And if that's speculation is correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,920",
+				"to": "00:18:58,640"
+			},
+			"offsets": {
+				"from": 1135920,
+				"to": 1138640
+			},
+			"text": " and it turns out that this is a symptom of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,640",
+				"to": "00:19:02,160"
+			},
+			"offsets": {
+				"from": 1138640,
+				"to": 1142160
+			},
+			"text": " being diverted from the public mempool and into private pools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,160",
+				"to": "00:19:05,080"
+			},
+			"offsets": {
+				"from": 1142160,
+				"to": 1145080
+			},
+			"text": " what implication might this have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,080",
+				"to": "00:19:10,360"
+			},
+			"offsets": {
+				"from": 1145080,
+				"to": 1150360
+			},
+			"text": " And one of the solutions that people propose,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,360",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1150360,
+				"to": 1152840
+			},
+			"text": " or maybe one of the kind of additional features"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:16,040"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1156040
+			},
+			"text": " that people want to see for a meth boost or fall PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,040",
+				"to": "00:19:18,160"
+			},
+			"offsets": {
+				"from": 1156040,
+				"to": 1158160
+			},
+			"text": " is this idea of a fallback solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,160",
+				"to": "00:19:19,920"
+			},
+			"offsets": {
+				"from": 1158160,
+				"to": 1159920
+			},
+			"text": " So that would be allowing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,920",
+				"to": "00:19:21,960"
+			},
+			"offsets": {
+				"from": 1159920,
+				"to": 1161960
+			},
+			"text": " if something goes wrong, you allow your validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,960",
+				"to": "00:19:24,160"
+			},
+			"offsets": {
+				"from": 1161960,
+				"to": 1164160
+			},
+			"text": " to build blocks locally, and then compare those"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,160",
+				"to": "00:19:27,280"
+			},
+			"offsets": {
+				"from": 1164160,
+				"to": 1167280
+			},
+			"text": " to builder market blocks that have been produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,280",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1167280,
+				"to": 1170000
+			},
+			"text": " And then you would only accept the builder market blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:31,880"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1171880
+			},
+			"text": " under certain circumstances."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,880",
+				"to": "00:19:36,480"
+			},
+			"offsets": {
+				"from": 1171880,
+				"to": 1176480
+			},
+			"text": " So the issue here would be if the public mempool"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,480",
+				"to": "00:19:40,240"
+			},
+			"offsets": {
+				"from": 1176480,
+				"to": 1180240
+			},
+			"text": " maybe got so small that effective fallback solutions like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,240",
+				"to": "00:19:43,680"
+			},
+			"offsets": {
+				"from": 1180240,
+				"to": 1183680
+			},
+			"text": " either weren't possible or relied on the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,680",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1183680,
+				"to": 1185000
+			},
+			"text": " being altruistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:48,520"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1188520
+			},
+			"text": " And that building from the public mempool alone"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,520",
+				"to": "00:19:56,440"
+			},
+			"offsets": {
+				"from": 1188520,
+				"to": 1196440
+			},
+			"text": " is completely not competitive compared to the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,440",
+				"to": "00:19:59,320"
+			},
+			"offsets": {
+				"from": 1196440,
+				"to": 1199320
+			},
+			"text": " And for this-- so we still don't know if this is happening yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,320",
+				"to": "00:20:00,880"
+			},
+			"offsets": {
+				"from": 1199320,
+				"to": 1200880
+			},
+			"text": " But if it did happen that we end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,880",
+				"to": "00:20:02,800"
+			},
+			"offsets": {
+				"from": 1200880,
+				"to": 1202800
+			},
+			"text": " with builders that have at size profits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,800",
+				"to": "00:20:05,160"
+			},
+			"offsets": {
+				"from": 1202800,
+				"to": 1205160
+			},
+			"text": " it might make sense for builders to start"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,160",
+				"to": "00:20:07,280"
+			},
+			"offsets": {
+				"from": 1205160,
+				"to": 1207280
+			},
+			"text": " taking their profits and running validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,280",
+				"to": "00:20:08,520"
+			},
+			"offsets": {
+				"from": 1207280,
+				"to": 1208520
+			},
+			"text": " And there might be entities that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,520",
+				"to": "00:20:10,600"
+			},
+			"offsets": {
+				"from": 1208520,
+				"to": 1210600
+			},
+			"text": " own a lot of validators already that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,600",
+				"to": "00:20:12,200"
+			},
+			"offsets": {
+				"from": 1210600,
+				"to": 1212200
+			},
+			"text": " want to start block building."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,200",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1212200,
+				"to": 1215000
+			},
+			"text": " And there's likely to be a business model"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:17,080"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1217080
+			},
+			"text": " where builders can offer services based"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,080",
+				"to": "00:20:19,160"
+			},
+			"offsets": {
+				"from": 1217080,
+				"to": 1219160
+			},
+			"text": " on how many validators that they own."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,160",
+				"to": "00:20:22,560"
+			},
+			"offsets": {
+				"from": 1219160,
+				"to": 1222560
+			},
+			"text": " So I don't know if anyone saw Alex Stokes talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,560",
+				"to": "00:20:24,560"
+			},
+			"offsets": {
+				"from": 1222560,
+				"to": 1224560
+			},
+			"text": " yesterday on block building after the merge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,560",
+				"to": "00:20:27,800"
+			},
+			"offsets": {
+				"from": 1224560,
+				"to": 1227800
+			},
+			"text": " but he had a slide with a giant list of different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,800",
+				"to": "00:20:31,680"
+			},
+			"offsets": {
+				"from": 1227800,
+				"to": 1231680
+			},
+			"text": " that block builders could monetize this kind of relationship."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,680",
+				"to": "00:20:35,040"
+			},
+			"offsets": {
+				"from": 1231680,
+				"to": 1235040
+			},
+			"text": " And decentralizing the builder role itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,040",
+				"to": "00:20:39,400"
+			},
+			"offsets": {
+				"from": 1235040,
+				"to": 1239400
+			},
+			"text": " might not be feasible here as we're kind of out of protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,400",
+				"to": "00:20:42,600"
+			},
+			"offsets": {
+				"from": 1239400,
+				"to": 1242600
+			},
+			"text": " at this point, and therefore limited in what"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,600",
+				"to": "00:20:46,240"
+			},
+			"offsets": {
+				"from": 1242600,
+				"to": 1246240
+			},
+			"text": " we can force builders to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,240",
+				"to": "00:20:48,560"
+			},
+			"offsets": {
+				"from": 1246240,
+				"to": 1248560
+			},
+			"text": " We've identified a few different things"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,560",
+				"to": "00:20:53,680"
+			},
+			"offsets": {
+				"from": 1248560,
+				"to": 1253680
+			},
+			"text": " that, if left unchecked, might cause us problems down the road."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,680",
+				"to": "00:20:55,720"
+			},
+			"offsets": {
+				"from": 1253680,
+				"to": 1255720
+			},
+			"text": " And I think there's good awareness around most of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,720",
+				"to": "00:20:57,880"
+			},
+			"offsets": {
+				"from": 1255720,
+				"to": 1257880
+			},
+			"text": " already, especially the censorship resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,880",
+				"to": "00:21:00,080"
+			},
+			"offsets": {
+				"from": 1257880,
+				"to": 1260080
+			},
+			"text": " schemes, which is very topical."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,080",
+				"to": "00:21:02,240"
+			},
+			"offsets": {
+				"from": 1260080,
+				"to": 1262240
+			},
+			"text": " But there are a few other things that, given these early"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,240",
+				"to": "00:21:07,560"
+			},
+			"offsets": {
+				"from": 1262240,
+				"to": 1267560
+			},
+			"text": " indicators, might also be a priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,560",
+				"to": "00:21:12,720"
+			},
+			"offsets": {
+				"from": 1267560,
+				"to": 1272720
+			},
+			"text": " So censorship resistance, I think we know about that already."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,720",
+				"to": "00:21:14,680"
+			},
+			"offsets": {
+				"from": 1272720,
+				"to": 1274680
+			},
+			"text": " It's something called transaction inclusion lists."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,680",
+				"to": "00:21:17,480"
+			},
+			"offsets": {
+				"from": 1274680,
+				"to": 1277480
+			},
+			"text": " I believe is being actively worked on by flashbots"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,480",
+				"to": "00:21:19,200"
+			},
+			"offsets": {
+				"from": 1277480,
+				"to": 1279200
+			},
+			"text": " and other people in the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,200",
+				"to": "00:21:23,720"
+			},
+			"offsets": {
+				"from": 1279200,
+				"to": 1283720
+			},
+			"text": " So for the other things, many of the effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,720",
+				"to": "00:21:26,400"
+			},
+			"offsets": {
+				"from": 1283720,
+				"to": 1286400
+			},
+			"text": " that I talked about can be lessened"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,400",
+				"to": "00:21:30,400"
+			},
+			"offsets": {
+				"from": 1286400,
+				"to": 1290400
+			},
+			"text": " if we take steps to ensure that things can't get very"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,400",
+				"to": "00:21:32,880"
+			},
+			"offsets": {
+				"from": 1290400,
+				"to": 1292880
+			},
+			"text": " centralized and ugly in the builder market."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,880",
+				"to": "00:21:37,240"
+			},
+			"offsets": {
+				"from": 1292880,
+				"to": 1297240
+			},
+			"text": " So trying to figure out how to effectively decentralize"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,240",
+				"to": "00:21:41,240"
+			},
+			"offsets": {
+				"from": 1297240,
+				"to": 1301240
+			},
+			"text": " the builder role might be important, while also keeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,240",
+				"to": "00:21:46,880"
+			},
+			"offsets": {
+				"from": 1301240,
+				"to": 1306880
+			},
+			"text": " in mind that a decentralized builder has to be competitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,880",
+				"to": "00:21:49,360"
+			},
+			"offsets": {
+				"from": 1306880,
+				"to": 1309360
+			},
+			"text": " compared to a centralized builder in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,360",
+				"to": "00:21:51,720"
+			},
+			"offsets": {
+				"from": 1309360,
+				"to": 1311720
+			},
+			"text": " to make any difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,720",
+				"to": "00:21:54,360"
+			},
+			"offsets": {
+				"from": 1311720,
+				"to": 1314360
+			},
+			"text": " Another thing that I think is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,360",
+				"to": "00:21:58,040"
+			},
+			"offsets": {
+				"from": 1314360,
+				"to": 1318040
+			},
+			"text": " are mechanisms to ensure that underful and protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,040",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1318040,
+				"to": 1321000
+			},
+			"text": " PBS, validators can still build their own block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:03,600"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1323600
+			},
+			"text": " or perhaps augment blocks that they receive."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,600",
+				"to": "00:22:05,120"
+			},
+			"offsets": {
+				"from": 1323600,
+				"to": 1325120
+			},
+			"text": " And the reason that this is important"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,120",
+				"to": "00:22:08,080"
+			},
+			"offsets": {
+				"from": 1325120,
+				"to": 1328080
+			},
+			"text": " is that a lot of these kind of extreme effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,080",
+				"to": "00:22:11,520"
+			},
+			"offsets": {
+				"from": 1328080,
+				"to": 1331520
+			},
+			"text": " that we extrapolated assume that underful PBS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,520",
+				"to": "00:22:14,200"
+			},
+			"offsets": {
+				"from": 1331520,
+				"to": 1334200
+			},
+			"text": " 100% of proposers will be getting blocks from the builder"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,200",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1334200,
+				"to": 1335000
+			},
+			"text": " market."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:18,560"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1338560
+			},
+			"text": " So this would be a way to kind of get back control"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,560",
+				"to": "00:22:21,480"
+			},
+			"offsets": {
+				"from": 1338560,
+				"to": 1341480
+			},
+			"text": " of that block content."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,480",
+				"to": "00:22:25,280"
+			},
+			"offsets": {
+				"from": 1341480,
+				"to": 1345280
+			},
+			"text": " And then, if at all possible, reducing incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,280",
+				"to": "00:22:28,760"
+			},
+			"offsets": {
+				"from": 1345280,
+				"to": 1348760
+			},
+			"text": " from validators and block builders to work together"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,760",
+				"to": "00:22:30,560"
+			},
+			"offsets": {
+				"from": 1348760,
+				"to": 1350560
+			},
+			"text": " is something else that I think is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,560",
+				"to": "00:22:32,440"
+			},
+			"offsets": {
+				"from": 1350560,
+				"to": 1352440
+			},
+			"text": " And following on from that, working"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,440",
+				"to": "00:22:35,560"
+			},
+			"offsets": {
+				"from": 1352440,
+				"to": 1355560
+			},
+			"text": " on the ability to monitor the builder market as a whole,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,560",
+				"to": "00:22:39,080"
+			},
+			"offsets": {
+				"from": 1355560,
+				"to": 1359080
+			},
+			"text": " by putting something in the protocol that can tell whether blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,080",
+				"to": "00:22:41,240"
+			},
+			"offsets": {
+				"from": 1359080,
+				"to": 1361240
+			},
+			"text": " have been built locally or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,240",
+				"to": "00:22:46,600"
+			},
+			"offsets": {
+				"from": 1361240,
+				"to": 1366600
+			},
+			"text": " So that's pretty much it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,600",
+				"to": "00:22:48,080"
+			},
+			"offsets": {
+				"from": 1366600,
+				"to": 1368080
+			},
+			"text": " Thank you very much for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,080",
+				"to": "00:22:50,240"
+			},
+			"offsets": {
+				"from": 1368080,
+				"to": 1370240
+			},
+			"text": " I'm wondering if there's a method where"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,240",
+				"to": "00:22:52,640"
+			},
+			"offsets": {
+				"from": 1370240,
+				"to": 1372640
+			},
+			"text": " some of these solutions could be made by the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,640",
+				"to": "00:22:56,360"
+			},
+			"offsets": {
+				"from": 1372640,
+				"to": 1376360
+			},
+			"text": " and be somewhat attached to something like Mev Boost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,360",
+				"to": "00:23:00,560"
+			},
+			"offsets": {
+				"from": 1376360,
+				"to": 1380560
+			},
+			"text": " kind of almost like a module that you can add if you opt in."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,560",
+				"to": "00:23:01,880"
+			},
+			"offsets": {
+				"from": 1380560,
+				"to": 1381880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,880",
+				"to": "00:23:04,880"
+			},
+			"offsets": {
+				"from": 1381880,
+				"to": 1384880
+			},
+			"text": " I think that's a really great idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,880",
+				"to": "00:23:06,920"
+			},
+			"offsets": {
+				"from": 1384880,
+				"to": 1386920
+			},
+			"text": " I think it depends on the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,920",
+				"to": "00:23:09,440"
+			},
+			"offsets": {
+				"from": 1386920,
+				"to": 1389440
+			},
+			"text": " Mev Boost at the moment is a fairly lightweight piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,440",
+				"to": "00:23:10,160"
+			},
+			"offsets": {
+				"from": 1389440,
+				"to": 1390160
+			},
+			"text": " of software."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,160",
+				"to": "00:23:12,920"
+			},
+			"offsets": {
+				"from": 1390160,
+				"to": 1392920
+			},
+			"text": " And we have thought of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,920",
+				"to": "00:23:16,800"
+			},
+			"offsets": {
+				"from": 1392920,
+				"to": 1396800
+			},
+			"text": " A lot of the things that we want to do with transaction lists"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,800",
+				"to": "00:23:19,520"
+			},
+			"offsets": {
+				"from": 1396800,
+				"to": 1399520
+			},
+			"text": " and other things like that require"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,520",
+				"to": "00:23:21,880"
+			},
+			"offsets": {
+				"from": 1399520,
+				"to": 1401880
+			},
+			"text": " knowledge of state, of the Ethereum state."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,880",
+				"to": "00:23:23,440"
+			},
+			"offsets": {
+				"from": 1401880,
+				"to": 1403440
+			},
+			"text": " And Mev Boost just doesn't have that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,440",
+				"to": "00:23:25,240"
+			},
+			"offsets": {
+				"from": 1403440,
+				"to": 1405240
+			},
+			"text": " But I think that there are definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,240",
+				"to": "00:23:26,960"
+			},
+			"offsets": {
+				"from": 1405240,
+				"to": 1406960
+			},
+			"text": " maybe some other things and other ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,960",
+				"to": "00:23:28,920"
+			},
+			"offsets": {
+				"from": 1406960,
+				"to": 1408920
+			},
+			"text": " that Mev Boost can be improved."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,920",
+				"to": "00:23:31,880"
+			},
+			"offsets": {
+				"from": 1408920,
+				"to": 1411880
+			},
+			"text": " And you may have already seen we're also"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,880",
+				"to": "00:23:34,040"
+			},
+			"offsets": {
+				"from": 1411880,
+				"to": 1414040
+			},
+			"text": " trying to make Mev Boost more of a kind of community effort"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,040",
+				"to": "00:23:37,920"
+			},
+			"offsets": {
+				"from": 1414040,
+				"to": 1417920
+			},
+			"text": " as well, and take solutions from other parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,920",
+				"to": "00:23:39,920"
+			},
+			"offsets": {
+				"from": 1417920,
+				"to": 1419920
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,920",
+				"to": "00:23:40,440"
+			},
+			"offsets": {
+				"from": 1419920,
+				"to": 1420440
+			},
+			"text": " Hi, Jolene."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,440",
+				"to": "00:23:40,920"
+			},
+			"offsets": {
+				"from": 1420440,
+				"to": 1420920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,920",
+				"to": "00:23:42,040"
+			},
+			"offsets": {
+				"from": 1420920,
+				"to": 1422040
+			},
+			"text": " That was a great talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,040",
+				"to": "00:23:44,600"
+			},
+			"offsets": {
+				"from": 1422040,
+				"to": 1424600
+			},
+			"text": " Just wondering the solution where"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,600",
+				"to": "00:23:46,400"
+			},
+			"offsets": {
+				"from": 1424600,
+				"to": 1426400
+			},
+			"text": " you allow builders--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,400",
+				"to": "00:23:48,840"
+			},
+			"offsets": {
+				"from": 1426400,
+				"to": 1428840
+			},
+			"text": " sorry, validators-- to augment the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,840",
+				"to": "00:23:53,480"
+			},
+			"offsets": {
+				"from": 1428840,
+				"to": 1433480
+			},
+			"text": " Doesn't that still rely on them being altruistic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,480",
+				"to": "00:23:57,320"
+			},
+			"offsets": {
+				"from": 1433480,
+				"to": 1437320
+			},
+			"text": " Is there a situation where it just doesn't make sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,320",
+				"to": "00:23:59,320"
+			},
+			"offsets": {
+				"from": 1437320,
+				"to": 1439320
+			},
+			"text": " because it's so much more profitable and not much"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,320",
+				"to": "00:24:01,120"
+			},
+			"offsets": {
+				"from": 1439320,
+				"to": 1441120
+			},
+			"text": " goes into public men pool, perhaps?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,120",
+				"to": "00:24:02,240"
+			},
+			"offsets": {
+				"from": 1441120,
+				"to": 1442240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,240",
+				"to": "00:24:05,280"
+			},
+			"offsets": {
+				"from": 1442240,
+				"to": 1445280
+			},
+			"text": " I think you're completely correct about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,280",
+				"to": "00:24:06,720"
+			},
+			"offsets": {
+				"from": 1445280,
+				"to": 1446720
+			},
+			"text": " in terms of incentives."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,720",
+				"to": "00:24:10,180"
+			},
+			"offsets": {
+				"from": 1446720,
+				"to": 1450180
+			},
+			"text": " And I generally think that it's really important for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,180",
+				"to": "00:24:11,560"
+			},
+			"offsets": {
+				"from": 1450180,
+				"to": 1451560
+			},
+			"text": " to kind of design these things in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,560",
+				"to": "00:24:13,520"
+			},
+			"offsets": {
+				"from": 1451560,
+				"to": 1453520
+			},
+			"text": " to make sure that people aren't missing out"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,520",
+				"to": "00:24:17,040"
+			},
+			"offsets": {
+				"from": 1453520,
+				"to": 1457040
+			},
+			"text": " by doing things that are good for the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,040",
+				"to": "00:24:22,560"
+			},
+			"offsets": {
+				"from": 1457040,
+				"to": 1462560
+			},
+			"text": " So yeah, but I think maybe one example of where this has"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,560",
+				"to": "00:24:26,480"
+			},
+			"offsets": {
+				"from": 1462560,
+				"to": 1466480
+			},
+			"text": " actually worked well is around the time of the merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,480",
+				"to": "00:24:27,800"
+			},
+			"offsets": {
+				"from": 1466480,
+				"to": 1467800
+			},
+			"text": " when there were some--"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,800",
+				"to": "00:24:29,680"
+			},
+			"offsets": {
+				"from": 1467800,
+				"to": 1469680
+			},
+			"text": " was there some problem with Mev Boost or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,680",
+				"to": "00:24:32,480"
+			},
+			"offsets": {
+				"from": 1469680,
+				"to": 1472480
+			},
+			"text": " and a lot of people said that they weren't"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,480",
+				"to": "00:24:33,680"
+			},
+			"offsets": {
+				"from": 1472480,
+				"to": 1473680
+			},
+			"text": " going to run Mev Boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,680",
+				"to": "00:24:36,320"
+			},
+			"offsets": {
+				"from": 1473680,
+				"to": 1476320
+			},
+			"text": " So it was more kind of like a social-like altruistic thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,320",
+				"to": "00:24:38,760"
+			},
+			"offsets": {
+				"from": 1476320,
+				"to": 1478760
+			},
+			"text": " So I think Ethereum is kind of special enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,760",
+				"to": "00:24:42,880"
+			},
+			"offsets": {
+				"from": 1478760,
+				"to": 1482880
+			},
+			"text": " in that it does happen, that people have an interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,880",
+				"to": "00:24:46,120"
+			},
+			"offsets": {
+				"from": 1482880,
+				"to": 1486120
+			},
+			"text": " in the protocol and want to do the right thing by it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,120",
+				"to": "00:24:47,920"
+			},
+			"offsets": {
+				"from": 1486120,
+				"to": 1487920
+			},
+			"text": " But you're completely correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,920",
+				"to": "00:24:50,200"
+			},
+			"offsets": {
+				"from": 1487920,
+				"to": 1490200
+			},
+			"text": " Yeah, I forgot to the case where it's just not profitable"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,200",
+				"to": "00:24:51,440"
+			},
+			"offsets": {
+				"from": 1490200,
+				"to": 1491440
+			},
+			"text": " to augment your block."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,440",
+				"to": "00:24:54,080"
+			},
+			"offsets": {
+				"from": 1491440,
+				"to": 1494080
+			},
+			"text": " We'll have to think of something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,080",
+				"to": "00:24:57,080"
+			},
+			"offsets": {
+				"from": 1494080,
+				"to": 1497080
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,080",
+				"to": "00:25:00,080"
+			},
+			"offsets": {
+				"from": 1497080,
+				"to": 1500080
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,080",
+				"to": "00:25:03,080"
+			},
+			"offsets": {
+				"from": 1500080,
+				"to": 1503080
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,080",
+				"to": "00:25:32,080"
+			},
+			"offsets": {
+				"from": 1503080,
+				"to": 1532080
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

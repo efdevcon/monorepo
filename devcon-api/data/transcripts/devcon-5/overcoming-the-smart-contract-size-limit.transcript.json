@@ -1,0 +1,2430 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:23,120"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 23120
+			},
+			"text": " I am"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,120",
+				"to": "00:00:30,080"
+			},
+			"offsets": {
+				"from": 23120,
+				"to": 30080
+			},
+			"text": " What will be covered in this talk? This is the dream show overview. I will talk about the rationale behind the event by this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,080",
+				"to": "00:00:38,400"
+			},
+			"offsets": {
+				"from": 30080,
+				"to": 38400
+			},
+			"text": " first port entry. Then I will be talking about a few alternative proposals for overcoming the problem by eliminating the need of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,400",
+				"to": "00:00:47,840"
+			},
+			"offsets": {
+				"from": 38400,
+				"to": 47840
+			},
+			"text": " development. Then I will be giving some tips for optimizing and reducing the size of your smart contract. And finally, I will be talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,840",
+				"to": "00:00:53,440"
+			},
+			"offsets": {
+				"from": 47840,
+				"to": 53440
+			},
+			"text": " light arrays and proxies that you can use to basically deploy contracts of infinite size."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,440",
+				"to": "00:01:03,280"
+			},
+			"offsets": {
+				"from": 53440,
+				"to": 63280
+			},
+			"text": " So, is there a limit? Yes, there is. EIP 170 introduced a limit of 24 kilobytes on smart port size."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,280",
+				"to": "00:01:11,280"
+			},
+			"offsets": {
+				"from": 63280,
+				"to": 71280
+			},
+			"text": " You can't deploy a contract data than 24 kilobytes on a medium. Even though it only costs about 6 million gas to deploy a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,280",
+				"to": "00:01:19,280"
+			},
+			"offsets": {
+				"from": 71280,
+				"to": 79280
+			},
+			"text": " code size of 24 kilobytes, you can't go any higher. You will have gas limit is now about 10 million, but you can't deploy any bigger contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,280",
+				"to": "00:01:27,280"
+			},
+			"offsets": {
+				"from": 79280,
+				"to": 87280
+			},
+			"text": " Why was the limit put in place? So, whenever someone calls a contract, the node has to load the contract source code from the disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,280",
+				"to": "00:01:38,280"
+			},
+			"offsets": {
+				"from": 87280,
+				"to": 98280
+			},
+			"text": " And it's obvious that it costs more resources to load a bigger contract than a smaller one. But the cost of loading a contract is fixed in Ethereum right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,280",
+				"to": "00:01:43,280"
+			},
+			"offsets": {
+				"from": 98280,
+				"to": 103280
+			},
+			"text": " The cost of calling a contract using call delegate call static college and try it fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,280",
+				"to": "00:01:50,280"
+			},
+			"offsets": {
+				"from": 103280,
+				"to": 110280
+			},
+			"text": " So, it became a deal of spectra where someone will be able to deploy large contracts while still paying lower amount of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,280",
+				"to": "00:01:57,280"
+			},
+			"offsets": {
+				"from": 110280,
+				"to": 117280
+			},
+			"text": " So, it was decided to just do the basic basic things of limiting the kind of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,280",
+				"to": "00:02:00,280"
+			},
+			"offsets": {
+				"from": 117280,
+				"to": 120280
+			},
+			"text": " It was a very nice fix, but it worked."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,280",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 120280,
+				"to": 127280
+			},
+			"text": " Unveiling to note is that even if something goes out of gas, in Ethereum we have to generate a proof of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:10,280"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 130280
+			},
+			"text": " That it was executed and it was going out of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,280",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 130280,
+				"to": 138280
+			},
+			"text": " In case of this scenario, if a smart contract code is greater than 24 kilobytes, like if there wasn't any limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:27,280"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 147280
+			},
+			"text": " So, it will still be fixed on the disk, but then we might run out of gas and we'll have to generate out of gas proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,280",
+				"to": "00:02:30,280"
+			},
+			"offsets": {
+				"from": 147280,
+				"to": 150280
+			},
+			"text": " But for generating a proof, you still need to load the whole contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,280",
+				"to": "00:02:36,280"
+			},
+			"offsets": {
+				"from": 150280,
+				"to": 156280
+			},
+			"text": " So, even if you don't have enough gas, you always need to generate load the whole contract from the disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,280",
+				"to": "00:02:39,280"
+			},
+			"offsets": {
+				"from": 156280,
+				"to": 159280
+			},
+			"text": " So, it costs a bit more gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,280",
+				"to": "00:02:47,280"
+			},
+			"offsets": {
+				"from": 159280,
+				"to": 167280
+			},
+			"text": " And then back when this limit was created over those years back, the option in Ethereum wasn't that complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,280",
+				"to": "00:02:50,280"
+			},
+			"offsets": {
+				"from": 167280,
+				"to": 170280
+			},
+			"text": " We mainly had issues and they didn't really care about this limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:54,280"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 174280
+			},
+			"text": " They never reached the 24 kilobytes code measurement."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,280",
+				"to": "00:03:01,280"
+			},
+			"offsets": {
+				"from": 174280,
+				"to": 181280
+			},
+			"text": " But nowadays we have many more complex dabs, for example, make out our systems, then poly match ecosystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,280",
+				"to": "00:03:06,280"
+			},
+			"offsets": {
+				"from": 181280,
+				"to": 186280
+			},
+			"text": " So, these are a lot complex and require bigger contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,280",
+				"to": "00:03:15,280"
+			},
+			"offsets": {
+				"from": 186280,
+				"to": 195280
+			},
+			"text": " So, it's finally time that we explore other solutions that can overcome the problem by still allowing us to deploy larger contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,280",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 195280,
+				"to": 198280
+			},
+			"text": " So, one of the solutions is pagination."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:26,280"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 206280
+			},
+			"text": " So, in pagination we divide the contract into chunks of 24 kilobytes and we load the chunk whichever is needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,280",
+				"to": "00:03:35,280"
+			},
+			"offsets": {
+				"from": 206280,
+				"to": 215280
+			},
+			"text": " So, whenever you call a smart contract, the first chunk will always be loaded and that chunk will then load further chunks depending on the names."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,280",
+				"to": "00:03:39,280"
+			},
+			"offsets": {
+				"from": 215280,
+				"to": 219280
+			},
+			"text": " So, any additional chunk that will be loaded will cost additional gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,280",
+				"to": "00:03:42,280"
+			},
+			"offsets": {
+				"from": 219280,
+				"to": 222280
+			},
+			"text": " So, it's not a DDoS vector anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,280",
+				"to": "00:04:02,280"
+			},
+			"offsets": {
+				"from": 222280,
+				"to": 242280
+			},
+			"text": " But the problem with this solution is that we will first of all have to change how these smart contract codes are stored in these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,280",
+				"to": "00:04:05,280"
+			},
+			"offsets": {
+				"from": 242280,
+				"to": 245280
+			},
+			"text": " of contract codes of different chunks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,280",
+				"to": "00:04:08,280"
+			},
+			"offsets": {
+				"from": 245280,
+				"to": 248280
+			},
+			"text": " So, it will require decent changes in the protocol itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,280",
+				"to": "00:04:15,280"
+			},
+			"offsets": {
+				"from": 248280,
+				"to": 255280
+			},
+			"text": " And the other big problem with this is that it will require huge changes in the programming language like Solidity and Viper."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,280",
+				"to": "00:04:22,280"
+			},
+			"offsets": {
+				"from": 255280,
+				"to": 262280
+			},
+			"text": " Because when you introduce chunks, then you have to write the codes as that you load minimal chunks when calling a commission."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,280",
+				"to": "00:04:30,280"
+			},
+			"offsets": {
+				"from": 262280,
+				"to": 270280
+			},
+			"text": " So, if I'm doing a transfer in an ERC20 token, I don't want to load 10 different chunks to take code from different pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,280",
+				"to": "00:04:33,280"
+			},
+			"offsets": {
+				"from": 270280,
+				"to": 273280
+			},
+			"text": " I want to hold from shit to execute in a single chunk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,280",
+				"to": "00:04:38,280"
+			},
+			"offsets": {
+				"from": 273280,
+				"to": 278280
+			},
+			"text": " So, we'll have to write codes accordingly and high level languages will have to adapt."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,280",
+				"to": "00:04:43,280"
+			},
+			"offsets": {
+				"from": 278280,
+				"to": 283280
+			},
+			"text": " So, it's very hard to implement, but it's a very good solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,280",
+				"to": "00:04:49,280"
+			},
+			"offsets": {
+				"from": 283280,
+				"to": 289280
+			},
+			"text": " Now, the other solution is basically perfect library and proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,280",
+				"to": "00:04:57,280"
+			},
+			"offsets": {
+				"from": 289280,
+				"to": 297280
+			},
+			"text": " This solution I like very much and I'd say that they should have been implemented a lot like quite a time before."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,280",
+				"to": "00:05:01,280"
+			},
+			"offsets": {
+				"from": 297280,
+				"to": 301280
+			},
+			"text": " And even if other solutions are not implemented, they should be implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,280",
+				"to": "00:05:05,280"
+			},
+			"offsets": {
+				"from": 301280,
+				"to": 305280
+			},
+			"text": " And it can also be complicated with other solutions to give us other advantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,280",
+				"to": "00:05:11,280"
+			},
+			"offsets": {
+				"from": 305280,
+				"to": 311280
+			},
+			"text": " So, what it says is basically that we divide the call cost into two different costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,280",
+				"to": "00:05:14,280"
+			},
+			"offsets": {
+				"from": 311280,
+				"to": 314280
+			},
+			"text": " One is fetch cost and one is execution cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,280",
+				"to": "00:05:22,280"
+			},
+			"offsets": {
+				"from": 314280,
+				"to": 322280
+			},
+			"text": " So, right now for loading the smart contract and executing it, there's a single call and it costs the same amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,280",
+				"to": "00:05:31,280"
+			},
+			"offsets": {
+				"from": 322280,
+				"to": 331280
+			},
+			"text": " So, if you do a patch transfer and you call the token contract multiple times, you will be charged the whole amount multiple times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,280",
+				"to": "00:05:38,280"
+			},
+			"offsets": {
+				"from": 331280,
+				"to": 338280
+			},
+			"text": " But the node will actually have to do less work because it only loads the contract once and then it just executes it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,280",
+				"to": "00:05:47,280"
+			},
+			"offsets": {
+				"from": 338280,
+				"to": 347280
+			},
+			"text": " So, this proposal proposed that you pay differently for loading the smart contract from the hardest and for executing the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,280",
+				"to": "00:05:56,280"
+			},
+			"offsets": {
+				"from": 347280,
+				"to": 356280
+			},
+			"text": " So, if this is implemented, if this is implemented, then that transfers will become cheaper because you will only have to pay for loading the smart contract once"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,280",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 356280,
+				"to": 361280
+			},
+			"text": " and then you will just only have to pay only for the execution cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:05,280"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 365280
+			},
+			"text": " It will also make delegate proxies and libraries easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,280",
+				"to": "00:06:13,280"
+			},
+			"offsets": {
+				"from": 365280,
+				"to": 373280
+			},
+			"text": " So, right now if you call a public function of a library, it will show the whole library contract and you will have to pay the ask for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,280",
+				"to": "00:06:25,280"
+			},
+			"offsets": {
+				"from": 373280,
+				"to": 385280
+			},
+			"text": " So, if you are using like 10 functions, 10 library functions in your smart contract and then you load 10 of them, you will have to pay the loading cost for the library 10 times."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,280",
+				"to": "00:06:27,280"
+			},
+			"offsets": {
+				"from": 385280,
+				"to": 387280
+			},
+			"text": " But actually the library is loaded only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,280",
+				"to": "00:06:32,280"
+			},
+			"offsets": {
+				"from": 387280,
+				"to": 392280
+			},
+			"text": " And if this is implemented, then you will have to only pay the loading time or loading cost only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,280",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 392280,
+				"to": 395280
+			},
+			"text": " That will make libraries more viable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,280",
+				"to": "00:06:39,280"
+			},
+			"offsets": {
+				"from": 395280,
+				"to": 399280
+			},
+			"text": " Right now if you use libraries, the gas cost will increase by about 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,280",
+				"to": "00:06:45,280"
+			},
+			"offsets": {
+				"from": 399280,
+				"to": 405280
+			},
+			"text": " So, it is not really that useful but after implementing this change, that difference will reduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,280",
+				"to": "00:06:50,280"
+			},
+			"offsets": {
+				"from": 405280,
+				"to": 410280
+			},
+			"text": " So, I hope people will actually start using libraries and delegate proxies."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,280",
+				"to": "00:06:54,280"
+			},
+			"offsets": {
+				"from": 410280,
+				"to": 414280
+			},
+			"text": " So, there is one slight present bondage to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,280",
+				"to": "00:07:03,280"
+			},
+			"offsets": {
+				"from": 414280,
+				"to": 423280
+			},
+			"text": " Now this proposes to use of more smart contracts, bigger size smart contracts and I would say that is the use case for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,280",
+				"to": "00:07:08,280"
+			},
+			"offsets": {
+				"from": 423280,
+				"to": 428280
+			},
+			"text": " But it comes with the disadvantage that light clients will have to do more work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,280",
+				"to": "00:07:14,280"
+			},
+			"offsets": {
+				"from": 428280,
+				"to": 434280
+			},
+			"text": " It is not a problem for full notes because they already have all the code within their database."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,280",
+				"to": "00:07:19,280"
+			},
+			"offsets": {
+				"from": 434280,
+				"to": 439280
+			},
+			"text": " But light clients have to fetch all the smart contract code from other clients every time they have to execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,280",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 439280,
+				"to": 443280
+			},
+			"text": " So, imagine I am now using 10 different smart contracts in my call."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:28,280"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 448280
+			},
+			"text": " The light client will have to fetch 10 different smart contracts from the notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,280",
+				"to": "00:07:30,280"
+			},
+			"offsets": {
+				"from": 448280,
+				"to": 450280
+			},
+			"text": " So, it is more work for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,280",
+				"to": "00:07:33,280"
+			},
+			"offsets": {
+				"from": 450280,
+				"to": 453280
+			},
+			"text": " But that is what Ethereum is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,280",
+				"to": "00:07:40,280"
+			},
+			"offsets": {
+				"from": 453280,
+				"to": 460280
+			},
+			"text": " Now the other simple solution is basically just charging more gas for more work."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,280",
+				"to": "00:07:48,280"
+			},
+			"offsets": {
+				"from": 460280,
+				"to": 468280
+			},
+			"text": " So, this says that if your smart contract is greater than 24 kilobytes, then you will have to pay more gas for all the actions that you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,280",
+				"to": "00:07:51,280"
+			},
+			"offsets": {
+				"from": 468280,
+				"to": 471280
+			},
+			"text": " If you do a call, you will have to pay more gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,280",
+				"to": "00:07:53,280"
+			},
+			"offsets": {
+				"from": 471280,
+				"to": 473280
+			},
+			"text": " If you do a delegate call, you will have to pay more gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,280",
+				"to": "00:07:59,280"
+			},
+			"offsets": {
+				"from": 473280,
+				"to": 479280
+			},
+			"text": " But like how it works is that the first 24 kilobytes will be filled."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,280",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 479280,
+				"to": 484280
+			},
+			"text": " So, if your smart contract is below 24 kilobytes, you won't have to pay any extra gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:07,280"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 487280
+			},
+			"text": " The gas that you are paying right now will remain as it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,280",
+				"to": "00:08:09,280"
+			},
+			"offsets": {
+				"from": 487280,
+				"to": 489280
+			},
+			"text": " So, it is completely backward compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,280",
+				"to": "00:08:13,280"
+			},
+			"offsets": {
+				"from": 489280,
+				"to": 493280
+			},
+			"text": " But it will allow deploying of larger sized smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:25,280"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 505280
+			},
+			"text": " So, if you deploy a smart contract, let's say that is 30 kilobytes in size, then you will have to pay the 24 kilobytes in size plus an additional cost for the additional 6 kilobytes that you used."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,280",
+				"to": "00:08:32,280"
+			},
+			"offsets": {
+				"from": 505280,
+				"to": 512280
+			},
+			"text": " And this feels a bit natural and how it should be like you pay for what you get."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,280",
+				"to": "00:08:40,280"
+			},
+			"offsets": {
+				"from": 512280,
+				"to": 520280
+			},
+			"text": " So, this also comes with the same advantage that the last solution came that it's more work for the lifetimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,280",
+				"to": "00:08:47,280"
+			},
+			"offsets": {
+				"from": 520280,
+				"to": 527280
+			},
+			"text": " If there will be more contracts, more code, more data will have to be transferred over the network and more work for the lifetimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,280",
+				"to": "00:08:49,280"
+			},
+			"offsets": {
+				"from": 527280,
+				"to": 529280
+			},
+			"text": " But that's what I think of is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,280",
+				"to": "00:08:54,280"
+			},
+			"offsets": {
+				"from": 529280,
+				"to": 534280
+			},
+			"text": " So, these were alternative proposals, but what can you do now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,280",
+				"to": "00:08:57,280"
+			},
+			"offsets": {
+				"from": 534280,
+				"to": 537280
+			},
+			"text": " The limit is in place and let's say you have to create a bigger contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,280",
+				"to": "00:08:58,280"
+			},
+			"offsets": {
+				"from": 537280,
+				"to": 538280
+			},
+			"text": " What can you do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,280",
+				"to": "00:09:01,280"
+			},
+			"offsets": {
+				"from": 538280,
+				"to": 541280
+			},
+			"text": " First of all, you can optimize your code to reduce the size."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,280",
+				"to": "00:09:03,280"
+			},
+			"offsets": {
+				"from": 541280,
+				"to": 543280
+			},
+			"text": " I will be talking about some things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,280",
+				"to": "00:09:08,280"
+			},
+			"offsets": {
+				"from": 543280,
+				"to": 548280
+			},
+			"text": " So, one thing to note is that EVM only works in 256 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,280",
+				"to": "00:09:16,280"
+			},
+			"offsets": {
+				"from": 548280,
+				"to": 556280
+			},
+			"text": " So, even if you create an 8-bit variable, let's say you intend and then you add it with another US, a joint aid variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,280",
+				"to": "00:09:24,280"
+			},
+			"offsets": {
+				"from": 556280,
+				"to": 564280
+			},
+			"text": " the solidity compiler will convert that unit aid to 256 in the background and then add them as low and low 256,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,280",
+				"to": "00:09:27,280"
+			},
+			"offsets": {
+				"from": 564280,
+				"to": 567280
+			},
+			"text": " and then convert them back to unit aid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,280",
+				"to": "00:09:35,280"
+			},
+			"offsets": {
+				"from": 567280,
+				"to": 575280
+			},
+			"text": " So, it might be obvious that it will get used as more contract code and it also uses more gas when you are doing it in the runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,280",
+				"to": "00:09:42,280"
+			},
+			"offsets": {
+				"from": 575280,
+				"to": 582280
+			},
+			"text": " So, if you don't need smaller variables, then you can just always use the bigger variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,280",
+				"to": "00:09:51,280"
+			},
+			"offsets": {
+				"from": 582280,
+				"to": 591280
+			},
+			"text": " Now, the main reason that you want to use smaller variables rather than bigger variables is that smaller variables can be found together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,280",
+				"to": "00:09:54,280"
+			},
+			"offsets": {
+				"from": 591280,
+				"to": 594280
+			},
+			"text": " So, as I mentioned, everything is 256 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,280",
+				"to": "00:10:01,280"
+			},
+			"offsets": {
+				"from": 594280,
+				"to": 601280
+			},
+			"text": " So, every storage slot is 256 bits and for every storage slot, you have to pay 20,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,280",
+				"to": "00:10:07,280"
+			},
+			"offsets": {
+				"from": 601280,
+				"to": 607280
+			},
+			"text": " If you create 256 variables, then let's say you create 32, 256-bit variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,280",
+				"to": "00:10:13,280"
+			},
+			"offsets": {
+				"from": 607280,
+				"to": 613280
+			},
+			"text": " Then you will have to pay 32 into 20,000 gas for that data storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,280",
+				"to": "00:10:13,280"
+			},
+			"offsets": {
+				"from": 613280,
+				"to": 613280
+			},
+			"text": " But if you create smaller variables, let's say you create 64, then 4-2-1-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,280",
+				"to": "00:10:24,280"
+			},
+			"offsets": {
+				"from": 613280,
+				"to": 624280
+			},
+			"text": " But if you create smaller variables, let's say you create 64, then 4 to 64 can be packed in 1, 2, 5, 6, 4 plus 64 plus 64 plus 64 plus 64,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,280",
+				"to": "00:10:32,280"
+			},
+			"offsets": {
+				"from": 624280,
+				"to": 632280
+			},
+			"text": " 2, 5, 6. So, for 4 to 64 variables, you only have to pay storage cost for once now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,280",
+				"to": "00:10:35,280"
+			},
+			"offsets": {
+				"from": 632280,
+				"to": 635280
+			},
+			"text": " So, you only have to pay 20,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,280",
+				"to": "00:10:42,280"
+			},
+			"offsets": {
+				"from": 635280,
+				"to": 642280
+			},
+			"text": " So, this is very to save gas and if you can pack your variables, then move it as a product and use smaller variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,280",
+				"to": "00:10:47,280"
+			},
+			"offsets": {
+				"from": 642280,
+				"to": 647280
+			},
+			"text": " But if you cannot pack your variables, then just use the larger variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,280",
+				"to": "00:10:56,280"
+			},
+			"offsets": {
+				"from": 647280,
+				"to": 656280
+			},
+			"text": " This one might not be obvious, but function modifiers are inefficient when it comes to the code cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,280",
+				"to": "00:11:00,280"
+			},
+			"offsets": {
+				"from": 656280,
+				"to": 660280
+			},
+			"text": " So, function modifiers in solidity are in line."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,280",
+				"to": "00:11:09,280"
+			},
+			"offsets": {
+				"from": 660280,
+				"to": 669280
+			},
+			"text": " So, let's say I have a contract and I have a function modifier that says only owner and owner do only owner do the quality function."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,280",
+				"to": "00:11:13,280"
+			},
+			"offsets": {
+				"from": 669280,
+				"to": 673280
+			},
+			"text": " And I have 20 functions that only the owner can copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,280",
+				"to": "00:11:24,280"
+			},
+			"offsets": {
+				"from": 673280,
+				"to": 684280
+			},
+			"text": " And if I use this only owner's modifier, then what the solidity compiler does is that it will copy-paste the code inside the only owner modifier into all 20 of those functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,280",
+				"to": "00:11:27,280"
+			},
+			"offsets": {
+				"from": 684280,
+				"to": 687280
+			},
+			"text": " So, you can see this code representation here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,280",
+				"to": "00:11:31,280"
+			},
+			"offsets": {
+				"from": 687280,
+				"to": 691280
+			},
+			"text": " The code is in line, the code is copy-based, and it is called 20 of those functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,280",
+				"to": "00:11:36,280"
+			},
+			"offsets": {
+				"from": 691280,
+				"to": 696280
+			},
+			"text": " Now, this is not a big issue when your modifier is very small, it's just one line."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,280",
+				"to": "00:11:44,280"
+			},
+			"offsets": {
+				"from": 696280,
+				"to": 704280
+			},
+			"text": " But if your modifier has like 5, 6, 9, it does some calculations as well, then this code representation can become very painful."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,280",
+				"to": "00:11:50,280"
+			},
+			"offsets": {
+				"from": 704280,
+				"to": 710280
+			},
+			"text": " Internal functions on the other and are not in line in solidity or union, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,280",
+				"to": "00:12:00,280"
+			},
+			"offsets": {
+				"from": 710280,
+				"to": 720280
+			},
+			"text": " So, if you call an inline function, it will be as a separate call and so they won't be any code representation when calling inline functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,280",
+				"to": "00:12:11,280"
+			},
+			"offsets": {
+				"from": 720280,
+				"to": 731280
+			},
+			"text": " So, if your function modifier is big and you are using it at multiple places, it suggests that you just using internal functions and call them instead of using a function modifier."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,280",
+				"to": "00:12:14,280"
+			},
+			"offsets": {
+				"from": 731280,
+				"to": 734280
+			},
+			"text": " That way you will be able to save a lot of code size."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,280",
+				"to": "00:12:23,280"
+			},
+			"offsets": {
+				"from": 734280,
+				"to": 743280
+			},
+			"text": " But to keep in mind that calling internal functions is slightly more expensive than using function modifiers during runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,280",
+				"to": "00:12:30,280"
+			},
+			"offsets": {
+				"from": 743280,
+				"to": 750280
+			},
+			"text": " So, you will be using let's say about 50 gas mode, so it doesn't really practically matter, but it's something to keep in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,280",
+				"to": "00:12:35,280"
+			},
+			"offsets": {
+				"from": 750280,
+				"to": 755280
+			},
+			"text": " Another thing you can use is library."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,280",
+				"to": "00:12:38,280"
+			},
+			"offsets": {
+				"from": 755280,
+				"to": 758280
+			},
+			"text": " So, as I mentioned, libraries are an awesome thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,280",
+				"to": "00:12:43,280"
+			},
+			"offsets": {
+				"from": 758280,
+				"to": 763280
+			},
+			"text": " The only reason keeping holding them back right now is that they are expensive to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,280",
+				"to": "00:12:50,280"
+			},
+			"offsets": {
+				"from": 763280,
+				"to": 770280
+			},
+			"text": " If you use libraries, you will have to make an external call and it will cost about 3000 gas just to make that call."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,280",
+				"to": "00:12:54,280"
+			},
+			"offsets": {
+				"from": 770280,
+				"to": 774280
+			},
+			"text": " Meanwhile, if you use an internal function, it costs only 50 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,280",
+				"to": "00:12:56,280"
+			},
+			"offsets": {
+				"from": 774280,
+				"to": 776280
+			},
+			"text": " So, there's a huge discrepancy there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,280",
+				"to": "00:13:09,280"
+			},
+			"offsets": {
+				"from": 776280,
+				"to": 789280
+			},
+			"text": " But if the change I talked about earlier where we split the fetching cost and execution cost into two different parts, then using libraries will become very cheap and they will make a very good tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,280",
+				"to": "00:13:13,280"
+			},
+			"offsets": {
+				"from": 789280,
+				"to": 793280
+			},
+			"text": " You can use them even now if you are very desperate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,280",
+				"to": "00:13:22,280"
+			},
+			"offsets": {
+				"from": 793280,
+				"to": 802280
+			},
+			"text": " So, one thing to note about libraries is that only the public function in the libraries are basically called externally."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,280",
+				"to": "00:13:30,280"
+			},
+			"offsets": {
+				"from": 802280,
+				"to": 810280
+			},
+			"text": " If you define an internal function in the library, then that code will also be in line in your main contract and you won't be saving any gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,280",
+				"to": "00:13:36,280"
+			},
+			"offsets": {
+				"from": 810280,
+				"to": 816280
+			},
+			"text": " So, just like function modifiers are in line, internal functions of libraries are also in line."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,280",
+				"to": "00:13:40,280"
+			},
+			"offsets": {
+				"from": 816280,
+				"to": 820280
+			},
+			"text": " So, if you want to save the contract code size, use public functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,280",
+				"to": "00:13:44,280"
+			},
+			"offsets": {
+				"from": 820280,
+				"to": 824280
+			},
+			"text": " In libraries, delegate call is used under the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,280",
+				"to": "00:13:46,280"
+			},
+			"offsets": {
+				"from": 824280,
+				"to": 826280
+			},
+			"text": " Condicts are calling contract is passed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,280",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 826280,
+				"to": 830280
+			},
+			"text": " So, this involves just about all libraries work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:52,280"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 832280
+			},
+			"text": " So, while this is getting forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,280",
+				"to": "00:13:55,280"
+			},
+			"offsets": {
+				"from": 832280,
+				"to": 835280
+			},
+			"text": " And so, these are some miscellaneous tips."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,280",
+				"to": "00:14:00,280"
+			},
+			"offsets": {
+				"from": 835280,
+				"to": 840280
+			},
+			"text": " So, some of these are obvious, for example, avoid initializing variables with default values."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,280",
+				"to": "00:14:05,280"
+			},
+			"offsets": {
+				"from": 840280,
+				"to": 845280
+			},
+			"text": " And seen a lot of people that come from a background by using C++ or C."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,280",
+				"to": "00:14:09,280"
+			},
+			"offsets": {
+				"from": 845280,
+				"to": 849280
+			},
+			"text": " So, they have a tendency to initialize all the variables with 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,280",
+				"to": "00:14:15,280"
+			},
+			"offsets": {
+				"from": 849280,
+				"to": 855280
+			},
+			"text": " But on solidarity or idiom, if any uninitialized variable is actually of value 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,280",
+				"to": "00:14:25,280"
+			},
+			"offsets": {
+				"from": 855280,
+				"to": 865280
+			},
+			"text": " So, there is no difference between uninitialized variable and a variable with default value of 0 or false in Boolean or whatever the default value for that variable type is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,280",
+				"to": "00:14:29,280"
+			},
+			"offsets": {
+				"from": 865280,
+				"to": 869280
+			},
+			"text": " So, if you want, if you just want a variable with value 0, just create it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,280",
+				"to": "00:14:31,280"
+			},
+			"offsets": {
+				"from": 869280,
+				"to": 871280
+			},
+			"text": " You don't need to set it to 0 separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,280",
+				"to": "00:14:35,280"
+			},
+			"offsets": {
+				"from": 871280,
+				"to": 875280
+			},
+			"text": " You don't need to paste your precious gas into your lab."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,280",
+				"to": "00:14:39,280"
+			},
+			"offsets": {
+				"from": 875280,
+				"to": 879280
+			},
+			"text": " You shot reason strings in required statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,280",
+				"to": "00:14:47,280"
+			},
+			"offsets": {
+				"from": 879280,
+				"to": 887280
+			},
+			"text": " This might be obvious, but I've seen people who just write a whole novel in the required statement that you should be doing this, this, this, this, this, but this to succeed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,280",
+				"to": "00:14:50,280"
+			},
+			"offsets": {
+				"from": 887280,
+				"to": 890280
+			},
+			"text": " But that actually costs gas when deploying this smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,280",
+				"to": "00:14:54,280"
+			},
+			"offsets": {
+				"from": 890280,
+				"to": 894280
+			},
+			"text": " The reason strings are stored on the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,280",
+				"to": "00:14:56,280"
+			},
+			"offsets": {
+				"from": 894280,
+				"to": 896280
+			},
+			"text": " So, you have to pay gas for the reason strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,280",
+				"to": "00:15:00,280"
+			},
+			"offsets": {
+				"from": 896280,
+				"to": 900280
+			},
+			"text": " So, always try to keep your reason strings within one word limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,280",
+				"to": "00:15:04,280"
+			},
+			"offsets": {
+				"from": 900280,
+				"to": 904280
+			},
+			"text": " So, that is, I don't know, that is 256 bits basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,280",
+				"to": "00:15:06,280"
+			},
+			"offsets": {
+				"from": 904280,
+				"to": 906280
+			},
+			"text": " So, keep that within the lab."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,280",
+				"to": "00:15:08,280"
+			},
+			"offsets": {
+				"from": 906280,
+				"to": 908280
+			},
+			"text": " Avoid repetitive checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,280",
+				"to": "00:15:12,280"
+			},
+			"offsets": {
+				"from": 908280,
+				"to": 912280
+			},
+			"text": " So, this is a lot of common and it was present even in open, simply in this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,280",
+				"to": "00:15:18,280"
+			},
+			"offsets": {
+				"from": 912280,
+				"to": 918280
+			},
+			"text": " So, when you use same math, you are already checking for buffer and overflow and overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,280",
+				"to": "00:15:22,280"
+			},
+			"offsets": {
+				"from": 918280,
+				"to": 922280
+			},
+			"text": " So, you don't need to check separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,280",
+				"to": "00:15:28,280"
+			},
+			"offsets": {
+				"from": 922280,
+				"to": 928280
+			},
+			"text": " So, if you are doing transfer function and you are seeing balance is equal to balance minus amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,280",
+				"to": "00:15:36,280"
+			},
+			"offsets": {
+				"from": 928280,
+				"to": 936280
+			},
+			"text": " So, if you do balance, equal to balance dot sub amount, then you are already checking that the amount is basically less than balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,280",
+				"to": "00:15:41,280"
+			},
+			"offsets": {
+				"from": 936280,
+				"to": 941280
+			},
+			"text": " You don't need any structure which says that required balance greater than amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,280",
+				"to": "00:15:47,280"
+			},
+			"offsets": {
+				"from": 941280,
+				"to": 947280
+			},
+			"text": " That's unnecessary check and you can just remove that because same math already does that check."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,280",
+				"to": "00:15:50,280"
+			},
+			"offsets": {
+				"from": 947280,
+				"to": 950280
+			},
+			"text": " We have proper use of the solusory optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,280",
+				"to": "00:15:56,280"
+			},
+			"offsets": {
+				"from": 950280,
+				"to": 956280
+			},
+			"text": " So, many of you already use solusory optimization, I guess, almost all of you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,280",
+				"to": "00:16:01,280"
+			},
+			"offsets": {
+				"from": 956280,
+				"to": 961280
+			},
+			"text": " But there is one parameter in the optimizer that you can configure that is called runs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,280",
+				"to": "00:16:03,280"
+			},
+			"offsets": {
+				"from": 961280,
+				"to": 963280
+			},
+			"text": " So, the default value is 200."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,280",
+				"to": "00:16:13,280"
+			},
+			"offsets": {
+				"from": 963280,
+				"to": 973280
+			},
+			"text": " Run is basically the number you pass to the compiler and compiler uses that number thinking that it's the number of times that contract will be called."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,280",
+				"to": "00:16:22,280"
+			},
+			"offsets": {
+				"from": 973280,
+				"to": 982280
+			},
+			"text": " So, if you set the number of runs to one, then the compiler will optimize the contract code such that the contract code is very small."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,280",
+				"to": "00:16:28,280"
+			},
+			"offsets": {
+				"from": 982280,
+				"to": 988280
+			},
+			"text": " It's cheaper to reply, but it will be a bit more expensive to make calls to that smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,280",
+				"to": "00:16:33,280"
+			},
+			"offsets": {
+				"from": 988280,
+				"to": 993280
+			},
+			"text": " If you set that number to very high, then the code, the code size will be a bit bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,280",
+				"to": "00:16:39,280"
+			},
+			"offsets": {
+				"from": 993280,
+				"to": 999280
+			},
+			"text": " So, it will be a bit more expensive in deploying, but for end users using that smart contract will be a lot cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,280",
+				"to": "00:16:47,280"
+			},
+			"offsets": {
+				"from": 999280,
+				"to": 1007280
+			},
+			"text": " So, if you are using, if you are deploying token contract or something, I suggest setting this number to high so that transfers are cheaper."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,280",
+				"to": "00:16:56,280"
+			},
+			"offsets": {
+				"from": 1007280,
+				"to": 1016280
+			},
+			"text": " But if you are deploying something like a wasting contract, which you only call once, then you can set this number to low so that the deployment costs are low."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,280",
+				"to": "00:16:59,280"
+			},
+			"offsets": {
+				"from": 1016280,
+				"to": 1019280
+			},
+			"text": " Say, lower the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,280",
+				"to": "00:17:01,280"
+			},
+			"offsets": {
+				"from": 1019280,
+				"to": 1021280
+			},
+			"text": " So, bypassing the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,280",
+				"to": "00:17:06,280"
+			},
+			"offsets": {
+				"from": 1021280,
+				"to": 1026280
+			},
+			"text": " Basically, you can just use libraries and delegate calls to bypass the limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,280",
+				"to": "00:17:15,280"
+			},
+			"offsets": {
+				"from": 1026280,
+				"to": 1035280
+			},
+			"text": " What delegate calls do is to keep the storage of the current contract, but they use the code of another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,280",
+				"to": "00:17:23,280"
+			},
+			"offsets": {
+				"from": 1035280,
+				"to": 1043280
+			},
+			"text": " So, you can make a delegate call in your own contract and call another contract while using the code of the other contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,280",
+				"to": "00:17:30,280"
+			},
+			"offsets": {
+				"from": 1043280,
+				"to": 1050280
+			},
+			"text": " So, in this case, let's say you have a token contract and you are using delegate call in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,280",
+				"to": "00:17:37,280"
+			},
+			"offsets": {
+				"from": 1050280,
+				"to": 1057280
+			},
+			"text": " So, all the balances of that token contract will be used, but the code of the other contract will be used."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,280",
+				"to": "00:17:41,280"
+			},
+			"offsets": {
+				"from": 1057280,
+				"to": 1061280
+			},
+			"text": " So, you keep the data, you keep the context, but you have different code."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,280",
+				"to": "00:17:55,280"
+			},
+			"offsets": {
+				"from": 1061280,
+				"to": 1075280
+			},
+			"text": " So, you can divide your smart contract into multiple smart contracts where only a single contract, the master contract stores the storage and the other contracts store the contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,280",
+				"to": "00:17:59,280"
+			},
+			"offsets": {
+				"from": 1075280,
+				"to": 1079280
+			},
+			"text": " There are other techniques like EIP-1538."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,280",
+				"to": "00:18:02,280"
+			},
+			"offsets": {
+				"from": 1079280,
+				"to": 1082280
+			},
+			"text": " So, this is also based on delegate calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,280",
+				"to": "00:18:09,280"
+			},
+			"offsets": {
+				"from": 1082280,
+				"to": 1089280
+			},
+			"text": " So, in EIP-1538, what the author has done is they have created the first contract as a master contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,280",
+				"to": "00:18:12,280"
+			},
+			"offsets": {
+				"from": 1089280,
+				"to": 1092280
+			},
+			"text": " That is an index of all the other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,280",
+				"to": "00:18:17,280"
+			},
+			"offsets": {
+				"from": 1092280,
+				"to": 1097280
+			},
+			"text": " So, you always call the master contract and then the master contract will decide which function to follow."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,280",
+				"to": "00:18:21,280"
+			},
+			"offsets": {
+				"from": 1097280,
+				"to": 1101280
+			},
+			"text": " So, it's a bit like pagination, but then on top of the current architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,280",
+				"to": "00:18:24,280"
+			},
+			"offsets": {
+				"from": 1101280,
+				"to": 1104280
+			},
+			"text": " So, it's a bit more expensive, but it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,280",
+				"to": "00:18:26,280"
+			},
+			"offsets": {
+				"from": 1104280,
+				"to": 1106280
+			},
+			"text": " So, there will be a master contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,280",
+				"to": "00:18:29,280"
+			},
+			"offsets": {
+				"from": 1106280,
+				"to": 1109280
+			},
+			"text": " You call that, you let's say you call the transfer function."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,280",
+				"to": "00:18:36,280"
+			},
+			"offsets": {
+				"from": 1109280,
+				"to": 1116280
+			},
+			"text": " The master contract will see which of the subcontract has the transfer function and then it will just call that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,280",
+				"to": "00:18:40,280"
+			},
+			"offsets": {
+				"from": 1116280,
+				"to": 1120280
+			},
+			"text": " And that those were my slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,280",
+				"to": "00:18:41,280"
+			},
+			"offsets": {
+				"from": 1120280,
+				"to": 1121280
+			},
+			"text": " Thank you for coming out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,280",
+				"to": "00:18:44,280"
+			},
+			"offsets": {
+				"from": 1121280,
+				"to": 1124280
+			},
+			"text": " If you have any questions, feel free to ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,280",
+				"to": "00:18:50,280"
+			},
+			"offsets": {
+				"from": 1124280,
+				"to": 1130280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,280",
+				"to": "00:18:53,280"
+			},
+			"offsets": {
+				"from": 1130280,
+				"to": 1133280
+			},
+			"text": " Let me talk about the initial technique."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,280",
+				"to": "00:18:57,280"
+			},
+			"offsets": {
+				"from": 1133280,
+				"to": 1137280
+			},
+			"text": " Are there good libraries for doing this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,280",
+				"to": "00:19:05,280"
+			},
+			"offsets": {
+				"from": 1137280,
+				"to": 1145280
+			},
+			"text": " I don't think there are any libraries, but the variables are always packed by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,280",
+				"to": "00:19:12,280"
+			},
+			"offsets": {
+				"from": 1145280,
+				"to": 1152280
+			},
+			"text": " So, in storage, if you define variables, smaller variables, the searching compiler will always pack them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,280",
+				"to": "00:19:14,280"
+			},
+			"offsets": {
+				"from": 1152280,
+				"to": 1154280
+			},
+			"text": " You don't need to do any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,280",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1154280,
+				"to": 1156280
+			},
+			"text": " There are some rules to pack that you need to call."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:19,280"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1159280
+			},
+			"text": " For example, you cannot pack the variables defined in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,280",
+				"to": "00:19:24,280"
+			},
+			"offsets": {
+				"from": 1159280,
+				"to": 1164280
+			},
+			"text": " So, if you define variables within a function, those will not be packed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,280",
+				"to": "00:19:28,280"
+			},
+			"offsets": {
+				"from": 1164280,
+				"to": 1168280
+			},
+			"text": " The variables defined outside the functions will always be packed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,280",
+				"to": "00:19:31,280"
+			},
+			"offsets": {
+				"from": 1168280,
+				"to": 1171280
+			},
+			"text": " So, there are a bunch of rules around this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,280",
+				"to": "00:19:36,280"
+			},
+			"offsets": {
+				"from": 1171280,
+				"to": 1176280
+			},
+			"text": " You can look at this technology documentation and you can look at my blog I did a post about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,280",
+				"to": "00:19:40,280"
+			},
+			"offsets": {
+				"from": 1176280,
+				"to": 1180280
+			},
+			"text": " I had a question on something like MapX, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,280",
+				"to": "00:19:44,280"
+			},
+			"offsets": {
+				"from": 1180280,
+				"to": 1184280
+			},
+			"text": " If they go really bad, like the size of the map X, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,280",
+				"to": "00:19:46,280"
+			},
+			"offsets": {
+				"from": 1184280,
+				"to": 1186280
+			},
+			"text": " Is that a problem? Is there a restriction there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,280",
+				"to": "00:19:52,280"
+			},
+			"offsets": {
+				"from": 1186280,
+				"to": 1192280
+			},
+			"text": " No, so on the Indian, you can have 2 to the power 256 storage slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,280",
+				"to": "00:19:56,280"
+			},
+			"offsets": {
+				"from": 1192280,
+				"to": 1196280
+			},
+			"text": " So, in reality, you can never use 2 to the power 256 storage slots."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,280",
+				"to": "00:19:59,280"
+			},
+			"offsets": {
+				"from": 1196280,
+				"to": 1199280
+			},
+			"text": " So, that storage problem is not any."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,280",
+				"to": "00:20:06,280"
+			},
+			"offsets": {
+				"from": 1199280,
+				"to": 1206280
+			},
+			"text": " So, that's it. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,280",
+				"to": "00:20:09,280"
+			},
+			"offsets": {
+				"from": 1206280,
+				"to": 1209280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,280",
+				"to": "00:20:24,280"
+			},
+			"offsets": {
+				"from": 1209280,
+				"to": 1224280
+			},
+			"text": " [Music]"
+		}
+	]
+}

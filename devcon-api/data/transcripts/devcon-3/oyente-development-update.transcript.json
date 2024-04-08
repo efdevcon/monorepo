@@ -1,0 +1,1517 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,520"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19520
+			},
+			"text": " >> Thanks. Good afternoon, everyone. My name is Loy. I'm a collaborative"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,520",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 19520,
+				"to": 25000
+			},
+			"text": " Kiber network. I decentralized, you know, a change for all the cryptocurrency and tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 31000
+			},
+			"text": " Today I'm not going to talk about Kiber. I'm going to talk about Ointe, the work that I did before Kiber."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 37000
+			},
+			"text": " And Ointe is now maintained and supported by Melon Port."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43000
+			},
+			"text": " Right, so what is Ointe? I think it's not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 63000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 70000
+			},
+			"text": " Right, so what is Ointe? Ointe is a smart contract analyzer that, you know, based on symbolic execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 81000
+			},
+			"text": " So basically, you know, given a smart contract, Ointe can scan through the contract and find all the possible vulnerabilities in your smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 90000
+			},
+			"text": " So we released the first version of Ointe back in 2016 with my team from National University of Singapore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 100000
+			},
+			"text": " And I first present Ointe at DEF CON2 in Shanghai last year. And after my presentation, Melon Port, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 109000
+			},
+			"text": " Richau, and they wanted to support the development of Ointe. So, and to date, Ointe is available online at this URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " If you have your laptop with you, you can check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 121000
+			},
+			"text": " So here's the GitHub URL of Ointe as well. It's -- I mean, Ointe is still under IT development."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 130000
+			},
+			"text": " So if you have, you know, you want to let the contribute, feel free to go to GitHub and start exploring."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 135000
+			},
+			"text": " Right, so first of all, what is symbolic execution? The techniques behind Ointe."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 145000
+			},
+			"text": " So I will use a simple function here that, you know, get the bonus, given some, you know, contribution amount in some token sale. Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 155000
+			},
+			"text": " So if the amount is, like, greater than 100 Eater, then the bonus is 15%. Otherwise, you know, if the amount is greater than 50 Eater, then you get 10% bonus."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " Otherwise, there's no bonus for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 169000
+			},
+			"text": " So if you look at this function, there are three main branches in the entire function, you know, H is greater than 100."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " And, you know, H is greater than 50 and less than 100 and H is less than 50 Eater."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 183000
+			},
+			"text": " So, symbolic execution allows us to explore all the possible parts of the program of your functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " And it will record all the, you know, contract behaviors in its part, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 195000
+			},
+			"text": " And it will summarize all the behaviors in something called the part condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 203000
+			},
+			"text": " Here, you will see that for every part, we will have the condition for the input to drive the contract or the program to that part, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 217000
+			},
+			"text": " So with this summarized part condition, with this summarized part condition, we can easily check if some property is violated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 224000
+			},
+			"text": " So, for example, we can check whether if, you know, H is less than 50 and, you know, the bonus is still greater than 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 232000
+			},
+			"text": " So the way we do it is that we encode all the part condition and also the property that we want to check in some theorem-proofing language."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 238000
+			},
+			"text": " And, you know, we use some theorem-proofing or software to check the feasibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 240000
+			},
+			"text": " What's going on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 247000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 255000
+			},
+			"text": " Right, so we can check, we can use the theorem-proofing or software to check the feasibility of, you know, the property violation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 261000
+			},
+			"text": " Right, so this is the main architecture of Oiente."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 269000
+			},
+			"text": " So, Oiente works with, you know, the EVM bytecode and it also takes the Ethereum state into account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 279000
+			},
+			"text": " So, given the bytecode, it will generate the control flow graph of the contract and it will use symbolic execution to explore all the possible parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 286000
+			},
+			"text": " And, you know, for every part, we will just analyze to see whether, you know, some properties violated."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 292000
+			},
+			"text": " And, of course, we use the theorem-server here to check that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 302000
+			},
+			"text": " And if Oiente flocks any bug, then there is a validator component to check whether the bug is, you know, fun, positive or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 310000
+			},
+			"text": " So, what is the main difference between Oiente and, you know, other formal verification techniques?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 320000
+			},
+			"text": " So, Oiente basically, you know, try to find all the possible parts in the program and see whether, you know, some bug or some property is violated."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 331000
+			},
+			"text": " On the other hand, you know, formal verification allows you to formally prove that, you know, if, you know, some, the correctness of some runtime property of your contract or program."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 338000
+			},
+			"text": " Right, so, Oiente doesn't guarantee the absence of some bug, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 346000
+			},
+			"text": " It's to say, you know, I have checked, you know, this many parts in the program and, you know, these are the bugs that I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 353000
+			},
+			"text": " On the other hand, you know, Oiente is easy to use and, you know, works for most of the existing smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 358000
+			},
+			"text": " But for formal verification, you know, sometimes, you know, it doesn't go automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 366000
+			},
+			"text": " So, maybe it requires some people like your IT or, you know, some other previous presenter to, you know, configure the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 370000
+			},
+			"text": " And, you know, run it with the tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 380000
+			},
+			"text": " And, right, so, what are the new features that we support in Oiente after the DevCon presentation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 382000
+			},
+			"text": " I will quickly work through all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 390000
+			},
+			"text": " So, the first one that we support is, you know, checking the assertion violation in the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 397000
+			},
+			"text": " So, you know, developers, they, you know, sometimes they make some subtle mistakes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 399000
+			},
+			"text": " They are not even aware of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 407000
+			},
+			"text": " So, for example, this is a simple function that transfers the token from, you know, the sender to the receiver."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 413000
+			},
+			"text": " So, any of you can detect, you know, the major problem in this function."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 428000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 429000
+			},
+			"text": " Oh, oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 432000
+			},
+			"text": " This is, this would be minus, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 433000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 434000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 435000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 437000
+			},
+			"text": " So, I can just quickly fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 439000
+			},
+			"text": " But there is an, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 446000
+			},
+			"text": " [ Laughter ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 448000
+			},
+			"text": " Sorry, this is the naive buck, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 450000
+			},
+			"text": " There is more subtle buck."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 453000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 454000
+			},
+			"text": " Sorry, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 458000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 459000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " This is another naive buck, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " [ Laughter ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 465000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 467000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 469000
+			},
+			"text": " Another naive buck."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 475000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 476000
+			},
+			"text": " Not really."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 480000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 481000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 482000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 483000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 486000
+			},
+			"text": " So, what happened if sender and receiver are the same?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 493000
+			},
+			"text": " So, this guy can do, you know, print more token out of TNA, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 499000
+			},
+			"text": " So, this is really subtle and, you know, it happens in one of the contract that we have or it had before."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 510000
+			},
+			"text": " So, with Ointe, it can check, you know, this, you know, if we add some assertion there, and Ointe can check whether this assertion is violated"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 513000
+			},
+			"text": " before you even deploy the contract on the main net or test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 516000
+			},
+			"text": " So, I can just quickly show you the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 523000
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 524000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 525000
+			},
+			"text": " This is another naive buck."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 526000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 531000
+			},
+			"text": " So, this is the live version of Ointe."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 536000
+			},
+			"text": " It's at, you know, Ointe.mail.network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 545000
+			},
+			"text": " So, you can just click to compile with, right, click to Ointe and analyze."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 552000
+			},
+			"text": " Oh, something's wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 571000
+			},
+			"text": " Sorry, I get back to it later, but, you know, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 582000
+			},
+			"text": " So, you can, with Ointe, you can check, you know, whether some assertion is violated before, you know, you even deploy the contract to the main net or test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 588000
+			},
+			"text": " Another feature that we support is, you know, loop handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 596000
+			},
+			"text": " So, if you ever, you know, work with, you know, program analysis, you will know that, you know, handling loop is, you know, a nightmare, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601000
+			},
+			"text": " Because, basically, you know, loop can just force the analyzer to run forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 606000
+			},
+			"text": " And, you know, it makes the program termination non-deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:15,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 615000
+			},
+			"text": " So, this simple function here can just make, you know, Ointe run forever because we have, like, no idea, like, what is the land here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 615000,
+				"to": 620000
+			},
+			"text": " What is the land of the value X, the array X?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " So, in Ointe, we handle loops in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 630000
+			},
+			"text": " So, first of all, we allow the user to specify the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 637000
+			},
+			"text": " So, Ointe, we just keep exploring the program until the gas limit is rich."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 646000
+			},
+			"text": " We also allow the user to specify the number of iteration that they want the loop to be, to run, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 650000
+			},
+			"text": " So, here's the argument that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 656000
+			},
+			"text": " Ointe, user can also, like, specify the timeout that they allow Ointe to run."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 661000
+			},
+			"text": " So, after that timeout, Ointe will just, you know, stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 669000
+			},
+			"text": " Another thing that we added after the DevCon 2 is, you know, making Ointe more dynamic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 676000
+			},
+			"text": " So, when you analyze, so, Ointe is based on static, similar execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 680000
+			},
+			"text": " So, that means we only care about the contract itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 684000
+			},
+			"text": " We do not care much about the environment outside of the contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 693000
+			},
+			"text": " So, for example, if the contract calls another contract, then we do not, like, analyze the contract that, you know, this contract is calling."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 699000
+			},
+			"text": " So, with Ointe, we allow user to set up a customized blockchain or environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 708000
+			},
+			"text": " So, you know, when this contract calls another contract, then Ointe will go to that contract as well and analyze it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 716000
+			},
+			"text": " So, this is how you can specify the environment to work with Ointe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 728000
+			},
+			"text": " So, it looks complicated, but basically you can specify the gas limit, the difficulty of the block, the transition data that, you know, you want to send to the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 737000
+			},
+			"text": " You can also specify the account state, including, you know, the balance and the storage of some of cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " So, there are a bunch of new features that we are planning to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 749000
+			},
+			"text": " The first one is to generate all the test cases, because, you know, Ointe visit all the possible parts of the program, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " And it records all the behaviors of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 760000
+			},
+			"text": " So, it is possible for Ointe to generate the corresponding input that drives the program to the same part."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 771000
+			},
+			"text": " So, basically, you can, you know, use all the generated input as a test case for just a smart contract and use it in other framework, like shuffle."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " We also plan to, like, simplify all the constraints in the part condition."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 790000
+			},
+			"text": " So, for example, if you have two conditions, like, you know, X is greater than zero and X is a small, less than two, then we can simplify it to, you know, X equal to one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 790000
+			},
+			"text": " So, that will reduce the time that we query the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 803000
+			},
+			"text": " So, that will reduce the time that we carry the, the, the, the server or the theorem prover."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 809000
+			},
+			"text": " We also want to reduce the number of positive reports in order to provide more helpful feedback to the developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 816000
+			},
+			"text": " So, these are all the new features that we are going to add in the, in the near future."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 819000
+			},
+			"text": " Okay, so with that, I want to conclude my presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 826000
+			},
+			"text": " And again, this is the URL to the GitHub repo and Ointe is available online."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 832000
+			},
+			"text": " These are all the main developer of Ointe's that have, you know, been contributing to the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 838000
+			},
+			"text": " And again, thanks to Melonport for sponsoring and, you know, for the support server."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 851000
+			},
+			"text": " [ Applause ]"
+		}
+	]
+}

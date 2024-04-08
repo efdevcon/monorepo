@@ -1,0 +1,5521 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,080"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14080
+			},
+			"text": " We're about to kick out the Ethereum 1/Ethereum 2 transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,080",
+				"to": "00:00:21,600"
+			},
+			"offsets": {
+				"from": 14080,
+				"to": 21600
+			},
+			"text": " I think that Danny is the right person who will introduce you the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,600",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 21600,
+				"to": 23560
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:24,560"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 24560
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,560",
+				"to": "00:00:32,160"
+			},
+			"offsets": {
+				"from": 24560,
+				"to": 32160
+			},
+			"text": " I'm Danny. I work at the Ethereum Foundation on a lot of A2 stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,160",
+				"to": "00:00:39,040"
+			},
+			"offsets": {
+				"from": 32160,
+				"to": 39040
+			},
+			"text": " The question of what the existing Ethereum chain does and is in relationship to Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,040",
+				"to": "00:00:43,320"
+			},
+			"offsets": {
+				"from": 39040,
+				"to": 43320
+			},
+			"text": " 2.0 has been kind of an open question over the past year as the Ethereum 2.0 protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,320",
+				"to": "00:00:46,880"
+			},
+			"offsets": {
+				"from": 43320,
+				"to": 46880
+			},
+			"text": " has emerged and people have begun to work on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,880",
+				"to": "00:00:52,400"
+			},
+			"offsets": {
+				"from": 46880,
+				"to": 52400
+			},
+			"text": " For a while, it was maybe it would be rolled in as a smart contract within One's Shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,400",
+				"to": "00:00:59,240"
+			},
+			"offsets": {
+				"from": 52400,
+				"to": 59240
+			},
+			"text": " that was also floated. Maybe it just exists in parallel forever and we let it die."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,240",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 59240,
+				"to": 64120
+			},
+			"text": " Both of those, one of those seemed kind of complex and the challenges were not so clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:08,840"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 68840
+			},
+			"text": " how to solve them and the other, it just letting it exist forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,840",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 68840,
+				"to": 73600
+			},
+			"text": " It kind of didn't feel like the humanist approach as Casey likes to put it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:18,560"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 78560
+			},
+			"text": " It didn't, all of these humans in this room work on the Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,560",
+				"to": "00:01:27,920"
+			},
+			"offsets": {
+				"from": 78560,
+				"to": 87920
+			},
+			"text": " So, it's been a priority to figure out a better way to slot ETH 1 into ETH 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,920",
+				"to": "00:01:33,760"
+			},
+			"offsets": {
+				"from": 87920,
+				"to": 93760
+			},
+			"text": " There's a lot of conversations this week around execution, execution environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,760",
+				"to": "00:01:40,680"
+			},
+			"offsets": {
+				"from": 93760,
+				"to": 100680
+			},
+			"text": " It turns out this very highly abstracted execution notion of execution might allow us to more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,680",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 100680,
+				"to": 106160
+			},
+			"text": " easily slot ETH 1 into ETH 2 as its own execution environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:49,640"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 109640
+			},
+			"text": " But there's a lot of things to figure out what that actually looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,640",
+				"to": "00:01:56,200"
+			},
+			"offsets": {
+				"from": 109640,
+				"to": 116200
+			},
+			"text": " And then more importantly, even if you do that, we now have this, we essentially have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,200",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 116200,
+				"to": 120080
+			},
+			"text": " all these developer interfaces on how we interact with the existing Ethereum chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:06,160"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 126160
+			},
+			"text": " And one of the big upcoming challenges is how do we take all of these developer interfaces"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,160",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126160,
+				"to": 132000
+			},
+			"text": " and once we've made this, or prior to making this migration, how do we kind of rework the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136960
+			},
+			"text": " internals of these, expose very similar, if not the same, interfaces such that the developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,960",
+				"to": "00:02:23,880"
+			},
+			"offsets": {
+				"from": 136960,
+				"to": 143880
+			},
+			"text": " experience is fluid and continuous through that migration."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,880",
+				"to": "00:02:27,080"
+			},
+			"offsets": {
+				"from": 143880,
+				"to": 147080
+			},
+			"text": " Definitely this is kind of the lay of the land of the problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,080",
+				"to": "00:02:37,280"
+			},
+			"offsets": {
+				"from": 147080,
+				"to": 157280
+			},
+			"text": " It's the technical problem of how ETH 1 becomes an EE if during that transition what we,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,280",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 157280,
+				"to": 158800
+			},
+			"text": " what things we might choose to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:42,520"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 162520
+			},
+			"text": " There's been talks about changing the Mercle tree structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,520",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 162520,
+				"to": 167400
+			},
+			"text": " How certain things like block difficulty and things like that are translated, some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 169840
+			},
+			"text": " these old op codes and things might change."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:57,320"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 177320
+			},
+			"text": " Do you open up the sharded universe to this EE and expose new things to Ethereum 1 within"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,320",
+				"to": "00:03:00,680"
+			},
+			"offsets": {
+				"from": 177320,
+				"to": 180680
+			},
+			"text": " Ethereum 2, a number of other challenges like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,680",
+				"to": "00:03:06,840"
+			},
+			"offsets": {
+				"from": 180680,
+				"to": 186840
+			},
+			"text": " So it's kind of the technical challenges of that migration and the developer layer challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,840",
+				"to": "00:03:16,200"
+			},
+			"offsets": {
+				"from": 186840,
+				"to": 196200
+			},
+			"text": " of masking the complexity and kind of like shifting the entire community over."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,200",
+				"to": "00:03:20,200"
+			},
+			"offsets": {
+				"from": 196200,
+				"to": 200200
+			},
+			"text": " Is that the kind of stuff that we wanted to talk about today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,200",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 200200,
+				"to": 201200
+			},
+			"text": " Okay cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 205480
+			},
+			"text": " When we can start with introducing, let's introduce everyone in the circle briefly and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 211960
+			},
+			"text": " then people are welcoming to join the circle as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:34,280"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 214280
+			},
+			"text": " Shao Wei is going to introduce herself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,280",
+				"to": "00:03:35,280"
+			},
+			"offsets": {
+				"from": 214280,
+				"to": 215280
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,280",
+				"to": "00:03:40,280"
+			},
+			"offsets": {
+				"from": 215280,
+				"to": 220280
+			},
+			"text": " So Shao Wei found, he's in foundation research team and I've been working for, I've been"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,280",
+				"to": "00:03:45,680"
+			},
+			"offsets": {
+				"from": 220280,
+				"to": 225680
+			},
+			"text": " working for a while and now it's two."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,680",
+				"to": "00:03:52,280"
+			},
+			"offsets": {
+				"from": 225680,
+				"to": 232280
+			},
+			"text": " Hi, I'm Alex Stokes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,280",
+				"to": "00:03:58,240"
+			},
+			"offsets": {
+				"from": 232280,
+				"to": 238240
+			},
+			"text": " I work on Trinity which is the Python client sponsored by the foundation, focused on ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,240",
+				"to": "00:03:59,240"
+			},
+			"offsets": {
+				"from": 238240,
+				"to": 239240
+			},
+			"text": " 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:02,800"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 242800
+			},
+			"text": " I've also been looking into some of the research around the finality gadget which would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,800",
+				"to": "00:04:07,960"
+			},
+			"offsets": {
+				"from": 242800,
+				"to": 247960
+			},
+			"text": " one step where we start to kind of merge the two systems looking towards a longer term"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,960",
+				"to": "00:04:08,960"
+			},
+			"offsets": {
+				"from": 247960,
+				"to": 248960
+			},
+			"text": " transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,960",
+				"to": "00:04:16,880"
+			},
+			"offsets": {
+				"from": 248960,
+				"to": 256880
+			},
+			"text": " Hello, I go by my online tech, Pratolumta and I've been picking up more and more of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,880",
+				"to": "00:04:19,080"
+			},
+			"offsets": {
+				"from": 256880,
+				"to": 259080
+			},
+			"text": " testing work for Ethereum 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,080",
+				"to": "00:04:22,120"
+			},
+			"offsets": {
+				"from": 259080,
+				"to": 262120
+			},
+			"text": " That's the spec across."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,120",
+				"to": "00:04:26,080"
+			},
+			"offsets": {
+				"from": 262120,
+				"to": 266080
+			},
+			"text": " Oh, I knew work with the ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,080",
+				"to": "00:04:28,600"
+			},
+			"offsets": {
+				"from": 266080,
+				"to": 268600
+			},
+			"text": " Hi, I'm Adrian Sutton."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,600",
+				"to": "00:04:34,320"
+			},
+			"offsets": {
+				"from": 268600,
+				"to": 274320
+			},
+			"text": " I work for Pegasus, part of consensus and I've been working on our ETH 1 client which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,320",
+				"to": "00:04:38,680"
+			},
+			"offsets": {
+				"from": 274320,
+				"to": 278680
+			},
+			"text": " Basu and also our Artemis client which is ETH 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,680",
+				"to": "00:04:44,160"
+			},
+			"offsets": {
+				"from": 278680,
+				"to": 284160
+			},
+			"text": " Hey, I'm Will."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,160",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 284160,
+				"to": 291000
+			},
+			"text": " I'm in quote, I've been doing phase 2 research and been working on various execution environments"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:53,160"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 293160
+			},
+			"text": " and pieces like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,160",
+				"to": "00:04:55,560"
+			},
+			"offsets": {
+				"from": 293160,
+				"to": 295560
+			},
+			"text": " Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,560",
+				"to": "00:04:59,880"
+			},
+			"offsets": {
+				"from": 295560,
+				"to": 299880
+			},
+			"text": " Jatzak coming from status research."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,880",
+				"to": "00:05:06,480"
+			},
+			"offsets": {
+				"from": 299880,
+				"to": 306480
+			},
+			"text": " We're in this context working on the Ethereum 1 and the Ethereum 2 client both have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,480",
+				"to": "00:05:07,480"
+			},
+			"offsets": {
+				"from": 306480,
+				"to": 307480
+			},
+			"text": " coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,480",
+				"to": "00:05:10,480"
+			},
+			"offsets": {
+				"from": 307480,
+				"to": 310480
+			},
+			"text": " Hello, my name is Trent."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,480",
+				"to": "00:05:16,080"
+			},
+			"offsets": {
+				"from": 310480,
+				"to": 316080
+			},
+			"text": " I work with white block which is a network protocol testing platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,080",
+				"to": "00:05:19,040"
+			},
+			"offsets": {
+				"from": 316080,
+				"to": 319040
+			},
+			"text": " Hi, my name is Cole."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,040",
+				"to": "00:05:26,040"
+			},
+			"offsets": {
+				"from": 319040,
+				"to": 326040
+			},
+			"text": " I'm Ethereum research and I'm mostly working on migrating validators over to ETH 2 at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,040",
+				"to": "00:05:27,040"
+			},
+			"offsets": {
+				"from": 326040,
+				"to": 327040
+			},
+			"text": " moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,040",
+				"to": "00:05:31,120"
+			},
+			"offsets": {
+				"from": 327040,
+				"to": 331120
+			},
+			"text": " Okiki, I'm not a researcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,120",
+				"to": "00:05:34,760"
+			},
+			"offsets": {
+				"from": 331120,
+				"to": 334760
+			},
+			"text": " I'm kind of just like an angel investor and I also work for Circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,760",
+				"to": "00:05:41,480"
+			},
+			"offsets": {
+				"from": 334760,
+				"to": 341480
+			},
+			"text": " Hello, my name is Alex and I work in the RASI Forest Infantic Association right now and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,480",
+				"to": "00:05:47,720"
+			},
+			"offsets": {
+				"from": 341480,
+				"to": 347720
+			},
+			"text": " we are looking at Ethereum from the compliance point of view and developing the software"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,720",
+				"to": "00:05:50,800"
+			},
+			"offsets": {
+				"from": 347720,
+				"to": 350800
+			},
+			"text": " for the national standard cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,800",
+				"to": "00:05:54,040"
+			},
+			"offsets": {
+				"from": 350800,
+				"to": 354040
+			},
+			"text": " Hey everyone, my name is Victor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,040",
+				"to": "00:05:55,440"
+			},
+			"offsets": {
+				"from": 354040,
+				"to": 355440
+			},
+			"text": " I'm over at Bison Trails."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,440",
+				"to": "00:06:02,040"
+			},
+			"offsets": {
+				"from": 355440,
+				"to": 362040
+			},
+			"text": " We help people run nodes and so we currently support 1.x extremely excited for 2.0 in validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,040",
+				"to": "00:06:04,600"
+			},
+			"offsets": {
+				"from": 362040,
+				"to": 364600
+			},
+			"text": " Hi, my name is Joseph."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,600",
+				"to": "00:06:07,280"
+			},
+			"offsets": {
+				"from": 364600,
+				"to": 367280
+			},
+			"text": " I'm an engineer at GoPax."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,280",
+				"to": "00:06:10,120"
+			},
+			"offsets": {
+				"from": 367280,
+				"to": 370120
+			},
+			"text": " Korea's cryptocurrency exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,120",
+				"to": "00:06:11,120"
+			},
+			"offsets": {
+				"from": 370120,
+				"to": 371120
+			},
+			"text": " I'm Jan."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,120",
+				"to": "00:06:20,640"
+			},
+			"offsets": {
+				"from": 371120,
+				"to": 380640
+			},
+			"text": " Advisor to GoPax."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,640",
+				"to": "00:06:26,080"
+			},
+			"offsets": {
+				"from": 380640,
+				"to": 386080
+			},
+			"text": " Hi, I'm Justin Drake, research at the different foundation, mostly working on ETH 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,080",
+				"to": "00:06:27,600"
+			},
+			"offsets": {
+				"from": 386080,
+				"to": 387600
+			},
+			"text": " Hey, I'm Felix again."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,600",
+				"to": "00:06:33,040"
+			},
+			"offsets": {
+				"from": 387600,
+				"to": 393040
+			},
+			"text": " I work on ETH 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,040",
+				"to": "00:06:40,960"
+			},
+			"offsets": {
+				"from": 393040,
+				"to": 400960
+			},
+			"text": " Jason Carver, working with the Ethereum Foundation on the Trinity client more on the ETH 1 site."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,960",
+				"to": "00:06:44,320"
+			},
+			"offsets": {
+				"from": 400960,
+				"to": 404320
+			},
+			"text": " That's how you probably know about me because I already introduced myself on the previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,320",
+				"to": "00:06:45,560"
+			},
+			"offsets": {
+				"from": 404320,
+				"to": 405560
+			},
+			"text": " panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,560",
+				"to": "00:06:50,840"
+			},
+			"offsets": {
+				"from": 405560,
+				"to": 410840
+			},
+			"text": " I think that you just don't need to enter these."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,840",
+				"to": "00:06:57,120"
+			},
+			"offsets": {
+				"from": 410840,
+				"to": 417120
+			},
+			"text": " One other component of this migration that I wanted to mention is that EEs, an execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,120",
+				"to": "00:07:04,240"
+			},
+			"offsets": {
+				"from": 417120,
+				"to": 424240
+			},
+			"text": " environment which is the notion of state and set execution in ETH 2 are stateless."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,240",
+				"to": "00:07:09,840"
+			},
+			"offsets": {
+				"from": 424240,
+				"to": 429840
+			},
+			"text": " There are, depending on the E, you'd have to have some notion of state in a separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,840",
+				"to": "00:07:11,720"
+			},
+			"offsets": {
+				"from": 429840,
+				"to": 431720
+			},
+			"text": " piece of software or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,720",
+				"to": "00:07:18,880"
+			},
+			"offsets": {
+				"from": 431720,
+				"to": 438880
+			},
+			"text": " So, the Ethereum 1 clients then likely become that interface to the ETH 1.e.e. in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,880",
+				"to": "00:07:22,200"
+			},
+			"offsets": {
+				"from": 438880,
+				"to": 442200
+			},
+			"text": " of state and provider state and syncing things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,200",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 442200,
+				"to": 449840
+			},
+			"text": " There's also this component of how Geth, Parity, Nethermind, Nimbus, things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:39,680"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 459680
+			},
+			"text": " That piece of software integrates into this new stack to provide services to the ETH 1.e."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,680",
+				"to": "00:07:45,240"
+			},
+			"offsets": {
+				"from": 459680,
+				"to": 465240
+			},
+			"text": " I'll just start with a very basic question."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,240",
+				"to": "00:07:48,400"
+			},
+			"offsets": {
+				"from": 465240,
+				"to": 468400
+			},
+			"text": " What can regular users expect from the transition?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,400",
+				"to": "00:07:52,120"
+			},
+			"offsets": {
+				"from": 468400,
+				"to": 472120
+			},
+			"text": " How would they be impacted in any sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,120",
+				"to": "00:07:57,880"
+			},
+			"offsets": {
+				"from": 472120,
+				"to": 477880
+			},
+			"text": " In the short term not, unless you personally choose to take your 32 ETH or stick it into"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,880",
+				"to": "00:08:03,400"
+			},
+			"offsets": {
+				"from": 477880,
+				"to": 483400
+			},
+			"text": " the deposit contract and start running an ETH 2 node and become a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,400",
+				"to": "00:08:07,600"
+			},
+			"offsets": {
+				"from": 483400,
+				"to": 487600
+			},
+			"text": " If you do, then you'll be able to start experiencing the wonderful world of ETH 2 early."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,600",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 487600,
+				"to": 492760
+			},
+			"text": " If you do not, then nothing will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:19,960"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 499960
+			},
+			"text": " Eventually, there will be some form of ETH 1 to ETH 2 transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,960",
+				"to": "00:08:27,360"
+			},
+			"offsets": {
+				"from": 499960,
+				"to": 507360
+			},
+			"text": " With the roadmap as Danny suggested of ETH 1 transitioning into being an ETH 2 execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,360",
+				"to": "00:08:32,680"
+			},
+			"offsets": {
+				"from": 507360,
+				"to": 512680
+			},
+			"text": " environment, it's theoretically possible to write the software so that you experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,680",
+				"to": "00:08:36,080"
+			},
+			"offsets": {
+				"from": 512680,
+				"to": 516080
+			},
+			"text": " very close to no disruption at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,080",
+				"to": "00:08:43,360"
+			},
+			"offsets": {
+				"from": 516080,
+				"to": 523360
+			},
+			"text": " The two worst things that might happen, one is that the chain might have to halt for some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,360",
+				"to": "00:08:47,960"
+			},
+			"offsets": {
+				"from": 523360,
+				"to": 527960
+			},
+			"text": " period of time to make the transition go smoothly to allow the more cold routes to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,960",
+				"to": "00:08:52,560"
+			},
+			"offsets": {
+				"from": 527960,
+				"to": 532560
+			},
+			"text": " re-computed according to some more efficient restructure and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,560",
+				"to": "00:08:58,720"
+			},
+			"offsets": {
+				"from": 532560,
+				"to": 538720
+			},
+			"text": " The second thing is, as I mentioned in the previous panel, gas costs for opcodes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,720",
+				"to": "00:09:04,280"
+			},
+			"offsets": {
+				"from": 538720,
+				"to": 544280
+			},
+			"text": " touch state are going to have to be increased massively both for you through compatibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,280",
+				"to": "00:09:10,320"
+			},
+			"offsets": {
+				"from": 544280,
+				"to": 550320
+			},
+			"text": " reasons and for other scalability reasons as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,320",
+				"to": "00:09:15,400"
+			},
+			"offsets": {
+				"from": 550320,
+				"to": 555400
+			},
+			"text": " Some applications might have to change the way that they're implemented and are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,400",
+				"to": "00:09:22,200"
+			},
+			"offsets": {
+				"from": 555400,
+				"to": 562200
+			},
+			"text": " to be optimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,200",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 562200,
+				"to": 567440
+			},
+			"text": " In that, and I mentioned it explicitly at the beginning, the challenge, and a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:32,720"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 572720
+			},
+			"text": " these challenges cannot necessarily be tackled today."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,720",
+				"to": "00:09:39,040"
+			},
+			"offsets": {
+				"from": 572720,
+				"to": 579040
+			},
+			"text": " The research around phase two, although is progressing quite rapidly, especially compared"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,040",
+				"to": "00:09:44,200"
+			},
+			"offsets": {
+				"from": 579040,
+				"to": 584200
+			},
+			"text": " to where we were, say, six months ago, we're not at the point where we're interfacing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,200",
+				"to": "00:09:48,720"
+			},
+			"offsets": {
+				"from": 584200,
+				"to": 588720
+			},
+			"text": " where we're actually dealing with the user level and developer level interfaces into"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,720",
+				"to": "00:09:50,080"
+			},
+			"offsets": {
+				"from": 588720,
+				"to": 590080
+			},
+			"text": " these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,080",
+				"to": "00:09:56,360"
+			},
+			"offsets": {
+				"from": 590080,
+				"to": 596360
+			},
+			"text": " But when we do cross that road, say, early next year, it's going to become extremely valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,360",
+				"to": "00:10:03,520"
+			},
+			"offsets": {
+				"from": 596360,
+				"to": 603520
+			},
+			"text": " and important for the maintainers of the developer interfaces, the web3 libraries, all the developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,520",
+				"to": "00:10:12,040"
+			},
+			"offsets": {
+				"from": 603520,
+				"to": 612040
+			},
+			"text": " tooling to begin to collaborate, to start to define these interfaces and kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,040",
+				"to": "00:10:15,240"
+			},
+			"offsets": {
+				"from": 612040,
+				"to": 615240
+			},
+			"text": " realign these interfaces to plug into ETH2."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,240",
+				"to": "00:10:22,440"
+			},
+			"offsets": {
+				"from": 615240,
+				"to": 622440
+			},
+			"text": " So early, mid-next-year, I think, forming some sort of group of people that do work on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,440",
+				"to": "00:10:27,680"
+			},
+			"offsets": {
+				"from": 622440,
+				"to": 627680
+			},
+			"text": " these toolings to kind of get ahead of the curve because it's going to be important"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,680",
+				"to": "00:10:28,680"
+			},
+			"offsets": {
+				"from": 627680,
+				"to": 628680
+			},
+			"text": " for migration."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,680",
+				"to": "00:10:34,600"
+			},
+			"offsets": {
+				"from": 628680,
+				"to": 634600
+			},
+			"text": " I had a question on the shift to proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,600",
+				"to": "00:10:42,520"
+			},
+			"offsets": {
+				"from": 634600,
+				"to": 642520
+			},
+			"text": " Are there any specific points in time or really events that are important for this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,520",
+				"to": "00:10:48,320"
+			},
+			"offsets": {
+				"from": 642520,
+				"to": 648320
+			},
+			"text": " transition in terms of maintaining the security of the network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,320",
+				"to": "00:10:52,760"
+			},
+			"offsets": {
+				"from": 648320,
+				"to": 652760
+			},
+			"text": " If it becomes more secure at some point, then what the parameters are?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,760",
+				"to": "00:10:58,360"
+			},
+			"offsets": {
+				"from": 652760,
+				"to": 658360
+			},
+			"text": " So the parameters that probably matter are the events that you need to care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,360",
+				"to": "00:11:02,840"
+			},
+			"offsets": {
+				"from": 658360,
+				"to": 662840
+			},
+			"text": " One is the time that the deposit contract gets published, and so if you're a validator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,840",
+				"to": "00:11:05,200"
+			},
+			"offsets": {
+				"from": 662840,
+				"to": 665200
+			},
+			"text": " you will be able to kind of pre-join."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,200",
+				"to": "00:11:09,680"
+			},
+			"offsets": {
+				"from": 665200,
+				"to": 669680
+			},
+			"text": " The other is the time when the chain launches."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,680",
+				"to": "00:11:14,640"
+			},
+			"offsets": {
+				"from": 669680,
+				"to": 674640
+			},
+			"text": " And basically, if you're a validator, you should be sure that you have a client running"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,640",
+				"to": "00:11:16,560"
+			},
+			"offsets": {
+				"from": 674640,
+				"to": 676560
+			},
+			"text": " at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,560",
+				"to": "00:11:20,600"
+			},
+			"offsets": {
+				"from": 676560,
+				"to": 680600
+			},
+			"text": " And when the chain launches, you'll have a proof of stake chain running."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,600",
+				"to": "00:11:24,280"
+			},
+			"offsets": {
+				"from": 680600,
+				"to": 684280
+			},
+			"text": " The next major milestone after that would be the phase one switch."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,280",
+				"to": "00:11:30,720"
+			},
+			"offsets": {
+				"from": 684280,
+				"to": 690720
+			},
+			"text": " And the phase one switch is important because that's the time when shard chains will turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,720",
+				"to": "00:11:31,720"
+			},
+			"offsets": {
+				"from": 690720,
+				"to": 691720
+			},
+			"text": " on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,720",
+				"to": "00:11:36,440"
+			},
+			"offsets": {
+				"from": 691720,
+				"to": 696440
+			},
+			"text": " And so that's the time when, especially if you have a lot of ETH3, your computational"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,440",
+				"to": "00:11:41,080"
+			},
+			"offsets": {
+				"from": 696440,
+				"to": 701080
+			},
+			"text": " requirements will increase, because your computational requirements will basically be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,080",
+				"to": "00:11:44,440"
+			},
+			"offsets": {
+				"from": 701080,
+				"to": 704440
+			},
+			"text": " proportional to the amount of ETH3 you have, the more ETH3 you have, the more validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,440",
+				"to": "00:11:51,800"
+			},
+			"offsets": {
+				"from": 704440,
+				"to": 711800
+			},
+			"text": " want to have, and so the more shard blocks you will be called to make a crosslink on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,800",
+				"to": "00:11:57,560"
+			},
+			"offsets": {
+				"from": 711800,
+				"to": 717560
+			},
+			"text": " And then after that, there will continue to be forks, but kind of the general way the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,560",
+				"to": "00:12:01,920"
+			},
+			"offsets": {
+				"from": 717560,
+				"to": 721920
+			},
+			"text": " chain works will continue to be fairly similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,920",
+				"to": "00:12:06,760"
+			},
+			"offsets": {
+				"from": 721920,
+				"to": 726760
+			},
+			"text": " And then after that, of course, the ETH3 merge the details of which haven't been fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,760",
+				"to": "00:12:09,480"
+			},
+			"offsets": {
+				"from": 726760,
+				"to": 729480
+			},
+			"text": " figured out yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,480",
+				"to": "00:12:16,360"
+			},
+			"offsets": {
+				"from": 729480,
+				"to": 736360
+			},
+			"text": " So in that roadmap, we still don't have a way to exit from being a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,360",
+				"to": "00:12:18,880"
+			},
+			"offsets": {
+				"from": 736360,
+				"to": 738880
+			},
+			"text": " >> That's a good point."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,880",
+				"to": "00:12:21,640"
+			},
+			"offsets": {
+				"from": 738880,
+				"to": 741640
+			},
+			"text": " This is something I missed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,640",
+				"to": "00:12:30,600"
+			},
+			"offsets": {
+				"from": 741640,
+				"to": 750600
+			},
+			"text": " In phase one or two, not fully decided ETH will become transferable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,600",
+				"to": "00:12:35,840"
+			},
+			"offsets": {
+				"from": 750600,
+				"to": 755840
+			},
+			"text": " The kind of default roadmap is that ETH will become transferable and more and more people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,840",
+				"to": "00:12:39,080"
+			},
+			"offsets": {
+				"from": 755840,
+				"to": 759080
+			},
+			"text": " just wants to have their ETH on the ETH3 side."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,080",
+				"to": "00:12:43,160"
+			},
+			"offsets": {
+				"from": 759080,
+				"to": 763160
+			},
+			"text": " >> With desire, there's also, of course, the alternative of making an explicit ETH3 back"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,160",
+				"to": "00:12:52,480"
+			},
+			"offsets": {
+				"from": 763160,
+				"to": 772480
+			},
+			"text": " to ETH1 bridge, which, of course, can absolutely be done, but it's something that is extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,480",
+				"to": "00:12:54,760"
+			},
+			"offsets": {
+				"from": 772480,
+				"to": 774760
+			},
+			"text": " work as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,760",
+				"to": "00:13:00,320"
+			},
+			"offsets": {
+				"from": 774760,
+				"to": 780320
+			},
+			"text": " >> Yeah, I'm thinking of the scenario where you buy in in phase zero, and suddenly you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,320",
+				"to": "00:13:05,960"
+			},
+			"offsets": {
+				"from": 780320,
+				"to": 785960
+			},
+			"text": " end up with lots more responsibilities in phase one that you realize that you cannot"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,960",
+				"to": "00:13:06,960"
+			},
+			"offsets": {
+				"from": 785960,
+				"to": 786960
+			},
+			"text": " no longer support."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,960",
+				"to": "00:13:11,920"
+			},
+			"offsets": {
+				"from": 786960,
+				"to": 791920
+			},
+			"text": " >> So first of all, you can withdraw and you can just have your ETH3 sit there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,920",
+				"to": "00:13:19,840"
+			},
+			"offsets": {
+				"from": 791920,
+				"to": 799840
+			},
+			"text": " And when transfer is implemented, then you could also just sell your ETH3 to some will"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,840",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 799840,
+				"to": 803080
+			},
+			"text": " or just anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:28,080"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 808080
+			},
+			"text": " There's probably going to be a bunch of, basically, if the thing is, right, that if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,080",
+				"to": "00:13:34,320"
+			},
+			"offsets": {
+				"from": 808080,
+				"to": 814320
+			},
+			"text": " the price of kind of ETH on the ETH3 side kind of goes below the price of ETH on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,320",
+				"to": "00:13:39,720"
+			},
+			"offsets": {
+				"from": 814320,
+				"to": 819720
+			},
+			"text": " ETH1 side by even a tiny amount, then everyone who would have joined by joining through the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,720",
+				"to": "00:13:44,280"
+			},
+			"offsets": {
+				"from": 819720,
+				"to": 824280
+			},
+			"text": " normal process would instead want to join by just trading the ETH1 for a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,280",
+				"to": "00:13:47,080"
+			},
+			"offsets": {
+				"from": 824280,
+				"to": 827080
+			},
+			"text": " more ETH2 and then joining directly from the ETH3 side."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,080",
+				"to": "00:13:53,400"
+			},
+			"offsets": {
+				"from": 827080,
+				"to": 833400
+			},
+			"text": " So there's this kind of natural demand pressure that you would be able to trade into and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,400",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 833400,
+				"to": 840000
+			},
+			"text": " would, in order to convert your ETH2 back into ETH1 side ETH if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:05,620"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 845620
+			},
+			"text": " And if this natural pressure is too weak in practice, then it's possible that the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,620",
+				"to": "00:14:10,280"
+			},
+			"offsets": {
+				"from": 845620,
+				"to": 850280
+			},
+			"text": " ETH will go lower, but then the bigger the price discrepancy, the more of an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,280",
+				"to": "00:14:13,920"
+			},
+			"offsets": {
+				"from": 850280,
+				"to": 853920
+			},
+			"text": " it is for us as a community to build a two-way bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,920",
+				"to": "00:14:20,920"
+			},
+			"offsets": {
+				"from": 853920,
+				"to": 860920
+			},
+			"text": " So in a way, it's kind of self-healing because the possibility of the bridge will reduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,920",
+				"to": "00:14:23,680"
+			},
+			"offsets": {
+				"from": 860920,
+				"to": 863680
+			},
+			"text": " the gap."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,680",
+				"to": "00:14:29,040"
+			},
+			"offsets": {
+				"from": 863680,
+				"to": 869040
+			},
+			"text": " >> The suggestion was to commit to doing the bridge and then kick the can down the curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,040",
+				"to": "00:14:32,960"
+			},
+			"offsets": {
+				"from": 869040,
+				"to": 872960
+			},
+			"text": " for as long as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,960",
+				"to": "00:14:39,240"
+			},
+			"offsets": {
+				"from": 872960,
+				"to": 879240
+			},
+			"text": " So some of the peripheral work that we can do to unify the systems and kind of give value"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,240",
+				"to": "00:14:46,120"
+			},
+			"offsets": {
+				"from": 879240,
+				"to": 886120
+			},
+			"text": " out of the systems, out of ETH2 and ETH1, I think the decision on whether to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,120",
+				"to": "00:14:52,240"
+			},
+			"offsets": {
+				"from": 886120,
+				"to": 892240
+			},
+			"text": " do this work is probably contingent upon where we're at with ETH2 at any given point."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,240",
+				"to": "00:14:58,600"
+			},
+			"offsets": {
+				"from": 892240,
+				"to": 898600
+			},
+			"text": " So I mean, we can commit to if we need to do it, we'll do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,600",
+				"to": "00:15:05,680"
+			},
+			"offsets": {
+				"from": 898600,
+				"to": 905680
+			},
+			"text": " But more importantly, I think kind of assessing, it's always like it would detract, it would"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,680",
+				"to": "00:15:11,600"
+			},
+			"offsets": {
+				"from": 905680,
+				"to": 911600
+			},
+			"text": " take work and take effort and take focus away from shipping ETH2, the more that we kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,600",
+				"to": "00:15:14,160"
+			},
+			"offsets": {
+				"from": 911600,
+				"to": 914160
+			},
+			"text": " of encumber the two systems together."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,160",
+				"to": "00:15:19,360"
+			},
+			"offsets": {
+				"from": 914160,
+				"to": 919360
+			},
+			"text": " >> And we have made a commitment because once we have the native integration, that is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,360",
+				"to": "00:15:20,560"
+			},
+			"offsets": {
+				"from": 919360,
+				"to": 920560
+			},
+			"text": " two-way bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,560",
+				"to": "00:15:27,200"
+			},
+			"offsets": {
+				"from": 920560,
+				"to": 927200
+			},
+			"text": " I guess the question is, do we have something in between which is a high latency to a bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,200",
+				"to": "00:15:30,520"
+			},
+			"offsets": {
+				"from": 927200,
+				"to": 930520
+			},
+			"text": " as opposed to a really fast native integration?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,520",
+				"to": "00:15:36,440"
+			},
+			"offsets": {
+				"from": 930520,
+				"to": 936440
+			},
+			"text": " >> A hypothetical question, if it's going to cause a contentious hard fork on ETH1"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,440",
+				"to": "00:15:43,960"
+			},
+			"offsets": {
+				"from": 936440,
+				"to": 943960
+			},
+			"text": " to make a bridge from ETH2 back to ETH1, is it still something that you would -- okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,960",
+				"to": "00:15:48,200"
+			},
+			"offsets": {
+				"from": 943960,
+				"to": 948200
+			},
+			"text": " the scenario here I'm thinking is that, okay, ETH2 happens and something really bad happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,200",
+				"to": "00:15:50,960"
+			},
+			"offsets": {
+				"from": 948200,
+				"to": 950960
+			},
+			"text": " and a bunch of extra ETH gets created."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,960",
+				"to": "00:15:56,160"
+			},
+			"offsets": {
+				"from": 950960,
+				"to": 956160
+			},
+			"text": " And then this kind of fried discrepancy happens and there's a demand to make this bridge the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,160",
+				"to": "00:15:59,800"
+			},
+			"offsets": {
+				"from": 956160,
+				"to": 959800
+			},
+			"text": " return the best to the S chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,800",
+				"to": "00:16:04,720"
+			},
+			"offsets": {
+				"from": 959800,
+				"to": 964720
+			},
+			"text": " >> So the nice thing about phase zero and one is that it allows us to architect the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,720",
+				"to": "00:16:12,360"
+			},
+			"offsets": {
+				"from": 964720,
+				"to": 972360
+			},
+			"text": " system, this complex and many respects system in a production context, but without having"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,360",
+				"to": "00:16:13,640"
+			},
+			"offsets": {
+				"from": 972360,
+				"to": 973640
+			},
+			"text": " users yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,640",
+				"to": "00:16:25,160"
+			},
+			"offsets": {
+				"from": 973640,
+				"to": 985160
+			},
+			"text": " So if some underflow happened and we had 20 billion ETH created, we'd likely fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,160",
+				"to": "00:16:29,240"
+			},
+			"offsets": {
+				"from": 985160,
+				"to": 989240
+			},
+			"text": " Because it's an early system, there's not that many users, the only users are validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,240",
+				"to": "00:16:32,800"
+			},
+			"offsets": {
+				"from": 989240,
+				"to": 992800
+			},
+			"text": " And that's one of the reasons that transfers aren't enabled necessarily in phase zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,800",
+				"to": "00:16:39,160"
+			},
+			"offsets": {
+				"from": 992800,
+				"to": 999160
+			},
+			"text": " >> But there's a class of bugs where it's not explicitly a problem, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,160",
+				"to": "00:16:43,200"
+			},
+			"offsets": {
+				"from": 999160,
+				"to": 1003200
+			},
+			"text": " That you can't have this kind of misaligned incentives or something and that can be either"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,200",
+				"to": "00:16:46,600"
+			},
+			"offsets": {
+				"from": 1003200,
+				"to": 1006600
+			},
+			"text": " created and some people say, oh, this is totally fine, this is part of the protocol, but other"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,600",
+				"to": "00:16:48,960"
+			},
+			"offsets": {
+				"from": 1006600,
+				"to": 1008960
+			},
+			"text": " people say, no, this is a serious problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,960",
+				"to": "00:16:54,800"
+			},
+			"offsets": {
+				"from": 1008960,
+				"to": 1014800
+			},
+			"text": " And it's difficult to tell the difference between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,800",
+				"to": "00:17:00,640"
+			},
+			"offsets": {
+				"from": 1014800,
+				"to": 1020640
+			},
+			"text": " Not in a way that would generate a bunch of Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,640",
+				"to": "00:17:05,640"
+			},
+			"offsets": {
+				"from": 1020640,
+				"to": 1025640
+			},
+			"text": " There are potentially slash, like if half of the validators that got slashed, you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,640",
+				"to": "00:17:07,320"
+			},
+			"offsets": {
+				"from": 1025640,
+				"to": 1027320
+			},
+			"text": " see that being very contentious, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,320",
+				"to": "00:17:10,880"
+			},
+			"offsets": {
+				"from": 1027320,
+				"to": 1030880
+			},
+			"text": " If it was some sort of like bug in the software and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,880",
+				"to": "00:17:18,880"
+			},
+			"offsets": {
+				"from": 1030880,
+				"to": 1038880
+			},
+			"text": " But ten times the supply of Ether being created is explicitly not an intended portion of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,880",
+				"to": "00:17:19,880"
+			},
+			"offsets": {
+				"from": 1038880,
+				"to": 1039880
+			},
+			"text": " the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,880",
+				"to": "00:17:27,880"
+			},
+			"offsets": {
+				"from": 1039880,
+				"to": 1047880
+			},
+			"text": " >> I hear you, I hear you, the more that you encumber the systems, the more that it becomes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,880",
+				"to": "00:17:32,680"
+			},
+			"offsets": {
+				"from": 1047880,
+				"to": 1052680
+			},
+			"text": " more difficult to fork or maneuver one or the other or the more that politics over here"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,680",
+				"to": "00:17:34,880"
+			},
+			"offsets": {
+				"from": 1052680,
+				"to": 1054880
+			},
+			"text": " might affect politics over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,880",
+				"to": "00:17:38,520"
+			},
+			"offsets": {
+				"from": 1054880,
+				"to": 1058520
+			},
+			"text": " >> I have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,520",
+				"to": "00:17:42,120"
+			},
+			"offsets": {
+				"from": 1058520,
+				"to": 1062120
+			},
+			"text": " When you're thinking about designing a bridge, how much of your consideration is around the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,120",
+				"to": "00:17:47,960"
+			},
+			"offsets": {
+				"from": 1062120,
+				"to": 1067960
+			},
+			"text": " work that it will take to implement it versus the like social construct of like being bought"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,960",
+				"to": "00:17:52,480"
+			},
+			"offsets": {
+				"from": 1067960,
+				"to": 1072480
+			},
+			"text": " in and having no way to leave?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,480",
+				"to": "00:17:58,760"
+			},
+			"offsets": {
+				"from": 1072480,
+				"to": 1078760
+			},
+			"text": " >> My personal opinion is that like heterous part of us, I think like having a social,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,760",
+				"to": "00:18:02,840"
+			},
+			"offsets": {
+				"from": 1078760,
+				"to": 1082840
+			},
+			"text": " like having it be two way is somewhat better than not having it be two way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,840",
+				"to": "00:18:07,720"
+			},
+			"offsets": {
+				"from": 1082840,
+				"to": 1087720
+			},
+			"text": " The reason we're not enthusiastically going toward implementing the bridge on day one"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,720",
+				"to": "00:18:11,440"
+			},
+			"offsets": {
+				"from": 1087720,
+				"to": 1091440
+			},
+			"text": " is because it legitimately is a lot of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,440",
+				"to": "00:18:17,920"
+			},
+			"offsets": {
+				"from": 1091440,
+				"to": 1097920
+			},
+			"text": " And in the happy case, it's work that we expect to never need."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,920",
+				"to": "00:18:22,800"
+			},
+			"offsets": {
+				"from": 1097920,
+				"to": 1102800
+			},
+			"text": " But people's opinions on this might differ."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,800",
+				"to": "00:18:31,920"
+			},
+			"offsets": {
+				"from": 1102800,
+				"to": 1111920
+			},
+			"text": " >> For better or worse, ETH one takes a lot of time and effort to fork and get things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,920",
+				"to": "00:18:33,400"
+			},
+			"offsets": {
+				"from": 1111920,
+				"to": 1113400
+			},
+			"text": " in."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,400",
+				"to": "00:18:41,160"
+			},
+			"offsets": {
+				"from": 1113400,
+				"to": 1121160
+			},
+			"text": " And so the longer that we can operate in ETH two very rapidly and it can iterate quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,160",
+				"to": "00:18:45,200"
+			},
+			"offsets": {
+				"from": 1121160,
+				"to": 1125200
+			},
+			"text": " the quicker we can get things out and kind of get to the vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,200",
+				"to": "00:18:50,360"
+			},
+			"offsets": {
+				"from": 1125200,
+				"to": 1130360
+			},
+			"text": " The sooner that we choose to tightly couple these systems, the harder it is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,360",
+				"to": "00:18:54,760"
+			},
+			"offsets": {
+				"from": 1130360,
+				"to": 1134760
+			},
+			"text": " rapidly iterate and get out these phases of production."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,760",
+				"to": "00:18:56,960"
+			},
+			"offsets": {
+				"from": 1134760,
+				"to": 1136960
+			},
+			"text": " So definitely a trade out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,960",
+				"to": "00:19:01,920"
+			},
+			"offsets": {
+				"from": 1136960,
+				"to": 1141920
+			},
+			"text": " >> I think the other aspect that I quite liked and at risk of disagreeing with Vitalik"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,920",
+				"to": "00:19:07,240"
+			},
+			"offsets": {
+				"from": 1141920,
+				"to": 1147240
+			},
+			"text": " is there's a real incentive that people are excited about ETH two and so I want to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,240",
+				"to": "00:19:11,360"
+			},
+			"offsets": {
+				"from": 1147240,
+				"to": 1151360
+			},
+			"text": " in and stay and there's a real incentive to actually make it work and go all the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,360",
+				"to": "00:19:15,640"
+			},
+			"offsets": {
+				"from": 1151360,
+				"to": 1155640
+			},
+			"text": " and get mainnet over to it if that's the only way you can then really use that ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,640",
+				"to": "00:19:17,440"
+			},
+			"offsets": {
+				"from": 1155640,
+				"to": 1157440
+			},
+			"text": " that you've just put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,440",
+				"to": "00:19:20,920"
+			},
+			"offsets": {
+				"from": 1157440,
+				"to": 1160920
+			},
+			"text": " So kind of having it locked up is nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,920",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1160920,
+				"to": 1166000
+			},
+			"text": " In some ways it makes it a little harder to sell people on the idea of becoming a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:29,280"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1169280
+			},
+			"text": " But once you manage to get them over that hump, it's kind of downhill in terms of getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,280",
+				"to": "00:19:31,400"
+			},
+			"offsets": {
+				"from": 1169280,
+				"to": 1171400
+			},
+			"text": " them to support moving forward, which is nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,400",
+				"to": "00:19:36,200"
+			},
+			"offsets": {
+				"from": 1171400,
+				"to": 1176200
+			},
+			"text": " >> And if we want to go full to our diet, then we can change the deposit contracts instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,200",
+				"to": "00:19:37,400"
+			},
+			"offsets": {
+				"from": 1176200,
+				"to": 1177400
+			},
+			"text": " of locking the ETH forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,400",
+				"to": "00:19:43,200"
+			},
+			"offsets": {
+				"from": 1177400,
+				"to": 1183200
+			},
+			"text": " It becomes accessible by the Dow Hacker on January 1st, 2027."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,200",
+				"to": "00:19:58,560"
+			},
+			"offsets": {
+				"from": 1183200,
+				"to": 1198560
+			},
+			"text": " >> Just given liquidity alone, can't we expect a liquidity discount on the ETH two ether?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,560",
+				"to": "00:20:07,440"
+			},
+			"offsets": {
+				"from": 1198560,
+				"to": 1207440
+			},
+			"text": " And if you're one to one burning your ETH one ether and then creating one ETH two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,440",
+				"to": "00:20:13,200"
+			},
+			"offsets": {
+				"from": 1207440,
+				"to": 1213200
+			},
+			"text": " a decision is made there and it's based off of how much you're expecting to generate in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,200",
+				"to": "00:20:16,240"
+			},
+			"offsets": {
+				"from": 1213200,
+				"to": 1216240
+			},
+			"text": " new ETH two as being a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,240",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1216240,
+				"to": 1219000
+			},
+			"text": " But granted, it's a very complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1220000
+			},
+			"text": " >> Right, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:24,800"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1224800
+			},
+			"text": " So you might expect some sort of discount for some time horizon."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,800",
+				"to": "00:20:31,080"
+			},
+			"offsets": {
+				"from": 1224800,
+				"to": 1231080
+			},
+			"text": " But if your time horizon is longer than that with which the systems are merged and unified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,080",
+				"to": "00:20:36,200"
+			},
+			"offsets": {
+				"from": 1231080,
+				"to": 1236200
+			},
+			"text": " then you don't really need to necessarily externalize that discount for the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,200",
+				"to": "00:20:44,160"
+			},
+			"offsets": {
+				"from": 1236200,
+				"to": 1244160
+			},
+			"text": " So I do expect early validators to be hobbyists, enthusiasts, long-term holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,160",
+				"to": "00:20:49,840"
+			},
+			"offsets": {
+				"from": 1244160,
+				"to": 1249840
+			},
+			"text": " And I expect them to get probably higher return than when these systems are unified and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,840",
+				"to": "00:20:56,760"
+			},
+			"offsets": {
+				"from": 1249840,
+				"to": 1256760
+			},
+			"text": " more institutional players and a lot more people willing to accept a different risk analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,760",
+				"to": "00:21:00,160"
+			},
+			"offsets": {
+				"from": 1256760,
+				"to": 1260160
+			},
+			"text": " And so honestly, I hope that it's a boon for hobbyists."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,160",
+				"to": "00:21:06,200"
+			},
+			"offsets": {
+				"from": 1260160,
+				"to": 1266200
+			},
+			"text": " I hope that it's a boon for people that are deeply invested not just financially, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,200",
+				"to": "00:21:13,200"
+			},
+			"offsets": {
+				"from": 1266200,
+				"to": 1273200
+			},
+			"text": " invested in the technology and believers in the technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,200",
+				"to": "00:21:17,920"
+			},
+			"offsets": {
+				"from": 1273200,
+				"to": 1277920
+			},
+			"text": " >> What are the right conditions for the ETH one folks look at using the finality gadget,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,920",
+				"to": "00:21:22,320"
+			},
+			"offsets": {
+				"from": 1277920,
+				"to": 1282320
+			},
+			"text": " like implementing the finality gadget?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,320",
+				"to": "00:21:23,800"
+			},
+			"offsets": {
+				"from": 1282320,
+				"to": 1283800
+			},
+			"text": " >> What was the question, sir?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,800",
+				"to": "00:21:26,880"
+			},
+			"offsets": {
+				"from": 1283800,
+				"to": 1286880
+			},
+			"text": " >> What are the right conditions for us to start talking about implementing the finality"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,880",
+				"to": "00:21:35,960"
+			},
+			"offsets": {
+				"from": 1286880,
+				"to": 1295960
+			},
+			"text": " gadget back from the beacon chain to the main chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,960",
+				"to": "00:21:37,800"
+			},
+			"offsets": {
+				"from": 1295960,
+				"to": 1297800
+			},
+			"text": " >> Conditions, the technical conditions or like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,800",
+				"to": "00:21:38,800"
+			},
+			"offsets": {
+				"from": 1297800,
+				"to": 1298800
+			},
+			"text": " >> Yeah, like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,800",
+				"to": "00:21:40,160"
+			},
+			"offsets": {
+				"from": 1298800,
+				"to": 1300160
+			},
+			"text": " >> Okay, so beacon chain is good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,160",
+				"to": "00:21:41,480"
+			},
+			"offsets": {
+				"from": 1300160,
+				"to": 1301480
+			},
+			"text": " What is good enough?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,480",
+				"to": "00:21:42,480"
+			},
+			"offsets": {
+				"from": 1301480,
+				"to": 1302480
+			},
+			"text": " >> Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,480",
+				"to": "00:21:43,560"
+			},
+			"offsets": {
+				"from": 1302480,
+				"to": 1303560
+			},
+			"text": " So there's two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,560",
+				"to": "00:21:51,800"
+			},
+			"offsets": {
+				"from": 1303560,
+				"to": 1311800
+			},
+			"text": " One is the technical and two is understanding, like better understanding the time horizon"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,800",
+				"to": "00:21:53,920"
+			},
+			"offsets": {
+				"from": 1311800,
+				"to": 1313920
+			},
+			"text": " of phase-- say phase two."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,920",
+				"to": "00:21:59,360"
+			},
+			"offsets": {
+				"from": 1313920,
+				"to": 1319360
+			},
+			"text": " If phase two is 100 years from now, we should implement the finality gadget."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,360",
+				"to": "00:22:02,200"
+			},
+			"offsets": {
+				"from": 1319360,
+				"to": 1322200
+			},
+			"text": " If it's two months from now, we probably shouldn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,200",
+				"to": "00:22:04,360"
+			},
+			"offsets": {
+				"from": 1322200,
+				"to": 1324360
+			},
+			"text": " And then somewhere in between, there's a-- there's a line."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,360",
+				"to": "00:22:07,520"
+			},
+			"offsets": {
+				"from": 1324360,
+				"to": 1327520
+			},
+			"text": " >> Well, it doesn't have to be like we as in everyone, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,520",
+				"to": "00:22:12,320"
+			},
+			"offsets": {
+				"from": 1327520,
+				"to": 1332320
+			},
+			"text": " Like a finality gadget could-- like, I think one of the reasons Jason's asking is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,320",
+				"to": "00:22:17,680"
+			},
+			"offsets": {
+				"from": 1332320,
+				"to": 1337680
+			},
+			"text": " he's doing the Python client and Python is slower than other languages and executing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,680",
+				"to": "00:22:18,680"
+			},
+			"offsets": {
+				"from": 1337680,
+				"to": 1338680
+			},
+			"text": " history."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,680",
+				"to": "00:22:22,400"
+			},
+			"offsets": {
+				"from": 1338680,
+				"to": 1342400
+			},
+			"text": " And so if you got a finality gadget, you'll need to check like five hours of history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,400",
+				"to": "00:22:24,400"
+			},
+			"offsets": {
+				"from": 1342400,
+				"to": 1344400
+			},
+			"text": " which is really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,400",
+				"to": "00:22:25,400"
+			},
+			"offsets": {
+				"from": 1344400,
+				"to": 1345400
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,400",
+				"to": "00:22:31,240"
+			},
+			"offsets": {
+				"from": 1345400,
+				"to": 1351240
+			},
+			"text": " >> Yeah, yeah, it could definitely be an opt-- be kind of optional and of light client"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,240",
+				"to": "00:22:34,640"
+			},
+			"offsets": {
+				"from": 1351240,
+				"to": 1354640
+			},
+			"text": " type thing that you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,640",
+				"to": "00:22:36,200"
+			},
+			"offsets": {
+				"from": 1354640,
+				"to": 1356200
+			},
+			"text": " >> Question."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,200",
+				"to": "00:22:45,120"
+			},
+			"offsets": {
+				"from": 1356200,
+				"to": 1365120
+			},
+			"text": " So going back to the question about, I guess, the first two phases before-- or like with"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,120",
+				"to": "00:22:49,720"
+			},
+			"offsets": {
+				"from": 1365120,
+				"to": 1369720
+			},
+			"text": " regards to building the, I guess, either one way or two way bridge between ETH one"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,720",
+				"to": "00:22:50,720"
+			},
+			"offsets": {
+				"from": 1369720,
+				"to": 1370720
+			},
+			"text": " and two."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,720",
+				"to": "00:22:56,600"
+			},
+			"offsets": {
+				"from": 1370720,
+				"to": 1376600
+			},
+			"text": " The apologies if this is orthogonal, but within the risk analysis, have you guys considered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,600",
+				"to": "00:23:03,280"
+			},
+			"offsets": {
+				"from": 1376600,
+				"to": 1383280
+			},
+			"text": " let's say, some centralized exchange is basically say, create-- or allowing and facilitating"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,280",
+				"to": "00:23:09,480"
+			},
+			"offsets": {
+				"from": 1383280,
+				"to": 1389480
+			},
+			"text": " and encouraging their customers to basically deposit their balances into the ETH deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,480",
+				"to": "00:23:16,960"
+			},
+			"offsets": {
+				"from": 1389480,
+				"to": 1396960
+			},
+			"text": " contract and basically creating this like weird futures ETH 2.0, like market before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,960",
+				"to": "00:23:21,040"
+			},
+			"offsets": {
+				"from": 1396960,
+				"to": 1401040
+			},
+			"text": " there's even like on-chain liquidity and like, have you guys considered that or is that just"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,040",
+				"to": "00:23:23,800"
+			},
+			"offsets": {
+				"from": 1401040,
+				"to": 1403800
+			},
+			"text": " completely orthogonal to the rollout?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,800",
+				"to": "00:23:31,800"
+			},
+			"offsets": {
+				"from": 1403800,
+				"to": 1411800
+			},
+			"text": " >> So I guess like, actually, one question of that is that like, if there was a kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,800",
+				"to": "00:23:39,840"
+			},
+			"offsets": {
+				"from": 1411800,
+				"to": 1419840
+			},
+			"text": " of futures market for ETH 2 ETH, then like, why would anyone, I guess, like, voluntarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,840",
+				"to": "00:23:42,320"
+			},
+			"offsets": {
+				"from": 1419840,
+				"to": 1422320
+			},
+			"text": " participate in that construction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,320",
+				"to": "00:23:48,040"
+			},
+			"offsets": {
+				"from": 1422320,
+				"to": 1428040
+			},
+			"text": " Because like, if the price is lower than one, then you'd see why people would want to buy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,040",
+				"to": "00:23:53,600"
+			},
+			"offsets": {
+				"from": 1428040,
+				"to": 1433600
+			},
+			"text": " but if the price is lower than one, then like, why would you even want to kind of move your"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,600",
+				"to": "00:23:59,360"
+			},
+			"offsets": {
+				"from": 1433600,
+				"to": 1439360
+			},
+			"text": " ETH on to the ETH to sign and lock it up unless you're also going to be a group of staker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,360",
+				"to": "00:24:06,360"
+			},
+			"offsets": {
+				"from": 1439360,
+				"to": 1446360
+			},
+			"text": " >> I guess, like, at some point, I think, like transfers on the ETH 2 side are going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,360",
+				"to": "00:24:13,360"
+			},
+			"offsets": {
+				"from": 1446360,
+				"to": 1453360
+			},
+			"text": " be enabled and so like, a price between the two sides is going to exist and like, I do"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,360",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1453360,
+				"to": 1457000
+			},
+			"text": " think there will be-- I do think there will be a lot of pressure to kind of push that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:21,680"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1461680
+			},
+			"text": " price code to be very close to or equal to the one level."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,680",
+				"to": "00:24:26,680"
+			},
+			"offsets": {
+				"from": 1461680,
+				"to": 1466680
+			},
+			"text": " >> Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,680",
+				"to": "00:24:38,880"
+			},
+			"offsets": {
+				"from": 1466680,
+				"to": 1478880
+			},
+			"text": " >> Can you please come over to the front because we have cables and we can like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,880",
+				"to": "00:24:44,400"
+			},
+			"offsets": {
+				"from": 1478880,
+				"to": 1484400
+			},
+			"text": " >> Have there been any considerations of like, test net implementations for some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,400",
+				"to": "00:24:50,440"
+			},
+			"offsets": {
+				"from": 1484400,
+				"to": 1490440
+			},
+			"text": " the-- for testing the ecosystems, whether they're like a deterministic test net or possibly"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,440",
+				"to": "00:24:57,760"
+			},
+			"offsets": {
+				"from": 1490440,
+				"to": 1497760
+			},
+			"text": " like a confrontational test net where, you know, actors are incentivized to try to disrupt"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,760",
+				"to": "00:25:02,400"
+			},
+			"offsets": {
+				"from": 1497760,
+				"to": 1502400
+			},
+			"text": " the network as much as possible or just any ideas around that front?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,400",
+				"to": "00:25:08,160"
+			},
+			"offsets": {
+				"from": 1502400,
+				"to": 1508160
+			},
+			"text": " >> These things are certainly on the horizon and after the interop workshop where we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,160",
+				"to": "00:25:14,440"
+			},
+			"offsets": {
+				"from": 1508160,
+				"to": 1514440
+			},
+			"text": " kind of doing initial interoperability testing, that is definitely the next phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,440",
+				"to": "00:25:19,560"
+			},
+			"offsets": {
+				"from": 1514440,
+				"to": 1519560
+			},
+			"text": " Although some private, more scaled out networks were probably on the immediate horizon before"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,560",
+				"to": "00:25:23,200"
+			},
+			"offsets": {
+				"from": 1519560,
+				"to": 1523200
+			},
+			"text": " we open it up, but I'd certainly like to do some adversarial stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,200",
+				"to": "00:25:26,840"
+			},
+			"offsets": {
+				"from": 1523200,
+				"to": 1526840
+			},
+			"text": " I've had a couple of conversations with some guys that Cosmo's to hear about their experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,840",
+				"to": "00:25:29,280"
+			},
+			"offsets": {
+				"from": 1526840,
+				"to": 1529280
+			},
+			"text": " over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,280",
+				"to": "00:25:32,280"
+			},
+			"offsets": {
+				"from": 1529280,
+				"to": 1532280
+			},
+			"text": " For better or worse, we have a lot of clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,280",
+				"to": "00:25:37,920"
+			},
+			"offsets": {
+				"from": 1532280,
+				"to": 1537920
+			},
+			"text": " So some of the complexities of doing that and managing the complexities of many implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,920",
+				"to": "00:25:42,440"
+			},
+			"offsets": {
+				"from": 1537920,
+				"to": 1542440
+			},
+			"text": " of the software in these public test nets, going to be interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,440",
+				"to": "00:25:47,880"
+			},
+			"offsets": {
+				"from": 1542440,
+				"to": 1547880
+			},
+			"text": " >> Yeah, and I think an equivalent to what we did with Olympic in 2015 was in center."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,880",
+				"to": "00:25:53,040"
+			},
+			"offsets": {
+				"from": 1547880,
+				"to": 1553040
+			},
+			"text": " So I think that was the dust to hell out of the thing would be great."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,040",
+				"to": "00:25:55,520"
+			},
+			"offsets": {
+				"from": 1553040,
+				"to": 1555520
+			},
+			"text": " >> Hi, my name's Dan from Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,520",
+				"to": "00:25:56,520"
+			},
+			"offsets": {
+				"from": 1555520,
+				"to": 1556520
+			},
+			"text": " >> Hi, Dan."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,520",
+				"to": "00:25:58,520"
+			},
+			"offsets": {
+				"from": 1556520,
+				"to": 1558520
+			},
+			"text": " >> Hey, have a talent."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,520",
+				"to": "00:25:59,520"
+			},
+			"offsets": {
+				"from": 1558520,
+				"to": 1559520
+			},
+			"text": " [LAUGHTER]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,520",
+				"to": "00:26:07,720"
+			},
+			"offsets": {
+				"from": 1559520,
+				"to": 1567720
+			},
+			"text": " >> I'm curious what your mindset is around leveraging exchanges and other entities to"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,720",
+				"to": "00:26:13,160"
+			},
+			"offsets": {
+				"from": 1567720,
+				"to": 1573160
+			},
+			"text": " migrate E4.0 to 2.0 in terms of adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,160",
+				"to": "00:26:21,760"
+			},
+			"offsets": {
+				"from": 1573160,
+				"to": 1581760
+			},
+			"text": " >> I guess the first question is what role exchanges would have, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,760",
+				"to": "00:26:27,400"
+			},
+			"offsets": {
+				"from": 1581760,
+				"to": 1587400
+			},
+			"text": " Because the default process for moving ETH over to become a validator doesn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,400",
+				"to": "00:26:31,240"
+			},
+			"offsets": {
+				"from": 1587400,
+				"to": 1591240
+			},
+			"text": " require any special third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,240",
+				"to": "00:26:36,760"
+			},
+			"offsets": {
+				"from": 1591240,
+				"to": 1596760
+			},
+			"text": " I guess in the case where there are E2 people that want to migrate back to the ETH one side"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,760",
+				"to": "00:26:43,120"
+			},
+			"offsets": {
+				"from": 1596760,
+				"to": 1603120
+			},
+			"text": " and then there's E1 people that want to deposit, then you could act as a matchmaker."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,120",
+				"to": "00:26:48,560"
+			},
+			"offsets": {
+				"from": 1603120,
+				"to": 1608560
+			},
+			"text": " Between those groups and create an easy interface for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,560",
+				"to": "00:26:53,800"
+			},
+			"offsets": {
+				"from": 1608560,
+				"to": 1613800
+			},
+			"text": " >> Yeah, I certainly expect when transfers are enabled on the beacon chain for exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,800",
+				"to": "00:27:01,440"
+			},
+			"offsets": {
+				"from": 1613800,
+				"to": 1621440
+			},
+			"text": " to kind of step up and provide liquidity options to validators and kind of expect y'all to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,440",
+				"to": "00:27:02,440"
+			},
+			"offsets": {
+				"from": 1621440,
+				"to": 1622440
+			},
+			"text": " do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,440",
+				"to": "00:27:03,440"
+			},
+			"offsets": {
+				"from": 1622440,
+				"to": 1623440
+			},
+			"text": " >> Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,440",
+				"to": "00:27:06,840"
+			},
+			"offsets": {
+				"from": 1623440,
+				"to": 1626840
+			},
+			"text": " >> Are you going to help organize that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,840",
+				"to": "00:27:08,280"
+			},
+			"offsets": {
+				"from": 1626840,
+				"to": 1628280
+			},
+			"text": " I just expect us to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,280",
+				"to": "00:27:10,680"
+			},
+			"offsets": {
+				"from": 1628280,
+				"to": 1630680
+			},
+			"text": " >> I've talked to people at Coinbase, so."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,680",
+				"to": "00:27:11,680"
+			},
+			"offsets": {
+				"from": 1630680,
+				"to": 1631680
+			},
+			"text": " >> Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,680",
+				"to": "00:27:17,720"
+			},
+			"offsets": {
+				"from": 1631680,
+				"to": 1637720
+			},
+			"text": " >> I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,720",
+				"to": "00:27:25,800"
+			},
+			"offsets": {
+				"from": 1637720,
+				"to": 1645800
+			},
+			"text": " Explaining, especially when transfers come into existence, having literature maybe focused"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,800",
+				"to": "00:27:31,000"
+			},
+			"offsets": {
+				"from": 1645800,
+				"to": 1651000
+			},
+			"text": " for exchanges to better understand what's going on, would it help enable exchanges to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,000",
+				"to": "00:27:32,560"
+			},
+			"offsets": {
+				"from": 1651000,
+				"to": 1652560
+			},
+			"text": " enable our users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,560",
+				"to": "00:27:33,560"
+			},
+			"offsets": {
+				"from": 1652560,
+				"to": 1653560
+			},
+			"text": " So, yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,560",
+				"to": "00:27:34,560"
+			},
+			"offsets": {
+				"from": 1653560,
+				"to": 1654560
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,560",
+				"to": "00:27:35,560"
+			},
+			"offsets": {
+				"from": 1654560,
+				"to": 1655560
+			},
+			"text": " >> Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,560",
+				"to": "00:27:42,560"
+			},
+			"offsets": {
+				"from": 1655560,
+				"to": 1662560
+			},
+			"text": " Can we expect ETH to be traded as a separate token?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,560",
+				"to": "00:27:48,840"
+			},
+			"offsets": {
+				"from": 1662560,
+				"to": 1668840
+			},
+			"text": " >> That's the-"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,840",
+				"to": "00:27:51,200"
+			},
+			"offsets": {
+				"from": 1668840,
+				"to": 1671200
+			},
+			"text": " >> That's the exchange's decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,200",
+				"to": "00:27:52,840"
+			},
+			"offsets": {
+				"from": 1671200,
+				"to": 1672840
+			},
+			"text": " >> Yeah, well, that's what I'm saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,840",
+				"to": "00:27:55,120"
+			},
+			"offsets": {
+				"from": 1672840,
+				"to": 1675120
+			},
+			"text": " It's an exchange decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,120",
+				"to": "00:27:56,120"
+			},
+			"offsets": {
+				"from": 1675120,
+				"to": 1676120
+			},
+			"text": " We could have exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,120",
+				"to": "00:27:59,120"
+			},
+			"offsets": {
+				"from": 1676120,
+				"to": 1679120
+			},
+			"text": " >> I'd prefer to apply to people on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,120",
+				"to": "00:28:00,120"
+			},
+			"offsets": {
+				"from": 1679120,
+				"to": 1680120
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,120",
+				"to": "00:28:05,120"
+			},
+			"offsets": {
+				"from": 1680120,
+				"to": 1685120
+			},
+			"text": " >> I'd prefer to pay a cent."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,120",
+				"to": "00:28:06,120"
+			},
+			"offsets": {
+				"from": 1685120,
+				"to": 1686120
+			},
+			"text": " >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,120",
+				"to": "00:28:07,120"
+			},
+			"offsets": {
+				"from": 1686120,
+				"to": 1687120
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,120",
+				"to": "00:28:08,120"
+			},
+			"offsets": {
+				"from": 1687120,
+				"to": 1688120
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,120",
+				"to": "00:28:14,280"
+			},
+			"offsets": {
+				"from": 1688120,
+				"to": 1694280
+			},
+			"text": " Sorry, I didn't mean to be like blunt, but yeah, in exchange where to, like, similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,280",
+				"to": "00:28:18,000"
+			},
+			"offsets": {
+				"from": 1694280,
+				"to": 1698000
+			},
+			"text": " to, I guess, BCH for the fork for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,000",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1698000,
+				"to": 1699000
+			},
+			"text": " >> Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,000",
+				"to": "00:28:20,000"
+			},
+			"offsets": {
+				"from": 1699000,
+				"to": 1700000
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,000",
+				"to": "00:28:21,000"
+			},
+			"offsets": {
+				"from": 1700000,
+				"to": 1701000
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,000",
+				"to": "00:28:22,000"
+			},
+			"offsets": {
+				"from": 1701000,
+				"to": 1702000
+			},
+			"text": " >> Thank you for your answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,000",
+				"to": "00:28:28,120"
+			},
+			"offsets": {
+				"from": 1702000,
+				"to": 1708120
+			},
+			"text": " >> Yeah, I mean, the thing to think about there is ultimately whenever you've got anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,120",
+				"to": "00:28:33,600"
+			},
+			"offsets": {
+				"from": 1708120,
+				"to": 1713600
+			},
+			"text": " that's a deliverable currency, you have to be able to deliver it to the right place."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,600",
+				"to": "00:28:39,560"
+			},
+			"offsets": {
+				"from": 1713600,
+				"to": 1719560
+			},
+			"text": " So if ETH to an ETH one is separate and you can't transfer it back, then anything doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,560",
+				"to": "00:28:45,280"
+			},
+			"offsets": {
+				"from": 1719560,
+				"to": 1725280
+			},
+			"text": " deliverable trading absolutely has to trade ETH to is a separate thing to ETH one."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,280",
+				"to": "00:28:50,200"
+			},
+			"offsets": {
+				"from": 1725280,
+				"to": 1730200
+			},
+			"text": " If it's non-deliverable, you can get more fancy and people in finance like to get fancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,200",
+				"to": "00:28:52,920"
+			},
+			"offsets": {
+				"from": 1730200,
+				"to": 1732920
+			},
+			"text": " But I won't try and speculate on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,920",
+				"to": "00:28:53,920"
+			},
+			"offsets": {
+				"from": 1732920,
+				"to": 1733920
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,920",
+				"to": "00:28:58,720"
+			},
+			"offsets": {
+				"from": 1733920,
+				"to": 1738720
+			},
+			"text": " Well, I will say one thing about if you look at existing, like, SAFs and OTC markets, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,720",
+				"to": "00:29:03,360"
+			},
+			"offsets": {
+				"from": 1738720,
+				"to": 1743360
+			},
+			"text": " there's already, like, well established processing islands where how people trade these liquid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,360",
+				"to": "00:29:05,560"
+			},
+			"offsets": {
+				"from": 1743360,
+				"to": 1745560
+			},
+			"text": " like, promises essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,560",
+				"to": "00:29:08,880"
+			},
+			"offsets": {
+				"from": 1745560,
+				"to": 1748880
+			},
+			"text": " And so it's not out of the question that the same thing would happen for ETH two, as long"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,880",
+				"to": "00:29:12,040"
+			},
+			"offsets": {
+				"from": 1748880,
+				"to": 1752040
+			},
+			"text": " as some liquidary providers or strangers were supporting it."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,040",
+				"to": "00:29:16,840"
+			},
+			"offsets": {
+				"from": 1752040,
+				"to": 1756840
+			},
+			"text": " >> So the reason why I asked this question is because I feel like, you know, from a, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,840",
+				"to": "00:29:19,760"
+			},
+			"offsets": {
+				"from": 1756840,
+				"to": 1759760
+			},
+			"text": " regular human standpoint, it would make sense if you know, like, the transition would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,760",
+				"to": "00:29:24,120"
+			},
+			"offsets": {
+				"from": 1759760,
+				"to": 1764120
+			},
+			"text": " kind of seamless, but it's clearly not."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,120",
+				"to": "00:29:29,560"
+			},
+			"offsets": {
+				"from": 1764120,
+				"to": 1769560
+			},
+			"text": " Like, it is, like, you know, like, it's, it's, it's also an investment opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,560",
+				"to": "00:29:35,000"
+			},
+			"offsets": {
+				"from": 1769560,
+				"to": 1775000
+			},
+			"text": " And, you know, so there are certain issues there, which I feel like it would be, maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,000",
+				"to": "00:29:38,960"
+			},
+			"offsets": {
+				"from": 1775000,
+				"to": 1778960
+			},
+			"text": " that would be one reason to, like, go for the bridge, like, right away."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:38,960",
+				"to": "00:29:43,280"
+			},
+			"offsets": {
+				"from": 1778960,
+				"to": 1783280
+			},
+			"text": " So we wouldn't have this problem even, like, from a user standpoint, like, it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,280",
+				"to": "00:29:46,640"
+			},
+			"offsets": {
+				"from": 1783280,
+				"to": 1786640
+			},
+			"text": " really clear that, like, you know, we would never get into the situation where you kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,640",
+				"to": "00:29:52,000"
+			},
+			"offsets": {
+				"from": 1786640,
+				"to": 1792000
+			},
+			"text": " of, like, gamble with, like, ETH one versus ETH two on an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,000",
+				"to": "00:29:58,040"
+			},
+			"offsets": {
+				"from": 1792000,
+				"to": 1798040
+			},
+			"text": " >> So one, instead of right away, another option right there is at the moment that transfers"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,040",
+				"to": "00:29:59,040"
+			},
+			"offsets": {
+				"from": 1798040,
+				"to": 1799040
+			},
+			"text": " are enabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,040",
+				"to": "00:30:06,200"
+			},
+			"offsets": {
+				"from": 1799040,
+				"to": 1806200
+			},
+			"text": " So any time, at the moment, there's liquidity, an option on ETH two there being a fungibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,200",
+				"to": "00:30:07,200"
+			},
+			"offsets": {
+				"from": 1806200,
+				"to": 1807200
+			},
+			"text": " option."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,200",
+				"to": "00:30:08,200"
+			},
+			"offsets": {
+				"from": 1807200,
+				"to": 1808200
+			},
+			"text": " And that's, that's interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,200",
+				"to": "00:30:15,200"
+			},
+			"offsets": {
+				"from": 1808200,
+				"to": 1815200
+			},
+			"text": " >> I think that there's many factors that play here, but looking historically, coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,200",
+				"to": "00:30:19,240"
+			},
+			"offsets": {
+				"from": 1815200,
+				"to": 1819240
+			},
+			"text": " like Zill or, like, what Dye's about to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,240",
+				"to": "00:30:23,480"
+			},
+			"offsets": {
+				"from": 1819240,
+				"to": 1823480
+			},
+			"text": " There's a lot of, a lot of things going on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,480",
+				"to": "00:30:24,480"
+			},
+			"offsets": {
+				"from": 1823480,
+				"to": 1824480
+			},
+			"text": " It's hard to predict."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,480",
+				"to": "00:30:30,960"
+			},
+			"offsets": {
+				"from": 1824480,
+				"to": 1830960
+			},
+			"text": " But looking at previous coins that have migrated to other blockchains, that support their old"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:30,960",
+				"to": "00:30:37,280"
+			},
+			"offsets": {
+				"from": 1830960,
+				"to": 1837280
+			},
+			"text": " blockchain as well, their new blockchain, such as Zillica and, and Dye, they set precedent"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,280",
+				"to": "00:30:42,440"
+			},
+			"offsets": {
+				"from": 1837280,
+				"to": 1842440
+			},
+			"text": " for what can happen here or what can't happen here."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,440",
+				"to": "00:30:48,800"
+			},
+			"offsets": {
+				"from": 1842440,
+				"to": 1848800
+			},
+			"text": " >> Something that's really interesting coming out of this conversation is at least the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,800",
+				"to": "00:30:56,480"
+			},
+			"offsets": {
+				"from": 1848800,
+				"to": 1856480
+			},
+			"text": " that are speaking, it seems like the biggest concern is value and liquidity and all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,480",
+				"to": "00:30:59,000"
+			},
+			"offsets": {
+				"from": 1856480,
+				"to": 1859000
+			},
+			"text": " questions around the token stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,000",
+				"to": "00:31:00,000"
+			},
+			"offsets": {
+				"from": 1859000,
+				"to": 1860000
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,000",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1860000,
+				"to": 1861000
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:02,000"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1862000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:02,000",
+				"to": "00:31:04,720"
+			},
+			"offsets": {
+				"from": 1862000,
+				"to": 1864720
+			},
+			"text": " Is that not, is that representative of everyone in the room?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,720",
+				"to": "00:31:06,480"
+			},
+			"offsets": {
+				"from": 1864720,
+				"to": 1866480
+			},
+			"text": " >> Who cares about value?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,480",
+				"to": "00:31:12,960"
+			},
+			"offsets": {
+				"from": 1866480,
+				"to": 1872960
+			},
+			"text": " >> Well, I mean, you can care about value, but there's probably other, someone said no."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,960",
+				"to": "00:31:13,960"
+			},
+			"offsets": {
+				"from": 1872960,
+				"to": 1873960
+			},
+			"text": " Yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,960",
+				"to": "00:31:20,960"
+			},
+			"offsets": {
+				"from": 1873960,
+				"to": 1880960
+			},
+			"text": " >> I don't think it's representative."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,960",
+				"to": "00:31:25,000"
+			},
+			"offsets": {
+				"from": 1880960,
+				"to": 1885000
+			},
+			"text": " >> I'm Barry and I don't think that it's representative of the group."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,000",
+				"to": "00:31:29,480"
+			},
+			"offsets": {
+				"from": 1885000,
+				"to": 1889480
+			},
+			"text": " I think that the people who are sitting closer towards the front, self-selected as, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,480",
+				"to": "00:31:34,840"
+			},
+			"offsets": {
+				"from": 1889480,
+				"to": 1894840
+			},
+			"text": " like having, having some kind of strong motivation to interact in this conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:34,840",
+				"to": "00:31:35,840"
+			},
+			"offsets": {
+				"from": 1894840,
+				"to": 1895840
+			},
+			"text": " >> Bigger bags."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,840",
+				"to": "00:31:40,320"
+			},
+			"offsets": {
+				"from": 1895840,
+				"to": 1900320
+			},
+			"text": " >> And the strongest motivation, a very strong motivation is a financial motivation."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,320",
+				"to": "00:31:42,880"
+			},
+			"offsets": {
+				"from": 1900320,
+				"to": 1902880
+			},
+			"text": " Except for me, I just sat here."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,880",
+				"to": "00:31:47,240"
+			},
+			"offsets": {
+				"from": 1902880,
+				"to": 1907240
+			},
+			"text": " >> By accident."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,240",
+				"to": "00:31:51,400"
+			},
+			"offsets": {
+				"from": 1907240,
+				"to": 1911400
+			},
+			"text": " >> I will say something that I'm very curious to hear is how much of the work that is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,400",
+				"to": "00:31:53,760"
+			},
+			"offsets": {
+				"from": 1911400,
+				"to": 1913760
+			},
+			"text": " done for ETH 1.x is reputable."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,760",
+				"to": "00:31:56,960"
+			},
+			"offsets": {
+				"from": 1913760,
+				"to": 1916960
+			},
+			"text": " So if we're like pushing back, state rent and it'll get implemented, let's say like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,960",
+				"to": "00:32:02,280"
+			},
+			"offsets": {
+				"from": 1916960,
+				"to": 1922280
+			},
+			"text": " year or two from now, like, is it an easy drag and drop onto 2.0 or will we have to rehash"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,280",
+				"to": "00:32:04,520"
+			},
+			"offsets": {
+				"from": 1922280,
+				"to": 1924520
+			},
+			"text": " a lot of the same issues?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,520",
+				"to": "00:32:11,440"
+			},
+			"offsets": {
+				"from": 1924520,
+				"to": 1931440
+			},
+			"text": " >> It's a, and the ETH 2.0 kind of core design is designed around and if state minimalism"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,440",
+				"to": "00:32:16,200"
+			},
+			"offsets": {
+				"from": 1931440,
+				"to": 1936200
+			},
+			"text": " and so state is a kind of somewhat higher level concept than consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,200",
+				"to": "00:32:22,240"
+			},
+			"offsets": {
+				"from": 1936200,
+				"to": 1942240
+			},
+			"text": " But like basically all of the stateless client work that's happening on the 1.x side is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,240",
+				"to": "00:32:29,360"
+			},
+			"offsets": {
+				"from": 1942240,
+				"to": 1949360
+			},
+			"text": " simultaneously work that prepares ETH 1.x for kind of being a, a, a, a, a, a, a transplant"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,360",
+				"to": "00:32:34,320"
+			},
+			"offsets": {
+				"from": 1949360,
+				"to": 1954320
+			},
+			"text": " set into being an execute, into being an execution environment inside of ETH 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,320",
+				"to": "00:32:39,160"
+			},
+			"offsets": {
+				"from": 1954320,
+				"to": 1959160
+			},
+			"text": " >> I can also say that from a technical point of view, like a lot of the work that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,160",
+				"to": "00:32:42,640"
+			},
+			"offsets": {
+				"from": 1959160,
+				"to": 1962640
+			},
+			"text": " been doing is kind of like shared in between like, you know, the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:42,640",
+				"to": "00:32:47,760"
+			},
+			"offsets": {
+				"from": 1962640,
+				"to": 1967760
+			},
+			"text": " I mean, after all, we do share like, for example, we are making like the goal-based ETH 1 client"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,760",
+				"to": "00:32:51,920"
+			},
+			"offsets": {
+				"from": 1967760,
+				"to": 1971920
+			},
+			"text": " and there is like sharing of libraries going on with the ETH 2 implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:51,920",
+				"to": "00:32:56,680"
+			},
+			"offsets": {
+				"from": 1971920,
+				"to": 1976680
+			},
+			"text": " So it's not the, the, the, these projects aren't completely separate when it comes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,680",
+				"to": "00:32:57,680"
+			},
+			"offsets": {
+				"from": 1976680,
+				"to": 1977680
+			},
+			"text": " the actual tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,680",
+				"to": "00:33:01,600"
+			},
+			"offsets": {
+				"from": 1977680,
+				"to": 1981600
+			},
+			"text": " It's more like they are conceptually different, of course, and they do implement different"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,600",
+				"to": "00:33:04,000"
+			},
+			"offsets": {
+				"from": 1981600,
+				"to": 1984000
+			},
+			"text": " protocols and they are different products in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,000",
+				"to": "00:33:07,120"
+			},
+			"offsets": {
+				"from": 1984000,
+				"to": 1987120
+			},
+			"text": " But the software is, there is a lot of sharing going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:07,120",
+				"to": "00:33:10,640"
+			},
+			"offsets": {
+				"from": 1987120,
+				"to": 1990640
+			},
+			"text": " And same can be said about Trinity, I guess, because it has both."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,640",
+				"to": "00:33:14,960"
+			},
+			"offsets": {
+				"from": 1990640,
+				"to": 1994960
+			},
+			"text": " So it does share a lot of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,960",
+				"to": "00:33:24,280"
+			},
+			"offsets": {
+				"from": 1994960,
+				"to": 2004280
+			},
+			"text": " >> Tacking onto that question and like, between ETH 1 and 2, we're doing the same thing by"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:24,280",
+				"to": "00:33:25,280"
+			},
+			"offsets": {
+				"from": 2004280,
+				"to": 2005280
+			},
+			"text": " changing everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,280",
+				"to": "00:33:29,160"
+			},
+			"offsets": {
+				"from": 2005280,
+				"to": 2009160
+			},
+			"text": " So we're changing the consensus, we're changing the networking protocol, we're changing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:29,160",
+				"to": "00:33:34,520"
+			},
+			"offsets": {
+				"from": 2009160,
+				"to": 2014520
+			},
+			"text": " execution environment, and we're changing the cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,520",
+				"to": "00:33:41,520"
+			},
+			"offsets": {
+				"from": 2014520,
+				"to": 2021520
+			},
+			"text": " >> What do we hold constant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,520",
+				"to": "00:33:49,520"
+			},
+			"offsets": {
+				"from": 2021520,
+				"to": 2029520
+			},
+			"text": " >> [LAUGH]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,520",
+				"to": "00:34:00,400"
+			},
+			"offsets": {
+				"from": 2029520,
+				"to": 2040400
+			},
+			"text": " >> I mean, the fact that like current applications will continue to work through the transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,400",
+				"to": "00:34:07,200"
+			},
+			"offsets": {
+				"from": 2040400,
+				"to": 2047200
+			},
+			"text": " kind of as is like modular concerns about up code reprisings, I think is one major thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,200",
+				"to": "00:34:11,720"
+			},
+			"offsets": {
+				"from": 2047200,
+				"to": 2051720
+			},
+			"text": " >> I have a question about clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,720",
+				"to": "00:34:15,800"
+			},
+			"offsets": {
+				"from": 2051720,
+				"to": 2055800
+			},
+			"text": " So we have what seven clients in development for ETH 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,800",
+				"to": "00:34:18,360"
+			},
+			"offsets": {
+				"from": 2055800,
+				"to": 2058360
+			},
+			"text": " Would there be a efficiency to be gained?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,360",
+				"to": "00:34:24,880"
+			},
+			"offsets": {
+				"from": 2058360,
+				"to": 2064880
+			},
+			"text": " If we had less client teams and more work being done on getting to the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,880",
+				"to": "00:34:31,800"
+			},
+			"offsets": {
+				"from": 2064880,
+				"to": 2071800
+			},
+			"text": " And also, second part of that is if there are seven clients, the performance of the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,800",
+				"to": "00:34:34,240"
+			},
+			"offsets": {
+				"from": 2071800,
+				"to": 2074240
+			},
+			"text": " is going to be held back by this lowest one."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,240",
+				"to": "00:34:39,400"
+			},
+			"offsets": {
+				"from": 2074240,
+				"to": 2079400
+			},
+			"text": " So that increases the chance that it's not full performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,400",
+				"to": "00:34:44,520"
+			},
+			"offsets": {
+				"from": 2079400,
+				"to": 2084520
+			},
+			"text": " >> Right, so if you could take all of the people working on all the clients and put them"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,520",
+				"to": "00:34:47,160"
+			},
+			"offsets": {
+				"from": 2084520,
+				"to": 2087160
+			},
+			"text": " on half the clients, maybe so."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,160",
+				"to": "00:34:52,120"
+			},
+			"offsets": {
+				"from": 2087160,
+				"to": 2092120
+			},
+			"text": " These are independent companies and entities that you can't necessarily just do that with."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:52,120",
+				"to": "00:34:53,880"
+			},
+			"offsets": {
+				"from": 2092120,
+				"to": 2093880
+			},
+			"text": " >> That's just a care- >> That's just a care-hirting problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:53,880",
+				"to": "00:34:56,480"
+			},
+			"offsets": {
+				"from": 2093880,
+				"to": 2096480
+			},
+			"text": " >> Yeah, yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,480",
+				"to": "00:35:01,280"
+			},
+			"offsets": {
+				"from": 2096480,
+				"to": 2101280
+			},
+			"text": " That said, there's probably diminishing returns after five."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,280",
+				"to": "00:35:08,160"
+			},
+			"offsets": {
+				"from": 2101280,
+				"to": 2108160
+			},
+			"text": " But we've had kind of an incredible amount of technical sharing and idea sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,160",
+				"to": "00:35:11,640"
+			},
+			"offsets": {
+				"from": 2108160,
+				"to": 2111640
+			},
+			"text": " And I think it's actually a bit of a boon to the process in many respects."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,640",
+				"to": "00:35:17,000"
+			},
+			"offsets": {
+				"from": 2111640,
+				"to": 2117000
+			},
+			"text": " With the upcoming test nets and move to production, I do have some concerns about managing complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,000",
+				"to": "00:35:22,480"
+			},
+			"offsets": {
+				"from": 2117000,
+				"to": 2122480
+			},
+			"text": " and managing user expectations on what, which software to run, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,480",
+				"to": "00:35:25,280"
+			},
+			"offsets": {
+				"from": 2122480,
+				"to": 2125280
+			},
+			"text": " It's hard to know, it's hard to choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,280",
+				"to": "00:35:35,080"
+			},
+			"offsets": {
+				"from": 2125280,
+				"to": 2135080
+			},
+			"text": " And we will have, to speak to the second question, metrics, minimum set of criteria to be production"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:35,080",
+				"to": "00:35:36,080"
+			},
+			"offsets": {
+				"from": 2135080,
+				"to": 2136080
+			},
+			"text": " ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,080",
+				"to": "00:35:41,040"
+			},
+			"offsets": {
+				"from": 2136080,
+				"to": 2141040
+			},
+			"text": " So if you can't handle a state transition with four million validators and under this"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:41,040",
+				"to": "00:35:45,120"
+			},
+			"offsets": {
+				"from": 2141040,
+				"to": 2145120
+			},
+			"text": " amount of time, then you don't get the check in the box and you're probably not ready for"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,120",
+				"to": "00:35:47,000"
+			},
+			"offsets": {
+				"from": 2145120,
+				"to": 2147000
+			},
+			"text": " production and that'll be very clear to users."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,000",
+				"to": "00:35:52,200"
+			},
+			"offsets": {
+				"from": 2147000,
+				"to": 2152200
+			},
+			"text": " >> And it's much better to have three great clients than seven that maybe know all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,200",
+				"to": "00:35:53,200"
+			},
+			"offsets": {
+				"from": 2152200,
+				"to": 2153200
+			},
+			"text": " them at great."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,200",
+				"to": "00:35:57,920"
+			},
+			"offsets": {
+				"from": 2153200,
+				"to": 2157920
+			},
+			"text": " >> Right, and we probably will have three great clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:57,920",
+				"to": "00:36:00,600"
+			},
+			"offsets": {
+				"from": 2157920,
+				"to": 2160600
+			},
+			"text": " And maybe more, but we will certainly have three great clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,600",
+				"to": "00:36:04,440"
+			},
+			"offsets": {
+				"from": 2160600,
+				"to": 2164440
+			},
+			"text": " So I think we end up in the same spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:04,440",
+				"to": "00:36:07,960"
+			},
+			"offsets": {
+				"from": 2164440,
+				"to": 2167960
+			},
+			"text": " >> Last question, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:07,960",
+				"to": "00:36:11,240"
+			},
+			"offsets": {
+				"from": 2167960,
+				"to": 2171240
+			},
+			"text": " >> I was just going to add to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:11,240",
+				"to": "00:36:17,320"
+			},
+			"offsets": {
+				"from": 2171240,
+				"to": 2177320
+			},
+			"text": " One of the problems we see in ETH 1 is that Geth is so popular that we're gradually kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:17,320",
+				"to": "00:36:22,080"
+			},
+			"offsets": {
+				"from": 2177320,
+				"to": 2182080
+			},
+			"text": " of converging and a lot of our gas pricing is based on Geth's performance, which is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,080",
+				"to": "00:36:25,200"
+			},
+			"offsets": {
+				"from": 2182080,
+				"to": 2185200
+			},
+			"text": " Geth's a great client."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,200",
+				"to": "00:36:29,800"
+			},
+			"offsets": {
+				"from": 2185200,
+				"to": 2189800
+			},
+			"text": " But one of the advantages of having so many clients initially in ETH 2 is it helps us"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:29,800",
+				"to": "00:36:31,760"
+			},
+			"offsets": {
+				"from": 2189800,
+				"to": 2191760
+			},
+			"text": " avoid that centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,760",
+				"to": "00:36:36,360"
+			},
+			"offsets": {
+				"from": 2191760,
+				"to": 2196360
+			},
+			"text": " So we do are much more likely to stay with a good broad range of clients, with a broad"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:36,360",
+				"to": "00:36:38,160"
+			},
+			"offsets": {
+				"from": 2196360,
+				"to": 2198160
+			},
+			"text": " range of approaches to solving problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:38,160",
+				"to": "00:36:43,960"
+			},
+			"offsets": {
+				"from": 2198160,
+				"to": 2203960
+			},
+			"text": " >> Yeah, I'm really hoping that we don't have a client with over 50% of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,960",
+				"to": "00:36:47,000"
+			},
+			"offsets": {
+				"from": 2203960,
+				"to": 2207000
+			},
+			"text": " I think that's really valuable to the security network."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:47,000",
+				"to": "00:36:52,680"
+			},
+			"offsets": {
+				"from": 2207000,
+				"to": 2212680
+			},
+			"text": " And we will see how many actually launch with A0 as production ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,680",
+				"to": "00:36:53,680"
+			},
+			"offsets": {
+				"from": 2212680,
+				"to": 2213680
+			},
+			"text": " I'm not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,680",
+				"to": "00:37:00,440"
+			},
+			"offsets": {
+				"from": 2213680,
+				"to": 2220440
+			},
+			"text": " >> So the problem with ETH 1, that a minority client managed to slow down the network until"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,440",
+				"to": "00:37:01,440"
+			},
+			"offsets": {
+				"from": 2220440,
+				"to": 2221440
+			},
+			"text": " it's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,440",
+				"to": "00:37:05,880"
+			},
+			"offsets": {
+				"from": 2221440,
+				"to": 2225880
+			},
+			"text": " >> Well, in ETH 1, we also saw that a minority net client managed to speed up the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:05,880",
+				"to": "00:37:06,880"
+			},
+			"offsets": {
+				"from": 2225880,
+				"to": 2226880
+			},
+			"text": " Like when the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:06,880",
+				"to": "00:37:08,840"
+			},
+			"offsets": {
+				"from": 2226880,
+				"to": 2228840
+			},
+			"text": " >> In a particular instance, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,840",
+				"to": "00:37:09,840"
+			},
+			"offsets": {
+				"from": 2228840,
+				"to": 2229840
+			},
+			"text": " >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:09,840",
+				"to": "00:37:12,280"
+			},
+			"offsets": {
+				"from": 2229840,
+				"to": 2232280
+			},
+			"text": " In a particular very important instance, what otherwise have killed us."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,280",
+				"to": "00:37:22,280"
+			},
+			"offsets": {
+				"from": 2232280,
+				"to": 2242280
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:22,280",
+				"to": "00:37:32,280"
+			},
+			"offsets": {
+				"from": 2242280,
+				"to": 2252280
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:32,280",
+				"to": "00:37:42,280"
+			},
+			"offsets": {
+				"from": 2252280,
+				"to": 2262280
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:42,280",
+				"to": "00:37:52,280"
+			},
+			"offsets": {
+				"from": 2262280,
+				"to": 2272280
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

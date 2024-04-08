@@ -1,0 +1,6445 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:18,640"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 18640
+			},
+			"text": " - So, hi everyone, my name's Patrick McCory."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,640",
+				"to": "00:00:21,060"
+			},
+			"offsets": {
+				"from": 18640,
+				"to": 21060
+			},
+			"text": " And today I'm gonna hopefully come across"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,060",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 21060,
+				"to": 22960
+			},
+			"text": " or give across a better mental model"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:24,560"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 24560
+			},
+			"text": " for roll-ups and bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,560",
+				"to": "00:00:27,400"
+			},
+			"offsets": {
+				"from": 24560,
+				"to": 27400
+			},
+			"text": " So just before I begin, is anyone use the roll-up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,400",
+				"to": "00:00:30,600"
+			},
+			"offsets": {
+				"from": 27400,
+				"to": 30600
+			},
+			"text": " Does anyone use like, oh, most people here, awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,600",
+				"to": "00:00:32,680"
+			},
+			"offsets": {
+				"from": 30600,
+				"to": 32680
+			},
+			"text": " And when you used it, did you feel like it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,680",
+				"to": "00:00:34,720"
+			},
+			"offsets": {
+				"from": 32680,
+				"to": 34720
+			},
+			"text": " like more secure than using Coinbase"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,720",
+				"to": "00:00:36,720"
+			},
+			"offsets": {
+				"from": 34720,
+				"to": 36720
+			},
+			"text": " or the original, how do you think it's secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,720",
+				"to": "00:00:38,520"
+			},
+			"offsets": {
+				"from": 36720,
+				"to": 38520
+			},
+			"text": " Maybe that's a good phrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,520",
+				"to": "00:00:40,040"
+			},
+			"offsets": {
+				"from": 38520,
+				"to": 40040
+			},
+			"text": " Only one person, that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,040",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 40040,
+				"to": 42200
+			},
+			"text": " (laughs)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:43,760"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 43760
+			},
+			"text": " Clearly de-gen's here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,760",
+				"to": "00:00:46,840"
+			},
+			"offsets": {
+				"from": 43760,
+				"to": 46840
+			},
+			"text": " Okay, so hopefully by the end of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,840",
+				"to": "00:00:48,840"
+			},
+			"offsets": {
+				"from": 46840,
+				"to": 48840
+			},
+			"text": " you'll have a good idea of what it means"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,840",
+				"to": "00:00:50,720"
+			},
+			"offsets": {
+				"from": 48840,
+				"to": 50720
+			},
+			"text": " for these systems to be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,720",
+				"to": "00:00:53,160"
+			},
+			"offsets": {
+				"from": 50720,
+				"to": 53160
+			},
+			"text": " And whether they're actually secure or not"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,160",
+				"to": "00:00:54,880"
+			},
+			"offsets": {
+				"from": 53160,
+				"to": 54880
+			},
+			"text": " is a whole different world."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,800",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55800,
+				"to": 59000
+			},
+			"text": " So the whole point of roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:00,840"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 60840
+			},
+			"text": " and everything we're trying to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,840",
+				"to": "00:01:02,960"
+			},
+			"offsets": {
+				"from": 60840,
+				"to": 62960
+			},
+			"text": " is really just bridge engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,960",
+				"to": "00:01:05,780"
+			},
+			"offsets": {
+				"from": 62960,
+				"to": 65780
+			},
+			"text": " All we're building are bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,780",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 65780,
+				"to": 69480
+			},
+			"text": " So let's consider the Coinbase bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 73000
+			},
+			"text": " You're on Ethereum, you lock your funds into this bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:15,480"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 75480
+			},
+			"text": " and then it logically appears on Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,480",
+				"to": "00:01:17,720"
+			},
+			"offsets": {
+				"from": 75480,
+				"to": 77720
+			},
+			"text": " You go on Coinbase, you transfer your assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,720",
+				"to": "00:01:19,880"
+			},
+			"offsets": {
+				"from": 77720,
+				"to": 79880
+			},
+			"text": " you buy some coins, you sell some coins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,880",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 79880,
+				"to": 81880
+			},
+			"text": " you lose some money, you make some money."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:24,120"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 84120
+			},
+			"text": " And then eventually, you wanna get your coins back"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,120",
+				"to": "00:01:25,480"
+			},
+			"offsets": {
+				"from": 84120,
+				"to": 85480
+			},
+			"text": " to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,480",
+				"to": "00:01:26,920"
+			},
+			"offsets": {
+				"from": 85480,
+				"to": 86920
+			},
+			"text": " And so you'll pay in Coinbase and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,920",
+				"to": "00:01:29,640"
+			},
+			"offsets": {
+				"from": 86920,
+				"to": 89640
+			},
+			"text": " \"Coinbeas, let me withdraw my 1000 ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,640",
+				"to": "00:01:31,640"
+			},
+			"offsets": {
+				"from": 89640,
+				"to": 91640
+			},
+			"text": " because I'm a wheel.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,640",
+				"to": "00:01:33,040"
+			},
+			"offsets": {
+				"from": 91640,
+				"to": 93040
+			},
+			"text": " And then what you'll imagine is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,040",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 93040,
+				"to": 95680
+			},
+			"text": " Coinbase will send a message to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:39,800"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 99800
+			},
+			"text": " They say, \"Bridge, let Alice withdraw her 1000 ETH.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,800",
+				"to": "00:01:43,880"
+			},
+			"offsets": {
+				"from": 99800,
+				"to": 103880
+			},
+			"text": " Now from the perspective of the bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,880",
+				"to": "00:01:46,120"
+			},
+			"offsets": {
+				"from": 103880,
+				"to": 106120
+			},
+			"text": " the bridge has to be convinced"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,120",
+				"to": "00:01:49,480"
+			},
+			"offsets": {
+				"from": 106120,
+				"to": 109480
+			},
+			"text": " that Alice is entitled to this 1000 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,480",
+				"to": "00:01:51,800"
+			},
+			"offsets": {
+				"from": 109480,
+				"to": 111800
+			},
+			"text": " So how does the bridge check this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,800",
+				"to": "00:01:53,560"
+			},
+			"offsets": {
+				"from": 111800,
+				"to": 113560
+			},
+			"text": " In the Coinbase example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,560",
+				"to": "00:01:56,440"
+			},
+			"offsets": {
+				"from": 113560,
+				"to": 116440
+			},
+			"text": " the bridge will just blindly trust Coinbase."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,440",
+				"to": "00:02:00,320"
+			},
+			"offsets": {
+				"from": 116440,
+				"to": 120320
+			},
+			"text": " If Coinbase says Alice is entitled to 1000 ETH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,320",
+				"to": "00:02:03,040"
+			},
+			"offsets": {
+				"from": 120320,
+				"to": 123040
+			},
+			"text": " then Alice will get her 1000 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,040",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 123040,
+				"to": 126400
+			},
+			"text": " And then he gets sent off, I'm all very happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 128520
+			},
+			"text": " Now, you're generically speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:11,520"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 131520
+			},
+			"text": " what's happening in this type of interaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,520",
+				"to": "00:02:14,600"
+			},
+			"offsets": {
+				"from": 131520,
+				"to": 134600
+			},
+			"text": " Generically, there's this off-chain database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,600",
+				"to": "00:02:17,480"
+			},
+			"offsets": {
+				"from": 134600,
+				"to": 137480
+			},
+			"text": " The off-chain database records the account balances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,480",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137480,
+				"to": 141000
+			},
+			"text": " the program state, the program smart contract code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:23,640"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 143640
+			},
+			"text": " everything that a database should probably have."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,640",
+				"to": "00:02:26,720"
+			},
+			"offsets": {
+				"from": 143640,
+				"to": 146720
+			},
+			"text": " But most importantly, it's recording the liabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,720",
+				"to": "00:02:27,840"
+			},
+			"offsets": {
+				"from": 146720,
+				"to": 147840
+			},
+			"text": " of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,840",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 147840,
+				"to": 150080
+			},
+			"text": " If you have 10 coins in the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:33,160"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 153160
+			},
+			"text": " then you're owed 10 coins from the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,160",
+				"to": "00:02:35,680"
+			},
+			"offsets": {
+				"from": 153160,
+				"to": 155680
+			},
+			"text": " And the bridge has the assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,680",
+				"to": "00:02:38,200"
+			},
+			"offsets": {
+				"from": 155680,
+				"to": 158200
+			},
+			"text": " And the whole point of these roll-ups"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,200",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158200,
+				"to": 161000
+			},
+			"text": " or these layer two systems is to guarantee"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,160"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165160
+			},
+			"text": " that the assets in the bridge can cover the liabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,160",
+				"to": "00:02:47,200"
+			},
+			"offsets": {
+				"from": 165160,
+				"to": 167200
+			},
+			"text": " in this off-chain system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,200",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 167200,
+				"to": 169000
+			},
+			"text": " And so we have to consider everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:50,800"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 170800
+			},
+			"text": " from the bridge's perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,800",
+				"to": "00:02:53,880"
+			},
+			"offsets": {
+				"from": 170800,
+				"to": 173880
+			},
+			"text": " because it's up to the bridge to protect your funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,880",
+				"to": "00:02:58,200"
+			},
+			"offsets": {
+				"from": 173880,
+				"to": 178200
+			},
+			"text": " But this trust assumption has evolved over the years."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,200",
+				"to": "00:03:01,200"
+			},
+			"offsets": {
+				"from": 178200,
+				"to": 181200
+			},
+			"text": " After all, we've all used bridges for the past 10 years"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,200",
+				"to": "00:03:04,520"
+			},
+			"offsets": {
+				"from": 181200,
+				"to": 184520
+			},
+			"text": " in order to use these cryptocurrency exchanges and services."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,520",
+				"to": "00:03:08,600"
+			},
+			"offsets": {
+				"from": 184520,
+				"to": 188600
+			},
+			"text": " The first way to build it was this single authority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,600",
+				"to": "00:03:11,880"
+			},
+			"offsets": {
+				"from": 188600,
+				"to": 191880
+			},
+			"text": " the coin bases, the bid stamps and the crackins."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,880",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191880,
+				"to": 194000
+			},
+			"text": " You know, I lock my funds in the coin base"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:15,760"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 195760
+			},
+			"text": " and they have custody of the funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,760",
+				"to": "00:03:18,400"
+			},
+			"offsets": {
+				"from": 195760,
+				"to": 198400
+			},
+			"text": " and they're responsible for protecting the assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,400",
+				"to": "00:03:20,920"
+			},
+			"offsets": {
+				"from": 198400,
+				"to": 200920
+			},
+			"text": " And today I think they protect about 10%"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,920",
+				"to": "00:03:22,760"
+			},
+			"offsets": {
+				"from": 200920,
+				"to": 202760
+			},
+			"text": " of all cryptocurrency assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,760",
+				"to": "00:03:25,040"
+			},
+			"offsets": {
+				"from": 202760,
+				"to": 205040
+			},
+			"text": " Then we moved on and thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,040",
+				"to": "00:03:27,400"
+			},
+			"offsets": {
+				"from": 205040,
+				"to": 207400
+			},
+			"text": " well, come and have a multi-authority bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,400",
+				"to": "00:03:29,480"
+			},
+			"offsets": {
+				"from": 207400,
+				"to": 209480
+			},
+			"text": " You know, instead of just trusting Coinbase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,480",
+				"to": "00:03:32,600"
+			},
+			"offsets": {
+				"from": 209480,
+				"to": 212600
+			},
+			"text": " could we trust five out of nine validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,600",
+				"to": "00:03:33,880"
+			},
+			"offsets": {
+				"from": 212600,
+				"to": 213880
+			},
+			"text": " to protect the funds?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,880",
+				"to": "00:03:36,600"
+			},
+			"offsets": {
+				"from": 213880,
+				"to": 216600
+			},
+			"text": " And then we went a little further and thought,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,600",
+				"to": "00:03:39,240"
+			},
+			"offsets": {
+				"from": 216600,
+				"to": 219240
+			},
+			"text": " well, what about these crypto-economic bridges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,240",
+				"to": "00:03:42,200"
+			},
+			"offsets": {
+				"from": 219240,
+				"to": 222200
+			},
+			"text": " You know, what if I could stick assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,200",
+				"to": "00:03:45,480"
+			},
+			"offsets": {
+				"from": 222200,
+				"to": 225480
+			},
+			"text": " and then become a validator and appoint myself"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,480",
+				"to": "00:03:47,280"
+			},
+			"offsets": {
+				"from": 225480,
+				"to": 227280
+			},
+			"text": " to protect the funds?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,280",
+				"to": "00:03:49,360"
+			},
+			"offsets": {
+				"from": 227280,
+				"to": 229360
+			},
+			"text": " Now, in all three cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,360",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 229360,
+				"to": 232200
+			},
+			"text": " especially these crypto-economic bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:54,880"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 234880
+			},
+			"text": " they're still just multi-authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,880",
+				"to": "00:03:59,800"
+			},
+			"offsets": {
+				"from": 234880,
+				"to": 239800
+			},
+			"text": " So in late 2021, around six entities represent"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,800",
+				"to": "00:04:02,960"
+			},
+			"offsets": {
+				"from": 239800,
+				"to": 242960
+			},
+			"text": " that I believe 85% of the stake on Polygon."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,960",
+				"to": "00:04:05,640"
+			},
+			"offsets": {
+				"from": 242960,
+				"to": 245640
+			},
+			"text": " And as these six entities that you're trusting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,640",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 245640,
+				"to": 249800
+			},
+			"text": " to protect the assets in the Polygon's proof of stake bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:12,200"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 252200
+			},
+			"text": " if they collude, they can steal your funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,200",
+				"to": "00:04:14,800"
+			},
+			"offsets": {
+				"from": 252200,
+				"to": 254800
+			},
+			"text": " But so far, they've actually done a pretty good job."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,800",
+				"to": "00:04:19,040"
+			},
+			"offsets": {
+				"from": 254800,
+				"to": 259040
+			},
+			"text": " But in all these cases, it sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,040",
+				"to": "00:04:21,560"
+			},
+			"offsets": {
+				"from": 259040,
+				"to": 261560
+			},
+			"text": " You know, we're trusting less than 10 people"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,560",
+				"to": "00:04:25,680"
+			},
+			"offsets": {
+				"from": 261560,
+				"to": 265680
+			},
+			"text": " or 10 parties to protect billions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,680",
+				"to": "00:04:27,480"
+			},
+			"offsets": {
+				"from": 265680,
+				"to": 267480
+			},
+			"text": " You know, the whole point of cryptocurrencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,480",
+				"to": "00:04:29,400"
+			},
+			"offsets": {
+				"from": 267480,
+				"to": 269400
+			},
+			"text": " was to remove the intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,400",
+				"to": "00:04:31,200"
+			},
+			"offsets": {
+				"from": 269400,
+				"to": 271200
+			},
+			"text": " And now we've just reintroduced them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,200",
+				"to": "00:04:34,200"
+			},
+			"offsets": {
+				"from": 271200,
+				"to": 274200
+			},
+			"text": " Now there's 10 of them that will protect most assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,200",
+				"to": "00:04:37,240"
+			},
+			"offsets": {
+				"from": 274200,
+				"to": 277240
+			},
+			"text": " But it doesn't suck from an ideological perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,240",
+				"to": "00:04:40,200"
+			},
+			"offsets": {
+				"from": 277240,
+				"to": 280200
+			},
+			"text": " It sucks practically because they keep getting hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,200",
+				"to": "00:04:41,720"
+			},
+			"offsets": {
+				"from": 280200,
+				"to": 281720
+			},
+			"text": " I mean, maybe a good reason Hans here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,720",
+				"to": "00:04:45,760"
+			},
+			"offsets": {
+				"from": 281720,
+				"to": 285760
+			},
+			"text": " who's ever lost money with a third party service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,760",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 285760,
+				"to": 287880
+			},
+			"text": " Look at this, yeah, calm the dee gens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:49,760"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 289760
+			},
+			"text": " That's hope you didn't use a Luna."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,760",
+				"to": "00:04:52,280"
+			},
+			"offsets": {
+				"from": 289760,
+				"to": 292280
+			},
+			"text": " But anyway, but you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,280",
+				"to": "00:04:54,160"
+			},
+			"offsets": {
+				"from": 292280,
+				"to": 294160
+			},
+			"text": " but basically they all keep getting hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,160",
+				"to": "00:04:56,520"
+			},
+			"offsets": {
+				"from": 294160,
+				"to": 296520
+			},
+			"text": " The biggest hack was Mt. Gox."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,520",
+				"to": "00:04:58,920"
+			},
+			"offsets": {
+				"from": 296520,
+				"to": 298920
+			},
+			"text": " You know, they lost nearly 6% of all Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,920",
+				"to": "00:05:01,800"
+			},
+			"offsets": {
+				"from": 298920,
+				"to": 301800
+			},
+			"text": " that will ever exist around 800,000 Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,800",
+				"to": "00:05:03,920"
+			},
+			"offsets": {
+				"from": 301800,
+				"to": 303920
+			},
+			"text": " or about 6800 Givertik."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,920",
+				"to": "00:05:05,840"
+			},
+			"offsets": {
+				"from": 303920,
+				"to": 305840
+			},
+			"text": " And now we sort of just put it under the table"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,840",
+				"to": "00:05:07,680"
+			},
+			"offsets": {
+				"from": 305840,
+				"to": 307680
+			},
+			"text": " and we just pretended it didn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,680",
+				"to": "00:05:09,720"
+			},
+			"offsets": {
+				"from": 307680,
+				"to": 309720
+			},
+			"text": " But you know, it's very frustrating."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,720",
+				"to": "00:05:11,160"
+			},
+			"offsets": {
+				"from": 309720,
+				"to": 311160
+			},
+			"text": " But why did this happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,160",
+				"to": "00:05:15,160"
+			},
+			"offsets": {
+				"from": 311160,
+				"to": 315160
+			},
+			"text": " These hacks occur because in reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,160",
+				"to": "00:05:17,800"
+			},
+			"offsets": {
+				"from": 315160,
+				"to": 317800
+			},
+			"text": " we're taking a set of human processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,800",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 317800,
+				"to": 320200
+			},
+			"text": " for implementing these human processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:22,880"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 322880
+			},
+			"text": " and we're trying to protect billions of dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,880",
+				"to": "00:05:24,920"
+			},
+			"offsets": {
+				"from": 322880,
+				"to": 324920
+			},
+			"text": " on human stone skill."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,920",
+				"to": "00:05:27,360"
+			},
+			"offsets": {
+				"from": 324920,
+				"to": 327360
+			},
+			"text": " So every time we take the human processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,360",
+				"to": "00:05:30,480"
+			},
+			"offsets": {
+				"from": 327360,
+				"to": 330480
+			},
+			"text": " and instantiate it somewhere else to protect more funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,480",
+				"to": "00:05:33,040"
+			},
+			"offsets": {
+				"from": 330480,
+				"to": 333040
+			},
+			"text": " you know, there's as it increases the likelihood"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,040",
+				"to": "00:05:36,240"
+			},
+			"offsets": {
+				"from": 333040,
+				"to": 336240
+			},
+			"text": " that it's gonna fail and then they get hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,240",
+				"to": "00:05:38,280"
+			},
+			"offsets": {
+				"from": 336240,
+				"to": 338280
+			},
+			"text": " What about a multi-authority bridge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,280",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338280,
+				"to": 341000
+			},
+			"text": " You know, that should be a very little better in practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:43,560"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 343560
+			},
+			"text": " You know, there's more targets to hack."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,560",
+				"to": "00:05:45,080"
+			},
+			"offsets": {
+				"from": 343560,
+				"to": 345080
+			},
+			"text": " But of course, the run-on bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,080",
+				"to": "00:05:47,520"
+			},
+			"offsets": {
+				"from": 345080,
+				"to": 347520
+			},
+			"text": " you know, five out of nine validators were compromised"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,520",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 347520,
+				"to": 349000
+			},
+			"text": " and they lost their funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:51,440"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 351440
+			},
+			"text": " Although in reality, it's not really five validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,440",
+				"to": "00:05:53,560"
+			},
+			"offsets": {
+				"from": 351440,
+				"to": 353560
+			},
+			"text": " because four of them belong to one company."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,560",
+				"to": "00:05:56,800"
+			},
+			"offsets": {
+				"from": 353560,
+				"to": 356800
+			},
+			"text": " But you get the idea, you know, multi-authority bridges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,800",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 356800,
+				"to": 359000
+			},
+			"text": " And I feel like over the past 10 years"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 361000
+			},
+			"text": " when we're designing these bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,520"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363520
+			},
+			"text": " we've sort of forgot about our old-school motto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,520",
+				"to": "00:06:06,320"
+			},
+			"offsets": {
+				"from": 363520,
+				"to": 366320
+			},
+			"text": " you know, not your keys, not your coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,320",
+				"to": "00:06:08,800"
+			},
+			"offsets": {
+				"from": 366320,
+				"to": 368800
+			},
+			"text": " You know, we're blindly just giving our coins away"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,800",
+				"to": "00:06:11,440"
+			},
+			"offsets": {
+				"from": 368800,
+				"to": 371440
+			},
+			"text": " and just hoping they can protect the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,440",
+				"to": "00:06:13,600"
+			},
+			"offsets": {
+				"from": 371440,
+				"to": 373600
+			},
+			"text": " So the question for these bridges is, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,600",
+				"to": "00:06:17,960"
+			},
+			"offsets": {
+				"from": 373600,
+				"to": 377960
+			},
+			"text": " can we build and transact on an off-chain system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,960",
+				"to": "00:06:21,440"
+			},
+			"offsets": {
+				"from": 377960,
+				"to": 381440
+			},
+			"text": " by still allowing users to maintain custody of their funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,440",
+				"to": "00:06:24,760"
+			},
+			"offsets": {
+				"from": 381440,
+				"to": 384760
+			},
+			"text": " and not have to trust the operator to protect the funds?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,760",
+				"to": "00:06:27,360"
+			},
+			"offsets": {
+				"from": 384760,
+				"to": 387360
+			},
+			"text": " And this was the original goal"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,360",
+				"to": "00:06:30,440"
+			},
+			"offsets": {
+				"from": 387360,
+				"to": 390440
+			},
+			"text": " of the side-chain paper in 2014."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,440",
+				"to": "00:06:32,360"
+			},
+			"offsets": {
+				"from": 390440,
+				"to": 392360
+			},
+			"text": " They don't use the word bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,360",
+				"to": "00:06:34,800"
+			},
+			"offsets": {
+				"from": 392360,
+				"to": 394800
+			},
+			"text": " they use, they call it a two-way peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,800",
+				"to": "00:06:36,760"
+			},
+			"offsets": {
+				"from": 394800,
+				"to": 396760
+			},
+			"text": " But the idea is very straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,760",
+				"to": "00:06:39,840"
+			},
+			"offsets": {
+				"from": 396760,
+				"to": 399840
+			},
+			"text": " You kick your Bitcoin, you lock it into a bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,840",
+				"to": "00:06:43,120"
+			},
+			"offsets": {
+				"from": 399840,
+				"to": 403120
+			},
+			"text": " and it appears on an experimental blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,120",
+				"to": "00:06:44,840"
+			},
+			"offsets": {
+				"from": 403120,
+				"to": 404840
+			},
+			"text": " So this is the Ethereum example."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,840",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 404840,
+				"to": 406200
+			},
+			"text": " You know, you're on Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:48,360"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 408360
+			},
+			"text": " you lock it on an experimental blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,360",
+				"to": "00:06:50,080"
+			},
+			"offsets": {
+				"from": 408360,
+				"to": 410080
+			},
+			"text": " you transact away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,080",
+				"to": "00:06:53,160"
+			},
+			"offsets": {
+				"from": 410080,
+				"to": 413160
+			},
+			"text": " then eventually you bring your funds back to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,160",
+				"to": "00:06:55,280"
+			},
+			"offsets": {
+				"from": 413160,
+				"to": 415280
+			},
+			"text": " Now in the side-chain paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,280",
+				"to": "00:06:57,760"
+			},
+			"offsets": {
+				"from": 415280,
+				"to": 417760
+			},
+			"text": " the idea is that there would be a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,760",
+				"to": "00:07:00,800"
+			},
+			"offsets": {
+				"from": 417760,
+				"to": 420800
+			},
+			"text": " on Ethereum in this case, that would check, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,800",
+				"to": "00:07:04,640"
+			},
+			"offsets": {
+				"from": 420800,
+				"to": 424640
+			},
+			"text": " the consensus protocol off the other system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,640",
+				"to": "00:07:06,640"
+			},
+			"offsets": {
+				"from": 424640,
+				"to": 426640
+			},
+			"text": " That may be as proof of work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,640",
+				"to": "00:07:08,960"
+			},
+			"offsets": {
+				"from": 426640,
+				"to": 428960
+			},
+			"text": " maybe the validators of that system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,960",
+				"to": "00:07:11,240"
+			},
+			"offsets": {
+				"from": 428960,
+				"to": 431240
+			},
+			"text": " but there's a smart contract here with the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,240",
+				"to": "00:07:13,760"
+			},
+			"offsets": {
+				"from": 431240,
+				"to": 433760
+			},
+			"text": " just checking if the other blockchain agrees"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,760",
+				"to": "00:07:16,320"
+			},
+			"offsets": {
+				"from": 433760,
+				"to": 436320
+			},
+			"text": " that the funds should be withdrawn."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,320",
+				"to": "00:07:18,360"
+			},
+			"offsets": {
+				"from": 436320,
+				"to": 438360
+			},
+			"text": " But the issue is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,360",
+				"to": "00:07:20,800"
+			},
+			"offsets": {
+				"from": 438360,
+				"to": 440800
+			},
+			"text": " when you have a consensus protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,800",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 440800,
+				"to": 444480
+			},
+			"text": " you're still trusting the judgment of a set-up party."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:28,800"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 448800
+			},
+			"text": " And there's two ways this is trusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,800",
+				"to": "00:07:30,720"
+			},
+			"offsets": {
+				"from": 448800,
+				"to": 450720
+			},
+			"text": " The first case is, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,720",
+				"to": "00:07:33,960"
+			},
+			"offsets": {
+				"from": 450720,
+				"to": 453960
+			},
+			"text": " what if the consensus protocol agrees to an invalid block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,960",
+				"to": "00:07:35,480"
+			},
+			"offsets": {
+				"from": 453960,
+				"to": 455480
+			},
+			"text": " You send it to the bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,480",
+				"to": "00:07:37,280"
+			},
+			"offsets": {
+				"from": 455480,
+				"to": 457280
+			},
+			"text": " it gets the invalid block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,280",
+				"to": "00:07:39,240"
+			},
+			"offsets": {
+				"from": 457280,
+				"to": 459240
+			},
+			"text": " but all of the validators agreed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,240",
+				"to": "00:07:41,320"
+			},
+			"offsets": {
+				"from": 459240,
+				"to": 461320
+			},
+			"text": " again, your funds get stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,320",
+				"to": "00:07:43,160"
+			},
+			"offsets": {
+				"from": 461320,
+				"to": 463160
+			},
+			"text": " Now you could use a validity proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,160",
+				"to": "00:07:45,640"
+			},
+			"offsets": {
+				"from": 463160,
+				"to": 465640
+			},
+			"text": " or Zir and all these proofs to make that a little better."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,640",
+				"to": "00:07:46,480"
+			},
+			"offsets": {
+				"from": 465640,
+				"to": 466480
+			},
+			"text": " And there's a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,480",
+				"to": "00:07:49,040"
+			},
+			"offsets": {
+				"from": 466480,
+				"to": 469040
+			},
+			"text": " maybe six years of work to make that better."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,040",
+				"to": "00:07:51,880"
+			},
+			"offsets": {
+				"from": 469040,
+				"to": 471880
+			},
+			"text": " But the real issue with the side-chains,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,880",
+				"to": "00:07:55,040"
+			},
+			"offsets": {
+				"from": 471880,
+				"to": 475040
+			},
+			"text": " or the side-chain paper, was availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,040",
+				"to": "00:07:58,440"
+			},
+			"offsets": {
+				"from": 475040,
+				"to": 478440
+			},
+			"text": " Now what if the experimental blockchain goes offline?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,440",
+				"to": "00:08:00,360"
+			},
+			"offsets": {
+				"from": 478440,
+				"to": 480360
+			},
+			"text": " On the operators disappear."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,360",
+				"to": "00:08:02,200"
+			},
+			"offsets": {
+				"from": 480360,
+				"to": 482200
+			},
+			"text": " If the operators disappear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,200",
+				"to": "00:08:04,440"
+			},
+			"offsets": {
+				"from": 482200,
+				"to": 484440
+			},
+			"text": " the consensus protocol stalls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,440",
+				"to": "00:08:06,480"
+			},
+			"offsets": {
+				"from": 484440,
+				"to": 486480
+			},
+			"text": " it can't make any more decisions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,480",
+				"to": "00:08:09,640"
+			},
+			"offsets": {
+				"from": 486480,
+				"to": 489640
+			},
+			"text": " and then your funds get stuck on the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,640",
+				"to": "00:08:11,600"
+			},
+			"offsets": {
+				"from": 489640,
+				"to": 491600
+			},
+			"text": " And you can never get your funds out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,600",
+				"to": "00:08:14,480"
+			},
+			"offsets": {
+				"from": 491600,
+				"to": 494480
+			},
+			"text": " So that was the issue with the side-chain paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,480",
+				"to": "00:08:16,720"
+			},
+			"offsets": {
+				"from": 494480,
+				"to": 496720
+			},
+			"text": " So again, I'm gonna ask a better question."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,720",
+				"to": "00:08:18,560"
+			},
+			"offsets": {
+				"from": 496720,
+				"to": 498560
+			},
+			"text": " You know, can we build a bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,560",
+				"to": "00:08:21,920"
+			},
+			"offsets": {
+				"from": 498560,
+				"to": 501920
+			},
+			"text": " that can protect us from an all-powerful adversary?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,920",
+				"to": "00:08:24,560"
+			},
+			"offsets": {
+				"from": 501920,
+				"to": 504560
+			},
+			"text": " So even if the entire system goes offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,560",
+				"to": "00:08:26,240"
+			},
+			"offsets": {
+				"from": 504560,
+				"to": 506240
+			},
+			"text": " I can still get my funds out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,240",
+				"to": "00:08:29,520"
+			},
+			"offsets": {
+				"from": 506240,
+				"to": 509520
+			},
+			"text": " And this was the goal of plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,520",
+				"to": "00:08:31,600"
+			},
+			"offsets": {
+				"from": 509520,
+				"to": 511600
+			},
+			"text": " You know, back in '20, '17,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,600",
+				"to": "00:08:33,640"
+			},
+			"offsets": {
+				"from": 511600,
+				"to": 513640
+			},
+			"text": " the plasma paper came out."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,640",
+				"to": "00:08:35,560"
+			},
+			"offsets": {
+				"from": 513640,
+				"to": 515560
+			},
+			"text": " Has anyone tried to read the paper, by the way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,560",
+				"to": "00:08:37,920"
+			},
+			"offsets": {
+				"from": 515560,
+				"to": 517920
+			},
+			"text": " You know, okay, maybe a better question."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,920",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 517920,
+				"to": 520120
+			},
+			"text": " Could anyone read it and understand it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:42,520"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 522520
+			},
+			"text": " No, look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,520",
+				"to": "00:08:44,560"
+			},
+			"offsets": {
+				"from": 522520,
+				"to": 524560
+			},
+			"text": " I spoke to Joseph recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,560",
+				"to": "00:08:48,240"
+			},
+			"offsets": {
+				"from": 524560,
+				"to": 528240
+			},
+			"text": " and he called it aspirational, in terms of his writing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,240",
+				"to": "00:08:50,320"
+			},
+			"offsets": {
+				"from": 528240,
+				"to": 530320
+			},
+			"text": " Because it's a very difficult paper to read."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,320",
+				"to": "00:08:53,840"
+			},
+			"offsets": {
+				"from": 530320,
+				"to": 533840
+			},
+			"text": " But the idea in the paper was amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,840",
+				"to": "00:08:56,200"
+			},
+			"offsets": {
+				"from": 533840,
+				"to": 536200
+			},
+			"text": " It tried to solve that availability problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,200",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 536200,
+				"to": 537800
+			},
+			"text": " that liveness problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:09:00,440"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 540440
+			},
+			"text": " So even if the entire system goes offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,440",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 540440,
+				"to": 542240
+			},
+			"text": " you can still get your funds out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:04,960"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 544960
+			},
+			"text": " You know, it tried to do better than the side-chain paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,960",
+				"to": "00:09:07,680"
+			},
+			"offsets": {
+				"from": 544960,
+				"to": 547680
+			},
+			"text": " And for about two years, as a community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,680",
+				"to": "00:09:09,960"
+			},
+			"offsets": {
+				"from": 547680,
+				"to": 549960
+			},
+			"text": " we had all these different variants of plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,960",
+				"to": "00:09:12,800"
+			},
+			"offsets": {
+				"from": 549960,
+				"to": 552800
+			},
+			"text": " You know, plasma cache, you know, plasma,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,800",
+				"to": "00:09:15,920"
+			},
+			"offsets": {
+				"from": 552800,
+				"to": 555920
+			},
+			"text": " and a partial spending, whatever, plasma MVP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,920",
+				"to": "00:09:18,200"
+			},
+			"offsets": {
+				"from": 555920,
+				"to": 558200
+			},
+			"text": " But none of the solutions were satisfactory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,200",
+				"to": "00:09:20,440"
+			},
+			"offsets": {
+				"from": 558200,
+				"to": 560440
+			},
+			"text": " You know, they only supported payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,440",
+				"to": "00:09:22,280"
+			},
+			"offsets": {
+				"from": 560440,
+				"to": 562280
+			},
+			"text": " They all got these nitty-gritty details"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,280",
+				"to": "00:09:23,920"
+			},
+			"offsets": {
+				"from": 562280,
+				"to": 563920
+			},
+			"text": " that made it not practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,920",
+				"to": "00:09:25,840"
+			},
+			"offsets": {
+				"from": 563920,
+				"to": 565840
+			},
+			"text": " And in a way, we sort of wasted two years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,840",
+				"to": "00:09:27,960"
+			},
+			"offsets": {
+				"from": 565840,
+				"to": 567960
+			},
+			"text": " but we didn't really waste two years."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,960",
+				"to": "00:09:30,160"
+			},
+			"offsets": {
+				"from": 567960,
+				"to": 570160
+			},
+			"text": " Then eventually Barry Whitehart came along,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,160",
+				"to": "00:09:33,360"
+			},
+			"offsets": {
+				"from": 570160,
+				"to": 573360
+			},
+			"text": " and he's just released this GitHub and total Ethereum style,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,360",
+				"to": "00:09:37,280"
+			},
+			"offsets": {
+				"from": 573360,
+				"to": 577280
+			},
+			"text": " that really helped simplify the design space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,280",
+				"to": "00:09:40,280"
+			},
+			"offsets": {
+				"from": 577280,
+				"to": 580280
+			},
+			"text": " He separated out data availability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,280",
+				"to": "00:09:43,920"
+			},
+			"offsets": {
+				"from": 580280,
+				"to": 583920
+			},
+			"text": " and making sure the updates to the data base are valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,920",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 583920,
+				"to": 587000
+			},
+			"text": " And the way he solved it was the roll-up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:49,120"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 589120
+			},
+			"text": " where you roll up the transaction data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,120",
+				"to": "00:09:51,160"
+			},
+			"offsets": {
+				"from": 589120,
+				"to": 591160
+			},
+			"text": " and you just post it to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,160",
+				"to": "00:09:52,920"
+			},
+			"offsets": {
+				"from": 591160,
+				"to": 592920
+			},
+			"text": " The way you've got to solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,920",
+				"to": "00:09:56,080"
+			},
+			"offsets": {
+				"from": 592920,
+				"to": 596080
+			},
+			"text": " is making sure the data is correct and valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,080",
+				"to": "00:09:59,560"
+			},
+			"offsets": {
+				"from": 596080,
+				"to": 599560
+			},
+			"text": " And this led to the roll-ups, this wonderful little GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,560",
+				"to": "00:10:02,040"
+			},
+			"offsets": {
+				"from": 599560,
+				"to": 602040
+			},
+			"text": " Now, if we're going to categorize this as a bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,040",
+				"to": "00:10:04,400"
+			},
+			"offsets": {
+				"from": 602040,
+				"to": 604400
+			},
+			"text": " we would call this the validating bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,400",
+				"to": "00:10:06,240"
+			},
+			"offsets": {
+				"from": 604400,
+				"to": 606240
+			},
+			"text": " 'cause now the bridge will end a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,240",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 606240,
+				"to": 609200
+			},
+			"text": " independently protect the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:10,920"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 610920
+			},
+			"text": " So let's give an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,920",
+				"to": "00:10:12,280"
+			},
+			"offsets": {
+				"from": 610920,
+				"to": 612280
+			},
+			"text": " We have an executor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,280",
+				"to": "00:10:15,120"
+			},
+			"offsets": {
+				"from": 612280,
+				"to": 615120
+			},
+			"text": " and they want to update the off-chain database."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,120",
+				"to": "00:10:17,040"
+			},
+			"offsets": {
+				"from": 615120,
+				"to": 617040
+			},
+			"text": " So they do this 1990 automation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,040",
+				"to": "00:10:18,600"
+			},
+			"offsets": {
+				"from": 617040,
+				"to": 618600
+			},
+			"text": " they update the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,600",
+				"to": "00:10:21,320"
+			},
+			"offsets": {
+				"from": 618600,
+				"to": 621320
+			},
+			"text": " and they'll propose an update to the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,320",
+				"to": "00:10:22,800"
+			},
+			"offsets": {
+				"from": 621320,
+				"to": 622800
+			},
+			"text": " to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,800",
+				"to": "00:10:27,160"
+			},
+			"offsets": {
+				"from": 622800,
+				"to": 627160
+			},
+			"text": " Now, the bridge will not blindly trust the executor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,160",
+				"to": "00:10:29,840"
+			},
+			"offsets": {
+				"from": 627160,
+				"to": 629840
+			},
+			"text": " regardless of who's authorized this update,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,840",
+				"to": "00:10:32,200"
+			},
+			"offsets": {
+				"from": 629840,
+				"to": 632200
+			},
+			"text": " it will not trust the executor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,200",
+				"to": "00:10:36,560"
+			},
+			"offsets": {
+				"from": 632200,
+				"to": 636560
+			},
+			"text": " It must independently be convinced"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,560",
+				"to": "00:10:39,040"
+			},
+			"offsets": {
+				"from": 636560,
+				"to": 639040
+			},
+			"text": " that this update is valid and correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,040",
+				"to": "00:10:41,340"
+			},
+			"offsets": {
+				"from": 639040,
+				"to": 641340
+			},
+			"text": " and that updates frequently occur as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,340",
+				"to": "00:10:45,920"
+			},
+			"offsets": {
+				"from": 641340,
+				"to": 645920
+			},
+			"text": " So then the executor has to send convincing evidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,920",
+				"to": "00:10:47,360"
+			},
+			"offsets": {
+				"from": 645920,
+				"to": 647360
+			},
+			"text": " for why this is valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,360",
+				"to": "00:10:50,480"
+			},
+			"offsets": {
+				"from": 647360,
+				"to": 650480
+			},
+			"text": " That, you know, and then the bridge will check the evidence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,480",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 650480,
+				"to": 652000
+			},
+			"text": " check how frequent it is, and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:54,920"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 654920
+			},
+			"text": " \"Yep, the off-chain database is correct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,920",
+				"to": "00:10:56,720"
+			},
+			"offsets": {
+				"from": 654920,
+				"to": 656720
+			},
+			"text": " the liabilities are fine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,720",
+				"to": "00:10:59,600"
+			},
+			"offsets": {
+				"from": 656720,
+				"to": 659600
+			},
+			"text": " I can let the user withdraw their funds.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,600",
+				"to": "00:11:01,400"
+			},
+			"offsets": {
+				"from": 659600,
+				"to": 661400
+			},
+			"text": " And this is what the rule-ups are trying to build,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,400",
+				"to": "00:11:03,360"
+			},
+			"offsets": {
+				"from": 661400,
+				"to": 663360
+			},
+			"text": " you know, the loop brings optimistic Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,360",
+				"to": "00:11:05,240"
+			},
+			"offsets": {
+				"from": 663360,
+				"to": 665240
+			},
+			"text": " ZK, Stark, or Arbitrum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,240",
+				"to": "00:11:08,200"
+			},
+			"offsets": {
+				"from": 665240,
+				"to": 668200
+			},
+			"text": " they're all trying to build a validating bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,200",
+				"to": "00:11:12,560"
+			},
+			"offsets": {
+				"from": 668200,
+				"to": 672560
+			},
+			"text": " And if they can build this, then that's really exciting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,560",
+				"to": "00:11:15,720"
+			},
+			"offsets": {
+				"from": 672560,
+				"to": 675720
+			},
+			"text": " 'cause now we can have a bridge that runs an Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,720",
+				"to": "00:11:17,640"
+			},
+			"offsets": {
+				"from": 675720,
+				"to": 677640
+			},
+			"text": " and it's Ethereum that's protecting your funds"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,640",
+				"to": "00:11:18,960"
+			},
+			"offsets": {
+				"from": 677640,
+				"to": 678960
+			},
+			"text": " from the adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,960",
+				"to": "00:11:20,960"
+			},
+			"offsets": {
+				"from": 678960,
+				"to": 680960
+			},
+			"text": " You know, if they try to steal your funds, nope,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,960",
+				"to": "00:11:23,320"
+			},
+			"offsets": {
+				"from": 680960,
+				"to": 683320
+			},
+			"text": " they try to send you your transaction, nope,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,320",
+				"to": "00:11:26,960"
+			},
+			"offsets": {
+				"from": 683320,
+				"to": 686960
+			},
+			"text": " they will always try to defeat this all-powerful adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,960",
+				"to": "00:11:29,240"
+			},
+			"offsets": {
+				"from": 686960,
+				"to": 689240
+			},
+			"text": " You know, it's a great punch, isn't it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,240",
+				"to": "00:11:33,160"
+			},
+			"offsets": {
+				"from": 689240,
+				"to": 693160
+			},
+			"text": " But this sounds cool, it sounds really exciting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,160",
+				"to": "00:11:35,040"
+			},
+			"offsets": {
+				"from": 693160,
+				"to": 695040
+			},
+			"text": " but is it too good to be true?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,040",
+				"to": "00:11:37,600"
+			},
+			"offsets": {
+				"from": 695040,
+				"to": 697600
+			},
+			"text": " You know, can the rule-ups really satisfy this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,600",
+				"to": "00:11:39,720"
+			},
+			"offsets": {
+				"from": 697600,
+				"to": 699720
+			},
+			"text": " I'm clearly known in the room earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,720",
+				"to": "00:11:42,120"
+			},
+			"offsets": {
+				"from": 699720,
+				"to": 702120
+			},
+			"text": " trusted the rule-ups at all, apart from one person,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,120",
+				"to": "00:11:43,800"
+			},
+			"offsets": {
+				"from": 702120,
+				"to": 703800
+			},
+			"text": " you're a good soul."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,800",
+				"to": "00:11:47,640"
+			},
+			"offsets": {
+				"from": 703800,
+				"to": 707640
+			},
+			"text": " Okay, so let's try to define the environment a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,640",
+				"to": "00:11:50,560"
+			},
+			"offsets": {
+				"from": 707640,
+				"to": 710560
+			},
+			"text": " We're gonna talk about here are the agents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,560",
+				"to": "00:11:52,480"
+			},
+			"offsets": {
+				"from": 710560,
+				"to": 712480
+			},
+			"text": " you know, who's involved in the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,480",
+				"to": "00:11:55,560"
+			},
+			"offsets": {
+				"from": 712480,
+				"to": 715560
+			},
+			"text": " we're gonna provide a high-level overview of how it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,560",
+				"to": "00:11:57,440"
+			},
+			"offsets": {
+				"from": 715560,
+				"to": 717440
+			},
+			"text": " then the threat model, and of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,440",
+				"to": "00:12:01,360"
+			},
+			"offsets": {
+				"from": 717440,
+				"to": 721360
+			},
+			"text": " the security properties for what it means to be secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,360",
+				"to": "00:12:03,240"
+			},
+			"offsets": {
+				"from": 721360,
+				"to": 723240
+			},
+			"text": " So who's involved in the protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,240",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 723240,
+				"to": 726000
+			},
+			"text": " First, we have the honest user, or an honest party."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:07,760"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 727760
+			},
+			"text": " The honest user really just wants to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,760",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 727760,
+				"to": 730000
+			},
+			"text": " lock their moon cat into the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:11,560"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 731560
+			},
+			"text": " buy and sell their moon cat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,560",
+				"to": "00:12:13,280"
+			},
+			"offsets": {
+				"from": 731560,
+				"to": 733280
+			},
+			"text": " and then get their moon cat back out."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,280",
+				"to": "00:12:15,760"
+			},
+			"offsets": {
+				"from": 733280,
+				"to": 735760
+			},
+			"text": " Now, they don't really care about the system itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,760",
+				"to": "00:12:19,720"
+			},
+			"offsets": {
+				"from": 735760,
+				"to": 739720
+			},
+			"text": " We have the sequencer, who will take the user's transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,720",
+				"to": "00:12:21,880"
+			},
+			"offsets": {
+				"from": 739720,
+				"to": 741880
+			},
+			"text": " order them, and then pass them on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,880",
+				"to": "00:12:24,640"
+			},
+			"offsets": {
+				"from": 741880,
+				"to": 744640
+			},
+			"text": " So they're a transaction ordering service."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,640",
+				"to": "00:12:26,160"
+			},
+			"offsets": {
+				"from": 744640,
+				"to": 746160
+			},
+			"text": " Then we have the executor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,160",
+				"to": "00:12:29,360"
+			},
+			"offsets": {
+				"from": 746160,
+				"to": 749360
+			},
+			"text": " people take the transactions, execute them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,360",
+				"to": "00:12:32,480"
+			},
+			"offsets": {
+				"from": 749360,
+				"to": 752480
+			},
+			"text": " and then propose an update to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,480",
+				"to": "00:12:35,200"
+			},
+			"offsets": {
+				"from": 752480,
+				"to": 755200
+			},
+			"text": " Thus, well, you know, let's watch this in action."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,200",
+				"to": "00:12:37,720"
+			},
+			"offsets": {
+				"from": 755200,
+				"to": 757720
+			},
+			"text": " So we have Alice, and Alice will deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,720",
+				"to": "00:12:40,600"
+			},
+			"offsets": {
+				"from": 757720,
+				"to": 760600
+			},
+			"text": " one coin into the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,600",
+				"to": "00:12:44,400"
+			},
+			"offsets": {
+				"from": 760600,
+				"to": 764400
+			},
+			"text": " Then this will magically appear in the off-chain database."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,400",
+				"to": "00:12:46,920"
+			},
+			"offsets": {
+				"from": 764400,
+				"to": 766920
+			},
+			"text": " Then Bob comes along, you know, hi, Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,920",
+				"to": "00:12:50,800"
+			},
+			"offsets": {
+				"from": 766920,
+				"to": 770800
+			},
+			"text": " And Alice is going to send one coin to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,800",
+				"to": "00:12:52,800"
+			},
+			"offsets": {
+				"from": 770800,
+				"to": 772800
+			},
+			"text": " So it's your sign of transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,800",
+				"to": "00:12:54,920"
+			},
+			"offsets": {
+				"from": 772800,
+				"to": 774920
+			},
+			"text": " and give it to the sequencer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,920",
+				"to": "00:12:56,800"
+			},
+			"offsets": {
+				"from": 774920,
+				"to": 776800
+			},
+			"text": " Now, the sequencer can notify Bob and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,800",
+				"to": "00:13:00,160"
+			},
+			"offsets": {
+				"from": 776800,
+				"to": 780160
+			},
+			"text": " \"Bob, you're going to receive one coin.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,160",
+				"to": "00:13:03,240"
+			},
+			"offsets": {
+				"from": 780160,
+				"to": 783240
+			},
+			"text": " But what's important is that that's only a promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,240",
+				"to": "00:13:06,080"
+			},
+			"offsets": {
+				"from": 783240,
+				"to": 786080
+			},
+			"text": " The transaction is in public, it's not final,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,080",
+				"to": "00:13:07,640"
+			},
+			"offsets": {
+				"from": 786080,
+				"to": 787640
+			},
+			"text": " it's not even pending."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,640",
+				"to": "00:13:10,680"
+			},
+			"offsets": {
+				"from": 787640,
+				"to": 790680
+			},
+			"text": " It's simply held by the sequencer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,680",
+				"to": "00:13:12,920"
+			},
+			"offsets": {
+				"from": 790680,
+				"to": 792920
+			},
+			"text": " So when you send a transaction in orbit trim,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,920",
+				"to": "00:13:14,640"
+			},
+			"offsets": {
+				"from": 792920,
+				"to": 794640
+			},
+			"text": " it's the sequencer that's getting it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,640",
+				"to": "00:13:17,920"
+			},
+			"offsets": {
+				"from": 794640,
+				"to": 797920
+			},
+			"text": " and it's making a promise to you that it will be executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,920",
+				"to": "00:13:20,080"
+			},
+			"offsets": {
+				"from": 797920,
+				"to": 800080
+			},
+			"text": " But it's just a promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,080",
+				"to": "00:13:22,480"
+			},
+			"offsets": {
+				"from": 800080,
+				"to": 802480
+			},
+			"text": " The sequencer waits around for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,480",
+				"to": "00:13:24,880"
+			},
+			"offsets": {
+				"from": 802480,
+				"to": 804880
+			},
+			"text": " more transactions come in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,880",
+				"to": "00:13:26,920"
+			},
+			"offsets": {
+				"from": 804880,
+				"to": 806920
+			},
+			"text": " and then eventually, the sequencer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,920",
+				"to": "00:13:30,120"
+			},
+			"offsets": {
+				"from": 806920,
+				"to": 810120
+			},
+			"text": " will order the transactions and pass it on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,120",
+				"to": "00:13:33,480"
+			},
+			"offsets": {
+				"from": 810120,
+				"to": 813480
+			},
+			"text": " In this example, the sequencer will give the transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,480",
+				"to": "00:13:35,720"
+			},
+			"offsets": {
+				"from": 813480,
+				"to": 815720
+			},
+			"text": " directly to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,720",
+				"to": "00:13:38,760"
+			},
+			"offsets": {
+				"from": 815720,
+				"to": 818760
+			},
+			"text": " The bridge will order the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,760",
+				"to": "00:13:40,720"
+			},
+			"offsets": {
+				"from": 818760,
+				"to": 820720
+			},
+			"text": " but they're not yet executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,720",
+				"to": "00:13:42,440"
+			},
+			"offsets": {
+				"from": 820720,
+				"to": 822440
+			},
+			"text": " We need someone to come along"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,440",
+				"to": "00:13:44,560"
+			},
+			"offsets": {
+				"from": 822440,
+				"to": 824560
+			},
+			"text": " to execute the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,560",
+				"to": "00:13:48,280"
+			},
+			"offsets": {
+				"from": 824560,
+				"to": 828280
+			},
+			"text": " So the executor comes, he picks up the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,280",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 828280,
+				"to": 831000
+			},
+			"text": " again, the wonderful 1990 animation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:53,080"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 833080
+			},
+			"text": " he executes the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,080",
+				"to": "00:13:56,120"
+			},
+			"offsets": {
+				"from": 833080,
+				"to": 836120
+			},
+			"text": " then he'll post a checkpoint to the bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,120",
+				"to": "00:13:59,560"
+			},
+			"offsets": {
+				"from": 836120,
+				"to": 839560
+			},
+			"text": " and he'll say, \"Bridge, here's an update to the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,560",
+				"to": "00:14:02,360"
+			},
+			"offsets": {
+				"from": 839560,
+				"to": 842360
+			},
+			"text": " and this is why it is valid.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,360",
+				"to": "00:14:04,240"
+			},
+			"offsets": {
+				"from": 842360,
+				"to": 844240
+			},
+			"text": " And this happens continuously."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,240",
+				"to": "00:14:06,120"
+			},
+			"offsets": {
+				"from": 844240,
+				"to": 846120
+			},
+			"text": " You know, we order transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,120",
+				"to": "00:14:07,800"
+			},
+			"offsets": {
+				"from": 846120,
+				"to": 847800
+			},
+			"text": " we execute transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,800",
+				"to": "00:14:09,600"
+			},
+			"offsets": {
+				"from": 847800,
+				"to": 849600
+			},
+			"text": " and then we convince the bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,600",
+				"to": "00:14:11,760"
+			},
+			"offsets": {
+				"from": 849600,
+				"to": 851760
+			},
+			"text": " that this is correct and valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,760",
+				"to": "00:14:13,480"
+			},
+			"offsets": {
+				"from": 851760,
+				"to": 853480
+			},
+			"text": " And that convincing is again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,480",
+				"to": "00:14:15,440"
+			},
+			"offsets": {
+				"from": 853480,
+				"to": 855440
+			},
+			"text": " the most important part of a bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,440",
+				"to": "00:14:16,720"
+			},
+			"offsets": {
+				"from": 855440,
+				"to": 856720
+			},
+			"text": " or a validating bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,720",
+				"to": "00:14:19,720"
+			},
+			"offsets": {
+				"from": 857720,
+				"to": 859720
+			},
+			"text": " So who's the adversary?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,720",
+				"to": "00:14:21,720"
+			},
+			"offsets": {
+				"from": 859720,
+				"to": 861720
+			},
+			"text": " You know, who are we trying to defend against?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,720",
+				"to": "00:14:23,720"
+			},
+			"offsets": {
+				"from": 861720,
+				"to": 863720
+			},
+			"text": " Who's trying to steal our funds?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,720",
+				"to": "00:14:25,720"
+			},
+			"offsets": {
+				"from": 863720,
+				"to": 865720
+			},
+			"text": " So there's two aspects to consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,720",
+				"to": "00:14:28,720"
+			},
+			"offsets": {
+				"from": 865720,
+				"to": 868720
+			},
+			"text": " First, the masses flow control."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,720",
+				"to": "00:14:32,720"
+			},
+			"offsets": {
+				"from": 868720,
+				"to": 872720
+			},
+			"text": " The adversary can view, reorder, and drop"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,720",
+				"to": "00:14:35,720"
+			},
+			"offsets": {
+				"from": 872720,
+				"to": 875720
+			},
+			"text": " all massages on the layer two system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,720",
+				"to": "00:14:38,720"
+			},
+			"offsets": {
+				"from": 875720,
+				"to": 878720
+			},
+			"text": " The only guarantee that an honest party has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,720",
+				"to": "00:14:41,720"
+			},
+			"offsets": {
+				"from": 878720,
+				"to": 881720
+			},
+			"text": " is that they can send a transaction to Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,720",
+				"to": "00:14:43,720"
+			},
+			"offsets": {
+				"from": 881720,
+				"to": 883720
+			},
+			"text": " and to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,720",
+				"to": "00:14:45,720"
+			},
+			"offsets": {
+				"from": 883720,
+				"to": 885720
+			},
+			"text": " That's the only guarantee they get for masses delivery."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,720",
+				"to": "00:14:48,720"
+			},
+			"offsets": {
+				"from": 885720,
+				"to": 888720
+			},
+			"text": " The other one is that the adversary can corrupt"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,720",
+				"to": "00:14:52,720"
+			},
+			"offsets": {
+				"from": 888720,
+				"to": 892720
+			},
+			"text": " nearly every single party on the off-chain system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,720",
+				"to": "00:14:55,720"
+			},
+			"offsets": {
+				"from": 892720,
+				"to": 895720
+			},
+			"text": " We simply assume that the bridge cannot be corrupted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,720",
+				"to": "00:14:59,720"
+			},
+			"offsets": {
+				"from": 895720,
+				"to": 899720
+			},
+			"text": " and there's one honest party who can assist the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,720",
+				"to": "00:15:03,720"
+			},
+			"offsets": {
+				"from": 899720,
+				"to": 903720
+			},
+			"text": " That's the only guarantee we get in terms of honest parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,720",
+				"to": "00:15:05,720"
+			},
+			"offsets": {
+				"from": 903720,
+				"to": 905720
+			},
+			"text": " Everything else can be corrupt and evil"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,720",
+				"to": "00:15:07,720"
+			},
+			"offsets": {
+				"from": 905720,
+				"to": 907720
+			},
+			"text": " and out to steal our funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,720",
+				"to": "00:15:10,720"
+			},
+			"offsets": {
+				"from": 907720,
+				"to": 910720
+			},
+			"text": " And this is the most powerful adversary"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,720",
+				"to": "00:15:13,720"
+			},
+			"offsets": {
+				"from": 910720,
+				"to": 913720
+			},
+			"text": " that you can bet, or you can, you have to defend against."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,720",
+				"to": "00:15:17,720"
+			},
+			"offsets": {
+				"from": 913720,
+				"to": 917720
+			},
+			"text": " You know, they literally control the entire off-chain system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,720",
+				"to": "00:15:19,720"
+			},
+			"offsets": {
+				"from": 917720,
+				"to": 919720
+			},
+			"text": " And if you look at L2 beats,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,720",
+				"to": "00:15:21,720"
+			},
+			"offsets": {
+				"from": 919720,
+				"to": 921720
+			},
+			"text": " you will notice that no rule up today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,720",
+				"to": "00:15:25,720"
+			},
+			"offsets": {
+				"from": 921720,
+				"to": 925720
+			},
+			"text": " the smart contract enabled, can actually defend against this beast."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,720",
+				"to": "00:15:28,720"
+			},
+			"offsets": {
+				"from": 925720,
+				"to": 928720
+			},
+			"text": " The very, very difficult adversary to beat."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,720",
+				"to": "00:15:31,720"
+			},
+			"offsets": {
+				"from": 928720,
+				"to": 931720
+			},
+			"text": " And there's probably going to be another year or two"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,720",
+				"to": "00:15:34,720"
+			},
+			"offsets": {
+				"from": 931720,
+				"to": 934720
+			},
+			"text": " before a rule up can defeat this beast."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,720",
+				"to": "00:15:36,720"
+			},
+			"offsets": {
+				"from": 934720,
+				"to": 936720
+			},
+			"text": " So what's the security properties then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,720",
+				"to": "00:15:38,720"
+			},
+			"offsets": {
+				"from": 936720,
+				"to": 938720
+			},
+			"text": " What does it mean to be secure for a rule up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,720",
+				"to": "00:15:41,720"
+			},
+			"offsets": {
+				"from": 938720,
+				"to": 941720
+			},
+			"text": " or a validating bridge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,720",
+				"to": "00:15:43,720"
+			},
+			"offsets": {
+				"from": 941720,
+				"to": 943720
+			},
+			"text": " The overall goal, the overarching goal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,720",
+				"to": "00:15:46,720"
+			},
+			"offsets": {
+				"from": 943720,
+				"to": 946720
+			},
+			"text": " is that there's this off-chain database."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,720",
+				"to": "00:15:49,720"
+			},
+			"offsets": {
+				"from": 946720,
+				"to": 949720
+			},
+			"text": " We have to protect the safety, honest liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,720",
+				"to": "00:15:51,720"
+			},
+			"offsets": {
+				"from": 949720,
+				"to": 951720
+			},
+			"text": " And there's three sub-goals."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,720",
+				"to": "00:15:55,720"
+			},
+			"offsets": {
+				"from": 951720,
+				"to": 955720
+			},
+			"text": " And again, these sub-goals are from the perspective of the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,720",
+				"to": "00:15:58,720"
+			},
+			"offsets": {
+				"from": 955720,
+				"to": 958720
+			},
+			"text": " Because all that matters is the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,720",
+				"to": "00:16:00,720"
+			},
+			"offsets": {
+				"from": 958720,
+				"to": 960720
+			},
+			"text": " The bridge has to have a guarantee, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,720",
+				"to": "00:16:02,720"
+			},
+			"offsets": {
+				"from": 960720,
+				"to": 962720
+			},
+			"text": " is the data available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,720",
+				"to": "00:16:03,720"
+			},
+			"offsets": {
+				"from": 962720,
+				"to": 963720
+			},
+			"text": " That's data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,720",
+				"to": "00:16:06,720"
+			},
+			"offsets": {
+				"from": 963720,
+				"to": 966720
+			},
+			"text": " Can anyone get a copy of the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,720",
+				"to": "00:16:09,720"
+			},
+			"offsets": {
+				"from": 966720,
+				"to": 969720
+			},
+			"text": " The second property is state transition integrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,720",
+				"to": "00:16:13,720"
+			},
+			"offsets": {
+				"from": 969720,
+				"to": 973720
+			},
+			"text": " From the bridge's perspective, are all proposed updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,720",
+				"to": "00:16:16,720"
+			},
+			"offsets": {
+				"from": 973720,
+				"to": 976720
+			},
+			"text": " to the database, valid and correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,720",
+				"to": "00:16:19,720"
+			},
+			"offsets": {
+				"from": 976720,
+				"to": 979720
+			},
+			"text": " And finally, censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,720",
+				"to": "00:16:22,720"
+			},
+			"offsets": {
+				"from": 979720,
+				"to": 982720
+			},
+			"text": " If the entire system goes off-line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,720",
+				"to": "00:16:26,720"
+			},
+			"offsets": {
+				"from": 982720,
+				"to": 986720
+			},
+			"text": " can the bridge independently, forcefully order"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,720",
+				"to": "00:16:29,720"
+			},
+			"offsets": {
+				"from": 986720,
+				"to": 989720
+			},
+			"text": " and eventually execute transactions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,720",
+				"to": "00:16:31,720"
+			},
+			"offsets": {
+				"from": 989720,
+				"to": 991720
+			},
+			"text": " Then make sure you can unwind your position"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,720",
+				"to": "00:16:34,720"
+			},
+			"offsets": {
+				"from": 991720,
+				"to": 994720
+			},
+			"text": " and withdraw your funds from the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,720",
+				"to": "00:16:36,720"
+			},
+			"offsets": {
+				"from": 994720,
+				"to": 996720
+			},
+			"text": " So what about the availability?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,720",
+				"to": "00:16:38,720"
+			},
+			"offsets": {
+				"from": 996720,
+				"to": 998720
+			},
+			"text": " You know, what is this problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,720",
+				"to": "00:16:40,720"
+			},
+			"offsets": {
+				"from": 998720,
+				"to": 1000720
+			},
+			"text": " And there's three questions we're going to answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,720",
+				"to": "00:16:43,720"
+			},
+			"offsets": {
+				"from": 1000720,
+				"to": 1003720
+			},
+			"text": " You know, why does the data need to be public?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,720",
+				"to": "00:16:47,720"
+			},
+			"offsets": {
+				"from": 1003720,
+				"to": 1007720
+			},
+			"text": " What data needs to be public and how do we guarantee --"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,720",
+				"to": "00:16:50,720"
+			},
+			"offsets": {
+				"from": 1007720,
+				"to": 1010720
+			},
+			"text": " how do we guarantee that it is publicly available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,720",
+				"to": "00:16:54,720"
+			},
+			"offsets": {
+				"from": 1010720,
+				"to": 1014720
+			},
+			"text": " So why do we care about the database being public?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,720",
+				"to": "00:16:56,720"
+			},
+			"offsets": {
+				"from": 1014720,
+				"to": 1016720
+			},
+			"text": " Remember, we had one assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,720",
+				"to": "00:17:00,720"
+			},
+			"offsets": {
+				"from": 1016720,
+				"to": 1020720
+			},
+			"text": " There's one honest party out there who can assist the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,720",
+				"to": "00:17:03,720"
+			},
+			"offsets": {
+				"from": 1020720,
+				"to": 1023720
+			},
+			"text": " So anyone here, ideally, could help the bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,720",
+				"to": "00:17:06,720"
+			},
+			"offsets": {
+				"from": 1023720,
+				"to": 1026720
+			},
+			"text": " you know, protect from the all-powerful adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,720",
+				"to": "00:17:11,720"
+			},
+			"offsets": {
+				"from": 1026720,
+				"to": 1031720
+			},
+			"text": " So the only way the honest party can help is if they have a copy of the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,720",
+				"to": "00:17:14,720"
+			},
+			"offsets": {
+				"from": 1031720,
+				"to": 1034720
+			},
+			"text": " You know, they need a copy of the most recent database"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,720",
+				"to": "00:17:17,720"
+			},
+			"offsets": {
+				"from": 1034720,
+				"to": 1037720
+			},
+			"text": " so they can take the transactions, execute them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,720",
+				"to": "00:17:20,720"
+			},
+			"offsets": {
+				"from": 1037720,
+				"to": 1040720
+			},
+			"text": " and actually propose an update to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,720",
+				"to": "00:17:24,720"
+			},
+			"offsets": {
+				"from": 1040720,
+				"to": 1044720
+			},
+			"text": " If the adversary can withhold one update and prevent anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,720",
+				"to": "00:17:26,720"
+			},
+			"offsets": {
+				"from": 1044720,
+				"to": 1046720
+			},
+			"text": " from getting an update copy of the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,720",
+				"to": "00:17:28,720"
+			},
+			"offsets": {
+				"from": 1046720,
+				"to": 1048720
+			},
+			"text": " then they, you know, they win the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,720",
+				"to": "00:17:30,720"
+			},
+			"offsets": {
+				"from": 1048720,
+				"to": 1050720
+			},
+			"text": " and you can't propose an actual update."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,720",
+				"to": "00:17:33,720"
+			},
+			"offsets": {
+				"from": 1050720,
+				"to": 1053720
+			},
+			"text": " So that's why it has to be public for one honest party."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,720",
+				"to": "00:17:37,720"
+			},
+			"offsets": {
+				"from": 1054720,
+				"to": 1057720
+			},
+			"text": " What data needs to be public?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,720",
+				"to": "00:17:39,720"
+			},
+			"offsets": {
+				"from": 1057720,
+				"to": 1059720
+			},
+			"text": " And this sort of varies between, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,720",
+				"to": "00:17:42,720"
+			},
+			"offsets": {
+				"from": 1059720,
+				"to": 1062720
+			},
+			"text": " the optimistic roll-ups and the validity roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,720",
+				"to": "00:17:45,720"
+			},
+			"offsets": {
+				"from": 1062720,
+				"to": 1065720
+			},
+			"text": " But generally speaking, enough data has to be public"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,720",
+				"to": "00:17:48,720"
+			},
+			"offsets": {
+				"from": 1065720,
+				"to": 1068720
+			},
+			"text": " so the honest party can compute the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,720",
+				"to": "00:17:51,720"
+			},
+			"offsets": {
+				"from": 1068720,
+				"to": 1071720
+			},
+			"text": " So it needs, you know, all the updates to the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,720",
+				"to": "00:17:53,720"
+			},
+			"offsets": {
+				"from": 1071720,
+				"to": 1073720
+			},
+			"text": " And there's two types of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,720",
+				"to": "00:17:55,720"
+			},
+			"offsets": {
+				"from": 1073720,
+				"to": 1075720
+			},
+			"text": " One is transaction history."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,720",
+				"to": "00:17:58,720"
+			},
+			"offsets": {
+				"from": 1075720,
+				"to": 1078720
+			},
+			"text": " You know, get the entire list of order transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,720",
+				"to": "00:18:00,720"
+			},
+			"offsets": {
+				"from": 1078720,
+				"to": 1080720
+			},
+			"text": " sort of like a blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,720",
+				"to": "00:18:04,720"
+			},
+			"offsets": {
+				"from": 1080720,
+				"to": 1084720
+			},
+			"text": " and execute the transactions, and then you'll create a copy of the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,720",
+				"to": "00:18:08,720"
+			},
+			"offsets": {
+				"from": 1084720,
+				"to": 1088720
+			},
+			"text": " Or, you know, you have database A, database B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,720",
+				"to": "00:18:12,720"
+			},
+			"offsets": {
+				"from": 1088720,
+				"to": 1092720
+			},
+			"text": " you get the state diff, you know, the difference in the storage values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,720",
+				"to": "00:18:14,720"
+			},
+			"offsets": {
+				"from": 1092720,
+				"to": 1094720
+			},
+			"text": " and you can put the state diff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,720",
+				"to": "00:18:17,720"
+			},
+			"offsets": {
+				"from": 1094720,
+				"to": 1097720
+			},
+			"text": " And so as a, you know, as a user, you get the state diff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,720",
+				"to": "00:18:20,720"
+			},
+			"offsets": {
+				"from": 1097720,
+				"to": 1100720
+			},
+			"text": " apply it to your database, and then you compute the new database."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,720",
+				"to": "00:18:22,720"
+			},
+			"offsets": {
+				"from": 1100720,
+				"to": 1102720
+			},
+			"text": " So there you hide the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,720",
+				"to": "00:18:25,720"
+			},
+			"offsets": {
+				"from": 1102720,
+				"to": 1105720
+			},
+			"text": " you only see the result of the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,720",
+				"to": "00:18:28,720"
+			},
+			"offsets": {
+				"from": 1105720,
+				"to": 1108720
+			},
+			"text": " But in both cases, that has to be valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,720",
+				"to": "00:18:32,720"
+			},
+			"offsets": {
+				"from": 1108720,
+				"to": 1112720
+			},
+			"text": " And finally, how do we guarantee the data is publicly available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,720",
+				"to": "00:18:36,720"
+			},
+			"offsets": {
+				"from": 1112720,
+				"to": 1116720
+			},
+			"text": " So in Plasma, the focus was this challenge process."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,720",
+				"to": "00:18:39,720"
+			},
+			"offsets": {
+				"from": 1116720,
+				"to": 1119720
+			},
+			"text": " You know, could I challenge the operator to make the data available?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,720",
+				"to": "00:18:43,720"
+			},
+			"offsets": {
+				"from": 1119720,
+				"to": 1123720
+			},
+			"text": " But for many years, it was considered too complicated, too complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,720",
+				"to": "00:18:46,720"
+			},
+			"offsets": {
+				"from": 1123720,
+				"to": 1126720
+			},
+			"text": " Today, I think you could solve that problem in a reasonable manner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,720",
+				"to": "00:18:49,720"
+			},
+			"offsets": {
+				"from": 1126720,
+				"to": 1129720
+			},
+			"text": " but most in the community just ignore it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,720",
+				"to": "00:18:51,720"
+			},
+			"offsets": {
+				"from": 1129720,
+				"to": 1131720
+			},
+			"text": " The other problem, the other way to solve it is a committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,720",
+				"to": "00:18:53,720"
+			},
+			"offsets": {
+				"from": 1131720,
+				"to": 1133720
+			},
+			"text": " This is like the StarkNet committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,720",
+				"to": "00:18:55,720"
+			},
+			"offsets": {
+				"from": 1133720,
+				"to": 1135720
+			},
+			"text": " Are there any trust committee?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,720",
+				"to": "00:18:57,720"
+			},
+			"offsets": {
+				"from": 1135720,
+				"to": 1137720
+			},
+			"text": " I think it's Arbitrum Nova."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,720",
+				"to": "00:18:59,720"
+			},
+			"offsets": {
+				"from": 1137720,
+				"to": 1139720
+			},
+			"text": " They have a data availability committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,720",
+				"to": "00:19:02,720"
+			},
+			"offsets": {
+				"from": 1139720,
+				"to": 1142720
+			},
+			"text": " And the committee will sign a message to attest to the fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,720",
+				"to": "00:19:05,720"
+			},
+			"offsets": {
+				"from": 1142720,
+				"to": 1145720
+			},
+			"text": " they will make the data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,720",
+				"to": "00:19:07,720"
+			},
+			"offsets": {
+				"from": 1145720,
+				"to": 1147720
+			},
+			"text": " Or you do the rule up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,720",
+				"to": "00:19:10,720"
+			},
+			"offsets": {
+				"from": 1147720,
+				"to": 1150720
+			},
+			"text": " You just post the data to Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,720",
+				"to": "00:19:15,720"
+			},
+			"offsets": {
+				"from": 1150720,
+				"to": 1155720
+			},
+			"text": " and Ethereum guarantees that the data was available at one point in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,720",
+				"to": "00:19:18,720"
+			},
+			"offsets": {
+				"from": 1155720,
+				"to": 1158720
+			},
+			"text": " So what about the state transition integrity problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,720",
+				"to": "00:19:21,720"
+			},
+			"offsets": {
+				"from": 1158720,
+				"to": 1161720
+			},
+			"text": " Well, this is very straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,720",
+				"to": "00:19:26,720"
+			},
+			"offsets": {
+				"from": 1161720,
+				"to": 1166720
+			},
+			"text": " If one update to the database can include an invalid transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,720",
+				"to": "00:19:30,720"
+			},
+			"offsets": {
+				"from": 1166720,
+				"to": 1170720
+			},
+			"text": " then the adversary can steal all the funds in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,720",
+				"to": "00:19:33,720"
+			},
+			"offsets": {
+				"from": 1170720,
+				"to": 1173720
+			},
+			"text": " We've seen this time and time again with all of the bridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,720",
+				"to": "00:19:35,720"
+			},
+			"offsets": {
+				"from": 1173720,
+				"to": 1175720
+			},
+			"text": " the most recent one being binance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,720",
+				"to": "00:19:38,720"
+			},
+			"offsets": {
+				"from": 1175720,
+				"to": 1178720
+			},
+			"text": " This is how they keep stealing the funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,720",
+				"to": "00:19:41,720"
+			},
+			"offsets": {
+				"from": 1178720,
+				"to": 1181720
+			},
+			"text": " Now, there's two different ways to solve this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,720",
+				"to": "00:19:43,720"
+			},
+			"offsets": {
+				"from": 1181720,
+				"to": 1183720
+			},
+			"text": " There's optimistic or is it okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,720",
+				"to": "00:19:45,720"
+			},
+			"offsets": {
+				"from": 1183720,
+				"to": 1185720
+			},
+			"text": " Fraud proofs or validity proofs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,720",
+				"to": "00:19:49,720"
+			},
+			"offsets": {
+				"from": 1185720,
+				"to": 1189720
+			},
+			"text": " You're going to hear about this topic over and over and over again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,720",
+				"to": "00:19:52,720"
+			},
+			"offsets": {
+				"from": 1189720,
+				"to": 1192720
+			},
+			"text": " because this is the one thing they all talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,720",
+				"to": "00:19:54,720"
+			},
+			"offsets": {
+				"from": 1192720,
+				"to": 1194720
+			},
+			"text": " This is the most important problem in their mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,720",
+				"to": "00:19:56,720"
+			},
+			"offsets": {
+				"from": 1194720,
+				"to": 1196720
+			},
+			"text": " So I'll skip it for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,720",
+				"to": "00:20:01,720"
+			},
+			"offsets": {
+				"from": 1196720,
+				"to": 1201720
+			},
+			"text": " But to me, the most important problem that no one talks about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,720",
+				"to": "00:20:04,720"
+			},
+			"offsets": {
+				"from": 1201720,
+				"to": 1204720
+			},
+			"text": " and this is really the difference between the side chain paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,720",
+				"to": "00:20:07,720"
+			},
+			"offsets": {
+				"from": 1204720,
+				"to": 1207720
+			},
+			"text": " you know, what is a side chain, and what will be a rule up"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,720",
+				"to": "00:20:11,720"
+			},
+			"offsets": {
+				"from": 1207720,
+				"to": 1211720
+			},
+			"text": " or a layer to protocol, is censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,720",
+				"to": "00:20:15,720"
+			},
+			"offsets": {
+				"from": 1211720,
+				"to": 1215720
+			},
+			"text": " If the entire system goes offline, can I still get my funds out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,720",
+				"to": "00:20:18,720"
+			},
+			"offsets": {
+				"from": 1215720,
+				"to": 1218720
+			},
+			"text": " And that is really the biggest important topic for rule ups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,720",
+				"to": "00:20:21,720"
+			},
+			"offsets": {
+				"from": 1218720,
+				"to": 1221720
+			},
+			"text": " and no one likes to talk about it because it's really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,720",
+				"to": "00:20:24,720"
+			},
+			"offsets": {
+				"from": 1221720,
+				"to": 1224720
+			},
+			"text": " So what is censorship resistance?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,720",
+				"to": "00:20:27,720"
+			},
+			"offsets": {
+				"from": 1224720,
+				"to": 1227720
+			},
+			"text": " Imagine that all response to seller moon cat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,720",
+				"to": "00:20:29,720"
+			},
+			"offsets": {
+				"from": 1227720,
+				"to": 1229720
+			},
+			"text": " so he gives the transaction to the sequencer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,720",
+				"to": "00:20:31,720"
+			},
+			"offsets": {
+				"from": 1229720,
+				"to": 1231720
+			},
+			"text": " and the sequencer is like, no, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,720",
+				"to": "00:20:33,720"
+			},
+			"offsets": {
+				"from": 1231720,
+				"to": 1233720
+			},
+			"text": " I'm not going to let you sell your moon cat."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,720",
+				"to": "00:20:34,720"
+			},
+			"offsets": {
+				"from": 1233720,
+				"to": 1234720
+			},
+			"text": " You know, how dare they?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,720",
+				"to": "00:20:38,720"
+			},
+			"offsets": {
+				"from": 1234720,
+				"to": 1238720
+			},
+			"text": " The user should be able to forcefully order this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,720",
+				"to": "00:20:43,720"
+			},
+			"offsets": {
+				"from": 1238720,
+				"to": 1243720
+			},
+			"text": " So the user will simply tick their transaction and send it directly to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,720",
+				"to": "00:20:45,720"
+			},
+			"offsets": {
+				"from": 1243720,
+				"to": 1245720
+			},
+			"text": " This is what we call forced inclusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,720",
+				"to": "00:20:49,720"
+			},
+			"offsets": {
+				"from": 1245720,
+				"to": 1249720
+			},
+			"text": " They send it to the bridge, and the bridge will force its ordering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,720",
+				"to": "00:20:51,720"
+			},
+			"offsets": {
+				"from": 1249720,
+				"to": 1251720
+			},
+			"text": " and now it's ordered for execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,720",
+				"to": "00:20:55,720"
+			},
+			"offsets": {
+				"from": 1251720,
+				"to": 1255720
+			},
+			"text": " And this is really cool, because then we consider liveness,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,720",
+				"to": "00:20:58,720"
+			},
+			"offsets": {
+				"from": 1255720,
+				"to": 1258720
+			},
+			"text": " you know, how do we guarantee this eventually gets executed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,720",
+				"to": "00:21:02,720"
+			},
+			"offsets": {
+				"from": 1258720,
+				"to": 1262720
+			},
+			"text": " We can assume that the sequencer has absolutely nothing to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,720",
+				"to": "00:21:04,720"
+			},
+			"offsets": {
+				"from": 1262720,
+				"to": 1264720
+			},
+			"text": " with censorship resistance whatsoever."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,720",
+				"to": "00:21:08,720"
+			},
+			"offsets": {
+				"from": 1264720,
+				"to": 1268720
+			},
+			"text": " You can have a centralized front end, a centralized sequencer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,720",
+				"to": "00:21:11,720"
+			},
+			"offsets": {
+				"from": 1268720,
+				"to": 1271720
+			},
+			"text": " but the back end is decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,720",
+				"to": "00:21:12,720"
+			},
+			"offsets": {
+				"from": 1271720,
+				"to": 1272720
+			},
+			"text": " And that's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,720",
+				"to": "00:21:14,720"
+			},
+			"offsets": {
+				"from": 1272720,
+				"to": 1274720
+			},
+			"text": " That provides an amazing user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,720",
+				"to": "00:21:17,720"
+			},
+			"offsets": {
+				"from": 1274720,
+				"to": 1277720
+			},
+			"text": " because you know exactly what sequencer they interact with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,720",
+				"to": "00:21:20,720"
+			},
+			"offsets": {
+				"from": 1277720,
+				"to": 1280720
+			},
+			"text": " but they are not responsible for protecting the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,720",
+				"to": "00:21:23,720"
+			},
+			"offsets": {
+				"from": 1280720,
+				"to": 1283720
+			},
+			"text": " We really assume there's one honest executor"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,720",
+				"to": "00:21:26,720"
+			},
+			"offsets": {
+				"from": 1283720,
+				"to": 1286720
+			},
+			"text": " who can join the system, take the transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,720",
+				"to": "00:21:29,720"
+			},
+			"offsets": {
+				"from": 1286720,
+				"to": 1289720
+			},
+			"text": " execute them, and then, you know, post the update to the bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,720",
+				"to": "00:21:34,720"
+			},
+			"offsets": {
+				"from": 1289720,
+				"to": 1294720
+			},
+			"text": " We just need one honest party to protect the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,720",
+				"to": "00:21:37,720"
+			},
+			"offsets": {
+				"from": 1294720,
+				"to": 1297720
+			},
+			"text": " So to summarize, if you can solve all three problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,720",
+				"to": "00:21:40,720"
+			},
+			"offsets": {
+				"from": 1297720,
+				"to": 1300720
+			},
+			"text": " then maybe we can slay the beast and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,720",
+				"to": "00:21:42,720"
+			},
+			"offsets": {
+				"from": 1300720,
+				"to": 1302720
+			},
+			"text": " deploy a secure layer to your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,720",
+				"to": "00:21:44,720"
+			},
+			"offsets": {
+				"from": 1302720,
+				"to": 1304720
+			},
+			"text": " And for the OGs out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,720",
+				"to": "00:21:47,720"
+			},
+			"offsets": {
+				"from": 1304720,
+				"to": 1307720
+			},
+			"text": " this is the bare wheel from 2014, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,720",
+				"to": "00:21:50,720"
+			},
+			"offsets": {
+				"from": 1307720,
+				"to": 1310720
+			},
+			"text": " I think the three bear markets before."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,720",
+				"to": "00:21:53,720"
+			},
+			"offsets": {
+				"from": 1310720,
+				"to": 1313720
+			},
+			"text": " And I replaced the Bitcoin shield with an Ethereum shield,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,720",
+				"to": "00:21:55,720"
+			},
+			"offsets": {
+				"from": 1313720,
+				"to": 1315720
+			},
+			"text": " because it's money now."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,720",
+				"to": "00:22:02,720"
+			},
+			"offsets": {
+				"from": 1315720,
+				"to": 1322720
+			},
+			"text": " But anyway, what I want to finish off with is there's these three core problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,720",
+				"to": "00:22:03,720"
+			},
+			"offsets": {
+				"from": 1322720,
+				"to": 1323720
+			},
+			"text": " They're not the only problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,720",
+				"to": "00:22:06,720"
+			},
+			"offsets": {
+				"from": 1323720,
+				"to": 1326720
+			},
+			"text": " There's a whole host of other problems that you can get your, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,720",
+				"to": "00:22:10,720"
+			},
+			"offsets": {
+				"from": 1326720,
+				"to": 1330720
+			},
+			"text": " teeth into if you're interested in solving cool problems about roll-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,720",
+				"to": "00:22:13,720"
+			},
+			"offsets": {
+				"from": 1330720,
+				"to": 1333720
+			},
+			"text": " As I mentioned, censorship resistance is non-trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,720",
+				"to": "00:22:16,720"
+			},
+			"offsets": {
+				"from": 1333720,
+				"to": 1336720
+			},
+			"text": " There's a lot of nitty-gritty details that make it difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,720",
+				"to": "00:22:20,720"
+			},
+			"offsets": {
+				"from": 1336720,
+				"to": 1340720
+			},
+			"text": " What I'm excited for are those experimental virtual machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,720",
+				"to": "00:22:23,720"
+			},
+			"offsets": {
+				"from": 1340720,
+				"to": 1343720
+			},
+			"text": " This was the original goal of the side chain paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,720",
+				"to": "00:22:25,720"
+			},
+			"offsets": {
+				"from": 1343720,
+				"to": 1345720
+			},
+			"text": " You know, we lock our coins in Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,720",
+				"to": "00:22:28,720"
+			},
+			"offsets": {
+				"from": 1345720,
+				"to": 1348720
+			},
+			"text": " and we unlock it on this experimental blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,720",
+				"to": "00:22:31,720"
+			},
+			"offsets": {
+				"from": 1348720,
+				"to": 1351720
+			},
+			"text": " And now we have this, you know, we have Caro for Starknet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,720",
+				"to": "00:22:33,720"
+			},
+			"offsets": {
+				"from": 1351720,
+				"to": 1353720
+			},
+			"text": " we have the Arbitrum virtual machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,720",
+				"to": "00:22:36,720"
+			},
+			"offsets": {
+				"from": 1353720,
+				"to": 1356720
+			},
+			"text": " we have the Optimism, Bedrock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,720",
+				"to": "00:22:38,720"
+			},
+			"offsets": {
+				"from": 1356720,
+				"to": 1358720
+			},
+			"text": " we have Fuel in their Sway language."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,720",
+				"to": "00:22:41,720"
+			},
+			"offsets": {
+				"from": 1358720,
+				"to": 1361720
+			},
+			"text": " All these really cool virtual machines and custom, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,720",
+				"to": "00:22:43,720"
+			},
+			"offsets": {
+				"from": 1361720,
+				"to": 1363720
+			},
+			"text": " language and software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,720",
+				"to": "00:22:46,720"
+			},
+			"offsets": {
+				"from": 1363720,
+				"to": 1366720
+			},
+			"text": " but we're still retaining the security of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,720",
+				"to": "00:22:49,720"
+			},
+			"offsets": {
+				"from": 1366720,
+				"to": 1369720
+			},
+			"text": " And that's probably the most exciting part of these roll-ups as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,720",
+				"to": "00:22:54,720"
+			},
+			"offsets": {
+				"from": 1369720,
+				"to": 1374720
+			},
+			"text": " And finally, I guess the last point I'll highlight is fragmentation of assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,720",
+				"to": "00:22:57,720"
+			},
+			"offsets": {
+				"from": 1374720,
+				"to": 1377720
+			},
+			"text": " A lot of people are worried that if you have, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,720",
+				"to": "00:23:01,720"
+			},
+			"offsets": {
+				"from": 1377720,
+				"to": 1381720
+			},
+			"text": " ten different roll-ups, the assets get fragmented across the roll-ups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,720",
+				"to": "00:23:03,720"
+			},
+			"offsets": {
+				"from": 1381720,
+				"to": 1383720
+			},
+			"text": " is that not a problem for liquidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,720",
+				"to": "00:23:06,720"
+			},
+			"offsets": {
+				"from": 1383720,
+				"to": 1386720
+			},
+			"text": " Well, we've always had this problem of crypto exchanges, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,720",
+				"to": "00:23:08,720"
+			},
+			"offsets": {
+				"from": 1386720,
+				"to": 1388720
+			},
+			"text": " you have coin-beas, crack and binance."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,720",
+				"to": "00:23:10,720"
+			},
+			"offsets": {
+				"from": 1388720,
+				"to": 1390720
+			},
+			"text": " So it's not a new problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,720",
+				"to": "00:23:15,720"
+			},
+			"offsets": {
+				"from": 1390720,
+				"to": 1395720
+			},
+			"text": " But now anyone in this room can deploy a solution on something like Arbitrum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,720",
+				"to": "00:23:17,720"
+			},
+			"offsets": {
+				"from": 1395720,
+				"to": 1397720
+			},
+			"text": " where you could quickly move your funds to the Optimism."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,720",
+				"to": "00:23:21,720"
+			},
+			"offsets": {
+				"from": 1397720,
+				"to": 1401720
+			},
+			"text": " This, you know, cross-chain transfers, interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,720",
+				"to": "00:23:24,720"
+			},
+			"offsets": {
+				"from": 1401720,
+				"to": 1404720
+			},
+			"text": " This is now a venture that anyone can build."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,720",
+				"to": "00:23:26,720"
+			},
+			"offsets": {
+				"from": 1404720,
+				"to": 1406720
+			},
+			"text": " Or if you try to do that on Coinbase, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,720",
+				"to": "00:23:28,720"
+			},
+			"offsets": {
+				"from": 1406720,
+				"to": 1408720
+			},
+			"text": " Coinbase is going to probably tell you to go away."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,720",
+				"to": "00:23:31,720"
+			},
+			"offsets": {
+				"from": 1408720,
+				"to": 1411720
+			},
+			"text": " So that's also really exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,720",
+				"to": "00:23:33,720"
+			},
+			"offsets": {
+				"from": 1411720,
+				"to": 1413720
+			},
+			"text": " We can really solve that fragmentation issue now."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,720",
+				"to": "00:23:37,720"
+			},
+			"offsets": {
+				"from": 1413720,
+				"to": 1417720
+			},
+			"text": " But is it worth it, just to finish up, you know, is this worth it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,720",
+				"to": "00:23:42,720"
+			},
+			"offsets": {
+				"from": 1417720,
+				"to": 1422720
+			},
+			"text": " Is it worth all the work to build this validating bridge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,720",
+				"to": "00:23:45,720"
+			},
+			"offsets": {
+				"from": 1422720,
+				"to": 1425720
+			},
+			"text": " Now, Web3 is a bit of a buzzword, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,720",
+				"to": "00:23:47,720"
+			},
+			"offsets": {
+				"from": 1425720,
+				"to": 1427720
+			},
+			"text": " of your all-developers, you know, we're all sort of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,720",
+				"to": "00:23:50,720"
+			},
+			"offsets": {
+				"from": 1427720,
+				"to": 1430720
+			},
+			"text": " \"Oh, well, Web3, is this a real thing?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,720",
+				"to": "00:23:56,720"
+			},
+			"offsets": {
+				"from": 1430720,
+				"to": 1436720
+			},
+			"text": " But to me, my vision of Web3 is that if you consider the Web2 world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,720",
+				"to": "00:23:59,720"
+			},
+			"offsets": {
+				"from": 1436720,
+				"to": 1439720
+			},
+			"text": " Web2, we've always had to trust the off-chain system."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,720",
+				"to": "00:24:02,720"
+			},
+			"offsets": {
+				"from": 1439720,
+				"to": 1442720
+			},
+			"text": " You know, I take my coins, I lock it in the coin-beas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,720",
+				"to": "00:24:06,720"
+			},
+			"offsets": {
+				"from": 1442720,
+				"to": 1446720
+			},
+			"text": " and I really have to trust coin-beas to protect my funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,720",
+				"to": "00:24:11,720"
+			},
+			"offsets": {
+				"from": 1446720,
+				"to": 1451720
+			},
+			"text": " In the Web3 world, I would hope we can have a user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,720",
+				"to": "00:24:13,720"
+			},
+			"offsets": {
+				"from": 1451720,
+				"to": 1453720
+			},
+			"text": " that's similar to the coin-beas."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,720",
+				"to": "00:24:18,720"
+			},
+			"offsets": {
+				"from": 1453720,
+				"to": 1458720
+			},
+			"text": " I lock my funds in, a nice UI, you know, I get instant confirmations."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,720",
+				"to": "00:24:22,720"
+			},
+			"offsets": {
+				"from": 1458720,
+				"to": 1462720
+			},
+			"text": " But the difference is that I don't have to trust coin-beas to my funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,720",
+				"to": "00:24:26,720"
+			},
+			"offsets": {
+				"from": 1462720,
+				"to": 1466720
+			},
+			"text": " So the actual service is exactly the same, but the difference is whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,720",
+				"to": "00:24:30,720"
+			},
+			"offsets": {
+				"from": 1466720,
+				"to": 1470720
+			},
+			"text": " I trust the operator or not, or what I trust the operator to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,720",
+				"to": "00:24:33,720"
+			},
+			"offsets": {
+				"from": 1470720,
+				"to": 1473720
+			},
+			"text": " And that's really Web3, so when you use these rule-ups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,720",
+				"to": "00:24:36,720"
+			},
+			"offsets": {
+				"from": 1473720,
+				"to": 1476720
+			},
+			"text": " eventually it will feel like using a Web2 service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,720",
+				"to": "00:24:40,720"
+			},
+			"offsets": {
+				"from": 1476720,
+				"to": 1480720
+			},
+			"text": " but much better, you know, security and trust guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,720",
+				"to": "00:24:42,720"
+			},
+			"offsets": {
+				"from": 1480720,
+				"to": 1482720
+			},
+			"text": " And I hope, and this is a quote by Vitalik,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,720",
+				"to": "00:24:47,720"
+			},
+			"offsets": {
+				"from": 1482720,
+				"to": 1487720
+			},
+			"text": " who has a wonderful blog post on this, \"Custody's becoming a liability.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,720",
+				"to": "00:24:49,720"
+			},
+			"offsets": {
+				"from": 1487720,
+				"to": 1489720
+			},
+			"text": " And what do I mean by that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,720",
+				"to": "00:24:53,720"
+			},
+			"offsets": {
+				"from": 1489720,
+				"to": 1493720
+			},
+			"text": " So if you consider, if you were to do a startup maybe five years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,720",
+				"to": "00:24:57,720"
+			},
+			"offsets": {
+				"from": 1493720,
+				"to": 1497720
+			},
+			"text": " you know, you could be the new Munggok, so the new Bitstomber Binance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,720",
+				"to": "00:25:01,720"
+			},
+			"offsets": {
+				"from": 1497720,
+				"to": 1501720
+			},
+			"text": " you know, you run your service, you get these human processes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,720",
+				"to": "00:25:03,720"
+			},
+			"offsets": {
+				"from": 1501720,
+				"to": 1503720
+			},
+			"text": " and you have to secure billions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,720",
+				"to": "00:25:05,720"
+			},
+			"offsets": {
+				"from": 1503720,
+				"to": 1505720
+			},
+			"text": " That obviously doesn't scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,720",
+				"to": "00:25:09,720"
+			},
+			"offsets": {
+				"from": 1505720,
+				"to": 1509720
+			},
+			"text": " It's very scary, you know, who wants to be liable for protecting billions of dollars?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,720",
+				"to": "00:25:11,720"
+			},
+			"offsets": {
+				"from": 1509720,
+				"to": 1511720
+			},
+			"text": " I mean, that's really his hands."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,720",
+				"to": "00:25:15,720"
+			},
+			"offsets": {
+				"from": 1511720,
+				"to": 1515720
+			},
+			"text": " Does anyone here want to be responsible for protecting billions of dollars?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,720",
+				"to": "00:25:18,720"
+			},
+			"offsets": {
+				"from": 1515720,
+				"to": 1518720
+			},
+			"text": " No, I'm looking at that exactly, you know, screw that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,720",
+				"to": "00:25:20,720"
+			},
+			"offsets": {
+				"from": 1518720,
+				"to": 1520720
+			},
+			"text": " That's way, that's way scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,720",
+				"to": "00:25:23,720"
+			},
+			"offsets": {
+				"from": 1520720,
+				"to": 1523720
+			},
+			"text": " So what I'm excited for is the rule-ups."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,720",
+				"to": "00:25:26,720"
+			},
+			"offsets": {
+				"from": 1523720,
+				"to": 1526720
+			},
+			"text": " If there's one rule-up that can get a good, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,720",
+				"to": "00:25:31,720"
+			},
+			"offsets": {
+				"from": 1526720,
+				"to": 1531720
+			},
+			"text": " a good implementation that's easy to deploy and reinstance it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,720",
+				"to": "00:25:35,720"
+			},
+			"offsets": {
+				"from": 1531720,
+				"to": 1535720
+			},
+			"text": " that has a good developer experience so that anyone here can build on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,720",
+				"to": "00:25:37,720"
+			},
+			"offsets": {
+				"from": 1535720,
+				"to": 1537720
+			},
+			"text": " then we've solved the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,720",
+				"to": "00:25:40,720"
+			},
+			"offsets": {
+				"from": 1537720,
+				"to": 1540720
+			},
+			"text": " You know, we replace those human processes with software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,720",
+				"to": "00:25:42,720"
+			},
+			"offsets": {
+				"from": 1540720,
+				"to": 1542720
+			},
+			"text": " but we all lose software skills."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,720",
+				"to": "00:25:45,720"
+			},
+			"offsets": {
+				"from": 1542720,
+				"to": 1545720
+			},
+			"text": " So you deploy your rule-up, you offer a really cute UI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,720",
+				"to": "00:25:47,720"
+			},
+			"offsets": {
+				"from": 1545720,
+				"to": 1547720
+			},
+			"text": " and I can go on there and buy and sell my Mungcat."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,720",
+				"to": "00:25:49,720"
+			},
+			"offsets": {
+				"from": 1547720,
+				"to": 1549720
+			},
+			"text": " I don't trust you with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,720",
+				"to": "00:25:53,720"
+			},
+			"offsets": {
+				"from": 1549720,
+				"to": 1553720
+			},
+			"text": " So I believe it's worth it because I don't think users care about custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,720",
+				"to": "00:25:56,720"
+			},
+			"offsets": {
+				"from": 1553720,
+				"to": 1556720
+			},
+			"text": " You know, we all still use custodial services."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,720",
+				"to": "00:25:57,720"
+			},
+			"offsets": {
+				"from": 1556720,
+				"to": 1557720
+			},
+			"text": " But it's the operators you care."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,720",
+				"to": "00:26:01,720"
+			},
+			"offsets": {
+				"from": 1557720,
+				"to": 1561720
+			},
+			"text": " No one here raised their hand when you wanted to protect billions of dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,720",
+				"to": "00:26:03,720"
+			},
+			"offsets": {
+				"from": 1561720,
+				"to": 1563720
+			},
+			"text": " So if you're all going to do a new startup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,720",
+				"to": "00:26:06,720"
+			},
+			"offsets": {
+				"from": 1563720,
+				"to": 1566720
+			},
+			"text": " you're probably going to look into the rule-up to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,720",
+				"to": "00:26:09,720"
+			},
+			"offsets": {
+				"from": 1566720,
+				"to": 1569720
+			},
+			"text": " you know, could I reinstance yet this and reuse the software?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,720",
+				"to": "00:26:12,720"
+			},
+			"offsets": {
+				"from": 1569720,
+				"to": 1572720
+			},
+			"text": " That's the layer three goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,720",
+				"to": "00:26:14,720"
+			},
+			"offsets": {
+				"from": 1572720,
+				"to": 1574720
+			},
+			"text": " And so that's why I think it's worth it, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,720",
+				"to": "00:26:16,720"
+			},
+			"offsets": {
+				"from": 1574720,
+				"to": 1576720
+			},
+			"text": " custody is an unnecessary liability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,720",
+				"to": "00:26:17,720"
+			},
+			"offsets": {
+				"from": 1576720,
+				"to": 1577720
+			},
+			"text": " and that's the end of my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,720",
+				"to": "00:26:19,720"
+			},
+			"offsets": {
+				"from": 1577720,
+				"to": 1579720
+			},
+			"text": " I have three minutes left, I believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,720",
+				"to": "00:26:22,720"
+			},
+			"offsets": {
+				"from": 1579720,
+				"to": 1582720
+			},
+			"text": " So thank you guys for listening and have a great time."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,720",
+				"to": "00:26:25,720"
+			},
+			"offsets": {
+				"from": 1582720,
+				"to": 1585720
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,720",
+				"to": "00:26:27,720"
+			},
+			"offsets": {
+				"from": 1585720,
+				"to": 1587720
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,720",
+				"to": "00:26:37,720"
+			},
+			"offsets": {
+				"from": 1587720,
+				"to": 1597720
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,720",
+				"to": "00:27:06,720"
+			},
+			"offsets": {
+				"from": 1597720,
+				"to": 1626720
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

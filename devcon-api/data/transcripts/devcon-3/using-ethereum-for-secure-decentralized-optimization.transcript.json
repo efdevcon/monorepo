@@ -1,0 +1,5004 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:12,300"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 12300
+			},
+			"text": " >> For secure, decentralized optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,300",
+				"to": "00:00:13,940"
+			},
+			"offsets": {
+				"from": 12300,
+				"to": 13940
+			},
+			"text": " >> 20 minutes right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,940",
+				"to": "00:00:16,940"
+			},
+			"offsets": {
+				"from": 13940,
+				"to": 16940
+			},
+			"text": " [ Inaudible Remark ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,940",
+				"to": "00:00:20,540"
+			},
+			"offsets": {
+				"from": 16940,
+				"to": 20540
+			},
+			"text": " >> Great. So if you're debating whether to be in this room"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,540",
+				"to": "00:00:22,820"
+			},
+			"offsets": {
+				"from": 20540,
+				"to": 22820
+			},
+			"text": " or up in the main hall, we can cut to the chase."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,820",
+				"to": "00:00:28,720"
+			},
+			"offsets": {
+				"from": 22820,
+				"to": 28720
+			},
+			"text": " The topic of my talk will be discussing how to solve hard math problems off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,360",
+				"to": "00:00:32,920"
+			},
+			"offsets": {
+				"from": 29360,
+				"to": 32920
+			},
+			"text": " How can we actually address problems in machine learning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,920",
+				"to": "00:00:35,160"
+			},
+			"offsets": {
+				"from": 32920,
+				"to": 35160
+			},
+			"text": " market clearing, operation scheduling?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,160",
+				"to": "00:00:39,040"
+			},
+			"offsets": {
+				"from": 35160,
+				"to": 39040
+			},
+			"text": " How can we use smart contracts to be able to bring those problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,040",
+				"to": "00:00:40,880"
+			},
+			"offsets": {
+				"from": 39040,
+				"to": 40880
+			},
+			"text": " into consensus on a global optimum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,880",
+				"to": "00:00:44,600"
+			},
+			"offsets": {
+				"from": 40880,
+				"to": 44600
+			},
+			"text": " And then how can we guarantee security, feasibility,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,600",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 44600,
+				"to": 46640
+			},
+			"text": " and optimality of this type of problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:52,520"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 52520
+			},
+			"text": " The general outline, I'm going to be talking about optimization problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,520",
+				"to": "00:00:56,480"
+			},
+			"offsets": {
+				"from": 52520,
+				"to": 56480
+			},
+			"text": " and I don't mean compiler optimization here, but a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,480",
+				"to": "00:00:58,920"
+			},
+			"offsets": {
+				"from": 56480,
+				"to": 58920
+			},
+			"text": " of different classes of problems that I work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,920",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 58920,
+				"to": 65000
+			},
+			"text": " I'm a PhD student at UC Berkeley, and then talk about how we can integrate smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:09,040"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 69040
+			},
+			"text": " to really improve the application of these types of optimization tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,040",
+				"to": "00:01:10,480"
+			},
+			"offsets": {
+				"from": 69040,
+				"to": 70480
+			},
+			"text": " to a wider set of problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,480",
+				"to": "00:01:14,880"
+			},
+			"offsets": {
+				"from": 70480,
+				"to": 74880
+			},
+			"text": " I come from an energy background, energy markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,880",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 74880,
+				"to": 77000
+			},
+			"text": " and the electricity market specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:21,320"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 81320
+			},
+			"text": " So I'm going to be discussing an application of this that I've researched"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,320",
+				"to": "00:01:24,920"
+			},
+			"offsets": {
+				"from": 81320,
+				"to": 84920
+			},
+			"text": " in electricity market formulation for small microgrids."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:30,240"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 90240
+			},
+			"text": " So optimization, just so that we're all on the same page,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,240",
+				"to": "00:01:32,920"
+			},
+			"offsets": {
+				"from": 90240,
+				"to": 92920
+			},
+			"text": " who here has heard of convex optimization before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,920",
+				"to": "00:01:35,560"
+			},
+			"offsets": {
+				"from": 92920,
+				"to": 95560
+			},
+			"text": " Okay, a few hands, that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,560",
+				"to": "00:01:41,360"
+			},
+			"offsets": {
+				"from": 95560,
+				"to": 101360
+			},
+			"text": " So in general, optimization problems have the goal of minimizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,360",
+				"to": "00:01:45,280"
+			},
+			"offsets": {
+				"from": 101360,
+				"to": 105280
+			},
+			"text": " or maximizing some function, the dark curved line here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,280",
+				"to": "00:01:49,080"
+			},
+			"offsets": {
+				"from": 105280,
+				"to": 109080
+			},
+			"text": " subject to some constraints, so we can't be in this dark blue area."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,080",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109080,
+				"to": 112000
+			},
+			"text": " In general, these are pretty hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114360
+			},
+			"text": " We might end up in this local minima."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,840",
+				"to": "00:01:57,280"
+			},
+			"offsets": {
+				"from": 114840,
+				"to": 117280
+			},
+			"text": " We'd like to end up in the global minima."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,280",
+				"to": "00:02:00,960"
+			},
+			"offsets": {
+				"from": 117280,
+				"to": 120960
+			},
+			"text": " Convex optimization problems make this a lot easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,960",
+				"to": "00:02:04,920"
+			},
+			"offsets": {
+				"from": 120960,
+				"to": 124920
+			},
+			"text": " We can prove that a type of problem basically looks like a bowl,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,920",
+				"to": "00:02:06,960"
+			},
+			"offsets": {
+				"from": 124920,
+				"to": 126960
+			},
+			"text": " as long as we follow the slope of this downwards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,960",
+				"to": "00:02:09,760"
+			},
+			"offsets": {
+				"from": 126960,
+				"to": 129760
+			},
+			"text": " we'll end up at the right global optima."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,760",
+				"to": "00:02:12,960"
+			},
+			"offsets": {
+				"from": 129760,
+				"to": 132960
+			},
+			"text": " So there's a lot of tools that we can bring to bear"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,960",
+				"to": "00:02:14,920"
+			},
+			"offsets": {
+				"from": 132960,
+				"to": 134920
+			},
+			"text": " when we know that a problem is convex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,920",
+				"to": "00:02:18,880"
+			},
+			"offsets": {
+				"from": 134920,
+				"to": 138880
+			},
+			"text": " One of the more interesting components of this is that we can think"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,880",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138880,
+				"to": 142000
+			},
+			"text": " of it in a decentralized optimization form."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:24,960"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 144960
+			},
+			"text": " Conventionally, we just have one system operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,960",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 144960,
+				"to": 148040
+			},
+			"text": " who has all of the information about all of the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 150080
+			},
+			"text": " all the constraints in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:32,680"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 152680
+			},
+			"text": " So even if these are, say, individual households"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,680",
+				"to": "00:02:35,520"
+			},
+			"offsets": {
+				"from": 152680,
+				"to": 155520
+			},
+			"text": " who have mobility constraints on their electric vehicles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,520",
+				"to": "00:02:39,040"
+			},
+			"offsets": {
+				"from": 155520,
+				"to": 159040
+			},
+			"text": " individual participants who have different investment goals"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,040",
+				"to": "00:02:41,080"
+			},
+			"offsets": {
+				"from": 159040,
+				"to": 161080
+			},
+			"text": " for portfolio optimization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,080",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 161080,
+				"to": 165680
+			},
+			"text": " individual factories that have constraints on production,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:48,360"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 168360
+			},
+			"text": " one system operator would have all the knowledge"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,360",
+				"to": "00:02:49,960"
+			},
+			"offsets": {
+				"from": 168360,
+				"to": 169960
+			},
+			"text": " about all those constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,960",
+				"to": "00:02:52,320"
+			},
+			"offsets": {
+				"from": 169960,
+				"to": 172320
+			},
+			"text": " and run a centralized optimization problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,320",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 172320,
+				"to": 175000
+			},
+			"text": " This is great if all of those entities are owned"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:56,480"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 176480
+			},
+			"text": " by the same person."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,480",
+				"to": "00:03:00,480"
+			},
+			"offsets": {
+				"from": 176480,
+				"to": 180480
+			},
+			"text": " It's hell if you end up with people who don't trust each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,480",
+				"to": "00:03:03,280"
+			},
+			"offsets": {
+				"from": 180480,
+				"to": 183280
+			},
+			"text": " And to reach a global optimum, you need some sort of way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,280",
+				"to": "00:03:05,240"
+			},
+			"offsets": {
+				"from": 183280,
+				"to": 185240
+			},
+			"text": " of decentralizing this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,240",
+				"to": "00:03:08,360"
+			},
+			"offsets": {
+				"from": 185240,
+				"to": 188360
+			},
+			"text": " into a trustless cooperative system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,360",
+				"to": "00:03:11,840"
+			},
+			"offsets": {
+				"from": 188360,
+				"to": 191840
+			},
+			"text": " So decentralized problems break that into a set"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,840",
+				"to": "00:03:14,720"
+			},
+			"offsets": {
+				"from": 191840,
+				"to": 194720
+			},
+			"text": " of local optimization problems, these blue dots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,720",
+				"to": "00:03:17,080"
+			},
+			"offsets": {
+				"from": 194720,
+				"to": 197080
+			},
+			"text": " that then coordinate back and forth with an aggregator"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,080",
+				"to": "00:03:19,880"
+			},
+			"offsets": {
+				"from": 197080,
+				"to": 199880
+			},
+			"text": " until they reach consensus on that global optimum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:21,160"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 201160
+			},
+			"text": " And this is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,160",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 201160,
+				"to": 203000
+			},
+			"text": " We're actually able to guarantee that we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,120"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206120
+			},
+			"text": " to hit the global optimum even though we start up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,120",
+				"to": "00:03:28,120"
+			},
+			"offsets": {
+				"from": 206120,
+				"to": 208120
+			},
+			"text": " with these local problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,120",
+				"to": "00:03:29,680"
+			},
+			"offsets": {
+				"from": 208120,
+				"to": 209680
+			},
+			"text": " Why would we bother with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,680",
+				"to": "00:03:33,560"
+			},
+			"offsets": {
+				"from": 209680,
+				"to": 213560
+			},
+			"text": " So one really beautiful part of this is that we can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,560",
+				"to": "00:03:37,480"
+			},
+			"offsets": {
+				"from": 213560,
+				"to": 217480
+			},
+			"text": " take a hard, big problem, break it into a set"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,480",
+				"to": "00:03:39,800"
+			},
+			"offsets": {
+				"from": 217480,
+				"to": 219800
+			},
+			"text": " of analytically solvable sub problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,800",
+				"to": "00:03:43,360"
+			},
+			"offsets": {
+				"from": 219800,
+				"to": 223360
+			},
+			"text": " So you can get a thousand X speed up in computation time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,360",
+				"to": "00:03:46,240"
+			},
+			"offsets": {
+				"from": 223360,
+				"to": 226240
+			},
+			"text": " even while running it on the same computing node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,240",
+				"to": "00:03:48,840"
+			},
+			"offsets": {
+				"from": 226240,
+				"to": 228840
+			},
+			"text": " Another part is just breaking a hard problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,840",
+				"to": "00:03:53,080"
+			},
+			"offsets": {
+				"from": 228840,
+				"to": 233080
+			},
+			"text": " that has, say, greater than quadratic compute complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,080",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 233080,
+				"to": 236080
+			},
+			"text": " and break it into a set of small problems even though you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:03:58,320"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 238320
+			},
+			"text": " breaking it into N smaller problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,320",
+				"to": "00:04:01,160"
+			},
+			"offsets": {
+				"from": 238320,
+				"to": 241160
+			},
+			"text": " you've drastically reduced your compute time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,160",
+				"to": "00:04:02,800"
+			},
+			"offsets": {
+				"from": 241160,
+				"to": 242800
+			},
+			"text": " And then the other part is that if there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,800",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 242800,
+				"to": 244560
+			},
+			"text": " those privacy and trust issues, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:06,640"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 246640
+			},
+			"text": " don't want to share all that information"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,640",
+				"to": "00:04:09,080"
+			},
+			"offsets": {
+				"from": 246640,
+				"to": 249080
+			},
+			"text": " with a global aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,080",
+				"to": "00:04:12,120"
+			},
+			"offsets": {
+				"from": 249080,
+				"to": 252120
+			},
+			"text": " So the aggregator, that person who coordinates"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,120",
+				"to": "00:04:15,960"
+			},
+			"offsets": {
+				"from": 252120,
+				"to": 255960
+			},
+			"text": " between all of these nodes, has a really easy job, fortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,960",
+				"to": "00:04:19,400"
+			},
+			"offsets": {
+				"from": 255960,
+				"to": 259400
+			},
+			"text": " These nodes have hard compute problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,400",
+				"to": "00:04:21,560"
+			},
+			"offsets": {
+				"from": 259400,
+				"to": 261560
+			},
+			"text": " subject to local constraints about which they"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,560",
+				"to": "00:04:23,320"
+			},
+			"offsets": {
+				"from": 261560,
+				"to": 263320
+			},
+			"text": " have private information."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,320",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263320,
+				"to": 267000
+			},
+			"text": " But the aggregator only has a very simple arithmetic update"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:29,200"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 269200
+			},
+			"text": " problem in a lot of these formulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,200",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 269200,
+				"to": 271080
+			},
+			"text": " So even though this can be something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:34,440"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 274440
+			},
+			"text": " that takes minutes or even hours to compute off chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,440",
+				"to": "00:04:37,400"
+			},
+			"offsets": {
+				"from": 274440,
+				"to": 277400
+			},
+			"text": " on a CPU or a server cluster, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,400",
+				"to": "00:04:39,760"
+			},
+			"offsets": {
+				"from": 277400,
+				"to": 279760
+			},
+			"text": " is just a really simple update problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,760",
+				"to": "00:04:42,320"
+			},
+			"offsets": {
+				"from": 279760,
+				"to": 282320
+			},
+			"text": " So this is just adding all those numbers together"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,320",
+				"to": "00:04:45,200"
+			},
+			"offsets": {
+				"from": 282320,
+				"to": 285200
+			},
+			"text": " and broadcasting the update to the rest of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,200",
+				"to": "00:04:46,360"
+			},
+			"offsets": {
+				"from": 285200,
+				"to": 286360
+			},
+			"text": " It's sort of like a market."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,360",
+				"to": "00:04:50,800"
+			},
+			"offsets": {
+				"from": 286360,
+				"to": 290800
+			},
+			"text": " So individuals have a sense of their value functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,800",
+				"to": "00:04:52,280"
+			},
+			"offsets": {
+				"from": 290800,
+				"to": 292280
+			},
+			"text": " for a particular good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,280",
+				"to": "00:04:55,120"
+			},
+			"offsets": {
+				"from": 292280,
+				"to": 295120
+			},
+			"text": " They can propose how much they'd like to sell or buy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,120",
+				"to": "00:04:58,280"
+			},
+			"offsets": {
+				"from": 295120,
+				"to": 298280
+			},
+			"text": " The market operator aggregates all those together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,280",
+				"to": "00:05:00,480"
+			},
+			"offsets": {
+				"from": 298280,
+				"to": 300480
+			},
+			"text": " estimates what the market clearing price would be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,480",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 300480,
+				"to": 302320
+			},
+			"text": " broadcast that price out to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:06,680"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 306680
+			},
+			"text": " People can update their estimates of their bids"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,680",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 306680,
+				"to": 309280
+			},
+			"text": " or asks for the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:11,360"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 311360
+			},
+			"text": " And when you iterate back and forth with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,360",
+				"to": "00:05:13,080"
+			},
+			"offsets": {
+				"from": 311360,
+				"to": 313080
+			},
+			"text": " you're able to reach consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,080",
+				"to": "00:05:14,800"
+			},
+			"offsets": {
+				"from": 313080,
+				"to": 314800
+			},
+			"text": " And for these convex optimization problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,800",
+				"to": "00:05:18,360"
+			},
+			"offsets": {
+				"from": 314800,
+				"to": 318360
+			},
+			"text": " we can prove that that's the global optimum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,360",
+				"to": "00:05:23,600"
+			},
+			"offsets": {
+				"from": 318360,
+				"to": 323600
+			},
+			"text": " So going from these decentralized problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,600",
+				"to": "00:05:26,040"
+			},
+			"offsets": {
+				"from": 323600,
+				"to": 326040
+			},
+			"text": " to a fully decentralized model, one"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,040",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 326040,
+				"to": 328240
+			},
+			"text": " of the challenges with this model of architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:31,160"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 331160
+			},
+			"text": " is the aggregator has to have direct lines of communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,160",
+				"to": "00:05:32,680"
+			},
+			"offsets": {
+				"from": 331160,
+				"to": 332680
+			},
+			"text": " with every single node."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,680",
+				"to": "00:05:35,600"
+			},
+			"offsets": {
+				"from": 332680,
+				"to": 335600
+			},
+			"text": " So not a problem when you just have three nodes here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,600",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 335600,
+				"to": 337520
+			},
+			"text": " For the types of electricity market problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:39,920"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 339920
+			},
+			"text": " that I consider where you're trying to control, say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,920",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 339920,
+				"to": 342080
+			},
+			"text": " 10 million electric vehicles, you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:43,800"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 343800
+			},
+			"text": " want to have one server that's trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,800",
+				"to": "00:05:46,800"
+			},
+			"offsets": {
+				"from": 343800,
+				"to": 346800
+			},
+			"text": " to talk to 10 million electric vehicles all at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,800",
+				"to": "00:05:49,200"
+			},
+			"offsets": {
+				"from": 346800,
+				"to": 349200
+			},
+			"text": " You need a more decentralized model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,200",
+				"to": "00:05:51,160"
+			},
+			"offsets": {
+				"from": 349200,
+				"to": 351160
+			},
+			"text": " So fully decentralized optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,160",
+				"to": "00:05:53,360"
+			},
+			"offsets": {
+				"from": 351160,
+				"to": 353360
+			},
+			"text": " has become a tool that's in Vogue,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,360",
+				"to": "00:05:56,500"
+			},
+			"offsets": {
+				"from": 353360,
+				"to": 356500
+			},
+			"text": " in particular, for these really large decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,500",
+				"to": "00:05:58,280"
+			},
+			"offsets": {
+				"from": 356500,
+				"to": 358280
+			},
+			"text": " optimization problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,280",
+				"to": "00:06:00,520"
+			},
+			"offsets": {
+				"from": 358280,
+				"to": 360520
+			},
+			"text": " One of the challenges, though, is that you're only sharing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,520",
+				"to": "00:06:02,480"
+			},
+			"offsets": {
+				"from": 360520,
+				"to": 362480
+			},
+			"text": " information with your neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,480",
+				"to": "00:06:04,280"
+			},
+			"offsets": {
+				"from": 362480,
+				"to": 364280
+			},
+			"text": " And those neighbors might be lying to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,280",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 364280,
+				"to": 366000
+			},
+			"text": " if they've been compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:08,680"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 368680
+			},
+			"text": " So while you might be communicating with your neighbor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,680",
+				"to": "00:06:11,120"
+			},
+			"offsets": {
+				"from": 368680,
+				"to": 371120
+			},
+			"text": " that neighbor may have had his electric vehicle hacked"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,120",
+				"to": "00:06:12,120"
+			},
+			"offsets": {
+				"from": 371120,
+				"to": 372120
+			},
+			"text": " by somebody."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,120",
+				"to": "00:06:14,640"
+			},
+			"offsets": {
+				"from": 372120,
+				"to": 374640
+			},
+			"text": " And that hacker is attempting to cause a blackout"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,640",
+				"to": "00:06:16,680"
+			},
+			"offsets": {
+				"from": 374640,
+				"to": 376680
+			},
+			"text": " in the electricity grid, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,680",
+				"to": "00:06:18,040"
+			},
+			"offsets": {
+				"from": 376680,
+				"to": 378040
+			},
+			"text": " So we have a question of how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,040",
+				"to": "00:06:20,720"
+			},
+			"offsets": {
+				"from": 378040,
+				"to": 380720
+			},
+			"text": " identify the nodes that have been compromised?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,720",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 380720,
+				"to": 383040
+			},
+			"text": " How do we reach stable operation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 387160
+			},
+			"text": " And then can we guarantee feasibility or optimality"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 391000
+			},
+			"text": " of the system when these nodes have been compromised?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:39,080"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 399080
+			},
+			"text": " So we have this bidirectional communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,080",
+				"to": "00:06:40,360"
+			},
+			"offsets": {
+				"from": 399080,
+				"to": 400360
+			},
+			"text": " between each neighbor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,360",
+				"to": "00:06:44,280"
+			},
+			"offsets": {
+				"from": 400360,
+				"to": 404280
+			},
+			"text": " So we just see messages that our neighbor is sending us."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,280",
+				"to": "00:06:46,720"
+			},
+			"offsets": {
+				"from": 404280,
+				"to": 406720
+			},
+			"text": " In this case, the red nose has been compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,720",
+				"to": "00:06:49,440"
+			},
+			"offsets": {
+				"from": 406720,
+				"to": 409440
+			},
+			"text": " So rather than the normal operation of the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,440",
+				"to": "00:06:53,120"
+			},
+			"offsets": {
+				"from": 409440,
+				"to": 413120
+			},
+			"text": " the red node could distort its private optimization problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,120",
+				"to": "00:06:56,240"
+			},
+			"offsets": {
+				"from": 413120,
+				"to": 416240
+			},
+			"text": " So it solves some problem that doesn't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,240",
+				"to": "00:06:57,600"
+			},
+			"offsets": {
+				"from": 416240,
+				"to": 417600
+			},
+			"text": " reflect reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,600",
+				"to": "00:06:59,520"
+			},
+			"offsets": {
+				"from": 417600,
+				"to": 419520
+			},
+			"text": " In machine learning or data science problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,520",
+				"to": "00:07:02,720"
+			},
+			"offsets": {
+				"from": 419520,
+				"to": 422720
+			},
+			"text": " this could be that you're throwing in junk data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,720",
+				"to": "00:07:05,480"
+			},
+			"offsets": {
+				"from": 422720,
+				"to": 425480
+			},
+			"text": " And the network doesn't necessarily know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,480",
+				"to": "00:07:08,040"
+			},
+			"offsets": {
+				"from": 425480,
+				"to": 428040
+			},
+			"text": " It just sees some message from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,040",
+				"to": "00:07:10,480"
+			},
+			"offsets": {
+				"from": 428040,
+				"to": 430480
+			},
+			"text": " It might not have been entirely expecting that message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,480",
+				"to": "00:07:13,320"
+			},
+			"offsets": {
+				"from": 430480,
+				"to": 433320
+			},
+			"text": " but it can't know whether that's because you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,320",
+				"to": "00:07:16,440"
+			},
+			"offsets": {
+				"from": 433320,
+				"to": 436440
+			},
+			"text": " acting strange or whether that's because you're upstream"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,440",
+				"to": "00:07:18,920"
+			},
+			"offsets": {
+				"from": 436440,
+				"to": 438920
+			},
+			"text": " participants have sent you bad data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,920",
+				"to": "00:07:20,560"
+			},
+			"offsets": {
+				"from": 438920,
+				"to": 440560
+			},
+			"text": " So there's difficulty in identifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,560",
+				"to": "00:07:23,880"
+			},
+			"offsets": {
+				"from": 440560,
+				"to": 443880
+			},
+			"text": " where the flaw in the system is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,880",
+				"to": "00:07:28,200"
+			},
+			"offsets": {
+				"from": 443880,
+				"to": 448200
+			},
+			"text": " Also, a compromised node can just send a bad signal"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,200",
+				"to": "00:07:30,800"
+			},
+			"offsets": {
+				"from": 448200,
+				"to": 450800
+			},
+			"text": " to its neighbors, like unidirectionally."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,800",
+				"to": "00:07:34,040"
+			},
+			"offsets": {
+				"from": 450800,
+				"to": 454040
+			},
+			"text": " And if it knows that there's certain types of problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,040",
+				"to": "00:07:37,520"
+			},
+			"offsets": {
+				"from": 454040,
+				"to": 457520
+			},
+			"text": " that this node cannot address, or like certain areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,520",
+				"to": "00:07:40,560"
+			},
+			"offsets": {
+				"from": 457520,
+				"to": 460560
+			},
+			"text": " where this node would be infeasible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,560",
+				"to": "00:07:43,360"
+			},
+			"offsets": {
+				"from": 460560,
+				"to": 463360
+			},
+			"text": " it can send a signal that's always going to be infeasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,360",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 463360,
+				"to": 465520
+			},
+			"text": " This node basically freaks out, is never"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:46,680"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 466680
+			},
+			"text": " able to reach consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,680",
+				"to": "00:07:48,600"
+			},
+			"offsets": {
+				"from": 466680,
+				"to": 468600
+			},
+			"text": " It's never able to reach feasibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,600",
+				"to": "00:07:51,680"
+			},
+			"offsets": {
+				"from": 468600,
+				"to": 471680
+			},
+			"text": " And the system fails to converge."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,680",
+				"to": "00:07:53,360"
+			},
+			"offsets": {
+				"from": 471680,
+				"to": 473360
+			},
+			"text": " Then also, a compromised node could just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,360",
+				"to": "00:07:57,120"
+			},
+			"offsets": {
+				"from": 473360,
+				"to": 477120
+			},
+			"text": " inject noise into the system so that at every update step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,120",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 477120,
+				"to": 479440
+			},
+			"text": " you have a noisy signal, and you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:02,960"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 482960
+			},
+			"text": " failing to converge because of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,960",
+				"to": "00:08:05,760"
+			},
+			"offsets": {
+				"from": 482960,
+				"to": 485760
+			},
+			"text": " So what can we do to prevent these modes of attack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,760",
+				"to": "00:08:09,920"
+			},
+			"offsets": {
+				"from": 485760,
+				"to": 489920
+			},
+			"text": " What we'd like to do is perhaps bypass any node that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,920",
+				"to": "00:08:11,360"
+			},
+			"offsets": {
+				"from": 489920,
+				"to": 491360
+			},
+			"text": " might be compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,360",
+				"to": "00:08:14,920"
+			},
+			"offsets": {
+				"from": 491360,
+				"to": 494920
+			},
+			"text": " If you're trying to make your system redundant or resilient"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,920",
+				"to": "00:08:17,400"
+			},
+			"offsets": {
+				"from": 494920,
+				"to": 497400
+			},
+			"text": " to attacks up to end nodes, this ultimately"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,400",
+				"to": "00:08:19,520"
+			},
+			"offsets": {
+				"from": 497400,
+				"to": 499520
+			},
+			"text": " would mean that you need a fully connected graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,520",
+				"to": "00:08:21,640"
+			},
+			"offsets": {
+				"from": 499520,
+				"to": 501640
+			},
+			"text": " with secure communications channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,640",
+				"to": "00:08:22,840"
+			},
+			"offsets": {
+				"from": 501640,
+				"to": 502840
+			},
+			"text": " The other way that we could address"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,840",
+				"to": "00:08:26,480"
+			},
+			"offsets": {
+				"from": 502840,
+				"to": 506480
+			},
+			"text": " this would be have some other centralized database that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,480",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 506480,
+				"to": 509000
+			},
+			"text": " provides a global information layer on all the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:30,280"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 510280
+			},
+			"text": " variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,280",
+				"to": "00:08:32,920"
+			},
+			"offsets": {
+				"from": 510280,
+				"to": 512920
+			},
+			"text": " Now, this is starting to look a little bit more like a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,920",
+				"to": "00:08:33,600"
+			},
+			"offsets": {
+				"from": 512920,
+				"to": 513600
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,600",
+				"to": "00:08:38,920"
+			},
+			"offsets": {
+				"from": 513600,
+				"to": 518920
+			},
+			"text": " So taking that information from peer to peer communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,920",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 518920,
+				"to": 521240
+			},
+			"text": " and having that passed trustlessly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:43,360"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 523360
+			},
+			"text": " between all the peers on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,360",
+				"to": "00:08:47,440"
+			},
+			"offsets": {
+				"from": 523360,
+				"to": 527440
+			},
+			"text": " gives us global insight into the state of all the variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,440",
+				"to": "00:08:48,120"
+			},
+			"offsets": {
+				"from": 527440,
+				"to": 528120
+			},
+			"text": " in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,120",
+				"to": "00:08:50,760"
+			},
+			"offsets": {
+				"from": 528120,
+				"to": 530760
+			},
+			"text": " This allows us to perform security checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,760",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 530760,
+				"to": 533320
+			},
+			"text": " on the signals that we're receiving from our neighbors"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:56,520"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 536520
+			},
+			"text": " and thus identify the nodes that have been compromised."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,520",
+				"to": "00:08:57,720"
+			},
+			"offsets": {
+				"from": 536520,
+				"to": 537720
+			},
+			"text": " This is really powerful because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,720",
+				"to": "00:09:01,320"
+			},
+			"offsets": {
+				"from": 537720,
+				"to": 541320
+			},
+			"text": " means that we no longer have to trust either an aggregator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,320",
+				"to": "00:09:03,520"
+			},
+			"offsets": {
+				"from": 541320,
+				"to": 543520
+			},
+			"text": " somebody who's holding the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,520",
+				"to": "00:09:05,720"
+			},
+			"offsets": {
+				"from": 543520,
+				"to": 545720
+			},
+			"text": " or just trust our neighbors, but we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,720",
+				"to": "00:09:09,920"
+			},
+			"offsets": {
+				"from": 545720,
+				"to": 549920
+			},
+			"text": " get the benefits of both of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,920",
+				"to": "00:09:12,320"
+			},
+			"offsets": {
+				"from": 549920,
+				"to": 552320
+			},
+			"text": " So one of the things that's really interesting about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,320",
+				"to": "00:09:16,240"
+			},
+			"offsets": {
+				"from": 552320,
+				"to": 556240
+			},
+			"text": " is we think of blockchains as these iterative computations"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,240",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 556240,
+				"to": 558000
+			},
+			"text": " that reach consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:20,920"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 560920
+			},
+			"text": " Also, decentralized optimization also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,920",
+				"to": "00:09:24,480"
+			},
+			"offsets": {
+				"from": 560920,
+				"to": 564480
+			},
+			"text": " is this same model of iterating between local problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,480",
+				"to": "00:09:27,400"
+			},
+			"offsets": {
+				"from": 564480,
+				"to": 567400
+			},
+			"text": " with an aggregator update step or the rest of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,400",
+				"to": "00:09:30,560"
+			},
+			"offsets": {
+				"from": 567400,
+				"to": 570560
+			},
+			"text": " and reaching eventually consensus on the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,560",
+				"to": "00:09:31,960"
+			},
+			"offsets": {
+				"from": 570560,
+				"to": 571960
+			},
+			"text": " The research that I've been doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,960",
+				"to": "00:09:33,520"
+			},
+			"offsets": {
+				"from": 571960,
+				"to": 573520
+			},
+			"text": " is highlighting the similarity to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,520",
+				"to": "00:09:36,680"
+			},
+			"offsets": {
+				"from": 573520,
+				"to": 576680
+			},
+			"text": " able to create a combined model where"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,680",
+				"to": "00:09:39,360"
+			},
+			"offsets": {
+				"from": 576680,
+				"to": 579360
+			},
+			"text": " these local update steps are coordinating"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:42,840"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 582840
+			},
+			"text": " with a smart contract to be able to process"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,840",
+				"to": "00:09:45,400"
+			},
+			"offsets": {
+				"from": 582840,
+				"to": 585400
+			},
+			"text": " a secure verifiable update step."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,400",
+				"to": "00:09:48,920"
+			},
+			"offsets": {
+				"from": 585400,
+				"to": 588920
+			},
+			"text": " Ultimately, reaching a solution that is auditable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,920",
+				"to": "00:09:50,920"
+			},
+			"offsets": {
+				"from": 588920,
+				"to": 590920
+			},
+			"text": " you can see how you got to that solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,920",
+				"to": "00:09:52,600"
+			},
+			"offsets": {
+				"from": 590920,
+				"to": 592600
+			},
+			"text": " You can prove the optimality of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,600",
+				"to": "00:09:55,720"
+			},
+			"offsets": {
+				"from": 592600,
+				"to": 595720
+			},
+			"text": " and know whether or not there were attacks along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,720",
+				"to": "00:09:57,920"
+			},
+			"offsets": {
+				"from": 595720,
+				"to": 597920
+			},
+			"text": " And then that solution can be stored on the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,920",
+				"to": "00:09:58,880"
+			},
+			"offsets": {
+				"from": 597920,
+				"to": 598880
+			},
+			"text": " for everybody to access."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,800",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 599800,
+				"to": 602320
+			},
+			"text": " Thinking about a couple of the different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:03,920"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 603920
+			},
+			"text": " that these different models fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,920",
+				"to": "00:10:06,560"
+			},
+			"offsets": {
+				"from": 603920,
+				"to": 606560
+			},
+			"text": " So we first talked about aggregator-coordinated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,560",
+				"to": "00:10:08,800"
+			},
+			"offsets": {
+				"from": 606560,
+				"to": 608800
+			},
+			"text": " decentralized optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,800",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 608800,
+				"to": 610520
+			},
+			"text": " Prone to monopoly distortions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:12,360"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 612360
+			},
+			"text": " So any time that there's a market operator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,360",
+				"to": "00:10:14,360"
+			},
+			"offsets": {
+				"from": 612360,
+				"to": 614360
+			},
+			"text": " a scheduler who has their own incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,360",
+				"to": "00:10:16,640"
+			},
+			"offsets": {
+				"from": 614360,
+				"to": 616640
+			},
+			"text": " and you may not trust their incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,640",
+				"to": "00:10:19,760"
+			},
+			"offsets": {
+				"from": 616640,
+				"to": 619760
+			},
+			"text": " you wouldn't want to trust some monopoly aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,760",
+				"to": "00:10:21,840"
+			},
+			"offsets": {
+				"from": 619760,
+				"to": 621840
+			},
+			"text": " They're prone to communication dropouts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,840",
+				"to": "00:10:25,040"
+			},
+			"offsets": {
+				"from": 621840,
+				"to": 625040
+			},
+			"text": " If there's an outage in the electricity grid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,040",
+				"to": "00:10:28,200"
+			},
+			"offsets": {
+				"from": 625040,
+				"to": 628200
+			},
+			"text": " that monopoly or that centralized aggregator"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,200",
+				"to": "00:10:30,480"
+			},
+			"offsets": {
+				"from": 628200,
+				"to": 630480
+			},
+			"text": " wouldn't be online, wouldn't be able to coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,480",
+				"to": "00:10:32,240"
+			},
+			"offsets": {
+				"from": 630480,
+				"to": 632240
+			},
+			"text": " between these local nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,240",
+				"to": "00:10:34,920"
+			},
+			"offsets": {
+				"from": 632240,
+				"to": 634920
+			},
+			"text": " Conversely, the fully decentralized models"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,920",
+				"to": "00:10:39,840"
+			},
+			"offsets": {
+				"from": 634920,
+				"to": 639840
+			},
+			"text": " addressed those but had exposed us to these other weaknesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,840",
+				"to": "00:10:41,520"
+			},
+			"offsets": {
+				"from": 639840,
+				"to": 641520
+			},
+			"text": " And by using a blockchain to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,520",
+				"to": "00:10:44,160"
+			},
+			"offsets": {
+				"from": 641520,
+				"to": 644160
+			},
+			"text": " a global information layer between all of these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,160",
+				"to": "00:10:46,680"
+			},
+			"offsets": {
+				"from": 644160,
+				"to": 646680
+			},
+			"text": " we're able to have the benefits of the centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,680",
+				"to": "00:10:50,200"
+			},
+			"offsets": {
+				"from": 646680,
+				"to": 650200
+			},
+			"text": " aggregator problem while also avoiding the pitfalls"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,200",
+				"to": "00:10:53,400"
+			},
+			"offsets": {
+				"from": 650200,
+				"to": 653400
+			},
+			"text": " of the fully decentralized problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,400",
+				"to": "00:10:55,280"
+			},
+			"offsets": {
+				"from": 653400,
+				"to": 655280
+			},
+			"text": " So let's take an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,280",
+				"to": "00:10:59,360"
+			},
+			"offsets": {
+				"from": 655280,
+				"to": 659360
+			},
+			"text": " This is where my research is in electricity markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,360",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 659360,
+				"to": 662320
+			},
+			"text": " And this may be a field that's unfamiliar to a lot of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:05,240"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 665240
+			},
+			"text": " But as we look ahead at larger penetrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,240",
+				"to": "00:11:08,680"
+			},
+			"offsets": {
+				"from": 665240,
+				"to": 668680
+			},
+			"text": " of electric vehicles and photovoltaic solar systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,680",
+				"to": "00:11:11,520"
+			},
+			"offsets": {
+				"from": 668680,
+				"to": 671520
+			},
+			"text": " we'll end up with these big swings in power flows"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,520",
+				"to": "00:11:14,280"
+			},
+			"offsets": {
+				"from": 671520,
+				"to": 674280
+			},
+			"text": " on the local distribution network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,280",
+				"to": "00:11:17,240"
+			},
+			"offsets": {
+				"from": 674280,
+				"to": 677240
+			},
+			"text": " So going from a model where you can always"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,240",
+				"to": "00:11:19,400"
+			},
+			"offsets": {
+				"from": 677240,
+				"to": 679400
+			},
+			"text": " plan for the power consumption because you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,400",
+				"to": "00:11:22,680"
+			},
+			"offsets": {
+				"from": 679400,
+				"to": 682680
+			},
+			"text": " know that people just have small loads like toasters"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,680",
+				"to": "00:11:26,040"
+			},
+			"offsets": {
+				"from": 682680,
+				"to": 686040
+			},
+			"text": " and electric light bulbs to a world where you have--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,040",
+				"to": "00:11:28,200"
+			},
+			"offsets": {
+				"from": 686040,
+				"to": 688200
+			},
+			"text": " the sun might go behind a cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,200",
+				"to": "00:11:31,440"
+			},
+			"offsets": {
+				"from": 688200,
+				"to": 691440
+			},
+			"text": " Everybody's photovoltaic generation cuts off."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,440",
+				"to": "00:11:34,280"
+			},
+			"offsets": {
+				"from": 691440,
+				"to": 694280
+			},
+			"text": " At the same time, people's electric vehicles are plugging in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,280",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 694280,
+				"to": 697120
+			},
+			"text": " And you have these massive imbalances in generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:41,400"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 701400
+			},
+			"text": " Utilities would like to be able to address these imbalances"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,400",
+				"to": "00:11:45,160"
+			},
+			"offsets": {
+				"from": 701400,
+				"to": 705160
+			},
+			"text": " in a way that minimizes the cost of electricity generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,160",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 705160,
+				"to": 707000
+			},
+			"text": " That cost minimization means that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,040"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710040
+			},
+			"text": " dealing with an optimization problem here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,040",
+				"to": "00:11:52,440"
+			},
+			"offsets": {
+				"from": 710040,
+				"to": 712440
+			},
+			"text": " The other challenge, though, is that the electricity"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,440",
+				"to": "00:11:53,480"
+			},
+			"offsets": {
+				"from": 712440,
+				"to": 713480
+			},
+			"text": " network is constrained."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,480",
+				"to": "00:11:57,480"
+			},
+			"offsets": {
+				"from": 713480,
+				"to": 717480
+			},
+			"text": " We can't just have some generators off 100 miles away"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,480",
+				"to": "00:11:59,240"
+			},
+			"offsets": {
+				"from": 717480,
+				"to": 719240
+			},
+			"text": " that are going to make up for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,240",
+				"to": "00:12:01,840"
+			},
+			"offsets": {
+				"from": 719240,
+				"to": 721840
+			},
+			"text": " We need to be able to respect the local constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,840",
+				"to": "00:12:04,400"
+			},
+			"offsets": {
+				"from": 721840,
+				"to": 724400
+			},
+			"text": " in the system, particularly in what I'm modeling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,400",
+				"to": "00:12:07,600"
+			},
+			"offsets": {
+				"from": 724400,
+				"to": 727600
+			},
+			"text": " the distribution network within a neighborhood."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,600",
+				"to": "00:12:09,360"
+			},
+			"offsets": {
+				"from": 727600,
+				"to": 729360
+			},
+			"text": " One of the challenges, though, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,360",
+				"to": "00:12:11,280"
+			},
+			"offsets": {
+				"from": 729360,
+				"to": 731280
+			},
+			"text": " that the utilities have market power."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,280",
+				"to": "00:12:14,120"
+			},
+			"offsets": {
+				"from": 731280,
+				"to": 734120
+			},
+			"text": " And all of the people who provide your smart devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,120",
+				"to": "00:12:16,640"
+			},
+			"offsets": {
+				"from": 734120,
+				"to": 736640
+			},
+			"text": " may be competitors with each other in the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,640",
+				"to": "00:12:20,480"
+			},
+			"offsets": {
+				"from": 736640,
+				"to": 740480
+			},
+			"text": " So there's a lack of trust not only between perhaps you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,480",
+				"to": "00:12:22,880"
+			},
+			"offsets": {
+				"from": 740480,
+				"to": 742880
+			},
+			"text": " and the utility who wants to sell you power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,880",
+				"to": "00:12:27,280"
+			},
+			"offsets": {
+				"from": 742880,
+				"to": 747280
+			},
+			"text": " but also between all of the participants in this marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,280",
+				"to": "00:12:29,160"
+			},
+			"offsets": {
+				"from": 747280,
+				"to": 749160
+			},
+			"text": " So you might have a household that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,160",
+				"to": "00:12:31,400"
+			},
+			"offsets": {
+				"from": 749160,
+				"to": 751400
+			},
+			"text": " has a Tesla electric car, a Ford electric car."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,400",
+				"to": "00:12:33,480"
+			},
+			"offsets": {
+				"from": 751400,
+				"to": 753480
+			},
+			"text": " Both of those are competing with each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,480",
+				"to": "00:12:36,680"
+			},
+			"offsets": {
+				"from": 753480,
+				"to": 756680
+			},
+			"text": " to sell regulation services on an energy market."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,680",
+				"to": "00:12:40,080"
+			},
+			"offsets": {
+				"from": 756680,
+				"to": 760080
+			},
+			"text": " You might have different smart thermostats who"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,080",
+				"to": "00:12:44,840"
+			},
+			"offsets": {
+				"from": 760080,
+				"to": 764840
+			},
+			"text": " are competing to be able to provide energy services on a market"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,840",
+				"to": "00:12:47,880"
+			},
+			"offsets": {
+				"from": 764840,
+				"to": 767880
+			},
+			"text": " while also provide these household level services."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,880",
+				"to": "00:12:51,160"
+			},
+			"offsets": {
+				"from": 767880,
+				"to": 771160
+			},
+			"text": " We'd like to be able to reach consensus on the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,160",
+				"to": "00:12:55,080"
+			},
+			"offsets": {
+				"from": 771160,
+				"to": 775080
+			},
+			"text": " that most equitably provides compensation for energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,080",
+				"to": "00:12:59,960"
+			},
+			"offsets": {
+				"from": 775080,
+				"to": 779960
+			},
+			"text": " services that each of these devices gives."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,960",
+				"to": "00:13:03,480"
+			},
+			"offsets": {
+				"from": 779960,
+				"to": 783480
+			},
+			"text": " So taking that same paradigm that I described earlier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,480",
+				"to": "00:13:06,240"
+			},
+			"offsets": {
+				"from": 783480,
+				"to": 786240
+			},
+			"text": " we're breaking this big scheduling problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,240",
+				"to": "00:13:09,400"
+			},
+			"offsets": {
+				"from": 786240,
+				"to": 789400
+			},
+			"text": " with a bunch of trustless participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,400",
+				"to": "00:13:13,240"
+			},
+			"offsets": {
+				"from": 789400,
+				"to": 793240
+			},
+			"text": " into a set of local problems where each household or each node"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,240",
+				"to": "00:13:17,400"
+			},
+			"offsets": {
+				"from": 793240,
+				"to": 797400
+			},
+			"text": " on the network, as defined by the actual physical constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,400",
+				"to": "00:13:20,640"
+			},
+			"offsets": {
+				"from": 797400,
+				"to": 800640
+			},
+			"text": " of the system, solves a private optimization problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,640",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 800640,
+				"to": 802800
+			},
+			"text": " This is harder than something you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:25,640"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 805640
+			},
+			"text": " want to run on the blockchain, but a lot cheaper"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,640",
+				"to": "00:13:28,560"
+			},
+			"offsets": {
+				"from": 805640,
+				"to": 808560
+			},
+			"text": " than solving it all as one centralized problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,560",
+				"to": "00:13:31,600"
+			},
+			"offsets": {
+				"from": 808560,
+				"to": 811600
+			},
+			"text": " Those work together through this smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,600",
+				"to": "00:13:35,400"
+			},
+			"offsets": {
+				"from": 811600,
+				"to": 815400
+			},
+			"text": " that coordinates the update step to be able to eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,400",
+				"to": "00:13:40,640"
+			},
+			"offsets": {
+				"from": 815400,
+				"to": 820640
+			},
+			"text": " reach consensus on the best schedule for all of these devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,640",
+				"to": "00:13:44,600"
+			},
+			"offsets": {
+				"from": 820640,
+				"to": 824600
+			},
+			"text": " So the goal is to minimize the power cost for everybody,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,600",
+				"to": "00:13:46,920"
+			},
+			"offsets": {
+				"from": 824600,
+				"to": 826920
+			},
+			"text": " provide compensation for all of the devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,920",
+				"to": "00:13:48,880"
+			},
+			"offsets": {
+				"from": 826920,
+				"to": 828880
+			},
+			"text": " that are participating in this network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,880",
+				"to": "00:13:51,720"
+			},
+			"offsets": {
+				"from": 828880,
+				"to": 831720
+			},
+			"text": " and do so automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,720",
+				"to": "00:13:53,200"
+			},
+			"offsets": {
+				"from": 831720,
+				"to": 833200
+			},
+			"text": " So we have a model of our network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,200",
+				"to": "00:13:55,720"
+			},
+			"offsets": {
+				"from": 833200,
+				"to": 835720
+			},
+			"text": " This is the physical network that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,720",
+				"to": "00:13:57,680"
+			},
+			"offsets": {
+				"from": 835720,
+				"to": 837680
+			},
+			"text": " provides these constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,680",
+				"to": "00:14:00,400"
+			},
+			"offsets": {
+				"from": 837680,
+				"to": 840400
+			},
+			"text": " That gets fed into these smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,400",
+				"to": "00:14:03,760"
+			},
+			"offsets": {
+				"from": 840400,
+				"to": 843760
+			},
+			"text": " So we have the optimization problem, the smart meter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,760",
+				"to": "00:14:06,920"
+			},
+			"offsets": {
+				"from": 843760,
+				"to": 846920
+			},
+			"text": " Then the optimization updates get communicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,920",
+				"to": "00:14:08,920"
+			},
+			"offsets": {
+				"from": 846920,
+				"to": 848920
+			},
+			"text": " with smart contracts on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,920",
+				"to": "00:14:11,720"
+			},
+			"offsets": {
+				"from": 848920,
+				"to": 851720
+			},
+			"text": " one for actually coordinating the update step."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,720",
+				"to": "00:14:14,200"
+			},
+			"offsets": {
+				"from": 851720,
+				"to": 854200
+			},
+			"text": " Once we reach consensus, that can be bounced over"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,200",
+				"to": "00:14:18,680"
+			},
+			"offsets": {
+				"from": 854200,
+				"to": 858680
+			},
+			"text": " to a smart contract that does billing and any reconciliation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,680",
+				"to": "00:14:22,400"
+			},
+			"offsets": {
+				"from": 858680,
+				"to": 862400
+			},
+			"text": " between the expected schedule and the actual realized schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,400",
+				"to": "00:14:26,840"
+			},
+			"offsets": {
+				"from": 862400,
+				"to": 866840
+			},
+			"text": " And so with that, we're able to eventually identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,840",
+				"to": "00:14:29,720"
+			},
+			"offsets": {
+				"from": 866840,
+				"to": 869720
+			},
+			"text": " when we've hit consensus on the global optimum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,720",
+				"to": "00:14:32,040"
+			},
+			"offsets": {
+				"from": 869720,
+				"to": 872040
+			},
+			"text": " We can guarantee the optimality of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,040",
+				"to": "00:14:34,120"
+			},
+			"offsets": {
+				"from": 872040,
+				"to": 874120
+			},
+			"text": " Along the way, we're performing security checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,120",
+				"to": "00:14:37,040"
+			},
+			"offsets": {
+				"from": 874120,
+				"to": 877040
+			},
+			"text": " to make sure that none of these nodes have been compromised"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,040",
+				"to": "00:14:39,400"
+			},
+			"offsets": {
+				"from": 877040,
+				"to": 879400
+			},
+			"text": " in a way that will push us into an infeasible region,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,400",
+				"to": "00:14:42,360"
+			},
+			"offsets": {
+				"from": 879400,
+				"to": 882360
+			},
+			"text": " cause a blackout, and ultimately end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,360",
+				"to": "00:14:46,040"
+			},
+			"offsets": {
+				"from": 882360,
+				"to": 886040
+			},
+			"text": " with basically a self-scheduling utility-free electricity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,040",
+				"to": "00:14:48,880"
+			},
+			"offsets": {
+				"from": 886040,
+				"to": 888880
+			},
+			"text": " system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,880",
+				"to": "00:14:51,160"
+			},
+			"offsets": {
+				"from": 888880,
+				"to": 891160
+			},
+			"text": " So just to show some pretty graphs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,160",
+				"to": "00:14:54,320"
+			},
+			"offsets": {
+				"from": 891160,
+				"to": 894320
+			},
+			"text": " because we have results to share,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,320",
+				"to": "00:14:56,280"
+			},
+			"offsets": {
+				"from": 894320,
+				"to": 896280
+			},
+			"text": " we can see how we're actually shifting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,280",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 896280,
+				"to": 900000
+			},
+			"text": " around the behind the meter batteries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:02,360"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 902360
+			},
+			"text": " the shapeable loads in the purple lines,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,360",
+				"to": "00:15:06,680"
+			},
+			"offsets": {
+				"from": 902360,
+				"to": 906680
+			},
+			"text": " deferable loads like smart washers or smart appliances,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,680",
+				"to": "00:15:08,880"
+			},
+			"offsets": {
+				"from": 906680,
+				"to": 908880
+			},
+			"text": " and moving all of those around to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,880",
+				"to": "00:15:12,280"
+			},
+			"offsets": {
+				"from": 908880,
+				"to": 912280
+			},
+			"text": " that we're taking advantage of all of the photovoltaic"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,280",
+				"to": "00:15:14,960"
+			},
+			"offsets": {
+				"from": 912280,
+				"to": 914960
+			},
+			"text": " energy that's being pumped into the grid."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,960",
+				"to": "00:15:16,760"
+			},
+			"offsets": {
+				"from": 914960,
+				"to": 916760
+			},
+			"text": " Across the whole node, we're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,760",
+				"to": "00:15:19,800"
+			},
+			"offsets": {
+				"from": 916760,
+				"to": 919800
+			},
+			"text": " monitoring the physical constraints of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,800",
+				"to": "00:15:23,920"
+			},
+			"offsets": {
+				"from": 919800,
+				"to": 923920
+			},
+			"text": " at every point in the distribution network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:26,200"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 926200
+			},
+			"text": " We're making sure that the voltage doesn't go out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,200",
+				"to": "00:15:27,720"
+			},
+			"offsets": {
+				"from": 926200,
+				"to": 927720
+			},
+			"text": " of our acceptable bounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,720",
+				"to": "00:15:31,080"
+			},
+			"offsets": {
+				"from": 927720,
+				"to": 931080
+			},
+			"text": " This is the physical constraint that defines the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,080",
+				"to": "00:15:35,960"
+			},
+			"offsets": {
+				"from": 931080,
+				"to": 935960
+			},
+			"text": " And we're able to converge on a schedule that is only sub-optimal"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,960",
+				"to": "00:15:38,280"
+			},
+			"offsets": {
+				"from": 935960,
+				"to": 938280
+			},
+			"text": " in price by 0.4%."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,280",
+				"to": "00:15:41,320"
+			},
+			"offsets": {
+				"from": 938280,
+				"to": 941320
+			},
+			"text": " So really close to what you would get if a utility were"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,320",
+				"to": "00:15:44,120"
+			},
+			"offsets": {
+				"from": 941320,
+				"to": 944120
+			},
+			"text": " solving all of this privately."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,120",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 944120,
+				"to": 946320
+			},
+			"text": " And then we can also guarantee that the constraints are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:48,440"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 948440
+			},
+			"text": " satisfied, that this isn't going to blow up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,440",
+				"to": "00:15:51,320"
+			},
+			"offsets": {
+				"from": 948440,
+				"to": 951320
+			},
+			"text": " that our electricity system is still going to stay stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,320",
+				"to": "00:15:53,760"
+			},
+			"offsets": {
+				"from": 951320,
+				"to": 953760
+			},
+			"text": " So we've solved a hard optimization problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,760",
+				"to": "00:15:57,080"
+			},
+			"offsets": {
+				"from": 953760,
+				"to": 957080
+			},
+			"text": " with physical constraints with an algorithm that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,080",
+				"to": "00:16:01,440"
+			},
+			"offsets": {
+				"from": 957080,
+				"to": 961440
+			},
+			"text": " respects local privacy and can guarantee the optimality"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,440",
+				"to": "00:16:05,200"
+			},
+			"offsets": {
+				"from": 961440,
+				"to": 965200
+			},
+			"text": " and the feasibility of the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,200",
+				"to": "00:16:07,240"
+			},
+			"offsets": {
+				"from": 965200,
+				"to": 967240
+			},
+			"text": " Challenges and opportunities looking ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,240",
+				"to": "00:16:10,240"
+			},
+			"offsets": {
+				"from": 967240,
+				"to": 970240
+			},
+			"text": " So these mirror the three big areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,240",
+				"to": "00:16:12,640"
+			},
+			"offsets": {
+				"from": 970240,
+				"to": 972640
+			},
+			"text": " that Vitalik was talking about yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,640",
+				"to": "00:16:13,720"
+			},
+			"offsets": {
+				"from": 972640,
+				"to": 973720
+			},
+			"text": " One is privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,720",
+				"to": "00:16:16,200"
+			},
+			"offsets": {
+				"from": 973720,
+				"to": 976200
+			},
+			"text": " So I'm very interested in the sessions tomorrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,200",
+				"to": "00:16:17,920"
+			},
+			"offsets": {
+				"from": 976200,
+				"to": 977920
+			},
+			"text": " on zero knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,920",
+				"to": "00:16:20,720"
+			},
+			"offsets": {
+				"from": 977920,
+				"to": 980720
+			},
+			"text": " To be able to identify how can we actually make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,720",
+				"to": "00:16:23,280"
+			},
+			"offsets": {
+				"from": 980720,
+				"to": 983280
+			},
+			"text": " that the information we're sending back and forth"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,280",
+				"to": "00:16:24,320"
+			},
+			"offsets": {
+				"from": 983280,
+				"to": 984320
+			},
+			"text": " is not sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,320",
+				"to": "00:16:27,040"
+			},
+			"offsets": {
+				"from": 984320,
+				"to": 987040
+			},
+			"text": " So in the model that I just described,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,040",
+				"to": "00:16:29,640"
+			},
+			"offsets": {
+				"from": 987040,
+				"to": 989640
+			},
+			"text": " the actual power consumption for each household"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,640",
+				"to": "00:16:32,480"
+			},
+			"offsets": {
+				"from": 989640,
+				"to": 992480
+			},
+			"text": " ends up getting stored on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,480",
+				"to": "00:16:35,080"
+			},
+			"offsets": {
+				"from": 992480,
+				"to": 995080
+			},
+			"text": " There's concerns about, say, a thief"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,080",
+				"to": "00:16:38,760"
+			},
+			"offsets": {
+				"from": 995080,
+				"to": 998760
+			},
+			"text": " being able to identify when somebody is away from whom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,760",
+				"to": "00:16:40,440"
+			},
+			"offsets": {
+				"from": 998760,
+				"to": 1000440
+			},
+			"text": " and thus could break into the house,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,440",
+				"to": "00:16:43,640"
+			},
+			"offsets": {
+				"from": 1000440,
+				"to": 1003640
+			},
+			"text": " if they know what everybody's expected power consumption is."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,640",
+				"to": "00:16:47,280"
+			},
+			"offsets": {
+				"from": 1003640,
+				"to": 1007280
+			},
+			"text": " The other part is there's a potential for data leakage"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,280",
+				"to": "00:16:49,440"
+			},
+			"offsets": {
+				"from": 1007280,
+				"to": 1009440
+			},
+			"text": " through the iterations back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,440",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1009440,
+				"to": 1012000
+			},
+			"text": " So that even if the information that you're sending"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1015440
+			},
+			"text": " is not fundamentally sensitive, that the information that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:57,760"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1017760
+			},
+			"text": " is leaking out of the system by how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,760",
+				"to": "00:17:00,840"
+			},
+			"offsets": {
+				"from": 1017760,
+				"to": 1020840
+			},
+			"text": " you're changing your estimate at each of these steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,840",
+				"to": "00:17:04,120"
+			},
+			"offsets": {
+				"from": 1020840,
+				"to": 1024120
+			},
+			"text": " might indicate something about what your private optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,120",
+				"to": "00:17:06,320"
+			},
+			"offsets": {
+				"from": 1024120,
+				"to": 1026320
+			},
+			"text": " problem is."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,320",
+				"to": "00:17:09,080"
+			},
+			"offsets": {
+				"from": 1026320,
+				"to": 1029080
+			},
+			"text": " So the security we've been working on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,080",
+				"to": "00:17:12,360"
+			},
+			"offsets": {
+				"from": 1029080,
+				"to": 1032360
+			},
+			"text": " like, provable guarantees of the feasibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,360",
+				"to": "00:17:13,920"
+			},
+			"offsets": {
+				"from": 1032360,
+				"to": 1033920
+			},
+			"text": " with untrusted nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,920",
+				"to": "00:17:17,720"
+			},
+			"offsets": {
+				"from": 1033920,
+				"to": 1037720
+			},
+			"text": " One big comment here is that these proofs generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,720",
+				"to": "00:17:21,760"
+			},
+			"offsets": {
+				"from": 1037720,
+				"to": 1041760
+			},
+			"text": " have much weaker conditions than BFT would give."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,760",
+				"to": "00:17:25,680"
+			},
+			"offsets": {
+				"from": 1041760,
+				"to": 1045680
+			},
+			"text": " So in these constrained systems, your ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,680",
+				"to": "00:17:27,160"
+			},
+			"offsets": {
+				"from": 1045680,
+				"to": 1047160
+			},
+			"text": " to guarantee feasibility is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,160",
+				"to": "00:17:32,480"
+			},
+			"offsets": {
+				"from": 1047160,
+				"to": 1052480
+			},
+			"text": " to be dependent on the topology of how faulty nodes are connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,480",
+				"to": "00:17:34,520"
+			},
+			"offsets": {
+				"from": 1052480,
+				"to": 1054520
+			},
+			"text": " And in general, though, because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,520",
+				"to": "00:17:37,720"
+			},
+			"offsets": {
+				"from": 1054520,
+				"to": 1057720
+			},
+			"text": " going to be dependent on that, we can't guarantee the same one"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,720",
+				"to": "00:17:41,680"
+			},
+			"offsets": {
+				"from": 1057720,
+				"to": 1061680
+			},
+			"text": " third proof against attack that BFT systems generally have."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,680",
+				"to": "00:17:42,400"
+			},
+			"offsets": {
+				"from": 1061680,
+				"to": 1062400
+			},
+			"text": " Scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,400",
+				"to": "00:17:46,560"
+			},
+			"offsets": {
+				"from": 1062400,
+				"to": 1066560
+			},
+			"text": " So currently, looking at converging in about 20 iterations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,560",
+				"to": "00:17:48,360"
+			},
+			"offsets": {
+				"from": 1066560,
+				"to": 1068360
+			},
+			"text": " of the system, each of those iterations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,360",
+				"to": "00:17:53,240"
+			},
+			"offsets": {
+				"from": 1068360,
+				"to": 1073240
+			},
+			"text": " requires variable updates sent to the aggregator node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,240",
+				"to": "00:17:55,520"
+			},
+			"offsets": {
+				"from": 1073240,
+				"to": 1075520
+			},
+			"text": " the aggregator node performing that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,520",
+				"to": "00:17:58,120"
+			},
+			"offsets": {
+				"from": 1075520,
+				"to": 1078120
+			},
+			"text": " or the aggregator smart contract performing that update,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,120",
+				"to": "00:17:59,840"
+			},
+			"offsets": {
+				"from": 1078120,
+				"to": 1079840
+			},
+			"text": " and then broadcasting that back."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,840",
+				"to": "00:18:04,800"
+			},
+			"offsets": {
+				"from": 1079840,
+				"to": 1084800
+			},
+			"text": " So each of those is at minimum two to three secured blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,800",
+				"to": "00:18:09,680"
+			},
+			"offsets": {
+				"from": 1084800,
+				"to": 1089680
+			},
+			"text": " So in net, this could be a relatively long, slow process."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,680",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089680,
+				"to": 1094000
+			},
+			"text": " It's an area where, again, looking at plasma or other ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:17,080"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1097080
+			},
+			"text": " of speeding this up could improve the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,080",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1097080,
+				"to": 1099520
+			},
+			"text": " With that, I think we have some extra time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:20,520"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1100520
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,520",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1100520,
+				"to": 1104000
+			},
+			"text": " Sorry about the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:24,520"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1104520
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,520",
+				"to": "00:18:27,680"
+			},
+			"offsets": {
+				"from": 1104520,
+				"to": 1107680
+			},
+			"text": " So you mentioned to be on the ability at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,680",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1107680,
+				"to": 1110000
+			},
+			"text": " So one of the general techniques for dealing with blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,920"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113920
+			},
+			"text": " scalability is to reduce the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,920",
+				"to": "00:18:37,520"
+			},
+			"offsets": {
+				"from": 1113920,
+				"to": 1117520
+			},
+			"text": " One of the general techniques for dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,520",
+				"to": "00:18:39,360"
+			},
+			"offsets": {
+				"from": 1117520,
+				"to": 1119360
+			},
+			"text": " with blockchain scalability is only"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,360",
+				"to": "00:18:40,800"
+			},
+			"offsets": {
+				"from": 1119360,
+				"to": 1120800
+			},
+			"text": " going to the blockchain when necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,800",
+				"to": "00:18:43,600"
+			},
+			"offsets": {
+				"from": 1120800,
+				"to": 1123600
+			},
+			"text": " Are there equivalents here where you could sort of determine"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,600",
+				"to": "00:18:46,200"
+			},
+			"offsets": {
+				"from": 1123600,
+				"to": 1126200
+			},
+			"text": " that some subset of the network is behaving badly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,200",
+				"to": "00:18:48,240"
+			},
+			"offsets": {
+				"from": 1126200,
+				"to": 1128240
+			},
+			"text": " and only go to the blockchain in that case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,240",
+				"to": "00:18:48,440"
+			},
+			"offsets": {
+				"from": 1128240,
+				"to": 1128440
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,440",
+				"to": "00:18:50,280"
+			},
+			"offsets": {
+				"from": 1128440,
+				"to": 1130280
+			},
+			"text": " So one area that I'm interested in looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,280",
+				"to": "00:18:54,200"
+			},
+			"offsets": {
+				"from": 1130280,
+				"to": 1134200
+			},
+			"text": " is state channels to be able to identify basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,200",
+				"to": "00:18:57,400"
+			},
+			"offsets": {
+				"from": 1134200,
+				"to": 1137400
+			},
+			"text": " what are the portions that we need to update."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,400",
+				"to": "00:19:00,360"
+			},
+			"offsets": {
+				"from": 1137400,
+				"to": 1140360
+			},
+			"text": " And which portions of the updates need"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,360",
+				"to": "00:19:01,760"
+			},
+			"offsets": {
+				"from": 1140360,
+				"to": 1141760
+			},
+			"text": " to be saved to the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,760",
+				"to": "00:19:05,400"
+			},
+			"offsets": {
+				"from": 1141760,
+				"to": 1145400
+			},
+			"text": " Which portions can just be done through state channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,400",
+				"to": "00:19:08,360"
+			},
+			"offsets": {
+				"from": 1145400,
+				"to": 1148360
+			},
+			"text": " and not have all of that constantly back and forth"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,360",
+				"to": "00:19:11,680"
+			},
+			"offsets": {
+				"from": 1148360,
+				"to": 1151680
+			},
+			"text": " on the main blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,680",
+				"to": "00:19:14,720"
+			},
+			"offsets": {
+				"from": 1151680,
+				"to": 1154720
+			},
+			"text": " You mentioned there are some nodes that might be untrustworthy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,720",
+				"to": "00:19:17,640"
+			},
+			"offsets": {
+				"from": 1154720,
+				"to": 1157640
+			},
+			"text": " but it seems that every node corresponds to a household."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,640",
+				"to": "00:19:20,320"
+			},
+			"offsets": {
+				"from": 1157640,
+				"to": 1160320
+			},
+			"text": " And every household has--"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,320",
+				"to": "00:19:24,480"
+			},
+			"offsets": {
+				"from": 1160320,
+				"to": 1164480
+			},
+			"text": " it is in their own interest to act the trustworthy manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,480",
+				"to": "00:19:26,640"
+			},
+			"offsets": {
+				"from": 1164480,
+				"to": 1166640
+			},
+			"text": " So why is that an issue here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,640",
+				"to": "00:19:29,840"
+			},
+			"offsets": {
+				"from": 1166640,
+				"to": 1169840
+			},
+			"text": " So if you think of, say, the hack against the Ukrainian"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,840",
+				"to": "00:19:32,760"
+			},
+			"offsets": {
+				"from": 1169840,
+				"to": 1172760
+			},
+			"text": " electricity grid where an outside party was interested in actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,760",
+				"to": "00:19:35,920"
+			},
+			"offsets": {
+				"from": 1172760,
+				"to": 1175920
+			},
+			"text": " just bringing down the whole grid for malicious intent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,920",
+				"to": "00:19:38,880"
+			},
+			"offsets": {
+				"from": 1175920,
+				"to": 1178880
+			},
+			"text": " you don't care about the private household reasons"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,880",
+				"to": "00:19:39,840"
+			},
+			"offsets": {
+				"from": 1178880,
+				"to": 1179840
+			},
+			"text": " for the attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,840",
+				"to": "00:19:42,920"
+			},
+			"offsets": {
+				"from": 1179840,
+				"to": 1182920
+			},
+			"text": " There might be somebody who just wants to cause a blackout."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,920",
+				"to": "00:19:44,400"
+			},
+			"offsets": {
+				"from": 1182920,
+				"to": 1184400
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,400",
+				"to": "00:19:46,200"
+			},
+			"offsets": {
+				"from": 1184400,
+				"to": 1186200
+			},
+			"text": " I mean, it's a very kind of private PM."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,200",
+				"to": "00:19:47,840"
+			},
+			"offsets": {
+				"from": 1186200,
+				"to": 1187840
+			},
+			"text": " The household is designed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,840",
+				"to": "00:19:51,760"
+			},
+			"offsets": {
+				"from": 1187840,
+				"to": 1191760
+			},
+			"text": " So this is a really unique challenge of this type of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,760",
+				"to": "00:19:55,160"
+			},
+			"offsets": {
+				"from": 1191760,
+				"to": 1195160
+			},
+			"text": " The private problem of the household"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,160",
+				"to": "00:19:57,880"
+			},
+			"offsets": {
+				"from": 1195160,
+				"to": 1197880
+			},
+			"text": " is dependent on constraint information fed to them"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,880",
+				"to": "00:19:59,480"
+			},
+			"offsets": {
+				"from": 1197880,
+				"to": 1199480
+			},
+			"text": " by all the devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,480",
+				"to": "00:20:02,240"
+			},
+			"offsets": {
+				"from": 1199480,
+				"to": 1202240
+			},
+			"text": " So somebody could hack an electric car"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,240",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1202240,
+				"to": 1205000
+			},
+			"text": " and pass bad information to the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:06,720"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1206720
+			},
+			"text": " even if it's a secure enclave that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,720",
+				"to": "00:20:08,400"
+			},
+			"offsets": {
+				"from": 1206720,
+				"to": 1208400
+			},
+			"text": " does the actual computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,400",
+				"to": "00:20:10,840"
+			},
+			"offsets": {
+				"from": 1208400,
+				"to": 1210840
+			},
+			"text": " If that secure enclave is getting garbage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,840",
+				"to": "00:20:12,920"
+			},
+			"offsets": {
+				"from": 1210840,
+				"to": 1212920
+			},
+			"text": " then it needs to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,920",
+				"to": "00:20:15,480"
+			},
+			"offsets": {
+				"from": 1212920,
+				"to": 1215480
+			},
+			"text": " you effectively can't expect that the message is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,480",
+				"to": "00:20:18,800"
+			},
+			"offsets": {
+				"from": 1215480,
+				"to": 1218800
+			},
+			"text": " passed the network are trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,800",
+				"to": "00:20:19,680"
+			},
+			"offsets": {
+				"from": 1218800,
+				"to": 1219680
+			},
+			"text": " Good question, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,680",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1219680,
+				"to": 1221000
+			},
+			"text": " Maybe one last question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:24,120"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1224120
+			},
+			"text": " Any more questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,120",
+				"to": "00:20:28,400"
+			},
+			"offsets": {
+				"from": 1224120,
+				"to": 1228400
+			},
+			"text": " What about offline when the device are being offline?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,400",
+				"to": "00:20:30,840"
+			},
+			"offsets": {
+				"from": 1228400,
+				"to": 1230840
+			},
+			"text": " So this is a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,840",
+				"to": "00:20:33,280"
+			},
+			"offsets": {
+				"from": 1230840,
+				"to": 1233280
+			},
+			"text": " I'm interested in looking into models of sharding"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,280",
+				"to": "00:20:35,440"
+			},
+			"offsets": {
+				"from": 1233280,
+				"to": 1235440
+			},
+			"text": " and being able to split this up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,440",
+				"to": "00:20:38,480"
+			},
+			"offsets": {
+				"from": 1235440,
+				"to": 1238480
+			},
+			"text": " That is one of the big benefits of the fully decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,480",
+				"to": "00:20:40,160"
+			},
+			"offsets": {
+				"from": 1238480,
+				"to": 1240160
+			},
+			"text": " algorithms is that you don't care"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,160",
+				"to": "00:20:42,040"
+			},
+			"offsets": {
+				"from": 1240160,
+				"to": 1242040
+			},
+			"text": " where there's a break in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,040",
+				"to": "00:20:45,040"
+			},
+			"offsets": {
+				"from": 1242040,
+				"to": 1245040
+			},
+			"text": " Those can still reach local optimality."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,040",
+				"to": "00:20:46,960"
+			},
+			"offsets": {
+				"from": 1245040,
+				"to": 1246960
+			},
+			"text": " When you have a blockchain, being"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,960",
+				"to": "00:20:51,360"
+			},
+			"offsets": {
+				"from": 1246960,
+				"to": 1251360
+			},
+			"text": " able to bring those two basically forked chains back"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,360",
+				"to": "00:20:54,840"
+			},
+			"offsets": {
+				"from": 1251360,
+				"to": 1254840
+			},
+			"text": " into consensus is something I haven't yet looked at but want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,840",
+				"to": "00:20:58,840"
+			},
+			"offsets": {
+				"from": 1254840,
+				"to": 1258840
+			},
+			"text": " Thanks, Eric."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,840",
+				"to": "00:21:01,840"
+			},
+			"offsets": {
+				"from": 1258840,
+				"to": 1261840
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,840",
+				"to": "00:21:05,320"
+			},
+			"offsets": {
+				"from": 1261840,
+				"to": 1265320
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,320",
+				"to": "00:21:08,060"
+			},
+			"offsets": {
+				"from": 1265320,
+				"to": 1268060
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,060",
+				"to": "00:21:10,320"
+			},
+			"offsets": {
+				"from": 1268060,
+				"to": 1270320
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

@@ -1,0 +1,1803 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 12000
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15360
+			},
+			"text": " I'm Tivo, and I work for Perrine Technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:18,840"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 18840
+			},
+			"text": " And today, I'll talk about Perrine Designer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,840",
+				"to": "00:00:21,440"
+			},
+			"offsets": {
+				"from": 18840,
+				"to": 21440
+			},
+			"text": " I'll be super quick at the beginning of the presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,440",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 21440,
+				"to": 23280
+			},
+			"text": " because any of the things you probably know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:25,800"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 25800
+			},
+			"text": " and I'll be much stronger at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,800",
+				"to": "00:00:27,520"
+			},
+			"offsets": {
+				"from": 25800,
+				"to": 27520
+			},
+			"text": " So let's go to the basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,520",
+				"to": "00:00:28,520"
+			},
+			"offsets": {
+				"from": 27520,
+				"to": 28520
+			},
+			"text": " Talk about the basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,520",
+				"to": "00:00:31,880"
+			},
+			"offsets": {
+				"from": 28520,
+				"to": 31880
+			},
+			"text": " How do you go from a message to an executed transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,880",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 31880,
+				"to": 32640
+			},
+			"text": " on a blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:33,560"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 33560
+			},
+			"text": " So you have a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,560",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 33560,
+				"to": 34840
+			},
+			"text": " You pay the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:36,760"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 36760
+			},
+			"text": " You sign it with your private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,760",
+				"to": "00:00:39,600"
+			},
+			"offsets": {
+				"from": 36760,
+				"to": 39600
+			},
+			"text": " And then you send it somehow to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,600",
+				"to": "00:00:42,480"
+			},
+			"offsets": {
+				"from": 39600,
+				"to": 42480
+			},
+			"text": " This private key is the point, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,480",
+				"to": "00:00:45,280"
+			},
+			"offsets": {
+				"from": 42480,
+				"to": 45280
+			},
+			"text": " If you lose it, if someone gets access to it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,280",
+				"to": "00:00:46,360"
+			},
+			"offsets": {
+				"from": 45280,
+				"to": 46360
+			},
+			"text": " let's get over it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,360",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 46360,
+				"to": 48000
+			},
+			"text": " So whether people saw their private"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:50,240"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 50240
+			},
+			"text": " came most of the time or sometimes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,240",
+				"to": "00:00:53,920"
+			},
+			"offsets": {
+				"from": 50240,
+				"to": 53920
+			},
+			"text": " like this back in the day, it was securely encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,920",
+				"to": "00:00:55,160"
+			},
+			"offsets": {
+				"from": 53920,
+				"to": 55160
+			},
+			"text": " on adjacent, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,160",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 55160,
+				"to": 57280
+			},
+			"text": " We are a password."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 60240
+			},
+			"text": " You could use it on my wallet, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:02,440"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 62440
+			},
+			"text": " But the thing is you have to give kind of your private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,440",
+				"to": "00:01:06,160"
+			},
+			"offsets": {
+				"from": 62440,
+				"to": 66160
+			},
+			"text": " because you upload this JSON and then you give."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,160",
+				"to": "00:01:07,680"
+			},
+			"offsets": {
+				"from": 66160,
+				"to": 67680
+			},
+			"text": " Sorry, you give your password."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,680",
+				"to": "00:01:10,800"
+			},
+			"offsets": {
+				"from": 67680,
+				"to": 70800
+			},
+			"text": " So the problem is if my info won't get hacked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,800",
+				"to": "00:01:12,560"
+			},
+			"offsets": {
+				"from": 70800,
+				"to": 72560
+			},
+			"text": " because it's a website, it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,560",
+				"to": "00:01:19,040"
+			},
+			"offsets": {
+				"from": 72560,
+				"to": 79040
+			},
+			"text": " kind of a large security threat, well, then game over."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,040",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 79040,
+				"to": 81880
+			},
+			"text": " What you could do is, and that's much better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 86320
+			},
+			"text": " because Metamask is not exactly a software on your computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,320",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 86320,
+				"to": 87680
+			},
+			"text": " and it's not exactly a website."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:30,920"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 90920
+			},
+			"text": " If you use Metamask, and in the end, that's kind of the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,920",
+				"to": "00:01:31,120"
+			},
+			"offsets": {
+				"from": 90920,
+				"to": 91120
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,120",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91120,
+				"to": 93000
+			},
+			"text": " You're going to give your private key to Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 95520
+			},
+			"text": " and Metamask, for some reason, gets high fuel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:39,720"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 99720
+			},
+			"text": " TC gets high, because the extension can be, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,720",
+				"to": "00:01:41,760"
+			},
+			"offsets": {
+				"from": 99720,
+				"to": 101760
+			},
+			"text": " there are just updated automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,760",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 101760,
+				"to": 104960
+			},
+			"text": " or we were talking about if the dependency of Metamask"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:48,720"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 108720
+			},
+			"text": " is going to have to then basically you game over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,720",
+				"to": "00:01:51,160"
+			},
+			"offsets": {
+				"from": 108720,
+				"to": 111160
+			},
+			"text": " So what you could do, again, is use, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,160",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 111160,
+				"to": 115600
+			},
+			"text": " my crypto operator, better, which is a desktop application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 119400
+			},
+			"text": " But in the end, you can still give your private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 123120
+			},
+			"text": " to those things and those software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:06,640"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 126640
+			},
+			"text": " And even if this is on desktop, and it's maybe a bit harder"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,640",
+				"to": "00:02:09,280"
+			},
+			"offsets": {
+				"from": 126640,
+				"to": 129280
+			},
+			"text": " to get hacked on your desktop, if the whole, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,280",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 129280,
+				"to": 134160
+			},
+			"text": " Windows or Linux or Mac gets hacked, then you'll game over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:17,120"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 137120
+			},
+			"text": " So what people do to have kind of the highest security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,120",
+				"to": "00:02:19,120"
+			},
+			"offsets": {
+				"from": 137120,
+				"to": 139120
+			},
+			"text": " today, or one of the highest security"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,120",
+				"to": "00:02:21,320"
+			},
+			"offsets": {
+				"from": 139120,
+				"to": 141320
+			},
+			"text": " while being able to use it for the key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,320",
+				"to": "00:02:23,200"
+			},
+			"offsets": {
+				"from": 141320,
+				"to": 143200
+			},
+			"text": " because highest security is just, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,200",
+				"to": "00:02:26,880"
+			},
+			"offsets": {
+				"from": 143200,
+				"to": 146880
+			},
+			"text": " take your network and put it somewhere super, super safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,880",
+				"to": "00:02:28,320"
+			},
+			"offsets": {
+				"from": 146880,
+				"to": 148320
+			},
+			"text": " It's just you cannot use it anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,320",
+				"to": "00:02:29,600"
+			},
+			"offsets": {
+				"from": 148320,
+				"to": 149600
+			},
+			"text": " it doesn't make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,600",
+				"to": "00:02:31,360"
+			},
+			"offsets": {
+				"from": 149600,
+				"to": 151360
+			},
+			"text": " So people use, for instance, a treasure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,360",
+				"to": "00:02:34,080"
+			},
+			"offsets": {
+				"from": 151360,
+				"to": 154080
+			},
+			"text": " and they use it together with an online application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,080",
+				"to": "00:02:36,560"
+			},
+			"offsets": {
+				"from": 154080,
+				"to": 156560
+			},
+			"text": " So in the middle, there's better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,560",
+				"to": "00:02:41,800"
+			},
+			"offsets": {
+				"from": 156560,
+				"to": 161800
+			},
+			"text": " And you create a transaction with this online software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,800",
+				"to": "00:02:45,640"
+			},
+			"offsets": {
+				"from": 161800,
+				"to": 165640
+			},
+			"text": " You send it to the hardware wallet, you sign it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,640",
+				"to": "00:02:47,080"
+			},
+			"offsets": {
+				"from": 165640,
+				"to": 167080
+			},
+			"text": " onto hardware wallet, and then you send it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,080",
+				"to": "00:02:49,920"
+			},
+			"offsets": {
+				"from": 167080,
+				"to": 169920
+			},
+			"text": " to the blockchain that verifies the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,920",
+				"to": "00:02:52,960"
+			},
+			"offsets": {
+				"from": 169920,
+				"to": 172960
+			},
+			"text": " So if this guy gets hacked, it will eventually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,960",
+				"to": "00:02:54,320"
+			},
+			"offsets": {
+				"from": 172960,
+				"to": 174320
+			},
+			"text": " send a hacked transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,320",
+				"to": "00:02:56,560"
+			},
+			"offsets": {
+				"from": 174320,
+				"to": 176560
+			},
+			"text": " But here you can check it right on the treasure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,560",
+				"to": "00:02:59,600"
+			},
+			"offsets": {
+				"from": 176560,
+				"to": 179600
+			},
+			"text": " and or on the hardware wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,600",
+				"to": "00:03:02,440"
+			},
+			"offsets": {
+				"from": 179600,
+				"to": 182440
+			},
+			"text": " And that's where things just stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,440",
+				"to": "00:03:06,080"
+			},
+			"offsets": {
+				"from": 182440,
+				"to": 186080
+			},
+			"text": " What could eventually happen is that the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,080",
+				"to": "00:03:09,640"
+			},
+			"offsets": {
+				"from": 186080,
+				"to": 189640
+			},
+			"text": " by the sentence perfectly OK, you're going to just, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,640",
+				"to": "00:03:12,760"
+			},
+			"offsets": {
+				"from": 189640,
+				"to": 192760
+			},
+			"text": " sign it, and then they somehow try to trick"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,760",
+				"to": "00:03:14,640"
+			},
+			"offsets": {
+				"from": 192760,
+				"to": 194640
+			},
+			"text": " or change the message, as you probably know."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,640",
+				"to": "00:03:17,200"
+			},
+			"offsets": {
+				"from": 194640,
+				"to": 197200
+			},
+			"text": " They start to work right because you cannot change the message"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,200",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 197200,
+				"to": 201800
+			},
+			"text": " without having to sign without the blockchain rejected."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:26,080"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 206080
+			},
+			"text": " So the whole key is this piece of hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,080",
+				"to": "00:03:31,080"
+			},
+			"offsets": {
+				"from": 206080,
+				"to": 211080
+			},
+			"text": " We'll have the key, we'll sign, and this is the key path, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,080",
+				"to": "00:03:34,680"
+			},
+			"offsets": {
+				"from": 211080,
+				"to": 214680
+			},
+			"text": " You want to get these guys super safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,680",
+				"to": "00:03:37,760"
+			},
+			"offsets": {
+				"from": 214680,
+				"to": 217760
+			},
+			"text": " So we thought, wouldn't it be cool if there was enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,760",
+				"to": "00:03:40,680"
+			},
+			"offsets": {
+				"from": 217760,
+				"to": 220680
+			},
+			"text": " that we turn all smart phones into hardware wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,680",
+				"to": "00:03:43,920"
+			},
+			"offsets": {
+				"from": 220680,
+				"to": 223920
+			},
+			"text": " Because everybody, many people have an all smart phone, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,920",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223920,
+				"to": 226000
+			},
+			"text": " That is running around, they're not using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:54,760"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 234760
+			},
+			"text": " And why the whole point is you want to have a hardware wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,760",
+				"to": "00:03:57,160"
+			},
+			"offsets": {
+				"from": 234760,
+				"to": 237160
+			},
+			"text": " sorry, a phone that is offline, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,160",
+				"to": "00:04:01,160"
+			},
+			"offsets": {
+				"from": 237160,
+				"to": 241160
+			},
+			"text": " want to have a way to sign your transaction offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,160",
+				"to": "00:04:04,240"
+			},
+			"offsets": {
+				"from": 241160,
+				"to": 244240
+			},
+			"text": " we could use a phone and sign QR codes to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,240",
+				"to": "00:04:07,760"
+			},
+			"offsets": {
+				"from": 244240,
+				"to": 247760
+			},
+			"text": " So that's why we created a designer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,760",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 247760,
+				"to": 249160
+			},
+			"text": " So this is how it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:10,560"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 250560
+			},
+			"text": " And what does it do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,560",
+				"to": "00:04:13,360"
+			},
+			"offsets": {
+				"from": 250560,
+				"to": 253360
+			},
+			"text": " You can create accounts, you can recover accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,360",
+				"to": "00:04:15,920"
+			},
+			"offsets": {
+				"from": 253360,
+				"to": 255920
+			},
+			"text": " you can sign a transaction, you can sign messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,920",
+				"to": "00:04:21,360"
+			},
+			"offsets": {
+				"from": 255920,
+				"to": 261360
+			},
+			"text": " So this is supposed to be offline all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,360",
+				"to": "00:04:22,760"
+			},
+			"offsets": {
+				"from": 261360,
+				"to": 262760
+			},
+			"text": " So it's mainly not the latest sensor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,760",
+				"to": "00:04:24,960"
+			},
+			"offsets": {
+				"from": 262760,
+				"to": 264960
+			},
+			"text": " it's going to be your old phone, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,960",
+				"to": "00:04:26,800"
+			},
+			"offsets": {
+				"from": 264960,
+				"to": 266800
+			},
+			"text": " But it's the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,800",
+				"to": "00:04:29,240"
+			},
+			"offsets": {
+				"from": 266800,
+				"to": 269240
+			},
+			"text": " You should not use your smartphone that you use every day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,240",
+				"to": "00:04:31,800"
+			},
+			"offsets": {
+				"from": 269240,
+				"to": 271800
+			},
+			"text": " you should practically set it, you shouldn't quit it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,800",
+				"to": "00:04:35,400"
+			},
+			"offsets": {
+				"from": 271800,
+				"to": 275400
+			},
+			"text": " you should turn on airplane mode and never turn it on again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,400",
+				"to": "00:04:37,960"
+			},
+			"offsets": {
+				"from": 275400,
+				"to": 277960
+			},
+			"text": " And never plug it into a computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,960",
+				"to": "00:04:39,280"
+			},
+			"offsets": {
+				"from": 277960,
+				"to": 279280
+			},
+			"text": " So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,280",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 279280,
+				"to": 280960
+			},
+			"text": " I have a little demo on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:44,520"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 284520
+			},
+			"text": " a feather on the left, a parisiner with an offline phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,520",
+				"to": "00:04:47,960"
+			},
+			"offsets": {
+				"from": 284520,
+				"to": 287960
+			},
+			"text": " So what I do is I create an account, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,960",
+				"to": "00:04:52,520"
+			},
+			"offsets": {
+				"from": 287960,
+				"to": 292520
+			},
+			"text": " on Ethereum, and so yeah, I can choose from different accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,520",
+				"to": "00:04:56,680"
+			},
+			"offsets": {
+				"from": 292520,
+				"to": 296680
+			},
+			"text": " I can choose from different items, because that's pretty fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,680",
+				"to": "00:05:00,280"
+			},
+			"offsets": {
+				"from": 296680,
+				"to": 300280
+			},
+			"text": " Let's have a look, here is one that looks like a little fox,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,280",
+				"to": "00:05:02,480"
+			},
+			"offsets": {
+				"from": 300280,
+				"to": 302480
+			},
+			"text": " so that's three-corn, I'm going to pick this one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,480",
+				"to": "00:05:04,720"
+			},
+			"offsets": {
+				"from": 302480,
+				"to": 304720
+			},
+			"text": " and I'm going to give it a name, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,720",
+				"to": "00:05:08,360"
+			},
+			"offsets": {
+				"from": 304720,
+				"to": 308360
+			},
+			"text": " On the right, again, this is on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,360",
+				"to": "00:05:11,360"
+			},
+			"offsets": {
+				"from": 308360,
+				"to": 311360
+			},
+			"text": " there's a synced wallet that is offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,360",
+				"to": "00:05:13,680"
+			},
+			"offsets": {
+				"from": 311360,
+				"to": 313680
+			},
+			"text": " and ready to send some transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,680",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 313680,
+				"to": 317000
+			},
+			"text": " So on the left, I create an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,240"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322240
+			},
+			"text": " so I'm going to put a pin, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,240",
+				"to": "00:05:24,760"
+			},
+			"offsets": {
+				"from": 322240,
+				"to": 324760
+			},
+			"text": " because you want to secure it somehow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,760",
+				"to": "00:05:28,520"
+			},
+			"offsets": {
+				"from": 324760,
+				"to": 328520
+			},
+			"text": " if someone gets off your phone, that is offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,520",
+				"to": "00:05:30,040"
+			},
+			"offsets": {
+				"from": 328520,
+				"to": 330040
+			},
+			"text": " I want to write what I'm going to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,040",
+				"to": "00:05:33,600"
+			},
+			"offsets": {
+				"from": 330040,
+				"to": 333600
+			},
+			"text": " I'm going to import this account that has been created offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,600",
+				"to": "00:05:35,880"
+			},
+			"offsets": {
+				"from": 333600,
+				"to": 335880
+			},
+			"text": " So I can just kind of QR code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,880",
+				"to": "00:05:38,520"
+			},
+			"offsets": {
+				"from": 335880,
+				"to": 338520
+			},
+			"text": " the left, I'm going to show this QR code to my PC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,520",
+				"to": "00:05:41,640"
+			},
+			"offsets": {
+				"from": 338520,
+				"to": 341640
+			},
+			"text": " basically, to the webcam of the PC."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,160",
+				"to": "00:05:44,320"
+			},
+			"offsets": {
+				"from": 343160,
+				"to": 344320
+			},
+			"text": " Just give the name, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,320",
+				"to": "00:05:48,280"
+			},
+			"offsets": {
+				"from": 344320,
+				"to": 348280
+			},
+			"text": " No need to sign to put any password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:52,080"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 352080
+			},
+			"text": " whatever, because anyway, it's on the phone that is offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,080",
+				"to": "00:05:55,960"
+			},
+			"offsets": {
+				"from": 352080,
+				"to": 355960
+			},
+			"text": " Now, I've sent already some money to this account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,960",
+				"to": "00:05:59,800"
+			},
+			"offsets": {
+				"from": 355960,
+				"to": 359800
+			},
+			"text": " and I'm just going to show you how we're going to send money"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,800",
+				"to": "00:06:01,800"
+			},
+			"offsets": {
+				"from": 359800,
+				"to": 361800
+			},
+			"text": " from the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,800",
+				"to": "00:06:04,080"
+			},
+			"offsets": {
+				"from": 361800,
+				"to": 364080
+			},
+			"text": " So now, from this account that is offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,080",
+				"to": "00:06:06,160"
+			},
+			"offsets": {
+				"from": 364080,
+				"to": 366160
+			},
+			"text": " I will send money to another account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,160",
+				"to": "00:06:08,440"
+			},
+			"offsets": {
+				"from": 366160,
+				"to": 368440
+			},
+			"text": " so I'm going to show you how to sign a transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,440",
+				"to": "00:06:11,640"
+			},
+			"offsets": {
+				"from": 368440,
+				"to": 371640
+			},
+			"text": " So from that account that is offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,640",
+				"to": "00:06:14,680"
+			},
+			"offsets": {
+				"from": 371640,
+				"to": 374680
+			},
+			"text": " I'm just going to say, \"Scan\" in this, on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,680",
+				"to": "00:06:17,880"
+			},
+			"offsets": {
+				"from": 374680,
+				"to": 377880
+			},
+			"text": " is the transaction that needs to be signed, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,880",
+				"to": "00:06:19,400"
+			},
+			"offsets": {
+				"from": 377880,
+				"to": 379400
+			},
+			"text": " It hasn't been signed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,400",
+				"to": "00:06:20,760"
+			},
+			"offsets": {
+				"from": 379400,
+				"to": 380760
+			},
+			"text": " So on the left, on the off-line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,760",
+				"to": "00:06:25,240"
+			},
+			"offsets": {
+				"from": 380760,
+				"to": 385240
+			},
+			"text": " I'm going to scan this transaction from my PC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,240",
+				"to": "00:06:27,240"
+			},
+			"offsets": {
+				"from": 385240,
+				"to": 387240
+			},
+			"text": " then I'm going to review it on a nice screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,240",
+				"to": "00:06:28,800"
+			},
+			"offsets": {
+				"from": 387240,
+				"to": 388800
+			},
+			"text": " that is a smart screen, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,800",
+				"to": "00:06:31,080"
+			},
+			"offsets": {
+				"from": 388800,
+				"to": 391080
+			},
+			"text": " So if you're in a nice, I can see everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,080",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 391080,
+				"to": 395480
+			},
+			"text": " I can just sign it by typing my pin."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:39,640"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 399640
+			},
+			"text": " And then I'm going to show the signed transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,640",
+				"to": "00:06:41,520"
+			},
+			"offsets": {
+				"from": 399640,
+				"to": 401520
+			},
+			"text": " So on the left, it's the signed transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,520",
+				"to": "00:06:43,400"
+			},
+			"offsets": {
+				"from": 401520,
+				"to": 403400
+			},
+			"text": " that I'm just going to go super quick,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,400",
+				"to": "00:06:45,800"
+			},
+			"offsets": {
+				"from": 403400,
+				"to": 405800
+			},
+			"text": " but I'm just going to stand with my webcam."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,800",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 405800,
+				"to": 407320
+			},
+			"text": " And that's it, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:50,040"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 410040
+			},
+			"text": " So behind the scene, which we didn't react to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,040",
+				"to": "00:06:52,840"
+			},
+			"offsets": {
+				"from": 410040,
+				"to": 412840
+			},
+			"text": " we have a cryptographic libraries, which we invest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,840",
+				"to": "00:06:54,360"
+			},
+			"offsets": {
+				"from": 412840,
+				"to": 414360
+			},
+			"text": " and everything is made to work offline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,360",
+				"to": "00:06:57,560"
+			},
+			"offsets": {
+				"from": 414360,
+				"to": 417560
+			},
+			"text": " so you will never get online with your phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,560",
+				"to": "00:07:00,320"
+			},
+			"offsets": {
+				"from": 417560,
+				"to": 420320
+			},
+			"text": " The Friday key number is close to the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,320",
+				"to": "00:07:05,840"
+			},
+			"offsets": {
+				"from": 420320,
+				"to": 425840
+			},
+			"text": " Just to be super clear, if you are millions of euros"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,840",
+				"to": "00:07:07,960"
+			},
+			"offsets": {
+				"from": 425840,
+				"to": 427960
+			},
+			"text": " or just don't use this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,760",
+				"to": "00:07:12,640"
+			},
+			"offsets": {
+				"from": 429760,
+				"to": 432640
+			},
+			"text": " What's next, we want to use biometric encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,640",
+				"to": "00:07:15,160"
+			},
+			"offsets": {
+				"from": 432640,
+				"to": 435160
+			},
+			"text": " dynamic network, we can talk about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,160",
+				"to": "00:07:17,160"
+			},
+			"offsets": {
+				"from": 435160,
+				"to": 437160
+			},
+			"text": " You can get it on the app store, on the Android,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,160",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 437160,
+				"to": 440480
+			},
+			"text": " or we have an IDK, IDK on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:21,800"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 441800
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,800",
+				"to": "00:07:24,800"
+			},
+			"offsets": {
+				"from": 441800,
+				"to": 444800
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,800",
+				"to": "00:07:27,380"
+			},
+			"offsets": {
+				"from": 444800,
+				"to": 447380
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,380",
+				"to": "00:07:29,960"
+			},
+			"offsets": {
+				"from": 447380,
+				"to": 449960
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,960",
+				"to": "00:07:32,540"
+			},
+			"offsets": {
+				"from": 449960,
+				"to": 452540
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,540",
+				"to": "00:07:35,120"
+			},
+			"offsets": {
+				"from": 452540,
+				"to": 455120
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,120",
+				"to": "00:07:37,860"
+			},
+			"offsets": {
+				"from": 455120,
+				"to": 457860
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,860",
+				"to": "00:07:40,600"
+			},
+			"offsets": {
+				"from": 457860,
+				"to": 460600
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

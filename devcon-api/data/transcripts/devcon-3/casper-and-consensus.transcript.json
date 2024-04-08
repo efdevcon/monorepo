@@ -1,0 +1,4432 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 40000
+			},
+			"text": " [ Background Conversations ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 46000
+			},
+			"text": " >> Hello. Okay, and we are moving on to the panel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " and this panel is about CASPA and distributed consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " My name is Elaine She, I'm a professor at Cornell,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " and I'm very honored to moderate this panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " We have four distinguished panelists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 64000
+			},
+			"text": " and I'm going to begin by having the panelists each spent two minutes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 69000
+			},
+			"text": " to introduce themselves, and also maybe a short,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 73000
+			},
+			"text": " concise statement or pitch that you would like to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 75000
+			},
+			"text": " regarding distributed consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 78000
+			},
+			"text": " And then I'm going to ask questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 81000
+			},
+			"text": " and I'm going to open it up for the audience to ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 85000
+			},
+			"text": " So because we have a big room, for those of you who want to ask questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 87000
+			},
+			"text": " I'm going to ask you to move to the front,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 89000
+			},
+			"text": " so everyone can hear you when you ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " Okay, all right, let's maybe start from Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 97000
+			},
+			"text": " >> Okay, so hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 100000
+			},
+			"text": " Who here does not know my name?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102000
+			},
+			"text": " Okay, I see some hands raised good."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106000
+			},
+			"text": " I'm Vitalik, I'm a chief scientist of the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 113000
+			},
+			"text": " So earlier this morning, I gave an introduction to basically what Ethereum is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 115000
+			},
+			"text": " from a technical standpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " but I also mentioned that in later today I'd be talking a bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 125000
+			},
+			"text": " about some of the projected things that we want to do in the future of Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 130000
+			},
+			"text": " and one of the big threads of research and developments"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 134000
+			},
+			"text": " that we have at the Ethereum Foundation is CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 140000
+			},
+			"text": " So CASPER is this kind of category of proof-of-stake consensus protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 144000
+			},
+			"text": " that we have been thinking about and developing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 150000
+			},
+			"text": " researching over the last few years that are based around a couple of principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 155000
+			},
+			"text": " So one of them is obvious we decentralization and visiting fault tolerance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " which is really a synonym for decentralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " because both words basically mean that one single guy can't screw up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 163000
+			},
+			"text": " and break the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " Then we also have this idea of economic security that I'm sure Vlad will talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " about much more, and he can really credit him for kind of pushing hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 175000
+			},
+			"text": " on putting that at the front of the agenda."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 181000
+			},
+			"text": " So personally, I have been spending my time more specifically on pushing forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186000
+			},
+			"text": " with CASPER the friendly finality gadget or CASPER FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 190000
+			},
+			"text": " So this is one of the two algorithms in the CASPER family,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 196000
+			},
+			"text": " and the goal of CASPER FFG is to be something that's as simple as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 201000
+			},
+			"text": " and as simple to graft onto the existing proof-of-work chains as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 204000
+			},
+			"text": " while at the same time theoretically being a fully-fledged"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 210000
+			},
+			"text": " and provably safe under-async or any visiting fault tolerance in the case of CASPER."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " So the idea is that it takes sort of PBFT like I am saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 220000
+			},
+			"text": " like a like or a way import sub-visiting general's paper like ideas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " and basically translates them into a blockchain context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 228000
+			},
+			"text": " and really simplifies them substantially to the point where,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 231000
+			},
+			"text": " as Chiang Rucho earlier today, the kind of consensus rules,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " slashing addition, fortress rules are fairly simple to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 239000
+			},
+			"text": " So the goal of CASPER FFG is to basically be proof of stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 241000
+			},
+			"text": " that can be implemented fairly quickly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " and then be laid onto any proof-of-work chain today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247000
+			},
+			"text": " with an eye to in-leader stages of the roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " and implementing more advanced things like full proof of stake,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " so getting rid of the proof of work completely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 260000
+			},
+			"text": " as well as things like some of the more advanced features that Vlade wants to include."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 265000
+			},
+			"text": " Yeah, I think thanks for talking."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " Yeah, so I mean I definitely feel like the proof-stake research"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 271000
+			},
+			"text": " that we've been doing over the years has like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " two kind of rectifications, like the economic stuff and the consensus stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " and you know the really kind of, at the end of the day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 282000
+			},
+			"text": " end up being really tightly connected because the limit to our ability to incentivize the nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285000
+			},
+			"text": " is to infer what behavior they actually did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " and the limits there are actually limits to fault attribution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " and that has to do with like the mechanics of the protocol, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " which is why we need, we want not just say prove that it's fault tolerant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " but prove that when there are faults, we can find them, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 302000
+			},
+			"text": " so that we can penalize the faulty nodes, so that not only, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 307000
+			},
+			"text": " can we tolerate faults, but we also disincentivize them, so, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 313000
+			},
+			"text": " and I think that like the both sides of the research have kind of come a long way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 317000
+			},
+			"text": " and actually feed into each other actually in a very kind of tight way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 323000
+			},
+			"text": " To me, like today, the thing that's the most exciting to me is kind of the stuff that I kind of just showed, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " like the fact that I think we can get, like, I mean I'm sure we can get asynchronous safety"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 330000
+			},
+			"text": " with any, like, you know, just like pick your fault tolerance threshold"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 337000
+			},
+			"text": " with an overhead of Nakamoto consensus is I think really cool, and something that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 342000
+			},
+			"text": " is, I think, new technology, and I kind of want to echo what Vitalix said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 346000
+			},
+			"text": " that I think the simplicity of the protocol specification and the simplicity of the proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " is like kind of paramount to our like design philosophy or our design goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357000
+			},
+			"text": " Hello, I am Peter from Parity Technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 365000
+			},
+			"text": " So at Parity we've been implementing, we've been working on consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " and on implementation in particular of consensus for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373000
+			},
+			"text": " and we kind of taken a step-by-step approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 379000
+			},
+			"text": " Now it's somewhat converging to a lot of research that is coming out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 386000
+			},
+			"text": " but we started by separating the validator set, so the piece that decides"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 394000
+			},
+			"text": " who is the current set of validators, so when it might be determined by their stake"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " or by support of other parties, so that would be proof of authority,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 401000
+			},
+			"text": " and then the consensus algorithm itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 408000
+			},
+			"text": " And then we started off with a very kind of simple consensus algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 413000
+			},
+			"text": " based on basically issuing proposals in the rounds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 419000
+			},
+			"text": " so it is somewhat similar to what Vlad talked about at the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " where validators kind of issue blocks sequentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 432000
+			},
+			"text": " and then we added finality, so that was basically a module"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 436000
+			},
+			"text": " that then looks at the blockchain and then any particular point"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 441000
+			},
+			"text": " that was who signed off on with chain, and basically if someone signed off on a chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 444000
+			},
+			"text": " then that contributes to finalizing that particular chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 452000
+			},
+			"text": " And now I think the other things that will be interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 459000
+			},
+			"text": " is introducing new message types, so enabling not only validators to finalize blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 464000
+			},
+			"text": " not only by releasing blocks, but also releasing just simply statements of validity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 469000
+			},
+			"text": " in the particular chain, speeding up how fast the blocks can be finalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 473000
+			},
+			"text": " in these types of algorithms, and of course working more on the validator set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " so more working more on the economic side of those protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 484000
+			},
+			"text": " And the validator set as they are right now, they support providing misbehavior proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 488000
+			},
+			"text": " and those misbehavior proofs can depend on the type of consensus engine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 493000
+			},
+			"text": " so they might be double signing, and then the verification of the misbehavior proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 498000
+			},
+			"text": " happens on chain, and then slashing can be done based on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " Okay, well thank you very much for having me here, my name is Emin Guinsure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 507000
+			},
+			"text": " I'm a professor at Cornell University, I'm also a co-director at the Initiative for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " Cryptocurrencies and Smart Contracts, so there are a couple of things that people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 515000
+			},
+			"text": " should maybe know about me, but the most important one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 521000
+			},
+			"text": " beyond anything I've done in the past, like I did play a pretty early role in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " Cryptocurrencies and something called CARMA, in 2002, 2003, it was one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 532000
+			},
+			"text": " first implemented system with a proof of work minting in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 536000
+			},
+			"text": " But beyond that, some many of you know that I played a role in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 541000
+			},
+			"text": " anticipating the Dow hack and so forth, but the most important thing I think is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 546000
+			},
+			"text": " the following, it's I think partly why I'm so excited to be here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 550000
+			},
+			"text": " this is a very science driven community, and in much of my work what I really"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 554000
+			},
+			"text": " do is science based design with strong guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " So this is a domain where there are many, many, many, many reasonable sounding"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 562000
+			},
+			"text": " protocols that anybody could just come up with at any one time, you know, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 566000
+			},
+			"text": " essentially reach into my gut and I give you something, A sends a message to B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 569000
+			},
+			"text": " sends a message to C, then this happens and that happens, and there's been no"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " shortage of white papers containing these kinds of what we call design by gut,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " or wishful thinking design or sunny day design, and those are fine, they might"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 584000
+			},
+			"text": " work. But as we often find out, the devil is in the details, and what you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 588000
+			},
+			"text": " all demand as a community are actual hard proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 592000
+			},
+			"text": " In the absence of those proofs, these systems typically tend to falter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 597000
+			},
+			"text": " So in every answer that I give to any question is colored by the science driven"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 602000
+			},
+			"text": " design. I'm very much restricted in what I can say publicly and privately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 606000
+			},
+			"text": " because I know I have to just say things that I know to be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 611000
+			},
+			"text": " That has allowed me to actually be very correct in, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 616000
+			},
+			"text": " prescient in some ways, but it also means that that I demand a higher bar for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 621000
+			},
+			"text": " protocol design. And I hope you will too. And I think what we're seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 626000
+			},
+			"text": " happen is Casper is gradually getting to the point where it's actually beginning"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630000
+			},
+			"text": " to reach that far. And we're finally getting to the point where we understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635000
+			},
+			"text": " the workings of the protocol better, and we will hopefully soon have something"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 637000
+			},
+			"text": " ready to roll that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 641000
+			},
+			"text": " Okay, well, thank you so much for the excellent statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 645000
+			},
+			"text": " I'm going to begin by asking a couple questions. And if you would like to ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 650000
+			},
+			"text": " a question, I'm going to ask you to maybe move to the front at the yellow line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 655000
+			},
+			"text": " and then me will be able to pass you the mic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 661000
+			},
+			"text": " Okay, so my first question is regarding the debate between proof of work and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 664000
+			},
+			"text": " proof of stake, right? So we all know proof of work is probably in the longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 669000
+			},
+			"text": " term, not what we want because of the enormous energy waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 674000
+			},
+			"text": " But there have been a lot of debate in the community about the security of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 679000
+			},
+			"text": " proof of work versus the security of proof of stake. You know, some argue proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 684000
+			},
+			"text": " work is more secure, others argue proof of stake is more secure. So for Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " for instance, one reason why you guys are moving to proof of stake, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 694000
+			},
+			"text": " obviously, other than the energy waste, you also want to have an incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 699000
+			},
+			"text": " compatible protocol. But I wonder what you guys think of this question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 703000
+			},
+			"text": " like the security of proof of work versus proof of stake. In particular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 707000
+			},
+			"text": " imagine I'm not a rational player. I just want to attack the system and break the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 712000
+			},
+			"text": " consistency. Do you think the proof of stake approach actually increases the cost of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 715000
+			},
+			"text": " such an attack?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720000
+			},
+			"text": " >> Yeah, sure. I would love to. So firstly, I would say like, okay, proof of work is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725000
+			},
+			"text": " asynchronously safe, right? And it's one of the main differences actually between"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 729000
+			},
+			"text": " proof of stake and proof of work is that proof of stake you can actually achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 733000
+			},
+			"text": " like, kind of finality, right? And like actually decisions that are not going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 738000
+			},
+			"text": " reverted and that are safe in asynchrony. I think that increases security a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 743000
+			},
+			"text": " And I think that in terms of the damage that an attack could do, the fact that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 748000
+			},
+			"text": " blocks can't be reverted arbitrarily really mitigates that. And then additionally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 753000
+			},
+			"text": " the fact that when they do, when the safety failure does happen, the faults are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 757000
+			},
+			"text": " attributable and the nodes who attack can lose money means that the nodes who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 762000
+			},
+			"text": " attacking can operate at a higher cost than nodes who are not attacking, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 767000
+			},
+			"text": " not the case in proof of work. So I think, you know, for those reasons and more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 772000
+			},
+			"text": " like proof of stake is like going to be more expensive to attack and your attack is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 779000
+			},
+			"text": " more limited. Yeah, so let's say that you are just to be politically neutral, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 785000
+			},
+			"text": " government of the Democratic People's Republic of Korea and you want to basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 790000
+			},
+			"text": " take, destroy a proof of work, watch in, right? So what do you do? Step one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 795000
+			},
+			"text": " but one, we could just imagine a very full direct attack, right? So you would get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 799000
+			},
+			"text": " billion dollars and, you know, okay, find some of your people can go without food,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 804000
+			},
+			"text": " but you get a billion dollars and you buy a whole bunch of basics and then you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 809000
+			},
+			"text": " launch a 51% attack on the network. Now, what are the developers going to do in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 813000
+			},
+			"text": " response? Well, they have exactly one strategy which has changed the proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 817000
+			},
+			"text": " work algorithm. So let's say they do that, right? So what happens? This is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " kind of literally the best possible counter move because if you don't do that, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 824000
+			},
+			"text": " they can do what's called a spawn camp attack, which is basically they just keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 828000
+			},
+			"text": " on attacking over and over again and they make your chain permanently useless. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 832000
+			},
+			"text": " you change the proof of work algorithm, which means the A6 become useless, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 837000
+			},
+			"text": " means that, you know, the attacker has lost a billion dollars, but all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 842000
+			},
+			"text": " good guy miners lost all of their money as well, right? So that's one area where"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " proof of work already starts to show weakness because it means that if an attack is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 850000
+			},
+			"text": " going to happen, then there's actually fairly little incentive to be on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 854000
+			},
+			"text": " on the non-attacking side versus being on the attacking side. So then, okay, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 858000
+			},
+			"text": " down to GPUs. Now, let's say you get another billion dollars and you basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 863000
+			},
+			"text": " corner the market on GPUs. Well, what is, okay, you do, you launch another 51%"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 868000
+			},
+			"text": " attack. Now, this time, GPUs are general purpose hardware and so the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 872000
+			},
+			"text": " have no other counter move, right? Basically step three of the game and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 877000
+			},
+			"text": " game over. You know, they can just, you know, the, you know, the North Korean"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 881000
+			},
+			"text": " government could just keep on doing a spawn camping, can keep on the censoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 885000
+			},
+			"text": " transactions, doing 51% attacks. You cannot change the proof of work algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 889000
+			},
+			"text": " again because if you change it again, then well, for the new algorithm, GPUs are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " going to work for it as well. So this kind of puts an upper bound on basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 900000
+			},
+			"text": " the amount of damage that a proof of work chain can take, which basically means"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 905000
+			},
+			"text": " that a proof of work chain has, in order to survive, has to make this cost of attack"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 910000
+			},
+			"text": " very high, which is basically this kind of doctrine of, you know, like survival"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 914000
+			},
+			"text": " through a through domination and massive hash power. Now let's look at proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 919000
+			},
+			"text": " stake. Okay, so, you know, like Uncle Kim buys up 100 million dollars of ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 924000
+			},
+			"text": " then, you know, it doesn't, okay, fine, you know, BFT, 33, like 34%"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 930000
+			},
+			"text": " bounds, so you can definitely launch a 34% attack or a 51% attack. So, okay, you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 935000
+			},
+			"text": " launch an attack and let's say this breaks finality or this censoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 939000
+			},
+			"text": " transactions for a while. Well, guess what? The economics of CASPER are designed in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944000
+			},
+			"text": " such a way that if you do this, then worse comes to worst, the community can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " coordinate a hard work, so this is a totally legitimate move because, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 951000
+			},
+			"text": " even the proof of work people agree that changing the proof of work is a legitimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 956000
+			},
+			"text": " move to counter 51% attack and that's also a hard work. So the community does a hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 960000
+			},
+			"text": " work to hard work away from the attack. Now the difference here is, first of all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 965000
+			},
+			"text": " the attacker actually does lose most or all of the money they use to attack, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 971000
+			},
+			"text": " second, anyone who did not participate in the attack does not lose any money. So, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 975000
+			},
+			"text": " step two of the game. Basically, three days of chaos happened, the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 979000
+			},
+			"text": " recovers, there's a hard work. Well, okay, buy up another 100 million dollars, do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 983000
+			},
+			"text": " another attack. Okay, three days of chaos, community recovers. Do another,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 987000
+			},
+			"text": " buy up another 100 million dollars of ether, do another attack. Well, soon enough, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 991000
+			},
+			"text": " community is going to realize that this is what's happening. Eventually, Uncle"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 995000
+			},
+			"text": " Kim is going to run out of money, and so they're just going to sit quietly, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 998000
+			},
+			"text": " people are going to start buying up ether, and each and every one of these attacks is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1003000
+			},
+			"text": " going to keep increasing the price of ether because it's basically taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " 100 million dollars of ether off the market each time and permanently destroying it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1012000
+			},
+			"text": " So, eventually, you run out of money and the community wins. So this is kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1017000
+			},
+			"text": " basically, the moral of the story is that because in proof of stake, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " stake in coins are defined in, or the assets used to stake are defined inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1027000
+			},
+			"text": " the system, the result basically is that you can make these rules that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " a huge amount of flexibility to make these rules that are basically extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1036000
+			},
+			"text": " lopsided in the defender's favor. And that basically means that, Nook, if, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1040000
+			},
+			"text": " if the attacker has some amount of money, then they can basically break the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1044000
+			},
+			"text": " maximum limited amount of times. Now, one really nice goal for this is, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1048000
+			},
+			"text": " to see if we can actually formally prove, you know, like, the balance on"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1052000
+			},
+			"text": " amount of money you have divided by the number of times you can break, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1056000
+			},
+			"text": " force the community to hard work, which would, by itself, be a very interesting challenge, but, at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1059000
+			},
+			"text": " that way itself shows the asymmetry."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1065000
+			},
+			"text": " So, to pile on both the blood and the Nutalix responses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1069000
+			},
+			"text": " I think what's going on here is fairly straightforward. With proof of work, we're at"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1074000
+			},
+			"text": " the mercy of hardware trends. That's it. That's it. We're, the control of the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1079000
+			},
+			"text": " of the system is out of our hands. As trends change, as people invent new"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1086000
+			},
+			"text": " technologies with, let's say, with various process level tricks to get to pack more"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1091000
+			},
+			"text": " transistors, to pack better hashers into the same dye area. As people come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1097000
+			},
+			"text": " better heat cooling, et cetera, to tricks, we're going to see hash power shift hands,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1102000
+			},
+			"text": " and we will have absolutely nothing in our hands. No knobs we can twist to control"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1107000
+			},
+			"text": " what happens. I think everything that you heard from Vitalik was exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1112000
+			},
+			"text": " fundamentally rooted at that cost. And with proof of stake, we have the ability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1116000
+			},
+			"text": " actually put independent, individual knobs on each and every one of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1122000
+			},
+			"text": " participants in the system. This is huge. It gives us an additional multiple levels,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1126000
+			},
+			"text": " multiple dimensions of control over the system. It also makes the problem much"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1132000
+			},
+			"text": " more difficult. That's why there are multiple CASper variants. That's why it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1136000
+			},
+			"text": " actually hard to figure out exactly what you should do because the design"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1142000
+			},
+			"text": " space is so big. And so if you could conquer the design challenge, if you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1147000
+			},
+			"text": " come up with a protocol whose properties you can prove, then the potential for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1154000
+			},
+			"text": " having a secure protocol is much higher for proof of stake than for proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1160000
+			},
+			"text": " Yeah, I think, as was mentioned previously, with proof of stake, the distribution of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1166000
+			},
+			"text": " control and of stakers can be much wider. So anyone that has any sort of use of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1172000
+			},
+			"text": " the network can submit a stake and in a way be invested in the security of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1177000
+			},
+			"text": " network. And there is much less overhead to hold any stake in the network rather than"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1181000
+			},
+			"text": " having to buy a miner and mine on the network or buying a share in a mining"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1188000
+			},
+			"text": " company. It's a much more direct connection to the protocol itself. But then at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1194000
+			},
+			"text": " same time, I think another problem that can arise is if we have many"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:20:01,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1201000
+			},
+			"text": " participants in the consensus, it becomes very expensive to run the consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1201000,
+				"to": 1205000
+			},
+			"text": " process amongst many participants. So a lot of systems have something like a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1209000
+			},
+			"text": " delegated proof of stake where only a few parties actually participate in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1213000
+			},
+			"text": " consensus while everyone is kind of just delegating to someone else and that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1221000
+			},
+			"text": " potentially lead to issues with very few parties kind of having a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1226000
+			},
+			"text": " control over the network. So I think an important thing that we need to think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1231000
+			},
+			"text": " is how to kind of manage this balance between distributing the power to every"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:40,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1240000
+			},
+			"text": " single person that wants to have it and maintaining security or being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1240000,
+				"to": 1245000
+			},
+			"text": " run this consensus in a net efficient way. Just a really quick add-on. Even if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1248000
+			},
+			"text": " concentration of proof of work with proof of work is going to be the same, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1251000
+			},
+			"text": " fact that there is lower barriers of entry in proof of stake will be that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1256000
+			},
+			"text": " behaves in a more competitive way. So even though I totally agree, I think like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1260000
+			},
+			"text": " stake is going to be less concentrated than work, it's going to be more competitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:04,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1264000
+			},
+			"text": " even if it's the same concentration. Because of the liquid. Because of the lower barriers to entry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1264000,
+				"to": 1270000
+			},
+			"text": " Yes, I really like our points. Let's take a question from the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1278000
+			},
+			"text": " Is there concern for Link Rot with a CASPER implementation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1282000
+			},
+			"text": " What do you mean by Link Rot?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1286000
+			},
+			"text": " Yeah, it's Link Rot like something maybe is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1291000
+			},
+			"text": " a mistake and placed in the chain, validated and placed in the chain. But the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:39,000"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1299000
+			},
+			"text": " chain that it's representing is no longer exists after some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1299000,
+				"to": 1303000
+			},
+			"text": " Do you mean by exist? Can no longer be downloaded or do you mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:49,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1309000
+			},
+			"text": " Right, yeah. Like some of the people who were part of this chain that was then used to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1309000,
+				"to": 1315000
+			},
+			"text": " be placed in the main chain that doesn't exist anymore or the users can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1318000
+			},
+			"text": " be used to be placed in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:01,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1321000
+			},
+			"text": " So you're describing a scheme that involves multiple chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,000",
+				"to": "00:22:03,000"
+			},
+			"offsets": {
+				"from": 1321000,
+				"to": 1323000
+			},
+			"text": " So is this a question about sharding?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1323000,
+				"to": 1325000
+			},
+			"text": " Yeah, I think so."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1330000
+			},
+			"text": " Yeah, okay. Just to kind of fast forward ahead about one hour before we"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1335000
+			},
+			"text": " fast rewind back to here, I guess, the answer is that there definitely is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1340000
+			},
+			"text": " are in general worries that if the system gets sharded to the point we are a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1345000
+			},
+			"text": " important thing to do is to make sure that there's a lot of people who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1350000
+			},
+			"text": " in the chain that are in the chain that are in the chain that are in the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:35,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1355000
+			},
+			"text": " that are in the chain that are in the chain that are in the chain that are in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1355000,
+				"to": 1360000
+			},
+			"text": " the chain that are in the chain that are in the chain that are in the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1365000
+			},
+			"text": " that are in the chain that are in the chain that are in the chain that are in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1369000
+			},
+			"text": " the chain that are in the chain that are in the chain that are in the chain that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1374000
+			},
+			"text": " are in the chain that are in the chain that are in the chain that are in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:22:57,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1377000
+			},
+			"text": " So that's a question that I'm going to talk about."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1377000,
+				"to": 1379000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1384000
+			},
+			"text": " Okay, we can take maybe one more question from the audience and hopefully I get to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1386000
+			},
+			"text": " ask my last question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1389000
+			},
+			"text": " Okay, here's a question sort of on the economic mechanics of the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1391000
+			},
+			"text": " in proof-of-work and proof-of-work mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1394000
+			},
+			"text": " So I mean, obviously, we're now proof-of-work and in Bitcoin, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1398000
+			},
+			"text": " you're just doing a bunch of hashes or computing a hash over the DAC, but say if you had"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1403000
+			},
+			"text": " a proof-of-work like, you know, if you could somehow construct a proof-of-work that wasn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1407000
+			},
+			"text": " pre-minable, that solved an interesting problem like protein folding or traveling"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1413000
+			},
+			"text": " salesmen, then I think on proof-of-of-work you have this nice benefit, that nicer"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1416000
+			},
+			"text": " benefit that you kind of lose in proof-of-work mistake that you can say, look,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1421000
+			},
+			"text": " here we have Moore's Law and maximum processing power, sorry, the maximum"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1425000
+			},
+			"text": " manufacturing capacity in the world and say, you know, in the next year, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:47,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1427000
+			},
+			"text": " the hash rate could only grow up to this point, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1427000,
+				"to": 1432000
+			},
+			"text": " If the hash rate grows beyond that point, then the price remains the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:56,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1436000
+			},
+			"text": " And if the hash rate is real down that point, you know, it means that, like, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1436000,
+				"to": 1442000
+			},
+			"text": " growth of the hash chain's power has exceeded the Moore's Law curve, so, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1445000
+			},
+			"text": " like, there has been more economic interest in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:10,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1450000
+			},
+			"text": " And, you know, you can actually, you can have, like, a total upper barreled, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1450000,
+				"to": 1456000
+			},
+			"text": " if 100% of all, you know, new processors end up being used to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1459000
+			},
+			"text": " for-to-proof work, obviously you can't have that because that makes less"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1463000
+			},
+			"text": " versus society invaluable and therefore, like, I mean, there's a good balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1466000
+			},
+			"text": " there's like about, like, there's a parity balance there that you can't compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1472000
+			},
+			"text": " And proof-of-of-of-stake, this isn't the case because, like, the proof is, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1475000
+			},
+			"text": " like, say that we have, okay, 10% of either can be staked on any one time or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1479000
+			},
+			"text": " like that, the security chain from one one to the, from one one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1485000
+			},
+			"text": " from one one to the other really depends on, like, the chain's total value come over,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1492000
+			},
+			"text": " like, the ratio of that over the world's processing power parity, right, the world's GDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:57,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1497000
+			},
+			"text": " So, if the world's GDP is way high and the chain becomes much more valuable, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1497000,
+				"to": 1502000
+			},
+			"text": " then, like, because it's like, like, the price is really a lagging indicator of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1507000
+			},
+			"text": " Somebody could come in and, like, end up having a 51% attack on the chain because it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:11,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1511000
+			},
+			"text": " or have disproportionate stake in the chain because it would be valuable for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1511000,
+				"to": 1517000
+			},
+			"text": " And if they do, either way, like, also, if they do buy a lot of stake to do a 51% attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1522000
+			},
+			"text": " they could short, right, right before they do the attack, which makes it cheaper or perhaps worthwhile."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1527000
+			},
+			"text": " So, how do you sort of balance, you know, like, how do you see, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1530000
+			},
+			"text": " during the mechanism of the science, so that you balance these incentives, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1533000
+			},
+			"text": " people can't, like, you make it hard, like, expensive to short, right before doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:39,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1539000
+			},
+			"text": " you do an attack and, like, keep more predictable bounds on, like, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1539000,
+				"to": 1543000
+			},
+			"text": " the amount of, how the consensus behavior can change from one more to the next."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1549000
+			},
+			"text": " So, let me, let me tackle the first part of this question, which had to do with useful proofs of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1553000
+			},
+			"text": " So, that's an idea that comes up, you know, over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:25:55,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1555000
+			},
+			"text": " I've seen it in many different forms."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1555000,
+				"to": 1561000
+			},
+			"text": " So, first of all, coin designers of different kinds typically shun this idea for a very simple reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:09,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1569000
+			},
+			"text": " The main reason they cite is, if it was the case that minting Bitcoin corresponded to doing, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,000",
+				"to": "00:26:15,000"
+			},
+			"offsets": {
+				"from": 1569000,
+				"to": 1575000
+			},
+			"text": " 50,000 protein folds, and we know the current cost of doing one protein fold on Amazon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1575000,
+				"to": 1581000
+			},
+			"text": " Turk, or whatever, that would anchor the price of a Bitcoin, and people don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:26,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1586000
+			},
+			"text": " They wanted to go to the moon, and if it is the case that a protein fold is 5 cents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1586000,
+				"to": 1592000
+			},
+			"text": " then you are stuck with a Bitcoin price being 5 times 50,000, 5 cents times 50,000,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:36,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1596000
+			},
+			"text": " at least in people's minds, and that would create some kind of a price barrier."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1596000,
+				"to": 1599000
+			},
+			"text": " So, you see coin designers shunning this idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1607000
+			},
+			"text": " In response, academics have looked at this, and they've come up with different ideas for using useful proofs of useful work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1613000
+			},
+			"text": " using things like secure hardware to show that this person actually dedicated their CPU"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:26:58,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1618000
+			},
+			"text": " to doing something of importance to themselves, and it's up to you what that was."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1618000,
+				"to": 1621000
+			},
+			"text": " And there's some interesting work coming out of academia on that front."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1625000
+			},
+			"text": " So, that maybe goes towards addressing that issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:11,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1631000
+			},
+			"text": " The second part of your question, I think, had to do with what happens when somebody is shorting and attacking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,000",
+				"to": "00:27:18,000"
+			},
+			"offsets": {
+				"from": 1631000,
+				"to": 1638000
+			},
+			"text": " and now analyzing those kinds of situations is always difficult, but what can one do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,000",
+				"to": "00:27:26,000"
+			},
+			"offsets": {
+				"from": 1638000,
+				"to": 1646000
+			},
+			"text": " Essentially, we can reason about coins in the system, and we can model the amount of damage one can do to the external value of the coin as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,000",
+				"to": "00:27:32,000"
+			},
+			"offsets": {
+				"from": 1646000,
+				"to": 1652000
+			},
+			"text": " And we haven't seen much analysis of that kind, but I hope that moving forward, we will see people take that into account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1652000,
+				"to": 1657000
+			},
+			"text": " because the coins, their number doesn't matter. What matters is the external market value."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:46,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1666000
+			},
+			"text": " In terms of shorting, if the value is going away completely, then you will not be able to close your chart anyways."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1666000,
+				"to": 1673000
+			},
+			"text": " But in terms of purchasing power, this is also something that in general grows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:28:02,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1682000
+			},
+			"text": " and we could argue that it might be growing at a similar pace to advances in computing hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,000",
+				"to": "00:28:09,000"
+			},
+			"offsets": {
+				"from": 1682000,
+				"to": 1689000
+			},
+			"text": " Okay, let's take one more question from the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,000",
+				"to": "00:28:15,000"
+			},
+			"offsets": {
+				"from": 1692000,
+				"to": 1695000
+			},
+			"text": " Okay, just a quick question about economic finality."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,000",
+				"to": "00:28:20,000"
+			},
+			"offsets": {
+				"from": 1695000,
+				"to": 1700000
+			},
+			"text": " You mentioned that an attacker might buy coins, might differ in lunch and attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,000",
+				"to": "00:28:25,000"
+			},
+			"offsets": {
+				"from": 1700000,
+				"to": 1705000
+			},
+			"text": " and then the community might realize it's an attack and slash him and out for him and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,000",
+				"to": "00:28:28,000"
+			},
+			"offsets": {
+				"from": 1705000,
+				"to": 1708000
+			},
+			"text": " But do you think that commitment to attack you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,000",
+				"to": "00:28:34,000"
+			},
+			"offsets": {
+				"from": 1708000,
+				"to": 1714000
+			},
+			"text": " I'll send an attacker for a step. I redo my attack. I do it again. I do it again. I do it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,000",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1714000,
+				"to": 1720000
+			},
+			"text": " Some commitment to attack might be community destroying, and also, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:44,000"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1724000
+			},
+			"text": " incentivize people to sell their coins and leave the protocol?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,000",
+				"to": "00:28:50,000"
+			},
+			"offsets": {
+				"from": 1724000,
+				"to": 1730000
+			},
+			"text": " Well, no, because, like as I said, basically, I believe that if you can make CASPer work well enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,000",
+				"to": "00:28:56,000"
+			},
+			"offsets": {
+				"from": 1730000,
+				"to": 1736000
+			},
+			"text": " then attacks will make the ether price go up. So a commitment to attack will incentivize people to buy, buy, buy."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,000",
+				"to": "00:29:02,000"
+			},
+			"offsets": {
+				"from": 1736000,
+				"to": 1742000
+			},
+			"text": " That basically, in my view, is the cryptoeconomic holy grail."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,000",
+				"to": "00:29:06,000"
+			},
+			"offsets": {
+				"from": 1742000,
+				"to": 1746000
+			},
+			"text": " I agree with B here. I think actually the question you're asking is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,000",
+				"to": "00:29:09,000"
+			},
+			"offsets": {
+				"from": 1746000,
+				"to": 1749000
+			},
+			"text": " if someone commits hard enough to attack you, can they demoralize everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,000",
+				"to": "00:29:15,000"
+			},
+			"offsets": {
+				"from": 1749000,
+				"to": 1755000
+			},
+			"text": " and have them no longer believe the story that we will just sell the coins to the attacker at higher and higher prices?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,000",
+				"to": "00:29:20,000"
+			},
+			"offsets": {
+				"from": 1755000,
+				"to": 1760000
+			},
+			"text": " And the question, whether people will be demoralized or not, is kind of really about, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,000",
+				"to": "00:29:26,000"
+			},
+			"offsets": {
+				"from": 1760000,
+				"to": 1766000
+			},
+			"text": " there are kind of states of knowledge and confidence in the kind of belief that you can't conduct this attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,000",
+				"to": "00:29:32,000"
+			},
+			"offsets": {
+				"from": 1766000,
+				"to": 1772000
+			},
+			"text": " you know, over and over again if it costs you like a significant amount every time."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,000",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1772000,
+				"to": 1776000
+			},
+			"text": " And I think if people really believe that, then it shouldn't make you lose confidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:40,000"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1780000
+			},
+			"text": " You should know that, okay, this is only going to happen at finite and small number of times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,000",
+				"to": "00:29:44,000"
+			},
+			"offsets": {
+				"from": 1780000,
+				"to": 1784000
+			},
+			"text": " and therefore you won't just dump your coins in response to the fear of the persistent attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,000",
+				"to": "00:29:51,000"
+			},
+			"offsets": {
+				"from": 1784000,
+				"to": 1791000
+			},
+			"text": " Basically, you know, can someone commit to attacking the protocol and therefore demoralize their theory and community"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,000",
+				"to": "00:29:56,000"
+			},
+			"offsets": {
+				"from": 1791000,
+				"to": 1796000
+			},
+			"text": " to the point where the price goes so low that, like, it just, it just goes to zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:56,000",
+				"to": "00:30:00,000"
+			},
+			"offsets": {
+				"from": 1796000,
+				"to": 1800000
+			},
+			"text": " I mean, in theory, but I don't think it's very likely."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,000",
+				"to": "00:30:04,000"
+			},
+			"offsets": {
+				"from": 1800000,
+				"to": 1804000
+			},
+			"text": " Okay, we have time for one last question."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,000",
+				"to": "00:30:08,000"
+			},
+			"offsets": {
+				"from": 1804000,
+				"to": 1808000
+			},
+			"text": " One more question."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,000",
+				"to": "00:30:14,000"
+			},
+			"offsets": {
+				"from": 1808000,
+				"to": 1814000
+			},
+			"text": " Hey, my understanding with CASPER is that if I have been offline for a while and then I come back online,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,000",
+				"to": "00:30:19,000"
+			},
+			"offsets": {
+				"from": 1814000,
+				"to": 1819000
+			},
+			"text": " I need the Genesis block for choice rule and the current validator set."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,000",
+				"to": "00:30:24,000"
+			},
+			"offsets": {
+				"from": 1819000,
+				"to": 1824000
+			},
+			"text": " So I was wondering if you could talk a bit about sort of the attack surface of that validator set being subjective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,000",
+				"to": "00:30:28,000"
+			},
+			"offsets": {
+				"from": 1824000,
+				"to": 1828000
+			},
+			"text": " and if there's ways to mitigate that with CASPER when we switch over."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,000",
+				"to": "00:30:32,000"
+			},
+			"offsets": {
+				"from": 1828000,
+				"to": 1832000
+			},
+			"text": " But you only have 55 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,000",
+				"to": "00:30:36,000"
+			},
+			"offsets": {
+				"from": 1832000,
+				"to": 1836000
+			},
+			"text": " Yeah, you don't use the Genesis block, you use something more recent."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,000",
+				"to": "00:30:42,000"
+			},
+			"offsets": {
+				"from": 1836000,
+				"to": 1842000
+			},
+			"text": " Yeah, like, the idea is, right, that there is this kind of, like, a withdrawal, a revert limit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,000",
+				"to": "00:30:48,000"
+			},
+			"offsets": {
+				"from": 1842000,
+				"to": 1848000
+			},
+			"text": " and so, like, there might be some period, like, say, four months, and as long as you log in within that period of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,000",
+				"to": "00:30:53,000"
+			},
+			"offsets": {
+				"from": 1848000,
+				"to": 1853000
+			},
+			"text": " then you would authenticate the current state based on the information that you know given the previous state"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,000",
+				"to": "00:30:56,000"
+			},
+			"offsets": {
+				"from": 1853000,
+				"to": 1856000
+			},
+			"text": " that you were aware of at the last time when you logged off."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,000",
+				"to": "00:31:05,000"
+			},
+			"offsets": {
+				"from": 1856000,
+				"to": 1865000
+			},
+			"text": " So if you log on for a two-long period of time, then, like, it does become possible to make attacks where those attacks are not paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,000",
+				"to": "00:31:16,000"
+			},
+			"offsets": {
+				"from": 1865000,
+				"to": 1876000
+			},
+			"text": " Like, we are those attacks can happen without the attack or paying penalties, but if you log on more frequently, then that does not happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,000",
+				"to": "00:31:22,000"
+			},
+			"offsets": {
+				"from": 1876000,
+				"to": 1882000
+			},
+			"text": " Okay, all right. So let's thank the panelists for an excellent panel, and thank you very much for your participation."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:22,000",
+				"to": "00:31:26,000"
+			},
+			"offsets": {
+				"from": 1882000,
+				"to": 1886000
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:26,000",
+				"to": "00:31:32,000"
+			},
+			"offsets": {
+				"from": 1886000,
+				"to": 1892000
+			},
+			"text": " Our next speaker is Jason Toich, introducing the TrueBit Virtual Machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,000",
+				"to": "00:31:34,000"
+			},
+			"offsets": {
+				"from": 1892000,
+				"to": 1894000
+			},
+			"text": " Thank you, panelists."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,000",
+				"to": "00:31:53,000"
+			},
+			"offsets": {
+				"from": 1895000,
+				"to": 1913000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,000",
+				"to": "00:31:55,000"
+			},
+			"offsets": {
+				"from": 1913000,
+				"to": 1915000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

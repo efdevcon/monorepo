@@ -1,0 +1,1902 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4160
+			},
+			"text": " So I want to talk to you about InCUBE, the minimal application client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,160",
+				"to": "00:00:08,840"
+			},
+			"offsets": {
+				"from": 4160,
+				"to": 8840
+			},
+			"text": " So it's a slotted presentation and it's now my fifth DevCon presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,840",
+				"to": "00:00:13,120"
+			},
+			"offsets": {
+				"from": 8840,
+				"to": 13120
+			},
+			"text": " I'm sending since DevCon Zero, so it's great to see how this group is getting bigger and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,120",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 13120,
+				"to": 15360
+			},
+			"text": " bigger and bigger each year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:18,960"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 18960
+			},
+			"text": " So what is the problem we are trying to solve this InCUBE?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,960",
+				"to": "00:00:24,200"
+			},
+			"offsets": {
+				"from": 18960,
+				"to": 24200
+			},
+			"text": " So if you want to connect something to the chain, you need to run a client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,200",
+				"to": "00:00:28,800"
+			},
+			"offsets": {
+				"from": 24200,
+				"to": 28800
+			},
+			"text": " And you can either run a full client, which leads a lot of storage, a lot of bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,800",
+				"to": "00:00:33,840"
+			},
+			"offsets": {
+				"from": 28800,
+				"to": 33840
+			},
+			"text": " a lot of computation, or you can at least say you run a prune fault client, which this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,840",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 33840,
+				"to": 39000
+			},
+			"text": " should just say you throw away all the past states, it just keeps the current states and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 40000
+			},
+			"text": " the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,200"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43200
+			},
+			"text": " This is still considered to be a full node, of course, because of all the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,200",
+				"to": "00:00:44,960"
+			},
+			"offsets": {
+				"from": 43200,
+				"to": 44960
+			},
+			"text": " available to recreate all the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,960",
+				"to": "00:00:50,760"
+			},
+			"offsets": {
+				"from": 44960,
+				"to": 50760
+			},
+			"text": " But of course, if you're thinking about IoT devices or mobile, this is hard to watch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,760",
+				"to": "00:00:52,720"
+			},
+			"offsets": {
+				"from": 50760,
+				"to": 52720
+			},
+			"text": " So people thought about the like-lined as a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,720",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 52720,
+				"to": 57280
+			},
+			"text": " So when we created the theorem, we made it very like-lined friendly with slocks and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:01:00,040"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 60040
+			},
+			"text": " worker trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,040",
+				"to": "00:01:04,920"
+			},
+			"offsets": {
+				"from": 60040,
+				"to": 64920
+			},
+			"text": " But still, this does not run on an IoT device, or microcontroller, or a car."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,920",
+				"to": "00:01:08,840"
+			},
+			"offsets": {
+				"from": 64920,
+				"to": 68840
+			},
+			"text": " This is not only way too much data, like at least about 50 megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,840",
+				"to": "00:01:11,360"
+			},
+			"offsets": {
+				"from": 68840,
+				"to": 71360
+			},
+			"text": " The main problem is actually the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,360",
+				"to": "00:01:14,800"
+			},
+			"offsets": {
+				"from": 71360,
+				"to": 74800
+			},
+			"text": " So we did some feasibility studies for German common manufacturers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,800",
+				"to": "00:01:19,080"
+			},
+			"offsets": {
+				"from": 74800,
+				"to": 79080
+			},
+			"text": " There's no way we ever put a like-line in the car because of the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,080",
+				"to": "00:01:23,760"
+			},
+			"offsets": {
+				"from": 79080,
+				"to": 83760
+			},
+			"text": " So what people do then do, they usually just use a remote client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,760",
+				"to": "00:01:27,680"
+			},
+			"offsets": {
+				"from": 83760,
+				"to": 87680
+			},
+			"text": " The remote client has a problem, it's not trust-free."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,680",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 87680,
+				"to": 88680
+			},
+			"text": " It's like in Fura."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:33,440"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 93440
+			},
+			"text": " And in Fura is nice, it's a really helpful, it gets you started, but it's really not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,440",
+				"to": "00:01:34,440"
+			},
+			"offsets": {
+				"from": 93440,
+				"to": 94440
+			},
+			"text": " a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,440",
+				"to": "00:01:40,360"
+			},
+			"offsets": {
+				"from": 94440,
+				"to": 100360
+			},
+			"text": " So we worked on some simple call in CUBE, which gives you the convenience of in Fura"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,360",
+				"to": "00:01:45,920"
+			},
+			"offsets": {
+				"from": 100360,
+				"to": 105920
+			},
+			"text": " or remote-lined, but the same security and decentralization as a like-lined."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,920",
+				"to": "00:01:48,720"
+			},
+			"offsets": {
+				"from": 105920,
+				"to": 108720
+			},
+			"text": " So I will try to explain you how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,720",
+				"to": "00:01:51,160"
+			},
+			"offsets": {
+				"from": 108720,
+				"to": 111160
+			},
+			"text": " The first is a registry contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,160",
+				"to": "00:01:56,920"
+			},
+			"offsets": {
+				"from": 111160,
+				"to": 116920
+			},
+			"text": " And if you want to run a node similar to a server, you register there and pay a deficit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,920",
+				"to": "00:02:01,280"
+			},
+			"offsets": {
+				"from": 116920,
+				"to": 121280
+			},
+			"text": " This deficit is something you will lose in case you cheat or you lie."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,280",
+				"to": "00:02:05,280"
+			},
+			"offsets": {
+				"from": 121280,
+				"to": 125280
+			},
+			"text": " So as a client, when you bootstrap this in CUBE client, and it started for the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,280",
+				"to": "00:02:10,440"
+			},
+			"offsets": {
+				"from": 125280,
+				"to": 130440
+			},
+			"text": " time, you get the current list of the register to know which nodes or servers are available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,440",
+				"to": "00:02:14,200"
+			},
+			"offsets": {
+				"from": 130440,
+				"to": 134200
+			},
+			"text": " and after that you can update or keep it updated yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,200",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 134200,
+				"to": 136680
+			},
+			"text": " So this is the starting point."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:18,120"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 138120
+			},
+			"text": " So then how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,120",
+				"to": "00:02:24,040"
+			},
+			"offsets": {
+				"from": 138120,
+				"to": 144040
+			},
+			"text": " As a client, you choose one of those nodes, we call node B, and give your RPC request."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 148040
+			},
+			"text": " Very similar to a like-lined with an open RPC interface, and what you get back is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:29,680"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 149680
+			},
+			"text": " miracle proof and a block header."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,680",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 149680,
+				"to": 151280
+			},
+			"text": " That's very similar to the like-lined."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:33,480"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 153480
+			},
+			"text": " You can do the verification on your own."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,480",
+				"to": "00:02:36,680"
+			},
+			"offsets": {
+				"from": 153480,
+				"to": 156680
+			},
+			"text": " But the problem is how do you know if the block header is correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,680",
+				"to": "00:02:40,600"
+			},
+			"offsets": {
+				"from": 156680,
+				"to": 160600
+			},
+			"text": " The like-lined synchronizes all the block headers to get to the most current one, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,600",
+				"to": "00:02:42,040"
+			},
+			"offsets": {
+				"from": 160600,
+				"to": 162040
+			},
+			"text": " the CUBE client doesn't do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,040",
+				"to": "00:02:45,360"
+			},
+			"offsets": {
+				"from": 162040,
+				"to": 165360
+			},
+			"text": " The CUBE client is not part of this peer-to-peer network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,360",
+				"to": "00:02:48,360"
+			},
+			"offsets": {
+				"from": 165360,
+				"to": 168360
+			},
+			"text": " So how does it get this information?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,360",
+				"to": "00:02:55,120"
+			},
+			"offsets": {
+				"from": 168360,
+				"to": 175120
+			},
+			"text": " So what it does is, not always coming back here, it is asking node B to get signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,120",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 175120,
+				"to": 181000
+			},
+			"text": " from node A and C. The important part here is the client is choosing who should sign the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:06,900"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 186900
+			},
+			"text": " block hash, not node B. So node A and C in this picture, they would then sign a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,900",
+				"to": "00:03:12,640"
+			},
+			"offsets": {
+				"from": 186900,
+				"to": 192640
+			},
+			"text": " hash, and node B would give this back as part of the response."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,640",
+				"to": "00:03:15,320"
+			},
+			"offsets": {
+				"from": 192640,
+				"to": 195320
+			},
+			"text": " So now as the client, you have to follow, you have to miracle proof the block header"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,320",
+				"to": "00:03:17,440"
+			},
+			"offsets": {
+				"from": 195320,
+				"to": 197440
+			},
+			"text": " and sign block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,440",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 197440,
+				"to": 202000
+			},
+			"text": " You can know they are right by the, or measure the security of it by how much deficit is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:23,600"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 203600
+			},
+			"text": " behind those block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,600",
+				"to": "00:03:27,920"
+			},
+			"offsets": {
+				"from": 203600,
+				"to": 207920
+			},
+			"text": " You can say you want to have one, two, or ten or a hundred from 1,000 deficit, 1 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,920",
+				"to": "00:03:29,080"
+			},
+			"offsets": {
+				"from": 207920,
+				"to": 209080
+			},
+			"text": " deficit, doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,080",
+				"to": "00:03:30,400"
+			},
+			"offsets": {
+				"from": 209080,
+				"to": 210400
+			},
+			"text": " You choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,400",
+				"to": "00:03:33,080"
+			},
+			"offsets": {
+				"from": 210400,
+				"to": 213080
+			},
+			"text": " And the nice thing now is how do we make it secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,080",
+				"to": "00:03:36,480"
+			},
+			"offsets": {
+				"from": 213080,
+				"to": 216480
+			},
+			"text": " In the EVM, there's one upcode which gives you information about the path."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,480",
+				"to": "00:03:37,960"
+			},
+			"offsets": {
+				"from": 216480,
+				"to": 217960
+			},
+			"text": " This is the block hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,960",
+				"to": "00:03:41,920"
+			},
+			"offsets": {
+				"from": 217960,
+				"to": 221920
+			},
+			"text": " You can retrieve the information, the last 256 block hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,920",
+				"to": "00:03:46,840"
+			},
+			"offsets": {
+				"from": 221920,
+				"to": 226840
+			},
+			"text": " So in the case, node A or C would lie, node B would figure this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,840",
+				"to": "00:03:51,880"
+			},
+			"offsets": {
+				"from": 226840,
+				"to": 231880
+			},
+			"text": " This is the wrong block hash, and he can go directly inside the small contract and convict"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,880",
+				"to": "00:03:53,440"
+			},
+			"offsets": {
+				"from": 231880,
+				"to": 233440
+			},
+			"text": " them and get that deficit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,440",
+				"to": "00:03:55,840"
+			},
+			"offsets": {
+				"from": 233440,
+				"to": 235840
+			},
+			"text": " So node B acts like a watchdog."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,840",
+				"to": "00:03:58,880"
+			},
+			"offsets": {
+				"from": 235840,
+				"to": 238880
+			},
+			"text": " So A and C, they have no incentive to lie because if they would, they would just lose"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,880",
+				"to": "00:04:00,440"
+			},
+			"offsets": {
+				"from": 238880,
+				"to": 240440
+			},
+			"text": " their deficit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,440",
+				"to": "00:04:04,800"
+			},
+			"offsets": {
+				"from": 240440,
+				"to": 244800
+			},
+			"text": " So this is a client, doesn't need to be part of the split-to-penet work, but still have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,800",
+				"to": "00:04:09,400"
+			},
+			"offsets": {
+				"from": 244800,
+				"to": 249400
+			},
+			"text": " the safety and can measure how much safety is security have by how much deficit is behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,400",
+				"to": "00:04:10,400"
+			},
+			"offsets": {
+				"from": 249400,
+				"to": 250400
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,400",
+				"to": "00:04:15,360"
+			},
+			"offsets": {
+				"from": 250400,
+				"to": 255360
+			},
+			"text": " It's an ultra-light-clined or record minimum verification-clined because there's nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,360",
+				"to": "00:04:17,600"
+			},
+			"offsets": {
+				"from": 255360,
+				"to": 257600
+			},
+			"text": " but verifying."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,600",
+				"to": "00:04:22,560"
+			},
+			"offsets": {
+				"from": 257600,
+				"to": 262560
+			},
+			"text": " And it's not comparable to a full node, which is just part of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,560",
+				"to": "00:04:25,640"
+			},
+			"offsets": {
+				"from": 262560,
+				"to": 265640
+			},
+			"text": " Of course, those nodes need to be paid, so we're working on a state-channel solution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,640",
+				"to": "00:04:29,840"
+			},
+			"offsets": {
+				"from": 265640,
+				"to": 269840
+			},
+			"text": " or actually to be more exact, we're working on a variant of probabilistic micro-payments"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,840",
+				"to": "00:04:31,360"
+			},
+			"offsets": {
+				"from": 269840,
+				"to": 271360
+			},
+			"text": " which we have proposed by Gustav Stevenson."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,360",
+				"to": "00:04:37,320"
+			},
+			"offsets": {
+				"from": 271360,
+				"to": 277320
+			},
+			"text": " Don't have the time now to go into details, but the cube-clined will pay for signed block"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,320",
+				"to": "00:04:38,320"
+			},
+			"offsets": {
+				"from": 277320,
+				"to": 278320
+			},
+			"text": " hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,320",
+				"to": "00:04:42,360"
+			},
+			"offsets": {
+				"from": 278320,
+				"to": 282360
+			},
+			"text": " Those nodes to sign block hashes, they take a certain risk because if they are on a wrong"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,360",
+				"to": "00:04:46,280"
+			},
+			"offsets": {
+				"from": 282360,
+				"to": 286280
+			},
+			"text": " chain or that's a reorganization, they may lose the deficit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,280",
+				"to": "00:04:51,920"
+			},
+			"offsets": {
+				"from": 286280,
+				"to": 291920
+			},
+			"text": " So with this, we have an incentivized system where this in cubed-clined can always be connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,920",
+				"to": "00:04:54,560"
+			},
+			"offsets": {
+				"from": 291920,
+				"to": 294560
+			},
+			"text": " to the chain without being part of the P2P network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,560",
+				"to": "00:04:57,680"
+			},
+			"offsets": {
+				"from": 294560,
+				"to": 297680
+			},
+			"text": " The nice thing, it does need to store anything than the code itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,680",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 297680,
+				"to": 301480
+			},
+			"text": " It does not need to synchronize, doesn't need to store block headers, doesn't need to store"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:02,480"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 302480
+			},
+			"text": " at the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,480",
+				"to": "00:05:04,680"
+			},
+			"offsets": {
+				"from": 302480,
+				"to": 304680
+			},
+			"text": " And this gives us another feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,680",
+				"to": "00:05:09,560"
+			},
+			"offsets": {
+				"from": 304680,
+				"to": 309560
+			},
+			"text": " This client can be simultaneously be connected to several networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,560",
+				"to": "00:05:13,040"
+			},
+			"offsets": {
+				"from": 309560,
+				"to": 313040
+			},
+			"text": " So it can be connected to the main Ethereum chain or to the Antgevep Foundation chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,040",
+				"to": "00:05:18,160"
+			},
+			"offsets": {
+				"from": 313040,
+				"to": 318160
+			},
+			"text": " or some private Ethereum networks or something else at the same time because it's not storing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,160",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318160,
+				"to": 322000
+			},
+			"text": " anything, it's stateless and it's not part of the P2P network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,600"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325600
+			},
+			"text": " So this means we don't only have any theorem client, you could say we have a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,600",
+				"to": "00:05:29,760"
+			},
+			"offsets": {
+				"from": 325600,
+				"to": 329760
+			},
+			"text": " client because as long as you know where these nodes are registered and you have some URL"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,760",
+				"to": "00:05:34,920"
+			},
+			"offsets": {
+				"from": 329760,
+				"to": 334920
+			},
+			"text": " to connect to them, you can get information which you can verify on yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,920",
+				"to": "00:05:38,400"
+			},
+			"offsets": {
+				"from": 334920,
+				"to": 338400
+			},
+			"text": " That's why it's called minimal verification client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,400",
+				"to": "00:05:40,560"
+			},
+			"offsets": {
+				"from": 338400,
+				"to": 340560
+			},
+			"text": " So what did we do with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,560",
+				"to": "00:05:42,120"
+			},
+			"offsets": {
+				"from": 340560,
+				"to": 342120
+			},
+			"text": " So I have a chip here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,120",
+				"to": "00:05:46,320"
+			},
+			"offsets": {
+				"from": 342120,
+				"to": 346320
+			},
+			"text": " I mean you cannot really see this because it's really, really, really tiny in this box."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,320",
+				"to": "00:05:48,920"
+			},
+			"offsets": {
+				"from": 346320,
+				"to": 348920
+			},
+			"text": " It's this chip here from Nordic Semiconductors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,920",
+				"to": "00:05:55,280"
+			},
+			"offsets": {
+				"from": 348920,
+				"to": 355280
+			},
+			"text": " And this has just 64 megahertz, one megabyte flash, 256 kilobyte ram, seven millimeter"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,280",
+				"to": "00:05:59,680"
+			},
+			"offsets": {
+				"from": 355280,
+				"to": 359680
+			},
+			"text": " of size and cost about $3.40."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,680",
+				"to": "00:06:02,640"
+			},
+			"offsets": {
+				"from": 359680,
+				"to": 362640
+			},
+			"text": " And this is enough to run an incubate client."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,640",
+				"to": "00:06:08,320"
+			},
+			"offsets": {
+				"from": 362640,
+				"to": 368320
+			},
+			"text": " So this is scaling access because now you can actually put this into cars and to IoT devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,320",
+				"to": "00:06:09,800"
+			},
+			"offsets": {
+				"from": 368320,
+				"to": 369800
+			},
+			"text": " and connect to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,800",
+				"to": "00:06:14,720"
+			},
+			"offsets": {
+				"from": 369800,
+				"to": 374720
+			},
+			"text": " A lot of companies saying they do blockchain IoT, what they usually do, they just put private"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,720",
+				"to": "00:06:16,880"
+			},
+			"offsets": {
+				"from": 374720,
+				"to": 376880
+			},
+			"text": " keys inside of IoT devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,880",
+				"to": "00:06:21,120"
+			},
+			"offsets": {
+				"from": 376880,
+				"to": 381120
+			},
+			"text": " This is nice, you can sign transactions but you cannot verify if the connection is made"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,120",
+				"to": "00:06:23,360"
+			},
+			"offsets": {
+				"from": 381120,
+				"to": 383360
+			},
+			"text": " in because this is a read process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,360",
+				"to": "00:06:27,520"
+			},
+			"offsets": {
+				"from": 383360,
+				"to": 387520
+			},
+			"text": " And for blockchain, actually if writing is technically easier than reading, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,520",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 387520,
+				"to": 389960
+			},
+			"text": " reading means verifying everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 398000
+			},
+			"text": " So we have built the smallest way of reading from the blockchain and getting verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,320"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402320
+			},
+			"text": " So here's how you use this, you just say import and cubed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,320",
+				"to": "00:06:46,680"
+			},
+			"offsets": {
+				"from": 402320,
+				"to": 406680
+			},
+			"text": " You could just use this instead of your Enfura client or your own node and just do the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,680",
+				"to": "00:06:47,680"
+			},
+			"offsets": {
+				"from": 406680,
+				"to": 407680
+			},
+			"text": " thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,680",
+				"to": "00:06:52,120"
+			},
+			"offsets": {
+				"from": 407680,
+				"to": 412120
+			},
+			"text": " So I, for example, use this with my crypto desktop app as my custom node and just runs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,120",
+				"to": "00:06:53,120"
+			},
+			"offsets": {
+				"from": 412120,
+				"to": 413120
+			},
+			"text": " from the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,120",
+				"to": "00:06:55,520"
+			},
+			"offsets": {
+				"from": 413120,
+				"to": 415520
+			},
+			"text": " Now we just want to show you a little presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,520",
+				"to": "00:07:01,720"
+			},
+			"offsets": {
+				"from": 415520,
+				"to": 421720
+			},
+			"text": " So we have made a safe, which is connected to this chip, which is here, and connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,720",
+				"to": "00:07:04,200"
+			},
+			"offsets": {
+				"from": 421720,
+				"to": 424200
+			},
+			"text": " to just the door lock which can open and close."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,200",
+				"to": "00:07:07,360"
+			},
+			"offsets": {
+				"from": 424200,
+				"to": 427360
+			},
+			"text": " So for time reasons we don't show you the whole process but with the slocket app which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,360",
+				"to": "00:07:11,040"
+			},
+			"offsets": {
+				"from": 427360,
+				"to": 431040
+			},
+			"text": " you can find in the app store, we actually already rented it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,040",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 431040,
+				"to": 433160
+			},
+			"text": " So we are currently the owner of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:16,800"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 436800
+			},
+			"text": " Now we can send a Bluetooth message to this chip."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,800",
+				"to": "00:07:21,560"
+			},
+			"offsets": {
+				"from": 436800,
+				"to": 441560
+			},
+			"text": " It can detect the public key, read from the blockchain to the encubed client whether he"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,560",
+				"to": "00:07:24,400"
+			},
+			"offsets": {
+				"from": 441560,
+				"to": 444400
+			},
+			"text": " has access or not in if yes opens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,400",
+				"to": "00:07:26,640"
+			},
+			"offsets": {
+				"from": 444400,
+				"to": 446640
+			},
+			"text": " So Simon will just quickly show this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,640",
+				"to": "00:07:29,400"
+			},
+			"offsets": {
+				"from": 446640,
+				"to": 449400
+			},
+			"text": " I hope the internet connection is good in us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,400",
+				"to": "00:07:32,200"
+			},
+			"offsets": {
+				"from": 449400,
+				"to": 452200
+			},
+			"text": " The system works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,200",
+				"to": "00:07:33,200"
+			},
+			"offsets": {
+				"from": 452200,
+				"to": 453200
+			},
+			"text": " This is Bluetooth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,200",
+				"to": "00:07:34,960"
+			},
+			"offsets": {
+				"from": 453200,
+				"to": 454960
+			},
+			"text": " There are a lot of devices in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,960",
+				"to": "00:07:39,240"
+			},
+			"offsets": {
+				"from": 454960,
+				"to": 459240
+			},
+			"text": " Sometimes the Bluetooth is not as stable but yes, it worked and now we can open it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,240",
+				"to": "00:07:46,480"
+			},
+			"offsets": {
+				"from": 459240,
+				"to": 466480
+			},
+			"text": " So this was verified through Encubed and of course what do you store in a safe, stored"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,480",
+				"to": "00:07:47,640"
+			},
+			"offsets": {
+				"from": 466480,
+				"to": 467640
+			},
+			"text": " private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,640",
+				"to": "00:07:53,720"
+			},
+			"offsets": {
+				"from": 467640,
+				"to": 473720
+			},
+			"text": " So if those people who are fast enough, here we have a private key with some ETH on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,720",
+				"to": "00:07:57,560"
+			},
+			"offsets": {
+				"from": 473720,
+				"to": 477560
+			},
+			"text": " So you better make some photos and whoever gets it first can get the money here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,560",
+				"to": "00:08:00,800"
+			},
+			"offsets": {
+				"from": 477560,
+				"to": 480800
+			},
+			"text": " So this is the private key we store at the safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,800",
+				"to": "00:08:05,160"
+			},
+			"offsets": {
+				"from": 480800,
+				"to": 485160
+			},
+			"text": " Just to show you what Encubed, what you can do is Encubed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,160",
+				"to": "00:08:11,040"
+			},
+			"offsets": {
+				"from": 485160,
+				"to": 491040
+			},
+			"text": " So I hope this becomes the client you use if you just are your mobile phone, IoT devices"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,040",
+				"to": "00:08:15,120"
+			},
+			"offsets": {
+				"from": 491040,
+				"to": 495120
+			},
+			"text": " but maybe even your laptop because most people even don't run their full notes or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,120",
+				"to": "00:08:16,120"
+			},
+			"offsets": {
+				"from": 495120,
+				"to": 496120
+			},
+			"text": " on your machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,120",
+				"to": "00:08:18,120"
+			},
+			"offsets": {
+				"from": 496120,
+				"to": 498120
+			},
+			"text": " Okay, thank you very much for your attention."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,120",
+				"to": "00:08:19,120"
+			},
+			"offsets": {
+				"from": 498120,
+				"to": 499120
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,120",
+				"to": "00:08:20,120"
+			},
+			"offsets": {
+				"from": 499120,
+				"to": 500120
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,120",
+				"to": "00:08:21,120"
+			},
+			"offsets": {
+				"from": 500120,
+				"to": 501120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,120",
+				"to": "00:08:22,120"
+			},
+			"offsets": {
+				"from": 501120,
+				"to": 502120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,120",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 502120,
+				"to": 503120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:24,120"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 504120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,120",
+				"to": "00:08:25,120"
+			},
+			"offsets": {
+				"from": 504120,
+				"to": 505120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,120",
+				"to": "00:08:26,120"
+			},
+			"offsets": {
+				"from": 505120,
+				"to": 506120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,120",
+				"to": "00:08:27,120"
+			},
+			"offsets": {
+				"from": 506120,
+				"to": 507120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,120",
+				"to": "00:08:28,120"
+			},
+			"offsets": {
+				"from": 507120,
+				"to": 508120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,120",
+				"to": "00:08:29,120"
+			},
+			"offsets": {
+				"from": 508120,
+				"to": 509120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,120",
+				"to": "00:08:30,120"
+			},
+			"offsets": {
+				"from": 509120,
+				"to": 510120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,120",
+				"to": "00:08:31,120"
+			},
+			"offsets": {
+				"from": 510120,
+				"to": 511120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,120",
+				"to": "00:08:32,120"
+			},
+			"offsets": {
+				"from": 511120,
+				"to": 512120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,120",
+				"to": "00:08:33,120"
+			},
+			"offsets": {
+				"from": 512120,
+				"to": 513120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,120",
+				"to": "00:08:34,120"
+			},
+			"offsets": {
+				"from": 513120,
+				"to": 514120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,120",
+				"to": "00:08:35,120"
+			},
+			"offsets": {
+				"from": 514120,
+				"to": 515120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,120",
+				"to": "00:08:36,120"
+			},
+			"offsets": {
+				"from": 515120,
+				"to": 516120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,120",
+				"to": "00:08:37,120"
+			},
+			"offsets": {
+				"from": 516120,
+				"to": 517120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,120",
+				"to": "00:08:38,120"
+			},
+			"offsets": {
+				"from": 517120,
+				"to": 518120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,120",
+				"to": "00:08:39,120"
+			},
+			"offsets": {
+				"from": 518120,
+				"to": 519120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,120",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 519120,
+				"to": 520120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:41,120"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 521120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,120",
+				"to": "00:08:42,120"
+			},
+			"offsets": {
+				"from": 521120,
+				"to": 522120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,120",
+				"to": "00:08:43,120"
+			},
+			"offsets": {
+				"from": 522120,
+				"to": 523120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,120",
+				"to": "00:08:44,120"
+			},
+			"offsets": {
+				"from": 523120,
+				"to": 524120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,120",
+				"to": "00:08:45,120"
+			},
+			"offsets": {
+				"from": 524120,
+				"to": 525120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,120",
+				"to": "00:08:46,120"
+			},
+			"offsets": {
+				"from": 525120,
+				"to": 526120
+			},
+			"text": " ."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,120",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 526120,
+				"to": 530120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

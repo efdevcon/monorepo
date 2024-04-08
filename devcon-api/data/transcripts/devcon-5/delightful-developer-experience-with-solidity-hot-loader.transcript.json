@@ -1,0 +1,2672 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:12,040"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 12040
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,040",
+				"to": "00:00:14,540"
+			},
+			"offsets": {
+				"from": 12040,
+				"to": 14540
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,540",
+				"to": "00:00:19,480"
+			},
+			"offsets": {
+				"from": 14540,
+				"to": 19480
+			},
+			"text": " My name is Ige Yovwe, and I'm a developer at Open Zeppelin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,480",
+				"to": "00:00:24,400"
+			},
+			"offsets": {
+				"from": 19480,
+				"to": 24400
+			},
+			"text": " For most of you who don't know us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,400",
+				"to": "00:00:27,640"
+			},
+			"offsets": {
+				"from": 24400,
+				"to": 27640
+			},
+			"text": " at Open Zeppelin we build developer tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,640",
+				"to": "00:00:31,960"
+			},
+			"offsets": {
+				"from": 27640,
+				"to": 31960
+			},
+			"text": " and perform values of decentralized systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,960",
+				"to": "00:00:35,760"
+			},
+			"offsets": {
+				"from": 31960,
+				"to": 35760
+			},
+			"text": " which power multi-million lower economies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,760",
+				"to": "00:00:37,840"
+			},
+			"offsets": {
+				"from": 35760,
+				"to": 37840
+			},
+			"text": " We work with the period of foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,840",
+				"to": "00:00:40,480"
+			},
+			"offsets": {
+				"from": 37840,
+				"to": 40480
+			},
+			"text": " on the celebrity compiler audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,480",
+				"to": "00:00:49,040"
+			},
+			"offsets": {
+				"from": 40480,
+				"to": 49040
+			},
+			"text": " And we created the most popular smart contracts library, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,040",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 49040,
+				"to": 54560
+			},
+			"text": " has over 1 million downloads and over 180 contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:57,440"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 57440
+			},
+			"text": " As you can see, we spent some time writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,440",
+				"to": "00:01:00,520"
+			},
+			"offsets": {
+				"from": 57440,
+				"to": 60520
+			},
+			"text": " and are using smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,520",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 60520,
+				"to": 63080
+			},
+			"text": " And today, I'm excited and delighted"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:07,480"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 67480
+			},
+			"text": " to share my findings on how you can improve your celebrity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,480",
+				"to": "00:01:11,200"
+			},
+			"offsets": {
+				"from": 67480,
+				"to": 71200
+			},
+			"text": " developer experience with Hot Loader."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,200",
+				"to": "00:01:12,960"
+			},
+			"offsets": {
+				"from": 71200,
+				"to": 72960
+			},
+			"text": " But before we jump to the next slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,960",
+				"to": "00:01:14,720"
+			},
+			"offsets": {
+				"from": 72960,
+				"to": 74720
+			},
+			"text": " please rise your hand if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,720",
+				"to": "00:01:19,240"
+			},
+			"offsets": {
+				"from": 74720,
+				"to": 79240
+			},
+			"text": " ever written a smart contract in Seligeti."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,240",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 79240,
+				"to": 81560
+			},
+			"text": " Yes, developers, developers, developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:23,520"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 83520
+			},
+			"text": " [LAUGHTER]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,520",
+				"to": "00:01:28,520"
+			},
+			"offsets": {
+				"from": 83520,
+				"to": 88520
+			},
+			"text": " I'm excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,520",
+				"to": "00:01:32,560"
+			},
+			"offsets": {
+				"from": 88520,
+				"to": 92560
+			},
+			"text": " Back in the days, developers used it to ship software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,560",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 92560,
+				"to": 95520
+			},
+			"text": " and it was literally immutable code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:39,520"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 99520
+			},
+			"text": " Once you ship it, you can't change a single line on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,520",
+				"to": "00:01:42,520"
+			},
+			"offsets": {
+				"from": 99520,
+				"to": 102520
+			},
+			"text": " It affected the practices back then."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,520",
+				"to": "00:01:45,520"
+			},
+			"offsets": {
+				"from": 102520,
+				"to": 105520
+			},
+			"text": " Developers were really careful about testing and polishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,520",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 105520,
+				"to": 110520
+			},
+			"text": " their code, because they knew once it's out, you can't change it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:52,120"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 112120
+			},
+			"text": " Something we do today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,120",
+				"to": "00:01:59,880"
+			},
+			"offsets": {
+				"from": 112120,
+				"to": 119880
+			},
+			"text": " This is internet explorer 6."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,880",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 119880,
+				"to": 122040
+			},
+			"text": " It's the first browser I ever used."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:05,960"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 125960
+			},
+			"text": " And it's the first browser I've written code for."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,960",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 125960,
+				"to": 130480
+			},
+			"text": " Back in the day, it was working the following way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:15,360"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 135360
+			},
+			"text": " You would edit your mixture of JavaScript and HTML"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,360",
+				"to": "00:02:18,880"
+			},
+			"offsets": {
+				"from": 135360,
+				"to": 138880
+			},
+			"text": " in external editor, then you save it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,880",
+				"to": "00:02:21,880"
+			},
+			"offsets": {
+				"from": 138880,
+				"to": 141880
+			},
+			"text": " And once you save it, you go back to the browser,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,880",
+				"to": "00:02:25,880"
+			},
+			"offsets": {
+				"from": 141880,
+				"to": 145880
+			},
+			"text": " and you refresh the page to see what has changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,880",
+				"to": "00:02:27,880"
+			},
+			"offsets": {
+				"from": 145880,
+				"to": 147880
+			},
+			"text": " And if you have to change something else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,880",
+				"to": "00:02:29,880"
+			},
+			"offsets": {
+				"from": 147880,
+				"to": 149880
+			},
+			"text": " you have to do it again."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,880",
+				"to": "00:02:33,880"
+			},
+			"offsets": {
+				"from": 149880,
+				"to": 153880
+			},
+			"text": " And it doesn't remind you something."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,880",
+				"to": "00:02:38,880"
+			},
+			"offsets": {
+				"from": 153880,
+				"to": 158880
+			},
+			"text": " And what if, how rich developers tools in the Explorer 6 had?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,880",
+				"to": "00:02:40,880"
+			},
+			"offsets": {
+				"from": 158880,
+				"to": 160880
+			},
+			"text": " The answer is no."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,880",
+				"to": "00:02:43,880"
+			},
+			"offsets": {
+				"from": 160880,
+				"to": 163880
+			},
+			"text": " It hasn't had any developers tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,880",
+				"to": "00:02:46,880"
+			},
+			"offsets": {
+				"from": 163880,
+				"to": 166880
+			},
+			"text": " And I'm here not to smash into the Explorer 6."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,880",
+				"to": "00:02:51,880"
+			},
+			"offsets": {
+				"from": 166880,
+				"to": 171880
+			},
+			"text": " It was a great piece of technology at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,880",
+				"to": "00:02:56,880"
+			},
+			"offsets": {
+				"from": 171880,
+				"to": 176880
+			},
+			"text": " You will see a lot of similarities about how developers tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,880",
+				"to": "00:03:00,880"
+			},
+			"offsets": {
+				"from": 176880,
+				"to": 180880
+			},
+			"text": " go back then in the days, and how developers tools are today"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,880",
+				"to": "00:03:03,880"
+			},
+			"offsets": {
+				"from": 180880,
+				"to": 183880
+			},
+			"text": " at the field blockchain and blockchain in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,880",
+				"to": "00:03:13,880"
+			},
+			"offsets": {
+				"from": 183880,
+				"to": 193880
+			},
+			"text": " We're going to see a quick video."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,880",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 193880,
+				"to": 198880
+			},
+			"text": " But before that, I'm going to explain what's happening here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:19,880"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 199880
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 202880
+			},
+			"text": " So I have a really simple smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:23,880"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 203880
+			},
+			"text": " It's called counter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,880",
+				"to": "00:03:30,880"
+			},
+			"offsets": {
+				"from": 203880,
+				"to": 210880
+			},
+			"text": " All it has is a simple, is a one state variable called count."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,880",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 210880,
+				"to": 212880
+			},
+			"text": " And you can go either up and down."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:35,880"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 215880
+			},
+			"text": " Basically, this smart contract just counts up and down."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,880",
+				"to": "00:03:38,880"
+			},
+			"offsets": {
+				"from": 215880,
+				"to": 218880
+			},
+			"text": " And it has appropriate methods in Chris counter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,880",
+				"to": "00:03:43,880"
+			},
+			"offsets": {
+				"from": 218880,
+				"to": 223880
+			},
+			"text": " degrees counter, which you can modify with state variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,880",
+				"to": "00:03:48,880"
+			},
+			"offsets": {
+				"from": 223880,
+				"to": 228880
+			},
+			"text": " And on the left, there is a front-end representation of a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,880",
+				"to": "00:03:51,880"
+			},
+			"offsets": {
+				"from": 228880,
+				"to": 231880
+			},
+			"text": " written in create react app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,880",
+				"to": "00:03:55,880"
+			},
+			"offsets": {
+				"from": 231880,
+				"to": 235880
+			},
+			"text": " It displays a contract address as well as the current value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,880",
+				"to": "00:03:59,880"
+			},
+			"offsets": {
+				"from": 235880,
+				"to": 239880
+			},
+			"text": " which is 32, and brought two buttons to increase and decrease"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,880",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 239880,
+				"to": 241880
+			},
+			"text": " the counter for one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:06,880"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 246880
+			},
+			"text": " And let's say, realize that increasing counter by amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,880",
+				"to": "00:04:09,880"
+			},
+			"offsets": {
+				"from": 246880,
+				"to": 249880
+			},
+			"text": " is not good enough for business logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,880",
+				"to": "00:04:12,880"
+			},
+			"offsets": {
+				"from": 249880,
+				"to": 252880
+			},
+			"text": " And then all you're going to increase is by the number of three."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,880",
+				"to": "00:04:16,880"
+			},
+			"offsets": {
+				"from": 252880,
+				"to": 256880
+			},
+			"text": " In this video, I'm going to modify the smart contract to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,880",
+				"to": "00:04:20,880"
+			},
+			"offsets": {
+				"from": 256880,
+				"to": 260880
+			},
+			"text": " and it's going to be reflected on the front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,880",
+				"to": "00:04:22,880"
+			},
+			"offsets": {
+				"from": 260880,
+				"to": 262880
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,880",
+				"to": "00:04:28,880"
+			},
+			"offsets": {
+				"from": 262880,
+				"to": 268880
+			},
+			"text": " So first, I'm going to edit smart contact itself and save it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,880",
+				"to": "00:04:31,880"
+			},
+			"offsets": {
+				"from": 268880,
+				"to": 271880
+			},
+			"text": " Then, I'm going to compile it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,880",
+				"to": "00:04:35,880"
+			},
+			"offsets": {
+				"from": 271880,
+				"to": 275880
+			},
+			"text": " We will compile command."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,880",
+				"to": "00:04:39,880"
+			},
+			"offsets": {
+				"from": 275880,
+				"to": 279880
+			},
+			"text": " Once it compiles, I'm going to deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,880",
+				"to": "00:04:42,880"
+			},
+			"offsets": {
+				"from": 279880,
+				"to": 282880
+			},
+			"text": " But because the theorem blockchain is mutable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,880",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 282880,
+				"to": 287880
+			},
+			"text": " every time you deploy it, you have to initialize your new contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:52,880"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 292880
+			},
+			"text": " And my old contract has a value of 32, but now I have to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,880",
+				"to": "00:04:55,880"
+			},
+			"offsets": {
+				"from": 292880,
+				"to": 295880
+			},
+			"text": " a new value for the counter, an initial value."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,880",
+				"to": "00:04:58,880"
+			},
+			"offsets": {
+				"from": 295880,
+				"to": 298880
+			},
+			"text": " I'm going to go with one to three."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,880",
+				"to": "00:05:01,880"
+			},
+			"offsets": {
+				"from": 298880,
+				"to": 301880
+			},
+			"text": " And also, because new contract has a new address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,880",
+				"to": "00:05:06,880"
+			},
+			"offsets": {
+				"from": 301880,
+				"to": 306880
+			},
+			"text": " my query, erm, can't pick up the files."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,880",
+				"to": "00:05:25,400"
+			},
+			"offsets": {
+				"from": 306880,
+				"to": 325400
+			},
+			"text": " It's quite for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,400",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 325400,
+				"to": 335400
+			},
+			"text": " the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:38,400"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 338400
+			},
+			"text": " So, I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,400",
+				"to": "00:05:41,400"
+			},
+			"offsets": {
+				"from": 338400,
+				"to": 341400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,400",
+				"to": "00:05:44,400"
+			},
+			"offsets": {
+				"from": 341400,
+				"to": 344400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,400",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 344400,
+				"to": 349400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:54,400"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 354400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,400",
+				"to": "00:05:58,400"
+			},
+			"offsets": {
+				"from": 354400,
+				"to": 358400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,400",
+				"to": "00:06:03,400"
+			},
+			"offsets": {
+				"from": 358400,
+				"to": 363400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,400",
+				"to": "00:06:07,400"
+			},
+			"offsets": {
+				"from": 363400,
+				"to": 367400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,400",
+				"to": "00:06:12,400"
+			},
+			"offsets": {
+				"from": 367400,
+				"to": 372400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,400",
+				"to": "00:06:17,400"
+			},
+			"offsets": {
+				"from": 372400,
+				"to": 377400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,400",
+				"to": "00:06:22,400"
+			},
+			"offsets": {
+				"from": 377400,
+				"to": 382400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,400",
+				"to": "00:06:26,400"
+			},
+			"offsets": {
+				"from": 382400,
+				"to": 386400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,400",
+				"to": "00:06:30,400"
+			},
+			"offsets": {
+				"from": 386400,
+				"to": 390400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,400",
+				"to": "00:06:35,400"
+			},
+			"offsets": {
+				"from": 390400,
+				"to": 395400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,400",
+				"to": "00:06:40,400"
+			},
+			"offsets": {
+				"from": 395400,
+				"to": 400400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,400",
+				"to": "00:06:45,400"
+			},
+			"offsets": {
+				"from": 400400,
+				"to": 405400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,400",
+				"to": "00:06:50,400"
+			},
+			"offsets": {
+				"from": 405400,
+				"to": 410400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,400",
+				"to": "00:06:54,400"
+			},
+			"offsets": {
+				"from": 410400,
+				"to": 414400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,400",
+				"to": "00:06:58,400"
+			},
+			"offsets": {
+				"from": 414400,
+				"to": 418400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,400",
+				"to": "00:07:03,400"
+			},
+			"offsets": {
+				"from": 418400,
+				"to": 423400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,400",
+				"to": "00:07:09,400"
+			},
+			"offsets": {
+				"from": 423400,
+				"to": 429400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,400",
+				"to": "00:07:14,400"
+			},
+			"offsets": {
+				"from": 429400,
+				"to": 434400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,400",
+				"to": "00:07:19,400"
+			},
+			"offsets": {
+				"from": 434400,
+				"to": 439400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,400",
+				"to": "00:07:23,400"
+			},
+			"offsets": {
+				"from": 439400,
+				"to": 443400
+			},
+			"text": " and I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,400",
+				"to": "00:07:27,400"
+			},
+			"offsets": {
+				"from": 443400,
+				"to": 447400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,400",
+				"to": "00:07:32,400"
+			},
+			"offsets": {
+				"from": 447400,
+				"to": 452400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,400",
+				"to": "00:07:38,400"
+			},
+			"offsets": {
+				"from": 452400,
+				"to": 458400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,400",
+				"to": "00:07:42,400"
+			},
+			"offsets": {
+				"from": 458400,
+				"to": 462400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,400",
+				"to": "00:07:47,400"
+			},
+			"offsets": {
+				"from": 462400,
+				"to": 467400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,400",
+				"to": "00:07:51,400"
+			},
+			"offsets": {
+				"from": 467400,
+				"to": 471400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,400",
+				"to": "00:07:55,400"
+			},
+			"offsets": {
+				"from": 471400,
+				"to": 475400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,400",
+				"to": "00:07:59,400"
+			},
+			"offsets": {
+				"from": 475400,
+				"to": 479400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,400",
+				"to": "00:08:03,400"
+			},
+			"offsets": {
+				"from": 479400,
+				"to": 483400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,400",
+				"to": "00:08:07,400"
+			},
+			"offsets": {
+				"from": 483400,
+				"to": 487400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,400",
+				"to": "00:08:11,400"
+			},
+			"offsets": {
+				"from": 487400,
+				"to": 491400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,400",
+				"to": "00:08:16,400"
+			},
+			"offsets": {
+				"from": 491400,
+				"to": 496400
+			},
+			"text": " and then I'm going to print the button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,400",
+				"to": "00:08:20,400"
+			},
+			"offsets": {
+				"from": 496400,
+				"to": 500400
+			},
+			"text": " and suddenly our front end does refresh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,400",
+				"to": "00:08:24,400"
+			},
+			"offsets": {
+				"from": 500400,
+				"to": 504400
+			},
+			"text": " and if I press the increase button,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,400",
+				"to": "00:08:26,400"
+			},
+			"offsets": {
+				"from": 504400,
+				"to": 506400
+			},
+			"text": " it does increase by free,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,400",
+				"to": "00:08:29,400"
+			},
+			"offsets": {
+				"from": 506400,
+				"to": 509400
+			},
+			"text": " but as you can see the state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,400",
+				"to": "00:08:33,400"
+			},
+			"offsets": {
+				"from": 509400,
+				"to": 513400
+			},
+			"text": " the counter state the same, which is strange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,400",
+				"to": "00:08:36,400"
+			},
+			"offsets": {
+				"from": 513400,
+				"to": 516400
+			},
+			"text": " because the state, if you deploy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,400",
+				"to": "00:08:39,400"
+			},
+			"offsets": {
+				"from": 516400,
+				"to": 519400
+			},
+			"text": " you got to change, you will think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,400",
+				"to": "00:08:44,400"
+			},
+			"offsets": {
+				"from": 519400,
+				"to": 524400
+			},
+			"text": " \"Why? How? How is possible?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,400",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 524400,
+				"to": 529400
+			},
+			"text": " Let's quickly write down what's the data you have about your desk for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 532400
+			},
+			"text": " Compiles just a lot of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:55,400"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 535400
+			},
+			"text": " Essentially writing a compiler command for you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,400",
+				"to": "00:08:57,400"
+			},
+			"offsets": {
+				"from": 535400,
+				"to": 537400
+			},
+			"text": " so you don't need to type anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,400",
+				"to": "00:09:02,400"
+			},
+			"offsets": {
+				"from": 537400,
+				"to": 542400
+			},
+			"text": " Then it deploys a new binary code to the local node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,400",
+				"to": "00:09:05,400"
+			},
+			"offsets": {
+				"from": 542400,
+				"to": 545400
+			},
+			"text": " which is Ganesh, which is a tricky step,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,400",
+				"to": "00:09:08,400"
+			},
+			"offsets": {
+				"from": 545400,
+				"to": 548400
+			},
+			"text": " and then it refracts the browser page for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,400",
+				"to": "00:09:12,400"
+			},
+			"offsets": {
+				"from": 548400,
+				"to": 552400
+			},
+			"text": " Let's dig into how exactly it deploys a new code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,400",
+				"to": "00:09:16,400"
+			},
+			"offsets": {
+				"from": 552400,
+				"to": 556400
+			},
+			"text": " in the way you preserve your state, and address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,400",
+				"to": "00:09:20,400"
+			},
+			"offsets": {
+				"from": 556400,
+				"to": 560400
+			},
+			"text": " That is availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,400",
+				"to": "00:09:27,400"
+			},
+			"offsets": {
+				"from": 560400,
+				"to": 567400
+			},
+			"text": " Behind the scenes, the linear code loader relies on availability of pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,400",
+				"to": "00:09:31,400"
+			},
+			"offsets": {
+				"from": 567400,
+				"to": 571400
+			},
+			"text": " It allows you to change implementation of a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,400",
+				"to": "00:09:35,400"
+			},
+			"offsets": {
+				"from": 571400,
+				"to": 575400
+			},
+			"text": " without losing its state or address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,400",
+				"to": "00:09:45,400"
+			},
+			"offsets": {
+				"from": 575400,
+				"to": 585400
+			},
+			"text": " So you have a lot of your use of implementation by open Zeppelin SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,400",
+				"to": "00:09:53,400"
+			},
+			"offsets": {
+				"from": 585400,
+				"to": 593400
+			},
+			"text": " It's called upgrades, and I'm going to give you a quick explanation how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,400",
+				"to": "00:09:56,400"
+			},
+			"offsets": {
+				"from": 593400,
+				"to": 596400
+			},
+			"text": " But if you want more, if you want to know more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,400",
+				"to": "00:09:59,400"
+			},
+			"offsets": {
+				"from": 596400,
+				"to": 599400
+			},
+			"text": " go to open Zeppelin.com/sdk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,400",
+				"to": "00:10:02,400"
+			},
+			"offsets": {
+				"from": 599400,
+				"to": 602400
+			},
+			"text": " and you'll find everything you want to know about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,400",
+				"to": "00:10:06,400"
+			},
+			"offsets": {
+				"from": 602400,
+				"to": 606400
+			},
+			"text": " You have far more examples and better detailed explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,400",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 606400,
+				"to": 610400
+			},
+			"text": " So how first?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:14,400"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 614400
+			},
+			"text": " Raise a proxy contract, which prevents the VIO contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,400",
+				"to": "00:10:17,400"
+			},
+			"offsets": {
+				"from": 614400,
+				"to": 617400
+			},
+			"text": " and handles all the calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,400",
+				"to": "00:10:23,400"
+			},
+			"offsets": {
+				"from": 617400,
+				"to": 623400
+			},
+			"text": " And it uses the GSA code instructions to redirect the function calls to contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,400",
+				"to": "00:10:26,400"
+			},
+			"offsets": {
+				"from": 623400,
+				"to": 626400
+			},
+			"text": " which contain implementation logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,400",
+				"to": "00:10:34,400"
+			},
+			"offsets": {
+				"from": 626400,
+				"to": 634400
+			},
+			"text": " while the proxy contract calls all the state and address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,400",
+				"to": "00:10:37,400"
+			},
+			"offsets": {
+				"from": 634400,
+				"to": 637400
+			},
+			"text": " In that way, if you always interact with a proxy contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,400",
+				"to": "00:10:42,400"
+			},
+			"offsets": {
+				"from": 637400,
+				"to": 642400
+			},
+			"text": " where is why our state and address is preserved at all times."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,400",
+				"to": "00:10:46,400"
+			},
+			"offsets": {
+				"from": 642400,
+				"to": 646400
+			},
+			"text": " And then we change the code and hit save in our editor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,400",
+				"to": "00:10:50,400"
+			},
+			"offsets": {
+				"from": 646400,
+				"to": 650400
+			},
+			"text": " What happens is the new bytecode gets compiled"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,400",
+				"to": "00:10:54,400"
+			},
+			"offsets": {
+				"from": 650400,
+				"to": 654400
+			},
+			"text": " and uploaded to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,400",
+				"to": "00:11:00,400"
+			},
+			"offsets": {
+				"from": 654400,
+				"to": 660400
+			},
+			"text": " and proxy address implementation is changed to the new contract implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,400",
+				"to": "00:11:06,400"
+			},
+			"offsets": {
+				"from": 660400,
+				"to": 666400
+			},
+			"text": " and all the calls after you upgrade it go to the new implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,400",
+				"to": "00:11:12,400"
+			},
+			"offsets": {
+				"from": 666400,
+				"to": 672400
+			},
+			"text": " In that way, you can achieve frictionless transition from all the code to new way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,400",
+				"to": "00:11:17,400"
+			},
+			"offsets": {
+				"from": 672400,
+				"to": 677400
+			},
+			"text": " preserve the state, and your address, which is placed nicely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,400",
+				"to": "00:11:24,400"
+			},
+			"offsets": {
+				"from": 677400,
+				"to": 684400
+			},
+			"text": " well, with front end tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,400",
+				"to": "00:11:37,400"
+			},
+			"offsets": {
+				"from": 684400,
+				"to": 697400
+			},
+			"text": " Yep, I'm going to give it to you, being great and awesome for many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,400",
+				"to": "00:11:43,400"
+			},
+			"offsets": {
+				"from": 697400,
+				"to": 703400
+			},
+			"text": " Not always works for every project, every environment, every setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,400",
+				"to": "00:11:47,400"
+			},
+			"offsets": {
+				"from": 703400,
+				"to": 707400
+			},
+			"text": " And I was thinking, can we do better?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,400",
+				"to": "00:11:53,400"
+			},
+			"offsets": {
+				"from": 707400,
+				"to": 713400
+			},
+			"text": " Can we create some solution which will be a silver boot"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,400",
+				"to": "00:12:00,400"
+			},
+			"offsets": {
+				"from": 713400,
+				"to": 720400
+			},
+			"text": " for seamless development in any environment with any framework or library?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,400",
+				"to": "00:12:08,400"
+			},
+			"offsets": {
+				"from": 720400,
+				"to": 728400
+			},
+			"text": " We have to talk a bit about Ganesh"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,400",
+				"to": "00:12:16,400"
+			},
+			"offsets": {
+				"from": 728400,
+				"to": 736400
+			},
+			"text": " before, as you all know, Ganesh is a Ethereum-MC client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,400",
+				"to": "00:12:19,400"
+			},
+			"offsets": {
+				"from": 736400,
+				"to": 739400
+			},
+			"text": " which is really good for development and testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,400",
+				"to": "00:12:28,400"
+			},
+			"offsets": {
+				"from": 739400,
+				"to": 748400
+			},
+			"text": " has slightly used and has quite a few features to help you with testing and development."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,400",
+				"to": "00:12:32,400"
+			},
+			"offsets": {
+				"from": 748400,
+				"to": 752400
+			},
+			"text": " And in particular, it has custom methods,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,400",
+				"to": "00:12:38,400"
+			},
+			"offsets": {
+				"from": 752400,
+				"to": 758400
+			},
+			"text": " even snapshot, even revert, even in Christine and mine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,400",
+				"to": "00:12:42,400"
+			},
+			"offsets": {
+				"from": 758400,
+				"to": 762400
+			},
+			"text": " They allow you to do things which are not possible on production,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,400",
+				"to": "00:12:45,400"
+			},
+			"offsets": {
+				"from": 762400,
+				"to": 765400
+			},
+			"text": " ready notes, such as parity and gear."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,400",
+				"to": "00:12:49,400"
+			},
+			"offsets": {
+				"from": 765400,
+				"to": 769400
+			},
+			"text": " For example, if you have some shots, it allows you to take a snapshot of your blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,400",
+				"to": "00:12:54,400"
+			},
+			"offsets": {
+				"from": 769400,
+				"to": 774400
+			},
+			"text": " do some stuff, and then go back to this state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,400",
+				"to": "00:13:01,400"
+			},
+			"offsets": {
+				"from": 774400,
+				"to": 781400
+			},
+			"text": " which is not possible on many of, I guess unless it's did out, but then it's expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,400",
+				"to": "00:13:04,400"
+			},
+			"offsets": {
+				"from": 781400,
+				"to": 784400
+			},
+			"text": " And with other commands, which is increased time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,400",
+				"to": "00:13:09,400"
+			},
+			"offsets": {
+				"from": 784400,
+				"to": 789400
+			},
+			"text": " allows you to jump in time forward to really helpful with testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,400",
+				"to": "00:13:12,400"
+			},
+			"offsets": {
+				"from": 789400,
+				"to": 792400
+			},
+			"text": " and give your mind, allows you to mind the blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,400",
+				"to": "00:13:15,400"
+			},
+			"offsets": {
+				"from": 792400,
+				"to": 795400
+			},
+			"text": " As you can see, something similar between these commands is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,400",
+				"to": "00:13:19,400"
+			},
+			"offsets": {
+				"from": 795400,
+				"to": 799400
+			},
+			"text": " they allow you to do things which are not possible on many of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,400",
+				"to": "00:13:24,400"
+			},
+			"offsets": {
+				"from": 799400,
+				"to": 804400
+			},
+			"text": " Here, it's extremely valuable and helpful during testing and development."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,400",
+				"to": "00:13:33,400"
+			},
+			"offsets": {
+				"from": 806400,
+				"to": 813400
+			},
+			"text": " And I was asking myself, is there any missing commands for our test development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,400",
+				"to": "00:13:38,400"
+			},
+			"offsets": {
+				"from": 813400,
+				"to": 818400
+			},
+			"text": " a few clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,400",
+				"to": "00:13:45,400"
+			},
+			"offsets": {
+				"from": 818400,
+				"to": 825400
+			},
+			"text": " I want to suggest the presented EVM update command."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,400",
+				"to": "00:13:49,400"
+			},
+			"offsets": {
+				"from": 825400,
+				"to": 829400
+			},
+			"text": " Just to be absolutely clear, this is on the state of an idea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,400",
+				"to": "00:13:53,400"
+			},
+			"offsets": {
+				"from": 829400,
+				"to": 833400
+			},
+			"text": " or a proposal on research at this moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,400",
+				"to": "00:14:01,400"
+			},
+			"offsets": {
+				"from": 833400,
+				"to": 841400
+			},
+			"text": " The idea behind this command is it will allow you to upgrade smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,400",
+				"to": "00:14:06,400"
+			},
+			"offsets": {
+				"from": 841400,
+				"to": 846400
+			},
+			"text": " in a really hard way, without mining logs or altering anything else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,400",
+				"to": "00:14:13,400"
+			},
+			"offsets": {
+				"from": 846400,
+				"to": 853400
+			},
+			"text": " essentially just swapping the limitation of one implementation of a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,400",
+				"to": "00:14:18,400"
+			},
+			"offsets": {
+				"from": 853400,
+				"to": 858400
+			},
+			"text": " with another implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,400",
+				"to": "00:14:22,400"
+			},
+			"offsets": {
+				"from": 858400,
+				"to": 862400
+			},
+			"text": " So I'm going to give a quick example of how it's going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,400",
+				"to": "00:14:29,400"
+			},
+			"offsets": {
+				"from": 862400,
+				"to": 869400
+			},
+			"text": " Let's say we have the same smart contract counter, which you now have expert knowledge on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,400",
+				"to": "00:14:35,400"
+			},
+			"offsets": {
+				"from": 869400,
+				"to": 875400
+			},
+			"text": " And there is an implementation, it just improves the count by one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,400",
+				"to": "00:14:40,400"
+			},
+			"offsets": {
+				"from": 875400,
+				"to": 880400
+			},
+			"text": " but we want to allow this to be increased by any arbitrary amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,400",
+				"to": "00:14:48,400"
+			},
+			"offsets": {
+				"from": 880400,
+				"to": 888400
+			},
+			"text": " And on the left, we're serious, of course, from top to bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,400",
+				"to": "00:14:51,400"
+			},
+			"offsets": {
+				"from": 888400,
+				"to": 891400
+			},
+			"text": " And the stuff we're going to call get counter, which we return 32,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,400",
+				"to": "00:14:54,400"
+			},
+			"offsets": {
+				"from": 891400,
+				"to": 894400
+			},
+			"text": " is the initial state of our contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,400",
+				"to": "00:15:02,400"
+			},
+			"offsets": {
+				"from": 894400,
+				"to": 902400
+			},
+			"text": " And then we're going to call EVM update to update the smart contract with a new bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,400",
+				"to": "00:15:07,400"
+			},
+			"offsets": {
+				"from": 902400,
+				"to": 907400
+			},
+			"text": " which will be bytecode allowing to increase it by any amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,400",
+				"to": "00:15:13,400"
+			},
+			"offsets": {
+				"from": 907400,
+				"to": 913400
+			},
+			"text": " And after that, we're going to call increased counter method, increasing by free."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,400",
+				"to": "00:15:20,400"
+			},
+			"offsets": {
+				"from": 913400,
+				"to": 920400
+			},
+			"text": " But this call is not going to fail because now our contract has a new implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,400",
+				"to": "00:15:26,400"
+			},
+			"offsets": {
+				"from": 920400,
+				"to": 926400
+			},
+			"text": " And after that, we're going to call get counter method, which returns the right now, the value 35."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,400",
+				"to": "00:15:35,400"
+			},
+			"offsets": {
+				"from": 926400,
+				"to": 935400
+			},
+			"text": " In that way, not only we upgraded our smart contract, we also preserve this state and address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,400",
+				"to": "00:15:38,400"
+			},
+			"offsets": {
+				"from": 935400,
+				"to": 938400
+			},
+			"text": " which is really important for developers to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,400",
+				"to": "00:15:46,400"
+			},
+			"offsets": {
+				"from": 938400,
+				"to": 946400
+			},
+			"text": " Because you want to hide all the complexity from the user, a developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,400",
+				"to": "00:15:54,400"
+			},
+			"offsets": {
+				"from": 946400,
+				"to": 954400
+			},
+			"text": " And to hide it inside the dev tools, this approach might be a huge surface"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,400",
+				"to": "00:15:58,400"
+			},
+			"offsets": {
+				"from": 954400,
+				"to": 958400
+			},
+			"text": " and opportunity for other developers to use as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,400",
+				"to": "00:16:06,400"
+			},
+			"offsets": {
+				"from": 958400,
+				"to": 966400
+			},
+			"text": " where ability just to modify any modified limitation of any smart contract of course"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,400",
+				"to": "00:16:10,400"
+			},
+			"offsets": {
+				"from": 966400,
+				"to": 970400
+			},
+			"text": " not going to happen on the blockchain anywhere, anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,400",
+				"to": "00:16:16,400"
+			},
+			"offsets": {
+				"from": 970400,
+				"to": 976400
+			},
+			"text": " But again, it's very valuable for developer tools and will enable all sorts of tricks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,400",
+				"to": "00:16:22,400"
+			},
+			"offsets": {
+				"from": 976400,
+				"to": 982400
+			},
+			"text": " which will create a huge value for the development process."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,400",
+				"to": "00:16:38,400"
+			},
+			"offsets": {
+				"from": 989400,
+				"to": 998400
+			},
+			"text": " In the end, I want to talk a bit of feature of free dev tools in the way that I believe the future is not predefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,400",
+				"to": "00:16:41,400"
+			},
+			"offsets": {
+				"from": 998400,
+				"to": 1001400
+			},
+			"text": " There are many possible features."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,400",
+				"to": "00:16:47,400"
+			},
+			"offsets": {
+				"from": 1001400,
+				"to": 1007400
+			},
+			"text": " And as you all know, almost essentially you go gas cars, or compete with electric cars."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,400",
+				"to": "00:16:52,400"
+			},
+			"offsets": {
+				"from": 1007400,
+				"to": 1012400
+			},
+			"text": " But for some reason, electric cars lost the battle to the gas cars."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,400",
+				"to": "00:16:57,400"
+			},
+			"offsets": {
+				"from": 1012400,
+				"to": 1017400
+			},
+			"text": " And only right now, electric cars starting to get some traction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,400",
+				"to": "00:17:05,400"
+			},
+			"offsets": {
+				"from": 1017400,
+				"to": 1025400
+			},
+			"text": " And in this way, blockchain doesn't particularly have to happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,400",
+				"to": "00:17:09,400"
+			},
+			"offsets": {
+				"from": 1025400,
+				"to": 1029400
+			},
+			"text": " where like all the features where it happens in 100 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,400",
+				"to": "00:17:15,400"
+			},
+			"offsets": {
+				"from": 1029400,
+				"to": 1035400
+			},
+			"text": " But I personally don't want it to happen in 100 years, because I want to see it happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,400",
+				"to": "00:17:22,400"
+			},
+			"offsets": {
+				"from": 1035400,
+				"to": 1042400
+			},
+			"text": " And I believe that if our developers tools will stay on the level of Internet Explorer 6,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,400",
+				"to": "00:17:26,400"
+			},
+			"offsets": {
+				"from": 1042400,
+				"to": 1046400
+			},
+			"text": " it's going to be hard to bring new developers to the field of existing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,400",
+				"to": "00:17:32,400"
+			},
+			"offsets": {
+				"from": 1046400,
+				"to": 1052400
+			},
+			"text": " Because the expectations right now of developers are so high, they've been like super spoiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,400",
+				"to": "00:17:39,400"
+			},
+			"offsets": {
+				"from": 1052400,
+				"to": 1059400
+			},
+			"text": " And unless we make this awesome, where free developers do happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,400",
+				"to": "00:17:46,400"
+			},
+			"offsets": {
+				"from": 1059400,
+				"to": 1066400
+			},
+			"text": " I would say it's going to be incredibly hard to achieve developer adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,400",
+				"to": "00:17:54,400"
+			},
+			"offsets": {
+				"from": 1066400,
+				"to": 1074400
+			},
+			"text": " I urge you all to try uploading today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,400",
+				"to": "00:18:01,400"
+			},
+			"offsets": {
+				"from": 1074400,
+				"to": 1081400
+			},
+			"text": " Do it. Just run an English CLI and pack tutorial command."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,400",
+				"to": "00:18:06,400"
+			},
+			"offsets": {
+				"from": 1081400,
+				"to": 1086400
+			},
+			"text": " And by the way, this is the slide where you take a picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,400",
+				"to": "00:18:16,400"
+			},
+			"offsets": {
+				"from": 1086400,
+				"to": 1096400
+			},
+			"text": " But if you security concern a person and don't want to run random code on your machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,400",
+				"to": "00:18:19,400"
+			},
+			"offsets": {
+				"from": 1096400,
+				"to": 1099400
+			},
+			"text": " you can just go to our open zepadim."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,400",
+				"to": "00:18:23,400"
+			},
+			"offsets": {
+				"from": 1099400,
+				"to": 1103400
+			},
+			"text": " You have a count and clone start your tutorial."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,400",
+				"to": "00:18:30,400"
+			},
+			"offsets": {
+				"from": 1103400,
+				"to": 1110400
+			},
+			"text": " This is a tutorial which has a say to upload your there enable, so you can play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,400",
+				"to": "00:18:33,400"
+			},
+			"offsets": {
+				"from": 1110400,
+				"to": 1113400
+			},
+			"text": " It also has a great ability to see light."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,400",
+				"to": "00:18:38,400"
+			},
+			"offsets": {
+				"from": 1113400,
+				"to": 1118400
+			},
+			"text": " So you get more than just a load of the glaive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,400",
+				"to": "00:18:43,400"
+			},
+			"offsets": {
+				"from": 1118400,
+				"to": 1123400
+			},
+			"text": " And it's rather polished experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,400",
+				"to": "00:18:47,400"
+			},
+			"offsets": {
+				"from": 1123400,
+				"to": 1127400
+			},
+			"text": " Thank you very much for your time and attention. It was a pleasure."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,400",
+				"to": "00:18:50,400"
+			},
+			"offsets": {
+				"from": 1127400,
+				"to": 1130400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,400",
+				"to": "00:19:05,400"
+			},
+			"offsets": {
+				"from": 1130400,
+				"to": 1145400
+			},
+			"text": " [Music]"
+		}
+	]
+}

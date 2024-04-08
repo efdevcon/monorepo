@@ -1,0 +1,2969 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 20000
+			},
+			"text": " >> Today I'm going to talk about virtual machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 23000
+			},
+			"text": " Wasn't short for web assembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 26000
+			},
+			"text": " I'm not going to talk about web assembly and give a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 28000
+			},
+			"text": " overview of virtual machines together."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " I think virtual machines are pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 32000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " So for a theory, really the virtual machine is pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " core to all of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 43000
+			},
+			"text": " So what do we want from a virtual machine architect?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 45000
+			},
+			"text": " We want really good performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 47000
+			},
+			"text": " We want it to be close to the metal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 51000
+			},
+			"text": " We don't want a lot of abstraction between what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " virtual machine is doing and what the real hardware is doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 57000
+			},
+			"text": " Yet we also want it to be portable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " We want it to run on many devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 63000
+			},
+			"text": " So we still need a layer between like x ed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 68000
+			},
+			"text": " sex and native assembly and our virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 71000
+			},
+			"text": " We also like it to be standardized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 75000
+			},
+			"text": " We don't need to recreate the real."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 78000
+			},
+			"text": " Another really nice thing would be to have tool chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 79000
+			},
+			"text": " compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 83000
+			},
+			"text": " It would be nice to use LLVM to compile stuff to run on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 85000
+			},
+			"text": " the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 91000
+			},
+			"text": " And lastly, we would be good to have a clean and fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 94000
+			},
+			"text": " simple instruction set or ISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 99000
+			},
+			"text": " So yeah, sorry, x86."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 104000
+			},
+			"text": " So to back up a little bit, a traditional normal hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " you have the execution environment, a CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " It has like an execution environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 112000
+			},
+			"text": " It has many parts but execution environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 118000
+			},
+			"text": " And then it has a core where the ISA, the instructions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 121000
+			},
+			"text": " actual opcodes, you executed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 129000
+			},
+			"text": " And the ISA is usually pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 134000
+			},
+			"text": " There's no instruction, for example, to load something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 135000
+			},
+			"text": " from the hard drive."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 141000
+			},
+			"text": " The way that is handled is you have physical addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " and they write to memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 147000
+			},
+			"text": " And then your CPU just reads from memory, reads"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 149000
+			},
+			"text": " and writes from memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 153000
+			},
+			"text": " And the memory sections are allocated, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 158000
+			},
+			"text": " a boot time for the physical devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 161000
+			},
+			"text": " So we sort of have an analogy to this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " not the AM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 170000
+			},
+			"text": " So traditional CPUs, they keep it isolated."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " The instruction set is modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " It doesn't necessarily make any assumption about the environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178000
+			},
+			"text": " that it's operating in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " It doesn't make assumption about what kind of devices you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " plugged into your computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " There's no opcodes for a mouse or whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 198000
+			},
+			"text": " So this is what Ethereum's current ISA looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 201000
+			},
+			"text": " So this would be the intrinsic set."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 206000
+			},
+			"text": " We have the memory operations, system operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 210000
+			},
+			"text": " so things that give us information about the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 212000
+			},
+			"text": " of the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 213000
+			},
+			"text": " Flow control."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 220000
+			},
+			"text": " And we have plenty of integer operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 224000
+			},
+			"text": " And then going back to the analogy with the traditional CPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 230000
+			},
+			"text": " these opcodes would be external devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " So I wanted to draw like straw three."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 241000
+			},
+			"text": " And gas call and precompiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 243000
+			},
+			"text": " Now those are some interesting ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 247000
+			},
+			"text": " And I'll talk to him about later."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 252000
+			},
+			"text": " So like block hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " And code size and all these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 264000
+			},
+			"text": " These are properties of an external environment that need to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 269000
+			},
+			"text": " into the virtual machine, but through a modular interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 274000
+			},
+			"text": " Not necessarily having the opcode for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278000
+			},
+			"text": " So the rationale of putting the call lock code in with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 283000
+			},
+			"text": " external operations might not necessarily be clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 289000
+			},
+			"text": " But our call lock code is not like SIS call."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 293000
+			},
+			"text": " Like if you've ever done Unix programming or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 301000
+			},
+			"text": " you have a special SIS call to interact with the OS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 304000
+			},
+			"text": " Our call is a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 307000
+			},
+			"text": " We can think of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 312000
+			},
+			"text": " So GAF has a singleton virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 315000
+			},
+			"text": " Which is really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318000
+			},
+			"text": " I think of it as a singleton hypervisor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 322000
+			},
+			"text": " And each single contract is its own VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324000
+			},
+			"text": " Or like its own VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " In the sense that it has its own storage space, it has its own"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 331000
+			},
+			"text": " isolated environment that it works in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 335000
+			},
+			"text": " So going back to calls, calls aren't just calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " So we have an external sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " It's like a VM talking to another VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344000
+			},
+			"text": " So that's what I think can be external."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 346000
+			},
+			"text": " Okay, GAF."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 353000
+			},
+			"text": " So GAF is a property of the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 360000
+			},
+			"text": " And if you had pure hardware, the analog to GAF would just be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 366000
+			},
+			"text": " a little bit more than a singleton."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 369000
+			},
+			"text": " So that would be nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 374000
+			},
+			"text": " So I found out something really interesting, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " Not all CPUs have clock cycles."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " Anyways, there's actually -- not too relevant here, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 387000
+			},
+			"text": " there's actually some CPUs that are totally asynchronous."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 391000
+			},
+			"text": " And lastly, pre-compiled contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 394000
+			},
+			"text": " There are necessary hack that we had to do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 399000
+			},
+			"text": " Because for performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 404000
+			},
+			"text": " But if you had a very performant virtual machine and you didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 410000
+			},
+			"text": " have to rewrite, you know, SHA-3 and SHA-256 and EC"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " recover, you could just compile it and run it on the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 419000
+			},
+			"text": " So we didn't need this pre-compiled contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 423000
+			},
+			"text": " So the end result here is we have a stronger VM."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 429000
+			},
+			"text": " We can also have a more consistent interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 435000
+			},
+			"text": " So what would alternative possible virtual machines look"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 437000
+			},
+			"text": " architecture look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 442000
+			},
+			"text": " So if you want to look at hardware, a really nice one today is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 444000
+			},
+			"text": " the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 446000
+			},
+			"text": " -- so there's multiple risk standards for reduced"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 448000
+			},
+			"text": " structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 453000
+			},
+			"text": " So there's multiple variations of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 459000
+			},
+			"text": " And risk five is, I think, one of the newest ones that has a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " of momentum."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 463000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 468000
+			},
+			"text": " It has open source -- open source -- it's open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 473000
+			},
+			"text": " -- so the specifications open and we can use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " But the people developing it also include open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " implementation -- hardware implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " And so the hardware is the rocket core, the implements, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 487000
+			},
+			"text": " ISA."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 489000
+			},
+			"text": " So it's just like a little team core."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 492000
+			},
+			"text": " And then the whole CPU is -- there's one implementation called"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 493000
+			},
+			"text": " low risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 495000
+			},
+			"text": " So there's multiple implementations too."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " One's called low risk and that uses the rocket core."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 501000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 506000
+			},
+			"text": " So the good thing about this is like it's really close to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 507000
+			},
+			"text": " metal, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 508000
+			},
+			"text": " It is metal."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 511000
+			},
+			"text": " And standardize, that's great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 514000
+			},
+			"text": " Has tool change compatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " You can compile in the C or C++ program and you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523000
+			},
+			"text": " -- just run Linux on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 528000
+			},
+			"text": " It has a very clean design."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 532000
+			},
+			"text": " And what the bad thing is, if you wanted to actually burn one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 534000
+			},
+			"text": " of these things to chip, it's very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 536000
+			},
+			"text": " So you probably wouldn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 538000
+			},
+			"text": " You probably just emulate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 541000
+			},
+			"text": " Development with it is fairly tricky."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 545000
+			},
+			"text": " It wasn't necessarily designed -- it was designed for hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 548000
+			},
+			"text": " people, wasn't designed for software people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " If you're not burning it to chip, you're emulating it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 554000
+			},
+			"text": " You have to modify it some."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 559000
+			},
+			"text": " It wasn't really designed for that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 561000
+			},
+			"text": " Environmental and full information."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " So, like loading external devices, like the block chain stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 572000
+			},
+			"text": " There's no strict way or set path to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 576000
+			},
+			"text": " It's assuming you're loading stuff into memory and then reading"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581000
+			},
+			"text": " address system memory or reading information for memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584000
+			},
+			"text": " That's really unnecessary because in Ethereum we're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 587000
+			},
+			"text": " plugging in and pulling out devices at that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 589000
+			},
+			"text": " So there's really no point to have that architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 593000
+			},
+			"text": " And lastly, it's not necessarily portable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 598000
+			},
+			"text": " As once again, it's designed for hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 602000
+			},
+			"text": " So another alternative might be WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 607000
+			},
+			"text": " The basic idea behind WebAssembly is it's assembly for the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 611000
+			},
+			"text": " Basically, JavaScript wasn't fast enough for certain applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 618000
+			},
+			"text": " So people realize that, okay, we need a little bit lower level"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 621000
+			},
+			"text": " abstract than something really high in JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 623000
+			},
+			"text": " So they came up with WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 625000
+			},
+			"text": " Actually, first the history was first."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 630000
+			},
+			"text": " They came up with ASMJS from Mozilla, which was a subset of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 636000
+			},
+			"text": " JavaScript that made it really easy for interpreters to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 638000
+			},
+			"text": " sections of code and turn them into JIT."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 642000
+			},
+			"text": " And then it was really performant, but it was kind of ugly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 647000
+			},
+			"text": " Another alternative from Google was portable PNACL, which allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:50,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 650000
+			},
+			"text": " you to run compile."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 650000,
+				"to": 657000
+			},
+			"text": " In EC++ code and run it in a safe virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " So those were the predecessor to WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 669000
+			},
+			"text": " And the current version of WebAssembly is a new ISA that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 677000
+			},
+			"text": " designed to be fairly low level, portable and fast and also safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 680000
+			},
+			"text": " for web browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 683000
+			},
+			"text": " It is a result of the collaboration between Google,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 686000
+			},
+			"text": " Apple and Microsoft, which of course, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 688000
+			},
+			"text": " implemented all the major browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " And it replaces Apple and ASMJS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 694000
+			},
+			"text": " Another interesting thing about it is, even though it is fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " low level, it does have some higher level abstracts to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 704000
+			},
+			"text": " So the instructions are specified -- specify some AST"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 707000
+			},
+			"text": " abstract tree semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 712000
+			},
+			"text": " So, for example, functions, modules, and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716000
+			},
+			"text": " variables instead of registries, but they are really"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 718000
+			},
+			"text": " interchangeable."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721000
+			},
+			"text": " So it is a registry based, say, variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 726000
+			},
+			"text": " And it is really easy to represent in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 729000
+			},
+			"text": " expressions, which is kind of nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 732000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 733000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 735000
+			},
+			"text": " Three minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 736000
+			},
+			"text": " Skip that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " So you have some AST semantics, which we are going to skip."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " So the ISA, the instruction set, so the instruction set is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 746000
+			},
+			"text": " pretty -- I mean, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 749000
+			},
+			"text": " So what people have been designing instruction sets for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " pretty long time right now, and they really haven't changed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 754000
+			},
+			"text": " for the past 50 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 757000
+			},
+			"text": " So no big surprise in the instruction set, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 760000
+			},
+			"text": " It is 8 bit bytes to complement and enter a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 761000
+			},
+			"text": " ending."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 764000
+			},
+			"text": " It comes in two variants, 32 byte and 64 byte bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " variant."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 771000
+			},
+			"text": " So why would WebAssembly possibly good for using"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 773000
+			},
+			"text": " on a blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 775000
+			},
+			"text": " Well, it is built to be performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 780000
+			},
+			"text": " It is built to be -- built to be jitted."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 784000
+			},
+			"text": " So -- right."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 787000
+			},
+			"text": " So it came from JavaScript, which is like really hard and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 789000
+			},
+			"text": " dynamic to jit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " And it is basically like a complement to something that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 796000
+			},
+			"text": " really dynamic, but really not --"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 798000
+			},
+			"text": " so dynamic and easy to jit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 800000
+			},
+			"text": " Opcode compression is built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " Compression is like pretty important on the Web when you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 807000
+			},
+			"text": " sending bytes across the wire."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 810000
+			},
+			"text": " So that is even more important in a blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 812000
+			},
+			"text": " It is portable."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 818000
+			},
+			"text": " It should be easy to run on many different architects."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 822000
+			},
+			"text": " It already has LLVM back end, meaning you can compile,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 828000
+			},
+			"text": " anything you want to -- LLVM can compile to it and target"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 829000
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 831000
+			},
+			"text": " This specification has a pretty clear specification and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 833000
+			},
+			"text": " they are working on a formal specification with no"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 834000
+			},
+			"text": " camo."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 837000
+			},
+			"text": " And it is built to be run in a hostile environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 842000
+			},
+			"text": " So what would you need to change and modify WebAssembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 845000
+			},
+			"text": " to work on a blockchain, with a game like environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 848000
+			},
+			"text": " it needs to be fully deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 851000
+			},
+			"text": " So WebAssembly already does a pretty good job of -- I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 856000
+			},
+			"text": " am not a deterministic behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 858000
+			},
+			"text": " So that would be pretty easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 863000
+			},
+			"text": " All you have to do is disable threads and a few operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 868000
+			},
+			"text": " that uses the approximations that might be hardware based."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 871000
+			},
+			"text": " You have to add access to environmental information."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " So like getting the block hash and getting different environmental"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 878000
+			},
+			"text": " information for the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 882000
+			},
+			"text": " And you would have to add a meter income."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 884000
+			},
+			"text": " That is a pretty big one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 888000
+			},
+			"text": " So yeah, this is the environmental information you would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 889000
+			},
+			"text": " to add."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 895000
+			},
+			"text": " As I said earlier, WebAssembly has the idea of modules which makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 900000
+			},
+			"text": " it really nice to add the environmental information in since"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 903000
+			},
+			"text": " you could implement it as a module."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 905000
+			},
+			"text": " You could implement a thin module."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 909000
+			},
+			"text": " Then that would have different functions to query the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 911000
+			},
+			"text": " state."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 917000
+			},
+			"text": " And that module would hook into the action laid of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 922000
+			},
+			"text": " So there is a clean path of how to embed this instruction set"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 927000
+			},
+			"text": " into external environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 931000
+			},
+			"text": " So also another big thing is you need backwards"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 935000
+			},
+			"text": " to add a little bit of visibility and turns out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 937000
+			},
+			"text": " transpiling EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 939000
+			},
+			"text": " Wasm is pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 941000
+			},
+			"text": " I like to do it in two different stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 943000
+			},
+			"text": " This is not a complete project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 948000
+			},
+			"text": " But what you do is you would first translate it to Wasm and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 952000
+			},
+			"text": " you would translate it to Wasm plus metering."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 957000
+			},
+			"text": " So metering code that would run on a normal Wasm machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 961000
+			},
+			"text": " But if you modified Wasm so that you had the metering built in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 964000
+			},
+			"text": " natively, you wouldn't do the final step."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 968000
+			},
+			"text": " So that's why it's not just have it compiled like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 973000
+			},
+			"text": " And here's some images of how transpiling looks, but my time is up."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 975000
+			},
+			"text": " So, all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 976000
+			},
+			"text": " Bye."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 978000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 980000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 990000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

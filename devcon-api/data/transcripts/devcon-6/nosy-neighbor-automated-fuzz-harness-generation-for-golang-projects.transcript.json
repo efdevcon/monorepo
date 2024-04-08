@@ -1,0 +1,7666 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:15,520"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 15520
+			},
+			"text": " Yeah, so I'm David."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,520",
+				"to": "00:00:17,200"
+			},
+			"offsets": {
+				"from": 15520,
+				"to": 17200
+			},
+			"text": " Last time I saw you guys, I was in better shape."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,200",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 17200,
+				"to": 19600
+			},
+			"text": " I'm surprised I made it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 21000
+			},
+			"text": " More on that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:23,080"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 23080
+			},
+			"text": " I'm gonna talk about nosy neighbor."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,080",
+				"to": "00:00:26,200"
+			},
+			"offsets": {
+				"from": 23080,
+				"to": 26200
+			},
+			"text": " Nosy neighbor is a tool I've been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,200",
+				"to": "00:00:28,360"
+			},
+			"offsets": {
+				"from": 26200,
+				"to": 28360
+			},
+			"text": " Open sourcing for everyone to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,360",
+				"to": "00:00:31,280"
+			},
+			"offsets": {
+				"from": 28360,
+				"to": 31280
+			},
+			"text": " Hoping it makes some waves in the Golang community."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,280",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 31280,
+				"to": 34840
+			},
+			"text": " Talk a little bit about the challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:38,600"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 38600
+			},
+			"text": " Finding bugs in open source Go projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,600",
+				"to": "00:00:40,680"
+			},
+			"offsets": {
+				"from": 38600,
+				"to": 40680
+			},
+			"text": " and a little bit of the motivation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,680",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 40680,
+				"to": 43360
+			},
+			"text": " So Ethereum really loves Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:49,120"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 49120
+			},
+			"text": " Some stats here, get accounts for 82% of execution clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,120",
+				"to": "00:00:52,680"
+			},
+			"offsets": {
+				"from": 49120,
+				"to": 52680
+			},
+			"text": " 42% of the consensus layer clients are running Prism"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,680",
+				"to": "00:00:54,480"
+			},
+			"offsets": {
+				"from": 52680,
+				"to": 54480
+			},
+			"text": " and this is as of like last week."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,480",
+				"to": "00:00:56,280"
+			},
+			"offsets": {
+				"from": 54480,
+				"to": 56280
+			},
+			"text": " These metrics actually used to be higher,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,280",
+				"to": "00:00:59,240"
+			},
+			"offsets": {
+				"from": 56280,
+				"to": 59240
+			},
+			"text": " like 90 plus on the execution side"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,240",
+				"to": "00:01:02,680"
+			},
+			"offsets": {
+				"from": 59240,
+				"to": 62680
+			},
+			"text": " and like 60, 70 plus on the CL."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,680",
+				"to": "00:01:05,320"
+			},
+			"offsets": {
+				"from": 62680,
+				"to": 65320
+			},
+			"text": " Mev Boost is also written in Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,320",
+				"to": "00:01:09,640"
+			},
+			"offsets": {
+				"from": 65320,
+				"to": 69640
+			},
+			"text": " It's the only production open source Mev client"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,640",
+				"to": "00:01:11,240"
+			},
+			"offsets": {
+				"from": 69640,
+				"to": 71240
+			},
+			"text": " for Flashbots right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,240",
+				"to": "00:01:16,480"
+			},
+			"offsets": {
+				"from": 71240,
+				"to": 76480
+			},
+			"text": " As of like, I think last week, 48% of blocks on Maynet"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,480",
+				"to": "00:01:18,200"
+			},
+			"offsets": {
+				"from": 76480,
+				"to": 78200
+			},
+			"text": " were Flash blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,200",
+				"to": "00:01:21,080"
+			},
+			"offsets": {
+				"from": 78200,
+				"to": 81080
+			},
+			"text": " So I won't go into Mev and all that fun stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,080",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 81080,
+				"to": 84600
+			},
+			"text": " But what I'm trying to kind of hit home here is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 87000
+			},
+			"text": " Go is like critical in the Ethereum stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 91000
+			},
+			"text": " So somewhere, I would say like maybe three quarters"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:34,040"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 94040
+			},
+			"text": " of nodes or more are using Go at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,040",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 94040,
+				"to": 95680
+			},
+			"text": " So it's super important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:38,200"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 98200
+			},
+			"text": " Let's see, lots of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,200",
+				"to": "00:01:40,920"
+			},
+			"offsets": {
+				"from": 98200,
+				"to": 100920
+			},
+			"text": " Got to run two chains, the execution chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,920",
+				"to": "00:01:42,840"
+			},
+			"offsets": {
+				"from": 100920,
+				"to": 102840
+			},
+			"text": " the consensus chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,840",
+				"to": "00:01:45,240"
+			},
+			"offsets": {
+				"from": 102840,
+				"to": 105240
+			},
+			"text": " We've got the entire EVM, all kinds of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,240",
+				"to": "00:01:47,600"
+			},
+			"offsets": {
+				"from": 105240,
+				"to": 107600
+			},
+			"text": " So there's like a huge amount of code here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,600",
+				"to": "00:01:50,560"
+			},
+			"offsets": {
+				"from": 107600,
+				"to": 110560
+			},
+			"text": " How big is it exactly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,560",
+				"to": "00:01:55,400"
+			},
+			"offsets": {
+				"from": 110560,
+				"to": 115400
+			},
+			"text": " The pure Go Ethereum stack is 583,000 lines of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,400",
+				"to": "00:01:59,680"
+			},
+			"offsets": {
+				"from": 115400,
+				"to": 119680
+			},
+			"text": " So as a security researcher, like a deer in headlights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,680",
+				"to": "00:02:02,680"
+			},
+			"offsets": {
+				"from": 119680,
+				"to": 122680
+			},
+			"text": " I'm not gonna manual review all of that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,680",
+				"to": "00:02:04,840"
+			},
+			"offsets": {
+				"from": 122680,
+				"to": 124840
+			},
+			"text": " We do do manual reviews here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,840",
+				"to": "00:02:06,880"
+			},
+			"offsets": {
+				"from": 124840,
+				"to": 126880
+			},
+			"text": " All of these things have been reviewed at least once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,880",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 126880,
+				"to": 129240
+			},
+			"text": " most likely, if not twice or more times."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 130560
+			},
+			"text": " But they're moving targets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:13,520"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 133520
+			},
+			"text": " We've got every six months or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,520",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133520,
+				"to": 136000
+			},
+			"text": " We've got hard forks on both the EL and the CL."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138480
+			},
+			"text": " So it's just kind of something that if we can automate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:21,680"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 141680
+			},
+			"text": " anything, we should automate finding issues here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,680",
+				"to": "00:02:25,120"
+			},
+			"offsets": {
+				"from": 141680,
+				"to": 145120
+			},
+			"text": " My task, there's a few of us at the Ethereum Foundation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,120",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145120,
+				"to": 148000
+			},
+			"text": " working on the consensus layer security research team."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150000
+			},
+			"text": " My task is to kind of like look right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:31,840"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 151840
+			},
+			"text": " and focus on the Go stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,840",
+				"to": "00:02:33,200"
+			},
+			"offsets": {
+				"from": 151840,
+				"to": 153200
+			},
+			"text": " This is kind of a daunting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,200",
+				"to": "00:02:36,240"
+			},
+			"offsets": {
+				"from": 153200,
+				"to": 156240
+			},
+			"text": " So a few months ago, I guess about a year ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,240",
+				"to": "00:02:37,880"
+			},
+			"offsets": {
+				"from": 156240,
+				"to": 157880
+			},
+			"text": " started looking at this and trying to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,880",
+				"to": "00:02:39,320"
+			},
+			"offsets": {
+				"from": 157880,
+				"to": 159320
+			},
+			"text": " the problems that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,320",
+				"to": "00:02:40,840"
+			},
+			"offsets": {
+				"from": 159320,
+				"to": 160840
+			},
+			"text": " So talk a little bit about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,840",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 160840,
+				"to": 165440
+			},
+			"text": " First of all, Go is memory safe, which is awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:47,200"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 167200
+			},
+			"text": " We don't have remote code execution issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,200",
+				"to": "00:02:49,360"
+			},
+			"offsets": {
+				"from": 167200,
+				"to": 169360
+			},
+			"text": " stuff like that very often."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,360",
+				"to": "00:02:52,360"
+			},
+			"offsets": {
+				"from": 169360,
+				"to": 172360
+			},
+			"text": " The memory safety stuff helps also a lot in the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,360",
+				"to": "00:02:53,680"
+			},
+			"offsets": {
+				"from": 172360,
+				"to": 173680
+			},
+			"text": " I'll talk more about it in this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,680",
+				"to": "00:02:55,920"
+			},
+			"offsets": {
+				"from": 173680,
+				"to": 175920
+			},
+			"text": " but making it possible for me to make a tool like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,920",
+				"to": "00:02:58,760"
+			},
+			"offsets": {
+				"from": 175920,
+				"to": 178760
+			},
+			"text": " A lot of common mistakes in Go though."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,760",
+				"to": "00:03:00,720"
+			},
+			"offsets": {
+				"from": 178760,
+				"to": 180720
+			},
+			"text": " There's some that are queryable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,720",
+				"to": "00:03:02,880"
+			},
+			"offsets": {
+				"from": 180720,
+				"to": 182880
+			},
+			"text": " There's a lot of these little issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,880",
+				"to": "00:03:07,400"
+			},
+			"offsets": {
+				"from": 182880,
+				"to": 187400
+			},
+			"text": " like the colon equals sign, this quick variable assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,400",
+				"to": "00:03:10,440"
+			},
+			"offsets": {
+				"from": 187400,
+				"to": 190440
+			},
+			"text": " It makes writing go really easy and human friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,440",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 190440,
+				"to": 193400
+			},
+			"text": " But it also means you can have these shadow variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 196840
+			},
+			"text": " where if you declare a variable in a loop, you override it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,840",
+				"to": "00:03:18,560"
+			},
+			"offsets": {
+				"from": 196840,
+				"to": 198560
+			},
+			"text": " and you might reference it later, thinking you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,560",
+				"to": "00:03:20,640"
+			},
+			"offsets": {
+				"from": 198560,
+				"to": 200640
+			},
+			"text": " talking about the first version of the variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,640",
+				"to": "00:03:23,560"
+			},
+			"offsets": {
+				"from": 200640,
+				"to": 203560
+			},
+			"text": " If you call a Go routine and you kick off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,560",
+				"to": "00:03:25,800"
+			},
+			"offsets": {
+				"from": 203560,
+				"to": 205800
+			},
+			"text": " which is basically for non-go people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,800",
+				"to": "00:03:30,040"
+			},
+			"offsets": {
+				"from": 205800,
+				"to": 210040
+			},
+			"text": " it's like a piece that I'd create under the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,040",
+				"to": "00:03:31,880"
+			},
+			"offsets": {
+				"from": 210040,
+				"to": 211880
+			},
+			"text": " The variables that are passed to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,880",
+				"to": "00:03:34,280"
+			},
+			"offsets": {
+				"from": 211880,
+				"to": 214280
+			},
+			"text": " are not the same variable that you might think they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,280",
+				"to": "00:03:38,160"
+			},
+			"offsets": {
+				"from": 214280,
+				"to": 218160
+			},
+			"text": " So if you have like, racy type things later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,160",
+				"to": "00:03:39,960"
+			},
+			"offsets": {
+				"from": 218160,
+				"to": 219960
+			},
+			"text": " you don't really know and Go doesn't complain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,960",
+				"to": "00:03:41,960"
+			},
+			"offsets": {
+				"from": 219960,
+				"to": 221960
+			},
+			"text": " So we can query for certain things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,960",
+				"to": "00:03:44,960"
+			},
+			"offsets": {
+				"from": 221960,
+				"to": 224960
+			},
+			"text": " This is a good example of like one query GoSec"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,960",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 224960,
+				"to": 228000
+			},
+			"text": " that just says like, hey, you need to manual review"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:49,920"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 229920
+			},
+			"text": " all these uses of unsafe."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,920",
+				"to": "00:03:52,440"
+			},
+			"offsets": {
+				"from": 229920,
+				"to": 232440
+			},
+			"text": " Probably not the best example, but we have code QL,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,440",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 232440,
+				"to": 235800
+			},
+			"text": " SimGrep and GoSec are like just major tools you can look up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:03:59,440"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 239440
+			},
+			"text": " for like automating querying, static analysis, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,440",
+				"to": "00:04:01,080"
+			},
+			"offsets": {
+				"from": 239440,
+				"to": 241080
+			},
+			"text": " Another big one is race conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,080",
+				"to": "00:04:05,240"
+			},
+			"offsets": {
+				"from": 241080,
+				"to": 245240
+			},
+			"text": " So Go's, I think the reason it was designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,240",
+				"to": "00:04:06,560"
+			},
+			"offsets": {
+				"from": 245240,
+				"to": 246560
+			},
+			"text": " and the design decisions they made"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,560",
+				"to": "00:04:09,480"
+			},
+			"offsets": {
+				"from": 246560,
+				"to": 249480
+			},
+			"text": " was to make parallelization very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,480",
+				"to": "00:04:11,360"
+			},
+			"offsets": {
+				"from": 249480,
+				"to": 251360
+			},
+			"text": " So they have like this concept of channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,360",
+				"to": "00:04:12,800"
+			},
+			"offsets": {
+				"from": 251360,
+				"to": 252800
+			},
+			"text": " and they have this concept of Go routine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,800",
+				"to": "00:04:15,600"
+			},
+			"offsets": {
+				"from": 252800,
+				"to": 255600
+			},
+			"text": " So it's very simple to be like, hey, just go on another thread,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,600",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 255600,
+				"to": 257280
+			},
+			"text": " go do something and then come back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:19,240"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 259240
+			},
+			"text": " And Google made it to be memory safe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,240",
+				"to": "00:04:20,960"
+			},
+			"offsets": {
+				"from": 259240,
+				"to": 260960
+			},
+			"text": " but also efficient and human readable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,960",
+				"to": "00:04:23,080"
+			},
+			"offsets": {
+				"from": 260960,
+				"to": 263080
+			},
+			"text": " but to process massively large data sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,080",
+				"to": "00:04:26,520"
+			},
+			"offsets": {
+				"from": 263080,
+				"to": 266520
+			},
+			"text": " And so we can do a lot of parallelization very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,520",
+				"to": "00:04:30,200"
+			},
+			"offsets": {
+				"from": 266520,
+				"to": 270200
+			},
+			"text": " But the problem here is that it's so easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,200",
+				"to": "00:04:32,520"
+			},
+			"offsets": {
+				"from": 270200,
+				"to": 272520
+			},
+			"text": " that it's really easy to introduce race conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,520",
+				"to": "00:04:34,040"
+			},
+			"offsets": {
+				"from": 272520,
+				"to": 274040
+			},
+			"text": " So like one thing we have been doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,040",
+				"to": "00:04:36,560"
+			},
+			"offsets": {
+				"from": 274040,
+				"to": 276560
+			},
+			"text": " is running these thread sanitizers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,560",
+				"to": "00:04:38,520"
+			},
+			"offsets": {
+				"from": 276560,
+				"to": 278520
+			},
+			"text": " This little terminal prompt right here"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,520",
+				"to": "00:04:42,520"
+			},
+			"offsets": {
+				"from": 278520,
+				"to": 282520
+			},
+			"text": " is an example of actually a mainnet gef bug, a race condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,520",
+				"to": "00:04:44,400"
+			},
+			"offsets": {
+				"from": 282520,
+				"to": 284400
+			},
+			"text": " that was causing some memory corruption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,400",
+				"to": "00:04:46,800"
+			},
+			"offsets": {
+				"from": 284400,
+				"to": 286800
+			},
+			"text": " which if you see memory corruption and Go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,800",
+				"to": "00:04:48,760"
+			},
+			"offsets": {
+				"from": 286800,
+				"to": 288760
+			},
+			"text": " it's usually something race related"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,760",
+				"to": "00:04:51,440"
+			},
+			"offsets": {
+				"from": 288760,
+				"to": 291440
+			},
+			"text": " or you're using like Sego or some native library"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,440",
+				"to": "00:04:54,080"
+			},
+			"offsets": {
+				"from": 291440,
+				"to": 294080
+			},
+			"text": " because Go is relatively like almost 99,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,080",
+				"to": "00:04:55,880"
+			},
+			"offsets": {
+				"from": 294080,
+				"to": 295880
+			},
+			"text": " I would say, percent safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,880",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 295880,
+				"to": 297200
+			},
+			"text": " if you're not in one of those conditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:04:58,400"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 298400
+			},
+			"text": " as far as memory goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,400",
+				"to": "00:04:59,760"
+			},
+			"offsets": {
+				"from": 298400,
+				"to": 299760
+			},
+			"text": " There's also some other sanitizers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,760",
+				"to": "00:05:03,160"
+			},
+			"offsets": {
+				"from": 299760,
+				"to": 303160
+			},
+			"text": " There's ASAN, MSAN, UBSAN, things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,160",
+				"to": "00:05:06,320"
+			},
+			"offsets": {
+				"from": 303160,
+				"to": 306320
+			},
+			"text": " We're running nodes on Robson, Sepolia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,320",
+				"to": "00:05:09,120"
+			},
+			"offsets": {
+				"from": 306320,
+				"to": 309120
+			},
+			"text": " the Prater girly testnet and also on mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,120",
+				"to": "00:05:10,720"
+			},
+			"offsets": {
+				"from": 309120,
+				"to": 310720
+			},
+			"text": " that have all these sanitizers running."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,720",
+				"to": "00:05:14,520"
+			},
+			"offsets": {
+				"from": 310720,
+				"to": 314520
+			},
+			"text": " So we've kind of automated this querying."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,520",
+				"to": "00:05:17,680"
+			},
+			"offsets": {
+				"from": 314520,
+				"to": 317680
+			},
+			"text": " We've automated sanitizers running stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,680",
+				"to": "00:05:19,040"
+			},
+			"offsets": {
+				"from": 317680,
+				"to": 319040
+			},
+			"text": " like using dynamic analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,040",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 319040,
+				"to": 320920
+			},
+			"text": " So we've kind of checked both of those boxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:23,120"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 323120
+			},
+			"text": " But what else can we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,120",
+				"to": "00:05:25,440"
+			},
+			"offsets": {
+				"from": 323120,
+				"to": 325440
+			},
+			"text": " And that is where nosy neighbor comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,440",
+				"to": "00:05:30,320"
+			},
+			"offsets": {
+				"from": 325440,
+				"to": 330320
+			},
+			"text": " So how else can we cover these 583,000 lines of code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,320",
+				"to": "00:05:32,400"
+			},
+			"offsets": {
+				"from": 330320,
+				"to": 332400
+			},
+			"text": " This solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,400",
+				"to": "00:05:34,880"
+			},
+			"offsets": {
+				"from": 332400,
+				"to": 334880
+			},
+			"text": " Let's talk a little bit about the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,880",
+				"to": "00:05:36,480"
+			},
+			"offsets": {
+				"from": 334880,
+				"to": 336480
+			},
+			"text": " I'll rewind just a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,480",
+				"to": "00:05:39,440"
+			},
+			"offsets": {
+				"from": 336480,
+				"to": 339440
+			},
+			"text": " Obviously I already mentioned the huge attack surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,440",
+				"to": "00:05:40,800"
+			},
+			"offsets": {
+				"from": 339440,
+				"to": 340800
+			},
+			"text": " One thing I do want to point out here"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,800",
+				"to": "00:05:43,800"
+			},
+			"offsets": {
+				"from": 340800,
+				"to": 343800
+			},
+			"text": " is the denial services are critical for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,800",
+				"to": "00:05:46,480"
+			},
+			"offsets": {
+				"from": 343800,
+				"to": 346480
+			},
+			"text": " Not just for other Go Repos necessarily,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,480",
+				"to": "00:05:49,760"
+			},
+			"offsets": {
+				"from": 346480,
+				"to": 349760
+			},
+			"text": " but a blockchain cannot have a denial of service."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,760",
+				"to": "00:05:51,840"
+			},
+			"offsets": {
+				"from": 349760,
+				"to": 351840
+			},
+			"text": " So usually a denial of service"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,840",
+				"to": "00:05:55,280"
+			},
+			"offsets": {
+				"from": 351840,
+				"to": 355280
+			},
+			"text": " on the common vulnerability severity scale is like a three."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,280",
+				"to": "00:05:57,840"
+			},
+			"offsets": {
+				"from": 355280,
+				"to": 357840
+			},
+			"text": " It's not like a nine, it's not considered critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,840",
+				"to": "00:06:00,120"
+			},
+			"offsets": {
+				"from": 357840,
+				"to": 360120
+			},
+			"text": " There's no information disclosure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,120",
+				"to": "00:06:01,520"
+			},
+			"offsets": {
+				"from": 360120,
+				"to": 361520
+			},
+			"text": " there's no remote code execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,520",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 361520,
+				"to": 363800
+			},
+			"text": " and thus there's not usually privilege escalation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:05,600"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 365600
+			},
+			"text": " So people aren't like lifting keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,600",
+				"to": "00:06:09,640"
+			},
+			"offsets": {
+				"from": 365600,
+				"to": 369640
+			},
+			"text": " But if you have more than 35% of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,640",
+				"to": "00:06:12,840"
+			},
+			"offsets": {
+				"from": 369640,
+				"to": 372840
+			},
+			"text": " running some kind of Go under the hood"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,840",
+				"to": "00:06:16,080"
+			},
+			"offsets": {
+				"from": 372840,
+				"to": 376080
+			},
+			"text": " and there's denial of services in those Go routines"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,080",
+				"to": "00:06:18,520"
+			},
+			"offsets": {
+				"from": 376080,
+				"to": 378520
+			},
+			"text": " or these repos, then you end up in a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,520",
+				"to": "00:06:21,800"
+			},
+			"offsets": {
+				"from": 378520,
+				"to": 381800
+			},
+			"text": " where the Ethereum network could be brought to its knees."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,800",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 381800,
+				"to": 383600
+			},
+			"text": " We obviously have a multi-client architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:25,160"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 385160
+			},
+			"text": " So these other clients would be kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,160",
+				"to": "00:06:26,800"
+			},
+			"offsets": {
+				"from": 385160,
+				"to": 386800
+			},
+			"text": " like carrying the network during that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,800",
+				"to": "00:06:29,600"
+			},
+			"offsets": {
+				"from": 386800,
+				"to": 389600
+			},
+			"text": " But it's not something we wouldn't have finality"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,600",
+				"to": "00:06:32,280"
+			},
+			"offsets": {
+				"from": 389600,
+				"to": 392280
+			},
+			"text": " for those of you that are really familiar with Proof of Stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,280",
+				"to": "00:06:33,880"
+			},
+			"offsets": {
+				"from": 392280,
+				"to": 393880
+			},
+			"text": " It would be pretty big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,880",
+				"to": "00:06:35,760"
+			},
+			"offsets": {
+				"from": 393880,
+				"to": 395760
+			},
+			"text": " So we kind of have this weird issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,760",
+				"to": "00:06:38,160"
+			},
+			"offsets": {
+				"from": 395760,
+				"to": 398160
+			},
+			"text": " where the worst kind of bugs we don't really see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,160",
+				"to": "00:06:41,480"
+			},
+			"offsets": {
+				"from": 398160,
+				"to": 401480
+			},
+			"text": " but we care a lot about these smaller bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,480",
+				"to": "00:06:44,880"
+			},
+			"offsets": {
+				"from": 401480,
+				"to": 404880
+			},
+			"text": " The good, I mentioned RCE's rare, we have the source."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,880",
+				"to": "00:06:45,720"
+			},
+			"offsets": {
+				"from": 404880,
+				"to": 405720
+			},
+			"text": " This is really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,720",
+				"to": "00:06:47,360"
+			},
+			"offsets": {
+				"from": 405720,
+				"to": 407360
+			},
+			"text": " I've been a security researcher for a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,360",
+				"to": "00:06:49,600"
+			},
+			"offsets": {
+				"from": 407360,
+				"to": 409600
+			},
+			"text": " and I've not had this source very often in my career."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,600",
+				"to": "00:06:51,840"
+			},
+			"offsets": {
+				"from": 409600,
+				"to": 411840
+			},
+			"text": " So this is like a whole new ball game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,840",
+				"to": "00:06:55,200"
+			},
+			"offsets": {
+				"from": 411840,
+				"to": 415200
+			},
+			"text": " Go strongly tight, all of the panics and stack traces"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,200",
+				"to": "00:06:56,840"
+			},
+			"offsets": {
+				"from": 415200,
+				"to": 416840
+			},
+			"text": " and failure reporting is like excellent."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,840",
+				"to": "00:06:59,200"
+			},
+			"offsets": {
+				"from": 416840,
+				"to": 419200
+			},
+			"text": " So if you write a fuzzer and it finds a crash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,200",
+				"to": "00:07:00,320"
+			},
+			"offsets": {
+				"from": 419200,
+				"to": 420320
+			},
+			"text": " it doesn't bring down your fuzzer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,320",
+				"to": "00:07:01,840"
+			},
+			"offsets": {
+				"from": 420320,
+				"to": 421840
+			},
+			"text": " and your fuzzer doesn't commit suicide."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,840",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 421840,
+				"to": 423000
+			},
+			"text": " So that's really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:05,920"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 425920
+			},
+			"text": " And I'm gonna talk a little bit about the tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,920",
+				"to": "00:07:06,960"
+			},
+			"offsets": {
+				"from": 425920,
+				"to": 426960
+			},
+			"text": " This is a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,960",
+				"to": "00:07:10,200"
+			},
+			"offsets": {
+				"from": 426960,
+				"to": 430200
+			},
+			"text": " So go 1.18, I guess like maybe six months ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,200",
+				"to": "00:07:12,160"
+			},
+			"offsets": {
+				"from": 430200,
+				"to": 432160
+			},
+			"text": " they released native fuzzing support."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,160",
+				"to": "00:07:15,800"
+			},
+			"offsets": {
+				"from": 432160,
+				"to": 435800
+			},
+			"text": " So this is an example of like in the testing library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,800",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 435800,
+				"to": 436960
+			},
+			"text": " I can fuzz this function."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:18,920"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 438920
+			},
+			"text": " So the function on the test on the right side"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,920",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 438920,
+				"to": 441640
+			},
+			"text": " and I lifted this straight from like the go fuzzing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:23,160"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 443160
+			},
+			"text": " like native fuzzing design doc."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,160",
+				"to": "00:07:26,040"
+			},
+			"offsets": {
+				"from": 443160,
+				"to": 446040
+			},
+			"text": " Foo is the function under test here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,040",
+				"to": "00:07:28,760"
+			},
+			"offsets": {
+				"from": 446040,
+				"to": 448760
+			},
+			"text": " So we can fuzz foo, we can say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,760",
+				"to": "00:07:31,600"
+			},
+			"offsets": {
+				"from": 448760,
+				"to": 451600
+			},
+			"text": " hey, f.fuzz, give it a function interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,600",
+				"to": "00:07:33,520"
+			},
+			"offsets": {
+				"from": 451600,
+				"to": 453520
+			},
+			"text": " We can say I want an int and I want a string,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,520",
+				"to": "00:07:35,440"
+			},
+			"offsets": {
+				"from": 453520,
+				"to": 455440
+			},
+			"text": " which are the two argument types to foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,440",
+				"to": "00:07:37,960"
+			},
+			"offsets": {
+				"from": 455440,
+				"to": 457960
+			},
+			"text": " We can add a test corpus of like right here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,960",
+				"to": "00:07:39,360"
+			},
+			"offsets": {
+				"from": 457960,
+				"to": 459360
+			},
+			"text": " it says five and hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,360",
+				"to": "00:07:42,280"
+			},
+			"offsets": {
+				"from": 459360,
+				"to": 462280
+			},
+			"text": " Anytime you wanna like prevent like regression,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,280",
+				"to": "00:07:43,880"
+			},
+			"offsets": {
+				"from": 462280,
+				"to": 463880
+			},
+			"text": " you can add like previous bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,880",
+				"to": "00:07:45,200"
+			},
+			"offsets": {
+				"from": 463880,
+				"to": 465200
+			},
+			"text": " into your test corporate this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,200",
+				"to": "00:07:46,480"
+			},
+			"offsets": {
+				"from": 465200,
+				"to": 466480
+			},
+			"text": " And it will automatically tell you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,480",
+				"to": "00:07:47,600"
+			},
+			"offsets": {
+				"from": 466480,
+				"to": 467600
+			},
+			"text": " if the bug is reintroduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,600",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 467600,
+				"to": 469280
+			},
+			"text": " So that's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:51,040"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 471040
+			},
+			"text": " It's automatically coverage guided,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,040",
+				"to": "00:07:52,760"
+			},
+			"offsets": {
+				"from": 471040,
+				"to": 472760
+			},
+			"text": " all the test cases when there is coverage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,760",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 472760,
+				"to": 474000
+			},
+			"text": " they get added to the test corporate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:55,880"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 475880
+			},
+			"text": " and they get mutated on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,880",
+				"to": "00:07:57,440"
+			},
+			"offsets": {
+				"from": 475880,
+				"to": 477440
+			},
+			"text": " Errors are super descriptive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,440",
+				"to": "00:07:58,520"
+			},
+			"offsets": {
+				"from": 477440,
+				"to": 478520
+			},
+			"text": " don't need health checkers"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,520",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 478520,
+				"to": 481000
+			},
+			"text": " because all this stuff is built in natively, it's awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:04,280"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 484280
+			},
+			"text": " This is kind of the next piece of the puzzle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,280",
+				"to": "00:08:06,240"
+			},
+			"offsets": {
+				"from": 484280,
+				"to": 486240
+			},
+			"text": " discovering this kind of like open my eyes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,240",
+				"to": "00:08:08,240"
+			},
+			"offsets": {
+				"from": 486240,
+				"to": 488240
+			},
+			"text": " to the possibilities of what we could do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,240",
+				"to": "00:08:11,560"
+			},
+			"offsets": {
+				"from": 488240,
+				"to": 491560
+			},
+			"text": " The AST is exposed, the parser library"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,560",
+				"to": "00:08:13,400"
+			},
+			"offsets": {
+				"from": 491560,
+				"to": 493400
+			},
+			"text": " and the go types library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,400",
+				"to": "00:08:15,440"
+			},
+			"offsets": {
+				"from": 493400,
+				"to": 495440
+			},
+			"text": " expose everything about the source."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,440",
+				"to": "00:08:17,600"
+			},
+			"offsets": {
+				"from": 495440,
+				"to": 497600
+			},
+			"text": " So when the compiler reads your code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,600",
+				"to": "00:08:19,120"
+			},
+			"offsets": {
+				"from": 497600,
+				"to": 499120
+			},
+			"text": " and then compiles it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,120",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 499120,
+				"to": 501160
+			},
+			"text": " everything that it sees you can see right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:24,280"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 504280
+			},
+			"text": " So like this is an example of the AST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,280",
+				"to": "00:08:26,880"
+			},
+			"offsets": {
+				"from": 504280,
+				"to": 506880
+			},
+			"text": " it kind of is pretty printed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,880",
+				"to": "00:08:28,840"
+			},
+			"offsets": {
+				"from": 506880,
+				"to": 508840
+			},
+			"text": " You can see like there's a variable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,840",
+				"to": "00:08:31,480"
+			},
+			"offsets": {
+				"from": 508840,
+				"to": 511480
+			},
+			"text": " you can see at the top it says like AST if statement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,480",
+				"to": "00:08:33,760"
+			},
+			"offsets": {
+				"from": 511480,
+				"to": 513760
+			},
+			"text": " that's saying there's an if statement here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,760",
+				"to": "00:08:35,560"
+			},
+			"offsets": {
+				"from": 513760,
+				"to": 515560
+			},
+			"text": " the first directive is X,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,560",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 515560,
+				"to": 518560
+			},
+			"text": " the value is two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 520000
+			},
+			"text": " there's all this information here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:42,360"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 522360
+			},
+			"text": " there's more information than you ever want here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,360",
+				"to": "00:08:43,360"
+			},
+			"offsets": {
+				"from": 522360,
+				"to": 523360
+			},
+			"text": " So that's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,360",
+				"to": "00:08:44,600"
+			},
+			"offsets": {
+				"from": 523360,
+				"to": 524600
+			},
+			"text": " So what can we do here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,600",
+				"to": "00:08:47,440"
+			},
+			"offsets": {
+				"from": 524600,
+				"to": 527440
+			},
+			"text": " We can parse all the go code in a repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,440",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 527440,
+				"to": 530120
+			},
+			"text": " we can basically collect all the dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:51,880"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 531880
+			},
+			"text": " for the packages and the types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,880",
+				"to": "00:08:53,720"
+			},
+			"offsets": {
+				"from": 531880,
+				"to": 533720
+			},
+			"text": " we can collect all the function declarations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,720",
+				"to": "00:08:55,520"
+			},
+			"offsets": {
+				"from": 533720,
+				"to": 535520
+			},
+			"text": " the package declarations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,520",
+				"to": "00:08:56,600"
+			},
+			"offsets": {
+				"from": 535520,
+				"to": 536600
+			},
+			"text": " the type declarations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,600",
+				"to": "00:08:57,440"
+			},
+			"offsets": {
+				"from": 536600,
+				"to": 537440
+			},
+			"text": " all the interfaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,440",
+				"to": "00:08:59,200"
+			},
+			"offsets": {
+				"from": 537440,
+				"to": 539200
+			},
+			"text": " we can see what every function looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,200",
+				"to": "00:09:01,200"
+			},
+			"offsets": {
+				"from": 539200,
+				"to": 541200
+			},
+			"text": " Like does it take like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,200",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 541200,
+				"to": 544360
+			},
+			"text": " you know, arrays, slices, bytes, strings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:05,880"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 545880
+			},
+			"text": " complex structs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,880",
+				"to": "00:09:08,560"
+			},
+			"offsets": {
+				"from": 545880,
+				"to": 548560
+			},
+			"text": " also if it takes a complex struct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,560",
+				"to": "00:09:10,320"
+			},
+			"offsets": {
+				"from": 548560,
+				"to": 550320
+			},
+			"text": " what is that struct made of?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,320",
+				"to": "00:09:12,080"
+			},
+			"offsets": {
+				"from": 550320,
+				"to": 552080
+			},
+			"text": " And recursively down the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,080",
+				"to": "00:09:13,840"
+			},
+			"offsets": {
+				"from": 552080,
+				"to": 553840
+			},
+			"text": " So you can basically go all the way down"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:16,360"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 556360
+			},
+			"text": " to all the built in types in Go"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,360",
+				"to": "00:09:19,320"
+			},
+			"offsets": {
+				"from": 556360,
+				"to": 559320
+			},
+			"text": " and you can see all the information you want about something."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,320",
+				"to": "00:09:21,720"
+			},
+			"offsets": {
+				"from": 559320,
+				"to": 561720
+			},
+			"text": " So using this we can generate valid fuzz harnesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,720",
+				"to": "00:09:23,920"
+			},
+			"offsets": {
+				"from": 561720,
+				"to": 563920
+			},
+			"text": " for all these functions that we have typed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,920",
+				"to": "00:09:25,560"
+			},
+			"offsets": {
+				"from": 563920,
+				"to": 565560
+			},
+			"text": " and we can fuzz them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,560",
+				"to": "00:09:26,480"
+			},
+			"offsets": {
+				"from": 565560,
+				"to": 566480
+			},
+			"text": " we can round robin them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,480",
+				"to": "00:09:28,600"
+			},
+			"offsets": {
+				"from": 566480,
+				"to": 568600
+			},
+			"text": " we can fuzz them while, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,600",
+				"to": "00:09:29,680"
+			},
+			"offsets": {
+				"from": 568600,
+				"to": 569680
+			},
+			"text": " the target's running"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,680",
+				"to": "00:09:31,960"
+			},
+			"offsets": {
+				"from": 569680,
+				"to": 571960
+			},
+			"text": " and I can talk a little bit about that more later."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,960",
+				"to": "00:09:35,320"
+			},
+			"offsets": {
+				"from": 571960,
+				"to": 575320
+			},
+			"text": " But then, yep, find their bugs, profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,320",
+				"to": "00:09:38,520"
+			},
+			"offsets": {
+				"from": 575320,
+				"to": 578520
+			},
+			"text": " I know this isn't like a security specific conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,520",
+				"to": "00:09:42,960"
+			},
+			"offsets": {
+				"from": 578520,
+				"to": 582960
+			},
+			"text": " So this is a reference to an old frack magazine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,960",
+				"to": "00:09:44,960"
+			},
+			"offsets": {
+				"from": 582960,
+				"to": 584960
+			},
+			"text": " smashing the stack for fun and profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,960",
+				"to": "00:09:46,080"
+			},
+			"offsets": {
+				"from": 584960,
+				"to": 586080
+			},
+			"text": " I'm not profiting off these,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,080",
+				"to": "00:09:48,880"
+			},
+			"offsets": {
+				"from": 586080,
+				"to": 588880
+			},
+			"text": " I promise I want to clean up all of these bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,880",
+				"to": "00:09:49,840"
+			},
+			"offsets": {
+				"from": 588880,
+				"to": 589840
+			},
+			"text": " That's what I'm paid to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,840",
+				"to": "00:09:51,160"
+			},
+			"offsets": {
+				"from": 589840,
+				"to": 591160
+			},
+			"text": " That's how I profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,160",
+				"to": "00:09:53,120"
+			},
+			"offsets": {
+				"from": 591160,
+				"to": 593120
+			},
+			"text": " Oh, and then you can repeat on every commit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,120",
+				"to": "00:09:55,200"
+			},
+			"offsets": {
+				"from": 593120,
+				"to": 595200
+			},
+			"text": " which is kind of why nosy got its name."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,200",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 595200,
+				"to": 596800
+			},
+			"text": " It's the nosy neighbor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:09:58,480"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 598480
+			},
+			"text": " you can integrate it into your CI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,480",
+				"to": "00:10:00,400"
+			},
+			"offsets": {
+				"from": 598480,
+				"to": 600400
+			},
+			"text": " hopefully people will do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,400",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 600400,
+				"to": 602320
+			},
+			"text": " And then when bugs are introduced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:03,600"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 603600
+			},
+			"text": " like the moment they're introduced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,600",
+				"to": "00:10:05,640"
+			},
+			"offsets": {
+				"from": 603600,
+				"to": 605640
+			},
+			"text": " we can just like automatically fuzz a function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,640",
+				"to": "00:10:07,680"
+			},
+			"offsets": {
+				"from": 605640,
+				"to": 607680
+			},
+			"text": " before even the tests are written for the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,680",
+				"to": "00:10:08,800"
+			},
+			"offsets": {
+				"from": 607680,
+				"to": 608800
+			},
+			"text": " and we can find these bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,800",
+				"to": "00:10:10,800"
+			},
+			"offsets": {
+				"from": 608800,
+				"to": 610800
+			},
+			"text": " So it's like really annoying and really nosy"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,800",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 610800,
+				"to": 612320
+			},
+			"text": " to developers 'cause there's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:13,520"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 613520
+			},
+			"text": " this old granny across the street"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,520",
+				"to": "00:10:15,320"
+			},
+			"offsets": {
+				"from": 613520,
+				"to": 615320
+			},
+			"text": " that's like always looking in your business."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,320",
+				"to": "00:10:16,320"
+			},
+			"offsets": {
+				"from": 615320,
+				"to": 616320
+			},
+			"text": " That's where the name comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,320",
+				"to": "00:10:18,520"
+			},
+			"offsets": {
+				"from": 616320,
+				"to": 618520
+			},
+			"text": " I just call it nosy, nosy neighbor's way too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,520",
+				"to": "00:10:20,600"
+			},
+			"offsets": {
+				"from": 618520,
+				"to": 620600
+			},
+			"text": " So I'll refer to it as nosy from now on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,600",
+				"to": "00:10:22,840"
+			},
+			"offsets": {
+				"from": 620600,
+				"to": 622840
+			},
+			"text": " So nosy in action."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,840",
+				"to": "00:10:24,480"
+			},
+			"offsets": {
+				"from": 622840,
+				"to": 624480
+			},
+			"text": " It basically has three main stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,480",
+				"to": "00:10:25,840"
+			},
+			"offsets": {
+				"from": 624480,
+				"to": 625840
+			},
+			"text": " There's an initialization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,840",
+				"to": "00:10:28,200"
+			},
+			"offsets": {
+				"from": 625840,
+				"to": 628200
+			},
+			"text": " there's the harness generation and the fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,200",
+				"to": "00:10:30,680"
+			},
+			"offsets": {
+				"from": 628200,
+				"to": 630680
+			},
+			"text": " You can put this all into like one seamless, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,680",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 630680,
+				"to": 632920
+			},
+			"text": " action if you're integrating into your CI."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 636760
+			},
+			"text": " But for the purposes of like the tool as I made it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:39,360"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 639360
+			},
+			"text": " you might wanna debug stuff in the harness generation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,360",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 639360,
+				"to": 641000
+			},
+			"text": " you might wanna add test corpora."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:42,760"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 642760
+			},
+			"text": " There's all kinds of like interesting things you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,760",
+				"to": "00:10:43,640"
+			},
+			"offsets": {
+				"from": 642760,
+				"to": 643640
+			},
+			"text": " in between these steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,640",
+				"to": "00:10:46,240"
+			},
+			"offsets": {
+				"from": 643640,
+				"to": 646240
+			},
+			"text": " So I haven't broken up into these three steps just"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,240",
+				"to": "00:10:47,960"
+			},
+			"offsets": {
+				"from": 646240,
+				"to": 647960
+			},
+			"text": " for like kind of sanity reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,960",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 647960,
+				"to": 649120
+			},
+			"text": " This is the input."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:51,080"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 651080
+			},
+			"text": " Every time you run nosy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,080",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 651080,
+				"to": 654120
+			},
+			"text": " no matter which of the three like actions you tell it to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:55,720"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 655720
+			},
+			"text": " you're gonna give it this YAML file."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,720",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 655720,
+				"to": 659000
+			},
+			"text": " And this YAML file contains a bunch of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:02,160"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 662160
+			},
+			"text": " The most important thing though is the URL to the repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,160",
+				"to": "00:11:03,680"
+			},
+			"offsets": {
+				"from": 662160,
+				"to": 663680
+			},
+			"text": " So it'll pull down this repo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,680",
+				"to": "00:11:05,760"
+			},
+			"offsets": {
+				"from": 663680,
+				"to": 665760
+			},
+			"text": " you can say I want this particular branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,760",
+				"to": "00:11:10,160"
+			},
+			"offsets": {
+				"from": 665760,
+				"to": 670160
+			},
+			"text": " You can specify different go versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,160",
+				"to": "00:11:12,600"
+			},
+			"offsets": {
+				"from": 670160,
+				"to": 672600
+			},
+			"text": " Like Prism for instance is like one of the big repos"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,600",
+				"to": "00:11:13,440"
+			},
+			"offsets": {
+				"from": 672600,
+				"to": 673440
+			},
+			"text": " that I always look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,440",
+				"to": "00:11:17,120"
+			},
+			"offsets": {
+				"from": 673440,
+				"to": 677120
+			},
+			"text": " And it won't build with go one dot one nine right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,120",
+				"to": "00:11:18,960"
+			},
+			"offsets": {
+				"from": 677120,
+				"to": 678960
+			},
+			"text": " So this is really easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,960",
+				"to": "00:11:21,200"
+			},
+			"offsets": {
+				"from": 678960,
+				"to": 681200
+			},
+			"text": " As long as it's like one dot one eight and above"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,200",
+				"to": "00:11:23,360"
+			},
+			"offsets": {
+				"from": 681200,
+				"to": 683360
+			},
+			"text": " because that's what supports native fuzzing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,360",
+				"to": "00:11:26,280"
+			},
+			"offsets": {
+				"from": 683360,
+				"to": 686280
+			},
+			"text": " you can kind of use older versions and that sort of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,280",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 686280,
+				"to": 689000
+			},
+			"text": " There's also these like ignore declarations I put in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:31,160"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 691160
+			},
+			"text": " Like maybe you have a bunch of test functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,160",
+				"to": "00:11:33,840"
+			},
+			"offsets": {
+				"from": 691160,
+				"to": 693840
+			},
+			"text": " Maybe you have things that use networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,840",
+				"to": "00:11:36,080"
+			},
+			"offsets": {
+				"from": 693840,
+				"to": 696080
+			},
+			"text": " Stuff that writes to the file system that you don't wanna fuzz"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,080",
+				"to": "00:11:38,360"
+			},
+			"offsets": {
+				"from": 696080,
+				"to": 698360
+			},
+			"text": " because you don't wanna pulverize your file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,360",
+				"to": "00:11:41,400"
+			},
+			"offsets": {
+				"from": 698360,
+				"to": 701400
+			},
+			"text": " You can declare at the package the function"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,400",
+				"to": "00:11:44,400"
+			},
+			"offsets": {
+				"from": 701400,
+				"to": 704400
+			},
+			"text": " and the object level to ignore these kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,400",
+				"to": "00:11:45,720"
+			},
+			"offsets": {
+				"from": 704400,
+				"to": 705720
+			},
+			"text": " It also has substitutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,720",
+				"to": "00:11:47,800"
+			},
+			"offsets": {
+				"from": 705720,
+				"to": 707800
+			},
+			"text": " What this will do if you're familiar with go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,800",
+				"to": "00:11:49,840"
+			},
+			"offsets": {
+				"from": 707800,
+				"to": 709840
+			},
+			"text": " if you put a substitution in here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,840",
+				"to": "00:11:51,960"
+			},
+			"offsets": {
+				"from": 709840,
+				"to": 711960
+			},
+			"text": " it's you just put both packages in there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,960",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 711960,
+				"to": 713760
+			},
+			"text": " and it will put a little replace directive"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:55,160"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 715160
+			},
+			"text": " in the go dot mod file."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,160",
+				"to": "00:11:57,840"
+			},
+			"offsets": {
+				"from": 715160,
+				"to": 717840
+			},
+			"text": " And this is really nice if you wanna not out"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,840",
+				"to": "00:12:00,240"
+			},
+			"offsets": {
+				"from": 717840,
+				"to": 720240
+			},
+			"text": " all of your signature checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,240",
+				"to": "00:12:01,680"
+			},
+			"offsets": {
+				"from": 720240,
+				"to": 721680
+			},
+			"text": " You get a lot more coverage this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,680",
+				"to": "00:12:03,640"
+			},
+			"offsets": {
+				"from": 721680,
+				"to": 723640
+			},
+			"text": " Like obviously your fuzzer's not gonna be"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,640",
+				"to": "00:12:06,760"
+			},
+			"offsets": {
+				"from": 723640,
+				"to": 726760
+			},
+			"text": " like signing ECDSA signatures correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,760",
+				"to": "00:12:08,640"
+			},
+			"offsets": {
+				"from": 726760,
+				"to": 728640
+			},
+			"text": " That would be a whole nother talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,640",
+				"to": "00:12:11,520"
+			},
+			"offsets": {
+				"from": 728640,
+				"to": 731520
+			},
+			"text": " and we'd be having bigger problems if that was the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,520",
+				"to": "00:12:14,440"
+			},
+			"offsets": {
+				"from": 731520,
+				"to": 734440
+			},
+			"text": " The initialization, it uses Docker."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,440",
+				"to": "00:12:16,520"
+			},
+			"offsets": {
+				"from": 734440,
+				"to": 736520
+			},
+			"text": " It basically makes this little fuzzing environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,520",
+				"to": "00:12:18,280"
+			},
+			"offsets": {
+				"from": 736520,
+				"to": 738280
+			},
+			"text": " and building environment all in Docker."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,280",
+				"to": "00:12:20,280"
+			},
+			"offsets": {
+				"from": 738280,
+				"to": 740280
+			},
+			"text": " And there's kind of a lot of reasons for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,280",
+				"to": "00:12:23,440"
+			},
+			"offsets": {
+				"from": 740280,
+				"to": 743440
+			},
+			"text": " One is that we don't wanna pulverize our host file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,440",
+				"to": "00:12:27,080"
+			},
+			"offsets": {
+				"from": 743440,
+				"to": 747080
+			},
+			"text": " We have a lot of ease with dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,080",
+				"to": "00:12:28,080"
+			},
+			"offsets": {
+				"from": 747080,
+				"to": 748080
+			},
+			"text": " If you're like looking through"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,080",
+				"to": "00:12:30,680"
+			},
+			"offsets": {
+				"from": 748080,
+				"to": 750680
+			},
+			"text": " and you're trying to dynamically write code"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,680",
+				"to": "00:12:32,320"
+			},
+			"offsets": {
+				"from": 750680,
+				"to": 752320
+			},
+			"text": " writing all these fuzzing harnesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,320",
+				"to": "00:12:35,760"
+			},
+			"offsets": {
+				"from": 752320,
+				"to": 755760
+			},
+			"text": " then it's a lot easier to not use your own go root."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,760",
+				"to": "00:12:38,520"
+			},
+			"offsets": {
+				"from": 755760,
+				"to": 758520
+			},
+			"text": " So this makes a valid go root inside of a Docker container."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,520",
+				"to": "00:12:41,120"
+			},
+			"offsets": {
+				"from": 758520,
+				"to": 761120
+			},
+			"text": " It makes everything, it adds all the dependencies for nosy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,120",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 761120,
+				"to": 764360
+			},
+			"text": " for doing the source parsing and the harness generation"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:45,720"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 765720
+			},
+			"text": " and all the fuzzing and all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,720",
+				"to": "00:12:47,760"
+			},
+			"offsets": {
+				"from": 765720,
+				"to": 767760
+			},
+			"text": " Those in in this little Docker container"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,760",
+				"to": "00:12:50,240"
+			},
+			"offsets": {
+				"from": 767760,
+				"to": 770240
+			},
+			"text": " and initializes it inside this repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,240",
+				"to": "00:12:52,320"
+			},
+			"offsets": {
+				"from": 770240,
+				"to": 772320
+			},
+			"text": " Initializes the repo inside this container."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,320",
+				"to": "00:12:58,480"
+			},
+			"offsets": {
+				"from": 772320,
+				"to": 778480
+			},
+			"text": " It has a shared host file that you'll see in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,480",
+				"to": "00:13:00,400"
+			},
+			"offsets": {
+				"from": 778480,
+				"to": 780400
+			},
+			"text": " It's an asset directory that keeps everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,400",
+				"to": "00:13:01,720"
+			},
+			"offsets": {
+				"from": 780400,
+				"to": 781720
+			},
+			"text": " that the host needs to get."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,720",
+				"to": "00:13:04,760"
+			},
+			"offsets": {
+				"from": 781720,
+				"to": 784760
+			},
+			"text": " So you do all your fuzzing inside this protected environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,760",
+				"to": "00:13:05,920"
+			},
+			"offsets": {
+				"from": 784760,
+				"to": 785920
+			},
+			"text": " If you're a security researcher"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,920",
+				"to": "00:13:08,280"
+			},
+			"offsets": {
+				"from": 785920,
+				"to": 788280
+			},
+			"text": " and you're familiar with like jailing a target,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,280",
+				"to": "00:13:10,360"
+			},
+			"offsets": {
+				"from": 788280,
+				"to": 790360
+			},
+			"text": " this is just like a chorout under the hood,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,360",
+				"to": "00:13:13,040"
+			},
+			"offsets": {
+				"from": 790360,
+				"to": 793040
+			},
+			"text": " except that we get to stand on the shoulders of Docker"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,040",
+				"to": "00:13:17,600"
+			},
+			"offsets": {
+				"from": 793040,
+				"to": 797600
+			},
+			"text": " and we get to potentially neuter all of the networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,600",
+				"to": "00:13:20,040"
+			},
+			"offsets": {
+				"from": 797600,
+				"to": 800040
+			},
+			"text": " We can control things in really jail stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,040",
+				"to": "00:13:22,880"
+			},
+			"offsets": {
+				"from": 800040,
+				"to": 802880
+			},
+			"text": " It also makes it where you could run this on your host computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,880",
+				"to": "00:13:25,280"
+			},
+			"offsets": {
+				"from": 802880,
+				"to": 805280
+			},
+			"text": " and only give it a few cores and you could still work"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,280",
+				"to": "00:13:27,760"
+			},
+			"offsets": {
+				"from": 805280,
+				"to": 807760
+			},
+			"text": " and maybe you're kind of like dual purpose"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,760",
+				"to": "00:13:31,280"
+			},
+			"offsets": {
+				"from": 807760,
+				"to": 811280
+			},
+			"text": " using a fuzzer that's also like your desktop for research."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,280",
+				"to": "00:13:32,560"
+			},
+			"offsets": {
+				"from": 811280,
+				"to": 812560
+			},
+			"text": " Let's see, generate harness."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,560",
+				"to": "00:13:35,720"
+			},
+			"offsets": {
+				"from": 812560,
+				"to": 815720
+			},
+			"text": " Generate harness will copy all the assets in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,720",
+				"to": "00:13:37,320"
+			},
+			"offsets": {
+				"from": 815720,
+				"to": 817320
+			},
+			"text": " and then it will spit out this one liner."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,320",
+				"to": "00:13:40,160"
+			},
+			"offsets": {
+				"from": 817320,
+				"to": 820160
+			},
+			"text": " And if you double click this one liner and run it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,160",
+				"to": "00:13:42,280"
+			},
+			"offsets": {
+				"from": 820160,
+				"to": 822280
+			},
+			"text": " it'll start generating all of the harnesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,280",
+				"to": "00:13:44,880"
+			},
+			"offsets": {
+				"from": 822280,
+				"to": 824880
+			},
+			"text": " And so you can kind of see the lower half of this terminal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,880",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 824880,
+				"to": 829000
+			},
+			"text": " It's spitting out all of these fuzz nosy test.go files."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:52,560"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 832560
+			},
+			"text": " All of those files are placed into the respective package"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,560",
+				"to": "00:13:54,200"
+			},
+			"offsets": {
+				"from": 832560,
+				"to": 834200
+			},
+			"text": " under test directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,200",
+				"to": "00:13:56,840"
+			},
+			"offsets": {
+				"from": 834200,
+				"to": 836840
+			},
+			"text": " The reason I do that instead of having them all in one"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,840",
+				"to": "00:13:59,520"
+			},
+			"offsets": {
+				"from": 836840,
+				"to": 839520
+			},
+			"text": " is that one bug doesn't prevent the whole thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,520",
+				"to": "00:14:01,560"
+			},
+			"offsets": {
+				"from": 839520,
+				"to": 841560
+			},
+			"text": " from compiling and having go complain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,560",
+				"to": "00:14:04,880"
+			},
+			"offsets": {
+				"from": 841560,
+				"to": 844880
+			},
+			"text": " The other thing is that we can fuzz internal functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,880",
+				"to": "00:14:06,880"
+			},
+			"offsets": {
+				"from": 844880,
+				"to": 846880
+			},
+			"text": " You might not want to fuzz internal functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,880",
+				"to": "00:14:08,880"
+			},
+			"offsets": {
+				"from": 846880,
+				"to": 848880
+			},
+			"text": " so nosy has a flag for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,880",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 848880,
+				"to": 850720
+			},
+			"text": " But if you do want to fuzz everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:13,720"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 853720
+			},
+			"text": " and get like this serious breadth first coverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,720",
+				"to": "00:14:17,720"
+			},
+			"offsets": {
+				"from": 853720,
+				"to": 857720
+			},
+			"text": " of your target, this is the best way to do it that I found."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,720",
+				"to": "00:14:20,640"
+			},
+			"offsets": {
+				"from": 857720,
+				"to": 860640
+			},
+			"text": " So this gets to the fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,640",
+				"to": "00:14:23,440"
+			},
+			"offsets": {
+				"from": 860640,
+				"to": 863440
+			},
+			"text": " You, same thing, spits out a one liner."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,440",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 863440,
+				"to": 867000
+			},
+			"text": " It creates-- it adds all the assets to this asset directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:28,080"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 868080
+			},
+			"text": " And then you start fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,080",
+				"to": "00:14:31,400"
+			},
+			"offsets": {
+				"from": 868080,
+				"to": 871400
+			},
+			"text": " So you can see on the right side here, it started fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,400",
+				"to": "00:14:33,840"
+			},
+			"offsets": {
+				"from": 871400,
+				"to": 873840
+			},
+			"text": " It found a crash like right off the rip."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,840",
+				"to": "00:14:36,440"
+			},
+			"offsets": {
+				"from": 873840,
+				"to": 876440
+			},
+			"text": " It minimizes the test case that produces the crash."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,440",
+				"to": "00:14:39,520"
+			},
+			"offsets": {
+				"from": 876440,
+				"to": 879520
+			},
+			"text": " And then it spits out the panic output."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,520",
+				"to": "00:14:43,080"
+			},
+			"offsets": {
+				"from": 879520,
+				"to": 883080
+			},
+			"text": " So kind of funny that one found one right off the rip."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,080",
+				"to": "00:14:46,480"
+			},
+			"offsets": {
+				"from": 883080,
+				"to": 886480
+			},
+			"text": " This is an example repo that I have that comes with nosy"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,480",
+				"to": "00:14:48,760"
+			},
+			"offsets": {
+				"from": 886480,
+				"to": 888760
+			},
+			"text": " so that you guys can all test this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,760",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 888760,
+				"to": 893080
+			},
+			"text": " I don't provide YAML files for all the targets I'm testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:54,200"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 894200
+			},
+			"text": " because there's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,200",
+				"to": "00:14:55,840"
+			},
+			"offsets": {
+				"from": 894200,
+				"to": 895840
+			},
+			"text": " I don't want to give you guys free bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,840",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 895840,
+				"to": 898800
+			},
+			"text": " And nosy's still kind of like a work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:02,400"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 902400
+			},
+			"text": " So I will release other stuff further down the line"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,400",
+				"to": "00:15:05,240"
+			},
+			"offsets": {
+				"from": 902400,
+				"to": 905240
+			},
+			"text": " as I've hammered out all the bugs that are there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,240",
+				"to": "00:15:07,240"
+			},
+			"offsets": {
+				"from": 905240,
+				"to": 907240
+			},
+			"text": " I think what I'll probably do is kind of like have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,240",
+				"to": "00:15:10,120"
+			},
+			"offsets": {
+				"from": 907240,
+				"to": 910120
+			},
+			"text": " this private repo that's maybe like three months ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,120",
+				"to": "00:15:12,520"
+			},
+			"offsets": {
+				"from": 910120,
+				"to": 912520
+			},
+			"text": " And then as we've kind of shaken out of the bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,520",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 912520,
+				"to": 914920
+			},
+			"text": " so that this fuzzer can find, I'll open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,920",
+				"to": "00:15:15,800"
+			},
+			"offsets": {
+				"from": 914920,
+				"to": 915800
+			},
+			"text": " the other parts of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,800",
+				"to": "00:15:19,200"
+			},
+			"offsets": {
+				"from": 915800,
+				"to": 919200
+			},
+			"text": " But you can copy the example YAML file for this target repo"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,200",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 919200,
+				"to": 920000
+			},
+			"text": " that I've made."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:22,680"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 922680
+			},
+			"text": " And you can point it at the Go standard library."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,680",
+				"to": "00:15:23,880"
+			},
+			"offsets": {
+				"from": 922680,
+				"to": 923880
+			},
+			"text": " I haven't had time to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,880",
+				"to": "00:15:25,520"
+			},
+			"offsets": {
+				"from": 923880,
+				"to": 925520
+			},
+			"text": " I'm sure there's tons of bugs out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,520",
+				"to": "00:15:27,880"
+			},
+			"offsets": {
+				"from": 925520,
+				"to": 927880
+			},
+			"text": " Like I have-- one thing nosy does do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,880",
+				"to": "00:15:30,960"
+			},
+			"offsets": {
+				"from": 927880,
+				"to": 930960
+			},
+			"text": " is it causes like a decent amount of false positives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,960",
+				"to": "00:15:32,080"
+			},
+			"offsets": {
+				"from": 930960,
+				"to": 932080
+			},
+			"text": " but it does find bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,080",
+				"to": "00:15:34,920"
+			},
+			"offsets": {
+				"from": 932080,
+				"to": 934920
+			},
+			"text": " So I have like a ton of crashes to look through"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,920",
+				"to": "00:15:37,440"
+			},
+			"offsets": {
+				"from": 934920,
+				"to": 937440
+			},
+			"text": " before I'll release all this other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,440",
+				"to": "00:15:39,400"
+			},
+			"offsets": {
+				"from": 937440,
+				"to": 939400
+			},
+			"text": " Oh, that was the-- this is an example"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,400",
+				"to": "00:15:40,320"
+			},
+			"offsets": {
+				"from": 939400,
+				"to": 940320
+			},
+			"text": " of like the round robiting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,320",
+				"to": "00:15:43,080"
+			},
+			"offsets": {
+				"from": 940320,
+				"to": 943080
+			},
+			"text": " So when there's not a test-- when there's not a crash found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,080",
+				"to": "00:15:44,520"
+			},
+			"offsets": {
+				"from": 943080,
+				"to": 944520
+			},
+			"text": " this was what the output will look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,520",
+				"to": "00:15:46,800"
+			},
+			"offsets": {
+				"from": 944520,
+				"to": 946800
+			},
+			"text": " So it'll fuzz for like 10 seconds on each thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,800",
+				"to": "00:15:48,680"
+			},
+			"offsets": {
+				"from": 946800,
+				"to": 948680
+			},
+			"text": " The YAML file has a little variable there"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,680",
+				"to": "00:15:50,400"
+			},
+			"offsets": {
+				"from": 948680,
+				"to": 950400
+			},
+			"text": " where you can say like how long-- how many seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,400",
+				"to": "00:15:51,520"
+			},
+			"offsets": {
+				"from": 950400,
+				"to": 951520
+			},
+			"text": " do you want to fuzz for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,520",
+				"to": "00:15:55,320"
+			},
+			"offsets": {
+				"from": 951520,
+				"to": 955320
+			},
+			"text": " As you generate like larger test corpora that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,320",
+				"to": "00:15:57,680"
+			},
+			"offsets": {
+				"from": 955320,
+				"to": 957680
+			},
+			"text": " are getting better coverage, you might want to bump this up"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,680",
+				"to": "00:16:00,760"
+			},
+			"offsets": {
+				"from": 957680,
+				"to": 960760
+			},
+			"text": " to like six minutes per function or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,760",
+				"to": "00:16:03,520"
+			},
+			"offsets": {
+				"from": 960760,
+				"to": 963520
+			},
+			"text": " This is just a little shot of like what this script looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,520",
+				"to": "00:16:05,040"
+			},
+			"offsets": {
+				"from": 963520,
+				"to": 965040
+			},
+			"text": " Like what does the round robiting?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,040",
+				"to": "00:16:07,120"
+			},
+			"offsets": {
+				"from": 965040,
+				"to": 967120
+			},
+			"text": " This is a shell script that's just like kicked out"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,120",
+				"to": "00:16:09,640"
+			},
+			"offsets": {
+				"from": 967120,
+				"to": 969640
+			},
+			"text": " into the asset file that's run on the target."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,640",
+				"to": "00:16:13,040"
+			},
+			"offsets": {
+				"from": 969640,
+				"to": 973040
+			},
+			"text": " So there's some reasons that this is not the best way to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,040",
+				"to": "00:16:15,320"
+			},
+			"offsets": {
+				"from": 973040,
+				"to": 975320
+			},
+			"text": " So I don't think I'll be doing this way forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,320",
+				"to": "00:16:17,440"
+			},
+			"offsets": {
+				"from": 975320,
+				"to": 977440
+			},
+			"text": " But if you can see right here, it basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,440",
+				"to": "00:16:20,760"
+			},
+			"offsets": {
+				"from": 977440,
+				"to": 980760
+			},
+			"text": " calls the go test fuzz on the function you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,760",
+				"to": "00:16:25,400"
+			},
+			"offsets": {
+				"from": 980760,
+				"to": 985400
+			},
+			"text": " If there is a test data fuzz inside of that package now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,400",
+				"to": "00:16:26,720"
+			},
+			"offsets": {
+				"from": 985400,
+				"to": 986720
+			},
+			"text": " that means that we found a crash."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,720",
+				"to": "00:16:28,480"
+			},
+			"offsets": {
+				"from": 986720,
+				"to": 988480
+			},
+			"text": " Copy that in the asset directory so that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,480",
+				"to": "00:16:30,040"
+			},
+			"offsets": {
+				"from": 988480,
+				"to": 990040
+			},
+			"text": " available on the host."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,040",
+				"to": "00:16:33,880"
+			},
+			"offsets": {
+				"from": 990040,
+				"to": 993880
+			},
+			"text": " If the fuzzer either commits suicide or if you're done fuzzing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,880",
+				"to": "00:16:34,680"
+			},
+			"offsets": {
+				"from": 993880,
+				"to": 994680
+			},
+			"text": " you don't lose this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,680",
+				"to": "00:16:37,520"
+			},
+			"offsets": {
+				"from": 994680,
+				"to": 997520
+			},
+			"text": " A lot of people like know that you stock or your container"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,520",
+				"to": "00:16:39,880"
+			},
+			"offsets": {
+				"from": 997520,
+				"to": 999880
+			},
+			"text": " might not be persistent if you don't have some like asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,880",
+				"to": "00:16:41,200"
+			},
+			"offsets": {
+				"from": 999880,
+				"to": 1001200
+			},
+			"text": " directory where you save stuff off to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,200",
+				"to": "00:16:44,360"
+			},
+			"offsets": {
+				"from": 1001200,
+				"to": 1004360
+			},
+			"text": " So this prevents you from losing work that you've done."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,360",
+				"to": "00:16:46,720"
+			},
+			"offsets": {
+				"from": 1004360,
+				"to": 1006720
+			},
+			"text": " All right, example findings."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,720",
+				"to": "00:16:50,920"
+			},
+			"offsets": {
+				"from": 1006720,
+				"to": 1010920
+			},
+			"text": " I made this little repo so that everybody can see nosy in action"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,920",
+				"to": "00:16:54,480"
+			},
+			"offsets": {
+				"from": 1010920,
+				"to": 1014480
+			},
+			"text": " and have an example so they can point it at their own repos."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,480",
+				"to": "00:16:57,560"
+			},
+			"offsets": {
+				"from": 1014480,
+				"to": 1017560
+			},
+			"text": " These are all the root cause of all of these bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,560",
+				"to": "00:17:00,320"
+			},
+			"offsets": {
+				"from": 1017560,
+				"to": 1020320
+			},
+			"text": " are copied from real bugs that nosy did find."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,320",
+				"to": "00:17:02,320"
+			},
+			"offsets": {
+				"from": 1020320,
+				"to": 1022320
+			},
+			"text": " And I'll talk a little bit about the type of bugs"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,320",
+				"to": "00:17:04,680"
+			},
+			"offsets": {
+				"from": 1022320,
+				"to": 1024680
+			},
+			"text": " it finds because it doesn't find everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,680",
+				"to": "00:17:06,480"
+			},
+			"offsets": {
+				"from": 1024680,
+				"to": 1026480
+			},
+			"text": " And it's really good at finding a few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,480",
+				"to": "00:17:09,960"
+			},
+			"offsets": {
+				"from": 1026480,
+				"to": 1029960
+			},
+			"text": " And I'll talk about that looking at these here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,960",
+				"to": "00:17:14,440"
+			},
+			"offsets": {
+				"from": 1029960,
+				"to": 1034440
+			},
+			"text": " So this is just showing the panic line."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,440",
+				"to": "00:17:18,600"
+			},
+			"offsets": {
+				"from": 1034440,
+				"to": 1038600
+			},
+			"text": " This is identifying the type of issues that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,600",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1038600,
+				"to": 1041000
+			},
+			"text": " It looks like there's two index outer range."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:23,720"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1043720
+			},
+			"text": " The second one actually has another bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,720",
+				"to": "00:17:25,120"
+			},
+			"offsets": {
+				"from": 1043720,
+				"to": 1045120
+			},
+			"text": " There's two bugs in that function."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,120",
+				"to": "00:17:27,280"
+			},
+			"offsets": {
+				"from": 1045120,
+				"to": 1047280
+			},
+			"text": " So I included the wrong screenshot."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,280",
+				"to": "00:17:29,480"
+			},
+			"offsets": {
+				"from": 1047280,
+				"to": 1049480
+			},
+			"text": " It should be like a divide by zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,480",
+				"to": "00:17:31,360"
+			},
+			"offsets": {
+				"from": 1049480,
+				"to": 1051360
+			},
+			"text": " So these four functions on the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,360",
+				"to": "00:17:33,720"
+			},
+			"offsets": {
+				"from": 1051360,
+				"to": 1053720
+			},
+			"text": " show the vulnerable functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,720",
+				"to": "00:17:35,920"
+			},
+			"offsets": {
+				"from": 1053720,
+				"to": 1055920
+			},
+			"text": " So these are the kind of things that nosy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,920",
+				"to": "00:17:38,480"
+			},
+			"offsets": {
+				"from": 1055920,
+				"to": 1058480
+			},
+			"text": " If you say like spend three seconds on a function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,480",
+				"to": "00:17:40,720"
+			},
+			"offsets": {
+				"from": 1058480,
+				"to": 1060720
+			},
+			"text": " nosy will find these things like immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,720",
+				"to": "00:17:43,200"
+			},
+			"offsets": {
+				"from": 1060720,
+				"to": 1063200
+			},
+			"text": " And if you notice what these are, they're panics."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,200",
+				"to": "00:17:45,280"
+			},
+			"offsets": {
+				"from": 1063200,
+				"to": 1065280
+			},
+			"text": " They're not like remote code executions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,280",
+				"to": "00:17:46,800"
+			},
+			"offsets": {
+				"from": 1065280,
+				"to": 1066800
+			},
+			"text": " They're panics where things stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,800",
+				"to": "00:17:51,600"
+			},
+			"offsets": {
+				"from": 1066800,
+				"to": 1071600
+			},
+			"text": " So if you have some blockchain software, it's highly social,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,600",
+				"to": "00:17:53,280"
+			},
+			"offsets": {
+				"from": 1071600,
+				"to": 1073280
+			},
+			"text": " it's listening to all these peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,280",
+				"to": "00:17:56,240"
+			},
+			"offsets": {
+				"from": 1073280,
+				"to": 1076240
+			},
+			"text": " Every time it receives a packet, if you have like a GRPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,240",
+				"to": "00:17:58,880"
+			},
+			"offsets": {
+				"from": 1076240,
+				"to": 1078880
+			},
+			"text": " handler and it's meant to like panic gracefully"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,880",
+				"to": "00:18:01,880"
+			},
+			"offsets": {
+				"from": 1078880,
+				"to": 1081880
+			},
+			"text": " and it just panics in that go routine, you're fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,880",
+				"to": "00:18:03,880"
+			},
+			"offsets": {
+				"from": 1081880,
+				"to": 1083880
+			},
+			"text": " But if you have this in like core code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,880",
+				"to": "00:18:08,280"
+			},
+			"offsets": {
+				"from": 1083880,
+				"to": 1088280
+			},
+			"text": " this panic can like make the panic go all the way up the stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,280",
+				"to": "00:18:09,920"
+			},
+			"offsets": {
+				"from": 1088280,
+				"to": 1089920
+			},
+			"text": " and just completely bring down your nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,920",
+				"to": "00:18:13,040"
+			},
+			"offsets": {
+				"from": 1089920,
+				"to": 1093040
+			},
+			"text": " So these like true like packet of deaths,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,040",
+				"to": "00:18:14,040"
+			},
+			"offsets": {
+				"from": 1093040,
+				"to": 1094040
+			},
+			"text": " they're a big deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,040",
+				"to": "00:18:16,680"
+			},
+			"offsets": {
+				"from": 1094040,
+				"to": 1096680
+			},
+			"text": " And this is kind of the thing that keeps me up at night"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,680",
+				"to": "00:18:19,560"
+			},
+			"offsets": {
+				"from": 1096680,
+				"to": 1099560
+			},
+			"text": " because panics are not always handled gracefully,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,560",
+				"to": "00:18:22,240"
+			},
+			"offsets": {
+				"from": 1099560,
+				"to": 1102240
+			},
+			"text": " especially in like these huge systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,240",
+				"to": "00:18:25,240"
+			},
+			"offsets": {
+				"from": 1102240,
+				"to": 1105240
+			},
+			"text": " So like the EVM for example, if you found a panic in it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,240",
+				"to": "00:18:27,120"
+			},
+			"offsets": {
+				"from": 1105240,
+				"to": 1107120
+			},
+			"text": " you might actually crash that part of the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,120",
+				"to": "00:18:30,680"
+			},
+			"offsets": {
+				"from": 1107120,
+				"to": 1110680
+			},
+			"text": " and then Geth would just be like completely worthless, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,680",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1110680,
+				"to": 1112000
+			},
+			"text": " So let's talk a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:33,480"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1113480
+			},
+			"text": " I've only got five more minutes left."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,480",
+				"to": "00:18:35,480"
+			},
+			"offsets": {
+				"from": 1113480,
+				"to": 1115480
+			},
+			"text": " So I'm going to talk really quickly about like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,480",
+				"to": "00:18:37,560"
+			},
+			"offsets": {
+				"from": 1115480,
+				"to": 1117560
+			},
+			"text": " what these functions look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,560",
+				"to": "00:18:39,640"
+			},
+			"offsets": {
+				"from": 1117560,
+				"to": 1119640
+			},
+			"text": " So this is the most basic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,640",
+				"to": "00:18:42,920"
+			},
+			"offsets": {
+				"from": 1119640,
+				"to": 1122920
+			},
+			"text": " So if you look at this, this is the same native supported"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,920",
+				"to": "00:18:47,040"
+			},
+			"offsets": {
+				"from": 1122920,
+				"to": 1127040
+			},
+			"text": " testing, the input to the top is it's actually a test function."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,040",
+				"to": "00:18:49,760"
+			},
+			"offsets": {
+				"from": 1127040,
+				"to": 1129760
+			},
+			"text": " It takes in the testing object from go."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,760",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1129760,
+				"to": 1132200
+			},
+			"text": " You hand it a function interface, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,200",
+				"to": "00:18:55,480"
+			},
+			"offsets": {
+				"from": 1132200,
+				"to": 1135480
+			},
+			"text": " So this function here, all I'm saying is, hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,480",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1135480,
+				"to": 1140000
+			},
+			"text": " I want to fuzz this log validator web auth, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:01,680"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1141680
+			},
+			"text": " I just picked some random function."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,680",
+				"to": "00:19:05,040"
+			},
+			"offsets": {
+				"from": 1141680,
+				"to": 1145040
+			},
+			"text": " It takes a string, a string, and a string, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,040",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1145040,
+				"to": 1148800
+			},
+			"text": " So this is the kind of thing I need to tell."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:10,520"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1150520
+			},
+			"text": " Gofas, hey, I want strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,520",
+				"to": "00:19:13,640"
+			},
+			"offsets": {
+				"from": 1150520,
+				"to": 1153640
+			},
+			"text": " When you mutate, I need a valid type string."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,640",
+				"to": "00:19:15,600"
+			},
+			"offsets": {
+				"from": 1153640,
+				"to": 1155600
+			},
+			"text": " Super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,600",
+				"to": "00:19:18,040"
+			},
+			"offsets": {
+				"from": 1155600,
+				"to": 1158040
+			},
+			"text": " This is something that go testing does not support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,040",
+				"to": "00:19:19,280"
+			},
+			"offsets": {
+				"from": 1158040,
+				"to": 1159280
+			},
+			"text": " complex structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,280",
+				"to": "00:19:22,200"
+			},
+			"offsets": {
+				"from": 1159280,
+				"to": 1162200
+			},
+			"text": " So if you see the second line there, what it accepts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,200",
+				"to": "00:19:24,320"
+			},
+			"offsets": {
+				"from": 1162200,
+				"to": 1164320
+			},
+			"text": " is actually a byte array."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,320",
+				"to": "00:19:27,480"
+			},
+			"offsets": {
+				"from": 1164320,
+				"to": 1167480
+			},
+			"text": " What this does is I use right now, nosy ships"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,480",
+				"to": "00:19:30,320"
+			},
+			"offsets": {
+				"from": 1167480,
+				"to": 1170320
+			},
+			"text": " with the open source version, will ship with gofas"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,320",
+				"to": "00:19:32,080"
+			},
+			"offsets": {
+				"from": 1170320,
+				"to": 1172080
+			},
+			"text": " utils from trailer bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,080",
+				"to": "00:19:34,360"
+			},
+			"offsets": {
+				"from": 1172080,
+				"to": 1174360
+			},
+			"text": " There's some reasons that-- and I won't go through them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,360",
+				"to": "00:19:35,960"
+			},
+			"offsets": {
+				"from": 1174360,
+				"to": 1175960
+			},
+			"text": " unless I have time at the NY."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,960",
+				"to": "00:19:37,120"
+			},
+			"offsets": {
+				"from": 1175960,
+				"to": 1177120
+			},
+			"text": " That's when it ships with."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,120",
+				"to": "00:19:39,600"
+			},
+			"offsets": {
+				"from": 1177120,
+				"to": 1179600
+			},
+			"text": " The biggest one, though, is that you see all of these fill"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,600",
+				"to": "00:19:40,040"
+			},
+			"offsets": {
+				"from": 1179600,
+				"to": 1180040
+			},
+			"text": " errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,040",
+				"to": "00:19:42,400"
+			},
+			"offsets": {
+				"from": 1180040,
+				"to": 1182400
+			},
+			"text": " It will return if you don't have enough data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,400",
+				"to": "00:19:45,040"
+			},
+			"offsets": {
+				"from": 1182400,
+				"to": 1185040
+			},
+			"text": " So if I have a bunch of nested structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,040",
+				"to": "00:19:48,760"
+			},
+			"offsets": {
+				"from": 1185040,
+				"to": 1188760
+			},
+			"text": " and you can imagine my function or test needs basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,760",
+				"to": "00:19:52,680"
+			},
+			"offsets": {
+				"from": 1188760,
+				"to": 1192680
+			},
+			"text": " like 2,000 bytes to fill all the data correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,680",
+				"to": "00:19:55,480"
+			},
+			"offsets": {
+				"from": 1192680,
+				"to": 1195480
+			},
+			"text": " it'll say, hey, return."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,480",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1195480,
+				"to": 1197000
+			},
+			"text": " There's no issue or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:19:58,120"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1198120
+			},
+			"text": " Give me something larger."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,120",
+				"to": "00:19:59,680"
+			},
+			"offsets": {
+				"from": 1198120,
+				"to": 1199680
+			},
+			"text": " It doesn't really say give me something larger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,680",
+				"to": "00:20:04,040"
+			},
+			"offsets": {
+				"from": 1199680,
+				"to": 1204040
+			},
+			"text": " but it keeps letting the fuzzer mutate until it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,040",
+				"to": "00:20:05,600"
+			},
+			"offsets": {
+				"from": 1204040,
+				"to": 1205600
+			},
+			"text": " finds further pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,600",
+				"to": "00:20:09,480"
+			},
+			"offsets": {
+				"from": 1205600,
+				"to": 1209480
+			},
+			"text": " And this is coverage guided, so the fuzzer will very quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,480",
+				"to": "00:20:11,840"
+			},
+			"offsets": {
+				"from": 1209480,
+				"to": 1211840
+			},
+			"text": " make it all the way to that last line."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,840",
+				"to": "00:20:15,920"
+			},
+			"offsets": {
+				"from": 1211840,
+				"to": 1215920
+			},
+			"text": " So what happens here, that last line is ACM import."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,920",
+				"to": "00:20:18,080"
+			},
+			"offsets": {
+				"from": 1215920,
+				"to": 1218080
+			},
+			"text": " It takes a context variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,080",
+				"to": "00:20:20,280"
+			},
+			"offsets": {
+				"from": 1218080,
+				"to": 1220280
+			},
+			"text": " I need a valid context variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,280",
+				"to": "00:20:23,120"
+			},
+			"offsets": {
+				"from": 1220280,
+				"to": 1223120
+			},
+			"text": " I want to basically test import, but I need ACM."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,120",
+				"to": "00:20:25,240"
+			},
+			"offsets": {
+				"from": 1223120,
+				"to": 1225240
+			},
+			"text": " This is an actual object."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,240",
+				"to": "00:20:27,160"
+			},
+			"offsets": {
+				"from": 1225240,
+				"to": 1227160
+			},
+			"text": " So it doesn't just fuzz functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,160",
+				"to": "00:20:30,240"
+			},
+			"offsets": {
+				"from": 1227160,
+				"to": 1230240
+			},
+			"text": " It fuzzes methods on receivers, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,240",
+				"to": "00:20:32,240"
+			},
+			"offsets": {
+				"from": 1230240,
+				"to": 1232240
+			},
+			"text": " is goes version of an object."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,240",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1232240,
+				"to": 1234960
+			},
+			"text": " So methods on objects, we need a valid object created."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:37,720"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1237720
+			},
+			"text": " We need the argument there, that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,720",
+				"to": "00:20:39,760"
+			},
+			"offsets": {
+				"from": 1237720,
+				"to": 1239760
+			},
+			"text": " Yet more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,760",
+				"to": "00:20:41,600"
+			},
+			"offsets": {
+				"from": 1239760,
+				"to": 1241600
+			},
+			"text": " Here, we actually have a constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,600",
+				"to": "00:20:45,360"
+			},
+			"offsets": {
+				"from": 1241600,
+				"to": 1245360
+			},
+			"text": " So why make an object and fill it with random data"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,360",
+				"to": "00:20:47,200"
+			},
+			"offsets": {
+				"from": 1245360,
+				"to": 1247200
+			},
+			"text": " when there's custom constructors made?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,200",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1247200,
+				"to": 1252000
+			},
+			"text": " So these large blobs for the EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:56,480"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1256480
+			},
+			"text": " maybe different peer structures, maybe beacon blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,480",
+				"to": "00:20:59,000"
+			},
+			"offsets": {
+				"from": 1256480,
+				"to": 1259000
+			},
+			"text": " things like this, we've already got constructors for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,000",
+				"to": "00:21:00,440"
+			},
+			"offsets": {
+				"from": 1259000,
+				"to": 1260440
+			},
+			"text": " So why make them ourself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,440",
+				"to": "00:21:01,640"
+			},
+			"offsets": {
+				"from": 1260440,
+				"to": 1261640
+			},
+			"text": " We're going to get a bunch of no-pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,640",
+				"to": "00:21:03,360"
+			},
+			"offsets": {
+				"from": 1261640,
+				"to": 1263360
+			},
+			"text": " drefs and false positives."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,360",
+				"to": "00:21:07,120"
+			},
+			"offsets": {
+				"from": 1263360,
+				"to": 1267120
+			},
+			"text": " So what nosy will do-- and this is hugely inspired and borrowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,120",
+				"to": "00:21:10,160"
+			},
+			"offsets": {
+				"from": 1267120,
+				"to": 1270160
+			},
+			"text": " from FCGEN, even like probably like 60% of the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,160",
+				"to": "00:21:13,960"
+			},
+			"offsets": {
+				"from": 1270160,
+				"to": 1273960
+			},
+			"text": " for this type of interface is borrowed from that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,960",
+				"to": "00:21:16,040"
+			},
+			"offsets": {
+				"from": 1273960,
+				"to": 1276040
+			},
+			"text": " But what we do here is we go look and say, hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,040",
+				"to": "00:21:18,680"
+			},
+			"offsets": {
+				"from": 1276040,
+				"to": 1278680
+			},
+			"text": " is there a function that returns this object and only"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,680",
+				"to": "00:21:22,040"
+			},
+			"offsets": {
+				"from": 1278680,
+				"to": 1282040
+			},
+			"text": " this object that doesn't take that object as an input?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,040",
+				"to": "00:21:25,840"
+			},
+			"offsets": {
+				"from": 1282040,
+				"to": 1285840
+			},
+			"text": " And it can either just be that object or that object in an error."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,840",
+				"to": "00:21:28,760"
+			},
+			"offsets": {
+				"from": 1285840,
+				"to": 1288760
+			},
+			"text": " And if that's the case, we say, oh, that is a constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,760",
+				"to": "00:21:30,840"
+			},
+			"offsets": {
+				"from": 1288760,
+				"to": 1290840
+			},
+			"text": " Sometimes you see false positives for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,840",
+				"to": "00:21:33,520"
+			},
+			"offsets": {
+				"from": 1290840,
+				"to": 1293520
+			},
+			"text": " But in reality, they're actually really good at still"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,520",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1293520,
+				"to": 1295000
+			},
+			"text": " generating valid objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:37,400"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1297400
+			},
+			"text": " So in this case, I need a new key manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,400",
+				"to": "00:21:39,200"
+			},
+			"offsets": {
+				"from": 1297400,
+				"to": 1299200
+			},
+			"text": " I didn't have to write new key manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,200",
+				"to": "00:21:42,560"
+			},
+			"offsets": {
+				"from": 1299200,
+				"to": 1302560
+			},
+			"text": " Some developer that made the key manager object"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,560",
+				"to": "00:21:43,520"
+			},
+			"offsets": {
+				"from": 1302560,
+				"to": 1303520
+			},
+			"text": " wrote this constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,520",
+				"to": "00:21:44,920"
+			},
+			"offsets": {
+				"from": 1303520,
+				"to": 1304920
+			},
+			"text": " That's what he uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,920",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1304920,
+				"to": 1308000
+			},
+			"text": " It takes this configuration deal and then whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:50,800"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1310800
+			},
+			"text": " C1 is a context variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,800",
+				"to": "00:21:54,160"
+			},
+			"offsets": {
+				"from": 1310800,
+				"to": 1314160
+			},
+			"text": " So what happens here is nosy recognizes this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,160",
+				"to": "00:21:57,160"
+			},
+			"offsets": {
+				"from": 1314160,
+				"to": 1317160
+			},
+			"text": " builds not only its own version, but a second function"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,160",
+				"to": "00:21:59,360"
+			},
+			"offsets": {
+				"from": 1317160,
+				"to": 1319360
+			},
+			"text": " defuzzes that relies on the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,360",
+				"to": "00:22:03,520"
+			},
+			"offsets": {
+				"from": 1319360,
+				"to": 1323520
+			},
+			"text": " And whichever one gives more coverage can find the bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,520",
+				"to": "00:22:06,720"
+			},
+			"offsets": {
+				"from": 1323520,
+				"to": 1326720
+			},
+			"text": " So right here, we basically find the constructor"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,720",
+				"to": "00:22:09,000"
+			},
+			"offsets": {
+				"from": 1326720,
+				"to": 1329000
+			},
+			"text": " and we know how to see a function interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,000",
+				"to": "00:22:11,360"
+			},
+			"offsets": {
+				"from": 1329000,
+				"to": 1331360
+			},
+			"text": " So we build everything we need for that constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,360",
+				"to": "00:22:14,040"
+			},
+			"offsets": {
+				"from": 1331360,
+				"to": 1334040
+			},
+			"text": " And then we make the constructor hand us the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,040",
+				"to": "00:22:16,000"
+			},
+			"offsets": {
+				"from": 1334040,
+				"to": 1336000
+			},
+			"text": " And then we also provide everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,000",
+				"to": "00:22:17,720"
+			},
+			"offsets": {
+				"from": 1336000,
+				"to": 1337720
+			},
+			"text": " for the function under test, which in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,720",
+				"to": "00:22:21,440"
+			},
+			"offsets": {
+				"from": 1337720,
+				"to": 1341440
+			},
+			"text": " is fetch validate something prove key."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,440",
+				"to": "00:22:22,880"
+			},
+			"offsets": {
+				"from": 1341440,
+				"to": 1342880
+			},
+			"text": " I can't really read from here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,880",
+				"to": "00:22:24,760"
+			},
+			"offsets": {
+				"from": 1342880,
+				"to": 1344760
+			},
+			"text": " But this is just like a random example."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,760",
+				"to": "00:22:26,360"
+			},
+			"offsets": {
+				"from": 1344760,
+				"to": 1346360
+			},
+			"text": " There's plenty to choose from."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,360",
+				"to": "00:22:32,200"
+			},
+			"offsets": {
+				"from": 1346360,
+				"to": 1352200
+			},
+			"text": " One thing I forgot to mention, out of the 583,000 lines"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,200",
+				"to": "00:22:36,040"
+			},
+			"offsets": {
+				"from": 1352200,
+				"to": 1356040
+			},
+			"text": " of code, there's over 15,000 functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,040",
+				"to": "00:22:38,200"
+			},
+			"offsets": {
+				"from": 1356040,
+				"to": 1358200
+			},
+			"text": " in those five repos, which is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,200",
+				"to": "00:22:42,600"
+			},
+			"offsets": {
+				"from": 1358200,
+				"to": 1362600
+			},
+			"text": " all of the dependencies for MevBoost, Geth, and Prism"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,600",
+				"to": "00:22:43,320"
+			},
+			"offsets": {
+				"from": 1362600,
+				"to": 1363320
+			},
+			"text": " that are supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,320",
+				"to": "00:22:46,960"
+			},
+			"offsets": {
+				"from": 1363320,
+				"to": 1366960
+			},
+			"text": " So that's 15,000 functions that I can get coverage in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,960",
+				"to": "00:22:49,400"
+			},
+			"offsets": {
+				"from": 1366960,
+				"to": 1369400
+			},
+			"text": " that's coverage guided fuzzing, that I don't have to write"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,400",
+				"to": "00:22:50,760"
+			},
+			"offsets": {
+				"from": 1369400,
+				"to": 1370760
+			},
+			"text": " the harness for."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,760",
+				"to": "00:22:54,920"
+			},
+			"offsets": {
+				"from": 1370760,
+				"to": 1374920
+			},
+			"text": " That's kind of like the value out of this tool here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,920",
+				"to": "00:23:00,240"
+			},
+			"offsets": {
+				"from": 1374920,
+				"to": 1380240
+			},
+			"text": " And yeah, notice here that nozy didn't only create"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,240",
+				"to": "00:23:02,080"
+			},
+			"offsets": {
+				"from": 1380240,
+				"to": 1382080
+			},
+			"text": " the valid arguments to fuzz here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,080",
+				"to": "00:23:04,920"
+			},
+			"offsets": {
+				"from": 1382080,
+				"to": 1384920
+			},
+			"text": " it created the object, and by doing that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,920",
+				"to": "00:23:07,040"
+			},
+			"offsets": {
+				"from": 1384920,
+				"to": 1387040
+			},
+			"text": " the way that it did that was it created the valid arguments"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,040",
+				"to": "00:23:08,360"
+			},
+			"offsets": {
+				"from": 1387040,
+				"to": 1388360
+			},
+			"text": " for the constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,360",
+				"to": "00:23:10,160"
+			},
+			"offsets": {
+				"from": 1388360,
+				"to": 1390160
+			},
+			"text": " So everything that needs to happen here"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,160",
+				"to": "00:23:13,760"
+			},
+			"offsets": {
+				"from": 1390160,
+				"to": 1393760
+			},
+			"text": " to try to get as close to a real test case as possible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,760",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1393760,
+				"to": 1395000
+			},
+			"text": " we have mistakes learning."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:15,840"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1395840
+			},
+			"text": " I'm going to go really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,840",
+				"to": "00:23:17,360"
+			},
+			"offsets": {
+				"from": 1395840,
+				"to": 1397360
+			},
+			"text": " I've got a minute and a half."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,360",
+				"to": "00:23:20,200"
+			},
+			"offsets": {
+				"from": 1397360,
+				"to": 1400200
+			},
+			"text": " Version one, actually there's a version .5,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,200",
+				"to": "00:23:23,360"
+			},
+			"offsets": {
+				"from": 1400200,
+				"to": 1403360
+			},
+			"text": " shout out to Tyler Holmes, one of my teammates."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,360",
+				"to": "00:23:26,040"
+			},
+			"offsets": {
+				"from": 1403360,
+				"to": 1406040
+			},
+			"text": " He did a big code QL query for various things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,040",
+				"to": "00:23:29,440"
+			},
+			"offsets": {
+				"from": 1406040,
+				"to": 1409440
+			},
+			"text": " and we found a bunch of stuff that just accepted bider arrays."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,440",
+				"to": "00:23:32,720"
+			},
+			"offsets": {
+				"from": 1409440,
+				"to": 1412720
+			},
+			"text": " So we wrote some Python that would basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,720",
+				"to": "00:23:34,240"
+			},
+			"offsets": {
+				"from": 1412720,
+				"to": 1414240
+			},
+			"text": " generate harnesses to fuzz those."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,240",
+				"to": "00:23:35,760"
+			},
+			"offsets": {
+				"from": 1414240,
+				"to": 1415760
+			},
+			"text": " That was version .5."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,760",
+				"to": "00:23:38,600"
+			},
+			"offsets": {
+				"from": 1415760,
+				"to": 1418600
+			},
+			"text": " Then version one was in Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,600",
+				"to": "00:23:40,680"
+			},
+			"offsets": {
+				"from": 1418600,
+				"to": 1420680
+			},
+			"text": " This is just like to show you my pain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,680",
+				"to": "00:23:43,440"
+			},
+			"offsets": {
+				"from": 1420680,
+				"to": 1423440
+			},
+			"text": " I'm gripping for Reg X here in Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,440",
+				"to": "00:23:46,320"
+			},
+			"offsets": {
+				"from": 1423440,
+				"to": 1426320
+			},
+			"text": " All that gibberish, I felt like JR token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,320",
+				"to": "00:23:48,960"
+			},
+			"offsets": {
+				"from": 1426320,
+				"to": 1428960
+			},
+			"text": " basically writing Elvish or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,960",
+				"to": "00:23:50,400"
+			},
+			"offsets": {
+				"from": 1428960,
+				"to": 1430400
+			},
+			"text": " This was no good."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,400",
+				"to": "00:23:53,320"
+			},
+			"offsets": {
+				"from": 1430400,
+				"to": 1433320
+			},
+			"text": " Trying to do this for complex structures and stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,320",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1433320,
+				"to": 1435000
+			},
+			"text": " was like a total pain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:57,160"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1437160
+			},
+			"text": " So it moved on to the AST objects"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,160",
+				"to": "00:23:58,960"
+			},
+			"offsets": {
+				"from": 1437160,
+				"to": 1438960
+			},
+			"text": " that you get from the MacGo parser library."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,960",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1438960,
+				"to": 1440000
+			},
+			"text": " But you guys have seen this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1441000
+			},
+			"text": " This is kind of cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:02,240"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1442240
+			},
+			"text": " Looks sort of pretty printed."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,240",
+				"to": "00:24:03,720"
+			},
+			"offsets": {
+				"from": 1442240,
+				"to": 1443720
+			},
+			"text": " It still sucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,720",
+				"to": "00:24:05,720"
+			},
+			"offsets": {
+				"from": 1443720,
+				"to": 1445720
+			},
+			"text": " All that stuff is like, you don't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,720",
+				"to": "00:24:10,080"
+			},
+			"offsets": {
+				"from": 1445720,
+				"to": 1450080
+			},
+			"text": " know this AST IDENT on the fourth letter fifth line that X is."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,080",
+				"to": "00:24:12,160"
+			},
+			"offsets": {
+				"from": 1450080,
+				"to": 1452160
+			},
+			"text": " You got to do a type check on all of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,160",
+				"to": "00:24:15,080"
+			},
+			"offsets": {
+				"from": 1452160,
+				"to": 1455080
+			},
+			"text": " So you end up with this massive parsing thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,080",
+				"to": "00:24:18,760"
+			},
+			"offsets": {
+				"from": 1455080,
+				"to": 1458760
+			},
+			"text": " that's got a gazillion nested case statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,760",
+				"to": "00:24:22,040"
+			},
+			"offsets": {
+				"from": 1458760,
+				"to": 1462040
+			},
+			"text": " still better than Python, but still really ugly."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,040",
+				"to": "00:24:26,960"
+			},
+			"offsets": {
+				"from": 1462040,
+				"to": 1466960
+			},
+			"text": " Then I ran into FCGIN, uses the GoType libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,960",
+				"to": "00:24:30,920"
+			},
+			"offsets": {
+				"from": 1466960,
+				"to": 1470920
+			},
+			"text": " to write that more complex function interface that I showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,920",
+				"to": "00:24:31,880"
+			},
+			"offsets": {
+				"from": 1470920,
+				"to": 1471880
+			},
+			"text": " It blew my mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,880",
+				"to": "00:24:33,720"
+			},
+			"offsets": {
+				"from": 1471880,
+				"to": 1473720
+			},
+			"text": " I can't believe I wasted all my time"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,720",
+				"to": "00:24:35,600"
+			},
+			"offsets": {
+				"from": 1473720,
+				"to": 1475600
+			},
+			"text": " for six months on these other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,600",
+				"to": "00:24:38,480"
+			},
+			"offsets": {
+				"from": 1475600,
+				"to": 1478480
+			},
+			"text": " So I basically grabbed all the code that works from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,480",
+				"to": "00:24:39,360"
+			},
+			"offsets": {
+				"from": 1478480,
+				"to": 1479360
+			},
+			"text": " I threw it in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,360",
+				"to": "00:24:41,960"
+			},
+			"offsets": {
+				"from": 1479360,
+				"to": 1481960
+			},
+			"text": " It was a minimal rewrite for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,960",
+				"to": "00:24:42,800"
+			},
+			"offsets": {
+				"from": 1481960,
+				"to": 1482800
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,800",
+				"to": "00:24:44,400"
+			},
+			"offsets": {
+				"from": 1482800,
+				"to": 1484400
+			},
+			"text": " Talked about why we use Docker."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,400",
+				"to": "00:24:47,840"
+			},
+			"offsets": {
+				"from": 1484400,
+				"to": 1487840
+			},
+			"text": " These fuzzers will find the Go binary and delete it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,840",
+				"to": "00:24:50,680"
+			},
+			"offsets": {
+				"from": 1487840,
+				"to": 1490680
+			},
+			"text": " They will write all kinds of crazy stuff to your file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,680",
+				"to": "00:24:52,640"
+			},
+			"offsets": {
+				"from": 1490680,
+				"to": 1492640
+			},
+			"text": " If that happens, you can just restart nosy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,640",
+				"to": "00:24:54,760"
+			},
+			"offsets": {
+				"from": 1492640,
+				"to": 1494760
+			},
+			"text": " and your host isn't screwed."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,760",
+				"to": "00:24:56,200"
+			},
+			"offsets": {
+				"from": 1494760,
+				"to": 1496200
+			},
+			"text": " Let's see, various fill libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,200",
+				"to": "00:24:57,760"
+			},
+			"offsets": {
+				"from": 1496200,
+				"to": 1497760
+			},
+			"text": " I talked a little bit about Trail of Bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,760",
+				"to": "00:25:00,360"
+			},
+			"offsets": {
+				"from": 1497760,
+				"to": 1500360
+			},
+			"text": " I have a proprietary version that I'll talk a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,360",
+				"to": "00:25:01,240"
+			},
+			"offsets": {
+				"from": 1500360,
+				"to": 1501240
+			},
+			"text": " more about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,240",
+				"to": "00:25:04,080"
+			},
+			"offsets": {
+				"from": 1501240,
+				"to": 1504080
+			},
+			"text": " Last slide that really matters, I know amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,080",
+				"to": "00:25:06,480"
+			},
+			"offsets": {
+				"from": 1504080,
+				"to": 1506480
+			},
+			"text": " Things that we want to do, auto-corporate bootstrap."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,480",
+				"to": "00:25:08,120"
+			},
+			"offsets": {
+				"from": 1506480,
+				"to": 1508120
+			},
+			"text": " So you can imagine here, we already"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,120",
+				"to": "00:25:09,800"
+			},
+			"offsets": {
+				"from": 1508120,
+				"to": 1509800
+			},
+			"text": " know how to dynamically write code."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,800",
+				"to": "00:25:11,360"
+			},
+			"offsets": {
+				"from": 1509800,
+				"to": 1511360
+			},
+			"text": " We can dynamically rewrite code."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,360",
+				"to": "00:25:13,320"
+			},
+			"offsets": {
+				"from": 1511360,
+				"to": 1513320
+			},
+			"text": " So if I point it towards the repo and I say, hey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,320",
+				"to": "00:25:18,400"
+			},
+			"offsets": {
+				"from": 1513320,
+				"to": 1518400
+			},
+			"text": " I want to run GoEthereum, let's say I support 7,500 functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,400",
+				"to": "00:25:19,880"
+			},
+			"offsets": {
+				"from": 1518400,
+				"to": 1519880
+			},
+			"text": " in it, then what I can do here is I"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,880",
+				"to": "00:25:23,080"
+			},
+			"offsets": {
+				"from": 1519880,
+				"to": 1523080
+			},
+			"text": " can say all of those 7,500 functions, instrument them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,080",
+				"to": "00:25:25,800"
+			},
+			"offsets": {
+				"from": 1523080,
+				"to": 1525800
+			},
+			"text": " run Go normally, run it on mainnet if you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,800",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1525800,
+				"to": 1529000
+			},
+			"text": " save off every valid call to all of those functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:32,600"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1532600
+			},
+			"text": " and receivers, and then mutate on those."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,600",
+				"to": "00:25:34,840"
+			},
+			"offsets": {
+				"from": 1532600,
+				"to": 1534840
+			},
+			"text": " So I can bootstrap a corporate that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,840",
+				"to": "00:25:37,760"
+			},
+			"offsets": {
+				"from": 1534840,
+				"to": 1537760
+			},
+			"text": " I can automatically fuzz in a separate Go routine"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,760",
+				"to": "00:25:39,720"
+			},
+			"offsets": {
+				"from": 1537760,
+				"to": 1539720
+			},
+			"text": " in a Docker image or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,720",
+				"to": "00:25:42,200"
+			},
+			"offsets": {
+				"from": 1539720,
+				"to": 1542200
+			},
+			"text": " In real time, you can be continuously fuzzing mutating"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,200",
+				"to": "00:25:45,680"
+			},
+			"offsets": {
+				"from": 1542200,
+				"to": 1545680
+			},
+			"text": " on real valid test cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,680",
+				"to": "00:25:47,560"
+			},
+			"offsets": {
+				"from": 1545680,
+				"to": 1547560
+			},
+			"text": " Let's see, auto-object fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,560",
+				"to": "00:25:49,720"
+			},
+			"offsets": {
+				"from": 1547560,
+				"to": 1549720
+			},
+			"text": " You can find race conditions this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,720",
+				"to": "00:25:51,720"
+			},
+			"offsets": {
+				"from": 1549720,
+				"to": 1551720
+			},
+			"text": " You could say, hey, I know I support this constructor."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,720",
+				"to": "00:25:53,280"
+			},
+			"offsets": {
+				"from": 1551720,
+				"to": 1553280
+			},
+			"text": " It's got 10 methods on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,280",
+				"to": "00:25:55,840"
+			},
+			"offsets": {
+				"from": 1553280,
+				"to": 1555840
+			},
+			"text": " Write a fuzzing function that will kind of round robin those."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,840",
+				"to": "00:25:57,680"
+			},
+			"offsets": {
+				"from": 1555840,
+				"to": 1557680
+			},
+			"text": " There's some work like this in FCGIN"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,680",
+				"to": "00:25:59,400"
+			},
+			"offsets": {
+				"from": 1557680,
+				"to": 1559400
+			},
+			"text": " that I'd like to copy as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,400",
+				"to": "00:26:01,720"
+			},
+			"offsets": {
+				"from": 1559400,
+				"to": 1561720
+			},
+			"text": " I think if you run that with a thread sanitization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,720",
+				"to": "00:26:04,280"
+			},
+			"offsets": {
+				"from": 1561720,
+				"to": 1564280
+			},
+			"text": " you'll find a ton of race conditions that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,280",
+				"to": "00:26:05,760"
+			},
+			"offsets": {
+				"from": 1564280,
+				"to": 1565760
+			},
+			"text": " Lock down networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,760",
+				"to": "00:26:09,360"
+			},
+			"offsets": {
+				"from": 1565760,
+				"to": 1569360
+			},
+			"text": " You can do AST walk to say, hey, I want to look at all the reach"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,360",
+				"to": "00:26:12,040"
+			},
+			"offsets": {
+				"from": 1569360,
+				"to": 1572040
+			},
+			"text": " ability from this function if it writes the file system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,040",
+				"to": "00:26:13,880"
+			},
+			"offsets": {
+				"from": 1572040,
+				"to": 1573880
+			},
+			"text": " exclude it, because I'm tired of something."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,880",
+				"to": "00:26:15,520"
+			},
+			"offsets": {
+				"from": 1573880,
+				"to": 1575520
+			},
+			"text": " Something's pulverizing my file system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,520",
+				"to": "00:26:18,440"
+			},
+			"offsets": {
+				"from": 1575520,
+				"to": 1578440
+			},
+			"text": " and it's destroying my fuzzer, that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,440",
+				"to": "00:26:22,680"
+			},
+			"offsets": {
+				"from": 1578440,
+				"to": 1582680
+			},
+			"text": " Final task, test case minimization at the end of a run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,680",
+				"to": "00:26:24,440"
+			},
+			"offsets": {
+				"from": 1582680,
+				"to": 1584440
+			},
+			"text": " and all the coverage analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,440",
+				"to": "00:26:26,440"
+			},
+			"offsets": {
+				"from": 1584440,
+				"to": 1586440
+			},
+			"text": " This would be really great if I had this done today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,440",
+				"to": "00:26:28,280"
+			},
+			"offsets": {
+				"from": 1586440,
+				"to": 1588280
+			},
+			"text": " because then I could say, hey, look, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,280",
+				"to": "00:26:31,160"
+			},
+			"offsets": {
+				"from": 1588280,
+				"to": 1591160
+			},
+			"text": " Prisms testing library has this much coverage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,160",
+				"to": "00:26:33,600"
+			},
+			"offsets": {
+				"from": 1591160,
+				"to": 1593600
+			},
+			"text": " and I added this much coverage automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,600",
+				"to": "00:26:34,520"
+			},
+			"offsets": {
+				"from": 1593600,
+				"to": 1594520
+			},
+			"text": " with nosy neighbor."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,520",
+				"to": "00:26:35,320"
+			},
+			"offsets": {
+				"from": 1594520,
+				"to": 1595320
+			},
+			"text": " That would be really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,320",
+				"to": "00:26:37,040"
+			},
+			"offsets": {
+				"from": 1595320,
+				"to": 1597040
+			},
+			"text": " Maybe I'll have that in six months for you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,040",
+				"to": "00:26:39,880"
+			},
+			"offsets": {
+				"from": 1597040,
+				"to": 1599880
+			},
+			"text": " All right, I will open source this in the next 24 hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,880",
+				"to": "00:26:41,440"
+			},
+			"offsets": {
+				"from": 1599880,
+				"to": 1601440
+			},
+			"text": " That's my promise to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,440",
+				"to": "00:26:45,560"
+			},
+			"offsets": {
+				"from": 1601440,
+				"to": 1605560
+			},
+			"text": " My creative excuse, as of all procrastinating engineers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,560",
+				"to": "00:26:46,680"
+			},
+			"offsets": {
+				"from": 1605560,
+				"to": 1606680
+			},
+			"text": " has a creative excuse."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,680",
+				"to": "00:26:50,400"
+			},
+			"offsets": {
+				"from": 1606680,
+				"to": 1610400
+			},
+			"text": " I got bit by one of these snakes four or five days ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,400",
+				"to": "00:26:54,400"
+			},
+			"offsets": {
+				"from": 1610400,
+				"to": 1614400
+			},
+			"text": " I wouldn't be here if my wife didn't do so much to get me here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,400",
+				"to": "00:26:56,200"
+			},
+			"offsets": {
+				"from": 1614400,
+				"to": 1616200
+			},
+			"text": " I spent a lot of time in the hospital."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,200",
+				"to": "00:26:58,000"
+			},
+			"offsets": {
+				"from": 1616200,
+				"to": 1618000
+			},
+			"text": " I've been elevating this foot."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,000",
+				"to": "00:26:59,640"
+			},
+			"offsets": {
+				"from": 1618000,
+				"to": 1619640
+			},
+			"text": " Hence why I came up on crutches."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,640",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1619640,
+				"to": 1621000
+			},
+			"text": " I'm starting to be able to put weight on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:03,120"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1623120
+			},
+			"text": " but yeah, I actually have a real excuse this time"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,120",
+				"to": "00:27:04,400"
+			},
+			"offsets": {
+				"from": 1623120,
+				"to": 1624400
+			},
+			"text": " that Doc didn't need my homework."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,400",
+				"to": "00:27:06,120"
+			},
+			"offsets": {
+				"from": 1624400,
+				"to": 1626120
+			},
+			"text": " One of those guys legit bit me."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,120",
+				"to": "00:27:07,520"
+			},
+			"offsets": {
+				"from": 1626120,
+				"to": 1627520
+			},
+			"text": " It was a whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,520",
+				"to": "00:27:10,520"
+			},
+			"offsets": {
+				"from": 1627520,
+				"to": 1630520
+			},
+			"text": " Follow Infosecual on GitHub or Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,520",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1630520,
+				"to": 1633000
+			},
+			"text": " I'll drop the repo links probably later tonight."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:15,640"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1635640
+			},
+			"text": " We'll latest this time tomorrow, depending"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,640",
+				"to": "00:27:16,640"
+			},
+			"offsets": {
+				"from": 1635640,
+				"to": 1636640
+			},
+			"text": " on how the rest of the day goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,640",
+				"to": "00:27:21,640"
+			},
+			"offsets": {
+				"from": 1636640,
+				"to": 1641640
+			},
+			"text": " Real quick, I do want to thank FC Gen Trail of Bits for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:21,640",
+				"to": "00:27:27,480"
+			},
+			"offsets": {
+				"from": 1641640,
+				"to": 1647480
+			},
+			"text": " Phil Repo, Zen Chata and Justin Traglia for various things"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,480",
+				"to": "00:27:30,280"
+			},
+			"offsets": {
+				"from": 1647480,
+				"to": 1650280
+			},
+			"text": " that they added to this repo and to this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,280",
+				"to": "00:27:33,080"
+			},
+			"offsets": {
+				"from": 1650280,
+				"to": 1653080
+			},
+			"text": " They go fuzz folks, and then everyone in the go for Slack"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,080",
+				"to": "00:27:34,600"
+			},
+			"offsets": {
+				"from": 1653080,
+				"to": 1654600
+			},
+			"text": " that's been super helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,600",
+				"to": "00:27:35,920"
+			},
+			"offsets": {
+				"from": 1654600,
+				"to": 1655920
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,920",
+				"to": "00:27:38,720"
+			},
+			"offsets": {
+				"from": 1655920,
+				"to": 1658720
+			},
+			"text": " Yeah, with that, David, I am going to say you can go ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,720",
+				"to": "00:27:40,160"
+			},
+			"offsets": {
+				"from": 1658720,
+				"to": 1660160
+			},
+			"text": " and take questions over to the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,160",
+				"to": "00:27:43,200"
+			},
+			"offsets": {
+				"from": 1660160,
+				"to": 1663200
+			},
+			"text": " But thank you so much for a making it here"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,200",
+				"to": "00:27:44,760"
+			},
+			"offsets": {
+				"from": 1663200,
+				"to": 1664760
+			},
+			"text": " through all of those different hurdles"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,760",
+				"to": "00:27:46,440"
+			},
+			"offsets": {
+				"from": 1664760,
+				"to": 1666440
+			},
+			"text": " and for giving us your great presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,440",
+				"to": "00:27:47,880"
+			},
+			"offsets": {
+				"from": 1666440,
+				"to": 1667880
+			},
+			"text": " So thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,880",
+				"to": "00:27:50,640"
+			},
+			"offsets": {
+				"from": 1667880,
+				"to": 1670640
+			},
+			"text": " If you do have any questions for David, please feel free."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,640",
+				"to": "00:27:53,160"
+			},
+			"offsets": {
+				"from": 1670640,
+				"to": 1673160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,160",
+				"to": "00:27:56,160"
+			},
+			"offsets": {
+				"from": 1673160,
+				"to": 1676160
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,160",
+				"to": "00:27:59,160"
+			},
+			"offsets": {
+				"from": 1676160,
+				"to": 1679160
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,160",
+				"to": "00:28:02,160"
+			},
+			"offsets": {
+				"from": 1679160,
+				"to": 1682160
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,160",
+				"to": "00:28:31,160"
+			},
+			"offsets": {
+				"from": 1682160,
+				"to": 1711160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

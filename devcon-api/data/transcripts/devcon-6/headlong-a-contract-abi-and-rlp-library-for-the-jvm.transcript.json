@@ -1,0 +1,890 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,200"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15200
+			},
+			"text": " >> It's just an encoding library."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,200",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 15200,
+				"to": 17240
+			},
+			"text": " It doesn't do anything else really."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:19,240"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 19240
+			},
+			"text": " It's just hyper-focused."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,240",
+				"to": "00:00:22,760"
+			},
+			"offsets": {
+				"from": 19240,
+				"to": 22760
+			},
+			"text": " It's used by Dune on stopable domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,760",
+				"to": "00:00:27,880"
+			},
+			"offsets": {
+				"from": 22760,
+				"to": 27880
+			},
+			"text": " I figured that I wanted to make a general solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,880",
+				"to": "00:00:30,480"
+			},
+			"offsets": {
+				"from": 27880,
+				"to": 30480
+			},
+			"text": " that's like low-level, high-performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,480",
+				"to": "00:00:32,480"
+			},
+			"offsets": {
+				"from": 30480,
+				"to": 32480
+			},
+			"text": " that people can just build stuff on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,480",
+				"to": "00:00:35,240"
+			},
+			"offsets": {
+				"from": 32480,
+				"to": 35240
+			},
+			"text": " Here's some just rough benchmarks from my laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,240",
+				"to": "00:00:41,640"
+			},
+			"offsets": {
+				"from": 35240,
+				"to": 41640
+			},
+			"text": " They can do like partial decoding of call data for ABI."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,640",
+				"to": "00:00:44,880"
+			},
+			"offsets": {
+				"from": 41640,
+				"to": 44880
+			},
+			"text": " So that's like the measured nanoseconds over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,880",
+				"to": "00:00:47,800"
+			},
+			"offsets": {
+				"from": 44880,
+				"to": 47800
+			},
+			"text": " So it works with bytes instead of strings."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,800",
+				"to": "00:00:51,720"
+			},
+			"offsets": {
+				"from": 47800,
+				"to": 51720
+			},
+			"text": " So it's a lot faster than some other tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,720",
+				"to": "00:00:55,100"
+			},
+			"offsets": {
+				"from": 51720,
+				"to": 55100
+			},
+			"text": " So yeah, just very few dependencies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,100",
+				"to": "00:00:56,400"
+			},
+			"offsets": {
+				"from": 55100,
+				"to": 56400
+			},
+			"text": " supposed to be lightweight."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,760",
+				"to": "00:01:01,040"
+			},
+			"offsets": {
+				"from": 56760,
+				"to": 61040
+			},
+			"text": " It's just sort of the general design philosophy around it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,040",
+				"to": "00:01:05,800"
+			},
+			"offsets": {
+				"from": 61040,
+				"to": 65800
+			},
+			"text": " And yeah, Java, so it's compatible with Android and Kotlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,800",
+				"to": "00:01:11,160"
+			},
+			"offsets": {
+				"from": 65800,
+				"to": 71160
+			},
+			"text": " And it's like if you're using it on like a web server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,160",
+				"to": "00:01:16,600"
+			},
+			"offsets": {
+				"from": 71160,
+				"to": 76600
+			},
+			"text": " using decoding large amounts of data, this is useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,600",
+				"to": "00:01:17,600"
+			},
+			"offsets": {
+				"from": 76600,
+				"to": 77600
+			},
+			"text": " for something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,600",
+				"to": "00:01:22,960"
+			},
+			"offsets": {
+				"from": 77600,
+				"to": 82960
+			},
+			"text": " The other type of user I have is like people are trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,960",
+				"to": "00:01:26,360"
+			},
+			"offsets": {
+				"from": 82960,
+				"to": 86360
+			},
+			"text": " to work with like an array of structs inside a struct"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,360",
+				"to": "00:01:29,440"
+			},
+			"offsets": {
+				"from": 86360,
+				"to": 89440
+			},
+			"text": " and like other tools aren't working for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,440",
+				"to": "00:01:36,520"
+			},
+			"offsets": {
+				"from": 89440,
+				"to": 96520
+			},
+			"text": " So like mine can decode any arbitrary function signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,520",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 96520,
+				"to": 100000
+			},
+			"text": " or data that matches any function signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102760
+			},
+			"text": " So here's the API for like the RLP stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:45,800"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 105800
+			},
+			"text": " This is different because you use an iterator pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,800",
+				"to": "00:01:49,600"
+			},
+			"offsets": {
+				"from": 105800,
+				"to": 109600
+			},
+			"text": " and it decodes on demand instead of eagerly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,600",
+				"to": "00:01:55,480"
+			},
+			"offsets": {
+				"from": 109600,
+				"to": 115480
+			},
+			"text": " Yeah, all these objects just sort of point at a byte buffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,480",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 115480,
+				"to": 119400
+			},
+			"text": " and you can decode directly from the byte buffer on demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 122840
+			},
+			"text": " And so it saves some time there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:05,840"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 125840
+			},
+			"text": " And then here's like the ABI stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,840",
+				"to": "00:02:09,640"
+			},
+			"offsets": {
+				"from": 125840,
+				"to": 129640
+			},
+			"text": " So all the objects are meant to be reused many times"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,640",
+				"to": "00:02:12,280"
+			},
+			"offsets": {
+				"from": 129640,
+				"to": 132280
+			},
+			"text": " with the function object and their state list."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,280",
+				"to": "00:02:15,440"
+			},
+			"offsets": {
+				"from": 132280,
+				"to": 135440
+			},
+			"text": " So you can share them across threads or between code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,440",
+				"to": "00:02:19,440"
+			},
+			"offsets": {
+				"from": 135440,
+				"to": 139440
+			},
+			"text": " There's some decoding and also deals with JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,440",
+				"to": "00:02:24,160"
+			},
+			"offsets": {
+				"from": 139440,
+				"to": 144160
+			},
+			"text": " So you can like parse JSON and create a function from JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,960",
+				"to": "00:02:29,120"
+			},
+			"offsets": {
+				"from": 144960,
+				"to": 149120
+			},
+			"text": " It also does event decoding as added recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,120",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 149120,
+				"to": 155040
+			},
+			"text": " So just here's some details on how I got the performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:41,160"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 161160
+			},
+			"text": " benefits from using byte buffer and pre-calculating things"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,160",
+				"to": "00:02:45,120"
+			},
+			"offsets": {
+				"from": 161160,
+				"to": 165120
+			},
+			"text": " and holding on to them for like multiple encodings and decodings."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,120",
+				"to": "00:02:50,160"
+			},
+			"offsets": {
+				"from": 165120,
+				"to": 170160
+			},
+			"text": " Yeah, and there's some denial of service protection for if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,160",
+				"to": "00:02:53,920"
+			},
+			"offsets": {
+				"from": 170160,
+				"to": 173920
+			},
+			"text": " decoding like untrusted data that wants to allocate like a huge array."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,400",
+				"to": "00:03:00,600"
+			},
+			"offsets": {
+				"from": 174400,
+				"to": 180600
+			},
+			"text": " It'll throw an exception instead of like allocating the gigabyte of memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,600",
+				"to": "00:03:06,920"
+			},
+			"offsets": {
+				"from": 180600,
+				"to": 186920
+			},
+			"text": " Yeah, future work might involve doing like more partial decodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,920",
+				"to": "00:03:09,600"
+			},
+			"offsets": {
+				"from": 186920,
+				"to": 189600
+			},
+			"text": " like querying like nested tuples."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,600",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 189600,
+				"to": 193160
+			},
+			"text": " So like going to a specific index and then if that's a tuple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:17,480"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 197480
+			},
+			"text": " go at an index and that and just pick out the thing you want to decode"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,480",
+				"to": "00:03:19,280"
+			},
+			"offsets": {
+				"from": 197480,
+				"to": 199280
+			},
+			"text": " and just ignore everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:26,640"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 206640
+			},
+			"text": " But it requires like jumping around the index and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,640",
+				"to": "00:03:32,120"
+			},
+			"offsets": {
+				"from": 206640,
+				"to": 212120
+			},
+			"text": " And then yeah, I've been talking to some people recently about a possible ABI V3."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,120",
+				"to": "00:03:39,760"
+			},
+			"offsets": {
+				"from": 212120,
+				"to": 219760
+			},
+			"text": " So like I wrote a command line interface that can encode arguments as RLP"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,760",
+				"to": "00:03:46,200"
+			},
+			"offsets": {
+				"from": 219760,
+				"to": 226200
+			},
+			"text": " and uses a lot less bytes because you don't have an offset"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,200",
+				"to": "00:03:50,560"
+			},
+			"offsets": {
+				"from": 226200,
+				"to": 230560
+			},
+			"text": " and all this zero padding and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,560",
+				"to": "00:03:54,960"
+			},
+			"offsets": {
+				"from": 231560,
+				"to": 234960
+			},
+			"text": " So and then you can try that out if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,960",
+				"to": "00:03:59,040"
+			},
+			"offsets": {
+				"from": 234960,
+				"to": 239040
+			},
+			"text": " Headlong CLI is like the command line interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,040",
+				"to": "00:04:03,440"
+			},
+			"offsets": {
+				"from": 239040,
+				"to": 243440
+			},
+			"text": " And yeah, faster, simpler software legos."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,440",
+				"to": "00:04:09,560"
+			},
+			"offsets": {
+				"from": 243440,
+				"to": 249560
+			},
+			"text": " I kind of just want people to be able to build modular stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,560",
+				"to": "00:04:14,880"
+			},
+			"offsets": {
+				"from": 249560,
+				"to": 254880
+			},
+			"text": " just so that you're not like weighted down by all these dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,880",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 254880,
+				"to": 258080
+			},
+			"text": " and like complex frameworks where you have to read all this documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:22,400"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 262400
+			},
+			"text": " And just build something to last."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,400",
+				"to": "00:04:27,440"
+			},
+			"offsets": {
+				"from": 262400,
+				"to": 267440
+			},
+			"text": " And then special thanks to Victor Dilipine because he added some code"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,440",
+				"to": "00:04:31,680"
+			},
+			"offsets": {
+				"from": 267440,
+				"to": 271680
+			},
+			"text": " that now I can decode events with headlong."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,680",
+				"to": "00:04:33,800"
+			},
+			"offsets": {
+				"from": 271680,
+				"to": 273800
+			},
+			"text": " And thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,800",
+				"to": "00:04:36,440"
+			},
+			"offsets": {
+				"from": 273800,
+				"to": 276440
+			},
+			"text": " Do you have any plans for SSZ support?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,440",
+				"to": "00:04:38,840"
+			},
+			"offsets": {
+				"from": 276440,
+				"to": 278840
+			},
+			"text": " Not right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,840",
+				"to": "00:04:43,600"
+			},
+			"offsets": {
+				"from": 278840,
+				"to": 283600
+			},
+			"text": " I thought about maybe implementing something separate for SSZ,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,600",
+				"to": "00:04:46,480"
+			},
+			"offsets": {
+				"from": 283600,
+				"to": 286480
+			},
+			"text": " but I don't know if I'm going to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,560",
+				"to": "00:04:51,840"
+			},
+			"offsets": {
+				"from": 286560,
+				"to": 291840
+			},
+			"text": " So maybe what does he good use cases for this library?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,840",
+				"to": "00:04:59,080"
+			},
+			"offsets": {
+				"from": 291840,
+				"to": 299080
+			},
+			"text": " We'll do an analytics, start using it for like ingesting large amounts of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,080",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 299080,
+				"to": 303000
+			},
+			"text": " so they can put it in the databases and like query it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:07,760"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 307760
+			},
+			"text": " So like if you have a lot of historical data lying around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,760",
+				"to": "00:05:14,680"
+			},
+			"offsets": {
+				"from": 307760,
+				"to": 314680
+			},
+			"text": " you want to decode like huge amounts of it and gain insights from data and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,440",
+				"to": "00:05:19,600"
+			},
+			"offsets": {
+				"from": 315440,
+				"to": 319600
+			},
+			"text": " Otherwise, it's just designed to work in every possible case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,600",
+				"to": "00:05:23,800"
+			},
+			"offsets": {
+				"from": 319600,
+				"to": 323800
+			},
+			"text": " nested arrays, nested tuples, tubular arrays, structs and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,800",
+				"to": "00:05:30,840"
+			},
+			"offsets": {
+				"from": 323800,
+				"to": 330840
+			},
+			"text": " And there's no code generation, so it's all just very traditional that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,840",
+				"to": "00:05:31,680"
+			},
+			"offsets": {
+				"from": 330840,
+				"to": 331680
+			},
+			"text": " Right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,680",
+				"to": "00:05:44,680"
+			},
+			"offsets": {
+				"from": 331680,
+				"to": 344680
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

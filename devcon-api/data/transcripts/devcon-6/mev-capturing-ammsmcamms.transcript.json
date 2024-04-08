@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,000",
+				"to": "00:00:16,560"
+			},
+			"offsets": {
+				"from": 2000,
+				"to": 16560
+			},
+			"text": " Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,560",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 16560,
+				"to": 18040
+			},
+			"text": " I can do my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:19,800"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 19800
+			},
+			"text": " Today I'm going to talk about a different way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,800",
+				"to": "00:00:22,600"
+			},
+			"offsets": {
+				"from": 19800,
+				"to": 22600
+			},
+			"text": " to design automated market maker in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,600",
+				"to": "00:00:27,760"
+			},
+			"offsets": {
+				"from": 22600,
+				"to": 27760
+			},
+			"text": " that hopefully is going to capture the MEV that currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,760",
+				"to": "00:00:30,680"
+			},
+			"offsets": {
+				"from": 27760,
+				"to": 30680
+			},
+			"text": " is being lost to miners and other parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,680",
+				"to": "00:00:32,720"
+			},
+			"offsets": {
+				"from": 30680,
+				"to": 32720
+			},
+			"text": " So I'm today we go Jacon, and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,720",
+				"to": "00:00:34,920"
+			},
+			"offsets": {
+				"from": 32720,
+				"to": 34920
+			},
+			"text": " a smart-cut developer at Calswap."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,920",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 34920,
+				"to": 39160
+			},
+			"text": " Calswap, by the way, is an on-chain exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 41480
+			},
+			"text": " that protects you against MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:45,200"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 45200
+			},
+			"text": " So what is MEV, or maximum-expertive value?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,200",
+				"to": "00:00:47,320"
+			},
+			"offsets": {
+				"from": 45200,
+				"to": 47320
+			},
+			"text": " Currently, block builders have the responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,320",
+				"to": "00:00:49,880"
+			},
+			"offsets": {
+				"from": 47320,
+				"to": 49880
+			},
+			"text": " of updating the state of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,880",
+				"to": "00:00:50,960"
+			},
+			"offsets": {
+				"from": 49880,
+				"to": 50960
+			},
+			"text": " So how is this done?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,960",
+				"to": "00:00:54,360"
+			},
+			"offsets": {
+				"from": 50960,
+				"to": 54360
+			},
+			"text": " By including, excluding, ordering transactions in a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,360",
+				"to": "00:00:57,480"
+			},
+			"offsets": {
+				"from": 54360,
+				"to": 57480
+			},
+			"text": " And for this, they get paid fees, transaction fees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,480",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 57480,
+				"to": 58760
+			},
+			"text": " and rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:01:01,160"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 61160
+			},
+			"text": " However, there are other ways that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,160",
+				"to": "00:01:07,040"
+			},
+			"offsets": {
+				"from": 61160,
+				"to": 67040
+			},
+			"text": " can use to get money out of the block building process."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,040",
+				"to": "00:01:12,040"
+			},
+			"offsets": {
+				"from": 67040,
+				"to": 72040
+			},
+			"text": " So one very common attack is called the sandwich attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,040",
+				"to": "00:01:17,360"
+			},
+			"offsets": {
+				"from": 72040,
+				"to": 77360
+			},
+			"text": " in which a user transaction is exploited to extract MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,360",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 77360,
+				"to": 80840
+			},
+			"text": " So let's say that a user is creating a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:23,720"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 83720
+			},
+			"text": " once included in a block, to sell on an automated market maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,720",
+				"to": "00:01:27,200"
+			},
+			"offsets": {
+				"from": 83720,
+				"to": 87200
+			},
+			"text": " 100 ETH, or 100,000 USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,200",
+				"to": "00:01:31,480"
+			},
+			"offsets": {
+				"from": 87200,
+				"to": 91480
+			},
+			"text": " So as is usually customary, there is an extra slippage added"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,480",
+				"to": "00:01:35,120"
+			},
+			"offsets": {
+				"from": 91480,
+				"to": 95120
+			},
+			"text": " in case the price moves between when the transaction is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,120",
+				"to": "00:01:36,600"
+			},
+			"offsets": {
+				"from": 95120,
+				"to": 96600
+			},
+			"text": " created and executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,600",
+				"to": "00:01:38,600"
+			},
+			"offsets": {
+				"from": 96600,
+				"to": 98600
+			},
+			"text": " And normally, it shouldn't really matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,600",
+				"to": "00:01:41,400"
+			},
+			"offsets": {
+				"from": 98600,
+				"to": 101400
+			},
+			"text": " The user should take the expected price."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,400",
+				"to": "00:01:44,600"
+			},
+			"offsets": {
+				"from": 101400,
+				"to": 104600
+			},
+			"text": " However, the point of sandwiching is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,600",
+				"to": "00:01:46,840"
+			},
+			"offsets": {
+				"from": 104600,
+				"to": 106840
+			},
+			"text": " using the slippage against the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,840",
+				"to": "00:01:48,080"
+			},
+			"offsets": {
+				"from": 106840,
+				"to": 108080
+			},
+			"text": " So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,080",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 108080,
+				"to": 110520
+			},
+			"text": " The block builder creates two transactions, one before"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:51,600"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 111600
+			},
+			"text": " and one after."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,600",
+				"to": "00:01:55,320"
+			},
+			"offsets": {
+				"from": 111600,
+				"to": 115320
+			},
+			"text": " The first transaction buys USDC and moves"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,320",
+				"to": "00:02:00,360"
+			},
+			"offsets": {
+				"from": 115320,
+				"to": 120360
+			},
+			"text": " the price of the AMM to the minimum that would be accepted"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,360",
+				"to": "00:02:01,640"
+			},
+			"offsets": {
+				"from": 120360,
+				"to": 121640
+			},
+			"text": " by the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,640",
+				"to": "00:02:04,480"
+			},
+			"offsets": {
+				"from": 121640,
+				"to": 124480
+			},
+			"text": " The user trades anyway, because this is, according to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,480",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 124480,
+				"to": 126000
+			},
+			"text": " slippage, still valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:08,960"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 128960
+			},
+			"text": " And then finally, the block builder can sell back the USDC"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,960",
+				"to": "00:02:10,360"
+			},
+			"offsets": {
+				"from": 128960,
+				"to": 130360
+			},
+			"text": " at the new price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,360",
+				"to": "00:02:12,680"
+			},
+			"offsets": {
+				"from": 130360,
+				"to": 132680
+			},
+			"text": " Basically, this is a safe bet for the block builder, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,680",
+				"to": "00:02:16,280"
+			},
+			"offsets": {
+				"from": 132680,
+				"to": 136280
+			},
+			"text": " the state update is controlled by them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,280",
+				"to": "00:02:18,920"
+			},
+			"offsets": {
+				"from": 136280,
+				"to": 138920
+			},
+			"text": " But that's not everything there is to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,920",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 138920,
+				"to": 143520
+			},
+			"text": " So now we have talked about an issue for a user transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:27,160"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 147160
+			},
+			"text": " but we don't need to have a transaction to have MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,160",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 147160,
+				"to": 151280
+			},
+			"text": " One new mechanism of structing value is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:33,320"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 153320
+			},
+			"text": " versus rebalancing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,320",
+				"to": "00:02:35,240"
+			},
+			"offsets": {
+				"from": 153320,
+				"to": 155240
+			},
+			"text": " And it works more or less as follows."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,240",
+				"to": "00:02:38,560"
+			},
+			"offsets": {
+				"from": 155240,
+				"to": 158560
+			},
+			"text": " So let's say that we have an AMM on chain, and its state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,560",
+				"to": "00:02:40,520"
+			},
+			"offsets": {
+				"from": 158560,
+				"to": 160520
+			},
+			"text": " is currently--"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,520",
+				"to": "00:02:42,320"
+			},
+			"offsets": {
+				"from": 160520,
+				"to": 162320
+			},
+			"text": " well, we have a market price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,320",
+				"to": "00:02:45,840"
+			},
+			"offsets": {
+				"from": 162320,
+				"to": 165840
+			},
+			"text": " What we need is more or less equivalent to 1,400 a day."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,840",
+				"to": "00:02:48,680"
+			},
+			"offsets": {
+				"from": 165840,
+				"to": 168680
+			},
+			"text": " This could be any market price, not necessarily on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,680",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168680,
+				"to": 172000
+			},
+			"text": " So it could be, for example, centralized exchange anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 174560
+			},
+			"text": " And let's say that at the same time, an AMM is willing to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:02:58,400"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 178400
+			},
+			"text": " give 1,400 a day for one eat at the same price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,400",
+				"to": "00:03:01,840"
+			},
+			"offsets": {
+				"from": 178400,
+				"to": 181840
+			},
+			"text": " Some time passes, no transactions occur on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,840",
+				"to": "00:03:04,080"
+			},
+			"offsets": {
+				"from": 181840,
+				"to": 184080
+			},
+			"text": " However, the market price change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,080",
+				"to": "00:03:06,880"
+			},
+			"offsets": {
+				"from": 184080,
+				"to": 186880
+			},
+			"text": " Until a while could be some centralized marketplace"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,880",
+				"to": "00:03:08,080"
+			},
+			"offsets": {
+				"from": 186880,
+				"to": 188080
+			},
+			"text": " that change the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,080",
+				"to": "00:03:12,360"
+			},
+			"offsets": {
+				"from": 188080,
+				"to": 192360
+			},
+			"text": " So suddenly, there is an arbitrage opportunity that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,360",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 192360,
+				"to": 193760
+			},
+			"text": " be exploited."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:16,600"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 196600
+			},
+			"text": " So the AMM doesn't know anything about the market price, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,600",
+				"to": "00:03:18,800"
+			},
+			"offsets": {
+				"from": 196600,
+				"to": 198800
+			},
+			"text": " if you can execute the transaction and your guarantee"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,800",
+				"to": "00:03:20,800"
+			},
+			"offsets": {
+				"from": 198800,
+				"to": 200800
+			},
+			"text": " that it's going to be finalized, you can take this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,800",
+				"to": "00:03:22,120"
+			},
+			"offsets": {
+				"from": 200800,
+				"to": 202120
+			},
+			"text": " arbitrage opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,120",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 202120,
+				"to": 205120
+			},
+			"text": " And this is more or less the essence of loss versus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:26,200"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 206200
+			},
+			"text": " rebalancing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,200",
+				"to": "00:03:30,160"
+			},
+			"offsets": {
+				"from": 206200,
+				"to": 210160
+			},
+			"text": " The difference information that the AMM and the market has."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,160",
+				"to": "00:03:33,280"
+			},
+			"offsets": {
+				"from": 210160,
+				"to": 213280
+			},
+			"text": " So if the AMM had perfect information, the AMM would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,280",
+				"to": "00:03:36,160"
+			},
+			"offsets": {
+				"from": 213280,
+				"to": 216160
+			},
+			"text": " very happy to use the current market price."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,160",
+				"to": "00:03:37,840"
+			},
+			"offsets": {
+				"from": 216160,
+				"to": 217840
+			},
+			"text": " Whoever this is not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,840",
+				"to": "00:03:42,160"
+			},
+			"offsets": {
+				"from": 217840,
+				"to": 222160
+			},
+			"text": " And this money loss is basically the cost of providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,160",
+				"to": "00:03:44,520"
+			},
+			"offsets": {
+				"from": 222160,
+				"to": 224520
+			},
+			"text": " liquidity on an AMM currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,520",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 224520,
+				"to": 226640
+			},
+			"text": " So important to note this is also that this is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:47,480"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 227480
+			},
+			"text": " impermanent loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,480",
+				"to": "00:03:51,600"
+			},
+			"offsets": {
+				"from": 227480,
+				"to": 231600
+			},
+			"text": " So it doesn't really depend on the relative change in value"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,600",
+				"to": "00:03:54,160"
+			},
+			"offsets": {
+				"from": 231600,
+				"to": 234160
+			},
+			"text": " of the two assets in the AMM."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,160",
+				"to": "00:03:57,280"
+			},
+			"offsets": {
+				"from": 234160,
+				"to": 237280
+			},
+			"text": " This was, by the way, part of recent research in rough"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,280",
+				"to": "00:03:57,760"
+			},
+			"offsets": {
+				"from": 237280,
+				"to": 237760
+			},
+			"text": " garden."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,760",
+				"to": "00:03:59,360"
+			},
+			"offsets": {
+				"from": 237760,
+				"to": 239360
+			},
+			"text": " So there are related papers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,360",
+				"to": "00:04:02,840"
+			},
+			"offsets": {
+				"from": 239360,
+				"to": 242840
+			},
+			"text": " Eventually, I'm going to give you more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,840",
+				"to": "00:04:05,720"
+			},
+			"offsets": {
+				"from": 242840,
+				"to": 245720
+			},
+			"text": " But that said, how can we avoid this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,720",
+				"to": "00:04:10,280"
+			},
+			"offsets": {
+				"from": 245720,
+				"to": 250280
+			},
+			"text": " So let's actually try to build an AMM that captures MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,280",
+				"to": "00:04:14,800"
+			},
+			"offsets": {
+				"from": 250280,
+				"to": 254800
+			},
+			"text": " So we start from any AMM, let's say a constant product AMM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,800",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 254800,
+				"to": 255840
+			},
+			"text": " like Uniswap."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:18,560"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 258560
+			},
+			"text": " And on top of it, we create a mechanism where we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,560",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 258560,
+				"to": 264720
+			},
+			"text": " auction the right of executing the first trade on the exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:27,440"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 267440
+			},
+			"text": " So there is going to be a so-called lead"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,440",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 267440,
+				"to": 271120
+			},
+			"text": " searcher, which is the highest bidder that is going to take"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 274000
+			},
+			"text": " the right to execute the first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 278760
+			},
+			"text": " As we see, this is a good way to capture this LVR."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,760",
+				"to": "00:04:43,800"
+			},
+			"offsets": {
+				"from": 278760,
+				"to": 283800
+			},
+			"text": " And the important thing here is that the proceeds don't go"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,800",
+				"to": "00:04:46,680"
+			},
+			"offsets": {
+				"from": 283800,
+				"to": 286680
+			},
+			"text": " to, well, go to the liquidity providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,680",
+				"to": "00:04:51,200"
+			},
+			"offsets": {
+				"from": 286680,
+				"to": 291200
+			},
+			"text": " And this is the MEV that otherwise would be extracted by"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,200",
+				"to": "00:04:52,040"
+			},
+			"offsets": {
+				"from": 291200,
+				"to": 292040
+			},
+			"text": " miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,040",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 292040,
+				"to": 294400
+			},
+			"text": " So how can this actually work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:05:00,440"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 300440
+			},
+			"text": " So to do this, we simply say that no user can trade until"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,440",
+				"to": "00:05:03,440"
+			},
+			"offsets": {
+				"from": 300440,
+				"to": 303440
+			},
+			"text": " their lead searcher has actually traded first."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,440",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 303440,
+				"to": 307880
+			},
+			"text": " So you can see if the lead searcher actually trades, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:09,200"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 309200
+			},
+			"text": " all the transactions go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,200",
+				"to": "00:05:11,800"
+			},
+			"offsets": {
+				"from": 309200,
+				"to": 311800
+			},
+			"text": " Otherwise, if the block is reorganized differently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,800",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311800,
+				"to": 314000
+			},
+			"text": " then the trade reverts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:16,040"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 316040
+			},
+			"text": " Naturally, this requires cooperation with the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,040",
+				"to": "00:05:16,880"
+			},
+			"offsets": {
+				"from": 316040,
+				"to": 316880
+			},
+			"text": " builder."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,880",
+				"to": "00:05:20,920"
+			},
+			"offsets": {
+				"from": 316880,
+				"to": 320920
+			},
+			"text": " So the idea is that the block builder is aware of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,920",
+				"to": "00:05:25,720"
+			},
+			"offsets": {
+				"from": 320920,
+				"to": 325720
+			},
+			"text": " concept of the AMM and orders everything accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,720",
+				"to": "00:05:29,840"
+			},
+			"offsets": {
+				"from": 325720,
+				"to": 329840
+			},
+			"text": " However, there is an incentive that is needed, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,840",
+				"to": "00:05:32,680"
+			},
+			"offsets": {
+				"from": 329840,
+				"to": 332680
+			},
+			"text": " incentive would be the gas used by the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,680",
+				"to": "00:05:35,120"
+			},
+			"offsets": {
+				"from": 332680,
+				"to": 335120
+			},
+			"text": " If the transaction reverts immediately is going to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,120",
+				"to": "00:05:36,280"
+			},
+			"offsets": {
+				"from": 335120,
+				"to": 336280
+			},
+			"text": " less gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,280",
+				"to": "00:05:38,760"
+			},
+			"offsets": {
+				"from": 336280,
+				"to": 338760
+			},
+			"text": " Any particular, this would help the miner having an"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,760",
+				"to": "00:05:45,240"
+			},
+			"offsets": {
+				"from": 338760,
+				"to": 345240
+			},
+			"text": " advantage, the block builder having an advantage on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,240",
+				"to": "00:05:46,560"
+			},
+			"offsets": {
+				"from": 345240,
+				"to": 346560
+			},
+			"text": " MEV auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,560",
+				"to": "00:05:49,200"
+			},
+			"offsets": {
+				"from": 346560,
+				"to": 349200
+			},
+			"text": " So let's analyze some costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,200",
+				"to": "00:05:53,600"
+			},
+			"offsets": {
+				"from": 349200,
+				"to": 353600
+			},
+			"text": " So first, the profits are estimated to be $9 per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,600",
+				"to": "00:05:55,240"
+			},
+			"offsets": {
+				"from": 353600,
+				"to": 355240
+			},
+			"text": " How are they estimated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,240",
+				"to": "00:06:00,240"
+			},
+			"offsets": {
+				"from": 355240,
+				"to": 360240
+			},
+			"text": " So the Eden network is a network that works in a fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,240",
+				"to": "00:06:01,040"
+			},
+			"offsets": {
+				"from": 360240,
+				"to": 361040
+			},
+			"text": " similar way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,040",
+				"to": "00:06:05,800"
+			},
+			"offsets": {
+				"from": 361040,
+				"to": 365800
+			},
+			"text": " So it also auctions off the right to the first lot in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,800",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 365800,
+				"to": 366840
+			},
+			"text": " block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:10,680"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 370680
+			},
+			"text": " And this is more or less the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,680",
+				"to": "00:06:13,400"
+			},
+			"offsets": {
+				"from": 370680,
+				"to": 373400
+			},
+			"text": " profit that comes from the Eden network, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,400",
+				"to": "00:06:15,640"
+			},
+			"offsets": {
+				"from": 373400,
+				"to": 375640
+			},
+			"text": " comparable to our structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,640",
+				"to": "00:06:19,320"
+			},
+			"offsets": {
+				"from": 375640,
+				"to": 379320
+			},
+			"text": " The costs are estimated to be $3 per block, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,320",
+				"to": "00:06:23,120"
+			},
+			"offsets": {
+				"from": 379320,
+				"to": 383120
+			},
+			"text": " basically the extra gas cost to enforce the rules that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,120",
+				"to": "00:06:24,200"
+			},
+			"offsets": {
+				"from": 383120,
+				"to": 384200
+			},
+			"text": " just decided."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,200",
+				"to": "00:06:29,280"
+			},
+			"offsets": {
+				"from": 384200,
+				"to": 389280
+			},
+			"text": " And this is based on a 40-g way gas price, however, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,280",
+				"to": "00:06:30,560"
+			},
+			"offsets": {
+				"from": 389280,
+				"to": 390560
+			},
+			"text": " would be much lower in the tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,560",
+				"to": "00:06:34,720"
+			},
+			"offsets": {
+				"from": 390560,
+				"to": 394720
+			},
+			"text": " So already, with this simple scheme, we would have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,720",
+				"to": "00:06:38,640"
+			},
+			"offsets": {
+				"from": 394720,
+				"to": 398640
+			},
+			"text": " theoretical captured MEV of $6 per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,640",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 398640,
+				"to": 402400
+			},
+			"text": " So I also want to point out that even if the extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:47,320"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 407320
+			},
+			"text": " profit now for the AMM is $6, in principle, it could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,320",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 407320,
+				"to": 408000
+			},
+			"text": " much higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 412000
+			},
+			"text": " So in this graph, I wanted to show the average block"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 416600
+			},
+			"text": " reward comparing flashboards, which extracts MEV and other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:06:58,080"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 418080
+			},
+			"text": " parties which are done."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,080",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 418080,
+				"to": 421000
+			},
+			"text": " So you can see in the last two months, it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:05,280"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 425280
+			},
+			"text": " fairly consistently 0.1/8 reward more, which is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,280",
+				"to": "00:07:09,840"
+			},
+			"offsets": {
+				"from": 425280,
+				"to": 429840
+			},
+			"text": " about more than $100 per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,840",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 429840,
+				"to": 433160
+			},
+			"text": " So this is actually a fairly large amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:17,360"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 437360
+			},
+			"text": " And it could also be extracted with different mechanisms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,360",
+				"to": "00:07:18,440"
+			},
+			"offsets": {
+				"from": 437360,
+				"to": 438440
+			},
+			"text": " AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,440",
+				"to": "00:07:21,680"
+			},
+			"offsets": {
+				"from": 438440,
+				"to": 441680
+			},
+			"text": " OK, so in conclusion, we have that AMMs have hidden fees"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,680",
+				"to": "00:07:26,040"
+			},
+			"offsets": {
+				"from": 441680,
+				"to": 446040
+			},
+			"text": " because of MEV, both for users and for liquidity providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,040",
+				"to": "00:07:30,200"
+			},
+			"offsets": {
+				"from": 446040,
+				"to": 450200
+			},
+			"text": " In current designs, well, these fees go to arbitrage and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,200",
+				"to": "00:07:31,480"
+			},
+			"offsets": {
+				"from": 450200,
+				"to": 451480
+			},
+			"text": " block builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,480",
+				"to": "00:07:36,120"
+			},
+			"offsets": {
+				"from": 451480,
+				"to": 456120
+			},
+			"text": " However, we can do better, and we can try to design our AMMs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,120",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 456120,
+				"to": 458720
+			},
+			"text": " in a way that this is different."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:42,800"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 462800
+			},
+			"text": " And this is what I hope to transmit with this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,800",
+				"to": "00:07:46,360"
+			},
+			"offsets": {
+				"from": 462800,
+				"to": 466360
+			},
+			"text": " So all of this is working progress, is being worked on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,360",
+				"to": "00:07:49,480"
+			},
+			"offsets": {
+				"from": 466360,
+				"to": 469480
+			},
+			"text": " I would invite you, if you're interested, to join the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,480",
+				"to": "00:07:50,480"
+			},
+			"offsets": {
+				"from": 469480,
+				"to": 470480
+			},
+			"text": " discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,480",
+				"to": "00:07:53,920"
+			},
+			"offsets": {
+				"from": 470480,
+				"to": 473920
+			},
+			"text": " And please, any opinion is welcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,920",
+				"to": "00:07:58,880"
+			},
+			"offsets": {
+				"from": 473920,
+				"to": 478880
+			},
+			"text": " If you're building an AMM, please extract all the MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,880",
+				"to": "00:08:01,920"
+			},
+			"offsets": {
+				"from": 478880,
+				"to": 481920
+			},
+			"text": " And after this, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,920",
+				"to": "00:08:04,200"
+			},
+			"offsets": {
+				"from": 481920,
+				"to": 484200
+			},
+			"text": " And thank you again."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,200",
+				"to": "00:08:05,880"
+			},
+			"offsets": {
+				"from": 484200,
+				"to": 485880
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,880",
+				"to": "00:08:09,240"
+			},
+			"offsets": {
+				"from": 485880,
+				"to": 489240
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,240",
+				"to": "00:08:12,600"
+			},
+			"offsets": {
+				"from": 489240,
+				"to": 492600
+			},
+			"text": " [AUDIO OUT]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,600",
+				"to": "00:08:15,960"
+			},
+			"offsets": {
+				"from": 492600,
+				"to": 495960
+			},
+			"text": " [AUDIO OUT]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,960",
+				"to": "00:08:44,960"
+			},
+			"offsets": {
+				"from": 495960,
+				"to": 524960
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

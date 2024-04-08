@@ -1,0 +1,3508 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " So, in the decentralized environment and taking on the consideration that malicious software"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 13000
+			},
+			"text": " can get somehow to your computer, trustworthy computation goes to what's saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15000
+			},
+			"text": " It's a need, it's a must."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 22000
+			},
+			"text": " But different parties may need different aspects of transworthiness in terms of computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 28000
+			},
+			"text": " And this is an important question of why we really need these computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 38000
+			},
+			"text": " For example, we may need to deploy a peer-to-peer network of decentralized computers with non-consensus algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 46000
+			},
+			"text": " Or we may need to deploy a smaller consensus between two computers to compute something."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 50000
+			},
+			"text": " And the second use case requires other aspects of transporting as the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 56000
+			},
+			"text": " In the first one, you need bounds on the malicious actors, the number of them, and some availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 59000
+			},
+			"text": " In the second case, you probably need confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 66000
+			},
+			"text": " If you would like to decentralized service that hosts as an other purpose computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 68000
+			},
+			"text": " then it's quite a different deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 70000
+			},
+			"text": " And there are more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 78000
+			},
+			"text": " So, we had to ask ourselves this question, what is important from our perspective at Golan?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 79000
+			},
+			"text": " So, just a short recap."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 89000
+			},
+			"text": " In context of this presentation, Golan is a network of heterogeneous resources ranging from individual machines to sub-networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 98000
+			},
+			"text": " exposing their compute powers of the network, and to kinds of participants that interact with both the resources and with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 100000
+			},
+			"text": " The first one is the requester."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " The participant would like to do some computation using the resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 108000
+			},
+			"text": " And the second one is the provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113000
+			},
+			"text": " The provider rents out the resources and perhaps would like to do it in a secure manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " So, this is the basics."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 122000
+			},
+			"text": " And this is the fundamental layer, on top of which, of course, we need to build another layer, for example, economy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 128000
+			},
+			"text": " But in context of this presentation, I focus only on this infrastructural part."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 133000
+			},
+			"text": " So, the problem statement is pretty easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 139000
+			},
+			"text": " The requester wants to carry out a computation in a trustworthy manner on the resources provided by the provider,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 147000
+			},
+			"text": " and the provider should be safe in this setting, should be protected from the malicious software, malicious binaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 153000
+			},
+			"text": " And this simple problem statement maps pretty well to high-level requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 163000
+			},
+			"text": " Yeah, requester wants to be able to run any binary in this network, perhaps efficiently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 171000
+			},
+			"text": " and this binary shouldn't need any additional changes just to be run within the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 178000
+			},
+			"text": " Task input used by the requester should be exactly the same as requester provided."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 184000
+			},
+			"text": " The binary that is run on the provider's machine should be exactly the same, the requester wanted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 187000
+			},
+			"text": " and the environment should be exactly the same as requester wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 196000
+			},
+			"text": " This is different from the first requirement, which states that requester should be able to choose any binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 203000
+			},
+			"text": " Right here, we need to make sure that no one can interfere with the binary before it is run."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " The execution should be carried out the valid way, no tampering, no interference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 215000
+			},
+			"text": " which means that the requester can expect the valid results provided that task was encoded the right way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 223000
+			},
+			"text": " The output data shouldn't, well, cannot be in fact altered by anyone in a way that's undetected to the requester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 228000
+			},
+			"text": " and only the requester should be able to show the data to the external world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 237000
+			},
+			"text": " meaning that perhaps the application that's hosted on provider's machine can look up the data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 241000
+			},
+			"text": " but other than that, no one should be able to leak this data to the other world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 244000
+			},
+			"text": " only the requester if he was to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247000
+			},
+			"text": " And let's not forget about the provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 251000
+			},
+			"text": " He has to be protected from the code as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 254000
+			},
+			"text": " So how can we meet these requirements?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257000
+			},
+			"text": " There are a few approaches, quite a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 263000
+			},
+			"text": " The point is that there is no single bullet, some silver bullet for these requirements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 267000
+			},
+			"text": " and different approaches result in meeting."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 274000
+			},
+			"text": " Some of them, or all of them in some way, but not all of them with all the required features."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " So for example, we can constrain ourself to deterministic orders for risk proof of work exists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " and the trade-off is that we only can do deterministic work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " We may sacrifice confidentiality and get into integrity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 289000
+			},
+			"text": " but we lose confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 294000
+			},
+			"text": " On the other hand, we may, for example, use third-party sources of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 301000
+			},
+			"text": " This is either a third-party service that is going to provide trust to the actors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 309000
+			},
+			"text": " or we may simply use some checkpointing to make the cheating less feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 315000
+			},
+			"text": " At the same time, we can use infrastructure such as trusted execution environments"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " or mix-off thereof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 325000
+			},
+			"text": " So, as I said, there is trade-off for every approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 329000
+			},
+			"text": " and it's either inherent to the method such as using proof-of-work or task-specific,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 335000
+			},
+			"text": " for example, in rendering you can be interested in confidentiality if you're under a movie,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 340000
+			},
+			"text": " but if you're under open source animation, it may not be so important to be able to care about the integrity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " It's only also runtime-dependent, for example, for trusted execution environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 349000
+			},
+			"text": " This patterns may have profound impact on efficiency, so this has been taken into consideration."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 355000
+			},
+			"text": " From my perspective, you wanted a solution that is generic, easy to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 361000
+			},
+			"text": " has well-specified security considerations, known to us and to others."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 367000
+			},
+			"text": " Well, I'll lose for remote computation because it's what we're going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " So, as you know, our trusted execution of choice is SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:17,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 377000
+			},
+			"text": " or more importantly, it's not only SGX, the technology stack that can be built on top of the SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 377000,
+				"to": 381000
+			},
+			"text": " and we achieve it by means of graphian and graphian g."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 391000
+			},
+			"text": " And this is quite interesting stack and quite fine because it allows us to provide generic computations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " meeting most of the requirements with more or less known."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 402000
+			},
+			"text": " If you see considerations and known security considerations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 410000
+			},
+			"text": " we know that the community is around building those, well, evolving in terms of, for example, security and efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 413000
+			},
+			"text": " And this is why we move toward this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 417000
+			},
+			"text": " So, just to show recap, SGX is an Intel technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 426000
+			},
+			"text": " It's an architecture enhancement to the processors allowing protection of application and the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:12,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 432000
+			},
+			"text": " from the processes on the same machine, even the previous ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 432000,
+				"to": 442000
+			},
+			"text": " This happens in so-called enclave compute model, and additionally, there is a way of making sure that the computation takes place in the enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 444000
+			},
+			"text": " so it's called the remote station."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 446000
+			},
+			"text": " So, this is quite powerful and quite good."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 449000
+			},
+			"text": " The problem is that, well, not a problem, the issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 455000
+			},
+			"text": " That from the developers perspective, it's kind of limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 461000
+			},
+			"text": " So, we can only run application if you code them from scratch, preferably using Intel SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 465000
+			},
+			"text": " You cannot run arbitrarily binaries, so they have to be modified."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 471000
+			},
+			"text": " And by default, you have to specify static interface of interaction between the application in the enclave"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 475000
+			},
+			"text": " and the untrusted part of the application outside of the enclave, with the host."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " And this is, well, something kind of limiting."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 491000
+			},
+			"text": " So, we get this powerful feature of running in secure enclave, but at the same time, we cannot run arbitrary binaries, which is important to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 496000
+			},
+			"text": " But this is a good starting point, good building work for something more generic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " And the next step from our perspective is graphene."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 508000
+			},
+			"text": " Graphene is a Leiboyz-based framework, which allows you to run arbitrary Linux binaries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 513000
+			},
+			"text": " in enclaves using all the features of SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 520000
+			},
+			"text": " And from the application point of view, this is just as interacting with the regular rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 521000
+			},
+			"text": " So, this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 524000
+			},
+			"text": " This is completely unmodified Linux binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 530000
+			},
+			"text": " And why we preferred graphene over other approaches?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 534000
+			},
+			"text": " Well, there are a few nice properties that we're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 545000
+			},
+			"text": " And the first one is that the Leiboyz approach clearly states the distinction between the trusted compute base and the attack surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 550000
+			},
+			"text": " So, as you see, Leiboyz is bigger than the alternative approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:15,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 555000
+			},
+			"text": " It contains more code, it increases the size of the TCP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 555000,
+				"to": 561000
+			},
+			"text": " But this is the part we and invisible team labs can work on, mostly invisible team labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " So, they can put lots of resources to make it better, not only them, the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 569000
+			},
+			"text": " So, we can improve on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 573000
+			},
+			"text": " But we have absolutely no control over how the user is going to abuse the interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 579000
+			},
+			"text": " So, the smaller and the better self-contained it is, it's simply more secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 581000
+			},
+			"text": " Leiboyz is good for sandboxing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 586000
+			},
+			"text": " We still want to have our provider security when we have this additional layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 598000
+			},
+			"text": " And it's pretty cool because the Leiboyz can be used in a way where it's easy to replace host or guest to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 601000
+			},
+			"text": " So, what's the difference between the regular way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 605000
+			},
+			"text": " You run the computation and the graphene."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 613000
+			},
+			"text": " Well, in vanilla SGX, using the Intranetals decay, you have to get the application source code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 620000
+			},
+			"text": " tile or it to the enclave compute model, specify the interface, compile it and run."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 623000
+			},
+			"text": " Okay, so this is quite different to what you have to do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 625000
+			},
+			"text": " You get the arbitrary binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627000
+			},
+			"text": " Right now it's Linux binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " Ubuntu and Debian, but other than that, it's an arbitrary binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " You pack it with the graphene and you're good to go almost because this process still requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 643000
+			},
+			"text": " some money while working to configure, deploy and run the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 645000
+			},
+			"text": " That's why we took the next step."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 653000
+			},
+			"text": " This is called grapheneNG, which is graphene plus a bunch of features that are interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 661000
+			},
+			"text": " and should result in better UX regarding both the enclave lifecycle and deploying the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 663000
+			},
+			"text": " So, the protected files."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 670000
+			},
+			"text": " The protected files is a library which allows secure or encrypted communication between"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 678000
+			},
+			"text": " the owner of the enclave or any party that initiated the computation and the enclave itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 687000
+			},
+			"text": " And the host which hosts the graphene and the enclave cannot interfere with the files in an infected way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 693000
+			},
+			"text": " Docker support is important because as I said, we want to make sure that the computing side,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 695000
+			},
+			"text": " the provider side is security."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 700000
+			},
+			"text": " At the same time, it makes it easier to configure the environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 703000
+			},
+			"text": " Tools and scripts are there for the UX and bug fixes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 706000
+			},
+			"text": " It's a very small point but it's very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 708000
+			},
+			"text": " Making graphene stable took a lot of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " So it's a lot of work put by invisible things up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 722000
+			},
+			"text": " And although there were no or almost no important security vulnerabilities, there were quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 725000
+			},
+			"text": " a lot of bug fixes related to the stability of the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 731000
+			},
+			"text": " So for us it is important that those arbitrary binaries can really be run and this requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 733000
+			},
+			"text": " stable graphene."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 744000
+			},
+			"text": " So, the features were there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 750000
+			},
+			"text": " It's a graph in ng with blender."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 754000
+			},
+			"text": " It's proof of concept for now due to the stability issues, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 757000
+			},
+			"text": " But it is a working example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 764000
+			},
+			"text": " So let's take a look at a few points of views of how to use the graphene."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 767000
+			},
+			"text": " The first one is the providers point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 771000
+			},
+			"text": " So the providers just have to prepare an image with arbitrary application."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 775000
+			},
+			"text": " Preparing this image is mostly automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 781000
+			},
+			"text": " The manual part is single action when SGX have to be enabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784000
+			},
+			"text": " This may require some bios tweaking."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788000
+			},
+			"text": " Not tweaking, switching something in bios."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 795000
+			},
+			"text": " And configuring protected files which require Senglaf manifest and specifying the run docker"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 796000
+			},
+			"text": " parameters during the run."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 799000
+			},
+			"text": " Because Senglaf has nothing to do with Docker by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 806000
+			},
+			"text": " So those protected files have to be configured on both sides in the Senglaf and with Docker."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " But other than that, it's almost automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 814000
+			},
+			"text": " The user prepares the container, deriving it from the provided one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 817000
+			},
+			"text": " The one with the one that's ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 820000
+			},
+			"text": " The user app is whatever the user chooses to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 832000
+			},
+			"text": " The key is something that user can either generate using a script or it can be used by"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 834000
+			},
+			"text": " quite a familiar resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 841000
+			},
+			"text": " And the key can be used to sign the container."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 844000
+			},
+			"text": " It happens with script as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 847000
+			},
+			"text": " So it is mostly automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " Exactly the same process was used to prepare golem integration and blender integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 854000
+			},
+			"text": " So there's nothing different."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:17,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 857000
+			},
+			"text": " The only thing is that we have a specified application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 858000
+			},
+			"text": " This arbitrary app."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 860000
+			},
+			"text": " And the arbitrary means blender here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 864000
+			},
+			"text": " The point of view of the handshake process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 866000
+			},
+			"text": " I'm not going to describe it in detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 873000
+			},
+			"text": " But the point here is that this process allows the requestor to connect with the enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 882000
+			},
+			"text": " the provider machine and the hosted binary to un-trusted -- well, and scripted channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 885000
+			},
+			"text": " And what's important here is that it's mostly automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 888000
+			},
+			"text": " And if it's not, then there are scripts to assist here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 894000
+			},
+			"text": " So it was important for golem integration because the user interacts with the golem by UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 898000
+			},
+			"text": " And it's not really interested in seeing all this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 906000
+			},
+			"text": " So this happens automatically and there's script to verifying quote, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 910000
+			},
+			"text": " And yeah, the more interesting point of view of the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 914000
+			},
+			"text": " So the application point of view is what you see on the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 920000
+			},
+			"text": " Simply nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 922000
+			},
+			"text": " And that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 923000
+			},
+			"text": " No changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 925000
+			},
+			"text": " If you take a step back, then you see the framework is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 926000
+			},
+			"text": " The logic is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 929000
+			},
+			"text": " And it's doing its job under the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 932000
+			},
+			"text": " For example, the IO is encrypted and the encrypted in fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 938000
+			},
+			"text": " So it's there to be transparent to the application and in fact the users."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 939000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 942000
+			},
+			"text": " One more important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 945000
+			},
+			"text": " And interesting point of view is request point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 951000
+			},
+			"text": " So request or steal has to interact with the notes in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 953000
+			},
+			"text": " And connect to them and choose the notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 956000
+			},
+			"text": " It should compute something to him."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 963000
+			},
+			"text": " But it can be envisioned as if the request or was using more locally available resources."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 966000
+			},
+			"text": " Of course, these resources are not available all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 973000
+			},
+			"text": " But other than that, it can be treated, well, request or can treat them just as maybe not"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 978000
+			},
+			"text": " all the time available local resources, making his computer more powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 983000
+			},
+			"text": " So, yeah, as I said, we have a working example, working integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 988000
+			},
+			"text": " You can get more information about it to tower booth and see the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 993000
+			},
+			"text": " What we achieved with this integration is, well, we proved that the graph in ng approaches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 996000
+			},
+			"text": " we did it in the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1001000
+			},
+			"text": " And that the features that it offers can be used to make such integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1008000
+			},
+			"text": " And it offered what we wanted, confidential remote computation with arbitrary binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1015000
+			},
+			"text": " Well, the binary is binary of choice, but it could be any binary, well, Linux binary at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1021000
+			},
+			"text": " And what's more important is that it's a clear decoupling of the binary in the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1023000
+			},
+			"text": " hosted on the infrastructure itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1029000
+			},
+			"text": " So the infrastructure is SGX and the application is any application, which can be seen as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1035000
+			},
+			"text": " SGX as an infrastructure from a well-impressive, which is important because we can rent out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1039000
+			},
+			"text": " we can provide this and rent out this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1042000
+			},
+			"text": " Okay, so it's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1048000
+			},
+			"text": " But there are still, there is still some more work to do, both on our site and in general,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1052000
+			},
+			"text": " in general SGX, in the other side, you name it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1059000
+			},
+			"text": " So what would be fine to have is liberated in the internalization service so that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1062000
+			},
+			"text": " don't need this central point to attach your enclaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1068000
+			},
+			"text": " Like, see the launch control, meaning that for now, Intel controls the way enclaves"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:53,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1073000
+			},
+			"text": " a launch and can potentially disallow some enclaves to be launched."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1073000,
+				"to": 1078000
+			},
+			"text": " You should be able to write your own launch and play a few."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1080000
+			},
+			"text": " You will."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1081000
+			},
+			"text": " You wish."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1088000
+			},
+			"text": " Another thing is that there are some known attacks to enclaves and mitigation steps are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:10,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1090000
+			},
+			"text": " required for these attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1090000,
+				"to": 1093000
+			},
+			"text": " And we need to increase the efficiency of the solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1097000
+			},
+			"text": " So this is from the SGX site."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1100000
+			},
+			"text": " We want stable and efficient graphing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1106000
+			},
+			"text": " And this requires back fixing, proof of computation for economy and window support because right"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1108000
+			},
+			"text": " now we have only Linux binaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1110000
+			},
+			"text": " So this is proof of concept."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1116000
+			},
+			"text": " This requires additional work, but we can talk about use cases that potentially can benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1117000
+			},
+			"text": " from this stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1120000
+			},
+			"text": " So the first one is, going specific is local verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1121000
+			},
+			"text": " >> Happy turn."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1123000
+			},
+			"text": " You only have about two minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1124000
+			},
+			"text": " >> Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1129000
+			},
+			"text": " So with local verification, you just make sure that the verification takes place on provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1132000
+			},
+			"text": " machine, usually takes place on requestor machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1135000
+			},
+			"text": " And you don't lose any trustworthiness this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1137000
+			},
+			"text": " Another one is go and unlimited."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1141000
+			},
+			"text": " You have a long like setting with trusted computers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1147000
+			},
+			"text": " You can equip them with SGX, making a more powerful SGX node."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1154000
+			},
+			"text": " And expose it, for example, to encode transcode movies."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1157000
+			},
+			"text": " Identity management is a go and unlimited network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1162000
+			},
+			"text": " This makes sense because it's easier to seal the identity as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1164000
+			},
+			"text": " Keys inside the enclaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1169000
+			},
+			"text": " Provide the nodes and work with them automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1175000
+			},
+			"text": " Or other use cases that people can come up with should be able to benefit from this technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1176000
+			},
+			"text": " Why the audience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1180000
+			},
+			"text": " For example, decentralizing server services."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1182000
+			},
+			"text": " We can do it using the SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1186000
+			},
+			"text": " Of course, it is not an easy task because decentralizing may require additional algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1189000
+			},
+			"text": " But the building block is there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1192000
+			},
+			"text": " And it may be potentially used by secure multiparced computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1195000
+			},
+			"text": " It may be used to decentralize constant service."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1196000
+			},
+			"text": " Atomic swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1197000
+			},
+			"text": " Well, we can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1198000
+			},
+			"text": " Well, we can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1199000
+			},
+			"text": " It can be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1204000
+			},
+			"text": " It has some problems because in atomic swap you need to make sure that the applications are"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1206000
+			},
+			"text": " not forged but they reach the blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1213000
+			},
+			"text": " But if you use multiple enclaves then it's easy to reach the constant system to push the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:14,000"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1214000
+			},
+			"text": " transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,000",
+				"to": "00:20:19,000"
+			},
+			"offsets": {
+				"from": 1214000,
+				"to": 1219000
+			},
+			"text": " This can be used for example as a building block in distributed exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1219000,
+				"to": 1221000
+			},
+			"text": " We can also seal keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1223000
+			},
+			"text": " Either locally or remotely."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1229000
+			},
+			"text": " It's just the question of whether you trust the technology enough to seal keys remotely."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1236000
+			},
+			"text": " And this way you can for example store your identity in a distributed manner both geographically"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1243000
+			},
+			"text": " and by making K of N signatures required you can express the notion of uncertainty to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1245000
+			},
+			"text": " how do you trust the TE."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1247000
+			},
+			"text": " If you trust it then there's one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1250000
+			},
+			"text": " If you don't trust it that much then there's more."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1252000
+			},
+			"text": " And in existing projects it can be used as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1257000
+			},
+			"text": " So for example we have a manual viable plasma with the central point being the plasma chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1258000
+			},
+			"text": " operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1263000
+			},
+			"text": " We would like it to be reliable and not to cheat."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1265000
+			},
+			"text": " So let's just send it close into enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1272000
+			},
+			"text": " And at the same time we would like to make it reliable in terms of block withholding."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1280000
+			},
+			"text": " Which means that we can decentralize it and make sure that it's harder to withhold blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1281000
+			},
+			"text": " by an operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1283000
+			},
+			"text": " Another one is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1293000
+			},
+			"text": " Hard is a platform for governing assets in games and binding it to players so that players"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1296000
+			},
+			"text": " have the true ownership of items."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1303000
+			},
+			"text": " And this requires keeping the notion of state on the server side."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1308000
+			},
+			"text": " So games are game servers in the internet, the player plays the game and the game server"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1311000
+			},
+			"text": " keeps track of state and makes sure that the player doesn't cheat."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:55,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1315000
+			},
+			"text": " Well in fact most of the logic can be run locally in the enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1315000,
+				"to": 1318000
+			},
+			"text": " And we only care about the integrity not to convince confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1322000
+			},
+			"text": " Understep is decentralizing the whole system and making this local game server connect with"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1325000
+			},
+			"text": " others and build a bigger server."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1327000
+			},
+			"text": " And the last one is data streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1333000
+			},
+			"text": " So we have this intermediate layer of sgx enabled machines and content creator, creator uploads"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1341000
+			},
+			"text": " the content and by virtue of what sgx offers only out there as clients can download the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1342000
+			},
+			"text": " content."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1349000
+			},
+			"text": " The value of streaming is the most obvious example here but we can also envision processing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1356000
+			},
+			"text": " data and hosting some custom logic for this data management."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1363000
+			},
+			"text": " So users can benefit from it not only but downloading the data but getting some results"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1364000
+			},
+			"text": " resulting from the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1369000
+			},
+			"text": " This may be a building for a wider, bigger network of data processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:51,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1371000
+			},
+			"text": " Okay, so I know it was dense."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1371000,
+				"to": 1373000
+			},
+			"text": " I know it was quite a lot of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1376000
+			},
+			"text": " I hope that you got a glimpse of why the technology stack may be interested."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1378000
+			},
+			"text": " It may be interesting to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1380000
+			},
+			"text": " It's interesting to us we are going to work on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1381000
+			},
+			"text": " Well, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1383000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1385000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:07,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1387000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1387000,
+				"to": 1389000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1391000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1393000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1395000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1397000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1399000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1401000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:23,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1403000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1403000,
+				"to": 1405000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1407000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1409000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:31,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1411000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1411000,
+				"to": 1440000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

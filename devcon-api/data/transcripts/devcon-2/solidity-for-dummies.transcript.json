@@ -1,0 +1,3112 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19280
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,280",
+				"to": "00:00:20,800"
+			},
+			"offsets": {
+				"from": 19280,
+				"to": 20800
+			},
+			"text": " >> Hello, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,800",
+				"to": "00:00:23,140"
+			},
+			"offsets": {
+				"from": 20800,
+				"to": 23140
+			},
+			"text": " The ones who are back from lunch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,140",
+				"to": "00:00:25,160"
+			},
+			"offsets": {
+				"from": 23140,
+				"to": 25160
+			},
+			"text": " I'm Hudson Jamison."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,160",
+				"to": "00:00:28,720"
+			},
+			"offsets": {
+				"from": 25160,
+				"to": 28720
+			},
+			"text": " I work for the Foundation doing DevOps documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,180",
+				"to": "00:00:32,940"
+			},
+			"offsets": {
+				"from": 29180,
+				"to": 32940
+			},
+			"text": " I kind of adapt developer, just kind of organizing DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,940",
+				"to": "00:00:33,740"
+			},
+			"offsets": {
+				"from": 32940,
+				"to": 33740
+			},
+			"text": " doing all that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,740",
+				"to": "00:00:35,780"
+			},
+			"offsets": {
+				"from": 33740,
+				"to": 35780
+			},
+			"text": " So I'm really excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,780",
+				"to": "00:00:40,080"
+			},
+			"offsets": {
+				"from": 35780,
+				"to": 40080
+			},
+			"text": " And if you've seen me online, my nickname is Suptacular on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,080",
+				"to": "00:00:41,780"
+			},
+			"offsets": {
+				"from": 40080,
+				"to": 41780
+			},
+			"text": " And then Piper, you can go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,780",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 41780,
+				"to": 44000
+			},
+			"text": " >> Sure. I'm Piper Mariam."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:45,740"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 45740
+			},
+			"text": " Some of you met me yesterday at the end of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,740",
+				"to": "00:00:50,040"
+			},
+			"offsets": {
+				"from": 45740,
+				"to": 50040
+			},
+			"text": " I maintain a lot of the Python tooling for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,040",
+				"to": "00:00:54,800"
+			},
+			"offsets": {
+				"from": 50040,
+				"to": 54800
+			},
+			"text": " I've worked with Vitalik a bit on proof of concept implementations"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,800",
+				"to": "00:00:58,900"
+			},
+			"offsets": {
+				"from": 54800,
+				"to": 58900
+			},
+			"text": " for Casper and just kind of generally Ethereum developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,900",
+				"to": "00:01:01,360"
+			},
+			"offsets": {
+				"from": 58900,
+				"to": 61360
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,360",
+				"to": "00:01:02,100"
+			},
+			"offsets": {
+				"from": 61360,
+				"to": 62100
+			},
+			"text": " Well, let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,100",
+				"to": "00:01:04,260"
+			},
+			"offsets": {
+				"from": 62100,
+				"to": 64260
+			},
+			"text": " We're going to teach you about Solidity today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,260",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 64260,
+				"to": 69000
+			},
+			"text": " So Solidity is a high-level language for Ethereum contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:15,020"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 75020
+			},
+			"text": " So what that means is so we don't have to go and do like ones and zeros"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,020",
+				"to": "00:01:17,300"
+			},
+			"offsets": {
+				"from": 75020,
+				"to": 77300
+			},
+			"text": " or like low-level assembly code or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,300",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 77300,
+				"to": 81240
+			},
+			"text": " We have a high-level language that makes it much easier for humans"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:25,060"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 85060
+			},
+			"text": " to be able to code at a level they understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,360",
+				"to": "00:01:29,460"
+			},
+			"offsets": {
+				"from": 85360,
+				"to": 89460
+			},
+			"text": " and then put it through the compiler into what will come out"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,460",
+				"to": "00:01:30,720"
+			},
+			"offsets": {
+				"from": 89460,
+				"to": 90720
+			},
+			"text": " into the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,720",
+				"to": "00:01:36,700"
+			},
+			"offsets": {
+				"from": 90720,
+				"to": 96700
+			},
+			"text": " >> Solidity looks a lot like JavaScript, but with types."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,700",
+				"to": "00:01:42,320"
+			},
+			"offsets": {
+				"from": 96700,
+				"to": 102320
+			},
+			"text": " It's sort of this interesting amalgamation of the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,320",
+				"to": "00:01:45,400"
+			},
+			"offsets": {
+				"from": 102320,
+				"to": 105400
+			},
+			"text": " This is a very simple solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,400",
+				"to": "00:01:49,840"
+			},
+			"offsets": {
+				"from": 105400,
+				"to": 109840
+			},
+			"text": " The highest level thing that we reason about in Solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,840",
+				"to": "00:01:51,260"
+			},
+			"offsets": {
+				"from": 109840,
+				"to": 111260
+			},
+			"text": " is the contract object."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,260",
+				"to": "00:01:53,800"
+			},
+			"offsets": {
+				"from": 111260,
+				"to": 113800
+			},
+			"text": " You can think of a contract kind of like a class"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,800",
+				"to": "00:01:56,160"
+			},
+			"offsets": {
+				"from": 113800,
+				"to": 116160
+			},
+			"text": " if you're used to object-oriented programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,160",
+				"to": "00:02:01,120"
+			},
+			"offsets": {
+				"from": 116160,
+				"to": 121120
+			},
+			"text": " And contracts expose some number of functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,120",
+				"to": "00:02:05,040"
+			},
+			"offsets": {
+				"from": 121120,
+				"to": 125040
+			},
+			"text": " >> All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,040",
+				"to": "00:02:08,800"
+			},
+			"offsets": {
+				"from": 125040,
+				"to": 128800
+			},
+			"text": " So the code is compiled to the Ethereum virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,800",
+				"to": "00:02:10,800"
+			},
+			"offsets": {
+				"from": 128800,
+				"to": 130800
+			},
+			"text": " You all probably have been hearing about that a lot today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,800",
+				"to": "00:02:15,280"
+			},
+			"offsets": {
+				"from": 130800,
+				"to": 135280
+			},
+			"text": " Pretty much it's just like it takes the human readable code"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,280",
+				"to": "00:02:18,280"
+			},
+			"offsets": {
+				"from": 135280,
+				"to": 138280
+			},
+			"text": " and then puts it into a bunch of garglygook like ones and zeros"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,280",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 138280,
+				"to": 142200
+			},
+			"text": " and makes it so that the Ethereum network can read it in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:23,560"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 143560
+			},
+			"text": " that the computer can understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:27,080"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 147080
+			},
+			"text": " Once it's on the EVM, it's completely isolated."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,080",
+				"to": "00:02:28,720"
+			},
+			"offsets": {
+				"from": 147080,
+				"to": 148720
+			},
+			"text": " So that's something a lot of people forget,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,720",
+				"to": "00:02:32,440"
+			},
+			"offsets": {
+				"from": 148720,
+				"to": 152440
+			},
+			"text": " but once contract code is on the Ethereum network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,440",
+				"to": "00:02:37,400"
+			},
+			"offsets": {
+				"from": 152440,
+				"to": 157400
+			},
+			"text": " it can't do things like go and ping the weather.com"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,400",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 157400,
+				"to": 158800
+			},
+			"text": " and get the latest weather."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:40,760"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 160760
+			},
+			"text": " They have to have a human intermediary"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,760",
+				"to": "00:02:42,640"
+			},
+			"offsets": {
+				"from": 160760,
+				"to": 162640
+			},
+			"text": " because there it is isolated."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,640",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 162640,
+				"to": 165440
+			},
+			"text": " There's no outside network or other types of connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 171000
+			},
+			"text": " >> And the reason for that isolation is that everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:54,240"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 174240
+			},
+			"text": " that executes in the EVM has to be completely deterministic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,240",
+				"to": "00:02:58,920"
+			},
+			"offsets": {
+				"from": 174240,
+				"to": 178920
+			},
+			"text": " which is why you can't generate random numbers easily inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,920",
+				"to": "00:03:01,160"
+			},
+			"offsets": {
+				"from": 178920,
+				"to": 181160
+			},
+			"text": " of the EVM, it requires some outside interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,160",
+				"to": "00:03:07,880"
+			},
+			"offsets": {
+				"from": 181160,
+				"to": 187880
+			},
+			"text": " Contracts are very easy to write, but they're very difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,880",
+				"to": "00:03:11,600"
+			},
+			"offsets": {
+				"from": 187880,
+				"to": 191600
+			},
+			"text": " to write securely, especially if you need to house value"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,600",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 191600,
+				"to": 192680
+			},
+			"text": " or other people's funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 196960
+			},
+			"text": " This is a pretty straightforward looking function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:20,360"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 200360
+			},
+			"text": " We've got a withdrawal function for some wallet contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,360",
+				"to": "00:03:22,680"
+			},
+			"offsets": {
+				"from": 200360,
+				"to": 202680
+			},
+			"text": " It checks to make sure that there is enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,680",
+				"to": "00:03:24,320"
+			},
+			"offsets": {
+				"from": 202680,
+				"to": 204320
+			},
+			"text": " in the account to withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,320",
+				"to": "00:03:27,400"
+			},
+			"offsets": {
+				"from": 204320,
+				"to": 207400
+			},
+			"text": " It sends the funds that they ask to withdraw,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,400",
+				"to": "00:03:32,080"
+			},
+			"offsets": {
+				"from": 207400,
+				"to": 212080
+			},
+			"text": " and then it sets the balance to the new balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,080",
+				"to": "00:03:37,720"
+			},
+			"offsets": {
+				"from": 212080,
+				"to": 217720
+			},
+			"text": " This will let somebody completely drain this contract of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,720",
+				"to": "00:03:41,800"
+			},
+			"offsets": {
+				"from": 217720,
+				"to": 221800
+			},
+			"text": " This is exactly what happened to the DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,800",
+				"to": "00:03:45,760"
+			},
+			"offsets": {
+				"from": 221800,
+				"to": 225760
+			},
+			"text": " I have this line underlined because what actually happens here"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,760",
+				"to": "00:03:51,360"
+			},
+			"offsets": {
+				"from": 225760,
+				"to": 231360
+			},
+			"text": " is that this executes can execute code on the address"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,360",
+				"to": "00:03:52,360"
+			},
+			"offsets": {
+				"from": 231360,
+				"to": 232360
+			},
+			"text": " that this is sending to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,360",
+				"to": "00:03:56,680"
+			},
+			"offsets": {
+				"from": 232360,
+				"to": 236680
+			},
+			"text": " And since the account balance is only deducted on the next line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,680",
+				"to": "00:03:59,480"
+			},
+			"offsets": {
+				"from": 236680,
+				"to": 239480
+			},
+			"text": " that means that that contract can call back"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,480",
+				"to": "00:04:03,080"
+			},
+			"offsets": {
+				"from": 239480,
+				"to": 243080
+			},
+			"text": " into the withdrawal method, which will execute that line again."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,080",
+				"to": "00:04:06,920"
+			},
+			"offsets": {
+				"from": 243080,
+				"to": 246920
+			},
+			"text": " And it can do this circularly, at least until it runs out of gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,920",
+				"to": "00:04:12,240"
+			},
+			"offsets": {
+				"from": 246920,
+				"to": 252240
+			},
+			"text": " which means that if it can get through 100 loops of doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,240",
+				"to": "00:04:15,480"
+			},
+			"offsets": {
+				"from": 252240,
+				"to": 255480
+			},
+			"text": " it means it can withdraw 100 times the amount that it has."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,480",
+				"to": "00:04:24,360"
+			},
+			"offsets": {
+				"from": 255480,
+				"to": 264360
+			},
+			"text": " Oh, yeah, I guess this is me."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,360",
+				"to": "00:04:26,360"
+			},
+			"offsets": {
+				"from": 264360,
+				"to": 266360
+			},
+			"text": " Public functions, let's go over these."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,360",
+				"to": "00:04:28,280"
+			},
+			"offsets": {
+				"from": 266360,
+				"to": 268280
+			},
+			"text": " They're callable by anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,280",
+				"to": "00:04:31,120"
+			},
+			"offsets": {
+				"from": 268280,
+				"to": 271120
+			},
+			"text": " So you have this wallet that has an asset on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,120",
+				"to": "00:04:33,800"
+			},
+			"offsets": {
+				"from": 271120,
+				"to": 273800
+			},
+			"text": " and you're like, \"I'm going to make a Hudson coin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,800",
+				"to": "00:04:34,520"
+			},
+			"offsets": {
+				"from": 273800,
+				"to": 274520
+			},
+			"text": " a Hudson coin.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,520",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 274520,
+				"to": 276800
+			},
+			"text": " And you go in there and you're like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:40,760"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 280760
+			},
+			"text": " \"I want anybody who has access to Hudson coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,760",
+				"to": "00:04:42,920"
+			},
+			"offsets": {
+				"from": 280760,
+				"to": 282920
+			},
+			"text": " to be able to check their balance.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,920",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 282920,
+				"to": 284640
+			},
+			"text": " So you make that function public."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:45,960"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 285960
+			},
+			"text": " That means anyone can call it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,960",
+				"to": "00:04:48,760"
+			},
+			"offsets": {
+				"from": 285960,
+				"to": 288760
+			},
+			"text": " As we'll see in a second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,760",
+				"to": "00:04:53,160"
+			},
+			"offsets": {
+				"from": 288760,
+				"to": 293160
+			},
+			"text": " internal functions are only callable from inside the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,160",
+				"to": "00:04:54,760"
+			},
+			"offsets": {
+				"from": 293160,
+				"to": 294760
+			},
+			"text": " So as you can see, there's a lot of parallels"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,760",
+				"to": "00:04:56,800"
+			},
+			"offsets": {
+				"from": 294760,
+				"to": 296800
+			},
+			"text": " to many other programming languages here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,800",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 296800,
+				"to": 304280
+			},
+			"text": " Internal functions are good for things that you only want other functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:06,720"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 306720
+			},
+			"text": " to call so that people can't manipulate them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,720",
+				"to": "00:05:08,160"
+			},
+			"offsets": {
+				"from": 306720,
+				"to": 308160
+			},
+			"text": " and do weird things with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,160",
+				"to": "00:05:11,040"
+			},
+			"offsets": {
+				"from": 308160,
+				"to": 311040
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,040",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 311040,
+				"to": 314440
+			},
+			"text": " Your public functions are the API that you expose to the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:16,640"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 316640
+			},
+			"text": " You can think of these as your API endpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,640",
+				"to": "00:05:21,320"
+			},
+			"offsets": {
+				"from": 316640,
+				"to": 321320
+			},
+			"text": " They're the things that you allow outside actors"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,320",
+				"to": "00:05:23,280"
+			},
+			"offsets": {
+				"from": 321320,
+				"to": 323280
+			},
+			"text": " to interact with your contract with."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,280",
+				"to": "00:05:29,480"
+			},
+			"offsets": {
+				"from": 323280,
+				"to": 329480
+			},
+			"text": " One of the interesting things that is happening right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,480",
+				"to": "00:05:31,960"
+			},
+			"offsets": {
+				"from": 329480,
+				"to": 331960
+			},
+			"text": " is that some standards are beginning to emerge"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,960",
+				"to": "00:05:33,360"
+			},
+			"offsets": {
+				"from": 331960,
+				"to": 333360
+			},
+			"text": " for how we write contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,360",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 333360,
+				"to": 338320
+			},
+			"text": " You can think of these like HTTP web standards."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,440",
+				"to": "00:05:44,440"
+			},
+			"offsets": {
+				"from": 342440,
+				"to": 344440
+			},
+			"text": " This is the ERC20 standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,440",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 344440,
+				"to": 349400
+			},
+			"text": " This is the standard interface that token contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:51,920"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 351920
+			},
+			"text": " should implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,920",
+				"to": "00:05:54,080"
+			},
+			"offsets": {
+				"from": 351920,
+				"to": 354080
+			},
+			"text": " There's this small set of functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,080",
+				"to": "00:06:01,240"
+			},
+			"offsets": {
+				"from": 354080,
+				"to": 361240
+			},
+			"text": " but this interface is implemented across all of the major token contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,240",
+				"to": "00:06:03,080"
+			},
+			"offsets": {
+				"from": 361240,
+				"to": 363080
+			},
+			"text": " that are live on the network right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,080",
+				"to": "00:06:08,280"
+			},
+			"offsets": {
+				"from": 363080,
+				"to": 368280
+			},
+			"text": " And that common interface, that standard that has emerged,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,280",
+				"to": "00:06:11,840"
+			},
+			"offsets": {
+				"from": 368280,
+				"to": 371840
+			},
+			"text": " is allowing some pretty awesome things to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,840",
+				"to": "00:06:16,120"
+			},
+			"offsets": {
+				"from": 372840,
+				"to": 376120
+			},
+			"text": " So if anyone's been to the EtherScan website,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,120",
+				"to": "00:06:19,080"
+			},
+			"offsets": {
+				"from": 376120,
+				"to": 379080
+			},
+			"text": " it's a very popular Ethereum blockchain explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,080",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 379080,
+				"to": 384000
+			},
+			"text": " You can go there and they actually have a search feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:29,240"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 389240
+			},
+			"text": " where if any other contract is using the ERC20 standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,240",
+				"to": "00:06:32,680"
+			},
+			"offsets": {
+				"from": 389240,
+				"to": 392680
+			},
+			"text": " you can search for tokens within that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,680",
+				"to": "00:06:35,280"
+			},
+			"offsets": {
+				"from": 392680,
+				"to": 395280
+			},
+			"text": " It'll, you'll just be able to put the contract address"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,280",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 395280,
+				"to": 397680
+			},
+			"text": " and it'll tell you, you know, your balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:39,280"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 399280
+			},
+			"text": " and give you everything you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,280",
+				"to": "00:06:43,120"
+			},
+			"offsets": {
+				"from": 399280,
+				"to": 403120
+			},
+			"text": " because it's a standard that's set across any smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,120",
+				"to": "00:06:44,480"
+			},
+			"offsets": {
+				"from": 403120,
+				"to": 404480
+			},
+			"text": " that implements it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,480",
+				"to": "00:06:45,680"
+			},
+			"offsets": {
+				"from": 404480,
+				"to": 405680
+			},
+			"text": " It's very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,680",
+				"to": "00:06:49,280"
+			},
+			"offsets": {
+				"from": 405680,
+				"to": 409280
+			},
+			"text": " What we have right here is actually Maker tokens, I believe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,280",
+				"to": "00:06:52,640"
+			},
+			"offsets": {
+				"from": 409280,
+				"to": 412640
+			},
+			"text": " because they implemented the ERC20 interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,640",
+				"to": "00:06:57,280"
+			},
+			"offsets": {
+				"from": 412640,
+				"to": 417280
+			},
+			"text": " And there's some variations people use to do different things with ERC20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,280",
+				"to": "00:07:00,800"
+			},
+			"offsets": {
+				"from": 417280,
+				"to": 420800
+			},
+			"text": " but for the most part, it's pretty standardized."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,800",
+				"to": "00:07:02,600"
+			},
+			"offsets": {
+				"from": 420800,
+				"to": 422600
+			},
+			"text": " A lot of people are using the same standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,600",
+				"to": "00:07:04,560"
+			},
+			"offsets": {
+				"from": 422600,
+				"to": 424560
+			},
+			"text": " which is great that the community can come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,560",
+				"to": "00:07:06,240"
+			},
+			"offsets": {
+				"from": 424560,
+				"to": 426240
+			},
+			"text": " and do something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,920",
+				"to": "00:07:10,880"
+			},
+			"offsets": {
+				"from": 427920,
+				"to": 430880
+			},
+			"text": " One of the cool things that these kind of standards enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,880",
+				"to": "00:07:15,480"
+			},
+			"offsets": {
+				"from": 430880,
+				"to": 435480
+			},
+			"text": " is this, which is a completely decentralized exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,480",
+				"to": "00:07:19,440"
+			},
+			"offsets": {
+				"from": 435480,
+				"to": 439440
+			},
+			"text": " where you can trade token pairs on the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,440",
+				"to": "00:07:26,360"
+			},
+			"offsets": {
+				"from": 439440,
+				"to": 446360
+			},
+			"text": " Yeah, so the cool thing about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,360",
+				"to": "00:07:29,080"
+			},
+			"offsets": {
+				"from": 446360,
+				"to": 449080
+			},
+			"text": " like why would we want something like EtherX?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,080",
+				"to": "00:07:32,200"
+			},
+			"offsets": {
+				"from": 449080,
+				"to": 452200
+			},
+			"text": " The reason is it doesn't have a middleman,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,200",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 452200,
+				"to": 454640
+			},
+			"text": " it's instant settlement or instant,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:36,520"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 456520
+			},
+			"text": " like pretty close to instant settlement."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,520",
+				"to": "00:07:38,440"
+			},
+			"offsets": {
+				"from": 456520,
+				"to": 458440
+			},
+			"text": " And you control the assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,440",
+				"to": "00:07:40,840"
+			},
+			"offsets": {
+				"from": 458440,
+				"to": 460840
+			},
+			"text": " So a lot of the time you forget, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,840",
+				"to": "00:07:43,160"
+			},
+			"offsets": {
+				"from": 460840,
+				"to": 463160
+			},
+			"text": " things like this happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,160",
+				"to": "00:07:46,520"
+			},
+			"offsets": {
+				"from": 463160,
+				"to": 466520
+			},
+			"text": " And the reason this happened was because it wasn't decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,520",
+				"to": "00:07:50,080"
+			},
+			"offsets": {
+				"from": 466520,
+				"to": 470080
+			},
+			"text": " They, Mount Gox was a Bitcoin exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,080",
+				"to": "00:07:51,560"
+			},
+			"offsets": {
+				"from": 470080,
+				"to": 471560
+			},
+			"text": " They had a lot of people's Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,560",
+				"to": "00:07:54,480"
+			},
+			"offsets": {
+				"from": 471560,
+				"to": 474480
+			},
+			"text": " and then they got hacked in the Bitcoin stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,480",
+				"to": "00:07:58,280"
+			},
+			"offsets": {
+				"from": 474480,
+				"to": 478280
+			},
+			"text": " If we were using something like EtherX right here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,280",
+				"to": "00:07:59,960"
+			},
+			"offsets": {
+				"from": 478280,
+				"to": 479960
+			},
+			"text": " that is less likely to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,960",
+				"to": "00:08:04,160"
+			},
+			"offsets": {
+				"from": 479960,
+				"to": 484160
+			},
+			"text": " because the contracts just all talk to each other autonomously"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,160",
+				"to": "00:08:05,560"
+			},
+			"offsets": {
+				"from": 484160,
+				"to": 485560
+			},
+			"text": " within the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:08,280"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 488280
+			},
+			"text": " Let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,280",
+				"to": "00:08:13,280"
+			},
+			"offsets": {
+				"from": 488280,
+				"to": 493280
+			},
+			"text": " Oh, so Solidity is about two years old."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:16,320"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 496320
+			},
+			"text": " And since then the communities come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,320",
+				"to": "00:08:17,480"
+			},
+			"offsets": {
+				"from": 496320,
+				"to": 497480
+			},
+			"text": " and made a ton of tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,480",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 497480,
+				"to": 499480
+			},
+			"text": " You've seen a lot of these today from other presenters"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:21,320"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 501320
+			},
+			"text": " and you're going to see more."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,320",
+				"to": "00:08:23,920"
+			},
+			"offsets": {
+				"from": 501320,
+				"to": 503920
+			},
+			"text": " What we have here on the left is some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,920",
+				"to": "00:08:25,600"
+			},
+			"offsets": {
+				"from": 503920,
+				"to": 505600
+			},
+			"text": " integrated development environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,600",
+				"to": "00:08:29,640"
+			},
+			"offsets": {
+				"from": 505600,
+				"to": 509640
+			},
+			"text": " So some of the more popular ones are browser Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,640",
+				"to": "00:08:34,640"
+			},
+			"offsets": {
+				"from": 509640,
+				"to": 514640
+			},
+			"text": " That's a compiler and basically full Solidity suite"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,360",
+				"to": "00:08:38,040"
+			},
+			"offsets": {
+				"from": 515360,
+				"to": 518040
+			},
+			"text": " for debugging and everything within your browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,040",
+				"to": "00:08:40,480"
+			},
+			"offsets": {
+				"from": 518040,
+				"to": 520480
+			},
+			"text": " We also have Ethereum Studio and Visual Studio,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,480",
+				"to": "00:08:42,760"
+			},
+			"offsets": {
+				"from": 520480,
+				"to": 522760
+			},
+			"text": " which are IDEs and plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,760",
+				"to": "00:08:43,880"
+			},
+			"offsets": {
+				"from": 522760,
+				"to": 523880
+			},
+			"text": " And then if you look at the bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,880",
+				"to": "00:08:46,040"
+			},
+			"offsets": {
+				"from": 523880,
+				"to": 526040
+			},
+			"text": " if you recognize any of those symbols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,040",
+				"to": "00:08:49,400"
+			},
+			"offsets": {
+				"from": 526040,
+				"to": 529400
+			},
+			"text": " that means that your text editor has support"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,400",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 529400,
+				"to": 532400
+			},
+			"text": " for Solidity syntax or Solidity compilation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:53,600"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 533600
+			},
+			"text": " or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,600",
+				"to": "00:08:55,320"
+			},
+			"offsets": {
+				"from": 533600,
+				"to": 535320
+			},
+			"text": " If you look at the right, we have tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,320",
+				"to": "00:08:57,360"
+			},
+			"offsets": {
+				"from": 535320,
+				"to": 537360
+			},
+			"text": " Rain earlier today went over Solgrath,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,360",
+				"to": "00:08:59,720"
+			},
+			"offsets": {
+				"from": 537360,
+				"to": 539720
+			},
+			"text": " which is a really, really powerful tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,720",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 539720,
+				"to": 544000
+			},
+			"text": " We also have Selenium, which is a Linter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:06,520"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 546520
+			},
+			"text": " Truffle, Dapple, Populis and Embark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,520",
+				"to": "00:09:09,600"
+			},
+			"offsets": {
+				"from": 546520,
+				"to": 549600
+			},
+			"text": " which are frameworks for building Dapps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,600",
+				"to": "00:09:11,960"
+			},
+			"offsets": {
+				"from": 549600,
+				"to": 551960
+			},
+			"text": " So really you have a ton of different tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,960",
+				"to": "00:09:13,480"
+			},
+			"offsets": {
+				"from": 551960,
+				"to": 553480
+			},
+			"text": " to come in and help you learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,480",
+				"to": "00:09:15,560"
+			},
+			"offsets": {
+				"from": 553480,
+				"to": 555560
+			},
+			"text": " 'cause it can be a rough ride at first."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,560",
+				"to": "00:09:19,200"
+			},
+			"offsets": {
+				"from": 555560,
+				"to": 559200
+			},
+			"text": " So, yeah, go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,200",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 559200,
+				"to": 561120
+			},
+			"text": " - So this is browser Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:22,960"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 562960
+			},
+			"text": " This is magic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,960",
+				"to": "00:09:26,720"
+			},
+			"offsets": {
+				"from": 562960,
+				"to": 566720
+			},
+			"text": " You can go to this in your browser right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,720",
+				"to": "00:09:28,720"
+			},
+			"offsets": {
+				"from": 566720,
+				"to": 568720
+			},
+			"text": " if you can get the internet to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,720",
+				"to": "00:09:33,200"
+			},
+			"offsets": {
+				"from": 568720,
+				"to": 573200
+			},
+			"text": " And write a contract, compile it here in your browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,200",
+				"to": "00:09:35,320"
+			},
+			"offsets": {
+				"from": 573200,
+				"to": 575320
+			},
+			"text": " without any tooling on your machine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,320",
+				"to": "00:09:38,720"
+			},
+			"offsets": {
+				"from": 575320,
+				"to": 578720
+			},
+			"text": " deploy it to a test EVM running in your browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,720",
+				"to": "00:09:41,080"
+			},
+			"offsets": {
+				"from": 578720,
+				"to": 581080
+			},
+			"text": " without anything to install anything on your machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,080",
+				"to": "00:09:44,040"
+			},
+			"offsets": {
+				"from": 581080,
+				"to": 584040
+			},
+			"text": " and interact with it right here on this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,040",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 584040,
+				"to": 589040
+			},
+			"text": " The browser Solidity is an amazing, amazing tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:52,360"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 592360
+			},
+			"text": " and it is a really easy way to get started tinkering"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,360",
+				"to": "00:09:54,240"
+			},
+			"offsets": {
+				"from": 592360,
+				"to": 594240
+			},
+			"text": " around with Ethereum contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,240",
+				"to": "00:09:55,280"
+			},
+			"offsets": {
+				"from": 594240,
+				"to": 595280
+			},
+			"text": " - Yeah, definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,280",
+				"to": "00:09:57,920"
+			},
+			"offsets": {
+				"from": 595280,
+				"to": 597920
+			},
+			"text": " So I was gonna put a list of resources like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,920",
+				"to": "00:10:00,520"
+			},
+			"offsets": {
+				"from": 597920,
+				"to": 600520
+			},
+			"text": " okay, I'm out there in the audience or watching online."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,520",
+				"to": "00:10:01,400"
+			},
+			"offsets": {
+				"from": 600520,
+				"to": 601400
+			},
+			"text": " I wanna get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,400",
+				"to": "00:10:02,480"
+			},
+			"offsets": {
+				"from": 601400,
+				"to": 602480
+			},
+			"text": " What do I do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,480",
+				"to": "00:10:06,200"
+			},
+			"offsets": {
+				"from": 602480,
+				"to": 606200
+			},
+			"text": " What we've done is, as you go to the Ethereum subreddit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,200",
+				"to": "00:10:09,040"
+			},
+			"offsets": {
+				"from": 606200,
+				"to": 609040
+			},
+			"text": " it's like an online form, there's a post"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,040",
+				"to": "00:10:12,120"
+			},
+			"offsets": {
+				"from": 609040,
+				"to": 612120
+			},
+			"text": " that's at the top of the homepage of the Ethereum subreddit"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,120",
+				"to": "00:10:13,880"
+			},
+			"offsets": {
+				"from": 612120,
+				"to": 613880
+			},
+			"text": " and it has all kinds of links."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,880",
+				"to": "00:10:16,240"
+			},
+			"offsets": {
+				"from": 613880,
+				"to": 616240
+			},
+			"text": " It has a getting started guide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,240",
+				"to": "00:10:18,240"
+			},
+			"offsets": {
+				"from": 616240,
+				"to": 618240
+			},
+			"text": " Some of the things that people are gonna be familiar with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,240",
+				"to": "00:10:20,840"
+			},
+			"offsets": {
+				"from": 618240,
+				"to": 620840
+			},
+			"text": " and that are real easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,840",
+				"to": "00:10:22,640"
+			},
+			"offsets": {
+				"from": 620840,
+				"to": 622640
+			},
+			"text": " We have our own stack exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,640",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 622640,
+				"to": 624560
+			},
+			"text": " So if you're a developer with different languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:25,880"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 625880
+			},
+			"text": " and you use stack exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,880",
+				"to": "00:10:27,640"
+			},
+			"offsets": {
+				"from": 625880,
+				"to": 627640
+			},
+			"text": " Ethereum has its own stack exchange"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,640",
+				"to": "00:10:29,520"
+			},
+			"offsets": {
+				"from": 627640,
+				"to": 629520
+			},
+			"text": " that actually has over 3,000,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,520",
+				"to": "00:10:32,960"
+			},
+			"offsets": {
+				"from": 629520,
+				"to": 632960
+			},
+			"text": " probably 3,500 questions answered."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,960",
+				"to": "00:10:36,080"
+			},
+			"offsets": {
+				"from": 632960,
+				"to": 636080
+			},
+			"text": " We also have itethdocks.org,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,080",
+				"to": "00:10:39,320"
+			},
+			"offsets": {
+				"from": 636080,
+				"to": 639320
+			},
+			"text": " which is a community built documentation site."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,320",
+				"to": "00:10:42,160"
+			},
+			"offsets": {
+				"from": 639320,
+				"to": 642160
+			},
+			"text": " We're looking all the time for people to come in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,160",
+				"to": "00:10:43,840"
+			},
+			"offsets": {
+				"from": 642160,
+				"to": 643840
+			},
+			"text": " help out with that effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,840",
+				"to": "00:10:47,320"
+			},
+			"offsets": {
+				"from": 643840,
+				"to": 647320
+			},
+			"text": " And we also have of course, Ethereum.org,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,320",
+				"to": "00:10:49,160"
+			},
+			"offsets": {
+				"from": 647320,
+				"to": 649160
+			},
+			"text": " which has a short getting started."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,160",
+				"to": "00:10:51,240"
+			},
+			"offsets": {
+				"from": 649160,
+				"to": 651240
+			},
+			"text": " And then on top of that, we have plans in the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,240",
+				"to": "00:10:54,720"
+			},
+			"offsets": {
+				"from": 651240,
+				"to": 654720
+			},
+			"text": " to expand on maybe things like examples, tutorials."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,720",
+				"to": "00:10:56,560"
+			},
+			"offsets": {
+				"from": 654720,
+				"to": 656560
+			},
+			"text": " And then of course, for Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,560",
+				"to": "00:11:00,560"
+			},
+			"offsets": {
+				"from": 656560,
+				"to": 660560
+			},
+			"text": " there is a Solidity documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,560",
+				"to": "00:11:03,360"
+			},
+			"offsets": {
+				"from": 660560,
+				"to": 663360
+			},
+			"text": " that is constantly updated with every release."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,360",
+				"to": "00:11:06,520"
+			},
+			"offsets": {
+				"from": 663360,
+				"to": 666520
+			},
+			"text": " So it's very, very good resource."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,520",
+				"to": "00:11:08,600"
+			},
+			"offsets": {
+				"from": 666520,
+				"to": 668600
+			},
+			"text": " On top of all that, you're in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,600",
+				"to": "00:11:10,440"
+			},
+			"offsets": {
+				"from": 668600,
+				"to": 670440
+			},
+			"text": " It's gonna be kind of a hectic at first"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,440",
+				"to": "00:11:11,440"
+			},
+			"offsets": {
+				"from": 670440,
+				"to": 671440
+			},
+			"text": " if you never use Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,440",
+				"to": "00:11:13,200"
+			},
+			"offsets": {
+				"from": 671440,
+				"to": 673200
+			},
+			"text": " There's a little bit of a learning curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,200",
+				"to": "00:11:16,680"
+			},
+			"offsets": {
+				"from": 673200,
+				"to": 676680
+			},
+			"text": " So come to our Gitter chat rooms."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,680",
+				"to": "00:11:18,120"
+			},
+			"offsets": {
+				"from": 676680,
+				"to": 678120
+			},
+			"text": " And that's gonna be, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,120",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 678120,
+				"to": 680000
+			},
+			"text": " Gitter.in/Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:21,880"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 681880
+			},
+			"text": " We have developers and different channels there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,880",
+				"to": "00:11:24,280"
+			},
+			"offsets": {
+				"from": 681880,
+				"to": 684280
+			},
+			"text": " at all times that'll be happy to help you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,280",
+				"to": "00:11:26,540"
+			},
+			"offsets": {
+				"from": 684280,
+				"to": 686540
+			},
+			"text": " get started with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,540",
+				"to": "00:11:28,400"
+			},
+			"offsets": {
+				"from": 686540,
+				"to": 688400
+			},
+			"text": " So I think with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,400",
+				"to": "00:11:31,200"
+			},
+			"offsets": {
+				"from": 688400,
+				"to": 691200
+			},
+			"text": " the only other thing I have to remind you guys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,200",
+				"to": "00:11:32,480"
+			},
+			"offsets": {
+				"from": 691200,
+				"to": 692480
+			},
+			"text": " go ahead and talk about your thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,480",
+				"to": "00:11:36,180"
+			},
+			"offsets": {
+				"from": 692480,
+				"to": 696180
+			},
+			"text": " - So I've signed up about 10% of the conference"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,180",
+				"to": "00:11:38,680"
+			},
+			"offsets": {
+				"from": 696180,
+				"to": 698680
+			},
+			"text": " for DevCon 2 identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,680",
+				"to": "00:11:41,760"
+			},
+			"offsets": {
+				"from": 698680,
+				"to": 701760
+			},
+			"text": " I'd love to get a much deeper sign up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,760",
+				"to": "00:11:46,020"
+			},
+			"offsets": {
+				"from": 701760,
+				"to": 706020
+			},
+			"text": " So send me your information."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,020",
+				"to": "00:11:47,400"
+			},
+			"offsets": {
+				"from": 706020,
+				"to": 707400
+			},
+			"text": " I don't know if we can get the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,400",
+				"to": "00:11:49,080"
+			},
+			"offsets": {
+				"from": 707400,
+				"to": 709080
+			},
+			"text": " - Yeah, this is like, but I will say this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,080",
+				"to": "00:11:50,680"
+			},
+			"offsets": {
+				"from": 709080,
+				"to": 710680
+			},
+			"text": " If you walked out early yesterday,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,680",
+				"to": "00:11:52,660"
+			},
+			"offsets": {
+				"from": 710680,
+				"to": 712660
+			},
+			"text": " you missed the most amazing announcement"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,660",
+				"to": "00:11:55,160"
+			},
+			"offsets": {
+				"from": 712660,
+				"to": 715160
+			},
+			"text": " because what we have here is a Memento"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,160",
+				"to": "00:11:58,900"
+			},
+			"offsets": {
+				"from": 715160,
+				"to": 718900
+			},
+			"text": " on the Ethereum blockchain that you can pull up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,900",
+				"to": "00:12:01,060"
+			},
+			"offsets": {
+				"from": 718900,
+				"to": 721060
+			},
+			"text": " Or you can make."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,060",
+				"to": "00:12:04,700"
+			},
+			"offsets": {
+				"from": 721060,
+				"to": 724700
+			},
+			"text": " - So I am issuing one of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,700",
+				"to": "00:12:07,260"
+			},
+			"offsets": {
+				"from": 724700,
+				"to": 727260
+			},
+			"text": " to every person here that wants one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,260",
+				"to": "00:12:11,460"
+			},
+			"offsets": {
+				"from": 727260,
+				"to": 731460
+			},
+			"text": " They won't be issueable after Thursday morning at 8 a.m."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,460",
+				"to": "00:12:13,860"
+			},
+			"offsets": {
+				"from": 731460,
+				"to": 733860
+			},
+			"text": " And the idea is this is an experiment"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,860",
+				"to": "00:12:18,860"
+			},
+			"offsets": {
+				"from": 733860,
+				"to": 738860
+			},
+			"text": " to see what can we do with the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,860",
+				"to": "00:12:21,140"
+			},
+			"offsets": {
+				"from": 738860,
+				"to": 741140
+			},
+			"text": " to let people interact with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,140",
+				"to": "00:12:23,860"
+			},
+			"offsets": {
+				"from": 741140,
+				"to": 743860
+			},
+			"text": " knowing that they were here at this conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,860",
+				"to": "00:12:27,400"
+			},
+			"offsets": {
+				"from": 744860,
+				"to": 747400
+			},
+			"text": " There are some interesting ideas that I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,400",
+				"to": "00:12:30,060"
+			},
+			"offsets": {
+				"from": 747400,
+				"to": 750060
+			},
+			"text": " for what you could build on top of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,060",
+				"to": "00:12:32,560"
+			},
+			"offsets": {
+				"from": 750060,
+				"to": 752560
+			},
+			"text": " One of them might be if there's another hard fork proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,560",
+				"to": "00:12:35,760"
+			},
+			"offsets": {
+				"from": 752560,
+				"to": 755760
+			},
+			"text": " at some point, we could use this as the permissions"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,760",
+				"to": "00:12:40,220"
+			},
+			"offsets": {
+				"from": 755760,
+				"to": 760220
+			},
+			"text": " for voting in one vote to see what this community thinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,220",
+				"to": "00:12:43,560"
+			},
+			"offsets": {
+				"from": 760220,
+				"to": 763560
+			},
+			"text": " about that idea as opposed to the entire community"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,560",
+				"to": "00:12:44,760"
+			},
+			"offsets": {
+				"from": 763560,
+				"to": 764760
+			},
+			"text": " of people who own ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,760",
+				"to": "00:12:48,140"
+			},
+			"offsets": {
+				"from": 764760,
+				"to": 768140
+			},
+			"text": " Might be interesting to see what the difference"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,140",
+				"to": "00:12:50,160"
+			},
+			"offsets": {
+				"from": 768140,
+				"to": 770160
+			},
+			"text": " between those two votes are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,160",
+				"to": "00:12:51,560"
+			},
+			"offsets": {
+				"from": 770160,
+				"to": 771560
+			},
+			"text": " - That is really interesting, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,560",
+				"to": "00:12:54,160"
+			},
+			"offsets": {
+				"from": 771560,
+				"to": 774160
+			},
+			"text": " - All you have to do is send me your information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,160",
+				"to": "00:12:56,600"
+			},
+			"offsets": {
+				"from": 774160,
+				"to": 776600
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,600",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 776600,
+				"to": 779560
+			},
+			"text": " - Yeah, Piper's camped out like outside at a desk"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:01,480"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 781480
+			},
+			"text": " with some stickers and if you come over there"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,480",
+				"to": "00:13:03,960"
+			},
+			"offsets": {
+				"from": 781480,
+				"to": 783960
+			},
+			"text": " with your Ethereum address, you'll be in a once"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,960",
+				"to": "00:13:06,520"
+			},
+			"offsets": {
+				"from": 783960,
+				"to": 786520
+			},
+			"text": " in a lifetime opportunity smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,520",
+				"to": "00:13:08,960"
+			},
+			"offsets": {
+				"from": 786520,
+				"to": 788960
+			},
+			"text": " to be able to provide your input"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,960",
+				"to": "00:13:10,200"
+			},
+			"offsets": {
+				"from": 788960,
+				"to": 790200
+			},
+			"text": " and future events potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,200",
+				"to": "00:13:12,080"
+			},
+			"offsets": {
+				"from": 790200,
+				"to": 792080
+			},
+			"text": " So super exciting stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,080",
+				"to": "00:13:13,360"
+			},
+			"offsets": {
+				"from": 792080,
+				"to": 793360
+			},
+			"text": " I'm really excited about Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,360",
+				"to": "00:13:15,320"
+			},
+			"offsets": {
+				"from": 793360,
+				"to": 795320
+			},
+			"text": " If you need any help with it, find me on Reddit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,320",
+				"to": "00:13:18,320"
+			},
+			"offsets": {
+				"from": 795320,
+				"to": 798320
+			},
+			"text": " My name is Suptacular on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,320",
+				"to": "00:13:19,320"
+			},
+			"offsets": {
+				"from": 798320,
+				"to": 799320
+			},
+			"text": " It's a great name."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,320",
+				"to": "00:13:20,280"
+			},
+			"offsets": {
+				"from": 799320,
+				"to": 800280
+			},
+			"text": " It's my, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,280",
+				"to": "00:13:22,040"
+			},
+			"offsets": {
+				"from": 800280,
+				"to": 802040
+			},
+			"text": " - And then Piper's on there as a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,040",
+				"to": "00:13:22,880"
+			},
+			"offsets": {
+				"from": 802040,
+				"to": 802880
+			},
+			"text": " - Piper Maryam."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,880",
+				"to": "00:13:24,200"
+			},
+			"offsets": {
+				"from": 802880,
+				"to": 804200
+			},
+			"text": " - Piper Maryam, find him on there too."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,200",
+				"to": "00:13:25,040"
+			},
+			"offsets": {
+				"from": 804200,
+				"to": 805040
+			},
+			"text": " He's super helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,040",
+				"to": "00:13:25,880"
+			},
+			"offsets": {
+				"from": 805040,
+				"to": 805880
+			},
+			"text": " We're nice guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,880",
+				"to": "00:13:26,920"
+			},
+			"offsets": {
+				"from": 805880,
+				"to": 806920
+			},
+			"text": " Come see us."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,920",
+				"to": "00:13:27,760"
+			},
+			"offsets": {
+				"from": 806920,
+				"to": 807760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,760",
+				"to": "00:13:30,760"
+			},
+			"offsets": {
+				"from": 807760,
+				"to": 810760
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,760",
+				"to": "00:13:33,340"
+			},
+			"offsets": {
+				"from": 810760,
+				"to": 813340
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,340",
+				"to": "00:13:35,920"
+			},
+			"offsets": {
+				"from": 813340,
+				"to": 815920
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,920",
+				"to": "00:13:38,500"
+			},
+			"offsets": {
+				"from": 815920,
+				"to": 818500
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

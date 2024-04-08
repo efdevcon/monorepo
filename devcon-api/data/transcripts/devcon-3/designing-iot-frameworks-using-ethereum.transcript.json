@@ -1,0 +1,2287 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " Good afternoon, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Just waiting for the slides to come up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 19000
+			},
+			"text": " My name is John Garrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 24000
+			},
+			"text": " I'm co-founder and CEO of Oken Innovations, formerly Project Oken."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28000
+			},
+			"text": " And I just want to start off by saying how excited -- I think I speak for the rest of our team"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 33000
+			},
+			"text": " -- when I say how excited we are to be here in Cancun at DevCon 3 on this stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 39000
+			},
+			"text": " speaking to you, and when I say you, I mean the community that we've all been a part of for a number of years now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 47000
+			},
+			"text": " And we're really excited to tell you kind of the story of Oken is what I'm going to start with over the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 48000
+			},
+			"text": " And then I'm going to hand it over to Lexi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " He's going to take you through a few of the technologies that we've been building out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 53000
+			},
+			"text": " and then we're going to wrap it up with a video."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 58000
+			},
+			"text": " So again, my name is John Garrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " I've been in this space since about 2014, very early on in Ethereum years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 70000
+			},
+			"text": " One of the first projects I worked on, Airlock, was on Proof of Concept 3, so very, very early years."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 76000
+			},
+			"text": " From there, I was able to secure a Dev Grant from the Ethereum Foundation for ETH Embedded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 82000
+			},
+			"text": " which was essentially taking the Ethereum client and porting it to ARM-based resource constrained devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 86000
+			},
+			"text": " And that allowed me to start to build relationships in the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 92000
+			},
+			"text": " and many of those relationships are now my co-founders with Oken Innovations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 96000
+			},
+			"text": " This is our team. We have a fantastic team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " I'm so proud of what we've been able to do in a very short amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 104000
+			},
+			"text": " Many of you are familiar with Hudson Jamison, but we also have Lainey Fisher, James Johnson."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 107000
+			},
+			"text": " Lex and Daniel is the most recent addition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " Shout out to Ethelance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " Daniel was a recent hire. We went through the process of ETH Lance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " and so shout out to someone else in the community that we've used their tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 121000
+			},
+			"text": " and has worked out very well for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " So this is kind of the story of Oken."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " About a year ago today, the majority of us knew each other, but we hadn't really worked together."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 134000
+			},
+			"text": " And so we got together about this time last year to enter into a couple of hackathons."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 139000
+			},
+			"text": " The kind of result of that was a judge's win with a hack ethercamp."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 146000
+			},
+			"text": " And then from there we built on to a first place finish in the Dubai virtual blockchain GovHack."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " In first place was $100,000 all expenses paid trip to Dubai."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " And our project there was a proof of concept that we referred to as Tesla and toll booth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 158000
+			},
+			"text": " And what we were able to do is install an Ethereum client in a Tesla"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 161000
+			},
+			"text": " and install an Ethereum client in a mock toll booth"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 166000
+			},
+			"text": " to demonstrate the true machine to machine transactions with no human involvement."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 172000
+			},
+			"text": " That gave us some traction from one of our partners initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 177000
+			},
+			"text": " Toyota Research Institute, which we moved on to build out another proof of concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 183000
+			},
+			"text": " for peer-to-peer car sharing. And that was something that we debuted in May"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " at consensus 2017. And essentially what we were able to do is install an Ethereum client in a car,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " connect that to a FOB, and through a series of smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197000
+			},
+			"text": " rent out our short-term lease, that vehicle."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " And this is all these proof of concepts that I'm speaking to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 203000
+			},
+			"text": " our functional proof of concepts. These are things that we have built out"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " that are up and running, not in a production environment, but up and running nonetheless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 214000
+			},
+			"text": " From there we've been able to be involved in a number of other projects, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219000
+			},
+			"text": " MIT Media Lab. We're really working with Toyota Research Institute to start to facilitate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " some kind of an open blockchain mobility ecosystem. And so in the past we've invited other automotive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 231000
+			},
+			"text": " manufacturers to come to the table, and we've been at least successful in starting that conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 237000
+			},
+			"text": " We're based out of Dallas, Texas, so we have a strong relationship with a lot of the universities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 243000
+			},
+			"text": " in that area as well. We're involved in an open data initiative with the Texas Department of Transportation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 252000
+			},
+			"text": " or TXDOT, and we're also talking to a few toll road authorities, both in the US and abroad."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 257000
+			},
+			"text": " We're a member of the trusted IoT Alliance. We're very excited to be a part of this group."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 261000
+			},
+			"text": " There's a lot of active members in the trusted IoT Alliance. We're still kind of a small group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " but growing fast. And ourselves, we've been able to contribute MQTT, which Lex will talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 273000
+			},
+			"text": " in a little more detail shortly. And if you're out there and you're working on IoT and blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 278000
+			},
+			"text": " and you're interested in becoming a member, please go to trusted IoT.org, trusted-iot.org,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 285000
+			},
+			"text": " and check it out, sign up, and we'd love to have you on board and kind of learn more about your technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 292000
+			},
+			"text": " So it's now my pleasure to introduce Lex Schwang-Lang. Lex is our CTO, and he has some prior experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 297000
+			},
+			"text": " Lex and I met in Guelph, Ontario, Canada, which is close to my hometown."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 303000
+			},
+			"text": " And we kept in touch after that initial connection. Lex did some IoT internship work for Aeros Industries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 308000
+			},
+			"text": " which is now Monax, and joined the team just prior to the Dubai event."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 311000
+			},
+			"text": " So please give Lex a round of applause. Thanks, Yang."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 319000
+			},
+			"text": " So, Guelph, I'm from the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 321000
+			},
+			"text": " I'm from the United States."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 328000
+			},
+			"text": " You can come in Lex, and I got my master degree in Computer Science at Temple University in Philadelphia."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 335000
+			},
+			"text": " So I'm glad to be here to introduce some of the technologies we are working on recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 337000
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 344000
+			},
+			"text": " So first of all, I want to introduce the MQTT Trashit and the second one, the Microdep."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 354000
+			},
+			"text": " And also, we have a hardware security model. We are working actively with to build some secure hardware for the IoT platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 361000
+			},
+			"text": " Yeah, MQTT Trashit is the first world of MQTT."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366000
+			},
+			"text": " So it's based on the MQTT library and Ethereum library."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 373000
+			},
+			"text": " MQTT is a very lightweight, pop-up based machine to machine communication protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 379000
+			},
+			"text": " It's very popular for IoT applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 389000
+			},
+			"text": " It's then for very low bandwidth communication for some sensors or telemetry devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 400000
+			},
+			"text": " And the feature we want to bring into this machine to machine communication is from Ethereum global, likely unlimited identity system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 405000
+			},
+			"text": " And also, it's trusted without the centralized control."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 418000
+			},
+			"text": " And we can use the built-in ECD as an algorithm to get the signature of the messages and embed the signature to send to send to the receiver."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 421000
+			},
+			"text": " So here is the flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 431000
+			},
+			"text": " From the center side, it puts a plain message and MQTT library will build some package like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 437000
+			},
+			"text": " It has a from and to field, which is based on the Ethereum address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 450000
+			},
+			"text": " And we put the timestamp at the proof of date to put some constraint of the operation of the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 454000
+			},
+			"text": " Also, the date load and the sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 464000
+			},
+			"text": " And after that, we'll use either the private key of the Ethereum or hardware security model to send the message and put the signature into that message."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 475000
+			},
+			"text": " And at the receiver side, it first can recover the address of the sender based on some web library or Ethereum library."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 481000
+			},
+			"text": " And it can check the permission of the sender from the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 493000
+			},
+			"text": " Also, we can do proof of the provenance of the data or access control based on the identity of the sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 499000
+			},
+			"text": " So there are some issues we want to solve from this library."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 501000
+			},
+			"text": " It's interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503000
+			},
+			"text": " There are some problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 507000
+			},
+			"text": " The first one is signature can be messed up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 513000
+			},
+			"text": " If the sender and the receiver use different libraries to send and recover the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 521000
+			},
+			"text": " And the second issue is this part of the properties of another standard is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 527000
+			},
+			"text": " So we want to probably standardize this machine to machine communication scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 538000
+			},
+			"text": " So it will be either for your free to talk with a microwave or talk with your car."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 541000
+			},
+			"text": " So they are all compatible with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 548000
+			},
+			"text": " So because of these issues, we want to collaborate with the community with trust in the IoT allowance"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " to build some standard for the machine to machine communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 559000
+			},
+			"text": " Also build some semantic on top of the Ethereum blockchain and this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 564000
+			},
+			"text": " So the next one, we want to introduce the microdab."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 570000
+			},
+			"text": " So you can see from name is small variant of the decentralized application."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 580000
+			},
+			"text": " We use Raspberry Pi for hardware platform but we can also put our stack to other embedded"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 587000
+			},
+			"text": " system like Big O bone and other embedded device."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 590000
+			},
+			"text": " So sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 599000
+			},
+			"text": " We use Ethereum Lite Clan for the smart contract and IPFS for the data storage and the MQTT"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 606000
+			},
+			"text": " library to support machine to machine communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 610000
+			},
+			"text": " So this is an example of the architecture we are working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 617000
+			},
+			"text": " From the top layer is the decentralized application for the data for IoT use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 620000
+			},
+			"text": " And we have three components."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 628000
+			},
+			"text": " First one is decentralized data storage API and the trust is the machine to machine communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 633000
+			},
+			"text": " interface to the application and also the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 640000
+			},
+			"text": " So in the middle layer we have IPFS but you can actually plug in other decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 647000
+			},
+			"text": " storage libraries like the swarm and the MQTT, the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 655000
+			},
+			"text": " We are trying to build to support other blockchain like a hyperlider forum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 661000
+			},
+			"text": " And the other lowest layer is hardware abstraction layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 673000
+			},
+			"text": " We can support center data and hardware secure model as IoT wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 682000
+			},
+			"text": " And here is an example of the microdab service to interact with the user using the mobile"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 686000
+			},
+			"text": " app or web app."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 694000
+			},
+			"text": " So here, Tibos has access to the Ethereum blockchain and IPFS for data storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 698000
+			},
+			"text": " But it's not like pure centralized infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 707000
+			},
+			"text": " We still need some server to outflow the computing task from the embedded device to the servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 711000
+			},
+			"text": " Here we can use MQTT broker on the server side."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 723000
+			},
+			"text": " Also, we need some server to upload the Ethereum gateway and IPFS gateway to support the country"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 727000
+			},
+			"text": " in the device."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 733000
+			},
+			"text": " So here is the real world example we build with Toyota called the cache area decentralized cache"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 735000
+			},
+			"text": " area application."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " So you can see it's not like traditional server-based design."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 746000
+			},
+			"text": " The Ethereum paradigm is really like peer-to-peer, the Ethereum paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 754000
+			},
+			"text": " All of the cars have our microdab services running and they can communicate with each other through"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 761000
+			},
+			"text": " the MQTT machine communication and access to the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 771000
+			},
+			"text": " So we have the video to show the real app and the user experience later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " Very quickly, the hardware security model is we build this hardware security model with"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 783000
+			},
+			"text": " some requirements we want to for the IoT and blockchain application."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 792000
+			},
+			"text": " First one is we want tamper proof to prevent the attacker like physically attack the device."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 801000
+			},
+			"text": " We want very secure case storage and revoke the key when we detect some attack intention."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 808000
+			},
+			"text": " Also, we want it to be blockchain compatible like we can send using the hardware security model"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 818000
+			},
+			"text": " using and the signature compatible with Web3 library or other Ethereum libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 824000
+			},
+			"text": " So here are our current complements for the hardware security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 830000
+			},
+			"text": " We can send offline transactions and we can send personalized transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 842000
+			},
+			"text": " Also, we have this Node.js library to access the functions in the hardware security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 847000
+			},
+			"text": " So there are still ongoing work we actively develop."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 856000
+			},
+			"text": " Like here we are developing the physical tamper detection with collaboration with some hardware companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 864000
+			},
+			"text": " and we are building this secure case storage based on secure elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 873000
+			},
+			"text": " Yeah, to all our ongoing projects we are actively working on and we are like community driven"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 876000
+			},
+			"text": " and like to talk with developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:41,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 881000
+			},
+			"text": " If you have questions you can go to this website and stay tuned."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 881000,
+				"to": 891000
+			},
+			"text": " We may have more release like the MQTT to the community. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 898000
+			},
+			"text": " Thank you everyone. So as Lex alluded to we have been in as much work as Lex has done on our back end systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 904000
+			},
+			"text": " We have really been focused from the get go on the front end and really making sure that there is a good user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 910000
+			},
+			"text": " In fact some of this was born out of necessity for us to keep that user experience at a level that we are comfortable with."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 916000
+			},
+			"text": " So we are just going to play a quick video for you now. This was first launched at Monday 2020 last week in conjunction with Toyota Research Institute"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 922000
+			},
+			"text": " and kind of gives you our vision of the mobility future."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 943000
+			},
+			"text": " Hello from Oakin Innovations. We are excited to show you what we have been working on with Toyota Research Institute."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 950000
+			},
+			"text": " Earlier this year we debuted our proof of concept. Blockchain enabled peer to peer car lease application at Consensus in New York."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 956000
+			},
+			"text": " This application allowed consumers to lease a vehicle from a car owner using a smart contract on the Ethereum blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 962000
+			},
+			"text": " file storage on IPFS and a mobile application to lease and control access to the vehicle."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 968000
+			},
+			"text": " Prior to our car lease model we developed a blockchain powered automated toll road system with connected cars."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 974000
+			},
+			"text": " This project won us the top honors among the entire world at the UAE International Blockchain Hackathon."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 979000
+			},
+			"text": " These applications allow for instantaneous remittance between the transacting parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 984000
+			},
+			"text": " They do this without the need for payment processors by using logic coded to a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 990000
+			},
+			"text": " The hyper secure blockchain based IoT controls at a level of security not currently available on the consumer market"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 994000
+			},
+			"text": " all while reducing or eliminating the need for server infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 999000
+			},
+			"text": " Oakin Innovations wants to give you a glimpse into the mobility future we envision."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1005000
+			},
+			"text": " We use the blockchain for application logic and data storage replacing traditional server infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1009000
+			},
+			"text": " Here we use the blockchain to store vehicle identity along with GPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1015000
+			},
+			"text": " Now we add road and mapping data and allow trusted entities to update this decentralized data layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1015000,
+				"to": 1018000
+			},
+			"text": " Smart road sensors can also feed this database."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1023000
+			},
+			"text": " This allows for a complete view of all vehicles and infrastructure with current construction and traffic conditions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1027000
+			},
+			"text": " while allowing third party applications to be built on top of this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " Let's amend that vehicle data for lease or ride sharing services."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1037000
+			},
+			"text": " This now allows consumer mobile apps for ride sharing or leasing using this blockchain services layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1041000
+			},
+			"text": " In a ride share or lease transaction things get very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1046000
+			},
+			"text": " Using blockchain technology instant value transfer and micro transactions are now possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1052000
+			},
+			"text": " Within one smart contract transaction is instant remittance to several parties including the vehicle owner and driver,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1056000
+			},
+			"text": " insurance provider, toll road authority and road tax entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1057000
+			},
+			"text": " Why is this valuable?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:42,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1062000
+			},
+			"text": " The automobile owner and driver receive guaranteed and instantaneous payment of funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1062000,
+				"to": 1068000
+			},
+			"text": " Micro insurance policies for each ride or lease transaction can be paid to an escrow contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " then remitted to the insurance provider once the ride is complete with the balance of that escrow going to the rider or lessee."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1080000
+			},
+			"text": " We can use an escrow contract for autonomous toll payments and even eliminate toll gates from the toll road infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1083000
+			},
+			"text": " as we can prove the location of the vehicle using GPS."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1089000
+			},
+			"text": " We can even have smart toll road infrastructure where roads are only charged during peak hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1095000
+			},
+			"text": " As consumer behavior moves away from purchasing fuel and favoring pay-per-ride mobility over vehicle ownership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1102000
+			},
+			"text": " road and infrastructure authorities will face a shortfall of tax revenue that currently funds the construction and maintenance of roads."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1107000
+			},
+			"text": " Included in the mobility transaction is a usage based tax to replace this lost revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1111000
+			},
+			"text": " Even short trips where a fraction of a penny is needed for taxation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1118000
+			},
+			"text": " All of these parties receive the benefits of instantaneous remittance, all included in a single transaction user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1121000
+			},
+			"text": " all without the need for payment processing intermediaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1123000
+			},
+			"text": " Let's go further."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1129000
+			},
+			"text": " With this blockchain platform in an autonomous driving world, we get to go beyond rider mobility into other applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " Solar energy production is highest when the sun is shining the most."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1135000
+			},
+			"text": " That's typically in the middle of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1138000
+			},
+			"text": " Energy demand typically spikes in the morning and then again in the evening."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1141000
+			},
+			"text": " Time that solar energy production is weakest."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1147000
+			},
+			"text": " During low mobility demand times, automated vehicles can store solar energy during peak production times"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1150000
+			},
+			"text": " then deliver that energy when and where it is needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:14,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1154000
+			},
+			"text": " Also, since we have the automobiles equipped with 5G connectivity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1154000,
+				"to": 1160000
+			},
+			"text": " we can provide a self-healing mesh network across large areas as well as a partition consumer Wi-Fi service"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1165000
+			},
+			"text": " all while the vehicles receive micro-transaction reimbursements for sharing their internet connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1170000
+			},
+			"text": " Thank you for your time and we hope you enjoyed our version of the blockchain powered vehicle future."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1176000
+			},
+			"text": " For more information, please visit us at oakininnovations.com in blockchain-mobility.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1183000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:55,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1195000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1195000,
+				"to": 1197000
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

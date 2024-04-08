@@ -1,0 +1,5587 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13840
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,840",
+				"to": "00:00:21,040"
+			},
+			"offsets": {
+				"from": 13840,
+				"to": 21040
+			},
+			"text": " Hello again! So today we have the first panel of the day here in the tropical sunset scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,040",
+				"to": "00:00:29,040"
+			},
+			"offsets": {
+				"from": 21040,
+				"to": 29040
+			},
+			"text": " So I'm very happy to introduce you to Adrian Souton, Oisin Kain, Paul Hauner and Vasily Chappavolo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,040",
+				"to": "00:00:34,560"
+			},
+			"offsets": {
+				"from": 29040,
+				"to": 34560
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,560",
+				"to": "00:00:40,560"
+			},
+			"offsets": {
+				"from": 34560,
+				"to": 40560
+			},
+			"text": " Yeah, they are going to talk about its tempere. Do you know where your namnoric is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,560",
+				"to": "00:00:47,840"
+			},
+			"offsets": {
+				"from": 40560,
+				"to": 47840
+			},
+			"text": " Sweet. Thank you very much everyone. As some of you that can count might notice we're one short"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,840",
+				"to": "00:00:52,960"
+			},
+			"offsets": {
+				"from": 47840,
+				"to": 52960
+			},
+			"text": " in a panelist but I think he'll join us momentarily so I think we're more or less kind of kick off"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,960",
+				"to": "00:01:01,600"
+			},
+			"offsets": {
+				"from": 52960,
+				"to": 61600
+			},
+			"text": " and do a bit of intros and stuff beforehand. Oh, there's the man himself, Vasily. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,600",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 61600,
+				"to": 75680
+			},
+			"text": " So probably with slides. Sweet. So today we have a panel on valid aromatics and their security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:21,360"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 81360
+			},
+			"text": " It's been almost two years since the beacon chain launched and there's quite a lot of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,360",
+				"to": "00:01:26,160"
+			},
+			"offsets": {
+				"from": 81360,
+				"to": 86160
+			},
+			"text": " that haven't touched those private keys in quite a long time. Over the course of the next 50"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,160",
+				"to": "00:01:30,960"
+			},
+			"offsets": {
+				"from": 86160,
+				"to": 90960
+			},
+			"text": " minutes we're going to look back at what's been done on the key security side for the last while."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,960",
+				"to": "00:01:35,360"
+			},
+			"offsets": {
+				"from": 90960,
+				"to": 95360
+			},
+			"text": " We're going to see what things are looking like right now in terms of validator key security"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,360",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 95360,
+				"to": 99200
+			},
+			"text": " and then we're going to look a bit forward towards withdrawals which I'm sure lots of people want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:42,800"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 102800
+			},
+			"text": " know about. But before we get to that I would like to do a few introductions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,800",
+				"to": "00:01:54,560"
+			},
+			"offsets": {
+				"from": 102800,
+				"to": 114560
+			},
+			"text": " Oh yeah, now it's going to be sweet. So briefly I'll introduce myself. My name is Ashin Kain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,560",
+				"to": "00:02:00,400"
+			},
+			"offsets": {
+				"from": 114560,
+				"to": 120400
+			},
+			"text": " I'm co-founder at Overlabs. We build distributed validator technology which is the ability to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,400",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 120400,
+				"to": 127200
+			},
+			"text": " one validator across multiple machines by multiple entities. And yeah, that's my little quick intro."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:11,920"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 131920
+			},
+			"text": " I'd like to introduce Paul next. Hello, my name is Paul, co-founder of Sigma Prime."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,920",
+				"to": "00:02:17,920"
+			},
+			"offsets": {
+				"from": 131920,
+				"to": 137920
+			},
+			"text": " I've been working on Lighthouse which is an Ethereum consensus implementation since 2018."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,920",
+				"to": "00:02:23,760"
+			},
+			"offsets": {
+				"from": 137920,
+				"to": 143760
+			},
+			"text": " Yeah, I've done a lot of the initial development of it and now I do a lot of kind of overseeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,760",
+				"to": "00:02:27,200"
+			},
+			"offsets": {
+				"from": 143760,
+				"to": 147200
+			},
+			"text": " and reviewing and still some development. I'll pass it on to Adrian."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,200",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 147200,
+				"to": 153360
+			},
+			"text": " Hi, I'm Adrian Sutton. I'm with the consensus and I started out on the BASU team doing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,360",
+				"to": "00:02:38,080"
+			},
+			"offsets": {
+				"from": 153360,
+				"to": 158080
+			},
+			"text": " execution layer side before there was an idea of a consensus layer side. I spent about a year and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,080",
+				"to": "00:02:43,120"
+			},
+			"offsets": {
+				"from": 158080,
+				"to": 163120
+			},
+			"text": " a half, pretty much full-time on BASU and then switched over to Teku because I heard that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,120",
+				"to": "00:02:48,400"
+			},
+			"offsets": {
+				"from": 163120,
+				"to": 168400
+			},
+			"text": " Beacon Chain was the new hotness and Teku is a consensus client so I've spent the last,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,400",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 168400,
+				"to": 173520
+			},
+			"text": " oh I don't know, three to four years helping build that and bringing the merge to fruition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:57,360"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 177360
+			},
+			"text": " It's been a lot of fun. I've been working with people like Paul and a lot of fun there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,360",
+				"to": "00:03:05,200"
+			},
+			"offsets": {
+				"from": 177360,
+				"to": 185200
+			},
+			"text": " Yeah, and Vassili. Hey, I'm Vassili Tekli at Lido also which is probably more relevant to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,080",
+				"to": "00:03:14,400"
+			},
+			"offsets": {
+				"from": 186080,
+				"to": 194400
+			},
+			"text": " this panel. I used to be CTO in P2P Valedator so I know I think the tool about managing keys for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,400",
+				"to": "00:03:20,960"
+			},
+			"offsets": {
+				"from": 194400,
+				"to": 200960
+			},
+			"text": " validation. Sweet, awesome. So we're going to test that and figure out some of the good, bad,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,960",
+				"to": "00:03:26,960"
+			},
+			"offsets": {
+				"from": 200960,
+				"to": 206960
+			},
+			"text": " nogly about managing private keys. So yeah, so the first thing I want to do is look back a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,960",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 206960,
+				"to": 211680
+			},
+			"text": " about how it started and figure out some of the basics about what is mammonic and stuff. So I"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:37,200"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 217200
+			},
+			"text": " thought Paul, would you explain to us what a mammonic is? Oh yeah, sure. So I'm not sure I can get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,200",
+				"to": "00:03:44,240"
+			},
+			"offsets": {
+				"from": 217200,
+				"to": 224240
+			},
+			"text": " textbook definition but a mammonic is a series of words, a phrase, say 12 to 24 variable length."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,240",
+				"to": "00:03:51,360"
+			},
+			"offsets": {
+				"from": 224240,
+				"to": 231360
+			},
+			"text": " I think 24 is a standard in F2. So a bunch of words, easy to remember supposedly and then from"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,360",
+				"to": "00:03:57,280"
+			},
+			"offsets": {
+				"from": 231360,
+				"to": 237280
+			},
+			"text": " those words you can generate any number of validated keys. So they'd be signing keys or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,280",
+				"to": "00:04:04,720"
+			},
+			"offsets": {
+				"from": 237280,
+				"to": 244720
+			},
+			"text": " withdrawal keys. So the premise is that once you generate this string of words, then you write"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,720",
+				"to": "00:04:10,640"
+			},
+			"offsets": {
+				"from": 244720,
+				"to": 250640
+			},
+			"text": " those string of words down on a piece of paper and then you use those words to generate your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,640",
+				"to": "00:04:16,720"
+			},
+			"offsets": {
+				"from": 250640,
+				"to": 256720
+			},
+			"text": " validated keys and you put those validated keys on some hardware, on your hot machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,720",
+				"to": "00:04:24,960"
+			},
+			"offsets": {
+				"from": 256720,
+				"to": 264960
+			},
+			"text": " And then you only keep a copy of the mammonic on paper so that, yeah, so that in the future if"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,960",
+				"to": "00:04:29,680"
+			},
+			"offsets": {
+				"from": 264960,
+				"to": 269680
+			},
+			"text": " those keys were to be, like if those boxes exploded, disappeared, you could use that mammonic to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,680",
+				"to": "00:04:35,840"
+			},
+			"offsets": {
+				"from": 269680,
+				"to": 275840
+			},
+			"text": " generate exactly the same keys again. Pete, thank you very much and I wanted to dig in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,840",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 275840,
+				"to": 279680
+			},
+			"text": " You mentioned withdrawal keys and hotkeys. I was wondering Adrian, could you tell me the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:46,400"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 286400
+			},
+			"text": " difference between them and do they have to have the same feedphrase? Yeah, so the hotkeys that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,400",
+				"to": "00:04:50,240"
+			},
+			"offsets": {
+				"from": 286400,
+				"to": 290240
+			},
+			"text": " talk about are your validated keys and they're the ones that you will have used and seen so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,240",
+				"to": "00:04:54,800"
+			},
+			"offsets": {
+				"from": 290240,
+				"to": 294800
+			},
+			"text": " in dealing with Ethereum and if you're running a validator. So they're the ones that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,800",
+				"to": "00:05:00,160"
+			},
+			"offsets": {
+				"from": 294800,
+				"to": 300160
+			},
+			"text": " on your node and your validator client has to actually load them into memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,160",
+				"to": "00:05:06,800"
+			},
+			"offsets": {
+				"from": 300160,
+				"to": 306800
+			},
+			"text": " Any kind of secret key that's loaded into memory and hot on a machine is not as secure as something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,800",
+				"to": "00:05:11,440"
+			},
+			"offsets": {
+				"from": 306800,
+				"to": 311440
+			},
+			"text": " that's locked up in a safe. So they are at a higher risk of being stolen. You still do your best to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,440",
+				"to": "00:05:18,560"
+			},
+			"offsets": {
+				"from": 311440,
+				"to": 318560
+			},
+			"text": " secure them and secure the machine obviously. But we wanted to make sure that there's a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,560",
+				"to": "00:05:24,560"
+			},
+			"offsets": {
+				"from": 318560,
+				"to": 324560
+			},
+			"text": " difference between those hotkeys that run your valter and sign things and the keys that you actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,560",
+				"to": "00:05:31,840"
+			},
+			"offsets": {
+				"from": 324560,
+				"to": 331840
+			},
+			"text": " control the money and whether you can withdraw it. So from your mnemonic, by default, you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,840",
+				"to": "00:05:35,440"
+			},
+			"offsets": {
+				"from": 331840,
+				"to": 335440
+			},
+			"text": " generate a validator key using one path and as Paul said you can generate multiple keys. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,440",
+				"to": "00:05:43,200"
+			},
+			"offsets": {
+				"from": 335440,
+				"to": 343200
+			},
+			"text": " from a different path you get a separate validator key. And it's that validator key that you will"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,200",
+				"to": "00:05:49,760"
+			},
+			"offsets": {
+				"from": 343200,
+				"to": 349760
+			},
+			"text": " use once withdrawals are implemented to set up withdrawals and be able to actually recover your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,760",
+				"to": "00:05:54,640"
+			},
+			"offsets": {
+				"from": 349760,
+				"to": 354640
+			},
+			"text": " money again. Do they have to come from the same mnemonic? No they don't. You don't even have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,640",
+				"to": "00:05:59,120"
+			},
+			"offsets": {
+				"from": 354640,
+				"to": 359120
+			},
+			"text": " use a mnemonic. You can just generate the keys directly without going through the mnemonic process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,120",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 359120,
+				"to": 366000
+			},
+			"text": " But typically it's a lot easier to back up one mnemonic and not lose it and etch it into steel"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:10,160"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 370160
+			},
+			"text": " or whatever it is and store it in a safe well than to have multiple keys that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,160",
+				"to": "00:06:16,400"
+			},
+			"offsets": {
+				"from": 370160,
+				"to": 376400
+			},
+			"text": " you know being managed and able to be lost. Because if you lose your withdrawal key"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:19,600"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 379600
+			},
+			"text": " that's it. It's game over. You're not getting your 32 weeks back."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,600",
+				"to": "00:06:25,280"
+			},
+			"offsets": {
+				"from": 379600,
+				"to": 385280
+			},
+			"text": " Yeah that's kind of one of the things we're going to get to a bit further on. So as you mentioned in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,280",
+				"to": "00:06:30,160"
+			},
+			"offsets": {
+				"from": 385280,
+				"to": 390160
+			},
+			"text": " the seed phrase thing a lot of people that are a homestaker would have used the ETH 2 staking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,160",
+				"to": "00:06:36,320"
+			},
+			"offsets": {
+				"from": 390160,
+				"to": 396320
+			},
+			"text": " CLI that set up you know one 24 word mnemonic that had both your withdrawal keys and your"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,320",
+				"to": "00:06:42,960"
+			},
+			"offsets": {
+				"from": 396320,
+				"to": 402960
+			},
+			"text": " hardkeys. It's unfortunate we were supposed to have one more panelist Jim McDonald and he's done a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,960",
+				"to": "00:06:48,080"
+			},
+			"offsets": {
+				"from": 402960,
+				"to": 408080
+			},
+			"text": " lot of work in the specific problem but the reason that this thing is titled it's 10 pm do you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,080",
+				"to": "00:06:53,440"
+			},
+			"offsets": {
+				"from": 408080,
+				"to": 413440
+			},
+			"text": " how your mnemonic is? It's because some unfortunate people have had these mnemonics compromised over"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,440",
+				"to": "00:06:59,360"
+			},
+			"offsets": {
+				"from": 413440,
+				"to": 419360
+			},
+			"text": " the last two years and I was wondering if any of you guys wanted to kind of explain what Jim's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,360",
+				"to": "00:07:04,800"
+			},
+			"offsets": {
+				"from": 419360,
+				"to": 424800
+			},
+			"text": " proposal is for how he kind of straightened this out but yeah what's what is the problem if somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,800",
+				"to": "00:07:12,880"
+			},
+			"offsets": {
+				"from": 424800,
+				"to": 432880
+			},
+			"text": " has your mnemonic? So basically if you use to the yeast the same mnemonic to generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:20,720"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 440720
+			},
+			"text": " the validator key and withdrawal key with raw credentials which is most homestakers users but"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,720",
+				"to": "00:07:30,880"
+			},
+			"offsets": {
+				"from": 440720,
+				"to": 450880
+			},
+			"text": " it's much less often happening for big operations where it's usually different keys more owned by"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,880",
+				"to": "00:07:36,560"
+			},
+			"offsets": {
+				"from": 450880,
+				"to": 456560
+			},
+			"text": " different people. So if it's the same mnemonic we were used though like what is going to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:46,080"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 466080
+			},
+			"text": " is that now the malicious person who compromised the key they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,080",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 466080,
+				"to": 474000
+			},
+			"text": " like you're in a race who can slash the protocol like that's your validator first"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:07:58,720"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 478720
+			},
+			"text": " which is if your small validator is not like really big problem you stop validation you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,720",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 478720,
+				"to": 486000
+			},
+			"text": " very small fine slash slash penalty and it's not that unrolled but withdrawal key compromised means"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:14,240"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 494240
+			},
+			"text": " that they can when the validator exits and withdraws implemented in the human protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,240",
+				"to": "00:08:21,040"
+			},
+			"offsets": {
+				"from": 494240,
+				"to": 501040
+			},
+			"text": " upgrades allows to add that to get back to execution there they you're in a race to understand who"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,040",
+				"to": "00:08:28,480"
+			},
+			"offsets": {
+				"from": 501040,
+				"to": 508480
+			},
+			"text": " gets the money and if you're more stank you probably lose a race versus like a crafty adversary."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,480",
+				"to": "00:08:33,280"
+			},
+			"offsets": {
+				"from": 508480,
+				"to": 513280
+			},
+			"text": " Sweet we'll follow up a bit more about that later on the talk but I wanted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,280",
+				"to": "00:08:41,040"
+			},
+			"offsets": {
+				"from": 513280,
+				"to": 521040
+			},
+			"text": " ask a bit about Lidovacilli and specifically the withdrawal key setup you guys used at Genesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,040",
+				"to": "00:08:46,160"
+			},
+			"offsets": {
+				"from": 521040,
+				"to": 526160
+			},
+			"text": " so not the most recent one could you tell me a bit about like how Lidov originally set up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,160",
+				"to": "00:08:53,760"
+			},
+			"offsets": {
+				"from": 526160,
+				"to": 533760
+			},
+			"text": " withdrawal keys? Yeah long story short the initial I think about like 15 or 20 percent of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,760",
+				"to": "00:09:07,440"
+			},
+			"offsets": {
+				"from": 533760,
+				"to": 547440
+			},
+			"text": " stake that Lidov has has been deposited on a threshold signature on on a 0 x 0 type if i'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,440",
+				"to": "00:09:10,720"
+			},
+			"offsets": {
+				"from": 547440,
+				"to": 550720
+			},
+			"text": " being exact for people who know basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:22,560"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 562560
+			},
+			"text": " shared sharded credentials that are shared between 11 people very well known in the industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,560",
+				"to": "00:09:28,480"
+			},
+			"offsets": {
+				"from": 562560,
+				"to": 568480
+			},
+			"text": " who when the time comes when it's draws implemented and rotation of withdrawal credentials implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,480",
+				"to": "00:09:32,640"
+			},
+			"offsets": {
+				"from": 568480,
+				"to": 572640
+			},
+			"text": " they can issue a common tool rotated though to the Lidov smart contract with us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,640",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 572640,
+				"to": 580720
+			},
+			"text": " Yeah that was like we recorded it for half a year and we we've had a couple of audits on it so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:46,160"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 586160
+			},
+			"text": " like it was like hard to make because at the time there were no smart contracts or like even"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,160",
+				"to": "00:09:53,120"
+			},
+			"offsets": {
+				"from": 586160,
+				"to": 593120
+			},
+			"text": " execution like a credential option for for deposits. Thank you for teaming me up for my next question"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,120",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 593120,
+				"to": 598560
+			},
+			"text": " which is to talk a little bit about where things went wrong with the 0 x 0 ones and there was like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:02,480"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 602480
+			},
+			"text": " basically well there's your hotkeys and your withdrawal keys and there's like two different"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,480",
+				"to": "00:10:08,560"
+			},
+			"offsets": {
+				"from": 602480,
+				"to": 608560
+			},
+			"text": " ones I wanted to touch on where there were problems the first one is stake.us and the hot key issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,560",
+				"to": "00:10:13,920"
+			},
+			"offsets": {
+				"from": 608560,
+				"to": 613920
+			},
+			"text": " does anyone explain what happened it's quite a while it was only two years there was 175"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,920",
+				"to": "00:10:17,600"
+			},
+			"offsets": {
+				"from": 613920,
+				"to": 617600
+			},
+			"text": " validated slash because they were running the hot keys in two different places."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,600",
+				"to": "00:10:24,400"
+			},
+			"offsets": {
+				"from": 617600,
+				"to": 624400
+			},
+			"text": " You might know the details and I can't find them. Yeah I've read the postmortem it's like it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,400",
+				"to": "00:10:33,760"
+			},
+			"offsets": {
+				"from": 624400,
+				"to": 633760
+			},
+			"text": " quite simple to understand so stake is a big sophisticated not operator they they run like I"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,760",
+				"to": "00:10:40,480"
+			},
+			"offsets": {
+				"from": 633760,
+				"to": 640480
+			},
+			"text": " think maybe billions maybe hundreds of millions of stake a lot of them and they have sophisticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,480",
+				"to": "00:10:47,600"
+			},
+			"offsets": {
+				"from": 640480,
+				"to": 647600
+			},
+			"text": " setups so like one of the they feature they used in multiple protocols was they had implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,600",
+				"to": "00:10:54,080"
+			},
+			"offsets": {
+				"from": 647600,
+				"to": 654080
+			},
+			"text": " something like like and something that in traditional world would be called like web application firewall"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,080",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 654080,
+				"to": 659680
+			},
+			"text": " so basically there's an implemented software that ran between the node and the network and it should"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:05,360"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 665360
+			},
+			"text": " have caged code the double sign events and they implemented for as far as to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,360",
+				"to": "00:11:16,240"
+			},
+			"offsets": {
+				"from": 665360,
+				"to": 676240
+			},
+			"text": " for multiple block sheets including the new and put it up for the idiom validation setup and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,240",
+				"to": "00:11:25,600"
+			},
+			"offsets": {
+				"from": 676240,
+				"to": 685600
+			},
+			"text": " ran multiple versions of the nodes with like with the same private key that were making blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,600",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 685600,
+				"to": 694400
+			},
+			"text": " in parallel and this was usually caught by the system. I'm not like 100% sure that because otherwise"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:40,400"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 700400
+			},
+			"text": " it could be it could have been that they accidentally deployed it like two things in parable not like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,400",
+				"to": "00:11:50,240"
+			},
+			"offsets": {
+				"from": 700400,
+				"to": 710240
+			},
+			"text": " the as the usual setup but anyway they did they did have an automated system for liveness that at"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,240",
+				"to": "00:11:55,600"
+			},
+			"offsets": {
+				"from": 710240,
+				"to": 715600
+			},
+			"text": " times could have run multiple validators with the same private key which is usually lead to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,600",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 715600,
+				"to": 723200
+			},
+			"text": " slasurable offense in protocols including the idiom and they had a system that should have caught"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 730000
+			},
+			"text": " the problems which is like usually people don't do that like right in in in not operator setup because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,440",
+				"to": "00:12:18,160"
+			},
+			"offsets": {
+				"from": 731440,
+				"to": 738160
+			},
+			"text": " liveness is not as important as safety slashing for for lack of for for for me and a few blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,160",
+				"to": "00:12:26,960"
+			},
+			"offsets": {
+				"from": 738160,
+				"to": 746960
+			},
+			"text": " are much much much lesser than slashing like penalties for for double sign it's like not worth"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,960",
+				"to": "00:12:37,760"
+			},
+			"offsets": {
+				"from": 746960,
+				"to": 757760
+			},
+			"text": " it usually so that system didn't work and they for about like 40 minutes or like about an hour"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,760",
+				"to": "00:12:43,200"
+			},
+			"offsets": {
+				"from": 757760,
+				"to": 763200
+			},
+			"text": " they had issued blocks in parallel and they were like really lucky that the idiom system is designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,200",
+				"to": "00:12:47,840"
+			},
+			"offsets": {
+				"from": 763200,
+				"to": 767840
+			},
+			"text": " like a design because like they had I think about 70 million dollars taken or something like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,840",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 767840,
+				"to": 776000
+			},
+			"text": " at this time and they only slashed like 15 validators so like 27 I don't like really like"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:05,440"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 785440
+			},
+			"text": " rookie numbers right so and that's the case because not a lot of validators had had issued"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,440",
+				"to": "00:13:14,400"
+			},
+			"offsets": {
+				"from": 785440,
+				"to": 794400
+			},
+			"text": " the invalid blocks or stations because it's not like you don't run the what was your stake on a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,400",
+				"to": "00:13:20,400"
+			},
+			"offsets": {
+				"from": 794400,
+				"to": 800400
+			},
+			"text": " single note like in many other systems otherwise they would have like 5% slash or like 15% slash"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,400",
+				"to": "00:13:30,240"
+			},
+			"offsets": {
+				"from": 800400,
+				"to": 810240
+			},
+			"text": " which is like much much higher and only after that they monitoring kind of learning system had"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,240",
+				"to": "00:13:36,240"
+			},
+			"offsets": {
+				"from": 810240,
+				"to": 816240
+			},
+			"text": " triggers so like they're and this with this problem for a long time so there had been some problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,240",
+				"to": "00:13:41,440"
+			},
+			"offsets": {
+				"from": 816240,
+				"to": 821440
+			},
+			"text": " in there as well I think initially described the setup as sophisticated I think there was a very"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,440",
+				"to": "00:13:47,520"
+			},
+			"offsets": {
+				"from": 821440,
+				"to": 827520
+			},
+			"text": " kind way to refer to it I would call it dangerously over complicated but yeah I agree I think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,520",
+				"to": "00:13:53,040"
+			},
+			"offsets": {
+				"from": 827520,
+				"to": 833040
+			},
+			"text": " these setups where you're running multiple instances of the same key in any place I think you you really"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,040",
+				"to": "00:13:59,200"
+			},
+			"offsets": {
+				"from": 833040,
+				"to": 839200
+			},
+			"text": " like Vasily said you're just prioritizing liveness over safety and it's it's I think it's really bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,200",
+				"to": "00:14:04,720"
+			},
+			"offsets": {
+				"from": 839200,
+				"to": 844720
+			},
+			"text": " business it's not it's not good economically it's really bad for your reputation and it's bad for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,720",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 844720,
+				"to": 850000
+			},
+			"text": " the network as well so I really couldn't advise against it any stronger yeah probably the interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:15,040"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 855040
+			},
+			"text": " thing particularly pre-merge I think it's probably a little less likely post-merge now but pre-merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,040",
+				"to": "00:14:19,680"
+			},
+			"offsets": {
+				"from": 855040,
+				"to": 859680
+			},
+			"text": " you could run validator keys in two places and get away with it for a surprising amount of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,680",
+				"to": "00:14:24,720"
+			},
+			"offsets": {
+				"from": 859680,
+				"to": 864720
+			},
+			"text": " until you proposed a block or until your node was just slightly out of sync or you just got that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,720",
+				"to": "00:14:29,440"
+			},
+			"offsets": {
+				"from": 864720,
+				"to": 869440
+			},
+			"text": " little bit unlucky because both validators if you're staying in sync and attesting perfectly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,440",
+				"to": "00:14:34,880"
+			},
+			"offsets": {
+				"from": 869440,
+				"to": 874880
+			},
+			"text": " they'll create the exact same attestation and that's not slasheball so it's incredibly dangerous"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,880",
+				"to": "00:14:39,840"
+			},
+			"offsets": {
+				"from": 874880,
+				"to": 879840
+			},
+			"text": " and do you think you're okay for quite a while until one day you wake up and you've lost all your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,840",
+				"to": "00:14:44,400"
+			},
+			"offsets": {
+				"from": 879840,
+				"to": 884400
+			},
+			"text": " money um well you know you don't lose it all but just to be the money actually because of how"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,400",
+				"to": "00:14:49,200"
+			},
+			"offsets": {
+				"from": 884400,
+				"to": 889200
+			},
+			"text": " it even works so yeah yeah I know but particularly um it's with withdrawals not implemented it's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,200",
+				"to": "00:14:54,080"
+			},
+			"offsets": {
+				"from": 889200,
+				"to": 894080
+			},
+			"text": " must be frustrating to have been slashed early on in the chain and still be waiting to get your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,080",
+				"to": "00:14:58,960"
+			},
+			"offsets": {
+				"from": 894080,
+				"to": 898960
+			},
+			"text": " money back out yeah for sure and then as you mentioned slashing you don't lose all your money but as"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,960",
+				"to": "00:15:03,440"
+			},
+			"offsets": {
+				"from": 898960,
+				"to": 903440
+			},
+			"text": " you touched on earlier if there's problems with withdrawal keys you can be like really in trouble"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,440",
+				"to": "00:15:08,880"
+			},
+			"offsets": {
+				"from": 903440,
+				"to": 908880
+			},
+			"text": " there was one other very famous issue about two years ago as well by stake hound does anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,880",
+				"to": "00:15:14,320"
+			},
+			"offsets": {
+				"from": 908880,
+				"to": 914320
+			},
+			"text": " remember what happened there with their withdrawal keys I had to go look this up myself beforehand"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,320",
+				"to": "00:15:18,640"
+			},
+			"offsets": {
+				"from": 914320,
+				"to": 918640
+			},
+			"text": " yeah you might have to give me the background I remember stories and not names oh I also know"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,640",
+				"to": "00:15:26,560"
+			},
+			"offsets": {
+				"from": 918640,
+				"to": 926560
+			},
+			"text": " exactly what happened yeah I read all the past motors so yeah uh yeah so uh the thing is uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,560",
+				"to": "00:15:32,080"
+			},
+			"offsets": {
+				"from": 926560,
+				"to": 932080
+			},
+			"text": " stake hound together with fire blocks uh has designed the system not unlike the one that light"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,080",
+				"to": "00:15:38,400"
+			},
+			"offsets": {
+				"from": 932080,
+				"to": 938400
+			},
+			"text": " are designed with threshold signature used for holding keys except it was like much smaller I"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,400",
+				"to": "00:15:44,400"
+			},
+			"offsets": {
+				"from": 938400,
+				"to": 944400
+			},
+			"text": " think they only had like three or four signature out of which two two two shots was in possession"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,400",
+				"to": "00:15:52,240"
+			},
+			"offsets": {
+				"from": 944400,
+				"to": 952240
+			},
+			"text": " of stake hound and two shots with possession of fire blocks and nobody knows what exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,240",
+				"to": "00:15:57,520"
+			},
+			"offsets": {
+				"from": 952240,
+				"to": 957520
+			},
+			"text": " happened because like the the parties have like different interpretation of what happened but"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,520",
+				"to": "00:16:02,800"
+			},
+			"offsets": {
+				"from": 957520,
+				"to": 962800
+			},
+			"text": " what we end like what they end up in a situation when the two shares that stake hound was supposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,800",
+				"to": "00:16:07,840"
+			},
+			"offsets": {
+				"from": 962800,
+				"to": 967840
+			},
+			"text": " to hold were not hold by stake hound and that could have happened like we don't know why that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,840",
+				"to": "00:16:11,680"
+			},
+			"offsets": {
+				"from": 967840,
+				"to": 971680
+			},
+			"text": " happened like maybe it was like problem on the software side maybe there was problems stake hound"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,680",
+				"to": "00:16:17,760"
+			},
+			"offsets": {
+				"from": 971680,
+				"to": 977760
+			},
+			"text": " side on communications on like uh wrong backups system like that's burrit and low issues I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,760",
+				"to": "00:16:25,520"
+			},
+			"offsets": {
+				"from": 977760,
+				"to": 985520
+			},
+			"text": " right now so um I'm not sure about that but then the result is uh all that stake about 72 million by"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,520",
+				"to": "00:16:33,920"
+			},
+			"offsets": {
+				"from": 985520,
+				"to": 993920
+			},
+			"text": " I think 3080 there yeah yeah 600 uh dollar spread or something like that um I didn't check if it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,920",
+				"to": "00:16:39,680"
+			},
+			"offsets": {
+				"from": 993920,
+				"to": 999680
+			},
+			"text": " operating steel or not like if the I think it's operating steel because uh like there can be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,680",
+				"to": "00:16:46,640"
+			},
+			"offsets": {
+				"from": 999680,
+				"to": 1006640
+			},
+			"text": " miracle I don't know uh someone always transaction rewards now yeah yeah some some some kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,640",
+				"to": "00:16:52,800"
+			},
+			"offsets": {
+				"from": 1006640,
+				"to": 1012800
+			},
+			"text": " like chance that you find like an old pneumonia in the old uh jacket or something I don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,800",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1012800,
+				"to": 1019760
+			},
+			"text": " but uh it's essentially undesirable right now this is how you wind up with the CEO sifting through"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:05,680"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1025680
+			},
+			"text": " the dump looking for quite possibly or yeah going through like any old bit of hardware they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,680",
+				"to": "00:17:10,720"
+			},
+			"offsets": {
+				"from": 1025680,
+				"to": 1030720
+			},
+			"text": " find um but yeah thank you very much of a silly for giving those descriptions and preventing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,720",
+				"to": "00:17:15,680"
+			},
+			"offsets": {
+				"from": 1030720,
+				"to": 1035680
+			},
+			"text": " me from having to do it but yeah I think we don't necessarily know you know what happened but what"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,680",
+				"to": "00:17:19,520"
+			},
+			"offsets": {
+				"from": 1035680,
+				"to": 1039520
+			},
+			"text": " we do know is that if anything happens to your withdrawal key odds are very high that there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,520",
+				"to": "00:17:26,400"
+			},
+			"offsets": {
+				"from": 1039520,
+				"to": 1046400
+			},
+			"text": " nothing you can do um so with that in mind genesis happened in December 2020 and about six months"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,400",
+				"to": "00:17:32,640"
+			},
+			"offsets": {
+				"from": 1046400,
+				"to": 1052640
+			},
+			"text": " later so there was a change to withdrawal credentials they introduced the idea of um what we know is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,640",
+				"to": "00:17:39,120"
+			},
+			"offsets": {
+				"from": 1052640,
+				"to": 1059120
+			},
+			"text": " 0x01 type withdrawal credentials and does anyone explain what they are yeah actually know that one"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,120",
+				"to": "00:17:45,360"
+			},
+			"offsets": {
+				"from": 1059120,
+				"to": 1065360
+			},
+			"text": " that's good um so the 0x01 withdrawal credentials were introduced because we realized uh that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,360",
+				"to": "00:17:51,120"
+			},
+			"offsets": {
+				"from": 1065360,
+				"to": 1071120
+			},
+			"text": " way we were going to merge and and move forward with Ethereum too uh was different to what we first"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,120",
+				"to": "00:17:58,960"
+			},
+			"offsets": {
+				"from": 1071120,
+				"to": 1078960
+			},
+			"text": " expected so we set up these uh 0x00 keys as BLS keys matching what validators have um partly"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,960",
+				"to": "00:18:04,400"
+			},
+			"offsets": {
+				"from": 1078960,
+				"to": 1084400
+			},
+			"text": " with the expectation of all Ethereum addresses becoming BLS keys and partly just didn't really"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,400",
+				"to": "00:18:10,960"
+			},
+			"offsets": {
+				"from": 1084400,
+				"to": 1090960
+			},
+			"text": " know what was going to be so we went with the tech we had um with the plans for the merge keeping"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,960",
+				"to": "00:18:16,960"
+			},
+			"offsets": {
+				"from": 1090960,
+				"to": 1096960
+			},
+			"text": " the execution layer and keeping the traditional Ethereum addresses uh we introduced 0x01 addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,960",
+				"to": "00:18:23,120"
+			},
+			"offsets": {
+				"from": 1096960,
+				"to": 1103120
+			},
+			"text": " which are just an Ethereum public address so it's a whole bunch of zeros and then the 20 bytes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,120",
+				"to": "00:18:28,560"
+			},
+			"offsets": {
+				"from": 1103120,
+				"to": 1108560
+			},
+			"text": " a normal Ethereum address and the guarantee is that when withdrawals are implemented and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,560",
+				"to": "00:18:37,200"
+			},
+			"offsets": {
+				"from": 1108560,
+				"to": 1117200
+			},
+			"text": " your money comes off the beacon chain it will be credited to that address um the catch with it is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,200",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1117200,
+				"to": 1122000
+			},
+			"text": " a is a minor one but important depending on how you write your contracts if you you can use any"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:50,480"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1130480
+			},
+			"text": " Ethereum address um it can be a contract but the EVM will not execute when funds are added to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,480",
+				"to": "00:18:55,360"
+			},
+			"offsets": {
+				"from": 1130480,
+				"to": 1135360
+			},
+			"text": " so if you're expecting log events to come out they won't you won't have that opportunity um"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,360",
+				"to": "00:18:59,840"
+			},
+			"offsets": {
+				"from": 1135360,
+				"to": 1139840
+			},
+			"text": " you need to write the contract in a way that it can kind of just handle being called one day"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,840",
+				"to": "00:19:05,680"
+			},
+			"offsets": {
+				"from": 1139840,
+				"to": 1145680
+			},
+			"text": " and they're being more money in its account than it previously saw and dull that out and however"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,680",
+				"to": "00:19:12,400"
+			},
+			"offsets": {
+				"from": 1145680,
+				"to": 1152400
+			},
+			"text": " it wants from there three and then LIDO when this came out um very quickly adopted it could you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,400",
+				"to": "00:19:17,280"
+			},
+			"offsets": {
+				"from": 1152400,
+				"to": 1157280
+			},
+			"text": " tell me a bit about you know what that process was like the risk of writing a contract for something"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,280",
+				"to": "00:19:22,560"
+			},
+			"offsets": {
+				"from": 1157280,
+				"to": 1162560
+			},
+			"text": " that doesn't exist yet uh how did that kind of process go and the kind of migration you might say"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,560",
+				"to": "00:19:29,760"
+			},
+			"offsets": {
+				"from": 1162560,
+				"to": 1169760
+			},
+			"text": " but there's no migration but swap out uh yeah so it wasn't too hot actually like uh it's like we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,760",
+				"to": "00:19:36,400"
+			},
+			"offsets": {
+				"from": 1169760,
+				"to": 1176400
+			},
+			"text": " have done a stop that is governance controlled and that stop will be like sometimes like in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,400",
+				"to": "00:19:43,040"
+			},
+			"offsets": {
+				"from": 1176400,
+				"to": 1183040
+			},
+			"text": " future when withdrawals are implemented will be upgraded and when the Ethereum specifies uh enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:53,360"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1193360
+			},
+			"text": " um it will be uh made unumgradable um so our suffice as well um so there is like nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,360",
+				"to": "00:19:58,160"
+			},
+			"offsets": {
+				"from": 1193360,
+				"to": 1198160
+			},
+			"text": " complicated about this like just a smart contract that that is a stop that does nothing except"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,160",
+				"to": "00:20:04,800"
+			},
+			"offsets": {
+				"from": 1198160,
+				"to": 1204800
+			},
+			"text": " being upgraded implementing withdrawals handling withdrawals due to the fact that like you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,800",
+				"to": "00:20:11,680"
+			},
+			"offsets": {
+				"from": 1204800,
+				"to": 1211680
+			},
+			"text": " know when like you know you're not getting triggered when uh other companies in is uh is like is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,680",
+				"to": "00:20:19,680"
+			},
+			"offsets": {
+				"from": 1211680,
+				"to": 1219680
+			},
+			"text": " harder uh the Ethereum protocol is pretty complex and we when you add the liquid like liquid's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,680",
+				"to": "00:20:27,360"
+			},
+			"offsets": {
+				"from": 1219680,
+				"to": 1227360
+			},
+			"text": " taking protocol uh complexness on top of it uh it's um it's pretty hard to research to do it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,360",
+				"to": "00:20:34,160"
+			},
+			"offsets": {
+				"from": 1227360,
+				"to": 1234160
+			},
+			"text": " right but uh will manage so sweet sweet yeah uh you make it sound very easy but i'm not so sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,160",
+				"to": "00:20:39,040"
+			},
+			"offsets": {
+				"from": 1234160,
+				"to": 1239040
+			},
+			"text": " uh writing like a proxy smart contract holding i don't know 10 billion dollars is super easy is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,040",
+				"to": "00:20:44,960"
+			},
+			"offsets": {
+				"from": 1239040,
+				"to": 1244960
+			},
+			"text": " that about right number wise like it's not harder than uh writing a contract that calls zero like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,960",
+				"to": "00:20:49,520"
+			},
+			"offsets": {
+				"from": 1244960,
+				"to": 1249520
+			},
+			"text": " right it's just like the stakes are higher yeah if you get it wrong it can be a contract that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,520",
+				"to": "00:20:55,600"
+			},
+			"offsets": {
+				"from": 1249520,
+				"to": 1255600
+			},
+			"text": " zero very quickly so at some moment you just become dead inside like when you walk the history so"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,600",
+				"to": "00:21:03,520"
+			},
+			"offsets": {
+				"from": 1255600,
+				"to": 1263520
+			},
+			"text": " i used to be a CTO for a validator like i had like 12 incidents in a year so yeah um"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,160",
+				"to": "00:21:11,200"
+			},
+			"offsets": {
+				"from": 1264160,
+				"to": 1271200
+			},
+			"text": " sweet there's one other withdrawal credential that isn't necessarily in the spec yet and that's 0x03"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,200",
+				"to": "00:21:17,600"
+			},
+			"offsets": {
+				"from": 1271200,
+				"to": 1277600
+			},
+			"text": " does anyone want to talk about what that uh withdrawal credential is i don't know what that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,600",
+				"to": "00:21:23,840"
+			},
+			"offsets": {
+				"from": 1277600,
+				"to": 1283840
+			},
+			"text": " i i think i think you're probably keen on this but the oxo three is designed to be a forced withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,840",
+				"to": "00:21:31,200"
+			},
+			"offsets": {
+				"from": 1283840,
+				"to": 1291200
+			},
+			"text": " so at the moment um you actually wind up needing both your hotkey and your withdrawal key"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,200",
+				"to": "00:21:36,080"
+			},
+			"offsets": {
+				"from": 1291200,
+				"to": 1296080
+			},
+			"text": " effectively to to get through the full withdrawal process because while your validator is active"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,080",
+				"to": "00:21:42,560"
+			},
+			"offsets": {
+				"from": 1296080,
+				"to": 1302560
+			},
+			"text": " your 32 ETH is remains locked up you need to exit your validator and then it can go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,560",
+				"to": "00:21:48,800"
+			},
+			"offsets": {
+				"from": 1302560,
+				"to": 1308800
+			},
+			"text": " the withdrawal process and that's where the withdrawal key comes in if however you're uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,800",
+				"to": "00:21:52,640"
+			},
+			"offsets": {
+				"from": 1308800,
+				"to": 1312640
+			},
+			"text": " staking so you're not staking yourself you've asked someone else to stake on your behalf and"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,640",
+				"to": "00:21:56,960"
+			},
+			"offsets": {
+				"from": 1312640,
+				"to": 1316960
+			},
+			"text": " you've given them your hotkeys knowing that they can't steal your ETH because you've got the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,960",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1316960,
+				"to": 1324000
+			},
+			"text": " withdrawal keys not a bad setup um you have one little problem in that you can't force them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:10,080"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1330080
+			},
+			"text": " exit your validator and actually get your ETH back and so the oxo three credentials are intended"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,080",
+				"to": "00:22:17,440"
+			},
+			"offsets": {
+				"from": 1330080,
+				"to": 1337440
+			},
+			"text": " um to be a way of the withdrawal credentials being able to force exit a validator effectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,440",
+				"to": "00:22:23,040"
+			},
+			"offsets": {
+				"from": 1337440,
+				"to": 1343040
+			},
+			"text": " i don't know if you know the details of how that was planned uh so like uh there is no more"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,040",
+				"to": "00:22:28,320"
+			},
+			"offsets": {
+				"from": 1343040,
+				"to": 1348320
+			},
+			"text": " details because like it's older drafts but i think that zero x x zero three credentials are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,320",
+				"to": "00:22:34,720"
+			},
+			"offsets": {
+				"from": 1348320,
+				"to": 1354720
+			},
+			"text": " completely unnecessary they're just a feature that can be added to zero x one um like the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,720",
+				"to": "00:22:40,960"
+			},
+			"offsets": {
+				"from": 1354720,
+				"to": 1360960
+			},
+			"text": " uh handle it this much the same way as deposits to be contained a handle like just like consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,960",
+				"to": "00:22:47,600"
+			},
+			"offsets": {
+				"from": 1360960,
+				"to": 1367600
+			},
+			"text": " layer process and messages from execution layer and it's not even too hot it's just like need"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,600",
+				"to": "00:22:51,280"
+			},
+			"offsets": {
+				"from": 1367600,
+				"to": 1371280
+			},
+			"text": " to be designed and implement tested we are actually working on it right now in design"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,240",
+				"to": "00:22:59,680"
+			},
+			"offsets": {
+				"from": 1372240,
+				"to": 1379680
+			},
+			"text": " uh i don't think it can make uh it in toshan high i'm like that's probably unrealistic but"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,680",
+				"to": "00:23:03,440"
+			},
+			"offsets": {
+				"from": 1379680,
+				"to": 1383440
+			},
+			"text": " like the next answer after shan high like doable i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,440",
+				"to": "00:23:09,120"
+			},
+			"offsets": {
+				"from": 1383440,
+				"to": 1389120
+			},
+			"text": " the interesting trade-off as a client dev and designing some of these protocols when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,120",
+				"to": "00:23:16,320"
+			},
+			"offsets": {
+				"from": 1389120,
+				"to": 1396320
+			},
+			"text": " talking about withdrawal processes is trying to be fair with who controls which key and therefore"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,320",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1396320,
+				"to": 1402000
+			},
+			"text": " what response what rights they have um so we kind of set up this idea that the money will go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:27,440"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1407440
+			},
+			"text": " whoever has the withdrawal key um and the signing key is in control of actual signing and exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,440",
+				"to": "00:23:31,600"
+			},
+			"offsets": {
+				"from": 1407440,
+				"to": 1411600
+			},
+			"text": " and as every time we go and change that you wind up with a whole bunch of people in quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,600",
+				"to": "00:23:37,280"
+			},
+			"offsets": {
+				"from": 1411600,
+				"to": 1417280
+			},
+			"text": " unique situations that were built around that particular split of responsibilities and when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,280",
+				"to": "00:23:40,880"
+			},
+			"offsets": {
+				"from": 1417280,
+				"to": 1420880
+			},
+			"text": " change the split you've got to kind of make sure that you don't break things for other people or"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,880",
+				"to": "00:23:46,240"
+			},
+			"offsets": {
+				"from": 1420880,
+				"to": 1426240
+			},
+			"text": " introducing securities because of this particular way they've set things up i personally don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,240",
+				"to": "00:23:54,480"
+			},
+			"offsets": {
+				"from": 1426240,
+				"to": 1434480
+			},
+			"text": " anyone who built around uh that like assumption so like uh who is actually relying on the fact that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,480",
+				"to": "00:24:01,120"
+			},
+			"offsets": {
+				"from": 1434480,
+				"to": 1441120
+			},
+			"text": " validators can exit and withdraws cannot i i don't know yeah i think that's a fairly reasonable one that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,120",
+				"to": "00:24:07,760"
+			},
+			"offsets": {
+				"from": 1441120,
+				"to": 1447760
+			},
+			"text": " you know the the base assumption is that you you are you know it's your money so it's your"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,760",
+				"to": "00:24:13,840"
+			},
+			"offsets": {
+				"from": 1447760,
+				"to": 1453840
+			},
+			"text": " validator and you own all the keys um when you start to move away from that into um"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,840",
+				"to": "00:24:20,640"
+			},
+			"offsets": {
+				"from": 1453840,
+				"to": 1460640
+			},
+			"text": " staking providers and so on you are moving out of the i guess ideal case um you know that there is"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,640",
+				"to": "00:24:24,640"
+			},
+			"offsets": {
+				"from": 1460640,
+				"to": 1464640
+			},
+			"text": " a role for staking providers i don't mean that is in you know this horrible person on my right or"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,640",
+				"to": "00:24:33,840"
+			},
+			"offsets": {
+				"from": 1464640,
+				"to": 1473840
+			},
+			"text": " anything um but you know it does it does the onus is almost on people doing that to help with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,840",
+				"to": "00:24:38,400"
+			},
+			"offsets": {
+				"from": 1473840,
+				"to": 1478400
+			},
+			"text": " security and manage it rather than on the protocol itself because it's based around that one key"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,400",
+				"to": "00:24:44,480"
+			},
+			"offsets": {
+				"from": 1478400,
+				"to": 1484480
+			},
+			"text": " one validator type setup um so yeah i think i think it's quite reasonable to make a lot of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,480",
+				"to": "00:24:51,440"
+			},
+			"offsets": {
+				"from": 1484480,
+				"to": 1491440
+			},
+			"text": " changes and and we can kind of push those boundaries a lot of the the actual expectations haven't been"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,440",
+				"to": "00:24:58,480"
+			},
+			"offsets": {
+				"from": 1491440,
+				"to": 1498480
+			},
+			"text": " really formally and strictly set down either um we've kind of given uh an expectation in many cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,480",
+				"to": "00:25:03,360"
+			},
+			"offsets": {
+				"from": 1498480,
+				"to": 1503360
+			},
+			"text": " but knowing that we didn't have actually a plan for withdrawals when we set most of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,360",
+				"to": "00:25:07,440"
+			},
+			"offsets": {
+				"from": 1503360,
+				"to": 1507440
+			},
+			"text": " we knew that we're going to have to be changes and so there are kind of some really core things"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,440",
+				"to": "00:25:11,200"
+			},
+			"offsets": {
+				"from": 1507440,
+				"to": 1511200
+			},
+			"text": " maybe that we've got to keep that you know like the money goes to the withdrawal key not the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,200",
+				"to": "00:25:15,760"
+			},
+			"offsets": {
+				"from": 1511200,
+				"to": 1515760
+			},
+			"text": " signing key it will never be the signing key that gets the money um but beyond that yeah there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,760",
+				"to": "00:25:21,360"
+			},
+			"offsets": {
+				"from": 1515760,
+				"to": 1521360
+			},
+			"text": " there's a lot of wiggle room we do have i i had a similar concern i didn't mention my background"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,360",
+				"to": "00:25:26,960"
+			},
+			"offsets": {
+				"from": 1521360,
+				"to": 1526960
+			},
+			"text": " but i also like previously ran quite a large validator and ran maybe 10 000 plus validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,960",
+				"to": "00:25:33,520"
+			},
+			"offsets": {
+				"from": 1526960,
+				"to": 1533520
+			},
+			"text": " and at one point when they were discussing this you know new zero x zero one withdrawal type and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,520",
+				"to": "00:25:37,200"
+			},
+			"offsets": {
+				"from": 1533520,
+				"to": 1537200
+			},
+			"text": " you know that would be the way that ultimately like money will come out if you are on the ox"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,200",
+				"to": "00:25:41,760"
+			},
+			"offsets": {
+				"from": 1537200,
+				"to": 1541760
+			},
+			"text": " zero one you'll need to like swap eventually before you can withdraw there was a a moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,760",
+				"to": "00:25:46,480"
+			},
+			"offsets": {
+				"from": 1541760,
+				"to": 1546480
+			},
+			"text": " where that was going to be the hot key that gets to pick where the new ox zero one one was and i"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,480",
+				"to": "00:25:50,480"
+			},
+			"offsets": {
+				"from": 1546480,
+				"to": 1550480
+			},
+			"text": " was quite concerned because all of a sudden that meant i was in charge of billions of dollars for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,480",
+				"to": "00:25:54,160"
+			},
+			"offsets": {
+				"from": 1550480,
+				"to": 1554160
+			},
+			"text": " a preview a small amount of time and then they were like okay no let's make the withdrawal key make"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,160",
+				"to": "00:25:59,760"
+			},
+			"offsets": {
+				"from": 1554160,
+				"to": 1559760
+			},
+			"text": " that change and i think that's uh definitely for the better but on that one i do have a question for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,760",
+				"to": "00:26:04,160"
+			},
+			"offsets": {
+				"from": 1559760,
+				"to": 1564160
+			},
+			"text": " the two client devs when it comes to like i don't want to say keeping people happy but whenever"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,160",
+				"to": "00:26:09,840"
+			},
+			"offsets": {
+				"from": 1564160,
+				"to": 1569840
+			},
+			"text": " like people have requests of how to build staking are you always focused on the home staker are you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,840",
+				"to": "00:26:14,960"
+			},
+			"offsets": {
+				"from": 1569840,
+				"to": 1574960
+			},
+			"text": " always focused on enterprise liquid staking pool has often come into conflict like who we keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,960",
+				"to": "00:26:20,800"
+			},
+			"offsets": {
+				"from": 1574960,
+				"to": 1580800
+			},
+			"text": " and happy and and who are you disappointing? Paul? I think Adrian expressed a little bit of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,800",
+				"to": "00:26:26,800"
+			},
+			"offsets": {
+				"from": 1580800,
+				"to": 1586800
+			},
+			"text": " sentiment in his previous one um it's it's different for everyone i think i can't speak for all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,800",
+				"to": "00:26:32,720"
+			},
+			"offsets": {
+				"from": 1586800,
+				"to": 1592720
+			},
+			"text": " client devs i can't even speak for my entire team i can speak for myself um i like to prioritize the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,720",
+				"to": "00:26:38,800"
+			},
+			"offsets": {
+				"from": 1592720,
+				"to": 1598800
+			},
+			"text": " home staker i think i think that's kind of the base instance if you know what i mean where kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,800",
+				"to": "00:26:44,240"
+			},
+			"offsets": {
+				"from": 1598800,
+				"to": 1604240
+			},
+			"text": " all other features are uh kind of superstettes of that um and i also think it sticks with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,240",
+				"to": "00:26:51,440"
+			},
+			"offsets": {
+				"from": 1604240,
+				"to": 1611440
+			},
+			"text": " ethereum ethos of decentralization as well um but so i would say that making decisions that put the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,440",
+				"to": "00:26:56,960"
+			},
+			"offsets": {
+				"from": 1611440,
+				"to": 1616960
+			},
+			"text": " home staker in an uncomfortable position is probably almost always out of the question if it's if"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,960",
+				"to": "00:27:03,200"
+			},
+			"offsets": {
+				"from": 1616960,
+				"to": 1623200
+			},
+			"text": " it's to benefit the institutional staker uh but i would say the other scenario where if we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,200",
+				"to": "00:27:07,920"
+			},
+			"offsets": {
+				"from": 1623200,
+				"to": 1627920
+			},
+			"text": " benefit the home staker and it's gonna it's gonna cause troubles for the institutional staker i would"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,920",
+				"to": "00:27:13,760"
+			},
+			"offsets": {
+				"from": 1627920,
+				"to": 1633760
+			},
+			"text": " probably be more open to doing that just because i have more resources there's fewer of them um so"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,760",
+				"to": "00:27:17,600"
+			},
+			"offsets": {
+				"from": 1633760,
+				"to": 1637600
+			},
+			"text": " ideally we always want to support everyone we don't want to just like you know do things to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:17,600",
+				"to": "00:27:23,200"
+			},
+			"offsets": {
+				"from": 1637600,
+				"to": 1643200
+			},
+			"text": " like to disadvantage institutional stakers just because we can but my personal preference is for"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,200",
+				"to": "00:27:30,080"
+			},
+			"offsets": {
+				"from": 1643200,
+				"to": 1650080
+			},
+			"text": " the for the little guy yeah yeah i think uh a part of that and almost probably underlying that um is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,080",
+				"to": "00:27:35,600"
+			},
+			"offsets": {
+				"from": 1650080,
+				"to": 1655600
+			},
+			"text": " that it tends to be ethereum that comes first and and those core principles so i as talk this"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,600",
+				"to": "00:27:39,600"
+			},
+			"offsets": {
+				"from": 1655600,
+				"to": 1659600
+			},
+			"text": " morning was really good in terms of talking about some of those principles behind ethereum and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,400",
+				"to": "00:27:44,640"
+			},
+			"offsets": {
+				"from": 1660400,
+				"to": 1664640
+			},
+			"text": " decentralization is a key part of that and so that's why i tend to agree with the home staker"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,640",
+				"to": "00:27:49,680"
+			},
+			"offsets": {
+				"from": 1664640,
+				"to": 1669680
+			},
+			"text": " tends to come first they don't have someone advocating for them and they're the most decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,680",
+				"to": "00:27:57,280"
+			},
+			"offsets": {
+				"from": 1669680,
+				"to": 1677280
+			},
+			"text": " form of validation um so yeah it does mean that that there are sometimes those hard decisions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,280",
+				"to": "00:28:00,720"
+			},
+			"offsets": {
+				"from": 1677280,
+				"to": 1680720
+			},
+			"text": " a lot of people would say you know it'd be really nice to stake with less eath or it'd be really"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,720",
+				"to": "00:28:05,440"
+			},
+			"offsets": {
+				"from": 1680720,
+				"to": 1685440
+			},
+			"text": " nice to whatever it is and you look at it and go but that's really going to hurt the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,440",
+				"to": "00:28:10,960"
+			},
+			"offsets": {
+				"from": 1685440,
+				"to": 1690960
+			},
+			"text": " like it's going to cause too much system requirements and decentralization or whatever it is it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,960",
+				"to": "00:28:16,640"
+			},
+			"offsets": {
+				"from": 1690960,
+				"to": 1696640
+			},
+			"text": " to reduce security or so on um enable more capture of different things those kind of principles mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,640",
+				"to": "00:28:22,480"
+			},
+			"offsets": {
+				"from": 1696640,
+				"to": 1702480
+			},
+			"text": " that you won't always make anyone happy um because it's actually about making ethereum work well"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,480",
+				"to": "00:28:30,800"
+			},
+			"offsets": {
+				"from": 1702480,
+				"to": 1710800
+			},
+			"text": " and work well for the long term yeah still a lot of that uh from my experience uh the only one"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,800",
+				"to": "00:28:40,880"
+			},
+			"offsets": {
+				"from": 1710800,
+				"to": 1720880
+			},
+			"text": " feature that uh was uh like poor big operators uh and not for home stakers was uh actually an"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,880",
+				"to": "00:28:46,800"
+			},
+			"offsets": {
+				"from": 1720880,
+				"to": 1726800
+			},
+			"text": " advanced key management practices and uh like we talked about with sigma prime wow that i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,800",
+				"to": "00:28:54,640"
+			},
+			"offsets": {
+				"from": 1726800,
+				"to": 1734640
+			},
+			"text": " in before before ethereum uh my made it to be unchanged like we'll start uh and that was like"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,640",
+				"to": "00:29:00,720"
+			},
+			"offsets": {
+				"from": 1734640,
+				"to": 1740720
+			},
+			"text": " pretty unambiguous feature like i i don't remember like even one case where this interest was"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,720",
+				"to": "00:29:07,840"
+			},
+			"offsets": {
+				"from": 1740720,
+				"to": 1747840
+			},
+			"text": " a uh in in opposite right if home stakers can run the note like operate big operators can run the"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,840",
+				"to": "00:29:14,800"
+			},
+			"offsets": {
+				"from": 1747840,
+				"to": 1754800
+			},
+			"text": " note and all we want is like good practice of key key management and for that the only thing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,800",
+				"to": "00:29:21,840"
+			},
+			"offsets": {
+				"from": 1754800,
+				"to": 1761840
+			},
+			"text": " is needed is a good uh standard of uh remote signer so like remote signers can be written up uh like"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,840",
+				"to": "00:29:28,160"
+			},
+			"offsets": {
+				"from": 1761840,
+				"to": 1768160
+			},
+			"text": " coded up independently and that's the only feature that i can think of that is like not usually used"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,160",
+				"to": "00:29:35,520"
+			},
+			"offsets": {
+				"from": 1768160,
+				"to": 1775520
+			},
+			"text": " by home stakers but almost always used by uh big operators so that's it i think yeah absolutely"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,520",
+				"to": "00:29:40,880"
+			},
+			"offsets": {
+				"from": 1775520,
+				"to": 1780880
+			},
+			"text": " most of the decisions we have to make uh uh good for everyone and it works out pretty well"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,880",
+				"to": "00:29:46,080"
+			},
+			"offsets": {
+				"from": 1780880,
+				"to": 1786080
+			},
+			"text": " the external signer is a really interesting one because it wound up with a niche it's been"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,080",
+				"to": "00:29:51,760"
+			},
+			"offsets": {
+				"from": 1786080,
+				"to": 1791760
+			},
+			"text": " used by a number of systems including dap node to make it easy to swap clients so you put your"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,760",
+				"to": "00:29:56,240"
+			},
+			"offsets": {
+				"from": 1791760,
+				"to": 1796240
+			},
+			"text": " keys into the external signer and it holds them and your slashing protection and then you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:56,240",
+				"to": "00:29:59,440"
+			},
+			"offsets": {
+				"from": 1796240,
+				"to": 1799440
+			},
+			"text": " change your validator client and beacon note all you like without ever moving your keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,440",
+				"to": "00:30:04,880"
+			},
+			"offsets": {
+				"from": 1799440,
+				"to": 1804880
+			},
+			"text": " uh so home stakers have wound up adopting this technology that was really first built for"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,880",
+				"to": "00:30:09,920"
+			},
+			"offsets": {
+				"from": 1804880,
+				"to": 1809920
+			},
+			"text": " for the big staking providers and that's kind of cool yeah the one thing you're describing in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,920",
+				"to": "00:30:14,880"
+			},
+			"offsets": {
+				"from": 1809920,
+				"to": 1814880
+			},
+			"text": " of where the protocol was changed to favor the little the home stakers versus the like uh enterprises"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,880",
+				"to": "00:30:20,080"
+			},
+			"offsets": {
+				"from": 1814880,
+				"to": 1820080
+			},
+			"text": " was probably with me me be boost and blinded beacon blocks um this one you know is one that"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,080",
+				"to": "00:30:24,560"
+			},
+			"offsets": {
+				"from": 1820080,
+				"to": 1824560
+			},
+			"text": " we're probably seeing a lot of people kind of giving out about now but i think a lot of people don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,560",
+				"to": "00:30:29,760"
+			},
+			"offsets": {
+				"from": 1824560,
+				"to": 1829760
+			},
+			"text": " consider the counterfactual which was if these were plain text blocks me be boost and might not be"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,760",
+				"to": "00:30:35,440"
+			},
+			"offsets": {
+				"from": 1829760,
+				"to": 1835440
+			},
+			"text": " like given to home stakers and the fear was that if they were excluded from me v um it would like"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,440",
+				"to": "00:30:39,680"
+			},
+			"offsets": {
+				"from": 1835440,
+				"to": 1839680
+			},
+			"text": " massively impact their award and would massively harm them so you know we now have this world where"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,680",
+				"to": "00:30:43,840"
+			},
+			"offsets": {
+				"from": 1839680,
+				"to": 1843840
+			},
+			"text": " people are giving out about like you know centralized relay or censoring and that was kind of the trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,840",
+				"to": "00:30:48,880"
+			},
+			"offsets": {
+				"from": 1843840,
+				"to": 1848880
+			},
+			"text": " off of going for the blinded blocks and stuff but yeah it's definitely a tricky one and i i"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,880",
+				"to": "00:30:52,560"
+			},
+			"offsets": {
+				"from": 1848880,
+				"to": 1852560
+			},
+			"text": " sometimes i'm grateful that i can just ask tricky questions don't have to actually answer them most"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,560",
+				"to": "00:30:57,600"
+			},
+			"offsets": {
+				"from": 1852560,
+				"to": 1857600
+			},
+			"text": " of the time um so the next thing i wanted to do a little was look a bit forward and kind of where"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,600",
+				"to": "00:31:01,840"
+			},
+			"offsets": {
+				"from": 1857600,
+				"to": 1861840
+			},
+			"text": " we're going next in terms of withdrawals um so we talked a lot about like the like withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,840",
+				"to": "00:31:06,960"
+			},
+			"offsets": {
+				"from": 1861840,
+				"to": 1866960
+			},
+			"text": " credentials but we haven't really talked much about how it's going to happen you might say and i'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,960",
+				"to": "00:31:13,600"
+			},
+			"offsets": {
+				"from": 1866960,
+				"to": 1873600
+			},
+			"text": " gonna try and not ask like when withdrawals but can i ask um how the withdrawal spec has changed"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,600",
+				"to": "00:31:17,840"
+			},
+			"offsets": {
+				"from": 1873600,
+				"to": 1877840
+			},
+			"text": " over the last six months we started with kind of a pull based system and now we're at like push"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,840",
+				"to": "00:31:21,200"
+			},
+			"offsets": {
+				"from": 1877840,
+				"to": 1881200
+			},
+			"text": " do Adrian Pauli do you want to like talk about why they swapped?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:21,200",
+				"to": "00:31:30,640"
+			},
+			"offsets": {
+				"from": 1881200,
+				"to": 1890640
+			},
+			"text": " uh yeah i didn't follow it a whole lot um whilst whilst in in the previous uh pull method but i do"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,640",
+				"to": "00:31:36,720"
+			},
+			"offsets": {
+				"from": 1890640,
+				"to": 1896720
+			},
+			"text": " know how the push method works now um and i think it is a lot simpler so the method that's going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,720",
+				"to": "00:31:42,560"
+			},
+			"offsets": {
+				"from": 1896720,
+				"to": 1902560
+			},
+			"text": " happen now well not going to happen but it looks like it's going to happen um is a system where"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,560",
+				"to": "00:31:48,560"
+			},
+			"offsets": {
+				"from": 1902560,
+				"to": 1908560
+			},
+			"text": " the beacon chain uh automatically without user input will scan through the validators and look"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,560",
+				"to": "00:31:53,520"
+			},
+			"offsets": {
+				"from": 1908560,
+				"to": 1913520
+			},
+			"text": " for validators that are fully withdrawable withdrawn um and then it will just pull their"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,520",
+				"to": "00:31:59,360"
+			},
+			"offsets": {
+				"from": 1913520,
+				"to": 1919360
+			},
+			"text": " eath out and then put it on the the execution chain um it'll also look for validators who"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:59,360",
+				"to": "00:32:04,000"
+			},
+			"offsets": {
+				"from": 1919360,
+				"to": 1924000
+			},
+			"text": " have excess balance above 32 f and then just pull that excess balance out and put it on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,000",
+				"to": "00:32:12,000"
+			},
+			"offsets": {
+				"from": 1924000,
+				"to": 1932000
+			},
+			"text": " execution chain so this is um kind of so it's it's it's an automatic process where uh you don't need"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,000",
+				"to": "00:32:16,400"
+			},
+			"offsets": {
+				"from": 1932000,
+				"to": 1936400
+			},
+			"text": " to go and withdraw eath you just kind of end up with money in the smart contract which i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,400",
+				"to": "00:32:21,040"
+			},
+			"offsets": {
+				"from": 1936400,
+				"to": 1941040
+			},
+			"text": " it's really really nice i think it's really good for users because um it means they're signing"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,040",
+				"to": "00:32:26,080"
+			},
+			"offsets": {
+				"from": 1941040,
+				"to": 1946080
+			},
+			"text": " less weird messages i know anyone who runs a validator can probably um empathize but"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,080",
+				"to": "00:32:32,320"
+			},
+			"offsets": {
+				"from": 1946080,
+				"to": 1952320
+			},
+			"text": " the idea of having to go and touch the keys on my validator client or do something with my"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,320",
+				"to": "00:32:36,880"
+			},
+			"offsets": {
+				"from": 1952320,
+				"to": 1956880
+			},
+			"text": " validator client apart from just leaving it alone it's just terrifying and it's horrible um so i"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,880",
+				"to": "00:32:42,640"
+			},
+			"offsets": {
+				"from": 1956880,
+				"to": 1962640
+			},
+			"text": " think it's really good to be able to just like have it happen automatically um yeah there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:42,640",
+				"to": "00:32:47,040"
+			},
+			"offsets": {
+				"from": 1962640,
+				"to": 1967040
+			},
+			"text": " gonna be i don't know if i so there's there's gonna be a complication though and it kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:47,040",
+				"to": "00:32:52,720"
+			},
+			"offsets": {
+				"from": 1967040,
+				"to": 1972720
+			},
+			"text": " it goes around these um two types of um withdrawal keys we have so it's been mentioned there's zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:52,720",
+				"to": "00:32:59,600"
+			},
+			"offsets": {
+				"from": 1972720,
+				"to": 1979600
+			},
+			"text": " x zero zero keys which is a bls withdrawal key um and then which was the like Adrian said we did"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,600",
+				"to": "00:33:03,040"
+			},
+			"offsets": {
+				"from": 1979600,
+				"to": 1983040
+			},
+			"text": " that in the early days because we didn't know what we're gonna do uh and then there's a zero x zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,040",
+				"to": "00:33:10,400"
+			},
+			"offsets": {
+				"from": 1983040,
+				"to": 1990400
+			},
+			"text": " one where we um don't have a bls key we just have an ethereum address um so if you're on a zero x zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,400",
+				"to": "00:33:15,680"
+			},
+			"offsets": {
+				"from": 1990400,
+				"to": 1995680
+			},
+			"text": " one ethereum address then this automatic withdrawal system is gonna it's just gonna work for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:15,680",
+				"to": "00:33:20,560"
+			},
+			"offsets": {
+				"from": 1995680,
+				"to": 2000560
+			},
+			"text": " it's just like when the hard fork happens you're gonna start getting some some fresh aid um but"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,560",
+				"to": "00:33:26,560"
+			},
+			"offsets": {
+				"from": 2000560,
+				"to": 2006560
+			},
+			"text": " if you're with the bls keys what you're gonna have to do is go and dig up your withdrawal keys from"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,560",
+				"to": "00:33:33,600"
+			},
+			"offsets": {
+				"from": 2006560,
+				"to": 2013600
+			},
+			"text": " wherever you put it um and then you're gonna need to use some sort of tooling um to sign a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,600",
+				"to": "00:33:40,000"
+			},
+			"offsets": {
+				"from": 2013600,
+				"to": 2020000
+			},
+			"text": " um to say okay i'm now moving away from this bls key that that i'm proving that i have and i'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,000",
+				"to": "00:33:44,880"
+			},
+			"offsets": {
+				"from": 2020000,
+				"to": 2024880
+			},
+			"text": " switching over to an ethereum address zero x zero one type and then the automatic withdrawals can"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,880",
+				"to": "00:33:52,400"
+			},
+			"offsets": {
+				"from": 2024880,
+				"to": 2032400
+			},
+			"text": " kick in um so yeah i think it's a shame that we have to do this we have to make i would say most users um"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:52,400",
+				"to": "00:33:59,360"
+			},
+			"offsets": {
+				"from": 2032400,
+				"to": 2039360
+			},
+			"text": " go and sign this message um but uh i think it's unavoidable but then after that um it'll all kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,360",
+				"to": "00:34:05,200"
+			},
+			"offsets": {
+				"from": 2039360,
+				"to": 2045200
+			},
+			"text": " of happen automatically so knowing that that is very much in the pipeline looking like it's gonna"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,200",
+				"to": "00:34:09,840"
+			},
+			"offsets": {
+				"from": 2045200,
+				"to": 2049840
+			},
+			"text": " happen where i know lihouse society implements i think take it was it lots of clients is a keen"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,840",
+				"to": "00:34:15,440"
+			},
+			"offsets": {
+				"from": 2049840,
+				"to": 2055440
+			},
+			"text": " on it um i would say if you're creating a new validator today i would be using zero x zero one i'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,440",
+				"to": "00:34:22,160"
+			},
+			"offsets": {
+				"from": 2055440,
+				"to": 2062160
+			},
+			"text": " be using an ept address um i think it's gonna make your life a lot easier um and i think just managing"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,160",
+				"to": "00:34:28,800"
+			},
+			"offsets": {
+				"from": 2062160,
+				"to": 2068800
+			},
+			"text": " i think managing ethereum addresses is much easier uh than managing bls keys just because we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,800",
+				"to": "00:34:34,160"
+			},
+			"offsets": {
+				"from": 2068800,
+				"to": 2074160
+			},
+			"text": " already got trezles and everyone's familiar with it so yeah one really important point is that once"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,160",
+				"to": "00:34:38,720"
+			},
+			"offsets": {
+				"from": 2074160,
+				"to": 2078720
+			},
+			"text": " you have switched to an ox o1 key once you've got any theory address whether you started with it"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,720",
+				"to": "00:34:45,920"
+			},
+			"offsets": {
+				"from": 2078720,
+				"to": 2085920
+			},
+			"text": " or whether you switch through this new system that's it you can't change it again um and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,920",
+				"to": "00:34:49,200"
+			},
+			"offsets": {
+				"from": 2085920,
+				"to": 2089200
+			},
+			"text": " concerns around that because people want to change it but generally the reason you'd want to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,200",
+				"to": "00:34:54,480"
+			},
+			"offsets": {
+				"from": 2089200,
+				"to": 2094480
+			},
+			"text": " it is because you've gone and lost the key to that or you typed in the wrong address or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,480",
+				"to": "00:35:00,080"
+			},
+			"offsets": {
+				"from": 2094480,
+				"to": 2100080
+			},
+			"text": " don't make that mistake it's like transferring money to that address right it's gone there is no"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:00,080",
+				"to": "00:35:04,560"
+			},
+			"offsets": {
+				"from": 2100080,
+				"to": 2104560
+			},
+			"text": " way to get it back if you don't control the key uh because as we talked about before it's the"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:04,560",
+				"to": "00:35:10,240"
+			},
+			"offsets": {
+				"from": 2104560,
+				"to": 2110240
+			},
+			"text": " withdrawal key that has stolen the money so if you tell us that ox 000 000 then i'll address"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,240",
+				"to": "00:35:14,960"
+			},
+			"offsets": {
+				"from": 2110240,
+				"to": 2114960
+			},
+			"text": " owns your eth well now it does um and you're not going to get it back and there's really very"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:14,960",
+				"to": "00:35:20,320"
+			},
+			"offsets": {
+				"from": 2114960,
+				"to": 2120320
+			},
+			"text": " little we can do about that well there's nothing we can do about that for sure i think um we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,320",
+				"to": "00:35:24,080"
+			},
+			"offsets": {
+				"from": 2120320,
+				"to": 2124080
+			},
+			"text": " going to see a lot of work and there was actually a talk by a test and just briefly beforehand where"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,080",
+				"to": "00:35:29,760"
+			},
+			"offsets": {
+				"from": 2124080,
+				"to": 2129760
+			},
+			"text": " it's now that we can have like solidity contract addresses you can program your like change of"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,760",
+				"to": "00:35:33,760"
+			},
+			"offsets": {
+				"from": 2129760,
+				"to": 2133760
+			},
+			"text": " ownership in there and not like add with some cryptography or any sort of like multi-seag or"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:33,760",
+				"to": "00:35:38,160"
+			},
+			"offsets": {
+				"from": 2133760,
+				"to": 2138160
+			},
+			"text": " anything too weird yeah and that's absolutely a big part of the reason that we've gone with such"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,160",
+				"to": "00:35:43,280"
+			},
+			"offsets": {
+				"from": 2138160,
+				"to": 2143280
+			},
+			"text": " a simple approach to withdrawals we don't need to do anything fancy on the consensus layer side"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,280",
+				"to": "00:35:49,280"
+			},
+			"offsets": {
+				"from": 2143280,
+				"to": 2149280
+			},
+			"text": " because you've now got the full power of the EVM um to to work with things and and have"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:49,280",
+				"to": "00:35:54,000"
+			},
+			"offsets": {
+				"from": 2149280,
+				"to": 2154000
+			},
+			"text": " upgradable contracts or split contracts or all kinds of things there um that let you"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:54,000",
+				"to": "00:36:00,000"
+			},
+			"offsets": {
+				"from": 2154000,
+				"to": 2160000
+			},
+			"text": " have this behavior so think hard about what address you said is your withdrawal address"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,000",
+				"to": "00:36:05,280"
+			},
+			"offsets": {
+				"from": 2160000,
+				"to": 2165280
+			},
+			"text": " i would say for most homesakers it should be something like from your trace or you know your"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,280",
+				"to": "00:36:10,960"
+			},
+			"offsets": {
+				"from": 2165280,
+				"to": 2170960
+			},
+			"text": " hardware wallet that that is very safe and very secure and simple keep it simple you don't need"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,960",
+				"to": "00:36:16,080"
+			},
+			"offsets": {
+				"from": 2170960,
+				"to": 2176080
+			},
+			"text": " to do anything fancy and then you know staking providers will use something that is a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:16,080",
+				"to": "00:36:20,240"
+			},
+			"offsets": {
+				"from": 2176080,
+				"to": 2180240
+			},
+			"text": " and probably upgradable so they've got some control over it and then there's a range of people in"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:20,240",
+				"to": "00:36:25,360"
+			},
+			"offsets": {
+				"from": 2180240,
+				"to": 2185360
+			},
+			"text": " the middle where you you think about what your needs are and possibly use a a very simple contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,360",
+				"to": "00:36:28,720"
+			},
+			"offsets": {
+				"from": 2185360,
+				"to": 2188720
+			},
+			"text": " that could be upgraded but could also just kind of hold the funds and send them to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,720",
+				"to": "00:36:34,000"
+			},
+			"offsets": {
+				"from": 2188720,
+				"to": 2194000
+			},
+			"text": " for sure yeah i think um the you've touched on one of the things that we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,000",
+				"to": "00:36:39,600"
+			},
+			"offsets": {
+				"from": 2194000,
+				"to": 2199600
+			},
+			"text": " show up over the next few years and this is the EVM having more control over the consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,600",
+				"to": "00:36:43,760"
+			},
+			"offsets": {
+				"from": 2199600,
+				"to": 2203760
+			},
+			"text": " because as you pointed out right now you're writing a dress and money will show up but like no code"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:43,760",
+				"to": "00:36:50,000"
+			},
+			"offsets": {
+				"from": 2203760,
+				"to": 2210000
+			},
+			"text": " is going to execute and that's about it um how do you think that's going to change and what is the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:50,000",
+				"to": "00:36:55,840"
+			},
+			"offsets": {
+				"from": 2210000,
+				"to": 2215840
+			},
+			"text": " i don't know consensus layer API gonna look like in three years time i'm really hoping it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,840",
+				"to": "00:37:01,120"
+			},
+			"offsets": {
+				"from": 2215840,
+				"to": 2221120
+			},
+			"text": " ever get a say um i'm really hoping this stays a one way thing from the consensus layer pushing"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,120",
+				"to": "00:37:07,840"
+			},
+			"offsets": {
+				"from": 2221120,
+				"to": 2227840
+			},
+			"text": " to the ethereum layer or to the to the execution layer um because it's dramatically simpler uh to"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,840",
+				"to": "00:37:13,440"
+			},
+			"offsets": {
+				"from": 2227840,
+				"to": 2233440
+			},
+			"text": " get the EVM to call out to the consensus layer is a big deal and a really big challenge we've kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,440",
+				"to": "00:37:18,800"
+			},
+			"offsets": {
+				"from": 2233440,
+				"to": 2238800
+			},
+			"text": " of done it with deposits and it's the worst code in any any consensus client is tracking those"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:18,800",
+				"to": "00:37:24,080"
+			},
+			"offsets": {
+				"from": 2238800,
+				"to": 2244080
+			},
+			"text": " deposits and we want to simplify it now we've merged um but there isn't a generic system for"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:24,080",
+				"to": "00:37:30,640"
+			},
+			"offsets": {
+				"from": 2244080,
+				"to": 2250640
+			},
+			"text": " passing messages from the EVM back to the consensus layer and it's a big deal to die and design it"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,640",
+				"to": "00:37:36,240"
+			},
+			"offsets": {
+				"from": 2250640,
+				"to": 2256240
+			},
+			"text": " yeah definitely all right but read hopefully i hope that the consensus layer can start to push"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,240",
+				"to": "00:37:40,800"
+			},
+			"offsets": {
+				"from": 2256240,
+				"to": 2260800
+			},
+			"text": " some information about itself into the EVM so that you can you know do proofs if to beacon state"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,800",
+				"to": "00:37:47,360"
+			},
+			"offsets": {
+				"from": 2260800,
+				"to": 2267360
+			},
+			"text": " routes but i'm with Adrian um yeah i wouldn't go in the other way it would be very painful for sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,360",
+				"to": "00:37:51,440"
+			},
+			"offsets": {
+				"from": 2267360,
+				"to": 2271440
+			},
+			"text": " yeah definitely don't want to go the other way but as you said being able to read things about"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:51,440",
+				"to": "00:37:55,440"
+			},
+			"offsets": {
+				"from": 2271440,
+				"to": 2275440
+			},
+			"text": " the consensus layer i think is going to become very important because one of the things that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,440",
+				"to": "00:37:59,200"
+			},
+			"offsets": {
+				"from": 2275440,
+				"to": 2279200
+			},
+			"text": " look at with all of the liquid staking pools is for the last two years these were two totally"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:59,200",
+				"to": "00:38:03,920"
+			},
+			"offsets": {
+				"from": 2279200,
+				"to": 2283920
+			},
+			"text": " separate chains and there was like no information passed even still post-mers there is still more"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,920",
+				"to": "00:38:09,120"
+			},
+			"offsets": {
+				"from": 2283920,
+				"to": 2289120
+			},
+			"text": " less no information being swapped but all of these pools more or less of oracles to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,120",
+				"to": "00:38:13,280"
+			},
+			"offsets": {
+				"from": 2289120,
+				"to": 2293280
+			},
+			"text": " what's happening over in the consensus layer side and i want to take the chance maybe to talk to"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:13,280",
+				"to": "00:38:20,000"
+			},
+			"offsets": {
+				"from": 2293280,
+				"to": 2300000
+			},
+			"text": " Vasily a little bit about how does exits work for something like Lido because you guys are you"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:20,000",
+				"to": "00:38:26,000"
+			},
+			"offsets": {
+				"from": 2300000,
+				"to": 2306000
+			},
+			"text": " know a liquid staking token and you're soon going to be able to offer redemption for the first time"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:26,000",
+				"to": "00:38:32,640"
+			},
+			"offsets": {
+				"from": 2306000,
+				"to": 2312640
+			},
+			"text": " but the redemption queue is very bandwidth constrained so how does that work for Lido trying to allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:32,640",
+				"to": "00:38:38,960"
+			},
+			"offsets": {
+				"from": 2312640,
+				"to": 2318960
+			},
+			"text": " people to exchange their ste for really at some point you know in the near future what's that gonna"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:38,960",
+				"to": "00:38:45,200"
+			},
+			"offsets": {
+				"from": 2318960,
+				"to": 2325200
+			},
+			"text": " look like yeah so um we haven't settled on the final design yet so what i'm talking about is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:45,200",
+				"to": "00:38:52,400"
+			},
+			"offsets": {
+				"from": 2325200,
+				"to": 2332400
+			},
+			"text": " walking uh walk-in progress solution right um it's almost ready though for like presentation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:52,400",
+				"to": "00:38:59,760"
+			},
+			"offsets": {
+				"from": 2332400,
+				"to": 2339760
+			},
+			"text": " walking in for photo-doubt etc but the drift of it the best solution we can do is to reflect the"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:59,760",
+				"to": "00:39:06,240"
+			},
+			"offsets": {
+				"from": 2339760,
+				"to": 2346240
+			},
+			"text": " withdrawal queue in on the execution layer we like try like looked at multiple different approaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:06,240",
+				"to": "00:39:15,040"
+			},
+			"offsets": {
+				"from": 2346240,
+				"to": 2355040
+			},
+			"text": " like all auctions for for the like for the place in the queue some kind of buffers for withdrawals"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:15,040",
+				"to": "00:39:24,560"
+			},
+			"offsets": {
+				"from": 2355040,
+				"to": 2364560
+			},
+			"text": " etc etc and it all i think is like strictly inferior to allowing people to place their like requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:24,560",
+				"to": "00:39:30,000"
+			},
+			"offsets": {
+				"from": 2364560,
+				"to": 2370000
+			},
+			"text": " to withdrawal and we put them in a queue on the beacon chain and withdrawal happens and they get"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:30,000",
+				"to": "00:39:36,400"
+			},
+			"offsets": {
+				"from": 2370000,
+				"to": 2376400
+			},
+			"text": " their there was roles when they time in the queue passes so that's probably going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,400",
+				"to": "00:39:42,000"
+			},
+			"offsets": {
+				"from": 2376400,
+				"to": 2382000
+			},
+			"text": " it's pretty like it's pretty complicated because like there are multiple asynchronous"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:42,000",
+				"to": "00:39:49,600"
+			},
+			"offsets": {
+				"from": 2382000,
+				"to": 2389600
+			},
+			"text": " processes happening like the withdrawal requests the oracle reports about what happens on the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:49,600",
+				"to": "00:39:53,040"
+			},
+			"offsets": {
+				"from": 2389600,
+				"to": 2393040
+			},
+			"text": " chain like you said right we like the needs information what's happening beacon chain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:53,040",
+				"to": "00:40:00,320"
+			},
+			"offsets": {
+				"from": 2393040,
+				"to": 2400320
+			},
+			"text": " we can't get in real time it's uh it's uh just impossible right so um oracle requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:00,320",
+				"to": "00:40:06,800"
+			},
+			"offsets": {
+				"from": 2400320,
+				"to": 2406800
+			},
+			"text": " slashings and slashing side like we haven't had any uh you know left time in lido but like"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,800",
+				"to": "00:40:15,360"
+			},
+			"offsets": {
+				"from": 2406800,
+				"to": 2415360
+			},
+			"text": " if it happens it's like 35 days process at least and somewhere in the middle it has an uncertain"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:15,360",
+				"to": "00:40:20,960"
+			},
+			"offsets": {
+				"from": 2415360,
+				"to": 2420960
+			},
+			"text": " amount of slashing penalty which no one knows like until it happens how much it is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:20,960",
+				"to": "00:40:24,800"
+			},
+			"offsets": {
+				"from": 2420960,
+				"to": 2424800
+			},
+			"text": " because it's like depends on the amount of slashing that like are accumulated up to this point"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:24,800",
+				"to": "00:40:30,960"
+			},
+			"offsets": {
+				"from": 2424800,
+				"to": 2430960
+			},
+			"text": " so when you combine the all the asynchronous process and you need to like give people exactly the"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:30,960",
+				"to": "00:40:37,520"
+			},
+			"offsets": {
+				"from": 2430960,
+				"to": 2437520
+			},
+			"text": " amount they like they they they need to get uh it's becoming pretty complex protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:37,520",
+				"to": "00:40:44,800"
+			},
+			"offsets": {
+				"from": 2437520,
+				"to": 2444800
+			},
+			"text": " but in favor of whether it's just the same queue as uh on consensus layer reflected on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:44,800",
+				"to": "00:40:52,480"
+			},
+			"offsets": {
+				"from": 2444800,
+				"to": 2452480
+			},
+			"text": " execution layer as um like basically vouchers or for the place in the queue. Sweet um awesome"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:52,480",
+				"to": "00:40:56,240"
+			},
+			"offsets": {
+				"from": 2452480,
+				"to": 2456240
+			},
+			"text": " yeah that makes a lot of sense and i think you're not going to be the only one that's going to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:56,240",
+				"to": "00:40:59,760"
+			},
+			"offsets": {
+				"from": 2456240,
+				"to": 2459760
+			},
+			"text": " uh a lot of pain with these withdrawal queues very soon because everyone just thinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:59,760",
+				"to": "00:41:04,560"
+			},
+			"offsets": {
+				"from": 2459760,
+				"to": 2464560
+			},
+			"text": " withdrawals no one thinks withdrawal queue and um that actually leads me a bit to the like balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:04,560",
+				"to": "00:41:11,600"
+			},
+			"offsets": {
+				"from": 2464560,
+				"to": 2471600
+			},
+			"text": " skimming um this is another thing that gym or like fifth panelist is very like uh in favor of which"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:11,600",
+				"to": "00:41:18,080"
+			},
+			"offsets": {
+				"from": 2471600,
+				"to": 2478080
+			},
+			"text": " is if you don't have any way to take the money above 32 ether that's accumulated all of the big"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:18,080",
+				"to": "00:41:23,360"
+			},
+			"offsets": {
+				"from": 2478080,
+				"to": 2483360
+			},
+			"text": " liquid staking protocols will just start to churn their validators take off the you know three ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:23,360",
+				"to": "00:41:27,520"
+			},
+			"offsets": {
+				"from": 2483360,
+				"to": 2487520
+			},
+			"text": " off the top and like set up a new one and the queues will be like perpetually full because you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,520",
+				"to": "00:41:32,960"
+			},
+			"offsets": {
+				"from": 2487520,
+				"to": 2492960
+			},
+			"text": " why don't you just like go and like kind of skim and and restake um can anyone tell me a bit about"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:32,960",
+				"to": "00:41:37,840"
+			},
+			"offsets": {
+				"from": 2492960,
+				"to": 2497840
+			},
+			"text": " what you know skimming is going to look like because it's also changed a bit in the last few weeks"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:37,840",
+				"to": "00:41:42,560"
+			},
+			"offsets": {
+				"from": 2497840,
+				"to": 2502560
+			},
+			"text": " yeah it's a it's a very similar process to what Paul described in terms of finding of scanning"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:42,560",
+				"to": "00:41:47,440"
+			},
+			"offsets": {
+				"from": 2502560,
+				"to": 2507440
+			},
+			"text": " through the validators and just it magically happens it's pushed from the consensus layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:47,440",
+				"to": "00:41:51,920"
+			},
+			"offsets": {
+				"from": 2507440,
+				"to": 2511920
+			},
+			"text": " the the key thing is that there will be a limit to the number of validators we scan each epoch"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:51,920",
+				"to": "00:41:57,520"
+			},
+			"offsets": {
+				"from": 2511920,
+				"to": 2517520
+			},
+			"text": " to look for whether you've got money over that 32e that could be pushed to the execution layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:57,520",
+				"to": "00:42:02,080"
+			},
+			"offsets": {
+				"from": 2517520,
+				"to": 2522080
+			},
+			"text": " the reason for that is that we've got to fit it into blocks um and it's like another"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,080",
+				"to": "00:42:07,120"
+			},
+			"offsets": {
+				"from": 2522080,
+				"to": 2527120
+			},
+			"text": " aetherium transaction that goes into a block but we're not charging gas for it it just happens and"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:07,120",
+				"to": "00:42:13,440"
+			},
+			"offsets": {
+				"from": 2527120,
+				"to": 2533440
+			},
+			"text": " so we kind of have to have a rate limiting on it um to make sure that we're not effectively just"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:13,440",
+				"to": "00:42:18,640"
+			},
+			"offsets": {
+				"from": 2533440,
+				"to": 2538640
+			},
+			"text": " blowing up our block limit and and execution clients are able to process these these blocks in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:18,640",
+				"to": "00:42:23,600"
+			},
+			"offsets": {
+				"from": 2538640,
+				"to": 2543600
+			},
+			"text": " reasonable amount of time so i think it's something like every two months we get around the validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:23,600",
+				"to": "00:42:32,400"
+			},
+			"offsets": {
+				"from": 2543600,
+				"to": 2552400
+			},
+			"text": " set um but i don't think the numbers are at all set so um yeah it's those numbers in particular are"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:32,400",
+				"to": "00:42:36,400"
+			},
+			"offsets": {
+				"from": 2552400,
+				"to": 2556400
+			},
+			"text": " going to go through some research and and seeing what the impact is on execution clients of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:36,400",
+				"to": "00:42:42,000"
+			},
+			"offsets": {
+				"from": 2556400,
+				"to": 2562000
+			},
+			"text": " many or that many deposits um but it means that fairly regularly and it'll be in in that order of"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:42,000",
+				"to": "00:42:46,720"
+			},
+			"offsets": {
+				"from": 2562000,
+				"to": 2566720
+			},
+			"text": " you know low number of months i think that we're aiming for generally fairly regularly whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:46,720",
+				"to": "00:42:51,520"
+			},
+			"offsets": {
+				"from": 2566720,
+				"to": 2571520
+			},
+			"text": " you've got over the 32eath gets swept to the execution layer so you start getting your rewards on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:51,520",
+				"to": "00:42:58,160"
+			},
+			"offsets": {
+				"from": 2571520,
+				"to": 2578160
+			},
+			"text": " of the transaction rewards you get in when you propose a block now gonna say i think um i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:58,160",
+				"to": "00:43:04,240"
+			},
+			"offsets": {
+				"from": 2578160,
+				"to": 2584240
+			},
+			"text": " it's really good because the idea of a validator so a validator would say 33th exiting taking an"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:04,240",
+				"to": "00:43:11,360"
+			},
+			"offsets": {
+				"from": 2584240,
+				"to": 2591360
+			},
+			"text": " eth putting 32 back in is really bad for consensus clients because that extra validator slot um"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:11,360",
+				"to": "00:43:17,600"
+			},
+			"offsets": {
+				"from": 2591360,
+				"to": 2597600
+			},
+			"text": " they they cost us we have to store that validator forever it's more in ram um yeah it's really bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:17,600",
+				"to": "00:43:23,760"
+			},
+			"offsets": {
+				"from": 2597600,
+				"to": 2603760
+			},
+			"text": " so so the ability to take for people to take their earnings without creating a new validator index is"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:23,760",
+				"to": "00:43:28,400"
+			},
+			"offsets": {
+				"from": 2603760,
+				"to": 2608400
+			},
+			"text": " really good for the protocol yeah there were there were certainly a lot of people Jim i think leading"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:28,400",
+				"to": "00:43:32,160"
+			},
+			"offsets": {
+				"from": 2608400,
+				"to": 2612160
+			},
+			"text": " the charge moving very vocal of you've got to have partial withdrawals before you know at the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:32,160",
+				"to": "00:43:37,600"
+			},
+			"offsets": {
+				"from": 2612160,
+				"to": 2617600
+			},
+			"text": " time as withdrawals and you know as as core devs we try not to promise things until we're sure but"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:37,600",
+				"to": "00:43:42,240"
+			},
+			"offsets": {
+				"from": 2617600,
+				"to": 2622240
+			},
+			"text": " i think all of us knew yeah that was absolutely right and there was no way that we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:42,240",
+				"to": "00:43:46,880"
+			},
+			"offsets": {
+				"from": 2622240,
+				"to": 2626880
+			},
+			"text": " could manage the impact on the chain of these turning validators if we didn't have partial withdrawals"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:46,880",
+				"to": "00:43:54,480"
+			},
+			"offsets": {
+				"from": 2626880,
+				"to": 2634480
+			},
+			"text": " there is also an economic aspect of it uh if there were no skimming of rewards uh then"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:54,480",
+				"to": "00:44:00,960"
+			},
+			"offsets": {
+				"from": 2634480,
+				"to": 2640960
+			},
+			"text": " um they be cooperate like the the big stake controllers like protocols uh exchanges"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:00,960",
+				"to": "00:44:07,200"
+			},
+			"offsets": {
+				"from": 2640960,
+				"to": 2647200
+			},
+			"text": " whales etc they would get a lot of leg up against small stickers because they can afford to compound"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:07,200",
+				"to": "00:44:14,640"
+			},
+			"offsets": {
+				"from": 2647200,
+				"to": 2654640
+			},
+			"text": " and small stickers can't like it's it's very hard to them so um yeah it's like it's very right move to"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:14,640",
+				"to": "00:44:23,920"
+			},
+			"offsets": {
+				"from": 2654640,
+				"to": 2663920
+			},
+			"text": " make it like skimming rewards thing uh there like the the slight drawback of this is uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:23,920",
+				"to": "00:44:30,880"
+			},
+			"offsets": {
+				"from": 2663920,
+				"to": 2670880
+			},
+			"text": " working against the protocols uh that like staking protocols because you can't really understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:30,880",
+				"to": "00:44:36,320"
+			},
+			"offsets": {
+				"from": 2670880,
+				"to": 2676320
+			},
+			"text": " uh if the money you're getting on the withdrawal credentials comes from rewards or comes from"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:36,320",
+				"to": "00:44:42,240"
+			},
+			"offsets": {
+				"from": 2676320,
+				"to": 2682240
+			},
+			"text": " one's taking and you need to know that uh because like rewards you have to reduce you to stakers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:42,240",
+				"to": "00:44:46,640"
+			},
+			"offsets": {
+				"from": 2682240,
+				"to": 2686640
+			},
+			"text": " on staking is like something like someone was drawing something gun wrong or like new slashing"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:46,640",
+				"to": "00:44:55,280"
+			},
+			"offsets": {
+				"from": 2686640,
+				"to": 2695280
+			},
+			"text": " happened or like you you need to uh walk on it but uh it's anyway uh much better than the alternative"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:55,280",
+				"to": "00:45:00,560"
+			},
+			"offsets": {
+				"from": 2695280,
+				"to": 2700560
+			},
+			"text": " yeah i'll also echo the it makes much more sense from the compounding thing but someone trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:00,560",
+				"to": "00:45:04,800"
+			},
+			"offsets": {
+				"from": 2700560,
+				"to": 2704800
+			},
+			"text": " write like solidity to keep track of something you now don't know was this a very bad slashing or was"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:04,800",
+				"to": "00:45:09,520"
+			},
+			"offsets": {
+				"from": 2704800,
+				"to": 2709520
+			},
+			"text": " this a skim so it is a bit tricky like that um i've just one more question before we go to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:09,520",
+				"to": "00:45:15,360"
+			},
+			"offsets": {
+				"from": 2709520,
+				"to": 2715360
+			},
+			"text": " audience for a few so have a think of anything you want to ask the the panel here but um when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:15,360",
+				"to": "00:45:22,080"
+			},
+			"offsets": {
+				"from": 2715360,
+				"to": 2722080
+			},
+			"text": " capella heart four comes in and we have this ox zero to ox one upgrade how messy do you think it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:22,080",
+				"to": "00:45:27,760"
+			},
+			"offsets": {
+				"from": 2722080,
+				"to": 2727760
+			},
+			"text": " going to be is it going to be over in two blocks and it's going to be ten people is it going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:27,760",
+				"to": "00:45:34,320"
+			},
+			"offsets": {
+				"from": 2727760,
+				"to": 2734320
+			},
+			"text": " fifty thousand validators i suspect i mean probably the majority of alligators on the network uh"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:34,320",
+				"to": "00:45:40,880"
+			},
+			"offsets": {
+				"from": 2734320,
+				"to": 2740880
+			},
+			"text": " bls credentials so we'll need to switch i don't think there'll be a huge rush um i think there'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:40,880",
+				"to": "00:45:45,760"
+			},
+			"offsets": {
+				"from": 2740880,
+				"to": 2745760
+			},
+			"text": " be you know the initial burst and very likely what will happen is you will submit it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:45,760",
+				"to": "00:45:49,120"
+			},
+			"offsets": {
+				"from": 2745760,
+				"to": 2749120
+			},
+			"text": " operation pools and clients will actually be full and it'll probably get dropped from the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:49,120",
+				"to": "00:45:52,960"
+			},
+			"offsets": {
+				"from": 2749120,
+				"to": 2752960
+			},
+			"text": " and it just won't make it on to chain at all and you'll need to submit it again so we'll kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:52,960",
+				"to": "00:45:57,600"
+			},
+			"offsets": {
+				"from": 2752960,
+				"to": 2757600
+			},
+			"text": " have to work through the the usability of that because if there is a big rush it's more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:57,600",
+				"to": "00:46:03,440"
+			},
+			"offsets": {
+				"from": 2757600,
+				"to": 2763440
+			},
+			"text": " we'll keep in the memory pool basically um but i think generally it will be over time because"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:03,440",
+				"to": "00:46:07,760"
+			},
+			"offsets": {
+				"from": 2763440,
+				"to": 2767760
+			},
+			"text": " people have got to get their withdrawal keys out it's something you should take your time and do"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:07,760",
+				"to": "00:46:14,000"
+			},
+			"offsets": {
+				"from": 2767760,
+				"to": 2774000
+			},
+			"text": " safely and not rush in the first instant um and and once it's done it's over so it's it's fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:14,000",
+				"to": "00:46:18,640"
+			},
+			"offsets": {
+				"from": 2774000,
+				"to": 2778640
+			},
+			"text": " really one off yeah i think we'll have to think a lot about the tooling to easy people as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:18,640",
+				"to": "00:46:24,000"
+			},
+			"offsets": {
+				"from": 2778640,
+				"to": 2784000
+			},
+			"text": " um i know the staking i was talking to karl from the ef karlbeek um and he was saying that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:24,000",
+				"to": "00:46:30,720"
+			},
+			"offsets": {
+				"from": 2784000,
+				"to": 2790720
+			},
+			"text": " likely that the staking deposit cli tool will have the tooling to allow you to do it um and i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:30,720",
+				"to": "00:46:34,880"
+			},
+			"offsets": {
+				"from": 2790720,
+				"to": 2794880
+			},
+			"text": " it'll be a little bit easier because the staking deposit cli now kind of like makes a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:34,880",
+				"to": "00:46:43,040"
+			},
+			"offsets": {
+				"from": 2794880,
+				"to": 2803040
+			},
+			"text": " while you and then you need to put those data um and that's kind of annoying in my opinion and i"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:43,040",
+				"to": "00:46:48,160"
+			},
+			"offsets": {
+				"from": 2803040,
+				"to": 2808160
+			},
+			"text": " think what now that the api's have evolved hopefully what we can do with the staking deposit cli will"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:48,160",
+				"to": "00:46:52,720"
+			},
+			"offsets": {
+				"from": 2808160,
+				"to": 2812720
+			},
+			"text": " like you can just input you mnemonic and then tell it where a b can node is or even at like a public"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:52,720",
+				"to": "00:46:57,360"
+			},
+			"offsets": {
+				"from": 2812720,
+				"to": 2817360
+			},
+			"text": " node and then just have it publish it out to it like that but it'll be a little bit scary because"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:57,360",
+				"to": "00:47:02,560"
+			},
+			"offsets": {
+				"from": 2817360,
+				"to": 2822560
+			},
+			"text": " you have to touch some crypto stuff but i'm hoping that it'll it'll it'll be okay and i think that"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:02,560",
+				"to": "00:47:07,120"
+			},
+			"offsets": {
+				"from": 2822560,
+				"to": 2827120
+			},
+			"text": " i think i i'm keen i know adriene be keen as well to to try and make it nice and smooth for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:07,120",
+				"to": "00:47:12,640"
+			},
+			"offsets": {
+				"from": 2827120,
+				"to": 2832640
+			},
+			"text": " yeah and i would expect that we an offline option of that as well so you can generate a file of"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:12,640",
+				"to": "00:47:18,640"
+			},
+			"offsets": {
+				"from": 2832640,
+				"to": 2838640
+			},
+			"text": " you know your your switch command the operation that you can then you know put on a usb stick take"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:18,640",
+				"to": "00:47:22,800"
+			},
+			"offsets": {
+				"from": 2838640,
+				"to": 2842800
+			},
+			"text": " over to a hot thing and then send to a public beacon node yeah you could probably upload it to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:22,800",
+				"to": "00:47:26,880"
+			},
+			"offsets": {
+				"from": 2842800,
+				"to": 2846880
+			},
+			"text": " file to a web page or something like that yeah very likely and it's already pre-signed so it can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:26,880",
+				"to": "00:47:32,080"
+			},
+			"offsets": {
+				"from": 2846880,
+				"to": 2852080
+			},
+			"text": " be changed it's not a it's not a risky thing it's just like you something you move up yeah my"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:32,080",
+				"to": "00:47:37,440"
+			},
+			"offsets": {
+				"from": 2852080,
+				"to": 2857440
+			},
+			"text": " estimation is about 200 thousand validators will like rotate as soon as humanly possible like"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:37,440",
+				"to": "00:47:43,920"
+			},
+			"offsets": {
+				"from": 2857440,
+				"to": 2863920
+			},
+			"text": " safely possible uh the reason is like i know about lido we have about 50 thousand and every extra"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:43,920",
+				"to": "00:47:49,120"
+			},
+			"offsets": {
+				"from": 2863920,
+				"to": 2869120
+			},
+			"text": " second is an extra risk uh on the on this credential we don't want to do that like uh we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:49,120",
+				"to": "00:47:55,040"
+			},
+			"offsets": {
+				"from": 2869120,
+				"to": 2875040
+			},
+			"text": " reload the network of course but like as soon as humanly possible we do it um it's it's very important"
+		},
+		{
+			"timestamps": {
+				"from": "00:47:55,040",
+				"to": "00:48:06,880"
+			},
+			"offsets": {
+				"from": 2875040,
+				"to": 2886880
+			},
+			"text": " and uh about i think like 150 200 thousand of operators uh on bls credentials uh that are managed"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:06,880",
+				"to": "00:48:14,720"
+			},
+			"offsets": {
+				"from": 2886880,
+				"to": 2894720
+			},
+			"text": " by exchanges and this is a change that they want to like to pay their votes as soon as possible again"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:14,720",
+				"to": "00:48:22,560"
+			},
+			"offsets": {
+				"from": 2894720,
+				"to": 2902560
+			},
+			"text": " and like converted to liquid stake and derivatives for like studio like coin based rsvcb so um that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:22,560",
+				"to": "00:48:30,560"
+			},
+			"offsets": {
+				"from": 2902560,
+				"to": 2910560
+			},
+			"text": " going to happen also very fast like the uh the protocols and custodian that um aggregate user"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:30,560",
+				"to": "00:48:36,400"
+			},
+			"offsets": {
+				"from": 2910560,
+				"to": 2916400
+			},
+			"text": " stake they will and haven't rotated they will rotate like they will rotate as soon as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:36,400",
+				"to": "00:48:44,800"
+			},
+			"offsets": {
+				"from": 2916400,
+				"to": 2924800
+			},
+			"text": " because uh basically bls 0x00 credentials are as useful as a potato uh the only thing you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:44,800",
+				"to": "00:48:51,680"
+			},
+			"offsets": {
+				"from": 2924800,
+				"to": 2931680
+			},
+			"text": " with them is like exit or rotate and like that's just not right yeah no i'm aligned there and i do"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:51,680",
+				"to": "00:48:57,520"
+			},
+			"offsets": {
+				"from": 2931680,
+				"to": 2937520
+			},
+			"text": " think everyone will go and upgrade at like a relatively leisurely pace um but the likes of the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:48:57,520",
+				"to": "00:49:02,480"
+			},
+			"offsets": {
+				"from": 2937520,
+				"to": 2942480
+			},
+			"text": " lido's on the old ones and like i i build block demons and they're on oxo keys but the withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:02,480",
+				"to": "00:49:07,680"
+			},
+			"offsets": {
+				"from": 2942480,
+				"to": 2947680
+			},
+			"text": " keys are totally separate to the like hotkeys so i don't think there is bigger concern but i"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:07,680",
+				"to": "00:49:12,000"
+			},
+			"offsets": {
+				"from": 2947680,
+				"to": 2952000
+			},
+			"text": " unfortunately do think and they've been people that have been posting on forums like admitting to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:12,000",
+				"to": "00:49:16,320"
+			},
+			"offsets": {
+				"from": 2952000,
+				"to": 2956320
+			},
+			"text": " that they have their hotkey and they're like validating key on the same mnemonic and they left"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:16,320",
+				"to": "00:49:20,880"
+			},
+			"offsets": {
+				"from": 2956320,
+				"to": 2960880
+			},
+			"text": " that on their like validator machine or something similar and that's been compromised and the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:20,880",
+				"to": "00:49:25,440"
+			},
+			"offsets": {
+				"from": 2960880,
+				"to": 2965440
+			},
+			"text": " is is you know i think there's at least 10 if not a bit more gym has probably good data on it but"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:25,440",
+				"to": "00:49:34,720"
+			},
+			"offsets": {
+				"from": 2965440,
+				"to": 2974720
+			},
+			"text": " um when cappella goes live for those first couple blocks there will be an awful amount of mev"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:34,720",
+				"to": "00:49:37,760"
+			},
+			"offsets": {
+				"from": 2974720,
+				"to": 2977760
+			},
+			"text": " on the table for you know there'll be two people that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:37,760",
+				"to": "00:49:43,760"
+			},
+			"offsets": {
+				"from": 2977760,
+				"to": 2983760
+			},
+			"text": " do"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:43,760",
+				"to": "00:49:47,760"
+			},
+			"offsets": {
+				"from": 2983760,
+				"to": 2987760
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:49:47,760",
+				"to": "00:50:16,760"
+			},
+			"offsets": {
+				"from": 2987760,
+				"to": 3016760
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

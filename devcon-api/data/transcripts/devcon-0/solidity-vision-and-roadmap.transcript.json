@@ -1,0 +1,3838 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 16000
+			},
+			"text": " Hello again everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 22000
+			},
+			"text": " Welcome to day two of DevCon Zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 32000
+			},
+			"text": " I'm going to start by talking a little bit about Solidity, the new contract language."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 36000
+			},
+			"text": " And then Christian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 38000
+			},
+			"text": " Oh it's Christian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 46000
+			},
+			"text": " Christian is going to continue with the implementation of a lot more sort of details and roadmap of the future of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 64000
+			},
+			"text": " So I'm just going to basically go into what drove the original sort of need for a new language."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 69000
+			},
+			"text": " So our main issue is that we need people, lots of people to write contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 78000
+			},
+			"text": " And as often as is brought up, these contracts need to be correct because once they're on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " unless you've got some sort of update mechanism in place, but that brings along a whole slew of other questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " like how do you trust that the updates are going to be legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " So these are the two main things that we're concerned with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 101000
+			},
+			"text": " Lots of people are able to write contracts and that these contracts are correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 112000
+			},
+			"text": " So one of the obvious ways of getting more people to write contracts is to allow them to write it in a language that they're already reasonably familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 124000
+			},
+			"text": " So since a lot of our prospective developers are going to be people who already understand web technologies, HTML JavaScript, CSS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 136000
+			},
+			"text": " it makes some sense to have the contract language be syntactically similar to one of these, the JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 142000
+			},
+			"text": " Leverage the existing skill set as it's there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 150000
+			},
+			"text": " We also need to, a language is only as good as the concepts it can express easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 160000
+			},
+			"text": " So it makes sense to build in the concepts that we know we're going to need to use often."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 168000
+			},
+			"text": " A contract language, it makes sense to have contracts as a first class citizen in that language."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 176000
+			},
+			"text": " So what we do is we take the notion of contracts and we take a paradigm that already exists, object-oriented programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 189000
+			},
+			"text": " And if you think about it, contracts can very easily be considered classes or objects depending on whether you look upon the instance of the contract or the contract, the prototype of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 194000
+			},
+			"text": " And so we base the language around this notion."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " Similarly, within Ethereum, contracts have storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 209000
+			},
+			"text": " Now, having to store things in terms of literals is almost like having a beautiful high-level language and having to store your integers as bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 211000
+			},
+			"text": " It doesn't really make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 218000
+			},
+			"text": " So what we do is we say, right, well, we are going to support the storage, but we're going to do so with an abstraction layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 231000
+			},
+			"text": " And actually what the programmers see is just what they used to, just to say usable types, strings, structures, integers of various sizes, billions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 235000
+			},
+			"text": " And then finally, contracts do a lot of I/O."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 243000
+			},
+			"text": " Whereas in normal object-oriented languages, you may have ways of passing parameters in parameters and out parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 247000
+			},
+			"text": " C++, for instance, uses pointers or references to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 257000
+			},
+			"text": " If you've got -- there are language idioms that allow you to have multiple outputs as part of it, again, a first-class portion of the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 258000
+			},
+			"text": " I believe Go is one of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 262000
+			},
+			"text": " Jeff will probably be able to confirm that wherever you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 263000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 272000
+			},
+			"text": " And so this makes a lot of sense within contracts where we are going to want to call things in and then take data out of the contract without having to worry about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 278000
+			},
+			"text": " Without having to worry about things like references."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 281000
+			},
+			"text": " So then we come on to making things -- how do we make things correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " How do we make it most likely that these contracts are going to be correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 292000
+			},
+			"text": " Well, the most obvious way is unit testing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 301000
+			},
+			"text": " But unit testing, at least with traditional sort of basic unit testing frameworks, is going to require effort, at least a small amount of effort, from the programmer to --"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 303000
+			},
+			"text": " to put the unit testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 314000
+			},
+			"text": " So what we do is we devise the language, or at least the language development environment combination, to make unit tests actually easier to have in than not."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 322000
+			},
+			"text": " So we do things like all the way they have, a space where the unit test goes, and then the ability just to press enter and you get another unit test."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 332000
+			},
+			"text": " So just make it incredibly easy to place the expected results, or a set of expected results, in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 350000
+			},
+			"text": " The second thing that really helps us guarantee that a contract is operating according to specification, for some simpler specification than the definition of the contract in code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 353000
+			},
+			"text": " is this notion of formal proofing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357000
+			},
+			"text": " So who is familiar with formal proofing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360000
+			},
+			"text": " Anyone? That's all? A little bit? Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 374000
+			},
+			"text": " So formal proofing is the notion that you can describe, you can specify, you can specify some expectation of a program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 380000
+			},
+			"text": " and that this expectation can either be proved or not proved."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 386000
+			},
+			"text": " But that happens at the point of compilation, not at the point of running the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 397000
+			},
+			"text": " So you can specify, for instance, that you expect no matter what state the program gets into, you can expect that all the balances will add up to a particular number."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 407000
+			},
+			"text": " And what you can do is if your program is written using a particular non-turing complete, but not a particular language, it's still relatively rich, sub-set of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 417000
+			},
+			"text": " You can use this, that well, a compiler can use this at compile time, in order to guarantee that that statement always remains correct, always, no matter what."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 428000
+			},
+			"text": " As long as you only use the methods, but of course there's no other way in Ethereum than to use the methods, that will always remain true."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 440000
+			},
+			"text": " This is used in existing, I think it's used in a lot of safety-critical environments, nuclear power plants, I believe, use techniques like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 449000
+			},
+			"text": " The big engines that you see on the side of airliners, the reverse thrust mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 455000
+			},
+			"text": " This also uses, what is the microcontroller for that? It also uses formal proofing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 462000
+			},
+			"text": " I know that because my audio university helped develop that particular piece of technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 475000
+			},
+			"text": " It's in use already, but it's not widely used. It makes some sense for contracts, which cannot be changed once they're in there, to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 477000
+			},
+			"text": " The final thing is the documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 482000
+			},
+			"text": " Documentation is absolutely fundamental to our security model."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 489000
+			},
+			"text": " When the decentralized application wants to make a transaction with the blockchain, wants to sign something with the user's key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 497000
+			},
+			"text": " it's really, really important that the user can read a statement as to what is going on with their key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 500000
+			},
+			"text": " Because if they can't do that, we're back to step one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 514000
+			},
+			"text": " This is absolutely fundamental to this notion of having a more trustworthy interface to massively multi-user applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 519000
+			},
+			"text": " We build the documentation system into the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 527000
+			},
+			"text": " Now, this is, you could argue that Doxygen, Java doc, already have something similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 533000
+			},
+			"text": " What we're going to do is build on that and we're going to have, rather than just placeholders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 541000
+			},
+			"text": " actually have a value-weightable expressions within the documentation itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 546000
+			},
+			"text": " So, contracts as first-class citizens. Here's an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 554000
+			},
+			"text": " Can I stand in any one place that will allow everybody to see probably not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 557000
+			},
+			"text": " This gets most people, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 566000
+			},
+			"text": " So, you've got the idea that people who code a bit in C++ will probably, this will, oh dear, you can boil you to the wrong questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570000
+			},
+			"text": " You should eventually read the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " So, it looks a little bit like a class, as you might expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 579000
+			},
+			"text": " When you've got set and get, you pass a parameter into one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 590000
+			},
+			"text": " This should read function get returns, you went, oh, the other slides are correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 595000
+			},
+			"text": " And then you would use it by saying, oh, we've got an instance of this contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " Ignore how we actually get that instance for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 603000
+			},
+			"text": " We'll do the set-up, just call the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 610000
+			},
+			"text": " So, super easy, although styled, interfacing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 619000
+			},
+			"text": " Yeah, I mean, sorry, I didn't talk about why, in the case it's quite encouraging, like, just one of them should just be a function or a life."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 624000
+			},
+			"text": " Why do I really find this a contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 627000
+			},
+			"text": " I'll answer that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 639000
+			},
+			"text": " So, if we move on to the storage facilities, again, it should be relatively easy to see that we have this notion of a state, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 643000
+			},
+			"text": " which is also known as the field, the members of a class."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 646000
+			},
+			"text": " In this case, it's a Uint."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 652000
+			},
+			"text": " And then we can define our set as just setting it and our get as returning."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 668000
+			},
+			"text": " So, this to a C++ program will be super, super simple, but to a JavaScript program as well, this portion of it will also be reasonably familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 679000
+			},
+			"text": " The returns bit is a bit different, and the fact it's tight, but can't really get around with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 688000
+			},
+			"text": " Now, the storage facilities extend, so what we also are able to do is map, and this is a fundamental construct in this language."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 699000
+			},
+			"text": " We can provide a mapping from an original domain range range."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 710000
+			},
+			"text": " From an original range, in this case the range of addresses, so this is the type of address, which is a 160-bit integer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 718000
+			},
+			"text": " into some arbitrary domain, in this case endpoints, and we've specified an endpoint as being IPv4."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721000
+			},
+			"text": " This is a bit C."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 725000
+			},
+			"text": " The syntax is still up for alteration."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 739000
+			},
+			"text": " If anybody here has some ideas to make it slightly more JavaScript-y without making it too difficult to pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 752000
+			},
+			"text": " Then we have the idea of setting, we can make a new one, assign it, super easy stuff, and delete for killing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 762000
+			},
+			"text": " Very edit returns, so if you want to get the information of an address, we can specify it to return times."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 766000
+			},
+			"text": " Easy enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 771000
+			},
+			"text": " The formal proofing is probably the most interesting and challenging part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " I imagine Kristian is looking forward to that particular portion of the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 786000
+			},
+			"text": " The idea behind it is that we have, here's an example of a cache contract, so you give to somebody some amount,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 792000
+			},
+			"text": " and you check that the amount is greater in the call as balanced, and you subtract it, and add it to the destination."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 795000
+			},
+			"text": " Check the balance, that's easy enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 801000
+			},
+			"text": " We can add a mapping, map our address to a numeric type, and that's the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 804000
+			},
+			"text": " It's getting easy enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 808000
+			},
+			"text": " We've got this construction, so this is the initializer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 815000
+			},
+			"text": " We're just going to initialize whoever created the contract to a billion or whatever, some pre-mind amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 817000
+			},
+			"text": " Then we have an invariant."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 819000
+			},
+			"text": " This is the really clever bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 832000
+			},
+			"text": " This is the bit that says, at all times, no matter what, this contract must always satisfy this piece of sort of prototypical set theoretic maps."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 840000
+			},
+			"text": " What we're actually doing is we're going to reduce the value of, so in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 847000
+			},
+			"text": " taking each item in the balances and just taking the balance itself rather than the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:15,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 855000
+			},
+			"text": " We're going to map that to balance, just get a set of addresses, and we're going to reduce that set of addresses with a plus operator."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 855000,
+				"to": 858000
+			},
+			"text": " That's to say, we're going to sum them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 865000
+			},
+			"text": " What we're saying is that some of the balances should always equal a billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 875000
+			},
+			"text": " What the compiler is able to do is go through the only non-const, the only mutable method."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 892000
+			},
+			"text": " The only method that actually changes the state, which is this one, and do a formal proof of this code to check that if it satisfies this constraint at the beginning and this code executes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " it will always satisfy the constraint at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 898000
+			},
+			"text": " In this particular case, it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 911000
+			},
+			"text": " The compiler would be happy. What that gets the author is the ability to state in the documentation that for this line of code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 916000
+			},
+			"text": " it says, at all times, total balances will be a billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 923000
+			},
+			"text": " Someone coming to this contract who maybe has some reputation, it could be like the Ethereum Foundation or the EFA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 935000
+			},
+			"text": " I don't know if whoever it is, will be able to check that line of code indeed is a well representative of the documentation line above it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 937000
+			},
+			"text": " Give that a tick. That's valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 941000
+			},
+			"text": " Then they don't need to check anything else because the compiler does it for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 952000
+			},
+			"text": " When the user comes along and they say, \"The foundation ticked this line that says cash at all times in this contract is a billion.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 955000
+			},
+			"text": " They can trust it. They're like, \"Great.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 959000
+			},
+			"text": " In none of that, did we have to actually look at this code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 962000
+			},
+			"text": " - Why do you need a foundation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 965000
+			},
+			"text": " - I'll come to it at the end of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 970000
+			},
+			"text": " The final thing is the in-jolt docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 972000
+			},
+			"text": " That's kind of what I was saying earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:19,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 979000
+			},
+			"text": " We have the docs.gen style at the moment, triple slash, which I guess most of you are probably familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 979000,
+				"to": 984000
+			},
+			"text": " The interesting thing of this is the back tick."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 993000
+			},
+			"text": " The back tick allows us to insert arbitrary expressions, JavaScript expressions, into the documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 997000
+			},
+			"text": " What this does is it provides a notice for the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1004000
+			},
+			"text": " When the user clicks through on some DAP and gets a transaction, the DAP wants to submit the transaction into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1012000
+			},
+			"text": " This is the message that comes up in the browser before it signs it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1017000
+			},
+			"text": " There's a sort of black box in the browser that contains all the secret keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1025000
+			},
+			"text": " Ultimately, this could be controlled actually not in the browser itself, but it could be controlled by a trusted computing portion of the hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1030000
+			},
+			"text": " Something for which even the operating system doesn't have access."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1037000
+			},
+			"text": " What this would bring up a message, it would say transfers, and then it wouldn't actually say the score amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1039000
+			},
+			"text": " It would say the actual amount, it would place the amount in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1047000
+			},
+			"text": " It would evaluate what the score amount is and then stream it into this text."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1053000
+			},
+			"text": " Cash from your account, message.coil, it would give you either the name if you've got a name attached to it from name ridges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1066000
+			},
+			"text": " or just the hex or maybe even a little graphic to the account controlled by and then the same thing, but the destination."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1068000
+			},
+			"text": " Return to the cache, don't really care about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " Then you've got the construction creator of the contract is endowed with a balance of a billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1076000
+			},
+			"text": " That's easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1081000
+			},
+			"text": " It would probably insert the message.coil, obviously, if you get the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1084000
+			},
+			"text": " Finally, this magic line."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1086000
+			},
+			"text": " Total cash in the system is always a billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1095000
+			},
+			"text": " This is the thing that the auditor, or whoever, whoever is, there are many auditors, it's decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1097000
+			},
+			"text": " Check this line."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:20,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1100000
+			},
+			"text": " That's fine, that means this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1100000,
+				"to": 1103000
+			},
+			"text": " That's the magic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1110000
+			},
+			"text": " When the user comes to look at it, they get an absolutely trustable statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1113000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1120000
+			},
+			"text": " Those are the basic driving factors and rough solutions to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1123000
+			},
+			"text": " Christian is now going to go into a little more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1132000
+			},
+			"text": " Then we'll do a question and answer session at the end and then you can bring it before you start."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1141000
+			},
+			"text": " Okay, so, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1147000
+			},
+			"text": " Let's see how this is all implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1149000
+			},
+			"text": " First, what were the requirements for solute?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1151000
+			},
+			"text": " Gavin told us about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1156000
+			},
+			"text": " It's a contract-oriented language, which means that classes are contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:23,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1163000
+			},
+			"text": " It is statically typed from the syntax close to JavaScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1163000,
+				"to": 1169000
+			},
+			"text": " When you are typed to JavaScript, you get something which is close to C or C++."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1176000
+			},
+			"text": " The built-in language documentation and some language subset that allows form-and-proofs of correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1183000
+			},
+			"text": " Yeah, so, coincidentally, this is exactly the contract Gavin also showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1192000
+			},
+			"text": " We already know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1198000
+			},
+			"text": " Then the UBCRishes coin contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1203000
+			},
+			"text": " There we see something we've not seen in Gavin's talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1209000
+			},
+			"text": " The language is statically typed, but still it's not necessary to always specify the types."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1217000
+			},
+			"text": " You have this keyword var, which can be used for local variables and it's similar to C++11's auto keyword,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1223000
+			},
+			"text": " which means the type is just taken from the first assignment to this variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1228000
+			},
+			"text": " I think that's quite convenient."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1234000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1244000
+			},
+			"text": " Then we see something users can define their own types, so they can define structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1254000
+			},
+			"text": " Then mappings can map basic types to any type, so we can have a struct as the value type."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:20:57,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1257000
+			},
+			"text": " We can also have mappings again as value types."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1257000,
+				"to": 1265000
+			},
+			"text": " We can also have contracts as value types."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1274000
+			},
+			"text": " This vote is the struct type here, so you can retrieve from the storage, from this mapping"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1279000
+			},
+			"text": " here the value which is stored at the sender's address."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1286000
+			},
+			"text": " Then assign values to this local variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1293000
+			},
+			"text": " This actually assigns it directly to storage because a vote is not a local variable that is stored on the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1303000
+			},
+			"text": " It's just a reference to storage, so you can directly access storage here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:44,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1304000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1304000,
+				"to": 1308000
+			},
+			"text": " Some details about the combination process."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1310000
+			},
+			"text": " It consists of six stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1313000
+			},
+			"text": " The first stage is just parsing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1319000
+			},
+			"text": " After parsing we have the basic abstract syntax tree, so we know the structure of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:13,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1333000
+			},
+			"text": " The next step is resolving identifiers, so words, identifiers, strings can refer to user defined type names that can refer to function names, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1333000,
+				"to": 1340000
+			},
+			"text": " These are all resolved in their respective scope and assigned in the abstract syntax tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1349000
+			},
+			"text": " After that step it's possible to infer and check the types, so that assignments do not conflict in types."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1356000
+			},
+			"text": " Functions are called with the correct number of arguments and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1369000
+			},
+			"text": " After this third step it's possible for an IDE to actually use the abstract syntax tree for things like auto-completion or checking where a variable is used."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1373000
+			},
+			"text": " All this nice stuff we want to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1386000
+			},
+			"text": " The fourth step is compilation to an assembly language, then this assembly language is optimized and finally compiled to bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1391000
+			},
+			"text": " Some details about the type system."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:21,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1401000
+			},
+			"text": " Statically typed means that all expressions in this language have a fixed type that is known at compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,000",
+				"to": "00:23:28,000"
+			},
+			"offsets": {
+				"from": 1401000,
+				"to": 1408000
+			},
+			"text": " So it's not possible for an operation to involve two different types, so you cannot add a string to a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,000",
+				"to": "00:23:37,000"
+			},
+			"offsets": {
+				"from": 1408000,
+				"to": 1417000
+			},
+			"text": " But it is possible to do manual type conversions, so if you manually explicitly convert the integer to a string then you can add them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1417000,
+				"to": 1426000
+			},
+			"text": " At some points automatic type conversions are done if it makes sense and if no information is lost."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1428000
+			},
+			"text": " So we will see in a later."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:57,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1437000
+			},
+			"text": " The types that are currently implemented are unsigned integers and hashes of various sizes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,000",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1437000,
+				"to": 1446000
+			},
+			"text": " The size in bits from 8 bits to 256 bits in 8 bit steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1456000
+			},
+			"text": " The difference between integers and hashes is that arithmetic operations are not allowed for hashes because it doesn't make sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:38,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1478000
+			},
+			"text": " A special case of 160 bit hash is address where, so for an address not even bit operations are allowed, but instead you can, yeah, you can send ether to that address or query the balance at the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1478000,
+				"to": 1487000
+			},
+			"text": " Then we have Boolean type, mapping, strats and contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1492000
+			},
+			"text": " Later we will also have strings, but that's not implemented yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1495000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1499000
+			},
+			"text": " I hope you've seen this already."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1510000
+			},
+			"text": " This is also available online. It's the Solidity compiler, compiled to JavaScript to be run offline in a browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1524000
+			},
+			"text": " So, sorry, that's what always happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:28,000"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1528000
+			},
+			"text": " Okay, so this is a basic contract without any component."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,000",
+				"to": "00:25:47,000"
+			},
+			"offsets": {
+				"from": 1528000,
+				"to": 1547000
+			},
+			"text": " On the right hand side we see the compiled op-curve, the compiled binary or hex version of the binary, more detailed assembly, and at the bottom we have the abstract syntax string."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,000",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1547000,
+				"to": 1557000
+			},
+			"text": " And if I enter something in the function, we will see the types that are inferred from these literals."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1561000
+			},
+			"text": " So, the type of literals always the smallest type where it fits."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:04,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1564000
+			},
+			"text": " In this case it's an 8 bit unsighted integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,000",
+				"to": "00:26:12,000"
+			},
+			"offsets": {
+				"from": 1564000,
+				"to": 1572000
+			},
+			"text": " And if we add an 8 bit unsighted integer to an 8 bit unsighted integer, we again get an 8 bit unsighted integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,000",
+				"to": "00:26:14,000"
+			},
+			"offsets": {
+				"from": 1572000,
+				"to": 1574000
+			},
+			"text": " Nothing too fancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1574000,
+				"to": 1588000
+			},
+			"text": " So, it gets interesting when we use larger values, so 7000 and 16 bit unsighted integer and we add an 8 bit unsighted integer to an 16 bit unsighted integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1593000
+			},
+			"text": " This 8 bit integer is implicitly converted to a 16 bit integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:38,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1598000
+			},
+			"text": " And what if you add 200, 200?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,000",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1598000,
+				"to": 1603000
+			},
+			"text": " So, the type system ignores overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:27:02,000"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1622000
+			},
+			"text": " So, it's just about, yeah, so one, we always know that the type of the result of a binary operation is one of the types of the operands."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,000",
+				"to": "00:27:08,000"
+			},
+			"offsets": {
+				"from": 1622000,
+				"to": 1628000
+			},
+			"text": " So, only one of the operands is converted."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,000",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1628000,
+				"to": 1635000
+			},
+			"text": " And so, we can now assign that to a variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:23,000"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1643000
+			},
+			"text": " And we will see that X will have type 16 bit unsighted integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,000",
+				"to": "00:27:40,000"
+			},
+			"offsets": {
+				"from": 1643000,
+				"to": 1660000
+			},
+			"text": " Okay, what happens if we want X to be an 8 bit integer, we get the error that the 16 bit integer that is on the right hand side is not converted to an 8 bit integer on the left hand side."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,000",
+				"to": "00:27:54,000"
+			},
+			"offsets": {
+				"from": 1660000,
+				"to": 1674000
+			},
+			"text": " Okay, something that is perhaps also interesting is what happens if we add a negative number to a positive number."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,000",
+				"to": "00:28:00,000"
+			},
+			"offsets": {
+				"from": 1674000,
+				"to": 1680000
+			},
+			"text": " So, the compiler complains that we cannot find a common type."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,000",
+				"to": "00:28:10,000"
+			},
+			"offsets": {
+				"from": 1680000,
+				"to": 1690000
+			},
+			"text": " So, the type of minus one is signed bit integer of 8 bits, and 8 is an unsighted integer of 8 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,000",
+				"to": "00:28:14,000"
+			},
+			"offsets": {
+				"from": 1690000,
+				"to": 1694000
+			},
+			"text": " And so, you cannot convert one into the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,000",
+				"to": "00:28:15,000"
+			},
+			"offsets": {
+				"from": 1694000,
+				"to": 1695000
+			},
+			"text": " So, there's no common type."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,000",
+				"to": "00:28:23,000"
+			},
+			"offsets": {
+				"from": 1695000,
+				"to": 1703000
+			},
+			"text": " Of course, we know that both of them can be converted to an assigned integer of 16 bits without losing any information."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,000",
+				"to": "00:28:37,000"
+			},
+			"offsets": {
+				"from": 1703000,
+				"to": 1717000
+			},
+			"text": " But because of this restriction, I told this is not automatically, but we can of course force that manually and convert this minus one to 16 bit side integer."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,000",
+				"to": "00:28:46,000"
+			},
+			"offsets": {
+				"from": 1717000,
+				"to": 1726000
+			},
+			"text": " And then it works and X is also assigned integer of 16 bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,000",
+				"to": "00:28:47,000"
+			},
+			"offsets": {
+				"from": 1726000,
+				"to": 1727000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,000",
+				"to": "00:28:52,000"
+			},
+			"offsets": {
+				"from": 1727000,
+				"to": 1732000
+			},
+			"text": " So, can we check it also on the variables, and what do you mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,000",
+				"to": "00:28:55,000"
+			},
+			"offsets": {
+				"from": 1732000,
+				"to": 1735000
+			},
+			"text": " Because the variables are not viable in check the error."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,000",
+				"to": "00:29:01,000"
+			},
+			"offsets": {
+				"from": 1735000,
+				"to": 1741000
+			},
+			"text": " It works on arbitrary expressions."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,000",
+				"to": "00:29:02,000"
+			},
+			"offsets": {
+				"from": 1741000,
+				"to": 1742000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,000",
+				"to": "00:29:10,000"
+			},
+			"offsets": {
+				"from": 1742000,
+				"to": 1750000
+			},
+			"text": " The optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,000",
+				"to": "00:29:26,000"
+			},
+			"offsets": {
+				"from": 1750000,
+				"to": 1766000
+			},
+			"text": " So, Solidity does not compile to LLL, but it compiles directly to EVM assembly, and it uses LLL's assembly class, which also includes the optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,000",
+				"to": "00:29:37,000"
+			},
+			"offsets": {
+				"from": 1766000,
+				"to": 1777000
+			},
+			"text": " So, if we improve the optimizer, then Solidity, Serpent, and LLL will benefit from these improvements."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,000",
+				"to": "00:29:39,000"
+			},
+			"offsets": {
+				"from": 1777000,
+				"to": 1779000
+			},
+			"text": " I already did some improvements."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,000",
+				"to": "00:29:52,000"
+			},
+			"offsets": {
+				"from": 1779000,
+				"to": 1792000
+			},
+			"text": " So, the LLL optimizer is, so most of the steps in the LLL optimizer is just a pattern of opcodes is mapped to another set of opcodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,000",
+				"to": "00:29:57,000"
+			},
+			"offsets": {
+				"from": 1792000,
+				"to": 1797000
+			},
+			"text": " And if the number of opcodes decreases, then this is applied."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,000",
+				"to": "00:29:59,000"
+			},
+			"offsets": {
+				"from": 1797000,
+				"to": 1799000
+			},
+			"text": " One of these patterns is constant folding."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,000",
+				"to": "00:30:11,000"
+			},
+			"offsets": {
+				"from": 1799000,
+				"to": 1811000
+			},
+			"text": " So, if you write 7 plus 8, then the optimizer will not do this addition at runtime, but it will do it at compile time and just push directly push 15."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,000",
+				"to": "00:30:19,000"
+			},
+			"offsets": {
+				"from": 1811000,
+				"to": 1819000
+			},
+			"text": " And I added some other operands for this constant folding because they were more widely used in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,000",
+				"to": "00:30:23,000"
+			},
+			"offsets": {
+				"from": 1819000,
+				"to": 1823000
+			},
+			"text": " And another optimization is pop optimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,000",
+				"to": "00:30:39,000"
+			},
+			"offsets": {
+				"from": 1823000,
+				"to": 1839000
+			},
+			"text": " This happens if you do some computation and it does not have side effects, and you just discard the result of the computation, then the optimizer removes the whole computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,000",
+				"to": "00:30:51,000"
+			},
+			"offsets": {
+				"from": 1839000,
+				"to": 1851000
+			},
+			"text": " Okay, let's see an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,000",
+				"to": "00:31:05,000"
+			},
+			"offsets": {
+				"from": 1851000,
+				"to": 1865000
+			},
+			"text": " First with an auto optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:05,000",
+				"to": "00:31:11,000"
+			},
+			"offsets": {
+				"from": 1865000,
+				"to": 1871000
+			},
+			"text": " Okay, so we have to look at the assembly now from TAC 0 to this TAC 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:11,000",
+				"to": "00:31:13,000"
+			},
+			"offsets": {
+				"from": 1871000,
+				"to": 1873000
+			},
+			"text": " That's the body of the function."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,000",
+				"to": "00:31:35,000"
+			},
+			"offsets": {
+				"from": 1873000,
+				"to": 1895000
+			},
+			"text": " If you see it, it does push 0, that is, it initializes the local variable to 0, then it pushes the two operands, 8 and 7, adds them, and this swap stores it at the location of x and pop removes the old value of x."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,000",
+				"to": "00:31:49,000"
+			},
+			"offsets": {
+				"from": 1895000,
+				"to": 1909000
+			},
+			"text": " And if we activate the optimizer, so it pushes 0 and then it pushes f which is 15, swaps it, stores it and removes the old value."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,000",
+				"to": "00:32:04,000"
+			},
+			"offsets": {
+				"from": 1909000,
+				"to": 1924000
+			},
+			"text": " So this is not yet optimal because we know it's not necessary to initialize x to 0 when we change its value afterwards, but yeah, optimizer is not finished yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,000",
+				"to": "00:32:11,000"
+			},
+			"offsets": {
+				"from": 1924000,
+				"to": 1931000
+			},
+			"text": " To see pop optimization, we have to remove this x."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,000",
+				"to": "00:32:22,000"
+			},
+			"offsets": {
+				"from": 1931000,
+				"to": 1942000
+			},
+			"text": " No, you also have to remove the local variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,000",
+				"to": "00:32:31,000"
+			},
+			"offsets": {
+				"from": 1942000,
+				"to": 1951000
+			},
+			"text": " So yeah, what happens here now is, okay, yeah, TAC 0, that's the function body and nothing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:31,000",
+				"to": "00:32:37,000"
+			},
+			"offsets": {
+				"from": 1951000,
+				"to": 1957000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,000",
+				"to": "00:32:41,000"
+			},
+			"offsets": {
+				"from": 1957000,
+				"to": 1961000
+			},
+			"text": " How does it use memory and storage?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,000",
+				"to": "00:32:44,000"
+			},
+			"offsets": {
+				"from": 1961000,
+				"to": 1964000
+			},
+			"text": " We've already seen everything is serial initialized."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,000",
+				"to": "00:32:48,000"
+			},
+			"offsets": {
+				"from": 1964000,
+				"to": 1968000
+			},
+			"text": " We can trust on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,000",
+				"to": "00:32:54,000"
+			},
+			"offsets": {
+				"from": 1968000,
+				"to": 1974000
+			},
+			"text": " And local variables are currently used only on the stack, so it doesn't actually use memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:54,000",
+				"to": "00:33:00,000"
+			},
+			"offsets": {
+				"from": 1974000,
+				"to": 1980000
+			},
+			"text": " It uses memory only for opcodes, for operations where it's really necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:00,000",
+				"to": "00:33:11,000"
+			},
+			"offsets": {
+				"from": 1980000,
+				"to": 1991000
+			},
+			"text": " This might change later because the EVM can only look at the stack at the 16 topmost position of the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:11,000",
+				"to": "00:33:21,000"
+			},
+			"offsets": {
+				"from": 1991000,
+				"to": 2001000
+			},
+			"text": " So if we have many local variables or very complex expressions and we want to store something in the first local variable, we might have to look too deep into the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:21,000",
+				"to": "00:33:31,000"
+			},
+			"offsets": {
+				"from": 2001000,
+				"to": 2011000
+			},
+			"text": " So we have to copy into memory first and then unwind the stack and save it later again."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:31,000",
+				"to": "00:33:34,000"
+			},
+			"offsets": {
+				"from": 2011000,
+				"to": 2014000
+			},
+			"text": " The storage is allocated in a contiguous way."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,000",
+				"to": "00:33:49,000"
+			},
+			"offsets": {
+				"from": 2014000,
+				"to": 2029000
+			},
+			"text": " So if you have one struct and another struct, then they will sit directly next to each other in storage where mappings are an exception because mappings don't have a size."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,000",
+				"to": "00:34:09,000"
+			},
+			"offsets": {
+				"from": 2029000,
+				"to": 2049000
+			},
+			"text": " So to compute the offset of a mapping, you take the offset of a value in the mapping, you take the offset of the mapping, concatenate the key, compute SHA3 of that and that's the offset of the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,000",
+				"to": "00:34:18,000"
+			},
+			"offsets": {
+				"from": 2049000,
+				"to": 2058000
+			},
+			"text": " So I think that's more or less exactly how it's done in serpent with the introduction in serpent to go no."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,000",
+				"to": "00:34:24,000"
+			},
+			"offsets": {
+				"from": 2058000,
+				"to": 2064000
+			},
+			"text": " The obvious way I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,000",
+				"to": "00:34:27,000"
+			},
+			"offsets": {
+				"from": 2064000,
+				"to": 2067000
+			},
+			"text": " Okay, reference to other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,000",
+				"to": "00:34:31,000"
+			},
+			"offsets": {
+				"from": 2067000,
+				"to": 2071000
+			},
+			"text": " Gavin already gave an example for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:31,000",
+				"to": "00:34:34,000"
+			},
+			"offsets": {
+				"from": 2071000,
+				"to": 2074000
+			},
+			"text": " A bit more detailed."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,000",
+				"to": "00:34:45,000"
+			},
+			"offsets": {
+				"from": 2074000,
+				"to": 2085000
+			},
+			"text": " And include other contract files, contract source files and yeah, use contracts also as values for mappings or directly in storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,000",
+				"to": "00:34:51,000"
+			},
+			"offsets": {
+				"from": 2085000,
+				"to": 2091000
+			},
+			"text": " And we can, so, Namerek Aderer is an address."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,000",
+				"to": "00:34:57,000"
+			},
+			"offsets": {
+				"from": 2091000,
+				"to": 2097000
+			},
+			"text": " We can, so if you write it like that, Namerek is a contract type."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,000",
+				"to": "00:35:09,000"
+			},
+			"offsets": {
+				"from": 2097000,
+				"to": 2109000
+			},
+			"text": " This is just usual type conversion, so address can be converted to a contract type and then we store it in storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:09,000",
+				"to": "00:35:18,000"
+			},
+			"offsets": {
+				"from": 2109000,
+				"to": 2118000
+			},
+			"text": " We can, from this point on, we can use Namerek and call functions on that and for that we don't need the full definition of the Namerek contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:18,000",
+				"to": "00:35:20,000"
+			},
+			"offsets": {
+				"from": 2118000,
+				"to": 2120000
+			},
+			"text": " We only need to know its interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,000",
+				"to": "00:35:29,000"
+			},
+			"offsets": {
+				"from": 2120000,
+				"to": 2129000
+			},
+			"text": " So this, this Namerek Sol file can be, yeah, a simple file which has all functions but not the function bodies."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,000",
+				"to": "00:35:38,000"
+			},
+			"offsets": {
+				"from": 2129000,
+				"to": 2138000
+			},
+			"text": " And it's different for this line here where we create a new contract and store it at this point in storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,000",
+				"to": "00:35:45,000"
+			},
+			"offsets": {
+				"from": 2138000,
+				"to": 2145000
+			},
+			"text": " So here we actually need the full definition of the coin contract to create it."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,000",
+				"to": "00:35:51,000"
+			},
+			"offsets": {
+				"from": 2145000,
+				"to": 2151000
+			},
+			"text": " And when it's stored we can use it to call a function send amount to."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:51,000",
+				"to": "00:35:57,000"
+			},
+			"offsets": {
+				"from": 2151000,
+				"to": 2157000
+			},
+			"text": " So that's, yeah, that's a function we've seen in the second example."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:57,000",
+				"to": "00:35:59,000"
+			},
+			"offsets": {
+				"from": 2157000,
+				"to": 2159000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,000",
+				"to": "00:36:02,000"
+			},
+			"offsets": {
+				"from": 2159000,
+				"to": 2162000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,000",
+				"to": "00:36:06,000"
+			},
+			"offsets": {
+				"from": 2162000,
+				"to": 2166000
+			},
+			"text": " What are the plans for the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:06,000",
+				"to": "00:36:13,000"
+			},
+			"offsets": {
+				"from": 2166000,
+				"to": 2173000
+			},
+			"text": " I think we will have a complete first usable version by the beginning of December."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,000",
+				"to": "00:36:18,000"
+			},
+			"offsets": {
+				"from": 2173000,
+				"to": 2178000
+			},
+			"text": " So, yeah, after DevCon Zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:18,000",
+				"to": "00:36:23,000"
+			},
+			"offsets": {
+				"from": 2178000,
+				"to": 2183000
+			},
+			"text": " The current state is that most of the basic features are there."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:23,000",
+				"to": "00:36:34,000"
+			},
+			"offsets": {
+				"from": 2183000,
+				"to": 2194000
+			},
+			"text": " What is missing is actual access to the blockchains, so query balances and send funds and references to other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,000",
+				"to": "00:36:40,000"
+			},
+			"offsets": {
+				"from": 2194000,
+				"to": 2200000
+			},
+			"text": " But that's not much work, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,000",
+				"to": "00:36:51,000"
+			},
+			"offsets": {
+				"from": 2200000,
+				"to": 2211000
+			},
+			"text": " Future areas of work are, yeah, I shall write some tutorials or actually create a specification of the language, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:51,000",
+				"to": "00:36:59,000"
+			},
+			"offsets": {
+				"from": 2211000,
+				"to": 2219000
+			},
+			"text": " Then depending on feedback from users, we might add some new features to the language."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:59,000",
+				"to": "00:37:08,000"
+			},
+			"offsets": {
+				"from": 2219000,
+				"to": 2228000
+			},
+			"text": " We might need to improve the optimizer, but that depends on how the language is actually used."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:08,000",
+				"to": "00:37:12,000"
+			},
+			"offsets": {
+				"from": 2228000,
+				"to": 2232000
+			},
+			"text": " So we have to look at some real world example contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,000",
+				"to": "00:37:14,000"
+			},
+			"offsets": {
+				"from": 2232000,
+				"to": 2234000
+			},
+			"text": " Then work on documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:14,000",
+				"to": "00:37:20,000"
+			},
+			"offsets": {
+				"from": 2234000,
+				"to": 2240000
+			},
+			"text": " So this net spec documentation, we'll see that in the next talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:20,000",
+				"to": "00:37:25,000"
+			},
+			"offsets": {
+				"from": 2240000,
+				"to": 2245000
+			},
+			"text": " And actually creating the IDE."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:25,000",
+				"to": "00:37:29,000"
+			},
+			"offsets": {
+				"from": 2245000,
+				"to": 2249000
+			},
+			"text": " And then work on static analysis and formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:29,000",
+				"to": "00:37:32,000"
+			},
+			"offsets": {
+				"from": 2249000,
+				"to": 2252000
+			},
+			"text": " And of course bug fixes and refactoring."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:32,000",
+				"to": "00:37:35,000"
+			},
+			"offsets": {
+				"from": 2252000,
+				"to": 2255000
+			},
+			"text": " That can always be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,000",
+				"to": "00:37:40,000"
+			},
+			"offsets": {
+				"from": 2255000,
+				"to": 2260000
+			},
+			"text": " How is the time or?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,000",
+				"to": "00:37:41,000"
+			},
+			"offsets": {
+				"from": 2260000,
+				"to": 2261000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:41,000",
+				"to": "00:37:43,000"
+			},
+			"offsets": {
+				"from": 2261000,
+				"to": 2263000
+			},
+			"text": " So, yeah, one plan language feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,000",
+				"to": "00:37:46,000"
+			},
+			"offsets": {
+				"from": 2263000,
+				"to": 2266000
+			},
+			"text": " I don't know if that's interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:46,000",
+				"to": "00:37:48,000"
+			},
+			"offsets": {
+				"from": 2266000,
+				"to": 2268000
+			},
+			"text": " Anonymous structs."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:48,000",
+				"to": "00:37:56,000"
+			},
+			"offsets": {
+				"from": 2268000,
+				"to": 2276000
+			},
+			"text": " So you can do mappings from a struct type without actually creating a name for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:56,000",
+				"to": "00:38:05,000"
+			},
+			"offsets": {
+				"from": 2276000,
+				"to": 2285000
+			},
+			"text": " You can, so functions that return multiple values, you can just store them in local variables directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,000",
+				"to": "00:38:07,000"
+			},
+			"offsets": {
+				"from": 2285000,
+				"to": 2287000
+			},
+			"text": " And also return them like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:07,000",
+				"to": "00:38:12,000"
+			},
+			"offsets": {
+				"from": 2287000,
+				"to": 2292000
+			},
+			"text": " So I think that's something we want, but that's not implemented yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:12,000",
+				"to": "00:38:17,000"
+			},
+			"offsets": {
+				"from": 2292000,
+				"to": 2297000
+			},
+			"text": " Somebody asked for the optimizer."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:17,000",
+				"to": "00:38:25,000"
+			},
+			"offsets": {
+				"from": 2297000,
+				"to": 2305000
+			},
+			"text": " I think it's really important to be able to use other contracts as library contacts somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:25,000",
+				"to": "00:38:31,000"
+			},
+			"offsets": {
+				"from": 2305000,
+				"to": 2311000
+			},
+			"text": " At least for simple functions like computing the minimum or finding something in a list."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:31,000",
+				"to": "00:38:40,000"
+			},
+			"offsets": {
+				"from": 2311000,
+				"to": 2320000
+			},
+			"text": " And for this it's important to, so calls to other functions are quite expensive because you have to move all arguments to memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:40,000",
+				"to": "00:38:47,000"
+			},
+			"offsets": {
+				"from": 2320000,
+				"to": 2327000
+			},
+			"text": " So, you can create, so run this call up code and then retrieve them from memory again."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:47,000",
+				"to": "00:38:57,000"
+			},
+			"offsets": {
+				"from": 2327000,
+				"to": 2337000
+			},
+			"text": " And if the function is small, then it's much more efficient to just copy the code to that location."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:57,000",
+				"to": "00:39:03,000"
+			},
+			"offsets": {
+				"from": 2337000,
+				"to": 2343000
+			},
+			"text": " And another benefit of in learning function calls is also that the optimizer can actually optimize something there."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:03,000",
+				"to": "00:39:10,000"
+			},
+			"offsets": {
+				"from": 2343000,
+				"to": 2350000
+			},
+			"text": " Then it's perhaps necessary to reorganize the local stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,000",
+				"to": "00:39:16,000"
+			},
+			"offsets": {
+				"from": 2350000,
+				"to": 2356000
+			},
+			"text": " So for example, if two local variables do not really overlap in a function, they can use the same stack slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,000",
+				"to": "00:39:32,000"
+			},
+			"offsets": {
+				"from": 2356000,
+				"to": 2372000
+			},
+			"text": " And if the feedback results in really, really bad performance for the compiler, then it's perhaps necessary to consider some simple intermediate language where more optimizations are possible than on the stack based EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:32,000",
+				"to": "00:39:39,000"
+			},
+			"offsets": {
+				"from": 2372000,
+				"to": 2379000
+			},
+			"text": " So, some of these were static analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:39,000",
+				"to": "00:39:45,000"
+			},
+			"offsets": {
+				"from": 2379000,
+				"to": 2385000
+			},
+			"text": " Consafactors are not enforced currently, that should be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:45,000",
+				"to": "00:39:59,000"
+			},
+			"offsets": {
+				"from": 2385000,
+				"to": 2399000
+			},
+			"text": " Then what is also quite easy, I think, without doing the whole process of formal proofing is to determine the value ranges of local variables and check whether some overflows can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,000",
+				"to": "00:40:07,000"
+			},
+			"offsets": {
+				"from": 2399000,
+				"to": 2407000
+			},
+			"text": " So, if some addition was protected by prior to that, checking that an overflow can happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:07,000",
+				"to": "00:40:18,000"
+			},
+			"offsets": {
+				"from": 2407000,
+				"to": 2418000
+			},
+			"text": " And perhaps also checking that from the value range, some equality comparison or inequality comparison can never be true."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:18,000",
+				"to": "00:40:28,000"
+			},
+			"offsets": {
+				"from": 2418000,
+				"to": 2428000
+			},
+			"text": " And then we see that the developer did some error there, so some code is not reachable at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:28,000",
+				"to": "00:40:44,000"
+			},
+			"offsets": {
+				"from": 2428000,
+				"to": 2444000
+			},
+			"text": " What is also useful, I think, is to estimate the guess usage of some source line, so that while writing a contract, you actually see how expensive the line is, and you can perhaps change it to be less expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:44,000",
+				"to": "00:41:04,000"
+			},
+			"offsets": {
+				"from": 2444000,
+				"to": 2464000
+			},
+			"text": " And what we probably also want is if you issue a transaction, you have to set the guess value, and you probably want to have some estimate on how expensive it is, some lower and upper bound."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:04,000",
+				"to": "00:41:27,000"
+			},
+			"offsets": {
+				"from": 2464000,
+				"to": 2487000
+			},
+			"text": " This, of course, will in the end, so the actual guess cost will in the end depend on the order, transactions are introduced into the blockchain, so it will not be absolutely correct, but I think we can provide good lower and upper bounds for the guess usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,000",
+				"to": "00:41:36,000"
+			},
+			"offsets": {
+				"from": 2487000,
+				"to": 2496000
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,000",
+				"to": "00:41:59,000"
+			},
+			"offsets": {
+				"from": 2496000,
+				"to": 2519000
+			},
+			"text": " Thank you."
+		}
+	]
+}

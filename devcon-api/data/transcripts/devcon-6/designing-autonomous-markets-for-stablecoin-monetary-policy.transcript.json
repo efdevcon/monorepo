@@ -1,0 +1,5917 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:14,240"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 14240
+			},
+			"text": " So I'm Stefan."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,240",
+				"to": "00:00:17,600"
+			},
+			"offsets": {
+				"from": 14240,
+				"to": 17600
+			},
+			"text": " And today I want to talk about some of the design work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,600",
+				"to": "00:00:21,520"
+			},
+			"offsets": {
+				"from": 17600,
+				"to": 21520
+			},
+			"text": " we did for our stable coin that's called Gyroscope."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,520",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 21520,
+				"to": 23560
+			},
+			"text": " And this is joint work with my co-founder Ariak Lagus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:24,680"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 24680
+			},
+			"text": " Mont."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,680",
+				"to": "00:00:28,360"
+			},
+			"offsets": {
+				"from": 24680,
+				"to": 28360
+			},
+			"text": " So you imagine you want to build a stable coin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,360",
+				"to": "00:00:31,720"
+			},
+			"offsets": {
+				"from": 28360,
+				"to": 31720
+			},
+			"text": " So you have a crypto currency and you want to keep it stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,720",
+				"to": "00:00:33,800"
+			},
+			"offsets": {
+				"from": 31720,
+				"to": 33800
+			},
+			"text": " And in some senses, it's always going to look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,800",
+				"to": "00:00:36,840"
+			},
+			"offsets": {
+				"from": 33800,
+				"to": 36840
+			},
+			"text": " You have some kind of reserve of assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,840",
+				"to": "00:00:42,600"
+			},
+			"offsets": {
+				"from": 36840,
+				"to": 42600
+			},
+			"text": " And then people can mint and redeem coins against that assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,600",
+				"to": "00:00:44,200"
+			},
+			"offsets": {
+				"from": 42600,
+				"to": 44200
+			},
+			"text": " And that's going to stabilize the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,200",
+				"to": "00:00:47,880"
+			},
+			"offsets": {
+				"from": 44200,
+				"to": 47880
+			},
+			"text": " If the price is too high, they can mint new coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,880",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47880,
+				"to": 50000
+			},
+			"text": " If the price is too low, they can redeem coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:52,440"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 52440
+			},
+			"text": " It's going to stabilize the market price."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,440",
+				"to": "00:00:55,520"
+			},
+			"offsets": {
+				"from": 52440,
+				"to": 55520
+			},
+			"text": " And we call the primary market mechanism--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,520",
+				"to": "00:00:56,520"
+			},
+			"offsets": {
+				"from": 55520,
+				"to": 56520
+			},
+			"text": " excuse me--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,520",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 56520,
+				"to": 58040
+			},
+			"text": " the primary market mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:01:00,880"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 60880
+			},
+			"text": " The thing that grants access to these assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,880",
+				"to": "00:01:05,080"
+			},
+			"offsets": {
+				"from": 60880,
+				"to": 65080
+			},
+			"text": " and that intermediates between mint and redeemers, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,080",
+				"to": "00:01:09,080"
+			},
+			"offsets": {
+				"from": 65080,
+				"to": 69080
+			},
+			"text": " are basically up-chosuers and the asset reserve."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,080",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 69080,
+				"to": 70000
+			},
+			"text": " Now, what are these assets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:12,080"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 72080
+			},
+			"text": " Well, that depends on your design."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,080",
+				"to": "00:01:17,480"
+			},
+			"offsets": {
+				"from": 72080,
+				"to": 77480
+			},
+			"text": " It could be many different things in a sandwich share design."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,480",
+				"to": "00:01:21,640"
+			},
+			"offsets": {
+				"from": 77480,
+				"to": 81640
+			},
+			"text": " It could be-- it's basically an equity share, in a sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,640",
+				"to": "00:01:23,280"
+			},
+			"offsets": {
+				"from": 81640,
+				"to": 83280
+			},
+			"text": " For something like a basis design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,280",
+				"to": "00:01:25,160"
+			},
+			"offsets": {
+				"from": 83280,
+				"to": 85160
+			},
+			"text": " it's something like a bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,160",
+				"to": "00:01:26,240"
+			},
+			"offsets": {
+				"from": 85160,
+				"to": 86240
+			},
+			"text": " And in a reserve-backed design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,240",
+				"to": "00:01:27,640"
+			},
+			"offsets": {
+				"from": 86240,
+				"to": 87640
+			},
+			"text": " it's some portfolio of other assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,640",
+				"to": "00:01:30,240"
+			},
+			"offsets": {
+				"from": 87640,
+				"to": 90240
+			},
+			"text": " And by the way, this is a design we are using for gyroscope."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,240",
+				"to": "00:01:31,120"
+			},
+			"offsets": {
+				"from": 90240,
+				"to": 91120
+			},
+			"text": " It's reserve-backed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,120",
+				"to": "00:01:37,680"
+			},
+			"offsets": {
+				"from": 91120,
+				"to": 97680
+			},
+			"text": " Now, there are different situations we need to look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,680",
+				"to": "00:01:39,960"
+			},
+			"offsets": {
+				"from": 97680,
+				"to": 99960
+			},
+			"text": " The kind of boring case is when the system is fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,960",
+				"to": "00:01:42,720"
+			},
+			"offsets": {
+				"from": 99960,
+				"to": 102720
+			},
+			"text": " collateralized and all the assets are perfectly liquid."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,720",
+				"to": "00:01:46,880"
+			},
+			"offsets": {
+				"from": 102720,
+				"to": 106880
+			},
+			"text": " Because then this is just basically a pricing problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,880",
+				"to": "00:01:49,680"
+			},
+			"offsets": {
+				"from": 106880,
+				"to": 109680
+			},
+			"text": " price the reserve assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,680",
+				"to": "00:01:51,680"
+			},
+			"offsets": {
+				"from": 109680,
+				"to": 111680
+			},
+			"text": " And the somewhat more tricky case"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,680",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 111680,
+				"to": 115600
+			},
+			"text": " is the system might be 100% collateralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:01:57,360"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 117360
+			},
+			"text": " But not all of these assets might be liquid."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,360",
+				"to": "00:02:01,960"
+			},
+			"offsets": {
+				"from": 117360,
+				"to": 121960
+			},
+			"text": " So you cannot necessarily pay them out when people redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,960",
+				"to": "00:02:04,440"
+			},
+			"offsets": {
+				"from": 121960,
+				"to": 124440
+			},
+			"text": " And then there's the crisis situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,440",
+				"to": "00:02:06,520"
+			},
+			"offsets": {
+				"from": 124440,
+				"to": 126520
+			},
+			"text": " where the system actually becomes under collateralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,520",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 126520,
+				"to": 129000
+			},
+			"text": " And then you need to decide what to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:12,420"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 132420
+			},
+			"text": " And my talk is going to be about the design of this component"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,420",
+				"to": "00:02:17,440"
+			},
+			"offsets": {
+				"from": 132420,
+				"to": 137440
+			},
+			"text": " that basically designs what to do in such a situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,440",
+				"to": "00:02:19,200"
+			},
+			"offsets": {
+				"from": 137440,
+				"to": 139200
+			},
+			"text": " What we are implementing for gyroscope"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,200",
+				"to": "00:02:21,720"
+			},
+			"offsets": {
+				"from": 139200,
+				"to": 141720
+			},
+			"text": " is a reserve of only liquid assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,720",
+				"to": "00:02:23,800"
+			},
+			"offsets": {
+				"from": 141720,
+				"to": 143800
+			},
+			"text": " So we are not really considering this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,800",
+				"to": "00:02:27,320"
+			},
+			"offsets": {
+				"from": 143800,
+				"to": 147320
+			},
+			"text": " but it would be maybe straightforward extension"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,320",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 147320,
+				"to": 149960
+			},
+			"text": " of what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 153360
+			},
+			"text": " So let's look at some examples of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,360",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 153360,
+				"to": 158280
+			},
+			"text": " If you look at die, you have the PSM, or a PXability Mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:42,160"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 162160
+			},
+			"text": " And it basically looks like this that your reserve almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,160",
+				"to": "00:02:43,600"
+			},
+			"offsets": {
+				"from": 162160,
+				"to": 163600
+			},
+			"text": " only consists of USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,600",
+				"to": "00:02:44,920"
+			},
+			"offsets": {
+				"from": 163600,
+				"to": 164920
+			},
+			"text": " And this is what people sometimes say"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,920",
+				"to": "00:02:48,080"
+			},
+			"offsets": {
+				"from": 164920,
+				"to": 168080
+			},
+			"text": " that die has become-- or is going in the direction of wrapped USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:54,240"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 174240
+			},
+			"text": " The numbers are like 60% or like the PSM, USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,240",
+				"to": "00:02:58,320"
+			},
+			"offsets": {
+				"from": 174240,
+				"to": 178320
+			},
+			"text": " Then you have another 20% of LP shares against USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,320",
+				"to": "00:03:01,560"
+			},
+			"offsets": {
+				"from": 178320,
+				"to": 181560
+			},
+			"text": " And of course, in that situation, something you need to ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,560",
+				"to": "00:03:04,280"
+			},
+			"offsets": {
+				"from": 181560,
+				"to": 184280
+			},
+			"text": " is are there many risks associated with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,280",
+				"to": "00:03:06,440"
+			},
+			"offsets": {
+				"from": 184280,
+				"to": 186440
+			},
+			"text": " So for USDC, for example, there could"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,440",
+				"to": "00:03:09,520"
+			},
+			"offsets": {
+				"from": 186440,
+				"to": 189520
+			},
+			"text": " be some regulatory risk, which may amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,520",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 189520,
+				"to": 193200
+			},
+			"text": " to counterparty risk, censorship risk, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:18,960"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 198960
+			},
+			"text": " Kind of the goal of gyroscope was to build something like a PSM 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,960",
+				"to": "00:03:21,440"
+			},
+			"offsets": {
+				"from": 198960,
+				"to": 201440
+			},
+			"text": " So how might you improve on this design?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,440",
+				"to": "00:03:24,120"
+			},
+			"offsets": {
+				"from": 201440,
+				"to": 204120
+			},
+			"text": " And I think there are like two ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,120",
+				"to": "00:03:27,600"
+			},
+			"offsets": {
+				"from": 204120,
+				"to": 207600
+			},
+			"text": " The first thing is you may want to diversify your reserves."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,600",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 207600,
+				"to": 211600
+			},
+			"text": " You may not want to hold only USDC."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:33,400"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 213400
+			},
+			"text": " And the second thing is to implement something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,400",
+				"to": "00:03:36,640"
+			},
+			"offsets": {
+				"from": 213400,
+				"to": 216640
+			},
+			"text": " like a programmatic risk control that reacts autonomously"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,640",
+				"to": "00:03:38,880"
+			},
+			"offsets": {
+				"from": 216640,
+				"to": 218880
+			},
+			"text": " to market conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,880",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 218880,
+				"to": 221280
+			},
+			"text": " So that kind of can be seen in two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:44,840"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 224840
+			},
+			"text": " The first one is if you have indyed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,840",
+				"to": "00:03:48,120"
+			},
+			"offsets": {
+				"from": 224840,
+				"to": 228120
+			},
+			"text": " that different PSM vaults are independent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,120",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 228120,
+				"to": 230160
+			},
+			"text": " but you probably want to coordinate them somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:53,520"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 233520
+			},
+			"text": " to react in the same way to market strategies."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,520",
+				"to": "00:03:57,480"
+			},
+			"offsets": {
+				"from": 233520,
+				"to": 237480
+			},
+			"text": " And the other one is to price the stable coin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,480",
+				"to": "00:03:59,040"
+			},
+			"offsets": {
+				"from": 237480,
+				"to": 239040
+			},
+			"text": " depending on market conditions, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,040",
+				"to": "00:04:02,120"
+			},
+			"offsets": {
+				"from": 239040,
+				"to": 242120
+			},
+			"text": " when the system should the system become under reserved."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,120",
+				"to": "00:04:04,520"
+			},
+			"offsets": {
+				"from": 242120,
+				"to": 244520
+			},
+			"text": " And this is kind of where we're going."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,520",
+				"to": "00:04:07,280"
+			},
+			"offsets": {
+				"from": 244520,
+				"to": 247280
+			},
+			"text": " So kind of to build such a system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,280",
+				"to": "00:04:08,920"
+			},
+			"offsets": {
+				"from": 247280,
+				"to": 248920
+			},
+			"text": " there are like many different challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,920",
+				"to": "00:04:13,800"
+			},
+			"offsets": {
+				"from": 248920,
+				"to": 253800
+			},
+			"text": " And I just want to give you like the super quick overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,800",
+				"to": "00:04:16,240"
+			},
+			"offsets": {
+				"from": 253800,
+				"to": 256240
+			},
+			"text": " Basically, we want to make sure, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,240",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 256240,
+				"to": 260440
+			},
+			"text": " So we have a reserve that consists of different asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:24,800"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 264800
+			},
+			"text": " classes that are probably structured in some way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,800",
+				"to": "00:04:26,360"
+			},
+			"offsets": {
+				"from": 264800,
+				"to": 266360
+			},
+			"text": " And then you need to answer several questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,360",
+				"to": "00:04:29,360"
+			},
+			"offsets": {
+				"from": 266360,
+				"to": 269360
+			},
+			"text": " like which assets should that the--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,360",
+				"to": "00:04:30,800"
+			},
+			"offsets": {
+				"from": 269360,
+				"to": 270800
+			},
+			"text": " which risks are these exposed to how"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,800",
+				"to": "00:04:33,880"
+			},
+			"offsets": {
+				"from": 270800,
+				"to": 273880
+			},
+			"text": " to structure the whole thing so that the risks are somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,880",
+				"to": "00:04:35,400"
+			},
+			"offsets": {
+				"from": 273880,
+				"to": 275400
+			},
+			"text": " contained?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,400",
+				"to": "00:04:37,560"
+			},
+			"offsets": {
+				"from": 275400,
+				"to": 277560
+			},
+			"text": " How do you generate details on the whole structure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,560",
+				"to": "00:04:39,600"
+			},
+			"offsets": {
+				"from": 277560,
+				"to": 279600
+			},
+			"text": " You probably want to price these things with Oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,600",
+				"to": "00:04:40,280"
+			},
+			"offsets": {
+				"from": 279600,
+				"to": 280280
+			},
+			"text": " and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,280",
+				"to": "00:04:41,760"
+			},
+			"offsets": {
+				"from": 280280,
+				"to": 281760
+			},
+			"text": " These are all things I'm not going to talk about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,760",
+				"to": "00:04:44,520"
+			},
+			"offsets": {
+				"from": 281760,
+				"to": 284520
+			},
+			"text": " but questions we still had to answer for gyroscope."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,520",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284520,
+				"to": 289000
+			},
+			"text": " And today, I want to answer this mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:51,600"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 291600
+			},
+			"text": " Basically, the question is, someone comes to your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,600",
+				"to": "00:04:56,680"
+			},
+			"offsets": {
+				"from": 291600,
+				"to": 296680
+			},
+			"text": " The system may be under reserved or illiquid to some degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,680",
+				"to": "00:04:58,800"
+			},
+			"offsets": {
+				"from": 296680,
+				"to": 298800
+			},
+			"text": " They want to redeem a stable coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,800",
+				"to": "00:05:00,920"
+			},
+			"offsets": {
+				"from": 298800,
+				"to": 300920
+			},
+			"text": " What is the amount of assets you offer them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,920",
+				"to": "00:05:08,240"
+			},
+			"offsets": {
+				"from": 300920,
+				"to": 308240
+			},
+			"text": " And to do that, we introduce a more general tool, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,240",
+				"to": "00:05:09,920"
+			},
+			"offsets": {
+				"from": 308240,
+				"to": 309920
+			},
+			"text": " is what we call the redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,920",
+				"to": "00:05:12,720"
+			},
+			"offsets": {
+				"from": 309920,
+				"to": 312720
+			},
+			"text": " And this is a general tool to analyze any stable coin design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,720",
+				"to": "00:05:14,800"
+			},
+			"offsets": {
+				"from": 312720,
+				"to": 314800
+			},
+			"text": " basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,800",
+				"to": "00:05:18,880"
+			},
+			"offsets": {
+				"from": 314800,
+				"to": 318880
+			},
+			"text": " So the redemption curve is the following curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,880",
+				"to": "00:05:20,240"
+			},
+			"offsets": {
+				"from": 318880,
+				"to": 320240
+			},
+			"text": " You have two axes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,240",
+				"to": "00:05:23,040"
+			},
+			"offsets": {
+				"from": 320240,
+				"to": 323040
+			},
+			"text": " On one axis, you have the redemption level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,040",
+				"to": "00:05:25,040"
+			},
+			"offsets": {
+				"from": 323040,
+				"to": 325040
+			},
+			"text": " which is basically the amount of stable coins"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,040",
+				"to": "00:05:27,200"
+			},
+			"offsets": {
+				"from": 325040,
+				"to": 327200
+			},
+			"text": " that are getting redeemed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,200",
+				"to": "00:05:29,160"
+			},
+			"offsets": {
+				"from": 327200,
+				"to": 329160
+			},
+			"text": " And on the other axis, you have the redemption price"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,160",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 329160,
+				"to": 332000
+			},
+			"text": " that the mechanism offers to the redeemer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:34,920"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 334920
+			},
+			"text": " And now we assume-- now we look at what"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,920",
+				"to": "00:05:37,720"
+			},
+			"offsets": {
+				"from": 334920,
+				"to": 337720
+			},
+			"text": " happens when people redeem more and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,720",
+				"to": "00:05:40,960"
+			},
+			"offsets": {
+				"from": 337720,
+				"to": 340960
+			},
+			"text": " And market conditions don't change for the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,960",
+				"to": "00:05:42,800"
+			},
+			"offsets": {
+				"from": 340960,
+				"to": 342800
+			},
+			"text": " So nothing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,800",
+				"to": "00:05:44,080"
+			},
+			"offsets": {
+				"from": 342800,
+				"to": 344080
+			},
+			"text": " No prices change."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,080",
+				"to": "00:05:46,040"
+			},
+			"offsets": {
+				"from": 344080,
+				"to": 346040
+			},
+			"text": " But people just redeem more and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,040",
+				"to": "00:05:49,800"
+			},
+			"offsets": {
+				"from": 346040,
+				"to": 349800
+			},
+			"text": " And ideally, of course, what you want is this curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,800",
+				"to": "00:05:50,920"
+			},
+			"offsets": {
+				"from": 349800,
+				"to": 350920
+			},
+			"text": " You can always redeem at a dollar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,920",
+				"to": "00:05:55,880"
+			},
+			"offsets": {
+				"from": 350920,
+				"to": 355880
+			},
+			"text": " because then you always stabilize your peg at exactly a dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,880",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 355880,
+				"to": 357080
+			},
+			"text": " And the higher your curvature here"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 362800
+			},
+			"text": " is the less you support the peg as more and more people redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,800",
+				"to": "00:06:06,560"
+			},
+			"offsets": {
+				"from": 362800,
+				"to": 366560
+			},
+			"text": " Kind of the default that is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,560",
+				"to": "00:06:08,760"
+			},
+			"offsets": {
+				"from": 366560,
+				"to": 368760
+			},
+			"text": " happening for peg fiat currency is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,760",
+				"to": "00:06:11,840"
+			},
+			"offsets": {
+				"from": 368760,
+				"to": 371840
+			},
+			"text": " that you try to support the peg as long as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,840",
+				"to": "00:06:14,840"
+			},
+			"offsets": {
+				"from": 371840,
+				"to": 374840
+			},
+			"text": " until your reserve is empty and then you don't support it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,840",
+				"to": "00:06:16,600"
+			},
+			"offsets": {
+				"from": 374840,
+				"to": 376600
+			},
+			"text": " anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,600",
+				"to": "00:06:19,440"
+			},
+			"offsets": {
+				"from": 376600,
+				"to": 379440
+			},
+			"text": " And kind of my argument will be that maybe this redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,440",
+				"to": "00:06:21,760"
+			},
+			"offsets": {
+				"from": 379440,
+				"to": 381760
+			},
+			"text": " curve is not ideal and many other redemption curves"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,760",
+				"to": "00:06:24,880"
+			},
+			"offsets": {
+				"from": 381760,
+				"to": 384880
+			},
+			"text": " aren't ideal either."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,880",
+				"to": "00:06:29,520"
+			},
+			"offsets": {
+				"from": 384880,
+				"to": 389520
+			},
+			"text": " So we can see this type of curve or that type of behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,520",
+				"to": "00:06:33,680"
+			},
+			"offsets": {
+				"from": 389520,
+				"to": 393680
+			},
+			"text": " in the real world or in the fiat world."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,680",
+				"to": "00:06:36,920"
+			},
+			"offsets": {
+				"from": 393680,
+				"to": 396920
+			},
+			"text": " For example, the attack on the British pound in the '90s"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,920",
+				"to": "00:06:41,560"
+			},
+			"offsets": {
+				"from": 396920,
+				"to": 401560
+			},
+			"text": " was basically a continuous outflow"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,560",
+				"to": "00:06:44,600"
+			},
+			"offsets": {
+				"from": 401560,
+				"to": 404600
+			},
+			"text": " from the British pound, basically a continuous redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,600",
+				"to": "00:06:47,600"
+			},
+			"offsets": {
+				"from": 404600,
+				"to": 407600
+			},
+			"text": " of pounds against other assets until the central bank was no"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,600",
+				"to": "00:06:50,560"
+			},
+			"offsets": {
+				"from": 407600,
+				"to": 410560
+			},
+			"text": " longer willing to support the peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,560",
+				"to": "00:06:53,240"
+			},
+			"offsets": {
+				"from": 410560,
+				"to": 413240
+			},
+			"text": " And then you see this kind of drop"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,240",
+				"to": "00:06:56,080"
+			},
+			"offsets": {
+				"from": 413240,
+				"to": 416080
+			},
+			"text": " where some people made a lot of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,080",
+				"to": "00:06:57,600"
+			},
+			"offsets": {
+				"from": 416080,
+				"to": 417600
+			},
+			"text": " I think the recent crash of the pound"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,600",
+				"to": "00:07:00,040"
+			},
+			"offsets": {
+				"from": 417600,
+				"to": 420040
+			},
+			"text": " is probably not like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,040",
+				"to": "00:07:03,320"
+			},
+			"offsets": {
+				"from": 420040,
+				"to": 423320
+			},
+			"text": " I can't say anything about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,320",
+				"to": "00:07:09,120"
+			},
+			"offsets": {
+				"from": 423320,
+				"to": 429120
+			},
+			"text": " If we look at stable coins, we've seen similar behaviors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,120",
+				"to": "00:07:11,440"
+			},
+			"offsets": {
+				"from": 429120,
+				"to": 431440
+			},
+			"text": " The strata started a little bit outdated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,440",
+				"to": "00:07:14,160"
+			},
+			"offsets": {
+				"from": 431440,
+				"to": 434160
+			},
+			"text": " but there was this period in 2021 where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,160",
+				"to": "00:07:16,800"
+			},
+			"offsets": {
+				"from": 434160,
+				"to": 436800
+			},
+			"text": " many creative stable coin designs were created"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,800",
+				"to": "00:07:20,080"
+			},
+			"offsets": {
+				"from": 436800,
+				"to": 440080
+			},
+			"text": " and many of them crashed in a somewhat similar way"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,080",
+				"to": "00:07:20,800"
+			},
+			"offsets": {
+				"from": 440080,
+				"to": 440800
+			},
+			"text": " very abruptly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,800",
+				"to": "00:07:27,040"
+			},
+			"offsets": {
+				"from": 440800,
+				"to": 447040
+			},
+			"text": " I want to look at one design case study, which would be FAY,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,040",
+				"to": "00:07:28,880"
+			},
+			"offsets": {
+				"from": 447040,
+				"to": 448880
+			},
+			"text": " the original design of FAY, which was also not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,880",
+				"to": "00:07:33,400"
+			},
+			"offsets": {
+				"from": 448880,
+				"to": 453400
+			},
+			"text": " very successful in its original form."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,400",
+				"to": "00:07:36,920"
+			},
+			"offsets": {
+				"from": 453400,
+				"to": 456920
+			},
+			"text": " And so FAY had these direct incentives, which basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,920",
+				"to": "00:07:40,880"
+			},
+			"offsets": {
+				"from": 456920,
+				"to": 460880
+			},
+			"text": " means the more of peg, the whole system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,880",
+				"to": "00:07:43,200"
+			},
+			"offsets": {
+				"from": 460880,
+				"to": 463200
+			},
+			"text": " is, the worse the price you're getting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,200",
+				"to": "00:07:45,960"
+			},
+			"offsets": {
+				"from": 463200,
+				"to": 465960
+			},
+			"text": " And that, if you look at it, it leads to a redemption curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,960",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 465960,
+				"to": 469280
+			},
+			"text": " that is very steep and that looks about like this, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:53,040"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 473040
+			},
+			"text": " means that your peg is not going to be stabilized very long."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,040",
+				"to": "00:07:54,920"
+			},
+			"offsets": {
+				"from": 473040,
+				"to": 474920
+			},
+			"text": " Then they remove the direct incentives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,920",
+				"to": "00:08:01,800"
+			},
+			"offsets": {
+				"from": 474920,
+				"to": 481800
+			},
+			"text": " and then their redemption curve looked much less steep."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,800",
+				"to": "00:08:04,920"
+			},
+			"offsets": {
+				"from": 481800,
+				"to": 484920
+			},
+			"text": " And we can see the effect of these steep redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,920",
+				"to": "00:08:09,680"
+			},
+			"offsets": {
+				"from": 484920,
+				"to": 489680
+			},
+			"text": " Here, I hope this is visible, this price of FAY after launch."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,680",
+				"to": "00:08:13,480"
+			},
+			"offsets": {
+				"from": 489680,
+				"to": 493480
+			},
+			"text": " And it had a huge price drop with a lot of volatility."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,480",
+				"to": "00:08:18,880"
+			},
+			"offsets": {
+				"from": 493480,
+				"to": 498880
+			},
+			"text": " I should probably talk about the elephant in the room"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,880",
+				"to": "00:08:21,480"
+			},
+			"offsets": {
+				"from": 498880,
+				"to": 501480
+			},
+			"text": " or maybe not elephant anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,480",
+				"to": "00:08:23,040"
+			},
+			"offsets": {
+				"from": 501480,
+				"to": 503040
+			},
+			"text": " Sanirad shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,040",
+				"to": "00:08:27,760"
+			},
+			"offsets": {
+				"from": 503040,
+				"to": 507760
+			},
+			"text": " And the way I think about Sanirad shares is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,760",
+				"to": "00:08:30,640"
+			},
+			"offsets": {
+				"from": 507760,
+				"to": 510640
+			},
+			"text": " that you redeem at $1, but your backing is an endogenous asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,640",
+				"to": "00:08:34,720"
+			},
+			"offsets": {
+				"from": 510640,
+				"to": 514720
+			},
+			"text": " that's basically very, very tied into your project itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,720",
+				"to": "00:08:36,560"
+			},
+			"offsets": {
+				"from": 514720,
+				"to": 516560
+			},
+			"text": " And this can lead to some negative feedback spirals."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,560",
+				"to": "00:08:42,960"
+			},
+			"offsets": {
+				"from": 516560,
+				"to": 522960
+			},
+			"text": " So essentially, it's the same story as from the fiat world"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,960",
+				"to": "00:08:45,440"
+			},
+			"offsets": {
+				"from": 522960,
+				"to": 525440
+			},
+			"text": " before."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,440",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 525440,
+				"to": 528640
+			},
+			"text": " You provide redemption at $1 until the willingness"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:51,880"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 531880
+			},
+			"text": " of the market to buy your Sanirad shares is exhausted."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,880",
+				"to": "00:08:54,280"
+			},
+			"offsets": {
+				"from": 531880,
+				"to": 534280
+			},
+			"text": " And then you basically crash very rapidly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,280",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 534280,
+				"to": 536000
+			},
+			"text": " And I should probably show this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:02,680"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 542680
+			},
+			"text": " There's supply."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,680",
+				"to": "00:09:04,520"
+			},
+			"offsets": {
+				"from": 542680,
+				"to": 544520
+			},
+			"text": " If it's supply inflation at the same moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,520",
+				"to": "00:09:07,120"
+			},
+			"offsets": {
+				"from": 544520,
+				"to": 547120
+			},
+			"text": " but it doesn't really matter because people"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,120",
+				"to": "00:09:09,920"
+			},
+			"offsets": {
+				"from": 547120,
+				"to": 549920
+			},
+			"text": " don't want-- the amount of Sanirad shares people want to buy"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,920",
+				"to": "00:09:11,680"
+			},
+			"offsets": {
+				"from": 549920,
+				"to": 551680
+			},
+			"text": " doesn't increase."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,680",
+				"to": "00:09:12,880"
+			},
+			"offsets": {
+				"from": 551680,
+				"to": 552880
+			},
+			"text": " Or the amount of dollars people want"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,880",
+				"to": "00:09:15,640"
+			},
+			"offsets": {
+				"from": 552880,
+				"to": 555640
+			},
+			"text": " to put into Sanirad shares, I should say."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,640",
+				"to": "00:09:19,080"
+			},
+			"offsets": {
+				"from": 555640,
+				"to": 559080
+			},
+			"text": " I should point out one thing about this particular talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,080",
+				"to": "00:09:22,200"
+			},
+			"offsets": {
+				"from": 559080,
+				"to": 562200
+			},
+			"text": " This was when I gave the first version of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,200",
+				"to": "00:09:24,480"
+			},
+			"offsets": {
+				"from": 562200,
+				"to": 564480
+			},
+			"text": " This was not without precedent."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,480",
+				"to": "00:09:27,760"
+			},
+			"offsets": {
+				"from": 564480,
+				"to": 567760
+			},
+			"text": " We had a very similar system called iron."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,760",
+				"to": "00:09:30,680"
+			},
+			"offsets": {
+				"from": 567760,
+				"to": 570680
+			},
+			"text": " You may remember, which also crashed in a very similar way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,680",
+				"to": "00:09:33,400"
+			},
+			"offsets": {
+				"from": 570680,
+				"to": 573400
+			},
+			"text": " So here you have the stable coin that crashed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,400",
+				"to": "00:09:37,680"
+			},
+			"offsets": {
+				"from": 573400,
+				"to": 577680
+			},
+			"text": " and at the same time, the endogenous collateral crashed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,680",
+				"to": "00:09:38,200"
+			},
+			"offsets": {
+				"from": 577680,
+				"to": 578200
+			},
+			"text": " also."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,200",
+				"to": "00:09:42,200"
+			},
+			"offsets": {
+				"from": 578200,
+				"to": 582200
+			},
+			"text": " So that's not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,200",
+				"to": "00:09:46,320"
+			},
+			"offsets": {
+				"from": 582200,
+				"to": 586320
+			},
+			"text": " And that's why we made gyroscope reserve backed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,320",
+				"to": "00:09:51,440"
+			},
+			"offsets": {
+				"from": 586320,
+				"to": 591440
+			},
+			"text": " And the basic idea of what I want to talk about today"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,440",
+				"to": "00:09:54,040"
+			},
+			"offsets": {
+				"from": 591440,
+				"to": 594040
+			},
+			"text": " is maybe we should think about the redemption curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,040",
+				"to": "00:09:55,640"
+			},
+			"offsets": {
+				"from": 594040,
+				"to": 595640
+			},
+			"text": " as a design problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,640",
+				"to": "00:09:58,320"
+			},
+			"offsets": {
+				"from": 595640,
+				"to": 598320
+			},
+			"text": " And maybe we should choose a redemption curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,320",
+				"to": "00:10:00,720"
+			},
+			"offsets": {
+				"from": 598320,
+				"to": 600720
+			},
+			"text": " that we think is useful and reasonable."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,720",
+				"to": "00:10:05,320"
+			},
+			"offsets": {
+				"from": 600720,
+				"to": 605320
+			},
+			"text": " And then we go and implement that in our primary market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,320",
+				"to": "00:10:07,600"
+			},
+			"offsets": {
+				"from": 605320,
+				"to": 607600
+			},
+			"text": " So the basic design is going to look like this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,600",
+				"to": "00:10:10,120"
+			},
+			"offsets": {
+				"from": 607600,
+				"to": 610120
+			},
+			"text": " You remember this picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,120",
+				"to": "00:10:12,200"
+			},
+			"offsets": {
+				"from": 610120,
+				"to": 612200
+			},
+			"text": " And we're assuming that the assets here are exogenous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,200",
+				"to": "00:10:14,640"
+			},
+			"offsets": {
+				"from": 612200,
+				"to": 614640
+			},
+			"text": " so we don't need to worry about these feedback effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,640",
+				"to": "00:10:17,960"
+			},
+			"offsets": {
+				"from": 614640,
+				"to": 617960
+			},
+			"text": " But what do you want to do if this system is under collateralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,960",
+				"to": "00:10:20,880"
+			},
+			"offsets": {
+				"from": 617960,
+				"to": 620880
+			},
+			"text": " or illiquid?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,880",
+				"to": "00:10:24,600"
+			},
+			"offsets": {
+				"from": 620880,
+				"to": 624600
+			},
+			"text": " And I want to give you these results in three parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,600",
+				"to": "00:10:26,160"
+			},
+			"offsets": {
+				"from": 624600,
+				"to": 626160
+			},
+			"text": " First, we thought about what are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,160",
+				"to": "00:10:28,920"
+			},
+			"offsets": {
+				"from": 626160,
+				"to": 628920
+			},
+			"text": " this a Dorata for a good redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,920",
+				"to": "00:10:30,280"
+			},
+			"offsets": {
+				"from": 628920,
+				"to": 630280
+			},
+			"text": " What do we really want?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,280",
+				"to": "00:10:32,120"
+			},
+			"offsets": {
+				"from": 630280,
+				"to": 632120
+			},
+			"text": " And then I'm going to show you one such curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,120",
+				"to": "00:10:34,200"
+			},
+			"offsets": {
+				"from": 632120,
+				"to": 634200
+			},
+			"text": " that satisfies the Dorata."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,200",
+				"to": "00:10:35,800"
+			},
+			"offsets": {
+				"from": 634200,
+				"to": 635800
+			},
+			"text": " And then I'm going to talk to you about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,800",
+				"to": "00:10:37,200"
+			},
+			"offsets": {
+				"from": 635800,
+				"to": 637200
+			},
+			"text": " to actually implement that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,200",
+				"to": "00:10:39,440"
+			},
+			"offsets": {
+				"from": 637200,
+				"to": 639440
+			},
+			"text": " Because as you remember, the redemption curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,440",
+				"to": "00:10:42,360"
+			},
+			"offsets": {
+				"from": 639440,
+				"to": 642360
+			},
+			"text": " assumes that no market condition change over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,360",
+				"to": "00:10:44,480"
+			},
+			"offsets": {
+				"from": 642360,
+				"to": 644480
+			},
+			"text": " And of course, that doesn't happen in reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,480",
+				"to": "00:10:47,880"
+			},
+			"offsets": {
+				"from": 644480,
+				"to": 647880
+			},
+			"text": " So the step from picking a curve and then implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,880",
+				"to": "00:10:49,280"
+			},
+			"offsets": {
+				"from": 647880,
+				"to": 649280
+			},
+			"text": " is making it dynamic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,280",
+				"to": "00:10:51,440"
+			},
+			"offsets": {
+				"from": 649280,
+				"to": 651440
+			},
+			"text": " And this is going to lead to this type of dynamic bonding"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,440",
+				"to": "00:10:55,440"
+			},
+			"offsets": {
+				"from": 651440,
+				"to": 655440
+			},
+			"text": " curve, if you want to think about it like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,440",
+				"to": "00:10:55,760"
+			},
+			"offsets": {
+				"from": 655440,
+				"to": 655760
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,760",
+				"to": "00:10:57,800"
+			},
+			"offsets": {
+				"from": 655760,
+				"to": 657800
+			},
+			"text": " Let's first think about what we would ideally"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,800",
+				"to": "00:11:02,080"
+			},
+			"offsets": {
+				"from": 657800,
+				"to": 662080
+			},
+			"text": " want of our redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,080",
+				"to": "00:11:05,680"
+			},
+			"offsets": {
+				"from": 662080,
+				"to": 665680
+			},
+			"text": " First thing I want to note is that probably your collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,680",
+				"to": "00:11:09,040"
+			},
+			"offsets": {
+				"from": 665680,
+				"to": 669040
+			},
+			"text": " should stay above some lower bound."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,040",
+				"to": "00:11:13,640"
+			},
+			"offsets": {
+				"from": 669040,
+				"to": 673640
+			},
+			"text": " Your redemption curve should not exhaust your reserve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,640",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 673640,
+				"to": 675000
+			},
+			"text": " If that's at all possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:17,640"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 677640
+			},
+			"text": " And the reason for that is to enable the system to recover"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,640",
+				"to": "00:11:18,600"
+			},
+			"offsets": {
+				"from": 677640,
+				"to": 678600
+			},
+			"text": " later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,600",
+				"to": "00:11:20,760"
+			},
+			"offsets": {
+				"from": 678600,
+				"to": 680760
+			},
+			"text": " If you exhaust your reserve, you're basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,760",
+				"to": "00:11:23,560"
+			},
+			"offsets": {
+				"from": 680760,
+				"to": 683560
+			},
+			"text": " destroying your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,560",
+				"to": "00:11:24,760"
+			},
+			"offsets": {
+				"from": 683560,
+				"to": 684760
+			},
+			"text": " And that's bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,760",
+				"to": "00:11:26,720"
+			},
+			"offsets": {
+				"from": 684760,
+				"to": 686720
+			},
+			"text": " And then you probably also want the redemption price"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,720",
+				"to": "00:11:28,640"
+			},
+			"offsets": {
+				"from": 686720,
+				"to": 688640
+			},
+			"text": " to stay above a lower bound."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,640",
+				"to": "00:11:33,760"
+			},
+			"offsets": {
+				"from": 688640,
+				"to": 693760
+			},
+			"text": " If that's possible to support the pack, at least to some degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,760",
+				"to": "00:11:35,320"
+			},
+			"offsets": {
+				"from": 693760,
+				"to": 695320
+			},
+			"text": " Of course, this trivial-- we usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,320",
+				"to": "00:11:38,400"
+			},
+			"offsets": {
+				"from": 695320,
+				"to": 698400
+			},
+			"text": " want our stable count to be stable at $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,400",
+				"to": "00:11:41,040"
+			},
+			"offsets": {
+				"from": 698400,
+				"to": 701040
+			},
+			"text": " You probably want some continuity of that curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,040",
+				"to": "00:11:43,720"
+			},
+			"offsets": {
+				"from": 701040,
+				"to": 703720
+			},
+			"text": " You probably don't want these abrupt crashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:46,360"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 706360
+			},
+			"text": " And I would say the main reason for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,360",
+				"to": "00:11:50,360"
+			},
+			"offsets": {
+				"from": 706360,
+				"to": 710360
+			},
+			"text": " is to prevent speculation because these kind of discontinuous"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,360",
+				"to": "00:11:54,400"
+			},
+			"offsets": {
+				"from": 710360,
+				"to": 714400
+			},
+			"text": " crashes are something people could speculate on very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,400",
+				"to": "00:11:56,920"
+			},
+			"offsets": {
+				"from": 714400,
+				"to": 716920
+			},
+			"text": " And that could also lead to all kinds of marketer people."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,920",
+				"to": "00:12:02,240"
+			},
+			"offsets": {
+				"from": 716920,
+				"to": 722240
+			},
+			"text": " And then this is a little bit of a bonus."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,240",
+				"to": "00:12:04,960"
+			},
+			"offsets": {
+				"from": 722240,
+				"to": 724960
+			},
+			"text": " But you want your redemption curve to be easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,960",
+				"to": "00:12:08,880"
+			},
+			"offsets": {
+				"from": 724960,
+				"to": 728880
+			},
+			"text": " So probably what you want is you want the execution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,880",
+				"to": "00:12:13,040"
+			},
+			"offsets": {
+				"from": 728880,
+				"to": 733040
+			},
+			"text": " if you redeem a certain amount of stable counts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,040",
+				"to": "00:12:14,960"
+			},
+			"offsets": {
+				"from": 733040,
+				"to": 734960
+			},
+			"text": " Our stable counts are going to be called drybells."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,960",
+				"to": "00:12:16,960"
+			},
+			"offsets": {
+				"from": 734960,
+				"to": 736960
+			},
+			"text": " I'll call it for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,960",
+				"to": "00:12:18,480"
+			},
+			"offsets": {
+				"from": 736960,
+				"to": 738480
+			},
+			"text": " You probably want that to be easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,480",
+				"to": "00:12:20,040"
+			},
+			"offsets": {
+				"from": 738480,
+				"to": 740040
+			},
+			"text": " And especially you don't want there"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,040",
+				"to": "00:12:22,360"
+			},
+			"offsets": {
+				"from": 740040,
+				"to": 742360
+			},
+			"text": " to be an incentive to subdivide your redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,360",
+				"to": "00:12:24,920"
+			},
+			"offsets": {
+				"from": 742360,
+				"to": 744920
+			},
+			"text": " and to be somehow clever about the way how people redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,920",
+				"to": "00:12:30,880"
+			},
+			"offsets": {
+				"from": 744920,
+				"to": 750880
+			},
+			"text": " We have a few bonus visitorata that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,880",
+				"to": "00:12:36,920"
+			},
+			"offsets": {
+				"from": 750880,
+				"to": 756920
+			},
+			"text": " are with respect to several transactions or several blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,920",
+				"to": "00:12:40,680"
+			},
+			"offsets": {
+				"from": 756920,
+				"to": 760680
+			},
+			"text": " You probably want the reserve exhaustion to take a long time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,680",
+				"to": "00:12:43,360"
+			},
+			"offsets": {
+				"from": 760680,
+				"to": 763360
+			},
+			"text": " unless of course you reserve just there's crashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,360",
+				"to": "00:12:46,640"
+			},
+			"offsets": {
+				"from": 763360,
+				"to": 766640
+			},
+			"text": " So the system should also kind of think"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,640",
+				"to": "00:12:48,880"
+			},
+			"offsets": {
+				"from": 766640,
+				"to": 768880
+			},
+			"text": " about what happens tomorrow, what happens when"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,880",
+				"to": "00:12:51,200"
+			},
+			"offsets": {
+				"from": 768880,
+				"to": 771200
+			},
+			"text": " the system runs continuously."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,200",
+				"to": "00:12:52,840"
+			},
+			"offsets": {
+				"from": 771200,
+				"to": 772840
+			},
+			"text": " You should be able to regain your peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,840",
+				"to": "00:12:55,600"
+			},
+			"offsets": {
+				"from": 772840,
+				"to": 775600
+			},
+			"text": " And of course you need to implement the whole thing on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,600",
+				"to": "00:12:59,320"
+			},
+			"offsets": {
+				"from": 775600,
+				"to": 779320
+			},
+			"text": " Yes, the first math equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,320",
+				"to": "00:13:02,840"
+			},
+			"offsets": {
+				"from": 779320,
+				"to": 782840
+			},
+			"text": " So before I show you how we implement this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,840",
+				"to": "00:13:05,560"
+			},
+			"offsets": {
+				"from": 782840,
+				"to": 785560
+			},
+			"text": " I have to introduce this nice equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,560",
+				"to": "00:13:07,680"
+			},
+			"offsets": {
+				"from": 785560,
+				"to": 787680
+			},
+			"text": " We assume that the redemption pressure is computed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,680",
+				"to": "00:13:11,760"
+			},
+			"offsets": {
+				"from": 787680,
+				"to": 791760
+			},
+			"text": " as a time discounted sum."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,760",
+				"to": "00:13:15,320"
+			},
+			"offsets": {
+				"from": 791760,
+				"to": 795320
+			},
+			"text": " If you don't care about that, that's totally fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,320",
+				"to": "00:13:19,880"
+			},
+			"offsets": {
+				"from": 795320,
+				"to": 799880
+			},
+			"text": " And now I'm going to show you one simplified design that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,880",
+				"to": "00:13:23,280"
+			},
+			"offsets": {
+				"from": 799880,
+				"to": 803280
+			},
+			"text": " satisfies almost all of the visitorata."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,280",
+				"to": "00:13:24,760"
+			},
+			"offsets": {
+				"from": 803280,
+				"to": 804760
+			},
+			"text": " And this is a simplified redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,760",
+				"to": "00:13:27,560"
+			},
+			"offsets": {
+				"from": 804760,
+				"to": 807560
+			},
+			"text": " We're not using this, but it's good for explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,560",
+				"to": "00:13:33,880"
+			},
+			"offsets": {
+				"from": 807560,
+				"to": 813880
+			},
+			"text": " So what the curve does is that we support a price of $1"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,880",
+				"to": "00:13:38,760"
+			},
+			"offsets": {
+				"from": 813880,
+				"to": 818760
+			},
+			"text": " so people can redeem at a price of $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,760",
+				"to": "00:13:40,600"
+			},
+			"offsets": {
+				"from": 818760,
+				"to": 820600
+			},
+			"text": " Up until a certain amount of redemption."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,600",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 820600,
+				"to": 823000
+			},
+			"text": " So on this axis we have redemptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:50,760"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 830760
+			},
+			"text": " And then we are going to drop the redemption price"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,760",
+				"to": "00:13:53,400"
+			},
+			"offsets": {
+				"from": 830760,
+				"to": 833400
+			},
+			"text": " so that the redemption price is equal to the collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,400",
+				"to": "00:13:54,200"
+			},
+			"offsets": {
+				"from": 833400,
+				"to": 834200
+			},
+			"text": " ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,200",
+				"to": "00:13:56,160"
+			},
+			"offsets": {
+				"from": 834200,
+				"to": 836160
+			},
+			"text": " And this is a sustainable way of doing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,160",
+				"to": "00:13:58,880"
+			},
+			"offsets": {
+				"from": 836160,
+				"to": 838880
+			},
+			"text": " So for example, if your system's 80% collateralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,880",
+				"to": "00:14:00,320"
+			},
+			"offsets": {
+				"from": 838880,
+				"to": 840320
+			},
+			"text": " the redemption price would be $0.80."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,320",
+				"to": "00:14:01,600"
+			},
+			"offsets": {
+				"from": 840320,
+				"to": 841600
+			},
+			"text": " And you can just do that indefinitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,600",
+				"to": "00:14:03,360"
+			},
+			"offsets": {
+				"from": 841600,
+				"to": 843360
+			},
+			"text": " and redeem the rest of the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,360",
+				"to": "00:14:07,200"
+			},
+			"offsets": {
+				"from": 843360,
+				"to": 847200
+			},
+			"text": " And of course this has all of the nice properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,200",
+				"to": "00:14:09,160"
+			},
+			"offsets": {
+				"from": 847200,
+				"to": 849160
+			},
+			"text": " all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,160",
+				"to": "00:14:14,080"
+			},
+			"offsets": {
+				"from": 849160,
+				"to": 854080
+			},
+			"text": " You don't run out of reserves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,080",
+				"to": "00:14:17,200"
+			},
+			"offsets": {
+				"from": 854080,
+				"to": 857200
+			},
+			"text": " You can actually configure a trade-off that exists here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,200",
+				"to": "00:14:21,080"
+			},
+			"offsets": {
+				"from": 857200,
+				"to": 861080
+			},
+			"text": " Of course, the longer you support a pack of $1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,080",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 861080,
+				"to": 864160
+			},
+			"text": " the lower your eventual collateralization is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:26,400"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 866400
+			},
+			"text": " But it's something that you can choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,400",
+				"to": "00:14:30,120"
+			},
+			"offsets": {
+				"from": 866400,
+				"to": 870120
+			},
+			"text": " Exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,120",
+				"to": "00:14:34,480"
+			},
+			"offsets": {
+				"from": 870120,
+				"to": 874480
+			},
+			"text": " So we have the strong terms of the ability of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,480",
+				"to": "00:14:36,080"
+			},
+			"offsets": {
+				"from": 874480,
+				"to": 876080
+			},
+			"text": " If you actually want to do this, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,080",
+				"to": "00:14:39,400"
+			},
+			"offsets": {
+				"from": 876080,
+				"to": 879400
+			},
+			"text": " would be like the equation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,400",
+				"to": "00:14:42,440"
+			},
+			"offsets": {
+				"from": 879400,
+				"to": 882440
+			},
+			"text": " But of course the problem is that this is like this ugly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,440",
+				"to": "00:14:44,760"
+			},
+			"offsets": {
+				"from": 882440,
+				"to": 884760
+			},
+			"text": " discontinuous jump that I mentioned before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,760",
+				"to": "00:14:47,360"
+			},
+			"offsets": {
+				"from": 884760,
+				"to": 887360
+			},
+			"text": " And so what we really do is that we introduce"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,360",
+				"to": "00:14:49,120"
+			},
+			"offsets": {
+				"from": 887360,
+				"to": 889120
+			},
+			"text": " the Ligner segment there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,120",
+				"to": "00:14:52,480"
+			},
+			"offsets": {
+				"from": 889120,
+				"to": 892480
+			},
+			"text": " Looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,480",
+				"to": "00:14:54,480"
+			},
+			"offsets": {
+				"from": 892480,
+				"to": 894480
+			},
+			"text": " Where the price would first be $1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,480",
+				"to": "00:14:57,800"
+			},
+			"offsets": {
+				"from": 894480,
+				"to": 897800
+			},
+			"text": " then it would decrease as more and more is redeemed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,800",
+				"to": "00:15:04,760"
+			},
+			"offsets": {
+				"from": 897800,
+				"to": 904760
+			},
+			"text": " And then if it has reached a point where we have a sustainable"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,760",
+				"to": "00:15:09,400"
+			},
+			"offsets": {
+				"from": 904760,
+				"to": 909400
+			},
+			"text": " collateralization ratio, it would just give you that price."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,400",
+				"to": "00:15:12,560"
+			},
+			"offsets": {
+				"from": 909400,
+				"to": 912560
+			},
+			"text": " And if you want to do that, the math to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,560",
+				"to": "00:15:15,520"
+			},
+			"offsets": {
+				"from": 912560,
+				"to": 915520
+			},
+			"text": " looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,520",
+				"to": "00:15:17,160"
+			},
+			"offsets": {
+				"from": 915520,
+				"to": 917160
+			},
+			"text": " But it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,160",
+				"to": "00:15:17,720"
+			},
+			"offsets": {
+				"from": 917160,
+				"to": 917720
+			},
+			"text": " It's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,720",
+				"to": "00:15:20,080"
+			},
+			"offsets": {
+				"from": 917720,
+				"to": 920080
+			},
+			"text": " There are cases, tensions, and fractions."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,080",
+				"to": "00:15:22,760"
+			},
+			"offsets": {
+				"from": 920080,
+				"to": 922760
+			},
+			"text": " But it's not that bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,760",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 922760,
+				"to": 928000
+			},
+			"text": " And one thing you can see here is that governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:31,080"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 931080
+			},
+			"text": " can configure this using some hyperparameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,080",
+				"to": "00:15:35,960"
+			},
+			"offsets": {
+				"from": 931080,
+				"to": 935960
+			},
+			"text": " So you can say, what is the minimum collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,960",
+				"to": "00:15:37,920"
+			},
+			"offsets": {
+				"from": 935960,
+				"to": 937920
+			},
+			"text": " that I want of my system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,920",
+				"to": "00:15:40,160"
+			},
+			"offsets": {
+				"from": 937920,
+				"to": 940160
+			},
+			"text": " And this is something that governance would set because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,160",
+				"to": "00:15:41,880"
+			},
+			"offsets": {
+				"from": 940160,
+				"to": 941880
+			},
+			"text": " actually a meaningful parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,880",
+				"to": "00:15:44,680"
+			},
+			"offsets": {
+				"from": 941880,
+				"to": 944680
+			},
+			"text": " You can say, what is the steepness here"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,680",
+				"to": "00:15:47,840"
+			},
+			"offsets": {
+				"from": 944680,
+				"to": 947840
+			},
+			"text": " that I'm willing to tolerate another parameter?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,840",
+				"to": "00:15:49,600"
+			},
+			"offsets": {
+				"from": 947840,
+				"to": 949600
+			},
+			"text": " And then if you solve this equation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,600",
+				"to": "00:15:52,760"
+			},
+			"offsets": {
+				"from": 949600,
+				"to": 952760
+			},
+			"text": " it's going to respond autonomously to these hyperparameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,760",
+				"to": "00:16:01,280"
+			},
+			"offsets": {
+				"from": 952760,
+				"to": 961280
+			},
+			"text": " Now, this curve is beautiful."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,280",
+				"to": "00:16:03,240"
+			},
+			"offsets": {
+				"from": 961280,
+				"to": 963240
+			},
+			"text": " But it has a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,240",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 963240,
+				"to": 966960
+			},
+			"text": " It's not very useful because it doesn't reflect reality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,960",
+				"to": "00:16:11,160"
+			},
+			"offsets": {
+				"from": 966960,
+				"to": 971160
+			},
+			"text": " because we assume there is a redemption pressure of zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,160",
+				"to": "00:16:13,960"
+			},
+			"offsets": {
+				"from": 971160,
+				"to": 973960
+			},
+			"text": " We have some kind of initial collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,960",
+				"to": "00:16:17,120"
+			},
+			"offsets": {
+				"from": 973960,
+				"to": 977120
+			},
+			"text": " of the system, which we call an anchor rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,120",
+				"to": "00:16:21,800"
+			},
+			"offsets": {
+				"from": 977120,
+				"to": 981800
+			},
+			"text": " Or we label this like RA."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,800",
+				"to": "00:16:23,080"
+			},
+			"offsets": {
+				"from": 981800,
+				"to": 983080
+			},
+			"text": " And then you start from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,080",
+				"to": "00:16:25,640"
+			},
+			"offsets": {
+				"from": 983080,
+				"to": 985640
+			},
+			"text": " The curve tells you what happens when you start at zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,640",
+				"to": "00:16:27,680"
+			},
+			"offsets": {
+				"from": 985640,
+				"to": 987680
+			},
+			"text": " redemption pressure at the anchor rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,680",
+				"to": "00:16:30,080"
+			},
+			"offsets": {
+				"from": 987680,
+				"to": 990080
+			},
+			"text": " Nothing changes in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,080",
+				"to": "00:16:34,440"
+			},
+			"offsets": {
+				"from": 990080,
+				"to": 994440
+			},
+			"text": " To implement that, we need to live in a situation where"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,440",
+				"to": "00:16:35,880"
+			},
+			"offsets": {
+				"from": 994440,
+				"to": 995880
+			},
+			"text": " the market will, of course, change."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,880",
+				"to": "00:16:37,920"
+			},
+			"offsets": {
+				"from": 995880,
+				"to": 997920
+			},
+			"text": " And we can still use this curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,920",
+				"to": "00:16:40,440"
+			},
+			"offsets": {
+				"from": 997920,
+				"to": 1000440
+			},
+			"text": " And this is what I want to talk about today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,440",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1000440,
+				"to": 1005160
+			},
+			"text": " So the goal is make the whole thing dynamic."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:48,200"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1008200
+			},
+			"text": " Make it react to the current market state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,200",
+				"to": "00:16:52,760"
+			},
+			"offsets": {
+				"from": 1008200,
+				"to": 1012760
+			},
+			"text": " And I'm going to show you how to do it, hopefully,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,760",
+				"to": "00:17:00,680"
+			},
+			"offsets": {
+				"from": 1012760,
+				"to": 1020680
+			},
+			"text": " in a picture, and how we do it goes as follows."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,680",
+				"to": "00:17:04,120"
+			},
+			"offsets": {
+				"from": 1020680,
+				"to": 1024120
+			},
+			"text": " I showed you this curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,120",
+				"to": "00:17:07,920"
+			},
+			"offsets": {
+				"from": 1024120,
+				"to": 1027920
+			},
+			"text": " And if you know your anchor collateralization, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,920",
+				"to": "00:17:12,840"
+			},
+			"offsets": {
+				"from": 1027920,
+				"to": 1032840
+			},
+			"text": " is on this axis, and you know a certain amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,840",
+				"to": "00:17:15,520"
+			},
+			"offsets": {
+				"from": 1032840,
+				"to": 1035520
+			},
+			"text": " of redemption pressure, then you can go and integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,520",
+				"to": "00:17:16,640"
+			},
+			"offsets": {
+				"from": 1035520,
+				"to": 1036640
+			},
+			"text": " the curve from before."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,640",
+				"to": "00:17:18,680"
+			},
+			"offsets": {
+				"from": 1036640,
+				"to": 1038680
+			},
+			"text": " And it's going to tell you what your collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,680",
+				"to": "00:17:19,720"
+			},
+			"offsets": {
+				"from": 1038680,
+				"to": 1039720
+			},
+			"text": " at that point is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,720",
+				"to": "00:17:20,360"
+			},
+			"offsets": {
+				"from": 1039720,
+				"to": 1040360
+			},
+			"text": " And that's up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,360",
+				"to": "00:17:28,040"
+			},
+			"offsets": {
+				"from": 1040360,
+				"to": 1048040
+			},
+			"text": " And if we do that for all possible anchor values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,040",
+				"to": "00:17:29,600"
+			},
+			"offsets": {
+				"from": 1048040,
+				"to": 1049600
+			},
+			"text": " we get a three dimensional surface."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,600",
+				"to": "00:17:39,160"
+			},
+			"offsets": {
+				"from": 1049600,
+				"to": 1059160
+			},
+			"text": " And what we just discussed was, if you know this and this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,160",
+				"to": "00:17:41,160"
+			},
+			"offsets": {
+				"from": 1059160,
+				"to": 1061160
+			},
+			"text": " you can compute this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,160",
+				"to": "00:17:43,520"
+			},
+			"offsets": {
+				"from": 1061160,
+				"to": 1063520
+			},
+			"text": " But it turns out that you can also do it in reverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,520",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063520,
+				"to": 1066000
+			},
+			"text": " So if you know the current collateralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:48,920"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1068920
+			},
+			"text": " of the system on this axis, and the current redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,920",
+				"to": "00:17:50,840"
+			},
+			"offsets": {
+				"from": 1068920,
+				"to": 1070840
+			},
+			"text": " pressure here, which is something that you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,840",
+				"to": "00:17:53,640"
+			},
+			"offsets": {
+				"from": 1070840,
+				"to": 1073640
+			},
+			"text": " observe in real time, then you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,640",
+				"to": "00:17:58,280"
+			},
+			"offsets": {
+				"from": 1073640,
+				"to": 1078280
+			},
+			"text": " compute this initial collateralization ratio, which, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,280",
+				"to": "00:18:01,320"
+			},
+			"offsets": {
+				"from": 1078280,
+				"to": 1081320
+			},
+			"text": " at this point, is purely a modeling tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,320",
+				"to": "00:18:05,240"
+			},
+			"offsets": {
+				"from": 1081320,
+				"to": 1085240
+			},
+			"text": " But it tells you if nothing had happened in the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,240",
+				"to": "00:18:08,680"
+			},
+			"offsets": {
+				"from": 1085240,
+				"to": 1088680
+			},
+			"text": " and we are now at the state where should we have started"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,680",
+				"to": "00:18:10,160"
+			},
+			"offsets": {
+				"from": 1088680,
+				"to": 1090160
+			},
+			"text": " if this model was true."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,160",
+				"to": "00:18:14,120"
+			},
+			"offsets": {
+				"from": 1090160,
+				"to": 1094120
+			},
+			"text": " OK, so many complicated words here."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,120",
+				"to": "00:18:15,400"
+			},
+			"offsets": {
+				"from": 1094120,
+				"to": 1095400
+			},
+			"text": " And so basically, this theorem says"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,400",
+				"to": "00:18:17,120"
+			},
+			"offsets": {
+				"from": 1095400,
+				"to": 1097120
+			},
+			"text": " that you can reconstruct that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,120",
+				"to": "00:18:19,760"
+			},
+			"offsets": {
+				"from": 1097120,
+				"to": 1099760
+			},
+			"text": " It's a monotonicity argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,760",
+				"to": "00:18:22,520"
+			},
+			"offsets": {
+				"from": 1099760,
+				"to": 1102520
+			},
+			"text": " It's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,520",
+				"to": "00:18:25,440"
+			},
+			"offsets": {
+				"from": 1102520,
+				"to": 1105440
+			},
+			"text": " And so then, once you have the initial state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,440",
+				"to": "00:18:31,720"
+			},
+			"offsets": {
+				"from": 1105440,
+				"to": 1111720
+			},
+			"text": " we can offer redemption prices based on this redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,720",
+				"to": "00:18:33,640"
+			},
+			"offsets": {
+				"from": 1111720,
+				"to": 1113640
+			},
+			"text": " curve as a model."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,640",
+				"to": "00:18:36,240"
+			},
+			"offsets": {
+				"from": 1113640,
+				"to": 1116240
+			},
+			"text": " And that's pretty convenient, because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,240",
+				"to": "00:18:38,680"
+			},
+			"offsets": {
+				"from": 1116240,
+				"to": 1118680
+			},
+			"text": " a way to respond to current market conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,680",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1118680,
+				"to": 1120000
+			},
+			"text": " It's completely autonomous."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:43,960"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1123960
+			},
+			"text": " Governance only has to set meaningful hyperparameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,960",
+				"to": "00:18:47,760"
+			},
+			"offsets": {
+				"from": 1123960,
+				"to": 1127760
+			},
+			"text": " Doesn't have to do anything in the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,760",
+				"to": "00:18:49,920"
+			},
+			"offsets": {
+				"from": 1127760,
+				"to": 1129920
+			},
+			"text": " And it's completely predictable for other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,920",
+				"to": "00:18:52,240"
+			},
+			"offsets": {
+				"from": 1129920,
+				"to": 1132240
+			},
+			"text": " so everyone knows what's going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,240",
+				"to": "00:18:55,720"
+			},
+			"offsets": {
+				"from": 1132240,
+				"to": 1135720
+			},
+			"text": " You have this huge transparency advantage over a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,720",
+				"to": "00:19:00,720"
+			},
+			"offsets": {
+				"from": 1135720,
+				"to": 1140720
+			},
+			"text": " where governance would just come in and then make a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,720",
+				"to": "00:19:02,680"
+			},
+			"offsets": {
+				"from": 1140720,
+				"to": 1142680
+			},
+			"text": " And of course, other market participants"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,680",
+				"to": "00:19:05,280"
+			},
+			"offsets": {
+				"from": 1142680,
+				"to": 1145280
+			},
+			"text": " have no idea what the outcome of this vote is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,560",
+				"to": "00:19:09,360"
+			},
+			"offsets": {
+				"from": 1147560,
+				"to": 1149360
+			},
+			"text": " Now, I should probably talk about implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,360",
+				"to": "00:19:10,920"
+			},
+			"offsets": {
+				"from": 1149360,
+				"to": 1150920
+			},
+			"text": " because you might be looking at this theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,920",
+				"to": "00:19:14,120"
+			},
+			"offsets": {
+				"from": 1150920,
+				"to": 1154120
+			},
+			"text": " And you're like, yeah, this is great if you're doing pure math."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,120",
+				"to": "00:19:15,440"
+			},
+			"offsets": {
+				"from": 1154120,
+				"to": 1155440
+			},
+			"text": " But we're not doing that at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,440",
+				"to": "00:19:18,240"
+			},
+			"offsets": {
+				"from": 1155440,
+				"to": 1158240
+			},
+			"text": " And I'm going to talk a little bit about implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,240",
+				"to": "00:19:21,520"
+			},
+			"offsets": {
+				"from": 1158240,
+				"to": 1161520
+			},
+			"text": " And the implementation works in two steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,520",
+				"to": "00:19:26,040"
+			},
+			"offsets": {
+				"from": 1161520,
+				"to": 1166040
+			},
+			"text": " The first core idea is that you saw-- you remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,040",
+				"to": "00:19:29,520"
+			},
+			"offsets": {
+				"from": 1166040,
+				"to": 1169520
+			},
+			"text": " the scary slide I showed you before with many formulas"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,520",
+				"to": "00:19:30,800"
+			},
+			"offsets": {
+				"from": 1169520,
+				"to": 1170800
+			},
+			"text": " for everyone in the room gasp."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,800",
+				"to": "00:19:33,480"
+			},
+			"offsets": {
+				"from": 1170800,
+				"to": 1173480
+			},
+			"text": " So that had a couple of cases of tensions in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,480",
+				"to": "00:19:36,680"
+			},
+			"offsets": {
+				"from": 1173480,
+				"to": 1176680
+			},
+			"text": " And if you do the cross product of all the cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,680",
+				"to": "00:19:39,080"
+			},
+			"offsets": {
+				"from": 1176680,
+				"to": 1179080
+			},
+			"text": " and the sanctions, you end up with a bunch of regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,080",
+				"to": "00:19:42,520"
+			},
+			"offsets": {
+				"from": 1179080,
+				"to": 1182520
+			},
+			"text": " And you can partition your space into all"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,520",
+				"to": "00:19:44,040"
+			},
+			"offsets": {
+				"from": 1182520,
+				"to": 1184040
+			},
+			"text": " of these different regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,040",
+				"to": "00:19:48,760"
+			},
+			"offsets": {
+				"from": 1184040,
+				"to": 1188760
+			},
+			"text": " And so you may believe me that this is possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,760",
+				"to": "00:19:51,280"
+			},
+			"offsets": {
+				"from": 1188760,
+				"to": 1191280
+			},
+			"text": " The theorem is that you can actually detect"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,280",
+				"to": "00:19:54,600"
+			},
+			"offsets": {
+				"from": 1191280,
+				"to": 1194600
+			},
+			"text": " in which region you are based on only the current market state."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,600",
+				"to": "00:19:59,160"
+			},
+			"offsets": {
+				"from": 1194600,
+				"to": 1199160
+			},
+			"text": " And then it turns out that once you know in which region you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,160",
+				"to": "00:20:04,360"
+			},
+			"offsets": {
+				"from": 1199160,
+				"to": 1204360
+			},
+			"text": " are computing like this value on this axis is very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,360",
+				"to": "00:20:08,560"
+			},
+			"offsets": {
+				"from": 1204360,
+				"to": 1208560
+			},
+			"text": " It's basically solving quadratic equations then."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,560",
+				"to": "00:20:10,160"
+			},
+			"offsets": {
+				"from": 1208560,
+				"to": 1210160
+			},
+			"text": " And that brings us to the algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,160",
+				"to": "00:20:14,320"
+			},
+			"offsets": {
+				"from": 1210160,
+				"to": 1214320
+			},
+			"text": " So we detect the region based on the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,320",
+				"to": "00:20:16,080"
+			},
+			"offsets": {
+				"from": 1214320,
+				"to": 1216080
+			},
+			"text": " We reconstruct the anchor state."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,080",
+				"to": "00:20:18,280"
+			},
+			"offsets": {
+				"from": 1216080,
+				"to": 1218280
+			},
+			"text": " We take that as a model."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,280",
+				"to": "00:20:19,920"
+			},
+			"offsets": {
+				"from": 1218280,
+				"to": 1219920
+			},
+			"text": " And we compute our redemption amount,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,920",
+				"to": "00:20:22,680"
+			},
+			"offsets": {
+				"from": 1219920,
+				"to": 1222680
+			},
+			"text": " which is basically integrating over this exact curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,680",
+				"to": "00:20:25,080"
+			},
+			"offsets": {
+				"from": 1222680,
+				"to": 1225080
+			},
+			"text": " I showed you before."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,080",
+				"to": "00:20:28,280"
+			},
+			"offsets": {
+				"from": 1225080,
+				"to": 1228280
+			},
+			"text": " And then when you are being very careful and you count"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,280",
+				"to": "00:20:30,720"
+			},
+			"offsets": {
+				"from": 1228280,
+				"to": 1230720
+			},
+			"text": " all the things you have to do to get this is actually very cheap."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,720",
+				"to": "00:20:32,440"
+			},
+			"offsets": {
+				"from": 1230720,
+				"to": 1232440
+			},
+			"text": " You just need to do some arithmetic"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,440",
+				"to": "00:20:34,440"
+			},
+			"offsets": {
+				"from": 1232440,
+				"to": 1234440
+			},
+			"text": " a little bit square root."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,440",
+				"to": "00:20:37,600"
+			},
+			"offsets": {
+				"from": 1234440,
+				"to": 1237600
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,600",
+				"to": "00:20:40,920"
+			},
+			"offsets": {
+				"from": 1237600,
+				"to": 1240920
+			},
+			"text": " So this system has a number of interesting properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,920",
+				"to": "00:20:46,680"
+			},
+			"offsets": {
+				"from": 1240920,
+				"to": 1246680
+			},
+			"text": " And I want to show you just like two."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,680",
+				"to": "00:20:49,120"
+			},
+			"offsets": {
+				"from": 1246680,
+				"to": 1249120
+			},
+			"text": " One result that you get like very easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,120",
+				"to": "00:20:51,800"
+			},
+			"offsets": {
+				"from": 1249120,
+				"to": 1251800
+			},
+			"text": " is that there's no incentive to split up redemptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,800",
+				"to": "00:20:53,560"
+			},
+			"offsets": {
+				"from": 1251800,
+				"to": 1253560
+			},
+			"text": " And like mathematically that's because you're computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,560",
+				"to": "00:20:55,440"
+			},
+			"offsets": {
+				"from": 1253560,
+				"to": 1255440
+			},
+			"text": " an integral and you can always split up an integral"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,440",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1255440,
+				"to": 1256320
+			},
+			"text": " in different parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:20:59,320"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1259320
+			},
+			"text": " And it doesn't matter if you compute the parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,320",
+				"to": "00:21:00,760"
+			},
+			"offsets": {
+				"from": 1259320,
+				"to": 1260760
+			},
+			"text": " or the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,760",
+				"to": "00:21:05,200"
+			},
+			"offsets": {
+				"from": 1260760,
+				"to": 1265200
+			},
+			"text": " So mathematically that's not very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,200",
+				"to": "00:21:10,440"
+			},
+			"offsets": {
+				"from": 1265200,
+				"to": 1270440
+			},
+			"text": " You have a path deficiency result, which is basically that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,440",
+				"to": "00:21:12,320"
+			},
+			"offsets": {
+				"from": 1270440,
+				"to": 1272320
+			},
+			"text": " and this is like a little bit more interesting--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,320",
+				"to": "00:21:14,720"
+			},
+			"offsets": {
+				"from": 1272320,
+				"to": 1274720
+			},
+			"text": " that the protocol state is going to improve over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,720",
+				"to": "00:21:18,320"
+			},
+			"offsets": {
+				"from": 1274720,
+				"to": 1278320
+			},
+			"text": " So if you implement the system, your reserve does not"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,320",
+				"to": "00:21:23,080"
+			},
+			"offsets": {
+				"from": 1278320,
+				"to": 1283080
+			},
+			"text": " crash completely to zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,080",
+				"to": "00:21:25,040"
+			},
+			"offsets": {
+				"from": 1283080,
+				"to": 1285040
+			},
+			"text": " And people just come and redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,040",
+				"to": "00:21:27,800"
+			},
+			"offsets": {
+				"from": 1285040,
+				"to": 1287800
+			},
+			"text": " Then your system is going to recapitalize itself over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,800",
+				"to": "00:21:29,640"
+			},
+			"offsets": {
+				"from": 1287800,
+				"to": 1289640
+			},
+			"text": " And of course, this is exactly what we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,640",
+				"to": "00:21:34,040"
+			},
+			"offsets": {
+				"from": 1289640,
+				"to": 1294040
+			},
+			"text": " We want long-term survivability of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,040",
+				"to": "00:21:39,320"
+			},
+			"offsets": {
+				"from": 1294040,
+				"to": 1299320
+			},
+			"text": " And this is what this looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,320",
+				"to": "00:21:42,000"
+			},
+			"offsets": {
+				"from": 1299320,
+				"to": 1302000
+			},
+			"text": " And now I want to conclude."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,000",
+				"to": "00:21:44,200"
+			},
+			"offsets": {
+				"from": 1302000,
+				"to": 1304200
+			},
+			"text": " So if you're taking away anything from this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,200",
+				"to": "00:21:46,760"
+			},
+			"offsets": {
+				"from": 1304200,
+				"to": 1306760
+			},
+			"text": " it's that you can design your redemption curves when"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,760",
+				"to": "00:21:49,320"
+			},
+			"offsets": {
+				"from": 1306760,
+				"to": 1309320
+			},
+			"text": " you're building a stable coin system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,320",
+				"to": "00:21:51,360"
+			},
+			"offsets": {
+				"from": 1309320,
+				"to": 1311360
+			},
+			"text": " And this is a very attractive way"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,360",
+				"to": "00:21:53,440"
+			},
+			"offsets": {
+				"from": 1311360,
+				"to": 1313440
+			},
+			"text": " to get good properties of your system."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,440",
+				"to": "00:21:55,920"
+			},
+			"offsets": {
+				"from": 1313440,
+				"to": 1315920
+			},
+			"text": " It's also a very useful tool to compare different stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,920",
+				"to": "00:21:59,620"
+			},
+			"offsets": {
+				"from": 1315920,
+				"to": 1319620
+			},
+			"text": " coins and to think about if the stable coin design"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,620",
+				"to": "00:22:01,720"
+			},
+			"offsets": {
+				"from": 1319620,
+				"to": 1321720
+			},
+			"text": " is actually solid."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,720",
+				"to": "00:22:06,140"
+			},
+			"offsets": {
+				"from": 1321720,
+				"to": 1326140
+			},
+			"text": " I showed you a design for one desirable redemption curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,140",
+				"to": "00:22:08,280"
+			},
+			"offsets": {
+				"from": 1326140,
+				"to": 1328280
+			},
+			"text": " And then I showed you how to make that dynamic and make it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,280",
+				"to": "00:22:10,880"
+			},
+			"offsets": {
+				"from": 1328280,
+				"to": 1330880
+			},
+			"text": " react to market conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,880",
+				"to": "00:22:16,120"
+			},
+			"offsets": {
+				"from": 1330880,
+				"to": 1336120
+			},
+			"text": " And if you want to be involved into how we actually do"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,120",
+				"to": "00:22:18,800"
+			},
+			"offsets": {
+				"from": 1336120,
+				"to": 1338800
+			},
+			"text": " these things, we have implemented this in gyroscopes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,800",
+				"to": "00:22:20,440"
+			},
+			"offsets": {
+				"from": 1338800,
+				"to": 1340440
+			},
+			"text": " dynamic stability mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,440",
+				"to": "00:22:22,440"
+			},
+			"offsets": {
+				"from": 1340440,
+				"to": 1342440
+			},
+			"text": " Gyroscopes are on your stable coin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,440",
+				"to": "00:22:26,000"
+			},
+			"offsets": {
+				"from": 1342440,
+				"to": 1346000
+			},
+			"text": " launches planned towards the end of the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,000",
+				"to": "00:22:27,720"
+			},
+			"offsets": {
+				"from": 1346000,
+				"to": 1347720
+			},
+			"text": " And hopefully all these properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,720",
+				"to": "00:22:30,540"
+			},
+			"offsets": {
+				"from": 1347720,
+				"to": 1350540
+			},
+			"text": " are going to make a gyroscope very robust."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,540",
+				"to": "00:22:32,740"
+			},
+			"offsets": {
+				"from": 1350540,
+				"to": 1352740
+			},
+			"text": " If you're interested in the paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,740",
+				"to": "00:22:34,820"
+			},
+			"offsets": {
+				"from": 1352740,
+				"to": 1354820
+			},
+			"text": " and you should scan this QR code."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,820",
+				"to": "00:22:36,260"
+			},
+			"offsets": {
+				"from": 1354820,
+				"to": 1356260
+			},
+			"text": " And if you want to get in touch with us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,260",
+				"to": "00:22:39,460"
+			},
+			"offsets": {
+				"from": 1356260,
+				"to": 1359460
+			},
+			"text": " you can go here or follow us here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,460",
+				"to": "00:22:42,700"
+			},
+			"offsets": {
+				"from": 1359460,
+				"to": 1362700
+			},
+			"text": " Why did you guys choose a piecewise linear approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,700",
+				"to": "00:22:44,900"
+			},
+			"offsets": {
+				"from": 1362700,
+				"to": 1364900
+			},
+			"text": " for example, and not something that's really smooth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,900",
+				"to": "00:22:46,820"
+			},
+			"offsets": {
+				"from": 1364900,
+				"to": 1366820
+			},
+			"text": " like a sigmoid or something like that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,820",
+				"to": "00:22:50,020"
+			},
+			"offsets": {
+				"from": 1366820,
+				"to": 1370020
+			},
+			"text": " Are there nice properties that you get out of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,020",
+				"to": "00:22:51,820"
+			},
+			"offsets": {
+				"from": 1370020,
+				"to": 1371820
+			},
+			"text": " than you would not get otherwise?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,820",
+				"to": "00:22:55,460"
+			},
+			"offsets": {
+				"from": 1371820,
+				"to": 1375460
+			},
+			"text": " Let me just jump back to the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,460",
+				"to": "00:23:00,080"
+			},
+			"offsets": {
+				"from": 1375460,
+				"to": 1380080
+			},
+			"text": " So should I give the honest answer or the lie?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,080",
+				"to": "00:23:01,440"
+			},
+			"offsets": {
+				"from": 1380080,
+				"to": 1381440
+			},
+			"text": " No, I'm going to give the honest answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,440",
+				"to": "00:23:04,960"
+			},
+			"offsets": {
+				"from": 1381440,
+				"to": 1384960
+			},
+			"text": " So the honest answer is because it's easy to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,960",
+				"to": "00:23:08,080"
+			},
+			"offsets": {
+				"from": 1384960,
+				"to": 1388080
+			},
+			"text": " Because the reason is that business linear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,080",
+				"to": "00:23:10,120"
+			},
+			"offsets": {
+				"from": 1388080,
+				"to": 1390120
+			},
+			"text": " so it's integral, it's quadratic."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,120",
+				"to": "00:23:12,320"
+			},
+			"offsets": {
+				"from": 1390120,
+				"to": 1392320
+			},
+			"text": " And solving quadratic equations is easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,320",
+				"to": "00:23:15,040"
+			},
+			"offsets": {
+				"from": 1392320,
+				"to": 1395040
+			},
+			"text": " And solving anything else is hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,040",
+				"to": "00:23:17,520"
+			},
+			"offsets": {
+				"from": 1395040,
+				"to": 1397520
+			},
+			"text": " So I have more of a philosophical question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,520",
+				"to": "00:23:18,960"
+			},
+			"offsets": {
+				"from": 1397520,
+				"to": 1398960
+			},
+			"text": " In the last, let's say, two, three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,960",
+				"to": "00:23:21,720"
+			},
+			"offsets": {
+				"from": 1398960,
+				"to": 1401720
+			},
+			"text": " centuries, the tendency in the state-backed currencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,720",
+				"to": "00:23:24,120"
+			},
+			"offsets": {
+				"from": 1401720,
+				"to": 1404120
+			},
+			"text": " has always been to leave paying to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,120",
+				"to": "00:23:25,800"
+			},
+			"offsets": {
+				"from": 1404120,
+				"to": 1405800
+			},
+			"text": " toward a free-foting money."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,800",
+				"to": "00:23:28,140"
+			},
+			"offsets": {
+				"from": 1405800,
+				"to": 1408140
+			},
+			"text": " Why do you think that in the crypto economy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,140",
+				"to": "00:23:31,060"
+			},
+			"offsets": {
+				"from": 1408140,
+				"to": 1411060
+			},
+			"text": " we are seeing resurgence of peg money"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,060",
+				"to": "00:23:32,900"
+			},
+			"offsets": {
+				"from": 1411060,
+				"to": 1412900
+			},
+			"text": " that seem to be quite prevalent?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,900",
+				"to": "00:23:37,560"
+			},
+			"offsets": {
+				"from": 1412900,
+				"to": 1417560
+			},
+			"text": " - Yeah, yeah, that's a deep question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,560",
+				"to": "00:23:39,720"
+			},
+			"offsets": {
+				"from": 1417560,
+				"to": 1419720
+			},
+			"text": " I wasn't expecting that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,720",
+				"to": "00:23:47,020"
+			},
+			"offsets": {
+				"from": 1419720,
+				"to": 1427020
+			},
+			"text": " Why do we have a resurgence of peg coins?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,660",
+				"to": "00:23:56,660"
+			},
+			"offsets": {
+				"from": 1431660,
+				"to": 1436660
+			},
+			"text": " I think my intuition is that people think in USD"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,660",
+				"to": "00:23:59,820"
+			},
+			"offsets": {
+				"from": 1436660,
+				"to": 1439820
+			},
+			"text": " or in some other fiat currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,820",
+				"to": "00:24:02,300"
+			},
+			"offsets": {
+				"from": 1439820,
+				"to": 1442300
+			},
+			"text": " that is not really represented in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,300",
+				"to": "00:24:05,260"
+			},
+			"offsets": {
+				"from": 1442300,
+				"to": 1445260
+			},
+			"text": " Maybe at some point we have a crypto native currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,260",
+				"to": "00:24:08,860"
+			},
+			"offsets": {
+				"from": 1445260,
+				"to": 1448860
+			},
+			"text": " that doesn't need a peg because it's very stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,860",
+				"to": "00:24:11,020"
+			},
+			"offsets": {
+				"from": 1448860,
+				"to": 1451020
+			},
+			"text": " against other fiat currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,020",
+				"to": "00:24:12,460"
+			},
+			"offsets": {
+				"from": 1451020,
+				"to": 1452460
+			},
+			"text": " But I think we're not there yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,460",
+				"to": "00:24:17,260"
+			},
+			"offsets": {
+				"from": 1452460,
+				"to": 1457260
+			},
+			"text": " And that's why we need to represent some kind of measures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,260",
+				"to": "00:24:20,500"
+			},
+			"offsets": {
+				"from": 1457260,
+				"to": 1460500
+			},
+			"text": " some kind of numeraire that people are familiar with."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,500",
+				"to": "00:24:22,820"
+			},
+			"offsets": {
+				"from": 1460500,
+				"to": 1462820
+			},
+			"text": " And that matters in people's lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,820",
+				"to": "00:24:24,500"
+			},
+			"offsets": {
+				"from": 1462820,
+				"to": 1464500
+			},
+			"text": " - Yeah, let me just add a little bit to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,500",
+				"to": "00:24:28,180"
+			},
+			"offsets": {
+				"from": 1464500,
+				"to": 1468180
+			},
+			"text": " So it's a common strategy when you're kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,180",
+				"to": "00:24:31,620"
+			},
+			"offsets": {
+				"from": 1468180,
+				"to": 1471620
+			},
+			"text": " developing a new economy to do something like a currency peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,620",
+				"to": "00:24:33,940"
+			},
+			"offsets": {
+				"from": 1471620,
+				"to": 1473940
+			},
+			"text": " And it seems to work well in those situations"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,940",
+				"to": "00:24:37,220"
+			},
+			"offsets": {
+				"from": 1473940,
+				"to": 1477220
+			},
+			"text": " because people wanna use a more trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,220",
+				"to": "00:24:39,060"
+			},
+			"offsets": {
+				"from": 1477220,
+				"to": 1479060
+			},
+			"text": " unit of account like a dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,060",
+				"to": "00:24:42,700"
+			},
+			"offsets": {
+				"from": 1479060,
+				"to": 1482700
+			},
+			"text": " And so I think that has a large influence here."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,700",
+				"to": "00:24:46,140"
+			},
+			"offsets": {
+				"from": 1482700,
+				"to": 1486140
+			},
+			"text": " But I also just wanna note that the autonomous monetary"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,140",
+				"to": "00:24:48,380"
+			},
+			"offsets": {
+				"from": 1486140,
+				"to": 1488380
+			},
+			"text": " policy that we've been developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,380",
+				"to": "00:24:52,500"
+			},
+			"offsets": {
+				"from": 1488380,
+				"to": 1492500
+			},
+			"text": " can be more general than just maintaining a currency peg."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,500",
+				"to": "00:24:55,020"
+			},
+			"offsets": {
+				"from": 1492500,
+				"to": 1495020
+			},
+			"text": " You can choose parameters in different ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,020",
+				"to": "00:24:57,980"
+			},
+			"offsets": {
+				"from": 1495020,
+				"to": 1497980
+			},
+			"text": " to do more arbitrary monetary policy too."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,980",
+				"to": "00:25:01,900"
+			},
+			"offsets": {
+				"from": 1497980,
+				"to": 1501900
+			},
+			"text": " - I would wanna know how do you think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,900",
+				"to": "00:25:03,700"
+			},
+			"offsets": {
+				"from": 1501900,
+				"to": 1503700
+			},
+			"text": " once the system gets under stress"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,700",
+				"to": "00:25:06,660"
+			},
+			"offsets": {
+				"from": 1503700,
+				"to": 1506660
+			},
+			"text": " and you get to the redemption price?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,660",
+				"to": "00:25:08,860"
+			},
+			"offsets": {
+				"from": 1506660,
+				"to": 1508860
+			},
+			"text": " Like what would be the mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,860",
+				"to": "00:25:12,380"
+			},
+			"offsets": {
+				"from": 1508860,
+				"to": 1512380
+			},
+			"text": " for the incentive to, because it's kind of a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,380",
+				"to": "00:25:15,460"
+			},
+			"offsets": {
+				"from": 1512380,
+				"to": 1515460
+			},
+			"text": " I think there is some loss of trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,460",
+				"to": "00:25:17,180"
+			},
+			"offsets": {
+				"from": 1515460,
+				"to": 1517180
+			},
+			"text": " in the market at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,300",
+				"to": "00:25:20,980"
+			},
+			"offsets": {
+				"from": 1518300,
+				"to": 1520980
+			},
+			"text": " How do you think about how to regenerate a system"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,980",
+				"to": "00:25:22,700"
+			},
+			"offsets": {
+				"from": 1520980,
+				"to": 1522700
+			},
+			"text": " and getting back to the peg?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,700",
+				"to": "00:25:26,340"
+			},
+			"offsets": {
+				"from": 1522700,
+				"to": 1526340
+			},
+			"text": " - Like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,340",
+				"to": "00:25:29,580"
+			},
+			"offsets": {
+				"from": 1526340,
+				"to": 1529580
+			},
+			"text": " - Yeah, so the gyroscope design"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,580",
+				"to": "00:25:33,260"
+			},
+			"offsets": {
+				"from": 1529580,
+				"to": 1533260
+			},
+			"text": " contains a number of other, like lines of defense"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,260",
+				"to": "00:25:35,540"
+			},
+			"offsets": {
+				"from": 1533260,
+				"to": 1535540
+			},
+			"text": " and sort of ways that the reserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,540",
+				"to": "00:25:37,740"
+			},
+			"offsets": {
+				"from": 1535540,
+				"to": 1537740
+			},
+			"text": " could replenish over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,740",
+				"to": "00:25:39,940"
+			},
+			"offsets": {
+				"from": 1537740,
+				"to": 1539940
+			},
+			"text": " And so basically this monetary policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,940",
+				"to": "00:25:42,620"
+			},
+			"offsets": {
+				"from": 1539940,
+				"to": 1542620
+			},
+			"text": " the idea is to buy the system time"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,620",
+				"to": "00:25:45,780"
+			},
+			"offsets": {
+				"from": 1542620,
+				"to": 1545780
+			},
+			"text": " so that those other mechanisms might be able to kick in."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,780",
+				"to": "00:25:48,660"
+			},
+			"offsets": {
+				"from": 1545780,
+				"to": 1548660
+			},
+			"text": " Some examples of that is basically like"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,660",
+				"to": "00:25:51,860"
+			},
+			"offsets": {
+				"from": 1548660,
+				"to": 1551860
+			},
+			"text": " reserve assets are deployed in risk-segregated ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,860",
+				"to": "00:25:54,420"
+			},
+			"offsets": {
+				"from": 1551860,
+				"to": 1554420
+			},
+			"text": " but they can still potentially earn some yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,420",
+				"to": "00:25:57,100"
+			},
+			"offsets": {
+				"from": 1554420,
+				"to": 1557100
+			},
+			"text": " And so there's sort of a tendency to increase"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,100",
+				"to": "00:25:59,540"
+			},
+			"offsets": {
+				"from": 1557100,
+				"to": 1559540
+			},
+			"text": " collateralization over time because of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,540",
+				"to": "00:26:02,660"
+			},
+			"offsets": {
+				"from": 1559540,
+				"to": 1562660
+			},
+			"text": " And then there's also sort of this idea of forward guidance"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,660",
+				"to": "00:26:05,700"
+			},
+			"offsets": {
+				"from": 1562660,
+				"to": 1565700
+			},
+			"text": " from the monetary policy itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,700",
+				"to": "00:26:09,900"
+			},
+			"offsets": {
+				"from": 1565700,
+				"to": 1569900
+			},
+			"text": " Like basically, as the level of outflows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,900",
+				"to": "00:26:11,900"
+			},
+			"offsets": {
+				"from": 1569900,
+				"to": 1571900
+			},
+			"text": " this like time discounted sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,900",
+				"to": "00:26:15,220"
+			},
+			"offsets": {
+				"from": 1571900,
+				"to": 1575220
+			},
+			"text": " that Stefan was saying decreases over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,220",
+				"to": "00:26:17,380"
+			},
+			"offsets": {
+				"from": 1575220,
+				"to": 1577380
+			},
+			"text": " then there's upward pressure on the peg"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,380",
+				"to": "00:26:19,300"
+			},
+			"offsets": {
+				"from": 1577380,
+				"to": 1579300
+			},
+			"text": " from the reserve assets again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,300",
+				"to": "00:26:22,220"
+			},
+			"offsets": {
+				"from": 1579300,
+				"to": 1582220
+			},
+			"text": " kind of according to this policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,220",
+				"to": "00:26:23,420"
+			},
+			"offsets": {
+				"from": 1582220,
+				"to": 1583420
+			},
+			"text": " And then there's other mechanisms too."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,420",
+				"to": "00:26:25,540"
+			},
+			"offsets": {
+				"from": 1583420,
+				"to": 1585540
+			},
+			"text": " You can check it out in our docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,540",
+				"to": "00:26:28,260"
+			},
+			"offsets": {
+				"from": 1585540,
+				"to": 1588260
+			},
+			"text": " And happy to talk more after this as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,260",
+				"to": "00:26:54,100"
+			},
+			"offsets": {
+				"from": 1588260,
+				"to": 1614100
+			},
+			"text": " ("
+		}
+	]
+}

@@ -1,0 +1,5950 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:14,280"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 14280
+			},
+			"text": " You've had the technical infinipris, half technical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,280",
+				"to": "00:00:16,720"
+			},
+			"offsets": {
+				"from": 14280,
+				"to": 16720
+			},
+			"text": " kind of like a burnt stock on Gossip's Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,720",
+				"to": "00:00:19,480"
+			},
+			"offsets": {
+				"from": 16720,
+				"to": 19480
+			},
+			"text": " There's been a lot of interest in Gossip's Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,480",
+				"to": "00:00:24,200"
+			},
+			"offsets": {
+				"from": 19480,
+				"to": 24200
+			},
+			"text": " There are 130 people inside out for this particular talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,200",
+				"to": "00:00:25,920"
+			},
+			"offsets": {
+				"from": 24200,
+				"to": 25920
+			},
+			"text": " I don't think everybody will fit in this work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,920",
+				"to": "00:00:27,600"
+			},
+			"offsets": {
+				"from": 25920,
+				"to": 27600
+			},
+			"text": " if they happen to show up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:29,480"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 29480
+			},
+			"text": " But yeah, we have very little time in a lot of ground"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,480",
+				"to": "00:00:30,880"
+			},
+			"offsets": {
+				"from": 29480,
+				"to": 30880
+			},
+			"text": " to cover, so I'm going to get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,880",
+				"to": "00:00:32,720"
+			},
+			"offsets": {
+				"from": 30880,
+				"to": 32720
+			},
+			"text": " I'm Rob Wilkramani, I'm the Tech K4,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,720",
+				"to": "00:00:35,200"
+			},
+			"offsets": {
+				"from": 32720,
+				"to": 35200
+			},
+			"text": " the Libby2B project from Robby Wilk Apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,200",
+				"to": "00:00:37,480"
+			},
+			"offsets": {
+				"from": 35200,
+				"to": 37480
+			},
+			"text": " And this is what we're going to be talking about in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,480",
+				"to": "00:00:38,600"
+			},
+			"offsets": {
+				"from": 37480,
+				"to": 38600
+			},
+			"text": " defined Gossip's Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,600",
+				"to": "00:00:41,360"
+			},
+			"offsets": {
+				"from": 38600,
+				"to": 41360
+			},
+			"text": " So Gossip's Up is a scale of what I can set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,360",
+				"to": "00:00:44,480"
+			},
+			"offsets": {
+				"from": 41360,
+				"to": 44480
+			},
+			"text": " and it extends from here to here Gossip's Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,480",
+				"to": "00:00:47,360"
+			},
+			"offsets": {
+				"from": 44480,
+				"to": 47360
+			},
+			"text": " And our agenda for today is, first of all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,360",
+				"to": "00:00:48,800"
+			},
+			"offsets": {
+				"from": 47360,
+				"to": 48800
+			},
+			"text": " I want to make sure that we all have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,800",
+				"to": "00:00:50,680"
+			},
+			"offsets": {
+				"from": 48800,
+				"to": 50680
+			},
+			"text": " kind of like a common and base night"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,680",
+				"to": "00:00:52,840"
+			},
+			"offsets": {
+				"from": 50680,
+				"to": 52840
+			},
+			"text": " to talk about these technical concepts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,840",
+				"to": "00:00:54,680"
+			},
+			"offsets": {
+				"from": 52840,
+				"to": 54680
+			},
+			"text": " So I'm going to do a very quick introduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,680",
+				"to": "00:00:58,480"
+			},
+			"offsets": {
+				"from": 54680,
+				"to": 58480
+			},
+			"text": " to here to here Bobsup, who here is familiar with these"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,480",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 58480,
+				"to": 62280
+			},
+			"text": " concepts, like maybe a five and above in a scale of 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 62800
+			},
+			"text": " Fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:06,400"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 66400
+			},
+			"text": " So I'm going to move through this pretty quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,400",
+				"to": "00:01:08,200"
+			},
+			"offsets": {
+				"from": 66400,
+				"to": 68200
+			},
+			"text": " Then we're going to talk about what is Gossip's Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,200",
+				"to": "00:01:11,360"
+			},
+			"offsets": {
+				"from": 68200,
+				"to": 71360
+			},
+			"text": " We're going to talk about how Gossip's Up operates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,360",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 71360,
+				"to": 72920
+			},
+			"text": " and what's up next."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 78520
+			},
+			"text": " Because as you'll see, Gossip's Up is a stepping stone"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:22,760"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 82760
+			},
+			"text": " in a roadmap that includes a lot of functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,760",
+				"to": "00:01:26,160"
+			},
+			"offsets": {
+				"from": 82760,
+				"to": 86160
+			},
+			"text": " That's coming in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,160",
+				"to": "00:01:28,480"
+			},
+			"offsets": {
+				"from": 86160,
+				"to": 88480
+			},
+			"text": " So-- oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,480",
+				"to": "00:01:29,960"
+			},
+			"offsets": {
+				"from": 88480,
+				"to": 89960
+			},
+			"text": " Oh, my god."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,960",
+				"to": "00:01:33,400"
+			},
+			"offsets": {
+				"from": 89960,
+				"to": 93400
+			},
+			"text": " This is going to suck a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,400",
+				"to": "00:01:35,280"
+			},
+			"offsets": {
+				"from": 93400,
+				"to": 95280
+			},
+			"text": " All right, so let's talk about what is Bobsup?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,280",
+				"to": "00:01:38,120"
+			},
+			"offsets": {
+				"from": 95280,
+				"to": 98120
+			},
+			"text": " Bobsup is a message oriented communication pattern."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,120",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 98120,
+				"to": 101200
+			},
+			"text": " This isn't start on trust with stream orientation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 103480
+			},
+			"text": " So here, we're not interested with Bobsup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:46,120"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 106120
+			},
+			"text": " We're normally interested in sending transactional messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,120",
+				"to": "00:01:49,040"
+			},
+			"offsets": {
+				"from": 106120,
+				"to": 109040
+			},
+			"text": " and small units that are actually messages and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,040",
+				"to": "00:01:53,160"
+			},
+			"offsets": {
+				"from": 109040,
+				"to": 113160
+			},
+			"text": " streams over the wire between a bunch of peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,160",
+				"to": "00:01:56,280"
+			},
+			"offsets": {
+				"from": 113160,
+				"to": 116280
+			},
+			"text": " that are not necessarily talking to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,280",
+				"to": "00:01:58,920"
+			},
+			"offsets": {
+				"from": 116280,
+				"to": 118920
+			},
+			"text": " So the interaction model of Bobsup is M2N."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,920",
+				"to": "00:02:02,080"
+			},
+			"offsets": {
+				"from": 118920,
+				"to": 122080
+			},
+			"text": " This means that N peers are publishing messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,080",
+				"to": "00:02:03,720"
+			},
+			"offsets": {
+				"from": 122080,
+				"to": 123720
+			},
+			"text": " about a particular subject."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,720",
+				"to": "00:02:06,680"
+			},
+			"offsets": {
+				"from": 123720,
+				"to": 126680
+			},
+			"text": " And a lot of other peers in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,680",
+				"to": "00:02:09,200"
+			},
+			"offsets": {
+				"from": 126680,
+				"to": 129200
+			},
+			"text": " are interested in consuming messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,200",
+				"to": "00:02:11,360"
+			},
+			"offsets": {
+				"from": 129200,
+				"to": 131360
+			},
+			"text": " from that particular subject."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,360",
+				"to": "00:02:13,360"
+			},
+			"offsets": {
+				"from": 131360,
+				"to": 133360
+			},
+			"text": " This is a set in contrast to our BCR"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,360",
+				"to": "00:02:17,880"
+			},
+			"offsets": {
+				"from": 133360,
+				"to": 137880
+			},
+			"text": " requests for applied patterns, which are mostly one-to-one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,880",
+				"to": "00:02:20,640"
+			},
+			"offsets": {
+				"from": 137880,
+				"to": 140640
+			},
+			"text": " Now, Bobsup communication is a synchronous and decoupled"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,640",
+				"to": "00:02:21,640"
+			},
+			"offsets": {
+				"from": 140640,
+				"to": 141640
+			},
+			"text": " in nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,640",
+				"to": "00:02:25,080"
+			},
+			"offsets": {
+				"from": 141640,
+				"to": 145080
+			},
+			"text": " This means that whatever I send a message as a producer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,080",
+				"to": "00:02:26,040"
+			},
+			"offsets": {
+				"from": 145080,
+				"to": 146040
+			},
+			"text": " I have no guarantee."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,040",
+				"to": "00:02:30,200"
+			},
+			"offsets": {
+				"from": 146040,
+				"to": 150200
+			},
+			"text": " First of all, who is actually going to receive that message?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,200",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 150200,
+				"to": 152000
+			},
+			"text": " Because we don't have a peers, don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:34,040"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 154040
+			},
+			"text": " have a complete view of the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,040",
+				"to": "00:02:37,680"
+			},
+			"offsets": {
+				"from": 154040,
+				"to": 157680
+			},
+			"text": " and a complete view of the subscription state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,680",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 157680,
+				"to": 160560
+			},
+			"text": " And it's also a synchronous, because there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 162840
+			},
+			"text": " is no time dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:46,640"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 166640
+			},
+			"text": " I have received no explicit confirmation from any peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,640",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 166640,
+				"to": 169160
+			},
+			"text": " that they've actually received my message."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:52,280"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 172280
+			},
+			"text": " Processes act as publishers and consumers of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,280",
+				"to": "00:02:53,880"
+			},
+			"offsets": {
+				"from": 172280,
+				"to": 173880
+			},
+			"text": " And in a peer-to-peer network, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,880",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 173880,
+				"to": 177240
+			},
+			"text": " is important, because a process can act as both things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:02:59,600"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 179600
+			},
+			"text": " And they congregate around topics of interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,600",
+				"to": "00:03:05,040"
+			},
+			"offsets": {
+				"from": 179600,
+				"to": 185040
+			},
+			"text": " Now, Bobsup is widely popular in enterprise software."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,040",
+				"to": "00:03:07,840"
+			},
+			"offsets": {
+				"from": 185040,
+				"to": 187840
+			},
+			"text": " If you've heard of products and projects like Apache"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,840",
+				"to": "00:03:10,920"
+			},
+			"offsets": {
+				"from": 187840,
+				"to": 190920
+			},
+			"text": " ActiveMQ or Kafka RabbitMQ, then that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,920",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 190920,
+				"to": 194040
+			},
+			"text": " But in those contexts, it's usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,040",
+				"to": "00:03:16,760"
+			},
+			"offsets": {
+				"from": 194040,
+				"to": 196760
+			},
+			"text": " centralized around brokers in private networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,760",
+				"to": "00:03:19,040"
+			},
+			"offsets": {
+				"from": 196760,
+				"to": 199040
+			},
+			"text": " And it's definitely not-- these approaches are not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,040",
+				"to": "00:03:21,360"
+			},
+			"offsets": {
+				"from": 199040,
+				"to": 201360
+			},
+			"text": " suitable for public message networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,360",
+				"to": "00:03:23,920"
+			},
+			"offsets": {
+				"from": 201360,
+				"to": 203920
+			},
+			"text": " So what is decentralized peer-to-peer website?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,920",
+				"to": "00:03:25,920"
+			},
+			"offsets": {
+				"from": 203920,
+				"to": 205920
+			},
+			"text": " First of all, it's brokerless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,920",
+				"to": "00:03:27,680"
+			},
+			"offsets": {
+				"from": 205920,
+				"to": 207680
+			},
+			"text": " It means that we have no central authorities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,680",
+				"to": "00:03:30,920"
+			},
+			"offsets": {
+				"from": 207680,
+				"to": 210920
+			},
+			"text": " to keep track of subscribers, publishers, topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,920",
+				"to": "00:03:33,120"
+			},
+			"offsets": {
+				"from": 210920,
+				"to": 213120
+			},
+			"text": " It's self-regulating."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,120",
+				"to": "00:03:35,120"
+			},
+			"offsets": {
+				"from": 213120,
+				"to": 215120
+			},
+			"text": " Whatever we deal with peer-to-peer networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,120",
+				"to": "00:03:36,720"
+			},
+			"offsets": {
+				"from": 215120,
+				"to": 216720
+			},
+			"text": " we have to monitor in."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,720",
+				"to": "00:03:41,560"
+			},
+			"offsets": {
+				"from": 216720,
+				"to": 221560
+			},
+			"text": " And peer networks can rotate in presence very rapidly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,560",
+				"to": "00:03:43,960"
+			},
+			"offsets": {
+				"from": 221560,
+				"to": 223960
+			},
+			"text": " So there is no global knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,960",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 223960,
+				"to": 226000
+			},
+			"text": " There is no single peer that is on authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:48,080"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 228080
+			},
+			"text": " that has a complete view of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,080",
+				"to": "00:03:50,040"
+			},
+			"offsets": {
+				"from": 228080,
+				"to": 230040
+			},
+			"text": " And the network behavior actually emerges"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,040",
+				"to": "00:03:52,080"
+			},
+			"offsets": {
+				"from": 230040,
+				"to": 232080
+			},
+			"text": " from small, tiny, global decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,080",
+				"to": "00:03:54,360"
+			},
+			"offsets": {
+				"from": 232080,
+				"to": 234360
+			},
+			"text": " that peers are taking along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,360",
+				"to": "00:03:56,480"
+			},
+			"offsets": {
+				"from": 234360,
+				"to": 236480
+			},
+			"text": " So peer-to-peer Pobsup is usually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,480",
+				"to": "00:03:59,800"
+			},
+			"offsets": {
+				"from": 236480,
+				"to": 239800
+			},
+			"text": " constructed as an opening network with peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,800",
+				"to": "00:04:02,920"
+			},
+			"offsets": {
+				"from": 239800,
+				"to": 242920
+			},
+			"text": " collaborating to ensure message deliverability."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,920",
+				"to": "00:04:07,040"
+			},
+			"offsets": {
+				"from": 242920,
+				"to": 247040
+			},
+			"text": " And when we say overlay, there's usually an underlay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,040",
+				"to": "00:04:11,120"
+			},
+			"offsets": {
+				"from": 247040,
+				"to": 251120
+			},
+			"text": " So it's an underlay network that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,120",
+				"to": "00:04:13,520"
+			},
+			"offsets": {
+				"from": 251120,
+				"to": 253520
+			},
+			"text": " make sure that messages and traffic gets routed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,520",
+				"to": "00:04:18,400"
+			},
+			"offsets": {
+				"from": 253520,
+				"to": 258400
+			},
+			"text": " And usually algorithms will assume that the underlay"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,400",
+				"to": "00:04:20,160"
+			},
+			"offsets": {
+				"from": 258400,
+				"to": 260160
+			},
+			"text": " is well connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,160",
+				"to": "00:04:23,680"
+			},
+			"offsets": {
+				"from": 260160,
+				"to": 263680
+			},
+			"text": " So this means that I can always find a path from A to B."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,680",
+				"to": "00:04:26,560"
+			},
+			"offsets": {
+				"from": 263680,
+				"to": 266560
+			},
+			"text": " And if I can, that's an apology."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,560",
+				"to": "00:04:29,720"
+			},
+			"offsets": {
+				"from": 266560,
+				"to": 269720
+			},
+			"text": " So just to set a baseline for terminology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,720",
+				"to": "00:04:32,920"
+			},
+			"offsets": {
+				"from": 269720,
+				"to": 272920
+			},
+			"text": " a topic is a subject on which peers congregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,920",
+				"to": "00:04:34,920"
+			},
+			"offsets": {
+				"from": 272920,
+				"to": 274920
+			},
+			"text": " and the image and receive messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,920",
+				"to": "00:04:37,080"
+			},
+			"offsets": {
+				"from": 274920,
+				"to": 277080
+			},
+			"text": " subscription is the act of expressing interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,080",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 277080,
+				"to": 279000
+			},
+			"text": " on a particular topic, publishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:40,480"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 280480
+			},
+			"text": " is the act of creating a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,480",
+				"to": "00:04:42,240"
+			},
+			"offsets": {
+				"from": 280480,
+				"to": 282240
+			},
+			"text": " and pushing it out to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,240",
+				"to": "00:04:44,880"
+			},
+			"offsets": {
+				"from": 282240,
+				"to": 284880
+			},
+			"text": " forwarding is the act of propagating a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,880",
+				"to": "00:04:46,640"
+			},
+			"offsets": {
+				"from": 284880,
+				"to": 286640
+			},
+			"text": " to other peers on the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,640",
+				"to": "00:04:48,520"
+			},
+			"offsets": {
+				"from": 286640,
+				"to": 288520
+			},
+			"text": " And ambient discovery is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,520",
+				"to": "00:04:49,880"
+			},
+			"offsets": {
+				"from": 288520,
+				"to": 289880
+			},
+			"text": " I'll talk about in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,880",
+				"to": "00:04:53,240"
+			},
+			"offsets": {
+				"from": 289880,
+				"to": 293240
+			},
+			"text": " So the desirable properties in peer-to-peer Pobsup"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,240",
+				"to": "00:04:57,440"
+			},
+			"offsets": {
+				"from": 293240,
+				"to": 297440
+			},
+			"text": " are reliability, resilience, efficient dissemination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,440",
+				"to": "00:04:58,720"
+			},
+			"offsets": {
+				"from": 297440,
+				"to": 298720
+			},
+			"text": " altruism, free routing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,720",
+				"to": "00:05:01,880"
+			},
+			"offsets": {
+				"from": 298720,
+				"to": 301880
+			},
+			"text": " This means that only those peers that are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,880",
+				"to": "00:05:05,080"
+			},
+			"offsets": {
+				"from": 301880,
+				"to": 305080
+			},
+			"text": " participating in a particular topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,080",
+				"to": "00:05:08,960"
+			},
+			"offsets": {
+				"from": 305080,
+				"to": 308960
+			},
+			"text": " will actually contribute to forwarding that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,960",
+				"to": "00:05:11,080"
+			},
+			"offsets": {
+				"from": 308960,
+				"to": 311080
+			},
+			"text": " And we're not burdening the rest of the peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,080",
+				"to": "00:05:13,440"
+			},
+			"offsets": {
+				"from": 311080,
+				"to": 313440
+			},
+			"text": " on the network that are not invested in a particular topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,440",
+				"to": "00:05:15,760"
+			},
+			"offsets": {
+				"from": 313440,
+				"to": 315760
+			},
+			"text": " and disseminating that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,760",
+				"to": "00:05:18,880"
+			},
+			"offsets": {
+				"from": 315760,
+				"to": 318880
+			},
+			"text": " It has to be scalable across various axes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,880",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318880,
+				"to": 322000
+			},
+			"text": " So we're talking about number of nodes, number of topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:23,920"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 323920
+			},
+			"text": " messages, subscriptions, subscribers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,920",
+				"to": "00:05:27,360"
+			},
+			"offsets": {
+				"from": 323920,
+				"to": 327360
+			},
+			"text": " All of these are different axes for scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,360",
+				"to": "00:05:29,320"
+			},
+			"offsets": {
+				"from": 327360,
+				"to": 329320
+			},
+			"text": " There has to be a low overhead for maintenance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,320",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 329320,
+				"to": 334560
+			},
+			"text": " As I say, we are relying on peers making local decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:38,160"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 338160
+			},
+			"text": " so that messages are globally routed in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,160",
+				"to": "00:05:39,600"
+			},
+			"offsets": {
+				"from": 338160,
+				"to": 339600
+			},
+			"text": " And ideally, we're not a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,600",
+				"to": "00:05:41,240"
+			},
+			"offsets": {
+				"from": 339600,
+				"to": 341240
+			},
+			"text": " and it's simple and easy to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,240",
+				"to": "00:05:43,600"
+			},
+			"offsets": {
+				"from": 341240,
+				"to": 343600
+			},
+			"text": " So we'll see if we've actually managed to do this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,600",
+				"to": "00:05:45,280"
+			},
+			"offsets": {
+				"from": 343600,
+				"to": 345280
+			},
+			"text": " with Gossip Service."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,280",
+				"to": "00:05:47,480"
+			},
+			"offsets": {
+				"from": 345280,
+				"to": 347480
+			},
+			"text": " All right, so what is Gossip Service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,480",
+				"to": "00:05:48,840"
+			},
+			"offsets": {
+				"from": 347480,
+				"to": 348840
+			},
+			"text": " The key elements of Gossip Service"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,840",
+				"to": "00:05:50,520"
+			},
+			"offsets": {
+				"from": 348840,
+				"to": 350520
+			},
+			"text": " is that first of all, it's a scalable"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,520",
+				"to": "00:05:51,960"
+			},
+			"offsets": {
+				"from": 350520,
+				"to": 351960
+			},
+			"text": " and extensible Pobsup protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,960",
+				"to": "00:05:55,920"
+			},
+			"offsets": {
+				"from": 351960,
+				"to": 355920
+			},
+			"text": " So Gossip Service in itself is not necessarily intended"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,920",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 355920,
+				"to": 360720
+			},
+			"text": " to be a final usage of a peer-to-peer Pobsup protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:04,400"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 364400
+			},
+			"text": " It is a protocol on top of which we can overlay"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,400",
+				"to": "00:06:07,920"
+			},
+			"offsets": {
+				"from": 364400,
+				"to": 367920
+			},
+			"text": " different routers to take different decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,920",
+				"to": "00:06:11,960"
+			},
+			"offsets": {
+				"from": 367920,
+				"to": 371960
+			},
+			"text": " and Pobsup actually provides the primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,960",
+				"to": "00:06:15,080"
+			},
+			"offsets": {
+				"from": 371960,
+				"to": 375080
+			},
+			"text": " to make sure that first of all messages are delivered"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,080",
+				"to": "00:06:17,360"
+			},
+			"offsets": {
+				"from": 375080,
+				"to": 377360
+			},
+			"text": " and second, there's enough gossip metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,360",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 377360,
+				"to": 381600
+			},
+			"text": " so that different and alternative decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:23,160"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 383160
+			},
+			"text": " can be taken along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,160",
+				"to": "00:06:27,200"
+			},
+			"offsets": {
+				"from": 383160,
+				"to": 387200
+			},
+			"text": " It was envisioned and specified initially by a developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,200",
+				"to": "00:06:29,800"
+			},
+			"offsets": {
+				"from": 387200,
+				"to": 389800
+			},
+			"text": " called Visa, he's a military court team."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,800",
+				"to": "00:06:31,640"
+			},
+			"offsets": {
+				"from": 389800,
+				"to": 391640
+			},
+			"text": " And as I said, it provides a base layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,640",
+				"to": "00:06:34,480"
+			},
+			"offsets": {
+				"from": 391640,
+				"to": 394480
+			},
+			"text": " and primitives to build adaptive self-optimizing routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,480",
+				"to": "00:06:37,320"
+			},
+			"offsets": {
+				"from": 394480,
+				"to": 397320
+			},
+			"text": " algorithms capable of repair and rearrangement"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,320",
+				"to": "00:06:40,120"
+			},
+			"offsets": {
+				"from": 397320,
+				"to": 400120
+			},
+			"text": " and networking the presence of churn and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,120",
+				"to": "00:06:42,160"
+			},
+			"offsets": {
+				"from": 400120,
+				"to": 402160
+			},
+			"text": " So the key aspect of Gossip Service"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,160",
+				"to": "00:06:45,600"
+			},
+			"offsets": {
+				"from": 402160,
+				"to": 405600
+			},
+			"text": " is that it combines stable reciprocal meshes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,600",
+				"to": "00:06:47,440"
+			},
+			"offsets": {
+				"from": 405600,
+				"to": 407440
+			},
+			"text": " with Gossip about message-developmental data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,440",
+				"to": "00:06:48,760"
+			},
+			"offsets": {
+				"from": 407440,
+				"to": 408760
+			},
+			"text": " We're digging into this in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,760",
+				"to": "00:06:51,640"
+			},
+			"offsets": {
+				"from": 408760,
+				"to": 411640
+			},
+			"text": " And it succeeds in a protocol that we had in the Liberty B"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,640",
+				"to": "00:06:53,160"
+			},
+			"offsets": {
+				"from": 411640,
+				"to": 413160
+			},
+			"text": " staff, which is called Flancer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,160",
+				"to": "00:06:56,440"
+			},
+			"offsets": {
+				"from": 413160,
+				"to": 416440
+			},
+			"text": " And it's basically the dumbest protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,440",
+				"to": "00:06:58,800"
+			},
+			"offsets": {
+				"from": 416440,
+				"to": 418800
+			},
+			"text": " in terms of peer-to-peer Pobsup."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,800",
+				"to": "00:07:00,800"
+			},
+			"offsets": {
+				"from": 418800,
+				"to": 420800
+			},
+			"text": " You disseminate a message to every peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,800",
+				"to": "00:07:01,800"
+			},
+			"offsets": {
+				"from": 420800,
+				"to": 421800
+			},
+			"text": " that you connect it to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,800",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 421800,
+				"to": 424000
+			},
+			"text": " And you know, it's in the statement of talking, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:06,640"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 426640
+			},
+			"text": " Which is great because it's robust, it's resilient."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,640",
+				"to": "00:07:09,520"
+			},
+			"offsets": {
+				"from": 426640,
+				"to": 429520
+			},
+			"text": " And you know, it can take you in the more latency path"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,520",
+				"to": "00:07:11,600"
+			},
+			"offsets": {
+				"from": 429520,
+				"to": 431600
+			},
+			"text": " because you just push that message out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,600",
+				"to": "00:07:17,040"
+			},
+			"offsets": {
+				"from": 431600,
+				"to": 437040
+			},
+			"text": " And well, those peers that are closely connected to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,040",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 437040,
+				"to": 439000
+			},
+			"text": " and have a fast name with you or receive a first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:21,840"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 441840
+			},
+			"text": " but it also creates a lot of right amplification."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,840",
+				"to": "00:07:25,040"
+			},
+			"offsets": {
+				"from": 441840,
+				"to": 445040
+			},
+			"text": " And it basically clogs up the bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,040",
+				"to": "00:07:27,640"
+			},
+			"offsets": {
+				"from": 445040,
+				"to": 447640
+			},
+			"text": " as you create a lot of duplication in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,640",
+				"to": "00:07:29,920"
+			},
+			"offsets": {
+				"from": 447640,
+				"to": 449920
+			},
+			"text": " As I said, Gossip Service is the stepping stroke"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,920",
+				"to": "00:07:32,560"
+			},
+			"offsets": {
+				"from": 449920,
+				"to": 452560
+			},
+			"text": " towards the grand vision of episode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,560",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 452560,
+				"to": 455000
+			},
+			"text": " which is, I'll introduce it a bit later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,160"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459160
+			},
+			"text": " basically, Gompot's ideas from Blumtree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,160",
+				"to": "00:07:41,600"
+			},
+			"offsets": {
+				"from": 459160,
+				"to": 461600
+			},
+			"text": " hyper-view, or Gompest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,600",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 461600,
+				"to": 465400
+			},
+			"text": " Warning, the stickness of Gossip Service is currently alpha."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:48,920"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 468920
+			},
+			"text": " And this is very important for people to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,920",
+				"to": "00:07:52,960"
+			},
+			"offsets": {
+				"from": 468920,
+				"to": 472960
+			},
+			"text": " It is a protocol that we're going to continue iterating on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,960",
+				"to": "00:07:54,120"
+			},
+			"offsets": {
+				"from": 472960,
+				"to": 474120
+			},
+			"text": " over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,120",
+				"to": "00:07:55,640"
+			},
+			"offsets": {
+				"from": 474120,
+				"to": 475640
+			},
+			"text": " And as I said, it's a stepping stone"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,640",
+				"to": "00:08:01,160"
+			},
+			"offsets": {
+				"from": 475640,
+				"to": 481160
+			},
+			"text": " towards this more stable and feature-free protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,160",
+				"to": "00:08:02,200"
+			},
+			"offsets": {
+				"from": 481160,
+				"to": 482200
+			},
+			"text": " called episode."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,200",
+				"to": "00:08:04,080"
+			},
+			"offsets": {
+				"from": 482200,
+				"to": 484080
+			},
+			"text": " There are three implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,080",
+				"to": "00:08:07,280"
+			},
+			"offsets": {
+				"from": 484080,
+				"to": 487280
+			},
+			"text": " There is the reference implementation in Go"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,280",
+				"to": "00:08:09,480"
+			},
+			"offsets": {
+				"from": 487280,
+				"to": 489480
+			},
+			"text": " that the little bit of the quarantine produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,480",
+				"to": "00:08:12,120"
+			},
+			"offsets": {
+				"from": 489480,
+				"to": 492120
+			},
+			"text": " There is a implementation by the Sigma Prime guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,120",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 492120,
+				"to": 492760
+			},
+			"text": " who are just here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:13,760"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 493760
+			},
+			"text": " Raise your hands, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,760",
+				"to": "00:08:13,760"
+			},
+			"offsets": {
+				"from": 493760,
+				"to": 493760
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,760",
+				"to": "00:08:14,680"
+			},
+			"offsets": {
+				"from": 493760,
+				"to": 494680
+			},
+			"text": " Get some credit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,680",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 494680,
+				"to": 496560
+			},
+			"text": " Fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:18,240"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 498240
+			},
+			"text": " It's currently sitting in a fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,240",
+				"to": "00:08:21,440"
+			},
+			"offsets": {
+				"from": 498240,
+				"to": 501440
+			},
+			"text": " And I don't know if the chain-safe guys are here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,440",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 501440,
+				"to": 504000
+			},
+			"text": " I don't think they are, but they also contributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:27,760"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 507760
+			},
+			"text": " And they created a Gossip Service Implementation JMS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,760",
+				"to": "00:08:28,040"
+			},
+			"offsets": {
+				"from": 507760,
+				"to": 508040
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,040",
+				"to": "00:08:30,040"
+			},
+			"offsets": {
+				"from": 508040,
+				"to": 510040
+			},
+			"text": " So how does it work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,040",
+				"to": "00:08:33,680"
+			},
+			"offsets": {
+				"from": 510040,
+				"to": 513680
+			},
+			"text": " I'm going to go through different layers of the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,680",
+				"to": "00:08:36,240"
+			},
+			"offsets": {
+				"from": 513680,
+				"to": 516240
+			},
+			"text": " to kind of do a wall through."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,240",
+				"to": "00:08:39,080"
+			},
+			"offsets": {
+				"from": 516240,
+				"to": 519080
+			},
+			"text": " So the first thing that you need to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,080",
+				"to": "00:08:41,320"
+			},
+			"offsets": {
+				"from": 519080,
+				"to": 521320
+			},
+			"text": " is that Gossip Service is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,320",
+				"to": "00:08:44,280"
+			},
+			"offsets": {
+				"from": 521320,
+				"to": 524280
+			},
+			"text": " a hybrid of two different networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,280",
+				"to": "00:08:48,360"
+			},
+			"offsets": {
+				"from": 524280,
+				"to": 528360
+			},
+			"text": " that are on the same protocol, that are on the same other thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,360",
+				"to": "00:08:50,720"
+			},
+			"offsets": {
+				"from": 528360,
+				"to": 530720
+			},
+			"text": " So there is a full message network"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,720",
+				"to": "00:08:53,720"
+			},
+			"offsets": {
+				"from": 530720,
+				"to": 533720
+			},
+			"text": " formed by reciprocal links through which messages are forwarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,720",
+				"to": "00:08:55,320"
+			},
+			"offsets": {
+				"from": 533720,
+				"to": 535320
+			},
+			"text": " And this is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,320",
+				"to": "00:08:57,760"
+			},
+			"offsets": {
+				"from": 535320,
+				"to": 537760
+			},
+			"text": " reciprocal is the key-- the word for cervical"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,760",
+				"to": "00:08:59,960"
+			},
+			"offsets": {
+				"from": 537760,
+				"to": 539960
+			},
+			"text": " is very important because this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,960",
+				"to": "00:09:02,800"
+			},
+			"offsets": {
+				"from": 539960,
+				"to": 542800
+			},
+			"text": " supposed to be a stable mesh where"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,800",
+				"to": "00:09:06,560"
+			},
+			"offsets": {
+				"from": 542800,
+				"to": 546560
+			},
+			"text": " peers are actually exchanging messages with one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,560",
+				"to": "00:09:11,640"
+			},
+			"offsets": {
+				"from": 546560,
+				"to": 551640
+			},
+			"text": " So if I'm peer A and there is a mentor acting with peer B"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,640",
+				"to": "00:09:14,080"
+			},
+			"offsets": {
+				"from": 551640,
+				"to": 554080
+			},
+			"text": " in a topic, these two peers will actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,080",
+				"to": "00:09:16,960"
+			},
+			"offsets": {
+				"from": 554080,
+				"to": 556960
+			},
+			"text": " be exchanging messages with one another consistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,960",
+				"to": "00:09:18,680"
+			},
+			"offsets": {
+				"from": 556960,
+				"to": 558680
+			},
+			"text": " And then there is a metadata only network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,680",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 558680,
+				"to": 561320
+			},
+			"text": " that carries Gossip, about which peers--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,320",
+				"to": "00:09:23,360"
+			},
+			"offsets": {
+				"from": 561320,
+				"to": 563360
+			},
+			"text": " what peers have actually seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,360",
+				"to": "00:09:25,600"
+			},
+			"offsets": {
+				"from": 563360,
+				"to": 565600
+			},
+			"text": " So as I said, the full message network--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,600",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 565600,
+				"to": 567160
+			},
+			"text": " we call it mesh--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:31,040"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 571040
+			},
+			"text": " is a sparsely connected network of reciprocal links"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,040",
+				"to": "00:09:34,200"
+			},
+			"offsets": {
+				"from": 571040,
+				"to": 574200
+			},
+			"text": " between peers that are actively consuming and interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,200",
+				"to": "00:09:37,040"
+			},
+			"offsets": {
+				"from": 574200,
+				"to": 577040
+			},
+			"text": " and therefore forwarding a particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,040",
+				"to": "00:09:39,240"
+			},
+			"offsets": {
+				"from": 577040,
+				"to": 579240
+			},
+			"text": " The construction of the mesh is actually randomized"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,240",
+				"to": "00:09:41,760"
+			},
+			"offsets": {
+				"from": 579240,
+				"to": 581760
+			},
+			"text": " and is self-step stabilizing because it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,760",
+				"to": "00:09:44,600"
+			},
+			"offsets": {
+				"from": 581760,
+				"to": 584600
+			},
+			"text": " has a number of stabilizing current, particularly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,600",
+				"to": "00:09:45,120"
+			},
+			"offsets": {
+				"from": 584600,
+				"to": 585120
+			},
+			"text": " in the degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,120",
+				"to": "00:09:48,600"
+			},
+			"offsets": {
+				"from": 585120,
+				"to": 588600
+			},
+			"text": " So peers will are configured."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,600",
+				"to": "00:09:50,800"
+			},
+			"offsets": {
+				"from": 588600,
+				"to": 590800
+			},
+			"text": " The mesh is configured with a target degree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,800",
+				"to": "00:09:52,560"
+			},
+			"offsets": {
+				"from": 590800,
+				"to": 592560
+			},
+			"text": " which by default is 6."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,560",
+				"to": "00:09:54,680"
+			},
+			"offsets": {
+				"from": 592560,
+				"to": 594680
+			},
+			"text": " There is a high and low watermark,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,680",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 594680,
+				"to": 597000
+			},
+			"text": " which by default is 4 and 12."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:01,440"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 601440
+			},
+			"text": " And peers will strive to maintain the connectedness"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,440",
+				"to": "00:10:06,480"
+			},
+			"offsets": {
+				"from": 601440,
+				"to": 606480
+			},
+			"text": " for a particular topic at an optimal level of 6,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,480",
+				"to": "00:10:11,240"
+			},
+			"offsets": {
+				"from": 606480,
+				"to": 611240
+			},
+			"text": " taking compensating action whenever it goes below the low"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,240",
+				"to": "00:10:13,680"
+			},
+			"offsets": {
+				"from": 611240,
+				"to": 613680
+			},
+			"text": " watermark or above the high watermark."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,680",
+				"to": "00:10:21,560"
+			},
+			"offsets": {
+				"from": 613680,
+				"to": 621560
+			},
+			"text": " This is-- we keep that leeway to avoid drastic downcutting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,560",
+				"to": "00:10:24,040"
+			},
+			"offsets": {
+				"from": 621560,
+				"to": 624040
+			},
+			"text": " and operating."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,040",
+				"to": "00:10:25,840"
+			},
+			"offsets": {
+				"from": 624040,
+				"to": 625840
+			},
+			"text": " So a stable mesh is complemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,840",
+				"to": "00:10:29,120"
+			},
+			"offsets": {
+				"from": 625840,
+				"to": 629120
+			},
+			"text": " by a metadata-only network, which is a densely connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,120",
+				"to": "00:10:34,240"
+			},
+			"offsets": {
+				"from": 629120,
+				"to": 634240
+			},
+			"text": " network that augments the mesh with gossip propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,240",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 634240,
+				"to": 636760
+			},
+			"text": " about which messages are actually available."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:39,360"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 639360
+			},
+			"text": " So this enables routing decisions to be made."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,360",
+				"to": "00:10:42,280"
+			},
+			"offsets": {
+				"from": 639360,
+				"to": 642280
+			},
+			"text": " If I have-- so the easy way to put this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,280",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 642280,
+				"to": 646520
+			},
+			"text": " is in a particular topic, if I have 50 peers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:49,440"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 649440
+			},
+			"text": " are interested, that are consuming-- so 15 neighbors of mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,440",
+				"to": "00:10:54,040"
+			},
+			"offsets": {
+				"from": 649440,
+				"to": 654040
+			},
+			"text": " 15 neighbors of mine are interested in a particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,040",
+				"to": "00:11:02,720"
+			},
+			"offsets": {
+				"from": 654040,
+				"to": 662720
+			},
+			"text": " I'll be allowed to keep 6 in theory based on the stable mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,720",
+				"to": "00:11:07,320"
+			},
+			"offsets": {
+				"from": 662720,
+				"to": 667320
+			},
+			"text": " The remaining 9 will turn into gossip peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,320",
+				"to": "00:11:09,720"
+			},
+			"offsets": {
+				"from": 667320,
+				"to": 669720
+			},
+			"text": " So I will not exchange messages with them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,720",
+				"to": "00:11:13,040"
+			},
+			"offsets": {
+				"from": 669720,
+				"to": 673040
+			},
+			"text": " but I will collaborate with them, telling them all messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,040",
+				"to": "00:11:16,080"
+			},
+			"offsets": {
+				"from": 673040,
+				"to": 676080
+			},
+			"text": " I've seen without pushing actually-- without actually pushing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,080",
+				"to": "00:11:17,320"
+			},
+			"offsets": {
+				"from": 676080,
+				"to": 677320
+			},
+			"text": " messages to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,320",
+				"to": "00:11:19,880"
+			},
+			"offsets": {
+				"from": 677320,
+				"to": 679880
+			},
+			"text": " We'll go through this in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,880",
+				"to": "00:11:22,560"
+			},
+			"offsets": {
+				"from": 679880,
+				"to": 682560
+			},
+			"text": " So how does topic membership work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,560",
+				"to": "00:11:27,520"
+			},
+			"offsets": {
+				"from": 682560,
+				"to": 687520
+			},
+			"text": " As a said, a peer can be subscribed and be emitting messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,520",
+				"to": "00:11:29,920"
+			},
+			"offsets": {
+				"from": 687520,
+				"to": 689920
+			},
+			"text": " on various topics outwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,920",
+				"to": "00:11:32,960"
+			},
+			"offsets": {
+				"from": 689920,
+				"to": 692960
+			},
+			"text": " So peers can participate in many topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,960",
+				"to": "00:11:35,560"
+			},
+			"offsets": {
+				"from": 692960,
+				"to": 695560
+			},
+			"text": " either as subscribers, publishers, or both."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,560",
+				"to": "00:11:39,680"
+			},
+			"offsets": {
+				"from": 695560,
+				"to": 699680
+			},
+			"text": " And peers keep a view of all neighbor subscriptions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,680",
+				"to": "00:11:41,640"
+			},
+			"offsets": {
+				"from": 699680,
+				"to": 701640
+			},
+			"text": " whether they open up with hours or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,640",
+				"to": "00:11:45,560"
+			},
+			"offsets": {
+				"from": 701640,
+				"to": 705560
+			},
+			"text": " So if I'm subscribed to topic A and another peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,560",
+				"to": "00:11:48,160"
+			},
+			"offsets": {
+				"from": 705560,
+				"to": 708160
+			},
+			"text": " is subscribed to topic C, but I'm not interested in C,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,160",
+				"to": "00:11:49,800"
+			},
+			"offsets": {
+				"from": 708160,
+				"to": 709800
+			},
+			"text": " I will still note that the other peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,800",
+				"to": "00:11:52,480"
+			},
+			"offsets": {
+				"from": 709800,
+				"to": 712480
+			},
+			"text": " are subscribed to topic C."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,480",
+				"to": "00:11:55,720"
+			},
+			"offsets": {
+				"from": 712480,
+				"to": 715720
+			},
+			"text": " As subscribers, as a said, only engage in message propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,720",
+				"to": "00:11:57,440"
+			},
+			"offsets": {
+				"from": 715720,
+				"to": 717440
+			},
+			"text": " and gossip for virtual topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,440",
+				"to": "00:11:59,720"
+			},
+			"offsets": {
+				"from": 717440,
+				"to": 719720
+			},
+			"text": " So I will only actually participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,720",
+				"to": "00:12:01,240"
+			},
+			"offsets": {
+				"from": 719720,
+				"to": 721240
+			},
+			"text": " And this is one of the key properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,240",
+				"to": "00:12:05,320"
+			},
+			"offsets": {
+				"from": 721240,
+				"to": 725320
+			},
+			"text": " if you remember, that are desirable in Pub/Sub systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,320",
+				"to": "00:12:07,080"
+			},
+			"offsets": {
+				"from": 725320,
+				"to": 727080
+			},
+			"text": " and peer-to-peer Pub/Sub systems, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,080",
+				"to": "00:12:09,920"
+			},
+			"offsets": {
+				"from": 727080,
+				"to": 729920
+			},
+			"text": " is only those peers that are invested in a topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,920",
+				"to": "00:12:13,360"
+			},
+			"offsets": {
+				"from": 729920,
+				"to": 733360
+			},
+			"text": " should be making effort towards disseminating that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,360",
+				"to": "00:12:16,680"
+			},
+			"offsets": {
+				"from": 733360,
+				"to": 736680
+			},
+			"text": " So that-- so lots of stuff does satisfy that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,680",
+				"to": "00:12:18,920"
+			},
+			"offsets": {
+				"from": 736680,
+				"to": 738920
+			},
+			"text": " So we have a concept that's called subscription,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,920",
+				"to": "00:12:22,680"
+			},
+			"offsets": {
+				"from": 738920,
+				"to": 742680
+			},
+			"text": " econning, which is basically on every new connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,680",
+				"to": "00:12:25,880"
+			},
+			"offsets": {
+				"from": 742680,
+				"to": 745880
+			},
+			"text": " Peers will exchange the topics that they subscribe to."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,880",
+				"to": "00:12:31,120"
+			},
+			"offsets": {
+				"from": 745880,
+				"to": 751120
+			},
+			"text": " And as the application that is using the LIPE2B stack"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,120",
+				"to": "00:12:34,680"
+			},
+			"offsets": {
+				"from": 751120,
+				"to": 754680
+			},
+			"text": " joins for leafs topics, they will send updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,680",
+				"to": "00:12:35,680"
+			},
+			"offsets": {
+				"from": 754680,
+				"to": 755680
+			},
+			"text": " to all other peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,680",
+				"to": "00:12:39,480"
+			},
+			"offsets": {
+				"from": 755680,
+				"to": 759480
+			},
+			"text": " So as I'm participating, as I become a participant"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,480",
+				"to": "00:12:44,240"
+			},
+			"offsets": {
+				"from": 759480,
+				"to": 764240
+			},
+			"text": " in a new topic, I will send an update to all other peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,240",
+				"to": "00:12:46,320"
+			},
+			"offsets": {
+				"from": 764240,
+				"to": 766320
+			},
+			"text": " Now, we don't want to be very chatty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,320",
+				"to": "00:12:49,600"
+			},
+			"offsets": {
+				"from": 766320,
+				"to": 769600
+			},
+			"text": " so we have introduced the concept of painting back."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,600",
+				"to": "00:12:56,800"
+			},
+			"offsets": {
+				"from": 769600,
+				"to": 776800
+			},
+			"text": " So this means that we will try to coalesce updates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,800",
+				"to": "00:13:00,640"
+			},
+			"offsets": {
+				"from": 776800,
+				"to": 780640
+			},
+			"text": " metadata updates to peers on top of messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,640",
+				"to": "00:13:03,040"
+			},
+			"offsets": {
+				"from": 780640,
+				"to": 783040
+			},
+			"text": " that we anyway need to send them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,040",
+				"to": "00:13:05,280"
+			},
+			"offsets": {
+				"from": 783040,
+				"to": 785280
+			},
+			"text": " such as graphs and proofs and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,280",
+				"to": "00:13:07,520"
+			},
+			"offsets": {
+				"from": 785280,
+				"to": 787520
+			},
+			"text": " And this kind of econning enables"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,520",
+				"to": "00:13:10,520"
+			},
+			"offsets": {
+				"from": 787520,
+				"to": 790520
+			},
+			"text": " us to create about metadata flows"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,520",
+				"to": "00:13:13,840"
+			},
+			"offsets": {
+				"from": 790520,
+				"to": 793840
+			},
+			"text": " and to do also a firmware on top example, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,840",
+				"to": "00:13:18,160"
+			},
+			"offsets": {
+				"from": 793840,
+				"to": 798160
+			},
+			"text": " is also called FanOut, and I'll explain this in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,160",
+				"to": "00:13:21,120"
+			},
+			"offsets": {
+				"from": 798160,
+				"to": 801120
+			},
+			"text": " So with regards to topic membership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,120",
+				"to": "00:13:24,640"
+			},
+			"offsets": {
+				"from": 801120,
+				"to": 804640
+			},
+			"text": " there is two key concepts to understand here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,640",
+				"to": "00:13:27,240"
+			},
+			"offsets": {
+				"from": 804640,
+				"to": 807240
+			},
+			"text": " There is the concept of crafting and proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,240",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 807240,
+				"to": 811000
+			},
+			"text": " I said that the stable mesh is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:33,480"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 813480
+			},
+			"text": " a self-regulating mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,480",
+				"to": "00:13:37,760"
+			},
+			"offsets": {
+				"from": 813480,
+				"to": 817760
+			},
+			"text": " And these two messages are key to regulating that mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,760",
+				"to": "00:13:43,800"
+			},
+			"offsets": {
+				"from": 817760,
+				"to": 823800
+			},
+			"text": " So a graph control message proposes a two way"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,800",
+				"to": "00:13:45,680"
+			},
+			"offsets": {
+				"from": 823800,
+				"to": 825680
+			},
+			"text": " full message stable link will appear."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,680",
+				"to": "00:13:49,520"
+			},
+			"offsets": {
+				"from": 825680,
+				"to": 829520
+			},
+			"text": " So basically, when a one-appear sends a graph to another peer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,520",
+				"to": "00:13:51,640"
+			},
+			"offsets": {
+				"from": 829520,
+				"to": 831640
+			},
+			"text": " it's basically telling it, hey, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,640",
+				"to": "00:13:55,640"
+			},
+			"offsets": {
+				"from": 831640,
+				"to": 835640
+			},
+			"text": " want to be part of your reciprocal mesh for this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,640",
+				"to": "00:13:57,320"
+			},
+			"offsets": {
+				"from": 835640,
+				"to": 837320
+			},
+			"text": " This means that I'm going to send you messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,320",
+				"to": "00:14:00,440"
+			},
+			"offsets": {
+				"from": 837320,
+				"to": 840440
+			},
+			"text": " and you promised to send messages as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,440",
+				"to": "00:14:02,280"
+			},
+			"offsets": {
+				"from": 840440,
+				"to": 842280
+			},
+			"text": " Now, the other peer can project that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,280",
+				"to": "00:14:05,640"
+			},
+			"offsets": {
+				"from": 842280,
+				"to": 845640
+			},
+			"text": " because they're already beyond their target degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,640",
+				"to": "00:14:09,200"
+			},
+			"offsets": {
+				"from": 845640,
+				"to": 849200
+			},
+			"text": " And if they're rejected, they send back on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,200",
+				"to": "00:14:13,160"
+			},
+			"offsets": {
+				"from": 849200,
+				"to": 853160
+			},
+			"text": " However, the other peer knows that I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,160",
+				"to": "00:14:15,760"
+			},
+			"offsets": {
+				"from": 853160,
+				"to": 855760
+			},
+			"text": " interested in that topic, because I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,760",
+				"to": "00:14:17,920"
+			},
+			"offsets": {
+				"from": 855760,
+				"to": 857920
+			},
+			"text": " weakened the subscription to that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,920",
+				"to": "00:14:21,040"
+			},
+			"offsets": {
+				"from": 857920,
+				"to": 861040
+			},
+			"text": " Therefore, even though I'm not part of a stable mesh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,040",
+				"to": "00:14:23,560"
+			},
+			"offsets": {
+				"from": 861040,
+				"to": 863560
+			},
+			"text": " that will send me metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,560",
+				"to": "00:14:29,320"
+			},
+			"offsets": {
+				"from": 863560,
+				"to": 869320
+			},
+			"text": " So this is where these two networks start making sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,320",
+				"to": "00:14:32,720"
+			},
+			"offsets": {
+				"from": 869320,
+				"to": 872720
+			},
+			"text": " Now, a prune control message dissolves a two way"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,720",
+				"to": "00:14:36,120"
+			},
+			"offsets": {
+				"from": 872720,
+				"to": 876120
+			},
+			"text": " stable mesh, a stable link between two peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,120",
+				"to": "00:14:40,680"
+			},
+			"offsets": {
+				"from": 876120,
+				"to": 880680
+			},
+			"text": " And this can be sent in response to a graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,680",
+				"to": "00:14:47,360"
+			},
+			"offsets": {
+				"from": 880680,
+				"to": 887360
+			},
+			"text": " that we want to reject, or if I'm down regulating my degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,360",
+				"to": "00:14:50,560"
+			},
+			"offsets": {
+				"from": 887360,
+				"to": 890560
+			},
+			"text": " Now, another key aspect to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,560",
+				"to": "00:14:53,800"
+			},
+			"offsets": {
+				"from": 890560,
+				"to": 893800
+			},
+			"text": " is that by itself, Gossips up right now does not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,800",
+				"to": "00:14:56,440"
+			},
+			"offsets": {
+				"from": 893800,
+				"to": 896440
+			},
+			"text": " include a mechanism for peer discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,440",
+				"to": "00:15:00,200"
+			},
+			"offsets": {
+				"from": 896440,
+				"to": 900200
+			},
+			"text": " So if we want to subscribe to the topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,200",
+				"to": "00:15:02,320"
+			},
+			"offsets": {
+				"from": 900200,
+				"to": 902320
+			},
+			"text": " we need to find a set of peers that are already"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,320",
+				"to": "00:15:03,480"
+			},
+			"offsets": {
+				"from": 902320,
+				"to": 903480
+			},
+			"text": " subscribed to that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,480",
+				"to": "00:15:07,560"
+			},
+			"offsets": {
+				"from": 903480,
+				"to": 907560
+			},
+			"text": " And this is the specification is called ambient peer discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,560",
+				"to": "00:15:10,600"
+			},
+			"offsets": {
+				"from": 907560,
+				"to": 910600
+			},
+			"text": " We rely on an API discovery mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,600",
+				"to": "00:15:13,480"
+			},
+			"offsets": {
+				"from": 910600,
+				"to": 913480
+			},
+			"text": " Which is present in the appies."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,480",
+				"to": "00:15:15,880"
+			},
+			"offsets": {
+				"from": 913480,
+				"to": 915880
+			},
+			"text": " This is going to change as we go forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,880",
+				"to": "00:15:19,960"
+			},
+			"offsets": {
+				"from": 915880,
+				"to": 919960
+			},
+			"text": " We're discarding the PR to add active peer discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,960",
+				"to": "00:15:24,600"
+			},
+			"offsets": {
+				"from": 919960,
+				"to": 924600
+			},
+			"text": " so that whenever the application subscribes to a topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,600",
+				"to": "00:15:25,880"
+			},
+			"offsets": {
+				"from": 924600,
+				"to": 925880
+			},
+			"text": " there will be a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,880",
+				"to": "00:15:28,160"
+			},
+			"offsets": {
+				"from": 925880,
+				"to": 928160
+			},
+			"text": " the website will actually do a lookup of peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,160",
+				"to": "00:15:30,680"
+			},
+			"offsets": {
+				"from": 928160,
+				"to": 930680
+			},
+			"text": " in that topic for them for the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,680",
+				"to": "00:15:32,560"
+			},
+			"offsets": {
+				"from": 930680,
+				"to": 932560
+			},
+			"text": " And we also found an introducing something"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,560",
+				"to": "00:15:36,120"
+			},
+			"offsets": {
+				"from": 932560,
+				"to": 936120
+			},
+			"text": " that we call collaborative peer search."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,120",
+				"to": "00:15:38,160"
+			},
+			"offsets": {
+				"from": 936120,
+				"to": 938160
+			},
+			"text": " Let's talk about message flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,160",
+				"to": "00:15:42,960"
+			},
+			"offsets": {
+				"from": 938160,
+				"to": 942960
+			},
+			"text": " When a peer wants to send a message as a message source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,960",
+				"to": "00:15:45,200"
+			},
+			"offsets": {
+				"from": 942960,
+				"to": 945200
+			},
+			"text": " they just first the message to all the table--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,200",
+				"to": "00:15:48,040"
+			},
+			"offsets": {
+				"from": 945200,
+				"to": 948040
+			},
+			"text": " to all peers in the message and the full message."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,040",
+				"to": "00:15:49,880"
+			},
+			"offsets": {
+				"from": 948040,
+				"to": 949880
+			},
+			"text": " Super simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,880",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 949880,
+				"to": 952360
+			},
+			"text": " Now, peers that receive that message"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:53,520"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 953520
+			},
+			"text": " are actually message flow."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,520",
+				"to": "00:15:56,360"
+			},
+			"offsets": {
+				"from": 953520,
+				"to": 956360
+			},
+			"text": " So whenever they receive that message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,360",
+				"to": "00:15:59,680"
+			},
+			"offsets": {
+				"from": 956360,
+				"to": 959680
+			},
+			"text": " they will forward that message to all other peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,680",
+				"to": "00:16:03,360"
+			},
+			"offsets": {
+				"from": 959680,
+				"to": 963360
+			},
+			"text": " that are part of that view of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,360",
+				"to": "00:16:05,200"
+			},
+			"offsets": {
+				"from": 963360,
+				"to": 965200
+			},
+			"text": " And we follow here as they integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,200",
+				"to": "00:16:11,800"
+			},
+			"offsets": {
+				"from": 965200,
+				"to": 971800
+			},
+			"text": " the data into the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,800",
+				"to": "00:16:13,880"
+			},
+			"offsets": {
+				"from": 971800,
+				"to": 973880
+			},
+			"text": " Now, we can also publish messages on topics"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,880",
+				"to": "00:16:16,080"
+			},
+			"offsets": {
+				"from": 973880,
+				"to": 976080
+			},
+			"text": " that we don't subscribe to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,080",
+				"to": "00:16:18,360"
+			},
+			"offsets": {
+				"from": 976080,
+				"to": 978360
+			},
+			"text": " And this is interesting for things like, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,360",
+				"to": "00:16:20,880"
+			},
+			"offsets": {
+				"from": 978360,
+				"to": 980880
+			},
+			"text": " IPNS, the interplanetary naming service."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,880",
+				"to": "00:16:24,200"
+			},
+			"offsets": {
+				"from": 980880,
+				"to": 984200
+			},
+			"text": " We want to send updates from whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,200",
+				"to": "00:16:29,080"
+			},
+			"offsets": {
+				"from": 984200,
+				"to": 989080
+			},
+			"text": " the mapping of a name changes to a different app, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,080",
+				"to": "00:16:33,080"
+			},
+			"offsets": {
+				"from": 989080,
+				"to": 993080
+			},
+			"text": " So you don't necessarily appear that's watching."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,080",
+				"to": "00:16:36,480"
+			},
+			"offsets": {
+				"from": 993080,
+				"to": 996480
+			},
+			"text": " For example, a DNS server, a DNS name server somewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,480",
+				"to": "00:16:40,520"
+			},
+			"offsets": {
+				"from": 996480,
+				"to": 1000520
+			},
+			"text": " and then it's noticing this change doesn't necessarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,520",
+				"to": "00:16:42,600"
+			},
+			"offsets": {
+				"from": 1000520,
+				"to": 1002600
+			},
+			"text": " want to be subscribed to those topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,600",
+				"to": "00:16:44,680"
+			},
+			"offsets": {
+				"from": 1002600,
+				"to": 1004680
+			},
+			"text": " So as the possibility of sending those messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,680",
+				"to": "00:16:47,560"
+			},
+			"offsets": {
+				"from": 1004680,
+				"to": 1007560
+			},
+			"text": " on what we do that, we basically remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,560",
+				"to": "00:16:49,840"
+			},
+			"offsets": {
+				"from": 1007560,
+				"to": 1009840
+			},
+			"text": " that we keep in track of what peers are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,840",
+				"to": "00:16:51,880"
+			},
+			"offsets": {
+				"from": 1009840,
+				"to": 1011880
+			},
+			"text": " subscribed to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,880",
+				"to": "00:16:54,120"
+			},
+			"offsets": {
+				"from": 1011880,
+				"to": 1014120
+			},
+			"text": " We're not forming stable messages with them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,120",
+				"to": "00:16:55,240"
+			},
+			"offsets": {
+				"from": 1014120,
+				"to": 1015240
+			},
+			"text": " but we keep in track of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,240",
+				"to": "00:16:58,720"
+			},
+			"offsets": {
+				"from": 1015240,
+				"to": 1018720
+			},
+			"text": " So if the local application tries to send that message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,720",
+				"to": "00:17:01,840"
+			},
+			"offsets": {
+				"from": 1018720,
+				"to": 1021840
+			},
+			"text": " we will immediately form what we call a finite group."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,840",
+				"to": "00:17:05,200"
+			},
+			"offsets": {
+				"from": 1021840,
+				"to": 1025200
+			},
+			"text": " From those peers that we know are already subscribed to that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,200",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1025200,
+				"to": 1027000
+			},
+			"text": " And this is going to be an ephemeral issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:09,640"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1029640
+			},
+			"text": " So once we form that group, we push out the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,640",
+				"to": "00:17:13,080"
+			},
+			"offsets": {
+				"from": 1029640,
+				"to": 1033080
+			},
+			"text": " Those peers we know are already part of the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,080",
+				"to": "00:17:16,760"
+			},
+			"offsets": {
+				"from": 1033080,
+				"to": 1036760
+			},
+			"text": " Therefore, they will forward that message internally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,760",
+				"to": "00:17:20,560"
+			},
+			"offsets": {
+				"from": 1036760,
+				"to": 1040560
+			},
+			"text": " because the messages are right inside the mesh for the topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,560",
+				"to": "00:17:23,960"
+			},
+			"offsets": {
+				"from": 1040560,
+				"to": 1043960
+			},
+			"text": " And after two minutes, we just--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,960",
+				"to": "00:17:24,960"
+			},
+			"offsets": {
+				"from": 1043960,
+				"to": 1044960
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,960",
+				"to": "00:17:26,600"
+			},
+			"offsets": {
+				"from": 1044960,
+				"to": 1046600
+			},
+			"text": " Because that was just a ephemeral set."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,600",
+				"to": "00:17:29,320"
+			},
+			"offsets": {
+				"from": 1046600,
+				"to": 1049320
+			},
+			"text": " So we don't want to keep it at all for too long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,320",
+				"to": "00:17:32,960"
+			},
+			"offsets": {
+				"from": 1049320,
+				"to": 1052960
+			},
+			"text": " because that would be an originating state that we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,960",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1052960,
+				"to": 1055320
+			},
+			"text": " We also have a concept of topic validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:36,560"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1056560
+			},
+			"text": " and message-in-nature."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,560",
+				"to": "00:17:42,560"
+			},
+			"offsets": {
+				"from": 1056560,
+				"to": 1062560
+			},
+			"text": " So when an application sends a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,560",
+				"to": "00:17:44,280"
+			},
+			"offsets": {
+				"from": 1062560,
+				"to": 1064280
+			},
+			"text": " sorry, the application can configure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,280",
+				"to": "00:17:48,200"
+			},
+			"offsets": {
+				"from": 1064280,
+				"to": 1068200
+			},
+			"text": " can attach predicates, validation predicates to topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,200",
+				"to": "00:17:49,480"
+			},
+			"offsets": {
+				"from": 1068200,
+				"to": 1069480
+			},
+			"text": " And either the point you know, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,480",
+				"to": "00:17:53,160"
+			},
+			"offsets": {
+				"from": 1069480,
+				"to": 1073160
+			},
+			"text": " is using this for validating signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,160",
+				"to": "00:17:57,440"
+			},
+			"offsets": {
+				"from": 1073160,
+				"to": 1077440
+			},
+			"text": " in logs that are getting propagated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,440",
+				"to": "00:18:00,160"
+			},
+			"offsets": {
+				"from": 1077440,
+				"to": 1080160
+			},
+			"text": " So when a message is published locally or before forwarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,160",
+				"to": "00:18:02,360"
+			},
+			"offsets": {
+				"from": 1080160,
+				"to": 1082360
+			},
+			"text": " a message, this Braddockade will be called."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,360",
+				"to": "00:18:05,400"
+			},
+			"offsets": {
+				"from": 1082360,
+				"to": 1085400
+			},
+			"text": " If it succeeds, then the message will continue dissemination."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,400",
+				"to": "00:18:07,640"
+			},
+			"offsets": {
+				"from": 1085400,
+				"to": 1087640
+			},
+			"text": " Otherwise, it will just be dropped."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,640",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1087640,
+				"to": 1090520
+			},
+			"text": " We have the concept of asynchronous validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:12,120"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1092120
+			},
+			"text": " for heavy logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,120",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1092120,
+				"to": 1095000
+			},
+			"text": " And Gossip South can also be configured to sign out"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:18,360"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1098360
+			},
+			"text": " messages and to strictly validate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,360",
+				"to": "00:18:21,320"
+			},
+			"offsets": {
+				"from": 1098360,
+				"to": 1101320
+			},
+			"text": " the incoming signatures as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,320",
+				"to": "00:18:24,520"
+			},
+			"offsets": {
+				"from": 1101320,
+				"to": 1104520
+			},
+			"text": " Now, how do we regulate the mesh?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,520",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1104520,
+				"to": 1109000
+			},
+			"text": " There's a concept called happy, which by default happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:29,520"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1109520
+			},
+			"text": " every second."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,520",
+				"to": "00:18:32,760"
+			},
+			"offsets": {
+				"from": 1109520,
+				"to": 1112760
+			},
+			"text": " This is a very popular concept in distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,760",
+				"to": "00:18:34,800"
+			},
+			"offsets": {
+				"from": 1112760,
+				"to": 1114800
+			},
+			"text": " And this basically performs mesh and gossip"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,800",
+				"to": "00:18:36,520"
+			},
+			"offsets": {
+				"from": 1114800,
+				"to": 1116520
+			},
+			"text": " maintenance functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,520",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1116520,
+				"to": 1118000
+			},
+			"text": " There's three things that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:40,880"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1120880
+			},
+			"text": " We regulate the mesh degree for every topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,880",
+				"to": "00:18:44,240"
+			},
+			"offsets": {
+				"from": 1120880,
+				"to": 1124240
+			},
+			"text": " We emit gossip, and we slide the message to choose."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,240",
+				"to": "00:18:46,920"
+			},
+			"offsets": {
+				"from": 1124240,
+				"to": 1126920
+			},
+			"text": " So this is kind of like how degree regulation works."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,920",
+				"to": "00:18:51,640"
+			},
+			"offsets": {
+				"from": 1126920,
+				"to": 1131640
+			},
+			"text": " As I already explained it, if we're below a certain threshold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,640",
+				"to": "00:18:57,560"
+			},
+			"offsets": {
+				"from": 1131640,
+				"to": 1137560
+			},
+			"text": " we will try to add peers to the mesh for that particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,560",
+				"to": "00:18:59,720"
+			},
+			"offsets": {
+				"from": 1137560,
+				"to": 1139720
+			},
+			"text": " If we're above a certain threshold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,720",
+				"to": "00:19:04,720"
+			},
+			"offsets": {
+				"from": 1139720,
+				"to": 1144720
+			},
+			"text": " then we will bring peers from that topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,720",
+				"to": "00:19:09,960"
+			},
+			"offsets": {
+				"from": 1144720,
+				"to": 1149960
+			},
+			"text": " to try to keep the degree at a stable constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,960",
+				"to": "00:19:12,560"
+			},
+			"offsets": {
+				"from": 1149960,
+				"to": 1152560
+			},
+			"text": " To be able to do this, we keep a bunch of local states"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,560",
+				"to": "00:19:15,200"
+			},
+			"offsets": {
+				"from": 1152560,
+				"to": 1155200
+			},
+			"text": " or topics that are subscribed to, topics that are recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,200",
+				"to": "00:19:16,360"
+			},
+			"offsets": {
+				"from": 1155200,
+				"to": 1156360
+			},
+			"text": " sent a message to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,360",
+				"to": "00:19:18,520"
+			},
+			"offsets": {
+				"from": 1156360,
+				"to": 1158520
+			},
+			"text": " This is the found out groups, peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,520",
+				"to": "00:19:21,840"
+			},
+			"offsets": {
+				"from": 1158520,
+				"to": 1161840
+			},
+			"text": " that we currently connected to, and what kind of links"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,840",
+				"to": "00:19:24,440"
+			},
+			"offsets": {
+				"from": 1161840,
+				"to": 1164440
+			},
+			"text": " we maintain with them, whether it's a full link, message"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,440",
+				"to": "00:19:26,600"
+			},
+			"offsets": {
+				"from": 1164440,
+				"to": 1166600
+			},
+			"text": " data link, or if the found out peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,600",
+				"to": "00:19:28,880"
+			},
+			"offsets": {
+				"from": 1166600,
+				"to": 1168880
+			},
+			"text": " and what messages would recently see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,880",
+				"to": "00:19:30,720"
+			},
+			"offsets": {
+				"from": 1168880,
+				"to": 1170720
+			},
+			"text": " Why is this important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,720",
+				"to": "00:19:34,320"
+			},
+			"offsets": {
+				"from": 1170720,
+				"to": 1174320
+			},
+			"text": " This last bit, because we send gossip."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,320",
+				"to": "00:19:35,920"
+			},
+			"offsets": {
+				"from": 1174320,
+				"to": 1175920
+			},
+			"text": " So this is where the gossip comes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,920",
+				"to": "00:19:38,280"
+			},
+			"offsets": {
+				"from": 1175920,
+				"to": 1178280
+			},
+			"text": " So for every single peer that we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,280",
+				"to": "00:19:41,480"
+			},
+			"offsets": {
+				"from": 1178280,
+				"to": 1181480
+			},
+			"text": " is interested in a particular topic that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,480",
+				"to": "00:19:45,040"
+			},
+			"offsets": {
+				"from": 1181480,
+				"to": 1185040
+			},
+			"text": " is not part of a stable mesh, we will collaborate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,040",
+				"to": "00:19:48,880"
+			},
+			"offsets": {
+				"from": 1185040,
+				"to": 1188880
+			},
+			"text": " in the network by gossiping what messages we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,880",
+				"to": "00:19:50,520"
+			},
+			"offsets": {
+				"from": 1188880,
+				"to": 1190520
+			},
+			"text": " seen in that particular topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,520",
+				"to": "00:19:53,520"
+			},
+			"offsets": {
+				"from": 1190520,
+				"to": 1193520
+			},
+			"text": " So we don't send a message to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,520",
+				"to": "00:19:58,960"
+			},
+			"offsets": {
+				"from": 1193520,
+				"to": 1198960
+			},
+			"text": " But what we do is with every tick and every heartbeat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,960",
+				"to": "00:20:01,960"
+			},
+			"offsets": {
+				"from": 1198960,
+				"to": 1201960
+			},
+			"text": " we keep in a message cache, and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,960",
+				"to": "00:20:04,120"
+			},
+			"offsets": {
+				"from": 1201960,
+				"to": 1204120
+			},
+			"text": " keep in touch like a sliding window of the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,120",
+				"to": "00:20:06,960"
+			},
+			"offsets": {
+				"from": 1204120,
+				"to": 1206960
+			},
+			"text": " that we've seen in the last 30 seconds to minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,960",
+				"to": "00:20:08,720"
+			},
+			"offsets": {
+				"from": 1206960,
+				"to": 1208720
+			},
+			"text": " This is configurable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,720",
+				"to": "00:20:10,960"
+			},
+			"offsets": {
+				"from": 1208720,
+				"to": 1210960
+			},
+			"text": " We will send them a list of all the messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,960",
+				"to": "00:20:14,280"
+			},
+			"offsets": {
+				"from": 1210960,
+				"to": 1214280
+			},
+			"text": " of the IDs of the messages that we've seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,280",
+				"to": "00:20:16,880"
+			},
+			"offsets": {
+				"from": 1214280,
+				"to": 1216880
+			},
+			"text": " And this usually happens as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,880",
+				"to": "00:20:18,280"
+			},
+			"offsets": {
+				"from": 1216880,
+				"to": 1218280
+			},
+			"text": " We try to make it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,280",
+				"to": "00:20:22,880"
+			},
+			"offsets": {
+				"from": 1218280,
+				"to": 1222880
+			},
+			"text": " It's because we don't want to create excess overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,880",
+				"to": "00:20:25,680"
+			},
+			"offsets": {
+				"from": 1222880,
+				"to": 1225680
+			},
+			"text": " in the network, that's handling this metadata around every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,680",
+				"to": "00:20:26,400"
+			},
+			"offsets": {
+				"from": 1225680,
+				"to": 1226400
+			},
+			"text": " that we see a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,400",
+				"to": "00:20:28,800"
+			},
+			"offsets": {
+				"from": 1226400,
+				"to": 1228800
+			},
+			"text": " So we try to make it back if we have a message to send them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,800",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1228800,
+				"to": 1231000
+			},
+			"text": " anyway, then we try to make it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1233000
+			},
+			"text": " These control messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:38,640"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1238640
+			},
+			"text": " Now, if a peer spots a message that they haven't seen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,640",
+				"to": "00:20:40,320"
+			},
+			"offsets": {
+				"from": 1238640,
+				"to": 1240320
+			},
+			"text": " they can ask for that message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,320",
+				"to": "00:20:44,720"
+			},
+			"offsets": {
+				"from": 1240320,
+				"to": 1244720
+			},
+			"text": " They can pull that message by sending an I want control"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,720",
+				"to": "00:20:45,200"
+			},
+			"offsets": {
+				"from": 1244720,
+				"to": 1245200
+			},
+			"text": " message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,200",
+				"to": "00:20:47,600"
+			},
+			"offsets": {
+				"from": 1245200,
+				"to": 1247600
+			},
+			"text": " So in that I want control message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,600",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1247600,
+				"to": 1250360
+			},
+			"text": " they will be listing the messages that they want us"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:52,080"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1252080
+			},
+			"text": " to push to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,080",
+				"to": "00:20:53,280"
+			},
+			"offsets": {
+				"from": 1252080,
+				"to": 1253280
+			},
+			"text": " Why is this important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,280",
+				"to": "00:20:55,520"
+			},
+			"offsets": {
+				"from": 1253280,
+				"to": 1255520
+			},
+			"text": " This isn't important because it allows us"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,520",
+				"to": "00:20:56,560"
+			},
+			"offsets": {
+				"from": 1255520,
+				"to": 1256560
+			},
+			"text": " to take routing to the section."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,560",
+				"to": "00:20:59,520"
+			},
+			"offsets": {
+				"from": 1256560,
+				"to": 1259520
+			},
+			"text": " So imagine the case where you have a stable mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,520",
+				"to": "00:21:00,800"
+			},
+			"offsets": {
+				"from": 1259520,
+				"to": 1260800
+			},
+			"text": " You're in a topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,800",
+				"to": "00:21:04,640"
+			},
+			"offsets": {
+				"from": 1260800,
+				"to": 1264640
+			},
+			"text": " You have a bunch of peers that are sending new messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,640",
+				"to": "00:21:08,080"
+			},
+			"offsets": {
+				"from": 1264640,
+				"to": 1268080
+			},
+			"text": " And another peer, which is gossiping with you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,080",
+				"to": "00:21:11,640"
+			},
+			"offsets": {
+				"from": 1268080,
+				"to": 1271640
+			},
+			"text": " tells you about a message that you haven't seen yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,640",
+				"to": "00:21:14,840"
+			},
+			"offsets": {
+				"from": 1271640,
+				"to": 1274840
+			},
+			"text": " This means that your bad, bad deliverability tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,840",
+				"to": "00:21:18,960"
+			},
+			"offsets": {
+				"from": 1274840,
+				"to": 1278960
+			},
+			"text": " it's not 100% because in your mesh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,960",
+				"to": "00:21:21,400"
+			},
+			"offsets": {
+				"from": 1278960,
+				"to": 1281400
+			},
+			"text": " you haven't received that message yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,400",
+				"to": "00:21:25,240"
+			},
+			"offsets": {
+				"from": 1281400,
+				"to": 1285240
+			},
+			"text": " So you can use that as a sign, as a hint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,240",
+				"to": "00:21:29,200"
+			},
+			"offsets": {
+				"from": 1285240,
+				"to": 1289200
+			},
+			"text": " to try to repair that pathology by pruning peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,200",
+				"to": "00:21:32,720"
+			},
+			"offsets": {
+				"from": 1289200,
+				"to": 1292720
+			},
+			"text": " that you believe are unhealthy and grafting with peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,720",
+				"to": "00:21:34,920"
+			},
+			"offsets": {
+				"from": 1292720,
+				"to": 1294920
+			},
+			"text": " with the peer that sent you a message who probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,920",
+				"to": "00:21:38,840"
+			},
+			"offsets": {
+				"from": 1294920,
+				"to": 1298840
+			},
+			"text": " has a better route to the rest of the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,840",
+				"to": "00:21:40,360"
+			},
+			"offsets": {
+				"from": 1298840,
+				"to": 1300360
+			},
+			"text": " You have one meaning to make."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,360",
+				"to": "00:21:41,600"
+			},
+			"offsets": {
+				"from": 1300360,
+				"to": 1301600
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,600",
+				"to": "00:21:43,080"
+			},
+			"offsets": {
+				"from": 1301600,
+				"to": 1303080
+			},
+			"text": " Fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,080",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1303080,
+				"to": 1305000
+			},
+			"text": " I think I'm always done."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:48,760"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1308760
+			},
+			"text": " So yeah, this is kind of like a bit of a schematic view"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,760",
+				"to": "00:21:49,600"
+			},
+			"offsets": {
+				"from": 1308760,
+				"to": 1309600
+			},
+			"text": " of what's on the wire."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,600",
+				"to": "00:21:53,240"
+			},
+			"offsets": {
+				"from": 1309600,
+				"to": 1313240
+			},
+			"text": " By the way, all of these images and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,240",
+				"to": "00:21:54,280"
+			},
+			"offsets": {
+				"from": 1313240,
+				"to": 1314280
+			},
+			"text": " you can find them on the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,280",
+				"to": "00:21:55,920"
+			},
+			"offsets": {
+				"from": 1314280,
+				"to": 1315920
+			},
+			"text": " So don't worry."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,920",
+				"to": "00:21:57,720"
+			},
+			"offsets": {
+				"from": 1315920,
+				"to": 1317720
+			},
+			"text": " I'll just show you how to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,720",
+				"to": "00:22:01,360"
+			},
+			"offsets": {
+				"from": 1317720,
+				"to": 1321360
+			},
+			"text": " now I just wanted to talk quickly about what's next."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,360",
+				"to": "00:22:03,920"
+			},
+			"offsets": {
+				"from": 1321360,
+				"to": 1323920
+			},
+			"text": " For a gossip song, first of all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,920",
+				"to": "00:22:07,840"
+			},
+			"offsets": {
+				"from": 1323920,
+				"to": 1327840
+			},
+			"text": " we want to formalize gossip song into an academic paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,840",
+				"to": "00:22:10,360"
+			},
+			"offsets": {
+				"from": 1327840,
+				"to": 1330360
+			},
+			"text": " We want to harden the reference implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,360",
+				"to": "00:22:14,160"
+			},
+			"offsets": {
+				"from": 1330360,
+				"to": 1334160
+			},
+			"text": " and go a lot of the group is to enable plug-able routers."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,160",
+				"to": "00:22:16,280"
+			},
+			"offsets": {
+				"from": 1334160,
+				"to": 1336280
+			},
+			"text": " This is, for us, very important for the vision"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,280",
+				"to": "00:22:17,760"
+			},
+			"offsets": {
+				"from": 1336280,
+				"to": 1337760
+			},
+			"text": " of gossip stuff itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,760",
+				"to": "00:22:20,040"
+			},
+			"offsets": {
+				"from": 1337760,
+				"to": 1340040
+			},
+			"text": " And formalizing gossip song into an academic paper"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,040",
+				"to": "00:22:24,000"
+			},
+			"offsets": {
+				"from": 1340040,
+				"to": 1344000
+			},
+			"text": " is going to be also a robust step in allowing other downstream"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,000",
+				"to": "00:22:28,160"
+			},
+			"offsets": {
+				"from": 1344000,
+				"to": 1348160
+			},
+			"text": " projects to actually build on top of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,160",
+				"to": "00:22:31,160"
+			},
+			"offsets": {
+				"from": 1348160,
+				"to": 1351160
+			},
+			"text": " analyze it, and to get all this work peer reviewed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,160",
+				"to": "00:22:32,840"
+			},
+			"offsets": {
+				"from": 1351160,
+				"to": 1352840
+			},
+			"text": " because it's essentially a new contribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,840",
+				"to": "00:22:34,960"
+			},
+			"offsets": {
+				"from": 1352840,
+				"to": 1354960
+			},
+			"text": " to the state of the art."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,960",
+				"to": "00:22:36,840"
+			},
+			"offsets": {
+				"from": 1354960,
+				"to": 1356840
+			},
+			"text": " We want to integrate this gallery mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,840",
+				"to": "00:22:39,160"
+			},
+			"offsets": {
+				"from": 1356840,
+				"to": 1359160
+			},
+			"text": " and there are various benchmarking efforts"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,160",
+				"to": "00:22:41,120"
+			},
+			"offsets": {
+				"from": 1359160,
+				"to": 1361120
+			},
+			"text": " underway."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,120",
+				"to": "00:22:44,040"
+			},
+			"offsets": {
+				"from": 1361120,
+				"to": 1364040
+			},
+			"text": " Important aspect is set."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,040",
+				"to": "00:22:46,760"
+			},
+			"offsets": {
+				"from": 1364040,
+				"to": 1366760
+			},
+			"text": " Gossip song is not the final destination."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,760",
+				"to": "00:22:50,040"
+			},
+			"offsets": {
+				"from": 1366760,
+				"to": 1370040
+			},
+			"text": " Gossip song is a step along the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,040",
+				"to": "00:22:52,240"
+			},
+			"offsets": {
+				"from": 1370040,
+				"to": 1372240
+			},
+			"text": " Really, the key aspect here is--"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,240",
+				"to": "00:22:54,720"
+			},
+			"offsets": {
+				"from": 1372240,
+				"to": 1374720
+			},
+			"text": " and where we want to get to is a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,720",
+				"to": "00:22:56,520"
+			},
+			"offsets": {
+				"from": 1374720,
+				"to": 1376520
+			},
+			"text": " that we call it, Emmysone, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,520",
+				"to": "00:22:59,720"
+			},
+			"offsets": {
+				"from": 1376520,
+				"to": 1379720
+			},
+			"text": " is a combination of downstream."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,720",
+				"to": "00:23:01,600"
+			},
+			"offsets": {
+				"from": 1379720,
+				"to": 1381600
+			},
+			"text": " High-bar view from emission maintenance"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,600",
+				"to": "00:23:07,040"
+			},
+			"offsets": {
+				"from": 1381600,
+				"to": 1387040
+			},
+			"text": " and low cost for the proximity awareness machine, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,040",
+				"to": "00:23:11,040"
+			},
+			"offsets": {
+				"from": 1387040,
+				"to": 1391040
+			},
+			"text": " And this one that allows ESSETI to model the kind of behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,040",
+				"to": "00:23:11,760"
+			},
+			"offsets": {
+				"from": 1391040,
+				"to": 1391760
+			},
+			"text": " that I'm describing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,760",
+				"to": "00:23:18,800"
+			},
+			"offsets": {
+				"from": 1391760,
+				"to": 1398800
+			},
+			"text": " So with Emmysone, we'll be able to build dynamic dissemination"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,800",
+				"to": "00:23:22,600"
+			},
+			"offsets": {
+				"from": 1398800,
+				"to": 1402600
+			},
+			"text": " trees that are mutating and that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,600",
+				"to": "00:23:24,960"
+			},
+			"offsets": {
+				"from": 1402600,
+				"to": 1404960
+			},
+			"text": " adapting to the conditions of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,960",
+				"to": "00:23:27,240"
+			},
+			"offsets": {
+				"from": 1404960,
+				"to": 1407240
+			},
+			"text": " by keeping track of the peers that are better connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,240",
+				"to": "00:23:29,400"
+			},
+			"offsets": {
+				"from": 1407240,
+				"to": 1409400
+			},
+			"text": " to the network, and as well those peers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,400",
+				"to": "00:23:32,040"
+			},
+			"offsets": {
+				"from": 1409400,
+				"to": 1412040
+			},
+			"text": " happen to present the apologies for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,040",
+				"to": "00:23:35,360"
+			},
+			"offsets": {
+				"from": 1412040,
+				"to": 1415360
+			},
+			"text": " So whenever we find messages that we haven't seen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,360",
+				"to": "00:23:38,920"
+			},
+			"offsets": {
+				"from": 1415360,
+				"to": 1418920
+			},
+			"text": " that our income is also from another peer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,920",
+				"to": "00:23:41,600"
+			},
+			"offsets": {
+				"from": 1418920,
+				"to": 1421600
+			},
+			"text": " we can rebalance the tree and make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,600",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1421600,
+				"to": 1425000
+			},
+			"text": " that we always have a good combination to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:47,920"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1427920
+			},
+			"text": " So this is what we also call the self-healing mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,920",
+				"to": "00:23:51,560"
+			},
+			"offsets": {
+				"from": 1427920,
+				"to": 1431560
+			},
+			"text": " We want to introduce adaptive cash windows"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,560",
+				"to": "00:23:54,760"
+			},
+			"offsets": {
+				"from": 1431560,
+				"to": 1434760
+			},
+			"text": " and things like collaborative and passive membership views."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,760",
+				"to": "00:23:58,920"
+			},
+			"offsets": {
+				"from": 1434760,
+				"to": 1438920
+			},
+			"text": " So something that's key here is the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,920",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1438920,
+				"to": 1442000
+			},
+			"text": " to send advisories over the network of what peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:03,320"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1443320
+			},
+			"text": " are available and which don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,320",
+				"to": "00:24:09,240"
+			},
+			"offsets": {
+				"from": 1443320,
+				"to": 1449240
+			},
+			"text": " So ideally, you want to use an ambient discovery mechanism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,240",
+				"to": "00:24:11,280"
+			},
+			"offsets": {
+				"from": 1449240,
+				"to": 1451280
+			},
+			"text": " like the THT, for example, to find"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,280",
+				"to": "00:24:14,800"
+			},
+			"offsets": {
+				"from": 1451280,
+				"to": 1454800
+			},
+			"text": " a seed, a limited number of peers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,800",
+				"to": "00:24:17,640"
+			},
+			"offsets": {
+				"from": 1454800,
+				"to": 1457640
+			},
+			"text": " adds us a seed to bind to that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,640",
+				"to": "00:24:21,720"
+			},
+			"offsets": {
+				"from": 1457640,
+				"to": 1461720
+			},
+			"text": " And once you have those few peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,720",
+				"to": "00:24:25,360"
+			},
+			"offsets": {
+				"from": 1461720,
+				"to": 1465360
+			},
+			"text": " which are probably overloaded because they're being advertised,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,360",
+				"to": "00:24:29,120"
+			},
+			"offsets": {
+				"from": 1465360,
+				"to": 1469120
+			},
+			"text": " you want to inquire them for other members"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,120",
+				"to": "00:24:30,480"
+			},
+			"offsets": {
+				"from": 1469120,
+				"to": 1470480
+			},
+			"text": " that they know about information."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,480",
+				"to": "00:24:34,440"
+			},
+			"offsets": {
+				"from": 1470480,
+				"to": 1474440
+			},
+			"text": " You want to create gossip, not just about the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,440",
+				"to": "00:24:37,160"
+			},
+			"offsets": {
+				"from": 1474440,
+				"to": 1477160
+			},
+			"text": " that are available, but about what peers are present"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,160",
+				"to": "00:24:38,920"
+			},
+			"offsets": {
+				"from": 1477160,
+				"to": 1478920
+			},
+			"text": " to that in that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,920",
+				"to": "00:24:41,520"
+			},
+			"offsets": {
+				"from": 1478920,
+				"to": 1481520
+			},
+			"text": " So this is something that's going to be cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,520",
+				"to": "00:24:44,000"
+			},
+			"offsets": {
+				"from": 1481520,
+				"to": 1484000
+			},
+			"text": " That's coming down the pipe."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,000",
+				"to": "00:24:46,840"
+			},
+			"offsets": {
+				"from": 1484000,
+				"to": 1486840
+			},
+			"text": " It also has emotions on peer exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,840",
+				"to": "00:24:47,120"
+			},
+			"offsets": {
+				"from": 1486840,
+				"to": 1487120
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,120",
+				"to": "00:24:50,680"
+			},
+			"offsets": {
+				"from": 1487120,
+				"to": 1490680
+			},
+			"text": " So as I said, all of these time currents"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,680",
+				"to": "00:24:52,760"
+			},
+			"offsets": {
+				"from": 1490680,
+				"to": 1492760
+			},
+			"text": " and these schematic views, which are pretty nice"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,760",
+				"to": "00:24:54,960"
+			},
+			"offsets": {
+				"from": 1492760,
+				"to": 1494960
+			},
+			"text": " and very beautiful, they are available"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,960",
+				"to": "00:24:57,120"
+			},
+			"offsets": {
+				"from": 1494960,
+				"to": 1497120
+			},
+			"text": " under the Docs website."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,120",
+				"to": "00:25:00,720"
+			},
+			"offsets": {
+				"from": 1497120,
+				"to": 1500720
+			},
+			"text": " So make sure that you check out the new snazzy docs"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,720",
+				"to": "00:25:05,200"
+			},
+			"offsets": {
+				"from": 1500720,
+				"to": 1505200
+			},
+			"text": " for Gossip Stuff, which we just released one week ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,200",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1505200,
+				"to": 1507000
+			},
+			"text": " Just untiek for that goal."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:08,480"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1508480
+			},
+			"text": " And it's time for me to do this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,480",
+				"to": "00:25:11,640"
+			},
+			"offsets": {
+				"from": 1508480,
+				"to": 1511640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,480",
+				"to": "00:25:15,600"
+			},
+			"offsets": {
+				"from": 1512480,
+				"to": 1515600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,600",
+				"to": "00:25:19,080"
+			},
+			"offsets": {
+				"from": 1515600,
+				"to": 1519080
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,080",
+				"to": "00:25:22,560"
+			},
+			"offsets": {
+				"from": 1519080,
+				"to": 1522560
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,560",
+				"to": "00:25:25,300"
+			},
+			"offsets": {
+				"from": 1522560,
+				"to": 1525300
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,300",
+				"to": "00:25:28,040"
+			},
+			"offsets": {
+				"from": 1525300,
+				"to": 1528040
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

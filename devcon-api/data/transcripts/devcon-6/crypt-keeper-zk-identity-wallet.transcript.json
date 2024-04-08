@@ -1,0 +1,1682 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:15,280"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 15280
+			},
+			"text": " - Hey everyone, thanks for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,280",
+				"to": "00:00:18,880"
+			},
+			"offsets": {
+				"from": 15280,
+				"to": 18880
+			},
+			"text": " I'm Skunder from BSE at Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,880",
+				"to": "00:00:20,240"
+			},
+			"offsets": {
+				"from": 18880,
+				"to": 20240
+			},
+			"text": " I'd like to make a presentation today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,240",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 20240,
+				"to": 23040
+			},
+			"text": " about CryptKeeper, one of our projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:24,760"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 24760
+			},
+			"text": " It's still in progress, not published yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,760",
+				"to": "00:00:27,320"
+			},
+			"offsets": {
+				"from": 24760,
+				"to": 27320
+			},
+			"text": " but we're working with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,280",
+				"to": "00:00:29,640"
+			},
+			"offsets": {
+				"from": 28280,
+				"to": 29640
+			},
+			"text": " Okay, it's not working."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,640",
+				"to": "00:00:34,720"
+			},
+			"offsets": {
+				"from": 29640,
+				"to": 34720
+			},
+			"text": " Yeah, CryptKeeper, what is the CryptKeeper?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,720",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 34720,
+				"to": 37360
+			},
+			"text": " So CryptKeeper is a browser extension plugin"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:39,520"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 39520
+			},
+			"text": " that enables users to have a management"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,520",
+				"to": "00:00:41,600"
+			},
+			"offsets": {
+				"from": 39520,
+				"to": 41600
+			},
+			"text": " for their zero knowledge identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,600",
+				"to": "00:00:45,240"
+			},
+			"offsets": {
+				"from": 41600,
+				"to": 45240
+			},
+			"text": " and an ability to have generation proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,240",
+				"to": "00:00:49,320"
+			},
+			"offsets": {
+				"from": 45240,
+				"to": 49320
+			},
+			"text": " for Sima4 and Ireland."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,320",
+				"to": "00:00:53,520"
+			},
+			"offsets": {
+				"from": 49320,
+				"to": 53520
+			},
+			"text": " And for those who don't know what Sima4 and Ireland are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,520",
+				"to": "00:00:56,200"
+			},
+			"offsets": {
+				"from": 53520,
+				"to": 56200
+			},
+			"text": " there are separate presentations for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,200",
+				"to": "00:01:01,200"
+			},
+			"offsets": {
+				"from": 56200,
+				"to": 61200
+			},
+			"text": " And simply, Sima4 is like later in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,200",
+				"to": "00:01:07,440"
+			},
+			"offsets": {
+				"from": 61200,
+				"to": 67440
+			},
+			"text": " that allows users to join an analyst in groups"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,440",
+				"to": "00:01:09,700"
+			},
+			"offsets": {
+				"from": 67440,
+				"to": 69700
+			},
+			"text": " for having votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,700",
+				"to": "00:01:12,480"
+			},
+			"offsets": {
+				"from": 69700,
+				"to": 72480
+			},
+			"text": " And Ireland is like limiting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,480",
+				"to": "00:01:13,880"
+			},
+			"offsets": {
+				"from": 72480,
+				"to": 73880
+			},
+			"text": " is a protocol zero knowledge protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,880",
+				"to": "00:01:16,440"
+			},
+			"offsets": {
+				"from": 73880,
+				"to": 76440
+			},
+			"text": " for limiting these banners in a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,440",
+				"to": "00:01:22,880"
+			},
+			"offsets": {
+				"from": 76440,
+				"to": 82880
+			},
+			"text": " Cool, so what are the components built in this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,880",
+				"to": "00:01:25,520"
+			},
+			"offsets": {
+				"from": 82880,
+				"to": 85520
+			},
+			"text": " Those are four projects from our team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,520",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 85520,
+				"to": 88680
+			},
+			"text": " The CK get library and Interrep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:30,640"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 90640
+			},
+			"text": " gonna go into Interrep like later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,640",
+				"to": "00:01:32,240"
+			},
+			"offsets": {
+				"from": 90640,
+				"to": 92240
+			},
+			"text": " and Ireland and Sima4."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,240",
+				"to": "00:01:37,760"
+			},
+			"offsets": {
+				"from": 92240,
+				"to": 97760
+			},
+			"text": " So we only now supporting Chromium-based browsers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,760",
+				"to": "00:01:39,640"
+			},
+			"offsets": {
+				"from": 97760,
+				"to": 99640
+			},
+			"text": " like yeah, these browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,640",
+				"to": "00:01:43,560"
+			},
+			"offsets": {
+				"from": 99640,
+				"to": 103560
+			},
+			"text": " Cool, we're working still in like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,560",
+				"to": "00:01:44,880"
+			},
+			"offsets": {
+				"from": 103560,
+				"to": 104880
+			},
+			"text": " and for the future releases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,880",
+				"to": "00:01:47,520"
+			},
+			"offsets": {
+				"from": 104880,
+				"to": 107520
+			},
+			"text": " we're going to be having like a mobile version later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,520",
+				"to": "00:01:51,880"
+			},
+			"offsets": {
+				"from": 107520,
+				"to": 111880
+			},
+			"text": " Yeah, so now it's time to see this in action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,880",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 111880,
+				"to": 113400
+			},
+			"text": " live demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,280",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 114280,
+				"to": 116520
+			},
+			"text": " So the first use case I'm gonna have today"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:02:00,320"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 120320
+			},
+			"text": " is showing CryptKeeper in an anonymous social network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,320",
+				"to": "00:02:02,760"
+			},
+			"offsets": {
+				"from": 120320,
+				"to": 122760
+			},
+			"text": " which is ZKiller."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,760",
+				"to": "00:02:04,920"
+			},
+			"offsets": {
+				"from": 122760,
+				"to": 124920
+			},
+			"text": " And ZKiller is an anonymous social network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,920",
+				"to": "00:02:07,120"
+			},
+			"offsets": {
+				"from": 124920,
+				"to": 127120
+			},
+			"text": " There is a presentation, maybe the next one after this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,120",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 127120,
+				"to": 128520
+			},
+			"text": " about ZKiller in details."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:13,520"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 133520
+			},
+			"text": " So yeah, and the second use case is using CryptKeeper"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,520",
+				"to": "00:02:18,480"
+			},
+			"offsets": {
+				"from": 133520,
+				"to": 138480
+			},
+			"text": " to prove or generate proofs from Sima4 and Ireland."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,480",
+				"to": "00:02:22,440"
+			},
+			"offsets": {
+				"from": 138480,
+				"to": 142440
+			},
+			"text": " Lastly, just going through the agile project management"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,440",
+				"to": "00:02:24,160"
+			},
+			"offsets": {
+				"from": 142440,
+				"to": 144160
+			},
+			"text": " for all this open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,160",
+				"to": "00:02:26,520"
+			},
+			"offsets": {
+				"from": 144160,
+				"to": 146520
+			},
+			"text": " for those who are interested in contributions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,520",
+				"to": "00:02:29,040"
+			},
+			"offsets": {
+				"from": 146520,
+				"to": 149040
+			},
+			"text": " or participating, they can start from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,040",
+				"to": "00:02:33,200"
+			},
+			"offsets": {
+				"from": 149040,
+				"to": 153200
+			},
+			"text": " Cool, so let me jump into the videos."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,200",
+				"to": "00:02:34,880"
+			},
+			"offsets": {
+				"from": 153200,
+				"to": 154880
+			},
+			"text": " The internet is so bad too."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,880",
+				"to": "00:02:39,520"
+			},
+			"offsets": {
+				"from": 154880,
+				"to": 159520
+			},
+			"text": " Okay, so first off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,520",
+				"to": "00:02:44,960"
+			},
+			"offsets": {
+				"from": 159520,
+				"to": 164960
+			},
+			"text": " it's gonna start with like the first setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,960",
+				"to": "00:02:47,600"
+			},
+			"offsets": {
+				"from": 164960,
+				"to": 167600
+			},
+			"text": " is just creating a password for your extensions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,600",
+				"to": "00:02:51,020"
+			},
+			"offsets": {
+				"from": 167600,
+				"to": 171020
+			},
+			"text": " not a wallet yet, so just an identity extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,020",
+				"to": "00:02:55,420"
+			},
+			"offsets": {
+				"from": 172020,
+				"to": 175420
+			},
+			"text": " So I'll create a password then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,420",
+				"to": "00:02:57,140"
+			},
+			"offsets": {
+				"from": 175420,
+				"to": 177140
+			},
+			"text": " in order to create an identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,140",
+				"to": "00:03:00,100"
+			},
+			"offsets": {
+				"from": 177140,
+				"to": 180100
+			},
+			"text": " I need first to have like a public address connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,100",
+				"to": "00:03:03,500"
+			},
+			"offsets": {
+				"from": 180100,
+				"to": 183500
+			},
+			"text": " to my wallet in order to make like signing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,500",
+				"to": "00:03:06,140"
+			},
+			"offsets": {
+				"from": 183500,
+				"to": 186140
+			},
+			"text": " in order to have like signatures way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,140",
+				"to": "00:03:09,860"
+			},
+			"offsets": {
+				"from": 186140,
+				"to": 189860
+			},
+			"text": " So I'm gonna first connect with my MetaMask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,860",
+				"to": "00:03:13,260"
+			},
+			"offsets": {
+				"from": 189860,
+				"to": 193260
+			},
+			"text": " then it will be connected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,260",
+				"to": "00:03:16,840"
+			},
+			"offsets": {
+				"from": 193260,
+				"to": 196840
+			},
+			"text": " like this is like the signing signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,580",
+				"to": "00:03:23,580"
+			},
+			"offsets": {
+				"from": 198580,
+				"to": 203580
+			},
+			"text": " So, okay, I think the video is skipping some parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,580",
+				"to": "00:03:31,220"
+			},
+			"offsets": {
+				"from": 203580,
+				"to": 211220
+			},
+			"text": " Yeah, okay, the video is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,220",
+				"to": "00:03:36,300"
+			},
+			"offsets": {
+				"from": 211220,
+				"to": 216300
+			},
+			"text": " Yeah, after connecting to the MetaMask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,300",
+				"to": "00:03:38,740"
+			},
+			"offsets": {
+				"from": 216300,
+				"to": 218740
+			},
+			"text": " it's connected and got the public address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,740",
+				"to": "00:03:41,380"
+			},
+			"offsets": {
+				"from": 218740,
+				"to": 221380
+			},
+			"text": " In future releases, we're planning to have like more support"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,380",
+				"to": "00:03:42,980"
+			},
+			"offsets": {
+				"from": 221380,
+				"to": 222980
+			},
+			"text": " to other wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,980",
+				"to": "00:03:47,340"
+			},
+			"offsets": {
+				"from": 222980,
+				"to": 227340
+			},
+			"text": " It reads the balance and then I was able to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,340",
+				"to": "00:03:51,380"
+			},
+			"offsets": {
+				"from": 228340,
+				"to": 231380
+			},
+			"text": " like zero knowledge identity by connecting to Interwrap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,380",
+				"to": "00:03:54,780"
+			},
+			"offsets": {
+				"from": 231380,
+				"to": 234780
+			},
+			"text": " but this is not a completed process yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,780",
+				"to": "00:03:57,020"
+			},
+			"offsets": {
+				"from": 234780,
+				"to": 237020
+			},
+			"text": " In order to make it complete,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,020",
+				"to": "00:03:59,500"
+			},
+			"offsets": {
+				"from": 237020,
+				"to": 239500
+			},
+			"text": " we're working on like making all completed"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,500",
+				"to": "00:04:01,620"
+			},
+			"offsets": {
+				"from": 239500,
+				"to": 241620
+			},
+			"text": " in the same extension, but for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,620",
+				"to": "00:04:03,900"
+			},
+			"offsets": {
+				"from": 241620,
+				"to": 243900
+			},
+			"text": " we're going to connect to ZKiller"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,900",
+				"to": "00:04:05,980"
+			},
+			"offsets": {
+				"from": 243900,
+				"to": 245980
+			},
+			"text": " for make this process completed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,980",
+				"to": "00:04:10,980"
+			},
+			"offsets": {
+				"from": 245980,
+				"to": 250980
+			},
+			"text": " and then I can use my identity in an anonymous network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,980",
+				"to": "00:04:17,680"
+			},
+			"offsets": {
+				"from": 250980,
+				"to": 257680
+			},
+			"text": " So as you can see now I'm connected in ZKiller,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,520",
+				"to": "00:04:23,520"
+			},
+			"offsets": {
+				"from": 258520,
+				"to": 263520
+			},
+			"text": " and I added a user, like coming back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,520",
+				"to": "00:04:26,400"
+			},
+			"offsets": {
+				"from": 263520,
+				"to": 266400
+			},
+			"text": " I use her by connecting to CryptKeeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,400",
+				"to": "00:04:30,320"
+			},
+			"offsets": {
+				"from": 266400,
+				"to": 270320
+			},
+			"text": " So it reads the identity commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,320",
+				"to": "00:04:32,240"
+			},
+			"offsets": {
+				"from": 270320,
+				"to": 272240
+			},
+			"text": " and it's gonna connect to Interwrap"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,240",
+				"to": "00:04:35,280"
+			},
+			"offsets": {
+				"from": 272240,
+				"to": 275280
+			},
+			"text": " for generating a proof of reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,280",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 275280,
+				"to": 276800
+			},
+			"text": " This is what Interwrap does."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:41,880"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 281880
+			},
+			"text": " And the proof of reputation is by going back"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,880",
+				"to": "00:04:43,400"
+			},
+			"offsets": {
+				"from": 281880,
+				"to": 283400
+			},
+			"text": " to Twitter account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,400",
+				"to": "00:04:46,880"
+			},
+			"offsets": {
+				"from": 283400,
+				"to": 286880
+			},
+			"text": " and it will like generate some credentials"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,880",
+				"to": "00:04:50,080"
+			},
+			"offsets": {
+				"from": 286880,
+				"to": 290080
+			},
+			"text": " about your identity and generate like a proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,080",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 290080,
+				"to": 293600
+			},
+			"text": " for your identity, a kind of reputation for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:56,960"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 296960
+			},
+			"text": " So I'll jump to the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,960",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296960,
+				"to": 300000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,240"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304240
+			},
+			"text": " All right, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,240",
+				"to": "00:05:09,120"
+			},
+			"offsets": {
+				"from": 304240,
+				"to": 309120
+			},
+			"text": " Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,120",
+				"to": "00:05:13,520"
+			},
+			"offsets": {
+				"from": 309120,
+				"to": 313520
+			},
+			"text": " So here I have already stopped, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,520",
+				"to": "00:05:15,880"
+			},
+			"offsets": {
+				"from": 313520,
+				"to": 315880
+			},
+			"text": " So here I have already connected to my Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,880",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 315880,
+				"to": 318240
+			},
+			"text": " and it generates my reputation, my username,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:21,960"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 321960
+			},
+			"text": " and my rotation is like server, a server reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,960",
+				"to": "00:05:23,880"
+			},
+			"offsets": {
+				"from": 321960,
+				"to": 323880
+			},
+			"text": " So now I can join the group"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,880",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 323880,
+				"to": 327600
+			},
+			"text": " and I can anonymously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:31,360"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 331360
+			},
+			"text": " let me jump to the third video."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,360",
+				"to": "00:05:37,800"
+			},
+			"offsets": {
+				"from": 331360,
+				"to": 337800
+			},
+			"text": " So now like I'm ready to like use my new identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,800",
+				"to": "00:05:40,840"
+			},
+			"offsets": {
+				"from": 337800,
+				"to": 340840
+			},
+			"text": " using connected to CryptKeeper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,840",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 340840,
+				"to": 343880
+			},
+			"text": " which like connected to my reputation proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:48,040"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 348040
+			},
+			"text": " And then I'm gonna be able to like participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,040",
+				"to": "00:05:50,680"
+			},
+			"offsets": {
+				"from": 348040,
+				"to": 350680
+			},
+			"text": " in this network and then this network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,680",
+				"to": "00:05:53,320"
+			},
+			"offsets": {
+				"from": 350680,
+				"to": 353320
+			},
+			"text": " to write my tweet, hold out, defcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,320",
+				"to": "00:05:55,520"
+			},
+			"offsets": {
+				"from": 353320,
+				"to": 355520
+			},
+			"text": " And as you can see, like I'm a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,520",
+				"to": "00:05:59,160"
+			},
+			"offsets": {
+				"from": 355520,
+				"to": 359160
+			},
+			"text": " with two K plus followers, which like kind of proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,160",
+				"to": "00:06:02,360"
+			},
+			"offsets": {
+				"from": 359160,
+				"to": 362360
+			},
+			"text": " I'm a person, I'm not a spammer, I have reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,360",
+				"to": "00:06:06,160"
+			},
+			"offsets": {
+				"from": 362360,
+				"to": 366160
+			},
+			"text": " So you can have a trusting for reading my tweets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,160",
+				"to": "00:06:11,120"
+			},
+			"offsets": {
+				"from": 366160,
+				"to": 371120
+			},
+			"text": " Yeah. So that was like the first use case on the show."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,120",
+				"to": "00:06:15,280"
+			},
+			"offsets": {
+				"from": 371120,
+				"to": 375280
+			},
+			"text": " The second use case is we have like a small dummy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,280",
+				"to": "00:06:20,160"
+			},
+			"offsets": {
+				"from": 375280,
+				"to": 380160
+			},
+			"text": " testing website just connects to CMA4 and RNN"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,160",
+				"to": "00:06:23,760"
+			},
+			"offsets": {
+				"from": 380160,
+				"to": 383760
+			},
+			"text": " and for like make this showcase for proof generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,760",
+				"to": "00:06:29,160"
+			},
+			"offsets": {
+				"from": 383760,
+				"to": 389160
+			},
+			"text": " So I'm gonna go connect to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,160",
+				"to": "00:06:30,760"
+			},
+			"offsets": {
+				"from": 389160,
+				"to": 390760
+			},
+			"text": " So I'm gonna first like showcase"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,760",
+				"to": "00:06:33,600"
+			},
+			"offsets": {
+				"from": 390760,
+				"to": 393600
+			},
+			"text": " how to generate CMA4 proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,600",
+				"to": "00:06:37,400"
+			},
+			"offsets": {
+				"from": 393600,
+				"to": 397400
+			},
+			"text": " So yeah, the output is presenting here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,400",
+				"to": "00:06:41,920"
+			},
+			"offsets": {
+				"from": 397400,
+				"to": 401920
+			},
+			"text": " but the video is kind of yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,920",
+				"to": "00:06:45,560"
+			},
+			"offsets": {
+				"from": 401920,
+				"to": 405560
+			},
+			"text": " So now I'm gonna create like the proof from CMA4"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,560",
+				"to": "00:06:47,920"
+			},
+			"offsets": {
+				"from": 405560,
+				"to": 407920
+			},
+			"text": " using my wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,920",
+				"to": "00:06:52,920"
+			},
+			"offsets": {
+				"from": 407920,
+				"to": 412920
+			},
+			"text": " Yeah. So for those who like know the details here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,920",
+				"to": "00:06:55,600"
+			},
+			"offsets": {
+				"from": 412920,
+				"to": 415600
+			},
+			"text": " that's familiar to them, like the public signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,600",
+				"to": "00:07:00,520"
+			},
+			"offsets": {
+				"from": 415600,
+				"to": 420520
+			},
+			"text": " those are like the proof generated proof from CMA4."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,520",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 420520,
+				"to": 424040
+			},
+			"text": " And the same goes for RNN"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,280",
+				"to": "00:07:07,840"
+			},
+			"offsets": {
+				"from": 425280,
+				"to": 427840
+			},
+			"text": " and should be presented down here, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,840",
+				"to": "00:07:14,200"
+			},
+			"offsets": {
+				"from": 427840,
+				"to": 434200
+			},
+			"text": " Cool. And the down here is the identity commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,200",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434200,
+				"to": 437000
+			},
+			"text": " This is like the new representation of the users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:18,240"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 438240
+			},
+			"text": " in anonymous network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,240",
+				"to": "00:07:22,960"
+			},
+			"offsets": {
+				"from": 438240,
+				"to": 442960
+			},
+			"text": " So yeah, I think that covers it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,960",
+				"to": "00:07:26,960"
+			},
+			"offsets": {
+				"from": 442960,
+				"to": 446960
+			},
+			"text": " So maybe I will show now the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,960",
+				"to": "00:07:31,360"
+			},
+			"offsets": {
+				"from": 446960,
+				"to": 451360
+			},
+			"text": " this is like our working repository now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,360",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 451360,
+				"to": 454840
+			},
+			"text": " And this is the management port"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:39,480"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 459480
+			},
+			"text": " where like any contributor, anyone interested in throwing ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,480",
+				"to": "00:07:44,960"
+			},
+			"offsets": {
+				"from": 459480,
+				"to": 464960
+			},
+			"text": " we can start from here, from here or like there are discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,960",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 464960,
+				"to": 466040
+			},
+			"text": " supported here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:48,800"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 468800
+			},
+			"text": " We don't have like discord yet, but we can like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,800",
+				"to": "00:07:50,400"
+			},
+			"offsets": {
+				"from": 468800,
+				"to": 470400
+			},
+			"text": " if you have questions or throwing ideas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,400",
+				"to": "00:07:51,840"
+			},
+			"offsets": {
+				"from": 470400,
+				"to": 471840
+			},
+			"text": " you can sort of from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,840",
+				"to": "00:07:56,200"
+			},
+			"offsets": {
+				"from": 471840,
+				"to": 476200
+			},
+			"text": " And there are like a lot of bunch draft ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,200",
+				"to": "00:07:59,440"
+			},
+			"offsets": {
+				"from": 476200,
+				"to": 479440
+			},
+			"text": " You can start if you would like contribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,440",
+				"to": "00:08:02,640"
+			},
+			"offsets": {
+				"from": 479440,
+				"to": 482640
+			},
+			"text": " So back to my slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,480",
+				"to": "00:08:06,240"
+			},
+			"offsets": {
+				"from": 483480,
+				"to": 486240
+			},
+			"text": " We have like two other contributors there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,240",
+				"to": "00:08:09,320"
+			},
+			"offsets": {
+				"from": 486240,
+				"to": 489320
+			},
+			"text": " with me here, Tario and Tosunoku."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,320",
+				"to": "00:08:12,160"
+			},
+			"offsets": {
+				"from": 489320,
+				"to": 492160
+			},
+			"text": " And yeah, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,160",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 492160,
+				"to": 493000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 495000
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 497000
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 499000
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 501000
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 503000
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 532000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,3057 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 17000
+			},
+			"text": " Hello. How is everyone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 26000
+			},
+			"text": " I'm Nick Johnson, founder of ENS and lead developer, and I'm here to give you an update on what's happened with ENS in the last three years, which is give or take three"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 35000
+			},
+			"text": " hundred years in crypto. Before I actually start, can anyone who's got an ENS card hold it up above their head?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 42000
+			},
+			"text": " Wonderful. Probably about half of you. I'm so delighted with how everyone's been doing with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 49000
+			},
+			"text": " If the person next to you held a card up, have a word with them, say hi, tap your phone to their card and you'll get a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 57000
+			},
+			"text": " poet that proves that you met them at DevCon. We still have a few of these cards left at our booth on level three."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 64000
+			},
+			"text": " So after the event, come down, we'll print one for you with your ENS name and your ENS avatar on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 70000
+			},
+			"text": " We expect we'll run out sometime this evening, so I'm sorry if we don't get to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 77000
+			},
+			"text": " But this is a great opportunity to meet the person next to you and have cryptographic proof of that afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 85000
+			},
+			"text": " So first off the agenda. I'm going to recap everything we've done in the last three years and then go on to talk about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 93000
+			},
+			"text": " we're working on now and what we're working on next. First of all, in the next category, Thorin, which is ENS's new look and design system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 103000
+			},
+			"text": " and new app. Second of all, talking about scaling ENS with off-chain reads and writes. Next, the name wrapper, which you may have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 110000
+			},
+			"text": " heard about, is a way to improve the functionality of ENS names and the ability to issue trustless sub-domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 118000
+			},
+			"text": " Finally, zero-guess DNS integration, how we can use these other components we've built to make ENS integration possible for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 127000
+			},
+			"text": " DNS names without any gas fees and then the conclusion. So first of all, the recap, it's been a long, long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 132000
+			},
+			"text": " Since I've been at a conference, since I've talked on a stage in front of a lot of people, since I've given you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 141000
+			},
+			"text": " on an update on ENS. Last time I spoke was at last DevCon in October 2019. We're just transitioned from the interim"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 150000
+			},
+			"text": " auction registrar to the permanent registrar, featuring its current renewal model. And that was a mere five months ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 157000
+			},
+			"text": " And while it was doing well at the time, we had very little idea of the phenomenon ENS was going to be coming in the next few"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 168000
+			},
+			"text": " years. We had about 50 integrations with various wallets, including MetaMask applications such as EtherScan and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 176000
+			},
+			"text": " That's changed a bit in the last three years. Our set of integrations now looks more like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " (Applause)"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 190000
+			},
+			"text": " So as you can see, we've come a long way from under 50 integrations to over 500. We had about 300,000 registrations back in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 199000
+			},
+			"text": " day. That's now over two and a half million. We had about 96,000 Ethereum addresses that had interacted with ENS in some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 209000
+			},
+			"text": " way. That's now over a million addresses. 66,700 years of registration had been purchased. That's now over six and a half"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 217000
+			},
+			"text": " million. If you strung them all in to end, figuratively. And the nascent ENS treasury had a stunning"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 225000
+			},
+			"text": " 382 Ethernet at the time. That's now 38,000 ETH. And I'll talk soon about the Dow and how it's able to put that to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 234000
+			},
+			"text": " use. Of course, it's not all about the numbers. ENS has accomplished a lot on both technical and governance fronts in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 242000
+			},
+			"text": " last three years. Some of it will seem like old news, but it's been a long time. At DevCon 5, we had limited"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 251000
+			},
+			"text": " DNS integration with only the .xyz tld supported. You could take an ENS, sorry, .xyz name, you could import it into"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 258000
+			},
+			"text": " ENS and use it just like you would any .eth name. Since then, this has been expanded to nearly every top-level"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 266000
+			},
+			"text": " domain. That supports DNS sec. So that's nearly 90% of all top-level domains. Nearly any name can now be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 273000
+			},
+			"text": " imported into ENS and used as a native name. Just ask our developer advocate, loop.computer. It's printed on as"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 280000
+			},
+			"text": " badge, I believe. There are transaction fees associated with importing any of these names. And at times when gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 287000
+			},
+			"text": " prices have been very high and the ether price has been very high, it's been quite pricey. But we've got a plan to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 293000
+			},
+			"text": " improve that massively, which I'll talk about shortly. Another major improvement has been ENS's transition"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 301000
+			},
+			"text": " away from being just a way to name wallets and decentralised content to being a Web3 native identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 307000
+			},
+			"text": " platform with the introduction of avatar records and text fields that provide information about your"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 313000
+			},
+			"text": " profile such as your Twitter handle, your email address. Your ENS name now represents you as your Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 321000
+			},
+			"text": " identity. It's a universal, portable identity. And one project that's been bringing that to more users is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 328000
+			},
+			"text": " signed in with Ethereum. It started out as an RFP issued by ENS and it was funded by a joint grant from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 336000
+			},
+			"text": " ENS and the Ethereum Foundation. Spruce won the bid for that and has done an outstanding job of growing it into"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 344000
+			},
+			"text": " the primary way that people authenticate with Ethereum, replacing a plethora of incompatible and different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 352000
+			},
+			"text": " standards for signing messages to assert your identity with a symbol system that can be, thank you. That can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 360000
+			},
+			"text": " easily plugged into existing systems, including Web2 legacy systems. But of course when I talk about the last"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 366000
+			},
+			"text": " three years, and particularly the last year, top of most people's minds will be the launch of the ENS"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 374000
+			},
+			"text": " DAO, which is now one of the largest and most active DAOs in Web3, which I am absolutely blown away about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 382000
+			},
+			"text": " ENS has always aimed for gradual decentralisation, starting with the minimum set of permissions held by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 389000
+			},
+			"text": " widest number of people we could, which was the original four of seven multi-sig. Unlike most multi-sigs, it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 397000
+			},
+			"text": " included participants from around the ecosystem, not team members, and they had limited powers to upgrade ENS to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 405000
+			},
+			"text": " replace components. Our goal was always to move from that to a system where ENS was governed by a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 412000
+			},
+			"text": " decentralised organisation. Since we launched all the way back in 2017, the only example we had to go on was"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 420000
+			},
+			"text": " the DAO, which needless to say was not a stunning success that inspired us to immediately decentralise. But things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 427000
+			},
+			"text": " changed a lot, and the DAO space is now a lot more mature than it was in the past. And we decided that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 435000
+			},
+			"text": " the time had come that things were mature enough that we could let the ENS community govern ENS. And the DAO is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 441000
+			},
+			"text": " major milestone along that path of gradual decentralisation. The DAO was now responsible for almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 447000
+			},
+			"text": " all governance leaders and controls available to ENS, including approving contract upgrades, changes to core"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 454000
+			},
+			"text": " parameters, such as pricing and how expired names are used. It's also responsible for treasury grants and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 461000
+			},
+			"text": " projects using the funding gathered from the protocol. In the year since the DAO's launch, the ENS DAO has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 468000
+			},
+			"text": " shown that it can maintain a high level of civilised discussion, made useful progress forward in improving the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:54,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 474000
+			},
+			"text": " protocol. Besides budgeting and day-to-day bookkeeping, it's made meaningful changes to the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 474000,
+				"to": 480000
+			},
+			"text": " including changing how expired names are handled in order to safeguard the stability and fairness of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 488000
+			},
+			"text": " The DAO has also started to build out public goods and grants programs of its own. One example of this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 496000
+			},
+			"text": " small grants rounds that we now run inspired by Noun's props room. This is a regular system where anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " can submit a proposal for work they want to do or work they have done. Anyone with ENS tokens from the DAO can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 508000
+			},
+			"text": " vote on them. In the top five in each category, we have a public goods category and an ecosystem category,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 515000
+			},
+			"text": " then receive one ETH each in funding to pursue it. The public goods is focused on anything in the wider ENS"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 524000
+			},
+			"text": " ecosystem, and the ecosystem category is focused more on things that relate directly to ENS. And we hope this can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 532000
+			},
+			"text": " work to better incubate and start up new projects, both for ENS and for the wider public goods on Ethereum and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 540000
+			},
+			"text": " Web3 ecosystem. Working groups have also funded initiatives on scales small to large, ranging from a 200,000 K - sorry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 548000
+			},
+			"text": " 200 K ENS token grant to the protocol guild, who have formed two help fund core developers throughout the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 559000
+			},
+			"text": " 169 K get coin matching pool, and we continue to fund and support get coin. And smaller projects such as this plugin for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 566000
+			},
+			"text": " discourse forums, which provides you with insight into the roles of delegates and their participation on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 573000
+			},
+			"text": " forum, which is something that any DAO that users discourse can take and plug into their own system. This was built"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 580000
+			},
+			"text": " by Karma and integrates with all their stuff. You can also just use it to provide insight into how your delegates are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 586000
+			},
+			"text": " voted, how active they are, how many tokens they have, and so forth. The DAO has also resulted in more community"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 593000
+			},
+			"text": " participation in the core protocol. One major success story is Raffi's work on improving ENS's normalization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 602000
+			},
+			"text": " functions. Normalization is how we handle names like uppercase neck being different from lowercase neck, ambiguous"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " functions, and so forth. To start we used a well-tested system called UTS46, which is what the domain world"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 617000
+			},
+			"text": " uses. But it's become clear over time that ENS has unique requirements, and we wanted to enable things such as"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 624000
+			},
+			"text": " emoji and other characters that are popular in the community, but not supported directly by DNS. So Raffi has"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 631000
+			},
+			"text": " been working on harmonizing all of this. We're very close to rolling out the new standard for DAO approval, and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 638000
+			},
+			"text": " will enable a much wider array of characters while also providing more protections against deceptive names. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 645000
+			},
+			"text": " last three years has also seen an explosion in community lead ENS initiatives, independent projects that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 652000
+			},
+			"text": " build on top of the ENS ecosystem. One popular example you may have seen is the ENS leaderboard, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 659000
+			},
+			"text": " shows people with Twitter handles that contain .eth and they're ranking rallies of followers. We've had some"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 665000
+			},
+			"text": " pretty popular ones, including Paris Hilton, for instance, right up the top of the leaderboard. I myself am now"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 672000
+			},
+			"text": " ranked, I don't know, number 400 or something. We've had the launch of ENS vision, which is a third party"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 681000
+			},
+			"text": " ENS trading market. It allows people to now register names from scratch and also trade existing names. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 690000
+			},
+			"text": " projects such as NIMI, which is a web three profile site, it leads you generate a customized profile. And in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 695000
+			},
+			"text": " fact the eth.limo gateway folks have integrated with NIMI. So if you have an ENS name that doesn't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 702000
+			},
+			"text": " content set up, it will automatically show your profile with your PyX and so forth and you can customize it as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 710000
+			},
+			"text": " wish. Before we start talking about what's new, one small announcement, True Names Limited is the name of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " ENS development company that builds the ENS. The company I founded that gets paid by the Dow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 722000
+			},
+			"text": " employs about a dozen of us to build out the ENS. When we formed it, we didn't really think of it as a name"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 728000
+			},
+			"text": " that would be visible to people. It was purely an internal thing. But in the intervening time, it's become"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " more and more visible. And every time we have to say, where from True Names Limited the company that develops"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 739000
+			},
+			"text": " ENS and it gets a bit tiresome. So we're renaming to ENS Labs Limited to better reflect what we do and who we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 747000
+			},
+			"text": " are. So what's next? First we're going to talk about Thorin. Thorin is ENS's new design system and it's built"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 753000
+			},
+			"text": " from the ground up with usability and Web3 in mind. We've used it to completely rewrite the ENS app from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 759000
+			},
+			"text": " ground up. Coupled with improvements to the smart contracts behind ENS, this enables a huge"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 768000
+			},
+			"text": " improvement in usability for ENS users. The ENS UI faces kind of a unique challenge amongst Web3 apps and in fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 774000
+			},
+			"text": " kind of apps in general in that it needs to provide an interface that is both easy and user friendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 780000
+			},
+			"text": " for new users but has the advanced levers and sophisticated interaction required by advanced users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 787000
+			},
+			"text": " We don't want to create a situation where the app is sufficiently flexible to do anything with ENS but"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " to do existing users, which is a little bit the case of the current app, or is so straightforward and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 798000
+			},
+			"text": " a wizard based that you need to go somewhere else if you do have more than basic needs. By surfacing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 804000
+			},
+			"text": " important details and flows, while still making advanced functionality available under the covers, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 810000
+			},
+			"text": " front end team have done an outstanding job of writing an app that is all for all users. Aside from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 816000
+			},
+			"text": " functional improvements, we've hugely improved the loading times and made the new app 100% mobile friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 822000
+			},
+			"text": " The new app is at feature parity and live now on the GIRLIE test net. It would be live on Robston but"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 830000
+			},
+			"text": " that's already been deprecated. You can try it out now at alpha. ENS to mains. Just to emphasize it's only"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 837000
+			},
+			"text": " on GIRLIE, it is a little bit sharp edges still. The team really raced to get it out in time and did an"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 844000
+			},
+			"text": " amazing job. Please send us your bug reports but we aim to have this launch on main net shortly after"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 850000
+			},
+			"text": " DevCon. Once the name wrapper and other contracts are approved by the DAO, as I'll discuss shortly, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 856000
+			},
+			"text": " keep your eyes peeled. Thorin isn't just for ENS either. We've made it available as a standard React"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 862000
+			},
+			"text": " library that anyone can use for their web 3 apps. You can check it out on sauren. ENS"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 869000
+			},
+			"text": " domains. You may have noticed it powering a number of other sites such as the swag microsite and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 877000
+			},
+			"text": " forth. One of our major ongoing projects is scaling ENS. For many projects, this is accomplished by"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 883000
+			},
+			"text": " going multi-chain, deploying to multiple chains. If you're uniswap, for instance, you fragment your"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 890000
+			},
+			"text": " liquidity a bit but you can work in parallel across multiple chains. ENS is in a unique position here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 896000
+			},
+			"text": " We need to maintain a single cohesive registry of names and it's far too early in the L2 and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 902000
+			},
+			"text": " roll-up ecosystem to pick a single service as the winner we're going to migrate to. Instead, we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 907000
+			},
+			"text": " been pursuing options that make it possible for people to host their ENS names anywhere without"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 914000
+			},
+			"text": " the resolving heaven to know or care where that is. Earlier this year, we launched CCIP read as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 920000
+			},
+			"text": " collaboration between ENS and Chainlink. While previous systems such as bridging often introduce new"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 926000
+			},
+			"text": " trust assumptions and require L1 transactions to execute, CCIP read uses a lower level primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 932000
+			},
+			"text": " proofs which means that in many cases such as with L2s, this can be done with no additional trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 937000
+			},
+			"text": " assumptions over those the L2 itself requires. Meaning you could host your ENS name on"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 943000
+			},
+			"text": " optimism, have users resolve it from any client that doesn't know what optimism is without"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 949000
+			},
+			"text": " introducing any additional trust that relies on the gateway operator, for instance. Further, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 955000
+			},
+			"text": " solutions far more flexible than bridging, allowing data to be stored not just on L2s or side chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 962000
+			},
+			"text": " but on arbitrary systems including centralized databases. At its core, ENS is a way for any"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 968000
+			},
+			"text": " contracts to fetch data from off-chain resources. Because contracts can't directly talk HTTP"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 974000
+			},
+			"text": " requests, this ends up being a little bit like having one of those conversations with a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 978000
+			},
+			"text": " who have had a fight and are refusing to talk to each other. Well, you tell the gateway that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 984000
+			},
+			"text": " think that they should give you this data I need. So the conversation tends to go like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 989000
+			},
+			"text": " Unfortunately, just ask them yourself isn't an option. So the client has no choice but to play"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 995000
+			},
+			"text": " middleman. The end result is good. With the resolver and the gateway agreeing on a protocol, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:40,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1000000
+			},
+			"text": " possible for the client to facilitate a look up of off-chain data without any knowledge of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1000000,
+				"to": 1006000
+			},
+			"text": " they're shared languages or what the off-chain system in use is. The necessary proofs to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1012000
+			},
+			"text": " with trustless are encapsulated in the response sent by the gateway and verified by the resolver"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1017000
+			},
+			"text": " before returning the result from the name resolution. This means implementing the base"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " protocol is enough to enable all current and future L2s and off-chain storage systems to be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1028000
+			},
+			"text": " in the ENS name resolution. For instance, Ethers already supports this, which means you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1033000
+			},
+			"text": " resolve any ENS name that uses it even if it uses an L2 that didn't exist when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1040000
+			},
+			"text": " Ethers implementation was written. CCIP read is already in use in production. Both Ethers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1048000
+			},
+			"text": " Web3.js support it. So if you use either of those libraries or in fact, as of I believe today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1054000
+			},
+			"text": " Web3.py, upgrading to the latest version will mean you automatically support ENS off-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1059000
+			},
+			"text": " resolution. Some of the largest apps and wallets have already upgraded to support it too,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1067000
+			},
+			"text": " including MetaMask coinbase wallet as well as Ethereum Etherscan. There's a long way to go in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1072000
+			},
+			"text": " terms of making this latest change universal. So please reach out to your favourite wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1077000
+			},
+			"text": " and apps if you see that they don't support these new names and ask them to let them know"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1085000
+			},
+			"text": " how important it is. Like our Thorin, CCIP read also isn't just for ENS. It can be used to add"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1091000
+			},
+			"text": " off-chain resolution support to any project. Coinbase has gone a step further than just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1097000
+			},
+			"text": " integrating CCIP read for name resolution. They're using CCIP read, ENS wildcard support,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1104000
+			},
+			"text": " and ENS's DNS integration together to allow their wallet users to create ENS names under"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1110000
+			},
+			"text": " the .cb.id domain for free. These names will instantly work in any wallet or"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1116000
+			},
+			"text": " adapt that supports ENS's new resolution improvements and they have no transaction fees to set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1123000
+			},
+			"text": " for either users or coinbase. Likewise, LENS is using CCIP read to integrate their own .lens"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:52,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1132000
+			},
+			"text": " naming system with ENS. Any .lens name, you can add .xyz to the end and it will resolve in MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,000",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1132000,
+				"to": 1138000
+			},
+			"text": " or any other wallet that supports this. So off-chain read support is great, but how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1143000
+			},
+			"text": " enable rights? The default option for every platform is to provide its own interface for users to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1148000
+			},
+			"text": " update their records, meaning if you use coinbase wallets, you have to use coinbase to update"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1153000
+			},
+			"text": " your records. If you use MetaMask, you have to update with MetaMask. But this leads to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1158000
+			},
+			"text": " fragmentation and makes general-purpose apps like our own manager much less useful. Fixing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1165000
+			},
+			"text": " this is still a work in progress, but EAP 5559 lays out a way forward by enabling a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1171000
+			},
+			"text": " discovery mechanism that allows clients, such as our manager, to discover how they can send a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1177000
+			},
+			"text": " transaction or an HTTP request to update data that's stored off-chain. It currently supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1185000
+			},
+			"text": " writing to EVM-based L2s or sidechains or sending signed messages to an HTTP API, but this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:51,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1191000
+			},
+			"text": " extensible with new methods as they crop up. Adding support for this to the ENS manager and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,000",
+				"to": "00:19:57,000"
+			},
+			"offsets": {
+				"from": 1191000,
+				"to": 1197000
+			},
+			"text": " further standardizing the best practices and making it as flexible and extensible as possible is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1197000,
+				"to": 1203000
+			},
+			"text": " an active area of research and development for the team. So next up, the name wrapper, which you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1210000
+			},
+			"text": " probably heard about, griping about on Twitter because it's been underway for a while. ENS"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1216000
+			},
+			"text": " predates all of the NFT standards, and while the .eth registrar was written after EAP721 came out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1224000
+			},
+			"text": " that functionality only applies to .eth second-level domains, so nick.eth, but not wallet.nick.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1231000
+			},
+			"text": " or nick.xyz, or whatnot. As a result, nodal-einiest names can be transferred, exchanged,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1238000
+			},
+			"text": " etc., using standard NFT interfaces. Further, one of the main advantages of tradability is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1244000
+			},
+			"text": " trustless ownership. If somebody sells you a name or a subdomain or gives it to you, you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1249000
+			},
+			"text": " make sure that they can't take it back next week and set it to a different address. You're"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:54,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1254000
+			},
+			"text": " kind of reliant on their goodwill. There are solutions to work around this. You can give"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1254000,
+				"to": 1260000
+			},
+			"text": " ownership of the name to a contract, and we've had a system for that called now.nick.demains"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1265000
+			},
+			"text": " for some time. But it has significant shortcomings in that you're committing your name to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1270000
+			},
+			"text": " specific contract where it has to live for the rest of time, which limits what you can do"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1276000
+			},
+			"text": " with it. The name ramp solves both these problems. It allows any ENS name at any level, whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1284000
+			},
+			"text": " it's a .eth or a subdomain or a DNS name, to be wrapped as an ERC 1155 NFT. It also allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1289000
+			},
+			"text": " owners of wrapped names to revoke permissions, such as the ability to replace or delete"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1295000
+			},
+			"text": " subdomains by mechanism we call fuses. Fuses allow the owner of a name to revoke their"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:40,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1300000
+			},
+			"text": " own control, and that if any subsequent owners over certain functionality on a name, such as"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1300000,
+				"to": 1307000
+			},
+			"text": " the ability to unwrap it again, to create or replace subdomains, to transfer it to another user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:53,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1313000
+			},
+			"text": " and so forth. Once a fuse is burned, that fuse can't be reset until the name expires, giving"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1313000,
+				"to": 1319000
+			},
+			"text": " a user a guarantee as to what can be done to or with their names until the name expiration"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1324000
+			},
+			"text": " is reached. The name ramp attracts these permissions and provides a very easy API for fetching"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1330000
+			},
+			"text": " the set of restrictions currently applied to a name and when they'll expire."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1334000
+			},
+			"text": " Alongside the name wrapper, we've also implemented a suite of other contract improvements, including"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1340000
+			},
+			"text": " to the .eth registrar controller, the reverse registrar and the public resolver. All together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1345000
+			},
+			"text": " these will prevent a much smoother registration process for end users and cut down on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1350000
+			},
+			"text": " number of transactions and gas required, as well as other quality of life improvements, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1356000
+			},
+			"text": " allowing contract owners to set primary names for their contracts. The long and short of this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1363000
+			},
+			"text": " that with the new .eth registrar, you will be able to register a name, wrap it in order to set"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1369000
+			},
+			"text": " permissions, burn fuses and set your primary name all in a single transaction and using less"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1374000
+			},
+			"text": " gas than doing those operations would cost a day. All of these updates are live now on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1380000
+			},
+			"text": " GIRL-E testnet and we're planning to submit them to the DAO for approval on mainnet shortly after"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1388000
+			},
+			"text": " DevCon. Thank you. [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1392000
+			},
+			"text": " Finally, I'm going to talk about something else I'm excited we'll be able to release soon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1398000
+			},
+			"text": " gasless DNS integration. Presently claiming a DNS name and DNS cost a substantial amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1404000
+			},
+			"text": " gas. It's about 100K to a million gas per signature, it has to verify. Depending on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1409000
+			},
+			"text": " ether and gas price, that can range anywhere from 20 bucks to at the extremes of the bull market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1416000
+			},
+			"text": " $1,000. Obviously, this isn't a particularly scalable solution and so this can be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:41,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1421000
+			},
+			"text": " substantial barrier to DNS integration. Fortunately, we have a plan for reducing this all the way to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,000",
+				"to": "00:23:49,000"
+			},
+			"offsets": {
+				"from": 1421000,
+				"to": 1429000
+			},
+			"text": " zero. First, a quick overview of how DNS works. It uses a chain of trust just like SSL. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1429000,
+				"to": 1434000
+			},
+			"text": " root zone is signed by a well-known certificate authority and they sign keys for each of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1441000
+			},
+			"text": " subdomains such as .com, .link, etc. Each of those zones uses its keys to sign its subdomains and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1447000
+			},
+			"text": " so on and so forth. Our current DNS integration uses this to allow users to claim DNS names"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1452000
+			},
+			"text": " inside the DNS. Our front-end collects up all the completes that are proof necessary and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1456000
+			},
+			"text": " submits them to a smart contract which verifies the signatures and if they match, it lets them"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1462000
+			},
+			"text": " claim the name. If you've been paying attention to the talk so far, this may sound quite familiar"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1468000
+			},
+			"text": " to you, similar to something else we've discussed CCIP read. If we treat the whole of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:34,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1474000
+			},
+			"text": " DNS as a massive off-chain distributed database, we can have a gateway that features DNS data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1474000,
+				"to": 1479000
+			},
+			"text": " collects all the proofs necessary and submits it to the chain just like when you're resolving"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1485000
+			},
+			"text": " a name. So then we can write a resolver for DNS names that uses that gateway to resolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1491000
+			},
+			"text": " names in DNS, entirely using data stored in DNS. Users can set DNS records to configure their"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1496000
+			},
+			"text": " name and they will resolve any of their DNS is supported with zero on-chain transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1502000
+			},
+			"text": " necessary. Claiming on-chain may still be useful in some cases. For example, if you need granular"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:07,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1507000
+			},
+			"text": " control over the sub-domains, but for most users, it will be possible to claim your DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,000",
+				"to": "00:25:12,000"
+			},
+			"offsets": {
+				"from": 1507000,
+				"to": 1512000
+			},
+			"text": " name just by setting some text records. We're working on this right now. The DNS"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1512000,
+				"to": 1516000
+			},
+			"text": " oracle changes are done and we're working on implementing fixes from an audit before we"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1521000
+			},
+			"text": " roll it out. We hope you have it ready to go before the end of the year. There's been a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:27,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1527000
+			},
+			"text": " going on with DNS but compressing four years down into 25 minutes naturally means I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1527000,
+				"to": 1532000
+			},
+			"text": " to leave some things out. Just one more thing. The DAO is nearly a year old but still in its"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1538000
+			},
+			"text": " infancy. We have a lot to learn and a lot to do and we need your expertise. Please take a"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,000",
+				"to": "00:25:43,000"
+			},
+			"offsets": {
+				"from": 1538000,
+				"to": 1543000
+			},
+			"text": " look at our governance page, reach out to DNS domains on Twitter, see how you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,000",
+				"to": "00:25:50,000"
+			},
+			"offsets": {
+				"from": 1543000,
+				"to": 1550000
+			},
+			"text": " get involved and help us build a truly decentralized public good naming for Web3. And that's all"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,000",
+				"to": "00:25:52,000"
+			},
+			"offsets": {
+				"from": 1550000,
+				"to": 1552000
+			},
+			"text": " I have for you. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,000",
+				"to": "00:25:56,000"
+			},
+			"offsets": {
+				"from": 1552000,
+				"to": 1556000
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1556000,
+				"to": 1561000
+			},
+			"text": " >> Awesome. Do we have any questions for Nick? Please raise your hand. We'll get you a mic."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:06,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1566000
+			},
+			"text": " There's a lot of things we talked about. We'll see a hand over there. Keep your hands raised so we"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,000",
+				"to": "00:26:10,000"
+			},
+			"offsets": {
+				"from": 1566000,
+				"to": 1570000
+			},
+			"text": " can find you and get the mic to you. >> Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,000",
+				"to": "00:26:17,000"
+			},
+			"offsets": {
+				"from": 1570000,
+				"to": 1577000
+			},
+			"text": " >> Thanks a lot for the talk. One thing I was thinking about, you should probably be able to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,000",
+				"to": "00:26:28,000"
+			},
+			"offsets": {
+				"from": 1577000,
+				"to": 1588000
+			},
+			"text": " DNS to -- the problem is when you use UI to communicate with a page, the metamask will generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,000",
+				"to": "00:26:36,000"
+			},
+			"offsets": {
+				"from": 1588000,
+				"to": 1596000
+			},
+			"text": " you, it will provide a transaction for you and basically you have no idea like if actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,000",
+				"to": "00:26:42,000"
+			},
+			"offsets": {
+				"from": 1596000,
+				"to": 1602000
+			},
+			"text": " the UI is the right UI and if you are calling the contract you want to be calling. And I"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1602000,
+				"to": 1613000
+			},
+			"text": " guess you could you -- you could you -- you could you for this for linking both the domain and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1621000
+			},
+			"text": " smart contracts with the same DNS and have metamask check it basically to provide a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,000",
+				"to": "00:27:05,000"
+			},
+			"offsets": {
+				"from": 1621000,
+				"to": 1625000
+			},
+			"text": " attacks connected with the UI. >> Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,000",
+				"to": "00:27:07,000"
+			},
+			"offsets": {
+				"from": 1625000,
+				"to": 1627000
+			},
+			"text": " >> Spoofing. >> Yeah, definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,000",
+				"to": "00:27:13,000"
+			},
+			"offsets": {
+				"from": 1627000,
+				"to": 1633000
+			},
+			"text": " >> The other thing I'm going to talk about is the data user insight into transactions as I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,000",
+				"to": "00:27:20,000"
+			},
+			"offsets": {
+				"from": 1633000,
+				"to": 1640000
+			},
+			"text": " probably the major adoption barrier and phishing and so forth issue in web three today."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,000",
+				"to": "00:27:27,000"
+			},
+			"offsets": {
+				"from": 1640000,
+				"to": 1647000
+			},
+			"text": " Naming contracts with the DNS names is one big step towards making that a bit better and in fact"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,000",
+				"to": "00:27:33,000"
+			},
+			"offsets": {
+				"from": 1647000,
+				"to": 1653000
+			},
+			"text": " the latest contract updates we're pushing out make it easier for contracts to get DNS primary"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1653000,
+				"to": 1658000
+			},
+			"text": " proposal with Richard Moore on how to provide insight into transactions which is also very"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:48,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1668000
+			},
+			"text": " relevant there. >> Yeah, and could you make basically the calls from the other side meaning"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,000",
+				"to": "00:27:57,000"
+			},
+			"offsets": {
+				"from": 1668000,
+				"to": 1677000
+			},
+			"text": " metamask could somehow check with DNS like what this contract is -- what DNS is this contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,000",
+				"to": "00:28:05,000"
+			},
+			"offsets": {
+				"from": 1677000,
+				"to": 1685000
+			},
+			"text": " associated with? >> Yes, and further you could put authorized front teams and your DNS record"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,000",
+				"to": "00:28:10,000"
+			},
+			"offsets": {
+				"from": 1685000,
+				"to": 1690000
+			},
+			"text": " so that it will warn you if you're making a transaction to say uniswap from a scammy side."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,000",
+				"to": "00:28:15,000"
+			},
+			"offsets": {
+				"from": 1690000,
+				"to": 1695000
+			},
+			"text": " >> Yeah, perfect. Thanks. >> Cool. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,000",
+				"to": "00:28:20,000"
+			},
+			"offsets": {
+				"from": 1695000,
+				"to": 1700000
+			},
+			"text": " >> Awesome. We have one last question here. Set the front row and then we'll be at time."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,000",
+				"to": "00:28:26,000"
+			},
+			"offsets": {
+				"from": 1700000,
+				"to": 1706000
+			},
+			"text": " >> Hi. I was wondering if you could kind of give us a state of the union on efforts to resolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,000",
+				"to": "00:28:32,000"
+			},
+			"offsets": {
+				"from": 1706000,
+				"to": 1712000
+			},
+			"text": " the DNS. >> Sure. So at the OS level is depending on"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,000",
+				"to": "00:28:37,000"
+			},
+			"offsets": {
+				"from": 1712000,
+				"to": 1717000
+			},
+			"text": " you look at it tricky or easy, you can run your own DNS resolver in which case you personally"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,000",
+				"to": "00:28:43,000"
+			},
+			"offsets": {
+				"from": 1717000,
+				"to": 1723000
+			},
+			"text": " get to resolve all the names. Getting it rolled out to everybody is a very steep hill to climb."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,000",
+				"to": "00:28:48,000"
+			},
+			"offsets": {
+				"from": 1723000,
+				"to": 1728000
+			},
+			"text": " I think we're going to have more success getting this integrated into browsers such as brave"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,000",
+				"to": "00:28:53,000"
+			},
+			"offsets": {
+				"from": 1728000,
+				"to": 1733000
+			},
+			"text": " and opera which already supported rather than integrated directly with OS's."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,000",
+				"to": "00:28:58,000"
+			},
+			"offsets": {
+				"from": 1733000,
+				"to": 1738000
+			},
+			"text": " On the other hand, there are efforts around.eth talking to Ethiopia about whether they would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,000",
+				"to": "00:29:05,000"
+			},
+			"offsets": {
+				"from": 1738000,
+				"to": 1745000
+			},
+			"text": " willing to relinquish that. This is all very nascent however. So there's nothing concrete for"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,000",
+				"to": "00:29:10,000"
+			},
+			"offsets": {
+				"from": 1745000,
+				"to": 1750000
+			},
+			"text": " that right now. The shorter term solution is as I said, browsers I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,000",
+				"to": "00:29:13,000"
+			},
+			"offsets": {
+				"from": 1750000,
+				"to": 1753000
+			},
+			"text": " >> Awesome. That's all the time we have. Please give Nick a big round of applause."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,000",
+				"to": "00:29:15,000"
+			},
+			"offsets": {
+				"from": 1753000,
+				"to": 1755000
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,000",
+				"to": "00:29:17,000"
+			},
+			"offsets": {
+				"from": 1755000,
+				"to": 1757000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,000",
+				"to": "00:29:19,000"
+			},
+			"offsets": {
+				"from": 1757000,
+				"to": 1759000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,000",
+				"to": "00:29:21,000"
+			},
+			"offsets": {
+				"from": 1759000,
+				"to": 1761000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1761000,
+				"to": 1763000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:25,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1765000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:25,000",
+				"to": "00:29:54,000"
+			},
+			"offsets": {
+				"from": 1765000,
+				"to": 1794000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

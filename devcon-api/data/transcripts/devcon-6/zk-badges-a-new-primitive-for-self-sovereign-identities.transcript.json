@@ -1,0 +1,7270 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,480",
+				"to": "00:00:16,800"
+			},
+			"offsets": {
+				"from": 2480,
+				"to": 16800
+			},
+			"text": " Hi, my name is Adrian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,800",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 16800,
+				"to": 18400
+			},
+			"text": " I'm the founder of Cismo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:21,160"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 21160
+			},
+			"text": " And I'm excited to speak today about the technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,160",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 21160,
+				"to": 23920
+			},
+			"text": " that are a new committee for you to leverage fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:26,640"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 26640
+			},
+			"text": " your on-chain data, your sovereign data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,640",
+				"to": "00:00:30,560"
+			},
+			"offsets": {
+				"from": 26640,
+				"to": 30560
+			},
+			"text": " So this talk will cover the notion of sovereign accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,560",
+				"to": "00:00:32,960"
+			},
+			"offsets": {
+				"from": 30560,
+				"to": 32960
+			},
+			"text": " self-solverine identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,960",
+				"to": "00:00:34,680"
+			},
+			"offsets": {
+				"from": 32960,
+				"to": 34680
+			},
+			"text": " But before getting into that, I'd just"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,680",
+				"to": "00:00:37,800"
+			},
+			"offsets": {
+				"from": 34680,
+				"to": 37800
+			},
+			"text": " like to spend a few words about Cismo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,800",
+				"to": "00:00:39,880"
+			},
+			"offsets": {
+				"from": 37800,
+				"to": 39880
+			},
+			"text": " We started Cismo because we are concerned"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,880",
+				"to": "00:00:42,760"
+			},
+			"offsets": {
+				"from": 39880,
+				"to": 42760
+			},
+			"text": " about the centralization and lack of privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,760",
+				"to": "00:00:46,400"
+			},
+			"offsets": {
+				"from": 42760,
+				"to": 46400
+			},
+			"text": " of our recurrent social tools and digital identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,400",
+				"to": "00:00:48,720"
+			},
+			"offsets": {
+				"from": 46400,
+				"to": 48720
+			},
+			"text": " We think that there's too much power"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,720",
+				"to": "00:00:51,640"
+			},
+			"offsets": {
+				"from": 48720,
+				"to": 51640
+			},
+			"text": " in the hands of big companies holding our personal data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,640",
+				"to": "00:00:54,640"
+			},
+			"offsets": {
+				"from": 51640,
+				"to": 54640
+			},
+			"text": " and in governments that access it at will."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,640",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 54640,
+				"to": 57280
+			},
+			"text": " And so what we want to do is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:01:00,560"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 60560
+			},
+			"text": " to add the privacy and decentralization layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,560",
+				"to": "00:01:04,440"
+			},
+			"offsets": {
+				"from": 60560,
+				"to": 64440
+			},
+			"text": " in identity systems so that we remain in sovereigns."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,440",
+				"to": "00:01:06,520"
+			},
+			"offsets": {
+				"from": 64440,
+				"to": 66520
+			},
+			"text": " We want to protect human sovereignty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,520",
+				"to": "00:01:10,080"
+			},
+			"offsets": {
+				"from": 66520,
+				"to": 70080
+			},
+			"text": " meaning that we want to be sure that individuals remain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,080",
+				"to": "00:01:13,480"
+			},
+			"offsets": {
+				"from": 70080,
+				"to": 73480
+			},
+			"text": " in control of their societies and that we keep on check"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,480",
+				"to": "00:01:17,440"
+			},
+			"offsets": {
+				"from": 73480,
+				"to": 77440
+			},
+			"text": " the central entities that are public or private institutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,440",
+				"to": "00:01:20,320"
+			},
+			"offsets": {
+				"from": 77440,
+				"to": 80320
+			},
+			"text": " What we do is build primitives to empower"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,320",
+				"to": "00:01:21,920"
+			},
+			"offsets": {
+				"from": 80320,
+				"to": 81920
+			},
+			"text": " our self-solverine identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,920",
+				"to": "00:01:27,720"
+			},
+			"offsets": {
+				"from": 81920,
+				"to": 87720
+			},
+			"text": " So the first primitive that we build are ZK badges."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,720",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 87720,
+				"to": 90080
+			},
+			"text": " They allow you to leverage your sovereign data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:32,640"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 92640
+			},
+			"text": " We'll see that later, but there are soul-bound tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,640",
+				"to": "00:01:35,760"
+			},
+			"offsets": {
+				"from": 92640,
+				"to": 95760
+			},
+			"text": " There are non-transfold tokens that are attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,760",
+				"to": "00:01:37,840"
+			},
+			"offsets": {
+				"from": 95760,
+				"to": 97840
+			},
+			"text": " meaning that when you have a ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,840",
+				"to": "00:01:41,040"
+			},
+			"offsets": {
+				"from": 97840,
+				"to": 101040
+			},
+			"text": " it means something about your identity, your data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,040",
+				"to": "00:01:43,400"
+			},
+			"offsets": {
+				"from": 101040,
+				"to": 103400
+			},
+			"text": " your reputation, your history."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,400",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103400,
+				"to": 106000
+			},
+			"text": " They allow you to do three things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:47,840"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 107840
+			},
+			"text": " First, they allow you to import reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,840",
+				"to": "00:01:49,080"
+			},
+			"offsets": {
+				"from": 107840,
+				"to": 109080
+			},
+			"text": " from an account to another."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,080",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 109080,
+				"to": 112200
+			},
+			"text": " They say I have a bank on an address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:01:54,640"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 114640
+			},
+			"text": " and I want to prove that on another address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,640",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 114640,
+				"to": 116000
+			},
+			"text": " have an attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,280"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118280
+			},
+			"text": " I get to ZK badge on a new address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,280",
+				"to": "00:02:00,640"
+			},
+			"offsets": {
+				"from": 118280,
+				"to": 120640
+			},
+			"text": " and I have to prove that I have a bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,640",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 120640,
+				"to": 124160
+			},
+			"text": " It also allows me to selectively reveal"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:05,760"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 125760
+			},
+			"text": " what I want from my account."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,760",
+				"to": "00:02:09,040"
+			},
+			"offsets": {
+				"from": 125760,
+				"to": 129040
+			},
+			"text": " So granularly reveals some personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,040",
+				"to": "00:02:11,400"
+			},
+			"offsets": {
+				"from": 129040,
+				"to": 131400
+			},
+			"text": " They say that I have an account with a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,400",
+				"to": "00:02:13,360"
+			},
+			"offsets": {
+				"from": 131400,
+				"to": 133360
+			},
+			"text": " I'm able to pick one piece of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,360",
+				"to": "00:02:14,880"
+			},
+			"offsets": {
+				"from": 133360,
+				"to": 134880
+			},
+			"text": " let's say the crypto-punk on a ship,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,880",
+				"to": "00:02:16,880"
+			},
+			"offsets": {
+				"from": 134880,
+				"to": 136880
+			},
+			"text": " and I'm able to reveal that to someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,880",
+				"to": "00:02:19,040"
+			},
+			"offsets": {
+				"from": 136880,
+				"to": 139040
+			},
+			"text": " I own that without giving my address on anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,040",
+				"to": "00:02:23,040"
+			},
+			"offsets": {
+				"from": 139040,
+				"to": 143040
+			},
+			"text": " The last thing is it allows you to aggregate your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,040",
+				"to": "00:02:26,880"
+			},
+			"offsets": {
+				"from": 143040,
+				"to": 146880
+			},
+			"text": " Let's say that you have a bank on an address"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,880",
+				"to": "00:02:28,160"
+			},
+			"offsets": {
+				"from": 146880,
+				"to": 148160
+			},
+			"text": " and a bank on another one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,160",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 148160,
+				"to": 150920
+			},
+			"text": " and you'd like to prove that you have two punks"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:34,360"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 154360
+			},
+			"text": " without creating a link between your accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,360",
+				"to": "00:02:36,560"
+			},
+			"offsets": {
+				"from": 154360,
+				"to": 156560
+			},
+			"text": " That's what ZK badges allow you to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,560",
+				"to": "00:02:40,520"
+			},
+			"offsets": {
+				"from": 156560,
+				"to": 160520
+			},
+			"text": " So it allows you to control your identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,520",
+				"to": "00:02:42,600"
+			},
+			"offsets": {
+				"from": 160520,
+				"to": 162600
+			},
+			"text": " and without creating links between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,600",
+				"to": "00:02:46,240"
+			},
+			"offsets": {
+				"from": 162600,
+				"to": 166240
+			},
+			"text": " So now I think that before getting into the technical part"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,240",
+				"to": "00:02:47,240"
+			},
+			"offsets": {
+				"from": 166240,
+				"to": 167240
+			},
+			"text": " of the ZK badges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,240",
+				"to": "00:02:50,560"
+			},
+			"offsets": {
+				"from": 167240,
+				"to": 170560
+			},
+			"text": " I'd like to spend some time on self-serve identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,560",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 170560,
+				"to": 174560
+			},
+			"text": " and because that's what badges for, we build that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:02:59,400"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 179400
+			},
+			"text": " Our goal is really to, with ZK badges and generally with Csmo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,400",
+				"to": "00:03:01,960"
+			},
+			"offsets": {
+				"from": 179400,
+				"to": 181960
+			},
+			"text": " is to make our sovereign identities more powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,960",
+				"to": "00:03:03,560"
+			},
+			"offsets": {
+				"from": 181960,
+				"to": 183560
+			},
+			"text": " better than web2 identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,560",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 183560,
+				"to": 185400
+			},
+			"text": " So better than your Google account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:09,800"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 189800
+			},
+			"text": " So web2 identity, in the web2 world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,800",
+				"to": "00:03:12,720"
+			},
+			"offsets": {
+				"from": 189800,
+				"to": 192720
+			},
+			"text": " the ITTT is stored in an account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,720",
+				"to": "00:03:14,200"
+			},
+			"offsets": {
+				"from": 192720,
+				"to": 194200
+			},
+			"text": " let's say your Twitter account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,200",
+				"to": "00:03:16,160"
+			},
+			"offsets": {
+				"from": 194200,
+				"to": 196160
+			},
+			"text": " You choose your username, your password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,160",
+				"to": "00:03:17,360"
+			},
+			"offsets": {
+				"from": 196160,
+				"to": 197360
+			},
+			"text": " and they give you an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,360",
+				"to": "00:03:19,320"
+			},
+			"offsets": {
+				"from": 197360,
+				"to": 199320
+			},
+			"text": " Actually, they don't really give you the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,320",
+				"to": "00:03:22,280"
+			},
+			"offsets": {
+				"from": 199320,
+				"to": 202280
+			},
+			"text": " It's still theirs, but you can access it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,280",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 202280,
+				"to": 204360
+			},
+			"text": " if they are willing to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:27,640"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 207640
+			},
+			"text": " and you start doing things on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,640",
+				"to": "00:03:28,680"
+			},
+			"offsets": {
+				"from": 207640,
+				"to": 208680
+			},
+			"text": " you interact with others,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,680",
+				"to": "00:03:30,480"
+			},
+			"offsets": {
+				"from": 208680,
+				"to": 210480
+			},
+			"text": " and you are starting to build your identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,480",
+				"to": "00:03:33,240"
+			},
+			"offsets": {
+				"from": 210480,
+				"to": 213240
+			},
+			"text": " So here you have an identity in a web2 account"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,240",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 213240,
+				"to": 214560
+			},
+			"text": " that is not yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:36,680"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 216680
+			},
+			"text": " It's your identity, you have the same with Facebook,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,680",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 216680,
+				"to": 218640
+			},
+			"text": " with Instagram, with LinkedIn,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:42,120"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 222120
+			},
+			"text": " you have your identities that are on rented accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,120",
+				"to": "00:03:45,280"
+			},
+			"offsets": {
+				"from": 222120,
+				"to": 225280
+			},
+			"text": " An interesting thing about these identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,280",
+				"to": "00:03:48,280"
+			},
+			"offsets": {
+				"from": 225280,
+				"to": 228280
+			},
+			"text": " is that you still have some control over them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,280",
+				"to": "00:03:50,680"
+			},
+			"offsets": {
+				"from": 228280,
+				"to": 230680
+			},
+			"text": " you can use them to connect to other services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,680",
+				"to": "00:03:52,800"
+			},
+			"offsets": {
+				"from": 230680,
+				"to": 232800
+			},
+			"text": " that's the single sign-on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,800",
+				"to": "00:03:55,720"
+			},
+			"offsets": {
+				"from": 232800,
+				"to": 235720
+			},
+			"text": " For instance, I can connect to Type 3 with my Twitter account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,720",
+				"to": "00:03:57,400"
+			},
+			"offsets": {
+				"from": 235720,
+				"to": 237400
+			},
+			"text": " and it allows me to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,400",
+				"to": "00:04:02,200"
+			},
+			"offsets": {
+				"from": 237400,
+				"to": 242200
+			},
+			"text": " I can bring some part of my identity that is on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,200",
+				"to": "00:04:03,200"
+			},
+			"offsets": {
+				"from": 242200,
+				"to": 243200
+			},
+			"text": " Twitter, Twitter, Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,200",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 243200,
+				"to": 245200
+			},
+			"text": " So there is some sort of portability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:07,480"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 247480
+			},
+			"text": " but of course it's super restricted."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,480",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 247480,
+				"to": 249600
+			},
+			"text": " At any point, if Twitter thinks that Type 3"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:12,520"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 252520
+			},
+			"text": " is competing with Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,520",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 252520,
+				"to": 254640
+			},
+			"text": " they will remove the access of these accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:18,840"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 258840
+			},
+			"text": " So we see that, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,840",
+				"to": "00:04:21,080"
+			},
+			"offsets": {
+				"from": 258840,
+				"to": 261080
+			},
+			"text": " web2 identities are not yours,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,080",
+				"to": "00:04:23,760"
+			},
+			"offsets": {
+				"from": 261080,
+				"to": 263760
+			},
+			"text": " it's super restricted, what you can do with your identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,760",
+				"to": "00:04:26,040"
+			},
+			"offsets": {
+				"from": 263760,
+				"to": 266040
+			},
+			"text": " Of course, there's no possibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,040",
+				"to": "00:04:27,720"
+			},
+			"offsets": {
+				"from": 266040,
+				"to": 267720
+			},
+			"text": " to link your identities together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,720",
+				"to": "00:04:29,960"
+			},
+			"offsets": {
+				"from": 267720,
+				"to": 269960
+			},
+			"text": " meaning that it's impossible to create an event"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,960",
+				"to": "00:04:32,720"
+			},
+			"offsets": {
+				"from": 269960,
+				"to": 272720
+			},
+			"text": " where you invite your Facebook friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,720",
+				"to": "00:04:34,520"
+			},
+			"offsets": {
+				"from": 272720,
+				"to": 274520
+			},
+			"text": " your Twitter friends, your LinkedIn friends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,520",
+				"to": "00:04:37,120"
+			},
+			"offsets": {
+				"from": 274520,
+				"to": 277120
+			},
+			"text": " because they are actually competing on your accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,120",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 277120,
+				"to": 278960
+			},
+			"text": " like it's not your accounts, it's theirs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:41,200"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 281200
+			},
+			"text": " it's their assets, that's how they make money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,200",
+				"to": "00:04:44,560"
+			},
+			"offsets": {
+				"from": 281200,
+				"to": 284560
+			},
+			"text": " They want you to put as much data on it as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,560",
+				"to": "00:04:46,720"
+			},
+			"offsets": {
+				"from": 284560,
+				"to": 286720
+			},
+			"text": " And so that's not your identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,720",
+				"to": "00:04:48,200"
+			},
+			"offsets": {
+				"from": 286720,
+				"to": 288200
+			},
+			"text": " you cannot fully leverage it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,200",
+				"to": "00:04:51,320"
+			},
+			"offsets": {
+				"from": 288200,
+				"to": 291320
+			},
+			"text": " And on the other side, we have the self-serven accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,320",
+				"to": "00:04:53,920"
+			},
+			"offsets": {
+				"from": 291320,
+				"to": 293920
+			},
+			"text": " data, for instance, ether and wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,920",
+				"to": "00:04:56,160"
+			},
+			"offsets": {
+				"from": 293920,
+				"to": 296160
+			},
+			"text": " it's owned by your private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,160",
+				"to": "00:04:59,120"
+			},
+			"offsets": {
+				"from": 296160,
+				"to": 299120
+			},
+			"text": " meaning that the private key is the thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,120",
+				"to": "00:05:02,040"
+			},
+			"offsets": {
+				"from": 299120,
+				"to": 302040
+			},
+			"text": " you must have the private key to do anything with these accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,040",
+				"to": "00:05:04,600"
+			},
+			"offsets": {
+				"from": 302040,
+				"to": 304600
+			},
+			"text": " what's amazing to you is that it's permissionless,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,600",
+				"to": "00:05:07,720"
+			},
+			"offsets": {
+				"from": 304600,
+				"to": 307720
+			},
+			"text": " anyone can create self-serven accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,720",
+				"to": "00:05:09,640"
+			},
+			"offsets": {
+				"from": 307720,
+				"to": 309640
+			},
+			"text": " without asking permission to anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,640",
+				"to": "00:05:12,120"
+			},
+			"offsets": {
+				"from": 309640,
+				"to": 312120
+			},
+			"text": " So okay, that's great, what I can do with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,120",
+				"to": "00:05:15,280"
+			},
+			"offsets": {
+				"from": 312120,
+				"to": 315280
+			},
+			"text": " of course, I can start adding some ether to it, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,280",
+				"to": "00:05:17,080"
+			},
+			"offsets": {
+				"from": 315280,
+				"to": 317080
+			},
+			"text": " and I can trade off Uniswap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,080",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 317080,
+				"to": 319000
+			},
+			"text": " it starts also to build my identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 322000
+			},
+			"text": " now I have some financial data on my accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,600"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324600
+			},
+			"text": " that is mine, I can buy a DNS name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,600",
+				"to": "00:05:26,640"
+			},
+			"offsets": {
+				"from": 324600,
+				"to": 326640
+			},
+			"text": " I can buy a NFT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,640",
+				"to": "00:05:30,480"
+			},
+			"offsets": {
+				"from": 326640,
+				"to": 330480
+			},
+			"text": " and I interact on social media, on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,480",
+				"to": "00:05:32,640"
+			},
+			"offsets": {
+				"from": 330480,
+				"to": 332640
+			},
+			"text": " So by doing this, a bit like on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,640",
+				"to": "00:05:34,640"
+			},
+			"offsets": {
+				"from": 332640,
+				"to": 334640
+			},
+			"text": " I built my N entity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,640",
+				"to": "00:05:37,280"
+			},
+			"offsets": {
+				"from": 334640,
+				"to": 337280
+			},
+			"text": " but this time this identity is mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,280",
+				"to": "00:05:39,280"
+			},
+			"offsets": {
+				"from": 337280,
+				"to": 339280
+			},
+			"text": " the data I need is mine,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,280",
+				"to": "00:05:41,440"
+			},
+			"offsets": {
+				"from": 339280,
+				"to": 341440
+			},
+			"text": " and is controlled by private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,440",
+				"to": "00:05:43,680"
+			},
+			"offsets": {
+				"from": 341440,
+				"to": 343680
+			},
+			"text": " By the way, by using DNS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,680",
+				"to": "00:05:46,160"
+			},
+			"offsets": {
+				"from": 343680,
+				"to": 346160
+			},
+			"text": " I also create this as a public account almost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,160",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 346160,
+				"to": 348520
+			},
+			"text": " so very interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:49,680"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 349680
+			},
+			"text": " So that's one part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,680",
+				"to": "00:05:52,880"
+			},
+			"offsets": {
+				"from": 349680,
+				"to": 352880
+			},
+			"text": " but actually self-serven accounts are more interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,880",
+				"to": "00:05:55,280"
+			},
+			"offsets": {
+				"from": 352880,
+				"to": 355280
+			},
+			"text": " than the other one, they are bigger than that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,280",
+				"to": "00:05:57,360"
+			},
+			"offsets": {
+				"from": 355280,
+				"to": 357360
+			},
+			"text": " because okay, you can use the private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,360",
+				"to": "00:06:00,120"
+			},
+			"offsets": {
+				"from": 357360,
+				"to": 360120
+			},
+			"text": " to send transactions, to use the some-trad applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,120",
+				"to": "00:06:03,480"
+			},
+			"offsets": {
+				"from": 360120,
+				"to": 363480
+			},
+			"text": " but you also use them to login into a app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,480",
+				"to": "00:06:06,360"
+			},
+			"offsets": {
+				"from": 363480,
+				"to": 366360
+			},
+			"text": " I think you know using snapshot or other applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,360",
+				"to": "00:06:10,480"
+			},
+			"offsets": {
+				"from": 366360,
+				"to": 370480
+			},
+			"text": " that now you have login systems based on wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,480",
+				"to": "00:06:12,640"
+			},
+			"offsets": {
+				"from": 370480,
+				"to": 372640
+			},
+			"text": " that's called signing with Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,640",
+				"to": "00:06:15,320"
+			},
+			"offsets": {
+				"from": 372640,
+				"to": 375320
+			},
+			"text": " and you can login to an app, traditional app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,320",
+				"to": "00:06:17,160"
+			},
+			"offsets": {
+				"from": 375320,
+				"to": 377160
+			},
+			"text": " but instead of an email and password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,160",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 377160,
+				"to": 378360
+			},
+			"text": " you login with your wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 382960
+			},
+			"text": " So the also wallets, self-serven identities accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:26,800"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 386800
+			},
+			"text": " are better than traditional accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,800",
+				"to": "00:06:28,040"
+			},
+			"offsets": {
+				"from": 386800,
+				"to": 388040
+			},
+			"text": " even at web2 stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,040",
+				"to": "00:06:32,440"
+			},
+			"offsets": {
+				"from": 388040,
+				"to": 392440
+			},
+			"text": " So okay, I can connect to snapshots with my Ethereum wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,440",
+				"to": "00:06:35,320"
+			},
+			"offsets": {
+				"from": 392440,
+				"to": 395320
+			},
+			"text": " I send a message, they say okay, you logged in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,320",
+				"to": "00:06:38,400"
+			},
+			"offsets": {
+				"from": 395320,
+				"to": 398400
+			},
+			"text": " and what's great is that you bring your whole identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,400",
+				"to": "00:06:39,240"
+			},
+			"offsets": {
+				"from": 398400,
+				"to": 399240
+			},
+			"text": " to the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,240",
+				"to": "00:06:42,120"
+			},
+			"offsets": {
+				"from": 399240,
+				"to": 402120
+			},
+			"text": " So what does snapshot is, okay, you logged in as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,120",
+				"to": "00:06:43,520"
+			},
+			"offsets": {
+				"from": 402120,
+				"to": 403520
+			},
+			"text": " generalities, or you have some other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,520",
+				"to": "00:06:45,760"
+			},
+			"offsets": {
+				"from": 403520,
+				"to": 405760
+			},
+			"text": " or you have some uni swap tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,760",
+				"to": "00:06:47,720"
+			},
+			"offsets": {
+				"from": 405760,
+				"to": 407720
+			},
+			"text": " you can vote on my governance with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,720",
+				"to": "00:06:51,760"
+			},
+			"offsets": {
+				"from": 407720,
+				"to": 411760
+			},
+			"text": " So that's where you can, you start to see the sovereignty"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,760",
+				"to": "00:06:54,400"
+			},
+			"offsets": {
+				"from": 411760,
+				"to": 414400
+			},
+			"text": " that we have over our identities with wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,400",
+				"to": "00:06:56,920"
+			},
+			"offsets": {
+				"from": 414400,
+				"to": 416920
+			},
+			"text": " that I can bring my identity to the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,920",
+				"to": "00:07:00,720"
+			},
+			"offsets": {
+				"from": 416920,
+				"to": 420720
+			},
+			"text": " But there's something that is less cool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,720",
+				"to": "00:07:02,520"
+			},
+			"offsets": {
+				"from": 420720,
+				"to": 422520
+			},
+			"text": " because it's the beginning, we're immature,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,520",
+				"to": "00:07:04,240"
+			},
+			"offsets": {
+				"from": 422520,
+				"to": 424240
+			},
+			"text": " is the fact that when I do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,240",
+				"to": "00:07:07,360"
+			},
+			"offsets": {
+				"from": 424240,
+				"to": 427360
+			},
+			"text": " I actually share everything, all my identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,360",
+				"to": "00:07:09,840"
+			},
+			"offsets": {
+				"from": 427360,
+				"to": 429840
+			},
+			"text": " I say that I have an account, my main account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,840",
+				"to": "00:07:11,840"
+			},
+			"offsets": {
+				"from": 429840,
+				"to": 431840
+			},
+			"text": " that is private with a lot of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,840",
+				"to": "00:07:15,720"
+			},
+			"offsets": {
+				"from": 431840,
+				"to": 435720
+			},
+			"text": " my ERC20s, my assets, my NFTs, so many things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,720",
+				"to": "00:07:19,440"
+			},
+			"offsets": {
+				"from": 435720,
+				"to": 439440
+			},
+			"text": " and that I want to access an app to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,440",
+				"to": "00:07:21,960"
+			},
+			"offsets": {
+				"from": 439440,
+				"to": 441960
+			},
+			"text": " let's say that are created by crypto governors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,960",
+				"to": "00:07:24,520"
+			},
+			"offsets": {
+				"from": 441960,
+				"to": 444520
+			},
+			"text": " because I just want to be part of a cool community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,520",
+				"to": "00:07:26,000"
+			},
+			"offsets": {
+				"from": 444520,
+				"to": 446000
+			},
+			"text": " and access a chat app."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,000",
+				"to": "00:07:29,440"
+			},
+			"offsets": {
+				"from": 446000,
+				"to": 449440
+			},
+			"text": " Using sign-in with Ethereum, I would have to connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,440",
+				"to": "00:07:32,240"
+			},
+			"offsets": {
+				"from": 449440,
+				"to": 452240
+			},
+			"text": " with my main wallet, and give so much data about myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,240",
+				"to": "00:07:34,240"
+			},
+			"offsets": {
+				"from": 452240,
+				"to": 454240
+			},
+			"text": " Here what we saw is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,240",
+				"to": "00:07:37,240"
+			},
+			"offsets": {
+				"from": 454240,
+				"to": 457240
+			},
+			"text": " every time that I connect to an app with sign-in with them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,240",
+				"to": "00:07:38,920"
+			},
+			"offsets": {
+				"from": 457240,
+				"to": 458920
+			},
+			"text": " I bring all my data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,920",
+				"to": "00:07:41,160"
+			},
+			"offsets": {
+				"from": 458920,
+				"to": 461160
+			},
+			"text": " But again, the self-serine accounts are amazing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,160",
+				"to": "00:07:42,320"
+			},
+			"offsets": {
+				"from": 461160,
+				"to": 462320
+			},
+			"text": " they're controlled by a private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,320",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 462320,
+				"to": 465400
+			},
+			"text": " and you can do even more, you can do zero-knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:48,400"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 468400
+			},
+			"text": " and with this account, you can basically select"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,400",
+				"to": "00:07:51,480"
+			},
+			"offsets": {
+				"from": 468400,
+				"to": 471480
+			},
+			"text": " a piece of data that you want to share, and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,480",
+				"to": "00:07:55,240"
+			},
+			"offsets": {
+				"from": 471480,
+				"to": 475240
+			},
+			"text": " So, again, it's super powerful, and that's everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,240",
+				"to": "00:07:58,760"
+			},
+			"offsets": {
+				"from": 475240,
+				"to": 478760
+			},
+			"text": " that's what budgets are about."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,760",
+				"to": "00:08:02,040"
+			},
+			"offsets": {
+				"from": 478760,
+				"to": 482040
+			},
+			"text": " It allows you to selectively reveal some part of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,040",
+				"to": "00:08:03,720"
+			},
+			"offsets": {
+				"from": 482040,
+				"to": 483720
+			},
+			"text": " sovereign data."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,720",
+				"to": "00:08:05,880"
+			},
+			"offsets": {
+				"from": 483720,
+				"to": 485880
+			},
+			"text": " So, again, what they are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,880",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 485880,
+				"to": 488000
+			},
+			"text": " they are tokenized at the station,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 492760
+			},
+			"text": " meaning that when a wallet has this SBT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:15,720"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 495720
+			},
+			"text": " this non-trassable token, it means that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,720",
+				"to": "00:08:17,400"
+			},
+			"offsets": {
+				"from": 495720,
+				"to": 497400
+			},
+			"text": " it means something about the identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,400",
+				"to": "00:08:19,760"
+			},
+			"offsets": {
+				"from": 497400,
+				"to": 499760
+			},
+			"text": " it's an attestation, like they have a crypto plan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,760",
+				"to": "00:08:21,480"
+			},
+			"offsets": {
+				"from": 499760,
+				"to": 501480
+			},
+			"text": " they've got it on the governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,480",
+				"to": "00:08:23,480"
+			},
+			"offsets": {
+				"from": 501480,
+				"to": 503480
+			},
+			"text": " they have a certain number of Twitter followers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,480",
+				"to": "00:08:24,320"
+			},
+			"offsets": {
+				"from": 503480,
+				"to": 504320
+			},
+			"text": " stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,320",
+				"to": "00:08:29,560"
+			},
+			"offsets": {
+				"from": 504320,
+				"to": 509560
+			},
+			"text": " It's ZK because it's minted by a ZK attester."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,560",
+				"to": "00:08:31,680"
+			},
+			"offsets": {
+				"from": 509560,
+				"to": 511680
+			},
+			"text": " This ZK attester is a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,680",
+				"to": "00:08:33,720"
+			},
+			"offsets": {
+				"from": 511680,
+				"to": 513720
+			},
+			"text": " that accepts zero-knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,720",
+				"to": "00:08:36,040"
+			},
+			"offsets": {
+				"from": 513720,
+				"to": 516040
+			},
+			"text": " and, okay, you brought me the ZK proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,040",
+				"to": "00:08:37,040"
+			},
+			"offsets": {
+				"from": 516040,
+				"to": 517040
+			},
+			"text": " that you have a crypto plan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,040",
+				"to": "00:08:39,880"
+			},
+			"offsets": {
+				"from": 517040,
+				"to": 519880
+			},
+			"text": " now I give you the budget you have a crypto plan."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,880",
+				"to": "00:08:44,880"
+			},
+			"offsets": {
+				"from": 519880,
+				"to": 524880
+			},
+			"text": " And it's on EVM chains, it's deploying currently on Polygon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,880",
+				"to": "00:08:46,720"
+			},
+			"offsets": {
+				"from": 524880,
+				"to": 526720
+			},
+			"text": " but we plan to go everywhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,720",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 526720,
+				"to": 529000
+			},
+			"text": " especially on May Yotchos, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:52,600"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 532600
+			},
+			"text": " Now, a small thing about badges, that's small new ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,600",
+				"to": "00:08:54,320"
+			},
+			"offsets": {
+				"from": 532600,
+				"to": 534320
+			},
+			"text": " that's not very important, but still,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,320",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 534320,
+				"to": 537000
+			},
+			"text": " these are ERC 1155."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:00,120"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 540120
+			},
+			"text": " Each badge has a token ID in this contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,120",
+				"to": "00:09:03,320"
+			},
+			"offsets": {
+				"from": 540120,
+				"to": 543320
+			},
+			"text": " and that means that each badge is a sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,320",
+				"to": "00:09:06,680"
+			},
+			"offsets": {
+				"from": 543320,
+				"to": 546680
+			},
+			"text": " ERC 20, it's not really an FT, so ERC 20,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,680",
+				"to": "00:09:10,200"
+			},
+			"offsets": {
+				"from": 546680,
+				"to": 550200
+			},
+			"text": " and for the same badge, you can have different balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,200",
+				"to": "00:09:11,920"
+			},
+			"offsets": {
+				"from": 550200,
+				"to": 551920
+			},
+			"text": " So we'll see that later, why it's interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,920",
+				"to": "00:09:16,160"
+			},
+			"offsets": {
+				"from": 551920,
+				"to": 556160
+			},
+			"text": " but you have a value of the attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,160",
+				"to": "00:09:18,240"
+			},
+			"offsets": {
+				"from": 556160,
+				"to": 558240
+			},
+			"text": " corresponding to the balance of your badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,240",
+				"to": "00:09:20,080"
+			},
+			"offsets": {
+				"from": 558240,
+				"to": 560080
+			},
+			"text": " and the higher balance, maybe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,080",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560080,
+				"to": 563000
+			},
+			"text": " it means that you have more followers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:26,080"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 566080
+			},
+			"text": " or your badge means more, we'll see that later."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,080",
+				"to": "00:09:28,920"
+			},
+			"offsets": {
+				"from": 566080,
+				"to": 568920
+			},
+			"text": " So the process of minting a ZK badge is pretty simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,920",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 568920,
+				"to": 573000
+			},
+			"text": " I have a source account, here is the editor.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:35,120"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 575120
+			},
+			"text": " I have a data on it, my sovereign data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,120",
+				"to": "00:09:36,960"
+			},
+			"offsets": {
+				"from": 575120,
+				"to": 576960
+			},
+			"text": " One piece of data is that I have a trip to a bank,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,960",
+				"to": "00:09:39,440"
+			},
+			"offsets": {
+				"from": 576960,
+				"to": 579440
+			},
+			"text": " I want to prove it, I generate a ZK proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,440",
+				"to": "00:09:41,960"
+			},
+			"offsets": {
+				"from": 579440,
+				"to": 581960
+			},
+			"text": " and then ZK proof to the attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,960",
+				"to": "00:09:43,960"
+			},
+			"offsets": {
+				"from": 581960,
+				"to": 583960
+			},
+			"text": " the attestation validates that, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,960",
+				"to": "00:09:48,800"
+			},
+			"offsets": {
+				"from": 583960,
+				"to": 588800
+			},
+			"text": " the advantage has a bank, I validate, I'm in the badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,800",
+				"to": "00:09:50,760"
+			},
+			"offsets": {
+				"from": 588800,
+				"to": 590760
+			},
+			"text": " but the ZK attestation, at no point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,760",
+				"to": "00:09:52,120"
+			},
+			"offsets": {
+				"from": 590760,
+				"to": 592120
+			},
+			"text": " we'll know about my address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,120",
+				"to": "00:09:53,800"
+			},
+			"offsets": {
+				"from": 592120,
+				"to": 593800
+			},
+			"text": " last thing it does is that these stores"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,800",
+				"to": "00:09:56,120"
+			},
+			"offsets": {
+				"from": 593800,
+				"to": 596120
+			},
+			"text": " and the refiels will see that later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,120",
+				"to": "00:09:59,520"
+			},
+			"offsets": {
+				"from": 596120,
+				"to": 599520
+			},
+			"text": " So to really understand better ZK badges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,520",
+				"to": "00:10:02,800"
+			},
+			"offsets": {
+				"from": 599520,
+				"to": 602800
+			},
+			"text": " I like to use two identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,800",
+				"to": "00:10:04,840"
+			},
+			"offsets": {
+				"from": 602800,
+				"to": 604840
+			},
+			"text": " let's say that I have my public wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,840",
+				"to": "00:10:32,760"
+			},
+			"offsets": {
+				"from": 604840,
+				"to": 632760
+			},
+			"text": " again, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,760",
+				"to": "00:10:36,040"
+			},
+			"offsets": {
+				"from": 632760,
+				"to": 636040
+			},
+			"text": " I don't have this better, that would be cool to be addition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,040",
+				"to": "00:10:38,440"
+			},
+			"offsets": {
+				"from": 636040,
+				"to": 638440
+			},
+			"text": " lot of assets, lot of NFTs, lot of things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,440",
+				"to": "00:10:42,320"
+			},
+			"offsets": {
+				"from": 638440,
+				"to": 642320
+			},
+			"text": " I don't want to show that I never want to connect them together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,320",
+				"to": "00:10:44,840"
+			},
+			"offsets": {
+				"from": 642320,
+				"to": 644840
+			},
+			"text": " but I want to use them together"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,840",
+				"to": "00:10:48,400"
+			},
+			"offsets": {
+				"from": 644840,
+				"to": 648400
+			},
+			"text": " because both have valuable data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,400",
+				"to": "00:10:50,040"
+			},
+			"offsets": {
+				"from": 648400,
+				"to": 650040
+			},
+			"text": " and I want to use them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,040",
+				"to": "00:10:52,360"
+			},
+			"offsets": {
+				"from": 650040,
+				"to": 652360
+			},
+			"text": " So that's what our ZK badges are about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,360",
+				"to": "00:10:54,840"
+			},
+			"offsets": {
+				"from": 652360,
+				"to": 654840
+			},
+			"text": " So the first thing that it allows you to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,840",
+				"to": "00:10:58,240"
+			},
+			"offsets": {
+				"from": 654840,
+				"to": 658240
+			},
+			"text": " I'm a very fine German on data.eth, I'm duxed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,240",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 658240,
+				"to": 659680
+			},
+			"text": " but now let's say that I want to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:02,720"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 662720
+			},
+			"text": " my private wallet, an application that requires you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,720",
+				"to": "00:11:04,640"
+			},
+			"offsets": {
+				"from": 662720,
+				"to": 664640
+			},
+			"text": " to prove that you are a human."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,640",
+				"to": "00:11:07,240"
+			},
+			"offsets": {
+				"from": 664640,
+				"to": 667240
+			},
+			"text": " Of course, I don't want to link them together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,240",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 667240,
+				"to": 670800
+			},
+			"text": " so what I do is that I will have the proof of humanity ZK badge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:14,480"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 674480
+			},
+			"text": " on my non-wallet, and it will just reveal what I need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,480",
+				"to": "00:11:17,480"
+			},
+			"offsets": {
+				"from": 674480,
+				"to": 677480
+			},
+			"text": " that is, I'm a human, I have somewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,480",
+				"to": "00:11:19,120"
+			},
+			"offsets": {
+				"from": 677480,
+				"to": 679120
+			},
+			"text": " a store second that is duxed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,120",
+				"to": "00:11:21,200"
+			},
+			"offsets": {
+				"from": 679120,
+				"to": 681200
+			},
+			"text": " and I was about to do this badge only once."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,200",
+				"to": "00:11:25,080"
+			},
+			"offsets": {
+				"from": 681200,
+				"to": 685080
+			},
+			"text": " Okay, so now we'll get into the technicalities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,080",
+				"to": "00:11:28,040"
+			},
+			"offsets": {
+				"from": 685080,
+				"to": 688040
+			},
+			"text": " how everything is done, the ZK attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,040",
+				"to": "00:11:30,160"
+			},
+			"offsets": {
+				"from": 688040,
+				"to": 690160
+			},
+			"text": " I told you about the one we currently use"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,160",
+				"to": "00:11:33,080"
+			},
+			"offsets": {
+				"from": 690160,
+				"to": 693080
+			},
+			"text": " is the Hydra S1 ZK attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,080",
+				"to": "00:11:36,200"
+			},
+			"offsets": {
+				"from": 693080,
+				"to": 696200
+			},
+			"text": " Hydra S1 is for the proving scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,200",
+				"to": "00:11:38,080"
+			},
+			"offsets": {
+				"from": 696200,
+				"to": 698080
+			},
+			"text": " because we need this attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,080",
+				"to": "00:11:41,160"
+			},
+			"offsets": {
+				"from": 698080,
+				"to": 701160
+			},
+			"text": " except a certain type of ZK proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,160",
+				"to": "00:11:43,640"
+			},
+			"offsets": {
+				"from": 701160,
+				"to": 703640
+			},
+			"text": " and I'll explain what those ZK proofs are."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,640",
+				"to": "00:11:46,880"
+			},
+			"offsets": {
+				"from": 703640,
+				"to": 706880
+			},
+			"text": " So behind the Hydra S1 ZK attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,880",
+				"to": "00:11:48,800"
+			},
+			"offsets": {
+				"from": 706880,
+				"to": 708800
+			},
+			"text": " there's always a group of eligible accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,800",
+				"to": "00:11:49,960"
+			},
+			"offsets": {
+				"from": 708800,
+				"to": 709960
+			},
+			"text": " that's how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,960",
+				"to": "00:11:52,080"
+			},
+			"offsets": {
+				"from": 709960,
+				"to": 712080
+			},
+			"text": " So for instance, behind the ZK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,080",
+				"to": "00:11:54,880"
+			},
+			"offsets": {
+				"from": 712080,
+				"to": 714880
+			},
+			"text": " the proof of humanity ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,880",
+				"to": "00:11:57,240"
+			},
+			"offsets": {
+				"from": 714880,
+				"to": 717240
+			},
+			"text": " there is the list of all the registry strengths"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,240",
+				"to": "00:11:59,840"
+			},
+			"offsets": {
+				"from": 717240,
+				"to": 719840
+			},
+			"text": " that are on the POH registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,840",
+				"to": "00:12:01,800"
+			},
+			"offsets": {
+				"from": 719840,
+				"to": 721800
+			},
+			"text": " So of course there is my address."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,800",
+				"to": "00:12:04,960"
+			},
+			"offsets": {
+				"from": 721800,
+				"to": 724960
+			},
+			"text": " We see this, that there is a value to each address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,960",
+				"to": "00:12:08,600"
+			},
+			"offsets": {
+				"from": 724960,
+				"to": 728600
+			},
+			"text": " to each account, this value will be the balance of the badge."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,600",
+				"to": "00:12:13,600"
+			},
+			"offsets": {
+				"from": 728600,
+				"to": 733600
+			},
+			"text": " And with this, you can use it to code some sort of tiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,600",
+				"to": "00:12:17,760"
+			},
+			"offsets": {
+				"from": 733600,
+				"to": 737760
+			},
+			"text": " So let's say, imagine that in V2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,760",
+				"to": "00:12:19,920"
+			},
+			"offsets": {
+				"from": 737760,
+				"to": 739920
+			},
+			"text": " POH have a super verified user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,920",
+				"to": "00:12:22,520"
+			},
+			"offsets": {
+				"from": 739920,
+				"to": 742520
+			},
+			"text": " like it's verified, but very well with K-waste,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,520",
+				"to": "00:12:24,880"
+			},
+			"offsets": {
+				"from": 742520,
+				"to": 744880
+			},
+			"text": " I don't know what, you could have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,880",
+				"to": "00:12:27,160"
+			},
+			"offsets": {
+				"from": 744880,
+				"to": 747160
+			},
+			"text": " maybe the result is with the value two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,160",
+				"to": "00:12:30,880"
+			},
+			"offsets": {
+				"from": 747160,
+				"to": 750880
+			},
+			"text": " and it will give the badge with the balance two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,880",
+				"to": "00:12:33,320"
+			},
+			"offsets": {
+				"from": 750880,
+				"to": 753320
+			},
+			"text": " and everyone that has two badges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,320",
+				"to": "00:12:34,640"
+			},
+			"offsets": {
+				"from": 753320,
+				"to": 754640
+			},
+			"text": " like that has the balance two of these badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,640",
+				"to": "00:12:36,400"
+			},
+			"offsets": {
+				"from": 754640,
+				"to": 756400
+			},
+			"text": " means they are super verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,400",
+				"to": "00:12:40,120"
+			},
+			"offsets": {
+				"from": 756400,
+				"to": 760120
+			},
+			"text": " So again, yes, here is just you have POH,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,120",
+				"to": "00:12:41,480"
+			},
+			"offsets": {
+				"from": 760120,
+				"to": 761480
+			},
+			"text": " you are in the group with one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,480",
+				"to": "00:12:43,080"
+			},
+			"offsets": {
+				"from": 761480,
+				"to": 763080
+			},
+			"text": " you are not, you're not in the group."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,080",
+				"to": "00:12:44,840"
+			},
+			"offsets": {
+				"from": 763080,
+				"to": 764840
+			},
+			"text": " So you have the group of eligible accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,840",
+				"to": "00:12:47,520"
+			},
+			"offsets": {
+				"from": 764840,
+				"to": 767520
+			},
+			"text": " these are the accounts that will be able to meet the badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,520",
+				"to": "00:12:50,640"
+			},
+			"offsets": {
+				"from": 767520,
+				"to": 770640
+			},
+			"text": " and we put them in a Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,640",
+				"to": "00:12:52,080"
+			},
+			"offsets": {
+				"from": 770640,
+				"to": 772080
+			},
+			"text": " it's a positive Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,080",
+				"to": "00:12:54,080"
+			},
+			"offsets": {
+				"from": 772080,
+				"to": 774080
+			},
+			"text": " so that is not friendly, we see that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,080",
+				"to": "00:12:57,960"
+			},
+			"offsets": {
+				"from": 774080,
+				"to": 777960
+			},
+			"text": " but in the leaves, you have all the eligible accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,960",
+				"to": "00:13:00,960"
+			},
+			"offsets": {
+				"from": 777960,
+				"to": 780960
+			},
+			"text": " we have the roots, we publish the root and chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,960",
+				"to": "00:13:03,720"
+			},
+			"offsets": {
+				"from": 780960,
+				"to": 783720
+			},
+			"text": " and we see what we do with everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,720",
+				"to": "00:13:08,720"
+			},
+			"offsets": {
+				"from": 783720,
+				"to": 788720
+			},
+			"text": " So the way the badge is minted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,720",
+				"to": "00:13:13,080"
+			},
+			"offsets": {
+				"from": 788720,
+				"to": 793080
+			},
+			"text": " is first you go to your front end, so I'm once is more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,080",
+				"to": "00:13:15,960"
+			},
+			"offsets": {
+				"from": 793080,
+				"to": 795960
+			},
+			"text": " I'm connected with the address of the source accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,960",
+				"to": "00:13:18,280"
+			},
+			"offsets": {
+				"from": 795960,
+				"to": 798280
+			},
+			"text": " I first I upload the Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,280",
+				"to": "00:13:19,320"
+			},
+			"offsets": {
+				"from": 798280,
+				"to": 799320
+			},
+			"text": " now I have in my front end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,320",
+				"to": "00:13:21,280"
+			},
+			"offsets": {
+				"from": 799320,
+				"to": 801280
+			},
+			"text": " everything happens on the front end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,280",
+				"to": "00:13:23,480"
+			},
+			"offsets": {
+				"from": 801280,
+				"to": 803480
+			},
+			"text": " that's what guarantees the privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,480",
+				"to": "00:13:26,680"
+			},
+			"offsets": {
+				"from": 803480,
+				"to": 806680
+			},
+			"text": " So in my front end, I have the Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,680",
+				"to": "00:13:28,560"
+			},
+			"offsets": {
+				"from": 806680,
+				"to": 808560
+			},
+			"text": " I have my accounts, and what I will do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,560",
+				"to": "00:13:30,680"
+			},
+			"offsets": {
+				"from": 808560,
+				"to": 810680
+			},
+			"text": " I will do three things, first I will prove that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,680",
+				"to": "00:13:33,440"
+			},
+			"offsets": {
+				"from": 810680,
+				"to": 813440
+			},
+			"text": " I'm the owner of the area.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,440",
+				"to": "00:13:36,560"
+			},
+			"offsets": {
+				"from": 813440,
+				"to": 816560
+			},
+			"text": " and these three things will be done in the ZK circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,560",
+				"to": "00:13:39,400"
+			},
+			"offsets": {
+				"from": 816560,
+				"to": 819400
+			},
+			"text": " so first thing, I'm the owner of the area.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,400",
+				"to": "00:13:42,200"
+			},
+			"offsets": {
+				"from": 819400,
+				"to": 822200
+			},
+			"text": " second, the area.eth is in the Merkle tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,200",
+				"to": "00:13:45,080"
+			},
+			"offsets": {
+				"from": 822200,
+				"to": 825080
+			},
+			"text": " the arm of the proof, and the third thing is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,080",
+				"to": "00:13:46,920"
+			},
+			"offsets": {
+				"from": 825080,
+				"to": 826920
+			},
+			"text": " I actually own the destination accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,920",
+				"to": "00:13:49,560"
+			},
+			"offsets": {
+				"from": 826920,
+				"to": 829560
+			},
+			"text": " let's make sure that I cannot give badges to others,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,560",
+				"to": "00:13:51,880"
+			},
+			"offsets": {
+				"from": 829560,
+				"to": 831880
+			},
+			"text": " or that I cannot spam another account."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,880",
+				"to": "00:13:55,640"
+			},
+			"offsets": {
+				"from": 831880,
+				"to": 835640
+			},
+			"text": " So these three things, I'm the owner.eth, source accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,640",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 835640,
+				"to": 838000
+			},
+			"text": " destination accounts, I'm part of the tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:01,320"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 841320
+			},
+			"text": " I do that in the ZK snack, I get the ZK proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,320",
+				"to": "00:14:05,280"
+			},
+			"offsets": {
+				"from": 841320,
+				"to": 845280
+			},
+			"text": " the ZK proof reveals nothing, but there is an address"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,280",
+				"to": "00:14:07,840"
+			},
+			"offsets": {
+				"from": 845280,
+				"to": 847840
+			},
+			"text": " that like these users has proof to have an address"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,840",
+				"to": "00:14:10,760"
+			},
+			"offsets": {
+				"from": 847840,
+				"to": 850760
+			},
+			"text": " that is part of the tree, I give that to the ZK ancestor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,760",
+				"to": "00:14:13,120"
+			},
+			"offsets": {
+				"from": 850760,
+				"to": 853120
+			},
+			"text": " and the ZK ancestor does two things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,120",
+				"to": "00:14:18,120"
+			},
+			"offsets": {
+				"from": 853120,
+				"to": 858120
+			},
+			"text": " first it verifies the proof, okay, it's valid, ZK magic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,120",
+				"to": "00:14:20,600"
+			},
+			"offsets": {
+				"from": 858120,
+				"to": 860600
+			},
+			"text": " and then it registers a newifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,600",
+				"to": "00:14:22,360"
+			},
+			"offsets": {
+				"from": 860600,
+				"to": 862360
+			},
+			"text": " I think that there were some presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,360",
+				"to": "00:14:25,360"
+			},
+			"offsets": {
+				"from": 862360,
+				"to": 865360
+			},
+			"text": " at DevCon about this, but it's a way to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,360",
+				"to": "00:14:28,200"
+			},
+			"offsets": {
+				"from": 865360,
+				"to": 868200
+			},
+			"text": " that from one source I can do only one badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,200",
+				"to": "00:14:29,920"
+			},
+			"offsets": {
+				"from": 868200,
+				"to": 869920
+			},
+			"text": " and for this I register a newifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,920",
+				"to": "00:14:32,640"
+			},
+			"offsets": {
+				"from": 869920,
+				"to": 872640
+			},
+			"text": " it's the anonymized version of my address basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,640",
+				"to": "00:14:34,520"
+			},
+			"offsets": {
+				"from": 872640,
+				"to": 874520
+			},
+			"text": " that's great, and now I have my badge"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,520",
+				"to": "00:14:36,560"
+			},
+			"offsets": {
+				"from": 874520,
+				"to": 876560
+			},
+			"text": " on my destination account, and there's no leak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,560",
+				"to": "00:14:38,680"
+			},
+			"offsets": {
+				"from": 876560,
+				"to": 878680
+			},
+			"text": " nobody can know from this destination account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,680",
+				"to": "00:14:40,840"
+			},
+			"offsets": {
+				"from": 878680,
+				"to": 880840
+			},
+			"text": " what account was used to generate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,840",
+				"to": "00:14:44,560"
+			},
+			"offsets": {
+				"from": 880840,
+				"to": 884560
+			},
+			"text": " So again, we saw that this ZK ancestor"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,560",
+				"to": "00:14:48,880"
+			},
+			"offsets": {
+				"from": 884560,
+				"to": 888880
+			},
+			"text": " allows you to prove from a group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,880",
+				"to": "00:14:51,200"
+			},
+			"offsets": {
+				"from": 888880,
+				"to": 891200
+			},
+			"text": " to create from a group a ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,200",
+				"to": "00:14:53,080"
+			},
+			"offsets": {
+				"from": 891200,
+				"to": 893080
+			},
+			"text": " and actually this ZK ancestor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,080",
+				"to": "00:14:57,280"
+			},
+			"offsets": {
+				"from": 893080,
+				"to": 897280
+			},
+			"text": " anyone here in the room can create its own ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,280",
+				"to": "00:14:58,240"
+			},
+			"offsets": {
+				"from": 897280,
+				"to": 898240
+			},
+			"text": " that's what we built this mode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,240",
+				"to": "00:15:00,320"
+			},
+			"offsets": {
+				"from": 898240,
+				"to": 900320
+			},
+			"text": " we don't build this mode to do some partnerships"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,320",
+				"to": "00:15:02,040"
+			},
+			"offsets": {
+				"from": 900320,
+				"to": 902040
+			},
+			"text": " or something like that, it's a primitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,040",
+				"to": "00:15:03,800"
+			},
+			"offsets": {
+				"from": 902040,
+				"to": 903800
+			},
+			"text": " everything is open source of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,800",
+				"to": "00:15:07,960"
+			},
+			"offsets": {
+				"from": 903800,
+				"to": 907960
+			},
+			"text": " and very easily in 15 minutes if you are developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,960",
+				"to": "00:15:11,200"
+			},
+			"offsets": {
+				"from": 907960,
+				"to": 911200
+			},
+			"text": " we have a tutorial that helps you with that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,200",
+				"to": "00:15:14,120"
+			},
+			"offsets": {
+				"from": 911200,
+				"to": 914120
+			},
+			"text": " you can fetch from yourself graph, from BigQuery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,120",
+				"to": "00:15:16,440"
+			},
+			"offsets": {
+				"from": 914120,
+				"to": 916440
+			},
+			"text": " from anything, you can fetch your group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,440",
+				"to": "00:15:17,840"
+			},
+			"offsets": {
+				"from": 916440,
+				"to": 917840
+			},
+			"text": " choose the metadata for your badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,840",
+				"to": "00:15:19,280"
+			},
+			"offsets": {
+				"from": 917840,
+				"to": 919280
+			},
+			"text": " choose the visual and that's done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,280",
+				"to": "00:15:22,920"
+			},
+			"offsets": {
+				"from": 919280,
+				"to": 922920
+			},
+			"text": " so again, anybody can create this ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,920",
+				"to": "00:15:24,760"
+			},
+			"offsets": {
+				"from": 922920,
+				"to": 924760
+			},
+			"text": " can create the group a ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,760",
+				"to": "00:15:27,320"
+			},
+			"offsets": {
+				"from": 924760,
+				"to": 927320
+			},
+			"text": " and we just released today the factory of Sysmo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,320",
+				"to": "00:15:30,360"
+			},
+			"offsets": {
+				"from": 927320,
+				"to": 930360
+			},
+			"text": " it allows for even people that are neither color"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,360",
+				"to": "00:15:33,960"
+			},
+			"offsets": {
+				"from": 930360,
+				"to": 933960
+			},
+			"text": " or designer to build a ZK badge, it works that way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,960",
+				"to": "00:15:36,880"
+			},
+			"offsets": {
+				"from": 933960,
+				"to": 936880
+			},
+			"text": " you add metadata, we have a SVG detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,880",
+				"to": "00:15:39,040"
+			},
+			"offsets": {
+				"from": 936880,
+				"to": 939040
+			},
+			"text": " to create your ZK badge, and then you have just"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,040",
+				"to": "00:15:40,600"
+			},
+			"offsets": {
+				"from": 939040,
+				"to": 940600
+			},
+			"text": " to copy past the list of address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,600",
+				"to": "00:15:42,560"
+			},
+			"offsets": {
+				"from": 940600,
+				"to": 942560
+			},
+			"text": " you push the button and done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,560",
+				"to": "00:15:43,800"
+			},
+			"offsets": {
+				"from": 942560,
+				"to": 943800
+			},
+			"text": " you have your ZK badge available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,800",
+				"to": "00:15:45,720"
+			},
+			"offsets": {
+				"from": 943800,
+				"to": 945720
+			},
+			"text": " so that's having the super great,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,720",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 945720,
+				"to": 948000
+			},
+			"text": " so I invite you to try that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:52,960"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 952960
+			},
+			"text": " and before that, I'd like, before getting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,960",
+				"to": "00:15:55,840"
+			},
+			"offsets": {
+				"from": 952960,
+				"to": 955840
+			},
+			"text": " now I want to speak about the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,840",
+				"to": "00:15:59,720"
+			},
+			"offsets": {
+				"from": 955840,
+				"to": 959720
+			},
+			"text": " so we saw that Sysmo is open, anybody can add its group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,720",
+				"to": "00:16:01,840"
+			},
+			"offsets": {
+				"from": 959720,
+				"to": 961840
+			},
+			"text": " it will have your, their own ZK badge"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,840",
+				"to": "00:16:05,080"
+			},
+			"offsets": {
+				"from": 961840,
+				"to": 965080
+			},
+			"text": " for their user community, but even better actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,080",
+				"to": "00:16:06,560"
+			},
+			"offsets": {
+				"from": 965080,
+				"to": 966560
+			},
+			"text": " so that's what I told you about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,560",
+				"to": "00:16:09,040"
+			},
+			"offsets": {
+				"from": 966560,
+				"to": 969040
+			},
+			"text": " anybody can add its group, you get the badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,040",
+				"to": "00:16:13,080"
+			},
+			"offsets": {
+				"from": 969040,
+				"to": 973080
+			},
+			"text": " now what is even greater for more advanced developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,080",
+				"to": "00:16:15,640"
+			},
+			"offsets": {
+				"from": 973080,
+				"to": 975640
+			},
+			"text": " is to create your own attester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,640",
+				"to": "00:16:18,240"
+			},
+			"offsets": {
+				"from": 975640,
+				"to": 978240
+			},
+			"text": " instead of using the rules of Hydrias One,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,240",
+				"to": "00:16:21,880"
+			},
+			"offsets": {
+				"from": 978240,
+				"to": 981880
+			},
+			"text": " I told you, verify membership, verify ownership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,880",
+				"to": "00:16:23,760"
+			},
+			"offsets": {
+				"from": 981880,
+				"to": 983760
+			},
+			"text": " you can create your own new rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,760",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 983760,
+				"to": 988000
+			},
+			"text": " to verify the user request, so for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:30,600"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 990600
+			},
+			"text": " you can use the same R4, it's another ZK scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,600",
+				"to": "00:16:32,920"
+			},
+			"offsets": {
+				"from": 990600,
+				"to": 992920
+			},
+			"text": " that will be a ZK attester, but you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,920",
+				"to": "00:16:36,400"
+			},
+			"offsets": {
+				"from": 992920,
+				"to": 996400
+			},
+			"text": " use a public attester, like the proof that you would require"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,400",
+				"to": "00:16:38,800"
+			},
+			"offsets": {
+				"from": 996400,
+				"to": 998800
+			},
+			"text": " from user is not a ZK proof, but a local proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,800",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 998800,
+				"to": 1000640
+			},
+			"text": " and a signature, it's a recover,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:43,080"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1003080
+			},
+			"text": " and you could even create a centralized attester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,080",
+				"to": "00:16:44,800"
+			},
+			"offsets": {
+				"from": 1003080,
+				"to": 1004800
+			},
+			"text": " meaning that the proof that you have to send"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,800",
+				"to": "00:16:47,560"
+			},
+			"offsets": {
+				"from": 1004800,
+				"to": 1007560
+			},
+			"text": " to get your badge is a signature of the third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,560",
+				"to": "00:16:49,520"
+			},
+			"offsets": {
+				"from": 1007560,
+				"to": 1009520
+			},
+			"text": " so again, that's what we're trying to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,520",
+				"to": "00:16:51,440"
+			},
+			"offsets": {
+				"from": 1009520,
+				"to": 1011440
+			},
+			"text": " is really primitive, we're not sure to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,440",
+				"to": "00:16:55,240"
+			},
+			"offsets": {
+				"from": 1011440,
+				"to": 1015240
+			},
+			"text": " yeah, we want you to have fun with this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,240",
+				"to": "00:16:58,600"
+			},
+			"offsets": {
+				"from": 1015240,
+				"to": 1018600
+			},
+			"text": " so that you can really control the data of your users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,600",
+				"to": "00:17:03,240"
+			},
+			"offsets": {
+				"from": 1018600,
+				"to": 1023240
+			},
+			"text": " and that you can build weird stuff, like this idea in 2020,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,240",
+				"to": "00:17:04,880"
+			},
+			"offsets": {
+				"from": 1023240,
+				"to": 1024880
+			},
+			"text": " it did weird stuff with composability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,880",
+				"to": "00:17:06,720"
+			},
+			"offsets": {
+				"from": 1024880,
+				"to": 1026720
+			},
+			"text": " between all the financial applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,720",
+				"to": "00:17:08,360"
+			},
+			"offsets": {
+				"from": 1026720,
+				"to": 1028360
+			},
+			"text": " here what we want to do is weird stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,360",
+				"to": "00:17:10,320"
+			},
+			"offsets": {
+				"from": 1028360,
+				"to": 1030320
+			},
+			"text": " about the social capital that you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,320",
+				"to": "00:17:12,920"
+			},
+			"offsets": {
+				"from": 1030320,
+				"to": 1032920
+			},
+			"text": " so that's it, again, all is open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,920",
+				"to": "00:17:14,440"
+			},
+			"offsets": {
+				"from": 1032920,
+				"to": 1034440
+			},
+			"text": " invite you to read the docs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,440",
+				"to": "00:17:18,920"
+			},
+			"offsets": {
+				"from": 1034440,
+				"to": 1038920
+			},
+			"text": " and I'll get up, so now we get back a bit to recap a bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,920",
+				"to": "00:17:21,520"
+			},
+			"offsets": {
+				"from": 1038920,
+				"to": 1041520
+			},
+			"text": " so what it allows you to do, I told you that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,520",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1041520,
+				"to": 1044000
+			},
+			"text": " allows you to import reputation from a public"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:26,640"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1046640
+			},
+			"text": " to an unknown wallet, but you can do the reverse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,640",
+				"to": "00:17:29,760"
+			},
+			"offsets": {
+				"from": 1046640,
+				"to": 1049760
+			},
+			"text": " again, if I was a DJN on my unknown wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,760",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1049760,
+				"to": 1052000
+			},
+			"text": " I could import this reputation to my public wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:34,280"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1054280
+			},
+			"text": " have a e-therm power user ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,280",
+				"to": "00:17:39,280"
+			},
+			"offsets": {
+				"from": 1054280,
+				"to": 1059280
+			},
+			"text": " it's a ZK badge, only top 0.1% e-therm users can meet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,280",
+				"to": "00:17:42,480"
+			},
+			"offsets": {
+				"from": 1059280,
+				"to": 1062480
+			},
+			"text": " and so that way, I proved as the agent that it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,480",
+				"to": "00:17:46,280"
+			},
+			"offsets": {
+				"from": 1062480,
+				"to": 1066280
+			},
+			"text": " that I'm a DJN, but I never revealed my wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,280",
+				"to": "00:17:48,640"
+			},
+			"offsets": {
+				"from": 1066280,
+				"to": 1068640
+			},
+			"text": " so that's, yeah, one big thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,640",
+				"to": "00:17:50,880"
+			},
+			"offsets": {
+				"from": 1068640,
+				"to": 1070880
+			},
+			"text": " the other thing, if you think about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,880",
+				"to": "00:17:54,880"
+			},
+			"offsets": {
+				"from": 1070880,
+				"to": 1074880
+			},
+			"text": " what happens if I meet the badge on a one-time address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,880",
+				"to": "00:17:57,800"
+			},
+			"offsets": {
+				"from": 1074880,
+				"to": 1077800
+			},
+			"text": " freshly address, what I've done by doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,800",
+				"to": "00:18:00,960"
+			},
+			"offsets": {
+				"from": 1077800,
+				"to": 1080960
+			},
+			"text": " is that I'm able to reveal just exactly what I need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,960",
+				"to": "00:18:02,560"
+			},
+			"offsets": {
+				"from": 1080960,
+				"to": 1082560
+			},
+			"text": " it's not about building an identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,560",
+				"to": "00:18:07,200"
+			},
+			"offsets": {
+				"from": 1082560,
+				"to": 1087200
+			},
+			"text": " it's to, I need to prove to someone that I meet some criteria,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,200",
+				"to": "00:18:09,280"
+			},
+			"offsets": {
+				"from": 1087200,
+				"to": 1089280
+			},
+			"text": " I create a new address, I meet the badge there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,280",
+				"to": "00:18:11,160"
+			},
+			"offsets": {
+				"from": 1089280,
+				"to": 1091160
+			},
+			"text": " and I'm able to prove exactly what I need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,160",
+				"to": "00:18:14,040"
+			},
+			"offsets": {
+				"from": 1091160,
+				"to": 1094040
+			},
+			"text": " so here on the Android.eth, again, I have a lot of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,040",
+				"to": "00:18:16,080"
+			},
+			"offsets": {
+				"from": 1094040,
+				"to": 1096080
+			},
+			"text": " one of the data that is mine, so Ren,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,080",
+				"to": "00:18:19,400"
+			},
+			"offsets": {
+				"from": 1096080,
+				"to": 1099400
+			},
+			"text": " is that I have the HTC Pro-App,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,400",
+				"to": "00:18:22,640"
+			},
+			"offsets": {
+				"from": 1099400,
+				"to": 1102640
+			},
+			"text": " and thanks to this, I can get, I'm eligible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,640",
+				"to": "00:18:24,640"
+			},
+			"offsets": {
+				"from": 1102640,
+				"to": 1104640
+			},
+			"text": " to the proof of that identity K badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,640",
+				"to": "00:18:26,640"
+			},
+			"offsets": {
+				"from": 1104640,
+				"to": 1106640
+			},
+			"text": " behind this DK badge, the group of eligible users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,640",
+				"to": "00:18:29,720"
+			},
+			"offsets": {
+				"from": 1106640,
+				"to": 1109720
+			},
+			"text": " is people that went to either a DevCon or HTC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,720",
+				"to": "00:18:32,760"
+			},
+			"offsets": {
+				"from": 1109720,
+				"to": 1112760
+			},
+			"text": " or Itberlin, very legit physical events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,760",
+				"to": "00:18:35,040"
+			},
+			"offsets": {
+				"from": 1112760,
+				"to": 1115040
+			},
+			"text": " and so I'm able to mean that to a freshly address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,040",
+				"to": "00:18:36,680"
+			},
+			"offsets": {
+				"from": 1115040,
+				"to": 1116680
+			},
+			"text": " and then I can use this address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,680",
+				"to": "00:18:38,920"
+			},
+			"offsets": {
+				"from": 1116680,
+				"to": 1118920
+			},
+			"text": " to, for instance, get private merchandising,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,920",
+				"to": "00:18:42,080"
+			},
+			"offsets": {
+				"from": 1118920,
+				"to": 1122080
+			},
+			"text": " or access our jobs to get into events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,080",
+				"to": "00:18:44,880"
+			},
+			"offsets": {
+				"from": 1122080,
+				"to": 1124880
+			},
+			"text": " and with this, what I was able to do is prove that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,880",
+				"to": "00:18:47,080"
+			},
+			"offsets": {
+				"from": 1124880,
+				"to": 1127080
+			},
+			"text": " I went into one of the top conferences,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,080",
+				"to": "00:18:50,280"
+			},
+			"offsets": {
+				"from": 1127080,
+				"to": 1130280
+			},
+			"text": " that I'm a human, and not that I went to a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,280",
+				"to": "00:18:53,360"
+			},
+			"offsets": {
+				"from": 1130280,
+				"to": 1133360
+			},
+			"text": " no time date, you're not, that's leveraging your data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,360",
+				"to": "00:18:56,520"
+			},
+			"offsets": {
+				"from": 1133360,
+				"to": 1136520
+			},
+			"text": " that's what we call it, so it's a pretty exciting evidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,520",
+				"to": "00:18:59,160"
+			},
+			"offsets": {
+				"from": 1136520,
+				"to": 1139160
+			},
+			"text": " The last thing that we intend to do that is not live,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,160",
+				"to": "00:19:01,680"
+			},
+			"offsets": {
+				"from": 1139160,
+				"to": 1141680
+			},
+			"text": " is the way to aggregate your reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,680",
+				"to": "00:19:04,040"
+			},
+			"offsets": {
+				"from": 1141680,
+				"to": 1144040
+			},
+			"text": " In Cismo, our governance is not token based,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,040",
+				"to": "00:19:07,640"
+			},
+			"offsets": {
+				"from": 1144040,
+				"to": 1147640
+			},
+			"text": " or it is token based, but not financial token based,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,640",
+				"to": "00:19:09,920"
+			},
+			"offsets": {
+				"from": 1147640,
+				"to": 1149920
+			},
+			"text": " it's based on contributions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,920",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1149920,
+				"to": 1152840
+			},
+			"text": " meaning that the more contributions you did for Cismo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:15,120"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1155120
+			},
+			"text": " the higher voting power you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,120",
+				"to": "00:19:17,560"
+			},
+			"offsets": {
+				"from": 1155120,
+				"to": 1157560
+			},
+			"text": " Again, it reduces the thing that I told you about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,560",
+				"to": "00:19:19,240"
+			},
+			"offsets": {
+				"from": 1157560,
+				"to": 1159240
+			},
+			"text": " the balance of the token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,240",
+				"to": "00:19:21,440"
+			},
+			"offsets": {
+				"from": 1159240,
+				"to": 1161440
+			},
+			"text": " basically the more contributions you did,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,440",
+				"to": "00:19:25,120"
+			},
+			"offsets": {
+				"from": 1161440,
+				"to": 1165120
+			},
+			"text": " the higher you will be in the tier of contributor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,120",
+				"to": "00:19:27,120"
+			},
+			"offsets": {
+				"from": 1165120,
+				"to": 1167120
+			},
+			"text": " and the higher voting power."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,120",
+				"to": "00:19:31,560"
+			},
+			"offsets": {
+				"from": 1167120,
+				"to": 1171560
+			},
+			"text": " So here, with ZK badges, you will be able to aggregate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,560",
+				"to": "00:19:34,560"
+			},
+			"offsets": {
+				"from": 1171560,
+				"to": 1174560
+			},
+			"text": " your reputation from your private wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,560",
+				"to": "00:19:38,000"
+			},
+			"offsets": {
+				"from": 1174560,
+				"to": 1178000
+			},
+			"text": " that maybe you held by using a lot Cismo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,000",
+				"to": "00:19:39,200"
+			},
+			"offsets": {
+				"from": 1178000,
+				"to": 1179200
+			},
+			"text": " and from your public wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,200",
+				"to": "00:19:42,080"
+			},
+			"offsets": {
+				"from": 1179200,
+				"to": 1182080
+			},
+			"text": " that maybe you held by doing some threats,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,080",
+				"to": "00:19:43,880"
+			},
+			"offsets": {
+				"from": 1182080,
+				"to": 1183880
+			},
+			"text": " some communication about Cismo."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,880",
+				"to": "00:19:47,280"
+			},
+			"offsets": {
+				"from": 1183880,
+				"to": 1187280
+			},
+			"text": " So, yeah, again, I think for governance power,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,280",
+				"to": "00:19:49,400"
+			},
+			"offsets": {
+				"from": 1187280,
+				"to": 1189400
+			},
+			"text": " this is very, very interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,400",
+				"to": "00:19:52,120"
+			},
+			"offsets": {
+				"from": 1189400,
+				"to": 1192120
+			},
+			"text": " to have reputation based governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,120",
+				"to": "00:19:53,600"
+			},
+			"offsets": {
+				"from": 1192120,
+				"to": 1193600
+			},
+			"text": " instead of just,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,600",
+				"to": "00:19:57,200"
+			},
+			"offsets": {
+				"from": 1193600,
+				"to": 1197200
+			},
+			"text": " like, who has been, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,200",
+				"to": "00:19:59,640"
+			},
+			"offsets": {
+				"from": 1197200,
+				"to": 1199640
+			},
+			"text": " instead of ERC-20's or need that is financial capital,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,640",
+				"to": "00:20:02,240"
+			},
+			"offsets": {
+				"from": 1199640,
+				"to": 1202240
+			},
+			"text": " or communities that are ruled by your NFT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,240",
+				"to": "00:20:04,240"
+			},
+			"offsets": {
+				"from": 1202240,
+				"to": 1204240
+			},
+			"text": " that you just have to first come first serve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,240",
+				"to": "00:20:06,800"
+			},
+			"offsets": {
+				"from": 1204240,
+				"to": 1206800
+			},
+			"text": " and it's like a air-drug farmer's, this kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,800",
+				"to": "00:20:10,280"
+			},
+			"offsets": {
+				"from": 1206800,
+				"to": 1210280
+			},
+			"text": " Here, this tokens means a lot, and it's private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,280",
+				"to": "00:20:12,440"
+			},
+			"offsets": {
+				"from": 1210280,
+				"to": 1212440
+			},
+			"text": " so you can really speak your mind,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,440",
+				"to": "00:20:15,560"
+			},
+			"offsets": {
+				"from": 1212440,
+				"to": 1215560
+			},
+			"text": " there's no risk at knowing that you are a team member,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,560",
+				"to": "00:20:17,600"
+			},
+			"offsets": {
+				"from": 1215560,
+				"to": 1217600
+			},
+			"text": " or I don't know, so we are super excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,600",
+				"to": "00:20:18,880"
+			},
+			"offsets": {
+				"from": 1217600,
+				"to": 1218880
+			},
+			"text": " about this new primitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,880",
+				"to": "00:20:23,440"
+			},
+			"offsets": {
+				"from": 1218880,
+				"to": 1223440
+			},
+			"text": " So, now, I'd like to speak about"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,440",
+				"to": "00:20:25,040"
+			},
+			"offsets": {
+				"from": 1223440,
+				"to": 1225040
+			},
+			"text": " the long-term vision of Cismo."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,040",
+				"to": "00:20:29,080"
+			},
+			"offsets": {
+				"from": 1225040,
+				"to": 1229080
+			},
+			"text": " Again, I'm able to aggregate view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,080",
+				"to": "00:20:32,040"
+			},
+			"offsets": {
+				"from": 1229080,
+				"to": 1232040
+			},
+			"text": " I am able to aggregate data, the way it works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,040",
+				"to": "00:20:35,120"
+			},
+			"offsets": {
+				"from": 1232040,
+				"to": 1235120
+			},
+			"text": " basically, anytime I want to use an account"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,120",
+				"to": "00:20:36,640"
+			},
+			"offsets": {
+				"from": 1235120,
+				"to": 1236640
+			},
+			"text": " to prove some stuff about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,640",
+				"to": "00:20:38,520"
+			},
+			"offsets": {
+				"from": 1236640,
+				"to": 1238520
+			},
+			"text": " I will sign a message with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,520",
+				"to": "00:20:41,400"
+			},
+			"offsets": {
+				"from": 1238520,
+				"to": 1241400
+			},
+			"text": " and it gives this account the ability to be in the ZK one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,400",
+				"to": "00:20:44,400"
+			},
+			"offsets": {
+				"from": 1241400,
+				"to": 1244400
+			},
+			"text": " like, from now on, I can prove everything about my data."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,400",
+				"to": "00:20:48,080"
+			},
+			"offsets": {
+				"from": 1244400,
+				"to": 1248080
+			},
+			"text": " So, the way it works, that I will import into the Cismo world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,080",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1248080,
+				"to": 1250360
+			},
+			"text": " that your encrypted data world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:52,360"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1252360
+			},
+			"text": " that is only accessible to yours,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,360",
+				"to": "00:20:54,960"
+			},
+			"offsets": {
+				"from": 1252360,
+				"to": 1254960
+			},
+			"text": " I will store the signatures that I'll show you about."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,960",
+				"to": "00:20:57,520"
+			},
+			"offsets": {
+				"from": 1254960,
+				"to": 1257520
+			},
+			"text": " So, I signed with the new data-tis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,520",
+				"to": "00:20:59,080"
+			},
+			"offsets": {
+				"from": 1257520,
+				"to": 1259080
+			},
+			"text": " now I'm in the world, with the unknown,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,080",
+				"to": "00:21:01,120"
+			},
+			"offsets": {
+				"from": 1259080,
+				"to": 1261120
+			},
+			"text": " I'm in the world, and now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,120",
+				"to": "00:21:03,960"
+			},
+			"offsets": {
+				"from": 1261120,
+				"to": 1263960
+			},
+			"text": " as a user, I'm the only one that has access to all my data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,960",
+				"to": "00:21:06,760"
+			},
+			"offsets": {
+				"from": 1263960,
+				"to": 1266760
+			},
+			"text": " and now it doesn't matter whether it comes from an address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,760",
+				"to": "00:21:08,960"
+			},
+			"offsets": {
+				"from": 1266760,
+				"to": 1268960
+			},
+			"text": " to address, or I don't know what,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,960",
+				"to": "00:21:11,920"
+			},
+			"offsets": {
+				"from": 1268960,
+				"to": 1271920
+			},
+			"text": " I'm the user, I have access to everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,920",
+				"to": "00:21:14,920"
+			},
+			"offsets": {
+				"from": 1271920,
+				"to": 1274920
+			},
+			"text": " and I can use it as I want."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,920",
+				"to": "00:21:19,400"
+			},
+			"offsets": {
+				"from": 1274920,
+				"to": 1279400
+			},
+			"text": " So, for instance, let's say that I want to access a Nardrop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,400",
+				"to": "00:21:22,080"
+			},
+			"offsets": {
+				"from": 1279400,
+				"to": 1282080
+			},
+			"text": " and they require me to prove that I'm a human,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,080",
+				"to": "00:21:24,040"
+			},
+			"offsets": {
+				"from": 1282080,
+				"to": 1284040
+			},
+			"text": " that it's a CVID resistant hard-drop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,040",
+				"to": "00:21:26,120"
+			},
+			"offsets": {
+				"from": 1284040,
+				"to": 1286120
+			},
+			"text": " that would be great to have that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,120",
+				"to": "00:21:30,400"
+			},
+			"offsets": {
+				"from": 1286120,
+				"to": 1290400
+			},
+			"text": " so they require me to prove, and that I'm a human,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,400",
+				"to": "00:21:33,280"
+			},
+			"offsets": {
+				"from": 1290400,
+				"to": 1293280
+			},
+			"text": " and that I don't know that I traded on their platforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,280",
+				"to": "00:21:35,600"
+			},
+			"offsets": {
+				"from": 1293280,
+				"to": 1295600
+			},
+			"text": " or that I'm a big user."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,600",
+				"to": "00:21:39,040"
+			},
+			"offsets": {
+				"from": 1295600,
+				"to": 1299040
+			},
+			"text": " So, that's what allows me the world to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,040",
+				"to": "00:21:41,200"
+			},
+			"offsets": {
+				"from": 1299040,
+				"to": 1301200
+			},
+			"text": " I can generate the ZK proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,200",
+				"to": "00:21:43,520"
+			},
+			"offsets": {
+				"from": 1301200,
+				"to": 1303520
+			},
+			"text": " let's say on the one-time address, on the go,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,520",
+				"to": "00:21:48,440"
+			},
+			"offsets": {
+				"from": 1303520,
+				"to": 1308440
+			},
+			"text": " and I can connect with sending a decision to this service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,440",
+				"to": "00:21:49,680"
+			},
+			"offsets": {
+				"from": 1308440,
+				"to": 1309680
+			},
+			"text": " and reveal just what I want."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,680",
+				"to": "00:21:51,920"
+			},
+			"offsets": {
+				"from": 1309680,
+				"to": 1311920
+			},
+			"text": " The other thing that is interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,920",
+				"to": "00:21:54,280"
+			},
+			"offsets": {
+				"from": 1311920,
+				"to": 1314280
+			},
+			"text": " is that you can, in the long run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,280",
+				"to": "00:21:55,920"
+			},
+			"offsets": {
+				"from": 1314280,
+				"to": 1315920
+			},
+			"text": " we are using badges and SBTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,920",
+				"to": "00:21:58,960"
+			},
+			"offsets": {
+				"from": 1315920,
+				"to": 1318960
+			},
+			"text": " because we think that they are tremendously great"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,960",
+				"to": "00:22:00,520"
+			},
+			"offsets": {
+				"from": 1318960,
+				"to": 1320520
+			},
+			"text": " at standardizing things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,520",
+				"to": "00:22:02,960"
+			},
+			"offsets": {
+				"from": 1320520,
+				"to": 1322960
+			},
+			"text": " because everybody knows how to fetch a token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,960",
+				"to": "00:22:04,360"
+			},
+			"offsets": {
+				"from": 1322960,
+				"to": 1324360
+			},
+			"text": " how to reach a token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,360",
+				"to": "00:22:07,280"
+			},
+			"offsets": {
+				"from": 1324360,
+				"to": 1327280
+			},
+			"text": " and that's why I think that they have an advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,280",
+				"to": "00:22:09,560"
+			},
+			"offsets": {
+				"from": 1327280,
+				"to": 1329560
+			},
+			"text": " of our VCS, actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,560",
+				"to": "00:22:11,840"
+			},
+			"offsets": {
+				"from": 1329560,
+				"to": 1331840
+			},
+			"text": " because the standardization is better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,840",
+				"to": "00:22:13,800"
+			},
+			"offsets": {
+				"from": 1331840,
+				"to": 1333800
+			},
+			"text": " and you can do crypto-native stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,800",
+				"to": "00:22:17,120"
+			},
+			"offsets": {
+				"from": 1333800,
+				"to": 1337120
+			},
+			"text": " you can, what we did with ZK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,120",
+				"to": "00:22:20,560"
+			},
+			"offsets": {
+				"from": 1337120,
+				"to": 1340560
+			},
+			"text": " is the ability to programmatically code reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,560",
+				"to": "00:22:24,760"
+			},
+			"offsets": {
+				"from": 1340560,
+				"to": 1344760
+			},
+			"text": " in some sort, so we have very bullish on VCS and SBTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,760",
+				"to": "00:22:28,120"
+			},
+			"offsets": {
+				"from": 1344760,
+				"to": 1348120
+			},
+			"text": " but we are many using tokens, it's a big question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,120",
+				"to": "00:22:29,280"
+			},
+			"offsets": {
+				"from": 1348120,
+				"to": 1349280
+			},
+			"text": " why we're using tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,280",
+				"to": "00:22:31,680"
+			},
+			"offsets": {
+				"from": 1349280,
+				"to": 1351680
+			},
+			"text": " because they are great at standardizing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,680",
+				"to": "00:22:33,480"
+			},
+			"offsets": {
+				"from": 1351680,
+				"to": 1353480
+			},
+			"text": " Once you have reputation as a token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,480",
+				"to": "00:22:35,880"
+			},
+			"offsets": {
+				"from": 1353480,
+				"to": 1355880
+			},
+			"text": " it's super easy for anyone to fetch it to know that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,880",
+				"to": "00:22:38,440"
+			},
+			"offsets": {
+				"from": 1355880,
+				"to": 1358440
+			},
+			"text": " We have the sign-in with the term tools and all these things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,440",
+				"to": "00:22:39,960"
+			},
+			"offsets": {
+				"from": 1358440,
+				"to": 1359960
+			},
+			"text": " but on the long-term vision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,960",
+				"to": "00:22:42,520"
+			},
+			"offsets": {
+				"from": 1359960,
+				"to": 1362520
+			},
+			"text": " do we really need to send the ZK proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,520",
+				"to": "00:22:44,040"
+			},
+			"offsets": {
+				"from": 1362520,
+				"to": 1364040
+			},
+			"text": " to a smart contract to meet the badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,040",
+				"to": "00:22:46,320"
+			},
+			"offsets": {
+				"from": 1364040,
+				"to": 1366320
+			},
+			"text": " if what we want to prove is to a third party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,320",
+				"to": "00:22:48,400"
+			},
+			"offsets": {
+				"from": 1366320,
+				"to": 1368400
+			},
+			"text": " let's say I want to prove to a merch store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,400",
+				"to": "00:22:50,080"
+			},
+			"offsets": {
+				"from": 1368400,
+				"to": 1370080
+			},
+			"text": " that I have crypto-punk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,080",
+				"to": "00:22:52,560"
+			},
+			"offsets": {
+				"from": 1370080,
+				"to": 1372560
+			},
+			"text": " there I really need to send a badge on the address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,560",
+				"to": "00:22:55,000"
+			},
+			"offsets": {
+				"from": 1372560,
+				"to": 1375000
+			},
+			"text": " maybe not, I can directly send the ZK badge"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,000",
+				"to": "00:22:57,040"
+			},
+			"offsets": {
+				"from": 1375000,
+				"to": 1377040
+			},
+			"text": " to this third party."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,040",
+				"to": "00:22:58,840"
+			},
+			"offsets": {
+				"from": 1377040,
+				"to": 1378840
+			},
+			"text": " That's the big, big vision of ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,840",
+				"to": "00:23:02,480"
+			},
+			"offsets": {
+				"from": 1378840,
+				"to": 1382480
+			},
+			"text": " It's really to be, to be a Google Connect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,480",
+				"to": "00:23:04,680"
+			},
+			"offsets": {
+				"from": 1382480,
+				"to": 1384680
+			},
+			"text": " on top of your server and identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,680",
+				"to": "00:23:07,120"
+			},
+			"offsets": {
+				"from": 1384680,
+				"to": 1387120
+			},
+			"text": " you add all your accounts, your Twitter accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,120",
+				"to": "00:23:09,360"
+			},
+			"offsets": {
+				"from": 1387120,
+				"to": 1389360
+			},
+			"text": " your GitHub accounts, your Solana address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,360",
+				"to": "00:23:11,480"
+			},
+			"offsets": {
+				"from": 1389360,
+				"to": 1391480
+			},
+			"text": " your Bitcoin wallet, your Ethereum wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,480",
+				"to": "00:23:13,080"
+			},
+			"offsets": {
+				"from": 1391480,
+				"to": 1393080
+			},
+			"text": " you upgrade all of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,080",
+				"to": "00:23:15,040"
+			},
+			"offsets": {
+				"from": 1393080,
+				"to": 1395040
+			},
+			"text": " and then when you want to sign to an app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,040",
+				"to": "00:23:18,680"
+			},
+			"offsets": {
+				"from": 1395040,
+				"to": 1398680
+			},
+			"text": " they say, okay, I want a bit like when you connect to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,680",
+				"to": "00:23:20,080"
+			},
+			"offsets": {
+				"from": 1398680,
+				"to": 1400080
+			},
+			"text": " with Google Connect, they say, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,080",
+				"to": "00:23:21,840"
+			},
+			"offsets": {
+				"from": 1400080,
+				"to": 1401840
+			},
+			"text": " they will access your email, your contacts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,840",
+				"to": "00:23:24,080"
+			},
+			"offsets": {
+				"from": 1401840,
+				"to": 1404080
+			},
+			"text": " your all these things, what we don't hear is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,080",
+				"to": "00:23:26,840"
+			},
+			"offsets": {
+				"from": 1404080,
+				"to": 1406840
+			},
+			"text": " okay, I connect with ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,840",
+				"to": "00:23:30,080"
+			},
+			"offsets": {
+				"from": 1406840,
+				"to": 1410080
+			},
+			"text": " This app want to see your amount of, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,080",
+				"to": "00:23:32,360"
+			},
+			"offsets": {
+				"from": 1410080,
+				"to": 1412360
+			},
+			"text": " NFTs, your total networks, all these things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,360",
+				"to": "00:23:34,240"
+			},
+			"offsets": {
+				"from": 1412360,
+				"to": 1414240
+			},
+			"text": " and you choose what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,240",
+				"to": "00:23:37,280"
+			},
+			"offsets": {
+				"from": 1414240,
+				"to": 1417280
+			},
+			"text": " And if you choose your food to bring your full reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,280",
+				"to": "00:23:40,640"
+			},
+			"offsets": {
+				"from": 1417280,
+				"to": 1420640
+			},
+			"text": " maybe you will have access to the best services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,640",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1420640,
+				"to": 1423000
+			},
+			"text": " but you can also choose to just reveal what you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:46,520"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1426520
+			},
+			"text": " because you do want to give to this application everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,520",
+				"to": "00:23:49,320"
+			},
+			"offsets": {
+				"from": 1426520,
+				"to": 1429320
+			},
+			"text": " So yeah, that's really about this more,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,320",
+				"to": "00:23:51,680"
+			},
+			"offsets": {
+				"from": 1429320,
+				"to": 1431680
+			},
+			"text": " is trying to, we have more and more on chain data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,680",
+				"to": "00:23:53,040"
+			},
+			"offsets": {
+				"from": 1431680,
+				"to": 1433040
+			},
+			"text": " we have more and more great projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,040",
+				"to": "00:23:56,040"
+			},
+			"offsets": {
+				"from": 1433040,
+				"to": 1436040
+			},
+			"text": " that are bringing off chain data to unchain data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,040",
+				"to": "00:23:59,280"
+			},
+			"offsets": {
+				"from": 1437040,
+				"to": 1439280
+			},
+			"text": " but today we cannot really leverage it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,280",
+				"to": "00:24:02,320"
+			},
+			"offsets": {
+				"from": 1439280,
+				"to": 1442320
+			},
+			"text": " the privacy is a real issue about identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,320",
+				"to": "00:24:05,200"
+			},
+			"offsets": {
+				"from": 1442320,
+				"to": 1445200
+			},
+			"text": " because we are used to web to identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,200",
+				"to": "00:24:06,640"
+			},
+			"offsets": {
+				"from": 1445200,
+				"to": 1446640
+			},
+			"text": " that are private because they are closed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,640",
+				"to": "00:24:09,000"
+			},
+			"offsets": {
+				"from": 1446640,
+				"to": 1449000
+			},
+			"text": " it's closed gates, they don't want to share anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1449000,
+				"to": 1451000
+			},
+			"text": " so of course it's private by design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:13,320"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1453320
+			},
+			"text": " but on web3 we're public by design,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,320",
+				"to": "00:24:15,040"
+			},
+			"offsets": {
+				"from": 1453320,
+				"to": 1455040
+			},
+			"text": " but this also caused some issues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,040",
+				"to": "00:24:18,320"
+			},
+			"offsets": {
+				"from": 1455040,
+				"to": 1458320
+			},
+			"text": " so I hope that I share my excitement"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,320",
+				"to": "00:24:20,960"
+			},
+			"offsets": {
+				"from": 1458320,
+				"to": 1460960
+			},
+			"text": " about what we can do with sovereign identities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,960",
+				"to": "00:24:22,960"
+			},
+			"offsets": {
+				"from": 1460960,
+				"to": 1462960
+			},
+			"text": " and we're hiring by the way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,960",
+				"to": "00:24:25,120"
+			},
+			"offsets": {
+				"from": 1462960,
+				"to": 1465120
+			},
+			"text": " so if the mission is exciting to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,120",
+				"to": "00:24:27,320"
+			},
+			"offsets": {
+				"from": 1465120,
+				"to": 1467320
+			},
+			"text": " we are a very small team, we are just seven,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,320",
+				"to": "00:24:29,680"
+			},
+			"offsets": {
+				"from": 1467320,
+				"to": 1469680
+			},
+			"text": " but we are very passionate about what we do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,680",
+				"to": "00:24:32,120"
+			},
+			"offsets": {
+				"from": 1469680,
+				"to": 1472120
+			},
+			"text": " so feel free to reach out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,120",
+				"to": "00:24:34,160"
+			},
+			"offsets": {
+				"from": 1472120,
+				"to": 1474160
+			},
+			"text": " and again, everything is open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,160",
+				"to": "00:24:38,080"
+			},
+			"offsets": {
+				"from": 1474160,
+				"to": 1478080
+			},
+			"text": " we spent a lot of energy to the documentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,080",
+				"to": "00:24:40,480"
+			},
+			"offsets": {
+				"from": 1478080,
+				"to": 1480480
+			},
+			"text": " to the quality of our code, so yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,480",
+				"to": "00:24:41,960"
+			},
+			"offsets": {
+				"from": 1480480,
+				"to": 1481960
+			},
+			"text": " we're here for the long term,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,960",
+				"to": "00:24:43,760"
+			},
+			"offsets": {
+				"from": 1481960,
+				"to": 1483760
+			},
+			"text": " we'd like to have many contributors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,760",
+				"to": "00:24:46,880"
+			},
+			"offsets": {
+				"from": 1483760,
+				"to": 1486880
+			},
+			"text": " and yeah, reach out, thank you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,880",
+				"to": "00:24:48,680"
+			},
+			"offsets": {
+				"from": 1486880,
+				"to": 1488680
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,680",
+				"to": "00:24:50,520"
+			},
+			"offsets": {
+				"from": 1488680,
+				"to": 1490520
+			},
+			"text": " Do we have time for our questions, or,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,520",
+				"to": "00:24:53,520"
+			},
+			"offsets": {
+				"from": 1490520,
+				"to": 1493520
+			},
+			"text": " I don't, okay, so if you guys have questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,520",
+				"to": "00:24:54,520"
+			},
+			"offsets": {
+				"from": 1493520,
+				"to": 1494520
+			},
+			"text": " happy to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,520",
+				"to": "00:24:58,640"
+			},
+			"offsets": {
+				"from": 1494520,
+				"to": 1498640
+			},
+			"text": " - Hi, thank you for the talk, that was super interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,640",
+				"to": "00:25:01,680"
+			},
+			"offsets": {
+				"from": 1498640,
+				"to": 1501680
+			},
+			"text": " so my question was about updating of ZK badges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,680",
+				"to": "00:25:03,080"
+			},
+			"offsets": {
+				"from": 1501680,
+				"to": 1503080
+			},
+			"text": " so for example in the example you gave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,080",
+				"to": "00:25:04,640"
+			},
+			"offsets": {
+				"from": 1503080,
+				"to": 1504640
+			},
+			"text": " you said you own the punk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,640",
+				"to": "00:25:07,040"
+			},
+			"offsets": {
+				"from": 1504640,
+				"to": 1507040
+			},
+			"text": " and then you create the ZK badge that you own the punk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,040",
+				"to": "00:25:09,520"
+			},
+			"offsets": {
+				"from": 1507040,
+				"to": 1509520
+			},
+			"text": " what happens to that badge when you transfer the punk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,520",
+				"to": "00:25:11,800"
+			},
+			"offsets": {
+				"from": 1509520,
+				"to": 1511800
+			},
+			"text": " and don't own it anymore?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,800",
+				"to": "00:25:14,600"
+			},
+			"offsets": {
+				"from": 1511800,
+				"to": 1514600
+			},
+			"text": " - Yeah, so actually for the Hydro-Swan disaster,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,600",
+				"to": "00:25:19,360"
+			},
+			"offsets": {
+				"from": 1514600,
+				"to": 1519360
+			},
+			"text": " the badge is a snapshot, meaning that it does not update,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,360",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1519360,
+				"to": 1523000
+			},
+			"text": " but that's where actually the protocol is interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:26,360"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1526360
+			},
+			"text": " that you can create another attester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,360",
+				"to": "00:25:29,520"
+			},
+			"offsets": {
+				"from": 1526360,
+				"to": 1529520
+			},
+			"text": " that could be auditable, and I don't know every,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,520",
+				"to": "00:25:30,360"
+			},
+			"offsets": {
+				"from": 1529520,
+				"to": 1530360
+			},
+			"text": " like some,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,360",
+				"to": "00:25:34,600"
+			},
+			"offsets": {
+				"from": 1530360,
+				"to": 1534600
+			},
+			"text": " you could code that, like the way for a central party"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,600",
+				"to": "00:25:36,320"
+			},
+			"offsets": {
+				"from": 1534600,
+				"to": 1536320
+			},
+			"text": " to update the route,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,320",
+				"to": "00:25:38,640"
+			},
+			"offsets": {
+				"from": 1536320,
+				"to": 1538640
+			},
+			"text": " and make so that the badges that were issued"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,640",
+				"to": "00:25:40,440"
+			},
+			"offsets": {
+				"from": 1538640,
+				"to": 1540440
+			},
+			"text": " are no longer issued, but,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,440",
+				"to": "00:25:44,520"
+			},
+			"offsets": {
+				"from": 1540440,
+				"to": 1544520
+			},
+			"text": " I think that it's still a bit complex,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,520",
+				"to": "00:25:47,080"
+			},
+			"offsets": {
+				"from": 1544520,
+				"to": 1547080
+			},
+			"text": " and the best way is really to think about ZK badges"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,080",
+				"to": "00:25:48,800"
+			},
+			"offsets": {
+				"from": 1547080,
+				"to": 1548800
+			},
+			"text": " as a snapshot attestation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,800",
+				"to": "00:25:50,560"
+			},
+			"offsets": {
+				"from": 1548800,
+				"to": 1550560
+			},
+			"text": " and it's up to the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,560",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1550560,
+				"to": 1553000
+			},
+			"text": " to ask for users to renew,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:25:56,680"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1556680
+			},
+			"text": " so yeah, that's really the way we think about it now."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,680",
+				"to": "00:25:59,880"
+			},
+			"offsets": {
+				"from": 1556680,
+				"to": 1559880
+			},
+			"text": " - Yeah, hey, thank you very much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,880",
+				"to": "00:26:01,560"
+			},
+			"offsets": {
+				"from": 1559880,
+				"to": 1561560
+			},
+			"text": " really cool stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,560",
+				"to": "00:26:02,680"
+			},
+			"offsets": {
+				"from": 1561560,
+				"to": 1562680
+			},
+			"text": " lack of purposes, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,680",
+				"to": "00:26:06,080"
+			},
+			"offsets": {
+				"from": 1562680,
+				"to": 1566080
+			},
+			"text": " one of the barriers in this ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,080",
+				"to": "00:26:07,880"
+			},
+			"offsets": {
+				"from": 1566080,
+				"to": 1567880
+			},
+			"text": " so thank you for addressing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,880",
+				"to": "00:26:09,600"
+			},
+			"offsets": {
+				"from": 1567880,
+				"to": 1569600
+			},
+			"text": " I have a general question about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,600",
+				"to": "00:26:12,840"
+			},
+			"offsets": {
+				"from": 1569600,
+				"to": 1572840
+			},
+			"text": " how do you collaborate with individuals"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,840",
+				"to": "00:26:15,240"
+			},
+			"offsets": {
+				"from": 1572840,
+				"to": 1575240
+			},
+			"text": " and projects within the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,240",
+				"to": "00:26:17,800"
+			},
+			"offsets": {
+				"from": 1575240,
+				"to": 1577800
+			},
+			"text": " because at the end of the day it's about going to market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,800",
+				"to": "00:26:21,320"
+			},
+			"offsets": {
+				"from": 1577800,
+				"to": 1581320
+			},
+			"text": " and it's promoting at all to, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,320",
+				"to": "00:26:23,200"
+			},
+			"offsets": {
+				"from": 1581320,
+				"to": 1583200
+			},
+			"text": " individuals and teams that are building."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,200",
+				"to": "00:26:25,080"
+			},
+			"offsets": {
+				"from": 1583200,
+				"to": 1585080
+			},
+			"text": " - Could you explain what kind of projects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,080",
+				"to": "00:26:27,480"
+			},
+			"offsets": {
+				"from": 1585080,
+				"to": 1587480
+			},
+			"text": " Any projects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,480",
+				"to": "00:26:29,240"
+			},
+			"offsets": {
+				"from": 1587480,
+				"to": 1589240
+			},
+			"text": " - Yeah, yeah, just more generally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,240",
+				"to": "00:26:32,320"
+			},
+			"offsets": {
+				"from": 1589240,
+				"to": 1592320
+			},
+			"text": " what's your strategy to proliferate your talk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,320",
+				"to": "00:26:34,040"
+			},
+			"offsets": {
+				"from": 1592320,
+				"to": 1594040
+			},
+			"text": " - Okay, so I think we are a project"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,040",
+				"to": "00:26:37,040"
+			},
+			"offsets": {
+				"from": 1594040,
+				"to": 1597040
+			},
+			"text": " that should be used by many applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,040",
+				"to": "00:26:39,080"
+			},
+			"offsets": {
+				"from": 1597040,
+				"to": 1599080
+			},
+			"text": " First, I think that we are one of the first teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,080",
+				"to": "00:26:42,480"
+			},
+			"offsets": {
+				"from": 1599080,
+				"to": 1602480
+			},
+			"text": " that are using ZK for a very concrete case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,480",
+				"to": "00:26:45,760"
+			},
+			"offsets": {
+				"from": 1602480,
+				"to": 1605760
+			},
+			"text": " and as I told you about, we can have multiple ZK attesters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,760",
+				"to": "00:26:49,880"
+			},
+			"offsets": {
+				"from": 1605760,
+				"to": 1609880
+			},
+			"text": " so if we have a ZK team that has created a new ZK scheme,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,880",
+				"to": "00:26:51,720"
+			},
+			"offsets": {
+				"from": 1609880,
+				"to": 1611720
+			},
+			"text": " we are using growth 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,720",
+				"to": "00:26:53,680"
+			},
+			"offsets": {
+				"from": 1611720,
+				"to": 1613680
+			},
+			"text": " a Hydro-esque one that is very specific,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,680",
+				"to": "00:26:57,440"
+			},
+			"offsets": {
+				"from": 1613680,
+				"to": 1617440
+			},
+			"text": " but if another team has another way to create attestations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,440",
+				"to": "00:27:00,000"
+			},
+			"offsets": {
+				"from": 1617440,
+				"to": 1620000
+			},
+			"text": " we can think about chain links, GCO, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,000",
+				"to": "00:27:03,960"
+			},
+			"offsets": {
+				"from": 1620000,
+				"to": 1623960
+			},
+			"text": " they are able to do ZK attestation from web to data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,960",
+				"to": "00:27:05,440"
+			},
+			"offsets": {
+				"from": 1623960,
+				"to": 1625440
+			},
+			"text": " then welcome to build a Natter here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,440",
+				"to": "00:27:07,040"
+			},
+			"offsets": {
+				"from": 1625440,
+				"to": 1627040
+			},
+			"text": " and that's why we built it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,040",
+				"to": "00:27:09,360"
+			},
+			"offsets": {
+				"from": 1627040,
+				"to": 1629360
+			},
+			"text": " For other teams, it's if you want to do reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,360",
+				"to": "00:27:11,800"
+			},
+			"offsets": {
+				"from": 1629360,
+				"to": 1631800
+			},
+			"text": " within your governance, you can create your ZK badge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,800",
+				"to": "00:27:14,560"
+			},
+			"offsets": {
+				"from": 1631800,
+				"to": 1634560
+			},
+			"text": " or even better, you can create your own ZK attester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,560",
+				"to": "00:27:18,880"
+			},
+			"offsets": {
+				"from": 1634560,
+				"to": 1638880
+			},
+			"text": " and build logic in it, and so whenever somebody, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,880",
+				"to": "00:27:22,400"
+			},
+			"offsets": {
+				"from": 1638880,
+				"to": 1642400
+			},
+			"text": " means to ZK badge that I play on a certain game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,400",
+				"to": "00:27:26,280"
+			},
+			"offsets": {
+				"from": 1642400,
+				"to": 1646280
+			},
+			"text": " it updates the metadata of their NFT,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,280",
+				"to": "00:27:27,320"
+			},
+			"offsets": {
+				"from": 1646280,
+				"to": 1647320
+			},
+			"text": " or you can do so much things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,320",
+				"to": "00:27:29,240"
+			},
+			"offsets": {
+				"from": 1647320,
+				"to": 1649240
+			},
+			"text": " it's really built to have fun as developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,240",
+				"to": "00:27:32,640"
+			},
+			"offsets": {
+				"from": 1649240,
+				"to": 1652640
+			},
+			"text": " but it's gonna get time to educate everybody that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,640",
+				"to": "00:27:35,720"
+			},
+			"offsets": {
+				"from": 1652640,
+				"to": 1655720
+			},
+			"text": " generally happy to speak with everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,720",
+				"to": "00:27:38,960"
+			},
+			"offsets": {
+				"from": 1655720,
+				"to": 1658960
+			},
+			"text": " - I have a question here, really fascinating talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,960",
+				"to": "00:27:42,800"
+			},
+			"offsets": {
+				"from": 1658960,
+				"to": 1662800
+			},
+			"text": " super amazing, and one of the things that popped into my mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,800",
+				"to": "00:27:45,840"
+			},
+			"offsets": {
+				"from": 1662800,
+				"to": 1665840
+			},
+			"text": " when you said that this is comparable to the DeFi movement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,840",
+				"to": "00:27:49,240"
+			},
+			"offsets": {
+				"from": 1665840,
+				"to": 1669240
+			},
+			"text": " the DeFi Summer, DeFi came with a lot of hacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,240",
+				"to": "00:27:54,000"
+			},
+			"offsets": {
+				"from": 1669240,
+				"to": 1674000
+			},
+			"text": " and a lot of blood by fire, so how do you protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,000",
+				"to": "00:27:56,720"
+			},
+			"offsets": {
+				"from": 1674000,
+				"to": 1676720
+			},
+			"text": " the privacy, say, we put all our addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,720",
+				"to": "00:28:01,720"
+			},
+			"offsets": {
+				"from": 1676720,
+				"to": 1681720
+			},
+			"text": " have this great identity, and yeah, some of the risk of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,720",
+				"to": "00:28:05,280"
+			},
+			"offsets": {
+				"from": 1681720,
+				"to": 1685280
+			},
+			"text": " and what do you see for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,280",
+				"to": "00:28:08,080"
+			},
+			"offsets": {
+				"from": 1685280,
+				"to": 1688080
+			},
+			"text": " - Yeah, and when I was thinking that is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,080",
+				"to": "00:28:11,280"
+			},
+			"offsets": {
+				"from": 1688080,
+				"to": 1691280
+			},
+			"text": " DeFi was raw, it was the first time we discovered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,280",
+				"to": "00:28:13,600"
+			},
+			"offsets": {
+				"from": 1691280,
+				"to": 1693600
+			},
+			"text": " like before it banks, and insurance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,600",
+				"to": "00:28:16,240"
+			},
+			"offsets": {
+				"from": 1693600,
+				"to": 1696240
+			},
+			"text": " and all the financial services were provided"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,240",
+				"to": "00:28:18,640"
+			},
+			"offsets": {
+				"from": 1696240,
+				"to": 1698640
+			},
+			"text": " by way two applications that didn't talk together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,640",
+				"to": "00:28:22,000"
+			},
+			"offsets": {
+				"from": 1698640,
+				"to": 1702000
+			},
+			"text": " and we discovered what I can deposit in a landing tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,000",
+				"to": "00:28:24,160"
+			},
+			"offsets": {
+				"from": 1702000,
+				"to": 1704160
+			},
+			"text": " and then use that to bring liquidity to an exchange,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,160",
+				"to": "00:28:27,120"
+			},
+			"offsets": {
+				"from": 1704160,
+				"to": 1707120
+			},
+			"text": " and then use that to stay somewhere, it's huge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,120",
+				"to": "00:28:30,800"
+			},
+			"offsets": {
+				"from": 1707120,
+				"to": 1710800
+			},
+			"text": " but we could do the same with social capital,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,800",
+				"to": "00:28:33,600"
+			},
+			"offsets": {
+				"from": 1710800,
+				"to": 1713600
+			},
+			"text": " like today, it's impossible to use your,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,600",
+				"to": "00:28:35,560"
+			},
+			"offsets": {
+				"from": 1713600,
+				"to": 1715560
+			},
+			"text": " let's say you are your blood driver,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:35,560",
+				"to": "00:28:39,120"
+			},
+			"offsets": {
+				"from": 1715560,
+				"to": 1719120
+			},
+			"text": " 2,000 drives, five stars, you cannot use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:39,120",
+				"to": "00:28:40,440"
+			},
+			"offsets": {
+				"from": 1719120,
+				"to": 1720440
+			},
+			"text": " to get a good loan."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,280",
+				"to": "00:28:42,120"
+			},
+			"offsets": {
+				"from": 1721280,
+				"to": 1722120
+			},
+			"text": " That's what we want you to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,120",
+				"to": "00:28:44,880"
+			},
+			"offsets": {
+				"from": 1722120,
+				"to": 1724880
+			},
+			"text": " like we want to have credit score based on reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,880",
+				"to": "00:28:47,240"
+			},
+			"offsets": {
+				"from": 1724880,
+				"to": 1727240
+			},
+			"text": " and you can access a better interest rate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,240",
+				"to": "00:28:50,080"
+			},
+			"offsets": {
+				"from": 1727240,
+				"to": 1730080
+			},
+			"text": " so again, we are new primitive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,080",
+				"to": "00:28:53,200"
+			},
+			"offsets": {
+				"from": 1730080,
+				"to": 1733200
+			},
+			"text": " that should allow new stuff in a privacy preserving way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,200",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1733200,
+				"to": 1737000
+			},
+			"text": " so yeah, that's, I think it, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:28:58,880"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1738880
+			},
+			"text": " - I think that it comes up for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,880",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1738880,
+				"to": 1743000
+			},
+			"text": " maybe you'll be outside the level for more questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:04,200"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1744200
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,200",
+				"to": "00:29:05,040"
+			},
+			"offsets": {
+				"from": 1744200,
+				"to": 1745040
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,040",
+				"to": "00:29:06,360"
+			},
+			"offsets": {
+				"from": 1745040,
+				"to": 1746360
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,360",
+				"to": "00:29:07,560"
+			},
+			"offsets": {
+				"from": 1746360,
+				"to": 1747560
+			},
+			"text": " - Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,560",
+				"to": "00:29:10,720"
+			},
+			"offsets": {
+				"from": 1747560,
+				"to": 1750720
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,720",
+				"to": "00:29:13,560"
+			},
+			"offsets": {
+				"from": 1750720,
+				"to": 1753560
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:13,560",
+				"to": "00:29:16,400"
+			},
+			"offsets": {
+				"from": 1753560,
+				"to": 1756400
+			},
+			"text": " (buzzer buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,400",
+				"to": "00:29:45,400"
+			},
+			"offsets": {
+				"from": 1756400,
+				"to": 1785400
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

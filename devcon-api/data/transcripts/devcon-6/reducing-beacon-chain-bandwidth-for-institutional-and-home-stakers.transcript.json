@@ -1,0 +1,8854 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,160",
+				"to": "00:00:15,400"
+			},
+			"offsets": {
+				"from": 13160,
+				"to": 15400
+			},
+			"text": " We work on the Lighthouse client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,400",
+				"to": "00:00:17,120"
+			},
+			"offsets": {
+				"from": 15400,
+				"to": 17120
+			},
+			"text": " So we're going to be talking about reducing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,120",
+				"to": "00:00:20,360"
+			},
+			"offsets": {
+				"from": 17120,
+				"to": 20360
+			},
+			"text": " beacon chain bandwidth for institutional and home stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,360",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 20360,
+				"to": 23920
+			},
+			"text": " And I'm going to leave it up to Diva, who's a Bogota local,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:27,320"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 27320
+			},
+			"text": " and our peer-to-peer network expert to kick us off."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,320",
+				"to": "00:00:30,560"
+			},
+			"offsets": {
+				"from": 27320,
+				"to": 30560
+			},
+			"text": " OK, so first thing that we need to check in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,560",
+				"to": "00:00:33,880"
+			},
+			"offsets": {
+				"from": 30560,
+				"to": 33880
+			},
+			"text": " to analyze how to reduce bandwidth for institutional"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,880",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 33880,
+				"to": 39160
+			},
+			"text": " and home stakers is what does the bandwidth look like right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 42200
+			},
+			"text": " We are going to be looking at data from Lighthouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:44,960"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 44960
+			},
+			"text": " Like Ash said, we work on Lighthouse."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,960",
+				"to": "00:00:47,080"
+			},
+			"offsets": {
+				"from": 44960,
+				"to": 47080
+			},
+			"text": " It's one of the production beacon nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,080",
+				"to": "00:00:48,520"
+			},
+			"offsets": {
+				"from": 47080,
+				"to": 48520
+			},
+			"text": " There are many others."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,520",
+				"to": "00:00:51,320"
+			},
+			"offsets": {
+				"from": 48520,
+				"to": 51320
+			},
+			"text": " Tech group, Prism, Nimbus, Lowstar."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,320",
+				"to": "00:00:53,520"
+			},
+			"offsets": {
+				"from": 51320,
+				"to": 53520
+			},
+			"text": " We are the second most popular one."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,520",
+				"to": "00:00:56,640"
+			},
+			"offsets": {
+				"from": 53520,
+				"to": 56640
+			},
+			"text": " And while the data we're going to be looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,640",
+				"to": "00:01:00,960"
+			},
+			"offsets": {
+				"from": 56640,
+				"to": 60960
+			},
+			"text": " is Lighthouse, we are certain that this applies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,960",
+				"to": "00:01:03,360"
+			},
+			"offsets": {
+				"from": 60960,
+				"to": 63360
+			},
+			"text": " to any other client across the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,360",
+				"to": "00:01:05,520"
+			},
+			"offsets": {
+				"from": 63360,
+				"to": 65520
+			},
+			"text": " So have that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,520",
+				"to": "00:01:08,800"
+			},
+			"offsets": {
+				"from": 65520,
+				"to": 68800
+			},
+			"text": " First thing to notice is that bandwidth associated to a beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,800",
+				"to": "00:01:12,840"
+			},
+			"offsets": {
+				"from": 68800,
+				"to": 72840
+			},
+			"text": " node is proportional to the number of validators it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,840",
+				"to": "00:01:15,120"
+			},
+			"offsets": {
+				"from": 72840,
+				"to": 75120
+			},
+			"text": " attached."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,120",
+				"to": "00:01:18,120"
+			},
+			"offsets": {
+				"from": 75120,
+				"to": 78120
+			},
+			"text": " You can see that it increases when the number of validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,120",
+				"to": "00:01:18,960"
+			},
+			"offsets": {
+				"from": 78120,
+				"to": 78960
+			},
+			"text": " goes up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,960",
+				"to": "00:01:24,560"
+			},
+			"offsets": {
+				"from": 78960,
+				"to": 84560
+			},
+			"text": " But then at 64 validators, it stays more or less the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,560",
+				"to": "00:01:28,520"
+			},
+			"offsets": {
+				"from": 84560,
+				"to": 88520
+			},
+			"text": " 64 is going to be a really important number in this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,520",
+				"to": "00:01:34,600"
+			},
+			"offsets": {
+				"from": 88520,
+				"to": 94600
+			},
+			"text": " Ash is going to explain further why and why it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,600",
+				"to": "00:01:37,640"
+			},
+			"offsets": {
+				"from": 94600,
+				"to": 97640
+			},
+			"text": " So yeah, we need to remember simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,640",
+				"to": "00:01:40,360"
+			},
+			"offsets": {
+				"from": 97640,
+				"to": 100360
+			},
+			"text": " that we are going to stop at 64."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,360",
+				"to": "00:01:43,920"
+			},
+			"offsets": {
+				"from": 100360,
+				"to": 103920
+			},
+			"text": " And this is where bandwidth is going to be more or less stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,920",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 103920,
+				"to": 106400
+			},
+			"text": " Now if we look at how many validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:50,400"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 110400
+			},
+			"text": " does every beacon node on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,400",
+				"to": "00:01:54,640"
+			},
+			"offsets": {
+				"from": 110400,
+				"to": 114640
+			},
+			"text": " has, we're going to have like main three groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,640",
+				"to": "00:01:57,080"
+			},
+			"offsets": {
+				"from": 114640,
+				"to": 117080
+			},
+			"text": " We're going to have those that don't have any validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,080",
+				"to": "00:02:01,120"
+			},
+			"offsets": {
+				"from": 117080,
+				"to": 121120
+			},
+			"text": " attached, only simple beacon nodes, node-staking beacon nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,120",
+				"to": "00:02:03,120"
+			},
+			"offsets": {
+				"from": 121120,
+				"to": 123120
+			},
+			"text": " Now we're going to have those that we are going to come"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,120",
+				"to": "00:02:07,320"
+			},
+			"offsets": {
+				"from": 123120,
+				"to": 127320
+			},
+			"text": " home stackers, which have less than 10 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,320",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 127320,
+				"to": 131560
+			},
+			"text": " In this graph, you're going to see a very big bar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:13,720"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 133720
+			},
+			"text": " That's the one with zero validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,720",
+				"to": "00:02:15,560"
+			},
+			"offsets": {
+				"from": 133720,
+				"to": 135560
+			},
+			"text": " I hope you can see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,560",
+				"to": "00:02:19,480"
+			},
+			"offsets": {
+				"from": 135560,
+				"to": 139480
+			},
+			"text": " Those are a very big chunk of the network, almost 60%"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,480",
+				"to": "00:02:20,760"
+			},
+			"offsets": {
+				"from": 139480,
+				"to": 140760
+			},
+			"text": " of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,760",
+				"to": "00:02:26,800"
+			},
+			"offsets": {
+				"from": 140760,
+				"to": 146800
+			},
+			"text": " Then we have those that we call home stackers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,800",
+				"to": "00:02:28,800"
+			},
+			"offsets": {
+				"from": 146800,
+				"to": 148800
+			},
+			"text": " Most of them have just one validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,800",
+				"to": "00:02:32,720"
+			},
+			"offsets": {
+				"from": 148800,
+				"to": 152720
+			},
+			"text": " And then we have those that we call institutional stackers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,720",
+				"to": "00:02:36,920"
+			},
+			"offsets": {
+				"from": 152720,
+				"to": 156920
+			},
+			"text": " Those are the ones that have more than 64 validators, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,920",
+				"to": "00:02:39,640"
+			},
+			"offsets": {
+				"from": 156920,
+				"to": 159640
+			},
+			"text": " is the big bar at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,640",
+				"to": "00:02:43,920"
+			},
+			"offsets": {
+				"from": 159640,
+				"to": 163920
+			},
+			"text": " Now why do we care about bandwidth to begin with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,920",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163920,
+				"to": 168000
+			},
+			"text": " So there are a couple of downsides of high bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:51,760"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 171760
+			},
+			"text": " The first one is, of course, an increased cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,760",
+				"to": "00:02:55,080"
+			},
+			"offsets": {
+				"from": 171760,
+				"to": 175080
+			},
+			"text": " And this cost comes from running, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,080",
+				"to": "00:03:01,320"
+			},
+			"offsets": {
+				"from": 175080,
+				"to": 181320
+			},
+			"text": " in the cloud where you're charged for data transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,320",
+				"to": "00:03:04,440"
+			},
+			"offsets": {
+				"from": 181320,
+				"to": 184440
+			},
+			"text": " And it's also a matter of diversity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,440",
+				"to": "00:03:06,040"
+			},
+			"offsets": {
+				"from": 184440,
+				"to": 186040
+			},
+			"text": " because this means that you're only"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,040",
+				"to": "00:03:08,440"
+			},
+			"offsets": {
+				"from": 186040,
+				"to": 188440
+			},
+			"text": " able to run a full node in devices that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,440",
+				"to": "00:03:11,560"
+			},
+			"offsets": {
+				"from": 188440,
+				"to": 191560
+			},
+			"text": " support processing all the data that you're receiving"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,560",
+				"to": "00:03:14,240"
+			},
+			"offsets": {
+				"from": 191560,
+				"to": 194240
+			},
+			"text": " from the network and for people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,240",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 194240,
+				"to": 198080
+			},
+			"text": " are able to pay for the services in which these nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 199840
+			},
+			"text": " are being running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 204360
+			},
+			"text": " I see a few devs here, more of my colleges, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:27,680"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 207680
+			},
+			"text": " We know that there is going to be an upgrade to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,680",
+				"to": "00:03:32,720"
+			},
+			"offsets": {
+				"from": 207680,
+				"to": 212720
+			},
+			"text": " that is going to bring a big, big increase in bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,720",
+				"to": "00:03:34,120"
+			},
+			"offsets": {
+				"from": 212720,
+				"to": 214120
+			},
+			"text": " like a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,120",
+				"to": "00:03:37,080"
+			},
+			"offsets": {
+				"from": 214120,
+				"to": 217080
+			},
+			"text": " So we need to start tackling this problem right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,080",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 217080,
+				"to": 218640
+			},
+			"text": " before this happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:42,920"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 222920
+			},
+			"text": " That's another big reason why this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,920",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 222920,
+				"to": 225800
+			},
+			"text": " Also, another really, really important reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,800",
+				"to": "00:03:49,560"
+			},
+			"offsets": {
+				"from": 225800,
+				"to": 229560
+			},
+			"text": " is when we say, for example, a diversity problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,560",
+				"to": "00:03:52,920"
+			},
+			"offsets": {
+				"from": 229560,
+				"to": 232920
+			},
+			"text": " the truth is if you are, for example, a homestaker"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,920",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 232920,
+				"to": 234520
+			},
+			"text": " and you're running your beacon node"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:03:57,200"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 237200
+			},
+			"text": " with your single-value data attached,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,200",
+				"to": "00:03:58,720"
+			},
+			"offsets": {
+				"from": 237200,
+				"to": 238720
+			},
+			"text": " and then your brother or your sister"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:01,880"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 241880
+			},
+			"text": " starts playing video games, then you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,880",
+				"to": "00:04:04,320"
+			},
+			"offsets": {
+				"from": 241880,
+				"to": 244320
+			},
+			"text": " going to have a bandwidth spike."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,320",
+				"to": "00:04:06,600"
+			},
+			"offsets": {
+				"from": 244320,
+				"to": 246600
+			},
+			"text": " And you might lose at the stations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,600",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 246600,
+				"to": 249600
+			},
+			"text": " You might miss at the stations, blogs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:13,800"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 253800
+			},
+			"text": " So basically, you're losing money simply because very, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,800",
+				"to": "00:04:16,680"
+			},
+			"offsets": {
+				"from": 253800,
+				"to": 256680
+			},
+			"text": " short spikes in bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,680",
+				"to": "00:04:19,120"
+			},
+			"offsets": {
+				"from": 256680,
+				"to": 259120
+			},
+			"text": " So yeah, we don't want that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,120",
+				"to": "00:04:22,560"
+			},
+			"offsets": {
+				"from": 259120,
+				"to": 262560
+			},
+			"text": " Now let's check where is the bandwidth coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,560",
+				"to": "00:04:24,600"
+			},
+			"offsets": {
+				"from": 262560,
+				"to": 264600
+			},
+			"text": " For the sake of this talk, we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,600",
+				"to": "00:04:29,040"
+			},
+			"offsets": {
+				"from": 264600,
+				"to": 269040
+			},
+			"text": " going to separate protocols between discovery and non-discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,040",
+				"to": "00:04:30,360"
+			},
+			"offsets": {
+				"from": 269040,
+				"to": 270360
+			},
+			"text": " So why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,360",
+				"to": "00:04:35,240"
+			},
+			"offsets": {
+				"from": 270360,
+				"to": 275240
+			},
+			"text": " Because discovery has its own transport, its own encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,240",
+				"to": "00:04:37,560"
+			},
+			"offsets": {
+				"from": 275240,
+				"to": 277560
+			},
+			"text": " It's over UDP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,560",
+				"to": "00:04:39,560"
+			},
+			"offsets": {
+				"from": 277560,
+				"to": 279560
+			},
+			"text": " Whereas all the leaf P2P, we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,560",
+				"to": "00:04:42,360"
+			},
+			"offsets": {
+				"from": 279560,
+				"to": 282360
+			},
+			"text": " to call them \"leap-2P\" protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,360",
+				"to": "00:04:44,360"
+			},
+			"offsets": {
+				"from": 282360,
+				"to": 284360
+			},
+			"text": " They're over TCP."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,360",
+				"to": "00:04:48,280"
+			},
+			"offsets": {
+				"from": 284360,
+				"to": 288280
+			},
+			"text": " We have Gossip Sub and their request response."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,280",
+				"to": "00:04:51,200"
+			},
+			"offsets": {
+				"from": 288280,
+				"to": 291200
+			},
+			"text": " The one we are going to be focusing mainly in this talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,200",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 291200,
+				"to": 293400
+			},
+			"text": " is Gossip Sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:56,240"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 296240
+			},
+			"text": " Now that we have this separation between, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,240",
+				"to": "00:04:59,160"
+			},
+			"offsets": {
+				"from": 296240,
+				"to": 299160
+			},
+			"text": " discovery and non-discovery, let's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,160",
+				"to": "00:05:01,440"
+			},
+			"offsets": {
+				"from": 299160,
+				"to": 301440
+			},
+			"text": " check where is the bandwidth coming from."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,440",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 301440,
+				"to": 305000
+			},
+			"text": " This is what the bandwidth, total bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308720
+			},
+			"text": " looks like for one of our nodes for the last couple of days."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:09,920"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 309920
+			},
+			"text": " Is it discovery?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,920",
+				"to": "00:05:11,040"
+			},
+			"offsets": {
+				"from": 309920,
+				"to": 311040
+			},
+			"text": " Is it libP2P?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,040",
+				"to": "00:05:12,280"
+			},
+			"offsets": {
+				"from": 311040,
+				"to": 312280
+			},
+			"text": " Where is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,280",
+				"to": "00:05:13,880"
+			},
+			"offsets": {
+				"from": 312280,
+				"to": 313880
+			},
+			"text": " So now we have two graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,880",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 313880,
+				"to": 317000
+			},
+			"text": " The purple one is going to be discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:18,960"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 318960
+			},
+			"text": " It's all the discovery bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,960",
+				"to": "00:05:22,640"
+			},
+			"offsets": {
+				"from": 318960,
+				"to": 322640
+			},
+			"text": " And the other one in the bottom is the libP2P bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,640",
+				"to": "00:05:23,800"
+			},
+			"offsets": {
+				"from": 322640,
+				"to": 323800
+			},
+			"text": " Now forget about the scales."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,800",
+				"to": "00:05:26,440"
+			},
+			"offsets": {
+				"from": 323800,
+				"to": 326440
+			},
+			"text": " This is just like a non-nault, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,440",
+				"to": "00:05:31,040"
+			},
+			"offsets": {
+				"from": 326440,
+				"to": 331040
+			},
+			"text": " science-y as analysis of the shape of the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,040",
+				"to": "00:05:34,880"
+			},
+			"offsets": {
+				"from": 331040,
+				"to": 334880
+			},
+			"text": " So I guess we can more or less agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,880",
+				"to": "00:05:39,840"
+			},
+			"offsets": {
+				"from": 334880,
+				"to": 339840
+			},
+			"text": " that bandwidth has the shape of the libP2P when,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,840",
+				"to": "00:05:45,400"
+			},
+			"offsets": {
+				"from": 339840,
+				"to": 345400
+			},
+			"text": " whereas discovery is very magical as we will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,400",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345400,
+				"to": 351000
+			},
+			"text": " So the total bandwidth is around 250 kilobytes per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:51,960"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 351960
+			},
+			"text": " Is it better like this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,960",
+				"to": "00:05:53,040"
+			},
+			"offsets": {
+				"from": 351960,
+				"to": 353040
+			},
+			"text": " Yeah?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,040",
+				"to": "00:05:54,200"
+			},
+			"offsets": {
+				"from": 353040,
+				"to": 354200
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,200",
+				"to": "00:05:57,880"
+			},
+			"offsets": {
+				"from": 354200,
+				"to": 357880
+			},
+			"text": " About 250 kilobytes per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,880",
+				"to": "00:06:01,680"
+			},
+			"offsets": {
+				"from": 357880,
+				"to": 361680
+			},
+			"text": " Then we have libP2P, which is around 200 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,680",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 361680,
+				"to": 366200
+			},
+			"text": " And then discovery, which is between 40 and 60 kilobytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:07,120"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 367120
+			},
+			"text": " per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,120",
+				"to": "00:06:11,240"
+			},
+			"offsets": {
+				"from": 367120,
+				"to": 371240
+			},
+			"text": " So for the sake of doing analysis of our bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,240",
+				"to": "00:06:13,480"
+			},
+			"offsets": {
+				"from": 371240,
+				"to": 373480
+			},
+			"text": " discovery is really not important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,480",
+				"to": "00:06:14,840"
+			},
+			"offsets": {
+				"from": 373480,
+				"to": 374840
+			},
+			"text": " So we're going to focus."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,840",
+				"to": "00:06:16,600"
+			},
+			"offsets": {
+				"from": 374840,
+				"to": 376600
+			},
+			"text": " Only if P2P."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,600",
+				"to": "00:06:20,760"
+			},
+			"offsets": {
+				"from": 376600,
+				"to": 380760
+			},
+			"text": " So I was saying we have Gossip Stop and the response"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,760",
+				"to": "00:06:24,360"
+			},
+			"offsets": {
+				"from": 380760,
+				"to": 384360
+			},
+			"text": " we're going to focus on Gossip Stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,360",
+				"to": "00:06:28,480"
+			},
+			"offsets": {
+				"from": 384360,
+				"to": 388480
+			},
+			"text": " So in Gossip Stop, Gossip Stop is a publish-subscribe system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,480",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 388480,
+				"to": 389960
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:33,440"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 393440
+			},
+			"text": " We publish messages to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,440",
+				"to": "00:06:36,080"
+			},
+			"offsets": {
+				"from": 393440,
+				"to": 396080
+			},
+			"text": " Those get disseminated to other peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,080",
+				"to": "00:06:38,040"
+			},
+			"offsets": {
+				"from": 396080,
+				"to": 398040
+			},
+			"text": " And we receive messages to subnets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,040",
+				"to": "00:06:42,120"
+			},
+			"offsets": {
+				"from": 398040,
+				"to": 402120
+			},
+			"text": " where the topics to which we are subscribed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,120",
+				"to": "00:06:43,640"
+			},
+			"offsets": {
+				"from": 402120,
+				"to": 403640
+			},
+			"text": " We have large amounts of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,640",
+				"to": "00:06:46,600"
+			},
+			"offsets": {
+				"from": 403640,
+				"to": 406600
+			},
+			"text": " And those we split between subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,600",
+				"to": "00:06:50,200"
+			},
+			"offsets": {
+				"from": 406600,
+				"to": 410200
+			},
+			"text": " Again, here we have 64 attestation subnets, which, again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,200",
+				"to": "00:06:56,040"
+			},
+			"offsets": {
+				"from": 410200,
+				"to": 416040
+			},
+			"text": " H is going to be talking further in a moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,040",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 416040,
+				"to": 419280
+			},
+			"text": " And then we need to think how many subnets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:02,960"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 422960
+			},
+			"text": " are we subscribed to, since this is the reason why we get"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,960",
+				"to": "00:07:05,040"
+			},
+			"offsets": {
+				"from": 422960,
+				"to": 425040
+			},
+			"text": " so much bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,040",
+				"to": "00:07:07,680"
+			},
+			"offsets": {
+				"from": 425040,
+				"to": 427680
+			},
+			"text": " And the reason is that right now, each we can know this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,680",
+				"to": "00:07:12,080"
+			},
+			"offsets": {
+				"from": 427680,
+				"to": 432080
+			},
+			"text": " subscribing to one subnet for each validator that it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,080",
+				"to": "00:07:12,800"
+			},
+			"offsets": {
+				"from": 432080,
+				"to": 432800
+			},
+			"text": " attached."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,800",
+				"to": "00:07:18,640"
+			},
+			"offsets": {
+				"from": 432800,
+				"to": 438640
+			},
+			"text": " And yeah, subscribing to a subnet means a lot more of bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,640",
+				"to": "00:07:22,040"
+			},
+			"offsets": {
+				"from": 438640,
+				"to": 442040
+			},
+			"text": " So a very simple example of how Gossip Stop works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,040",
+				"to": "00:07:25,800"
+			},
+			"offsets": {
+				"from": 442040,
+				"to": 445800
+			},
+			"text": " Gossip Stop has a lot of parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,800",
+				"to": "00:07:28,800"
+			},
+			"offsets": {
+				"from": 445800,
+				"to": 448800
+			},
+			"text": " But one that we care a lot is the match degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,800",
+				"to": "00:07:33,080"
+			},
+			"offsets": {
+				"from": 448800,
+				"to": 453080
+			},
+			"text": " So this example is the three match degree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,080",
+				"to": "00:07:36,680"
+			},
+			"offsets": {
+				"from": 453080,
+				"to": 456680
+			},
+			"text": " So we are going to start with our guide in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,680",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 456680,
+				"to": 460000
+			},
+			"text": " That one, I hope you are seeing the red circle, just"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:41,240"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 461240
+			},
+			"text": " right in the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,240",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 461240,
+				"to": 463000
+			},
+			"text": " So this guide has a validator attached."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:45,960"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 465960
+			},
+			"text": " It's going to publish a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,960",
+				"to": "00:07:48,600"
+			},
+			"offsets": {
+				"from": 465960,
+				"to": 468600
+			},
+			"text": " So it's going to pick three peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,600",
+				"to": "00:07:50,560"
+			},
+			"offsets": {
+				"from": 468600,
+				"to": 470560
+			},
+			"text": " It's going to disseminate the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,560",
+				"to": "00:07:53,800"
+			},
+			"offsets": {
+				"from": 470560,
+				"to": 473800
+			},
+			"text": " And then each peer is going to do the same with some other"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,800",
+				"to": "00:07:55,800"
+			},
+			"offsets": {
+				"from": 473800,
+				"to": 475800
+			},
+			"text": " three peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,800",
+				"to": "00:07:56,840"
+			},
+			"offsets": {
+				"from": 475800,
+				"to": 476840
+			},
+			"text": " And so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,840",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 476840,
+				"to": 478360
+			},
+			"text": " And so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:01,040"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 481040
+			},
+			"text": " So if you think about this for a moment, you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,040",
+				"to": "00:08:04,480"
+			},
+			"offsets": {
+				"from": 481040,
+				"to": 484480
+			},
+			"text": " realize that it's very likely that I know this is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,480",
+				"to": "00:08:08,640"
+			},
+			"offsets": {
+				"from": 484480,
+				"to": 488640
+			},
+			"text": " receive one single, one unique message a lot of times from"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,640",
+				"to": "00:08:13,600"
+			},
+			"offsets": {
+				"from": 488640,
+				"to": 493600
+			},
+			"text": " very different notes across very different paths in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,600",
+				"to": "00:08:17,120"
+			},
+			"offsets": {
+				"from": 493600,
+				"to": 497120
+			},
+			"text": " network, from the source to themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,120",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 497120,
+				"to": 498000
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:21,160"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 501160
+			},
+			"text": " So why do we like Gossip Stop?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,160",
+				"to": "00:08:24,760"
+			},
+			"offsets": {
+				"from": 501160,
+				"to": 504760
+			},
+			"text": " Or why do we like the way we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,760",
+				"to": "00:08:26,600"
+			},
+			"offsets": {
+				"from": 504760,
+				"to": 506600
+			},
+			"text": " This message propagation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,600",
+				"to": "00:08:29,880"
+			},
+			"offsets": {
+				"from": 506600,
+				"to": 509880
+			},
+			"text": " So it makes for a very robust network in the sense that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,880",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 509880,
+				"to": 513360
+			},
+			"text": " are sure that if we publish a message and we have this kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:36,920"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 516920
+			},
+			"text": " of topology, the message is going to reach all other notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,920",
+				"to": "00:08:39,160"
+			},
+			"offsets": {
+				"from": 516920,
+				"to": 519160
+			},
+			"text": " in the network in a timely manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,160",
+				"to": "00:08:43,360"
+			},
+			"offsets": {
+				"from": 519160,
+				"to": 523360
+			},
+			"text": " We also know that we have low message latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,360",
+				"to": "00:08:50,040"
+			},
+			"offsets": {
+				"from": 523360,
+				"to": 530040
+			},
+			"text": " That means the time that is spent between the creation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,040",
+				"to": "00:08:54,480"
+			},
+			"offsets": {
+				"from": 530040,
+				"to": 534480
+			},
+			"text": " the message in the source node to when you receive it is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,480",
+				"to": "00:08:55,040"
+			},
+			"offsets": {
+				"from": 534480,
+				"to": 535040
+			},
+			"text": " very long."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,040",
+				"to": "00:08:59,680"
+			},
+			"offsets": {
+				"from": 535040,
+				"to": 539680
+			},
+			"text": " And this is, as I was saying, because of lower paths,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,680",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 539680,
+				"to": 541720
+			},
+			"text": " smaller paths, lower hoops."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:05,880"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 545880
+			},
+			"text": " But then again, we have a lot of duplicates and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,880",
+				"to": "00:09:08,520"
+			},
+			"offsets": {
+				"from": 545880,
+				"to": 548520
+			},
+			"text": " redundancy results in high value."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,520",
+				"to": "00:09:12,200"
+			},
+			"offsets": {
+				"from": 548520,
+				"to": 552200
+			},
+			"text": " This is a graph that we have for our notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,200",
+				"to": "00:09:14,440"
+			},
+			"offsets": {
+				"from": 552200,
+				"to": 554440
+			},
+			"text": " So this is like real data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,440",
+				"to": "00:09:18,480"
+			},
+			"offsets": {
+				"from": 554440,
+				"to": 558480
+			},
+			"text": " For the Gossip Stop duplicates, now this is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,480",
+				"to": "00:09:22,920"
+			},
+			"offsets": {
+				"from": 558480,
+				"to": 562920
+			},
+			"text": " weird, but I'm going to ask you to focus on this number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,920",
+				"to": "00:09:24,320"
+			},
+			"offsets": {
+				"from": 562920,
+				"to": 564320
+			},
+			"text": " the BICOM block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,320",
+				"to": "00:09:29,960"
+			},
+			"offsets": {
+				"from": 564320,
+				"to": 569960
+			},
+			"text": " So we know we need to publish one block, issues a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,960",
+				"to": "00:09:33,080"
+			},
+			"offsets": {
+				"from": 569960,
+				"to": 573080
+			},
+			"text": " So we know for this topic, we are supposed to receive a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,080",
+				"to": "00:09:34,920"
+			},
+			"offsets": {
+				"from": 573080,
+				"to": 574920
+			},
+			"text": " single unique message."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,920",
+				"to": "00:09:39,520"
+			},
+			"offsets": {
+				"from": 574920,
+				"to": 579520
+			},
+			"text": " However, we are getting six or seven messages across the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,520",
+				"to": "00:09:40,280"
+			},
+			"offsets": {
+				"from": 579520,
+				"to": 580280
+			},
+			"text": " network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,280",
+				"to": "00:09:43,880"
+			},
+			"offsets": {
+				"from": 580280,
+				"to": 583880
+			},
+			"text": " That means an amplification factor of about seven."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,880",
+				"to": "00:09:47,600"
+			},
+			"offsets": {
+				"from": 583880,
+				"to": 587600
+			},
+			"text": " So imagine what happens if we were able to reduce that kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,600",
+				"to": "00:09:48,960"
+			},
+			"offsets": {
+				"from": 587600,
+				"to": 588960
+			},
+			"text": " of duplicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,960",
+				"to": "00:09:52,520"
+			},
+			"offsets": {
+				"from": 588960,
+				"to": 592520
+			},
+			"text": " That's like a huge, huge gain there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,520",
+				"to": "00:09:56,480"
+			},
+			"offsets": {
+				"from": 592520,
+				"to": 596480
+			},
+			"text": " OK, so a summary of the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,480",
+				"to": "00:09:59,640"
+			},
+			"offsets": {
+				"from": 596480,
+				"to": 599640
+			},
+			"text": " So bandwidth is proportional to the number of validators I"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,640",
+				"to": "00:10:00,800"
+			},
+			"offsets": {
+				"from": 599640,
+				"to": 600800
+			},
+			"text": " know it has."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,800",
+				"to": "00:10:05,920"
+			},
+			"offsets": {
+				"from": 600800,
+				"to": 605920
+			},
+			"text": " H is going to speak about how we intend to tackle this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,920",
+				"to": "00:10:08,840"
+			},
+			"offsets": {
+				"from": 605920,
+				"to": 608840
+			},
+			"text": " And the other one is the high amplification and Gossip Stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,840",
+				"to": "00:10:13,920"
+			},
+			"offsets": {
+				"from": 608840,
+				"to": 613920
+			},
+			"text": " How are you going to reduce duplicates without harming"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,920",
+				"to": "00:10:14,800"
+			},
+			"offsets": {
+				"from": 613920,
+				"to": 614800
+			},
+			"text": " the network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,800",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 614800,
+				"to": 619000
+			},
+			"text": " So I'm going to leave H to continue this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 625960
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:26,720"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 626720
+			},
+			"text": " Yeah, thanks, Diva."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,720",
+				"to": "00:10:29,840"
+			},
+			"offsets": {
+				"from": 626720,
+				"to": 629840
+			},
+			"text": " So I'm going to try and have a crack at explaining how we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,840",
+				"to": "00:10:31,800"
+			},
+			"offsets": {
+				"from": 629840,
+				"to": 631800
+			},
+			"text": " can potentially reduce some of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,800",
+				"to": "00:10:34,440"
+			},
+			"offsets": {
+				"from": 631800,
+				"to": 634440
+			},
+			"text": " So I'm Australian, and I can see a few Australians in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,440",
+				"to": "00:10:35,160"
+			},
+			"offsets": {
+				"from": 634440,
+				"to": 635160
+			},
+			"text": " audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,160",
+				"to": "00:10:37,640"
+			},
+			"offsets": {
+				"from": 635160,
+				"to": 637640
+			},
+			"text": " I think they'll agree with me that we have terrible"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,640",
+				"to": "00:10:39,920"
+			},
+			"offsets": {
+				"from": 637640,
+				"to": 639920
+			},
+			"text": " internet, like ridiculous internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,920",
+				"to": "00:10:44,320"
+			},
+			"offsets": {
+				"from": 639920,
+				"to": 644320
+			},
+			"text": " I run a validator at home, and someone that watches Netflix"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,320",
+				"to": "00:10:46,920"
+			},
+			"offsets": {
+				"from": 644320,
+				"to": 646920
+			},
+			"text": " in another room causes me to lose attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,920",
+				"to": "00:10:50,640"
+			},
+			"offsets": {
+				"from": 646920,
+				"to": 650640
+			},
+			"text": " So as a disclaimer, I have a personal vendetta to try and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,640",
+				"to": "00:10:52,480"
+			},
+			"offsets": {
+				"from": 650640,
+				"to": 652480
+			},
+			"text": " actually reduce this bandwidth so that I stop losing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,480",
+				"to": "00:10:53,160"
+			},
+			"offsets": {
+				"from": 652480,
+				"to": 653160
+			},
+			"text": " attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,160",
+				"to": "00:10:56,480"
+			},
+			"offsets": {
+				"from": 653160,
+				"to": 656480
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,480",
+				"to": "00:10:59,960"
+			},
+			"offsets": {
+				"from": 656480,
+				"to": 659960
+			},
+			"text": " So there's probably two solutions we have to these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,960",
+				"to": "00:11:01,600"
+			},
+			"offsets": {
+				"from": 659960,
+				"to": 661600
+			},
+			"text": " kinds of problems, which I just want to kind of briefly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,600",
+				"to": "00:11:04,640"
+			},
+			"offsets": {
+				"from": 661600,
+				"to": 664640
+			},
+			"text": " touch on and give you a feel for what we're trying to work on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,640",
+				"to": "00:11:08,120"
+			},
+			"offsets": {
+				"from": 664640,
+				"to": 668120
+			},
+			"text": " One of them is called minimizing topic subscriptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,120",
+				"to": "00:11:10,560"
+			},
+			"offsets": {
+				"from": 668120,
+				"to": 670560
+			},
+			"text": " Let me try and explain that if you haven't already covered"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,560",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 670560,
+				"to": 672080
+			},
+			"text": " some of this kind of stuff before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:16,600"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 676600
+			},
+			"text": " So a validator in an epoch needs to publish the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,600",
+				"to": "00:11:18,400"
+			},
+			"offsets": {
+				"from": 676600,
+				"to": 678400
+			},
+			"text": " on these things called subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,400",
+				"to": "00:11:20,400"
+			},
+			"offsets": {
+				"from": 678400,
+				"to": 680400
+			},
+			"text": " In order to do that, you need to have peers to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,400",
+				"to": "00:11:22,360"
+			},
+			"offsets": {
+				"from": 680400,
+				"to": 682360
+			},
+			"text": " publish those messages on those subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,360",
+				"to": "00:11:25,920"
+			},
+			"offsets": {
+				"from": 682360,
+				"to": 685920
+			},
+			"text": " Now the problem with this is that peer discovery is a slow"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,920",
+				"to": "00:11:26,280"
+			},
+			"offsets": {
+				"from": 685920,
+				"to": 686280
+			},
+			"text": " process."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,280",
+				"to": "00:11:28,280"
+			},
+			"offsets": {
+				"from": 686280,
+				"to": 688280
+			},
+			"text": " It takes a while to actually find some peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,280",
+				"to": "00:11:30,920"
+			},
+			"offsets": {
+				"from": 688280,
+				"to": 690920
+			},
+			"text": " And it's even harder to find a peer on a specific subnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,920",
+				"to": "00:11:33,480"
+			},
+			"offsets": {
+				"from": 690920,
+				"to": 693480
+			},
+			"text": " that you need to publish an attestation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,480",
+				"to": "00:11:37,080"
+			},
+			"offsets": {
+				"from": 693480,
+				"to": 697080
+			},
+			"text": " So the problem we've got, essentially, is that we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,080",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 697080,
+				"to": 701520
+			},
+			"text": " a stable set of peers that exist on each subnet, that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:44,200"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 704200
+			},
+			"text": " can find them easily when we need to publish a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,200",
+				"to": "00:11:47,680"
+			},
+			"offsets": {
+				"from": 704200,
+				"to": 707680
+			},
+			"text": " So it's not really an easy problem to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,680",
+				"to": "00:11:51,440"
+			},
+			"offsets": {
+				"from": 707680,
+				"to": 711440
+			},
+			"text": " The way that we currently have this solution, I guess, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,440",
+				"to": "00:11:55,520"
+			},
+			"offsets": {
+				"from": 711440,
+				"to": 715520
+			},
+			"text": " that every time a validator is attached or sends a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,520",
+				"to": "00:11:57,880"
+			},
+			"offsets": {
+				"from": 715520,
+				"to": 717880
+			},
+			"text": " to your beacon node, that beacon node is required to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,880",
+				"to": "00:12:00,680"
+			},
+			"offsets": {
+				"from": 717880,
+				"to": 720680
+			},
+			"text": " subscribe to one subnet for a very long period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,680",
+				"to": "00:12:03,640"
+			},
+			"offsets": {
+				"from": 720680,
+				"to": 723640
+			},
+			"text": " It's about 27 hours or 256 epochs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,640",
+				"to": "00:12:05,640"
+			},
+			"offsets": {
+				"from": 723640,
+				"to": 725640
+			},
+			"text": " So what that means is the more validators you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,640",
+				"to": "00:12:08,040"
+			},
+			"offsets": {
+				"from": 725640,
+				"to": 728040
+			},
+			"text": " attached to your beacon node, the more subnets you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,040",
+				"to": "00:12:09,120"
+			},
+			"offsets": {
+				"from": 728040,
+				"to": 729120
+			},
+			"text": " to subscribe to."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,120",
+				"to": "00:12:11,840"
+			},
+			"offsets": {
+				"from": 729120,
+				"to": 731840
+			},
+			"text": " And subscribing to a subnet means that you have to get all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,840",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 731840,
+				"to": 733000
+			},
+			"text": " of the messages on that subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:14,680"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 734680
+			},
+			"text": " You need to verify those messages, and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,680",
+				"to": "00:12:16,720"
+			},
+			"offsets": {
+				"from": 734680,
+				"to": 736720
+			},
+			"text": " need to send them onto other peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,720",
+				"to": "00:12:17,760"
+			},
+			"offsets": {
+				"from": 736720,
+				"to": 737760
+			},
+			"text": " So you're doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,760",
+				"to": "00:12:20,200"
+			},
+			"offsets": {
+				"from": 737760,
+				"to": 740200
+			},
+			"text": " That's a lot of bandwidth and a lot of processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,200",
+				"to": "00:12:22,720"
+			},
+			"offsets": {
+				"from": 740200,
+				"to": 742720
+			},
+			"text": " So essentially, you're supporting the network at the cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,720",
+				"to": "00:12:23,760"
+			},
+			"offsets": {
+				"from": 742720,
+				"to": 743760
+			},
+			"text": " of bandwidth on your node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,760",
+				"to": "00:12:26,880"
+			},
+			"offsets": {
+				"from": 743760,
+				"to": 746880
+			},
+			"text": " So you're kind of being like a good actor."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,880",
+				"to": "00:12:30,680"
+			},
+			"offsets": {
+				"from": 746880,
+				"to": 750680
+			},
+			"text": " So there's a number of downsides to this approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,680",
+				"to": "00:12:32,720"
+			},
+			"offsets": {
+				"from": 750680,
+				"to": 752720
+			},
+			"text": " One is that it's not enforceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,720",
+				"to": "00:12:36,480"
+			},
+			"offsets": {
+				"from": 752720,
+				"to": 756480
+			},
+			"text": " So what that means is you, as a beacon node, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,480",
+				"to": "00:12:37,280"
+			},
+			"offsets": {
+				"from": 756480,
+				"to": 757280
+			},
+			"text": " essentially lie to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,280",
+				"to": "00:12:38,920"
+			},
+			"offsets": {
+				"from": 757280,
+				"to": 758920
+			},
+			"text": " And you say, oh, I don't have any validators, even though"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,920",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 758920,
+				"to": 761360
+			},
+			"text": " you've got like 2,000 attached to you, and you just don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:43,040"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 763040
+			},
+			"text": " subscribe to any long-lived subnets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,040",
+				"to": "00:12:44,960"
+			},
+			"offsets": {
+				"from": 763040,
+				"to": 764960
+			},
+			"text": " so you don't consume any bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,960",
+				"to": "00:12:46,400"
+			},
+			"offsets": {
+				"from": 764960,
+				"to": 766400
+			},
+			"text": " So you're kind of incentivized to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,400",
+				"to": "00:12:48,440"
+			},
+			"offsets": {
+				"from": 766400,
+				"to": 768440
+			},
+			"text": " And there's no way that any other node on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,440",
+				"to": "00:12:50,560"
+			},
+			"offsets": {
+				"from": 768440,
+				"to": 770560
+			},
+			"text": " can tell whether you're lying to us or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,560",
+				"to": "00:12:54,160"
+			},
+			"offsets": {
+				"from": 770560,
+				"to": 774160
+			},
+			"text": " The next thing is potentially our subnets are oversubscribed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,160",
+				"to": "00:12:57,040"
+			},
+			"offsets": {
+				"from": 774160,
+				"to": 777040
+			},
+			"text": " We actually have quite a large number of beacon nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,040",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 777040,
+				"to": 778120
+			},
+			"text": " on mainnet today."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:01,080"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 781080
+			},
+			"text": " And when we originally designed this kind of process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,080",
+				"to": "00:13:03,800"
+			},
+			"offsets": {
+				"from": 781080,
+				"to": 783800
+			},
+			"text": " we didn't really realize how many nodes would"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,800",
+				"to": "00:13:05,560"
+			},
+			"offsets": {
+				"from": 783800,
+				"to": 785560
+			},
+			"text": " be participating in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,560",
+				"to": "00:13:06,800"
+			},
+			"offsets": {
+				"from": 785560,
+				"to": 786800
+			},
+			"text": " So potentially, we have more nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,800",
+				"to": "00:13:08,640"
+			},
+			"offsets": {
+				"from": 786800,
+				"to": 788640
+			},
+			"text": " than we need on each of these subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,640",
+				"to": "00:13:12,600"
+			},
+			"offsets": {
+				"from": 788640,
+				"to": 792600
+			},
+			"text": " So that would lead us to think that we have excess bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,600",
+				"to": "00:13:15,240"
+			},
+			"offsets": {
+				"from": 792600,
+				"to": 795240
+			},
+			"text": " on the network that potentially we can remove."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,240",
+				"to": "00:13:18,240"
+			},
+			"offsets": {
+				"from": 795240,
+				"to": 798240
+			},
+			"text": " So the idea that's being proposed is, why don't just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,240",
+				"to": "00:13:19,640"
+			},
+			"offsets": {
+				"from": 798240,
+				"to": 799640
+			},
+			"text": " every single beacon node on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,640",
+				"to": "00:13:23,040"
+			},
+			"offsets": {
+				"from": 799640,
+				"to": 803040
+			},
+			"text": " subscribe to one or many subnets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,040",
+				"to": "00:13:25,960"
+			},
+			"offsets": {
+				"from": 803040,
+				"to": 805960
+			},
+			"text": " There's some benefits to this, but the general discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,960",
+				"to": "00:13:30,120"
+			},
+			"offsets": {
+				"from": 805960,
+				"to": 810120
+			},
+			"text": " is in this spec's repo as an issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,120",
+				"to": "00:13:32,760"
+			},
+			"offsets": {
+				"from": 810120,
+				"to": 812760
+			},
+			"text": " So what would the bandwidth graph look like if we did this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,760",
+				"to": "00:13:36,360"
+			},
+			"offsets": {
+				"from": 812760,
+				"to": 816360
+			},
+			"text": " If one beacon node would subscribe to one subnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,360",
+				"to": "00:13:39,320"
+			},
+			"offsets": {
+				"from": 816360,
+				"to": 819320
+			},
+			"text": " rather than having it being proportional to the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,320",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 819320,
+				"to": 821000
+			},
+			"text": " of validators attached to you, you would then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:42,440"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 822440
+			},
+			"text": " get this green line on this graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,440",
+				"to": "00:13:43,920"
+			},
+			"offsets": {
+				"from": 822440,
+				"to": 823920
+			},
+			"text": " which hopefully everyone can see."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,920",
+				"to": "00:13:46,840"
+			},
+			"offsets": {
+				"from": 823920,
+				"to": 826840
+			},
+			"text": " And that green line sits at around 500 kilobytes a second"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,840",
+				"to": "00:13:49,200"
+			},
+			"offsets": {
+				"from": 826840,
+				"to": 829200
+			},
+			"text": " at the moment from what we've measured."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,200",
+				"to": "00:13:50,920"
+			},
+			"offsets": {
+				"from": 829200,
+				"to": 830920
+			},
+			"text": " So essentially, everybody on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,920",
+				"to": "00:13:54,280"
+			},
+			"offsets": {
+				"from": 830920,
+				"to": 834280
+			},
+			"text": " that has a validator wins in this scenario,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,280",
+				"to": "00:13:55,480"
+			},
+			"offsets": {
+				"from": 834280,
+				"to": 835480
+			},
+			"text": " except for those that have one."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,480",
+				"to": "00:13:57,720"
+			},
+			"offsets": {
+				"from": 835480,
+				"to": 837720
+			},
+			"text": " So sorry for the people that only have one validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,720",
+				"to": "00:13:58,640"
+			},
+			"offsets": {
+				"from": 837720,
+				"to": 838640
+			},
+			"text": " in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,640",
+				"to": "00:14:01,320"
+			},
+			"offsets": {
+				"from": 838640,
+				"to": 841320
+			},
+			"text": " You guys then have to-- your bandwidth will increase by about"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,320",
+				"to": "00:14:03,440"
+			},
+			"offsets": {
+				"from": 841320,
+				"to": 843440
+			},
+			"text": " 500 to 100 kilobytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,440",
+				"to": "00:14:05,720"
+			},
+			"offsets": {
+				"from": 843440,
+				"to": 845720
+			},
+			"text": " The other benefit that we get from this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,720",
+				"to": "00:14:09,880"
+			},
+			"offsets": {
+				"from": 845720,
+				"to": 849880
+			},
+			"text": " so from a quick scan that we did of the DHT or the current nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,880",
+				"to": "00:14:14,720"
+			},
+			"offsets": {
+				"from": 849880,
+				"to": 854720
+			},
+			"text": " on the network, we found that 57% of nodes apparently"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,720",
+				"to": "00:14:16,240"
+			},
+			"offsets": {
+				"from": 854720,
+				"to": 856240
+			},
+			"text": " don't have any validators attached to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,240",
+				"to": "00:14:18,240"
+			},
+			"offsets": {
+				"from": 856240,
+				"to": 858240
+			},
+			"text": " So they're either lying to us, or they actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,240",
+				"to": "00:14:19,560"
+			},
+			"offsets": {
+				"from": 858240,
+				"to": 859560
+			},
+			"text": " don't have validators attached to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,560",
+				"to": "00:14:22,240"
+			},
+			"offsets": {
+				"from": 859560,
+				"to": 862240
+			},
+			"text": " And they're not participating in any of the subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,240",
+				"to": "00:14:24,680"
+			},
+			"offsets": {
+				"from": 862240,
+				"to": 864680
+			},
+			"text": " So if we do transition over into this state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,680",
+				"to": "00:14:26,760"
+			},
+			"offsets": {
+				"from": 864680,
+				"to": 866760
+			},
+			"text": " they actually have to start participating and helping out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,760",
+				"to": "00:14:29,320"
+			},
+			"offsets": {
+				"from": 866760,
+				"to": 869320
+			},
+			"text": " And a lot was the bandwidth for the institutional stakers"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,320",
+				"to": "00:14:31,520"
+			},
+			"offsets": {
+				"from": 869320,
+				"to": 871520
+			},
+			"text": " or the ones that have high number of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,520",
+				"to": "00:14:32,020"
+			},
+			"offsets": {
+				"from": 871520,
+				"to": 872020
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,020",
+				"to": "00:14:33,200"
+			},
+			"offsets": {
+				"from": 872020,
+				"to": 873200
+			},
+			"text": " So essentially, all the beacon nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,200",
+				"to": "00:14:39,120"
+			},
+			"offsets": {
+				"from": 873200,
+				"to": 879120
+			},
+			"text": " will now contribute to helping with this subnet stability."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,120",
+				"to": "00:14:42,960"
+			},
+			"offsets": {
+				"from": 879120,
+				"to": 882960
+			},
+			"text": " So it kind of sounds pretty good that we get a massive reduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,960",
+				"to": "00:14:44,880"
+			},
+			"offsets": {
+				"from": 882960,
+				"to": 884880
+			},
+			"text": " in bandwidth, but there is a cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,880",
+				"to": "00:14:49,960"
+			},
+			"offsets": {
+				"from": 884880,
+				"to": 889960
+			},
+			"text": " And the cost is what is the density of nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,960",
+				"to": "00:14:51,800"
+			},
+			"offsets": {
+				"from": 889960,
+				"to": 891800
+			},
+			"text": " that you can find that exist on these subnets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,800",
+				"to": "00:14:53,280"
+			},
+			"offsets": {
+				"from": 891800,
+				"to": 893280
+			},
+			"text": " So if no one was subscribed to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,280",
+				"to": "00:14:55,320"
+			},
+			"offsets": {
+				"from": 893280,
+				"to": 895320
+			},
+			"text": " we wouldn't be able to find those peers in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,320",
+				"to": "00:14:57,320"
+			},
+			"offsets": {
+				"from": 895320,
+				"to": 897320
+			},
+			"text": " to publish our messages on these subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,320",
+				"to": "00:15:00,440"
+			},
+			"offsets": {
+				"from": 897320,
+				"to": 900440
+			},
+			"text": " So we still need a decent density so that if you just randomly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,440",
+				"to": "00:15:01,680"
+			},
+			"offsets": {
+				"from": 900440,
+				"to": 901680
+			},
+			"text": " look through the PSAT, you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,680",
+				"to": "00:15:04,320"
+			},
+			"offsets": {
+				"from": 901680,
+				"to": 904320
+			},
+			"text": " find nodes on those subnets and kind of hold onto them."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,320",
+				"to": "00:15:07,240"
+			},
+			"offsets": {
+				"from": 904320,
+				"to": 907240
+			},
+			"text": " And so this graph here is a distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,240",
+				"to": "00:15:10,400"
+			},
+			"offsets": {
+				"from": 907240,
+				"to": 910400
+			},
+			"text": " of the current density and what the density would look like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,400",
+				"to": "00:15:15,760"
+			},
+			"offsets": {
+				"from": 910400,
+				"to": 915760
+			},
+			"text": " if we switched to having one beacon node per one topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,760",
+				"to": "00:15:18,560"
+			},
+			"offsets": {
+				"from": 915760,
+				"to": 918560
+			},
+			"text": " So at the moment, it looks roughly like 8%."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,560",
+				"to": "00:15:20,120"
+			},
+			"offsets": {
+				"from": 918560,
+				"to": 920120
+			},
+			"text": " So you randomly pick a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,120",
+				"to": "00:15:21,760"
+			},
+			"offsets": {
+				"from": 920120,
+				"to": 921760
+			},
+			"text": " There's an 8% chance that it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,760",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 921760,
+				"to": 924000
+			},
+			"text": " to exist on any given subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:26,880"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 926880
+			},
+			"text": " If we switch to one beacon node per one subnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,880",
+				"to": "00:15:30,080"
+			},
+			"offsets": {
+				"from": 926880,
+				"to": 930080
+			},
+			"text": " it drops to about 1 and 1/2%, which is 1 on 64,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,080",
+				"to": "00:15:31,600"
+			},
+			"offsets": {
+				"from": 930080,
+				"to": 931600
+			},
+			"text": " as you would expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,600",
+				"to": "00:15:33,960"
+			},
+			"offsets": {
+				"from": 931600,
+				"to": 933960
+			},
+			"text": " The benefit of that is that it's configurable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,960",
+				"to": "00:15:35,920"
+			},
+			"offsets": {
+				"from": 933960,
+				"to": 935920
+			},
+			"text": " We don't have to say one beacon node one subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,920",
+				"to": "00:15:38,280"
+			},
+			"offsets": {
+				"from": 935920,
+				"to": 938280
+			},
+			"text": " We can say one beacon node two subnets, one beacon node three"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,280",
+				"to": "00:15:38,800"
+			},
+			"offsets": {
+				"from": 938280,
+				"to": 938800
+			},
+			"text": " subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,800",
+				"to": "00:15:41,280"
+			},
+			"offsets": {
+				"from": 938800,
+				"to": 941280
+			},
+			"text": " So we can adjust that kind of differential."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,280",
+				"to": "00:15:43,520"
+			},
+			"offsets": {
+				"from": 941280,
+				"to": 943520
+			},
+			"text": " And whether that's feasible is dependent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,520",
+				"to": "00:15:44,800"
+			},
+			"offsets": {
+				"from": 943520,
+				"to": 944800
+			},
+			"text": " on the number of nodes on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,800",
+				"to": "00:15:46,360"
+			},
+			"offsets": {
+				"from": 944800,
+				"to": 946360
+			},
+			"text": " So that's something we need to measure."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,360",
+				"to": "00:15:48,240"
+			},
+			"offsets": {
+				"from": 946360,
+				"to": 948240
+			},
+			"text": " But the benefits that we get from this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,240",
+				"to": "00:15:50,840"
+			},
+			"offsets": {
+				"from": 948240,
+				"to": 950840
+			},
+			"text": " is essentially for the institutional stakers, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,840",
+				"to": "00:15:53,760"
+			},
+			"offsets": {
+				"from": 950840,
+				"to": 953760
+			},
+			"text": " represent roughly 10% of all the validating nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,760",
+				"to": "00:15:56,960"
+			},
+			"offsets": {
+				"from": 953760,
+				"to": 956960
+			},
+			"text": " on the network, their bandwidth will drop by about over 90%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,960",
+				"to": "00:15:57,880"
+			},
+			"offsets": {
+				"from": 956960,
+				"to": 957880
+			},
+			"text": " which is kind of handy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,880",
+				"to": "00:16:00,200"
+			},
+			"offsets": {
+				"from": 957880,
+				"to": 960200
+			},
+			"text": " And as I mentioned before, everyone that has more than one"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,200",
+				"to": "00:16:02,040"
+			},
+			"offsets": {
+				"from": 960200,
+				"to": 962040
+			},
+			"text": " validating will have a reduced bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,040",
+				"to": "00:16:04,040"
+			},
+			"offsets": {
+				"from": 962040,
+				"to": 964040
+			},
+			"text": " So fundamentally, we're talking about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,040",
+				"to": "00:16:05,880"
+			},
+			"offsets": {
+				"from": 964040,
+				"to": 965880
+			},
+			"text": " do we need all of these nodes on the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,880",
+				"to": "00:16:09,480"
+			},
+			"offsets": {
+				"from": 965880,
+				"to": 969480
+			},
+			"text": " to support these subnets at the cost of the huge amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,480",
+				"to": "00:16:11,240"
+			},
+			"offsets": {
+				"from": 969480,
+				"to": 971240
+			},
+			"text": " of bandwidth they're currently using?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,240",
+				"to": "00:16:12,200"
+			},
+			"offsets": {
+				"from": 971240,
+				"to": 972200
+			},
+			"text": " And so potentially not."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,200",
+				"to": "00:16:14,120"
+			},
+			"offsets": {
+				"from": 972200,
+				"to": 974120
+			},
+			"text": " And it's customizable."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,120",
+				"to": "00:16:15,760"
+			},
+			"offsets": {
+				"from": 974120,
+				"to": 975760
+			},
+			"text": " The second thing is it's also enforceable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,760",
+				"to": "00:16:19,560"
+			},
+			"offsets": {
+				"from": 975760,
+				"to": 979560
+			},
+			"text": " because we would tag a beacon node's node ID to a subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,560",
+				"to": "00:16:21,240"
+			},
+			"offsets": {
+				"from": 979560,
+				"to": 981240
+			},
+			"text": " And so when we connect to a beacon node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,240",
+				"to": "00:16:22,640"
+			},
+			"offsets": {
+				"from": 981240,
+				"to": 982640
+			},
+			"text": " and it's not subscribed to that subnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,640",
+				"to": "00:16:24,400"
+			},
+			"offsets": {
+				"from": 982640,
+				"to": 984400
+			},
+			"text": " that we know that it's being naughty or lying to us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,400",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 984400,
+				"to": 985200
+			},
+			"text": " and we can kick it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:28,200"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 988200
+			},
+			"text": " So we actually have the enforceability property."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,200",
+				"to": "00:16:30,760"
+			},
+			"offsets": {
+				"from": 988200,
+				"to": 990760
+			},
+			"text": " Yeah, so that's one solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,760",
+				"to": "00:16:32,400"
+			},
+			"offsets": {
+				"from": 990760,
+				"to": 992400
+			},
+			"text": " And that's kind of a low hanging fruit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,400",
+				"to": "00:16:35,600"
+			},
+			"offsets": {
+				"from": 992400,
+				"to": 995600
+			},
+			"text": " It's kind of easy to do when we get substantial gains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,600",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 995600,
+				"to": 997560
+			},
+			"text": " The other thing that Deva was talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:39,600"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 999600
+			},
+			"text": " is message amplification in Gossip Sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,600",
+				"to": "00:16:42,240"
+			},
+			"offsets": {
+				"from": 999600,
+				"to": 1002240
+			},
+			"text": " So if there's anything we can do about that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,240",
+				"to": "00:16:46,080"
+			},
+			"offsets": {
+				"from": 1002240,
+				"to": 1006080
+			},
+			"text": " the idea that we want to try and push forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,080",
+				"to": "00:16:47,960"
+			},
+			"offsets": {
+				"from": 1006080,
+				"to": 1007960
+			},
+			"text": " is a concept called AppuSub."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,960",
+				"to": "00:16:51,320"
+			},
+			"offsets": {
+				"from": 1007960,
+				"to": 1011320
+			},
+			"text": " So Gossip Sub is a protocol that exists in libp2p,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,320",
+				"to": "00:16:53,800"
+			},
+			"offsets": {
+				"from": 1011320,
+				"to": 1013800
+			},
+			"text": " as Deva was mentioning, and the libp2p guys, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,800",
+				"to": "00:16:56,160"
+			},
+			"offsets": {
+				"from": 1013800,
+				"to": 1016160
+			},
+			"text": " is kind of run by protocol labs, have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,160",
+				"to": "00:16:59,640"
+			},
+			"offsets": {
+				"from": 1016160,
+				"to": 1019640
+			},
+			"text": " had an evolution stage of Gossip Sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,640",
+				"to": "00:17:03,280"
+			},
+			"offsets": {
+				"from": 1019640,
+				"to": 1023280
+			},
+			"text": " They've talked about AppuSub for quite a period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,280",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1023280,
+				"to": 1025160
+			},
+			"text": " They've done a bunch of research, in particular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:08,720"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1028720
+			},
+			"text": " Viso or Dimitri, who works for protocol labs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,720",
+				"to": "00:17:12,720"
+			},
+			"offsets": {
+				"from": 1028720,
+				"to": 1032720
+			},
+			"text": " has had this kind of vision for AppuSub for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,720",
+				"to": "00:17:14,440"
+			},
+			"offsets": {
+				"from": 1032720,
+				"to": 1034440
+			},
+			"text": " but has never had the push or the drive to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,440",
+				"to": "00:17:17,280"
+			},
+			"offsets": {
+				"from": 1034440,
+				"to": 1037280
+			},
+			"text": " But now that we're seeing quite substantial amounts of bandwidth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,280",
+				"to": "00:17:19,920"
+			},
+			"offsets": {
+				"from": 1037280,
+				"to": 1039920
+			},
+			"text": " it's probably time we try and realize this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,920",
+				"to": "00:17:22,600"
+			},
+			"offsets": {
+				"from": 1039920,
+				"to": 1042600
+			},
+			"text": " So I would just want to briefly go over the concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,600",
+				"to": "00:17:25,720"
+			},
+			"offsets": {
+				"from": 1042600,
+				"to": 1045720
+			},
+			"text": " and what it's going to do and how it could help us with bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,720",
+				"to": "00:17:29,880"
+			},
+			"offsets": {
+				"from": 1045720,
+				"to": 1049880
+			},
+			"text": " OK, so AppuSub, the biggest problem that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,880",
+				"to": "00:17:32,560"
+			},
+			"offsets": {
+				"from": 1049880,
+				"to": 1052560
+			},
+			"text": " is that if you have a high mesh degree, as Deva was saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,560",
+				"to": "00:17:35,200"
+			},
+			"offsets": {
+				"from": 1052560,
+				"to": 1055200
+			},
+			"text": " that means you have a high connectivity of nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,200",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1055200,
+				"to": 1056000
+			},
+			"text": " in your network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:39,040"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1059040
+			},
+			"text": " So every node could be connected to another 10 or 8"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,040",
+				"to": "00:17:41,520"
+			},
+			"offsets": {
+				"from": 1059040,
+				"to": 1061520
+			},
+			"text": " other nodes, and then you get huge message amplification."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,520",
+				"to": "00:17:43,440"
+			},
+			"offsets": {
+				"from": 1061520,
+				"to": 1063440
+			},
+			"text": " So every time you send one message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,440",
+				"to": "00:17:46,040"
+			},
+			"offsets": {
+				"from": 1063440,
+				"to": 1066040
+			},
+			"text": " most of the network will probably have to download it eight times."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,040",
+				"to": "00:17:48,320"
+			},
+			"offsets": {
+				"from": 1066040,
+				"to": 1068320
+			},
+			"text": " So if you increase that message by 1 megabyte,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,320",
+				"to": "00:17:50,920"
+			},
+			"offsets": {
+				"from": 1068320,
+				"to": 1070920
+			},
+			"text": " you're actually increasing it by eight times, 8 megabytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,920",
+				"to": "00:17:52,160"
+			},
+			"offsets": {
+				"from": 1070920,
+				"to": 1072160
+			},
+			"text": " because that's the amount of bandwidth that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,160",
+				"to": "00:17:54,520"
+			},
+			"offsets": {
+				"from": 1072160,
+				"to": 1074520
+			},
+			"text": " has to be downloaded and then propagated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,520",
+				"to": "00:17:56,880"
+			},
+			"offsets": {
+				"from": 1074520,
+				"to": 1076880
+			},
+			"text": " So naively, you would first think, OK, why don't we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,880",
+				"to": "00:17:58,160"
+			},
+			"offsets": {
+				"from": 1076880,
+				"to": 1078160
+			},
+			"text": " just lower the mesh degree?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,160",
+				"to": "00:17:59,520"
+			},
+			"offsets": {
+				"from": 1078160,
+				"to": 1079520
+			},
+			"text": " I did try to do that at one point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,520",
+				"to": "00:18:03,080"
+			},
+			"offsets": {
+				"from": 1079520,
+				"to": 1083080
+			},
+			"text": " but as everyone points out, it's not a safe thing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,080",
+				"to": "00:18:05,800"
+			},
+			"offsets": {
+				"from": 1083080,
+				"to": 1085800
+			},
+			"text": " We don't really know how the network is going to behave."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,800",
+				"to": "00:18:09,040"
+			},
+			"offsets": {
+				"from": 1085800,
+				"to": 1089040
+			},
+			"text": " We can try it on test nets, but the topology or the structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,040",
+				"to": "00:18:11,120"
+			},
+			"offsets": {
+				"from": 1089040,
+				"to": 1091120
+			},
+			"text": " of a test net doesn't look like main net."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,120",
+				"to": "00:18:13,840"
+			},
+			"offsets": {
+				"from": 1091120,
+				"to": 1093840
+			},
+			"text": " If we just lower the mesh degree to two, for example, a main net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,840",
+				"to": "00:18:15,800"
+			},
+			"offsets": {
+				"from": 1093840,
+				"to": 1095800
+			},
+			"text": " you might just not start receiving blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,800",
+				"to": "00:18:20,040"
+			},
+			"offsets": {
+				"from": 1095800,
+				"to": 1100040
+			},
+			"text": " So we have to do that with either great care or with a lot of testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,040",
+				"to": "00:18:23,720"
+			},
+			"offsets": {
+				"from": 1100040,
+				"to": 1103720
+			},
+			"text": " So it's an interesting idea, but we probably do better."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,720",
+				"to": "00:18:28,720"
+			},
+			"offsets": {
+				"from": 1103720,
+				"to": 1108720
+			},
+			"text": " So another idea is to dynamically adjust the connectivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,720",
+				"to": "00:18:30,880"
+			},
+			"offsets": {
+				"from": 1108720,
+				"to": 1110880
+			},
+			"text": " We also run into a kind of a similar problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,880",
+				"to": "00:18:34,760"
+			},
+			"offsets": {
+				"from": 1110880,
+				"to": 1114760
+			},
+			"text": " And typically, a lot of the people that use our client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,760",
+				"to": "00:18:38,920"
+			},
+			"offsets": {
+				"from": 1114760,
+				"to": 1118920
+			},
+			"text": " they suggest lowering the peer count, which is a fault."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,920",
+				"to": "00:18:40,560"
+			},
+			"offsets": {
+				"from": 1118920,
+				"to": 1120560
+			},
+			"text": " It doesn't quite help you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,560",
+				"to": "00:18:42,600"
+			},
+			"offsets": {
+				"from": 1120560,
+				"to": 1122600
+			},
+			"text": " So that's also not the best solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,600",
+				"to": "00:18:46,280"
+			},
+			"offsets": {
+				"from": 1122600,
+				"to": 1126280
+			},
+			"text": " So the idea with Appysub is to try and minimize duplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,280",
+				"to": "00:18:48,360"
+			},
+			"offsets": {
+				"from": 1126280,
+				"to": 1128360
+			},
+			"text": " and latency by making the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,360",
+				"to": "00:18:50,800"
+			},
+			"offsets": {
+				"from": 1128360,
+				"to": 1130800
+			},
+			"text": " It keeps the same connectivity, but making it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,800",
+				"to": "00:18:52,040"
+			},
+			"offsets": {
+				"from": 1130800,
+				"to": 1132040
+			},
+			"text": " a little bit more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,040",
+				"to": "00:18:53,600"
+			},
+			"offsets": {
+				"from": 1132040,
+				"to": 1133600
+			},
+			"text": " And by efficient, I mean we were trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,600",
+				"to": "00:18:56,440"
+			},
+			"offsets": {
+				"from": 1133600,
+				"to": 1136440
+			},
+			"text": " to remove the number of duplicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,440",
+				"to": "00:18:58,520"
+			},
+			"offsets": {
+				"from": 1136440,
+				"to": 1138520
+			},
+			"text": " And at the same time, either maintain or lower"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,520",
+				"to": "00:19:00,200"
+			},
+			"offsets": {
+				"from": 1138520,
+				"to": 1140200
+			},
+			"text": " the latency inside the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,200",
+				"to": "00:19:02,840"
+			},
+			"offsets": {
+				"from": 1140200,
+				"to": 1142840
+			},
+			"text": " And the mesh is just a subset of your peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,840",
+				"to": "00:19:03,600"
+			},
+			"offsets": {
+				"from": 1142840,
+				"to": 1143600
+			},
+			"text": " that you're connected to."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,600",
+				"to": "00:19:05,560"
+			},
+			"offsets": {
+				"from": 1143600,
+				"to": 1145560
+			},
+			"text": " That's where you receive your messages from."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,560",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1145560,
+				"to": 1148800
+			},
+			"text": " So that kind of sounds like we're trying to win on two fronts."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:12,480"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1152480
+			},
+			"text": " We get less bandwidth and higher latency, which kind of doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,480",
+				"to": "00:19:14,040"
+			},
+			"offsets": {
+				"from": 1152480,
+				"to": 1154040
+			},
+			"text": " sound like we should be able to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,040",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1154040,
+				"to": 1156280
+			},
+			"text": " But let me explain the general principle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:18,200"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1158200
+			},
+			"text": " and maybe it makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,200",
+				"to": "00:19:21,760"
+			},
+			"offsets": {
+				"from": 1158200,
+				"to": 1161760
+			},
+			"text": " So the general principle is you're a node on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,760",
+				"to": "00:19:23,840"
+			},
+			"offsets": {
+				"from": 1161760,
+				"to": 1163840
+			},
+			"text": " You're receiving all of these messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,840",
+				"to": "00:19:25,200"
+			},
+			"offsets": {
+				"from": 1163840,
+				"to": 1165200
+			},
+			"text": " A lot of them are duplicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,200",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1165200,
+				"to": 1168000
+			},
+			"text": " You want to just start collecting statistics over which"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1171000
+			},
+			"text": " nodes are sending you these duplicates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:32,960"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1172960
+			},
+			"text": " and which ones are sending you late duplicates."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,960",
+				"to": "00:19:36,920"
+			},
+			"offsets": {
+				"from": 1172960,
+				"to": 1176920
+			},
+			"text": " And you'll end up having some distribution of the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,920",
+				"to": "00:19:39,040"
+			},
+			"offsets": {
+				"from": 1176920,
+				"to": 1179040
+			},
+			"text": " of duplicates you get and the latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,040",
+				"to": "00:19:41,440"
+			},
+			"offsets": {
+				"from": 1179040,
+				"to": 1181440
+			},
+			"text": " So it could be that Paul over here in the front"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,440",
+				"to": "00:19:45,240"
+			},
+			"offsets": {
+				"from": 1181440,
+				"to": 1185240
+			},
+			"text": " constantly sends me some late duplicate, three seconds late,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,240",
+				"to": "00:19:48,040"
+			},
+			"offsets": {
+				"from": 1185240,
+				"to": 1188040
+			},
+			"text": " whereas Sean's sending it to me straight away instantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,040",
+				"to": "00:19:51,160"
+			},
+			"offsets": {
+				"from": 1188040,
+				"to": 1191160
+			},
+			"text": " So I come up with essentially a choking strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,160",
+				"to": "00:19:54,680"
+			},
+			"offsets": {
+				"from": 1191160,
+				"to": 1194680
+			},
+			"text": " is what we call it, where we look at all of the distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,680",
+				"to": "00:19:58,280"
+			},
+			"offsets": {
+				"from": 1194680,
+				"to": 1198280
+			},
+			"text": " of people sending us duplicates and the ones that are late"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,280",
+				"to": "00:19:59,920"
+			},
+			"offsets": {
+				"from": 1198280,
+				"to": 1199920
+			},
+			"text": " or the ones that have lower latency,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,920",
+				"to": "00:20:01,800"
+			},
+			"offsets": {
+				"from": 1199920,
+				"to": 1201800
+			},
+			"text": " and we send a message called a choke."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,800",
+				"to": "00:20:04,640"
+			},
+			"offsets": {
+				"from": 1201800,
+				"to": 1204640
+			},
+			"text": " So in this example, we say, I'm going to choke Paul"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,640",
+				"to": "00:20:08,480"
+			},
+			"offsets": {
+				"from": 1204640,
+				"to": 1208480
+			},
+			"text": " because he is sending me late messages all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,480",
+				"to": "00:20:10,680"
+			},
+			"offsets": {
+				"from": 1208480,
+				"to": 1210680
+			},
+			"text": " What the choke message does is it indicates to Paul"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,680",
+				"to": "00:20:14,720"
+			},
+			"offsets": {
+				"from": 1210680,
+				"to": 1214720
+			},
+			"text": " to no longer send me these messages over the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,720",
+				"to": "00:20:16,720"
+			},
+			"offsets": {
+				"from": 1214720,
+				"to": 1216720
+			},
+			"text": " Instead, he does a process called gossip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,720",
+				"to": "00:20:18,440"
+			},
+			"offsets": {
+				"from": 1216720,
+				"to": 1218440
+			},
+			"text": " where he just sends me like the message ID, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,440",
+				"to": "00:20:20,640"
+			},
+			"offsets": {
+				"from": 1218440,
+				"to": 1220640
+			},
+			"text": " is a much smaller thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,640",
+				"to": "00:20:23,600"
+			},
+			"offsets": {
+				"from": 1220640,
+				"to": 1223600
+			},
+			"text": " So over time, eventually, based on your choking strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,600",
+				"to": "00:20:26,160"
+			},
+			"offsets": {
+				"from": 1223600,
+				"to": 1226160
+			},
+			"text": " you should have a more efficient mess where you're only"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,160",
+				"to": "00:20:30,520"
+			},
+			"offsets": {
+				"from": 1226160,
+				"to": 1230520
+			},
+			"text": " receiving the messages with a lower number of duplicates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,520",
+				"to": "00:20:32,520"
+			},
+			"offsets": {
+				"from": 1230520,
+				"to": 1232520
+			},
+			"text": " maybe from just one or two peers, where the rest of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,520",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1232520,
+				"to": 1234960
+			},
+			"text": " are choked, and you still receive gossip from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:38,760"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1238760
+			},
+			"text": " So if the two peers that you have in your mesh are slow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,760",
+				"to": "00:20:40,360"
+			},
+			"offsets": {
+				"from": 1238760,
+				"to": 1240360
+			},
+			"text": " and the other ones that you have choked"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,360",
+				"to": "00:20:42,440"
+			},
+			"offsets": {
+				"from": 1240360,
+				"to": 1242440
+			},
+			"text": " are started sending you message IDs before you send them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,440",
+				"to": "00:20:44,160"
+			},
+			"offsets": {
+				"from": 1242440,
+				"to": 1244160
+			},
+			"text": " in the mesh, we have an un-choked message."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,160",
+				"to": "00:20:47,160"
+			},
+			"offsets": {
+				"from": 1244160,
+				"to": 1247160
+			},
+			"text": " So we can un-choke them and put them back into the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,160",
+				"to": "00:20:49,240"
+			},
+			"offsets": {
+				"from": 1247160,
+				"to": 1249240
+			},
+			"text": " So ultimately, the idea would be is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,240",
+				"to": "00:20:53,560"
+			},
+			"offsets": {
+				"from": 1249240,
+				"to": 1253560
+			},
+			"text": " that you're dynamically changing your mesh"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,560",
+				"to": "00:20:57,040"
+			},
+			"offsets": {
+				"from": 1253560,
+				"to": 1257040
+			},
+			"text": " and how many-- what peers are sending you messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,040",
+				"to": "00:20:59,560"
+			},
+			"offsets": {
+				"from": 1257040,
+				"to": 1259560
+			},
+			"text": " and how fast they're doing it in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,560",
+				"to": "00:21:02,080"
+			},
+			"offsets": {
+				"from": 1259560,
+				"to": 1262080
+			},
+			"text": " to try and make it essentially more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,080",
+				"to": "00:21:03,280"
+			},
+			"offsets": {
+				"from": 1262080,
+				"to": 1263280
+			},
+			"text": " Hopefully, that makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,280",
+				"to": "00:21:06,080"
+			},
+			"offsets": {
+				"from": 1263280,
+				"to": 1266080
+			},
+			"text": " I'll take questions afterwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,080",
+				"to": "00:21:07,920"
+			},
+			"offsets": {
+				"from": 1266080,
+				"to": 1267920
+			},
+			"text": " Does this work, I guess, is the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,920",
+				"to": "00:21:10,840"
+			},
+			"offsets": {
+				"from": 1267920,
+				"to": 1270840
+			},
+			"text": " There's been some preliminary simulations on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,840",
+				"to": "00:21:13,720"
+			},
+			"offsets": {
+				"from": 1270840,
+				"to": 1273720
+			},
+			"text": " As I mentioned, Vizo from the PDP and Protocol Labs"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,720",
+				"to": "00:21:16,200"
+			},
+			"offsets": {
+				"from": 1273720,
+				"to": 1276200
+			},
+			"text": " has done some work on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,200",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1276200,
+				"to": 1281000
+			},
+			"text": " He's built a generic simulation for the Go version of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:25,040"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1285040
+			},
+			"text": " with 250, 500, and 1,000 nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,040",
+				"to": "00:21:27,720"
+			},
+			"offsets": {
+				"from": 1285040,
+				"to": 1287720
+			},
+			"text": " And so this is where the mesh degree of six."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,720",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1287720,
+				"to": 1290000
+			},
+			"text": " So there's roughly about a six times amplification"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:32,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1292000
+			},
+			"text": " if you look at the messages in these simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,000",
+				"to": "00:21:34,160"
+			},
+			"offsets": {
+				"from": 1292000,
+				"to": 1294160
+			},
+			"text": " But pretty much in all the simulations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,160",
+				"to": "00:21:36,960"
+			},
+			"offsets": {
+				"from": 1294160,
+				"to": 1296960
+			},
+			"text": " what this graph is showing you is that you get roughly"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,960",
+				"to": "00:21:40,040"
+			},
+			"offsets": {
+				"from": 1296960,
+				"to": 1300040
+			},
+			"text": " a 50% reduction in the duplicates from F per sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,040",
+				"to": "00:21:42,840"
+			},
+			"offsets": {
+				"from": 1300040,
+				"to": 1302840
+			},
+			"text": " Now, as I said, there's a choking and an unchoking strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,840",
+				"to": "00:21:44,200"
+			},
+			"offsets": {
+				"from": 1302840,
+				"to": 1304200
+			},
+			"text": " which are left somewhat generic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,200",
+				"to": "00:21:47,200"
+			},
+			"offsets": {
+				"from": 1304200,
+				"to": 1307200
+			},
+			"text": " And I think we can tune this to be significant, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,200",
+				"to": "00:21:49,320"
+			},
+			"offsets": {
+				"from": 1307200,
+				"to": 1309320
+			},
+			"text": " if we target it for the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,320",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1309320,
+				"to": 1311000
+			},
+			"text": " I think we can get better versions of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:53,440"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1313440
+			},
+			"text": " But at face value, it looks like you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,440",
+				"to": "00:21:55,760"
+			},
+			"offsets": {
+				"from": 1313440,
+				"to": 1315760
+			},
+			"text": " can reduce the duplicates by 50% just by adding"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,760",
+				"to": "00:21:57,440"
+			},
+			"offsets": {
+				"from": 1315760,
+				"to": 1317440
+			},
+			"text": " these kinds of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:57,440",
+				"to": "00:22:01,200"
+			},
+			"offsets": {
+				"from": 1317440,
+				"to": 1321200
+			},
+			"text": " The next thing we probably should talk about is latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,200",
+				"to": "00:22:03,760"
+			},
+			"offsets": {
+				"from": 1321200,
+				"to": 1323760
+			},
+			"text": " I kind of suggested that we could get reduction"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,760",
+				"to": "00:22:05,960"
+			},
+			"offsets": {
+				"from": 1323760,
+				"to": 1325960
+			},
+			"text": " in duplicates and reduction in latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,960",
+				"to": "00:22:10,760"
+			},
+			"offsets": {
+				"from": 1325960,
+				"to": 1330760
+			},
+			"text": " The initial results that Vizo has completed in simulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,760",
+				"to": "00:22:12,560"
+			},
+			"offsets": {
+				"from": 1330760,
+				"to": 1332560
+			},
+			"text": " seems that the latency increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,560",
+				"to": "00:22:16,360"
+			},
+			"offsets": {
+				"from": 1332560,
+				"to": 1336360
+			},
+			"text": " So on the left is a gossip sub latency distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,360",
+				"to": "00:22:19,200"
+			},
+			"offsets": {
+				"from": 1336360,
+				"to": 1339200
+			},
+			"text": " where the buckets are like milliseconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,200",
+				"to": "00:22:20,720"
+			},
+			"offsets": {
+				"from": 1339200,
+				"to": 1340720
+			},
+			"text": " since you receive the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,720",
+				"to": "00:22:22,880"
+			},
+			"offsets": {
+				"from": 1340720,
+				"to": 1342880
+			},
+			"text": " And on the right is a epi sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,880",
+				"to": "00:22:25,880"
+			},
+			"offsets": {
+				"from": 1342880,
+				"to": 1345880
+			},
+			"text": " So we receive more messages with higher latency"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,880",
+				"to": "00:22:27,320"
+			},
+			"offsets": {
+				"from": 1345880,
+				"to": 1347320
+			},
+			"text": " in these simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,320",
+				"to": "00:22:31,280"
+			},
+			"offsets": {
+				"from": 1347320,
+				"to": 1351280
+			},
+			"text": " But as I was saying, these are somewhat generic."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,280",
+				"to": "00:22:34,880"
+			},
+			"offsets": {
+				"from": 1351280,
+				"to": 1354880
+			},
+			"text": " The topology of these does not look like the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,880",
+				"to": "00:22:35,720"
+			},
+			"offsets": {
+				"from": 1354880,
+				"to": 1355720
+			},
+			"text": " that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,720",
+				"to": "00:22:38,280"
+			},
+			"offsets": {
+				"from": 1355720,
+				"to": 1358280
+			},
+			"text": " And these can be highly tuned to what we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,280",
+				"to": "00:22:40,920"
+			},
+			"offsets": {
+				"from": 1358280,
+				"to": 1360920
+			},
+			"text": " There's a lot of research work going in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,920",
+				"to": "00:22:42,320"
+			},
+			"offsets": {
+				"from": 1360920,
+				"to": 1362320
+			},
+			"text": " There's a few people in the audience"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,320",
+				"to": "00:22:44,600"
+			},
+			"offsets": {
+				"from": 1362320,
+				"to": 1364600
+			},
+			"text": " where I think that I've promised results"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,600",
+				"to": "00:22:47,560"
+			},
+			"offsets": {
+				"from": 1364600,
+				"to": 1367560
+			},
+			"text": " for a mainnet version of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,560",
+				"to": "00:22:50,680"
+			},
+			"offsets": {
+				"from": 1367560,
+				"to": 1370680
+			},
+			"text": " So us at Sigma Prime, we've built essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,680",
+				"to": "00:22:53,480"
+			},
+			"offsets": {
+				"from": 1370680,
+				"to": 1373480
+			},
+			"text": " a production version of epi sub inside Gossip Sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,480",
+				"to": "00:22:55,640"
+			},
+			"offsets": {
+				"from": 1373480,
+				"to": 1375640
+			},
+			"text": " The advantages are that it's backwards compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,640",
+				"to": "00:22:58,800"
+			},
+			"offsets": {
+				"from": 1375640,
+				"to": 1378800
+			},
+			"text": " So we can release it in our clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,800",
+				"to": "00:23:00,760"
+			},
+			"offsets": {
+				"from": 1378800,
+				"to": 1380760
+			},
+			"text": " It'll work existingly with every other peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,760",
+				"to": "00:23:04,120"
+			},
+			"offsets": {
+				"from": 1380760,
+				"to": 1384120
+			},
+			"text": " and every other Gossip Sub node on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,120",
+				"to": "00:23:06,880"
+			},
+			"offsets": {
+				"from": 1384120,
+				"to": 1386880
+			},
+			"text": " But if there happens to be another epi sub node on the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,880",
+				"to": "00:23:09,320"
+			},
+			"offsets": {
+				"from": 1386880,
+				"to": 1389320
+			},
+			"text": " we can start getting this bandwidth minimization."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,320",
+				"to": "00:23:10,840"
+			},
+			"offsets": {
+				"from": 1389320,
+				"to": 1390840
+			},
+			"text": " So the fact that it's backwards compatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,840",
+				"to": "00:23:11,600"
+			},
+			"offsets": {
+				"from": 1390840,
+				"to": 1391600
+			},
+			"text": " is super handy."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,600",
+				"to": "00:23:14,160"
+			},
+			"offsets": {
+				"from": 1391600,
+				"to": 1394160
+			},
+			"text": " We can just release it whenever we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,160",
+				"to": "00:23:16,240"
+			},
+			"offsets": {
+				"from": 1394160,
+				"to": 1396240
+			},
+			"text": " We're also working on a mainnet simulation"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,240",
+				"to": "00:23:19,040"
+			},
+			"offsets": {
+				"from": 1396240,
+				"to": 1399040
+			},
+			"text": " so that we can actually simulate the bandwidth that exists"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,040",
+				"to": "00:23:21,760"
+			},
+			"offsets": {
+				"from": 1399040,
+				"to": 1401760
+			},
+			"text": " on mainnet and then apply epi sub"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,760",
+				"to": "00:23:24,920"
+			},
+			"offsets": {
+				"from": 1401760,
+				"to": 1404920
+			},
+			"text": " and then get essentially more specific data that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,920",
+				"to": "00:23:28,280"
+			},
+			"offsets": {
+				"from": 1404920,
+				"to": 1408280
+			},
+			"text": " more robust in how we can actually apply this to what"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,280",
+				"to": "00:23:31,520"
+			},
+			"offsets": {
+				"from": 1408280,
+				"to": 1411520
+			},
+			"text": " it would look like on an Ethereum 2 mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,520",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1411520,
+				"to": 1414000
+			},
+			"text": " We'll publish results from this very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:36,880"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1416880
+			},
+			"text": " And if you're interested, just let us know."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,880",
+				"to": "00:23:40,080"
+			},
+			"offsets": {
+				"from": 1416880,
+				"to": 1420080
+			},
+			"text": " So the title of the talk was reducing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,080",
+				"to": "00:23:41,200"
+			},
+			"offsets": {
+				"from": 1420080,
+				"to": 1421200
+			},
+			"text": " if I can remember the title of the talk--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,200",
+				"to": "00:23:44,880"
+			},
+			"offsets": {
+				"from": 1421200,
+				"to": 1424880
+			},
+			"text": " was reducing bandwidth for institutional and home"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,880",
+				"to": "00:23:45,400"
+			},
+			"offsets": {
+				"from": 1424880,
+				"to": 1425400
+			},
+			"text": " stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,400",
+				"to": "00:23:47,800"
+			},
+			"offsets": {
+				"from": 1425400,
+				"to": 1427800
+			},
+			"text": " So if you're an institutional or a home staker"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,800",
+				"to": "00:23:49,480"
+			},
+			"offsets": {
+				"from": 1427800,
+				"to": 1429480
+			},
+			"text": " and you came here being like, how do I"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,480",
+				"to": "00:23:51,760"
+			},
+			"offsets": {
+				"from": 1429480,
+				"to": 1431760
+			},
+			"text": " get all these bandwidth gains, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,760",
+				"to": "00:23:55,240"
+			},
+			"offsets": {
+				"from": 1431760,
+				"to": 1435240
+			},
+			"text": " do you need to do in order to get a 90% reduction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,240",
+				"to": "00:23:56,960"
+			},
+			"offsets": {
+				"from": 1435240,
+				"to": 1436960
+			},
+			"text": " The answer is nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,960",
+				"to": "00:23:57,880"
+			},
+			"offsets": {
+				"from": 1436960,
+				"to": 1437880
+			},
+			"text": " You just have to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,880",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1437880,
+				"to": 1439000
+			},
+			"text": " We'll release it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:01,240"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1441240
+			},
+			"text": " Maybe run a lighthouse node."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,240",
+				"to": "00:24:04,720"
+			},
+			"offsets": {
+				"from": 1441240,
+				"to": 1444720
+			},
+			"text": " And hopefully, we'll be able to reduce the bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,720",
+				"to": "00:24:05,920"
+			},
+			"offsets": {
+				"from": 1444720,
+				"to": 1445920
+			},
+			"text": " But that's the end of our talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,920",
+				"to": "00:24:06,760"
+			},
+			"offsets": {
+				"from": 1445920,
+				"to": 1446760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,760",
+				"to": "00:24:08,960"
+			},
+			"offsets": {
+				"from": 1446760,
+				"to": 1448960
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,960",
+				"to": "00:24:11,120"
+			},
+			"offsets": {
+				"from": 1448960,
+				"to": 1451120
+			},
+			"text": " Some minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,120",
+				"to": "00:24:12,160"
+			},
+			"offsets": {
+				"from": 1451120,
+				"to": 1452160
+			},
+			"text": " Great talk, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,160",
+				"to": "00:24:14,240"
+			},
+			"offsets": {
+				"from": 1452160,
+				"to": 1454240
+			},
+			"text": " Is this something that's bandwidth compatible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,240",
+				"to": "00:24:16,240"
+			},
+			"offsets": {
+				"from": 1454240,
+				"to": 1456240
+			},
+			"text": " meaning that clients can gradually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,240",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1456240,
+				"to": 1458000
+			},
+			"text": " roll this out as time goes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:21,880"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1461880
+			},
+			"text": " Or is this something that we all have to upgrade at once?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,880",
+				"to": "00:24:25,360"
+			},
+			"offsets": {
+				"from": 1461880,
+				"to": 1465360
+			},
+			"text": " Here, we are handling basically protocol versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,360",
+				"to": "00:24:30,400"
+			},
+			"offsets": {
+				"from": 1465360,
+				"to": 1470400
+			},
+			"text": " So we can run against nodes that are epi sub compatible."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,400",
+				"to": "00:24:32,200"
+			},
+			"offsets": {
+				"from": 1470400,
+				"to": 1472200
+			},
+			"text": " And if they're not, then we're just"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,200",
+				"to": "00:24:36,120"
+			},
+			"offsets": {
+				"from": 1472200,
+				"to": 1476120
+			},
+			"text": " going to run epi sub version 1.1."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,120",
+				"to": "00:24:39,240"
+			},
+			"offsets": {
+				"from": 1476120,
+				"to": 1479240
+			},
+			"text": " So that's what we mean with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,240",
+				"to": "00:24:41,880"
+			},
+			"offsets": {
+				"from": 1479240,
+				"to": 1481880
+			},
+			"text": " Yeah, we add a protocol ID into the gossip sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,880",
+				"to": "00:24:43,360"
+			},
+			"offsets": {
+				"from": 1481880,
+				"to": 1483360
+			},
+			"text": " And so when you connect to a peer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,360",
+				"to": "00:24:45,200"
+			},
+			"offsets": {
+				"from": 1483360,
+				"to": 1485200
+			},
+			"text": " you can identify which protocols they support."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,200",
+				"to": "00:24:47,640"
+			},
+			"offsets": {
+				"from": 1485200,
+				"to": 1487640
+			},
+			"text": " If they don't support epi sub, you don't choke or unchoke them."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,640",
+				"to": "00:24:50,200"
+			},
+			"offsets": {
+				"from": 1487640,
+				"to": 1490200
+			},
+			"text": " If they do support it, you can choke and unchoke."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,200",
+				"to": "00:24:53,040"
+			},
+			"offsets": {
+				"from": 1490200,
+				"to": 1493040
+			},
+			"text": " So it works perfectly with 1.1 nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,040",
+				"to": "00:24:54,920"
+			},
+			"offsets": {
+				"from": 1493040,
+				"to": 1494920
+			},
+			"text": " Yeah, I just wanted to ask, why do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,920",
+				"to": "00:24:58,080"
+			},
+			"offsets": {
+				"from": 1494920,
+				"to": 1498080
+			},
+			"text": " want to reduce bandwidth for institutional stakers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,080",
+				"to": "00:25:00,240"
+			},
+			"offsets": {
+				"from": 1498080,
+				"to": 1500240
+			},
+			"text": " Isn't it kind of a nice property"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,240",
+				"to": "00:25:04,320"
+			},
+			"offsets": {
+				"from": 1500240,
+				"to": 1504320
+			},
+			"text": " that there is no economies of scale, at least if it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,320",
+				"to": "00:25:08,040"
+			},
+			"offsets": {
+				"from": 1504320,
+				"to": 1508040
+			},
+			"text": " enforceable that they have to subscribe to things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,040",
+				"to": "00:25:09,280"
+			},
+			"offsets": {
+				"from": 1508040,
+				"to": 1509280
+			},
+			"text": " It just seems like--"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,280",
+				"to": "00:25:09,800"
+			},
+			"offsets": {
+				"from": 1509280,
+				"to": 1509800
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,800",
+				"to": "00:25:12,720"
+			},
+			"offsets": {
+				"from": 1509800,
+				"to": 1512720
+			},
+			"text": " It's weird to me as a concept to shift the load"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,720",
+				"to": "00:25:15,520"
+			},
+			"offsets": {
+				"from": 1512720,
+				"to": 1515520
+			},
+			"text": " from institutional stakers to normal beacon nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,520",
+				"to": "00:25:19,320"
+			},
+			"offsets": {
+				"from": 1515520,
+				"to": 1519320
+			},
+			"text": " or home stakers, even if it's a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,320",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1519320,
+				"to": 1522000
+			},
+			"text": " But it generally seems like we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:24,320"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1524320
+			},
+			"text": " those-- the lack of economies of scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,320",
+				"to": "00:25:27,640"
+			},
+			"offsets": {
+				"from": 1524320,
+				"to": 1527640
+			},
+			"text": " Good part of this is the part that Edge mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,640",
+				"to": "00:25:29,800"
+			},
+			"offsets": {
+				"from": 1527640,
+				"to": 1529800
+			},
+			"text": " about being enforceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,800",
+				"to": "00:25:34,560"
+			},
+			"offsets": {
+				"from": 1529800,
+				"to": 1534560
+			},
+			"text": " So having 60%, almost 60% of the network being"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,560",
+				"to": "00:25:37,840"
+			},
+			"offsets": {
+				"from": 1534560,
+				"to": 1537840
+			},
+			"text": " nodes that don't have any validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,840",
+				"to": "00:25:40,120"
+			},
+			"offsets": {
+				"from": 1537840,
+				"to": 1540120
+			},
+			"text": " we're not so sure that's true."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,120",
+				"to": "00:25:44,240"
+			},
+			"offsets": {
+				"from": 1540120,
+				"to": 1544240
+			},
+			"text": " Those might as well be institutional stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,240",
+				"to": "00:25:49,080"
+			},
+			"offsets": {
+				"from": 1544240,
+				"to": 1549080
+			},
+			"text": " So truth is that this is more like about being fair"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,080",
+				"to": "00:25:51,120"
+			},
+			"offsets": {
+				"from": 1549080,
+				"to": 1551120
+			},
+			"text": " across the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,120",
+				"to": "00:25:56,960"
+			},
+			"offsets": {
+				"from": 1551120,
+				"to": 1556960
+			},
+			"text": " So it's more about that than targeting something"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,960",
+				"to": "00:25:59,960"
+			},
+			"offsets": {
+				"from": 1556960,
+				"to": 1559960
+			},
+			"text": " that is going to be better for institutional stakers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,960",
+				"to": "00:26:04,360"
+			},
+			"offsets": {
+				"from": 1559960,
+				"to": 1564360
+			},
+			"text": " It's just that they happen to get more gains because of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,360",
+				"to": "00:26:08,320"
+			},
+			"offsets": {
+				"from": 1564360,
+				"to": 1568320
+			},
+			"text": " So I know with 4844, we're going to be exploding our bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,320",
+				"to": "00:26:08,800"
+			},
+			"offsets": {
+				"from": 1568320,
+				"to": 1568800
+			},
+			"text": " costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,800",
+				"to": "00:26:11,960"
+			},
+			"offsets": {
+				"from": 1568800,
+				"to": 1571960
+			},
+			"text": " I was curious if you guys knew if that scales with the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,960",
+				"to": "00:26:13,560"
+			},
+			"offsets": {
+				"from": 1571960,
+				"to": 1573560
+			},
+			"text": " of stakers you have--"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,560",
+				"to": "00:26:16,200"
+			},
+			"offsets": {
+				"from": 1573560,
+				"to": 1576200
+			},
+			"text": " or number of validators you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,200",
+				"to": "00:26:17,600"
+			},
+			"offsets": {
+				"from": 1576200,
+				"to": 1577600
+			},
+			"text": " So just the question is that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,600",
+				"to": "00:26:20,160"
+			},
+			"offsets": {
+				"from": 1577600,
+				"to": 1580160
+			},
+			"text": " going to increase the block size in 4844"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,160",
+				"to": "00:26:22,360"
+			},
+			"offsets": {
+				"from": 1580160,
+				"to": 1582360
+			},
+			"text": " and how that applies with here."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,360",
+				"to": "00:26:26,480"
+			},
+			"offsets": {
+				"from": 1582360,
+				"to": 1586480
+			},
+			"text": " If that scales the way that under current gossip sub"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,480",
+				"to": "00:26:30,280"
+			},
+			"offsets": {
+				"from": 1586480,
+				"to": 1590280
+			},
+			"text": " our bandwidth increases with the number of validators you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,280",
+				"to": "00:26:32,960"
+			},
+			"offsets": {
+				"from": 1590280,
+				"to": 1592960
+			},
+			"text": " I was curious if that was the case for the increase in 4844"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,960",
+				"to": "00:26:33,640"
+			},
+			"offsets": {
+				"from": 1592960,
+				"to": 1593640
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,640",
+				"to": "00:26:34,400"
+			},
+			"offsets": {
+				"from": 1593640,
+				"to": 1594400
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,400",
+				"to": "00:26:34,880"
+			},
+			"offsets": {
+				"from": 1594400,
+				"to": 1594880
+			},
+			"text": " It's not."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,880",
+				"to": "00:26:39,120"
+			},
+			"offsets": {
+				"from": 1594880,
+				"to": 1599120
+			},
+			"text": " So the bandwidth increase is due to the subnet subscription."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,120",
+				"to": "00:26:41,480"
+			},
+			"offsets": {
+				"from": 1599120,
+				"to": 1601480
+			},
+			"text": " When you increase the block size, everybody feels that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,480",
+				"to": "00:26:44,160"
+			},
+			"offsets": {
+				"from": 1601480,
+				"to": 1604160
+			},
+			"text": " because everyone subscribes to the block topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,160",
+				"to": "00:26:46,120"
+			},
+			"offsets": {
+				"from": 1604160,
+				"to": 1606120
+			},
+			"text": " So that's felt uniformly."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,120",
+				"to": "00:26:49,400"
+			},
+			"offsets": {
+				"from": 1606120,
+				"to": 1609400
+			},
+			"text": " Here are the part that matters for what Mark asked"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,400",
+				"to": "00:26:51,800"
+			},
+			"offsets": {
+				"from": 1609400,
+				"to": 1611800
+			},
+			"text": " is mainly the amplification factor"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,800",
+				"to": "00:26:56,360"
+			},
+			"offsets": {
+				"from": 1611800,
+				"to": 1616360
+			},
+			"text": " and not that much how it behaves regarding the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,360",
+				"to": "00:26:57,640"
+			},
+			"offsets": {
+				"from": 1616360,
+				"to": 1617640
+			},
+			"text": " of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,640",
+				"to": "00:27:01,200"
+			},
+			"offsets": {
+				"from": 1617640,
+				"to": 1621200
+			},
+			"text": " So since we have an amplification factor of about 6,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,200",
+				"to": "00:27:06,120"
+			},
+			"offsets": {
+				"from": 1621200,
+				"to": 1626120
+			},
+			"text": " so now with this improvement, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,120",
+				"to": "00:27:09,760"
+			},
+			"offsets": {
+				"from": 1626120,
+				"to": 1629760
+			},
+			"text": " going to have huge block sizes, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,760",
+				"to": "00:27:12,840"
+			},
+			"offsets": {
+				"from": 1629760,
+				"to": 1632840
+			},
+			"text": " if we continue doing things the way we are going to be sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,840",
+				"to": "00:27:16,200"
+			},
+			"offsets": {
+				"from": 1632840,
+				"to": 1636200
+			},
+			"text": " across the network six times each block."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,200",
+				"to": "00:27:19,520"
+			},
+			"offsets": {
+				"from": 1636200,
+				"to": 1639520
+			},
+			"text": " So that's insane."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,520",
+				"to": "00:27:22,960"
+			},
+			"offsets": {
+				"from": 1639520,
+				"to": 1642960
+			},
+			"text": " So it's related more about duplicates that part"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,960",
+				"to": "00:27:25,480"
+			},
+			"offsets": {
+				"from": 1642960,
+				"to": 1645480
+			},
+			"text": " than the number of validators for each node."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,480",
+				"to": "00:27:27,920"
+			},
+			"offsets": {
+				"from": 1645480,
+				"to": 1647920
+			},
+			"text": " So you showed that by modal distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,920",
+				"to": "00:27:31,880"
+			},
+			"offsets": {
+				"from": 1647920,
+				"to": 1651880
+			},
+			"text": " where there's a lot of one validator nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,880",
+				"to": "00:27:34,080"
+			},
+			"offsets": {
+				"from": 1651880,
+				"to": 1654080
+			},
+			"text": " and then there's that 60% that were just"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,080",
+				"to": "00:27:38,120"
+			},
+			"offsets": {
+				"from": 1654080,
+				"to": 1658120
+			},
+			"text": " regular full nodes like not validators and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,120",
+				"to": "00:27:40,800"
+			},
+			"offsets": {
+				"from": 1658120,
+				"to": 1660800
+			},
+			"text": " the institutional nodes with more than 64."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,800",
+				"to": "00:27:47,080"
+			},
+			"offsets": {
+				"from": 1660800,
+				"to": 1667080
+			},
+			"text": " So that-- I understand how the episub helps everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,080",
+				"to": "00:27:49,440"
+			},
+			"offsets": {
+				"from": 1667080,
+				"to": 1669440
+			},
+			"text": " And it helps the homestaker, helps the Netflix problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,440",
+				"to": "00:27:54,440"
+			},
+			"offsets": {
+				"from": 1669440,
+				"to": 1674440
+			},
+			"text": " For the institutional stakers, they're all running"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,440",
+				"to": "00:27:56,560"
+			},
+			"offsets": {
+				"from": 1674440,
+				"to": 1676560
+			},
+			"text": " like data center nodes anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,560",
+				"to": "00:28:02,040"
+			},
+			"offsets": {
+				"from": 1676560,
+				"to": 1682040
+			},
+			"text": " So I don't understand as much how the subscribing to fewer"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,040",
+				"to": "00:28:04,320"
+			},
+			"offsets": {
+				"from": 1682040,
+				"to": 1684320
+			},
+			"text": " gossip subtopics helps."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,320",
+				"to": "00:28:07,880"
+			},
+			"offsets": {
+				"from": 1684320,
+				"to": 1687880
+			},
+			"text": " So I think this is a very similar question to over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,880",
+				"to": "00:28:13,480"
+			},
+			"offsets": {
+				"from": 1687880,
+				"to": 1693480
+			},
+			"text": " So I think fundamentally we were looking at as a whole,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,480",
+				"to": "00:28:17,560"
+			},
+			"offsets": {
+				"from": 1693480,
+				"to": 1697560
+			},
+			"text": " the network may be consuming more bandwidth than we need to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,560",
+				"to": "00:28:19,360"
+			},
+			"offsets": {
+				"from": 1697560,
+				"to": 1699360
+			},
+			"text": " Depending on how you build your client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,360",
+				"to": "00:28:23,160"
+			},
+			"offsets": {
+				"from": 1699360,
+				"to": 1703160
+			},
+			"text": " you can be clever about which peers that you connect to."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,160",
+				"to": "00:28:26,160"
+			},
+			"offsets": {
+				"from": 1703160,
+				"to": 1706160
+			},
+			"text": " When you have-- so at the moment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,160",
+				"to": "00:28:27,800"
+			},
+			"offsets": {
+				"from": 1706160,
+				"to": 1707800
+			},
+			"text": " you have these institutional nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,800",
+				"to": "00:28:29,800"
+			},
+			"offsets": {
+				"from": 1707800,
+				"to": 1709800
+			},
+			"text": " They're not just institutional."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,800",
+				"to": "00:28:32,000"
+			},
+			"offsets": {
+				"from": 1709800,
+				"to": 1712000
+			},
+			"text": " Some people-- there's a-- usually a parameter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,000",
+				"to": "00:28:33,400"
+			},
+			"offsets": {
+				"from": 1712000,
+				"to": 1713400
+			},
+			"text": " I think, in most clients, which is called"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,400",
+				"to": "00:28:34,960"
+			},
+			"offsets": {
+				"from": 1713400,
+				"to": 1714960
+			},
+			"text": " subscriber subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,960",
+				"to": "00:28:36,440"
+			},
+			"offsets": {
+				"from": 1714960,
+				"to": 1716440
+			},
+			"text": " So even if you have one validator,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,440",
+				"to": "00:28:37,480"
+			},
+			"offsets": {
+				"from": 1716440,
+				"to": 1717480
+			},
+			"text": " you scribe to all the subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,480",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1717480,
+				"to": 1720000
+			},
+			"text": " And the reason you do that is because you get some benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:42,040"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1722040
+			},
+			"text": " from seeing all the attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,040",
+				"to": "00:28:44,000"
+			},
+			"offsets": {
+				"from": 1722040,
+				"to": 1724000
+			},
+			"text": " You get a slight increase in performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,000",
+				"to": "00:28:47,160"
+			},
+			"offsets": {
+				"from": 1724000,
+				"to": 1727160
+			},
+			"text": " So it's not necessarily just institutional people."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,160",
+				"to": "00:28:51,760"
+			},
+			"offsets": {
+				"from": 1727160,
+				"to": 1731760
+			},
+			"text": " But the institutional--"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:51,760",
+				"to": "00:28:54,840"
+			},
+			"offsets": {
+				"from": 1731760,
+				"to": 1734840
+			},
+			"text": " I forgot what my train of thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,840",
+				"to": "00:28:58,640"
+			},
+			"offsets": {
+				"from": 1734840,
+				"to": 1738640
+			},
+			"text": " The-- no, I forgot what I was saying."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:58,640",
+				"to": "00:28:59,640"
+			},
+			"offsets": {
+				"from": 1738640,
+				"to": 1739640
+			},
+			"text": " I just have a point."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,640",
+				"to": "00:29:00,000"
+			},
+			"offsets": {
+				"from": 1739640,
+				"to": 1740000
+			},
+			"text": " Maybe--"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,000",
+				"to": "00:29:01,720"
+			},
+			"offsets": {
+				"from": 1740000,
+				"to": 1741720
+			},
+			"text": " - It's part of what Edge was saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,720",
+				"to": "00:29:05,840"
+			},
+			"offsets": {
+				"from": 1741720,
+				"to": 1745840
+			},
+			"text": " is that, well, subscribing to a subnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,840",
+				"to": "00:29:09,680"
+			},
+			"offsets": {
+				"from": 1745840,
+				"to": 1749680
+			},
+			"text": " we also advertise that we are inside the subnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,680",
+				"to": "00:29:11,080"
+			},
+			"offsets": {
+				"from": 1749680,
+				"to": 1751080
+			},
+			"text": " inside discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,080",
+				"to": "00:29:14,760"
+			},
+			"offsets": {
+				"from": 1751080,
+				"to": 1754760
+			},
+			"text": " So that means that we need to find peers using discovery"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,760",
+				"to": "00:29:16,560"
+			},
+			"offsets": {
+				"from": 1754760,
+				"to": 1756560
+			},
+			"text": " that are useful for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,560",
+				"to": "00:29:21,120"
+			},
+			"offsets": {
+				"from": 1756560,
+				"to": 1761120
+			},
+			"text": " So one strategy that people who have the bandwidth for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,120",
+				"to": "00:29:24,840"
+			},
+			"offsets": {
+				"from": 1761120,
+				"to": 1764840
+			},
+			"text": " used to be sure that they have publishing all in time"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,840",
+				"to": "00:29:27,640"
+			},
+			"offsets": {
+				"from": 1764840,
+				"to": 1767640
+			},
+			"text": " and everything is timely is subscribing to all subnets"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:27,640",
+				"to": "00:29:30,560"
+			},
+			"offsets": {
+				"from": 1767640,
+				"to": 1770560
+			},
+			"text": " regardless of how many validators they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,560",
+				"to": "00:29:33,440"
+			},
+			"offsets": {
+				"from": 1770560,
+				"to": 1773440
+			},
+			"text": " This is what Edge was saying about maybe it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,440",
+				"to": "00:29:39,920"
+			},
+			"offsets": {
+				"from": 1773440,
+				"to": 1779920
+			},
+			"text": " exactly true that all nodes that have more than 64"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,920",
+				"to": "00:29:44,400"
+			},
+			"offsets": {
+				"from": 1779920,
+				"to": 1784400
+			},
+			"text": " subscribed subnets actually have more than 64 validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,400",
+				"to": "00:29:46,080"
+			},
+			"offsets": {
+				"from": 1784400,
+				"to": 1786080
+			},
+			"text": " attached to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:46,080",
+				"to": "00:29:47,280"
+			},
+			"offsets": {
+				"from": 1786080,
+				"to": 1787280
+			},
+			"text": " Yeah, so I remember my point."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,280",
+				"to": "00:29:49,960"
+			},
+			"offsets": {
+				"from": 1787280,
+				"to": 1789960
+			},
+			"text": " My point was that we have these institutional stakers"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,960",
+				"to": "00:29:51,760"
+			},
+			"offsets": {
+				"from": 1789960,
+				"to": 1791760
+			},
+			"text": " or people that are subscribed to all the subnets."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,760",
+				"to": "00:29:53,520"
+			},
+			"offsets": {
+				"from": 1791760,
+				"to": 1793520
+			},
+			"text": " They become more valuable than every other node"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,520",
+				"to": "00:29:55,680"
+			},
+			"offsets": {
+				"from": 1793520,
+				"to": 1795680
+			},
+			"text": " on the network from a client perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,680",
+				"to": "00:29:57,600"
+			},
+			"offsets": {
+				"from": 1795680,
+				"to": 1797600
+			},
+			"text": " If you have peers that are connecting to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,600",
+				"to": "00:29:59,760"
+			},
+			"offsets": {
+				"from": 1797600,
+				"to": 1799760
+			},
+			"text": " and one is subscribed to just one subnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,760",
+				"to": "00:30:02,120"
+			},
+			"offsets": {
+				"from": 1799760,
+				"to": 1802120
+			},
+			"text": " and you have another peer that's subscribed to all 64,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:02,120",
+				"to": "00:30:05,120"
+			},
+			"offsets": {
+				"from": 1802120,
+				"to": 1805120
+			},
+			"text": " you're more inclined to be like, I want to keep a peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,120",
+				"to": "00:30:06,760"
+			},
+			"offsets": {
+				"from": 1805120,
+				"to": 1806760
+			},
+			"text": " connection to that guy because in case I need"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,760",
+				"to": "00:30:08,520"
+			},
+			"offsets": {
+				"from": 1806760,
+				"to": 1808520
+			},
+			"text": " to send a message on one of the subnets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,520",
+				"to": "00:30:11,880"
+			},
+			"offsets": {
+				"from": 1808520,
+				"to": 1811880
+			},
+			"text": " he or she is connected to that subnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,880",
+				"to": "00:30:14,880"
+			},
+			"offsets": {
+				"from": 1811880,
+				"to": 1814880
+			},
+			"text": " So you're left with like 10% of these nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,880",
+				"to": "00:30:16,960"
+			},
+			"offsets": {
+				"from": 1814880,
+				"to": 1816960
+			},
+			"text": " the super valuable nodes across the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,960",
+				"to": "00:30:19,000"
+			},
+			"offsets": {
+				"from": 1816960,
+				"to": 1819000
+			},
+			"text": " whereas everyone else you kind of just throw them away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,000",
+				"to": "00:30:20,400"
+			},
+			"offsets": {
+				"from": 1819000,
+				"to": 1820400
+			},
+			"text": " they're not all that valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,400",
+				"to": "00:30:22,320"
+			},
+			"offsets": {
+				"from": 1820400,
+				"to": 1822320
+			},
+			"text": " Whereas if we transition over to this thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:22,320",
+				"to": "00:30:24,480"
+			},
+			"offsets": {
+				"from": 1822320,
+				"to": 1824480
+			},
+			"text": " one, it's enforceable, which is something that we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:24,480",
+				"to": "00:30:27,360"
+			},
+			"offsets": {
+				"from": 1824480,
+				"to": 1827360
+			},
+			"text": " Two, we're not entirely sure whether the amount of banter"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,360",
+				"to": "00:30:29,360"
+			},
+			"offsets": {
+				"from": 1827360,
+				"to": 1829360
+			},
+			"text": " for using across the entire network is necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,360",
+				"to": "00:30:32,400"
+			},
+			"offsets": {
+				"from": 1829360,
+				"to": 1832400
+			},
+			"text": " So we reduce that as I guess maybe a side effect."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,400",
+				"to": "00:30:38,400"
+			},
+			"offsets": {
+				"from": 1832400,
+				"to": 1838400
+			},
+			"text": " And the third example is that all the nodes are equally"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,400",
+				"to": "00:30:39,760"
+			},
+			"offsets": {
+				"from": 1838400,
+				"to": 1839760
+			},
+			"text": " kind of valuable to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,760",
+				"to": "00:30:41,360"
+			},
+			"offsets": {
+				"from": 1839760,
+				"to": 1841360
+			},
+			"text": " Because we tie it to the node ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,360",
+				"to": "00:30:45,080"
+			},
+			"offsets": {
+				"from": 1841360,
+				"to": 1845080
+			},
+			"text": " it makes the node ID specifies which subnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,080",
+				"to": "00:30:46,440"
+			},
+			"offsets": {
+				"from": 1845080,
+				"to": 1846440
+			},
+			"text": " they're supposed to be subscribed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,440",
+				"to": "00:30:47,920"
+			},
+			"offsets": {
+				"from": 1846440,
+				"to": 1847920
+			},
+			"text": " So when we're doing discovery queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,920",
+				"to": "00:30:51,560"
+			},
+			"offsets": {
+				"from": 1847920,
+				"to": 1851560
+			},
+			"text": " we can actually search more efficiently for nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,560",
+				"to": "00:30:53,840"
+			},
+			"offsets": {
+				"from": 1851560,
+				"to": 1853840
+			},
+			"text": " on a specific subnet because it's tied to that node ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,840",
+				"to": "00:30:54,960"
+			},
+			"offsets": {
+				"from": 1853840,
+				"to": 1854960
+			},
+			"text": " So there's a number of benefits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:54,960",
+				"to": "00:30:57,760"
+			},
+			"offsets": {
+				"from": 1854960,
+				"to": 1857760
+			},
+			"text": " it's not just we're helping institutional stakeholders,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,760",
+				"to": "00:30:59,560"
+			},
+			"offsets": {
+				"from": 1857760,
+				"to": 1859560
+			},
+			"text": " that's just kind of like a byproduct."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,560",
+				"to": "00:31:01,560"
+			},
+			"offsets": {
+				"from": 1859560,
+				"to": 1861560
+			},
+			"text": " - Hey, cool talk you guys, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,560",
+				"to": "00:31:04,800"
+			},
+			"offsets": {
+				"from": 1861560,
+				"to": 1864800
+			},
+			"text": " So you mentioned reducing bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,800",
+				"to": "00:31:08,440"
+			},
+			"offsets": {
+				"from": 1864800,
+				"to": 1868440
+			},
+			"text": " and reducing latency to avoid missing esthetizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:08,440",
+				"to": "00:31:09,880"
+			},
+			"offsets": {
+				"from": 1868440,
+				"to": 1869880
+			},
+			"text": " Something that we've looked at as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,880",
+				"to": "00:31:13,400"
+			},
+			"offsets": {
+				"from": 1869880,
+				"to": 1873400
+			},
+			"text": " like effectiveness ratings with validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,400",
+				"to": "00:31:16,000"
+			},
+			"offsets": {
+				"from": 1873400,
+				"to": 1876000
+			},
+			"text": " Can you guys speak, which can result in like penalties"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:16,000",
+				"to": "00:31:18,640"
+			},
+			"offsets": {
+				"from": 1876000,
+				"to": 1878640
+			},
+			"text": " or loss reduction or reward?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,640",
+				"to": "00:31:20,280"
+			},
+			"offsets": {
+				"from": 1878640,
+				"to": 1880280
+			},
+			"text": " Can you guys speak to how this would help"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,280",
+				"to": "00:31:24,240"
+			},
+			"offsets": {
+				"from": 1880280,
+				"to": 1884240
+			},
+			"text": " with effectiveness ratings if it would?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:24,240",
+				"to": "00:31:27,280"
+			},
+			"offsets": {
+				"from": 1884240,
+				"to": 1887280
+			},
+			"text": " - I guess the first one is kind of what I intro'd with."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,280",
+				"to": "00:31:30,360"
+			},
+			"offsets": {
+				"from": 1887280,
+				"to": 1890360
+			},
+			"text": " My personal attestation effect in this drops"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,360",
+				"to": "00:31:31,800"
+			},
+			"offsets": {
+				"from": 1890360,
+				"to": 1891800
+			},
+			"text": " when someone watches Netflix."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,800",
+				"to": "00:31:35,360"
+			},
+			"offsets": {
+				"from": 1891800,
+				"to": 1895360
+			},
+			"text": " So I imagine for a lot more home stakers"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,360",
+				"to": "00:31:36,720"
+			},
+			"offsets": {
+				"from": 1895360,
+				"to": 1896720
+			},
+			"text": " that are kind of on the bandwidth limit"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,720",
+				"to": "00:31:39,840"
+			},
+			"offsets": {
+				"from": 1896720,
+				"to": 1899840
+			},
+			"text": " or their upload speed is quite low like in Australia."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,840",
+				"to": "00:31:42,400"
+			},
+			"offsets": {
+				"from": 1899840,
+				"to": 1902400
+			},
+			"text": " And we reduced the bandwidth requirements a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,400",
+				"to": "00:31:44,840"
+			},
+			"offsets": {
+				"from": 1902400,
+				"to": 1904840
+			},
+			"text": " Diva said that when you have these peaks in bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,840",
+				"to": "00:31:48,520"
+			},
+			"offsets": {
+				"from": 1904840,
+				"to": 1908520
+			},
+			"text": " you can miss attestations, you don't publish them in time"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,520",
+				"to": "00:31:51,160"
+			},
+			"offsets": {
+				"from": 1908520,
+				"to": 1911160
+			},
+			"text": " and it's not just missed but you also get penalized"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,160",
+				"to": "00:31:52,280"
+			},
+			"offsets": {
+				"from": 1911160,
+				"to": 1912280
+			},
+			"text": " if they're late."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,280",
+				"to": "00:31:54,280"
+			},
+			"offsets": {
+				"from": 1912280,
+				"to": 1914280
+			},
+			"text": " So even if they still get included in a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:54,280",
+				"to": "00:31:56,400"
+			},
+			"offsets": {
+				"from": 1914280,
+				"to": 1916400
+			},
+			"text": " but later you get less so that lowers"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,400",
+				"to": "00:31:58,000"
+			},
+			"offsets": {
+				"from": 1916400,
+				"to": 1918000
+			},
+			"text": " the attestation effectiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:58,000",
+				"to": "00:32:00,680"
+			},
+			"offsets": {
+				"from": 1918000,
+				"to": 1920680
+			},
+			"text": " From a lot of the people that use Lighthouse"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,680",
+				"to": "00:32:04,720"
+			},
+			"offsets": {
+				"from": 1920680,
+				"to": 1924720
+			},
+			"text": " we find that there's a number of main reasons"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,720",
+				"to": "00:32:07,280"
+			},
+			"offsets": {
+				"from": 1924720,
+				"to": 1927280
+			},
+			"text": " that impact the attestation efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,280",
+				"to": "00:32:08,840"
+			},
+			"offsets": {
+				"from": 1927280,
+				"to": 1928840
+			},
+			"text": " and that's one is bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,840",
+				"to": "00:32:12,080"
+			},
+			"offsets": {
+				"from": 1928840,
+				"to": 1932080
+			},
+			"text": " and the other one is CPU limitations like processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,080",
+				"to": "00:32:15,760"
+			},
+			"offsets": {
+				"from": 1932080,
+				"to": 1935760
+			},
+			"text": " So if you're running a node that's overburden"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,760",
+				"to": "00:32:19,520"
+			},
+			"offsets": {
+				"from": 1935760,
+				"to": 1939520
+			},
+			"text": " and this, the topic subscription is another thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:19,520",
+				"to": "00:32:21,280"
+			},
+			"offsets": {
+				"from": 1939520,
+				"to": 1941280
+			},
+			"text": " that can overburden a node because if you're subscribed"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:21,280",
+				"to": "00:32:23,560"
+			},
+			"offsets": {
+				"from": 1941280,
+				"to": 1943560
+			},
+			"text": " to a lot of nodes, let's say you have five validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:23,560",
+				"to": "00:32:25,520"
+			},
+			"offsets": {
+				"from": 1943560,
+				"to": 1945520
+			},
+			"text": " attached to you and you have five long-lived subnets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,520",
+				"to": "00:32:26,800"
+			},
+			"offsets": {
+				"from": 1945520,
+				"to": 1946800
+			},
+			"text": " you have to get all the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:26,800",
+				"to": "00:32:27,840"
+			},
+			"offsets": {
+				"from": 1946800,
+				"to": 1947840
+			},
+			"text": " and you have to process them."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,840",
+				"to": "00:32:29,240"
+			},
+			"offsets": {
+				"from": 1947840,
+				"to": 1949240
+			},
+			"text": " So the processing also kills you"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,240",
+				"to": "00:32:31,160"
+			},
+			"offsets": {
+				"from": 1949240,
+				"to": 1951160
+			},
+			"text": " and lowers your average effectiveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:31,160",
+				"to": "00:32:33,640"
+			},
+			"offsets": {
+				"from": 1951160,
+				"to": 1953640
+			},
+			"text": " So if we get that in there that should, in principle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:33,640",
+				"to": "00:32:35,520"
+			},
+			"offsets": {
+				"from": 1953640,
+				"to": 1955520
+			},
+			"text": " improve the effectiveness because of the bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:35,520",
+				"to": "00:32:38,040"
+			},
+			"offsets": {
+				"from": 1955520,
+				"to": 1958040
+			},
+			"text": " and because it lowers the CPU usage of your node."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:38,040",
+				"to": "00:32:39,760"
+			},
+			"offsets": {
+				"from": 1958040,
+				"to": 1959760
+			},
+			"text": " Would it be possible for a node to detect"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,760",
+				"to": "00:32:40,920"
+			},
+			"offsets": {
+				"from": 1959760,
+				"to": 1960920
+			},
+			"text": " that it's been choked?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,920",
+				"to": "00:32:44,560"
+			},
+			"offsets": {
+				"from": 1960920,
+				"to": 1964560
+			},
+			"text": " If so, could it somehow combine that"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,560",
+				"to": "00:32:48,960"
+			},
+			"offsets": {
+				"from": 1964560,
+				"to": 1968960
+			},
+			"text": " with being dishonest about its subnet count"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,960",
+				"to": "00:32:52,920"
+			},
+			"offsets": {
+				"from": 1968960,
+				"to": 1972920
+			},
+			"text": " and other grief or otherwise stall its local node graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:52,920",
+				"to": "00:32:54,360"
+			},
+			"offsets": {
+				"from": 1972920,
+				"to": 1974360
+			},
+			"text": " - Sorry, missed the last part."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:54,360",
+				"to": "00:32:56,080"
+			},
+			"offsets": {
+				"from": 1974360,
+				"to": 1976080
+			},
+			"text": " - Could it, if it could combine that"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,080",
+				"to": "00:32:59,960"
+			},
+			"offsets": {
+				"from": 1976080,
+				"to": 1979960
+			},
+			"text": " with being dishonest about its subnet count connection?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:59,960",
+				"to": "00:33:04,960"
+			},
+			"offsets": {
+				"from": 1979960,
+				"to": 1984960
+			},
+			"text": " Could it just stall or otherwise grief its local node graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,960",
+				"to": "00:33:08,000"
+			},
+			"offsets": {
+				"from": 1984960,
+				"to": 1988000
+			},
+			"text": " - Oh, wow. - Soching is explicit."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:08,000",
+				"to": "00:33:12,200"
+			},
+			"offsets": {
+				"from": 1988000,
+				"to": 1992200
+			},
+			"text": " So I know this is actually going to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:12,200",
+				"to": "00:33:14,320"
+			},
+			"offsets": {
+				"from": 1992200,
+				"to": 1994320
+			},
+			"text": " it's going to be shoved, we're asking him"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:14,320",
+				"to": "00:33:17,320"
+			},
+			"offsets": {
+				"from": 1994320,
+				"to": 1997320
+			},
+			"text": " to stop sending messages to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,320",
+				"to": "00:33:20,760"
+			},
+			"offsets": {
+				"from": 1997320,
+				"to": 2000760
+			},
+			"text": " It's not, yeah, I know it's something similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,760",
+				"to": "00:33:24,160"
+			},
+			"offsets": {
+				"from": 2000760,
+				"to": 2004160
+			},
+			"text": " to what is happening, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:24,160",
+				"to": "00:33:27,680"
+			},
+			"offsets": {
+				"from": 2004160,
+				"to": 2007680
+			},
+			"text": " in strategies, for example, in, I don't know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,680",
+				"to": "00:33:30,440"
+			},
+			"offsets": {
+				"from": 2007680,
+				"to": 2010440
+			},
+			"text": " file sharing, but it's different in the sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,440",
+				"to": "00:33:32,560"
+			},
+			"offsets": {
+				"from": 2010440,
+				"to": 2012560
+			},
+			"text": " that we're the ones asking the peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,560",
+				"to": "00:33:34,800"
+			},
+			"offsets": {
+				"from": 2012560,
+				"to": 2014800
+			},
+			"text": " to just stop sending the messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,800",
+				"to": "00:33:37,080"
+			},
+			"offsets": {
+				"from": 2014800,
+				"to": 2017080
+			},
+			"text": " So it's kind of a benefit for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:37,080",
+				"to": "00:33:40,000"
+			},
+			"offsets": {
+				"from": 2017080,
+				"to": 2020000
+			},
+			"text": " So when we connect to appear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:40,000",
+				"to": "00:33:42,520"
+			},
+			"offsets": {
+				"from": 2020000,
+				"to": 2022520
+			},
+			"text": " let's say in this new regime where we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,520",
+				"to": "00:33:44,920"
+			},
+			"offsets": {
+				"from": 2022520,
+				"to": 2024920
+			},
+			"text": " every node has to subscribe to a topic based on its node ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,920",
+				"to": "00:33:48,120"
+			},
+			"offsets": {
+				"from": 2024920,
+				"to": 2028120
+			},
+			"text": " we can look at its peer ID, but let's say it's node ID,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:48,120",
+				"to": "00:33:49,440"
+			},
+			"offsets": {
+				"from": 2028120,
+				"to": 2029440
+			},
+			"text": " we know that it's supposed to be subscribed"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:49,440",
+				"to": "00:33:51,240"
+			},
+			"offsets": {
+				"from": 2029440,
+				"to": 2031240
+			},
+			"text": " to let's say topic three."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,240",
+				"to": "00:33:54,200"
+			},
+			"offsets": {
+				"from": 2031240,
+				"to": 2034200
+			},
+			"text": " The way that we, when we connect via gossip sub,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,200",
+				"to": "00:33:55,560"
+			},
+			"offsets": {
+				"from": 2034200,
+				"to": 2035560
+			},
+			"text": " they should send us subscriptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,560",
+				"to": "00:33:56,920"
+			},
+			"offsets": {
+				"from": 2035560,
+				"to": 2036920
+			},
+			"text": " about what it's subscribed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:56,920",
+				"to": "00:33:59,400"
+			},
+			"offsets": {
+				"from": 2036920,
+				"to": 2039400
+			},
+			"text": " And if it's not subscribed to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,400",
+				"to": "00:34:00,840"
+			},
+			"offsets": {
+				"from": 2039400,
+				"to": 2040840
+			},
+			"text": " we know that it's being malicious or faulty,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,840",
+				"to": "00:34:03,040"
+			},
+			"offsets": {
+				"from": 2040840,
+				"to": 2043040
+			},
+			"text": " straight away and we can just disconnect it."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,040",
+				"to": "00:34:05,240"
+			},
+			"offsets": {
+				"from": 2043040,
+				"to": 2045240
+			},
+			"text": " There's technicalities where I can say that it's subscribed"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,240",
+				"to": "00:34:09,400"
+			},
+			"offsets": {
+				"from": 2045240,
+				"to": 2049400
+			},
+			"text": " but then won't let us, so the next phase of the thing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,400",
+				"to": "00:34:11,480"
+			},
+			"offsets": {
+				"from": 2049400,
+				"to": 2051480
+			},
+			"text": " we try and create a mesh network."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,480",
+				"to": "00:34:14,640"
+			},
+			"offsets": {
+				"from": 2051480,
+				"to": 2054640
+			},
+			"text": " So if we're connected to, let's say, 100 peers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,640",
+				"to": "00:34:17,400"
+			},
+			"offsets": {
+				"from": 2054640,
+				"to": 2057400
+			},
+			"text": " we only really form a mesh with the mesh degree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,400",
+				"to": "00:34:18,560"
+			},
+			"offsets": {
+				"from": 2057400,
+				"to": 2058560
+			},
+			"text": " with like three of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:18,560",
+				"to": "00:34:20,960"
+			},
+			"offsets": {
+				"from": 2058560,
+				"to": 2060960
+			},
+			"text": " So in principle, they could always just say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,960",
+				"to": "00:34:22,120"
+			},
+			"offsets": {
+				"from": 2060960,
+				"to": 2062120
+			},
+			"text": " no, no, you can't go on my mesh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:22,120",
+				"to": "00:34:23,720"
+			},
+			"offsets": {
+				"from": 2062120,
+				"to": 2063720
+			},
+			"text": " you can't go on my mesh, I'm full, I'm full, I'm full."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:23,720",
+				"to": "00:34:25,360"
+			},
+			"offsets": {
+				"from": 2063720,
+				"to": 2065360
+			},
+			"text": " So that's one way to kind of grief us."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:25,360",
+				"to": "00:34:28,280"
+			},
+			"offsets": {
+				"from": 2065360,
+				"to": 2068280
+			},
+			"text": " In that scenario, they still have to forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,280",
+				"to": "00:34:29,520"
+			},
+			"offsets": {
+				"from": 2068280,
+				"to": 2069520
+			},
+			"text": " as gossip sub messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:29,520",
+				"to": "00:34:32,680"
+			},
+			"offsets": {
+				"from": 2069520,
+				"to": 2072680
+			},
+			"text": " There's a small mechanism inside gossip sub"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:32,680",
+				"to": "00:34:34,440"
+			},
+			"offsets": {
+				"from": 2072680,
+				"to": 2074440
+			},
+			"text": " that is called gossip sub scoring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:34,440",
+				"to": "00:34:37,680"
+			},
+			"offsets": {
+				"from": 2074440,
+				"to": 2077680
+			},
+			"text": " which is just in 1.1, which somehow mitigates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:37,680",
+				"to": "00:34:39,680"
+			},
+			"offsets": {
+				"from": 2077680,
+				"to": 2079680
+			},
+			"text": " attempts to mitigate censoring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:39,680",
+				"to": "00:34:41,520"
+			},
+			"offsets": {
+				"from": 2079680,
+				"to": 2081520
+			},
+			"text": " so where you just say that you're subscribed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:41,520",
+				"to": "00:34:42,680"
+			},
+			"offsets": {
+				"from": 2081520,
+				"to": 2082680
+			},
+			"text": " but you do nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,680",
+				"to": "00:34:44,280"
+			},
+			"offsets": {
+				"from": 2082680,
+				"to": 2084280
+			},
+			"text": " And the whole network essentially tries"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:44,280",
+				"to": "00:34:45,600"
+			},
+			"offsets": {
+				"from": 2084280,
+				"to": 2085600
+			},
+			"text": " to kick you out of the mesh."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,600",
+				"to": "00:34:47,400"
+			},
+			"offsets": {
+				"from": 2085600,
+				"to": 2087400
+			},
+			"text": " In terms of while being choked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,400",
+				"to": "00:34:48,920"
+			},
+			"offsets": {
+				"from": 2087400,
+				"to": 2088920
+			},
+			"text": " we only choke people that are in our mesh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:48,920",
+				"to": "00:34:50,400"
+			},
+			"offsets": {
+				"from": 2088920,
+				"to": 2090400
+			},
+			"text": " so only people that are subscribed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:50,400",
+				"to": "00:34:51,920"
+			},
+			"offsets": {
+				"from": 2090400,
+				"to": 2091920
+			},
+			"text": " and then once they've grafted with us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,920",
+				"to": "00:34:53,280"
+			},
+			"offsets": {
+				"from": 2091920,
+				"to": 2093280
+			},
+			"text": " so we form this mesh connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:53,280",
+				"to": "00:34:54,840"
+			},
+			"offsets": {
+				"from": 2093280,
+				"to": 2094840
+			},
+			"text": " which means they have to be subscribed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,840",
+				"to": "00:34:56,080"
+			},
+			"offsets": {
+				"from": 2094840,
+				"to": 2096080
+			},
+			"text": " they have to be sending us messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:56,080",
+				"to": "00:34:58,160"
+			},
+			"offsets": {
+				"from": 2096080,
+				"to": 2098160
+			},
+			"text": " if they're not sending us messages, 1.1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:58,160",
+				"to": "00:34:59,480"
+			},
+			"offsets": {
+				"from": 2098160,
+				"to": 2099480
+			},
+			"text": " scoring, we'll kick them out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,480",
+				"to": "00:35:01,440"
+			},
+			"offsets": {
+				"from": 2099480,
+				"to": 2101440
+			},
+			"text": " and then we choke or un-choke them."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,440",
+				"to": "00:35:03,720"
+			},
+			"offsets": {
+				"from": 2101440,
+				"to": 2103720
+			},
+			"text": " In order for them to be malicious and try"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,720",
+				"to": "00:35:05,360"
+			},
+			"offsets": {
+				"from": 2103720,
+				"to": 2105360
+			},
+			"text": " and cheat that system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,360",
+				"to": "00:35:08,680"
+			},
+			"offsets": {
+				"from": 2105360,
+				"to": 2108680
+			},
+			"text": " the choking strategy is abstract"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,680",
+				"to": "00:35:11,280"
+			},
+			"offsets": {
+				"from": 2108680,
+				"to": 2111280
+			},
+			"text": " and can be implemented independently on each node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:11,280",
+				"to": "00:35:13,080"
+			},
+			"offsets": {
+				"from": 2111280,
+				"to": 2113080
+			},
+			"text": " so you don't know on each of your peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,080",
+				"to": "00:35:15,080"
+			},
+			"offsets": {
+				"from": 2113080,
+				"to": 2115080
+			},
+			"text": " what is specifically their choking strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,080",
+				"to": "00:35:16,840"
+			},
+			"offsets": {
+				"from": 2115080,
+				"to": 2116840
+			},
+			"text": " they could just pick random nodes on their mesh"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:16,840",
+				"to": "00:35:17,720"
+			},
+			"offsets": {
+				"from": 2116840,
+				"to": 2117720
+			},
+			"text": " and choke people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,720",
+				"to": "00:35:20,200"
+			},
+			"offsets": {
+				"from": 2117720,
+				"to": 2120200
+			},
+			"text": " so I think there is an avenue of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:20,200",
+				"to": "00:35:22,480"
+			},
+			"offsets": {
+				"from": 2120200,
+				"to": 2122480
+			},
+			"text": " to look in there that hasn't been done yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,480",
+				"to": "00:35:24,240"
+			},
+			"offsets": {
+				"from": 2122480,
+				"to": 2124240
+			},
+			"text": " but I imagine we can probably solve that"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,240",
+				"to": "00:35:26,080"
+			},
+			"offsets": {
+				"from": 2124240,
+				"to": 2126080
+			},
+			"text": " with some of the scoring parameters in Gossip Sub."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:26,080",
+				"to": "00:35:27,560"
+			},
+			"offsets": {
+				"from": 2126080,
+				"to": 2127560
+			},
+			"text": " - Thank you very much, Diva,"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,560",
+				"to": "00:35:29,520"
+			},
+			"offsets": {
+				"from": 2127560,
+				"to": 2129520
+			},
+			"text": " and thank you very much, Adrienne."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,520",
+				"to": "00:35:30,360"
+			},
+			"offsets": {
+				"from": 2129520,
+				"to": 2130360
+			},
+			"text": " - Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,360",
+				"to": "00:35:32,600"
+			},
+			"offsets": {
+				"from": 2130360,
+				"to": 2132600
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:32,600",
+				"to": "00:35:34,600"
+			},
+			"offsets": {
+				"from": 2132600,
+				"to": 2134600
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,600",
+				"to": "00:35:36,600"
+			},
+			"offsets": {
+				"from": 2134600,
+				"to": 2136600
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,600",
+				"to": "00:35:38,600"
+			},
+			"offsets": {
+				"from": 2136600,
+				"to": 2138600
+			},
+			"text": " (buzzer)"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:38,600",
+				"to": "00:36:07,600"
+			},
+			"offsets": {
+				"from": 2138600,
+				"to": 2167600
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

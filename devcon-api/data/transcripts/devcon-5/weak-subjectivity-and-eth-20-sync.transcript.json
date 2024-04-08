@@ -1,0 +1,2078 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " Hi, I'm Shippen Ling."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:08,360"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 8360
+			},
+			"text": " You can also call me Nicholas."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,360",
+				"to": "00:00:10,360"
+			},
+			"offsets": {
+				"from": 8360,
+				"to": 10360
+			},
+			"text": " I'm from the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,360",
+				"to": "00:00:18,400"
+			},
+			"offsets": {
+				"from": 10360,
+				"to": 18400
+			},
+			"text": " Today I'll be talking about weak subjectivity and how the single protocol works in E2."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,400",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 18400,
+				"to": 22920
+			},
+			"text": " So this talk consists of three parts, weak subjectivity and E2 sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 29800
+			},
+			"text": " And finally, I'll make a brief introduction on the four choice rule used in E2 right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 37360
+			},
+			"text": " So first, I'll talk about what subjectivity means in its context and why is it weak."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:40,920"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 40920
+			},
+			"text": " So what is objectivity means in its context?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,920",
+				"to": "00:00:46,440"
+			},
+			"offsets": {
+				"from": 40920,
+				"to": 46440
+			},
+			"text": " So objectivity in its context could be, for example, I prove a work, you know, how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,440",
+				"to": "00:00:49,680"
+			},
+			"offsets": {
+				"from": 46440,
+				"to": 49680
+			},
+			"text": " work done, how much electricity spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,680",
+				"to": "00:00:58,760"
+			},
+			"offsets": {
+				"from": 49680,
+				"to": 58760
+			},
+			"text": " And so joining the Bitcoin or Ethereum network knows it can request poor work from any peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,760",
+				"to": "00:01:04,520"
+			},
+			"offsets": {
+				"from": 58760,
+				"to": 64520
+			},
+			"text": " And then he can use this proper work to objectively identify the canonical chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,520",
+				"to": "00:01:08,920"
+			},
+			"offsets": {
+				"from": 64520,
+				"to": 68920
+			},
+			"text": " But in proper state, the work could be like running state transition, creating, verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,920",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 68920,
+				"to": 70280
+			},
+			"text": " signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:13,160"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 73160
+			},
+			"text": " But this work are tiny compared to proper work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,160",
+				"to": "00:01:20,720"
+			},
+			"offsets": {
+				"from": 73160,
+				"to": 80720
+			},
+			"text": " So every validator can create super long forkchains secretly at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,720",
+				"to": "00:01:23,800"
+			},
+			"offsets": {
+				"from": 80720,
+				"to": 83800
+			},
+			"text": " And so this enables the long range attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,800",
+				"to": "00:01:30,840"
+			},
+			"offsets": {
+				"from": 83800,
+				"to": 90840
+			},
+			"text": " So basically in a long range attack, for example, say if it's an attacker and he first requests"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,840",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 90840,
+				"to": 92760
+			},
+			"text": " withdraw on the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:38,580"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 98580
+			},
+			"text": " And after some time his withdrawal is successfully processed, now he, she has no stake on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,580",
+				"to": "00:01:39,580"
+			},
+			"offsets": {
+				"from": 98580,
+				"to": 99580
+			},
+			"text": " main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,580",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 99580,
+				"to": 104960
+			},
+			"text": " And later Alice goes online and now Eve can create a four chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:51,040"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 111040
+			},
+			"text": " And on that chain, she did not withdraw and continues to vote on the four chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,040",
+				"to": "00:01:55,560"
+			},
+			"offsets": {
+				"from": 111040,
+				"to": 115560
+			},
+			"text": " So now Eve can feed this four chain to Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,560",
+				"to": "00:02:02,280"
+			},
+			"offsets": {
+				"from": 115560,
+				"to": 122280
+			},
+			"text": " And later when Alice find out that Eve has been feeding her with the four chains, she"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,280",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122280,
+				"to": 128000
+			},
+			"text": " will try to use this four chain as a proof to prove that Eve was double voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:12,880"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 132880
+			},
+			"text": " And she will send this evidence to the main chain, but then she will find out that if no"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,880",
+				"to": "00:02:17,360"
+			},
+			"offsets": {
+				"from": 132880,
+				"to": 137360
+			},
+			"text": " longer has any stake on the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,360",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 137360,
+				"to": 147000
+			},
+			"text": " So subjectivity in this context means that you need to trust some sources to identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:30,440"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 150440
+			},
+			"text": " the canonical chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,440",
+				"to": "00:02:31,440"
+			},
+			"offsets": {
+				"from": 150440,
+				"to": 151440
+			},
+			"text": " And why is it weak?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,440",
+				"to": "00:02:37,240"
+			},
+			"offsets": {
+				"from": 151440,
+				"to": 157240
+			},
+			"text": " It's weak because we only need to trust when first you join the network for the first time"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,240",
+				"to": "00:02:40,520"
+			},
+			"offsets": {
+				"from": 157240,
+				"to": 160520
+			},
+			"text": " or second you will offline for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,520",
+				"to": "00:02:41,520"
+			},
+			"offsets": {
+				"from": 160520,
+				"to": 161520
+			},
+			"text": " For how long?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,520",
+				"to": "00:02:47,120"
+			},
+			"offsets": {
+				"from": 161520,
+				"to": 167120
+			},
+			"text": " It depends on how long it takes for the attacker to withdraw their stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:50,280"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 170280
+			},
+			"text": " And this is called the weak subjectivity period."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:55,080"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 175080
+			},
+			"text": " And weak subjectivity period is going to determine if we're going to need trust when"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,080",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 175080,
+				"to": 177440
+			},
+			"text": " we are sinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:03:03,720"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 183720
+			},
+			"text": " So next I will talk about how the sinking particle works in it too."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,720",
+				"to": "00:03:08,680"
+			},
+			"offsets": {
+				"from": 183720,
+				"to": 188680
+			},
+			"text": " I will walk through how the clients sink in three different situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,680",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 188680,
+				"to": 193200
+			},
+			"text": " And the first is how the clients sink when you brush your nose the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 199000
+			},
+			"text": " And the second one is when you go offline and lock it back before the weak subjectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 201200
+			},
+			"text": " period ends."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:25,600"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 205600
+			},
+			"text": " The third situation is when you stay offline for too long, for longer than weak subjectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,600",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 205600,
+				"to": 207000
+			},
+			"text": " period."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211960
+			},
+			"text": " First, how does the client sink when you brush your nose the first time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:33,160"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 213160
+			},
+			"text": " You need to trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,160",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 213160,
+				"to": 214560
+			},
+			"text": " You trust the brush your nose."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:38,360"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 218360
+			},
+			"text": " You trust the genesis blocks, genesis state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,360",
+				"to": "00:03:44,640"
+			},
+			"offsets": {
+				"from": 218360,
+				"to": 224640
+			},
+			"text": " If the genesis is already well-being in the past, you will trust the latest checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,640",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 224640,
+				"to": 227000
+			},
+			"text": " instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:51,640"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 231640
+			},
+			"text": " So now you have trusted genesis or latest checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,640",
+				"to": "00:03:56,400"
+			},
+			"offsets": {
+				"from": 231640,
+				"to": 236400
+			},
+			"text": " You will connect to peers and you will first exchange a latest checkpoint and have blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,400",
+				"to": "00:04:01,800"
+			},
+			"offsets": {
+				"from": 236400,
+				"to": 241800
+			},
+			"text": " and some other info to decide if you are on the same chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,800",
+				"to": "00:04:05,600"
+			},
+			"offsets": {
+				"from": 241800,
+				"to": 245600
+			},
+			"text": " And if you are, then you will start to request the missing blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,600",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 245600,
+				"to": 250080
+			},
+			"text": " Or if you are not on the same chain, you will simply disconnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:17,080"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 257080
+			},
+			"text": " So second situation, how does client sink when you go offline but a login back in time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,080",
+				"to": "00:04:18,080"
+			},
+			"offsets": {
+				"from": 257080,
+				"to": 258080
+			},
+			"text": " First you still need to trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,080",
+				"to": "00:04:20,960"
+			},
+			"offsets": {
+				"from": 258080,
+				"to": 260960
+			},
+			"text": " You trust the brush strip notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,960",
+				"to": "00:04:26,320"
+			},
+			"offsets": {
+				"from": 260960,
+				"to": 266320
+			},
+			"text": " Or maybe you can use the peer info you persist in the database during that connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,320",
+				"to": "00:04:31,320"
+			},
+			"offsets": {
+				"from": 266320,
+				"to": 271320
+			},
+			"text": " But now you do not need to trust the latest checkpoint because you can use the checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,320",
+				"to": "00:04:36,880"
+			},
+			"offsets": {
+				"from": 271320,
+				"to": 276880
+			},
+			"text": " the less time you are online and start sinking from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,880",
+				"to": "00:04:37,880"
+			},
+			"offsets": {
+				"from": 276880,
+				"to": 277880
+			},
+			"text": " It is mostly same."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,880",
+				"to": "00:04:43,800"
+			},
+			"offsets": {
+				"from": 277880,
+				"to": 283800
+			},
+			"text": " You have the checkpoint and you connect to peers and you start exchanging latest checkpoint"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,800",
+				"to": "00:04:46,040"
+			},
+			"offsets": {
+				"from": 283800,
+				"to": 286040
+			},
+			"text": " and have blocks and some other information."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,040",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 286040,
+				"to": 290000
+			},
+			"text": " To decide if you are on the same chain and you are, you request missing blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,680"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293680
+			},
+			"text": " But note that the client will only support requesting blocks since the start of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,680",
+				"to": "00:04:58,840"
+			},
+			"offsets": {
+				"from": 293680,
+				"to": 298840
+			},
+			"text": " weak subjectivity period, which means that you won't be able to sink the blocks thus"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,840",
+				"to": "00:05:05,360"
+			},
+			"offsets": {
+				"from": 298840,
+				"to": 305360
+			},
+			"text": " older than the start of the weak subjectivity period."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,360",
+				"to": "00:05:11,720"
+			},
+			"offsets": {
+				"from": 305360,
+				"to": 311720
+			},
+			"text": " And if you are not on the same chain, the peer will not find us and then we will disconnect."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,720",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 311720,
+				"to": 320640
+			},
+			"text": " Third situation, how does client sink when you stay offline for a longer than with subjectivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:21,740"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 321740
+			},
+			"text": " period?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,740",
+				"to": "00:05:28,280"
+			},
+			"offsets": {
+				"from": 321740,
+				"to": 328280
+			},
+			"text": " So it's basically the same as when you are seeing when you push your note the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,280",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 328280,
+				"to": 336120
+			},
+			"text": " You trust Genesis block or you trust the latest checkpoint and start sinking from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:41,840"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 341840
+			},
+			"text": " Once we finish the sinking, we will have a picture of how the chain or how the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,840",
+				"to": "00:05:43,960"
+			},
+			"offsets": {
+				"from": 341840,
+				"to": 343960
+			},
+			"text": " trick looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,960",
+				"to": "00:05:49,560"
+			},
+			"offsets": {
+				"from": 343960,
+				"to": 349560
+			},
+			"text": " Then we will apply the fortress rule to get a score of its chain and then we can identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,560",
+				"to": "00:05:51,480"
+			},
+			"offsets": {
+				"from": 349560,
+				"to": 351480
+			},
+			"text": " the canonical chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,480",
+				"to": "00:05:58,840"
+			},
+			"offsets": {
+				"from": 351480,
+				"to": 358840
+			},
+			"text": " So before I get to the fortress rule, there are two types of checkpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,840",
+				"to": "00:06:00,400"
+			},
+			"offsets": {
+				"from": 358840,
+				"to": 360400
+			},
+			"text": " First one is finalized checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,400",
+				"to": "00:06:02,840"
+			},
+			"offsets": {
+				"from": 360400,
+				"to": 362840
+			},
+			"text": " The second one is a stratified checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,840",
+				"to": "00:06:08,480"
+			},
+			"offsets": {
+				"from": 362840,
+				"to": 368480
+			},
+			"text": " And we do not override the finalized checkpoint unless there is an attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,480",
+				"to": "00:06:14,040"
+			},
+			"offsets": {
+				"from": 368480,
+				"to": 374040
+			},
+			"text": " But in that case, we can know for sure that at least one third of the validating ease"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,040",
+				"to": "00:06:15,040"
+			},
+			"offsets": {
+				"from": 374040,
+				"to": 375040
+			},
+			"text": " will be burned."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,040",
+				"to": "00:06:17,280"
+			},
+			"offsets": {
+				"from": 375040,
+				"to": 377280
+			},
+			"text": " So that type of here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,280",
+				"to": "00:06:25,560"
+			},
+			"offsets": {
+				"from": 377280,
+				"to": 385560
+			},
+			"text": " And for the justified checkpoint, it can be overridden and we will switch to the more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,560",
+				"to": "00:06:29,840"
+			},
+			"offsets": {
+				"from": 385560,
+				"to": 389840
+			},
+			"text": " recent justified checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,840",
+				"to": "00:06:34,360"
+			},
+			"offsets": {
+				"from": 389840,
+				"to": 394360
+			},
+			"text": " So after the justified checkpoint is decided, we will apply the fortress rule on different"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,360",
+				"to": "00:06:37,640"
+			},
+			"offsets": {
+				"from": 394360,
+				"to": 397640
+			},
+			"text": " four chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,640",
+				"to": "00:06:41,360"
+			},
+			"offsets": {
+				"from": 397640,
+				"to": 401360
+			},
+			"text": " And the score counting starts from justified checkpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,360",
+				"to": "00:06:48,960"
+			},
+			"offsets": {
+				"from": 401360,
+				"to": 408960
+			},
+			"text": " And here we cannot use longest chain rule because as I previously mentioned, the attacker"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,960",
+				"to": "00:06:53,680"
+			},
+			"offsets": {
+				"from": 408960,
+				"to": 413680
+			},
+			"text": " can secretly create super long four chains anytime."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,680",
+				"to": "00:06:56,840"
+			},
+			"offsets": {
+				"from": 413680,
+				"to": 416840
+			},
+			"text": " So what fortress rule do we use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,840",
+				"to": "00:06:59,400"
+			},
+			"offsets": {
+				"from": 416840,
+				"to": 419400
+			},
+			"text": " We use LMD ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,400",
+				"to": "00:07:02,200"
+			},
+			"offsets": {
+				"from": 419400,
+				"to": 422200
+			},
+			"text": " Stands for latest message driven ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,200",
+				"to": "00:07:07,680"
+			},
+			"offsets": {
+				"from": 422200,
+				"to": 427680
+			},
+			"text": " Ghost stands for greedy, heavy, absurd, sub tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,680",
+				"to": "00:07:11,080"
+			},
+			"offsets": {
+				"from": 427680,
+				"to": 431080
+			},
+			"text": " How does the ghost fortress rule work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,080",
+				"to": "00:07:13,560"
+			},
+			"offsets": {
+				"from": 431080,
+				"to": 433560
+			},
+			"text": " Here we have different four chains here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,560",
+				"to": "00:07:16,480"
+			},
+			"offsets": {
+				"from": 433560,
+				"to": 436480
+			},
+			"text": " And the Y square is the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,480",
+				"to": "00:07:22,560"
+			},
+			"offsets": {
+				"from": 436480,
+				"to": 442560
+			},
+			"text": " And the green circle is the -- the attestation is the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,560",
+				"to": "00:07:25,120"
+			},
+			"offsets": {
+				"from": 442560,
+				"to": 445120
+			},
+			"text": " The vault has the validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,120",
+				"to": "00:07:31,400"
+			},
+			"offsets": {
+				"from": 445120,
+				"to": 451400
+			},
+			"text": " The validator would vote for the block that they think is the head block of the canonical"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,400",
+				"to": "00:07:34,320"
+			},
+			"offsets": {
+				"from": 451400,
+				"to": 454320
+			},
+			"text": " chain at that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,320",
+				"to": "00:07:37,080"
+			},
+			"offsets": {
+				"from": 454320,
+				"to": 457080
+			},
+			"text": " So we have the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,080",
+				"to": "00:07:39,040"
+			},
+			"offsets": {
+				"from": 457080,
+				"to": 459040
+			},
+			"text": " And then we will do the score count."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,040",
+				"to": "00:07:48,480"
+			},
+			"offsets": {
+				"from": 459040,
+				"to": 468480
+			},
+			"text": " The score of a block is the sum of the score of all his child blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,480",
+				"to": "00:07:55,120"
+			},
+			"offsets": {
+				"from": 468480,
+				"to": 475120
+			},
+			"text": " And once we have the score count, we will start from justified checkpoint and goes all"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,120",
+				"to": "00:07:57,880"
+			},
+			"offsets": {
+				"from": 475120,
+				"to": 477880
+			},
+			"text": " the way down to the head block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,880",
+				"to": "00:08:05,680"
+			},
+			"offsets": {
+				"from": 477880,
+				"to": 485680
+			},
+			"text": " And in each state, when there is a fork, we choose the one with higher score."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,680",
+				"to": "00:08:11,200"
+			},
+			"offsets": {
+				"from": 485680,
+				"to": 491200
+			},
+			"text": " So in ghost fortress rule, we will have the chain on the top as the winning chain, as"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,200",
+				"to": "00:08:14,200"
+			},
+			"offsets": {
+				"from": 491200,
+				"to": 494200
+			},
+			"text": " the chain with higher score."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,200",
+				"to": "00:08:16,200"
+			},
+			"offsets": {
+				"from": 494200,
+				"to": 496200
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,200",
+				"to": "00:08:19,440"
+			},
+			"offsets": {
+				"from": 496200,
+				"to": 499440
+			},
+			"text": " Next, how does the LMD ghost works?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,440",
+				"to": "00:08:23,920"
+			},
+			"offsets": {
+				"from": 499440,
+				"to": 503920
+			},
+			"text": " The post by Larry X. Research summarized pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,920",
+				"to": "00:08:25,680"
+			},
+			"offsets": {
+				"from": 503920,
+				"to": 505680
+			},
+			"text": " You don't care test votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,680",
+				"to": "00:08:30,960"
+			},
+			"offsets": {
+				"from": 505680,
+				"to": 510960
+			},
+			"text": " Who's centered might not receive other messages due to the network latency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,960",
+				"to": "00:08:37,640"
+			},
+			"offsets": {
+				"from": 510960,
+				"to": 517640
+			},
+			"text": " In short, it means that we only count the validators, let us vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,640",
+				"to": "00:08:44,280"
+			},
+			"offsets": {
+				"from": 517640,
+				"to": 524280
+			},
+			"text": " So now -- say there are six validators and these are the votes that cast."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,280",
+				"to": "00:08:49,640"
+			},
+			"offsets": {
+				"from": 524280,
+				"to": 529640
+			},
+			"text": " And since in LMD ghost, we only count the validators, let us vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,640",
+				"to": "00:08:54,240"
+			},
+			"offsets": {
+				"from": 529640,
+				"to": 534240
+			},
+			"text": " So this will be what the vote count like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,240",
+				"to": "00:09:01,120"
+			},
+			"offsets": {
+				"from": 534240,
+				"to": 541120
+			},
+			"text": " And so we will get a different score count and apply the same rules in role."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,120",
+				"to": "00:09:08,960"
+			},
+			"offsets": {
+				"from": 541120,
+				"to": 548960
+			},
+			"text": " We will have -- now we will have the chain on the bottom as the winning chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,960",
+				"to": "00:09:13,520"
+			},
+			"offsets": {
+				"from": 548960,
+				"to": 553520
+			},
+			"text": " And now I want to briefly mention the optimization on LMD ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,520",
+				"to": "00:09:20,180"
+			},
+			"offsets": {
+				"from": 553520,
+				"to": 560180
+			},
+			"text": " The idea of the optimization is basically that when we run in the fortress rule, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,180",
+				"to": "00:09:24,500"
+			},
+			"offsets": {
+				"from": 560180,
+				"to": 564500
+			},
+			"text": " skip the blocks that no validators vote for."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,500",
+				"to": "00:09:29,940"
+			},
+			"offsets": {
+				"from": 564500,
+				"to": 569940
+			},
+			"text": " And so this will save a time and memory when traversing the block tree back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,940",
+				"to": "00:09:30,940"
+			},
+			"offsets": {
+				"from": 569940,
+				"to": 570940
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,940",
+				"to": "00:09:37,060"
+			},
+			"offsets": {
+				"from": 570940,
+				"to": 577060
+			},
+			"text": " There's one thing worth mentioning is that we're seeing blocks but not the attestations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,060",
+				"to": "00:09:40,300"
+			},
+			"offsets": {
+				"from": 577060,
+				"to": 580300
+			},
+			"text": " So we wait for attestation to be propagated to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,300",
+				"to": "00:09:46,500"
+			},
+			"offsets": {
+				"from": 580300,
+				"to": 586500
+			},
+			"text": " It can come in as a form of single attestation, aggregated attestation or attestation that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,500",
+				"to": "00:09:52,260"
+			},
+			"offsets": {
+				"from": 586500,
+				"to": 592260
+			},
+			"text": " included in the blocks. And we take all three kinds of attestation into account when -- in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,260",
+				"to": "00:09:54,580"
+			},
+			"offsets": {
+				"from": 592260,
+				"to": 594580
+			},
+			"text": " our fortress rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,580",
+				"to": "00:10:01,420"
+			},
+			"offsets": {
+				"from": 594580,
+				"to": 601420
+			},
+			"text": " But since we do not think the attestation -- that means every node could receive different attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,420",
+				"to": "00:10:03,100"
+			},
+			"offsets": {
+				"from": 601420,
+				"to": 603100
+			},
+			"text": " at different time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,100",
+				"to": "00:10:04,900"
+			},
+			"offsets": {
+				"from": 603100,
+				"to": 604900
+			},
+			"text": " So every node could have different view."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,900",
+				"to": "00:10:09,100"
+			},
+			"offsets": {
+				"from": 604900,
+				"to": 609100
+			},
+			"text": " They could have different -- they could have different vote count for each for change."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,100",
+				"to": "00:10:12,660"
+			},
+			"offsets": {
+				"from": 609100,
+				"to": 612660
+			},
+			"text": " So this creates a window for the attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,660",
+				"to": "00:10:17,860"
+			},
+			"offsets": {
+				"from": 612660,
+				"to": 617860
+			},
+			"text": " The attacker can withhold attestation and broadcast them and want to make a victim switch between"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,860",
+				"to": "00:10:20,620"
+			},
+			"offsets": {
+				"from": 617860,
+				"to": 620620
+			},
+			"text": " different chance repeatedly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,620",
+				"to": "00:10:25,860"
+			},
+			"offsets": {
+				"from": 620620,
+				"to": 625860
+			},
+			"text": " But there's a prerequisite for this attack is that there has to be a temporary network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,860",
+				"to": "00:10:28,620"
+			},
+			"offsets": {
+				"from": 625860,
+				"to": 628620
+			},
+			"text": " failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,620",
+				"to": "00:10:31,980"
+			},
+			"offsets": {
+				"from": 628620,
+				"to": 631980
+			},
+			"text": " And one attack is called decoy flip-flop attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,980",
+				"to": "00:10:35,660"
+			},
+			"offsets": {
+				"from": 631980,
+				"to": 635660
+			},
+			"text": " And it can be remotely under the research forum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,660",
+				"to": "00:10:42,140"
+			},
+			"offsets": {
+				"from": 635660,
+				"to": 642140
+			},
+			"text": " And one possible mitigation is the recently proposed variant of ghosts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,140",
+				"to": "00:10:44,820"
+			},
+			"offsets": {
+				"from": 642140,
+				"to": 644820
+			},
+			"text": " It's called fresh message driven ghost."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,820",
+				"to": "00:10:49,940"
+			},
+			"offsets": {
+				"from": 644820,
+				"to": 649940
+			},
+			"text": " And ensured is basically that we do not accept attestation too long ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,940",
+				"to": "00:10:55,300"
+			},
+			"offsets": {
+				"from": 649940,
+				"to": 655300
+			},
+			"text": " For example, we do not accept attestation from maybe two weeks past ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,300",
+				"to": "00:10:59,820"
+			},
+			"offsets": {
+				"from": 655300,
+				"to": 659820
+			},
+			"text": " And okay, that's my introduction on with subjectivity if you sing and fortress rule today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,820",
+				"to": "00:11:00,820"
+			},
+			"offsets": {
+				"from": 659820,
+				"to": 660820
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,820",
+				"to": "00:11:00,820"
+			},
+			"offsets": {
+				"from": 660820,
+				"to": 660820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,820",
+				"to": "00:11:01,820"
+			},
+			"offsets": {
+				"from": 660820,
+				"to": 661820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,820",
+				"to": "00:11:02,820"
+			},
+			"offsets": {
+				"from": 661820,
+				"to": 662820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,820",
+				"to": "00:11:03,820"
+			},
+			"offsets": {
+				"from": 662820,
+				"to": 663820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,820",
+				"to": "00:11:03,820"
+			},
+			"offsets": {
+				"from": 663820,
+				"to": 663820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,820",
+				"to": "00:11:05,820"
+			},
+			"offsets": {
+				"from": 663820,
+				"to": 665820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,820",
+				"to": "00:11:06,820"
+			},
+			"offsets": {
+				"from": 665820,
+				"to": 666820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,820",
+				"to": "00:11:07,820"
+			},
+			"offsets": {
+				"from": 666820,
+				"to": 667820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,820",
+				"to": "00:11:08,820"
+			},
+			"offsets": {
+				"from": 667820,
+				"to": 668820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,820",
+				"to": "00:11:09,820"
+			},
+			"offsets": {
+				"from": 668820,
+				"to": 669820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,820",
+				"to": "00:11:10,820"
+			},
+			"offsets": {
+				"from": 669820,
+				"to": 670820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,820",
+				"to": "00:11:11,820"
+			},
+			"offsets": {
+				"from": 670820,
+				"to": 671820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,820",
+				"to": "00:11:12,820"
+			},
+			"offsets": {
+				"from": 671820,
+				"to": 672820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,820",
+				"to": "00:11:13,820"
+			},
+			"offsets": {
+				"from": 672820,
+				"to": 673820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,820",
+				"to": "00:11:14,820"
+			},
+			"offsets": {
+				"from": 673820,
+				"to": 674820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,820",
+				"to": "00:11:15,820"
+			},
+			"offsets": {
+				"from": 674820,
+				"to": 675820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,820",
+				"to": "00:11:16,820"
+			},
+			"offsets": {
+				"from": 675820,
+				"to": 676820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,820",
+				"to": "00:11:17,820"
+			},
+			"offsets": {
+				"from": 676820,
+				"to": 677820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,820",
+				"to": "00:11:19,820"
+			},
+			"offsets": {
+				"from": 677820,
+				"to": 679820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,820",
+				"to": "00:11:20,820"
+			},
+			"offsets": {
+				"from": 679820,
+				"to": 680820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,820",
+				"to": "00:11:21,820"
+			},
+			"offsets": {
+				"from": 680820,
+				"to": 681820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,820",
+				"to": "00:11:22,820"
+			},
+			"offsets": {
+				"from": 681820,
+				"to": 682820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,820",
+				"to": "00:11:23,820"
+			},
+			"offsets": {
+				"from": 682820,
+				"to": 683820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,820",
+				"to": "00:11:24,820"
+			},
+			"offsets": {
+				"from": 683820,
+				"to": 684820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,820",
+				"to": "00:11:26,820"
+			},
+			"offsets": {
+				"from": 684820,
+				"to": 686820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,820",
+				"to": "00:11:27,820"
+			},
+			"offsets": {
+				"from": 686820,
+				"to": 687820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,820",
+				"to": "00:11:28,820"
+			},
+			"offsets": {
+				"from": 687820,
+				"to": 688820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,820",
+				"to": "00:11:29,820"
+			},
+			"offsets": {
+				"from": 688820,
+				"to": 689820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,820",
+				"to": "00:11:31,820"
+			},
+			"offsets": {
+				"from": 689820,
+				"to": 691820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,820",
+				"to": "00:11:33,820"
+			},
+			"offsets": {
+				"from": 691820,
+				"to": 693820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,820",
+				"to": "00:11:34,820"
+			},
+			"offsets": {
+				"from": 693820,
+				"to": 694820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,820",
+				"to": "00:11:35,820"
+			},
+			"offsets": {
+				"from": 694820,
+				"to": 695820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,820",
+				"to": "00:11:36,820"
+			},
+			"offsets": {
+				"from": 695820,
+				"to": 696820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,820",
+				"to": "00:11:37,820"
+			},
+			"offsets": {
+				"from": 696820,
+				"to": 697820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,820",
+				"to": "00:11:38,820"
+			},
+			"offsets": {
+				"from": 697820,
+				"to": 698820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,820",
+				"to": "00:11:39,820"
+			},
+			"offsets": {
+				"from": 698820,
+				"to": 699820
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,820",
+				"to": "00:11:40,820"
+			},
+			"offsets": {
+				"from": 699820,
+				"to": 700820
+			},
+			"text": " [applause]"
+		}
+	]
+}

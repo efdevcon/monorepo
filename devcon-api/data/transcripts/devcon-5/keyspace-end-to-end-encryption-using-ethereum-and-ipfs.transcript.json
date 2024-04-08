@@ -1,0 +1,6005 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,520"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14520
+			},
+			"text": " Hey, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,520",
+				"to": "00:00:15,920"
+			},
+			"offsets": {
+				"from": 14520,
+				"to": 15920
+			},
+			"text": " My name is Stan Walker."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,920",
+				"to": "00:00:19,240"
+			},
+			"offsets": {
+				"from": 15920,
+				"to": 19240
+			},
+			"text": " I'm an engineer at Harris Walk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,240",
+				"to": "00:00:21,680"
+			},
+			"offsets": {
+				"from": 19240,
+				"to": 21680
+			},
+			"text": " This is a workshop about Key Space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,680",
+				"to": "00:00:23,760"
+			},
+			"offsets": {
+				"from": 21680,
+				"to": 23760
+			},
+			"text": " which is a protocol for your intern"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,760",
+				"to": "00:00:26,680"
+			},
+			"offsets": {
+				"from": 23760,
+				"to": 26680
+			},
+			"text": " in the encryption using Ethereum and IPSS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,280",
+				"to": "00:00:30,760"
+			},
+			"offsets": {
+				"from": 27280,
+				"to": 30760
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,760",
+				"to": "00:00:34,480"
+			},
+			"offsets": {
+				"from": 30760,
+				"to": 34480
+			},
+			"text": " Before I get started, I wanted to give a bit of a prologue"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,480",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 34480,
+				"to": 38880
+			},
+			"text": " for putting this piece of technology in a larger context"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:42,560"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 42560
+			},
+			"text": " of what I see of emerging technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,560",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 42560,
+				"to": 44400
+			},
+			"text": " So the inspiration for Key Space first"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:49,400"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 49400
+			},
+			"text": " came to me about a year ago when I was listening to a podcast"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,400",
+				"to": "00:00:52,520"
+			},
+			"offsets": {
+				"from": 49400,
+				"to": 52520
+			},
+			"text": " by Arthur Falls called The Third Web."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,520",
+				"to": "00:00:55,960"
+			},
+			"offsets": {
+				"from": 52520,
+				"to": 55960
+			},
+			"text": " He was interviewing a developer named Dominic Tar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,960",
+				"to": "00:01:00,800"
+			},
+			"offsets": {
+				"from": 55960,
+				"to": 60800
+			},
+			"text": " who's the-- who developed a distributed social media"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,800",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 60800,
+				"to": 64000
+			},
+			"text": " network called Secure Scout, but kind of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:06,320"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 66320
+			},
+			"text": " are familiar with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,320",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 66320,
+				"to": 69480
+			},
+			"text": " But the thing I really liked in the interview"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 72920
+			},
+			"text": " was he talked about this concept called Cypress Space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:17,320"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 77320
+			},
+			"text": " So Cypress Space is what Key Space is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,320",
+				"to": "00:01:23,040"
+			},
+			"offsets": {
+				"from": 77320,
+				"to": 83040
+			},
+			"text": " as kind of an emerging style of application development"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,040",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83040,
+				"to": 88000
+			},
+			"text": " on the web that has a kind of a proper abstraction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:31,160"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 91160
+			},
+			"text": " between the networking layer and the application layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,160",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 91160,
+				"to": 93960
+			},
+			"text": " And that proper abstraction is enabled for the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:39,720"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 99720
+			},
+			"text": " really, by use of different cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,720",
+				"to": "00:01:45,680"
+			},
+			"offsets": {
+				"from": 99720,
+				"to": 105680
+			},
+			"text": " I think that having your application logic divorced"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,680",
+				"to": "00:01:51,720"
+			},
+			"offsets": {
+				"from": 105680,
+				"to": 111720
+			},
+			"text": " from your networking logic looks kind of like a graph"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,720",
+				"to": "00:01:57,480"
+			},
+			"offsets": {
+				"from": 111720,
+				"to": 117480
+			},
+			"text": " you can kind of specify what your application needs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,480",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 117480,
+				"to": 120120
+			},
+			"text": " but you don't have to worry about how it gets to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:02,960"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 122960
+			},
+			"text": " So I think some more concrete examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,960",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 122960,
+				"to": 128520
+			},
+			"text": " of what Cypress Space is and how this development methodology"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:10,440"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 130440
+			},
+			"text": " is going to play out in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,440",
+				"to": "00:02:13,200"
+			},
+			"offsets": {
+				"from": 130440,
+				"to": 133200
+			},
+			"text": " It's going to be made clear in some later examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,200",
+				"to": "00:02:16,200"
+			},
+			"offsets": {
+				"from": 133200,
+				"to": 136200
+			},
+			"text": " But just to have that context issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,200",
+				"to": "00:02:20,480"
+			},
+			"offsets": {
+				"from": 136200,
+				"to": 140480
+			},
+			"text": " is you kind of watch this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,480",
+				"to": "00:02:22,120"
+			},
+			"offsets": {
+				"from": 140480,
+				"to": 142120
+			},
+			"text": " So this is the agenda."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,120",
+				"to": "00:02:23,800"
+			},
+			"offsets": {
+				"from": 142120,
+				"to": 143800
+			},
+			"text": " We're going to start out on a high level"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,800",
+				"to": "00:02:26,400"
+			},
+			"offsets": {
+				"from": 143800,
+				"to": 146400
+			},
+			"text": " and just answer what is through space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,400",
+				"to": "00:02:29,520"
+			},
+			"offsets": {
+				"from": 146400,
+				"to": 149520
+			},
+			"text": " so why was it built and what are its core infinites."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,520",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 149520,
+				"to": 150920
+			},
+			"text": " Then we're going to zoom in a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 153600
+			},
+			"text": " with the in-depth technical description."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 155320
+			},
+			"text": " So there's kind of three main stages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:37,960"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 157960
+			},
+			"text": " in the user life cycle within the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,960",
+				"to": "00:02:40,040"
+			},
+			"offsets": {
+				"from": 157960,
+				"to": 160040
+			},
+			"text": " We're going to have a work through each of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,040",
+				"to": "00:02:41,200"
+			},
+			"offsets": {
+				"from": 160040,
+				"to": 161200
+			},
+			"text": " After that is the fun part."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,200",
+				"to": "00:02:43,160"
+			},
+			"offsets": {
+				"from": 161200,
+				"to": 163160
+			},
+			"text": " We have an interactive example."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,160",
+				"to": "00:02:46,160"
+			},
+			"offsets": {
+				"from": 163160,
+				"to": 166160
+			},
+			"text": " So there's kind of a demo dot that you all can load up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,160",
+				"to": "00:02:48,080"
+			},
+			"offsets": {
+				"from": 166160,
+				"to": 168080
+			},
+			"text": " on either your desktop or your phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,080",
+				"to": "00:02:52,040"
+			},
+			"offsets": {
+				"from": 168080,
+				"to": 172040
+			},
+			"text": " And we can kind of do some peer-to-peer encrypted group"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,040",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 172040,
+				"to": 174360
+			},
+			"text": " messaging amongst each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 177520
+			},
+			"text": " And then after that, we'll have some time for questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:04,680"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 184680
+			},
+			"text": " or exploration to see what we can do with this kind of protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,680",
+				"to": "00:03:06,520"
+			},
+			"offsets": {
+				"from": 184680,
+				"to": 186520
+			},
+			"text": " So first definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,520",
+				"to": "00:03:07,840"
+			},
+			"offsets": {
+				"from": 186520,
+				"to": 187840
+			},
+			"text": " What is Key Space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,840",
+				"to": "00:03:09,840"
+			},
+			"offsets": {
+				"from": 187840,
+				"to": 189840
+			},
+			"text": " I think the simplest way to sum it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,840",
+				"to": "00:03:14,080"
+			},
+			"offsets": {
+				"from": 189840,
+				"to": 194080
+			},
+			"text": " is that Key Space is a trustless, open PGP implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,080",
+				"to": "00:03:17,840"
+			},
+			"offsets": {
+				"from": 194080,
+				"to": 197840
+			},
+			"text": " built on top of Ethereum's existing cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,840",
+				"to": "00:03:19,400"
+			},
+			"offsets": {
+				"from": 197840,
+				"to": 199400
+			},
+			"text": " key tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,400",
+				"to": "00:03:24,960"
+			},
+			"offsets": {
+				"from": 199400,
+				"to": 204960
+			},
+			"text": " So some obvious questions come up from this definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,960",
+				"to": "00:03:26,960"
+			},
+			"offsets": {
+				"from": 204960,
+				"to": 206960
+			},
+			"text": " First of all, for those unfamiliar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,960",
+				"to": "00:03:31,600"
+			},
+			"offsets": {
+				"from": 206960,
+				"to": 211600
+			},
+			"text": " with cryptographic protocols, what is open PGP?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,600",
+				"to": "00:03:34,600"
+			},
+			"offsets": {
+				"from": 211600,
+				"to": 214600
+			},
+			"text": " And secondly, why we need open PGP on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,600",
+				"to": "00:03:40,720"
+			},
+			"offsets": {
+				"from": 214600,
+				"to": 220720
+			},
+			"text": " So PGP stands for free and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,720",
+				"to": "00:03:43,560"
+			},
+			"offsets": {
+				"from": 220720,
+				"to": 223560
+			},
+			"text": " It's an encryption program that provides cryptographic privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,560",
+				"to": "00:03:46,360"
+			},
+			"offsets": {
+				"from": 223560,
+				"to": 226360
+			},
+			"text": " and authentication for data communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,360",
+				"to": "00:03:49,200"
+			},
+			"offsets": {
+				"from": 226360,
+				"to": 229200
+			},
+			"text": " PGP is used for signing and scripting and decrypting text,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,200",
+				"to": "00:03:52,600"
+			},
+			"offsets": {
+				"from": 229200,
+				"to": 232600
+			},
+			"text": " emails, files, directories, and whole disk partitions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,600",
+				"to": "00:03:54,880"
+			},
+			"offsets": {
+				"from": 232600,
+				"to": 234880
+			},
+			"text": " and to increase the security of email communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,880",
+				"to": "00:03:57,840"
+			},
+			"offsets": {
+				"from": 234880,
+				"to": 237840
+			},
+			"text": " So that's just the definition of what it could be."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,840",
+				"to": "00:03:59,920"
+			},
+			"offsets": {
+				"from": 237840,
+				"to": 239920
+			},
+			"text": " So PGP, a little background."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,920",
+				"to": "00:04:02,400"
+			},
+			"offsets": {
+				"from": 239920,
+				"to": 242400
+			},
+			"text": " It was developed by a cryptographer named Phil Zenerin"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,400",
+				"to": "00:04:03,960"
+			},
+			"offsets": {
+				"from": 242400,
+				"to": 243960
+			},
+			"text": " in the '90s."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,960",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 243960,
+				"to": 246040
+			},
+			"text": " It was first developed as enterprise software."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:15,240"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 255240
+			},
+			"text": " It was first developed as enterprise software in 1991,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,240",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 255240,
+				"to": 260560
+			},
+			"text": " around '97, Phil decided that this would only work"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:21,600"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 261600
+			},
+			"text": " if it was open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,600",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 261600,
+				"to": 265440
+			},
+			"text": " So he started the open PGP initiative."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:29,560"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 269560
+			},
+			"text": " Then around 2014 is when elliptic cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,560",
+				"to": "00:04:31,960"
+			},
+			"offsets": {
+				"from": 269560,
+				"to": 271960
+			},
+			"text": " was added to the protocol spec, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,960",
+				"to": "00:04:35,760"
+			},
+			"offsets": {
+				"from": 271960,
+				"to": 275760
+			},
+			"text": " is much wider weight than the older"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,760",
+				"to": "00:04:39,040"
+			},
+			"offsets": {
+				"from": 275760,
+				"to": 279040
+			},
+			"text": " forms of encryption that the protocol used, like RSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,040",
+				"to": "00:04:40,880"
+			},
+			"offsets": {
+				"from": 279040,
+				"to": 280880
+			},
+			"text": " This kind of lighter footprint allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,880",
+				"to": "00:04:44,040"
+			},
+			"offsets": {
+				"from": 280880,
+				"to": 284040
+			},
+			"text": " it to be more realistically used in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,040",
+				"to": "00:04:48,360"
+			},
+			"offsets": {
+				"from": 284040,
+				"to": 288360
+			},
+			"text": " So open PGP.js was added about the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,360",
+				"to": "00:04:52,800"
+			},
+			"offsets": {
+				"from": 288360,
+				"to": 292800
+			},
+			"text": " kind of opening the door for end-to-end encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,800",
+				"to": "00:04:54,200"
+			},
+			"offsets": {
+				"from": 292800,
+				"to": 294200
+			},
+			"text": " screen-to-screen encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,200",
+				"to": "00:04:59,560"
+			},
+			"offsets": {
+				"from": 294200,
+				"to": 299560
+			},
+			"text": " So there's no-- it's kind of the standard of encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,560",
+				"to": "00:05:01,880"
+			},
+			"offsets": {
+				"from": 299560,
+				"to": 301880
+			},
+			"text": " that we would like to have today, which is used by Telegram"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,880",
+				"to": "00:05:03,720"
+			},
+			"offsets": {
+				"from": 301880,
+				"to": 303720
+			},
+			"text": " or Signal or other things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,720",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 303720,
+				"to": 308720
+			},
+			"text": " So why do we need to bring PGP on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:10,480"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 310480
+			},
+			"text": " So a little background."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,480",
+				"to": "00:05:14,680"
+			},
+			"offsets": {
+				"from": 310480,
+				"to": 314680
+			},
+			"text": " This came to be because of specific kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,680",
+				"to": "00:05:18,120"
+			},
+			"offsets": {
+				"from": 314680,
+				"to": 318120
+			},
+			"text": " existing inside AirSwap pad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,120",
+				"to": "00:05:20,600"
+			},
+			"offsets": {
+				"from": 318120,
+				"to": 320600
+			},
+			"text": " So in kind of the history of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,600",
+				"to": "00:05:25,200"
+			},
+			"offsets": {
+				"from": 320600,
+				"to": 325200
+			},
+			"text": " DEX development, the first popular DEX is like Ether Delta."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,200",
+				"to": "00:05:27,800"
+			},
+			"offsets": {
+				"from": 325200,
+				"to": 327800
+			},
+			"text": " All the information was held on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,800",
+				"to": "00:05:28,880"
+			},
+			"offsets": {
+				"from": 327800,
+				"to": 328880
+			},
+			"text": " like in the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,880",
+				"to": "00:05:31,680"
+			},
+			"offsets": {
+				"from": 328880,
+				"to": 331680
+			},
+			"text": " So both order posting, order matching,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,680",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 331680,
+				"to": 334560
+			},
+			"text": " and order of settlement all happened on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:39,560"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 339560
+			},
+			"text": " Kind of second generation DEXs had some improvements"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,560",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 339560,
+				"to": 341000
+			},
+			"text": " on this to save gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:45,240"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 345240
+			},
+			"text": " So on verticals like AirSwap, 0x,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,240",
+				"to": "00:05:48,720"
+			},
+			"offsets": {
+				"from": 345240,
+				"to": 348720
+			},
+			"text": " i.x, DEX is hydro-protocol, and de-idases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,720",
+				"to": "00:05:52,360"
+			},
+			"offsets": {
+				"from": 348720,
+				"to": 352360
+			},
+			"text": " and unit orders all kind of used a similar approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,360",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 352360,
+				"to": 357000
+			},
+			"text": " for gas saving where an order is signed off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:00,480"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 360480
+			},
+			"text": " It's posted somewhere, matched off-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,480",
+				"to": "00:06:02,800"
+			},
+			"offsets": {
+				"from": 360480,
+				"to": 362800
+			},
+			"text": " and then settled on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,800",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 362800,
+				"to": 366000
+			},
+			"text": " So on AirSwap in particular, the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:10,480"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 370480
+			},
+			"text": " that the protocol works is that order posting happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,480",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 370480,
+				"to": 374400
+			},
+			"text": " period of year, so makers send orders directly to takers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,400",
+				"to": "00:06:15,960"
+			},
+			"offsets": {
+				"from": 374400,
+				"to": 375960
+			},
+			"text": " Matching happens when the taker decides"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,960",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 375960,
+				"to": 377040
+			},
+			"text": " that they want to fill the order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,040",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 377040,
+				"to": 379000
+			},
+			"text": " and then the actual settlement happens"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 382000
+			},
+			"text": " when the order is filled on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,480"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385480
+			},
+			"text": " But since all of this is being moved off-chain into messaging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,480",
+				"to": "00:06:29,160"
+			},
+			"offsets": {
+				"from": 385480,
+				"to": 389160
+			},
+			"text": " that messaging has to happen somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,160",
+				"to": "00:06:34,560"
+			},
+			"offsets": {
+				"from": 389160,
+				"to": 394560
+			},
+			"text": " So there's a possible information asymmetry that arises,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,560",
+				"to": "00:06:38,400"
+			},
+			"offsets": {
+				"from": 394560,
+				"to": 398400
+			},
+			"text": " because for example, if AirSwap is hosting the messaging platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,400",
+				"to": "00:06:40,480"
+			},
+			"offsets": {
+				"from": 398400,
+				"to": 400480
+			},
+			"text": " then we have a global view into all the messaging"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,480",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 400480,
+				"to": 402360
+			},
+			"text": " that's happening that could potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:45,360"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 405360
+			},
+			"text": " give us an unfair advantage of a scene"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,360",
+				"to": "00:06:48,200"
+			},
+			"offsets": {
+				"from": 405360,
+				"to": 408200
+			},
+			"text": " of trade that's going to happen before it happens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,200",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 408200,
+				"to": 412000
+			},
+			"text": " or a TC style interaction, we can see people negotiating"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:53,800"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 413800
+			},
+			"text": " a trade-implant text."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,800",
+				"to": "00:06:58,280"
+			},
+			"offsets": {
+				"from": 413800,
+				"to": 418280
+			},
+			"text": " So you eliminate this unfair angle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,280",
+				"to": "00:07:01,160"
+			},
+			"offsets": {
+				"from": 418280,
+				"to": 421160
+			},
+			"text": " or this unfair view, leading encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,160",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 421160,
+				"to": 424040
+			},
+			"text": " So if all messages between makers and takers"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,040",
+				"to": "00:07:08,680"
+			},
+			"offsets": {
+				"from": 424040,
+				"to": 428680
+			},
+			"text": " are encrypted, then they're the only ones who are able to see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,680",
+				"to": "00:07:11,080"
+			},
+			"offsets": {
+				"from": 428680,
+				"to": 431080
+			},
+			"text": " And there isn't any kind of global view"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,080",
+				"to": "00:07:14,920"
+			},
+			"offsets": {
+				"from": 431080,
+				"to": 434920
+			},
+			"text": " to exploit from the angle of being a more technical party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,920",
+				"to": "00:07:19,320"
+			},
+			"offsets": {
+				"from": 434920,
+				"to": 439320
+			},
+			"text": " or having a global access to the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,320",
+				"to": "00:07:21,280"
+			},
+			"offsets": {
+				"from": 439320,
+				"to": 441280
+			},
+			"text": " So we need both encryption for that reason,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,280",
+				"to": "00:07:25,240"
+			},
+			"offsets": {
+				"from": 441280,
+				"to": 445240
+			},
+			"text": " and then we need authentication to basically tie the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,240",
+				"to": "00:07:26,960"
+			},
+			"offsets": {
+				"from": 445240,
+				"to": 446960
+			},
+			"text": " that are created to a particular theory"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,960",
+				"to": "00:07:31,040"
+			},
+			"offsets": {
+				"from": 446960,
+				"to": 451040
+			},
+			"text": " address so that if somebody is being abusive in the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,040",
+				"to": "00:07:33,680"
+			},
+			"offsets": {
+				"from": 451040,
+				"to": 453680
+			},
+			"text": " that they send, for example, trying to de-doss the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,680",
+				"to": "00:07:37,160"
+			},
+			"offsets": {
+				"from": 453680,
+				"to": 457160
+			},
+			"text": " we can say, OK, these messages are cryptographically verifiable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,160",
+				"to": "00:07:39,880"
+			},
+			"offsets": {
+				"from": 457160,
+				"to": 459880
+			},
+			"text": " is having come from this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,880",
+				"to": "00:07:41,480"
+			},
+			"offsets": {
+				"from": 459880,
+				"to": 461480
+			},
+			"text": " We're going to disable--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,480",
+				"to": "00:07:43,320"
+			},
+			"offsets": {
+				"from": 461480,
+				"to": 463320
+			},
+			"text": " that address can't send messages anymore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,320",
+				"to": "00:07:46,240"
+			},
+			"offsets": {
+				"from": 463320,
+				"to": 466240
+			},
+			"text": " and then we can see if assets transfer between that address"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,240",
+				"to": "00:07:48,520"
+			},
+			"offsets": {
+				"from": 466240,
+				"to": 468520
+			},
+			"text": " and another address, we can basically figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,520",
+				"to": "00:07:52,280"
+			},
+			"offsets": {
+				"from": 468520,
+				"to": 472280
+			},
+			"text": " who's using the network, or have some standard where"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,280",
+				"to": "00:07:56,160"
+			},
+			"offsets": {
+				"from": 472280,
+				"to": 476160
+			},
+			"text": " we can have economic incentives for behaving correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,160",
+				"to": "00:07:58,920"
+			},
+			"offsets": {
+				"from": 476160,
+				"to": 478920
+			},
+			"text": " So obviously, in my authentication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,920",
+				"to": "00:08:03,640"
+			},
+			"offsets": {
+				"from": 478920,
+				"to": 483640
+			},
+			"text": " I just need a signature verification of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,640",
+				"to": "00:08:06,520"
+			},
+			"offsets": {
+				"from": 483640,
+				"to": 486520
+			},
+			"text": " So there's a lot of different cryptographic protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,520",
+				"to": "00:08:09,640"
+			},
+			"offsets": {
+				"from": 486520,
+				"to": 489640
+			},
+			"text": " that you can use for authentication and encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,640",
+				"to": "00:08:12,680"
+			},
+			"offsets": {
+				"from": 489640,
+				"to": 492680
+			},
+			"text": " of messaging, but PGT seemed like the right choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,680",
+				"to": "00:08:16,360"
+			},
+			"offsets": {
+				"from": 492680,
+				"to": 496360
+			},
+			"text": " for multiple reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,360",
+				"to": "00:08:19,120"
+			},
+			"offsets": {
+				"from": 496360,
+				"to": 499120
+			},
+			"text": " One of the main ones is that it's the right age."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,120",
+				"to": "00:08:21,960"
+			},
+			"offsets": {
+				"from": 499120,
+				"to": 501960
+			},
+			"text": " And what I mean by that is that it's been around long enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,960",
+				"to": "00:08:25,600"
+			},
+			"offsets": {
+				"from": 501960,
+				"to": 505600
+			},
+			"text": " that it's fairly safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,600",
+				"to": "00:08:29,440"
+			},
+			"offsets": {
+				"from": 505600,
+				"to": 509440
+			},
+			"text": " It is very robust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,440",
+				"to": "00:08:31,160"
+			},
+			"offsets": {
+				"from": 509440,
+				"to": 511160
+			},
+			"text": " It's used all over the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,160",
+				"to": "00:08:33,560"
+			},
+			"offsets": {
+				"from": 511160,
+				"to": 513560
+			},
+			"text": " And it's been around long enough that it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,560",
+				"to": "00:08:36,240"
+			},
+			"offsets": {
+				"from": 513560,
+				"to": 516240
+			},
+			"text": " a great tooling associated with it, which helps"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,240",
+				"to": "00:08:37,700"
+			},
+			"offsets": {
+				"from": 516240,
+				"to": 517700
+			},
+			"text": " on the developer lived it into my hair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,700",
+				"to": "00:08:39,440"
+			},
+			"offsets": {
+				"from": 517700,
+				"to": 519440
+			},
+			"text": " perfectly like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,440",
+				"to": "00:08:41,760"
+			},
+			"offsets": {
+				"from": 519440,
+				"to": 521760
+			},
+			"text": " But then it's also simultaneously new enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,760",
+				"to": "00:08:45,320"
+			},
+			"offsets": {
+				"from": 521760,
+				"to": 525320
+			},
+			"text": " that it uses cryptographic algorithms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,320",
+				"to": "00:08:48,080"
+			},
+			"offsets": {
+				"from": 525320,
+				"to": 528080
+			},
+			"text": " like elliptic hermitography, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,080",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528080,
+				"to": 531000
+			},
+			"text": " is way enough to use in the browser without negatively"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:52,840"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 532840
+			},
+			"text": " impacting the user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,840",
+				"to": "00:08:57,200"
+			},
+			"offsets": {
+				"from": 532840,
+				"to": 537200
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,200",
+				"to": "00:09:00,440"
+			},
+			"offsets": {
+				"from": 537200,
+				"to": 540440
+			},
+			"text": " So that's kind of like the high level view of why we needed"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,440",
+				"to": "00:09:03,760"
+			},
+			"offsets": {
+				"from": 540440,
+				"to": 543760
+			},
+			"text": " to implement this trustless version of PGP on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,760",
+				"to": "00:09:06,320"
+			},
+			"offsets": {
+				"from": 543760,
+				"to": 546320
+			},
+			"text": " So we're going to zoom in a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,320",
+				"to": "00:09:08,640"
+			},
+			"offsets": {
+				"from": 546320,
+				"to": 548640
+			},
+			"text": " and talk about the specific implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,640",
+				"to": "00:09:12,880"
+			},
+			"offsets": {
+				"from": 548640,
+				"to": 552880
+			},
+			"text": " and how it looks and feels for user."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,880",
+				"to": "00:09:17,120"
+			},
+			"offsets": {
+				"from": 552880,
+				"to": 557120
+			},
+			"text": " So the first step in that is a key generation in recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,120",
+				"to": "00:09:20,560"
+			},
+			"offsets": {
+				"from": 557120,
+				"to": 560560
+			},
+			"text": " So what this means is that we're trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,560",
+				"to": "00:09:25,240"
+			},
+			"offsets": {
+				"from": 560560,
+				"to": 565240
+			},
+			"text": " to deterministically generate that PGP key pair"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,240",
+				"to": "00:09:27,480"
+			},
+			"offsets": {
+				"from": 565240,
+				"to": 567480
+			},
+			"text": " from Ethereum key pairs, such that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,480",
+				"to": "00:09:31,600"
+			},
+			"offsets": {
+				"from": 567480,
+				"to": 571600
+			},
+			"text": " can verify that this Ethereum address generated this PGP key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,600",
+				"to": "00:09:35,320"
+			},
+			"offsets": {
+				"from": 571600,
+				"to": 575320
+			},
+			"text": " And that, if the PGP key is lost for whatever reason,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,320",
+				"to": "00:09:37,480"
+			},
+			"offsets": {
+				"from": 575320,
+				"to": 577480
+			},
+			"text": " we tend to regenerate it as long as you have control"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,480",
+				"to": "00:09:38,480"
+			},
+			"offsets": {
+				"from": 577480,
+				"to": 578480
+			},
+			"text": " of the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,480",
+				"to": "00:09:40,640"
+			},
+			"offsets": {
+				"from": 578480,
+				"to": 580640
+			},
+			"text": " So kind of a practical example of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,640",
+				"to": "00:09:45,280"
+			},
+			"offsets": {
+				"from": 580640,
+				"to": 585280
+			},
+			"text": " is if I have my ledger and I generate my keys on one computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,280",
+				"to": "00:09:48,120"
+			},
+			"offsets": {
+				"from": 585280,
+				"to": 588120
+			},
+			"text": " and I use those keys to read my encrypted messages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,120",
+				"to": "00:09:50,040"
+			},
+			"offsets": {
+				"from": 588120,
+				"to": 590040
+			},
+			"text": " I can then terminate that session"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,040",
+				"to": "00:09:51,720"
+			},
+			"offsets": {
+				"from": 590040,
+				"to": 591720
+			},
+			"text": " where I felt that information, plug my ledger"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,720",
+				"to": "00:09:55,080"
+			},
+			"offsets": {
+				"from": 591720,
+				"to": 595080
+			},
+			"text": " into another computer, regenerate my PGP keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,080",
+				"to": "00:09:57,080"
+			},
+			"offsets": {
+				"from": 595080,
+				"to": 597080
+			},
+			"text": " and use them to decrypt the same messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,080",
+				"to": "00:10:01,160"
+			},
+			"offsets": {
+				"from": 597080,
+				"to": 601160
+			},
+			"text": " So it's kind of a stateless in a way, and it's deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,160",
+				"to": "00:10:02,920"
+			},
+			"offsets": {
+				"from": 601160,
+				"to": 602920
+			},
+			"text": " And so that's just kind of one of the properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,920",
+				"to": "00:10:05,520"
+			},
+			"offsets": {
+				"from": 602920,
+				"to": 605520
+			},
+			"text": " we wanted to have in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,520",
+				"to": "00:10:08,560"
+			},
+			"offsets": {
+				"from": 605520,
+				"to": 608560
+			},
+			"text": " The next step after keys are generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,560",
+				"to": "00:10:10,560"
+			},
+			"offsets": {
+				"from": 608560,
+				"to": 610560
+			},
+			"text": " is a key distribution and lookup."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,560",
+				"to": "00:10:14,200"
+			},
+			"offsets": {
+				"from": 610560,
+				"to": 614200
+			},
+			"text": " So if I want to send a encrypted message to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,200",
+				"to": "00:10:15,920"
+			},
+			"offsets": {
+				"from": 614200,
+				"to": 615920
+			},
+			"text": " by knowing you're a Ethereum address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,920",
+				"to": "00:10:19,120"
+			},
+			"offsets": {
+				"from": 615920,
+				"to": 619120
+			},
+			"text": " I have to have some way to look up that Ethereum address"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,120",
+				"to": "00:10:21,440"
+			},
+			"offsets": {
+				"from": 619120,
+				"to": 621440
+			},
+			"text": " and find your PGP key."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,440",
+				"to": "00:10:23,720"
+			},
+			"offsets": {
+				"from": 621440,
+				"to": 623720
+			},
+			"text": " And I need to be able to cryptographically verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,720",
+				"to": "00:10:25,920"
+			},
+			"offsets": {
+				"from": 623720,
+				"to": 625920
+			},
+			"text": " that that is indeed your PGP key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,920",
+				"to": "00:10:28,040"
+			},
+			"offsets": {
+				"from": 625920,
+				"to": 628040
+			},
+			"text": " which I can then use that public key"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,040",
+				"to": "00:10:30,480"
+			},
+			"offsets": {
+				"from": 628040,
+				"to": 630480
+			},
+			"text": " to your encrypted message and send it to."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,480",
+				"to": "00:10:33,880"
+			},
+			"offsets": {
+				"from": 630480,
+				"to": 633880
+			},
+			"text": " So there needs to be some sort of directory, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,880",
+				"to": "00:10:37,640"
+			},
+			"offsets": {
+				"from": 633880,
+				"to": 637640
+			},
+			"text": " The initial implementation of this actually for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,640",
+				"to": "00:10:38,880"
+			},
+			"offsets": {
+				"from": 637640,
+				"to": 638880
+			},
+			"text": " was a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,880",
+				"to": "00:10:44,560"
+			},
+			"offsets": {
+				"from": 638880,
+				"to": 644560
+			},
+			"text": " So you basically stored your PGP key on IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,560",
+				"to": "00:10:48,200"
+			},
+			"offsets": {
+				"from": 644560,
+				"to": 648200
+			},
+			"text": " took the IPFS hash of that key and sorted the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,200",
+				"to": "00:10:50,520"
+			},
+			"offsets": {
+				"from": 648200,
+				"to": 650520
+			},
+			"text": " And then when I wanted to find the key associated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,520",
+				"to": "00:10:51,760"
+			},
+			"offsets": {
+				"from": 650520,
+				"to": 651760
+			},
+			"text": " with your address, I would just look it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,760",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 651760,
+				"to": 654120
+			},
+			"text": " in the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:55,920"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 655920
+			},
+			"text": " Pretty soon though, we discovered that there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,920",
+				"to": "00:11:00,320"
+			},
+			"offsets": {
+				"from": 655920,
+				"to": 660320
+			},
+			"text": " is a whole swath of users who wanted to basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,320",
+				"to": "00:11:04,200"
+			},
+			"offsets": {
+				"from": 660320,
+				"to": 664200
+			},
+			"text": " try an application without paying gas upfront."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,200",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 664200,
+				"to": 666000
+			},
+			"text": " As soon as you have to pay for a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 669400
+			},
+			"text": " they weren't as interested in using that application."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:11,840"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 671840
+			},
+			"text": " So there is another alternative way"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,840",
+				"to": "00:11:16,280"
+			},
+			"offsets": {
+				"from": 671840,
+				"to": 676280
+			},
+			"text": " of storing these keys where instead of storing a contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,280",
+				"to": "00:11:19,920"
+			},
+			"offsets": {
+				"from": 676280,
+				"to": 679920
+			},
+			"text": " you sign it so that you can verify it as yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,920",
+				"to": "00:11:21,880"
+			},
+			"offsets": {
+				"from": 679920,
+				"to": 681880
+			},
+			"text": " And then the signature together with the key"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,880",
+				"to": "00:11:23,840"
+			},
+			"offsets": {
+				"from": 681880,
+				"to": 683840
+			},
+			"text": " can just be stored in any database."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,840",
+				"to": "00:11:26,360"
+			},
+			"offsets": {
+				"from": 683840,
+				"to": 686360
+			},
+			"text": " And since that signature always exists next with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,360",
+				"to": "00:11:27,920"
+			},
+			"offsets": {
+				"from": 686360,
+				"to": 687920
+			},
+			"text": " you can just pull it and look it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,920",
+				"to": "00:11:29,720"
+			},
+			"offsets": {
+				"from": 687920,
+				"to": 689720
+			},
+			"text": " It doesn't have the same guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,720",
+				"to": "00:11:31,160"
+			},
+			"offsets": {
+				"from": 689720,
+				"to": 691160
+			},
+			"text": " available to you as a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,160",
+				"to": "00:11:34,200"
+			},
+			"offsets": {
+				"from": 691160,
+				"to": 694200
+			},
+			"text": " So currently that database is hosted by Riswap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,200",
+				"to": "00:11:36,160"
+			},
+			"offsets": {
+				"from": 694200,
+				"to": 696160
+			},
+			"text": " And if the pair swap went away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,160",
+				"to": "00:11:37,920"
+			},
+			"offsets": {
+				"from": 696160,
+				"to": 697920
+			},
+			"text": " then that database wouldn't be hosted."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,920",
+				"to": "00:11:40,720"
+			},
+			"offsets": {
+				"from": 697920,
+				"to": 700720
+			},
+			"text": " But for those users, they would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,720",
+				"to": "00:11:41,920"
+			},
+			"offsets": {
+				"from": 700720,
+				"to": 701920
+			},
+			"text": " have to regenerate their keys and they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,920",
+				"to": "00:11:43,480"
+			},
+			"offsets": {
+				"from": 701920,
+				"to": 703480
+			},
+			"text": " could begin using the system again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,480",
+				"to": "00:11:45,840"
+			},
+			"offsets": {
+				"from": 703480,
+				"to": 705840
+			},
+			"text": " So there's different options of based"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,840",
+				"to": "00:11:49,960"
+			},
+			"offsets": {
+				"from": 705840,
+				"to": 709960
+			},
+			"text": " on the longevity, the dependability that you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,960",
+				"to": "00:11:54,640"
+			},
+			"offsets": {
+				"from": 709960,
+				"to": 714640
+			},
+			"text": " And the level of trustlessness that you desire,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,640",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 714640,
+				"to": 718080
+			},
+			"text": " you can pay more for that or have more of a low investment"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:12:00,160"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 720160
+			},
+			"text": " also reactive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,160",
+				"to": "00:12:04,320"
+			},
+			"offsets": {
+				"from": 720160,
+				"to": 724320
+			},
+			"text": " So the thread stuff in this is passive authentication"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,320",
+				"to": "00:12:06,160"
+			},
+			"offsets": {
+				"from": 724320,
+				"to": 726160
+			},
+			"text": " and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,160",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 726160,
+				"to": 729000
+			},
+			"text": " So after everything's set up, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:12,280"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 732280
+			},
+			"text": " keys are generated, they're distributed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,280",
+				"to": "00:12:13,400"
+			},
+			"offsets": {
+				"from": 732280,
+				"to": 733400
+			},
+			"text": " and they can be looked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,400",
+				"to": "00:12:16,760"
+			},
+			"offsets": {
+				"from": 733400,
+				"to": 736760
+			},
+			"text": " Then we can use them at the application level"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,760",
+				"to": "00:12:18,720"
+			},
+			"offsets": {
+				"from": 736760,
+				"to": 738720
+			},
+			"text": " without really having to understand anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,720",
+				"to": "00:12:21,560"
+			},
+			"offsets": {
+				"from": 738720,
+				"to": 741560
+			},
+			"text": " about the underlying cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,560",
+				"to": "00:12:24,080"
+			},
+			"offsets": {
+				"from": 741560,
+				"to": 744080
+			},
+			"text": " So just all messages between peers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,080",
+				"to": "00:12:27,680"
+			},
+			"offsets": {
+				"from": 744080,
+				"to": 747680
+			},
+			"text": " are have the simultaneous guarantee of if you receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,680",
+				"to": "00:12:30,840"
+			},
+			"offsets": {
+				"from": 747680,
+				"to": 750840
+			},
+			"text": " a message, you know for sure that the Ethereum address that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,840",
+				"to": "00:12:34,560"
+			},
+			"offsets": {
+				"from": 750840,
+				"to": 754560
+			},
+			"text": " sent you that message is who they claim to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,560",
+				"to": "00:12:37,880"
+			},
+			"offsets": {
+				"from": 754560,
+				"to": 757880
+			},
+			"text": " And when you send a message that nobody other than the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,880",
+				"to": "00:12:41,640"
+			},
+			"offsets": {
+				"from": 757880,
+				"to": 761640
+			},
+			"text": " address that you intend to read it will read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,640",
+				"to": "00:12:43,240"
+			},
+			"offsets": {
+				"from": 761640,
+				"to": 763240
+			},
+			"text": " So that's kind of like high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,240",
+				"to": "00:12:46,640"
+			},
+			"offsets": {
+				"from": 763240,
+				"to": 766640
+			},
+			"text": " Oops, I got out of the query."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,640",
+				"to": "00:12:50,680"
+			},
+			"offsets": {
+				"from": 766640,
+				"to": 770680
+			},
+			"text": " So zooming in on a key generation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,680",
+				"to": "00:12:53,040"
+			},
+			"offsets": {
+				"from": 770680,
+				"to": 773040
+			},
+			"text": " so there's actually some--"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,040",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 773040,
+				"to": 776000
+			},
+			"text": " we're not the first people to kind of come up"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:12:57,560"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 777560
+			},
+			"text": " against some of these problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,560",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 777560,
+				"to": 782000
+			},
+			"text": " And a lot of the many of the cryptographic libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:03,600"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 783600
+			},
+			"text": " that wallets, like Metamask, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,600",
+				"to": "00:13:08,320"
+			},
+			"offsets": {
+				"from": 783600,
+				"to": 788320
+			},
+			"text": " depend on provide methods of deriving secondary keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,320",
+				"to": "00:13:09,640"
+			},
+			"offsets": {
+				"from": 788320,
+				"to": 789640
+			},
+			"text": " from primary keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,640",
+				"to": "00:13:14,640"
+			},
+			"offsets": {
+				"from": 789640,
+				"to": 794640
+			},
+			"text": " But unfortunately, there isn't an RPC spec"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,640",
+				"to": "00:13:19,360"
+			},
+			"offsets": {
+				"from": 794640,
+				"to": 799360
+			},
+			"text": " for kind of exposing these methods to the end user and a DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,360",
+				"to": "00:13:21,040"
+			},
+			"offsets": {
+				"from": 799360,
+				"to": 801040
+			},
+			"text": " So the way that we get around that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,040",
+				"to": "00:13:27,720"
+			},
+			"offsets": {
+				"from": 801040,
+				"to": 807720
+			},
+			"text": " is a key generation happens by taking the passphrase, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,720",
+				"to": "00:13:31,640"
+			},
+			"offsets": {
+				"from": 807720,
+				"to": 811640
+			},
+			"text": " is just the plain text word or a set of words, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,640",
+				"to": "00:13:34,480"
+			},
+			"offsets": {
+				"from": 811640,
+				"to": 814480
+			},
+			"text": " assigning it, and then using that hex string that's generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,480",
+				"to": "00:13:39,040"
+			},
+			"offsets": {
+				"from": 814480,
+				"to": 819040
+			},
+			"text": " as kind of the encryption key for-- that encrypts your private"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,040",
+				"to": "00:13:40,480"
+			},
+			"offsets": {
+				"from": 819040,
+				"to": 820480
+			},
+			"text": " PGP key, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,480",
+				"to": "00:13:45,160"
+			},
+			"offsets": {
+				"from": 820480,
+				"to": 825160
+			},
+			"text": " So open PGP.js, when you generate a new key pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,160",
+				"to": "00:13:46,920"
+			},
+			"offsets": {
+				"from": 825160,
+				"to": 826920
+			},
+			"text": " you have the option to pass in a passphrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,920",
+				"to": "00:13:48,760"
+			},
+			"offsets": {
+				"from": 826920,
+				"to": 828760
+			},
+			"text": " That's kind of the encryption password."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,760",
+				"to": "00:13:51,320"
+			},
+			"offsets": {
+				"from": 828760,
+				"to": 831320
+			},
+			"text": " So that signed message becomes the encryption password"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,320",
+				"to": "00:13:52,880"
+			},
+			"offsets": {
+				"from": 831320,
+				"to": 832880
+			},
+			"text": " for your key pair, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,880",
+				"to": "00:13:57,640"
+			},
+			"offsets": {
+				"from": 832880,
+				"to": 837640
+			},
+			"text": " So that's kind of a low level of how those two are associated."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,640",
+				"to": "00:13:59,960"
+			},
+			"offsets": {
+				"from": 837640,
+				"to": 839960
+			},
+			"text": " And then once that key is created,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,960",
+				"to": "00:14:03,760"
+			},
+			"offsets": {
+				"from": 839960,
+				"to": 843760
+			},
+			"text": " IPFS provides kind of cheap reliable storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,760",
+				"to": "00:14:09,760"
+			},
+			"offsets": {
+				"from": 843760,
+				"to": 849760
+			},
+			"text": " So the way that works for us is that we store the IPFS--"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,760",
+				"to": "00:14:14,720"
+			},
+			"offsets": {
+				"from": 849760,
+				"to": 854720
+			},
+			"text": " we store the key pair in IPFS in basically a redundant set"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,720",
+				"to": "00:14:16,480"
+			},
+			"offsets": {
+				"from": 854720,
+				"to": 856480
+			},
+			"text": " of nodes, using a pin set."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,480",
+				"to": "00:14:22,600"
+			},
+			"offsets": {
+				"from": 856480,
+				"to": 862600
+			},
+			"text": " So they go from inferior to pinata to our own IPFS node"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,600",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862600,
+				"to": 866000
+			},
+			"text": " to Cloudfire and some others."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:29,120"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 869120
+			},
+			"text": " So we kind of use that pin set to replicate across all"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,120",
+				"to": "00:14:30,280"
+			},
+			"offsets": {
+				"from": 869120,
+				"to": 870280
+			},
+			"text": " those nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,280",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 870280,
+				"to": 876000
+			},
+			"text": " So that kind of makes these key pairs reliably available"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:39,320"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 879320
+			},
+			"text": " without having to store them on a smart contract, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,320",
+				"to": "00:14:44,840"
+			},
+			"offsets": {
+				"from": 879320,
+				"to": 884840
+			},
+			"text": " So key distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,840",
+				"to": "00:14:47,840"
+			},
+			"offsets": {
+				"from": 884840,
+				"to": 887840
+			},
+			"text": " So this is kind of like the directory or the index"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,840",
+				"to": "00:14:50,800"
+			},
+			"offsets": {
+				"from": 887840,
+				"to": 890800
+			},
+			"text": " that I talked about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,800",
+				"to": "00:14:52,560"
+			},
+			"offsets": {
+				"from": 890800,
+				"to": 892560
+			},
+			"text": " I think I actually covered most of this already."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,560",
+				"to": "00:14:55,200"
+			},
+			"offsets": {
+				"from": 892560,
+				"to": 895200
+			},
+			"text": " But one thing I wanted to touch on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,200",
+				"to": "00:14:58,080"
+			},
+			"offsets": {
+				"from": 895200,
+				"to": 898080
+			},
+			"text": " was this idea of multiplexing, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,080",
+				"to": "00:15:02,800"
+			},
+			"offsets": {
+				"from": 898080,
+				"to": 902800
+			},
+			"text": " is an idea that kind of comes from a libv2b, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,800",
+				"to": "00:15:06,760"
+			},
+			"offsets": {
+				"from": 902800,
+				"to": 906760
+			},
+			"text": " So there's basically--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,760",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 906760,
+				"to": 909000
+			},
+			"text": " it's kind of like function overriding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:10,320"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 910320
+			},
+			"text": " but like on the network level."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,320",
+				"to": "00:15:14,720"
+			},
+			"offsets": {
+				"from": 910320,
+				"to": 914720
+			},
+			"text": " So if I want, for example, to request some information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,720",
+				"to": "00:15:18,960"
+			},
+			"offsets": {
+				"from": 914720,
+				"to": 918960
+			},
+			"text": " I shouldn't have to care about how that information is stored"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,960",
+				"to": "00:15:20,200"
+			},
+			"offsets": {
+				"from": 918960,
+				"to": 920200
+			},
+			"text": " or how it's fetched."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,200",
+				"to": "00:15:23,240"
+			},
+			"offsets": {
+				"from": 920200,
+				"to": 923240
+			},
+			"text": " I should just be able to ask it, ask for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,240",
+				"to": "00:15:26,080"
+			},
+			"offsets": {
+				"from": 923240,
+				"to": 926080
+			},
+			"text": " and have some guarantee about how it gets to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,080",
+				"to": "00:15:28,880"
+			},
+			"offsets": {
+				"from": 926080,
+				"to": 928880
+			},
+			"text": " So kind of the multiplexing in this case"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,880",
+				"to": "00:15:32,560"
+			},
+			"offsets": {
+				"from": 928880,
+				"to": 932560
+			},
+			"text": " is that we have keys that can be stored on a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,560",
+				"to": "00:15:34,480"
+			},
+			"offsets": {
+				"from": 932560,
+				"to": 934480
+			},
+			"text": " or keys that can be stored in a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,480",
+				"to": "00:15:35,760"
+			},
+			"offsets": {
+				"from": 934480,
+				"to": 935760
+			},
+			"text": " And when you look up, you kind of do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,760",
+				"to": "00:15:37,520"
+			},
+			"offsets": {
+				"from": 935760,
+				"to": 937520
+			},
+			"text": " that look up of both the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,520",
+				"to": "00:15:40,240"
+			},
+			"offsets": {
+				"from": 937520,
+				"to": 940240
+			},
+			"text": " and the database in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,240",
+				"to": "00:15:45,600"
+			},
+			"offsets": {
+				"from": 940240,
+				"to": 945600
+			},
+			"text": " And on the application level, you don't really care"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,600",
+				"to": "00:15:46,720"
+			},
+			"offsets": {
+				"from": 945600,
+				"to": 946720
+			},
+			"text": " about where that key is stored."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,720",
+				"to": "00:15:47,920"
+			},
+			"offsets": {
+				"from": 946720,
+				"to": 947920
+			},
+			"text": " You can just use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,920",
+				"to": "00:15:50,240"
+			},
+			"offsets": {
+				"from": 947920,
+				"to": 950240
+			},
+			"text": " And this also allows for the addition"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,240",
+				"to": "00:15:54,800"
+			},
+			"offsets": {
+				"from": 950240,
+				"to": 954800
+			},
+			"text": " of other types of data storage for distributing the keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,800",
+				"to": "00:16:00,120"
+			},
+			"offsets": {
+				"from": 954800,
+				"to": 960120
+			},
+			"text": " one of which we use in our demo, which is kind of interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,120",
+				"to": "00:16:02,600"
+			},
+			"offsets": {
+				"from": 960120,
+				"to": 962600
+			},
+			"text": " So, often privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,600",
+				"to": "00:16:05,720"
+			},
+			"offsets": {
+				"from": 962600,
+				"to": 965720
+			},
+			"text": " So this is kind of the last step in the easy lifecycle."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,720",
+				"to": "00:16:10,200"
+			},
+			"offsets": {
+				"from": 965720,
+				"to": 970200
+			},
+			"text": " So this is like after everything is generated and distributed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,200",
+				"to": "00:16:13,040"
+			},
+			"offsets": {
+				"from": 970200,
+				"to": 973040
+			},
+			"text": " we can just enjoy the benefits of everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,040",
+				"to": "00:16:15,760"
+			},
+			"offsets": {
+				"from": 973040,
+				"to": 975760
+			},
+			"text": " that the OpenB2b library offers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,760",
+				"to": "00:16:20,200"
+			},
+			"offsets": {
+				"from": 975760,
+				"to": 980200
+			},
+			"text": " So on a key space class, there is four function types"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,200",
+				"to": "00:16:22,920"
+			},
+			"offsets": {
+				"from": 980200,
+				"to": 982920
+			},
+			"text": " that are pretty much everything I'm going to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,920",
+				"to": "00:16:25,680"
+			},
+			"offsets": {
+				"from": 982920,
+				"to": 985680
+			},
+			"text": " So you have an encrypt, which takes a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,680",
+				"to": "00:16:27,920"
+			},
+			"offsets": {
+				"from": 985680,
+				"to": 987920
+			},
+			"text": " a plain text message, and the address"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,920",
+				"to": "00:16:32,560"
+			},
+			"offsets": {
+				"from": 987920,
+				"to": 992560
+			},
+			"text": " that you're going to send that encrypted message to."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,560",
+				"to": "00:16:34,680"
+			},
+			"offsets": {
+				"from": 992560,
+				"to": 994680
+			},
+			"text": " Decrypt, which takes it, encrypted message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,680",
+				"to": "00:16:37,040"
+			},
+			"offsets": {
+				"from": 994680,
+				"to": 997040
+			},
+			"text": " and the from address so you can verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,040",
+				"to": "00:16:39,480"
+			},
+			"offsets": {
+				"from": 997040,
+				"to": 999480
+			},
+			"text": " that it was sent by the address you claim to send it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,480",
+				"to": "00:16:42,680"
+			},
+			"offsets": {
+				"from": 999480,
+				"to": 1002680
+			},
+			"text": " And yeah, you can just get the decrypted message"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,680",
+				"to": "00:16:44,720"
+			},
+			"offsets": {
+				"from": 1002680,
+				"to": 1004720
+			},
+			"text": " that's meant for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,720",
+				"to": "00:16:48,080"
+			},
+			"offsets": {
+				"from": 1004720,
+				"to": 1008080
+			},
+			"text": " And then we also, in isolation, provide a sign"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,080",
+				"to": "00:16:51,600"
+			},
+			"offsets": {
+				"from": 1008080,
+				"to": 1011600
+			},
+			"text": " and validate as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,600",
+				"to": "00:16:55,960"
+			},
+			"offsets": {
+				"from": 1011600,
+				"to": 1015960
+			},
+			"text": " So that's all for the high-level review."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,960",
+				"to": "00:16:59,680"
+			},
+			"offsets": {
+				"from": 1015960,
+				"to": 1019680
+			},
+			"text": " Now this is fun part, which is the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,680",
+				"to": "00:17:05,680"
+			},
+			"offsets": {
+				"from": 1019680,
+				"to": 1025680
+			},
+			"text": " So this demo will work on both your laptops and phones"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,680",
+				"to": "00:17:08,120"
+			},
+			"offsets": {
+				"from": 1025680,
+				"to": 1028120
+			},
+			"text": " as long as they're connected to the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,120",
+				"to": "00:17:14,240"
+			},
+			"offsets": {
+				"from": 1028120,
+				"to": 1034240
+			},
+			"text": " So you can go to the top link there where the live app is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,240",
+				"to": "00:17:19,520"
+			},
+			"offsets": {
+				"from": 1034240,
+				"to": 1039520
+			},
+			"text": " on the erosvop.github.io/keyspace/deftcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,520",
+				"to": "00:17:22,120"
+			},
+			"offsets": {
+				"from": 1039520,
+				"to": 1042120
+			},
+			"text": " So that link is not short here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,120",
+				"to": "00:17:25,840"
+			},
+			"offsets": {
+				"from": 1042120,
+				"to": 1045840
+			},
+			"text": " But originally, this read kind of a lot of cloning"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,840",
+				"to": "00:17:27,840"
+			},
+			"offsets": {
+				"from": 1045840,
+				"to": 1047840
+			},
+			"text": " repos and interactive coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,840",
+				"to": "00:17:31,520"
+			},
+			"offsets": {
+				"from": 1047840,
+				"to": 1051520
+			},
+			"text": " And kind of I saw all the network limitations"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,520",
+				"to": "00:17:32,440"
+			},
+			"offsets": {
+				"from": 1051520,
+				"to": 1052440
+			},
+			"text": " we see to have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,440",
+				"to": "00:17:35,760"
+			},
+			"offsets": {
+				"from": 1052440,
+				"to": 1055760
+			},
+			"text": " So I just kind of spun up this app quickly, which I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,760",
+				"to": "00:17:37,720"
+			},
+			"offsets": {
+				"from": 1055760,
+				"to": 1057720
+			},
+			"text": " sure, we're going to test it on tree throttle"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,720",
+				"to": "00:17:40,640"
+			},
+			"offsets": {
+				"from": 1057720,
+				"to": 1060640
+			},
+			"text": " and then it should work all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,640",
+				"to": "00:17:43,360"
+			},
+			"offsets": {
+				"from": 1060640,
+				"to": 1063360
+			},
+			"text": " But I think this kind of will give us a view"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,360",
+				"to": "00:17:46,080"
+			},
+			"offsets": {
+				"from": 1063360,
+				"to": 1066080
+			},
+			"text": " into kind of the inner workings of the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,080",
+				"to": "00:17:51,840"
+			},
+			"offsets": {
+				"from": 1066080,
+				"to": 1071840
+			},
+			"text": " without having too much of a band implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,840",
+				"to": "00:17:55,280"
+			},
+			"offsets": {
+				"from": 1071840,
+				"to": 1075280
+			},
+			"text": " So I'll let everybody pull it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,280",
+				"to": "00:17:59,360"
+			},
+			"offsets": {
+				"from": 1075280,
+				"to": 1079360
+			},
+			"text": " And then I will pull it up online and kind of walk everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,360",
+				"to": "00:18:00,520"
+			},
+			"offsets": {
+				"from": 1079360,
+				"to": 1080520
+			},
+			"text": " through how it's working."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,760",
+				"to": "00:18:32,380"
+			},
+			"offsets": {
+				"from": 1090760,
+				"to": 1112380
+			},
+			"text": " So it's basically just a React-f"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,380",
+				"to": "00:18:34,380"
+			},
+			"offsets": {
+				"from": 1112380,
+				"to": 1114380
+			},
+			"text": " the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,380",
+				"to": "00:18:39,380"
+			},
+			"offsets": {
+				"from": 1114380,
+				"to": 1119380
+			},
+			"text": " kind of in the room is kind of going to be network together."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,380",
+				"to": "00:18:44,380"
+			},
+			"offsets": {
+				"from": 1119380,
+				"to": 1124380
+			},
+			"text": " It's going to form a peer-to-peer chat application."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,380",
+				"to": "00:18:45,380"
+			},
+			"offsets": {
+				"from": 1124380,
+				"to": 1125380
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,380",
+				"to": "00:18:47,380"
+			},
+			"offsets": {
+				"from": 1125380,
+				"to": 1127380
+			},
+			"text": " And also, I should mention when you first load the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,380",
+				"to": "00:18:49,380"
+			},
+			"offsets": {
+				"from": 1127380,
+				"to": 1129380
+			},
+			"text": " it has an option to connect with MetaMask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,380",
+				"to": "00:18:51,380"
+			},
+			"offsets": {
+				"from": 1129380,
+				"to": 1131380
+			},
+			"text": " which that'll also work in like a lot of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,380",
+				"to": "00:18:54,380"
+			},
+			"offsets": {
+				"from": 1131380,
+				"to": 1134380
+			},
+			"text": " And you can also just generate a wallet inside the app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,380",
+				"to": "00:18:59,380"
+			},
+			"offsets": {
+				"from": 1134380,
+				"to": 1139380
+			},
+			"text": " generate a temporary wallet, which will, you can still, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,380",
+				"to": "00:19:03,380"
+			},
+			"offsets": {
+				"from": 1139380,
+				"to": 1143380
+			},
+			"text": " use that to communicate since it doesn't currently use any gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,380",
+				"to": "00:19:08,380"
+			},
+			"offsets": {
+				"from": 1143380,
+				"to": 1148380
+			},
+			"text": " So do you guys people that are going to pull it up have it up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,380",
+				"to": "00:19:12,380"
+			},
+			"offsets": {
+				"from": 1148380,
+				"to": 1152380
+			},
+			"text": " Anybody still typing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,380",
+				"to": "00:19:13,380"
+			},
+			"offsets": {
+				"from": 1152380,
+				"to": 1153380
+			},
+			"text": " We're good."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,380",
+				"to": "00:19:15,380"
+			},
+			"offsets": {
+				"from": 1153380,
+				"to": 1155380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,380",
+				"to": "00:19:20,380"
+			},
+			"offsets": {
+				"from": 1155380,
+				"to": 1160380
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,380",
+				"to": "00:19:23,380"
+			},
+			"offsets": {
+				"from": 1160380,
+				"to": 1163380
+			},
+			"text": " So I'm going to get these steps myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,380",
+				"to": "00:19:31,380"
+			},
+			"offsets": {
+				"from": 1163380,
+				"to": 1171380
+			},
+			"text": " I'll generate a temporary wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,380",
+				"to": "00:19:35,380"
+			},
+			"offsets": {
+				"from": 1171380,
+				"to": 1175380
+			},
+			"text": " I'm the only peer that I've found so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,380",
+				"to": "00:19:38,380"
+			},
+			"offsets": {
+				"from": 1175380,
+				"to": 1178380
+			},
+			"text": " Hopefully over time, I'm going to find all of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,380",
+				"to": "00:19:41,380"
+			},
+			"offsets": {
+				"from": 1178380,
+				"to": 1181380
+			},
+			"text": " Are other people at this screen after generating the wallet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,380",
+				"to": "00:19:42,380"
+			},
+			"offsets": {
+				"from": 1181380,
+				"to": 1182380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,380",
+				"to": "00:19:48,380"
+			},
+			"offsets": {
+				"from": 1182380,
+				"to": 1188380
+			},
+			"text": " Hey, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,380",
+				"to": "00:19:49,380"
+			},
+			"offsets": {
+				"from": 1188380,
+				"to": 1189380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,380",
+				"to": "00:19:51,380"
+			},
+			"offsets": {
+				"from": 1189380,
+				"to": 1191380
+			},
+			"text": " So, nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,380",
+				"to": "00:19:55,380"
+			},
+			"offsets": {
+				"from": 1191380,
+				"to": 1195380
+			},
+			"text": " I hope the mobile display still works with all these addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,380",
+				"to": "00:19:58,380"
+			},
+			"offsets": {
+				"from": 1195380,
+				"to": 1198380
+			},
+			"text": " and I wasn't able to test with that many people."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,380",
+				"to": "00:19:59,380"
+			},
+			"offsets": {
+				"from": 1198380,
+				"to": 1199380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,380",
+				"to": "00:20:02,380"
+			},
+			"offsets": {
+				"from": 1199380,
+				"to": 1202380
+			},
+			"text": " So, I'm going to be saving."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,380",
+				"to": "00:20:03,380"
+			},
+			"offsets": {
+				"from": 1202380,
+				"to": 1203380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,380",
+				"to": "00:20:11,380"
+			},
+			"offsets": {
+				"from": 1203380,
+				"to": 1211380
+			},
+			"text": " So, this is everybody sharing their PGP's with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,380",
+				"to": "00:20:13,380"
+			},
+			"offsets": {
+				"from": 1211380,
+				"to": 1213380
+			},
+			"text": " Wow."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,380",
+				"to": "00:20:16,380"
+			},
+			"offsets": {
+				"from": 1213380,
+				"to": 1216380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,380",
+				"to": "00:20:20,380"
+			},
+			"offsets": {
+				"from": 1216380,
+				"to": 1220380
+			},
+			"text": " I definitely have not tested it with this much scale yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,380",
+				"to": "00:20:25,380"
+			},
+			"offsets": {
+				"from": 1220380,
+				"to": 1225380
+			},
+			"text": " but it seems like it's working okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,380",
+				"to": "00:20:28,380"
+			},
+			"offsets": {
+				"from": 1225380,
+				"to": 1228380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,380",
+				"to": "00:20:30,380"
+			},
+			"offsets": {
+				"from": 1228380,
+				"to": 1230380
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,380",
+				"to": "00:20:31,380"
+			},
+			"offsets": {
+				"from": 1230380,
+				"to": 1231380
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,380",
+				"to": "00:20:38,380"
+			},
+			"offsets": {
+				"from": 1231380,
+				"to": 1238380
+			},
+			"text": " So I can go into a little bit of what's going on here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,380",
+				"to": "00:20:44,380"
+			},
+			"offsets": {
+				"from": 1238380,
+				"to": 1244380
+			},
+			"text": " So basically this far is sad."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,380",
+				"to": "00:20:47,380"
+			},
+			"offsets": {
+				"from": 1244380,
+				"to": 1247380
+			},
+			"text": " I think it says \"pear\" on your fan."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,380",
+				"to": "00:20:49,380"
+			},
+			"offsets": {
+				"from": 1247380,
+				"to": 1249380
+			},
+			"text": " On the desktop, it says \"pear discovery protocol.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,380",
+				"to": "00:20:54,380"
+			},
+			"offsets": {
+				"from": 1249380,
+				"to": 1254380
+			},
+			"text": " So basically this is a instead of using a database or a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,380",
+				"to": "00:20:56,380"
+			},
+			"offsets": {
+				"from": 1254380,
+				"to": 1256380
+			},
+			"text": " to distribute keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,380",
+				"to": "00:21:00,380"
+			},
+			"offsets": {
+				"from": 1256380,
+				"to": 1260380
+			},
+			"text": " We all connect to the same IPFS Pub/Sub topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,380",
+				"to": "00:21:07,380"
+			},
+			"offsets": {
+				"from": 1260380,
+				"to": 1267380
+			},
+			"text": " So, there's basically one IPFS server that we reach out to and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,380",
+				"to": "00:21:10,380"
+			},
+			"offsets": {
+				"from": 1267380,
+				"to": 1270380
+			},
+			"text": " \"Hey, I'm listening to this topic.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,380",
+				"to": "00:21:15,380"
+			},
+			"offsets": {
+				"from": 1270380,
+				"to": 1275380
+			},
+			"text": " Then when other people connect, they also reach out to that same server"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,380",
+				"to": "00:21:16,380"
+			},
+			"offsets": {
+				"from": 1275380,
+				"to": 1276380
+			},
+			"text": " and say \"I'm listening to this topic.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,380",
+				"to": "00:21:19,380"
+			},
+			"offsets": {
+				"from": 1276380,
+				"to": 1279380
+			},
+			"text": " And we kind of find each other all through that way"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,380",
+				"to": "00:21:21,380"
+			},
+			"offsets": {
+				"from": 1279380,
+				"to": 1281380
+			},
+			"text": " and then peer directly with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,380",
+				"to": "00:21:30,380"
+			},
+			"offsets": {
+				"from": 1281380,
+				"to": 1290380
+			},
+			"text": " Then after we're all peer, we broadcast our key and then we send a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,380",
+				"to": "00:21:33,380"
+			},
+			"offsets": {
+				"from": 1290380,
+				"to": 1293380
+			},
+			"text": " which is what we call a request introduction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,380",
+				"to": "00:21:37,380"
+			},
+			"offsets": {
+				"from": 1293380,
+				"to": 1297380
+			},
+			"text": " which basically is like a -- we send a message to the Pub/Sub topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,380",
+				"to": "00:21:41,380"
+			},
+			"offsets": {
+				"from": 1297380,
+				"to": 1301380
+			},
+			"text": " that is asking other people for their keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,380",
+				"to": "00:21:44,380"
+			},
+			"offsets": {
+				"from": 1301380,
+				"to": 1304380
+			},
+			"text": " and then everybody else responds to that person with their keys basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,380",
+				"to": "00:21:47,380"
+			},
+			"offsets": {
+				"from": 1304380,
+				"to": 1307380
+			},
+			"text": " So it's kind of like a many, many messaging systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,380",
+				"to": "00:21:49,380"
+			},
+			"offsets": {
+				"from": 1307380,
+				"to": 1309380
+			},
+			"text": " are kind of building this dynamic database of keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,380",
+				"to": "00:21:55,380"
+			},
+			"offsets": {
+				"from": 1309380,
+				"to": 1315380
+			},
+			"text": " And as you can see, the more people that are added,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,380",
+				"to": "00:21:59,380"
+			},
+			"offsets": {
+				"from": 1315380,
+				"to": 1319380
+			},
+			"text": " the more messaging, the more people are requesting that everyone's keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,380",
+				"to": "00:22:01,380"
+			},
+			"offsets": {
+				"from": 1319380,
+				"to": 1321380
+			},
+			"text": " the more messages that are sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,380",
+				"to": "00:22:04,380"
+			},
+			"offsets": {
+				"from": 1321380,
+				"to": 1324380
+			},
+			"text": " So that's just going to get crazy probably right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,380",
+				"to": "00:22:09,380"
+			},
+			"offsets": {
+				"from": 1324380,
+				"to": 1329380
+			},
+			"text": " So then down here on the known peer screen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,380",
+				"to": "00:22:14,380"
+			},
+			"offsets": {
+				"from": 1329380,
+				"to": 1334380
+			},
+			"text": " I definitely did not design this for this many people to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,380",
+				"to": "00:22:17,380"
+			},
+			"offsets": {
+				"from": 1334380,
+				"to": 1337380
+			},
+			"text": " I built this like yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,380",
+				"to": "00:22:23,380"
+			},
+			"offsets": {
+				"from": 1337380,
+				"to": 1343380
+			},
+			"text": " So you can basically choose the keys or the identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,380",
+				"to": "00:22:27,380"
+			},
+			"offsets": {
+				"from": 1343380,
+				"to": 1347380
+			},
+			"text": " that you actually want to send encrypted messages to."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,380",
+				"to": "00:22:37,380"
+			},
+			"offsets": {
+				"from": 1347380,
+				"to": 1357380
+			},
+			"text": " And then when you -- I'm going to say \"ooh.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,380",
+				"to": "00:22:41,380"
+			},
+			"offsets": {
+				"from": 1357380,
+				"to": 1361380
+			},
+			"text": " And then -- sorry, it's the people that I recently --"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,380",
+				"to": "00:22:44,380"
+			},
+			"offsets": {
+				"from": 1361380,
+				"to": 1364380
+			},
+			"text": " but just not going to be an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,380",
+				"to": "00:22:49,380"
+			},
+			"offsets": {
+				"from": 1364380,
+				"to": 1369380
+			},
+			"text": " And so then basically everybody that I selected will get a copy of that message"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,380",
+				"to": "00:22:53,380"
+			},
+			"offsets": {
+				"from": 1369380,
+				"to": 1373380
+			},
+			"text": " that they can decrypt, but everybody gets everybody's message."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,380",
+				"to": "00:22:56,380"
+			},
+			"offsets": {
+				"from": 1373380,
+				"to": 1376380
+			},
+			"text": " So -- but the thing is that only the people who buy encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,380",
+				"to": "00:23:03,380"
+			},
+			"offsets": {
+				"from": 1376380,
+				"to": 1383380
+			},
+			"text": " that message specifically for will be able to decrypt it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,380",
+				"to": "00:23:07,380"
+			},
+			"offsets": {
+				"from": 1383380,
+				"to": 1387380
+			},
+			"text": " I'm going to refresh this page because all of you will join that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,380",
+				"to": "00:23:13,380"
+			},
+			"offsets": {
+				"from": 1387380,
+				"to": 1393380
+			},
+			"text": " So to take it kind of back to the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,380",
+				"to": "00:23:23,380"
+			},
+			"offsets": {
+				"from": 1393380,
+				"to": 1403380
+			},
+			"text": " -- the original pro-op of the talk and the idea of cypress-based."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,380",
+				"to": "00:23:30,380"
+			},
+			"offsets": {
+				"from": 1403380,
+				"to": 1410380
+			},
+			"text": " That's kind of what I built this application of an example of."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,380",
+				"to": "00:23:36,380"
+			},
+			"offsets": {
+				"from": 1410380,
+				"to": 1416380
+			},
+			"text": " So the actual data transport like layer of this application is completely public."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,380",
+				"to": "00:23:38,380"
+			},
+			"offsets": {
+				"from": 1416380,
+				"to": 1418380
+			},
+			"text": " And anybody can read it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,380",
+				"to": "00:23:41,380"
+			},
+			"offsets": {
+				"from": 1418380,
+				"to": 1421380
+			},
+			"text": " It just takes place on a public IDFS topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,380",
+				"to": "00:23:47,380"
+			},
+			"offsets": {
+				"from": 1421380,
+				"to": 1427380
+			},
+			"text": " But there actually is a complex application logic of permission to group chat"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,380",
+				"to": "00:23:49,380"
+			},
+			"offsets": {
+				"from": 1427380,
+				"to": 1429380
+			},
+			"text": " happening in this public forum."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,380",
+				"to": "00:23:52,380"
+			},
+			"offsets": {
+				"from": 1429380,
+				"to": 1432380
+			},
+			"text": " So this is kind of the idea of cypress-based."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,380",
+				"to": "00:23:58,380"
+			},
+			"offsets": {
+				"from": 1432380,
+				"to": 1438380
+			},
+			"text": " That we can kind of divorce application logic from transport, network logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,380",
+				"to": "00:24:00,380"
+			},
+			"offsets": {
+				"from": 1438380,
+				"to": 1440380
+			},
+			"text": " and even database storage logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,380",
+				"to": "00:24:04,380"
+			},
+			"offsets": {
+				"from": 1440380,
+				"to": 1444380
+			},
+			"text": " But we shouldn't have to care about where the data for this application lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,380",
+				"to": "00:24:06,380"
+			},
+			"offsets": {
+				"from": 1444380,
+				"to": 1446380
+			},
+			"text": " All we have to care about is availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,380",
+				"to": "00:24:08,380"
+			},
+			"offsets": {
+				"from": 1446380,
+				"to": 1448380
+			},
+			"text": " That part still hasn't really been solved yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,380",
+				"to": "00:24:16,380"
+			},
+			"offsets": {
+				"from": 1448380,
+				"to": 1456380
+			},
+			"text": " And then just write our own application logic using these different cryptographic primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,380",
+				"to": "00:24:19,380"
+			},
+			"offsets": {
+				"from": 1456380,
+				"to": 1459380
+			},
+			"text": " to kind of enforce the rules of our application."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,380",
+				"to": "00:24:23,380"
+			},
+			"offsets": {
+				"from": 1459380,
+				"to": 1463380
+			},
+			"text": " So this application, it's totally good to appear."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,380",
+				"to": "00:24:27,380"
+			},
+			"offsets": {
+				"from": 1463380,
+				"to": 1467380
+			},
+			"text": " It just exists on all of our friends and our laptops in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,380",
+				"to": "00:24:31,380"
+			},
+			"offsets": {
+				"from": 1467380,
+				"to": 1471380
+			},
+			"text": " And we're basically sending each other plain text messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,380",
+				"to": "00:24:37,380"
+			},
+			"offsets": {
+				"from": 1471380,
+				"to": 1477380
+			},
+			"text": " But then all these different cryptographic tools kind of allow us to have a structured application"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,380",
+				"to": "00:24:41,380"
+			},
+			"offsets": {
+				"from": 1477380,
+				"to": 1481380
+			},
+			"text": " built in this really simple context."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,380",
+				"to": "00:24:47,380"
+			},
+			"offsets": {
+				"from": 1481380,
+				"to": 1487380
+			},
+			"text": " So, oh, and for those of you on desktop, it's going to fit in the mobile view."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,380",
+				"to": "00:24:54,380"
+			},
+			"offsets": {
+				"from": 1487380,
+				"to": 1494380
+			},
+			"text": " But you can actually look at the key-space parameters that I kind of talked through in the first portion."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,380",
+				"to": "00:24:56,380"
+			},
+			"offsets": {
+				"from": 1494380,
+				"to": 1496380
+			},
+			"text": " So you have your own signed seats."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,380",
+				"to": "00:24:59,380"
+			},
+			"offsets": {
+				"from": 1496380,
+				"to": 1499380
+			},
+			"text": " So this is what you sign to generate your password."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,380",
+				"to": "00:25:05,380"
+			},
+			"offsets": {
+				"from": 1499380,
+				"to": 1505380
+			},
+			"text": " This is the password that basically encrypts your private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,380",
+				"to": "00:25:10,380"
+			},
+			"offsets": {
+				"from": 1505380,
+				"to": 1510380
+			},
+			"text": " Then this is the PGP public key and the encrypted PGP private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,380",
+				"to": "00:25:15,380"
+			},
+			"offsets": {
+				"from": 1510380,
+				"to": 1515380
+			},
+			"text": " So these are kind of the building blocks that we're using to build this application."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,380",
+				"to": "00:25:20,380"
+			},
+			"offsets": {
+				"from": 1515380,
+				"to": 1520380
+			},
+			"text": " I'm trying to guess if there's anything else about this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,380",
+				"to": "00:25:22,380"
+			},
+			"offsets": {
+				"from": 1520380,
+				"to": 1522380
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,380",
+				"to": "00:25:26,380"
+			},
+			"offsets": {
+				"from": 1522380,
+				"to": 1526380
+			},
+			"text": " The nickname, I can't get to it because there's so many people in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,380",
+				"to": "00:25:32,380"
+			},
+			"offsets": {
+				"from": 1526380,
+				"to": 1532380
+			},
+			"text": " But as those of you who have said it, the nickname is just one of their types of specialized"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,380",
+				"to": "00:25:39,380"
+			},
+			"offsets": {
+				"from": 1532380,
+				"to": 1539380
+			},
+			"text": " messages on the network so you can kind of announce your nickname when you announce your key guard."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,380",
+				"to": "00:25:45,380"
+			},
+			"offsets": {
+				"from": 1539380,
+				"to": 1545380
+			},
+			"text": " Yeah, that's it for the..."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,380",
+				"to": "00:25:46,380"
+			},
+			"offsets": {
+				"from": 1545380,
+				"to": 1546380
+			},
+			"text": " Oh, yeah, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,380",
+				"to": "00:25:50,380"
+			},
+			"offsets": {
+				"from": 1546380,
+				"to": 1550380
+			},
+			"text": " I have one other thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,380",
+				"to": "00:25:58,380"
+			},
+			"offsets": {
+				"from": 1550380,
+				"to": 1558380
+			},
+			"text": " So if you have this loaded and you actually want to look at some of the code for the application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,380",
+				"to": "00:26:03,380"
+			},
+			"offsets": {
+				"from": 1558380,
+				"to": 1563380
+			},
+			"text": " you can click the question mark on the top right and it'll open up to GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,380",
+				"to": "00:26:08,380"
+			},
+			"offsets": {
+				"from": 1563380,
+				"to": 1568380
+			},
+			"text": " Kind of talks a little bit about what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,380",
+				"to": "00:26:15,380"
+			},
+			"offsets": {
+				"from": 1568380,
+				"to": 1575380
+			},
+			"text": " Links to the application, links to the slides in the slideshow, and then links to key space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,380",
+				"to": "00:26:18,380"
+			},
+			"offsets": {
+				"from": 1575380,
+				"to": 1578380
+			},
+			"text": " which is bundled as part of here as well as JS."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,380",
+				"to": "00:26:21,380"
+			},
+			"offsets": {
+				"from": 1578380,
+				"to": 1581380
+			},
+			"text": " You can look at the code for the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,380",
+				"to": "00:26:24,380"
+			},
+			"offsets": {
+				"from": 1581380,
+				"to": 1584380
+			},
+			"text": " Even though I wrote it really fast, so it's not very good."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,380",
+				"to": "00:26:32,380"
+			},
+			"offsets": {
+				"from": 1584380,
+				"to": 1592380
+			},
+			"text": " It's messy, but I would instead suggest that you actually look at the key space in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,380",
+				"to": "00:26:40,380"
+			},
+			"offsets": {
+				"from": 1592380,
+				"to": 1600380
+			},
+			"text": " JS library, which actually has some better examples and documentation than it is easier to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,380",
+				"to": "00:26:44,380"
+			},
+			"offsets": {
+				"from": 1600380,
+				"to": 1604380
+			},
+			"text": " So yeah, if you want to include key space in your application, this is where you wouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,380",
+				"to": "00:26:47,380"
+			},
+			"offsets": {
+				"from": 1604380,
+				"to": 1607380
+			},
+			"text": " go to figure out how to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,380",
+				"to": "00:26:52,380"
+			},
+			"offsets": {
+				"from": 1607380,
+				"to": 1612380
+			},
+			"text": " Yeah, I think that's it for my demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,380",
+				"to": "00:27:01,380"
+			},
+			"offsets": {
+				"from": 1612380,
+				"to": 1621380
+			},
+			"text": " I think, yeah, so my epilogue was about putting it in the context of cyberspace and this kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,380",
+				"to": "00:27:06,380"
+			},
+			"offsets": {
+				"from": 1621380,
+				"to": 1626380
+			},
+			"text": " of application, right now it's turning into public, not into a F.S., but it could be running"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,380",
+				"to": "00:27:08,380"
+			},
+			"offsets": {
+				"from": 1626380,
+				"to": 1628380
+			},
+			"text": " on any kind of transport."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,380",
+				"to": "00:27:14,380"
+			},
+			"offsets": {
+				"from": 1628380,
+				"to": 1634380
+			},
+			"text": " Any messaging system, you could have any crypto messaging system built inside of it, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,380",
+				"to": "00:27:16,380"
+			},
+			"offsets": {
+				"from": 1634380,
+				"to": 1636380
+			},
+			"text": " storage can happen anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,380",
+				"to": "00:27:26,380"
+			},
+			"offsets": {
+				"from": 1636380,
+				"to": 1646380
+			},
+			"text": " So I think that the initial Airsoft trading network was built on a rabbit and cue, and it's easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,380",
+				"to": "00:27:33,380"
+			},
+			"offsets": {
+				"from": 1646380,
+				"to": 1653380
+			},
+			"text": " affordable now to IPFS because of that separation of concerns that we were talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,380",
+				"to": "00:27:41,380"
+			},
+			"offsets": {
+				"from": 1653380,
+				"to": 1661380
+			},
+			"text": " So I think that, at least what I believe, is that if we follow this paradigm, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,380",
+				"to": "00:27:47,380"
+			},
+			"offsets": {
+				"from": 1661380,
+				"to": 1667380
+			},
+			"text": " that applications that we build in the future that are intrinsically tied to a certain type"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,380",
+				"to": "00:27:52,380"
+			},
+			"offsets": {
+				"from": 1667380,
+				"to": 1672380
+			},
+			"text": " of web transfer layer, like for example, fetching data over HTTP, fetching something from WebSocket,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,380",
+				"to": "00:27:54,380"
+			},
+			"offsets": {
+				"from": 1672380,
+				"to": 1674380
+			},
+			"text": " it's going to start to feel like spaghetti code."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,380",
+				"to": "00:27:58,380"
+			},
+			"offsets": {
+				"from": 1674380,
+				"to": 1678380
+			},
+			"text": " It's going to start to feel like expensive and full-otected because it's hard to port."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,380",
+				"to": "00:28:05,380"
+			},
+			"offsets": {
+				"from": 1678380,
+				"to": 1685380
+			},
+			"text": " It's hard to, you have all these assumptions in your code about how the data comes to you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,380",
+				"to": "00:28:10,380"
+			},
+			"offsets": {
+				"from": 1685380,
+				"to": 1690380
+			},
+			"text": " how it's available within the kind of areas that will happen when you fetch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,380",
+				"to": "00:28:16,380"
+			},
+			"offsets": {
+				"from": 1690380,
+				"to": 1696380
+			},
+			"text": " And I think that with this kind of approach to building applications, you have a separation"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,380",
+				"to": "00:28:22,380"
+			},
+			"offsets": {
+				"from": 1696380,
+				"to": 1702380
+			},
+			"text": " of concerns such that you can actually port your application to different types of transports"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,380",
+				"to": "00:28:27,380"
+			},
+			"offsets": {
+				"from": 1702380,
+				"to": 1707380
+			},
+			"text": " without having a lot of tech depth at the end result."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,380",
+				"to": "00:28:29,380"
+			},
+			"offsets": {
+				"from": 1707380,
+				"to": 1709380
+			},
+			"text": " So yeah, that's it for my presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,380",
+				"to": "00:28:32,380"
+			},
+			"offsets": {
+				"from": 1709380,
+				"to": 1712380
+			},
+			"text": " Time for some questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,380",
+				"to": "00:28:43,380"
+			},
+			"offsets": {
+				"from": 1712380,
+				"to": 1723380
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,380",
+				"to": "00:28:48,380"
+			},
+			"offsets": {
+				"from": 1723380,
+				"to": 1728380
+			},
+			"text": " Why do you choose to encrypt the key using a password rather than using the"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,380",
+				"to": "00:28:54,380"
+			},
+			"offsets": {
+				"from": 1728380,
+				"to": 1734380
+			},
+			"text": " Dippy Helm in the look tool with the elliptic curve that you already have from your hearing"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,380",
+				"to": "00:28:55,380"
+			},
+			"offsets": {
+				"from": 1734380,
+				"to": 1735380
+			},
+			"text": " address?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,380",
+				"to": "00:29:04,380"
+			},
+			"offsets": {
+				"from": 1735380,
+				"to": 1744380
+			},
+			"text": " I think it's because it's not available to Dippy users over JSON and RPC, it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,380",
+				"to": "00:29:10,380"
+			},
+			"offsets": {
+				"from": 1744380,
+				"to": 1750380
+			},
+			"text": " the standard JSON or RPC message format for interaction with a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,380",
+				"to": "00:29:18,380"
+			},
+			"offsets": {
+				"from": 1750380,
+				"to": 1758380
+			},
+			"text": " So the only cryptographic function that we have available to us as people who build applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,380",
+				"to": "00:29:24,380"
+			},
+			"offsets": {
+				"from": 1758380,
+				"to": 1764380
+			},
+			"text": " that work on top of wallets are basically personal sign, send transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:24,380",
+				"to": "00:29:29,380"
+			},
+			"offsets": {
+				"from": 1764380,
+				"to": 1769380
+			},
+			"text": " There's a lot of cryptographic primitives that are useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,380",
+				"to": "00:29:33,380"
+			},
+			"offsets": {
+				"from": 1769380,
+				"to": 1773380
+			},
+			"text": " When I was first building this and I didn't need it for encryption, I wanted to actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,380",
+				"to": "00:29:40,380"
+			},
+			"offsets": {
+				"from": 1773380,
+				"to": 1780380
+			},
+			"text": " I was like, well, why can't I use the Ethereum private key to encrypt data, or decrypt data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,380",
+				"to": "00:29:43,380"
+			},
+			"offsets": {
+				"from": 1780380,
+				"to": 1783380
+			},
+			"text": " But it's possible, theoretically it's possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,380",
+				"to": "00:29:49,380"
+			},
+			"offsets": {
+				"from": 1783380,
+				"to": 1789380
+			},
+			"text": " Those functions are in the underlying cryptographic libraries that wallet ledger or MetaMask"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,380",
+				"to": "00:29:55,380"
+			},
+			"offsets": {
+				"from": 1789380,
+				"to": 1795380
+			},
+			"text": " functions, but it's just like the respect for making those functions available is far away."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,380",
+				"to": "00:29:58,380"
+			},
+			"offsets": {
+				"from": 1795380,
+				"to": 1798380
+			},
+			"text": " It's going to be a long time until anything like that is."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,380",
+				"to": "00:30:05,380"
+			},
+			"offsets": {
+				"from": 1798380,
+				"to": 1805380
+			},
+			"text": " So this is kind of like a way of working around that limitation."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,380",
+				"to": "00:30:09,380"
+			},
+			"offsets": {
+				"from": 1805380,
+				"to": 1809380
+			},
+			"text": " Do you have to sign the same message every time to get the password?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,380",
+				"to": "00:30:15,380"
+			},
+			"offsets": {
+				"from": 1809380,
+				"to": 1815380
+			},
+			"text": " Yeah, so basically, what I was talking about earlier, there's a bunch of different types"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,380",
+				"to": "00:30:18,380"
+			},
+			"offsets": {
+				"from": 1815380,
+				"to": 1818380
+			},
+			"text": " of users who want to use an application like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,380",
+				"to": "00:30:23,380"
+			},
+			"offsets": {
+				"from": 1818380,
+				"to": 1823380
+			},
+			"text": " Some are more hardcore about their privacy and some people want something that's more convenient"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,380",
+				"to": "00:30:26,380"
+			},
+			"offsets": {
+				"from": 1823380,
+				"to": 1826380
+			},
+			"text": " that they don't have to think about very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,380",
+				"to": "00:30:32,380"
+			},
+			"offsets": {
+				"from": 1826380,
+				"to": 1832380
+			},
+			"text": " So if you want to, for those users who want something that's very convenient and they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,380",
+				"to": "00:30:38,380"
+			},
+			"offsets": {
+				"from": 1832380,
+				"to": 1838380
+			},
+			"text": " not as worried about privacy, basically you can just kind of sign a default phrase that"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:38,380",
+				"to": "00:30:41,380"
+			},
+			"offsets": {
+				"from": 1838380,
+				"to": 1841380
+			},
+			"text": " we choose, kind of provide to you every time to sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,380",
+				"to": "00:30:45,380"
+			},
+			"offsets": {
+				"from": 1841380,
+				"to": 1845380
+			},
+			"text": " So then it's kind of like you don't have to remember the passphrase and you can kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,380",
+				"to": "00:30:47,380"
+			},
+			"offsets": {
+				"from": 1845380,
+				"to": 1847380
+			},
+			"text": " deterministically regenerate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,380",
+				"to": "00:30:52,380"
+			},
+			"offsets": {
+				"from": 1847380,
+				"to": 1852380
+			},
+			"text": " If you want another layer of privacy, you can choose your own passphrase."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,380",
+				"to": "00:30:56,380"
+			},
+			"offsets": {
+				"from": 1852380,
+				"to": 1856380
+			},
+			"text": " It's a secret to you that nobody else knows, but then if you lose that passphrase then"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,380",
+				"to": "00:30:59,380"
+			},
+			"offsets": {
+				"from": 1856380,
+				"to": 1859380
+			},
+			"text": " you lose access to your messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,380",
+				"to": "00:31:03,380"
+			},
+			"offsets": {
+				"from": 1859380,
+				"to": 1863380
+			},
+			"text": " But that's available for users who want to have a better layer of privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:03,380",
+				"to": "00:31:04,380"
+			},
+			"offsets": {
+				"from": 1863380,
+				"to": 1864380
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,380",
+				"to": "00:31:10,380"
+			},
+			"offsets": {
+				"from": 1864380,
+				"to": 1870380
+			},
+			"text": " Can you think of any practical use cases to employ a key space?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:10,380",
+				"to": "00:31:15,380"
+			},
+			"offsets": {
+				"from": 1870380,
+				"to": 1875380
+			},
+			"text": " A word from the example you just showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:15,380",
+				"to": "00:31:29,380"
+			},
+			"offsets": {
+				"from": 1875380,
+				"to": 1889380
+			},
+			"text": " So it's one thing that the initial implementation of PGP functions uses this concept called"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:29,380",
+				"to": "00:31:35,380"
+			},
+			"offsets": {
+				"from": 1889380,
+				"to": 1895380
+			},
+			"text": " the Web of Trust function, which is basically like people can trust PGP keys if other keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,380",
+				"to": "00:31:39,380"
+			},
+			"offsets": {
+				"from": 1895380,
+				"to": 1899380
+			},
+			"text": " that they already trust also trust that those PGP keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,380",
+				"to": "00:31:46,380"
+			},
+			"offsets": {
+				"from": 1899380,
+				"to": 1906380
+			},
+			"text": " So when the critical was first developed, all the academic nerds would have signing parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,380",
+				"to": "00:31:53,380"
+			},
+			"offsets": {
+				"from": 1906380,
+				"to": 1913380
+			},
+			"text": " and get together and trade PGP keys in person so they could have that base level of trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,380",
+				"to": "00:31:55,380"
+			},
+			"offsets": {
+				"from": 1913380,
+				"to": 1915380
+			},
+			"text": " and build this kind of trusted network."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,380",
+				"to": "00:32:04,380"
+			},
+			"offsets": {
+				"from": 1915380,
+				"to": 1924380
+			},
+			"text": " And then off of that they built a larger network and that was how trust was built initially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,380",
+				"to": "00:32:09,380"
+			},
+			"offsets": {
+				"from": 1924380,
+				"to": 1929380
+			},
+			"text": " which is kind of actually now, outside is kind of a more of a critique of PGP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,380",
+				"to": "00:32:12,380"
+			},
+			"offsets": {
+				"from": 1929380,
+				"to": 1932380
+			},
+			"text": " that's kind of like a limitation of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,380",
+				"to": "00:32:18,380"
+			},
+			"offsets": {
+				"from": 1932380,
+				"to": 1938380
+			},
+			"text": " Key space is more limited in scope since it's only about, instead of binding identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:18,380",
+				"to": "00:32:24,380"
+			},
+			"offsets": {
+				"from": 1938380,
+				"to": 1944380
+			},
+			"text": " to real person, you're binding identities to an Ethereum address basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:24,380",
+				"to": "00:32:28,380"
+			},
+			"offsets": {
+				"from": 1944380,
+				"to": 1948380
+			},
+			"text": " but you don't have to worry about that same kind of Web of Trust, which has some kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:28,380",
+				"to": "00:32:29,380"
+			},
+			"offsets": {
+				"from": 1948380,
+				"to": 1949380
+			},
+			"text": " scalability issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,380",
+				"to": "00:32:40,380"
+			},
+			"offsets": {
+				"from": 1949380,
+				"to": 1960380
+			},
+			"text": " But I think there are some interesting opportunities with connecting a system like key, not key space key base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,380",
+				"to": "00:32:48,380"
+			},
+			"offsets": {
+				"from": 1960380,
+				"to": 1968380
+			},
+			"text": " where like identity and a cryptographic key are already bound by other means."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,380",
+				"to": "00:32:57,380"
+			},
+			"offsets": {
+				"from": 1968380,
+				"to": 1977380
+			},
+			"text": " So then it kind of like allows you to use PGP more modularly, where you can kind of strap it on"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:57,380",
+				"to": "00:33:04,380"
+			},
+			"offsets": {
+				"from": 1977380,
+				"to": 1984380
+			},
+			"text": " to other existing networks of trust, as long as they have cryptographic capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,380",
+				"to": "00:33:16,380"
+			},
+			"offsets": {
+				"from": 1984380,
+				"to": 1996380
+			},
+			"text": " Alright, that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:16,380",
+				"to": "00:33:17,380"
+			},
+			"offsets": {
+				"from": 1996380,
+				"to": 1997380
+			},
+			"text": " Thanks everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,380",
+				"to": "00:33:20,380"
+			},
+			"offsets": {
+				"from": 1997380,
+				"to": 2000380
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,380",
+				"to": "00:33:27,380"
+			},
+			"offsets": {
+				"from": 2000380,
+				"to": 2007380
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:27,380",
+				"to": "00:33:34,380"
+			},
+			"offsets": {
+				"from": 2007380,
+				"to": 2014380
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:34,380",
+				"to": "00:33:37,120"
+			},
+			"offsets": {
+				"from": 2014380,
+				"to": 2017120
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

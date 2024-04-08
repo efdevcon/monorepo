@@ -1,0 +1,3805 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " Hey everyone, how's it going?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:07,600"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 7600
+			},
+			"text": " They already started my clock, so I'm just going to start too."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,600",
+				"to": "00:00:11,480"
+			},
+			"offsets": {
+				"from": 7600,
+				"to": 11480
+			},
+			"text": " So we got a talk today about CBC Casper Design Philosophy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,480",
+				"to": "00:00:15,640"
+			},
+			"offsets": {
+				"from": 11480,
+				"to": 15640
+			},
+			"text": " It's mostly really about design methodology."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,640",
+				"to": "00:00:20,560"
+			},
+			"offsets": {
+				"from": 15640,
+				"to": 20560
+			},
+			"text": " And I'm going to walk you through some of the stuff that goes on in CBC Casper Land"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,560",
+				"to": "00:00:27,440"
+			},
+			"offsets": {
+				"from": 20560,
+				"to": 27440
+			},
+			"text": " in terms of the methodology that we use to develop and define distributed systems protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,440",
+				"to": "00:00:31,240"
+			},
+			"offsets": {
+				"from": 27440,
+				"to": 31240
+			},
+			"text": " I'm going to talk about it first as what is-- because it's quite like a construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,240",
+				"to": "00:00:35,920"
+			},
+			"offsets": {
+				"from": 31240,
+				"to": 35920
+			},
+			"text": " And then I'm going to talk about domain theory and then this kind of definedness stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,920",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 35920,
+				"to": 37120
+			},
+			"text": " It's going to be a trip."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:38,960"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 38960
+			},
+			"text": " It's going to be pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,960",
+				"to": "00:00:43,280"
+			},
+			"offsets": {
+				"from": 38960,
+				"to": 43280
+			},
+			"text": " And then I'll give some examples of actual CBC design in CBC Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,280",
+				"to": "00:00:54,120"
+			},
+			"offsets": {
+				"from": 43280,
+				"to": 54120
+			},
+			"text": " And some of the stuff that happens, and to give you a taste of the methodology and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,120",
+				"to": "00:01:00,360"
+			},
+			"offsets": {
+				"from": 54120,
+				"to": 60360
+			},
+			"text": " kind of approach that we have that sets apart CBC Casper from other-- because it's a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,360",
+				"to": "00:01:02,840"
+			},
+			"offsets": {
+				"from": 60360,
+				"to": 62840
+			},
+			"text": " research."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,840",
+				"to": "00:01:06,920"
+			},
+			"offsets": {
+				"from": 62840,
+				"to": 66920
+			},
+			"text": " And finally, the last bit of my talk, I'll just remind you all that where the resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,920",
+				"to": "00:01:12,120"
+			},
+			"offsets": {
+				"from": 66920,
+				"to": 72120
+			},
+			"text": " are, I'll show you some new resources and make some announcements."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,120",
+				"to": "00:01:16,480"
+			},
+			"offsets": {
+				"from": 72120,
+				"to": 76480
+			},
+			"text": " So let's talk about design methods in CBC Casper."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,480",
+				"to": "00:01:21,960"
+			},
+			"offsets": {
+				"from": 76480,
+				"to": 81960
+			},
+			"text": " The number one kind of design methodology in CBC Casper is the correct by construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,960",
+				"to": "00:01:25,120"
+			},
+			"offsets": {
+				"from": 81960,
+				"to": 85120
+			},
+			"text": " design-- a protocol design methodology."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,120",
+				"to": "00:01:31,120"
+			},
+			"offsets": {
+				"from": 85120,
+				"to": 91120
+			},
+			"text": " The idea with correct by construction is that the process by which you decide what program"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,120",
+				"to": "00:01:36,080"
+			},
+			"offsets": {
+				"from": 91120,
+				"to": 96080
+			},
+			"text": " you write should guarantee that that program has the properties that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,080",
+				"to": "00:01:43,200"
+			},
+			"offsets": {
+				"from": 96080,
+				"to": 103200
+			},
+			"text": " The very process that you use to specify the protocol should guarantee that the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,200",
+				"to": "00:01:44,960"
+			},
+			"offsets": {
+				"from": 103200,
+				"to": 104960
+			},
+			"text": " has the properties that you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,960",
+				"to": "00:01:51,800"
+			},
+			"offsets": {
+				"from": 104960,
+				"to": 111800
+			},
+			"text": " So somehow the way you decide what formats to use or what the protocol is in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,800",
+				"to": "00:01:55,960"
+			},
+			"offsets": {
+				"from": 111800,
+				"to": 115960
+			},
+			"text": " the data and the behavior that happens somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,960",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 115960,
+				"to": 118400
+			},
+			"text": " The definitions don't come out of nowhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:02:00,920"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 120920
+			},
+			"text": " And there's a process by which stuff gets defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,920",
+				"to": "00:02:04,120"
+			},
+			"offsets": {
+				"from": 120920,
+				"to": 124120
+			},
+			"text": " And it's called-- a process called correct by construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,120",
+				"to": "00:02:12,240"
+			},
+			"offsets": {
+				"from": 124120,
+				"to": 132240
+			},
+			"text": " If the process that you use to define the things somehow guarantees that the definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,240",
+				"to": "00:02:13,480"
+			},
+			"offsets": {
+				"from": 132240,
+				"to": 133480
+			},
+			"text": " that comes out is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,480",
+				"to": "00:02:18,720"
+			},
+			"offsets": {
+				"from": 133480,
+				"to": 138720
+			},
+			"text": " And this is kind of as opposed to the trial and error approach where you will try something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,720",
+				"to": "00:02:23,360"
+			},
+			"offsets": {
+				"from": 138720,
+				"to": 143360
+			},
+			"text": " and then analyze it and then you might-- it might work, it might not, you'll maybe get"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,360",
+				"to": "00:02:27,440"
+			},
+			"offsets": {
+				"from": 143360,
+				"to": 147440
+			},
+			"text": " lucky and if not, then maybe you'll learn something and just keep trying until maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,440",
+				"to": "00:02:28,720"
+			},
+			"offsets": {
+				"from": 147440,
+				"to": 148720
+			},
+			"text": " you'll find something."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,720",
+				"to": "00:02:30,720"
+			},
+			"offsets": {
+				"from": 148720,
+				"to": 150720
+			},
+			"text": " So this is a very different approach, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,720",
+				"to": "00:02:35,360"
+			},
+			"offsets": {
+				"from": 150720,
+				"to": 155360
+			},
+			"text": " Because instead of-- like we never really have the trial and error, we just have like"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,360",
+				"to": "00:02:40,160"
+			},
+			"offsets": {
+				"from": 155360,
+				"to": 160160
+			},
+			"text": " a lot of time defining stuff and then once the definition pops out, it's like correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,160",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 160160,
+				"to": 162240
+			},
+			"text": " by construction and so there's no like error."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:47,720"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 167720
+			},
+			"text": " But in some way it takes us a lot longer to come out with a full definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,720",
+				"to": "00:02:53,240"
+			},
+			"offsets": {
+				"from": 167720,
+				"to": 173240
+			},
+			"text": " But when it pops out, we know it's correct by construction and we don't worry at all"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,240",
+				"to": "00:02:59,920"
+			},
+			"offsets": {
+				"from": 173240,
+				"to": 179920
+			},
+			"text": " about mistakes in the specification in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,920",
+				"to": "00:03:04,400"
+			},
+			"offsets": {
+				"from": 179920,
+				"to": 184400
+			},
+			"text": " So there's two basically kinds of correct by construction software design that I'm kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,400",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 184400,
+				"to": 185400
+			},
+			"text": " of aware of."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:15,360"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 195360
+			},
+			"text": " One of them is you define like a proof, maybe a type system and some proofs over a broad"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,360",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 195360,
+				"to": 201600
+			},
+			"text": " class of protocols or broad class of programs and then you in your design process choose"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:27,200"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 207200
+			},
+			"text": " your protocol to be part of that set so that you know when you choose it that it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,200",
+				"to": "00:03:36,280"
+			},
+			"offsets": {
+				"from": 207200,
+				"to": 216280
+			},
+			"text": " to satisfy the theorem that is inhabited by this much broader set of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,280",
+				"to": "00:03:40,480"
+			},
+			"offsets": {
+				"from": 216280,
+				"to": 220480
+			},
+			"text": " So if we have like a family of protocols, they all satisfy a theorem and we like pick"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,480",
+				"to": "00:03:45,200"
+			},
+			"offsets": {
+				"from": 220480,
+				"to": 225200
+			},
+			"text": " protocols or construct them in a way to guarantee that it's part of the family that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,200",
+				"to": "00:03:51,640"
+			},
+			"offsets": {
+				"from": 225200,
+				"to": 231640
+			},
+			"text": " in a correct by construction way get a protocol that has that property that you know the theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,640",
+				"to": "00:03:52,720"
+			},
+			"offsets": {
+				"from": 231640,
+				"to": 232720
+			},
+			"text": " shows for the family."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,720",
+				"to": "00:03:57,440"
+			},
+			"offsets": {
+				"from": 232720,
+				"to": 237440
+			},
+			"text": " And the other kind of approach is that the protocols are specified in a way that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,440",
+				"to": "00:03:59,560"
+			},
+			"offsets": {
+				"from": 237440,
+				"to": 239560
+			},
+			"text": " generates a proof of their correctness."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,560",
+				"to": "00:04:07,560"
+			},
+			"offsets": {
+				"from": 239560,
+				"to": 247560
+			},
+			"text": " So you know you generate the protocol and a proof like a new proof for every protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,560",
+				"to": "00:04:11,920"
+			},
+			"offsets": {
+				"from": 247560,
+				"to": 251920
+			},
+			"text": " And then don't do any of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,920",
+				"to": "00:04:16,240"
+			},
+			"offsets": {
+				"from": 251920,
+				"to": 256240
+			},
+			"text": " That sounds hard and I've heard people doing it in like programming languages and compilers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,240",
+				"to": "00:04:18,600"
+			},
+			"offsets": {
+				"from": 256240,
+				"to": 258600
+			},
+			"text": " but it hasn't showed up for me yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,600",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 258600,
+				"to": 267000
+			},
+			"text": " So what I do here is basically we do find large families of protocols and we prove things"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:28,600"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 268600
+			},
+			"text": " about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,600",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 268600,
+				"to": 275080
+			},
+			"text": " And then we choose specific protocols out of them which will by virtue of being in those"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 278000
+			},
+			"text": " families have these properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:43,560"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 283560
+			},
+			"text": " So now we're going to switch over to this very related topic by growing off into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,560",
+				"to": "00:04:45,120"
+			},
+			"offsets": {
+				"from": 283560,
+				"to": 285120
+			},
+			"text": " math deep end."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,120",
+				"to": "00:04:52,920"
+			},
+			"offsets": {
+				"from": 285120,
+				"to": 292920
+			},
+			"text": " So domain theory is a field of mathematics that studies, you know, it studies the semantics"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,920",
+				"to": "00:04:55,440"
+			},
+			"offsets": {
+				"from": 292920,
+				"to": 295440
+			},
+			"text": " of programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,440",
+				"to": "00:05:01,560"
+			},
+			"offsets": {
+				"from": 295440,
+				"to": 301560
+			},
+			"text": " But really the reason why it's super interesting to me and to just it's really useful for our"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,560",
+				"to": "00:05:05,080"
+			},
+			"offsets": {
+				"from": 301560,
+				"to": 305080
+			},
+			"text": " understanding of the correct by construction process is because it provides us a language"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,080",
+				"to": "00:05:13,400"
+			},
+			"offsets": {
+				"from": 305080,
+				"to": 313400
+			},
+			"text": " for talking about partial definitions, incomplete definitions, partial protocol specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,400",
+				"to": "00:05:18,880"
+			},
+			"offsets": {
+				"from": 313400,
+				"to": 318880
+			},
+			"text": " And we can understand what it means to have a process of defining something as opposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,880",
+				"to": "00:05:25,320"
+			},
+			"offsets": {
+				"from": 318880,
+				"to": 325320
+			},
+			"text": " to just having something that's outright fully defined as you might have in set theory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,320",
+				"to": "00:05:31,440"
+			},
+			"offsets": {
+				"from": 325320,
+				"to": 331440
+			},
+			"text": " So like you know you should think of domain theory as something that arose out of people's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,440",
+				"to": "00:05:35,520"
+			},
+			"offsets": {
+				"from": 331440,
+				"to": 335520
+			},
+			"text": " things that set theory was inadequate for dealing with programs and the semantics of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,520",
+				"to": "00:05:40,640"
+			},
+			"offsets": {
+				"from": 335520,
+				"to": 340640
+			},
+			"text": " programs especially recursive programs and like a lazy evaluation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,640",
+				"to": "00:05:44,640"
+			},
+			"offsets": {
+				"from": 340640,
+				"to": 344640
+			},
+			"text": " But I'm not an expert in domain theory but there are some things that I've learned from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,640",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 344640,
+				"to": 350080
+			},
+			"text": " domain theory that I find super useful for thinking about a bunch of stuff including correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:51,960"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 351960
+			},
+			"text": " by construction protocol design."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,960",
+				"to": "00:06:00,200"
+			},
+			"offsets": {
+				"from": 351960,
+				"to": 360200
+			},
+			"text": " So there's a really really you know kind of core notation in domain theory to use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,200",
+				"to": "00:06:03,840"
+			},
+			"offsets": {
+				"from": 360200,
+				"to": 363840
+			},
+			"text": " like and to define this thing called undefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,840",
+				"to": "00:06:05,960"
+			},
+			"offsets": {
+				"from": 363840,
+				"to": 365960
+			},
+			"text": " So this bottom notation means undefined."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,960",
+				"to": "00:06:09,120"
+			},
+			"offsets": {
+				"from": 365960,
+				"to": 369120
+			},
+			"text": " And it's like defined to be the most undefined thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,120",
+				"to": "00:06:14,160"
+			},
+			"offsets": {
+				"from": 369120,
+				"to": 374160
+			},
+			"text": " It is the most undefined thing in this partial order of definedness."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:20,720"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 380720
+			},
+			"text": " It's like if I say nothing about my protocol then like I left it completely undefined and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,720",
+				"to": "00:06:23,800"
+			},
+			"offsets": {
+				"from": 380720,
+				"to": 383800
+			},
+			"text": " then somehow it's like the most undefined that I could leave it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,800",
+				"to": "00:06:27,480"
+			},
+			"offsets": {
+				"from": 383800,
+				"to": 387480
+			},
+			"text": " As soon as I say stuff it becomes more defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,480",
+				"to": "00:06:31,720"
+			},
+			"offsets": {
+				"from": 387480,
+				"to": 391720
+			},
+			"text": " And we can talk about and reason formally about this order of definedness and this process"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,720",
+				"to": "00:06:37,160"
+			},
+			"offsets": {
+				"from": 391720,
+				"to": 397160
+			},
+			"text": " of defining stuff and you know having a certain stages a partial definition and then getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,160",
+				"to": "00:06:41,860"
+			},
+			"offsets": {
+				"from": 397160,
+				"to": 401860
+			},
+			"text": " in more and more defined protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,860",
+				"to": "00:06:48,560"
+			},
+			"offsets": {
+				"from": 401860,
+				"to": 408560
+			},
+			"text": " So if A is a definition that can be reached from a definition B by replacing an undefined"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,560",
+				"to": "00:06:54,400"
+			},
+			"offsets": {
+				"from": 408560,
+				"to": 414400
+			},
+			"text": " term in B with something that's defined or something else then A is more defined than"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,400",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 414400,
+				"to": 415680
+			},
+			"text": " B."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:06:59,520"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 419520
+			},
+			"text": " So basically like if I have a definition it's got some undefined term in it and I can replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,520",
+				"to": "00:07:03,200"
+			},
+			"offsets": {
+				"from": 419520,
+				"to": 423200
+			},
+			"text": " it to get some other definition then that other definition is more defined than this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,200",
+				"to": "00:07:05,320"
+			},
+			"offsets": {
+				"from": 423200,
+				"to": 425320
+			},
+			"text": " like initial definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,320",
+				"to": "00:07:09,240"
+			},
+			"offsets": {
+				"from": 425320,
+				"to": 429240
+			},
+			"text": " So I'm going to give some examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,240",
+				"to": "00:07:14,400"
+			},
+			"offsets": {
+				"from": 429240,
+				"to": 434400
+			},
+			"text": " So here we go you know bottom times bottom is more defined than bottom because you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,400",
+				"to": "00:07:20,760"
+			},
+			"offsets": {
+				"from": 434400,
+				"to": 440760
+			},
+			"text": " replace bottom with bottom times bottom and therefore you know you can define something"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,760",
+				"to": "00:07:25,960"
+			},
+			"offsets": {
+				"from": 440760,
+				"to": 445960
+			},
+			"text": " which is completely undefined bottom to be this thing bottom times bottom which is still"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,960",
+				"to": "00:07:30,680"
+			},
+			"offsets": {
+				"from": 445960,
+				"to": 450680
+			},
+			"text": " not totally defined but it's more defined than just bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,680",
+				"to": "00:07:35,560"
+			},
+			"offsets": {
+				"from": 450680,
+				"to": 455560
+			},
+			"text": " You know bottom times empty set is more defined than bottom times bottom because you can replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,560",
+				"to": "00:07:41,640"
+			},
+			"offsets": {
+				"from": 455560,
+				"to": 461640
+			},
+			"text": " bottom with empty sets and get from bottom times bottom to bottom times empty set."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,640",
+				"to": "00:07:46,200"
+			},
+			"offsets": {
+				"from": 461640,
+				"to": 466200
+			},
+			"text": " What about empty set times bottom versus bottom bottom?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,200",
+				"to": "00:07:49,760"
+			},
+			"offsets": {
+				"from": 466200,
+				"to": 469760
+			},
+			"text": " Well you know you can place a first bottom with an empty set and so the thing on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,760",
+				"to": "00:07:52,800"
+			},
+			"offsets": {
+				"from": 469760,
+				"to": 472800
+			},
+			"text": " left is more defined than the thing on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,800",
+				"to": "00:07:58,040"
+			},
+			"offsets": {
+				"from": 472800,
+				"to": 478040
+			},
+			"text": " The next example is a little trickier because it's not more defined than the thing on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,040",
+				"to": "00:07:59,040"
+			},
+			"offsets": {
+				"from": 478040,
+				"to": 479040
+			},
+			"text": " left."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,040",
+				"to": "00:08:07,160"
+			},
+			"offsets": {
+				"from": 479040,
+				"to": 487160
+			},
+			"text": " Sorry the empty set times bottom is not more defined than empty set times bottom times"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,160",
+				"to": "00:08:13,040"
+			},
+			"offsets": {
+				"from": 487160,
+				"to": 493040
+			},
+			"text": " empty set because you can't replace the bottom to get empty set times bottom because there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,040",
+				"to": "00:08:14,800"
+			},
+			"offsets": {
+				"from": 493040,
+				"to": 494800
+			},
+			"text": " already an empty set in that position."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,800",
+				"to": "00:08:18,480"
+			},
+			"offsets": {
+				"from": 494800,
+				"to": 498480
+			},
+			"text": " So you know basically what we're doing is replacing the bottoms on the right to see if"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,480",
+				"to": "00:08:23,120"
+			},
+			"offsets": {
+				"from": 498480,
+				"to": 503120
+			},
+			"text": " we can get the thing on the left and if we can't then it's not more defined than and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,120",
+				"to": "00:08:26,120"
+			},
+			"offsets": {
+				"from": 503120,
+				"to": 506120
+			},
+			"text": " if it if we can then it is more defined than."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,120",
+				"to": "00:08:32,040"
+			},
+			"offsets": {
+				"from": 506120,
+				"to": 512040
+			},
+			"text": " So at the end of the day what we kind of get is this picture this partial order of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,040",
+				"to": "00:08:36,080"
+			},
+			"offsets": {
+				"from": 512040,
+				"to": 516080
+			},
+			"text": " definiteness of these terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,080",
+				"to": "00:08:41,640"
+			},
+			"offsets": {
+				"from": 516080,
+				"to": 521640
+			},
+			"text": " So like bottom is the most undefined bottom times bottom is a little more defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,640",
+				"to": "00:08:45,280"
+			},
+			"offsets": {
+				"from": 521640,
+				"to": 525280
+			},
+			"text": " These two terms left and right they're not more defined than each other even though they"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,280",
+				"to": "00:08:52,320"
+			},
+			"offsets": {
+				"from": 525280,
+				"to": 532320
+			},
+			"text": " have a term that is in common I mean a term that both of them can define."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,320",
+				"to": "00:08:57,120"
+			},
+			"offsets": {
+				"from": 532320,
+				"to": 537120
+			},
+			"text": " That you know a term that inhabits both of these partial definitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,120",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 537120,
+				"to": 541000
+			},
+			"text": " And so kind of you know what we do in the correct reconstruction process is we move from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:05,920"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 545920
+			},
+			"text": " less defined protocol specifications to more defined protocol specifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,920",
+				"to": "00:09:12,520"
+			},
+			"offsets": {
+				"from": 545920,
+				"to": 552520
+			},
+			"text": " We have a kind of process of we say something about the protocol that we prove things about"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,520",
+				"to": "00:09:17,020"
+			},
+			"offsets": {
+				"from": 552520,
+				"to": 557020
+			},
+			"text": " the protocol so that later when we continue to define the protocol the things that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,020",
+				"to": "00:09:22,040"
+			},
+			"offsets": {
+				"from": 557020,
+				"to": 562040
+			},
+			"text": " proved continue to hold because all of the later definitions are just a they're just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,040",
+				"to": "00:09:28,560"
+			},
+			"offsets": {
+				"from": 562040,
+				"to": 568560
+			},
+			"text": " a refinement of the previous definition you know so you know so the kind of the kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,560",
+				"to": "00:09:32,160"
+			},
+			"offsets": {
+				"from": 568560,
+				"to": 572160
+			},
+			"text": " theorems that we have for less defined versions of the protocol spec are going to hold for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,160",
+				"to": "00:09:33,880"
+			},
+			"offsets": {
+				"from": 572160,
+				"to": 573880
+			},
+			"text": " more defined versions of the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,880",
+				"to": "00:09:38,240"
+			},
+			"offsets": {
+				"from": 573880,
+				"to": 578240
+			},
+			"text": " And this kind of starts to make you feel why we have like this correct by construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,240",
+				"to": "00:09:43,080"
+			},
+			"offsets": {
+				"from": 578240,
+				"to": 583080
+			},
+			"text": " and protocol design because at some point we're going to have a partial spec and some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,080",
+				"to": "00:09:51,200"
+			},
+			"offsets": {
+				"from": 583080,
+				"to": 591200
+			},
+			"text": " proofs and then there's no way for us to define that spec more that will kill those proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,200",
+				"to": "00:10:00,680"
+			},
+			"offsets": {
+				"from": 591200,
+				"to": 600680
+			},
+			"text": " So basically like our kind of strategy is to like deliberately give partial specifications"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,680",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 600680,
+				"to": 605000
+			},
+			"text": " and prove things about partial specifications so that we can have a lot of flexibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:10,400"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 610400
+			},
+			"text": " in our iteration and design because we can continue to define from that point in many"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,400",
+				"to": "00:10:17,080"
+			},
+			"offsets": {
+				"from": 610400,
+				"to": 617080
+			},
+			"text": " different directions without having to worry and go back about you know verifying and changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,080",
+				"to": "00:10:21,160"
+			},
+			"offsets": {
+				"from": 617080,
+				"to": 621160
+			},
+			"text": " proofs that you know because of the change in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,160",
+				"to": "00:10:23,640"
+			},
+			"offsets": {
+				"from": 621160,
+				"to": 623640
+			},
+			"text": " So like a lot of the time when you have a protocol and you make a change you're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,640",
+				"to": "00:10:26,120"
+			},
+			"offsets": {
+				"from": 623640,
+				"to": 626120
+			},
+			"text": " to have to like change the proofs that you have about the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:30,760"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 630760
+			},
+			"text": " But if you instead had some partial definition of the protocol that you had some proofs from"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,760",
+				"to": "00:10:35,240"
+			},
+			"offsets": {
+				"from": 630760,
+				"to": 635240
+			},
+			"text": " which you could change and you can make your change to your protocol by just continuing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,240",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635240,
+				"to": 640000
+			},
+			"text": " to define the protocol just like in a different way from before then you can you know not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:45,840"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 645840
+			},
+			"text": " have this additional proof obligation because you just have proven it for a much broader"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,840",
+				"to": "00:10:52,280"
+			},
+			"offsets": {
+				"from": 645840,
+				"to": 652280
+			},
+			"text": " class of things which are kind of the things that inhabit this less well specified definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,280",
+				"to": "00:10:54,320"
+			},
+			"offsets": {
+				"from": 652280,
+				"to": 654320
+			},
+			"text": " of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,320",
+				"to": "00:11:04,760"
+			},
+			"offsets": {
+				"from": 654320,
+				"to": 664760
+			},
+			"text": " So let's so you know I think we can get a lot of flexibility and design because of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,760",
+				"to": "00:11:05,760"
+			},
+			"offsets": {
+				"from": 664760,
+				"to": 665760
+			},
+			"text": " approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,760",
+				"to": "00:11:12,400"
+			},
+			"offsets": {
+				"from": 665760,
+				"to": 672400
+			},
+			"text": " So here is some actual like partial order of definiteness in like some definitions that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,400",
+				"to": "00:11:15,960"
+			},
+			"offsets": {
+				"from": 672400,
+				"to": 675960
+			},
+			"text": " we have in the CPC CASPER world."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,960",
+				"to": "00:11:24,520"
+			},
+			"offsets": {
+				"from": 675960,
+				"to": 684520
+			},
+			"text": " So we have this minimal CPC CASPER family of protocols which is like the specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,520",
+				"to": "00:11:31,280"
+			},
+			"offsets": {
+				"from": 684520,
+				"to": 691280
+			},
+			"text": " that's like the easiest to understand the smallest the fewest parts and we defined terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,280",
+				"to": "00:11:34,840"
+			},
+			"offsets": {
+				"from": 691280,
+				"to": 694840
+			},
+			"text": " in that specification to define like the binary consensus protocol or the blockchain consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,840",
+				"to": "00:11:35,840"
+			},
+			"offsets": {
+				"from": 694840,
+				"to": 695840
+			},
+			"text": " protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,840",
+				"to": "00:11:40,640"
+			},
+			"offsets": {
+				"from": 695840,
+				"to": 700640
+			},
+			"text": " Another consensus protocol that you've seen if you've watched me present on CBC CASPER"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,640",
+				"to": "00:11:43,080"
+			},
+			"offsets": {
+				"from": 700640,
+				"to": 703080
+			},
+			"text": " over the years."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,080",
+				"to": "00:11:47,720"
+			},
+			"offsets": {
+				"from": 703080,
+				"to": 707720
+			},
+			"text": " And so all of these protocols these three protocols the binary consensus protocol the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,720",
+				"to": "00:11:58,240"
+			},
+			"offsets": {
+				"from": 707720,
+				"to": 718240
+			},
+			"text": " integer and the friendly ghost they're all more defined than the minimal CBC CASPER specification"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,240",
+				"to": "00:12:07,280"
+			},
+			"offsets": {
+				"from": 718240,
+				"to": 727280
+			},
+			"text": " and they all satisfy the same proof as the minimal CBC CASPER spec and these all therefore"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,280",
+				"to": "00:12:11,400"
+			},
+			"offsets": {
+				"from": 727280,
+				"to": 731400
+			},
+			"text": " we kind of benefit from that proof and we don't need to look back much when we when we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,400",
+				"to": "00:12:16,080"
+			},
+			"offsets": {
+				"from": 731400,
+				"to": 736080
+			},
+			"text": " defining forward from this minimal CBC CASPER family we don't need to look back and ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,080",
+				"to": "00:12:20,400"
+			},
+			"offsets": {
+				"from": 736080,
+				"to": 740400
+			},
+			"text": " about whether that proof will continue to be satisfied."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,400",
+				"to": "00:12:26,840"
+			},
+			"offsets": {
+				"from": 740400,
+				"to": 746840
+			},
+			"text": " But you know this this family of protocols actually has a full node condition it requires"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,840",
+				"to": "00:12:31,480"
+			},
+			"offsets": {
+				"from": 746840,
+				"to": 751480
+			},
+			"text": " that all the messages all the nodes process to all the justifications of all the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,480",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 751480,
+				"to": 756000
+			},
+			"text": " and so that's actually not super useful for example for sharding and so we don't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:43,040"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 763040
+			},
+			"text": " want to have to define sharding as a further definition of this specification because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,040",
+				"to": "00:12:47,120"
+			},
+			"offsets": {
+				"from": 763040,
+				"to": 767120
+			},
+			"text": " a full it requires this full node condition and so actually what we do instead is we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,120",
+				"to": "00:12:55,280"
+			},
+			"offsets": {
+				"from": 767120,
+				"to": 775280
+			},
+			"text": " like this other spec which is like this light client spec which you know where clients don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,280",
+				"to": "00:13:01,240"
+			},
+			"offsets": {
+				"from": 775280,
+				"to": 781240
+			},
+			"text": " need to have all of the just all of the resolve all the pointers and all their messages and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,240",
+				"to": "00:13:07,400"
+			},
+			"offsets": {
+				"from": 781240,
+				"to": 787400
+			},
+			"text": " so we and we define the sharded blockchains as a protocol spec as an instance of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,400",
+				"to": "00:13:11,920"
+			},
+			"offsets": {
+				"from": 787400,
+				"to": 791920
+			},
+			"text": " like CBC light client CBC family protocols which all satisfy the same because that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,920",
+				"to": "00:13:16,840"
+			},
+			"offsets": {
+				"from": 791920,
+				"to": 796840
+			},
+			"text": " a safety proof and actually there's like a more abstract family of protocols which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,840",
+				"to": "00:13:22,560"
+			},
+			"offsets": {
+				"from": 796840,
+				"to": 802560
+			},
+			"text": " you know considerably harder to communicate than the minimal one but which is less defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,560",
+				"to": "00:13:27,920"
+			},
+			"offsets": {
+				"from": 802560,
+				"to": 807920
+			},
+			"text": " than both the light client protocol and the minimal CBC CASPER protocol and so like if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,920",
+				"to": "00:13:35,120"
+			},
+			"offsets": {
+				"from": 807920,
+				"to": 815120
+			},
+			"text": " we with this kind of setup what we can what it does is it gives us a like a little road"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,120",
+				"to": "00:13:39,160"
+			},
+			"offsets": {
+				"from": 815120,
+				"to": 819160
+			},
+			"text": " map of like starting from where like what is defined and what properties do you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,160",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 819160,
+				"to": 824000
+			},
+			"text": " and if you go downstream from there and continue to find stuff you know what you get to benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:52,440"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 832440
+			},
+			"text": " from and so it can be really you know I think this kind of notion of a order of definiteness"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,440",
+				"to": "00:13:59,440"
+			},
+			"offsets": {
+				"from": 832440,
+				"to": 839440
+			},
+			"text": " and of progressively giving more and more defined protocol specifications is very very very"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,440",
+				"to": "00:14:04,240"
+			},
+			"offsets": {
+				"from": 839440,
+				"to": 844240
+			},
+			"text": " very much what we're doing in correct by construction protocol design because we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,240",
+				"to": "00:14:09,640"
+			},
+			"offsets": {
+				"from": 844240,
+				"to": 849640
+			},
+			"text": " engaged in the process of defining something and at the start we don't have a full definition"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,640",
+				"to": "00:14:13,240"
+			},
+			"offsets": {
+				"from": 849640,
+				"to": 853240
+			},
+			"text": " but we want to get to a point where we do have a definition that satisfies certain properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,240",
+				"to": "00:14:16,320"
+			},
+			"offsets": {
+				"from": 853240,
+				"to": 856320
+			},
+			"text": " and we want to know that the process that which we follow will guarantee that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,320",
+				"to": "00:14:23,360"
+			},
+			"offsets": {
+				"from": 856320,
+				"to": 863360
+			},
+			"text": " those properties and so you know which we try to have this kind of disciplined approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:31,320"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 871320
+			},
+			"text": " for getting them one step at a time in a way where we don't really have to look back so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,320",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 871320,
+				"to": 875000
+			},
+			"text": " but you know it's not always a straightforward sometimes we have like alternative choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:41,840"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 881840
+			},
+			"text": " of what how exactly to define stuff and even to get the same goal so it's you know I painted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,840",
+				"to": "00:14:47,440"
+			},
+			"offsets": {
+				"from": 881840,
+				"to": 887440
+			},
+			"text": " a pretty simple picture but the reality is more complex for example for validated rotation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,440",
+				"to": "00:14:52,400"
+			},
+			"offsets": {
+				"from": 887440,
+				"to": 892400
+			},
+			"text": " the easy thing to do in terms of the protocol specification and the proof obligations is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,400",
+				"to": "00:14:57,280"
+			},
+			"offsets": {
+				"from": 892400,
+				"to": 897280
+			},
+			"text": " to just launch lots of instances of these protocols that have new validator sets and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,280",
+				"to": "00:15:02,120"
+			},
+			"offsets": {
+				"from": 897280,
+				"to": 902120
+			},
+			"text": " that really can work in some cases but there are also cases where we want to define protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,120",
+				"to": "00:15:08,400"
+			},
+			"offsets": {
+				"from": 902120,
+				"to": 908400
+			},
+			"text": " that do validate a rotation in a way that is outside of the minimal CBC CASPER framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,400",
+				"to": "00:15:13,800"
+			},
+			"offsets": {
+				"from": 908400,
+				"to": 913800
+			},
+			"text": " and whenever we do this kind of design that's outside of the framework we need to we create"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,800",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 913800,
+				"to": 920000
+			},
+			"text": " new proof obligations and so we we sometimes have to have a choice between you know do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:25,240"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 925240
+			},
+			"text": " we do we design things in a way to take advantage of existing proofs or do we come up with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,240",
+				"to": "00:15:33,440"
+			},
+			"offsets": {
+				"from": 925240,
+				"to": 933440
+			},
+			"text": " new system or a broader family that that have other proofs and it's it's tricky because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,440",
+				"to": "00:15:36,120"
+			},
+			"offsets": {
+				"from": 933440,
+				"to": 936120
+			},
+			"text": " like on the one hand we want to benefit from all the proofs we already have and we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,120",
+				"to": "00:15:41,120"
+			},
+			"offsets": {
+				"from": 936120,
+				"to": 941120
+			},
+			"text": " to make any new ones on the other hand when we have when we can generalize stuff sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,120",
+				"to": "00:15:45,320"
+			},
+			"offsets": {
+				"from": 941120,
+				"to": 945320
+			},
+			"text": " we can generalize it a little bit and not as much as we'd like and so if I come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,320",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 945320,
+				"to": 949000
+			},
+			"text": " a more general family of protocols for doing validated rotation for example like I haven't"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:53,160"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 953160
+			},
+			"text": " come up with one that really does everything I want and so there's there's there's there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,160",
+				"to": "00:15:58,760"
+			},
+			"offsets": {
+				"from": 953160,
+				"to": 958760
+			},
+			"text": " definitely it definitely isn't as simple as like you know define as you go and everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,760",
+				"to": "00:16:05,920"
+			},
+			"offsets": {
+				"from": 958760,
+				"to": 965920
+			},
+			"text": " will be fine there's real choices that we need to make and like in the design process so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,920",
+				"to": "00:16:11,360"
+			},
+			"offsets": {
+				"from": 965920,
+				"to": 971360
+			},
+			"text": " one of the decisions we've made for example is that the valid validator strategies are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,360",
+				"to": "00:16:19,320"
+			},
+			"offsets": {
+				"from": 971360,
+				"to": 979320
+			},
+			"text": " not part of the specification I would like the core core like the you know the core partial"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,320",
+				"to": "00:16:26,560"
+			},
+			"offsets": {
+				"from": 979320,
+				"to": 986560
+			},
+			"text": " spec is only for clients it's like not the spec for minors or for people who make messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,560",
+				"to": "00:16:31,200"
+			},
+			"offsets": {
+				"from": 986560,
+				"to": 991200
+			},
+			"text": " is people for people who receive them and the and the reason why we did this is because"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,200",
+				"to": "00:16:40,320"
+			},
+			"offsets": {
+				"from": 991200,
+				"to": 1000320
+			},
+			"text": " it's like kind of it separates out the parts of the protocol in a way that allows us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,320",
+				"to": "00:16:47,080"
+			},
+			"offsets": {
+				"from": 1000320,
+				"to": 1007080
+			},
+			"text": " tackle them separately and we can like independent of when validators make messages or how validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,080",
+				"to": "00:16:52,880"
+			},
+			"offsets": {
+				"from": 1007080,
+				"to": 1012880
+			},
+			"text": " make messages show consensus safety so we have this big part of this the protocol of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,880",
+				"to": "00:16:57,720"
+			},
+			"offsets": {
+				"from": 1012880,
+				"to": 1017720
+			},
+			"text": " like when do you know it's make messages which is not defined in the course back which both"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,720",
+				"to": "00:17:01,080"
+			},
+			"offsets": {
+				"from": 1017720,
+				"to": 1021080
+			},
+			"text": " seems weird because you'd expect that to be part of the consensus protocol but also is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,080",
+				"to": "00:17:06,120"
+			},
+			"offsets": {
+				"from": 1021080,
+				"to": 1026120
+			},
+			"text": " really nice because there's nothing that there's no way that that term could be defined in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,120",
+				"to": "00:17:15,960"
+			},
+			"offsets": {
+				"from": 1026120,
+				"to": 1035960
+			},
+			"text": " a way that disrupts the proofs in the for for for the like client protocol and so the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,960",
+				"to": "00:17:20,400"
+			},
+			"offsets": {
+				"from": 1035960,
+				"to": 1040400
+			},
+			"text": " validator strategies are not in the core the core partial protocol spec and I and that was"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,400",
+				"to": "00:17:26,880"
+			},
+			"offsets": {
+				"from": 1040400,
+				"to": 1046880
+			},
+			"text": " like one of the decisions we made and deaf I definitely don't regret it at all we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,880",
+				"to": "00:17:31,520"
+			},
+			"offsets": {
+				"from": 1046880,
+				"to": 1051520
+			},
+			"text": " a bunch of design decisions that were motivated by economic thinking but also at the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,520",
+				"to": "00:17:36,240"
+			},
+			"offsets": {
+				"from": 1051520,
+				"to": 1056240
+			},
+			"text": " time we leave incentives undefined until very late in the game because the incentives have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,240",
+				"to": "00:17:42,840"
+			},
+			"offsets": {
+				"from": 1056240,
+				"to": 1062840
+			},
+			"text": " to respond to the actual states of the protocol and the actual and and the you know the consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,840",
+				"to": "00:17:46,960"
+			},
+			"offsets": {
+				"from": 1062840,
+				"to": 1066960
+			},
+			"text": " protocol itself and so you can't actually define the incentives until the consensus protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,960",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1066960,
+				"to": 1071000
+			},
+			"text": " define and so although we do a lot of thinking economic thinking upfront and we come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:59,400"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1079400
+			},
+			"text": " a lot of distributed systems properties that we want based on the economic thinking the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,400",
+				"to": "00:18:08,080"
+			},
+			"offsets": {
+				"from": 1079400,
+				"to": 1088080
+			},
+			"text": " and the the definition is of the incentives is left for later so you know we have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,080",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1088080,
+				"to": 1092000
+			},
+			"text": " fault tolerance threshold is not specified in the protocol is like a decision we made"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:17,600"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1097600
+			},
+			"text": " and like very like you know like it was not an arbitrary decision and was it was like was"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,600",
+				"to": "00:18:25,760"
+			},
+			"offsets": {
+				"from": 1097600,
+				"to": 1105760
+			},
+			"text": " motivated by like the design requirements that we have and we have and this is and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,760",
+				"to": "00:18:32,360"
+			},
+			"offsets": {
+				"from": 1105760,
+				"to": 1112360
+			},
+			"text": " is like an area where it's not in the core reference spec but we have a proof for how"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,360",
+				"to": "00:18:37,240"
+			},
+			"offsets": {
+				"from": 1112360,
+				"to": 1117240
+			},
+			"text": " nodes use would use it with different fault tolerance thresholds and so we can without"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,240",
+				"to": "00:18:44,440"
+			},
+			"offsets": {
+				"from": 1117240,
+				"to": 1124440
+			},
+			"text": " changing the core spec very much give proofs for a new kind of use of the protocol so you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,440",
+				"to": "00:18:51,800"
+			},
+			"offsets": {
+				"from": 1124440,
+				"to": 1131800
+			},
+			"text": " know more kind of weird proof tactics around you know using multiple instances of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,800",
+				"to": "00:18:58,760"
+			},
+			"offsets": {
+				"from": 1131800,
+				"to": 1138760
+			},
+			"text": " like correct by construction core protocol partial spec you know we have preventing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,760",
+				"to": "00:19:03,480"
+			},
+			"offsets": {
+				"from": 1138760,
+				"to": 1143480
+			},
+			"text": " DOS will require like you know that we bound the amount of work required to process a message"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,480",
+				"to": "00:19:10,160"
+			},
+			"offsets": {
+				"from": 1143480,
+				"to": 1150160
+			},
+			"text": " and that people have throttling for the amount of messages that they can receive and so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,160",
+				"to": "00:19:14,960"
+			},
+			"offsets": {
+				"from": 1150160,
+				"to": 1154960
+			},
+			"text": " is that's good that requires a new constraint on consensus messages it requires a new strategies"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,960",
+				"to": "00:19:20,280"
+			},
+			"offsets": {
+				"from": 1154960,
+				"to": 1160280
+			},
+			"text": " for the validators none of this stuff is part of the core protocol spec none of it is part"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,280",
+				"to": "00:19:26,400"
+			},
+			"offsets": {
+				"from": 1160280,
+				"to": 1166400
+			},
+			"text": " of the minimal you know core piece of the like you know the the of like the start of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,400",
+				"to": "00:19:32,640"
+			},
+			"offsets": {
+				"from": 1166400,
+				"to": 1172640
+			},
+			"text": " correct by construction process and all that is kind of very deliberate because the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,640",
+				"to": "00:19:39,200"
+			},
+			"offsets": {
+				"from": 1172640,
+				"to": 1179200
+			},
+			"text": " is that we can define this stuff later and it's more than fine because we didn't screw"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,200",
+				"to": "00:19:47,800"
+			},
+			"offsets": {
+				"from": 1179200,
+				"to": 1187800
+			},
+			"text": " it up by defining it earlier so so the the the other kind of you know really cool thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,800",
+				"to": "00:19:52,960"
+			},
+			"offsets": {
+				"from": 1187800,
+				"to": 1192960
+			},
+			"text": " about the correct by construction approach is the fact that you can iterate actually quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,960",
+				"to": "00:19:57,040"
+			},
+			"offsets": {
+				"from": 1192960,
+				"to": 1197040
+			},
+			"text": " quickly without having because you don't have to reason about much of the protocol when"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,040",
+				"to": "00:20:02,960"
+			},
+			"offsets": {
+				"from": 1197040,
+				"to": 1202960
+			},
+			"text": " you make changes you because you literally could not define it in a way that screws it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,960",
+				"to": "00:20:07,560"
+			},
+			"offsets": {
+				"from": 1202960,
+				"to": 1207560
+			},
+			"text": " up and so we I'm going to show you some of the progress we've made in the last little"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,560",
+				"to": "00:20:13,080"
+			},
+			"offsets": {
+				"from": 1207560,
+				"to": 1213080
+			},
+			"text": " little few months on some of the sharding stuff so this is what came out of the East"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,080",
+				"to": "00:20:20,080"
+			},
+			"offsets": {
+				"from": 1213080,
+				"to": 1220080
+			},
+			"text": " Berlin hackathon we came up with like a pair of shards one of which kind of follows the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,080",
+				"to": "00:20:24,640"
+			},
+			"offsets": {
+				"from": 1220080,
+				"to": 1224640
+			},
+			"text": " other one there's it's very it's very similar to the traditional CBC cast work consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,640",
+				"to": "00:20:30,600"
+			},
+			"offsets": {
+				"from": 1224640,
+				"to": 1230600
+			},
+			"text": " protocol in the sense that like it's you know it's really implemented at like any completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,600",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1230600,
+				"to": 1234960
+			},
+			"text": " as just a definition of further definition that protocol by giving the consensus values"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:41,680"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1241680
+			},
+			"text": " and the estimators the validators and their weights and the fault toner special so so"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,680",
+				"to": "00:20:48,520"
+			},
+			"offsets": {
+				"from": 1241680,
+				"to": 1248520
+			},
+			"text": " so we did this binary so we started to do this to two shard system and one thing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,520",
+				"to": "00:20:54,160"
+			},
+			"offsets": {
+				"from": 1248520,
+				"to": 1254160
+			},
+			"text": " we kind of have been wanting to do for a while that finally kind of got to implementing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,160",
+				"to": "00:21:03,680"
+			},
+			"offsets": {
+				"from": 1254160,
+				"to": 1263680
+			},
+			"text": " is you know and just like a few months like a really short order is shard rotation so"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,680",
+				"to": "00:21:08,560"
+			},
+			"offsets": {
+				"from": 1263680,
+				"to": 1268560
+			},
+			"text": " like here what we see is two shards that are changing position one of them is the root"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,560",
+				"to": "00:21:12,520"
+			},
+			"offsets": {
+				"from": 1268560,
+				"to": 1272520
+			},
+			"text": " at first and then it changes and the other than the other one is the root and then it"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,520",
+				"to": "00:21:16,920"
+			},
+			"offsets": {
+				"from": 1272520,
+				"to": 1276920
+			},
+			"text": " changes again and the other one is the root so the purple blocks there are root blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,920",
+				"to": "00:21:23,240"
+			},
+			"offsets": {
+				"from": 1276920,
+				"to": 1283240
+			},
+			"text": " the yellow blocks are child blocks and the roles of these shards in the high likelihood"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,240",
+				"to": "00:21:27,920"
+			},
+			"offsets": {
+				"from": 1283240,
+				"to": 1287920
+			},
+			"text": " consensus are changing and this does not require that we reason about consensus safety at all"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,920",
+				"to": "00:21:34,600"
+			},
+			"offsets": {
+				"from": 1287920,
+				"to": 1294600
+			},
+			"text": " because the correct by construction process kind of guarantees that with no thought because"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,600",
+				"to": "00:21:39,640"
+			},
+			"offsets": {
+				"from": 1294600,
+				"to": 1299640
+			},
+			"text": " it's kind of upstream from our definition process and so relatively little work compared"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,640",
+				"to": "00:21:44,160"
+			},
+			"offsets": {
+				"from": 1299640,
+				"to": 1304160
+			},
+			"text": " to normally working in consensus protocols we define this actually relatively complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,160",
+				"to": "00:21:49,400"
+			},
+			"offsets": {
+				"from": 1304160,
+				"to": 1309400
+			},
+			"text": " because this vertical that like this comes to consensus on you know the state of two"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,400",
+				"to": "00:21:54,360"
+			},
+			"offsets": {
+				"from": 1309400,
+				"to": 1314360
+			},
+			"text": " shards with blocks that have like two different positions and have like a relatively complicated"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,360",
+				"to": "00:22:00,240"
+			},
+			"offsets": {
+				"from": 1314360,
+				"to": 1320240
+			},
+			"text": " for choice role and here is like and the kind of next kind of conclusion of that is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,240",
+				"to": "00:22:05,800"
+			},
+			"offsets": {
+				"from": 1320240,
+				"to": 1325800
+			},
+			"text": " oh look when we have two shards that can send messages we can do routing we can just move"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,800",
+				"to": "00:22:10,800"
+			},
+			"offsets": {
+				"from": 1325800,
+				"to": 1330800
+			},
+			"text": " shards around in two positions we can move shards around it more and then we have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,800",
+				"to": "00:22:16,680"
+			},
+			"offsets": {
+				"from": 1330800,
+				"to": 1336680
+			},
+			"text": " you know pretty cool sharding solution where we have messages being routed around cross"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,680",
+				"to": "00:22:22,280"
+			},
+			"offsets": {
+				"from": 1336680,
+				"to": 1342280
+			},
+			"text": " shards and with like the atomicity property that if your route doesn't fully completed"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,280",
+				"to": "00:22:29,040"
+			},
+			"offsets": {
+				"from": 1342280,
+				"to": 1349040
+			},
+			"text": " then the block that started that route will be orphaned so we have like you know a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,040",
+				"to": "00:22:34,880"
+			},
+			"offsets": {
+				"from": 1349040,
+				"to": 1354880
+			},
+			"text": " kind of strong ability to iterate very quickly because of the correct by construction approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,880",
+				"to": "00:22:39,640"
+			},
+			"offsets": {
+				"from": 1354880,
+				"to": 1359640
+			},
+			"text": " because we don't need to look back at the previous guarantees we're not at risk of disrupting"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,640",
+				"to": "00:22:47,560"
+			},
+			"offsets": {
+				"from": 1359640,
+				"to": 1367560
+			},
+			"text": " them and so you know I'll walk through this again so what's going to happen here is first"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,560",
+				"to": "00:22:52,640"
+			},
+			"offsets": {
+				"from": 1367560,
+				"to": 1372640
+			},
+			"text": " the route shards was initially zero now switching to one these messages are being routed from"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,640",
+				"to": "00:23:00,720"
+			},
+			"offsets": {
+				"from": 1372640,
+				"to": 1380720
+			},
+			"text": " shards six to three and back shards shard zero and one switched from zero one to like one"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,720",
+				"to": "00:23:05,680"
+			},
+			"offsets": {
+				"from": 1380720,
+				"to": 1385680
+			},
+			"text": " zero and then and then back and then shard three became a child of shard four even though"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,680",
+				"to": "00:23:11,840"
+			},
+			"offsets": {
+				"from": 1385680,
+				"to": 1391840
+			},
+			"text": " it was previously a sibling and then messages start to get routed through shard four after"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,840",
+				"to": "00:23:15,960"
+			},
+			"offsets": {
+				"from": 1391840,
+				"to": 1395960
+			},
+			"text": " that swap so it's really kind of quite complicated we have like a routing tables and they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,960",
+				"to": "00:23:19,520"
+			},
+			"offsets": {
+				"from": 1395960,
+				"to": 1399520
+			},
+			"text": " updating and but we really didn't need to think about consensus protocols almost at all"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,520",
+				"to": "00:23:32,240"
+			},
+			"offsets": {
+				"from": 1399520,
+				"to": 1412240
+			},
+			"text": " while it's just fine this thing so you know we have oh thank you so we have like methodology"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,240",
+				"to": "00:23:36,560"
+			},
+			"offsets": {
+				"from": 1412240,
+				"to": 1416560
+			},
+			"text": " that lets us define consensus protocols we've defined a large number of consensus protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,560",
+				"to": "00:23:42,040"
+			},
+			"offsets": {
+				"from": 1416560,
+				"to": 1422040
+			},
+			"text": " or partially defined a large number of consensus protocols and you know and we iterate while"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,040",
+				"to": "00:23:47,320"
+			},
+			"offsets": {
+				"from": 1422040,
+				"to": 1427320
+			},
+			"text": " creating minimal proof obligations and we are able to mix and match kind of a lot and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,320",
+				"to": "00:23:53,840"
+			},
+			"offsets": {
+				"from": 1427320,
+				"to": 1433840
+			},
+			"text": " know so I recommend that you try out you know correct by construction and we were sorry"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,840",
+				"to": "00:24:00,640"
+			},
+			"offsets": {
+				"from": 1433840,
+				"to": 1440640
+			},
+			"text": " I'm looking at the wrong slide here got ahead of myself that was the next slide so we basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,640",
+				"to": "00:24:05,080"
+			},
+			"offsets": {
+				"from": 1440640,
+				"to": 1445080
+			},
+			"text": " really rely on these partial specifications and you know the fact that it's not defined"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,080",
+				"to": "00:24:10,640"
+			},
+			"offsets": {
+				"from": 1445080,
+				"to": 1450640
+			},
+			"text": " yet is actually a huge asset for us the fact that we leave things undefined until you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,640",
+				"to": "00:24:17,600"
+			},
+			"offsets": {
+				"from": 1450640,
+				"to": 1457600
+			},
+			"text": " the latest possible moment means that we have as much flexibility as possible to iterate"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,600",
+				"to": "00:24:26,040"
+			},
+			"offsets": {
+				"from": 1457600,
+				"to": 1466040
+			},
+			"text": " without disrupting our previous proofs so already said all this yes it's great try it"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,040",
+				"to": "00:24:33,800"
+			},
+			"offsets": {
+				"from": 1466040,
+				"to": 1473800
+			},
+			"text": " correct by construction protocol design it's awesome so now let's moving to the like kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,800",
+				"to": "00:24:37,480"
+			},
+			"offsets": {
+				"from": 1473800,
+				"to": 1477480
+			},
+			"text": " of announcement section of the talk so that was that was like all that was pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,480",
+				"to": "00:24:43,760"
+			},
+			"offsets": {
+				"from": 1477480,
+				"to": 1483760
+			},
+			"text": " all of the all of the content so we have some some bunch of a bunch of announces of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,760",
+				"to": "00:24:50,120"
+			},
+			"offsets": {
+				"from": 1483760,
+				"to": 1490120
+			},
+			"text": " like you know contributing to cbccastr research this is a brob hambrock from true level built"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,120",
+				"to": "00:24:59,120"
+			},
+			"offsets": {
+				"from": 1490120,
+				"to": 1499120
+			},
+			"text": " a generative testing for cbccastr protocols I'm going to see if I can and with this spoiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,120",
+				"to": "00:25:05,880"
+			},
+			"offsets": {
+				"from": 1499120,
+				"to": 1505880
+			},
+			"text": " alert so with this what this kind of shows here is the the red the red"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,880",
+				"to": "00:25:12,880"
+			},
+			"offsets": {
+				"from": 1505880,
+				"to": 1512880
+			},
+			"text": " dots are members of a clique which are validators who see each other agree in a way that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,880",
+				"to": "00:25:19,080"
+			},
+			"offsets": {
+				"from": 1512880,
+				"to": 1519080
+			},
+			"text": " are actually finalizing that block the blue one down there and this is something you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,080",
+				"to": "00:25:25,760"
+			},
+			"offsets": {
+				"from": 1519080,
+				"to": 1525760
+			},
+			"text": " related to the way that finality works in in in in in casper and and and here we see like"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,760",
+				"to": "00:25:31,600"
+			},
+			"offsets": {
+				"from": 1525760,
+				"to": 1531600
+			},
+			"text": " multiple views of the protocol from point of view for different validators until one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,600",
+				"to": "00:25:38,840"
+			},
+			"offsets": {
+				"from": 1531600,
+				"to": 1538840
+			},
+			"text": " them finds a decision on this block namely finalizing you know this this this blue block and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,840",
+				"to": "00:25:44,200"
+			},
+			"offsets": {
+				"from": 1538840,
+				"to": 1544200
+			},
+			"text": " the green dots are the messages from the validator whose view we see and the red dots are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,200",
+				"to": "00:25:50,440"
+			},
+			"offsets": {
+				"from": 1544200,
+				"to": 1550440
+			},
+			"text": " uh clique which is like a group of validators who sees each other agree in a certain way that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,440",
+				"to": "00:25:56,920"
+			},
+			"offsets": {
+				"from": 1550440,
+				"to": 1556920
+			},
+			"text": " corresponds to a because that's a signature that you know is like a decision so um so"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,920",
+				"to": "00:26:00,280"
+			},
+			"offsets": {
+				"from": 1556920,
+				"to": 1560280
+			},
+			"text": " that's pretty cool stuff you know the I mentioned the sharding proof of concept we've been working"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,280",
+				"to": "00:26:07,080"
+			},
+			"offsets": {
+				"from": 1560280,
+				"to": 1567080
+			},
+			"text": " on this with like a significant like rotating group of people since the uh eth Berlin hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,080",
+				"to": "00:26:11,960"
+			},
+			"offsets": {
+				"from": 1567080,
+				"to": 1571960
+			},
+			"text": " and actually before that at the ethereum ic 3 workshop we worked on the specification um especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,960",
+				"to": "00:26:17,080"
+			},
+			"offsets": {
+				"from": 1571960,
+				"to": 1577080
+			},
+			"text": " you want to give a shout out to Alex skidinoff who in the last like you know week and also"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,080",
+				"to": "00:26:22,800"
+			},
+			"offsets": {
+				"from": 1577080,
+				"to": 1582800
+			},
+			"text": " during the east san francisco hackathon put in like heroic efforts to get the routing working"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,800",
+				"to": "00:26:28,120"
+			},
+			"offsets": {
+				"from": 1582800,
+				"to": 1588120
+			},
+			"text": " in the shard swapping I mean he's the first he's the first person to prototype the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,120",
+				"to": "00:26:34,600"
+			},
+			"offsets": {
+				"from": 1588120,
+				"to": 1594600
+			},
+			"text": " cross shard message routing with jealous um but uh you know you should check out this"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,600",
+				"to": "00:26:41,360"
+			},
+			"offsets": {
+				"from": 1594600,
+				"to": 1601360
+			},
+			"text": " github repo and see if you like it and it's not there's still loads of bugs um but there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,360",
+				"to": "00:26:47,600"
+			},
+			"offsets": {
+				"from": 1601360,
+				"to": 1607600
+			},
+			"text": " you know it's it's definitely interesting um aditya who is probably somewhere here has"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,600",
+				"to": "00:26:52,320"
+			},
+			"offsets": {
+				"from": 1607600,
+				"to": 1612320
+			},
+			"text": " announced that he's implementing a sharding client uh with like you know the area blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,320",
+				"to": "00:26:58,720"
+			},
+			"offsets": {
+				"from": 1612320,
+				"to": 1618720
+			},
+			"text": " and like you know very like a theorem sharding client and he has a github repo and a twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,720",
+				"to": "00:27:06,200"
+			},
+			"offsets": {
+				"from": 1618720,
+				"to": 1626200
+			},
+			"text": " handle you should follow him for his work um we this is a exciting one we kind of released"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,200",
+				"to": "00:27:10,080"
+			},
+			"offsets": {
+				"from": 1626200,
+				"to": 1630080
+			},
+			"text": " a draft or are going to release a draft I wrote these slides I thought we'd have it released"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:10,080",
+				"to": "00:27:19,920"
+			},
+			"offsets": {
+				"from": 1630080,
+				"to": 1639920
+			},
+			"text": " by now but we're gonna release a draft today of oh wait it is released my bad github.com/cbc-castr"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,920",
+				"to": "00:27:24,840"
+			},
+			"offsets": {
+				"from": 1639920,
+				"to": 1644840
+			},
+			"text": " and you can download a new specification of the minimal cbc cast bar protocol states"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,840",
+				"to": "00:27:32,120"
+			},
+			"offsets": {
+				"from": 1644840,
+				"to": 1652120
+			},
+			"text": " that is you know extremely rigorous and pedantic uh with uh extremely rigorous and pedantic"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,120",
+				"to": "00:27:37,680"
+			},
+			"offsets": {
+				"from": 1652120,
+				"to": 1657680
+			},
+			"text": " proof of the consensus safety result and example protocols including uh the friendly ghost"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,680",
+				"to": "00:27:45,380"
+			},
+			"offsets": {
+				"from": 1657680,
+				"to": 1665380
+			},
+			"text": " a finality gadget um a sharding with fixed hierarchy and I'd like to thank the co my co-authors"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,380",
+				"to": "00:27:53,860"
+			},
+			"offsets": {
+				"from": 1665380,
+				"to": 1673860
+			},
+			"text": " uh Nate Rush aditya and uh uh Georgeos uh and they're all here um you should you can probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,860",
+				"to": "00:28:00,580"
+			},
+			"offsets": {
+				"from": 1673860,
+				"to": 1680580
+			},
+			"text": " recognize them from their faces I put uh deus faces on the previous slide um finally you"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,580",
+				"to": "00:28:06,700"
+			},
+			"offsets": {
+				"from": 1680580,
+				"to": 1686700
+			},
+			"text": " know don't forget about the prototype and the wiki at the riem slash cbc-castr um those"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,700",
+				"to": "00:28:12,780"
+			},
+			"offsets": {
+				"from": 1686700,
+				"to": 1692780
+			},
+			"text": " are like good resources if you want to like dip your toes and check it out um you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,780",
+				"to": "00:28:17,580"
+			},
+			"offsets": {
+				"from": 1692780,
+				"to": 1697580
+			},
+			"text": " we're totally looking for help of all kinds and we're getting better and better at helping"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,580",
+				"to": "00:28:22,780"
+			},
+			"offsets": {
+				"from": 1697580,
+				"to": 1702780
+			},
+			"text": " you help us as the like documentation and definitions and stuff have laid themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,780",
+				"to": "00:28:26,580"
+			},
+			"offsets": {
+				"from": 1702780,
+				"to": 1706580
+			},
+			"text": " out in a way where you can you know come in and contribute in a way where it's really"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,580",
+				"to": "00:28:30,500"
+			},
+			"offsets": {
+				"from": 1706580,
+				"to": 1710500
+			},
+			"text": " clear how it interfaces with everyone else's work and where you know you won't be wasting"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,500",
+				"to": "00:28:37,620"
+			},
+			"offsets": {
+				"from": 1710500,
+				"to": 1717620
+			},
+			"text": " your time and you will be helping um so you know um reach out and thanks so much for listening"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,620",
+				"to": "00:28:59,620"
+			},
+			"offsets": {
+				"from": 1717620,
+				"to": 1739620
+			},
+			"text": " um I have time for one question it's okay you don't need to ask a question I can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,620",
+				"to": "00:29:05,660"
+			},
+			"offsets": {
+				"from": 1739620,
+				"to": 1745660
+			},
+			"text": " go bye everyone oh wait there's a question sorry sorry sorry do you have a microphone"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,660",
+				"to": "00:29:09,740"
+			},
+			"offsets": {
+				"from": 1745660,
+				"to": 1749740
+			},
+			"text": " so what's the deal there there's the microphones are at the front you have to come up to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,740",
+				"to": "00:29:21,660"
+			},
+			"offsets": {
+				"from": 1749740,
+				"to": 1761660
+			},
+			"text": " front we got like 30 seconds you got to be quick 10 second question 20 second answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,660",
+				"to": "00:29:26,820"
+			},
+			"offsets": {
+				"from": 1761660,
+				"to": 1766820
+			},
+			"text": " yeah can you hear me uh good um what's a good way of really understanding cbc uh if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,820",
+				"to": "00:29:32,340"
+			},
+			"offsets": {
+				"from": 1766820,
+				"to": 1772340
+			},
+			"text": " come from math background yes read this paper anything anything more sort of high level"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,340",
+				"to": "00:29:37,380"
+			},
+			"offsets": {
+				"from": 1772340,
+				"to": 1777380
+			},
+			"text": " just uh no the paper is really good it's just it's set theory okay it's very accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,380",
+				"to": "00:29:38,540"
+			},
+			"offsets": {
+				"from": 1777380,
+				"to": 1778540
+			},
+			"text": " I think okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:38,540",
+				"to": "00:29:45,540"
+			},
+			"offsets": {
+				"from": 1778540,
+				"to": 1785540
+			},
+			"text": " yeah"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,540",
+				"to": "00:29:47,600"
+			},
+			"offsets": {
+				"from": 1785540,
+				"to": 1787600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,600",
+				"to": "00:29:49,660"
+			},
+			"offsets": {
+				"from": 1787600,
+				"to": 1789660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:49,660",
+				"to": "00:29:51,660"
+			},
+			"offsets": {
+				"from": 1789660,
+				"to": 1791660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,660",
+				"to": "00:29:53,660"
+			},
+			"offsets": {
+				"from": 1791660,
+				"to": 1793660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,660",
+				"to": "00:29:55,660"
+			},
+			"offsets": {
+				"from": 1793660,
+				"to": 1795660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:55,660",
+				"to": "00:29:57,660"
+			},
+			"offsets": {
+				"from": 1795660,
+				"to": 1797660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,660",
+				"to": "00:29:59,660"
+			},
+			"offsets": {
+				"from": 1797660,
+				"to": 1799660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,660",
+				"to": "00:30:01,660"
+			},
+			"offsets": {
+				"from": 1799660,
+				"to": 1801660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,660",
+				"to": "00:30:03,660"
+			},
+			"offsets": {
+				"from": 1801660,
+				"to": 1803660
+			},
+			"text": " you you you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,660",
+				"to": "00:30:05,660"
+			},
+			"offsets": {
+				"from": 1803660,
+				"to": 1805660
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,660",
+				"to": "00:30:23,660"
+			},
+			"offsets": {
+				"from": 1805660,
+				"to": 1823660
+			},
+			"text": " you you you you you you you you you you you you you you you you you you you you you you you"
+		}
+	]
+}

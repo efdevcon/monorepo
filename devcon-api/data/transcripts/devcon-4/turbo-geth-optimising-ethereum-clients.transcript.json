@@ -1,0 +1,3882 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,940"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5940
+			},
+			"text": " This project has been going for a little bit less than a year, and it started as a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,940",
+				"to": "00:00:11,900"
+			},
+			"offsets": {
+				"from": 5940,
+				"to": 11900
+			},
+			"text": " curiosity, but then it sort of meandered into all sorts of rabbit holes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,900",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 11900,
+				"to": 15560
+			},
+			"text": " And currently it's been supported by three different organizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:22,540"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 22540
+			},
+			"text": " It's the Firim Foundation and Form of Grants, and also by and Fuhrer, by the contracts between"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,540",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 22540,
+				"to": 24120
+			},
+			"text": " the Interchain Foundation as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:29,400"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 29400
+			},
+			"text": " You probably know about Interchain Foundation via the Cosmos product."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,400",
+				"to": "00:00:31,320"
+			},
+			"offsets": {
+				"from": 29400,
+				"to": 31320
+			},
+			"text": " So let's start."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,320",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 31320,
+				"to": 35120
+			},
+			"text": " So I'm going to skip all the slides that I had before, because you probably seen them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:39,080"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 39080
+			},
+			"text": " So we start right from the meat about what is the difference between the guests and two"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,080",
+				"to": "00:00:40,240"
+			},
+			"offsets": {
+				"from": 39080,
+				"to": 40240
+			},
+			"text": " big guests."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,240",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 40240,
+				"to": 44400
+			},
+			"text": " And so on the slide you could see on the left hand side, you could see like the, in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:51,280"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 51280
+			},
+			"text": " theorem, the state of accounts and the contracts and their storage is modeled as the Patricia"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,280",
+				"to": "00:00:56,960"
+			},
+			"offsets": {
+				"from": 51280,
+				"to": 56960
+			},
+			"text": " Tree, which is essentially a radix tree of the radix 16 with some refinements to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,960",
+				"to": "00:01:02,360"
+			},
+			"offsets": {
+				"from": 56960,
+				"to": 62360
+			},
+			"text": " able to get rid of some waste of space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,360",
+				"to": "00:01:07,560"
+			},
+			"offsets": {
+				"from": 62360,
+				"to": 67560
+			},
+			"text": " And when you model it like that and you want to persist it on the database, the persistence"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,560",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 67560,
+				"to": 72240
+			},
+			"text": " you look like on the right hand side, which is the key of the, so it basically the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:17,680"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 77680
+			},
+			"text": " structure every node in this Patricia Tree is split in, is one record in a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,680",
+				"to": "00:01:22,640"
+			},
+			"offsets": {
+				"from": 77680,
+				"to": 82640
+			},
+			"text": " And for that record, the key is the hash of the serialization of this node and the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,640",
+				"to": "00:01:24,520"
+			},
+			"offsets": {
+				"from": 82640,
+				"to": 84520
+			},
+			"text": " is the serialization itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,520",
+				"to": "00:01:32,200"
+			},
+			"offsets": {
+				"from": 84520,
+				"to": 92200
+			},
+			"text": " What it allows us to do is, let's pretend that we do not have that pink node in the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,200",
+				"to": "00:01:34,080"
+			},
+			"offsets": {
+				"from": 92200,
+				"to": 94080
+			},
+			"text": " like the diamond pink node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,080",
+				"to": "00:01:40,440"
+			},
+			"offsets": {
+				"from": 94080,
+				"to": 100440
+			},
+			"text": " And instead we simply have a hash, which is a, which you could see that is a little dark"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,440",
+				"to": "00:01:42,520"
+			},
+			"offsets": {
+				"from": 100440,
+				"to": 102520
+			},
+			"text": " and dark rectangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,520",
+				"to": "00:01:46,480"
+			},
+			"offsets": {
+				"from": 102520,
+				"to": 106480
+			},
+			"text": " So what we could do is that we could take that hash and then use it as the key in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:51,920"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 111920
+			},
+			"text": " database and look up the serialization of that pink node and reconstruct it and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,920",
+				"to": "00:01:53,440"
+			},
+			"offsets": {
+				"from": 111920,
+				"to": 113440
+			},
+			"text": " plug it into the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,440",
+				"to": "00:01:59,160"
+			},
+			"offsets": {
+				"from": 113440,
+				"to": 119160
+			},
+			"text": " So that's how basically pretty much all the clients do that, as far as I know."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,160",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 119160,
+				"to": 126120
+			},
+			"text": " And so the problem that, so that when I first saw it actually, I was a bit surprised because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:09,640"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 129640
+			},
+			"text": " for me it wasn't, it wouldn't be how I would do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,640",
+				"to": "00:02:13,080"
+			},
+			"offsets": {
+				"from": 129640,
+				"to": 133080
+			},
+			"text": " And that's why I actually started on this process because whenever I see something which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,080",
+				"to": "00:02:18,320"
+			},
+			"offsets": {
+				"from": 133080,
+				"to": 138320
+			},
+			"text": " doesn't look like I expected, this is where you, so I didn't expect to see that, but probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,320",
+				"to": "00:02:20,960"
+			},
+			"offsets": {
+				"from": 138320,
+				"to": 140960
+			},
+			"text": " it was very natural for other people."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,960",
+				"to": "00:02:27,240"
+			},
+			"offsets": {
+				"from": 140960,
+				"to": 147240
+			},
+			"text": " So the main problem here that I saw is that, let's say that when you only have a root and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,240",
+				"to": "00:02:32,800"
+			},
+			"offsets": {
+				"from": 147240,
+				"to": 152800
+			},
+			"text": " nothing else in the memory and then you want to fetch, let's say element V5, which is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,800",
+				"to": "00:02:39,760"
+			},
+			"offsets": {
+				"from": 152800,
+				"to": 159760
+			},
+			"text": " purple diamond on the bottom right, you actually have to do one, two, three lookups to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,760",
+				"to": "00:02:40,760"
+			},
+			"offsets": {
+				"from": 159760,
+				"to": 160760
+			},
+			"text": " database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,760",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 160760,
+				"to": 166200
+			},
+			"text": " And the reason for that is because in order to retrieve that diamond, you have to first"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:50,520"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 170520
+			},
+			"text": " retrieve the element before that because it contains its hash, so and then so, and vice"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,520",
+				"to": "00:02:51,520"
+			},
+			"offsets": {
+				"from": 170520,
+				"to": 171520
+			},
+			"text": " versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,520",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 171520,
+				"to": 174560
+			},
+			"text": " So you have to do three sequential lookups to the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:02:58,600"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 178600
+			},
+			"text": " You cannot parallelize them because there's a data dependency there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,600",
+				"to": "00:03:05,040"
+			},
+			"offsets": {
+				"from": 178600,
+				"to": 185040
+			},
+			"text": " So that gave me the idea of not doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,040",
+				"to": "00:03:08,440"
+			},
+			"offsets": {
+				"from": 185040,
+				"to": 188440
+			},
+			"text": " So basically, you see in the red matters, the depth should not matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,440",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 188440,
+				"to": 193200
+			},
+			"text": " It means that how can we do that without doing three lookups or five lookups or seven"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 198200
+			},
+			"text": " lookups or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:25,080"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 205080
+			},
+			"text": " So what I tried to do is that, okay, let's just put them in the database as I would expect"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,080",
+				"to": "00:03:26,080"
+			},
+			"offsets": {
+				"from": 205080,
+				"to": 206080
+			},
+			"text": " it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,080",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 206080,
+				"to": 212640
+			},
+			"text": " Like, you got a key, which is the actual key of the value that you want to store and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:35,440"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 215440
+			},
+			"text": " value is the actual value that you want to store."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,440",
+				"to": "00:03:41,840"
+			},
+			"offsets": {
+				"from": 215440,
+				"to": 221840
+			},
+			"text": " And if it's a historical value, then we're going to append some kind of block number encoded"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,840",
+				"to": "00:03:46,160"
+			},
+			"offsets": {
+				"from": 221840,
+				"to": 226160
+			},
+			"text": " in some way to the key just for simplicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,160",
+				"to": "00:03:51,880"
+			},
+			"offsets": {
+				"from": 226160,
+				"to": 231880
+			},
+			"text": " And the main problem here is that how are we going to compute the remarkable hash of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,880",
+				"to": "00:03:52,880"
+			},
+			"offsets": {
+				"from": 231880,
+				"to": 232880
+			},
+			"text": " that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,880",
+				"to": "00:03:57,440"
+			},
+			"offsets": {
+				"from": 232880,
+				"to": 237440
+			},
+			"text": " And I think initially when the first clients have been produced, the assumption was that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,440",
+				"to": "00:04:02,080"
+			},
+			"offsets": {
+				"from": 237440,
+				"to": 242080
+			},
+			"text": " oh, that's going to be super expensive to actually have this flat representation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,080",
+				"to": "00:04:03,920"
+			},
+			"offsets": {
+				"from": 242080,
+				"to": 243920
+			},
+			"text": " then to rebuild the whole tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,920",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 243920,
+				"to": 249000
+			},
+			"text": " And then everybody decided to go, okay, let's do this, let's do Patricia tree in a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 250000
+			},
+			"text": " But then I said, well, why not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 251000
+			},
+			"text": " Let's try."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:16,400"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 256400
+			},
+			"text": " And actually it turned out that you can do things much, well, in a lot of cases, much"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,400",
+				"to": "00:04:21,600"
+			},
+			"offsets": {
+				"from": 256400,
+				"to": 261600
+			},
+			"text": " faster if you simply rebuild the hash tree on the fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,600",
+				"to": "00:04:23,520"
+			},
+			"offsets": {
+				"from": 261600,
+				"to": 263520
+			},
+			"text": " And you use some caching and stuff like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,520",
+				"to": "00:04:32,600"
+			},
+			"offsets": {
+				"from": 263520,
+				"to": 272600
+			},
+			"text": " So the way it looks like, imagine that we need to get to this pink diamond now."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,600",
+				"to": "00:04:36,600"
+			},
+			"offsets": {
+				"from": 272600,
+				"to": 276600
+			},
+			"text": " With the pink diamond, we just simply fetch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,600",
+				"to": "00:04:43,440"
+			},
+			"offsets": {
+				"from": 276600,
+				"to": 283440
+			},
+			"text": " But actually, let's say that we want to compute the hash of that oval dash thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,440",
+				"to": "00:04:48,120"
+			},
+			"offsets": {
+				"from": 283440,
+				"to": 288120
+			},
+			"text": " So in this case, we do a range query, which will fetch us all the keys and values, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,120",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 288120,
+				"to": 292360
+			},
+			"text": " starts with one, which is the, actually, the picture might be wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:04:54,960"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 294960
+			},
+			"text": " But anyway, so you probably get the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,960",
+				"to": "00:04:59,880"
+			},
+			"offsets": {
+				"from": 294960,
+				"to": 299880
+			},
+			"text": " So we get the range of keys and values, and then we apply our mericalization to them and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,880",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 299880,
+				"to": 302240
+			},
+			"text": " we get the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:08,360"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 308360
+			},
+			"text": " It only kind of works for the current state, if you want to compute the merical hashes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,360",
+				"to": "00:05:09,440"
+			},
+			"offsets": {
+				"from": 308360,
+				"to": 309440
+			},
+			"text": " the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,440",
+				"to": "00:05:13,920"
+			},
+			"offsets": {
+				"from": 309440,
+				"to": 313920
+			},
+			"text": " But for historical state, it's a kind of a lot of work because you don't usually store"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,920",
+				"to": "00:05:15,880"
+			},
+			"offsets": {
+				"from": 313920,
+				"to": 315880
+			},
+			"text": " the historical state in your cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,880",
+				"to": "00:05:21,560"
+			},
+			"offsets": {
+				"from": 315880,
+				"to": 321560
+			},
+			"text": " But it works reasonably well for the RPC queries that are tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,560",
+				"to": "00:05:27,320"
+			},
+			"offsets": {
+				"from": 321560,
+				"to": 327320
+			},
+			"text": " So as I mentioned, that in fewer has been supported in this project for some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,320",
+				"to": "00:05:32,080"
+			},
+			"offsets": {
+				"from": 327320,
+				"to": 332080
+			},
+			"text": " And one of the things we did is that instead of me only running the Terpigest on my machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,080",
+				"to": "00:05:35,680"
+			},
+			"offsets": {
+				"from": 332080,
+				"to": 335680
+			},
+			"text": " or some cloud machines, they tried to run it out of the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,680",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 335680,
+				"to": 337520
+			},
+			"text": " And this is what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:41,080"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 341080
+			},
+			"text": " And I was kind of pleasantly surprised because I must have been running it on the really"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,080",
+				"to": "00:05:42,840"
+			},
+			"offsets": {
+				"from": 341080,
+				"to": 342840
+			},
+			"text": " bad machines before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,840",
+				"to": "00:05:48,080"
+			},
+			"offsets": {
+				"from": 342840,
+				"to": 348080
+			},
+			"text": " So now I usually got two weeks to sync it, but this was actually synced in about six"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,080",
+				"to": "00:05:49,280"
+			},
+			"offsets": {
+				"from": 348080,
+				"to": 349280
+			},
+			"text": " and a half days."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,280",
+				"to": "00:05:51,360"
+			},
+			"offsets": {
+				"from": 349280,
+				"to": 351360
+			},
+			"text": " Yeah, six and a half days."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,360",
+				"to": "00:05:55,360"
+			},
+			"offsets": {
+				"from": 351360,
+				"to": 355360
+			},
+			"text": " And this to the pretty recent block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,360",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 355360,
+				"to": 357480
+			},
+			"text": " And the, it's archived now, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:06:06,320"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 366320
+			},
+			"text": " So it has a full unrolled history and it only was what, 250 something gigabytes, which was"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,320",
+				"to": "00:06:12,720"
+			},
+			"offsets": {
+				"from": 366320,
+				"to": 372720
+			},
+			"text": " cool because it probably six times less than you would normally get."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,720",
+				"to": "00:06:17,200"
+			},
+			"offsets": {
+				"from": 372720,
+				"to": 377200
+			},
+			"text": " And just as an interesting thing that the memory profile, so what you can see here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,200",
+				"to": "00:06:21,920"
+			},
+			"offsets": {
+				"from": 377200,
+				"to": 381920
+			},
+			"text": " that the yellow oscillating bit is that it's obviously go, it has a garbage collection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,920",
+				"to": "00:06:24,120"
+			},
+			"offsets": {
+				"from": 381920,
+				"to": 384120
+			},
+			"text": " and that's why you're oscillating so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,120",
+				"to": "00:06:29,520"
+			},
+			"offsets": {
+				"from": 384120,
+				"to": 389520
+			},
+			"text": " That's basically allocated heap, which goes into about 13 gig maximum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,520",
+				"to": "00:06:33,760"
+			},
+			"offsets": {
+				"from": 389520,
+				"to": 393760
+			},
+			"text": " And you can see the spike about the spam attacks where it was a big load."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,760",
+				"to": "00:06:35,840"
+			},
+			"offsets": {
+				"from": 393760,
+				"to": 395840
+			},
+			"text": " And the green bit is the number of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,840",
+				"to": "00:06:39,400"
+			},
+			"offsets": {
+				"from": 395840,
+				"to": 399400
+			},
+			"text": " So what Terpigest does, actually, one of the things that does differently as well, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,400",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 399400,
+				"to": 404240
+			},
+			"text": " that you can limit number of nodes that you, of the tree, you can store in a cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 406200
+			},
+			"text": " And that might allow you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:52,480"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 412480
+			},
+			"text": " So my hope was that you can use that to calibrate the heap space, but I think it might still"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,480",
+				"to": "00:06:55,560"
+			},
+			"offsets": {
+				"from": 412480,
+				"to": 415560
+			},
+			"text": " be constantly increasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,560",
+				"to": "00:06:59,120"
+			},
+			"offsets": {
+				"from": 415560,
+				"to": 419120
+			},
+			"text": " So now look at these graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,120",
+				"to": "00:07:06,320"
+			},
+			"offsets": {
+				"from": 419120,
+				"to": 426320
+			},
+			"text": " So what you can see, this is the recent, well, quite recent, maybe one month old graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,320",
+				"to": "00:07:09,720"
+			},
+			"offsets": {
+				"from": 426320,
+				"to": 429720
+			},
+			"text": " And this is where the, actually, the cost of storage comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,720",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 429720,
+				"to": 434360
+			},
+			"text": " Most of it is now block bodies, which is essentially, this is all the blocks combined"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:16,360"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 436360
+			},
+			"text": " for like six million blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,360",
+				"to": "00:07:21,800"
+			},
+			"offsets": {
+				"from": 436360,
+				"to": 441800
+			},
+			"text": " And then the second biggest structure is the block, this is like a gray one, block number"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,800",
+				"to": "00:07:22,960"
+			},
+			"offsets": {
+				"from": 441800,
+				"to": 442960
+			},
+			"text": " to changed keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,960",
+				"to": "00:07:28,560"
+			},
+			"offsets": {
+				"from": 442960,
+				"to": 448560
+			},
+			"text": " This is the structure which is specific to Terpigest, and it allows it to know which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,560",
+				"to": "00:07:32,720"
+			},
+			"offsets": {
+				"from": 448560,
+				"to": 452720
+			},
+			"text": " accounts and which storage in this is changed at which block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,720",
+				"to": "00:07:38,440"
+			},
+			"offsets": {
+				"from": 452720,
+				"to": 458440
+			},
+			"text": " And why do we need this is because it allows us to do, to rewind the state quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,440",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 458440,
+				"to": 463840
+			},
+			"text": " So in a situation where, let's say that we've been like sinking to the main chain, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:46,880"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 466880
+			},
+			"text": " we suddenly see rework of like four blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,880",
+				"to": "00:07:51,360"
+			},
+			"offsets": {
+				"from": 466880,
+				"to": 471360
+			},
+			"text": " So what the Terpigest does, it actually looks at this mapping and figures out which keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,360",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 471360,
+				"to": 476800
+			},
+			"text": " changed in these four blocks, then picks up the values which were before these four blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:08:02,240"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 482240
+			},
+			"text": " and then unwinds the tree in a hash and then computes a new hash, and then reapplies the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,240",
+				"to": "00:08:04,920"
+			},
+			"offsets": {
+				"from": 482240,
+				"to": 484920
+			},
+			"text": " state on the fork, on the delta fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,920",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 484920,
+				"to": 490520
+			},
+			"text": " And so what you do not see here is the receipts, you can have them there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:16,040"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 496040
+			},
+			"text": " They would take about 70 to 80 gigabytes of all receipts from the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,040",
+				"to": "00:08:19,640"
+			},
+			"offsets": {
+				"from": 496040,
+				"to": 499640
+			},
+			"text": " And I will show you later why you want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,640",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 499640,
+				"to": 504000
+			},
+			"text": " But the interesting bit to note is that lots of people are confused about the size of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:25,680"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 505680
+			},
+			"text": " state in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,680",
+				"to": "00:08:30,760"
+			},
+			"offsets": {
+				"from": 505680,
+				"to": 510760
+			},
+			"text": " And the reason why they are confused is because different clients store the state differently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,760",
+				"to": "00:08:36,040"
+			},
+			"offsets": {
+				"from": 510760,
+				"to": 516040
+			},
+			"text": " like for example, go with Ethereum, current state representation in go with Ethereum will"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,040",
+				"to": "00:08:38,560"
+			},
+			"offsets": {
+				"from": 516040,
+				"to": 518560
+			},
+			"text": " probably like 80 gigabytes, 90 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,560",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 518560,
+				"to": 522040
+			},
+			"text": " In Terpigest it's probably going to be about 12 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:47,440"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 527440
+			},
+			"text": " I don't know how it's going to be in parity, but it's a different client store differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,440",
+				"to": "00:08:51,960"
+			},
+			"offsets": {
+				"from": 527440,
+				"to": 531960
+			},
+			"text": " And sometimes people confuse the current state with the total historical state, with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,960",
+				"to": "00:08:53,560"
+			},
+			"offsets": {
+				"from": 531960,
+				"to": 533560
+			},
+			"text": " prune historical state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,560",
+				"to": "00:08:58,360"
+			},
+			"offsets": {
+				"from": 533560,
+				"to": 538360
+			},
+			"text": " That's why it's, but what you can see from this picture on the very top, you can see accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,360",
+				"to": "00:09:01,200"
+			},
+			"offsets": {
+				"from": 538360,
+				"to": 541200
+			},
+			"text": " which is 3.89 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,200",
+				"to": "00:09:04,720"
+			},
+			"offsets": {
+				"from": 541200,
+				"to": 544720
+			},
+			"text": " This is the account without any storage items."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,720",
+				"to": "00:09:12,680"
+			},
+			"offsets": {
+				"from": 544720,
+				"to": 552680
+			},
+			"text": " These are simply balances, nonces, hashes of the storage routes and the code hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,680",
+				"to": "00:09:15,520"
+			},
+			"offsets": {
+				"from": 552680,
+				"to": 555520
+			},
+			"text": " And the whole, no, it's not the whole history, it's the current accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,520",
+				"to": "00:09:20,560"
+			},
+			"offsets": {
+				"from": 555520,
+				"to": 560560
+			},
+			"text": " So the history of accounts you can see on the left, on the yellow bit, so 44 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,560",
+				"to": "00:09:26,080"
+			},
+			"offsets": {
+				"from": 560560,
+				"to": 566080
+			},
+			"text": " Then the storage of the contracts, the current state is what, 10 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,080",
+				"to": "00:09:31,120"
+			},
+			"offsets": {
+				"from": 566080,
+				"to": 571120
+			},
+			"text": " You can see it somewhere down the middle, the purple violet bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,120",
+				"to": "00:09:34,520"
+			},
+			"offsets": {
+				"from": 571120,
+				"to": 574520
+			},
+			"text": " And then you can see the history of, it's about 26 gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,520",
+				"to": "00:09:39,360"
+			},
+			"offsets": {
+				"from": 574520,
+				"to": 579360
+			},
+			"text": " So you can see that the current state is still kind of about 12 gigabytes probably."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,360",
+				"to": "00:09:48,880"
+			},
+			"offsets": {
+				"from": 579360,
+				"to": 588880
+			},
+			"text": " So this is where I'm going to say about receipts, because I haven't tested all entire set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,880",
+				"to": "00:09:49,880"
+			},
+			"offsets": {
+				"from": 588880,
+				"to": 589880
+			},
+			"text": " RPCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,880",
+				"to": "00:09:51,520"
+			},
+			"offsets": {
+				"from": 589880,
+				"to": 591520
+			},
+			"text": " And again, these numbers are very rough."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,520",
+				"to": "00:09:55,840"
+			},
+			"offsets": {
+				"from": 591520,
+				"to": 595840
+			},
+			"text": " I didn't do scientific studies on this, but this is what I just saw thereafter, very quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,840",
+				"to": "00:09:56,840"
+			},
+			"offsets": {
+				"from": 595840,
+				"to": 596840
+			},
+			"text": " running."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,840",
+				"to": "00:10:01,080"
+			},
+			"offsets": {
+				"from": 596840,
+				"to": 601080
+			},
+			"text": " I have run the both archive guests and turbo guests on the same machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,080",
+				"to": "00:10:05,520"
+			},
+			"offsets": {
+				"from": 601080,
+				"to": 605520
+			},
+			"text": " And obviously there will be lots of noise, but I could see through this noise that generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,520",
+				"to": "00:10:08,760"
+			},
+			"offsets": {
+				"from": 605520,
+				"to": 608760
+			},
+			"text": " the things are going faster, except for the receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,760",
+				"to": "00:10:13,800"
+			},
+			"offsets": {
+				"from": 608760,
+				"to": 613800
+			},
+			"text": " And the reason that for that is because I chose to prune the receipts from the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,800",
+				"to": "00:10:15,800"
+			},
+			"offsets": {
+				"from": 613800,
+				"to": 615800
+			},
+			"text": " and instead I just recompute them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,800",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 615800,
+				"to": 623000
+			},
+			"text": " So when somebody asked me for receipts, I just go to the state where that block and after"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:27,400"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 627400
+			},
+			"text": " that transaction just re-executed transaction produced a receipt, return them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,400",
+				"to": "00:10:28,760"
+			},
+			"offsets": {
+				"from": 627400,
+				"to": 628760
+			},
+			"text": " It turns out to be slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,760",
+				"to": "00:10:32,360"
+			},
+			"offsets": {
+				"from": 628760,
+				"to": 632360
+			},
+			"text": " Actually, this might be not 10 times, maybe a bit more slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,360",
+				"to": "00:10:35,840"
+			},
+			"offsets": {
+				"from": 632360,
+				"to": 635840
+			},
+			"text": " But somebody told me that maybe it just needs to be a flag, because some people, the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,840",
+				"to": "00:10:38,040"
+			},
+			"offsets": {
+				"from": 635840,
+				"to": 638040
+			},
+			"text": " thing they do is actually querying receipts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,040",
+				"to": "00:10:44,080"
+			},
+			"offsets": {
+				"from": 638040,
+				"to": 644080
+			},
+			"text": " So for those people, they might want to pay 70 gigs for speed of that RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,080",
+				"to": "00:10:48,680"
+			},
+			"offsets": {
+				"from": 644080,
+				"to": 648680
+			},
+			"text": " So now the other thing I did quite recently in turbo guests is that I have prepared it"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,680",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 648680,
+				"to": 650920
+			},
+			"text": " for the pruning, but I haven't implemented pruning yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:54,320"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 654320
+			},
+			"text": " So but I made sure that the pruning can be done pretty frequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,320",
+				"to": "00:10:59,720"
+			},
+			"offsets": {
+				"from": 654320,
+				"to": 659720
+			},
+			"text": " And so the idea here is that instead of, so what you could see in this diagram, so every"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,720",
+				"to": "00:11:03,480"
+			},
+			"offsets": {
+				"from": 659720,
+				"to": 663480
+			},
+			"text": " bubble, every little circle is actually a record and a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,480",
+				"to": "00:11:12,600"
+			},
+			"offsets": {
+				"from": 663480,
+				"to": 672600
+			},
+			"text": " And so the arrows, like the thick arrows, they represent that each of these circles is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,600",
+				"to": "00:11:15,960"
+			},
+			"offsets": {
+				"from": 672600,
+				"to": 675960
+			},
+			"text": " a representation of the state for that period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,960",
+				"to": "00:11:18,720"
+			},
+			"offsets": {
+				"from": 675960,
+				"to": 678720
+			},
+			"text": " So let's say that the green circle on the right is the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,720",
+				"to": "00:11:23,640"
+			},
+			"offsets": {
+				"from": 678720,
+				"to": 683640
+			},
+			"text": " It means that the current state has been for that, like if you look at the top one, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,640",
+				"to": "00:11:28,640"
+			},
+			"offsets": {
+				"from": 683640,
+				"to": 688640
+			},
+			"text": " the last, let's say, seven blocks or eight blocks, I don't see it exactly, this was the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,640",
+				"to": "00:11:29,720"
+			},
+			"offsets": {
+				"from": 688640,
+				"to": 689720
+			},
+			"text": " current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,720",
+				"to": "00:11:32,960"
+			},
+			"offsets": {
+				"from": 689720,
+				"to": 692960
+			},
+			"text": " And it hasn't been changed for seven or eight blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,960",
+				"to": "00:11:37,840"
+			},
+			"offsets": {
+				"from": 692960,
+				"to": 697840
+			},
+			"text": " And before that, there was this yellow bit, which was since we know, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,840",
+				"to": "00:11:40,840"
+			},
+			"offsets": {
+				"from": 697840,
+				"to": 700840
+			},
+			"text": " So the red bit is where something gets deleted."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,840",
+				"to": "00:11:44,960"
+			},
+			"offsets": {
+				"from": 700840,
+				"to": 704960
+			},
+			"text": " For example, the account gets deleted, then I mark it as a red, we put it as a record as"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,960",
+				"to": "00:11:45,960"
+			},
+			"offsets": {
+				"from": 704960,
+				"to": 705960
+			},
+			"text": " well."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,960",
+				"to": "00:11:49,840"
+			},
+			"offsets": {
+				"from": 705960,
+				"to": 709840
+			},
+			"text": " And also you could see that the blank blue one, this is where something just first been"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,840",
+				"to": "00:11:53,040"
+			},
+			"offsets": {
+				"from": 709840,
+				"to": 713040
+			},
+			"text": " created and there was nothing in a bit before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,040",
+				"to": "00:11:59,200"
+			},
+			"offsets": {
+				"from": 713040,
+				"to": 719200
+			},
+			"text": " So now what we can do is that what I call it reverse diffs instead of forward diffs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,200",
+				"to": "00:12:01,440"
+			},
+			"offsets": {
+				"from": 719200,
+				"to": 721440
+			},
+			"text": " And what it allows you to do is this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,440",
+				"to": "00:12:06,640"
+			},
+			"offsets": {
+				"from": 721440,
+				"to": 726640
+			},
+			"text": " So if you basically chop off the left bit, then you can just keep running your note because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,640",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 726640,
+				"to": 730240
+			},
+			"text": " you still have everything, everything is still consistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:15,400"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 735400
+			},
+			"text": " So you can still query the state at any point that you have a history for."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,400",
+				"to": "00:12:20,800"
+			},
+			"offsets": {
+				"from": 735400,
+				"to": 740800
+			},
+			"text": " If you try to do it with the forward diffs, that would be difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,800",
+				"to": "00:12:25,500"
+			},
+			"offsets": {
+				"from": 740800,
+				"to": 745500
+			},
+			"text": " Because you would have to, when you chop this up, you would have to rebuild the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,500",
+				"to": "00:12:34,740"
+			},
+			"offsets": {
+				"from": 745500,
+				"to": 754740
+			},
+			"text": " state at the point of the chop because everything is relative to the previous snapshot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,740",
+				"to": "00:12:39,260"
+			},
+			"offsets": {
+				"from": 754740,
+				"to": 759260
+			},
+			"text": " So as I said, I haven't implemented yet, but it's trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,260",
+				"to": "00:12:43,860"
+			},
+			"offsets": {
+				"from": 759260,
+				"to": 763860
+			},
+			"text": " Now light clients, I mean, here I actually mean light server and at the moment it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,860",
+				"to": "00:12:50,380"
+			},
+			"offsets": {
+				"from": 763860,
+				"to": 770380
+			},
+			"text": " implemented and the reason for that is because I simply don't store any hashes in a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,380",
+				"to": "00:12:54,180"
+			},
+			"offsets": {
+				"from": 770380,
+				"to": 774180
+			},
+			"text": " And I kind of do, but not much, only for the current state."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,180",
+				"to": "00:12:58,140"
+			},
+			"offsets": {
+				"from": 774180,
+				"to": 778140
+			},
+			"text": " So what the light clients actually need, you could see on the right hand side all the ticks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,140",
+				"to": "00:13:02,620"
+			},
+			"offsets": {
+				"from": 778140,
+				"to": 782620
+			},
+			"text": " that the less too protocol needs all this support or all these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,620",
+				"to": "00:13:08,380"
+			},
+			"offsets": {
+				"from": 782620,
+				"to": 788380
+			},
+			"text": " And the ones that I currently cannot provide is the ones which I pointed with the red arrows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,380",
+				"to": "00:13:11,180"
+			},
+			"offsets": {
+				"from": 788380,
+				"to": 791180
+			},
+			"text": " which is no data and proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,180",
+				"to": "00:13:18,580"
+			},
+			"offsets": {
+				"from": 791180,
+				"to": 798580
+			},
+			"text": " So no data will be very difficult in any way because it turns out to be specific to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,580",
+				"to": "00:13:23,140"
+			},
+			"offsets": {
+				"from": 798580,
+				"to": 803140
+			},
+			"text": " way that current clients store the state and will be very difficult for me to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,140",
+				"to": "00:13:27,460"
+			},
+			"offsets": {
+				"from": 803140,
+				"to": 807460
+			},
+			"text": " that because it's actually, you cannot come up with any hash in history or in the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,460",
+				"to": "00:13:32,900"
+			},
+			"offsets": {
+				"from": 807460,
+				"to": 812900
+			},
+			"text": " state, which I have no idea where which block it is from and you're supposed to give me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,900",
+				"to": "00:13:36,260"
+			},
+			"offsets": {
+				"from": 812900,
+				"to": 816260
+			},
+			"text": " I suppose to give you the note for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,260",
+				"to": "00:13:40,140"
+			},
+			"offsets": {
+				"from": 816260,
+				"to": 820140
+			},
+			"text": " And I don't have idea where to look for it in my database because my database is structured"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,140",
+				"to": "00:13:41,820"
+			},
+			"offsets": {
+				"from": 820140,
+				"to": 821820
+			},
+			"text": " by the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,820",
+				"to": "00:13:46,660"
+			},
+			"offsets": {
+				"from": 821820,
+				"to": 826660
+			},
+			"text": " Get proof is easier for me because at least it tells me at which block and which account"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,660",
+				"to": "00:13:48,940"
+			},
+			"offsets": {
+				"from": 826660,
+				"to": 828940
+			},
+			"text": " to look for so I can actually find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,940",
+				"to": "00:13:55,180"
+			},
+			"offsets": {
+				"from": 828940,
+				"to": 835180
+			},
+			"text": " So it's easier to implement that and maybe I know that the light clients can ask for proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,180",
+				"to": "00:14:00,660"
+			},
+			"offsets": {
+				"from": 835180,
+				"to": 840660
+			},
+			"text": " not for the current state but for some delayed state but it could be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,660",
+				"to": "00:14:04,940"
+			},
+			"offsets": {
+				"from": 840660,
+				"to": 844940
+			},
+			"text": " And then there's another problem which I encountered recently, I call it create two"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,940",
+				"to": "00:14:11,180"
+			},
+			"offsets": {
+				"from": 844940,
+				"to": 851180
+			},
+			"text": " revival problem and this is also to inform people about something which is coming up"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,180",
+				"to": "00:14:12,820"
+			},
+			"offsets": {
+				"from": 851180,
+				"to": 852820
+			},
+			"text": " in the Constantinople."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,820",
+				"to": "00:14:16,660"
+			},
+			"offsets": {
+				"from": 852820,
+				"to": 856660
+			},
+			"text": " It is not in the main yet, by the way, it gets scared."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,660",
+				"to": "00:14:24,980"
+			},
+			"offsets": {
+				"from": 856660,
+				"to": 864980
+			},
+			"text": " So create two up code essentially is introduced to allow efficient counterfactual instantiation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,980",
+				"to": "00:14:31,780"
+			},
+			"offsets": {
+				"from": 864980,
+				"to": 871780
+			},
+			"text": " and in a way it does it if you look at the formula of the address computation it includes"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,780",
+				"to": "00:14:35,860"
+			},
+			"offsets": {
+				"from": 871780,
+				"to": 875860
+			},
+			"text": " address which is basically the creator of this contract, salt which could be chosen"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,860",
+				"to": "00:14:41,340"
+			},
+			"offsets": {
+				"from": 875860,
+				"to": 881340
+			},
+			"text": " at will and then init code which is something which will be executed to generate the actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,340",
+				"to": "00:14:42,580"
+			},
+			"offsets": {
+				"from": 881340,
+				"to": 882580
+			},
+			"text": " deployed code."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,580",
+				"to": "00:14:47,060"
+			},
+			"offsets": {
+				"from": 882580,
+				"to": 887060
+			},
+			"text": " So that means that you can in theory and in practice recreate the contract after they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,060",
+				"to": "00:14:48,060"
+			},
+			"offsets": {
+				"from": 887060,
+				"to": 888060
+			},
+			"text": " been self-destructed."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,060",
+				"to": "00:14:52,620"
+			},
+			"offsets": {
+				"from": 888060,
+				"to": 892620
+			},
+			"text": " So in this diagram the big circles is the contract and the small circles is the storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,620",
+				"to": "00:14:56,780"
+			},
+			"offsets": {
+				"from": 892620,
+				"to": 896780
+			},
+			"text": " items of the contract and you can see that how contract was created and storage has been"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,780",
+				"to": "00:15:00,580"
+			},
+			"offsets": {
+				"from": 896780,
+				"to": 900580
+			},
+			"text": " modified blah blah blah and then it got to the point where you got self-destructed and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,580",
+				"to": "00:15:05,900"
+			},
+			"offsets": {
+				"from": 900580,
+				"to": 905900
+			},
+			"text": " you got all these red things and then later on in like three blocks later it's been recreated"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,900",
+				"to": "00:15:10,500"
+			},
+			"offsets": {
+				"from": 905900,
+				"to": 910500
+			},
+			"text": " using create two with the same code or with a different code but with the same init code"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,500",
+				"to": "00:15:17,340"
+			},
+			"offsets": {
+				"from": 910500,
+				"to": 917340
+			},
+			"text": " and then after that you supposed to so it's assumed that now at this point the storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,340",
+				"to": "00:15:21,580"
+			},
+			"offsets": {
+				"from": 917340,
+				"to": 921580
+			},
+			"text": " is cleared and balance is cleared so this is completely empty contract and now you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,580",
+				"to": "00:15:22,580"
+			},
+			"offsets": {
+				"from": 921580,
+				"to": 922580
+			},
+			"text": " start again."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,580",
+				"to": "00:15:26,980"
+			},
+			"offsets": {
+				"from": 922580,
+				"to": 926980
+			},
+			"text": " So the problem for turbo-gift is that because it doesn't store the state as a tree but rather"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,980",
+				"to": "00:15:32,700"
+			},
+			"offsets": {
+				"from": 926980,
+				"to": 932700
+			},
+			"text": " in this relational way it has to either insert all these red bubbles into the database which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,700",
+				"to": "00:15:40,300"
+			},
+			"offsets": {
+				"from": 932700,
+				"to": 940300
+			},
+			"text": " could be in millions potentially at the point of self-destruction or it has to apply much"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,300",
+				"to": "00:15:45,380"
+			},
+			"offsets": {
+				"from": 940300,
+				"to": 945380
+			},
+			"text": " more in nuanced way when you actually fetch the contract item."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,380",
+				"to": "00:15:50,620"
+			},
+			"offsets": {
+				"from": 945380,
+				"to": 950620
+			},
+			"text": " So an alternative would be to like whenever anybody asked me for the contract storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,620",
+				"to": "00:15:55,380"
+			},
+			"offsets": {
+				"from": 950620,
+				"to": 955380
+			},
+			"text": " I would have to also check whether the contract has been self-destructed in the past and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,380",
+				"to": "00:15:59,580"
+			},
+			"offsets": {
+				"from": 955380,
+				"to": 959580
+			},
+			"text": " when it was lost time so it's more searching I can implement it but it's kind of a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,580",
+				"to": "00:16:00,580"
+			},
+			"offsets": {
+				"from": 959580,
+				"to": 960580
+			},
+			"text": " hustle."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,580",
+				"to": "00:16:08,140"
+			},
+			"offsets": {
+				"from": 960580,
+				"to": 968140
+			},
+			"text": " Now so this is highly experimental this is something that I came up with when I was thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,140",
+				"to": "00:16:12,660"
+			},
+			"offsets": {
+				"from": 968140,
+				"to": 972660
+			},
+			"text": " about all these problems that were the light clients and with the create two and at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,660",
+				"to": "00:16:17,380"
+			},
+			"offsets": {
+				"from": 972660,
+				"to": 977380
+			},
+			"text": " same time I was working with the either mint team and they basically we did some tests"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,380",
+				"to": "00:16:22,660"
+			},
+			"offsets": {
+				"from": 977380,
+				"to": 982660
+			},
+			"text": " with the loading Ethereum transaction at either mint and it turns out to be a bit slow so"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,660",
+				"to": "00:16:29,620"
+			},
+			"offsets": {
+				"from": 982660,
+				"to": 989620
+			},
+			"text": " I said we need to get faster with that and so the idea is to actually create a specialized"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,620",
+				"to": "00:16:38,700"
+			},
+			"offsets": {
+				"from": 989620,
+				"to": 998700
+			},
+			"text": " database that would allow this few desirable things and I will explain why they are they"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,700",
+				"to": "00:16:43,460"
+			},
+			"offsets": {
+				"from": 998700,
+				"to": 1003460
+			},
+			"text": " might be good it's still very experimental so it's it could also it all turned out to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,460",
+				"to": "00:16:47,500"
+			},
+			"offsets": {
+				"from": 1003460,
+				"to": 1007500
+			},
+			"text": " be in different ways so although I did some proof of concept on this I will tell you roughly"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,500",
+				"to": "00:16:52,460"
+			},
+			"offsets": {
+				"from": 1007500,
+				"to": 1012460
+			},
+			"text": " what the results were so let's get into the details of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,460",
+				"to": "00:16:57,820"
+			},
+			"offsets": {
+				"from": 1012460,
+				"to": 1017820
+			},
+			"text": " So as you know again as I told you before is about the the Ethereum currently uses patricia"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,820",
+				"to": "00:17:04,940"
+			},
+			"offsets": {
+				"from": 1017820,
+				"to": 1024940
+			},
+			"text": " tree for miracleization but also it's it's it's before inserting everything anything in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,940",
+				"to": "00:17:09,420"
+			},
+			"offsets": {
+				"from": 1024940,
+				"to": 1029420
+			},
+			"text": " the patricia tree it also applies the hash function to the key so the keys are not just"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,420",
+				"to": "00:17:16,460"
+			},
+			"offsets": {
+				"from": 1029420,
+				"to": 1036460
+			},
+			"text": " inserted as they are and this is because in back in 2000 whenever 15 I think when when"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,460",
+				"to": "00:17:21,700"
+			},
+			"offsets": {
+				"from": 1036460,
+				"to": 1041700
+			},
+			"text": " there was a security audit of Ethereum something pointed out by Andrew Miller that you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,700",
+				"to": "00:17:28,460"
+			},
+			"offsets": {
+				"from": 1041700,
+				"to": 1048460
+			},
+			"text": " actually create a very very long branches in that tree but attacker could do that and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,460",
+				"to": "00:17:33,460"
+			},
+			"offsets": {
+				"from": 1048460,
+				"to": 1053460
+			},
+			"text": " I'm basically introduced some some bad things so as a mitigation it has been suggested to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,460",
+				"to": "00:17:39,180"
+			},
+			"offsets": {
+				"from": 1053460,
+				"to": 1059180
+			},
+			"text": " hash all the keys before inserting them into the patricia tree and the idea is that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,180",
+				"to": "00:17:44,100"
+			},
+			"offsets": {
+				"from": 1059180,
+				"to": 1064100
+			},
+			"text": " would kind of balance them out there is a it still doesn't completely solve the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,100",
+				"to": "00:17:49,020"
+			},
+			"offsets": {
+				"from": 1064100,
+				"to": 1069020
+			},
+			"text": " but we're not going to touch it right now so for the Ethereum 2.0 for example there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,020",
+				"to": "00:17:53,740"
+			},
+			"offsets": {
+				"from": 1069020,
+				"to": 1073740
+			},
+			"text": " a also suggestion of sparse miracle tree which is essentially also radix tree but with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,740",
+				"to": "00:17:59,660"
+			},
+			"offsets": {
+				"from": 1073740,
+				"to": 1079660
+			},
+			"text": " different radix instead of radix 16 they use radix 2 and but the idea is very similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,660",
+				"to": "00:18:05,460"
+			},
+			"offsets": {
+				"from": 1079660,
+				"to": 1085460
+			},
+			"text": " and for the same exact reason the keys will have to be hashed and the reason I don't like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,460",
+				"to": "00:18:11,300"
+			},
+			"offsets": {
+				"from": 1085460,
+				"to": 1091300
+			},
+			"text": " the hash keys is firstly because I believe that the the problem pointed out in security"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,300",
+				"to": "00:18:16,580"
+			},
+			"offsets": {
+				"from": 1091300,
+				"to": 1096580
+			},
+			"text": " audit has not been completely resolved and it will keep persisting if we stick with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,580",
+				"to": "00:18:21,620"
+			},
+			"offsets": {
+				"from": 1096580,
+				"to": 1101620
+			},
+			"text": " sparse miracle trees and also you also have to keep pre-images so to be able to iterate"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,620",
+				"to": "00:18:26,260"
+			},
+			"offsets": {
+				"from": 1101620,
+				"to": 1106260
+			},
+			"text": " through the state and the pre-images are not really heavy at the moment but in I just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,260",
+				"to": "00:18:33,820"
+			},
+			"offsets": {
+				"from": 1106260,
+				"to": 1113820
+			},
+			"text": " chopped the bit out of the diagram it's 15 gigs so what I've been experimenting with and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,820",
+				"to": "00:18:42,020"
+			},
+			"offsets": {
+				"from": 1113820,
+				"to": 1122020
+			},
+			"text": " of course it's it's been it's been it's been inspired by the by the fact that that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,020",
+				"to": "00:18:46,300"
+			},
+			"offsets": {
+				"from": 1122020,
+				"to": 1126300
+			},
+			"text": " either means uses the AVO trees looking at the balancing trees and the main objection"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,300",
+				"to": "00:18:53,700"
+			},
+			"offsets": {
+				"from": 1126300,
+				"to": 1133700
+			},
+			"text": " to balancing trees was that the order of insertion and deletion actually matters and I've been"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,700",
+				"to": "00:18:58,060"
+			},
+			"offsets": {
+				"from": 1133700,
+				"to": 1138060
+			},
+			"text": " looking at not only AVO trees but also well-weight balance trees actually really a little known"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,060",
+				"to": "00:19:01,780"
+			},
+			"offsets": {
+				"from": 1138060,
+				"to": 1141780
+			},
+			"text": " about them but these are the structures which are really good for functional languages for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,780",
+				"to": "00:19:06,380"
+			},
+			"offsets": {
+				"from": 1141780,
+				"to": 1146380
+			},
+			"text": " some reason so actually what the idea is that okay let's try to encode the structure of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,380",
+				"to": "00:19:09,700"
+			},
+			"offsets": {
+				"from": 1146380,
+				"to": 1149700
+			},
+			"text": " the industries a string of bits so this is actually you probably are going to look at"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,700",
+				"to": "00:19:15,900"
+			},
+			"offsets": {
+				"from": 1149700,
+				"to": 1155900
+			},
+			"text": " the slides later but so this is to demonstrate you that you can encode the any any binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,900",
+				"to": "00:19:21,700"
+			},
+			"offsets": {
+				"from": 1155900,
+				"to": 1161700
+			},
+			"text": " tree in fact into the string of bits with the cost of at most two bits per item and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,700",
+				"to": "00:19:27,100"
+			},
+			"offsets": {
+				"from": 1161700,
+				"to": 1167100
+			},
+			"text": " then decode them with a very simple state machine as I provide here so the decoding allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,100",
+				"to": "00:19:31,780"
+			},
+			"offsets": {
+				"from": 1167100,
+				"to": 1171780
+			},
+			"text": " you either to either rebuild the whole tree or actually compute Merkoh hash efficiently"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,780",
+				"to": "00:19:36,580"
+			},
+			"offsets": {
+				"from": 1171780,
+				"to": 1176580
+			},
+			"text": " and then what you do next is that you have this huge tree which is balanced and you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,580",
+				"to": "00:19:40,940"
+			},
+			"offsets": {
+				"from": 1176580,
+				"to": 1180940
+			},
+			"text": " Merkleize it according to this huge tree and then in order to efficiently store it in"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,940",
+				"to": "00:19:45,300"
+			},
+			"offsets": {
+				"from": 1180940,
+				"to": 1185300
+			},
+			"text": " the database you split into pages of the fixed size and this is kind of the schematics of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,300",
+				"to": "00:19:50,100"
+			},
+			"offsets": {
+				"from": 1185300,
+				"to": 1190100
+			},
+			"text": " how you would do it then after you do that you encode them in the pages and this is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,100",
+				"to": "00:19:54,380"
+			},
+			"offsets": {
+				"from": 1190100,
+				"to": 1194380
+			},
+			"text": " structure of the page I'm using in proof of concept it's got like different elements"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,380",
+				"to": "00:19:58,580"
+			},
+			"offsets": {
+				"from": 1194380,
+				"to": 1198580
+			},
+			"text": " in that and what is interesting here is the page pointer so there's two elements stored"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,580",
+				"to": "00:20:03,300"
+			},
+			"offsets": {
+				"from": 1198580,
+				"to": 1203300
+			},
+			"text": " in in the pages that the the values you can see that Fp there and this is circled with"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,300",
+				"to": "00:20:09,780"
+			},
+			"offsets": {
+				"from": 1203300,
+				"to": 1209780
+			},
+			"text": " the arrows at the pointers and so then after that you can actually add the history so so"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,780",
+				"to": "00:20:15,620"
+			},
+			"offsets": {
+				"from": 1209780,
+				"to": 1215620
+			},
+			"text": " the main so let's let's talk about this so first of all in order to explain more in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,620",
+				"to": "00:20:20,460"
+			},
+			"offsets": {
+				"from": 1215620,
+				"to": 1220460
+			},
+			"text": " short sentence is that the main idea is that you use the same structure for the database"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,460",
+				"to": "00:20:26,580"
+			},
+			"offsets": {
+				"from": 1220460,
+				"to": 1226580
+			},
+			"text": " index as you as the structure that you use for Merkohization so it's the same so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,580",
+				"to": "00:20:31,300"
+			},
+			"offsets": {
+				"from": 1226580,
+				"to": 1231300
+			},
+			"text": " means that whenever you actually commit something into database it doesn't move anymore because"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,300",
+				"to": "00:20:36,220"
+			},
+			"offsets": {
+				"from": 1231300,
+				"to": 1236220
+			},
+			"text": " it's in exactly the same exactly the place where it's supposed to be according to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,220",
+				"to": "00:20:42,020"
+			},
+			"offsets": {
+				"from": 1236220,
+				"to": 1242020
+			},
+			"text": " index of the database which means that write amplification equals the basically write amplification"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,020",
+				"to": "00:20:49,580"
+			},
+			"offsets": {
+				"from": 1242020,
+				"to": 1249580
+			},
+			"text": " does not happen and so the database just grows it doesn't keep rewriting things on it if"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,580",
+				"to": "00:20:55,300"
+			},
+			"offsets": {
+				"from": 1249580,
+				"to": 1255300
+			},
+			"text": " it just simply adds things which has some nice properties so at the moment with my proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,300",
+				"to": "00:21:02,100"
+			},
+			"offsets": {
+				"from": 1255300,
+				"to": 1262100
+			},
+			"text": " of concept which I've been running I was comparing with Turbugeth which is also quite already"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,100",
+				"to": "00:21:12,380"
+			},
+			"offsets": {
+				"from": 1262100,
+				"to": 1272380
+			},
+			"text": " high bar so the right so the the right efficiency is been about seven times better than in Turbugeth"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,380",
+				"to": "00:21:19,220"
+			},
+			"offsets": {
+				"from": 1272380,
+				"to": 1279220
+			},
+			"text": " so it means that it actually has a set seven times less IO unfortunately the space efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,220",
+				"to": "00:21:25,060"
+			},
+			"offsets": {
+				"from": 1279220,
+				"to": 1285060
+			},
+			"text": " has decreased compared to Turbugeth it's about four times less space efficient in the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,060",
+				"to": "00:21:32,100"
+			},
+			"offsets": {
+				"from": 1285060,
+				"to": 1292100
+			},
+			"text": " numbers but I have some some I know some ways how you can improve that access efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,100",
+				"to": "00:21:38,780"
+			},
+			"offsets": {
+				"from": 1292100,
+				"to": 1298780
+			},
+			"text": " are only superficially tested that so and so what this to put it in the perspective is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,780",
+				"to": "00:21:43,260"
+			},
+			"offsets": {
+				"from": 1298780,
+				"to": 1303260
+			},
+			"text": " that people usually talk about the tradeoff of three things in databases update efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,260",
+				"to": "00:21:47,700"
+			},
+			"offsets": {
+				"from": 1303260,
+				"to": 1307700
+			},
+			"text": " space efficiency and access efficiency and you can see that you really want to be inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,700",
+				"to": "00:21:52,220"
+			},
+			"offsets": {
+				"from": 1307700,
+				"to": 1312220
+			},
+			"text": " this triangle not plain but you don't you never really know whether you're above that triangle"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,220",
+				"to": "00:21:55,860"
+			},
+			"offsets": {
+				"from": 1312220,
+				"to": 1315860
+			},
+			"text": " which means that you're you don't actually have a efficient tradeoff optimal tradeoff"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,860",
+				"to": "00:22:00,860"
+			},
+			"offsets": {
+				"from": 1315860,
+				"to": 1320860
+			},
+			"text": " or you're in a in a triangle so what I'm trying to do is that I I posit that in non-optimized"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,860",
+				"to": "00:22:05,900"
+			},
+			"offsets": {
+				"from": 1320860,
+				"to": 1325900
+			},
+			"text": " systems are already above actually above the triangle so they're not really exercising"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,900",
+				"to": "00:22:12,100"
+			},
+			"offsets": {
+				"from": 1325900,
+				"to": 1332100
+			},
+			"text": " tradeoffs at all so they inefficient in any way in any possible way but what I'm trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,100",
+				"to": "00:22:18,500"
+			},
+			"offsets": {
+				"from": 1332100,
+				"to": 1338500
+			},
+			"text": " to do now is trying to hopefully I am inside the triangle already and try navigating between"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,500",
+				"to": "00:22:23,700"
+			},
+			"offsets": {
+				"from": 1338500,
+				"to": 1343700
+			},
+			"text": " them so I'm gonna if it's anytime I'm gonna take any questions anytime for questions or"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,700",
+				"to": "00:22:28,060"
+			},
+			"offsets": {
+				"from": 1343700,
+				"to": 1348060
+			},
+			"text": " yes yeah there's some time for questions yeah sorry I rushed in the mic to you if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,060",
+				"to": "00:22:40,100"
+			},
+			"offsets": {
+				"from": 1348060,
+				"to": 1360100
+			},
+			"text": " have any questions yeah so just that I understand it this 200 gigabytes or 200 plus 74 the receipts"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,100",
+				"to": "00:22:44,900"
+			},
+			"offsets": {
+				"from": 1360100,
+				"to": 1364900
+			},
+			"text": " that's actually an archive note right yeah it's archive note who nice yeah and it can it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,900",
+				"to": "00:22:57,460"
+			},
+			"offsets": {
+				"from": 1364900,
+				"to": 1377460
+			},
+			"text": " can fetch you any data for the entire history through any RPC queries can you talk more about"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,460",
+				"to": "00:23:08,620"
+			},
+			"offsets": {
+				"from": 1377460,
+				"to": 1388620
+			},
+			"text": " this range request oh range request it's it's it's basically so range request is quite simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,620",
+				"to": "00:23:15,500"
+			},
+			"offsets": {
+				"from": 1388620,
+				"to": 1395500
+			},
+			"text": " because essentially you are in most of this key value stores what you can do you can open"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,500",
+				"to": "00:23:20,060"
+			},
+			"offsets": {
+				"from": 1395500,
+				"to": 1400060
+			},
+			"text": " the course or at the certain you can you can seek to the certain key for example in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,060",
+				"to": "00:23:25,780"
+			},
+			"offsets": {
+				"from": 1400060,
+				"to": 1405780
+			},
+			"text": " case will be one with the sum 0 0 0 0 whatever the first key is to start with one and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,780",
+				"to": "00:23:31,380"
+			},
+			"offsets": {
+				"from": 1405780,
+				"to": 1411380
+			},
+			"text": " just use that iterator to iterate through them until you see to in the in the first position"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,380",
+				"to": "00:23:37,060"
+			},
+			"offsets": {
+				"from": 1411380,
+				"to": 1417060
+			},
+			"text": " that's a range query it's not like a square but it's still possible efficiently Alex can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,060",
+				"to": "00:23:43,620"
+			},
+			"offsets": {
+				"from": 1417060,
+				"to": 1423620
+			},
+			"text": " you talk a little bit more about your experiment with a sermon and why oh yes I forgot about"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,620",
+				"to": "00:23:48,700"
+			},
+			"offsets": {
+				"from": 1423620,
+				"to": 1428700
+			},
+			"text": " that sorry so the either meant experiment is interesting for me because at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,700",
+				"to": "00:23:55,300"
+			},
+			"offsets": {
+				"from": 1428700,
+				"to": 1435300
+			},
+			"text": " when I only try to optimize the to be get and there is a Patricia tree which I already"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,300",
+				"to": "00:24:01,100"
+			},
+			"offsets": {
+				"from": 1435300,
+				"to": 1441100
+			},
+			"text": " I said that I don't like it very much but and it's encoded in the yellow paper but what"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,100",
+				"to": "00:24:07,180"
+			},
+			"offsets": {
+				"from": 1441100,
+				"to": 1447180
+			},
+			"text": " I want to kind of look behind beyond the yellow paper maybe because because it's cool because"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,180",
+				"to": "00:24:11,540"
+			},
+			"offsets": {
+				"from": 1447180,
+				"to": 1451540
+			},
+			"text": " because I want to search for different structures maybe because they're going to be used in"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,540",
+				"to": "00:24:18,260"
+			},
+			"offsets": {
+				"from": 1451540,
+				"to": 1458260
+			},
+			"text": " a point to two point or because a you know we might be able to be able to create something"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,260",
+				"to": "00:24:23,380"
+			},
+			"offsets": {
+				"from": 1458260,
+				"to": 1463380
+			},
+			"text": " more efficient in either mint and then we could just transplant this into the theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,380",
+				"to": "00:24:27,860"
+			},
+			"offsets": {
+				"from": 1463380,
+				"to": 1467860
+			},
+			"text": " it's probably good for experimentation I also quite like working but the either mint team"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,860",
+				"to": "00:24:35,060"
+			},
+			"offsets": {
+				"from": 1467860,
+				"to": 1475060
+			},
+			"text": " so there so yeah it's that's the reason but we have any questions is there any like performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,060",
+				"to": "00:24:39,420"
+			},
+			"offsets": {
+				"from": 1475060,
+				"to": 1479420
+			},
+			"text": " difference when you're doing either mint versus you sir me there's an on a very early stages"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,420",
+				"to": "00:24:44,940"
+			},
+			"offsets": {
+				"from": 1479420,
+				"to": 1484940
+			},
+			"text": " and the whole reason why I started to do this more thing is because the first performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,940",
+				"to": "00:24:53,700"
+			},
+			"offsets": {
+				"from": 1484940,
+				"to": 1493700
+			},
+			"text": " test were not satisfactory to me so I wanted that to be faster we probably have time for"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,700",
+				"to": "00:24:59,580"
+			},
+			"offsets": {
+				"from": 1493700,
+				"to": 1499580
+			},
+			"text": " one more question yeah first of all I just wanted to ask do you realize how amazing you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,580",
+				"to": "00:25:03,980"
+			},
+			"offsets": {
+				"from": 1499580,
+				"to": 1503980
+			},
+			"text": " are oh thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,980",
+				"to": "00:25:10,260"
+			},
+			"offsets": {
+				"from": 1503980,
+				"to": 1510260
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,260",
+				"to": "00:25:16,340"
+			},
+			"offsets": {
+				"from": 1510260,
+				"to": 1516340
+			},
+			"text": " And then secondly can you just go in a little bit more detail of how you come from 1.3 terabytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,340",
+				"to": "00:25:23,100"
+			},
+			"offsets": {
+				"from": 1516340,
+				"to": 1523100
+			},
+			"text": " to 250 gigabytes with the same it feels like the same performance but a very significant"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,100",
+				"to": "00:25:29,300"
+			},
+			"offsets": {
+				"from": 1523100,
+				"to": 1529300
+			},
+			"text": " decrease in the size how exactly did that well there it comes from two things first"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,300",
+				"to": "00:25:34,260"
+			},
+			"offsets": {
+				"from": 1529300,
+				"to": 1534260
+			},
+			"text": " of all I don't store any hashes and the hashes are probably one of the biggest contributors"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,260",
+				"to": "00:25:42,100"
+			},
+			"offsets": {
+				"from": 1534260,
+				"to": 1542100
+			},
+			"text": " to the to the space in in existing clients and secondly the the the tree structure when"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,100",
+				"to": "00:25:47,100"
+			},
+			"offsets": {
+				"from": 1542100,
+				"to": 1547100
+			},
+			"text": " you model the the history of the tree structure it repeats a lot of the elements on closer"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,100",
+				"to": "00:25:51,420"
+			},
+			"offsets": {
+				"from": 1547100,
+				"to": 1551420
+			},
+			"text": " to the root when you create the new version so that repetition also that it also contributes"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,420",
+				"to": "00:25:56,380"
+			},
+			"offsets": {
+				"from": 1551420,
+				"to": 1556380
+			},
+			"text": " to the might to the the more is being less space efficient because it's also tree based"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,380",
+				"to": "00:26:02,140"
+			},
+			"offsets": {
+				"from": 1556380,
+				"to": 1562140
+			},
+			"text": " so and that's basically two reasons and if you remove these two things that becomes super"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,140",
+				"to": "00:26:04,420"
+			},
+			"offsets": {
+				"from": 1562140,
+				"to": 1564420
+			},
+			"text": " space efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,420",
+				"to": "00:26:08,020"
+			},
+			"offsets": {
+				"from": 1564420,
+				"to": 1568020
+			},
+			"text": " All right well thank you very much Alex thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,020",
+				"to": "00:26:08,520"
+			},
+			"offsets": {
+				"from": 1568020,
+				"to": 1568520
+			},
+			"text": " Thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,520",
+				"to": "00:26:08,520"
+			},
+			"offsets": {
+				"from": 1568520,
+				"to": 1568520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,520",
+				"to": "00:26:10,520"
+			},
+			"offsets": {
+				"from": 1568520,
+				"to": 1570520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,520",
+				"to": "00:26:12,520"
+			},
+			"offsets": {
+				"from": 1570520,
+				"to": 1572520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,520",
+				"to": "00:26:14,520"
+			},
+			"offsets": {
+				"from": 1572520,
+				"to": 1574520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,520",
+				"to": "00:26:16,520"
+			},
+			"offsets": {
+				"from": 1574520,
+				"to": 1576520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,520",
+				"to": "00:26:18,520"
+			},
+			"offsets": {
+				"from": 1576520,
+				"to": 1578520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,520",
+				"to": "00:26:20,520"
+			},
+			"offsets": {
+				"from": 1578520,
+				"to": 1580520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,520",
+				"to": "00:26:22,520"
+			},
+			"offsets": {
+				"from": 1580520,
+				"to": 1582520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,520",
+				"to": "00:26:24,520"
+			},
+			"offsets": {
+				"from": 1582520,
+				"to": 1584520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,520",
+				"to": "00:26:26,520"
+			},
+			"offsets": {
+				"from": 1584520,
+				"to": 1586520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,520",
+				"to": "00:26:28,520"
+			},
+			"offsets": {
+				"from": 1586520,
+				"to": 1588520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,520",
+				"to": "00:26:30,520"
+			},
+			"offsets": {
+				"from": 1588520,
+				"to": 1590520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,520",
+				"to": "00:26:32,520"
+			},
+			"offsets": {
+				"from": 1590520,
+				"to": 1592520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,520",
+				"to": "00:26:34,520"
+			},
+			"offsets": {
+				"from": 1592520,
+				"to": 1594520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,520",
+				"to": "00:26:36,520"
+			},
+			"offsets": {
+				"from": 1594520,
+				"to": 1596520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,520",
+				"to": "00:26:38,520"
+			},
+			"offsets": {
+				"from": 1596520,
+				"to": 1598520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,520",
+				"to": "00:27:07,520"
+			},
+			"offsets": {
+				"from": 1598520,
+				"to": 1627520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

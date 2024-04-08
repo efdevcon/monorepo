@@ -1,0 +1,714 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3760
+			},
+			"text": " So I'm very excited to talk to you today about Axe language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,760",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 3760,
+				"to": 9000
+			},
+			"text": " which is a new programming language for Ethereum smart contracts that we are building."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:13,560"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 13560
+			},
+			"text": " In particular, we'll talk about the compiler for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,560",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 13560,
+				"to": 17000
+			},
+			"text": " First of all, Axon is the company I work for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:24,600"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 24600
+			},
+			"text": " and it's a technology company that builds blockchain platforms and smart contracts for the capital markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,600",
+				"to": "00:00:35,600"
+			},
+			"offsets": {
+				"from": 24600,
+				"to": 35600
+			},
+			"text": " In fact, our smart contracts will soon process live derivative trades worth trillions of dollars in national value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,600",
+				"to": "00:00:46,200"
+			},
+			"offsets": {
+				"from": 35600,
+				"to": 46200
+			},
+			"text": " which you can understand that a secure and reliable language is very important to what we are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,200",
+				"to": "00:00:54,400"
+			},
+			"offsets": {
+				"from": 46200,
+				"to": 54400
+			},
+			"text": " This is why we are building Axlang, which in a sense is not a new language because it's really Scala."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,400",
+				"to": "00:00:59,400"
+			},
+			"offsets": {
+				"from": 54400,
+				"to": 59400
+			},
+			"text": " So when you are writing an Axlang smart contract, you're really writing Scala code"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,400",
+				"to": "00:01:04,200"
+			},
+			"offsets": {
+				"from": 59400,
+				"to": 64200
+			},
+			"text": " that you can compile with a regular Scala compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,200",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 64200,
+				"to": 68000
+			},
+			"text": " Formal verification is very important for us as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:14,800"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 74800
+			},
+			"text": " but I will press forward to the main topic of this talk, which is the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,800",
+				"to": "00:01:22,400"
+			},
+			"offsets": {
+				"from": 74800,
+				"to": 82400
+			},
+			"text": " The first thing about the compiler is that it's actually two compilers, a front-end and a back-end."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,400",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 82400,
+				"to": 88400
+			},
+			"text": " The front-end compiler is a Scala compiler plugin written in Scala, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:32,400"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 92400
+			},
+			"text": " and relies on the Scala compiler infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,400",
+				"to": "00:01:37,400"
+			},
+			"offsets": {
+				"from": 92400,
+				"to": 97400
+			},
+			"text": " And the back-end is written in C++ and it's written from scratch."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,400",
+				"to": "00:01:47,400"
+			},
+			"offsets": {
+				"from": 97400,
+				"to": 107400
+			},
+			"text": " These two compilers interact through a common intermediate language that has the four properties I am listing on the side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,400",
+				"to": "00:01:54,400"
+			},
+			"offsets": {
+				"from": 107400,
+				"to": 114400
+			},
+			"text": " First, it's unambiguous, human-readable, language-agnostic and retargetable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,400",
+				"to": "00:02:05,400"
+			},
+			"offsets": {
+				"from": 114400,
+				"to": 125400
+			},
+			"text": " And I want to highlight the last two by saying that the intermediate language is not tied to Axlang in any way or EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,400",
+				"to": "00:02:08,400"
+			},
+			"offsets": {
+				"from": 125400,
+				"to": 128400
+			},
+			"text": " So at least it's not supposed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,400",
+				"to": "00:02:13,400"
+			},
+			"offsets": {
+				"from": 128400,
+				"to": 133400
+			},
+			"text": " So in theory, you can convert other languages into it, like Solidity or Viber,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,400",
+				"to": "00:02:18,400"
+			},
+			"offsets": {
+				"from": 133400,
+				"to": 138400
+			},
+			"text": " and you can target other machines like I was."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,400",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 138400,
+				"to": 145400
+			},
+			"text": " Looking closer into the front-end, this is an example of what it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:30,400"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 150400
+			},
+			"text": " So it converts the program on the left to the code on the right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,400",
+				"to": "00:02:37,400"
+			},
+			"offsets": {
+				"from": 150400,
+				"to": 157400
+			},
+			"text": " And two things I want to point out here is that types are being reduced into bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,400",
+				"to": "00:02:42,400"
+			},
+			"offsets": {
+				"from": 157400,
+				"to": 162400
+			},
+			"text": " and storage accesses become explicit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,400",
+				"to": "00:02:53,400"
+			},
+			"offsets": {
+				"from": 162400,
+				"to": 173400
+			},
+			"text": " The line you see at the top is how this happens, which is through a Scala function that pattern matches the Scala syntax tree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,400",
+				"to": "00:03:00,400"
+			},
+			"offsets": {
+				"from": 173400,
+				"to": 180400
+			},
+			"text": " which is the tree input parameter and converts that into the intermediate language tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,400",
+				"to": "00:03:07,400"
+			},
+			"offsets": {
+				"from": 180400,
+				"to": 187400
+			},
+			"text": " I think this is a very robust and elegant way to implement a language specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,400",
+				"to": "00:03:18,400"
+			},
+			"offsets": {
+				"from": 187400,
+				"to": 198400
+			},
+			"text": " Another feature of the intermediate language is that you can use list expressions that you can compose very nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,400",
+				"to": "00:03:26,400"
+			},
+			"offsets": {
+				"from": 198400,
+				"to": 206400
+			},
+			"text": " I wish I had more time to talk about this, but I will now proceed to the back-end of the compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,400",
+				"to": "00:03:36,400"
+			},
+			"offsets": {
+				"from": 206400,
+				"to": 216400
+			},
+			"text": " Compiler engineers will find the back-end very familiar because it uses an intermediate representation that is pretty much in norm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,400",
+				"to": "00:03:42,400"
+			},
+			"offsets": {
+				"from": 216400,
+				"to": 222400
+			},
+			"text": " And that is three address code and static single assignment."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,400",
+				"to": "00:03:53,400"
+			},
+			"offsets": {
+				"from": 222400,
+				"to": 233400
+			},
+			"text": " And this intermediate representation is naturally compatible with optimization and static analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,400",
+				"to": "00:03:58,400"
+			},
+			"offsets": {
+				"from": 233400,
+				"to": 238400
+			},
+			"text": " So that's why it's the norm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,400",
+				"to": "00:04:07,400"
+			},
+			"offsets": {
+				"from": 238400,
+				"to": 247400
+			},
+			"text": " And compilers that don't have that are not great compilers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,400",
+				"to": "00:04:19,400"
+			},
+			"offsets": {
+				"from": 247400,
+				"to": 259400
+			},
+			"text": " So the cuts here is that these intermediate representations are not compatible with a stack-based machine, like the AVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,400",
+				"to": "00:04:30,400"
+			},
+			"offsets": {
+				"from": 259400,
+				"to": 270400
+			},
+			"text": " So for that reason, we add another phase, which we call Stackify, that makes the transition into AVM bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,400",
+				"to": "00:04:34,400"
+			},
+			"offsets": {
+				"from": 270400,
+				"to": 274400
+			},
+			"text": " So putting all the pieces together, this is how the compiler looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,400",
+				"to": "00:04:42,400"
+			},
+			"offsets": {
+				"from": 274400,
+				"to": 282400
+			},
+			"text": " And I want to note that the back-end also can decompile raw bytecode into these intermediate representations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,400",
+				"to": "00:04:51,400"
+			},
+			"offsets": {
+				"from": 282400,
+				"to": 291400
+			},
+			"text": " So we can optimize and analyze raw bytecode that was produced by other compilers as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,400",
+				"to": "00:04:58,400"
+			},
+			"offsets": {
+				"from": 291400,
+				"to": 298400
+			},
+			"text": " To summarize, Axlang would believe Axlang has a highly modular and scalable implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,400",
+				"to": "00:05:06,400"
+			},
+			"offsets": {
+				"from": 298400,
+				"to": 306400
+			},
+			"text": " It utilizes an industry-grade compiler framework, which is the Scala compiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,400",
+				"to": "00:05:15,400"
+			},
+			"offsets": {
+				"from": 306400,
+				"to": 315400
+			},
+			"text": " And we are getting very close to open sourcing it, so please follow us on Twitter and YouTube for more updates on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,400",
+				"to": "00:05:17,400"
+			},
+			"offsets": {
+				"from": 315400,
+				"to": 317400
+			},
+			"text": " And we are also hiring."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,400",
+				"to": "00:05:23,400"
+			},
+			"offsets": {
+				"from": 317400,
+				"to": 323400
+			},
+			"text": " So also feel free to reach out to me if you have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,400",
+				"to": "00:05:25,400"
+			},
+			"offsets": {
+				"from": 323400,
+				"to": 325400
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,400",
+				"to": "00:05:27,400"
+			},
+			"offsets": {
+				"from": 325400,
+				"to": 327400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,400",
+				"to": "00:05:29,400"
+			},
+			"offsets": {
+				"from": 327400,
+				"to": 329400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,400",
+				"to": "00:05:31,400"
+			},
+			"offsets": {
+				"from": 329400,
+				"to": 331400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,400",
+				"to": "00:05:33,400"
+			},
+			"offsets": {
+				"from": 331400,
+				"to": 333400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,400",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 333400,
+				"to": 335400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:37,400"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 337400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,400",
+				"to": "00:05:39,400"
+			},
+			"offsets": {
+				"from": 337400,
+				"to": 339400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,400",
+				"to": "00:05:41,400"
+			},
+			"offsets": {
+				"from": 339400,
+				"to": 341400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,400",
+				"to": "00:05:43,400"
+			},
+			"offsets": {
+				"from": 341400,
+				"to": 343400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,400",
+				"to": "00:05:45,400"
+			},
+			"offsets": {
+				"from": 343400,
+				"to": 345400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,400",
+				"to": "00:05:47,400"
+			},
+			"offsets": {
+				"from": 345400,
+				"to": 347400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,400",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 347400,
+				"to": 349400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:51,400"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 351400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,400",
+				"to": "00:05:53,400"
+			},
+			"offsets": {
+				"from": 351400,
+				"to": 353400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,400",
+				"to": "00:06:22,400"
+			},
+			"offsets": {
+				"from": 353400,
+				"to": 382400
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

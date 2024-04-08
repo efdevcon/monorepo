@@ -1,0 +1,3530 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10360
+			},
+			"text": " Hello, I'm Dan O'Faren and I'm Tim, product manager at Pegasus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,360",
+				"to": "00:00:16,760"
+			},
+			"offsets": {
+				"from": 10360,
+				"to": 16760
+			},
+			"text": " I am a network protocol engineer and our talk today is to propose and talk about the proposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,760",
+				"to": "00:00:20,920"
+			},
+			"offsets": {
+				"from": 16760,
+				"to": 20920
+			},
+			"text": " cadence for network upgrades which you might also call hard forks and changing it from"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,920",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 20920,
+				"to": 23280
+			},
+			"text": " the old model which is kind of like buying a plane ticket."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:28,280"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 28280
+			},
+			"text": " Everyone gets on the same plane, you pick seats, you do a month and years in advance"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,280",
+				"to": "00:00:30,720"
+			},
+			"offsets": {
+				"from": 28280,
+				"to": 30720
+			},
+			"text": " and things don't change, it flies out or it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,720",
+				"to": "00:00:34,760"
+			},
+			"offsets": {
+				"from": 30720,
+				"to": 34760
+			},
+			"text": " And instead of replacing it with a trained model where you show up with a trained platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,760",
+				"to": "00:00:38,040"
+			},
+			"offsets": {
+				"from": 34760,
+				"to": 38040
+			},
+			"text": " and whoever's there is leaves and whoever's there doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,040",
+				"to": "00:00:40,640"
+			},
+			"offsets": {
+				"from": 38040,
+				"to": 40640
+			},
+			"text": " But first, let's start with a little bit of history."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,640",
+				"to": "00:00:42,760"
+			},
+			"offsets": {
+				"from": 40640,
+				"to": 42760
+			},
+			"text": " What did network upgrades look like before this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,760",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 42760,
+				"to": 47560
+			},
+			"text": " It was a lot like a family vacation, frontier, homestead, bizancia and constinople."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:51,800"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 51800
+			},
+			"text": " Mom and dad would tell us where we're going, we'd pack the car, you'd sneak in your favorite"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,800",
+				"to": "00:00:55,480"
+			},
+			"offsets": {
+				"from": 51800,
+				"to": 55480
+			},
+			"text": " toy, we'd drive and drive and drive and we'd get there eventually and it would all be"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,480",
+				"to": "00:01:00,280"
+			},
+			"offsets": {
+				"from": 55480,
+				"to": 60280
+			},
+			"text": " happiness and sunshine in the end, except when it wasn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,280",
+				"to": "00:01:04,160"
+			},
+			"offsets": {
+				"from": 60280,
+				"to": 64160
+			},
+			"text": " There were a few network upgrades that were a little more emergency all hands on deck type"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,160",
+				"to": "00:01:05,460"
+			},
+			"offsets": {
+				"from": 64160,
+				"to": 65460
+			},
+			"text": " situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,460",
+				"to": "00:01:08,840"
+			},
+			"offsets": {
+				"from": 65460,
+				"to": 68840
+			},
+			"text": " The first two were the Shanghai attack and the second one was when there was a security"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,840",
+				"to": "00:01:10,880"
+			},
+			"offsets": {
+				"from": 68840,
+				"to": 70880
+			},
+			"text": " flaw discovered as part of constance and opal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,880",
+				"to": "00:01:15,520"
+			},
+			"offsets": {
+				"from": 70880,
+				"to": 75520
+			},
+			"text": " In those situations we all came together, we all got the network upgrade out in a timely"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,520",
+				"to": "00:01:19,800"
+			},
+			"offsets": {
+				"from": 75520,
+				"to": 79800
+			},
+			"text": " and fast fashion, laser focused on what the problems were."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,800",
+				"to": "00:01:22,440"
+			},
+			"offsets": {
+				"from": 79800,
+				"to": 82440
+			},
+			"text": " So where does that put us today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,440",
+				"to": "00:01:26,200"
+			},
+			"offsets": {
+				"from": 82440,
+				"to": 86200
+			},
+			"text": " So the beginning of the year we proposed a plan for Istanbul where we would take everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,200",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86200,
+				"to": 90000
+			},
+			"text": " from the beginning and we'd have landmarks along the way that we would do things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:34,080"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 94080
+			},
+			"text": " have the EIPs ready and all that other stuff go from step to step down the waterfall and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,080",
+				"to": "00:01:37,800"
+			},
+			"offsets": {
+				"from": 94080,
+				"to": 97800
+			},
+			"text": " there was going to be rainbows and sunshine and it was going to be awesomeness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,800",
+				"to": "00:01:38,800"
+			},
+			"offsets": {
+				"from": 97800,
+				"to": 98800
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,800",
+				"to": "00:01:43,520"
+			},
+			"offsets": {
+				"from": 98800,
+				"to": 103520
+			},
+			"text": " Well like everyone in this room probably knows, waterfall doesn't work for software development."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,520",
+				"to": "00:01:47,800"
+			},
+			"offsets": {
+				"from": 103520,
+				"to": 107800
+			},
+			"text": " But we tried it anyway for Istanbul and so at the beginning of the years we set ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,800",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 107800,
+				"to": 108800
+			},
+			"text": " a bunch of deadlines."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 113400
+			},
+			"text": " We would have a kickoff in January, give ourselves a good amount of time to review all the EIPs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:56,080"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 116080
+			},
+			"text": " so that around mid-May we could have a final list."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,080",
+				"to": "00:02:00,520"
+			},
+			"offsets": {
+				"from": 116080,
+				"to": 120520
+			},
+			"text": " This would give us two months to work on client implementations which brought us to mid-July."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,520",
+				"to": "00:02:04,360"
+			},
+			"offsets": {
+				"from": 120520,
+				"to": 124360
+			},
+			"text": " This way we could deploy the test nets around mid-August and finally have our upgrade go"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,360",
+				"to": "00:02:09,560"
+			},
+			"offsets": {
+				"from": 124360,
+				"to": 129560
+			},
+			"text": " live on mainnet by mid-October which was supposed to be two weeks before DEF CON."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,560",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 129560,
+				"to": 130560
+			},
+			"text": " We're working next week?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:11,560"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 131560
+			},
+			"text": " No, we're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,560",
+				"to": "00:02:12,560"
+			},
+			"offsets": {
+				"from": 131560,
+				"to": 132560
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,560",
+				"to": "00:02:16,480"
+			},
+			"offsets": {
+				"from": 132560,
+				"to": 136480
+			},
+			"text": " And so how many of these deadlines that we actually hit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,480",
+				"to": "00:02:19,120"
+			},
+			"offsets": {
+				"from": 136480,
+				"to": 139120
+			},
+			"text": " We hit the first one, the kickoff."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,120",
+				"to": "00:02:22,280"
+			},
+			"offsets": {
+				"from": 139120,
+				"to": 142280
+			},
+			"text": " And obviously a lot of things went wrong here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,280",
+				"to": "00:02:26,400"
+			},
+			"offsets": {
+				"from": 142280,
+				"to": 146400
+			},
+			"text": " And one of the more interesting ones is that the Ethereum community had grown a lot since"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,400",
+				"to": "00:02:27,840"
+			},
+			"offsets": {
+				"from": 146400,
+				"to": 147840
+			},
+			"text": " the previous upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,840",
+				"to": "00:02:32,400"
+			},
+			"offsets": {
+				"from": 147840,
+				"to": 152400
+			},
+			"text": " So when it came time to review the EIPs, instead of having only a handful to review, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,400",
+				"to": "00:02:37,040"
+			},
+			"offsets": {
+				"from": 152400,
+				"to": 157040
+			},
+			"text": " were so many that I wasn't able to fit them on this slide using the Fonda gave us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,040",
+				"to": "00:02:41,240"
+			},
+			"offsets": {
+				"from": 157040,
+				"to": 161240
+			},
+			"text": " And so this means that around mid-May when we should have had a final list of EIPs for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,240",
+				"to": "00:02:44,640"
+			},
+			"offsets": {
+				"from": 161240,
+				"to": 164640
+			},
+			"text": " the upgrade, we're still trying to wrap our head around all of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,640",
+				"to": "00:02:46,280"
+			},
+			"offsets": {
+				"from": 164640,
+				"to": 166280
+			},
+			"text": " They weren't completely different stages."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,280",
+				"to": "00:02:50,080"
+			},
+			"offsets": {
+				"from": 166280,
+				"to": 170080
+			},
+			"text": " Some of them were early drafts while others had working test nets and there were dependencies"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,080",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 170080,
+				"to": 171840
+			},
+			"text": " across all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 173160
+			},
+			"text": " So this was not ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:55,320"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 175320
+			},
+			"text": " And we obviously missed that deadline."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,320",
+				"to": "00:03:00,440"
+			},
+			"offsets": {
+				"from": 175320,
+				"to": 180440
+			},
+			"text": " So we actually got our final list of EIPs for Istanbul around mid-July which is when"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,440",
+				"to": "00:03:04,880"
+			},
+			"offsets": {
+				"from": 180440,
+				"to": 184880
+			},
+			"text": " we should have been having the client's implementation done."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,880",
+				"to": "00:03:09,360"
+			},
+			"offsets": {
+				"from": 184880,
+				"to": 189360
+			},
+			"text": " This pushed back the client's implementation done to the end of the summer around August"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,360",
+				"to": "00:03:12,520"
+			},
+			"offsets": {
+				"from": 189360,
+				"to": 192520
+			},
+			"text": " which is when we should have gone live on the test nets and it pushed back the test net"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,520",
+				"to": "00:03:16,320"
+			},
+			"offsets": {
+				"from": 192520,
+				"to": 196320
+			},
+			"text": " upgrades to October which is when we should have had our main net upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,320",
+				"to": "00:03:19,400"
+			},
+			"offsets": {
+				"from": 196320,
+				"to": 199400
+			},
+			"text": " At this point, the main net upgrade will probably be at the end of the year or early"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,400",
+				"to": "00:03:21,200"
+			},
+			"offsets": {
+				"from": 199400,
+				"to": 201200
+			},
+			"text": " 2020."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,200",
+				"to": "00:03:26,720"
+			},
+			"offsets": {
+				"from": 201200,
+				"to": 206720
+			},
+			"text": " And so as this was happening, a lot of people realized it was not going super well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,720",
+				"to": "00:03:30,960"
+			},
+			"offsets": {
+				"from": 206720,
+				"to": 210960
+			},
+			"text": " And there were suggestions made around how we could make Berlin, the next upgrade, go"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,960",
+				"to": "00:03:33,320"
+			},
+			"offsets": {
+				"from": 210960,
+				"to": 213320
+			},
+			"text": " much smoother than Istanbul."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,320",
+				"to": "00:03:36,960"
+			},
+			"offsets": {
+				"from": 213320,
+				"to": 216960
+			},
+			"text": " So we're now walking through some of these ideas that the community brought forward and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,960",
+				"to": "00:03:43,200"
+			},
+			"offsets": {
+				"from": 216960,
+				"to": 223200
+			},
+			"text": " try to bundle them together into what we've called the train station model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,200",
+				"to": "00:03:47,080"
+			},
+			"offsets": {
+				"from": 223200,
+				"to": 227080
+			},
+			"text": " The first person to notice how poorly things were going was Alexia Koonov, the brains behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,080",
+				"to": "00:03:49,240"
+			},
+			"offsets": {
+				"from": 227080,
+				"to": 229240
+			},
+			"text": " state rent and stateless clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,240",
+				"to": "00:03:53,720"
+			},
+			"offsets": {
+				"from": 229240,
+				"to": 233720
+			},
+			"text": " And he posted a blog post re-outline basically where things were at, where things could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,720",
+				"to": "00:03:55,240"
+			},
+			"offsets": {
+				"from": 233720,
+				"to": 235240
+			},
+			"text": " and where they should go."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,240",
+				"to": "00:03:59,440"
+			},
+			"offsets": {
+				"from": 235240,
+				"to": 239440
+			},
+			"text": " On the first pick your outlines, what was going on with the first set of network upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,440",
+				"to": "00:04:02,920"
+			},
+			"offsets": {
+				"from": 239440,
+				"to": 242920
+			},
+			"text": " There was a, everyone would come together, they would write their tests but there was"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,920",
+				"to": "00:04:05,480"
+			},
+			"offsets": {
+				"from": 242920,
+				"to": 245480
+			},
+			"text": " one special client that had special privileges."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,480",
+				"to": "00:04:09,920"
+			},
+			"offsets": {
+				"from": 245480,
+				"to": 249920
+			},
+			"text": " And then the one client that was the one client that could actually produce the reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,920",
+				"to": "00:04:14,360"
+			},
+			"offsets": {
+				"from": 249920,
+				"to": 254360
+			},
+			"text": " tests that were needed by all of the other clients to verify that all of their consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,360",
+				"to": "00:04:17,800"
+			},
+			"offsets": {
+				"from": 254360,
+				"to": 257800
+			},
+			"text": " critical code was correct and was going to function properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,800",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 257800,
+				"to": 261680
+			},
+			"text": " So before anything could progress, Alex had to have all of their stuff written and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:25,840"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 265840
+			},
+			"text": " test written and then they had to go work with the other clients and work back and forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,840",
+				"to": "00:04:30,400"
+			},
+			"offsets": {
+				"from": 265840,
+				"to": 270400
+			},
+			"text": " It created a gating function, which is why a lot of the network upgrades moved and locks"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,400",
+				"to": "00:04:34,800"
+			},
+			"offsets": {
+				"from": 270400,
+				"to": 274800
+			},
+			"text": " that before because there was one task that had to be accomplished."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,800",
+				"to": "00:04:39,920"
+			},
+			"offsets": {
+				"from": 274800,
+				"to": 279920
+			},
+			"text": " So what Alex he proposed is instead of focusing on, as a group and having one client and doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,920",
+				"to": "00:04:45,400"
+			},
+			"offsets": {
+				"from": 279920,
+				"to": 285400
+			},
+			"text": " everything at once, we split these upgrades, the details into various working groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,400",
+				"to": "00:04:49,320"
+			},
+			"offsets": {
+				"from": 285400,
+				"to": 289320
+			},
+			"text": " So it would have various areas of concern and interest that they would recommend proposals"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,320",
+				"to": "00:04:50,320"
+			},
+			"offsets": {
+				"from": 289320,
+				"to": 290320
+			},
+			"text": " in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,320",
+				"to": "00:04:54,600"
+			},
+			"offsets": {
+				"from": 290320,
+				"to": 294600
+			},
+			"text": " And in these network groups, they would produce reference implementations for what they thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,600",
+				"to": "00:04:56,440"
+			},
+			"offsets": {
+				"from": 294600,
+				"to": 296440
+			},
+			"text": " needed to be changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,440",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296440,
+				"to": 300000
+			},
+			"text": " Now what he proposed is a very important thing for the reference implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 303640
+			},
+			"text": " It was going to use a new tool written by Dimitri from the Ethereum testing team called"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:04,880"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 304880
+			},
+			"text": " retest-f."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,880",
+				"to": "00:05:09,120"
+			},
+			"offsets": {
+				"from": 304880,
+				"to": 309120
+			},
+			"text": " What Dimitri did is he went and got all of the testing code that had left needed to produce"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,120",
+				"to": "00:05:14,400"
+			},
+			"offsets": {
+				"from": 309120,
+				"to": 314400
+			},
+			"text": " these reference tests and he took out the need to have a left run these."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,400",
+				"to": "00:05:19,840"
+			},
+			"offsets": {
+				"from": 314400,
+				"to": 319840
+			},
+			"text": " So you can create a reference test from any client that implements the APIs that retest-death"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,840",
+				"to": "00:05:20,840"
+			},
+			"offsets": {
+				"from": 319840,
+				"to": 320840
+			},
+			"text": " uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,840",
+				"to": "00:05:26,960"
+			},
+			"offsets": {
+				"from": 320840,
+				"to": 326960
+			},
+			"text": " Get those implements of them, base it was implemented them, and obviously, Aleth implemented them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,960",
+				"to": "00:05:30,960"
+			},
+			"offsets": {
+				"from": 326960,
+				"to": 330960
+			},
+			"text": " So from these, you can create your EIPs and you can target any of those three platforms"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,960",
+				"to": "00:05:35,480"
+			},
+			"offsets": {
+				"from": 330960,
+				"to": 335480
+			},
+			"text": " right now to generate your reference tests to create an EIP to test."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,480",
+				"to": "00:05:40,080"
+			},
+			"offsets": {
+				"from": 335480,
+				"to": 340080
+			},
+			"text": " So we are not tied to just one implementation and one implementer to produce the reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,080",
+				"to": "00:05:43,240"
+			},
+			"offsets": {
+				"from": 340080,
+				"to": 343240
+			},
+			"text": " tests anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,240",
+				"to": "00:05:46,440"
+			},
+			"offsets": {
+				"from": 343240,
+				"to": 346440
+			},
+			"text": " The second idea that came up is a need for EIP champions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,440",
+				"to": "00:05:50,520"
+			},
+			"offsets": {
+				"from": 346440,
+				"to": 350520
+			},
+			"text": " This is a picture of tweets from the Berlin Alport devs meeting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,520",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 350520,
+				"to": 356160
+			},
+			"text": " And from there, Aleks, different, different Aleksi, but Aleks proposed that each EIP needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 362000
+			},
+			"text": " a champion and Boris echoed it and said yes, EIPs need a human being that we can go to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:05,640"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 365640
+			},
+			"text": " and we can talk to and say hey, what is the status of your EIP?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,640",
+				"to": "00:06:10,280"
+			},
+			"offsets": {
+				"from": 365640,
+				"to": 370280
+			},
+			"text": " One human that can call in the Alport devs call and say hey, state rent is going more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,280",
+				"to": "00:06:13,680"
+			},
+			"offsets": {
+				"from": 370280,
+				"to": 373680
+			},
+			"text": " into stateless clients right now so you won't be seeing this for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,680",
+				"to": "00:06:19,320"
+			},
+			"offsets": {
+				"from": 373680,
+				"to": 379320
+			},
+			"text": " It needs one human who coordinates so when we say hey, we need more tests for EIP 2200"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,320",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379320,
+				"to": 383000
+			},
+			"text": " and we can talk to that person and they can go back to the developers and they can create"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 384000
+			},
+			"text": " those new tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:28,240"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 388240
+			},
+			"text": " It is not just one person do all those things, but if the EIP is small enough or the person"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,240",
+				"to": "00:06:31,040"
+			},
+			"offsets": {
+				"from": 388240,
+				"to": 391040
+			},
+			"text": " is dedicated enough, it could be the person implementing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,040",
+				"to": "00:06:35,360"
+			},
+			"offsets": {
+				"from": 391040,
+				"to": 395360
+			},
+			"text": " But it is one person who coordinates and is accountable and champions the EIP through"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,360",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 395360,
+				"to": 400600
+			},
+			"text": " the process, taking it through the steps as available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:45,240"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 405240
+			},
+			"text": " And another big idea that was introduced this year is the concept of EIP-centric forking."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,240",
+				"to": "00:06:48,080"
+			},
+			"offsets": {
+				"from": 405240,
+				"to": 408080
+			},
+			"text": " This was brought forward by Martin at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,080",
+				"to": "00:06:52,120"
+			},
+			"offsets": {
+				"from": 408080,
+				"to": 412120
+			},
+			"text": " And the general idea is that instead of having all our EIPs move through the various stages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,120",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 412120,
+				"to": 418000
+			},
+			"text": " of the upgrade at the same time, you have each EIP progress independently and you only"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 422000
+			},
+			"text": " schedule them for an upgrade when they get to a point where they're ready to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:06,120"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 426120
+			},
+			"text": " So using this model, if you wanted to get an EIP live on mainnet, the way you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,120",
+				"to": "00:07:07,560"
+			},
+			"offsets": {
+				"from": 426120,
+				"to": 427560
+			},
+			"text": " go about it is this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,560",
+				"to": "00:07:12,040"
+			},
+			"offsets": {
+				"from": 427560,
+				"to": 432040
+			},
+			"text": " You first start by writing your EIP and then you'll go on all core devs to get what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,040",
+				"to": "00:07:14,280"
+			},
+			"offsets": {
+				"from": 432040,
+				"to": 434280
+			},
+			"text": " called an initial acceptance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,280",
+				"to": "00:07:18,160"
+			},
+			"offsets": {
+				"from": 434280,
+				"to": 438160
+			},
+			"text": " This means that the core developers are generally positive towards your idea and that assuming"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,160",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438160,
+				"to": 443000
+			},
+			"text": " everything goes well in the next steps, they'd accept a PR for a well-written implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:24,880"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 444880
+			},
+			"text": " of your EIP in their client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,880",
+				"to": "00:07:28,480"
+			},
+			"offsets": {
+				"from": 444880,
+				"to": 448480
+			},
+			"text": " And this can be a really useful signaling mechanism for organizations that fund some"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,480",
+				"to": "00:07:31,040"
+			},
+			"offsets": {
+				"from": 448480,
+				"to": 451040
+			},
+			"text": " of the teams working on these EIPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,040",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 451040,
+				"to": 456000
+			},
+			"text": " Organizations like the EF, like Molokdao or Consensus can use this initially acceptance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,040"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460040
+			},
+			"text": " status to know that they're funding in efforts that has a fairly high likelihood of making"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,040",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 460040,
+				"to": 462000
+			},
+			"text": " it on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:46,920"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 466920
+			},
+			"text": " So once you have this initial acceptance stamp, you go and work on your reference implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,920",
+				"to": "00:07:51,040"
+			},
+			"offsets": {
+				"from": 466920,
+				"to": 471040
+			},
+			"text": " this just means implementing your EIP against one of the major clients, and then generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,040",
+				"to": "00:07:53,960"
+			},
+			"offsets": {
+				"from": 471040,
+				"to": 473960
+			},
+			"text": " your reference tests using retest that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,960",
+				"to": "00:07:57,400"
+			},
+			"offsets": {
+				"from": 473960,
+				"to": 477400
+			},
+			"text": " This would kick off the security evaluation period of your EIP where you'll want to reach"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,400",
+				"to": "00:08:01,080"
+			},
+			"offsets": {
+				"from": 477400,
+				"to": 481080
+			},
+			"text": " out to people in Ethereum who are familiar with the bits of the system you're changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,080",
+				"to": "00:08:02,920"
+			},
+			"offsets": {
+				"from": 481080,
+				"to": 482920
+			},
+			"text": " so that they can poke at your EIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,920",
+				"to": "00:08:05,920"
+			},
+			"offsets": {
+				"from": 482920,
+				"to": 485920
+			},
+			"text": " As you're going through all of this, you'll want to feed everything you learned back into"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,920",
+				"to": "00:08:11,400"
+			},
+			"offsets": {
+				"from": 485920,
+				"to": 491400
+			},
+			"text": " your EIP specification and specifically under the Security Considerations section."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,400",
+				"to": "00:08:14,320"
+			},
+			"offsets": {
+				"from": 491400,
+				"to": 494320
+			},
+			"text": " Once you've done all of that, so you've got in your initial acceptance, your reference"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,320",
+				"to": "00:08:18,400"
+			},
+			"offsets": {
+				"from": 494320,
+				"to": 498400
+			},
+			"text": " implementation and your testing, you'll want to go back on our core devs to get your EIP"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,400",
+				"to": "00:08:20,280"
+			},
+			"offsets": {
+				"from": 498400,
+				"to": 500280
+			},
+			"text": " move to accepted."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,280",
+				"to": "00:08:23,800"
+			},
+			"offsets": {
+				"from": 500280,
+				"to": 503800
+			},
+			"text": " At that point, all the other mainnet clients will implement it and it'll be scheduled for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,800",
+				"to": "00:08:25,400"
+			},
+			"offsets": {
+				"from": 503800,
+				"to": 505400
+			},
+			"text": " a testnet upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,400",
+				"to": "00:08:29,760"
+			},
+			"offsets": {
+				"from": 505400,
+				"to": 509760
+			},
+			"text": " Once that upgrade goes live, assuming everything is fine, then it'll be scheduled for mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,760",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 509760,
+				"to": 513520
+			},
+			"text": " and will be deployed on the next mainnet upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:37,360"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 517360
+			},
+			"text": " And James Hancock put together a really good diagram to explain this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,360",
+				"to": "00:08:41,760"
+			},
+			"offsets": {
+				"from": 517360,
+				"to": 521760
+			},
+			"text": " So you see at step zero, you start off with your draft of an EIP, and there the only"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,760",
+				"to": "00:08:45,320"
+			},
+			"offsets": {
+				"from": 521760,
+				"to": 525320
+			},
+			"text": " gating function is you need to get it approved by EIP editors."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,320",
+				"to": "00:08:49,080"
+			},
+			"offsets": {
+				"from": 525320,
+				"to": 529080
+			},
+			"text": " This just means your EIP meets the basic EIP template requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,080",
+				"to": "00:08:52,760"
+			},
+			"offsets": {
+				"from": 529080,
+				"to": 532760
+			},
+			"text": " From there, you get a green light from all core devs or an initial acceptance, which means"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,760",
+				"to": "00:08:56,120"
+			},
+			"offsets": {
+				"from": 532760,
+				"to": 536120
+			},
+			"text": " that they're generally positive towards your idea and that they'd accept a good PR from"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,120",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 536120,
+				"to": 537800
+			},
+			"text": " it in their code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 541720
+			},
+			"text": " You start working on your implementation and then you own the testing for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:06,680"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 546680
+			},
+			"text": " So not only are you generating the reference tests and trying to test both the happy path"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,680",
+				"to": "00:09:12,400"
+			},
+			"offsets": {
+				"from": 546680,
+				"to": 552400
+			},
+			"text": " as well as the quirks and edge cases for specific EIPs, but you also want to get in touch with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,400",
+				"to": "00:09:16,440"
+			},
+			"offsets": {
+				"from": 552400,
+				"to": 556440
+			},
+			"text": " the EF testing team and other people who are knowledgeable about what you're changing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,440",
+				"to": "00:09:21,360"
+			},
+			"offsets": {
+				"from": 556440,
+				"to": 561360
+			},
+			"text": " to make sure that all of the important security considerations get fed back into the spec."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,360",
+				"to": "00:09:24,880"
+			},
+			"offsets": {
+				"from": 561360,
+				"to": 564880
+			},
+			"text": " Once you've done all that, you go back on all core devs, get your EIP move to accepted,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,880",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 564880,
+				"to": 567160
+			},
+			"text": " and it'll be scheduled for the next upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:30,760"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 570760
+			},
+			"text": " At that point, it'll move into the last call and will keep running the reference test against"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,760",
+				"to": "00:09:32,960"
+			},
+			"offsets": {
+				"from": 570760,
+				"to": 572960
+			},
+			"text": " it all the way up to the testnet block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,960",
+				"to": "00:09:36,600"
+			},
+			"offsets": {
+				"from": 572960,
+				"to": 576600
+			},
+			"text": " If it goes live on the testnets and everything is fine, then it'll be scheduled for mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,600",
+				"to": "00:09:39,680"
+			},
+			"offsets": {
+				"from": 576600,
+				"to": 579680
+			},
+			"text": " and finally your EIP will be live on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,680",
+				"to": "00:09:44,560"
+			},
+			"offsets": {
+				"from": 579680,
+				"to": 584560
+			},
+			"text": " Finally, as Tim mentioned, the Ethereum community is growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,560",
+				"to": "00:09:48,640"
+			},
+			"offsets": {
+				"from": 584560,
+				"to": 588640
+			},
+			"text": " There's more people that we need to take considerations into rather than just the developers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,640",
+				"to": "00:09:50,720"
+			},
+			"offsets": {
+				"from": 588640,
+				"to": 590720
+			},
+			"text": " the researchers who are creating these items."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,720",
+				"to": "00:09:55,560"
+			},
+			"offsets": {
+				"from": 590720,
+				"to": 595560
+			},
+			"text": " We have people running exchanges, we have people running their own personal nodes for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,560",
+				"to": "00:10:00,320"
+			},
+			"offsets": {
+				"from": 595560,
+				"to": 600320
+			},
+			"text": " personal information, we have corporations running nodes, and we have service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,320",
+				"to": "00:10:02,840"
+			},
+			"offsets": {
+				"from": 600320,
+				"to": 602840
+			},
+			"text": " such as Infura that run these Ethereum nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,840",
+				"to": "00:10:08,520"
+			},
+			"offsets": {
+				"from": 602840,
+				"to": 608520
+			},
+			"text": " We need to take into consideration that they need some standard amount of time to react"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,520",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 608520,
+				"to": 610000
+			},
+			"text": " to these node upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:17,960"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 617960
+			},
+			"text": " A few months ago, I proposed EIP 1872, a set of upgrade windows to tell us when we should"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,960",
+				"to": "00:10:22,720"
+			},
+			"offsets": {
+				"from": 617960,
+				"to": 622720
+			},
+			"text": " do our network upgrades rather than just picking a day, random day when we're ready to fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,720",
+				"to": "00:10:24,240"
+			},
+			"offsets": {
+				"from": 622720,
+				"to": 624240
+			},
+			"text": " There were several recommendations in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,240",
+				"to": "00:10:26,440"
+			},
+			"offsets": {
+				"from": 624240,
+				"to": 626440
+			},
+			"text": " Some of these I feel stronger about than others."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,440",
+				"to": "00:10:29,760"
+			},
+			"offsets": {
+				"from": 626440,
+				"to": 629760
+			},
+			"text": " The first recommendation that I feel the most strongest about is that we should fork"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,760",
+				"to": "00:10:32,320"
+			},
+			"offsets": {
+				"from": 629760,
+				"to": 632320
+			},
+			"text": " on the third Wednesday of a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,320",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 632320,
+				"to": 636000
+			},
+			"text": " Unlike how Microsoft has their patch Tuesday where their security patches will come out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:38,920"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 638920
+			},
+			"text": " on a second Tuesday of the month unless it's an emergency patch."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,920",
+				"to": "00:10:42,840"
+			},
+			"offsets": {
+				"from": 638920,
+				"to": 642840
+			},
+			"text": " That way, some administrators know that they should not take vacations during the second"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,840",
+				"to": "00:10:46,720"
+			},
+			"offsets": {
+				"from": 642840,
+				"to": 646720
+			},
+			"text": " week of a month because that's when a lot of the work is going to come around to testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,720",
+				"to": "00:10:48,760"
+			},
+			"offsets": {
+				"from": 646720,
+				"to": 648760
+			},
+			"text": " and upgrading the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,760",
+				"to": "00:10:52,440"
+			},
+			"offsets": {
+				"from": 648760,
+				"to": 652440
+			},
+			"text": " Similarly, node operators would know that the third week of a month is probably not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,440",
+				"to": "00:10:56,640"
+			},
+			"offsets": {
+				"from": 652440,
+				"to": 656640
+			},
+			"text": " the best time to take vacation because that's when a network upgrade could occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,640",
+				"to": "00:11:00,760"
+			},
+			"offsets": {
+				"from": 656640,
+				"to": 660760
+			},
+			"text": " Now these could occur in any of the 12 months, but the second thing that I recommend, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,760",
+				"to": "00:11:04,520"
+			},
+			"offsets": {
+				"from": 660760,
+				"to": 664520
+			},
+			"text": " is more of a recommendation, is that we pick four specific months that we prefer to launch"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,520",
+				"to": "00:11:06,800"
+			},
+			"offsets": {
+				"from": 664520,
+				"to": 666800
+			},
+			"text": " main nets, main net upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,800",
+				"to": "00:11:09,600"
+			},
+			"offsets": {
+				"from": 666800,
+				"to": 669600
+			},
+			"text": " Those will be January, April, July, and October."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,600",
+				"to": "00:11:13,680"
+			},
+			"offsets": {
+				"from": 669600,
+				"to": 673680
+			},
+			"text": " Those are three months apart and those who have the advantage of missing a lot of US and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,680",
+				"to": "00:11:19,320"
+			},
+			"offsets": {
+				"from": 673680,
+				"to": 679320
+			},
+			"text": " European-centric conflicts around vacations and holidays so that the operators in those"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,320",
+				"to": "00:11:23,720"
+			},
+			"offsets": {
+				"from": 679320,
+				"to": 683720
+			},
+			"text": " areas won't feel any conflicts with those."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,720",
+				"to": "00:11:29,200"
+			},
+			"offsets": {
+				"from": 683720,
+				"to": 689200
+			},
+			"text": " However, sometimes it's necessary to delay an network upgrade as happened with Constance"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,200",
+				"to": "00:11:30,200"
+			},
+			"offsets": {
+				"from": 689200,
+				"to": 690200
+			},
+			"text": " Nopel."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,200",
+				"to": "00:11:33,240"
+			},
+			"offsets": {
+				"from": 690200,
+				"to": 693240
+			},
+			"text": " In those cases, the delays would go out in month increments."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,240",
+				"to": "00:11:37,960"
+			},
+			"offsets": {
+				"from": 693240,
+				"to": 697960
+			},
+			"text": " If we have to delay it, we pick a new third Wednesday of the month, probably the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,960",
+				"to": "00:11:40,320"
+			},
+			"offsets": {
+				"from": 697960,
+				"to": 700320
+			},
+			"text": " month, to shift it out a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,320",
+				"to": "00:11:44,400"
+			},
+			"offsets": {
+				"from": 700320,
+				"to": 704400
+			},
+			"text": " The aim here for this is to do these network upgrades twice a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,400",
+				"to": "00:11:48,880"
+			},
+			"offsets": {
+				"from": 704400,
+				"to": 708880
+			},
+			"text": " We would do one in January and one in July or one in April and one in October."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,880",
+				"to": "00:11:51,800"
+			},
+			"offsets": {
+				"from": 708880,
+				"to": 711800
+			},
+			"text": " Once you schedule one, you would do one six months later."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,800",
+				"to": "00:11:57,080"
+			},
+			"offsets": {
+				"from": 711800,
+				"to": 717080
+			},
+			"text": " Of course, in this recommendation, you could always fight fires whenever and wherever they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,080",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 717080,
+				"to": 718080
+			},
+			"text": " happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:12:02,720"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 722720
+			},
+			"text": " In other situations like Constance Nopel or the Shanghai attacks, we can upgrade it on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,720",
+				"to": "00:12:06,680"
+			},
+			"offsets": {
+				"from": 722720,
+				"to": 726680
+			},
+			"text": " very short notice or we can cancel the fork and move it out on very short notice."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,680",
+				"to": "00:12:11,440"
+			},
+			"offsets": {
+				"from": 726680,
+				"to": 731440
+			},
+			"text": " If there's an emergency, these recommendations do not constrain us on acting on those emergencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,440",
+				"to": "00:12:15,320"
+			},
+			"offsets": {
+				"from": 731440,
+				"to": 735320
+			},
+			"text": " But if it's not an emergency, the discipline that comes with a time frame like this will"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,320",
+				"to": "00:12:20,360"
+			},
+			"offsets": {
+				"from": 735320,
+				"to": 740360
+			},
+			"text": " be appreciated by the people who have to operate the Ethereum nodes that all of our networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,360",
+				"to": "00:12:21,360"
+			},
+			"offsets": {
+				"from": 740360,
+				"to": 741360
+			},
+			"text": " depend on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,360",
+				"to": "00:12:26,640"
+			},
+			"offsets": {
+				"from": 741360,
+				"to": 746640
+			},
+			"text": " In synthesis from all of these four recommendations, we get to the train model."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,640",
+				"to": "00:12:31,800"
+			},
+			"offsets": {
+				"from": 746640,
+				"to": 751800
+			},
+			"text": " Rather than a model where we're all flying on an airplane and we're going for specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,800",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 751800,
+				"to": 755400
+			},
+			"text": " flight at a specific time, instead it's like we're going to a train station and as the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 759000
+			},
+			"text": " trains come and go, you come and go."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 760000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:41,360"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 761360
+			},
+			"text": " There's four main ideas here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,360",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 761360,
+				"to": 764360
+			},
+			"text": " The first is that the EAP should progress independently."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:48,360"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 768360
+			},
+			"text": " Like we said before, you don't want to have all the EAPs moving in lockstep towards the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,360",
+				"to": "00:12:50,920"
+			},
+			"offsets": {
+				"from": 768360,
+				"to": 770920
+			},
+			"text": " various stages of the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,920",
+				"to": "00:12:54,960"
+			},
+			"offsets": {
+				"from": 770920,
+				"to": 774960
+			},
+			"text": " Instead, every EAP and working group move at their own pace and whenever something is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,960",
+				"to": "00:12:59,360"
+			},
+			"offsets": {
+				"from": 774960,
+				"to": 779360
+			},
+			"text": " ready to ship, only then do you schedule it for an actual upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,360",
+				"to": "00:13:04,040"
+			},
+			"offsets": {
+				"from": 779360,
+				"to": 784040
+			},
+			"text": " The second point is that EAPs have a champion, a human being who the Alport devs can contact"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,040",
+				"to": "00:13:06,880"
+			},
+			"offsets": {
+				"from": 784040,
+				"to": 786880
+			},
+			"text": " and say, \"Hey, is this EAP ready for this network upgrade?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,880",
+				"to": "00:13:07,880"
+			},
+			"offsets": {
+				"from": 786880,
+				"to": 787880
+			},
+			"text": " Should we move it to the next one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,880",
+				"to": "00:13:12,240"
+			},
+			"offsets": {
+				"from": 787880,
+				"to": 792240
+			},
+			"text": " It's a single point of contact who can answer these questions and help move the EAP through"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,240",
+				"to": "00:13:13,240"
+			},
+			"offsets": {
+				"from": 792240,
+				"to": 793240
+			},
+			"text": " the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,240",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 793240,
+				"to": 798000
+			},
+			"text": " Maybe motivate the team to make deadlines and maybe just let Alport devs know that we found"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:21,360"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 801360
+			},
+			"text": " an issue and we're not going to make this network upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,360",
+				"to": "00:13:25,480"
+			},
+			"offsets": {
+				"from": 801360,
+				"to": 805480
+			},
+			"text": " And the third idea is that whatever is done is whatever ships."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,480",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 805480,
+				"to": 807000
+			},
+			"text": " Whatever ships, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:30,600"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 810600
+			},
+			"text": " So this way, an upgrade consists of basically the EAPs that are in a spot where they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,600",
+				"to": "00:13:32,200"
+			},
+			"offsets": {
+				"from": 810600,
+				"to": 812200
+			},
+			"text": " ready to go live."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,200",
+				"to": "00:13:34,920"
+			},
+			"offsets": {
+				"from": 812200,
+				"to": 814920
+			},
+			"text": " Anything that's still in progress gets moved to the next upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,920",
+				"to": "00:13:40,640"
+			},
+			"offsets": {
+				"from": 814920,
+				"to": 820640
+			},
+			"text": " Like we said, if there's any last minute issue, then you can obviously kick that EAP out to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,640",
+				"to": "00:13:42,520"
+			},
+			"offsets": {
+				"from": 820640,
+				"to": 822520
+			},
+			"text": " the next train as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,520",
+				"to": "00:13:46,160"
+			},
+			"offsets": {
+				"from": 822520,
+				"to": 826160
+			},
+			"text": " And the final recommendation is that we move to semi-annual network upgrades rather than"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,160",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 826160,
+				"to": 829000
+			},
+			"text": " the annual or less upgrades that we've been doing in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:52,480"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 832480
+			},
+			"text": " One of the big advantages that we get out of this is that when we tell an EIP that you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,480",
+				"to": "00:13:56,920"
+			},
+			"offsets": {
+				"from": 832480,
+				"to": 836920
+			},
+			"text": " not ready for this network upgrade, the next upgrade is only six months down the road rather"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,920",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 836920,
+				"to": 839000
+			},
+			"text": " than a year or more down the road."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,060"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843060
+			},
+			"text": " So they know that the work that they put into will still show up in a reasonable time"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,060",
+				"to": "00:14:05,920"
+			},
+			"offsets": {
+				"from": 843060,
+				"to": 845920
+			},
+			"text": " frame rather than some unknown time frame in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,920",
+				"to": "00:14:09,760"
+			},
+			"offsets": {
+				"from": 845920,
+				"to": 849760
+			},
+			"text": " It'll reduce a lot of the anxiety when it comes to scheduling and moving stuff in and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,760",
+				"to": "00:14:10,760"
+			},
+			"offsets": {
+				"from": 849760,
+				"to": 850760
+			},
+			"text": " out of a network upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,760",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 850760,
+				"to": 854480
+			},
+			"text": " And from this, we can make sure that what goes into the network upgrade is the good"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:17,240"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 857240
+			},
+			"text": " stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,240",
+				"to": "00:14:20,440"
+			},
+			"offsets": {
+				"from": 857240,
+				"to": 860440
+			},
+			"text": " And like we said earlier, we didn't come up with all of these ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,440",
+				"to": "00:14:21,840"
+			},
+			"offsets": {
+				"from": 860440,
+				"to": 861840
+			},
+			"text": " The community mostly did."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,840",
+				"to": "00:14:25,760"
+			},
+			"offsets": {
+				"from": 861840,
+				"to": 865760
+			},
+			"text": " So we wanted to make sure we linked back to them so anyone who's interested can go and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,760",
+				"to": "00:14:27,960"
+			},
+			"offsets": {
+				"from": 865760,
+				"to": 867960
+			},
+			"text": " dig a bit deeper to the original sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,960",
+				"to": "00:14:28,960"
+			},
+			"offsets": {
+				"from": 867960,
+				"to": 868960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,960",
+				"to": "00:14:33,200"
+			},
+			"offsets": {
+				"from": 868960,
+				"to": 873200
+			},
+			"text": " If you Google elects, you can all of that's the article that you'll find."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,200",
+				"to": "00:14:35,160"
+			},
+			"offsets": {
+				"from": 873200,
+				"to": 875160
+			},
+			"text": " And so yeah, that's what we had."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,160",
+				"to": "00:14:38,280"
+			},
+			"offsets": {
+				"from": 875160,
+				"to": 878280
+			},
+			"text": " Thank you all for listening and we have a couple minutes for questions if anyone has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,280",
+				"to": "00:14:39,280"
+			},
+			"offsets": {
+				"from": 878280,
+				"to": 879280
+			},
+			"text": " any."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,280",
+				"to": "00:14:40,280"
+			},
+			"offsets": {
+				"from": 879280,
+				"to": 880280
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,280",
+				"to": "00:14:46,720"
+			},
+			"offsets": {
+				"from": 880280,
+				"to": 886720
+			},
+			"text": " Hey, thanks for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,720",
+				"to": "00:14:52,640"
+			},
+			"offsets": {
+				"from": 886720,
+				"to": 892640
+			},
+			"text": " I was just curious what's required to get miners on board with this plan of doing regular"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,640",
+				"to": "00:14:56,520"
+			},
+			"offsets": {
+				"from": 892640,
+				"to": 896520
+			},
+			"text": " hard forks for upgrades and are there any difficulty adjustments that are happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,520",
+				"to": "00:14:59,280"
+			},
+			"offsets": {
+				"from": 896520,
+				"to": 899280
+			},
+			"text": " with each of those hard forks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,280",
+				"to": "00:15:00,840"
+			},
+			"offsets": {
+				"from": 899280,
+				"to": 900840
+			},
+			"text": " Who on board?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,840",
+				"to": "00:15:01,840"
+			},
+			"offsets": {
+				"from": 900840,
+				"to": 901840
+			},
+			"text": " Miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,840",
+				"to": "00:15:02,840"
+			},
+			"offsets": {
+				"from": 901840,
+				"to": 902840
+			},
+			"text": " Miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,840",
+				"to": "00:15:04,800"
+			},
+			"offsets": {
+				"from": 902840,
+				"to": 904800
+			},
+			"text": " I don't think it would change anything for miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,800",
+				"to": "00:15:10,320"
+			},
+			"offsets": {
+				"from": 904800,
+				"to": 910320
+			},
+			"text": " So the only, obviously, like the difficulty bomb is one thing that comes up and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,320",
+				"to": "00:15:12,640"
+			},
+			"offsets": {
+				"from": 910320,
+				"to": 912640
+			},
+			"text": " usually solved through an EAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,640",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 912640,
+				"to": 917560
+			},
+			"text": " So if we want to delay the difficulty bomb, again, we simply choose whatever upgrade"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:22,080"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 922080
+			},
+			"text": " we want to do that in and add that to that upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,080",
+				"to": "00:15:26,720"
+			},
+			"offsets": {
+				"from": 922080,
+				"to": 926720
+			},
+			"text": " So is the idea then that the difficulty bombs would be changed to line up with this schedule"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,720",
+				"to": "00:15:28,240"
+			},
+			"offsets": {
+				"from": 926720,
+				"to": 928240
+			},
+			"text": " that you're proposing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,240",
+				"to": "00:15:29,240"
+			},
+			"offsets": {
+				"from": 928240,
+				"to": 929240
+			},
+			"text": " To be determined."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,240",
+				"to": "00:15:30,240"
+			},
+			"offsets": {
+				"from": 929240,
+				"to": 930240
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,240",
+				"to": "00:15:33,240"
+			},
+			"offsets": {
+				"from": 930240,
+				"to": 933240
+			},
+			"text": " In historically, for the past two upgrades, it has kicked it out one fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,240",
+				"to": "00:15:36,080"
+			},
+			"offsets": {
+				"from": 933240,
+				"to": 936080
+			},
+			"text": " But my understanding was that they were trying to kick it out more than one fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,080",
+				"to": "00:15:39,840"
+			},
+			"offsets": {
+				"from": 936080,
+				"to": 939840
+			},
+			"text": " It's just we've had difficulties getting these network upgrades out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,840",
+				"to": "00:15:40,840"
+			},
+			"offsets": {
+				"from": 939840,
+				"to": 940840
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,840",
+				"to": "00:15:46,920"
+			},
+			"offsets": {
+				"from": 940840,
+				"to": 946920
+			},
+			"text": " And one of the other reasons for proposing the regular timeframe is whether the miners"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,920",
+				"to": "00:15:49,360"
+			},
+			"offsets": {
+				"from": 946920,
+				"to": 949360
+			},
+			"text": " know, hey, third Wednesday of the month is coming up."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,360",
+				"to": "00:15:50,360"
+			},
+			"offsets": {
+				"from": 949360,
+				"to": 950360
+			},
+			"text": " We should check Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,360",
+				"to": "00:15:51,360"
+			},
+			"offsets": {
+				"from": 950360,
+				"to": 951360
+			},
+			"text": " Are we forking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,360",
+				"to": "00:15:52,360"
+			},
+			"offsets": {
+				"from": 951360,
+				"to": 952360
+			},
+			"text": " Are we not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,360",
+				"to": "00:15:56,880"
+			},
+			"offsets": {
+				"from": 952360,
+				"to": 956880
+			},
+			"text": " So the miners are another important member of this community that we need to take into"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,880",
+				"to": "00:15:57,880"
+			},
+			"offsets": {
+				"from": 956880,
+				"to": 957880
+			},
+			"text": " consideration."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,880",
+				"to": "00:15:58,880"
+			},
+			"offsets": {
+				"from": 957880,
+				"to": 958880
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,880",
+				"to": "00:15:59,880"
+			},
+			"offsets": {
+				"from": 958880,
+				"to": 959880
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,880",
+				"to": "00:16:00,880"
+			},
+			"offsets": {
+				"from": 959880,
+				"to": 960880
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,880",
+				"to": "00:16:01,880"
+			},
+			"offsets": {
+				"from": 960880,
+				"to": 961880
+			},
+			"text": " Thanks, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,880",
+				"to": "00:16:01,880"
+			},
+			"offsets": {
+				"from": 961880,
+				"to": 961880
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,880",
+				"to": "00:16:02,880"
+			},
+			"offsets": {
+				"from": 961880,
+				"to": 962880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,880",
+				"to": "00:16:03,880"
+			},
+			"offsets": {
+				"from": 962880,
+				"to": 963880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,880",
+				"to": "00:16:04,880"
+			},
+			"offsets": {
+				"from": 963880,
+				"to": 964880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,880",
+				"to": "00:16:05,880"
+			},
+			"offsets": {
+				"from": 964880,
+				"to": 965880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,880",
+				"to": "00:16:06,880"
+			},
+			"offsets": {
+				"from": 965880,
+				"to": 966880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,880",
+				"to": "00:16:07,880"
+			},
+			"offsets": {
+				"from": 966880,
+				"to": 967880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,880",
+				"to": "00:16:08,880"
+			},
+			"offsets": {
+				"from": 967880,
+				"to": 968880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,880",
+				"to": "00:16:09,880"
+			},
+			"offsets": {
+				"from": 968880,
+				"to": 969880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,880",
+				"to": "00:16:10,880"
+			},
+			"offsets": {
+				"from": 969880,
+				"to": 970880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,880",
+				"to": "00:16:11,880"
+			},
+			"offsets": {
+				"from": 970880,
+				"to": 971880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,880",
+				"to": "00:16:12,880"
+			},
+			"offsets": {
+				"from": 971880,
+				"to": 972880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,880",
+				"to": "00:16:13,880"
+			},
+			"offsets": {
+				"from": 972880,
+				"to": 973880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,880",
+				"to": "00:16:14,880"
+			},
+			"offsets": {
+				"from": 973880,
+				"to": 974880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,880",
+				"to": "00:16:15,880"
+			},
+			"offsets": {
+				"from": 974880,
+				"to": 975880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,880",
+				"to": "00:16:16,880"
+			},
+			"offsets": {
+				"from": 975880,
+				"to": 976880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,880",
+				"to": "00:16:17,880"
+			},
+			"offsets": {
+				"from": 976880,
+				"to": 977880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,880",
+				"to": "00:16:18,880"
+			},
+			"offsets": {
+				"from": 977880,
+				"to": 978880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,880",
+				"to": "00:16:19,880"
+			},
+			"offsets": {
+				"from": 978880,
+				"to": 979880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,880",
+				"to": "00:16:20,880"
+			},
+			"offsets": {
+				"from": 979880,
+				"to": 980880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,880",
+				"to": "00:16:21,880"
+			},
+			"offsets": {
+				"from": 980880,
+				"to": 981880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,880",
+				"to": "00:16:22,880"
+			},
+			"offsets": {
+				"from": 981880,
+				"to": 982880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,880",
+				"to": "00:16:23,880"
+			},
+			"offsets": {
+				"from": 982880,
+				"to": 983880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,880",
+				"to": "00:16:24,880"
+			},
+			"offsets": {
+				"from": 983880,
+				"to": 984880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,880",
+				"to": "00:16:25,880"
+			},
+			"offsets": {
+				"from": 984880,
+				"to": 985880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,880",
+				"to": "00:16:26,880"
+			},
+			"offsets": {
+				"from": 985880,
+				"to": 986880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,880",
+				"to": "00:16:27,880"
+			},
+			"offsets": {
+				"from": 986880,
+				"to": 987880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,880",
+				"to": "00:16:28,880"
+			},
+			"offsets": {
+				"from": 987880,
+				"to": 988880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,880",
+				"to": "00:16:29,880"
+			},
+			"offsets": {
+				"from": 988880,
+				"to": 989880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,880",
+				"to": "00:16:30,880"
+			},
+			"offsets": {
+				"from": 989880,
+				"to": 990880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,880",
+				"to": "00:16:31,880"
+			},
+			"offsets": {
+				"from": 990880,
+				"to": 991880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,880",
+				"to": "00:16:33,880"
+			},
+			"offsets": {
+				"from": 992880,
+				"to": 993880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,880",
+				"to": "00:16:34,880"
+			},
+			"offsets": {
+				"from": 993880,
+				"to": 994880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,880",
+				"to": "00:16:35,880"
+			},
+			"offsets": {
+				"from": 994880,
+				"to": 995880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,880",
+				"to": "00:16:36,880"
+			},
+			"offsets": {
+				"from": 995880,
+				"to": 996880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,880",
+				"to": "00:16:37,880"
+			},
+			"offsets": {
+				"from": 996880,
+				"to": 997880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,880",
+				"to": "00:16:38,880"
+			},
+			"offsets": {
+				"from": 997880,
+				"to": 998880
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,880",
+				"to": "00:16:39,880"
+			},
+			"offsets": {
+				"from": 998880,
+				"to": 999880
+			},
+			"text": " Thank you."
+		}
+	]
+}

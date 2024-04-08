@@ -107,6 +107,11 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
+            title: 'Road to Devcon',
+            url: '/road-to-devcon',
+            type: 'page',
+          },
+          {
             title: 'DIPs',
             url: '/dips',
             type: 'page',
@@ -215,11 +220,17 @@ const useNavigationData = () => {
       //   highlight: 'app',
       // },
       {
+        title: 'Devconnect',
+        url: 'https://devconnect.org',
+        type: 'link',
+      },
+      {
         title: intl('navigation_archive'),
         url: 'https://archive.devcon.org',
         type: 'page',
         highlight: 'archive',
       },
+
     ],
     footer: {
       bottom: [
@@ -250,11 +261,6 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'Get Involved',
-          url: '/dips',
-          type: 'page',
-        },
-        {
           title: intl('navigation_forum'),
           url: 'https://forum.devcon.org/',
           type: 'link',
@@ -263,6 +269,11 @@ const useNavigationData = () => {
           title: intl('navigation_blog'),
           url: '/blogs',
           type: 'page',
+        },
+        {
+          title: 'Devconnect',
+          url: 'https://devconnect.org',
+          type: 'link',
         },
         {
           title: intl('navigation_archive'),

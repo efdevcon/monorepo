@@ -1,0 +1,6709 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 15840
+			},
+			"text": " So, I'm Sophia, and I'm excited to share with you all"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 19040
+			},
+			"text": " how we built a decentralized wireless internet service"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:23,400"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 23400
+			},
+			"text": " provider in rural Oregon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,400",
+				"to": "00:00:25,680"
+			},
+			"offsets": {
+				"from": 23400,
+				"to": 25680
+			},
+			"text": " So this is Pazkai."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,680",
+				"to": "00:00:27,880"
+			},
+			"offsets": {
+				"from": 25680,
+				"to": 27880
+			},
+			"text": " I've been here for about 13 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,880",
+				"to": "00:00:30,920"
+			},
+			"offsets": {
+				"from": 27880,
+				"to": 30920
+			},
+			"text": " It's a typical rural community."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,920",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 30920,
+				"to": 35120
+			},
+			"text": " It has a sparse population, some challenging geography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:40,120"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 40120
+			},
+			"text": " large, double-sfer trees, and kind of these hills and mountains."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,120",
+				"to": "00:00:44,440"
+			},
+			"offsets": {
+				"from": 40120,
+				"to": 44440
+			},
+			"text": " And some folks that are working class and lower income,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,440",
+				"to": "00:00:47,160"
+			},
+			"offsets": {
+				"from": 44440,
+				"to": 47160
+			},
+			"text": " and many rural areas, they also suffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,160",
+				"to": "00:00:49,800"
+			},
+			"offsets": {
+				"from": 47160,
+				"to": 49800
+			},
+			"text": " from lots of folks that don't have very good access."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,800",
+				"to": "00:00:52,120"
+			},
+			"offsets": {
+				"from": 49800,
+				"to": 52120
+			},
+			"text": " And it's very typical for us to see people in our community"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,120",
+				"to": "00:00:54,480"
+			},
+			"offsets": {
+				"from": 52120,
+				"to": 54480
+			},
+			"text": " with a negative per second of internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,480",
+				"to": "00:00:56,880"
+			},
+			"offsets": {
+				"from": 54480,
+				"to": 56880
+			},
+			"text": " and no access at all, because they have satellite or cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,880",
+				"to": "00:01:00,640"
+			},
+			"offsets": {
+				"from": 56880,
+				"to": 60640
+			},
+			"text": " as a barrier, because it's too expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,640",
+				"to": "00:01:04,800"
+			},
+			"offsets": {
+				"from": 60640,
+				"to": 64800
+			},
+			"text": " But there is actually other internet service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,800",
+				"to": "00:01:07,440"
+			},
+			"offsets": {
+				"from": 64800,
+				"to": 67440
+			},
+			"text": " in this area that have tried to connect people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,440",
+				"to": "00:01:10,600"
+			},
+			"offsets": {
+				"from": 67440,
+				"to": 70600
+			},
+			"text": " and so have these folks have not been very successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,600",
+				"to": "00:01:14,200"
+			},
+			"offsets": {
+				"from": 70600,
+				"to": 74200
+			},
+			"text": " And also, in fact, about five years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,200",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 74200,
+				"to": 77800
+			},
+			"text": " there was an $1 million USDA rural grant"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:21,440"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 81440
+			},
+			"text": " to serve a mix of wireless and fiber infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,440",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 81440,
+				"to": 84960
+			},
+			"text": " with some of the outlying areas that also suffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:26,560"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 86560
+			},
+			"text": " from many things that we see as our typical"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,560",
+				"to": "00:01:27,560"
+			},
+			"offsets": {
+				"from": 86560,
+				"to": 87560
+			},
+			"text": " with parenting programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,560",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 87560,
+				"to": 89600
+			},
+			"text": " There wasn't a lot of accountability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:31,160"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 91160
+			},
+			"text": " We're not really sure if they actually didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,160",
+				"to": "00:01:35,920"
+			},
+			"offsets": {
+				"from": 91160,
+				"to": 95920
+			},
+			"text": " in fact serve those homes that they had problems to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,920",
+				"to": "00:01:38,560"
+			},
+			"offsets": {
+				"from": 95920,
+				"to": 98560
+			},
+			"text": " And one of the big key things is there was no sustainability."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,560",
+				"to": "00:01:40,480"
+			},
+			"offsets": {
+				"from": 98560,
+				"to": 100480
+			},
+			"text": " So the money was dropped into the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,480",
+				"to": "00:01:42,640"
+			},
+			"offsets": {
+				"from": 100480,
+				"to": 102640
+			},
+			"text": " And then as the wireless infrastructure age,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,640",
+				"to": "00:01:44,720"
+			},
+			"offsets": {
+				"from": 102640,
+				"to": 104720
+			},
+			"text": " the internet service provider had no incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,720",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 104720,
+				"to": 110240
+			},
+			"text": " to continue to put money and resources back into that connection."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 113400
+			},
+			"text": " And it's also, isn't the whole story."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:56,400"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 116400
+			},
+			"text": " It's not just that these folks have no internet access."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,400",
+				"to": "00:01:58,880"
+			},
+			"offsets": {
+				"from": 116400,
+				"to": 118880
+			},
+			"text": " In fact, a long time ago, that the main corridor"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,880",
+				"to": "00:02:00,920"
+			},
+			"offsets": {
+				"from": 118880,
+				"to": 120920
+			},
+			"text": " through town of the main highway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,920",
+				"to": "00:02:02,960"
+			},
+			"offsets": {
+				"from": 120920,
+				"to": 122960
+			},
+			"text": " and the access is actually very good,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,960",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122960,
+				"to": 125000
+			},
+			"text": " you can get some kind of megabits per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128520
+			},
+			"text": " and that's fiber, and it's affordable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:11,040"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 131040
+			},
+			"text": " But anything beyond that one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,040",
+				"to": "00:02:13,720"
+			},
+			"offsets": {
+				"from": 131040,
+				"to": 133720
+			},
+			"text": " what that one kind of narrow corridor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,720",
+				"to": "00:02:16,840"
+			},
+			"offsets": {
+				"from": 133720,
+				"to": 136840
+			},
+			"text": " there's no ability to get that internet access"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,840",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 136840,
+				"to": 140080
+			},
+			"text": " to those folks in the outlying areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:22,960"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 142960
+			},
+			"text": " But there is a better way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,960",
+				"to": "00:02:25,480"
+			},
+			"offsets": {
+				"from": 142960,
+				"to": 145480
+			},
+			"text": " Instead of one company owning all of the infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,480",
+				"to": "00:02:28,760"
+			},
+			"offsets": {
+				"from": 145480,
+				"to": 148760
+			},
+			"text": " of the network, Othea's software lets us leverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,760",
+				"to": "00:02:32,320"
+			},
+			"offsets": {
+				"from": 148760,
+				"to": 152320
+			},
+			"text": " the existing homes and businesses in an efficient way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,320",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 152320,
+				"to": 154120
+			},
+			"text": " and build a essential way to network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:38,240"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 158240
+			},
+			"text": " where neighbors can pay each other for bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,240",
+				"to": "00:02:41,600"
+			},
+			"offsets": {
+				"from": 158240,
+				"to": 161600
+			},
+			"text": " And this is accomplished by people in the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,600",
+				"to": "00:02:45,640"
+			},
+			"offsets": {
+				"from": 161600,
+				"to": 165640
+			},
+			"text": " people that have their homes or their businesses or farm."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,640",
+				"to": "00:02:47,800"
+			},
+			"offsets": {
+				"from": 165640,
+				"to": 167800
+			},
+			"text": " They host some at the hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,800",
+				"to": "00:02:50,920"
+			},
+			"offsets": {
+				"from": 167800,
+				"to": 170920
+			},
+			"text": " and that might look like an antenna or some cables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,920",
+				"to": "00:02:52,920"
+			},
+			"offsets": {
+				"from": 170920,
+				"to": 172920
+			},
+			"text": " and then they get paid automatically with the software"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,920",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 172920,
+				"to": 174160
+			},
+			"text": " to host this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:02:57,400"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 177400
+			},
+			"text": " And here's an example of what that looks like right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,400",
+				"to": "00:03:00,600"
+			},
+			"offsets": {
+				"from": 177400,
+				"to": 180600
+			},
+			"text": " So that top antenna is connected to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,600",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 180600,
+				"to": 183360
+			},
+			"text": " a high speed fiber backhaul in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,360",
+				"to": "00:03:04,800"
+			},
+			"offsets": {
+				"from": 183360,
+				"to": 184800
+			},
+			"text": " And then that bottom antenna,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,800",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 184800,
+				"to": 189000
+			},
+			"text": " the one skinny sector antenna is connected to his neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 192480
+			},
+			"text": " And then both of those cables route to the Althea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:16,440"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 196440
+			},
+			"text": " the router, and his house that provides his internet access"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,440",
+				"to": "00:03:19,200"
+			},
+			"offsets": {
+				"from": 196440,
+				"to": 199200
+			},
+			"text": " does all the routing and the building automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,200",
+				"to": "00:03:22,720"
+			},
+			"offsets": {
+				"from": 199200,
+				"to": 202720
+			},
+			"text": " And this creates sort of a viral incentive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,720",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 202720,
+				"to": 207160
+			},
+			"text": " for a kind of network growth that happens automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:30,680"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 210680
+			},
+			"text": " In fact, Matt will, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,680",
+				"to": "00:03:33,600"
+			},
+			"offsets": {
+				"from": 210680,
+				"to": 213600
+			},
+			"text": " about once a week take a ball of wine to his neighbor's house"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,600",
+				"to": "00:03:36,320"
+			},
+			"offsets": {
+				"from": 213600,
+				"to": 216320
+			},
+			"text": " and see if they want to get connected to the end of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,320",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 216320,
+				"to": 218000
+			},
+			"text": " (laughs)"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,360"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221360
+			},
+			"text": " It is pretty effective too, he's not a pretty good dog."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,360",
+				"to": "00:03:44,040"
+			},
+			"offsets": {
+				"from": 221360,
+				"to": 224040
+			},
+			"text": " And this is sort of curated with a kind of a local group"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,040",
+				"to": "00:03:46,760"
+			},
+			"offsets": {
+				"from": 224040,
+				"to": 226760
+			},
+			"text": " of folks that help think there's problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,760",
+				"to": "00:03:49,640"
+			},
+			"offsets": {
+				"from": 226760,
+				"to": 229640
+			},
+			"text": " or they want to help people install that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,640",
+				"to": "00:03:53,560"
+			},
+			"offsets": {
+				"from": 229640,
+				"to": 233560
+			},
+			"text": " And in this sort of agile configuration"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,560",
+				"to": "00:03:55,680"
+			},
+			"offsets": {
+				"from": 233560,
+				"to": 235680
+			},
+			"text": " that says, like, lower the build our costs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,680",
+				"to": "00:03:58,160"
+			},
+			"offsets": {
+				"from": 235680,
+				"to": 238160
+			},
+			"text": " so instead of that one central antenna"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,160",
+				"to": "00:04:02,320"
+			},
+			"offsets": {
+				"from": 238160,
+				"to": 242320
+			},
+			"text": " that if you could only get the take rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,320",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 242320,
+				"to": 244560
+			},
+			"text": " or that you could only get the people within that fuchsia"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:06,400"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 246400
+			},
+			"text": " that's central antenna,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,400",
+				"to": "00:04:08,640"
+			},
+			"offsets": {
+				"from": 246400,
+				"to": 248640
+			},
+			"text": " we're able to sort of contribute as now"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,640",
+				"to": "00:04:10,920"
+			},
+			"offsets": {
+				"from": 248640,
+				"to": 250920
+			},
+			"text": " in a really agile and dynamic way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,920",
+				"to": "00:04:13,640"
+			},
+			"offsets": {
+				"from": 250920,
+				"to": 253640
+			},
+			"text": " And this also creates more equitable governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,720",
+				"to": "00:04:20,640"
+			},
+			"offsets": {
+				"from": 253720,
+				"to": 260640
+			},
+			"text": " ("
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,640",
+				"to": "00:04:26,040"
+			},
+			"offsets": {
+				"from": 260640,
+				"to": 266040
+			},
+			"text": " Right? So you have like, discrete connections with proprietary hardware from each of you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,040",
+				"to": "00:04:28,440"
+			},
+			"offsets": {
+				"from": 266040,
+				"to": 268440
+			},
+			"text": " and that service providers in your area."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,440",
+				"to": "00:04:30,200"
+			},
+			"offsets": {
+				"from": 268440,
+				"to": 270200
+			},
+			"text": " And, you know, like a senior,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,200",
+				"to": "00:04:33,280"
+			},
+			"offsets": {
+				"from": 270200,
+				"to": 273280
+			},
+			"text": " that users pay high prices for slow speeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,280",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 273280,
+				"to": 276520
+			},
+			"text": " because the last known networks are siloed by this ownership"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:39,680"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 279680
+			},
+			"text": " and have a really long, long lock-in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:42,800"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 282800
+			},
+			"text": " But here's the multia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,800",
+				"to": "00:04:45,760"
+			},
+			"offsets": {
+				"from": 282800,
+				"to": 285760
+			},
+			"text": " and that perfectly creates like one open network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,760",
+				"to": "00:04:47,800"
+			},
+			"offsets": {
+				"from": 285760,
+				"to": 287800
+			},
+			"text": " made up of different owners."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,800",
+				"to": "00:04:50,440"
+			},
+			"offsets": {
+				"from": 287800,
+				"to": 290440
+			},
+			"text": " And the network uses all these things available"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,440",
+				"to": "00:04:55,240"
+			},
+			"offsets": {
+				"from": 290440,
+				"to": 295240
+			},
+			"text": " to dynamically switch between different internet service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,240",
+				"to": "00:04:58,040"
+			},
+			"offsets": {
+				"from": 295240,
+				"to": 298040
+			},
+			"text": " using different FIES and internet service providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,040",
+				"to": "00:05:01,360"
+			},
+			"offsets": {
+				"from": 298040,
+				"to": 301360
+			},
+			"text": " using all the links available using the best speeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,360",
+				"to": "00:05:04,440"
+			},
+			"offsets": {
+				"from": 301360,
+				"to": 304440
+			},
+			"text": " and offering a better cheaper internet for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,440",
+				"to": "00:05:11,760"
+			},
+			"offsets": {
+				"from": 304440,
+				"to": 311760
+			},
+			"text": " So here's a map of the classical network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,760",
+				"to": "00:05:12,840"
+			},
+			"offsets": {
+				"from": 311760,
+				"to": 312840
+			},
+			"text": " So you can kind of see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,840",
+				"to": "00:05:16,240"
+			},
+			"offsets": {
+				"from": 312840,
+				"to": 316240
+			},
+			"text": " so the class tonight, we set up an multia network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,240",
+				"to": "00:05:19,360"
+			},
+			"offsets": {
+				"from": 316240,
+				"to": 319360
+			},
+			"text": " and there's about 40 users up there right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,360",
+				"to": "00:05:23,440"
+			},
+			"offsets": {
+				"from": 319360,
+				"to": 323440
+			},
+			"text": " And you can see that sort of agile and different ownership,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,440",
+				"to": "00:05:24,920"
+			},
+			"offsets": {
+				"from": 323440,
+				"to": 324920
+			},
+			"text": " such as ownership, that we have here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,920",
+				"to": "00:05:26,960"
+			},
+			"offsets": {
+				"from": 324920,
+				"to": 326960
+			},
+			"text": " each of these different colors is a different relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,960",
+				"to": "00:05:29,160"
+			},
+			"offsets": {
+				"from": 326960,
+				"to": 329160
+			},
+			"text": " who is forwarding bandwidth to their neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,160",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 329160,
+				"to": 334560
+			},
+			"text": " And using their own home to put some antenna hardware on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 336000
+			},
+			"text": " there's another example there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,200"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340200
+			},
+			"text": " to forward bandwidth to their neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,200",
+				"to": "00:05:43,480"
+			},
+			"offsets": {
+				"from": 340200,
+				"to": 343480
+			},
+			"text": " And one of the kind of exciting things about theta is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,480",
+				"to": "00:05:47,280"
+			},
+			"offsets": {
+				"from": 343480,
+				"to": 347280
+			},
+			"text": " we use a price-aware version of our running protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,280",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 347280,
+				"to": 350080
+			},
+			"text": " And so what that does is that instead of only selecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 353480
+			},
+			"text": " the best routes based on the total round trip time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:56,080"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 356080
+			},
+			"text": " we're also taking the cost of the effect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,080",
+				"to": "00:05:58,480"
+			},
+			"offsets": {
+				"from": 356080,
+				"to": 358480
+			},
+			"text": " and so that makes sort of an automatically competitive link."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,480",
+				"to": "00:06:02,600"
+			},
+			"offsets": {
+				"from": 358480,
+				"to": 362600
+			},
+			"text": " So not only are people instead of ICE to set up new links"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,600",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 362600,
+				"to": 364000
+			},
+			"text": " and add more capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 365480
+			},
+			"text": " actually if those get too expensive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:08,280"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 368280
+			},
+			"text": " then people would incentivize to set up competitive links."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,280",
+				"to": "00:06:14,240"
+			},
+			"offsets": {
+				"from": 368280,
+				"to": 374240
+			},
+			"text": " And we can encrypt the whole network with WaterGuard"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,200",
+				"to": "00:06:17,560"
+			},
+			"offsets": {
+				"from": 375200,
+				"to": 377560
+			},
+			"text": " and using what we call the ICE and know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,560",
+				"to": "00:06:19,400"
+			},
+			"offsets": {
+				"from": 377560,
+				"to": 379400
+			},
+			"text": " which is just like a VPN or server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,400",
+				"to": "00:06:20,920"
+			},
+			"offsets": {
+				"from": 379400,
+				"to": 380920
+			},
+			"text": " a data sensor."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,920",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 380920,
+				"to": 384560
+			},
+			"text": " And that server also that exit node also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:27,600"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 387600
+			},
+			"text": " verifies all the routes and the prices"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,600",
+				"to": "00:06:28,960"
+			},
+			"offsets": {
+				"from": 387600,
+				"to": 388960
+			},
+			"text": " that are advertised as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,960",
+				"to": "00:06:35,200"
+			},
+			"offsets": {
+				"from": 388960,
+				"to": 395200
+			},
+			"text": " And this is done by the neighbors paying for the bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,200",
+				"to": "00:06:36,920"
+			},
+			"offsets": {
+				"from": 395200,
+				"to": 396920
+			},
+			"text": " with people by perk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,920",
+				"to": "00:06:40,800"
+			},
+			"offsets": {
+				"from": 396920,
+				"to": 400800
+			},
+			"text": " get your bikes, excuse me, with Ethereum or X-i."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,800",
+				"to": "00:06:44,160"
+			},
+			"offsets": {
+				"from": 400800,
+				"to": 404160
+			},
+			"text": " So let's move in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,160",
+				"to": "00:06:46,840"
+			},
+			"offsets": {
+				"from": 404160,
+				"to": 406840
+			},
+			"text": " So Linda's another one of our VAs here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,840",
+				"to": "00:06:47,840"
+			},
+			"offsets": {
+				"from": 406840,
+				"to": 407840
+			},
+			"text": " She's a flower farmer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,840",
+				"to": "00:06:50,040"
+			},
+			"offsets": {
+				"from": 407840,
+				"to": 410040
+			},
+			"text": " and she's got that really tall and green there"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,040",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 410040,
+				"to": 411400
+			},
+			"text": " and that previous slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:53,120"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 413120
+			},
+			"text": " which is kind of out the valley area,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,120",
+				"to": "00:06:54,440"
+			},
+			"offsets": {
+				"from": 413120,
+				"to": 414440
+			},
+			"text": " very difficult to reach area."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,440",
+				"to": "00:06:56,040"
+			},
+			"offsets": {
+				"from": 414440,
+				"to": 416040
+			},
+			"text": " Otherwise, this is where there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,040",
+				"to": "00:06:58,440"
+			},
+			"offsets": {
+				"from": 416040,
+				"to": 418440
+			},
+			"text": " that really, really poor oxes before."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,440",
+				"to": "00:07:02,360"
+			},
+			"offsets": {
+				"from": 418440,
+				"to": 422360
+			},
+			"text": " And so she has there in front of here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,360",
+				"to": "00:07:05,040"
+			},
+			"offsets": {
+				"from": 422360,
+				"to": 425040
+			},
+			"text": " and has an incoming connection at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,040",
+				"to": "00:07:08,720"
+			},
+			"offsets": {
+				"from": 425040,
+				"to": 428720
+			},
+			"text": " Those two connections double those two antennas"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,720",
+				"to": "00:07:12,760"
+			},
+			"offsets": {
+				"from": 428720,
+				"to": 432760
+			},
+			"text": " route to her neighbors and her other theater"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,760",
+				"to": "00:07:14,680"
+			},
+			"offsets": {
+				"from": 432760,
+				"to": 434680
+			},
+			"text": " outside the house, does all the routing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,680",
+				"to": "00:07:18,160"
+			},
+			"offsets": {
+				"from": 434680,
+				"to": 438160
+			},
+			"text": " and the building and also provides her Wi-Fi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,160",
+				"to": "00:07:21,320"
+			},
+			"offsets": {
+				"from": 438160,
+				"to": 441320
+			},
+			"text": " access it or home or connection automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,320",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 441320,
+				"to": 443280
+			},
+			"text": " So for her to just get some internet"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 448000
+			},
+			"text": " and her cost is offset from the,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:29,960"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 449960
+			},
+			"text": " the like about six connections that she has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,960",
+				"to": "00:07:32,560"
+			},
+			"offsets": {
+				"from": 449960,
+				"to": 452560
+			},
+			"text": " on that connected to her."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,560",
+				"to": "00:07:35,160"
+			},
+			"offsets": {
+				"from": 452560,
+				"to": 455160
+			},
+			"text": " And you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,160",
+				"to": "00:07:36,360"
+			},
+			"offsets": {
+				"from": 455160,
+				"to": 456360
+			},
+			"text": " this is kind of like a meet-ups again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,360",
+				"to": "00:07:37,200"
+			},
+			"offsets": {
+				"from": 456360,
+				"to": 457200
+			},
+			"text": " it's kind of blurry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,200",
+				"to": "00:07:39,600"
+			},
+			"offsets": {
+				"from": 457200,
+				"to": 459600
+			},
+			"text": " You can see the connections going out for her,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,600",
+				"to": "00:07:42,480"
+			},
+			"offsets": {
+				"from": 459600,
+				"to": 462480
+			},
+			"text": " for her usage and coming in from her"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,480",
+				"to": "00:07:43,720"
+			},
+			"offsets": {
+				"from": 462480,
+				"to": 463720
+			},
+			"text": " for connecting neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,720",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 463720,
+				"to": 469280
+			},
+			"text": " And here's some of the next connected neighbors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 471200
+			},
+			"text": " So this is also a really great case too."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:55,840"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 475840
+			},
+			"text": " This is Clark here and he's up on the hill from the land."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,840",
+				"to": "00:07:57,960"
+			},
+			"offsets": {
+				"from": 475840,
+				"to": 477960
+			},
+			"text": " And so he actually is another hop"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,960",
+				"to": "00:08:01,120"
+			},
+			"offsets": {
+				"from": 477960,
+				"to": 481120
+			},
+			"text": " and then serves way out to the very far,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,120",
+				"to": "00:08:02,480"
+			},
+			"offsets": {
+				"from": 481120,
+				"to": 482480
+			},
+			"text": " reaches to the valley there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,480",
+				"to": "00:08:05,160"
+			},
+			"offsets": {
+				"from": 482480,
+				"to": 485160
+			},
+			"text": " and a good and hard, very, very typical to get area"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,160",
+				"to": "00:08:07,840"
+			},
+			"offsets": {
+				"from": 485160,
+				"to": 487840
+			},
+			"text": " that we would not be able to get otherwise."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,840",
+				"to": "00:08:11,680"
+			},
+			"offsets": {
+				"from": 487840,
+				"to": 491680
+			},
+			"text": " And you know, some example of one of the farmers"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,680",
+				"to": "00:08:14,720"
+			},
+			"offsets": {
+				"from": 491680,
+				"to": 494720
+			},
+			"text": " and then this is kind of the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,720",
+				"to": "00:08:17,080"
+			},
+			"offsets": {
+				"from": 494720,
+				"to": 497080
+			},
+			"text": " I don't have a picture of her,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,080",
+				"to": "00:08:20,680"
+			},
+			"offsets": {
+				"from": 497080,
+				"to": 500680
+			},
+			"text": " but this is the most of them that is on Beatrice's house."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,680",
+				"to": "00:08:21,840"
+			},
+			"offsets": {
+				"from": 500680,
+				"to": 501840
+			},
+			"text": " And this is one of these really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,840",
+				"to": "00:08:24,240"
+			},
+			"offsets": {
+				"from": 501840,
+				"to": 504240
+			},
+			"text": " like exciting stories about how this technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,240",
+				"to": "00:08:27,480"
+			},
+			"offsets": {
+				"from": 504240,
+				"to": 507480
+			},
+			"text": " really makes an impact on our communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,480",
+				"to": "00:08:31,200"
+			},
+			"offsets": {
+				"from": 507480,
+				"to": 511200
+			},
+			"text": " Beatrice had no internet for four years"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,200",
+				"to": "00:08:34,480"
+			},
+			"offsets": {
+				"from": 511200,
+				"to": 514480
+			},
+			"text": " prior to this because of cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,480",
+				"to": "00:08:36,520"
+			},
+			"offsets": {
+				"from": 514480,
+				"to": 516520
+			},
+			"text": " And you know, she's a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,520",
+				"to": "00:08:38,520"
+			},
+			"offsets": {
+				"from": 516520,
+				"to": 518520
+			},
+			"text": " I think about 16, I think there's something so current"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,520",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 518520,
+				"to": 522000
+			},
+			"text": " in her like four or five siblings were staying"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:44,160"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 524160
+			},
+			"text": " made after school or going to the library"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,160",
+				"to": "00:08:45,800"
+			},
+			"offsets": {
+				"from": 524160,
+				"to": 525800
+			},
+			"text": " to use the internet to do their work."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,800",
+				"to": "00:08:48,960"
+			},
+			"offsets": {
+				"from": 525800,
+				"to": 528960
+			},
+			"text": " And with her, her parents also worked,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,960",
+				"to": "00:08:50,200"
+			},
+			"offsets": {
+				"from": 528960,
+				"to": 530200
+			},
+			"text": " you know, they worked a couple of jobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,200",
+				"to": "00:08:52,440"
+			},
+			"offsets": {
+				"from": 530200,
+				"to": 532440
+			},
+			"text": " and so then the family just never saw each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,440",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 532440,
+				"to": 534000
+			},
+			"text": " This was really, you know, just impacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:55,240"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 535240
+			},
+			"text": " their quality of life."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,240",
+				"to": "00:08:58,960"
+			},
+			"offsets": {
+				"from": 535240,
+				"to": 538960
+			},
+			"text": " So she was able to get connected to her"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,960",
+				"to": "00:09:02,160"
+			},
+			"offsets": {
+				"from": 538960,
+				"to": 542160
+			},
+			"text": " and then Linda told her about it and about connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,160",
+				"to": "00:09:03,680"
+			},
+			"offsets": {
+				"from": 542160,
+				"to": 543680
+			},
+			"text": " and she was able to, you know, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,680",
+				"to": "00:09:06,960"
+			},
+			"offsets": {
+				"from": 543680,
+				"to": 546960
+			},
+			"text": " pay for what she uses and it's affordable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,960",
+				"to": "00:09:10,200"
+			},
+			"offsets": {
+				"from": 546960,
+				"to": 550200
+			},
+			"text": " And it's, you know, 40, 50 maintenance seconds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,200",
+				"to": "00:09:14,440"
+			},
+			"offsets": {
+				"from": 550200,
+				"to": 554440
+			},
+			"text": " that, you know, the only other talk turned into this like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,440",
+				"to": "00:09:16,800"
+			},
+			"offsets": {
+				"from": 554440,
+				"to": 556800
+			},
+			"text": " you know, a bit per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,800",
+				"to": "00:09:20,600"
+			},
+			"offsets": {
+				"from": 556800,
+				"to": 560600
+			},
+			"text": " So, I wanna be, you know, I would see her the day"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,600",
+				"to": "00:09:22,840"
+			},
+			"offsets": {
+				"from": 560600,
+				"to": 562840
+			},
+			"text": " that we started off, she came out holding her laptop"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,840",
+				"to": "00:09:26,080"
+			},
+			"offsets": {
+				"from": 562840,
+				"to": 566080
+			},
+			"text": " to saying, you know, this is the best day ever."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,080",
+				"to": "00:09:29,560"
+			},
+			"offsets": {
+				"from": 566080,
+				"to": 569560
+			},
+			"text": " And I think it really is amazing to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,560",
+				"to": "00:09:31,460"
+			},
+			"offsets": {
+				"from": 569560,
+				"to": 571460
+			},
+			"text": " those values in place."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,460",
+				"to": "00:09:34,680"
+			},
+			"offsets": {
+				"from": 571460,
+				"to": 574680
+			},
+			"text": " And another thing that I think is kind of interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,680",
+				"to": "00:09:36,400"
+			},
+			"offsets": {
+				"from": 574680,
+				"to": 576400
+			},
+			"text": " is that when we first off this project up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,400",
+				"to": "00:09:39,080"
+			},
+			"offsets": {
+				"from": 576400,
+				"to": 579080
+			},
+			"text": " we sold my neighbors and my community members"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,080",
+				"to": "00:09:42,120"
+			},
+			"offsets": {
+				"from": 579080,
+				"to": 582120
+			},
+			"text": " on faster internet and those just, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,120",
+				"to": "00:09:44,560"
+			},
+			"offsets": {
+				"from": 582120,
+				"to": 584560
+			},
+			"text": " really simple value propositions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,560",
+				"to": "00:09:48,640"
+			},
+			"offsets": {
+				"from": 584560,
+				"to": 588640
+			},
+			"text": " But as the network has evolved and we add more people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,640",
+				"to": "00:09:52,080"
+			},
+			"offsets": {
+				"from": 588640,
+				"to": 592080
+			},
+			"text": " I start to hear people talk about ownership and choice"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,080",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 592080,
+				"to": 594000
+			},
+			"text": " and some of these other ideals that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:56,040"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 596040
+			},
+			"text": " we envision with decentralized networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,040",
+				"to": "00:10:01,080"
+			},
+			"offsets": {
+				"from": 596040,
+				"to": 601080
+			},
+			"text": " So this is an example of, like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,080",
+				"to": "00:10:02,200"
+			},
+			"offsets": {
+				"from": 601080,
+				"to": 602200
+			},
+			"text": " when we have multiple connections"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,200",
+				"to": "00:10:03,800"
+			},
+			"offsets": {
+				"from": 602200,
+				"to": 603800
+			},
+			"text": " and sort of redundancy and resiliency"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,800",
+				"to": "00:10:05,840"
+			},
+			"offsets": {
+				"from": 603800,
+				"to": 605840
+			},
+			"text": " that we get with these networks as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,840",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 605840,
+				"to": 609320
+			},
+			"text": " So both of these antennas are connected to different relays,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:11,800"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 611800
+			},
+			"text": " especially as you can be kind of down in that bottom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,800",
+				"to": "00:10:13,480"
+			},
+			"offsets": {
+				"from": 611800,
+				"to": 613480
+			},
+			"text": " bottom right hand corner there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,480",
+				"to": "00:10:19,080"
+			},
+			"offsets": {
+				"from": 613480,
+				"to": 619080
+			},
+			"text": " And this, the random protocol will select the route"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,080",
+				"to": "00:10:20,920"
+			},
+			"offsets": {
+				"from": 619080,
+				"to": 620920
+			},
+			"text": " on a second by second basis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,920",
+				"to": "00:10:25,120"
+			},
+			"offsets": {
+				"from": 620920,
+				"to": 625120
+			},
+			"text": " based on the route trip time and the overall cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,120",
+				"to": "00:10:30,120"
+			},
+			"offsets": {
+				"from": 625120,
+				"to": 630120
+			},
+			"text": " So it also, if one of the relays were to go down in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,120",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 630120,
+				"to": 634000
+			},
+			"text": " everything else would route back through the other relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,120",
+				"to": "00:10:36,360"
+			},
+			"offsets": {
+				"from": 634120,
+				"to": 636360
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,360",
+				"to": "00:10:41,120"
+			},
+			"offsets": {
+				"from": 636360,
+				"to": 641120
+			},
+			"text": " So right now people are using Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,120",
+				"to": "00:10:44,760"
+			},
+			"offsets": {
+				"from": 641120,
+				"to": 644760
+			},
+			"text": " to pay for their internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,760",
+				"to": "00:10:46,040"
+			},
+			"offsets": {
+				"from": 644760,
+				"to": 646040
+			},
+			"text": " They buy Ethereum on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,040",
+				"to": "00:10:49,160"
+			},
+			"offsets": {
+				"from": 646040,
+				"to": 649160
+			},
+			"text": " they get a coin based off right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,160",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 649160,
+				"to": 650920
+			},
+			"text": " or they could, they could buy with anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:53,320"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 653320
+			},
+			"text": " but you send it to have a card"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,320",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 653320,
+				"to": 656880
+			},
+			"text": " and then they send it to their router"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 660920
+			},
+			"text": " while it, by scanning a QR code on their router."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,960",
+				"to": "00:11:04,840"
+			},
+			"offsets": {
+				"from": 661960,
+				"to": 664840
+			},
+			"text": " And the router dash fraud then also gives them"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,840",
+				"to": "00:11:07,400"
+			},
+			"offsets": {
+				"from": 664840,
+				"to": 667400
+			},
+			"text": " their building and so they're used to each information"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,400",
+				"to": "00:11:08,960"
+			},
+			"offsets": {
+				"from": 667400,
+				"to": 668960
+			},
+			"text": " to keep up to date on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,960",
+				"to": "00:11:13,240"
+			},
+			"offsets": {
+				"from": 668960,
+				"to": 673240
+			},
+			"text": " And then when the balance is fully gonna tax much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,240",
+				"to": "00:11:15,480"
+			},
+			"offsets": {
+				"from": 673240,
+				"to": 675480
+			},
+			"text": " so it's really pretty simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,480",
+				"to": "00:11:16,920"
+			},
+			"offsets": {
+				"from": 675480,
+				"to": 676920
+			},
+			"text": " onboarding process for folks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,920",
+				"to": "00:11:19,080"
+			},
+			"offsets": {
+				"from": 676920,
+				"to": 679080
+			},
+			"text": " pretty easy to understand the values there."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,080",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 679080,
+				"to": 684000
+			},
+			"text": " And one of the new things that we just recently done"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:25,800"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 685800
+			},
+			"text": " with these two is, which is pretty exciting"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,800",
+				"to": "00:11:29,520"
+			},
+			"offsets": {
+				"from": 685800,
+				"to": 689520
+			},
+			"text": " is that people buy Ethereum and they send Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,520",
+				"to": "00:11:31,320"
+			},
+			"offsets": {
+				"from": 689520,
+				"to": 691320
+			},
+			"text": " to their router wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:33,440"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 693440
+			},
+			"text": " we have any bridge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,440",
+				"to": "00:11:35,760"
+			},
+			"offsets": {
+				"from": 693440,
+				"to": 695760
+			},
+			"text": " so then it'll bridge to the original XI"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,760",
+				"to": "00:11:36,600"
+			},
+			"offsets": {
+				"from": 695760,
+				"to": 696600
+			},
+			"text": " to save the lights out"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,600",
+				"to": "00:11:39,480"
+			},
+			"offsets": {
+				"from": 696600,
+				"to": 699480
+			},
+			"text": " and that's all just done seeing this in the router."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,480",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 699480,
+				"to": 702280
+			},
+			"text": " And then the payment settles on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,280",
+				"to": "00:11:45,360"
+			},
+			"offsets": {
+				"from": 702280,
+				"to": 705360
+			},
+			"text": " when the gas is five percent of the total transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,360",
+				"to": "00:11:47,120"
+			},
+			"offsets": {
+				"from": 705360,
+				"to": 707120
+			},
+			"text": " So you'll see sometimes in high-pass times"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,120",
+				"to": "00:11:49,600"
+			},
+			"offsets": {
+				"from": 707120,
+				"to": 709600
+			},
+			"text": " they won't settle for an hour or two or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,600",
+				"to": "00:11:56,800"
+			},
+			"offsets": {
+				"from": 709600,
+				"to": 716800
+			},
+			"text": " So I did wanna just touch briefly as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,800",
+				"to": "00:11:59,320"
+			},
+			"offsets": {
+				"from": 716800,
+				"to": 719320
+			},
+			"text": " on the fact that these are actual,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,320",
+				"to": "00:12:02,200"
+			},
+			"offsets": {
+				"from": 719320,
+				"to": 722200
+			},
+			"text": " like community members that have no experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,200",
+				"to": "00:12:04,520"
+			},
+			"offsets": {
+				"from": 722200,
+				"to": 724520
+			},
+			"text": " with Ethereum or cryptocurrency prior to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,520",
+				"to": "00:12:08,960"
+			},
+			"offsets": {
+				"from": 724520,
+				"to": 728960
+			},
+			"text": " having to use it to pay for their internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,960",
+				"to": "00:12:10,960"
+			},
+			"offsets": {
+				"from": 728960,
+				"to": 730960
+			},
+			"text": " Yeah, it's pretty exciting stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,960",
+				"to": "00:12:12,800"
+			},
+			"offsets": {
+				"from": 730960,
+				"to": 732800
+			},
+			"text": " And actually about a third of my network's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,800",
+				"to": "00:12:17,800"
+			},
+			"offsets": {
+				"from": 732800,
+				"to": 737800
+			},
+			"text": " senior citizens, so yeah, it's really exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,800",
+				"to": "00:12:20,720"
+			},
+			"offsets": {
+				"from": 737800,
+				"to": 740720
+			},
+			"text": " And I have found a couple of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,720",
+				"to": "00:12:23,280"
+			},
+			"offsets": {
+				"from": 740720,
+				"to": 743280
+			},
+			"text": " One is if we spend a little bit of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,280",
+				"to": "00:12:25,600"
+			},
+			"offsets": {
+				"from": 743280,
+				"to": 745600
+			},
+			"text": " during that onboarding process on a one-on-one basis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,600",
+				"to": "00:12:27,560"
+			},
+			"offsets": {
+				"from": 745600,
+				"to": 747560
+			},
+			"text": " it goes pretty smoothly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,640",
+				"to": "00:12:31,280"
+			},
+			"offsets": {
+				"from": 748640,
+				"to": 751280
+			},
+			"text": " And then after that, just sort of initial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,280",
+				"to": "00:12:34,360"
+			},
+			"offsets": {
+				"from": 751280,
+				"to": 754360
+			},
+			"text": " maybe even just 10 or 15 minutes of one-on-one time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,360",
+				"to": "00:12:37,160"
+			},
+			"offsets": {
+				"from": 754360,
+				"to": 757160
+			},
+			"text": " folks are able to use that on an ongoing way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,160",
+				"to": "00:12:39,680"
+			},
+			"offsets": {
+				"from": 757160,
+				"to": 759680
+			},
+			"text": " A couple of other things I've noticed too is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,680",
+				"to": "00:12:45,920"
+			},
+			"offsets": {
+				"from": 759680,
+				"to": 765920
+			},
+			"text": " we use the terms digital currency instead of crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,920",
+				"to": "00:12:49,280"
+			},
+			"offsets": {
+				"from": 765920,
+				"to": 769280
+			},
+			"text": " and a payment app instead of an exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,280",
+				"to": "00:12:52,840"
+			},
+			"offsets": {
+				"from": 769280,
+				"to": 772840
+			},
+			"text": " And even just sort of simplifying out those two key terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,840",
+				"to": "00:12:55,080"
+			},
+			"offsets": {
+				"from": 772840,
+				"to": 775080
+			},
+			"text": " has led to all I think a lot less friction"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,080",
+				"to": "00:12:56,640"
+			},
+			"offsets": {
+				"from": 775080,
+				"to": 776640
+			},
+			"text": " than we normally would have seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:59,240"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 779240
+			},
+			"text": " (silence)"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,240",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779240,
+				"to": 783000
+			},
+			"text": " So we do also recognize though that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:09,240"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 789240
+			},
+			"text": " at this point, networks aren't able to necessarily go"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,240",
+				"to": "00:13:11,320"
+			},
+			"offsets": {
+				"from": 789240,
+				"to": 791320
+			},
+			"text": " totally autonomously."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,320",
+				"to": "00:13:13,360"
+			},
+			"offsets": {
+				"from": 791320,
+				"to": 793360
+			},
+			"text": " People who have customer support questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,360",
+				"to": "00:13:16,160"
+			},
+			"offsets": {
+				"from": 793360,
+				"to": 796160
+			},
+			"text": " and they might need help with things."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,160",
+				"to": "00:13:18,200"
+			},
+			"offsets": {
+				"from": 796160,
+				"to": 798200
+			},
+			"text": " So we have what we call organizers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,200",
+				"to": "00:13:20,640"
+			},
+			"offsets": {
+				"from": 798200,
+				"to": 800640
+			},
+			"text": " And it's just people within the local community"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,640",
+				"to": "00:13:23,080"
+			},
+			"offsets": {
+				"from": 800640,
+				"to": 803080
+			},
+			"text": " that set up some sort of legal entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,080",
+				"to": "00:13:26,160"
+			},
+			"offsets": {
+				"from": 803080,
+				"to": 806160
+			},
+			"text": " We can feel like an LLC, we have that in one of our networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,160",
+				"to": "00:13:29,200"
+			},
+			"offsets": {
+				"from": 806160,
+				"to": 809200
+			},
+			"text": " or nonprofit or cooperative and a couple of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,200",
+				"to": "00:13:31,640"
+			},
+			"offsets": {
+				"from": 809200,
+				"to": 811640
+			},
+			"text": " The one in Toscana is a member of cooperative."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,640",
+				"to": "00:13:37,160"
+			},
+			"offsets": {
+				"from": 811640,
+				"to": 817160
+			},
+			"text": " And so these local people help us all support their network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,160",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 817160,
+				"to": 819000
+			},
+			"text": " but they're also incentivizing as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:41,040"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 821040
+			},
+			"text": " So they're incentivized with a non-flating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,040",
+				"to": "00:13:42,360"
+			},
+			"offsets": {
+				"from": 821040,
+				"to": 822360
+			},
+			"text": " co-rated subscription fee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,360",
+				"to": "00:13:45,640"
+			},
+			"offsets": {
+				"from": 822360,
+				"to": 825640
+			},
+			"text": " which is also automatically debited from the router,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,640",
+				"to": "00:13:47,480"
+			},
+			"offsets": {
+				"from": 825640,
+				"to": 827480
+			},
+			"text": " seamlessly from the end user."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,480",
+				"to": "00:13:51,800"
+			},
+			"offsets": {
+				"from": 827480,
+				"to": 831800
+			},
+			"text": " So they can partner with other people to set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,800",
+				"to": "00:13:53,640"
+			},
+			"offsets": {
+				"from": 831800,
+				"to": 833640
+			},
+			"text": " the relays and the gateways and the other pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,640",
+				"to": "00:13:54,600"
+			},
+			"offsets": {
+				"from": 833640,
+				"to": 834600
+			},
+			"text": " of hardware in the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,600",
+				"to": "00:13:56,560"
+			},
+			"offsets": {
+				"from": 834600,
+				"to": 836560
+			},
+			"text": " but still we see the separate incentive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,560",
+				"to": "00:14:01,840"
+			},
+			"offsets": {
+				"from": 836560,
+				"to": 841840
+			},
+			"text": " So beyond Oregon, beyond the rural environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,840",
+				"to": "00:14:06,480"
+			},
+			"offsets": {
+				"from": 841840,
+				"to": 846480
+			},
+			"text": " we're really excited to see some of these new networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,480",
+				"to": "00:14:09,440"
+			},
+			"offsets": {
+				"from": 846480,
+				"to": 849440
+			},
+			"text": " coming on board here very, very, very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,440",
+				"to": "00:14:11,160"
+			},
+			"offsets": {
+				"from": 849440,
+				"to": 851160
+			},
+			"text": " This is the Co-op cooperative network there"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,160",
+				"to": "00:14:14,120"
+			},
+			"offsets": {
+				"from": 851160,
+				"to": 854120
+			},
+			"text": " in an urban area south of Seattle, Washington."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,120",
+				"to": "00:14:17,360"
+			},
+			"offsets": {
+				"from": 854120,
+				"to": 857360
+			},
+			"text": " And they should be launching here"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,360",
+				"to": "00:14:20,200"
+			},
+			"offsets": {
+				"from": 857360,
+				"to": 860200
+			},
+			"text": " within the next 60 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,200",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 860200,
+				"to": 864000
+			},
+			"text": " We took them through what we call our \"thead\" in this program."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:26,640"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 866640
+			},
+			"text": " So that's basically a pre-registration site."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,640",
+				"to": "00:14:30,960"
+			},
+			"offsets": {
+				"from": 866640,
+				"to": 870960
+			},
+			"text": " And if any of you are familiar with the broadband community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,960",
+				"to": "00:14:32,920"
+			},
+			"offsets": {
+				"from": 870960,
+				"to": 872920
+			},
+			"text": " there's a thing called a fiberhood."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,920",
+				"to": "00:14:35,360"
+			},
+			"offsets": {
+				"from": 872920,
+				"to": 875360
+			},
+			"text": " Google did it where you kind of go into an area"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,360",
+				"to": "00:14:36,680"
+			},
+			"offsets": {
+				"from": 875360,
+				"to": 876680
+			},
+			"text": " and get people to pre-registration"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,680",
+				"to": "00:14:39,080"
+			},
+			"offsets": {
+				"from": 876680,
+				"to": 879080
+			},
+			"text": " kind of front-level that user acquisition."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,080",
+				"to": "00:14:40,080"
+			},
+			"offsets": {
+				"from": 879080,
+				"to": 880080
+			},
+			"text": " This works really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,080",
+				"to": "00:14:43,200"
+			},
+			"offsets": {
+				"from": 880080,
+				"to": 883200
+			},
+			"text": " So they started out about June"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,200",
+				"to": "00:14:44,760"
+			},
+			"offsets": {
+				"from": 883200,
+				"to": 884760
+			},
+			"text": " with their pre-registration sites"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,760",
+				"to": "00:14:46,720"
+			},
+			"offsets": {
+				"from": 884760,
+				"to": 886720
+			},
+			"text": " and marketing materials and support from us."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,720",
+				"to": "00:14:48,760"
+			},
+			"offsets": {
+				"from": 886720,
+				"to": 888760
+			},
+			"text": " And they have about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,760",
+				"to": "00:14:52,920"
+			},
+			"offsets": {
+				"from": 888760,
+				"to": 892920
+			},
+			"text": " they have 80 people now pre-registration"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,920",
+				"to": "00:14:54,400"
+			},
+			"offsets": {
+				"from": 892920,
+				"to": 894400
+			},
+			"text": " and they're ready to go get closer to their,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,400",
+				"to": "00:14:58,120"
+			},
+			"offsets": {
+				"from": 894400,
+				"to": 898120
+			},
+			"text": " they're 100 threshold by the time they actually build out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,120",
+				"to": "00:14:59,920"
+			},
+			"offsets": {
+				"from": 898120,
+				"to": 899920
+			},
+			"text": " And we have a couple more networks as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,920",
+				"to": "00:15:02,440"
+			},
+			"offsets": {
+				"from": 899920,
+				"to": 902440
+			},
+			"text": " one in the Napa area of California"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,440",
+				"to": "00:15:06,520"
+			},
+			"offsets": {
+				"from": 902440,
+				"to": 906520
+			},
+			"text": " and in Abuja, Nigeria that will be starting as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,520",
+				"to": "00:15:09,760"
+			},
+			"offsets": {
+				"from": 906520,
+				"to": 909760
+			},
+			"text": " And more people that are down getting on board"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,760",
+				"to": "00:15:12,320"
+			},
+			"offsets": {
+				"from": 909760,
+				"to": 912320
+			},
+			"text": " until we get in part of this process."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,320",
+				"to": "00:15:14,160"
+			},
+			"offsets": {
+				"from": 912320,
+				"to": 914160
+			},
+			"text": " We find it takes about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,160",
+				"to": "00:15:15,680"
+			},
+			"offsets": {
+				"from": 914160,
+				"to": 915680
+			},
+			"text": " especially since it takes a while"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,680",
+				"to": "00:15:17,760"
+			},
+			"offsets": {
+				"from": 915680,
+				"to": 917760
+			},
+			"text": " to get that whole self-fiber connection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,760",
+				"to": "00:15:19,840"
+			},
+			"offsets": {
+				"from": 917760,
+				"to": 919840
+			},
+			"text": " it takes people between like four and six months"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,840",
+				"to": "00:15:22,040"
+			},
+			"offsets": {
+				"from": 919840,
+				"to": 922040
+			},
+			"text": " to go from their pre-registration site"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,040",
+				"to": "00:15:23,920"
+			},
+			"offsets": {
+				"from": 922040,
+				"to": 923920
+			},
+			"text": " to shoveling the dirt."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,920",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 923920,
+				"to": 929000
+			},
+			"text": " So just to kind of surise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:33,920"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 933920
+			},
+			"text": " the networks are owned and run by the community they serve,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,920",
+				"to": "00:15:35,760"
+			},
+			"offsets": {
+				"from": 933920,
+				"to": 935760
+			},
+			"text": " which is another sort of, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,760",
+				"to": "00:15:37,280"
+			},
+			"offsets": {
+				"from": 935760,
+				"to": 937280
+			},
+			"text": " really excited value proposition"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,280",
+				"to": "00:15:40,800"
+			},
+			"offsets": {
+				"from": 937280,
+				"to": 940800
+			},
+			"text": " is that the revenue and the economic potential"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,800",
+				"to": "00:15:43,480"
+			},
+			"offsets": {
+				"from": 940800,
+				"to": 943480
+			},
+			"text": " of the network is kept in that community"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,480",
+				"to": "00:15:45,760"
+			},
+			"offsets": {
+				"from": 943480,
+				"to": 945760
+			},
+			"text": " instead of someone coming to the area"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,760",
+				"to": "00:15:47,960"
+			},
+			"offsets": {
+				"from": 945760,
+				"to": 947960
+			},
+			"text": " and instructing that economic benefit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,960",
+				"to": "00:15:49,760"
+			},
+			"offsets": {
+				"from": 947960,
+				"to": 949760
+			},
+			"text": " It stays there on the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,760",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 949760,
+				"to": 952000
+			},
+			"text": " to share amongst the community members."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:55,040"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 955040
+			},
+			"text": " It has that built-in competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,040",
+				"to": "00:15:56,560"
+			},
+			"offsets": {
+				"from": 955040,
+				"to": 956560
+			},
+			"text": " It's the price we're around in protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,560",
+				"to": "00:15:58,440"
+			},
+			"offsets": {
+				"from": 956560,
+				"to": 958440
+			},
+			"text": " We're always inside of our people to set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,440",
+				"to": "00:15:59,840"
+			},
+			"offsets": {
+				"from": 958440,
+				"to": 959840
+			},
+			"text": " on a competition."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,840",
+				"to": "00:16:02,960"
+			},
+			"offsets": {
+				"from": 959840,
+				"to": 962960
+			},
+			"text": " It's the increase that automatic sustainability."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,960",
+				"to": "00:16:07,960"
+			},
+			"offsets": {
+				"from": 962960,
+				"to": 967960
+			},
+			"text": " So as the class of my network continues to expand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,960",
+				"to": "00:16:11,240"
+			},
+			"offsets": {
+				"from": 967960,
+				"to": 971240
+			},
+			"text": " there will always be a sense that I'd for more bandwidth"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,240",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 971240,
+				"to": 973000
+			},
+			"text": " because it is paid for usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:16,120"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 976120
+			},
+			"text": " You always want a lot of how people use more, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,120",
+				"to": "00:16:18,880"
+			},
+			"offsets": {
+				"from": 976120,
+				"to": 978880
+			},
+			"text": " And add it more, I don't want to benefit."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,880",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978880,
+				"to": 982000
+			},
+			"text": " And it's like a very true period of your statement"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:24,360"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 984360
+			},
+			"text": " and your neighbors pay neighbors for bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,360",
+				"to": "00:16:27,120"
+			},
+			"offsets": {
+				"from": 984360,
+				"to": 987120
+			},
+			"text": " At the end enables communities to set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,120",
+				"to": "00:16:29,280"
+			},
+			"offsets": {
+				"from": 987120,
+				"to": 989280
+			},
+			"text": " decentralized networks, create a faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,280",
+				"to": "00:16:31,880"
+			},
+			"offsets": {
+				"from": 989280,
+				"to": 991880
+			},
+			"text": " and cheaper internet for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,880",
+				"to": "00:16:32,720"
+			},
+			"offsets": {
+				"from": 991880,
+				"to": 992720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,720",
+				"to": "00:16:34,200"
+			},
+			"offsets": {
+				"from": 992720,
+				"to": 994200
+			},
+			"text": " And I thought if you want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,200",
+				"to": "00:16:36,360"
+			},
+			"offsets": {
+				"from": 994200,
+				"to": 996360
+			},
+			"text": " we could do some questions if there's time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,360",
+				"to": "00:16:39,280"
+			},
+			"offsets": {
+				"from": 996360,
+				"to": 999280
+			},
+			"text": " Does anyone do questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,280",
+				"to": "00:16:44,200"
+			},
+			"offsets": {
+				"from": 999280,
+				"to": 1004200
+			},
+			"text": " Okay, I don't have a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,200",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1004200,
+				"to": 1007000
+			},
+			"text": " you have a step to talk with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:50,800"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1010800
+			},
+			"text": " How are you convince the people in the first place"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,800",
+				"to": "00:16:52,840"
+			},
+			"offsets": {
+				"from": 1010800,
+				"to": 1012840
+			},
+			"text": " to join the R network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,840",
+				"to": "00:16:53,680"
+			},
+			"offsets": {
+				"from": 1012840,
+				"to": 1013680
+			},
+			"text": " So at the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,680",
+				"to": "00:16:57,400"
+			},
+			"offsets": {
+				"from": 1013680,
+				"to": 1017400
+			},
+			"text": " how, because at the end it's like a boom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,400",
+				"to": "00:16:59,160"
+			},
+			"offsets": {
+				"from": 1017400,
+				"to": 1019160
+			},
+			"text": " it's an investment for them, you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,160",
+				"to": "00:17:03,640"
+			},
+			"offsets": {
+				"from": 1019160,
+				"to": 1023640
+			},
+			"text": " Or don't they have any initial costs when they need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,640",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1023640,
+				"to": 1025160
+			},
+			"text": " install their antennas?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:08,240"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1028240
+			},
+			"text": " So the question was,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,240",
+				"to": "00:17:12,160"
+			},
+			"offsets": {
+				"from": 1028240,
+				"to": 1032160
+			},
+			"text": " how do you convince people to invest in hardware?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,160",
+				"to": "00:17:13,840"
+			},
+			"offsets": {
+				"from": 1032160,
+				"to": 1033840
+			},
+			"text": " So talk about it in the case of these relays"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,840",
+				"to": "00:17:17,320"
+			},
+			"offsets": {
+				"from": 1033840,
+				"to": 1037320
+			},
+			"text": " you saw with the antennas, there's a very easy ROI."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,320",
+				"to": "00:17:20,880"
+			},
+			"offsets": {
+				"from": 1037320,
+				"to": 1040880
+			},
+			"text": " So Linda's making 100 bucks every couple of months."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,880",
+				"to": "00:17:23,120"
+			},
+			"offsets": {
+				"from": 1040880,
+				"to": 1043120
+			},
+			"text": " So it was pretty easy to compete with six users."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,120",
+				"to": "00:17:24,240"
+			},
+			"offsets": {
+				"from": 1043120,
+				"to": 1044240
+			},
+			"text": " So as she asked for a user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,240",
+				"to": "00:17:26,840"
+			},
+			"offsets": {
+				"from": 1044240,
+				"to": 1046840
+			},
+			"text": " you can look at what that is per month."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,840",
+				"to": "00:17:28,520"
+			},
+			"offsets": {
+				"from": 1046840,
+				"to": 1048520
+			},
+			"text": " And I think she has about, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,520",
+				"to": "00:17:30,980"
+			},
+			"offsets": {
+				"from": 1048520,
+				"to": 1050980
+			},
+			"text": " six or $700 with a bit of 10 equipment on her"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,980",
+				"to": "00:17:31,820"
+			},
+			"offsets": {
+				"from": 1050980,
+				"to": 1051820
+			},
+			"text": " on her phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,820",
+				"to": "00:17:34,080"
+			},
+			"offsets": {
+				"from": 1051820,
+				"to": 1054080
+			},
+			"text": " So we're gonna just kind of help interface with relays"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,080",
+				"to": "00:17:36,800"
+			},
+			"offsets": {
+				"from": 1054080,
+				"to": 1056800
+			},
+			"text": " and let them know about what they can expect"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,800",
+				"to": "00:17:38,720"
+			},
+			"offsets": {
+				"from": 1056800,
+				"to": 1058720
+			},
+			"text": " in terms of cost, to the equipment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,720",
+				"to": "00:17:41,480"
+			},
+			"offsets": {
+				"from": 1058720,
+				"to": 1061480
+			},
+			"text": " and what they can expect from revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,480",
+				"to": "00:17:42,960"
+			},
+			"offsets": {
+				"from": 1061480,
+				"to": 1062960
+			},
+			"text": " Is that your question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,960",
+				"to": "00:17:44,080"
+			},
+			"offsets": {
+				"from": 1062960,
+				"to": 1064080
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,080",
+				"to": "00:17:47,120"
+			},
+			"offsets": {
+				"from": 1064080,
+				"to": 1067120
+			},
+			"text": " - The router is a one-time fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,120",
+				"to": "00:17:50,120"
+			},
+			"offsets": {
+				"from": 1067120,
+				"to": 1070120
+			},
+			"text": " The router is a one-time fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,120",
+				"to": "00:17:53,560"
+			},
+			"offsets": {
+				"from": 1070120,
+				"to": 1073560
+			},
+			"text": " - Yeah, so different networks set this up differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,560",
+				"to": "00:17:55,840"
+			},
+			"offsets": {
+				"from": 1073560,
+				"to": 1075840
+			},
+			"text": " So they like the old film network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,840",
+				"to": "00:17:57,680"
+			},
+			"offsets": {
+				"from": 1075840,
+				"to": 1077680
+			},
+			"text": " It's a fire and income area."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,680",
+				"to": "00:18:01,520"
+			},
+			"offsets": {
+				"from": 1077680,
+				"to": 1081520
+			},
+			"text": " So they pay off on for the equipment and the installation."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,520",
+				"to": "00:18:04,240"
+			},
+			"offsets": {
+				"from": 1081520,
+				"to": 1084240
+			},
+			"text": " Whereas in like a network in this como cooperative network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,240",
+				"to": "00:18:05,320"
+			},
+			"offsets": {
+				"from": 1084240,
+				"to": 1085320
+			},
+			"text": " it's a lower income area."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,320",
+				"to": "00:18:06,760"
+			},
+			"offsets": {
+				"from": 1085320,
+				"to": 1086760
+			},
+			"text": " It's the organizers which are subsidized"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,760",
+				"to": "00:18:09,200"
+			},
+			"offsets": {
+				"from": 1086760,
+				"to": 1089200
+			},
+			"text": " in some of that cost as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,200",
+				"to": "00:18:10,440"
+			},
+			"offsets": {
+				"from": 1089200,
+				"to": 1090440
+			},
+			"text": " I'm gonna have a router here too."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,440",
+				"to": "00:18:12,280"
+			},
+			"offsets": {
+				"from": 1090440,
+				"to": 1092280
+			},
+			"text": " So if anybody wants to buy you later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,280",
+				"to": "00:18:14,360"
+			},
+			"offsets": {
+				"from": 1092280,
+				"to": 1094360
+			},
+			"text": " you can probably ask for it a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,360",
+				"to": "00:18:18,600"
+			},
+			"offsets": {
+				"from": 1094360,
+				"to": 1098600
+			},
+			"text": " I think you've been asking for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,600",
+				"to": "00:18:19,960"
+			},
+			"offsets": {
+				"from": 1098600,
+				"to": 1099960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,960",
+				"to": "00:18:23,280"
+			},
+			"offsets": {
+				"from": 1099960,
+				"to": 1103280
+			},
+			"text": " - Sorry if you already said it, that didn't quite catch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,280",
+				"to": "00:18:25,520"
+			},
+			"offsets": {
+				"from": 1103280,
+				"to": 1105520
+			},
+			"text": " Like legal issues with the ISPs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,520",
+				"to": "00:18:27,320"
+			},
+			"offsets": {
+				"from": 1105520,
+				"to": 1107320
+			},
+			"text": " it's just basically like one contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,320",
+				"to": "00:18:29,320"
+			},
+			"offsets": {
+				"from": 1107320,
+				"to": 1109320
+			},
+			"text": " for one consumer and then they're sharing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,320",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1109320,
+				"to": 1112000
+			},
+			"text": " How are you communicating with a backbone holder"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:36,800"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1116800
+			},
+			"text": " and would there be any potential like a friction there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,800",
+				"to": "00:18:38,280"
+			},
+			"offsets": {
+				"from": 1116800,
+				"to": 1118280
+			},
+			"text": " - Yeah, that's really a good question."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,280",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1118280,
+				"to": 1120000
+			},
+			"text": " So when we said these networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:41,720"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1121720
+			},
+			"text": " we bring in a whole stuff in action."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,720",
+				"to": "00:18:43,240"
+			},
+			"offsets": {
+				"from": 1121720,
+				"to": 1123240
+			},
+			"text": " That's the resolvable connection"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,240",
+				"to": "00:18:45,040"
+			},
+			"offsets": {
+				"from": 1123240,
+				"to": 1125040
+			},
+			"text": " and we call it the gateway."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,040",
+				"to": "00:18:46,560"
+			},
+			"offsets": {
+				"from": 1125040,
+				"to": 1126560
+			},
+			"text": " So someone in the network is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,560",
+				"to": "00:18:49,200"
+			},
+			"offsets": {
+				"from": 1126560,
+				"to": 1129200
+			},
+			"text": " buying resolvable backhaul,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,200",
+				"to": "00:18:52,280"
+			},
+			"offsets": {
+				"from": 1129200,
+				"to": 1132280
+			},
+			"text": " direct internet access or transmitter order."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,280",
+				"to": "00:18:53,960"
+			},
+			"offsets": {
+				"from": 1132280,
+				"to": 1133960
+			},
+			"text": " So something that's resolvable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,960",
+				"to": "00:18:54,800"
+			},
+			"offsets": {
+				"from": 1133960,
+				"to": 1134800
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,800",
+				"to": "00:18:56,920"
+			},
+			"offsets": {
+				"from": 1134800,
+				"to": 1136920
+			},
+			"text": " And then from that anchor point and then all of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,920",
+				"to": "00:18:58,000"
+			},
+			"offsets": {
+				"from": 1136920,
+				"to": 1138000
+			},
+			"text": " all of you that is gonna resolvable"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,000",
+				"to": "00:19:00,120"
+			},
+			"offsets": {
+				"from": 1138000,
+				"to": 1140120
+			},
+			"text": " that no problem over the middle of the networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,120",
+				"to": "00:19:01,160"
+			},
+			"offsets": {
+				"from": 1140120,
+				"to": 1141160
+			},
+			"text": " is gonna ask about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,160",
+				"to": "00:19:03,360"
+			},
+			"offsets": {
+				"from": 1141160,
+				"to": 1143360
+			},
+			"text": " As far as legal issues in the United States,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,360",
+				"to": "00:19:04,720"
+			},
+			"offsets": {
+				"from": 1143360,
+				"to": 1144720
+			},
+			"text": " it's very, very simple for ISP."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,720",
+				"to": "00:19:07,160"
+			},
+			"offsets": {
+				"from": 1144720,
+				"to": 1147160
+			},
+			"text": " You should talk about a form 477"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,160",
+				"to": "00:19:10,080"
+			},
+			"offsets": {
+				"from": 1147160,
+				"to": 1150080
+			},
+			"text": " which they've indicated to us that we do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,080",
+				"to": "00:19:12,960"
+			},
+			"offsets": {
+				"from": 1150080,
+				"to": 1152960
+			},
+			"text": " because whoever's doing the exit know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,960",
+				"to": "00:19:15,080"
+			},
+			"offsets": {
+				"from": 1152960,
+				"to": 1155080
+			},
+			"text": " will have that responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,080",
+				"to": "00:19:16,800"
+			},
+			"offsets": {
+				"from": 1155080,
+				"to": 1156800
+			},
+			"text": " - You mean someone who's a someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,800",
+				"to": "00:19:18,360"
+			},
+			"offsets": {
+				"from": 1156800,
+				"to": 1158360
+			},
+			"text": " who's one of the neighbors"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,360",
+				"to": "00:19:21,200"
+			},
+			"offsets": {
+				"from": 1158360,
+				"to": 1161200
+			},
+			"text": " has that subscription to their social description?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,200",
+				"to": "00:19:24,320"
+			},
+			"offsets": {
+				"from": 1161200,
+				"to": 1164320
+			},
+			"text": " - So that candidate neighbor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,320",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1164320,
+				"to": 1167000
+			},
+			"text": " but it's what we call the gateway location."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:29,520"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1169520
+			},
+			"text": " And so it basically works by her relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,520",
+				"to": "00:19:31,080"
+			},
+			"offsets": {
+				"from": 1169520,
+				"to": 1171080
+			},
+			"text": " They get the whole stuff by her backhaul"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,080",
+				"to": "00:19:32,440"
+			},
+			"offsets": {
+				"from": 1171080,
+				"to": 1172440
+			},
+			"text": " and they broadcast that out"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,440",
+				"to": "00:19:33,680"
+			},
+			"offsets": {
+				"from": 1172440,
+				"to": 1173680
+			},
+			"text": " because that whole stuff in action"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,680",
+				"to": "00:19:35,800"
+			},
+			"offsets": {
+				"from": 1173680,
+				"to": 1175800
+			},
+			"text": " is very expensive though."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,800",
+				"to": "00:19:37,880"
+			},
+			"offsets": {
+				"from": 1175800,
+				"to": 1177880
+			},
+			"text": " And it's sold on a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,880",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1177880,
+				"to": 1182000
+			},
+			"text": " So that is typically a business person"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:44,200"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1184200
+			},
+			"text": " that comes in because it's a little bit longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,200",
+				"to": "00:19:46,600"
+			},
+			"offsets": {
+				"from": 1184200,
+				"to": 1186600
+			},
+			"text": " or why a little bit more money, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,600",
+				"to": "00:19:50,560"
+			},
+			"offsets": {
+				"from": 1186600,
+				"to": 1190560
+			},
+			"text": " - You were, sorry, you were citing"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,560",
+				"to": "00:19:52,320"
+			},
+			"offsets": {
+				"from": 1190560,
+				"to": 1192320
+			},
+			"text": " from the college and law in the US,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,320",
+				"to": "00:19:53,680"
+			},
+			"offsets": {
+				"from": 1192320,
+				"to": 1193680
+			},
+			"text": " I'm not familiar with what it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,680",
+				"to": "00:19:54,680"
+			},
+			"offsets": {
+				"from": 1193680,
+				"to": 1194680
+			},
+			"text": " So what does it mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,680",
+				"to": "00:19:56,600"
+			},
+			"offsets": {
+				"from": 1194680,
+				"to": 1196600
+			},
+			"text": " Actually, this mean that the person"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,600",
+				"to": "00:20:00,080"
+			},
+			"offsets": {
+				"from": 1196600,
+				"to": 1200080
+			},
+			"text": " writing Nancy Note is responsible for the content"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,080",
+				"to": "00:20:02,600"
+			},
+			"offsets": {
+				"from": 1200080,
+				"to": 1202600
+			},
+			"text": " or the communication stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,600",
+				"to": "00:20:04,040"
+			},
+			"offsets": {
+				"from": 1202600,
+				"to": 1204040
+			},
+			"text": " - Yes. - to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,040",
+				"to": "00:20:08,120"
+			},
+			"offsets": {
+				"from": 1204040,
+				"to": 1208120
+			},
+			"text": " So how are the legal issues with like"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,120",
+				"to": "00:20:09,720"
+			},
+			"offsets": {
+				"from": 1208120,
+				"to": 1209720
+			},
+			"text": " how they're getting the episodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,720",
+				"to": "00:20:12,280"
+			},
+			"offsets": {
+				"from": 1209720,
+				"to": 1212280
+			},
+			"text": " and somebody know what the content is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,280",
+				"to": "00:20:14,640"
+			},
+			"offsets": {
+				"from": 1212280,
+				"to": 1214640
+			},
+			"text": " and somebody getting the phone calls?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,640",
+				"to": "00:20:17,240"
+			},
+			"offsets": {
+				"from": 1214640,
+				"to": 1217240
+			},
+			"text": " - Not yet, I'm sure there will be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,240",
+				"to": "00:20:19,160"
+			},
+			"offsets": {
+				"from": 1217240,
+				"to": 1219160
+			},
+			"text": " but yeah, that's the responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,160",
+				"to": "00:20:20,840"
+			},
+			"offsets": {
+				"from": 1219160,
+				"to": 1220840
+			},
+			"text": " And this, the further network we have here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,840",
+				"to": "00:20:23,120"
+			},
+			"offsets": {
+				"from": 1220840,
+				"to": 1223120
+			},
+			"text": " all via the XA Note for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,120",
+				"to": "00:20:25,280"
+			},
+			"offsets": {
+				"from": 1223120,
+				"to": 1225280
+			},
+			"text": " And the vision is the user will have"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,280",
+				"to": "00:20:28,680"
+			},
+			"offsets": {
+				"from": 1225280,
+				"to": 1228680
+			},
+			"text": " maybe different XA Note that they can choose from."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,680",
+				"to": "00:20:29,760"
+			},
+			"offsets": {
+				"from": 1228680,
+				"to": 1229760
+			},
+			"text": " But yeah, and the next tough point"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,760",
+				"to": "00:20:31,000"
+			},
+			"offsets": {
+				"from": 1229760,
+				"to": 1231000
+			},
+			"text": " in the Internet services provider"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,000",
+				"to": "00:20:33,800"
+			},
+			"offsets": {
+				"from": 1231000,
+				"to": 1233800
+			},
+			"text": " where your dad is turning out to the rest"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,800",
+				"to": "00:20:36,640"
+			},
+			"offsets": {
+				"from": 1233800,
+				"to": 1236640
+			},
+			"text": " of the Internet, so that's always going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,640",
+				"to": "00:20:38,960"
+			},
+			"offsets": {
+				"from": 1236640,
+				"to": 1238960
+			},
+			"text": " the one who is responsible for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,960",
+				"to": "00:20:40,400"
+			},
+			"offsets": {
+				"from": 1238960,
+				"to": 1240400
+			},
+			"text": " And we know what the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,400",
+				"to": "00:20:42,120"
+			},
+			"offsets": {
+				"from": 1240400,
+				"to": 1242120
+			},
+			"text": " is on the comments that are doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,120",
+				"to": "00:20:45,280"
+			},
+			"offsets": {
+				"from": 1242120,
+				"to": 1245280
+			},
+			"text": " - What is the FCC?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,280",
+				"to": "00:20:47,080"
+			},
+			"offsets": {
+				"from": 1245280,
+				"to": 1247080
+			},
+			"text": " I mean, obviously not at this level"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,080",
+				"to": "00:20:50,320"
+			},
+			"offsets": {
+				"from": 1247080,
+				"to": 1250320
+			},
+			"text": " right there, but just the UFC regulates"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,320",
+				"to": "00:20:52,720"
+			},
+			"offsets": {
+				"from": 1250320,
+				"to": 1252720
+			},
+			"text": " sort of the airwaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,720",
+				"to": "00:20:53,880"
+			},
+			"offsets": {
+				"from": 1252720,
+				"to": 1253880
+			},
+			"text": " Setting a microwave transmission"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,880",
+				"to": "00:20:56,120"
+			},
+			"offsets": {
+				"from": 1253880,
+				"to": 1256120
+			},
+			"text": " there's a uni-directional life site, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,120",
+				"to": "00:20:59,200"
+			},
+			"offsets": {
+				"from": 1256120,
+				"to": 1259200
+			},
+			"text": " So I was just wondering if you're running any problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,200",
+				"to": "00:21:01,080"
+			},
+			"offsets": {
+				"from": 1259200,
+				"to": 1261080
+			},
+			"text": " at the end, these little jurisdictions might"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,080",
+				"to": "00:21:04,080"
+			},
+			"offsets": {
+				"from": 1261080,
+				"to": 1264080
+			},
+			"text": " care, but from larger cities, you know, might have some."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,080",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1264080,
+				"to": 1267000
+			},
+			"text": " - So we operate in the unlicensed spectrum"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:10,240"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1270240
+			},
+			"text": " of five gigahertz, so we're compliant there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,240",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1270240,
+				"to": 1272000
+			},
+			"text": " And then in this coma cooperative network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:13,840"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1273840
+			},
+			"text": " we'll be using on mixture of five gigahertz"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,840",
+				"to": "00:21:15,840"
+			},
+			"offsets": {
+				"from": 1273840,
+				"to": 1275840
+			},
+			"text": " unlicensed spectrum and 60 gigahertz,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,840",
+				"to": "00:21:18,360"
+			},
+			"offsets": {
+				"from": 1275840,
+				"to": 1278360
+			},
+			"text": " which is the millimeter e-band."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,360",
+				"to": "00:21:20,760"
+			},
+			"offsets": {
+				"from": 1278360,
+				"to": 1280760
+			},
+			"text": " So we'll be able to push up even higher speeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,760",
+				"to": "00:21:22,480"
+			},
+			"offsets": {
+				"from": 1280760,
+				"to": 1282480
+			},
+			"text": " But that's also unlicensed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,480",
+				"to": "00:21:25,080"
+			},
+			"offsets": {
+				"from": 1282480,
+				"to": 1285080
+			},
+			"text": " So, you know, free to use within power limits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,080",
+				"to": "00:21:28,720"
+			},
+			"offsets": {
+				"from": 1285080,
+				"to": 1288720
+			},
+			"text": " which the intents are already configured in that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,360",
+				"to": "00:21:32,880"
+			},
+			"offsets": {
+				"from": 1290360,
+				"to": 1292880
+			},
+			"text": " So in the motors and incentives are kind of clear"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,880",
+				"to": "00:21:34,640"
+			},
+			"offsets": {
+				"from": 1292880,
+				"to": 1294640
+			},
+			"text": " because you don't have much options."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,640",
+				"to": "00:21:36,720"
+			},
+			"offsets": {
+				"from": 1294640,
+				"to": 1296720
+			},
+			"text": " But for example, in health health,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,720",
+				"to": "00:21:38,400"
+			},
+			"offsets": {
+				"from": 1296720,
+				"to": 1298400
+			},
+			"text": " the community talk about what's and incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,400",
+				"to": "00:21:40,600"
+			},
+			"offsets": {
+				"from": 1298400,
+				"to": 1300600
+			},
+			"text": " that people have to go to the troubles"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,600",
+				"to": "00:21:41,600"
+			},
+			"offsets": {
+				"from": 1300600,
+				"to": 1301600
+			},
+			"text": " you're enjoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,600",
+				"to": "00:21:46,480"
+			},
+			"offsets": {
+				"from": 1301600,
+				"to": 1306480
+			},
+			"text": " - Yeah, well, yeah, that's why I've been a sardin."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,480",
+				"to": "00:21:49,440"
+			},
+			"offsets": {
+				"from": 1306480,
+				"to": 1309440
+			},
+			"text": " I think there's about 12,000 people in the neighborhood."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,440",
+				"to": "00:21:54,280"
+			},
+			"offsets": {
+				"from": 1309440,
+				"to": 1314280
+			},
+			"text": " It's just a few blocks and they, it's faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,280",
+				"to": "00:21:55,800"
+			},
+			"offsets": {
+				"from": 1314280,
+				"to": 1315800
+			},
+			"text": " than the current offerings."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,800",
+				"to": "00:21:58,480"
+			},
+			"offsets": {
+				"from": 1315800,
+				"to": 1318480
+			},
+			"text": " It's got to be less expensive and it's community run"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,480",
+				"to": "00:22:00,440"
+			},
+			"offsets": {
+				"from": 1318480,
+				"to": 1320440
+			},
+			"text": " instead of the income of providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,440",
+				"to": "00:22:03,440"
+			},
+			"offsets": {
+				"from": 1320440,
+				"to": 1323440
+			},
+			"text": " We've already got people to sign up to start."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,440",
+				"to": "00:22:06,320"
+			},
+			"offsets": {
+				"from": 1323440,
+				"to": 1326320
+			},
+			"text": " - So do you find any routes that make sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,320",
+				"to": "00:22:07,160"
+			},
+			"offsets": {
+				"from": 1326320,
+				"to": 1327160
+			},
+			"text": " of approaches and?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,160",
+				"to": "00:22:09,200"
+			},
+			"offsets": {
+				"from": 1327160,
+				"to": 1329200
+			},
+			"text": " - Yes, yeah, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,200",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1329200,
+				"to": 1331000
+			},
+			"text": " So we do, we do guys and folks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:12,840"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1332840
+			},
+			"text": " people who should just come to us and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,840",
+				"to": "00:22:14,080"
+			},
+			"offsets": {
+				"from": 1332840,
+				"to": 1334080
+			},
+			"text": " \"Hey, I want to run out the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,080",
+				"to": "00:22:16,040"
+			},
+			"offsets": {
+				"from": 1334080,
+				"to": 1336040
+			},
+			"text": " \"we're coming in neighborhood grades.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,040",
+				"to": "00:22:19,200"
+			},
+			"offsets": {
+				"from": 1336040,
+				"to": 1339200
+			},
+			"text": " Let's look at what we do find is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,200",
+				"to": "00:22:21,200"
+			},
+			"offsets": {
+				"from": 1339200,
+				"to": 1341200
+			},
+			"text": " you know, everybody's angry with me telecom."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,200",
+				"to": "00:22:24,640"
+			},
+			"offsets": {
+				"from": 1341200,
+				"to": 1344640
+			},
+			"text": " But that anger isn't enough to get people to switch, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,640",
+				"to": "00:22:26,560"
+			},
+			"offsets": {
+				"from": 1344640,
+				"to": 1346560
+			},
+			"text": " It's like, you know, maybe one to three percent"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,560",
+				"to": "00:22:29,440"
+			},
+			"offsets": {
+				"from": 1346560,
+				"to": 1349440
+			},
+			"text": " take great base just on people's income and anger."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,440",
+				"to": "00:22:32,760"
+			},
+			"offsets": {
+				"from": 1349440,
+				"to": 1352760
+			},
+			"text": " But yeah, in really order to be viable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,760",
+				"to": "00:22:35,320"
+			},
+			"offsets": {
+				"from": 1352760,
+				"to": 1355320
+			},
+			"text": " we do also, you know, work with people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,320",
+				"to": "00:22:36,880"
+			},
+			"offsets": {
+				"from": 1355320,
+				"to": 1356880
+			},
+			"text": " look at their market fit and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,880",
+				"to": "00:22:38,640"
+			},
+			"offsets": {
+				"from": 1356880,
+				"to": 1358640
+			},
+			"text": " \"Hey, you want to be able to have touch in here.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,640",
+				"to": "00:22:41,240"
+			},
+			"offsets": {
+				"from": 1358640,
+				"to": 1361240
+			},
+			"text": " But you know what I'll say, when we go into these neighborhoods"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,240",
+				"to": "00:22:42,680"
+			},
+			"offsets": {
+				"from": 1361240,
+				"to": 1362680
+			},
+			"text": " and I've been to the hilltop neighborhood"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,680",
+				"to": "00:22:44,600"
+			},
+			"offsets": {
+				"from": 1362680,
+				"to": 1364600
+			},
+			"text": " and worked with the organizers there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,600",
+				"to": "00:22:46,760"
+			},
+			"offsets": {
+				"from": 1364600,
+				"to": 1366760
+			},
+			"text": " everyone wants to be a relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,760",
+				"to": "00:22:49,040"
+			},
+			"offsets": {
+				"from": 1366760,
+				"to": 1369040
+			},
+			"text": " They want to know how they can make money with their,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,040",
+				"to": "00:22:51,160"
+			},
+			"offsets": {
+				"from": 1369040,
+				"to": 1371160
+			},
+			"text": " you know, if I run out of space on the roof."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,160",
+				"to": "00:22:53,520"
+			},
+			"offsets": {
+				"from": 1371160,
+				"to": 1373520
+			},
+			"text": " - Sorry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,520",
+				"to": "00:22:55,800"
+			},
+			"offsets": {
+				"from": 1373520,
+				"to": 1375800
+			},
+			"text": " - I don't remember who's first, I'm so sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,680",
+				"to": "00:22:58,200"
+			},
+			"offsets": {
+				"from": 1376680,
+				"to": 1378200
+			},
+			"text": " I missed the talk so many years."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,200",
+				"to": "00:22:59,280"
+			},
+			"offsets": {
+				"from": 1378200,
+				"to": 1379280
+			},
+			"text": " You've been able to make a sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,280",
+				"to": "00:23:02,040"
+			},
+			"offsets": {
+				"from": 1379280,
+				"to": 1382040
+			},
+			"text": " but how do you adhere yourself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,040",
+				"to": "00:23:04,160"
+			},
+			"offsets": {
+				"from": 1382040,
+				"to": 1384160
+			},
+			"text": " How do you provide for yourself?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,160",
+				"to": "00:23:04,960"
+			},
+			"offsets": {
+				"from": 1384160,
+				"to": 1384960
+			},
+			"text": " Do you charge today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,960",
+				"to": "00:23:08,480"
+			},
+			"offsets": {
+				"from": 1384960,
+				"to": 1388480
+			},
+			"text": " If you're working with it or do you have to rely on the kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,480",
+				"to": "00:23:10,880"
+			},
+			"offsets": {
+				"from": 1388480,
+				"to": 1390880
+			},
+			"text": " benevolent donors that help you grow?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,880",
+				"to": "00:23:15,920"
+			},
+			"offsets": {
+				"from": 1390880,
+				"to": 1395920
+			},
+			"text": " And my question is, if we are able to help you money"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,920",
+				"to": "00:23:18,400"
+			},
+			"offsets": {
+				"from": 1395920,
+				"to": 1398400
+			},
+			"text": " and you know, we want to help you keep start"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,400",
+				"to": "00:23:21,240"
+			},
+			"offsets": {
+				"from": 1398400,
+				"to": 1401240
+			},
+			"text": " because we see the interest, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,240",
+				"to": "00:23:23,320"
+			},
+			"offsets": {
+				"from": 1401240,
+				"to": 1403320
+			},
+			"text": " happy we work together in a way that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,320",
+				"to": "00:23:26,880"
+			},
+			"offsets": {
+				"from": 1403320,
+				"to": 1406880
+			},
+			"text": " we can drive some of the wealth we control to move to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,880",
+				"to": "00:23:29,200"
+			},
+			"offsets": {
+				"from": 1406880,
+				"to": 1409200
+			},
+			"text": " while at the same time, anything like what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,200",
+				"to": "00:23:30,960"
+			},
+			"offsets": {
+				"from": 1409200,
+				"to": 1410960
+			},
+			"text": " It's a positive opportunity."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,960",
+				"to": "00:23:32,880"
+			},
+			"offsets": {
+				"from": 1410960,
+				"to": 1412880
+			},
+			"text": " - Yeah, that's a great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,880",
+				"to": "00:23:33,880"
+			},
+			"offsets": {
+				"from": 1412880,
+				"to": 1413880
+			},
+			"text": " So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,880",
+				"to": "00:23:37,440"
+			},
+			"offsets": {
+				"from": 1413880,
+				"to": 1417440
+			},
+			"text": " - Sorry, so without having to go to ICO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,440",
+				"to": "00:23:39,880"
+			},
+			"offsets": {
+				"from": 1417440,
+				"to": 1419880
+			},
+			"text": " I think you're going to get that thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,880",
+				"to": "00:23:43,920"
+			},
+			"offsets": {
+				"from": 1419880,
+				"to": 1423920
+			},
+			"text": " - Yeah, so we are not, we're not doing a public skill."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,920",
+				"to": "00:23:45,280"
+			},
+			"offsets": {
+				"from": 1423920,
+				"to": 1425280
+			},
+			"text": " It's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,280",
+				"to": "00:23:50,280"
+			},
+			"offsets": {
+				"from": 1425280,
+				"to": 1430280
+			},
+			"text": " So, like I said, we always want our end users to be able to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,240",
+				"to": "00:23:53,760"
+			},
+			"offsets": {
+				"from": 1431240,
+				"to": 1433760
+			},
+			"text": " something easy to get like Ethereum and something stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,760",
+				"to": "00:23:54,600"
+			},
+			"offsets": {
+				"from": 1433760,
+				"to": 1434600
+			},
+			"text": " like Di."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,600",
+				"to": "00:23:56,520"
+			},
+			"offsets": {
+				"from": 1434600,
+				"to": 1436520
+			},
+			"text": " So, we don't want people that are subscribing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,520",
+				"to": "00:23:57,520"
+			},
+			"offsets": {
+				"from": 1436520,
+				"to": 1437520
+			},
+			"text": " to have any kind of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,520",
+				"to": "00:23:58,520"
+			},
+			"offsets": {
+				"from": 1437520,
+				"to": 1438520
+			},
+			"text": " - With yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,520",
+				"to": "00:24:03,120"
+			},
+			"offsets": {
+				"from": 1438520,
+				"to": 1443120
+			},
+			"text": " - Yeah, so the eventual plan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,120",
+				"to": "00:24:06,000"
+			},
+			"offsets": {
+				"from": 1443120,
+				"to": 1446000
+			},
+			"text": " what we're working on now is that right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,000",
+				"to": "00:24:08,280"
+			},
+			"offsets": {
+				"from": 1446000,
+				"to": 1448280
+			},
+			"text": " these transactions take place five percent"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,280",
+				"to": "00:24:10,120"
+			},
+			"offsets": {
+				"from": 1448280,
+				"to": 1450120
+			},
+			"text": " cost Ethereum miners, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,120",
+				"to": "00:24:14,160"
+			},
+			"offsets": {
+				"from": 1450120,
+				"to": 1454160
+			},
+			"text": " So, our plan is that we are going to bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,160",
+				"to": "00:24:18,120"
+			},
+			"offsets": {
+				"from": 1454160,
+				"to": 1458120
+			},
+			"text": " to an Althea Di, and then an Althea token"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,120",
+				"to": "00:24:20,160"
+			},
+			"offsets": {
+				"from": 1458120,
+				"to": 1460160
+			},
+			"text": " that is built on Cosmos."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,160",
+				"to": "00:24:23,680"
+			},
+			"offsets": {
+				"from": 1460160,
+				"to": 1463680
+			},
+			"text": " And then the Althea token holders will be able to collect"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,680",
+				"to": "00:24:28,680"
+			},
+			"offsets": {
+				"from": 1463680,
+				"to": 1468680
+			},
+			"text": " five percent of the transaction fees in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,680",
+				"to": "00:24:32,320"
+			},
+			"offsets": {
+				"from": 1468680,
+				"to": 1472320
+			},
+			"text": " So, as the network grows, then we hit the five percent."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,320",
+				"to": "00:24:35,080"
+			},
+			"offsets": {
+				"from": 1472320,
+				"to": 1475080
+			},
+			"text": " - So, you guys have a reserve about the Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,080",
+				"to": "00:24:38,280"
+			},
+			"offsets": {
+				"from": 1475080,
+				"to": 1478280
+			},
+			"text": " So, we're using this money to the valuation of the token"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,280",
+				"to": "00:24:39,360"
+			},
+			"offsets": {
+				"from": 1478280,
+				"to": 1479360
+			},
+			"text": " with the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,360",
+				"to": "00:24:40,200"
+			},
+			"offsets": {
+				"from": 1479360,
+				"to": 1480200
+			},
+			"text": " - Correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,200",
+				"to": "00:24:41,040"
+			},
+			"offsets": {
+				"from": 1480200,
+				"to": 1481040
+			},
+			"text": " - The market is seeking on something."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,040",
+				"to": "00:24:41,880"
+			},
+			"offsets": {
+				"from": 1481040,
+				"to": 1481880
+			},
+			"text": " - Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,880",
+				"to": "00:24:42,720"
+			},
+			"offsets": {
+				"from": 1481880,
+				"to": 1482720
+			},
+			"text": " - Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,720",
+				"to": "00:24:43,880"
+			},
+			"offsets": {
+				"from": 1482720,
+				"to": 1483880
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,880",
+				"to": "00:24:45,960"
+			},
+			"offsets": {
+				"from": 1483880,
+				"to": 1485960
+			},
+			"text": " - Is there a maximum number of relays?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,960",
+				"to": "00:24:47,120"
+			},
+			"offsets": {
+				"from": 1485960,
+				"to": 1487120
+			},
+			"text": " I think in fact, well in gateway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,120",
+				"to": "00:24:51,720"
+			},
+			"offsets": {
+				"from": 1487120,
+				"to": 1491720
+			},
+			"text": " do you have performance issues or other actual business?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,720",
+				"to": "00:24:53,680"
+			},
+			"offsets": {
+				"from": 1491720,
+				"to": 1493680
+			},
+			"text": " - Yeah, that's a really good question too."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,680",
+				"to": "00:24:57,840"
+			},
+			"offsets": {
+				"from": 1493680,
+				"to": 1497840
+			},
+			"text": " So, yes, but Althea itself runs on that consumer"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,840",
+				"to": "00:24:59,760"
+			},
+			"offsets": {
+				"from": 1497840,
+				"to": 1499760
+			},
+			"text": " route around the people's house."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,760",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1499760,
+				"to": 1502000
+			},
+			"text": " So, whenever it's hen as you connect to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:03,240"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1503240
+			},
+			"text": " it's agnostic to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,240",
+				"to": "00:25:05,400"
+			},
+			"offsets": {
+				"from": 1503240,
+				"to": 1505400
+			},
+			"text": " So, you saw a lot of ubiquity gear here"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,400",
+				"to": "00:25:06,640"
+			},
+			"offsets": {
+				"from": 1505400,
+				"to": 1506640
+			},
+			"text": " in the Tacoma community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,640",
+				"to": "00:25:08,600"
+			},
+			"offsets": {
+				"from": 1506640,
+				"to": 1508600
+			},
+			"text": " cooperative network is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,600",
+				"to": "00:25:11,280"
+			},
+			"offsets": {
+				"from": 1508600,
+				"to": 1511280
+			},
+			"text": " making microtech 60 feet of hertz, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,280",
+				"to": "00:25:15,400"
+			},
+			"offsets": {
+				"from": 1511280,
+				"to": 1515400
+			},
+			"text": " And so, each one of those in tennis has limitations"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,400",
+				"to": "00:25:17,360"
+			},
+			"offsets": {
+				"from": 1515400,
+				"to": 1517360
+			},
+			"text": " based on the antenna hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,360",
+				"to": "00:25:19,560"
+			},
+			"offsets": {
+				"from": 1517360,
+				"to": 1519560
+			},
+			"text": " So, the hardware that you saw there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:19,560",
+				"to": "00:25:22,280"
+			},
+			"offsets": {
+				"from": 1519560,
+				"to": 1522280
+			},
+			"text": " the big stepters, they can take about 30 people"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,280",
+				"to": "00:25:24,320"
+			},
+			"offsets": {
+				"from": 1522280,
+				"to": 1524320
+			},
+			"text": " without performance and the smaller ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,320",
+				"to": "00:25:26,920"
+			},
+			"offsets": {
+				"from": 1524320,
+				"to": 1526920
+			},
+			"text": " the little skinny guy, less than 10."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,920",
+				"to": "00:25:29,040"
+			},
+			"offsets": {
+				"from": 1526920,
+				"to": 1529040
+			},
+			"text": " So, but it's agnostic."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,040",
+				"to": "00:25:30,920"
+			},
+			"offsets": {
+				"from": 1529040,
+				"to": 1530920
+			},
+			"text": " So, whatever you want to use with it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,920",
+				"to": "00:25:33,640"
+			},
+			"offsets": {
+				"from": 1530920,
+				"to": 1533640
+			},
+			"text": " you can use TP-Wise phases and those in tennis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,640",
+				"to": "00:25:36,560"
+			},
+			"offsets": {
+				"from": 1533640,
+				"to": 1536560
+			},
+			"text": " you can license, buy cells equipment."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,560",
+				"to": "00:25:37,400"
+			},
+			"offsets": {
+				"from": 1536560,
+				"to": 1537400
+			},
+			"text": " So, it doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,400",
+				"to": "00:25:39,880"
+			},
+			"offsets": {
+				"from": 1537400,
+				"to": 1539880
+			},
+			"text": " You can put fiber between you and then off the edge."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,880",
+				"to": "00:25:40,720"
+			},
+			"offsets": {
+				"from": 1539880,
+				"to": 1540720
+			},
+			"text": " No, as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,720",
+				"to": "00:25:42,560"
+			},
+			"offsets": {
+				"from": 1540720,
+				"to": 1542560
+			},
+			"text": " You can do it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,560",
+				"to": "00:25:45,160"
+			},
+			"offsets": {
+				"from": 1542560,
+				"to": 1545160
+			},
+			"text": " - Do you want me to light software or are there in software?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,160",
+				"to": "00:25:49,360"
+			},
+			"offsets": {
+				"from": 1545160,
+				"to": 1549360
+			},
+			"text": " - Yeah, so I have that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,360",
+				"to": "00:25:52,440"
+			},
+			"offsets": {
+				"from": 1549360,
+				"to": 1552440
+			},
+			"text": " says this is consumer router, available online."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,440",
+				"to": "00:25:55,080"
+			},
+			"offsets": {
+				"from": 1552440,
+				"to": 1555080
+			},
+			"text": " Our software is open to the VRT base,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,080",
+				"to": "00:25:59,160"
+			},
+			"offsets": {
+				"from": 1555080,
+				"to": 1559160
+			},
+			"text": " it's open source and you just flash it onto the router itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,160",
+				"to": "00:26:00,640"
+			},
+			"offsets": {
+				"from": 1559160,
+				"to": 1560640
+			},
+			"text": " Does that answer your question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,640",
+				"to": "00:26:01,480"
+			},
+			"offsets": {
+				"from": 1560640,
+				"to": 1561480
+			},
+			"text": " - Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,480",
+				"to": "00:26:05,960"
+			},
+			"offsets": {
+				"from": 1561480,
+				"to": 1565960
+			},
+			"text": " - Is it still on Raspberry Pi's?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,960",
+				"to": "00:26:08,960"
+			},
+			"offsets": {
+				"from": 1565960,
+				"to": 1568960
+			},
+			"text": " - And we do, we do still best efforts"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,960",
+				"to": "00:26:10,720"
+			},
+			"offsets": {
+				"from": 1568960,
+				"to": 1570720
+			},
+			"text": " support Raspberry Pi's."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,720",
+				"to": "00:26:11,560"
+			},
+			"offsets": {
+				"from": 1570720,
+				"to": 1571560
+			},
+			"text": " - From it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,560",
+				"to": "00:26:13,280"
+			},
+			"offsets": {
+				"from": 1571560,
+				"to": 1573280
+			},
+			"text": " (laughing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,280",
+				"to": "00:26:14,440"
+			},
+			"offsets": {
+				"from": 1573280,
+				"to": 1574440
+			},
+			"text": " - Well, I think we're on Raspberry Pi's,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,440",
+				"to": "00:26:17,040"
+			},
+			"offsets": {
+				"from": 1574440,
+				"to": 1577040
+			},
+			"text": " is by the time you get the case"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,040",
+				"to": "00:26:19,320"
+			},
+			"offsets": {
+				"from": 1577040,
+				"to": 1579320
+			},
+			"text": " and you get the work right and everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,320",
+				"to": "00:26:21,440"
+			},
+			"offsets": {
+				"from": 1579320,
+				"to": 1581440
+			},
+			"text": " This is 70 bucks on Amazon."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,440",
+				"to": "00:26:23,920"
+			},
+			"offsets": {
+				"from": 1581440,
+				"to": 1583920
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,920",
+				"to": "00:26:27,560"
+			},
+			"offsets": {
+				"from": 1583920,
+				"to": 1587560
+			},
+			"text": " All right, well thank you very, very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,560",
+				"to": "00:26:28,680"
+			},
+			"offsets": {
+				"from": 1587560,
+				"to": 1588680
+			},
+			"text": " Just to spend fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,680",
+				"to": "00:26:29,520"
+			},
+			"offsets": {
+				"from": 1588680,
+				"to": 1589520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,520",
+				"to": "00:26:32,680"
+			},
+			"offsets": {
+				"from": 1589520,
+				"to": 1592680
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,680",
+				"to": "00:26:36,460"
+			},
+			"offsets": {
+				"from": 1592680,
+				"to": 1596460
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,460",
+				"to": "00:26:39,040"
+			},
+			"offsets": {
+				"from": 1596460,
+				"to": 1599040
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,040",
+				"to": "00:26:41,620"
+			},
+			"offsets": {
+				"from": 1599040,
+				"to": 1601620
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,620",
+				"to": "00:26:44,200"
+			},
+			"offsets": {
+				"from": 1601620,
+				"to": 1604200
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,200",
+				"to": "00:26:46,940"
+			},
+			"offsets": {
+				"from": 1604200,
+				"to": 1606940
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,940",
+				"to": "00:26:49,680"
+			},
+			"offsets": {
+				"from": 1606940,
+				"to": 1609680
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

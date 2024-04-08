@@ -1,0 +1,9294 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 16000
+			},
+			"text": " So welcome to the workshop. It's going to be quite hands-on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 22000
+			},
+			"text": " So I was wondering how many people have laptops and they're kind of ready to follow on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 26000
+			},
+			"text": " Okay. Yeah. Okay, so maybe I'll do it live as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:30,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 30000
+			},
+			"text": " And if you want to follow along, that'd be great and do it yourself. That'd be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 38000
+			},
+			"text": " So the topic of the talk is to look into what an L2 transaction is in the context of Arbotrim."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 43000
+			},
+			"text": " So there are a range of different L2s, but the one we'll use today is Arbotrim."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 52000
+			},
+			"text": " And L2 transactions will differ between those, but some of the concepts will be passed between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 56000
+			},
+			"text": " So, yes, there's some differences, some similarities."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 63000
+			},
+			"text": " We'll go into some of those. And I'll first give a bit of an introduction about what a roll-up is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 71000
+			},
+			"text": " And that's what I mean by L2 in this context. And then we'll go into the workshop itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 77000
+			},
+			"text": " Okay. So at a very high level, a roll-up is a side chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 83000
+			},
+			"text": " There's another blockchain, but it's connected to some sort of base chain by a validating bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 88000
+			},
+			"text": " And if you want to read more about this, there's a paper by Patty who sat in the back of the room over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92000
+			},
+			"text": " So you can get more information there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 95000
+			},
+			"text": " And this is a kind of rough overview of how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 98000
+			},
+			"text": " So you've got one blockchain at the top, which is the roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 102000
+			},
+			"text": " You've got the main blockchain at the bottom, which in this case would be Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 108000
+			},
+			"text": " And they're both progressing via state transitions. New blocks are being made."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 112000
+			},
+			"text": " There's a bridge contract on the base chain on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 121000
+			},
+			"text": " And periodically, an operator will take the state of the roll-up chain, and they'll paste it into that bridge contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 124000
+			},
+			"text": " Once it's in that bridge contract, it can be checked."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " So in an optimistic roll-up case, there's a fraud proofs that are used for checking that state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 132000
+			},
+			"text": " And in the case of a ZK roll-up, it's just a ZK proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 138000
+			},
+			"text": " But the other crucial thing is that green blob that I've put inside the bridge contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 141000
+			},
+			"text": " and that's data that's associated with the state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 149000
+			},
+			"text": " So on the roll-up, you need a minimum amount of data to be able to recompute the state transitions that are occurring on the roll-up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 155000
+			},
+			"text": " So in the case of optimistic roll-ups, that's going to be the transaction data itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 158000
+			},
+			"text": " And yeah, it just continues in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 166000
+			},
+			"text": " And this would be the case where some data is put on change, the fraud proof is checked and is found to be invalid."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " So this is a kind of rough lifecycle of a L2 transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 179000
+			},
+			"text": " So a user would create a transaction that's admitted to a sequencer, who would then be collecting these transactions into a batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 185000
+			},
+			"text": " When the sequencer has got enough transactions, they'll compress this batch using some standard compression algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 188000
+			},
+			"text": " In our becomes case, this is broadly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " And then they submit the batch to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 196000
+			},
+			"text": " So this green blob is that batch there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:22,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 202000
+			},
+			"text": " Yeah, and another kind of difference between L1 and L2 transactions is gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 202000,
+				"to": 210000
+			},
+			"text": " So as I've mentioned, L2 transactions need to be submitted at some point to the L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 212000
+			},
+			"text": " And someone's got to pay for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 215000
+			},
+			"text": " So eventually that's going to be the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 226000
+			},
+			"text": " And that cost is associated with the call data that is consumed by the transaction on L1 and is priced at the price of L1 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 232000
+			},
+			"text": " Then there's L2 gas, which is basically the same as L1 gas, the same gas that you know on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 233000
+			},
+			"text": " But it's at the price of L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 237000
+			},
+			"text": " So this is just the execution of the transaction that's occurring on L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 242000
+			},
+			"text": " So you pay first to put the transaction on L1 and then to execute it on L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244000
+			},
+			"text": " So there's these two different costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 248000
+			},
+			"text": " And we'll kind of go into that in this workshop."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 250000
+			},
+			"text": " Yeah, so this is the URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 258000
+			},
+			"text": " So if you go to this GitHub repo and you can start following down the set of instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 267000
+			},
+			"text": " So there's a set of prerequisites that include tools like Foundry, JQ and Brotley itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 273000
+			},
+			"text": " And you can start following the steps yourself or you can watch me do it as I go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 280000
+			},
+			"text": " Yeah, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " Yeah, so I've included some useful links at the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 287000
+			},
+			"text": " There's some RPCs there to connect to both Arbodram and to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 299000
+			},
+			"text": " And just some other stuff, some general information if you want to read more about like L1, L2 gas and some of the ways in which Arbodram works that are relevant to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " So these are the prerequisites, gets just there so you can clone this repo itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " We've got curl for making some requests Foundry for using cast."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 318000
+			},
+			"text": " Cast is a kind of tool for helping you format ABI style functions for calling the JSON RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 326000
+			},
+			"text": " JQ just for formatting some JSON and Brotley which is the compression algorithm that's used in Arbodram."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 331000
+			},
+			"text": " Yeah, so there's a quick setup stage. I've already done this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 340000
+			},
+			"text": " I'll paste this in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 348000
+			},
+			"text": " Yeah, just check those there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 353000
+			},
+			"text": " Okay, so the first step is that we're going to send a transaction on L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 366000
+			},
+			"text": " So I've already sent a transaction which you can use if you want in your example or feel free to like use your own meta mask, connect to Arbodram and send a transaction on main there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 371000
+			},
+			"text": " At the moment they're reasonably cheap I think so should cost you only a few cents to do that if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 381000
+			},
+			"text": " But this transaction hash if we look at it on Arbaskan, this is a USDC transfer basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 384000
+			},
+			"text": " So this is just transferring some tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 390000
+			},
+			"text": " And that's the this is what we'll look into today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:43,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 403000
+			},
+			"text": " So I'll set that environment variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 403000,
+				"to": 417000
+			},
+			"text": " And also feel free to like if you've got any questions at any stages as I'm walking through this just stop me put your hand up. We don't have to get through all of this today. So just, you know, let's talk about it. And if you got questions, you know, just put your hand up at any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 419000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " So first we'll kind of grab a transaction receipt for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 443000
+			},
+			"text": " And there's two interesting things in this transaction receipt that you might not be used to when looking at L to compared with L one transactions. So there's this L one block number, which is the block number that the L two sees of L one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 455000
+			},
+			"text": " So it's a kind of like L one is it's reading the state from the L one occasionally. And one of those bits of state is the L one block number. You can access this as part of the other from EDM."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 469000
+			},
+			"text": " And then the other thing is this gas that it used for L one and that's what we're going to look into. So this is the amount of gas that was spent to send this traction transaction and get it recorded on L one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 477000
+			},
+			"text": " So we're going to store that in a variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 488000
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 496000
+			},
+			"text": " And I'll just echo that out so you can see like roughly what it is. So it's like 236,000 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:25,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 505000
+			},
+			"text": " So that seems like a lot when you think about just what it's doing is storing just a bit of data on the L one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 505000,
+				"to": 510000
+			},
+			"text": " But the reason why it seems like a lot is because this is in units of L two gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 520000
+			},
+			"text": " So this is this has been scaled for what it would be if it was on L two. And that's just to make the accounting a little bit easier inside the inside of option."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 533000
+			},
+			"text": " So this amount we need to find out what the ratio between the L two gas and the L one gas was at the time this transaction was sent to then try and really figure out how much L one gas was used."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 541000
+			},
+			"text": " And from there we can start to figure out as well like how many bytes of data it might have consumed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 567000
+			},
+			"text": " So, store some of these variables as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 576000
+			},
+			"text": " Okay, yeah, so as I mentioned we need to find out this ratio of L two to L one gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 585000
+			},
+			"text": " So the the roll up is estimating at any one at any point in time what it thinks the L one gas price is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 589000
+			},
+			"text": " And it's a little bit more complicated than just reading the L one base V."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 596000
+			},
+			"text": " Because there's a time lag between when the sequencer processes the transaction and when it submits it on to the L one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 604000
+			},
+			"text": " So it does some kind of estimating and it moves moves its price up and down depending on how accurate it's been in the past."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 607000
+			},
+			"text": " To try and make sure that it keeps even."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 625000
+			},
+			"text": " And so there's this L one get L one base V function, which is what was really used by the the arbitrum virtual machine to buy arbitrum sorry to to figure out what what L one gas prices it should charge."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 638000
+			},
+			"text": " And there's a bit more docs here if you're interested in reading about like exactly how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 639000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:52,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 652000
+			},
+			"text": " And maybe we should go a bit more into that because I realized we're running quite quickly on time because I guess I thought everybody would be following along and there'll be lots of problems, but I'm a skilled pro at this so it's going quite quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 652000,
+				"to": 661000
+			},
+			"text": " Yeah, so one interesting thing that happens with that with that estimation is that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 668000
+			},
+			"text": " Because because the sequencer is having to try and figure out what the price will be when it submits to L two."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:15,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 675000
+			},
+			"text": " It's kind of a it ends up wanting to overcharge to not get out of pocket itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 675000,
+				"to": 684000
+			},
+			"text": " So I was a slightly different mechanism there where the sequencer is rewarded later for exactly how much they spent."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 689000
+			},
+			"text": " And there's a kind of a pool that sits on L two and the pool starts quite full."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 699000
+			},
+			"text": " And then the difference between what it was awarded and what it estimated in the first place is then reduced from the pool or added to the pool if it overcharged."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 709000
+			},
+			"text": " And then this is you this difference between what the pool target should be and what it actually is is taken as a factor into the future estimate of what the L one gas price should be."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 714000
+			},
+			"text": " So the sequencer never ends up out of pocket. They always get exactly what they paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 720000
+			},
+			"text": " But there is some mile fluctuation between what users pay now and what users pay in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 726000
+			},
+			"text": " So some users now might receive slightly less than what they get a slightly better gas price than what they expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 733000
+			},
+			"text": " Some might get a slightly worse one. But overall it's quite quite close to the average quite close to what you should be getting."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 738000
+			},
+			"text": " Yeah. Okay. So."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 752000
+			},
+			"text": " We'll call that pre compile at the block heights so that for this we need an archive node and we're going to call the pre compile the block height when this transaction was sent on L two."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 756000
+			},
+			"text": " And then we'll see what the estimate was at that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 760000
+			},
+			"text": " Yeah, absolutely. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 767000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 774000
+			},
+			"text": " So you want to know what the what the estimate was at the time that the transaction was sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 781000
+			},
+			"text": " So you need to know what the state of the the node was at that time and for that you need an archive node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 786000
+			},
+			"text": " A full node wouldn't be able to do this. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789000
+			},
+			"text": " Second."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 798000
+			},
+			"text": " Exactly. Yeah. I think I think full nodes do keep some recent historical states. I can't remember exactly how but probably not a week's worth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 803000
+			},
+			"text": " Yeah. So to do this kind of thing that we're doing now, you would need an archive node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 808000
+			},
+			"text": " But this isn't something that you might normally want to do. This is just kind of like let's go look at some of the analytics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 813000
+			},
+			"text": " It's not part of like you don't need it to for two send transactions or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 818000
+			},
+			"text": " And there are ways to get estimates for what these values are before you send your transaction as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 823000
+			},
+			"text": " So you know what you're going to spend. You don't have to wait and inspect it afterwards if you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 825000
+			},
+			"text": " Yeah. I think there was someone."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 831000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 832000
+			},
+			"text": " Uh huh."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:58,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 838000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 838000,
+				"to": 841000
+			},
+			"text": " Yeah. Okay. Thanks. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 844000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 847000
+			},
+			"text": " Um, it's not a snapshot. It's just well, yeah. Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 852000
+			},
+			"text": " You need to know what the state was at that time because this is stored in state."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 858000
+			},
+			"text": " This L1 base for your estimate. So at a different block height, the L1 base for your estimate will be different."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 862000
+			},
+			"text": " And we want to know what it was when this transaction was sent."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 869000
+			},
+			"text": " Yeah. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 870000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 880000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " So the sequence has to pay some cost to put this data on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 887000
+			},
+			"text": " And it wants to get refunded for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 892000
+			},
+			"text": " Um, so this is, this estimate is, is in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 896000
+			},
+			"text": " It's under like, you might say it's under consensus of the, of the L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 900000
+			},
+			"text": " And the sequencer is forced to use this value in its estimate. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:06,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 906000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 906000,
+				"to": 911000
+			},
+			"text": " Well, the, the currency is the same. So the, the, but it's both if is the unit of accounts. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 918000
+			},
+			"text": " But the gas prices are different and they're moving. And then this is just a wave to try and estimate that movement of gas on L1."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 925000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 934000
+			},
+			"text": " Okay. So let's make, make the score."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 943000
+			},
+			"text": " Yeah. So this was an estimate of the base fee at the time, the L1 base fee estimates, which is about eight way. It looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 947000
+			},
+			"text": " So that's what it thinks it was at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 959000
+			},
+			"text": " Almost all that in a variable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 968000
+			},
+			"text": " So as I mentioned, we want to work out this ratio so that we can scale the L1 gas used in from L2 gas units into L1 gas units so that starts to make sense to us again."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:12,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 972000
+			},
+			"text": " So we also need to know what the L2 base fee was at that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 972000,
+				"to": 983000
+			},
+			"text": " Um, and this we can do by just fetching the block at that height and looking at the base fee in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 985000
+			},
+			"text": " Which is not point one way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 992000
+			},
+			"text": " So our term has like a minimum L2 gas price, which is not point one way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 1005000
+			},
+			"text": " If it, if congestion happens, then it will go above that. But generally it just sits here if it's not, if it's not being used heavily at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:51,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1011000
+			},
+			"text": " Okay. So we'll store that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1011000,
+				"to": 1022000
+			},
+			"text": " And now that we have these two ratios, we, I mean these two, these two gas prices, we can use them to calculate the ratio."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1028000
+			},
+			"text": " So have I still this already? Yeah. That was above."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1031000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1034000
+			},
+			"text": " Oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1041000
+			},
+			"text": " So there's the actual amount of L1 gas that we used at the time, which is a bit more what we kind of expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1044000
+			},
+			"text": " And if we divide."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1047000
+			},
+			"text": " Why did we expect that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1054000
+			},
+			"text": " No, a bit more like not more than it's, it's like what we expected."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:35,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1055000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1055000,
+				"to": 1056000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1081000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1089000
+			},
+			"text": " Yeah. It's a really great question. So we do compression over a full batch rather than individual transactions, which does leave you with this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1098000
+			},
+			"text": " Right. How do I know what my transaction, how many bytes that we use in the compressed batch rather than in, in the other amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:26,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1106000
+			},
+			"text": " So what we do is, it's, it's very hard to figure that out and do it fairly because it also depends on ordering and things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1106000,
+				"to": 1113000
+			},
+			"text": " So what we, what we do is we compress your individual transaction when we give you an estimate for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1120000
+			},
+			"text": " And so if your individual transaction is more compressible, you'll get a better, you'll get a better estimate for it and you'll be charged less."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1126000
+			},
+			"text": " But that still isn't quite the perfect scenario, but that's the kind of like halfway house that we've arrived at."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1131000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1143000
+			},
+			"text": " Okay. And so each unit of each byte of data on our one consumes around consumes 16 gas if it's a non zero bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1152000
+			},
+			"text": " So as an estimate, we can say that this consumed around like 180 bytes of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1160000
+			},
+			"text": " So we can then actually go and take a look and see if that's kind of what it did consume."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1167000
+			},
+			"text": " So to do that, we'll RLP encode the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1174000
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1183000
+			},
+			"text": " Which has got, I've got an error in my script there, I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1193000
+			},
+			"text": " This a APCC doesn't look right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1204000
+			},
+			"text": " Yeah. I was doing a bit of debugging."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1222000
+			},
+			"text": " Yeah. So this script, what it does is a high level at a high level is just it requests transaction receipts, takes the bits out of it, which are important for for for an actual transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1229000
+			},
+			"text": " RLP encodes it and just spits out the result with the zero to prefix, which is type two transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1236000
+			},
+			"text": " So if we do that again."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1243000
+			},
+			"text": " Not sure why that's."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:49,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1249000
+			},
+			"text": " Oh, yeah, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1249000,
+				"to": 1255000
+			},
+			"text": " There we go. Thanks for your share."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1265000
+			},
+			"text": " Okay. And if we count those bytes, let me see it's about the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1275000
+			},
+			"text": " So we spoke before about, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:23,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1283000
+			},
+			"text": " So again, let's write a little bit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1283000,
+				"to": 1295000
+			},
+			"text": " RLP is just the format of the transaction that Ethereum accepts, and then we'll include RLP encoded transactions into a big batch and the batch will then be compressed with a compression algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1306000
+			},
+			"text": " So RLP isn't compression. It's just, it's just serialization."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1311000
+			},
+			"text": " You don't need to."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1316000
+			},
+			"text": " Yeah, because what you so what runs under the state transition is the full decompression."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:22:04,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1324000
+			},
+			"text": " So when what you when you run the fraud fraud proof, you're bisecting on the parts of the state transition."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,000",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1324000,
+				"to": 1328000
+			},
+			"text": " So if the decompression is within that state transition, then yeah, you'll be able to decompress."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1341000
+			},
+			"text": " You don't you don't need an implementation of the decompression on our one. You need it on L2 and you need to include it in the state transition. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1347000
+			},
+			"text": " Yeah, so let's try and explore the batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1358000
+			},
+			"text": " There's a function on another one of the pre compiles that you can find an arbitrum to find the batch containing a specific block, which is this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1363000
+			},
+			"text": " So we store the block number earlier and we'll use that to look up the batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1370000
+			},
+			"text": " These pre compiles, by the way, are the kind of like the way in which arbitrum customizes itself compared to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1373000
+			},
+			"text": " So it needs to do some special things like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:08,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1388000
+			},
+			"text": " And they've been added as pre compiles. So they can be found at like different addresses that you can find at the top of the files."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1388000,
+				"to": 1394000
+			},
+			"text": " Yeah, so he's cast again."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1397000
+			},
+			"text": " This is a little bit longer."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1398000
+			},
+			"text": " Oh yeah, there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:26,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1406000
+			},
+			"text": " So 974 was the batch number. I don't know why I printed some rubbish, but oh yeah, it's because I copied the."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1406000,
+				"to": 1410000
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1410000
+			},
+			"text": " Yeah, it takes a little bit longer that one because we're doing. Oh, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:24:00,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1440000
+			},
+			"text": " Yeah, it takes a little bit longer that one because we're doing, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,000",
+				"to": "00:24:13,000"
+			},
+			"offsets": {
+				"from": 1440000,
+				"to": 1453000
+			},
+			"text": " This specific batch number. Yeah. So this is the transaction ID. So if we go to ether scan."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1453000,
+				"to": 1457000
+			},
+			"text": " This is an L1 transaction ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:24,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1464000
+			},
+			"text": " This is the batch itself. And if we scroll down and look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,000",
+				"to": "00:24:30,000"
+			},
+			"offsets": {
+				"from": 1464000,
+				"to": 1470000
+			},
+			"text": " So it calls this function add sequencer L2 batch from origin."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1470000,
+				"to": 1485000
+			},
+			"text": " And if we look at the original, this is all the batch data. So it's a large amount of data being submitted in one go."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:48,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1488000
+			},
+			"text": " Yeah, we can even look at this function in the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1488000,
+				"to": 1496000
+			},
+			"text": " So this is the contracts, which is called the sequencer inbox. And it's where this sequencer submits these batches."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1502000
+			},
+			"text": " And this is the batch data itself. So we're going to try and grab that data and decode it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1515000
+			},
+			"text": " The way that the way that variable size arguments in in in."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1521000
+			},
+			"text": " Yeah, in the VM are encoded is at the end and we've been there as a placeholder for them inserted at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1525000
+			},
+			"text": " So we'll find this data at the end of the arguments list."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1536000
+			},
+			"text": " And given these all fixed size arguments, we can know the exact position in them in that in that input."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1549000
+			},
+			"text": " Which is well, first we'll download it actually. Yeah, which is four hundred and fifty eight is the position."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:52,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1552000
+			},
+			"text": " And we'll put it into a file."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,000",
+				"to": "00:26:00,000"
+			},
+			"offsets": {
+				"from": 1552000,
+				"to": 1560000
+			},
+			"text": " So if we open."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:00,000",
+				"to": "00:26:08,000"
+			},
+			"offsets": {
+				"from": 1560000,
+				"to": 1568000
+			},
+			"text": " So this is the raw batch data that we downloaded."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,000",
+				"to": "00:26:20,000"
+			},
+			"offsets": {
+				"from": 1568000,
+				"to": 1580000
+			},
+			"text": " Raw is compressed exactly. Yeah, so so yeah, this is pulled straight out of the call data and this is what the sequencer input is so it's compressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1580000,
+				"to": 1587000
+			},
+			"text": " Yes, exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1595000
+			},
+			"text": " Great question and we'll explore that in step five."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1600000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:53,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1613000
+			},
+			"text": " So if we open the file, we can see that it begins with this zero zero at the start and this is not part of the compression. This is just a type of the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1613000,
+				"to": 1623000
+			},
+			"text": " So there are some different instantiations of arbitrum. One is called one another is called arbitrum nova and they handle data in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1635000
+			},
+			"text": " So arbitrum one does this compression, it stores all the data on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:19,000"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1639000
+			},
+			"text": " And they put that signature along with like commitments that data on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,000",
+				"to": "00:27:26,000"
+			},
+			"offsets": {
+				"from": 1639000,
+				"to": 1646000
+			},
+			"text": " And there's zero zero here just tells us that the type of this data is roll up data. It's arbitrum one data."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,000",
+				"to": "00:27:30,000"
+			},
+			"offsets": {
+				"from": 1646000,
+				"to": 1650000
+			},
+			"text": " So we want to remove that before we do the compression."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:30,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1650000,
+				"to": 1658000
+			},
+			"text": " So we take those off and put it into another file."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:42,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1662000
+			},
+			"text": " And then we just remove those those front two zeros."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,000",
+				"to": "00:27:49,000"
+			},
+			"offsets": {
+				"from": 1662000,
+				"to": 1669000
+			},
+			"text": " And then this is the commands to decompress the batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,000",
+				"to": "00:27:53,000"
+			},
+			"offsets": {
+				"from": 1669000,
+				"to": 1673000
+			},
+			"text": " So first I'm going to convert it from hex into binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,000",
+				"to": "00:28:01,000"
+			},
+			"offsets": {
+				"from": 1673000,
+				"to": 1681000
+			},
+			"text": " Then I'm going to use broadly decompression and then I'm going to convert it back into hex and put it in a file."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,000",
+				"to": "00:28:08,000"
+			},
+			"offsets": {
+				"from": 1681000,
+				"to": 1688000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,000",
+				"to": "00:28:23,000"
+			},
+			"offsets": {
+				"from": 1688000,
+				"to": 1703000
+			},
+			"text": " And it outputs this warning because there's some zero bytes at the end which aren't actually relevant to the compression, but get added because of 32 like 256 by words."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,000",
+				"to": "00:28:25,000"
+			},
+			"offsets": {
+				"from": 1703000,
+				"to": 1705000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,000",
+				"to": "00:28:31,000"
+			},
+			"offsets": {
+				"from": 1705000,
+				"to": 1711000
+			},
+			"text": " So if we look at that, this is the actual batch data."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,000",
+				"to": "00:28:40,000"
+			},
+			"offsets": {
+				"from": 1711000,
+				"to": 1720000
+			},
+			"text": " And we can look at the size differences now between the compressed and the decompressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,000",
+				"to": "00:28:46,000"
+			},
+			"offsets": {
+				"from": 1720000,
+				"to": 1726000
+			},
+			"text": " So we've got this one, which is the."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:46,000",
+				"to": "00:28:53,000"
+			},
+			"offsets": {
+				"from": 1726000,
+				"to": 1733000
+			},
+			"text": " Wait, what was it which one compressed, which is 198 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,000",
+				"to": "00:29:03,000"
+			},
+			"offsets": {
+				"from": 1733000,
+				"to": 1743000
+			},
+			"text": " And then we've got the decompressed one, which is 715. So you can see the difference in the ratio there and the effectiveness of the compression."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,000",
+				"to": "00:29:10,000"
+			},
+			"offsets": {
+				"from": 1743000,
+				"to": 1750000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,000",
+				"to": "00:29:17,000"
+			},
+			"offsets": {
+				"from": 1750000,
+				"to": 1757000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:17,000",
+				"to": "00:29:26,000"
+			},
+			"offsets": {
+				"from": 1757000,
+				"to": 1766000
+			},
+			"text": " Exactly. Yeah. You, you, if the shared structure between different transactions, then they're going to be included into this compression and improve it. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,000",
+				"to": "00:29:36,000"
+			},
+			"offsets": {
+				"from": 1766000,
+				"to": 1776000
+			},
+			"text": " This is a bit of a, the compression isn't actually this good, because this, if we look at this batch data."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,000",
+				"to": "00:29:44,000"
+			},
+			"offsets": {
+				"from": 1776000,
+				"to": 1784000
+			},
+			"text": " It can, it includes a lot of zeros and zeros are charged at a different."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,000",
+				"to": "00:29:53,000"
+			},
+			"offsets": {
+				"from": 1784000,
+				"to": 1793000
+			},
+			"text": " Amount in gas in the EVM, they charge that four by, I think four bytes for gas per byte rather than 16 for non non zero bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,000",
+				"to": "00:30:03,000"
+			},
+			"offsets": {
+				"from": 1793000,
+				"to": 1803000
+			},
+			"text": " And the compressed batch will be almost no zeros in it. There'll be, there'll be much more like a 10th of them are zeros right rather than a 16 sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:03,000",
+				"to": "00:30:07,000"
+			},
+			"offsets": {
+				"from": 1803000,
+				"to": 1807000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,000",
+				"to": "00:30:16,000"
+			},
+			"offsets": {
+				"from": 1807000,
+				"to": 1816000
+			},
+			"text": " So it's, it's not quite as good as it's showing here, but it's still quite good. You can work out by like doing some more complex analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,000",
+				"to": "00:30:21,000"
+			},
+			"offsets": {
+				"from": 1816000,
+				"to": 1821000
+			},
+			"text": " But we won't do that here."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,000",
+				"to": "00:30:27,000"
+			},
+			"offsets": {
+				"from": 1821000,
+				"to": 1827000
+			},
+			"text": " Yeah. So we've compared those. And then the last thing to do is that our transaction should be in that uncompressed batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:27,000",
+				"to": "00:30:36,000"
+			},
+			"offsets": {
+				"from": 1827000,
+				"to": 1836000
+			},
+			"text": " So we'll go and try and find that. So if we echo the, the RLP."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:36,000",
+				"to": "00:30:42,000"
+			},
+			"offsets": {
+				"from": 1836000,
+				"to": 1842000
+			},
+			"text": " I think I had it in rule maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,000",
+				"to": "00:30:47,000"
+			},
+			"offsets": {
+				"from": 1842000,
+				"to": 1847000
+			},
+			"text": " Let's see where I had it."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:47,000",
+				"to": "00:30:53,000"
+			},
+			"offsets": {
+				"from": 1847000,
+				"to": 1853000
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,000",
+				"to": "00:31:00,000"
+			},
+			"offsets": {
+				"from": 1853000,
+				"to": 1860000
+			},
+			"text": " Yeah, I did have an RLP. Oh, TLP everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,000",
+				"to": "00:31:07,000"
+			},
+			"offsets": {
+				"from": 1860000,
+				"to": 1867000
+			},
+			"text": " So this is our transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:07,000",
+				"to": "00:31:17,000"
+			},
+			"offsets": {
+				"from": 1867000,
+				"to": 1877000
+			},
+			"text": " If we go into the batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,000",
+				"to": "00:31:25,000"
+			},
+			"offsets": {
+				"from": 1877000,
+				"to": 1885000
+			},
+			"text": " And there it is. So along with a load of other transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:25,000",
+				"to": "00:31:42,000"
+			},
+			"offsets": {
+				"from": 1885000,
+				"to": 1902000
+			},
+			"text": " So that's basically it for the workshop. So if you've got any more questions. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,000",
+				"to": "00:31:51,000"
+			},
+			"offsets": {
+				"from": 1902000,
+				"to": 1911000
+			},
+			"text": " Yeah, you can, you can do that yourself as a developer. So the on our term, there's a registry where you can register address against an index."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,000",
+				"to": "00:32:00,000"
+			},
+			"offsets": {
+				"from": 1911000,
+				"to": 1920000
+			},
+			"text": " And then you can substitute them and our term will know that you've done that and it will then switch them back out when it comes to execute."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,000",
+				"to": "00:32:11,000"
+			},
+			"offsets": {
+				"from": 1920000,
+				"to": 1931000
+			},
+			"text": " And in that way, the sequence will charge you less for your gas. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,000",
+				"to": "00:32:20,000"
+			},
+			"offsets": {
+				"from": 1931000,
+				"to": 1940000
+			},
+			"text": " Yeah, because when you're compressing the addresses in a batch, then it does a lot of that for you anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:20,000",
+				"to": "00:32:30,000"
+			},
+			"offsets": {
+				"from": 1940000,
+				"to": 1950000
+			},
+			"text": " So the two, yeah, it's one, one was like a legacy system where we would do that will allow users to do this themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:30,000",
+				"to": "00:32:35,000"
+			},
+			"offsets": {
+				"from": 1950000,
+				"to": 1955000
+			},
+			"text": " And now like the whole holistic batch way achieves a better result."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:35,000",
+				"to": "00:32:36,000"
+			},
+			"offsets": {
+				"from": 1955000,
+				"to": 1956000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:36,000",
+				"to": "00:32:38,000"
+			},
+			"offsets": {
+				"from": 1956000,
+				"to": 1958000
+			},
+			"text": " Do you have a second question? Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:38,000",
+				"to": "00:32:42,000"
+			},
+			"offsets": {
+				"from": 1958000,
+				"to": 1962000
+			},
+			"text": " Can everybody hear the questions, by the way, or should I repeat them?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:42,000",
+				"to": "00:32:43,000"
+			},
+			"offsets": {
+				"from": 1962000,
+				"to": 1963000
+			},
+			"text": " Yeah, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,000",
+				"to": "00:32:44,000"
+			},
+			"offsets": {
+				"from": 1963000,
+				"to": 1964000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,000",
+				"to": "00:32:58,000"
+			},
+			"offsets": {
+				"from": 1964000,
+				"to": 1978000
+			},
+			"text": " No, there's not. So like optimism used setlib, I think, and we went for broadly."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:58,000",
+				"to": "00:33:04,000"
+			},
+			"offsets": {
+				"from": 1978000,
+				"to": 1984000
+			},
+			"text": " And the reason was is because we did some analysis of different compression algorithms and we found that probably performed best."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,000",
+				"to": "00:33:10,000"
+			},
+			"offsets": {
+				"from": 1984000,
+				"to": 1990000
+			},
+			"text": " And I guess they did a similar sort of thing and chose that for their own reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,000",
+				"to": "00:33:20,000"
+			},
+			"offsets": {
+				"from": 1990000,
+				"to": 2000000
+			},
+			"text": " Yeah, I don't know. I don't know how important it is to standardize this specific part of the roll-ups because it's, it's something that users shouldn't really be interacting with."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,000",
+				"to": "00:33:25,000"
+			},
+			"offsets": {
+				"from": 2000000,
+				"to": 2005000
+			},
+			"text": " Generally, I think that's the most important part to standardize."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,000",
+				"to": "00:33:29,000"
+			},
+			"offsets": {
+				"from": 2005000,
+				"to": 2009000
+			},
+			"text": " But yeah, it would be interesting to see why they chose those that as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:29,000",
+				"to": "00:33:30,000"
+			},
+			"offsets": {
+				"from": 2009000,
+				"to": 2010000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,000",
+				"to": "00:33:32,000"
+			},
+			"offsets": {
+				"from": 2010000,
+				"to": 2012000
+			},
+			"text": " Sorry, I didn't repeat the question here."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,000",
+				"to": "00:33:37,000"
+			},
+			"offsets": {
+				"from": 2012000,
+				"to": 2017000
+			},
+			"text": " He asked if there would be, if there's any efforts to standardize this compression algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:37,000",
+				"to": "00:33:38,000"
+			},
+			"offsets": {
+				"from": 2017000,
+				"to": 2018000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,000",
+				"to": "00:33:41,000"
+			},
+			"offsets": {
+				"from": 2018000,
+				"to": 2021000
+			},
+			"text": " I'll be to across different altudes."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:41,000",
+				"to": "00:33:42,000"
+			},
+			"offsets": {
+				"from": 2021000,
+				"to": 2022000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,000",
+				"to": "00:33:51,000"
+			},
+			"offsets": {
+				"from": 2022000,
+				"to": 2031000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:51,000",
+				"to": "00:33:52,000"
+			},
+			"offsets": {
+				"from": 2031000,
+				"to": 2032000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:52,000",
+				"to": "00:33:53,000"
+			},
+			"offsets": {
+				"from": 2032000,
+				"to": 2033000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:53,000",
+				"to": "00:33:55,000"
+			},
+			"offsets": {
+				"from": 2033000,
+				"to": 2035000
+			},
+			"text": " So there's an address registry that you can use."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:55,000",
+				"to": "00:34:00,000"
+			},
+			"offsets": {
+				"from": 2035000,
+				"to": 2040000
+			},
+			"text": " You register an address against an index and then that will be used when up on execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:00,000",
+				"to": "00:34:07,000"
+			},
+			"offsets": {
+				"from": 2040000,
+				"to": 2047000
+			},
+			"text": " You substitute your indexes into your transaction and then there will be desubstituted from the registry upon execution to reduce the amount of calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:07,000",
+				"to": "00:34:10,000"
+			},
+			"offsets": {
+				"from": 2047000,
+				"to": 2050000
+			},
+			"text": " So reduce the amount of call dates that even goes into the budget itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:10,000",
+				"to": "00:34:11,000"
+			},
+			"offsets": {
+				"from": 2050000,
+				"to": 2051000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:11,000",
+				"to": "00:34:14,000"
+			},
+			"offsets": {
+				"from": 2051000,
+				"to": 2054000
+			},
+			"text": " It should be."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,000",
+				"to": "00:34:21,000"
+			},
+			"offsets": {
+				"from": 2054000,
+				"to": 2061000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,000",
+				"to": "00:34:28,000"
+			},
+			"offsets": {
+				"from": 2061000,
+				"to": 2068000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,000",
+				"to": "00:34:38,000"
+			},
+			"offsets": {
+				"from": 2068000,
+				"to": 2078000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:38,000",
+				"to": "00:34:46,000"
+			},
+			"offsets": {
+				"from": 2078000,
+				"to": 2086000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:46,000",
+				"to": "00:34:53,000"
+			},
+			"offsets": {
+				"from": 2086000,
+				"to": 2093000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:53,000",
+				"to": "00:35:08,000"
+			},
+			"offsets": {
+				"from": 2093000,
+				"to": 2108000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,000",
+				"to": "00:35:10,000"
+			},
+			"offsets": {
+				"from": 2108000,
+				"to": 2110000
+			},
+			"text": " So we used to have it in our docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,000",
+				"to": "00:35:13,000"
+			},
+			"offsets": {
+				"from": 2110000,
+				"to": 2113000
+			},
+			"text": " We've just recently revamped them and I'm struggling to find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:13,000",
+				"to": "00:35:14,000"
+			},
+			"offsets": {
+				"from": 2113000,
+				"to": 2114000
+			},
+			"text": " But we did used to have it there."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:14,000",
+				"to": "00:35:15,000"
+			},
+			"offsets": {
+				"from": 2114000,
+				"to": 2115000
+			},
+			"text": " Do you know where it might be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,000",
+				"to": "00:35:17,000"
+			},
+			"offsets": {
+				"from": 2115000,
+				"to": 2117000
+			},
+			"text": " Draggy, sure, Fred."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,000",
+				"to": "00:35:21,000"
+			},
+			"offsets": {
+				"from": 2117000,
+				"to": 2121000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:21,000",
+				"to": "00:35:28,000"
+			},
+			"offsets": {
+				"from": 2121000,
+				"to": 2128000
+			},
+			"text": " So we've got our address table here, which is the."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:28,000",
+				"to": "00:35:35,000"
+			},
+			"offsets": {
+				"from": 2128000,
+				"to": 2135000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:35,000",
+				"to": "00:35:36,000"
+			},
+			"offsets": {
+				"from": 2135000,
+				"to": 2136000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:36,000",
+				"to": "00:35:43,000"
+			},
+			"offsets": {
+				"from": 2136000,
+				"to": 2143000
+			},
+			"text": " So this is like a bit of documentation, but I'm sure we had some more documentation about actually how to use this contract in precompiled."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:43,000",
+				"to": "00:35:44,000"
+			},
+			"offsets": {
+				"from": 2143000,
+				"to": 2144000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:44,000",
+				"to": "00:35:45,000"
+			},
+			"offsets": {
+				"from": 2144000,
+				"to": 2145000
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:45,000",
+				"to": "00:35:47,000"
+			},
+			"offsets": {
+				"from": 2145000,
+				"to": 2147000
+			},
+			"text": " Maybe we can do this afterwards as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,000",
+				"to": "00:35:48,000"
+			},
+			"offsets": {
+				"from": 2147000,
+				"to": 2148000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,000",
+				"to": "00:35:59,000"
+			},
+			"offsets": {
+				"from": 2148000,
+				"to": 2159000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:59,000",
+				"to": "00:36:00,000"
+			},
+			"offsets": {
+				"from": 2159000,
+				"to": 2160000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:00,000",
+				"to": "00:36:03,000"
+			},
+			"offsets": {
+				"from": 2160000,
+				"to": 2163000
+			},
+			"text": " So the compression, the broadly compression was part of nitro."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:03,000",
+				"to": "00:36:04,000"
+			},
+			"offsets": {
+				"from": 2163000,
+				"to": 2164000
+			},
+			"text": " Exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:04,000",
+				"to": "00:36:05,000"
+			},
+			"offsets": {
+				"from": 2164000,
+				"to": 2165000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,000",
+				"to": "00:36:09,000"
+			},
+			"offsets": {
+				"from": 2165000,
+				"to": 2169000
+			},
+			"text": " It was one of the major parts that introduced the cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:09,000",
+				"to": "00:36:10,000"
+			},
+			"offsets": {
+				"from": 2169000,
+				"to": 2170000
+			},
+			"text": " Previously, we didn't compress."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,000",
+				"to": "00:36:12,000"
+			},
+			"offsets": {
+				"from": 2170000,
+				"to": 2172000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,000",
+				"to": "00:36:14,000"
+			},
+			"offsets": {
+				"from": 2172000,
+				"to": 2174000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,000",
+				"to": "00:36:20,000"
+			},
+			"offsets": {
+				"from": 2174000,
+				"to": 2180000
+			},
+			"text": " I was curious why the."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:20,000",
+				"to": "00:36:21,000"
+			},
+			"offsets": {
+				"from": 2180000,
+				"to": 2181000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,000",
+				"to": "00:36:24,000"
+			},
+			"offsets": {
+				"from": 2181000,
+				"to": 2184000
+			},
+			"text": " The question was why the hard coded minimum base fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:24,000",
+				"to": "00:36:28,000"
+			},
+			"offsets": {
+				"from": 2184000,
+				"to": 2188000
+			},
+			"text": " I think that's partly just to avoid like us."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,000",
+				"to": "00:36:33,000"
+			},
+			"offsets": {
+				"from": 2188000,
+				"to": 2193000
+			},
+			"text": " Getting loads of state blow early on for very cheap price."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:33,000",
+				"to": "00:36:39,000"
+			},
+			"offsets": {
+				"from": 2193000,
+				"to": 2199000
+			},
+			"text": " Given that we may expect users to come on board onto the platform and the gas price not to always sit there."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,000",
+				"to": "00:36:44,000"
+			},
+			"offsets": {
+				"from": 2199000,
+				"to": 2204000
+			},
+			"text": " It would be good to not the future not to be burned by that kind of legacy behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:44,000",
+				"to": "00:36:45,000"
+			},
+			"offsets": {
+				"from": 2204000,
+				"to": 2205000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:45,000",
+				"to": "00:36:46,000"
+			},
+			"offsets": {
+				"from": 2205000,
+				"to": 2206000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:46,000",
+				"to": "00:36:53,000"
+			},
+			"offsets": {
+				"from": 2206000,
+				"to": 2213000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:53,000",
+				"to": "00:36:54,000"
+			},
+			"offsets": {
+				"from": 2213000,
+				"to": 2214000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:54,000",
+				"to": "00:36:56,000"
+			},
+			"offsets": {
+				"from": 2214000,
+				"to": 2216000
+			},
+			"text": " So the question was the execution occurs on layer two."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,000",
+				"to": "00:36:57,000"
+			},
+			"offsets": {
+				"from": 2216000,
+				"to": 2217000
+			},
+			"text": " So what's happening on layer one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,000",
+				"to": "00:36:59,000"
+			},
+			"offsets": {
+				"from": 2217000,
+				"to": 2219000
+			},
+			"text": " What are we putting there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:59,000",
+				"to": "00:37:00,000"
+			},
+			"offsets": {
+				"from": 2219000,
+				"to": 2220000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,000",
+				"to": "00:37:07,000"
+			},
+			"offsets": {
+				"from": 2220000,
+				"to": 2227000
+			},
+			"text": " You just store the data such that there's an there's enough data there so that anyone who's observing Ethereum can recompute the same trains."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,000",
+				"to": "00:37:10,000"
+			},
+			"offsets": {
+				"from": 2227000,
+				"to": 2230000
+			},
+			"text": " State transitions that are occurring on L2."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,000",
+				"to": "00:37:15,000"
+			},
+			"offsets": {
+				"from": 2230000,
+				"to": 2235000
+			},
+			"text": " And that's important so that anybody can can take part in a fraud proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:15,000",
+				"to": "00:37:17,000"
+			},
+			"offsets": {
+				"from": 2235000,
+				"to": 2237000
+			},
+			"text": " Game."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,000",
+				"to": "00:37:19,000"
+			},
+			"offsets": {
+				"from": 2237000,
+				"to": 2239000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:19,000",
+				"to": "00:37:20,000"
+			},
+			"offsets": {
+				"from": 2239000,
+				"to": 2240000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:20,000",
+				"to": "00:37:21,000"
+			},
+			"offsets": {
+				"from": 2240000,
+				"to": 2241000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:21,000",
+				"to": "00:37:33,000"
+			},
+			"offsets": {
+				"from": 2241000,
+				"to": 2253000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:33,000",
+				"to": "00:37:34,000"
+			},
+			"offsets": {
+				"from": 2253000,
+				"to": 2254000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:34,000",
+				"to": "00:37:39,000"
+			},
+			"offsets": {
+				"from": 2254000,
+				"to": 2259000
+			},
+			"text": " We have two ways of doing it so that I'll open up that contract again."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:39,000",
+				"to": "00:37:47,000"
+			},
+			"offsets": {
+				"from": 2259000,
+				"to": 2267000
+			},
+			"text": " The question was in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:47,000",
+				"to": "00:37:55,000"
+			},
+			"offsets": {
+				"from": 2267000,
+				"to": 2275000
+			},
+			"text": " Do you need to admit all of the data, the batch data in an event or can it just be in the call data of the transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,000",
+				"to": "00:37:56,000"
+			},
+			"offsets": {
+				"from": 2275000,
+				"to": 2276000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:56,000",
+				"to": "00:37:59,000"
+			},
+			"offsets": {
+				"from": 2276000,
+				"to": 2279000
+			},
+			"text": " So there's that we have two functions for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:59,000",
+				"to": "00:38:03,000"
+			},
+			"offsets": {
+				"from": 2279000,
+				"to": 2283000
+			},
+			"text": " One is submitting it from origin."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,000",
+				"to": "00:38:05,000"
+			},
+			"offsets": {
+				"from": 2283000,
+				"to": 2285000
+			},
+			"text": " And in this case, we know that the."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,000",
+				"to": "00:38:11,000"
+			},
+			"offsets": {
+				"from": 2285000,
+				"to": 2291000
+			},
+			"text": " That it's being sent from the transaction origin and therefore we know that the call data is going to look like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:11,000",
+				"to": "00:38:17,000"
+			},
+			"offsets": {
+				"from": 2291000,
+				"to": 2297000
+			},
+			"text": " So if we know that then the L2 can reliably grab data out of the call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:17,000",
+				"to": "00:38:28,000"
+			},
+			"offsets": {
+				"from": 2297000,
+				"to": 2308000
+			},
+			"text": " If the sequencer is, you know, going via some other contract or it's not coming from the transaction origin, then we emit the full batch data in an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,000",
+				"to": "00:38:35,000"
+			},
+			"offsets": {
+				"from": 2308000,
+				"to": 2315000
+			},
+			"text": " So in production, this, so this is here if it were needed, but in production is way more expensive, so it's never used."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:35,000",
+				"to": "00:38:40,000"
+			},
+			"offsets": {
+				"from": 2315000,
+				"to": 2320000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:40,000",
+				"to": "00:38:43,000"
+			},
+			"offsets": {
+				"from": 2320000,
+				"to": 2323000
+			},
+			"text": " Where do we not need what? Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:43,000",
+				"to": "00:38:50,000"
+			},
+			"offsets": {
+				"from": 2323000,
+				"to": 2330000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:50,000",
+				"to": "00:38:55,000"
+			},
+			"offsets": {
+				"from": 2330000,
+				"to": 2335000
+			},
+			"text": " Yeah. So to clarify on what we're doing here, we're emitting a sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,000",
+				"to": "00:39:00,000"
+			},
+			"offsets": {
+				"from": 2335000,
+				"to": 2340000
+			},
+			"text": " And what the L2 node will do is it will say, OK, I've got a new sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,000",
+				"to": "00:39:05,000"
+			},
+			"offsets": {
+				"from": 2340000,
+				"to": 2345000
+			},
+			"text": " I'll go look up the transaction related to that sequence number."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:05,000",
+				"to": "00:39:11,000"
+			},
+			"offsets": {
+				"from": 2345000,
+				"to": 2351000
+			},
+			"text": " I'll look inside the call data. I'll find the batch, basically the same process as we've just done."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:11,000",
+				"to": "00:39:15,000"
+			},
+			"offsets": {
+				"from": 2351000,
+				"to": 2355000
+			},
+			"text": " And all of that, all doing all of that is part of that state transition function."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:15,000",
+				"to": "00:39:19,000"
+			},
+			"offsets": {
+				"from": 2355000,
+				"to": 2359000
+			},
+			"text": " So it's all, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:19,000",
+				"to": "00:39:21,000"
+			},
+			"offsets": {
+				"from": 2359000,
+				"to": 2361000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:21,000",
+				"to": "00:39:28,000"
+			},
+			"offsets": {
+				"from": 2361000,
+				"to": 2368000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:28,000",
+				"to": "00:39:31,000"
+			},
+			"offsets": {
+				"from": 2368000,
+				"to": 2371000
+			},
+			"text": " Yes. Execution happens on layer two. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:31,000",
+				"to": "00:39:32,000"
+			},
+			"offsets": {
+				"from": 2371000,
+				"to": 2372000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:32,000",
+				"to": "00:39:35,000"
+			},
+			"offsets": {
+				"from": 2372000,
+				"to": 2375000
+			},
+			"text": " And state is on layer two as well, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:35,000",
+				"to": "00:39:47,000"
+			},
+			"offsets": {
+				"from": 2375000,
+				"to": 2387000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:47,000",
+				"to": "00:39:50,000"
+			},
+			"offsets": {
+				"from": 2387000,
+				"to": 2390000
+			},
+			"text": " Sorry, I missed a bit. You said there was."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:50,000",
+				"to": "00:39:57,000"
+			},
+			"offsets": {
+				"from": 2390000,
+				"to": 2397000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:57,000",
+				"to": "00:40:03,000"
+			},
+			"offsets": {
+				"from": 2397000,
+				"to": 2403000
+			},
+			"text": " No, so the question is, does the execution also take place on layer one as well as on layer two?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:03,000",
+				"to": "00:40:10,000"
+			},
+			"offsets": {
+				"from": 2403000,
+				"to": 2410000
+			},
+			"text": " And no, it doesn't. We just put enough data such that anyone who's reading the Ethereum can then go away and"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:10,000",
+				"to": "00:40:14,000"
+			},
+			"offsets": {
+				"from": 2410000,
+				"to": 2414000
+			},
+			"text": " recompute themselves what would have happened and take part in this fraud proof game."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:14,000",
+				"to": "00:40:21,000"
+			},
+			"offsets": {
+				"from": 2414000,
+				"to": 2421000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:21,000",
+				"to": "00:40:22,000"
+			},
+			"offsets": {
+				"from": 2421000,
+				"to": 2422000
+			},
+			"text": " Correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,000",
+				"to": "00:40:26,000"
+			},
+			"offsets": {
+				"from": 2422000,
+				"to": 2426000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:26,000",
+				"to": "00:40:29,000"
+			},
+			"offsets": {
+				"from": 2426000,
+				"to": 2429000
+			},
+			"text": " Exactly. Yeah. Yeah. So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:29,000",
+				"to": "00:40:34,000"
+			},
+			"offsets": {
+				"from": 2429000,
+				"to": 2434000
+			},
+			"text": " If you want to know what the state of the L2 chain is, you need to replay the history of the chain in the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:34,000",
+				"to": "00:40:38,000"
+			},
+			"offsets": {
+				"from": 2434000,
+				"to": 2438000
+			},
+			"text": " that you would replay the history of L1 to figure out what the state of L1 is."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,000",
+				"to": "00:40:56,000"
+			},
+			"offsets": {
+				"from": 2438000,
+				"to": 2456000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:56,000",
+				"to": "00:41:03,000"
+			},
+			"offsets": {
+				"from": 2456000,
+				"to": 2463000
+			},
+			"text": " Yeah. So, the question is, can I find out states about a specific address without recomputing the full state on L2?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:03,000",
+				"to": "00:41:09,000"
+			},
+			"offsets": {
+				"from": 2463000,
+				"to": 2469000
+			},
+			"text": " And the answer is no. So, the state only exists on L2 and that's only where you can make questions about the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,000",
+				"to": "00:41:10,000"
+			},
+			"offsets": {
+				"from": 2469000,
+				"to": 2470000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:10,000",
+				"to": "00:41:21,000"
+			},
+			"offsets": {
+				"from": 2470000,
+				"to": 2481000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:21,000",
+				"to": "00:41:22,000"
+			},
+			"offsets": {
+				"from": 2481000,
+				"to": 2482000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:22,000",
+				"to": "00:41:31,000"
+			},
+			"offsets": {
+				"from": 2482000,
+				"to": 2491000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,000",
+				"to": "00:41:34,000"
+			},
+			"offsets": {
+				"from": 2491000,
+				"to": 2494000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:34,000",
+				"to": "00:41:50,000"
+			},
+			"offsets": {
+				"from": 2494000,
+				"to": 2510000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:50,000",
+				"to": "00:41:55,000"
+			},
+			"offsets": {
+				"from": 2510000,
+				"to": 2515000
+			},
+			"text": " Yeah. So, the question is, can you sort of game the system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,000",
+				"to": "00:42:02,000"
+			},
+			"offsets": {
+				"from": 2515000,
+				"to": 2522000
+			},
+			"text": " Take advantage of this minor fluctuations in L2 gas price to try and achieve a better price for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,000",
+				"to": "00:42:05,000"
+			},
+			"offsets": {
+				"from": 2522000,
+				"to": 2525000
+			},
+			"text": " And the answer is yes. Yeah. You can."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:05,000",
+				"to": "00:42:08,000"
+			},
+			"offsets": {
+				"from": 2525000,
+				"to": 2528000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:08,000",
+				"to": "00:42:14,000"
+			},
+			"offsets": {
+				"from": 2528000,
+				"to": 2534000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:14,000",
+				"to": "00:42:34,000"
+			},
+			"offsets": {
+				"from": 2534000,
+				"to": 2554000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:34,000",
+				"to": "00:42:40,000"
+			},
+			"offsets": {
+				"from": 2554000,
+				"to": 2560000
+			},
+			"text": " So, I think that's the question there that comes down to a little bit around your security assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:40,000",
+				"to": "00:43:02,000"
+			},
+			"offsets": {
+				"from": 2560000,
+				"to": 2582000
+			},
+			"text": " So, in order for the state to, in order for you to be confident of Ethereum state, you want a wide range of people to run full nodes, such that if an invalid state transition occurs, a large number of people can get together and form consensus that that was an invalid state transition, that should be a rejected fork and we shouldn't ignore it."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:02,000",
+				"to": "00:43:18,000"
+			},
+			"offsets": {
+				"from": 2582000,
+				"to": 2598000
+			},
+			"text": " But with a roll up, there's a slightly different safety assumption, which is that if any single one person notices that there's an invalid state transition, then that one person can enforce that the state transition is corrected."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:18,000",
+				"to": "00:43:21,000"
+			},
+			"offsets": {
+				"from": 2598000,
+				"to": 2601000
+			},
+			"text": " So, you don't need a large number of people necessarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:21,000",
+				"to": "00:43:28,000"
+			},
+			"offsets": {
+				"from": 2601000,
+				"to": 2608000
+			},
+			"text": " It's a kind of one of many, one of N security assumption, rather than like an N of M."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:28,000",
+				"to": "00:43:35,000"
+			},
+			"offsets": {
+				"from": 2608000,
+				"to": 2615000
+			},
+			"text": " And so this means that maybe you can afford to have less people actually running the L2 nodes. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:35,000",
+				"to": "00:43:40,000"
+			},
+			"offsets": {
+				"from": 2615000,
+				"to": 2620000
+			},
+			"text": " And, and then so have maybe slightly more beefy machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:40,000",
+				"to": "00:43:47,000"
+			},
+			"offsets": {
+				"from": 2620000,
+				"to": 2627000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:47,000",
+				"to": "00:44:09,000"
+			},
+			"offsets": {
+				"from": 2627000,
+				"to": 2649000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:09,000",
+				"to": "00:44:20,000"
+			},
+			"offsets": {
+				"from": 2649000,
+				"to": 2660000
+			},
+			"text": " Yeah, we can go into it. Yeah, sure. So the question is, is like how, how in practice the fraud proofs work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:20,000",
+				"to": "00:44:29,000"
+			},
+			"offsets": {
+				"from": 2660000,
+				"to": 2669000
+			},
+			"text": " Okay. Yeah. So two parties take place in a fraud proof game to figure out which of them has chosen the correct state."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:29,000",
+				"to": "00:44:33,000"
+			},
+			"offsets": {
+				"from": 2669000,
+				"to": 2673000
+			},
+			"text": " And then one of them wins, which is what you're asking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:33,000",
+				"to": "00:44:47,000"
+			},
+			"offsets": {
+				"from": 2673000,
+				"to": 2687000
+			},
+			"text": " And at that point, that state is that the losing state is rejected. More people can challenge the winning state if they want to, but the losing state is rejected. Whoever chose to take part to defend that side of the state, lose some"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:47,000",
+				"to": "00:44:52,000"
+			},
+			"offsets": {
+				"from": 2687000,
+				"to": 2692000
+			},
+			"text": " steak, because you have to put a steak to defend a state."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:52,000",
+				"to": "00:45:05,000"
+			},
+			"offsets": {
+				"from": 2692000,
+				"to": 2705000
+			},
+			"text": " And the, if no one, if no one comes to challenge the winning state, then that will be accepted as the correct state and you'll go on from there."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:05,000",
+				"to": "00:45:18,000"
+			},
+			"offsets": {
+				"from": 2705000,
+				"to": 2718000
+			},
+			"text": " No, the L2 doesn't deal to. So if you're running an L2 node, you've got your, if you think about a fork occurring on Ethereum, you've got some people that choose different rules for their node."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:18,000",
+				"to": "00:45:33,000"
+			},
+			"offsets": {
+				"from": 2718000,
+				"to": 2733000
+			},
+			"text": " That doesn't mean that you need to stop running your node with what you see as the correct rules. And the same kind of happens on L2. I can run my node and I can see which of those two is going, is going to win the challenge, because only one of them is correct and I know which one is correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:33,000",
+				"to": "00:45:42,000"
+			},
+			"offsets": {
+				"from": 2733000,
+				"to": 2742000
+			},
+			"text": " So I can continue to accept transactions, validate them, and we can continue to process them in that time. What you can't do during that period is withdraw funds from the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:42,000",
+				"to": "00:45:52,000"
+			},
+			"offsets": {
+				"from": 2742000,
+				"to": 2752000
+			},
+			"text": " So we've draws are paused whilst this fraudproof game is taking place, because Ethereum itself doesn't know which of those two states is going to be correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:52,000",
+				"to": "00:45:58,000"
+			},
+			"offsets": {
+				"from": 2752000,
+				"to": 2758000
+			},
+			"text": " So the funds stay in the system while it's happening, but we can still progress the state as an external viewer."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:58,000",
+				"to": "00:46:00,000"
+			},
+			"offsets": {
+				"from": 2758000,
+				"to": 2760000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:00,000",
+				"to": "00:46:16,000"
+			},
+			"offsets": {
+				"from": 2760000,
+				"to": 2776000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:16,000",
+				"to": "00:46:19,000"
+			},
+			"offsets": {
+				"from": 2776000,
+				"to": 2779000
+			},
+			"text": " I'm not sure I fully understand the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:19,000",
+				"to": "00:46:29,000"
+			},
+			"offsets": {
+				"from": 2779000,
+				"to": 2789000
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:46:29,000",
+				"to": "00:46:37,000"
+			},
+			"offsets": {
+				"from": 2789000,
+				"to": 2797000
+			},
+			"text": " Yeah, so the question is, is like if two two two states are in violation of each other, those people defending either side."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:37,000",
+				"to": "00:46:47,000"
+			},
+			"offsets": {
+				"from": 2797000,
+				"to": 2807000
+			},
+			"text": " What is the what are we actually challenging? What's the state transition that we're challenging? Is it the pre is it from the previous state to the current state, or is it further back? And the answer is, it's just the previous assertion."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:47,000",
+				"to": "00:46:58,000"
+			},
+			"offsets": {
+				"from": 2807000,
+				"to": 2818000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:46:58,000",
+				"to": "00:47:09,000"
+			},
+			"offsets": {
+				"from": 2818000,
+				"to": 2829000
+			},
+			"text": " So the question is, do the fraud proofs take place in the solidity contract? And yes, they do, but the way they they work is that there is a bisection game that the two parties play."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:09,000",
+				"to": "00:47:17,000"
+			},
+			"offsets": {
+				"from": 2829000,
+				"to": 2837000
+			},
+			"text": " We don't want to execute the full state transition again. So instead, we try to decide which part of the state transition we disagree on."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:17,000",
+				"to": "00:47:25,000"
+			},
+			"offsets": {
+				"from": 2837000,
+				"to": 2845000
+			},
+			"text": " So we take the state transition bisected into many parts. We allow the other person to choose which part they disagree with, and which part they agree with."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:25,000",
+				"to": "00:47:42,000"
+			},
+			"offsets": {
+				"from": 2845000,
+				"to": 2862000
+			},
+			"text": " And so you always you have you're reducing the size of the state transition, always keeping a point that you both agree on, and always keeping a point that you both disagree on, and making that smaller and smaller and smaller, until you get down to a single op code, and then you execute that single op code."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:42,000",
+				"to": "00:47:49,000"
+			},
+			"offsets": {
+				"from": 2862000,
+				"to": 2869000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:49,000",
+				"to": "00:47:54,000"
+			},
+			"offsets": {
+				"from": 2869000,
+				"to": 2874000
+			},
+			"text": " So they have you want to make separate thoughts on the different items."
+		},
+		{
+			"timestamps": {
+				"from": "00:47:54,000",
+				"to": "00:48:03,000"
+			},
+			"offsets": {
+				"from": 2874000,
+				"to": 2883000
+			},
+			"text": " So is the question that within a single state transition, they disagree about multiple things, or is it that there are multiple people disagreeing about one."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:03,000",
+				"to": "00:48:18,000"
+			},
+			"offsets": {
+				"from": 2883000,
+				"to": 2898000
+			},
+			"text": " Okay, so if there's two parties, but they disagree about multiple things, then I'll just be the first disagreement that matters because that's all you need to slash the person out of the system and remove their, their state system."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:18,000",
+				"to": "00:48:22,000"
+			},
+			"offsets": {
+				"from": 2898000,
+				"to": 2902000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:22,000",
+				"to": "00:48:28,000"
+			},
+			"offsets": {
+				"from": 2902000,
+				"to": 2908000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:28,000",
+				"to": "00:48:37,000"
+			},
+			"offsets": {
+				"from": 2908000,
+				"to": 2917000
+			},
+			"text": " So, I think your question I think is what happens if someone includes an individual."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:37,000",
+				"to": "00:48:52,000"
+			},
+			"offsets": {
+				"from": 2917000,
+				"to": 2932000
+			},
+			"text": " So, I think your question I think is what happens if someone includes an invalid transaction in the batch or."
+		},
+		{
+			"timestamps": {
+				"from": "00:48:52,000",
+				"to": "00:49:00,000"
+			},
+			"offsets": {
+				"from": 2932000,
+				"to": 2940000
+			},
+			"text": " So, so the option virtual machine will know what to do if someone gives in an invalid transaction, it will ignore it basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:00,000",
+				"to": "00:49:11,000"
+			},
+			"offsets": {
+				"from": 2940000,
+				"to": 2951000
+			},
+			"text": " So you can then choose to run a different option virtual machine that would do something weird with that, and then we would end up at different states and we would like challenge each other over over the result of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:11,000",
+				"to": "00:49:21,000"
+			},
+			"offsets": {
+				"from": 2951000,
+				"to": 2961000
+			},
+			"text": " But just including an invalid transaction in the batch isn't enough to like confuse an honest validator that something weird has happened or that they've got the wrong state or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:21,000",
+				"to": "00:49:26,000"
+			},
+			"offsets": {
+				"from": 2961000,
+				"to": 2966000
+			},
+			"text": " There are rules about what to do for every bite that you see in that batch."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:26,000",
+				"to": "00:49:30,000"
+			},
+			"offsets": {
+				"from": 2966000,
+				"to": 2970000
+			},
+			"text": " Yeah, I think sorry there's one at the back first."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:30,000",
+				"to": "00:49:36,000"
+			},
+			"offsets": {
+				"from": 2970000,
+				"to": 2976000
+			},
+			"text": " First of all, how long do we have left."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:36,000",
+				"to": "00:49:40,000"
+			},
+			"offsets": {
+				"from": 2976000,
+				"to": 2980000
+			},
+			"text": " These are great questions though."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:40,000",
+				"to": "00:49:45,000"
+			},
+			"offsets": {
+				"from": 2980000,
+				"to": 2985000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:49:45,000",
+				"to": "00:50:11,000"
+			},
+			"offsets": {
+				"from": 2985000,
+				"to": 3011000
+			},
+			"text": " So the question is, sorry, yeah, so the question is given that during a fraudproof game with draws are paused."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:11,000",
+				"to": "00:50:18,000"
+			},
+			"offsets": {
+				"from": 3011000,
+				"to": 3018000
+			},
+			"text": " Isn't there an attack you can do on the system to delay and cause problems for everyone else by just creating a challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:18,000",
+				"to": "00:50:21,000"
+			},
+			"offsets": {
+				"from": 3018000,
+				"to": 3021000
+			},
+			"text": " And what is the cost of that of creating that challenge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:50:21,000",
+				"to": "00:50:26,000"
+			},
+			"offsets": {
+				"from": 3021000,
+				"to": 3026000
+			},
+			"text": " And the answer is dependent upon how high the stake is set."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:26,000",
+				"to": "00:50:34,000"
+			},
+			"offsets": {
+				"from": 3026000,
+				"to": 3034000
+			},
+			"text": " So that's, yeah, if you have a very high amount of stake, then it becomes very costly for you to cause this delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:34,000",
+				"to": "00:50:40,000"
+			},
+			"offsets": {
+				"from": 3034000,
+				"to": 3040000
+			},
+			"text": " I don't. The amount of state is state is set by the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:40,000",
+				"to": "00:50:44,000"
+			},
+			"offsets": {
+				"from": 3040000,
+				"to": 3044000
+			},
+			"text": " So for an order for you to take part in a challenge, you need to put up a certain amount of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:44,000",
+				"to": "00:50:47,000"
+			},
+			"offsets": {
+				"from": 3044000,
+				"to": 3047000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:47,000",
+				"to": "00:50:50,000"
+			},
+			"offsets": {
+				"from": 3047000,
+				"to": 3050000
+			},
+			"text": " So the moment the validator list is whitelisted."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:50,000",
+				"to": "00:50:52,000"
+			},
+			"offsets": {
+				"from": 3050000,
+				"to": 3052000
+			},
+			"text": " So it's not open to the public."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:52,000",
+				"to": "00:50:55,000"
+			},
+			"offsets": {
+				"from": 3052000,
+				"to": 3055000
+			},
+			"text": " So whatever amount value in there is not really meaningful."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:55,000",
+				"to": "00:50:59,000"
+			},
+			"offsets": {
+				"from": 3055000,
+				"to": 3059000
+			},
+			"text": " But we're working quite hard on trying to make that open."
+		},
+		{
+			"timestamps": {
+				"from": "00:50:59,000",
+				"to": "00:51:02,000"
+			},
+			"offsets": {
+				"from": 3059000,
+				"to": 3062000
+			},
+			"text": " And when it is open, I can say that it will be quite expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:02,000",
+				"to": "00:51:04,000"
+			},
+			"offsets": {
+				"from": 3062000,
+				"to": 3064000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:04,000",
+				"to": "00:51:06,000"
+			},
+			"offsets": {
+				"from": 3064000,
+				"to": 3066000
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:06,000",
+				"to": "00:51:14,000"
+			},
+			"offsets": {
+				"from": 3066000,
+				"to": 3074000
+			},
+			"text": " The previous question, technical case that I run, no, and I don't get that sequencer."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:14,000",
+				"to": "00:51:19,000"
+			},
+			"offsets": {
+				"from": 3074000,
+				"to": 3079000
+			},
+			"text": " We've proved that what I tried."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:19,000",
+				"to": "00:51:21,000"
+			},
+			"offsets": {
+				"from": 3079000,
+				"to": 3081000
+			},
+			"text": " Now I challenge it."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:21,000",
+				"to": "00:51:30,000"
+			},
+			"offsets": {
+				"from": 3081000,
+				"to": 3090000
+			},
+			"text": " Now, the sequence on chain is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:30,000",
+				"to": "00:51:35,000"
+			},
+			"offsets": {
+				"from": 3090000,
+				"to": 3095000
+			},
+			"text": " We should stick on the bad or wasn't in malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:35,000",
+				"to": "00:51:38,000"
+			},
+			"offsets": {
+				"from": 3095000,
+				"to": 3098000
+			},
+			"text": " I could prove that I was correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:38,000",
+				"to": "00:51:39,000"
+			},
+			"offsets": {
+				"from": 3098000,
+				"to": 3099000
+			},
+			"text": " So there's a separate."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:39,000",
+				"to": "00:51:45,000"
+			},
+			"offsets": {
+				"from": 3099000,
+				"to": 3105000
+			},
+			"text": " So the question is, is what if the sequencer is malicious, tries to cause an invalid state transition?"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:45,000",
+				"to": "00:51:47,000"
+			},
+			"offsets": {
+				"from": 3105000,
+				"to": 3107000
+			},
+			"text": " Is that the."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:47,000",
+				"to": "00:51:49,000"
+			},
+			"offsets": {
+				"from": 3107000,
+				"to": 3109000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:51:49,000",
+				"to": "00:51:51,000"
+			},
+			"offsets": {
+				"from": 3109000,
+				"to": 3111000
+			},
+			"text": " And what happens when someone challenges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:51:51,000",
+				"to": "00:52:03,000"
+			},
+			"offsets": {
+				"from": 3111000,
+				"to": 3123000
+			},
+			"text": " So there's, there's a separation in the system between sequencing transactions and generate executing those transactions to create a state to update state."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:03,000",
+				"to": "00:52:10,000"
+			},
+			"offsets": {
+				"from": 3123000,
+				"to": 3130000
+			},
+			"text": " So the sequencer has no power over what state will be update, what the state will be based on what it puts there."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:10,000",
+				"to": "00:52:12,000"
+			},
+			"offsets": {
+				"from": 3130000,
+				"to": 3132000
+			},
+			"text": " The node software does."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:12,000",
+				"to": "00:52:19,000"
+			},
+			"offsets": {
+				"from": 3132000,
+				"to": 3139000
+			},
+			"text": " So if the sequencer puts rubbish there, the node software, like honest node software will recognize it as rubbish."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:19,000",
+				"to": "00:52:25,000"
+			},
+			"offsets": {
+				"from": 3139000,
+				"to": 3145000
+			},
+			"text": " If the sequencer puts valid stuff there, then they will process it as valid stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:25,000",
+				"to": "00:52:28,000"
+			},
+			"offsets": {
+				"from": 3145000,
+				"to": 3148000
+			},
+			"text": " But the sequencer is all it's doing is putting data onto this chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:28,000",
+				"to": "00:52:33,000"
+			},
+			"offsets": {
+				"from": 3148000,
+				"to": 3153000
+			},
+			"text": " They don't enforce in any way what the state should be that's a result of that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:33,000",
+				"to": "00:52:37,000"
+			},
+			"offsets": {
+				"from": 3153000,
+				"to": 3157000
+			},
+			"text": " Those are the valid data nodes that decide that."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:37,000",
+				"to": "00:52:38,000"
+			},
+			"offsets": {
+				"from": 3157000,
+				"to": 3158000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:38,000",
+				"to": "00:52:41,000"
+			},
+			"offsets": {
+				"from": 3158000,
+				"to": 3161000
+			},
+			"text": " So given just some data that arrives, people run any valid data nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:41,000",
+				"to": "00:52:45,000"
+			},
+			"offsets": {
+				"from": 3161000,
+				"to": 3165000
+			},
+			"text": " Need to decide what the result of that data would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:45,000",
+				"to": "00:52:46,000"
+			},
+			"offsets": {
+				"from": 3165000,
+				"to": 3166000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:46,000",
+				"to": "00:52:48,000"
+			},
+			"offsets": {
+				"from": 3166000,
+				"to": 3168000
+			},
+			"text": " So that kind of answered the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:48,000",
+				"to": "00:52:49,000"
+			},
+			"offsets": {
+				"from": 3168000,
+				"to": 3169000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:49,000",
+				"to": "00:52:50,000"
+			},
+			"offsets": {
+				"from": 3169000,
+				"to": 3170000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:50,000",
+				"to": "00:52:51,000"
+			},
+			"offsets": {
+				"from": 3170000,
+				"to": 3171000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:51,000",
+				"to": "00:52:52,000"
+			},
+			"offsets": {
+				"from": 3171000,
+				"to": 3172000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:52,000",
+				"to": "00:52:53,000"
+			},
+			"offsets": {
+				"from": 3172000,
+				"to": 3173000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:53,000",
+				"to": "00:52:54,000"
+			},
+			"offsets": {
+				"from": 3173000,
+				"to": 3174000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:54,000",
+				"to": "00:52:57,000"
+			},
+			"offsets": {
+				"from": 3174000,
+				"to": 3177000
+			},
+			"text": " And the nodes will know what to do when they receive that."
+		},
+		{
+			"timestamps": {
+				"from": "00:52:57,000",
+				"to": "00:53:03,000"
+			},
+			"offsets": {
+				"from": 3177000,
+				"to": 3183000
+			},
+			"text": " So there'd be strict rules about everything that the batch contains."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:03,000",
+				"to": "00:53:04,000"
+			},
+			"offsets": {
+				"from": 3183000,
+				"to": 3184000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:04,000",
+				"to": "00:53:11,000"
+			},
+			"offsets": {
+				"from": 3184000,
+				"to": 3191000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:11,000",
+				"to": "00:53:12,000"
+			},
+			"offsets": {
+				"from": 3191000,
+				"to": 3192000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:12,000",
+				"to": "00:53:13,000"
+			},
+			"offsets": {
+				"from": 3192000,
+				"to": 3193000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:13,000",
+				"to": "00:53:14,000"
+			},
+			"offsets": {
+				"from": 3193000,
+				"to": 3194000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:14,000",
+				"to": "00:53:15,000"
+			},
+			"offsets": {
+				"from": 3194000,
+				"to": 3195000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:15,000",
+				"to": "00:53:16,000"
+			},
+			"offsets": {
+				"from": 3195000,
+				"to": 3196000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:16,000",
+				"to": "00:53:17,000"
+			},
+			"offsets": {
+				"from": 3196000,
+				"to": 3197000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:17,000",
+				"to": "00:53:18,000"
+			},
+			"offsets": {
+				"from": 3197000,
+				"to": 3198000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:18,000",
+				"to": "00:53:19,000"
+			},
+			"offsets": {
+				"from": 3198000,
+				"to": 3199000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:19,000",
+				"to": "00:53:20,000"
+			},
+			"offsets": {
+				"from": 3199000,
+				"to": 3200000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:20,000",
+				"to": "00:53:21,000"
+			},
+			"offsets": {
+				"from": 3200000,
+				"to": 3201000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:21,000",
+				"to": "00:53:22,000"
+			},
+			"offsets": {
+				"from": 3201000,
+				"to": 3202000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:22,000",
+				"to": "00:53:23,000"
+			},
+			"offsets": {
+				"from": 3202000,
+				"to": 3203000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:23,000",
+				"to": "00:53:24,000"
+			},
+			"offsets": {
+				"from": 3203000,
+				"to": 3204000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:24,000",
+				"to": "00:53:25,000"
+			},
+			"offsets": {
+				"from": 3204000,
+				"to": 3205000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:25,000",
+				"to": "00:53:26,000"
+			},
+			"offsets": {
+				"from": 3205000,
+				"to": 3206000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:26,000",
+				"to": "00:53:27,000"
+			},
+			"offsets": {
+				"from": 3206000,
+				"to": 3207000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:27,000",
+				"to": "00:53:28,000"
+			},
+			"offsets": {
+				"from": 3207000,
+				"to": 3208000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:28,000",
+				"to": "00:53:29,000"
+			},
+			"offsets": {
+				"from": 3208000,
+				"to": 3209000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:29,000",
+				"to": "00:53:30,000"
+			},
+			"offsets": {
+				"from": 3209000,
+				"to": 3210000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:30,000",
+				"to": "00:53:31,000"
+			},
+			"offsets": {
+				"from": 3210000,
+				"to": 3211000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:31,000",
+				"to": "00:53:32,000"
+			},
+			"offsets": {
+				"from": 3211000,
+				"to": 3212000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:32,000",
+				"to": "00:53:34,000"
+			},
+			"offsets": {
+				"from": 3212000,
+				"to": 3214000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:34,000",
+				"to": "00:53:35,000"
+			},
+			"offsets": {
+				"from": 3214000,
+				"to": 3215000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:35,000",
+				"to": "00:53:36,000"
+			},
+			"offsets": {
+				"from": 3215000,
+				"to": 3216000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:36,000",
+				"to": "00:53:37,000"
+			},
+			"offsets": {
+				"from": 3216000,
+				"to": 3217000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:37,000",
+				"to": "00:53:38,000"
+			},
+			"offsets": {
+				"from": 3217000,
+				"to": 3218000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:38,000",
+				"to": "00:53:39,000"
+			},
+			"offsets": {
+				"from": 3218000,
+				"to": 3219000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:39,000",
+				"to": "00:53:40,000"
+			},
+			"offsets": {
+				"from": 3219000,
+				"to": 3220000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:40,000",
+				"to": "00:53:41,000"
+			},
+			"offsets": {
+				"from": 3220000,
+				"to": 3221000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:41,000",
+				"to": "00:53:42,000"
+			},
+			"offsets": {
+				"from": 3221000,
+				"to": 3222000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:42,000",
+				"to": "00:53:43,000"
+			},
+			"offsets": {
+				"from": 3222000,
+				"to": 3223000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:43,000",
+				"to": "00:53:44,000"
+			},
+			"offsets": {
+				"from": 3223000,
+				"to": 3224000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:44,000",
+				"to": "00:53:45,000"
+			},
+			"offsets": {
+				"from": 3224000,
+				"to": 3225000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:45,000",
+				"to": "00:53:46,000"
+			},
+			"offsets": {
+				"from": 3225000,
+				"to": 3226000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:46,000",
+				"to": "00:53:47,000"
+			},
+			"offsets": {
+				"from": 3226000,
+				"to": 3227000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:47,000",
+				"to": "00:53:48,000"
+			},
+			"offsets": {
+				"from": 3227000,
+				"to": 3228000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:48,000",
+				"to": "00:53:49,000"
+			},
+			"offsets": {
+				"from": 3228000,
+				"to": 3229000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:49,000",
+				"to": "00:53:50,000"
+			},
+			"offsets": {
+				"from": 3229000,
+				"to": 3230000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:50,000",
+				"to": "00:53:51,000"
+			},
+			"offsets": {
+				"from": 3230000,
+				"to": 3231000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:51,000",
+				"to": "00:53:52,000"
+			},
+			"offsets": {
+				"from": 3231000,
+				"to": 3232000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:52,000",
+				"to": "00:53:53,000"
+			},
+			"offsets": {
+				"from": 3232000,
+				"to": 3233000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:53,000",
+				"to": "00:53:54,000"
+			},
+			"offsets": {
+				"from": 3233000,
+				"to": 3234000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:54,000",
+				"to": "00:53:55,000"
+			},
+			"offsets": {
+				"from": 3234000,
+				"to": 3235000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:55,000",
+				"to": "00:53:56,000"
+			},
+			"offsets": {
+				"from": 3235000,
+				"to": 3236000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:56,000",
+				"to": "00:53:57,000"
+			},
+			"offsets": {
+				"from": 3236000,
+				"to": 3237000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:57,000",
+				"to": "00:53:58,000"
+			},
+			"offsets": {
+				"from": 3237000,
+				"to": 3238000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:58,000",
+				"to": "00:53:59,000"
+			},
+			"offsets": {
+				"from": 3238000,
+				"to": 3239000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:53:59,000",
+				"to": "00:54:00,000"
+			},
+			"offsets": {
+				"from": 3239000,
+				"to": 3240000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:00,000",
+				"to": "00:54:01,000"
+			},
+			"offsets": {
+				"from": 3240000,
+				"to": 3241000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:01,000",
+				"to": "00:54:02,000"
+			},
+			"offsets": {
+				"from": 3241000,
+				"to": 3242000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:02,000",
+				"to": "00:54:03,000"
+			},
+			"offsets": {
+				"from": 3242000,
+				"to": 3243000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:03,000",
+				"to": "00:54:04,000"
+			},
+			"offsets": {
+				"from": 3243000,
+				"to": 3244000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:04,000",
+				"to": "00:54:05,000"
+			},
+			"offsets": {
+				"from": 3244000,
+				"to": 3245000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:05,000",
+				"to": "00:54:06,000"
+			},
+			"offsets": {
+				"from": 3245000,
+				"to": 3246000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:06,000",
+				"to": "00:54:07,000"
+			},
+			"offsets": {
+				"from": 3246000,
+				"to": 3247000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:07,000",
+				"to": "00:54:08,000"
+			},
+			"offsets": {
+				"from": 3247000,
+				"to": 3248000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:08,000",
+				"to": "00:54:09,000"
+			},
+			"offsets": {
+				"from": 3248000,
+				"to": 3249000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:09,000",
+				"to": "00:54:10,000"
+			},
+			"offsets": {
+				"from": 3249000,
+				"to": 3250000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:10,000",
+				"to": "00:54:11,000"
+			},
+			"offsets": {
+				"from": 3250000,
+				"to": 3251000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:11,000",
+				"to": "00:54:12,000"
+			},
+			"offsets": {
+				"from": 3251000,
+				"to": 3252000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:12,000",
+				"to": "00:54:13,000"
+			},
+			"offsets": {
+				"from": 3252000,
+				"to": 3253000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:13,000",
+				"to": "00:54:14,000"
+			},
+			"offsets": {
+				"from": 3253000,
+				"to": 3254000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:14,000",
+				"to": "00:54:15,000"
+			},
+			"offsets": {
+				"from": 3254000,
+				"to": 3255000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:15,000",
+				"to": "00:54:16,000"
+			},
+			"offsets": {
+				"from": 3255000,
+				"to": 3256000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:16,000",
+				"to": "00:54:17,000"
+			},
+			"offsets": {
+				"from": 3256000,
+				"to": 3257000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:17,000",
+				"to": "00:54:18,000"
+			},
+			"offsets": {
+				"from": 3257000,
+				"to": 3258000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:18,000",
+				"to": "00:54:19,000"
+			},
+			"offsets": {
+				"from": 3258000,
+				"to": 3259000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:19,000",
+				"to": "00:54:20,000"
+			},
+			"offsets": {
+				"from": 3259000,
+				"to": 3260000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:20,000",
+				"to": "00:54:21,000"
+			},
+			"offsets": {
+				"from": 3260000,
+				"to": 3261000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:21,000",
+				"to": "00:54:22,000"
+			},
+			"offsets": {
+				"from": 3261000,
+				"to": 3262000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:22,000",
+				"to": "00:54:23,000"
+			},
+			"offsets": {
+				"from": 3262000,
+				"to": 3263000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:23,000",
+				"to": "00:54:24,000"
+			},
+			"offsets": {
+				"from": 3263000,
+				"to": 3264000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:24,000",
+				"to": "00:54:25,000"
+			},
+			"offsets": {
+				"from": 3264000,
+				"to": 3265000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:25,000",
+				"to": "00:54:26,000"
+			},
+			"offsets": {
+				"from": 3265000,
+				"to": 3266000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:26,000",
+				"to": "00:54:27,000"
+			},
+			"offsets": {
+				"from": 3266000,
+				"to": 3267000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:27,000",
+				"to": "00:54:28,000"
+			},
+			"offsets": {
+				"from": 3267000,
+				"to": 3268000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:28,000",
+				"to": "00:54:29,000"
+			},
+			"offsets": {
+				"from": 3268000,
+				"to": 3269000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:30,000",
+				"to": "00:54:31,000"
+			},
+			"offsets": {
+				"from": 3270000,
+				"to": 3271000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:31,000",
+				"to": "00:54:32,000"
+			},
+			"offsets": {
+				"from": 3271000,
+				"to": 3272000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:32,000",
+				"to": "00:54:33,000"
+			},
+			"offsets": {
+				"from": 3272000,
+				"to": 3273000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:33,000",
+				"to": "00:54:34,000"
+			},
+			"offsets": {
+				"from": 3273000,
+				"to": 3274000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:34,000",
+				"to": "00:54:35,000"
+			},
+			"offsets": {
+				"from": 3274000,
+				"to": 3275000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:35,000",
+				"to": "00:54:36,000"
+			},
+			"offsets": {
+				"from": 3275000,
+				"to": 3276000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:36,000",
+				"to": "00:54:37,000"
+			},
+			"offsets": {
+				"from": 3276000,
+				"to": 3277000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:37,000",
+				"to": "00:54:38,000"
+			},
+			"offsets": {
+				"from": 3277000,
+				"to": 3278000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:38,000",
+				"to": "00:54:39,000"
+			},
+			"offsets": {
+				"from": 3278000,
+				"to": 3279000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:39,000",
+				"to": "00:54:40,000"
+			},
+			"offsets": {
+				"from": 3279000,
+				"to": 3280000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:40,000",
+				"to": "00:54:41,000"
+			},
+			"offsets": {
+				"from": 3280000,
+				"to": 3281000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:41,000",
+				"to": "00:54:42,000"
+			},
+			"offsets": {
+				"from": 3281000,
+				"to": 3282000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:42,000",
+				"to": "00:54:43,000"
+			},
+			"offsets": {
+				"from": 3282000,
+				"to": 3283000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:43,000",
+				"to": "00:54:44,000"
+			},
+			"offsets": {
+				"from": 3283000,
+				"to": 3284000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:44,000",
+				"to": "00:54:45,000"
+			},
+			"offsets": {
+				"from": 3284000,
+				"to": 3285000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:45,000",
+				"to": "00:54:46,000"
+			},
+			"offsets": {
+				"from": 3285000,
+				"to": 3286000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:46,000",
+				"to": "00:54:47,000"
+			},
+			"offsets": {
+				"from": 3286000,
+				"to": 3287000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:47,000",
+				"to": "00:54:48,000"
+			},
+			"offsets": {
+				"from": 3287000,
+				"to": 3288000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:48,000",
+				"to": "00:54:49,000"
+			},
+			"offsets": {
+				"from": 3288000,
+				"to": 3289000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:49,000",
+				"to": "00:54:50,000"
+			},
+			"offsets": {
+				"from": 3289000,
+				"to": 3290000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:50,000",
+				"to": "00:54:51,000"
+			},
+			"offsets": {
+				"from": 3290000,
+				"to": 3291000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:51,000",
+				"to": "00:54:52,000"
+			},
+			"offsets": {
+				"from": 3291000,
+				"to": 3292000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:52,000",
+				"to": "00:54:53,000"
+			},
+			"offsets": {
+				"from": 3292000,
+				"to": 3293000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:53,000",
+				"to": "00:54:54,000"
+			},
+			"offsets": {
+				"from": 3293000,
+				"to": 3294000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:54,000",
+				"to": "00:54:55,000"
+			},
+			"offsets": {
+				"from": 3294000,
+				"to": 3295000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:55,000",
+				"to": "00:54:56,000"
+			},
+			"offsets": {
+				"from": 3295000,
+				"to": 3296000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:56,000",
+				"to": "00:54:57,000"
+			},
+			"offsets": {
+				"from": 3296000,
+				"to": 3297000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:57,000",
+				"to": "00:54:58,000"
+			},
+			"offsets": {
+				"from": 3297000,
+				"to": 3298000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:54:59,000",
+				"to": "00:55:00,000"
+			},
+			"offsets": {
+				"from": 3299000,
+				"to": 3300000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:00,000",
+				"to": "00:55:01,000"
+			},
+			"offsets": {
+				"from": 3300000,
+				"to": 3301000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:01,000",
+				"to": "00:55:02,000"
+			},
+			"offsets": {
+				"from": 3301000,
+				"to": 3302000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:02,000",
+				"to": "00:55:03,000"
+			},
+			"offsets": {
+				"from": 3302000,
+				"to": 3303000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:03,000",
+				"to": "00:55:04,000"
+			},
+			"offsets": {
+				"from": 3303000,
+				"to": 3304000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:04,000",
+				"to": "00:55:05,000"
+			},
+			"offsets": {
+				"from": 3304000,
+				"to": 3305000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:05,000",
+				"to": "00:55:06,000"
+			},
+			"offsets": {
+				"from": 3305000,
+				"to": 3306000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:06,000",
+				"to": "00:55:07,000"
+			},
+			"offsets": {
+				"from": 3306000,
+				"to": 3307000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:07,000",
+				"to": "00:55:08,000"
+			},
+			"offsets": {
+				"from": 3307000,
+				"to": 3308000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:08,000",
+				"to": "00:55:09,000"
+			},
+			"offsets": {
+				"from": 3308000,
+				"to": 3309000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:09,000",
+				"to": "00:55:10,000"
+			},
+			"offsets": {
+				"from": 3309000,
+				"to": 3310000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:10,000",
+				"to": "00:55:11,000"
+			},
+			"offsets": {
+				"from": 3310000,
+				"to": 3311000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:11,000",
+				"to": "00:55:12,000"
+			},
+			"offsets": {
+				"from": 3311000,
+				"to": 3312000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:12,000",
+				"to": "00:55:13,000"
+			},
+			"offsets": {
+				"from": 3312000,
+				"to": 3313000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:13,000",
+				"to": "00:55:14,000"
+			},
+			"offsets": {
+				"from": 3313000,
+				"to": 3314000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:14,000",
+				"to": "00:55:15,000"
+			},
+			"offsets": {
+				"from": 3314000,
+				"to": 3315000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:15,000",
+				"to": "00:55:16,000"
+			},
+			"offsets": {
+				"from": 3315000,
+				"to": 3316000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:16,000",
+				"to": "00:55:17,000"
+			},
+			"offsets": {
+				"from": 3316000,
+				"to": 3317000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:17,000",
+				"to": "00:55:18,000"
+			},
+			"offsets": {
+				"from": 3317000,
+				"to": 3318000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:18,000",
+				"to": "00:55:19,000"
+			},
+			"offsets": {
+				"from": 3318000,
+				"to": 3319000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:19,000",
+				"to": "00:55:20,000"
+			},
+			"offsets": {
+				"from": 3319000,
+				"to": 3320000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:20,000",
+				"to": "00:55:21,000"
+			},
+			"offsets": {
+				"from": 3320000,
+				"to": 3321000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:21,000",
+				"to": "00:55:22,000"
+			},
+			"offsets": {
+				"from": 3321000,
+				"to": 3322000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:22,000",
+				"to": "00:55:23,000"
+			},
+			"offsets": {
+				"from": 3322000,
+				"to": 3323000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:23,000",
+				"to": "00:55:24,000"
+			},
+			"offsets": {
+				"from": 3323000,
+				"to": 3324000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:24,000",
+				"to": "00:55:25,000"
+			},
+			"offsets": {
+				"from": 3324000,
+				"to": 3325000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:25,000",
+				"to": "00:55:26,000"
+			},
+			"offsets": {
+				"from": 3325000,
+				"to": 3326000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:26,000",
+				"to": "00:55:27,000"
+			},
+			"offsets": {
+				"from": 3326000,
+				"to": 3327000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:27,000",
+				"to": "00:55:28,000"
+			},
+			"offsets": {
+				"from": 3327000,
+				"to": 3328000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:28,000",
+				"to": "00:55:29,000"
+			},
+			"offsets": {
+				"from": 3328000,
+				"to": 3329000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:29,000",
+				"to": "00:55:30,000"
+			},
+			"offsets": {
+				"from": 3329000,
+				"to": 3330000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:30,000",
+				"to": "00:55:31,000"
+			},
+			"offsets": {
+				"from": 3330000,
+				"to": 3331000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:31,000",
+				"to": "00:55:32,000"
+			},
+			"offsets": {
+				"from": 3331000,
+				"to": 3332000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:32,000",
+				"to": "00:55:33,000"
+			},
+			"offsets": {
+				"from": 3332000,
+				"to": 3333000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:33,000",
+				"to": "00:55:34,000"
+			},
+			"offsets": {
+				"from": 3333000,
+				"to": 3334000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:34,000",
+				"to": "00:55:35,000"
+			},
+			"offsets": {
+				"from": 3334000,
+				"to": 3335000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:35,000",
+				"to": "00:55:36,000"
+			},
+			"offsets": {
+				"from": 3335000,
+				"to": 3336000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:36,000",
+				"to": "00:55:37,000"
+			},
+			"offsets": {
+				"from": 3336000,
+				"to": 3337000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:37,000",
+				"to": "00:55:38,000"
+			},
+			"offsets": {
+				"from": 3337000,
+				"to": 3338000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:38,000",
+				"to": "00:55:39,000"
+			},
+			"offsets": {
+				"from": 3338000,
+				"to": 3339000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:39,000",
+				"to": "00:55:40,000"
+			},
+			"offsets": {
+				"from": 3339000,
+				"to": 3340000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:40,000",
+				"to": "00:55:41,000"
+			},
+			"offsets": {
+				"from": 3340000,
+				"to": 3341000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:41,000",
+				"to": "00:55:42,000"
+			},
+			"offsets": {
+				"from": 3341000,
+				"to": 3342000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:42,000",
+				"to": "00:55:43,000"
+			},
+			"offsets": {
+				"from": 3342000,
+				"to": 3343000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:43,000",
+				"to": "00:55:44,000"
+			},
+			"offsets": {
+				"from": 3343000,
+				"to": 3344000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:44,000",
+				"to": "00:55:45,000"
+			},
+			"offsets": {
+				"from": 3344000,
+				"to": 3345000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:45,000",
+				"to": "00:55:46,000"
+			},
+			"offsets": {
+				"from": 3345000,
+				"to": 3346000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:46,000",
+				"to": "00:55:47,000"
+			},
+			"offsets": {
+				"from": 3346000,
+				"to": 3347000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:47,000",
+				"to": "00:55:48,000"
+			},
+			"offsets": {
+				"from": 3347000,
+				"to": 3348000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:48,000",
+				"to": "00:55:49,000"
+			},
+			"offsets": {
+				"from": 3348000,
+				"to": 3349000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:49,000",
+				"to": "00:55:50,000"
+			},
+			"offsets": {
+				"from": 3349000,
+				"to": 3350000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:50,000",
+				"to": "00:55:51,000"
+			},
+			"offsets": {
+				"from": 3350000,
+				"to": 3351000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:51,000",
+				"to": "00:55:52,000"
+			},
+			"offsets": {
+				"from": 3351000,
+				"to": 3352000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:52,000",
+				"to": "00:55:53,000"
+			},
+			"offsets": {
+				"from": 3352000,
+				"to": 3353000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:53,000",
+				"to": "00:55:54,000"
+			},
+			"offsets": {
+				"from": 3353000,
+				"to": 3354000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:54,000",
+				"to": "00:55:55,000"
+			},
+			"offsets": {
+				"from": 3354000,
+				"to": 3355000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:55,000",
+				"to": "00:55:56,000"
+			},
+			"offsets": {
+				"from": 3355000,
+				"to": 3356000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:56,000",
+				"to": "00:55:57,000"
+			},
+			"offsets": {
+				"from": 3356000,
+				"to": 3357000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:57,000",
+				"to": "00:55:58,000"
+			},
+			"offsets": {
+				"from": 3357000,
+				"to": 3358000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:58,000",
+				"to": "00:55:59,000"
+			},
+			"offsets": {
+				"from": 3358000,
+				"to": 3359000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:55:59,000",
+				"to": "00:56:00,000"
+			},
+			"offsets": {
+				"from": 3359000,
+				"to": 3360000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:00,000",
+				"to": "00:56:01,000"
+			},
+			"offsets": {
+				"from": 3360000,
+				"to": 3361000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:01,000",
+				"to": "00:56:02,000"
+			},
+			"offsets": {
+				"from": 3361000,
+				"to": 3362000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:02,000",
+				"to": "00:56:03,000"
+			},
+			"offsets": {
+				"from": 3362000,
+				"to": 3363000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:03,000",
+				"to": "00:56:04,000"
+			},
+			"offsets": {
+				"from": 3363000,
+				"to": 3364000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:04,000",
+				"to": "00:56:05,000"
+			},
+			"offsets": {
+				"from": 3364000,
+				"to": 3365000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:05,000",
+				"to": "00:56:06,000"
+			},
+			"offsets": {
+				"from": 3365000,
+				"to": 3366000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:06,000",
+				"to": "00:56:07,000"
+			},
+			"offsets": {
+				"from": 3366000,
+				"to": 3367000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:07,000",
+				"to": "00:56:08,000"
+			},
+			"offsets": {
+				"from": 3367000,
+				"to": 3368000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:08,000",
+				"to": "00:56:09,000"
+			},
+			"offsets": {
+				"from": 3368000,
+				"to": 3369000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:09,000",
+				"to": "00:56:10,000"
+			},
+			"offsets": {
+				"from": 3369000,
+				"to": 3370000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:10,000",
+				"to": "00:56:11,000"
+			},
+			"offsets": {
+				"from": 3370000,
+				"to": 3371000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:11,000",
+				"to": "00:56:12,000"
+			},
+			"offsets": {
+				"from": 3371000,
+				"to": 3372000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:12,000",
+				"to": "00:56:13,000"
+			},
+			"offsets": {
+				"from": 3372000,
+				"to": 3373000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:13,000",
+				"to": "00:56:14,000"
+			},
+			"offsets": {
+				"from": 3373000,
+				"to": 3374000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:14,000",
+				"to": "00:56:15,000"
+			},
+			"offsets": {
+				"from": 3374000,
+				"to": 3375000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:15,000",
+				"to": "00:56:16,000"
+			},
+			"offsets": {
+				"from": 3375000,
+				"to": 3376000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:16,000",
+				"to": "00:56:17,000"
+			},
+			"offsets": {
+				"from": 3376000,
+				"to": 3377000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:17,000",
+				"to": "00:56:18,000"
+			},
+			"offsets": {
+				"from": 3377000,
+				"to": 3378000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:18,000",
+				"to": "00:56:19,000"
+			},
+			"offsets": {
+				"from": 3378000,
+				"to": 3379000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:19,000",
+				"to": "00:56:20,000"
+			},
+			"offsets": {
+				"from": 3379000,
+				"to": 3380000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:20,000",
+				"to": "00:56:21,000"
+			},
+			"offsets": {
+				"from": 3380000,
+				"to": 3381000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:21,000",
+				"to": "00:56:22,000"
+			},
+			"offsets": {
+				"from": 3381000,
+				"to": 3382000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:22,000",
+				"to": "00:56:23,000"
+			},
+			"offsets": {
+				"from": 3382000,
+				"to": 3383000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:23,000",
+				"to": "00:56:24,000"
+			},
+			"offsets": {
+				"from": 3383000,
+				"to": 3384000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:24,000",
+				"to": "00:56:25,000"
+			},
+			"offsets": {
+				"from": 3384000,
+				"to": 3385000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:25,000",
+				"to": "00:56:26,000"
+			},
+			"offsets": {
+				"from": 3385000,
+				"to": 3386000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:26,000",
+				"to": "00:56:27,000"
+			},
+			"offsets": {
+				"from": 3386000,
+				"to": 3387000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:27,000",
+				"to": "00:56:28,000"
+			},
+			"offsets": {
+				"from": 3387000,
+				"to": 3388000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:28,000",
+				"to": "00:56:29,000"
+			},
+			"offsets": {
+				"from": 3388000,
+				"to": 3389000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:29,000",
+				"to": "00:56:30,000"
+			},
+			"offsets": {
+				"from": 3389000,
+				"to": 3390000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:30,000",
+				"to": "00:56:31,000"
+			},
+			"offsets": {
+				"from": 3390000,
+				"to": 3391000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:31,000",
+				"to": "00:56:32,000"
+			},
+			"offsets": {
+				"from": 3391000,
+				"to": 3392000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:32,000",
+				"to": "00:56:33,000"
+			},
+			"offsets": {
+				"from": 3392000,
+				"to": 3393000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:33,000",
+				"to": "00:56:34,000"
+			},
+			"offsets": {
+				"from": 3393000,
+				"to": 3394000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:34,000",
+				"to": "00:56:35,000"
+			},
+			"offsets": {
+				"from": 3394000,
+				"to": 3395000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:35,000",
+				"to": "00:56:36,000"
+			},
+			"offsets": {
+				"from": 3395000,
+				"to": 3396000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:36,000",
+				"to": "00:56:37,000"
+			},
+			"offsets": {
+				"from": 3396000,
+				"to": 3397000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:37,000",
+				"to": "00:56:38,000"
+			},
+			"offsets": {
+				"from": 3397000,
+				"to": 3398000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:38,000",
+				"to": "00:56:39,000"
+			},
+			"offsets": {
+				"from": 3398000,
+				"to": 3399000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:39,000",
+				"to": "00:56:40,000"
+			},
+			"offsets": {
+				"from": 3399000,
+				"to": 3400000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:40,000",
+				"to": "00:56:41,000"
+			},
+			"offsets": {
+				"from": 3400000,
+				"to": 3401000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:41,000",
+				"to": "00:56:42,000"
+			},
+			"offsets": {
+				"from": 3401000,
+				"to": 3402000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:42,000",
+				"to": "00:56:43,000"
+			},
+			"offsets": {
+				"from": 3402000,
+				"to": 3403000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:43,000",
+				"to": "00:56:44,000"
+			},
+			"offsets": {
+				"from": 3403000,
+				"to": 3404000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:44,000",
+				"to": "00:56:45,000"
+			},
+			"offsets": {
+				"from": 3404000,
+				"to": 3405000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:45,000",
+				"to": "00:56:46,000"
+			},
+			"offsets": {
+				"from": 3405000,
+				"to": 3406000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:46,000",
+				"to": "00:56:47,000"
+			},
+			"offsets": {
+				"from": 3406000,
+				"to": 3407000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:47,000",
+				"to": "00:56:48,000"
+			},
+			"offsets": {
+				"from": 3407000,
+				"to": 3408000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:48,000",
+				"to": "00:56:49,000"
+			},
+			"offsets": {
+				"from": 3408000,
+				"to": 3409000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:49,000",
+				"to": "00:56:50,000"
+			},
+			"offsets": {
+				"from": 3409000,
+				"to": 3410000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:50,000",
+				"to": "00:56:51,000"
+			},
+			"offsets": {
+				"from": 3410000,
+				"to": 3411000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:51,000",
+				"to": "00:56:52,000"
+			},
+			"offsets": {
+				"from": 3411000,
+				"to": 3412000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:52,000",
+				"to": "00:56:53,000"
+			},
+			"offsets": {
+				"from": 3412000,
+				"to": 3413000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:53,000",
+				"to": "00:56:54,000"
+			},
+			"offsets": {
+				"from": 3413000,
+				"to": 3414000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:55,000",
+				"to": "00:56:56,000"
+			},
+			"offsets": {
+				"from": 3415000,
+				"to": 3416000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:56,000",
+				"to": "00:56:57,000"
+			},
+			"offsets": {
+				"from": 3416000,
+				"to": 3417000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:57,000",
+				"to": "00:56:58,000"
+			},
+			"offsets": {
+				"from": 3417000,
+				"to": 3418000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:58,000",
+				"to": "00:56:59,000"
+			},
+			"offsets": {
+				"from": 3418000,
+				"to": 3419000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:56:59,000",
+				"to": "00:57:00,000"
+			},
+			"offsets": {
+				"from": 3419000,
+				"to": 3420000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:00,000",
+				"to": "00:57:01,000"
+			},
+			"offsets": {
+				"from": 3420000,
+				"to": 3421000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:01,000",
+				"to": "00:57:02,000"
+			},
+			"offsets": {
+				"from": 3421000,
+				"to": 3422000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:02,000",
+				"to": "00:57:03,000"
+			},
+			"offsets": {
+				"from": 3422000,
+				"to": 3423000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:03,000",
+				"to": "00:57:04,000"
+			},
+			"offsets": {
+				"from": 3423000,
+				"to": 3424000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:04,000",
+				"to": "00:57:05,000"
+			},
+			"offsets": {
+				"from": 3424000,
+				"to": 3425000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:05,000",
+				"to": "00:57:06,000"
+			},
+			"offsets": {
+				"from": 3425000,
+				"to": 3426000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:06,000",
+				"to": "00:57:07,000"
+			},
+			"offsets": {
+				"from": 3426000,
+				"to": 3427000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:07,000",
+				"to": "00:57:08,000"
+			},
+			"offsets": {
+				"from": 3427000,
+				"to": 3428000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:08,000",
+				"to": "00:57:09,000"
+			},
+			"offsets": {
+				"from": 3428000,
+				"to": 3429000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:09,000",
+				"to": "00:57:10,000"
+			},
+			"offsets": {
+				"from": 3429000,
+				"to": 3430000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:10,000",
+				"to": "00:57:11,000"
+			},
+			"offsets": {
+				"from": 3430000,
+				"to": 3431000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:11,000",
+				"to": "00:57:12,000"
+			},
+			"offsets": {
+				"from": 3431000,
+				"to": 3432000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:12,000",
+				"to": "00:57:13,000"
+			},
+			"offsets": {
+				"from": 3432000,
+				"to": 3433000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:13,000",
+				"to": "00:57:14,000"
+			},
+			"offsets": {
+				"from": 3433000,
+				"to": 3434000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:14,000",
+				"to": "00:57:15,000"
+			},
+			"offsets": {
+				"from": 3434000,
+				"to": 3435000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:15,000",
+				"to": "00:57:16,000"
+			},
+			"offsets": {
+				"from": 3435000,
+				"to": 3436000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:16,000",
+				"to": "00:57:17,000"
+			},
+			"offsets": {
+				"from": 3436000,
+				"to": 3437000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:17,000",
+				"to": "00:57:18,000"
+			},
+			"offsets": {
+				"from": 3437000,
+				"to": 3438000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:18,000",
+				"to": "00:57:19,000"
+			},
+			"offsets": {
+				"from": 3438000,
+				"to": 3439000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:19,000",
+				"to": "00:57:20,000"
+			},
+			"offsets": {
+				"from": 3439000,
+				"to": 3440000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:20,000",
+				"to": "00:57:21,000"
+			},
+			"offsets": {
+				"from": 3440000,
+				"to": 3441000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:21,000",
+				"to": "00:57:22,000"
+			},
+			"offsets": {
+				"from": 3441000,
+				"to": 3442000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:22,000",
+				"to": "00:57:23,000"
+			},
+			"offsets": {
+				"from": 3442000,
+				"to": 3443000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:24,000",
+				"to": "00:57:25,000"
+			},
+			"offsets": {
+				"from": 3444000,
+				"to": 3445000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:25,000",
+				"to": "00:57:26,000"
+			},
+			"offsets": {
+				"from": 3445000,
+				"to": 3446000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:26,000",
+				"to": "00:57:27,000"
+			},
+			"offsets": {
+				"from": 3446000,
+				"to": 3447000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:27,000",
+				"to": "00:57:28,000"
+			},
+			"offsets": {
+				"from": 3447000,
+				"to": 3448000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:28,000",
+				"to": "00:57:29,000"
+			},
+			"offsets": {
+				"from": 3448000,
+				"to": 3449000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:29,000",
+				"to": "00:57:30,000"
+			},
+			"offsets": {
+				"from": 3449000,
+				"to": 3450000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:30,000",
+				"to": "00:57:31,000"
+			},
+			"offsets": {
+				"from": 3450000,
+				"to": 3451000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:31,000",
+				"to": "00:57:32,000"
+			},
+			"offsets": {
+				"from": 3451000,
+				"to": 3452000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:32,000",
+				"to": "00:57:33,000"
+			},
+			"offsets": {
+				"from": 3452000,
+				"to": 3453000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:33,000",
+				"to": "00:57:34,000"
+			},
+			"offsets": {
+				"from": 3453000,
+				"to": 3454000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:34,000",
+				"to": "00:57:35,000"
+			},
+			"offsets": {
+				"from": 3454000,
+				"to": 3455000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:35,000",
+				"to": "00:57:36,000"
+			},
+			"offsets": {
+				"from": 3455000,
+				"to": 3456000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:36,000",
+				"to": "00:57:37,000"
+			},
+			"offsets": {
+				"from": 3456000,
+				"to": 3457000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:37,000",
+				"to": "00:57:38,000"
+			},
+			"offsets": {
+				"from": 3457000,
+				"to": 3458000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:38,000",
+				"to": "00:57:39,000"
+			},
+			"offsets": {
+				"from": 3458000,
+				"to": 3459000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:39,000",
+				"to": "00:57:40,000"
+			},
+			"offsets": {
+				"from": 3459000,
+				"to": 3460000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:40,000",
+				"to": "00:57:41,000"
+			},
+			"offsets": {
+				"from": 3460000,
+				"to": 3461000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:41,000",
+				"to": "00:57:42,000"
+			},
+			"offsets": {
+				"from": 3461000,
+				"to": 3462000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:42,000",
+				"to": "00:57:43,000"
+			},
+			"offsets": {
+				"from": 3462000,
+				"to": 3463000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:43,000",
+				"to": "00:57:44,000"
+			},
+			"offsets": {
+				"from": 3463000,
+				"to": 3464000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:44,000",
+				"to": "00:57:45,000"
+			},
+			"offsets": {
+				"from": 3464000,
+				"to": 3465000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:45,000",
+				"to": "00:57:46,000"
+			},
+			"offsets": {
+				"from": 3465000,
+				"to": 3466000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:46,000",
+				"to": "00:57:47,000"
+			},
+			"offsets": {
+				"from": 3466000,
+				"to": 3467000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:47,000",
+				"to": "00:57:48,000"
+			},
+			"offsets": {
+				"from": 3467000,
+				"to": 3468000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:48,000",
+				"to": "00:57:49,000"
+			},
+			"offsets": {
+				"from": 3468000,
+				"to": 3469000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:49,000",
+				"to": "00:57:50,000"
+			},
+			"offsets": {
+				"from": 3469000,
+				"to": 3470000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:50,000",
+				"to": "00:57:51,000"
+			},
+			"offsets": {
+				"from": 3470000,
+				"to": 3471000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:51,000",
+				"to": "00:57:52,000"
+			},
+			"offsets": {
+				"from": 3471000,
+				"to": 3472000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:52,000",
+				"to": "00:57:53,000"
+			},
+			"offsets": {
+				"from": 3472000,
+				"to": 3473000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:53,000",
+				"to": "00:57:54,000"
+			},
+			"offsets": {
+				"from": 3473000,
+				"to": 3474000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:54,000",
+				"to": "00:57:55,000"
+			},
+			"offsets": {
+				"from": 3474000,
+				"to": 3475000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:55,000",
+				"to": "00:57:56,000"
+			},
+			"offsets": {
+				"from": 3475000,
+				"to": 3476000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:56,000",
+				"to": "00:57:57,000"
+			},
+			"offsets": {
+				"from": 3476000,
+				"to": 3477000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:57,000",
+				"to": "00:57:58,000"
+			},
+			"offsets": {
+				"from": 3477000,
+				"to": 3478000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:58,000",
+				"to": "00:57:59,000"
+			},
+			"offsets": {
+				"from": 3478000,
+				"to": 3479000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:57:59,000",
+				"to": "00:58:00,000"
+			},
+			"offsets": {
+				"from": 3479000,
+				"to": 3480000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:00,000",
+				"to": "00:58:01,000"
+			},
+			"offsets": {
+				"from": 3480000,
+				"to": 3481000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:01,000",
+				"to": "00:58:02,000"
+			},
+			"offsets": {
+				"from": 3481000,
+				"to": 3482000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:02,000",
+				"to": "00:58:03,000"
+			},
+			"offsets": {
+				"from": 3482000,
+				"to": 3483000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:03,000",
+				"to": "00:58:04,000"
+			},
+			"offsets": {
+				"from": 3483000,
+				"to": 3484000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:04,000",
+				"to": "00:58:05,000"
+			},
+			"offsets": {
+				"from": 3484000,
+				"to": 3485000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:05,000",
+				"to": "00:58:06,000"
+			},
+			"offsets": {
+				"from": 3485000,
+				"to": 3486000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:06,000",
+				"to": "00:58:07,000"
+			},
+			"offsets": {
+				"from": 3486000,
+				"to": 3487000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:07,000",
+				"to": "00:58:08,000"
+			},
+			"offsets": {
+				"from": 3487000,
+				"to": 3488000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:08,000",
+				"to": "00:58:09,000"
+			},
+			"offsets": {
+				"from": 3488000,
+				"to": 3489000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:09,000",
+				"to": "00:58:10,000"
+			},
+			"offsets": {
+				"from": 3489000,
+				"to": 3490000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:10,000",
+				"to": "00:58:11,000"
+			},
+			"offsets": {
+				"from": 3490000,
+				"to": 3491000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:11,000",
+				"to": "00:58:12,000"
+			},
+			"offsets": {
+				"from": 3491000,
+				"to": 3492000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:12,000",
+				"to": "00:58:13,000"
+			},
+			"offsets": {
+				"from": 3492000,
+				"to": 3493000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:13,000",
+				"to": "00:58:14,000"
+			},
+			"offsets": {
+				"from": 3493000,
+				"to": 3494000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:14,000",
+				"to": "00:58:15,000"
+			},
+			"offsets": {
+				"from": 3494000,
+				"to": 3495000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:15,000",
+				"to": "00:58:16,000"
+			},
+			"offsets": {
+				"from": 3495000,
+				"to": 3496000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:16,000",
+				"to": "00:58:17,000"
+			},
+			"offsets": {
+				"from": 3496000,
+				"to": 3497000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:17,000",
+				"to": "00:58:18,000"
+			},
+			"offsets": {
+				"from": 3497000,
+				"to": 3498000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:18,000",
+				"to": "00:58:19,000"
+			},
+			"offsets": {
+				"from": 3498000,
+				"to": 3499000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:19,000",
+				"to": "00:58:20,000"
+			},
+			"offsets": {
+				"from": 3499000,
+				"to": 3500000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:21,000",
+				"to": "00:58:22,000"
+			},
+			"offsets": {
+				"from": 3501000,
+				"to": 3502000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:22,000",
+				"to": "00:58:23,000"
+			},
+			"offsets": {
+				"from": 3502000,
+				"to": 3503000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:23,000",
+				"to": "00:58:24,000"
+			},
+			"offsets": {
+				"from": 3503000,
+				"to": 3504000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:24,000",
+				"to": "00:58:25,000"
+			},
+			"offsets": {
+				"from": 3504000,
+				"to": 3505000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:25,000",
+				"to": "00:58:26,000"
+			},
+			"offsets": {
+				"from": 3505000,
+				"to": 3506000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:26,000",
+				"to": "00:58:27,000"
+			},
+			"offsets": {
+				"from": 3506000,
+				"to": 3507000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:27,000",
+				"to": "00:58:28,000"
+			},
+			"offsets": {
+				"from": 3507000,
+				"to": 3508000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:28,000",
+				"to": "00:58:29,000"
+			},
+			"offsets": {
+				"from": 3508000,
+				"to": 3509000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:29,000",
+				"to": "00:58:30,000"
+			},
+			"offsets": {
+				"from": 3509000,
+				"to": 3510000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:30,000",
+				"to": "00:58:31,000"
+			},
+			"offsets": {
+				"from": 3510000,
+				"to": 3511000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:31,000",
+				"to": "00:58:32,000"
+			},
+			"offsets": {
+				"from": 3511000,
+				"to": 3512000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:32,000",
+				"to": "00:58:33,000"
+			},
+			"offsets": {
+				"from": 3512000,
+				"to": 3513000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:33,000",
+				"to": "00:58:34,000"
+			},
+			"offsets": {
+				"from": 3513000,
+				"to": 3514000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:34,000",
+				"to": "00:58:35,000"
+			},
+			"offsets": {
+				"from": 3514000,
+				"to": 3515000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:35,000",
+				"to": "00:58:36,000"
+			},
+			"offsets": {
+				"from": 3515000,
+				"to": 3516000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:36,000",
+				"to": "00:58:37,000"
+			},
+			"offsets": {
+				"from": 3516000,
+				"to": 3517000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:37,000",
+				"to": "00:58:38,000"
+			},
+			"offsets": {
+				"from": 3517000,
+				"to": 3518000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:38,000",
+				"to": "00:58:39,000"
+			},
+			"offsets": {
+				"from": 3518000,
+				"to": 3519000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:39,000",
+				"to": "00:58:40,000"
+			},
+			"offsets": {
+				"from": 3519000,
+				"to": 3520000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:40,000",
+				"to": "00:58:41,000"
+			},
+			"offsets": {
+				"from": 3520000,
+				"to": 3521000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:41,000",
+				"to": "00:58:42,000"
+			},
+			"offsets": {
+				"from": 3521000,
+				"to": 3522000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:42,000",
+				"to": "00:58:43,000"
+			},
+			"offsets": {
+				"from": 3522000,
+				"to": 3523000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:43,000",
+				"to": "00:58:44,000"
+			},
+			"offsets": {
+				"from": 3523000,
+				"to": 3524000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:44,000",
+				"to": "00:58:45,000"
+			},
+			"offsets": {
+				"from": 3524000,
+				"to": 3525000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:45,000",
+				"to": "00:58:46,000"
+			},
+			"offsets": {
+				"from": 3525000,
+				"to": 3526000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:46,000",
+				"to": "00:58:47,000"
+			},
+			"offsets": {
+				"from": 3526000,
+				"to": 3527000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:47,000",
+				"to": "00:58:48,000"
+			},
+			"offsets": {
+				"from": 3527000,
+				"to": 3528000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:48,000",
+				"to": "00:58:49,000"
+			},
+			"offsets": {
+				"from": 3528000,
+				"to": 3529000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:49,000",
+				"to": "00:58:50,000"
+			},
+			"offsets": {
+				"from": 3529000,
+				"to": 3530000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:50,000",
+				"to": "00:58:51,000"
+			},
+			"offsets": {
+				"from": 3530000,
+				"to": 3531000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:51,000",
+				"to": "00:58:52,000"
+			},
+			"offsets": {
+				"from": 3531000,
+				"to": 3532000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:52,000",
+				"to": "00:58:53,000"
+			},
+			"offsets": {
+				"from": 3532000,
+				"to": 3533000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:53,000",
+				"to": "00:58:54,000"
+			},
+			"offsets": {
+				"from": 3533000,
+				"to": 3534000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:54,000",
+				"to": "00:58:55,000"
+			},
+			"offsets": {
+				"from": 3534000,
+				"to": 3535000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:55,000",
+				"to": "00:58:56,000"
+			},
+			"offsets": {
+				"from": 3535000,
+				"to": 3536000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:58:56,000",
+				"to": "00:58:57,000"
+			},
+			"offsets": {
+				"from": 3536000,
+				"to": 3537000
+			},
+			"text": " Yeah."
+		}
+	]
+}

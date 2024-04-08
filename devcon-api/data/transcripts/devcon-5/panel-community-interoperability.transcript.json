@@ -1,0 +1,5301 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10800
+			},
+			"text": " Thank you all for coming to this wonderful community interoperability panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,800",
+				"to": "00:00:16,440"
+			},
+			"offsets": {
+				"from": 10800,
+				"to": 16440
+			},
+			"text": " How is everyone feeling this morning?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,440",
+				"to": "00:00:19,440"
+			},
+			"offsets": {
+				"from": 16440,
+				"to": 19440
+			},
+			"text": " Raise your hand if you're not feeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,440",
+				"to": "00:00:22,880"
+			},
+			"offsets": {
+				"from": 19440,
+				"to": 22880
+			},
+			"text": " I'm glad to see you on this, Steve."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,880",
+				"to": "00:00:24,680"
+			},
+			"offsets": {
+				"from": 22880,
+				"to": 24680
+			},
+			"text": " This is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,680",
+				"to": "00:00:30,960"
+			},
+			"offsets": {
+				"from": 24680,
+				"to": 30960
+			},
+			"text": " So I guess maybe to start off, how about you, all of us, introduce ourselves and the communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,960",
+				"to": "00:00:32,640"
+			},
+			"offsets": {
+				"from": 30960,
+				"to": 32640
+			},
+			"text": " that we represent?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,640",
+				"to": "00:00:33,640"
+			},
+			"offsets": {
+				"from": 32640,
+				"to": 33640
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,640",
+				"to": "00:00:34,640"
+			},
+			"offsets": {
+				"from": 33640,
+				"to": 34640
+			},
+			"text": " My name is Josh Whitehart."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,640",
+				"to": "00:00:39,160"
+			},
+			"offsets": {
+				"from": 34640,
+				"to": 39160
+			},
+			"text": " I'm the Vice President of Marketing and Business Development for Zcash, or actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,160",
+				"to": "00:00:46,080"
+			},
+			"offsets": {
+				"from": 39160,
+				"to": 46080
+			},
+			"text": " for the Electric Wind Company, which is the inventor and supporter of Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,080",
+				"to": "00:00:52,480"
+			},
+			"offsets": {
+				"from": 46080,
+				"to": 52480
+			},
+			"text": " My name is Jake Wan, and I am the co-founder of Tenor Mint and the Cosmos Project."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,480",
+				"to": "00:00:58,640"
+			},
+			"offsets": {
+				"from": 52480,
+				"to": 58640
+			},
+			"text": " I don't represent the Cosmos Project, but I support it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,640",
+				"to": "00:01:03,560"
+			},
+			"offsets": {
+				"from": 58640,
+				"to": 63560
+			},
+			"text": " And Terry Culver, CEO of Ethereum Classic Class."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,560",
+				"to": "00:01:07,280"
+			},
+			"offsets": {
+				"from": 63560,
+				"to": 67280
+			},
+			"text": " So first question is a challenge question."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,280",
+				"to": "00:01:14,040"
+			},
+			"offsets": {
+				"from": 67280,
+				"to": 74040
+			},
+			"text": " Do we think that it's in the long run even possible to have multiple coin communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,040",
+				"to": "00:01:19,520"
+			},
+			"offsets": {
+				"from": 74040,
+				"to": 79520
+			},
+			"text": " peacefully interoperating, or as the maximalists say, are we destined to be stuck in a hobby"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,520",
+				"to": "00:01:26,600"
+			},
+			"offsets": {
+				"from": 79520,
+				"to": 86600
+			},
+			"text": " and war of all coins against all until one coin wins and we have one single global cryptocurrency?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,600",
+				"to": "00:01:30,440"
+			},
+			"offsets": {
+				"from": 86600,
+				"to": 90440
+			},
+			"text": " So for me, I mean, I absolutely believe in crypto-pluralism."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,440",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 90440,
+				"to": 94200
+			},
+			"text": " I think different communities are going to have different coins for different needs and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 96000
+			},
+			"text": " that work in different contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,120"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99120
+			},
+			"text": " So I don't believe in a winner-takes-all kind of model."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,120",
+				"to": "00:01:43,360"
+			},
+			"offsets": {
+				"from": 99120,
+				"to": 103360
+			},
+			"text": " But I do think that they get to collaborate and work together."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,360",
+				"to": "00:01:44,360"
+			},
+			"offsets": {
+				"from": 103360,
+				"to": 104360
+			},
+			"text": " I also agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,360",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 104360,
+				"to": 110520
+			},
+			"text": " I think that one of the things that we don't see yet, but we'll probably see more in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 119000
+			},
+			"text": " future, are things like local currency coins or local municipal gals and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:03,800"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 123800
+			},
+			"text": " And every one of those, they may not all have their own chain, but they will be their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,800",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123800,
+				"to": 127000
+			},
+			"text": " community that is distinct from other communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 136160
+			},
+			"text": " So I think that's just one example that shows me that there will be many chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:17,160"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 137160
+			},
+			"text": " I agree."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,160",
+				"to": "00:02:21,800"
+			},
+			"offsets": {
+				"from": 137160,
+				"to": 141800
+			},
+			"text": " I don't think a winner-take-all future is really viable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,800",
+				"to": "00:02:26,840"
+			},
+			"offsets": {
+				"from": 141800,
+				"to": 146840
+			},
+			"text": " We all live our lives as parts of different communities already with different values."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,840",
+				"to": "00:02:31,080"
+			},
+			"offsets": {
+				"from": 146840,
+				"to": 151080
+			},
+			"text": " I don't see that changing in the blockchain and crypto space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,080",
+				"to": "00:02:38,560"
+			},
+			"offsets": {
+				"from": 151080,
+				"to": 158560
+			},
+			"text": " So one thing that I heard there is talking about communities and values."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,560",
+				"to": "00:02:44,800"
+			},
+			"offsets": {
+				"from": 158560,
+				"to": 164800
+			},
+			"text": " This is not a language that you normally hear people use to talk about currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,800",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 164800,
+				"to": 170440
+			},
+			"text": " You don't normally hear people saying, \"Oh, I use US dollars because I support US dollar"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,440",
+				"to": "00:02:57,200"
+			},
+			"offsets": {
+				"from": 170440,
+				"to": 177200
+			},
+			"text": " values and I'm going to switch to euros because down with US imperialism, I'm going to switch"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,200",
+				"to": "00:03:01,360"
+			},
+			"offsets": {
+				"from": 177200,
+				"to": 181360
+			},
+			"text": " to Ramin B or yen or whatever other currency.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,360",
+				"to": "00:03:06,560"
+			},
+			"offsets": {
+				"from": 181360,
+				"to": 186560
+			},
+			"text": " This is not something that happens right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,560",
+				"to": "00:03:08,320"
+			},
+			"offsets": {
+				"from": 186560,
+				"to": 188320
+			},
+			"text": " People don't even do this with stocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,320",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 188320,
+				"to": 193160
+			},
+			"text": " You don't even hear that much of people saying, \"I love Apple, so I'm going to buy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:14,160"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 194160
+			},
+			"text": " Apple stock.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,160",
+				"to": "00:03:19,040"
+			},
+			"offsets": {
+				"from": 194160,
+				"to": 199040
+			},
+			"text": " It kind of happens, but not too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,040",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 199040,
+				"to": 202880
+			},
+			"text": " I guess, why do we expect this will change?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:25,040"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 205040
+			},
+			"text": " I think it actually is tribal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,040",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 205040,
+				"to": 209520
+			},
+			"text": " We have our own currencies that work in our own way in different contexts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:35,120"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 215120
+			},
+			"text": " It's just that the tribalism historically maybe has been physical, maybe than digital."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,120",
+				"to": "00:03:37,400"
+			},
+			"offsets": {
+				"from": 215120,
+				"to": 217400
+			},
+			"text": " So maybe that dynamic is what's changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,400",
+				"to": "00:03:48,600"
+			},
+			"offsets": {
+				"from": 217400,
+				"to": 228600
+			},
+			"text": " I think we haven't had maybe the technology and we still don't have to relax for a large"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,600",
+				"to": "00:03:54,840"
+			},
+			"offsets": {
+				"from": 228600,
+				"to": 234840
+			},
+			"text": " number of people to use multiple points and for there to be competition among coins and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,840",
+				"to": "00:03:59,920"
+			},
+			"offsets": {
+				"from": 234840,
+				"to": 239920
+			},
+			"text": " for people in the United States to support one coin versus the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,920",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 239920,
+				"to": 246040
+			},
+			"text": " Certainly the regulations don't allow it yet, but I think this will change as the industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:16,600"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 256600
+			},
+			"text": " matures and as it's adopted by the community despite what the powers that being might want."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,600",
+				"to": "00:04:19,600"
+			},
+			"offsets": {
+				"from": 256600,
+				"to": 259600
+			},
+			"text": " I don't know when."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,600",
+				"to": "00:04:22,600"
+			},
+			"offsets": {
+				"from": 259600,
+				"to": 262600
+			},
+			"text": " Hopefully in the next three years."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,600",
+				"to": "00:04:30,520"
+			},
+			"offsets": {
+				"from": 262600,
+				"to": 270520
+			},
+			"text": " I guess turning things a bit, we can talk a bit about the technical collaboration."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,520",
+				"to": "00:04:37,600"
+			},
+			"offsets": {
+				"from": 270520,
+				"to": 277600
+			},
+			"text": " Our different community is how their own indifference out of what chance they're working on, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,600",
+				"to": "00:04:39,600"
+			},
+			"offsets": {
+				"from": 277600,
+				"to": 279600
+			},
+			"text": " we also end up sharing a lot of tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,600",
+				"to": "00:04:46,480"
+			},
+			"offsets": {
+				"from": 279600,
+				"to": 286480
+			},
+			"text": " So for example, Ethereum and Ethereum Classic share a large portion of the tech stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,480",
+				"to": "00:04:53,840"
+			},
+			"offsets": {
+				"from": 286480,
+				"to": 293840
+			},
+			"text": " Ethereum and Zcash based on ZGetsnarks and Ethereum heavily employs ZGetsnarks and Cosmo"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,840",
+				"to": "00:04:57,800"
+			},
+			"offsets": {
+				"from": 293840,
+				"to": 297800
+			},
+			"text": " shares a lot of cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,800",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 297800,
+				"to": 307440
+			},
+			"text": " So do you think we're doing a good enough job of coordinating on how we improve the technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:10,800"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 310800
+			},
+			"text": " that are shared between us and if not, what kind of things do you think we can do better"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,800",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 310800,
+				"to": 312800
+			},
+			"text": " on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:14,560"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 314560
+			},
+			"text": " I think we could do a much better job."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,560",
+				"to": "00:05:23,120"
+			},
+			"offsets": {
+				"from": 314560,
+				"to": 323120
+			},
+			"text": " I think many blockchains are facing the same fundamental questions and I think many of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,120",
+				"to": "00:05:25,360"
+			},
+			"offsets": {
+				"from": 323120,
+				"to": 325360
+			},
+			"text": " us are trying to reinvent the wheel."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,360",
+				"to": "00:05:31,120"
+			},
+			"offsets": {
+				"from": 325360,
+				"to": 331120
+			},
+			"text": " I think we can identify those questions and work them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,120",
+				"to": "00:05:38,520"
+			},
+			"offsets": {
+				"from": 331120,
+				"to": 338520
+			},
+			"text": " One of the things I totally agree and to add to that, I think one thing I learned along"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,520",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 338520,
+				"to": 348520
+			},
+			"text": " this journey is that if you can define a protocol of communication between two components of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 353000
+			},
+			"text": " a tech stack, for example, or if you consider tech stack for blockchain, there are so many"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:59,080"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 359080
+			},
+			"text": " components and if you can well define the protocol or the interface between these components,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,080",
+				"to": "00:06:07,640"
+			},
+			"offsets": {
+				"from": 359080,
+				"to": 367640
+			},
+			"text": " then you can have different communities responsible for their flavor of implementation and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,640",
+				"to": "00:06:13,560"
+			},
+			"offsets": {
+				"from": 367640,
+				"to": 373560
+			},
+			"text": " you can have competition for a module or component but ultimately all working towards"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,560",
+				"to": "00:06:17,480"
+			},
+			"offsets": {
+				"from": 373560,
+				"to": 377480
+			},
+			"text": " the whole because it's pluggable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,480",
+				"to": "00:06:23,280"
+			},
+			"offsets": {
+				"from": 377480,
+				"to": 383280
+			},
+			"text": " So I've experienced that once and we're trying to also push for that in other regards like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,280",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 383280,
+				"to": 388320
+			},
+			"text": " with a consensus engine tenderment, with the ABCI protocol for example, but it's also"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:33,400"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 393400
+			},
+			"text": " obviously an Ethereum with the ADI and so on already exists as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,400",
+				"to": "00:06:37,360"
+			},
+			"offsets": {
+				"from": 393400,
+				"to": 397360
+			},
+			"text": " I think it's helpful to be intentional rather than pass."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,360",
+				"to": "00:06:43,520"
+			},
+			"offsets": {
+				"from": 397360,
+				"to": 403520
+			},
+			"text": " So passively we can borrow technology and that kind of thing but we can accelerate much more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,520",
+				"to": "00:06:51,400"
+			},
+			"offsets": {
+				"from": 403520,
+				"to": 411400
+			},
+			"text": " when we're intentional so getting like two added to assemble and work between Zcash and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,400",
+				"to": "00:06:56,080"
+			},
+			"offsets": {
+				"from": 411400,
+				"to": 416080
+			},
+			"text": " the electric coin company I think is hugely important for allowing interoperability in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,080",
+				"to": "00:07:01,280"
+			},
+			"offsets": {
+				"from": 416080,
+				"to": 421280
+			},
+			"text": " the future so you can use Zcash within DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,280",
+				"to": "00:07:07,240"
+			},
+			"offsets": {
+				"from": 421280,
+				"to": 427240
+			},
+			"text": " That's unlocking some other things and potential with work on fly client potential integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,240",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 427240,
+				"to": 437000
+			},
+			"text": " with Cosmos for example but those interactions and those conversations don't happen passively."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,760"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441760
+			},
+			"text": " They happen generally when people are in the same room together and they're able to kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,760",
+				"to": "00:07:26,200"
+			},
+			"offsets": {
+				"from": 441760,
+				"to": 446200
+			},
+			"text": " of sit down and think and they're thinking about selfishly about their own project that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,200",
+				"to": "00:07:31,240"
+			},
+			"offsets": {
+				"from": 446200,
+				"to": 451240
+			},
+			"text": " they're working on but the magic can happen and the collisions can happen when folks get"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,240",
+				"to": "00:07:33,240"
+			},
+			"offsets": {
+				"from": 451240,
+				"to": 453240
+			},
+			"text": " in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,240",
+				"to": "00:07:39,800"
+			},
+			"offsets": {
+				"from": 453240,
+				"to": 459800
+			},
+			"text": " So if we suppose that imagine a future where our communities are collaborating more what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,800",
+				"to": "00:07:48,520"
+			},
+			"offsets": {
+				"from": 459800,
+				"to": 468520
+			},
+			"text": " are some of the positive results that you could imagine or hope to get out of bed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,520",
+				"to": "00:07:54,480"
+			},
+			"offsets": {
+				"from": 468520,
+				"to": 474480
+			},
+			"text": " Well Zcash being embedded in smart contracts so you're able to in the places where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,480",
+				"to": "00:07:59,840"
+			},
+			"offsets": {
+				"from": 474480,
+				"to": 479840
+			},
+			"text": " need that kind of privacy that that's there to the extent that like things like ZK SNARK"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,840",
+				"to": "00:08:03,560"
+			},
+			"offsets": {
+				"from": 479840,
+				"to": 483560
+			},
+			"text": " and some of the research that our cryptography are doing and being able to use that with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,560",
+				"to": "00:08:08,480"
+			},
+			"offsets": {
+				"from": 483560,
+				"to": 488480
+			},
+			"text": " an Ethereum independently cash I think is super cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,480",
+				"to": "00:08:11,520"
+			},
+			"offsets": {
+				"from": 488480,
+				"to": 491520
+			},
+			"text": " So for me those are a couple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,520",
+				"to": "00:08:19,480"
+			},
+			"offsets": {
+				"from": 491520,
+				"to": 499480
+			},
+			"text": " I'd love to see a more intentional organization that brings various communities or representatives"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,480",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 499480,
+				"to": 506560
+			},
+			"text": " or people from various communities to start to have these conversations like you mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:31,840"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 511840
+			},
+			"text": " The Ethereum is playing it for the crypto community for large steps today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,840",
+				"to": "00:08:36,640"
+			},
+			"offsets": {
+				"from": 511840,
+				"to": 516640
+			},
+			"text": " Maybe we can reach well how do we reach out to all the projects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,640",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 516640,
+				"to": 519000
+			},
+			"text": " What is that association?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:43,720"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 523720
+			},
+			"text": " So I'd love to see something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,720",
+				"to": "00:08:50,960"
+			},
+			"offsets": {
+				"from": 523720,
+				"to": 530960
+			},
+			"text": " I think Ethereum is like kind of set the standard for that right of bringing all of these disparate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,960",
+				"to": "00:08:53,880"
+			},
+			"offsets": {
+				"from": 530960,
+				"to": 533880
+			},
+			"text": " developers and projects and things like that together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,880",
+				"to": "00:08:59,160"
+			},
+			"offsets": {
+				"from": 533880,
+				"to": 539160
+			},
+			"text": " It's been phenomenal so it's kind of the bar that has been set I think."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,160",
+				"to": "00:09:01,840"
+			},
+			"offsets": {
+				"from": 539160,
+				"to": 541840
+			},
+			"text": " How is it that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,840",
+				"to": "00:09:04,680"
+			},
+			"offsets": {
+				"from": 541840,
+				"to": 544680
+			},
+			"text": " I'm not saying one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,680",
+				"to": "00:09:12,960"
+			},
+			"offsets": {
+				"from": 544680,
+				"to": 552960
+			},
+			"text": " How is it that Ethereum is able to do this whereas other projects don't?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,960",
+				"to": "00:09:16,040"
+			},
+			"offsets": {
+				"from": 552960,
+				"to": 556040
+			},
+			"text": " How is Ethereum able to do collaboration whereas other projects don't?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,040",
+				"to": "00:09:20,080"
+			},
+			"offsets": {
+				"from": 556040,
+				"to": 560080
+			},
+			"text": " Yeah like how is it that Ethereum is better able to collaborate with this part like many"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,080",
+				"to": "00:09:21,080"
+			},
+			"offsets": {
+				"from": 560080,
+				"to": 561080
+			},
+			"text": " projects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,080",
+				"to": "00:09:27,920"
+			},
+			"offsets": {
+				"from": 561080,
+				"to": 567920
+			},
+			"text": " I mean part of it I think might be just the fact that Ethereum has had a kind of anti-maximalist"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,920",
+				"to": "00:09:31,640"
+			},
+			"offsets": {
+				"from": 567920,
+				"to": 571640
+			},
+			"text": " ethos kind of from the start."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,640",
+				"to": "00:09:36,560"
+			},
+			"offsets": {
+				"from": 571640,
+				"to": 576560
+			},
+			"text": " In the case of Bitcoin there's definitely more of this culture of like this is the legit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,560",
+				"to": "00:09:41,440"
+			},
+			"offsets": {
+				"from": 576560,
+				"to": 581440
+			},
+			"text": " coin or these are the legit coins and if you're not a legit coin then you're a scam."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,440",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 581440,
+				"to": 585160
+			},
+			"text": " And Ethereum community has its own opinions about what's a legit coin and what's a scam"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:51,680"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 591680
+			},
+			"text": " but I feel like it's kind of broader and kind of broad enough to allow collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,680",
+				"to": "00:09:54,360"
+			},
+			"offsets": {
+				"from": 591680,
+				"to": 594360
+			},
+			"text": " among technically good projects to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,360",
+				"to": "00:09:59,600"
+			},
+			"offsets": {
+				"from": 594360,
+				"to": 599600
+			},
+			"text": " So just recognizing the legitimacy of different approaches is the first step to cooperating"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,600",
+				"to": "00:10:02,760"
+			},
+			"offsets": {
+				"from": 599600,
+				"to": 602760
+			},
+			"text": " with different approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,760",
+				"to": "00:10:07,720"
+			},
+			"offsets": {
+				"from": 602760,
+				"to": 607720
+			},
+			"text": " I think the other thing would be cool is like if beyond kind of technology collaboration"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,720",
+				"to": "00:10:12,040"
+			},
+			"offsets": {
+				"from": 607720,
+				"to": 612040
+			},
+			"text": " we figured out how to do a better job of working on things like product market fit or things"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,040",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612040,
+				"to": 617000
+			},
+			"text": " out in the field where we're engaging together with the community to reach populations and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:21,560"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 621560
+			},
+			"text": " to try to solve specific use cases where we're not really doing that today we kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,560",
+				"to": "00:10:23,120"
+			},
+			"offsets": {
+				"from": 621560,
+				"to": 623120
+			},
+			"text": " it doesn't feel like it maybe."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,120",
+				"to": "00:10:26,080"
+			},
+			"offsets": {
+				"from": 623120,
+				"to": 626080
+			},
+			"text": " We're kind of coming together and we talk about this stuff and we engage technically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,080",
+				"to": "00:10:32,400"
+			},
+			"offsets": {
+				"from": 626080,
+				"to": 632400
+			},
+			"text": " but when it comes to the kind of actual execution on the ground there's a little bit less of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,400",
+				"to": "00:10:34,840"
+			},
+			"offsets": {
+				"from": 632400,
+				"to": 634840
+			},
+			"text": " that kind of collaboration."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,840",
+				"to": "00:10:40,680"
+			},
+			"offsets": {
+				"from": 634840,
+				"to": 640680
+			},
+			"text": " I think greater collaboration speaks to the way in which blockchains have to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,680",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 640680,
+				"to": 646000
+			},
+			"text": " I mean, you know, we don't expect to get a corporate strategy plan that's costly and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:47,560"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 647560
+			},
+			"text": " printed and everybody follows it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,560",
+				"to": "00:10:52,240"
+			},
+			"offsets": {
+				"from": 647560,
+				"to": 652240
+			},
+			"text": " This is an iterative creative process for which there may not be any one single right"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,240",
+				"to": "00:10:53,520"
+			},
+			"offsets": {
+				"from": 652240,
+				"to": 653520
+			},
+			"text": " answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,520",
+				"to": "00:10:57,640"
+			},
+			"offsets": {
+				"from": 653520,
+				"to": 657640
+			},
+			"text": " And so to do that you need an increasingly diverse community with increasingly diverse"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,640",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 657640,
+				"to": 662320
+			},
+			"text": " ideas and debate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:10,200"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 670200
+			},
+			"text": " One question I have is every time I fly I feel guilty because of the carbon footprint"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,200",
+				"to": "00:11:17,200"
+			},
+			"offsets": {
+				"from": 670200,
+				"to": 677200
+			},
+			"text": " and the crypto community requires a lot of flying in order to me and like you mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,200",
+				"to": "00:11:20,040"
+			},
+			"offsets": {
+				"from": 677200,
+				"to": 680040
+			},
+			"text": " being in the same place is what makes the magic happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,040",
+				"to": "00:11:24,320"
+			},
+			"offsets": {
+				"from": 680040,
+				"to": 684320
+			},
+			"text": " But I feel like for us to scale to a larger community like at some point we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,320",
+				"to": "00:11:29,480"
+			},
+			"offsets": {
+				"from": 684320,
+				"to": 689480
+			},
+			"text": " have to figure out how to make this work without flying but I don't know how to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,480",
+				"to": "00:11:35,480"
+			},
+			"offsets": {
+				"from": 689480,
+				"to": 695480
+			},
+			"text": " Maybe the thing we would need is more kind of grassroots like kind of vocal level of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,480",
+				"to": "00:11:40,480"
+			},
+			"offsets": {
+				"from": 695480,
+				"to": 700480
+			},
+			"text": " our ability like what should Ethereum Japan and Cosmos Japan be talking to each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,480",
+				"to": "00:11:43,480"
+			},
+			"offsets": {
+				"from": 700480,
+				"to": 703480
+			},
+			"text": " more."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,480",
+				"to": "00:11:47,960"
+			},
+			"offsets": {
+				"from": 703480,
+				"to": 707960
+			},
+			"text": " Yeah, it's like the leader for friends and we're already in Japan should maybe should"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,960",
+				"to": "00:11:53,320"
+			},
+			"offsets": {
+				"from": 707960,
+				"to": 713320
+			},
+			"text": " we should we be chatting or at least those of us who are in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,320",
+				"to": "00:12:00,680"
+			},
+			"offsets": {
+				"from": 713320,
+				"to": 720680
+			},
+			"text": " Same with Korea, same with like Taiwan, same with China, same with anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,680",
+				"to": "00:12:11,040"
+			},
+			"offsets": {
+				"from": 720680,
+				"to": 731040
+			},
+			"text": " So regarding the kind of community aspects of interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,040",
+				"to": "00:12:16,880"
+			},
+			"offsets": {
+				"from": 731040,
+				"to": 736880
+			},
+			"text": " Well actually so one other question we have is like we talked about there's technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,880",
+				"to": "00:12:23,040"
+			},
+			"offsets": {
+				"from": 736880,
+				"to": 743040
+			},
+			"text": " and there's a kind of collaboration because of shared technology and there's also this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,040",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 743040,
+				"to": 749200
+			},
+			"text": " idea that of different coins and different blockchain communities stand for different"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:31,800"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 751800
+			},
+			"text": " values and ideologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,800",
+				"to": "00:12:36,280"
+			},
+			"offsets": {
+				"from": 751800,
+				"to": 756280
+			},
+			"text": " I guess maybe to start off like what are some of the key things that you would describe"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,280",
+				"to": "00:12:38,960"
+			},
+			"offsets": {
+				"from": 756280,
+				"to": 758960
+			},
+			"text": " each of your communities as standing for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,960",
+				"to": "00:12:41,960"
+			},
+			"offsets": {
+				"from": 758960,
+				"to": 761960
+			},
+			"text": " You're sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,960",
+				"to": "00:12:49,880"
+			},
+			"offsets": {
+				"from": 761960,
+				"to": 769880
+			},
+			"text": " Well I think Ethereum Classic was originally defined as a statement about governance and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,880",
+				"to": "00:12:52,160"
+			},
+			"offsets": {
+				"from": 769880,
+				"to": 772160
+			},
+			"text": " it wasn't really technical at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,160",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 772160,
+				"to": 777000
+			},
+			"text": " It's since taken on a technical agenda and that'll become stronger over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:00,320"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 780320
+			},
+			"text": " I think at the moment and this is something that's evolving right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,320",
+				"to": "00:13:05,200"
+			},
+			"offsets": {
+				"from": 780320,
+				"to": 785200
+			},
+			"text": " I think at the moment it feels very closely tied to the idea of immutability even though"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,200",
+				"to": "00:13:10,720"
+			},
+			"offsets": {
+				"from": 785200,
+				"to": 790720
+			},
+			"text": " that's not exclusive to Ethereum Classic and the idea of security so that you could foresee"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,720",
+				"to": "00:13:18,080"
+			},
+			"offsets": {
+				"from": 790720,
+				"to": 798080
+			},
+			"text": " a chain that focuses more on maybe transaction finality and larger fewer transactions than"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,080",
+				"to": "00:13:20,640"
+			},
+			"offsets": {
+				"from": 798080,
+				"to": 800640
+			},
+			"text": " you know more smaller transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,640",
+				"to": "00:13:28,320"
+			},
+			"offsets": {
+				"from": 800640,
+				"to": 808320
+			},
+			"text": " So on Twitter yesterday I think Bob Somerville described ETC as being an ETH technology and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,320",
+				"to": "00:13:29,320"
+			},
+			"offsets": {
+				"from": 808320,
+				"to": 809320
+			},
+			"text": " VTC values."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,320",
+				"to": "00:13:31,320"
+			},
+			"offsets": {
+				"from": 809320,
+				"to": 811320
+			},
+			"text": " I mean do you agree with that characterization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,320",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 811320,
+				"to": 814560
+			},
+			"text": " Do you think it's more complicated than that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:36,840"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 816840
+			},
+			"text": " I mean I understand the ETH technology part."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,840",
+				"to": "00:13:41,480"
+			},
+			"offsets": {
+				"from": 816840,
+				"to": 821480
+			},
+			"text": " I don't understand the values he's referring to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,480",
+				"to": "00:13:42,480"
+			},
+			"offsets": {
+				"from": 821480,
+				"to": 822480
+			},
+			"text": " I would say it's different."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,480",
+				"to": "00:13:50,160"
+			},
+			"offsets": {
+				"from": 822480,
+				"to": 830160
+			},
+			"text": " I think the community itself is distinct characterized by that ability to move in a different direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,160",
+				"to": "00:13:56,800"
+			},
+			"offsets": {
+				"from": 830160,
+				"to": 836800
+			},
+			"text": " around governance and that's historical and now trying to position the community in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,800",
+				"to": "00:13:59,240"
+			},
+			"offsets": {
+				"from": 836800,
+				"to": 839240
+			},
+			"text": " way that enables it to collaborate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,240",
+				"to": "00:14:04,360"
+			},
+			"offsets": {
+				"from": 839240,
+				"to": 844360
+			},
+			"text": " I think I would position us really as being in a place where we're looking to collaborate"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,360",
+				"to": "00:14:08,200"
+			},
+			"offsets": {
+				"from": 844360,
+				"to": 848200
+			},
+			"text": " very strongly."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,200",
+				"to": "00:14:13,200"
+			},
+			"offsets": {
+				"from": 848200,
+				"to": 853200
+			},
+			"text": " For Cosmos maybe the key value is interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,200",
+				"to": "00:14:23,280"
+			},
+			"offsets": {
+				"from": 853200,
+				"to": 863280
+			},
+			"text": " We do other things too like offering security and consensus algorithm and making sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,280",
+				"to": "00:14:28,760"
+			},
+			"offsets": {
+				"from": 863280,
+				"to": 868760
+			},
+			"text": " the hub is permissionless but the core product of the Cosmos hub is about connecting to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,760",
+				"to": "00:14:34,400"
+			},
+			"offsets": {
+				"from": 868760,
+				"to": 874400
+			},
+			"text": " blockchains and creating protocols for interoperability between blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,400",
+				"to": "00:14:38,200"
+			},
+			"offsets": {
+				"from": 874400,
+				"to": 878200
+			},
+			"text": " So interrupt."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,200",
+				"to": "00:14:46,160"
+			},
+			"offsets": {
+				"from": 878200,
+				"to": 886160
+			},
+			"text": " So give groups their own blockchains, communities their own sovereignty, their own ability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,160",
+				"to": "00:14:50,440"
+			},
+			"offsets": {
+				"from": 886160,
+				"to": 890440
+			},
+			"text": " dictate and decide what happens on that blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,440",
+				"to": "00:14:54,240"
+			},
+			"offsets": {
+				"from": 890440,
+				"to": 894240
+			},
+			"text": " Yeah for us all that leads to freedom."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,240",
+				"to": "00:15:00,600"
+			},
+			"offsets": {
+				"from": 894240,
+				"to": 900600
+			},
+			"text": " I mean we get ZCaches cost by the price point but you can't have to read them without privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,600",
+				"to": "00:15:08,080"
+			},
+			"offsets": {
+				"from": 900600,
+				"to": 908080
+			},
+			"text": " or the option to privacy to be able to protect what's yours."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,080",
+				"to": "00:15:15,440"
+			},
+			"offsets": {
+				"from": 908080,
+				"to": 915440
+			},
+			"text": " I've been talking about like a friend of mine at Mo who is a Syrian refugee and Mo had a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,440",
+				"to": "00:15:23,760"
+			},
+			"offsets": {
+				"from": 915440,
+				"to": 923760
+			},
+			"text": " business, had bank accounts in Syria, family, family homes and was forced to leave because"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,760",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 923760,
+				"to": 926760
+			},
+			"text": " he was protesting and government locked down everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:33,400"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 933400
+			},
+			"text": " So he no longer had self sovereignty of his own money and the government could see all"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,400",
+				"to": "00:15:34,560"
+			},
+			"offsets": {
+				"from": 933400,
+				"to": 934560
+			},
+			"text": " of that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,560",
+				"to": "00:15:37,200"
+			},
+			"offsets": {
+				"from": 934560,
+				"to": 937200
+			},
+			"text": " They could see all of it because they control it and it's in their context and they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,200",
+				"to": "00:15:39,560"
+			},
+			"offsets": {
+				"from": 937200,
+				"to": 939560
+			},
+			"text": " access to bank accounts and all that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,560",
+				"to": "00:15:42,320"
+			},
+			"offsets": {
+				"from": 939560,
+				"to": 942320
+			},
+			"text": " So when he moved he had to move to Jordan he had to rebuild his life and that's when he"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,320",
+				"to": "00:15:49,200"
+			},
+			"offsets": {
+				"from": 942320,
+				"to": 949200
+			},
+			"text": " got into cryptocurrency and he's like I need to be able to protect my wealth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,200",
+				"to": "00:15:54,640"
+			},
+			"offsets": {
+				"from": 949200,
+				"to": 954640
+			},
+			"text": " I need that freedom and I need to be able to do it privately because I don't trust any"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,640",
+				"to": "00:16:00,360"
+			},
+			"offsets": {
+				"from": 954640,
+				"to": 960360
+			},
+			"text": " of these kind of government entities to tab access and visibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,360",
+				"to": "00:16:03,880"
+			},
+			"offsets": {
+				"from": 960360,
+				"to": 963880
+			},
+			"text": " And then the other thing is like we talk even it's a personal security but it's also business"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,880",
+				"to": "00:16:06,520"
+			},
+			"offsets": {
+				"from": 963880,
+				"to": 966520
+			},
+			"text": " security and it's even national security."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,520",
+				"to": "00:16:13,200"
+			},
+			"offsets": {
+				"from": 966520,
+				"to": 973200
+			},
+			"text": " So we've seen the impact of data being used by a foreign actor in Russia trying to influence"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,200",
+				"to": "00:16:18,320"
+			},
+			"offsets": {
+				"from": 973200,
+				"to": 978320
+			},
+			"text": " another foreign actor in the US based upon the manipulation of the population from data"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,320",
+				"to": "00:16:19,640"
+			},
+			"offsets": {
+				"from": 978320,
+				"to": 979640
+			},
+			"text": " that they collected."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,640",
+				"to": "00:16:25,360"
+			},
+			"offsets": {
+				"from": 979640,
+				"to": 985360
+			},
+			"text": " And so it's a national security imperative that governments actually mandate some privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,360",
+				"to": "00:16:30,240"
+			},
+			"offsets": {
+				"from": 985360,
+				"to": 990240
+			},
+			"text": " for citizens and so that's what we're with."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,240",
+				"to": "00:16:33,400"
+			},
+			"offsets": {
+				"from": 990240,
+				"to": 993400
+			},
+			"text": " Let's kind of see the core values of the happiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,400",
+				"to": "00:16:35,920"
+			},
+			"offsets": {
+				"from": 993400,
+				"to": 995920
+			},
+			"text": " I see an interesting disparity between the answers here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,920",
+				"to": "00:16:43,240"
+			},
+			"offsets": {
+				"from": 995920,
+				"to": 1003240
+			},
+			"text": " Josh's answer is about Zcash's values with respect to kind of concerns that people in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,240",
+				"to": "00:16:44,560"
+			},
+			"offsets": {
+				"from": 1003240,
+				"to": 1004560
+			},
+			"text": " the broader world would have."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,560",
+				"to": "00:16:52,640"
+			},
+			"offsets": {
+				"from": 1004560,
+				"to": 1012640
+			},
+			"text": " As your answer is more about this is our values that our blockchain expresses with respect"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,640",
+				"to": "00:16:56,840"
+			},
+			"offsets": {
+				"from": 1012640,
+				"to": 1016840
+			},
+			"text": " to other watchings or with respect to the blockchain space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,840",
+				"to": "00:17:04,920"
+			},
+			"offsets": {
+				"from": 1016840,
+				"to": 1024920
+			},
+			"text": " So I guess first of all do either of you disagree with freedom and privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,920",
+				"to": "00:17:06,280"
+			},
+			"offsets": {
+				"from": 1024920,
+				"to": 1026280
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,280",
+				"to": "00:17:12,160"
+			},
+			"offsets": {
+				"from": 1026280,
+				"to": 1032160
+			},
+			"text": " I don't disagree with it but I think each of these are nuanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,160",
+				"to": "00:17:17,960"
+			},
+			"offsets": {
+				"from": 1032160,
+				"to": 1037960
+			},
+			"text": " So privacy for example, I think the thing that we don't know yet and the thing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,960",
+				"to": "00:17:23,400"
+			},
+			"offsets": {
+				"from": 1037960,
+				"to": 1043400
+			},
+			"text": " we should try to answer from an ethics point of view of designing and answering the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,400",
+				"to": "00:17:24,640"
+			},
+			"offsets": {
+				"from": 1043400,
+				"to": 1044640
+			},
+			"text": " of what should we design for."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,640",
+				"to": "00:17:29,920"
+			},
+			"offsets": {
+				"from": 1044640,
+				"to": 1049920
+			},
+			"text": " Of course we want to enable privacy but if we enable complete privacy of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,920",
+				"to": "00:17:37,480"
+			},
+			"offsets": {
+				"from": 1049920,
+				"to": 1057480
+			},
+			"text": " and account balances how can that be abused in such a way that may not be easy to abuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,480",
+				"to": "00:17:38,960"
+			},
+			"offsets": {
+				"from": 1057480,
+				"to": 1058960
+			},
+			"text": " today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,960",
+				"to": "00:17:44,920"
+			},
+			"offsets": {
+				"from": 1058960,
+				"to": 1064920
+			},
+			"text": " And I think there's one argument to say that for example terrorist funding is much easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,920",
+				"to": "00:17:51,720"
+			},
+			"offsets": {
+				"from": 1064920,
+				"to": 1071720
+			},
+			"text": " with USD cash for example that's what they use."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,720",
+				"to": "00:18:03,560"
+			},
+			"offsets": {
+				"from": 1071720,
+				"to": 1083560
+			},
+			"text": " However if you make the USD cash really easy to transport then it just becomes that much"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,560",
+				"to": "00:18:09,200"
+			},
+			"offsets": {
+				"from": 1083560,
+				"to": 1089200
+			},
+			"text": " easier to conduct private terrorist transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,200",
+				"to": "00:18:11,200"
+			},
+			"offsets": {
+				"from": 1089200,
+				"to": 1091200
+			},
+			"text": " That's just one example."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,200",
+				"to": "00:18:15,840"
+			},
+			"offsets": {
+				"from": 1091200,
+				"to": 1095840
+			},
+			"text": " So the internet made it easier for terrorism."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,840",
+				"to": "00:18:17,680"
+			},
+			"offsets": {
+				"from": 1095840,
+				"to": 1097680
+			},
+			"text": " The internet made it easier for terrorism?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,680",
+				"to": "00:18:21,960"
+			},
+			"offsets": {
+				"from": 1097680,
+				"to": 1101960
+			},
+			"text": " Because they could pass information along peer to peer or whatever without any kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,960",
+				"to": "00:18:22,960"
+			},
+			"offsets": {
+				"from": 1101960,
+				"to": 1102960
+			},
+			"text": " central control."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,960",
+				"to": "00:18:28,040"
+			},
+			"offsets": {
+				"from": 1102960,
+				"to": 1108040
+			},
+			"text": " But there's no argument to kind of expose or make all of that visible."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,040",
+				"to": "00:18:35,960"
+			},
+			"offsets": {
+				"from": 1108040,
+				"to": 1115960
+			},
+			"text": " And the opposite is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,960",
+				"to": "00:18:39,640"
+			},
+			"offsets": {
+				"from": 1115960,
+				"to": 1119640
+			},
+			"text": " All of these kind of funny pot databases where everybody's collecting individual social"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,640",
+				"to": "00:18:48,520"
+			},
+			"offsets": {
+				"from": 1119640,
+				"to": 1128520
+			},
+			"text": " media data that can be hacked by China or whatever third party."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,520",
+				"to": "00:18:54,840"
+			},
+			"offsets": {
+				"from": 1128520,
+				"to": 1134840
+			},
+			"text": " So it's not like any of these tools could be used for terrorism."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,840",
+				"to": "00:18:58,400"
+			},
+			"offsets": {
+				"from": 1134840,
+				"to": 1138400
+			},
+			"text": " Though maybe I'm not disagreeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,400",
+				"to": "00:19:00,120"
+			},
+			"offsets": {
+				"from": 1138400,
+				"to": 1140120
+			},
+			"text": " I don't know what the answer is."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,120",
+				"to": "00:19:02,120"
+			},
+			"offsets": {
+				"from": 1140120,
+				"to": 1142120
+			},
+			"text": " I don't know what the answer is."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,120",
+				"to": "00:19:03,120"
+			},
+			"offsets": {
+				"from": 1142120,
+				"to": 1143120
+			},
+			"text": " I'm exploring it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,120",
+				"to": "00:19:08,880"
+			},
+			"offsets": {
+				"from": 1143120,
+				"to": 1148880
+			},
+			"text": " But like at least with sites like I can choose not to associate with this site for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,880",
+				"to": "00:19:18,920"
+			},
+			"offsets": {
+				"from": 1148880,
+				"to": 1158920
+			},
+			"text": " But when you're talking about privacy preserving money if I don't want to support a currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,920",
+				"to": "00:19:22,680"
+			},
+			"offsets": {
+				"from": 1158920,
+				"to": 1162680
+			},
+			"text": " that is being used by terrorists as an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,680",
+				"to": "00:19:27,640"
+			},
+			"offsets": {
+				"from": 1162680,
+				"to": 1167640
+			},
+			"text": " I feel like I wouldn't have a choice if we designed the system wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,640",
+				"to": "00:19:32,440"
+			},
+			"offsets": {
+				"from": 1167640,
+				"to": 1172440
+			},
+			"text": " So yeah I guess my point is we just need to be cognizant of how we design the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,440",
+				"to": "00:19:35,560"
+			},
+			"offsets": {
+				"from": 1172440,
+				"to": 1175560
+			},
+			"text": " so that we don't get locked into a system accidentally."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,560",
+				"to": "00:19:39,280"
+			},
+			"offsets": {
+				"from": 1175560,
+				"to": 1179280
+			},
+			"text": " Terry, do you disagree with privacy and freedom?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,280",
+				"to": "00:19:41,240"
+			},
+			"offsets": {
+				"from": 1179280,
+				"to": 1181240
+			},
+			"text": " Absolutely not."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,240",
+				"to": "00:19:46,240"
+			},
+			"offsets": {
+				"from": 1181240,
+				"to": 1186240
+			},
+			"text": " I think there is central for the kind of economic independence that we're trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,240",
+				"to": "00:19:47,600"
+			},
+			"offsets": {
+				"from": 1186240,
+				"to": 1187600
+			},
+			"text": " build."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,600",
+				"to": "00:19:54,080"
+			},
+			"offsets": {
+				"from": 1187600,
+				"to": 1194080
+			},
+			"text": " So in cases where there's different emphasized values one thing that sometimes worth sorting"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,080",
+				"to": "00:19:58,120"
+			},
+			"offsets": {
+				"from": 1194080,
+				"to": 1198120
+			},
+			"text": " out is isn't just a difference in priorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,120",
+				"to": "00:20:03,120"
+			},
+			"offsets": {
+				"from": 1198120,
+				"to": 1203120
+			},
+			"text": " So for example I might imagine that if you're in people are currently not into privacy and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,120",
+				"to": "00:20:05,560"
+			},
+			"offsets": {
+				"from": 1203120,
+				"to": 1205560
+			},
+			"text": " we even have tornado dot cash now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,560",
+				"to": "00:20:15,680"
+			},
+			"offsets": {
+				"from": 1205560,
+				"to": 1215680
+			},
+			"text": " But when choosing between universal generalizability and privacy if you're going universal generalizability"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,680",
+				"to": "00:20:21,520"
+			},
+			"offsets": {
+				"from": 1215680,
+				"to": 1221520
+			},
+			"text": " first where as you get just going privacy first but there's not a big incompatibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,520",
+				"to": "00:20:27,040"
+			},
+			"offsets": {
+				"from": 1221520,
+				"to": 1227040
+			},
+			"text": " There doesn't seem to be a big incompatibility because if you can have both eventually even"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,040",
+				"to": "00:20:28,120"
+			},
+			"offsets": {
+				"from": 1227040,
+				"to": 1228120
+			},
+			"text": " great."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,120",
+				"to": "00:20:34,400"
+			},
+			"offsets": {
+				"from": 1228120,
+				"to": 1234400
+			},
+			"text": " But other times you might have values that are more incompatible with each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,400",
+				"to": "00:20:41,240"
+			},
+			"offsets": {
+				"from": 1234400,
+				"to": 1241240
+			},
+			"text": " So for example in the case of Ethereum we like proof of stake and Ethereum classic people"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,240",
+				"to": "00:20:47,240"
+			},
+			"offsets": {
+				"from": 1241240,
+				"to": 1247240
+			},
+			"text": " like proof of work and Ethereum people seem to like sharding more and we feel like one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,240",
+				"to": "00:20:53,480"
+			},
+			"offsets": {
+				"from": 1247240,
+				"to": 1253480
+			},
+			"text": " scale will be important whereas the people feel that the security trade offs are too"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,480",
+				"to": "00:20:55,080"
+			},
+			"offsets": {
+				"from": 1253480,
+				"to": 1255080
+			},
+			"text": " much for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,080",
+				"to": "00:21:00,840"
+			},
+			"offsets": {
+				"from": 1255080,
+				"to": 1260840
+			},
+			"text": " So do you think there's many in."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,840",
+				"to": "00:21:09,440"
+			},
+			"offsets": {
+				"from": 1260840,
+				"to": 1269440
+			},
+			"text": " So one of the properties of trade offs that are just differences in priorities is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,440",
+				"to": "00:21:14,480"
+			},
+			"offsets": {
+				"from": 1269440,
+				"to": 1274480
+			},
+			"text": " if it's just a matter of differences in priorities then in the long run we might end up just kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,480",
+				"to": "00:21:16,080"
+			},
+			"offsets": {
+				"from": 1274480,
+				"to": 1276080
+			},
+			"text": " of building the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,080",
+				"to": "00:21:19,680"
+			},
+			"offsets": {
+				"from": 1276080,
+				"to": 1279680
+			},
+			"text": " Like one person goes north first and then east the other person goes east and then first"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,680",
+				"to": "00:21:22,600"
+			},
+			"offsets": {
+				"from": 1279680,
+				"to": 1282600
+			},
+			"text": " and then north when you still end up northeast."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,600",
+				"to": "00:21:26,320"
+			},
+			"offsets": {
+				"from": 1282600,
+				"to": 1286320
+			},
+			"text": " Do you think there's a possibility we'll just end up building the same thing in 10 years"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,320",
+				"to": "00:21:27,320"
+			},
+			"offsets": {
+				"from": 1286320,
+				"to": 1287320
+			},
+			"text": " time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,320",
+				"to": "00:21:35,840"
+			},
+			"offsets": {
+				"from": 1287320,
+				"to": 1295840
+			},
+			"text": " There's a possibility but we're so diverse as people and so opinionated I'm not sure how"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,840",
+				"to": "00:21:37,400"
+			},
+			"offsets": {
+				"from": 1295840,
+				"to": 1297400
+			},
+			"text": " from a governance perspective how that happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,400",
+				"to": "00:21:41,240"
+			},
+			"offsets": {
+				"from": 1297400,
+				"to": 1301240
+			},
+			"text": " There may be some like the backstings we're talking about murders or whatever but there"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,240",
+				"to": "00:21:47,520"
+			},
+			"offsets": {
+				"from": 1301240,
+				"to": 1307520
+			},
+			"text": " may be some of that kind of activity but in some places it just makes sense right."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,520",
+				"to": "00:21:49,240"
+			},
+			"offsets": {
+				"from": 1307520,
+				"to": 1309240
+			},
+			"text": " So some of the separation makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,240",
+				"to": "00:21:58,160"
+			},
+			"offsets": {
+				"from": 1309240,
+				"to": 1318160
+			},
+			"text": " So Zcash was fork off of Bitcoin because Bitcoin Core didn't want to add the cryptography on"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,160",
+				"to": "00:22:02,800"
+			},
+			"offsets": {
+				"from": 1318160,
+				"to": 1322800
+			},
+			"text": " top of Bitcoin it was too novel they were worried about it disrupting the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,800",
+				"to": "00:22:07,360"
+			},
+			"offsets": {
+				"from": 1322800,
+				"to": 1327360
+			},
+			"text": " so this other coin was born and this other coin Zcash then can explore."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,360",
+				"to": "00:22:11,960"
+			},
+			"offsets": {
+				"from": 1327360,
+				"to": 1331960
+			},
+			"text": " You know different kinds of applications and properties that you know they couldn't do"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,960",
+				"to": "00:22:12,960"
+			},
+			"offsets": {
+				"from": 1331960,
+				"to": 1332960
+			},
+			"text": " on Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,960",
+				"to": "00:22:16,800"
+			},
+			"offsets": {
+				"from": 1332960,
+				"to": 1336800
+			},
+			"text": " So I think it's a healthy dynamic and whether those two like ever come back together I"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,800",
+				"to": "00:22:20,760"
+			},
+			"offsets": {
+				"from": 1336800,
+				"to": 1340760
+			},
+			"text": " don't know but there's value in diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,760",
+				"to": "00:22:24,520"
+			},
+			"offsets": {
+				"from": 1340760,
+				"to": 1344520
+			},
+			"text": " If they do come back together do you think coin mergers are possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,520",
+				"to": "00:22:25,520"
+			},
+			"offsets": {
+				"from": 1344520,
+				"to": 1345520
+			},
+			"text": " Do you think they're a good idea?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,520",
+				"to": "00:22:31,240"
+			},
+			"offsets": {
+				"from": 1345520,
+				"to": 1351240
+			},
+			"text": " I think it's super interesting but it for me it's like this like two jet planes like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,240",
+				"to": "00:22:36,840"
+			},
+			"offsets": {
+				"from": 1351240,
+				"to": 1356840
+			},
+			"text": " trying to kind of come together in the middle and sort of hold a bunch of stuff out and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,840",
+				"to": "00:22:42,600"
+			},
+			"offsets": {
+				"from": 1356840,
+				"to": 1362600
+			},
+			"text": " so I think when that happened I think it will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,600",
+				"to": "00:22:47,680"
+			},
+			"offsets": {
+				"from": 1362600,
+				"to": 1367680
+			},
+			"text": " I think it will be interesting as kind of an experiment in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,680",
+				"to": "00:22:53,360"
+			},
+			"offsets": {
+				"from": 1367680,
+				"to": 1373360
+			},
+			"text": " I'm not quite sure the mechanics of how it would work but I feel like maybe it's more"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,360",
+				"to": "00:22:59,280"
+			},
+			"offsets": {
+				"from": 1373360,
+				"to": 1379280
+			},
+			"text": " likely to happen if they're working on different directions such stuff and they compliment"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,280",
+				"to": "00:23:09,440"
+			},
+			"offsets": {
+				"from": 1379280,
+				"to": 1389440
+			},
+			"text": " each other and if these projects had like governance or decision making legitimate decision making"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,440",
+				"to": "00:23:16,800"
+			},
+			"offsets": {
+				"from": 1389440,
+				"to": 1396800
+			},
+			"text": " systems such that it's clear that they agree to do a coin merger than I suppose."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,800",
+				"to": "00:23:20,920"
+			},
+			"offsets": {
+				"from": 1396800,
+				"to": 1400920
+			},
+			"text": " And we're talking about clarity we're talking about at layer one coins merging not like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,920",
+				"to": "00:23:24,480"
+			},
+			"offsets": {
+				"from": 1400920,
+				"to": 1404480
+			},
+			"text": " two other like two years yet when it's open."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,480",
+				"to": "00:23:29,000"
+			},
+			"offsets": {
+				"from": 1404480,
+				"to": 1409000
+			},
+			"text": " I think it's quite likely that we don't end up in the same place at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,000",
+				"to": "00:23:35,720"
+			},
+			"offsets": {
+				"from": 1409000,
+				"to": 1415720
+			},
+			"text": " I think that's because the values as expressed in technological choices will result in different"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,720",
+				"to": "00:23:41,760"
+			},
+			"offsets": {
+				"from": 1415720,
+				"to": 1421760
+			},
+			"text": " usage and I think over time what could happen is that certain coins and certain stacks are"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,760",
+				"to": "00:23:50,320"
+			},
+			"offsets": {
+				"from": 1421760,
+				"to": 1430320
+			},
+			"text": " seen as the best for certain type use cases and you go to one chain, one type of transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,320",
+				"to": "00:23:54,280"
+			},
+			"offsets": {
+				"from": 1430320,
+				"to": 1434280
+			},
+			"text": " you go to another chain for a different type of transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,280",
+				"to": "00:24:02,160"
+			},
+			"offsets": {
+				"from": 1434280,
+				"to": 1442160
+			},
+			"text": " Do you think Zcash and Benaro have different uses?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,160",
+				"to": "00:24:04,480"
+			},
+			"offsets": {
+				"from": 1442160,
+				"to": 1444480
+			},
+			"text": " I don't think they have different uses."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,480",
+				"to": "00:24:09,280"
+			},
+			"offsets": {
+				"from": 1444480,
+				"to": 1449280
+			},
+			"text": " I think with both of them the intent is for the coin if I understand Monero correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,280",
+				"to": "00:24:14,400"
+			},
+			"offsets": {
+				"from": 1449280,
+				"to": 1454400
+			},
+			"text": " the use is a medium ultimately is a medium exchange to not have broad based kind of some"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,400",
+				"to": "00:24:18,560"
+			},
+			"offsets": {
+				"from": 1454400,
+				"to": 1458560
+			},
+			"text": " program ability but not like to run complete program ability at layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,560",
+				"to": "00:24:22,680"
+			},
+			"offsets": {
+				"from": 1458560,
+				"to": 1462680
+			},
+			"text": " I mean I think the core kind of what we're trying to accomplish is really similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,680",
+				"to": "00:24:26,000"
+			},
+			"offsets": {
+				"from": 1462680,
+				"to": 1466000
+			},
+			"text": " And it's actually really interesting because like online or on Twitter if you view these"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,000",
+				"to": "00:24:29,960"
+			},
+			"offsets": {
+				"from": 1466000,
+				"to": 1469960
+			},
+			"text": " Twitter it looks very combated like these two projects are just at each other and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,960",
+				"to": "00:24:30,960"
+			},
+			"offsets": {
+				"from": 1469960,
+				"to": 1470960
+			},
+			"text": " not the reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,960",
+				"to": "00:24:36,520"
+			},
+			"offsets": {
+				"from": 1470960,
+				"to": 1476520
+			},
+			"text": " You have certain actors that kind of play that up but like at Zcon 1 the last Dcash"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,520",
+				"to": "00:24:41,640"
+			},
+			"offsets": {
+				"from": 1476520,
+				"to": 1481640
+			},
+			"text": " conference we had in Monero I don't remember the Monero conference was in Denver but we"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,640",
+				"to": "00:24:48,280"
+			},
+			"offsets": {
+				"from": 1481640,
+				"to": 1488280
+			},
+			"text": " had like a co-panel between the two projects and so there's a lot that's actually shared."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,280",
+				"to": "00:24:55,080"
+			},
+			"offsets": {
+				"from": 1488280,
+				"to": 1495080
+			},
+			"text": " Do you think the Zcash and Benaro communities have different values?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,080",
+				"to": "00:25:04,640"
+			},
+			"offsets": {
+				"from": 1495080,
+				"to": 1504640
+			},
+			"text": " I think some values are different yes such as I think that the so like how for example"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,640",
+				"to": "00:25:09,200"
+			},
+			"offsets": {
+				"from": 1504640,
+				"to": 1509200
+			},
+			"text": " some of the governance and how funding decisions are made and whether or not there's alignment"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,200",
+				"to": "00:25:12,640"
+			},
+			"offsets": {
+				"from": 1509200,
+				"to": 1512640
+			},
+			"text": " of coin holders with developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,640",
+				"to": "00:25:18,560"
+			},
+			"offsets": {
+				"from": 1512640,
+				"to": 1518560
+			},
+			"text": " You know the user grants program right now the Dcash is funded by chain and so the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,560",
+				"to": "00:25:22,920"
+			},
+			"offsets": {
+				"from": 1518560,
+				"to": 1522920
+			},
+			"text": " is like how much is necessary to secure the network versus how much should be used to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,920",
+				"to": "00:25:28,080"
+			},
+			"offsets": {
+				"from": 1522920,
+				"to": 1528080
+			},
+			"text": " fund development is that the right kind of model so Dcash community largely believes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,080",
+				"to": "00:25:32,560"
+			},
+			"offsets": {
+				"from": 1528080,
+				"to": 1532560
+			},
+			"text": " that's the right kind of model the incentives aligned between the coin holders and the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,560",
+				"to": "00:25:35,920"
+			},
+			"offsets": {
+				"from": 1532560,
+				"to": 1535920
+			},
+			"text": " where Monero doesn't share that same."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,920",
+				"to": "00:25:41,960"
+			},
+			"offsets": {
+				"from": 1535920,
+				"to": 1541960
+			},
+			"text": " So like one thing I've noticed as a kind of possible general general trend is that developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,960",
+				"to": "00:25:46,120"
+			},
+			"offsets": {
+				"from": 1541960,
+				"to": 1546120
+			},
+			"text": " are general like seem to be more willing to be friendly with each other than kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,120",
+				"to": "00:25:51,720"
+			},
+			"offsets": {
+				"from": 1546120,
+				"to": 1551720
+			},
+			"text": " community members are and one reason I feel this might be the case is that developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,720",
+				"to": "00:25:56,840"
+			},
+			"offsets": {
+				"from": 1551720,
+				"to": 1556840
+			},
+			"text": " often do have kind of aligned interests in that developers see each other as both just"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,840",
+				"to": "00:26:01,080"
+			},
+			"offsets": {
+				"from": 1556840,
+				"to": 1561080
+			},
+			"text": " building cool stuff and they want to see cool stuff built whereas coin holders like if"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,080",
+				"to": "00:26:04,440"
+			},
+			"offsets": {
+				"from": 1561080,
+				"to": 1564440
+			},
+			"text": " you're a Zcash coin holder you want Zcash to succeed in you ain't got no Monero and if"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,440",
+				"to": "00:26:09,720"
+			},
+			"offsets": {
+				"from": 1564440,
+				"to": 1569720
+			},
+			"text": " you're a Monero coin holder then you want Monero to succeed and like some people might"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:09,720",
+				"to": "00:26:17,960"
+			},
+			"offsets": {
+				"from": 1569720,
+				"to": 1577960
+			},
+			"text": " have both but lots of them you know in gondosy cash and even in the Ethereum community like"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,960",
+				"to": "00:26:28,600"
+			},
+			"offsets": {
+				"from": 1577960,
+				"to": 1588600
+			},
+			"text": " some of the more maximalist push that we've seen is coming from people who aren't the developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,600",
+				"to": "00:26:36,280"
+			},
+			"offsets": {
+				"from": 1588600,
+				"to": 1596280
+			},
+			"text": " so are there risks that could happen if kind of developer communities are aligned but broader"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,280",
+				"to": "00:26:40,680"
+			},
+			"offsets": {
+				"from": 1596280,
+				"to": 1600680
+			},
+			"text": " communities are not aligned?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,680",
+				"to": "00:26:45,880"
+			},
+			"offsets": {
+				"from": 1600680,
+				"to": 1605880
+			},
+			"text": " Yeah probably the developers will get outcast."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,880",
+				"to": "00:26:49,320"
+			},
+			"offsets": {
+				"from": 1605880,
+				"to": 1609320
+			},
+			"text": " I don't see enough that's possible though."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,320",
+				"to": "00:26:53,640"
+			},
+			"offsets": {
+				"from": 1609320,
+				"to": 1613640
+			},
+			"text": " I mean at the end of the day the developers are the ones building the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,640",
+				"to": "00:26:58,600"
+			},
+			"offsets": {
+				"from": 1613640,
+				"to": 1618600
+			},
+			"text": " I guess the question is what's the tolerance or the elasticity of debate within a particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,600",
+				"to": "00:27:04,080"
+			},
+			"offsets": {
+				"from": 1618600,
+				"to": 1624080
+			},
+			"text": " community if the developers have a significant disagreement with the community well they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,080",
+				"to": "00:27:08,720"
+			},
+			"offsets": {
+				"from": 1624080,
+				"to": 1628720
+			},
+			"text": " fork if the community has a significant disagreement with the developers they could buy a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,720",
+				"to": "00:27:15,280"
+			},
+			"offsets": {
+				"from": 1628720,
+				"to": 1635280
+			},
+			"text": " coin I'm not sure where that line is and I think it varies depending on the issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,280",
+				"to": "00:27:23,280"
+			},
+			"offsets": {
+				"from": 1635280,
+				"to": 1643280
+			},
+			"text": " Maybe it'll get easier for a community that disagrees with the developers to fork it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,280",
+				"to": "00:27:31,640"
+			},
+			"offsets": {
+				"from": 1643280,
+				"to": 1651640
+			},
+			"text": " to create structure with Dows and just like elect people and then kind of if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,640",
+				"to": "00:27:38,520"
+			},
+			"offsets": {
+				"from": 1651640,
+				"to": 1658520
+			},
+			"text": " the right Dows system feel like this developer new developer network might be able to evolve"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,520",
+				"to": "00:27:39,520"
+			},
+			"offsets": {
+				"from": 1658520,
+				"to": 1659520
+			},
+			"text": " and mature."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,520",
+				"to": "00:27:45,960"
+			},
+			"offsets": {
+				"from": 1659520,
+				"to": 1665960
+			},
+			"text": " How are you defining communities?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,960",
+				"to": "00:27:50,320"
+			},
+			"offsets": {
+				"from": 1665960,
+				"to": 1670320
+			},
+			"text": " It sounds like it was like coin holders developers but is the community broader than coin holders"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,320",
+				"to": "00:27:51,320"
+			},
+			"offsets": {
+				"from": 1670320,
+				"to": 1671320
+			},
+			"text": " and developers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,320",
+				"to": "00:27:57,680"
+			},
+			"offsets": {
+				"from": 1671320,
+				"to": 1677680
+			},
+			"text": " Oh sure and hopefully in time it becomes even much broader to really users but I think at"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,680",
+				"to": "00:28:04,480"
+			},
+			"offsets": {
+				"from": 1677680,
+				"to": 1684480
+			},
+			"text": " the moment at least in the days we have there's a kind of almost bilateral debate where there"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,480",
+				"to": "00:28:09,640"
+			},
+			"offsets": {
+				"from": 1684480,
+				"to": 1689640
+			},
+			"text": " are folks who aren't developers and then there are folks who are and there's that interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,640",
+				"to": "00:28:13,000"
+			},
+			"offsets": {
+				"from": 1689640,
+				"to": 1693000
+			},
+			"text": " between the two."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:13,000",
+				"to": "00:28:18,480"
+			},
+			"offsets": {
+				"from": 1693000,
+				"to": 1698480
+			},
+			"text": " So one other dynamic I've noticed is that I sometimes get the feeling that strangely"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,480",
+				"to": "00:28:26,680"
+			},
+			"offsets": {
+				"from": 1698480,
+				"to": 1706680
+			},
+			"text": " enough collaboration may be more possible when ideologies are more incompatible and so one"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,680",
+				"to": "00:28:33,240"
+			},
+			"offsets": {
+				"from": 1706680,
+				"to": 1713240
+			},
+			"text": " example of this is that even if you look at kind of Ethereum classic in the long term"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,240",
+				"to": "00:28:40,080"
+			},
+			"offsets": {
+				"from": 1713240,
+				"to": 1720080
+			},
+			"text": " then in the long term like sharding gives much greater layer one throughput than not doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,080",
+				"to": "00:28:45,480"
+			},
+			"offsets": {
+				"from": 1720080,
+				"to": 1725480
+			},
+			"text": " sharding and proof of stake gives a different security model than proof of work and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,480",
+				"to": "00:28:48,600"
+			},
+			"offsets": {
+				"from": 1725480,
+				"to": 1728600
+			},
+			"text": " people that are and have die hard proof of work people that are not going to do proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,600",
+				"to": "00:28:53,800"
+			},
+			"offsets": {
+				"from": 1728600,
+				"to": 1733800
+			},
+			"text": " of stake and sharding like legitimately makes security trade offs compared to not doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,800",
+				"to": "00:29:00,680"
+			},
+			"offsets": {
+				"from": 1733800,
+				"to": 1740680
+			},
+			"text": " sharding that some people don't want to accept and so one kind of effects that comes out"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,680",
+				"to": "00:29:07,280"
+			},
+			"offsets": {
+				"from": 1740680,
+				"to": 1747280
+			},
+			"text": " of this is that of both communities this might even feel safer because there is we know that"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:07,280",
+				"to": "00:29:10,680"
+			},
+			"offsets": {
+				"from": 1747280,
+				"to": 1750680
+			},
+			"text": " there is kind of one base that's going to use one thing and it's not going to end it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,680",
+				"to": "00:29:14,840"
+			},
+			"offsets": {
+				"from": 1750680,
+				"to": 1754840
+			},
+			"text": " not willing to switch to the other thing because the trade offs are just unacceptable like"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,840",
+				"to": "00:29:22,320"
+			},
+			"offsets": {
+				"from": 1754840,
+				"to": 1762320
+			},
+			"text": " it's not even like better or worse it's just like what one side thinks is better is viewed"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,320",
+				"to": "00:29:26,400"
+			},
+			"offsets": {
+				"from": 1762320,
+				"to": 1766400
+			},
+			"text": " from the perspective of the other side is making things worse and so one side is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,400",
+				"to": "00:29:31,720"
+			},
+			"offsets": {
+				"from": 1766400,
+				"to": 1771720
+			},
+			"text": " to stay over here the other side is going to stay over here and that actually could"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:31,720",
+				"to": "00:29:37,920"
+			},
+			"offsets": {
+				"from": 1771720,
+				"to": 1777920
+			},
+			"text": " make people feel like collaboration is possible because we know that there is no risk of one"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,920",
+				"to": "00:29:47,120"
+			},
+			"offsets": {
+				"from": 1777920,
+				"to": 1787120
+			},
+			"text": " side fully eating the other side would you agree with that? Do they get more complicated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,120",
+				"to": "00:29:51,920"
+			},
+			"offsets": {
+				"from": 1787120,
+				"to": 1791920
+			},
+			"text": " No I would agree with it certainly in the case of Ethereum classic and Ethereum you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,920",
+				"to": "00:29:58,720"
+			},
+			"offsets": {
+				"from": 1791920,
+				"to": 1798720
+			},
+			"text": " as Ethereum is moving to 2.0 we've taken the opportunity to you know reiterate our commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,720",
+				"to": "00:30:10,480"
+			},
+			"offsets": {
+				"from": 1798720,
+				"to": 1810480
+			},
+			"text": " to proof of war and then start to figure out how we can complement each other in that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:10,480",
+				"to": "00:30:19,000"
+			},
+			"offsets": {
+				"from": 1810480,
+				"to": 1819000
+			},
+			"text": " Maybe maybe a corollary or a takeaway is that if you take a community and you segment them"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,000",
+				"to": "00:30:29,560"
+			},
+			"offsets": {
+				"from": 1819000,
+				"to": 1829560
+			},
+			"text": " into distinct ideologies and you define sub-communities maybe it can accelerate the growth of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,560",
+				"to": "00:30:35,440"
+			},
+			"offsets": {
+				"from": 1829560,
+				"to": 1835440
+			},
+			"text": " project you can do it the right way. Sometimes it's so ideologically misaligned it just"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:35,440",
+				"to": "00:30:39,960"
+			},
+			"offsets": {
+				"from": 1835440,
+				"to": 1839960
+			},
+			"text": " can't happen right so if you have so if there was a nation state that wanted to create a"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,960",
+				"to": "00:30:45,240"
+			},
+			"offsets": {
+				"from": 1839960,
+				"to": 1845240
+			},
+			"text": " digital concurrency with the intent of completely surveilling and manipulating their people"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:45,240",
+				"to": "00:30:50,120"
+			},
+			"offsets": {
+				"from": 1845240,
+				"to": 1850120
+			},
+			"text": " then that would be incongruent with our mission and we just wouldn't do it we just couldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,120",
+				"to": "00:30:56,040"
+			},
+			"offsets": {
+				"from": 1850120,
+				"to": 1856040
+			},
+			"text": " work together in the independent of that. So we know that cryptocurrencies are going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,040",
+				"to": "00:31:01,000"
+			},
+			"offsets": {
+				"from": 1856040,
+				"to": 1861000
+			},
+			"text": " exist as a category and fiat currencies are going to exist as a category but will there"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:01,000",
+				"to": "00:31:06,840"
+			},
+			"offsets": {
+				"from": 1861000,
+				"to": 1866840
+			},
+			"text": " be more than two coins? Okay different fiads disagree so there will be multiple fiads but"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,840",
+				"to": "00:31:13,960"
+			},
+			"offsets": {
+				"from": 1866840,
+				"to": 1873960
+			},
+			"text": " are there like can we come up with more examples of kind of pairs of cryptocurrencies where it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,960",
+				"to": "00:31:18,360"
+			},
+			"offsets": {
+				"from": 1873960,
+				"to": 1878360
+			},
+			"text": " kind of just obvious that one direction is different from the other direction and they'll both continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,360",
+				"to": "00:31:30,520"
+			},
+			"offsets": {
+				"from": 1878360,
+				"to": 1890520
+			},
+			"text": " to uh uh continue to exist? I can't think of any others at the moment. You can't? No I can't. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:30,520",
+				"to": "00:31:37,560"
+			},
+			"offsets": {
+				"from": 1890520,
+				"to": 1897560
+			},
+			"text": " any others between like a theory and a bitcoin? Well I mean I guess at a macro level but how much"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,440",
+				"to": "00:31:44,280"
+			},
+			"offsets": {
+				"from": 1898440,
+				"to": 1904280
+			},
+			"text": " you know tangible cooperation is taking place. There's cooperation taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,280",
+				"to": "00:31:48,920"
+			},
+			"offsets": {
+				"from": 1904280,
+				"to": 1908920
+			},
+			"text": " I'd say there's cooperation taking place kind of implicitly even between a theory and a"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:48,920",
+				"to": "00:31:57,800"
+			},
+			"offsets": {
+				"from": 1908920,
+				"to": 1917800
+			},
+			"text": " bitcoin like we're using in some case the same SACB-26K1 libraries. You get such a thing with"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,800",
+				"to": "00:32:04,840"
+			},
+			"offsets": {
+				"from": 1917800,
+				"to": 1924840
+			},
+			"text": " staking tokens if you need distinct validator sets and especially for regional validator sets"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,840",
+				"to": "00:32:11,800"
+			},
+			"offsets": {
+				"from": 1924840,
+				"to": 1931800
+			},
+			"text": " but maybe you might have the validators with different ideas of how to secure their systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,800",
+				"to": "00:32:16,600"
+			},
+			"offsets": {
+				"from": 1931800,
+				"to": 1936600
+			},
+			"text": " so on. So for all each of these staking sets they would have their own staking token as well but"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,600",
+				"to": "00:32:22,200"
+			},
+			"offsets": {
+				"from": 1936600,
+				"to": 1942200
+			},
+			"text": " it's not clear to me what the market cap ratio would be between staking tokens and cryptocurrency"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:22,200",
+				"to": "00:32:31,160"
+			},
+			"offsets": {
+				"from": 1942200,
+				"to": 1951160
+			},
+			"text": " cash tokens. I could see the amount of privacy and generality which rate off as being kind of not"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,200",
+				"to": "00:32:40,840"
+			},
+			"offsets": {
+				"from": 1952200,
+				"to": 1960840
+			},
+			"text": " 100% resolvable as well. Privacy and generality. Like you could imagine general purpose privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:40,840",
+				"to": "00:32:43,400"
+			},
+			"offsets": {
+				"from": 1960840,
+				"to": 1963400
+			},
+			"text": " but like there's there's trade-offs that you have to make there."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:43,400",
+				"to": "00:32:53,080"
+			},
+			"offsets": {
+				"from": 1963400,
+				"to": 1973080
+			},
+			"text": " Like one example of this is that Zcash believes in reinforcing everything to be private whereas"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,080",
+				"to": "00:32:58,120"
+			},
+			"offsets": {
+				"from": 1973080,
+				"to": 1978120
+			},
+			"text": " we're more a they hate world and hate world like a box like you do what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:00,840",
+				"to": "00:33:04,760"
+			},
+			"offsets": {
+				"from": 1980840,
+				"to": 1984760
+			},
+			"text": " Well but the SACB has its optionality right so you should have the option to be able to disclose"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:04,760",
+				"to": "00:33:11,080"
+			},
+			"offsets": {
+				"from": 1984760,
+				"to": 1991080
+			},
+			"text": " your knowledge. But you know there's all kinds of arguments as to why you need openness whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:11,080",
+				"to": "00:33:17,320"
+			},
+			"offsets": {
+				"from": 1991080,
+				"to": 1997320
+			},
+			"text": " it's things like audibility or things that maybe you can be solved with technology but"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:17,320",
+				"to": "00:33:26,440"
+			},
+			"offsets": {
+				"from": 1997320,
+				"to": 2006440
+			},
+			"text": " I don't know is there are there maximalists out there that believe that privacy shouldn't happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,440",
+				"to": "00:33:33,560"
+			},
+			"offsets": {
+				"from": 2006440,
+				"to": 2013560
+			},
+			"text": " that should just be completely completely open system. I was just at present"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,560",
+				"to": "00:33:38,840"
+			},
+			"offsets": {
+				"from": 2013560,
+				"to": 2018840
+			},
+			"text": " visiting like Korea for a week and I got at least five media people asking me questions of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,840",
+				"to": "00:33:44,840"
+			},
+			"offsets": {
+				"from": 2018840,
+				"to": 2024840
+			},
+			"text": " form like don't you think privacy will enable criminals. So yeah I know there's people definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,840",
+				"to": "00:33:52,520"
+			},
+			"offsets": {
+				"from": 2024840,
+				"to": 2032520
+			},
+			"text": " exist in the blockchain community. I mean I'm sure you're aware of your own coin being"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:52,520",
+				"to": "00:33:57,560"
+			},
+			"offsets": {
+				"from": 2032520,
+				"to": 2037560
+			},
+			"text": " deal us from a couple of exchanges. I am largely because of misunderstandings and"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,560",
+				"to": "00:34:03,240"
+			},
+			"offsets": {
+				"from": 2037560,
+				"to": 2043240
+			},
+			"text": " some banking concerns but no no no don't worry I put off the good fight for you guys there."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:03,240",
+				"to": "00:34:14,440"
+			},
+			"offsets": {
+				"from": 2043240,
+				"to": 2054440
+			},
+			"text": " So actually that brings up another point which is there's a side from kind of tech and applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:14,440",
+				"to": "00:34:21,720"
+			},
+			"offsets": {
+				"from": 2054440,
+				"to": 2061720
+			},
+			"text": " a third frontier of kind of possible collaboration is kind of outreach to the broader public which"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:21,720",
+				"to": "00:34:27,160"
+			},
+			"offsets": {
+				"from": 2061720,
+				"to": 2067160
+			},
+			"text": " could include regulators it could include kind of getting public legitimacy in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:27,160",
+				"to": "00:34:30,120"
+			},
+			"offsets": {
+				"from": 2067160,
+				"to": 2070120
+			},
+			"text": " Do you think there's more that we could do on that side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:30,120",
+				"to": "00:34:36,840"
+			},
+			"offsets": {
+				"from": 2070120,
+				"to": 2076840
+			},
+			"text": " Yeah I 100% believe there's more that we can do on that side. And in some cases like I had"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:36,840",
+				"to": "00:34:40,520"
+			},
+			"offsets": {
+				"from": 2076840,
+				"to": 2080520
+			},
+			"text": " referenced early kind of the need to be out kind of in the community and some of the stuff we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:40,520",
+				"to": "00:34:45,400"
+			},
+			"offsets": {
+				"from": 2080520,
+				"to": 2085400
+			},
+			"text": " running some pilots where we're pulling in different projects together to collectively"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,960",
+				"to": "00:34:51,720"
+			},
+			"offsets": {
+				"from": 2085960,
+				"to": 2091720
+			},
+			"text": " educate like the initial pilot we ran was was in the South Bronx to cook to the clock when we educate"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:51,720",
+				"to": "00:34:59,320"
+			},
+			"offsets": {
+				"from": 2091720,
+				"to": 2099320
+			},
+			"text": " students and what we learn about the use of of cryptocurrency the South Bronx is per capita the"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:59,320",
+				"to": "00:35:05,720"
+			},
+			"offsets": {
+				"from": 2099320,
+				"to": 2105720
+			},
+			"text": " least on banks of population of the US. The reality is is like what once we got engaged there all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:05,720",
+				"to": "00:35:10,360"
+			},
+			"offsets": {
+				"from": 2105720,
+				"to": 2110360
+			},
+			"text": " us came away completely blown away by the insight of the students that we were kind of engaging with"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,360",
+				"to": "00:35:17,240"
+			},
+			"offsets": {
+				"from": 2110360,
+				"to": 2117240
+			},
+			"text": " and they flipped the script on us but that was a project that you know brought together like"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,240",
+				"to": "00:35:24,280"
+			},
+			"offsets": {
+				"from": 2117240,
+				"to": 2124280
+			},
+			"text": " CASA who like doesn't support Zcash for example Jim and I flex a number of misarring a number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:24,280",
+				"to": "00:35:29,480"
+			},
+			"offsets": {
+				"from": 2124280,
+				"to": 2129480
+			},
+			"text": " projects kind of came together on these kind of efforts and I would love to be able to see more"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:29,480",
+				"to": "00:35:34,600"
+			},
+			"offsets": {
+				"from": 2129480,
+				"to": 2134600
+			},
+			"text": " of that kind of active collaboration. One thing that was interesting in terms of regulators and"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,600",
+				"to": "00:35:39,800"
+			},
+			"offsets": {
+				"from": 2134600,
+				"to": 2139800
+			},
+			"text": " sometimes it's really it's really difficult is OKX like OKX said that they were going to do the"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:39,800",
+				"to": "00:35:46,360"
+			},
+			"offsets": {
+				"from": 2139800,
+				"to": 2146360
+			},
+			"text": " list in cash and then yesterday I got a message from them saying we decided to put this on hold"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:46,360",
+				"to": "00:35:51,000"
+			},
+			"offsets": {
+				"from": 2146360,
+				"to": 2151000
+			},
+			"text": " and we're putting this on hold while we do further for their investigation it had to do with"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:51,000",
+				"to": "00:35:58,200"
+			},
+			"offsets": {
+				"from": 2151000,
+				"to": 2158200
+			},
+			"text": " FADF travel requirements but it was both Zcash and Dash but we didn't collaborate but we went in"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:58,200",
+				"to": "00:36:02,120"
+			},
+			"offsets": {
+				"from": 2158200,
+				"to": 2162120
+			},
+			"text": " separately and had separate kinds of conversations but I think it would have actually been"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:03,480",
+				"to": "00:36:08,120"
+			},
+			"offsets": {
+				"from": 2163480,
+				"to": 2168120
+			},
+			"text": " even though there's some ideological disagreement between Zcash and Dash I think there would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:08,120",
+				"to": "00:36:14,120"
+			},
+			"offsets": {
+				"from": 2168120,
+				"to": 2174120
+			},
+			"text": " been a beneficial for us to kind of collectively gain plan on how we work together to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:14,120",
+				"to": "00:36:18,680"
+			},
+			"offsets": {
+				"from": 2174120,
+				"to": 2178680
+			},
+			"text": " you know additional information new information to regulators so they can make better decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:18,680",
+				"to": "00:36:31,080"
+			},
+			"offsets": {
+				"from": 2178680,
+				"to": 2191080
+			},
+			"text": " One aspect of the community outreach that some of us are exploring is for example working with"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,880",
+				"to": "00:36:40,200"
+			},
+			"offsets": {
+				"from": 2191880,
+				"to": 2200200
+			},
+			"text": " people who are community of people who are interested in like ethical software or how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,200",
+				"to": "00:36:48,440"
+			},
+			"offsets": {
+				"from": 2200200,
+				"to": 2208440
+			},
+			"text": " make sure that we design for ethical systems and I think broadly in general maybe the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,440",
+				"to": "00:36:52,520"
+			},
+			"offsets": {
+				"from": 2208440,
+				"to": 2212520
+			},
+			"text": " we should be asking or I feel like the question that I should be asking is like we have what kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:52,520",
+				"to": "00:36:57,000"
+			},
+			"offsets": {
+				"from": 2212520,
+				"to": 2217000
+			},
+			"text": " of monetary system should we be designing for the future and I think that comes with so many"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,000",
+				"to": "00:37:03,400"
+			},
+			"offsets": {
+				"from": 2217000,
+				"to": 2223400
+			},
+			"text": " questions and communities that have different opinions already about what to do there so there's a need"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,400",
+				"to": "00:37:11,240"
+			},
+			"offsets": {
+				"from": 2223400,
+				"to": 2231240
+			},
+			"text": " to reach out to those communities and not necessarily like indoctrinate them with blockchain but like"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:11,240",
+				"to": "00:37:17,400"
+			},
+			"offsets": {
+				"from": 2231240,
+				"to": 2237400
+			},
+			"text": " understand all these nuances so that we can better design our future."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,400",
+				"to": "00:37:24,280"
+			},
+			"offsets": {
+				"from": 2237400,
+				"to": 2244280
+			},
+			"text": " Yeah I think there's a lot more outreach we can do and really in two ways one to the general"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:24,280",
+				"to": "00:37:30,200"
+			},
+			"offsets": {
+				"from": 2244280,
+				"to": 2250200
+			},
+			"text": " public I think there's still a lot of misconceptions in the general public about what blockchain is"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:30,200",
+				"to": "00:37:37,080"
+			},
+			"offsets": {
+				"from": 2250200,
+				"to": 2257080
+			},
+			"text": " what it can do what people do with it and the second is you know really engaging certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:37,080",
+				"to": "00:37:43,320"
+			},
+			"offsets": {
+				"from": 2257080,
+				"to": 2263320
+			},
+			"text": " participants in the ecosystem who don't typically you know participate say in a forum like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,320",
+				"to": "00:37:48,840"
+			},
+			"offsets": {
+				"from": 2263320,
+				"to": 2268840
+			},
+			"text": " We spend a lot of time engaging with regulators with exchanges with custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,840",
+				"to": "00:37:55,000"
+			},
+			"offsets": {
+				"from": 2270840,
+				"to": 2275000
+			},
+			"text": " because they actually can have a significant impact on the ability of the technology to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:55,000",
+				"to": "00:37:59,160"
+			},
+			"offsets": {
+				"from": 2275000,
+				"to": 2279160
+			},
+			"text": " what our adoption and there's a lot more education that I think needs to be done there about"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:59,160",
+				"to": "00:38:03,960"
+			},
+			"offsets": {
+				"from": 2279160,
+				"to": 2283960
+			},
+			"text": " what the strengths and weaknesses of the technology are and what the roadmap is."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,960",
+				"to": "00:38:09,240"
+			},
+			"offsets": {
+				"from": 2283960,
+				"to": 2289240
+			},
+			"text": " Just wanted to bring up a tangent."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,240",
+				"to": "00:38:16,520"
+			},
+			"offsets": {
+				"from": 2289240,
+				"to": 2296520
+			},
+			"text": " You know so we have different ideologies for communities representing different ideologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:18,440",
+				"to": "00:38:23,960"
+			},
+			"offsets": {
+				"from": 2298440,
+				"to": 2303960
+			},
+			"text": " I feel like what we will not just us but the world needs to get better at is allowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:23,960",
+				"to": "00:38:28,120"
+			},
+			"offsets": {
+				"from": 2303960,
+				"to": 2308120
+			},
+			"text": " these communities with opposing views to have discourse together."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:28,120",
+				"to": "00:38:34,520"
+			},
+			"offsets": {
+				"from": 2308120,
+				"to": 2314520
+			},
+			"text": " And I haven't really seen good software or interfaces to allow this to happen but it's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:34,520",
+				"to": "00:38:41,400"
+			},
+			"offsets": {
+				"from": 2314520,
+				"to": 2321400
+			},
+			"text": " what would it be great if you can have a long running discussion where the end result is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:41,400",
+				"to": "00:38:47,880"
+			},
+			"offsets": {
+				"from": 2321400,
+				"to": 2327880
+			},
+			"text": " almost a conversation but between representatives of two communities such that then anyone from both"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:47,880",
+				"to": "00:38:51,640"
+			},
+			"offsets": {
+				"from": 2327880,
+				"to": 2331640
+			},
+			"text": " sides can lead and understand the optimal answers."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:51,640",
+				"to": "00:38:55,480"
+			},
+			"offsets": {
+				"from": 2331640,
+				"to": 2335480
+			},
+			"text": " I feel like that would maybe help us transcend a lot of good luck."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:55,480",
+				"to": "00:39:05,000"
+			},
+			"offsets": {
+				"from": 2335480,
+				"to": 2345000
+			},
+			"text": " And at the end of the day though like I'm sure there is there's a limit sign like what we will"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:05,000",
+				"to": "00:39:09,720"
+			},
+			"offsets": {
+				"from": 2345000,
+				"to": 2349720
+			},
+			"text": " end up agreeing on and that's good like that's why multiple platforms exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,360",
+				"to": "00:39:27,960"
+			},
+			"offsets": {
+				"from": 2356360,
+				"to": 2367960
+			},
+			"text": " So you know is there a I guess if there is kind of one simple thing that we can start doing more of"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:27,960",
+				"to": "00:39:36,520"
+			},
+			"offsets": {
+				"from": 2367960,
+				"to": 2376520
+			},
+			"text": " just to get the benefits of kind of collaborating, reduce the harms of anti-collaborating over the"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,520",
+				"to": "00:39:41,960"
+			},
+			"offsets": {
+				"from": 2376520,
+				"to": 2381960
+			},
+			"text": " next few months that we stuck between our communities like is there any kind of one"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,960",
+				"to": "00:39:45,960"
+			},
+			"offsets": {
+				"from": 2381960,
+				"to": 2385960
+			},
+			"text": " simple example of something we can do that pops out in your head?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:45,960",
+				"to": "00:39:55,000"
+			},
+			"offsets": {
+				"from": 2385960,
+				"to": 2395000
+			},
+			"text": " So I'd like to see more kind of working groups again like I think Ethereum in this kind of community"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:55,000",
+				"to": "00:39:59,960"
+			},
+			"offsets": {
+				"from": 2395000,
+				"to": 2399960
+			},
+			"text": " is fantastic and welcoming and warm and there's a kind of all this opportunity for collisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:59,960",
+				"to": "00:40:06,040"
+			},
+			"offsets": {
+				"from": 2399960,
+				"to": 2406040
+			},
+			"text": " but I think if we're more intentional like for us in the Ethereum Foundation for example to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,040",
+				"to": "00:40:12,760"
+			},
+			"offsets": {
+				"from": 2406040,
+				"to": 2412760
+			},
+			"text": " able to have regular times where the core like photographers, developers, engineers can come"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:12,760",
+				"to": "00:40:19,640"
+			},
+			"offsets": {
+				"from": 2412760,
+				"to": 2419640
+			},
+			"text": " together kind of work through ideas and plans, inviting other folks like you know a map is in"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:19,640",
+				"to": "00:40:25,960"
+			},
+			"offsets": {
+				"from": 2419640,
+				"to": 2425960
+			},
+			"text": " here earlier from pieces or other people in the community and kind of lay these kind of ideas out"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:25,960",
+				"to": "00:40:30,440"
+			},
+			"offsets": {
+				"from": 2425960,
+				"to": 2430440
+			},
+			"text": " there and then also look and collectively work on funding mechanisms to allow for some of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:30,440",
+				"to": "00:40:38,120"
+			},
+			"offsets": {
+				"from": 2430440,
+				"to": 2438120
+			},
+			"text": " other kind of potential contributors that can provide some of the glue between these communities"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:38,120",
+				"to": "00:40:47,400"
+			},
+			"offsets": {
+				"from": 2438120,
+				"to": 2447400
+			},
+			"text": " I think that would be great as well. I guess one is enabling communities to have a voice"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:47,400",
+				"to": "00:40:54,120"
+			},
+			"offsets": {
+				"from": 2447400,
+				"to": 2454120
+			},
+			"text": " in the like this is what I just mentioned like having discourse so maybe there are other things"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:54,120",
+				"to": "00:41:01,560"
+			},
+			"offsets": {
+				"from": 2454120,
+				"to": 2461560
+			},
+			"text": " that can happen by enabling a voice for a community. The other thing I ask myself often is"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:01,560",
+				"to": "00:41:09,800"
+			},
+			"offsets": {
+				"from": 2461560,
+				"to": 2469800
+			},
+			"text": " we need to physically meet in order for this kind of you know dialogue to happen but how do we"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,800",
+				"to": "00:41:15,880"
+			},
+			"offsets": {
+				"from": 2469800,
+				"to": 2475880
+			},
+			"text": " scale it so that we don't necessarily have to travel? If we can crack that I feel like we would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:17,480",
+				"to": "00:41:27,000"
+			},
+			"offsets": {
+				"from": 2477480,
+				"to": 2487000
+			},
+			"text": " much more rapid iteration or rate of discovery. I agree with that and I would simply add stop"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:27,000",
+				"to": "00:41:33,320"
+			},
+			"offsets": {
+				"from": 2487000,
+				"to": 2493320
+			},
+			"text": " trying to debate complex topics on Twitter. Can we debate complex topics on Reddit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:33,320",
+				"to": "00:41:38,120"
+			},
+			"offsets": {
+				"from": 2493320,
+				"to": 2498120
+			},
+			"text": " I feel like it's better but it's still centralized. What about memos on cash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:38,120",
+				"to": "00:41:43,480"
+			},
+			"offsets": {
+				"from": 2498120,
+				"to": 2503480
+			},
+			"text": " Memos on cash? Yeah it's like this thing where you just like dump comments on the big"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:43,480",
+				"to": "00:41:49,400"
+			},
+			"offsets": {
+				"from": 2503480,
+				"to": 2509400
+			},
+			"text": " wind cash watch and it's okay because they have 32 megabytes or something. Great clavaries."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:49,400",
+				"to": "00:41:55,000"
+			},
+			"offsets": {
+				"from": 2509400,
+				"to": 2515000
+			},
+			"text": " Okay well thank you very much. Thank you. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,880",
+				"to": "00:41:56,440"
+			},
+			"offsets": {
+				"from": 2515880,
+				"to": 2516440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,440",
+				"to": "00:41:58,440"
+			},
+			"offsets": {
+				"from": 2516440,
+				"to": 2518440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:58,440",
+				"to": "00:42:00,440"
+			},
+			"offsets": {
+				"from": 2518440,
+				"to": 2520440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:00,440",
+				"to": "00:42:02,440"
+			},
+			"offsets": {
+				"from": 2520440,
+				"to": 2522440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:02,440",
+				"to": "00:42:04,440"
+			},
+			"offsets": {
+				"from": 2522440,
+				"to": 2524440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:04,440",
+				"to": "00:42:06,440"
+			},
+			"offsets": {
+				"from": 2524440,
+				"to": 2526440
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:06,440",
+				"to": "00:42:36,440"
+			},
+			"offsets": {
+				"from": 2526440,
+				"to": 2556440
+			},
+			"text": " you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you"
+		}
+	]
+}

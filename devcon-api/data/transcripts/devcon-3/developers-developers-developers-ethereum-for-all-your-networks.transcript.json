@@ -1,0 +1,4729 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:05,980"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 5980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,980",
+				"to": "00:00:15,740"
+			},
+			"offsets": {
+				"from": 5980,
+				"to": 15740
+			},
+			"text": " Good morning, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,740",
+				"to": "00:00:20,760"
+			},
+			"offsets": {
+				"from": 15740,
+				"to": 20760
+			},
+			"text": " So unlike many of the crypto projects out there, Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,760",
+				"to": "00:00:22,480"
+			},
+			"offsets": {
+				"from": 20760,
+				"to": 22480
+			},
+			"text": " isn't really an end-to-end product."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,480",
+				"to": "00:00:26,080"
+			},
+			"offsets": {
+				"from": 22480,
+				"to": 26080
+			},
+			"text": " It has always been a platform by developers for developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,080",
+				"to": "00:00:29,960"
+			},
+			"offsets": {
+				"from": 26080,
+				"to": 29960
+			},
+			"text": " And as such, our primary task is to make developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,960",
+				"to": "00:00:33,040"
+			},
+			"offsets": {
+				"from": 29960,
+				"to": 33040
+			},
+			"text": " happy so that in their turn, they can make their end-users"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,040",
+				"to": "00:00:34,440"
+			},
+			"offsets": {
+				"from": 33040,
+				"to": 34440
+			},
+			"text": " happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,440",
+				"to": "00:00:38,280"
+			},
+			"offsets": {
+				"from": 34440,
+				"to": 38280
+			},
+			"text": " Now, to achieve this, in my opinion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,280",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 38280,
+				"to": 40600
+			},
+			"text": " one of our most important roles is to either aid"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:43,680"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 43680
+			},
+			"text": " the existing tooling, developer tooling, out in the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,680",
+				"to": "00:00:46,440"
+			},
+			"offsets": {
+				"from": 43680,
+				"to": 46440
+			},
+			"text": " or maybe fund or create new ones that the ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,440",
+				"to": "00:00:47,680"
+			},
+			"offsets": {
+				"from": 46440,
+				"to": 47680
+			},
+			"text": " is currently lacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,680",
+				"to": "00:00:50,880"
+			},
+			"offsets": {
+				"from": 47680,
+				"to": 50880
+			},
+			"text": " My talk will be about one such tool that we wrote."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,880",
+				"to": "00:00:53,480"
+			},
+			"offsets": {
+				"from": 50880,
+				"to": 53480
+			},
+			"text": " But before we dive in, let's see what the actual pain point"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,480",
+				"to": "00:00:54,200"
+			},
+			"offsets": {
+				"from": 53480,
+				"to": 54200
+			},
+			"text": " are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,200",
+				"to": "00:00:58,320"
+			},
+			"offsets": {
+				"from": 54200,
+				"to": 58320
+			},
+			"text": " Usually, when developers approach Ethereum for the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,320",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 58320,
+				"to": 60000
+			},
+			"text": " they start playing around with remix,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 62000
+			},
+			"text": " this browser-solidity playground."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:03,920"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 63920
+			},
+			"text": " They get the hang of solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,920",
+				"to": "00:01:05,920"
+			},
+			"offsets": {
+				"from": 63920,
+				"to": 65920
+			},
+			"text": " They start protecting their contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,920",
+				"to": "00:01:07,400"
+			},
+			"offsets": {
+				"from": 65920,
+				"to": 67400
+			},
+			"text": " Now, unfortunately, quite fast, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,400",
+				"to": "00:01:10,800"
+			},
+			"offsets": {
+				"from": 67400,
+				"to": 70800
+			},
+			"text": " realize that developing in a web browser is cumbersome."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,800",
+				"to": "00:01:12,920"
+			},
+			"offsets": {
+				"from": 70800,
+				"to": 72920
+			},
+			"text": " So they switch to more sophisticated tools such as"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,920",
+				"to": "00:01:16,760"
+			},
+			"offsets": {
+				"from": 72920,
+				"to": 76760
+			},
+			"text": " Truffle, which can do automated repeatable testing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,760",
+				"to": "00:01:21,520"
+			},
+			"offsets": {
+				"from": 76760,
+				"to": 81520
+			},
+			"text": " and also aided by proof of authority chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,520",
+				"to": "00:01:23,080"
+			},
+			"offsets": {
+				"from": 81520,
+				"to": 83080
+			},
+			"text": " or instant transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,080",
+				"to": "00:01:25,640"
+			},
+			"offsets": {
+				"from": 83080,
+				"to": 85640
+			},
+			"text": " Now, after developers actually finish writing their code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,640",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 85640,
+				"to": 88680
+			},
+			"text": " usually the procedure is that they deploy it on a test net,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:32,080"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 92080
+			},
+			"text": " either Rops and/or alternative, because that's really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,080",
+				"to": "00:01:36,080"
+			},
+			"offsets": {
+				"from": 92080,
+				"to": 96080
+			},
+			"text": " It's a real-world environment, many users, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,080",
+				"to": "00:01:39,600"
+			},
+			"offsets": {
+				"from": 96080,
+				"to": 99600
+			},
+			"text": " Now, the problem is that this perfect testing environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,600",
+				"to": "00:01:41,440"
+			},
+			"offsets": {
+				"from": 99600,
+				"to": 101440
+			},
+			"text": " often goes belly-ock."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,440",
+				"to": "00:01:43,240"
+			},
+			"offsets": {
+				"from": 101440,
+				"to": 103240
+			},
+			"text": " And the reason is-- one of the reasons"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,240",
+				"to": "00:01:46,240"
+			},
+			"offsets": {
+				"from": 103240,
+				"to": 106240
+			},
+			"text": " is that the test networks can be really heavy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,240",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 106240,
+				"to": 108680
+			},
+			"text": " either due to spam attacks or to large projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:51,720"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 111720
+			},
+			"text": " such as radon doing intensive tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,720",
+				"to": "00:01:54,080"
+			},
+			"offsets": {
+				"from": 111720,
+				"to": 114080
+			},
+			"text": " These can be unstable from time to time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,080",
+				"to": "00:01:56,440"
+			},
+			"offsets": {
+				"from": 114080,
+				"to": 116440
+			},
+			"text": " usually because somebody figures it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,440",
+				"to": "00:01:59,040"
+			},
+			"offsets": {
+				"from": 116440,
+				"to": 119040
+			},
+			"text": " would be fun to reorganize the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,040",
+				"to": "00:02:03,200"
+			},
+			"offsets": {
+				"from": 119040,
+				"to": 123200
+			},
+			"text": " And lastly, it can often be unfriendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,200",
+				"to": "00:02:06,040"
+			},
+			"offsets": {
+				"from": 123200,
+				"to": 126040
+			},
+			"text": " because you have this awesome project you want to deploy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,040",
+				"to": "00:02:07,480"
+			},
+			"offsets": {
+				"from": 126040,
+				"to": 127480
+			},
+			"text": " but you don't have test ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,480",
+				"to": "00:02:09,120"
+			},
+			"offsets": {
+				"from": 127480,
+				"to": 129120
+			},
+			"text": " And that's annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,120",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 129120,
+				"to": 132040
+			},
+			"text": " And the truth is that if you are a small project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:14,720"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 134720
+			},
+			"text": " then running testing on the test net is fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,720",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 134720,
+				"to": 137280
+			},
+			"text": " But if you're a bit larger project, such as radon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:19,920"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 139920
+			},
+			"text": " or maybe have many projects such as consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,920",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 139920,
+				"to": 143160
+			},
+			"text": " or perhaps you want to run a hackathon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 146440
+			},
+			"text": " then the live test network isn't really ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:30,120"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 150120
+			},
+			"text": " So the ideal solution is actually to run your own network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,120",
+				"to": "00:02:32,720"
+			},
+			"offsets": {
+				"from": 150120,
+				"to": 152720
+			},
+			"text": " Now, this might seem like a good idea at the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,720",
+				"to": "00:02:34,960"
+			},
+			"offsets": {
+				"from": 152720,
+				"to": 154960
+			},
+			"text": " since it's light, stable, you have unlimited funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,960",
+				"to": "00:02:36,600"
+			},
+			"offsets": {
+				"from": 154960,
+				"to": 156600
+			},
+			"text": " you can share with everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,600",
+				"to": "00:02:40,200"
+			},
+			"offsets": {
+				"from": 156600,
+				"to": 160200
+			},
+			"text": " But when you actually start configuring your private network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,200",
+				"to": "00:02:41,240"
+			},
+			"offsets": {
+				"from": 160200,
+				"to": 161240
+			},
+			"text": " horror strikes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,240",
+				"to": "00:02:44,200"
+			},
+			"offsets": {
+				"from": 161240,
+				"to": 164200
+			},
+			"text": " So it's actually quite a nightmare to configure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,200",
+				"to": "00:02:47,600"
+			},
+			"offsets": {
+				"from": 164200,
+				"to": 167600
+			},
+			"text": " because it has dozens of different moving components."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,600",
+				"to": "00:02:50,600"
+			},
+			"offsets": {
+				"from": 167600,
+				"to": 170600
+			},
+			"text": " And so we've been working for quite a long"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,600",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 170600,
+				"to": 172560
+			},
+			"text": " on a tool called Pupeth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 175600
+			},
+			"text": " And our primary goal with Pupeth was actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:02:58,160"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 178160
+			},
+			"text": " to run the Ringkaby test net on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,160",
+				"to": "00:03:00,880"
+			},
+			"offsets": {
+				"from": 178160,
+				"to": 180880
+			},
+			"text": " But we kind of realized that it will be an amazing tool for--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,880",
+				"to": "00:03:03,360"
+			},
+			"offsets": {
+				"from": 180880,
+				"to": 183360
+			},
+			"text": " at least we hope an amazing tool for other projects too."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,360",
+				"to": "00:03:07,840"
+			},
+			"offsets": {
+				"from": 183360,
+				"to": 187840
+			},
+			"text": " So we kind of polished it up and gave it out to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,840",
+				"to": "00:03:09,320"
+			},
+			"offsets": {
+				"from": 187840,
+				"to": 189320
+			},
+			"text": " And for the rest of my talk, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,320",
+				"to": "00:03:10,880"
+			},
+			"offsets": {
+				"from": 189320,
+				"to": 190880
+			},
+			"text": " going to do something really crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,880",
+				"to": "00:03:12,480"
+			},
+			"offsets": {
+				"from": 190880,
+				"to": 192480
+			},
+			"text": " I would like to demonstrate what it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,480",
+				"to": "00:03:15,480"
+			},
+			"offsets": {
+				"from": 192480,
+				"to": 195480
+			},
+			"text": " takes to actually create an entire etherium network with bells"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,480",
+				"to": "00:03:17,280"
+			},
+			"offsets": {
+				"from": 195480,
+				"to": 197280
+			},
+			"text": " and whistles live on stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,280",
+				"to": "00:03:22,280"
+			},
+			"offsets": {
+				"from": 197280,
+				"to": 202280
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,280",
+				"to": "00:03:25,680"
+			},
+			"offsets": {
+				"from": 202280,
+				"to": 205680
+			},
+			"text": " So first up, if you want to actually start your etherium"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,680",
+				"to": "00:03:28,320"
+			},
+			"offsets": {
+				"from": 205680,
+				"to": 208320
+			},
+			"text": " network, obviously you need to configure the Genesis block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,320",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 208320,
+				"to": 210760
+			},
+			"text": " The shared initial accounts, the balances."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:33,040"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 213040
+			},
+			"text": " And you have to define what precompiled contracts you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,040",
+				"to": "00:03:34,320"
+			},
+			"offsets": {
+				"from": 213040,
+				"to": 214320
+			},
+			"text": " what fees they have."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,320",
+				"to": "00:03:35,800"
+			},
+			"offsets": {
+				"from": 214320,
+				"to": 215800
+			},
+			"text": " Now there are different four crews"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,800",
+				"to": "00:03:37,360"
+			},
+			"offsets": {
+				"from": 215800,
+				"to": 217360
+			},
+			"text": " that you need to take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,360",
+				"to": "00:03:39,440"
+			},
+			"offsets": {
+				"from": 217360,
+				"to": 219440
+			},
+			"text": " And if this wasn't horrible enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,440",
+				"to": "00:03:41,800"
+			},
+			"offsets": {
+				"from": 219440,
+				"to": 221800
+			},
+			"text": " if you have to do this for the five primary clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,800",
+				"to": "00:03:45,680"
+			},
+			"offsets": {
+				"from": 221800,
+				"to": 225680
+			},
+			"text": " that's about 414 configuration values."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,680",
+				"to": "00:03:47,840"
+			},
+			"offsets": {
+				"from": 225680,
+				"to": 227840
+			},
+			"text": " And that's just a snippet from parity is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,840",
+				"to": "00:03:49,400"
+			},
+			"offsets": {
+				"from": 227840,
+				"to": 229400
+			},
+			"text": " extrinsive list."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,400",
+				"to": "00:03:52,360"
+			},
+			"offsets": {
+				"from": 229400,
+				"to": 232360
+			},
+			"text": " So that's not really a pleasant experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,360",
+				"to": "00:03:56,520"
+			},
+			"offsets": {
+				"from": 232360,
+				"to": 236520
+			},
+			"text": " However, if we try Poppet, now Poppet is a command line tool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,520",
+				"to": "00:03:59,080"
+			},
+			"offsets": {
+				"from": 236520,
+				"to": 239080
+			},
+			"text": " but kind of a command line wizard to help you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,080",
+				"to": "00:04:01,040"
+			},
+			"offsets": {
+				"from": 239080,
+				"to": 241040
+			},
+			"text": " So the first thing it just greets you with a nice message"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,040",
+				"to": "00:04:03,320"
+			},
+			"offsets": {
+				"from": 241040,
+				"to": 243320
+			},
+			"text": " and asks, what network would you like to manage?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,320",
+				"to": "00:04:04,520"
+			},
+			"offsets": {
+				"from": 243320,
+				"to": 244520
+			},
+			"text": " Who just type DEF CON?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,520",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 244520,
+				"to": 246040
+			},
+			"text": " That's a nice network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 248160
+			},
+			"text": " And then asks, what would you like to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:09,760"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 249760
+			},
+			"text": " Well, we don't have network yet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,760",
+				"to": "00:04:11,520"
+			},
+			"offsets": {
+				"from": 249760,
+				"to": 251520
+			},
+			"text": " so we don't cannot show network statistics."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,520",
+				"to": "00:04:13,480"
+			},
+			"offsets": {
+				"from": 251520,
+				"to": 253480
+			},
+			"text": " But we can configure the Genesis block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,480",
+				"to": "00:04:15,120"
+			},
+			"offsets": {
+				"from": 253480,
+				"to": 255120
+			},
+			"text": " So let's just switch that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,120",
+				"to": "00:04:17,040"
+			},
+			"offsets": {
+				"from": 255120,
+				"to": 257040
+			},
+			"text": " And what kind of concerns this engine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,040",
+				"to": "00:04:18,800"
+			},
+			"offsets": {
+				"from": 257040,
+				"to": 258800
+			},
+			"text": " Well, we have proof of authority for click,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,800",
+				"to": "00:04:21,040"
+			},
+			"offsets": {
+				"from": 258800,
+				"to": 261040
+			},
+			"text": " but since we want to actually cross-client network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,040",
+				"to": "00:04:22,520"
+			},
+			"offsets": {
+				"from": 261040,
+				"to": 262520
+			},
+			"text": " let's stick to ET hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,520",
+				"to": "00:04:22,880"
+			},
+			"offsets": {
+				"from": 262520,
+				"to": 262880
+			},
+			"text": " Nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,880",
+				"to": "00:04:24,280"
+			},
+			"offsets": {
+				"from": 262880,
+				"to": 264280
+			},
+			"text": " Do we want to fund initial accounts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,280",
+				"to": "00:04:25,440"
+			},
+			"offsets": {
+				"from": 264280,
+				"to": 265440
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,440",
+				"to": "00:04:28,680"
+			},
+			"offsets": {
+				"from": 265440,
+				"to": 268680
+			},
+			"text": " And do we want a specific chain, a network chains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,680",
+				"to": "00:04:31,600"
+			},
+			"offsets": {
+				"from": 268680,
+				"to": 271600
+			},
+			"text": " Well, if you run a public network, maybe it's worth a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,600",
+				"to": "00:04:34,680"
+			},
+			"offsets": {
+				"from": 271600,
+				"to": 274680
+			},
+			"text": " no, for now we just do random."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,680",
+				"to": "00:04:35,920"
+			},
+			"offsets": {
+				"from": 274680,
+				"to": 275920
+			},
+			"text": " And that was about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,920",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 275920,
+				"to": 278960
+			},
+			"text": " We actually managed to configure an entire Genesis state"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:43,920"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 283920
+			},
+			"text": " for five different clients without doing anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,920",
+				"to": "00:04:47,760"
+			},
+			"offsets": {
+				"from": 283920,
+				"to": 287760
+			},
+			"text": " Now, of course, if you actually want"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,760",
+				"to": "00:04:50,840"
+			},
+			"offsets": {
+				"from": 287760,
+				"to": 290840
+			},
+			"text": " to run your own network, then the Genesis is just step one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,840",
+				"to": "00:04:52,960"
+			},
+			"offsets": {
+				"from": 290840,
+				"to": 292960
+			},
+			"text": " You will need to get some nodes online."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,960",
+				"to": "00:04:55,600"
+			},
+			"offsets": {
+				"from": 292960,
+				"to": 295600
+			},
+			"text": " But one of the biggest problems that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,600",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295600,
+				"to": 297000
+			},
+			"text": " see with people getting nodes online"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:04:59,400"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 299400
+			},
+			"text": " is that they have absolutely no idea what the nodes are doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,400",
+				"to": "00:05:02,240"
+			},
+			"offsets": {
+				"from": 299400,
+				"to": 302240
+			},
+			"text": " So you really need to monitor the nodes somehow"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,240",
+				"to": "00:05:05,520"
+			},
+			"offsets": {
+				"from": 302240,
+				"to": 305520
+			},
+			"text": " and really want to do that via each stats or running each stats,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,520",
+				"to": "00:05:07,280"
+			},
+			"offsets": {
+				"from": 305520,
+				"to": 307280
+			},
+			"text": " which isn't really easy to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,280",
+				"to": "00:05:08,840"
+			},
+			"offsets": {
+				"from": 307280,
+				"to": 308840
+			},
+			"text": " But let's see how PAPATH can help."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,840",
+				"to": "00:05:09,880"
+			},
+			"offsets": {
+				"from": 308840,
+				"to": 309880
+			},
+			"text": " So what would you like to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,880",
+				"to": "00:05:12,440"
+			},
+			"offsets": {
+				"from": 309880,
+				"to": 312440
+			},
+			"text": " PAPATHAS says, well, we'd like to deploy a new network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,440",
+				"to": "00:05:13,200"
+			},
+			"offsets": {
+				"from": 312440,
+				"to": 313200
+			},
+			"text": " component."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,200",
+				"to": "00:05:14,400"
+			},
+			"offsets": {
+				"from": 313200,
+				"to": 314400
+			},
+			"text": " It gives us a choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,400",
+				"to": "00:05:16,640"
+			},
+			"offsets": {
+				"from": 314400,
+				"to": 316640
+			},
+			"text": " Let's stick to each stat."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,640",
+				"to": "00:05:17,640"
+			},
+			"offsets": {
+				"from": 316640,
+				"to": 317640
+			},
+			"text": " And which server?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,640",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 317640,
+				"to": 319680
+			},
+			"text": " Well, ooh, that's connect to a server."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:22,360"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 322360
+			},
+			"text": " We have a server called DefconNetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,360",
+				"to": "00:05:24,160"
+			},
+			"offsets": {
+				"from": 322360,
+				"to": 324160
+			},
+			"text": " It's a registered domain name."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,160",
+				"to": "00:05:25,720"
+			},
+			"offsets": {
+				"from": 324160,
+				"to": 325720
+			},
+			"text": " Work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,720",
+				"to": "00:05:26,720"
+			},
+			"offsets": {
+				"from": 325720,
+				"to": 326720
+			},
+			"text": " Yeah, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,720",
+				"to": "00:05:28,120"
+			},
+			"offsets": {
+				"from": 326720,
+				"to": 328120
+			},
+			"text": " Connects a new server."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,120",
+				"to": "00:05:30,880"
+			},
+			"offsets": {
+				"from": 328120,
+				"to": 330880
+			},
+			"text": " DefconNetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,880",
+				"to": "00:05:33,280"
+			},
+			"offsets": {
+				"from": 330880,
+				"to": 333280
+			},
+			"text": " And yay, Wi-Fi works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,280",
+				"to": "00:05:34,080"
+			},
+			"offsets": {
+				"from": 333280,
+				"to": 334080
+			},
+			"text": " Awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,080",
+				"to": "00:05:37,840"
+			},
+			"offsets": {
+				"from": 334080,
+				"to": 337840
+			},
+			"text": " So we managed to connect--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,840",
+				"to": "00:05:41,120"
+			},
+			"offsets": {
+				"from": 337840,
+				"to": 341120
+			},
+			"text": " that's why you don't do live demos."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,120",
+				"to": "00:05:43,560"
+			},
+			"offsets": {
+				"from": 341120,
+				"to": 343560
+			},
+			"text": " DefconNetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,560",
+				"to": "00:05:44,920"
+			},
+			"offsets": {
+				"from": 343560,
+				"to": 344920
+			},
+			"text": " Do we trust this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,920",
+				"to": "00:05:46,480"
+			},
+			"offsets": {
+				"from": 344920,
+				"to": 346480
+			},
+			"text": " Yes, we trust the remote host."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,480",
+				"to": "00:05:49,280"
+			},
+			"offsets": {
+				"from": 346480,
+				"to": 349280
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,280",
+				"to": "00:05:51,680"
+			},
+			"offsets": {
+				"from": 349280,
+				"to": 351680
+			},
+			"text": " Now, where do we want to deploy ETH?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,680",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 351680,
+				"to": 354000
+			},
+			"text": " Since we want to deploy possibly multiple websites here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:57,520"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 357520
+			},
+			"text": " let's deploy it on port 80."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,520",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 357520,
+				"to": 359600
+			},
+			"text": " And do we want to share the port 80 with others?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:00,840"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 360840
+			},
+			"text": " Yes, sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,840",
+				"to": "00:06:04,120"
+			},
+			"offsets": {
+				"from": 360840,
+				"to": 364120
+			},
+			"text": " Now, when we actually say we want to share port 80,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,120",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 364120,
+				"to": 366840
+			},
+			"text": " PAPATH will deploy a reverse-enginex proxy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:08,520"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 368520
+			},
+			"text": " automatically configure everything without us"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,520",
+				"to": "00:06:10,400"
+			},
+			"offsets": {
+				"from": 368520,
+				"to": 370400
+			},
+			"text": " having to do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,400",
+				"to": "00:06:16,560"
+			},
+			"offsets": {
+				"from": 370400,
+				"to": 376560
+			},
+			"text": " And what domain do we want to host this ETAS page on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,560",
+				"to": "00:06:22,080"
+			},
+			"offsets": {
+				"from": 376560,
+				"to": 382080
+			},
+			"text": " Stas.defconNetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,080",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 382080,
+				"to": 384560
+			},
+			"text": " OK, and what's the ETAS password?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:25,680"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 385680
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,680",
+				"to": "00:06:26,120"
+			},
+			"offsets": {
+				"from": 385680,
+				"to": 386120
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,120",
+				"to": "00:06:27,040"
+			},
+			"offsets": {
+				"from": 386120,
+				"to": 387040
+			},
+			"text": " It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,040",
+				"to": "00:06:28,920"
+			},
+			"offsets": {
+				"from": 387040,
+				"to": 388920
+			},
+			"text": " Yeah, it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,920",
+				"to": "00:06:31,680"
+			},
+			"offsets": {
+				"from": 388920,
+				"to": 391680
+			},
+			"text": " Now, in theory, PAPATH now runs in the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,680",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 391680,
+				"to": 395000
+			},
+			"text": " It starts up entirely ETAS and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:37,240"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 397240
+			},
+			"text": " And now, not only will it start it up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,240",
+				"to": "00:06:39,240"
+			},
+			"offsets": {
+				"from": 397240,
+				"to": 399240
+			},
+			"text": " it also lists us that, yes, we have a server"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,240",
+				"to": "00:06:42,240"
+			},
+			"offsets": {
+				"from": 399240,
+				"to": 402240
+			},
+			"text": " connected the IP address and what services it's running."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,240",
+				"to": "00:06:44,480"
+			},
+			"offsets": {
+				"from": 402240,
+				"to": 404480
+			},
+			"text": " And now, if you load up a web browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,480",
+				"to": "00:06:48,160"
+			},
+			"offsets": {
+				"from": 404480,
+				"to": 408160
+			},
+			"text": " and look at the actual domain name, then hopefully, yep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,160",
+				"to": "00:06:50,080"
+			},
+			"offsets": {
+				"from": 408160,
+				"to": 410080
+			},
+			"text": " we have an ETAS running."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,080",
+				"to": "00:06:52,240"
+			},
+			"offsets": {
+				"from": 410080,
+				"to": 412240
+			},
+			"text": " And you can see it is actually not an image."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,240",
+				"to": "00:06:53,040"
+			},
+			"offsets": {
+				"from": 412240,
+				"to": 413040
+			},
+			"text": " It's alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,040",
+				"to": "00:06:55,560"
+			},
+			"offsets": {
+				"from": 413040,
+				"to": 415560
+			},
+			"text": " It's that page."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,560",
+				"to": "00:06:57,080"
+			},
+			"offsets": {
+				"from": 415560,
+				"to": 417080
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,080",
+				"to": "00:06:58,400"
+			},
+			"offsets": {
+				"from": 417080,
+				"to": 418400
+			},
+			"text": " Now, we have a--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,400",
+				"to": "00:06:59,880"
+			},
+			"offsets": {
+				"from": 418400,
+				"to": 419880
+			},
+			"text": " we can monitor the thing, but we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,880",
+				"to": "00:07:01,120"
+			},
+			"offsets": {
+				"from": 419880,
+				"to": 421120
+			},
+			"text": " have to boot up the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,120",
+				"to": "00:07:04,240"
+			},
+			"offsets": {
+				"from": 421120,
+				"to": 424240
+			},
+			"text": " So let's deploy now a boot node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,240",
+				"to": "00:07:07,280"
+			},
+			"offsets": {
+				"from": 424240,
+				"to": 427280
+			},
+			"text": " Yep, that's sometimes the console is funky."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,280",
+				"to": "00:07:08,920"
+			},
+			"offsets": {
+				"from": 427280,
+				"to": 428920
+			},
+			"text": " But it's all."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,920",
+				"to": "00:07:12,360"
+			},
+			"offsets": {
+				"from": 428920,
+				"to": 432360
+			},
+			"text": " Now, again, we have a small scan, so let me know what we're up to."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,360",
+				"to": "00:07:14,360"
+			},
+			"offsets": {
+				"from": 432360,
+				"to": 434360
+			},
+			"text": " And let's deploy a network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,360",
+				"to": "00:07:16,800"
+			},
+			"offsets": {
+				"from": 434360,
+				"to": 436800
+			},
+			"text": " Yep, we want to deploy a boot node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,800",
+				"to": "00:07:17,960"
+			},
+			"offsets": {
+				"from": 436800,
+				"to": 437960
+			},
+			"text": " And where do we want to deploy it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,960",
+				"to": "00:07:19,920"
+			},
+			"offsets": {
+				"from": 437960,
+				"to": 439920
+			},
+			"text": " Well, usually, you don't want your boot node to go down"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,920",
+				"to": "00:07:21,400"
+			},
+			"offsets": {
+				"from": 439920,
+				"to": 441400
+			},
+			"text": " with somebody's dusting your website."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,400",
+				"to": "00:07:23,520"
+			},
+			"offsets": {
+				"from": 441400,
+				"to": 443520
+			},
+			"text": " So let's just switch to a new server."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,520",
+				"to": "00:07:28,240"
+			},
+			"offsets": {
+				"from": 443520,
+				"to": 448240
+			},
+			"text": " Let's call it boot.devconnetwork."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,240",
+				"to": "00:07:29,920"
+			},
+			"offsets": {
+				"from": 448240,
+				"to": 449920
+			},
+			"text": " And yes, we connect to the new server."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,920",
+				"to": "00:07:30,440"
+			},
+			"offsets": {
+				"from": 449920,
+				"to": 450440
+			},
+			"text": " That's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,440",
+				"to": "00:07:33,160"
+			},
+			"offsets": {
+				"from": 450440,
+				"to": 453160
+			},
+			"text": " We can manage multiple servers at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,160",
+				"to": "00:07:35,360"
+			},
+			"offsets": {
+				"from": 453160,
+				"to": 455360
+			},
+			"text": " Where do we want to store the data directory?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,360",
+				"to": "00:07:38,600"
+			},
+			"offsets": {
+				"from": 455360,
+				"to": 458600
+			},
+			"text": " Let's call it devconbootnode on the server."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,600",
+				"to": "00:07:40,200"
+			},
+			"offsets": {
+				"from": 458600,
+				"to": 460200
+			},
+			"text": " What you devport one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,200",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 460200,
+				"to": 462760
+			},
+			"text": " We'll just go with the default configurations."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:45,200"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 465200
+			},
+			"text": " They aren't even that interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,200",
+				"to": "00:07:47,920"
+			},
+			"offsets": {
+				"from": 465200,
+				"to": 467920
+			},
+			"text": " And what do we want to call the boot node on the stats page?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,920",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 467920,
+				"to": 469000
+			},
+			"text": " Let's call it boot node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,480"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472480
+			},
+			"text": " That seems about as dumb as it can get."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,480",
+				"to": "00:07:56,440"
+			},
+			"offsets": {
+				"from": 472480,
+				"to": 476440
+			},
+			"text": " And again, Pupet does its funky magic in the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,440",
+				"to": "00:07:58,480"
+			},
+			"offsets": {
+				"from": 476440,
+				"to": 478480
+			},
+			"text": " And if we--"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,480",
+				"to": "00:08:01,680"
+			},
+			"offsets": {
+				"from": 478480,
+				"to": 481680
+			},
+			"text": " I think we can even close this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,680",
+				"to": "00:08:02,600"
+			},
+			"offsets": {
+				"from": 481680,
+				"to": 482600
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,600",
+				"to": "00:08:07,920"
+			},
+			"offsets": {
+				"from": 482600,
+				"to": 487920
+			},
+			"text": " And if we now checked our stats page, then, yep, fair enough,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,920",
+				"to": "00:08:09,760"
+			},
+			"offsets": {
+				"from": 487920,
+				"to": 489760
+			},
+			"text": " we have our boot nodes registered."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,760",
+				"to": "00:08:13,680"
+			},
+			"offsets": {
+				"from": 489760,
+				"to": 493680
+			},
+			"text": " Maybe it's not a bit tiny, but we have a boot node running."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,680",
+				"to": "00:08:15,520"
+			},
+			"offsets": {
+				"from": 493680,
+				"to": 495520
+			},
+			"text": " And it's immediately linked to the stats page."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,520",
+				"to": "00:08:17,240"
+			},
+			"offsets": {
+				"from": 495520,
+				"to": 497240
+			},
+			"text": " We don't even have to configure everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,240",
+				"to": "00:08:17,960"
+			},
+			"offsets": {
+				"from": 497240,
+				"to": 497960
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,960",
+				"to": "00:08:20,240"
+			},
+			"offsets": {
+				"from": 497960,
+				"to": 500240
+			},
+			"text": " Now, we have a static chain that doesn't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,240",
+				"to": "00:08:23,640"
+			},
+			"offsets": {
+				"from": 500240,
+				"to": 503640
+			},
+			"text": " Obviously, we need to mine on the chain to make it progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,640",
+				"to": "00:08:26,760"
+			},
+			"offsets": {
+				"from": 503640,
+				"to": 506760
+			},
+			"text": " So we can, again, ask startup Pupet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,760",
+				"to": "00:08:30,200"
+			},
+			"offsets": {
+				"from": 506760,
+				"to": 510200
+			},
+			"text": " ask it to connect to our new little network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,200",
+				"to": "00:08:33,280"
+			},
+			"offsets": {
+				"from": 510200,
+				"to": 513280
+			},
+			"text": " And let's see how what it takes to deploy our mining node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,280",
+				"to": "00:08:36,280"
+			},
+			"offsets": {
+				"from": 513280,
+				"to": 516280
+			},
+			"text": " Now we want to deploy a new network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,280",
+				"to": "00:08:38,600"
+			},
+			"offsets": {
+				"from": 516280,
+				"to": 518600
+			},
+			"text": " Let's deploy a mining node or a sealer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,600",
+				"to": "00:08:42,520"
+			},
+			"offsets": {
+				"from": 518600,
+				"to": 522520
+			},
+			"text": " Again, miner kind of takes a kick out of the net machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,520",
+				"to": "00:08:49,560"
+			},
+			"offsets": {
+				"from": 522520,
+				"to": 529560
+			},
+			"text": " So let's put it on the miner.devcon network machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,560",
+				"to": "00:08:50,920"
+			},
+			"offsets": {
+				"from": 529560,
+				"to": 530920
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,920",
+				"to": "00:08:55,200"
+			},
+			"offsets": {
+				"from": 530920,
+				"to": 535200
+			},
+			"text": " And yeah, where do we store the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,200",
+				"to": "00:08:57,800"
+			},
+			"offsets": {
+				"from": 535200,
+				"to": 537800
+			},
+			"text": " Devcon miner."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,800",
+				"to": "00:08:59,680"
+			},
+			"offsets": {
+				"from": 537800,
+				"to": 539680
+			},
+			"text": " And where should we store iti hashtag?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,680",
+				"to": "00:09:00,680"
+			},
+			"offsets": {
+				"from": 539680,
+				"to": 540680
+			},
+			"text": " Devcon iti."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,400",
+				"to": "00:09:07,360"
+			},
+			"offsets": {
+				"from": 544400,
+				"to": 547360
+			},
+			"text": " And the remainder can be-- the connectivity strings"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,360",
+				"to": "00:09:07,960"
+			},
+			"offsets": {
+				"from": 547360,
+				"to": 547960
+			},
+			"text": " can be simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,960",
+				"to": "00:09:12,080"
+			},
+			"offsets": {
+				"from": 547960,
+				"to": 552080
+			},
+			"text": " And we want to register it on the iti hashtag page,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,080",
+				"to": "00:09:13,720"
+			},
+			"offsets": {
+				"from": 552080,
+				"to": 553720
+			},
+			"text": " as our estas page as the miner."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,720",
+				"to": "00:09:15,560"
+			},
+			"offsets": {
+				"from": 553720,
+				"to": 555560
+			},
+			"text": " Now what ether base should--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,560",
+				"to": "00:09:18,400"
+			},
+			"offsets": {
+				"from": 555560,
+				"to": 558400
+			},
+			"text": " ooh, that was fancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,400",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 558400,
+				"to": 561000
+			},
+			"text": " What address should the miner use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 562520
+			},
+			"text": " We just copy base this here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:24,880"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 564880
+			},
+			"text": " And what gas price and gas targets"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,880",
+				"to": "00:09:26,320"
+			},
+			"offsets": {
+				"from": 564880,
+				"to": 566320
+			},
+			"text": " will just stick to the defaults."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,320",
+				"to": "00:09:27,800"
+			},
+			"offsets": {
+				"from": 566320,
+				"to": 567800
+			},
+			"text": " It's not that important."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,800",
+				"to": "00:09:30,600"
+			},
+			"offsets": {
+				"from": 567800,
+				"to": 570600
+			},
+			"text": " And again, Pupet is pushing out the mining node"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,600",
+				"to": "00:09:32,520"
+			},
+			"offsets": {
+				"from": 570600,
+				"to": 572520
+			},
+			"text": " to our remote server."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,520",
+				"to": "00:09:35,040"
+			},
+			"offsets": {
+				"from": 572520,
+				"to": 575040
+			},
+			"text": " And it should finish booting any moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,040",
+				"to": "00:09:36,200"
+			},
+			"offsets": {
+				"from": 575040,
+				"to": 576200
+			},
+			"text": " It does a quick health check."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,200",
+				"to": "00:09:38,200"
+			},
+			"offsets": {
+				"from": 576200,
+				"to": 578200
+			},
+			"text": " It actually checks whether ports are reachable."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,200",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 578200,
+				"to": 580720
+			},
+			"text": " We have a nice dump of everything we can figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:42,200"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 582200
+			},
+			"text": " until now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,200",
+				"to": "00:09:46,280"
+			},
+			"offsets": {
+				"from": 582200,
+				"to": 586280
+			},
+			"text": " And if we look at the stats page, fingers crossed."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,280",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 586280,
+				"to": 589040
+			},
+			"text": " Yep, we actually have already four blocks mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:51,640"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 591640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,640",
+				"to": "00:09:54,400"
+			},
+			"offsets": {
+				"from": 591640,
+				"to": 594400
+			},
+			"text": " And not only that, I'm really hoping"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,400",
+				"to": "00:09:57,520"
+			},
+			"offsets": {
+				"from": 594400,
+				"to": 597520
+			},
+			"text": " that the boot node will connect soon to the mining node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,520",
+				"to": "00:09:59,600"
+			},
+			"offsets": {
+				"from": 597520,
+				"to": 599600
+			},
+			"text": " But since time is limited, we'll just"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,600",
+				"to": "00:10:01,080"
+			},
+			"offsets": {
+				"from": 599600,
+				"to": 601080
+			},
+			"text": " check it in the next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,080",
+				"to": "00:10:02,440"
+			},
+			"offsets": {
+				"from": 601080,
+				"to": 602440
+			},
+			"text": " Yep, they've connected."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,440",
+				"to": "00:10:03,680"
+			},
+			"offsets": {
+				"from": 602440,
+				"to": 603680
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,680",
+				"to": "00:10:06,400"
+			},
+			"offsets": {
+				"from": 603680,
+				"to": 606400
+			},
+			"text": " So of course, now you actually have an entire network up"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,400",
+				"to": "00:10:07,080"
+			},
+			"offsets": {
+				"from": 606400,
+				"to": 607080
+			},
+			"text": " and running."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,080",
+				"to": "00:10:09,360"
+			},
+			"offsets": {
+				"from": 607080,
+				"to": 609360
+			},
+			"text": " But if you tell your friends that, hey, I have this awesome"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,360",
+				"to": "00:10:13,160"
+			},
+			"offsets": {
+				"from": 609360,
+				"to": 613160
+			},
+			"text": " network, they will just go, OK, and how do we use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,160",
+				"to": "00:10:15,560"
+			},
+			"offsets": {
+				"from": 613160,
+				"to": 615560
+			},
+			"text": " And then you kind of start scratching your head."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,560",
+				"to": "00:10:17,880"
+			},
+			"offsets": {
+				"from": 615560,
+				"to": 617880
+			},
+			"text": " So it would be really nice if--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,880",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 617880,
+				"to": 620000
+			},
+			"text": " well, first thing first, you could see what the network is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:20,320"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 620320
+			},
+			"text": " doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,320",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 620320,
+				"to": 624000
+			},
+			"text": " So for that, obviously, we need kind of a block explorer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 626000
+			},
+			"text": " which currently, for example, there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,040"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630040
+			},
+			"text": " is no open source block explorer that supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,040",
+				"to": "00:10:31,760"
+			},
+			"offsets": {
+				"from": 630040,
+				"to": 631760
+			},
+			"text": " go Ethereum as a back end."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,760",
+				"to": "00:10:34,040"
+			},
+			"offsets": {
+				"from": 631760,
+				"to": 634040
+			},
+			"text": " But however, there is one that supports parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,040",
+				"to": "00:10:37,440"
+			},
+			"offsets": {
+				"from": 634040,
+				"to": 637440
+			},
+			"text": " Now, can we actually deploy parity nodes easily?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,440",
+				"to": "00:10:38,800"
+			},
+			"offsets": {
+				"from": 637440,
+				"to": 638800
+			},
+			"text": " Well, sure, let's try."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,800",
+				"to": "00:10:40,560"
+			},
+			"offsets": {
+				"from": 638800,
+				"to": 640560
+			},
+			"text": " We want to deploy a network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,560",
+				"to": "00:10:42,040"
+			},
+			"offsets": {
+				"from": 640560,
+				"to": 642040
+			},
+			"text": " Let's do an explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,040",
+				"to": "00:10:42,960"
+			},
+			"offsets": {
+				"from": 642040,
+				"to": 642960
+			},
+			"text": " Where do we want to deploy it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,960",
+				"to": "00:10:44,680"
+			},
+			"offsets": {
+				"from": 642960,
+				"to": 644680
+			},
+			"text": " Well, we will put everything-- well, our website's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,680",
+				"to": "00:10:45,480"
+			},
+			"offsets": {
+				"from": 644680,
+				"to": 645480
+			},
+			"text": " on the same machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,480",
+				"to": "00:10:48,440"
+			},
+			"offsets": {
+				"from": 645480,
+				"to": 648440
+			},
+			"text": " So let's use DEF CON network as the machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,440",
+				"to": "00:10:51,040"
+			},
+			"offsets": {
+				"from": 648440,
+				"to": 651040
+			},
+			"text": " Yes, we want to share port 80."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,040",
+				"to": "00:10:57,720"
+			},
+			"offsets": {
+				"from": 651040,
+				"to": 657720
+			},
+			"text": " And let's do explorer, DEF CON.NET work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,720",
+				"to": "00:10:59,240"
+			},
+			"offsets": {
+				"from": 657720,
+				"to": 659240
+			},
+			"text": " Where should the data be stored?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,240",
+				"to": "00:11:01,760"
+			},
+			"offsets": {
+				"from": 659240,
+				"to": 661760
+			},
+			"text": " DEF CON explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,760",
+				"to": "00:11:04,720"
+			},
+			"offsets": {
+				"from": 661760,
+				"to": 664720
+			},
+			"text": " And the defaults."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,720",
+				"to": "00:11:07,280"
+			},
+			"offsets": {
+				"from": 664720,
+				"to": 667280
+			},
+			"text": " Let's call it on explorer_under stats page."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,280",
+				"to": "00:11:12,080"
+			},
+			"offsets": {
+				"from": 667280,
+				"to": 672080
+			},
+			"text": " And again, it's pushing it out fairly fast, hopefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,080",
+				"to": "00:11:14,400"
+			},
+			"offsets": {
+				"from": 672080,
+				"to": 674400
+			},
+			"text": " We're waiting for the node to finish booting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,400",
+				"to": "00:11:15,640"
+			},
+			"offsets": {
+				"from": 674400,
+				"to": 675640
+			},
+			"text": " Yeah, I'll just close it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,640",
+				"to": "00:11:21,040"
+			},
+			"offsets": {
+				"from": 675640,
+				"to": 681040
+			},
+			"text": " And let's see, does it actually work, fingers crossed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,040",
+				"to": "00:11:23,560"
+			},
+			"offsets": {
+				"from": 681040,
+				"to": 683560
+			},
+			"text": " Yep, we have our block explorer up and running."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,560",
+				"to": "00:11:25,960"
+			},
+			"offsets": {
+				"from": 683560,
+				"to": 685960
+			},
+			"text": " And we have already 11 blocks mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,960",
+				"to": "00:11:32,080"
+			},
+			"offsets": {
+				"from": 685960,
+				"to": 692080
+			},
+			"text": " And you can check that our miner already has 42 ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,080",
+				"to": "00:11:34,040"
+			},
+			"offsets": {
+				"from": 692080,
+				"to": 694040
+			},
+			"text": " That's a nice number."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,040",
+				"to": "00:11:37,120"
+			},
+			"offsets": {
+				"from": 694040,
+				"to": 697120
+			},
+			"text": " And of course, if we check the network stats, then again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,120",
+				"to": "00:11:40,480"
+			},
+			"offsets": {
+				"from": 697120,
+				"to": 700480
+			},
+			"text": " we already have three machines running without actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,480",
+				"to": "00:11:42,880"
+			},
+			"offsets": {
+				"from": 700480,
+				"to": 702880
+			},
+			"text": " configuring too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,880",
+				"to": "00:11:45,200"
+			},
+			"offsets": {
+				"from": 702880,
+				"to": 705200
+			},
+			"text": " Now we know what the chain is doing from the inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,200",
+				"to": "00:11:46,040"
+			},
+			"offsets": {
+				"from": 705200,
+				"to": 706040
+			},
+			"text": " and from the outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,040",
+				"to": "00:11:47,640"
+			},
+			"offsets": {
+				"from": 706040,
+				"to": 707640
+			},
+			"text": " Can we ask our friends to use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,640",
+				"to": "00:11:49,920"
+			},
+			"offsets": {
+				"from": 707640,
+				"to": 709920
+			},
+			"text": " Well, sure, but it's kind of hard to use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,920",
+				"to": "00:11:51,120"
+			},
+			"offsets": {
+				"from": 709920,
+				"to": 711120
+			},
+			"text": " for a simple client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,120",
+				"to": "00:11:53,480"
+			},
+			"offsets": {
+				"from": 711120,
+				"to": 713480
+			},
+			"text": " So let's try to give them a web wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,480",
+				"to": "00:11:57,160"
+			},
+			"offsets": {
+				"from": 713480,
+				"to": 717160
+			},
+			"text": " Now, of course, everybody knows the most sophisticated web"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,160",
+				"to": "00:11:59,280"
+			},
+			"offsets": {
+				"from": 717160,
+				"to": 719280
+			},
+			"text": " wallet currently out there is my ether wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,280",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 719280,
+				"to": 721960
+			},
+			"text": " So let's just deploy my ether wallet to our little custom"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:02,920"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 722920
+			},
+			"text": " test network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,920",
+				"to": "00:12:05,960"
+			},
+			"offsets": {
+				"from": 722920,
+				"to": 725960
+			},
+			"text": " So let's just deploy a new network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,960",
+				"to": "00:12:09,360"
+			},
+			"offsets": {
+				"from": 725960,
+				"to": 729360
+			},
+			"text": " We want to deploy a wallet to our website server."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,360",
+				"to": "00:12:17,080"
+			},
+			"offsets": {
+				"from": 729360,
+				"to": 737080
+			},
+			"text": " Yes, we want to share port 80 and call it wallet.defcon network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,080",
+				"to": "00:12:19,600"
+			},
+			"offsets": {
+				"from": 737080,
+				"to": 739600
+			},
+			"text": " Where should we store them data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,600",
+				"to": "00:12:26,360"
+			},
+			"offsets": {
+				"from": 739600,
+				"to": 746360
+			},
+			"text": " We need a wallet and just spice up the defaults a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,360",
+				"to": "00:12:29,360"
+			},
+			"offsets": {
+				"from": 746360,
+				"to": 749360
+			},
+			"text": " And let's call our wallet on the stats page."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,360",
+				"to": "00:12:32,920"
+			},
+			"offsets": {
+				"from": 749360,
+				"to": 752920
+			},
+			"text": " Since that runs also back, I know let's just call it wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,920",
+				"to": "00:12:35,600"
+			},
+			"offsets": {
+				"from": 752920,
+				"to": 755600
+			},
+			"text": " And again, Pupus is just configuring everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,600",
+				"to": "00:12:36,640"
+			},
+			"offsets": {
+				"from": 755600,
+				"to": 756640
+			},
+			"text": " in the background for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,640",
+				"to": "00:12:39,720"
+			},
+			"offsets": {
+				"from": 756640,
+				"to": 759720
+			},
+			"text": " And it is pushing out the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,720",
+				"to": "00:12:45,240"
+			},
+			"offsets": {
+				"from": 759720,
+				"to": 765240
+			},
+			"text": " And if we check our wallet now, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,240",
+				"to": "00:12:48,800"
+			},
+			"offsets": {
+				"from": 765240,
+				"to": 768800
+			},
+			"text": " is something that takes usually the most time to boot up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,800",
+				"to": "00:12:51,440"
+			},
+			"offsets": {
+				"from": 768800,
+				"to": 771440
+			},
+			"text": " Yeah, boom, we have our wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,440",
+				"to": "00:12:53,960"
+			},
+			"offsets": {
+				"from": 771440,
+				"to": 773960
+			},
+			"text": " And as you can see, it is actually configured"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,960",
+				"to": "00:12:55,360"
+			},
+			"offsets": {
+				"from": 773960,
+				"to": 775360
+			},
+			"text": " for the Defcon network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,360",
+				"to": "00:12:57,400"
+			},
+			"offsets": {
+				"from": 775360,
+				"to": 777400
+			},
+			"text": " It deployed the back-end node to connect to."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,400",
+				"to": "00:12:59,360"
+			},
+			"offsets": {
+				"from": 777400,
+				"to": 779360
+			},
+			"text": " We have the front-end, and everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,360",
+				"to": "00:13:01,600"
+			},
+			"offsets": {
+				"from": 779360,
+				"to": 781600
+			},
+			"text": " seems to work nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,600",
+				"to": "00:13:02,680"
+			},
+			"offsets": {
+				"from": 781600,
+				"to": 782680
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,680",
+				"to": "00:13:06,440"
+			},
+			"offsets": {
+				"from": 782680,
+				"to": 786440
+			},
+			"text": " So that one kind of was easy enough to deploy all the components."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,440",
+				"to": "00:13:08,680"
+			},
+			"offsets": {
+				"from": 786440,
+				"to": 788680
+			},
+			"text": " But if you share this with your friend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,680",
+				"to": "00:13:11,280"
+			},
+			"offsets": {
+				"from": 788680,
+				"to": 791280
+			},
+			"text": " then he'll say that, OK, I want ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,280",
+				"to": "00:13:14,120"
+			},
+			"offsets": {
+				"from": 791280,
+				"to": 794120
+			},
+			"text": " And you will be the one who has to give them ether all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,120",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 794120,
+				"to": 796000
+			},
+			"text": " which gets boring really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:18,520"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 798520
+			},
+			"text": " So we really need a facet that you can just start up"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,520",
+				"to": "00:13:22,080"
+			},
+			"offsets": {
+				"from": 798520,
+				"to": 802080
+			},
+			"text": " and it just runs there, and everybody can request ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,080",
+				"to": "00:13:24,440"
+			},
+			"offsets": {
+				"from": 802080,
+				"to": 804440
+			},
+			"text": " And to do that, we have actually--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,440",
+				"to": "00:13:27,640"
+			},
+			"offsets": {
+				"from": 804440,
+				"to": 807640
+			},
+			"text": " GoEthereum has a faucet built in or support for it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,640",
+				"to": "00:13:29,280"
+			},
+			"offsets": {
+				"from": 807640,
+				"to": 809280
+			},
+			"text": " based on the Lite client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,280",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 809280,
+				"to": 811000
+			},
+			"text": " So let's ask Pupus to deploy that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:34,360"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 814360
+			},
+			"text": " Yep, we want to deploy a new network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,360",
+				"to": "00:13:35,720"
+			},
+			"offsets": {
+				"from": 814360,
+				"to": 815720
+			},
+			"text": " And let's do faucet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,720",
+				"to": "00:13:37,920"
+			},
+			"offsets": {
+				"from": 815720,
+				"to": 817920
+			},
+			"text": " That's our sixth on the list."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,920",
+				"to": "00:13:40,480"
+			},
+			"offsets": {
+				"from": 817920,
+				"to": 820480
+			},
+			"text": " And we want to deploy it again onto our web server."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,480",
+				"to": "00:13:41,760"
+			},
+			"offsets": {
+				"from": 820480,
+				"to": 821760
+			},
+			"text": " We deployed everything there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,760",
+				"to": "00:13:46,720"
+			},
+			"offsets": {
+				"from": 821760,
+				"to": 826720
+			},
+			"text": " Faucet, Defcon, that work domain name."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,720",
+				"to": "00:13:50,360"
+			},
+			"offsets": {
+				"from": 826720,
+				"to": 830360
+			},
+			"text": " Oh, yeah, sorry, port 81st and then--"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,360",
+				"to": "00:13:54,360"
+			},
+			"offsets": {
+				"from": 830360,
+				"to": 834360
+			},
+			"text": " Oh, set Defcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,360",
+				"to": "00:13:55,360"
+			},
+			"offsets": {
+				"from": 834360,
+				"to": 835360
+			},
+			"text": " Oop, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,360",
+				"to": "00:13:56,120"
+			},
+			"offsets": {
+				"from": 835360,
+				"to": 836120
+			},
+			"text": " Ooh, nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,120",
+				"to": "00:14:05,320"
+			},
+			"offsets": {
+				"from": 836120,
+				"to": 845320
+			},
+			"text": " OK, how many ether do we want the faucet to release?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,320",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 845320,
+				"to": 848560
+			},
+			"text": " Well, one ether is fine per 15 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:09,600"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 849600
+			},
+			"text": " We want three tiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,600",
+				"to": "00:14:11,360"
+			},
+			"offsets": {
+				"from": 849600,
+				"to": 851360
+			},
+			"text": " If you wait more, you get more ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,360",
+				"to": "00:14:13,960"
+			},
+			"offsets": {
+				"from": 851360,
+				"to": 853960
+			},
+			"text": " Do we want to recapture protection against bots?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,960",
+				"to": "00:14:15,800"
+			},
+			"offsets": {
+				"from": 853960,
+				"to": 855800
+			},
+			"text": " No, it's a test network here for Defcon."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,800",
+				"to": "00:14:18,120"
+			},
+			"offsets": {
+				"from": 855800,
+				"to": 858120
+			},
+			"text": " We don't care about robots."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,120",
+				"to": "00:14:19,960"
+			},
+			"offsets": {
+				"from": 858120,
+				"to": 859960
+			},
+			"text": " Where should we store the data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,960",
+				"to": "00:14:22,840"
+			},
+			"offsets": {
+				"from": 859960,
+				"to": 862840
+			},
+			"text": " Defcon faucet sounds about right."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,840",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 862840,
+				"to": 868000
+			},
+			"text": " And let's just pick a different port for this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:30,800"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 870800
+			},
+			"text": " What should the faucet be called on the stats page?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,800",
+				"to": "00:14:34,360"
+			},
+			"offsets": {
+				"from": 870800,
+				"to": 874360
+			},
+			"text": " Oh, set."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,360",
+				"to": "00:14:37,640"
+			},
+			"offsets": {
+				"from": 874360,
+				"to": 877640
+			},
+			"text": " Of course, if I run a faucet, I do need a private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,640",
+				"to": "00:14:40,440"
+			},
+			"offsets": {
+				"from": 877640,
+				"to": 880440
+			},
+			"text": " so that the faucet can actually fund its stuff out of."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,440",
+				"to": "00:14:42,920"
+			},
+			"offsets": {
+				"from": 880440,
+				"to": 882920
+			},
+			"text": " So we have a private key pasted in here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,920",
+				"to": "00:14:45,320"
+			},
+			"offsets": {
+				"from": 882920,
+				"to": 885320
+			},
+			"text": " We have to unlock it for the faucet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,320",
+				"to": "00:14:46,520"
+			},
+			"offsets": {
+				"from": 885320,
+				"to": 886520
+			},
+			"text": " Ooh, it's unlocked."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,520",
+				"to": "00:14:48,880"
+			},
+			"offsets": {
+				"from": 886520,
+				"to": 888880
+			},
+			"text": " And do we allow unauthorized requests?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,880",
+				"to": "00:14:50,480"
+			},
+			"offsets": {
+				"from": 888880,
+				"to": 890480
+			},
+			"text": " Well, since it's a Defcon, and we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,480",
+				"to": "00:14:53,840"
+			},
+			"offsets": {
+				"from": 890480,
+				"to": 893840
+			},
+			"text": " care about the lifetime of this whole network so much, yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,840",
+				"to": "00:14:57,880"
+			},
+			"offsets": {
+				"from": 893840,
+				"to": 897880
+			},
+			"text": " We authorize anyone to request funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,880",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 897880,
+				"to": 901000
+			},
+			"text": " And let's deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:02,960"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 902960
+			},
+			"text": " I'm really-- ooh, it managed to deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,960",
+				"to": "00:15:04,760"
+			},
+			"offsets": {
+				"from": 902960,
+				"to": 904760
+			},
+			"text": " That was nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,760",
+				"to": "00:15:07,400"
+			},
+			"offsets": {
+				"from": 904760,
+				"to": 907400
+			},
+			"text": " And now comes the moment of truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,400",
+				"to": "00:15:09,920"
+			},
+			"offsets": {
+				"from": 907400,
+				"to": 909920
+			},
+			"text": " Can we actually-- again, we have a nice dump"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,920",
+				"to": "00:15:12,160"
+			},
+			"offsets": {
+				"from": 909920,
+				"to": 912160
+			},
+			"text": " of all the configurations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,160",
+				"to": "00:15:16,800"
+			},
+			"offsets": {
+				"from": 912160,
+				"to": 916800
+			},
+			"text": " Now, can we actually load up the faucet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,800",
+				"to": "00:15:17,800"
+			},
+			"offsets": {
+				"from": 916800,
+				"to": 917800
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,800",
+				"to": "00:15:19,200"
+			},
+			"offsets": {
+				"from": 917800,
+				"to": 919200
+			},
+			"text": " Oh, why is it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,200",
+				"to": "00:15:19,600"
+			},
+			"offsets": {
+				"from": 919200,
+				"to": 919600
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,600",
+				"to": "00:15:21,960"
+			},
+			"offsets": {
+				"from": 919600,
+				"to": 921960
+			},
+			"text": " We have a Defcon authenticated faucet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,960",
+				"to": "00:15:33,320"
+			},
+			"offsets": {
+				"from": 921960,
+				"to": 933320
+			},
+			"text": " And if we request funds now into an ether address--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,320",
+				"to": "00:15:36,480"
+			},
+			"offsets": {
+				"from": 933320,
+				"to": 936480
+			},
+			"text": " give me one ether-- yep, the faucet accepted our funding"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,480",
+				"to": "00:15:36,960"
+			},
+			"offsets": {
+				"from": 936480,
+				"to": 936960
+			},
+			"text": " request."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,960",
+				"to": "00:15:41,320"
+			},
+			"offsets": {
+				"from": 936960,
+				"to": 941320
+			},
+			"text": " And if the miner manages to mine us a few blocks, yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,320",
+				"to": "00:15:45,120"
+			},
+			"offsets": {
+				"from": 941320,
+				"to": 945120
+			},
+			"text": " We just mined it, and we have our account funded."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,120",
+				"to": "00:15:47,640"
+			},
+			"offsets": {
+				"from": 945120,
+				"to": 947640
+			},
+			"text": " And we can also check the stats page that everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,640",
+				"to": "00:15:49,720"
+			},
+			"offsets": {
+				"from": 947640,
+				"to": 949720
+			},
+			"text": " that we deployed until now have indeed"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,720",
+				"to": "00:15:51,840"
+			},
+			"offsets": {
+				"from": 949720,
+				"to": 951840
+			},
+			"text": " appeared on the stats page."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,840",
+				"to": "00:15:54,520"
+			},
+			"offsets": {
+				"from": 951840,
+				"to": 954520
+			},
+			"text": " Now, finally, you deployed everything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,520",
+				"to": "00:15:57,320"
+			},
+			"offsets": {
+				"from": 954520,
+				"to": 957320
+			},
+			"text": " but you don't even know what your genesis block is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,320",
+				"to": "00:15:59,040"
+			},
+			"offsets": {
+				"from": 957320,
+				"to": 959040
+			},
+			"text": " You don't know how to connect to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,040",
+				"to": "00:16:01,240"
+			},
+			"offsets": {
+				"from": 959040,
+				"to": 961240
+			},
+			"text": " And it's just a mess of different websites"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,240",
+				"to": "00:16:02,280"
+			},
+			"offsets": {
+				"from": 961240,
+				"to": 962280
+			},
+			"text": " on different domains."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,280",
+				"to": "00:16:05,280"
+			},
+			"offsets": {
+				"from": 962280,
+				"to": 965280
+			},
+			"text": " So you really want to deploy everything on a single host,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,280",
+				"to": "00:16:09,120"
+			},
+			"offsets": {
+				"from": 965280,
+				"to": 969120
+			},
+			"text": " or at least on a single place that your users could find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,120",
+				"to": "00:16:12,120"
+			},
+			"offsets": {
+				"from": 969120,
+				"to": 972120
+			},
+			"text": " And the only way to do that is to have a nice dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,120",
+				"to": "00:16:16,480"
+			},
+			"offsets": {
+				"from": 972120,
+				"to": 976480
+			},
+			"text": " And that is actually the last thing that a puppet can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,480",
+				"to": "00:16:17,960"
+			},
+			"offsets": {
+				"from": 976480,
+				"to": 977960
+			},
+			"text": " currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,960",
+				"to": "00:16:20,160"
+			},
+			"offsets": {
+				"from": 977960,
+				"to": 980160
+			},
+			"text": " And let's just try to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,160",
+				"to": "00:16:22,360"
+			},
+			"offsets": {
+				"from": 980160,
+				"to": 982360
+			},
+			"text": " We're just having a nice-- yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,360",
+				"to": "00:16:24,720"
+			},
+			"offsets": {
+				"from": 982360,
+				"to": 984720
+			},
+			"text": " Deploy a new network component."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,720",
+				"to": "00:16:27,480"
+			},
+			"offsets": {
+				"from": 984720,
+				"to": 987480
+			},
+			"text": " And the final piece of the puzzle is a dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,480",
+				"to": "00:16:29,480"
+			},
+			"offsets": {
+				"from": 987480,
+				"to": 989480
+			},
+			"text": " Let's deploy it to our website."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,480",
+				"to": "00:16:33,440"
+			},
+			"offsets": {
+				"from": 989480,
+				"to": 993440
+			},
+			"text": " And let's use the root domain, Defcon.network for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,440",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993440,
+				"to": 996000
+			},
+			"text": " And then it will ask which services do I want to list."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:38,760"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 998760
+			},
+			"text": " Yep, I want to list the stats page."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,760",
+				"to": "00:16:41,840"
+			},
+			"offsets": {
+				"from": 998760,
+				"to": 1001840
+			},
+			"text": " I want to list the block explorer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,840",
+				"to": "00:16:43,920"
+			},
+			"offsets": {
+				"from": 1001840,
+				"to": 1003920
+			},
+			"text": " I want to list the web wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,920",
+				"to": "00:16:48,120"
+			},
+			"offsets": {
+				"from": 1003920,
+				"to": 1008120
+			},
+			"text": " And I want to list the faucet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,120",
+				"to": "00:16:50,160"
+			},
+			"offsets": {
+				"from": 1008120,
+				"to": 1010160
+			},
+			"text": " And do we want the E-stat secret to be public?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,160",
+				"to": "00:16:53,040"
+			},
+			"offsets": {
+				"from": 1010160,
+				"to": 1013040
+			},
+			"text": " Yes, let's make it public."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,040",
+				"to": "00:16:54,440"
+			},
+			"offsets": {
+				"from": 1013040,
+				"to": 1014440
+			},
+			"text": " And a puppet, again, crunches."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,440",
+				"to": "00:16:56,360"
+			},
+			"offsets": {
+				"from": 1014440,
+				"to": 1016360
+			},
+			"text": " Everything makes the configuration files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,360",
+				"to": "00:16:59,200"
+			},
+			"offsets": {
+				"from": 1016360,
+				"to": 1019200
+			},
+			"text": " deploys a web server for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,200",
+				"to": "00:17:03,240"
+			},
+			"offsets": {
+				"from": 1019200,
+				"to": 1023240
+			},
+			"text": " And if everything worked correctly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,240",
+				"to": "00:17:06,760"
+			},
+			"offsets": {
+				"from": 1023240,
+				"to": 1026760
+			},
+			"text": " I should be able to load up a nice dashboard."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,760",
+				"to": "00:17:07,480"
+			},
+			"offsets": {
+				"from": 1026760,
+				"to": 1027480
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,480",
+				"to": "00:17:10,920"
+			},
+			"offsets": {
+				"from": 1027480,
+				"to": 1030920
+			},
+			"text": " And we have-- at first page, we have the E-stat."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,920",
+				"to": "00:17:13,440"
+			},
+			"offsets": {
+				"from": 1030920,
+				"to": 1033440
+			},
+			"text": " On the left hand side, we have a nice sidebar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,440",
+				"to": "00:17:16,120"
+			},
+			"offsets": {
+				"from": 1033440,
+				"to": 1036120
+			},
+			"text": " many where we can switch between the E-stat."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,120",
+				"to": "00:17:18,520"
+			},
+			"offsets": {
+				"from": 1036120,
+				"to": 1038520
+			},
+			"text": " We have the block explorer that we just configured."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,520",
+				"to": "00:17:21,880"
+			},
+			"offsets": {
+				"from": 1038520,
+				"to": 1041880
+			},
+			"text": " We have our web wallet that we can play around with."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,880",
+				"to": "00:17:24,240"
+			},
+			"offsets": {
+				"from": 1041880,
+				"to": 1044240
+			},
+			"text": " We have the faucet to request all the funds that we--"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,240",
+				"to": "00:17:25,840"
+			},
+			"offsets": {
+				"from": 1044240,
+				"to": 1045840
+			},
+			"text": " oh, people are requesting funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,840",
+				"to": "00:17:26,320"
+			},
+			"offsets": {
+				"from": 1045840,
+				"to": 1046320
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,320",
+				"to": "00:17:28,400"
+			},
+			"offsets": {
+				"from": 1046320,
+				"to": 1048400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,840",
+				"to": "00:17:37,920"
+			},
+			"offsets": {
+				"from": 1053840,
+				"to": 1057920
+			},
+			"text": " And beside all of these services that we configured,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,920",
+				"to": "00:17:42,520"
+			},
+			"offsets": {
+				"from": 1057920,
+				"to": 1062520
+			},
+			"text": " we also have detailed guide on how to connect GoEthereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,520",
+				"to": "00:17:45,960"
+			},
+			"offsets": {
+				"from": 1062520,
+				"to": 1065960
+			},
+			"text": " in archive note, full note, live client, or embedded"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,960",
+				"to": "00:17:47,640"
+			},
+			"offsets": {
+				"from": 1065960,
+				"to": 1067640
+			},
+			"text": " for embedded machines."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,640",
+				"to": "00:17:51,640"
+			},
+			"offsets": {
+				"from": 1067640,
+				"to": 1071640
+			},
+			"text": " We have details on how to connect missed and Ethereum wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,640",
+				"to": "00:17:55,400"
+			},
+			"offsets": {
+				"from": 1071640,
+				"to": 1075400
+			},
+			"text": " We have details on how to connect Android and iOS devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,400",
+				"to": "00:17:58,280"
+			},
+			"offsets": {
+				"from": 1075400,
+				"to": 1078280
+			},
+			"text": " And finally, if you really don't prefer GoEthereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,280",
+				"to": "00:18:00,240"
+			},
+			"offsets": {
+				"from": 1078280,
+				"to": 1080240
+			},
+			"text": " as your client of choice, then we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,240",
+				"to": "00:18:02,760"
+			},
+			"offsets": {
+				"from": 1080240,
+				"to": 1082760
+			},
+			"text": " have details on how to connect C++ Ethereum, Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,760",
+				"to": "00:18:06,080"
+			},
+			"offsets": {
+				"from": 1082760,
+				"to": 1086080
+			},
+			"text": " Harmony, parity, and pi e-fab."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,080",
+				"to": "00:18:11,760"
+			},
+			"offsets": {
+				"from": 1086080,
+				"to": 1091760
+			},
+			"text": " And ladies and gentlemen, that was the pop-up network manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,760",
+				"to": "00:18:12,880"
+			},
+			"offsets": {
+				"from": 1091760,
+				"to": 1092880
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,880",
+				"to": "00:18:15,880"
+			},
+			"offsets": {
+				"from": 1092880,
+				"to": 1095880
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,880",
+				"to": "00:18:27,880"
+			},
+			"offsets": {
+				"from": 1095880,
+				"to": 1107880
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,880",
+				"to": "00:18:31,360"
+			},
+			"offsets": {
+				"from": 1107880,
+				"to": 1111360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,360",
+				"to": "00:18:34,360"
+			},
+			"offsets": {
+				"from": 1111360,
+				"to": 1114360
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,360",
+				"to": "00:18:37,100"
+			},
+			"offsets": {
+				"from": 1114360,
+				"to": 1117100
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

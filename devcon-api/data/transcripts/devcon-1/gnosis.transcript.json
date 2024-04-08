@@ -1,0 +1,1935 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:21,840"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 21840
+			},
+			"text": " All right, so I want to give a presentation about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,840",
+				"to": "00:00:25,840"
+			},
+			"offsets": {
+				"from": 21840,
+				"to": 25840
+			},
+			"text": " genosis, also a prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,840",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25840,
+				"to": 27000
+			},
+			"text": " I directly skipped a slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:30,800"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 30800
+			},
+			"text": " What is the prediction market we just saw, Auger?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,800",
+				"to": "00:00:38,320"
+			},
+			"offsets": {
+				"from": 30800,
+				"to": 38320
+			},
+			"text": " So I start with Y Ethereum, and I can make this very concrete,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,320",
+				"to": "00:00:44,320"
+			},
+			"offsets": {
+				"from": 38320,
+				"to": 44320
+			},
+			"text": " because I started a project called Felle about two years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,320",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 44320,
+				"to": 49000
+			},
+			"text": " and it was a Bitcoin prediction market."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 51760
+			},
+			"text": " And there are several problems with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:59,640"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 59640
+			},
+			"text": " So for example, if you now want to open Felle from your current position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,640",
+				"to": "00:01:04,400"
+			},
+			"offsets": {
+				"from": 59640,
+				"to": 64400
+			},
+			"text": " from inside the UK, then you see this side."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,400",
+				"to": "00:01:10,520"
+			},
+			"offsets": {
+				"from": 64400,
+				"to": 70520
+			},
+			"text": " And another thing is obviously security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,520",
+				"to": "00:01:17,280"
+			},
+			"offsets": {
+				"from": 70520,
+				"to": 77280
+			},
+			"text": " So we had the goal to build a decentralized prediction market that would mean that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,280",
+				"to": "00:01:22,440"
+			},
+			"offsets": {
+				"from": 77280,
+				"to": 82440
+			},
+			"text": " on the one hand, as a user, should not need to trust us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,440",
+				"to": "00:01:28,640"
+			},
+			"offsets": {
+				"from": 82440,
+				"to": 88640
+			},
+			"text": " So the goal would be that always the money that is in predictions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,640",
+				"to": "00:01:33,040"
+			},
+			"offsets": {
+				"from": 88640,
+				"to": 93040
+			},
+			"text": " is somehow stored in a multi-sick contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,040",
+				"to": "00:01:40,760"
+			},
+			"offsets": {
+				"from": 93040,
+				"to": 100760
+			},
+			"text": " And it might be possible, or it might be that it is possible to achieve this goal with Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,760",
+				"to": "00:01:44,760"
+			},
+			"offsets": {
+				"from": 100760,
+				"to": 104760
+			},
+			"text": " The problem is it is very, very complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,760",
+				"to": "00:01:49,560"
+			},
+			"offsets": {
+				"from": 104760,
+				"to": 109560
+			},
+			"text": " It would take long development, and you have to make--"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,560",
+				"to": "00:01:53,440"
+			},
+			"offsets": {
+				"from": 109560,
+				"to": 113440
+			},
+			"text": " yeah, it would be not a good user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,440",
+				"to": "00:01:57,280"
+			},
+			"offsets": {
+				"from": 113440,
+				"to": 117280
+			},
+			"text": " And that's very different with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,280",
+				"to": "00:02:01,320"
+			},
+			"offsets": {
+				"from": 117280,
+				"to": 121320
+			},
+			"text": " With Ethereum, it's way much easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,320",
+				"to": "00:02:07,840"
+			},
+			"offsets": {
+				"from": 121320,
+				"to": 127840
+			},
+			"text": " And so the one point is the user perspective that the user do not have to trust us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,840",
+				"to": "00:02:14,520"
+			},
+			"offsets": {
+				"from": 127840,
+				"to": 134520
+			},
+			"text": " But the other point is that Ethereum is also great for us for our perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,520",
+				"to": "00:02:20,400"
+			},
+			"offsets": {
+				"from": 134520,
+				"to": 140400
+			},
+			"text": " because we do not want to spend resources on security."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,400",
+				"to": "00:02:24,600"
+			},
+			"offsets": {
+				"from": 140400,
+				"to": 144600
+			},
+			"text": " We do not want to hold the cold wallet of Bitcoins of our users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,600",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 144600,
+				"to": 154120
+			},
+			"text": " because it's just a risk and just a cost that can be avoided with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:39,480"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 159480
+			},
+			"text": " So what's the current status of Bnosis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,480",
+				"to": "00:02:43,680"
+			},
+			"offsets": {
+				"from": 159480,
+				"to": 163680
+			},
+			"text": " We went live a few days after Frontier."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,680",
+				"to": "00:02:49,560"
+			},
+			"offsets": {
+				"from": 163680,
+				"to": 169560
+			},
+			"text": " We since then have had a little bit more than 900 contract interactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,560",
+				"to": "00:02:54,880"
+			},
+			"offsets": {
+				"from": 169560,
+				"to": 174880
+			},
+			"text": " and a little bit more than 5,000 ESER in predictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,880",
+				"to": "00:03:00,440"
+			},
+			"offsets": {
+				"from": 174880,
+				"to": 180440
+			},
+			"text": " So I just now want to give you a demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,440",
+				"to": "00:03:06,640"
+			},
+			"offsets": {
+				"from": 180440,
+				"to": 186640
+			},
+			"text": " And I will-- oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,640",
+				"to": "00:03:20,200"
+			},
+			"offsets": {
+				"from": 186640,
+				"to": 200200
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,200",
+				"to": "00:03:29,080"
+			},
+			"offsets": {
+				"from": 200200,
+				"to": 209080
+			},
+			"text": " And I want to make a demo and show how a prediction market can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,080",
+				"to": "00:03:32,880"
+			},
+			"offsets": {
+				"from": 209080,
+				"to": 212880
+			},
+			"text": " for decentralized decision making."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,880",
+				"to": "00:03:40,400"
+			},
+			"offsets": {
+				"from": 212880,
+				"to": 220400
+			},
+			"text": " So I think the-- I can skip the usual use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,400",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 220400,
+				"to": 225600
+			},
+			"text": " The usual use case would be you predict on a specific event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:48,320"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 228320
+			},
+			"text": " who becomes an ex-president, is one of the canonical."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,320",
+				"to": "00:03:54,640"
+			},
+			"offsets": {
+				"from": 228320,
+				"to": 234640
+			},
+			"text": " But I want to show you how to use a prediction market for decision making."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,640",
+				"to": "00:04:02,480"
+			},
+			"offsets": {
+				"from": 234640,
+				"to": 242480
+			},
+			"text": " So let's say we take this example of Ujo, this music platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,480",
+				"to": "00:04:05,760"
+			},
+			"offsets": {
+				"from": 242480,
+				"to": 245760
+			},
+			"text": " And we want to make the decision what is the good price to charge."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,760",
+				"to": "00:04:18,320"
+			},
+			"offsets": {
+				"from": 245760,
+				"to": 258320
+			},
+			"text": " And the goal-- the overall goal should be to maximize the total revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,320",
+				"to": "00:04:21,560"
+			},
+			"offsets": {
+				"from": 258320,
+				"to": 261560
+			},
+			"text": " And another example could be a decentralized exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,560",
+				"to": "00:04:24,600"
+			},
+			"offsets": {
+				"from": 261560,
+				"to": 264600
+			},
+			"text": " And the decision would be what fees do we charge."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,600",
+				"to": "00:04:29,240"
+			},
+			"offsets": {
+				"from": 264600,
+				"to": 269240
+			},
+			"text": " And again, the goal is to maximize the overall revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,240",
+				"to": "00:04:32,240"
+			},
+			"offsets": {
+				"from": 269240,
+				"to": 272240
+			},
+			"text": " So how it would work with Knolysis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,240",
+				"to": "00:04:34,440"
+			},
+			"offsets": {
+				"from": 272240,
+				"to": 274440
+			},
+			"text": " You can suggest an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,440",
+				"to": "00:04:40,320"
+			},
+			"offsets": {
+				"from": 274440,
+				"to": 280320
+			},
+			"text": " You would choose what price should be charged."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,320",
+				"to": "00:04:45,320"
+			},
+			"offsets": {
+				"from": 280320,
+				"to": 285320
+			},
+			"text": " You would specify closing date category."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,320",
+				"to": "00:04:51,880"
+			},
+			"offsets": {
+				"from": 285320,
+				"to": 291880
+			},
+			"text": " And then you could select a few suggestions, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,880",
+				"to": "00:04:57,520"
+			},
+			"offsets": {
+				"from": 291880,
+				"to": 297520
+			},
+			"text": " 40 cents, 60 cents, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,520",
+				"to": "00:05:05,200"
+			},
+			"offsets": {
+				"from": 297520,
+				"to": 305200
+			},
+			"text": " So I skipped this and go directly to the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,200",
+				"to": "00:05:08,160"
+			},
+			"offsets": {
+				"from": 305200,
+				"to": 308160
+			},
+			"text": " We can create with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,160",
+				"to": "00:05:15,520"
+			},
+			"offsets": {
+				"from": 308160,
+				"to": 315520
+			},
+			"text": " And there we have four suggestions, 40 cents, 60 cents, 80 cents, and one ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,520",
+				"to": "00:05:20,760"
+			},
+			"offsets": {
+				"from": 315520,
+				"to": 320760
+			},
+			"text": " And now in principle, we can trade here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,760",
+				"to": "00:05:25,280"
+			},
+			"offsets": {
+				"from": 320760,
+				"to": 325280
+			},
+			"text": " We can select a share."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,280",
+				"to": "00:05:32,760"
+			},
+			"offsets": {
+				"from": 325280,
+				"to": 332760
+			},
+			"text": " We want to buy a specified price and the usual stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,760",
+				"to": "00:05:36,280"
+			},
+			"offsets": {
+				"from": 332760,
+				"to": 336280
+			},
+			"text": " very similar to August in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,280",
+				"to": "00:05:41,280"
+			},
+			"offsets": {
+				"from": 336280,
+				"to": 341280
+			},
+			"text": " But we can also use this button or use this bio-outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,280",
+				"to": "00:05:48,760"
+			},
+			"offsets": {
+				"from": 341280,
+				"to": 348760
+			},
+			"text": " That would mean we can spend amount of ether, let's say 100."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,760",
+				"to": "00:05:52,040"
+			},
+			"offsets": {
+				"from": 348760,
+				"to": 352040
+			},
+			"text": " And we would get shares of each outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,160",
+				"to": "00:06:01,280"
+			},
+			"offsets": {
+				"from": 355160,
+				"to": 361280
+			},
+			"text": " Now the second step is to create another market."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,280",
+				"to": "00:06:14,040"
+			},
+			"offsets": {
+				"from": 361280,
+				"to": 374040
+			},
+			"text": " And that would be what is the total revenue in US dollar on the music platform in 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,040",
+				"to": "00:06:32,640"
+			},
+			"offsets": {
+				"from": 374040,
+				"to": 392640
+			},
+			"text": " And now we can create more markets and we select the total revenue in 2015."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,640",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 392640,
+				"to": 397440
+			},
+			"text": " And now the interesting part is that we can select the currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:42,320"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 402320
+			},
+			"text": " In principle, the currency would be ether or we are agnostic towards currencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,320",
+				"to": "00:06:47,920"
+			},
+			"offsets": {
+				"from": 402320,
+				"to": 407920
+			},
+			"text": " It could be anything that implements a token interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,920",
+				"to": "00:06:52,520"
+			},
+			"offsets": {
+				"from": 407920,
+				"to": 412520
+			},
+			"text": " If someone comes up with a dollar token, if someone comes up with a Bitcoin token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,520",
+				"to": "00:06:55,680"
+			},
+			"offsets": {
+				"from": 412520,
+				"to": 415680
+			},
+			"text": " die or whatever, that can be chosen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,680",
+				"to": "00:07:00,200"
+			},
+			"offsets": {
+				"from": 415680,
+				"to": 420200
+			},
+			"text": " But we can also choose a token directly from our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:00,880"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 420880
+			},
+			"text": " And what does it mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,880",
+				"to": "00:07:12,760"
+			},
+			"offsets": {
+				"from": 420880,
+				"to": 432760
+			},
+			"text": " So we choose now what price will be charged on UJOP for a song."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,760",
+				"to": "00:07:18,720"
+			},
+			"offsets": {
+				"from": 432760,
+				"to": 438720
+			},
+			"text": " And we select one specific outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,720",
+				"to": "00:07:30,680"
+			},
+			"offsets": {
+				"from": 438720,
+				"to": 450680
+			},
+			"text": " So basically what we create now is a market that is traded in shares of 80 cent"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,680",
+				"to": "00:07:34,120"
+			},
+			"offsets": {
+				"from": 450680,
+				"to": 454120
+			},
+			"text": " will be the price of the song."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,120",
+				"to": "00:07:39,440"
+			},
+			"offsets": {
+				"from": 454120,
+				"to": 459440
+			},
+			"text": " And that means that this market will only be relevant if this decision is made."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,440",
+				"to": "00:07:43,240"
+			},
+			"offsets": {
+				"from": 459440,
+				"to": 463240
+			},
+			"text": " Because only then those shares will have the value of one ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,240",
+				"to": "00:07:45,760"
+			},
+			"offsets": {
+				"from": 463240,
+				"to": 465760
+			},
+			"text": " And otherwise they will have a value of zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,760",
+				"to": "00:07:55,520"
+			},
+			"offsets": {
+				"from": 465760,
+				"to": 475520
+			},
+			"text": " So basically in the other case if this price is not chosen, then all trades are irrelevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,520",
+				"to": "00:08:03,520"
+			},
+			"offsets": {
+				"from": 475520,
+				"to": 483520
+			},
+			"text": " So what you achieve is you say what will be the total revenue under the condition that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,520",
+				"to": "00:08:16,240"
+			},
+			"offsets": {
+				"from": 483520,
+				"to": 496240
+			},
+			"text": " we make this decision, that we charge 80 cents for the song."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,240",
+				"to": "00:08:19,680"
+			},
+			"offsets": {
+				"from": 496240,
+				"to": 499680
+			},
+			"text": " So how would it look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,680",
+				"to": "00:08:21,880"
+			},
+			"offsets": {
+				"from": 499680,
+				"to": 501880
+			},
+			"text": " We create such a market."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,880",
+				"to": "00:08:26,160"
+			},
+			"offsets": {
+				"from": 501880,
+				"to": 506160
+			},
+			"text": " And here it says, it's traded in 80 cent shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,160",
+				"to": "00:08:33,800"
+			},
+			"offsets": {
+				"from": 506160,
+				"to": 513800
+			},
+			"text": " And here's the forecast on the outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,800",
+				"to": "00:08:40,280"
+			},
+			"offsets": {
+				"from": 513800,
+				"to": 520280
+			},
+			"text": " So in this case forecast revenue would be $5,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,280",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 520280,
+				"to": 522040
+			},
+			"text": " And people can now trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:52,320"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 532320
+			},
+			"text": " And they can basically go long or short and therefore increase or decrease the forecast."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,320",
+				"to": "00:09:08,120"
+			},
+			"offsets": {
+				"from": 532320,
+				"to": 548120
+			},
+			"text": " And in the end we will have a different screen resolution in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,120",
+				"to": "00:09:20,200"
+			},
+			"offsets": {
+				"from": 548120,
+				"to": 560200
+			},
+			"text": " Okay, so in the end we have for those different markets for one that's traded in 40 cent"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,200",
+				"to": "00:09:27,920"
+			},
+			"offsets": {
+				"from": 560200,
+				"to": 567920
+			},
+			"text": " shares and for the one that's traded in 60 cent shares, we have different predicted outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,920",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 567920,
+				"to": 577000
+			},
+			"text": " And then after a specific trading period, we can automatically select the decision that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:40,680"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 580680
+			},
+			"text": " has the highest predicted outcome."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,680",
+				"to": "00:09:49,280"
+			},
+			"offsets": {
+				"from": 580680,
+				"to": 589280
+			},
+			"text": " We saw yesterday a demonstration of a boardroom where there are different suggestions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,280",
+				"to": "00:09:55,840"
+			},
+			"offsets": {
+				"from": 589280,
+				"to": 595840
+			},
+			"text": " And you could automatically connect it to the prediction market and automatically create"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,840",
+				"to": "00:10:06,120"
+			},
+			"offsets": {
+				"from": 595840,
+				"to": 606120
+			},
+			"text": " for every potential decision, a market, and forecast the price of the token of this project"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,120",
+				"to": "00:10:11,520"
+			},
+			"offsets": {
+				"from": 606120,
+				"to": 611520
+			},
+			"text": " under the condition that this decision is made."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,520",
+				"to": "00:10:20,240"
+			},
+			"offsets": {
+				"from": 611520,
+				"to": 620240
+			},
+			"text": " And I think that's a very powerful tool and I'm very excited to see how this will turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,240",
+				"to": "00:10:23,480"
+			},
+			"offsets": {
+				"from": 620240,
+				"to": 623480
+			},
+			"text": " out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,480",
+				"to": "00:10:28,920"
+			},
+			"offsets": {
+				"from": 623480,
+				"to": 628920
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,920",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 628920,
+				"to": 633000
+			},
+			"text": " What is our goal of gnosis?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,480"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637480
+			},
+			"text": " Our goal is to be a prediction market as a platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,480",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 637480,
+				"to": 643000
+			},
+			"text": " That means we are agnostic towards oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:50,240"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 650240
+			},
+			"text": " We already have seen during this conference very interesting ideas for oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,240",
+				"to": "00:11:00,400"
+			},
+			"offsets": {
+				"from": 650240,
+				"to": 660400
+			},
+			"text": " For example, this direct interaction with APIs or Oriclise."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,400",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 660400,
+				"to": 663160
+			},
+			"text": " So all oracles will be supported by us."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:06,600"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 666600
+			},
+			"text": " You can specify just the resolve address."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,600",
+				"to": "00:11:09,960"
+			},
+			"offsets": {
+				"from": 666600,
+				"to": 669960
+			},
+			"text": " All tokens will be supported."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,960",
+				"to": "00:11:11,720"
+			},
+			"offsets": {
+				"from": 669960,
+				"to": 671720
+			},
+			"text": " We support different market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,720",
+				"to": "00:11:15,600"
+			},
+			"offsets": {
+				"from": 671720,
+				"to": 675600
+			},
+			"text": " We have already implemented automated market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,600",
+				"to": "00:11:22,880"
+			},
+			"offsets": {
+				"from": 675600,
+				"to": 682880
+			},
+			"text": " And the idea is that it will be easy to create different skins for different topics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,880",
+				"to": "00:11:26,240"
+			},
+			"offsets": {
+				"from": 682880,
+				"to": 686240
+			},
+			"text": " Again, everyone can become an oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,240",
+				"to": "00:11:29,320"
+			},
+			"offsets": {
+				"from": 686240,
+				"to": 689320
+			},
+			"text": " We will provide an oracle platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,320",
+				"to": "00:11:38,240"
+			},
+			"offsets": {
+				"from": 689320,
+				"to": 698240
+			},
+			"text": " We are already working on off-chain trading for faster trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,240",
+				"to": "00:11:45,320"
+			},
+			"offsets": {
+				"from": 698240,
+				"to": 705320
+			},
+			"text": " We integrate our platform with crowdfunding so people can crowd fund a market maker if"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,320",
+				"to": "00:11:48,360"
+			},
+			"offsets": {
+				"from": 705320,
+				"to": 708360
+			},
+			"text": " they are interested in a forecast."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,360",
+				"to": "00:11:50,720"
+			},
+			"offsets": {
+				"from": 708360,
+				"to": 710720
+			},
+			"text": " They can crowd fund it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,720",
+				"to": "00:11:53,520"
+			},
+			"offsets": {
+				"from": 710720,
+				"to": 713520
+			},
+			"text": " And again, different tokens are possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,520",
+				"to": "00:11:58,280"
+			},
+			"offsets": {
+				"from": 713520,
+				"to": 718280
+			},
+			"text": " Very short look at a little bit of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,280",
+				"to": "00:11:59,280"
+			},
+			"offsets": {
+				"from": 718280,
+				"to": 719280
+			},
+			"text": " Create event."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,280",
+				"to": "00:12:01,760"
+			},
+			"offsets": {
+				"from": 719280,
+				"to": 721760
+			},
+			"text": " What are the parameters?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,760",
+				"to": "00:12:04,120"
+			},
+			"offsets": {
+				"from": 721760,
+				"to": 724120
+			},
+			"text": " So we have a hash of event description."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,120",
+				"to": "00:12:05,680"
+			},
+			"offsets": {
+				"from": 724120,
+				"to": 725680
+			},
+			"text": " Then we have an event type."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,680",
+				"to": "00:12:11,240"
+			},
+			"offsets": {
+				"from": 725680,
+				"to": 731240
+			},
+			"text": " We distinguish between two types."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,240",
+				"to": "00:12:14,720"
+			},
+			"offsets": {
+				"from": 731240,
+				"to": 734720
+			},
+			"text": " Types where we have a different number of outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,720",
+				"to": "00:12:17,760"
+			},
+			"offsets": {
+				"from": 734720,
+				"to": 737760
+			},
+			"text": " That would be the different prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,760",
+				"to": "00:12:19,280"
+			},
+			"offsets": {
+				"from": 737760,
+				"to": 739280
+			},
+			"text": " We had four potential outcomes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,280",
+				"to": "00:12:24,360"
+			},
+			"offsets": {
+				"from": 739280,
+				"to": 744360
+			},
+			"text": " Then we have an numeric outcome where we predict on a range."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,360",
+				"to": "00:12:26,120"
+			},
+			"offsets": {
+				"from": 744360,
+				"to": 746120
+			},
+			"text": " That would be the total revenue."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,120",
+				"to": "00:12:28,400"
+			},
+			"offsets": {
+				"from": 746120,
+				"to": 748400
+			},
+			"text": " Then we have a resolve address."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,400",
+				"to": "00:12:32,040"
+			},
+			"offsets": {
+				"from": 748400,
+				"to": 752040
+			},
+			"text": " It's basically the oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,040",
+				"to": "00:12:36,200"
+			},
+			"offsets": {
+				"from": 752040,
+				"to": 756200
+			},
+			"text": " And some additional data oracle can choose fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,200",
+				"to": "00:12:37,800"
+			},
+			"offsets": {
+				"from": 756200,
+				"to": 757800
+			},
+			"text": " That's all you need to implement."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,800",
+				"to": "00:12:42,640"
+			},
+			"offsets": {
+				"from": 757800,
+				"to": 762640
+			},
+			"text": " Those three functions if you want to be an oracle or if you want to create an oracle"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,640",
+				"to": "00:12:46,400"
+			},
+			"offsets": {
+				"from": 762640,
+				"to": 766400
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,400",
+				"to": "00:12:50,840"
+			},
+			"offsets": {
+				"from": 766400,
+				"to": 770840
+			},
+			"text": " And finally, we would like to be a production market as a service."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,840",
+				"to": "00:12:54,080"
+			},
+			"offsets": {
+				"from": 770840,
+				"to": 774080
+			},
+			"text": " That would mean we aim for one click deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,080",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 774080,
+				"to": 781800
+			},
+			"text": " If you have some topic you're interested, it should be as easy as setting up a WordPress"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,800",
+				"to": "00:13:08,320"
+			},
+			"offsets": {
+				"from": 781800,
+				"to": 788320
+			},
+			"text": " block to set up a production market on this topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,320",
+				"to": "00:13:18,560"
+			},
+			"offsets": {
+				"from": 788320,
+				"to": 798560
+			},
+			"text": " It should then be easy to customize it, integration of other services, and build up your community"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,560",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 798560,
+				"to": 804000
+			},
+			"text": " or use it within your own company."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:32,600"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 812600
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,600",
+				"to": "00:13:39,600"
+			},
+			"offsets": {
+				"from": 812600,
+				"to": 819600
+			},
+			"text": " Is two minutes left, I think we could allow one, two questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,600",
+				"to": "00:13:46,040"
+			},
+			"offsets": {
+				"from": 819600,
+				"to": 826040
+			},
+			"text": " Anyone have a question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,040",
+				"to": "00:13:51,320"
+			},
+			"offsets": {
+				"from": 826040,
+				"to": 831320
+			},
+			"text": " So is there a way to, you know how we had to create different markets for the $40.60,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,320",
+				"to": "00:13:53,720"
+			},
+			"offsets": {
+				"from": 831320,
+				"to": 833720
+			},
+			"text": " $80.00 price?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,720",
+				"to": "00:13:57,840"
+			},
+			"offsets": {
+				"from": 833720,
+				"to": 837840
+			},
+			"text": " And you know, we have to individually come up with those, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:14:03,120"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 843120
+			},
+			"text": " Is there a way to make it less discreet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,120",
+				"to": "00:14:06,800"
+			},
+			"offsets": {
+				"from": 843120,
+				"to": 846800
+			},
+			"text": " Just wondering."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,800",
+				"to": "00:14:12,080"
+			},
+			"offsets": {
+				"from": 846800,
+				"to": 852080
+			},
+			"text": " What if $2.00 might be the optimum price, but we didn't think of that and we didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,080",
+				"to": "00:14:13,920"
+			},
+			"offsets": {
+				"from": 852080,
+				"to": 853920
+			},
+			"text": " create the market for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,920",
+				"to": "00:14:14,920"
+			},
+			"offsets": {
+				"from": 853920,
+				"to": 854920
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,920",
+				"to": "00:14:23,400"
+			},
+			"offsets": {
+				"from": 854920,
+				"to": 863400
+			},
+			"text": " So the easiest version would be that anyone could just make another suggestion, that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,400",
+				"to": "00:14:31,280"
+			},
+			"offsets": {
+				"from": 863400,
+				"to": 871280
+			},
+			"text": " always have an other price and then you can split this other price up into a new suggestion"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,280",
+				"to": "00:14:33,720"
+			},
+			"offsets": {
+				"from": 871280,
+				"to": 873720
+			},
+			"text": " and again, the other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,720",
+				"to": "00:14:38,760"
+			},
+			"offsets": {
+				"from": 873720,
+				"to": 878760
+			},
+			"text": " Or you could, but that gets more complicated, you could."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,760",
+				"to": "00:14:46,720"
+			},
+			"offsets": {
+				"from": 878760,
+				"to": 886720
+			},
+			"text": " Also there have a range, or yeah, uses range predictions and forecasts that on another range"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,720",
+				"to": "00:14:48,240"
+			},
+			"offsets": {
+				"from": 886720,
+				"to": 888240
+			},
+			"text": " prediction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,240",
+				"to": "00:14:56,560"
+			},
+			"offsets": {
+				"from": 888240,
+				"to": 896560
+			},
+			"text": " I guess from a user interface perspective, it would be better to just allow additional"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,560",
+				"to": "00:14:57,960"
+			},
+			"offsets": {
+				"from": 896560,
+				"to": 897960
+			},
+			"text": " catalog here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,960",
+				"to": "00:15:07,640"
+			},
+			"offsets": {
+				"from": 897960,
+				"to": 907640
+			},
+			"text": " So basically the idea is you imagine splitting up the price into binary digits, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,640",
+				"to": "00:15:12,520"
+			},
+			"offsets": {
+				"from": 907640,
+				"to": 912520
+			},
+			"text": " have a prediction mark instead of towering on top of each other one for each binary digit."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,520",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 912520,
+				"to": 917560
+			},
+			"text": " And the idea is that as the top level digits converge, then at first it's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:23,360"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 923360
+			},
+			"text": " even screen like $48.80 that once you pick one, then you'll have markets for the second"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,360",
+				"to": "00:15:28,200"
+			},
+			"offsets": {
+				"from": 923360,
+				"to": 928200
+			},
+			"text": " digit, which will basically be understood to me like $41.42 up to $49.00 and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,200",
+				"to": "00:15:32,720"
+			},
+			"offsets": {
+				"from": 928200,
+				"to": 932720
+			},
+			"text": " So you could get very specific that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,720",
+				"to": "00:15:33,720"
+			},
+			"offsets": {
+				"from": 932720,
+				"to": 933720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,720",
+				"to": "00:15:34,720"
+			},
+			"offsets": {
+				"from": 933720,
+				"to": 934720
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,720",
+				"to": "00:15:35,720"
+			},
+			"offsets": {
+				"from": 934720,
+				"to": 935720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,720",
+				"to": "00:15:36,720"
+			},
+			"offsets": {
+				"from": 935720,
+				"to": 936720
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,720",
+				"to": "00:15:41,160"
+			},
+			"offsets": {
+				"from": 936720,
+				"to": 941160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,160",
+				"to": "00:15:43,740"
+			},
+			"offsets": {
+				"from": 941160,
+				"to": 943740
+			},
+			"text": " (bells ringing)"
+		}
+	]
+}

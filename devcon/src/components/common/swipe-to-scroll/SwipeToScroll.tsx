@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useImperativeHandle } from 'react'
 import css from './sts.module.scss'
 import { useDrag } from 'react-use-gesture'
 import useDimensions from 'react-cool-dimensions'
@@ -12,6 +12,7 @@ type SwipeToScrollProps = {
     ['right']?: boolean
   }
   alwaysShowscrollIndicators?: boolean
+  slideControls?: any
 }
 
 const SwipeToScroll = (props: SwipeToScrollProps) => {
@@ -21,6 +22,13 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   const [isNativeScroll, setIsNativeScroll] = React.useState(true)
   const [scrollIndicatorClass, setScrollIndicatorClass] = React.useState('')
   const lastX = React.useRef(0)
+  const maxScrollRef = React.useRef<number>(0)
+  const isNativeScrollRef = React.useRef<any>(false)
+  const onXChangeCallback = React.useRef<any>(null)
+  const xAnimationLocked = React.useRef(false)
+
+  maxScrollRef.current = maxScroll
+  isNativeScrollRef.current = isNativeScroll
 
   // Whether or not to display a scroll indicator
   const syncScrollIndicators = React.useCallback(
@@ -83,6 +91,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     if (el.current) {
       const scrollContainer = el.current
       lastX.current = 0
+      if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
       scrollContainer.style.transform = `translateX(0px)`
       syncScrollIndicators(scrollContainer)
     }
@@ -116,10 +125,55 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     }
   }, [reset])
 
+  if (props.slideControls) {
+    // eslint-disable-next-line
+    useImperativeHandle(
+      props.slideControls,
+      () => {
+        return {
+          lastX,
+          maxScrollRef,
+          setX: (x: any) => {
+            if (xAnimationLocked.current) return
+
+            const scrollContainer = el.current!
+
+            if (isNativeScrollRef.current) {
+              scrollContainer.scrollTo({
+                left: x,
+                top: 0,
+                behavior: 'smooth', // This enables smooth scrolling
+              })
+
+              return
+            }
+
+            lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
+            scrollContainer.style.transform = `translateX(-${lastX.current}px)`
+            scrollContainer.style.transition = `all 0.8s ease-out`
+            xAnimationLocked.current = true
+
+            setTimeout(() => {
+              scrollContainer.style.transition = `none`
+              xAnimationLocked.current = false
+            }, 800)
+
+            if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
+          },
+          subscribeX: (callback: any) => {
+            onXChangeCallback.current = callback
+          },
+        }
+      },
+      []
+    )
+  }
+
   const bind = useDrag(({ down, delta }) => {
     const scrollContainer = el.current!
 
     lastX.current = Math.min(Math.max(0, lastX.current - delta[0]), maxScroll)
+    if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`
 
     if (down) {
@@ -149,6 +203,9 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
         // This prevents selection (text, image) while dragging
         onMouseDown={e => {
           e.preventDefault()
+        }}
+        onScroll={(e: any) => {
+          if (onXChangeCallback.current) onXChangeCallback.current(e.target.scrollLeft)
         }}
       >
         {props.children}

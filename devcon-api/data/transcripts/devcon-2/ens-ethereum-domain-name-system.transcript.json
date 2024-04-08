@@ -1,0 +1,1275 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,760"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19760
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,760",
+				"to": "00:00:24,800"
+			},
+			"offsets": {
+				"from": 19760,
+				"to": 24800
+			},
+			"text": " Hi there, my name as you already know is Nick Johnson. I work for the Foundation on the Go"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,800",
+				"to": "00:00:30,560"
+			},
+			"offsets": {
+				"from": 24800,
+				"to": 30560
+			},
+			"text": " Ethereum team and on Swarm and I'm here to talk to you about the ENS, the Ethereum name service."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,560",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 30560,
+				"to": 35120
+			},
+			"text": " Can I have some slides? Excellent, I don't know if I can recite the whole thing from memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:42,080"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 42080
+			},
+			"text": " So the first thing you're probably asking is why do we need another name service?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,080",
+				"to": "00:00:45,920"
+			},
+			"offsets": {
+				"from": 42080,
+				"to": 45920
+			},
+			"text": " This comic is probably familiar to a significant proportion of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,920",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 45920,
+				"to": 51760
+			},
+			"text": " First of all, why do we need a name service at all? Our goal is to be able to name users wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:58,640"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 58640
+			},
+			"text": " to name contracts, and to name resources on Swarm and IPFS. And as DNS has demonstrated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,640",
+				"to": "00:01:02,960"
+			},
+			"offsets": {
+				"from": 58640,
+				"to": 62960
+			},
+			"text": " there's a vast number of other uses for a good and robust name service."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,960",
+				"to": "00:01:07,760"
+			},
+			"offsets": {
+				"from": 62960,
+				"to": 67760
+			},
+			"text": " As for why we need another one, if you're familiar with Name Reads, you'll know that this isn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,760",
+				"to": "00:01:13,920"
+			},
+			"offsets": {
+				"from": 67760,
+				"to": 73920
+			},
+			"text": " the first name service on Ethereum. The reason is that the existing name services are paradoxically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,920",
+				"to": "00:01:19,520"
+			},
+			"offsets": {
+				"from": 73920,
+				"to": 79520
+			},
+			"text": " quite centralised. They have a single central contract, there's no facility for upgradability,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,520",
+				"to": "00:01:23,920"
+			},
+			"offsets": {
+				"from": 79520,
+				"to": 83920
+			},
+			"text": " there's no facility for adding new record types in the future. So it's useful to be able to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,920",
+				"to": "00:01:28,320"
+			},
+			"offsets": {
+				"from": 83920,
+				"to": 88320
+			},
+			"text": " something that while still being as simple as possible is a lot more robust and a lot more future"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,320",
+				"to": "00:01:35,760"
+			},
+			"offsets": {
+				"from": 88320,
+				"to": 95760
+			},
+			"text": " proof. So what makes a good name service? Separation of concerns, there are three separate things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,760",
+				"to": "00:01:40,640"
+			},
+			"offsets": {
+				"from": 95760,
+				"to": 100640
+			},
+			"text": " three separate components and a good name service, at least in my mind. One of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,640",
+				"to": "00:01:46,240"
+			},
+			"offsets": {
+				"from": 100640,
+				"to": 106240
+			},
+			"text": " is the actual resolution of the names. One of them is the updating and the registration of names,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,240",
+				"to": "00:01:52,080"
+			},
+			"offsets": {
+				"from": 106240,
+				"to": 112080
+			},
+			"text": " and the third one is registrars, so how you actually get the top level name in the first place, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,080",
+				"to": "00:01:59,200"
+			},
+			"offsets": {
+				"from": 112080,
+				"to": 119200
+			},
+			"text": " you would go to GoDaddy or Gundy or whatever on the DNS system. And existing systems conflate those."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,200",
+				"to": "00:02:04,400"
+			},
+			"offsets": {
+				"from": 119200,
+				"to": 124400
+			},
+			"text": " There's the matter of distributed authority and implementation, as I already alluded to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,400",
+				"to": "00:02:09,600"
+			},
+			"offsets": {
+				"from": 124400,
+				"to": 129600
+			},
+			"text": " It needs to be forward compatible. There will be uses for the name system we haven't thought of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,600",
+				"to": "00:02:15,600"
+			},
+			"offsets": {
+				"from": 129600,
+				"to": 135600
+			},
+			"text": " yet. And it needs to have efficient on-chain resolution. So a lot of the applications are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,600",
+				"to": "00:02:20,400"
+			},
+			"offsets": {
+				"from": 135600,
+				"to": 140400
+			},
+			"text": " in daps. They're in swarm and browsers, but it's also very useful for contracts to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,400",
+				"to": "00:02:23,840"
+			},
+			"offsets": {
+				"from": 140400,
+				"to": 143840
+			},
+			"text": " able to refer to other contracts by name, because it makes for better upgradability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,840",
+				"to": "00:02:31,200"
+			},
+			"offsets": {
+				"from": 143840,
+				"to": 151200
+			},
+			"text": " So these are the three main components of the ENS. We have the ENS registry, which is a centralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,200",
+				"to": "00:02:37,920"
+			},
+			"offsets": {
+				"from": 151200,
+				"to": 157920
+			},
+			"text": " contract, and somebody's skipped ahead in my slides, never mind. Centralized contract, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,920",
+				"to": "00:02:42,640"
+			},
+			"offsets": {
+				"from": 157920,
+				"to": 162640
+			},
+			"text": " contains the entire name tree. It's the only component of the system that isn't upgradable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,640",
+				"to": "00:02:47,840"
+			},
+			"offsets": {
+				"from": 162640,
+				"to": 167840
+			},
+			"text": " because it's extremely simple. And its job is simply to map from the name you enter into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,840",
+				"to": "00:02:54,800"
+			},
+			"offsets": {
+				"from": 167840,
+				"to": 174800
+			},
+			"text": " resolver. So the second component is the resolvers. Resolvers can be written by individual users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,800",
+				"to": "00:03:00,800"
+			},
+			"offsets": {
+				"from": 174800,
+				"to": 180800
+			},
+			"text": " or you can use a pre-made one. They can use any system they like, and they go from the name to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,800",
+				"to": "00:03:06,640"
+			},
+			"offsets": {
+				"from": 180800,
+				"to": 186640
+			},
+			"text": " the record. So when you do a name lookup, first you ask the registry, where is the resolver for"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,640",
+				"to": "00:03:13,760"
+			},
+			"offsets": {
+				"from": 186640,
+				"to": 193760
+			},
+			"text": " nich.eth, and then you ask the resolver, what is the address of nich.eth. So looking at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,760",
+				"to": "00:03:20,640"
+			},
+			"offsets": {
+				"from": 193760,
+				"to": 200640
+			},
+			"text": " registry, there we go, we conceptually structured like a tree. You have the root node, under that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,640",
+				"to": "00:03:24,720"
+			},
+			"offsets": {
+				"from": 200640,
+				"to": 204720
+			},
+			"text": " you have all the top level domains, under that you have all the users' domains, like swarm.eth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,720",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 204720,
+				"to": 210000
+			},
+			"text": " wallet.eth, and so on. It's hierarchical, so once you own a name, you can create names under that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,800",
+				"to": "00:03:37,280"
+			},
+			"offsets": {
+				"from": 210800,
+				"to": 217280
+			},
+			"text": " Each of these is associated with a node ID, and the node ID represents the name. So although the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,280",
+				"to": "00:03:43,440"
+			},
+			"offsets": {
+				"from": 217280,
+				"to": 223440
+			},
+			"text": " conceptual structure here is a tree, internally it looks quite different. It's actually just a big"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,440",
+				"to": "00:03:48,560"
+			},
+			"offsets": {
+				"from": 223440,
+				"to": 228560
+			},
+			"text": " lookup table, which is why it's such a simple contract and why we believe that we can deploy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,560",
+				"to": "00:03:54,960"
+			},
+			"offsets": {
+				"from": 228560,
+				"to": 234960
+			},
+			"text": " it without a built-in upgrade facility. It maps a node number, which represents the name,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,960",
+				"to": "00:04:00,400"
+			},
+			"offsets": {
+				"from": 234960,
+				"to": 240400
+			},
+			"text": " to an owner who is the account that has the right to update the name, and a resolver, which,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,400",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 240400,
+				"to": 248480
+			},
+			"text": " if it exists, turns names into values. You might be wondering how the last, I really have."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:18,480"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 258480
+			},
+			"text": " You might be wondering how you go from a name to a node ID. This is using a system called name"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,480",
+				"to": "00:04:23,920"
+			},
+			"offsets": {
+				"from": 258480,
+				"to": 263920
+			},
+			"text": " hash. What we do first is you break the name up into components. So you can see there we had"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,920",
+				"to": "00:04:28,880"
+			},
+			"offsets": {
+				"from": 263920,
+				"to": 268880
+			},
+			"text": " nich.wallet.eth has been broken up into three components. You reverse them, so you start with"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,880",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 268880,
+				"to": 276800
+			},
+			"text": " f, and you char three hash that, and you get that first value here. Then you take that, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:42,560"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 282560
+			},
+			"text": " char three it with zero, which is the root node. And you take that, and you feed that in, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,560",
+				"to": "00:04:48,160"
+			},
+			"offsets": {
+				"from": 282560,
+				"to": 288160
+			},
+			"text": " do the whole operation all over again. You feed it in as the parent node, you char three wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,160",
+				"to": "00:04:52,480"
+			},
+			"offsets": {
+				"from": 288160,
+				"to": 292480
+			},
+			"text": " you put it into the next one. You char three that with nich, you feed it into the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,480",
+				"to": "00:05:04,400"
+			},
+			"offsets": {
+				"from": 292480,
+				"to": 304400
+			},
+			"text": " And what you get out, if I can make my slides work, is the final node hash. The purpose of all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,400",
+				"to": "00:05:09,520"
+			},
+			"offsets": {
+				"from": 304400,
+				"to": 309520
+			},
+			"text": " this convoluted though it may seem, is that you can look up a name of arbitrary depth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,520",
+				"to": "00:05:16,480"
+			},
+			"offsets": {
+				"from": 309520,
+				"to": 316480
+			},
+			"text": " you food.bar.bares.quacks.eth, in a single look up operation. And yet the registry contract can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,480",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 316480,
+				"to": 322000
+			},
+			"text": " still answer questions like, does this person own the parent name for this name, and so forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:25,520"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 325520
+			},
+			"text": " which allows the distributed authority, and allows assignment of authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,520",
+				"to": "00:05:32,880"
+			},
+			"offsets": {
+				"from": 325520,
+				"to": 332880
+			},
+			"text": " So the next component of ENS is the resolvers. Resolvers can be written by individual users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,880",
+				"to": "00:05:37,520"
+			},
+			"offsets": {
+				"from": 332880,
+				"to": 337520
+			},
+			"text": " they can be extremely simple, or they can be very sophisticated. An extremely simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,520",
+				"to": "00:05:43,040"
+			},
+			"offsets": {
+				"from": 337520,
+				"to": 343040
+			},
+			"text": " resolver here that is owned by a particular user, and only registers names for them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,040",
+				"to": "00:05:49,600"
+			},
+			"offsets": {
+				"from": 343040,
+				"to": 349600
+			},
+			"text": " is here. It has three main functions. Has answers the question, do you know the answer to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,600",
+				"to": "00:05:54,720"
+			},
+			"offsets": {
+				"from": 349600,
+				"to": 354720
+			},
+			"text": " particular question? In this case, it only supports address records, and it only supports the ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,720",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 354720,
+				"to": 359600
+			},
+			"text": " that have been added to it, and if it has, it returns true. The second function is the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:04,480"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 364480
+			},
+			"text": " that everyone trying to resolve names calls its adder. So you pass in the node, which again is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,480",
+				"to": "00:06:09,520"
+			},
+			"offsets": {
+				"from": 364480,
+				"to": 369520
+			},
+			"text": " the value of this operation previously. If it has it, it returns it. If it doesn't, it throws an"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,520",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 369520,
+				"to": 374400
+			},
+			"text": " exception. And finally, you have the function that this is not part of the spec, it's part of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,960",
+				"to": "00:06:20,240"
+			},
+			"offsets": {
+				"from": 374960,
+				"to": 380240
+			},
+			"text": " the interface of your individual resolver, which is set adder, which lets the owner set the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,240",
+				"to": "00:06:25,360"
+			},
+			"offsets": {
+				"from": 380240,
+				"to": 385360
+			},
+			"text": " And as you can see, it's an extremely simple contract, and that is the entirety of a fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,360",
+				"to": "00:06:31,760"
+			},
+			"offsets": {
+				"from": 385360,
+				"to": 391760
+			},
+			"text": " functional resolver. Finally, the third component of ENS is the registrars. Registrars are the owners"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,760",
+				"to": "00:06:38,880"
+			},
+			"offsets": {
+				"from": 391760,
+				"to": 398880
+			},
+			"text": " in the ENS registry, and their job is to assign names to people. The simplest possible registrar"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,880",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 398880,
+				"to": 404240
+			},
+			"text": " is me. I can actually own it, own a domain using my external address. If you come up to me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:50,880"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 410880
+			},
+			"text": " I can give you a subname. No contracts need be involved. But for top-level names, it's helpful"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,880",
+				"to": "00:06:55,600"
+			},
+			"offsets": {
+				"from": 410880,
+				"to": 415600
+			},
+			"text": " to have a smart contract because it's automated and it ensures fairness, and everyone knows what"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,600",
+				"to": "00:07:00,800"
+			},
+			"offsets": {
+				"from": 415600,
+				"to": 420800
+			},
+			"text": " the registration rules are. And more importantly, everyone knows that I won't come along and arbitrarily"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,800",
+				"to": "00:07:04,400"
+			},
+			"offsets": {
+				"from": 420800,
+				"to": 424400
+			},
+			"text": " decide, actually, I really want toaster.eth. I'm going to take it back off you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,400",
+				"to": "00:07:10,080"
+			},
+			"offsets": {
+				"from": 424400,
+				"to": 430080
+			},
+			"text": " So the registrar is similarly simple. This is a really simple registrar that replicates more or"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,080",
+				"to": "00:07:15,040"
+			},
+			"offsets": {
+				"from": 430080,
+				"to": 435040
+			},
+			"text": " less the functionality of the existing name reg. The first person to ask for a name gets it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,040",
+				"to": "00:07:20,160"
+			},
+			"offsets": {
+				"from": 435040,
+				"to": 440160
+			},
+			"text": " If they already own the name, they can assign it to someone else. And all it does here is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,160",
+				"to": "00:07:26,640"
+			},
+			"offsets": {
+				"from": 440160,
+				"to": 446640
+			},
+			"text": " has the address of the registry, and when it's asked to, it updates the name in the registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,640",
+				"to": "00:07:32,560"
+			},
+			"offsets": {
+				"from": 446640,
+				"to": 452560
+			},
+			"text": " So those are the basic components of ENS, and that pretty much describes the entire technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,560",
+				"to": "00:07:38,400"
+			},
+			"offsets": {
+				"from": 452560,
+				"to": 458400
+			},
+			"text": " implementation. The remaining component, the only remaining component, which you'd think is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,400",
+				"to": "00:07:43,840"
+			},
+			"offsets": {
+				"from": 458400,
+				"to": 463840
+			},
+			"text": " really quite straightforward, but really, really isn't, is governance. Governance is an ongoing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,840",
+				"to": "00:07:50,400"
+			},
+			"offsets": {
+				"from": 463840,
+				"to": 470400
+			},
+			"text": " issue. The question is, how should we administer the domain system? Who should we assign names to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,400",
+				"to": "00:07:54,560"
+			},
+			"offsets": {
+				"from": 470400,
+				"to": 474560
+			},
+			"text": " Should they have to pay? Who should get the money? And so forth. And our conversations"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,560",
+				"to": "00:08:00,480"
+			},
+			"offsets": {
+				"from": 474560,
+				"to": 480480
+			},
+			"text": " around governance always seem to go like this. So I've got this really great idea on how we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,480",
+				"to": "00:08:05,600"
+			},
+			"offsets": {
+				"from": 480480,
+				"to": 485600
+			},
+			"text": " assign names. We should do it like this. >> This is the terrible idea. I have a much better thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,600",
+				"to": "00:08:09,760"
+			},
+			"offsets": {
+				"from": 485600,
+				"to": 489760
+			},
+			"text": " we can do. >> Actually, both of you are wrong. We should let the market decide."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,760",
+				"to": "00:08:17,200"
+			},
+			"offsets": {
+				"from": 489760,
+				"to": 497200
+			},
+			"text": " >> Well, actually, that's a good idea, but then who gets the top level names?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,200",
+				"to": "00:08:25,280"
+			},
+			"offsets": {
+				"from": 497200,
+				"to": 505280
+			},
+			"text": " >> I've got a great idea on how we should assign names. And so forth. So we have come up with what"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,280",
+				"to": "00:08:31,920"
+			},
+			"offsets": {
+				"from": 505280,
+				"to": 511920
+			},
+			"text": " Alex calls the McDonald's solution. And I'll go into more detail in it shortly, but basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,920",
+				"to": "00:08:36,800"
+			},
+			"offsets": {
+				"from": 511920,
+				"to": 516800
+			},
+			"text": " our plan is to deploy an interim registrar, which uses a very simple registration scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,800",
+				"to": "00:08:43,040"
+			},
+			"offsets": {
+				"from": 516800,
+				"to": 523040
+			},
+			"text": " And people can then register names. And we plan on launching this towards the end of the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,040",
+				"to": "00:08:49,680"
+			},
+			"offsets": {
+				"from": 523040,
+				"to": 529680
+			},
+			"text": " About a year from now, we'll start accepting submissions for a permanent registrar,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,680",
+				"to": "00:08:53,200"
+			},
+			"offsets": {
+				"from": 529680,
+				"to": 533200
+			},
+			"text": " which we expect will be more complicated, more sophisticated. It will take care of things like"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,200",
+				"to": "00:08:59,120"
+			},
+			"offsets": {
+				"from": 533200,
+				"to": 539120
+			},
+			"text": " abuse and so forth. And the reason for the delay is that we want to get some experience with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,120",
+				"to": "00:09:03,520"
+			},
+			"offsets": {
+				"from": 539120,
+				"to": 543520
+			},
+			"text": " operating the name system. We want to learn what the real practical problems are. And we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,520",
+				"to": "00:09:08,480"
+			},
+			"offsets": {
+				"from": 543520,
+				"to": 548480
+			},
+			"text": " be able to use those to build a better registrar. And then with the goal of about a year from there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,480",
+				"to": "00:09:12,320"
+			},
+			"offsets": {
+				"from": 548480,
+				"to": 552320
+			},
+			"text": " I'm sorry, but these are slightly out of date slides. Please pretend those are Vega and they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,320",
+				"to": "00:09:18,720"
+			},
+			"offsets": {
+				"from": 552320,
+				"to": 558720
+			},
+			"text": " not November. We intend to launch the permanent registrar to replace the intermediate one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,720",
+				"to": "00:09:25,680"
+			},
+			"offsets": {
+				"from": 558720,
+				"to": 565680
+			},
+			"text": " So what does the temporary registrar look like? It's an auction. Only names under .eth are available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,680",
+				"to": "00:09:31,760"
+			},
+			"offsets": {
+				"from": 565680,
+				"to": 571760
+			},
+			"text": " so we'll only have one top-level domain with the goal of preventing collision with existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,760",
+				"to": "00:09:37,120"
+			},
+			"offsets": {
+				"from": 571760,
+				"to": 577120
+			},
+			"text": " domain name system. Names are auction off using a blind second-priced auction, which is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,120",
+				"to": "00:09:42,400"
+			},
+			"offsets": {
+				"from": 577120,
+				"to": 582400
+			},
+			"text": " called a victory auction. Names shorter than actually that seven characters are prohibited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,400",
+				"to": "00:09:47,040"
+			},
+			"offsets": {
+				"from": 582400,
+				"to": 587040
+			},
+			"text": " which may sound restrictive, but our goal is to save the really high value names for when we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,040",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 587040,
+				"to": 592000
+			},
+			"text": " have a system that we will know we know will fairly hand them out. Winning bidders deposits"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:57,760"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 597760
+			},
+			"text": " are held in contract accounts, and after six months you can delete your name and recover your deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,760",
+				"to": "00:10:02,960"
+			},
+			"offsets": {
+				"from": 597760,
+				"to": 602960
+			},
+			"text": " Or once the new red permanent registrar is available, you can transfer your deposit to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,960",
+				"to": "00:10:07,520"
+			},
+			"offsets": {
+				"from": 602960,
+				"to": 607520
+			},
+			"text": " registrar and keep the name under whatever rules are established for that eventual registrar."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,520",
+				"to": "00:10:13,120"
+			},
+			"offsets": {
+				"from": 607520,
+				"to": 613120
+			},
+			"text": " The goal is that switching to the eventual registrar will be consensual. If you don't wish to use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,120",
+				"to": "00:10:17,840"
+			},
+			"offsets": {
+				"from": 613120,
+				"to": 617840
+			},
+			"text": " new registrar, you can get your money back. If you do, then you can pass it on, which means that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,840",
+				"to": "00:10:23,040"
+			},
+			"offsets": {
+				"from": 617840,
+				"to": 623040
+			},
+			"text": " hope that whatever registrar eventuates will be one that the majority of people think is a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,040",
+				"to": "00:10:28,720"
+			},
+			"offsets": {
+				"from": 623040,
+				"to": 628720
+			},
+			"text": " And that's it for the Ethereum name service. I have about a minute for questions, but I don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,720",
+				"to": "00:10:34,480"
+			},
+			"offsets": {
+				"from": 628720,
+				"to": 634480
+			},
+			"text": " think we're taking them. If your interest is more, you can email me at niketotherium.org,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,480",
+				"to": "00:10:42,480"
+			},
+			"offsets": {
+				"from": 634480,
+				"to": 642480
+			},
+			"text": " join the conversation at Gitter in the name registry room, and the EIP, which officially defines ENS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,480",
+				"to": "00:10:53,200"
+			},
+			"offsets": {
+				"from": 642480,
+				"to": 653200
+			},
+			"text": " is there. Please read and comment. We welcome your feedback. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,200",
+				"to": "00:10:57,200"
+			},
+			"offsets": {
+				"from": 653200,
+				"to": 657200
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,200",
+				"to": "00:11:26,200"
+			},
+			"offsets": {
+				"from": 657200,
+				"to": 686200
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

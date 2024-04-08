@@ -1,0 +1,2463 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12600
+			},
+			"text": " >> Hey, everyone. Happy to see a few of you brave enough to stand through the iPhone"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,600",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 12600,
+				"to": 20000
+			},
+			"text": " and also able to get up so early in the morning. So let me see if this is working. Yep. Click"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 28000
+			},
+			"text": " around. So before we begin, I have a question. How many of you have heard of Akasha before?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:36,400"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 36400
+			},
+			"text": " Wow. So almost everyone. And how many of you have actually played with the app, like an"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,400",
+				"to": "00:00:43,480"
+			},
+			"offsets": {
+				"from": 36400,
+				"to": 43480
+			},
+			"text": " alpha or a beta? Okay. So almost half. Which is thank you for taking the time to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,480",
+				"to": "00:00:47,800"
+			},
+			"offsets": {
+				"from": 43480,
+				"to": 47800
+			},
+			"text": " play with the app and so on. It was a learning experience for us. For the other view that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,800",
+				"to": "00:00:53,080"
+			},
+			"offsets": {
+				"from": 47800,
+				"to": 53080
+			},
+			"text": " haven't heard of Akasha before, it's kind of an old project in the ecosystem, so to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,080",
+				"to": "00:01:01,800"
+			},
+			"offsets": {
+				"from": 53080,
+				"to": 61800
+			},
+			"text": " we unveiled it on May 3rd, World Press Freedom Day 2016. And the original intention was to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,800",
+				"to": "00:01:09,200"
+			},
+			"offsets": {
+				"from": 61800,
+				"to": 69200
+			},
+			"text": " have this experiment trying to combine Ethereum and IPFS to create a decentralized social network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,200",
+				"to": "00:01:17,760"
+			},
+			"offsets": {
+				"from": 69200,
+				"to": 77760
+			},
+			"text": " Which has some really nice features like being censorship resistance and decentralized. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,760",
+				"to": "00:01:23,200"
+			},
+			"offsets": {
+				"from": 77760,
+				"to": 83200
+			},
+			"text": " in January this year, we started a series of posts called Metamorphosis. And there has"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,200",
+				"to": "00:01:27,760"
+			},
+			"offsets": {
+				"from": 83200,
+				"to": 87760
+			},
+			"text": " been this change in also our understanding of what can we do with these technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,760",
+				"to": "00:01:33,120"
+			},
+			"offsets": {
+				"from": 87760,
+				"to": 93120
+			},
+			"text": " when we put them together. And also what are the possibilities? Because it's still the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,120",
+				"to": "00:01:37,640"
+			},
+			"offsets": {
+				"from": 93120,
+				"to": 97640
+			},
+			"text": " early days and we are kind of still, I think, scratching the surface of what can be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,640",
+				"to": "00:01:44,080"
+			},
+			"offsets": {
+				"from": 97640,
+				"to": 104080
+			},
+			"text": " with this toolkit. But since the beginning, something hasn't changed. And that is, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,080",
+				"to": "00:01:50,400"
+			},
+			"offsets": {
+				"from": 104080,
+				"to": 110400
+			},
+			"text": " know, one of the, because 2016, that was like when the whole ICO craze began. When ICO was"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,400",
+				"to": "00:01:56,160"
+			},
+			"offsets": {
+				"from": 110400,
+				"to": 116160
+			},
+			"text": " one of the most frequently asked questions. And we tried to make it clear to people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,160",
+				"to": "00:02:00,720"
+			},
+			"offsets": {
+				"from": 116160,
+				"to": 120720
+			},
+			"text": " the main reason we are trying to do this is to figure out if this idea is viable, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,720",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 120720,
+				"to": 126400
+			},
+			"text": " are the limits and understand what are the possibilities. So the main message remains"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:14,280"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 134280
+			},
+			"text": " the same. As always, keep your coins, we won't change. And behind the initiative and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,280",
+				"to": "00:02:20,520"
+			},
+			"offsets": {
+				"from": 134280,
+				"to": 140520
+			},
+			"text": " project, there is the Akasha Foundation, a nonprofit organization incorporated in Switzerland,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,520",
+				"to": "00:02:24,440"
+			},
+			"offsets": {
+				"from": 140520,
+				"to": 144440
+			},
+			"text": " which described itself as a nonprofit born at the intersection of blockchain and collective"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,440",
+				"to": "00:02:31,080"
+			},
+			"offsets": {
+				"from": 144440,
+				"to": 151080
+			},
+			"text": " intelligence. And in the process of these three years since we announced, we released"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,080",
+				"to": "00:02:39,440"
+			},
+			"offsets": {
+				"from": 151080,
+				"to": 159440
+			},
+			"text": " three fully functional Ethereum apps, the beta desktop app and the web beta app, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,440",
+				"to": "00:02:45,240"
+			},
+			"offsets": {
+				"from": 159440,
+				"to": 165240
+			},
+			"text": " has IPFS completely, a PFS part completely rewritten. So the browsers are actually communicating"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,240",
+				"to": "00:02:51,720"
+			},
+			"offsets": {
+				"from": 165240,
+				"to": 171720
+			},
+			"text": " peer to peer to another. We didn't do any of that gateway, you know, decentralized thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,720",
+				"to": "00:02:57,440"
+			},
+			"offsets": {
+				"from": 171720,
+				"to": 177440
+			},
+			"text": " But speaking of blockchain, like, and this being an Ethereum event, you know, what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,440",
+				"to": "00:03:02,160"
+			},
+			"offsets": {
+				"from": 177440,
+				"to": 182160
+			},
+			"text": " Ethereum? And this is, you know, like an easy question, but if you would ask around here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,160",
+				"to": "00:03:07,600"
+			},
+			"offsets": {
+				"from": 182160,
+				"to": 187600
+			},
+			"text": " 10 people, let's say, you would probably get like 10 slightly different definitions or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,600",
+				"to": "00:03:11,920"
+			},
+			"offsets": {
+				"from": 187600,
+				"to": 191920
+			},
+			"text": " sometimes like completely differing. But for the purpose of this presentation, let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,920",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 191920,
+				"to": 197960
+			},
+			"text": " that we are in the shoes of someone new to blockchain or at least Ethereum. So it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:24,920"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 204920
+			},
+			"text": " they Google something and boom, they reach the Ethereum.org page, nice. It's the, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,920",
+				"to": "00:03:29,840"
+			},
+			"offsets": {
+				"from": 204920,
+				"to": 209840
+			},
+			"text": " is looking beautiful, right? It's like, what is this Ethereum thing? It looks nice. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,840",
+				"to": "00:03:34,400"
+			},
+			"offsets": {
+				"from": 209840,
+				"to": 214400
+			},
+			"text": " then when you read, it's like, so it's a global open source platform for decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,400",
+				"to": "00:03:39,680"
+			},
+			"offsets": {
+				"from": 214400,
+				"to": 219680
+			},
+			"text": " applications. So it's like, so this is kind of like an app store of sorts. So you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,680",
+				"to": "00:03:44,240"
+			},
+			"offsets": {
+				"from": 219680,
+				"to": 224240
+			},
+			"text": " like these apps. So it's like, I'm curious. I want to try this. So then like, if you click,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,240",
+				"to": "00:03:51,320"
+			},
+			"offsets": {
+				"from": 224240,
+				"to": 231320
+			},
+			"text": " for example, use, you're like greeted by this list of applications. And usually, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,320",
+				"to": "00:03:55,800"
+			},
+			"offsets": {
+				"from": 231320,
+				"to": 235800
+			},
+			"text": " I think as a user, when you click use, it's something that you actually experience, not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,800",
+				"to": "00:04:02,400"
+			},
+			"offsets": {
+				"from": 235800,
+				"to": 242400
+			},
+			"text": " so much read. And for like a new potential user that is trying to figure out what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,400",
+				"to": "00:04:09,240"
+			},
+			"offsets": {
+				"from": 242400,
+				"to": 249240
+			},
+			"text": " Ethereum and what does this mean in his life and how it impacts, let's say it's a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,240",
+				"to": "00:04:16,720"
+			},
+			"offsets": {
+				"from": 249240,
+				"to": 256720
+			},
+			"text": " overwhelming to say the least. And when it comes to the root problem of this is that user"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,720",
+				"to": "00:04:22,960"
+			},
+			"offsets": {
+				"from": 256720,
+				"to": 262960
+			},
+			"text": " experience is sometimes an afterthought, especially when, you know, we work on our projects and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,960",
+				"to": "00:04:29,960"
+			},
+			"offsets": {
+				"from": 262960,
+				"to": 269960
+			},
+			"text": " we are focused too much and the actual technology is like, that transaction is like, ah, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,960",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 269960,
+				"to": 276000
+			},
+			"text": " library isn't working. And then in the, you know, months after development is like, yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:42,840"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 282840
+			},
+			"text": " that works. But the general experience is not that great. And we actually conducted a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,840",
+				"to": "00:04:47,640"
+			},
+			"offsets": {
+				"from": 282840,
+				"to": 287640
+			},
+			"text": " research in the community. And for those brave enough, those users that from the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,640",
+				"to": "00:04:51,400"
+			},
+			"offsets": {
+				"from": 287640,
+				"to": 291400
+			},
+			"text": " you know, they click, they went through the list, they know, onboarding and so on. It's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,400",
+				"to": "00:04:56,520"
+			},
+			"offsets": {
+				"from": 291400,
+				"to": 296520
+			},
+			"text": " like, ah, the general feeling is that it's something very hard to use, cumbersome. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,520",
+				"to": "00:05:01,080"
+			},
+			"offsets": {
+				"from": 296520,
+				"to": 301080
+			},
+			"text": " many times their disguise is like, man, this is too hard for me, or this is simply not for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,080",
+				"to": "00:05:06,120"
+			},
+			"offsets": {
+				"from": 301080,
+				"to": 306120
+			},
+			"text": " me. And in our user research, we try to reach out to a number of meet up organizers, meet"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,120",
+				"to": "00:05:12,200"
+			},
+			"offsets": {
+				"from": 306120,
+				"to": 312200
+			},
+			"text": " up participants and like members from the community. So, ethereum, not the fans, you know, those"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,200",
+				"to": "00:05:20,040"
+			},
+			"offsets": {
+				"from": 312200,
+				"to": 320040
+			},
+			"text": " that are passionate enough to go through some pain to get that ethereum magic. But one quote"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,040",
+				"to": "00:05:26,520"
+			},
+			"offsets": {
+				"from": 320040,
+				"to": 326520
+			},
+			"text": " from this research is particularly like insightful. And that quote sounds like, that's, are like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,520",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 326520,
+				"to": 332200
+			},
+			"text": " toys and games. No one is having fun playing with. It's like, ah, right in the feeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,240",
+				"to": "00:05:39,640"
+			},
+			"offsets": {
+				"from": 333240,
+				"to": 339640
+			},
+			"text": " It's not something you want to hear, but it's something real. And another interesting insight"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,640",
+				"to": "00:05:45,640"
+			},
+			"offsets": {
+				"from": 339640,
+				"to": 345640
+			},
+			"text": " here is that ethereum, this magical thing, hard to describe, this unicorn in the cyberspace,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,640",
+				"to": "00:05:52,200"
+			},
+			"offsets": {
+				"from": 345640,
+				"to": 352200
+			},
+			"text": " for a normal user, they associate ethereum with whatever app is that touch point. So, it's like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,200",
+				"to": "00:05:57,240"
+			},
+			"offsets": {
+				"from": 352200,
+				"to": 357240
+			},
+			"text": " every ethereum app and service in a way in the world is kind of like an ambassador for the ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,240",
+				"to": "00:06:01,720"
+			},
+			"offsets": {
+				"from": 357240,
+				"to": 361720
+			},
+			"text": " ecosystem, right? So, it's like if someone tries an ethereum app and is like, man, that onboarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,720",
+				"to": "00:06:07,160"
+			},
+			"offsets": {
+				"from": 361720,
+				"to": 367160
+			},
+			"text": " and it's too hard, that's going to be the idea associated. And I know what you're thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,160",
+				"to": "00:06:12,520"
+			},
+			"offsets": {
+				"from": 367160,
+				"to": 372520
+			},
+			"text": " some of you, it's like, but tokens, it's like there is an economic incentive that carrot and it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,520",
+				"to": "00:06:17,400"
+			},
+			"offsets": {
+				"from": 372520,
+				"to": 377400
+			},
+			"text": " yes, you go through the pain because there's some kind of reward at the end of the journey."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,400",
+				"to": "00:06:21,800"
+			},
+			"offsets": {
+				"from": 377400,
+				"to": 381800
+			},
+			"text": " But, you know, our research, and by the way, you can find this research on dakasha.org blog,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,800",
+				"to": "00:06:26,600"
+			},
+			"offsets": {
+				"from": 381800,
+				"to": 386600
+			},
+			"text": " if you're interested, is like, actually the reality looks like this. It's like, yay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,320",
+				"to": "00:06:32,360"
+			},
+			"offsets": {
+				"from": 387320,
+				"to": 392360
+			},
+			"text": " token drops. But people are not that, how to say enthusiastic because the experience is not"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,360",
+				"to": "00:06:38,360"
+			},
+			"offsets": {
+				"from": 392360,
+				"to": 398360
+			},
+			"text": " great. So, it's not something you do to enjoy, it's something that you do to maybe get that token"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,360",
+				"to": "00:06:43,800"
+			},
+			"offsets": {
+				"from": 398360,
+				"to": 403800
+			},
+			"text": " and then set it on an exchange. So, the question is, how can we improve this ethereum experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,800",
+				"to": "00:06:48,360"
+			},
+			"offsets": {
+				"from": 403800,
+				"to": 408360
+			},
+			"text": " so to say? And I think the first step towards that is to understand that ethereum is more than"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,360",
+				"to": "00:06:53,160"
+			},
+			"offsets": {
+				"from": 408360,
+				"to": 413160
+			},
+			"text": " just a blockchain. So, it's more than just a technology. And like, in the previous presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,160",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 413160,
+				"to": 418760
+			},
+			"text": " we had this sociological aspect. It's also this social thing. And this is a quote from Vitalik,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:05,480"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 425480
+			},
+			"text": " where he kind of captures this idea that money is a fundamentally social thing in a much deeper"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,480",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 425480,
+				"to": 433000
+			},
+			"text": " way than, say, encrypted peer-to-party communication. And I extend this to say that ethereum is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,200"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438200
+			},
+			"text": " this social thing. And programmable money is fundamentally a social thing. And this will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,200",
+				"to": "00:07:24,280"
+			},
+			"offsets": {
+				"from": 438200,
+				"to": 444280
+			},
+			"text": " something that we should keep in mind. And to exemplify this, this is a gross visualization of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,280",
+				"to": "00:07:30,920"
+			},
+			"offsets": {
+				"from": 444280,
+				"to": 450920
+			},
+			"text": " github commits from the ethereum repos. It's sped up a bit. So, you can see it's like the date"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,920",
+				"to": "00:07:37,480"
+			},
+			"offsets": {
+				"from": 450920,
+				"to": 457480
+			},
+			"text": " there above. But the main idea is that ethereum is not just this static abstract idea somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,480",
+				"to": "00:07:44,600"
+			},
+			"offsets": {
+				"from": 457480,
+				"to": 464600
+			},
+			"text": " It's actually a living social organism that is formed from this network of people making"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,600",
+				"to": "00:07:52,680"
+			},
+			"offsets": {
+				"from": 464600,
+				"to": 472680
+			},
+			"text": " these contributions. And this whole idea codified entering our reality as lines of code is more"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,680",
+				"to": "00:08:00,200"
+			},
+			"offsets": {
+				"from": 472680,
+				"to": 480200
+			},
+			"text": " than just technology. It's also this network of people. And our journey with Akasha between 2016"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,200",
+				"to": "00:08:05,880"
+			},
+			"offsets": {
+				"from": 480200,
+				"to": 485880
+			},
+			"text": " and 2018 consisted mainly in, or we focused our efforts on building these apps. So, it's like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,880",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 485880,
+				"to": 492760
+			},
+			"text": " if ethereum is this decentralized app platform, let's say, like decentralized app store, we try to put"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:17,720"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 497720
+			},
+			"text": " one of these apps in that decentralized app store. And the functionality of that app would be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,720",
+				"to": "00:08:23,480"
+			},
+			"offsets": {
+				"from": 497720,
+				"to": 503480
+			},
+			"text": " social network running on ethereum. But since then, like our, and the matamorphosis I referenced in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,480",
+				"to": "00:08:28,520"
+			},
+			"offsets": {
+				"from": 503480,
+				"to": 508520
+			},
+			"text": " the beginning, is that our understanding of what can we do to maximize the impact that we can and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,520",
+				"to": "00:08:34,040"
+			},
+			"offsets": {
+				"from": 508520,
+				"to": 514040
+			},
+			"text": " what's the greatest thing that we can achieve considering that we're just a handful of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,040",
+				"to": "00:08:40,760"
+			},
+			"offsets": {
+				"from": 514040,
+				"to": 520760
+			},
+			"text": " is to actually build a framework. So, even though it's not a very accurate comparison,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,760",
+				"to": "00:08:47,080"
+			},
+			"offsets": {
+				"from": 520760,
+				"to": 527080
+			},
+			"text": " it helps maybe to imagine the new Akasha reloaded as kind of like a WordPress for social networks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,080",
+				"to": "00:08:51,960"
+			},
+			"offsets": {
+				"from": 527080,
+				"to": 531960
+			},
+			"text": " where people and communities in general can deploy their own customized purpose-built,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,960",
+				"to": "00:08:56,760"
+			},
+			"offsets": {
+				"from": 531960,
+				"to": 536760
+			},
+			"text": " purposeful social networks for filling whatever needs they have as a community. So, this is how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,760",
+				"to": "00:09:03,960"
+			},
+			"offsets": {
+				"from": 536760,
+				"to": 543960
+			},
+			"text": " we reached 2019 realizing that from building a social app on ethereum, ethereum is the social"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,960",
+				"to": "00:09:09,960"
+			},
+			"offsets": {
+				"from": 543960,
+				"to": 549960
+			},
+			"text": " network. Given in this room, you guys here at HOG, we are forming a social network, right? So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,840",
+				"to": "00:09:17,320"
+			},
+			"offsets": {
+				"from": 550840,
+				"to": 557320
+			},
+			"text": " in the beginning of the slide, we had the title of unifying the ethereum ecosystems. Like, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,320",
+				"to": "00:09:23,800"
+			},
+			"offsets": {
+				"from": 557320,
+				"to": 563800
+			},
+			"text": " That sounds like, hmm, I don't know what to say about that, probably. And, you know, this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,800",
+				"to": "00:09:30,520"
+			},
+			"offsets": {
+				"from": 563800,
+				"to": 570520
+			},
+			"text": " particularly interesting because in the ecosystem, we have this debate even among ourselves, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,520",
+				"to": "00:09:34,920"
+			},
+			"offsets": {
+				"from": 570520,
+				"to": 574920
+			},
+			"text": " as a community of people that kind of get what ethereum is. It's like, man, ethereum is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,920",
+				"to": "00:09:41,240"
+			},
+			"offsets": {
+				"from": 574920,
+				"to": 581240
+			},
+			"text": " decentralized finance platform. Na na na, ethereum is a ethereum work computer. Na na na, you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,240",
+				"to": "00:09:48,440"
+			},
+			"offsets": {
+				"from": 581240,
+				"to": 588440
+			},
+			"text": " like this debate within. So, it's like, it's everything and more, right? And sometimes it's hard to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,440",
+				"to": "00:09:54,120"
+			},
+			"offsets": {
+				"from": 588440,
+				"to": 594120
+			},
+			"text": " that bigger picture. So, with that framework that I mentioned, Akasha word framework, what we decided"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,120",
+				"to": "00:10:00,360"
+			},
+			"offsets": {
+				"from": 594120,
+				"to": 600360
+			},
+			"text": " to do is to have like a first use case that we'll be able to show why this is awesome and why"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,360",
+				"to": "00:10:04,840"
+			},
+			"offsets": {
+				"from": 600360,
+				"to": 604840
+			},
+			"text": " ethereum being the social network is something amazing and how all these scientists that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,840",
+				"to": "00:10:10,520"
+			},
+			"offsets": {
+				"from": 604840,
+				"to": 610520
+			},
+			"text": " saying, like, man, elephant is a snake or it's a rope and so on, decentralized finance or work"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,520",
+				"to": "00:10:16,440"
+			},
+			"offsets": {
+				"from": 610520,
+				"to": 616440
+			},
+			"text": " computer, they're all right. And, you know, the idea is, and part of the user experience challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,440",
+				"to": "00:10:24,120"
+			},
+			"offsets": {
+				"from": 616440,
+				"to": 624120
+			},
+			"text": " is to make it user friendly enough. And this is like a preview of the alpha that we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,120",
+				"to": "00:10:29,880"
+			},
+			"offsets": {
+				"from": 624120,
+				"to": 629880
+			},
+			"text": " the first social network being ethereum world. And the idea is, just as you have one Peter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,880",
+				"to": "00:10:36,520"
+			},
+			"offsets": {
+				"from": 629880,
+				"to": 636520
+			},
+			"text": " the ability to embed the GIF, or a GIF depends on what side you are, it's the idea that you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,520",
+				"to": "00:10:41,000"
+			},
+			"offsets": {
+				"from": 636520,
+				"to": 641000
+			},
+			"text": " this ability to post something and your followers, your social graph get notified of what you post."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 641000,
+				"to": 649000
+			},
+			"text": " But you can also embed in that social post GIF, which is fun. And what if we take that idea and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:55,160"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 655160
+			},
+			"text": " that ease of use, but this time make it for something useful. And in this case, embedding actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,160",
+				"to": "00:11:01,480"
+			},
+			"offsets": {
+				"from": 655160,
+				"to": 661480
+			},
+			"text": " dots that you can interact with. So, in here we have the example of how you would be able to add"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,480",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 661480,
+				"to": 667000
+			},
+			"text": " an app. And in this case, we have our app on. So, it's like, let's say we want to create a vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,440"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672440
+			},
+			"text": " and this is a proposal, and then boom, we just confirm. So now it's inside your post. And now"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,440",
+				"to": "00:11:21,960"
+			},
+			"offsets": {
+				"from": 672440,
+				"to": 681960
+			},
+			"text": " you click publish, bam. You just made an ethereum interaction. You know blockchain. So the ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,960",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 681960,
+				"to": 687480
+			},
+			"text": " experience, I think it's improving in this way, and it's making it through, let's say, an interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:33,080"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 693080
+			},
+			"text": " that people are already familiar with. So it's not the learning curve is a bit, let's say, less"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,080",
+				"to": "00:11:38,040"
+			},
+			"offsets": {
+				"from": 693080,
+				"to": 698040
+			},
+			"text": " steep and less intimidating, because it's something familiar, at least the beginning. And to exemplify"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,040",
+				"to": "00:11:43,480"
+			},
+			"offsets": {
+				"from": 698040,
+				"to": 703480
+			},
+			"text": " this, there are a couple of other examples. And this can go also for creating bounties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,480",
+				"to": "00:11:49,160"
+			},
+			"offsets": {
+				"from": 703480,
+				"to": 709160
+			},
+			"text": " boom, then you have created a bounty. Similarly, if we have something like a production market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,160",
+				"to": "00:11:54,680"
+			},
+			"offsets": {
+				"from": 709160,
+				"to": 714680
+			},
+			"text": " you can create a bet using blockchain, confirm, boom, you have your prediction marketing bet in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,680",
+				"to": "00:12:00,200"
+			},
+			"offsets": {
+				"from": 714680,
+				"to": 720200
+			},
+			"text": " your post, and so on and so forth. And something else that's interesting is that when we're taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,200",
+				"to": "00:12:05,480"
+			},
+			"offsets": {
+				"from": 720200,
+				"to": 725480
+			},
+			"text": " consideration the social aspect of ethereum, the social discovery of what are the apps that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,480",
+				"to": "00:12:09,960"
+			},
+			"offsets": {
+				"from": 725480,
+				"to": 729960
+			},
+			"text": " cool and what are useful should be also taken in consideration. And now what's like the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,960",
+				"to": "00:12:14,920"
+			},
+			"offsets": {
+				"from": 729960,
+				"to": 734920
+			},
+			"text": " of the art of finding apps? It's something like step state of apps or some websites that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,920",
+				"to": "00:12:19,560"
+			},
+			"offsets": {
+				"from": 734920,
+				"to": 739560
+			},
+			"text": " usually have a list, and then you have to go and click and so on, not necessarily ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,560",
+				"to": "00:12:24,840"
+			},
+			"offsets": {
+				"from": 739560,
+				"to": 744840
+			},
+			"text": " But like between ourselves, we know each other and follow each other, they say, man, I need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,840",
+				"to": "00:12:29,640"
+			},
+			"offsets": {
+				"from": 744840,
+				"to": 749640
+			},
+			"text": " create or I need this particular functionality. What's the best app? And then you can just ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,640",
+				"to": "00:12:34,680"
+			},
+			"offsets": {
+				"from": 749640,
+				"to": 754680
+			},
+			"text": " this, right? We just ask. And then people in their comments, because they can embed these apps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,680",
+				"to": "00:12:40,120"
+			},
+			"offsets": {
+				"from": 754680,
+				"to": 760120
+			},
+			"text": " you actually get answers that you have, for example, in this case, GEEP point or at bounties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,120",
+				"to": "00:12:45,320"
+			},
+			"offsets": {
+				"from": 760120,
+				"to": 765320
+			},
+			"text": " and so on and so forth. So actually the library of apps that will be integrated, well, is that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,320",
+				"to": "00:12:51,880"
+			},
+			"offsets": {
+				"from": 765320,
+				"to": 771880
+			},
+			"text": " word? I hope, grows with each integration and the functionalities and the possibilities in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,880",
+				"to": "00:12:56,200"
+			},
+			"offsets": {
+				"from": 771880,
+				"to": 776200
+			},
+			"text": " ethereum world, grow with each integration. So that's pretty cool, right? And something else that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,200",
+				"to": "00:13:01,960"
+			},
+			"offsets": {
+				"from": 776200,
+				"to": 781960
+			},
+			"text": " interesting is like when you are seeing an app, you know, when you use telegram someone sends you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,960",
+				"to": "00:13:06,520"
+			},
+			"offsets": {
+				"from": 781960,
+				"to": 786520
+			},
+			"text": " stickers, like, wow, okay, that's a cool sticker. And then you just add it to your own stickers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,520",
+				"to": "00:13:11,160"
+			},
+			"offsets": {
+				"from": 786520,
+				"to": 791160
+			},
+			"text": " I think something similar when it comes to ethereum apps is useful. So it's like when someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,160",
+				"to": "00:13:15,080"
+			},
+			"offsets": {
+				"from": 791160,
+				"to": 795080
+			},
+			"text": " publishes, for example, a prediction market bet or someone creates a boundary with a particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,080",
+				"to": "00:13:20,680"
+			},
+			"offsets": {
+				"from": 795080,
+				"to": 800680
+			},
+			"text": " app, make it easy. You like that functionality, that's useful for you. BAM, you have it in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,680",
+				"to": "00:13:25,960"
+			},
+			"offsets": {
+				"from": 800680,
+				"to": 805960
+			},
+			"text": " collection. Next time you want to publish something, you have it at your fingertips. Less intimidating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,960",
+				"to": "00:13:33,240"
+			},
+			"offsets": {
+				"from": 805960,
+				"to": 813240
+			},
+			"text": " more accessible. So the keywords here are accessibility, ease of use, and adoption. So, and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,240",
+				"to": "00:13:38,280"
+			},
+			"offsets": {
+				"from": 813240,
+				"to": 818280
+			},
+			"text": " something we're still wrapping our head around. Things get super interesting when you have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,280",
+				"to": "00:13:44,040"
+			},
+			"offsets": {
+				"from": 818280,
+				"to": 824040
+			},
+			"text": " idea of thread. So multiple posts. And when you can embed in each of these posts an app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,040",
+				"to": "00:13:49,320"
+			},
+			"offsets": {
+				"from": 824040,
+				"to": 829320
+			},
+			"text": " that's kind of interesting because you can create flow. So it helps to imagine maybe something like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,320",
+				"to": "00:13:55,560"
+			},
+			"offsets": {
+				"from": 829320,
+				"to": 835560
+			},
+			"text": " you creating an arrow going down. Maybe the next post would be linked to this with a proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,560",
+				"to": "00:14:00,760"
+			},
+			"offsets": {
+				"from": 835560,
+				"to": 840760
+			},
+			"text": " The next thing with the bound, the next thing with an NFT collective for the people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,760",
+				"to": "00:14:07,480"
+			},
+			"offsets": {
+				"from": 840760,
+				"to": 847480
+			},
+			"text": " participate in the DOW or in the proposal. So the possibilities are kind of cool looking ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,480",
+				"to": "00:14:13,720"
+			},
+			"offsets": {
+				"from": 847480,
+				"to": 853720
+			},
+			"text": " And taking a couple of steps back, currently, this is the biggest kind of home of the ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,720",
+				"to": "00:14:18,520"
+			},
+			"offsets": {
+				"from": 853720,
+				"to": 858520
+			},
+			"text": " community, right? The Reddit, and I know this is the old skin. I simply don't like the new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,520",
+				"to": "00:14:26,840"
+			},
+			"offsets": {
+				"from": 858520,
+				"to": 866840
+			},
+			"text": " Maybe you do. But the idea is that there are like 400, over 400,000 people using Reddit. And when"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,840",
+				"to": "00:14:33,080"
+			},
+			"offsets": {
+				"from": 866840,
+				"to": 873080
+			},
+			"text": " it comes to Reddit and ethereum, as in ethereum being the platform of applications, it's not really"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,080",
+				"to": "00:14:39,480"
+			},
+			"offsets": {
+				"from": 873080,
+				"to": 879480
+			},
+			"text": " well suited. And I think together in this approach on how we can create this ethereum world for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,480",
+				"to": "00:14:44,440"
+			},
+			"offsets": {
+				"from": 879480,
+				"to": 884440
+			},
+			"text": " ethereum community and dedicated to actually release this synergy because these apps can talk to each"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,440",
+				"to": "00:14:49,240"
+			},
+			"offsets": {
+				"from": 884440,
+				"to": 889240
+			},
+			"text": " other and can be combined in new ways. And they can be shared. They can be socially discovered and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,240",
+				"to": "00:14:54,920"
+			},
+			"offsets": {
+				"from": 889240,
+				"to": 894920
+			},
+			"text": " on. We can open a new world of social interactions. And what do I mean by that? Is that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,920",
+				"to": "00:14:59,160"
+			},
+			"offsets": {
+				"from": 894920,
+				"to": 899160
+			},
+			"text": " you have these contracts and these applications throughout the ecosystem, thousands of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,160",
+				"to": "00:15:03,880"
+			},
+			"offsets": {
+				"from": 899160,
+				"to": 903880
+			},
+			"text": " And just as you have user profiles, now you can think of like also app profiles, right? Or"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,880",
+				"to": "00:15:09,880"
+			},
+			"offsets": {
+				"from": 903880,
+				"to": 909880
+			},
+			"text": " app profiles. So these are not just like static things somewhere. These are things that you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,880",
+				"to": "00:15:14,920"
+			},
+			"offsets": {
+				"from": 909880,
+				"to": 914920
+			},
+			"text": " interact with. So let's say you discover or when you search something like Aragwan. So I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,920",
+				"to": "00:15:20,840"
+			},
+			"offsets": {
+				"from": 914920,
+				"to": 920840
+			},
+			"text": " here you have like a list of the most popular actions, like assigned tokens, creating votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,840",
+				"to": "00:15:25,800"
+			},
+			"offsets": {
+				"from": 920840,
+				"to": 925800
+			},
+			"text": " and so on. And similarly, if we take an example, like something like Gitcoin, you have like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,800",
+				"to": "00:15:31,480"
+			},
+			"offsets": {
+				"from": 925800,
+				"to": 931480
+			},
+			"text": " most popular actions being created, bounty, and so on. The idea is to make it easy, right? So we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,480",
+				"to": "00:15:37,880"
+			},
+			"offsets": {
+				"from": 931480,
+				"to": 937880
+			},
+			"text": " can accelerate this adoption. And it's not necessarily to look like to outside the community. We are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,880",
+				"to": "00:15:44,040"
+			},
+			"offsets": {
+				"from": 937880,
+				"to": 944040
+			},
+			"text": " already over one million people inside. But the set part is that less than 1.5% of us actually use"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,040",
+				"to": "00:15:49,640"
+			},
+			"offsets": {
+				"from": 944040,
+				"to": 949640
+			},
+			"text": " apps. And that's kind of tragic. You know, if this is a decentralized app platform, the usage of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,640",
+				"to": "00:15:56,040"
+			},
+			"offsets": {
+				"from": 949640,
+				"to": 956040
+			},
+			"text": " actual apps is something that should be closely looked at and encourage nurture. So this is why"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,040",
+				"to": "00:16:01,640"
+			},
+			"offsets": {
+				"from": 956040,
+				"to": 961640
+			},
+			"text": " today on stage we're releasing Ethereum.world. So you can check it if you want. And the idea is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,640",
+				"to": "00:16:06,760"
+			},
+			"offsets": {
+				"from": 961640,
+				"to": 966760
+			},
+			"text": " to open the sign-ups for the alpha. We are actively working on developing it, but the idea here is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,760",
+				"to": "00:16:12,920"
+			},
+			"offsets": {
+				"from": 966760,
+				"to": 972920
+			},
+			"text": " not just to sign up, leave the email, and then come back when the app is ready. You can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,920",
+				"to": "00:16:18,600"
+			},
+			"offsets": {
+				"from": 972920,
+				"to": 978600
+			},
+			"text": " But why do you do something more? And why is that? Because I think Ethereum's most undervalued asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,600",
+				"to": "00:16:27,160"
+			},
+			"offsets": {
+				"from": 978600,
+				"to": 987160
+			},
+			"text": " is not found on the financial charts, okay, on any of them. I think Ethereum's most undervalued"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,160",
+				"to": "00:16:36,120"
+			},
+			"offsets": {
+				"from": 987160,
+				"to": 996120
+			},
+			"text": " asset is its community. And there are, as I said, over 1.2 million people using meet-up to self-organize"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,120",
+				"to": "00:16:41,480"
+			},
+			"offsets": {
+				"from": 996120,
+				"to": 1001480
+			},
+			"text": " and have these events. And when you look at, let's say, the effort, and these people actually have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,480",
+				"to": "00:16:47,480"
+			},
+			"offsets": {
+				"from": 1001480,
+				"to": 1007480
+			},
+			"text": " to be passionate enough to get up, get out, and participate in these events physically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,480",
+				"to": "00:16:51,960"
+			},
+			"offsets": {
+				"from": 1007480,
+				"to": 1011960
+			},
+			"text": " which is, let's say, a higher threshold of engagement than just sitting at home and scrolling through"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,960",
+				"to": "00:16:56,360"
+			},
+			"offsets": {
+				"from": 1011960,
+				"to": 1016360
+			},
+			"text": " ready. So these people, even though they are so passionate and they are willing to go out to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,360",
+				"to": "00:17:06,440"
+			},
+			"offsets": {
+				"from": 1016360,
+				"to": 1026440
+			},
+			"text": " these events, they're not using the dabs. So the level of actual usage is limited to a wallet or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,440",
+				"to": "00:17:11,720"
+			},
+			"offsets": {
+				"from": 1026440,
+				"to": 1031720
+			},
+			"text": " sending tokens and so on. And it can do so much work. So Ethereum currently is just living. It's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,720",
+				"to": "00:17:18,280"
+			},
+			"offsets": {
+				"from": 1031720,
+				"to": 1038280
+			},
+			"text": " alive. We can bring it to life together, like making it fulfill its potential of an app platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,280",
+				"to": "00:17:24,440"
+			},
+			"offsets": {
+				"from": 1038280,
+				"to": 1044440
+			},
+			"text": " that's actually using the platforms, right? So on the website, coming back to the Ethereum.world"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,440",
+				"to": "00:17:29,480"
+			},
+			"offsets": {
+				"from": 1044440,
+				"to": 1049480
+			},
+			"text": " website, I'd like to attract your attention on two things. One is the manifesto. And in here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,480",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1049480,
+				"to": 1055320
+			},
+			"text": " you know, like the idea is to accelerate the adoption of Ethereum-based apps and services by"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1061000
+			},
+			"text": " transforming how the attract engage and delight users. So the thinking moves from just finding"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:47,960"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1067960
+			},
+			"text": " that one killer app, you know, to finding that delightful experience, something that is pleasant"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,960",
+				"to": "00:17:52,600"
+			},
+			"offsets": {
+				"from": 1067960,
+				"to": 1072600
+			},
+			"text": " and something that's fulfilling, something that you enjoy doing, not something that you do just to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,600",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1072600,
+				"to": 1079000
+			},
+			"text": " get that coin out of the thing. And on the manifesto page, there's also a section,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:03,640"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1083640
+			},
+			"text": " \"nominate values.\" And speaking of culture and speaking of, like, the community aspect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,640",
+				"to": "00:18:10,040"
+			},
+			"offsets": {
+				"from": 1083640,
+				"to": 1090040
+			},
+			"text": " I think values are kind of like the DNA that can be used to codify the culture of Ethereum as an"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,040",
+				"to": "00:18:14,520"
+			},
+			"offsets": {
+				"from": 1090040,
+				"to": 1094520
+			},
+			"text": " ecosystem. And, you know, I'm one of the Ethereum co-founders and in the beginning, we were just a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,520",
+				"to": "00:18:20,280"
+			},
+			"offsets": {
+				"from": 1094520,
+				"to": 1100280
+			},
+			"text": " handful of guys trying to figure out how to bring this project to life. Now there's like millions of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,280",
+				"to": "00:18:25,080"
+			},
+			"offsets": {
+				"from": 1100280,
+				"to": 1105080
+			},
+			"text": " people, thousands of applications living on it. But this discussion about the values and the culture"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,080",
+				"to": "00:18:31,800"
+			},
+			"offsets": {
+				"from": 1105080,
+				"to": 1111800
+			},
+			"text": " was kind of like, let's say neglected to an extent. And similarly to Bitcoin, we didn't have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,800",
+				"to": "00:18:36,760"
+			},
+			"offsets": {
+				"from": 1111800,
+				"to": 1116760
+			},
+			"text": " discussion. So we invite you now to have this discussion and to propose these values. What are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,760",
+				"to": "00:18:41,880"
+			},
+			"offsets": {
+				"from": 1116760,
+				"to": 1121880
+			},
+			"text": " the values that you think Ethereum should have that we should have as a community? And then vote on"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,880",
+				"to": "00:18:48,760"
+			},
+			"offsets": {
+				"from": 1121880,
+				"to": 1128760
+			},
+			"text": " them. And according to this, we can build a list of values that will be reflecting actually the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,760",
+				"to": "00:18:53,400"
+			},
+			"offsets": {
+				"from": 1128760,
+				"to": 1133400
+			},
+			"text": " desires and the values of the community. And something else, the second thing that I want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,400",
+				"to": "00:18:58,200"
+			},
+			"offsets": {
+				"from": 1133400,
+				"to": 1138200
+			},
+			"text": " attract to your attention is I have an idea. So this development of the world is not going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,200",
+				"to": "00:19:02,600"
+			},
+			"offsets": {
+				"from": 1138200,
+				"to": 1142600
+			},
+			"text": " something top down. We don't want that. We want this to be decentralized, distributed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,600",
+				"to": "00:19:07,160"
+			},
+			"offsets": {
+				"from": 1142600,
+				"to": 1147160
+			},
+			"text": " and tapping into the collective intelligence already present in this community. So if you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,160",
+				"to": "00:19:11,400"
+			},
+			"offsets": {
+				"from": 1147160,
+				"to": 1151400
+			},
+			"text": " an integration that you'd like to see in Ethereum that you want to use, but it's like hard to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,400",
+				"to": "00:19:16,680"
+			},
+			"offsets": {
+				"from": 1151400,
+				"to": 1156680
+			},
+			"text": " but you'd like to see it here, just propose it. If you have a feature that you'd like to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,680",
+				"to": "00:19:21,480"
+			},
+			"offsets": {
+				"from": 1156680,
+				"to": 1161480
+			},
+			"text": " somehow, it's something that maybe we didn't even thought of. Suggest it. If there is a language"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,480",
+				"to": "00:19:26,920"
+			},
+			"offsets": {
+				"from": 1161480,
+				"to": 1166920
+			},
+			"text": " that you want to have this application in, request it, right? We are open to this and we invite you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,920",
+				"to": "00:19:31,880"
+			},
+			"offsets": {
+				"from": 1166920,
+				"to": 1171880
+			},
+			"text": " to become active co-creators and make this your world. And the theory of action is to build this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,880",
+				"to": "00:19:37,720"
+			},
+			"offsets": {
+				"from": 1171880,
+				"to": 1177720
+			},
+			"text": " for collective impact. And there are a couple of pillars. I'm nearing the end. But the idea is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,720",
+				"to": "00:19:45,080"
+			},
+			"offsets": {
+				"from": 1177720,
+				"to": 1185080
+			},
+			"text": " to establish a shared community vision, evidence-based decision-making based on the votes and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,080",
+				"to": "00:19:51,640"
+			},
+			"offsets": {
+				"from": 1185080,
+				"to": 1191640
+			},
+			"text": " and collaborative action. And one of the things in the process is to achieve that self-sustainability"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,640",
+				"to": "00:19:59,400"
+			},
+			"offsets": {
+				"from": 1191640,
+				"to": 1199400
+			},
+			"text": " and that collective impact. Why? Because the next time someone asks you, can I have Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,400",
+				"to": "00:20:04,280"
+			},
+			"offsets": {
+				"from": 1199400,
+				"to": 1204280
+			},
+			"text": " that you will be prepared and you will have something at your hand to show them why Ethereum is awesome,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,280",
+				"to": "00:20:09,960"
+			},
+			"offsets": {
+				"from": 1204280,
+				"to": 1209960
+			},
+			"text": " why Ethereum is cool, and why it's better than other things before. And not only that they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,960",
+				"to": "00:20:14,840"
+			},
+			"offsets": {
+				"from": 1209960,
+				"to": 1214840
+			},
+			"text": " have a doubt, they can have a whole world of doubts, right? And this is the transition from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,840",
+				"to": "00:20:20,920"
+			},
+			"offsets": {
+				"from": 1214840,
+				"to": 1220920
+			},
+			"text": " ether changes, block chase transactions, hashes to the ether web, something that's usable. An interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,920",
+				"to": "00:20:26,040"
+			},
+			"offsets": {
+				"from": 1220920,
+				"to": 1226040
+			},
+			"text": " that accelerates the adoption of Ethereum as an ecosystem, a vibrant ecosystem of doubts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,040",
+				"to": "00:20:31,720"
+			},
+			"offsets": {
+				"from": 1226040,
+				"to": 1231720
+			},
+			"text": " developed by passionate developers. And, you know, I'm over time, but I invite you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,720",
+				"to": "00:20:37,560"
+			},
+			"offsets": {
+				"from": 1231720,
+				"to": 1237560
+			},
+			"text": " join the fun on Ethereum.world and to Wordel. Move that thinking from Wordel and Biddle to now"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,560",
+				"to": "00:20:42,120"
+			},
+			"offsets": {
+				"from": 1237560,
+				"to": 1242120
+			},
+			"text": " Wordel from building features to solving problems together. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,120",
+				"to": "00:20:45,640"
+			},
+			"offsets": {
+				"from": 1242120,
+				"to": 1245640
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,640",
+				"to": "00:20:47,640"
+			},
+			"offsets": {
+				"from": 1245640,
+				"to": 1247640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,640",
+				"to": "00:20:49,640"
+			},
+			"offsets": {
+				"from": 1247640,
+				"to": 1249640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,640",
+				"to": "00:20:51,640"
+			},
+			"offsets": {
+				"from": 1249640,
+				"to": 1251640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,640",
+				"to": "00:20:53,640"
+			},
+			"offsets": {
+				"from": 1251640,
+				"to": 1253640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,640",
+				"to": "00:20:55,640"
+			},
+			"offsets": {
+				"from": 1253640,
+				"to": 1255640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,640",
+				"to": "00:20:57,640"
+			},
+			"offsets": {
+				"from": 1255640,
+				"to": 1257640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,640",
+				"to": "00:21:19,640"
+			},
+			"offsets": {
+				"from": 1257640,
+				"to": 1279640
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,640",
+				"to": "00:21:21,640"
+			},
+			"offsets": {
+				"from": 1279640,
+				"to": 1281640
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

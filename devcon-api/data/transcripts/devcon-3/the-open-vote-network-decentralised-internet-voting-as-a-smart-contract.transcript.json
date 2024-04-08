@@ -1,0 +1,3398 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17240
+			},
+			"text": " >> Hi guys, my name is Patrick McCurry."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 20600
+			},
+			"text": " I'm a researcher at UCL, and I'm going to talk to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 23360
+			},
+			"text": " about some work I did last summer while I was doing my PhD"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:24,160"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 24160
+			},
+			"text": " at Newcastle."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,160",
+				"to": "00:00:26,740"
+			},
+			"offsets": {
+				"from": 24160,
+				"to": 26740
+			},
+			"text": " I did it in collaboration with my colleagues,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:31,360"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 31360
+			},
+			"text": " Fong Hao and CMAK. So this talk's going to be about e-voting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,360",
+				"to": "00:00:34,320"
+			},
+			"offsets": {
+				"from": 31360,
+				"to": 34320
+			},
+			"text": " but before I really get into it, I'll like to highlight what"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,320",
+				"to": "00:00:36,680"
+			},
+			"offsets": {
+				"from": 34320,
+				"to": 36680
+			},
+			"text": " researchers tend to think about when we say e-voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,680",
+				"to": "00:00:40,020"
+			},
+			"offsets": {
+				"from": 36680,
+				"to": 40020
+			},
+			"text": " So we normally think about end-to-end verifiable systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,020",
+				"to": "00:00:42,500"
+			},
+			"offsets": {
+				"from": 40020,
+				"to": 42500
+			},
+			"text": " and the break that down, the idea is that when I go"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,500",
+				"to": "00:00:45,200"
+			},
+			"offsets": {
+				"from": 42500,
+				"to": 45200
+			},
+			"text": " to a polling station and I cast my vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,200",
+				"to": "00:00:48,620"
+			},
+			"offsets": {
+				"from": 45200,
+				"to": 48620
+			},
+			"text": " I did have confidence that my vote has been cast as intended."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,620",
+				"to": "00:00:51,560"
+			},
+			"offsets": {
+				"from": 48620,
+				"to": 51560
+			},
+			"text": " When I leave the polling station, I should be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,560",
+				"to": "00:00:54,120"
+			},
+			"offsets": {
+				"from": 51560,
+				"to": 54120
+			},
+			"text": " to look at this public bulletin board and verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,120",
+				"to": "00:00:56,360"
+			},
+			"offsets": {
+				"from": 54120,
+				"to": 56360
+			},
+			"text": " that my vote has been included in the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,420",
+				"to": "00:00:57,180"
+			},
+			"offsets": {
+				"from": 56420,
+				"to": 57180
+			},
+			"text": " We're not in the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,180",
+				"to": "00:01:00,180"
+			},
+			"offsets": {
+				"from": 57180,
+				"to": 60180
+			},
+			"text": " My vote has been cast."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,180",
+				"to": "00:01:03,060"
+			},
+			"offsets": {
+				"from": 60180,
+				"to": 63060
+			},
+			"text": " And then after the election, I should be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,060",
+				"to": "00:01:06,560"
+			},
+			"offsets": {
+				"from": 63060,
+				"to": 66560
+			},
+			"text": " to verify that my vote was indeed included in the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,560",
+				"to": "00:01:09,100"
+			},
+			"offsets": {
+				"from": 66560,
+				"to": 69100
+			},
+			"text": " So that is an end-to-end verifiable system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,100",
+				"to": "00:01:12,900"
+			},
+			"offsets": {
+				"from": 69100,
+				"to": 72900
+			},
+			"text": " And to achieve this system, we normally assume the existence"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,900",
+				"to": "00:01:15,400"
+			},
+			"offsets": {
+				"from": 72900,
+				"to": 75400
+			},
+			"text": " of this public bulletin board that everybody can see."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,400",
+				"to": "00:01:18,580"
+			},
+			"offsets": {
+				"from": 75400,
+				"to": 78580
+			},
+			"text": " But for the past, I guess, 30 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,580",
+				"to": "00:01:22,260"
+			},
+			"offsets": {
+				"from": 78580,
+				"to": 82260
+			},
+			"text": " we've not really been able to achieve a practical public bulletin board."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,260",
+				"to": "00:01:24,480"
+			},
+			"offsets": {
+				"from": 82260,
+				"to": 84480
+			},
+			"text": " The best we have is a single web server,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,880",
+				"to": "00:01:27,780"
+			},
+			"offsets": {
+				"from": 84880,
+				"to": 87780
+			},
+			"text": " where I contact the web server, I download data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,780",
+				"to": "00:01:30,860"
+			},
+			"offsets": {
+				"from": 87780,
+				"to": 90860
+			},
+			"text": " and I have to try to detect that that web server is cheating me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,860",
+				"to": "00:01:32,800"
+			},
+			"offsets": {
+				"from": 90860,
+				"to": 92800
+			},
+			"text": " So that's not really good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,800",
+				"to": "00:01:34,780"
+			},
+			"offsets": {
+				"from": 92800,
+				"to": 94780
+			},
+			"text": " So now people are thinking, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,780",
+				"to": "00:01:36,620"
+			},
+			"offsets": {
+				"from": 94780,
+				"to": 96620
+			},
+			"text": " can we use the blockchain for e-voting?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,620",
+				"to": "00:01:39,980"
+			},
+			"offsets": {
+				"from": 96620,
+				"to": 99980
+			},
+			"text": " Does this provide the consistency property that we want?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,980",
+				"to": "00:01:43,460"
+			},
+			"offsets": {
+				"from": 99980,
+				"to": 103460
+			},
+			"text": " And I'm going to argue potentially, and I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,460",
+				"to": "00:01:45,760"
+			},
+			"offsets": {
+				"from": 103460,
+				"to": 105760
+			},
+			"text": " to say it's probably very useful for small-scale elections"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,760",
+				"to": "00:01:49,480"
+			},
+			"offsets": {
+				"from": 105760,
+				"to": 109480
+			},
+			"text": " like boardroom voting, because it does provide this consistency property"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,480",
+				"to": "00:01:51,980"
+			},
+			"offsets": {
+				"from": 109480,
+				"to": 111980
+			},
+			"text": " where anybody who downloads the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,980",
+				"to": "00:01:53,540"
+			},
+			"offsets": {
+				"from": 111980,
+				"to": 113540
+			},
+			"text": " you can download the genesis block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,980",
+				"to": "00:01:57,220"
+			},
+			"offsets": {
+				"from": 113980,
+				"to": 117220
+			},
+			"text": " and you can verify the entire history of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,220",
+				"to": "00:02:00,480"
+			},
+			"offsets": {
+				"from": 117220,
+				"to": 120480
+			},
+			"text": " So like every Bitcoin transaction and every Ethereum transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,480",
+				"to": "00:02:03,860"
+			},
+			"offsets": {
+				"from": 120480,
+				"to": 123860
+			},
+			"text": " And I don't need to trust anyone to get the ensure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,860",
+				"to": "00:02:05,740"
+			},
+			"offsets": {
+				"from": 123860,
+				"to": 125740
+			},
+			"text": " that I have a consistent view of everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,740",
+				"to": "00:02:07,600"
+			},
+			"offsets": {
+				"from": 125740,
+				"to": 127600
+			},
+			"text": " So it's sort of like this ideal world."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,600",
+				"to": "00:02:10,860"
+			},
+			"offsets": {
+				"from": 127600,
+				"to": 130860
+			},
+			"text": " And I'm not the first person to notice this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,860",
+				"to": "00:02:14,820"
+			},
+			"offsets": {
+				"from": 130860,
+				"to": 134820
+			},
+			"text": " So last year I did a Google search, and lots of people were getting excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,820",
+				"to": "00:02:16,180"
+			},
+			"offsets": {
+				"from": 134820,
+				"to": 136180
+			},
+			"text": " about the blockchain and e-voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,180",
+				"to": "00:02:20,220"
+			},
+			"offsets": {
+				"from": 136180,
+				"to": 140220
+			},
+			"text": " So now we needed to say, okay, what blockchain are we going to use?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,220",
+				"to": "00:02:21,820"
+			},
+			"offsets": {
+				"from": 140220,
+				"to": 141820
+			},
+			"text": " What about Bitcoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,180",
+				"to": "00:02:26,300"
+			},
+			"offsets": {
+				"from": 142180,
+				"to": 146300
+			},
+			"text": " So we use Bitcoin for e-voting, and I'm going to summarize and say, no,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,300",
+				"to": "00:02:28,620"
+			},
+			"offsets": {
+				"from": 146300,
+				"to": 148620
+			},
+			"text": " I don't think Bitcoin's a very good place to do this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,620",
+				"to": "00:02:31,460"
+			},
+			"offsets": {
+				"from": 148620,
+				"to": 151460
+			},
+			"text": " because we can only store 80 bytes of arbitrary data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,460",
+				"to": "00:02:34,380"
+			},
+			"offsets": {
+				"from": 151460,
+				"to": 154380
+			},
+			"text": " Bitcoin can only store the information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,380",
+				"to": "00:02:38,700"
+			},
+			"offsets": {
+				"from": 154380,
+				"to": 158700
+			},
+			"text": " It cannot verify that our protocol was correctly executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,700",
+				"to": "00:02:41,380"
+			},
+			"offsets": {
+				"from": 158700,
+				"to": 161380
+			},
+			"text": " So then I'm going to go, okay, what about Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,380",
+				"to": "00:02:44,140"
+			},
+			"offsets": {
+				"from": 161380,
+				"to": 164140
+			},
+			"text": " And I don't really need a priest to acquire here, do I?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,140",
+				"to": "00:02:47,380"
+			},
+			"offsets": {
+				"from": 164140,
+				"to": 167380
+			},
+			"text": " I think everybody in this room understands that Ethereum is going to be amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,380",
+				"to": "00:02:50,580"
+			},
+			"offsets": {
+				"from": 167380,
+				"to": 170580
+			},
+			"text": " And when I made this slide, Ethereum was worth $20 billion."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,980",
+				"to": "00:02:51,860"
+			},
+			"offsets": {
+				"from": 170980,
+				"to": 171860
+			},
+			"text": " It's worth more now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,860",
+				"to": "00:02:53,380"
+			},
+			"offsets": {
+				"from": 171860,
+				"to": 173380
+			},
+			"text": " I don't really know how much it's worth now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,380",
+				"to": "00:02:57,020"
+			},
+			"offsets": {
+				"from": 173380,
+				"to": 177020
+			},
+			"text": " But the point of Ethereum is that we can run expressive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,020",
+				"to": "00:02:58,820"
+			},
+			"offsets": {
+				"from": 177020,
+				"to": 178820
+			},
+			"text": " but bounded programs, i.e."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,820",
+				"to": "00:02:59,860"
+			},
+			"offsets": {
+				"from": 178820,
+				"to": 179860
+			},
+			"text": " the gas metric."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,860",
+				"to": "00:03:04,500"
+			},
+			"offsets": {
+				"from": 179860,
+				"to": 184500
+			},
+			"text": " And it's a bit like a computer from the 1970s that everybody has access to."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,500",
+				"to": "00:03:06,180"
+			},
+			"offsets": {
+				"from": 184500,
+				"to": 186180
+			},
+			"text": " It's slow and it's expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,180",
+				"to": "00:03:08,820"
+			},
+			"offsets": {
+				"from": 186180,
+				"to": 188820
+			},
+			"text": " But we're going to get away and we're going to do some e-voting on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,820",
+				"to": "00:03:14,620"
+			},
+			"offsets": {
+				"from": 188820,
+				"to": 194620
+			},
+			"text": " And of course, as I said, there's votes about voting and not necessary"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,620",
+				"to": "00:03:15,340"
+			},
+			"offsets": {
+				"from": 194620,
+				"to": 195340
+			},
+			"text": " blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,340",
+				"to": "00:03:19,500"
+			},
+			"offsets": {
+				"from": 195340,
+				"to": 199500
+			},
+			"text": " So last, so there's actually a bit of a story behind this here, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,500",
+				"to": "00:03:24,020"
+			},
+			"offsets": {
+				"from": 199500,
+				"to": 204020
+			},
+			"text": " So two years ago, I attended a conference and everybody was really excited"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,020",
+				"to": "00:03:25,660"
+			},
+			"offsets": {
+				"from": 204020,
+				"to": 205660
+			},
+			"text": " about Ethereum and smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,660",
+				"to": "00:03:29,500"
+			},
+			"offsets": {
+				"from": 205660,
+				"to": 209500
+			},
+			"text": " And I was drinking a peanut colada and then I got really excited about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,500",
+				"to": "00:03:35,300"
+			},
+			"offsets": {
+				"from": 209500,
+				"to": 215300
+			},
+			"text": " So when I go back to England, I went on the Solidity online compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,300",
+				"to": "00:03:39,060"
+			},
+			"offsets": {
+				"from": 215300,
+				"to": 219060
+			},
+			"text": " and I noticed that this voting program, this was like the sample code"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,060",
+				"to": "00:03:41,260"
+			},
+			"offsets": {
+				"from": 219060,
+				"to": 221260
+			},
+			"text": " that I'm sure most people in this room have already seen it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,260",
+				"to": "00:03:44,020"
+			},
+			"offsets": {
+				"from": 221260,
+				"to": 224020
+			},
+			"text": " But the idea is that there's illicit proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,020",
+				"to": "00:03:47,180"
+			},
+			"offsets": {
+				"from": 224020,
+				"to": 227180
+			},
+			"text": " And when I want to cast my vote, I call the vote function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,180",
+				"to": "00:03:48,740"
+			},
+			"offsets": {
+				"from": 227180,
+				"to": 228740
+			},
+			"text": " And I say, I want to vote for this proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,260",
+				"to": "00:03:51,780"
+			},
+			"offsets": {
+				"from": 229260,
+				"to": 231780
+			},
+			"text": " Now, the guarantee voter privacy in this program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,780",
+				"to": "00:03:55,260"
+			},
+			"offsets": {
+				"from": 231780,
+				"to": 235260
+			},
+			"text": " the assumption is that we cannot link a voter's real world of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,260",
+				"to": "00:03:57,180"
+			},
+			"offsets": {
+				"from": 235260,
+				"to": 237180
+			},
+			"text": " density to the Ethereum account."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,180",
+				"to": "00:04:01,180"
+			},
+			"offsets": {
+				"from": 237180,
+				"to": 241180
+			},
+			"text": " Because if you can, then you can see how somebody voted because the vote"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,180",
+				"to": "00:04:02,140"
+			},
+			"offsets": {
+				"from": 241180,
+				"to": 242140
+			},
+			"text": " is in plain text."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,140",
+				"to": "00:04:04,620"
+			},
+			"offsets": {
+				"from": 242140,
+				"to": 244620
+			},
+			"text": " So I wanted to see if we can do something better."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,620",
+				"to": "00:04:08,220"
+			},
+			"offsets": {
+				"from": 244620,
+				"to": 248220
+			},
+			"text": " Can we build a smart contract that can guarantee voter privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,220",
+				"to": "00:04:11,220"
+			},
+			"offsets": {
+				"from": 248220,
+				"to": 251220
+			},
+			"text": " And there's two different ways to approach this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,220",
+				"to": "00:04:12,860"
+			},
+			"offsets": {
+				"from": 251220,
+				"to": 252860
+			},
+			"text": " One is blame signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,860",
+				"to": "00:04:17,500"
+			},
+			"offsets": {
+				"from": 252860,
+				"to": 257500
+			},
+			"text": " And the other one is where I can encrypt my vote under a well-known"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,500",
+				"to": "00:04:18,140"
+			},
+			"offsets": {
+				"from": 257500,
+				"to": 258140
+			},
+			"text": " public key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,580",
+				"to": "00:04:21,580"
+			},
+			"offsets": {
+				"from": 258580,
+				"to": 261580
+			},
+			"text": " I can store that on the blockchain and then I could trust some,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,580",
+				"to": "00:04:24,860"
+			},
+			"offsets": {
+				"from": 261580,
+				"to": 264860
+			},
+			"text": " then there could be an Italian authority who, after the election,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,860",
+				"to": "00:04:27,180"
+			},
+			"offsets": {
+				"from": 264860,
+				"to": 267180
+			},
+			"text": " would decrypt the votes and reveal the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,180",
+				"to": "00:04:30,300"
+			},
+			"offsets": {
+				"from": 267180,
+				"to": 270300
+			},
+			"text": " But both of those approaches rely on some type of authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,300",
+				"to": "00:04:33,340"
+			},
+			"offsets": {
+				"from": 270300,
+				"to": 273340
+			},
+			"text": " And I wanted to follow the example of cryptocurrencies."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,340",
+				"to": "00:04:36,700"
+			},
+			"offsets": {
+				"from": 273340,
+				"to": 276700
+			},
+			"text": " Can we remove the need for any Italian authority in an election?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,700",
+				"to": "00:04:41,260"
+			},
+			"offsets": {
+				"from": 276700,
+				"to": 281260
+			},
+			"text": " And can we do it in such a way where a voter is in control of the room privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,260",
+				"to": "00:04:44,580"
+			},
+			"offsets": {
+				"from": 281260,
+				"to": 284580
+			},
+			"text": " And this brought me to self-telling elections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,940",
+				"to": "00:04:49,300"
+			},
+			"offsets": {
+				"from": 284940,
+				"to": 289300
+			},
+			"text": " which was first made back in 2002, and these elections have three different"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,300",
+				"to": "00:04:52,380"
+			},
+			"offsets": {
+				"from": 289300,
+				"to": 292380
+			},
+			"text": " properties. First is perfect ballot secrecy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,380",
+				"to": "00:04:56,820"
+			},
+			"offsets": {
+				"from": 292380,
+				"to": 296820
+			},
+			"text": " A voter's privacy can only be breached by a full collusion of all other voters."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,820",
+				"to": "00:04:58,820"
+			},
+			"offsets": {
+				"from": 296820,
+				"to": 298820
+			},
+			"text": " And it's also self-tallying."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,820",
+				"to": "00:05:02,420"
+			},
+			"offsets": {
+				"from": 298820,
+				"to": 302420
+			},
+			"text": " So after the election, anybody can count the votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,420",
+				"to": "00:05:04,900"
+			},
+			"offsets": {
+				"from": 302420,
+				"to": 304900
+			},
+			"text": " We don't have to rely on anybody to do that for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,900",
+				"to": "00:05:06,420"
+			},
+			"offsets": {
+				"from": 304900,
+				"to": 306420
+			},
+			"text": " Honest dispute free."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,420",
+				"to": "00:05:11,300"
+			},
+			"offsets": {
+				"from": 306420,
+				"to": 311300
+			},
+			"text": " As in, if you give me the election transcript, I can verify myself that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,300",
+				"to": "00:05:13,700"
+			},
+			"offsets": {
+				"from": 311300,
+				"to": 313700
+			},
+			"text": " election was run correctly, or at least the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,180",
+				"to": "00:05:17,740"
+			},
+			"offsets": {
+				"from": 314180,
+				"to": 317740
+			},
+			"text": " But my disclaimer is that this protocol is not end to end verifiable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,740",
+				"to": "00:05:19,420"
+			},
+			"offsets": {
+				"from": 317740,
+				"to": 319420
+			},
+			"text": " as I mentioned at the very beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,420",
+				"to": "00:05:24,140"
+			},
+			"offsets": {
+				"from": 319420,
+				"to": 324140
+			},
+			"text": " Because in an end to end verifiable system, we also assume the voting machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,140",
+				"to": "00:05:25,060"
+			},
+			"offsets": {
+				"from": 324140,
+				"to": 325060
+			},
+			"text": " cannot be trusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,060",
+				"to": "00:05:27,980"
+			},
+			"offsets": {
+				"from": 325060,
+				"to": 327980
+			},
+			"text": " But this is a fully decentralized voting protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,980",
+				"to": "00:05:30,980"
+			},
+			"offsets": {
+				"from": 327980,
+				"to": 330980
+			},
+			"text": " We have no central authority to provide hardware for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,980",
+				"to": "00:05:33,780"
+			},
+			"offsets": {
+				"from": 330980,
+				"to": 333780
+			},
+			"text": " So we have to assume the voting machine is trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,780",
+				"to": "00:05:37,620"
+			},
+			"offsets": {
+				"from": 333780,
+				"to": 337620
+			},
+			"text": " And I think that's a reasonable assumption because if you break my, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,620",
+				"to": "00:05:40,340"
+			},
+			"offsets": {
+				"from": 337620,
+				"to": 340340
+			},
+			"text": " hack my machine, you're probably going to steal all my coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,340",
+				"to": "00:05:43,300"
+			},
+			"offsets": {
+				"from": 340340,
+				"to": 343300
+			},
+			"text": " So I have an incentive to do my best to keep my machine"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,460",
+				"to": "00:05:44,460"
+			},
+			"offsets": {
+				"from": 343460,
+				"to": 344460
+			},
+			"text": " somewhat trustworthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,460",
+				"to": "00:05:48,580"
+			},
+			"offsets": {
+				"from": 344460,
+				"to": 348580
+			},
+			"text": " But these protocols have had a short lived history."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,580",
+				"to": "00:05:52,300"
+			},
+			"offsets": {
+				"from": 348580,
+				"to": 352300
+			},
+			"text": " There has never been a practical implementation of a self-tallying election"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,300",
+				"to": "00:05:56,060"
+			},
+			"offsets": {
+				"from": 352300,
+				"to": 356060
+			},
+			"text": " because one ever requires an authenticated broadcast channel where"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,060",
+				"to": "00:05:57,300"
+			},
+			"offsets": {
+				"from": 356060,
+				"to": 357300
+			},
+			"text": " everybody can communicate."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,300",
+				"to": "00:06:01,060"
+			},
+			"offsets": {
+				"from": 357300,
+				"to": 361060
+			},
+			"text": " And it's also very beneficial to have a public bulletin board to store the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,060",
+				"to": "00:06:02,060"
+			},
+			"offsets": {
+				"from": 361060,
+				"to": 362060
+			},
+			"text": " election transcript."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,060",
+				"to": "00:06:05,300"
+			},
+			"offsets": {
+				"from": 362060,
+				"to": 365300
+			},
+			"text": " And these protocols also have two other issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,300",
+				"to": "00:06:08,100"
+			},
+			"offsets": {
+				"from": 365300,
+				"to": 368100
+			},
+			"text": " A single voter can stop the entire election."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,100",
+				"to": "00:06:11,900"
+			},
+			"offsets": {
+				"from": 368100,
+				"to": 371900
+			},
+			"text": " So if they don't cast their vote, we don't get the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,340",
+				"to": "00:06:16,020"
+			},
+			"offsets": {
+				"from": 372340,
+				"to": 376020
+			},
+			"text": " They also have an adaptive issue where the final voter can view the tally before"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,020",
+				"to": "00:06:17,020"
+			},
+			"offsets": {
+				"from": 376020,
+				"to": 377020
+			},
+			"text": " everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,020",
+				"to": "00:06:22,380"
+			},
+			"offsets": {
+				"from": 377020,
+				"to": 382380
+			},
+			"text": " But now I thought, okay, come and combine these self-tallying elections with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,380",
+				"to": "00:06:22,940"
+			},
+			"offsets": {
+				"from": 382380,
+				"to": 382940
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,940",
+				"to": "00:06:26,020"
+			},
+			"offsets": {
+				"from": 382940,
+				"to": 386020
+			},
+			"text": " So I built the voting protocol as a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,020",
+				"to": "00:06:29,580"
+			},
+			"offsets": {
+				"from": 386020,
+				"to": 389580
+			},
+			"text": " And as I mentioned, what's beautiful about it, what's beautiful about Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,580",
+				"to": "00:06:32,820"
+			},
+			"offsets": {
+				"from": 389580,
+				"to": 392820
+			},
+			"text": " is that it can enforce the voting protocols correct execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,820",
+				"to": "00:06:36,620"
+			},
+			"offsets": {
+				"from": 392820,
+				"to": 396620
+			},
+			"text": " And we can also have this incentive, sort of the crypto economic security"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,620",
+				"to": "00:06:40,660"
+			},
+			"offsets": {
+				"from": 396620,
+				"to": 400660
+			},
+			"text": " engineering philosophy, where when you register for the election, you leave"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,660",
+				"to": "00:06:41,660"
+			},
+			"offsets": {
+				"from": 400660,
+				"to": 401660
+			},
+			"text": " it deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,660",
+				"to": "00:06:44,220"
+			},
+			"offsets": {
+				"from": 401660,
+				"to": 404220
+			},
+			"text": " And when you cast your vote, you get your deposit back."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,220",
+				"to": "00:06:47,580"
+			},
+			"offsets": {
+				"from": 404220,
+				"to": 407580
+			},
+			"text": " So now we can actually have some type of incentive for people to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,580",
+				"to": "00:06:51,940"
+			},
+			"offsets": {
+				"from": 407580,
+				"to": 411940
+			},
+			"text": " And there's three different self-tallying protocols we could have chosen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,940",
+				"to": "00:06:56,540"
+			},
+			"offsets": {
+				"from": 411940,
+				"to": 416540
+			},
+			"text": " And my disclaimer is that we choose the one by my advisor, but we didn't do it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,540",
+				"to": "00:06:58,940"
+			},
+			"offsets": {
+				"from": 416540,
+				"to": 418940
+			},
+			"text": " because it's our, we didn't do it because it's his protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,940",
+				"to": "00:07:01,380"
+			},
+			"offsets": {
+				"from": 418940,
+				"to": 421380
+			},
+			"text": " We did it because of the moves efficient in the literature."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,380",
+				"to": "00:07:03,180"
+			},
+			"offsets": {
+				"from": 421380,
+				"to": 423180
+			},
+			"text": " It requires two rounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,180",
+				"to": "00:07:06,460"
+			},
+			"offsets": {
+				"from": 423180,
+				"to": 426460
+			},
+			"text": " And there's only two zero and all these proofs per voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,460",
+				"to": "00:07:08,340"
+			},
+			"offsets": {
+				"from": 426460,
+				"to": 428340
+			},
+			"text": " So it's highly efficient as a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,620",
+				"to": "00:07:13,180"
+			},
+			"offsets": {
+				"from": 429620,
+				"to": 433180
+			},
+			"text": " So now I'm going to explain how the open vote network over Ethereum works."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,180",
+				"to": "00:07:18,380"
+			},
+			"offsets": {
+				"from": 433180,
+				"to": 438380
+			},
+			"text": " We do have an election administrator and his only job is one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,380",
+				"to": "00:07:23,060"
+			},
+			"offsets": {
+				"from": 438380,
+				"to": 443060
+			},
+			"text": " authenticate voters with their Ethereum account, then update the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,060",
+				"to": "00:07:24,580"
+			},
+			"offsets": {
+				"from": 443060,
+				"to": 444580
+			},
+			"text": " with that whitelist."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,580",
+				"to": "00:07:26,980"
+			},
+			"offsets": {
+				"from": 444580,
+				"to": 446980
+			},
+			"text": " So we can at least know who's going to vote in this election."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,980",
+				"to": "00:07:31,700"
+			},
+			"offsets": {
+				"from": 446980,
+				"to": 451700
+			},
+			"text": " And then his other job is to poke Ethereum to transition to the next stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,700",
+				"to": "00:07:33,460"
+			},
+			"offsets": {
+				"from": 451700,
+				"to": 453460
+			},
+			"text": " although anyone could really do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,460",
+				"to": "00:07:38,060"
+			},
+			"offsets": {
+				"from": 453460,
+				"to": 458060
+			},
+			"text": " Next, he sets the whitelist available, eligible voters."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,300",
+				"to": "00:07:42,220"
+			},
+			"offsets": {
+				"from": 458300,
+				"to": 462220
+			},
+			"text": " He will set the voting question and then he'll notify Ethereum to move on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,220",
+				"to": "00:07:44,060"
+			},
+			"offsets": {
+				"from": 462220,
+				"to": 464060
+			},
+			"text": " to the sign up stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,060",
+				"to": "00:07:48,340"
+			},
+			"offsets": {
+				"from": 464060,
+				"to": 468340
+			},
+			"text": " And any voter can look at the question and then register for the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,340",
+				"to": "00:07:53,140"
+			},
+			"offsets": {
+				"from": 468340,
+				"to": 473140
+			},
+			"text": " To register, the voter has to compute a public private key pair."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,140",
+				"to": "00:07:54,660"
+			},
+			"offsets": {
+				"from": 473140,
+				"to": 474660
+			},
+			"text": " And this is their voting key."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,660",
+				"to": "00:07:59,220"
+			},
+			"offsets": {
+				"from": 474660,
+				"to": 479220
+			},
+			"text": " And then along side their voting key, they create a zero and all these proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,220",
+				"to": "00:08:03,700"
+			},
+			"offsets": {
+				"from": 479220,
+				"to": 483700
+			},
+			"text": " with pretty much says that they knew the private key that corresponds to the public key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,700",
+				"to": "00:08:06,500"
+			},
+			"offsets": {
+				"from": 483700,
+				"to": 486500
+			},
+			"text": " i.e. they're the owner of that voting key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,100",
+				"to": "00:08:09,540"
+			},
+			"offsets": {
+				"from": 487100,
+				"to": 489540
+			},
+			"text": " And now what they do is that they create an Ethereum transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,540",
+				"to": "00:08:11,260"
+			},
+			"offsets": {
+				"from": 489540,
+				"to": 491260
+			},
+			"text": " They include the voting key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,260",
+				"to": "00:08:15,380"
+			},
+			"offsets": {
+				"from": 491260,
+				"to": 495380
+			},
+			"text": " this proof that they own this voting key and a very small deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,380",
+				"to": "00:08:21,140"
+			},
+			"offsets": {
+				"from": 495380,
+				"to": 501140
+			},
+			"text": " And every voter will send us to Ethereum and Ethereum can verify the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,140",
+				"to": "00:08:25,380"
+			},
+			"offsets": {
+				"from": 501140,
+				"to": 505380
+			},
+			"text": " It will verify the proof, store their deposit and store the encrypted vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,380",
+				"to": "00:08:31,180"
+			},
+			"offsets": {
+				"from": 505380,
+				"to": 511180
+			},
+			"text": " And once enough voters have done this, the election administrator can poke Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,180",
+				"to": "00:08:33,140"
+			},
+			"offsets": {
+				"from": 511180,
+				"to": 513140
+			},
+			"text": " to move on to the voting stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,540",
+				"to": "00:08:37,700"
+			},
+			"offsets": {
+				"from": 513540,
+				"to": 517700
+			},
+			"text": " And during this transition from the sign up to the voting stage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,700",
+				"to": "00:08:41,580"
+			},
+			"offsets": {
+				"from": 517700,
+				"to": 521580
+			},
+			"text": " Ethereum will compute a second key for every single voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,580",
+				"to": "00:08:43,780"
+			},
+			"offsets": {
+				"from": 521580,
+				"to": 523780
+			},
+			"text": " And we call this the reconstructed key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,780",
+				"to": "00:08:46,700"
+			},
+			"offsets": {
+				"from": 523780,
+				"to": 526700
+			},
+			"text": " And this is where all the magic happens in terms of the cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,700",
+				"to": "00:08:51,460"
+			},
+			"offsets": {
+				"from": 526700,
+				"to": 531460
+			},
+			"text": " So I've got this really ugly formula and that means nothing to anybody in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,460",
+				"to": "00:08:53,940"
+			},
+			"offsets": {
+				"from": 531460,
+				"to": 533940
+			},
+			"text": " So I'm going to explain it using a little robot."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,940",
+				"to": "00:08:58,060"
+			},
+			"offsets": {
+				"from": 533940,
+				"to": 538060
+			},
+			"text": " So if I'm voter three, the way I compute my reconstructed key"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,060",
+				"to": "00:09:02,460"
+			},
+			"offsets": {
+				"from": 538060,
+				"to": 542460
+			},
+			"text": " is that I get the voting key of voter one and two and I multiply them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,060",
+				"to": "00:09:07,420"
+			},
+			"offsets": {
+				"from": 543060,
+				"to": 547420
+			},
+			"text": " I get the voting key of four and five and I multiply them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,420",
+				"to": "00:09:12,340"
+			},
+			"offsets": {
+				"from": 547420,
+				"to": 552340
+			},
+			"text": " I divide those two results and then I end up with my own voting key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,340",
+				"to": "00:09:14,540"
+			},
+			"offsets": {
+				"from": 552340,
+				"to": 554540
+			},
+			"text": " And we do this for every single voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,540",
+				"to": "00:09:16,980"
+			},
+			"offsets": {
+				"from": 554540,
+				"to": 556980
+			},
+			"text": " In fact, Ethereum does that for every single voter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,980",
+				"to": "00:09:19,420"
+			},
+			"offsets": {
+				"from": 556980,
+				"to": 559420
+			},
+			"text": " And then after that we've transitioned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,420",
+				"to": "00:09:23,500"
+			},
+			"offsets": {
+				"from": 559420,
+				"to": 563500
+			},
+			"text": " and once we reach the voting stage, every single voter has a voting key"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,500",
+				"to": "00:09:25,140"
+			},
+			"offsets": {
+				"from": 563500,
+				"to": 565140
+			},
+			"text": " and a reconstructed key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,140",
+				"to": "00:09:30,500"
+			},
+			"offsets": {
+				"from": 565140,
+				"to": 570500
+			},
+			"text": " Now to cast our vote, we have to do an Elgomile encryption of the vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,300",
+				"to": "00:09:33,500"
+			},
+			"offsets": {
+				"from": 571300,
+				"to": 573500
+			},
+			"text": " And that is essentially this little formula."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,500",
+				"to": "00:09:36,940"
+			},
+			"offsets": {
+				"from": 573500,
+				"to": 576940
+			},
+			"text": " So it takes in the voting key, the reconstructed key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,940",
+				"to": "00:09:40,980"
+			},
+			"offsets": {
+				"from": 576940,
+				"to": 580980
+			},
+			"text": " and then the vote is either G to the power of zero or G to the power of one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,980",
+				"to": "00:09:43,220"
+			},
+			"offsets": {
+				"from": 580980,
+				"to": 583220
+			},
+			"text": " And that pretty much is a yes or no vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,220",
+				"to": "00:09:48,060"
+			},
+			"offsets": {
+				"from": 583220,
+				"to": 588060
+			},
+			"text": " And then what we do is we construct a one out of two zero knowledge proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,060",
+				"to": "00:09:53,540"
+			},
+			"offsets": {
+				"from": 588060,
+				"to": 593540
+			},
+			"text": " And this pretty much says that I prove to you that my encrypted vote is either yes or no."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,540",
+				"to": "00:09:58,220"
+			},
+			"offsets": {
+				"from": 593540,
+				"to": 598220
+			},
+			"text": " And that means the vote is well formed and I reveal nothing else about my vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,020",
+				"to": "00:10:03,020"
+			},
+			"offsets": {
+				"from": 599020,
+				"to": 603020
+			},
+			"text": " And then I create an Ethereum transaction that includes my Elgomile encrypted vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,020",
+				"to": "00:10:07,380"
+			},
+			"offsets": {
+				"from": 603020,
+				"to": 607380
+			},
+			"text": " my one out of two zero knowledge proof, and I send that to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,380",
+				"to": "00:10:11,340"
+			},
+			"offsets": {
+				"from": 607380,
+				"to": 611340
+			},
+			"text": " The contract will verify that my vote is well formed and then store it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,340",
+				"to": "00:10:14,740"
+			},
+			"offsets": {
+				"from": 611340,
+				"to": 614740
+			},
+			"text": " And then it will release the deposit and give me my money back."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,740",
+				"to": "00:10:17,380"
+			},
+			"offsets": {
+				"from": 614740,
+				"to": 617380
+			},
+			"text": " And every single voter will do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,380",
+				"to": "00:10:21,020"
+			},
+			"offsets": {
+				"from": 617380,
+				"to": 621020
+			},
+			"text": " And once the final vote has been cast, the election is over."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,020",
+				"to": "00:10:25,100"
+			},
+			"offsets": {
+				"from": 621020,
+				"to": 625100
+			},
+			"text": " And anybody can compute the tally and in fact so can Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,700",
+				"to": "00:10:29,780"
+			},
+			"offsets": {
+				"from": 625700,
+				"to": 629780
+			},
+			"text": " So the election administrator can poke Ethereum to finally compute the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,780",
+				"to": "00:10:34,300"
+			},
+			"offsets": {
+				"from": 629780,
+				"to": 634300
+			},
+			"text": " Ethereum does this and the way we compute the tally is really straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,300",
+				"to": "00:10:36,780"
+			},
+			"offsets": {
+				"from": 634300,
+				"to": 636780
+			},
+			"text": " We just have the odd all the encrypted votes together."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,780",
+				"to": "00:10:39,340"
+			},
+			"offsets": {
+				"from": 636780,
+				"to": 639340
+			},
+			"text": " And once you add the final encrypted vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,340",
+				"to": "00:10:41,940"
+			},
+			"offsets": {
+				"from": 639340,
+				"to": 641940
+			},
+			"text": " based on how that Elgomile encryption was set up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,940",
+				"to": "00:10:44,220"
+			},
+			"offsets": {
+				"from": 641940,
+				"to": 644220
+			},
+			"text": " all the random factors are canceled out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,220",
+				"to": "00:10:47,300"
+			},
+			"offsets": {
+				"from": 644220,
+				"to": 647300
+			},
+			"text": " And all we're left with is G to the power of VS votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,300",
+				"to": "00:10:51,220"
+			},
+			"offsets": {
+				"from": 647300,
+				"to": 651220
+			},
+			"text": " As a very small discrete log, they can be brute forced by the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,220",
+				"to": "00:10:52,380"
+			},
+			"offsets": {
+				"from": 651220,
+				"to": 652380
+			},
+			"text": " which it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,380",
+				"to": "00:10:54,540"
+			},
+			"offsets": {
+				"from": 652380,
+				"to": 654540
+			},
+			"text": " And then once we have the number of yes votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,780",
+				"to": "00:10:57,060"
+			},
+			"offsets": {
+				"from": 654780,
+				"to": 657060
+			},
+			"text": " it's really straightforward to get the number of no votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,060",
+				"to": "00:11:02,300"
+			},
+			"offsets": {
+				"from": 657060,
+				"to": 662300
+			},
+			"text": " Now, before I did this last summer, before the Byzantine hard fork,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,300",
+				"to": "00:11:07,180"
+			},
+			"offsets": {
+				"from": 662300,
+				"to": 667180
+			},
+			"text": " and the problem was that elliptic earth mathematics was not natively supported by Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,180",
+				"to": "00:11:12,300"
+			},
+			"offsets": {
+				"from": 667180,
+				"to": 672300
+			},
+			"text": " So these are some of the gas costs of trying to do elliptic earth mathematics back then."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,300",
+				"to": "00:11:15,540"
+			},
+			"offsets": {
+				"from": 672300,
+				"to": 675540
+			},
+			"text": " So the cost of vote was 2.5 million gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,540",
+				"to": "00:11:19,020"
+			},
+			"offsets": {
+				"from": 675540,
+				"to": 679020
+			},
+			"text": " So that means today you'd be able to fit three votes in a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,020",
+				"to": "00:11:20,940"
+			},
+			"offsets": {
+				"from": 679020,
+				"to": 680940
+			},
+			"text": " And it was $2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,820",
+				"to": "00:11:25,300"
+			},
+			"offsets": {
+				"from": 681820,
+				"to": 685300
+			},
+			"text": " And the register for the election was about 60 cents."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,300",
+				"to": "00:11:29,940"
+			},
+			"offsets": {
+				"from": 685300,
+				"to": 689940
+			},
+			"text": " Now, unfortunately, I haven't managed to get the new upcodes to work yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,940",
+				"to": "00:11:32,940"
+			},
+			"offsets": {
+				"from": 689940,
+				"to": 692940
+			},
+			"text": " So I really wanted to have exactly the new gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,940",
+				"to": "00:11:36,700"
+			},
+			"offsets": {
+				"from": 692940,
+				"to": 696700
+			},
+			"text": " But what I did this morning was I worked it roughly how much it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,700",
+				"to": "00:11:39,260"
+			},
+			"offsets": {
+				"from": 696700,
+				"to": 699260
+			},
+			"text": " using the new hard fork upcodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,260",
+				"to": "00:11:42,260"
+			},
+			"offsets": {
+				"from": 699260,
+				"to": 702260
+			},
+			"text": " Because now Ethereum supports elliptic earth mathematics."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,260",
+				"to": "00:11:47,340"
+			},
+			"offsets": {
+				"from": 702260,
+				"to": 707340
+			},
+			"text": " So the cost and encrypted vote with the one out of two zero knowledge proofs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,340",
+				"to": "00:11:50,180"
+			},
+			"offsets": {
+				"from": 707340,
+				"to": 710180
+			},
+			"text": " it goes from $2 to 60 cents."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,540",
+				"to": "00:11:52,780"
+			},
+			"offsets": {
+				"from": 710540,
+				"to": 712780
+			},
+			"text": " And we see of 1.7 million gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,780",
+				"to": "00:11:56,100"
+			},
+			"offsets": {
+				"from": 712780,
+				"to": 716100
+			},
+			"text": " So maybe we should have a big clap for how cheap this is actually got."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,100",
+				"to": "00:11:57,900"
+			},
+			"offsets": {
+				"from": 716100,
+				"to": 717900
+			},
+			"text": " That makes me really happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,900",
+				"to": "00:11:58,580"
+			},
+			"offsets": {
+				"from": 717900,
+				"to": 718580
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,580",
+				"to": "00:12:05,500"
+			},
+			"offsets": {
+				"from": 718580,
+				"to": 725500
+			},
+			"text": " Yeah, so it's still 700,000 gas, but that's a very expensive zero knowledge proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,500",
+				"to": "00:12:08,660"
+			},
+			"offsets": {
+				"from": 725500,
+				"to": 728660
+			},
+			"text": " And now we can fit what nearly 10 of them inside a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,660",
+				"to": "00:12:10,940"
+			},
+			"offsets": {
+				"from": 728660,
+				"to": 730940
+			},
+			"text": " So that's much better than what we could do before."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,940",
+				"to": "00:12:15,540"
+			},
+			"offsets": {
+				"from": 730940,
+				"to": 735540
+			},
+			"text": " So that's basically, you know, the new cost to run this protocol roughly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,540",
+				"to": "00:12:19,020"
+			},
+			"offsets": {
+				"from": 735540,
+				"to": 739020
+			},
+			"text": " And now I have some time to show a video."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,020",
+				"to": "00:12:19,940"
+			},
+			"offsets": {
+				"from": 739020,
+				"to": 739940
+			},
+			"text": " That's fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,940",
+				"to": "00:12:21,420"
+			},
+			"offsets": {
+				"from": 739940,
+				"to": 741420
+			},
+			"text": " I try my best to see of some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,420",
+				"to": "00:12:23,100"
+			},
+			"offsets": {
+				"from": 741420,
+				"to": 743100
+			},
+			"text": " So I'll quickly play the video."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,100",
+				"to": "00:12:24,700"
+			},
+			"offsets": {
+				"from": 743100,
+				"to": 744700
+			},
+			"text": " That was the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,700",
+				"to": "00:12:26,420"
+			},
+			"offsets": {
+				"from": 744700,
+				"to": 746420
+			},
+			"text": " I was looking at the smordin to get the stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,420",
+				"to": "00:12:32,820"
+			},
+			"offsets": {
+				"from": 746420,
+				"to": 752820
+			},
+			"text": " And this is a so I actually built it as a website and I spoke to someone last"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,820",
+				"to": "00:12:35,500"
+			},
+			"offsets": {
+				"from": 752820,
+				"to": 755500
+			},
+			"text": " night and apparently it gets really easy integrate in the mist."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,500",
+				"to": "00:12:37,100"
+			},
+			"offsets": {
+				"from": 755500,
+				"to": 757100
+			},
+			"text": " So I love to see that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,100",
+				"to": "00:12:40,580"
+			},
+			"offsets": {
+				"from": 757100,
+				"to": 760580
+			},
+			"text": " But essentially this is the election administrator screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,580",
+				"to": "00:12:43,140"
+			},
+			"offsets": {
+				"from": 760580,
+				"to": 763140
+			},
+			"text": " He's logging in and he's going to set up the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,140",
+				"to": "00:12:45,380"
+			},
+			"offsets": {
+				"from": 763140,
+				"to": 765380
+			},
+			"text": " He says the list of eligible voters."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,380",
+				"to": "00:12:49,580"
+			},
+			"offsets": {
+				"from": 765380,
+				"to": 769580
+			},
+			"text": " Oh, they have hard coded it because I'm lazy and really struggled with it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,540",
+				"to": "00:12:54,220"
+			},
+			"offsets": {
+				"from": 770540,
+				"to": 774220
+			},
+			"text": " We send that off to the contract and now the list of eligible voters are set up."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,220",
+				"to": "00:12:57,020"
+			},
+			"offsets": {
+				"from": 774220,
+				"to": 777020
+			},
+			"text": " We set up a bunch of timers for the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,020",
+				"to": "00:12:59,220"
+			},
+			"offsets": {
+				"from": 777020,
+				"to": 779220
+			},
+			"text": " So that way the election runs in a timely manner."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,220",
+				"to": "00:13:00,940"
+			},
+			"offsets": {
+				"from": 779220,
+				"to": 780940
+			},
+			"text": " We set the voting question."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,940",
+				"to": "00:13:04,420"
+			},
+			"offsets": {
+				"from": 780940,
+				"to": 784420
+			},
+			"text": " I issued Satoshi Nakamoto reveal his real world identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,420",
+				"to": "00:13:06,340"
+			},
+			"offsets": {
+				"from": 784420,
+				"to": 786340
+			},
+			"text": " Hopefully everybody says no."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,340",
+				"to": "00:13:08,900"
+			},
+			"offsets": {
+				"from": 786340,
+				"to": 788900
+			},
+			"text": " And then we start the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,900",
+				"to": "00:13:11,100"
+			},
+			"offsets": {
+				"from": 788900,
+				"to": 791100
+			},
+			"text": " And now all the voters."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,100",
+				"to": "00:13:15,580"
+			},
+			"offsets": {
+				"from": 791100,
+				"to": 795580
+			},
+			"text": " They upload their voting codes, although that's more of an implementation than"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,580",
+				"to": "00:13:16,420"
+			},
+			"offsets": {
+				"from": 795580,
+				"to": 796420
+			},
+			"text": " necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,420",
+				"to": "00:13:18,380"
+			},
+			"offsets": {
+				"from": 796420,
+				"to": 798380
+			},
+			"text": " They log into their theorem account."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,300",
+				"to": "00:13:22,300"
+			},
+			"offsets": {
+				"from": 799300,
+				"to": 802300
+			},
+			"text": " And then they can look at the question and register for the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,300",
+				"to": "00:13:26,180"
+			},
+			"offsets": {
+				"from": 802300,
+				"to": 806180
+			},
+			"text": " Now in this example, I'm going to show you there's actually three stages to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,180",
+				"to": "00:13:30,620"
+			},
+			"offsets": {
+				"from": 806180,
+				"to": 810620
+			},
+			"text": " protocol because there's an third round you can add to get around that adaptive"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,620",
+				"to": "00:13:30,980"
+			},
+			"offsets": {
+				"from": 810620,
+				"to": 810980
+			},
+			"text": " issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,980",
+				"to": "00:13:34,780"
+			},
+			"offsets": {
+				"from": 810980,
+				"to": 814780
+			},
+			"text": " So I imagine the final voter can see the vote the tally before everybody else."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,780",
+				"to": "00:13:37,420"
+			},
+			"offsets": {
+				"from": 814780,
+				"to": 817420
+			},
+			"text": " So what you can do is that everybody can register."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,420",
+				"to": "00:13:40,220"
+			},
+			"offsets": {
+				"from": 817420,
+				"to": 820220
+			},
+			"text": " Everybody can commit to their encrypted vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,220",
+				"to": "00:13:44,740"
+			},
+			"offsets": {
+				"from": 820220,
+				"to": 824740
+			},
+			"text": " And then once everyone actually causes their vote, you can't change your mind if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,740",
+				"to": "00:13:45,740"
+			},
+			"offsets": {
+				"from": 824740,
+				"to": 825740
+			},
+			"text": " you can compute the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,740",
+				"to": "00:13:48,540"
+			},
+			"offsets": {
+				"from": 825740,
+				"to": 828540
+			},
+			"text": " So it really depends if you think that's a big issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,620",
+				"to": "00:13:51,940"
+			},
+			"offsets": {
+				"from": 828620,
+				"to": 831940
+			},
+			"text": " It was a big issue that the final voter can compute the tally before everybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,940",
+				"to": "00:13:52,340"
+			},
+			"offsets": {
+				"from": 831940,
+				"to": 832340
+			},
+			"text": " else."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,340",
+				"to": "00:13:54,180"
+			},
+			"offsets": {
+				"from": 832340,
+				"to": 834180
+			},
+			"text": " You add that out third round."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,180",
+				"to": "00:13:58,100"
+			},
+			"offsets": {
+				"from": 834180,
+				"to": 838100
+			},
+			"text": " If you don't think that's a big issue, you keep the two rounds, you know, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,100",
+				"to": "00:13:59,380"
+			},
+			"offsets": {
+				"from": 838100,
+				"to": 839380
+			},
+			"text": " vote and you register."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,380",
+				"to": "00:14:03,660"
+			},
+			"offsets": {
+				"from": 839380,
+				"to": 843660
+			},
+			"text": " So now we voters, you know, uh, yeah, they're registering for the election."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,660",
+				"to": "00:14:05,300"
+			},
+			"offsets": {
+				"from": 843660,
+				"to": 845300
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,300",
+				"to": "00:14:07,020"
+			},
+			"offsets": {
+				"from": 845300,
+				"to": 847020
+			},
+			"text": " And then eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,020",
+				"to": "00:14:10,900"
+			},
+			"offsets": {
+				"from": 847020,
+				"to": 850900
+			},
+			"text": " Yeah, neither of basically costing their vote while they're committing to their"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,900",
+				"to": "00:14:11,100"
+			},
+			"offsets": {
+				"from": 850900,
+				"to": 851100
+			},
+			"text": " vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,100",
+				"to": "00:14:12,740"
+			},
+			"offsets": {
+				"from": 851100,
+				"to": 852740
+			},
+			"text": " So they're saying yes, no and yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,740",
+				"to": "00:14:16,300"
+			},
+			"offsets": {
+				"from": 852740,
+				"to": 856300
+			},
+			"text": " So these guys are going to say yes, Satoshi Nakamoto should reveal his real"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,300",
+				"to": "00:14:16,980"
+			},
+			"offsets": {
+				"from": 856300,
+				"to": 856980
+			},
+			"text": " world identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,980",
+				"to": "00:14:20,300"
+			},
+			"offsets": {
+				"from": 857980,
+				"to": 860300
+			},
+			"text": " And neither going to cast their vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,300",
+				"to": "00:14:23,140"
+			},
+			"offsets": {
+				"from": 860300,
+				"to": 863140
+			},
+			"text": " And I know the design is horrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,140",
+				"to": "00:14:24,700"
+			},
+			"offsets": {
+				"from": 863140,
+				"to": 864700
+			},
+			"text": " I'm not really a good designer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,700",
+				"to": "00:14:28,620"
+			},
+			"offsets": {
+				"from": 864700,
+				"to": 868620
+			},
+			"text": " Graphic design was never my forte."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,620",
+				"to": "00:14:34,020"
+			},
+			"offsets": {
+				"from": 868620,
+				"to": 874020
+			},
+			"text": " But now that all the votes have been cast anyway, we will eventually be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,020",
+				"to": "00:14:34,740"
+			},
+			"offsets": {
+				"from": 874020,
+				"to": 874740
+			},
+			"text": " see the tally."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,740",
+				"to": "00:14:39,140"
+			},
+			"offsets": {
+				"from": 874740,
+				"to": 879140
+			},
+			"text": " So the election administrator will eventually pop up and he'll say, OK, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,140",
+				"to": "00:14:40,780"
+			},
+			"offsets": {
+				"from": 879140,
+				"to": 880780
+			},
+			"text": " want you to compute the tally, Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,780",
+				"to": "00:14:43,980"
+			},
+			"offsets": {
+				"from": 880780,
+				"to": 883980
+			},
+			"text": " So he does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,260",
+				"to": "00:14:47,580"
+			},
+			"offsets": {
+				"from": 885260,
+				"to": 887580
+			},
+			"text": " And I should hopefully say, yep, two yes votes."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,580",
+				"to": "00:14:48,620"
+			},
+			"offsets": {
+				"from": 887580,
+				"to": 888620
+			},
+			"text": " I'm one no vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,620",
+				"to": "00:14:52,940"
+			},
+			"offsets": {
+				"from": 888620,
+				"to": 892940
+			},
+			"text": " And there's actually a live feed page as well where we can actually watch the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,940",
+				"to": "00:14:54,060"
+			},
+			"offsets": {
+				"from": 892940,
+				"to": 894060
+			},
+			"text": " election in real time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,060",
+				"to": "00:14:57,340"
+			},
+			"offsets": {
+				"from": 894060,
+				"to": 897340
+			},
+			"text": " Because it was really cool about this system is that you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,340",
+				"to": "00:14:59,980"
+			},
+			"offsets": {
+				"from": 897340,
+				"to": 899980
+			},
+			"text": " register to where you can see that Patrick has cost his vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,980",
+				"to": "00:15:04,260"
+			},
+			"offsets": {
+				"from": 899980,
+				"to": 904260
+			},
+			"text": " So you can actually see what the theorem accounts have voted, but you can't see"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,260",
+				"to": "00:15:04,700"
+			},
+			"offsets": {
+				"from": 904260,
+				"to": 904700
+			},
+			"text": " their vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,700",
+				"to": "00:15:07,060"
+			},
+			"offsets": {
+				"from": 904700,
+				"to": 907060
+			},
+			"text": " And that is the end of my video."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,980",
+				"to": "00:15:17,980"
+			},
+			"offsets": {
+				"from": 914980,
+				"to": 917980
+			},
+			"text": " And I just want the end of the say that it is on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,980",
+				"to": "00:15:22,780"
+			},
+			"offsets": {
+				"from": 917980,
+				"to": 922780
+			},
+			"text": " And I've been really lucky to say that it's now has 113 stars, which for me was"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,780",
+				"to": "00:15:23,780"
+			},
+			"offsets": {
+				"from": 922780,
+				"to": 923780
+			},
+			"text": " amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,780",
+				"to": "00:15:27,700"
+			},
+			"offsets": {
+				"from": 923780,
+				"to": 927700
+			},
+			"text": " Because when I did this last summer, I was finishing my PhD and I wanted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,700",
+				"to": "00:15:29,700"
+			},
+			"offsets": {
+				"from": 927700,
+				"to": 929700
+			},
+			"text": " build something that people could use in the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,700",
+				"to": "00:15:32,300"
+			},
+			"offsets": {
+				"from": 929700,
+				"to": 932300
+			},
+			"text": " And it looks like the people have actually picked it up and they're trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,300",
+				"to": "00:15:33,980"
+			},
+			"offsets": {
+				"from": 932300,
+				"to": 933980
+			},
+			"text": " do cool things of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,980",
+				"to": "00:15:36,660"
+			},
+			"offsets": {
+				"from": 933980,
+				"to": 936660
+			},
+			"text": " So thank you very much, guys, for enjoying the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,660",
+				"to": "00:15:38,660"
+			},
+			"offsets": {
+				"from": 936660,
+				"to": 938660
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,660",
+				"to": "00:15:48,660"
+			},
+			"offsets": {
+				"from": 938660,
+				"to": 948660
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,660",
+				"to": "00:15:50,660"
+			},
+			"offsets": {
+				"from": 948660,
+				"to": 950660
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,660",
+				"to": "00:15:52,660"
+			},
+			"offsets": {
+				"from": 950660,
+				"to": 952660
+			},
+			"text": " ( )"
+		}
+	]
+}

@@ -1,0 +1,2089 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 22960
+			},
+			"text": " >> Hello, my name is Martin Olszander and I am the security lead for the Ethereum foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:31,520"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 31520
+			},
+			"text": " Today I am going to talk a bit about EVM forensics and managing attacks against the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,520",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 31520,
+				"to": 39200
+			},
+			"text": " how we have been working on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 42920
+			},
+			"text": " So I have been a security lead for one year."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:52,920"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 52920
+			},
+			"text": " I started just before DEB CON 2 in Shanghai last year which started off with the Shanghai attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,920",
+				"to": "00:00:59,080"
+			},
+			"offsets": {
+				"from": 52920,
+				"to": 59080
+			},
+			"text": " roughly one day after I started my new role."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,080",
+				"to": "00:01:00,800"
+			},
+			"offsets": {
+				"from": 59080,
+				"to": 60800
+			},
+			"text": " It kept on for a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,800",
+				"to": "00:01:05,040"
+			},
+			"offsets": {
+				"from": 60800,
+				"to": 65040
+			},
+			"text": " We have also seen during the last year we have done three hard forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,040",
+				"to": "00:01:09,680"
+			},
+			"offsets": {
+				"from": 65040,
+				"to": 69680
+			},
+			"text": " We have had one unintentional consensus split."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,680",
+				"to": "00:01:16,280"
+			},
+			"offsets": {
+				"from": 69680,
+				"to": 76280
+			},
+			"text": " There was a DOS attack against specifically the Geth client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,280",
+				"to": "00:01:23,460"
+			},
+			"offsets": {
+				"from": 76280,
+				"to": 83460
+			},
+			"text": " There has been thousands of ether stolen in more and less sophisticated attacks both on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,460",
+				"to": "00:01:26,840"
+			},
+			"offsets": {
+				"from": 83460,
+				"to": 86840
+			},
+			"text": " chain and off chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,840",
+				"to": "00:01:32,960"
+			},
+			"offsets": {
+				"from": 86840,
+				"to": 92960
+			},
+			"text": " We have had the test nuts brought to its knees and then resurrected again."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,960",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 92960,
+				"to": 98920
+			},
+			"text": " And of course there is the standard IT incidents with leak databases and someone taking over"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 108000
+			},
+			"text": " someone's phone number and their account and attacking our GitHub and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:53,520"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 113520
+			},
+			"text": " So we should all be very clear about where we are at."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,520",
+				"to": "00:01:56,440"
+			},
+			"offsets": {
+				"from": 113520,
+				"to": 116440
+			},
+			"text": " This is crypto land and we are all in crypto land."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,440",
+				"to": "00:02:02,120"
+			},
+			"offsets": {
+				"from": 116440,
+				"to": 122120
+			},
+			"text": " And it is like Australia where anything with the heartbeat will try to kill you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,120",
+				"to": "00:02:08,200"
+			},
+			"offsets": {
+				"from": 122120,
+				"to": 128200
+			},
+			"text": " And if you make a mistake, you are probably dead."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,200",
+				"to": "00:02:14,520"
+			},
+			"offsets": {
+				"from": 128200,
+				"to": 134520
+			},
+			"text": " So meanwhile for attackers they have never had it better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,520",
+				"to": "00:02:25,440"
+			},
+			"offsets": {
+				"from": 134520,
+				"to": 145440
+			},
+			"text": " They no longer need to hack point of sales computers and trade carding details over shady"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,440",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 145440,
+				"to": 146920
+			},
+			"text": " forums."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:33,640"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 153640
+			},
+			"text": " They can just hack a computer and somehow get some cryptocurrency and immediately turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,640",
+				"to": "00:02:37,160"
+			},
+			"offsets": {
+				"from": 153640,
+				"to": 157160
+			},
+			"text": " into value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,160",
+				"to": "00:02:42,760"
+			},
+			"offsets": {
+				"from": 157160,
+				"to": 162760
+			},
+			"text": " And it is like West in Australia right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,760",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 162760,
+				"to": 164040
+			},
+			"text": " These are the Shanghai attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:46,040"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 166040
+			},
+			"text": " I am not going to talk that much about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,040",
+				"to": "00:02:51,600"
+			},
+			"offsets": {
+				"from": 166040,
+				"to": 171600
+			},
+			"text": " The first Shanghai attack is a little blip down there and then it just kept on going"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,600",
+				"to": "00:02:55,560"
+			},
+			"offsets": {
+				"from": 171600,
+				"to": 175560
+			},
+			"text": " for a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,560",
+				"to": "00:03:06,160"
+			},
+			"offsets": {
+				"from": 175560,
+				"to": 186160
+			},
+			"text": " And it was a lot of different attacks, mostly targeted towards Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,160",
+				"to": "00:03:14,960"
+			},
+			"offsets": {
+				"from": 186160,
+				"to": 194960
+			},
+			"text": " But when the dust is settled after incidents happen, then that is when you can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,960",
+				"to": "00:03:20,800"
+			},
+			"offsets": {
+				"from": 194960,
+				"to": 200800
+			},
+			"text": " do something about them and think about how can we be better prepared next time something"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,800",
+				"to": "00:03:24,160"
+			},
+			"offsets": {
+				"from": 200800,
+				"to": 204160
+			},
+			"text": " similar happens and how can we prevent it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,160",
+				"to": "00:03:29,040"
+			},
+			"offsets": {
+				"from": 204160,
+				"to": 209040
+			},
+			"text": " So how can we improve the readiness and the resiliency?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,040",
+				"to": "00:03:36,400"
+			},
+			"offsets": {
+				"from": 209040,
+				"to": 216400
+			},
+			"text": " So for readiness it is about detecting attacks and performing analysis quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,400",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 216400,
+				"to": 221880
+			},
+			"text": " So we started improving that with some monitoring, adding up some monitoring nodes that were"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 225520
+			},
+			"text": " running the cloud and adding some graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:52,560"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 232560
+			},
+			"text": " Turns out there were some inherent issues which hadn't been noticed before with transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,560",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 232560,
+				"to": 240880
+			},
+			"text": " propagation and efficiencies which over the course of a few months in the beginning of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:06,840"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 246840
+			},
+			"text": " January 3 to March we managed to bring down the overall network traffic with about an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,840",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 246840,
+				"to": 255840
+			},
+			"text": " order of magnitude just by removing invalid transaction and propagation from the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:21,920"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 261920
+			},
+			"text": " On these monitoring nodes we also added some interface so that we can extract very detailed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,920",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 261920,
+				"to": 266760
+			},
+			"text": " information about what are the canonical blocks in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:31,680"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 271680
+			},
+			"text": " And if we see a consensus split we can get very detailed information about the receipts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,680",
+				"to": "00:04:39,640"
+			},
+			"offsets": {
+				"from": 271680,
+				"to": 279640
+			},
+			"text": " and differences in these and quickly point out which transaction caused this consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,640",
+				"to": "00:04:42,160"
+			},
+			"offsets": {
+				"from": 279640,
+				"to": 282160
+			},
+			"text": " issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,160",
+				"to": "00:04:50,800"
+			},
+			"offsets": {
+				"from": 282160,
+				"to": 290800
+			},
+			"text": " So here you see as Geth mastering Geth develop and the parity node and right in this image"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,800",
+				"to": "00:04:57,080"
+			},
+			"offsets": {
+				"from": 290800,
+				"to": 297080
+			},
+			"text": " they are differing on two fields marking red there and that is because parity RPC interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,080",
+				"to": "00:05:01,720"
+			},
+			"offsets": {
+				"from": 297080,
+				"to": 301720
+			},
+			"text": " exposes a few different fields than Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,720",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 301720,
+				"to": 309280
+			},
+			"text": " Now as we go into analysis I am going to talk a few words about the EVM because there might"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 314440
+			},
+			"text": " be a conception that any minor difference in the implementation of the EVM will automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 318520
+			},
+			"text": " result in a consensus failure and that is not quite true because there are some things"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:27,680"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 327680
+			},
+			"text": " some parts of the EVM which are ephemeral such as the memory on the stack and which do not"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,680",
+				"to": "00:05:31,160"
+			},
+			"offsets": {
+				"from": 327680,
+				"to": 331160
+			},
+			"text": " necessarily trigger consensus issues but they are very interesting because they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,160",
+				"to": "00:05:35,320"
+			},
+			"offsets": {
+				"from": 331160,
+				"to": 335320
+			},
+			"text": " be used to trigger consensus errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,320",
+				"to": "00:05:42,120"
+			},
+			"offsets": {
+				"from": 335320,
+				"to": 342120
+			},
+			"text": " And in order to really measure EVM side by side and detect implementation differences"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,120",
+				"to": "00:05:49,120"
+			},
+			"offsets": {
+				"from": 342120,
+				"to": 349120
+			},
+			"text": " in EVMs we need an up by up view of the internal state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,120",
+				"to": "00:05:55,440"
+			},
+			"offsets": {
+				"from": 349120,
+				"to": 355440
+			},
+			"text": " So we push kind of hard to get common output format for EVMs so that after each instruction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,440",
+				"to": "00:06:04,160"
+			},
+			"offsets": {
+				"from": 355440,
+				"to": 364160
+			},
+			"text": " made in EVM it would output JSON blob within internal state as you can see on the left."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,160",
+				"to": "00:06:16,760"
+			},
+			"offsets": {
+				"from": 364160,
+				"to": 376760
+			},
+			"text": " And also capability to use arbitrary pre-state and genesis configuration with the raw EVMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,760",
+				"to": "00:06:23,640"
+			},
+			"offsets": {
+				"from": 376760,
+				"to": 383640
+			},
+			"text": " So one problem that can arise is if we hit by an attack which blows the node out of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,640",
+				"to": "00:06:31,240"
+			},
+			"offsets": {
+				"from": 383640,
+				"to": 391240
+			},
+			"text": " water how can we analyze that because our node just died right how can analyze transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,240",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 391240,
+				"to": 394600
+			},
+			"text": " if the transaction crashes my node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:41,120"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 401120
+			},
+			"text": " Well if we have a standalone EVM what we can do is we can just fetch the pre-state about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,120",
+				"to": "00:06:47,600"
+			},
+			"offsets": {
+				"from": 401120,
+				"to": 407600
+			},
+			"text": " the sender and the receiver just those two accounts and we can execute that locally in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,600",
+				"to": "00:06:52,480"
+			},
+			"offsets": {
+				"from": 407600,
+				"to": 412480
+			},
+			"text": " our EVM and then analyze the trace to find did we miss anything was there anything else"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,480",
+				"to": "00:06:58,280"
+			},
+			"offsets": {
+				"from": 412480,
+				"to": 418280
+			},
+			"text": " we should have had here an external references and fetched those and start over and if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,280",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 418280,
+				"to": 423000
+			},
+			"text": " node crashes then we successfully reproduce the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 433000
+			},
+			"text": " And for this we only need a web3 standard API without any debug specialities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,440"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438440
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,440",
+				"to": "00:07:25,200"
+			},
+			"offsets": {
+				"from": 438440,
+				"to": 445200
+			},
+			"text": " So I'm going to demonstrate quickly how we can do analysis of the jump test attack which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,200",
+				"to": "00:07:36,440"
+			},
+			"offsets": {
+				"from": 445200,
+				"to": 456440
+			},
+			"text": " we're hit by in June 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,440",
+				"to": "00:07:40,880"
+			},
+			"offsets": {
+				"from": 456440,
+				"to": 460880
+			},
+			"text": " So I'm running this little reproducer here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,880",
+				"to": "00:07:47,400"
+			},
+			"offsets": {
+				"from": 460880,
+				"to": 467400
+			},
+			"text": " I pipe in the hash used in the attack the transaction telling it I'm going to use my"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,400",
+				"to": "00:07:54,280"
+			},
+			"offsets": {
+				"from": 467400,
+				"to": 474280
+			},
+			"text": " local EVM not through Docker and it basically sets the right four crews for that particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,280",
+				"to": "00:08:01,160"
+			},
+			"offsets": {
+				"from": 474280,
+				"to": 481160
+			},
+			"text": " block and executes it and it has some intermediary traces here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,160",
+				"to": "00:08:06,720"
+			},
+			"offsets": {
+				"from": 481160,
+				"to": 486720
+			},
+			"text": " We can take a look at those."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,720",
+				"to": "00:08:18,680"
+			},
+			"offsets": {
+				"from": 486720,
+				"to": 498680
+			},
+			"text": " So let's go directly instead for the final trace."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,680",
+				"to": "00:08:25,760"
+			},
+			"offsets": {
+				"from": 498680,
+				"to": 505760
+			},
+			"text": " I'm showing this in what I call the OpViewer or RetroMix if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,760",
+				"to": "00:08:33,880"
+			},
+			"offsets": {
+				"from": 505760,
+				"to": 513880
+			},
+			"text": " It's a remix like debug viewer for the JSON output format that I showed earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,880",
+				"to": "00:08:39,760"
+			},
+			"offsets": {
+				"from": 513880,
+				"to": 519760
+			},
+			"text": " And this is a good start for analyzing what's happening in the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,760",
+				"to": "00:08:48,280"
+			},
+			"offsets": {
+				"from": 519760,
+				"to": 528280
+			},
+			"text": " So you can see this particular transaction it does an Xcode copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,280",
+				"to": "00:08:52,320"
+			},
+			"offsets": {
+				"from": 528280,
+				"to": 532320
+			},
+			"text": " And the Xcode copy fills the memory with 5B."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,320",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 532320,
+				"to": 535000
+			},
+			"text": " And it does it repeatedly."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:00,520"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 540520
+			},
+			"text": " And as you can see the memory is growing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,520",
+				"to": "00:09:03,280"
+			},
+			"offsets": {
+				"from": 540520,
+				"to": 543280
+			},
+			"text": " And it keeps doing this for about 600 steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,280",
+				"to": "00:09:06,960"
+			},
+			"offsets": {
+				"from": 543280,
+				"to": 546960
+			},
+			"text": " I'm going to go a bit faster here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,960",
+				"to": "00:09:14,800"
+			},
+			"offsets": {
+				"from": 546960,
+				"to": 554800
+			},
+			"text": " Until it has filled up the memory with half a megabytes all 5B which happens to be jump"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,800",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554800,
+				"to": 558000
+			},
+			"text": " test."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:23,360"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 563360
+			},
+			"text": " And it puts some more code in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,360",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 563360,
+				"to": 567160
+			},
+			"text": " This looks like actual EVM code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:31,680"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 571680
+			},
+			"text": " 6003565B."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,680",
+				"to": "00:09:39,160"
+			},
+			"offsets": {
+				"from": 571680,
+				"to": 579160
+			},
+			"text": " And all of you I'm sure recognize that that is the push one, jump, jump test and stop."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,160",
+				"to": "00:09:44,360"
+			},
+			"offsets": {
+				"from": 579160,
+				"to": 584360
+			},
+			"text": " So it just executed the create with that code."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,360",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 584360,
+				"to": 589000
+			},
+			"text": " And as you can see the size of the create is the full half megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:57,160"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 597160
+			},
+			"text": " Okay, so now we know that the attacker is doing creates and he keeps doing it repeatedly."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,160",
+				"to": "00:10:02,320"
+			},
+			"offsets": {
+				"from": 597160,
+				"to": 602320
+			},
+			"text": " One part of the memory changes between each invocation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,320",
+				"to": "00:10:04,720"
+			},
+			"offsets": {
+				"from": 602320,
+				"to": 604720
+			},
+			"text": " It's a little counter down there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,720",
+				"to": "00:10:09,400"
+			},
+			"offsets": {
+				"from": 604720,
+				"to": 609400
+			},
+			"text": " And I'll skip forward with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,400",
+				"to": "00:10:10,960"
+			},
+			"offsets": {
+				"from": 609400,
+				"to": 610960
+			},
+			"text": " So it's all just create."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,960",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610960,
+				"to": 614000
+			},
+			"text": " And it ends on create number one of five."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:16,080"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 616080
+			},
+			"text": " That goes out of gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,080",
+				"to": "00:10:21,080"
+			},
+			"offsets": {
+				"from": 616080,
+				"to": 621080
+			},
+			"text": " So by this time you can be kind of have an idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,080",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 621080,
+				"to": 626000
+			},
+			"text": " So it's doing creates lots of times with the large memory segment filled with jump"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:27,760"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 627760
+			},
+			"text": " tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,760",
+				"to": "00:10:31,560"
+			},
+			"offsets": {
+				"from": 627760,
+				"to": 631560
+			},
+			"text": " It changes one little byte each time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,560",
+				"to": "00:10:35,720"
+			},
+			"offsets": {
+				"from": 631560,
+				"to": 635720
+			},
+			"text": " So obviously bypassing and caching mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,720",
+				"to": "00:10:43,480"
+			},
+			"offsets": {
+				"from": 635720,
+				"to": 643480
+			},
+			"text": " So by reproducing it and viewing at the trace in this fashion we can do a very quick analysis"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,480",
+				"to": "00:10:45,600"
+			},
+			"offsets": {
+				"from": 643480,
+				"to": 645600
+			},
+			"text": " of what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,600",
+				"to": "00:10:52,640"
+			},
+			"offsets": {
+				"from": 645600,
+				"to": 652640
+			},
+			"text": " And we can benchmark it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,640",
+				"to": "00:10:57,520"
+			},
+			"offsets": {
+				"from": 652640,
+				"to": 657520
+			},
+			"text": " Right now it's running at 300 milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,520",
+				"to": "00:11:01,400"
+			},
+			"offsets": {
+				"from": 657520,
+				"to": 661400
+			},
+			"text": " And if I compare that to."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,400",
+				"to": "00:11:11,040"
+			},
+			"offsets": {
+				"from": 661400,
+				"to": 671040
+			},
+			"text": " So this is the EVM, get EVM with the patch applied after this attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,040",
+				"to": "00:11:23,160"
+			},
+			"offsets": {
+				"from": 671040,
+				"to": 683160
+			},
+			"text": " I can try it against the EVM without the patch for the jump test analysis."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,160",
+				"to": "00:11:27,080"
+			},
+			"offsets": {
+				"from": 683160,
+				"to": 687080
+			},
+			"text": " And as you can see it took nine seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,080",
+				"to": "00:11:35,120"
+			},
+			"offsets": {
+				"from": 687080,
+				"to": 695120
+			},
+			"text": " So this tooling makes it possible for us to do quick analysis and then to check does"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,120",
+				"to": "00:11:45,760"
+			},
+			"offsets": {
+				"from": 695120,
+				"to": 705760
+			},
+			"text": " this patch work and I can share it with the coworkers and they can try out various patches"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,760",
+				"to": "00:11:48,400"
+			},
+			"offsets": {
+				"from": 705760,
+				"to": 708400
+			},
+			"text": " and see which one is the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,400",
+				"to": "00:11:56,320"
+			},
+			"offsets": {
+				"from": 708400,
+				"to": 716320
+			},
+			"text": " I can also run this in a web like format and do the all the same things and investigate"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,320",
+				"to": "00:11:58,880"
+			},
+			"offsets": {
+				"from": 716320,
+				"to": 718880
+			},
+			"text": " other on chain events."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,880",
+				"to": "00:12:05,880"
+			},
+			"offsets": {
+				"from": 718880,
+				"to": 725880
+			},
+			"text": " For example, sorry which one did I take, that was the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,880",
+				"to": "00:12:14,520"
+			},
+			"offsets": {
+				"from": 725880,
+				"to": 734520
+			},
+			"text": " The parrot-walt attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,520",
+				"to": "00:12:19,160"
+			},
+			"offsets": {
+				"from": 734520,
+				"to": 739160
+			},
+			"text": " And there we have the parrot-walt attack reproduced."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,160",
+				"to": "00:12:24,120"
+			},
+			"offsets": {
+				"from": 739160,
+				"to": 744120
+			},
+			"text": " You can run it locally or you can check annotate the trace of what happened there in the parrot-walt"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,120",
+				"to": "00:12:26,160"
+			},
+			"offsets": {
+				"from": 744120,
+				"to": 746160
+			},
+			"text": " attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,160",
+				"to": "00:12:37,880"
+			},
+			"offsets": {
+				"from": 746160,
+				"to": 757880
+			},
+			"text": " And for example, here's the faded infamous delegate call and the null attack if you want"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,880",
+				"to": "00:12:50,120"
+			},
+			"offsets": {
+				"from": 757880,
+				"to": 770120
+			},
+			"text": " to analyze that more in depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,120",
+				"to": "00:12:56,960"
+			},
+			"offsets": {
+				"from": 770120,
+				"to": 776960
+			},
+			"text": " So the EVM lab which I showed you part of makes it possible to do some EVM assembly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,960",
+				"to": "00:13:04,280"
+			},
+			"offsets": {
+				"from": 776960,
+				"to": 784280
+			},
+			"text": " pathetically and investigate these kinds of issues and dissect attacks on a really low"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,280",
+				"to": "00:13:08,960"
+			},
+			"offsets": {
+				"from": 784280,
+				"to": 788960
+			},
+			"text": " level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,960",
+				"to": "00:13:15,760"
+			},
+			"offsets": {
+				"from": 788960,
+				"to": 795760
+			},
+			"text": " We had two hard folks also and in preparation of those we ramped up the testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,760",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 795760,
+				"to": 800000
+			},
+			"text": " Using parameterized tests or generalized tests which Dmitry talked about yesterday in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 802000
+			},
+			"text": " breakout room."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:24,840"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 804840
+			},
+			"text": " And also put it all into a hive."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,840",
+				"to": "00:13:31,360"
+			},
+			"offsets": {
+				"from": 804840,
+				"to": 811360
+			},
+			"text": " Hive is Peter's super cool framework for running nodes in a black box fashion and just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,360",
+				"to": "00:13:37,160"
+			},
+			"offsets": {
+				"from": 811360,
+				"to": 817160
+			},
+			"text": " synthesize the environment, the genesis and the blocks and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,160",
+				"to": "00:13:44,880"
+			},
+			"offsets": {
+				"from": 817160,
+				"to": 824880
+			},
+			"text": " And then you can compare the expected post state after a sequence of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,880",
+				"to": "00:13:51,880"
+			},
+			"offsets": {
+				"from": 824880,
+				"to": 831880
+			},
+			"text": " And this makes possible to run, it runs about 24,000 test cases against pyetherium parity"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,880",
+				"to": "00:13:52,880"
+			},
+			"offsets": {
+				"from": 831880,
+				"to": 832880
+			},
+			"text": " geth and CPP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,880",
+				"to": "00:14:01,320"
+			},
+			"offsets": {
+				"from": 832880,
+				"to": 841320
+			},
+			"text": " And it runs at 24,000, 365."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,320",
+				"to": "00:14:09,240"
+			},
+			"offsets": {
+				"from": 841320,
+				"to": 849240
+			},
+			"text": " It removes the dependency of the developers to perform tests as part of the test process."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,240",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 849240,
+				"to": 854480
+			},
+			"text": " So now testing can be a totally separate process which doesn't really rely on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:17,800"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 857800
+			},
+			"text": " developers per se."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,800",
+				"to": "00:14:23,840"
+			},
+			"offsets": {
+				"from": 857800,
+				"to": 863840
+			},
+			"text": " The fallout after the first hard, sorry second hard fork is that we had a consensus issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,840",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 863840,
+				"to": 870000
+			},
+			"text": " which was, yeah, definitely not what we wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:35,560"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 875560
+			},
+			"text": " Manually crafted tests are great but there's no way to scale it due to the inherent complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,560",
+				"to": "00:14:36,560"
+			},
+			"offsets": {
+				"from": 875560,
+				"to": 876560
+			},
+			"text": " of the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,560",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 876560,
+				"to": 882000
+			},
+			"text": " We can't just have enough people know that much about it to be able to scale it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:46,480"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 886480
+			},
+			"text": " So we wanted more coverage for Byzantium and started looking at the fussing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,480",
+				"to": "00:14:51,840"
+			},
+			"offsets": {
+				"from": 886480,
+				"to": 891840
+			},
+			"text": " One way of doing that would be to generate test cases randomly, execute them on each"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,840",
+				"to": "00:14:58,320"
+			},
+			"offsets": {
+				"from": 891840,
+				"to": 898320
+			},
+			"text": " EVM and use this shared output format to compare the internal state after each operation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,320",
+				"to": "00:15:00,600"
+			},
+			"offsets": {
+				"from": 898320,
+				"to": 900600
+			},
+			"text": " And just repeat it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,600",
+				"to": "00:15:01,760"
+			},
+			"offsets": {
+				"from": 900600,
+				"to": 901760
+			},
+			"text": " This can be done fairly quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,760",
+				"to": "00:15:07,600"
+			},
+			"offsets": {
+				"from": 901760,
+				"to": 907600
+			},
+			"text": " It can do a couple of million tests per day if you use row binaries and you can use these"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,600",
+				"to": "00:15:11,320"
+			},
+			"offsets": {
+				"from": 907600,
+				"to": 911320
+			},
+			"text": " four clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,320",
+				"to": "00:15:18,040"
+			},
+			"offsets": {
+				"from": 911320,
+				"to": 918040
+			},
+			"text": " The second track is based on libfosser where we got in touch with Guido Rankin who has"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,040",
+				"to": "00:15:22,040"
+			},
+			"offsets": {
+				"from": 918040,
+				"to": 922040
+			},
+			"text": " done a lot of fussing and is a real expert on libfosser."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,040",
+				"to": "00:15:26,360"
+			},
+			"offsets": {
+				"from": 922040,
+				"to": 926360
+			},
+			"text": " So libfosser is the core of American Fossilop."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,360",
+				"to": "00:15:30,560"
+			},
+			"offsets": {
+				"from": 926360,
+				"to": 930560
+			},
+			"text": " It's a foster developed by Michal Salivsky."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,560",
+				"to": "00:15:35,040"
+			},
+			"offsets": {
+				"from": 930560,
+				"to": 935040
+			},
+			"text": " And it's a bit more sophisticated because it uses code paths and instrumented binaries"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,040",
+				"to": "00:15:39,560"
+			},
+			"offsets": {
+				"from": 935040,
+				"to": 939560
+			},
+			"text": " to detect code paths for any given input and then mutating those inputs to maximize the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,560",
+				"to": "00:15:42,520"
+			},
+			"offsets": {
+				"from": 939560,
+				"to": 942520
+			},
+			"text": " code coverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,520",
+				"to": "00:15:48,400"
+			},
+			"offsets": {
+				"from": 942520,
+				"to": 948400
+			},
+			"text": " And since everything is instrumented and compiled into one big binary, it is an order of magnitude"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,400",
+				"to": "00:15:53,280"
+			},
+			"offsets": {
+				"from": 948400,
+				"to": 953280
+			},
+			"text": " faster to perform these tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,280",
+				"to": "00:15:58,680"
+			},
+			"offsets": {
+				"from": 953280,
+				"to": 958680
+			},
+			"text": " So it can do about 100 million tests per day."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,680",
+				"to": "00:16:04,040"
+			},
+			"offsets": {
+				"from": 958680,
+				"to": 964040
+			},
+			"text": " And there was a spectacular and kind of unexpected success in this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,040",
+				"to": "00:16:07,400"
+			},
+			"offsets": {
+				"from": 964040,
+				"to": 967400
+			},
+			"text": " We've had seven or eight consensus issues found."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,400",
+				"to": "00:16:13,920"
+			},
+			"offsets": {
+				"from": 967400,
+				"to": 973920
+			},
+			"text": " Most of them before the hard fork, one of them slightly after the hard fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,920",
+				"to": "00:16:19,200"
+			},
+			"offsets": {
+				"from": 973920,
+				"to": 979200
+			},
+			"text": " It has been fixed and patched and released."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,200",
+				"to": "00:16:26,080"
+			},
+			"offsets": {
+				"from": 979200,
+				"to": 986080
+			},
+			"text": " And the clients today, I would say, are more thoroughly tested than they have ever been"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,080",
+				"to": "00:16:28,880"
+			},
+			"offsets": {
+				"from": 986080,
+				"to": 988880
+			},
+			"text": " in the history of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,880",
+				"to": "00:16:35,520"
+			},
+			"offsets": {
+				"from": 988880,
+				"to": 995520
+			},
+			"text": " And we are still running Fossers 24/7 and it's been millions of tests done on the test"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,520",
+				"to": "00:16:43,400"
+			},
+			"offsets": {
+				"from": 995520,
+				"to": 1003400
+			},
+			"text": " and billions of tests based on Livefosser."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,400",
+				"to": "00:16:46,960"
+			},
+			"offsets": {
+				"from": 1003400,
+				"to": 1006960
+			},
+			"text": " Naturally they can still be consensus issues or denial of service issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,960",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1006960,
+				"to": 1013000
+			},
+			"text": " And if that's a really, really concern of yours, then you should run multiple clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:56,800"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1016800
+			},
+			"text": " and try to detect mismatches."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,800",
+				"to": "00:17:05,400"
+			},
+			"offsets": {
+				"from": 1016800,
+				"to": 1025400
+			},
+			"text": " And you can use the debug method in Geth to find out if Geth has tagged one of Parity's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,400",
+				"to": "00:17:10,920"
+			},
+			"offsets": {
+				"from": 1025400,
+				"to": 1030920
+			},
+			"text": " canonical blocks as bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,920",
+				"to": "00:17:16,040"
+			},
+			"offsets": {
+				"from": 1030920,
+				"to": 1036040
+			},
+			"text": " And key takeaway here is that all everyone here are targets for attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,040",
+				"to": "00:17:19,080"
+			},
+			"offsets": {
+				"from": 1036040,
+				"to": 1039080
+			},
+			"text": " It's involved because it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,080",
+				"to": "00:17:25,960"
+			},
+			"offsets": {
+				"from": 1039080,
+				"to": 1045960
+			},
+			"text": " So be paranoid and be proactive and work on improving the security and your resilience"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,960",
+				"to": "00:17:29,920"
+			},
+			"offsets": {
+				"from": 1045960,
+				"to": 1049920
+			},
+			"text": " and how you can handle attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,920",
+				"to": "00:17:30,920"
+			},
+			"offsets": {
+				"from": 1049920,
+				"to": 1050920
+			},
+			"text": " That's about it for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,920",
+				"to": "00:17:31,920"
+			},
+			"offsets": {
+				"from": 1050920,
+				"to": 1051920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,920",
+				"to": "00:17:38,920"
+			},
+			"offsets": {
+				"from": 1051920,
+				"to": 1058920
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,920",
+				"to": "00:17:45,920"
+			},
+			"offsets": {
+				"from": 1058920,
+				"to": 1065920
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,920",
+				"to": "00:17:48,180"
+			},
+			"offsets": {
+				"from": 1065920,
+				"to": 1068180
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

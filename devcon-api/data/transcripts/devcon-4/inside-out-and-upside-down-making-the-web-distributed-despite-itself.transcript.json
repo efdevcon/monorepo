@@ -1,0 +1,4432 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,000",
+				"to": "00:00:08,520"
+			},
+			"offsets": {
+				"from": 3000,
+				"to": 8520
+			},
+			"text": " >> I grew up skateboarding, so I keep looking at the stage thinking skate park."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,520",
+				"to": "00:00:12,520"
+			},
+			"offsets": {
+				"from": 8520,
+				"to": 12520
+			},
+			"text": " But I think it would probably break if I tried to skate it, so I'm gonna not do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,520",
+				"to": "00:00:13,280"
+			},
+			"offsets": {
+				"from": 12520,
+				"to": 13280
+			},
+			"text": " >> I felt."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,280",
+				"to": "00:00:14,320"
+			},
+			"offsets": {
+				"from": 13280,
+				"to": 14320
+			},
+			"text": " >> My name is Dietrich."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,320",
+				"to": "00:00:21,880"
+			},
+			"offsets": {
+				"from": 14320,
+				"to": 21880
+			},
+			"text": " I'm from Mozilla, and I've been at Mozilla for almost 13 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,880",
+				"to": "00:00:26,200"
+			},
+			"offsets": {
+				"from": 21880,
+				"to": 26200
+			},
+			"text": " And primarily, I mean, there's interesting technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,200",
+				"to": "00:00:28,520"
+			},
+			"offsets": {
+				"from": 26200,
+				"to": 28520
+			},
+			"text": " I love the web, love open source, open systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,520",
+				"to": "00:00:35,160"
+			},
+			"offsets": {
+				"from": 28520,
+				"to": 35160
+			},
+			"text": " But the question that I asked yesterday, why is really, really important one?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,160",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 35160,
+				"to": 38560
+			},
+			"text": " And one of the reasons why I've stayed at Mozilla for so long,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:44,080"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 44080
+			},
+			"text": " because it's an organization that has a commitment to keeping the internet open and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,080",
+				"to": "00:00:49,640"
+			},
+			"offsets": {
+				"from": 44080,
+				"to": 49640
+			},
+			"text": " free, a place that's accessible to everyone, promotes civil discourse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,640",
+				"to": "00:00:53,640"
+			},
+			"offsets": {
+				"from": 49640,
+				"to": 53640
+			},
+			"text": " and elevates critical thinking amongst other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,640",
+				"to": "00:00:59,200"
+			},
+			"offsets": {
+				"from": 53640,
+				"to": 59200
+			},
+			"text": " But that set of clearly articulated values, those reasons why,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,200",
+				"to": "00:01:04,880"
+			},
+			"offsets": {
+				"from": 59200,
+				"to": 64880
+			},
+			"text": " are ultimately the most important thing for me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,880",
+				"to": "00:01:09,200"
+			},
+			"offsets": {
+				"from": 64880,
+				"to": 69200
+			},
+			"text": " So today I'm gonna talk a little bit about how we apply those values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,200",
+				"to": "00:01:14,840"
+			},
+			"offsets": {
+				"from": 69200,
+				"to": 74840
+			},
+			"text": " how we make a decentralized or distributed web that reflects those values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,840",
+				"to": "00:01:17,840"
+			},
+			"offsets": {
+				"from": 74840,
+				"to": 77840
+			},
+			"text": " how the threats that we have against the web today, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:23,600"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 83600
+			},
+			"text": " also some of the challenges that exist in changing the web that we have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,600",
+				"to": "00:01:27,240"
+			},
+			"offsets": {
+				"from": 83600,
+				"to": 87240
+			},
+			"text": " And I'll also talk a little bit about one of the projects that we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,240",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87240,
+				"to": 90000
+			},
+			"text": " that we're building in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,080"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92080
+			},
+			"text": " So this is Mark Sermon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,080",
+				"to": "00:01:34,200"
+			},
+			"offsets": {
+				"from": 92080,
+				"to": 94200
+			},
+			"text": " He's the executive director of the Mozilla Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,200",
+				"to": "00:01:38,240"
+			},
+			"offsets": {
+				"from": 94200,
+				"to": 98240
+			},
+			"text": " And I think it was like 2010, he did a talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,240",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 98240,
+				"to": 100960
+			},
+			"text": " And I actually, I tried to go back and watch this talk, it is on YouTube."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 106000
+			},
+			"text": " But apparently in 2010, they didn't have HD cameras and the quality was so blurry."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:50,800"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 110800
+			},
+			"text": " So just to paraphrase, the bit that really stuck with me from that talk is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,800",
+				"to": "00:01:54,560"
+			},
+			"offsets": {
+				"from": 110800,
+				"to": 114560
+			},
+			"text": " what does it take to be a 100 year organization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,560",
+				"to": "00:01:58,720"
+			},
+			"offsets": {
+				"from": 114560,
+				"to": 118720
+			},
+			"text": " How do you develop technologies, platforms, systems that last,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,720",
+				"to": "00:02:00,120"
+			},
+			"offsets": {
+				"from": 118720,
+				"to": 120120
+			},
+			"text": " have that type of longevity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,120",
+				"to": "00:02:05,800"
+			},
+			"offsets": {
+				"from": 120120,
+				"to": 125800
+			},
+			"text": " There are not a lot of non-governmental organizations that have been around that long."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,800",
+				"to": "00:02:10,040"
+			},
+			"offsets": {
+				"from": 125800,
+				"to": 130040
+			},
+			"text": " And the web is what, 20, 25 years now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,040",
+				"to": "00:02:13,160"
+			},
+			"offsets": {
+				"from": 130040,
+				"to": 133160
+			},
+			"text": " And it's facing serious problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,160",
+				"to": "00:02:16,960"
+			},
+			"offsets": {
+				"from": 133160,
+				"to": 136960
+			},
+			"text": " It's the internet can be in hospitable place at times right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,360",
+				"to": "00:02:23,520"
+			},
+			"offsets": {
+				"from": 138360,
+				"to": 143520
+			},
+			"text": " With surveillance capitalism and hate speech and the internet being used as"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,520",
+				"to": "00:02:26,960"
+			},
+			"offsets": {
+				"from": 143520,
+				"to": 146960
+			},
+			"text": " a disinformation platform by governments."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,960",
+				"to": "00:02:34,200"
+			},
+			"offsets": {
+				"from": 146960,
+				"to": 154200
+			},
+			"text": " So what do we need to do to make the web a more hospitable place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,200",
+				"to": "00:02:38,040"
+			},
+			"offsets": {
+				"from": 154200,
+				"to": 158040
+			},
+			"text": " By any measure, the web really is a success."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,040",
+				"to": "00:02:42,320"
+			},
+			"offsets": {
+				"from": 158040,
+				"to": 162320
+			},
+			"text": " There are an estimated 4.5 billion web pages."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,320",
+				"to": "00:02:45,320"
+			},
+			"offsets": {
+				"from": 162320,
+				"to": 165320
+			},
+			"text": " And an estimated 1.5 billion web sites."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,320",
+				"to": "00:02:51,200"
+			},
+			"offsets": {
+				"from": 165320,
+				"to": 171200
+			},
+			"text": " This is an unbelievably large amount of human activity that we put online."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,200",
+				"to": "00:02:57,880"
+			},
+			"offsets": {
+				"from": 171200,
+				"to": 177880
+			},
+			"text": " In contrast, the combined app stores of Apple and Google are estimated to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,880",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 177880,
+				"to": 180320
+			},
+			"text": " around just over 5 million apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:02,600"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 182600
+			},
+			"text": " So this is actually not to scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,600",
+				"to": "00:03:06,760"
+			},
+			"offsets": {
+				"from": 182600,
+				"to": 186760
+			},
+			"text": " A fair rendering would actually make those Apple and Google icons invisible."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,760",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 186760,
+				"to": 188960
+			},
+			"text": " You wouldn't be able to see them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:13,960"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 193960
+			},
+			"text": " With that amount of human content, of human creation online,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,960",
+				"to": "00:03:16,520"
+			},
+			"offsets": {
+				"from": 193960,
+				"to": 196520
+			},
+			"text": " that browser vendors are responsible for."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,520",
+				"to": "00:03:18,120"
+			},
+			"offsets": {
+				"from": 196520,
+				"to": 198120
+			},
+			"text": " It's a responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,120",
+				"to": "00:03:20,560"
+			},
+			"offsets": {
+				"from": 198120,
+				"to": 200560
+			},
+			"text": " And we take that very seriously."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,560",
+				"to": "00:03:26,200"
+			},
+			"offsets": {
+				"from": 200560,
+				"to": 206200
+			},
+			"text": " We need to make sure that as much of those 5 billion, almost 5 billion web pages"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,200",
+				"to": "00:03:30,640"
+			},
+			"offsets": {
+				"from": 206200,
+				"to": 210640
+			},
+			"text": " can still work, that they can be read by everyone, that they're still function."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,640",
+				"to": "00:03:37,320"
+			},
+			"offsets": {
+				"from": 210640,
+				"to": 217320
+			},
+			"text": " Along with that success comes some challenges as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,320",
+				"to": "00:03:42,480"
+			},
+			"offsets": {
+				"from": 217320,
+				"to": 222480
+			},
+			"text": " People who make the web are really comfortable with how the web works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,480",
+				"to": "00:03:46,160"
+			},
+			"offsets": {
+				"from": 222480,
+				"to": 226160
+			},
+			"text": " We're really familiar with how browsers work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,160",
+				"to": "00:03:51,680"
+			},
+			"offsets": {
+				"from": 226160,
+				"to": 231680
+			},
+			"text": " They're well-understood security models, well-understood set of capabilities and constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,680",
+				"to": "00:03:56,800"
+			},
+			"offsets": {
+				"from": 231680,
+				"to": 236800
+			},
+			"text": " What do we need to change and how are we going to be able to change that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,800",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 236800,
+				"to": 242000
+			},
+			"text": " There's some resistance to change, especially in talking about how you implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:04,400"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 244400
+			},
+			"text": " distributed and decentralized technologies on the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,400",
+				"to": "00:04:10,120"
+			},
+			"offsets": {
+				"from": 244400,
+				"to": 250120
+			},
+			"text": " Some of our biggest fans are some of the most challenging when it comes to talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,120",
+				"to": "00:04:12,200"
+			},
+			"offsets": {
+				"from": 250120,
+				"to": 252200
+			},
+			"text": " about things like Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,200",
+				"to": "00:04:13,520"
+			},
+			"offsets": {
+				"from": 252200,
+				"to": 253520
+			},
+			"text": " Things like blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,520",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 253520,
+				"to": 255200
+			},
+			"text": " Things like distributed applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:22,680"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 262680
+			},
+			"text": " But as long as the web stays centralized, we need to have these conversations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,680",
+				"to": "00:04:25,240"
+			},
+			"offsets": {
+				"from": 262680,
+				"to": 265240
+			},
+			"text": " We need to figure out how to really move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,240",
+				"to": "00:04:28,840"
+			},
+			"offsets": {
+				"from": 265240,
+				"to": 268840
+			},
+			"text": " Some of the bigger complaints, like how do you imagine a world without URLs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,840",
+				"to": "00:04:35,080"
+			},
+			"offsets": {
+				"from": 268840,
+				"to": 275080
+			},
+			"text": " URLs are a core part of what made the web powerful, accessible, universally available."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,080",
+				"to": "00:04:41,320"
+			},
+			"offsets": {
+				"from": 275080,
+				"to": 281320
+			},
+			"text": " But ultimately, a lot of people don't understand actually how they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,320",
+				"to": "00:04:43,400"
+			},
+			"offsets": {
+				"from": 281320,
+				"to": 283400
+			},
+			"text": " Us as technologists, we know how they work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,400",
+				"to": "00:04:45,200"
+			},
+			"offsets": {
+				"from": 283400,
+				"to": 285200
+			},
+			"text": " And we understand the importance of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,200",
+				"to": "00:04:51,240"
+			},
+			"offsets": {
+				"from": 285200,
+				"to": 291240
+			},
+			"text": " But this video is Google went out on the street at one point and asked people what a browser was."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,240",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 291240,
+				"to": 295160
+			},
+			"text": " And it's kind of a famous video because it was a really, it was an inflection point."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 299960
+			},
+			"text": " As far as understanding, do people understand how the technology they use actually works?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:04,920"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 304920
+			},
+			"text": " People don't understand what a browser is, what a search engine is, what an operating system is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,920",
+				"to": "00:05:06,880"
+			},
+			"offsets": {
+				"from": 304920,
+				"to": 306880
+			},
+			"text": " It just all gets matched together."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,880",
+				"to": "00:05:07,800"
+			},
+			"offsets": {
+				"from": 306880,
+				"to": 307800
+			},
+			"text": " It's the stuff we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,800",
+				"to": "00:05:09,440"
+			},
+			"offsets": {
+				"from": 307800,
+				"to": 309440
+			},
+			"text": " It's how I do my thing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,440",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 309440,
+				"to": 311000
+			},
+			"text": " I don't know, I just post stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:12,520"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 312520
+			},
+			"text": " Somebody puts it somewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,520",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 312520,
+				"to": 315000
+			},
+			"text": " People don't actually understand how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:18,760"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 318760
+			},
+			"text": " Another one that is really hard to imagine living without is domain names."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,760",
+				"to": "00:05:22,680"
+			},
+			"offsets": {
+				"from": 318760,
+				"to": 322680
+			},
+			"text": " How do you live without, where's your company exist?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,680",
+				"to": "00:05:24,680"
+			},
+			"offsets": {
+				"from": 322680,
+				"to": 324680
+			},
+			"text": " How can I find you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,680",
+				"to": "00:05:31,400"
+			},
+			"offsets": {
+				"from": 324680,
+				"to": 331400
+			},
+			"text": " DNS is one of the most, I guess, easy choke points in centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,400",
+				"to": "00:05:35,400"
+			},
+			"offsets": {
+				"from": 331400,
+				"to": 335400
+			},
+			"text": " You know, Indonesia turned off Reddit with DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,400",
+				"to": "00:05:38,040"
+			},
+			"offsets": {
+				"from": 335400,
+				"to": 338040
+			},
+			"text": " Turkey turned off Wikipedia, DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,040",
+				"to": "00:05:40,600"
+			},
+			"offsets": {
+				"from": 338040,
+				"to": 340600
+			},
+			"text": " Very easy centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,600",
+				"to": "00:05:42,600"
+			},
+			"offsets": {
+				"from": 340600,
+				"to": 342600
+			},
+			"text": " And censorship, choke point."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,600",
+				"to": "00:05:47,640"
+			},
+			"offsets": {
+				"from": 342600,
+				"to": 347640
+			},
+			"text": " Another one of the cultural challenges is talking about protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,640",
+				"to": "00:05:48,520"
+			},
+			"offsets": {
+				"from": 347640,
+				"to": 348520
+			},
+			"text": " Protocol bros."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,520",
+				"to": "00:05:52,680"
+			},
+			"offsets": {
+				"from": 348520,
+				"to": 352680
+			},
+			"text": " If you're talking about a protocol, it must mean that you are not addressing real human problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,680",
+				"to": "00:05:56,040"
+			},
+			"offsets": {
+				"from": 352680,
+				"to": 356040
+			},
+			"text": " Real human problems start with where human needs actually exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,040",
+				"to": "00:05:57,400"
+			},
+			"offsets": {
+				"from": 356040,
+				"to": 357400
+			},
+			"text": " And that's at the front end."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,400",
+				"to": "00:06:02,360"
+			},
+			"offsets": {
+				"from": 357400,
+				"to": 362360
+			},
+			"text": " With the fundamental misunderstanding of the fact that we are really sitting on the shoulders of giants"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,360",
+				"to": "00:06:06,760"
+			},
+			"offsets": {
+				"from": 362360,
+				"to": 366760
+			},
+			"text": " when we're using the internet at all, a set of protocols that enable all this to begin with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,760",
+				"to": "00:06:09,640"
+			},
+			"offsets": {
+				"from": 366760,
+				"to": 369640
+			},
+			"text": " here's another one is blockchain bros."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,640",
+				"to": "00:06:13,880"
+			},
+			"offsets": {
+				"from": 369640,
+				"to": 373880
+			},
+			"text": " If you bring up the word blockchain in certain circles, certainly it must mean that you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,880",
+				"to": "00:06:14,920"
+			},
+			"offsets": {
+				"from": 373880,
+				"to": 374920
+			},
+			"text": " over engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,920",
+				"to": "00:06:16,920"
+			},
+			"offsets": {
+				"from": 374920,
+				"to": 376920
+			},
+			"text": " And there's absolutely no need for this at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,920",
+				"to": "00:06:21,160"
+			},
+			"offsets": {
+				"from": 376920,
+				"to": 381160
+			},
+			"text": " And I found myself actually starting a sentence, well, not all blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,160",
+				"to": "00:06:24,040"
+			},
+			"offsets": {
+				"from": 381160,
+				"to": 384040
+			},
+			"text": " It's not a good place to be in."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,040",
+				"to": "00:06:27,320"
+			},
+			"offsets": {
+				"from": 384040,
+				"to": 387320
+			},
+			"text": " And arguably, you know, there's some good reason for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,320",
+				"to": "00:06:32,520"
+			},
+			"offsets": {
+				"from": 387320,
+				"to": 392520
+			},
+			"text": " There's some justification for that, applying the same tool to a number of different problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,520",
+				"to": "00:06:33,640"
+			},
+			"offsets": {
+				"from": 392520,
+				"to": 393640
+			},
+			"text": " that they're going to get anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,640",
+				"to": "00:06:40,040"
+			},
+			"offsets": {
+				"from": 393640,
+				"to": 400040
+			},
+			"text": " But for this, we do need to reevaluate the network architecture of how browsers work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,040",
+				"to": "00:06:42,200"
+			},
+			"offsets": {
+				"from": 400040,
+				"to": 402200
+			},
+			"text": " So what does that look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,200",
+				"to": "00:06:46,600"
+			},
+			"offsets": {
+				"from": 402200,
+				"to": 406600
+			},
+			"text": " What does redecentralizing the web actually look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,600",
+				"to": "00:06:53,080"
+			},
+			"offsets": {
+				"from": 406600,
+				"to": 413080
+			},
+			"text": " In the web architecture that we know today, a browser loads a URL on your behalf,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,080",
+				"to": "00:06:58,040"
+			},
+			"offsets": {
+				"from": 413080,
+				"to": 418040
+			},
+			"text": " makes that request to the server, and the server returns a response."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,040",
+				"to": "00:07:01,240"
+			},
+			"offsets": {
+				"from": 418040,
+				"to": 421240
+			},
+			"text": " And the browser passively accepts that response."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,240",
+				"to": "00:07:04,600"
+			},
+			"offsets": {
+				"from": 421240,
+				"to": 424600
+			},
+			"text": " And that's pretty much how things go on the web we have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,600",
+				"to": "00:07:12,360"
+			},
+			"offsets": {
+				"from": 424600,
+				"to": 432360
+			},
+			"text": " That is the centralized single two points architecture of almost every single browsing session."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,360",
+				"to": "00:07:16,120"
+			},
+			"offsets": {
+				"from": 432360,
+				"to": 436120
+			},
+			"text": " Even if you're loading up IPFS in there, it's going to be centralized somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,120",
+				"to": "00:07:18,440"
+			},
+			"offsets": {
+				"from": 436120,
+				"to": 438440
+			},
+			"text": " You're not actually bootstrapping a node from the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,440",
+				"to": "00:07:24,520"
+			},
+			"offsets": {
+				"from": 438440,
+				"to": 444520
+			},
+			"text": " Every proxy to a decentralized or distributed service is still just a centralized proxy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,520",
+				"to": "00:07:27,080"
+			},
+			"offsets": {
+				"from": 444520,
+				"to": 447080
+			},
+			"text": " There are a number of problems with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,080",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 447080,
+				"to": 449000
+			},
+			"text": " We talked a little bit about already."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:30,120"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 450120
+			},
+			"text": " Easy to censor."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,080",
+				"to": "00:07:33,880"
+			},
+			"offsets": {
+				"from": 451080,
+				"to": 453880
+			},
+			"text": " All the different problems where they are just daily annoyances."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,880",
+				"to": "00:07:36,600"
+			},
+			"offsets": {
+				"from": 453880,
+				"to": 456600
+			},
+			"text": " Sites go down, sites get DDoSed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,600",
+				"to": "00:07:41,560"
+			},
+			"offsets": {
+				"from": 456600,
+				"to": 461560
+			},
+			"text": " A business goes down, goes out of business, and the site goes down."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,560",
+				"to": "00:07:43,400"
+			},
+			"offsets": {
+				"from": 461560,
+				"to": 463400
+			},
+			"text": " Or they get bought by a bigger fish."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,400",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 463400,
+				"to": 465400
+			},
+			"text": " That's a service you love so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:46,360"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 466360
+			},
+			"text": " Suddenly disappeared."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,360",
+				"to": "00:07:49,960"
+			},
+			"offsets": {
+				"from": 466360,
+				"to": 469960
+			},
+			"text": " Poof, never to be seen again after being bought by one of the big tech companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,960",
+				"to": "00:07:58,680"
+			},
+			"offsets": {
+				"from": 469960,
+				"to": 478680
+			},
+			"text": " Ultimately, though, it comes down to the fact that all the power resides on one side of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,680",
+				"to": "00:08:02,600"
+			},
+			"offsets": {
+				"from": 478680,
+				"to": 482600
+			},
+			"text": " relationship."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,600",
+				"to": "00:08:06,200"
+			},
+			"offsets": {
+				"from": 482600,
+				"to": 486200
+			},
+			"text": " The browser doesn't have any say really in what comes back."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,200",
+				"to": "00:08:11,800"
+			},
+			"offsets": {
+				"from": 486200,
+				"to": 491800
+			},
+			"text": " The server ends up being kind of like that friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,800",
+				"to": "00:08:12,520"
+			},
+			"offsets": {
+				"from": 491800,
+				"to": 492520
+			},
+			"text": " You go to meet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,520",
+				"to": "00:08:16,760"
+			},
+			"offsets": {
+				"from": 492520,
+				"to": 496760
+			},
+			"text": " They always seem to be the one that decides what you're going to eat and where you're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,760",
+				"to": "00:08:17,720"
+			},
+			"offsets": {
+				"from": 496760,
+				"to": 497720
+			},
+			"text": " meet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,720",
+				"to": "00:08:20,840"
+			},
+			"offsets": {
+				"from": 497720,
+				"to": 500840
+			},
+			"text": " You start talking to other friends and you realize that they're also being treated this way by"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,840",
+				"to": "00:08:22,200"
+			},
+			"offsets": {
+				"from": 500840,
+				"to": 502200
+			},
+			"text": " this friend."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,200",
+				"to": "00:08:26,120"
+			},
+			"offsets": {
+				"from": 502200,
+				"to": 506120
+			},
+			"text": " Then you hear that they've been actually taking notes about what you've been talking about while"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,120",
+				"to": "00:08:27,160"
+			},
+			"offsets": {
+				"from": 506120,
+				"to": 507160
+			},
+			"text": " having dinner."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,160",
+				"to": "00:08:31,320"
+			},
+			"offsets": {
+				"from": 507160,
+				"to": 511320
+			},
+			"text": " Then you hear that they've been taking those notes and selling them to people who really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,320",
+				"to": "00:08:32,280"
+			},
+			"offsets": {
+				"from": 511320,
+				"to": 512280
+			},
+			"text": " aren't your friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,280",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 512280,
+				"to": 519000
+			},
+			"text": " Then you end up one morning in a refugee camp on the border of Myanmar or a victim of genocide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:41,400"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 521400
+			},
+			"text": " because that friend was Facebook."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,400",
+				"to": "00:08:47,160"
+			},
+			"offsets": {
+				"from": 521400,
+				"to": 527160
+			},
+			"text": " These are real problems that we need to solve and that are going to be really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,160",
+				"to": "00:08:50,680"
+			},
+			"offsets": {
+				"from": 527160,
+				"to": 530680
+			},
+			"text": " difficult to solve with this architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,680",
+				"to": "00:08:52,840"
+			},
+			"offsets": {
+				"from": 530680,
+				"to": 532840
+			},
+			"text": " Incredibly difficult to solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,840",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 532840,
+				"to": 537000
+			},
+			"text": " As long as we have that centralization choke point, we won't be able to get past this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:02,760"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 542760
+			},
+			"text": " point of massive structures, massive amounts of control over human activity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,760",
+				"to": "00:09:04,840"
+			},
+			"offsets": {
+				"from": 542760,
+				"to": 544840
+			},
+			"text": " Let's fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,840",
+				"to": "00:09:07,080"
+			},
+			"offsets": {
+				"from": 544840,
+				"to": 547080
+			},
+			"text": " Let's make a distributed web browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,080",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 547080,
+				"to": 549880
+			},
+			"text": " There's a lot of projects in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:14,120"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 554120
+			},
+			"text": " A lot of people try to figure out what the right pattern is, how, what the use cases are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,120",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 554120,
+				"to": 561320
+			},
+			"text": " how do we solve this problem, how do we create a web that gives more control back to the user?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,760",
+				"to": "00:09:28,920"
+			},
+			"offsets": {
+				"from": 562760,
+				"to": 568920
+			},
+			"text": " For the web to truly, for a user agent, to truly live up to its name, we have to change"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,920",
+				"to": "00:09:30,360"
+			},
+			"offsets": {
+				"from": 568920,
+				"to": 570360
+			},
+			"text": " these network architectures."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,360",
+				"to": "00:09:33,800"
+			},
+			"offsets": {
+				"from": 570360,
+				"to": 573800
+			},
+			"text": " These are some of the projects that are experimenting in this place."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,800",
+				"to": "00:09:38,120"
+			},
+			"offsets": {
+				"from": 573800,
+				"to": 578120
+			},
+			"text": " But like I said before, we need to think on the 100-year scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,120",
+				"to": "00:09:42,520"
+			},
+			"offsets": {
+				"from": 578120,
+				"to": 582520
+			},
+			"text": " We need to think about, well, actually as a browser vendor, we're just thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,520",
+				"to": "00:09:45,240"
+			},
+			"offsets": {
+				"from": 582520,
+				"to": 585240
+			},
+			"text": " any changes we make, we have to own that code forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,240",
+				"to": "00:09:47,080"
+			},
+			"offsets": {
+				"from": 585240,
+				"to": 587080
+			},
+			"text": " We can't break the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,080",
+				"to": "00:09:49,560"
+			},
+			"offsets": {
+				"from": 587080,
+				"to": 589560
+			},
+			"text": " We can't change things too fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,560",
+				"to": "00:09:54,520"
+			},
+			"offsets": {
+				"from": 589560,
+				"to": 594520
+			},
+			"text": " We can't just be like, oh, yeah, web v5, everybody upgrade, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,520",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 594520,
+				"to": 599000
+			},
+			"text": " We have to support that five billion web pages."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:06,200"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 606200
+			},
+			"text": " We have to make sure that that that human, that output of human activity and creativity"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,200",
+				"to": "00:10:08,440"
+			},
+			"offsets": {
+				"from": 606200,
+				"to": 608440
+			},
+			"text": " stays usable and still works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,440",
+				"to": "00:10:10,280"
+			},
+			"offsets": {
+				"from": 608440,
+				"to": 610280
+			},
+			"text": " So we can't just pick a winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,280",
+				"to": "00:10:12,520"
+			},
+			"offsets": {
+				"from": 610280,
+				"to": 612520
+			},
+			"text": " We can't just say, all right, I'll be if that sounds good."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,520",
+				"to": "00:10:13,080"
+			},
+			"offsets": {
+				"from": 612520,
+				"to": 613080
+			},
+			"text": " Let's run with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,920",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 614920,
+				"to": 621000
+			},
+			"text": " I think also picking a winner, deciding that this one solution is the best, really narrows"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:23,080"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 623080
+			},
+			"text": " the set of use cases that we can address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,080",
+				"to": "00:10:27,720"
+			},
+			"offsets": {
+				"from": 623080,
+				"to": 627720
+			},
+			"text": " And answering that question about, like, how do you build a system, an architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,720",
+				"to": "00:10:34,120"
+			},
+			"offsets": {
+				"from": 627720,
+				"to": 634120
+			},
+			"text": " for longevity, for a century long, longevity, means you have to understand what the broader"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,120",
+				"to": "00:10:37,240"
+			},
+			"offsets": {
+				"from": 634120,
+				"to": 637240
+			},
+			"text": " set of use cases are that all these projects are trying to address."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,240",
+				"to": "00:10:44,040"
+			},
+			"offsets": {
+				"from": 637240,
+				"to": 644040
+			},
+			"text": " I think success looks like not a winner, but many islands in the sea."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,680",
+				"to": "00:10:50,840"
+			},
+			"offsets": {
+				"from": 644680,
+				"to": 650840
+			},
+			"text": " A healthy ecosystem is one that really props up and supports and enables experimentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,840",
+				"to": "00:10:51,240"
+			},
+			"offsets": {
+				"from": 650840,
+				"to": 651240
+			},
+			"text": " change."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,240",
+				"to": "00:10:59,080"
+			},
+			"offsets": {
+				"from": 651240,
+				"to": 659080
+			},
+			"text": " It enables the ability to adapt as human needs change, which is going to happen over 100 years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,080",
+				"to": "00:10:59,400"
+			},
+			"offsets": {
+				"from": 659080,
+				"to": 659400
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,400",
+				"to": "00:11:06,280"
+			},
+			"offsets": {
+				"from": 659400,
+				"to": 666280
+			},
+			"text": " So we started looking at what the building blocks are in a lot of these distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,280",
+				"to": "00:11:08,440"
+			},
+			"offsets": {
+				"from": 666280,
+				"to": 668440
+			},
+			"text": " There's a swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,440",
+				"to": "00:11:10,600"
+			},
+			"offsets": {
+				"from": 668440,
+				"to": 670600
+			},
+			"text": " There's CRDTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,600",
+				"to": "00:11:11,720"
+			},
+			"offsets": {
+				"from": 670600,
+				"to": 671720
+			},
+			"text": " There's web servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,120",
+				"to": "00:11:15,720"
+			},
+			"offsets": {
+				"from": 674120,
+				"to": 675720
+			},
+			"text": " A lot of key management issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,720",
+				"to": "00:11:19,800"
+			},
+			"offsets": {
+				"from": 675720,
+				"to": 679800
+			},
+			"text": " Do we just put a blockchain in the browser, see what happens?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,800",
+				"to": "00:11:22,840"
+			},
+			"offsets": {
+				"from": 679800,
+				"to": 682840
+			},
+			"text": " Do we turn the browser into a server?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,840",
+				"to": "00:11:25,240"
+			},
+			"offsets": {
+				"from": 682840,
+				"to": 685240
+			},
+			"text": " Let it go and see what people do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,240",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 685240,
+				"to": 689000
+			},
+			"text": " These are maybe high level building blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:31,640"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 691640
+			},
+			"text": " So what are these built on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,640",
+				"to": "00:11:37,160"
+			},
+			"offsets": {
+				"from": 691640,
+				"to": 697160
+			},
+			"text": " Well, a set of very familiar, well understood, but pretty boring technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,160",
+				"to": "00:11:40,200"
+			},
+			"offsets": {
+				"from": 697160,
+				"to": 700200
+			},
+			"text": " These are things that we've been using for 20 years or more, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:47,640"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 707640
+			},
+			"text": " But you can build on top of these things those other higher level application primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,640",
+				"to": "00:11:51,960"
+			},
+			"offsets": {
+				"from": 707640,
+				"to": 711960
+			},
+			"text": " Every single blockchain is built on top of these lower level primitives, network architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,960",
+				"to": "00:11:54,440"
+			},
+			"offsets": {
+				"from": 711960,
+				"to": 714440
+			},
+			"text": " primitives, things like access to file system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,440",
+				"to": "00:11:56,440"
+			},
+			"offsets": {
+				"from": 714440,
+				"to": 716440
+			},
+			"text": " These are all things the web doesn't really have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,440",
+				"to": "00:12:02,920"
+			},
+			"offsets": {
+				"from": 716440,
+				"to": 722920
+			},
+			"text": " The web browser has been a client for 20 years and nothing but for the most part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,920",
+				"to": "00:12:03,240"
+			},
+			"offsets": {
+				"from": 722920,
+				"to": 723240
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,240",
+				"to": "00:12:08,680"
+			},
+			"offsets": {
+				"from": 723240,
+				"to": 728680
+			},
+			"text": " A few different experiments and things that didn't really last implemented things like discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,960",
+				"to": "00:12:14,200"
+			},
+			"offsets": {
+				"from": 729960,
+				"to": 734200
+			},
+			"text": " But there's no real file system access that works across all web browsers, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,200",
+				"to": "00:12:22,360"
+			},
+			"offsets": {
+				"from": 734200,
+				"to": 742360
+			},
+			"text": " So if these are the kind of lower level primitives, how do we get these into a place where people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,360",
+				"to": "00:12:26,840"
+			},
+			"offsets": {
+				"from": 742360,
+				"to": 746840
+			},
+			"text": " can start experimenting and building those higher level primitives in the web?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,840",
+				"to": "00:12:31,560"
+			},
+			"offsets": {
+				"from": 746840,
+				"to": 751560
+			},
+			"text": " This is kind of the world that I live in as somebody who works building browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,560",
+				"to": "00:12:35,320"
+			},
+			"offsets": {
+				"from": 751560,
+				"to": 755320
+			},
+			"text": " There are these three basic execution scopes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,440",
+				"to": "00:12:41,480"
+			},
+			"offsets": {
+				"from": 756440,
+				"to": 761480
+			},
+			"text": " We could build distributed application capabilities in two Firefox itself and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,480",
+				"to": "00:12:47,400"
+			},
+			"offsets": {
+				"from": 761480,
+				"to": 767400
+			},
+			"text": " just make the browser part of the application where we implement these types of features."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,400",
+				"to": "00:12:50,440"
+			},
+			"offsets": {
+				"from": 767400,
+				"to": 770440
+			},
+			"text": " It'll be slow going."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,440",
+				"to": "00:12:55,320"
+			},
+			"offsets": {
+				"from": 770440,
+				"to": 775320
+			},
+			"text": " We won't be able to meet all the needs of these projects that I've been talking about half today"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,320",
+				"to": "00:12:57,400"
+			},
+			"offsets": {
+				"from": 775320,
+				"to": 777400
+			},
+			"text": " and the needs that your projects have today."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,400",
+				"to": "00:12:58,920"
+			},
+			"offsets": {
+				"from": 777400,
+				"to": 778920
+			},
+			"text": " So that's not ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,920",
+				"to": "00:13:01,320"
+			},
+			"offsets": {
+				"from": 778920,
+				"to": 781320
+			},
+			"text": " And we are resource constrained."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,320",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 781320,
+				"to": 783000
+			},
+			"text": " We're probably the smallest."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 788360
+			},
+			"text": " Okay, no. We definitely are the smallest of the web browser vendors building major in use browsers"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:08,600"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 788600
+			},
+			"text": " today."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,600",
+				"to": "00:13:13,400"
+			},
+			"offsets": {
+				"from": 788600,
+				"to": 793400
+			},
+			"text": " Do we want to put UDP APIs inside of a web page in JavaScript?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,400",
+				"to": "00:13:18,120"
+			},
+			"offsets": {
+				"from": 793400,
+				"to": 798120
+			},
+			"text": " That also sounds like maybe not the right level of abstraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,120",
+				"to": "00:13:24,520"
+			},
+			"offsets": {
+				"from": 798120,
+				"to": 804520
+			},
+			"text": " And browser extensions, which you're probably familiar with from installing Metamask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,520",
+				"to": "00:13:27,080"
+			},
+			"offsets": {
+				"from": 804520,
+				"to": 807080
+			},
+			"text": " might be the right middle ground."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,080",
+				"to": "00:13:35,320"
+			},
+			"offsets": {
+				"from": 807080,
+				"to": 815320
+			},
+			"text": " It might be the place where we can expose some of these capabilities, but without over committing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,320",
+				"to": "00:13:36,200"
+			},
+			"offsets": {
+				"from": 815320,
+				"to": 816200
+			},
+			"text": " too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,200",
+				"to": "00:13:40,600"
+			},
+			"offsets": {
+				"from": 816200,
+				"to": 820600
+			},
+			"text": " Well, letting people experiment, letting projects like yours experiment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,600",
+				"to": "00:13:45,320"
+			},
+			"offsets": {
+				"from": 820600,
+				"to": 825320
+			},
+			"text": " but without deciding that, okay, the web is going to have this API and live with it forever."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,320",
+				"to": "00:13:52,680"
+			},
+			"offsets": {
+				"from": 825320,
+				"to": 832680
+			},
+			"text": " And without really trying to own or control what that distributed web looks like by just building"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,680",
+				"to": "00:13:54,360"
+			},
+			"offsets": {
+				"from": 832680,
+				"to": 834360
+			},
+			"text": " it directly into Firefox."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,360",
+				"to": "00:13:57,320"
+			},
+			"offsets": {
+				"from": 834360,
+				"to": 837320
+			},
+			"text": " So this gives us some extensibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,320",
+				"to": "00:14:06,040"
+			},
+			"offsets": {
+				"from": 837320,
+				"to": 846040
+			},
+			"text": " It gives you some capabilities in a way that is a little bit more malleable that we can experiment"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,040",
+				"to": "00:14:06,280"
+			},
+			"offsets": {
+				"from": 846040,
+				"to": 846280
+			},
+			"text": " with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,280",
+				"to": "00:14:08,760"
+			},
+			"offsets": {
+				"from": 846280,
+				"to": 848760
+			},
+			"text": " So I'd like to introduce libdweb."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,760",
+				"to": "00:14:12,760"
+			},
+			"offsets": {
+				"from": 848760,
+				"to": 852760
+			},
+			"text": " This is a project that we've been working on for the last couple of months that adds some of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,760",
+				"to": "00:14:15,240"
+			},
+			"offsets": {
+				"from": 852760,
+				"to": 855240
+			},
+			"text": " basic primitives to web extension APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,240",
+				"to": "00:14:18,920"
+			},
+			"offsets": {
+				"from": 855240,
+				"to": 858920
+			},
+			"text": " It so far adds the protocol registration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,920",
+				"to": "00:14:25,080"
+			},
+			"offsets": {
+				"from": 858920,
+				"to": 865080
+			},
+			"text": " So you can register custom protocols, TCP and UDP APIs, MDNS, MDNS and file system APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,080",
+				"to": "00:14:29,880"
+			},
+			"offsets": {
+				"from": 865080,
+				"to": 869880
+			},
+			"text": " Talking with the projects in this space, key management seems to be really important as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,880",
+				"to": "00:14:34,760"
+			},
+			"offsets": {
+				"from": 869880,
+				"to": 874760
+			},
+			"text": " There are a number of changes happening, how Firefox works and stores keys at the OS level"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,760",
+				"to": "00:14:36,440"
+			},
+			"offsets": {
+				"from": 874760,
+				"to": 876440
+			},
+			"text": " that maybe we'll be able to take advantage of."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,440",
+				"to": "00:14:45,080"
+			},
+			"offsets": {
+				"from": 876440,
+				"to": 885080
+			},
+			"text": " But as soon as we implemented this, the IPFS project took it, used their IPFS companion add-on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,720",
+				"to": "00:14:52,040"
+			},
+			"offsets": {
+				"from": 885720,
+				"to": 892040
+			},
+			"text": " and migrated it into this experimental APIs and actually got a full IPFS node running inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,040",
+				"to": "00:14:53,160"
+			},
+			"offsets": {
+				"from": 892040,
+				"to": 893160
+			},
+			"text": " Firefox."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,160",
+				"to": "00:15:00,680"
+			},
+			"offsets": {
+				"from": 893160,
+				"to": 900680
+			},
+			"text": " And one of the first things they did was start serving Turkish Wikipedia directly between two browsers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,680",
+				"to": "00:15:03,160"
+			},
+			"offsets": {
+				"from": 900680,
+				"to": 903160
+			},
+			"text": " which is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,160",
+				"to": "00:15:11,560"
+			},
+			"offsets": {
+				"from": 903160,
+				"to": 911560
+			},
+			"text": " And it means that we're onto something, that maybe these capabilities at the lowest level"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,560",
+				"to": "00:15:16,520"
+			},
+			"offsets": {
+				"from": 911560,
+				"to": 916520
+			},
+			"text": " will at least give us and all these projects and your projects room to play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,520",
+				"to": "00:15:21,400"
+			},
+			"offsets": {
+				"from": 916520,
+				"to": 921400
+			},
+			"text": " room to figure out what that next generation distributed web browser looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,400",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 921400,
+				"to": 926760
+			},
+			"text": " So where we're at now, we've prototyped a number of these APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:31,320"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 931320
+			},
+			"text": " We've proposed them to the web extension APIs team, sounds all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,320",
+				"to": "00:15:35,960"
+			},
+			"offsets": {
+				"from": 931320,
+				"to": 935960
+			},
+			"text": " But of course this is just one web browser, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,960",
+				"to": "00:15:40,920"
+			},
+			"offsets": {
+				"from": 935960,
+				"to": 940920
+			},
+			"text": " The web works for everyone because it works across multiple browsers."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,480",
+				"to": "00:15:45,080"
+			},
+			"offsets": {
+				"from": 941480,
+				"to": 945080
+			},
+			"text": " We need to build some momentum around what we want to do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,080",
+				"to": "00:15:49,960"
+			},
+			"offsets": {
+				"from": 945080,
+				"to": 949960
+			},
+			"text": " And we've seen that just doing even a little bit publicly is actually pretty powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,960",
+				"to": "00:15:56,280"
+			},
+			"offsets": {
+				"from": 949960,
+				"to": 956280
+			},
+			"text": " Earlier this year, we whitelisted a few different protocols, IPFS and that and a few other ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,280",
+				"to": "00:15:58,600"
+			},
+			"offsets": {
+				"from": 956280,
+				"to": 958600
+			},
+			"text": " And people were really excited about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,600",
+				"to": "00:16:00,200"
+			},
+			"offsets": {
+				"from": 958600,
+				"to": 960200
+			},
+			"text": " Got a really big response."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,200",
+				"to": "00:16:01,880"
+			},
+			"offsets": {
+				"from": 960200,
+				"to": 961880
+			},
+			"text": " You couldn't actually do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,880",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 961880,
+				"to": 963000
+			},
+			"text": " We just whitelisted the protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:05,320"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 965320
+			},
+			"text": " There was no way to actually handle it on the other end really."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,320",
+				"to": "00:16:13,160"
+			},
+			"offsets": {
+				"from": 965320,
+				"to": 973160
+			},
+			"text": " So it was more symbolic, but now several months later, Chrome also whitelisted those protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,160",
+				"to": "00:16:16,200"
+			},
+			"offsets": {
+				"from": 973160,
+				"to": 976200
+			},
+			"text": " So you start pushing at the edges."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,200",
+				"to": "00:16:22,440"
+			},
+			"offsets": {
+				"from": 976200,
+				"to": 982440
+			},
+			"text": " You start a little bit by little bit, looking at what features people need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,440",
+				"to": "00:16:25,720"
+			},
+			"offsets": {
+				"from": 982440,
+				"to": 985720
+			},
+			"text": " looking at where the right places to push are, and hopefully make a progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,720",
+				"to": "00:16:29,800"
+			},
+			"offsets": {
+				"from": 985720,
+				"to": 989800
+			},
+			"text": " And if any of you worked in web standards or any standardization process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,800",
+				"to": "00:16:33,240"
+			},
+			"offsets": {
+				"from": 989800,
+				"to": 993240
+			},
+			"text": " you'll already know that this is kind of how things work anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,240",
+				"to": "00:16:35,800"
+			},
+			"offsets": {
+				"from": 993240,
+				"to": 995800
+			},
+			"text": " There's not like a group of people get together, right down a spec,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,800",
+				"to": "00:16:37,800"
+			},
+			"offsets": {
+				"from": 995800,
+				"to": 997800
+			},
+			"text": " and then all the browser vendors go off and implement it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,800",
+				"to": "00:16:42,280"
+			},
+			"offsets": {
+				"from": 997800,
+				"to": 1002280
+			},
+			"text": " Most often, these things get proved out over time by domain experts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,280",
+				"to": "00:16:45,480"
+			},
+			"offsets": {
+				"from": 1002280,
+				"to": 1005480
+			},
+			"text": " giving their input and maybe some browsers experimenting in some ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,480",
+				"to": "00:16:52,440"
+			},
+			"offsets": {
+				"from": 1005480,
+				"to": 1012440
+			},
+			"text": " So this is really actually kind of looking typical for how browsers develop."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,440",
+				"to": "00:16:58,120"
+			},
+			"offsets": {
+				"from": 1012440,
+				"to": 1018120
+			},
+			"text": " The next steps, we're getting privacy and security review right now or in this process"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,120",
+				"to": "00:17:00,680"
+			},
+			"offsets": {
+				"from": 1018120,
+				"to": 1020680
+			},
+			"text": " for the protocol registration API, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,840",
+				"to": "00:17:07,720"
+			},
+			"offsets": {
+				"from": 1022840,
+				"to": 1027720
+			},
+			"text": " one of the trickier ones. Things like TSP sockets, pretty well understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,720",
+				"to": "00:17:11,960"
+			},
+			"offsets": {
+				"from": 1027720,
+				"to": 1031960
+			},
+			"text": " Not anywhere in web browsers generally, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,960",
+				"to": "00:17:15,160"
+			},
+			"offsets": {
+				"from": 1031960,
+				"to": 1035160
+			},
+			"text": " But we understand what they do and what the effect they're going to have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,160",
+				"to": "00:17:16,600"
+			},
+			"offsets": {
+				"from": 1035160,
+				"to": 1036600
+			},
+			"text": " especially in an extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,600",
+				"to": "00:17:23,320"
+			},
+			"offsets": {
+				"from": 1036600,
+				"to": 1043320
+			},
+			"text": " But when you register a custom protocol, all of the rest of the browser infrastructure gets pulled in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,320",
+				"to": "00:17:28,440"
+			},
+			"offsets": {
+				"from": 1043320,
+				"to": 1048440
+			},
+			"text": " and all of the browser security model, we make decisions around what permissions a web page"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,440",
+				"to": "00:17:35,320"
+			},
+			"offsets": {
+				"from": 1048440,
+				"to": 1055320
+			},
+			"text": " has to your data to different features based on the origin, the URL that we loaded,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,320",
+				"to": "00:17:37,240"
+			},
+			"offsets": {
+				"from": 1055320,
+				"to": 1057240
+			},
+			"text": " and the domain name that it came from."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,240",
+				"to": "00:17:41,960"
+			},
+			"offsets": {
+				"from": 1057240,
+				"to": 1061960
+			},
+			"text": " And the security context that it has based on the SSL certificates that it came with, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,960",
+				"to": "00:17:45,880"
+			},
+			"offsets": {
+				"from": 1061960,
+				"to": 1065880
+			},
+			"text": " That actually are encoded in those certificates is that domain name."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,880",
+				"to": "00:17:48,280"
+			},
+			"offsets": {
+				"from": 1065880,
+				"to": 1068280
+			},
+			"text": " So what does it look like? What is that security model?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,280",
+				"to": "00:17:51,960"
+			},
+			"offsets": {
+				"from": 1068280,
+				"to": 1071960
+			},
+			"text": " What is that origin when you load an IPFS hash?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,960",
+				"to": "00:17:54,280"
+			},
+			"offsets": {
+				"from": 1071960,
+				"to": 1074280
+			},
+			"text": " It's really different."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,920",
+				"to": "00:17:58,520"
+			},
+			"offsets": {
+				"from": 1074920,
+				"to": 1078520
+			},
+			"text": " So we're tackling this API first because we think it's going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,520",
+				"to": "00:18:04,760"
+			},
+			"offsets": {
+				"from": 1078520,
+				"to": 1084760
+			},
+			"text": " one of the more challenging APIs to really figure out what all the downstream effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,760",
+				"to": "00:18:07,240"
+			},
+			"offsets": {
+				"from": 1084760,
+				"to": 1087240
+			},
+			"text": " on the browser are going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,240",
+				"to": "00:18:11,240"
+			},
+			"offsets": {
+				"from": 1087240,
+				"to": 1091240
+			},
+			"text": " I've been the last couple of weeks. We've been threat modeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,240",
+				"to": "00:18:13,960"
+			},
+			"offsets": {
+				"from": 1091240,
+				"to": 1093960
+			},
+			"text": " If you're not familiar with threat modeling, and I know there are a couple of security workshops"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,960",
+				"to": "00:18:17,240"
+			},
+			"offsets": {
+				"from": 1093960,
+				"to": 1097240
+			},
+			"text": " here at the conference. Threat modeling is when, instead of saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,240",
+				"to": "00:18:20,440"
+			},
+			"offsets": {
+				"from": 1097240,
+				"to": 1100440
+			},
+			"text": " \"Okay, we know that it's a fantasy to say that any software will ever be secure.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,440",
+				"to": "00:18:22,040"
+			},
+			"offsets": {
+				"from": 1100440,
+				"to": 1102040
+			},
+			"text": " There's no such thing as blanket security."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,040",
+				"to": "00:18:24,600"
+			},
+			"offsets": {
+				"from": 1102040,
+				"to": 1104600
+			},
+			"text": " The important part is actually understanding what the threats are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,600",
+				"to": "00:18:27,160"
+			},
+			"offsets": {
+				"from": 1104600,
+				"to": 1107160
+			},
+			"text": " what are the attacks on your software,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,160",
+				"to": "00:18:29,560"
+			},
+			"offsets": {
+				"from": 1107160,
+				"to": 1109560
+			},
+			"text": " being able to identify and articulate those attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,560",
+				"to": "00:18:33,240"
+			},
+			"offsets": {
+				"from": 1109560,
+				"to": 1113240
+			},
+			"text": " and then design mitigations and protections for those attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,240",
+				"to": "00:18:36,600"
+			},
+			"offsets": {
+				"from": 1113240,
+				"to": 1116600
+			},
+			"text": " So we're going through and doing this process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,600",
+				"to": "00:18:39,320"
+			},
+			"offsets": {
+				"from": 1116600,
+				"to": 1119320
+			},
+			"text": " the threat modeling for each one of these APIs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,320",
+				"to": "00:18:40,360"
+			},
+			"offsets": {
+				"from": 1119320,
+				"to": 1120360
+			},
+			"text": " And it's very exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,360",
+				"to": "00:18:41,800"
+			},
+			"offsets": {
+				"from": 1120360,
+				"to": 1121800
+			},
+			"text": " I've been applying it to my personal life."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,800",
+				"to": "00:18:43,880"
+			},
+			"offsets": {
+				"from": 1121800,
+				"to": 1123880
+			},
+			"text": " Like, I have an early flight tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,880",
+				"to": "00:18:45,480"
+			},
+			"offsets": {
+				"from": 1123880,
+				"to": 1125480
+			},
+			"text": " Threat, I might miss it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,480",
+				"to": "00:18:48,120"
+			},
+			"offsets": {
+				"from": 1125480,
+				"to": 1128120
+			},
+			"text": " Mitigation, not drink so much beer tonight."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,120",
+				"to": "00:18:49,480"
+			},
+			"offsets": {
+				"from": 1128120,
+				"to": 1129480
+			},
+			"text": " Go to sleep early."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,480",
+				"to": "00:18:50,600"
+			},
+			"offsets": {
+				"from": 1129480,
+				"to": 1130600
+			},
+			"text": " I'm going to die of heart disease."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,600",
+				"to": "00:18:53,640"
+			},
+			"offsets": {
+				"from": 1130600,
+				"to": 1133640
+			},
+			"text": " Threat, don't eat all the cake."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,520",
+				"to": "00:18:54,920"
+			},
+			"offsets": {
+				"from": 1134520,
+				"to": 1134920
+			},
+			"text": " Again."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,920",
+				"to": "00:18:57,720"
+			},
+			"offsets": {
+				"from": 1134920,
+				"to": 1137720
+			},
+			"text": " So, it's a really useful process."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,720",
+				"to": "00:19:00,920"
+			},
+			"offsets": {
+				"from": 1137720,
+				"to": 1140920
+			},
+			"text": " I highly recommend you apply it to your software projects and your personal life."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,920",
+				"to": "00:19:05,080"
+			},
+			"offsets": {
+				"from": 1140920,
+				"to": 1145080
+			},
+			"text": " One of the other things we're doing is talking to a lot of these projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,080",
+				"to": "00:19:10,360"
+			},
+			"offsets": {
+				"from": 1145080,
+				"to": 1150360
+			},
+			"text": " What are these projects who are building distributed and decentralized web browsers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,360",
+				"to": "00:19:12,200"
+			},
+			"offsets": {
+				"from": 1150360,
+				"to": 1152200
+			},
+			"text": " or browser-like things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,200",
+				"to": "00:19:12,840"
+			},
+			"offsets": {
+				"from": 1152200,
+				"to": 1152840
+			},
+			"text": " What do they need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,840",
+				"to": "00:19:16,840"
+			},
+			"offsets": {
+				"from": 1152840,
+				"to": 1156840
+			},
+			"text": " One of the ways to do this is a W3C community group."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,840",
+				"to": "00:19:22,200"
+			},
+			"offsets": {
+				"from": 1156840,
+				"to": 1162200
+			},
+			"text": " The community groups at the W3C is an interesting construct,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,200",
+				"to": "00:19:25,800"
+			},
+			"offsets": {
+				"from": 1162200,
+				"to": 1165800
+			},
+			"text": " because you don't need to be a member of the W3C to join."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,800",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1165800,
+				"to": 1171000
+			},
+			"text": " Anyone can join, and anyone can participate in the discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:36,440"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1176440
+			},
+			"text": " So it creates a place where vendors, software developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,440",
+				"to": "00:19:40,600"
+			},
+			"offsets": {
+				"from": 1176440,
+				"to": 1180600
+			},
+			"text": " interested parties, domain experts can share their projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,600",
+				"to": "00:19:45,160"
+			},
+			"offsets": {
+				"from": 1180600,
+				"to": 1185160
+			},
+			"text": " share their experiments, but without any explicit commitments to implement anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,160",
+				"to": "00:19:50,120"
+			},
+			"offsets": {
+				"from": 1185160,
+				"to": 1190120
+			},
+			"text": " And this is, I think, the right level of abstraction for the communication aspects of what we're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,960",
+				"to": "00:19:54,840"
+			},
+			"offsets": {
+				"from": 1191960,
+				"to": 1194840
+			},
+			"text": " This is the Are We Distributed Yet project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,840",
+				"to": "00:19:57,960"
+			},
+			"offsets": {
+				"from": 1194840,
+				"to": 1197960
+			},
+			"text": " which was, I think, initially started by IPFS folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,960",
+				"to": "00:20:01,960"
+			},
+			"offsets": {
+				"from": 1197960,
+				"to": 1201960
+			},
+			"text": " And as you can see, issue number 27 is where we're having this conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,960",
+				"to": "00:20:07,880"
+			},
+			"offsets": {
+				"from": 1201960,
+				"to": 1207880
+			},
+			"text": " So if you're interested in participating in proving out and forging what a distributed web"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,880",
+				"to": "00:20:12,120"
+			},
+			"offsets": {
+				"from": 1207880,
+				"to": 1212120
+			},
+			"text": " browser might look like, this is the place, please come and join and hang out."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,120",
+				"to": "00:20:19,400"
+			},
+			"offsets": {
+				"from": 1212120,
+				"to": 1219400
+			},
+			"text": " So this weekend, coming weekend, I'll be in Berlin for Indie Web Camp."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,360",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1220360,
+				"to": 1225000
+			},
+			"text": " The Indie Web community is fascinating, awesome group of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:27,560"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1227560
+			},
+			"text": " They're actually one of the people that say, if you're talking about protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,560",
+				"to": "00:20:30,120"
+			},
+			"offsets": {
+				"from": 1227560,
+				"to": 1230120
+			},
+			"text": " it must mean you are ignoring real human problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,120",
+				"to": "00:20:32,120"
+			},
+			"offsets": {
+				"from": 1230120,
+				"to": 1232120
+			},
+			"text": " So we always have interesting conversations when we get together."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,120",
+				"to": "00:20:39,880"
+			},
+			"offsets": {
+				"from": 1232120,
+				"to": 1239880
+			},
+			"text": " But they are a set of principles for building software, I think, is pretty fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,880",
+				"to": "00:20:44,520"
+			},
+			"offsets": {
+				"from": 1239880,
+				"to": 1244520
+			},
+			"text": " There are some parts of it that I think are really useful when looking at the things we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,520",
+				"to": "00:20:46,760"
+			},
+			"offsets": {
+				"from": 1244520,
+				"to": 1246760
+			},
+			"text": " building and looking at them, honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,760",
+				"to": "00:20:50,600"
+			},
+			"offsets": {
+				"from": 1246760,
+				"to": 1250600
+			},
+			"text": " One of the most important, I think, is use what you make."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,600",
+				"to": "00:20:55,960"
+			},
+			"offsets": {
+				"from": 1250600,
+				"to": 1255960
+			},
+			"text": " If you're not using your software, why would anyone else want to use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,960",
+				"to": "00:20:59,880"
+			},
+			"offsets": {
+				"from": 1255960,
+				"to": 1259880
+			},
+			"text": " And that is often, especially for the kind of things that we're building,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,880",
+				"to": "00:21:05,480"
+			},
+			"offsets": {
+				"from": 1259880,
+				"to": 1265480
+			},
+			"text": " really good lens to evaluate how effective the software is that you're building."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,480",
+				"to": "00:21:12,360"
+			},
+			"offsets": {
+				"from": 1265480,
+				"to": 1272360
+			},
+			"text": " Build for the long web, like we were talking about, how do you build at 100-year scale?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,360",
+				"to": "00:21:19,960"
+			},
+			"offsets": {
+				"from": 1272360,
+				"to": 1279960
+			},
+			"text": " How do you design systems that are robust? The web was designed with legacy built in."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,960",
+				"to": "00:21:23,960"
+			},
+			"offsets": {
+				"from": 1279960,
+				"to": 1283960
+			},
+			"text": " And I feel like that's been a pretty effective way of future proofing it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,960",
+				"to": "00:21:30,280"
+			},
+			"offsets": {
+				"from": 1283960,
+				"to": 1290280
+			},
+			"text": " because everybody wants access to this 5 billion, 4.5 billion web pages."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,280",
+				"to": "00:21:35,800"
+			},
+			"offsets": {
+				"from": 1290280,
+				"to": 1295800
+			},
+			"text": " What are the characteristics of systems that can last that long?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,800",
+				"to": "00:21:41,960"
+			},
+			"offsets": {
+				"from": 1295800,
+				"to": 1301960
+			},
+			"text": " The idea of plurality as well, that are there multiple implementations of your software?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,920",
+				"to": "00:21:48,600"
+			},
+			"offsets": {
+				"from": 1302920,
+				"to": 1308600
+			},
+			"text": " Even if you don't agree or they're competitors, the fact that multiple people can implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,600",
+				"to": "00:21:54,680"
+			},
+			"offsets": {
+				"from": 1308600,
+				"to": 1314680
+			},
+			"text": " an interoperable version of the software is a testament to its strengths."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,680",
+				"to": "00:22:00,520"
+			},
+			"offsets": {
+				"from": 1314680,
+				"to": 1320520
+			},
+			"text": " And also, it's a great way to identify maybe the things that you've been in a bubble designing"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,520",
+				"to": "00:22:06,600"
+			},
+			"offsets": {
+				"from": 1320520,
+				"to": 1326600
+			},
+			"text": " and might not be right. So, a good way of identifying flaws, other problems that you might not see"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,600",
+				"to": "00:22:14,440"
+			},
+			"offsets": {
+				"from": 1326600,
+				"to": 1334440
+			},
+			"text": " in a single implementation. Some of these lessons I think are really important in getting the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,440",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1334440,
+				"to": 1345000
+			},
+			"text": " distributed web to the place where we have billions of applications. The missing slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:36,040"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1356040
+			},
+			"text": " So, this is exciting. There are real users using DAPs today for real things. This, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,040",
+				"to": "00:22:42,680"
+			},
+			"offsets": {
+				"from": 1356040,
+				"to": 1362680
+			},
+			"text": " is probably the most important signal of whether or not what you're building is actually working."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,680",
+				"to": "00:22:49,160"
+			},
+			"offsets": {
+				"from": 1362680,
+				"to": 1369160
+			},
+			"text": " If real people are actually using it to solve human problems. Maybe those human problems are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,160",
+				"to": "00:22:53,480"
+			},
+			"offsets": {
+				"from": 1369160,
+				"to": 1373480
+			},
+			"text": " managing and feeding digital animals. That's fine. But if they're doing it all the time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,480",
+				"to": "00:22:57,240"
+			},
+			"offsets": {
+				"from": 1373480,
+				"to": 1377240
+			},
+			"text": " that's part of the course of our human life and activity. It means you're meeting a need."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,880",
+				"to": "00:23:07,960"
+			},
+			"offsets": {
+				"from": 1377880,
+				"to": 1387960
+			},
+			"text": " And getting that world to the same billions, to at least 25 years, I think that focus on"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,960",
+				"to": "00:23:14,760"
+			},
+			"offsets": {
+				"from": 1387960,
+				"to": 1394760
+			},
+			"text": " human activity, human needs and problems is really important. And I think that focus is what's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,760",
+				"to": "00:23:22,760"
+			},
+			"offsets": {
+				"from": 1394760,
+				"to": 1402760
+			},
+			"text": " to get us back to an internet that is hospitable again. An internet that does meet human needs is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,760",
+				"to": "00:23:29,720"
+			},
+			"offsets": {
+				"from": 1402760,
+				"to": 1409720
+			},
+			"text": " a place where we can have civil discourse, where we can have trust again. Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,720",
+				"to": "00:23:39,560"
+			},
+			"offsets": {
+				"from": 1409720,
+				"to": 1419560
+			},
+			"text": " Happy to answer any questions if you have time. Looks like we have some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,560",
+				"to": "00:23:47,880"
+			},
+			"offsets": {
+				"from": 1419560,
+				"to": 1427880
+			},
+			"text": " All right. Thank you very much. Oh, sorry we got one."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,880",
+				"to": "00:23:56,760"
+			},
+			"offsets": {
+				"from": 1431880,
+				"to": 1436760
+			},
+			"text": " What would you say are important metrics to measure DAP activity by? Because I know there's quite a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,760",
+				"to": "00:24:02,840"
+			},
+			"offsets": {
+				"from": 1436760,
+				"to": 1442840
+			},
+			"text": " bit of DAPs that claim they have users, but it's just like bots basically. Crypto shrimp was a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,840",
+				"to": "00:24:07,240"
+			},
+			"offsets": {
+				"from": 1442840,
+				"to": 1447240
+			},
+			"text": " really good example of that where they had a lot of users, but it was just a small amount of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,240",
+				"to": "00:24:13,560"
+			},
+			"offsets": {
+				"from": 1447240,
+				"to": 1453560
+			},
+			"text": " basically writing bots. Yeah, so I can't answer that question, but that seems like this community"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,560",
+				"to": "00:24:18,440"
+			},
+			"offsets": {
+				"from": 1453560,
+				"to": 1458440
+			},
+			"text": " of people should be able to answer that question, right? I think that's going to be critical to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,440",
+				"to": "00:24:27,240"
+			},
+			"offsets": {
+				"from": 1458440,
+				"to": 1467240
+			},
+			"text": " having trust in things like DAP marketplaces. Trust in systems especially if you're investing"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,240",
+				"to": "00:24:33,880"
+			},
+			"offsets": {
+				"from": 1467240,
+				"to": 1473880
+			},
+			"text": " real money, things that have value to you, whether that's currency or not, into those systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,880",
+				"to": "00:24:39,800"
+			},
+			"offsets": {
+				"from": 1473880,
+				"to": 1479800
+			},
+			"text": " Having at least an agreed upon standard for how to do metrics for distributed applications is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,800",
+				"to": "00:24:47,720"
+			},
+			"offsets": {
+				"from": 1479800,
+				"to": 1487720
+			},
+			"text": " good. Things like IPFS or an even DAP protocol are pretty wide open. You could see who's asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,720",
+				"to": "00:24:53,800"
+			},
+			"offsets": {
+				"from": 1487720,
+				"to": 1493800
+			},
+			"text": " for what, for good or ill. It's really strong in some ways and also can be a real problem in some"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,800",
+				"to": "00:24:59,560"
+			},
+			"offsets": {
+				"from": 1493800,
+				"to": 1499560
+			},
+			"text": " other areas. But building it into your protocol some way of being accountable in a meaningful way"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,560",
+				"to": "00:25:04,440"
+			},
+			"offsets": {
+				"from": 1499560,
+				"to": 1504440
+			},
+			"text": " is probably going to be important. But how that works, like you said, it's really challenging."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,440",
+				"to": "00:25:11,720"
+			},
+			"offsets": {
+				"from": 1504440,
+				"to": 1511720
+			},
+			"text": " It's really different than doing metrics on the centralized web. Maybe you could argue that"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,840",
+				"to": "00:25:20,520"
+			},
+			"offsets": {
+				"from": 1512840,
+				"to": 1520520
+			},
+			"text": " actually having not trustable numbers reduces the threat surface because right now metrics on"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,520",
+				"to": "00:25:25,320"
+			},
+			"offsets": {
+				"from": 1520520,
+				"to": 1525320
+			},
+			"text": " the centralized web are kind of how we ended up in the surveillance capitalism place to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,320",
+				"to": "00:25:28,920"
+			},
+			"offsets": {
+				"from": 1525320,
+				"to": 1528920
+			},
+			"text": " Any more questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,920",
+				"to": "00:25:39,160"
+			},
+			"offsets": {
+				"from": 1528920,
+				"to": 1539160
+			},
+			"text": " Thank you. Hi, my question is how much of what you're doing now of what you describe with IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,160",
+				"to": "00:25:44,280"
+			},
+			"offsets": {
+				"from": 1539160,
+				"to": 1544280
+			},
+			"text": " and things related to the distributed web. You are doing in collaboration with other browser"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,280",
+				"to": "00:25:50,440"
+			},
+			"offsets": {
+				"from": 1544280,
+				"to": 1550440
+			},
+			"text": " companies. Right now, this is just us working with a few of the different projects that I listed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,440",
+				"to": "00:25:59,640"
+			},
+			"offsets": {
+				"from": 1550440,
+				"to": 1559640
+			},
+			"text": " mostly in, entirely in Open Repos, pound D web on irc.mozilla.org is where a bunch of people from"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,640",
+				"to": "00:26:04,360"
+			},
+			"offsets": {
+				"from": 1559640,
+				"to": 1564360
+			},
+			"text": " different projects are hanging out. I don't know if other browser vendors are working directly on"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:04,360",
+				"to": "00:26:10,280"
+			},
+			"offsets": {
+				"from": 1564360,
+				"to": 1570280
+			},
+			"text": " these types of APIs or not. I know that the Chrome did whitelist those a couple of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,280",
+				"to": "00:26:15,800"
+			},
+			"offsets": {
+				"from": 1570280,
+				"to": 1575800
+			},
+			"text": " I don't know. I'm not clear on what that actually means in the context of what they did if it"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,800",
+				"to": "00:26:20,600"
+			},
+			"offsets": {
+				"from": 1575800,
+				"to": 1580600
+			},
+			"text": " does unlock any other capabilities in their extension environment or not. I think my"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,600",
+				"to": "00:26:25,000"
+			},
+			"offsets": {
+				"from": 1580600,
+				"to": 1585000
+			},
+			"text": " understanding was that it just did what ours did initially to admit that you could load a webpage"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,000",
+				"to": "00:26:31,640"
+			},
+			"offsets": {
+				"from": 1585000,
+				"to": 1591640
+			},
+			"text": " that was hosted from within the extension itself and not actually outside. I'm not totally sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,280",
+				"to": "00:26:41,160"
+			},
+			"offsets": {
+				"from": 1592280,
+				"to": 1601160
+			},
+			"text": " Yeah. Thank you very much for from for Mozilla to take a lead in having the browser support."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,160",
+				"to": "00:26:46,520"
+			},
+			"offsets": {
+				"from": 1601160,
+				"to": 1606520
+			},
+			"text": " Some of these decentralized web we were depending on it. What do you need from us to try to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,520",
+				"to": "00:26:56,120"
+			},
+			"offsets": {
+				"from": 1606520,
+				"to": 1616120
+			},
+			"text": " more support internally from Mozilla? We need you guys to succeed at this. I think that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:56,120",
+				"to": "00:27:02,120"
+			},
+			"offsets": {
+				"from": 1616120,
+				"to": 1622120
+			},
+			"text": " success story that I showed where IPFS, somebody from IPFS just in a couple of days took these"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,120",
+				"to": "00:27:08,440"
+			},
+			"offsets": {
+				"from": 1622120,
+				"to": 1628440
+			},
+			"text": " experimental APIs and showed really immediately and directly how they were able to apply that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,440",
+				"to": "00:27:14,360"
+			},
+			"offsets": {
+				"from": 1628440,
+				"to": 1634360
+			},
+			"text": " capability to a real human problem of censorship of Wikipedia and Turkey. I think those stories"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,360",
+				"to": "00:27:19,160"
+			},
+			"offsets": {
+				"from": 1634360,
+				"to": 1639160
+			},
+			"text": " are really important. So seeing more of those successes. I think the second thing is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,160",
+				"to": "00:27:26,360"
+			},
+			"offsets": {
+				"from": 1639160,
+				"to": 1646360
+			},
+			"text": " helping us figure out what these applications need. Initially we were like, okay, we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,360",
+				"to": "00:27:31,480"
+			},
+			"offsets": {
+				"from": 1646360,
+				"to": 1651480
+			},
+			"text": " some network architecture changes. We need some more network capabilities. But really quickly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,480",
+				"to": "00:27:35,480"
+			},
+			"offsets": {
+				"from": 1651480,
+				"to": 1655480
+			},
+			"text": " it turns out that things like key management are still are a huge problem. And I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,480",
+				"to": "00:27:43,720"
+			},
+			"offsets": {
+				"from": 1655480,
+				"to": 1663720
+			},
+			"text": " that problem in particular will show up strongly in the mass adoption and adoption at scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,280",
+				"to": "00:27:50,440"
+			},
+			"offsets": {
+				"from": 1664280,
+				"to": 1670440
+			},
+			"text": " of the type of applications that are here at DevCon. So input and help in figuring out those"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,440",
+				"to": "00:27:56,120"
+			},
+			"offsets": {
+				"from": 1670440,
+				"to": 1676120
+			},
+			"text": " problems, best practices and how maybe key management has a place and where in architecture of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,120",
+				"to": "00:28:04,280"
+			},
+			"offsets": {
+				"from": 1676120,
+				"to": 1684280
+			},
+			"text": " web would also be helpful. Yeah, build stuff, share your stories. Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,880",
+				"to": "00:28:16,200"
+			},
+			"offsets": {
+				"from": 1687880,
+				"to": 1696200
+			},
+			"text": " It's bright. All right, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,200",
+				"to": "00:28:18,200"
+			},
+			"offsets": {
+				"from": 1696200,
+				"to": 1698200
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,200",
+				"to": "00:28:18,200"
+			},
+			"offsets": {
+				"from": 1698200,
+				"to": 1698200
+			},
+			"text": " ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,200",
+				"to": "00:28:20,200"
+			},
+			"offsets": {
+				"from": 1698200,
+				"to": 1700200
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,200",
+				"to": "00:28:40,200"
+			},
+			"offsets": {
+				"from": 1700200,
+				"to": 1720200
+			},
+			"text": " ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,200",
+				"to": "00:28:42,200"
+			},
+			"offsets": {
+				"from": 1720200,
+				"to": 1722200
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,200",
+				"to": "00:28:46,200"
+			},
+			"offsets": {
+				"from": 1722200,
+				"to": 1726200
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

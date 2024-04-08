@@ -1,0 +1,3288 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:25,200"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 25200
+			},
+			"text": " >> Okay, my name is Sergio DeMian Lerner, and I'm a Ethereum fan and a theme -- part"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,200",
+				"to": "00:00:27,440"
+			},
+			"offsets": {
+				"from": 25200,
+				"to": 27440
+			},
+			"text": " of the Ethereum community since its beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,440",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 27440,
+				"to": 34400
+			},
+			"text": " And when I did the first security audit of Ethereum code and design, and currently I worked"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:40,800"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 40800
+			},
+			"text": " for a company called AirScale Labs, which is developing an Ethereum compatible side chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,800",
+				"to": "00:00:42,600"
+			},
+			"offsets": {
+				"from": 40800,
+				"to": 42600
+			},
+			"text": " to Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,600",
+				"to": "00:00:48,880"
+			},
+			"offsets": {
+				"from": 42600,
+				"to": 48880
+			},
+			"text": " But today's talk is about a research I did a couple of years ago that applies both to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,880",
+				"to": "00:00:53,720"
+			},
+			"offsets": {
+				"from": 48880,
+				"to": 53720
+			},
+			"text": " Ethereum and to AirScale and to any other blockchain platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,720",
+				"to": "00:00:57,560"
+			},
+			"offsets": {
+				"from": 53720,
+				"to": 57560
+			},
+			"text": " So the talk's name is the blockchain buyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,560",
+				"to": "00:01:00,240"
+			},
+			"offsets": {
+				"from": 57560,
+				"to": 60240
+			},
+			"text": " Can a blockchain pay to replicate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,240",
+				"to": "00:01:08,680"
+			},
+			"offsets": {
+				"from": 60240,
+				"to": 68680
+			},
+			"text": " Can a blockchain itself pay for all the resources it needs to survive, like an organism?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,680",
+				"to": "00:01:11,880"
+			},
+			"offsets": {
+				"from": 68680,
+				"to": 71880
+			},
+			"text": " Or it could cut Bitcoin call how to reward full notes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,880",
+				"to": "00:01:18,200"
+			},
+			"offsets": {
+				"from": 71880,
+				"to": 78200
+			},
+			"text": " Or it could cut Bitcoin call how to create a reward-based peer-to-peer file sharing system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,200",
+				"to": "00:01:24,600"
+			},
+			"offsets": {
+				"from": 78200,
+				"to": 84600
+			},
+			"text": " control entirely by smart contracts, by no additional blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,600",
+				"to": "00:01:29,120"
+			},
+			"offsets": {
+				"from": 84600,
+				"to": 89120
+			},
+			"text": " So first of all, I'm going to talk a little bit about decentralization, because we wouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,120",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 89120,
+				"to": 94000
+			},
+			"text": " be here if not because we appreciate decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:39,160"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 99160
+			},
+			"text": " And any attempt to build a cryptocurrency or smart contract platform in the past that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,160",
+				"to": "00:01:42,080"
+			},
+			"offsets": {
+				"from": 99160,
+				"to": 102080
+			},
+			"text": " was centralized just failed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,080",
+				"to": "00:01:49,360"
+			},
+			"offsets": {
+				"from": 102080,
+				"to": 109360
+			},
+			"text": " So this is what we must stand, this is what we must try to keep."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,360",
+				"to": "00:01:51,720"
+			},
+			"offsets": {
+				"from": 109360,
+				"to": 111720
+			},
+			"text": " So why is decentralization so important?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,720",
+				"to": "00:01:55,120"
+			},
+			"offsets": {
+				"from": 111720,
+				"to": 115120
+			},
+			"text": " Well, it brings back the power to the people."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,120",
+				"to": "00:02:01,320"
+			},
+			"offsets": {
+				"from": 115120,
+				"to": 121320
+			},
+			"text": " So it means a lot of things like people being able to audit their payments, this intermediation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,320",
+				"to": "00:02:08,760"
+			},
+			"offsets": {
+				"from": 121320,
+				"to": 128760
+			},
+			"text": " having open access, no central control, no monopolies, no central point of failure, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,760",
+				"to": "00:02:12,560"
+			},
+			"offsets": {
+				"from": 128760,
+				"to": 132560
+			},
+			"text": " of course censorship resistance and corruption resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,560",
+				"to": "00:02:16,840"
+			},
+			"offsets": {
+				"from": 132560,
+				"to": 136840
+			},
+			"text": " These are very, very important properties of our networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,840",
+				"to": "00:02:19,280"
+			},
+			"offsets": {
+				"from": 136840,
+				"to": 139280
+			},
+			"text": " So how do we promote decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,280",
+				"to": "00:02:26,040"
+			},
+			"offsets": {
+				"from": 139280,
+				"to": 146040
+			},
+			"text": " Well, first we have to identify, measure it, and then we can see how can we improve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,040",
+				"to": "00:02:33,800"
+			},
+			"offsets": {
+				"from": 146040,
+				"to": 153800
+			},
+			"text": " So one of the ways is increasing the number of independent implementation developers full"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,800",
+				"to": "00:02:40,440"
+			},
+			"offsets": {
+				"from": 153800,
+				"to": 160440
+			},
+			"text": " nodes, and another way is by reducing the cost of running a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,440",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 160440,
+				"to": 165000
+			},
+			"text": " Because as the network scales, the cost of running a full node increases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:54,360"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 174360
+			},
+			"text": " So if I have to depend on a third party to know about my transactions, then the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,360",
+				"to": "00:02:56,400"
+			},
+			"offsets": {
+				"from": 174360,
+				"to": 176400
+			},
+			"text": " is going to be centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,400",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 176400,
+				"to": 181040
+			},
+			"text": " And last, the actual full node topology is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:05,600"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 185600
+			},
+			"text": " If I take a node out and then the networks disrupt or disconnect, then of course this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,600",
+				"to": "00:03:08,880"
+			},
+			"offsets": {
+				"from": 185600,
+				"to": 188880
+			},
+			"text": " is not a good decentralized network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,880",
+				"to": "00:03:13,560"
+			},
+			"offsets": {
+				"from": 188880,
+				"to": 193560
+			},
+			"text": " But we can see that in all kind of ways that we can improve decentralization, it's very,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,560",
+				"to": "00:03:15,160"
+			},
+			"offsets": {
+				"from": 193560,
+				"to": 195160
+			},
+			"text": " very important to have full nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,160",
+				"to": "00:03:19,880"
+			},
+			"offsets": {
+				"from": 195160,
+				"to": 199880
+			},
+			"text": " We cannot live without full nodes and have decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 201600
+			},
+			"text": " So what is a full node anyway?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:24,960"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 204960
+			},
+			"text": " Okay, a full node does a lot of services to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,960",
+				"to": "00:03:27,880"
+			},
+			"offsets": {
+				"from": 204960,
+				"to": 207880
+			},
+			"text": " It broadcasts blocks, transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,880",
+				"to": "00:03:33,800"
+			},
+			"offsets": {
+				"from": 207880,
+				"to": 213800
+			},
+			"text": " It also hides the nodes' IPs, so we don't give an attacker the possibility to gather"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,800",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 213800,
+				"to": 220080
+			},
+			"text": " all information about the network and do partition attacks or denial of service attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:45,400"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 225400
+			},
+			"text": " Also a node provides filtering services for light clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,400",
+				"to": "00:03:50,960"
+			},
+			"offsets": {
+				"from": 225400,
+				"to": 230960
+			},
+			"text": " And of course, the most important function, it has a copy of the state and the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,960",
+				"to": "00:03:57,320"
+			},
+			"offsets": {
+				"from": 230960,
+				"to": 237320
+			},
+			"text": " to serve two new nodes that want to bootstrap and sync with the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,320",
+				"to": "00:04:00,760"
+			},
+			"offsets": {
+				"from": 237320,
+				"to": 240760
+			},
+			"text": " But what are the incentives to run a full node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,760",
+				"to": "00:04:03,640"
+			},
+			"offsets": {
+				"from": 240760,
+				"to": 243640
+			},
+			"text": " Currently, there are none."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,640",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 243640,
+				"to": 248480
+			},
+			"text": " So currently it's quite cheap, so we do it, but in the future we don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:16,960"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 256960
+			},
+			"text": " So anything we can do to reward full nodes will foster decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,960",
+				"to": "00:04:18,440"
+			},
+			"offsets": {
+				"from": 256960,
+				"to": 258440
+			},
+			"text": " So how can we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,440",
+				"to": "00:04:22,040"
+			},
+			"offsets": {
+				"from": 258440,
+				"to": 262040
+			},
+			"text": " Well, there are very simple ways, but most of them do not work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,040",
+				"to": "00:04:28,040"
+			},
+			"offsets": {
+				"from": 262040,
+				"to": 268040
+			},
+			"text": " For instance, we can create peer-to-peer payer services, like creating a micro-channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,040",
+				"to": "00:04:35,040"
+			},
+			"offsets": {
+				"from": 268040,
+				"to": 275040
+			},
+			"text": " from one node to a peer, then I can easily or a probabilistic payment, which also works."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,040",
+				"to": "00:04:39,600"
+			},
+			"offsets": {
+				"from": 275040,
+				"to": 279600
+			},
+			"text": " And then I can just ask for a block, and then you give it a block and make use very small"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,600",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 279600,
+				"to": 280600
+			},
+			"text": " micro-payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:44,720"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 284720
+			},
+			"text": " Well, the problem with this setup is of course that we can have proxy nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,720",
+				"to": "00:04:51,560"
+			},
+			"offsets": {
+				"from": 284720,
+				"to": 291560
+			},
+			"text": " And proxy nodes can charge a little more and just forward the request to another node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,560",
+				"to": "00:04:56,200"
+			},
+			"offsets": {
+				"from": 291560,
+				"to": 296200
+			},
+			"text": " And so they just are there to, you know, they don't know, contribute to decentralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,200",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 296200,
+				"to": 301160
+			},
+			"text": " it just makes the network be more expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:06,920"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 306920
+			},
+			"text": " Some other cryptocurrencies, some other networks rely on something called \"master node\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,920",
+				"to": "00:05:13,440"
+			},
+			"offsets": {
+				"from": 306920,
+				"to": 313440
+			},
+			"text": " Of course, this master node, regularly ping nodes so they can vote, so which nodes have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,440",
+				"to": "00:05:14,960"
+			},
+			"offsets": {
+				"from": 313440,
+				"to": 314960
+			},
+			"text": " to be rewarded."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,960",
+				"to": "00:05:20,520"
+			},
+			"offsets": {
+				"from": 314960,
+				"to": 320520
+			},
+			"text": " This of course has a lot of problems with centralization, these nodes are centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,520",
+				"to": "00:05:25,240"
+			},
+			"offsets": {
+				"from": 320520,
+				"to": 325240
+			},
+			"text": " and also these nodes gather a lot of information about the IPs of the nodes, which is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,240",
+				"to": "00:05:27,800"
+			},
+			"offsets": {
+				"from": 325240,
+				"to": 327800
+			},
+			"text": " we want to avoid."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,800",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 327800,
+				"to": 332000
+			},
+			"text": " So I will present a third way of doing this, and the interesting thing is that this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:38,520"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 338520
+			},
+			"text": " a communication between smart contracts and full nodes without any other user or external"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,520",
+				"to": "00:05:40,080"
+			},
+			"offsets": {
+				"from": 338520,
+				"to": 340080
+			},
+			"text": " system intervention."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,080",
+				"to": "00:05:44,560"
+			},
+			"offsets": {
+				"from": 340080,
+				"to": 344560
+			},
+			"text": " So basically, there is a smart contract that will say something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,560",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 344560,
+				"to": 349400
+			},
+			"text": " Give me a proof of work that proves with high probability that you store in your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:53,240"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 353240
+			},
+			"text": " hundred-hearted hard disk a copy of the blockchain, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,240",
+				"to": "00:05:59,040"
+			},
+			"offsets": {
+				"from": 353240,
+				"to": 359040
+			},
+			"text": " Or that you are so irrational that you are willing to buy a lot of hardware just to fake"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,040",
+				"to": "00:06:04,120"
+			},
+			"offsets": {
+				"from": 359040,
+				"to": 364120
+			},
+			"text": " this proof, but you will spend more money than just buying the hard disk to store the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,120",
+				"to": "00:06:05,440"
+			},
+			"offsets": {
+				"from": 364120,
+				"to": 365440
+			},
+			"text": " file, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,440",
+				"to": "00:06:10,560"
+			},
+			"offsets": {
+				"from": 365440,
+				"to": 370560
+			},
+			"text": " And I will tell you if nobody else finds that you have cheat."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,560",
+				"to": "00:06:16,480"
+			},
+			"offsets": {
+				"from": 370560,
+				"to": 376480
+			},
+			"text": " So if the full node A submits a proof in transaction data, then another full node can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,480",
+				"to": "00:06:22,200"
+			},
+			"offsets": {
+				"from": 376480,
+				"to": 382200
+			},
+			"text": " come and say, \"No, this proof is fake,\" and the smart contract can evaluate this proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,200",
+				"to": "00:06:28,880"
+			},
+			"offsets": {
+				"from": 382200,
+				"to": 388880
+			},
+			"text": " This proof must be able to be evaluated with very low amount of gas and can keep a credit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,880",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 388880,
+				"to": 395480
+			},
+			"text": " deposit, a credit deposit, and reward B for providing that useful information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:42,920"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 402920
+			},
+			"text": " So to summarize, we want a node to be able to prove to all remaining nodes in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,920",
+				"to": "00:06:44,760"
+			},
+			"offsets": {
+				"from": 402920,
+				"to": 404760
+			},
+			"text": " that is storing the blockchain, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,760",
+				"to": "00:06:46,960"
+			},
+			"offsets": {
+				"from": 404760,
+				"to": 406960
+			},
+			"text": " So the benefits are obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,960",
+				"to": "00:06:49,160"
+			},
+			"offsets": {
+				"from": 406960,
+				"to": 409160
+			},
+			"text": " We can detect proxy nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,160",
+				"to": "00:06:51,880"
+			},
+			"offsets": {
+				"from": 409160,
+				"to": 411880
+			},
+			"text": " We won't pay proxy nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,880",
+				"to": "00:06:55,960"
+			},
+			"offsets": {
+				"from": 411880,
+				"to": 415960
+			},
+			"text": " And we don't require any special change to the network for the nodes that don't want"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,960",
+				"to": "00:06:57,680"
+			},
+			"offsets": {
+				"from": 415960,
+				"to": 417680
+			},
+			"text": " to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,680",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 417680,
+				"to": 423080
+			},
+			"text": " And maybe the drawback is that we are not actually proving we are serving the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:05,120"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 425120
+			},
+			"text": " We are proving we have a copy of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,120",
+				"to": "00:07:09,760"
+			},
+			"offsets": {
+				"from": 425120,
+				"to": 429760
+			},
+			"text": " But since we have a copy of the blockchain, we are in sync with the network, almost sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,760",
+				"to": "00:07:10,760"
+			},
+			"offsets": {
+				"from": 429760,
+				"to": 430760
+			},
+			"text": " we are serving it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,760",
+				"to": "00:07:14,320"
+			},
+			"offsets": {
+				"from": 430760,
+				"to": 434320
+			},
+			"text": " And the cost of serving it will be small."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,320",
+				"to": "00:07:20,720"
+			},
+			"offsets": {
+				"from": 434320,
+				"to": 440720
+			},
+			"text": " So to manage to do it, we need some cryptographic protocols, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,720",
+				"to": "00:07:25,480"
+			},
+			"offsets": {
+				"from": 440720,
+				"to": 445480
+			},
+			"text": " So these are the previous attempts to do these kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,480",
+				"to": "00:07:30,840"
+			},
+			"offsets": {
+				"from": 445480,
+				"to": 450840
+			},
+			"text": " So we have provable data possession, which allows you a verifier to send some data to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,840",
+				"to": "00:07:34,960"
+			},
+			"offsets": {
+				"from": 450840,
+				"to": 454960
+			},
+			"text": " a server and then challenge the server to see if this data is still there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,960",
+				"to": "00:07:41,520"
+			},
+			"offsets": {
+				"from": 454960,
+				"to": 461520
+			},
+			"text": " Also, we have provable verability, where the same verifier can also have certain assurance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,520",
+				"to": "00:07:45,160"
+			},
+			"offsets": {
+				"from": 461520,
+				"to": 465160
+			},
+			"text": " that it will be able to recover this information in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,160",
+				"to": "00:07:48,600"
+			},
+			"offsets": {
+				"from": 465160,
+				"to": 468600
+			},
+			"text": " These two are called proof of storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,600",
+				"to": "00:07:52,840"
+			},
+			"offsets": {
+				"from": 468600,
+				"to": 472840
+			},
+			"text": " So I will present a protocol, very simple protocol, which is a called proof of unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,840",
+				"to": "00:07:58,800"
+			},
+			"offsets": {
+				"from": 472840,
+				"to": 478800
+			},
+			"text": " blockchain storage that is a proof of storage scheme, but also allows you to ensure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,800",
+				"to": "00:08:03,800"
+			},
+			"offsets": {
+				"from": 478800,
+				"to": 483800
+			},
+			"text": " the other party, the server, has an actual copy of this file, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,800",
+				"to": "00:08:09,640"
+			},
+			"offsets": {
+				"from": 483800,
+				"to": 489640
+			},
+			"text": " So this means that this file will be related to some identity, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,640",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 489640,
+				"to": 492760
+			},
+			"text": " So the same file cannot be related to identities."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:17,800"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 497800
+			},
+			"text": " So it's interesting that this year, Filecoin presented us very similar proof that they call"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,800",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 497800,
+				"to": 504000
+			},
+			"text": " proof of replication that I also published a couple of years ago, and it's kind of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:26,360"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 506360
+			},
+			"text": " same idea, but it's worse."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,360",
+				"to": "00:08:32,120"
+			},
+			"offsets": {
+				"from": 506360,
+				"to": 512120
+			},
+			"text": " And I will tell you later why it has many programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,120",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 512120,
+				"to": 517600
+			},
+			"text": " So in an actual, we take the file, we want to prove possession, and we will encode it"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 523920
+			},
+			"text": " together with an identity, and this identity will be generally your node address, your"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:46,560"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 526560
+			},
+			"text": " Ethereum address or AirSce address."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,560",
+				"to": "00:08:53,280"
+			},
+			"offsets": {
+				"from": 526560,
+				"to": 533280
+			},
+			"text": " So what we need is that decoding is fast, but it should only be fast enough for not to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,280",
+				"to": "00:08:56,600"
+			},
+			"offsets": {
+				"from": 533280,
+				"to": 536600
+			},
+			"text": " interfere with your network operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,600",
+				"to": "00:09:01,920"
+			},
+			"offsets": {
+				"from": 536600,
+				"to": 541920
+			},
+			"text": " On the contrary, appending and updating will be a much slower operation, but again, not"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,920",
+				"to": "00:09:05,120"
+			},
+			"offsets": {
+				"from": 541920,
+				"to": 545120
+			},
+			"text": " slow enough to interfere with operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,120",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 545120,
+				"to": 550000
+			},
+			"text": " The property is that when you encode a file and encode a second file, there is nothing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:12,960"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 552960
+			},
+			"text": " to share in these encodings."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,960",
+				"to": "00:09:20,160"
+			},
+			"offsets": {
+				"from": 552960,
+				"to": 560160
+			},
+			"text": " So the server will engage in a challenge response protocol with a verifier, and he will use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,160",
+				"to": "00:09:23,960"
+			},
+			"offsets": {
+				"from": 560160,
+				"to": 563960
+			},
+			"text": " encoded data, not the uncoded data, but just the encoded data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,960",
+				"to": "00:09:31,280"
+			},
+			"offsets": {
+				"from": 563960,
+				"to": 571280
+			},
+			"text": " And it must be irrational from the economic point of view to do anything else, like relate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,280",
+				"to": "00:09:35,560"
+			},
+			"offsets": {
+				"from": 571280,
+				"to": 575560
+			},
+			"text": " to another party or like having a supercomputer or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,560",
+				"to": "00:09:39,960"
+			},
+			"offsets": {
+				"from": 575560,
+				"to": 579960
+			},
+			"text": " So this is how the peer-to-peer protocol goes without smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,960",
+				"to": "00:09:45,800"
+			},
+			"offsets": {
+				"from": 579960,
+				"to": 585800
+			},
+			"text": " So there is a hundreds verifier, say, give me the hash of N, sell your randomly selected"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,800",
+				"to": "00:09:50,680"
+			},
+			"offsets": {
+				"from": 585800,
+				"to": 590680
+			},
+			"text": " blocks of the file, and that have been encoded with your node address."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,680",
+				"to": "00:09:53,040"
+			},
+			"offsets": {
+				"from": 590680,
+				"to": 593040
+			},
+			"text": " And please do it in less than one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,040",
+				"to": "00:09:57,800"
+			},
+			"offsets": {
+				"from": 593040,
+				"to": 597800
+			},
+			"text": " So the hundreds pervert has the information, just put the information to memory and hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,800",
+				"to": "00:10:00,160"
+			},
+			"offsets": {
+				"from": 597800,
+				"to": 600160
+			},
+			"text": " it, and it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,160",
+				"to": "00:10:05,360"
+			},
+			"offsets": {
+				"from": 600160,
+				"to": 605360
+			},
+			"text": " Now, if there is a malicious prober, he can think of two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,360",
+				"to": "00:10:09,600"
+			},
+			"offsets": {
+				"from": 605360,
+				"to": 609600
+			},
+			"text": " First, he can think, okay, I'm going to relate the same query, the same challenge to another"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,600",
+				"to": "00:10:15,800"
+			},
+			"offsets": {
+				"from": 609600,
+				"to": 615800
+			},
+			"text": " party, but the problem is that the response he will receive is related to another identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,800",
+				"to": "00:10:17,160"
+			},
+			"offsets": {
+				"from": 615800,
+				"to": 617160
+			},
+			"text": " So he's not going to get paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,160",
+				"to": "00:10:20,240"
+			},
+			"offsets": {
+				"from": 617160,
+				"to": 620240
+			},
+			"text": " He's just going to be paying another party."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,240",
+				"to": "00:10:28,640"
+			},
+			"offsets": {
+				"from": 620240,
+				"to": 628640
+			},
+			"text": " If he wants to reduce this encoding, the problem is that it takes a lot more than one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,640",
+				"to": "00:10:32,920"
+			},
+			"offsets": {
+				"from": 628640,
+				"to": 632920
+			},
+			"text": " So in a sense, he cannot fake a proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,920",
+				"to": "00:10:38,560"
+			},
+			"offsets": {
+				"from": 632920,
+				"to": 638560
+			},
+			"text": " So to create this asymmetry, we need something I call practical asymmetric timing coders or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,560",
+				"to": "00:10:39,560"
+			},
+			"offsets": {
+				"from": 638560,
+				"to": 639560
+			},
+			"text": " patis."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,560",
+				"to": "00:10:44,080"
+			},
+			"offsets": {
+				"from": 639560,
+				"to": 644080
+			},
+			"text": " So we have a program, which is an encoder, we have another program, which is a decoder"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,080",
+				"to": "00:10:49,760"
+			},
+			"offsets": {
+				"from": 644080,
+				"to": 649760
+			},
+			"text": " for a certain Turing machine, and we define the steps this program performs as the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,760",
+				"to": "00:10:56,160"
+			},
+			"offsets": {
+				"from": 649760,
+				"to": 656160
+			},
+			"text": " of steps it requires to run for a random input until it holds."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,160",
+				"to": "00:11:01,080"
+			},
+			"offsets": {
+				"from": 656160,
+				"to": 661080
+			},
+			"text": " And we will ask that this steps function is mostly uniform."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,080",
+				"to": "00:11:08,320"
+			},
+			"offsets": {
+				"from": 661080,
+				"to": 668320
+			},
+			"text": " So we said that we have two programs, and we said that decoding, if I encode an input"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,320",
+				"to": "00:11:10,800"
+			},
+			"offsets": {
+				"from": 668320,
+				"to": 670800
+			},
+			"text": " and I decode it, I get the same input."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,800",
+				"to": "00:11:16,640"
+			},
+			"offsets": {
+				"from": 670800,
+				"to": 676640
+			},
+			"text": " So we define the asymmetry ratio as the number of steps it takes to decode, divided by the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,640",
+				"to": "00:11:20,560"
+			},
+			"offsets": {
+				"from": 676640,
+				"to": 680560
+			},
+			"text": " number of steps it takes to encode."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,560",
+				"to": "00:11:27,120"
+			},
+			"offsets": {
+				"from": 680560,
+				"to": 687120
+			},
+			"text": " So the desired properties, of course, the program must be small, and if there is any"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,120",
+				"to": "00:11:36,360"
+			},
+			"offsets": {
+				"from": 687120,
+				"to": 696360
+			},
+			"text": " other party that encoses a mapping, then this function, this encoding must be relatively"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,360",
+				"to": "00:11:37,680"
+			},
+			"offsets": {
+				"from": 696360,
+				"to": 697680
+			},
+			"text": " equally efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,680",
+				"to": "00:11:45,680"
+			},
+			"offsets": {
+				"from": 697680,
+				"to": 705680
+			},
+			"text": " And to guarantee this, we need to rely on some complexity assumptions or number of theoretical"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,680",
+				"to": "00:11:51,760"
+			},
+			"offsets": {
+				"from": 705680,
+				"to": 711760
+			},
+			"text": " assumptions to make sure that the encoding that we pick is one of the fastest encoding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,760",
+				"to": "00:11:53,800"
+			},
+			"offsets": {
+				"from": 711760,
+				"to": 713800
+			},
+			"text": " possible for that mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,800",
+				"to": "00:12:00,040"
+			},
+			"offsets": {
+				"from": 713800,
+				"to": 720040
+			},
+			"text": " Also we want, as I said, that decoding and encoding speeds will be practical for our"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,040",
+				"to": "00:12:04,960"
+			},
+			"offsets": {
+				"from": 720040,
+				"to": 724960
+			},
+			"text": " application, and we want the highest possible asymmetry ratio, because that is going to protect"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,960",
+				"to": "00:12:09,240"
+			},
+			"offsets": {
+				"from": 724960,
+				"to": 729240
+			},
+			"text": " us from the attacker trying to encode on the fly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,240",
+				"to": "00:12:12,760"
+			},
+			"offsets": {
+				"from": 729240,
+				"to": 732760
+			},
+			"text": " Well there is a function that has these properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,760",
+				"to": "00:12:15,920"
+			},
+			"offsets": {
+				"from": 732760,
+				"to": 735920
+			},
+			"text": " It's called the Polykhelman cipher, private key cipher."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,920",
+				"to": "00:12:21,160"
+			},
+			"offsets": {
+				"from": 735920,
+				"to": 741160
+			},
+			"text": " It's a very, very old, one of the first number theoretic encryption systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,160",
+				"to": "00:12:22,440"
+			},
+			"offsets": {
+				"from": 741160,
+				"to": 742440
+			},
+			"text": " It works like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,440",
+				"to": "00:12:25,120"
+			},
+			"offsets": {
+				"from": 742440,
+				"to": 745120
+			},
+			"text": " Well, in this case it's the opposite."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,120",
+				"to": "00:12:27,920"
+			},
+			"offsets": {
+				"from": 745120,
+				"to": 747920
+			},
+			"text": " The encryption would be like encoding."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,920",
+				"to": "00:12:36,600"
+			},
+			"offsets": {
+				"from": 747920,
+				"to": 756600
+			},
+			"text": " So to decode a value, we just rise it to the third power model of big prime and bit prime,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,600",
+				"to": "00:12:42,840"
+			},
+			"offsets": {
+				"from": 756600,
+				"to": 762840
+			},
+			"text": " and to encode it, we will rise it to a value u, which has approximately n bit, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,840",
+				"to": "00:12:47,920"
+			},
+			"offsets": {
+				"from": 762840,
+				"to": 767920
+			},
+			"text": " the inverse of three models p minus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,920",
+				"to": "00:12:50,920"
+			},
+			"offsets": {
+				"from": 767920,
+				"to": 770920
+			},
+			"text": " So we get this encoding, the coding property."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,920",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 770920,
+				"to": 779560
+			},
+			"text": " So using the standard square and multiply algorithm, encoding would take 1.5 times n"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 784000
+			},
+			"text": " multiplications, while decoding takes only three multiplications."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:08,360"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 788360
+			},
+			"text": " So the asymmetry ratio here is n divided by two."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,360",
+				"to": "00:13:16,480"
+			},
+			"offsets": {
+				"from": 788360,
+				"to": 796480
+			},
+			"text": " So we can make this asymmetry ratio as large as we want, just by taking a prime, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,480",
+				"to": "00:13:18,880"
+			},
+			"offsets": {
+				"from": 796480,
+				"to": 798880
+			},
+			"text": " larger."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,880",
+				"to": "00:13:23,560"
+			},
+			"offsets": {
+				"from": 798880,
+				"to": 803560
+			},
+			"text": " So what are the practical parameters that we can choose that serve this purpose?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,560",
+				"to": "00:13:27,680"
+			},
+			"offsets": {
+				"from": 803560,
+				"to": 807680
+			},
+			"text": " Okay, I tested it in my laptop with a libgmp."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,680",
+				"to": "00:13:33,960"
+			},
+			"offsets": {
+				"from": 807680,
+				"to": 813960
+			},
+			"text": " So for n equals 2048, this is a bit little technical, but please follow me."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,960",
+				"to": "00:13:40,760"
+			},
+			"offsets": {
+				"from": 813960,
+				"to": 820760
+			},
+			"text": " So the quantization takes 2.8 milliseconds, while three multiplication takes only 3.6"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,760",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 820760,
+				"to": 822000
+			},
+			"text": " microseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:47,640"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 827640
+			},
+			"text": " So the theoretical asymmetry ratio is approximately 1000."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,640",
+				"to": "00:13:51,880"
+			},
+			"offsets": {
+				"from": 827640,
+				"to": 831880
+			},
+			"text": " What I measure is approximately 7,077."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,880",
+				"to": "00:13:54,440"
+			},
+			"offsets": {
+				"from": 831880,
+				"to": 834440
+			},
+			"text": " So now think about the Bitcoin blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,440",
+				"to": "00:13:59,480"
+			},
+			"offsets": {
+				"from": 834440,
+				"to": 839480
+			},
+			"text": " Okay, so we get one megabyte block every 10 minutes, and it takes only 11 seconds to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,480",
+				"to": "00:14:00,760"
+			},
+			"offsets": {
+				"from": 839480,
+				"to": 840760
+			},
+			"text": " encode it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,760",
+				"to": "00:14:06,880"
+			},
+			"offsets": {
+				"from": 840760,
+				"to": 846880
+			},
+			"text": " So it works perfectly for Bitcoin, and it works also perfectly for LSK and for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,880",
+				"to": "00:14:08,560"
+			},
+			"offsets": {
+				"from": 846880,
+				"to": 848560
+			},
+			"text": " And decoding is really fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,560",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 848560,
+				"to": 856000
+			},
+			"text": " You get 31 megabytes per second, so that is not going to interfere with your node operations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:24,760"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 864760
+			},
+			"text": " If you want to get a higher asymmetry ratio, you can take n equal 20K and use TRB in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,760",
+				"to": "00:14:29,400"
+			},
+			"offsets": {
+				"from": 864760,
+				"to": 869400
+			},
+			"text": " bones that you can still use for encoding your blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,400",
+				"to": "00:14:35,640"
+			},
+			"offsets": {
+				"from": 869400,
+				"to": 875640
+			},
+			"text": " So this is the one time blockchain encoding step."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,640",
+				"to": "00:14:42,320"
+			},
+			"offsets": {
+				"from": 875640,
+				"to": 882320
+			},
+			"text": " You take your blockchain or your file and you split it in n-bit chunks, and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,320",
+				"to": "00:14:44,840"
+			},
+			"offsets": {
+				"from": 882320,
+				"to": 884840
+			},
+			"text": " scramble each one with your node address."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,840",
+				"to": "00:14:50,360"
+			},
+			"offsets": {
+				"from": 884840,
+				"to": 890360
+			},
+			"text": " And this scrambling can be very simple, can be just storing with a full domain hash of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,360",
+				"to": "00:14:55,040"
+			},
+			"offsets": {
+				"from": 890360,
+				"to": 895040
+			},
+			"text": " the node address, and then you encode it with your slow function."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,040",
+				"to": "00:14:58,560"
+			},
+			"offsets": {
+				"from": 895040,
+				"to": 898560
+			},
+			"text": " So this is what a typical proof of storage looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,560",
+				"to": "00:15:02,320"
+			},
+			"offsets": {
+				"from": 898560,
+				"to": 902320
+			},
+			"text": " You have some kind of memory-bone problem because you want to prove you have a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,320",
+				"to": "00:15:07,920"
+			},
+			"offsets": {
+				"from": 902320,
+				"to": 907920
+			},
+			"text": " data, and you transform it into a disk I/O problem like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,920",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 907920,
+				"to": 914000
+			},
+			"text": " You take a seed, the verifier will send you a seed, and from that seed you derive a number"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:20,640"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 920640
+			},
+			"text": " of positions in the file, and then you will just access those positions and build a hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,640",
+				"to": "00:15:21,640"
+			},
+			"offsets": {
+				"from": 920640,
+				"to": 921640
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,640",
+				"to": "00:15:25,840"
+			},
+			"offsets": {
+				"from": 921640,
+				"to": 925840
+			},
+			"text": " Well, the problem with all these constructions is that they depend on this technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,840",
+				"to": "00:15:31,480"
+			},
+			"offsets": {
+				"from": 925840,
+				"to": 931480
+			},
+			"text": " So if I use SSD, then the parameters are completely different if I use a hard disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,480",
+				"to": "00:15:38,400"
+			},
+			"offsets": {
+				"from": 931480,
+				"to": 938400
+			},
+			"text": " And also, these characteristics, properties, change all over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,400",
+				"to": "00:15:40,400"
+			},
+			"offsets": {
+				"from": 938400,
+				"to": 940400
+			},
+			"text": " So this is what we really do."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,400",
+				"to": "00:15:45,560"
+			},
+			"offsets": {
+				"from": 940400,
+				"to": 945560
+			},
+			"text": " We first do the step of encoding and creating this asymmetry."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,560",
+				"to": "00:15:50,120"
+			},
+			"offsets": {
+				"from": 945560,
+				"to": 950120
+			},
+			"text": " And then we receive from the verifier, in this case is the poops contract, the proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,120",
+				"to": "00:15:52,080"
+			},
+			"offsets": {
+				"from": 950120,
+				"to": 952080
+			},
+			"text": " of blockchain storage contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,080",
+				"to": "00:15:53,920"
+			},
+			"offsets": {
+				"from": 952080,
+				"to": 953920
+			},
+			"text": " We receive a C0."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,920",
+				"to": "00:16:01,600"
+			},
+			"offsets": {
+				"from": 953920,
+				"to": 961600
+			},
+			"text": " With this C0, we will derive some indexes, some parts of the blockchain or the file, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,600",
+				"to": "00:16:04,320"
+			},
+			"offsets": {
+				"from": 961600,
+				"to": 964320
+			},
+			"text": " we will bring all these into RAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,320",
+				"to": "00:16:05,320"
+			},
+			"offsets": {
+				"from": 964320,
+				"to": 965320
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,320",
+				"to": "00:16:09,960"
+			},
+			"offsets": {
+				"from": 965320,
+				"to": 969960
+			},
+			"text": " So we are independent of the technology, the access technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,960",
+				"to": "00:16:13,360"
+			},
+			"offsets": {
+				"from": 969960,
+				"to": 973360
+			},
+			"text": " And this is the challenge response preparation phase."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,360",
+				"to": "00:16:19,880"
+			},
+			"offsets": {
+				"from": 973360,
+				"to": 979880
+			},
+			"text": " Now we have, we receive from the smart contract, like 20 seconds later, a second seed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,880",
+				"to": "00:16:20,880"
+			},
+			"offsets": {
+				"from": 979880,
+				"to": 980880
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,880",
+				"to": "00:16:27,560"
+			},
+			"offsets": {
+				"from": 980880,
+				"to": 987560
+			},
+			"text": " And well, from seed one, we will derive these indexes of RAM, where we will take these small"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,560",
+				"to": "00:16:29,960"
+			},
+			"offsets": {
+				"from": 987560,
+				"to": 989960
+			},
+			"text": " pieces, small blocks and hash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,960",
+				"to": "00:16:30,960"
+			},
+			"offsets": {
+				"from": 989960,
+				"to": 990960
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,960",
+				"to": "00:16:34,480"
+			},
+			"offsets": {
+				"from": 990960,
+				"to": 994480
+			},
+			"text": " Well, we have transformed this memory bone problem into a CP bone problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,480",
+				"to": "00:16:40,560"
+			},
+			"offsets": {
+				"from": 994480,
+				"to": 1000560
+			},
+			"text": " Well, there is some important problem here that we cannot do this from a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,560",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1000560,
+				"to": 1005160
+			},
+			"text": " It's that the block interval can be about 10 seconds, 20 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:51,760"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1011760
+			},
+			"text": " So the number K, the number of pieces we have to hash to prevent an attacker doing this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,760",
+				"to": "00:16:56,280"
+			},
+			"offsets": {
+				"from": 1011760,
+				"to": 1016280
+			},
+			"text": " encoding on the fly will be very, very high, okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,280",
+				"to": "00:17:00,280"
+			},
+			"offsets": {
+				"from": 1016280,
+				"to": 1020280
+			},
+			"text": " Like in the order of 20,000 or maybe more."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,280",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1020280,
+				"to": 1027000
+			},
+			"text": " So the proof that we get is very large and the smart contract won't be able to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:10,920"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1030920
+			},
+			"text": " with the gas limit to evaluate if it is correct or incorrect."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,920",
+				"to": "00:17:18,520"
+			},
+			"offsets": {
+				"from": 1030920,
+				"to": 1038520
+			},
+			"text": " So we changed the last part and we transformed a CPU bone problem into a memory bus IO problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,520",
+				"to": "00:17:24,440"
+			},
+			"offsets": {
+				"from": 1038520,
+				"to": 1044440
+			},
+			"text": " And this has been done, oh, this has been done in a parmacoin, for instance, the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,440",
+				"to": "00:17:25,440"
+			},
+			"offsets": {
+				"from": 1044440,
+				"to": 1045440
+			},
+			"text": " procedure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,440",
+				"to": "00:17:34,320"
+			},
+			"offsets": {
+				"from": 1045440,
+				"to": 1054320
+			},
+			"text": " So instead of taking a large number of blocks to hash, we take only 40, but we request that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,320",
+				"to": "00:17:38,440"
+			},
+			"offsets": {
+				"from": 1054320,
+				"to": 1058440
+			},
+			"text": " the hash that we obtain has a proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,440",
+				"to": "00:17:44,680"
+			},
+			"offsets": {
+				"from": 1058440,
+				"to": 1064680
+			},
+			"text": " Okay, so we will try many, many times, like deriving new seeds from the seed one and an"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,680",
+				"to": "00:17:51,200"
+			},
+			"offsets": {
+				"from": 1064680,
+				"to": 1071200
+			},
+			"text": " ons, you know, try a lot of times, maybe 20 seconds or 10 seconds until we'll get one"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,200",
+				"to": "00:17:54,960"
+			},
+			"offsets": {
+				"from": 1071200,
+				"to": 1074960
+			},
+			"text": " that has this property of the proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,960",
+				"to": "00:17:57,200"
+			},
+			"offsets": {
+				"from": 1074960,
+				"to": 1077200
+			},
+			"text": " So this is how the whole protocol works."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,200",
+				"to": "00:17:59,400"
+			},
+			"offsets": {
+				"from": 1077200,
+				"to": 1079400
+			},
+			"text": " And it's very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,400",
+				"to": "00:18:04,080"
+			},
+			"offsets": {
+				"from": 1079400,
+				"to": 1084080
+			},
+			"text": " So in the step zero, we have this one time encoding."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,080",
+				"to": "00:18:10,480"
+			},
+			"offsets": {
+				"from": 1084080,
+				"to": 1090480
+			},
+			"text": " But we also have that full notes will register with this book's smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,480",
+				"to": "00:18:12,560"
+			},
+			"offsets": {
+				"from": 1090480,
+				"to": 1092560
+			},
+			"text": " And this can be, they don't have to rebuild their IP."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,560",
+				"to": "00:18:18,520"
+			},
+			"offsets": {
+				"from": 1092560,
+				"to": 1098520
+			},
+			"text": " They just have to register a resk or a thi-dome address to be paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,520",
+				"to": "00:18:23,040"
+			},
+			"offsets": {
+				"from": 1098520,
+				"to": 1103040
+			},
+			"text": " Also they will do some pre-deposit because they are going to be penalized if they present"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,040",
+				"to": "00:18:24,800"
+			},
+			"offsets": {
+				"from": 1103040,
+				"to": 1104800
+			},
+			"text": " an invalid proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,800",
+				"to": "00:18:30,400"
+			},
+			"offsets": {
+				"from": 1104800,
+				"to": 1110400
+			},
+			"text": " So in step one, the book's contract will derive the seed zero from the block hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,400",
+				"to": "00:18:36,640"
+			},
+			"offsets": {
+				"from": 1110400,
+				"to": 1116640
+			},
+			"text": " And we'll give the notes enough time to bring all these pieces or a big piece into RAM."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,640",
+				"to": "00:18:41,960"
+			},
+			"offsets": {
+				"from": 1116640,
+				"to": 1121960
+			},
+			"text": " So in step three, the proof's contract will derive a seed one."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,960",
+				"to": "00:18:46,720"
+			},
+			"offsets": {
+				"from": 1121960,
+				"to": 1126720
+			},
+			"text": " And now the competition begins that, it's not a competition, it's a corporation actually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,720",
+				"to": "00:18:51,240"
+			},
+			"offsets": {
+				"from": 1126720,
+				"to": 1131240
+			},
+			"text": " but the full notes will try to get this proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,240",
+				"to": "00:18:56,960"
+			},
+			"offsets": {
+				"from": 1131240,
+				"to": 1136960
+			},
+			"text": " We'll try to get from all proof candidates, we try to find one that matches, that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,960",
+				"to": "00:19:01,880"
+			},
+			"offsets": {
+				"from": 1136960,
+				"to": 1141880
+			},
+			"text": " a time, that whose hash is lower than the proof of work target."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,880",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1141880,
+				"to": 1147000
+			},
+			"text": " So they will submit these proofs to the blockchain in normal transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:13,240"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1153240
+			},
+			"text": " There will be plenty of time, like six blocks ahead to prevent censorship so that they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,240",
+				"to": "00:19:14,320"
+			},
+			"offsets": {
+				"from": 1153240,
+				"to": 1154320
+			},
+			"text": " do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,320",
+				"to": "00:19:17,600"
+			},
+			"offsets": {
+				"from": 1154320,
+				"to": 1157600
+			},
+			"text": " And in step six, there is a deadline for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,600",
+				"to": "00:19:20,560"
+			},
+			"offsets": {
+				"from": 1157600,
+				"to": 1160560
+			},
+			"text": " And then an external challenge phase begins."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,560",
+				"to": "00:19:27,360"
+			},
+			"offsets": {
+				"from": 1160560,
+				"to": 1167360
+			},
+			"text": " In this phase, full notes will try to see if the other notes are cheating."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,360",
+				"to": "00:19:33,640"
+			},
+			"offsets": {
+				"from": 1167360,
+				"to": 1173640
+			},
+			"text": " So they will pick the notes and the hash that has been commit from other full notes and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,640",
+				"to": "00:19:36,720"
+			},
+			"offsets": {
+				"from": 1173640,
+				"to": 1176720
+			},
+			"text": " will reevaluate those proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,720",
+				"to": "00:19:41,200"
+			},
+			"offsets": {
+				"from": 1176720,
+				"to": 1181200
+			},
+			"text": " But since there are only 40 elements, then it takes about 100 milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,200",
+				"to": "00:19:46,960"
+			},
+			"offsets": {
+				"from": 1181200,
+				"to": 1186960
+			},
+			"text": " So they can just evaluate every other full notes or commitment."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,960",
+				"to": "00:19:52,800"
+			},
+			"offsets": {
+				"from": 1186960,
+				"to": 1192800
+			},
+			"text": " If one of them finds that someone has cheated, then it just sends a fraud proof to the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,800",
+				"to": "00:19:58,840"
+			},
+			"offsets": {
+				"from": 1192800,
+				"to": 1198840
+			},
+			"text": " to the proof smart contract, which is just the full expansion of this proof, which will"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,840",
+				"to": "00:20:02,920"
+			},
+			"offsets": {
+				"from": 1198840,
+				"to": 1202920
+			},
+			"text": " show if the original commitment was correct or incorrect."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,920",
+				"to": "00:20:08,720"
+			},
+			"offsets": {
+				"from": 1202920,
+				"to": 1208720
+			},
+			"text": " So in step nine, there is a deadline for proof submission for fraud proof submission, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,720",
+				"to": "00:20:11,040"
+			},
+			"offsets": {
+				"from": 1208720,
+				"to": 1211040
+			},
+			"text": " then the rewards have been paid."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,040",
+				"to": "00:20:15,840"
+			},
+			"offsets": {
+				"from": 1211040,
+				"to": 1215840
+			},
+			"text": " Of course, they are only going to be paid to the notes that are behaved honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,840",
+				"to": "00:20:24,320"
+			},
+			"offsets": {
+				"from": 1215840,
+				"to": 1224320
+			},
+			"text": " So because the reward is going to be shared, full notes are also incentivized to detect"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,320",
+				"to": "00:20:27,800"
+			},
+			"offsets": {
+				"from": 1224320,
+				"to": 1227800
+			},
+			"text": " cheaters."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,800",
+				"to": "00:20:29,080"
+			},
+			"offsets": {
+				"from": 1227800,
+				"to": 1229080
+			},
+			"text": " Now what's the difference?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,080",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1229080,
+				"to": 1233000
+			},
+			"text": " I said before that this protocol is going to be used to prove any file, not just the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1234000
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:37,480"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1237480
+			},
+			"text": " The blockchain is the easiest one because the note already has a copy of the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,480",
+				"to": "00:20:40,800"
+			},
+			"offsets": {
+				"from": 1237480,
+				"to": 1240800
+			},
+			"text": " maybe so it can more easily evaluate things."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,800",
+				"to": "00:20:46,160"
+			},
+			"offsets": {
+				"from": 1240800,
+				"to": 1246160
+			},
+			"text": " But it can be used to any file to create a file sharing system that you can reward note"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,160",
+				"to": "00:20:49,640"
+			},
+			"offsets": {
+				"from": 1246160,
+				"to": 1249640
+			},
+			"text": " just to hold the data for you and multiple copies."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,640",
+				"to": "00:20:55,560"
+			},
+			"offsets": {
+				"from": 1249640,
+				"to": 1255560
+			},
+			"text": " You can just create a contract that creates 100 copies of the same information."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,560",
+				"to": "00:20:59,320"
+			},
+			"offsets": {
+				"from": 1255560,
+				"to": 1259320
+			},
+			"text": " But there are some differences between the file code proof of replication and proof of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,320",
+				"to": "00:21:00,720"
+			},
+			"offsets": {
+				"from": 1259320,
+				"to": 1260720
+			},
+			"text": " unique file search."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,720",
+				"to": "00:21:03,920"
+			},
+			"offsets": {
+				"from": 1260720,
+				"to": 1263920
+			},
+			"text": " Proof of replication depends on the success time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,920",
+				"to": "00:21:06,880"
+			},
+			"offsets": {
+				"from": 1263920,
+				"to": 1266880
+			},
+			"text": " So it's difficult to tune for all kinds of disks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,880",
+				"to": "00:21:11,480"
+			},
+			"offsets": {
+				"from": 1266880,
+				"to": 1271480
+			},
+			"text": " And it gives you typical asymmetries of about 10 to 100."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,480",
+				"to": "00:21:18,200"
+			},
+			"offsets": {
+				"from": 1271480,
+				"to": 1278200
+			},
+			"text": " So it's very easy that technology changes and then an attacker is able to fake proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,200",
+				"to": "00:21:23,640"
+			},
+			"offsets": {
+				"from": 1278200,
+				"to": 1283640
+			},
+			"text": " On the contrary, proof of unique file search does not depend on the success time and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,640",
+				"to": "00:21:28,360"
+			},
+			"offsets": {
+				"from": 1283640,
+				"to": 1288360
+			},
+			"text": " typical asymmetries between 1000 and 10,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,360",
+				"to": "00:21:31,200"
+			},
+			"offsets": {
+				"from": 1288360,
+				"to": 1291200
+			},
+			"text": " And also you can combine them so you get 10 times more."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,200",
+				"to": "00:21:40,120"
+			},
+			"offsets": {
+				"from": 1291200,
+				"to": 1300120
+			},
+			"text": " You can combine 10,000 of asymmetry ratio of proof of unique file search and combine them"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,120",
+				"to": "00:21:45,840"
+			},
+			"offsets": {
+				"from": 1300120,
+				"to": 1305840
+			},
+			"text": " with now 10 times more for proof of replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,840",
+				"to": "00:21:54,240"
+			},
+			"offsets": {
+				"from": 1305840,
+				"to": 1314240
+			},
+			"text": " Well the summary is that, well, the centralization is very, very important in these networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,240",
+				"to": "00:22:01,760"
+			},
+			"offsets": {
+				"from": 1314240,
+				"to": 1321760
+			},
+			"text": " And increasing or setting a full note reward for the first time we can incentivize the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,760",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1321760,
+				"to": 1328000
+			},
+			"text": " creation of new full notes and keep the number of full notes even if we request them to store"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:10,320"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1330320
+			},
+			"text": " 10 times more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,320",
+				"to": "00:22:15,400"
+			},
+			"offsets": {
+				"from": 1330320,
+				"to": 1335400
+			},
+			"text": " And this proof of unique file search and proof of unique blockchain storage allows you to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,400",
+				"to": "00:22:19,720"
+			},
+			"offsets": {
+				"from": 1335400,
+				"to": 1339720
+			},
+			"text": " prove that you have this unique copy of the file, of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,720",
+				"to": "00:22:24,760"
+			},
+			"offsets": {
+				"from": 1339720,
+				"to": 1344760
+			},
+			"text": " And the important thing is this can be done right from a smart contract with almost no"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,760",
+				"to": "00:22:28,240"
+			},
+			"offsets": {
+				"from": 1344760,
+				"to": 1348240
+			},
+			"text": " gas consumption and also the proof is not very short."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,240",
+				"to": "00:22:29,960"
+			},
+			"offsets": {
+				"from": 1348240,
+				"to": 1349960
+			},
+			"text": " It's just a hash and a nonce."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,960",
+				"to": "00:22:34,840"
+			},
+			"offsets": {
+				"from": 1349960,
+				"to": 1354840
+			},
+			"text": " Okay, so this could be implemented in Ethereum or in the USK tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,840",
+				"to": "00:22:40,160"
+			},
+			"offsets": {
+				"from": 1354840,
+				"to": 1360160
+			},
+			"text": " Well, we're working on implementation and so when we open source you will be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,160",
+				"to": "00:22:41,960"
+			},
+			"offsets": {
+				"from": 1360160,
+				"to": 1361960
+			},
+			"text": " play with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,960",
+				"to": "00:22:44,400"
+			},
+			"offsets": {
+				"from": 1361960,
+				"to": 1364400
+			},
+			"text": " So thank you very much and the organizers."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,400",
+				"to": "00:22:45,400"
+			},
+			"offsets": {
+				"from": 1364400,
+				"to": 1365400
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,400",
+				"to": "00:22:52,400"
+			},
+			"offsets": {
+				"from": 1365400,
+				"to": 1372400
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,400",
+				"to": "00:22:59,400"
+			},
+			"offsets": {
+				"from": 1372400,
+				"to": 1379400
+			},
+			"text": " [Music]"
+		}
+	]
+}

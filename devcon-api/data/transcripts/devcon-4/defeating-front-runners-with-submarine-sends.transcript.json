@@ -1,0 +1,1143 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:01,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 1960
+			},
+			"text": " So my name is Lawrence Bridenbach."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:01,960",
+				"to": "00:00:06,280"
+			},
+			"offsets": {
+				"from": 1960,
+				"to": 6280
+			},
+			"text": " I'm from ETH Zurich and IC3, the initiative for cryptocurrencies and contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,280",
+				"to": "00:00:07,480"
+			},
+			"offsets": {
+				"from": 6280,
+				"to": 7480
+			},
+			"text": " And this right here is my buddy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,480",
+				"to": "00:00:08,480"
+			},
+			"offsets": {
+				"from": 7480,
+				"to": 8480
+			},
+			"text": " Hi, I'm Tyler."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,480",
+				"to": "00:00:09,480"
+			},
+			"offsets": {
+				"from": 8480,
+				"to": 9480
+			},
+			"text": " I'm with Cornell University."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,480",
+				"to": "00:00:12,120"
+			},
+			"offsets": {
+				"from": 9480,
+				"to": 12120
+			},
+			"text": " I'm also with IC3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,120",
+				"to": "00:00:16,440"
+			},
+			"offsets": {
+				"from": 12120,
+				"to": 16440
+			},
+			"text": " And today we're going to be talking to you about LIP Submarine, a new smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,440",
+				"to": "00:00:21,240"
+			},
+			"offsets": {
+				"from": 16440,
+				"to": 21240
+			},
+			"text": " library that you can use to temporarily hide transactions on Ethereum and hopefully defeat"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,240",
+				"to": "00:00:24,960"
+			},
+			"offsets": {
+				"from": 21240,
+				"to": 24960
+			},
+			"text": " front runners if you saw Phil's talk yesterday."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,960",
+				"to": "00:00:26,360"
+			},
+			"offsets": {
+				"from": 24960,
+				"to": 26360
+			},
+			"text": " So a little bit about the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,360",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 26360,
+				"to": 28640
+			},
+			"text": " All right, here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,640",
+				"to": "00:00:30,600"
+			},
+			"offsets": {
+				"from": 28640,
+				"to": 30600
+			},
+			"text": " So this is based on research."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,600",
+				"to": "00:00:33,200"
+			},
+			"offsets": {
+				"from": 30600,
+				"to": 33200
+			},
+			"text": " We did it at IC3 with my colleagues."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,200",
+				"to": "00:00:35,800"
+			},
+			"offsets": {
+				"from": 33200,
+				"to": 35800
+			},
+			"text": " Yeah, it's working."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,800",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 35800,
+				"to": 38560
+			},
+			"text": " Phil Dyen, Florian Trauma, and Ari Jules."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:42,960"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 42960
+			},
+			"text": " So if you're curious about the intricacies, you can check out that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,960",
+				"to": "00:00:44,520"
+			},
+			"offsets": {
+				"from": 42960,
+				"to": 44520
+			},
+			"text": " But today I'm not going to bore you with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,520",
+				"to": "00:00:48,120"
+			},
+			"offsets": {
+				"from": 44520,
+				"to": 48120
+			},
+			"text": " We're going to dive right into sort of the motivation and then Tyler's going to tell"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,120",
+				"to": "00:00:51,280"
+			},
+			"offsets": {
+				"from": 48120,
+				"to": 51280
+			},
+			"text": " you a little bit about how this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,280",
+				"to": "00:00:55,520"
+			},
+			"offsets": {
+				"from": 51280,
+				"to": 55520
+			},
+			"text": " So why would you want to temporarily hide transactions on Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,520",
+				"to": "00:00:59,560"
+			},
+			"offsets": {
+				"from": 55520,
+				"to": 59560
+			},
+			"text": " Well, basically you want to hide transactions whenever you worry about somebody else seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,560",
+				"to": "00:01:03,240"
+			},
+			"offsets": {
+				"from": 59560,
+				"to": 63240
+			},
+			"text": " the transaction and doing something evil with the knowledge that that transaction will"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,240",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 63240,
+				"to": 64600
+			},
+			"text": " be included later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:08,160"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 68160
+			},
+			"text": " So the typical use case would be to prevent front running, but it's also useful for things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,160",
+				"to": "00:01:12,240"
+			},
+			"offsets": {
+				"from": 68160,
+				"to": 72240
+			},
+			"text": " like sealed bid auctions and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,240",
+				"to": "00:01:16,200"
+			},
+			"offsets": {
+				"from": 72240,
+				"to": 76200
+			},
+			"text": " On-chain voting is another case where you might want to hide the fact that you're participating"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,200",
+				"to": "00:01:17,200"
+			},
+			"offsets": {
+				"from": 76200,
+				"to": 77200
+			},
+			"text": " in a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,200",
+				"to": "00:01:23,840"
+			},
+			"offsets": {
+				"from": 77200,
+				"to": 83840
+			},
+			"text": " Fair token offerings, challenge protocols, and maybe soon you're DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,840",
+				"to": "00:01:27,480"
+			},
+			"offsets": {
+				"from": 83840,
+				"to": 87480
+			},
+			"text": " So let me motivate this a little bit with an example in case that you want to know more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,480",
+				"to": "00:01:30,680"
+			},
+			"offsets": {
+				"from": 87480,
+				"to": 90680
+			},
+			"text": " about how this front running attack would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,680",
+				"to": "00:01:34,960"
+			},
+			"offsets": {
+				"from": 90680,
+				"to": 94960
+			},
+			"text": " And I'm going to be specifically talking about an example where we have a DEX contract similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,960",
+				"to": "00:01:41,120"
+			},
+			"offsets": {
+				"from": 94960,
+				"to": 101120
+			},
+			"text": " to say, Bancor or Uniswap that is acting as a sort of automated market maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,120",
+				"to": "00:01:44,880"
+			},
+			"offsets": {
+				"from": 101120,
+				"to": 104880
+			},
+			"text": " And so what happens here is that we have our user who wants to buy some tokens, say."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,880",
+				"to": "00:01:49,120"
+			},
+			"offsets": {
+				"from": 104880,
+				"to": 109120
+			},
+			"text": " And so she broadcasts a buy transaction to the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,120",
+				"to": "00:01:53,520"
+			},
+			"offsets": {
+				"from": 109120,
+				"to": 113520
+			},
+			"text": " And now that transaction gets propagated on the network, sits in the mem pool for some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,520",
+				"to": "00:01:58,080"
+			},
+			"offsets": {
+				"from": 113520,
+				"to": 118080
+			},
+			"text": " time and is finally included in a block, at which point it sort of reaches our DEX smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,080",
+				"to": "00:01:59,080"
+			},
+			"offsets": {
+				"from": 118080,
+				"to": 119080
+			},
+			"text": " contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,080",
+				"to": "00:02:03,520"
+			},
+			"offsets": {
+				"from": 119080,
+				"to": 123520
+			},
+			"text": " Now what a malicious user or a front runner can do is that he can use this window of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,520",
+				"to": "00:02:08,640"
+			},
+			"offsets": {
+				"from": 123520,
+				"to": 128640
+			},
+			"text": " this gap between when the transaction is broadcast, and when it is included in the block, knowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,640",
+				"to": "00:02:11,920"
+			},
+			"offsets": {
+				"from": 128640,
+				"to": 131920
+			},
+			"text": " that the transaction will be included in a future block, but quickly sneak in front of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,920",
+				"to": "00:02:15,720"
+			},
+			"offsets": {
+				"from": 131920,
+				"to": 135720
+			},
+			"text": " the transaction and sort of profit at our user's expense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,720",
+				"to": "00:02:19,480"
+			},
+			"offsets": {
+				"from": 135720,
+				"to": 139480
+			},
+			"text": " So the way that a front runner might be able to do this is in the simplest case by simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,480",
+				"to": "00:02:21,400"
+			},
+			"offsets": {
+				"from": 139480,
+				"to": 141400
+			},
+			"text": " sandwiching this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,400",
+				"to": "00:02:25,320"
+			},
+			"offsets": {
+				"from": 141400,
+				"to": 145320
+			},
+			"text": " So the front runner would place a buy order in front of our user's buy order."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,320",
+				"to": "00:02:27,800"
+			},
+			"offsets": {
+				"from": 145320,
+				"to": 147800
+			},
+			"text": " This buy order would drive up the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,800",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 147800,
+				"to": 151720
+			},
+			"text": " Then our user's buy order would arrive, buying at a higher price than at which it would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 153600
+			},
+			"text": " bought if it hadn't been for the front runner."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:37,880"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 157880
+			},
+			"text": " And then the front runner can immediately sell again basically pocketing the spread and benefiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,880",
+				"to": "00:02:40,320"
+			},
+			"offsets": {
+				"from": 157880,
+				"to": 160320
+			},
+			"text": " at our poor user's expense here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,320",
+				"to": "00:02:43,480"
+			},
+			"offsets": {
+				"from": 160320,
+				"to": 163480
+			},
+			"text": " And this attack is far from theoretical, so there's actually a blog post out there where"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,480",
+				"to": "00:02:48,120"
+			},
+			"offsets": {
+				"from": 163480,
+				"to": 168120
+			},
+			"text": " somebody kind of computed that they could make like, I don't know, I think tens of thousands,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,120",
+				"to": "00:02:53,120"
+			},
+			"offsets": {
+				"from": 168120,
+				"to": 173120
+			},
+			"text": " maybe even millions of dollars a year just running this against Bancor, and with a proliferation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,120",
+				"to": "00:02:56,680"
+			},
+			"offsets": {
+				"from": 173120,
+				"to": 176680
+			},
+			"text": " of more and more DEXs, this becomes more and more of a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,680",
+				"to": "00:02:59,840"
+			},
+			"offsets": {
+				"from": 176680,
+				"to": 179840
+			},
+			"text": " So at this point I'm going to hand over to Tyler, and he's going to tell you about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,840",
+				"to": "00:03:02,920"
+			},
+			"offsets": {
+				"from": 179840,
+				"to": 182920
+			},
+			"text": " we can prevent this with lip submarine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,920",
+				"to": "00:03:04,080"
+			},
+			"offsets": {
+				"from": 182920,
+				"to": 184080
+			},
+			"text": " Thanks, Lawrence."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,080",
+				"to": "00:03:08,280"
+			},
+			"offsets": {
+				"from": 184080,
+				"to": 188280
+			},
+			"text": " So if you notice the key problem that we have here is that there is a period of time in"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,280",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 188280,
+				"to": 192600
+			},
+			"text": " between the time when a user wants to broadcast a transaction to the network and when it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:16,360"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 196360
+			},
+			"text": " actually hardened into a block and like canonically in the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,360",
+				"to": "00:03:21,520"
+			},
+			"offsets": {
+				"from": 196360,
+				"to": 201520
+			},
+			"text": " So in that period of time, an attacker can see this and then futs with the order."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,520",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201520,
+				"to": 204000
+			},
+			"text": " So we were thinking about how do we solve this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:25,880"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 205880
+			},
+			"text": " Well, what's the key insight?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,880",
+				"to": "00:03:32,640"
+			},
+			"offsets": {
+				"from": 205880,
+				"to": 212640
+			},
+			"text": " Well, we can hide this transaction maybe and prevent attackers from seeing this transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,640",
+				"to": "00:03:38,840"
+			},
+			"offsets": {
+				"from": 212640,
+				"to": 218840
+			},
+			"text": " and then they don't know that the transaction exists so then they can't front run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,840",
+				"to": "00:03:39,840"
+			},
+			"offsets": {
+				"from": 218840,
+				"to": 219840
+			},
+			"text": " So how do we do this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,840",
+				"to": "00:03:44,120"
+			},
+			"offsets": {
+				"from": 219840,
+				"to": 224120
+			},
+			"text": " Well, we use a technique called a commit reveal scheme, but a normal commit reveal scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,120",
+				"to": "00:03:49,440"
+			},
+			"offsets": {
+				"from": 224120,
+				"to": 229440
+			},
+			"text": " can't hide the flow of money, right, because the flow of money in Ethereum has to be public."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,440",
+				"to": "00:03:50,640"
+			},
+			"offsets": {
+				"from": 229440,
+				"to": 230640
+			},
+			"text": " So how do we deal with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,640",
+				"to": "00:03:55,280"
+			},
+			"offsets": {
+				"from": 230640,
+				"to": 235280
+			},
+			"text": " Well, we do some cryptographic magic and we make this submarine address."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,280",
+				"to": "00:03:58,520"
+			},
+			"offsets": {
+				"from": 235280,
+				"to": 238520
+			},
+			"text": " And so then what we do is we send this money to the submarine address in the form of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,520",
+				"to": "00:04:04,480"
+			},
+			"offsets": {
+				"from": 238520,
+				"to": 244480
+			},
+			"text": " commit and then it just looks like a simple send of ether to any address on the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,480",
+				"to": "00:04:08,720"
+			},
+			"offsets": {
+				"from": 244480,
+				"to": 248720
+			},
+			"text": " which is actually some like small percentage, like something like 2% of all transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,720",
+				"to": "00:04:10,440"
+			},
+			"offsets": {
+				"from": 248720,
+				"to": 250440
+			},
+			"text": " on the network are actually simple sends."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,440",
+				"to": "00:04:13,600"
+			},
+			"offsets": {
+				"from": 250440,
+				"to": 253600
+			},
+			"text": " So this is actually a lot of transactions that you can hide in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,600",
+				"to": "00:04:21,280"
+			},
+			"offsets": {
+				"from": 253600,
+				"to": 261280
+			},
+			"text": " And then later we can reveal the existence of this commit and sort of an attacker can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,280",
+				"to": "00:04:25,040"
+			},
+			"offsets": {
+				"from": 261280,
+				"to": 265040
+			},
+			"text": " see this reveal, but by the time that they see this reveal, the commit already happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,040",
+				"to": "00:04:28,080"
+			},
+			"offsets": {
+				"from": 265040,
+				"to": 268080
+			},
+			"text": " and so they can't insert their own commit ahead of that commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,080",
+				"to": "00:04:32,520"
+			},
+			"offsets": {
+				"from": 268080,
+				"to": 272520
+			},
+			"text": " So we can enforce an ordering of transactions for commits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,520",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 272520,
+				"to": 277040
+			},
+			"text": " And then later the smart contract can go get the money and unlock the money from the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:38,880"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 278880
+			},
+			"text": " and get the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,880",
+				"to": "00:04:44,600"
+			},
+			"offsets": {
+				"from": 278880,
+				"to": 284600
+			},
+			"text": " And so by doing this we sort of prevent the ability to front run transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,600",
+				"to": "00:04:45,600"
+			},
+			"offsets": {
+				"from": 284600,
+				"to": 285600
+			},
+			"text": " Thanks for that explanation Tyler."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,600",
+				"to": "00:04:47,720"
+			},
+			"offsets": {
+				"from": 285600,
+				"to": 287720
+			},
+			"text": " Yeah, and so this was just a short sneak peek."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,720",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 287720,
+				"to": 290960
+			},
+			"text": " Unfortunately, it's a little too much stuff to pack into five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:54,040"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 294040
+			},
+			"text": " But if you're curious, I encourage you to check out loopsubmarine.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,040",
+				"to": "00:04:58,080"
+			},
+			"offsets": {
+				"from": 294040,
+				"to": 298080
+			},
+			"text": " We're very part of the web design, at least I am, although he thinks it's tacky."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,080",
+				"to": "00:05:01,680"
+			},
+			"offsets": {
+				"from": 298080,
+				"to": 301680
+			},
+			"text": " But yeah, look at the details there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,680",
+				"to": "00:05:05,920"
+			},
+			"offsets": {
+				"from": 301680,
+				"to": 305920
+			},
+			"text": " We have links to the papers, to the blog post, and all of our code is open source, no token"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,920",
+				"to": "00:05:09,520"
+			},
+			"offsets": {
+				"from": 305920,
+				"to": 309520
+			},
+			"text": " required, check it out on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,520",
+				"to": "00:05:13,920"
+			},
+			"offsets": {
+				"from": 309520,
+				"to": 313920
+			},
+			"text": " And yeah, don't forget to like and subscribe, message us on Twitter, whatever other forms"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,920",
+				"to": "00:05:16,560"
+			},
+			"offsets": {
+				"from": 313920,
+				"to": 316560
+			},
+			"text": " of outreach people usually encourage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,560",
+				"to": "00:05:19,760"
+			},
+			"offsets": {
+				"from": 316560,
+				"to": 319760
+			},
+			"text": " And finally there will be a talk by our two colleagues that we mentioned before, Cheyenne"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,760",
+				"to": "00:05:27,800"
+			},
+			"offsets": {
+				"from": 319760,
+				"to": 327800
+			},
+			"text": " Escondari and Stefan Gosling at the next session, I think the privacy session for something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,800",
+				"to": "00:05:29,120"
+			},
+			"offsets": {
+				"from": 327800,
+				"to": 329120
+			},
+			"text": " Yeah, go check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,120",
+				"to": "00:05:33,160"
+			},
+			"offsets": {
+				"from": 329120,
+				"to": 333160
+			},
+			"text": " They will talk about how easy it is to actually take your existing contract and upgrade it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,160",
+				"to": "00:05:35,160"
+			},
+			"offsets": {
+				"from": 333160,
+				"to": 335160
+			},
+			"text": " using loopsubmarine to proof it against front running."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,160",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 336160,
+				"to": 337160
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:47,160"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 347160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,160",
+				"to": "00:05:57,160"
+			},
+			"offsets": {
+				"from": 347160,
+				"to": 357160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,160",
+				"to": "00:06:07,160"
+			},
+			"offsets": {
+				"from": 357160,
+				"to": 367160
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,160",
+				"to": "00:06:09,160"
+			},
+			"offsets": {
+				"from": 367160,
+				"to": 369160
+			},
+			"text": " [ ]"
+		}
+	]
+}

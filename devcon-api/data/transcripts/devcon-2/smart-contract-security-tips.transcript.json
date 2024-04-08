@@ -1,0 +1,1671 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,460"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18460
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,460",
+				"to": "00:00:22,960"
+			},
+			"offsets": {
+				"from": 18460,
+				"to": 22960
+			},
+			"text": " >> One line of code spurred a series of momentous events"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,960",
+				"to": "00:00:24,500"
+			},
+			"offsets": {
+				"from": 22960,
+				"to": 24500
+			},
+			"text": " in blockchain history."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:35,600"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 35600
+			},
+			"text": " The line of code in red, it was moved up to where the green line is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,600",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 35600,
+				"to": 41000
+			},
+			"text": " and that was done to neutralize a re-entricy exploit"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:45,300"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 45300
+			},
+			"text": " in the following line, reward account.payout,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,300",
+				"to": "00:00:51,280"
+			},
+			"offsets": {
+				"from": 45300,
+				"to": 51280
+			},
+			"text": " which when performed on an attacker's account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,280",
+				"to": "00:00:58,720"
+			},
+			"offsets": {
+				"from": 51280,
+				"to": 58720
+			},
+			"text": " would lead to what happened to the Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,720",
+				"to": "00:01:04,720"
+			},
+			"offsets": {
+				"from": 58720,
+				"to": 64720
+			},
+			"text": " The description for this talk was before these momentous events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,720",
+				"to": "00:01:10,020"
+			},
+			"offsets": {
+				"from": 64720,
+				"to": 70020
+			},
+			"text": " and there's too much security advice to share, not enough time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,020",
+				"to": "00:01:12,840"
+			},
+			"offsets": {
+				"from": 70020,
+				"to": 72840
+			},
+			"text": " that the BTC relay portion of this talk is omitted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,840",
+				"to": "00:01:19,400"
+			},
+			"offsets": {
+				"from": 72840,
+				"to": 79400
+			},
+			"text": " Here's a bonus tip, label your untrusted contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,400",
+				"to": "00:01:25,040"
+			},
+			"offsets": {
+				"from": 79400,
+				"to": 85040
+			},
+			"text": " So in the reward account.payout account line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,040",
+				"to": "00:01:27,800"
+			},
+			"offsets": {
+				"from": 85040,
+				"to": 87800
+			},
+			"text": " already you can see that there are two accounts here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,440",
+				"to": "00:01:33,640"
+			},
+			"offsets": {
+				"from": 88440,
+				"to": 93640
+			},
+			"text": " and it's not as clear maybe immediately which account is untrusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,640",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 93640,
+				"to": 101200
+			},
+			"text": " So a better way to even rewrite this, maybe is to reward account.payout,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:49,280"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 109280
+			},
+			"text": " untrusted account, and then when people see that, it can help you be more aware"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,280",
+				"to": "00:01:50,200"
+			},
+			"offsets": {
+				"from": 109280,
+				"to": 110200
+			},
+			"text": " of what might happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,800",
+				"to": "00:01:58,800"
+			},
+			"offsets": {
+				"from": 111800,
+				"to": 118800
+			},
+			"text": " And as an additional tip, message sender can also be untrusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,800",
+				"to": "00:02:05,120"
+			},
+			"offsets": {
+				"from": 118800,
+				"to": 125120
+			},
+			"text": " So if it's always untrusted, then you definitely need to put a comment"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,120",
+				"to": "00:02:08,400"
+			},
+			"offsets": {
+				"from": 125120,
+				"to": 128400
+			},
+			"text": " in your code that just to make people more aware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,400",
+				"to": "00:02:17,920"
+			},
+			"offsets": {
+				"from": 128400,
+				"to": 137920
+			},
+			"text": " Nemil de lao, Simon de la Rous-Vie, and I started the community resource"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,920",
+				"to": "00:02:20,400"
+			},
+			"offsets": {
+				"from": 137920,
+				"to": 140400
+			},
+			"text": " for smart contract security tips."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,240",
+				"to": "00:02:27,520"
+			},
+			"offsets": {
+				"from": 141240,
+				"to": 147520
+			},
+			"text": " We're grateful to seven others so far who have our list as contributors in GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,520",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 147520,
+				"to": 153360
+			},
+			"text": " The emphasis is on community because security is not just for a handful of developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,360",
+				"to": "00:02:38,560"
+			},
+			"offsets": {
+				"from": 153360,
+				"to": 158560
+			},
+			"text": " to write about, and the content needs to be aggregated and easy for people to find,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,560",
+				"to": "00:02:41,480"
+			},
+			"offsets": {
+				"from": 158560,
+				"to": 161480
+			},
+			"text": " instead of being fragmented and scattered."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,480",
+				"to": "00:02:49,640"
+			},
+			"offsets": {
+				"from": 161480,
+				"to": 169640
+			},
+			"text": " We start with some points about general philosophy before extending much further"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,360",
+				"to": "00:02:51,440"
+			},
+			"offsets": {
+				"from": 170360,
+				"to": 171440
+			},
+			"text": " and getting more technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,440",
+				"to": "00:02:54,880"
+			},
+			"offsets": {
+				"from": 171440,
+				"to": 174880
+			},
+			"text": " The first point is to prepare for failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,880",
+				"to": "00:03:00,800"
+			},
+			"offsets": {
+				"from": 174880,
+				"to": 180800
+			},
+			"text": " The first, this is not about defeat or giving up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,800",
+				"to": "00:03:05,480"
+			},
+			"offsets": {
+				"from": 180800,
+				"to": 185480
+			},
+			"text": " This is to try to be ready for the unknown unknowns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,480",
+				"to": "00:03:11,520"
+			},
+			"offsets": {
+				"from": 185480,
+				"to": 191520
+			},
+			"text": " This can be very difficult to do, but it is possible in some cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,520",
+				"to": "00:03:14,280"
+			},
+			"offsets": {
+				"from": 191520,
+				"to": 194280
+			},
+			"text": " and the next slide is an example of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,960",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 195960,
+				"to": 200280
+			},
+			"text": " The second example, the second point, is to roll out carefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:25,960"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 205960
+			},
+			"text": " Production system needs baking time and production."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,960",
+				"to": "00:03:33,320"
+			},
+			"offsets": {
+				"from": 205960,
+				"to": 213320
+			},
+			"text": " The strongest swords are forged by repeatedly processing them"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,320",
+				"to": "00:03:37,760"
+			},
+			"offsets": {
+				"from": 213320,
+				"to": 217760
+			},
+			"text": " in the process of putting them in fire and hammering them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,760",
+				"to": "00:03:39,280"
+			},
+			"offsets": {
+				"from": 217760,
+				"to": 219280
+			},
+			"text": " It takes time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,280",
+				"to": "00:03:43,400"
+			},
+			"offsets": {
+				"from": 219280,
+				"to": 223400
+			},
+			"text": " So for contracts, they should be put through test nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,880",
+				"to": "00:03:47,640"
+			},
+			"offsets": {
+				"from": 223880,
+				"to": 227640
+			},
+			"text": " and then a beta on mainnet before a production launch on mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,640",
+				"to": "00:03:51,120"
+			},
+			"offsets": {
+				"from": 227640,
+				"to": 231120
+			},
+			"text": " Keeping contracts simple is an obvious tip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,120",
+				"to": "00:03:56,760"
+			},
+			"offsets": {
+				"from": 231120,
+				"to": 236760
+			},
+			"text": " but the process of simplification can lead to surprising results,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,760",
+				"to": "00:03:59,640"
+			},
+			"offsets": {
+				"from": 236760,
+				"to": 239640
+			},
+			"text": " even in a system that already looks simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,640",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 239640,
+				"to": 244560
+			},
+			"text": " To stay up to date, there's a bibliography at the repo"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:08,280"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 248280
+			},
+			"text": " for the community resource that everyone is welcome to contribute to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,680",
+				"to": "00:04:14,160"
+			},
+			"offsets": {
+				"from": 249680,
+				"to": 254160
+			},
+			"text": " Be aware of blockchain properties is what the rest of this talk relates to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,160",
+				"to": "00:04:19,240"
+			},
+			"offsets": {
+				"from": 254160,
+				"to": 259240
+			},
+			"text": " As promised, here's an example of preparing for failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,240",
+				"to": "00:04:23,760"
+			},
+			"offsets": {
+				"from": 259240,
+				"to": 263760
+			},
+			"text": " The contract keeps track of its expected fund balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,760",
+				"to": "00:04:29,400"
+			},
+			"offsets": {
+				"from": 263760,
+				"to": 269400
+			},
+			"text": " Check-in variance throws, if the actual balance of the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,400",
+				"to": "00:04:31,480"
+			},
+			"offsets": {
+				"from": 269400,
+				"to": 271480
+			},
+			"text": " is smaller than the expected balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,480",
+				"to": "00:04:38,680"
+			},
+			"offsets": {
+				"from": 271480,
+				"to": 278680
+			},
+			"text": " And this check-in variance is called at the end of some of the key functions in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,680",
+				"to": "00:04:44,480"
+			},
+			"offsets": {
+				"from": 279680,
+				"to": 284480
+			},
+			"text": " Now, the emergency call sends the balance to the workshop account"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,480",
+				"to": "00:04:46,880"
+			},
+			"offsets": {
+				"from": 284480,
+				"to": 286880
+			},
+			"text": " only if the invariant is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,880",
+				"to": "00:04:52,400"
+			},
+			"offsets": {
+				"from": 286880,
+				"to": 292400
+			},
+			"text": " The invariant should not get broken, but just in case it does,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,400",
+				"to": "00:04:56,080"
+			},
+			"offsets": {
+				"from": 292400,
+				"to": 296080
+			},
+			"text": " the emergency call will send the funds away."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,080",
+				"to": "00:05:00,280"
+			},
+			"offsets": {
+				"from": 296080,
+				"to": 300280
+			},
+			"text": " Anyone can invoke the emergency call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,280",
+				"to": "00:05:04,680"
+			},
+			"offsets": {
+				"from": 300280,
+				"to": 304680
+			},
+			"text": " and the plan is to have a server, call it every second."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:11,080"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 311080
+			},
+			"text": " If there is a breach that the contract's balance is smaller than what it expects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,080",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 311080,
+				"to": 315480
+			},
+			"text": " the hope is that most of the funds can be sent to the workshop"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:18,320"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 318320
+			},
+			"text": " instead of being drained to an attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,320",
+				"to": "00:05:28,160"
+			},
+			"offsets": {
+				"from": 318320,
+				"to": 328160
+			},
+			"text": " Contracts calling each other is powerful and can lead to emergent use cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,160",
+				"to": "00:05:33,680"
+			},
+			"offsets": {
+				"from": 328160,
+				"to": 333680
+			},
+			"text": " but care must be taken for external calls that a contract makes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:39,720"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 339720
+			},
+			"text": " The recommendation is to avoid calls to untrusted contracts as much as you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,720",
+				"to": "00:05:44,120"
+			},
+			"offsets": {
+				"from": 339720,
+				"to": 344120
+			},
+			"text": " Untrusted means any contract that you have not written."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,120",
+				"to": "00:05:48,240"
+			},
+			"offsets": {
+				"from": 344120,
+				"to": 348240
+			},
+			"text": " This is because if you call someone else's contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,240",
+				"to": "00:05:54,080"
+			},
+			"offsets": {
+				"from": 348240,
+				"to": 354080
+			},
+			"text": " they or one of their dependencies could accidentally call a malicious contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,080",
+				"to": "00:05:57,280"
+			},
+			"offsets": {
+				"from": 354080,
+				"to": 357280
+			},
+			"text": " In the chain of contract calls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,280",
+				"to": "00:06:01,680"
+			},
+			"offsets": {
+				"from": 357280,
+				"to": 361680
+			},
+			"text": " all it takes is for one contract to make a mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,840",
+				"to": "00:06:07,200"
+			},
+			"offsets": {
+				"from": 362840,
+				"to": 367200
+			},
+			"text": " Thus, assume that untrusted contracts are malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,200",
+				"to": "00:06:14,040"
+			},
+			"offsets": {
+				"from": 367200,
+				"to": 374040
+			},
+			"text": " Avoid calling do something or address.call on an untrusted contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,040",
+				"to": "00:06:18,960"
+			},
+			"offsets": {
+				"from": 374040,
+				"to": 378960
+			},
+			"text": " The key point is that after any untrusted call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,960",
+				"to": "00:06:22,840"
+			},
+			"offsets": {
+				"from": 378960,
+				"to": 382840
+			},
+			"text": " assume that the state of your contract has been manipulated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,840",
+				"to": "00:06:25,880"
+			},
+			"offsets": {
+				"from": 382840,
+				"to": 385880
+			},
+			"text": " Here's a diagram to help."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,280",
+				"to": "00:06:33,160"
+			},
+			"offsets": {
+				"from": 389280,
+				"to": 393160
+			},
+			"text": " There's a few things here, but let's start at the foo function."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,160",
+				"to": "00:06:38,840"
+			},
+			"offsets": {
+				"from": 393160,
+				"to": 398840
+			},
+			"text": " It decrements x and then it calls an untrusted contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,840",
+				"to": "00:06:46,160"
+			},
+			"offsets": {
+				"from": 398840,
+				"to": 406160
+			},
+			"text": " The fallback function of the untrusted contract executes and it can call foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,160",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 406160,
+				"to": 410000
+			},
+			"text": " This is an example of recursive re-entrancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:58,800"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 418800
+			},
+			"text": " It's important to realize that re-entrancy can use any of the contract's public functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:06,520"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 426520
+			},
+			"text": " Meaning an attacker can re-enter using the function g or bar."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,520",
+				"to": "00:07:10,720"
+			},
+			"offsets": {
+				"from": 426520,
+				"to": 430720
+			},
+			"text": " This is why after the untrusted call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,720",
+				"to": "00:07:16,560"
+			},
+			"offsets": {
+				"from": 430720,
+				"to": 436560
+			},
+			"text": " the contract can't assume anything at all about the values of x or y."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,560",
+				"to": "00:07:25,840"
+			},
+			"offsets": {
+				"from": 436560,
+				"to": 445840
+			},
+			"text": " The second tip is to use send and avoid call.value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,360",
+				"to": "00:07:32,320"
+			},
+			"offsets": {
+				"from": 447360,
+				"to": 452320
+			},
+			"text": " If you've seen examples of vulnerable code, especially regarding re-entrancy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,320",
+				"to": "00:07:35,520"
+			},
+			"offsets": {
+				"from": 452320,
+				"to": 455520
+			},
+			"text": " they all involve call.value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,520",
+				"to": "00:07:40,480"
+			},
+			"offsets": {
+				"from": 455520,
+				"to": 460480
+			},
+			"text": " Because using send instead of call.value"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,480",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 460480,
+				"to": 466600
+			},
+			"text": " does not give the attacker enough gas to do damage with re-entrancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:51,200"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 471200
+			},
+			"text": " The attacker only gets 2,300 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,200",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 471200,
+				"to": 474960
+			},
+			"text": " With great power comes great responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,760",
+				"to": "00:07:57,760"
+			},
+			"offsets": {
+				"from": 475760,
+				"to": 477760
+			},
+			"text": " and that applies to call.value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,760",
+				"to": "00:08:02,720"
+			},
+			"offsets": {
+				"from": 477760,
+				"to": 482720
+			},
+			"text": " And so the tip is to use send and avoid call.value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,720",
+				"to": "00:08:11,680"
+			},
+			"offsets": {
+				"from": 482720,
+				"to": 491680
+			},
+			"text": " Perhaps the most mature best practice is to handle errors in raw calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,680",
+				"to": "00:08:20,400"
+			},
+			"offsets": {
+				"from": 491680,
+				"to": 500400
+			},
+			"text": " Raw calls such as address.send and address.call return false if they fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,400",
+				"to": "00:08:23,920"
+			},
+			"offsets": {
+				"from": 500400,
+				"to": 503920
+			},
+			"text": " This is unlike invoking a do something method"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,960",
+				"to": "00:08:28,800"
+			},
+			"offsets": {
+				"from": 504960,
+				"to": 508800
+			},
+			"text": " which propagates an exception if it encounters one."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,800",
+				"to": "00:08:38,240"
+			},
+			"offsets": {
+				"from": 508800,
+				"to": 518240
+			},
+			"text": " So the good example is to check the result and the bad example is an unchecked send."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,240",
+				"to": "00:08:48,080"
+			},
+			"offsets": {
+				"from": 518240,
+				"to": 528080
+			},
+			"text": " A tip that goes together with using send is to keep fallback functions simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,480",
+				"to": "00:08:58,720"
+			},
+			"offsets": {
+				"from": 530480,
+				"to": 538720
+			},
+			"text": " The last fallback function is advised against because one it uses more than 2,300 gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,720",
+				"to": "00:09:09,360"
+			},
+			"offsets": {
+				"from": 538720,
+				"to": 549360
+			},
+			"text": " Second it asks callers to break the tip of using send and asks them to use the riskier call.value."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 562000
+			},
+			"text": " A call depth attack can be used by an attacker to make all of your contracts calls to fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:30,480"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 570480
+			},
+			"text": " The theorem virtual machine has what the yellow paper calls a contract a message call"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,480",
+				"to": "00:09:36,720"
+			},
+			"offsets": {
+				"from": 570480,
+				"to": 576720
+			},
+			"text": " slash contract creation stack and it has a maximum depth of 1024."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,720",
+				"to": "00:09:42,320"
+			},
+			"offsets": {
+				"from": 576720,
+				"to": 582320
+			},
+			"text": " An attacker can make recursive calls to bring the depth to 1023."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,280",
+				"to": "00:09:47,440"
+			},
+			"offsets": {
+				"from": 583280,
+				"to": 587440
+			},
+			"text": " Call your function which brings the depth to 1024."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,440",
+				"to": "00:09:51,760"
+			},
+			"offsets": {
+				"from": 587440,
+				"to": 591760
+			},
+			"text": " And now all of your contracts calls will fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,760",
+				"to": "00:10:00,480"
+			},
+			"offsets": {
+				"from": 591760,
+				"to": 600480
+			},
+			"text": " In this example, simple example, an attacker can force a recipient to lose their refund."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,480",
+				"to": "00:10:07,120"
+			},
+			"offsets": {
+				"from": 600480,
+				"to": 607120
+			},
+			"text": " So the attacker recursors to bring the depth to 1023 then calls with the draw refund"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,760",
+				"to": "00:10:14,240"
+			},
+			"offsets": {
+				"from": 607760,
+				"to": 614240
+			},
+			"text": " using the address of a victim recipient and the depth is now at 1024."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,240",
+				"to": "00:10:21,840"
+			},
+			"offsets": {
+				"from": 614240,
+				"to": 621840
+			},
+			"text": " The refunds for the recipient will be set to zero. This pointer doesn't work well to show that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,840",
+				"to": "00:10:31,920"
+			},
+			"offsets": {
+				"from": 621840,
+				"to": 631920
+			},
+			"text": " And when the victim calls withdraw a refund, the send will fail and then when the victim calls"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,560",
+				"to": "00:10:37,760"
+			},
+			"offsets": {
+				"from": 632560,
+				"to": 637760
+			},
+			"text": " tries to withdraw their own refund, the refund will already be set to zero so they can't get it back."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,760",
+				"to": "00:10:46,880"
+			},
+			"offsets": {
+				"from": 637760,
+				"to": 646880
+			},
+			"text": " As an improvement, the return value of send could be checked. However, a preferred solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,880",
+				"to": "00:10:53,200"
+			},
+			"offsets": {
+				"from": 646880,
+				"to": 653200
+			},
+			"text": " is to write this contract so that message sender will pull their refund as opposed to the insecure"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,200",
+				"to": "00:10:57,440"
+			},
+			"offsets": {
+				"from": 653200,
+				"to": 657440
+			},
+			"text": " contract's approach of pushing the refund to our recipient."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,240",
+				"to": "00:11:05,120"
+			},
+			"offsets": {
+				"from": 660240,
+				"to": 665120
+			},
+			"text": " This has had to be a quick presentation and there's plenty more information and examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,120",
+				"to": "00:11:13,120"
+			},
+			"offsets": {
+				"from": 665120,
+				"to": 673120
+			},
+			"text": " such as pullover, push, denial of service against contracts and re-entrancy that can be found in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,120",
+				"to": "00:11:24,560"
+			},
+			"offsets": {
+				"from": 673120,
+				"to": 684560
+			},
+			"text": " the repo and wiki page. To recap, some of the main points for smart contract security are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,280",
+				"to": "00:11:35,680"
+			},
+			"offsets": {
+				"from": 685280,
+				"to": 695680
+			},
+			"text": " prepare for failure, roll out carefully, keep contracts simple, and calling untrusted contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,680",
+				"to": "00:11:43,920"
+			},
+			"offsets": {
+				"from": 695680,
+				"to": 703920
+			},
+			"text": " is always dangerous. The danger may seem small but if an attacker finds and exploits a bug in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,920",
+				"to": "00:11:52,320"
+			},
+			"offsets": {
+				"from": 703920,
+				"to": 712320
+			},
+			"text": " compiler that is targeting the EVM, they are likely to do much more damage if their untrusted code"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,960",
+				"to": "00:11:59,840"
+			},
+			"offsets": {
+				"from": 712960,
+				"to": 719840
+			},
+			"text": " is executed than one where they only have a compiler bug to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,840",
+				"to": "00:12:08,640"
+			},
+			"offsets": {
+				"from": 719840,
+				"to": 728640
+			},
+			"text": " Here are the links to a security resource by the community for the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,640",
+				"to": "00:12:17,440"
+			},
+			"offsets": {
+				"from": 728640,
+				"to": 737440
+			},
+			"text": " I also have slides regarding denial of service and pullover, push, or can take two questions in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,440",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737440,
+				"to": 742000
+			},
+			"text": " remaining three minutes. Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:37,840"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 757840
+			},
+			"text": " Okay, I can quickly go through a couple more. So quickly in this denial of service against the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,840",
+				"to": "00:12:44,640"
+			},
+			"offsets": {
+				"from": 757840,
+				"to": 764640
+			},
+			"text": " contract, there are many ways that pitfalls that you can encounter them. One is an unexpected"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,640",
+				"to": "00:12:50,800"
+			},
+			"offsets": {
+				"from": 764640,
+				"to": 770800
+			},
+			"text": " throw which is what this code example here is about but hitting the block-ass limit is another"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,800",
+				"to": "00:12:56,960"
+			},
+			"offsets": {
+				"from": 770800,
+				"to": 776960
+			},
+			"text": " example, iterating through an unbounded arrays, another example, misunderstanding gas refunds will"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,960",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 776960,
+				"to": 788000
+			},
+			"text": " also cause the same issue. So in this example contract, the line with the throw means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:16,160"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 796160
+			},
+			"text": " a current leader that refuses payment will permanently be the leader. And the throw cannot be removed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,160",
+				"to": "00:13:24,240"
+			},
+			"offsets": {
+				"from": 796160,
+				"to": 804240
+			},
+			"text": " in this case because otherwise some other person can do a call-depth attack against bid"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,240",
+				"to": "00:13:30,560"
+			},
+			"offsets": {
+				"from": 804240,
+				"to": 810560
+			},
+			"text": " and what that means is that they will get to be the current leader without having had to pay"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,560",
+				"to": "00:13:37,040"
+			},
+			"offsets": {
+				"from": 810560,
+				"to": 817040
+			},
+			"text": " the previous leader. So in this example, you can't just remove throw. And for the final"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,040",
+				"to": "00:13:43,680"
+			},
+			"offsets": {
+				"from": 817040,
+				"to": 823680
+			},
+			"text": " tip that we only have time for here is to change this into a pullover push"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,680",
+				"to": "00:13:53,360"
+			},
+			"offsets": {
+				"from": 823680,
+				"to": 833360
+			},
+			"text": " system. And so the left side is the auction contract that was shown just a couple of slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,360",
+				"to": "00:14:00,800"
+			},
+			"offsets": {
+				"from": 833360,
+				"to": 840800
+			},
+			"text": " ago. This time instead of doing a send to the recipient, the contract just keeps track of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,800",
+				"to": "00:14:10,320"
+			},
+			"offsets": {
+				"from": 840800,
+				"to": 850320
+			},
+			"text": " refunds that are owed to whoever the highest bidder is. And then on the right side is the pull"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,320",
+				"to": "00:14:19,280"
+			},
+			"offsets": {
+				"from": 850320,
+				"to": 859280
+			},
+			"text": " method where everything works based off message sender. And by doing this, an attacker can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,280",
+				"to": "00:14:26,240"
+			},
+			"offsets": {
+				"from": 859280,
+				"to": 866240
+			},
+			"text": " only attack themselves. So that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,240",
+				"to": "00:14:37,520"
+			},
+			"offsets": {
+				"from": 866240,
+				"to": 877520
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,520",
+				"to": "00:14:43,520"
+			},
+			"offsets": {
+				"from": 877520,
+				"to": 883520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,520",
+				"to": "00:14:49,520"
+			},
+			"offsets": {
+				"from": 883520,
+				"to": 889520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,520",
+				"to": "00:14:55,520"
+			},
+			"offsets": {
+				"from": 889520,
+				"to": 895520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,520",
+				"to": "00:15:01,520"
+			},
+			"offsets": {
+				"from": 895520,
+				"to": 901520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,520",
+				"to": "00:15:07,520"
+			},
+			"offsets": {
+				"from": 901520,
+				"to": 907520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,520",
+				"to": "00:15:13,520"
+			},
+			"offsets": {
+				"from": 907520,
+				"to": 913520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,520",
+				"to": "00:15:23,520"
+			},
+			"offsets": {
+				"from": 913520,
+				"to": 923520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,520",
+				"to": "00:15:33,520"
+			},
+			"offsets": {
+				"from": 923520,
+				"to": 933520
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,520",
+				"to": "00:15:53,520"
+			},
+			"offsets": {
+				"from": 933520,
+				"to": 953520
+			},
+			"text": " [Music]"
+		}
+	]
+}

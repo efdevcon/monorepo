@@ -1,0 +1,1374 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:12,680"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 12680
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,680",
+				"to": "00:00:16,880"
+			},
+			"offsets": {
+				"from": 12680,
+				"to": 16880
+			},
+			"text": " My name is Yvonne, and I've been doing a quick overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,880",
+				"to": "00:00:21,720"
+			},
+			"offsets": {
+				"from": 16880,
+				"to": 21720
+			},
+			"text": " of how to build an EKA mixer with these specific focus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,720",
+				"to": "00:00:24,440"
+			},
+			"offsets": {
+				"from": 21720,
+				"to": 24440
+			},
+			"text": " on building one that is completely anonymous"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,440",
+				"to": "00:00:26,720"
+			},
+			"offsets": {
+				"from": 24440,
+				"to": 26720
+			},
+			"text": " and does not require human interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,720",
+				"to": "00:00:28,160"
+			},
+			"offsets": {
+				"from": 26720,
+				"to": 28160
+			},
+			"text": " or human subsidies."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,160",
+				"to": "00:00:30,760"
+			},
+			"offsets": {
+				"from": 28160,
+				"to": 30760
+			},
+			"text": " So if you look at the state of jobs right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,760",
+				"to": "00:00:34,360"
+			},
+			"offsets": {
+				"from": 30760,
+				"to": 34360
+			},
+			"text": " many of them are not 100% decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,360",
+				"to": "00:00:38,480"
+			},
+			"offsets": {
+				"from": 34360,
+				"to": 38480
+			},
+			"text": " They tend to require either a price key or maybe a relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,480",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 38480,
+				"to": 41160
+			},
+			"text": " or that's subsidized by some company."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:45,040"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 45040
+			},
+			"text": " Maybe one exception would be Uniswap that exists on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,040",
+				"to": "00:00:47,280"
+			},
+			"offsets": {
+				"from": 45040,
+				"to": 47280
+			},
+			"text": " and requires pretty much no interaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,280",
+				"to": "00:00:53,960"
+			},
+			"offsets": {
+				"from": 47280,
+				"to": 53960
+			},
+			"text": " And so let's see how close we can get to that gold standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,960",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 53960,
+				"to": 57280
+			},
+			"text": " So first of all, there's a few nursing technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:00:58,840"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 58840
+			},
+			"text": " that exist this day."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,840",
+				"to": "00:01:02,240"
+			},
+			"offsets": {
+				"from": 58840,
+				"to": 62240
+			},
+			"text": " The first one is coin joint, that's what's used in Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,240",
+				"to": "00:01:04,800"
+			},
+			"offsets": {
+				"from": 62240,
+				"to": 64800
+			},
+			"text": " Just like for example, a media wasabi wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,800",
+				"to": "00:01:07,560"
+			},
+			"offsets": {
+				"from": 64800,
+				"to": 67560
+			},
+			"text": " and it's also used in Mimble, Wimble, and Grin"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,560",
+				"to": "00:01:10,440"
+			},
+			"offsets": {
+				"from": 67560,
+				"to": 70440
+			},
+			"text": " if you've been following that project."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,440",
+				"to": "00:01:13,360"
+			},
+			"offsets": {
+				"from": 70440,
+				"to": 73360
+			},
+			"text": " Then there's decoy based, which is used in Monero."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,360",
+				"to": "00:01:18,400"
+			},
+			"offsets": {
+				"from": 73360,
+				"to": 78400
+			},
+			"text": " And finally, there's a zero-noline, vertical-free-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,400",
+				"to": "00:01:19,720"
+			},
+			"offsets": {
+				"from": 78400,
+				"to": 79720
+			},
+			"text": " percols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,720",
+				"to": "00:01:21,880"
+			},
+			"offsets": {
+				"from": 79720,
+				"to": 81880
+			},
+			"text": " The best number one is Zcash."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,880",
+				"to": "00:01:26,800"
+			},
+			"offsets": {
+				"from": 81880,
+				"to": 86800
+			},
+			"text": " And there's a few EK mixers built on top of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,800",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 86800,
+				"to": 91800
+			},
+			"text": " Or it goes well, including Mistleman's Center, not a cash."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 97000
+			},
+			"text": " So coin over new of all three, coin joint is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 101160
+			},
+			"text": " instead of two people doing two different transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:43,480"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 103480
+			},
+			"text": " They come together for the purposes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,480",
+				"to": "00:01:46,560"
+			},
+			"offsets": {
+				"from": 103480,
+				"to": 106560
+			},
+			"text": " of helping each other be anonymous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,560",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 106560,
+				"to": 110240
+			},
+			"text": " and they merge that into one single transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:54,040"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 114040
+			},
+			"text": " So for example, here if 10 is a drug dealer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,040",
+				"to": "00:01:58,320"
+			},
+			"offsets": {
+				"from": 114040,
+				"to": 118320
+			},
+			"text": " and a balling Alice used coin joint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,320",
+				"to": "00:02:01,440"
+			},
+			"offsets": {
+				"from": 118320,
+				"to": 121440
+			},
+			"text": " it's impossible to know whether Alice or a ball"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,440",
+				"to": "00:02:03,360"
+			},
+			"offsets": {
+				"from": 121440,
+				"to": 123360
+			},
+			"text": " paid the drug dealer, so they kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,360",
+				"to": "00:02:06,600"
+			},
+			"offsets": {
+				"from": 123360,
+				"to": 126600
+			},
+			"text": " give each other this plausible deniability."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,600",
+				"to": "00:02:09,760"
+			},
+			"offsets": {
+				"from": 126600,
+				"to": 129760
+			},
+			"text": " The problem with that is your anonymity set is very low."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,760",
+				"to": "00:02:11,960"
+			},
+			"offsets": {
+				"from": 129760,
+				"to": 131960
+			},
+			"text": " It says maybe five people doing the coin joint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,960",
+				"to": "00:02:14,240"
+			},
+			"offsets": {
+				"from": 131960,
+				"to": 134240
+			},
+			"text": " and there's five people helping you be slightly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,240",
+				"to": "00:02:17,720"
+			},
+			"offsets": {
+				"from": 134240,
+				"to": 137720
+			},
+			"text": " more anonymous, but that's not quite good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,720",
+				"to": "00:02:20,520"
+			},
+			"offsets": {
+				"from": 137720,
+				"to": 140520
+			},
+			"text": " Then the next thing is the decoy based privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,520",
+				"to": "00:02:21,680"
+			},
+			"offsets": {
+				"from": 140520,
+				"to": 141680
+			},
+			"text": " which is using Monero."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,680",
+				"to": "00:02:25,800"
+			},
+			"offsets": {
+				"from": 141680,
+				"to": 145800
+			},
+			"text": " The idea is you can use any on-chain UTXO,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,800",
+				"to": "00:02:28,640"
+			},
+			"offsets": {
+				"from": 145800,
+				"to": 148640
+			},
+			"text": " and pretend that that could have been your input."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,640",
+				"to": "00:02:33,040"
+			},
+			"offsets": {
+				"from": 148640,
+				"to": 153040
+			},
+			"text": " So basically a free transaction has maybe 10 to 15 sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,040",
+				"to": "00:02:35,240"
+			},
+			"offsets": {
+				"from": 153040,
+				"to": 155240
+			},
+			"text": " only one of them is real, the rest of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,240",
+				"to": "00:02:37,920"
+			},
+			"offsets": {
+				"from": 155240,
+				"to": 157920
+			},
+			"text": " could not even know that they've been used"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,920",
+				"to": "00:02:39,280"
+			},
+			"offsets": {
+				"from": 157920,
+				"to": 159280
+			},
+			"text": " in the end of the session."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,280",
+				"to": "00:02:41,720"
+			},
+			"offsets": {
+				"from": 159280,
+				"to": 161720
+			},
+			"text": " So that's quite a lot better."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,720",
+				"to": "00:02:45,240"
+			},
+			"offsets": {
+				"from": 161720,
+				"to": 165240
+			},
+			"text": " And then there's a separate technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,240",
+				"to": "00:02:48,240"
+			},
+			"offsets": {
+				"from": 165240,
+				"to": 168240
+			},
+			"text": " for hiding the amounts behind those transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,240",
+				"to": "00:02:50,320"
+			},
+			"offsets": {
+				"from": 168240,
+				"to": 170320
+			},
+			"text": " where you do bit by bit encoding."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,320",
+				"to": "00:02:54,800"
+			},
+			"offsets": {
+				"from": 171320,
+				"to": 174800
+			},
+			"text": " But decoy particles have suffered"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,800",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 174800,
+				"to": 177000
+			},
+			"text": " from a bunch of attacks before."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:03,280"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 183280
+			},
+			"text": " Long story short, there's risks of repeated interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,280",
+				"to": "00:03:07,200"
+			},
+			"offsets": {
+				"from": 183280,
+				"to": 187200
+			},
+			"text": " So if the same person pays the same drug dealer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,200",
+				"to": "00:03:11,640"
+			},
+			"offsets": {
+				"from": 187200,
+				"to": 191640
+			},
+			"text": " a few times in a row, there's going to be multiple paths"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,640",
+				"to": "00:03:14,520"
+			},
+			"offsets": {
+				"from": 191640,
+				"to": 194520
+			},
+			"text": " in the transaction graph from that person"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,520",
+				"to": "00:03:17,440"
+			},
+			"offsets": {
+				"from": 194520,
+				"to": 197440
+			},
+			"text": " to the drug dealer, that's pretty bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,440",
+				"to": "00:03:20,400"
+			},
+			"offsets": {
+				"from": 197440,
+				"to": 200400
+			},
+			"text": " So in being kind of by a process of elimination,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,400",
+				"to": "00:03:23,760"
+			},
+			"offsets": {
+				"from": 200400,
+				"to": 203760
+			},
+			"text": " we arrive at zero knowledge, Merkle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,760",
+				"to": "00:03:28,760"
+			},
+			"offsets": {
+				"from": 203760,
+				"to": 208760
+			},
+			"text": " three based mixers as the only way to achieve maximum anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,760",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 208760,
+				"to": 214000
+			},
+			"text": " And here the idea is there's a shielded pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:37,040"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 217040
+			},
+			"text": " that keeps all the money that wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,040",
+				"to": "00:03:39,520"
+			},
+			"offsets": {
+				"from": 217040,
+				"to": 219520
+			},
+			"text": " to participate in the organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,520",
+				"to": "00:03:41,680"
+			},
+			"offsets": {
+				"from": 219520,
+				"to": 221680
+			},
+			"text": " No one knows who is going within the pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,680",
+				"to": "00:03:43,480"
+			},
+			"offsets": {
+				"from": 221680,
+				"to": 223480
+			},
+			"text": " and then you deposit into the pool"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,480",
+				"to": "00:03:45,120"
+			},
+			"offsets": {
+				"from": 223480,
+				"to": 225120
+			},
+			"text": " with a while in the middle door."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,120",
+				"to": "00:03:49,160"
+			},
+			"offsets": {
+				"from": 225120,
+				"to": 229160
+			},
+			"text": " And so that is kind of the most private way"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,160",
+				"to": "00:03:51,320"
+			},
+			"offsets": {
+				"from": 229160,
+				"to": 231320
+			},
+			"text": " of un minimizing your points."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,320",
+				"to": "00:03:54,720"
+			},
+			"offsets": {
+				"from": 231320,
+				"to": 234720
+			},
+			"text": " Okay, so what are the components"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,720",
+				"to": "00:03:56,880"
+			},
+			"offsets": {
+				"from": 234720,
+				"to": 236880
+			},
+			"text": " of a decaysner of mixers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,880",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 236880,
+				"to": 239320
+			},
+			"text": " First, you need a core smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:02,720"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 242720
+			},
+			"text": " that takes that money and processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,720",
+				"to": "00:04:04,720"
+			},
+			"offsets": {
+				"from": 242720,
+				"to": 244720
+			},
+			"text": " deposit some withdrawals."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,720",
+				"to": "00:04:07,360"
+			},
+			"offsets": {
+				"from": 244720,
+				"to": 247360
+			},
+			"text": " Typically requires a trusted setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,360",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 247360,
+				"to": 249000
+			},
+			"text": " but not necessarily anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:11,720"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 251720
+			},
+			"text": " There's also the case starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,720",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 251720,
+				"to": 256000
+			},
+			"text": " Then you need to generate the immorable freebies"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:20,720"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 260720
+			},
+			"text": " for deposits, basically that's, if you go here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,720",
+				"to": "00:04:24,400"
+			},
+			"offsets": {
+				"from": 260720,
+				"to": 264400
+			},
+			"text": " that's the first arrow of entering the shielded pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,400",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 264400,
+				"to": 266480
+			},
+			"text": " Then you need to exit the shielded pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:31,600"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 271600
+			},
+			"text": " And that requires about 60 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,600",
+				"to": "00:04:36,200"
+			},
+			"offsets": {
+				"from": 271600,
+				"to": 276200
+			},
+			"text": " And then you need to send out those transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,200",
+				"to": "00:04:40,160"
+			},
+			"offsets": {
+				"from": 276200,
+				"to": 280160
+			},
+			"text": " Insert, the idea is every single piece"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,160",
+				"to": "00:04:42,960"
+			},
+			"offsets": {
+				"from": 280160,
+				"to": 282960
+			},
+			"text": " of those components can live on cheap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,960",
+				"to": "00:04:45,440"
+			},
+			"offsets": {
+				"from": 282960,
+				"to": 285440
+			},
+			"text": " either on a hearing or on an APFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,440",
+				"to": "00:04:47,880"
+			},
+			"offsets": {
+				"from": 285440,
+				"to": 287880
+			},
+			"text": " the hardest part is sending the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,880",
+				"to": "00:04:50,800"
+			},
+			"offsets": {
+				"from": 287880,
+				"to": 290800
+			},
+			"text": " So that has to be a relay or answering all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,800",
+				"to": "00:04:54,040"
+			},
+			"offsets": {
+				"from": 290800,
+				"to": 294040
+			},
+			"text": " And there's, first of all,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,040",
+				"to": "00:04:57,080"
+			},
+			"offsets": {
+				"from": 294040,
+				"to": 297080
+			},
+			"text": " you need to differentiate between the person"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,080",
+				"to": "00:05:00,440"
+			},
+			"offsets": {
+				"from": 297080,
+				"to": 300440
+			},
+			"text": " helping you withdraw and the recipient address"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,440",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 300440,
+				"to": 303000
+			},
+			"text": " so that you can withdraw to clean addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,220"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305220
+			},
+			"text": " and have the fees handled for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,220",
+				"to": "00:05:09,360"
+			},
+			"offsets": {
+				"from": 305220,
+				"to": 309360
+			},
+			"text": " So how do you sponsor that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,360",
+				"to": "00:05:12,320"
+			},
+			"offsets": {
+				"from": 309360,
+				"to": 312320
+			},
+			"text": " One, we could deposit money into compound,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,320",
+				"to": "00:05:17,320"
+			},
+			"offsets": {
+				"from": 312320,
+				"to": 317320
+			},
+			"text": " two into the Uniswap as liquidity pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,320",
+				"to": "00:05:20,400"
+			},
+			"offsets": {
+				"from": 317320,
+				"to": 320400
+			},
+			"text": " or we can take the fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,400",
+				"to": "00:05:23,120"
+			},
+			"offsets": {
+				"from": 320400,
+				"to": 323120
+			},
+			"text": " And so if you do a quick calculation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,120",
+				"to": "00:05:28,280"
+			},
+			"offsets": {
+				"from": 323120,
+				"to": 328280
+			},
+			"text": " Uniswap would sponsor a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,280",
+				"to": "00:05:31,800"
+			},
+			"offsets": {
+				"from": 328280,
+				"to": 331800
+			},
+			"text": " at 800,000 gas, which is roughly the average price,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,800",
+				"to": "00:05:33,680"
+			},
+			"offsets": {
+				"from": 331800,
+				"to": 333680
+			},
+			"text": " up to 0.25 per week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,680",
+				"to": "00:05:36,680"
+			},
+			"offsets": {
+				"from": 333680,
+				"to": 336680
+			},
+			"text": " which to those who use this game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,680",
+				"to": "00:05:39,040"
+			},
+			"offsets": {
+				"from": 336680,
+				"to": 339040
+			},
+			"text": " you know that this is very little,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,040",
+				"to": "00:05:41,960"
+			},
+			"offsets": {
+				"from": 339040,
+				"to": 341960
+			},
+			"text": " this will never go through a on-chain actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,960",
+				"to": "00:05:43,320"
+			},
+			"offsets": {
+				"from": 341960,
+				"to": 343320
+			},
+			"text": " And then if you deposit die,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,320",
+				"to": "00:05:45,080"
+			},
+			"offsets": {
+				"from": 343320,
+				"to": 345080
+			},
+			"text": " we could give you much higher interest rate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,080",
+				"to": "00:05:46,480"
+			},
+			"offsets": {
+				"from": 345080,
+				"to": 346480
+			},
+			"text": " that's up to four a week."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,480",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 346480,
+				"to": 349960
+			},
+			"text": " And then if you take 1% or 5% fee,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:51,840"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 351840
+			},
+			"text": " that's much more realistic."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,840",
+				"to": "00:05:56,840"
+			},
+			"offsets": {
+				"from": 351840,
+				"to": 356840
+			},
+			"text": " So long-term sure for an unlimization amounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,840",
+				"to": "00:05:58,840"
+			},
+			"offsets": {
+				"from": 356840,
+				"to": 358840
+			},
+			"text": " of roughly one ether,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,840",
+				"to": "00:06:02,520"
+			},
+			"offsets": {
+				"from": 358840,
+				"to": 362520
+			},
+			"text": " you need to pay roughly 5% fee to sponsor the withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,520",
+				"to": "00:06:04,640"
+			},
+			"offsets": {
+				"from": 362520,
+				"to": 364640
+			},
+			"text": " and make the relay are sustainable."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,640",
+				"to": "00:06:07,960"
+			},
+			"offsets": {
+				"from": 364640,
+				"to": 367960
+			},
+			"text": " And here's some more blanks to look at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,960",
+				"to": "00:06:12,920"
+			},
+			"offsets": {
+				"from": 367960,
+				"to": 372920
+			},
+			"text": " (audience applauds)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,920",
+				"to": "00:06:15,500"
+			},
+			"offsets": {
+				"from": 372920,
+				"to": 375500
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,500",
+				"to": "00:06:18,080"
+			},
+			"offsets": {
+				"from": 375500,
+				"to": 378080
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,080",
+				"to": "00:06:20,660"
+			},
+			"offsets": {
+				"from": 378080,
+				"to": 380660
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,660",
+				"to": "00:06:23,240"
+			},
+			"offsets": {
+				"from": 380660,
+				"to": 383240
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,240",
+				"to": "00:06:25,980"
+			},
+			"offsets": {
+				"from": 383240,
+				"to": 385980
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,980",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 385980,
+				"to": 388320
+			},
+			"text": " (drum beat)"
+		}
+	]
+}

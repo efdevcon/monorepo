@@ -1,0 +1,4883 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16340
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,340",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 16340,
+				"to": 18040
+			},
+			"text": " >> Welcome back."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:22,760"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 22760
+			},
+			"text": " Our next speaker is Chance Hudson, and he'll be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,760",
+				"to": "00:00:26,640"
+			},
+			"offsets": {
+				"from": 22760,
+				"to": 26640
+			},
+			"text": " about how to build an identity ecosystem on Unirapp."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,640",
+				"to": "00:00:31,200"
+			},
+			"offsets": {
+				"from": 26640,
+				"to": 31200
+			},
+			"text": " And Unirapp itself is an anonymous reputation system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,200",
+				"to": "00:00:32,680"
+			},
+			"offsets": {
+				"from": 31200,
+				"to": 32680
+			},
+			"text": " So, Chance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,680",
+				"to": "00:00:33,720"
+			},
+			"offsets": {
+				"from": 32680,
+				"to": 33720
+			},
+			"text": " >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,720",
+				"to": "00:00:38,680"
+			},
+			"offsets": {
+				"from": 33720,
+				"to": 38680
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,680",
+				"to": "00:00:40,880"
+			},
+			"offsets": {
+				"from": 38680,
+				"to": 40880
+			},
+			"text": " >> All right, so thank you all for being here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,880",
+				"to": "00:00:44,460"
+			},
+			"offsets": {
+				"from": 40880,
+				"to": 44460
+			},
+			"text": " Oops. I'm excited to talk to you guys today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,460",
+				"to": "00:00:46,800"
+			},
+			"offsets": {
+				"from": 44460,
+				"to": 46800
+			},
+			"text": " about a protocol I work on called Unirapp."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,800",
+				"to": "00:00:50,200"
+			},
+			"offsets": {
+				"from": 46800,
+				"to": 50200
+			},
+			"text": " So before we get into it, this is a quick roadmap"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,200",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 50200,
+				"to": 51840
+			},
+			"text": " of how this presentation is going to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:54,400"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 54400
+			},
+			"text": " First, I'm going to give a semi-technical overview"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,400",
+				"to": "00:00:56,040"
+			},
+			"offsets": {
+				"from": 54400,
+				"to": 56040
+			},
+			"text": " of what Unirapp the protocol is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,540",
+				"to": "00:00:59,340"
+			},
+			"offsets": {
+				"from": 56540,
+				"to": 59340
+			},
+			"text": " Then I'll talk a little bit about improving the user experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,340",
+				"to": "00:01:01,620"
+			},
+			"offsets": {
+				"from": 59340,
+				"to": 61620
+			},
+			"text": " of ZK and blockchain applications in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,620",
+				"to": "00:01:04,420"
+			},
+			"offsets": {
+				"from": 61620,
+				"to": 64420
+			},
+			"text": " And then I'll talk a little bit about how we can scale ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,420",
+				"to": "00:01:06,420"
+			},
+			"offsets": {
+				"from": 64420,
+				"to": 66420
+			},
+			"text": " on the blockchain and sort of where we're at"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,420",
+				"to": "00:01:07,680"
+			},
+			"offsets": {
+				"from": 66420,
+				"to": 67680
+			},
+			"text": " with the capacity right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,680",
+				"to": "00:01:10,820"
+			},
+			"offsets": {
+				"from": 67680,
+				"to": 70820
+			},
+			"text": " All right, so let's dive into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,820",
+				"to": "00:01:13,880"
+			},
+			"offsets": {
+				"from": 70820,
+				"to": 73880
+			},
+			"text": " Unirapp is short for universal reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,880",
+				"to": "00:01:16,300"
+			},
+			"offsets": {
+				"from": 73880,
+				"to": 76300
+			},
+			"text": " And you can think of it as two different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,300",
+				"to": "00:01:19,160"
+			},
+			"offsets": {
+				"from": 76300,
+				"to": 79160
+			},
+			"text": " First, it's an identity system that gives you anonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,160",
+				"to": "00:01:21,100"
+			},
+			"offsets": {
+				"from": 79160,
+				"to": 81100
+			},
+			"text": " And it does this by creating public keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,100",
+				"to": "00:01:22,040"
+			},
+			"offsets": {
+				"from": 81100,
+				"to": 82040
+			},
+			"text": " that change over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,040",
+				"to": "00:01:25,080"
+			},
+			"offsets": {
+				"from": 82040,
+				"to": 85080
+			},
+			"text": " The second component is this attestation system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,560",
+				"to": "00:01:27,220"
+			},
+			"offsets": {
+				"from": 85560,
+				"to": 87220
+			},
+			"text": " Within the system, we have attesters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,220",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 87220,
+				"to": 89000
+			},
+			"text": " which you can also think of as applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90000
+			},
+			"text": " or just smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:32,860"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 92860
+			},
+			"text": " And these attesters give reputation to users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,860",
+				"to": "00:01:35,360"
+			},
+			"offsets": {
+				"from": 92860,
+				"to": 95360
+			},
+			"text": " And you can think of an attester to reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,360",
+				"to": "00:01:38,160"
+			},
+			"offsets": {
+				"from": 95360,
+				"to": 98160
+			},
+			"text": " like ERC contracts to tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,160",
+				"to": "00:01:41,660"
+			},
+			"offsets": {
+				"from": 98160,
+				"to": 101660
+			},
+			"text": " They create the system to find how the reputation is distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,660",
+				"to": "00:01:43,840"
+			},
+			"offsets": {
+				"from": 101660,
+				"to": 103840
+			},
+			"text": " and spent and destroyed and everything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,840",
+				"to": "00:01:48,940"
+			},
+			"offsets": {
+				"from": 103840,
+				"to": 108940
+			},
+			"text": " And so we define reputation as two different integers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,940",
+				"to": "00:01:50,680"
+			},
+			"offsets": {
+				"from": 108940,
+				"to": 110680
+			},
+			"text": " positive and negative reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,680",
+				"to": "00:01:53,420"
+			},
+			"offsets": {
+				"from": 110680,
+				"to": 113420
+			},
+			"text": " And we do this so we can represent negative reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,420",
+				"to": "00:01:56,140"
+			},
+			"offsets": {
+				"from": 113420,
+				"to": 116140
+			},
+			"text": " like net negative reputation in ZK proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,140",
+				"to": "00:01:57,820"
+			},
+			"offsets": {
+				"from": 116140,
+				"to": 117820
+			},
+			"text": " and in smart contracts without having to deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,820",
+				"to": "00:02:00,960"
+			},
+			"offsets": {
+				"from": 117820,
+				"to": 120960
+			},
+			"text": " with signed integers or wrapping around unsigned integers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,960",
+				"to": "00:02:01,820"
+			},
+			"offsets": {
+				"from": 120960,
+				"to": 121820
+			},
+			"text": " or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,820",
+				"to": "00:02:04,860"
+			},
+			"offsets": {
+				"from": 121820,
+				"to": 124860
+			},
+			"text": " So that's one component of the user state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,860",
+				"to": "00:02:06,980"
+			},
+			"offsets": {
+				"from": 124860,
+				"to": 126980
+			},
+			"text": " The other is the graffiti value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,980",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 126980,
+				"to": 132000
+			},
+			"text": " which the attester can use for anything they want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:13,020"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 133020
+			},
+			"text": " within the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,020",
+				"to": "00:02:14,760"
+			},
+			"offsets": {
+				"from": 133020,
+				"to": 134760
+			},
+			"text": " And this is just 32 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,760",
+				"to": "00:02:17,020"
+			},
+			"offsets": {
+				"from": 134760,
+				"to": 137020
+			},
+			"text": " And yeah, the attester can use it as they like."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,020",
+				"to": "00:02:19,540"
+			},
+			"offsets": {
+				"from": 137020,
+				"to": 139540
+			},
+			"text": " And so one example use case of this is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,540",
+				"to": "00:02:22,380"
+			},
+			"offsets": {
+				"from": 139540,
+				"to": 142380
+			},
+			"text": " and a tester can allow users to register a username."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,880",
+				"to": "00:02:25,800"
+			},
+			"offsets": {
+				"from": 142880,
+				"to": 145800
+			},
+			"text": " And so the user requests a username and then the attester,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,800",
+				"to": "00:02:29,320"
+			},
+			"offsets": {
+				"from": 145800,
+				"to": 149320
+			},
+			"text": " attests giving the hash of the username as graffiti to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,320",
+				"to": "00:02:33,200"
+			},
+			"offsets": {
+				"from": 149320,
+				"to": 153200
+			},
+			"text": " Now when the user takes an action or makes a proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,200",
+				"to": "00:02:35,320"
+			},
+			"offsets": {
+				"from": 153200,
+				"to": 155320
+			},
+			"text": " they can prove the preimage of the graffiti"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,320",
+				"to": "00:02:37,840"
+			},
+			"offsets": {
+				"from": 155320,
+				"to": 157840
+			},
+			"text": " and move from anonymity to pseudonymity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,840",
+				"to": "00:02:41,080"
+			},
+			"offsets": {
+				"from": 157840,
+				"to": 161080
+			},
+			"text": " So that's one example use case that's relatively simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,080",
+				"to": "00:02:43,640"
+			},
+			"offsets": {
+				"from": 161080,
+				"to": 163640
+			},
+			"text": " A more complex example would be storing the state route"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,640",
+				"to": "00:02:46,320"
+			},
+			"offsets": {
+				"from": 163640,
+				"to": 166320
+			},
+			"text": " of a Merkel tree inside of this graffiti."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,320",
+				"to": "00:02:49,120"
+			},
+			"offsets": {
+				"from": 166320,
+				"to": 169120
+			},
+			"text": " And then the attester can extend the ZK proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,120",
+				"to": "00:02:51,640"
+			},
+			"offsets": {
+				"from": 169120,
+				"to": 171640
+			},
+			"text": " to prove things about the contents of that tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,640",
+				"to": "00:02:52,680"
+			},
+			"offsets": {
+				"from": 171640,
+				"to": 172680
+			},
+			"text": " that's in the graffiti."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,680",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 172680,
+				"to": 175440
+			},
+			"text": " So for example, they could use an incremental Merkel tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:02:58,280"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 178280
+			},
+			"text": " to give achievements to the user or to track actions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,280",
+				"to": "00:03:00,360"
+			},
+			"offsets": {
+				"from": 178280,
+				"to": 180360
+			},
+			"text": " the user has taken, anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,360",
+				"to": "00:03:02,120"
+			},
+			"offsets": {
+				"from": 180360,
+				"to": 182120
+			},
+			"text": " So very extensible system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,120",
+				"to": "00:03:07,120"
+			},
+			"offsets": {
+				"from": 182120,
+				"to": 187120
+			},
+			"text": " So the two main properties of Unirep are anonymity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,120",
+				"to": "00:03:08,360"
+			},
+			"offsets": {
+				"from": 187120,
+				"to": 188360
+			},
+			"text": " and non confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,360",
+				"to": "00:03:11,600"
+			},
+			"offsets": {
+				"from": 188360,
+				"to": 191600
+			},
+			"text": " That means we can see everything that's happening inside of the system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,600",
+				"to": "00:03:13,520"
+			},
+			"offsets": {
+				"from": 191600,
+				"to": 193520
+			},
+			"text": " how much reputation is being transferred and whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,520",
+				"to": "00:03:15,360"
+			},
+			"offsets": {
+				"from": 193520,
+				"to": 195360
+			},
+			"text": " But we don't know who's doing what."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,360",
+				"to": "00:03:20,760"
+			},
+			"offsets": {
+				"from": 195360,
+				"to": 200760
+			},
+			"text": " So let's talk a little bit about the Unirep identity system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,280",
+				"to": "00:03:23,360"
+			},
+			"offsets": {
+				"from": 201280,
+				"to": 203360
+			},
+			"text": " We build on top of a system called Semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,360",
+				"to": "00:03:26,240"
+			},
+			"offsets": {
+				"from": 203360,
+				"to": 206240
+			},
+			"text": " which is also developed by the Privacy and Scalability team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,240",
+				"to": "00:03:29,680"
+			},
+			"offsets": {
+				"from": 206240,
+				"to": 209680
+			},
+			"text": " And with Semaphore, we have this public private key system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,680",
+				"to": "00:03:31,680"
+			},
+			"offsets": {
+				"from": 209680,
+				"to": 211680
+			},
+			"text": " That's the most simple explanation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,680",
+				"to": "00:03:34,200"
+			},
+			"offsets": {
+				"from": 211680,
+				"to": 214200
+			},
+			"text": " It has two secrets, a trap, to run an allifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,200",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 214200,
+				"to": 218000
+			},
+			"text": " and we define a public key as the hash of the hash of those two secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,040"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221040
+			},
+			"text": " We also call this an identity commitment in Semaphore talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,040",
+				"to": "00:03:45,120"
+			},
+			"offsets": {
+				"from": 221040,
+				"to": 225120
+			},
+			"text": " And we use the Poseidon hash function to calculate these values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,120",
+				"to": "00:03:47,400"
+			},
+			"offsets": {
+				"from": 225120,
+				"to": 227400
+			},
+			"text": " which makes it a ZK friendly protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,400",
+				"to": "00:03:50,160"
+			},
+			"offsets": {
+				"from": 227400,
+				"to": 230160
+			},
+			"text": " And that means that you can extend it to do arbitrary things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,160",
+				"to": "00:03:53,080"
+			},
+			"offsets": {
+				"from": 230160,
+				"to": 233080
+			},
+			"text": " So in this example, we have just a public private key system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,080",
+				"to": "00:03:54,720"
+			},
+			"offsets": {
+				"from": 233080,
+				"to": 234720
+			},
+			"text": " which isn't particularly useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,720",
+				"to": "00:03:58,560"
+			},
+			"offsets": {
+				"from": 234720,
+				"to": 238560
+			},
+			"text": " But using a ZK proof, you could extend it to do signatures, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,560",
+				"to": "00:04:01,200"
+			},
+			"offsets": {
+				"from": 238560,
+				"to": 241200
+			},
+			"text": " by writing a proof that proves the secret values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,200",
+				"to": "00:04:04,200"
+			},
+			"offsets": {
+				"from": 241200,
+				"to": 244200
+			},
+			"text": " as well as the hash of some data that you want to sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,200",
+				"to": "00:04:08,280"
+			},
+			"offsets": {
+				"from": 244200,
+				"to": 248280
+			},
+			"text": " Yes, you can extend ZK proofs in arbitrary ways like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,280",
+				"to": "00:04:12,600"
+			},
+			"offsets": {
+				"from": 248280,
+				"to": 252600
+			},
+			"text": " Another way you can extend it is by building something like Unirep."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,600",
+				"to": "00:04:15,640"
+			},
+			"offsets": {
+				"from": 252600,
+				"to": 255640
+			},
+			"text": " So we have these public keys that change over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,640",
+				"to": "00:04:19,680"
+			},
+			"offsets": {
+				"from": 255640,
+				"to": 259680
+			},
+			"text": " and we call these epoch keys, because they are valid for the length of one epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,240",
+				"to": "00:04:23,600"
+			},
+			"offsets": {
+				"from": 260240,
+				"to": 263600
+			},
+			"text": " And this is some amount of time that is set by the attester in question."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,600",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 263600,
+				"to": 266760
+			},
+			"text": " And so the epoch key is the hash of the nullifier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:28,680"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 268680
+			},
+			"text": " attester ID, epoch, and nonce."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,680",
+				"to": "00:04:30,840"
+			},
+			"offsets": {
+				"from": 268680,
+				"to": 270840
+			},
+			"text": " And so as you can see, because the epoch is part of the hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,840",
+				"to": "00:04:32,600"
+			},
+			"offsets": {
+				"from": 270840,
+				"to": 272600
+			},
+			"text": " it changes every epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,600",
+				"to": "00:04:37,960"
+			},
+			"offsets": {
+				"from": 272600,
+				"to": 277960
+			},
+			"text": " We also have this nonce value, which is a value between like one and zero and two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,960",
+				"to": "00:04:38,760"
+			},
+			"offsets": {
+				"from": 277960,
+				"to": 278760
+			},
+			"text": " by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,760",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278760,
+				"to": 282000
+			},
+			"text": " And it allows us to give the user multiple epoch keys for a single epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:45,240"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 285240
+			},
+			"text": " So if a user wants to commit an action and then wants to give it another action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,240",
+				"to": "00:04:48,200"
+			},
+			"offsets": {
+				"from": 285240,
+				"to": 288200
+			},
+			"text": " but doesn't want to link their identity between the two keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,200",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 288200,
+				"to": 292000
+			},
+			"text": " they can use different epoch keys and still be able to prove the same amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:53,400"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 293400
+			},
+			"text": " reputation and whatnot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,400",
+				"to": "00:04:57,200"
+			},
+			"offsets": {
+				"from": 293400,
+				"to": 297200
+			},
+			"text": " And just like some of our this system is ZK friendly and therefore extensible."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,200",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 297200,
+				"to": 300360
+			},
+			"text": " So if you wanted to make a signature system using these epoch keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:05,600"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 305600
+			},
+			"text": " you use the exact same approach where you prove the proof control of the nullifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:09,200"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 309200
+			},
+			"text": " and the public signals, and then you pass in whatever you want to hash and it all"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,200",
+				"to": "00:05:10,200"
+			},
+			"offsets": {
+				"from": 309200,
+				"to": 310200
+			},
+			"text": " gets output."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,200",
+				"to": "00:05:15,240"
+			},
+			"offsets": {
+				"from": 310200,
+				"to": 315240
+			},
+			"text": " Yeah, so now I want to talk a little bit about data structures that we use in Unirep."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,320",
+				"to": "00:05:18,920"
+			},
+			"offsets": {
+				"from": 315320,
+				"to": 318920
+			},
+			"text": " So we have like this identity system, but how do we assign reputation and graffiti"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,920",
+				"to": "00:05:21,560"
+			},
+			"offsets": {
+				"from": 318920,
+				"to": 321560
+			},
+			"text": " to users in the system and then like continue to prove it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,560",
+				"to": "00:05:24,320"
+			},
+			"offsets": {
+				"from": 321560,
+				"to": 324320
+			},
+			"text": " So we really have two structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,320",
+				"to": "00:05:29,320"
+			},
+			"offsets": {
+				"from": 324320,
+				"to": 329320
+			},
+			"text": " We have this state tree first, which controls or measures whether or not a user"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,320",
+				"to": "00:05:30,800"
+			},
+			"offsets": {
+				"from": 329320,
+				"to": 330800
+			},
+			"text": " is a member of the current epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,800",
+				"to": "00:05:33,800"
+			},
+			"offsets": {
+				"from": 330800,
+				"to": 333800
+			},
+			"text": " And as you can see, it's an incremental workloads rate that we store completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,800",
+				"to": "00:05:38,240"
+			},
+			"offsets": {
+				"from": 333800,
+				"to": 338240
+			},
+			"text": " on chain and that the leaves themselves are the hash of this private identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,240",
+				"to": "00:05:42,480"
+			},
+			"offsets": {
+				"from": 338240,
+				"to": 342480
+			},
+			"text": " nullifier, the test in the epoch, and then the reputation the user has at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,480",
+				"to": "00:05:43,480"
+			},
+			"offsets": {
+				"from": 342480,
+				"to": 343480
+			},
+			"text": " start of the epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 349000
+			},
+			"text": " So this tree has leaves that a user inserts into when they join the current epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:53,920"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 353920
+			},
+			"text": " So for example, when a user signs up, we insert a leaf or the user makes a ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,920",
+				"to": "00:05:57,320"
+			},
+			"offsets": {
+				"from": 353920,
+				"to": 357320
+			},
+			"text": " proof and then creates a leaf with zero positive and negative reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,320",
+				"to": "00:05:58,640"
+			},
+			"offsets": {
+				"from": 357320,
+				"to": 358640
+			},
+			"text": " because they're just joining the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,640",
+				"to": "00:05:59,400"
+			},
+			"offsets": {
+				"from": 358640,
+				"to": 359400
+			},
+			"text": " So they start with zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,400",
+				"to": "00:06:03,160"
+			},
+			"offsets": {
+				"from": 359400,
+				"to": 363160
+			},
+			"text": " The other structure we have is what we call an epoch tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,160",
+				"to": "00:06:07,720"
+			},
+			"offsets": {
+				"from": 363160,
+				"to": 367720
+			},
+			"text": " So the state tree tracks the starting balance for the epoch and the epoch tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,720",
+				"to": "00:06:11,680"
+			},
+			"offsets": {
+				"from": 367720,
+				"to": 371680
+			},
+			"text": " tracks the amount of reputation that was received during the epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,440",
+				"to": "00:06:16,600"
+			},
+			"offsets": {
+				"from": 372440,
+				"to": 376600
+			},
+			"text": " And as you can see, it's a sparse miracle tree and we store only the root of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,600",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 376600,
+				"to": 381600
+			},
+			"text": " tree on chain and we use ZK proofs off chain to insert and update leaves in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:25,600"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 385600
+			},
+			"text": " tree and then we just post the new root along with the ZK proof to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,600",
+				"to": "00:06:30,400"
+			},
+			"offsets": {
+				"from": 385600,
+				"to": 390400
+			},
+			"text": " And you can see that the leaf values in this tree are the hash of the total"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,400",
+				"to": "00:06:32,160"
+			},
+			"offsets": {
+				"from": 390400,
+				"to": 392160
+			},
+			"text": " reputation owned by this epoch key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,160",
+				"to": "00:06:37,840"
+			},
+			"offsets": {
+				"from": 392160,
+				"to": 397840
+			},
+			"text": " And so we determined the index of the user's leaf in the tree in the tree using"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,840",
+				"to": "00:06:38,440"
+			},
+			"offsets": {
+				"from": 397840,
+				"to": 398440
+			},
+			"text": " the epoch key."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,440",
+				"to": "00:06:41,920"
+			},
+			"offsets": {
+				"from": 398440,
+				"to": 401920
+			},
+			"text": " So in the previous slide, you saw that the epoch key is just some hash of some"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,920",
+				"to": "00:06:47,920"
+			},
+			"offsets": {
+				"from": 401920,
+				"to": 407920
+			},
+			"text": " arbitrary data and we're able to apply or we're able to determine a leaf in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,920",
+				"to": "00:06:53,480"
+			},
+			"offsets": {
+				"from": 407920,
+				"to": 413480
+			},
+			"text": " tree by taking the modulus of that hash across the number of leaves in the tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,480",
+				"to": "00:06:58,240"
+			},
+			"offsets": {
+				"from": 413480,
+				"to": 418240
+			},
+			"text": " So if we use this exact tree, we would take the hash modulus two to the third"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,240",
+				"to": "00:06:59,400"
+			},
+			"offsets": {
+				"from": 418240,
+				"to": 419400
+			},
+			"text": " because it's only three levels deep."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,400",
+				"to": "00:07:00,560"
+			},
+			"offsets": {
+				"from": 419400,
+				"to": 420560
+			},
+			"text": " But of course, we did that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,560",
+				"to": "00:07:01,920"
+			},
+			"offsets": {
+				"from": 420560,
+				"to": 421920
+			},
+			"text": " We would have lots of collisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,920",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 421920,
+				"to": 427000
+			},
+			"text": " So when we operate this tree in production, we use a depth of 128."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:11,560"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 431560
+			},
+			"text": " So we take the hash modulus two to the 128th and now everyone gets a unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,560",
+				"to": "00:07:15,040"
+			},
+			"offsets": {
+				"from": 431560,
+				"to": 435040
+			},
+			"text": " epoch key and we have 128 bits of collision resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,040",
+				"to": "00:07:20,520"
+			},
+			"offsets": {
+				"from": 435040,
+				"to": 440520
+			},
+			"text": " So the whole idea behind UNERAP is users have these identities that are valid for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,520",
+				"to": "00:07:24,120"
+			},
+			"offsets": {
+				"from": 440520,
+				"to": 444120
+			},
+			"text": " an epoch and then at the end of that epoch, they pack up their reputation and they"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,120",
+				"to": "00:07:29,760"
+			},
+			"offsets": {
+				"from": 444120,
+				"to": 449760
+			},
+			"text": " move to a new identity and the next epoch by inserting a leaf into the new state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,760",
+				"to": "00:07:34,840"
+			},
+			"offsets": {
+				"from": 449760,
+				"to": 454840
+			},
+			"text": " I didn't say this before, but we have a copy of these trees, every epoch that we,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,840",
+				"to": "00:07:35,600"
+			},
+			"offsets": {
+				"from": 454840,
+				"to": 455600
+			},
+			"text": " that we use."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,600",
+				"to": "00:07:37,640"
+			},
+			"offsets": {
+				"from": 455600,
+				"to": 457640
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,640",
+				"to": "00:07:42,280"
+			},
+			"offsets": {
+				"from": 457640,
+				"to": 462280
+			},
+			"text": " So let's change gears a little bit and talk about the user experience for zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,280",
+				"to": "00:07:43,240"
+			},
+			"offsets": {
+				"from": 462280,
+				"to": 463240
+			},
+			"text": " knowledge applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,240",
+				"to": "00:07:48,920"
+			},
+			"offsets": {
+				"from": 463240,
+				"to": 468920
+			},
+			"text": " So we have these proofs with UNERAP and we want the users to be able to make these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,920",
+				"to": "00:07:51,320"
+			},
+			"offsets": {
+				"from": 468920,
+				"to": 471320
+			},
+			"text": " proofs inside of like their browser, for example, on a computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,320",
+				"to": "00:07:56,960"
+			},
+			"offsets": {
+				"from": 471320,
+				"to": 476960
+			},
+			"text": " So here we have a graph of the proving time for proofs of various sizes on a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,960",
+				"to": "00:07:57,880"
+			},
+			"offsets": {
+				"from": 476960,
+				"to": 477880
+			},
+			"text": " different devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,880",
+				"to": "00:07:59,600"
+			},
+			"offsets": {
+				"from": 477880,
+				"to": 479600
+			},
+			"text": " And yeah, you can read it pretty well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,600",
+				"to": "00:08:05,600"
+			},
+			"offsets": {
+				"from": 479600,
+				"to": 485600
+			},
+			"text": " So you can see that there's a sweet spot below 30,000 constraints where any proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,600",
+				"to": "00:08:09,320"
+			},
+			"offsets": {
+				"from": 485600,
+				"to": 489320
+			},
+			"text": " you make is going to take less than five seconds on most modern devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,320",
+				"to": "00:08:13,520"
+			},
+			"offsets": {
+				"from": 489320,
+				"to": 493520
+			},
+			"text": " That purple line at the top is an iPhone from like 2016."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,520",
+				"to": "00:08:17,240"
+			},
+			"offsets": {
+				"from": 493520,
+				"to": 497240
+			},
+			"text": " So like older mobile devices can still do that in less than 10 seconds, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,240",
+				"to": "00:08:18,680"
+			},
+			"offsets": {
+				"from": 497240,
+				"to": 498680
+			},
+			"text": " pretty acceptable performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,680",
+				"to": "00:08:20,840"
+			},
+			"offsets": {
+				"from": 498680,
+				"to": 500840
+			},
+			"text": " So where's UNERAP?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,840",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 500840,
+				"to": 502440
+			},
+			"text": " Where are our proofs on this graph?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 504840
+			},
+			"text": " The first proof we have is a signup proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:25,640"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 505640
+			},
+			"text": " It's very small."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,640",
+				"to": "00:08:26,720"
+			},
+			"offsets": {
+				"from": 505640,
+				"to": 506720
+			},
+			"text": " It's 700 constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,720",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 506720,
+				"to": 508720
+			},
+			"text": " And all it does is output a hash value."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:30,400"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 510400
+			},
+			"text": " So less than one second."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,400",
+				"to": "00:08:31,880"
+			},
+			"offsets": {
+				"from": 510400,
+				"to": 511880
+			},
+			"text": " A little bit bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,880",
+				"to": "00:08:33,040"
+			},
+			"offsets": {
+				"from": 511880,
+				"to": 513040
+			},
+			"text": " We have an epoch key proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,240",
+				"to": "00:08:36,960"
+			},
+			"offsets": {
+				"from": 513240,
+				"to": 516960
+			},
+			"text": " This proves control of an epoch key and also proves a leaf in the state tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,960",
+				"to": "00:08:38,080"
+			},
+			"offsets": {
+				"from": 516960,
+				"to": 518080
+			},
+			"text": " So it's a little bit bigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,080",
+				"to": "00:08:41,520"
+			},
+			"offsets": {
+				"from": 518080,
+				"to": 521520
+			},
+			"text": " 3000 constraints still less than one second on most devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,520",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521520,
+				"to": 525000
+			},
+			"text": " And way over here, we have this user state transition proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:49,480"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 529480
+			},
+			"text": " And in this proof, we add up the value in the state tree leaf as well as the values"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,480",
+				"to": "00:08:52,840"
+			},
+			"offsets": {
+				"from": 529480,
+				"to": 532840
+			},
+			"text": " in all of the epoch tree leaves and output a new state tree leaf with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,840",
+				"to": "00:08:55,200"
+			},
+			"offsets": {
+				"from": 532840,
+				"to": 535200
+			},
+			"text": " sum of the reputation the user owns."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,200",
+				"to": "00:08:58,480"
+			},
+			"offsets": {
+				"from": 535200,
+				"to": 538480
+			},
+			"text": " So we have to do multiple inclusion, multiple inclusion proofs over trees that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,480",
+				"to": "00:09:01,920"
+			},
+			"offsets": {
+				"from": 538480,
+				"to": 541920
+			},
+			"text": " are quite large, but we still end up with about 29,000 constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,960",
+				"to": "00:09:04,120"
+			},
+			"offsets": {
+				"from": 541960,
+				"to": 544120
+			},
+			"text": " So less than five seconds of modern devices."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,120",
+				"to": "00:09:07,560"
+			},
+			"offsets": {
+				"from": 544120,
+				"to": 547560
+			},
+			"text": " And we can also execute this proof in the background so the user doesn't have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,560",
+				"to": "00:09:08,840"
+			},
+			"offsets": {
+				"from": 547560,
+				"to": 548840
+			},
+			"text": " know about it and doesn't have to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,840",
+				"to": "00:09:12,440"
+			},
+			"offsets": {
+				"from": 548840,
+				"to": 552440
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,440",
+				"to": "00:09:17,840"
+			},
+			"offsets": {
+				"from": 552440,
+				"to": 557840
+			},
+			"text": " So I think a good goal for ZK applications and for blockchain in general is users"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,840",
+				"to": "00:09:21,320"
+			},
+			"offsets": {
+				"from": 557840,
+				"to": 561320
+			},
+			"text": " not being aware that they're using the blockchain while they're using the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,320",
+				"to": "00:09:26,680"
+			},
+			"offsets": {
+				"from": 561320,
+				"to": 566680
+			},
+			"text": " So a lot of you probably use websites or applications like Spotify or Twitter or"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,680",
+				"to": "00:09:27,920"
+			},
+			"offsets": {
+				"from": 566680,
+				"to": 567920
+			},
+			"text": " Reddit or Stack Overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,920",
+				"to": "00:09:31,720"
+			},
+			"offsets": {
+				"from": 567920,
+				"to": 571720
+			},
+			"text": " Just raise your hand if you know what kind of database those applications are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,720",
+				"to": "00:09:32,200"
+			},
+			"offsets": {
+				"from": 571720,
+				"to": 572200
+			},
+			"text": " using."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,200",
+				"to": "00:09:34,280"
+			},
+			"offsets": {
+				"from": 572200,
+				"to": 574280
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,280",
+				"to": "00:09:34,840"
+			},
+			"offsets": {
+				"from": 574280,
+				"to": 574840
+			},
+			"text": " No one raised."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,840",
+				"to": "00:09:35,880"
+			},
+			"offsets": {
+				"from": 574840,
+				"to": 575880
+			},
+			"text": " OK, one person raised their hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,880",
+				"to": "00:09:37,320"
+			},
+			"offsets": {
+				"from": 575880,
+				"to": 577320
+			},
+			"text": " We have at least one nerd in the crowd."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,320",
+				"to": "00:09:40,760"
+			},
+			"offsets": {
+				"from": 577320,
+				"to": 580760
+			},
+			"text": " But for the most part, users don't really care about the data structures that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,760",
+				"to": "00:09:42,400"
+			},
+			"offsets": {
+				"from": 580760,
+				"to": 582400
+			},
+			"text": " backing the applications they're using."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,400",
+				"to": "00:09:44,880"
+			},
+			"offsets": {
+				"from": 582400,
+				"to": 584880
+			},
+			"text": " And blockchains are really the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,880",
+				"to": "00:09:46,840"
+			},
+			"offsets": {
+				"from": 584880,
+				"to": 586840
+			},
+			"text": " They're just databases with different properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,840",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 586840,
+				"to": 590200
+			},
+			"text": " And so the users shouldn't have to be aware that they're using the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:55,600"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 595600
+			},
+			"text": " So this is the architecture of a traditional DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,600",
+				"to": "00:09:59,760"
+			},
+			"offsets": {
+				"from": 595600,
+				"to": 599760
+			},
+			"text": " And as an engineer, I really like this architecture because it's simple and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,760",
+				"to": "00:10:01,560"
+			},
+			"offsets": {
+				"from": 599760,
+				"to": 601560
+			},
+			"text": " sort of unprecedented before blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,560",
+				"to": "00:10:05,320"
+			},
+			"offsets": {
+				"from": 601560,
+				"to": 605320
+			},
+			"text": " But for the reasons that I like it, I think that users kind of hate it because"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,320",
+				"to": "00:10:08,160"
+			},
+			"offsets": {
+				"from": 605320,
+				"to": 608160
+			},
+			"text": " they have to learn about the blockchain and then they have to learn about wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,160",
+				"to": "00:10:12,320"
+			},
+			"offsets": {
+				"from": 608160,
+				"to": 612320
+			},
+			"text": " like Metamask and transactions and gas and gas prices and Gway and Ether and they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,320",
+				"to": "00:10:12,960"
+			},
+			"offsets": {
+				"from": 612320,
+				"to": 612960
+			},
+			"text": " to get Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,960",
+				"to": "00:10:17,040"
+			},
+			"offsets": {
+				"from": 612960,
+				"to": 617040
+			},
+			"text": " And it's a whole thing and it's a lot for them to learn just to use a single DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,040",
+				"to": "00:10:22,640"
+			},
+			"offsets": {
+				"from": 617040,
+				"to": 622640
+			},
+			"text": " So luckily, if we use ZK identities instead of wallets, we can build this more"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,640",
+				"to": "00:10:28,400"
+			},
+			"offsets": {
+				"from": 622640,
+				"to": 628400
+			},
+			"text": " traditional three tier architecture where we introduce a relay that bundles the transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,400",
+				"to": "00:10:28,960"
+			},
+			"offsets": {
+				"from": 628400,
+				"to": 628960
+			},
+			"text": " and sends it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,080",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629080,
+				"to": 633000
+			},
+			"text": " So the flow would be the web app generates a ZK proof, gives it to the relay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:35,800"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 635800
+			},
+			"text": " the relay creates a transaction and then posts it to the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,800",
+				"to": "00:10:39,800"
+			},
+			"offsets": {
+				"from": 635800,
+				"to": 639800
+			},
+			"text": " And the economics of why the relay would do this are sort of, there are a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,800",
+				"to": "00:10:42,720"
+			},
+			"offsets": {
+				"from": 639800,
+				"to": 642720
+			},
+			"text": " different schemes you could build like subscription models or just like free trial"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,720",
+				"to": "00:10:45,360"
+			},
+			"offsets": {
+				"from": 642720,
+				"to": 645360
+			},
+			"text": " models, all sorts of different things you could do."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,360",
+				"to": "00:10:50,480"
+			},
+			"offsets": {
+				"from": 645360,
+				"to": 650480
+			},
+			"text": " And so one one note about like this architecture, the relay is not a trusted entity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,480",
+				"to": "00:10:53,480"
+			},
+			"offsets": {
+				"from": 650480,
+				"to": 653480
+			},
+			"text": " The relay can censor transactions that can go offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,480",
+				"to": "00:10:54,400"
+			},
+			"offsets": {
+				"from": 653480,
+				"to": 654400
+			},
+			"text": " It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,400",
+				"to": "00:10:58,640"
+			},
+			"offsets": {
+				"from": 654400,
+				"to": 658640
+			},
+			"text": " The web app or the user can only send their ZK proof with a different relay or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,640",
+				"to": "00:11:00,280"
+			},
+			"offsets": {
+				"from": 658640,
+				"to": 660280
+			},
+			"text": " broadcast it to the blockchain themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,280",
+				"to": "00:11:04,520"
+			},
+			"offsets": {
+				"from": 660280,
+				"to": 664520
+			},
+			"text": " The relay also can't compromise the ZK proof itself because if they change"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,520",
+				"to": "00:11:08,040"
+			},
+			"offsets": {
+				"from": 664520,
+				"to": 668040
+			},
+			"text": " anything about it, the proof itself will be invalid and the proof determines what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,040",
+				"to": "00:11:09,360"
+			},
+			"offsets": {
+				"from": 668040,
+				"to": 669360
+			},
+			"text": " the user wants to do on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,360",
+				"to": "00:11:14,880"
+			},
+			"offsets": {
+				"from": 669360,
+				"to": 674880
+			},
+			"text": " So I think a good goal for this would be from a user experience perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,880",
+				"to": "00:11:18,480"
+			},
+			"offsets": {
+				"from": 674880,
+				"to": 678480
+			},
+			"text": " a user clicks a button and then in less than five seconds, we show a loading"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,480",
+				"to": "00:11:23,120"
+			},
+			"offsets": {
+				"from": 678480,
+				"to": 683120
+			},
+			"text": " animation and we generate a ZK proof, give it to the relay, the relay then packages"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,120",
+				"to": "00:11:27,040"
+			},
+			"offsets": {
+				"from": 683120,
+				"to": 687040
+			},
+			"text": " it into a transaction and gives it to an L2 node who then returns an instant"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,040",
+				"to": "00:11:28,040"
+			},
+			"offsets": {
+				"from": 687040,
+				"to": 688040
+			},
+			"text": " penalty guarantee."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,040",
+				"to": "00:11:32,640"
+			},
+			"offsets": {
+				"from": 688040,
+				"to": 692640
+			},
+			"text": " And at that point, we can stop the loading animation on the front end and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,640",
+				"to": "00:11:34,040"
+			},
+			"offsets": {
+				"from": 692640,
+				"to": 694040
+			},
+			"text": " okay, your action is complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,040",
+				"to": "00:11:38,720"
+			},
+			"offsets": {
+				"from": 694040,
+				"to": 698720
+			},
+			"text": " And even if we get a weak economic guarantee from this L2 node, we can still do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,720",
+				"to": "00:11:41,920"
+			},
+			"offsets": {
+				"from": 698720,
+				"to": 701920
+			},
+			"text": " this on the front end and then have an alternate code path where if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,920",
+				"to": "00:11:46,360"
+			},
+			"offsets": {
+				"from": 701920,
+				"to": 706360
+			},
+			"text": " sequencer doesn't include the transaction, we show a notification saying, oh, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,360",
+				"to": "00:11:48,480"
+			},
+			"offsets": {
+				"from": 706360,
+				"to": 708480
+			},
+			"text": " action failed or do you want to try again or not?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,480",
+				"to": "00:11:52,800"
+			},
+			"offsets": {
+				"from": 708480,
+				"to": 712800
+			},
+			"text": " And hopefully that code path is relatively cold and sequencers include"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,800",
+				"to": "00:11:54,400"
+			},
+			"offsets": {
+				"from": 712800,
+				"to": 714400
+			},
+			"text": " transactions as they say they're going to."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,280",
+				"to": "00:12:00,840"
+			},
+			"offsets": {
+				"from": 716280,
+				"to": 720840
+			},
+			"text": " Right, so how can we build an ecosystem using like ZK proofs in this sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,840",
+				"to": "00:12:02,160"
+			},
+			"offsets": {
+				"from": 720840,
+				"to": 722160
+			},
+			"text": " abstracted architecture?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,160",
+				"to": "00:12:06,160"
+			},
+			"offsets": {
+				"from": 722160,
+				"to": 726160
+			},
+			"text": " One approach I think is sort of detailed in this diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,160",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 726160,
+				"to": 730240
+			},
+			"text": " You can see there are three different attester applications and a user's browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:15,440"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 735440
+			},
+			"text": " And each attester application is managing a unique identity for the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,440",
+				"to": "00:12:17,480"
+			},
+			"offsets": {
+				"from": 735440,
+				"to": 737480
+			},
+			"text": " inside of the browser local storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,480",
+				"to": "00:12:21,720"
+			},
+			"offsets": {
+				"from": 737480,
+				"to": 741720
+			},
+			"text": " And the advantage to this is we can treat these identities more like web to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,720",
+				"to": "00:12:25,560"
+			},
+			"offsets": {
+				"from": 741720,
+				"to": 745560
+			},
+			"text": " authentication tokens and less like Bitcoin or Ethereum private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,800",
+				"to": "00:12:29,440"
+			},
+			"offsets": {
+				"from": 745800,
+				"to": 749440
+			},
+			"text": " So instead of prompting the user for permission to do a signature or make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,440",
+				"to": "00:12:34,640"
+			},
+			"offsets": {
+				"from": 749440,
+				"to": 754640
+			},
+			"text": " transaction, we just in the background make these ZK proofs and give them to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,640",
+				"to": "00:12:35,200"
+			},
+			"offsets": {
+				"from": 754640,
+				"to": 755200
+			},
+			"text": " relayers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,200",
+				"to": "00:12:38,440"
+			},
+			"offsets": {
+				"from": 755200,
+				"to": 758440
+			},
+			"text": " And at the same time, when we use different identities for each of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,440",
+				"to": "00:12:42,280"
+			},
+			"offsets": {
+				"from": 758440,
+				"to": 762280
+			},
+			"text": " websites, if one of the identities is compromised because the website injects"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,280",
+				"to": "00:12:46,600"
+			},
+			"offsets": {
+				"from": 762280,
+				"to": 766600
+			},
+			"text": " some malicious JavaScript or does something like this, the damage is contained"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,600",
+				"to": "00:12:48,280"
+			},
+			"offsets": {
+				"from": 766600,
+				"to": 768280
+			},
+			"text": " to that single attester."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,280",
+				"to": "00:12:52,160"
+			},
+			"offsets": {
+				"from": 768280,
+				"to": 772160
+			},
+			"text": " But at the same time, we want attesters to be interoperable."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,280",
+				"to": "00:12:57,040"
+			},
+			"offsets": {
+				"from": 772280,
+				"to": 777040
+			},
+			"text": " So if, for example, this review attester wanted to get approved from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,040",
+				"to": "00:12:59,400"
+			},
+			"offsets": {
+				"from": 777040,
+				"to": 779400
+			},
+			"text": " cyber resistance attester, how could we do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,400",
+				"to": "00:13:03,120"
+			},
+			"offsets": {
+				"from": 779400,
+				"to": 783120
+			},
+			"text": " And the answer is basically a lot for ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,120",
+				"to": "00:13:07,520"
+			},
+			"offsets": {
+				"from": 783120,
+				"to": 787520
+			},
+			"text": " So for so in this example flow, I'm trying to sign up for this review attester"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,520",
+				"to": "00:13:12,800"
+			},
+			"offsets": {
+				"from": 787520,
+				"to": 792800
+			},
+			"text": " and the review attester wants a proof that I am a human being in the form of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,800",
+				"to": "00:13:15,680"
+			},
+			"offsets": {
+				"from": 792800,
+				"to": 795680
+			},
+			"text": " reputation proof from this cyber resistance attester."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,680",
+				"to": "00:13:20,360"
+			},
+			"offsets": {
+				"from": 795680,
+				"to": 800360
+			},
+			"text": " And so in this flow, I create the sign up proof from the review attester and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,360",
+				"to": "00:13:25,320"
+			},
+			"offsets": {
+				"from": 800360,
+				"to": 805320
+			},
+			"text": " I get redirected to the cyber resistance attester and I get prompted to make a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,320",
+				"to": "00:13:27,480"
+			},
+			"offsets": {
+				"from": 805320,
+				"to": 807480
+			},
+			"text": " proof from this identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,480",
+				"to": "00:13:29,720"
+			},
+			"offsets": {
+				"from": 807480,
+				"to": 809720
+			},
+			"text": " And in this case, we shouldn't operate silently."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,720",
+				"to": "00:13:33,480"
+			},
+			"offsets": {
+				"from": 809720,
+				"to": 813480
+			},
+			"text": " We should definitely request that the user make this proof because we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,480",
+				"to": "00:13:35,280"
+			},
+			"offsets": {
+				"from": 813480,
+				"to": 815280
+			},
+			"text": " to hand it to a different third party."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,280",
+				"to": "00:13:39,680"
+			},
+			"offsets": {
+				"from": 815280,
+				"to": 819680
+			},
+			"text": " And so if the user says yes, then we prove that we have like the reputation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,680",
+				"to": "00:13:42,720"
+			},
+			"offsets": {
+				"from": 819680,
+				"to": 822720
+			},
+			"text": " we sign the hash of the sign up proof to prove that we're the same person."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,720",
+				"to": "00:13:46,840"
+			},
+			"offsets": {
+				"from": 822720,
+				"to": 826840
+			},
+			"text": " And then we get redirected back to the original application and we can continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,840",
+				"to": "00:13:47,200"
+			},
+			"offsets": {
+				"from": 826840,
+				"to": 827200
+			},
+			"text": " sign up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,720",
+				"to": "00:13:52,240"
+			},
+			"offsets": {
+				"from": 827720,
+				"to": 832240
+			},
+			"text": " So using this flow, we can get ZK proofs from different applications into"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,240",
+				"to": "00:13:53,680"
+			},
+			"offsets": {
+				"from": 832240,
+				"to": 833680
+			},
+			"text": " different sort of origins."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,680",
+				"to": "00:13:58,200"
+			},
+			"offsets": {
+				"from": 833680,
+				"to": 838200
+			},
+			"text": " OK, so this is part three of the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,200",
+				"to": "00:14:00,600"
+			},
+			"offsets": {
+				"from": 838200,
+				"to": 840600
+			},
+			"text": " How can we scale ZK?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,600",
+				"to": "00:14:04,800"
+			},
+			"offsets": {
+				"from": 840600,
+				"to": 844800
+			},
+			"text": " So first I want to talk about like where we're at right now and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,800",
+				"to": "00:14:07,600"
+			},
+			"offsets": {
+				"from": 844800,
+				"to": 847600
+			},
+			"text": " limitations of our current infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,600",
+				"to": "00:14:11,360"
+			},
+			"offsets": {
+				"from": 847600,
+				"to": 851360
+			},
+			"text": " So when we talk about scaling ZK, there's two limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,360",
+				"to": "00:14:16,080"
+			},
+			"offsets": {
+				"from": 851360,
+				"to": 856080
+			},
+			"text": " One is the call data itself and two is actually executing the verification on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,080",
+				"to": "00:14:16,440"
+			},
+			"offsets": {
+				"from": 856080,
+				"to": 856440
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,000",
+				"to": "00:14:18,520"
+			},
+			"offsets": {
+				"from": 857000,
+				"to": 858520
+			},
+			"text": " So let's talk about call data first."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,520",
+				"to": "00:14:23,320"
+			},
+			"offsets": {
+				"from": 858520,
+				"to": 863320
+			},
+			"text": " So for GRAS 16, we have about 130 bytes per proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,320",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 863320,
+				"to": 866000
+			},
+			"text": " And for PLONK, we have about half a kilobyte per proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:29,960"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 869960
+			},
+			"text": " So assume that we're talking about EIP, like a post EIP for it, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,960",
+				"to": "00:14:34,600"
+			},
+			"offsets": {
+				"from": 869960,
+				"to": 874600
+			},
+			"text": " for world and we have two megabytes per block that we can use for block data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,600",
+				"to": "00:14:40,280"
+			},
+			"offsets": {
+				"from": 874600,
+				"to": 880280
+			},
+			"text": " So at that point, we're able to do 1300 GRAS 16 per second and 330"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,280",
+				"to": "00:14:41,480"
+			},
+			"offsets": {
+				"from": 880280,
+				"to": 881480
+			},
+			"text": " PLONK per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,480",
+				"to": "00:14:43,600"
+			},
+			"offsets": {
+				"from": 881480,
+				"to": 883600
+			},
+			"text": " It's not not terrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,680",
+				"to": "00:14:46,560"
+			},
+			"offsets": {
+				"from": 883680,
+				"to": 886560
+			},
+			"text": " So let's open door number two and look at the verification costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,560",
+				"to": "00:14:51,440"
+			},
+			"offsets": {
+				"from": 886560,
+				"to": 891440
+			},
+			"text": " So GRAS 16 and PLONK both cost about 250,000 GAS to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,440",
+				"to": "00:14:53,280"
+			},
+			"offsets": {
+				"from": 891440,
+				"to": 893280
+			},
+			"text": " This isn't totally true."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,280",
+				"to": "00:14:56,240"
+			},
+			"offsets": {
+				"from": 893280,
+				"to": 896240
+			},
+			"text": " GRAS 16 is a little bit cheaper and they both scale up with the number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,240",
+				"to": "00:14:57,360"
+			},
+			"offsets": {
+				"from": 896240,
+				"to": 897360
+			},
+			"text": " public signals and the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,360",
+				"to": "00:15:01,080"
+			},
+			"offsets": {
+				"from": 897360,
+				"to": 901080
+			},
+			"text": " But for this example, we're just going to say they both cost 250,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,080",
+				"to": "00:15:05,600"
+			},
+			"offsets": {
+				"from": 901080,
+				"to": 905600
+			},
+			"text": " So the Ethereum mainnet is doing two and a half million GAS per second right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,600",
+				"to": "00:15:09,600"
+			},
+			"offsets": {
+				"from": 905600,
+				"to": 909600
+			},
+			"text": " They're doing 30 million GAS every 12 seconds, which comes down to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,600",
+				"to": "00:15:12,880"
+			},
+			"offsets": {
+				"from": 909600,
+				"to": 912880
+			},
+			"text": " So it gets to verify 10 proofs per second on a Ethereum mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,840",
+				"to": "00:15:17,600"
+			},
+			"offsets": {
+				"from": 913840,
+				"to": 917600
+			},
+			"text": " So on arbitrum and L2, for example, they're doing 7 million GAS per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,600",
+				"to": "00:15:20,680"
+			},
+			"offsets": {
+				"from": 917600,
+				"to": 920680
+			},
+			"text": " So that number is bump to 24 proofs per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,680",
+				"to": "00:15:23,560"
+			},
+			"offsets": {
+				"from": 920680,
+				"to": 923560
+			},
+			"text": " So we see an obvious bottleneck here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,560",
+				"to": "00:15:25,840"
+			},
+			"offsets": {
+				"from": 923560,
+				"to": 925840
+			},
+			"text": " It's the verification cost on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,840",
+				"to": "00:15:28,560"
+			},
+			"offsets": {
+				"from": 925840,
+				"to": 928560
+			},
+			"text": " And these numbers are also extreme upper bounds."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,560",
+				"to": "00:15:33,520"
+			},
+			"offsets": {
+				"from": 928560,
+				"to": 933520
+			},
+			"text": " This assumes that we're filling entire the blob blocks with two megabytes of"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,520",
+				"to": "00:15:38,080"
+			},
+			"offsets": {
+				"from": 933520,
+				"to": 938080
+			},
+			"text": " ZK proofs and we're filling entire blocks with verification of ZK proofs and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,080",
+				"to": "00:15:39,120"
+			},
+			"offsets": {
+				"from": 938080,
+				"to": 939120
+			},
+			"text": " even factoring qualitative."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,120",
+				"to": "00:15:40,480"
+			},
+			"offsets": {
+				"from": 939120,
+				"to": 940480
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,480",
+				"to": "00:15:42,760"
+			},
+			"offsets": {
+				"from": 940480,
+				"to": 942760
+			},
+			"text": " So how can we scale UNRAP and how can we scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,760",
+				"to": "00:15:45,560"
+			},
+			"offsets": {
+				"from": 942760,
+				"to": 945560
+			},
+			"text": " ZK proofs in general given those bottlenecks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,560",
+				"to": "00:15:51,480"
+			},
+			"offsets": {
+				"from": 945560,
+				"to": 951480
+			},
+			"text": " So this is a proof from the UNRAP system where we're generating a user state"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,480",
+				"to": "00:15:55,160"
+			},
+			"offsets": {
+				"from": 951480,
+				"to": 955160
+			},
+			"text": " transition. And as you can see, there's, I think, seven public signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,160",
+				"to": "00:15:58,520"
+			},
+			"offsets": {
+				"from": 955160,
+				"to": 958520
+			},
+			"text": " And for every user that wants to join a new epoch, we make one of these and put"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,520",
+				"to": "00:15:59,840"
+			},
+			"offsets": {
+				"from": 958520,
+				"to": 959840
+			},
+			"text": " it on the blockchain and verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,840",
+				"to": "00:16:02,400"
+			},
+			"offsets": {
+				"from": 959840,
+				"to": 962400
+			},
+			"text": " So how can we make this a little bit more efficient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,400",
+				"to": "00:16:04,840"
+			},
+			"offsets": {
+				"from": 962400,
+				"to": 964840
+			},
+			"text": " We can do recursive proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,840",
+				"to": "00:16:08,800"
+			},
+			"offsets": {
+				"from": 964840,
+				"to": 968800
+			},
+			"text": " So we have the user make a proof and then it gets sent to an aggregator and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,800",
+				"to": "00:16:12,840"
+			},
+			"offsets": {
+				"from": 968800,
+				"to": 972840
+			},
+			"text": " the aggregator proves that four proofs are valid and outputs one proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,840",
+				"to": "00:16:16,160"
+			},
+			"offsets": {
+				"from": 972840,
+				"to": 976160
+			},
+			"text": " And so we're able to reduce it by, in this case, a factor of four."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,160",
+				"to": "00:16:20,240"
+			},
+			"offsets": {
+				"from": 976160,
+				"to": 980240
+			},
+			"text": " There are other things that we can do, like to reduce the public signals as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,240",
+				"to": "00:16:24,200"
+			},
+			"offsets": {
+				"from": 980240,
+				"to": 984200
+			},
+			"text": " like Q, the ZK proofs on chain and then form a hash chain of the public signals"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,200",
+				"to": "00:16:27,960"
+			},
+			"offsets": {
+				"from": 984200,
+				"to": 987960
+			},
+			"text": " and the proof stuff to reduce it so that we don't have to output all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,960",
+				"to": "00:16:31,680"
+			},
+			"offsets": {
+				"from": 987960,
+				"to": 991680
+			},
+			"text": " public signals at once, which will also reduce the verification cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,680",
+				"to": "00:16:35,640"
+			},
+			"offsets": {
+				"from": 991680,
+				"to": 995640
+			},
+			"text": " And so recursive proving is really important because it changes the approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,640",
+				"to": "00:16:40,480"
+			},
+			"offsets": {
+				"from": 995640,
+				"to": 1000480
+			},
+			"text": " from scaling the throughput of decentralized network to instead scaling"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,480",
+				"to": "00:16:43,680"
+			},
+			"offsets": {
+				"from": 1000480,
+				"to": 1003680
+			},
+			"text": " off-chain computational power, which we're much more able to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,680",
+				"to": "00:16:45,520"
+			},
+			"offsets": {
+				"from": 1003680,
+				"to": 1005520
+			},
+			"text": " Like Intel and AMD do this every year."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,520",
+				"to": "00:16:50,160"
+			},
+			"offsets": {
+				"from": 1005520,
+				"to": 1010160
+			},
+			"text": " We can also build ASICs to make proof of it, make proofs very quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,160",
+				"to": "00:16:54,400"
+			},
+			"offsets": {
+				"from": 1010160,
+				"to": 1014400
+			},
+			"text": " And then we're able to see the sort of improvements that we want to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,400",
+				"to": "00:16:59,400"
+			},
+			"offsets": {
+				"from": 1014400,
+				"to": 1019400
+			},
+			"text": " Like if we're able to bundle 10 proofs at a time, we get a 10x improvement, 100x, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,400",
+				"to": "00:17:03,280"
+			},
+			"offsets": {
+				"from": 1019400,
+				"to": 1023280
+			},
+			"text": " And this does introduce a little bit of complexity because we have to deal"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,280",
+				"to": "00:17:06,680"
+			},
+			"offsets": {
+				"from": 1023280,
+				"to": 1026680
+			},
+			"text": " with a proof aggregator and now the user potentially has to wait on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,680",
+				"to": "00:17:09,920"
+			},
+			"offsets": {
+				"from": 1026680,
+				"to": 1029920
+			},
+			"text": " or potentially optimistically evaluate the aggregator."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,920",
+				"to": "00:17:13,120"
+			},
+			"offsets": {
+				"from": 1029920,
+				"to": 1033120
+			},
+			"text": " But this is a decent approach to scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,120",
+				"to": "00:17:17,280"
+			},
+			"offsets": {
+				"from": 1033120,
+				"to": 1037280
+			},
+			"text": " Right, so now that's most of the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,280",
+				"to": "00:17:19,960"
+			},
+			"offsets": {
+				"from": 1037280,
+				"to": 1039960
+			},
+			"text": " I'm just going to talk about like some of the tester ideas that I think are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,960",
+				"to": "00:17:23,040"
+			},
+			"offsets": {
+				"from": 1039960,
+				"to": 1043040
+			},
+			"text": " kind of cool that we can build with Unorap or the other Unorap protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,040",
+				"to": "00:17:25,680"
+			},
+			"offsets": {
+				"from": 1043040,
+				"to": 1045680
+			},
+			"text": " So the first is just like ZK dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,680",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1045680,
+				"to": 1050160
+			},
+			"text": " We can keep the balance hidden or the balance controlled by a user hidden"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:34,400"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1054400
+			},
+			"text": " within the DAO. We could also do things like vote for proposals anonymously."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,400",
+				"to": "00:17:38,440"
+			},
+			"offsets": {
+				"from": 1054400,
+				"to": 1058440
+			},
+			"text": " A lot of interesting ideas are a lot interesting things that can be done with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,440",
+				"to": "00:17:41,760"
+			},
+			"offsets": {
+				"from": 1058440,
+				"to": 1061760
+			},
+			"text": " The next is anti-syable reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,760",
+				"to": "00:17:44,760"
+			},
+			"offsets": {
+				"from": 1061760,
+				"to": 1064760
+			},
+			"text": " I use this as an example in one of the previous slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,760",
+				"to": "00:17:48,840"
+			},
+			"offsets": {
+				"from": 1064760,
+				"to": 1068840
+			},
+			"text": " But what you could do is basically take like proofs that you have a web"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,840",
+				"to": "00:17:52,960"
+			},
+			"offsets": {
+				"from": 1068840,
+				"to": 1072960
+			},
+			"text": " to identity and get your reputation for that or potentially use like bright ID or"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,960",
+				"to": "00:17:57,120"
+			},
+			"offsets": {
+				"from": 1072960,
+				"to": 1077120
+			},
+			"text": " or proof that you have like Poops, for example, and just get reputation and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,120",
+				"to": "00:17:59,400"
+			},
+			"offsets": {
+				"from": 1077120,
+				"to": 1079400
+			},
+			"text": " use that to sign up for other testers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,400",
+				"to": "00:18:04,720"
+			},
+			"offsets": {
+				"from": 1080400,
+				"to": 1084720
+			},
+			"text": " The third is like really simple and generic, which is a recommendation system"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,720",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1084720,
+				"to": 1089000
+			},
+			"text": " as a web app. Everyone has things that they use that they would want to recommend"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:13,520"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1093520
+			},
+			"text": " to other people having like reputation for good recommendations."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,520",
+				"to": "00:18:15,040"
+			},
+			"offsets": {
+				"from": 1093520,
+				"to": 1095040
+			},
+			"text": " Seems like a good use of the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,040",
+				"to": "00:18:18,760"
+			},
+			"offsets": {
+				"from": 1095040,
+				"to": 1098760
+			},
+			"text": " And then the final one is one that I thought of when I was given the DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,760",
+				"to": "00:18:23,400"
+			},
+			"offsets": {
+				"from": 1098760,
+				"to": 1103400
+			},
+			"text": " Poop. I really hate claiming Poops on chain because I'm just giving people a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,400",
+				"to": "00:18:26,400"
+			},
+			"offsets": {
+				"from": 1103400,
+				"to": 1106400
+			},
+			"text": " history of like the places I've been in the real world, which I think is kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,400",
+				"to": "00:18:29,240"
+			},
+			"offsets": {
+				"from": 1106400,
+				"to": 1109240
+			},
+			"text": " weird. So we can use Unorap to like claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,240",
+				"to": "00:18:33,080"
+			},
+			"offsets": {
+				"from": 1109240,
+				"to": 1113080
+			},
+			"text": " Poops anonymously and then we could make a proof that you have like a Poop in a set."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,080",
+				"to": "00:18:37,080"
+			},
+			"offsets": {
+				"from": 1113080,
+				"to": 1117080
+			},
+			"text": " Like for example, I could prove that I have two Poops from the set of all DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,080",
+				"to": "00:18:38,400"
+			},
+			"offsets": {
+				"from": 1117080,
+				"to": 1118400
+			},
+			"text": " Poops, something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,400",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1118400,
+				"to": 1124000
+			},
+			"text": " And then just so nice to have things for sort of the ecosystem like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:47,240"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1127240
+			},
+			"text": " infrastructure wise, the first is like a ZK directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,240",
+				"to": "00:18:51,280"
+			},
+			"offsets": {
+				"from": 1127240,
+				"to": 1131280
+			},
+			"text": " This just a directory of the hashes of proofs and human readable descriptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,280",
+				"to": "00:18:52,360"
+			},
+			"offsets": {
+				"from": 1131280,
+				"to": 1132360
+			},
+			"text": " of what the proofs do."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,360",
+				"to": "00:18:55,880"
+			},
+			"offsets": {
+				"from": 1132360,
+				"to": 1135880
+			},
+			"text": " And this would be really important if we're going to OAuth between different"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,880",
+				"to": "00:18:59,200"
+			},
+			"offsets": {
+				"from": 1135880,
+				"to": 1139200
+			},
+			"text": " applications and request ZK proofs because they're potentially request"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,200",
+				"to": "00:19:02,200"
+			},
+			"offsets": {
+				"from": 1139200,
+				"to": 1142200
+			},
+			"text": " just random proofs that are specific to their application."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,200",
+				"to": "00:19:05,600"
+			},
+			"offsets": {
+				"from": 1142200,
+				"to": 1145600
+			},
+			"text": " And so applications should have a place where they can request information about"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,600",
+				"to": "00:19:08,040"
+			},
+			"offsets": {
+				"from": 1145600,
+				"to": 1148040
+			},
+			"text": " a proof and then return it to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,040",
+				"to": "00:19:13,120"
+			},
+			"offsets": {
+				"from": 1148040,
+				"to": 1153120
+			},
+			"text": " The next thing is Planck. We already have this, but I just want to talk about it a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,120",
+				"to": "00:19:13,800"
+			},
+			"offsets": {
+				"from": 1153120,
+				"to": 1153800
+			},
+			"text": " little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,800",
+				"to": "00:19:18,040"
+			},
+			"offsets": {
+				"from": 1153800,
+				"to": 1158040
+			},
+			"text": " The most important part of Planck to me at least is we don't have this phase"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,040",
+				"to": "00:19:20,160"
+			},
+			"offsets": {
+				"from": 1158040,
+				"to": 1160160
+			},
+			"text": " whose trusted setup that is circuit specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,160",
+				"to": "00:19:24,240"
+			},
+			"offsets": {
+				"from": 1160160,
+				"to": 1164240
+			},
+			"text": " So with Unorap, we want people to extend the proofs that we've written and write"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,240",
+				"to": "00:19:26,320"
+			},
+			"offsets": {
+				"from": 1164240,
+				"to": 1166320
+			},
+			"text": " their own to build their own functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,320",
+				"to": "00:19:30,320"
+			},
+			"offsets": {
+				"from": 1166320,
+				"to": 1170320
+			},
+			"text": " And with GRAS 16, that's very difficult to do because they have to run a trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,320",
+				"to": "00:19:32,720"
+			},
+			"offsets": {
+				"from": 1170320,
+				"to": 1172720
+			},
+			"text": " setup ceremony for the circuits that they build."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,720",
+				"to": "00:19:35,200"
+			},
+			"offsets": {
+				"from": 1172720,
+				"to": 1175200
+			},
+			"text": " And this is a huge amount of coordination and effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,200",
+				"to": "00:19:39,040"
+			},
+			"offsets": {
+				"from": 1175200,
+				"to": 1179040
+			},
+			"text": " I can't really expect most developers to reasonably do."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,040",
+				"to": "00:19:40,800"
+			},
+			"offsets": {
+				"from": 1179040,
+				"to": 1180800
+			},
+			"text": " So with Planck, we cut all that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,800",
+				"to": "00:19:44,560"
+			},
+			"offsets": {
+				"from": 1180800,
+				"to": 1184560
+			},
+			"text": " We get to just use some phase one trusted setup made by some trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,560",
+				"to": "00:19:46,760"
+			},
+			"offsets": {
+				"from": 1184560,
+				"to": 1186760
+			},
+			"text": " entity or some trusted entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,760",
+				"to": "00:19:48,840"
+			},
+			"offsets": {
+				"from": 1186760,
+				"to": 1188840
+			},
+			"text": " And then you have secure proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,840",
+				"to": "00:19:52,760"
+			},
+			"offsets": {
+				"from": 1188840,
+				"to": 1192760
+			},
+			"text": " And the last thing is easier browser proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,760",
+				"to": "00:19:59,040"
+			},
+			"offsets": {
+				"from": 1192760,
+				"to": 1199040
+			},
+			"text": " So we have proofs in the browser using snark.js, but you have to configure"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,040",
+				"to": "00:20:00,480"
+			},
+			"offsets": {
+				"from": 1199040,
+				"to": 1200480
+			},
+			"text": " Webpack really specifically."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,480",
+				"to": "00:20:05,080"
+			},
+			"offsets": {
+				"from": 1200480,
+				"to": 1205080
+			},
+			"text": " And it also uses Z key and a second WebAssembly file for a curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,080",
+				"to": "00:20:08,240"
+			},
+			"offsets": {
+				"from": 1205080,
+				"to": 1208240
+			},
+			"text": " And it would be much easier if we had a tool that just sort of bundles all of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,240",
+				"to": "00:20:11,560"
+			},
+			"offsets": {
+				"from": 1208240,
+				"to": 1211560
+			},
+			"text": " into a single WebAssembly that we can run in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,560",
+				"to": "00:20:14,560"
+			},
+			"offsets": {
+				"from": 1211560,
+				"to": 1214560
+			},
+			"text": " Just pass in the signals and get the proof back."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,560",
+				"to": "00:20:17,560"
+			},
+			"offsets": {
+				"from": 1214560,
+				"to": 1217560
+			},
+			"text": " This would give us free asynchronous operation as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,560",
+				"to": "00:20:19,760"
+			},
+			"offsets": {
+				"from": 1217560,
+				"to": 1219760
+			},
+			"text": " Yeah, it would just be a nice thing to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,360",
+				"to": "00:20:23,360"
+			},
+			"offsets": {
+				"from": 1221360,
+				"to": 1223360
+			},
+			"text": " Yeah, that's pretty much the end of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,360",
+				"to": "00:20:25,760"
+			},
+			"offsets": {
+				"from": 1223360,
+				"to": 1225760
+			},
+			"text": " We have a few events happening related to UNRAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,760",
+				"to": "00:20:29,360"
+			},
+			"offsets": {
+				"from": 1225760,
+				"to": 1229360
+			},
+			"text": " So first we have a UNRAP workshop on Friday at 10.30am."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,360",
+				"to": "00:20:32,360"
+			},
+			"offsets": {
+				"from": 1229360,
+				"to": 1232360
+			},
+			"text": " That's going to be on the first floor at the Z key community hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,360",
+				"to": "00:20:36,360"
+			},
+			"offsets": {
+				"from": 1232360,
+				"to": 1236360
+			},
+			"text": " We also have a demo at Thursday at three o'clock in the same place."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,360",
+				"to": "00:20:40,560"
+			},
+			"offsets": {
+				"from": 1236360,
+				"to": 1240560
+			},
+			"text": " Big thank you to zero X park for putting on those events and inviting us to participate."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,560",
+				"to": "00:20:45,160"
+			},
+			"offsets": {
+				"from": 1240560,
+				"to": 1245160
+			},
+			"text": " And then if you want more information about UNRAP, you can go to get home.com/UNRAP"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,160",
+				"to": "00:20:46,640"
+			},
+			"offsets": {
+				"from": 1245160,
+				"to": 1246640
+			},
+			"text": " or you can scan this QR."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,640",
+				"to": "00:20:50,360"
+			},
+			"offsets": {
+				"from": 1246640,
+				"to": 1250360
+			},
+			"text": " And it'll take you to our organization homepage where you can find documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,360",
+				"to": "00:20:56,360"
+			},
+			"offsets": {
+				"from": 1250360,
+				"to": 1256360
+			},
+			"text": " links, links for our Discord and links to a demo application that we have running on this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,360",
+				"to": "00:20:59,360"
+			},
+			"offsets": {
+				"from": 1256360,
+				"to": 1259360
+			},
+			"text": " Yeah, that's it. Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,360",
+				"to": "00:21:15,360"
+			},
+			"offsets": {
+				"from": 1259360,
+				"to": 1275360
+			},
+			"text": " First of all, cool presentation. Thank you for the information."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,360",
+				"to": "00:21:22,360"
+			},
+			"offsets": {
+				"from": 1275360,
+				"to": 1282360
+			},
+			"text": " I was wondering from a product standpoint or maybe from the user perspective, how do you explain the need"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,360",
+				"to": "00:21:27,360"
+			},
+			"offsets": {
+				"from": 1282360,
+				"to": 1287360
+			},
+			"text": " to sequentially create new identities in order to remain anonymous?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,360",
+				"to": "00:21:33,360"
+			},
+			"offsets": {
+				"from": 1287360,
+				"to": 1293360
+			},
+			"text": " And also if there's a way to abstract that, maybe save it in the session, in the browser, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,360",
+				"to": "00:21:42,360"
+			},
+			"offsets": {
+				"from": 1293360,
+				"to": 1302360
+			},
+			"text": " abstract the user away from such an involved mechanism of creating like a subtle anonymous name, every epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,360",
+				"to": "00:21:50,360"
+			},
+			"offsets": {
+				"from": 1302360,
+				"to": 1310360
+			},
+			"text": " Sure. Yeah, so the reason we do this is because they need to be able to prove a leaf in the epoch tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,360",
+				"to": "00:21:55,360"
+			},
+			"offsets": {
+				"from": 1310360,
+				"to": 1315360
+			},
+			"text": " to claim reputation. But I would say it's not as involved as it might seem."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,360",
+				"to": "00:21:59,360"
+			},
+			"offsets": {
+				"from": 1315360,
+				"to": 1319360
+			},
+			"text": " We can do this silently in the background in the browser. So like the user enters the web page"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,360",
+				"to": "00:22:02,360"
+			},
+			"offsets": {
+				"from": 1319360,
+				"to": 1322360
+			},
+			"text": " and then the web page checks if they need to generate a new identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,360",
+				"to": "00:22:08,360"
+			},
+			"offsets": {
+				"from": 1322360,
+				"to": 1328360
+			},
+			"text": " And if they do, they generate a ZK proof in the background and submit it to a relay and it's done."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,360",
+				"to": "00:22:13,360"
+			},
+			"offsets": {
+				"from": 1328360,
+				"to": 1333360
+			},
+			"text": " Yeah, there's not a way to make that less manual without changing the architecture of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,360",
+				"to": "00:22:15,360"
+			},
+			"offsets": {
+				"from": 1333360,
+				"to": 1335360
+			},
+			"text": " like pretty substantially though."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,360",
+				"to": "00:22:22,360"
+			},
+			"offsets": {
+				"from": 1335360,
+				"to": 1342360
+			},
+			"text": " Hello. So."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,360",
+				"to": "00:22:27,360"
+			},
+			"offsets": {
+				"from": 1342360,
+				"to": 1347360
+			},
+			"text": " How often do you see the state transition happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,360",
+				"to": "00:22:30,360"
+			},
+			"offsets": {
+				"from": 1347360,
+				"to": 1350360
+			},
+			"text": " Is going to be a repo or maybe they can be some."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,360",
+				"to": "00:22:37,360"
+			},
+			"offsets": {
+				"from": 1351360,
+				"to": 1357360
+			},
+			"text": " They can be able to maybe avoid this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,360",
+				"to": "00:22:41,360"
+			},
+			"offsets": {
+				"from": 1357360,
+				"to": 1361360
+			},
+			"text": " Yeah, so the state transition happens anytime you want to move to a new epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,360",
+				"to": "00:22:44,360"
+			},
+			"offsets": {
+				"from": 1361360,
+				"to": 1364360
+			},
+			"text": " So if you are participating consistently, then yeah, it's every epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,360",
+				"to": "00:22:48,360"
+			},
+			"offsets": {
+				"from": 1364360,
+				"to": 1368360
+			},
+			"text": " We can adjust or testers can set the epoch length themselves though."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,360",
+				"to": "00:22:53,360"
+			},
+			"offsets": {
+				"from": 1368360,
+				"to": 1373360
+			},
+			"text": " So this could be like pretty short, maybe one hour or it could be like a week or it could be a month or anything like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,360",
+				"to": "00:23:00,360"
+			},
+			"offsets": {
+				"from": 1373360,
+				"to": 1380360
+			},
+			"text": " And we're also planning to make it so a testers can set the max nots value to change like the number of keys the user has for epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,360",
+				"to": "00:23:07,360"
+			},
+			"offsets": {
+				"from": 1380360,
+				"to": 1387360
+			},
+			"text": " So that would sort of make it so that the epoch key proof is longer, but you also have like longer epochs."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,360",
+				"to": "00:23:10,360"
+			},
+			"offsets": {
+				"from": 1387360,
+				"to": 1390360
+			},
+			"text": " So there's sort of a lot of tuning we can do with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,360",
+				"to": "00:23:17,360"
+			},
+			"offsets": {
+				"from": 1390360,
+				"to": 1397360
+			},
+			"text": " Any thoughts about using DADs and VCs standards in this implementation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,360",
+				"to": "00:23:24,360"
+			},
+			"offsets": {
+				"from": 1397360,
+				"to": 1404360
+			},
+			"text": " Any thoughts about using what decentralized identifiers and very fireball credentials from the W3C?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,360",
+				"to": "00:23:29,360"
+			},
+			"offsets": {
+				"from": 1404360,
+				"to": 1409360
+			},
+			"text": " No, no, I have to look into that. I'm not aware of actually that, but thank you. Thank you for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,360",
+				"to": "00:23:30,360"
+			},
+			"offsets": {
+				"from": 1409360,
+				"to": 1410360
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,360",
+				"to": "00:23:37,360"
+			},
+			"offsets": {
+				"from": 1410360,
+				"to": 1417360
+			},
+			"text": " Quick question. You talked about crowd 16 verification after EIP for it for four."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,360",
+				"to": "00:23:42,360"
+			},
+			"offsets": {
+				"from": 1417360,
+				"to": 1422360
+			},
+			"text": " I would be curious to understand if you have like more detail thoughts in particular two questions I was thinking of."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,360",
+				"to": "00:23:52,360"
+			},
+			"offsets": {
+				"from": 1422360,
+				"to": 1432360
+			},
+			"text": " One, if you don't have your, I guess, proof in call data, and instead it's in the blob, you would have to verify there's some batch proof, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,360",
+				"to": "00:23:58,360"
+			},
+			"offsets": {
+				"from": 1432360,
+				"to": 1438360
+			},
+			"text": " Opening your card table in on your inside is not and then doing recursive proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,360",
+				"to": "00:24:01,360"
+			},
+			"offsets": {
+				"from": 1438360,
+				"to": 1441360
+			},
+			"text": " I guess what is the exact setup you were thinking of?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,360",
+				"to": "00:24:04,360"
+			},
+			"offsets": {
+				"from": 1441360,
+				"to": 1444360
+			},
+			"text": " Do you mean gross 16 or do you mean clonk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,360",
+				"to": "00:24:05,360"
+			},
+			"offsets": {
+				"from": 1444360,
+				"to": 1445360
+			},
+			"text": " Either one, I guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,360",
+				"to": "00:24:13,360"
+			},
+			"offsets": {
+				"from": 1445360,
+				"to": 1453360
+			},
+			"text": " Right. So, sorry, the mic's a little bit hard to hear, but it's just like a question about how do we aggregate these proofs or how do we sequence them for aggregation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,360",
+				"to": "00:24:15,360"
+			},
+			"offsets": {
+				"from": 1453360,
+				"to": 1455360
+			},
+			"text": " In a post GIP for a world."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,360",
+				"to": "00:24:16,360"
+			},
+			"offsets": {
+				"from": 1455360,
+				"to": 1456360
+			},
+			"text": " Right, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,360",
+				"to": "00:24:19,360"
+			},
+			"offsets": {
+				"from": 1456360,
+				"to": 1459360
+			},
+			"text": " So I sort of touched on it a little bit, but I didn't talk about it much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,360",
+				"to": "00:24:25,360"
+			},
+			"offsets": {
+				"from": 1459360,
+				"to": 1465360
+			},
+			"text": " But one approach is users can send the public signals of the proof and then the hash of the proof onto the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,360",
+				"to": "00:24:34,360"
+			},
+			"offsets": {
+				"from": 1465360,
+				"to": 1474360
+			},
+			"text": " And then we form a hash chain on chain and then the aggregator is able to make a recursive proof using that data and only put a hash chain on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,360",
+				"to": "00:24:40,360"
+			},
+			"offsets": {
+				"from": 1474360,
+				"to": 1480360
+			},
+			"text": " But this still involves like the aggregator receiving the full proof and then like calculating the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,360",
+				"to": "00:24:51,360"
+			},
+			"offsets": {
+				"from": 1480360,
+				"to": 1491360
+			},
+			"text": " We honestly haven't gotten, we're not really close to doing that yet like clonk proving, especially for like solidity proofers are a little bit far out."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,360",
+				"to": "00:24:54,360"
+			},
+			"offsets": {
+				"from": 1491360,
+				"to": 1494360
+			},
+			"text": " But yeah, it's probably going to be some sort of optimistic system."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,360",
+				"to": "00:25:03,360"
+			},
+			"offsets": {
+				"from": 1494360,
+				"to": 1503360
+			},
+			"text": " So the user experience is pretty good."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,360",
+				"to": "00:25:06,360"
+			},
+			"offsets": {
+				"from": 1503360,
+				"to": 1506360
+			},
+			"text": " Thank you. Thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,360",
+				"to": "00:25:16,360"
+			},
+			"offsets": {
+				"from": 1506360,
+				"to": 1516360
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,360",
+				"to": "00:25:45,360"
+			},
+			"offsets": {
+				"from": 1516360,
+				"to": 1545360
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,3464 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,500"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12500
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,500",
+				"to": "00:00:17,440"
+			},
+			"offsets": {
+				"from": 12500,
+				"to": 17440
+			},
+			"text": " Hey everyone, hola. What an awesome stage to give my first DevCon talk on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,440",
+				"to": "00:00:21,760"
+			},
+			"offsets": {
+				"from": 17440,
+				"to": 21760
+			},
+			"text": " It's fantastic to be here. Thank you for taking the time to come and listen."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,760",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 21760,
+				"to": 25440
+			},
+			"text": " So I've got a fair bit to cover. I've had to kind of keep cutting slides all"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:30,120"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 30120
+			},
+			"text": " week because I realize how small 25 minutes is. So let's get into it. My name is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,120",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 30120,
+				"to": 35560
+			},
+			"text": " Adrian Sutton. I'm a lead blockchain protocol engineer with consensus. I started"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:40,800"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 40800
+			},
+			"text": " out four and a half years ago actually working on hyperledgerbasa before it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,800",
+				"to": "00:00:45,160"
+			},
+			"offsets": {
+				"from": 40800,
+				"to": 45160
+			},
+			"text": " first released back when it was Pantheon and more recently I've been focused on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,160",
+				"to": "00:00:49,240"
+			},
+			"offsets": {
+				"from": 45160,
+				"to": 49240
+			},
+			"text": " Teku, the consensus client. So I've had some experience with both the consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,240",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49240,
+				"to": 54000
+			},
+			"text": " side and the execution side building new clients and bringing them and getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,500"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58500
+			},
+			"text": " them ready for production and then going through and yeah probably the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,500",
+				"to": "00:01:01,880"
+			},
+			"offsets": {
+				"from": 58500,
+				"to": 61880
+			},
+			"text": " highlight of my life now will be having having seen the merge complete and go"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,880",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61880,
+				"to": 66000
+			},
+			"text": " through. So very proud of that and very excited for Ethereum. All we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:10,920"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 70920
+			},
+			"text": " talk about today is some of the things that we didn't actually kind of get done"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,920",
+				"to": "00:01:14,520"
+			},
+			"offsets": {
+				"from": 70920,
+				"to": 74520
+			},
+			"text": " and some of the consequences of the way we did the merge which was fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,520",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 74520,
+				"to": 77960
+			},
+			"text": " minimal deliberately so we could get it done so we'd get rid of all that burning"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:22,200"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 82200
+			},
+			"text": " proof of work. So I wanted to tell you everything, everything you ever need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,200",
+				"to": "00:01:25,200"
+			},
+			"offsets": {
+				"from": 82200,
+				"to": 85200
+			},
+			"text": " know about Ethereum clients. I'd love to talk to you for a couple of hours about"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,200",
+				"to": "00:01:30,080"
+			},
+			"offsets": {
+				"from": 85200,
+				"to": 90080
+			},
+			"text": " that about consensus and execution layers but I've got 25 minutes. That's a bit of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,080",
+				"to": "00:01:35,040"
+			},
+			"offsets": {
+				"from": 90080,
+				"to": 95040
+			},
+			"text": " a problem so we're going to cut the scope down a bit and we're going to skip"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,040",
+				"to": "00:01:38,920"
+			},
+			"offsets": {
+				"from": 95040,
+				"to": 98920
+			},
+			"text": " over some of the finer details. We're focusing on the more high level stuff here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,920",
+				"to": "00:01:43,440"
+			},
+			"offsets": {
+				"from": 98920,
+				"to": 103440
+			},
+			"text": " the architecture, how things fit together. This isn't the kind of talk where I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,440",
+				"to": "00:01:46,920"
+			},
+			"offsets": {
+				"from": 103440,
+				"to": 106920
+			},
+			"text": " going to tell you about the nitty gritty details of how the engine API works. A"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,920",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 106920,
+				"to": 110520
+			},
+			"text": " little bit of assumed knowledge that you know Ethereum here but I think that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:52,880"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 112880
+			},
+			"text": " pretty safe for this audience. I think you should all be able to follow along"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,880",
+				"to": "00:01:58,120"
+			},
+			"offsets": {
+				"from": 112880,
+				"to": 118120
+			},
+			"text": " pretty well. To give you some background, there's three key things that I want"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,120",
+				"to": "00:02:03,600"
+			},
+			"offsets": {
+				"from": 118120,
+				"to": 123600
+			},
+			"text": " you to know about Ethereum clients and that'll form a real grounding for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,600",
+				"to": "00:02:06,480"
+			},
+			"offsets": {
+				"from": 123600,
+				"to": 126480
+			},
+			"text": " things we're going to talk about post merge and what they mean and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,480",
+				"to": "00:02:12,480"
+			},
+			"offsets": {
+				"from": 126480,
+				"to": 132480
+			},
+			"text": " impacts of that. So the first thing is there is a lot less difference between"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,480",
+				"to": "00:02:17,240"
+			},
+			"offsets": {
+				"from": 132480,
+				"to": 137240
+			},
+			"text": " consensus clients and execution clients than most people believe. Yes, they do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,240",
+				"to": "00:02:21,840"
+			},
+			"offsets": {
+				"from": 137240,
+				"to": 141840
+			},
+			"text": " quite different jobs. Yes, at every opportunity when we were designing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,840",
+				"to": "00:02:25,760"
+			},
+			"offsets": {
+				"from": 141840,
+				"to": 145760
+			},
+			"text": " beacon chain we said, \"Nah mate, we can do that better.\" Let's pick a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,760",
+				"to": "00:02:30,960"
+			},
+			"offsets": {
+				"from": 145760,
+				"to": 150960
+			},
+			"text": " technology. So there's basically no shared code between the two. There are a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,960",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 150960,
+				"to": 156640
+			},
+			"text": " lot of shared concerns and concepts and there is a lot that we can learn by"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:41,240"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 161240
+			},
+			"text": " talking to the other side by consensus client developers talking to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,240",
+				"to": "00:02:45,520"
+			},
+			"offsets": {
+				"from": 161240,
+				"to": 165520
+			},
+			"text": " execution client developers and vice versa. Networking is probably a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,520",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 165520,
+				"to": 171840
+			},
+			"text": " good example of that in that the core concept of it really has three parts. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:57,280"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 177280
+			},
+			"text": " first is discovery. We need to find peers. The second is gossip so that new"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,280",
+				"to": "00:03:02,240"
+			},
+			"offsets": {
+				"from": 177280,
+				"to": 182240
+			},
+			"text": " information flows around the network quickly and the third is request response"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,240",
+				"to": "00:03:06,800"
+			},
+			"offsets": {
+				"from": 182240,
+				"to": 186800
+			},
+			"text": " which is the ability to say, \"Hey, I missed some data. Can you give it to me?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,800",
+				"to": "00:03:11,080"
+			},
+			"offsets": {
+				"from": 186800,
+				"to": 191080
+			},
+			"text": " Or, \"I'm sinking. How do I catch up?\" Each of those are quite different technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,080",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 191080,
+				"to": 197960
+			},
+			"text": " for discovery. Consensus uses discovery V5. Executioner uses discovery V4. For the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:22,960"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 202960
+			},
+			"text": " other two it's libp2p versus devp2p. In terms of the formatting on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,960",
+				"to": "00:03:28,320"
+			},
+			"offsets": {
+				"from": 202960,
+				"to": 208320
+			},
+			"text": " wire it's SSZ versus RLP as well. So completely different technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,320",
+				"to": "00:03:35,480"
+			},
+			"offsets": {
+				"from": 208320,
+				"to": 215480
+			},
+			"text": " underneath it but still the same concern of how do we find peers we can trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,480",
+				"to": "00:03:40,160"
+			},
+			"offsets": {
+				"from": 215480,
+				"to": 220160
+			},
+			"text": " Because the world is out to get us in client development. We don't trust anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,160",
+				"to": "00:03:43,400"
+			},
+			"offsets": {
+				"from": 220160,
+				"to": 223400
+			},
+			"text": " and there's this sea of peers how do we find the good ones? How do we find the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,400",
+				"to": "00:03:47,040"
+			},
+			"offsets": {
+				"from": 223400,
+				"to": 227040
+			},
+			"text": " honest ones and how do we get a good view of the network and know what's going on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,040",
+				"to": "00:03:52,400"
+			},
+			"offsets": {
+				"from": 227040,
+				"to": 232400
+			},
+			"text": " Things like civil resistance are common across clients. Doss prevention and those"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,400",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 232400,
+				"to": 237520
+			},
+			"text": " kind of peer scoring algorithms. The trade-offs between reducing latency when"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:04:02,240"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 242240
+			},
+			"text": " we're gossiping data by broadcasting it to more peers and then the duplication of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,240",
+				"to": "00:04:05,440"
+			},
+			"offsets": {
+				"from": 242240,
+				"to": 245440
+			},
+			"text": " that data and the increase in bandwidth. And then ultimately they're both"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,440",
+				"to": "00:04:09,320"
+			},
+			"offsets": {
+				"from": 245440,
+				"to": 249320
+			},
+			"text": " blockchain clients. They're both dealing with this tree of blocks and this concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,320",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 249320,
+				"to": 253760
+			},
+			"text": " of reorgs which is fairly unfamiliar for people who are new to client development."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:19,200"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 259200
+			},
+			"text": " This idea that the world is fixed here. It's not like a single database."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,200",
+				"to": "00:04:23,800"
+			},
+			"offsets": {
+				"from": 259200,
+				"to": 263800
+			},
+			"text": " Suddenly we realize hey there's a better chain over here and reorg. How do we pull"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,800",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 263800,
+				"to": 268480
+			},
+			"text": " out transactions or attestations and other operations from the chain we were on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:32,560"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 272560
+			},
+			"text": " and check that they all made it onto this new chain. Lots of code and lots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,560",
+				"to": "00:04:37,720"
+			},
+			"offsets": {
+				"from": 272560,
+				"to": 277720
+			},
+			"text": " logic flows around that and lots of impact throughout the client in the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,720",
+				"to": "00:04:41,400"
+			},
+			"offsets": {
+				"from": 277720,
+				"to": 281400
+			},
+			"text": " it's designed, the way it works and the kinds of things we have to think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,400",
+				"to": "00:04:47,640"
+			},
+			"offsets": {
+				"from": 281400,
+				"to": 287640
+			},
+			"text": " when dealing with algorithms. So on the consensus side probably the big thing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,640",
+				"to": "00:04:52,080"
+			},
+			"offsets": {
+				"from": 287640,
+				"to": 292080
+			},
+			"text": " we keep coming back to and drives a huge amount of our decisions and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,080",
+				"to": "00:04:57,040"
+			},
+			"offsets": {
+				"from": 292080,
+				"to": 297040
+			},
+			"text": " impacts everywhere is the fact that proof of stake is not just a block driven"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,040",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 297040,
+				"to": 302000
+			},
+			"text": " blockchain. It's also time driven. So even if no blocks are produced the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:07,040"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 307040
+			},
+			"text": " state continues to change now that we're in proof of stake. Every 12 seconds is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,040",
+				"to": "00:05:11,600"
+			},
+			"offsets": {
+				"from": 307040,
+				"to": 311600
+			},
+			"text": " slot whether it's empty or not we apply rewards and penalties and concepts for"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,600",
+				"to": "00:05:17,960"
+			},
+			"offsets": {
+				"from": 311600,
+				"to": 317960
+			},
+			"text": " validators. And as a result of that there's a fairly limited amount of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,960",
+				"to": "00:05:23,280"
+			},
+			"offsets": {
+				"from": 317960,
+				"to": 323280
+			},
+			"text": " for blocks to be produced, gossiped around the network, imported into other clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,280",
+				"to": "00:05:28,520"
+			},
+			"offsets": {
+				"from": 323280,
+				"to": 328520
+			},
+			"text": " and then other stations produced. And that's that first four seconds of a slot."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,520",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 328520,
+				"to": 334000
+			},
+			"text": " It's pretty tight and particularly post merge we're seeing more and more that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,960"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337960
+			},
+			"text": " sometimes you don't quite make it. The blocks are coming out late that they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,960",
+				"to": "00:05:42,640"
+			},
+			"offsets": {
+				"from": 337960,
+				"to": 342640
+			},
+			"text": " taken too long to import and then add stations are being produced before that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,640",
+				"to": "00:05:47,120"
+			},
+			"offsets": {
+				"from": 342640,
+				"to": 347120
+			},
+			"text": " block is actually ready and before and so we get a wrong head vote which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,120",
+				"to": "00:05:52,480"
+			},
+			"offsets": {
+				"from": 347120,
+				"to": 352480
+			},
+			"text": " reduces the validators rewards and you know slight impact on the performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,480",
+				"to": "00:05:56,680"
+			},
+			"offsets": {
+				"from": 352480,
+				"to": 356680
+			},
+			"text": " of the network. So if you ever proposed something to a consensus client dev and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,680",
+				"to": "00:06:00,680"
+			},
+			"offsets": {
+				"from": 356680,
+				"to": 360680
+			},
+			"text": " it's going to slow down that process of getting a block out and then brought"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,680",
+				"to": "00:06:04,560"
+			},
+			"offsets": {
+				"from": 360680,
+				"to": 364560
+			},
+			"text": " into the client ready to be attested to we're going to have a hard time and we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,560",
+				"to": "00:06:08,640"
+			},
+			"offsets": {
+				"from": 364560,
+				"to": 368640
+			},
+			"text": " going to push back. On the execution side it's a bit different. Time is still"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,640",
+				"to": "00:06:13,200"
+			},
+			"offsets": {
+				"from": 368640,
+				"to": 373200
+			},
+			"text": " important obviously in performance but the big thing is this world state. A beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,200",
+				"to": "00:06:17,920"
+			},
+			"offsets": {
+				"from": 373200,
+				"to": 377920
+			},
+			"text": " nodes database is in the order of 50 gig to 100 gig for the total database. On an"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,920",
+				"to": "00:06:22,200"
+			},
+			"offsets": {
+				"from": 377920,
+				"to": 382200
+			},
+			"text": " execution client it's more like 500 gig to a terabyte. Very rough numbers I told"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,200",
+				"to": "00:06:26,360"
+			},
+			"offsets": {
+				"from": 382200,
+				"to": 386360
+			},
+			"text": " you it would be high level and hand wavy. But you know this order of magnitude"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,360",
+				"to": "00:06:31,640"
+			},
+			"offsets": {
+				"from": 386360,
+				"to": 391640
+			},
+			"text": " difference in size. That has all kinds of implications for performance and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,640",
+				"to": "00:06:35,840"
+			},
+			"offsets": {
+				"from": 391640,
+				"to": 395840
+			},
+			"text": " means that there are all kinds of different approaches to how you handle"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,840",
+				"to": "00:06:39,960"
+			},
+			"offsets": {
+				"from": 395840,
+				"to": 399960
+			},
+			"text": " sync, to how you prune that data and manage it as it changes, how you index into"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,960",
+				"to": "00:06:46,200"
+			},
+			"offsets": {
+				"from": 399960,
+				"to": 406200
+			},
+			"text": " that data, that impact then flows through the rest of the execution client. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,200",
+				"to": "00:06:50,360"
+			},
+			"offsets": {
+				"from": 406200,
+				"to": 410360
+			},
+			"text": " every time we're touching world state everything that has operations to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,360",
+				"to": "00:06:53,840"
+			},
+			"offsets": {
+				"from": 410360,
+				"to": 413840
+			},
+			"text": " whether it's transaction gossip and so on all comes back to this world state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,840",
+				"to": "00:06:58,200"
+			},
+			"offsets": {
+				"from": 413840,
+				"to": 418200
+			},
+			"text": " and getting access to it. That's what drives a lot of big things for execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,200",
+				"to": "00:07:01,760"
+			},
+			"offsets": {
+				"from": 418200,
+				"to": 421760
+			},
+			"text": " clients and we want to give them scope to keep inventing new ways of dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,760",
+				"to": "00:07:07,200"
+			},
+			"offsets": {
+				"from": 421760,
+				"to": 427200
+			},
+			"text": " with things. Okay post merge world. Now that we've set the scene, the deployment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,200",
+				"to": "00:07:11,120"
+			},
+			"offsets": {
+				"from": 427200,
+				"to": 431120
+			},
+			"text": " model you've probably gotten a hang of these days we have two separate clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,120",
+				"to": "00:07:15,680"
+			},
+			"offsets": {
+				"from": 431120,
+				"to": 435680
+			},
+			"text": " You need to run both a consensus client and an execution client and they both"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,680",
+				"to": "00:07:20,320"
+			},
+			"offsets": {
+				"from": 435680,
+				"to": 440320
+			},
+			"text": " connect to their own PDP networks for gossiping data and retrieving stuff. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,320",
+				"to": "00:07:24,040"
+			},
+			"offsets": {
+				"from": 440320,
+				"to": 444040
+			},
+			"text": " blocks come through the consensus client, pass through the engine API to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,040",
+				"to": "00:07:28,720"
+			},
+			"offsets": {
+				"from": 444040,
+				"to": 448720
+			},
+			"text": " execution client and it's that engine API that allows the consensus client to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,720",
+				"to": "00:07:32,560"
+			},
+			"offsets": {
+				"from": 448720,
+				"to": 452560
+			},
+			"text": " control the execution client. And this is one of the first things people notice as"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,560",
+				"to": "00:07:37,320"
+			},
+			"offsets": {
+				"from": 452560,
+				"to": 457320
+			},
+			"text": " something we probably should clean up post merge of why do I have to run two"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,320",
+				"to": "00:07:41,160"
+			},
+			"offsets": {
+				"from": 457320,
+				"to": 461160
+			},
+			"text": " pieces of software for a single Ethereum node? Well there's a couple of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,160",
+				"to": "00:07:45,320"
+			},
+			"offsets": {
+				"from": 461160,
+				"to": 465320
+			},
+			"text": " solutions we can look at for that. The first is embedding a light consensus client"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,320",
+				"to": "00:07:49,280"
+			},
+			"offsets": {
+				"from": 465320,
+				"to": 469280
+			},
+			"text": " into an ex, into each execution client. I really like this idea. It's simple for"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,280",
+				"to": "00:07:54,400"
+			},
+			"offsets": {
+				"from": 469280,
+				"to": 474400
+			},
+			"text": " users to run a node, it reduces system requirements, light client consensus is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,400",
+				"to": "00:08:00,400"
+			},
+			"offsets": {
+				"from": 474400,
+				"to": 480400
+			},
+			"text": " lot less impact and a lot less bandwidth and CPU than the full consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,400",
+				"to": "00:08:04,560"
+			},
+			"offsets": {
+				"from": 480400,
+				"to": 484560
+			},
+			"text": " But it does come with some trade-offs. You will always be one slot behind head"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,560",
+				"to": "00:08:08,080"
+			},
+			"offsets": {
+				"from": 484560,
+				"to": 488080
+			},
+			"text": " because you've got to wait for the sync committee to do its job. You can't run a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,080",
+				"to": "00:08:13,280"
+			},
+			"offsets": {
+				"from": 488080,
+				"to": 493280
+			},
+			"text": " validator node this way and it's a reduction in security guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:17,320"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 497320
+			},
+			"text": " For most nodes, like if you're the type of person who really just wants to run one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,320",
+				"to": "00:08:19,840"
+			},
+			"offsets": {
+				"from": 497320,
+				"to": 499840
+			},
+			"text": " thing because you're running a home node and you just want to send some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,840",
+				"to": "00:08:24,440"
+			},
+			"offsets": {
+				"from": 499840,
+				"to": 504440
+			},
+			"text": " transactions, it's probably a really great solution. But it's not for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,440",
+				"to": "00:08:29,080"
+			},
+			"offsets": {
+				"from": 504440,
+				"to": 509080
+			},
+			"text": " So often people suggest that we should combine clients, we should take a consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,080",
+				"to": "00:08:32,960"
+			},
+			"offsets": {
+				"from": 509080,
+				"to": 512960
+			},
+			"text": " client and mash it into the same process with an execution client. I'm not a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,960",
+				"to": "00:08:36,720"
+			},
+			"offsets": {
+				"from": 512960,
+				"to": 516720
+			},
+			"text": " more skeptical of this. It does make it simple for users to start a node in that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,720",
+				"to": "00:08:42,200"
+			},
+			"offsets": {
+				"from": 516720,
+				"to": 522200
+			},
+			"text": " they've got one process. But ultimately it's really bad for client diversity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,200",
+				"to": "00:08:45,560"
+			},
+			"offsets": {
+				"from": 522200,
+				"to": 525560
+			},
+			"text": " We've got something like five consensus clients and four execution clients to choose"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,560",
+				"to": "00:08:49,720"
+			},
+			"offsets": {
+				"from": 525560,
+				"to": 529720
+			},
+			"text": " from. There's 20 different combinations. Are we really going to maintain 20"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,720",
+				"to": "00:08:54,680"
+			},
+			"offsets": {
+				"from": 529720,
+				"to": 534680
+			},
+			"text": " different combined clients so you can run them as a single process? And who's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,680",
+				"to": "00:08:58,840"
+			},
+			"offsets": {
+				"from": 534680,
+				"to": 538840
+			},
+			"text": " to do that? And even if we were prepared to do it, there's all kinds of dependency"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,840",
+				"to": "00:09:01,720"
+			},
+			"offsets": {
+				"from": 538840,
+				"to": 541720
+			},
+			"text": " conflicts that we're going to get into because all of a sudden two separate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,720",
+				"to": "00:09:07,920"
+			},
+			"offsets": {
+				"from": 541720,
+				"to": 547920
+			},
+			"text": " development teams work is being pushed into a single process. And to resolve that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,920",
+				"to": "00:09:11,760"
+			},
+			"offsets": {
+				"from": 547920,
+				"to": 551760
+			},
+			"text": " means development teams working much closer together and being restricted by"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,760",
+				"to": "00:09:14,120"
+			},
+			"offsets": {
+				"from": 551760,
+				"to": 554120
+			},
+			"text": " what they're doing. So we get a lot more cognitive load for"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,120",
+				"to": "00:09:19,720"
+			},
+			"offsets": {
+				"from": 554120,
+				"to": 559720
+			},
+			"text": " devs, a lot more coupling. And we lose this nice separation that we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,720",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 559720,
+				"to": 565000
+			},
+			"text": " somewhat accidentally got between consensus and execution layers. And that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,720"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568720
+			},
+			"text": " a real disadvantage for the Ethereum ecosystem because that separation and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,720",
+				"to": "00:09:32,640"
+			},
+			"offsets": {
+				"from": 568720,
+				"to": 572640
+			},
+			"text": " ability to have people who specialize in consensus and people who specialize in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,640",
+				"to": "00:09:37,160"
+			},
+			"offsets": {
+				"from": 572640,
+				"to": 577160
+			},
+			"text": " execution allows us to build stuff a lot faster and build stuff much more in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,160",
+				"to": "00:09:42,240"
+			},
+			"offsets": {
+				"from": 577160,
+				"to": 582240
+			},
+			"text": " parallel. The final thing is it encourages client scope creep. That might be a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,240",
+				"to": "00:09:48,080"
+			},
+			"offsets": {
+				"from": 582240,
+				"to": 588080
+			},
+			"text": " unexpected here. So let's dig into it a bit more. This is what a real Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,080",
+				"to": "00:09:52,080"
+			},
+			"offsets": {
+				"from": 588080,
+				"to": 592080
+			},
+			"text": " deployment often looks like. And it's not as simple as the first picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,080",
+				"to": "00:09:57,280"
+			},
+			"offsets": {
+				"from": 592080,
+				"to": 597280
+			},
+			"text": " Because we learned ages ago, even before the merge, right, we learned ages ago that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,280",
+				"to": "00:10:03,200"
+			},
+			"offsets": {
+				"from": 597280,
+				"to": 603200
+			},
+			"text": " putting your wallet inside your execution client is just dumb. It's really bad for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,200",
+				"to": "00:10:07,720"
+			},
+			"offsets": {
+				"from": 603200,
+				"to": 607720
+			},
+			"text": " security and so we stopped doing it. You know, if you've managed to load your"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,720",
+				"to": "00:10:11,560"
+			},
+			"offsets": {
+				"from": 607720,
+				"to": 611560
+			},
+			"text": " private wallet key into guest still and you're using those key management APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,560",
+				"to": "00:10:17,760"
+			},
+			"offsets": {
+				"from": 611560,
+				"to": 617760
+			},
+			"text": " please stop. Use a real wallet. And so you're already using two processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,760",
+				"to": "00:10:23,880"
+			},
+			"offsets": {
+				"from": 617760,
+				"to": 623880
+			},
+			"text": " You're already using two different things to access Ethereum. Then not every"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,880",
+				"to": "00:10:28,160"
+			},
+			"offsets": {
+				"from": 623880,
+				"to": 628160
+			},
+			"text": " consensus client supports running the validator client in the beacon node at"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,160",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 628160,
+				"to": 633960
+			},
+			"text": " the same time, in the same process. Some do. Some don't. Very common requirement for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:37,080"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 637080
+			},
+			"text": " people wanting to set it up to have a separate validator client for various"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,080",
+				"to": "00:10:40,680"
+			},
+			"offsets": {
+				"from": 637080,
+				"to": 640680
+			},
+			"text": " reasons. And you might even take it a step further and want to secure your keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,680",
+				"to": "00:10:46,120"
+			},
+			"offsets": {
+				"from": 640680,
+				"to": 646120
+			},
+			"text": " more. And so you use an external signer. That possibly has an actual database for"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,120",
+				"to": "00:10:51,720"
+			},
+			"offsets": {
+				"from": 646120,
+				"to": 651720
+			},
+			"text": " slashing protection. You probably should be monitoring your 32-east investment at"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,720",
+				"to": "00:10:56,200"
+			},
+			"offsets": {
+				"from": 651720,
+				"to": 656200
+			},
+			"text": " minimum. So you get something like Prometheus. Everyone likes flashy graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,200",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 656200,
+				"to": 661000
+			},
+			"text": " So now you've got Bravana. And then you start adding on things like Mev Boost."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 666000
+			},
+			"text": " So all of a sudden, we've got a lot of stuff going on. It's, you know, you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:10,480"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 670480
+			},
+			"text": " imagine all of this being put into one process. It's not viable. It's not what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,480",
+				"to": "00:11:15,600"
+			},
+			"offsets": {
+				"from": 670480,
+				"to": 675600
+			},
+			"text": " want to do. And we don't want to lock people into saying, hey, get started with"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,600",
+				"to": "00:11:21,680"
+			},
+			"offsets": {
+				"from": 675600,
+				"to": 681680
+			},
+			"text": " Ethereum. Here's a single process. Oh, you want to do something well. Oh, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,680",
+				"to": "00:11:26,520"
+			},
+			"offsets": {
+				"from": 681680,
+				"to": 686520
+			},
+			"text": " throw out everything you learned. Do it a different way. Doesn't make a lot of sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,520",
+				"to": "00:11:34,080"
+			},
+			"offsets": {
+				"from": 686520,
+				"to": 694080
+			},
+			"text": " So what I think is the real solution here is EaseOS. Important note, please,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,080",
+				"to": "00:11:38,640"
+			},
+			"offsets": {
+				"from": 694080,
+				"to": 698640
+			},
+			"text": " don't make it an actual OS. Right? We've got good operating systems. But this idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,640",
+				"to": "00:11:42,960"
+			},
+			"offsets": {
+				"from": 698640,
+				"to": 702960
+			},
+			"text": " moving up a layer of coordination is going to be really important. So that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,960",
+				"to": "00:11:46,480"
+			},
+			"offsets": {
+				"from": 702960,
+				"to": 706480
+			},
+			"text": " maintain this decoupling of consensus and execution clients. They don't need to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,480",
+				"to": "00:11:51,640"
+			},
+			"offsets": {
+				"from": 706480,
+				"to": 711640
+			},
+			"text": " too much about each other. They use the standard APIs to communicate. But we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,640",
+				"to": "00:11:55,520"
+			},
+			"offsets": {
+				"from": 711640,
+				"to": 715520
+			},
+			"text": " start with, here's a single process you run and it will spin up your execution and"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,520",
+				"to": "00:12:00,400"
+			},
+			"offsets": {
+				"from": 715520,
+				"to": 720400
+			},
+			"text": " consensus client and have them hook together ready for you. Then if you want to add a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,400",
+				"to": "00:12:05,160"
+			},
+			"offsets": {
+				"from": 720400,
+				"to": 725160
+			},
+			"text": " validator, it'll add in a validator client for you. It's just another config option."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,160",
+				"to": "00:12:09,560"
+			},
+			"offsets": {
+				"from": 725160,
+				"to": 729560
+			},
+			"text": " Without having to decide again. Same for me, same for metrics and so on. The really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,560",
+				"to": "00:12:16,440"
+			},
+			"offsets": {
+				"from": 729560,
+				"to": 736440
+			},
+			"text": " good news about this, it already exists. In fact, it exists in multiple forms. Things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,440",
+				"to": "00:12:24,080"
+			},
+			"offsets": {
+				"from": 736440,
+				"to": 744080
+			},
+			"text": " like Ease Docker, Ease Wizard, DAPNODE, Stereum all have some version of this that makes it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,080",
+				"to": "00:12:30,160"
+			},
+			"offsets": {
+				"from": 744080,
+				"to": 750160
+			},
+			"text": " easier to run a client and kind of hides the details of the fact that there are multiple"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,160",
+				"to": "00:12:35,520"
+			},
+			"offsets": {
+				"from": 750160,
+				"to": 755520
+			},
+			"text": " processes and coordination required. Of course, the downside is exactly that. We're hiding"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,520",
+				"to": "00:12:40,280"
+			},
+			"offsets": {
+				"from": 755520,
+				"to": 760280
+			},
+			"text": " the complexity. Underneath the hood, lots of different things going on, lots of moving"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,280",
+				"to": "00:12:46,920"
+			},
+			"offsets": {
+				"from": 760280,
+				"to": 766920
+			},
+			"text": " parts. We need to be very careful to ensure that we have good definitions between each"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,920",
+				"to": "00:12:53,080"
+			},
+			"offsets": {
+				"from": 766920,
+				"to": 773080
+			},
+			"text": " of those parts. So things like building execution and the engine API well and making sure that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,080",
+				"to": "00:12:57,440"
+			},
+			"offsets": {
+				"from": 773080,
+				"to": 777440
+			},
+			"text": " all those little details get fleshed out and documented and so on. And then over time, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,440",
+				"to": "00:13:04,080"
+			},
+			"offsets": {
+				"from": 777440,
+				"to": 784080
+			},
+			"text": " keep making it more robust. Okay. Beyond the initial deployment, what are some of the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,080",
+				"to": "00:13:08,520"
+			},
+			"offsets": {
+				"from": 784080,
+				"to": 788520
+			},
+			"text": " problems and opportunities that we now have because of the merge and the way that these"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,520",
+				"to": "00:13:15,880"
+			},
+			"offsets": {
+				"from": 788520,
+				"to": 795880
+			},
+			"text": " two clients work? First one is a pretty big one. We got a bunch of data duplication. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,880",
+				"to": "00:13:21,720"
+			},
+			"offsets": {
+				"from": 795880,
+				"to": 801720
+			},
+			"text": " the consensus client blocks include the execution payload, which is what your execution client"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,720",
+				"to": "00:13:27,720"
+			},
+			"offsets": {
+				"from": 801720,
+				"to": 807720
+			},
+			"text": " sees as a block. Kind of by default, both clients wind up storing that data. So we've"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,720",
+				"to": "00:13:32,320"
+			},
+			"offsets": {
+				"from": 807720,
+				"to": 812320
+			},
+			"text": " duplicated the execution payload, which is what contains all the transactions. It's pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,320",
+				"to": "00:13:37,960"
+			},
+			"offsets": {
+				"from": 812320,
+				"to": 817960
+			},
+			"text": " big. And that increases our disk space requirements overall. So you will probably see if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,960",
+				"to": "00:13:42,880"
+			},
+			"offsets": {
+				"from": 817960,
+				"to": 822880
+			},
+			"text": " running a beacon node, post merge, its database will grow in size faster than it did pre merge"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,880",
+				"to": "00:13:47,800"
+			},
+			"offsets": {
+				"from": 822880,
+				"to": 827800
+			},
+			"text": " because of these extra transaction data. There are a couple of ways we can address this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,800",
+				"to": "00:13:53,280"
+			},
+			"offsets": {
+				"from": 827800,
+				"to": 833280
+			},
+			"text": " The first one is that there's a proposal that's been around since pre merge, but just execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,280",
+				"to": "00:13:59,280"
+			},
+			"offsets": {
+				"from": 833280,
+				"to": 839280
+			},
+			"text": " clients didn't have time to deal with it, basically. And I'm not sure consensus clients did either."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,280",
+				"to": "00:14:06,200"
+			},
+			"offsets": {
+				"from": 839280,
+				"to": 846200
+			},
+			"text": " For get payload bodies. What this is, is it's a fairly efficient way for a consensus client"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,200",
+				"to": "00:14:11,880"
+			},
+			"offsets": {
+				"from": 846200,
+				"to": 851880
+			},
+			"text": " to say, hey, I need the payload for this range of blocks. In that way, the consensus client"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,880",
+				"to": "00:14:18,440"
+			},
+			"offsets": {
+				"from": 851880,
+				"to": 858440
+			},
+			"text": " can simply stop storing it. And instead, it can rely on the fact that the execution client"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,440",
+				"to": "00:14:22,440"
+			},
+			"offsets": {
+				"from": 858440,
+				"to": 862440
+			},
+			"text": " will be storing those blocks anyway. The consensus client does need that data and it needs it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,440",
+				"to": "00:14:27,520"
+			},
+			"offsets": {
+				"from": 862440,
+				"to": 867520
+			},
+			"text": " fairly quickly when it gets it because things like queries to its rest API, if you ask for"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,520",
+				"to": "00:14:31,200"
+			},
+			"offsets": {
+				"from": 867520,
+				"to": 871200
+			},
+			"text": " a block, it's got to give you the full block. So it's got to go and get it. And the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,200",
+				"to": "00:14:36,880"
+			},
+			"offsets": {
+				"from": 871200,
+				"to": 876880
+			},
+			"text": " for networking when peers request a block, it's the full block that we need to send back."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,880",
+				"to": "00:14:41,320"
+			},
+			"offsets": {
+				"from": 876880,
+				"to": 881320
+			},
+			"text": " That in particular, we want to be fairly fast. And we really want it to be efficient. That's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,320",
+				"to": "00:14:47,080"
+			},
+			"offsets": {
+				"from": 881320,
+				"to": 887080
+			},
+			"text": " probably the big challenge we have with this deduplication right now, is that we're asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,080",
+				"to": "00:14:52,520"
+			},
+			"offsets": {
+				"from": 887080,
+				"to": 892520
+			},
+			"text": " the execution client to store data and give us access to it on our terms. If you remember,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,520",
+				"to": "00:14:57,120"
+			},
+			"offsets": {
+				"from": 892520,
+				"to": 897120
+			},
+			"text": " the big thing for execution clients was managing data. They have a lot already. Their databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,120",
+				"to": "00:15:02,480"
+			},
+			"offsets": {
+				"from": 897120,
+				"to": 902480
+			},
+			"text": " are under a lot of pressure and that's the performance bottleneck. So Lighthouse has a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,480",
+				"to": "00:15:08,120"
+			},
+			"offsets": {
+				"from": 902480,
+				"to": 908120
+			},
+			"text": " feature where they will emulate this get bodies, get payload bodies through the existing JSON"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,120",
+				"to": "00:15:14,560"
+			},
+			"offsets": {
+				"from": 908120,
+				"to": 914560
+			},
+			"text": " RPC, cool tech, well done. And it turns out it puts a lot of pressure on the execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,560",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 914560,
+				"to": 919000
+			},
+			"text": " clients. Sometimes it works well if you've got enough I/O, sometimes it hasn't and they've"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:22,640"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 922640
+			},
+			"text": " added an option to be able to turn it off and go back to duplicating the data, which for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,640",
+				"to": "00:15:27,520"
+			},
+			"offsets": {
+				"from": 922640,
+				"to": 927520
+			},
+			"text": " some people has worked out better. The other issue that floats around here is that we get"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,520",
+				"to": "00:15:34,520"
+			},
+			"offsets": {
+				"from": 927520,
+				"to": 934520
+			},
+			"text": " an increased coupling between the two clients again. Not so much in terms of the logical"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,520",
+				"to": "00:15:40,840"
+			},
+			"offsets": {
+				"from": 934520,
+				"to": 940840
+			},
+			"text": " side of it in terms of what their responsibilities are, but more in that if your execution client"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,840",
+				"to": "00:15:46,840"
+			},
+			"offsets": {
+				"from": 940840,
+				"to": 946840
+			},
+			"text": " is rethinking, your consensus client just lost a bunch of block data it thought it had."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,840",
+				"to": "00:15:51,240"
+			},
+			"offsets": {
+				"from": 946840,
+				"to": 951240
+			},
+			"text": " And there's a lot of complexity around how to deal with that. It's reasonable, you'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,240",
+				"to": "00:15:55,840"
+			},
+			"offsets": {
+				"from": 951240,
+				"to": 955840
+			},
+			"text": " probably just start getting errors from the rest API and say, oops, don't have that block"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,840",
+				"to": "00:16:01,360"
+			},
+			"offsets": {
+				"from": 955840,
+				"to": 961360
+			},
+			"text": " all of a sudden, same for peers, it's quite possible you don't have that block. Anyway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,360",
+				"to": "00:16:05,280"
+			},
+			"offsets": {
+				"from": 961360,
+				"to": 965280
+			},
+			"text": " all these details can be worked out, but it's kind of part of cleaning up the mess we left"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,280",
+				"to": "00:16:09,600"
+			},
+			"offsets": {
+				"from": 965280,
+				"to": 969600
+			},
+			"text": " behind when we got the merge done. The other solution which is a bit easier and kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,600",
+				"to": "00:16:16,600"
+			},
+			"offsets": {
+				"from": 969600,
+				"to": 976600
+			},
+			"text": " cheating is let's just not store all the blocks. So we've talked about this with EIP44s on"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,600",
+				"to": "00:16:21,560"
+			},
+			"offsets": {
+				"from": 976600,
+				"to": 981560
+			},
+			"text": " the execution client side for quite a while and the consensus client learning from that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,560",
+				"to": "00:16:25,760"
+			},
+			"offsets": {
+				"from": 981560,
+				"to": 985760
+			},
+			"text": " actually put in the spec that we don't have to keep all the blocks all the way back to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,760",
+				"to": "00:16:32,560"
+			},
+			"offsets": {
+				"from": 985760,
+				"to": 992560
+			},
+			"text": " this. It's never been spec that way. It's about five months that we need to store. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,560",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 992560,
+				"to": 997560
+			},
+			"text": " if we just started pruning those older blocks and deleting from the database, even with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:43,080"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 1003080
+			},
+			"text": " data duplication, we wind up with a pretty small database for our beacon node, it's probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,080",
+				"to": "00:16:48,920"
+			},
+			"offsets": {
+				"from": 1003080,
+				"to": 1008920
+			},
+			"text": " enough. It certainly would be for a lot of people and we can do the deduplication as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,920",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1008920,
+				"to": 1016000
+			},
+			"text": " to make it even smaller. The really nice thing about that is that for consensus clients that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:01,520"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1021520
+			},
+			"text": " aren't trying to form an archive node, that would make their disk usage almost static. It"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,520",
+				"to": "00:17:06,200"
+			},
+			"offsets": {
+				"from": 1021520,
+				"to": 1026200
+			},
+			"text": " would grow but only really slowly as the number of validators grow and the beacon state grows,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,200",
+				"to": "00:17:11,760"
+			},
+			"offsets": {
+				"from": 1026200,
+				"to": 1031760
+			},
+			"text": " which is relatively small. That way we're kind of avoiding this ever growing creep of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,760",
+				"to": "00:17:15,800"
+			},
+			"offsets": {
+				"from": 1031760,
+				"to": 1035800
+			},
+			"text": " disk space usage that we've kind of seen with Ethereum because of the growing world state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,800",
+				"to": "00:17:20,880"
+			},
+			"offsets": {
+				"from": 1035800,
+				"to": 1040880
+			},
+			"text": " It's nice that the consensus client doesn't necessarily have to have that problem. Drawback"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,880",
+				"to": "00:17:25,800"
+			},
+			"offsets": {
+				"from": 1040880,
+				"to": 1045800
+			},
+			"text": " is, obviously, if you're running an archive node, then you want to store all the blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,800",
+				"to": "00:17:29,040"
+			},
+			"offsets": {
+				"from": 1045800,
+				"to": 1049040
+			},
+			"text": " you want to store all the data and you're really going to want to lean on the deduplication"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,040",
+				"to": "00:17:33,360"
+			},
+			"offsets": {
+				"from": 1049040,
+				"to": 1053360
+			},
+			"text": " to save this space instead of this approach. The other part which things like the portal"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,360",
+				"to": "00:17:38,520"
+			},
+			"offsets": {
+				"from": 1053360,
+				"to": 1058520
+			},
+			"text": " network are aiming to solve, those older blocks are hard to find. You can't just request them"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,520",
+				"to": "00:17:44,960"
+			},
+			"offsets": {
+				"from": 1058520,
+				"to": 1064960
+			},
+			"text": " from any peer on the network. They potentially become unavailable. It's technically okay"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,960",
+				"to": "00:17:49,480"
+			},
+			"offsets": {
+				"from": 1064960,
+				"to": 1069480
+			},
+			"text": " but it doesn't feel good for a blockchain to lose old data. It's not really something"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,480",
+				"to": "00:17:53,840"
+			},
+			"offsets": {
+				"from": 1069480,
+				"to": 1073840
+			},
+			"text": " we want to encourage and we want to have systems in place so that we do hold on to them. There's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,840",
+				"to": "00:17:59,520"
+			},
+			"offsets": {
+				"from": 1073840,
+				"to": 1079520
+			},
+			"text": " a bunch of research going on there. For example, era files are defined and we can use the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,520",
+				"to": "00:18:09,160"
+			},
+			"offsets": {
+				"from": 1079520,
+				"to": 1089160
+			},
+			"text": " of things like that. The other place where we see an interesting interaction between the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,160",
+				"to": "00:18:16,440"
+			},
+			"offsets": {
+				"from": 1089160,
+				"to": 1096440
+			},
+			"text": " consensus and execution clients, that's what it didn't help. This interaction between the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,440",
+				"to": "00:18:22,520"
+			},
+			"offsets": {
+				"from": 1096440,
+				"to": 1102520
+			},
+			"text": " clients in terms of non-canonical blocks, blocks that we receive that we don't believe are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,520",
+				"to": "00:18:31,320"
+			},
+			"offsets": {
+				"from": 1102520,
+				"to": 1111320
+			},
+			"text": " part of the canonical chain, maybe we receive them really late or whatever. For an execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,320",
+				"to": "00:18:36,680"
+			},
+			"offsets": {
+				"from": 1111320,
+				"to": 1116680
+			},
+			"text": " client, particularly ones that only store one version of the world state rather than the full"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,680",
+				"to": "00:18:42,040"
+			},
+			"offsets": {
+				"from": 1116680,
+				"to": 1122040
+			},
+			"text": " tree of all the world states, they're really tempted to want to just not bother executing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,040",
+				"to": "00:18:45,960"
+			},
+			"offsets": {
+				"from": 1122040,
+				"to": 1125960
+			},
+			"text": " the transactions because they don't want to store that world state. They're only storing one"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,960",
+				"to": "00:18:55,640"
+			},
+			"offsets": {
+				"from": 1125960,
+				"to": 1135640
+			},
+			"text": " anyway. The engine API allows that and allows them to say this isn't worth executing. I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,640",
+				"to": "00:19:00,840"
+			},
+			"offsets": {
+				"from": 1135640,
+				"to": 1140840
+			},
+			"text": " store it and I'd hear if it becomes canonical, sure I'll execute it but I'm not doing it now."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,840",
+				"to": "00:19:07,160"
+			},
+			"offsets": {
+				"from": 1140840,
+				"to": 1147160
+			},
+			"text": " They can return accepted. The problem is on the consensus client side, we have to track that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,160",
+				"to": "00:19:12,440"
+			},
+			"offsets": {
+				"from": 1147160,
+				"to": 1152440
+			},
+			"text": " that block isn't fully valid. The execution client didn't execute it because world state is big,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,440",
+				"to": "00:19:16,760"
+			},
+			"offsets": {
+				"from": 1152440,
+				"to": 1156760
+			},
+			"text": " that makes a performance problem, that kind of thing. On the consensus client though, that delay"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,760",
+				"to": "00:19:22,600"
+			},
+			"offsets": {
+				"from": 1156760,
+				"to": 1162600
+			},
+			"text": " in execution might become a problem if we have to reorg over to that block because it's going to add"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,600",
+				"to": "00:19:28,280"
+			},
+			"offsets": {
+				"from": 1162600,
+				"to": 1168280
+			},
+			"text": " delay right at the point where we're likely to not want it, that time sensitivity thing. We're"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,280",
+				"to": "00:19:32,200"
+			},
+			"offsets": {
+				"from": 1168280,
+				"to": 1172200
+			},
+			"text": " about to create a block and we've realised we're on the wrong chain, we're going to reorg over to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,200",
+				"to": "00:19:36,840"
+			},
+			"offsets": {
+				"from": 1172200,
+				"to": 1176840
+			},
+			"text": " this one, all of a sudden we've got a block, we don't know is valid, that we think is now the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,840",
+				"to": "00:19:42,520"
+			},
+			"offsets": {
+				"from": 1176840,
+				"to": 1182520
+			},
+			"text": " canonical chain. We have to wait for the execution client to execute it before we can safely perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,520",
+				"to": "00:19:48,920"
+			},
+			"offsets": {
+				"from": 1182520,
+				"to": 1188920
+			},
+			"text": " any valid data duties that are involving that block. That might delay the valid data duties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,920",
+				"to": "00:19:57,080"
+			},
+			"offsets": {
+				"from": 1188920,
+				"to": 1197080
+			},
+			"text": " best case, but it may just cause them to be missed. So it's going to be really important to have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,080",
+				"to": "00:20:03,720"
+			},
+			"offsets": {
+				"from": 1197080,
+				"to": 1203720
+			},
+			"text": " understanding of these different pressures between clients. Because for short reorgs, it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,720",
+				"to": "00:20:10,360"
+			},
+			"offsets": {
+				"from": 1203720,
+				"to": 1210360
+			},
+			"text": " really important for the execution client to go ahead and spend a bit of CPU and disk IO to execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,360",
+				"to": "00:20:16,200"
+			},
+			"offsets": {
+				"from": 1210360,
+				"to": 1216200
+			},
+			"text": " all those blocks, to avoid potentially causing the consensus client to be in a time pressure scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,200",
+				"to": "00:20:23,080"
+			},
+			"offsets": {
+				"from": 1216200,
+				"to": 1223080
+			},
+			"text": " But then for long reorgs, that's probably okay, it's less common and much less likely that we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,080",
+				"to": "00:20:29,640"
+			},
+			"offsets": {
+				"from": 1223080,
+				"to": 1229640
+			},
+			"text": " need to reorg to something that would cause a long reorg. Danny Ryan's talk and the opening session"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,640",
+				"to": "00:20:33,320"
+			},
+			"offsets": {
+				"from": 1229640,
+				"to": 1233320
+			},
+			"text": " particularly showed that where we're just not seeing many reorgs at all, which is fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,320",
+				"to": "00:20:41,560"
+			},
+			"offsets": {
+				"from": 1233320,
+				"to": 1241560
+			},
+			"text": " Okay, so summing this all up, there's a bunch of other problems that are there and clean up that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,560",
+				"to": "00:20:48,520"
+			},
+			"offsets": {
+				"from": 1241560,
+				"to": 1248520
+			},
+			"text": " we need to do these loose ends. But they are loose ends. They're not going to require more hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,520",
+				"to": "00:20:54,760"
+			},
+			"offsets": {
+				"from": 1248520,
+				"to": 1254760
+			},
+			"text": " forks to fix. They're not going to require massive amounts of effort. It's just the normal day to day"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,760",
+				"to": "00:20:58,600"
+			},
+			"offsets": {
+				"from": 1254760,
+				"to": 1258600
+			},
+			"text": " plugging away of engineering. So keep up with the latest versions of your clients and life will"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,600",
+				"to": "00:21:04,520"
+			},
+			"offsets": {
+				"from": 1258600,
+				"to": 1264520
+			},
+			"text": " keep getting better. I think we want to continue to learn from the other side. Consensus and execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,520",
+				"to": "00:21:09,560"
+			},
+			"offsets": {
+				"from": 1264520,
+				"to": 1269560
+			},
+			"text": " clients through the merge process have really started talking to each other a lot more than they did"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,560",
+				"to": "00:21:14,920"
+			},
+			"offsets": {
+				"from": 1269560,
+				"to": 1274920
+			},
+			"text": " back before. We were really work focused on the merge. We want to keep that going. We don't, though,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,920",
+				"to": "00:21:21,640"
+			},
+			"offsets": {
+				"from": 1274920,
+				"to": 1281640
+			},
+			"text": " need execution client devs to be an expert in consensus layer. That split is powerful and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,640",
+				"to": "00:21:25,720"
+			},
+			"offsets": {
+				"from": 1281640,
+				"to": 1285720
+			},
+			"text": " want to really leverage it and look for other places where that kind of split can be useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,720",
+				"to": "00:21:31,800"
+			},
+			"offsets": {
+				"from": 1285720,
+				"to": 1291800
+			},
+			"text": " And that's part of embracing this kind of multi-component future of Ethereum that you don't need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,800",
+				"to": "00:21:37,480"
+			},
+			"offsets": {
+				"from": 1291800,
+				"to": 1297480
+			},
+			"text": " know everything about every component of Ethereum. You can know your little part, even just within"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,480",
+				"to": "00:21:46,440"
+			},
+			"offsets": {
+				"from": 1297480,
+				"to": 1306440
+			},
+			"text": " the layer one. That's all I've really got time for. So thank you for listening. And I do believe we"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,440",
+				"to": "00:21:53,560"
+			},
+			"offsets": {
+				"from": 1306440,
+				"to": 1313560
+			},
+			"text": " have some time for questions, which would be awesome. >> Yes, we do. We have time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,560",
+				"to": "00:21:59,480"
+			},
+			"offsets": {
+				"from": 1313560,
+				"to": 1319480
+			},
+			"text": " Do we have any questions from the audience, please raise your hand."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,480",
+				"to": "00:22:05,720"
+			},
+			"offsets": {
+				"from": 1319480,
+				"to": 1325720
+			},
+			"text": " >> Hey, cool talk. Thanks. So we mentioned multi-component and embracing that aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,720",
+				"to": "00:22:11,320"
+			},
+			"offsets": {
+				"from": 1325720,
+				"to": 1331320
+			},
+			"text": " And I think the most part, you know, we're on our way towards that. I think one area where that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,320",
+				"to": "00:22:15,720"
+			},
+			"offsets": {
+				"from": 1331320,
+				"to": 1335720
+			},
+			"text": " is not quite on the case is between like the beacon node and the validator across clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,720",
+				"to": "00:22:22,440"
+			},
+			"offsets": {
+				"from": 1335720,
+				"to": 1342440
+			},
+			"text": " right? For like Prism or Lighthouse, whatever. Do you know, is a roadmap with like Basu, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,440",
+				"to": "00:22:27,320"
+			},
+			"offsets": {
+				"from": 1342440,
+				"to": 1347320
+			},
+			"text": " example, or sorry, Techoo, for that to allow like validator, a technical validator, talk to like"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,320",
+				"to": "00:22:31,880"
+			},
+			"offsets": {
+				"from": 1347320,
+				"to": 1351880
+			},
+			"text": " Prism beacon node and like what are your thoughts there? What are the challenges to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,880",
+				"to": "00:22:35,880"
+			},
+			"offsets": {
+				"from": 1351880,
+				"to": 1355880
+			},
+			"text": " accomplish that? >> Yeah, absolutely. I think it is really useful to be able to have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,880",
+				"to": "00:22:42,280"
+			},
+			"offsets": {
+				"from": 1355880,
+				"to": 1362280
+			},
+			"text": " you know, a Techoo validator client talking to a Lighthouse beacon node. The good news is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,280",
+				"to": "00:22:46,920"
+			},
+			"offsets": {
+				"from": 1362280,
+				"to": 1366920
+			},
+			"text": " the standards are there for that. So from right back before the beacon change launch, this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,920",
+				"to": "00:22:52,760"
+			},
+			"offsets": {
+				"from": 1366920,
+				"to": 1372760
+			},
+			"text": " theoretically possible. In practice, it's been a bit hit and miss. We've actually seen really good"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,760",
+				"to": "00:23:00,280"
+			},
+			"offsets": {
+				"from": 1372760,
+				"to": 1380280
+			},
+			"text": " compatibility with everyone else except Prism. So Prism uses gRPC. They kind of got in first and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,280",
+				"to": "00:23:03,480"
+			},
+			"offsets": {
+				"from": 1380280,
+				"to": 1383480
+			},
+			"text": " did it and we didn't listen to them and did a REST API because we liked it more and kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,480",
+				"to": "00:23:08,680"
+			},
+			"offsets": {
+				"from": 1383480,
+				"to": 1388680
+			},
+			"text": " outvoted them. So we put them in a hard place there. So their validator client uses gRPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,680",
+				"to": "00:23:14,520"
+			},
+			"offsets": {
+				"from": 1388680,
+				"to": 1394520
+			},
+			"text": " They do expose the standard REST APIs. So most clients can, their validator clients can connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,520",
+				"to": "00:23:18,760"
+			},
+			"offsets": {
+				"from": 1394520,
+				"to": 1398760
+			},
+			"text": " to Prism. The Prisms validator client generally can't connect to anything else. Otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,760",
+				"to": "00:23:24,280"
+			},
+			"offsets": {
+				"from": 1398760,
+				"to": 1404280
+			},
+			"text": " they generally interrupt pretty well. And particularly for Techoo because Infura was exposing the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,280",
+				"to": "00:23:30,280"
+			},
+			"offsets": {
+				"from": 1404280,
+				"to": 1410280
+			},
+			"text": " node APIs, which they've deprecated and removed now, because people kept running validator clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,280",
+				"to": "00:23:39,080"
+			},
+			"offsets": {
+				"from": 1410280,
+				"to": 1419080
+			},
+			"text": " against Infura, which is kind of terrible. So it is possible. It is something that we need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,080",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1419080,
+				"to": 1423000
+			},
+			"text": " ramp up testing on more. Every so often we find a little corner case that didn't work as well as"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:49,720"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1429720
+			},
+			"text": " it should and those kind of things. But yeah, a lot of the base layer is there for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,720",
+				"to": "00:23:55,720"
+			},
+			"offsets": {
+				"from": 1429720,
+				"to": 1435720
+			},
+			"text": " Mostly it works. And I think particularly with PostMerge, it's going to become more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,720",
+				"to": "00:24:01,080"
+			},
+			"offsets": {
+				"from": 1435720,
+				"to": 1441080
+			},
+			"text": " common because you so often use a validator client that fails over between two beacon nodes now."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,080",
+				"to": "00:24:07,400"
+			},
+			"offsets": {
+				"from": 1441080,
+				"to": 1447400
+			},
+			"text": " There is another question. Another. Hey, Adrian, thanks for the talk. I want to ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,400",
+				"to": "00:24:12,600"
+			},
+			"offsets": {
+				"from": 1447400,
+				"to": 1452600
+			},
+			"text": " what are your thoughts on current design that the consensus client is tightly coupled"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,600",
+				"to": "00:24:18,280"
+			},
+			"offsets": {
+				"from": 1452600,
+				"to": 1458280
+			},
+			"text": " with the execution client? I mean, one consensus client has to talk to one execution client that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,280",
+				"to": "00:24:24,280"
+			},
+			"offsets": {
+				"from": 1458280,
+				"to": 1464280
+			},
+			"text": " sounds like, what's the reasoning behind it? Another thing, what do you think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,280",
+				"to": "00:24:31,560"
+			},
+			"offsets": {
+				"from": 1464280,
+				"to": 1471560
+			},
+			"text": " dvt, distributor, validator tech and how will it influence the future of clients?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,560",
+				"to": "00:24:36,520"
+			},
+			"offsets": {
+				"from": 1471560,
+				"to": 1476520
+			},
+			"text": " Yeah. So on the first part there, it is pretty much, and I probably should have mentioned this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,520",
+				"to": "00:24:41,480"
+			},
+			"offsets": {
+				"from": 1476520,
+				"to": 1481480
+			},
+			"text": " that one consensus client generally has a tight coupling to one execution client."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,480",
+				"to": "00:24:46,040"
+			},
+			"offsets": {
+				"from": 1481480,
+				"to": 1486040
+			},
+			"text": " The key reason for that is that the consensus client is writing and updating and controlling"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,040",
+				"to": "00:24:50,840"
+			},
+			"offsets": {
+				"from": 1486040,
+				"to": 1490840
+			},
+			"text": " the execution client. There are some solutions, and I think this is part of the multi-component"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,840",
+				"to": "00:24:55,880"
+			},
+			"offsets": {
+				"from": 1490840,
+				"to": 1495880
+			},
+			"text": " stuff that you can actually run a middleware layer that will take the option, the calls from"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,880",
+				"to": "00:25:00,280"
+			},
+			"offsets": {
+				"from": 1495880,
+				"to": 1500280
+			},
+			"text": " the consensus client and spread them across multiple execution clients. I love that. I love"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,280",
+				"to": "00:25:05,160"
+			},
+			"offsets": {
+				"from": 1500280,
+				"to": 1505160
+			},
+			"text": " that it's built as a separate thing and not something that is a client dev. I have to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,160",
+				"to": "00:25:09,960"
+			},
+			"offsets": {
+				"from": 1505160,
+				"to": 1509960
+			},
+			"text": " myself because it's hard. And there's a lot of different policies go there in terms of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,960",
+				"to": "00:25:13,400"
+			},
+			"offsets": {
+				"from": 1509960,
+				"to": 1513400
+			},
+			"text": " do I trust that this is my primary execution client? What if they disagree,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,920",
+				"to": "00:25:20,120"
+			},
+			"offsets": {
+				"from": 1514920,
+				"to": 1520120
+			},
+			"text": " do I want two out of three to agree? All these kind of details, we can build that really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,120",
+				"to": "00:25:29,160"
+			},
+			"offsets": {
+				"from": 1520120,
+				"to": 1529160
+			},
+			"text": " with a dedicated product rather than trying to build it five times once in each consensus client."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,160",
+				"to": "00:25:34,120"
+			},
+			"offsets": {
+				"from": 1529160,
+				"to": 1534120
+			},
+			"text": " In terms of distributed validator technology, I'm not a huge expert, but again, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,120",
+				"to": "00:25:39,720"
+			},
+			"offsets": {
+				"from": 1534120,
+				"to": 1539720
+			},
+			"text": " pushing towards becoming a middleware layer. I think that's again really powerful and really good."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,720",
+				"to": "00:25:47,480"
+			},
+			"offsets": {
+				"from": 1539720,
+				"to": 1547480
+			},
+			"text": " It's certainly a great technology to help de-risk some operations with validators and have unique"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,480",
+				"to": "00:25:52,760"
+			},
+			"offsets": {
+				"from": 1547480,
+				"to": 1552760
+			},
+			"text": " deployment models that are around there. It's something I'm keen to see keep evolving and keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,760",
+				"to": "00:25:59,720"
+			},
+			"offsets": {
+				"from": 1552760,
+				"to": 1559720
+			},
+			"text": " kind of finding new ways of doing it. And ideally, we find ways of adjusting"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,720",
+				"to": "00:26:05,400"
+			},
+			"offsets": {
+				"from": 1559720,
+				"to": 1565400
+			},
+			"text": " pretty much the validator APIs that we use, those rest APIs I talked about before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,400",
+				"to": "00:26:10,440"
+			},
+			"offsets": {
+				"from": 1565400,
+				"to": 1570440
+			},
+			"text": " adjusting them so they're more and more conducive to an external piece of software just being able"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:10,440",
+				"to": "00:26:15,240"
+			},
+			"offsets": {
+				"from": 1570440,
+				"to": 1575240
+			},
+			"text": " to handle it all and handle it well. There might be some trade-offs there, we might hit some limits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,240",
+				"to": "00:26:18,520"
+			},
+			"offsets": {
+				"from": 1575240,
+				"to": 1578520
+			},
+			"text": " I don't know, but yeah, definitely a technology to keep investigating."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,520",
+				"to": "00:26:28,600"
+			},
+			"offsets": {
+				"from": 1578520,
+				"to": 1588600
+			},
+			"text": " Thank you. Thank you. Thank you very much, Avian, with an amazing conference. And please,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,600",
+				"to": "00:26:35,240"
+			},
+			"offsets": {
+				"from": 1588600,
+				"to": 1595240
+			},
+			"text": " a big applause for him. Thank you everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,240",
+				"to": "00:26:37,240"
+			},
+			"offsets": {
+				"from": 1595240,
+				"to": 1597240
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,240",
+				"to": "00:26:47,240"
+			},
+			"offsets": {
+				"from": 1597240,
+				"to": 1607240
+			},
+			"text": " ]"
+		}
+	]
+}

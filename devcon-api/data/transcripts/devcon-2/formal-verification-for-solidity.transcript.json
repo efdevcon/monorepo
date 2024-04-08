@@ -1,0 +1,3189 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,480",
+				"to": "00:00:23,200"
+			},
+			"offsets": {
+				"from": 2480,
+				"to": 23200
+			},
+			"text": " So I guess we all agree that it's really, really hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,200",
+				"to": "00:00:29,440"
+			},
+			"offsets": {
+				"from": 23200,
+				"to": 29440
+			},
+			"text": " to write 100% correct code, regardless of whether this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,440",
+				"to": "00:00:34,200"
+			},
+			"offsets": {
+				"from": 29440,
+				"to": 34200
+			},
+			"text": " is a smart contract or any other piece of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,200",
+				"to": "00:00:36,920"
+			},
+			"offsets": {
+				"from": 34200,
+				"to": 36920
+			},
+			"text": " But what does it actually mean to write correct code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,920",
+				"to": "00:00:39,520"
+			},
+			"offsets": {
+				"from": 36920,
+				"to": 39520
+			},
+			"text": " What does the word correct mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,520",
+				"to": "00:00:42,240"
+			},
+			"offsets": {
+				"from": 39520,
+				"to": 42240
+			},
+			"text": " And I think that the best explanation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,240",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 42240,
+				"to": 47560
+			},
+			"text": " is that code is correct when it does exactly the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 50000
+			},
+			"text": " as the programmer intended it to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:52,320"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 52320
+			},
+			"text": " So the mental model of the programmer"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,320",
+				"to": "00:00:54,840"
+			},
+			"offsets": {
+				"from": 52320,
+				"to": 54840
+			},
+			"text": " about smart contract or about the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,840",
+				"to": "00:01:00,080"
+			},
+			"offsets": {
+				"from": 54840,
+				"to": 60080
+			},
+			"text": " is the same as what the actual machine does with the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,080",
+				"to": "00:01:04,680"
+			},
+			"offsets": {
+				"from": 60080,
+				"to": 64680
+			},
+			"text": " And for Ethereum, this extends even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,680",
+				"to": "00:01:10,720"
+			},
+			"offsets": {
+				"from": 64680,
+				"to": 70720
+			},
+			"text": " because we do not only want the expectations of the programmer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,720",
+				"to": "00:01:12,440"
+			},
+			"offsets": {
+				"from": 70720,
+				"to": 72440
+			},
+			"text": " to match the actual program, but we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,440",
+				"to": "00:01:16,040"
+			},
+			"offsets": {
+				"from": 72440,
+				"to": 76040
+			},
+			"text": " want to match the expectations of the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,040",
+				"to": "00:01:20,680"
+			},
+			"offsets": {
+				"from": 76040,
+				"to": 80680
+			},
+			"text": " to match the actual execution of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,680",
+				"to": "00:01:25,160"
+			},
+			"offsets": {
+				"from": 80680,
+				"to": 85160
+			},
+			"text": " And so how do we get to that point?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,160",
+				"to": "00:01:28,680"
+			},
+			"offsets": {
+				"from": 85160,
+				"to": 88680
+			},
+			"text": " And there are, of course, several well-established"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,680",
+				"to": "00:01:36,200"
+			},
+			"offsets": {
+				"from": 88680,
+				"to": 96200
+			},
+			"text": " techniques, and one of them is to use testing unit tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,200",
+				"to": "00:01:38,160"
+			},
+			"offsets": {
+				"from": 96200,
+				"to": 98160
+			},
+			"text": " And that's quite easy to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,160",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 98160,
+				"to": 102120
+			},
+			"text": " You just think about a certain input"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:46,040"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 106040
+			},
+			"text": " and make up your mind about what you're expected to happen"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,040",
+				"to": "00:01:49,640"
+			},
+			"offsets": {
+				"from": 106040,
+				"to": 109640
+			},
+			"text": " and then run the program and see whether that actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,640",
+				"to": "00:01:50,840"
+			},
+			"offsets": {
+				"from": 109640,
+				"to": 110840
+			},
+			"text": " will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,840",
+				"to": "00:01:55,400"
+			},
+			"offsets": {
+				"from": 110840,
+				"to": 115400
+			},
+			"text": " And that's good to check whether desired behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,400",
+				"to": "00:01:59,240"
+			},
+			"offsets": {
+				"from": 115400,
+				"to": 119240
+			},
+			"text": " is actually there, but it fails to show"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,240",
+				"to": "00:02:01,760"
+			},
+			"offsets": {
+				"from": 119240,
+				"to": 121760
+			},
+			"text": " that undesired behavior is absent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,760",
+				"to": "00:02:04,960"
+			},
+			"offsets": {
+				"from": 121760,
+				"to": 124960
+			},
+			"text": " So you cannot use unit testing to show"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,960",
+				"to": "00:02:08,680"
+			},
+			"offsets": {
+				"from": 124960,
+				"to": 128680
+			},
+			"text": " that it's impossible to withdraw money"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,680",
+				"to": "00:02:11,680"
+			},
+			"offsets": {
+				"from": 128680,
+				"to": 131680
+			},
+			"text": " from your smart contract by a malicious actor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,680",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 131680,
+				"to": 135800
+			},
+			"text": " And the reason is because you would"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:19,800"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 139800
+			},
+			"text": " have to check all possible ways to call the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,800",
+				"to": "00:02:23,760"
+			},
+			"offsets": {
+				"from": 139800,
+				"to": 143760
+			},
+			"text": " And that's an infinite number."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,760",
+				"to": "00:02:26,920"
+			},
+			"offsets": {
+				"from": 143760,
+				"to": 146920
+			},
+			"text": " And testing can only do finitely many cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,920",
+				"to": "00:02:37,200"
+			},
+			"offsets": {
+				"from": 146920,
+				"to": 157200
+			},
+			"text": " So yeah, but there's a solution to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,200",
+				"to": "00:02:39,800"
+			},
+			"offsets": {
+				"from": 157200,
+				"to": 159800
+			},
+			"text": " and it comes in the form of formal verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,800",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 159800,
+				"to": 162840
+			},
+			"text": " And let's take a look at an example there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:45,920"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 165920
+			},
+			"text": " So this is an easy token contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,920",
+				"to": "00:02:49,680"
+			},
+			"offsets": {
+				"from": 165920,
+				"to": 169680
+			},
+			"text": " which has a balances mapping and a function that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,680",
+				"to": "00:02:55,320"
+			},
+			"offsets": {
+				"from": 169680,
+				"to": 175320
+			},
+			"text": " allows transferring balances from one account to the other account."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,320",
+				"to": "00:02:58,200"
+			},
+			"offsets": {
+				"from": 175320,
+				"to": 178200
+			},
+			"text": " There is a tiny error in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,200",
+				"to": "00:03:00,320"
+			},
+			"offsets": {
+				"from": 178200,
+				"to": 180320
+			},
+			"text": " I'm not sure if you see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,320",
+				"to": "00:03:09,760"
+			},
+			"offsets": {
+				"from": 180320,
+				"to": 189760
+			},
+			"text": " And I would argue that testing can detect that error,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,760",
+				"to": "00:03:11,840"
+			},
+			"offsets": {
+				"from": 189760,
+				"to": 191840
+			},
+			"text": " but most people probably won't think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,840",
+				"to": "00:03:15,080"
+			},
+			"offsets": {
+				"from": 191840,
+				"to": 195080
+			},
+			"text": " of this specific input that is required to trigger the test,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,080",
+				"to": "00:03:16,280"
+			},
+			"offsets": {
+				"from": 195080,
+				"to": 196280
+			},
+			"text": " or trigger the failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,280",
+				"to": "00:03:24,800"
+			},
+			"offsets": {
+				"from": 196280,
+				"to": 204800
+			},
+			"text": " So yeah, what's the problem here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,800",
+				"to": "00:03:27,760"
+			},
+			"offsets": {
+				"from": 204800,
+				"to": 207760
+			},
+			"text": " It looks correct, but it probably also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,760",
+				"to": "00:03:31,520"
+			},
+			"offsets": {
+				"from": 207760,
+				"to": 211520
+			},
+			"text": " will work correctly for most of the token contracts out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,520",
+				"to": "00:03:33,760"
+			},
+			"offsets": {
+				"from": 211520,
+				"to": 213760
+			},
+			"text": " But what it fails to test is whether there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,760",
+				"to": "00:03:37,040"
+			},
+			"offsets": {
+				"from": 213760,
+				"to": 217040
+			},
+			"text": " an overflow in the two fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,040",
+				"to": "00:03:42,840"
+			},
+			"offsets": {
+				"from": 217040,
+				"to": 222840
+			},
+			"text": " So if the amount you want to transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,840",
+				"to": "00:03:47,520"
+			},
+			"offsets": {
+				"from": 222840,
+				"to": 227520
+			},
+			"text": " and the amount that is already there in the target account"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,520",
+				"to": "00:03:51,280"
+			},
+			"offsets": {
+				"from": 227520,
+				"to": 231280
+			},
+			"text": " sums over 2 to the 256, then we get an overflow there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,280",
+				"to": "00:03:55,200"
+			},
+			"offsets": {
+				"from": 231280,
+				"to": 235200
+			},
+			"text": " and the mechanics don't work correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,200",
+				"to": "00:04:04,560"
+			},
+			"offsets": {
+				"from": 235200,
+				"to": 244560
+			},
+			"text": " Yes, so and form of verification allows us to ask questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,560",
+				"to": "00:04:08,440"
+			},
+			"offsets": {
+				"from": 244560,
+				"to": 248440
+			},
+			"text": " like, is the sum of all balances unchanged"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,440",
+				"to": "00:04:11,120"
+			},
+			"offsets": {
+				"from": 248440,
+				"to": 251120
+			},
+			"text": " by the transfer of function, considering"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,120",
+				"to": "00:04:13,840"
+			},
+			"offsets": {
+				"from": 251120,
+				"to": 253840
+			},
+			"text": " all possible states of the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,840",
+				"to": "00:04:17,440"
+			},
+			"offsets": {
+				"from": 253840,
+				"to": 257440
+			},
+			"text": " and all possible inputs of the function?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,440",
+				"to": "00:04:20,160"
+			},
+			"offsets": {
+				"from": 257440,
+				"to": 260160
+			},
+			"text": " Next."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,160",
+				"to": "00:04:21,320"
+			},
+			"offsets": {
+				"from": 260160,
+				"to": 261320
+			},
+			"text": " So how does it work in general?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,320",
+				"to": "00:04:29,120"
+			},
+			"offsets": {
+				"from": 261320,
+				"to": 269120
+			},
+			"text": " So you provide formal statements, formal mathematical statements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,120",
+				"to": "00:04:31,280"
+			},
+			"offsets": {
+				"from": 269120,
+				"to": 271280
+			},
+			"text": " about the behavior of a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,280",
+				"to": "00:04:34,840"
+			},
+			"offsets": {
+				"from": 271280,
+				"to": 274840
+			},
+			"text": " And then you use mathematical proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,840",
+				"to": "00:04:38,560"
+			},
+			"offsets": {
+				"from": 274840,
+				"to": 278560
+			},
+			"text": " to show that the code satisfies these statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,560",
+				"to": "00:04:40,680"
+			},
+			"offsets": {
+				"from": 278560,
+				"to": 280680
+			},
+			"text": " You can do that manually."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,680",
+				"to": "00:04:43,600"
+			},
+			"offsets": {
+				"from": 280680,
+				"to": 283600
+			},
+			"text": " But since we live in 2016, there are, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,600",
+				"to": "00:04:46,520"
+			},
+			"offsets": {
+				"from": 283600,
+				"to": 286520
+			},
+			"text": " automated provers to help you there and find"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,520",
+				"to": "00:04:47,840"
+			},
+			"offsets": {
+				"from": 286520,
+				"to": 287840
+			},
+			"text": " the mathematical proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,840",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 287840,
+				"to": 294000
+			},
+			"text": " So one thing I want to stress here"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:56,880"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 296880
+			},
+			"text": " is that formal verification is not a silver bullet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,880",
+				"to": "00:05:02,280"
+			},
+			"offsets": {
+				"from": 296880,
+				"to": 302280
+			},
+			"text": " The reason is that-- so the source code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,280",
+				"to": "00:05:05,200"
+			},
+			"offsets": {
+				"from": 302280,
+				"to": 305200
+			},
+			"text": " so a programming language, is already"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,200",
+				"to": "00:05:09,000"
+			},
+			"offsets": {
+				"from": 305200,
+				"to": 309000
+			},
+			"text": " a formal description of a program."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,000",
+				"to": "00:05:17,440"
+			},
+			"offsets": {
+				"from": 309000,
+				"to": 317440
+			},
+			"text": " So and adding formal statements in another language"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,440",
+				"to": "00:05:21,880"
+			},
+			"offsets": {
+				"from": 317440,
+				"to": 321880
+			},
+			"text": " or completely formalizing the behavior of a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,880",
+				"to": "00:05:24,520"
+			},
+			"offsets": {
+				"from": 321880,
+				"to": 324520
+			},
+			"text": " will not really help, because as I said in the beginning,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,520",
+				"to": "00:05:27,800"
+			},
+			"offsets": {
+				"from": 324520,
+				"to": 327800
+			},
+			"text": " it's all about the mental model of the humans."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,800",
+				"to": "00:05:34,600"
+			},
+			"offsets": {
+				"from": 327800,
+				"to": 334600
+			},
+			"text": " So the key goal in using formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,600",
+				"to": "00:05:37,440"
+			},
+			"offsets": {
+				"from": 334600,
+				"to": 337440
+			},
+			"text": " is to reduce the complexity of the smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,440",
+				"to": "00:05:43,040"
+			},
+			"offsets": {
+				"from": 337440,
+				"to": 343040
+			},
+			"text": " We use source code to describe how an algorithm works"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,040",
+				"to": "00:05:44,880"
+			},
+			"offsets": {
+				"from": 343040,
+				"to": 344880
+			},
+			"text": " and how a smart contract works."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,880",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344880,
+				"to": 347000
+			},
+			"text": " And then we use formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350120
+			},
+			"text": " to describe what it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:52,720"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 352720
+			},
+			"text": " And the idea is that this what it does"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,720",
+				"to": "00:05:56,720"
+			},
+			"offsets": {
+				"from": 352720,
+				"to": 356720
+			},
+			"text": " is easier to understand than how it does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,720",
+				"to": "00:06:02,400"
+			},
+			"offsets": {
+				"from": 356720,
+				"to": 362400
+			},
+			"text": " And another great thing about formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,400",
+				"to": "00:06:05,600"
+			},
+			"offsets": {
+				"from": 362400,
+				"to": 365600
+			},
+			"text": " is that we can ask questions about the behavior"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,600",
+				"to": "00:06:06,240"
+			},
+			"offsets": {
+				"from": 365600,
+				"to": 366240
+			},
+			"text": " of the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,240",
+				"to": "00:06:10,120"
+			},
+			"offsets": {
+				"from": 366240,
+				"to": 370120
+			},
+			"text": " So it's not only about formalizing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,120",
+				"to": "00:06:13,920"
+			},
+			"offsets": {
+				"from": 370120,
+				"to": 373920
+			},
+			"text": " in a kind of a specification, but we can also just add to that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,920",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 373920,
+				"to": 377040
+			},
+			"text": " and ask questions like, is the sum of all balances fixed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,040",
+				"to": "00:06:20,920"
+			},
+			"offsets": {
+				"from": 377040,
+				"to": 380920
+			},
+			"text": " And if there is some way to modify the balances"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,920",
+				"to": "00:06:23,920"
+			},
+			"offsets": {
+				"from": 380920,
+				"to": 383920
+			},
+			"text": " so that the sum is not fixed between two calls,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,920",
+				"to": "00:06:26,480"
+			},
+			"offsets": {
+				"from": 383920,
+				"to": 386480
+			},
+			"text": " then the system will tell us."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,480",
+				"to": "00:06:29,400"
+			},
+			"offsets": {
+				"from": 386480,
+				"to": 389400
+			},
+			"text": " Or we can also ask questions like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,400",
+				"to": "00:06:30,800"
+			},
+			"offsets": {
+				"from": 389400,
+				"to": 390800
+			},
+			"text": " will a smart contract get stuck?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,800",
+				"to": "00:06:36,680"
+			},
+			"offsets": {
+				"from": 390800,
+				"to": 396680
+			},
+			"text": " So is there any way to send messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,680",
+				"to": "00:06:38,920"
+			},
+			"offsets": {
+				"from": 396680,
+				"to": 398920
+			},
+			"text": " to the smart contract to call functions in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,920",
+				"to": "00:06:41,880"
+			},
+			"offsets": {
+				"from": 398920,
+				"to": 401880
+			},
+			"text": " that at some point it's not possible to move forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,880",
+				"to": "00:06:43,840"
+			},
+			"offsets": {
+				"from": 401880,
+				"to": 403840
+			},
+			"text": " in the states of the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,840",
+				"to": "00:06:49,160"
+			},
+			"offsets": {
+				"from": 403840,
+				"to": 409160
+			},
+			"text": " or it's not possible to get the money out at all anywhere?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,160",
+				"to": "00:06:52,560"
+			},
+			"offsets": {
+				"from": 409160,
+				"to": 412560
+			},
+			"text": " So yeah, formal verification is coming to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,560",
+				"to": "00:06:56,880"
+			},
+			"offsets": {
+				"from": 412560,
+				"to": 416880
+			},
+			"text": " There are already a lot of research papers on that topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,880",
+				"to": "00:07:03,240"
+			},
+			"offsets": {
+				"from": 416880,
+				"to": 423240
+			},
+			"text": " And the reason for that is that blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,240",
+				"to": "00:07:06,080"
+			},
+			"offsets": {
+				"from": 423240,
+				"to": 426080
+			},
+			"text": " are actually a paradise for formal verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,080",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426080,
+				"to": 430000
+			},
+			"text": " because the model is that simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:12,920"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 432920
+			},
+			"text": " But you each later will tell you more about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,600",
+				"to": "00:07:21,920"
+			},
+			"offsets": {
+				"from": 436600,
+				"to": 441920
+			},
+			"text": " And formal verification tools also exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,920",
+				"to": "00:07:26,880"
+			},
+			"offsets": {
+				"from": 441920,
+				"to": 446880
+			},
+			"text": " for kind of common languages like C and Java and ADDA."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,880",
+				"to": "00:07:35,120"
+			},
+			"offsets": {
+				"from": 446880,
+				"to": 455120
+			},
+			"text": " And the way it works for these tools, for pharmacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,120",
+				"to": "00:07:39,120"
+			},
+			"offsets": {
+				"from": 455120,
+				"to": 459120
+			},
+			"text": " for Cracato and for Spark, is that you write your program"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,120",
+				"to": "00:07:43,480"
+			},
+			"offsets": {
+				"from": 459120,
+				"to": 463480
+			},
+			"text": " in the ordinary language you're used to like C."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,480",
+				"to": "00:07:48,800"
+			},
+			"offsets": {
+				"from": 463480,
+				"to": 468800
+			},
+			"text": " And then you annotate this source code with formal statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,800",
+				"to": "00:07:52,720"
+			},
+			"offsets": {
+				"from": 468800,
+				"to": 472720
+			},
+			"text": " So like, some of balances is fixed between two function calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,720",
+				"to": "00:07:57,760"
+			},
+			"offsets": {
+				"from": 472720,
+				"to": 477760
+			},
+			"text": " And then there are tools which compile both the source"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,760",
+				"to": "00:08:01,440"
+			},
+			"offsets": {
+				"from": 477760,
+				"to": 481440
+			},
+			"text": " code and these annotations into a language that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,440",
+				"to": "00:08:04,040"
+			},
+			"offsets": {
+				"from": 481440,
+				"to": 484040
+			},
+			"text": " can work with the annotations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,040",
+				"to": "00:08:06,160"
+			},
+			"offsets": {
+				"from": 484040,
+				"to": 486160
+			},
+			"text": " This is often Y3."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,160",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 486160,
+				"to": 489840
+			},
+			"text": " And more recently we have F*."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:13,480"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 493480
+			},
+			"text": " And then automated approvals are used"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,480",
+				"to": "00:08:17,920"
+			},
+			"offsets": {
+				"from": 493480,
+				"to": 497920
+			},
+			"text": " to verify this formal statement on the translation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,920",
+				"to": "00:08:19,600"
+			},
+			"offsets": {
+				"from": 497920,
+				"to": 499600
+			},
+			"text": " of the source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,600",
+				"to": "00:08:21,120"
+			},
+			"offsets": {
+				"from": 499600,
+				"to": 501120
+			},
+			"text": " Let's take a look at an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,120",
+				"to": "00:08:25,120"
+			},
+			"offsets": {
+				"from": 501120,
+				"to": 505120
+			},
+			"text": " So this is from a C. And you see that--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,120",
+				"to": "00:08:30,680"
+			},
+			"offsets": {
+				"from": 505120,
+				"to": 510680
+			},
+			"text": " no pointer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,680",
+				"to": "00:08:33,760"
+			},
+			"offsets": {
+				"from": 510680,
+				"to": 513760
+			},
+			"text": " So you see that there at the top there"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,760",
+				"to": "00:08:36,840"
+			},
+			"offsets": {
+				"from": 513760,
+				"to": 516840
+			},
+			"text": " is a block of comments with these formal statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,840",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 516840,
+				"to": 520120
+			},
+			"text": " And then at the bottom you have regular C code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:43,240"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 523240
+			},
+			"text": " And you also have comments inside the C code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,240",
+				"to": "00:08:50,360"
+			},
+			"offsets": {
+				"from": 523240,
+				"to": 530360
+			},
+			"text": " where you can refer to the state of the program at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,360",
+				"to": "00:08:54,960"
+			},
+			"offsets": {
+				"from": 530360,
+				"to": 534960
+			},
+			"text": " So yeah, let's not get into detail there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,960",
+				"to": "00:08:59,520"
+			},
+			"offsets": {
+				"from": 534960,
+				"to": 539520
+			},
+			"text": " And yeah, now Uichi will take over."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,520",
+				"to": "00:09:00,520"
+			},
+			"offsets": {
+				"from": 539520,
+				"to": 540520
+			},
+			"text": " Here it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,520",
+				"to": "00:09:05,040"
+			},
+			"offsets": {
+				"from": 540520,
+				"to": 545040
+			},
+			"text": " And so Uichi is a formal verification engineer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,040",
+				"to": "00:09:08,120"
+			},
+			"offsets": {
+				"from": 545040,
+				"to": 548120
+			},
+			"text": " who recently started at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,120",
+				"to": "00:09:12,120"
+			},
+			"offsets": {
+				"from": 548120,
+				"to": 552120
+			},
+			"text": " And he will focus on extending the formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,120",
+				"to": "00:09:13,640"
+			},
+			"offsets": {
+				"from": 552120,
+				"to": 553640
+			},
+			"text": " features of Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,640",
+				"to": "00:09:18,280"
+			},
+			"offsets": {
+				"from": 553640,
+				"to": 558280
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,280",
+				"to": "00:09:21,280"
+			},
+			"offsets": {
+				"from": 558280,
+				"to": 561280
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,280",
+				"to": "00:09:28,760"
+			},
+			"offsets": {
+				"from": 561280,
+				"to": 568760
+			},
+			"text": " So Christian started this Solidity to Y3 Translator"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,760",
+				"to": "00:09:34,800"
+			},
+			"offsets": {
+				"from": 568760,
+				"to": 574800
+			},
+			"text": " that simied up to Rama C. But for our smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,800",
+				"to": "00:09:37,760"
+			},
+			"offsets": {
+				"from": 574800,
+				"to": 577760
+			},
+			"text": " language is already deep."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,760",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 577760,
+				"to": 582680
+			},
+			"text": " I extended the framework so that it can deal with arrays."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:47,040"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 587040
+			},
+			"text": " And it can deal with a simple token contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,040",
+				"to": "00:09:50,240"
+			},
+			"offsets": {
+				"from": 587040,
+				"to": 590240
+			},
+			"text": " with just one transfer function."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,240",
+				"to": "00:09:57,160"
+			},
+			"offsets": {
+				"from": 590240,
+				"to": 597160
+			},
+			"text": " The contract itself is easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,160",
+				"to": "00:09:59,800"
+			},
+			"offsets": {
+				"from": 597160,
+				"to": 599800
+			},
+			"text": " It has a transfer function."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,800",
+				"to": "00:10:01,880"
+			},
+			"offsets": {
+				"from": 599800,
+				"to": 601880
+			},
+			"text": " You can specify the Chrome address,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,880",
+				"to": "00:10:04,680"
+			},
+			"offsets": {
+				"from": 601880,
+				"to": 604680
+			},
+			"text": " the address and the value."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,680",
+				"to": "00:10:08,920"
+			},
+			"offsets": {
+				"from": 604680,
+				"to": 608920
+			},
+			"text": " The sound balance is changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,920",
+				"to": "00:10:12,680"
+			},
+			"offsets": {
+				"from": 608920,
+				"to": 612680
+			},
+			"text": " This is the same thing as Christian showed before."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,680",
+				"to": "00:10:15,560"
+			},
+			"offsets": {
+				"from": 612680,
+				"to": 615560
+			},
+			"text": " It has the same problem with the buffer overall."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,560",
+				"to": "00:10:18,520"
+			},
+			"offsets": {
+				"from": 615560,
+				"to": 618520
+			},
+			"text": " No, integer overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,520",
+				"to": "00:10:23,320"
+			},
+			"offsets": {
+				"from": 618520,
+				"to": 623320
+			},
+			"text": " The two correctly complains if I don't specify"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,320",
+				"to": "00:10:27,480"
+			},
+			"offsets": {
+				"from": 623320,
+				"to": 627480
+			},
+			"text": " that the total balance is less than a certain big number."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,480",
+				"to": "00:10:30,080"
+			},
+			"offsets": {
+				"from": 627480,
+				"to": 630080
+			},
+			"text": " Otherwise, the two complains."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,080",
+				"to": "00:10:32,800"
+			},
+			"offsets": {
+				"from": 630080,
+				"to": 632800
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,800",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 632800,
+				"to": 637000
+			},
+			"text": " When the smart contract has a problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,040"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642040
+			},
+			"text": " we see a window like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,040",
+				"to": "00:10:45,080"
+			},
+			"offsets": {
+				"from": 642040,
+				"to": 645080
+			},
+			"text": " This is Y3 GUI."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,080",
+				"to": "00:10:50,640"
+			},
+			"offsets": {
+				"from": 645080,
+				"to": 650640
+			},
+			"text": " Y3 is front end for dozens of automatic and manual"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,640",
+				"to": "00:10:52,880"
+			},
+			"offsets": {
+				"from": 650640,
+				"to": 652880
+			},
+			"text": " theorem approvals."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,880",
+				"to": "00:10:59,440"
+			},
+			"offsets": {
+				"from": 652880,
+				"to": 659440
+			},
+			"text": " And on the left side, you see lots of conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,440",
+				"to": "00:11:03,720"
+			},
+			"offsets": {
+				"from": 659440,
+				"to": 663720
+			},
+			"text": " Desire the conditions like no integer overflow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,720",
+				"to": "00:11:06,800"
+			},
+			"offsets": {
+				"from": 663720,
+				"to": 666800
+			},
+			"text": " no buffer overflow and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,800",
+				"to": "00:11:09,400"
+			},
+			"offsets": {
+				"from": 666800,
+				"to": 669400
+			},
+			"text": " You see many green chicks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,400",
+				"to": "00:11:14,280"
+			},
+			"offsets": {
+				"from": 669400,
+				"to": 674280
+			},
+			"text": " The green chicks on the verified conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,280",
+				"to": "00:11:20,240"
+			},
+			"offsets": {
+				"from": 674280,
+				"to": 680240
+			},
+			"text": " And Y3 can automatically verify most of the properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,240",
+				"to": "00:11:24,400"
+			},
+			"offsets": {
+				"from": 680240,
+				"to": 684400
+			},
+			"text": " But you also see some blue question marks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,400",
+				"to": "00:11:29,520"
+			},
+			"offsets": {
+				"from": 684400,
+				"to": 689520
+			},
+			"text": " The blue question marks are on unverified conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,520",
+				"to": "00:11:35,720"
+			},
+			"offsets": {
+				"from": 689520,
+				"to": 695720
+			},
+			"text": " Y3 still doesn't know if these blue question properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,720",
+				"to": "00:11:38,840"
+			},
+			"offsets": {
+				"from": 695720,
+				"to": 698840
+			},
+			"text": " hold or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,840",
+				"to": "00:11:41,960"
+			},
+			"offsets": {
+				"from": 698840,
+				"to": 701960
+			},
+			"text": " When you click on one of these question marks on the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,960",
+				"to": "00:11:49,520"
+			},
+			"offsets": {
+				"from": 701960,
+				"to": 709520
+			},
+			"text": " pane, you see yellow highlight on the suspicious piece of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,520",
+				"to": "00:11:54,920"
+			},
+			"offsets": {
+				"from": 709520,
+				"to": 714920
+			},
+			"text": " The code is a translation of the solidity contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,920",
+				"to": "00:11:57,040"
+			},
+			"offsets": {
+				"from": 714920,
+				"to": 717040
+			},
+			"text": " into Y3, YM-made language."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,040",
+				"to": "00:11:59,760"
+			},
+			"offsets": {
+				"from": 717040,
+				"to": 719760
+			},
+			"text": " That's the language for Y3."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,760",
+				"to": "00:12:05,880"
+			},
+			"offsets": {
+				"from": 719760,
+				"to": 725880
+			},
+			"text": " Here, the highlighted line is subtraction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,880",
+				"to": "00:12:11,320"
+			},
+			"offsets": {
+				"from": 725880,
+				"to": 731320
+			},
+			"text": " So in this case, this might end up low."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,320",
+				"to": "00:12:13,080"
+			},
+			"offsets": {
+				"from": 731320,
+				"to": 733080
+			},
+			"text": " And when you see such a problem, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,080",
+				"to": "00:12:18,640"
+			},
+			"offsets": {
+				"from": 733080,
+				"to": 738640
+			},
+			"text": " can either modify your program or annotate your program"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,640",
+				"to": "00:12:20,520"
+			},
+			"offsets": {
+				"from": 738640,
+				"to": 740520
+			},
+			"text": " more and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,520",
+				"to": "00:12:24,640"
+			},
+			"offsets": {
+				"from": 740520,
+				"to": 744640
+			},
+			"text": " Annotation is like putting assertions in the program."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,640",
+				"to": "00:12:31,160"
+			},
+			"offsets": {
+				"from": 744640,
+				"to": 751160
+			},
+			"text": " And if you put enough assertions to satisfy the automatic"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,160",
+				"to": "00:12:34,960"
+			},
+			"offsets": {
+				"from": 751160,
+				"to": 754960
+			},
+			"text": " approvals, the automatic approvals, we'll say green chick."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,960",
+				"to": "00:12:38,600"
+			},
+			"offsets": {
+				"from": 754960,
+				"to": 758600
+			},
+			"text": " But in many cases, you just find problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,600",
+				"to": "00:12:40,040"
+			},
+			"offsets": {
+				"from": 758600,
+				"to": 760040
+			},
+			"text": " in your specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,040",
+				"to": "00:12:44,040"
+			},
+			"offsets": {
+				"from": 760040,
+				"to": 764040
+			},
+			"text": " So it's about adjusting your own mental model."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,040",
+				"to": "00:12:45,120"
+			},
+			"offsets": {
+				"from": 764040,
+				"to": 765120
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,120",
+				"to": "00:12:53,720"
+			},
+			"offsets": {
+				"from": 766120,
+				"to": 773720
+			},
+			"text": " So before finding Y3, I was looking for a place where"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,720",
+				"to": "00:12:58,400"
+			},
+			"offsets": {
+				"from": 773720,
+				"to": 778400
+			},
+			"text": " former verification actually makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,400",
+				"to": "00:13:01,440"
+			},
+			"offsets": {
+				"from": 778400,
+				"to": 781440
+			},
+			"text": " Before the university, I joined a research institute."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,440",
+				"to": "00:13:05,400"
+			},
+			"offsets": {
+				"from": 781440,
+				"to": 785400
+			},
+			"text": " My job was to spread the former methods into the industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,400",
+				"to": "00:13:10,440"
+			},
+			"offsets": {
+				"from": 785400,
+				"to": 790440
+			},
+			"text": " But I didn't have any access to any companies so scored."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,440",
+				"to": "00:13:13,800"
+			},
+			"offsets": {
+				"from": 790440,
+				"to": 793800
+			},
+			"text": " So it was hard for me to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,800",
+				"to": "00:13:18,480"
+			},
+			"offsets": {
+				"from": 793800,
+				"to": 798480
+			},
+			"text": " So I joined a company that hired former verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,480",
+				"to": "00:13:22,440"
+			},
+			"offsets": {
+				"from": 798480,
+				"to": 802440
+			},
+			"text": " engineers that was a US company."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,440",
+				"to": "00:13:26,080"
+			},
+			"offsets": {
+				"from": 802440,
+				"to": 806080
+			},
+			"text": " I had eight colleagues writing proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,080",
+				"to": "00:13:28,360"
+			},
+			"offsets": {
+				"from": 806080,
+				"to": 808360
+			},
+			"text": " where a wonderful environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,360",
+				"to": "00:13:32,680"
+			},
+			"offsets": {
+				"from": 808360,
+				"to": 812680
+			},
+			"text": " But I was not happy because our proofs were not"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,680",
+				"to": "00:13:35,920"
+			},
+			"offsets": {
+				"from": 812680,
+				"to": 815920
+			},
+			"text": " about the real thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,920",
+				"to": "00:13:39,760"
+			},
+			"offsets": {
+				"from": 815920,
+				"to": 819760
+			},
+			"text": " The fundamental problem is the real CPUs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,760",
+				"to": "00:13:46,080"
+			},
+			"offsets": {
+				"from": 819760,
+				"to": 826080
+			},
+			"text": " come with documentation 2,000 pages long."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,080",
+				"to": "00:13:49,880"
+			},
+			"offsets": {
+				"from": 826080,
+				"to": 829880
+			},
+			"text": " And nobody has ever translated the whole thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,880",
+				"to": "00:13:52,400"
+			},
+			"offsets": {
+				"from": 829880,
+				"to": 832400
+			},
+			"text": " into any theorem, prove us."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,400",
+				"to": "00:13:56,680"
+			},
+			"offsets": {
+				"from": 832400,
+				"to": 836680
+			},
+			"text": " So that was a huge problem we couldn't solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,680",
+				"to": "00:13:57,720"
+			},
+			"offsets": {
+				"from": 836680,
+				"to": 837720
+			},
+			"text": " I found the theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,720",
+				"to": "00:14:00,120"
+			},
+			"offsets": {
+				"from": 837720,
+				"to": 840120
+			},
+			"text": " I saw the theorem virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,120",
+				"to": "00:14:03,440"
+			},
+			"offsets": {
+				"from": 840120,
+				"to": 843440
+			},
+			"text": " I saw the yellow paper, the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,440",
+				"to": "00:14:06,360"
+			},
+			"offsets": {
+				"from": 843440,
+				"to": 846360
+			},
+			"text": " It has only 32 pages long."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,360",
+				"to": "00:14:09,080"
+			},
+			"offsets": {
+				"from": 846360,
+				"to": 849080
+			},
+			"text": " And I thought I can actually translate it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,080",
+				"to": "00:14:14,560"
+			},
+			"offsets": {
+				"from": 849080,
+				"to": 854560
+			},
+			"text": " into a theorem proven that I can write proofs about smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,560",
+				"to": "00:14:18,800"
+			},
+			"offsets": {
+				"from": 854560,
+				"to": 858800
+			},
+			"text": " I was doing that and I was posting the partial results"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,800",
+				"to": "00:14:22,720"
+			},
+			"offsets": {
+				"from": 858800,
+				"to": 862720
+			},
+			"text": " on Reddit and the Christian found me and I ended up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,720",
+				"to": "00:14:30,640"
+			},
+			"offsets": {
+				"from": 862720,
+				"to": 870640
+			},
+			"text": " So the theorem virtual machine is wonderful"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,640",
+				"to": "00:14:33,920"
+			},
+			"offsets": {
+				"from": 870640,
+				"to": 873920
+			},
+			"text": " because it has a small specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,920",
+				"to": "00:14:38,120"
+			},
+			"offsets": {
+				"from": 873920,
+				"to": 878120
+			},
+			"text": " And this small specification really matches the reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,120",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 878120,
+				"to": 884000
+			},
+			"text": " because all clients try really hard to match this specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:48,800"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 888800
+			},
+			"text": " Otherwise, one of these clients would behave differently"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,800",
+				"to": "00:14:51,720"
+			},
+			"offsets": {
+				"from": 888800,
+				"to": 891720
+			},
+			"text": " from others and that's the worst thing they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,720",
+				"to": "00:14:56,680"
+			},
+			"offsets": {
+				"from": 891720,
+				"to": 896680
+			},
+			"text": " So they really want to be conformant to the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,680",
+				"to": "00:15:00,720"
+			},
+			"offsets": {
+				"from": 896680,
+				"to": 900720
+			},
+			"text": " And a small definition that matches reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,720",
+				"to": "00:15:04,760"
+			},
+			"offsets": {
+				"from": 900720,
+				"to": 904760
+			},
+			"text": " is the fundamental necessity for former verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,760",
+				"to": "00:15:07,080"
+			},
+			"offsets": {
+				"from": 904760,
+				"to": 907080
+			},
+			"text": " of engineering. I found it in the theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,080",
+				"to": "00:15:08,320"
+			},
+			"offsets": {
+				"from": 907080,
+				"to": 908320
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,320",
+				"to": "00:15:14,680"
+			},
+			"offsets": {
+				"from": 908320,
+				"to": 914680
+			},
+			"text": " We have some future steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,680",
+				"to": "00:15:20,920"
+			},
+			"offsets": {
+				"from": 914680,
+				"to": 920920
+			},
+			"text": " So when I'm extending the solidity Y3 framework,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,920",
+				"to": "00:15:24,040"
+			},
+			"offsets": {
+				"from": 920920,
+				"to": 924040
+			},
+			"text": " there are some immediate problems like, oh, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,040",
+				"to": "00:15:29,840"
+			},
+			"offsets": {
+				"from": 924040,
+				"to": 929840
+			},
+			"text": " don't have the core instruction yet in the translation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,840",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 929840,
+				"to": 939000
+			},
+			"text": " Or we cannot deal with mapping in Y3 in short and elegant way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,120"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943120
+			},
+			"text": " Because of this, we are thinking of moving to F*."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,120",
+				"to": "00:15:51,040"
+			},
+			"offsets": {
+				"from": 943120,
+				"to": 951040
+			},
+			"text": " F* is something similar to Y3, but it has more advanced features."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,040",
+				"to": "00:15:55,400"
+			},
+			"offsets": {
+				"from": 951040,
+				"to": 955400
+			},
+			"text": " I want to thank Microsoft for open sourcing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,400",
+				"to": "00:16:00,880"
+			},
+			"offsets": {
+				"from": 955400,
+				"to": 960880
+			},
+			"text": " F* also G3, SMT solvers, and we'll extensively use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,880",
+				"to": "00:16:01,800"
+			},
+			"offsets": {
+				"from": 960880,
+				"to": 961800
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,800",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 961800,
+				"to": 968720
+			},
+			"text": " But feature wise, we have more problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:13,080"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 973080
+			},
+			"text": " to solve than just verifying one solidity contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,080",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 973080,
+				"to": 980000
+			},
+			"text": " I think we are moving to many smaller contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:22,640"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 982640
+			},
+			"text": " than one monodysic big contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,640",
+				"to": "00:16:28,000"
+			},
+			"offsets": {
+				"from": 982640,
+				"to": 988000
+			},
+			"text": " So we have to be able to reason about multiple cooperating"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,000",
+				"to": "00:16:28,880"
+			},
+			"offsets": {
+				"from": 988000,
+				"to": 988880
+			},
+			"text": " content contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,880",
+				"to": "00:16:35,880"
+			},
+			"offsets": {
+				"from": 988880,
+				"to": 995880
+			},
+			"text": " And then just reasoning about the solidity code"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,880",
+				"to": "00:16:37,560"
+			},
+			"offsets": {
+				"from": 995880,
+				"to": 997560
+			},
+			"text": " is not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,560",
+				"to": "00:16:40,440"
+			},
+			"offsets": {
+				"from": 997560,
+				"to": 1000440
+			},
+			"text": " Because what runs on the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,440",
+				"to": "00:16:44,600"
+			},
+			"offsets": {
+				"from": 1000440,
+				"to": 1004600
+			},
+			"text": " is not a solidity code but the compiled byte code."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,600",
+				"to": "00:16:48,080"
+			},
+			"offsets": {
+				"from": 1004600,
+				"to": 1008080
+			},
+			"text": " Sometimes the compiler has bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,080",
+				"to": "00:16:54,080"
+			},
+			"offsets": {
+				"from": 1008080,
+				"to": 1014080
+			},
+			"text": " So somehow we have to know how the byte code behaves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,080",
+				"to": "00:16:56,280"
+			},
+			"offsets": {
+				"from": 1014080,
+				"to": 1016280
+			},
+			"text": " whether it's CVM or the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,280",
+				"to": "00:16:56,960"
+			},
+			"offsets": {
+				"from": 1016280,
+				"to": 1016960
+			},
+			"text": " That's the second one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,960",
+				"to": "00:17:01,200"
+			},
+			"offsets": {
+				"from": 1016960,
+				"to": 1021200
+			},
+			"text": " So somehow we have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,200",
+				"to": "00:17:11,120"
+			},
+			"offsets": {
+				"from": 1021200,
+				"to": 1031120
+			},
+			"text": " But that's easier than most CPU architectures out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,120",
+				"to": "00:17:14,960"
+			},
+			"offsets": {
+				"from": 1031120,
+				"to": 1034960
+			},
+			"text": " So I think this is a solvable problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,960",
+				"to": "00:17:17,640"
+			},
+			"offsets": {
+				"from": 1034960,
+				"to": 1037640
+			},
+			"text": " The next one is match transaction conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,640",
+				"to": "00:17:21,200"
+			},
+			"offsets": {
+				"from": 1037640,
+				"to": 1041200
+			},
+			"text": " So currently, the pre-conditioned post-conditioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,200",
+				"to": "00:17:27,040"
+			},
+			"offsets": {
+				"from": 1041200,
+				"to": 1047040
+			},
+			"text": " invariants on the contracts are just on one code."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,040",
+				"to": "00:17:29,680"
+			},
+			"offsets": {
+				"from": 1047040,
+				"to": 1049680
+			},
+			"text": " It can already deal with the re-entrancy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,680",
+				"to": "00:17:34,920"
+			},
+			"offsets": {
+				"from": 1049680,
+				"to": 1054920
+			},
+			"text": " But from the first code, the last return,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,920",
+				"to": "00:17:40,200"
+			},
+			"offsets": {
+				"from": 1054920,
+				"to": 1060200
+			},
+			"text": " and that's the range of verification we needed to extend"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,200",
+				"to": "00:17:42,840"
+			},
+			"offsets": {
+				"from": 1060200,
+				"to": 1062840
+			},
+			"text": " that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,840",
+				"to": "00:17:47,720"
+			},
+			"offsets": {
+				"from": 1062840,
+				"to": 1067720
+			},
+			"text": " And then, yes, a combination with off-chain protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,720",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1067720,
+				"to": 1075000
+			},
+			"text": " This is harder because the moment we get off the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:03,080"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1083080
+			},
+			"text": " people's behavior are not constrained by clear rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,080",
+				"to": "00:18:07,520"
+			},
+			"offsets": {
+				"from": 1083080,
+				"to": 1087520
+			},
+			"text": " So what's good for people is not very well defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,520",
+				"to": "00:18:11,280"
+			},
+			"offsets": {
+				"from": 1087520,
+				"to": 1091280
+			},
+			"text": " But somehow we have to define a game"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,280",
+				"to": "00:18:18,520"
+			},
+			"offsets": {
+				"from": 1091280,
+				"to": 1098520
+			},
+			"text": " where it's in the players' interest to coordinate with the rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,520",
+				"to": "00:18:23,800"
+			},
+			"offsets": {
+				"from": 1098520,
+				"to": 1103800
+			},
+			"text": " And the formal methods can help here"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,800",
+				"to": "00:18:30,920"
+			},
+			"offsets": {
+				"from": 1103800,
+				"to": 1110920
+			},
+			"text": " because it can explore all possibilities of interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,920",
+				"to": "00:18:34,440"
+			},
+			"offsets": {
+				"from": 1110920,
+				"to": 1114440
+			},
+			"text": " The last point is rather practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,440",
+				"to": "00:18:36,960"
+			},
+			"offsets": {
+				"from": 1114440,
+				"to": 1116960
+			},
+			"text": " So you saw some blue question marks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,960",
+				"to": "00:18:41,240"
+			},
+			"offsets": {
+				"from": 1116960,
+				"to": 1121240
+			},
+			"text": " But just a question mark is sometimes not enough for me"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,240",
+				"to": "00:18:43,200"
+			},
+			"offsets": {
+				"from": 1121240,
+				"to": 1123200
+			},
+			"text": " to understand the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,200",
+				"to": "00:18:47,680"
+			},
+			"offsets": {
+				"from": 1123200,
+				"to": 1127680
+			},
+			"text": " So it would help if we can see counter examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,680",
+				"to": "00:18:50,840"
+			},
+			"offsets": {
+				"from": 1127680,
+				"to": 1130840
+			},
+			"text": " With this input, with this state, this is broken."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,840",
+				"to": "00:18:55,360"
+			},
+			"offsets": {
+				"from": 1130840,
+				"to": 1135360
+			},
+			"text": " And then it's more easily understood."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,360",
+				"to": "00:19:01,880"
+			},
+			"offsets": {
+				"from": 1135360,
+				"to": 1141880
+			},
+			"text": " But I believe many more formal verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,880",
+				"to": "00:19:05,720"
+			},
+			"offsets": {
+				"from": 1141880,
+				"to": 1145720
+			},
+			"text": " researchers are coming to the verification of basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,720",
+				"to": "00:19:11,200"
+			},
+			"offsets": {
+				"from": 1145720,
+				"to": 1151200
+			},
+			"text": " almost smart contracts because of the reason I mentioned"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,200",
+				"to": "00:19:13,120"
+			},
+			"offsets": {
+				"from": 1151200,
+				"to": 1153120
+			},
+			"text": " this little virtual machine is we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,120",
+				"to": "00:19:16,200"
+			},
+			"offsets": {
+				"from": 1153120,
+				"to": 1156200
+			},
+			"text": " are paradise for formal verification engineer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,200",
+				"to": "00:19:17,080"
+			},
+			"offsets": {
+				"from": 1156200,
+				"to": 1157080
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,080",
+				"to": "00:19:21,720"
+			},
+			"offsets": {
+				"from": 1157080,
+				"to": 1161720
+			},
+			"text": " Thank you, Your Inchit."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,720",
+				"to": "00:19:24,680"
+			},
+			"offsets": {
+				"from": 1161720,
+				"to": 1164680
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,680",
+				"to": "00:19:27,260"
+			},
+			"offsets": {
+				"from": 1164680,
+				"to": 1167260
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,260",
+				"to": "00:19:29,500"
+			},
+			"offsets": {
+				"from": 1167260,
+				"to": 1169500
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

@@ -1,0 +1,2639 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 40000
+			},
+			"text": " [ Background noise ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 42000
+			},
+			"text": " >> So, good afternoon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47000
+			},
+			"text": " Earlier this year, I started the first underhanded solidity code contest,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " and the goal was to write code that looked innocent on the surface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " but actually concealed a sinister purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " The reason that I started this was to encourage deeper thought"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 64000
+			},
+			"text": " about smart contract coding practices and good code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 69000
+			},
+			"text": " and to help highlight potentially issues with unobvious features"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 72000
+			},
+			"text": " and solidity and smart contract programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " So, in an attempt to capture the current zeitgeist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " the theme was token sales, and participants were challenged to write a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 86000
+			},
+			"text": " that was in some way involved with token sales and looked innocent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 91000
+			},
+			"text": " but had some advantage for the person running the token sale."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 96000
+			},
+			"text": " And ideally, the sinister purpose should be ignored by an auditor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 103000
+			},
+			"text": " or if it was discovered then easily excusable or explainable as an innocent mistake."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " So, I have here the three winners of the contest this year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 112000
+			},
+			"text": " We have Joao, who came in third, Richard, who came in second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 114000
+			},
+			"text": " and Martin, who came in first."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 118000
+			},
+			"text": " And so, I'd like to start our discussion about smart contract security"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 123000
+			},
+			"text": " by asking each of the panelists to describe their winning entry"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " and what they think is novel about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 127000
+			},
+			"text": " So, would you like to start?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 128000
+			},
+			"text": " Sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 133000
+			},
+			"text": " Well, my entry is a proposal for the the Chalktion Crowd sale."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 139000
+			},
+			"text": " So, in this model, the sale starts with a really high price per token"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 144000
+			},
+			"text": " that decreases conchingly as the time passes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 150000
+			},
+			"text": " So, buyers can enter the sale in whatever time they feel the price is fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 159000
+			},
+			"text": " The sale ends or when either the time finishes or the cap is reached."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 163000
+			},
+			"text": " So, the thing is, I made use of a feature of Solidity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 169000
+			},
+			"text": " that is, anyone can forcibly send an adder to a contract without triggering code execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 176000
+			},
+			"text": " So, in that scenario, the sale owners could sneak in some adder during the sale"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " to inflate the token price, making the Chalktion earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 187000
+			},
+			"text": " So, if you couple that with, for example, a mintable token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 192000
+			},
+			"text": " that is a token that you only mint the amount of token that was bought."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 199000
+			},
+			"text": " You can, like, really inflate the token price because you put money on the auction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 201000
+			},
+			"text": " but you don't mint tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 209000
+			},
+			"text": " So, you're raising evaluation of the token artificially, regardless of marketing interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 217000
+			},
+			"text": " And another detail is, you can kind of use this as an influence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 224000
+			},
+			"text": " because if people are watching the sale and they see that it's reaching the cap really fast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 229000
+			},
+			"text": " they might want to get in earlier than they would if in normal conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 237000
+			},
+			"text": " It's a kind of effective way to manipulate market in your favor using this little feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " Great. And Richard, would you describe your submission?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 242000
+			},
+			"text": " OK. Testing. There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " So, very similar. I actually didn't know about the suicide bug,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " which allowed you to get money to contract without code execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " But it basically uses the same idea, which is, there was a,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 259000
+			},
+			"text": " so the basic idea of the contract is you have a crowd sale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 268000
+			},
+			"text": " and the runner, yeah, the issuer of the token gets one Ether the first week,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 272000
+			},
+			"text": " two Ether the second week, four, the next week, so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 277000
+			},
+			"text": " The idea being that if they're not doing what you expect, you can kind of yank your money back from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 280000
+			},
+			"text": " It comes down to using this stop balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 285000
+			},
+			"text": " And so, again, as long as the contract is executing as you expect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 289000
+			},
+			"text": " this stop balance can never be more than the amount you received."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 292000
+			},
+			"text": " Unlike the suicide method, which, again, I didn't know about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 296000
+			},
+			"text": " but I have more clever solutions now if I was new about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " Basically, you compute the address the contract is going to live at"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " before you deploy it, send Ether to it, and now you deploy the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 313000
+			},
+			"text": " Actually, breaking the invariant that this stop balance is strictly less than the amount it thinks it has."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 316000
+			},
+			"text": " Great, and finally, Marcin."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 324000
+			},
+			"text": " So, in my entry, I'm going to start by describing the bug."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 332000
+			},
+			"text": " My entry is based on ABI encoding and how Solidity handles ABI decoding in runtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 341000
+			},
+			"text": " Maybe everyone doesn't know that actual EVM and the code in a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 344000
+			},
+			"text": " doesn't really have a notion of methods."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " That's an invention on top of the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 357000
+			},
+			"text": " So, on the fly, some bytecode determines what method is called and what the parameters are."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " This is encoded by ABI."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 368000
+			},
+			"text": " And certain types of parameters such as dynamic length arrays have a length,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " and that length is not enforced by the decoder."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 379000
+			},
+			"text": " So, it's possible, I noticed, to specify a very, very large length"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " and make this value overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 389000
+			},
+			"text": " And that's what I kind of designed my entry around."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 395000
+			},
+			"text": " And it was a bit difficult because I had to make sure that during a loop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:44,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 404000
+			},
+			"text": " I can't loop against the size, but still use the size to somehow give a kickback to the attacker."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 404000,
+				"to": 411000
+			},
+			"text": " And in the end, it became a round table where you can round table,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 419000
+			},
+			"text": " dow-like thing, which you can try to get a seat on this round table,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 425000
+			},
+			"text": " and submit multiple bits and thus get the dynamic arrays in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:16,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 436000
+			},
+			"text": " And what I think was pretty good about that entry is that this exploit is basically not possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 436000,
+				"to": 440000
+			},
+			"text": " to exploit using standard tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 450000
+			},
+			"text": " You need to generate your own ABI, your little bytes of data, in order to exploit this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 459000
+			},
+			"text": " And I think it would be very difficult for solidity, contract developer or auditor without deep insight"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 467000
+			},
+			"text": " into how the UVM functions to actually find the vulnerability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 471000
+			},
+			"text": " So, first of all, then a question for any of the panelists who'd like to answer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 484000
+			},
+			"text": " which is what should smart contract auditors be looking for in order to try and detect these sort of underhanded tricks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 490000
+			},
+			"text": " I mean, I think in the case of our entries, if you see this stop balance anywhere, it should be -- it doesn't mean it's wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 498000
+			},
+			"text": " but it's certainly a red flag that you're accessing data that may or may not be what you expect it to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 503000
+			},
+			"text": " To complement on these, there are a few things that tip me off."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " One example is random numbers, because it's usually pretty hard to generate random numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 517000
+			},
+			"text": " and that kind of indicates that it's a point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 526000
+			},
+			"text": " External calls are also a kind of security edge, because you're calling external contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 534000
+			},
+			"text": " so it's the kind of thing that I start looking after when I start looking at a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 541000
+			},
+			"text": " Yeah, I would like to add to that that what you really should be looking for, or one of the things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " are these assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 554000
+			},
+			"text": " They're mainly implicit assumptions that are made, and it's easy to gloss over that and not notice it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " but really try to investigate, where are the implicit assumptions here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 568000
+			},
+			"text": " In your cases, I guess the implicit assumption is that the balance is zero at the entry or at the exit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 582000
+			},
+			"text": " and start to make these assumptions explicit, and then see, can I violate this assumption in any way, shape or form?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 591000
+			},
+			"text": " And just to add my own note, some caution is required there, and if you made the assumption that the balance is zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 596000
+			},
+			"text": " and then you coded in an assertion, the balance is zero, then now an attacker has a mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 600000
+			},
+			"text": " by which they could actually just disable your contracts by sending some funds to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 609000
+			},
+			"text": " Exactly, so I didn't mean that you should assert that thing necessarily, but instead question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 618000
+			},
+			"text": " is this the valid assumption that can be made, or can this be exploited by an attacker?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 626000
+			},
+			"text": " So next question again for any of you is what sort of improvements would you like to see to tooling and to languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 636000
+			},
+			"text": " and other infrastructure pieces in order to make it easier to detect these issues and help prevent them from happening in the first place?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 649000
+			},
+			"text": " So on the tooling front, I was at the breakout session earlier, and saw some presentation about Oyenta and about Security Phi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 660000
+			},
+			"text": " and for a long time I've had this feeling that there are these tools, which does analysis on bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 669000
+			},
+			"text": " and either detects vulnerabilities or provides some kind of analysis on the bytecode,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 678000
+			},
+			"text": " and they're on the kind of fringes, but they're not right now in the toolset of most DAP developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 684000
+			},
+			"text": " and that's what I think should be added, so that as part of your development process, you can get some aid"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 694000
+			},
+			"text": " by these tools which operates preferably on bytecode, which would also help to protect against failures"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 701000
+			},
+			"text": " embedded within the solidity and in the step from source code to bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 708000
+			},
+			"text": " All right, so you'd say more maturity in the tools we're already building and easier integration?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 716000
+			},
+			"text": " Is there integration into the developer pipeline of these tools?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 718000
+			},
+			"text": " Anyone else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 723000
+			},
+			"text": " That's basically what I'd say. It's really important that we have better testing tools as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 730000
+			},
+			"text": " like being able to run a huge suite of test cases against both expected behavior and unexpected behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 735000
+			},
+			"text": " If you feed bad data in, do you still get a result and now you've corrupted something?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 740000
+			},
+			"text": " I just think we need more. Again, I think the tools are there. I think it's just they're not easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " It's not easy to make a test suite and just run through them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 749000
+			},
+			"text": " You see all these contracts, they have about three test cases in its testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 754000
+			},
+			"text": " If I send money to this thing, does it work? Yes, it's passed."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 761000
+			},
+			"text": " And so three test cases should not be sufficient to validate that this contractor sending billions of dollars to is working."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 766000
+			},
+			"text": " And, yeah, it's a... Go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 772000
+			},
+			"text": " And just an addition to that, I would like to see some way to test in large scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 780000
+			},
+			"text": " because most projects, when you test some behavior, they use the minimum, the viable number of players in the contract to test."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 786000
+			},
+			"text": " But if a contract works like with 10 transactions, will it work with 10,000 or a million?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 791000
+			},
+			"text": " And there's no each test there. There is, but there's no one doing that right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 796000
+			},
+			"text": " So I would like to see some work on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 808000
+			},
+			"text": " All right. And if you each could give one piece of advice to somebody writing a smart contract on something to look out for or something to be careful about, what would it be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 818000
+			},
+			"text": " I would give you a device that sometimes the code work has intended, but the mechanisms behind it are not."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 825000
+			},
+			"text": " So sometimes it's not about the codes, about the way you design your contract, about how people interact."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 832000
+			},
+			"text": " You don't consider that that might be a malicious player interacting with it, that someone is like with no bad behavior."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 839000
+			},
+			"text": " And it's kind of easy to over-side that, and just like because it passes the test, it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843000
+			},
+			"text": " But you have to account for like bad people."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 846000
+			},
+			"text": " Right. Again, we'll just mimic the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:11,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 851000
+			},
+			"text": " I mean, formal verification, everyone thinks it's a magic bullet, but there's still, again, the game theory you have to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 851000,
+				"to": 858000
+			},
+			"text": " I mean, we've heard about minor front-running. This is a great example of the type of things that the code is doing exactly what you expected to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 868000
+			},
+			"text": " There's nothing being lied about what's happening. It's just people who have weird connections to what's going to happen, have too much say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 875000
+			},
+			"text": " and can tweak what you expected to game theoretically or mechanism design-wise work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 883000
+			},
+			"text": " Yes, my top recommendations would be know the EVM in detail, and keep it simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 892000
+			},
+			"text": " Don't build like very large inheritance models, because just try to keep it simple and much easier to audit."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 898000
+			},
+			"text": " Last one dropped out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 904000
+			},
+			"text": " Right. So I'd like to see other questions from the audience for the panelists."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 909000
+			},
+			"text": " If you raise your hand and shout it out, I'll repeat the questions who Renkin here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 917000
+			},
+			"text": " Nobody has any questions about smart contract security."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 918000
+			},
+			"text": " Makoto."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 930000
+			},
+			"text": " I've seen many more of us apply different, like, now, maybe a waste, but there's no kind of more systems to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 936000
+			},
+			"text": " Hi. I've seen many companies or individuals does the code auditing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 944000
+			},
+			"text": " but there's not much standard. If you want to say, like, if we're going to have code auditing standard or something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 948000
+			},
+			"text": " what kind of stuff should be on the standard list?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 956000
+			},
+			"text": " So effectively you're asking, how would you recommend people go about auditing code? Is there a best practice for that? Is that right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 963000
+			},
+			"text": " Yes. Best practices for auditors and audits."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 973000
+			},
+			"text": " So I'll say there's been some work in that direction. I think mainly done by consensus, they put together best practices guide."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 980000
+			},
+			"text": " But I mean, in general, the field is not yet mature."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 990000
+			},
+			"text": " It's taken a lot of years to even get kind of like a rough web application, security guidelines going and still evolving."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 999000
+			},
+			"text": " And it's the same thing here. New things get added as hacks happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1010000
+			},
+			"text": " So, yeah, there's, I don't know, it's going to continue to evolve. There is one, but it's not all complete."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1020000
+			},
+			"text": " One other thing, I agree we need something like that. We also need some, I would like the idea that auditing should be a fairly public type thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1030000
+			},
+			"text": " I've done many audits and oftentimes I'll say, like, oh, well, you're, you're, can be exploited if this character who owns this address does this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1034000
+			},
+			"text": " And often I hear this, I was like, oh, that's the lead developer. He won't ever do that to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1040000
+			},
+			"text": " And that's not accounting for him, a being malicious, him or her, or them being hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1049000
+			},
+			"text": " And their computer's private key being stolen. So, I, I are too often here in response to a completely valid audit. Well, that won't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1054000
+			},
+			"text": " And that's, you're losing some of the value of blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1060000
+			},
+			"text": " So, well, we're talking about audits at a very high level. Would you describe how you go about an audit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:45,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1065000
+			},
+			"text": " Like, how do you go from here's a big chunk of code to, to here's a finished audit report?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,000",
+				"to": "00:17:59,000"
+			},
+			"offsets": {
+				"from": 1065000,
+				"to": 1079000
+			},
+			"text": " Um, um, I would, I mean, usually, to be fair, most, most audits I feel aren't actually large amounts of code. Like the DAO looked way larger than anything I've needed an audit before."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1079000,
+				"to": 1089000
+			},
+			"text": " That was like a lot of code for what I was doing. But even with one issue or thing that actually makes this describing this process a little bit easier is usually, it's very modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1095000
+			},
+			"text": " Usually there is a whack ton of contracts that are all inheriting from each other, using each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1104000
+			},
+			"text": " So, it makes it easy to kind of break it down and, and, yeah, I usually just start at the top, go through it and kind of like how you browse Wikipedia."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1109000
+			},
+			"text": " You hit like some weird class, you're like, I don't want to mean this. And so, you jump over that file and you go through that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1115000
+			},
+			"text": " And it is, then you start popping the stack and get up. And you have to go over it a few times before, yeah, that's a good point."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1122000
+			},
+			"text": " The first thing you need to do is really understand what the code is doing. Trying to audit code that you're kind of like, well, I think it kind of does this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1137000
+			},
+			"text": " You really need to understand the assumptions the rest of the code is making. Um, I mean, going back, I guess, to a previous thing, another, like, thing I often see is, let's say you're counting the number of elements inside a mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1150000
+			},
+			"text": " I often see, you know, plus, plus, and then set. But this isn't, or, and other direction, minus, minus, and then set to zero. And this is a huge problem because if you set the same thing twice, you now think the mapping has two items in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1160000
+			},
+			"text": " And so, it's important to kind of be able to trace back and see, well, what code paths can get here to even do this? Maybe they're guarding it somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1168000
+			},
+			"text": " Maybe they're not. Maybe they should be checking. Like, gas efficiency may or may not come to play. So, I don't know if I really answered the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1169000
+			},
+			"text": " What was the question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1172000
+			},
+			"text": " It seemed like a good set. Do you have anything to add, Matt?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1180000
+			},
+			"text": " No, that sounds very close to what I'm doing. I mean, it's very, it's extremely time consuming to do it this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1187000
+			},
+			"text": " But really get to know the code. Read it, read it, read it, read it until you know it's forwards and backwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1196000
+			},
+			"text": " And try to have this aggressive mindset where you know that there are flaws in it. You just need to find them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1200000
+			},
+			"text": " Cool. Other questions from the audience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1206000
+			},
+			"text": " Shout, and I'll repeat. Oh, no, we have a microphone."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1215000
+			},
+			"text": " Hi. So, we heard from Piper yesterday about package management for Solidity and Python as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1224000
+			},
+			"text": " Are you guys or anyone else looking into how we know if we can trust those packages, especially as the standard library might be replicated with different package sets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1234000
+			},
+			"text": " Obviously, today in the development world, we just hope the code works and then we realize it doesn't, which may not be as big of a deal when it's not Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1244000
+			},
+			"text": " Well, that's an interesting question. And just to add, there's also the question that if you can we trust the standards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1250000
+			},
+			"text": " because a lot of contract interacts with tokens, for example. And no one accounts for a malicious token."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1258000
+			},
+			"text": " That can implement the standard, but can modify in some way that exploits the other contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:12,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1272000
+			},
+			"text": " So it's, I'm not sure if I'm answering a question, but it's kind of a bad, I'm sorry. It's hard to really trust everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,000",
+				"to": "00:21:19,000"
+			},
+			"offsets": {
+				"from": 1272000,
+				"to": 1279000
+			},
+			"text": " So it's kind of what Martin said. You have to be aggressive. You have to think that anything can break any time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1279000,
+				"to": 1289000
+			},
+			"text": " You have to think that anyone is malicious, anyone is bad, and kind of go this way. Don't trust anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1308000
+			},
+			"text": " Is anyone thinking about putting in that package management system, the concept of this package has been audited and gives some kind of marking of what company audited it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1311000
+			},
+			"text": " And of course, a reputation for that company."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1314000
+			},
+			"text": " Is Piper here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1327000
+			},
+			"text": " I mean, my perspective at least, maybe I'm not supposed to have an opinion since I'm running the panel, but it's definitely true that systems like NPM are unsuitable here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1330000
+			},
+			"text": " You need a lot better control over the code you're running."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1340000
+			},
+			"text": " But I think step one, and as I understand it, FPM implements it is you specify exact versions of the code, cryptographically hashed, so you know you're getting the right code."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1348000
+			},
+			"text": " I don't know if any of you know whether sort of metadata about auditing is in scope or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1350000
+			},
+			"text": " So what's the last word?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1357000
+			},
+			"text": " Whether metadata for weather or code has been audited and it's been audited by is in scope for a package management system."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1362000
+			},
+			"text": " I don't know what level of metadata is in."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:46,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1366000
+			},
+			"text": " So I guess the question is asked Piper, or the answer rather."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,000",
+				"to": "00:22:47,000"
+			},
+			"offsets": {
+				"from": 1366000,
+				"to": 1367000
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,000",
+				"to": "00:22:54,000"
+			},
+			"offsets": {
+				"from": 1367000,
+				"to": 1374000
+			},
+			"text": " Just over there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1374000,
+				"to": 1385000
+			},
+			"text": " I was wondering if you guys are interested in any other smart contract languages and if so what would they be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1391000
+			},
+			"text": " Are we interested in any smart contract languages other than Solidity? Is that correct?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:12,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1392000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,000",
+				"to": "00:23:14,000"
+			},
+			"offsets": {
+				"from": 1392000,
+				"to": 1394000
+			},
+			"text": " Yes, definitely."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,000",
+				"to": "00:23:24,000"
+			},
+			"offsets": {
+				"from": 1394000,
+				"to": 1404000
+			},
+			"text": " I did look a bit into serpent contracts way back in order to the BTC relay."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1404000,
+				"to": 1412000
+			},
+			"text": " But it's right now Solidity is the one which most contracts are written in."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1419000
+			},
+			"text": " But I think it will be actually a refreshing change when serpent hits the road properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1420000
+			},
+			"text": " Or Viper."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:42,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1422000
+			},
+			"text": " Oh sorry, Viper, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,000",
+				"to": "00:23:46,000"
+			},
+			"offsets": {
+				"from": 1422000,
+				"to": 1426000
+			},
+			"text": " I had a fascinating chat with the lead developer of Viper today."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1426000,
+				"to": 1428000
+			},
+			"text": " I think it shows a lot of promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:52,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1432000
+			},
+			"text": " I'd like to see more smart contract programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:52,000",
+				"to": "00:23:55,000"
+			},
+			"offsets": {
+				"from": 1432000,
+				"to": 1435000
+			},
+			"text": " There are things I like about Solidity and things I don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1435000,
+				"to": 1439000
+			},
+			"text": " I have a mental laundry list of what my perfect programming language would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1444000
+			},
+			"text": " And the reason I don't write it is because I'm aware that 90% of the work is the tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1451000
+			},
+			"text": " And other languages are going to have a bit to catch up with Solidity before they're sort of at the same level in terms of tooling maturity."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:19,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1459000
+			},
+			"text": " But I don't think Solidity's continued domination is in any way it should."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1459000,
+				"to": 1465000
+			},
+			"text": " Right, and so I'm working on my own little language, but more as a side project than anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1468000
+			},
+			"text": " Solidity is by far the most mature."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:31,000"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1471000
+			},
+			"text": " And it's all those other things on top of it that you really want."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,000",
+				"to": "00:24:36,000"
+			},
+			"offsets": {
+				"from": 1471000,
+				"to": 1476000
+			},
+			"text": " You want the IDE's integration and syntax highlighting."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1476000,
+				"to": 1480000
+			},
+			"text": " Writing a syntax highlighter is not a fun thing, but it's something that you kind of want."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1485000
+			},
+			"text": " And that's something you just have to write if you're doing your own random stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1496000
+			},
+			"text": " I think another cool approach is to have languages which are less capable, basically like Babbage, which I don't know the details of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:25:09,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1509000
+			},
+			"text": " But I think that Babbage is a lot more restricted in what it can do, but can provide greater safety about the potential post states after the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1509000,
+				"to": 1513000
+			},
+			"text": " Great, unfortunately that's all we have time for."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1516000
+			},
+			"text": " So thank you very much to my distinguished panelists."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:17,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1517000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,000",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1517000,
+				"to": 1529000
+			},
+			"text": " Up next we have another panel on formal verification moderated by Rito Trinkler."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:33,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1533000
+			},
+			"text": " Please go ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,000",
+				"to": "00:25:35,000"
+			},
+			"offsets": {
+				"from": 1533000,
+				"to": 1535000
+			},
+			"text": " Go ahead and take this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,000",
+				"to": "00:25:48,000"
+			},
+			"offsets": {
+				"from": 1535000,
+				"to": 1548000
+			},
+			"text": " [Music]"
+		}
+	]
+}

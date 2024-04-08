@@ -1,0 +1,1891 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 18000
+			},
+			"text": " >> I talk about verifying CASPA."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 25000
+			},
+			"text": " CASPA is the name of the planned proof of stake protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 27000
+			},
+			"text": " that the Ethereum will be using."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 33000
+			},
+			"text": " It's also a name of a research group designing the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 39000
+			},
+			"text": " It's been changing, and maybe it will change."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:45,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 45000
+			},
+			"text": " And as you will learn soon, and there are multiple versions of CASPA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 45000,
+				"to": 51000
+			},
+			"text": " I'm talking about my best guess at the moment of the first CASPA"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " that will be deployed on the main chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 64000
+			},
+			"text": " There will be a CASPA contract on each fork of the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 74000
+			},
+			"text": " There will be validators, and the validators will deposit on the CASPA contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 81000
+			},
+			"text": " And they -- the validators vote for blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 90000
+			},
+			"text": " and the CASPA contract keeps track of full-voted for what and decides which block is finalized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:35,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 95000
+			},
+			"text": " When the validators do it correctly, they get rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 95000,
+				"to": 99000
+			},
+			"text": " When they make mistakes, the deposit's gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 107000
+			},
+			"text": " It's called -- so we call these validators a stash when the deposit's taken away."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 118000
+			},
+			"text": " And everything in this talk after this slide will be seen by one of the CASPA contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 129000
+			},
+			"text": " In my wardrobe, this Senegal clothes -- Senegal clothes is the best approximation of this CASPA idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 137000
+			},
+			"text": " Although this Senegal clothes works very nicely with the climate here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 147000
+			},
+			"text": " A validator can vote for blocks, so the voting message contains an epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 155000
+			},
+			"text": " An epoch is a number like 104, hash of the block that's being voted for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 164000
+			},
+			"text": " and another number that's called the source of the vote, which is used as a justification for the vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 173000
+			},
+			"text": " So I will be drawing lots of boxes and lines in this slide deck."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " This picture, the block chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " And the blocks -- the block at the top is the newest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 185000
+			},
+			"text": " At the bottom is the oldest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " When there are folks, this looks like trees growing from the bottom to the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 197000
+			},
+			"text": " There are rules for validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " The validators cannot do certain things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 203000
+			},
+			"text": " Otherwise, they will be stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 215000
+			},
+			"text": " One rule says no double voting when a validator votes for two different blocks on the same epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 222000
+			},
+			"text": " The block is the positive norm if it's stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 223000
+			},
+			"text": " It's kind of intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " You cannot support different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 230000
+			},
+			"text": " You cannot contradict yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 238000
+			},
+			"text": " The rule is a bit more strict because even when you are supporting the same block multiple times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 246000
+			},
+			"text": " when you cite different sources, you are also stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 252000
+			},
+			"text": " This is not really intuitive, while this is about the thing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 256000
+			},
+			"text": " But this rule will be useful for preventing folks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 260000
+			},
+			"text": " We will see that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 268000
+			},
+			"text": " Maybe an intuitive rule is the no surrounding rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 278000
+			},
+			"text": " When you vote for the newest block, citing the oldest block, and when you sign another"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 287000
+			},
+			"text": " voting message about something in the middle, measured by the larger smaller epoch, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 292000
+			},
+			"text": " are the positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 299000
+			},
+			"text": " Maybe an intuitive explanation would go like your knowledge should get better and better"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 305000
+			},
+			"text": " when you learn about the cited source blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 313000
+			},
+			"text": " In this picture, after learning some new sources, your estimate is suddenly shorter and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 324000
+			},
+			"text": " But these rules are nice because it's your sole responsibility."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:32,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 332000
+			},
+			"text": " You can be just careful not to assign contradicting messages to avoid being stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 332000,
+				"to": 342000
+			},
+			"text": " In the previous versions of the CASPA protocol, some stashing rules depending on other people's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 350000
+			},
+			"text": " behavior, your actions are suddenly slushable."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 361000
+			},
+			"text": " Now, if you are careful, you can avoid being stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 370000
+			},
+			"text": " After talking about slashing, we can forget about individual validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 379000
+			},
+			"text": " We can measure the rate of votes by the amount of deposits backing up the vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 385000
+			},
+			"text": " We can say X is a backed vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 394000
+			},
+			"text": " We can also add voting messages by the amount of votes backing up the claims."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 405000
+			},
+			"text": " When there is a next vote and a Y is a vote, we can add this up and we can say X plus Y is a vote."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 413000
+			},
+			"text": " In the protocol, two thirds vote plays an important role."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:07:05,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 425000
+			},
+			"text": " This says two thirds of the total deposits made by all validators, backs up the claim of this voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 425000,
+				"to": 430000
+			},
+			"text": " We will be talking about justified blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 435000
+			},
+			"text": " There will be a single genesis block that everybody knows."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438000
+			},
+			"text": " The genesis block is justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 449000
+			},
+			"text": " When there is a two third vote, citing a justified block, the voted for block is also justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 465000
+			},
+			"text": " We draw links along the two third votes and when a block is connected to the genesis block, it is justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 469000
+			},
+			"text": " There is a stronger condition called finalised."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 473000
+			},
+			"text": " Only a justified block can be finalised."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 483000
+			},
+			"text": " When there is a vote involving sub-blocks, just a direct parent and a direct child,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 488000
+			},
+			"text": " the cited justified block becomes finalised."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 494000
+			},
+			"text": " In this picture, the block at the bottom gets finalised."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 501000
+			},
+			"text": " With these rules, I have been laying out definitions for stating a theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 514000
+			},
+			"text": " The theorem says, if finalised blocks fork, there must be one third of the validators being slashed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 520000
+			},
+			"text": " measured by the amount of the deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 535000
+			},
+			"text": " I talked with somebody this morning and he said it doesn't make sense to go into the mathematics for this big audience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 542000
+			},
+			"text": " but I tried to disprove that claim."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 550000
+			},
+			"text": " It's not fair because I'm not talking about the case, but I'm talking about a much simpler piece of mathematics."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 562000
+			},
+			"text": " My assumption here is, well, if there are two finalised blocks, not on the same chain, we have a fork,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 569000
+			},
+			"text": " then my goal here is to find one third of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 574000
+			},
+			"text": " The name of the theorem is called \"Accountable Safety\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 581000
+			},
+			"text": " The word \"accountable\" comes from the fact that you can find one third of validators to blame."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:47,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 587000
+			},
+			"text": " They are responsible. They are accountable for the fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 587000,
+				"to": 597000
+			},
+			"text": " Now, okay, well, there are blocks finalised at epoch V1 and V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 603000
+			},
+			"text": " These epochs might be equal or not. V1 equal V2 or V1 is not equal to V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 611000
+			},
+			"text": " It can be either case, so I have to do proofs for both cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 617000
+			},
+			"text": " The easier case is V1 equals V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " Now you see some B's."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 629000
+			},
+			"text": " Basically, I'm supposed to follow the B's and the B's guide me through the proof, and I should be able to explain this through."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 634000
+			},
+			"text": " The assumption is these blocks are finalised."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 648000
+			},
+			"text": " When blocks are finalised, when there are votes involving the director child and the director parent with this shape,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 654000
+			},
+			"text": " we have finalised blocks not on the same chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:59,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 659000
+			},
+			"text": " In particular, these are not the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 659000,
+				"to": 668000
+			},
+			"text": " I didn't say that I didn't spell this out, but each block can uniquely identify the parent block."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 672000
+			},
+			"text": " This means this not equal can move upwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 683000
+			},
+			"text": " There are two different child blocks being voted for by two thirds of the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 686000
+			},
+			"text": " Two thirds did that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 688000
+			},
+			"text": " Two thirds did this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 692000
+			},
+			"text": " So at least one third did both of these voting."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 702000
+			},
+			"text": " There was a rule against this. You cannot vote for two different blocks at the same epoch."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 707000
+			},
+			"text": " These one third validators are now stashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " Now we are happy with this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 717000
+			},
+			"text": " The other case was when V1 is not equal to V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 722000
+			},
+			"text": " Maybe V1 is bigger than the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 728000
+			},
+			"text": " But here in this picture, the left hand side and right hand side, there is a symmetry V1 and V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 733000
+			},
+			"text": " You can swap V1 and V2 and get VD similar picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 740000
+			},
+			"text": " I can shout without loss of generality, and with this spell, I am allowed to talk only about one case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 745000
+			},
+			"text": " because the other case is VD symmetric, the same argument again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 749000
+			},
+			"text": " So V1 is bigger than V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 758000
+			},
+			"text": " We were talking about the blocks not on the same chain, but I changed it a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 765000
+			},
+			"text": " H1 is not a descendant of H2."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 773000
+			},
+			"text": " This change of this paraphrasing, it's not really paraphrasing, it's a little bit weakening the assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 784000
+			},
+			"text": " This way I can prove it, but when I kept talking about two blocks, not on the same chain, I cannot complete the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:16,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 796000
+			},
+			"text": " V1 is, no, H1 is finalised, and in particular it has to be, okay, well, when it finalised, it has to be justified as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 796000,
+				"to": 799000
+			},
+			"text": " Again, I am weakening the conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 802000
+			},
+			"text": " I am preparing for something."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 805000
+			},
+			"text": " I am preparing for mathematical induction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 811000
+			},
+			"text": " So basically I repeat similar proofs again and again."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 818000
+			},
+			"text": " When the difference of VEPOC is 1, 2, 3, 4, I repeat the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 824000
+			},
+			"text": " And then now I ask, what about 6, what about 7, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 835000
+			},
+			"text": " But in each case I can assume all previous cases are solved already."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " So now, yes, I am just showing the same pictures before."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 845000
+			},
+			"text": " So H1, block H1 is justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:18,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 858000
+			},
+			"text": " There are two cases H1 can be at the genesis block or there can be a voting involving a source again justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 858000,
+				"to": 867000
+			},
+			"text": " H1 cannot be the genesis because, okay, well, genesis has to be at APOC 0, I forgot to say that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 874000
+			},
+			"text": " Theorem proves us prevent me from doing these mistakes, but when I am making slides, it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 885000
+			},
+			"text": " And then, so H1 is not a genesis, so there must be a voting involving a source justified."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 888000
+			},
+			"text": " It's called J here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 891000
+			},
+			"text": " J is justified at APOC 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 898000
+			},
+			"text": " This period can be dajandam v2 equal to v2 or smaller than v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 905000
+			},
+			"text": " When it's bigger than v3, it's bigger than v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 910000
+			},
+			"text": " J and H2, we can compare this J and H2."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " H2 and H1 are in ancestor descendant relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:19,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 919000
+			},
+			"text": " No, not in ancestor descendant relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 919000,
+				"to": 925000
+			},
+			"text": " H1 and J are in ancestor descendant relation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " So these two blocks J and H2 are different."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 942000
+			},
+			"text": " Moreover, J and H2 are not in ancestor descendant relation because if J is a descendant of H2, well, H1 is a descendant of J."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:47,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 947000
+			},
+			"text": " So, and the descendant of the descendant is again a descendant, so that contradicts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 955000
+			},
+			"text": " So, well, we have now, it looks like H1 and J are really similar, and that's the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:04,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 964000
+			},
+			"text": " Actually, J has all the property I assume for H1, and here I can use the previous case of the mathematical induction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,000",
+				"to": "00:16:10,000"
+			},
+			"offsets": {
+				"from": 964000,
+				"to": 970000
+			},
+			"text": " Because it's a simpler case, because J is older than H1, this is a simpler case."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 970000,
+				"to": 976000
+			},
+			"text": " I've already proved that in the previous incarnations, then it's gone."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 984000
+			},
+			"text": " The next case is when this pre epoch is equal to v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 990000
+			},
+			"text": " This one is rather easy because we have justified the block and the finalized block at the same epoch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 998000
+			},
+			"text": " and when two blocks are justified, two different blocks justify on the same epoch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:44,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1004000
+			},
+			"text": " we can repeat the arguments and we can say one side of the variators are slushed."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1004000,
+				"to": 1013000
+			},
+			"text": " Maybe the most interesting case is when this pre epoch is more rather than v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1019000
+			},
+			"text": " So, here the justification chain kind of skips over v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1033000
+			},
+			"text": " Well, not necessarily because this H1 and so this epoch v1 might be equal to or different from v2 plus 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1047000
+			},
+			"text": " When v1 is bigger than v2 plus 1, it's easy because the picture really looks like the no surrounding rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1053000
+			},
+			"text": " And well, two sides did this and two sides did that, so at least one side did both,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1060000
+			},
+			"text": " and this one side violated this no surrounding rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1068000
+			},
+			"text": " Well, this way I'm proving a theorem, and at the same time I'm showing that these rushing rules are useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1078000
+			},
+			"text": " Without the no surrounding rule, in this case the main network could fork, and that would be a disaster,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1088000
+			},
+			"text": " but because of this no surrounding rule, we can at least hold one third of the variators accountable for the fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1094000
+			},
+			"text": " The last case in the proof is when v1 is exactly one more than v2."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1103000
+			},
+			"text": " This is again an easier case because we have two different blocks at the same epoch being justified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1110000
+			},
+			"text": " and in this case at least one third of the variators voted for two different blocks on the same epoch,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1114000
+			},
+			"text": " so these mantered can be held accountable."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:54,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1134000
+			},
+			"text": " The nice thing is that in all cases the CASPA contract is able to identify who is to blame and get their deposits taken away."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1134000,
+				"to": 1141000
+			},
+			"text": " Before making these slides I checked my arguments against a theorem proof called Isabelle Hall,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1152000
+			},
+			"text": " and well, I chose to display the proofs to you because we're just explaining what is proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1159000
+			},
+			"text": " what is mathematics, what is games and natural deduction conceptually."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:29,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1169000
+			},
+			"text": " Maybe just displaying the proofs like this would tell you a better idea of what I'm doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1169000,
+				"to": 1181000
+			},
+			"text": " I thought the CASPA protocol is changing, so I have to catch up and I'm actually in the middle of catching up."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1187000
+			},
+			"text": " Not only the safety I have to prove the diviness, so the protocol does not get stuck."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:53,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1193000
+			},
+			"text": " We also needed to talk about when validators are changing, what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1193000,
+				"to": 1198000
+			},
+			"text": " The proofs will get a little bit more complicated, but I'm confident I can finish those."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1203000
+			},
+			"text": " Okay, well my timing is running up, I have to finish the talk as well. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:13,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1213000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,000",
+				"to": "00:20:15,240"
+			},
+			"offsets": {
+				"from": 1213000,
+				"to": 1215240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

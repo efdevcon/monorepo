@@ -1,0 +1,5917 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " >> Hey, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " So this time I'm going to start my talk for real."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 22000
+			},
+			"text": " No kidding around."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " We're going to hear about a crack by construction"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 26000
+			},
+			"text": " blockchain consensus protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 29000
+			},
+			"text": " And, you know, I hope you're all excited to be here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32000
+			},
+			"text": " And I hope you're all aware that I'm starting to speak,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 35000
+			},
+			"text": " and so are coming into the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37000
+			},
+			"text": " But I don't have time to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 39000
+			},
+			"text": " So here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " So firstly, let's do a basic introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " Like, consensus protocols are kind of fundamentally about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 48000
+			},
+			"text": " deciding, like, nodes on a distributed network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51000
+			},
+			"text": " making the same decisions, even though they might have different"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 52000
+			},
+			"text": " views of the network, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " And those decisions, you can think of them as being on values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " but normally, you know, we think about, in our context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 62000
+			},
+			"text": " replicating a virtual machine or some kind of state machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 68000
+			},
+			"text": " So traditional consensus protocols decide on one block of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 70000
+			},
+			"text": " transactions at a time."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 76000
+			},
+			"text": " Whereas, they do it with irreversible finality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 78000
+			},
+			"text": " with every single block, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 80000
+			},
+			"text": " You come to a Byzantine quorum, you sign the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " and every block is created, and there's never any forks."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " And this usually requires, on the order of the number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " validators, messages for every block to accomplish this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 91000
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 93000
+			},
+			"text": " Because you have to come to consensus before you make every block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 94000
+			},
+			"text": " essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 96000
+			},
+			"text": " Improve work consensus, on the other hand,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " we don't come to consensus on every block before we make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " Instead, we have this kind of forking phenomenon where we just try"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 106000
+			},
+			"text": " to put the block on there, but if we fail, it might leave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " but somehow, if we wait long enough, we feel like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:52,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 112000
+			},
+			"text": " \"Oh, it's never going to leave the blockchain.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 112000,
+				"to": 115000
+			},
+			"text": " And these protocols have a much lower overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 117000
+			},
+			"text": " So basically, the thing that I'm going to show you today is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119000
+			},
+			"text": " consensus protocol, Casper the Friendly Ghost,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " which finalizes every block with asynchronous Byzantine fault"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " tolerant consensus safety, the way that traditional consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 129000
+			},
+			"text": " protocols do, but is able to do this with the overhead of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 131000
+			},
+			"text": " improved work blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " So, you know, it kind of represents some of the best of both"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 136000
+			},
+			"text": " worlds, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 140000
+			},
+			"text": " Both finalized decisions and also hyper-low network overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 142000
+			},
+			"text": " And the reason why this is cool is because it kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " provides us a unified way for thinking about both of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 150000
+			},
+			"text": " So, I'm going to give a little overview of my talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 151000
+			},
+			"text": " and then I'm going to go right into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 155000
+			},
+			"text": " So, the consensus safety proof is this thing that all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 157000
+			},
+			"text": " consensus protocols that are correct by construction process"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 158000
+			},
+			"text": " satisfy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " And then, I'm going to specify some of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 167000
+			},
+			"text": " And then, I'm going to talk about maybe live this little bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 170000
+			},
+			"text": " and then give some experimental observations where we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 173000
+			},
+			"text": " see this kind of network efficiency that I'm talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 174000
+			},
+			"text": " So, let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 178000
+			},
+			"text": " So, the consensus safety proof is probably the most important thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 182000
+			},
+			"text": " that you understand in order to grock this whole process."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " So, we need a few things for this thing to be defined."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 189000
+			},
+			"text": " We have protocol states and state transitions, and we have an"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 191000
+			},
+			"text": " estimator, and this thing called estimate safety,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 192000
+			},
+			"text": " and we define them a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 196000
+			},
+			"text": " And then, we have this theorem, this result, that if nodes have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 201000
+			},
+			"text": " common future state in the protocol, then they have consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 204000
+			},
+			"text": " safety on decisions that have estimate safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 206000
+			},
+			"text": " So, if I decide on something with estimate safety, then I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " to get consensus safety for free if we have a common future."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 215000
+			},
+			"text": " And so, basically, protocol states are just like things in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 218000
+			},
+			"text": " group, and state transitions are kind of paths between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221000
+			},
+			"text": " An estimator takes these protocol states and maps them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " in the binary consensus, like a zero or one, and the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 226000
+			},
+			"text": " consensus, like a whole blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 228000
+			},
+			"text": " So, it's kind of our for choice rule mechanic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 229000
+			},
+			"text": " Your little guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 232000
+			},
+			"text": " An estimator is not a decision, it just guesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 240000
+			},
+			"text": " Oh, looks like we have the laggy."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 250000
+			},
+			"text": " So, an estimate is safe, basically, if the estimator, for all"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " future possible protocol states, that can be accessed from"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 258000
+			},
+			"text": " that state, the estimator returns a value like one, or has a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 265000
+			},
+			"text": " blockchain that also is, that will always have that block in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 266000
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " So, block is safe, if all future block chain, fork choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " have that block in the chain, and a bit is safe if all future"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 275000
+			},
+			"text": " estimators have that bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 279000
+			},
+			"text": " So, if two estimates are safe at two states, and those states"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " have a state in common, then because those things are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 286000
+			},
+			"text": " estimates hold for all future states, and they have one in common,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:50,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 290000
+			},
+			"text": " they both hold in that one state that they have in common, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 293000
+			},
+			"text": " that means that they have to be consistent because you can't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 297000
+			},
+			"text": " the block be in the fork and not at the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 301000
+			},
+			"text": " So, that was kind of the first part of the proof, basically it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 304000
+			},
+			"text": " says if nodes have a common future, then they have consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 305000
+			},
+			"text": " safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " The next part, basically, is a construction to make sure that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 310000
+			},
+			"text": " have a common future unless there's more than some number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 311000
+			},
+			"text": " Byzantine faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 313000
+			},
+			"text": " And the way this works is basically we have protocol states"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 316000
+			},
+			"text": " which are messages, we have state transitions which corresponds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 320000
+			},
+			"text": " to receiving messages or increasing your, like, you know, going"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " to super sets of protocol messages, and if we count Byzantine"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " faults and exclude the sets of messages that have too many"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 331000
+			},
+			"text": " faults, then we can guarantee that they have a common future unless"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 334000
+			},
+			"text": " there's that number of faults, basically because first we allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " all of them to have a common future no matter what, then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " have to prove the states that have too many Byzantine faults, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " so two states will have a common future unless there's too many"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 346000
+			},
+			"text": " Byzantine faults, and that gives us kind of our key result here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 349000
+			},
+			"text": " which is that as long as there's not too many Byzantine faults,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " they have a common future, and they have a common future, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 353000
+			},
+			"text": " they have consensus safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 356000
+			},
+			"text": " And so this consensus safety proof basically says, look, as long"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 358000
+			},
+			"text": " as there's not too many Byzantine faults, then we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " consensus safety, and the cool thing about this is I had to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " almost nothing about the consensus protocol, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 366000
+			},
+			"text": " All I had to do was say it has protocol states and, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 371000
+			},
+			"text": " I said nothing about the nature of the estimator, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 373000
+			},
+			"text": " And so now we're going to kind of see this, we're going to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 374000
+			},
+			"text": " this thing happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " So I'm going to define protocol messages, and then the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " estimator is in the default detection states and state"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 385000
+			},
+			"text": " transitions and then the n estimate safety for the binary"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 387000
+			},
+			"text": " consensus, and then we're going to do a tiny change and generate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389000
+			},
+			"text": " the block chain consensus and a tiny change and do validated"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:32,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 392000
+			},
+			"text": " rotation and a tiny change and remove fault tolerance thresholds"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 392000,
+				"to": 393000
+			},
+			"text": " from the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 398000
+			},
+			"text": " And that will kind of demonstrate the power of the approach here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 401000
+			},
+			"text": " So for the binary consensus, we have protocol messages that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 405000
+			},
+			"text": " are bits, sorry, that have three parts, a bit for the estimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 408000
+			},
+			"text": " sender, which is like the node is sent to, and a justification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 410000
+			},
+			"text": " which is a set of messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " The protocol message is dependency of the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 418000
+			},
+			"text": " If it's like in the justification or in those"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 420000
+			},
+			"text": " justifications, basically if there's pre-block pointers or"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 423000
+			},
+			"text": " pre-hash pointers to it, then it's a dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 428000
+			},
+			"text": " Latest message is one which is kind of, there's no, there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 429000
+			},
+			"text": " nothing earlier, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 433000
+			},
+			"text": " So dependencies earlier, if you're not a dependency then you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " later, and a latest message is kind of extreme on there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 440000
+			},
+			"text": " So the way that the binary consensus works is you look at"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 442000
+			},
+			"text": " all the validators latest messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 445000
+			},
+			"text": " If more of them by weight have zero, then you pick zero, and if"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 447000
+			},
+			"text": " more of them by weight have one, then you pick zero, then you pick"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 448000
+			},
+			"text": " one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 452000
+			},
+			"text": " So basically, if this, so the score of an estimate is the sum of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 457000
+			},
+			"text": " the validators who have latest messages who have that estimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:40,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 460000
+			},
+			"text": " And if the score on zero is more than zero, one, the estimator"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 460000,
+				"to": 464000
+			},
+			"text": " returns zero, otherwise it returns one, otherwise, and if it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 466000
+			},
+			"text": " a tie, then it returns its kind of exception."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 473000
+			},
+			"text": " So, so that's kind of a definition of estimator, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 477000
+			},
+			"text": " kind of going to be necessary for us to have the concept of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 478000
+			},
+			"text": " deciding on safe estimates."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 481000
+			},
+			"text": " So Byzantine faults are kind of this interesting and tricky thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " Basically, each of these nodes have, or making messages where"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 487000
+			},
+			"text": " they, or they attest to what they've seen from other nodes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 490000
+			},
+			"text": " And if it's ever the case that I have a set of messages where"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:15,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 495000
+			},
+			"text": " different nodes attest to having seen some node make messages that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 495000,
+				"to": 500000
+			},
+			"text": " could never have possibly been made by a single node, then we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 502000
+			},
+			"text": " have a Byzantine fault."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 504000
+			},
+			"text": " Because basically a single nodes with the way they're characterized"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 509000
+			},
+			"text": " is that they follow protocol executions according to the, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 512000
+			},
+			"text": " the protocol executions in the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " So, so here, equivocation is this property that two nodes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " are node isn't actually a single threaded."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:44,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 524000
+			},
+			"text": " And it means that they've made two messages, neither of which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 524000,
+				"to": 525000
+			},
+			"text": " in the dependency of the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 528000
+			},
+			"text": " So rather than including their messages in each other and having"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 530000
+			},
+			"text": " a single thread, they have a, it's multi-threaded."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 534000
+			},
+			"text": " And we can, we basically are going to be able to identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 536000
+			},
+			"text": " Byzantine nodes by their equivocations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 539000
+			},
+			"text": " And we can, like, you know, like count them all up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 541000
+			},
+			"text": " We can measure their weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 543000
+			},
+			"text": " And then we can define protocol states as all of the sets of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546000
+			},
+			"text": " messages that evidence less than some of the defaults."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 549000
+			},
+			"text": " Then we define protocol executions just as super sets in those"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:10,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 550000
+			},
+			"text": " things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 550000,
+				"to": 552000
+			},
+			"text": " And then we're basically done."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 557000
+			},
+			"text": " The binary estimate safety basically means that the, so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 559000
+			},
+			"text": " estimate is safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 561000
+			},
+			"text": " It gives them fault tolerance in some state."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " If for all future states, that estimate is also the estimator"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 567000
+			},
+			"text": " in the future states."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 568000
+			},
+			"text": " So there's, like, this invariance, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:29,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 569000
+			},
+			"text": " All future states will return zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 571000
+			},
+			"text": " All future states will return one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 574000
+			},
+			"text": " And because of the way we constructed this, this satisfies our"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 575000
+			},
+			"text": " safety proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 577000
+			},
+			"text": " They all have future states unless there's T faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 579000
+			},
+			"text": " If they have future states, they have consensus safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582000
+			},
+			"text": " And so we have a binary consensus protocol with safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 586000
+			},
+			"text": " And, you know, this is kind of where we can relax because this was,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 589000
+			},
+			"text": " that was all the hard -- that was most of the hard work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 592000
+			},
+			"text": " Now we're going to find the block changes in this protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 594000
+			},
+			"text": " And it's really going to be a lot easier because we've already"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 596000
+			},
+			"text": " done most of the work."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 601000
+			},
+			"text": " So the blocks kind of look very similar to the messages for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 603000
+			},
+			"text": " binary consensus only instead of having a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 607000
+			},
+			"text": " There's another block in the first -- in the estimate spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 610000
+			},
+			"text": " So every block kind of has a pre -- every block kind of has a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 613000
+			},
+			"text": " pre-block, a sender, and justification."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 616000
+			},
+			"text": " And there's this thing called the Genesis block."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " And like the -- and this is kind of the heights -- the heights of"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 621000
+			},
+			"text": " the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 625000
+			},
+			"text": " So, you know, this is me defining like all of the blocks being"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 627000
+			},
+			"text": " all the blocks and all the heights."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 631000
+			},
+			"text": " So there's a couple more definitions that we need."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 635000
+			},
+			"text": " Basically, instead of having the estimate just be the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 637000
+			},
+			"text": " we're going to have the estimate be a member of the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 638000
+			},
+			"text": " And that's what this represents."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 642000
+			},
+			"text": " Like, B block one is in the blockchain of block two."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:47,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 647000
+			},
+			"text": " And then the score of a block is the weight of validators whose"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 647000,
+				"to": 656000
+			},
+			"text": " latest messages are -- have the block in their blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660000
+			},
+			"text": " So if -- if -- if -- if -- like five weight of the validators have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 664000
+			},
+			"text": " block A in their latest blockchains and three of the weight have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 667000
+			},
+			"text": " block B in the latest blockchains and block A will have a higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:08,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 668000
+			},
+			"text": " score."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 668000,
+				"to": 670000
+			},
+			"text": " So then we can have this fork choice rule."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 672000
+			},
+			"text": " It's called the greedy, heaviest observer sub-treat."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 674000
+			},
+			"text": " You start at the Genesis block, you look at the children of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 676000
+			},
+			"text": " Genesis block, which are the blocks that have a pre-block pointer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 679000
+			},
+			"text": " to the Genesis block, and you ask what are their scores and their"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682000
+			},
+			"text": " scores are given by whether or not -- or how much of the weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:25,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 685000
+			},
+			"text": " of the validators latest messages are on those blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 685000,
+				"to": 688000
+			},
+			"text": " And then you pick the best child and then you kind of repeat the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:31,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 691000
+			},
+			"text": " process where, again, you calculate the scores for each of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 691000,
+				"to": 695000
+			},
+			"text": " blocks by looking at the latest messages and seeing if -- whose"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 698000
+			},
+			"text": " validators latest messages are on those blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 702000
+			},
+			"text": " And then you pick the block with the highest score until at some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 704000
+			},
+			"text": " point you get to a block with no children."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 707000
+			},
+			"text": " And that kind of represents the whole fork choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " The cool thing here is that protocol states and state"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 712000
+			},
+			"text": " transitions are defined exactly as before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 714000
+			},
+			"text": " There is literally no change, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 716000
+			},
+			"text": " We just like -- the tech Byzantine fault is exactly the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 717000
+			},
+			"text": " way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 719000
+			},
+			"text": " Divine protocol states and sets of messages with less than some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 722000
+			},
+			"text": " faults and state transitions as supersets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 725000
+			},
+			"text": " And then we can define estimate safety for the block -- block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 726000
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 728000
+			},
+			"text": " And basically it's very similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731000
+			},
+			"text": " It means that for all future protocol states, this block is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 734000
+			},
+			"text": " in the block chain that we're going to choose in those future"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 735000
+			},
+			"text": " states."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 736000
+			},
+			"text": " So a block is safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 739000
+			},
+			"text": " If in all future fork choice rules that you make, that block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 740000
+			},
+			"text": " will be in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " So -- and that was actually it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 747000
+			},
+			"text": " Because all the other stuff -- the specification is really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 749000
+			},
+			"text": " kind of like done there."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 752000
+			},
+			"text": " Because -- and we got to benefit from all of the work we did"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 755000
+			},
+			"text": " earlier, from the safety proof and the binary consensus, we got"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 760000
+			},
+			"text": " to re-use most of those -- most of that work and only had to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:47,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 767000
+			},
+			"text": " redefine -- only had to define the message type, the score of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 767000,
+				"to": 772000
+			},
+			"text": " blocks, the fork choice rule, and safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 773000
+			},
+			"text": " So that's pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 775000
+			},
+			"text": " We were able to go from the binary consensus to the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 777000
+			},
+			"text": " chain consensus with a minimum change."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 778000
+			},
+			"text": " Safety oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 779000
+			},
+			"text": " This is kind of important."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 782000
+			},
+			"text": " It's kind of important that we are able to detect safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 784000
+			},
+			"text": " I'm not sure we're having this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789000
+			},
+			"text": " So -- no -- like what I've shown so far is if you were to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:14,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 794000
+			},
+			"text": " decisions on safe estimates, then it would be consensus safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 794000,
+				"to": 798000
+			},
+			"text": " But you might -- you might actually need a way to figure out if"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:19,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 799000
+			},
+			"text": " that's the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 799000,
+				"to": 801000
+			},
+			"text": " So we have a couple of definitions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 804000
+			},
+			"text": " And this -- I'm going to give -- give like a simple way to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 805000
+			},
+			"text": " this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:28,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 808000
+			},
+			"text": " So a validator sees another validator agreeing on an"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,000",
+				"to": "00:13:29,000"
+			},
+			"offsets": {
+				"from": 808000,
+				"to": 809000
+			},
+			"text": " estimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 809000,
+				"to": 814000
+			},
+			"text": " If the latest -- in the latest message of a validator, I -- in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 817000
+			},
+			"text": " their justification, the latest message that you see from"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 821000
+			},
+			"text": " validator J has an estimate that agrees with the estimate that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 824000
+			},
+			"text": " we're trying to say is safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " An agreement in the binary consensus means that they are the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 828000
+			},
+			"text": " same bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:13:51,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 831000
+			},
+			"text": " And the block chain consensus means that they are in the block -- in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 831000,
+				"to": 833000
+			},
+			"text": " the block chain of the other block."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 837000
+			},
+			"text": " So -- so VI sees VJ means that the validator I sees the latest"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 839000
+			},
+			"text": " message from validator J that agrees."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 841000
+			},
+			"text": " And there's another definition here that's cropped out."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " And it basically says that VI can't see VJ disagree, which means"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 848000
+			},
+			"text": " that they -- there's no new latest message from GJ that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 850000
+			},
+			"text": " could see that doesn't agree with the estimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:14,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 854000
+			},
+			"text": " And so basically, if there's a set of validators who can't -- who"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 854000,
+				"to": 859000
+			},
+			"text": " see each other agree and can't see each other disagree, it turns"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:24,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 864000
+			},
+			"text": " out that if they have some number of weight -- some amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 864000,
+				"to": 870000
+			},
+			"text": " weight -- and that weight is more than -- more than half the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 873000
+			},
+			"text": " weight, then you -- then you can actually show that there's some"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 874000
+			},
+			"text": " amount of fault tolerance."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 877000
+			},
+			"text": " But our safety definition requires that we have T fault -- we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 879000
+			},
+			"text": " can tolerate up to T faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 884000
+			},
+			"text": " However, there might already be some initial faults in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 885000
+			},
+			"text": " view."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:46,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 886000
+			},
+			"text": " So we kind of subtract that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 886000,
+				"to": 892000
+			},
+			"text": " So basically, as long as the -- this is kind of the overlap"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:58,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 898000
+			},
+			"text": " between two sets of validators that -- like the overlap and weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 898000,
+				"to": 902000
+			},
+			"text": " of the validators in the clique, if that's more than the fault"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:05,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 905000
+			},
+			"text": " tolerance, then we have safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 905000,
+				"to": 907000
+			},
+			"text": " It's very similar to a traditional kind of consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 910000
+			},
+			"text": " safety proof only it's working on these estimates instead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 911000
+			},
+			"text": " And the intuition is quite clear."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 914000
+			},
+			"text": " Basically, in the clique, they can't convince each other that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 915000
+			},
+			"text": " they've seen something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 918000
+			},
+			"text": " And if they have more than half the weight, then whoever can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:20,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 920000
+			},
+			"text": " convince them from outside the clique won't have enough weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 922000
+			},
+			"text": " to actually contribute."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 923000
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 924000
+			},
+			"text": " So that actually was a hard part also."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:26,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 926000
+			},
+			"text": " But we're getting through it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 926000,
+				"to": 927000
+			},
+			"text": " We're almost done."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " So subjective fault tolerance thresholds is a pretty cool thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 933000
+			},
+			"text": " Basically, if you have two protocols, which have the same,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:35,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 935000
+			},
+			"text": " which are the same, except for the fact that they operate two"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 935000,
+				"to": 937000
+			},
+			"text": " different fault tolerance thresholds, and one of them is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " small on the other, then consensus -- the no to make decisions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 943000
+			},
+			"text": " in these protocols will actually have consensus safety as long"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 946000
+			},
+			"text": " as the number of faults exhibited in their union of their views"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 949000
+			},
+			"text": " is less than the smallest of their fault tolerance thresholds."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 951000
+			},
+			"text": " And this is really cool because having fault tolerance thresholds"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:15:54,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 954000
+			},
+			"text": " in the protocol makes it easier to attack and poses a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,000",
+				"to": "00:15:57,000"
+			},
+			"offsets": {
+				"from": 954000,
+				"to": 957000
+			},
+			"text": " of economic problems that are out of scope for this talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 957000,
+				"to": 960000
+			},
+			"text": " but stuff about cartelization and focal points."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 961000
+			},
+			"text": " Validator rotation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 962000
+			},
+			"text": " This is an exciting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 965000
+			},
+			"text": " So I'm going to change the structure of the blockchain a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 968000
+			},
+			"text": " bit to add weights to the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 969000
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:11,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 971000
+			},
+			"text": " Before we had validator weights, it's going to be a global thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 971000,
+				"to": 973000
+			},
+			"text": " Now we're going to add weights to the justification."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 976000
+			},
+			"text": " So the blocks are going to be the same as before."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 980000
+			},
+			"text": " They have a block, a sender, a justification, and the justification"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 982000
+			},
+			"text": " now has this additional thing called the weights."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 987000
+			},
+			"text": " And then we need to redefine the score of a block to use the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 991000
+			},
+			"text": " weights of the parent's block in order to actually choose that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 992000
+			},
+			"text": " block."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 996000
+			},
+			"text": " So if block A has weights, has a certain set of weights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 999000
+			},
+			"text": " then the children block A, which are the blocks that have a pre-block"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1002000
+			},
+			"text": " pointer block A, need to be chosen according to those weights."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1005000
+			},
+			"text": " And not a single one of the other definitions need to change."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1009000
+			},
+			"text": " So this is really like all that we need is due to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1012000
+			},
+			"text": " consensus safety--sorry, to do validator rotation with consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1016000
+			},
+			"text": " safety, basically because all of the definitions satisfy the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:05,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1025000
+			},
+			"text": " abstract safety proof, you know, because they have a common"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1025000,
+				"to": 1028000
+			},
+			"text": " future unless there's T faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1029000
+			},
+			"text": " And they only decide on safe estimates."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1031000
+			},
+			"text": " So liveness is an interesting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1034000
+			},
+			"text": " You know, liveness means it knows like a guarantee to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:15,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1035000
+			},
+			"text": " eventually make a decision."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1035000,
+				"to": 1037000
+			},
+			"text": " This is a result in consensus literature called FLP and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1039000
+			},
+			"text": " possibility that means that, you know, you can't really be"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1044000
+			},
+			"text": " live and safe in an asynchronous network without using entropy"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1049000
+			},
+			"text": " or, oh no, without using entropy or cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1053000
+			},
+			"text": " But actually we have kind of a bigger issue than just FLP"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1056000
+			},
+			"text": " and possibility, which is that we never said anything about"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1059000
+			},
+			"text": " when validators were actually meant to send blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1064000
+			},
+			"text": " They actually--we just haven't specified the X."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1066000
+			},
+			"text": " All we've really talked about is safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1071000
+			},
+			"text": " And so, however, we're going to see in our experimental results"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1076000
+			},
+			"text": " in just a second that there are sets of messages that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1078000
+			},
+			"text": " could get to which are safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1081000
+			},
+			"text": " And that means that as long as we can make those shapes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:03,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1083000
+			},
+			"text": " then we can have liveness."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1083000,
+				"to": 1089000
+			},
+			"text": " And we kind of know that in a synchronous network or in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:13,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1093000
+			},
+			"text": " partially synchronous network, nodes can use timeouts to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1093000,
+				"to": 1096000
+			},
+			"text": " this kind of message shape, you know, up to some number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1097000
+			},
+			"text": " faults."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1104000
+			},
+			"text": " And so if we were to pick one of these, then we could give a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1108000
+			},
+			"text": " liveness proof for some strategy that says, oh, look, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:31,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1111000
+			},
+			"text": " guys have to figure out how to make a tag of messages in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,000",
+				"to": "00:18:34,000"
+			},
+			"offsets": {
+				"from": 1111000,
+				"to": 1114000
+			},
+			"text": " form."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1114000,
+				"to": 1117000
+			},
+			"text": " But, you know, we're not really going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:42,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1122000
+			},
+			"text": " We're just going to leave liveness out of the story for now."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,000",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1122000,
+				"to": 1124000
+			},
+			"text": " So I'm going to--this is kind of the--maybe the more exciting"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1125000
+			},
+			"text": " part of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " So this is--we're going to look at actually and try to see what"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1129000
+			},
+			"text": " this looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " So these are three validators running the binary consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1137000
+			},
+			"text": " And they--the color here means that they've reached safety with"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:00,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1140000
+			},
+			"text": " some amount of fault tolerance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1140000,
+				"to": 1145000
+			},
+			"text": " And if they--the numbers in here, you see there's ones and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1149000
+			},
+			"text": " one's a zero, maybe a little bit hard to see, the numbers are"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1150000
+			},
+			"text": " their estimates."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:13,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1153000
+			},
+			"text": " And they need to have the estimate be the max weight of the latest"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1153000,
+				"to": 1155000
+			},
+			"text": " messages they've seen in the justifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:20,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1160000
+			},
+			"text": " These arrows, these lines are the point to the messages that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1160000,
+				"to": 1161000
+			},
+			"text": " are included in the justification."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1164000
+			},
+			"text": " Remember that the data structure is estimate, which is a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1167000
+			},
+			"text": " sender, which is like, you know, a validator one, a validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1170000
+			},
+			"text": " and the justification, which is encoded with this structure."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:34,000"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1174000
+			},
+			"text": " It's showing, you know, a few more nodes coming to consensus on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1174000,
+				"to": 1175000
+			},
+			"text": " a bit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:40,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1180000
+			},
+			"text": " So the darker color means that they have more fault tolerance."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1180000,
+				"to": 1183000
+			},
+			"text": " This is kind of cool because it illustrates the flexibility that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:46,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1186000
+			},
+			"text": " we have about the order of message passing because we haven't"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,000",
+				"to": "00:19:50,000"
+			},
+			"offsets": {
+				"from": 1186000,
+				"to": 1190000
+			},
+			"text": " said really anything at all, actually, about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1190000,
+				"to": 1192000
+			},
+			"text": " Now the blockchain consensus protocol is a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1194000
+			},
+			"text": " complicated to think about because it's got these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1196000
+			},
+			"text": " called pre-block pointers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1199000
+			},
+			"text": " The dotted lines, these thin ones are justification pointers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1200000
+			},
+			"text": " These are pre-block pointers."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1205000
+			},
+			"text": " The blue ones are the latest fork choice by the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1206000
+			},
+			"text": " And the red one is our fork choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1209000
+			},
+			"text": " So basically, like, you know, the way the fork choice works is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1212000
+			},
+			"text": " okay, you know, so a validator one has the most weight."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:15,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1215000
+			},
+			"text": " So from the genesis block, we go to validator one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1215000,
+				"to": 1218000
+			},
+			"text": " And here, this only has one parent."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1221000
+			},
+			"text": " And here we could have went that way or this way, but actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1224000
+			},
+			"text": " the latest messages are here, there, and there, and all of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1225000
+			},
+			"text": " have their weight here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1228000
+			},
+			"text": " And so the weight is all on this fork and not on that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:29,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1229000
+			},
+			"text": " And so we move left."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1229000,
+				"to": 1232000
+			},
+			"text": " And then here, you know, there's a pre-block pointer here and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1234000
+			},
+			"text": " also another one there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1238000
+			},
+			"text": " And if you look at the latest messages, there's more of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1239000
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,000",
+				"to": "00:20:43,000"
+			},
+			"offsets": {
+				"from": 1239000,
+				"to": 1243000
+			},
+			"text": " And so that's why we're going to go there."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1243000,
+				"to": 1252000
+			},
+			"text": " And what this kind of shows you here is that validator three"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1258000
+			},
+			"text": " has more weight than validator one."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:00,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1260000
+			},
+			"text": " Right, so the reason why we initially chose this actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,000",
+				"to": "00:21:02,000"
+			},
+			"offsets": {
+				"from": 1260000,
+				"to": 1262000
+			},
+			"text": " wasn't because validator zero had more weight is because all"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,000",
+				"to": "00:21:05,000"
+			},
+			"offsets": {
+				"from": 1262000,
+				"to": 1265000
+			},
+			"text": " of their latest messages are on this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,000",
+				"to": "00:21:10,000"
+			},
+			"offsets": {
+				"from": 1265000,
+				"to": 1270000
+			},
+			"text": " So here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1270000,
+				"to": 1273000
+			},
+			"text": " So this is kind of the blockchain consensus kind of an action"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1275000
+			},
+			"text": " for three nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:18,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1278000
+			},
+			"text": " They're going to, like, use the green, heavy, subserve"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,000",
+				"to": "00:21:22,000"
+			},
+			"offsets": {
+				"from": 1278000,
+				"to": 1282000
+			},
+			"text": " fork choice rule, where every choice in the road, first we went"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,000",
+				"to": "00:21:24,000"
+			},
+			"offsets": {
+				"from": 1282000,
+				"to": 1284000
+			},
+			"text": " that way, and then we went that way because more validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1284000,
+				"to": 1285000
+			},
+			"text": " made blocks there."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:28,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1288000
+			},
+			"text": " Here, then we fork, right, there's this forking on the top."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,000",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1288000,
+				"to": 1290000
+			},
+			"text": " And then here we get chief safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:33,000"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1293000
+			},
+			"text": " Right, this kind of, one of these things we colored to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1293000,
+				"to": 1295000
+			},
+			"text": " synchronous Byzantine fault tolerance safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:38,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1298000
+			},
+			"text": " And notice that they fork at the top and they have safety at"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1298000,
+				"to": 1301000
+			},
+			"text": " the bottom, and the way we calculate safety here, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1303000
+			},
+			"text": " is using the safety oracle that I described earlier where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:45,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1305000
+			},
+			"text": " look at these cliques, which see each other green, can't see"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,000",
+				"to": "00:21:47,000"
+			},
+			"offsets": {
+				"from": 1305000,
+				"to": 1307000
+			},
+			"text": " each other disagree."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,000",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1307000,
+				"to": 1310000
+			},
+			"text": " Now we can watch more nodes kind of go faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:21:54,000"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1314000
+			},
+			"text": " And here's the interesting stuff, where a bunch of blocks will"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1314000,
+				"to": 1316000
+			},
+			"text": " get finalized at the same time sometimes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1319000
+			},
+			"text": " Because every, this is a thing to kind of realize blocks can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:02,000"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1322000
+			},
+			"text": " contribute to the finality of many, many blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1322000,
+				"to": 1327000
+			},
+			"text": " And basically because every block you have will agree and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1330000
+			},
+			"text": " disagree with other blocks, a large number of them, and which"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:12,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1332000
+			},
+			"text": " blocks you disagree with and agree with actually will"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,000",
+				"to": "00:22:15,000"
+			},
+			"offsets": {
+				"from": 1332000,
+				"to": 1335000
+			},
+			"text": " determine how the safety oracle turns up."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,000",
+				"to": "00:22:18,000"
+			},
+			"offsets": {
+				"from": 1335000,
+				"to": 1338000
+			},
+			"text": " And so remember the colors not forking up here at the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,000",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1338000,
+				"to": 1339000
+			},
+			"text": " lots of forking."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1342000
+			},
+			"text": " Like look at the red line, it kind of goes and changes, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " Like you don't really know if these blocks are confirmed or"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1347000
+			},
+			"text": " they're going to be consensus, but the ones down here are, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1350000
+			},
+			"text": " So it's very much like a forky thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:32,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1352000
+			},
+			"text": " It's a kind of a blockchain like thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,000",
+				"to": "00:22:34,000"
+			},
+			"offsets": {
+				"from": 1352000,
+				"to": 1354000
+			},
+			"text": " But this is really, this is really what I'm talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1354000,
+				"to": 1357000
+			},
+			"text": " This is kind of what I was saying when I say that I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:40,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1360000
+			},
+			"text": " achieve asynchronous Byzantine fault tolerance consensus with"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1360000,
+				"to": 1363000
+			},
+			"text": " the overhead of Nakamoto consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1368000
+			},
+			"text": " If they do manage to send the messages around Robin, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1373000
+			},
+			"text": " eventually you get to a point where every additional message"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:56,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1376000
+			},
+			"text": " finalizes an additional block."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1376000,
+				"to": 1380000
+			},
+			"text": " And this kind of overhead for finality of consensus at every"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,000",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1380000,
+				"to": 1383000
+			},
+			"text": " block, like one message per block for finality at any level"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:06,000"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1386000
+			},
+			"text": " of fault tolerance threshold is like theoretically optimal because"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,000",
+				"to": "00:23:09,000"
+			},
+			"offsets": {
+				"from": 1386000,
+				"to": 1389000
+			},
+			"text": " you can't really get lower than one message per block."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1389000,
+				"to": 1391000
+			},
+			"text": " And this is kind of a little interesting here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:15,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1395000
+			},
+			"text": " So this validator has more weight than these two."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,000",
+				"to": "00:23:19,000"
+			},
+			"offsets": {
+				"from": 1395000,
+				"to": 1399000
+			},
+			"text": " This is why the fourth choice rule, this validator, even though"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,000",
+				"to": "00:23:22,000"
+			},
+			"offsets": {
+				"from": 1399000,
+				"to": 1402000
+			},
+			"text": " you saw that block, would have preferred to build on his initial"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:22,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1402000,
+				"to": 1405000
+			},
+			"text": " block than these ones because these two guys have less weight"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:27,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1407000
+			},
+			"text": " than this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1407000,
+				"to": 1410000
+			},
+			"text": " And so this is kind of what I mean when I say that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1413000
+			},
+			"text": " achieve really, really efficient asynchronous consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:34,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1414000
+			},
+			"text": " safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,000",
+				"to": "00:23:39,000"
+			},
+			"offsets": {
+				"from": 1414000,
+				"to": 1419000
+			},
+			"text": " So somehow, you know, I know it's like a bit much, but I"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:39,000",
+				"to": "00:23:45,000"
+			},
+			"offsets": {
+				"from": 1419000,
+				"to": 1425000
+			},
+			"text": " shared consensus safety proof that talks about these local"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,000",
+				"to": "00:23:48,000"
+			},
+			"offsets": {
+				"from": 1425000,
+				"to": 1428000
+			},
+			"text": " determinations of estimate safety and how they're related to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,000",
+				"to": "00:23:50,000"
+			},
+			"offsets": {
+				"from": 1428000,
+				"to": 1430000
+			},
+			"text": " consensus safety."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1430000,
+				"to": 1434000
+			},
+			"text": " And we're able to define a blockchain consensus protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:23:57,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1437000
+			},
+			"text": " basically by first defining the binary because that's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,000",
+				"to": "00:23:59,000"
+			},
+			"offsets": {
+				"from": 1437000,
+				"to": 1439000
+			},
+			"text": " protocol that satisfies the safety proof and making a really"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1439000,
+				"to": 1444000
+			},
+			"text": " minor change that doesn't affect the safety proof at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:07,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1447000
+			},
+			"text": " And then we were able to actually add validator rotation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,000",
+				"to": "00:24:11,000"
+			},
+			"offsets": {
+				"from": 1447000,
+				"to": 1451000
+			},
+			"text": " improve finality thresholds also with very minimal changes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,000",
+				"to": "00:24:12,000"
+			},
+			"offsets": {
+				"from": 1451000,
+				"to": 1452000
+			},
+			"text": " the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,000",
+				"to": "00:24:14,000"
+			},
+			"offsets": {
+				"from": 1452000,
+				"to": 1454000
+			},
+			"text": " And the reason why we can do this and why it's like so little"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,000",
+				"to": "00:24:17,000"
+			},
+			"offsets": {
+				"from": 1454000,
+				"to": 1457000
+			},
+			"text": " work is because of the fact that the proofs that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,000",
+				"to": "00:24:20,000"
+			},
+			"offsets": {
+				"from": 1457000,
+				"to": 1460000
+			},
+			"text": " lying on are not changing while we're making these changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,000",
+				"to": "00:24:21,000"
+			},
+			"offsets": {
+				"from": 1460000,
+				"to": 1461000
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,000",
+				"to": "00:24:25,000"
+			},
+			"offsets": {
+				"from": 1461000,
+				"to": 1465000
+			},
+			"text": " We have abstract safety proofs, concrete protocols which we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,000",
+				"to": "00:24:29,000"
+			},
+			"offsets": {
+				"from": 1465000,
+				"to": 1469000
+			},
+			"text": " tweak without changing the safety proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,000",
+				"to": "00:24:32,000"
+			},
+			"offsets": {
+				"from": 1469000,
+				"to": 1472000
+			},
+			"text": " And, you know, we were able to achieve this really nice kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,000",
+				"to": "00:24:35,000"
+			},
+			"offsets": {
+				"from": 1472000,
+				"to": 1475000
+			},
+			"text": " latency numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,000",
+				"to": "00:24:39,000"
+			},
+			"offsets": {
+				"from": 1475000,
+				"to": 1479000
+			},
+			"text": " And, you know, I think that, you know, this is hopefully going"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,000",
+				"to": "00:24:40,000"
+			},
+			"offsets": {
+				"from": 1479000,
+				"to": 1480000
+			},
+			"text": " to be educational."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,000",
+				"to": "00:24:43,000"
+			},
+			"offsets": {
+				"from": 1480000,
+				"to": 1483000
+			},
+			"text": " Hopefully, it's going to lead to new consensus protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:43,000",
+				"to": "00:24:45,000"
+			},
+			"offsets": {
+				"from": 1483000,
+				"to": 1485000
+			},
+			"text": " You know, we actually have a bunch of consensus protocols that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,000",
+				"to": "00:24:47,000"
+			},
+			"offsets": {
+				"from": 1485000,
+				"to": 1487000
+			},
+			"text": " weren't mentioned here that were derived according to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,000",
+				"to": "00:24:51,000"
+			},
+			"offsets": {
+				"from": 1487000,
+				"to": 1491000
+			},
+			"text": " process for replicating things like concurrent block structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,000",
+				"to": "00:24:55,000"
+			},
+			"offsets": {
+				"from": 1491000,
+				"to": 1495000
+			},
+			"text": " instead of sequential ones or like an integer could be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,000",
+				"to": "00:24:56,000"
+			},
+			"offsets": {
+				"from": 1495000,
+				"to": 1496000
+			},
+			"text": " for time-snapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,000",
+				"to": "00:24:59,000"
+			},
+			"offsets": {
+				"from": 1496000,
+				"to": 1499000
+			},
+			"text": " So here's a little secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,000",
+				"to": "00:25:04,000"
+			},
+			"offsets": {
+				"from": 1499000,
+				"to": 1504000
+			},
+			"text": " And just now I published the prototype for the -- for these --"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,000",
+				"to": "00:25:09,000"
+			},
+			"offsets": {
+				"from": 1504000,
+				"to": 1509000
+			},
+			"text": " for binary consensus and blockchain consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,000",
+				"to": "00:25:13,000"
+			},
+			"offsets": {
+				"from": 1509000,
+				"to": 1513000
+			},
+			"text": " And also this white -- like a specification in very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,000",
+				"to": "00:25:16,000"
+			},
+			"offsets": {
+				"from": 1513000,
+				"to": 1516000
+			},
+			"text": " detail of all of this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:16,000",
+				"to": "00:25:20,000"
+			},
+			"offsets": {
+				"from": 1516000,
+				"to": 1520000
+			},
+			"text": " And more incomplete description of the correct microstruction"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,000",
+				"to": "00:25:23,000"
+			},
+			"offsets": {
+				"from": 1520000,
+				"to": 1523000
+			},
+			"text": " process given at a very, very high level of extraction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,000",
+				"to": "00:25:26,000"
+			},
+			"offsets": {
+				"from": 1523000,
+				"to": 1526000
+			},
+			"text": " much higher than I even hinted at today."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,000",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1526000,
+				"to": 1530000
+			},
+			"text": " So, you know, this kind of represents the state of the work"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1532000
+			},
+			"text": " today."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:36,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1536000
+			},
+			"text": " And, you know, I'm excited for you guys to check it out and to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,000",
+				"to": "00:25:38,000"
+			},
+			"offsets": {
+				"from": 1536000,
+				"to": 1538000
+			},
+			"text": " take a look at the correct microstruction consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1538000,
+				"to": 1541000
+			},
+			"text": " protocols and see if, you know, you find them as easy to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:44,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1544000
+			},
+			"text": " reason about as I do."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,000",
+				"to": "00:25:46,000"
+			},
+			"offsets": {
+				"from": 1544000,
+				"to": 1546000
+			},
+			"text": " So, acknowledgments and then we're done, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,000",
+				"to": "00:25:51,000"
+			},
+			"offsets": {
+				"from": 1546000,
+				"to": 1551000
+			},
+			"text": " So, Nate and Danny worked really hard to help me get ready for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:51,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1551000,
+				"to": 1554000
+			},
+			"text": " DevCon and get the code published, get the papers ready,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:25:58,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1558000
+			},
+			"text": " and then we're done with the -- we're done with the -- we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,000",
+				"to": "00:26:02,000"
+			},
+			"offsets": {
+				"from": 1558000,
+				"to": 1562000
+			},
+			"text": " done with the -- we're done with the -- we're done with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,000",
+				"to": "00:26:05,000"
+			},
+			"offsets": {
+				"from": 1562000,
+				"to": 1565000
+			},
+			"text": " -- we're done with the -- we're done with the -- we're done"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,000",
+				"to": "00:26:08,000"
+			},
+			"offsets": {
+				"from": 1565000,
+				"to": 1568000
+			},
+			"text": " with the -- we're done with the -- we're done with the -- we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,000",
+				"to": "00:26:11,000"
+			},
+			"offsets": {
+				"from": 1568000,
+				"to": 1571000
+			},
+			"text": " done with the -- we're done with the -- we're done with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,000",
+				"to": "00:26:14,000"
+			},
+			"offsets": {
+				"from": 1571000,
+				"to": 1574000
+			},
+			"text": " -- we're done with the -- we're done with the -- we're done"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,000",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1574000,
+				"to": 1578000
+			},
+			"text": " with the -- we're done with the -- we're done with the -- we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1581000
+			},
+			"text": " done with the -- we're done with the -- we're done with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1584000
+			},
+			"text": " -- you know, so thanks for -- thanks a lot for everyone, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:25,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1585000
+			},
+			"text": " thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,000",
+				"to": "00:26:27,000"
+			},
+			"offsets": {
+				"from": 1585000,
+				"to": 1587000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,000",
+				"to": "00:26:29,000"
+			},
+			"offsets": {
+				"from": 1587000,
+				"to": 1589000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1589000,
+				"to": 1592000
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:35,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1595000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1595000,
+				"to": 1599000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:41,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1601000
+			},
+			"text": " [silence]"
+		}
+	]
+}

@@ -1,0 +1,1506 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6320
+			},
+			"text": " Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,320",
+				"to": "00:00:07,320"
+			},
+			"offsets": {
+				"from": 6320,
+				"to": 7320
+			},
+			"text": " So I'm here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,320",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 7320,
+				"to": 13520
+			},
+			"text": " I'm going to speak a little bit about developer communities and how Kari is trying to drive"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 20840
+			},
+			"text": " further a developer adoption for the Ethereum ecosystem and the projects within it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 26800
+			},
+			"text": " talk about the EF grant that we received and how we've been using that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:35,160"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 35160
+			},
+			"text": " So current community landscape for crypto projects, as many of you are familiar, consist of developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,160",
+				"to": "00:00:38,920"
+			},
+			"offsets": {
+				"from": 35160,
+				"to": 38920
+			},
+			"text": " users and thirdly token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,920",
+				"to": "00:00:45,720"
+			},
+			"offsets": {
+				"from": 38920,
+				"to": 45720
+			},
+			"text": " With few exceptions, the most successful projects today have really strong core developer ecosystems"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,720",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 45720,
+				"to": 49000
+			},
+			"text": " building on top of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,280"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54280
+			},
+			"text": " And we can learn a lot from the lessons of Web2 and apply that to Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,280",
+				"to": "00:00:58,440"
+			},
+			"offsets": {
+				"from": 54280,
+				"to": 58440
+			},
+			"text": " We don't need to reinvent the entire playbook."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,440",
+				"to": "00:01:00,560"
+			},
+			"offsets": {
+				"from": 58440,
+				"to": 60560
+			},
+			"text": " So there you have it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,560",
+				"to": "00:01:04,320"
+			},
+			"offsets": {
+				"from": 60560,
+				"to": 64320
+			},
+			"text": " This is how many of us think of our communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,320",
+				"to": "00:01:12,680"
+			},
+			"offsets": {
+				"from": 64320,
+				"to": 72680
+			},
+			"text": " But in many cases, this is what makes a really healthy Web3 community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,680",
+				"to": "00:01:20,040"
+			},
+			"offsets": {
+				"from": 72680,
+				"to": 80040
+			},
+			"text": " And that user group you want it to expand to take over and make all token holders users"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,040",
+				"to": "00:01:21,040"
+			},
+			"offsets": {
+				"from": 80040,
+				"to": 81040
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,040",
+				"to": "00:01:27,080"
+			},
+			"offsets": {
+				"from": 81040,
+				"to": 87080
+			},
+			"text": " Really what's important is that core kernel, the developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,080",
+				"to": "00:01:32,400"
+			},
+			"offsets": {
+				"from": 87080,
+				"to": 92400
+			},
+			"text": " So now we're just going to focus on that developer ecosystem and what to do there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,400",
+				"to": "00:01:39,320"
+			},
+			"offsets": {
+				"from": 92400,
+				"to": 99320
+			},
+			"text": " And some of these lessons can be learned and applied to user groups in more technical ecosystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,320",
+				"to": "00:01:43,680"
+			},
+			"offsets": {
+				"from": 99320,
+				"to": 103680
+			},
+			"text": " But for now I'm just going to focus on developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,680",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 103680,
+				"to": 110240
+			},
+			"text": " So one key component is have a technical community manager for technical communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:55,520"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 115520
+			},
+			"text": " It's really important that people can get into the code, answer questions, come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,520",
+				"to": "00:02:03,440"
+			},
+			"offsets": {
+				"from": 115520,
+				"to": 123440
+			},
+			"text": " creative demos, really inspire your users, your developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,440",
+				"to": "00:02:14,040"
+			},
+			"offsets": {
+				"from": 123440,
+				"to": 134040
+			},
+			"text": " A lot of times in this ecosystem we see pre-product, people investing in marketing and big pushes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,040",
+				"to": "00:02:19,840"
+			},
+			"offsets": {
+				"from": 134040,
+				"to": 139840
+			},
+			"text": " It's way more effective if people can actually get into the code or play around with a test"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,840",
+				"to": "00:02:23,040"
+			},
+			"offsets": {
+				"from": 139840,
+				"to": 143040
+			},
+			"text": " net or an SDK."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,040",
+				"to": "00:02:32,600"
+			},
+			"offsets": {
+				"from": 143040,
+				"to": 152600
+			},
+			"text": " And the best teams, so this is based off of 30+ interviews with developer community managers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,600",
+				"to": "00:02:36,320"
+			},
+			"offsets": {
+				"from": 152600,
+				"to": 156320
+			},
+			"text": " and developer relations, both in Web2 and Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,320",
+				"to": "00:02:42,520"
+			},
+			"offsets": {
+				"from": 156320,
+				"to": 162520
+			},
+			"text": " The best teams are focusing on key metrics and relentlessly iterating, keeping their eye"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,520",
+				"to": "00:02:46,640"
+			},
+			"offsets": {
+				"from": 162520,
+				"to": 166640
+			},
+			"text": " on those key metrics and just making sure that they're getting the engagement and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,640",
+				"to": "00:02:52,400"
+			},
+			"offsets": {
+				"from": 166640,
+				"to": 172400
+			},
+			"text": " adoption that they'd like to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,400",
+				"to": "00:02:58,240"
+			},
+			"offsets": {
+				"from": 172400,
+				"to": 178240
+			},
+			"text": " This is a framework which I really like for measuring the impact that you can have on"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,240",
+				"to": "00:02:59,800"
+			},
+			"offsets": {
+				"from": 178240,
+				"to": 179800
+			},
+			"text": " a developer community."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,800",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 179800,
+				"to": 184000
+			},
+			"text": " It's from Phil Legada of Nexmo."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 192680
+			},
+			"text": " And he has taken the pirate metrics of startups, so R, and then taken it all the way through"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:16,760"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 196760
+			},
+			"text": " to product because there's a loop back and a cycle there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,760",
+				"to": "00:03:18,280"
+			},
+			"offsets": {
+				"from": 196760,
+				"to": 198280
+			},
+			"text": " And it starts with awareness."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,280",
+				"to": "00:03:21,320"
+			},
+			"offsets": {
+				"from": 198280,
+				"to": 201320
+			},
+			"text": " So why should I use your platform?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,320",
+				"to": "00:03:25,440"
+			},
+			"offsets": {
+				"from": 201320,
+				"to": 205440
+			},
+			"text": " What is it just knowing that it's out there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,440",
+				"to": "00:03:30,680"
+			},
+			"offsets": {
+				"from": 205440,
+				"to": 210680
+			},
+			"text": " Then second acquisition, it's not good enough just to know that it's out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,680",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210680,
+				"to": 215000
+			},
+			"text": " Like I need a relationship with users of developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:41,400"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 221400
+			},
+			"text": " Either it's an MPM install, which is a little bit harder to track with metrics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,400",
+				"to": "00:03:46,720"
+			},
+			"offsets": {
+				"from": 221400,
+				"to": 226720
+			},
+			"text": " But you can use email strategies, these types of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,720",
+				"to": "00:03:54,440"
+			},
+			"offsets": {
+				"from": 226720,
+				"to": 234440
+			},
+			"text": " Having an engaged platform where people can ask questions, where people can interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,440",
+				"to": "00:03:58,280"
+			},
+			"offsets": {
+				"from": 234440,
+				"to": 238280
+			},
+			"text": " your content, get in touch with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,280",
+				"to": "00:04:03,200"
+			},
+			"offsets": {
+				"from": 238280,
+				"to": 243200
+			},
+			"text": " And what's really important is that this cycle flows all the way down into product."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,200",
+				"to": "00:04:10,760"
+			},
+			"offsets": {
+				"from": 243200,
+				"to": 250760
+			},
+			"text": " So if your community is not really involved in the decisions that you're making in product"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,760",
+				"to": "00:04:16,480"
+			},
+			"offsets": {
+				"from": 250760,
+				"to": 256480
+			},
+			"text": " and potentially even contributing to the code base, you're missing a big opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,480",
+				"to": "00:04:18,920"
+			},
+			"offsets": {
+				"from": 256480,
+				"to": 258920
+			},
+			"text": " there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,920",
+				"to": "00:04:21,120"
+			},
+			"offsets": {
+				"from": 258920,
+				"to": 261120
+			},
+			"text": " So what does CARI do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,120",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 261120,
+				"to": 266480
+			},
+			"text": " CARI is really focused on the first couple of areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:31,160"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 271160
+			},
+			"text": " So it's awareness for your project and acquisition."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,160",
+				"to": "00:04:39,120"
+			},
+			"offsets": {
+				"from": 271160,
+				"to": 279120
+			},
+			"text": " So people taking the first step, actually using your technology for the first time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,120",
+				"to": "00:04:47,960"
+			},
+			"offsets": {
+				"from": 279120,
+				"to": 287960
+			},
+			"text": " And our main focus is the Ethereum ecosystem and the tools, libraries and frameworks within"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,960",
+				"to": "00:04:50,960"
+			},
+			"offsets": {
+				"from": 287960,
+				"to": 290960
+			},
+			"text": " the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,960",
+				"to": "00:04:57,080"
+			},
+			"offsets": {
+				"from": 290960,
+				"to": 297080
+			},
+			"text": " And within our community, there are three main types of users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,080",
+				"to": "00:05:01,920"
+			},
+			"offsets": {
+				"from": 297080,
+				"to": 301920
+			},
+			"text": " So there are the readers who are coming to CARI to learn about how to use this technology"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,920",
+				"to": "00:05:05,760"
+			},
+			"offsets": {
+				"from": 301920,
+				"to": 305760
+			},
+			"text": " or just want to read an interesting article."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,760",
+				"to": "00:05:09,520"
+			},
+			"offsets": {
+				"from": 305760,
+				"to": 309520
+			},
+			"text": " Contributors, contributors are writers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,520",
+				"to": "00:05:13,160"
+			},
+			"offsets": {
+				"from": 309520,
+				"to": 313160
+			},
+			"text": " They are a rare breed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,160",
+				"to": "00:05:14,920"
+			},
+			"offsets": {
+				"from": 313160,
+				"to": 314920
+			},
+			"text": " They're hard to come by."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,920",
+				"to": "00:05:20,320"
+			},
+			"offsets": {
+				"from": 314920,
+				"to": 320320
+			},
+			"text": " But having a really good writer can make a huge difference for your project."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,320",
+				"to": "00:05:22,240"
+			},
+			"offsets": {
+				"from": 320320,
+				"to": 322240
+			},
+			"text": " And then communities."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,240",
+				"to": "00:05:24,160"
+			},
+			"offsets": {
+				"from": 322240,
+				"to": 324160
+			},
+			"text": " Communities keep content up to date."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,160",
+				"to": "00:05:25,160"
+			},
+			"offsets": {
+				"from": 324160,
+				"to": 325160
+			},
+			"text": " They interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,160",
+				"to": "00:05:27,240"
+			},
+			"offsets": {
+				"from": 325160,
+				"to": 327240
+			},
+			"text": " They engage with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,240",
+				"to": "00:05:30,480"
+			},
+			"offsets": {
+				"from": 327240,
+				"to": 330480
+			},
+			"text": " They point out gaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,480",
+				"to": "00:05:35,680"
+			},
+			"offsets": {
+				"from": 330480,
+				"to": 335680
+			},
+			"text": " And contributors and communities are an area which we're really focused on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,680",
+				"to": "00:05:40,360"
+			},
+			"offsets": {
+				"from": 335680,
+				"to": 340360
+			},
+			"text": " And I'll share a bit more about this in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,360",
+				"to": "00:05:43,840"
+			},
+			"offsets": {
+				"from": 340360,
+				"to": 343840
+			},
+			"text": " Before I jump into that, this is what CARI looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,840",
+				"to": "00:05:45,680"
+			},
+			"offsets": {
+				"from": 343840,
+				"to": 345680
+			},
+			"text": " So this is the homepage."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,680",
+				"to": "00:05:47,360"
+			},
+			"offsets": {
+				"from": 345680,
+				"to": 347360
+			},
+			"text": " This is for our first user group."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,360",
+				"to": "00:05:49,680"
+			},
+			"offsets": {
+				"from": 347360,
+				"to": 349680
+			},
+			"text": " This is for readers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,680",
+				"to": "00:05:51,280"
+			},
+			"offsets": {
+				"from": 349680,
+				"to": 351280
+			},
+			"text": " So they come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,280",
+				"to": "00:05:52,640"
+			},
+			"offsets": {
+				"from": 351280,
+				"to": 352640
+			},
+			"text": " They know where to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,640",
+				"to": "00:05:57,200"
+			},
+			"offsets": {
+				"from": 352640,
+				"to": 357200
+			},
+			"text": " They can read about topics which are important in the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,200",
+				"to": "00:06:03,520"
+			},
+			"offsets": {
+				"from": 357200,
+				"to": 363520
+			},
+			"text": " Getting started, finance, scaling, privacy, these types of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,520",
+				"to": "00:06:11,720"
+			},
+			"offsets": {
+				"from": 363520,
+				"to": 371720
+			},
+			"text": " Then essentially, an essential component is you need to be good at the single player"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,720",
+				"to": "00:06:12,720"
+			},
+			"offsets": {
+				"from": 371720,
+				"to": 372720
+			},
+			"text": " game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,720",
+				"to": "00:06:19,120"
+			},
+			"offsets": {
+				"from": 372720,
+				"to": 379120
+			},
+			"text": " We spend a lot of time catering towards writers so that they can write in, mark down, have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,120",
+				"to": "00:06:22,760"
+			},
+			"offsets": {
+				"from": 379120,
+				"to": 382760
+			},
+			"text": " content, have clear attribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,760",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 382760,
+				"to": 385400
+			},
+			"text": " So this was written by Hader."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:35,800"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 395800
+			},
+			"text": " He's a full stack dev, loves using Kotlin and part of the Java community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,800",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 395800,
+				"to": 402360
+			},
+			"text": " And he wrote this article about using Web3J for user authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:52,360"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 412360
+			},
+			"text": " And then kind of bringing that together is multiple contributors can now contribute to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,360",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 412360,
+				"to": 414000
+			},
+			"text": " one community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:57,440"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 417440
+			},
+			"text": " And here this is the Java Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,440",
+				"to": "00:07:04,720"
+			},
+			"offsets": {
+				"from": 417440,
+				"to": 424720
+			},
+			"text": " So there are representatives from consensus's Pegasus team which were a client in Java called"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,720",
+				"to": "00:07:08,720"
+			},
+			"offsets": {
+				"from": 424720,
+				"to": 428720
+			},
+			"text": " Pantheon which is now Hyperledger Bezu."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,720",
+				"to": "00:07:13,680"
+			},
+			"offsets": {
+				"from": 428720,
+				"to": 433680
+			},
+			"text": " The IO builders team, a couple of CARI team members because our back end is in Java and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,680",
+				"to": "00:07:16,880"
+			},
+			"offsets": {
+				"from": 433680,
+				"to": 436880
+			},
+			"text": " a couple of individual contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,880",
+				"to": "00:07:23,920"
+			},
+			"offsets": {
+				"from": 436880,
+				"to": 443920
+			},
+			"text": " And importantly, Connes Fenson who is the creator of the Web3 library."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,920",
+				"to": "00:07:31,160"
+			},
+			"offsets": {
+				"from": 443920,
+				"to": 451160
+			},
+			"text": " So what's interesting about communities is many people can have the permissions to keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,160",
+				"to": "00:07:34,640"
+			},
+			"offsets": {
+				"from": 451160,
+				"to": 454640
+			},
+			"text": " content up to date."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,640",
+				"to": "00:07:42,160"
+			},
+			"offsets": {
+				"from": 454640,
+				"to": 462160
+			},
+			"text": " And this is where we've been using a lot of the grant funding."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,160",
+				"to": "00:07:45,040"
+			},
+			"offsets": {
+				"from": 462160,
+				"to": 465040
+			},
+			"text": " And the key to this is rewarding writers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,040",
+				"to": "00:07:51,640"
+			},
+			"offsets": {
+				"from": 465040,
+				"to": 471640
+			},
+			"text": " So to get good content out there where there are gaps within the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,640",
+				"to": "00:07:57,720"
+			},
+			"offsets": {
+				"from": 471640,
+				"to": 477720
+			},
+			"text": " So grants right now are coming from the Ethereum foundation and consensus grants."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,720",
+				"to": "00:08:04,040"
+			},
+			"offsets": {
+				"from": 477720,
+				"to": 484040
+			},
+			"text": " This is sponsored a lot of the getting started materials."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,040",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 484040,
+				"to": 489840
+			},
+			"text": " Many of the tools libraries and frameworks have been written about and then also working"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:14,360"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 494360
+			},
+			"text": " on keeping the Ethereum wiki up today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,360",
+				"to": "00:08:18,040"
+			},
+			"offsets": {
+				"from": 494360,
+				"to": 498040
+			},
+			"text": " Solidity docs, various different docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,040",
+				"to": "00:08:24,200"
+			},
+			"offsets": {
+				"from": 498040,
+				"to": 504200
+			},
+			"text": " One area which CARI is also moving into if you want to get in touch is commission content."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,200",
+				"to": "00:08:30,520"
+			},
+			"offsets": {
+				"from": 504200,
+				"to": 510520
+			},
+			"text": " So if your project needs better tutorials, help your developer community understand how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,520",
+				"to": "00:08:31,520"
+			},
+			"offsets": {
+				"from": 510520,
+				"to": 511520
+			},
+			"text": " to use use."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,520",
+				"to": "00:08:34,840"
+			},
+			"offsets": {
+				"from": 511520,
+				"to": 514840
+			},
+			"text": " So that's why that's top of the funnel."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,840",
+				"to": "00:08:36,280"
+			},
+			"offsets": {
+				"from": 514840,
+				"to": 516280
+			},
+			"text": " Let us know."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,280",
+				"to": "00:08:41,440"
+			},
+			"offsets": {
+				"from": 516280,
+				"to": 521440
+			},
+			"text": " And then getting involved, the next communities which we're launching are getting started which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,440",
+				"to": "00:08:43,320"
+			},
+			"offsets": {
+				"from": 521440,
+				"to": 523320
+			},
+			"text": " will come out this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,320",
+				"to": "00:08:54,320"
+			},
+			"offsets": {
+				"from": 523320,
+				"to": 534320
+			},
+			"text": " This has some really exciting content including a couple of tutorials on how to use a new"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,320",
+				"to": "00:09:01,400"
+			},
+			"offsets": {
+				"from": 534320,
+				"to": 541400
+			},
+			"text": " web ID which means you don't need to set up your whole tool chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,400",
+				"to": "00:09:08,880"
+			},
+			"offsets": {
+				"from": 541400,
+				"to": 548880
+			},
+			"text": " And it's just some interesting templates to give developers which are new to the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,880",
+				"to": "00:09:10,080"
+			},
+			"offsets": {
+				"from": 548880,
+				"to": 550080
+			},
+			"text": " ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,080",
+				"to": "00:09:11,640"
+			},
+			"offsets": {
+				"from": 550080,
+				"to": 551640
+			},
+			"text": " That first are our moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,640",
+				"to": "00:09:18,320"
+			},
+			"offsets": {
+				"from": 551640,
+				"to": 558320
+			},
+			"text": " And you'll hear more about that experience in other talks, so Albert's talk, IIS talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,320",
+				"to": "00:09:21,400"
+			},
+			"offsets": {
+				"from": 558320,
+				"to": 561400
+			},
+			"text": " The super blocks team has been doing some great work there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,400",
+				"to": "00:09:23,600"
+			},
+			"offsets": {
+				"from": 561400,
+				"to": 563600
+			},
+			"text": " Web 3 onboarding is another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,600",
+				"to": "00:09:32,880"
+			},
+			"offsets": {
+				"from": 563600,
+				"to": 572880
+			},
+			"text": " ETH 2 as we, the contract gets deployed and get closer to a robust beacon chain in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,880",
+				"to": "00:09:34,320"
+			},
+			"offsets": {
+				"from": 572880,
+				"to": 574320
+			},
+			"text": " beginning of next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,320",
+				"to": "00:09:39,520"
+			},
+			"offsets": {
+				"from": 574320,
+				"to": 579520
+			},
+			"text": " We'll have materials on how do you actually connect with the network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,520",
+				"to": "00:09:44,240"
+			},
+			"offsets": {
+				"from": 579520,
+				"to": 584240
+			},
+			"text": " How do you send funds to the stake in contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,240",
+				"to": "00:09:47,960"
+			},
+			"offsets": {
+				"from": 584240,
+				"to": 587960
+			},
+			"text": " And then L2 scaling which is a really important topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,960",
+				"to": "00:09:50,920"
+			},
+			"offsets": {
+				"from": 587960,
+				"to": 590920
+			},
+			"text": " And there's been a ton of research over the past few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,920",
+				"to": "00:09:58,480"
+			},
+			"offsets": {
+				"from": 590920,
+				"to": 598480
+			},
+			"text": " But I think we're now moving from research into actual production use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,480",
+				"to": "00:10:00,760"
+			},
+			"offsets": {
+				"from": 598480,
+				"to": 600760
+			},
+			"text": " So get in touch if you'd like to be involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,760",
+				"to": "00:10:08,520"
+			},
+			"offsets": {
+				"from": 600760,
+				"to": 608520
+			},
+			"text": " This is all about community making greater engagement with each of these projects and"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,520",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 608520,
+				"to": 612000
+			},
+			"text": " bringing more developers into the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:20,560"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 620560
+			},
+			"text": " So you can reach me at my email or our Twitter account is @cowery_ia."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,560",
+				"to": "00:10:21,320"
+			},
+			"offsets": {
+				"from": 620560,
+				"to": 621320
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,200",
+				"to": "00:10:24,800"
+			},
+			"offsets": {
+				"from": 622200,
+				"to": 624800
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,800",
+				"to": "00:10:34,800"
+			},
+			"offsets": {
+				"from": 624800,
+				"to": 634800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,800",
+				"to": "00:10:44,800"
+			},
+			"offsets": {
+				"from": 634800,
+				"to": 644800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,800",
+				"to": "00:10:54,800"
+			},
+			"offsets": {
+				"from": 644800,
+				"to": 654800
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,800",
+				"to": "00:11:04,800"
+			},
+			"offsets": {
+				"from": 654800,
+				"to": 664800
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

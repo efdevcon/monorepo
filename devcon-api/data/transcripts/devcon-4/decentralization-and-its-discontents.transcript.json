@@ -1,0 +1,1594 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " Besides being a software engineer, I'm also a co-organizer of a conference called R"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:08,360"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 8360
+			},
+			"text": " Networks on all aspects of the distributed web."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,360",
+				"to": "00:00:11,760"
+			},
+			"offsets": {
+				"from": 8360,
+				"to": 11760
+			},
+			"text": " This presentation is going to be a little more philosophical than some of the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,760",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 11760,
+				"to": 14680
+			},
+			"text": " more, maybe, hands-on talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:18,960"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 18960
+			},
+			"text": " It's also a shortened version of a longer presentation, so I've tried to keep in all"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,960",
+				"to": "00:00:26,320"
+			},
+			"offsets": {
+				"from": 18960,
+				"to": 26320
+			},
+			"text": " of the most interesting content, but I will link to the longer one on the last slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,320",
+				"to": "00:00:30,640"
+			},
+			"offsets": {
+				"from": 26320,
+				"to": 30640
+			},
+			"text": " So this is a totally not comprehensive overview of the decentralized space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,640",
+				"to": "00:00:34,520"
+			},
+			"offsets": {
+				"from": 30640,
+				"to": 34520
+			},
+			"text": " Though this presentation will be hopefully very relevant to blockchains, and this is an"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,520",
+				"to": "00:00:39,100"
+			},
+			"offsets": {
+				"from": 34520,
+				"to": 39100
+			},
+			"text": " Ethereum conference, I think it's good to remember that this movement spans other tech"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,100",
+				"to": "00:00:40,200"
+			},
+			"offsets": {
+				"from": 39100,
+				"to": 40200
+			},
+			"text": " stacks too."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,200",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 40200,
+				"to": 45360
+			},
+			"text": " So we have the network layer, things like community mesh networks, protocol layer, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:49,760"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 49760
+			},
+			"text": " have blockchains, but also things like IPFS, application layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,760",
+				"to": "00:00:52,440"
+			},
+			"offsets": {
+				"from": 49760,
+				"to": 52440
+			},
+			"text": " This is where we might fit most daps."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,440",
+				"to": "00:00:56,480"
+			},
+			"offsets": {
+				"from": 52440,
+				"to": 56480
+			},
+			"text": " And then we also have this social or governance layer where we might put things like lumeo"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,480",
+				"to": "00:00:59,560"
+			},
+			"offsets": {
+				"from": 56480,
+				"to": 59560
+			},
+			"text": " or most dows."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,560",
+				"to": "00:01:04,640"
+			},
+			"offsets": {
+				"from": 59560,
+				"to": 64640
+			},
+			"text": " This is the agenda for our talk, and like I said, this presentation is cut down."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,640",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 64640,
+				"to": 68000
+			},
+			"text": " So instead we're going to focus primarily on the first question on the list, and we"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:15,440"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 75440
+			},
+			"text": " can leave the final two maybe for discussion during the breakout or on conference section."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,440",
+				"to": "00:01:18,280"
+			},
+			"offsets": {
+				"from": 75440,
+				"to": 78280
+			},
+			"text": " So what is decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,280",
+				"to": "00:01:20,280"
+			},
+			"offsets": {
+				"from": 78280,
+				"to": 80280
+			},
+			"text": " Are we sure that we know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,280",
+				"to": "00:01:28,320"
+			},
+			"offsets": {
+				"from": 80280,
+				"to": 88320
+			},
+			"text": " You might also call this new version decentralization without so many discontents."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,320",
+				"to": "00:01:33,560"
+			},
+			"offsets": {
+				"from": 88320,
+				"to": 93560
+			},
+			"text": " So yeah, it turns out to be a more complicated question than you might think."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,560",
+				"to": "00:01:39,200"
+			},
+			"offsets": {
+				"from": 93560,
+				"to": 99200
+			},
+			"text": " One that has many unsatisfying explanations."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,200",
+				"to": "00:01:41,680"
+			},
+			"offsets": {
+				"from": 99200,
+				"to": 101680
+			},
+			"text": " When we look at the word, we don't get a lot of help."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,680",
+				"to": "00:01:46,280"
+			},
+			"offsets": {
+				"from": 101680,
+				"to": 106280
+			},
+			"text": " All this word means is not centralization, and I'm not the first person to point this"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,280",
+				"to": "00:01:47,280"
+			},
+			"offsets": {
+				"from": 106280,
+				"to": 107280
+			},
+			"text": " out."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,280",
+				"to": "00:01:51,640"
+			},
+			"offsets": {
+				"from": 107280,
+				"to": 111640
+			},
+			"text": " There's a name for this type of definition, and it's an antonymic definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,640",
+				"to": "00:01:56,520"
+			},
+			"offsets": {
+				"from": 111640,
+				"to": 116520
+			},
+			"text": " But the problem with an antonymic definition is, you know, we have this thing that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,520",
+				"to": "00:02:01,160"
+			},
+			"offsets": {
+				"from": 116520,
+				"to": 121160
+			},
+			"text": " call centralization, but what are all these other things that aren't the same thing and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,160",
+				"to": "00:02:04,120"
+			},
+			"offsets": {
+				"from": 121160,
+				"to": 124120
+			},
+			"text": " also aren't centralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,120",
+				"to": "00:02:09,240"
+			},
+			"offsets": {
+				"from": 124120,
+				"to": 129240
+			},
+			"text": " What are the names for all these different not centralizations?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,240",
+				"to": "00:02:13,560"
+			},
+			"offsets": {
+				"from": 129240,
+				"to": 133560
+			},
+			"text": " The origin of the terms in the mid-1800s, Alex de Tukville would write that the French"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,560",
+				"to": "00:02:20,600"
+			},
+			"offsets": {
+				"from": 133560,
+				"to": 140600
+			},
+			"text": " revolution began with a push towards decentralization but became, in the end, an extension of centralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,600",
+				"to": "00:02:24,320"
+			},
+			"offsets": {
+				"from": 140600,
+				"to": 144320
+			},
+			"text": " which I think is possibly still interesting to keep in mind as we confront, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,320",
+				"to": "00:02:25,560"
+			},
+			"offsets": {
+				"from": 144320,
+				"to": 145560
+			},
+			"text": " blockchain maximalism."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,560",
+				"to": "00:02:30,840"
+			},
+			"offsets": {
+				"from": 145560,
+				"to": 150840
+			},
+			"text": " It also reminded me of this Henna Arendt passage, which is the most radical revolutionary"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,840",
+				"to": "00:02:34,440"
+			},
+			"offsets": {
+				"from": 150840,
+				"to": 154440
+			},
+			"text": " will become a conservative the day after the revolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,440",
+				"to": "00:02:40,200"
+			},
+			"offsets": {
+				"from": 154440,
+				"to": 160200
+			},
+			"text": " And indeed, the word decentralization is still used more often in a political or organizational"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,200",
+				"to": "00:02:42,880"
+			},
+			"offsets": {
+				"from": 160200,
+				"to": 162880
+			},
+			"text": " context than a technical one."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,880",
+				"to": "00:02:44,400"
+			},
+			"offsets": {
+				"from": 162880,
+				"to": 164400
+			},
+			"text": " I'm sure I came up with the title for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,400",
+				"to": "00:02:48,880"
+			},
+			"offsets": {
+				"from": 164400,
+				"to": 168880
+			},
+			"text": " I found out it's also a book, one with the subtitle, an essay on class, political agency"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,880",
+				"to": "00:02:52,560"
+			},
+			"offsets": {
+				"from": 168880,
+				"to": 172560
+			},
+			"text": " and national perspective in Indonesian politics."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,560",
+				"to": "00:02:58,440"
+			},
+			"offsets": {
+				"from": 172560,
+				"to": 178440
+			},
+			"text": " The Google definitions of the word are the transfer of authority from central to local"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,440",
+				"to": "00:03:03,040"
+			},
+			"offsets": {
+				"from": 178440,
+				"to": 183040
+			},
+			"text": " government and the movement of departments of a large organization away from a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,040",
+				"to": "00:03:06,600"
+			},
+			"offsets": {
+				"from": 183040,
+				"to": 186600
+			},
+			"text": " administrative center to other locations."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,600",
+				"to": "00:03:11,720"
+			},
+			"offsets": {
+				"from": 186600,
+				"to": 191720
+			},
+			"text": " So these are both political and organizational definitions, and it's possibly ironic to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,720",
+				"to": "00:03:17,040"
+			},
+			"offsets": {
+				"from": 191720,
+				"to": 197040
+			},
+			"text": " part of a community that focuses so much on decentralization but struggles so much with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,040",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197040,
+				"to": 199000
+			},
+			"text": " governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,960"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203960
+			},
+			"text": " And also, worth noting off the bat, that in a political and organizational context, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,960",
+				"to": "00:03:29,640"
+			},
+			"offsets": {
+				"from": 203960,
+				"to": 209640
+			},
+			"text": " concept of decentralization has been a component of many different political movements, some"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,640",
+				"to": "00:03:32,360"
+			},
+			"offsets": {
+				"from": 209640,
+				"to": 212360
+			},
+			"text": " varied odds with one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,360",
+				"to": "00:03:37,200"
+			},
+			"offsets": {
+				"from": 212360,
+				"to": 217200
+			},
+			"text": " So for example, there's a strong free market rationale for decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,200",
+				"to": "00:03:39,400"
+			},
+			"offsets": {
+				"from": 217200,
+				"to": 219400
+			},
+			"text": " This is from an essay on information markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,400",
+				"to": "00:03:44,680"
+			},
+			"offsets": {
+				"from": 219400,
+				"to": 224680
+			},
+			"text": " The sentence before it cites Adam Smith and the one after it cites Friedrich von Hayek."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,680",
+				"to": "00:03:48,600"
+			},
+			"offsets": {
+				"from": 224680,
+				"to": 228600
+			},
+			"text": " And the argument here is, you know, we have all these rational actors independently moving"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,600",
+				"to": "00:03:52,600"
+			},
+			"offsets": {
+				"from": 228600,
+				"to": 232600
+			},
+			"text": " throughout society without any kind of central coordinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,600",
+				"to": "00:03:55,960"
+			},
+			"offsets": {
+				"from": 232600,
+				"to": 235960
+			},
+			"text": " But there's also an entire movement called decentralized socialism."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,960",
+				"to": "00:04:01,640"
+			},
+			"offsets": {
+				"from": 235960,
+				"to": 241640
+			},
+			"text": " And this is a passage from an essay talking about how Mao Zedong, the Cultural Revolution,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,640",
+				"to": "00:04:04,840"
+			},
+			"offsets": {
+				"from": 241640,
+				"to": 244840
+			},
+			"text": " was a reaction to the centralization of Soviet Russia."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,840",
+				"to": "00:04:11,960"
+			},
+			"offsets": {
+				"from": 244840,
+				"to": 251960
+			},
+			"text": " So really a dizzying range of thinkers have called for some kind of decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,960",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 251960,
+				"to": 256000
+			},
+			"text": " And of course, that's what makes the concept so interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,680"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261680
+			},
+			"text": " Kind of like universal basic income, it has this fascinating cross-partisan support, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,680",
+				"to": "00:04:24,720"
+			},
+			"offsets": {
+				"from": 261680,
+				"to": 264720
+			},
+			"text": " gives it this kind of gravitational pull."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,720",
+				"to": "00:04:31,320"
+			},
+			"offsets": {
+				"from": 264720,
+				"to": 271320
+			},
+			"text": " It's like a dense messy knot that's fascinating to untangle."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,320",
+				"to": "00:04:36,080"
+			},
+			"offsets": {
+				"from": 271320,
+				"to": 276080
+			},
+			"text": " So we may not all want decentralization for the same reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,080",
+				"to": "00:04:39,720"
+			},
+			"offsets": {
+				"from": 276080,
+				"to": 279720
+			},
+			"text": " And I can't take credit for this caption, but I also don't want to docks its creator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,720",
+				"to": "00:04:44,120"
+			},
+			"offsets": {
+				"from": 279720,
+				"to": 284120
+			},
+			"text": " I'll let you all interpret this phenomenon, which is certainly the case that we have competing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,120",
+				"to": "00:04:45,880"
+			},
+			"offsets": {
+				"from": 284120,
+				"to": 285880
+			},
+			"text": " motivations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,880",
+				"to": "00:04:50,560"
+			},
+			"offsets": {
+				"from": 285880,
+				"to": 290560
+			},
+			"text": " You might say it's a success or a weakness of the decentralization movement."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,560",
+				"to": "00:04:53,240"
+			},
+			"offsets": {
+				"from": 290560,
+				"to": 293240
+			},
+			"text": " You might say we've decentralized our motivations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,240",
+				"to": "00:04:54,800"
+			},
+			"offsets": {
+				"from": 293240,
+				"to": 294800
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,800",
+				"to": "00:05:01,400"
+			},
+			"offsets": {
+				"from": 294800,
+				"to": 301400
+			},
+			"text": " So it may be difficult to define decentralization, but can you measure it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,400",
+				"to": "00:05:03,960"
+			},
+			"offsets": {
+				"from": 301400,
+				"to": 303960
+			},
+			"text": " This is one way people often like to."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,960",
+				"to": "00:05:06,560"
+			},
+			"offsets": {
+				"from": 303960,
+				"to": 306560
+			},
+			"text": " It's called the Lorenz curve or Jenny coefficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,560",
+				"to": "00:05:10,440"
+			},
+			"offsets": {
+				"from": 306560,
+				"to": 310440
+			},
+			"text": " And it's often used to measure the decentralization of wealth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,440",
+				"to": "00:05:12,400"
+			},
+			"offsets": {
+				"from": 310440,
+				"to": 312400
+			},
+			"text": " So there are a few components of this graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,400",
+				"to": "00:05:16,600"
+			},
+			"offsets": {
+				"from": 312400,
+				"to": 316600
+			},
+			"text": " And one of them is this straight line that we call the line of equality."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,600",
+				"to": "00:05:20,640"
+			},
+			"offsets": {
+				"from": 316600,
+				"to": 320640
+			},
+			"text": " And this is the curve that we would get if the distribution of wealth in a system were"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,640",
+				"to": "00:05:22,040"
+			},
+			"offsets": {
+				"from": 320640,
+				"to": 322040
+			},
+			"text": " totally uniform."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,040",
+				"to": "00:05:28,400"
+			},
+			"offsets": {
+				"from": 322040,
+				"to": 328400
+			},
+			"text": " So if 10% of the population had 10% of the wealth, 50% had 50%, etc., etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,400",
+				"to": "00:05:31,520"
+			},
+			"offsets": {
+				"from": 328400,
+				"to": 331520
+			},
+			"text": " The Lorenz curve is what we get when we plot the actuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,520",
+				"to": "00:05:36,880"
+			},
+			"offsets": {
+				"from": 331520,
+				"to": 336880
+			},
+			"text": " And the Jenny coefficient is the difference between these two lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,880",
+				"to": "00:05:41,320"
+			},
+			"offsets": {
+				"from": 336880,
+				"to": 341320
+			},
+			"text": " This is from an excellent recent article called Quantifying Decentralization by Balaji"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,320",
+				"to": "00:05:42,840"
+			},
+			"offsets": {
+				"from": 341320,
+				"to": 342840
+			},
+			"text": " Schmanovizen."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,840",
+				"to": "00:05:47,280"
+			},
+			"offsets": {
+				"from": 342840,
+				"to": 347280
+			},
+			"text": " And he took the top 100 cryptocurrencies and he plotted them on the Lorenz curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,280",
+				"to": "00:05:52,600"
+			},
+			"offsets": {
+				"from": 347280,
+				"to": 352600
+			},
+			"text": " And you will see that they are very far away from the line of perfect equality."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,600",
+				"to": "00:05:58,080"
+			},
+			"offsets": {
+				"from": 352600,
+				"to": 358080
+			},
+			"text": " And again, from Quantifying Decentralization, Schmanovizen describes how a decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,080",
+				"to": "00:06:01,920"
+			},
+			"offsets": {
+				"from": 358080,
+				"to": 361920
+			},
+			"text": " system is composed of a set of decentralized subsystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,920",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 361920,
+				"to": 366840
+			},
+			"text": " So we have miners, we have the developer community, we have the concept of geographical"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:10,840"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 370840
+			},
+			"text": " decentralization or governmental decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,840",
+				"to": "00:06:15,120"
+			},
+			"offsets": {
+				"from": 370840,
+				"to": 375120
+			},
+			"text": " And I think maybe it's helpful here to borrow the term intersectional and to think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,120",
+				"to": "00:06:17,640"
+			},
+			"offsets": {
+				"from": 375120,
+				"to": 377640
+			},
+			"text": " intersectional decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,640",
+				"to": "00:06:24,560"
+			},
+			"offsets": {
+				"from": 377640,
+				"to": 384560
+			},
+			"text": " If we imagine decentralization as this Cartesian plane of intersecting decentralizations, we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,560",
+				"to": "00:06:28,800"
+			},
+			"offsets": {
+				"from": 384560,
+				"to": 388800
+			},
+			"text": " find that we can't get the complete picture without considering all of them and that none"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,800",
+				"to": "00:06:33,840"
+			},
+			"offsets": {
+				"from": 388800,
+				"to": 393840
+			},
+			"text": " of them really make sense to discuss in the absence of others."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,840",
+				"to": "00:06:36,800"
+			},
+			"offsets": {
+				"from": 393840,
+				"to": 396800
+			},
+			"text": " In the blockchain world, we talk about the scalability chilema."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,800",
+				"to": "00:06:40,320"
+			},
+			"offsets": {
+				"from": 396800,
+				"to": 400320
+			},
+			"text": " So this is from the Ethereum wiki and you may be familiar with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,320",
+				"to": "00:06:43,560"
+			},
+			"offsets": {
+				"from": 400320,
+				"to": 403560
+			},
+			"text": " When designing a blockchain, these are areas you have to make trade-offs within."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,560",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 403560,
+				"to": 406560
+			},
+			"text": " It's sort of like a cap theorem for blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:50,840"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 410840
+			},
+			"text": " And notably, one of them is decentralization with its own very specific definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,840",
+				"to": "00:06:55,640"
+			},
+			"offsets": {
+				"from": 410840,
+				"to": 415640
+			},
+			"text": " And here it is that each node on the network should not have to have too much compute resources"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,640",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 415640,
+				"to": 419280
+			},
+			"text": " available to it, maybe a laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:03,440"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 423440
+			},
+			"text": " Scalability is one and here it's defined as the network being able to process more transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,440",
+				"to": "00:07:05,760"
+			},
+			"offsets": {
+				"from": 423440,
+				"to": 425760
+			},
+			"text": " than any individual node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,760",
+				"to": "00:07:09,880"
+			},
+			"offsets": {
+				"from": 425760,
+				"to": 429880
+			},
+			"text": " And security, which is the amount of compute resources and attacker needs to have to successfully"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,880",
+				"to": "00:07:12,680"
+			},
+			"offsets": {
+				"from": 429880,
+				"to": 432680
+			},
+			"text": " attack the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,680",
+				"to": "00:07:15,160"
+			},
+			"offsets": {
+				"from": 432680,
+				"to": 435160
+			},
+			"text": " So of course decentralization is on this list."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,160",
+				"to": "00:07:19,960"
+			},
+			"offsets": {
+				"from": 435160,
+				"to": 439960
+			},
+			"text": " And a good way to think of that is as a stat that we could lower in order to improve these"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,960",
+				"to": "00:07:21,600"
+			},
+			"offsets": {
+				"from": 439960,
+				"to": 441600
+			},
+			"text": " other qualities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,600",
+				"to": "00:07:26,720"
+			},
+			"offsets": {
+				"from": 441600,
+				"to": 446720
+			},
+			"text": " So when we talk about scalability in the blockchain world, it's almost a cataclysm to compare it"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,720",
+				"to": "00:07:29,720"
+			},
+			"offsets": {
+				"from": 446720,
+				"to": 449720
+			},
+			"text": " to the transactions per second of something like Visa."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,720",
+				"to": "00:07:33,480"
+			},
+			"offsets": {
+				"from": 449720,
+				"to": 453480
+			},
+			"text": " Visa processes 24,000 transactions per second."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,480",
+				"to": "00:07:36,880"
+			},
+			"offsets": {
+				"from": 453480,
+				"to": 456880
+			},
+			"text": " Another way to understand that statement is that Visa has dropped its decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,880",
+				"to": "00:07:41,560"
+			},
+			"offsets": {
+				"from": 456880,
+				"to": 461560
+			},
+			"text": " stat to zero and maxed out its scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,560",
+				"to": "00:07:45,400"
+			},
+			"offsets": {
+				"from": 461560,
+				"to": 465400
+			},
+			"text": " So in conclusion, here are some questions in rapid fire."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,400",
+				"to": "00:07:47,480"
+			},
+			"offsets": {
+				"from": 465400,
+				"to": 467480
+			},
+			"text": " Do we want decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,480",
+				"to": "00:07:51,240"
+			},
+			"offsets": {
+				"from": 467480,
+				"to": 471240
+			},
+			"text": " I think this deserves to be an open question or at least one we don't forget that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,240",
+				"to": "00:07:53,560"
+			},
+			"offsets": {
+				"from": 471240,
+				"to": 473560
+			},
+			"text": " possible to ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,560",
+				"to": "00:07:59,080"
+			},
+			"offsets": {
+				"from": 473560,
+				"to": 479080
+			},
+			"text": " And if we accept that there's no canonical decentralization or no perfect decentralization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,080",
+				"to": "00:08:02,080"
+			},
+			"offsets": {
+				"from": 479080,
+				"to": 482080
+			},
+			"text": " then which one do we want?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,080",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 482080,
+				"to": 484000
+			},
+			"text": " Are there limits to decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:06,560"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 486560
+			},
+			"text": " And if so, what are they?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,560",
+				"to": "00:08:10,880"
+			},
+			"offsets": {
+				"from": 486560,
+				"to": 490880
+			},
+			"text": " Right now we talk a lot about decentralizing the network and application layer, but how"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,880",
+				"to": "00:08:16,720"
+			},
+			"offsets": {
+				"from": 490880,
+				"to": 496720
+			},
+			"text": " often do we consider the centralization of the manufacturing pipeline or of supply chains?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,720",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 496720,
+				"to": 502440
+			},
+			"text": " How far down the proverbial stack do we care about decentralization?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:24,880"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 504880
+			},
+			"text": " And finally, a recursive question."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,880",
+				"to": "00:08:28,480"
+			},
+			"offsets": {
+				"from": 504880,
+				"to": 508480
+			},
+			"text": " Can we decentralize the building of decentralized networks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,480",
+				"to": "00:08:33,720"
+			},
+			"offsets": {
+				"from": 508480,
+				"to": 513720
+			},
+			"text": " I see specialization and centralization as tightly connected concepts and a technical"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,720",
+				"to": "00:08:39,640"
+			},
+			"offsets": {
+				"from": 513720,
+				"to": 519640
+			},
+			"text": " expert is often a central point of failure for a decentralized network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,640",
+				"to": "00:08:43,920"
+			},
+			"offsets": {
+				"from": 519640,
+				"to": 523920
+			},
+			"text": " And if pursuit of power tends to centralize a system, how can we prevent this from happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,920",
+				"to": "00:08:46,920"
+			},
+			"offsets": {
+				"from": 523920,
+				"to": 526920
+			},
+			"text": " to our networks over time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,920",
+				"to": "00:08:51,600"
+			},
+			"offsets": {
+				"from": 526920,
+				"to": 531600
+			},
+			"text": " What underlines all of this, that there are many possible decentralizations and perhaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,600",
+				"to": "00:08:58,080"
+			},
+			"offsets": {
+				"from": 531600,
+				"to": 538080
+			},
+			"text": " no perfect one, but all of them may prove meaningless or become just ideological background"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,080",
+				"to": "00:09:02,760"
+			},
+			"offsets": {
+				"from": 538080,
+				"to": 542760
+			},
+			"text": " noise if not carefully and thoughtfully examined."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,760",
+				"to": "00:09:03,760"
+			},
+			"offsets": {
+				"from": 542760,
+				"to": 543760
+			},
+			"text": " So thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,760",
+				"to": "00:09:04,920"
+			},
+			"offsets": {
+				"from": 543760,
+				"to": 544920
+			},
+			"text": " My name is Sarah again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,920",
+				"to": "00:09:08,560"
+			},
+			"offsets": {
+				"from": 544920,
+				"to": 548560
+			},
+			"text": " That's my handle and that's a YouTube link to the longer version of this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,560",
+				"to": "00:09:09,560"
+			},
+			"offsets": {
+				"from": 548560,
+				"to": 549560
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,680",
+				"to": "00:09:10,560"
+			},
+			"offsets": {
+				"from": 549680,
+				"to": 550560
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,560",
+				"to": "00:09:20,560"
+			},
+			"offsets": {
+				"from": 550560,
+				"to": 560560
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,560",
+				"to": "00:09:30,560"
+			},
+			"offsets": {
+				"from": 560560,
+				"to": 570560
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,560",
+				"to": "00:09:40,560"
+			},
+			"offsets": {
+				"from": 570560,
+				"to": 580560
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

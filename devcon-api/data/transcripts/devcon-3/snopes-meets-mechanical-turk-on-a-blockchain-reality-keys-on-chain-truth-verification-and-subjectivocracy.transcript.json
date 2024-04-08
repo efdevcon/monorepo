@@ -1,0 +1,3079 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19000
+			},
+			"text": " Getting information from a website to a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22000
+			},
+			"text": " And that's something that we do at reality keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 25000
+			},
+			"text": " But I want to talk about something a bit broader today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 28000
+			},
+			"text": " I want to talk about truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " So this is kind of our ideal smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34000
+			},
+			"text": " This is our final insurance contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 40000
+			},
+			"text": " So I've kind of skipped the stuff where we set up a policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43000
+			},
+			"text": " But we've just got the claim function there."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 48000
+			},
+			"text": " So what we'd like to be able to do is we'd like to speak to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 54000
+			},
+			"text": " ultimate absolute truth contract that knows everything and get the answer back."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 57000
+			},
+			"text": " Now, unfortunately, that contract doesn't exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 60000
+			},
+			"text": " And what is truth anyway?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 65000
+			},
+			"text": " So what I want to do today is just talk through a little bit of theory"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " and then go into some practical problems and some solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:14,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 74000
+			},
+			"text": " And then hopefully at the end you'll see where it all ties in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 78000
+			},
+			"text": " So there's this idea running right through Western civilization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 82000
+			},
+			"text": " right through from Plato up to at least the beginning of the 16th century."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 86000
+			},
+			"text": " That there's objective truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 87000
+			},
+			"text": " It's out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 88000
+			},
+			"text": " It's consistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 89000
+			},
+			"text": " It's eternal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 90000
+			},
+			"text": " It's absolute."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 96000
+			},
+			"text": " And this originally was thought to apply not just to kind of factual stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 105000
+			},
+			"text": " like Has My Office Burned Down, but also to moral stuff, to values."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 110000
+			},
+			"text": " Then, and then in the early sort of Christian thinking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 113000
+			},
+			"text": " they took this whole foundation with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 115000
+			},
+			"text": " And they also had a hierarchy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 118000
+			},
+			"text": " So you had the pope at the top and the pope was infallible."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 122000
+			},
+			"text": " So you've got objective truth and you can pretty much find out what it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:04,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 124000
+			},
+			"text": " at least about certain things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 124000,
+				"to": 130000
+			},
+			"text": " And then in the 16th century Martin Luther made his epic ship post nailed to a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 132000
+			},
+			"text": " dawn on a church in Germany."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 134000
+			},
+			"text": " Allegedly, this is disputed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 136000
+			},
+			"text": " And he said you're doing it wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " And after that we had kind of hundreds of years of religious wars in Europe"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 146000
+			},
+			"text": " while people fought over their conceptions of the absolute objective truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " And one of the strategies that allowed people to stop killing each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 155000
+			},
+			"text": " and live together was to separate truth into different baskets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159000
+			},
+			"text": " So you had things like scientific truth which is considered kind of objective"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " and that you shouldn't really disagree about."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 167000
+			},
+			"text": " And then you had other value judgments that were not considered objective."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 174000
+			},
+			"text": " And even this bit of objectivity is something that some recent philosophers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 176000
+			},
+			"text": " have got a little bit suspicious of."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " So post modernists think something more like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 183000
+			},
+			"text": " truth is agreement in language."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:09,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 189000
+			},
+			"text": " So the idea is that when we make claims, we're playing a language game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 189000,
+				"to": 193000
+			},
+			"text": " we've got a kind of a consensus system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 199000
+			},
+			"text": " And something is true to the extent that it follows the rules of that language game."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 207000
+			},
+			"text": " So it's true if you obey the consensus rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 213000
+			},
+			"text": " Now, while this has been going on, there's something kind of weird happening in politics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " The internet is having this weird kind of crisis about truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 224000
+			},
+			"text": " So we've got, on the one hand, this vast internet of knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 230000
+			},
+			"text": " But at the same time, you've got people quite boldly embracing alternative facts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 236000
+			},
+			"text": " And you've got basically entirely made up new circulating freely on Facebook"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 239000
+			},
+			"text": " and deciding presidential elections."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:01,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 241000
+			},
+			"text": " And this is a hard problem for two reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 241000,
+				"to": 246000
+			},
+			"text": " The first is to do with efficiency and the second is to do with perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 250000
+			},
+			"text": " So I'm going to take those two in turn, and I want to show you the depth that we've created"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 253000
+			},
+			"text": " to help with the efficiency problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " And then I want to talk about an approach called subject democracy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 262000
+			},
+			"text": " which can help with the perspective problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 267000
+			},
+			"text": " So there are people out there on Facebook who are trying to hack your brain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 273000
+			},
+			"text": " Anyone in your social network or any paid advertiser can push claims into your stream"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 276000
+			},
+			"text": " and you have to work out what to believe."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 280000
+			},
+			"text": " But when you're faced with a claim, if you were prepared to spend a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 285000
+			},
+			"text": " and money evaluating it and researching it, then you could probably do quite a good job"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 287000
+			},
+			"text": " at getting to the bottom of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 295000
+			},
+			"text": " But since you're not prepared to do that, you end up potentially believing a lot of bullshit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 300000
+			},
+			"text": " And this is kind of a pattern that you see a lot in information security"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " and also in, for example, missile defense, that there's this asymmetry between the attacker's job"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 311000
+			},
+			"text": " and the defender's job, because the attacker can just hit us with this entire barrage of bullshit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 315000
+			},
+			"text": " and we've got to defend every time to be successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:19,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 319000
+			},
+			"text": " And even if the attacker can't manage to get their bullshit through every time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 319000,
+				"to": 322000
+			},
+			"text": " they can bring off a kind of a denial of service attack against the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 326000
+			},
+			"text": " Because if you can hit people with enough stories and enough claims,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 329000
+			},
+			"text": " they just lose confidence that they can evaluate any of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 334000
+			},
+			"text": " and then when they see something true, they can't evaluate that either."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " So you end up being able to steal from them without them noticing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 343000
+			},
+			"text": " So what we've tried to do is to increase the cost of attacking"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 346000
+			},
+			"text": " and decrease the cost of defense."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 348000
+			},
+			"text": " So this is reality check."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 352000
+			},
+			"text": " This is mechanical took, meets, snopes on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:57,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 357000
+			},
+			"text": " The rule is that anybody can ask a question and anybody can answer a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 357000,
+				"to": 361000
+			},
+			"text": " And that anybody can be you or it can be your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 363000
+			},
+			"text": " So we make no distinction there."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 367000
+			},
+			"text": " And the goal is that people who give the right answer are going to get rewarded"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " and make profits and people who give the wrong answer are going to make losses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 374000
+			},
+			"text": " So we can ask a question like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 380000
+			},
+			"text": " This is via the DAP or like this using a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " So we're passing in a template idea that I won't get into."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 388000
+			},
+			"text": " There's also the text of the question, a challenge timeout and an arbitrator."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 390000
+			},
+			"text": " I'll say a bit about the arbitrator later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 396000
+			},
+			"text": " So the question is going to show up on the blockchain and therefore on this website."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 399000
+			},
+			"text": " And you can come in and if you see a question you know the answer to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 405000
+			},
+			"text": " then you can post an answer like this or from a contract like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:48,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 408000
+			},
+			"text": " Now when you post an answer, you're also sending some money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 408000,
+				"to": 410000
+			},
+			"text": " This is a bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " So this is money that you're going to lose if you're wrong and you're going to get back"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 416000
+			},
+			"text": " if you're right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 421000
+			},
+			"text": " And by wrong and right I mean that your answer, whether your answer is decided by the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 424000
+			},
+			"text": " is the final answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 429000
+			},
+			"text": " Now every time you post an answer, if you see an answer that's wrong and you want to correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " that answer, you can always do that but you have to double the bond."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 443000
+			},
+			"text": " So once that's happened and once the timeout period is elapsed, you can get the final answer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 444000
+			},
+			"text": " from your contract like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:29,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 449000
+			},
+			"text": " So if we know the question ID, we just pull it in and that'll give us our answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 449000,
+				"to": 452000
+			},
+			"text": " Sometimes you want to do something more like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 457000
+			},
+			"text": " Sometimes you didn't ask the question yourself but you want to take any answer that adequately"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " answers a particular question also with a reasonable arbitrator and with a reasonable timeout."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 467000
+			},
+			"text": " So in that case you can get the final answer if it matches these particular criteria."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 471000
+			},
+			"text": " So your user can send you a question ID and then you check that question ID with the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " and if it's right you go ahead and use the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 483000
+			},
+			"text": " So you're probably wondering what happens if somebody keeps on putting money on something"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 490000
+			},
+			"text": " that's untrue and is prepared to put serious money to back their lie."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " And what happens is the first thing that happens is it's going to escalate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:21,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 501000
+			},
+			"text": " So you end up with quite a lot of money in bonds resting on this particular question."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 501000,
+				"to": 507000
+			},
+			"text": " And then once that happens we get a serious amount of money in the pool and somebody is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 512000
+			},
+			"text": " going to want to use that money to pay our arbitrator."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 518000
+			},
+			"text": " Now the arbitrator sounds like a person and it can be a person but it's a contract so it can"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:41,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 521000
+			},
+			"text": " be a decision making process."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 521000,
+				"to": 526000
+			},
+			"text": " It doesn't have to be cheap, it doesn't have to be fast but it does have to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 528000
+			},
+			"text": " get us our answer and we do have to trust it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 533000
+			},
+			"text": " So it's kind of like the Pope in the medieval metaphysics there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:57,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 537000
+			},
+			"text": " Now for a lot of purposes this is going to be the right solution and we're going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 537000,
+				"to": 541000
+			},
+			"text": " able to construct an arbitrator that suits your security needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 545000
+			},
+			"text": " In particular it's often going to be better than what people have been doing at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 548000
+			},
+			"text": " where they're pulling data from some website."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 553000
+			},
+			"text": " And even if the middleware that gets them that data is correct that website is their"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 554000
+			},
+			"text": " Pope."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 560000
+			},
+			"text": " And often the websites that you're pulling from, even if they're backed by some fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 565000
+			},
+			"text": " reliable provider, aren't actually secured with the kind of assumptions that we make when"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568000
+			},
+			"text": " we're dealing with magical internet money."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 572000
+			},
+			"text": " So we've got ourselves to a place where we don't have to call on this arbitrator very"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 575000
+			},
+			"text": " often and we can use an expensive process."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 580000
+			},
+			"text": " So the arbitrator could literally hire somebody to go down and look at my office and see if"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 581000
+			},
+			"text": " it's burnt down."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 586000
+			},
+			"text": " Out of the gate this is a service that we'll be offering at reality keys but we also think"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 589000
+			},
+			"text": " it's a great fit for things like industry consortiums."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 593000
+			},
+			"text": " If you've done any work in the private blockchain space it seems like everyone wants to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 597000
+			},
+			"text": " a consortium to do blockchain stuff and then they come and talk to guys like us and they say"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:09:59,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 599000
+			},
+			"text": " what should they do with my consortium."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,000",
+				"to": "00:10:05,000"
+			},
+			"offsets": {
+				"from": 599000,
+				"to": 605000
+			},
+			"text": " This is really somewhere where these existing industry players could leverage their existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 605000,
+				"to": 607000
+			},
+			"text": " brands and their expertise."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 610000
+			},
+			"text": " You can also make this a socially expensive process."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 618000
+			},
+			"text": " So for example if you've had an ICO and you've got some people who are supposed to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 623000
+			},
+			"text": " delivering particular milestones you might say we want to pay them if they reach these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 627000
+			},
+			"text": " milestones and we're going to check that with reality check but the arbitrator is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 629000
+			},
+			"text": " to be a vote of the token holders."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633000
+			},
+			"text": " So in most cases you're not going to have to call on them but if you do then you can."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 635000
+			},
+			"text": " So reality check doesn't care."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 640000
+			},
+			"text": " It just lets you supply your arbitrator and it sets things up so that the arbitrator only"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 646000
+			},
+			"text": " has to get called on very occasionally and that when they do get called on they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 649000
+			},
+			"text": " charge very attractive fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 655000
+			},
+			"text": " So this is our application deployed on the Rinkaby test net."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 657000
+			},
+			"text": " I've also posted our get a channel there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 662000
+			},
+			"text": " The plan is that we're going to take feedback for a couple of weeks on details of the API"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " and stuff in case anyone here has any thoughts then get out to one audit and hopefully have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672000
+			},
+			"text": " it live on the main net fairly soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 677000
+			},
+			"text": " So that's the efficiency problem but I want to talk about another problem which is perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 683000
+			},
+			"text": " So for four years we've been serving data on the question what is the price of Bitcoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 687000
+			},
+			"text": " And that's been a fairly factual question for most of that time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 692000
+			},
+			"text": " There was a point when we had some funny data coming from Mt. Gox which eventually went"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 695000
+			},
+			"text": " away but generally speaking it was fairly straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 701000
+			},
+			"text": " But then next month when the fork happens this becomes a fairly contentious question"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:45,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 705000
+			},
+			"text": " and it's really not clear at all what the right answer is going to be to the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,000",
+				"to": "00:11:46,000"
+			},
+			"offsets": {
+				"from": 705000,
+				"to": 706000
+			},
+			"text": " what's the price of Bitcoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 706000,
+				"to": 710000
+			},
+			"text": " You know there are going to be at least two or three bitcoins around that you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714000
+			},
+			"text": " possibly take the price of and maybe you should add them together and you know who knows."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 714000,
+				"to": 718000
+			},
+			"text": " So that's a question that really depends on your point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 723000
+			},
+			"text": " And perspective is quite a tricky problem for consensus systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:08,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 728000
+			},
+			"text": " If you look at the original problem that Bitcoin was trying to solve you've got all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 728000,
+				"to": 731000
+			},
+			"text": " these nodes on the network and they all have a different perspective on the network so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 734000
+			},
+			"text": " all see transactions at different times."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 739000
+			},
+			"text": " And what you want to know is given two transactions that have been sent which one was sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 743000
+			},
+			"text": " to Bitcoin and that's something about which every node will legitimately have a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 744000
+			},
+			"text": " opinion."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " So Satoshi just kind of punted on this and Satoshi's genius was to realize that it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:30,000"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 750000
+			},
+			"text": " was actually okay to punt on this question."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 755000
+			},
+			"text": " So Bitcoin or Ethereum will just really just pick one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 762000
+			},
+			"text": " And what it will promise you is that if you ask it again then with an increasing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 766000
+			},
+			"text": " probability it will give you the same answer again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770000
+			},
+			"text": " So if we're trying to get the truth of a proposition it's not really clear that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 772000
+			},
+			"text": " answer will do it for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 776000
+			},
+			"text": " We don't really just want to punt on anything that has perspective involved especially because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,000",
+				"to": "00:13:00,000"
+			},
+			"offsets": {
+				"from": 776000,
+				"to": 780000
+			},
+			"text": " things like the price of Bitcoin a lot of things actually turn out to have perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 780000,
+				"to": 782000
+			},
+			"text": " when it maybe seemed like they didn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:08,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 788000
+			},
+			"text": " So we want the answer but there is no the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 788000,
+				"to": 793000
+			},
+			"text": " Now this is something where we've managed to handle in blockchain systems when we're dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " with the transactions on top of the blockchain but with the basic rules of governance of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 801000
+			},
+			"text": " blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 807000
+			},
+			"text": " So what we did with the Dow hack or what we did with Bitcoin and Bitcoin cash was when"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 810000
+			},
+			"text": " there was a serious dispute over governance we fork the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 815000
+			},
+			"text": " So if you have a Bitcoin before that fork then you have Bitcoin and Bitcoin cash after"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 816000
+			},
+			"text": " the fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 822000
+			},
+			"text": " And if you have Ether before the fork you have Ether and ETC after the fork."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 829000
+			},
+			"text": " And this gives you kind of a slightly strange but kind of remarkable kind of security in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 835000
+			},
+			"text": " that especially from the point of view of the minority if you lose the minority to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 842000
+			},
+			"text": " majority if the decision making process in force goes against you you still have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 847000
+			},
+			"text": " ability to continue with your own chain you still have the ability to follow your own"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 848000
+			},
+			"text": " rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 853000
+			},
+			"text": " And it may be that even if in the short term the market goes against you who knows maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:19,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 859000
+			},
+			"text": " in the long term you will also find that your token is more valuable than the other one."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 859000,
+				"to": 862000
+			},
+			"text": " And even if it doesn't then you still get to do what you want to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " So this is a great fit for handling disagreements about reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 871000
+			},
+			"text": " What we can do is embrace perspective and embrace subjectivity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " So what we need is opinionated money."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 882000
+			},
+			"text": " So we have written a token contract it is about 100 lines of solidity and it commits"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 887000
+			},
+			"text": " every day to any number of new world use."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:52,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 892000
+			},
+			"text": " So every day you can create new branches on it and cause it to fork and each of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 892000,
+				"to": 895000
+			},
+			"text": " branches will represent a different world view."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 901000
+			},
+			"text": " So in each of those branches then the contract knows how much money you should have and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 908000
+			},
+			"text": " will allow you to spend money that's on parallel chains twice but not money that's on the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:09,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 909000
+			},
+			"text": " chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 909000,
+				"to": 910000
+			},
+			"text": " So it looks something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:15,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 915000
+			},
+			"text": " So if you want to know did my office burn down one person might say it did and one other"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 915000,
+				"to": 916000
+			},
+			"text": " person might say it didn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:22,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 922000
+			},
+			"text": " So we have two forks and you can keep your money on either or both."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 922000,
+				"to": 930000
+			},
+			"text": " Now once we can do this your smart contract no longer needs to choose between these different"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 933000
+			},
+			"text": " allegedly objective realities."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 939000
+			},
+			"text": " So if you've got a bed on did Trump or Hillary win election you don't need the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:42,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 942000
+			},
+			"text": " to choose which of those things happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,000",
+				"to": "00:15:48,000"
+			},
+			"offsets": {
+				"from": 942000,
+				"to": 948000
+			},
+			"text": " You don't even need to be an objective truth about which one of those things happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 948000,
+				"to": 953000
+			},
+			"text": " Your contract just pays the person who thinks that Hillary won or who bet that Hillary won"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 958000
+			},
+			"text": " on the branch that says Hillary won and pays the person who bet that Trump won on any branch"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:01,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 961000
+			},
+			"text": " that says Trump won."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 961000,
+				"to": 966000
+			},
+			"text": " So we can take all of that stuff all the objective stuff right out of the contract and put it"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 969000
+			},
+			"text": " into the social realm."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 974000
+			},
+			"text": " Now at this point people always worry that if we've got these hundreds of thousands of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 978000
+			},
+			"text": " facts and we're branching on all of them we're going to have just an unfatherable number"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 982000
+			},
+			"text": " of branches."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 987000
+			},
+			"text": " But this is quite a nice fit for our arbitration contract because our arbitration contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 996000
+			},
+			"text": " and reality check represents a process for getting resolving a bunch of facts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1003000
+			},
+			"text": " So you have a large number of facts that are all hid behind that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1008000
+			},
+			"text": " So what we can do here is you commit to a whitelist of arbitrators."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1014000
+			},
+			"text": " Once you think that an arbitrator is bad you can just remove that arbitrator from the whitelist."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1019000
+			},
+			"text": " Anyone can just publish a branch that removes that arbitrator from the whitelist."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1024000
+			},
+			"text": " And this means that we no longer have to trust our arbitrators because if the arbitrator is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1027000
+			},
+			"text": " bad the economy can just root around them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " So we can do this whole thing without needing the trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1034000
+			},
+			"text": " So very quickly I just want to compare a couple of code examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1037000
+			},
+			"text": " So this is the claim function with a pope, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1041000
+			},
+			"text": " This is the claim function with an arbitrator who the contract already thinks it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1042000
+			},
+			"text": " to trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1049000
+			},
+			"text": " So what we're doing there is we're checking the question, the somebody feeds us the question"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1054000
+			},
+			"text": " idea and we check the question and then we send them in this case the balance of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1057000
+			},
+			"text": " the tokens held by the contract to that person."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:41,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1061000
+			},
+			"text": " This is the same contract on subject evocracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1061000,
+				"to": 1064000
+			},
+			"text": " So the claim function is a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1068000
+			},
+			"text": " We've got a branch parameter and an arbitrator parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1074000
+			},
+			"text": " And the first thing we do is we go to the token contract and we ask it on this branch is this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1076000
+			},
+			"text": " arbitrator legit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1081000
+			},
+			"text": " And if the arbitrator is legit then we go ahead and all the rest is just the same except for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1089000
+			},
+			"text": " the very last line where that token payment also specifies a branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1094000
+			},
+			"text": " So once we have opinionated money like this people are welcome to play their own language"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1098000
+			},
+			"text": " games and embrace their own world views."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1105000
+			},
+			"text": " So your entitled to your own opinion, hell you're also entitled to your own facts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:30,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1110000
+			},
+			"text": " This is Ethereum, it's permissionless, it's free, you can do what you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1110000,
+				"to": 1115000
+			},
+			"text": " But if you want to play a language game with somebody else you're going to have to persuade"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1120000
+			},
+			"text": " those other people that the world that you're trying to inhabit is interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1126000
+			},
+			"text": " So we'll see what kind of values the markets actually want to assign to those different"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1128000
+			},
+			"text": " branches."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1131000
+			},
+			"text": " And we'll also see what people actually want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:56,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1136000
+			},
+			"text": " So Kellyanne Conway is welcome to her alternative facts if she wants them, that's absolutely"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,000",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1136000,
+				"to": 1137000
+			},
+			"text": " fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:19:02,000"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1142000
+			},
+			"text": " But we'll see what universe, what world view, what set of facts she uses if she wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,000",
+				"to": "00:19:07,000"
+			},
+			"offsets": {
+				"from": 1142000,
+				"to": 1147000
+			},
+			"text": " say ensure her house and get reliable data when it burns down."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1147000,
+				"to": 1152000
+			},
+			"text": " So if like me you're excited about this then please come and talk to us on our GITA channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " I've also put a thing you can Google hard for all the things."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1158000
+			},
+			"text": " This was a piece I wrote last year about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1166000
+			},
+			"text": " Also links to Vita Leaks writing on subject democracy where he did a lot of leg work."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1168000
+			},
+			"text": " So please do come and talk to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1172000
+			},
+			"text": " The reality token thing is like I said nearly ready to go but this thing we're still kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1175000
+			},
+			"text": " of batting around different models so we'd love to hear what you think."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1176000
+			},
+			"text": " Okay, thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:49,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1189000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,000",
+				"to": "00:19:51,260"
+			},
+			"offsets": {
+				"from": 1189000,
+				"to": 1191260
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

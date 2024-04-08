@@ -1,0 +1,3211 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,420"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2420
+			},
+			"text": " (soft music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,420",
+				"to": "00:00:12,360"
+			},
+			"offsets": {
+				"from": 2420,
+				"to": 12360
+			},
+			"text": " - Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,360",
+				"to": "00:00:14,520"
+			},
+			"offsets": {
+				"from": 12360,
+				"to": 14520
+			},
+			"text": " So this is a bit of a book report about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,520",
+				"to": "00:00:15,600"
+			},
+			"offsets": {
+				"from": 14520,
+				"to": 15600
+			},
+			"text": " what happened when I tried to convince"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,600",
+				"to": "00:00:16,860"
+			},
+			"offsets": {
+				"from": 15600,
+				"to": 16860
+			},
+			"text": " some machine learning people that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,860",
+				"to": "00:00:20,120"
+			},
+			"offsets": {
+				"from": 16860,
+				"to": 20120
+			},
+			"text": " zero knowledge proofs were very relevant to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,120",
+				"to": "00:00:22,080"
+			},
+			"offsets": {
+				"from": 20120,
+				"to": 22080
+			},
+			"text": " So in that line, this is joint work"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,080",
+				"to": "00:00:24,360"
+			},
+			"offsets": {
+				"from": 22080,
+				"to": 24360
+			},
+			"text": " with a bunch of machine learning professors."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,360",
+				"to": "00:00:28,160"
+			},
+			"offsets": {
+				"from": 24360,
+				"to": 28160
+			},
+			"text": " Okay, so the motivation we came to this problem with"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,160",
+				"to": "00:00:32,320"
+			},
+			"offsets": {
+				"from": 28160,
+				"to": 32320
+			},
+			"text": " is that right now, today, a lot of the least trusted parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,320",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 32320,
+				"to": 35120
+			},
+			"text": " in society are running machine learning models"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:37,360"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 37360
+			},
+			"text": " that have broad societal impacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,360",
+				"to": "00:00:40,420"
+			},
+			"offsets": {
+				"from": 37360,
+				"to": 40420
+			},
+			"text": " Now you may think that blockchain is a very low trust space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,420",
+				"to": "00:00:43,520"
+			},
+			"offsets": {
+				"from": 40420,
+				"to": 43520
+			},
+			"text": " but I bet that people trust Twitter, like even less,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,520",
+				"to": "00:00:45,280"
+			},
+			"offsets": {
+				"from": 43520,
+				"to": 45280
+			},
+			"text": " and I don't think people trust credit scores"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,280",
+				"to": "00:00:46,640"
+			},
+			"offsets": {
+				"from": 45280,
+				"to": 46640
+			},
+			"text": " very much either."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,640",
+				"to": "00:00:49,340"
+			},
+			"offsets": {
+				"from": 46640,
+				"to": 49340
+			},
+			"text": " Nonetheless, these things are changing a lot of the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,340",
+				"to": "00:00:50,700"
+			},
+			"offsets": {
+				"from": 49340,
+				"to": 50700
+			},
+			"text": " that we interact in society."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,700",
+				"to": "00:00:55,960"
+			},
+			"offsets": {
+				"from": 50700,
+				"to": 55960
+			},
+			"text": " A second thread is that machine learning as a service"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,960",
+				"to": "00:00:58,480"
+			},
+			"offsets": {
+				"from": 55960,
+				"to": 58480
+			},
+			"text": " has been growing in popularity, especially recently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,480",
+				"to": "00:01:01,560"
+			},
+			"offsets": {
+				"from": 58480,
+				"to": 61560
+			},
+			"text": " with the rise of large foundation models."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,560",
+				"to": "00:01:05,440"
+			},
+			"offsets": {
+				"from": 61560,
+				"to": 65440
+			},
+			"text": " So in this paradigm, you know, you're maybe making a slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,440",
+				"to": "00:01:06,840"
+			},
+			"offsets": {
+				"from": 65440,
+				"to": 66840
+			},
+			"text": " and you want a cool image."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,840",
+				"to": "00:01:10,960"
+			},
+			"offsets": {
+				"from": 66840,
+				"to": 70960
+			},
+			"text": " So you'll send, hey, OpenAI, I want an image of Teddy Bears"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,960",
+				"to": "00:01:14,240"
+			},
+			"offsets": {
+				"from": 70960,
+				"to": 74240
+			},
+			"text": " working on AI research underwater."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,240",
+				"to": "00:01:16,840"
+			},
+			"offsets": {
+				"from": 74240,
+				"to": 76840
+			},
+			"text": " And OpenAI will send you back this beautiful image"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,840",
+				"to": "00:01:17,820"
+			},
+			"offsets": {
+				"from": 76840,
+				"to": 77820
+			},
+			"text": " to put in this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,820",
+				"to": "00:01:22,440"
+			},
+			"offsets": {
+				"from": 77820,
+				"to": 82440
+			},
+			"text": " Now the core problem in both of these use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,440",
+				"to": "00:01:26,720"
+			},
+			"offsets": {
+				"from": 82440,
+				"to": 86720
+			},
+			"text": " is that, well, as the user, you have no insight"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,720",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 86720,
+				"to": 89200
+			},
+			"text": " into what the model runner is actually doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:32,480"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 92480
+			},
+			"text": " You have no idea if an OpenAI actually ran, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,480",
+				"to": "00:01:35,640"
+			},
+			"offsets": {
+				"from": 92480,
+				"to": 95640
+			},
+			"text": " Dali2, or they just have a form of digital artists"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,640",
+				"to": "00:01:37,360"
+			},
+			"offsets": {
+				"from": 95640,
+				"to": 97360
+			},
+			"text": " that are really exploited."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,360",
+				"to": "00:01:41,360"
+			},
+			"offsets": {
+				"from": 97360,
+				"to": 101360
+			},
+			"text": " Okay, so we want some notion of trust and verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,360",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 101360,
+				"to": 103160
+			},
+			"text": " in this type of model inference."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:47,280"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 107280
+			},
+			"text": " Okay, so if you ask a computer scientist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,280",
+				"to": "00:01:49,040"
+			},
+			"offsets": {
+				"from": 107280,
+				"to": 109040
+			},
+			"text": " they'll tell you that there are actually many approaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,040",
+				"to": "00:01:50,960"
+			},
+			"offsets": {
+				"from": 109040,
+				"to": 110960
+			},
+			"text": " to this beyond ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,960",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 110960,
+				"to": 113600
+			},
+			"text": " Okay, so we have to learn about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:55,400"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 115400
+			},
+			"text": " And the first that they'll bring up"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,400",
+				"to": "00:01:57,480"
+			},
+			"offsets": {
+				"from": 115400,
+				"to": 117480
+			},
+			"text": " is multi-party computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,480",
+				"to": "00:02:00,760"
+			},
+			"offsets": {
+				"from": 117480,
+				"to": 120760
+			},
+			"text": " So in this case, a number of separate parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,760",
+				"to": "00:02:04,160"
+			},
+			"offsets": {
+				"from": 120760,
+				"to": 124160
+			},
+			"text": " will perform the machine learning operation together."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,160",
+				"to": "00:02:05,840"
+			},
+			"offsets": {
+				"from": 124160,
+				"to": 125840
+			},
+			"text": " And of course, because they're collaborating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,840",
+				"to": "00:02:08,880"
+			},
+			"offsets": {
+				"from": 125840,
+				"to": 128880
+			},
+			"text": " this requires that the parties are online simultaneously."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,880",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 128880,
+				"to": 130560
+			},
+			"text": " And there's a one of N trust model"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:13,280"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 133280
+			},
+			"text": " for privacy and correct execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,280",
+				"to": "00:02:14,640"
+			},
+			"offsets": {
+				"from": 133280,
+				"to": 134640
+			},
+			"text": " That means that you need to trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,640",
+				"to": "00:02:16,760"
+			},
+			"offsets": {
+				"from": 134640,
+				"to": 136760
+			},
+			"text": " that only one of the N parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,760",
+				"to": "00:02:18,960"
+			},
+			"offsets": {
+				"from": 136760,
+				"to": 138960
+			},
+			"text": " is actually behaving honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,960",
+				"to": "00:02:22,880"
+			},
+			"offsets": {
+				"from": 138960,
+				"to": 142880
+			},
+			"text": " So it's possible for MPC to provide both privacy and validity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,880",
+				"to": "00:02:26,680"
+			},
+			"offsets": {
+				"from": 142880,
+				"to": 146680
+			},
+			"text": " But unfortunately, it requires pretty high interaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,680",
+				"to": "00:02:28,200"
+			},
+			"offsets": {
+				"from": 146680,
+				"to": 148200
+			},
+			"text": " and high bandwidth."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,200",
+				"to": "00:02:29,720"
+			},
+			"offsets": {
+				"from": 148200,
+				"to": 149720
+			},
+			"text": " And at least at present,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,720",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 149720,
+				"to": 151720
+			},
+			"text": " there's a really high compute overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:33,760"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 153760
+			},
+			"text": " if you want to ensure validity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,760",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 153760,
+				"to": 155920
+			},
+			"text": " So as a result, we looked into the literature"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:37,600"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 157600
+			},
+			"text": " and it looks like MPC can only handle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,600",
+				"to": "00:02:39,240"
+			},
+			"offsets": {
+				"from": 157600,
+				"to": 159240
+			},
+			"text": " relatively small models today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,240",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 159240,
+				"to": 162800
+			},
+			"text": " Another technique that's pretty popular"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:44,680"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 164680
+			},
+			"text": " is homomorphic encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,680",
+				"to": "00:02:48,240"
+			},
+			"offsets": {
+				"from": 164680,
+				"to": 168240
+			},
+			"text": " The idea here is you take your input data and crypt it"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,240",
+				"to": "00:02:50,000"
+			},
+			"offsets": {
+				"from": 168240,
+				"to": 170000
+			},
+			"text": " and send it to some server"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,000",
+				"to": "00:02:51,760"
+			},
+			"offsets": {
+				"from": 170000,
+				"to": 171760
+			},
+			"text": " that runs a machine learning model"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,760",
+				"to": "00:02:54,920"
+			},
+			"offsets": {
+				"from": 171760,
+				"to": 174920
+			},
+			"text": " on the encrypted data without knowing about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,920",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 174920,
+				"to": 177120
+			},
+			"text": " So in this case, homomorphic encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 179280
+			},
+			"text": " is only targeted at privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 182000
+			},
+			"text": " and not at guaranteeing validity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 184120
+			},
+			"text": " The benefits are that you don't need to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:07,400"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 187400
+			},
+			"text": " with the server beyond sending your encrypted input."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,400",
+				"to": "00:03:09,680"
+			},
+			"offsets": {
+				"from": 187400,
+				"to": 189680
+			},
+			"text": " But the downside is that there's a really massive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,680",
+				"to": "00:03:10,760"
+			},
+			"offsets": {
+				"from": 189680,
+				"to": 190760
+			},
+			"text": " compute overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,760",
+				"to": "00:03:12,680"
+			},
+			"offsets": {
+				"from": 190760,
+				"to": 192680
+			},
+			"text": " For MPC, I said there was a big compute overhead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,680",
+				"to": "00:03:14,760"
+			},
+			"offsets": {
+				"from": 192680,
+				"to": 194760
+			},
+			"text": " but trust me, this is really massive."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,760",
+				"to": "00:03:17,840"
+			},
+			"offsets": {
+				"from": 194760,
+				"to": 197840
+			},
+			"text": " And so as a consequence, MPC today, as far as I know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,840",
+				"to": "00:03:19,760"
+			},
+			"offsets": {
+				"from": 197840,
+				"to": 199760
+			},
+			"text": " can only handle quite tiny models."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,760",
+				"to": "00:03:21,560"
+			},
+			"offsets": {
+				"from": 199760,
+				"to": 201560
+			},
+			"text": " I mean, recognizing digits."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,560",
+				"to": "00:03:24,320"
+			},
+			"offsets": {
+				"from": 201560,
+				"to": 204320
+			},
+			"text": " Okay, so now we come to ZK."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,320",
+				"to": "00:03:27,120"
+			},
+			"offsets": {
+				"from": 204320,
+				"to": 207120
+			},
+			"text": " So what is ZK adding that MPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,120",
+				"to": "00:03:30,680"
+			},
+			"offsets": {
+				"from": 207120,
+				"to": 210680
+			},
+			"text": " and homomorphic encryption don't bring to the table here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,680",
+				"to": "00:03:34,200"
+			},
+			"offsets": {
+				"from": 210680,
+				"to": 214200
+			},
+			"text": " So with ZK, while the server is doing inference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,200",
+				"to": "00:03:37,480"
+			},
+			"offsets": {
+				"from": 214200,
+				"to": 217480
+			},
+			"text": " it can generate a proof of valid execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,480",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 217480,
+				"to": 220000
+			},
+			"text": " And with that proof, anyone can verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:42,560"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 222560
+			},
+			"text": " that the output was correctly generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,560",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 222560,
+				"to": 226400
+			},
+			"text": " So in this case, ZK can ensure validity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:48,600"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 228600
+			},
+			"text": " that is that the model was correctly executed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,600",
+				"to": "00:03:51,360"
+			},
+			"offsets": {
+				"from": 228600,
+				"to": 231360
+			},
+			"text": " and it can ensure a weaker notion of privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,360",
+				"to": "00:03:53,880"
+			},
+			"offsets": {
+				"from": 231360,
+				"to": 233880
+			},
+			"text": " than MPC and homomorphic encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,880",
+				"to": "00:03:56,720"
+			},
+			"offsets": {
+				"from": 233880,
+				"to": 236720
+			},
+			"text": " That is for ZK, the model runner needs to know"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,720",
+				"to": "00:03:58,200"
+			},
+			"offsets": {
+				"from": 236720,
+				"to": 238200
+			},
+			"text": " everything about the input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,200",
+				"to": "00:04:00,200"
+			},
+			"offsets": {
+				"from": 238200,
+				"to": 240200
+			},
+			"text": " whereas that's not necessary in MPC"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,200",
+				"to": "00:04:01,840"
+			},
+			"offsets": {
+				"from": 240200,
+				"to": 241840
+			},
+			"text": " and homomorphic encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,840",
+				"to": "00:04:04,240"
+			},
+			"offsets": {
+				"from": 241840,
+				"to": 244240
+			},
+			"text": " But once you have the proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,240",
+				"to": "00:04:07,440"
+			},
+			"offsets": {
+				"from": 244240,
+				"to": 247440
+			},
+			"text": " the input can be private from the rest of the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,440",
+				"to": "00:04:10,200"
+			},
+			"offsets": {
+				"from": 247440,
+				"to": 250200
+			},
+			"text": " Another upside is that there's no interaction required,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,200",
+				"to": "00:04:11,640"
+			},
+			"offsets": {
+				"from": 250200,
+				"to": 251640
+			},
+			"text": " and a downside is that there's still"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,640",
+				"to": "00:04:13,760"
+			},
+			"offsets": {
+				"from": 251640,
+				"to": 253760
+			},
+			"text": " a pretty massive computation overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,760",
+				"to": "00:04:15,720"
+			},
+			"offsets": {
+				"from": 253760,
+				"to": 255720
+			},
+			"text": " over the cost of inference."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,720",
+				"to": "00:04:19,280"
+			},
+			"offsets": {
+				"from": 255720,
+				"to": 259280
+			},
+			"text": " So in this talk, I'm gonna talk about a method we developed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,280",
+				"to": "00:04:21,920"
+			},
+			"offsets": {
+				"from": 259280,
+				"to": 261920
+			},
+			"text": " to scale the application of ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,920",
+				"to": "00:04:23,600"
+			},
+			"offsets": {
+				"from": 261920,
+				"to": 263600
+			},
+			"text": " by reducing the compute overhead"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,600",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 263600,
+				"to": 266760
+			},
+			"text": " from pretty small models to relatively large models."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 271000
+			},
+			"text": " Okay, so let me first situate you in the task"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:33,520"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 273520
+			},
+			"text": " and what I mean by small and big."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,520",
+				"to": "00:04:37,200"
+			},
+			"offsets": {
+				"from": 273520,
+				"to": 277200
+			},
+			"text": " So a lot of prior work in ZK for neural network inference"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,200",
+				"to": "00:04:41,880"
+			},
+			"offsets": {
+				"from": 277200,
+				"to": 281880
+			},
+			"text": " focused on these two benchmark tasks, MNIST and CFR10."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,880",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 281880,
+				"to": 284640
+			},
+			"text": " The task in MNIST is you get a black and white digit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:47,240"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 287240
+			},
+			"text": " and you have to recognize which of those digits it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,240",
+				"to": "00:04:49,360"
+			},
+			"offsets": {
+				"from": 287240,
+				"to": 289360
+			},
+			"text": " The post office uses something like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,360",
+				"to": "00:04:53,840"
+			},
+			"offsets": {
+				"from": 289360,
+				"to": 293840
+			},
+			"text": " In CFR, there are 32 by 32 pixels of 10 classes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,840",
+				"to": "00:04:58,160"
+			},
+			"offsets": {
+				"from": 293840,
+				"to": 298160
+			},
+			"text": " of things like car, automobile, horse, boat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,160",
+				"to": "00:04:59,920"
+			},
+			"offsets": {
+				"from": 298160,
+				"to": 299920
+			},
+			"text": " and you have to choose for each image"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,920",
+				"to": "00:05:02,520"
+			},
+			"offsets": {
+				"from": 299920,
+				"to": 302520
+			},
+			"text": " which of those 10 glasses applies."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,520",
+				"to": "00:05:04,320"
+			},
+			"offsets": {
+				"from": 302520,
+				"to": 304320
+			},
+			"text": " So in our work, we scaled things up"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,320",
+				"to": "00:05:07,160"
+			},
+			"offsets": {
+				"from": 304320,
+				"to": 307160
+			},
+			"text": " to approach the much larger ImageNet dataset."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,160",
+				"to": "00:05:10,400"
+			},
+			"offsets": {
+				"from": 307160,
+				"to": 310400
+			},
+			"text": " So in this case, we have 1,000 classes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,400",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 310400,
+				"to": 312880
+			},
+			"text": " ImageNet happens to contain many breeds of dog."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:16,400"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 316400
+			},
+			"text": " So actually there are 200 breeds of dog at 1,000 classes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,400",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 316400,
+				"to": 318240
+			},
+			"text": " The images are much higher resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:20,680"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 320680
+			},
+			"text": " They're 224 by 224."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,680",
+				"to": "00:05:25,040"
+			},
+			"offsets": {
+				"from": 320680,
+				"to": 325040
+			},
+			"text": " And this is really the first standard large benchmark dataset"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,040",
+				"to": "00:05:27,040"
+			},
+			"offsets": {
+				"from": 325040,
+				"to": 327040
+			},
+			"text": " for this image classification task."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,040",
+				"to": "00:05:30,600"
+			},
+			"offsets": {
+				"from": 327040,
+				"to": 330600
+			},
+			"text": " Okay, so here's what we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,600",
+				"to": "00:05:33,800"
+			},
+			"offsets": {
+				"from": 330600,
+				"to": 333800
+			},
+			"text": " We chose a model called MobileNet V2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,800",
+				"to": "00:05:35,680"
+			},
+			"offsets": {
+				"from": 333800,
+				"to": 335680
+			},
+			"text": " which was developed originally to be run"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,680",
+				"to": "00:05:39,080"
+			},
+			"offsets": {
+				"from": 335680,
+				"to": 339080
+			},
+			"text": " in low resource environments such as mobile phones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,080",
+				"to": "00:05:41,840"
+			},
+			"offsets": {
+				"from": 339080,
+				"to": 341840
+			},
+			"text": " For a range of input resolutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,840",
+				"to": "00:05:45,840"
+			},
+			"offsets": {
+				"from": 341840,
+				"to": 345840
+			},
+			"text": " we're able to completely snark the execution of the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,840",
+				"to": "00:05:48,800"
+			},
+			"offsets": {
+				"from": 345840,
+				"to": 348800
+			},
+			"text": " And as you can see, the proving time for a single input"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,800",
+				"to": "00:05:50,600"
+			},
+			"offsets": {
+				"from": 348800,
+				"to": 350600
+			},
+			"text": " is still relatively large."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,600",
+				"to": "00:05:53,880"
+			},
+			"offsets": {
+				"from": 350600,
+				"to": 353880
+			},
+			"text": " Okay, so even for the smallest input resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,880",
+				"to": "00:05:56,960"
+			},
+			"offsets": {
+				"from": 353880,
+				"to": 356960
+			},
+			"text": " of 96 by 96, we take over two minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,960",
+				"to": "00:06:00,160"
+			},
+			"offsets": {
+				"from": 356960,
+				"to": 360160
+			},
+			"text": " but we are able to scale to the full ImageNet resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,160",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 360160,
+				"to": 362000
+			},
+			"text": " in about 20 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:04,440"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 364440
+			},
+			"text": " So this is using the Halo 2 back end"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,440",
+				"to": "00:06:07,120"
+			},
+			"offsets": {
+				"from": 364440,
+				"to": 367120
+			},
+			"text": " with the original IPA proving system."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,120",
+				"to": "00:06:10,440"
+			},
+			"offsets": {
+				"from": 367120,
+				"to": 370440
+			},
+			"text": " As you can see, the proof size is relatively small"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,440",
+				"to": "00:06:12,880"
+			},
+			"offsets": {
+				"from": 370440,
+				"to": 372880
+			},
+			"text": " and the verification time, thankfully,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,880",
+				"to": "00:06:14,320"
+			},
+			"offsets": {
+				"from": 372880,
+				"to": 374320
+			},
+			"text": " is not as large as the proving time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,320",
+				"to": "00:06:16,240"
+			},
+			"offsets": {
+				"from": 374320,
+				"to": 376240
+			},
+			"text": " although perhaps still quite large."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,240",
+				"to": "00:06:20,520"
+			},
+			"offsets": {
+				"from": 376240,
+				"to": 380520
+			},
+			"text": " Okay, so let me, in the rest of the talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,520",
+				"to": "00:06:22,800"
+			},
+			"offsets": {
+				"from": 380520,
+				"to": 382800
+			},
+			"text": " let me talk a little bit about how we did this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,800",
+				"to": "00:06:24,640"
+			},
+			"offsets": {
+				"from": 382800,
+				"to": 384640
+			},
+			"text": " and what we can do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,640",
+				"to": "00:06:27,160"
+			},
+			"offsets": {
+				"from": 384640,
+				"to": 387160
+			},
+			"text": " So when you think about snarking execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,160",
+				"to": "00:06:29,920"
+			},
+			"offsets": {
+				"from": 387160,
+				"to": 389920
+			},
+			"text": " of a neural network, we came at it by dividing the problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,920",
+				"to": "00:06:31,600"
+			},
+			"offsets": {
+				"from": 389920,
+				"to": 391600
+			},
+			"text": " into three pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,600",
+				"to": "00:06:34,600"
+			},
+			"offsets": {
+				"from": 391600,
+				"to": 394600
+			},
+			"text": " The first piece is it turns out that the notion"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,600",
+				"to": "00:06:37,960"
+			},
+			"offsets": {
+				"from": 394600,
+				"to": 397960
+			},
+			"text": " of difficulty of execution between neural networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,960",
+				"to": "00:06:41,800"
+			},
+			"offsets": {
+				"from": 397960,
+				"to": 401800
+			},
+			"text": " run on GPUs and snarking things in a ZK circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,800",
+				"to": "00:06:42,960"
+			},
+			"offsets": {
+				"from": 401800,
+				"to": 402960
+			},
+			"text": " is quite different."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,960",
+				"to": "00:06:46,680"
+			},
+			"offsets": {
+				"from": 402960,
+				"to": 406680
+			},
+			"text": " So we tried to select the best architecture for this task."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,680",
+				"to": "00:06:50,320"
+			},
+			"offsets": {
+				"from": 406680,
+				"to": 410320
+			},
+			"text": " The second is we had to devise a pretty optimal way"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,320",
+				"to": "00:06:54,440"
+			},
+			"offsets": {
+				"from": 410320,
+				"to": 414440
+			},
+			"text": " of arithmeticizing this neural network inference operation"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,440",
+				"to": "00:06:56,680"
+			},
+			"offsets": {
+				"from": 414440,
+				"to": 416680
+			},
+			"text": " into a ZK circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,680",
+				"to": "00:06:59,440"
+			},
+			"offsets": {
+				"from": 416680,
+				"to": 419440
+			},
+			"text": " And last, we selected a proving system"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,440",
+				"to": "00:07:01,720"
+			},
+			"offsets": {
+				"from": 419440,
+				"to": 421720
+			},
+			"text": " largely because we were most familiar with Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,720",
+				"to": "00:07:04,440"
+			},
+			"offsets": {
+				"from": 421720,
+				"to": 424440
+			},
+			"text": " So that's not a very principal choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,440",
+				"to": "00:07:06,600"
+			},
+			"offsets": {
+				"from": 424440,
+				"to": 426600
+			},
+			"text": " But one thing that I wanted to note is we decided"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,600",
+				"to": "00:07:08,880"
+			},
+			"offsets": {
+				"from": 426600,
+				"to": 428880
+			},
+			"text": " to go with a general purpose proving system"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,880",
+				"to": "00:07:12,280"
+			},
+			"offsets": {
+				"from": 428880,
+				"to": 432280
+			},
+			"text": " instead of a proving system devised specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,280",
+				"to": "00:07:13,640"
+			},
+			"offsets": {
+				"from": 432280,
+				"to": 433640
+			},
+			"text": " for neural networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,640",
+				"to": "00:07:15,080"
+			},
+			"offsets": {
+				"from": 433640,
+				"to": 435080
+			},
+			"text": " And the reason we wanted to do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,080",
+				"to": "00:07:17,760"
+			},
+			"offsets": {
+				"from": 435080,
+				"to": 437760
+			},
+			"text": " was to plug into the existing tooling ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,760",
+				"to": "00:07:20,600"
+			},
+			"offsets": {
+				"from": 437760,
+				"to": 440600
+			},
+			"text": " around Halo 2 and other similar general purpose proving"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,600",
+				"to": "00:07:21,440"
+			},
+			"offsets": {
+				"from": 440600,
+				"to": 441440
+			},
+			"text": " systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,440",
+				"to": "00:07:25,320"
+			},
+			"offsets": {
+				"from": 441440,
+				"to": 445320
+			},
+			"text": " Okay, so to dive in a little bit more"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,320",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 445320,
+				"to": 449360
+			},
+			"text": " on what type of architectures are easy to do in ZK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 452160
+			},
+			"text": " the first thing to note is that it's very hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:35,520"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 455520
+			},
+			"text": " to deal with floating point numbers within a ZK circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,520",
+				"to": "00:07:37,640"
+			},
+			"offsets": {
+				"from": 455520,
+				"to": 457640
+			},
+			"text": " Since every variable in a ZK circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,640",
+				"to": "00:07:40,600"
+			},
+			"offsets": {
+				"from": 457640,
+				"to": 460600
+			},
+			"text": " is under the hood, a large prime field element."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,600",
+				"to": "00:07:44,120"
+			},
+			"offsets": {
+				"from": 460600,
+				"to": 464120
+			},
+			"text": " So that essentially forces us to work with quantized models."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,120",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 464120,
+				"to": 466040
+			},
+			"text": " That is models that were specifically designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 469000
+			},
+			"text": " to have all of their weights be eight bit integers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,280"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472280
+			},
+			"text": " Now, the level of quantization and machine learning"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,280",
+				"to": "00:07:55,160"
+			},
+			"offsets": {
+				"from": 472280,
+				"to": 475160
+			},
+			"text": " generally gives you a trade off between accuracy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,160",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 475160,
+				"to": 478360
+			},
+			"text": " and how few bits you've quantized the model into."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:00,360"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 480360
+			},
+			"text": " And in ZK, this translates to a trade off"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,360",
+				"to": "00:08:03,040"
+			},
+			"offsets": {
+				"from": 480360,
+				"to": 483040
+			},
+			"text": " between accuracy and proving cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,040",
+				"to": "00:08:06,600"
+			},
+			"offsets": {
+				"from": 483040,
+				"to": 486600
+			},
+			"text": " So we did a first pass at this among just off the shelf models."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,600",
+				"to": "00:08:08,320"
+			},
+			"offsets": {
+				"from": 486600,
+				"to": 488320
+			},
+			"text": " And it seems like models optimized"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,320",
+				"to": "00:08:11,560"
+			},
+			"offsets": {
+				"from": 488320,
+				"to": 491560
+			},
+			"text": " for low resource environments, particularly on the edge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,560",
+				"to": "00:08:12,960"
+			},
+			"offsets": {
+				"from": 491560,
+				"to": 492960
+			},
+			"text": " are quite good at this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,960",
+				"to": "00:08:15,680"
+			},
+			"offsets": {
+				"from": 492960,
+				"to": 495680
+			},
+			"text": " And so we chose to start mobile net V2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,680",
+				"to": "00:08:18,320"
+			},
+			"offsets": {
+				"from": 495680,
+				"to": 498320
+			},
+			"text": " You can download this model from the TensorFlow website."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,320",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 498320,
+				"to": 503000
+			},
+			"text": " The second thing we did to make our search over architectures"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:26,080"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 506080
+			},
+			"text": " a bit simpler is we wrote a transpiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,080",
+				"to": "00:08:30,920"
+			},
+			"offsets": {
+				"from": 506080,
+				"to": 510920
+			},
+			"text": " from the TensorFlow Lite model format to Halo 2 circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,920",
+				"to": "00:08:33,360"
+			},
+			"offsets": {
+				"from": 510920,
+				"to": 513360
+			},
+			"text": " And then we applied all of our optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,360",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 513360,
+				"to": 517000
+			},
+			"text": " to the individual building blocks of this transpiler."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:39,640"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 519640
+			},
+			"text": " So this allowed us to handle the many weird,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,640",
+				"to": "00:08:41,840"
+			},
+			"offsets": {
+				"from": 519640,
+				"to": 521840
+			},
+			"text": " low resource neural networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,840",
+				"to": "00:08:43,720"
+			},
+			"offsets": {
+				"from": 521840,
+				"to": 523720
+			},
+			"text": " without massive programming overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,720",
+				"to": "00:08:49,160"
+			},
+			"offsets": {
+				"from": 523720,
+				"to": 529160
+			},
+			"text": " Finally, in the arithmetic data back end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,160",
+				"to": "00:08:52,240"
+			},
+			"offsets": {
+				"from": 529160,
+				"to": 532240
+			},
+			"text": " we used the Plonkish arithmetic data for Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,240",
+				"to": "00:08:56,440"
+			},
+			"offsets": {
+				"from": 532240,
+				"to": 536440
+			},
+			"text": " And so we actually only used two types of features of Halo 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,440",
+				"to": "00:08:59,840"
+			},
+			"offsets": {
+				"from": 536440,
+				"to": 539840
+			},
+			"text": " We handle all the linear layers via custom gates."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,840",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 539840,
+				"to": 542240
+			},
+			"text": " And we use the lookup tables"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:07,240"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 547240
+			},
+			"text": " to essentially build a lookup table of all nonlinearities."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,240",
+				"to": "00:09:10,240"
+			},
+			"offsets": {
+				"from": 547240,
+				"to": 550240
+			},
+			"text": " And finally, there's a small subtlety"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,240",
+				"to": "00:09:13,240"
+			},
+			"offsets": {
+				"from": 550240,
+				"to": 553240
+			},
+			"text": " that we have to readjust the fixed point in the quantization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,240",
+				"to": "00:09:15,040"
+			},
+			"offsets": {
+				"from": 553240,
+				"to": 555040
+			},
+			"text": " and we're able to do some optimization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,040",
+				"to": "00:09:16,880"
+			},
+			"offsets": {
+				"from": 555040,
+				"to": 556880
+			},
+			"text": " by shoving that into the lookup table."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,880",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 556880,
+				"to": 562520
+			},
+			"text": " Okay, let me now finish by just giving you a general sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:24,760"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 564760
+			},
+			"text": " of one application that we can do with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,760",
+				"to": "00:09:29,400"
+			},
+			"offsets": {
+				"from": 564760,
+				"to": 569400
+			},
+			"text": " So there are sort of four settings, as Jason alluded to."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,400",
+				"to": "00:09:33,040"
+			},
+			"offsets": {
+				"from": 569400,
+				"to": 573040
+			},
+			"text": " So where you can make the model either public or private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,040",
+				"to": "00:09:35,800"
+			},
+			"offsets": {
+				"from": 573040,
+				"to": 575800
+			},
+			"text": " you can make the data either public or private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,800",
+				"to": "00:09:38,880"
+			},
+			"offsets": {
+				"from": 575800,
+				"to": 578880
+			},
+			"text": " and you can combinatorially combine these."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,880",
+				"to": "00:09:41,320"
+			},
+			"offsets": {
+				"from": 578880,
+				"to": 581320
+			},
+			"text": " So we have a couple ideas in each quadrant."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,320",
+				"to": "00:09:44,760"
+			},
+			"offsets": {
+				"from": 581320,
+				"to": 584760
+			},
+			"text": " So if your model is private and your data is public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,760",
+				"to": "00:09:47,120"
+			},
+			"offsets": {
+				"from": 584760,
+				"to": 587120
+			},
+			"text": " maybe you're trying to sell your model"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,120",
+				"to": "00:09:49,080"
+			},
+			"offsets": {
+				"from": 587120,
+				"to": 589080
+			},
+			"text": " and you wanna demonstrate to the buyer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,080",
+				"to": "00:09:50,320"
+			},
+			"offsets": {
+				"from": 589080,
+				"to": 590320
+			},
+			"text": " that your model is any good"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,320",
+				"to": "00:09:52,720"
+			},
+			"offsets": {
+				"from": 590320,
+				"to": 592720
+			},
+			"text": " without just revealing the model altogether."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,720",
+				"to": "00:09:56,960"
+			},
+			"offsets": {
+				"from": 592720,
+				"to": 596960
+			},
+			"text": " If your data and model are both public,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,960",
+				"to": "00:09:58,320"
+			},
+			"offsets": {
+				"from": 596960,
+				"to": 598320
+			},
+			"text": " then we think that this could be useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,320",
+				"to": "00:10:01,000"
+			},
+			"offsets": {
+				"from": 598320,
+				"to": 601000
+			},
+			"text": " for on-chain verification as Jason alluded to."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,000",
+				"to": "00:10:04,440"
+			},
+			"offsets": {
+				"from": 601000,
+				"to": 604440
+			},
+			"text": " And finally, if your data is private,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,440",
+				"to": "00:10:07,120"
+			},
+			"offsets": {
+				"from": 604440,
+				"to": 607120
+			},
+			"text": " then in both the private and public model format,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,120",
+				"to": "00:10:10,560"
+			},
+			"offsets": {
+				"from": 607120,
+				"to": 610560
+			},
+			"text": " we think that this could be useful for conducting an audit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,560",
+				"to": "00:10:12,800"
+			},
+			"offsets": {
+				"from": 610560,
+				"to": 612800
+			},
+			"text": " for example, in legal discovery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,800",
+				"to": "00:10:16,760"
+			},
+			"offsets": {
+				"from": 612800,
+				"to": 616760
+			},
+			"text": " without forcing revelation of the entire dataset that you hold."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,760",
+				"to": "00:10:23,080"
+			},
+			"offsets": {
+				"from": 616760,
+				"to": 623080
+			},
+			"text": " Okay, so just to give one sample back of the envelope"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,080",
+				"to": "00:10:27,720"
+			},
+			"offsets": {
+				"from": 623080,
+				"to": 627720
+			},
+			"text": " calculation of how much it would cost to use our snark"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,720",
+				"to": "00:10:31,720"
+			},
+			"offsets": {
+				"from": 627720,
+				"to": 631720
+			},
+			"text": " to do verified machine learning model accuracy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,720",
+				"to": "00:10:34,200"
+			},
+			"offsets": {
+				"from": 631720,
+				"to": 634200
+			},
+			"text": " we made a very basic protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,200",
+				"to": "00:10:37,840"
+			},
+			"offsets": {
+				"from": 634200,
+				"to": 637840
+			},
+			"text": " where a model perspective buyer asked the model seller"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,840",
+				"to": "00:10:40,040"
+			},
+			"offsets": {
+				"from": 637840,
+				"to": 640040
+			},
+			"text": " to verify the accuracy of a model"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,040",
+				"to": "00:10:41,800"
+			},
+			"offsets": {
+				"from": 640040,
+				"to": 641800
+			},
+			"text": " on a randomly chosen test set."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,800",
+				"to": "00:10:44,640"
+			},
+			"offsets": {
+				"from": 641800,
+				"to": 644640
+			},
+			"text": " So in this case, you want to randomly sample"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,640",
+				"to": "00:10:48,560"
+			},
+			"offsets": {
+				"from": 644640,
+				"to": 648560
+			},
+			"text": " from the test set, find the accuracy on the random sample,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,560",
+				"to": "00:10:51,640"
+			},
+			"offsets": {
+				"from": 648560,
+				"to": 651640
+			},
+			"text": " and from that, you're gonna get some statistical estimates"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,640",
+				"to": "00:10:55,280"
+			},
+			"offsets": {
+				"from": 651640,
+				"to": 655280
+			},
+			"text": " of your overall model accuracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,280",
+				"to": "00:10:58,400"
+			},
+			"offsets": {
+				"from": 655280,
+				"to": 658400
+			},
+			"text": " And so we ran the numbers, and it turns out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,400",
+				"to": "00:11:01,200"
+			},
+			"offsets": {
+				"from": 658400,
+				"to": 661200
+			},
+			"text": " that if you want to have, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,200",
+				"to": "00:11:04,680"
+			},
+			"offsets": {
+				"from": 661200,
+				"to": 664680
+			},
+			"text": " you have to want to know the accuracy within 5%"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,680",
+				"to": "00:11:06,640"
+			},
+			"offsets": {
+				"from": 664680,
+				"to": 666640
+			},
+			"text": " at a 95% confidence interval,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,640",
+				"to": "00:11:08,880"
+			},
+			"offsets": {
+				"from": 666640,
+				"to": 668880
+			},
+			"text": " you need to sample 600 times,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,880",
+				"to": "00:11:12,160"
+			},
+			"offsets": {
+				"from": 668880,
+				"to": 672160
+			},
+			"text": " and that will cost about $90 to verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,160",
+				"to": "00:11:13,840"
+			},
+			"offsets": {
+				"from": 672160,
+				"to": 673840
+			},
+			"text": " If you want to, within 1%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,840",
+				"to": "00:11:16,840"
+			},
+			"offsets": {
+				"from": 673840,
+				"to": 676840
+			},
+			"text": " that's gonna cost you a little over $2,000"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,840",
+				"to": "00:11:18,880"
+			},
+			"offsets": {
+				"from": 676840,
+				"to": 678880
+			},
+			"text": " with our current implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,880",
+				"to": "00:11:20,200"
+			},
+			"offsets": {
+				"from": 678880,
+				"to": 680200
+			},
+			"text": " And just to give you a sense of whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,200",
+				"to": "00:11:22,280"
+			},
+			"offsets": {
+				"from": 680200,
+				"to": 682280
+			},
+			"text": " that could be reasonable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,280",
+				"to": "00:11:24,400"
+			},
+			"offsets": {
+				"from": 682280,
+				"to": 684400
+			},
+			"text": " people generally are willing to spend"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,400",
+				"to": "00:11:27,440"
+			},
+			"offsets": {
+				"from": 684400,
+				"to": 687440
+			},
+			"text": " in the high five figures, maybe low six figures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,440",
+				"to": "00:11:29,880"
+			},
+			"offsets": {
+				"from": 687440,
+				"to": 689880
+			},
+			"text": " just to acquire data to train their model."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,880",
+				"to": "00:11:33,080"
+			},
+			"offsets": {
+				"from": 689880,
+				"to": 693080
+			},
+			"text": " So maybe it's worthwhile to pay a couple thousand dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,080",
+				"to": "00:11:35,640"
+			},
+			"offsets": {
+				"from": 693080,
+				"to": 695640
+			},
+			"text": " to verify that what you're buying is legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,640",
+				"to": "00:11:39,280"
+			},
+			"offsets": {
+				"from": 695640,
+				"to": 699280
+			},
+			"text": " All right, so just to summarize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,280",
+				"to": "00:11:41,320"
+			},
+			"offsets": {
+				"from": 699280,
+				"to": 701320
+			},
+			"text": " we constructed the first snark we think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,320",
+				"to": "00:11:44,160"
+			},
+			"offsets": {
+				"from": 701320,
+				"to": 704160
+			},
+			"text": " that can scale to ImageNet level."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,160",
+				"to": "00:11:48,680"
+			},
+			"offsets": {
+				"from": 704160,
+				"to": 708680
+			},
+			"text": " And for this, we had to choose the correctly quantized model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,680",
+				"to": "00:11:51,120"
+			},
+			"offsets": {
+				"from": 708680,
+				"to": 711120
+			},
+			"text": " write a compiler from TensorFlow Lite"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,120",
+				"to": "00:11:54,280"
+			},
+			"offsets": {
+				"from": 711120,
+				"to": 714280
+			},
+			"text": " to a Halo 2 Plonkish arithmeticization,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,280",
+				"to": "00:11:56,160"
+			},
+			"offsets": {
+				"from": 714280,
+				"to": 716160
+			},
+			"text": " and then we ran some benchmarks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,160",
+				"to": "00:11:58,920"
+			},
+			"offsets": {
+				"from": 716160,
+				"to": 718920
+			},
+			"text": " on whether this sort of technique is reasonable"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,920",
+				"to": "00:12:02,520"
+			},
+			"offsets": {
+				"from": 718920,
+				"to": 722520
+			},
+			"text": " for some concrete applications that verified inference."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,520",
+				"to": "00:12:04,760"
+			},
+			"offsets": {
+				"from": 722520,
+				"to": 724760
+			},
+			"text": " So going forward, we're excited to explore"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,760",
+				"to": "00:12:06,880"
+			},
+			"offsets": {
+				"from": 724760,
+				"to": 726880
+			},
+			"text": " some more applications that verified inference,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,880",
+				"to": "00:12:09,320"
+			},
+			"offsets": {
+				"from": 726880,
+				"to": 729320
+			},
+			"text": " and also try to scale this to different types of models,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,320",
+				"to": "00:12:11,560"
+			},
+			"offsets": {
+				"from": 729320,
+				"to": 731560
+			},
+			"text": " particularly transformers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,560",
+				"to": "00:12:14,760"
+			},
+			"offsets": {
+				"from": 731560,
+				"to": 734760
+			},
+			"text": " Thanks, and I don't know if there's any time for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,760",
+				"to": "00:12:16,760"
+			},
+			"offsets": {
+				"from": 734760,
+				"to": 736760
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,760",
+				"to": "00:12:17,600"
+			},
+			"offsets": {
+				"from": 736760,
+				"to": 737600
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,600",
+				"to": "00:12:22,680"
+			},
+			"offsets": {
+				"from": 737600,
+				"to": 742680
+			},
+			"text": " I'm gonna say there's time for one."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,680",
+				"to": "00:12:23,520"
+			},
+			"offsets": {
+				"from": 742680,
+				"to": 743520
+			},
+			"text": " Who's gonna be?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,520",
+				"to": "00:12:24,440"
+			},
+			"offsets": {
+				"from": 743520,
+				"to": 744440
+			},
+			"text": " Oh, and what do you know?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,440",
+				"to": "00:12:26,640"
+			},
+			"offsets": {
+				"from": 744440,
+				"to": 746640
+			},
+			"text": " It's our next presenter that's so smooth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,640",
+				"to": "00:12:29,600"
+			},
+			"offsets": {
+				"from": 746640,
+				"to": 749600
+			},
+			"text": " I'll just hand you this mic and you can keep it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,600",
+				"to": "00:12:30,440"
+			},
+			"offsets": {
+				"from": 749600,
+				"to": 750440
+			},
+			"text": " - Wonderful."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,440",
+				"to": "00:12:33,400"
+			},
+			"offsets": {
+				"from": 750440,
+				"to": 753400
+			},
+			"text": " So one question, you mentioned a couple of optimizations you did."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,400",
+				"to": "00:12:35,120"
+			},
+			"offsets": {
+				"from": 753400,
+				"to": 755120
+			},
+			"text": " Can you reveal some optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,120",
+				"to": "00:12:37,000"
+			},
+			"offsets": {
+				"from": 755120,
+				"to": 757000
+			},
+			"text": " you think you could do in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,000",
+				"to": "00:12:44,480"
+			},
+			"offsets": {
+				"from": 757000,
+				"to": 764480
+			},
+			"text": " (audience laughing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,480",
+				"to": "00:12:45,480"
+			},
+			"offsets": {
+				"from": 764480,
+				"to": 765480
+			},
+			"text": " - That's a very hard question."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,480",
+				"to": "00:12:48,040"
+			},
+			"offsets": {
+				"from": 765480,
+				"to": 768040
+			},
+			"text": " Since if there is an optimization we thought we could do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,040",
+				"to": "00:12:49,400"
+			},
+			"offsets": {
+				"from": 768040,
+				"to": 769400
+			},
+			"text": " we generally just did it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,400",
+				"to": "00:12:51,520"
+			},
+			"offsets": {
+				"from": 769400,
+				"to": 771520
+			},
+			"text": " One thing I didn't mention is we tried"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,520",
+				"to": "00:12:53,520"
+			},
+			"offsets": {
+				"from": 771520,
+				"to": 773520
+			},
+			"text": " to reduce the number of lookup arguments"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,520",
+				"to": "00:12:55,880"
+			},
+			"offsets": {
+				"from": 773520,
+				"to": 775880
+			},
+			"text": " by sharing them across layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,880",
+				"to": "00:12:59,080"
+			},
+			"offsets": {
+				"from": 775880,
+				"to": 779080
+			},
+			"text": " In general, this actually modifies the computation slightly."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,080",
+				"to": "00:13:02,880"
+			},
+			"offsets": {
+				"from": 779080,
+				"to": 782880
+			},
+			"text": " So there's a little trade-off between the machine learning"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,880",
+				"to": "00:13:04,900"
+			},
+			"offsets": {
+				"from": 782880,
+				"to": 784900
+			},
+			"text": " model accuracy and the proving speed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,900",
+				"to": "00:13:08,060"
+			},
+			"offsets": {
+				"from": 784900,
+				"to": 788060
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,060",
+				"to": "00:13:11,220"
+			},
+			"offsets": {
+				"from": 788060,
+				"to": 791220
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,220",
+				"to": "00:13:14,380"
+			},
+			"offsets": {
+				"from": 791220,
+				"to": 794380
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,380",
+				"to": "00:13:18,380"
+			},
+			"offsets": {
+				"from": 794380,
+				"to": 798380
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

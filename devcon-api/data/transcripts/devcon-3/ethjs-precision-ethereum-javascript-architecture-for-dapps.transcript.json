@@ -1,0 +1,2595 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 21000
+			},
+			"text": " Okay, so I'm going to do a quick presentation on some Ethereum JavaScript stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 24000
+			},
+			"text": " And can you guys hear me okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 25000
+			},
+			"text": " Is everything good?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 26000
+			},
+			"text": " All right, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 33000
+			},
+			"text": " So it's going to be on some alternatives that are available in the ecosystem that you may"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 34000
+			},
+			"text": " not be aware of."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 43000
+			},
+			"text": " And I think it should open you up to kind of the possibilities on the RPC layer and kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 46000
+			},
+			"text": " of how you want to approach designing your app or DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 52000
+			},
+			"text": " So right now the Ethereum ecosystem, especially on the RPC layer, is kind of dominated by these"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 59000
+			},
+			"text": " modules, Web3, Ethereum JS, Parity API, Ethers JS, which was just recently released, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 64000
+			},
+			"text": " ETH JS, which has kind of been in the background for a little while."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 72000
+			},
+			"text": " So to go through a bit of an overview, ETH JS is a small organization that has a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 75000
+			},
+			"text": " modules, 15 in total."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 81000
+			},
+			"text": " And we have one boilerplate and a few development tools, so some command line stuff as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 88000
+			},
+			"text": " Everything's fully documented, everything's fully exemplified, and MIT licensed."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 93000
+			},
+			"text": " It's production ready, although there's one module that you probably shouldn't use because"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " it's not EIP 155, so Richard tells me."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104000
+			},
+			"text": " And 100% test coverage and 98% build up time as a general policy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:50,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 110000
+			},
+			"text": " So this is kind of the organization as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 110000,
+				"to": 118000
+			},
+			"text": " And it's on GitHub, so just github.com/ethjs, and we've got 20 repositories."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 127000
+			},
+			"text": " So initially a few months ago, I had gotten a little frustrated with Web3, and I had also"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 134000
+			},
+			"text": " been working and talking with Richard Moore on a few different points, and kind of wrote"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 141000
+			},
+			"text": " a different approach to Web3, and also a little different approach to how ETH JS was doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 142000
+			},
+			"text": " at the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 148000
+			},
+			"text": " And I definitely encourage you to check out all the alternatives and kind of make a decision"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 154000
+			},
+			"text": " for what's right if you do want to use an alternative to Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 163000
+			},
+			"text": " And so basically there's a few different philosophies and things to keep in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " So EHS can be used as an alternative to Web3, but I actually like it to be used more for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 169000
+			},
+			"text": " architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " It's used in quite a few projects, so I'll go over in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 178000
+			},
+			"text": " I think diversity and modules and libraries kind of makes the community stronger."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 185000
+			},
+			"text": " I think having different options and different opinions and different ways to interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " Ethereum is kind of critical to building a stronger community and stronger infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 195000
+			},
+			"text": " Companion libraries help influence each other's design, so some of ETH JS kind of helped Web3"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 196000
+			},
+			"text": " 1.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 201000
+			},
+			"text": " ETH JS helped me build some ETH JS stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 206000
+			},
+			"text": " And in fact I used some of their modules in my libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 213000
+			},
+			"text": " And of course we still follow all the RPC specifications and the provider models that people are used"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 219000
+			},
+			"text": " to, but we kind of have different opinions on approaching how to interact with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 226000
+			},
+			"text": " And so the way that I've kind of constructed ETH JS, at least the core interface there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 230000
+			},
+			"text": " is you have your contract module, filtering modules and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 233000
+			},
+			"text": " This has become kind of a standard practice now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 239000
+			},
+			"text": " I have my querying layer which combines both an RPC module and a formatting module."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 245000
+			},
+			"text": " And basically formats all your inputs and outputs to the RPC layer automatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 251000
+			},
+			"text": " And ETH JS schema is actually, I think, one of the better things that I definitely did here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 257000
+			},
+			"text": " So I just laid out an JSON file, the entire RPC specification and all the inputs and outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 265000
+			},
+			"text": " So you can basically take that and auto-generate the entire RPC query layer and have that an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 266000
+			},
+			"text": " automated process."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 271000
+			},
+			"text": " So this has kept it to be a very easy process for me to update or for others to come along"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " and add methods and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " It really is all automatic."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " And so just a little more in depth on some of the modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 291000
+			},
+			"text": " Here's some providers for signing HTTP querying, some unit handling, formatting, event filtering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 294000
+			},
+			"text": " contract handling, transaction signing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 298000
+			},
+			"text": " Although definitely just use Ethers for that because EIP 155."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 302000
+			},
+			"text": " And accounts, so just generating and managing accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:06,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 306000
+			},
+			"text": " Although you have to be very careful because you do have to supply your own good sources of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 306000,
+				"to": 307000
+			},
+			"text": " entropy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 312000
+			},
+			"text": " And while I do supply some sources of entropy with random bytes, which is known to be saved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 317000
+			},
+			"text": " it's basically you want to bring a lot of entropy to the table that's very healthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 322000
+			},
+			"text": " And some util modules and some ENS resolving modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324000
+			},
+			"text": " So here's the schema that I was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330000
+			},
+			"text": " So this just lays out the entire RPC specification in a very data lean format."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335000
+			},
+			"text": " I'm not going to say it's particularly standardized, but it essentially lays out all the inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:36,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 336000
+			},
+			"text": " and outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 336000,
+				"to": 340000
+			},
+			"text": " So if you want to take this and go into, you know, Objective C or if you want to take this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " and go into another language and build an RPC layer for Ethereum, you can just take this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 347000
+			},
+			"text": " JSON automatically generate the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " So, and I actually encourage people as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 355000
+			},
+			"text": " One thing that I've found with doing a lot of these modules is it's help people learn"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " more about what the RPC layer is and what it's actually doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 359000
+			},
+			"text": " Because it's really simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 366000
+			},
+			"text": " Like what web 3's job is or ethers or ethers is basically just to help you interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 370000
+			},
+			"text": " the node on the RPC layer and format some data and that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 372000
+			},
+			"text": " And it's a very straightforward process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 378000
+			},
+			"text": " Number handling and these other things are as well something that should be simple, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 382000
+			},
+			"text": " it turned out to be a little complicated for some reason."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 383000
+			},
+			"text": " I don't know why."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " So here's just a ETH.js kind of an action."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:29,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 389000
+			},
+			"text": " It looks very similar to web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 389000,
+				"to": 396000
+			},
+			"text": " And I follow a very similar format to web 3 and other libraries don't necessarily."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 399000
+			},
+			"text": " So just to give you an idea of what that looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 405000
+			},
+			"text": " So the modules are all designed with the same kind of documentation and standards in mind"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 411000
+			},
+			"text": " around testing and so forth and try to make the exports clean and simple and easy to update"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 412000
+			},
+			"text": " and upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 418000
+			},
+			"text": " So basically like I wanted to build a set of modules that the community could help out"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 424000
+			},
+			"text": " with and if anything just learn about the layer and also if they need things for certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 427000
+			},
+			"text": " architecture pieces they can use these modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 434000
+			},
+			"text": " So ETH.js is used in production for MetaMask and Fuhrer and Truffle mainly for certain bits"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438000
+			},
+			"text": " of code and decoding and decoding and RPC layer stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 443000
+			},
+			"text": " And just to go over a little bit of the thinking behind how it's developed."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 447000
+			},
+			"text": " So I like safe versioning where, well I call it safe versioning where you don't have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 450000
+			},
+			"text": " floating MPM versions across the modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 455000
+			},
+			"text": " Just because I found that when modules update the MPM versions they shove up to the top"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458000
+			},
+			"text": " and then potentially cause problems that you can't foresee."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " So I like to use hardened versions across MPM and just kind of keep the updating kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 467000
+			},
+			"text": " slow and boring but more meticulous and more tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 471000
+			},
+			"text": " All the modules are driven by what their dependencies are."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " So there's a lot of nice isolation between all the various modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 482000
+			},
+			"text": " It's built with the DAP and app architecture kind of target in mind, small and concise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:03,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 483000
+			},
+			"text": " async only."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,000",
+				"to": "00:08:07,000"
+			},
+			"offsets": {
+				"from": 483000,
+				"to": 487000
+			},
+			"text": " And I try to fail as loudly as quickly as possible everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,000",
+				"to": "00:08:11,000"
+			},
+			"offsets": {
+				"from": 487000,
+				"to": 491000
+			},
+			"text": " Strong types as best as you can get JavaScript strong types."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 496000
+			},
+			"text": " Although I do support some amorphic number handling and I'm kind of looking to remove"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 499000
+			},
+			"text": " that as well, community driven design."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 506000
+			},
+			"text": " So keeping the code clean and simple and being able to be upgraded very easily and as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 510000
+			},
+			"text": " trying to keep opinions off the table as best as possible and keep configurability really"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 512000
+			},
+			"text": " high across the whole stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 520000
+			},
+			"text": " So a big feature and kind of a big note is that we use BN.js and a big number."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 525000
+			},
+			"text": " And the pros of that are that it's absolute precision by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 530000
+			},
+			"text": " So it doesn't support decimals and floats which are potentially very dangerous considering"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 536000
+			},
+			"text": " that we're working with money and rounding is not necessarily the greatest thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 541000
+			},
+			"text": " And it's heavily used and interoperable by Ethereum.js and Ether.js."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 548000
+			},
+			"text": " But the cons are that it's not necessarily interoperable with big number.js, web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 554000
+			},
+			"text": " And sometimes it accepts invalid values on prefix hex which is somewhat dangerous but we kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " of take care of that on another layer so you don't really have to think about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 560000
+			},
+			"text": " But it's just something to consider."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " So signing providers and account generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:32,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 572000
+			},
+			"text": " So just simple providers to kind of shove in sign transaction packets and kind of handle"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 572000,
+				"to": 574000
+			},
+			"text": " accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 579000
+			},
+			"text": " We provide those too."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 582000
+			},
+			"text": " So this is a tool I've been working on for quite some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 588000
+			},
+			"text": " So it's a highly configurable multi-stage language agnostic contract deployment facility."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:53,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 593000
+			},
+			"text": " So the idea here is that you have something similar to Webpack where you have this single"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 593000,
+				"to": 598000
+			},
+			"text": " JavaScript module to highly configured deployment stage module."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 604000
+			},
+			"text": " And basically the idea is you take all these raw imports like JSON files, contracts, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 606000
+			},
+			"text": " that need to be plotted out."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:12,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 612000
+			},
+			"text": " You shove them through loaders that you can define yourself like Webpack."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 612000,
+				"to": 617000
+			},
+			"text": " And then you run them through a deployment module that can basically take that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 619000
+			},
+			"text": " It's formatted the way you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 622000
+			},
+			"text": " And now you run the deployment staging the way that you want it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 625000
+			},
+			"text": " And then you kind of fire down at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 631000
+			},
+			"text": " And then you can output your data with simple output formatting plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 636000
+			},
+			"text": " And the result is that you get this very complex deployment staging facility for contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 642000
+			},
+			"text": " that you can kind of tuck into Mocha or you can tuck into whatever testing facility you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:43,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 643000
+			},
+			"text": " want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 643000,
+				"to": 646000
+			},
+			"text": " And you can also define your environment really easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 653000
+			},
+			"text": " So you're just putting in the raw provider object and a name and your default transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 654000
+			},
+			"text": " and objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:10:56,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 656000
+			},
+			"text": " And then you're just going to run that deployment sequence."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 656000,
+				"to": 660000
+			},
+			"text": " And the thing is, there's a lot of tools out there like truffle and everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 662000
+			},
+			"text": " And they're getting better all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 667000
+			},
+			"text": " But this was essentially what I wanted from the beginning, which is just the sequence tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 672000
+			},
+			"text": " that I could run complex deployments with and just do that in a very fluent way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 678000
+			},
+			"text": " It is high configurability, which means there's a high setup overhead when you initially start"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 679000
+			},
+			"text": " using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:23,640"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 683640
+			},
+			"text": " So once you get your deployment environment the way that you want it with the loaders that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,640",
+				"to": "00:11:28,920"
+			},
+			"offsets": {
+				"from": 683640,
+				"to": 688920
+			},
+			"text": " you want, so Sol C and some environment loading and stuff, then you don't have to do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,920",
+				"to": "00:11:32,720"
+			},
+			"offsets": {
+				"from": 688920,
+				"to": 692720
+			},
+			"text": " You can just reuse your same modules over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,720",
+				"to": "00:11:37,680"
+			},
+			"offsets": {
+				"from": 692720,
+				"to": 697680
+			},
+			"text": " So this is one thing that's going to be moved into ETS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,680",
+				"to": "00:11:40,440"
+			},
+			"offsets": {
+				"from": 697680,
+				"to": 700440
+			},
+			"text": " Right now it only has about 30% test coverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,440",
+				"to": "00:11:44,720"
+			},
+			"offsets": {
+				"from": 700440,
+				"to": 704720
+			},
+			"text": " So I need to get that around 100 before I move it into ETS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,720",
+				"to": "00:11:45,720"
+			},
+			"offsets": {
+				"from": 704720,
+				"to": 705720
+			},
+			"text": " But that's called ETH Deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,720",
+				"to": "00:11:52,720"
+			},
+			"offsets": {
+				"from": 705720,
+				"to": 712720
+			},
+			"text": " And that's available on my GitHub, so silences row slash ETH Deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,720",
+				"to": "00:11:55,240"
+			},
+			"offsets": {
+				"from": 712720,
+				"to": 715240
+			},
+			"text": " So a bit of the roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,240",
+				"to": "00:12:01,920"
+			},
+			"offsets": {
+				"from": 715240,
+				"to": 721920
+			},
+			"text": " So I'm going to move the ABI work from ETH just over to ETH or JS because Richard Moore"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,920",
+				"to": "00:12:07,080"
+			},
+			"offsets": {
+				"from": 721920,
+				"to": 727080
+			},
+			"text": " is literally the God you've never met yet and is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,080",
+				"to": "00:12:08,240"
+			},
+			"offsets": {
+				"from": 727080,
+				"to": 728240
+			},
+			"text": " So he's in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,240",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 728240,
+				"to": 730240
+			},
+			"text": " He's in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:11,800"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 731800
+			},
+			"text": " Personal hero."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,800",
+				"to": "00:12:18,560"
+			},
+			"offsets": {
+				"from": 731800,
+				"to": 738560
+			},
+			"text": " So as well the removal of buffer across the modules which should reduce the non-account"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,560",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 738560,
+				"to": 745000
+			},
+			"text": " handling module around 50 kilobytes and as well better account handling and filtering."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 748000
+			},
+			"text": " So right now I have pretty good filtering and event handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,000",
+				"to": "00:12:30,240"
+			},
+			"offsets": {
+				"from": 748000,
+				"to": 750240
+			},
+			"text": " But I think I'd like to get that better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,240",
+				"to": "00:12:36,120"
+			},
+			"offsets": {
+				"from": 750240,
+				"to": 756120
+			},
+			"text": " Some people complained about certain aspects of that, so that'll get improved."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,120",
+				"to": "00:12:40,040"
+			},
+			"offsets": {
+				"from": 756120,
+				"to": 760040
+			},
+			"text": " I really want to integrate some new bounties networks that are coming about."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,040",
+				"to": "00:12:44,440"
+			},
+			"offsets": {
+				"from": 760040,
+				"to": 764440
+			},
+			"text": " So bounties.net work is very cool and get coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,440",
+				"to": "00:12:51,800"
+			},
+			"offsets": {
+				"from": 764440,
+				"to": 771800
+			},
+			"text": " And that's just for keeping the libraries updated and keeping bugs in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,800",
+				"to": "00:12:53,360"
+			},
+			"offsets": {
+				"from": 771800,
+				"to": 773360
+			},
+			"text": " Removing amorphic number handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,360",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 773360,
+				"to": 778120
+			},
+			"text": " So basically right now we support multiple kinds of types going into number handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:02,400"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 782400
+			},
+			"text": " I think I'm just going to support probably just big numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,400",
+				"to": "00:13:07,200"
+			},
+			"offsets": {
+				"from": 782400,
+				"to": 787200
+			},
+			"text": " And while that's a little bulkier and definitely not everyone's favorite, sometimes I prefer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,200",
+				"to": "00:13:10,640"
+			},
+			"offsets": {
+				"from": 787200,
+				"to": 790640
+			},
+			"text": " that just because it keeps type strong."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,640",
+				"to": "00:13:13,920"
+			},
+			"offsets": {
+				"from": 790640,
+				"to": 793920
+			},
+			"text": " And then as well more detailed error handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,920",
+				"to": "00:13:16,520"
+			},
+			"offsets": {
+				"from": 793920,
+				"to": 796520
+			},
+			"text": " So just I'd like the errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,520",
+				"to": "00:13:20,200"
+			},
+			"offsets": {
+				"from": 796520,
+				"to": 800200
+			},
+			"text": " Right now they are pretty detailed but I'd like them to also be user friendly for new"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,200",
+				"to": "00:13:21,200"
+			},
+			"offsets": {
+				"from": 800200,
+				"to": 801200
+			},
+			"text": " users."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,200",
+				"to": "00:13:25,160"
+			},
+			"offsets": {
+				"from": 801200,
+				"to": 805160
+			},
+			"text": " I think that's pretty critical to new people entering the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,160",
+				"to": "00:13:26,640"
+			},
+			"offsets": {
+				"from": 805160,
+				"to": 806640
+			},
+			"text": " And then give book documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,640",
+				"to": "00:13:29,960"
+			},
+			"offsets": {
+				"from": 806640,
+				"to": 809960
+			},
+			"text": " So right now the documentation's in a repo through Readme's."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,960",
+				"to": "00:13:33,320"
+			},
+			"offsets": {
+				"from": 809960,
+				"to": 813320
+			},
+			"text": " So I'd like to move that to give book."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,320",
+				"to": "00:13:38,760"
+			},
+			"offsets": {
+				"from": 813320,
+				"to": 818760
+			},
+			"text": " And just as well because I have just a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,760",
+				"to": "00:13:43,560"
+			},
+			"offsets": {
+				"from": 818760,
+				"to": 823560
+			},
+			"text": " Yeah, so there's definitely been a lot of discussion before I just thank all the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,560",
+				"to": "00:13:47,360"
+			},
+			"offsets": {
+				"from": 823560,
+				"to": 827360
+			},
+			"text": " that heavily influenced my thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,360",
+				"to": "00:13:52,040"
+			},
+			"offsets": {
+				"from": 827360,
+				"to": 832040
+			},
+			"text": " There's definitely a lot of discussion around alternatives to Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,040",
+				"to": "00:13:54,840"
+			},
+			"offsets": {
+				"from": 832040,
+				"to": 834840
+			},
+			"text": " I think Web3 has been quite a journey."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,840",
+				"to": "00:13:58,960"
+			},
+			"offsets": {
+				"from": 834840,
+				"to": 838960
+			},
+			"text": " I've been using Ethereum since Proof of Concept 5."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,960",
+				"to": "00:14:05,200"
+			},
+			"offsets": {
+				"from": 838960,
+				"to": 845200
+			},
+			"text": " So I've kind of sludged through the journey at every stage when Ethereum barely worked"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,200",
+				"to": "00:14:11,320"
+			},
+			"offsets": {
+				"from": 845200,
+				"to": 851320
+			},
+			"text": " and there was no tools to now it's fantastically working and there's so many tools but still"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,320",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 851320,
+				"to": 854480
+			},
+			"text": " a lot of room to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:22,480"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 862480
+			},
+			"text": " I think the architecture is growing significantly and we have a lot of really cool stuff coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,480",
+				"to": "00:14:24,480"
+			},
+			"offsets": {
+				"from": 862480,
+				"to": 864480
+			},
+			"text": " up."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,480",
+				"to": "00:14:30,800"
+			},
+			"offsets": {
+				"from": 864480,
+				"to": 870800
+			},
+			"text": " And I think the thing with alternatives and especially having kind of a diverse set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,800",
+				"to": "00:14:36,920"
+			},
+			"offsets": {
+				"from": 870800,
+				"to": 876920
+			},
+			"text": " tools at this layer is just this is like the front door to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,920",
+				"to": "00:14:41,240"
+			},
+			"offsets": {
+				"from": 876920,
+				"to": 881240
+			},
+			"text": " And it's very critical that everything works properly, that errors are thrown where they"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,240",
+				"to": "00:14:47,680"
+			},
+			"offsets": {
+				"from": 881240,
+				"to": 887680
+			},
+			"text": " should be, they throw loudly, that early users to our technology can kind of get a great"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,680",
+				"to": "00:14:51,600"
+			},
+			"offsets": {
+				"from": 887680,
+				"to": 891600
+			},
+			"text": " experience out of it because right now it's not a great experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,600",
+				"to": "00:14:57,760"
+			},
+			"offsets": {
+				"from": 891600,
+				"to": 897760
+			},
+			"text": " And right now we have a lot of junior devs and stuff who are definitely melting when"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,760",
+				"to": "00:15:00,880"
+			},
+			"offsets": {
+				"from": 897760,
+				"to": 900880
+			},
+			"text": " they start using Ethereum when they shouldn't be."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,880",
+				"to": "00:15:03,640"
+			},
+			"offsets": {
+				"from": 900880,
+				"to": 903640
+			},
+			"text": " It should be a very simple process."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,640",
+				"to": "00:15:08,320"
+			},
+			"offsets": {
+				"from": 903640,
+				"to": 908320
+			},
+			"text": " And I think that we kind of need to get more realistic with our expectations and what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,320",
+				"to": "00:15:13,680"
+			},
+			"offsets": {
+				"from": 908320,
+				"to": 913680
+			},
+			"text": " want to achieve especially when it comes to just like an Fing RPC layer that has some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,680",
+				"to": "00:15:16,200"
+			},
+			"offsets": {
+				"from": 913680,
+				"to": 916200
+			},
+			"text": " data formatting and some contract handling."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,200",
+				"to": "00:15:19,520"
+			},
+			"offsets": {
+				"from": 916200,
+				"to": 919520
+			},
+			"text": " It drives me crazy."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,520",
+				"to": "00:15:26,680"
+			},
+			"offsets": {
+				"from": 919520,
+				"to": 926680
+			},
+			"text": " So I think if you see potential to fix modules or to make them better or even to do your"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,680",
+				"to": "00:15:28,960"
+			},
+			"offsets": {
+				"from": 926680,
+				"to": 928960
+			},
+			"text": " own, you should definitely do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,960",
+				"to": "00:15:33,040"
+			},
+			"offsets": {
+				"from": 928960,
+				"to": 933040
+			},
+			"text": " You should definitely expand the ecosystem and try to help out where you can on existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,040",
+				"to": "00:15:34,880"
+			},
+			"offsets": {
+				"from": 933040,
+				"to": 934880
+			},
+			"text": " modules."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,880",
+				"to": "00:15:41,520"
+			},
+			"offsets": {
+				"from": 934880,
+				"to": 941520
+			},
+			"text": " And once again, my personal favorites definitely lie with Ether's JS and the modules that I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,520",
+				"to": "00:15:43,160"
+			},
+			"offsets": {
+				"from": 941520,
+				"to": 943160
+			},
+			"text": " been using."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,160",
+				"to": "00:15:44,760"
+			},
+			"offsets": {
+				"from": 943160,
+				"to": 944760
+			},
+			"text": " And I actively developed apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,760",
+				"to": "00:15:49,760"
+			},
+			"offsets": {
+				"from": 944760,
+				"to": 949760
+			},
+			"text": " So I'm currently developing boardroom, which has been in stealth mode for like two and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,760",
+				"to": "00:15:50,760"
+			},
+			"offsets": {
+				"from": 949760,
+				"to": 950760
+			},
+			"text": " a half years."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,760",
+				"to": "00:15:53,680"
+			},
+			"offsets": {
+				"from": 950760,
+				"to": 953680
+			},
+			"text": " It's a super old project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,680",
+				"to": "00:15:58,760"
+			},
+			"offsets": {
+				"from": 953680,
+				"to": 958760
+			},
+			"text": " And so I'm constantly using this tech that I've been implementing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,760",
+				"to": "00:16:02,560"
+			},
+			"offsets": {
+				"from": 958760,
+				"to": 962560
+			},
+			"text": " And that's kind of given me a completely different perspective on architecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,560",
+				"to": "00:16:06,200"
+			},
+			"offsets": {
+				"from": 962560,
+				"to": 966200
+			},
+			"text": " But as well, I just like to be a little more old school with my thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,200",
+				"to": "00:16:11,640"
+			},
+			"offsets": {
+				"from": 966200,
+				"to": 971640
+			},
+			"text": " So the Unix philosophy and all that sort of stuff in mind has kind of led me to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,640",
+				"to": "00:16:13,640"
+			},
+			"offsets": {
+				"from": 971640,
+				"to": 973640
+			},
+			"text": " sort of design."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,640",
+				"to": "00:16:16,840"
+			},
+			"offsets": {
+				"from": 973640,
+				"to": 976840
+			},
+			"text": " So yeah, just a special thanks to a few people."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,840",
+				"to": "00:16:24,720"
+			},
+			"offsets": {
+				"from": 976840,
+				"to": 984720
+			},
+			"text": " So Richard Moore for doing the web 3, JS and Fabian for manning the ship and like holy"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,720",
+				"to": "00:16:26,680"
+			},
+			"offsets": {
+				"from": 984720,
+				"to": 986680
+			},
+			"text": " shit, it's been just like a crazy ride."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,680",
+				"to": "00:16:33,240"
+			},
+			"offsets": {
+				"from": 986680,
+				"to": 993240
+			},
+			"text": " And now there's like a bazillion people in the DevCon room and not just like a hundred."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,240",
+				"to": "00:16:40,600"
+			},
+			"offsets": {
+				"from": 993240,
+				"to": 1000600
+			},
+			"text": " And Dan Finley from MetaMask and Pellet and Martin Betsy and Vitalik for creating Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,600",
+				"to": "00:16:42,080"
+			},
+			"offsets": {
+				"from": 1000600,
+				"to": 1002080
+			},
+			"text": " which I always thank at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,080",
+				"to": "00:16:45,560"
+			},
+			"offsets": {
+				"from": 1002080,
+				"to": 1005560
+			},
+			"text": " I just think it's great, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,560",
+				"to": "00:16:49,200"
+			},
+			"offsets": {
+				"from": 1005560,
+				"to": 1009200
+			},
+			"text": " And then Joe and consensus for funding everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,200",
+				"to": "00:16:54,240"
+			},
+			"offsets": {
+				"from": 1009200,
+				"to": 1014240
+			},
+			"text": " This is my contact and that's the link to each JS."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,240",
+				"to": "00:16:54,600"
+			},
+			"offsets": {
+				"from": 1014240,
+				"to": 1014600
+			},
+			"text": " And thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,600",
+				"to": "00:16:55,600"
+			},
+			"offsets": {
+				"from": 1014600,
+				"to": 1015600
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,600",
+				"to": "00:17:02,600"
+			},
+			"offsets": {
+				"from": 1015600,
+				"to": 1022600
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,600",
+				"to": "00:17:08,600"
+			},
+			"offsets": {
+				"from": 1022600,
+				"to": 1028600
+			},
+			"text": " [Music]"
+		}
+	]
+}

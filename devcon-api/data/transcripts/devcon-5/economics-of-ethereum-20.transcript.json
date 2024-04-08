@@ -1,0 +1,2760 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:12,520"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 12520
+			},
+			"text": " >> All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,520",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 12520,
+				"to": 13520
+			},
+			"text": " What's up everyone?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:15,440"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 15440
+			},
+			"text": " Good afternoon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,440",
+				"to": "00:00:20,680"
+			},
+			"offsets": {
+				"from": 15440,
+				"to": 20680
+			},
+			"text": " I'm Paul Myers and today we're going to walk through validating E2 and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,680",
+				"to": "00:00:23,880"
+			},
+			"offsets": {
+				"from": 20680,
+				"to": 23880
+			},
+			"text": " getting on to the rewards that you will receive as a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,880",
+				"to": "00:00:25,640"
+			},
+			"offsets": {
+				"from": 23880,
+				"to": 25640
+			},
+			"text": " But we're going to do it in space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,640",
+				"to": "00:00:27,480"
+			},
+			"offsets": {
+				"from": 25640,
+				"to": 27480
+			},
+			"text": " So we're going to make it fun, we're going to make it interactive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,480",
+				"to": "00:00:29,400"
+			},
+			"offsets": {
+				"from": 27480,
+				"to": 29400
+			},
+			"text": " and it's going to be quite cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,400",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 29400,
+				"to": 34840
+			},
+			"text": " So overall, those of you who plug into this space, this is a topic that doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:36,880"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 36880
+			},
+			"text": " have a lot of transparency, it's super crucial."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,880",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36880,
+				"to": 40000
+			},
+			"text": " These are distributed systems with incentive models and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:43,160"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 43160
+			},
+			"text": " there's been a few people in ecosystem published research on what the incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,160",
+				"to": "00:00:44,720"
+			},
+			"offsets": {
+				"from": 43160,
+				"to": 44720
+			},
+			"text": " for E2 are."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,720",
+				"to": "00:00:48,200"
+			},
+			"offsets": {
+				"from": 44720,
+				"to": 48200
+			},
+			"text": " But most recently consensus in the year we've been working together for"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,200",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 48200,
+				"to": 51520
+			},
+			"text": " an effort to put out what we're calling the E2 calculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:54,920"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 54920
+			},
+			"text": " Most people will release and I have a model that everyone can have and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,920",
+				"to": "00:00:57,280"
+			},
+			"offsets": {
+				"from": 54920,
+				"to": 57280
+			},
+			"text": " a telegram group that will launch after this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,280",
+				"to": "00:01:01,720"
+			},
+			"offsets": {
+				"from": 57280,
+				"to": 61720
+			},
+			"text": " So we're going to educate everyone on a super important topic and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,720",
+				"to": "00:01:04,080"
+			},
+			"offsets": {
+				"from": 61720,
+				"to": 64080
+			},
+			"text": " not talk about too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,080",
+				"to": "00:01:06,840"
+			},
+			"offsets": {
+				"from": 64080,
+				"to": 66840
+			},
+			"text": " So let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,840",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 66840,
+				"to": 70280
+			},
+			"text": " So today we have a special guest star, her name is Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:15,360"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 75360
+			},
+			"text": " She's going to be a validating E2 chain in space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,360",
+				"to": "00:01:22,080"
+			},
+			"offsets": {
+				"from": 75360,
+				"to": 82080
+			},
+			"text": " So over the journey, we're going to touch on a few topics,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,080",
+				"to": "00:01:25,160"
+			},
+			"offsets": {
+				"from": 82080,
+				"to": 85160
+			},
+			"text": " kind of leading up to what the E2 calculator is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,160",
+				"to": "00:01:27,080"
+			},
+			"offsets": {
+				"from": 85160,
+				"to": 87080
+			},
+			"text": " We're going to start with what is the E2 chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,080",
+				"to": "00:01:29,480"
+			},
+			"offsets": {
+				"from": 87080,
+				"to": 89480
+			},
+			"text": " I'm sure everyone here is part of the beaten chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,480",
+				"to": "00:01:31,680"
+			},
+			"offsets": {
+				"from": 89480,
+				"to": 91680
+			},
+			"text": " DevCon is basically the E2 conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,680",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 91680,
+				"to": 95680
+			},
+			"text": " Like how do I become a validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 97160
+			},
+			"text": " What is Alice responsible for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:38,640"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 98640
+			},
+			"text": " How does she stay a validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,640",
+				"to": "00:01:42,080"
+			},
+			"offsets": {
+				"from": 98640,
+				"to": 102080
+			},
+			"text": " And then ultimately, what does she get in return for doing so?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,080",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 102080,
+				"to": 106160
+			},
+			"text": " We're going to walk through some economics of base zero as this is the big"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:48,240"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 108240
+			},
+			"text": " thing that we're all here in.4."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,240",
+				"to": "00:01:51,680"
+			},
+			"offsets": {
+				"from": 108240,
+				"to": 111680
+			},
+			"text": " It's the event that basically bootstraps the beaten chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,680",
+				"to": "00:01:54,960"
+			},
+			"offsets": {
+				"from": 111680,
+				"to": 114960
+			},
+			"text": " We're going to walk through the results and then we'll talk about the E2 calculator."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,960",
+				"to": "00:01:59,360"
+			},
+			"offsets": {
+				"from": 114960,
+				"to": 119360
+			},
+			"text": " So everyone can get involved in what the ultimate intentions of it are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,360",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 119360,
+				"to": 121600
+			},
+			"text": " So let's just start at high level."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:04,720"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 124720
+			},
+			"text": " I'm sure everyone has also probably seen this charting in late times."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,720",
+				"to": "00:02:07,800"
+			},
+			"offsets": {
+				"from": 124720,
+				"to": 127800
+			},
+			"text": " But we're going to primarily be focusing today on the beaten chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,800",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 127800,
+				"to": 130480
+			},
+			"text": " which is the coordination layer of the spine of E2."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:13,760"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 133760
+			},
+			"text": " It's the main part where all the action happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,760",
+				"to": "00:02:16,080"
+			},
+			"offsets": {
+				"from": 133760,
+				"to": 136080
+			},
+			"text": " This is where Alice and all our friends hang out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,080",
+				"to": "00:02:22,200"
+			},
+			"offsets": {
+				"from": 136080,
+				"to": 142200
+			},
+			"text": " So the coordination layer itself, you can think of it, it does a few key components."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,200",
+				"to": "00:02:25,760"
+			},
+			"offsets": {
+				"from": 142200,
+				"to": 145760
+			},
+			"text": " It stores and manage Alice and all our friends."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,760",
+				"to": "00:02:30,920"
+			},
+			"offsets": {
+				"from": 145760,
+				"to": 150920
+			},
+			"text": " It provides a random component to basically select who gets to validate."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,920",
+				"to": "00:02:33,040"
+			},
+			"offsets": {
+				"from": 150920,
+				"to": 153040
+			},
+			"text": " This is where the blocker goes and takes place."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,040",
+				"to": "00:02:37,840"
+			},
+			"offsets": {
+				"from": 153040,
+				"to": 157840
+			},
+			"text": " This is where I get slashed or I get to open the return for my actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,840",
+				"to": "00:02:42,760"
+			},
+			"offsets": {
+				"from": 157840,
+				"to": 162760
+			},
+			"text": " And then committees and processing, which is a bit more will the place"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,760",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 162760,
+				"to": 164600
+			},
+			"text": " and make sense once they're sharding in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 168480
+			},
+			"text": " But in the future, this is also all of that is included."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:49,960"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 169960
+			},
+			"text": " It takes place inside of the beaten chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,960",
+				"to": "00:02:54,960"
+			},
+			"offsets": {
+				"from": 169960,
+				"to": 174960
+			},
+			"text": " So let's just talk about the phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,960",
+				"to": "00:02:59,960"
+			},
+			"offsets": {
+				"from": 174960,
+				"to": 179960
+			},
+			"text": " I'm not going to talk about phase two today because it's a bit out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,960",
+				"to": "00:03:01,960"
+			},
+			"offsets": {
+				"from": 179960,
+				"to": 181960
+			},
+			"text": " And it's a bit still unknown."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,960",
+				"to": "00:03:05,960"
+			},
+			"offsets": {
+				"from": 181960,
+				"to": 185960
+			},
+			"text": " There's a lot of good work being done by Team Play Quilt to make phase two a reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,960",
+				"to": "00:03:07,960"
+			},
+			"offsets": {
+				"from": 185960,
+				"to": 187960
+			},
+			"text": " and kind of get people on board and skipping ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,960",
+				"to": "00:03:11,960"
+			},
+			"offsets": {
+				"from": 187960,
+				"to": 191960
+			},
+			"text": " Not at zero and one, the specs are firm and people are spending time on phase two."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,960",
+				"to": "00:03:14,960"
+			},
+			"offsets": {
+				"from": 191960,
+				"to": 194960
+			},
+			"text": " The big thing is that between phase zero and phase one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,960",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 194960,
+				"to": 196960
+			},
+			"text": " the economics do not change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:20,960"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 200960
+			},
+			"text": " But between phase zero and phase two, the economics will change."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,960",
+				"to": "00:03:21,960"
+			},
+			"offsets": {
+				"from": 200960,
+				"to": 201960
+			},
+			"text": " And we'll get into that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,960",
+				"to": "00:03:24,960"
+			},
+			"offsets": {
+				"from": 201960,
+				"to": 204960
+			},
+			"text": " So let's just talk about what phase zero does not."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,960",
+				"to": "00:03:27,960"
+			},
+			"offsets": {
+				"from": 204960,
+				"to": 207960
+			},
+			"text": " There's no EDA, there's no smart contracts, it cannot transfer assets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,960",
+				"to": "00:03:29,960"
+			},
+			"offsets": {
+				"from": 207960,
+				"to": 209960
+			},
+			"text": " and there's no accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,960",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 209960,
+				"to": 211960
+			},
+			"text": " So it's basically, it's the heavy lifting in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:34,960"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 214960
+			},
+			"text": " However, there's really no activity inside of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,960",
+				"to": "00:03:38,960"
+			},
+			"offsets": {
+				"from": 214960,
+				"to": 218960
+			},
+			"text": " It's just basically propagating and applying FFG,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,960",
+				"to": "00:03:42,960"
+			},
+			"offsets": {
+				"from": 218960,
+				"to": 222960
+			},
+			"text": " handing out your returns and slashing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,960",
+				"to": "00:03:44,960"
+			},
+			"offsets": {
+				"from": 222960,
+				"to": 224960
+			},
+			"text": " But we hope that everyone acts honestly."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,960",
+				"to": "00:03:46,960"
+			},
+			"offsets": {
+				"from": 224960,
+				"to": 226960
+			},
+			"text": " When it's time-grated, that doesn't happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,960",
+				"to": "00:03:49,960"
+			},
+			"offsets": {
+				"from": 226960,
+				"to": 229960
+			},
+			"text": " I also won't address slashing in the end of this today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,960",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 229960,
+				"to": 231960
+			},
+			"text": " That is kind of a B2 of the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:56,960"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 236960
+			},
+			"text": " And essentially what we're going to do is talk about the perspective of an autostalligator."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,960",
+				"to": "00:04:00,960"
+			},
+			"offsets": {
+				"from": 236960,
+				"to": 240960
+			},
+			"text": " Phase one, you can think of as bootstrapping for cross-linking."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,960",
+				"to": "00:04:05,960"
+			},
+			"offsets": {
+				"from": 240960,
+				"to": 245960
+			},
+			"text": " This is going to be empty sharp blocks, but they will be all communicating together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,960",
+				"to": "00:04:07,960"
+			},
+			"offsets": {
+				"from": 245960,
+				"to": 247960
+			},
+			"text": " but they won't be anything inside of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,960",
+				"to": "00:04:11,960"
+			},
+			"offsets": {
+				"from": 247960,
+				"to": 251960
+			},
+			"text": " So in phase one, shards exist, but there's really nothing inside of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,960",
+				"to": "00:04:15,960"
+			},
+			"offsets": {
+				"from": 251960,
+				"to": 255960
+			},
+			"text": " We're just making sure that the machine operates as it's supposed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,960",
+				"to": "00:04:20,960"
+			},
+			"offsets": {
+				"from": 255960,
+				"to": 260960
+			},
+			"text": " So, I'm Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,960",
+				"to": "00:04:23,960"
+			},
+			"offsets": {
+				"from": 260960,
+				"to": 263960
+			},
+			"text": " I have 32 E. I want to join."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,960",
+				"to": "00:04:25,960"
+			},
+			"offsets": {
+				"from": 263960,
+				"to": 265960
+			},
+			"text": " How do I do so?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,960",
+				"to": "00:04:28,960"
+			},
+			"offsets": {
+				"from": 265960,
+				"to": 268960
+			},
+			"text": " So the first thing that you're going to need is a beacon node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,960",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 268960,
+				"to": 270960
+			},
+			"text": " A beacon node can mean a few different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:33,960"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 273960
+			},
+			"text": " It can mean a laptop, it can make desktop computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,960",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 273960,
+				"to": 278960
+			},
+			"text": " or it can mean a VPS if you are doing this with other quantities"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:42,960"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 282960
+			},
+			"text": " or you're worried about consistency of time in your own household,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,960",
+				"to": "00:04:44,960"
+			},
+			"offsets": {
+				"from": 282960,
+				"to": 284960
+			},
+			"text": " or if you're a no-man."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,960",
+				"to": "00:04:46,960"
+			},
+			"offsets": {
+				"from": 284960,
+				"to": 286960
+			},
+			"text": " To be honest with you, most people in this industry are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,960",
+				"to": "00:04:48,960"
+			},
+			"offsets": {
+				"from": 286960,
+				"to": 288960
+			},
+			"text": " that have larger stacks of Ethan."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,960",
+				"to": "00:04:54,960"
+			},
+			"offsets": {
+				"from": 288960,
+				"to": 294960
+			},
+			"text": " We've based the model and some analysis on VPS being a key option for these people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,960",
+				"to": "00:04:56,960"
+			},
+			"offsets": {
+				"from": 294960,
+				"to": 296960
+			},
+			"text": " You'll need to choose your client of choice."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,960",
+				"to": "00:04:59,960"
+			},
+			"offsets": {
+				"from": 296960,
+				"to": 299960
+			},
+			"text": " This includes Artemis, this includes Prism."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,960",
+				"to": "00:05:01,960"
+			},
+			"offsets": {
+				"from": 299960,
+				"to": 301960
+			},
+			"text": " There's six to seven different ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,960",
+				"to": "00:05:04,960"
+			},
+			"offsets": {
+				"from": 301960,
+				"to": 304960
+			},
+			"text": " Everyone I'm sure is seeing the recent Interop News."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,960",
+				"to": "00:05:08,960"
+			},
+			"offsets": {
+				"from": 304960,
+				"to": 308960
+			},
+			"text": " Behind all that, so there's really great progress being made on that side of the equation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,960",
+				"to": "00:05:10,960"
+			},
+			"offsets": {
+				"from": 308960,
+				"to": 310960
+			},
+			"text": " but that's kind of how you get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,960",
+				"to": "00:05:13,960"
+			},
+			"offsets": {
+				"from": 310960,
+				"to": 313960
+			},
+			"text": " You need to have those cheap core things to be a part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,960",
+				"to": "00:05:16,960"
+			},
+			"offsets": {
+				"from": 313960,
+				"to": 316960
+			},
+			"text": " So once that takes place, there will be a default ceremony."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,960",
+				"to": "00:05:21,960"
+			},
+			"offsets": {
+				"from": 316960,
+				"to": 321960
+			},
+			"text": " It was supposed to happen at DevCon, but it has been recently delayed due to VLS."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,960",
+				"to": "00:05:25,960"
+			},
+			"offsets": {
+				"from": 321960,
+				"to": 325960
+			},
+			"text": " So now we're kind of targeting January 2020,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,960",
+				"to": "00:05:28,960"
+			},
+			"offsets": {
+				"from": 325960,
+				"to": 328960
+			},
+			"text": " or at some point during the beginning of next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,960",
+				"to": "00:05:33,960"
+			},
+			"offsets": {
+				"from": 328960,
+				"to": 333960
+			},
+			"text": " There's a few more technical steps here that will go through about generating a PK"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,960",
+				"to": "00:05:37,960"
+			},
+			"offsets": {
+				"from": 333960,
+				"to": 337960
+			},
+			"text": " and then basically having a withdrawal key, which can be both,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,960",
+				"to": "00:05:44,960"
+			},
+			"offsets": {
+				"from": 337960,
+				"to": 344960
+			},
+			"text": " but your PK at all times needs to be hot, so you can continually add activity to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,960",
+				"to": "00:05:47,960"
+			},
+			"offsets": {
+				"from": 344960,
+				"to": 347960
+			},
+			"text": " It's not transferable, the heat kit is you get in return."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,960",
+				"to": "00:05:52,960"
+			},
+			"offsets": {
+				"from": 347960,
+				"to": 352960
+			},
+			"text": " So a requirement that's not technical is something more of like a risk tolerance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,960",
+				"to": "00:05:58,960"
+			},
+			"offsets": {
+				"from": 352960,
+				"to": 358960
+			},
+			"text": " So if you've participated in this level of it, you must understand that there's going to be a time gap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,960",
+				"to": "00:06:01,960"
+			},
+			"offsets": {
+				"from": 358960,
+				"to": 361960
+			},
+			"text": " which is not more defined than one of those before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,960",
+				"to": "00:06:06,960"
+			},
+			"offsets": {
+				"from": 361960,
+				"to": 366960
+			},
+			"text": " but your ETH one gets burned and you get that in return for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,960",
+				"to": "00:06:10,960"
+			},
+			"offsets": {
+				"from": 366960,
+				"to": 370960
+			},
+			"text": " And you can't do anything with it until a certain point time is unclear."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,960",
+				"to": "00:06:15,960"
+			},
+			"offsets": {
+				"from": 370960,
+				"to": 375960
+			},
+			"text": " It's more clear than what it was in the past, but it's more of a human risk grammar that you have to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,960",
+				"to": "00:06:19,960"
+			},
+			"offsets": {
+				"from": 375960,
+				"to": 379960
+			},
+			"text": " So, you know, what do I have to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,960",
+				"to": "00:06:23,960"
+			},
+			"offsets": {
+				"from": 379960,
+				"to": 383960
+			},
+			"text": " I've done all the pre-steps. I have my ETH. I've gone through the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,960",
+				"to": "00:06:27,960"
+			},
+			"offsets": {
+				"from": 383960,
+				"to": 387960
+			},
+			"text": " I figured out how to use the command line. I've done all this complex stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,960",
+				"to": "00:06:31,960"
+			},
+			"offsets": {
+				"from": 387960,
+				"to": 391960
+			},
+			"text": " So now, what do I actually have to do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,960",
+				"to": "00:06:38,960"
+			},
+			"offsets": {
+				"from": 391960,
+				"to": 398960
+			},
+			"text": " So there's two main things that take place as a participant inside of ETH two."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,960",
+				"to": "00:06:41,960"
+			},
+			"offsets": {
+				"from": 398960,
+				"to": 401960
+			},
+			"text": " You propose new blocks. This happens infrequently."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,960",
+				"to": "00:06:46,960"
+			},
+			"offsets": {
+				"from": 401960,
+				"to": 406960
+			},
+			"text": " And then you retest, which is the signing of new blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,960",
+				"to": "00:06:51,960"
+			},
+			"offsets": {
+				"from": 406960,
+				"to": 411960
+			},
+			"text": " This happens much more often and it's much more important to the overall system without a word."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,960",
+				"to": "00:06:55,960"
+			},
+			"offsets": {
+				"from": 411960,
+				"to": 415960
+			},
+			"text": " So there's two main things. There's some other small nuance things that exist,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,960",
+				"to": "00:06:59,960"
+			},
+			"offsets": {
+				"from": 415960,
+				"to": 419960
+			},
+			"text": " but it's a lot to get there in 20 minutes, so we're just going to keep it high."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,960",
+				"to": "00:07:03,960"
+			},
+			"offsets": {
+				"from": 419960,
+				"to": 423960
+			},
+			"text": " Those are two main things that you do. Those are your two actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,960",
+				"to": "00:07:06,960"
+			},
+			"offsets": {
+				"from": 423960,
+				"to": 426960
+			},
+			"text": " So now let's talk about, you know, where do these come from?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,960",
+				"to": "00:07:10,960"
+			},
+			"offsets": {
+				"from": 426960,
+				"to": 430960
+			},
+			"text": " What are they? I'm going to give them tokens. They return for certain actions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,960",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 430960,
+				"to": 436960
+			},
+			"text": " I have to have certain things to give them. So now let's talk about what they are and where they come from."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:20,960"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 440960
+			},
+			"text": " So the FFG award is what you receive in phase zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,960",
+				"to": "00:07:25,960"
+			},
+			"offsets": {
+				"from": 440960,
+				"to": 445960
+			},
+			"text": " That is actually brought up into five components of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,960",
+				"to": "00:07:31,960"
+			},
+			"offsets": {
+				"from": 445960,
+				"to": 451960
+			},
+			"text": " Two technical for what we're going to talk about today, but essentially that is chopped up into five different things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,960",
+				"to": "00:07:38,960"
+			},
+			"offsets": {
+				"from": 451960,
+				"to": 458960
+			},
+			"text": " And that's the base reward. It's what you will receive in phase zero and phase one for good strapping the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,960",
+				"to": "00:07:43,960"
+			},
+			"offsets": {
+				"from": 458960,
+				"to": 463960
+			},
+			"text": " There will be no network fees until phase two. And then later on in phase two as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,960",
+				"to": "00:07:46,960"
+			},
+			"offsets": {
+				"from": 463960,
+				"to": 466960
+			},
+			"text": " you can essentially, you know, call people out there and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,960",
+				"to": "00:07:50,960"
+			},
+			"offsets": {
+				"from": 466960,
+				"to": 470960
+			},
+			"text": " \"I'm going to receive something in return for the event as well.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,960",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 470960,
+				"to": 474960
+			},
+			"text": " In the model that we built, it includes all of it and it can be toggled,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:07:58,960"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 478960
+			},
+			"text": " but the primary analysis today will be phase zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,960",
+				"to": "00:08:03,960"
+			},
+			"offsets": {
+				"from": 478960,
+				"to": 483960
+			},
+			"text": " So let's talk about the system, right? How is this thing designed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,960",
+				"to": "00:08:07,960"
+			},
+			"offsets": {
+				"from": 483960,
+				"to": 487960
+			},
+			"text": " Where are the main rewards coming from? And ultimately what are the key drivers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,960",
+				"to": "00:08:10,960"
+			},
+			"offsets": {
+				"from": 487960,
+				"to": 490960
+			},
+			"text": " All economic models, specific key drivers, if you need sensitize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,960",
+				"to": "00:08:18,960"
+			},
+			"offsets": {
+				"from": 490960,
+				"to": 498960
+			},
+			"text": " you think you can be played with ETH2, in my opinion, so it's very different and actually mature group mistake design methodologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,960",
+				"to": "00:08:23,960"
+			},
+			"offsets": {
+				"from": 498960,
+				"to": 503960
+			},
+			"text": " behind it even though the OS is just introduced. So let's talk about a few of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,960",
+				"to": "00:08:29,960"
+			},
+			"offsets": {
+				"from": 503960,
+				"to": 509960
+			},
+			"text": " So number one, totally good stake. Number two, phase reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,960",
+				"to": "00:08:36,960"
+			},
+			"offsets": {
+				"from": 509960,
+				"to": 516960
+			},
+			"text": " Number three, what is the average network percent online of all the participants inside of the system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,960",
+				"to": "00:08:44,960"
+			},
+			"offsets": {
+				"from": 516960,
+				"to": 524960
+			},
+			"text": " Number one, totally good stake. You can think of this as, you can see in the chart here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,960",
+				"to": "00:08:47,960"
+			},
+			"offsets": {
+				"from": 524960,
+				"to": 527960
+			},
+			"text": " the more that it's taken the network the less that I get."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,960",
+				"to": "00:08:52,960"
+			},
+			"offsets": {
+				"from": 527960,
+				"to": 532960
+			},
+			"text": " These two red dots are two key points in bootstrapping the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,960",
+				"to": "00:08:58,960"
+			},
+			"offsets": {
+				"from": 532960,
+				"to": 538960
+			},
+			"text": " Two million ETH's stake is the first red dot, and four point two million ETH is the second red dot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,960",
+				"to": "00:09:02,960"
+			},
+			"offsets": {
+				"from": 538960,
+				"to": 542960
+			},
+			"text": " and we'll give a bit more into what those mean and why they're important."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,960",
+				"to": "00:09:10,960"
+			},
+			"offsets": {
+				"from": 542960,
+				"to": 550960
+			},
+			"text": " But ultimately I guess a comment that I'd like to make about how the system is designed is that people have different ways of saying"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,960",
+				"to": "00:09:15,960"
+			},
+			"offsets": {
+				"from": 550960,
+				"to": 555960
+			},
+			"text": " what the return is or what the reward level is on a group of stake protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,960",
+				"to": "00:09:20,960"
+			},
+			"offsets": {
+				"from": 555960,
+				"to": 560960
+			},
+			"text": " Most people are launching POS from Dead Star with like zero token distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,960",
+				"to": "00:09:27,960"
+			},
+			"offsets": {
+				"from": 560960,
+				"to": 567960
+			},
+			"text": " This model that ETH2 is based on is actually more of a mature POS where unless you have a proper token distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,960",
+				"to": "00:09:33,960"
+			},
+			"offsets": {
+				"from": 567960,
+				"to": 573960
+			},
+			"text": " and everything is already an ecosystem, you aren't able to do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,960",
+				"to": "00:09:38,960"
+			},
+			"offsets": {
+				"from": 573960,
+				"to": 578960
+			},
+			"text": " I'm also a big proponent of not having a cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,960",
+				"to": "00:09:45,960"
+			},
+			"offsets": {
+				"from": 578960,
+				"to": 585960
+			},
+			"text": " So people who run POS 10 or sometimes with essentially mining schedules with like a fixed amount of tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,960",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 585960,
+				"to": 589960
+			},
+			"text": " Ethereum, it's a big debate of should there be a cap on the supply or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:53,960"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 593960
+			},
+			"text": " I personally believe that you can't run this economic model if there is a cap."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,960",
+				"to": "00:09:58,960"
+			},
+			"offsets": {
+				"from": 593960,
+				"to": 598960
+			},
+			"text": " But I would love to have a debate about it if people have different thoughts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,960",
+				"to": "00:10:01,960"
+			},
+			"offsets": {
+				"from": 598960,
+				"to": 601960
+			},
+			"text": " Second part of it, base reward factor."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,960",
+				"to": "00:10:08,960"
+			},
+			"offsets": {
+				"from": 601960,
+				"to": 608960
+			},
+			"text": " Right now the spec is at 64, and this is basically showing you from two to ten million ETH what you would receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,960",
+				"to": "00:10:12,960"
+			},
+			"offsets": {
+				"from": 608960,
+				"to": 612960
+			},
+			"text": " with a bunch of fixed variables which will all be inside of the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,960",
+				"to": "00:10:19,960"
+			},
+			"offsets": {
+				"from": 612960,
+				"to": 619960
+			},
+			"text": " But the primary point of this is to show that as the base reward increases, what I get in return also increases"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,960",
+				"to": "00:10:25,960"
+			},
+			"offsets": {
+				"from": 619960,
+				"to": 625960
+			},
+			"text": " and as the amount of value in the network distinct, it decreases over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,960",
+				"to": "00:10:31,960"
+			},
+			"offsets": {
+				"from": 625960,
+				"to": 631960
+			},
+			"text": " So it's saying true to its design principles and it matches what we just looked at."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,960",
+				"to": "00:10:34,960"
+			},
+			"offsets": {
+				"from": 631960,
+				"to": 634960
+			},
+			"text": " The third factor is your average network percent online."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,960",
+				"to": "00:10:38,960"
+			},
+			"offsets": {
+				"from": 634960,
+				"to": 638960
+			},
+			"text": " This one I think is quite cool and not really spoke about too much."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,960",
+				"to": "00:10:45,960"
+			},
+			"offsets": {
+				"from": 638960,
+				"to": 645960
+			},
+			"text": " So it's basically like a collective reward mindset where if everyone in the network is providing up time"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,960",
+				"to": "00:10:50,960"
+			},
+			"offsets": {
+				"from": 645960,
+				"to": 650960
+			},
+			"text": " and being consistent with their behavior, then everyone else gets something in return for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,960",
+				"to": "00:10:58,960"
+			},
+			"offsets": {
+				"from": 650960,
+				"to": 658960
+			},
+			"text": " So what it does is it incentivizes collectively better behavior for everyone to stay online and to stay live."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,960",
+				"to": "00:11:08,960"
+			},
+			"offsets": {
+				"from": 658960,
+				"to": 668960
+			},
+			"text": " It's a primary driver of what you get out in return and I haven't seen it collectively implemented inside of other"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,960",
+				"to": "00:11:15,960"
+			},
+			"offsets": {
+				"from": 668960,
+				"to": 675960
+			},
+			"text": " goals for a call. So I find this person to be one of the more genius things that ETH2 and you should see how it plays out."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,960",
+				"to": "00:11:21,960"
+			},
+			"offsets": {
+				"from": 675960,
+				"to": 681960
+			},
+			"text": " But again, two million per cent, 4.2 million, just remember those two, those are very crucial levels."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,960",
+				"to": "00:11:23,960"
+			},
+			"offsets": {
+				"from": 681960,
+				"to": 683960
+			},
+			"text": " And four are relative comparisons right now inside of all D."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,960",
+				"to": "00:11:27,960"
+			},
+			"offsets": {
+				"from": 683960,
+				"to": 687960
+			},
+			"text": " I have heard of calls, there's 2.8 and 8 for a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,960",
+				"to": "00:11:37,960"
+			},
+			"offsets": {
+				"from": 687960,
+				"to": 697960
+			},
+			"text": " But again, as you can see from 70% to 100% what you receive from the protocol increases over time as you provide more out time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,960",
+				"to": "00:11:44,960"
+			},
+			"offsets": {
+				"from": 697960,
+				"to": 704960
+			},
+			"text": " The fourth component which is not included in the last two that is said, but something I think we should talk about is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,960",
+				"to": "00:11:52,960"
+			},
+			"offsets": {
+				"from": 704960,
+				"to": 712960
+			},
+			"text": " a lot of POS protocols, not going to name names, but what you get in return is based on how many topics you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,960",
+				"to": "00:11:55,960"
+			},
+			"offsets": {
+				"from": 712960,
+				"to": 715960
+			},
+			"text": " which is quite decentralized element of all of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,960",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 715960,
+				"to": 721960
+			},
+			"text": " So this is like a whale scale. We have different amounts of clients that you can run on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:07,960"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 727960
+			},
+			"text": " It stretches from 1 to 50 which basically means at a protocol level, X costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,960",
+				"to": "00:12:14,960"
+			},
+			"offsets": {
+				"from": 727960,
+				"to": 734960
+			},
+			"text": " If I'm validating with 32 ETH or I'm validating with 1600, I receive the same thing in return for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,960",
+				"to": "00:12:21,960"
+			},
+			"offsets": {
+				"from": 734960,
+				"to": 741960
+			},
+			"text": " So achieving economies of scale at the protocol level inside of ETH2 is not something that is possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,960",
+				"to": "00:12:24,960"
+			},
+			"offsets": {
+				"from": 741960,
+				"to": 744960
+			},
+			"text": " It's more about how many clients are having on each node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,960",
+				"to": "00:12:30,960"
+			},
+			"offsets": {
+				"from": 744960,
+				"to": 750960
+			},
+			"text": " So ultimately at the end of the day, I'm the premise of this being designed to be the most decentralized, actually most true."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,960",
+				"to": "00:12:36,960"
+			},
+			"offsets": {
+				"from": 750960,
+				"to": 756960
+			},
+			"text": " So I think this is a really cool thing. After writing the numbers and seeing this come out, it's something important to remember."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,960",
+				"to": "00:12:40,960"
+			},
+			"offsets": {
+				"from": 756960,
+				"to": 760960
+			},
+			"text": " It saves you to the mission."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,960",
+				"to": "00:12:47,960"
+			},
+			"offsets": {
+				"from": 760960,
+				"to": 767960
+			},
+			"text": " So the positive money. When is this going to happen? This is kind of how everything starts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,960",
+				"to": "00:12:53,960"
+			},
+			"offsets": {
+				"from": 767960,
+				"to": 773960
+			},
+			"text": " January 2020, some of the days people have been throwing around, it was supposed to be very difficult,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,960",
+				"to": "00:13:02,960"
+			},
+			"offsets": {
+				"from": 773960,
+				"to": 782960
+			},
+			"text": " but it kind of gives us a bit more time to educate on economics and how many and kind of gather more of a collective inclusion of people to be a part of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,960",
+				"to": "00:13:06,960"
+			},
+			"offsets": {
+				"from": 782960,
+				"to": 786960
+			},
+			"text": " The 2 million ETH, so let's talk about that one. That's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,960",
+				"to": "00:13:12,960"
+			},
+			"offsets": {
+				"from": 786960,
+				"to": 792960
+			},
+			"text": " So to get the change started, that's a good one to 65,536 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,960",
+				"to": "00:13:19,960"
+			},
+			"offsets": {
+				"from": 792960,
+				"to": 799960
+			},
+			"text": " So looking at what by rewards would be the economics at 2 million ETH, is something quite interesting to look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,960",
+				"to": "00:13:23,960"
+			},
+			"offsets": {
+				"from": 799960,
+				"to": 803960
+			},
+			"text": " The next number that's been highlighted on the charts is 4.2 million ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,960",
+				"to": "00:13:36,960"
+			},
+			"offsets": {
+				"from": 803960,
+				"to": 816960
+			},
+			"text": " So you can think of this as once we enter phase 2 in charts or live, what is the minimum amount of ETH to the state for a fully-sharded system to be secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,960",
+				"to": "00:13:46,960"
+			},
+			"offsets": {
+				"from": 816960,
+				"to": 826960
+			},
+			"text": " So I personally think this is getting the 2 million ETH to be fine and we'll get there, but ultimately I think what we really need to do is in this first sprint of all, this push to 4.2 million ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,960",
+				"to": "00:13:57,960"
+			},
+			"offsets": {
+				"from": 826960,
+				"to": 837960
+			},
+			"text": " So that when phase 2 picks in, you know, the call to action won't have to be too severe and distracting and ultimately when charting takes place, everything will be in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,960",
+				"to": "00:14:04,960"
+			},
+			"offsets": {
+				"from": 837960,
+				"to": 844960
+			},
+			"text": " Again, phase 0, networkfist. included and your guide is not transferable until phase 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,960",
+				"to": "00:14:11,960"
+			},
+			"offsets": {
+				"from": 844960,
+				"to": 851960
+			},
+			"text": " So let's talk about some of the assumptions in the model, some of the charts that we're about to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,960",
+				"to": "00:14:17,960"
+			},
+			"offsets": {
+				"from": 851960,
+				"to": 857960
+			},
+			"text": " So on the network side of it, we take a look at between 2 and 10 million ETH states."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,960",
+				"to": "00:14:30,960"
+			},
+			"offsets": {
+				"from": 857960,
+				"to": 870960
+			},
+			"text": " I personally think that that's achievable at the 10 million plus end, maybe not in this first phase 0 push, but ultimately I think that's kind of where the equilibrium will be picked between 10 and 20."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,960",
+				"to": "00:14:38,960"
+			},
+			"offsets": {
+				"from": 870960,
+				"to": 878960
+			},
+			"text": " 90% average online, kind of just the base running the model based on that, but sensitized into different charts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,960",
+				"to": "00:14:42,960"
+			},
+			"offsets": {
+				"from": 878960,
+				"to": 882960
+			},
+			"text": " Base reward 64 and again, no fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,960",
+				"to": "00:14:46,960"
+			},
+			"offsets": {
+				"from": 882960,
+				"to": 886960
+			},
+			"text": " We'll take a look at our validator, how Alice is acting."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,960",
+				"to": "00:14:50,960"
+			},
+			"offsets": {
+				"from": 886960,
+				"to": 890960
+			},
+			"text": " She's an individual validator, she only has 32 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,960",
+				"to": "00:14:53,960"
+			},
+			"offsets": {
+				"from": 890960,
+				"to": 893960
+			},
+			"text": " She's providing 98% up time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,960",
+				"to": "00:15:04,960"
+			},
+			"offsets": {
+				"from": 893960,
+				"to": 904960
+			},
+			"text": " She has a $250 computer, a 2 and a half year, life on it, so that's basically her cost is scheduled over 2 and a half years."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,960",
+				"to": "00:15:10,960"
+			},
+			"offsets": {
+				"from": 904960,
+				"to": 910960
+			},
+			"text": " We don't include router and ISP as cost in this equation, it's kind of the sum cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,960",
+				"to": "00:15:22,960"
+			},
+			"offsets": {
+				"from": 910960,
+				"to": 922960
+			},
+			"text": " We assume that most of your abachuments that we'll be participating in this earlier stage will have this, but the model, you can talk of it and you can decide whether or not you think this is needed or unneeded."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,960",
+				"to": "00:15:25,960"
+			},
+			"offsets": {
+				"from": 922960,
+				"to": 925960
+			},
+			"text": " ETH price is set at 182."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,960",
+				"to": "00:15:32,960"
+			},
+			"offsets": {
+				"from": 925960,
+				"to": 932960
+			},
+			"text": " It was a bit lower, but you know, it did a council one over the bit, so I changed everything in the evening yesterday, win-moon."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,960",
+				"to": "00:15:35,960"
+			},
+			"offsets": {
+				"from": 932960,
+				"to": 935960
+			},
+			"text": " So, let's talk about phase 0."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,960",
+				"to": "00:15:39,960"
+			},
+			"offsets": {
+				"from": 935960,
+				"to": 939960
+			},
+			"text": " Now, here's what you're going to get at a pure protocol network level."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,960",
+				"to": "00:15:43,960"
+			},
+			"offsets": {
+				"from": 939960,
+				"to": 943960
+			},
+			"text": " This includes no cost, this includes nothing like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,960",
+				"to": "00:15:53,960"
+			},
+			"offsets": {
+				"from": 943960,
+				"to": 953960
+			},
+			"text": " So, you will receive in e-denominate of inflation 10.4% at that 2 million level, which gets the need to take off."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,960",
+				"to": "00:16:00,960"
+			},
+			"offsets": {
+				"from": 953960,
+				"to": 960960
+			},
+			"text": " Call it secure as sharding, which is our 4.2 million level, you will receive 7.2%."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,960",
+				"to": "00:16:04,960"
+			},
+			"offsets": {
+				"from": 960960,
+				"to": 964960
+			},
+			"text": " Sorry, 10.4% over what time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,960",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 964960,
+				"to": 966960
+			},
+			"text": " That's annual est."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,960",
+				"to": "00:16:14,960"
+			},
+			"offsets": {
+				"from": 969960,
+				"to": 974960
+			},
+			"text": " Now, let's take a look at what you would receive when applying net costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,960",
+				"to": "00:16:25,960"
+			},
+			"offsets": {
+				"from": 974960,
+				"to": 985960
+			},
+			"text": " So, when these numbers first came out and we run a bunch of models on it, at the beginning of the year, they weren't net positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,960",
+				"to": "00:16:38,960"
+			},
+			"offsets": {
+				"from": 985960,
+				"to": 998960
+			},
+			"text": " It was in the red, which led me to believe that I don't believe it's a protocol or a foundation responsibility to base the design of a protocol on real cost, but it must be considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,960",
+				"to": "00:16:43,960"
+			},
+			"offsets": {
+				"from": 998960,
+				"to": 1003960
+			},
+			"text": " When thinking about making this a reality, since it's such a human-based technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,960",
+				"to": "00:17:00,960"
+			},
+			"offsets": {
+				"from": 1003960,
+				"to": 1020960
+			},
+			"text": " So, at our phase 0, 2 million to get the vegan chain started, you'll receive 6.9%, which I think is quite competitive, considering the risk profile of how built out of period is, and other group of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,960",
+				"to": "00:17:06,960"
+			},
+			"offsets": {
+				"from": 1020960,
+				"to": 1026960
+			},
+			"text": " So, at 4.2 million as well, you'll get 3.6%."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,960",
+				"to": "00:17:15,960"
+			},
+			"offsets": {
+				"from": 1026960,
+				"to": 1035960
+			},
+			"text": " So, that's the ideal setting of when we think that the system will be secured and it's for sharding to go live technically at that level."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,960",
+				"to": "00:17:19,960"
+			},
+			"offsets": {
+				"from": 1035960,
+				"to": 1039960
+			},
+			"text": " I'm pretty comfortable with that to be honest with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,960",
+				"to": "00:17:27,960"
+			},
+			"offsets": {
+				"from": 1039960,
+				"to": 1047960
+			},
+			"text": " I do think that out in the lower end, it's going to be 10 million by low, but then again, it's kind of a call to action of what we're doing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,960",
+				"to": "00:17:39,960"
+			},
+			"offsets": {
+				"from": 1047960,
+				"to": 1059960
+			},
+			"text": " And what we're doing here, what we're putting together, is getting insight from people who are economists, people who have actually looked at and understand human behavior and how it flows through like economic cultures."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,960",
+				"to": "00:17:54,960"
+			},
+			"offsets": {
+				"from": 1059960,
+				"to": 1074960
+			},
+			"text": " Because right now, it's a bunch of technologists and ex-bankers trying to figure this out, which has gotten us pretty far, but ultimately, this needs further insight from other people as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,960",
+				"to": "00:18:00,960"
+			},
+			"offsets": {
+				"from": 1074960,
+				"to": 1080960
+			},
+			"text": " So, this is kind of interesting one. Being a devcon, this is kind of the whale scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,960",
+				"to": "00:18:12,960"
+			},
+			"offsets": {
+				"from": 1080960,
+				"to": 1092960
+			},
+			"text": " I do believe that from my face, your perspective, we're going to need not an element of centralization, but we're certainly going to need some larger e-pulters to come in here and bootstrap this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,960",
+				"to": "00:18:21,960"
+			},
+			"offsets": {
+				"from": 1092960,
+				"to": 1101960
+			},
+			"text": " So, this chart within the model is based on using the EPS to digital ocean at $20 a month."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,960",
+				"to": "00:18:29,960"
+			},
+			"offsets": {
+				"from": 1101960,
+				"to": 1109960
+			},
+			"text": " It assumes that you can fit 16 clients on each machine, which is quite conservative, but that can all be flexed inside the model."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,960",
+				"to": "00:18:34,960"
+			},
+			"offsets": {
+				"from": 1109960,
+				"to": 1114960
+			},
+			"text": " And ultimately, this is what your return schedule would be."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,960",
+				"to": "00:18:45,960"
+			},
+			"offsets": {
+				"from": 1114960,
+				"to": 1125960
+			},
+			"text": " Again, just to comment on the decentralized design protocol, as you can see, the economy is a scale that only be achieved to a certain degree as a large person on the network, which I think is quite cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,960",
+				"to": "00:18:53,960"
+			},
+			"offsets": {
+				"from": 1125960,
+				"to": 1133960
+			},
+			"text": " But, any whales in the room, this is what you can expect from phase zero, if you're interested in helping out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,960",
+				"to": "00:19:01,960"
+			},
+			"offsets": {
+				"from": 1133960,
+				"to": 1141960
+			},
+			"text": " So, what do we, this has been four or five months of putting this together, what is the point of all of it, what do we want to do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,960",
+				"to": "00:19:14,960"
+			},
+			"offsets": {
+				"from": 1141960,
+				"to": 1154960
+			},
+			"text": " Essentially, we're launching an e2 calculator, and the purpose of this is to educate the first events to inform this is for people who want to validate, this is for people who do research."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,960",
+				"to": "00:19:25,960"
+			},
+			"offsets": {
+				"from": 1154960,
+				"to": 1165960
+			},
+			"text": " This is for anyone who wants to add feedback to it. So, it'll be an advanced calculator that has a series of validator assumptions and network assumptions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,960",
+				"to": "00:19:38,960"
+			},
+			"offsets": {
+				"from": 1165960,
+				"to": 1178960
+			},
+			"text": " Basic and advanced, there's going to be a feedback form as well, which we think is probably going to be the most important thing, where we want all the feedback and comments about this fact and about the economics to take place in one setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,960",
+				"to": "00:19:48,960"
+			},
+			"offsets": {
+				"from": 1178960,
+				"to": 1188960
+			},
+			"text": " Because ultimately, at this point, if people aren't stoked on the economics, there's going to need to be a hard force, this is going to need to entail a lot of coordination and a lot of thought at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,960",
+				"to": "00:19:57,960"
+			},
+			"offsets": {
+				"from": 1188960,
+				"to": 1197960
+			},
+			"text": " So, where are we now about this? We haven't designed, we have all the business logic involved built into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,960",
+				"to": "00:20:05,960"
+			},
+			"offsets": {
+				"from": 1197960,
+				"to": 1205960
+			},
+			"text": " Today, we're going to launch this group here, where I will drop the bottle into it, anyone that has questions or anyone that has comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,960",
+				"to": "00:20:18,960"
+			},
+			"offsets": {
+				"from": 1205960,
+				"to": 1218960
+			},
+			"text": " I'm not going to do that during the talk today, but ultimately, we'll do all of that and house it in one kind of same source of truth so that we can continually get feedback on this because it's super crucial to do so."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,960",
+				"to": "00:20:29,960"
+			},
+			"offsets": {
+				"from": 1218960,
+				"to": 1229960
+			},
+			"text": " So, to kind of close it out, there was a lot of people who helped with this effort, both inside of consensus at the EF outside."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,960",
+				"to": "00:20:40,960"
+			},
+			"offsets": {
+				"from": 1229960,
+				"to": 1240960
+			},
+			"text": " This is kind of the amigless of people here that helped out with all this, so it was a coordinated effort for everyone, so shut out to everyone involved because it was a lot of lifting to get this done."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,960",
+				"to": "00:20:49,960"
+			},
+			"offsets": {
+				"from": 1240960,
+				"to": 1249960
+			},
+			"text": " And that's it. If you want to hit me up, here's my telegram and my Twitter. I can't believe both of which were untaken, but they weren't."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,960",
+				"to": "00:20:58,960"
+			},
+			"offsets": {
+				"from": 1249960,
+				"to": 1258960
+			},
+			"text": " So, please feel free to reach out if you guys have any questions and I'll drop the model into the telegram group and we can start jamming. Thanks everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,960",
+				"to": "00:21:00,960"
+			},
+			"offsets": {
+				"from": 1258960,
+				"to": 1260960
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,960",
+				"to": "00:21:15,960"
+			},
+			"offsets": {
+				"from": 1260960,
+				"to": 1275960
+			},
+			"text": " [Music]"
+		}
+	]
+}

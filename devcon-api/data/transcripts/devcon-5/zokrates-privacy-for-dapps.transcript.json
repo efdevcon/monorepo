@@ -1,0 +1,5345 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5000
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,000",
+				"to": "00:00:16,320"
+			},
+			"offsets": {
+				"from": 5000,
+				"to": 16320
+			},
+			"text": " OK, thank you very much for the introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,320",
+				"to": "00:00:19,440"
+			},
+			"offsets": {
+				"from": 16320,
+				"to": 19440
+			},
+			"text": " Who of you knows what Socrates is roughly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,440",
+				"to": "00:00:21,880"
+			},
+			"offsets": {
+				"from": 19440,
+				"to": 21880
+			},
+			"text": " so just that we can adjust--"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,880",
+				"to": "00:00:24,920"
+			},
+			"offsets": {
+				"from": 21880,
+				"to": 24920
+			},
+			"text": " OK, then we can do it quick and throw, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,920",
+				"to": "00:00:27,480"
+			},
+			"offsets": {
+				"from": 24920,
+				"to": 27480
+			},
+			"text": " and spend a bit more time on the later slides"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,480",
+				"to": "00:00:29,320"
+			},
+			"offsets": {
+				"from": 27480,
+				"to": 29320
+			},
+			"text": " after the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,320",
+				"to": "00:00:32,920"
+			},
+			"offsets": {
+				"from": 29320,
+				"to": 32920
+			},
+			"text": " OK, excuse the word."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,920",
+				"to": "00:00:41,920"
+			},
+			"offsets": {
+				"from": 32920,
+				"to": 41920
+			},
+			"text": " So Socrates started as my research project, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,920",
+				"to": "00:00:43,040"
+			},
+			"offsets": {
+				"from": 41920,
+				"to": 43040
+			},
+			"text": " at TU Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,040",
+				"to": "00:00:45,560"
+			},
+			"offsets": {
+				"from": 43040,
+				"to": 45560
+			},
+			"text": " But by now, we're happy to develop it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,560",
+				"to": "00:00:48,080"
+			},
+			"offsets": {
+				"from": 45560,
+				"to": 48080
+			},
+			"text": " as part of the Eastern Foundation team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,080",
+				"to": "00:00:51,520"
+			},
+			"offsets": {
+				"from": 48080,
+				"to": 51520
+			},
+			"text": " It's three people at the moment, but we're looking to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,520",
+				"to": "00:00:56,920"
+			},
+			"offsets": {
+				"from": 51520,
+				"to": 56920
+			},
+			"text": " So in the end, feel free to get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,920",
+				"to": "00:01:01,440"
+			},
+			"offsets": {
+				"from": 56920,
+				"to": 61440
+			},
+			"text": " Then start with introduction vision before we dive into more."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,440",
+				"to": "00:01:06,240"
+			},
+			"offsets": {
+				"from": 61440,
+				"to": 66240
+			},
+			"text": " So the plan of today's talk is basically three things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,240",
+				"to": "00:01:08,720"
+			},
+			"offsets": {
+				"from": 66240,
+				"to": 68720
+			},
+			"text": " First, we provide a bit of an introduction background"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,720",
+				"to": "00:01:11,600"
+			},
+			"offsets": {
+				"from": 68720,
+				"to": 71600
+			},
+			"text": " for those that are not that familiar with the tooling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,600",
+				"to": "00:01:12,880"
+			},
+			"offsets": {
+				"from": 71600,
+				"to": 72880
+			},
+			"text": " but we keep it short."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,880",
+				"to": "00:01:14,920"
+			},
+			"offsets": {
+				"from": 72880,
+				"to": 74920
+			},
+			"text": " Then we'll give you a bit of an update"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,920",
+				"to": "00:01:16,680"
+			},
+			"offsets": {
+				"from": 74920,
+				"to": 76680
+			},
+			"text": " on what's been happening in the last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,680",
+				"to": "00:01:19,280"
+			},
+			"offsets": {
+				"from": 76680,
+				"to": 79280
+			},
+			"text": " So basically, that update, which new features"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,280",
+				"to": "00:01:21,360"
+			},
+			"offsets": {
+				"from": 79280,
+				"to": 81360
+			},
+			"text": " we have, where we were going."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,360",
+				"to": "00:01:23,440"
+			},
+			"offsets": {
+				"from": 81360,
+				"to": 83440
+			},
+			"text": " And then we look at some use cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,440",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 83440,
+				"to": 86320
+			},
+			"text": " so we report that from actual applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,320",
+				"to": "00:01:31,080"
+			},
+			"offsets": {
+				"from": 86320,
+				"to": 91080
+			},
+			"text": " That's that it improved on their privacy properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,080",
+				"to": "00:01:34,160"
+			},
+			"offsets": {
+				"from": 91080,
+				"to": 94160
+			},
+			"text": " by leveraging Socrates-based CKS NARTS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,160",
+				"to": "00:01:35,920"
+			},
+			"offsets": {
+				"from": 94160,
+				"to": 95920
+			},
+			"text": " And as a last step, we'll give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,920",
+				"to": "00:01:38,960"
+			},
+			"offsets": {
+				"from": 95920,
+				"to": 98960
+			},
+			"text": " a bit of an upload what we think, where we should be going"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,960",
+				"to": "00:01:41,240"
+			},
+			"offsets": {
+				"from": 98960,
+				"to": 101240
+			},
+			"text": " in the next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,240",
+				"to": "00:01:43,920"
+			},
+			"offsets": {
+				"from": 101240,
+				"to": 103920
+			},
+			"text": " So Socrates is basically two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,920",
+				"to": "00:01:48,000"
+			},
+			"offsets": {
+				"from": 103920,
+				"to": 108000
+			},
+			"text": " It's a high level language for programming CKS NARTS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,000",
+				"to": "00:01:51,640"
+			},
+			"offsets": {
+				"from": 108000,
+				"to": 111640
+			},
+			"text": " And it's a bunch of tooling around all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,640",
+				"to": "00:01:54,040"
+			},
+			"offsets": {
+				"from": 111640,
+				"to": 114040
+			},
+			"text": " So with Socrates in that language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,040",
+				"to": "00:01:56,920"
+			},
+			"offsets": {
+				"from": 114040,
+				"to": 116920
+			},
+			"text": " you can program in an imprinted style,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,920",
+				"to": "00:02:01,360"
+			},
+			"offsets": {
+				"from": 116920,
+				"to": 121360
+			},
+			"text": " as those programmers are used to, some program."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,360",
+				"to": "00:02:03,200"
+			},
+			"offsets": {
+				"from": 121360,
+				"to": 123200
+			},
+			"text": " And then it provides you tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,200",
+				"to": "00:02:06,800"
+			},
+			"offsets": {
+				"from": 123200,
+				"to": 126800
+			},
+			"text": " So you can compile that program into an instruction"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,800",
+				"to": "00:02:09,800"
+			},
+			"offsets": {
+				"from": 126800,
+				"to": 129800
+			},
+			"text": " that is proved through CKS NARTS."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,800",
+				"to": "00:02:12,040"
+			},
+			"offsets": {
+				"from": 129800,
+				"to": 132040
+			},
+			"text": " And then you can use this Socrates tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,040",
+				"to": "00:02:16,160"
+			},
+			"offsets": {
+				"from": 132040,
+				"to": 136160
+			},
+			"text": " to apply your program, execute the program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,160",
+				"to": "00:02:18,880"
+			},
+			"offsets": {
+				"from": 136160,
+				"to": 138880
+			},
+			"text": " and generate CKS NARTS that shows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,880",
+				"to": "00:02:22,040"
+			},
+			"offsets": {
+				"from": 138880,
+				"to": 142040
+			},
+			"text": " that this execution happened correctly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,040",
+				"to": "00:02:24,840"
+			},
+			"offsets": {
+				"from": 142040,
+				"to": 144840
+			},
+			"text": " And it also generates you smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,840",
+				"to": "00:02:28,080"
+			},
+			"offsets": {
+				"from": 144840,
+				"to": 148080
+			},
+			"text": " solvenity contracts, that you can deploy to blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,080",
+				"to": "00:02:31,400"
+			},
+			"offsets": {
+				"from": 148080,
+				"to": 151400
+			},
+			"text": " So you can easily verify CKS NARTS on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,400",
+				"to": "00:02:34,760"
+			},
+			"offsets": {
+				"from": 151400,
+				"to": 154760
+			},
+			"text": " without having to bother with writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,760",
+				"to": "00:02:39,440"
+			},
+			"offsets": {
+				"from": 154760,
+				"to": 159440
+			},
+			"text": " solvenity verifiers for the specific CKS NARTS mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,440",
+				"to": "00:02:41,160"
+			},
+			"offsets": {
+				"from": 159440,
+				"to": 161160
+			},
+			"text": " and choose in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,160",
+				"to": "00:02:45,440"
+			},
+			"offsets": {
+				"from": 161160,
+				"to": 165440
+			},
+			"text": " So what are the main goals behind the architecture?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,440",
+				"to": "00:02:46,640"
+			},
+			"offsets": {
+				"from": 165440,
+				"to": 166640
+			},
+			"text": " That's basically two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,640",
+				"to": "00:02:49,400"
+			},
+			"offsets": {
+				"from": 166640,
+				"to": 169400
+			},
+			"text": " Then the first is enhancing privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,400",
+				"to": "00:02:51,840"
+			},
+			"offsets": {
+				"from": 169400,
+				"to": 171840
+			},
+			"text": " With Ethereum, we have this platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,840",
+				"to": "00:02:52,800"
+			},
+			"offsets": {
+				"from": 171840,
+				"to": 172800
+			},
+			"text": " that's very general."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,800",
+				"to": "00:02:54,880"
+			},
+			"offsets": {
+				"from": 172800,
+				"to": 174880
+			},
+			"text": " We can do general purpose computations."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,880",
+				"to": "00:02:56,280"
+			},
+			"offsets": {
+				"from": 174880,
+				"to": 176280
+			},
+			"text": " It's quite powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,280",
+				"to": "00:02:58,840"
+			},
+			"offsets": {
+				"from": 176280,
+				"to": 178840
+			},
+			"text": " But for real applications to take off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,840",
+				"to": "00:03:01,040"
+			},
+			"offsets": {
+				"from": 178840,
+				"to": 181040
+			},
+			"text": " we require a bit more privacy, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,040",
+				"to": "00:03:04,320"
+			},
+			"offsets": {
+				"from": 181040,
+				"to": 184320
+			},
+			"text": " because there is awareness that all the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,320",
+				"to": "00:03:07,240"
+			},
+			"offsets": {
+				"from": 184320,
+				"to": 187240
+			},
+			"text": " put on the blockchain can remind the news by anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,240",
+				"to": "00:03:09,400"
+			},
+			"offsets": {
+				"from": 187240,
+				"to": 189400
+			},
+			"text": " And that's a show stopper for some applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,400",
+				"to": "00:03:12,760"
+			},
+			"offsets": {
+				"from": 189400,
+				"to": 192760
+			},
+			"text": " And we'll see that later when we look at the use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,760",
+				"to": "00:03:15,640"
+			},
+			"offsets": {
+				"from": 192760,
+				"to": 195640
+			},
+			"text": " For Bitcoin, we've seen kind of an improvement"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,640",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 195640,
+				"to": 197920
+			},
+			"text": " through the CCASH that managed to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:21,800"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 201800
+			},
+			"text": " fully anonymous payment schemes on top of CKS NARTS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,800",
+				"to": "00:03:25,360"
+			},
+			"offsets": {
+				"from": 201800,
+				"to": 205360
+			},
+			"text": " And of course, you can't simply do a scheme for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,360",
+				"to": "00:03:27,400"
+			},
+			"offsets": {
+				"from": 205360,
+				"to": 207400
+			},
+			"text": " because Ethereum is too generic for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,400",
+				"to": "00:03:29,760"
+			},
+			"offsets": {
+				"from": 207400,
+				"to": 209760
+			},
+			"text": " So our approach is to provide easy to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,760",
+				"to": "00:03:33,160"
+			},
+			"offsets": {
+				"from": 209760,
+				"to": 213160
+			},
+			"text": " and convenient tooling that you can for your specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,160",
+				"to": "00:03:36,520"
+			},
+			"offsets": {
+				"from": 213160,
+				"to": 216520
+			},
+			"text": " application in Ethereum contacts with average CKS NARTS"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,520",
+				"to": "00:03:39,360"
+			},
+			"offsets": {
+				"from": 216520,
+				"to": 219360
+			},
+			"text": " conveniently to improve your privacy properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,360",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 219360,
+				"to": 223000
+			},
+			"text": " And the second thing is scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " So we're in the world on the left right now"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,920"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229920
+			},
+			"text": " where we redundantly process all transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,920",
+				"to": "00:03:52,680"
+			},
+			"offsets": {
+				"from": 229920,
+				"to": 232680
+			},
+			"text": " that are submitted to the blockchain on every node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,680",
+				"to": "00:03:54,600"
+			},
+			"offsets": {
+				"from": 232680,
+				"to": 234600
+			},
+			"text": " And we would like in the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,600",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 234600,
+				"to": 236640
+			},
+			"text": " and we already do it in some cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:03:58,080"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 238080
+			},
+			"text": " move to the world on the right"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,080",
+				"to": "00:04:02,800"
+			},
+			"offsets": {
+				"from": 238080,
+				"to": 242800
+			},
+			"text": " where we do not execute complex things on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,800",
+				"to": "00:04:06,680"
+			},
+			"offsets": {
+				"from": 242800,
+				"to": 246680
+			},
+			"text": " but rather execute complex things on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,680",
+				"to": "00:04:08,080"
+			},
+			"offsets": {
+				"from": 246680,
+				"to": 248080
+			},
+			"text": " While maintaining privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,080",
+				"to": "00:04:10,880"
+			},
+			"offsets": {
+				"from": 248080,
+				"to": 250880
+			},
+			"text": " because we do not need to expose all the information we use"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,880",
+				"to": "00:04:12,520"
+			},
+			"offsets": {
+				"from": 250880,
+				"to": 252520
+			},
+			"text": " in this active processing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,520",
+				"to": "00:04:15,440"
+			},
+			"offsets": {
+				"from": 252520,
+				"to": 255440
+			},
+			"text": " then send a result of that computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,440",
+				"to": "00:04:18,880"
+			},
+			"offsets": {
+				"from": 255440,
+				"to": 258880
+			},
+			"text": " plus prove that it tested correctness back to the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,880",
+				"to": "00:04:20,320"
+			},
+			"offsets": {
+				"from": 258880,
+				"to": 260320
+			},
+			"text": " and only check that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,320",
+				"to": "00:04:24,480"
+			},
+			"offsets": {
+				"from": 260320,
+				"to": 264480
+			},
+			"text": " And as long as the verification step on chain is cheaper"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,480",
+				"to": "00:04:27,240"
+			},
+			"offsets": {
+				"from": 264480,
+				"to": 267240
+			},
+			"text": " than the native execution on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,240",
+				"to": "00:04:29,080"
+			},
+			"offsets": {
+				"from": 267240,
+				"to": 269080
+			},
+			"text": " we will be able to scale better"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,080",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269080,
+				"to": 272000
+			},
+			"text": " because in one block, we can fit more computational"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:33,560"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 273560
+			},
+			"text": " unless team that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,560",
+				"to": "00:04:35,720"
+			},
+			"offsets": {
+				"from": 273560,
+				"to": 275720
+			},
+			"text": " So that's the two main drivers behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,720",
+				"to": "00:04:39,280"
+			},
+			"offsets": {
+				"from": 275720,
+				"to": 279280
+			},
+			"text": " why this is meaningful and why you should have a woman."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,280",
+				"to": "00:04:42,840"
+			},
+			"offsets": {
+				"from": 279280,
+				"to": 282840
+			},
+			"text": " The language itself that we use is, or built"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,840",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 282840,
+				"to": 285840
+			},
+			"text": " is an imperative domain specific language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:47,760"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 287760
+			},
+			"text": " which means in this tailor-mate"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,760",
+				"to": "00:04:49,920"
+			},
+			"offsets": {
+				"from": 287760,
+				"to": 289920
+			},
+			"text": " to efficiently compile into abstraction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,920",
+				"to": "00:04:51,480"
+			},
+			"offsets": {
+				"from": 289920,
+				"to": 291480
+			},
+			"text": " CKS, or students."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,480",
+				"to": "00:04:54,040"
+			},
+			"offsets": {
+				"from": 291480,
+				"to": 294040
+			},
+			"text": " Sure, you could use a generic programming language"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,040",
+				"to": "00:04:55,200"
+			},
+			"offsets": {
+				"from": 294040,
+				"to": 295200
+			},
+			"text": " like C or Rust,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,200",
+				"to": "00:04:57,040"
+			},
+			"offsets": {
+				"from": 295200,
+				"to": 297040
+			},
+			"text": " and there's also compilers for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,040",
+				"to": "00:04:58,520"
+			},
+			"offsets": {
+				"from": 297040,
+				"to": 298520
+			},
+			"text": " But many of the data types"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,520",
+				"to": "00:05:01,360"
+			},
+			"offsets": {
+				"from": 298520,
+				"to": 301360
+			},
+			"text": " and the syntactic constructs they offer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,360",
+				"to": "00:05:03,720"
+			},
+			"offsets": {
+				"from": 301360,
+				"to": 303720
+			},
+			"text": " they are not efficiently translatable"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,720",
+				"to": "00:05:06,240"
+			},
+			"offsets": {
+				"from": 303720,
+				"to": 306240
+			},
+			"text": " into the CKS, not approval abstractions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,240",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 306240,
+				"to": 309280
+			},
+			"text": " So that's why we kind of have this DSL"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:11,200"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 311200
+			},
+			"text": " to be sure that what you write"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,200",
+				"to": "00:05:13,600"
+			},
+			"offsets": {
+				"from": 311200,
+				"to": 313600
+			},
+			"text": " is kind of efficient at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,600",
+				"to": "00:05:15,480"
+			},
+			"offsets": {
+				"from": 313600,
+				"to": 315480
+			},
+			"text": " It's Python-inspired syntax,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,480",
+				"to": "00:05:17,560"
+			},
+			"offsets": {
+				"from": 315480,
+				"to": 317560
+			},
+			"text": " but we borrow like the best pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,560",
+				"to": "00:05:19,440"
+			},
+			"offsets": {
+				"from": 317560,
+				"to": 319440
+			},
+			"text": " from whatever language, kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,440",
+				"to": "00:05:22,480"
+			},
+			"offsets": {
+				"from": 319440,
+				"to": 322480
+			},
+			"text": " but it's mostly similar to Python."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,480",
+				"to": "00:05:26,200"
+			},
+			"offsets": {
+				"from": 322480,
+				"to": 326200
+			},
+			"text": " And the thing that makes CKS-snark programming hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,200",
+				"to": "00:05:28,400"
+			},
+			"offsets": {
+				"from": 326200,
+				"to": 328400
+			},
+			"text": " or one of the things that makes it hard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,400",
+				"to": "00:05:30,600"
+			},
+			"offsets": {
+				"from": 328400,
+				"to": 330600
+			},
+			"text": " one of the scary parts of Snark programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,600",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 330600,
+				"to": 332200
+			},
+			"text": " is this non-determinism,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,200",
+				"to": "00:05:34,760"
+			},
+			"offsets": {
+				"from": 332200,
+				"to": 334760
+			},
+			"text": " which means in code without a component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,760",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334760,
+				"to": 337000
+			},
+			"text": " you get some results and validate"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:38,640"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 338640
+			},
+			"text": " that as part of your Snark."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,640",
+				"to": "00:05:40,040"
+			},
+			"offsets": {
+				"from": 338640,
+				"to": 340040
+			},
+			"text": " And as you maybe feel,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,040",
+				"to": "00:05:42,360"
+			},
+			"offsets": {
+				"from": 340040,
+				"to": 342360
+			},
+			"text": " this is quite complex and it's something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,360",
+				"to": "00:05:44,160"
+			},
+			"offsets": {
+				"from": 342360,
+				"to": 344160
+			},
+			"text": " people do not want to take care of."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,160",
+				"to": "00:05:47,040"
+			},
+			"offsets": {
+				"from": 344160,
+				"to": 347040
+			},
+			"text": " So Socrates hides away all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,040",
+				"to": "00:05:49,800"
+			},
+			"offsets": {
+				"from": 347040,
+				"to": 349800
+			},
+			"text": " Snark specific programming complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,800",
+				"to": "00:05:51,600"
+			},
+			"offsets": {
+				"from": 349800,
+				"to": 351600
+			},
+			"text": " and hides non-determinism"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,600",
+				"to": "00:05:55,040"
+			},
+			"offsets": {
+				"from": 351600,
+				"to": 355040
+			},
+			"text": " without any loss of expressivity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,040",
+				"to": "00:05:57,080"
+			},
+			"offsets": {
+				"from": 355040,
+				"to": 357080
+			},
+			"text": " or power in what you can do with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,080",
+				"to": "00:06:00,040"
+			},
+			"offsets": {
+				"from": 357080,
+				"to": 360040
+			},
+			"text": " That's also kind of a contribution here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,040",
+				"to": "00:06:01,640"
+			},
+			"offsets": {
+				"from": 360040,
+				"to": 361640
+			},
+			"text": " If you want to check it out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,640",
+				"to": "00:06:03,120"
+			},
+			"offsets": {
+				"from": 361640,
+				"to": 363120
+			},
+			"text": " thanks to the guys on the back"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,120",
+				"to": "00:06:04,840"
+			},
+			"offsets": {
+				"from": 363120,
+				"to": 364840
+			},
+			"text": " and work by TiVo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,840",
+				"to": "00:06:08,240"
+			},
+			"offsets": {
+				"from": 364840,
+				"to": 368240
+			},
+			"text": " there is now remix and decoration of the tooling."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,240",
+				"to": "00:06:11,080"
+			},
+			"offsets": {
+				"from": 368240,
+				"to": 371080
+			},
+			"text": " So it's live on remakes, not the very latest version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,080",
+				"to": "00:06:13,760"
+			},
+			"offsets": {
+				"from": 371080,
+				"to": 373760
+			},
+			"text": " but you can go play around with it to get a feeling"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,760",
+				"to": "00:06:15,360"
+			},
+			"offsets": {
+				"from": 373760,
+				"to": 375360
+			},
+			"text": " and you can go through all the steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,360",
+				"to": "00:06:19,440"
+			},
+			"offsets": {
+				"from": 375360,
+				"to": 379440
+			},
+			"text": " writing the program, compiling, executing and moving."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,440",
+				"to": "00:06:21,960"
+			},
+			"offsets": {
+				"from": 379440,
+				"to": 381960
+			},
+			"text": " And also there's going to be a workshop tomorrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,960",
+				"to": "00:06:25,040"
+			},
+			"offsets": {
+				"from": 381960,
+				"to": 385040
+			},
+			"text": " from remakes and then go into more details about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,040",
+				"to": "00:06:28,360"
+			},
+			"offsets": {
+				"from": 385040,
+				"to": 388360
+			},
+			"text": " And now I'll hand over to TiVo"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,360",
+				"to": "00:06:30,840"
+			},
+			"offsets": {
+				"from": 388360,
+				"to": 390840
+			},
+			"text": " for a bit of a depth update, what happened last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,840",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 390840,
+				"to": 397680
+			},
+			"text": " - Right, so the first thing that we focused on"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 400000
+			},
+			"text": " over the past months is adding more"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:42,920"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 402920
+			},
+			"text": " expressivity to the Zapotis types."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,920",
+				"to": "00:06:46,840"
+			},
+			"offsets": {
+				"from": 402920,
+				"to": 406840
+			},
+			"text": " For those of you who have actually used Zapotis before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,840",
+				"to": "00:06:48,560"
+			},
+			"offsets": {
+				"from": 406840,
+				"to": 408560
+			},
+			"text": " we have very basic types"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,560",
+				"to": "00:06:50,560"
+			},
+			"offsets": {
+				"from": 408560,
+				"to": 410560
+			},
+			"text": " that were basically field elements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,560",
+				"to": "00:06:53,480"
+			},
+			"offsets": {
+				"from": 410560,
+				"to": 413480
+			},
+			"text": " which you can think of as integers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,480",
+				"to": "00:06:55,080"
+			},
+			"offsets": {
+				"from": 413480,
+				"to": 415080
+			},
+			"text": " And we have Boolean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,080",
+				"to": "00:06:56,880"
+			},
+			"offsets": {
+				"from": 415080,
+				"to": 416880
+			},
+			"text": " but within we have complex types,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,880",
+				"to": "00:06:59,640"
+			},
+			"offsets": {
+				"from": 416880,
+				"to": 419640
+			},
+			"text": " so it made it quite very low as to that programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,640",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 419640,
+				"to": 424040
+			},
+			"text": " So what we added is arrays of multiple dimensions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,040",
+				"to": "00:07:07,240"
+			},
+			"offsets": {
+				"from": 424040,
+				"to": 427240
+			},
+			"text": " with helpers to create them with a given value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,240",
+				"to": "00:07:08,640"
+			},
+			"offsets": {
+				"from": 427240,
+				"to": 428640
+			},
+			"text": " as well as the spread operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,640",
+				"to": "00:07:12,240"
+			},
+			"offsets": {
+				"from": 428640,
+				"to": 432240
+			},
+			"text": " that you might know from JavaScript and all the languages,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,240",
+				"to": "00:07:14,640"
+			},
+			"offsets": {
+				"from": 432240,
+				"to": 434640
+			},
+			"text": " as well as slicing to get to the bottom array."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,640",
+				"to": "00:07:16,840"
+			},
+			"offsets": {
+				"from": 434640,
+				"to": 436840
+			},
+			"text": " So what I'm going to see back to the middle."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,840",
+				"to": "00:07:22,960"
+			},
+			"offsets": {
+				"from": 436840,
+				"to": 442960
+			},
+			"text": " In the same sort of spirit, we added structures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,960",
+				"to": "00:07:26,200"
+			},
+			"offsets": {
+				"from": 442960,
+				"to": 446200
+			},
+			"text": " which enabled you to create composite types"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,200",
+				"to": "00:07:29,720"
+			},
+			"offsets": {
+				"from": 446200,
+				"to": 449720
+			},
+			"text": " to represent, for example, a point on the entity curve"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,720",
+				"to": "00:07:31,640"
+			},
+			"offsets": {
+				"from": 449720,
+				"to": 451640
+			},
+			"text": " that can be really useful in the context of starts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,640",
+				"to": "00:07:34,440"
+			},
+			"offsets": {
+				"from": 451640,
+				"to": 454440
+			},
+			"text": " if you're trying to verify a signature inside of a start."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,440",
+				"to": "00:07:37,800"
+			},
+			"offsets": {
+				"from": 454440,
+				"to": 457800
+			},
+			"text": " And for the things here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,800",
+				"to": "00:07:40,520"
+			},
+			"offsets": {
+				"from": 457800,
+				"to": 460520
+			},
+			"text": " we also have constructors and mutation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,520",
+				"to": "00:07:42,760"
+			},
+			"offsets": {
+				"from": 460520,
+				"to": 462760
+			},
+			"text": " and access as you would expect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,760",
+				"to": "00:07:44,800"
+			},
+			"offsets": {
+				"from": 462760,
+				"to": 464800
+			},
+			"text": " as you have in many other versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,800",
+				"to": "00:07:48,400"
+			},
+			"offsets": {
+				"from": 464800,
+				"to": 468400
+			},
+			"text": " So that's right now on the latest version of Zapotis."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,400",
+				"to": "00:07:50,440"
+			},
+			"offsets": {
+				"from": 468400,
+				"to": 470440
+			},
+			"text": " That we released very recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,440",
+				"to": "00:07:56,800"
+			},
+			"offsets": {
+				"from": 470440,
+				"to": 476800
+			},
+			"text": " This is new types and more complex types"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,800",
+				"to": "00:08:00,880"
+			},
+			"offsets": {
+				"from": 476800,
+				"to": 480880
+			},
+			"text": " bring us even closer to a higher level language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,880",
+				"to": "00:08:02,960"
+			},
+			"offsets": {
+				"from": 480880,
+				"to": 482960
+			},
+			"text": " and that's what Zapotis is."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,960",
+				"to": "00:08:06,760"
+			},
+			"offsets": {
+				"from": 482960,
+				"to": 486760
+			},
+			"text": " And it enables you developers to have code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,760",
+				"to": "00:08:09,840"
+			},
+			"offsets": {
+				"from": 486760,
+				"to": 489840
+			},
+			"text": " that's even clearer and cleaner."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,840",
+				"to": "00:08:14,480"
+			},
+			"offsets": {
+				"from": 489840,
+				"to": 494480
+			},
+			"text": " However, we don't want to sacrifice performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,480",
+				"to": "00:08:18,200"
+			},
+			"offsets": {
+				"from": 494480,
+				"to": 498200
+			},
+			"text": " in terms of the size of the circuit that gets generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,200",
+				"to": "00:08:22,040"
+			},
+			"offsets": {
+				"from": 498200,
+				"to": 502040
+			},
+			"text": " So in Zapotis, you can write the clear as bold code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,040",
+				"to": "00:08:26,320"
+			},
+			"offsets": {
+				"from": 502040,
+				"to": 506320
+			},
+			"text": " and that's what Zapotis will apply a number of simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,320",
+				"to": "00:08:29,840"
+			},
+			"offsets": {
+				"from": 506320,
+				"to": 509840
+			},
+			"text": " yet powerful, optimization steps to your program"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,840",
+				"to": "00:08:32,280"
+			},
+			"offsets": {
+				"from": 509840,
+				"to": 512280
+			},
+			"text": " in order to reduce the site of the program"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,280",
+				"to": "00:08:33,440"
+			},
+			"offsets": {
+				"from": 512280,
+				"to": 513440
+			},
+			"text": " as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,440",
+				"to": "00:08:36,520"
+			},
+			"offsets": {
+				"from": 513440,
+				"to": 516520
+			},
+			"text": " So these optimizations are the ones you would find"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,520",
+				"to": "00:08:38,240"
+			},
+			"offsets": {
+				"from": 516520,
+				"to": 518240
+			},
+			"text": " in many programming languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,240",
+				"to": "00:08:40,320"
+			},
+			"offsets": {
+				"from": 518240,
+				"to": 520320
+			},
+			"text": " Among them, constant propagation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,320",
+				"to": "00:08:42,560"
+			},
+			"offsets": {
+				"from": 520320,
+				"to": 522560
+			},
+			"text": " which basically computes as much as possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,560",
+				"to": "00:08:45,040"
+			},
+			"offsets": {
+				"from": 522560,
+				"to": 525040
+			},
+			"text": " of your program at compile time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,040",
+				"to": "00:08:47,120"
+			},
+			"offsets": {
+				"from": 525040,
+				"to": 527120
+			},
+			"text": " If you have constants in your program, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,120",
+				"to": "00:08:50,280"
+			},
+			"offsets": {
+				"from": 527120,
+				"to": 530280
+			},
+			"text": " all of this is going to be already pre-computed for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,280",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 530280,
+				"to": 535560
+			},
+			"text": " Removing all of the linear constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:08:57,480"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 537480
+			},
+			"text": " those stops are based on quadratic constraints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,480",
+				"to": "00:09:00,280"
+			},
+			"offsets": {
+				"from": 537480,
+				"to": 540280
+			},
+			"text": " so all the linear constraints are substituted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,280",
+				"to": "00:09:03,480"
+			},
+			"offsets": {
+				"from": 540280,
+				"to": 543480
+			},
+			"text": " so that you only have pre-cornerative constraints"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,480",
+				"to": "00:09:07,280"
+			},
+			"offsets": {
+				"from": 543480,
+				"to": 547280
+			},
+			"text": " and a few other optimizations that we have worked on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,280",
+				"to": "00:09:09,480"
+			},
+			"offsets": {
+				"from": 547280,
+				"to": 549480
+			},
+			"text": " We have quite good results in that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,480",
+				"to": "00:09:16,320"
+			},
+			"offsets": {
+				"from": 549480,
+				"to": 556320
+			},
+			"text": " On a different and the compiler pipeline,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,320",
+				"to": "00:09:20,560"
+			},
+			"offsets": {
+				"from": 556320,
+				"to": 560560
+			},
+			"text": " we changed from a hand-written policy"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,560",
+				"to": "00:09:22,960"
+			},
+			"offsets": {
+				"from": 560560,
+				"to": 562960
+			},
+			"text": " that we were using in the first version of Zapotis"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,960",
+				"to": "00:09:25,080"
+			},
+			"offsets": {
+				"from": 562960,
+				"to": 565080
+			},
+			"text": " to a positive generator."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,080",
+				"to": "00:09:28,840"
+			},
+			"offsets": {
+				"from": 565080,
+				"to": 568840
+			},
+			"text": " So this is quite internal, but basically the idea"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,840",
+				"to": "00:09:31,360"
+			},
+			"offsets": {
+				"from": 568840,
+				"to": 571360
+			},
+			"text": " is that we used to have a positive be written"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,360",
+				"to": "00:09:35,960"
+			},
+			"offsets": {
+				"from": 571360,
+				"to": 575960
+			},
+			"text": " by the remote by hand to pass from source code to the AST,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,960",
+				"to": "00:09:40,080"
+			},
+			"offsets": {
+				"from": 575960,
+				"to": 580080
+			},
+			"text": " and now we have a formal specification of our grammar"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,080",
+				"to": "00:09:42,480"
+			},
+			"offsets": {
+				"from": 580080,
+				"to": 582480
+			},
+			"text": " that generates a parser automatically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,480",
+				"to": "00:09:47,200"
+			},
+			"offsets": {
+				"from": 582480,
+				"to": 587200
+			},
+			"text": " which actually gave us better performance in some cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,200",
+				"to": "00:09:49,560"
+			},
+			"offsets": {
+				"from": 587200,
+				"to": 589560
+			},
+			"text": " which single that our hand-written parser"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,560",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 589560,
+				"to": 591480
+			},
+			"text": " was actually not that efficient,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:55,800"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 595800
+			},
+			"text": " and also interestingly made it much, much simpler"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,800",
+				"to": "00:09:58,400"
+			},
+			"offsets": {
+				"from": 595800,
+				"to": 598400
+			},
+			"text": " for us to implement new types"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,400",
+				"to": "00:10:01,520"
+			},
+			"offsets": {
+				"from": 598400,
+				"to": 601520
+			},
+			"text": " that I just described, structures and arrays."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,520",
+				"to": "00:10:04,960"
+			},
+			"offsets": {
+				"from": 601520,
+				"to": 604960
+			},
+			"text": " So we would totally encourage anyone working on programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,960",
+				"to": "00:10:07,280"
+			},
+			"offsets": {
+				"from": 604960,
+				"to": 607280
+			},
+			"text": " which is in the early steps of the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,280",
+				"to": "00:10:08,760"
+			},
+			"offsets": {
+				"from": 607280,
+				"to": 608760
+			},
+			"text": " to use parser generators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,760",
+				"to": "00:10:12,840"
+			},
+			"offsets": {
+				"from": 608760,
+				"to": 612840
+			},
+			"text": " especially when using a framework called PEST in Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,840",
+				"to": "00:10:14,880"
+			},
+			"offsets": {
+				"from": 612840,
+				"to": 614880
+			},
+			"text": " It would be pretty happy with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,880",
+				"to": "00:10:20,320"
+			},
+			"offsets": {
+				"from": 614880,
+				"to": 620320
+			},
+			"text": " Then over the course of the past year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,320",
+				"to": "00:10:22,840"
+			},
+			"offsets": {
+				"from": 620320,
+				"to": 622840
+			},
+			"text": " when we went from having simple examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,840",
+				"to": "00:10:24,720"
+			},
+			"offsets": {
+				"from": 622840,
+				"to": 624720
+			},
+			"text": " to get people started on SMARKs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,720",
+				"to": "00:10:27,280"
+			},
+			"offsets": {
+				"from": 624720,
+				"to": 627280
+			},
+			"text": " to having more complex applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,280",
+				"to": "00:10:29,680"
+			},
+			"offsets": {
+				"from": 627280,
+				"to": 629680
+			},
+			"text": " we realized that there's a lot of building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,680",
+				"to": "00:10:32,720"
+			},
+			"offsets": {
+				"from": 629680,
+				"to": 632720
+			},
+			"text": " that people end up needing over and over again,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,720",
+				"to": "00:10:35,600"
+			},
+			"offsets": {
+				"from": 632720,
+				"to": 635600
+			},
+			"text": " and that includes mostly hash functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,600",
+				"to": "00:10:37,040"
+			},
+			"offsets": {
+				"from": 635600,
+				"to": 637040
+			},
+			"text": " The first thing that people want to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,040",
+				"to": "00:10:40,400"
+			},
+			"offsets": {
+				"from": 637040,
+				"to": 640400
+			},
+			"text": " how do I compute a hash inside of SMARK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,400",
+				"to": "00:10:42,840"
+			},
+			"offsets": {
+				"from": 640400,
+				"to": 642840
+			},
+			"text": " as well as embedded curves"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,840",
+				"to": "00:10:45,120"
+			},
+			"offsets": {
+				"from": 642840,
+				"to": 645120
+			},
+			"text": " so that you can have elliptic curve photography"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,120",
+				"to": "00:10:46,640"
+			},
+			"offsets": {
+				"from": 645120,
+				"to": 646640
+			},
+			"text": " inside of SMARK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,640",
+				"to": "00:10:47,880"
+			},
+			"offsets": {
+				"from": 646640,
+				"to": 647880
+			},
+			"text": " which is very powerful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,880",
+				"to": "00:10:50,160"
+			},
+			"offsets": {
+				"from": 647880,
+				"to": 650160
+			},
+			"text": " especially for scalability schemes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,160",
+				"to": "00:10:55,120"
+			},
+			"offsets": {
+				"from": 650160,
+				"to": 655120
+			},
+			"text": " So what we did first was to use existing other libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,120",
+				"to": "00:10:58,880"
+			},
+			"offsets": {
+				"from": 655120,
+				"to": 658880
+			},
+			"text": " to import those building blocks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,880",
+				"to": "00:11:00,880"
+			},
+			"offsets": {
+				"from": 658880,
+				"to": 660880
+			},
+			"text": " but we changed our approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,880",
+				"to": "00:11:05,360"
+			},
+			"offsets": {
+				"from": 660880,
+				"to": 665360
+			},
+			"text": " and ended up rewriting all of those building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,360",
+				"to": "00:11:07,200"
+			},
+			"offsets": {
+				"from": 665360,
+				"to": 667200
+			},
+			"text": " into the practice itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,200",
+				"to": "00:11:08,800"
+			},
+			"offsets": {
+				"from": 667200,
+				"to": 668800
+			},
+			"text": " to see how it would perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,800",
+				"to": "00:11:12,480"
+			},
+			"offsets": {
+				"from": 668800,
+				"to": 672480
+			},
+			"text": " and also to use our own project."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,480",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 672480,
+				"to": 674800
+			},
+			"text": " So the result of that is that now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:17,440"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 677440
+			},
+			"text": " the search to shift with a standard library,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,440",
+				"to": "00:11:19,840"
+			},
+			"offsets": {
+				"from": 677440,
+				"to": 679840
+			},
+			"text": " which you can import directly from your source code"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,840",
+				"to": "00:11:23,040"
+			},
+			"offsets": {
+				"from": 679840,
+				"to": 683040
+			},
+			"text": " and use directly that has those utilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,040",
+				"to": "00:11:25,840"
+			},
+			"offsets": {
+				"from": 683040,
+				"to": 685840
+			},
+			"text": " So some cryptography, some utilities to do packing"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,840",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 685840,
+				"to": 690000
+			},
+			"text": " and unpacking if you want to go from bits to number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694160
+			},
+			"text": " etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:37,920"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 697920
+			},
+			"text": " And we also worked on a library called bikrito,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,920",
+				"to": "00:11:40,240"
+			},
+			"offsets": {
+				"from": 697920,
+				"to": 700240
+			},
+			"text": " and basically, intuition there is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,240",
+				"to": "00:11:42,160"
+			},
+			"offsets": {
+				"from": 700240,
+				"to": 702160
+			},
+			"text": " in the standard library, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,160",
+				"to": "00:11:44,880"
+			},
+			"offsets": {
+				"from": 702160,
+				"to": 704880
+			},
+			"text": " I mentioned that we have an integral cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,880",
+				"to": "00:11:46,640"
+			},
+			"offsets": {
+				"from": 704880,
+				"to": 706640
+			},
+			"text": " So with elliptic curve photography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,640",
+				"to": "00:11:49,360"
+			},
+			"offsets": {
+				"from": 706640,
+				"to": 709360
+			},
+			"text": " you want to be able to work with signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,360",
+				"to": "00:11:50,480"
+			},
+			"offsets": {
+				"from": 709360,
+				"to": 710480
+			},
+			"text": " where you're going to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,480",
+				"to": "00:11:52,560"
+			},
+			"offsets": {
+				"from": 710480,
+				"to": 712560
+			},
+			"text": " However, inside of SMARK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,560",
+				"to": "00:11:55,840"
+			},
+			"offsets": {
+				"from": 712560,
+				"to": 715840
+			},
+			"text": " you're always only going to verify the signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,840",
+				"to": "00:11:57,840"
+			},
+			"offsets": {
+				"from": 715840,
+				"to": 717840
+			},
+			"text": " You're not going to generate the signatures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,840",
+				"to": "00:11:59,920"
+			},
+			"offsets": {
+				"from": 717840,
+				"to": 719920
+			},
+			"text": " because it generates a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,920",
+				"to": "00:12:03,440"
+			},
+			"offsets": {
+				"from": 719920,
+				"to": 723440
+			},
+			"text": " You could that before hitting the SMARK itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,440",
+				"to": "00:12:06,480"
+			},
+			"offsets": {
+				"from": 723440,
+				"to": 726480
+			},
+			"text": " So this bikrito is our current approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,480",
+				"to": "00:12:08,800"
+			},
+			"offsets": {
+				"from": 726480,
+				"to": 728800
+			},
+			"text": " to this missing component of everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,800",
+				"to": "00:12:11,920"
+			},
+			"offsets": {
+				"from": 728800,
+				"to": 731920
+			},
+			"text": " that you can basically do before you hit the SMARK."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,920",
+				"to": "00:12:14,080"
+			},
+			"offsets": {
+				"from": 731920,
+				"to": 734080
+			},
+			"text": " And in this case, there is the example"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,080",
+				"to": "00:12:18,080"
+			},
+			"offsets": {
+				"from": 734080,
+				"to": 738080
+			},
+			"text": " of how you would sign a message with ETSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,080",
+				"to": "00:12:21,680"
+			},
+			"offsets": {
+				"from": 738080,
+				"to": 741680
+			},
+			"text": " And then based on this piece of Python code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,680",
+				"to": "00:12:23,200"
+			},
+			"offsets": {
+				"from": 741680,
+				"to": 743200
+			},
+			"text": " you can take the output of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,200",
+				"to": "00:12:25,120"
+			},
+			"offsets": {
+				"from": 743200,
+				"to": 745120
+			},
+			"text": " and then feed that into the SMARK"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,120",
+				"to": "00:12:27,520"
+			},
+			"offsets": {
+				"from": 745120,
+				"to": 747520
+			},
+			"text": " and the SMARK would verify that the signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,520",
+				"to": "00:12:29,680"
+			},
+			"offsets": {
+				"from": 747520,
+				"to": 749680
+			},
+			"text": " you created is actually valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,680",
+				"to": "00:12:37,040"
+			},
+			"offsets": {
+				"from": 749680,
+				"to": 757040
+			},
+			"text": " Finally, we worked on integrating with more brackets."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,040",
+				"to": "00:12:39,200"
+			},
+			"offsets": {
+				"from": 757040,
+				"to": 759200
+			},
+			"text": " So we used to integrate with only LISNIC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,200",
+				"to": "00:12:44,240"
+			},
+			"offsets": {
+				"from": 759200,
+				"to": 764240
+			},
+			"text": " which is a C++ implementation of a few processing SMARKs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,240",
+				"to": "00:12:47,520"
+			},
+			"offsets": {
+				"from": 764240,
+				"to": 767520
+			},
+			"text": " We added support for Bellman,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,520",
+				"to": "00:12:49,600"
+			},
+			"offsets": {
+				"from": 767520,
+				"to": 769600
+			},
+			"text": " which is a Rust-based Hoover,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,600",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 769600,
+				"to": 772000
+			},
+			"text": " that's now being used by Ccash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:56,320"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 776320
+			},
+			"text": " as well as webbin designing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,320",
+				"to": "00:12:59,200"
+			},
+			"offsets": {
+				"from": 776320,
+				"to": 779200
+			},
+			"text": " and also developing integration with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,200",
+				"to": "00:13:00,400"
+			},
+			"offsets": {
+				"from": 779200,
+				"to": 780400
+			},
+			"text": " called ZK interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,400",
+				"to": "00:13:02,640"
+			},
+			"offsets": {
+				"from": 780400,
+				"to": 782640
+			},
+			"text": " So maybe some of you have heard of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,640",
+				"to": "00:13:05,760"
+			},
+			"offsets": {
+				"from": 782640,
+				"to": 785760
+			},
+			"text": " it comes from the ZK proof initiative,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,760",
+				"to": "00:13:09,120"
+			},
+			"offsets": {
+				"from": 785760,
+				"to": 789120
+			},
+			"text": " which is basically a standard for a backend"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,120",
+				"to": "00:13:11,600"
+			},
+			"offsets": {
+				"from": 789120,
+				"to": 791600
+			},
+			"text": " of zero-large proof systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,600",
+				"to": "00:13:14,880"
+			},
+			"offsets": {
+				"from": 791600,
+				"to": 794880
+			},
+			"text": " And basically what this means is that using ZOPETIS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,880",
+				"to": "00:13:18,320"
+			},
+			"offsets": {
+				"from": 794880,
+				"to": 798320
+			},
+			"text": " it will soon be possible to integrate with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,320",
+				"to": "00:13:21,600"
+			},
+			"offsets": {
+				"from": 798320,
+				"to": 801600
+			},
+			"text": " all the new schemes that came up recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,600",
+				"to": "00:13:24,480"
+			},
+			"offsets": {
+				"from": 801600,
+				"to": 804480
+			},
+			"text": " So maybe some of you saw long and supersonics"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,480",
+				"to": "00:13:26,720"
+			},
+			"offsets": {
+				"from": 804480,
+				"to": 806720
+			},
+			"text": " and all those new schemes that pop up."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,720",
+				"to": "00:13:29,200"
+			},
+			"offsets": {
+				"from": 806720,
+				"to": 809200
+			},
+			"text": " And we think it would be really valuable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,200",
+				"to": "00:13:31,840"
+			},
+			"offsets": {
+				"from": 809200,
+				"to": 811840
+			},
+			"text": " if you could just write your program in ZOPETIS"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,840",
+				"to": "00:13:33,680"
+			},
+			"offsets": {
+				"from": 811840,
+				"to": 813680
+			},
+			"text": " and then it would completely entropy it"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,680",
+				"to": "00:13:35,200"
+			},
+			"offsets": {
+				"from": 813680,
+				"to": 815200
+			},
+			"text": " with any of those backends,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,200",
+				"to": "00:13:37,040"
+			},
+			"offsets": {
+				"from": 815200,
+				"to": 817040
+			},
+			"text": " because they all rely on the same assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,040",
+				"to": "00:13:43,680"
+			},
+			"offsets": {
+				"from": 817040,
+				"to": 823680
+			},
+			"text": " So now we're going to go through a few applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,680",
+				"to": "00:13:45,360"
+			},
+			"offsets": {
+				"from": 823680,
+				"to": 825360
+			},
+			"text": " that people have been building with ZOPETIS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,360",
+				"to": "00:13:48,240"
+			},
+			"offsets": {
+				"from": 825360,
+				"to": 828240
+			},
+			"text": " and I hand over to Jake for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:53,360"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 833360
+			},
+			"text": " Okay, now we've heard a bit more on the background"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,360",
+				"to": "00:13:54,480"
+			},
+			"offsets": {
+				"from": 833360,
+				"to": 834480
+			},
+			"text": " and internment changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,480",
+				"to": "00:13:56,720"
+			},
+			"offsets": {
+				"from": 834480,
+				"to": 836720
+			},
+			"text": " Now we want to look at what's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,720",
+				"to": "00:14:00,080"
+			},
+			"offsets": {
+				"from": 836720,
+				"to": 840080
+			},
+			"text": " has been done or is currently being done with the tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,080",
+				"to": "00:14:01,040"
+			},
+			"offsets": {
+				"from": 840080,
+				"to": 841040
+			},
+			"text": " we provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,040",
+				"to": "00:14:04,480"
+			},
+			"offsets": {
+				"from": 841040,
+				"to": 844480
+			},
+			"text": " So first project is EY Nightfall."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,480",
+				"to": "00:14:09,040"
+			},
+			"offsets": {
+				"from": 844480,
+				"to": 849040
+			},
+			"text": " And EY Nightfall is a project that is young or wide."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,040",
+				"to": "00:14:12,160"
+			},
+			"offsets": {
+				"from": 849040,
+				"to": 852160
+			},
+			"text": " And it's basically a privacy preserving implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,160",
+				"to": "00:14:16,640"
+			},
+			"offsets": {
+				"from": 852160,
+				"to": 856640
+			},
+			"text": " of your C20, ERC721 token standards on the theorem"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,640",
+				"to": "00:14:19,200"
+			},
+			"offsets": {
+				"from": 856640,
+				"to": 859200
+			},
+			"text": " so that you can have these tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,240",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 860240,
+				"to": 864160
+			},
+			"text": " and use them with complete privacy on the theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:28,560"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 868560
+			},
+			"text": " So we will today not go into much detail about that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,560",
+				"to": "00:14:30,240"
+			},
+			"offsets": {
+				"from": 868560,
+				"to": 870240
+			},
+			"text": " because on main stage tomorrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,240",
+				"to": "00:14:32,880"
+			},
+			"offsets": {
+				"from": 870240,
+				"to": 872880
+			},
+			"text": " there's going to be a talk about the project"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,880",
+				"to": "00:14:34,800"
+			},
+			"offsets": {
+				"from": 872880,
+				"to": 874800
+			},
+			"text": " by the EY force themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,800",
+				"to": "00:14:37,760"
+			},
+			"offsets": {
+				"from": 874800,
+				"to": 877760
+			},
+			"text": " And what's interesting to note though"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,760",
+				"to": "00:14:40,880"
+			},
+			"offsets": {
+				"from": 877760,
+				"to": 880880
+			},
+			"text": " is that it was not like us going to them"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,880",
+				"to": "00:14:43,440"
+			},
+			"offsets": {
+				"from": 880880,
+				"to": 883440
+			},
+			"text": " and telling them, \"Please use it and we'll help you out.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,440",
+				"to": "00:14:47,440"
+			},
+			"offsets": {
+				"from": 883440,
+				"to": 887440
+			},
+			"text": " But they picked it up independently and actually built it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,440",
+				"to": "00:14:49,200"
+			},
+			"offsets": {
+				"from": 887440,
+				"to": 889200
+			},
+			"text": " And we didn't really know that they did it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,200",
+				"to": "00:14:50,960"
+			},
+			"offsets": {
+				"from": 889200,
+				"to": 890960
+			},
+			"text": " unless they released it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,960",
+				"to": "00:14:54,400"
+			},
+			"offsets": {
+				"from": 890960,
+				"to": 894400
+			},
+			"text": " So that was for us cool to see as kind of a validation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,400",
+				"to": "00:14:57,040"
+			},
+			"offsets": {
+				"from": 894400,
+				"to": 897040
+			},
+			"text": " that the tooling is actually useful for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,040",
+				"to": "00:14:59,120"
+			},
+			"offsets": {
+				"from": 897040,
+				"to": 899120
+			},
+			"text": " and projects are being built as they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,120",
+				"to": "00:15:02,080"
+			},
+			"offsets": {
+				"from": 899120,
+				"to": 902080
+			},
+			"text": " Something else is a joint project"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,080",
+				"to": "00:15:04,480"
+			},
+			"offsets": {
+				"from": 902080,
+				"to": 904480
+			},
+			"text": " we did with centrifuge."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,480",
+				"to": "00:15:09,680"
+			},
+			"offsets": {
+				"from": 904480,
+				"to": 909680
+			},
+			"text": " So centrifuge is a service for financial documents"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,680",
+				"to": "00:15:12,480"
+			},
+			"offsets": {
+				"from": 909680,
+				"to": 912480
+			},
+			"text": " and it basically means you have financial documents"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,480",
+				"to": "00:15:17,200"
+			},
+			"offsets": {
+				"from": 912480,
+				"to": 917200
+			},
+			"text": " that two people or a bunch of people agree on off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,200",
+				"to": "00:15:18,640"
+			},
+			"offsets": {
+				"from": 917200,
+				"to": 918640
+			},
+			"text": " It's not too incredible."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,640",
+				"to": "00:15:21,360"
+			},
+			"offsets": {
+				"from": 918640,
+				"to": 921360
+			},
+			"text": " But these documents, financial documents for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,360",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 921360,
+				"to": 924000
+			},
+			"text": " invoices, they get anchored on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:28,720"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 928720
+			},
+			"text": " And then it provides a single reference point"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,720",
+				"to": "00:15:30,480"
+			},
+			"offsets": {
+				"from": 928720,
+				"to": 930480
+			},
+			"text": " everybody can point to, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,480",
+				"to": "00:15:32,720"
+			},
+			"offsets": {
+				"from": 930480,
+				"to": 932720
+			},
+			"text": " So that's the centrifuge model."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,720",
+				"to": "00:15:39,440"
+			},
+			"offsets": {
+				"from": 932720,
+				"to": 939440
+			},
+			"text": " But having claims that means if there's an unpaid invoice"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,440",
+				"to": "00:15:41,440"
+			},
+			"offsets": {
+				"from": 939440,
+				"to": 941440
+			},
+			"text": " and I have the right to retrieve that payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,440",
+				"to": "00:15:42,480"
+			},
+			"offsets": {
+				"from": 941440,
+				"to": 942480
+			},
+			"text": " that's actually valid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,480",
+				"to": "00:15:46,080"
+			},
+			"offsets": {
+				"from": 942480,
+				"to": 946080
+			},
+			"text": " it would be nice to unlock that on the blockchain, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,080",
+				"to": "00:15:50,800"
+			},
+			"offsets": {
+				"from": 946080,
+				"to": 950800
+			},
+			"text": " To bring that to Ethereum as kind of a token to tokenize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,800",
+				"to": "00:15:54,320"
+			},
+			"offsets": {
+				"from": 950800,
+				"to": 954320
+			},
+			"text": " So for that, centrifuge wants to mint NFTs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,320",
+				"to": "00:15:58,160"
+			},
+			"offsets": {
+				"from": 954320,
+				"to": 958160
+			},
+			"text": " that kind of tokenize the claim to retrieve a payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,160",
+				"to": "00:15:59,680"
+			},
+			"offsets": {
+				"from": 958160,
+				"to": 959680
+			},
+			"text": " by party in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,680",
+				"to": "00:16:02,720"
+			},
+			"offsets": {
+				"from": 959680,
+				"to": 962720
+			},
+			"text": " And of course what's important is the credit rating"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,720",
+				"to": "00:16:04,640"
+			},
+			"offsets": {
+				"from": 962720,
+				"to": 964640
+			},
+			"text": " of that counterparty"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,640",
+				"to": "00:16:08,720"
+			},
+			"offsets": {
+				"from": 964640,
+				"to": 968720
+			},
+			"text": " because it kind of gives you an estimate of your expected value"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,720",
+				"to": "00:16:12,720"
+			},
+			"offsets": {
+				"from": 968720,
+				"to": 972720
+			},
+			"text": " that you will be able to retrieve after you purchase that token."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,720",
+				"to": "00:16:13,520"
+			},
+			"offsets": {
+				"from": 972720,
+				"to": 973520
+			},
+			"text": " Okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,520",
+				"to": "00:16:15,040"
+			},
+			"offsets": {
+				"from": 973520,
+				"to": 975040
+			},
+			"text": " So they built this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,040",
+				"to": "00:16:19,440"
+			},
+			"offsets": {
+				"from": 975040,
+				"to": 979440
+			},
+			"text": " But the problem is to mint that NFT in the correct way"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,440",
+				"to": "00:16:24,080"
+			},
+			"offsets": {
+				"from": 979440,
+				"to": 984080
+			},
+			"text": " to make sure you need to expose the value of the invoice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,080",
+				"to": "00:16:26,400"
+			},
+			"offsets": {
+				"from": 984080,
+				"to": 986400
+			},
+			"text": " which can be an issue sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,400",
+				"to": "00:16:29,920"
+			},
+			"offsets": {
+				"from": 986400,
+				"to": 989920
+			},
+			"text": " And you also need to expose the buyer's identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,920",
+				"to": "00:16:32,160"
+			},
+			"offsets": {
+				"from": 989920,
+				"to": 992160
+			},
+			"text": " or the counterparty's identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,160",
+				"to": "00:16:35,200"
+			},
+			"offsets": {
+				"from": 992160,
+				"to": 995200
+			},
+			"text": " So you will know whether he has good credit rating or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,200",
+				"to": "00:16:37,840"
+			},
+			"offsets": {
+				"from": 995200,
+				"to": 997840
+			},
+			"text": " And otherwise you're not going to buy this token, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,840",
+				"to": "00:16:40,480"
+			},
+			"offsets": {
+				"from": 997840,
+				"to": 1000480
+			},
+			"text": " So nice idea but it's not really going to work out"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,480",
+				"to": "00:16:43,280"
+			},
+			"offsets": {
+				"from": 1000480,
+				"to": 1003280
+			},
+			"text": " because disinformation is quite sensitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,280",
+				"to": "00:16:45,520"
+			},
+			"offsets": {
+				"from": 1003280,
+				"to": 1005520
+			},
+			"text": " So with the Socrates-based approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,520",
+				"to": "00:16:49,040"
+			},
+			"offsets": {
+				"from": 1005520,
+				"to": 1009040
+			},
+			"text": " we were able to replace these checks by using CKsARX."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,040",
+				"to": "00:16:51,280"
+			},
+			"offsets": {
+				"from": 1009040,
+				"to": 1011280
+			},
+			"text": " And now the only information that's exposed"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,280",
+				"to": "00:16:54,080"
+			},
+			"offsets": {
+				"from": 1011280,
+				"to": 1014080
+			},
+			"text": " when minting NFTs is the token amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,080",
+				"to": "00:16:56,720"
+			},
+			"offsets": {
+				"from": 1014080,
+				"to": 1016720
+			},
+			"text": " And it's guaranteed to be smaller than invoice amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,720",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1016720,
+				"to": 1020000
+			},
+			"text": " That allows you to also split up an invoice into several NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:02,960"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1022960
+			},
+			"text": " And the counterparty's credit rating."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,960",
+				"to": "00:17:06,560"
+			},
+			"offsets": {
+				"from": 1022960,
+				"to": 1026560
+			},
+			"text": " So you only learn the key fact that your counterparty"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,560",
+				"to": "00:17:11,680"
+			},
+			"offsets": {
+				"from": 1026560,
+				"to": 1031680
+			},
+			"text": " that you're buying a claim for basically is credit worthy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,680",
+				"to": "00:17:14,080"
+			},
+			"offsets": {
+				"from": 1031680,
+				"to": 1034080
+			},
+			"text": " But you do not learn who exactly it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,080",
+				"to": "00:17:15,920"
+			},
+			"offsets": {
+				"from": 1034080,
+				"to": 1035920
+			},
+			"text": " And that's key in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,920",
+				"to": "00:17:21,200"
+			},
+			"offsets": {
+				"from": 1035920,
+				"to": 1041200
+			},
+			"text": " How it works is that we basically replace"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,200",
+				"to": "00:17:24,640"
+			},
+			"offsets": {
+				"from": 1041200,
+				"to": 1044640
+			},
+			"text": " a traditional NFT registry that does these checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,640",
+				"to": "00:17:27,760"
+			},
+			"offsets": {
+				"from": 1044640,
+				"to": 1047760
+			},
+			"text": " on the blockchain through a Socrates program."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,760",
+				"to": "00:17:31,280"
+			},
+			"offsets": {
+				"from": 1047760,
+				"to": 1051280
+			},
+			"text": " And that Socrates program does all these checks"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,280",
+				"to": "00:17:33,120"
+			},
+			"offsets": {
+				"from": 1051280,
+				"to": 1053120
+			},
+			"text": " as part of a CKsARX."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,120",
+				"to": "00:17:34,320"
+			},
+			"offsets": {
+				"from": 1053120,
+				"to": 1054320
+			},
+			"text": " And after it did that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,320",
+				"to": "00:17:37,360"
+			},
+			"offsets": {
+				"from": 1054320,
+				"to": 1057360
+			},
+			"text": " you generate the CKsARX proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,360",
+				"to": "00:17:39,920"
+			},
+			"offsets": {
+				"from": 1057360,
+				"to": 1059920
+			},
+			"text": " submitted to an on-chain token registry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,920",
+				"to": "00:17:41,600"
+			},
+			"offsets": {
+				"from": 1059920,
+				"to": 1061600
+			},
+			"text": " and that on-chain token registry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,600",
+				"to": "00:17:45,280"
+			},
+			"offsets": {
+				"from": 1061600,
+				"to": 1065280
+			},
+			"text": " Density Checks is proof correct or is proof not correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,280",
+				"to": "00:17:48,080"
+			},
+			"offsets": {
+				"from": 1065280,
+				"to": 1068080
+			},
+			"text": " And if successful, the token is minted."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,080",
+				"to": "00:17:50,640"
+			},
+			"offsets": {
+				"from": 1068080,
+				"to": 1070640
+			},
+			"text": " And only is that information I mentioned before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,640",
+				"to": "00:17:53,680"
+			},
+			"offsets": {
+				"from": 1070640,
+				"to": 1073680
+			},
+			"text": " and some root hashes to make sure the right data was used"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,680",
+				"to": "00:17:55,520"
+			},
+			"offsets": {
+				"from": 1073680,
+				"to": 1075520
+			},
+			"text": " are exposed in the process."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,520",
+				"to": "00:17:56,480"
+			},
+			"offsets": {
+				"from": 1075520,
+				"to": 1076480
+			},
+			"text": " So that's quite nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,480",
+				"to": "00:18:00,320"
+			},
+			"offsets": {
+				"from": 1076480,
+				"to": 1080320
+			},
+			"text": " The implementation, the core part of the code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,320",
+				"to": "00:18:04,800"
+			},
+			"offsets": {
+				"from": 1080320,
+				"to": 1084800
+			},
+			"text": " I mean, there's some utility functions and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,800",
+				"to": "00:18:08,480"
+			},
+			"offsets": {
+				"from": 1084800,
+				"to": 1088480
+			},
+			"text": " Is AT lines of Socrates core DSL code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,480",
+				"to": "00:18:10,960"
+			},
+			"offsets": {
+				"from": 1088480,
+				"to": 1090960
+			},
+			"text": " And you can find it here on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,960",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1090960,
+				"to": 1094480
+			},
+			"text": " And the verification cost was 900k gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:17,600"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1097600
+			},
+			"text": " for the prototypical implementation that was done,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,600",
+				"to": "00:18:19,120"
+			},
+			"offsets": {
+				"from": 1097600,
+				"to": 1099120
+			},
+			"text": " which was not highly optimized."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,120",
+				"to": "00:18:21,040"
+			},
+			"offsets": {
+				"from": 1099120,
+				"to": 1101040
+			},
+			"text": " I mean, there could have been, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,040",
+				"to": "00:18:24,080"
+			},
+			"offsets": {
+				"from": 1101040,
+				"to": 1104080
+			},
+			"text": " we could have used Peter's commitments instead of SHA"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,080",
+				"to": "00:18:27,520"
+			},
+			"offsets": {
+				"from": 1104080,
+				"to": 1107520
+			},
+			"text": " and slide details that will bring down"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,520",
+				"to": "00:18:31,200"
+			},
+			"offsets": {
+				"from": 1107520,
+				"to": 1111200
+			},
+			"text": " the cost of proving, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,200",
+				"to": "00:18:35,440"
+			},
+			"offsets": {
+				"from": 1111200,
+				"to": 1115440
+			},
+			"text": " And the verification cost will probably be around about 300k,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,440",
+				"to": "00:18:37,760"
+			},
+			"offsets": {
+				"from": 1115440,
+				"to": 1117760
+			},
+			"text": " which is not so bad after Istanbul,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,760",
+				"to": "00:18:42,640"
+			},
+			"offsets": {
+				"from": 1117760,
+				"to": 1122640
+			},
+			"text": " half-form, and proving time in that unoptimized version"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,640",
+				"to": "00:18:45,280"
+			},
+			"offsets": {
+				"from": 1122640,
+				"to": 1125280
+			},
+			"text": " was two and a half minutes, so totally practical."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,280",
+				"to": "00:18:47,200"
+			},
+			"offsets": {
+				"from": 1125280,
+				"to": 1127200
+			},
+			"text": " And on a consumer laptop, others"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,200",
+				"to": "00:18:49,200"
+			},
+			"offsets": {
+				"from": 1127200,
+				"to": 1129200
+			},
+			"text": " super happy to leave without the shoot, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,200",
+				"to": "00:18:52,160"
+			},
+			"offsets": {
+				"from": 1129200,
+				"to": 1132160
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,160",
+				"to": "00:18:56,880"
+			},
+			"offsets": {
+				"from": 1132160,
+				"to": 1136880
+			},
+			"text": " I'm also going to quickly go through another project"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,880",
+				"to": "00:19:01,440"
+			},
+			"offsets": {
+				"from": 1136880,
+				"to": 1141440
+			},
+			"text": " that I personally work on as part of a project at TU Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,440",
+				"to": "00:19:02,960"
+			},
+			"offsets": {
+				"from": 1141440,
+				"to": 1142960
+			},
+			"text": " It uses Socrates as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,960",
+				"to": "00:19:06,720"
+			},
+			"offsets": {
+				"from": 1142960,
+				"to": 1146720
+			},
+			"text": " And the problem is that currently in the energy system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,720",
+				"to": "00:19:07,560"
+			},
+			"offsets": {
+				"from": 1146720,
+				"to": 1147560
+			},
+			"text": " at least in Germany,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,560",
+				"to": "00:19:10,240"
+			},
+			"offsets": {
+				"from": 1147560,
+				"to": 1150240
+			},
+			"text": " yet most other countries kind of works like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,240",
+				"to": "00:19:11,880"
+			},
+			"offsets": {
+				"from": 1150240,
+				"to": 1151880
+			},
+			"text": " households are in a network"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,880",
+				"to": "00:19:13,920"
+			},
+			"offsets": {
+				"from": 1151880,
+				"to": 1153920
+			},
+			"text": " and there's this electric utility, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,920",
+				"to": "00:19:16,440"
+			},
+			"offsets": {
+				"from": 1153920,
+				"to": 1156440
+			},
+			"text": " And some households, they produce more energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,440",
+				"to": "00:19:18,960"
+			},
+			"offsets": {
+				"from": 1156440,
+				"to": 1158960
+			},
+			"text": " than they consume because they have sold the solar panels"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,960",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1158960,
+				"to": 1162000
+			},
+			"text": " on their roof, for example, and others consume more"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:25,640"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1165640
+			},
+			"text": " these, okay, let's just..."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,640",
+				"to": "00:19:29,960"
+			},
+			"offsets": {
+				"from": 1165640,
+				"to": 1169960
+			},
+			"text": " Okay, let's not do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,960",
+				"to": "00:19:33,400"
+			},
+			"offsets": {
+				"from": 1169960,
+				"to": 1173400
+			},
+			"text": " And the other households, they consume more than they produce."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,400",
+				"to": "00:19:34,640"
+			},
+			"offsets": {
+				"from": 1173400,
+				"to": 1174640
+			},
+			"text": " But the problem is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,640",
+				"to": "00:19:37,280"
+			},
+			"offsets": {
+				"from": 1174640,
+				"to": 1177280
+			},
+			"text": " everything goes through that electric utility"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,280",
+				"to": "00:19:39,120"
+			},
+			"offsets": {
+				"from": 1177280,
+				"to": 1179120
+			},
+			"text": " and of course they make a profit from it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,120",
+				"to": "00:19:42,000"
+			},
+			"offsets": {
+				"from": 1179120,
+				"to": 1182000
+			},
+			"text": " They make them more, they give you a small,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,000",
+				"to": "00:19:44,920"
+			},
+			"offsets": {
+				"from": 1182000,
+				"to": 1184920
+			},
+			"text": " they give you little money for the energy they buy"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,920",
+				"to": "00:19:46,560"
+			},
+			"offsets": {
+				"from": 1184920,
+				"to": 1186560
+			},
+			"text": " and they reset it at a higher price."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,560",
+				"to": "00:19:48,480"
+			},
+			"offsets": {
+				"from": 1186560,
+				"to": 1188480
+			},
+			"text": " And then there's tax effects and other effects"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,480",
+				"to": "00:19:51,080"
+			},
+			"offsets": {
+				"from": 1188480,
+				"to": 1191080
+			},
+			"text": " why it could be beneficial to not do it that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,080",
+				"to": "00:19:53,120"
+			},
+			"offsets": {
+				"from": 1191080,
+				"to": 1193120
+			},
+			"text": " So what we propose, how you would do it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,120",
+				"to": "00:19:56,920"
+			},
+			"offsets": {
+				"from": 1193120,
+				"to": 1196920
+			},
+			"text": " we try to do as much internally in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,920",
+				"to": "00:20:00,280"
+			},
+			"offsets": {
+				"from": 1196920,
+				"to": 1200280
+			},
+			"text": " But we do not do it on market days where you bid an ask,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,280",
+				"to": "00:20:02,600"
+			},
+			"offsets": {
+				"from": 1200280,
+				"to": 1202600
+			},
+			"text": " which is super expensive and has many problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,600",
+				"to": "00:20:04,080"
+			},
+			"offsets": {
+				"from": 1202600,
+				"to": 1204080
+			},
+			"text": " but we rather say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,080",
+				"to": "00:20:07,680"
+			},
+			"offsets": {
+				"from": 1204080,
+				"to": 1207680
+			},
+			"text": " we look back in time after everybody produce or consume"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,680",
+				"to": "00:20:12,280"
+			},
+			"offsets": {
+				"from": 1207680,
+				"to": 1212280
+			},
+			"text": " the energy and then we basically make a matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,280",
+				"to": "00:20:15,200"
+			},
+			"offsets": {
+				"from": 1212280,
+				"to": 1215200
+			},
+			"text": " and match the produced energy in my households"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,200",
+				"to": "00:20:17,040"
+			},
+			"offsets": {
+				"from": 1215200,
+				"to": 1217040
+			},
+			"text": " with a consume energy by household"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,040",
+				"to": "00:20:19,800"
+			},
+			"offsets": {
+				"from": 1217040,
+				"to": 1219800
+			},
+			"text": " and kind of minimize the amount of energy"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,800",
+				"to": "00:20:22,760"
+			},
+			"offsets": {
+				"from": 1219800,
+				"to": 1222760
+			},
+			"text": " that ever goes through that electric utility."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,760",
+				"to": "00:20:25,760"
+			},
+			"offsets": {
+				"from": 1222760,
+				"to": 1225760
+			},
+			"text": " And that takes away their profit"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,760",
+				"to": "00:20:28,760"
+			},
+			"offsets": {
+				"from": 1225760,
+				"to": 1228760
+			},
+			"text": " and makes it more profitable for households"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,760",
+				"to": "00:20:31,240"
+			},
+			"offsets": {
+				"from": 1228760,
+				"to": 1231240
+			},
+			"text": " to have solar panels installed"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,240",
+				"to": "00:20:33,320"
+			},
+			"offsets": {
+				"from": 1231240,
+				"to": 1233320
+			},
+			"text": " because a big issue that in many cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,320",
+				"to": "00:20:35,280"
+			},
+			"offsets": {
+				"from": 1233320,
+				"to": 1235280
+			},
+			"text": " is not profitable, it's kind of bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,280",
+				"to": "00:20:37,880"
+			},
+			"offsets": {
+				"from": 1235280,
+				"to": 1237880
+			},
+			"text": " for moving on to renewable energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,880",
+				"to": "00:20:39,200"
+			},
+			"offsets": {
+				"from": 1237880,
+				"to": 1239200
+			},
+			"text": " One minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,200",
+				"to": "00:20:40,040"
+			},
+			"offsets": {
+				"from": 1239200,
+				"to": 1240040
+			},
+			"text": " One minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,040",
+				"to": "00:20:41,320"
+			},
+			"offsets": {
+				"from": 1240040,
+				"to": 1241320
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,320",
+				"to": "00:20:42,760"
+			},
+			"offsets": {
+				"from": 1241320,
+				"to": 1242760
+			},
+			"text": " So that's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,760",
+				"to": "00:20:46,600"
+			},
+			"offsets": {
+				"from": 1242760,
+				"to": 1246600
+			},
+			"text": " And the core problem is we do not trust the utility"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,600",
+				"to": "00:20:50,320"
+			},
+			"offsets": {
+				"from": 1246600,
+				"to": 1250320
+			},
+			"text": " with doing this allocation algorithm, this matching, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,320",
+				"to": "00:20:51,920"
+			},
+			"offsets": {
+				"from": 1250320,
+				"to": 1251920
+			},
+			"text": " So we want this to be in a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,920",
+				"to": "00:20:53,480"
+			},
+			"offsets": {
+				"from": 1251920,
+				"to": 1253480
+			},
+			"text": " because then it's untrusted."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,480",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1253480,
+				"to": 1256320
+			},
+			"text": " But that means households publish their energy consumption"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:20:59,360"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1259360
+			},
+			"text": " data and the blockchain that computes the matching."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,360",
+				"to": "00:21:03,280"
+			},
+			"offsets": {
+				"from": 1259360,
+				"to": 1263280
+			},
+			"text": " But publishing the data is really bad, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,280",
+				"to": "00:21:05,840"
+			},
+			"offsets": {
+				"from": 1263280,
+				"to": 1265840
+			},
+			"text": " Because then everybody can see how much energy is"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,840",
+				"to": "00:21:09,400"
+			},
+			"offsets": {
+				"from": 1265840,
+				"to": 1269400
+			},
+			"text": " used by everybody or produced anybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,400",
+				"to": "00:21:11,160"
+			},
+			"offsets": {
+				"from": 1269400,
+				"to": 1271160
+			},
+			"text": " This is highly sensitive data."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,160",
+				"to": "00:21:12,640"
+			},
+			"offsets": {
+				"from": 1271160,
+				"to": 1272640
+			},
+			"text": " So we cannot do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,640",
+				"to": "00:21:14,200"
+			},
+			"offsets": {
+				"from": 1272640,
+				"to": 1274200
+			},
+			"text": " That's why we introduced"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,200",
+				"to": "00:21:16,120"
+			},
+			"offsets": {
+				"from": 1274200,
+				"to": 1276120
+			},
+			"text": " a Socrates based CK SNR."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,120",
+				"to": "00:21:18,840"
+			},
+			"offsets": {
+				"from": 1276120,
+				"to": 1278840
+			},
+			"text": " That does that matching algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,840",
+				"to": "00:21:21,200"
+			},
+			"offsets": {
+				"from": 1278840,
+				"to": 1281200
+			},
+			"text": " and the blockchain only verifies that matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,200",
+				"to": "00:21:26,360"
+			},
+			"offsets": {
+				"from": 1281200,
+				"to": 1286360
+			},
+			"text": " has been completed in line with some specific requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,360",
+				"to": "00:21:29,800"
+			},
+			"offsets": {
+				"from": 1286360,
+				"to": 1289800
+			},
+			"text": " It's fair and the same amount,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,800",
+				"to": "00:21:31,680"
+			},
+			"offsets": {
+				"from": 1289800,
+				"to": 1291680
+			},
+			"text": " like yeah, the amount of work out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,680",
+				"to": "00:21:35,480"
+			},
+			"offsets": {
+				"from": 1291680,
+				"to": 1295480
+			},
+			"text": " it puts out what's our equal or that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,480",
+				"to": "00:21:36,600"
+			},
+			"offsets": {
+				"from": 1295480,
+				"to": 1296600
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,600",
+				"to": "00:21:39,520"
+			},
+			"offsets": {
+				"from": 1296600,
+				"to": 1299520
+			},
+			"text": " sneak peek in the future in one minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,520",
+				"to": "00:21:41,080"
+			},
+			"offsets": {
+				"from": 1299520,
+				"to": 1301080
+			},
+			"text": " So we've been moving very fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,080",
+				"to": "00:21:42,200"
+			},
+			"offsets": {
+				"from": 1301080,
+				"to": 1302200
+			},
+			"text": " We've been breaking things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,200",
+				"to": "00:21:43,640"
+			},
+			"offsets": {
+				"from": 1302200,
+				"to": 1303640
+			},
+			"text": " We've been changing specs."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,640",
+				"to": "00:21:46,640"
+			},
+			"offsets": {
+				"from": 1303640,
+				"to": 1306640
+			},
+			"text": " Implementation has been progressing rapidly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,640",
+				"to": "00:21:50,240"
+			},
+			"offsets": {
+				"from": 1306640,
+				"to": 1310240
+			},
+			"text": " And now I think we need to slow that down a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,240",
+				"to": "00:21:52,920"
+			},
+			"offsets": {
+				"from": 1310240,
+				"to": 1312920
+			},
+			"text": " We need to come to a version that is stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,920",
+				"to": "00:21:55,760"
+			},
+			"offsets": {
+				"from": 1312920,
+				"to": 1315760
+			},
+			"text": " so users can actually rely on some version,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,760",
+				"to": "00:21:58,960"
+			},
+			"offsets": {
+				"from": 1315760,
+				"to": 1318960
+			},
+			"text": " start building with it without us breaking it again"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,960",
+				"to": "00:22:01,480"
+			},
+			"offsets": {
+				"from": 1318960,
+				"to": 1321480
+			},
+			"text": " and again through disruptive changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,480",
+				"to": "00:22:04,200"
+			},
+			"offsets": {
+				"from": 1321480,
+				"to": 1324200
+			},
+			"text": " And it would also allow us to do further optimizations"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,200",
+				"to": "00:22:06,120"
+			},
+			"offsets": {
+				"from": 1324200,
+				"to": 1326120
+			},
+			"text": " to tone based and crucially for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,120",
+				"to": "00:22:07,640"
+			},
+			"offsets": {
+				"from": 1326120,
+				"to": 1327640
+			},
+			"text": " who want to use in production,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,640",
+				"to": "00:22:11,400"
+			},
+			"offsets": {
+				"from": 1327640,
+				"to": 1331400
+			},
+			"text": " get some audit, get potentially some form of verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,400",
+				"to": "00:22:14,640"
+			},
+			"offsets": {
+				"from": 1331400,
+				"to": 1334640
+			},
+			"text": " on the optimization steps we do and stuff like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,640",
+				"to": "00:22:17,000"
+			},
+			"offsets": {
+				"from": 1334640,
+				"to": 1337000
+			},
+			"text": " So that's our plan for the next year"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,000",
+				"to": "00:22:19,840"
+			},
+			"offsets": {
+				"from": 1337000,
+				"to": 1339840
+			},
+			"text": " to slow down a bit with the breaking changes"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,840",
+				"to": "00:22:23,080"
+			},
+			"offsets": {
+				"from": 1339840,
+				"to": 1343080
+			},
+			"text": " and move to a more stable release totally."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,080",
+				"to": "00:22:25,920"
+			},
+			"offsets": {
+				"from": 1343080,
+				"to": 1345920
+			},
+			"text": " If you're interested in the Rust development"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,920",
+				"to": "00:22:28,640"
+			},
+			"offsets": {
+				"from": 1345920,
+				"to": 1348640
+			},
+			"text": " programming language and state of the art cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,640",
+				"to": "00:22:30,320"
+			},
+			"offsets": {
+				"from": 1348640,
+				"to": 1350320
+			},
+			"text": " we're looking to pro the team."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,320",
+				"to": "00:22:33,120"
+			},
+			"offsets": {
+				"from": 1350320,
+				"to": 1353120
+			},
+			"text": " So please get in touch and thank you very much"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,120",
+				"to": "00:22:34,960"
+			},
+			"offsets": {
+				"from": 1353120,
+				"to": 1354960
+			},
+			"text": " for your attention and for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,960",
+				"to": "00:22:38,120"
+			},
+			"offsets": {
+				"from": 1354960,
+				"to": 1358120
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,120",
+				"to": "00:22:41,980"
+			},
+			"offsets": {
+				"from": 1358120,
+				"to": 1361980
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,980",
+				"to": "00:22:44,560"
+			},
+			"offsets": {
+				"from": 1361980,
+				"to": 1364560
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,560",
+				"to": "00:22:47,140"
+			},
+			"offsets": {
+				"from": 1364560,
+				"to": 1367140
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,140",
+				"to": "00:22:49,720"
+			},
+			"offsets": {
+				"from": 1367140,
+				"to": 1369720
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,720",
+				"to": "00:22:52,460"
+			},
+			"offsets": {
+				"from": 1369720,
+				"to": 1372460
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,460",
+				"to": "00:22:54,960"
+			},
+			"offsets": {
+				"from": 1372460,
+				"to": 1374960
+			},
+			"text": " (drum beats)"
+		}
+	]
+}

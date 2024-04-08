@@ -1,0 +1,1484 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6280
+			},
+			"text": " I'm Connor Svensson."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,280",
+				"to": "00:00:09,640"
+			},
+			"offsets": {
+				"from": 6280,
+				"to": 9640
+			},
+			"text": " I'm the founder of Web3 Labs and original author of Web3J."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,640",
+				"to": "00:00:16,560"
+			},
+			"offsets": {
+				"from": 9640,
+				"to": 16560
+			},
+			"text": " And I'm joined here by Avio Kiriloff, one of the lead devs and maintainers on Web3J."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,560",
+				"to": "00:00:22,040"
+			},
+			"offsets": {
+				"from": 16560,
+				"to": 22040
+			},
+			"text": " We're going to talk today about the Web3J SDK, which is really the evolution of the Web3J"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,040",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 22040,
+				"to": 23040
+			},
+			"text": " library."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:29,840"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 29840
+			},
+			"text": " So hopefully this is going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,840",
+				"to": "00:00:37,400"
+			},
+			"offsets": {
+				"from": 29840,
+				"to": 37400
+			},
+			"text": " So Web3J is the JVM integration library for Ethereum that covers Java developers, Android"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,400",
+				"to": "00:00:39,240"
+			},
+			"offsets": {
+				"from": 37400,
+				"to": 39240
+			},
+			"text": " developers, Kotlin developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,240",
+				"to": "00:00:45,080"
+			},
+			"offsets": {
+				"from": 39240,
+				"to": 45080
+			},
+			"text": " It provides things like account and transaction management, full-type safety with regards to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,080",
+				"to": "00:00:47,200"
+			},
+			"offsets": {
+				"from": 45080,
+				"to": 47200
+			},
+			"text": " smart contract integration from code."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,200",
+				"to": "00:00:51,960"
+			},
+			"offsets": {
+				"from": 47200,
+				"to": 51960
+			},
+			"text": " So basically means if you're writing Java code, you have your Java types and then those get"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,960",
+				"to": "00:00:55,360"
+			},
+			"offsets": {
+				"from": 51960,
+				"to": 55360
+			},
+			"text": " mapped in a type safe manner to Ethereum types."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,360",
+				"to": "00:00:59,680"
+			},
+			"offsets": {
+				"from": 55360,
+				"to": 59680
+			},
+			"text": " As John just now is talking about the importance of type safety in the context of formal proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,680",
+				"to": "00:01:04,960"
+			},
+			"offsets": {
+				"from": 59680,
+				"to": 64960
+			},
+			"text": " although the JVM is not a proof-based language, at the same time this type safety gives you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,960",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 64960,
+				"to": 71080
+			},
+			"text": " certain guarantees about the performance of your code when it's running."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:18,200"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 78200
+			},
+			"text": " We also have native build tool integration and Web3J itself supports core Ethereum and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,200",
+				"to": "00:01:20,440"
+			},
+			"offsets": {
+				"from": 78200,
+				"to": 80440
+			},
+			"text": " by extension of that get parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,440",
+				"to": "00:01:26,640"
+			},
+			"offsets": {
+				"from": 80440,
+				"to": 86640
+			},
+			"text": " But then also hyperledger base-to, JP Morgan's core-em and we recently announced a AON integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,640",
+				"to": "00:01:29,560"
+			},
+			"offsets": {
+				"from": 86640,
+				"to": 89560
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,560",
+				"to": "00:01:35,600"
+			},
+			"offsets": {
+				"from": 89560,
+				"to": 95600
+			},
+			"text": " So a special occasion for us DevCon today because this is in fact a birthday for Web3J."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,600",
+				"to": "00:01:40,240"
+			},
+			"offsets": {
+				"from": 95600,
+				"to": 100240
+			},
+			"text": " It's now three years old so we're really happy that we've reached this milestone and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,240",
+				"to": "00:01:43,720"
+			},
+			"offsets": {
+				"from": 100240,
+				"to": 103720
+			},
+			"text": " we're really happy to be here as well for DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,720",
+				"to": "00:01:47,640"
+			},
+			"offsets": {
+				"from": 103720,
+				"to": 107640
+			},
+			"text": " In terms of the project though, it's always been of course open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,640",
+				"to": "00:01:51,560"
+			},
+			"offsets": {
+				"from": 107640,
+				"to": 111560
+			},
+			"text": " We've had over 100 contributors to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,560",
+				"to": "00:01:54,120"
+			},
+			"offsets": {
+				"from": 111560,
+				"to": 114120
+			},
+			"text": " It's had over 400,000 downloads."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,120",
+				"to": "00:01:59,040"
+			},
+			"offsets": {
+				"from": 114120,
+				"to": 119040
+			},
+			"text": " I mean if you say total downloads, it's over 2 million but again it shows there's a good"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,040",
+				"to": "00:02:00,960"
+			},
+			"offsets": {
+				"from": 119040,
+				"to": 120960
+			},
+			"text": " amount of traction with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,960",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 120960,
+				"to": 126400
+			},
+			"text": " And we also have a decent number of GitHub stars and a full-time team working on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:10,080"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 130080
+			},
+			"text": " You know one of the classic challenges with open source of course is being able to fund"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,080",
+				"to": "00:02:11,080"
+			},
+			"offsets": {
+				"from": 130080,
+				"to": 131080
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,080",
+				"to": "00:02:14,400"
+			},
+			"offsets": {
+				"from": 131080,
+				"to": 134400
+			},
+			"text": " People love to consume and use it but when it comes to actually paying for it then it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,400",
+				"to": "00:02:16,040"
+			},
+			"offsets": {
+				"from": 134400,
+				"to": 136040
+			},
+			"text": " slightly harder."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,040",
+				"to": "00:02:22,680"
+			},
+			"offsets": {
+				"from": 136040,
+				"to": 142680
+			},
+			"text": " And so in that respect we're very, very grateful to the ECF they gave us a grant last year."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,680",
+				"to": "00:02:27,920"
+			},
+			"offsets": {
+				"from": 142680,
+				"to": 147920
+			},
+			"text": " Bitcoin have funded numerous bounties over the last year or two for the project as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,920",
+				"to": "00:02:35,160"
+			},
+			"offsets": {
+				"from": 147920,
+				"to": 155160
+			},
+			"text": " and then at the end of last month the EF have also given us a grant too so we're really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,160",
+				"to": "00:02:39,760"
+			},
+			"offsets": {
+				"from": 155160,
+				"to": 159760
+			},
+			"text": " really grateful to everyone who's given us a grant and also it means great things for"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,760",
+				"to": "00:02:45,760"
+			},
+			"offsets": {
+				"from": 159760,
+				"to": 165760
+			},
+			"text": " Web3J and the wider developer ecosystem in our opinion."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,760",
+				"to": "00:02:49,240"
+			},
+			"offsets": {
+				"from": 165760,
+				"to": 169240
+			},
+			"text": " Okay so why do we have Web3J?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,240",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169240,
+				"to": 175000
+			},
+			"text": " Of course it's there for specific developers on a certain platform for working with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:00,160"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 180160
+			},
+			"text": " Historically though it's been a dependency and effect that people pull into their projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,160",
+				"to": "00:03:03,120"
+			},
+			"offsets": {
+				"from": 180160,
+				"to": 183120
+			},
+			"text": " to actually you know integrate with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,120",
+				"to": "00:03:07,840"
+			},
+			"offsets": {
+				"from": 183120,
+				"to": 187840
+			},
+			"text": " But there's certain challenges that come with that and we're always thinking about developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,840",
+				"to": "00:03:10,760"
+			},
+			"offsets": {
+				"from": 187840,
+				"to": 190760
+			},
+			"text": " who are new to Ethereum and block change generally."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,760",
+				"to": "00:03:16,280"
+			},
+			"offsets": {
+				"from": 190760,
+				"to": 196280
+			},
+			"text": " How can we make that sort of onboarding process as simple as possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,280",
+				"to": "00:03:20,280"
+			},
+			"offsets": {
+				"from": 196280,
+				"to": 200280
+			},
+			"text": " Right now the journey kind of looks something like the sequence here where someone needs"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,280",
+				"to": "00:03:24,720"
+			},
+			"offsets": {
+				"from": 200280,
+				"to": 204720
+			},
+			"text": " to create a project in the first instance they need to create a build dependency which"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,720",
+				"to": "00:03:26,480"
+			},
+			"offsets": {
+				"from": 204720,
+				"to": 206480
+			},
+			"text": " is pulling in Web3J."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,480",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 206480,
+				"to": 210760
+			},
+			"text": " They then need to write smart contract code, they then need to compile that smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:35,080"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 215080
+			},
+			"text": " code, then they need to find a node to run against and then finally run the build and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,080",
+				"to": "00:03:39,360"
+			},
+			"offsets": {
+				"from": 215080,
+				"to": 219360
+			},
+			"text": " of course finally pray that it's actually all going to work as well which is you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,360",
+				"to": "00:03:42,120"
+			},
+			"offsets": {
+				"from": 219360,
+				"to": 222120
+			},
+			"text": " always a big challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,120",
+				"to": "00:03:47,920"
+			},
+			"offsets": {
+				"from": 222120,
+				"to": 227920
+			},
+			"text": " So we've been thinking a bit about you know how we can actually simplify this more and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,920",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 227920,
+				"to": 233000
+			},
+			"text": " so part of this has been extending the Web3J CLI which historically did things like you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 238840
+			},
+			"text": " know fairly straightforward transfers of Ether, you know create smart contract bindings"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:03,400"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 243400
+			},
+			"text": " but we're really thinking about you know how can you make that developer experience better"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,400",
+				"to": "00:04:06,560"
+			},
+			"offsets": {
+				"from": 243400,
+				"to": 246560
+			},
+			"text": " and fundamentally how simple we can actually make it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,560",
+				"to": "00:04:10,920"
+			},
+			"offsets": {
+				"from": 246560,
+				"to": 250920
+			},
+			"text": " And you know that question there is how simple can you make it for a developer to actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,920",
+				"to": "00:04:14,840"
+			},
+			"offsets": {
+				"from": 250920,
+				"to": 254840
+			},
+			"text": " work with this technology for the first time and so this is what we've been thinking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,840",
+				"to": "00:04:18,040"
+			},
+			"offsets": {
+				"from": 254840,
+				"to": 258040
+			},
+			"text": " and Avial is going to talk a little bit about too."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,040",
+				"to": "00:04:24,200"
+			},
+			"offsets": {
+				"from": 258040,
+				"to": 264200
+			},
+			"text": " So hello everyone, how simple we can make it is three commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,200",
+				"to": "00:04:28,280"
+			},
+			"offsets": {
+				"from": 264200,
+				"to": 268280
+			},
+			"text": " One command obviously you need to install the CLI tools to use so we have a simple call"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,280",
+				"to": "00:04:32,960"
+			},
+			"offsets": {
+				"from": 268280,
+				"to": 272960
+			},
+			"text": " script that will install it for you, it's also multi-platform so we have equivalent for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,960",
+				"to": "00:04:33,960"
+			},
+			"offsets": {
+				"from": 272960,
+				"to": 273960
+			},
+			"text": " Windows."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,960",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 273960,
+				"to": 282000
+			},
+			"text": " Last step one, step two is you need to create your new project so simply running Web3J"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:46,920"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 286920
+			},
+			"text": " new after you've installed it will generate a project for you with some boilerplate code"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,920",
+				"to": "00:04:49,480"
+			},
+			"offsets": {
+				"from": 286920,
+				"to": 289480
+			},
+			"text": " to get you started."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,480",
+				"to": "00:04:55,720"
+			},
+			"offsets": {
+				"from": 289480,
+				"to": 295720
+			},
+			"text": " There's also an option to import an existing Solidity contract or Solidity code to just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,720",
+				"to": "00:05:02,320"
+			},
+			"offsets": {
+				"from": 295720,
+				"to": 302320
+			},
+			"text": " generate a new project from that Solidity code for you to get you started with Java and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,320",
+				"to": "00:05:06,960"
+			},
+			"offsets": {
+				"from": 302320,
+				"to": 306960
+			},
+			"text": " for now the third step is you need to build it but we're looking to automate this to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,960",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 306960,
+				"to": 314440
+			},
+			"text": " it even simpler for developers to get started in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:21,520"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 321520
+			},
+			"text": " So with the Web3J SDK so far what we have achieved is creating a new project adding Web3J"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,520",
+				"to": "00:05:26,960"
+			},
+			"offsets": {
+				"from": 321520,
+				"to": 326960
+			},
+			"text": " build dependency, creating and compiling a small contract and creating the JVM bindings"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,960",
+				"to": "00:05:32,200"
+			},
+			"offsets": {
+				"from": 326960,
+				"to": 332200
+			},
+			"text": " everything of which you had to do manually previously and we've also been working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,200",
+				"to": "00:05:38,960"
+			},
+			"offsets": {
+				"from": 332200,
+				"to": 338960
+			},
+			"text": " Web3J unit module to allow you to do better automated testing and integration testing with"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,960",
+				"to": "00:05:44,840"
+			},
+			"offsets": {
+				"from": 338960,
+				"to": 344840
+			},
+			"text": " your contracts so rather than having to spin up a node or use GANASH to integration test"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,840",
+				"to": "00:05:51,400"
+			},
+			"offsets": {
+				"from": 344840,
+				"to": 351400
+			},
+			"text": " your contracts we have managed to run the EVM in process in your tests so you can test"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,400",
+				"to": "00:05:58,800"
+			},
+			"offsets": {
+				"from": 351400,
+				"to": 358800
+			},
+			"text": " your contracts as if you're testing any other piece of Java code which is pretty cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,800",
+				"to": "00:06:03,040"
+			},
+			"offsets": {
+				"from": 358800,
+				"to": 363040
+			},
+			"text": " And I'll hand it back to Connor to let you know about the roadmap and what our plans"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,040",
+				"to": "00:06:09,160"
+			},
+			"offsets": {
+				"from": 363040,
+				"to": 369160
+			},
+			"text": " offer the rest of the year and how we're going to use the grant money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,160",
+				"to": "00:06:13,680"
+			},
+			"offsets": {
+				"from": 369160,
+				"to": 373680
+			},
+			"text": " So the Web3J SDK it's really the convergence of a number of different components of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,680",
+				"to": "00:06:19,680"
+			},
+			"offsets": {
+				"from": 373680,
+				"to": 379680
+			},
+			"text": " Web3J ecosystem so like your build automation your core integration library the CLI tools"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,680",
+				"to": "00:06:24,400"
+			},
+			"offsets": {
+				"from": 379680,
+				"to": 384400
+			},
+			"text": " automated unit and integration testing and so this is something that we're going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,400",
+				"to": "00:06:29,600"
+			},
+			"offsets": {
+				"from": 384400,
+				"to": 389600
+			},
+			"text": " continuing to do a lot of work on over the next 12 months but additionally and this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,600",
+				"to": "00:06:35,040"
+			},
+			"offsets": {
+				"from": 389600,
+				"to": 395040
+			},
+			"text": " again where we want to be very transparent about how this grant funding actually directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,040",
+				"to": "00:06:40,240"
+			},
+			"offsets": {
+				"from": 395040,
+				"to": 400240
+			},
+			"text": " helps the project as well in terms of the ways in which it can improve the experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,240",
+				"to": "00:06:44,760"
+			},
+			"offsets": {
+				"from": 400240,
+				"to": 404760
+			},
+			"text": " because our view of course is that the more developers we can bring onto Ethereum and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,760",
+				"to": "00:06:49,480"
+			},
+			"offsets": {
+				"from": 404760,
+				"to": 409480
+			},
+			"text": " the less friction we create for them when they're coming on board the better it is for overall"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,480",
+				"to": "00:06:50,720"
+			},
+			"offsets": {
+				"from": 409480,
+				"to": 410720
+			},
+			"text": " adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,720",
+				"to": "00:06:56,200"
+			},
+			"offsets": {
+				"from": 410720,
+				"to": 416200
+			},
+			"text": " We think of it very much like traditional funnel in the marketing world you talk about customer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,200",
+				"to": "00:07:00,400"
+			},
+			"offsets": {
+				"from": 416200,
+				"to": 420400
+			},
+			"text": " acquisition where you have a funnel that people sort of go through these different stages"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,400",
+				"to": "00:07:04,040"
+			},
+			"offsets": {
+				"from": 420400,
+				"to": 424040
+			},
+			"text": " and as they go through each stage you potentially get drop off."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,040",
+				"to": "00:07:06,400"
+			},
+			"offsets": {
+				"from": 424040,
+				"to": 426400
+			},
+			"text": " We see it with developers exactly the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,400",
+				"to": "00:07:10,920"
+			},
+			"offsets": {
+				"from": 426400,
+				"to": 430920
+			},
+			"text": " The more sources that a developer needs to work with the more commands they need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,920",
+				"to": "00:07:14,800"
+			},
+			"offsets": {
+				"from": 430920,
+				"to": 434800
+			},
+			"text": " type and these sorts of things in order to get started with it at every single one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,800",
+				"to": "00:07:19,760"
+			},
+			"offsets": {
+				"from": 434800,
+				"to": 439760
+			},
+			"text": " those stage there's the potential for drop off to actually lose developers who could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,760",
+				"to": "00:07:25,120"
+			},
+			"offsets": {
+				"from": 439760,
+				"to": 445120
+			},
+			"text": " people who really get into the technology and so this comes back to the emphasis on simplicity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,120",
+				"to": "00:07:29,640"
+			},
+			"offsets": {
+				"from": 445120,
+				"to": 449640
+			},
+			"text": " and minimizing the number of commands to do everything and make it very powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,640",
+				"to": "00:07:33,640"
+			},
+			"offsets": {
+				"from": 449640,
+				"to": 453640
+			},
+			"text": " Of course once people familiarise themselves with the technology then it becomes a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,640",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 453640,
+				"to": 458040
+			},
+			"text": " easier for them to actually dig deeper but we think it's so important to make this as"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:42,280"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 462280
+			},
+			"text": " simple as possible because that's how we drive that much wider adoption to the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,280",
+				"to": "00:07:46,680"
+			},
+			"offsets": {
+				"from": 462280,
+				"to": 466680
+			},
+			"text": " who aren't the passionate technologists who are at this conference but the kind of wider"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,680",
+				"to": "00:07:50,920"
+			},
+			"offsets": {
+				"from": 466680,
+				"to": 470920
+			},
+			"text": " ones who want to dip their toes in but maybe don't have the time to spend a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,920",
+				"to": "00:07:54,360"
+			},
+			"offsets": {
+				"from": 470920,
+				"to": 474360
+			},
+			"text": " going through documentation and everything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,360",
+				"to": "00:08:00,240"
+			},
+			"offsets": {
+				"from": 474360,
+				"to": 480240
+			},
+			"text": " So the testing enhancements this is an important part of this strategy so that we have automated"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,240",
+				"to": "00:08:05,360"
+			},
+			"offsets": {
+				"from": 480240,
+				"to": 485360
+			},
+			"text": " test generation based on contracts you have enough information about a smart contract to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,360",
+				"to": "00:08:11,120"
+			},
+			"offsets": {
+				"from": 485360,
+				"to": 491120
+			},
+			"text": " be able to infer these sorts of pieces of information and so having not just integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,120",
+				"to": "00:08:15,160"
+			},
+			"offsets": {
+				"from": 491120,
+				"to": 495160
+			},
+			"text": " tests but also unit tests so that people can test everything locally without having to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,160",
+				"to": "00:08:19,560"
+			},
+			"offsets": {
+				"from": 495160,
+				"to": 499560
+			},
+			"text": " think about running up the node infrastructure is very very important there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,560",
+				"to": "00:08:24,120"
+			},
+			"offsets": {
+				"from": 499560,
+				"to": 504120
+			},
+			"text": " And another building block for that as well is an integrated EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,120",
+				"to": "00:08:29,080"
+			},
+			"offsets": {
+				"from": 504120,
+				"to": 509080
+			},
+			"text": " Certainly like whether we actually design our own one or whether we use one of the existing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,080",
+				"to": "00:08:33,520"
+			},
+			"offsets": {
+				"from": 509080,
+				"to": 513520
+			},
+			"text": " ones like in Hyperledger base who remains to be seen but the point is having something"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,520",
+				"to": "00:08:39,480"
+			},
+			"offsets": {
+				"from": 513520,
+				"to": 519480
+			},
+			"text": " very lightweight so if developers are developing a contract using Web3J then they can quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,480",
+				"to": "00:08:45,200"
+			},
+			"offsets": {
+				"from": 519480,
+				"to": 525200
+			},
+			"text": " see if that's working or not without having to deploy it to a real network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,200",
+				"to": "00:08:50,840"
+			},
+			"offsets": {
+				"from": 525200,
+				"to": 530840
+			},
+			"text": " The other piece as well is Vipar support outside of Solidity certainly now it seems that Vipar"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,840",
+				"to": "00:08:57,120"
+			},
+			"offsets": {
+				"from": 530840,
+				"to": 537120
+			},
+			"text": " is where there's the most interest in terms of a language for smart contract development"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,120",
+				"to": "00:09:01,320"
+			},
+			"offsets": {
+				"from": 537120,
+				"to": 541320
+			},
+			"text": " so we want to ensure that there's a seamless developer experience there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,320",
+				"to": "00:09:06,480"
+			},
+			"offsets": {
+				"from": 541320,
+				"to": 546480
+			},
+			"text": " And then finally as well it's like a RESTful API generation off the back of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,480",
+				"to": "00:09:11,280"
+			},
+			"offsets": {
+				"from": 546480,
+				"to": 551280
+			},
+			"text": " so that a lot of the time people will create some sort of RESTful service on top of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,280",
+				"to": "00:09:14,880"
+			},
+			"offsets": {
+				"from": 551280,
+				"to": 554880
+			},
+			"text": " application that actually integrates with the blockchains and we want to automate that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,880",
+				"to": "00:09:16,320"
+			},
+			"offsets": {
+				"from": 554880,
+				"to": 556320
+			},
+			"text": " generation as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,320",
+				"to": "00:09:20,520"
+			},
+			"offsets": {
+				"from": 556320,
+				"to": 560520
+			},
+			"text": " And again just simplifying the experience and then people can use whatever languages"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,520",
+				"to": "00:09:23,120"
+			},
+			"offsets": {
+				"from": 560520,
+				"to": 563120
+			},
+			"text": " they want to to plug into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,120",
+				"to": "00:09:25,920"
+			},
+			"offsets": {
+				"from": 563120,
+				"to": 565920
+			},
+			"text": " That's all we were going to say about Web3J."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,920",
+				"to": "00:09:27,080"
+			},
+			"offsets": {
+				"from": 565920,
+				"to": 567080
+			},
+			"text": " Thanks everyone for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,080",
+				"to": "00:09:30,040"
+			},
+			"offsets": {
+				"from": 567080,
+				"to": 570040
+			},
+			"text": " We're just over there if you want to come and chat to us about questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,040",
+				"to": "00:09:34,160"
+			},
+			"offsets": {
+				"from": 570040,
+				"to": 574160
+			},
+			"text": " We've got some nice hexagonal stickers as well and we've got T-shirts and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,160",
+				"to": "00:09:36,240"
+			},
+			"offsets": {
+				"from": 574160,
+				"to": 576240
+			},
+			"text": " So yeah thank you and have a great conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,240",
+				"to": "00:09:40,240"
+			},
+			"offsets": {
+				"from": 576240,
+				"to": 580240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,240",
+				"to": "00:09:47,240"
+			},
+			"offsets": {
+				"from": 580240,
+				"to": 587240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,240",
+				"to": "00:09:54,240"
+			},
+			"offsets": {
+				"from": 587240,
+				"to": 594240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,240",
+				"to": "00:10:01,240"
+			},
+			"offsets": {
+				"from": 594240,
+				"to": 601240
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,240",
+				"to": "00:10:15,240"
+			},
+			"offsets": {
+				"from": 601240,
+				"to": 615240
+			},
+			"text": " [Music]"
+		}
+	]
+}

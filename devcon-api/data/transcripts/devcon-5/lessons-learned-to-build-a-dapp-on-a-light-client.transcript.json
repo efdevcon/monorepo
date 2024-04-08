@@ -1,0 +1,3167 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11320
+			},
+			"text": " I want to talk about our lessons that we learned by building a decentralized application on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,320",
+				"to": "00:00:13,320"
+			},
+			"offsets": {
+				"from": 11320,
+				"to": 13320
+			},
+			"text": " top of LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,320",
+				"to": "00:00:22,480"
+			},
+			"offsets": {
+				"from": 13320,
+				"to": 22480
+			},
+			"text": " Who view here is fairly, like, who you know what is a LightClient, like, kind of, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,480",
+				"to": "00:00:26,800"
+			},
+			"offsets": {
+				"from": 22480,
+				"to": 26800
+			},
+			"text": " think you know what's, like, fairly well what's a LightClient, okay, it's like half of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,800",
+				"to": "00:00:32,560"
+			},
+			"offsets": {
+				"from": 26800,
+				"to": 32560
+			},
+			"text": " person, so I will be a bit slow at the beginning just to make sure we are all on board on why"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,560",
+				"to": "00:00:34,360"
+			},
+			"offsets": {
+				"from": 32560,
+				"to": 34360
+			},
+			"text": " we want to use a LightClient, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,360",
+				"to": "00:00:41,720"
+			},
+			"offsets": {
+				"from": 34360,
+				"to": 41720
+			},
+			"text": " By the way, I will use the words LightClient, LightNode, for me, it's the same because we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,720",
+				"to": "00:00:44,320"
+			},
+			"offsets": {
+				"from": 41720,
+				"to": 44320
+			},
+			"text": " talking about a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,320",
+				"to": "00:00:46,280"
+			},
+			"offsets": {
+				"from": 44320,
+				"to": 46280
+			},
+			"text": " So just two words about myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,280",
+				"to": "00:00:51,860"
+			},
+			"offsets": {
+				"from": 46280,
+				"to": 51860
+			},
+			"text": " I'm Tibo, I'm working at Purdy, I'm front and death, and I work on Purdy Feather, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,860",
+				"to": "00:00:53,240"
+			},
+			"offsets": {
+				"from": 51860,
+				"to": 53240
+			},
+			"text": " I will talk about right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,240",
+				"to": "00:00:57,680"
+			},
+			"offsets": {
+				"from": 53240,
+				"to": 57680
+			},
+			"text": " I work also on Purdy Designer, which I had to talk about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,680",
+				"to": "00:00:59,560"
+			},
+			"offsets": {
+				"from": 57680,
+				"to": 59560
+			},
+			"text": " Pretty interesting, you should check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,560",
+				"to": "00:01:04,480"
+			},
+			"offsets": {
+				"from": 59560,
+				"to": 64480
+			},
+			"text": " And right now, I'm actually working a lot on Poked out JS and UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,480",
+				"to": "00:01:06,360"
+			},
+			"offsets": {
+				"from": 64480,
+				"to": 66360
+			},
+			"text": " So this talk is about three things."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,360",
+				"to": "00:01:10,840"
+			},
+			"offsets": {
+				"from": 66360,
+				"to": 70840
+			},
+			"text": " We want to understand first why we want to build use LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,840",
+				"to": "00:01:16,440"
+			},
+			"offsets": {
+				"from": 70840,
+				"to": 76440
+			},
+			"text": " Then I will show you how to hack on a library that we made that's called LightJS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,440",
+				"to": "00:01:22,360"
+			},
+			"offsets": {
+				"from": 76440,
+				"to": 82360
+			},
+			"text": " And then in the end, I'll show you a bit more about Feather, this application that we built"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,360",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 82360,
+				"to": 83960
+			},
+			"text": " on top of a LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:29,640"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 89640
+			},
+			"text": " Here, you can see I use LightNode inside an electron app, LightNode, LightClient, same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,640",
+				"to": "00:01:32,760"
+			},
+			"offsets": {
+				"from": 89640,
+				"to": 92760
+			},
+			"text": " So let's start why LightClient are important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,760",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 92760,
+				"to": 98520
+			},
+			"text": " So first of all, you probably all know, but running the full node is not as simple as"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:46,840"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 106840
+			},
+			"text": " it could seem or as simple as we hope it would be when people built a node in the first place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,840",
+				"to": "00:01:51,200"
+			},
+			"offsets": {
+				"from": 106840,
+				"to": 111200
+			},
+			"text": " we thought, okay, everybody should be able to run a full node on a laptop, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,200",
+				"to": "00:01:53,640"
+			},
+			"offsets": {
+				"from": 111200,
+				"to": 113640
+			},
+			"text": " It's not really possible anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,640",
+				"to": "00:01:58,480"
+			},
+			"offsets": {
+				"from": 113640,
+				"to": 118480
+			},
+			"text": " So what people do when you want to build a LightClient, or sorry, when you want to build"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,480",
+				"to": "00:02:04,080"
+			},
+			"offsets": {
+				"from": 118480,
+				"to": 124080
+			},
+			"text": " a decentralized application, you do not connect to a full node, you connect actually to Infra."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,080",
+				"to": "00:02:10,320"
+			},
+			"offsets": {
+				"from": 124080,
+				"to": 130320
+			},
+			"text": " Or to a third-party service that provides you a full node to access the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,320",
+				"to": "00:02:14,080"
+			},
+			"offsets": {
+				"from": 130320,
+				"to": 134080
+			},
+			"text": " And the thing is, Infra is super awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,080",
+				"to": "00:02:19,120"
+			},
+			"offsets": {
+				"from": 134080,
+				"to": 139120
+			},
+			"text": " Like, you can build an application, connect to the blockchain within a couple minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,120",
+				"to": "00:02:20,480"
+			},
+			"offsets": {
+				"from": 139120,
+				"to": 140480
+			},
+			"text": " That's really, really nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,480",
+				"to": "00:02:24,040"
+			},
+			"offsets": {
+				"from": 140480,
+				"to": 144040
+			},
+			"text": " It helps turn the community to grow."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:26,640"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 146640
+			},
+			"text": " But there are many problems in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,640",
+				"to": "00:02:32,840"
+			},
+			"offsets": {
+				"from": 146640,
+				"to": 152840
+			},
+			"text": " Yeah, those are numbers that, I mean, actually kind of old numbers is probably much higher"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,840",
+				"to": "00:02:33,840"
+			},
+			"offsets": {
+				"from": 152840,
+				"to": 153840
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,840",
+				"to": "00:02:36,800"
+			},
+			"offsets": {
+				"from": 153840,
+				"to": 156800
+			},
+			"text": " How many dApps have been developed using Infra?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,800",
+				"to": "00:02:40,440"
+			},
+			"offsets": {
+				"from": 156800,
+				"to": 160440
+			},
+			"text": " How many billions of requests Infra is actually serving?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,440",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 160440,
+				"to": 162840
+			},
+			"text": " The problem, you can all see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:47,680"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 167680
+			},
+			"text": " We call these decentralized applications, but we're all connecting to one server here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,680",
+				"to": "00:02:52,320"
+			},
+			"offsets": {
+				"from": 167680,
+				"to": 172320
+			},
+			"text": " one set of server that is owned by a company that is not decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,320",
+				"to": "00:02:55,560"
+			},
+			"offsets": {
+				"from": 172320,
+				"to": 175560
+			},
+			"text": " That's actually not the right thing to do, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,560",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 175560,
+				"to": 177520
+			},
+			"text": " So what is a LightClient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:01,160"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 181160
+			},
+			"text": " It's a node that stores header, but will remain trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,160",
+				"to": "00:03:04,920"
+			},
+			"offsets": {
+				"from": 181160,
+				"to": 184920
+			},
+			"text": " So it's a node, so it's something that does access the blockchain and can give you many"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,920",
+				"to": "00:03:06,800"
+			},
+			"offsets": {
+				"from": 184920,
+				"to": 186800
+			},
+			"text": " information about the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,800",
+				"to": "00:03:12,000"
+			},
+			"offsets": {
+				"from": 186800,
+				"to": 192000
+			},
+			"text": " Can help you do almost anything a full node would help you do from a decentralized application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,000",
+				"to": "00:03:14,240"
+			},
+			"offsets": {
+				"from": 192000,
+				"to": 194240
+			},
+			"text": " perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,240",
+				"to": "00:03:16,400"
+			},
+			"offsets": {
+				"from": 194240,
+				"to": 196400
+			},
+			"text": " But it is not decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,400",
+				"to": "00:03:20,560"
+			},
+			"offsets": {
+				"from": 196400,
+				"to": 200560
+			},
+			"text": " It is decentralized and it is not centralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,560",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 200560,
+				"to": 205480
+			},
+			"text": " And it does not, so it's not as secure as a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:30,760"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 210760
+			},
+			"text": " I will not talk about this in this talk because it gets too complex, but it's so is trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,760",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 210760,
+				"to": 214840
+			},
+			"text": " So it cannot get fake data or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:40,080"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 220080
+			},
+			"text": " It's decentralized and it actually verifies all the requests and all the information that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,080",
+				"to": "00:03:41,280"
+			},
+			"offsets": {
+				"from": 220080,
+				"to": 221280
+			},
+			"text": " it gets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,280",
+				"to": "00:03:51,160"
+			},
+			"offsets": {
+				"from": 221280,
+				"to": 231160
+			},
+			"text": " So just a couple numbers to show the differences between a full node and a light node or LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,160",
+				"to": "00:03:54,160"
+			},
+			"offsets": {
+				"from": 231160,
+				"to": 234160
+			},
+			"text": " The sync time is a couple seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,160",
+				"to": "00:03:58,280"
+			},
+			"offsets": {
+				"from": 234160,
+				"to": 238280
+			},
+			"text": " If you're lucky, if you're not so lucky, maybe a couple minutes, but we're not talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,280",
+				"to": "00:04:00,120"
+			},
+			"offsets": {
+				"from": 238280,
+				"to": 240120
+			},
+			"text": " hours or days, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,120",
+				"to": "00:04:03,800"
+			},
+			"offsets": {
+				"from": 240120,
+				"to": 243800
+			},
+			"text": " As long as you have internet, I'm not talking about this Wi-Fi here because it could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,800",
+				"to": "00:04:05,440"
+			},
+			"offsets": {
+				"from": 243800,
+				"to": 245440
+			},
+			"text": " minutes or days."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,440",
+				"to": "00:04:06,840"
+			},
+			"offsets": {
+				"from": 245440,
+				"to": 246840
+			},
+			"text": " I tried it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,840",
+				"to": "00:04:11,240"
+			},
+			"offsets": {
+				"from": 246840,
+				"to": 251240
+			},
+			"text": " I did sync a light node in the chinkansen, for instance, with my 4G, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,240",
+				"to": "00:04:14,680"
+			},
+			"offsets": {
+				"from": 251240,
+				"to": 254680
+			},
+			"text": " It took a couple minutes, but it was doing too well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,680",
+				"to": "00:04:15,680"
+			},
+			"offsets": {
+				"from": 254680,
+				"to": 255680
+			},
+			"text": " The state size."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,680",
+				"to": "00:04:21,120"
+			},
+			"offsets": {
+				"from": 255680,
+				"to": 261120
+			},
+			"text": " So how many gigabytes or whatever are you going to download on your mobile phone or on your"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,120",
+				"to": "00:04:22,360"
+			},
+			"offsets": {
+				"from": 261120,
+				"to": 262360
+			},
+			"text": " PC with a LightClient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,360",
+				"to": "00:04:23,720"
+			},
+			"offsets": {
+				"from": 262360,
+				"to": 263720
+			},
+			"text": " It's going to be zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,720",
+				"to": "00:04:25,840"
+			},
+			"offsets": {
+				"from": 263720,
+				"to": 265840
+			},
+			"text": " It does not source the state with a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,840",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 265840,
+				"to": 267000
+			},
+			"text": " Of course, that's its job."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,480"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270480
+			},
+			"text": " It's going to have gigabytes and gigabytes of state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,480",
+				"to": "00:04:36,920"
+			},
+			"offsets": {
+				"from": 270480,
+				"to": 276920
+			},
+			"text": " And the database that you're going to have, again, on your desktop or on your mobile is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,920",
+				"to": "00:04:39,320"
+			},
+			"offsets": {
+				"from": 276920,
+				"to": 279320
+			},
+			"text": " going to be tens of gigabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,320",
+				"to": "00:04:45,760"
+			},
+			"offsets": {
+				"from": 279320,
+				"to": 285760
+			},
+			"text": " Before talking about terabytes, I won't go into this debate, but anyway, for full nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,760",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 285760,
+				"to": 286760
+			},
+			"text": " and LightClient is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:50,640"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 290640
+			},
+			"text": " We're talking about a couple hundreds of megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,640",
+				"to": "00:04:51,640"
+			},
+			"offsets": {
+				"from": 290640,
+				"to": 291640
+			},
+			"text": " So what is a LightClient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,640",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 291640,
+				"to": 293560
+			},
+			"text": " Or why do we want to use a LightClient?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:58,320"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 298320
+			},
+			"text": " So today, you have on the right the nodes, the full nodes that are connected to each other"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,320",
+				"to": "00:04:59,840"
+			},
+			"offsets": {
+				"from": 298320,
+				"to": 299840
+			},
+			"text": " and they form the therin network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,840",
+				"to": "00:05:03,400"
+			},
+			"offsets": {
+				"from": 299840,
+				"to": 303400
+			},
+			"text": " And you have your decentralized application that is there and sits there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,400",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 303400,
+				"to": 308720
+			},
+			"text": " And when you want to connect, when you connect to, say, in Hurrah, you connect to one of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:13,720"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 313720
+			},
+			"text": " nodes or, let's say, a set of nodes that is owned by a company and you trust this person."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,720",
+				"to": "00:05:18,400"
+			},
+			"offsets": {
+				"from": 313720,
+				"to": 318400
+			},
+			"text": " So this person can actually turn bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,400",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318400,
+				"to": 322000
+			},
+			"text": " And what they can do is they cannot change your transactions or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:24,760"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 324760
+			},
+			"text": " They cannot spend your money on your behalf or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,760",
+				"to": "00:05:25,920"
+			},
+			"offsets": {
+				"from": 324760,
+				"to": 325920
+			},
+			"text": " That's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,920",
+				"to": "00:05:27,960"
+			},
+			"offsets": {
+				"from": 325920,
+				"to": 327960
+			},
+			"text": " But still, they can track you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,960",
+				"to": "00:05:30,400"
+			},
+			"offsets": {
+				"from": 327960,
+				"to": 330400
+			},
+			"text": " They can know exactly who you are with your IP."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,400",
+				"to": "00:05:34,560"
+			},
+			"offsets": {
+				"from": 330400,
+				"to": 334560
+			},
+			"text": " They can see, okay, this person is using this address all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,560",
+				"to": "00:05:38,480"
+			},
+			"offsets": {
+				"from": 334560,
+				"to": 338480
+			},
+			"text": " They can do many mean stuff or they can censor you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,480",
+				"to": "00:05:39,480"
+			},
+			"offsets": {
+				"from": 338480,
+				"to": 339480
+			},
+			"text": " They are nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,480",
+				"to": "00:05:40,760"
+			},
+			"offsets": {
+				"from": 339480,
+				"to": 340760
+			},
+			"text": " We know them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,760",
+				"to": "00:05:43,040"
+			},
+			"offsets": {
+				"from": 340760,
+				"to": 343040
+			},
+			"text": " And they actually want to get decentralized more."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,040",
+				"to": "00:05:44,160"
+			},
+			"offsets": {
+				"from": 343040,
+				"to": 344160
+			},
+			"text": " They had talks about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,160",
+				"to": "00:05:50,040"
+			},
+			"offsets": {
+				"from": 344160,
+				"to": 350040
+			},
+			"text": " I'm just saying this is not the right way to onboard people."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,040",
+				"to": "00:05:53,480"
+			},
+			"offsets": {
+				"from": 350040,
+				"to": 353480
+			},
+			"text": " We all know that, okay, we want to care about decentralization in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,480",
+				"to": "00:05:56,360"
+			},
+			"offsets": {
+				"from": 353480,
+				"to": 356360
+			},
+			"text": " That's why we want to bring more people to the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,360",
+				"to": "00:05:58,120"
+			},
+			"offsets": {
+				"from": 356360,
+				"to": 358120
+			},
+			"text": " So let's do it right."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,120",
+				"to": "00:06:02,680"
+			},
+			"offsets": {
+				"from": 358120,
+				"to": 362680
+			},
+			"text": " And what we can do is, so the new dots here are LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,680",
+				"to": "00:06:05,880"
+			},
+			"offsets": {
+				"from": 362680,
+				"to": 365880
+			},
+			"text": " So they are all connected to full nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,880",
+				"to": "00:06:09,800"
+			},
+			"offsets": {
+				"from": 365880,
+				"to": 369800
+			},
+			"text": " And what we want to do is actually embed a LightClient in our tab."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,800",
+				"to": "00:06:10,960"
+			},
+			"offsets": {
+				"from": 369800,
+				"to": 370960
+			},
+			"text": " This is what we did."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,960",
+				"to": "00:06:17,360"
+			},
+			"offsets": {
+				"from": 370960,
+				"to": 377360
+			},
+			"text": " And this is what we want actually to let people do more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,360",
+				"to": "00:06:22,960"
+			},
+			"offsets": {
+				"from": 377360,
+				"to": 382960
+			},
+			"text": " So to let people embed a LightClient and use a LightClient in their decentralized application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,960",
+				"to": "00:06:25,720"
+			},
+			"offsets": {
+				"from": 382960,
+				"to": 385720
+			},
+			"text": " we built a library that is called LightGest."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,720",
+				"to": "00:06:26,960"
+			},
+			"offsets": {
+				"from": 385720,
+				"to": 386960
+			},
+			"text": " So it's super light."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,960",
+				"to": "00:06:28,480"
+			},
+			"offsets": {
+				"from": 386960,
+				"to": 388480
+			},
+			"text": " It's for LightClient."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,480",
+				"to": "00:06:29,960"
+			},
+			"offsets": {
+				"from": 388480,
+				"to": 389960
+			},
+			"text": " Everything is light."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,960",
+				"to": "00:06:37,680"
+			},
+			"offsets": {
+				"from": 389960,
+				"to": 397680
+			},
+			"text": " And here's how a stack that you would have today for your normal app."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,680",
+				"to": "00:06:43,360"
+			},
+			"offsets": {
+				"from": 397680,
+				"to": 403360
+			},
+			"text": " So basically you have your UI in JavaScript, most probably using React, Angular, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,360",
+				"to": "00:06:50,320"
+			},
+			"offsets": {
+				"from": 403360,
+				"to": 410320
+			},
+			"text": " Then you embed Web3.js, which you want to use to just send transactions and do stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,320",
+				"to": "00:06:52,600"
+			},
+			"offsets": {
+				"from": 410320,
+				"to": 412600
+			},
+			"text": " on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,600",
+				"to": "00:06:57,160"
+			},
+			"offsets": {
+				"from": 412600,
+				"to": 417160
+			},
+			"text": " This Web3.js, one of the first things you do with Web3.js is setting a provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,160",
+				"to": "00:07:03,120"
+			},
+			"offsets": {
+				"from": 417160,
+				"to": 423120
+			},
+			"text": " You have new provider and they most probably use some URL from Infra with a token that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,120",
+				"to": "00:07:04,280"
+			},
+			"offsets": {
+				"from": 423120,
+				"to": 424280
+			},
+			"text": " you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,280",
+				"to": "00:07:10,280"
+			},
+			"offsets": {
+				"from": 424280,
+				"to": 430280
+			},
+			"text": " And then Infra, so this centralized service node that you have to trust in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,280",
+				"to": "00:07:12,800"
+			},
+			"offsets": {
+				"from": 430280,
+				"to": 432800
+			},
+			"text": " will talk to a Therian."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,800",
+				"to": "00:07:20,320"
+			},
+			"offsets": {
+				"from": 432800,
+				"to": 440320
+			},
+			"text": " And what we want to do, so yeah, these guys can eventually censor you or track you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,320",
+				"to": "00:07:25,520"
+			},
+			"offsets": {
+				"from": 440320,
+				"to": 445520
+			},
+			"text": " And so what we want to do with this LightGest is actually instead of Web3.js, you use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,520",
+				"to": "00:07:33,160"
+			},
+			"offsets": {
+				"from": 445520,
+				"to": 453160
+			},
+			"text": " LightGest and this will talk to LightNode on your own inside your DAP actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,160",
+				"to": "00:07:36,760"
+			},
+			"offsets": {
+				"from": 453160,
+				"to": 456760
+			},
+			"text": " And you will talk directly to the Therian network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,760",
+				"to": "00:07:41,320"
+			},
+			"offsets": {
+				"from": 456760,
+				"to": 461320
+			},
+			"text": " So the difference here is that you remove the centralized node and you put the LightNode"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,320",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 461320,
+				"to": 465520
+			},
+			"text": " actually inside the DAP, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:54,880"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 474880
+			},
+			"text": " So this LightGest library is a high-level reactive and easy to use library."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,880",
+				"to": "00:07:58,320"
+			},
+			"offsets": {
+				"from": 474880,
+				"to": 478320
+			},
+			"text": " So talk about it just a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,320",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 478320,
+				"to": 484000
+			},
+			"text": " We are, how do you install it just like any other library you probably install today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:08,320"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 488320
+			},
+			"text": " It's from the peritoneameface and /light.js."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,320",
+				"to": "00:08:10,640"
+			},
+			"offsets": {
+				"from": 488320,
+				"to": 490640
+			},
+			"text": " So let's have a look a bit at some code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,640",
+				"to": "00:08:12,600"
+			},
+			"offsets": {
+				"from": 490640,
+				"to": 492600
+			},
+			"text": " I hope you can see that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,600",
+				"to": "00:08:13,600"
+			},
+			"offsets": {
+				"from": 492600,
+				"to": 493600
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,600",
+				"to": "00:08:16,200"
+			},
+			"offsets": {
+				"from": 493600,
+				"to": 496200
+			},
+			"text": " So that's a really simple, simple code."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,200",
+				"to": "00:08:22,440"
+			},
+			"offsets": {
+				"from": 496200,
+				"to": 502440
+			},
+			"text": " So you can see that we import Light and we import BalanceOff and BrockNumber."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,440",
+				"to": "00:08:29,320"
+			},
+			"offsets": {
+				"from": 502440,
+				"to": 509320
+			},
+			"text": " And those BalanceOff and BrockNumber have a dollar behind and it means these are observable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,320",
+				"to": "00:08:34,320"
+			},
+			"offsets": {
+				"from": 509320,
+				"to": 514320
+			},
+			"text": " And just like you would do with Web3.js today, you would just do LightSetProvider with your"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,320",
+				"to": "00:08:35,720"
+			},
+			"offsets": {
+				"from": 514320,
+				"to": 515720
+			},
+			"text": " provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,720",
+				"to": "00:08:40,520"
+			},
+			"offsets": {
+				"from": 515720,
+				"to": 520520
+			},
+			"text": " And then you can do with these Observables, BrockNumber, you can subscribe for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,520",
+				"to": "00:08:44,480"
+			},
+			"offsets": {
+				"from": 520520,
+				"to": 524480
+			},
+			"text": " And this will give you a BrockNumber that you can log."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,480",
+				"to": "00:08:48,880"
+			},
+			"offsets": {
+				"from": 524480,
+				"to": 528880
+			},
+			"text": " And so in this little program, we'll just subscribe with the BrockNumber and just log"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,880",
+				"to": "00:08:52,760"
+			},
+			"offsets": {
+				"from": 528880,
+				"to": 532760
+			},
+			"text": " to current BrockNumber and we'll do kind of the same with BalanceOff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,760",
+				"to": "00:08:56,360"
+			},
+			"offsets": {
+				"from": 532760,
+				"to": 536360
+			},
+			"text": " So BalanceOff, you want to say which address you want to see the BalanceOff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,360",
+				"to": "00:09:04,920"
+			},
+			"offsets": {
+				"from": 536360,
+				"to": 544920
+			},
+			"text": " And then I don't know if you know how to use reactive or RxJS, but basically you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,920",
+				"to": "00:09:12,040"
+			},
+			"offsets": {
+				"from": 544920,
+				"to": 552040
+			},
+			"text": " get what's the result of BalanceOff and pipe it and do something with this result."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,040",
+				"to": "00:09:14,480"
+			},
+			"offsets": {
+				"from": 552040,
+				"to": 554480
+			},
+			"text": " So what we're going to do is this Balance is going to be formatted."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,480",
+				"to": "00:09:15,480"
+			},
+			"offsets": {
+				"from": 554480,
+				"to": 555480
+			},
+			"text": " Or you have a question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,480",
+				"to": "00:09:19,400"
+			},
+			"offsets": {
+				"from": 555480,
+				"to": 559400
+			},
+			"text": " [inaudible]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,400",
+				"to": "00:09:25,720"
+			},
+			"offsets": {
+				"from": 559400,
+				"to": 565720
+			},
+			"text": " So the question is will BalanceOff be actually a stream and updated and the answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,720",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 565720,
+				"to": 571320
+			},
+			"text": " And this is the nice thing with Observables and you'll see that in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:34,920"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 574920
+			},
+			"text": " So the BalanceOff will be not formatted nicely."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,920",
+				"to": "00:09:38,440"
+			},
+			"offsets": {
+				"from": 574920,
+				"to": 578440
+			},
+			"text": " So what we want to do is from way we want to format it basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,440",
+				"to": "00:09:44,360"
+			},
+			"offsets": {
+				"from": 578440,
+				"to": 584360
+			},
+			"text": " And then what we do is we do the same as before, we subscribe to this and we just log it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,360",
+				"to": "00:09:51,120"
+			},
+			"offsets": {
+				"from": 584360,
+				"to": 591120
+			},
+			"text": " So what happens is when you just run this in the console, it will just go like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,120",
+				"to": "00:09:55,800"
+			},
+			"offsets": {
+				"from": 591120,
+				"to": 595800
+			},
+			"text": " current block, blah, blah, blah, my balance and then it updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,800",
+				"to": "00:09:56,800"
+			},
+			"offsets": {
+				"from": 595800,
+				"to": 596800
+			},
+			"text": " And then it updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,800",
+				"to": "00:10:00,920"
+			},
+			"offsets": {
+				"from": 596800,
+				"to": 600920
+			},
+			"text": " You change the balance, boom, the balance will show the new balance and then it updates"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,920",
+				"to": "00:10:01,920"
+			},
+			"offsets": {
+				"from": 600920,
+				"to": 601920
+			},
+			"text": " and it goes on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,920",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 601920,
+				"to": 609000
+			},
+			"text": " So this is an Observable and well, yeah, that's RxJS like this is not what we built specifically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:11,200"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 611200
+			},
+			"text": " we just built on top of this and this is awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,200",
+				"to": "00:10:15,800"
+			},
+			"offsets": {
+				"from": 611200,
+				"to": 615800
+			},
+			"text": " That's why we use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,800",
+				"to": "00:10:19,360"
+			},
+			"offsets": {
+				"from": 615800,
+				"to": 619360
+			},
+			"text": " So like JS I said is light."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,360",
+				"to": "00:10:21,040"
+			},
+			"offsets": {
+				"from": 619360,
+				"to": 621040
+			},
+			"text": " It's actually extremely simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,040",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 621040,
+				"to": 624560
+			},
+			"text": " We did not go crazy with the amount of things we want to support."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:30,560"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 630560
+			},
+			"text": " We actually just support what we need and what the community up to now has told us they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,560",
+				"to": "00:10:31,560"
+			},
+			"offsets": {
+				"from": 630560,
+				"to": 631560
+			},
+			"text": " need."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,560",
+				"to": "00:10:34,200"
+			},
+			"offsets": {
+				"from": 631560,
+				"to": 634200
+			},
+			"text": " So we have 12 functions and that's it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,200",
+				"to": "00:10:38,900"
+			},
+			"offsets": {
+				"from": 634200,
+				"to": 638900
+			},
+			"text": " We have like super basic things, the block number, you know, you can post transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,900",
+				"to": "00:10:43,360"
+			},
+			"offsets": {
+				"from": 638900,
+				"to": 643360
+			},
+			"text": " post-world transactions or already signed transactions, you can get some contracts, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,360",
+				"to": "00:10:49,340"
+			},
+			"offsets": {
+				"from": 643360,
+				"to": 649340
+			},
+			"text": " can get, you know, like my balance, the version in four of the node and stuff like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,340",
+				"to": "00:10:56,740"
+			},
+			"offsets": {
+				"from": 649340,
+				"to": 656740
+			},
+			"text": " So just to see an overview of the differences between, for instance, Web3JS and light.js."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,740",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 656740,
+				"to": 663000
+			},
+			"text": " So the account management, the way it's done, no, sorry, I think for news management with"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:07,260"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 667260
+			},
+			"text": " Web3JS you would use Promise, we use Observables."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,260",
+				"to": "00:11:14,280"
+			},
+			"offsets": {
+				"from": 667260,
+				"to": 674280
+			},
+			"text": " The coverage of the RPCs that we support, we keep it very, very simple, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,280",
+				"to": "00:11:18,440"
+			},
+			"offsets": {
+				"from": 674280,
+				"to": 678440
+			},
+			"text": " And if you need some more, please just let us know."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,440",
+				"to": "00:11:22,640"
+			},
+			"offsets": {
+				"from": 678440,
+				"to": 682640
+			},
+			"text": " And of course, and this is the very important thing, light."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,640",
+				"to": "00:11:28,400"
+			},
+			"offsets": {
+				"from": 682640,
+				"to": 688400
+			},
+			"text": " Light.js is built, the way we have it in mind is it's built to be used on top of light"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,400",
+				"to": "00:11:29,400"
+			},
+			"offsets": {
+				"from": 688400,
+				"to": 689400
+			},
+			"text": " client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,400",
+				"to": "00:11:36,860"
+			},
+			"offsets": {
+				"from": 689400,
+				"to": 696860
+			},
+			"text": " And it brings a lot of things that, yeah, that do not come embedded in Web3JS and I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,860",
+				"to": "00:11:38,920"
+			},
+			"offsets": {
+				"from": 696860,
+				"to": 698920
+			},
+			"text": " talk about it right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,920",
+				"to": "00:11:43,940"
+			},
+			"offsets": {
+				"from": 698920,
+				"to": 703940
+			},
+			"text": " So behind the scene, the light.js uses the least possible resources on the light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,940",
+				"to": "00:11:49,560"
+			},
+			"offsets": {
+				"from": 703940,
+				"to": 709560
+			},
+			"text": " So what you're going to do today, just before I showed you, okay, what's the latest header"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,560",
+				"to": "00:11:53,680"
+			},
+			"offsets": {
+				"from": 709560,
+				"to": 713680
+			},
+			"text": " for instance, or what's my balance for instance, your balance will not change every second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,680",
+				"to": "00:11:54,680"
+			},
+			"offsets": {
+				"from": 713680,
+				"to": 714680
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,680",
+				"to": "00:11:57,520"
+			},
+			"offsets": {
+				"from": 714680,
+				"to": 717520
+			},
+			"text": " The block number, the block time is 15 seconds on the theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,520",
+				"to": "00:12:03,880"
+			},
+			"offsets": {
+				"from": 717520,
+				"to": 723880
+			},
+			"text": " It does not make sense to just bother the node, you know, every second, or 500 milliseconds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,880",
+				"to": "00:12:04,880"
+			},
+			"offsets": {
+				"from": 723880,
+				"to": 724880
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,880",
+				"to": "00:12:08,380"
+			},
+			"offsets": {
+				"from": 724880,
+				"to": 728380
+			},
+			"text": " You can do that with the theorem, but it does not bring anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,380",
+				"to": "00:12:11,900"
+			},
+			"offsets": {
+				"from": 728380,
+				"to": 731900
+			},
+			"text": " So light client, the light.js library will do this for you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,900",
+				"to": "00:12:15,940"
+			},
+			"offsets": {
+				"from": 731900,
+				"to": 735940
+			},
+			"text": " Will actually get just a push notification, will not have pull."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,940",
+				"to": "00:12:24,220"
+			},
+			"offsets": {
+				"from": 735940,
+				"to": 744220
+			},
+			"text": " So you will get the latest information when it's there, not when you ask for it, because"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,220",
+				"to": "00:12:27,900"
+			},
+			"offsets": {
+				"from": 744220,
+				"to": 747900
+			},
+			"text": " sometimes developers just don't know everything and that's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,900",
+				"to": "00:12:30,980"
+			},
+			"offsets": {
+				"from": 747900,
+				"to": 750980
+			},
+			"text": " And that's why we wanted to build light.js this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,980",
+				"to": "00:12:35,120"
+			},
+			"offsets": {
+				"from": 750980,
+				"to": 755120
+			},
+			"text": " So it fetches states on your head and not whenever you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,120",
+				"to": "00:12:40,120"
+			},
+			"offsets": {
+				"from": 755120,
+				"to": 760120
+			},
+			"text": " So it just gives you new information whenever there is new information actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,120",
+				"to": "00:12:44,060"
+			},
+			"offsets": {
+				"from": 760120,
+				"to": 764060
+			},
+			"text": " It handles the subscriptions to the node for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,060",
+				"to": "00:12:49,620"
+			},
+			"offsets": {
+				"from": 764060,
+				"to": 769620
+			},
+			"text": " It handles cache and it keeps the amount of network calls to the minimum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,620",
+				"to": "00:12:55,480"
+			},
+			"offsets": {
+				"from": 769620,
+				"to": 775480
+			},
+			"text": " But to the, I mean, it's still, it's still, there's, you know, you won't be like outdated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,480",
+				"to": "00:12:57,320"
+			},
+			"offsets": {
+				"from": 775480,
+				"to": 777320
+			},
+			"text": " You won't get how they did information."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,320",
+				"to": "00:13:00,440"
+			},
+			"offsets": {
+				"from": 777320,
+				"to": 780440
+			},
+			"text": " It just does the thing like in an efficient way, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,440",
+				"to": "00:13:05,860"
+			},
+			"offsets": {
+				"from": 780440,
+				"to": 785860
+			},
+			"text": " So I'll go and the reason why we built all of this, I'll go to embed light clients everywhere"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,860",
+				"to": "00:13:11,300"
+			},
+			"offsets": {
+				"from": 785860,
+				"to": 791300
+			},
+			"text": " as much as possible and facilitate a very mass adoption while maintaining decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,300",
+				"to": "00:13:15,420"
+			},
+			"offsets": {
+				"from": 791300,
+				"to": 795420
+			},
+			"text": " Because we do not want to, to just trade this off, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,420",
+				"to": "00:13:23,380"
+			},
+			"offsets": {
+				"from": 795420,
+				"to": 803380
+			},
+			"text": " So because of this, we, you know, probably parity has built a node and this node can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,380",
+				"to": "00:13:26,100"
+			},
+			"offsets": {
+				"from": 803380,
+				"to": 806100
+			},
+			"text": " be run as a light node as a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,100",
+				"to": "00:13:30,720"
+			},
+			"offsets": {
+				"from": 806100,
+				"to": 810720
+			},
+			"text": " The thing is we wanted to use it and to see how things work and we wanted to embed like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,720",
+				"to": "00:13:32,840"
+			},
+			"offsets": {
+				"from": 810720,
+				"to": 812840
+			},
+			"text": " let people embed light client everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,840",
+				"to": "00:13:34,460"
+			},
+			"offsets": {
+				"from": 812840,
+				"to": 814460
+			},
+			"text": " So that's why we built feather."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,460",
+				"to": "00:13:41,000"
+			},
+			"offsets": {
+				"from": 814460,
+				"to": 821000
+			},
+			"text": " So feather is an application on top of a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,000",
+				"to": "00:13:45,040"
+			},
+			"offsets": {
+				"from": 821000,
+				"to": 825040
+			},
+			"text": " And I will show you just, I'll show you in a minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,040",
+				"to": "00:13:48,480"
+			},
+			"offsets": {
+				"from": 825040,
+				"to": 828480
+			},
+			"text": " I want to just talk very briefly about the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,480",
+				"to": "00:13:54,280"
+			},
+			"offsets": {
+				"from": 828480,
+				"to": 834280
+			},
+			"text": " So just like we said before, so we have UI in React."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,280",
+				"to": "00:14:01,820"
+			},
+			"offsets": {
+				"from": 834280,
+				"to": 841820
+			},
+			"text": " We use light JS to interact with a light node that is inside an electron app and all this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,820",
+				"to": "00:14:09,660"
+			},
+			"offsets": {
+				"from": 841820,
+				"to": 849660
+			},
+			"text": " app will interact with directly with the thermo network without third party service in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,660",
+				"to": "00:14:13,700"
+			},
+			"offsets": {
+				"from": 849660,
+				"to": 853700
+			},
+			"text": " So truly decentralized wallet is what feather is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,700",
+				"to": "00:14:19,460"
+			},
+			"offsets": {
+				"from": 853700,
+				"to": 859460
+			},
+			"text": " It used to be not the only one because mists used to be also using a light wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,460",
+				"to": "00:14:24,020"
+			},
+			"offsets": {
+				"from": 859460,
+				"to": 864020
+			},
+			"text": " And fortunately it's not possible, a light client, sorry, unfortunately it's not available"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,020",
+				"to": "00:14:27,020"
+			},
+			"offsets": {
+				"from": 864020,
+				"to": 867020
+			},
+			"text": " anymore due to other reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,020",
+				"to": "00:14:35,140"
+			},
+			"offsets": {
+				"from": 867020,
+				"to": 875140
+			},
+			"text": " So to my knowledge feather is the only application unfortunately on top of a light client."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,140",
+				"to": "00:14:37,860"
+			},
+			"offsets": {
+				"from": 875140,
+				"to": 877860
+			},
+			"text": " So it uses light JS as I said."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,860",
+				"to": "00:14:43,020"
+			},
+			"offsets": {
+				"from": 877860,
+				"to": 883020
+			},
+			"text": " It's bundled with a parity of thermal light client and it sinks in a couple of minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,020",
+				"to": "00:14:45,220"
+			},
+			"offsets": {
+				"from": 883020,
+				"to": 885220
+			},
+			"text": " depending on the Wi-Fi."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,220",
+				"to": "00:14:49,580"
+			},
+			"offsets": {
+				"from": 885220,
+				"to": 889580
+			},
+			"text": " We have other interesting libraries that you might want to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,580",
+				"to": "00:14:51,340"
+			},
+			"offsets": {
+				"from": 889580,
+				"to": 891340
+			},
+			"text": " One of them is called parity electron."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,340",
+				"to": "00:14:58,100"
+			},
+			"offsets": {
+				"from": 891340,
+				"to": 898100
+			},
+			"text": " It's a small library to start and stop parity Ethereum from node JS environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,100",
+				"to": "00:15:03,060"
+			},
+			"offsets": {
+				"from": 898100,
+				"to": 903060
+			},
+			"text": " And you will see the UX and everything about feather right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,060",
+				"to": "00:15:07,020"
+			},
+			"offsets": {
+				"from": 903060,
+				"to": 907020
+			},
+			"text": " So here I just launched feather and this is what happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,020",
+				"to": "00:15:11,460"
+			},
+			"offsets": {
+				"from": 907020,
+				"to": 911460
+			},
+			"text": " At the bottom you will see that it starts sinking right now and it just shows you, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,460",
+				"to": "00:15:14,460"
+			},
+			"offsets": {
+				"from": 911460,
+				"to": 914460
+			},
+			"text": " know, like, and it shows you how far you are."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,460",
+				"to": "00:15:16,540"
+			},
+			"offsets": {
+				"from": 914460,
+				"to": 916540
+			},
+			"text": " It shows you an empty page because you have no accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,540",
+				"to": "00:15:18,580"
+			},
+			"offsets": {
+				"from": 916540,
+				"to": 918580
+			},
+			"text": " So I'm going to check creating new account."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,580",
+				"to": "00:15:19,780"
+			},
+			"offsets": {
+				"from": 918580,
+				"to": 919780
+			},
+			"text": " This looks like a green cat."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,780",
+				"to": "00:15:22,820"
+			},
+			"offsets": {
+				"from": 919780,
+				"to": 922820
+			},
+			"text": " So I'm going to name that green cat."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,820",
+				"to": "00:15:27,020"
+			},
+			"offsets": {
+				"from": 922820,
+				"to": 927020
+			},
+			"text": " You know, and now it's getting synced, you know, like at the bottom you can see sometimes."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,020",
+				"to": "00:15:29,620"
+			},
+			"offsets": {
+				"from": 927020,
+				"to": 929620
+			},
+			"text": " So we show the, you know, the mnemonic blah, blah, blah, blah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,620",
+				"to": "00:15:32,020"
+			},
+			"offsets": {
+				"from": 929620,
+				"to": 932020
+			},
+			"text": " You have to be careful with the mnemonic."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,020",
+				"to": "00:15:36,620"
+			},
+			"offsets": {
+				"from": 932020,
+				"to": 936620
+			},
+			"text": " Please type the mnemonic again and then you're going to have the password and just to secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,620",
+				"to": "00:15:40,380"
+			},
+			"offsets": {
+				"from": 936620,
+				"to": 940380
+			},
+			"text": " your account and it's sinking in the, in the, in the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,380",
+				"to": "00:15:43,820"
+			},
+			"offsets": {
+				"from": 940380,
+				"to": 943820
+			},
+			"text": " So it's, you know, it's not extremely fast but it's all right."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,820",
+				"to": "00:15:49,140"
+			},
+			"offsets": {
+				"from": 943820,
+				"to": 949140
+			},
+			"text": " And I can also, for instance, import an account using, I don't know, adjacent."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,140",
+				"to": "00:15:56,780"
+			},
+			"offsets": {
+				"from": 949140,
+				"to": 956780
+			},
+			"text": " So here my window was a bit not on the right side but I'm just importing adjacent and just"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,780",
+				"to": "00:15:59,580"
+			},
+			"offsets": {
+				"from": 956780,
+				"to": 959580
+			},
+			"text": " shows, you know, the name and stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,580",
+				"to": "00:16:05,660"
+			},
+			"offsets": {
+				"from": 959580,
+				"to": 965660
+			},
+			"text": " And yeah, so by the time I'm done with this process, actually I'm done sinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,660",
+				"to": "00:16:10,980"
+			},
+			"offsets": {
+				"from": 965660,
+				"to": 970980
+			},
+			"text": " You can see it's synced and now if I click on an account, it takes a bit of time to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,980",
+				"to": "00:16:11,980"
+			},
+			"offsets": {
+				"from": 970980,
+				"to": 971980
+			},
+			"text": " the balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,980",
+				"to": "00:16:13,340"
+			},
+			"offsets": {
+				"from": 971980,
+				"to": 973340
+			},
+			"text": " And it could be super quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,340",
+				"to": "00:16:15,300"
+			},
+			"offsets": {
+				"from": 973340,
+				"to": 975300
+			},
+			"text": " This Wi-Fi was not like awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,300",
+				"to": "00:16:21,900"
+			},
+			"offsets": {
+				"from": 975300,
+				"to": 981900
+			},
+			"text": " Okay, now it's dated and I had a near C20 token as the other one, the other balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,900",
+				"to": "00:16:26,060"
+			},
+			"offsets": {
+				"from": 981900,
+				"to": 986060
+			},
+			"text": " So here, for instance, I can add, I don't know, another token."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,060",
+				"to": "00:16:27,620"
+			},
+			"offsets": {
+				"from": 986060,
+				"to": 987620
+			},
+			"text": " So it's going to be a fake token."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,620",
+				"to": "00:16:28,620"
+			},
+			"offsets": {
+				"from": 987620,
+				"to": 988620
+			},
+			"text": " It's my token."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,620",
+				"to": "00:16:30,260"
+			},
+			"offsets": {
+				"from": 988620,
+				"to": 990260
+			},
+			"text": " So it's just cheap coin."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,260",
+				"to": "00:16:34,620"
+			},
+			"offsets": {
+				"from": 990260,
+				"to": 994620
+			},
+			"text": " And yeah, you know, at some point it just updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,620",
+				"to": "00:16:38,380"
+			},
+			"offsets": {
+				"from": 994620,
+				"to": 998380
+			},
+			"text": " And to send a transaction, so I'm just going to click on this one and I'm just going to,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,380",
+				"to": "00:16:40,540"
+			},
+			"offsets": {
+				"from": 998380,
+				"to": 1000540
+			},
+			"text": " you know, say to whatever these amounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,540",
+				"to": "00:16:42,260"
+			},
+			"offsets": {
+				"from": 1000540,
+				"to": 1002260
+			},
+			"text": " I can select the amount of way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,260",
+				"to": "00:16:43,580"
+			},
+			"offsets": {
+				"from": 1002260,
+				"to": 1003580
+			},
+			"text": " So here it does some call, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,580",
+				"to": "00:16:47,660"
+			},
+			"offsets": {
+				"from": 1003580,
+				"to": 1007660
+			},
+			"text": " It does like, okay, how much this transaction is going to cost, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,660",
+				"to": "00:16:49,540"
+			},
+			"offsets": {
+				"from": 1007660,
+				"to": 1009540
+			},
+			"text": " Does some calls in the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,540",
+				"to": "00:16:56,180"
+			},
+			"offsets": {
+				"from": 1009540,
+				"to": 1016180
+			},
+			"text": " And then, right, you send just a transaction like nothing, nothing very, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,180",
+				"to": "00:17:00,500"
+			},
+			"offsets": {
+				"from": 1016180,
+				"to": 1020500
+			},
+			"text": " So I'm just going to cut this because it takes some time to send a transaction but you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,500",
+				"to": "00:17:02,660"
+			},
+			"offsets": {
+				"from": 1020500,
+				"to": 1022660
+			},
+			"text": " get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,660",
+				"to": "00:17:06,220"
+			},
+			"offsets": {
+				"from": 1022660,
+				"to": 1026220
+			},
+			"text": " So what do we do now with this application?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,220",
+				"to": "00:17:07,660"
+			},
+			"offsets": {
+				"from": 1026220,
+				"to": 1027660
+			},
+			"text": " So it has been audited."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,660",
+				"to": "00:17:09,100"
+			},
+			"offsets": {
+				"from": 1027660,
+				"to": 1029100
+			},
+			"text": " This is the first time I say it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,100",
+				"to": "00:17:12,980"
+			},
+			"offsets": {
+				"from": 1029100,
+				"to": 1032980
+			},
+			"text": " It has been audited this summer by Trail of Bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,980",
+				"to": "00:17:19,820"
+			},
+			"offsets": {
+				"from": 1032980,
+				"to": 1039820
+			},
+			"text": " I'm super happy because there was no big critical problem found."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,820",
+				"to": "00:17:24,660"
+			},
+			"offsets": {
+				"from": 1039820,
+				"to": 1044660
+			},
+			"text": " We fixed actually all the problem now and we're going to have a release probably next"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,660",
+				"to": "00:17:26,620"
+			},
+			"offsets": {
+				"from": 1044660,
+				"to": 1046620
+			},
+			"text": " week with everything fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,620",
+				"to": "00:17:31,100"
+			},
+			"offsets": {
+				"from": 1046620,
+				"to": 1051100
+			},
+			"text": " And we want to give this to the community if anyone is interested to actually keep this"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,100",
+				"to": "00:17:35,780"
+			},
+			"offsets": {
+				"from": 1051100,
+				"to": 1055780
+			},
+			"text": " going because this is not something we're going to go further on."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,780",
+				"to": "00:17:38,260"
+			},
+			"offsets": {
+				"from": 1055780,
+				"to": 1058260
+			},
+			"text": " We do not have the bandwidth for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,260",
+				"to": "00:17:46,340"
+			},
+			"offsets": {
+				"from": 1058260,
+				"to": 1066340
+			},
+			"text": " And yeah, so if anyone is interested, please talk to me and we'll be happy to go on with"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,340",
+				"to": "00:17:48,140"
+			},
+			"offsets": {
+				"from": 1066340,
+				"to": 1068140
+			},
+			"text": " further."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,140",
+				"to": "00:17:51,900"
+			},
+			"offsets": {
+				"from": 1068140,
+				"to": 1071900
+			},
+			"text": " Because I have a bit of time, I'm also having a shameless plug here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,900",
+				"to": "00:17:53,900"
+			},
+			"offsets": {
+				"from": 1071900,
+				"to": 1073900
+			},
+			"text": " We're hiring a full stack developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,900",
+				"to": "00:17:59,900"
+			},
+			"offsets": {
+				"from": 1073900,
+				"to": 1079900
+			},
+			"text": " We have awesome other stuff to do with the light clients with many, many things and please"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,900",
+				"to": "00:18:03,340"
+			},
+			"offsets": {
+				"from": 1079900,
+				"to": 1083340
+			},
+			"text": " yeah, talk to me or anyone at Purdy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,340",
+				"to": "00:18:04,340"
+			},
+			"offsets": {
+				"from": 1083340,
+				"to": 1084340
+			},
+			"text": " That's about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,340",
+				"to": "00:18:06,100"
+			},
+			"offsets": {
+				"from": 1084340,
+				"to": 1086100
+			},
+			"text": " We have a couple of minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,100",
+				"to": "00:18:07,100"
+			},
+			"offsets": {
+				"from": 1086100,
+				"to": 1087100
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,100",
+				"to": "00:18:08,740"
+			},
+			"offsets": {
+				"from": 1087100,
+				"to": 1088740
+			},
+			"text": " And yeah, if you have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,860",
+				"to": "00:18:09,860"
+			},
+			"offsets": {
+				"from": 1088860,
+				"to": 1089860
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,980",
+				"to": "00:18:11,980"
+			},
+			"offsets": {
+				"from": 1089980,
+				"to": 1091980
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,980",
+				"to": "00:18:21,980"
+			},
+			"offsets": {
+				"from": 1091980,
+				"to": 1101980
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,980",
+				"to": "00:18:31,980"
+			},
+			"offsets": {
+				"from": 1101980,
+				"to": 1111980
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,980",
+				"to": "00:18:41,980"
+			},
+			"offsets": {
+				"from": 1111980,
+				"to": 1121980
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,980",
+				"to": "00:18:45,980"
+			},
+			"offsets": {
+				"from": 1121980,
+				"to": 1125980
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

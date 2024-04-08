@@ -1,0 +1,5169 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:16,680"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 16680
+			},
+			"text": " So today, I'm going to be talking about LP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,680",
+				"to": "00:00:19,120"
+			},
+			"offsets": {
+				"from": 16680,
+				"to": 19120
+			},
+			"text": " volatility harvesting across yield rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,120",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 19120,
+				"to": 22920
+			},
+			"text": " So element finance, we had an event last night."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 25440
+			},
+			"text": " If any of you were there, thank you for coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 28000
+			},
+			"text": " So it was super cool, super enjoyable."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:30,600"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 30600
+			},
+			"text": " I'll go into what we do in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,600",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 30600,
+				"to": 32800
+			},
+			"text": " But one of the major things, or one of the things"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:36,200"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 36200
+			},
+			"text": " that I want to talk about, is what is volatility harvesting?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,200",
+				"to": "00:00:38,400"
+			},
+			"offsets": {
+				"from": 36200,
+				"to": 38400
+			},
+			"text": " So volatility harvesting, at its essence,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,400",
+				"to": "00:00:40,520"
+			},
+			"offsets": {
+				"from": 38400,
+				"to": 40520
+			},
+			"text": " if you think of AMMs in the current market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,520",
+				"to": "00:00:43,880"
+			},
+			"offsets": {
+				"from": 40520,
+				"to": 43880
+			},
+			"text": " are volatility harvesting engines."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,880",
+				"to": "00:00:45,280"
+			},
+			"offsets": {
+				"from": 43880,
+				"to": 45280
+			},
+			"text": " And what does this mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,280",
+				"to": "00:00:50,200"
+			},
+			"offsets": {
+				"from": 45280,
+				"to": 50200
+			},
+			"text": " Is as spot prices drop, or as spot prices rise in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,200",
+				"to": "00:00:52,080"
+			},
+			"offsets": {
+				"from": 50200,
+				"to": 52080
+			},
+			"text": " this gives opportunity for market makers"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,080",
+				"to": "00:00:54,640"
+			},
+			"offsets": {
+				"from": 52080,
+				"to": 54640
+			},
+			"text": " to then go ahead and arb the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,640",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 54640,
+				"to": 58040
+			},
+			"text": " make profit, bringing those spot prices to a certain level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:01:01,120"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 61120
+			},
+			"text": " and allows LP's to capture fees and get value"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,120",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 61120,
+				"to": 63080
+			},
+			"text": " from those volatility changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:05,680"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 65680
+			},
+			"text": " So this is essentially what I think of when"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,680",
+				"to": "00:01:08,360"
+			},
+			"offsets": {
+				"from": 65680,
+				"to": 68360
+			},
+			"text": " I think of a volatility harvesting tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,360",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 68360,
+				"to": 71000
+			},
+			"text": " So let's apply this to the yield markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:13,200"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 73200
+			},
+			"text": " Before we do that, let me give you a quick intro"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,200",
+				"to": "00:01:16,920"
+			},
+			"offsets": {
+				"from": 73200,
+				"to": 76920
+			},
+			"text": " into what does element finance do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,920",
+				"to": "00:01:21,640"
+			},
+			"offsets": {
+				"from": 76920,
+				"to": 81640
+			},
+			"text": " So element finance, at its core, is a yield splitting protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,640",
+				"to": "00:01:23,640"
+			},
+			"offsets": {
+				"from": 81640,
+				"to": 83640
+			},
+			"text": " So what we do is we take different yield sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,640",
+				"to": "00:01:24,640"
+			},
+			"offsets": {
+				"from": 83640,
+				"to": 84640
+			},
+			"text": " in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,640",
+				"to": "00:01:27,520"
+			},
+			"offsets": {
+				"from": 84640,
+				"to": 87520
+			},
+			"text": " Let's say you have an STEath position."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,520",
+				"to": "00:01:29,200"
+			},
+			"offsets": {
+				"from": 87520,
+				"to": 89200
+			},
+			"text": " Let's say it's a urine position."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,200",
+				"to": "00:01:31,400"
+			},
+			"offsets": {
+				"from": 89200,
+				"to": 91400
+			},
+			"text": " A lot of our things are built on urine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,400",
+				"to": "00:01:33,920"
+			},
+			"offsets": {
+				"from": 91400,
+				"to": 93920
+			},
+			"text": " And what we do is if you put a million dollars in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,920",
+				"to": "00:01:36,120"
+			},
+			"offsets": {
+				"from": 93920,
+				"to": 96120
+			},
+			"text": " we take that position, we split it into two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,120",
+				"to": "00:01:39,320"
+			},
+			"offsets": {
+				"from": 96120,
+				"to": 99320
+			},
+			"text": " So there's the principal and the interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,320",
+				"to": "00:01:42,280"
+			},
+			"offsets": {
+				"from": 99320,
+				"to": 102280
+			},
+			"text": " So you have a one-year lockup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,280",
+				"to": "00:01:45,520"
+			},
+			"offsets": {
+				"from": 102280,
+				"to": 105520
+			},
+			"text": " If you have 10% interest on this position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,520",
+				"to": "00:01:47,560"
+			},
+			"offsets": {
+				"from": 105520,
+				"to": 107560
+			},
+			"text": " you have a million dollars in principal."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,560",
+				"to": "00:01:50,160"
+			},
+			"offsets": {
+				"from": 107560,
+				"to": 110160
+			},
+			"text": " And I guess this shows 20%."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,160",
+				"to": "00:01:56,320"
+			},
+			"offsets": {
+				"from": 110160,
+				"to": 116320
+			},
+			"text": " So 20% on a million dollars would be 200k in interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,320",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 116320,
+				"to": 118000
+			},
+			"text": " So at the end of the term, at the end of the year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:00,080"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 120080
+			},
+			"text": " you can collect both of those."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,080",
+				"to": "00:02:01,240"
+			},
+			"offsets": {
+				"from": 120080,
+				"to": 121240
+			},
+			"text": " We use a curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,240",
+				"to": "00:02:04,440"
+			},
+			"offsets": {
+				"from": 121240,
+				"to": 124440
+			},
+			"text": " This was developed mainly by actually yield space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,440",
+				"to": "00:02:06,520"
+			},
+			"offsets": {
+				"from": 124440,
+				"to": 126520
+			},
+			"text": " We did an alteration on this curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,520",
+				"to": "00:02:09,320"
+			},
+			"offsets": {
+				"from": 126520,
+				"to": 129320
+			},
+			"text": " It's called a constant power sum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,320",
+				"to": "00:02:12,680"
+			},
+			"offsets": {
+				"from": 129320,
+				"to": 132680
+			},
+			"text": " And essentially what we do is during the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,680",
+				"to": "00:02:15,880"
+			},
+			"offsets": {
+				"from": 132680,
+				"to": 135880
+			},
+			"text": " we let people essentially stake the principal that they have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,880",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 135880,
+				"to": 137280
+			},
+			"text": " that's locked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:21,360"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 141360
+			},
+			"text": " And what the curve does is it's a time-based curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,360",
+				"to": "00:02:25,680"
+			},
+			"offsets": {
+				"from": 141360,
+				"to": 145680
+			},
+			"text": " And it sort of follows this concept where I give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,680",
+				"to": "00:02:27,600"
+			},
+			"offsets": {
+				"from": 145680,
+				"to": 147600
+			},
+			"text": " a dollar for $0.99 or $0.90."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,600",
+				"to": "00:02:32,240"
+			},
+			"offsets": {
+				"from": 147600,
+				"to": 152240
+			},
+			"text": " So this is the concept of the opportunity cost of money."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,240",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 152240,
+				"to": 157000
+			},
+			"text": " So if I say, hey, I'm going to offer you this million dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 158280
+			},
+			"text": " But you can't touch it for a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 160000
+			},
+			"text": " You can't do anything with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:42,880"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 162880
+			},
+			"text": " What is it worth for you to have that million dollars?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,880",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 162880,
+				"to": 164600
+			},
+			"text": " I can't put in a savings account."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:45,960"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 165960
+			},
+			"text": " I can't stake it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,960",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 165960,
+				"to": 167400
+			},
+			"text": " I can't farm with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 171240
+			},
+			"text": " I'm losing some type of interest on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 174560
+			},
+			"text": " So I say, hey, I think I could probably get 15% APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:02:56,560"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 176560
+			},
+			"text": " I'll give you 90% of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,560",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 176560,
+				"to": 178000
+			},
+			"text": " So here's a dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:02:59,520"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 179520
+			},
+			"text": " You can't use it for the next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,520",
+				"to": "00:03:01,240"
+			},
+			"offsets": {
+				"from": 179520,
+				"to": 181240
+			},
+			"text": " I'll give you $0.90 for that dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,240",
+				"to": "00:03:03,520"
+			},
+			"offsets": {
+				"from": 181240,
+				"to": 183520
+			},
+			"text": " And so what this curve essentially does"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,520",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 183520,
+				"to": 188000
+			},
+			"text": " is it acts with respect to this time period"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191440
+			},
+			"text": " between the constant product and the constant sum formula."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 194040
+			},
+			"text": " So early on, it has price discovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,040",
+				"to": "00:03:16,680"
+			},
+			"offsets": {
+				"from": 194040,
+				"to": 196680
+			},
+			"text": " You can have the APY change on the principal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,680",
+				"to": "00:03:19,600"
+			},
+			"offsets": {
+				"from": 196680,
+				"to": 199600
+			},
+			"text": " This million dollar is locked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,600",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 199600,
+				"to": 202880
+			},
+			"text": " And later on, it sort of converges one to one value."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:25,520"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 205520
+			},
+			"text": " If I say, hey, here's a million dollars tomorrow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,520",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 205520,
+				"to": 207160
+			},
+			"text": " you can't use it until tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:29,640"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 209640
+			},
+			"text": " You'll probably buy it for a million dollars, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,640",
+				"to": "00:03:32,720"
+			},
+			"offsets": {
+				"from": 209640,
+				"to": 212720
+			},
+			"text": " Versus for a year from now, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,720",
+				"to": "00:03:34,560"
+			},
+			"offsets": {
+				"from": 212720,
+				"to": 214560
+			},
+			"text": " get that opportunity cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,560",
+				"to": "00:03:37,120"
+			},
+			"offsets": {
+				"from": 214560,
+				"to": 217120
+			},
+			"text": " So this is essentially how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,120",
+				"to": "00:03:39,320"
+			},
+			"offsets": {
+				"from": 217120,
+				"to": 219320
+			},
+			"text": " So what we saw early on in our platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,320",
+				"to": "00:03:42,200"
+			},
+			"offsets": {
+				"from": 219320,
+				"to": 222200
+			},
+			"text": " is these markets actually worked really well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,200",
+				"to": "00:03:46,000"
+			},
+			"offsets": {
+				"from": 222200,
+				"to": 226000
+			},
+			"text": " As people locked up their principal in the AMMs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,000",
+				"to": "00:03:47,360"
+			},
+			"offsets": {
+				"from": 226000,
+				"to": 227360
+			},
+			"text": " people were actually trading these"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,360",
+				"to": "00:03:50,440"
+			},
+			"offsets": {
+				"from": 227360,
+				"to": 230440
+			},
+			"text": " with opportunity cost of money based"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,440",
+				"to": "00:03:52,320"
+			},
+			"offsets": {
+				"from": 230440,
+				"to": 232320
+			},
+			"text": " on the variable rates that you could see in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,320",
+				"to": "00:03:55,680"
+			},
+			"offsets": {
+				"from": 232320,
+				"to": 235680
+			},
+			"text": " So for example, when we had first launched,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,680",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 235680,
+				"to": 240880
+			},
+			"text": " we saw a curve tricrypto term where the yield was--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:03,600"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 243600
+			},
+			"text": " the fixed APY was at 15%."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,600",
+				"to": "00:04:07,360"
+			},
+			"offsets": {
+				"from": 243600,
+				"to": 247360
+			},
+			"text": " And the variable rate was at 9% in this term."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,360",
+				"to": "00:04:11,640"
+			},
+			"offsets": {
+				"from": 247360,
+				"to": 251640
+			},
+			"text": " So what ended up happening is the fixed rate people actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,640",
+				"to": "00:04:14,720"
+			},
+			"offsets": {
+				"from": 251640,
+				"to": 254720
+			},
+			"text": " brought the fixed APY to be higher than the variable APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,720",
+				"to": "00:04:16,720"
+			},
+			"offsets": {
+				"from": 254720,
+				"to": 256720
+			},
+			"text": " How does that make sense?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,720",
+				"to": "00:04:18,160"
+			},
+			"offsets": {
+				"from": 256720,
+				"to": 258160
+			},
+			"text": " It's hard to grab that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,160",
+				"to": "00:04:19,520"
+			},
+			"offsets": {
+				"from": 258160,
+				"to": 259520
+			},
+			"text": " It's hard to understand that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,520",
+				"to": "00:04:21,240"
+			},
+			"offsets": {
+				"from": 259520,
+				"to": 261240
+			},
+			"text": " What happened is we were in a market low."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,240",
+				"to": "00:04:24,400"
+			},
+			"offsets": {
+				"from": 261240,
+				"to": 264400
+			},
+			"text": " So the variable rates had all dropped in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,400",
+				"to": "00:04:27,760"
+			},
+			"offsets": {
+				"from": 264400,
+				"to": 267760
+			},
+			"text": " And people were speculating that they would rise."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,760",
+				"to": "00:04:28,800"
+			},
+			"offsets": {
+				"from": 267760,
+				"to": 268800
+			},
+			"text": " And sure enough, they did."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,800",
+				"to": "00:04:31,080"
+			},
+			"offsets": {
+				"from": 268800,
+				"to": 271080
+			},
+			"text": " They ended up making money off of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,080",
+				"to": "00:04:35,200"
+			},
+			"offsets": {
+				"from": 271080,
+				"to": 275200
+			},
+			"text": " And so why is that related to the number of value here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,200",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 275200,
+				"to": 278160
+			},
+			"text": " So we have this system called yield token compounding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:42,400"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 282400
+			},
+			"text": " which essentially lets you go through and leverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,400",
+				"to": "00:04:44,840"
+			},
+			"offsets": {
+				"from": 282400,
+				"to": 284840
+			},
+			"text": " your exposure to variable interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,840",
+				"to": "00:04:47,320"
+			},
+			"offsets": {
+				"from": 284840,
+				"to": 287320
+			},
+			"text": " to go long on variable interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,320",
+				"to": "00:04:49,240"
+			},
+			"offsets": {
+				"from": 287320,
+				"to": 289240
+			},
+			"text": " And it's this concept where you mint these principal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,240",
+				"to": "00:04:50,320"
+			},
+			"offsets": {
+				"from": 289240,
+				"to": 290320
+			},
+			"text": " these yield tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,320",
+				"to": "00:04:53,960"
+			},
+			"offsets": {
+				"from": 290320,
+				"to": 293960
+			},
+			"text": " You sell your principal for a fixed APY percentage."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,960",
+				"to": "00:04:57,600"
+			},
+			"offsets": {
+				"from": 293960,
+				"to": 297600
+			},
+			"text": " And you do this repeatedly until you own a stronger"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,600",
+				"to": "00:04:59,720"
+			},
+			"offsets": {
+				"from": 297600,
+				"to": 299720
+			},
+			"text": " exposure to the yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,720",
+				"to": "00:05:02,760"
+			},
+			"offsets": {
+				"from": 299720,
+				"to": 302760
+			},
+			"text": " So this is-- I don't want to go into too much depth here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,760",
+				"to": "00:05:05,800"
+			},
+			"offsets": {
+				"from": 302760,
+				"to": 305800
+			},
+			"text": " But if the variable APY is at 20%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,800",
+				"to": "00:05:09,160"
+			},
+			"offsets": {
+				"from": 305800,
+				"to": 309160
+			},
+			"text": " and let's say the fixed APY is at 10%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,160",
+				"to": "00:05:11,360"
+			},
+			"offsets": {
+				"from": 309160,
+				"to": 311360
+			},
+			"text": " I have a 10% spread."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,360",
+				"to": "00:05:14,160"
+			},
+			"offsets": {
+				"from": 311360,
+				"to": 314160
+			},
+			"text": " If I basically re-hypoticate and do this, I deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,160",
+				"to": "00:05:16,360"
+			},
+			"offsets": {
+				"from": 314160,
+				"to": 316360
+			},
+			"text": " I sell, I deposit, I sell, I deposit, I sell."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,360",
+				"to": "00:05:19,160"
+			},
+			"offsets": {
+				"from": 316360,
+				"to": 319160
+			},
+			"text": " I do this six or seven times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,160",
+				"to": "00:05:22,200"
+			},
+			"offsets": {
+				"from": 319160,
+				"to": 322200
+			},
+			"text": " I can 7x that to around 70%."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,200",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 322200,
+				"to": 326000
+			},
+			"text": " So this causes an upward price action"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 328000
+			},
+			"text": " in the fixed rates in the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:30,120"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 330120
+			},
+			"text": " And so if I believe the variable rates are going to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,120",
+				"to": "00:05:32,680"
+			},
+			"offsets": {
+				"from": 330120,
+				"to": 332680
+			},
+			"text": " significantly higher, I might be willing to let"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,680",
+				"to": "00:05:37,080"
+			},
+			"offsets": {
+				"from": 332680,
+				"to": 337080
+			},
+			"text": " the fixed rate go higher than what the current variable rates are."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,080",
+				"to": "00:05:41,200"
+			},
+			"offsets": {
+				"from": 337080,
+				"to": 341200
+			},
+			"text": " So we saw some other interesting volatility behaviors."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,200",
+				"to": "00:05:42,480"
+			},
+			"offsets": {
+				"from": 341200,
+				"to": 342480
+			},
+			"text": " At one point, there was--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,480",
+				"to": "00:05:44,840"
+			},
+			"offsets": {
+				"from": 342480,
+				"to": 344840
+			},
+			"text": " I actually did a talk about this at another conference."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,840",
+				"to": "00:05:46,560"
+			},
+			"offsets": {
+				"from": 344840,
+				"to": 346560
+			},
+			"text": " There was issues with MIM."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,560",
+				"to": "00:05:48,560"
+			},
+			"offsets": {
+				"from": 346560,
+				"to": 348560
+			},
+			"text": " I think a lot of you remember that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,560",
+				"to": "00:05:50,080"
+			},
+			"offsets": {
+				"from": 348560,
+				"to": 350080
+			},
+			"text": " There's a whole scandal there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,080",
+				"to": "00:05:53,240"
+			},
+			"offsets": {
+				"from": 350080,
+				"to": 353240
+			},
+			"text": " We have a lot of those sometimes in our industry."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,240",
+				"to": "00:05:58,680"
+			},
+			"offsets": {
+				"from": 353240,
+				"to": 358680
+			},
+			"text": " And the fixed APR popped up to 130%."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,680",
+				"to": "00:06:02,080"
+			},
+			"offsets": {
+				"from": 358680,
+				"to": 362080
+			},
+			"text": " And then we had another case where we had a WBTC vault,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,080",
+				"to": "00:06:06,200"
+			},
+			"offsets": {
+				"from": 362080,
+				"to": 366200
+			},
+			"text": " where it dropped completely to 0% actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,200",
+				"to": "00:06:08,480"
+			},
+			"offsets": {
+				"from": 366200,
+				"to": 368480
+			},
+			"text": " And during this time, we saw a lot of volatility movement."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,480",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 368480,
+				"to": 372000
+			},
+			"text": " The price action, basically the fixed APYs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:12,760"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 372760
+			},
+			"text": " went up and down."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,760",
+				"to": "00:06:17,760"
+			},
+			"offsets": {
+				"from": 372760,
+				"to": 377760
+			},
+			"text": " They went to 50% to 100% down to 20% back up to 70%."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,760",
+				"to": "00:06:21,440"
+			},
+			"offsets": {
+				"from": 377760,
+				"to": 381440
+			},
+			"text": " It moved all around the place."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,440",
+				"to": "00:06:25,640"
+			},
+			"offsets": {
+				"from": 381440,
+				"to": 385640
+			},
+			"text": " And so this is an example of the volatility in action,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,640",
+				"to": "00:06:27,840"
+			},
+			"offsets": {
+				"from": 385640,
+				"to": 387840
+			},
+			"text": " eventually normalized around 10%."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,840",
+				"to": "00:06:32,280"
+			},
+			"offsets": {
+				"from": 387840,
+				"to": 392280
+			},
+			"text": " So what do we notice in the fixed rate market?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,280",
+				"to": "00:06:35,800"
+			},
+			"offsets": {
+				"from": 392280,
+				"to": 395800
+			},
+			"text": " Is it generally sometimes except for some of these exceptions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,800",
+				"to": "00:06:38,280"
+			},
+			"offsets": {
+				"from": 395800,
+				"to": 398280
+			},
+			"text": " it tends to follow the variable rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,280",
+				"to": "00:06:41,120"
+			},
+			"offsets": {
+				"from": 398280,
+				"to": 401120
+			},
+			"text": " It ends up being somewhat similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,120",
+				"to": "00:06:43,280"
+			},
+			"offsets": {
+				"from": 401120,
+				"to": 403280
+			},
+			"text": " The APY to the variable rate is in the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,280",
+				"to": "00:06:45,880"
+			},
+			"offsets": {
+				"from": 403280,
+				"to": 405880
+			},
+			"text": " sometimes a little less, sometimes a little bit higher."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,880",
+				"to": "00:06:46,880"
+			},
+			"offsets": {
+				"from": 405880,
+				"to": 406880
+			},
+			"text": " They tend to track each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,880",
+				"to": "00:06:47,640"
+			},
+			"offsets": {
+				"from": 406880,
+				"to": 407640
+			},
+			"text": " They're correlated."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,640",
+				"to": "00:06:48,760"
+			},
+			"offsets": {
+				"from": 407640,
+				"to": 408760
+			},
+			"text": " That's what we've seen from the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,760",
+				"to": "00:06:51,320"
+			},
+			"offsets": {
+				"from": 408760,
+				"to": 411320
+			},
+			"text": " that we've gotten in our current V1."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,320",
+				"to": "00:06:54,960"
+			},
+			"offsets": {
+				"from": 411320,
+				"to": 414960
+			},
+			"text": " And this is where I've done a talk on this before"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,960",
+				"to": "00:07:00,040"
+			},
+			"offsets": {
+				"from": 414960,
+				"to": 420040
+			},
+			"text": " is essentially these fixed rate markets that we do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,040",
+				"to": "00:07:01,840"
+			},
+			"offsets": {
+				"from": 420040,
+				"to": 421840
+			},
+			"text": " they're not really just fixed rate markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,840",
+				"to": "00:07:03,880"
+			},
+			"offsets": {
+				"from": 421840,
+				"to": 423880
+			},
+			"text": " they're yield markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,880",
+				"to": "00:07:05,680"
+			},
+			"offsets": {
+				"from": 423880,
+				"to": 425680
+			},
+			"text": " We're essentially creating this value capture"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,680",
+				"to": "00:07:07,400"
+			},
+			"offsets": {
+				"from": 425680,
+				"to": 427400
+			},
+			"text": " mechanism for yield markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,400",
+				"to": "00:07:11,400"
+			},
+			"offsets": {
+				"from": 427400,
+				"to": 431400
+			},
+			"text": " And so what is like element finance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,400",
+				"to": "00:07:14,760"
+			},
+			"offsets": {
+				"from": 431400,
+				"to": 434760
+			},
+			"text": " and these systems and fixed rate systems as a whole,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,760",
+				"to": "00:07:18,520"
+			},
+			"offsets": {
+				"from": 434760,
+				"to": 438520
+			},
+			"text": " you can see them as it's more than a fixed rate system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,520",
+				"to": "00:07:20,880"
+			},
+			"offsets": {
+				"from": 438520,
+				"to": 440880
+			},
+			"text": " It's a highly liquid arbitrage market"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,880",
+				"to": "00:07:23,840"
+			},
+			"offsets": {
+				"from": 440880,
+				"to": 443840
+			},
+			"text": " that lets you play and create profit as yields"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,840",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 443840,
+				"to": 445000
+			},
+			"text": " shift within the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:28,520"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 448520
+			},
+			"text": " So as yields spike to 10, they dropped to 2."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,520",
+				"to": "00:07:29,840"
+			},
+			"offsets": {
+				"from": 448520,
+				"to": 449840
+			},
+			"text": " I can create profit off of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,840",
+				"to": "00:07:34,520"
+			},
+			"offsets": {
+				"from": 449840,
+				"to": 454520
+			},
+			"text": " And a similar way that if ETH spikes up and then drops,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,520",
+				"to": "00:07:37,200"
+			},
+			"offsets": {
+				"from": 454520,
+				"to": 457200
+			},
+			"text": " I can create profit mechanisms off of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,200",
+				"to": "00:07:40,880"
+			},
+			"offsets": {
+				"from": 457200,
+				"to": 460880
+			},
+			"text": " It also allows for really cool things like leverage,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,880",
+				"to": "00:07:46,160"
+			},
+			"offsets": {
+				"from": 460880,
+				"to": 466160
+			},
+			"text": " going long variable, being negative on the future variable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,160",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 466160,
+				"to": 466600
+			},
+			"text": " interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:48,320"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 468320
+			},
+			"text": " I believe this one's going to go to 0%."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,320",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 468320,
+				"to": 470880
+			},
+			"text": " This farm shot up in value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:54,600"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 474600
+			},
+			"text": " So the dream for me, and it's not just element,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,600",
+				"to": "00:07:57,160"
+			},
+			"offsets": {
+				"from": 474600,
+				"to": 477160
+			},
+			"text": " it's the fixed rate space, just akin"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,160",
+				"to": "00:08:01,160"
+			},
+			"offsets": {
+				"from": 477160,
+				"to": 481160
+			},
+			"text": " to some similarities to zero coupon bonds, other things"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,160",
+				"to": "00:08:05,080"
+			},
+			"offsets": {
+				"from": 481160,
+				"to": 485080
+			},
+			"text": " like that, is that it ends up becoming this intermediate layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,080",
+				"to": "00:08:07,480"
+			},
+			"offsets": {
+				"from": 485080,
+				"to": 487480
+			},
+			"text": " for yields across lending and borrowing platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,480",
+				"to": "00:08:10,440"
+			},
+			"offsets": {
+				"from": 487480,
+				"to": 490440
+			},
+			"text": " And also not just lending and borrowing platforms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,440",
+				"to": "00:08:12,920"
+			},
+			"offsets": {
+				"from": 490440,
+				"to": 492920
+			},
+			"text": " but yield platforms as a whole."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,920",
+				"to": "00:08:16,960"
+			},
+			"offsets": {
+				"from": 492920,
+				"to": 496960
+			},
+			"text": " So real quick, I'm going to go into one example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,960",
+				"to": "00:08:18,680"
+			},
+			"offsets": {
+				"from": 496960,
+				"to": 498680
+			},
+			"text": " This is going to be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,680",
+				"to": "00:08:20,320"
+			},
+			"offsets": {
+				"from": 498680,
+				"to": 500320
+			},
+			"text": " I can't go into a lot of the depth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,320",
+				"to": "00:08:22,880"
+			},
+			"offsets": {
+				"from": 500320,
+				"to": 502880
+			},
+			"text": " but I want to sort of paint a picture."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,880",
+				"to": "00:08:24,880"
+			},
+			"offsets": {
+				"from": 502880,
+				"to": 504880
+			},
+			"text": " So I did a Twitter thread."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,880",
+				"to": "00:08:26,520"
+			},
+			"offsets": {
+				"from": 504880,
+				"to": 506520
+			},
+			"text": " You can check it out on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,520",
+				"to": "00:08:30,240"
+			},
+			"offsets": {
+				"from": 506520,
+				"to": 510240
+			},
+			"text": " It's pinned, where I actually coded--"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,240",
+				"to": "00:08:35,040"
+			},
+			"offsets": {
+				"from": 510240,
+				"to": 515040
+			},
+			"text": " I went for a week in my room and coded a bunch of simulations."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,040",
+				"to": "00:08:37,680"
+			},
+			"offsets": {
+				"from": 515040,
+				"to": 517680
+			},
+			"text": " And this simulation particularly was"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,680",
+				"to": "00:08:40,120"
+			},
+			"offsets": {
+				"from": 517680,
+				"to": 520120
+			},
+			"text": " on something called Fiat DAO."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,120",
+				"to": "00:08:41,840"
+			},
+			"offsets": {
+				"from": 520120,
+				"to": 521840
+			},
+			"text": " And what they did, it was akin to maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,840",
+				"to": "00:08:44,880"
+			},
+			"offsets": {
+				"from": 521840,
+				"to": 524880
+			},
+			"text": " where they had a 1% stability set fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,880",
+				"to": "00:08:48,560"
+			},
+			"offsets": {
+				"from": 524880,
+				"to": 528560
+			},
+			"text": " And that 1% stability fee is basically your borrow rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,560",
+				"to": "00:08:52,920"
+			},
+			"offsets": {
+				"from": 528560,
+				"to": 532920
+			},
+			"text": " And what they did is they took principal tokens as collateral."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,920",
+				"to": "00:08:55,480"
+			},
+			"offsets": {
+				"from": 532920,
+				"to": 535480
+			},
+			"text": " So I could take a principal or fixed rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,480",
+				"to": "00:08:58,160"
+			},
+			"offsets": {
+				"from": 535480,
+				"to": 538160
+			},
+			"text": " These principal tokens are these fixed rate tokens, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,160",
+				"to": "00:09:02,240"
+			},
+			"offsets": {
+				"from": 538160,
+				"to": 542240
+			},
+			"text": " So I could buy a fixed rate, use this collateral, borrow fiat,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,240",
+				"to": "00:09:06,160"
+			},
+			"offsets": {
+				"from": 542240,
+				"to": 546160
+			},
+			"text": " swap that to die, buy more fixed rate die."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,160",
+				"to": "00:09:09,480"
+			},
+			"offsets": {
+				"from": 546160,
+				"to": 549480
+			},
+			"text": " I could basically leverage into the fixed rate side."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,480",
+				"to": "00:09:12,760"
+			},
+			"offsets": {
+				"from": 549480,
+				"to": 552760
+			},
+			"text": " And so if the borrow is at 1% APY, or let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,760",
+				"to": "00:09:15,200"
+			},
+			"offsets": {
+				"from": 552760,
+				"to": 555200
+			},
+			"text": " maker's stability, if you want to think in relation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,200",
+				"to": "00:09:20,240"
+			},
+			"offsets": {
+				"from": 555200,
+				"to": 560240
+			},
+			"text": " to maker or other systems, is that 1% APY?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,240",
+				"to": "00:09:24,880"
+			},
+			"offsets": {
+				"from": 560240,
+				"to": 564880
+			},
+			"text": " And essentially what we're able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,880",
+				"to": "00:09:27,440"
+			},
+			"offsets": {
+				"from": 564880,
+				"to": 567440
+			},
+			"text": " is if the fixed rate's at 3%, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,440",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 567440,
+				"to": 571320
+			},
+			"text": " can leverage into that fixed rate until it basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:36,640"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 576640
+			},
+			"text": " converges to that 1% value, which is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,640",
+				"to": "00:09:41,360"
+			},
+			"offsets": {
+				"from": 576640,
+				"to": 581360
+			},
+			"text": " And what does this also allow for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,360",
+				"to": "00:09:45,280"
+			},
+			"offsets": {
+				"from": 581360,
+				"to": 585280
+			},
+			"text": " So there's this concept of fixed rate borrowing mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,280",
+				"to": "00:09:45,760"
+			},
+			"offsets": {
+				"from": 585280,
+				"to": 585760
+			},
+			"text": " or adapter."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,760",
+				"to": "00:09:48,200"
+			},
+			"offsets": {
+				"from": 585760,
+				"to": 588200
+			},
+			"text": " Someone was a few people who were working on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,200",
+				"to": "00:09:51,640"
+			},
+			"offsets": {
+				"from": 588200,
+				"to": 591640
+			},
+			"text": " on the element platform, actually currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,640",
+				"to": "00:09:53,960"
+			},
+			"offsets": {
+				"from": 591640,
+				"to": 593960
+			},
+			"text": " And essentially what this is is you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,960",
+				"to": "00:09:59,040"
+			},
+			"offsets": {
+				"from": 593960,
+				"to": 599040
+			},
+			"text": " could take these instruments that we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,040",
+				"to": "00:10:01,560"
+			},
+			"offsets": {
+				"from": 599040,
+				"to": 601560
+			},
+			"text": " and you can plug them into compound and Aave"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,560",
+				"to": "00:10:03,600"
+			},
+			"offsets": {
+				"from": 601560,
+				"to": 603600
+			},
+			"text": " and existing systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,600",
+				"to": "00:10:05,800"
+			},
+			"offsets": {
+				"from": 603600,
+				"to": 605800
+			},
+			"text": " And what you do is you essentially create a hedge market."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,800",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 605800,
+				"to": 609200
+			},
+			"text": " You transform them into fixed rate borrow markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:11,960"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 611960
+			},
+			"text": " So let's say I have a compound borrow position."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,960",
+				"to": "00:10:14,680"
+			},
+			"offsets": {
+				"from": 611960,
+				"to": 614680
+			},
+			"text": " Let's say I'm borrowing die from compound."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,680",
+				"to": "00:10:19,920"
+			},
+			"offsets": {
+				"from": 614680,
+				"to": 619920
+			},
+			"text": " Let's say we hit very low utility rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,920",
+				"to": "00:10:23,640"
+			},
+			"offsets": {
+				"from": 619920,
+				"to": 623640
+			},
+			"text": " And in this case, the APY to borrow goes low."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,640",
+				"to": "00:10:25,320"
+			},
+			"offsets": {
+				"from": 623640,
+				"to": 625320
+			},
+			"text": " Let's say it goes to 1/2%--"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,320",
+				"to": "00:10:26,040"
+			},
+			"offsets": {
+				"from": 625320,
+				"to": 626040
+			},
+			"text": " this is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,040",
+				"to": "00:10:28,480"
+			},
+			"offsets": {
+				"from": 626040,
+				"to": 628480
+			},
+			"text": " I want to lock that in."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,480",
+				"to": "00:10:33,480"
+			},
+			"offsets": {
+				"from": 628480,
+				"to": 633480
+			},
+			"text": " So what you can do with the system that we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,480",
+				"to": "00:10:36,840"
+			},
+			"offsets": {
+				"from": 633480,
+				"to": 636840
+			},
+			"text": " is you take out that borrow and you hedge by going directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,840",
+				"to": "00:10:38,320"
+			},
+			"offsets": {
+				"from": 636840,
+				"to": 638320
+			},
+			"text": " into the yield."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,320",
+				"to": "00:10:41,600"
+			},
+			"offsets": {
+				"from": 638320,
+				"to": 641600
+			},
+			"text": " These are the yield tokens I talked about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,600",
+				"to": "00:10:49,320"
+			},
+			"offsets": {
+				"from": 641600,
+				"to": 649320
+			},
+			"text": " And what you do is, in this case, I'm saying, OK,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,320",
+				"to": "00:10:51,160"
+			},
+			"offsets": {
+				"from": 649320,
+				"to": 651160
+			},
+			"text": " lending is at 3%, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,160",
+				"to": "00:10:53,160"
+			},
+			"offsets": {
+				"from": 651160,
+				"to": 653160
+			},
+			"text": " Borrow is at 1% APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,160",
+				"to": "00:10:56,880"
+			},
+			"offsets": {
+				"from": 653160,
+				"to": 656880
+			},
+			"text": " If suddenly the borrow goes up to 10% APY,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,880",
+				"to": "00:11:00,720"
+			},
+			"offsets": {
+				"from": 656880,
+				"to": 660720
+			},
+			"text": " the lending side also is going to spike up to around 10%"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,720",
+				"to": "00:11:02,200"
+			},
+			"offsets": {
+				"from": 660720,
+				"to": 662200
+			},
+			"text": " or 12%."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,200",
+				"to": "00:11:04,120"
+			},
+			"offsets": {
+				"from": 662200,
+				"to": 664120
+			},
+			"text": " And so because I hedged my borrow position"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,120",
+				"to": "00:11:07,600"
+			},
+			"offsets": {
+				"from": 664120,
+				"to": 667600
+			},
+			"text": " with this yield exposure on the lending position,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,600",
+				"to": "00:11:11,440"
+			},
+			"offsets": {
+				"from": 667600,
+				"to": 671440
+			},
+			"text": " that means my borrow position gets pretty stable."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,440",
+				"to": "00:11:17,520"
+			},
+			"offsets": {
+				"from": 671440,
+				"to": 677520
+			},
+			"text": " I'm hedged against stark drops or rises in the interest rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,520",
+				"to": "00:11:19,160"
+			},
+			"offsets": {
+				"from": 677520,
+				"to": 679160
+			},
+			"text": " This is really cool because we can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,160",
+				"to": "00:11:23,320"
+			},
+			"offsets": {
+				"from": 679160,
+				"to": 683320
+			},
+			"text": " turn it in any platform, lending platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,320",
+				"to": "00:11:26,520"
+			},
+			"offsets": {
+				"from": 683320,
+				"to": 686520
+			},
+			"text": " doesn't matter what chain into a fixed rate borrow system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,520",
+				"to": "00:11:27,640"
+			},
+			"offsets": {
+				"from": 686520,
+				"to": 687640
+			},
+			"text": " This can be built on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,640",
+				"to": "00:11:30,240"
+			},
+			"offsets": {
+				"from": 687640,
+				"to": 690240
+			},
+			"text": " This can be an adapter."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,240",
+				"to": "00:11:33,160"
+			},
+			"offsets": {
+				"from": 690240,
+				"to": 693160
+			},
+			"text": " So what does this mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,160",
+				"to": "00:11:36,160"
+			},
+			"offsets": {
+				"from": 693160,
+				"to": 696160
+			},
+			"text": " If you take a step back, you can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,160",
+				"to": "00:11:39,200"
+			},
+			"offsets": {
+				"from": 696160,
+				"to": 699200
+			},
+			"text": " that these mechanisms, these fixed rate and variable rate"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,200",
+				"to": "00:11:41,520"
+			},
+			"offsets": {
+				"from": 699200,
+				"to": 701520
+			},
+			"text": " in these yield markets that we have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,520",
+				"to": "00:11:44,320"
+			},
+			"offsets": {
+				"from": 701520,
+				"to": 704320
+			},
+			"text": " what they do is they create this convergence layer for DeFi"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,320",
+				"to": "00:11:46,840"
+			},
+			"offsets": {
+				"from": 704320,
+				"to": 706840
+			},
+			"text": " rates, for lending market rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,840",
+				"to": "00:11:49,680"
+			},
+			"offsets": {
+				"from": 706840,
+				"to": 709680
+			},
+			"text": " You use it to take out borrow positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,680",
+				"to": "00:11:53,880"
+			},
+			"offsets": {
+				"from": 709680,
+				"to": 713880
+			},
+			"text": " You can create essentially fixed rate and variable positions"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,880",
+				"to": "00:11:58,640"
+			},
+			"offsets": {
+				"from": 713880,
+				"to": 718640
+			},
+			"text": " on the lending side, the side where you get APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,640",
+				"to": "00:12:01,240"
+			},
+			"offsets": {
+				"from": 718640,
+				"to": 721240
+			},
+			"text": " And when you go across platform, if I basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,240",
+				"to": "00:12:05,080"
+			},
+			"offsets": {
+				"from": 721240,
+				"to": 725080
+			},
+			"text": " do a fixed rate borrow on platform A,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,080",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 725080,
+				"to": 733000
+			},
+			"text": " and then I essentially use that to sort of go into and purchase"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:16,800"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 736800
+			},
+			"text": " the principal tokens on platform B that are certain value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,800",
+				"to": "00:12:19,760"
+			},
+			"offsets": {
+				"from": 736800,
+				"to": 739760
+			},
+			"text": " you end up having this sort of liquid layer in between"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,760",
+				"to": "00:12:22,360"
+			},
+			"offsets": {
+				"from": 739760,
+				"to": 742360
+			},
+			"text": " that brings all those rates to convergence"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,360",
+				"to": "00:12:23,120"
+			},
+			"offsets": {
+				"from": 742360,
+				"to": 743120
+			},
+			"text": " and brings them together."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,120",
+				"to": "00:12:24,440"
+			},
+			"offsets": {
+				"from": 743120,
+				"to": 744440
+			},
+			"text": " It's really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,440",
+				"to": "00:12:26,600"
+			},
+			"offsets": {
+				"from": 744440,
+				"to": 746600
+			},
+			"text": " I wish I had a better diagram for this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,600",
+				"to": "00:12:28,840"
+			},
+			"offsets": {
+				"from": 746600,
+				"to": 748840
+			},
+			"text": " but I'm sort of starting to introduce this topic"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,840",
+				"to": "00:12:30,920"
+			},
+			"offsets": {
+				"from": 748840,
+				"to": 750920
+			},
+			"text": " and playing with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,920",
+				"to": "00:12:33,800"
+			},
+			"offsets": {
+				"from": 750920,
+				"to": 753800
+			},
+			"text": " And this works across different L2s, L1s."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,800",
+				"to": "00:12:37,040"
+			},
+			"offsets": {
+				"from": 753800,
+				"to": 757040
+			},
+			"text": " It's really, really powerful, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,040",
+				"to": "00:12:41,080"
+			},
+			"offsets": {
+				"from": 757040,
+				"to": 761080
+			},
+			"text": " And so we've already started batching basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,080",
+				"to": "00:12:44,520"
+			},
+			"offsets": {
+				"from": 761080,
+				"to": 764520
+			},
+			"text": " activities on Aztec or Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,520",
+				"to": "00:12:46,640"
+			},
+			"offsets": {
+				"from": 764520,
+				"to": 766640
+			},
+			"text": " And so what I sort of see is this world"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,640",
+				"to": "00:12:48,960"
+			},
+			"offsets": {
+				"from": 766640,
+				"to": 768960
+			},
+			"text": " where we can sort of batch a lot of the activities"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,960",
+				"to": "00:12:54,240"
+			},
+			"offsets": {
+				"from": 768960,
+				"to": 774240
+			},
+			"text": " from different layers, different chains, all on one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,240",
+				"to": "00:12:57,240"
+			},
+			"offsets": {
+				"from": 774240,
+				"to": 777240
+			},
+			"text": " And you can sort of interact in arbitrage, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,240",
+				"to": "00:13:00,360"
+			},
+			"offsets": {
+				"from": 777240,
+				"to": 780360
+			},
+			"text": " the borrow, the lending rates, the yield rates"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,360",
+				"to": "00:13:01,440"
+			},
+			"offsets": {
+				"from": 780360,
+				"to": 781440
+			},
+			"text": " within that one chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,440",
+				"to": "00:13:04,800"
+			},
+			"offsets": {
+				"from": 781440,
+				"to": 784800
+			},
+			"text": " That sort of works as a centerpiece for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,800",
+				"to": "00:13:08,680"
+			},
+			"offsets": {
+				"from": 784800,
+				"to": 788680
+			},
+			"text": " So I want to talk for a second about AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,680",
+				"to": "00:13:14,360"
+			},
+			"offsets": {
+				"from": 788680,
+				"to": 794360
+			},
+			"text": " So AMMs, I think, are-- there's a lot of downsides to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,360",
+				"to": "00:13:19,320"
+			},
+			"offsets": {
+				"from": 794360,
+				"to": 799320
+			},
+			"text": " So we had uni V3 with concentrated liquidity model."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,320",
+				"to": "00:13:23,640"
+			},
+			"offsets": {
+				"from": 799320,
+				"to": 803640
+			},
+			"text": " You can kind of see AMMs also are sort of a free straddle"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,640",
+				"to": "00:13:26,040"
+			},
+			"offsets": {
+				"from": 803640,
+				"to": 806040
+			},
+			"text": " option for market makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,040",
+				"to": "00:13:29,040"
+			},
+			"offsets": {
+				"from": 806040,
+				"to": 809040
+			},
+			"text": " A lot of the value that's captured off AMMs"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,040",
+				"to": "00:13:31,600"
+			},
+			"offsets": {
+				"from": 809040,
+				"to": 811600
+			},
+			"text": " goes to market makers, not to the people providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,600",
+				"to": "00:13:35,040"
+			},
+			"offsets": {
+				"from": 811600,
+				"to": 815040
+			},
+			"text": " the liquidity, not to the LPers in an organic way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,040",
+				"to": "00:13:37,960"
+			},
+			"offsets": {
+				"from": 815040,
+				"to": 817960
+			},
+			"text": " This is why a lot of people are doing research on cool ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,960",
+				"to": "00:13:43,360"
+			},
+			"offsets": {
+				"from": 817960,
+				"to": 823360
+			},
+			"text": " How do you bring MEV into the actual AMM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,360",
+				"to": "00:13:46,480"
+			},
+			"offsets": {
+				"from": 823360,
+				"to": 826480
+			},
+			"text": " How do you bring transaction ordering and valid data"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,480",
+				"to": "00:13:48,320"
+			},
+			"offsets": {
+				"from": 826480,
+				"to": 828320
+			},
+			"text": " activities into the actual AMM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,320",
+				"to": "00:13:51,480"
+			},
+			"offsets": {
+				"from": 828320,
+				"to": 831480
+			},
+			"text": " Because sort of the most altruistic position"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,480",
+				"to": "00:13:54,560"
+			},
+			"offsets": {
+				"from": 831480,
+				"to": 834560
+			},
+			"text": " in the markets is being an LP, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,560",
+				"to": "00:13:56,760"
+			},
+			"offsets": {
+				"from": 834560,
+				"to": 836760
+			},
+			"text": " in an organic market where you don't have emissions, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,760",
+				"to": "00:13:57,560"
+			},
+			"offsets": {
+				"from": 836760,
+				"to": 837560
+			},
+			"text": " like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,560",
+				"to": "00:14:00,200"
+			},
+			"offsets": {
+				"from": 837560,
+				"to": 840200
+			},
+			"text": " And they take on a lot of risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,200",
+				"to": "00:14:06,560"
+			},
+			"offsets": {
+				"from": 840200,
+				"to": 846560
+			},
+			"text": " So spot prices can go up, down through the roof."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,560",
+				"to": "00:14:08,960"
+			},
+			"offsets": {
+				"from": 846560,
+				"to": 848960
+			},
+			"text": " A lot of times can see less gains than if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,960",
+				"to": "00:14:15,280"
+			},
+			"offsets": {
+				"from": 848960,
+				"to": 855280
+			},
+			"text": " had held one position or worse gains on the other spectrum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,280",
+				"to": "00:14:19,240"
+			},
+			"offsets": {
+				"from": 855280,
+				"to": 859240
+			},
+			"text": " And so there's definitely work that needs to be done on AMMs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,240",
+				"to": "00:14:22,320"
+			},
+			"offsets": {
+				"from": 859240,
+				"to": 862320
+			},
+			"text": " But they're really, really good for yield prices and yield"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,320",
+				"to": "00:14:25,840"
+			},
+			"offsets": {
+				"from": 862320,
+				"to": 865840
+			},
+			"text": " tokens and principal tokens and everything that's involved"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,840",
+				"to": "00:14:26,880"
+			},
+			"offsets": {
+				"from": 865840,
+				"to": 866880
+			},
+			"text": " there."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,880",
+				"to": "00:14:31,600"
+			},
+			"offsets": {
+				"from": 866880,
+				"to": 871600
+			},
+			"text": " And the reason why is because if I have fixed rate USDC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,600",
+				"to": "00:14:34,080"
+			},
+			"offsets": {
+				"from": 871600,
+				"to": 874080
+			},
+			"text": " and we call these principal tokens in our platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,080",
+				"to": "00:14:36,760"
+			},
+			"offsets": {
+				"from": 874080,
+				"to": 876760
+			},
+			"text": " and that's at 10% APY over a year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,760",
+				"to": "00:14:38,760"
+			},
+			"offsets": {
+				"from": 876760,
+				"to": 878760
+			},
+			"text": " that means it's going for $0.90."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,760",
+				"to": "00:14:42,280"
+			},
+			"offsets": {
+				"from": 878760,
+				"to": 882280
+			},
+			"text": " By day, that $0.90 value converges to $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,280",
+				"to": "00:14:44,280"
+			},
+			"offsets": {
+				"from": 882280,
+				"to": 884280
+			},
+			"text": " You don't really experience any impermanent loss."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,280",
+				"to": "00:14:47,400"
+			},
+			"offsets": {
+				"from": 884280,
+				"to": 887400
+			},
+			"text": " It's sort of more like a stable swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,400",
+				"to": "00:14:52,280"
+			},
+			"offsets": {
+				"from": 887400,
+				"to": 892280
+			},
+			"text": " The fees are pretty cool as the percentage of that yield"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,280",
+				"to": "00:14:55,680"
+			},
+			"offsets": {
+				"from": 892280,
+				"to": 895680
+			},
+			"text": " that people secure and swap with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,680",
+				"to": "00:14:58,240"
+			},
+			"offsets": {
+				"from": 895680,
+				"to": 898240
+			},
+			"text": " And that's really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,240",
+				"to": "00:15:00,840"
+			},
+			"offsets": {
+				"from": 898240,
+				"to": 900840
+			},
+			"text": " And so one of the issues we've had in V1,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,840",
+				"to": "00:15:03,800"
+			},
+			"offsets": {
+				"from": 900840,
+				"to": 903800
+			},
+			"text": " and what we've been doing, is we have this liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,800",
+				"to": "00:15:05,080"
+			},
+			"offsets": {
+				"from": 903800,
+				"to": 905080
+			},
+			"text": " fragmentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,080",
+				"to": "00:15:07,680"
+			},
+			"offsets": {
+				"from": 905080,
+				"to": 907680
+			},
+			"text": " I have this six month term, this fixed rate term"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,680",
+				"to": "00:15:09,280"
+			},
+			"offsets": {
+				"from": 907680,
+				"to": 909280
+			},
+			"text": " that I'm interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,280",
+				"to": "00:15:11,520"
+			},
+			"offsets": {
+				"from": 909280,
+				"to": 911520
+			},
+			"text": " But it's three months through."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,520",
+				"to": "00:15:14,760"
+			},
+			"offsets": {
+				"from": 911520,
+				"to": 914760
+			},
+			"text": " And now I need to switch to another six month term,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,760",
+				"to": "00:15:19,400"
+			},
+			"offsets": {
+				"from": 914760,
+				"to": 919400
+			},
+			"text": " or as an LP, I need to make sense for me to pull out"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,400",
+				"to": "00:15:20,640"
+			},
+			"offsets": {
+				"from": 919400,
+				"to": 920640
+			},
+			"text": " my position and go into another one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,640",
+				"to": "00:15:22,360"
+			},
+			"offsets": {
+				"from": 920640,
+				"to": 922360
+			},
+			"text": " These are some of the weaknesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,360",
+				"to": "00:15:25,280"
+			},
+			"offsets": {
+				"from": 922360,
+				"to": 925280
+			},
+			"text": " So we did a bunch of simulations and analysis"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,280",
+				"to": "00:15:27,920"
+			},
+			"offsets": {
+				"from": 925280,
+				"to": 927920
+			},
+			"text": " in our current fee markets, capturing volatility"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,920",
+				"to": "00:15:32,000"
+			},
+			"offsets": {
+				"from": 927920,
+				"to": 932000
+			},
+			"text": " in the space, which is super interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,000",
+				"to": "00:15:33,840"
+			},
+			"offsets": {
+				"from": 932000,
+				"to": 933840
+			},
+			"text": " This is fairly complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,840",
+				"to": "00:15:37,040"
+			},
+			"offsets": {
+				"from": 933840,
+				"to": 937040
+			},
+			"text": " The main thing that I'll share, the biggest learnings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,040",
+				"to": "00:15:44,480"
+			},
+			"offsets": {
+				"from": 937040,
+				"to": 944480
+			},
+			"text": " is as you see yields rise, that is one of the highest value"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,480",
+				"to": "00:15:47,240"
+			},
+			"offsets": {
+				"from": 944480,
+				"to": 947240
+			},
+			"text": " capture mechanisms for LPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,240",
+				"to": "00:15:52,160"
+			},
+			"offsets": {
+				"from": 947240,
+				"to": 952160
+			},
+			"text": " As you see a yield rate drop, this is actually also"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,160",
+				"to": "00:15:54,840"
+			},
+			"offsets": {
+				"from": 952160,
+				"to": 954840
+			},
+			"text": " if you're active, extremely profitable."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,840",
+				"to": "00:15:57,120"
+			},
+			"offsets": {
+				"from": 954840,
+				"to": 957120
+			},
+			"text": " So what happens if a yield rate drops?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,120",
+				"to": "00:15:59,040"
+			},
+			"offsets": {
+				"from": 957120,
+				"to": 959040
+			},
+			"text": " So in this case, we have a situation"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,040",
+				"to": "00:16:04,320"
+			},
+			"offsets": {
+				"from": 959040,
+				"to": 964320
+			},
+			"text": " where we're going from 10% to 2.5% APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,320",
+				"to": "00:16:09,880"
+			},
+			"offsets": {
+				"from": 964320,
+				"to": 969880
+			},
+			"text": " And in 2.5 months, it drops to 2.5% APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,880",
+				"to": "00:16:12,440"
+			},
+			"offsets": {
+				"from": 969880,
+				"to": 972440
+			},
+			"text": " And this is a six month term."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,440",
+				"to": "00:16:17,520"
+			},
+			"offsets": {
+				"from": 972440,
+				"to": 977520
+			},
+			"text": " So that drop essentially brings that principal token, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,520",
+				"to": "00:16:20,840"
+			},
+			"offsets": {
+				"from": 977520,
+				"to": 980840
+			},
+			"text": " If $0.90 on a dollar would be 10%,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,840",
+				"to": "00:16:25,920"
+			},
+			"offsets": {
+				"from": 980840,
+				"to": 985920
+			},
+			"text": " it drops to 5%, then that's 95% on a dollar, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,920",
+				"to": "00:16:28,320"
+			},
+			"offsets": {
+				"from": 985920,
+				"to": 988320
+			},
+			"text": " 5% discount."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,320",
+				"to": "00:16:30,560"
+			},
+			"offsets": {
+				"from": 988320,
+				"to": 990560
+			},
+			"text": " So essentially, it's worth more."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,560",
+				"to": "00:16:33,200"
+			},
+			"offsets": {
+				"from": 990560,
+				"to": 993200
+			},
+			"text": " And what you can do is it drops is you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,200",
+				"to": "00:16:34,680"
+			},
+			"offsets": {
+				"from": 993200,
+				"to": 994680
+			},
+			"text": " sell the principal token."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,680",
+				"to": "00:16:40,280"
+			},
+			"offsets": {
+				"from": 994680,
+				"to": 1000280
+			},
+			"text": " So someone who locked in a 10% fixed rate APY in 2.5 months"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,280",
+				"to": "00:16:44,880"
+			},
+			"offsets": {
+				"from": 1000280,
+				"to": 1004880
+			},
+			"text": " when it dropped to 2.5%, they sell the principal tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,880",
+				"to": "00:16:48,640"
+			},
+			"offsets": {
+				"from": 1004880,
+				"to": 1008640
+			},
+			"text": " They got 4.2% return in 2.5 months"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,640",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008640,
+				"to": 1013000
+			},
+			"text": " because they sold it, which equates to 20% APR."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1015440
+			},
+			"text": " So if you're going into a position and you see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1018000
+			},
+			"text": " you know what I believe this rate's going to drop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:00,240"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1020240
+			},
+			"text": " it makes sense to buy the fixed rate side"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,240",
+				"to": "00:17:02,440"
+			},
+			"offsets": {
+				"from": 1020240,
+				"to": 1022440
+			},
+			"text": " because once the rate drops, then you can flip that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,440",
+				"to": "00:17:04,320"
+			},
+			"offsets": {
+				"from": 1022440,
+				"to": 1024320
+			},
+			"text": " you can sell that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,320",
+				"to": "00:17:07,480"
+			},
+			"offsets": {
+				"from": 1024320,
+				"to": 1027480
+			},
+			"text": " And then you can basically get an early redemption"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,480",
+				"to": "00:17:10,400"
+			},
+			"offsets": {
+				"from": 1027480,
+				"to": 1030400
+			},
+			"text": " on your APY, you get fulfilled quicker."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,400",
+				"to": "00:17:14,560"
+			},
+			"offsets": {
+				"from": 1030400,
+				"to": 1034560
+			},
+			"text": " On the other case, if the APY rises,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,560",
+				"to": "00:17:18,160"
+			},
+			"offsets": {
+				"from": 1034560,
+				"to": 1038160
+			},
+			"text": " you get a higher exposure to the fixed rate APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,160",
+				"to": "00:17:19,720"
+			},
+			"offsets": {
+				"from": 1038160,
+				"to": 1039720
+			},
+			"text": " So you get more yield exposure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,720",
+				"to": "00:17:22,560"
+			},
+			"offsets": {
+				"from": 1039720,
+				"to": 1042560
+			},
+			"text": " It's also a profitable endeavor in mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,560",
+				"to": "00:17:24,520"
+			},
+			"offsets": {
+				"from": 1042560,
+				"to": 1044520
+			},
+			"text": " And so what does this lead to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,520",
+				"to": "00:17:26,320"
+			},
+			"offsets": {
+				"from": 1044520,
+				"to": 1046320
+			},
+			"text": " This sort of leads to products that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,320",
+				"to": "00:17:28,200"
+			},
+			"offsets": {
+				"from": 1046320,
+				"to": 1048200
+			},
+			"text": " can be built on top, active strategies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,200",
+				"to": "00:17:31,960"
+			},
+			"offsets": {
+				"from": 1048200,
+				"to": 1051960
+			},
+			"text": " vaults, really interesting things, even bots"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,960",
+				"to": "00:17:34,200"
+			},
+			"offsets": {
+				"from": 1051960,
+				"to": 1054200
+			},
+			"text": " that market makers can do to really capture"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,200",
+				"to": "00:17:37,800"
+			},
+			"offsets": {
+				"from": 1054200,
+				"to": 1057800
+			},
+			"text": " a lot of this value, the value of a surge that can be caught."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,800",
+				"to": "00:17:40,400"
+			},
+			"offsets": {
+				"from": 1057800,
+				"to": 1060400
+			},
+			"text": " Especially once you're doing borrowing lending markets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,400",
+				"to": "00:17:43,480"
+			},
+			"offsets": {
+				"from": 1060400,
+				"to": 1063480
+			},
+			"text": " once you're hedging on those, once you have principal tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,480",
+				"to": "00:17:47,480"
+			},
+			"offsets": {
+				"from": 1063480,
+				"to": 1067480
+			},
+			"text": " as collateral, once you have these markets running truly"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,480",
+				"to": "00:17:52,320"
+			},
+			"offsets": {
+				"from": 1067480,
+				"to": 1072320
+			},
+			"text": " smoothly, there's a lot of ways to sort of make profit off"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,320",
+				"to": "00:17:53,520"
+			},
+			"offsets": {
+				"from": 1072320,
+				"to": 1073520
+			},
+			"text": " of changing yield rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,520",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1073520,
+				"to": 1076000
+			},
+			"text": " So it's fascinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:18:00,320"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1080320
+			},
+			"text": " So another thing we saw is it's sort of an ideal for an LP"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,320",
+				"to": "00:18:03,800"
+			},
+			"offsets": {
+				"from": 1080320,
+				"to": 1083800
+			},
+			"text": " because with these terms we used to have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,800",
+				"to": "00:18:08,640"
+			},
+			"offsets": {
+				"from": 1083800,
+				"to": 1088640
+			},
+			"text": " where essentially in element we have usually six month terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,640",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1088640,
+				"to": 1090520
+			},
+			"text": " and we do a new six month term."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:13,360"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1093360
+			},
+			"text": " But what happens is like, here's the simulation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,360",
+				"to": "00:18:15,640"
+			},
+			"offsets": {
+				"from": 1093360,
+				"to": 1095640
+			},
+			"text": " the fees drop off as this term ends."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,640",
+				"to": "00:18:19,440"
+			},
+			"offsets": {
+				"from": 1095640,
+				"to": 1099440
+			},
+			"text": " It doesn't really make sense for me as LP to stay the full term."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,440",
+				"to": "00:18:21,880"
+			},
+			"offsets": {
+				"from": 1099440,
+				"to": 1101880
+			},
+			"text": " It makes more sense for me to pull out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,880",
+				"to": "00:18:23,240"
+			},
+			"offsets": {
+				"from": 1101880,
+				"to": 1103240
+			},
+			"text": " Why do the fees drop out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,240",
+				"to": "00:18:27,320"
+			},
+			"offsets": {
+				"from": 1103240,
+				"to": 1107320
+			},
+			"text": " Because as time goes on, the value converges."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,320",
+				"to": "00:18:29,680"
+			},
+			"offsets": {
+				"from": 1107320,
+				"to": 1109680
+			},
+			"text": " So you have less of a differential, so the fees are less."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,680",
+				"to": "00:18:32,040"
+			},
+			"offsets": {
+				"from": 1109680,
+				"to": 1112040
+			},
+			"text": " And also people are less likely to trade on like one month"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,040",
+				"to": "00:18:34,880"
+			},
+			"offsets": {
+				"from": 1112040,
+				"to": 1114880
+			},
+			"text": " left, left of APY."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,880",
+				"to": "00:18:37,120"
+			},
+			"offsets": {
+				"from": 1114880,
+				"to": 1117120
+			},
+			"text": " Johnny Ray, my co-founder, we're both"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,120",
+				"to": "00:18:40,600"
+			},
+			"offsets": {
+				"from": 1117120,
+				"to": 1120600
+			},
+			"text": " e2 researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,600",
+				"to": "00:18:44,080"
+			},
+			"offsets": {
+				"from": 1120600,
+				"to": 1124080
+			},
+			"text": " But he actually recently came up with a new model."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,080",
+				"to": "00:18:46,640"
+			},
+			"offsets": {
+				"from": 1124080,
+				"to": 1126640
+			},
+			"text": " We're calling this hyperdrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,640",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1126640,
+				"to": 1130000
+			},
+			"text": " And it introduces no more terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:52,920"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1132920
+			},
+			"text": " LP's is perpetual positions."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,920",
+				"to": "00:18:57,000"
+			},
+			"offsets": {
+				"from": 1132920,
+				"to": 1137000
+			},
+			"text": " And essentially this new AMM that we've been researching"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,000",
+				"to": "00:18:59,200"
+			},
+			"offsets": {
+				"from": 1137000,
+				"to": 1139200
+			},
+			"text": " and will be releasing a lot of data on this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,200",
+				"to": "00:19:02,560"
+			},
+			"offsets": {
+				"from": 1139200,
+				"to": 1142560
+			},
+			"text": " simulations on it here soon, lets you basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,560",
+				"to": "00:19:06,680"
+			},
+			"offsets": {
+				"from": 1142560,
+				"to": 1146680
+			},
+			"text": " underwrite someone to take out a fixed rate term"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,680",
+				"to": "00:19:08,160"
+			},
+			"offsets": {
+				"from": 1146680,
+				"to": 1148160
+			},
+			"text": " on whatever time they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,160",
+				"to": "00:19:10,080"
+			},
+			"offsets": {
+				"from": 1148160,
+				"to": 1150080
+			},
+			"text": " They can say six months, three months."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,080",
+				"to": "00:19:11,200"
+			},
+			"offsets": {
+				"from": 1150080,
+				"to": 1151200
+			},
+			"text": " And it's a brand new term."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,200",
+				"to": "00:19:12,920"
+			},
+			"offsets": {
+				"from": 1151200,
+				"to": 1152920
+			},
+			"text": " You don't have to worry about these terms."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,920",
+				"to": "00:19:14,400"
+			},
+			"offsets": {
+				"from": 1152920,
+				"to": 1154400
+			},
+			"text": " Halfway into a term."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,400",
+				"to": "00:19:15,960"
+			},
+			"offsets": {
+				"from": 1154400,
+				"to": 1155960
+			},
+			"text": " I have one month left."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,960",
+				"to": "00:19:19,440"
+			},
+			"offsets": {
+				"from": 1155960,
+				"to": 1159440
+			},
+			"text": " You underwrite that position immediately."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,440",
+				"to": "00:19:21,440"
+			},
+			"offsets": {
+				"from": 1159440,
+				"to": 1161440
+			},
+			"text": " And this is really good for LP's too."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,440",
+				"to": "00:19:22,720"
+			},
+			"offsets": {
+				"from": 1161440,
+				"to": 1162720
+			},
+			"text": " This is really good for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,720",
+				"to": "00:19:24,600"
+			},
+			"offsets": {
+				"from": 1162720,
+				"to": 1164600
+			},
+			"text": " If I want to take out a loan from Aave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,600",
+				"to": "00:19:26,240"
+			},
+			"offsets": {
+				"from": 1164600,
+				"to": 1166240
+			},
+			"text": " I want a one month, three month, six month."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,240",
+				"to": "00:19:28,880"
+			},
+			"offsets": {
+				"from": 1166240,
+				"to": 1168880
+			},
+			"text": " I don't want this weird halfway position thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,880",
+				"to": "00:19:30,560"
+			},
+			"offsets": {
+				"from": 1168880,
+				"to": 1170560
+			},
+			"text": " For an LP, it's a perpetual position."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,560",
+				"to": "00:19:35,440"
+			},
+			"offsets": {
+				"from": 1170560,
+				"to": 1175440
+			},
+			"text": " I get average exposure to basically all these different"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,440",
+				"to": "00:19:37,480"
+			},
+			"offsets": {
+				"from": 1175440,
+				"to": 1177480
+			},
+			"text": " term lengths."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,480",
+				"to": "00:19:39,320"
+			},
+			"offsets": {
+				"from": 1177480,
+				"to": 1179320
+			},
+			"text": " It's a really good situation for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,320",
+				"to": "00:19:41,320"
+			},
+			"offsets": {
+				"from": 1179320,
+				"to": 1181320
+			},
+			"text": " They're able to capture and garner more fees."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,320",
+				"to": "00:19:44,360"
+			},
+			"offsets": {
+				"from": 1181320,
+				"to": 1184360
+			},
+			"text": " And this also allows for just better systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,360",
+				"to": "00:19:48,760"
+			},
+			"offsets": {
+				"from": 1184360,
+				"to": 1188760
+			},
+			"text": " to be built on top, simplicity, and better,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,760",
+				"to": "00:19:51,200"
+			},
+			"offsets": {
+				"from": 1188760,
+				"to": 1191200
+			},
+			"text": " better, better, better value capture mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,200",
+				"to": "00:19:54,000"
+			},
+			"offsets": {
+				"from": 1191200,
+				"to": 1194000
+			},
+			"text": " better ways to go long and variable yield on the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,000",
+				"to": "00:19:58,040"
+			},
+			"offsets": {
+				"from": 1194000,
+				"to": 1198040
+			},
+			"text": " better ways to be negative on variable yield,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,040",
+				"to": "00:20:01,960"
+			},
+			"offsets": {
+				"from": 1198040,
+				"to": 1201960
+			},
+			"text": " and sort of play with these markets and have fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,960",
+				"to": "00:20:06,160"
+			},
+			"offsets": {
+				"from": 1201960,
+				"to": 1206160
+			},
+			"text": " So this is LP Volatility Harvesting Cross Yield Rates."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,160",
+				"to": "00:20:10,280"
+			},
+			"offsets": {
+				"from": 1206160,
+				"to": 1210280
+			},
+			"text": " I'll try and release a lot more simulations and data"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,280",
+				"to": "00:20:12,600"
+			},
+			"offsets": {
+				"from": 1210280,
+				"to": 1212600
+			},
+			"text": " here soon on Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,600",
+				"to": "00:20:13,120"
+			},
+			"offsets": {
+				"from": 1212600,
+				"to": 1213120
+			},
+			"text": " Follow us."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,120",
+				"to": "00:20:14,400"
+			},
+			"offsets": {
+				"from": 1213120,
+				"to": 1214400
+			},
+			"text": " This is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,400",
+				"to": "00:20:17,600"
+			},
+			"offsets": {
+				"from": 1214400,
+				"to": 1217600
+			},
+			"text": " We are doing some new and groundbreaking research here."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,600",
+				"to": "00:20:19,520"
+			},
+			"offsets": {
+				"from": 1217600,
+				"to": 1219520
+			},
+			"text": " And there's a lot of profit mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,520",
+				"to": "00:20:22,320"
+			},
+			"offsets": {
+				"from": 1219520,
+				"to": 1222320
+			},
+			"text": " So pay attention is all I have to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,320",
+				"to": "00:20:23,760"
+			},
+			"offsets": {
+				"from": 1222320,
+				"to": 1223760
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,760",
+				"to": "00:20:25,800"
+			},
+			"offsets": {
+				"from": 1223760,
+				"to": 1225800
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,800",
+				"to": "00:20:28,240"
+			},
+			"offsets": {
+				"from": 1225800,
+				"to": 1228240
+			},
+			"text": " We have a little minute for Song."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,240",
+				"to": "00:20:31,960"
+			},
+			"offsets": {
+				"from": 1228240,
+				"to": 1231960
+			},
+			"text": " We, any way, have a question?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,960",
+				"to": "00:20:33,720"
+			},
+			"offsets": {
+				"from": 1231960,
+				"to": 1233720
+			},
+			"text": " OK, so earlier this year, there was"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,720",
+				"to": "00:20:36,200"
+			},
+			"offsets": {
+				"from": 1233720,
+				"to": 1236200
+			},
+			"text": " a project called Defrost Finance on Avalanche."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,200",
+				"to": "00:20:39,840"
+			},
+			"offsets": {
+				"from": 1236200,
+				"to": 1239840
+			},
+			"text": " And they did leverage yield farming."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,840",
+				"to": "00:20:43,520"
+			},
+			"offsets": {
+				"from": 1239840,
+				"to": 1243520
+			},
+			"text": " But they had a lot of trouble with keeping the liquidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,520",
+				"to": "00:20:44,520"
+			},
+			"offsets": {
+				"from": 1243520,
+				"to": 1244520
+			},
+			"text": " in order to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,520",
+				"to": "00:20:47,680"
+			},
+			"offsets": {
+				"from": 1244520,
+				"to": 1247680
+			},
+			"text": " So in your example, where you had that three to seven leverage"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,680",
+				"to": "00:20:52,480"
+			},
+			"offsets": {
+				"from": 1247680,
+				"to": 1252480
+			},
+			"text": " on the dies, how do you maintain that liquidity to keep that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,480",
+				"to": "00:20:55,240"
+			},
+			"offsets": {
+				"from": 1252480,
+				"to": 1255240
+			},
+			"text": " So people actually want to trade the other side on you?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,240",
+				"to": "00:20:58,720"
+			},
+			"offsets": {
+				"from": 1255240,
+				"to": 1258720
+			},
+			"text": " Yeah, so great question."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,720",
+				"to": "00:21:00,840"
+			},
+			"offsets": {
+				"from": 1258720,
+				"to": 1260840
+			},
+			"text": " So we actually saw--"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,840",
+				"to": "00:21:02,720"
+			},
+			"offsets": {
+				"from": 1260840,
+				"to": 1262720
+			},
+			"text": " I think it was through the bull market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,720",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1262720,
+				"to": 1267000
+			},
+			"text": " something like $400 million of trades on our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:10,600"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1270600
+			},
+			"text": " So we actually saw a really active activity"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,600",
+				"to": "00:21:13,120"
+			},
+			"offsets": {
+				"from": 1270600,
+				"to": 1273120
+			},
+			"text": " on yield token combating or increasing your exposure"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,120",
+				"to": "00:21:14,800"
+			},
+			"offsets": {
+				"from": 1273120,
+				"to": 1274800
+			},
+			"text": " on the variable side."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,800",
+				"to": "00:21:16,040"
+			},
+			"offsets": {
+				"from": 1274800,
+				"to": 1276040
+			},
+			"text": " I think maybe some of your question"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,040",
+				"to": "00:21:19,400"
+			},
+			"offsets": {
+				"from": 1276040,
+				"to": 1279400
+			},
+			"text": " is how do you match that if you have leverage to the other side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,400",
+				"to": "00:21:20,520"
+			},
+			"offsets": {
+				"from": 1279400,
+				"to": 1280520
+			},
+			"text": " Because that's sell."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,520",
+				"to": "00:21:22,480"
+			},
+			"offsets": {
+				"from": 1280520,
+				"to": 1282480
+			},
+			"text": " Do you match that on the purchase side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,480",
+				"to": "00:21:27,600"
+			},
+			"offsets": {
+				"from": 1282480,
+				"to": 1287600
+			},
+			"text": " That's why having these fixed rates is collateral,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,600",
+				"to": "00:21:29,600"
+			},
+			"offsets": {
+				"from": 1287600,
+				"to": 1289600
+			},
+			"text": " being able to leverage into buying the fixed rates"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,600",
+				"to": "00:21:31,000"
+			},
+			"offsets": {
+				"from": 1289600,
+				"to": 1291000
+			},
+			"text": " is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,000",
+				"to": "00:21:32,080"
+			},
+			"offsets": {
+				"from": 1291000,
+				"to": 1292080
+			},
+			"text": " Liquidity is another thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,080",
+				"to": "00:21:35,640"
+			},
+			"offsets": {
+				"from": 1292080,
+				"to": 1295640
+			},
+			"text": " Liquidity is down significantly in the market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,640",
+				"to": "00:21:37,920"
+			},
+			"offsets": {
+				"from": 1295640,
+				"to": 1297920
+			},
+			"text": " including our platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,920",
+				"to": "00:21:41,440"
+			},
+			"offsets": {
+				"from": 1297920,
+				"to": 1301440
+			},
+			"text": " I think we build sustainable, strong products, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,440",
+				"to": "00:21:42,680"
+			},
+			"offsets": {
+				"from": 1301440,
+				"to": 1302680
+			},
+			"text": " like HyperDrive."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,680",
+				"to": "00:21:45,160"
+			},
+			"offsets": {
+				"from": 1302680,
+				"to": 1305160
+			},
+			"text": " That makes sense that are a significant leap on what"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,160",
+				"to": "00:21:48,160"
+			},
+			"offsets": {
+				"from": 1305160,
+				"to": 1308160
+			},
+			"text": " exists in existing tradfi."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,160",
+				"to": "00:21:49,840"
+			},
+			"offsets": {
+				"from": 1308160,
+				"to": 1309840
+			},
+			"text": " This stuff doesn't exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,840",
+				"to": "00:21:52,360"
+			},
+			"offsets": {
+				"from": 1309840,
+				"to": 1312360
+			},
+			"text": " It's crazy cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,360",
+				"to": "00:21:54,080"
+			},
+			"offsets": {
+				"from": 1312360,
+				"to": 1314080
+			},
+			"text": " And I think it's just a matter of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,080",
+				"to": "00:21:58,200"
+			},
+			"offsets": {
+				"from": 1314080,
+				"to": 1318200
+			},
+			"text": " of building and garnering that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,200",
+				"to": "00:22:01,360"
+			},
+			"offsets": {
+				"from": 1318200,
+				"to": 1321360
+			},
+			"text": " I've been looking at a lot of things, too, looking at reward"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,360",
+				"to": "00:22:05,560"
+			},
+			"offsets": {
+				"from": 1321360,
+				"to": 1325560
+			},
+			"text": " assets, some other things that couldn't also"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,560",
+				"to": "00:22:06,840"
+			},
+			"offsets": {
+				"from": 1325560,
+				"to": 1326840
+			},
+			"text": " play in as yield sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,840",
+				"to": "00:22:09,200"
+			},
+			"offsets": {
+				"from": 1326840,
+				"to": 1329200
+			},
+			"text": " I think staking derivatives are really good yield sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,200",
+				"to": "00:22:11,640"
+			},
+			"offsets": {
+				"from": 1329200,
+				"to": 1331640
+			},
+			"text": " People are going to do those regardless."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,640",
+				"to": "00:22:16,440"
+			},
+			"offsets": {
+				"from": 1331640,
+				"to": 1336440
+			},
+			"text": " MEV is an interesting one, et cetera, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,440",
+				"to": "00:22:17,320"
+			},
+			"offsets": {
+				"from": 1336440,
+				"to": 1337320
+			},
+			"text": " No more questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,320",
+				"to": "00:22:18,760"
+			},
+			"offsets": {
+				"from": 1337320,
+				"to": 1338760
+			},
+			"text": " So thank you, Will."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,760",
+				"to": "00:22:19,120"
+			},
+			"offsets": {
+				"from": 1338760,
+				"to": 1339120
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,120",
+				"to": "00:22:19,600"
+			},
+			"offsets": {
+				"from": 1339120,
+				"to": 1339600
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,600",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1339600,
+				"to": 1342000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1345000
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:28,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1348000
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1348000,
+				"to": 1351000
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:23:00,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1380000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

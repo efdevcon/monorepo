@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:16,500"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 16500
+			},
+			"text": " >> So, hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,500",
+				"to": "00:00:18,500"
+			},
+			"offsets": {
+				"from": 16500,
+				"to": 18500
+			},
+			"text": " We're going to speak about random numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,500",
+				"to": "00:00:21,500"
+			},
+			"offsets": {
+				"from": 18500,
+				"to": 21500
+			},
+			"text": " So, first, a small quote about the NACLUS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,500",
+				"to": "00:00:26,600"
+			},
+			"offsets": {
+				"from": 21500,
+				"to": 26600
+			},
+			"text": " Random numbers should not be generated with a metalctranet at random, and we've seen too"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,600",
+				"to": "00:00:31,500"
+			},
+			"offsets": {
+				"from": 26600,
+				"to": 31500
+			},
+			"text": " much application just using the block hash or using multiple block hash where it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,500",
+				"to": "00:00:32,500"
+			},
+			"offsets": {
+				"from": 31500,
+				"to": 32500
+			},
+			"text": " secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,500",
+				"to": "00:00:39,100"
+			},
+			"offsets": {
+				"from": 32500,
+				"to": 39100
+			},
+			"text": " When you are on classical computing, you have your own computer, you can use your time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,100",
+				"to": "00:00:43,800"
+			},
+			"offsets": {
+				"from": 39100,
+				"to": 43800
+			},
+			"text": " that time your computer, most movement to get a random number."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,800",
+				"to": "00:00:48,200"
+			},
+			"offsets": {
+				"from": 43800,
+				"to": 48200
+			},
+			"text": " I remember when I was creating a micro-speed con address, they asked me to move the mouse"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,200",
+				"to": "00:00:51,600"
+			},
+			"offsets": {
+				"from": 48200,
+				"to": 51600
+			},
+			"text": " to type from the keyboard and use it entropy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,600",
+				"to": "00:00:57,900"
+			},
+			"offsets": {
+				"from": 51600,
+				"to": 57900
+			},
+			"text": " The problem is if you want a random number in an SRM, which is basically the world computer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,900",
+				"to": "00:01:01,100"
+			},
+			"offsets": {
+				"from": 57900,
+				"to": 61100
+			},
+			"text": " you will each end up in a different world locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,100",
+				"to": "00:01:04,100"
+			},
+			"offsets": {
+				"from": 61100,
+				"to": 64100
+			},
+			"text": " Why do we need those?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,100",
+				"to": "00:01:07,100"
+			},
+			"offsets": {
+				"from": 64100,
+				"to": 67100
+			},
+			"text": " So, the basic use case is gounding."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,100",
+				"to": "00:01:09,100"
+			},
+			"offsets": {
+				"from": 67100,
+				"to": 69100
+			},
+			"text": " We need to use improv work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,100",
+				"to": "00:01:11,100"
+			},
+			"offsets": {
+				"from": 69100,
+				"to": 71100
+			},
+			"text": " We need to use complex button systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,100",
+				"to": "00:01:18,100"
+			},
+			"offsets": {
+				"from": 71100,
+				"to": 78100
+			},
+			"text": " Probabilistic, also method is, in my opinion, the state of the art in terms of button system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,100",
+				"to": "00:01:22,100"
+			},
+			"offsets": {
+				"from": 78100,
+				"to": 82100
+			},
+			"text": " We need those for doing zeros in the product I'm working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,100",
+				"to": "00:01:24,100"
+			},
+			"offsets": {
+				"from": 82100,
+				"to": 84100
+			},
+			"text": " That's what we are going to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,100",
+				"to": "00:01:27,600"
+			},
+			"offsets": {
+				"from": 84100,
+				"to": 87600
+			},
+			"text": " We need those for AI to initialize machine learning algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,600",
+				"to": "00:01:32,600"
+			},
+			"offsets": {
+				"from": 87600,
+				"to": 92600
+			},
+			"text": " So, imagine you have an AI blockchain with some economic personality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,600",
+				"to": "00:01:39,600"
+			},
+			"offsets": {
+				"from": 92600,
+				"to": 99600
+			},
+			"text": " If you are able to fix the initiation number, you could trigger AI into learning badly, taking"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,600",
+				"to": "00:01:40,600"
+			},
+			"offsets": {
+				"from": 99600,
+				"to": 100600
+			},
+			"text": " bad decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,600",
+				"to": "00:01:45,600"
+			},
+			"offsets": {
+				"from": 100600,
+				"to": 105600
+			},
+			"text": " The first method we should use is a trusted button."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,600",
+				"to": "00:01:51,600"
+			},
+			"offsets": {
+				"from": 105600,
+				"to": 111600
+			},
+			"text": " So, you have some Mr. Ronan Vikan, where you could play an oracle on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,600",
+				"to": "00:01:54,600"
+			},
+			"offsets": {
+				"from": 111600,
+				"to": 114600
+			},
+			"text": " You can directly call oracle it, but the problem is it's not decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,600",
+				"to": "00:01:56,600"
+			},
+			"offsets": {
+				"from": 114600,
+				"to": 116600
+			},
+			"text": " You have a single pointer failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,600",
+				"to": "00:02:01,600"
+			},
+			"offsets": {
+				"from": 116600,
+				"to": 121600
+			},
+			"text": " And in case a trusted party is cheating, you have no way to detect it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,600",
+				"to": "00:02:08,600"
+			},
+			"offsets": {
+				"from": 121600,
+				"to": 128600
+			},
+			"text": " We've seen a lot of the person using block hash, but that does not work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,600",
+				"to": "00:02:11,600"
+			},
+			"offsets": {
+				"from": 128600,
+				"to": 131600
+			},
+			"text": " So, first let's go back to badick work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,600",
+				"to": "00:02:13,600"
+			},
+			"offsets": {
+				"from": 131600,
+				"to": 133600
+			},
+			"text": " You have cryptographic function."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,600",
+				"to": "00:02:16,600"
+			},
+			"offsets": {
+				"from": 133600,
+				"to": 136600
+			},
+			"text": " If you want to compute the h of x, it's easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,600",
+				"to": "00:02:22,600"
+			},
+			"offsets": {
+				"from": 136600,
+				"to": 142600
+			},
+			"text": " But if you want to compute x, that x of x is y, it's completely infinable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,600",
+				"to": "00:02:26,600"
+			},
+			"offsets": {
+				"from": 142600,
+				"to": 146600
+			},
+			"text": " So, in World War, basically, you block either."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,600",
+				"to": "00:02:32,600"
+			},
+			"offsets": {
+				"from": 146600,
+				"to": 152600
+			},
+			"text": " You start with a noun, like zero, and you ask it, and it's lower than a target, you put"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,600",
+				"to": "00:02:33,600"
+			},
+			"offsets": {
+				"from": 152600,
+				"to": 153600
+			},
+			"text": " a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,600",
+				"to": "00:02:37,600"
+			},
+			"offsets": {
+				"from": 153600,
+				"to": 157600
+			},
+			"text": " And if not, you determine the noun with n equal 1, 2, 3, up to the point, you find a block"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,600",
+				"to": "00:02:39,600"
+			},
+			"offsets": {
+				"from": 157600,
+				"to": 159600
+			},
+			"text": " or someone else here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,600",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 159600,
+				"to": 164600
+			},
+			"text": " So, we could say, okay, again, we have the hash which is random, no, because when you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:48,600"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 168600
+			},
+			"text": " the final block, you can choose not to publish it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,600",
+				"to": "00:02:54,600"
+			},
+			"offsets": {
+				"from": 168600,
+				"to": 174600
+			},
+			"text": " And even worse, with smart contract, you can bribe the minor trustlessly into not publishing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,600",
+				"to": "00:02:55,600"
+			},
+			"offsets": {
+				"from": 174600,
+				"to": 175600
+			},
+			"text": " those blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,600",
+				"to": "00:03:01,600"
+			},
+			"offsets": {
+				"from": 175600,
+				"to": 181600
+			},
+			"text": " And you don't even lose the World War because you're privileged as a non-catcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,600",
+				"to": "00:03:04,600"
+			},
+			"offsets": {
+				"from": 181600,
+				"to": 184600
+			},
+			"text": " So, okay, only the minor can do this attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,600",
+				"to": "00:03:09,600"
+			},
+			"offsets": {
+				"from": 184600,
+				"to": 189600
+			},
+			"text": " And the effect is just, well, just, rerolling the number."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,600",
+				"to": "00:03:15,600"
+			},
+			"offsets": {
+				"from": 189600,
+				"to": 195600
+			},
+			"text": " So, it does not allow you to fix it to a particular value, but it allows you to pay a small cause"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,600",
+				"to": "00:03:19,600"
+			},
+			"offsets": {
+				"from": 195600,
+				"to": 199600
+			},
+			"text": " when you want to some sort of one and get new one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,600",
+				"to": "00:03:24,600"
+			},
+			"offsets": {
+				"from": 199600,
+				"to": 204600
+			},
+			"text": " After the application, we're saying, okay, the attack cost is higher than what I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,600",
+				"to": "00:03:26,600"
+			},
+			"offsets": {
+				"from": 204600,
+				"to": 206600
+			},
+			"text": " at stake in each block in my application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,600",
+				"to": "00:03:30,600"
+			},
+			"offsets": {
+				"from": 206600,
+				"to": 210600
+			},
+			"text": " So, I can rely on the block hash to get a rather number."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,600",
+				"to": "00:03:34,600"
+			},
+			"offsets": {
+				"from": 210600,
+				"to": 214600
+			},
+			"text": " But no, because the block hash is the same for everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,600",
+				"to": "00:03:37,600"
+			},
+			"offsets": {
+				"from": 214600,
+				"to": 217600
+			},
+			"text": " So, perhaps if you need my application, it's not worth attacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,600",
+				"to": "00:03:41,600"
+			},
+			"offsets": {
+				"from": 217600,
+				"to": 221600
+			},
+			"text": " My name is Robert Gashian, it was attacking, and your application was attacking."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,600",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 221600,
+				"to": 225600
+			},
+			"text": " But perhaps you can do an attack on all those applications at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:50,600"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 230600
+			},
+			"text": " And in this case, you may win more than the attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,600",
+				"to": "00:03:55,600"
+			},
+			"offsets": {
+				"from": 230600,
+				"to": 235600
+			},
+			"text": " One method which is really useful when you don't have a lot of parties is committing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,600",
+				"to": "00:03:57,600"
+			},
+			"offsets": {
+				"from": 235600,
+				"to": 237600
+			},
+			"text": " to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,600",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 237600,
+				"to": 238600
+			},
+			"text": " number."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,600",
+				"to": "00:04:01,600"
+			},
+			"offsets": {
+				"from": 238600,
+				"to": 241600
+			},
+			"text": " So, the idea, you generate a number locally, you publish its hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,600",
+				"to": "00:04:06,600"
+			},
+			"offsets": {
+				"from": 241600,
+				"to": 246600
+			},
+			"text": " You have tons of parties doing that, they pay a deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,600",
+				"to": "00:04:09,600"
+			},
+			"offsets": {
+				"from": 246600,
+				"to": 249600
+			},
+			"text": " And in the second phase, they reverse numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,600",
+				"to": "00:04:12,600"
+			},
+			"offsets": {
+				"from": 249600,
+				"to": 252600
+			},
+			"text": " Of course, you verify that the hash corresponds."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,600",
+				"to": "00:04:17,600"
+			},
+			"offsets": {
+				"from": 252600,
+				"to": 257600
+			},
+			"text": " And the result is the extra of all random numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,600",
+				"to": "00:04:23,600"
+			},
+			"offsets": {
+				"from": 257600,
+				"to": 263600
+			},
+			"text": " And what interests you property of Excel, if you Excel something on them is whatever,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,600",
+				"to": "00:04:24,600"
+			},
+			"offsets": {
+				"from": 263600,
+				"to": 264600
+			},
+			"text": " it's always random."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,600",
+				"to": "00:04:29,600"
+			},
+			"offsets": {
+				"from": 264600,
+				"to": 269600
+			},
+			"text": " So, you just need to have one party inputting a random number."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,600",
+				"to": "00:04:33,600"
+			},
+			"offsets": {
+				"from": 269600,
+				"to": 273600
+			},
+			"text": " The problem is that parties can choose not to reveal."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,600",
+				"to": "00:04:38,600"
+			},
+			"offsets": {
+				"from": 273600,
+				"to": 278600
+			},
+			"text": " And if a party does not reveal, the generation is stopped."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,600",
+				"to": "00:04:42,600"
+			},
+			"offsets": {
+				"from": 278600,
+				"to": 282600
+			},
+			"text": " So, yeah, you could describe the deposit of the party not revealing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,600",
+				"to": "00:04:46,600"
+			},
+			"offsets": {
+				"from": 282600,
+				"to": 286600
+			},
+			"text": " And in, for example, I want to flip a coin with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,600",
+				"to": "00:04:48,600"
+			},
+			"offsets": {
+				"from": 286600,
+				"to": 288600
+			},
+			"text": " That's a really good method."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,600",
+				"to": "00:04:50,600"
+			},
+			"offsets": {
+				"from": 288600,
+				"to": 290600
+			},
+			"text": " Because it's only two of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,600",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 290600,
+				"to": 293600
+			},
+			"text": " We fix a coin, and if I want to some sort of flip,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:58,600"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 298600
+			},
+			"text": " I get timed off by not revealing, and I use deposit, and we assume that you want the flip."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,600",
+				"to": "00:04:59,600"
+			},
+			"offsets": {
+				"from": 298600,
+				"to": 299600
+			},
+			"text": " So, that works very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,600",
+				"to": "00:05:04,600"
+			},
+			"offsets": {
+				"from": 299600,
+				"to": 304600
+			},
+			"text": " But now, imagine you have 1,000 users which are relying on the same number."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,600",
+				"to": "00:05:09,600"
+			},
+			"offsets": {
+				"from": 304600,
+				"to": 309600
+			},
+			"text": " And you just have one not revealing to prevent the generation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,600",
+				"to": "00:05:16,600"
+			},
+			"offsets": {
+				"from": 309600,
+				"to": 316600
+			},
+			"text": " So, you will need each party to have a deposit equal to what that's take for all the others."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,600",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 316600,
+				"to": 321600
+			},
+			"text": " So, this scale quite radically to the number of parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:30,600"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 330600
+			},
+			"text": " So, it may be perhaps okay with playing poker, but for a lot of person, it won't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,600",
+				"to": "00:05:32,600"
+			},
+			"offsets": {
+				"from": 330600,
+				"to": 332600
+			},
+			"text": " Then you have special signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,600",
+				"to": "00:05:41,600"
+			},
+			"offsets": {
+				"from": 332600,
+				"to": 341600
+			},
+			"text": " So, special signatures is a signature which is where a lot of parties get part of the key"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,600",
+				"to": "00:05:44,600"
+			},
+			"offsets": {
+				"from": 341600,
+				"to": 344600
+			},
+			"text": " and design partial signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,600",
+				"to": "00:05:50,600"
+			},
+			"offsets": {
+				"from": 344600,
+				"to": 350600
+			},
+			"text": " And if you get at least the threshold of partial signature, you combine them and you get a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,600",
+				"to": "00:05:56,600"
+			},
+			"offsets": {
+				"from": 350600,
+				"to": 356600
+			},
+			"text": " One interesting property of the signature scheme is that no matter which party are signing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,600",
+				"to": "00:06:00,600"
+			},
+			"offsets": {
+				"from": 356600,
+				"to": 360600
+			},
+			"text": " as long as we get a threshold, we get the same signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,600",
+				"to": "00:06:08,600"
+			},
+			"offsets": {
+				"from": 360600,
+				"to": 368600
+			},
+			"text": " So, if it's A or B signing or B or C or no matter what, we always get the same signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,600",
+				"to": "00:06:14,600"
+			},
+			"offsets": {
+				"from": 368600,
+				"to": 374600
+			},
+			"text": " So, that's really good if you are in the honest majority model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,600",
+				"to": "00:06:21,600"
+			},
+			"offsets": {
+				"from": 374600,
+				"to": 381600
+			},
+			"text": " Because in this case, I thought the party will evolve and everything goes right."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,600",
+				"to": "00:06:31,600"
+			},
+			"offsets": {
+				"from": 381600,
+				"to": 391600
+			},
+			"text": " But the problem is if you can get attack of 50% with party refers to reveal to sign or even worse,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,600",
+				"to": "00:06:37,600"
+			},
+			"offsets": {
+				"from": 391600,
+				"to": 397600
+			},
+			"text": " with parties who will collude to get to know the random number and they can sound sorry"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,600",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 397600,
+				"to": 400600
+			},
+			"text": " by making some block hash attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:44,600"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 404600
+			},
+			"text": " The other method is second cell pro-stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,600",
+				"to": "00:06:50,600"
+			},
+			"offsets": {
+				"from": 404600,
+				"to": 410600
+			},
+			"text": " So, in classical pro-stake, you, oh, sorry, second cell pro-work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,600",
+				"to": "00:06:55,600"
+			},
+			"offsets": {
+				"from": 410600,
+				"to": 415600
+			},
+			"text": " In the classical pro-work, you can parallelize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,600",
+				"to": "00:07:00,600"
+			},
+			"offsets": {
+				"from": 415600,
+				"to": 420600
+			},
+			"text": " So, you get one computer, having a known, it's equal to 0, one also equal to 1."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,600",
+				"to": "00:07:05,600"
+			},
+			"offsets": {
+				"from": 420600,
+				"to": 425600
+			},
+			"text": " And the more computer you have, the faster you get to find a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,600",
+				"to": "00:07:10,600"
+			},
+			"offsets": {
+				"from": 425600,
+				"to": 430600
+			},
+			"text": " In this one, it's not the case."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,600",
+				"to": "00:07:18,600"
+			},
+			"offsets": {
+				"from": 430600,
+				"to": 438600
+			},
+			"text": " So, you start with the block hash and you hash it and you hash it and you hash it and you hash it and hash it and hash it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,600",
+				"to": "00:07:24,600"
+			},
+			"offsets": {
+				"from": 438600,
+				"to": 444600
+			},
+			"text": " So, at each step, you need the result of the previous step."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,600",
+				"to": "00:07:30,600"
+			},
+			"offsets": {
+				"from": 444600,
+				"to": 450600
+			},
+			"text": " So, even if you get tons of hardware, you won't be faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,600",
+				"to": "00:07:35,600"
+			},
+			"offsets": {
+				"from": 450600,
+				"to": 455600
+			},
+			"text": " So, what does it do? It's a time-lark cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,600",
+				"to": "00:07:41,600"
+			},
+			"offsets": {
+				"from": 455600,
+				"to": 461600
+			},
+			"text": " The goal is to ensure, take some time to compute the random number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,600",
+				"to": "00:07:49,600"
+			},
+			"offsets": {
+				"from": 461600,
+				"to": 469600
+			},
+			"text": " Such as this way, if you are minor and you want to get bribed or you want not to reveal for yourself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,600",
+				"to": "00:07:59,600"
+			},
+			"offsets": {
+				"from": 469600,
+				"to": 479600
+			},
+			"text": " at the point where you have your block, if you wait to know this result, someone else will already publish one."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,600",
+				"to": "00:08:06,600"
+			},
+			"offsets": {
+				"from": 479600,
+				"to": 486600
+			},
+			"text": " So, okay, you can song-saw some, but you don't know what you song-saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,600",
+				"to": "00:08:11,600"
+			},
+			"offsets": {
+				"from": 486600,
+				"to": 491600
+			},
+			"text": " So, it's still random."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,600",
+				"to": "00:08:17,600"
+			},
+			"offsets": {
+				"from": 491600,
+				"to": 497600
+			},
+			"text": " But there is still some catch because if you want to compute some second shell hash,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,600",
+				"to": "00:08:24,600"
+			},
+			"offsets": {
+				"from": 497600,
+				"to": 504600
+			},
+			"text": " something like one million time and you do that in a smart contract, you will run into the gas limit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,600",
+				"to": "00:08:29,600"
+			},
+			"offsets": {
+				"from": 504600,
+				"to": 509600
+			},
+			"text": " So, to solve that, you need to use interactive verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,600",
+				"to": "00:08:33,600"
+			},
+			"offsets": {
+				"from": 509600,
+				"to": 513600
+			},
+			"text": " I guess some of you have been at a true bit of a translation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,600",
+				"to": "00:08:39,600"
+			},
+			"offsets": {
+				"from": 513600,
+				"to": 519600
+			},
+			"text": " So, that's the same concept. Except here, it's quite similar because we just hash it in the little mercury"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,600",
+				"to": "00:08:42,600"
+			},
+			"offsets": {
+				"from": 519600,
+				"to": 522600
+			},
+			"text": " or complicated stuff, just hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,600",
+				"to": "00:08:50,600"
+			},
+			"offsets": {
+				"from": 522600,
+				"to": 530600
+			},
+			"text": " So, you let every party post a result or deposit and then you have a replication game"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,600",
+				"to": "00:08:54,600"
+			},
+			"offsets": {
+				"from": 530600,
+				"to": 534600
+			},
+			"text": " guarantee that each party wins on the next."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,600",
+				"to": "00:09:03,600"
+			},
+			"offsets": {
+				"from": 534600,
+				"to": 543600
+			},
+			"text": " So, the challenger of the fake number or the defender of the right one will always win the challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,600",
+				"to": "00:09:10,600"
+			},
+			"offsets": {
+				"from": 543600,
+				"to": 550600
+			},
+			"text": " And when someone puts fake numbers, you will burn part of the deposit and give part to the challengers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,600",
+				"to": "00:09:17,600"
+			},
+			"offsets": {
+				"from": 550600,
+				"to": 557600
+			},
+			"text": " So, on clarification, let's assume here for the sake of the example that the hash is just the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,600",
+				"to": "00:09:20,600"
+			},
+			"offsets": {
+				"from": 557600,
+				"to": 560600
+			},
+			"text": " You use that as a hash, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,600",
+				"to": "00:09:28,600"
+			},
+			"offsets": {
+				"from": 560600,
+				"to": 568600
+			},
+			"text": " You compute, you get 17 and some other party, say, 35, which is the fake answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,600",
+				"to": "00:09:35,600"
+			},
+			"offsets": {
+				"from": 568600,
+				"to": 575600
+			},
+			"text": " So, you ask this party what the value at the nine step and it says 27."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,600",
+				"to": "00:09:41,600"
+			},
+			"offsets": {
+				"from": 575600,
+				"to": 581600
+			},
+			"text": " So, no, you know that it made a mistake between 0 and 9."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,600",
+				"to": "00:09:47,600"
+			},
+			"offsets": {
+				"from": 581600,
+				"to": 587600
+			},
+			"text": " So, you ask, say, 4, it says 4, 4 is correct. So, you know, the mistake is between 4 and 9."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,600",
+				"to": "00:09:57,600"
+			},
+			"offsets": {
+				"from": 587600,
+				"to": 597600
+			},
+			"text": " You ask, 6, it says 24 is incorrect. You ask, 5. And now, you show 5."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,600",
+				"to": "00:10:09,600"
+			},
+			"offsets": {
+				"from": 597600,
+				"to": 609600
+			},
+			"text": " This one is 6, not 24. So, you've proven that it admits a mistake in this computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,600",
+				"to": "00:10:21,600"
+			},
+			"offsets": {
+				"from": 609600,
+				"to": 621600
+			},
+			"text": " But there are still some issues with that, which is that a party can put fake numbers, put some deposits."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,600",
+				"to": "00:10:36,600"
+			},
+			"offsets": {
+				"from": 621600,
+				"to": 636600
+			},
+			"text": " And, okay, this party won't be able to change a number, but this party will be able to delay the time this number will be available."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,600",
+				"to": "00:10:49,600"
+			},
+			"offsets": {
+				"from": 636600,
+				"to": 649600
+			},
+			"text": " So, also, if we implement the incentive in the challenge naively, you will challenge a number."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,600",
+				"to": "00:10:58,600"
+			},
+			"offsets": {
+				"from": 649600,
+				"to": 658600
+			},
+			"text": " And the party, we put in fake numbers, will challenge its own number and make sure to lose against itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,600",
+				"to": "00:11:05,600"
+			},
+			"offsets": {
+				"from": 658600,
+				"to": 665600
+			},
+			"text": " in such a way that you don't win the part of the deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,600",
+				"to": "00:11:16,600"
+			},
+			"offsets": {
+				"from": 665600,
+				"to": 676600
+			},
+			"text": " And our goal is to design a system such as if you have even a small deposit that you can use to make challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,600",
+				"to": "00:11:21,600"
+			},
+			"offsets": {
+				"from": 676600,
+				"to": 681600
+			},
+			"text": " compare to an attacker with a large budget, making tons of fake numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,600",
+				"to": "00:11:28,600"
+			},
+			"offsets": {
+				"from": 681600,
+				"to": 688600
+			},
+			"text": " As the goal is, say, okay, at the first one, you are able to challenge one number, you win and you get half of a deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,600",
+				"to": "00:11:34,600"
+			},
+			"offsets": {
+				"from": 688600,
+				"to": 694600
+			},
+			"text": " now you have 1.5 deposits, the second step, you do it again, now you get two deposits, and now you get two deposits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,600",
+				"to": "00:11:37,600"
+			},
+			"offsets": {
+				"from": 694600,
+				"to": 697600
+			},
+			"text": " so you can challenge two numbers at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,600",
+				"to": "00:11:44,600"
+			},
+			"offsets": {
+				"from": 697600,
+				"to": 704600
+			},
+			"text": " And next step, you get three deposits, and so over and over, and your deposit is increasing exponentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,600",
+				"to": "00:11:51,600"
+			},
+			"offsets": {
+				"from": 704600,
+				"to": 711600
+			},
+			"text": " of course, up to the point where you finish to disprove all the numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,600",
+				"to": "00:12:01,600"
+			},
+			"offsets": {
+				"from": 711600,
+				"to": 721600
+			},
+			"text": " So, also, our idea is to split the reward between each party challenging, no matter which challenge is winning."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,600",
+				"to": "00:12:10,600"
+			},
+			"offsets": {
+				"from": 721600,
+				"to": 730600
+			},
+			"text": " But we still catch, we still issue where the attacker can, when you challenge one of these numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,600",
+				"to": "00:12:16,600"
+			},
+			"offsets": {
+				"from": 730600,
+				"to": 736600
+			},
+			"text": " keep a huge part of this budget to also challenge it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,600",
+				"to": "00:12:22,600"
+			},
+			"offsets": {
+				"from": 736600,
+				"to": 742600
+			},
+			"text": " That is this way, you will get almost all the reward, you will get peanuts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,600",
+				"to": "00:12:35,600"
+			},
+			"offsets": {
+				"from": 742600,
+				"to": 755600
+			},
+			"text": " and you will never be able to challenge multiple numbers in one of challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,600",
+				"to": "00:12:42,600"
+			},
+			"offsets": {
+				"from": 755600,
+				"to": 762600
+			},
+			"text": " So, all to avoid that, it's with commitment reveal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,600",
+				"to": "00:12:51,600"
+			},
+			"offsets": {
+				"from": 762600,
+				"to": 771600
+			},
+			"text": " So, you commit to challenge a particular number, and in the second phase, you reveal that you are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,600",
+				"to": "00:13:00,600"
+			},
+			"offsets": {
+				"from": 771600,
+				"to": 780600
+			},
+			"text": " that you are wanting to challenge this one, and in such a way, the attacker, it does not know which of his number you are going to challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,600",
+				"to": "00:13:09,600"
+			},
+			"offsets": {
+				"from": 780600,
+				"to": 789600
+			},
+			"text": " So, of course, you can try to challenge number randomly, but if he is going to challenge a number which you have then challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,600",
+				"to": "00:13:19,600"
+			},
+			"offsets": {
+				"from": 789600,
+				"to": 799600
+			},
+			"text": " he will either lose deposit as a challenger or remove the fake number, so in both cases, he is losing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,600",
+				"to": "00:13:33,600"
+			},
+			"offsets": {
+				"from": 799600,
+				"to": 813600
+			},
+			"text": " Of course, in the worst case, you have a super lucky attacker, and each time he is getting right in the number that you are going to challenge."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,600",
+				"to": "00:13:43,600"
+			},
+			"offsets": {
+				"from": 813600,
+				"to": 823600
+			},
+			"text": " But, of course, that is just like in the worst case, so we can look at what will happen in the average case."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,600",
+				"to": "00:14:00,600"
+			},
+			"offsets": {
+				"from": 823600,
+				"to": 840600
+			},
+			"text": " And in this way, from all the strategy, I search an attacker who could have, I haven't found anyone which will not allow to have the number by a logarithmic amount of step."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,600",
+				"to": "00:14:02,600"
+			},
+			"offsets": {
+				"from": 840600,
+				"to": 842600
+			},
+			"text": " So, that's still a conjecture."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,600",
+				"to": "00:14:09,600"
+			},
+			"offsets": {
+				"from": 842600,
+				"to": 849600
+			},
+			"text": " You need to prove it, because you need to prove that there is no strategy, allowing to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,600",
+				"to": "00:14:19,600"
+			},
+			"offsets": {
+				"from": 849600,
+				"to": 859600
+			},
+			"text": " And if someone is interested by having this proof or someone has insight into this proof, I would be really happy to speak about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,600",
+				"to": "00:14:27,600"
+			},
+			"offsets": {
+				"from": 859600,
+				"to": 867600
+			},
+			"text": " So, for this second, I am full of work within the problem, which is at it takes time."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,600",
+				"to": "00:14:31,600"
+			},
+			"offsets": {
+				"from": 867600,
+				"to": 871600
+			},
+			"text": " So, it's not a good idea for a real-time application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,600",
+				"to": "00:14:40,600"
+			},
+			"offsets": {
+				"from": 871600,
+				"to": 880600
+			},
+			"text": " If you want to bet, that's not a good idea, well, in the road to be okay, but if you want to bet in real-time, that's not a good idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,600",
+				"to": "00:14:51,600"
+			},
+			"offsets": {
+				"from": 880600,
+				"to": 891600
+			},
+			"text": " If you can weigh something like one day, or I guess in the future, even less, that should be a really interesting method to get random numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,600",
+				"to": "00:15:00,600"
+			},
+			"offsets": {
+				"from": 891600,
+				"to": 900600
+			},
+			"text": " The receiver knows that kind of attack, which would be on hardware, if human has to get to hardware, able to compute ashes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,600",
+				"to": "00:15:14,600"
+			},
+			"offsets": {
+				"from": 900600,
+				"to": 914600
+			},
+			"text": " all the raw magnitude faster than the hardware of others, you could compute it super fast and know what the number will be, and this way, do a block hash attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,600",
+				"to": "00:15:30,600"
+			},
+			"offsets": {
+				"from": 918600,
+				"to": 930600
+			},
+			"text": " So, thanks everyone, and if you have other questions or insight, feel free to speak with me either there or by email."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,600",
+				"to": "00:15:36,600"
+			},
+			"offsets": {
+				"from": 930600,
+				"to": 936600
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,600",
+				"to": "00:15:42,600"
+			},
+			"offsets": {
+				"from": 936600,
+				"to": 942600
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,600",
+				"to": "00:15:45,180"
+			},
+			"offsets": {
+				"from": 942600,
+				"to": 945180
+			},
+			"text": " (gentle music)"
+		}
+	]
+}

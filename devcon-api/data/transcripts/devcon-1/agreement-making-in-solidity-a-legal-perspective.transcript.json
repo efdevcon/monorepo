@@ -1,0 +1,2925 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:18,180"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 18180
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,180",
+				"to": "00:00:21,560"
+			},
+			"offsets": {
+				"from": 18180,
+				"to": 21560
+			},
+			"text": " Next up we have a talk from Bill Marino."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,560",
+				"to": "00:00:26,440"
+			},
+			"offsets": {
+				"from": 21560,
+				"to": 26440
+			},
+			"text": " He is a lawyer turned computer scientist and he is talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,440",
+				"to": "00:00:29,760"
+			},
+			"offsets": {
+				"from": 26440,
+				"to": 29760
+			},
+			"text": " about agreement making and Ethereum from a legal perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,400",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 30400,
+				"to": 31000
+			},
+			"text": " Bill?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:31,760"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 31760
+			},
+			"text": " >> Check, check."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,760",
+				"to": "00:00:32,560"
+			},
+			"offsets": {
+				"from": 31760,
+				"to": 32560
+			},
+			"text": " You guys can hear me okay?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,560",
+				"to": "00:00:33,280"
+			},
+			"offsets": {
+				"from": 32560,
+				"to": 33280
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,280",
+				"to": "00:00:38,760"
+			},
+			"offsets": {
+				"from": 33280,
+				"to": 38760
+			},
+			"text": " Like Jesse said, I am a lawyer and I'm also a computer science student"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,760",
+				"to": "00:00:40,600"
+			},
+			"offsets": {
+				"from": 38760,
+				"to": 40600
+			},
+			"text": " at Cornell Tech in New York City."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,600",
+				"to": "00:00:46,220"
+			},
+			"offsets": {
+				"from": 40600,
+				"to": 46220
+			},
+			"text": " So today I'm going to be talking about how some contract law issues"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,220",
+				"to": "00:00:51,220"
+			},
+			"offsets": {
+				"from": 46220,
+				"to": 51220
+			},
+			"text": " and other legal issues mesh on to making smart contracts in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,220",
+				"to": "00:00:56,640"
+			},
+			"offsets": {
+				"from": 51220,
+				"to": 56640
+			},
+			"text": " And I'm actually going to start in all places in Venice actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,200",
+				"to": "00:01:01,160"
+			},
+			"offsets": {
+				"from": 57200,
+				"to": 61160
+			},
+			"text": " I was walking along the Grand Canal about 18 months ago"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,160",
+				"to": "00:01:02,420"
+			},
+			"offsets": {
+				"from": 61160,
+				"to": 62420
+			},
+			"text": " with my beautiful girlfriend."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,420",
+				"to": "00:01:07,900"
+			},
+			"offsets": {
+				"from": 62420,
+				"to": 67900
+			},
+			"text": " And we happened upon a man who had a Jason Voorhees tattoo on his leg."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,900",
+				"to": "00:01:13,820"
+			},
+			"offsets": {
+				"from": 67900,
+				"to": 73820
+			},
+			"text": " And of course I got very excited because I also have a Jason Voorhees tattoo"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,820",
+				"to": "00:01:14,660"
+			},
+			"offsets": {
+				"from": 73820,
+				"to": 74660
+			},
+			"text": " on my leg."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,660",
+				"to": "00:01:18,100"
+			},
+			"offsets": {
+				"from": 74660,
+				"to": 78100
+			},
+			"text": " I got it free on Craigslist actually and it's a really good story"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,100",
+				"to": "00:01:19,840"
+			},
+			"offsets": {
+				"from": 78100,
+				"to": 79840
+			},
+			"text": " that I can tell you at the bar tonight."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,840",
+				"to": "00:01:22,660"
+			},
+			"offsets": {
+				"from": 79840,
+				"to": 82660
+			},
+			"text": " You're asking yourself why is this relevant?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,660",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 82660,
+				"to": 83960
+			},
+			"text": " It's relevant for two reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:25,700"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 85700
+			},
+			"text": " First of all it's probably the 13th."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,400",
+				"to": "00:01:29,980"
+			},
+			"offsets": {
+				"from": 86400,
+				"to": 89980
+			},
+			"text": " And second of all because Jason Voorhees as you may remember"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,980",
+				"to": "00:01:35,640"
+			},
+			"offsets": {
+				"from": 89980,
+				"to": 95640
+			},
+			"text": " from the Bevy of Sequels in the franchise was an unstoppable force."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,640",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 95640,
+				"to": 102120
+			},
+			"text": " And sometimes when you create a smart contract in Ethereum you're creating an unstoppable force."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:47,680"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 107680
+			},
+			"text": " And that affects some of the contract law and legal issues surrounding agreement making"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,680",
+				"to": "00:01:48,320"
+			},
+			"offsets": {
+				"from": 107680,
+				"to": 108320
+			},
+			"text": " on the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,320",
+				"to": "00:01:50,420"
+			},
+			"offsets": {
+				"from": 108320,
+				"to": 110420
+			},
+			"text": " So let me switch gears."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,420",
+				"to": "00:01:54,920"
+			},
+			"offsets": {
+				"from": 110420,
+				"to": 114920
+			},
+			"text": " We'll put a pin or maybe a machete in the unstoppable force thing for a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,920",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 114920,
+				"to": 117600
+			},
+			"text": " And let me just define contract for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,600",
+				"to": "00:02:00,480"
+			},
+			"offsets": {
+				"from": 117600,
+				"to": 120480
+			},
+			"text": " This is the definition of a contract at law."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,480",
+				"to": "00:02:05,180"
+			},
+			"offsets": {
+				"from": 120480,
+				"to": 125180
+			},
+			"text": " This is the one put up by Cornell University's Legal Information Institute"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,180",
+				"to": "00:02:06,680"
+			},
+			"offsets": {
+				"from": 125180,
+				"to": 126680
+			},
+			"text": " which is a great resource by the way."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,680",
+				"to": "00:02:07,820"
+			},
+			"offsets": {
+				"from": 126680,
+				"to": 127820
+			},
+			"text": " Contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,820",
+				"to": "00:02:11,680"
+			},
+			"offsets": {
+				"from": 127820,
+				"to": 131680
+			},
+			"text": " An agreement creating obligations enforceable by law."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,680",
+				"to": "00:02:16,800"
+			},
+			"offsets": {
+				"from": 131680,
+				"to": 136800
+			},
+			"text": " Now some of you guys who have been here a week will immediately notice that this very --"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,800",
+				"to": "00:02:21,820"
+			},
+			"offsets": {
+				"from": 136800,
+				"to": 141820
+			},
+			"text": " that we refer to things here in the Ethereum community that are outside"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,820",
+				"to": "00:02:25,300"
+			},
+			"offsets": {
+				"from": 141820,
+				"to": 145300
+			},
+			"text": " of this very circumscribed legal definition of contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,300",
+				"to": "00:02:31,720"
+			},
+			"offsets": {
+				"from": 145300,
+				"to": 151720
+			},
+			"text": " We refer -- we call things that are really more like processes or agents contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,720",
+				"to": "00:02:33,120"
+			},
+			"offsets": {
+				"from": 151720,
+				"to": 153120
+			},
+			"text": " You've probably heard it all week."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,120",
+				"to": "00:02:36,340"
+			},
+			"offsets": {
+				"from": 153120,
+				"to": 156340
+			},
+			"text": " If you go to the Solidity tutorial you'll see"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,340",
+				"to": "00:02:40,540"
+			},
+			"offsets": {
+				"from": 156340,
+				"to": 160540
+			},
+			"text": " that the very first contract on there is a simple storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,540",
+				"to": "00:02:43,280"
+			},
+			"offsets": {
+				"from": 160540,
+				"to": 163280
+			},
+			"text": " It's really more like an agent."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,280",
+				"to": "00:02:45,020"
+			},
+			"offsets": {
+				"from": 163280,
+				"to": 165020
+			},
+			"text": " You know it's a place to set and get data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,020",
+				"to": "00:02:50,840"
+			},
+			"offsets": {
+				"from": 165020,
+				"to": 170840
+			},
+			"text": " Conversely sometimes I think when we're using the term smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,840",
+				"to": "00:02:55,340"
+			},
+			"offsets": {
+				"from": 170840,
+				"to": 175340
+			},
+			"text": " with a reference to Ethereum we actually are talking about something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,340",
+				"to": "00:02:58,300"
+			},
+			"offsets": {
+				"from": 175340,
+				"to": 178300
+			},
+			"text": " that falls under that legal definitions umbrella."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,300",
+				"to": "00:03:02,780"
+			},
+			"offsets": {
+				"from": 178300,
+				"to": 182780
+			},
+			"text": " So this week you've also heard about things like rental agreements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,780",
+				"to": "00:03:04,540"
+			},
+			"offsets": {
+				"from": 182780,
+				"to": 184540
+			},
+			"text": " mortgage agreements, founders agreements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,540",
+				"to": "00:03:07,620"
+			},
+			"offsets": {
+				"from": 184540,
+				"to": 187620
+			},
+			"text": " or the counter derivatives contracts, insurance contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,620",
+				"to": "00:03:10,740"
+			},
+			"offsets": {
+				"from": 187620,
+				"to": 190740
+			},
+			"text": " And then that Ubuntu guys like prostitute contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,740",
+				"to": "00:03:13,940"
+			},
+			"offsets": {
+				"from": 190740,
+				"to": 193940
+			},
+			"text": " I never thought Ubuntu would be the ones to go there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,940",
+				"to": "00:03:15,180"
+			},
+			"offsets": {
+				"from": 193940,
+				"to": 195180
+			},
+			"text": " But it happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,180",
+				"to": "00:03:20,600"
+			},
+			"offsets": {
+				"from": 195180,
+				"to": 200600
+			},
+			"text": " So all of these are like I said under that kind of legal definition."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,480",
+				"to": "00:03:27,440"
+			},
+			"offsets": {
+				"from": 201480,
+				"to": 207440
+			},
+			"text": " And maybe by now you're already saying like you know what is this guy talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,440",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 207440,
+				"to": 213640
+			},
+			"text": " about like aren't we here to kind of tear down contract law and maybe tear down the courts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:37,380"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 217380
+			},
+			"text": " and replace these things with I think Gavin actually said it nicely,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,380",
+				"to": "00:03:38,480"
+			},
+			"offsets": {
+				"from": 217380,
+				"to": 218480
+			},
+			"text": " the court of the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,480",
+				"to": "00:03:42,240"
+			},
+			"offsets": {
+				"from": 218480,
+				"to": 222240
+			},
+			"text": " And the answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,240",
+				"to": "00:03:48,040"
+			},
+			"offsets": {
+				"from": 222240,
+				"to": 228040
+			},
+			"text": " But you know I'm a litigator so I have sort of court side seats that's a pun"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,040",
+				"to": "00:03:50,940"
+			},
+			"offsets": {
+				"from": 228040,
+				"to": 230940
+			},
+			"text": " to how expensive enforcing agreements in court is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,940",
+				"to": "00:03:55,980"
+			},
+			"offsets": {
+				"from": 230940,
+				"to": 235980
+			},
+			"text": " But at the same time I think and this is kind of my thesis for today I don't think"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,980",
+				"to": "00:03:58,340"
+			},
+			"offsets": {
+				"from": 235980,
+				"to": 238340
+			},
+			"text": " that we want to reject contract law."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,340",
+				"to": "00:04:02,460"
+			},
+			"offsets": {
+				"from": 238340,
+				"to": 242460
+			},
+			"text": " I think as we're building out this platform and we're thinking about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,460",
+				"to": "00:04:06,440"
+			},
+			"offsets": {
+				"from": 242460,
+				"to": 246440
+			},
+			"text": " to best create agreements in Ethereum smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,440",
+				"to": "00:04:09,480"
+			},
+			"offsets": {
+				"from": 246440,
+				"to": 249480
+			},
+			"text": " We actually want to look at contract law."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,480",
+				"to": "00:04:10,400"
+			},
+			"offsets": {
+				"from": 249480,
+				"to": 250400
+			},
+			"text": " We want to learn from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,400",
+				"to": "00:04:11,320"
+			},
+			"offsets": {
+				"from": 250400,
+				"to": 251320
+			},
+			"text": " We want to embrace it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,320",
+				"to": "00:04:13,100"
+			},
+			"offsets": {
+				"from": 251320,
+				"to": 253100
+			},
+			"text": " There's a couple benefits there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,380",
+				"to": "00:04:21,580"
+			},
+			"offsets": {
+				"from": 253380,
+				"to": 261580
+			},
+			"text": " One is that if we create contracts, legal contracts, we protect ourselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,580",
+				"to": "00:04:26,280"
+			},
+			"offsets": {
+				"from": 261580,
+				"to": 266280
+			},
+			"text": " against auto enforcement failing and maybe in the early years of the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,280",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 266280,
+				"to": 267000
+			},
+			"text": " that will happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:29,580"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 269580
+			},
+			"text": " It can happen two different ways right."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,580",
+				"to": "00:04:36,840"
+			},
+			"offsets": {
+				"from": 269580,
+				"to": 276840
+			},
+			"text": " You can have something that auto enforces and even when it auto enforces a party will say"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,840",
+				"to": "00:04:40,100"
+			},
+			"offsets": {
+				"from": 276840,
+				"to": 280100
+			},
+			"text": " well it wasn't a real contract at law so I'm not really bound to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,740",
+				"to": "00:04:48,260"
+			},
+			"offsets": {
+				"from": 280740,
+				"to": 288260
+			},
+			"text": " Conversely you can have the opposite which is you can have something that fails"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,260",
+				"to": "00:04:52,380"
+			},
+			"offsets": {
+				"from": 288260,
+				"to": 292380
+			},
+			"text": " to auto enforce right and then you want to go to court to try to enforce it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,380",
+				"to": "00:04:53,620"
+			},
+			"offsets": {
+				"from": 292380,
+				"to": 293620
+			},
+			"text": " There was a misfire."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,620",
+				"to": "00:04:59,380"
+			},
+			"offsets": {
+				"from": 293620,
+				"to": 299380
+			},
+			"text": " So we kind of create this backstop if we're looking at contract law and trying"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,380",
+				"to": "00:05:00,320"
+			},
+			"offsets": {
+				"from": 299380,
+				"to": 300320
+			},
+			"text": " to track it closely."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,320",
+				"to": "00:05:02,980"
+			},
+			"offsets": {
+				"from": 300320,
+				"to": 302980
+			},
+			"text": " We also benefit from contract law principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,980",
+				"to": "00:05:06,280"
+			},
+			"offsets": {
+				"from": 302980,
+				"to": 306280
+			},
+			"text": " You know contract law was at one time a lot like Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,280",
+				"to": "00:05:07,380"
+			},
+			"offsets": {
+				"from": 306280,
+				"to": 307380
+			},
+			"text": " It was an invention."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,380",
+				"to": "00:05:13,540"
+			},
+			"offsets": {
+				"from": 307380,
+				"to": 313540
+			},
+			"text": " It was new and shiny and its purpose was to create reliability and to hold people"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,540",
+				"to": "00:05:14,460"
+			},
+			"offsets": {
+				"from": 313540,
+				"to": 314460
+			},
+			"text": " to their promises."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,460",
+				"to": "00:05:18,300"
+			},
+			"offsets": {
+				"from": 314460,
+				"to": 318300
+			},
+			"text": " And so I think we can learn from its principles."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,300",
+				"to": "00:05:24,540"
+			},
+			"offsets": {
+				"from": 318300,
+				"to": 324540
+			},
+			"text": " And then lastly if we are careful about how we treat contract law and other laws"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,540",
+				"to": "00:05:29,340"
+			},
+			"offsets": {
+				"from": 324540,
+				"to": 329340
+			},
+			"text": " in these early years I think that we can show the world that this is a substitute"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,340",
+				"to": "00:05:34,540"
+			},
+			"offsets": {
+				"from": 329340,
+				"to": 334540
+			},
+			"text": " for legal agreement making and on board a lot of people onto the platform that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,260",
+				"to": "00:05:44,220"
+			},
+			"offsets": {
+				"from": 335260,
+				"to": 344220
+			},
+			"text": " Okay so I'm going to tell you guys a couple pointers how you can kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,220",
+				"to": "00:05:46,900"
+			},
+			"offsets": {
+				"from": 344220,
+				"to": 346900
+			},
+			"text": " of look towards contract law and learn from it and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,900",
+				"to": "00:05:49,540"
+			},
+			"offsets": {
+				"from": 346900,
+				"to": 349540
+			},
+			"text": " And I want this to be an ongoing discussion you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,540",
+				"to": "00:05:54,820"
+			},
+			"offsets": {
+				"from": 349540,
+				"to": 354820
+			},
+			"text": " As you heard I'm a lawyer who is in school for computer science and I've been digging"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,820",
+				"to": "00:05:58,020"
+			},
+			"offsets": {
+				"from": 354820,
+				"to": 358020
+			},
+			"text": " into Ethereum for maybe five or six months maximum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,020",
+				"to": "00:06:03,140"
+			},
+			"offsets": {
+				"from": 358020,
+				"to": 363140
+			},
+			"text": " So these are kind of some of my observations and some of the things I'm thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,140",
+				"to": "00:06:05,420"
+			},
+			"offsets": {
+				"from": 363140,
+				"to": 365420
+			},
+			"text": " about and let's keep the conversation going."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,420",
+				"to": "00:06:08,180"
+			},
+			"offsets": {
+				"from": 365420,
+				"to": 368180
+			},
+			"text": " That's kind of the overarching theme here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,180",
+				"to": "00:06:12,420"
+			},
+			"offsets": {
+				"from": 368180,
+				"to": 372420
+			},
+			"text": " So one thing you can do though that I've noticed is I think there's a lot of benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,420",
+				"to": "00:06:17,940"
+			},
+			"offsets": {
+				"from": 372420,
+				"to": 377940
+			},
+			"text": " to learning contract law and then writing functions and choreographing initializations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,940",
+				"to": "00:06:19,660"
+			},
+			"offsets": {
+				"from": 377940,
+				"to": 379660
+			},
+			"text": " such that you closely track it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,660",
+				"to": "00:06:24,980"
+			},
+			"offsets": {
+				"from": 379660,
+				"to": 384980
+			},
+			"text": " I don't think that you really need a lawyer to learn contract law."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,980",
+				"to": "00:06:30,220"
+			},
+			"offsets": {
+				"from": 384980,
+				"to": 390220
+			},
+			"text": " You know we're in the age of googling and auto-diacticism I think that's a word."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,740",
+				"to": "00:06:35,180"
+			},
+			"offsets": {
+				"from": 390740,
+				"to": 395180
+			},
+			"text": " Where you can pretty much teach yourself anything and although the legal community has built"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,180",
+				"to": "00:06:40,060"
+			},
+			"offsets": {
+				"from": 395180,
+				"to": 400060
+			},
+			"text": " this kind of farcical moat around legal knowledge I think maybe it's time for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,060",
+				"to": "00:06:41,740"
+			},
+			"offsets": {
+				"from": 400060,
+				"to": 401740
+			},
+			"text": " to start tearing that down."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,740",
+				"to": "00:06:50,140"
+			},
+			"offsets": {
+				"from": 401740,
+				"to": 410140
+			},
+			"text": " If you can debug you know a test net by pouring over stack exchange for hours then I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,140",
+				"to": "00:06:52,020"
+			},
+			"offsets": {
+				"from": 410140,
+				"to": 412020
+			},
+			"text": " you can master some of the principles of contract law."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,020",
+				"to": "00:06:55,540"
+			},
+			"offsets": {
+				"from": 412020,
+				"to": 415540
+			},
+			"text": " Those are things like offer acceptance consideration."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,540",
+				"to": "00:07:00,460"
+			},
+			"offsets": {
+				"from": 415540,
+				"to": 420460
+			},
+			"text": " I'm not going to get into those right now because my time has been cut down a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,860",
+				"to": "00:07:02,740"
+			},
+			"offsets": {
+				"from": 420860,
+				"to": 422740
+			},
+			"text": " But go home, read about these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,740",
+				"to": "00:07:09,220"
+			},
+			"offsets": {
+				"from": 422740,
+				"to": 429220
+			},
+			"text": " I'm here to help you and after you kind of get a mastery of them what I would try to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,220",
+				"to": "00:07:16,460"
+			},
+			"offsets": {
+				"from": 429220,
+				"to": 436460
+			},
+			"text": " is write contract functions and also think about like initializing contracts in ways"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,460",
+				"to": "00:07:20,660"
+			},
+			"offsets": {
+				"from": 436460,
+				"to": 440660
+			},
+			"text": " that hue closely to these building blocks of contract law."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,380",
+				"to": "00:07:32,340"
+			},
+			"offsets": {
+				"from": 441380,
+				"to": 452340
+			},
+			"text": " Actually the other day Fabian and Christian and Alex they built a contract here on stage"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,340",
+				"to": "00:07:38,900"
+			},
+			"offsets": {
+				"from": 452340,
+				"to": 458900
+			},
+			"text": " in Solidity and maybe subconsciously they did a really good job of tracking offer and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,900",
+				"to": "00:07:42,780"
+			},
+			"offsets": {
+				"from": 458900,
+				"to": 462780
+			},
+			"text": " acceptance very closely so I would go and check out their code after you have a chance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,780",
+				"to": "00:07:44,780"
+			},
+			"offsets": {
+				"from": 462780,
+				"to": 464780
+			},
+			"text": " to read about offer and acceptance and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,060",
+				"to": "00:07:53,300"
+			},
+			"offsets": {
+				"from": 466060,
+				"to": 473300
+			},
+			"text": " Okay just as a side note if you do follow these principles really closely courts have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,300",
+				"to": "00:07:59,460"
+			},
+			"offsets": {
+				"from": 473300,
+				"to": 479460
+			},
+			"text": " been pretty good about enforcing digital agreements when they contain those contract law elements."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,460",
+				"to": "00:08:06,980"
+			},
+			"offsets": {
+				"from": 479460,
+				"to": 486980
+			},
+			"text": " A while several years ago there was this wave of legislation that legitimized digital signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,980",
+				"to": "00:08:14,860"
+			},
+			"offsets": {
+				"from": 486980,
+				"to": 494860
+			},
+			"text": " and since then courts have been eager to enforce all sorts of digital agreements from people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,860",
+				"to": "00:08:20,660"
+			},
+			"offsets": {
+				"from": 494860,
+				"to": 500660
+			},
+			"text": " creating an agreement by emailing back and forth to click wrap agreements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,660",
+				"to": "00:08:26,660"
+			},
+			"offsets": {
+				"from": 500660,
+				"to": 506660
+			},
+			"text": " So by like I said before huing closely to these contract law building blocks you probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,660",
+				"to": "00:08:31,460"
+			},
+			"offsets": {
+				"from": 506660,
+				"to": 511460
+			},
+			"text": " create something that's enforceable in court if it's not automatically enforceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,460",
+				"to": "00:08:37,060"
+			},
+			"offsets": {
+				"from": 511460,
+				"to": 517060
+			},
+			"text": " Okay sometimes those things don't really map onto functions very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,060",
+				"to": "00:08:43,180"
+			},
+			"offsets": {
+				"from": 517060,
+				"to": 523180
+			},
+			"text": " These are things like choice of law provisions, warranties and deminifications and something"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,180",
+				"to": "00:08:46,500"
+			},
+			"offsets": {
+				"from": 523180,
+				"to": 526500
+			},
+			"text": " that's a little bit more specific to the Ethereum universe."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,500",
+				"to": "00:08:50,860"
+			},
+			"offsets": {
+				"from": 526500,
+				"to": 530860
+			},
+			"text": " I think there's a lot of benefit to having these kind of ancillary agreements."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,860",
+				"to": "00:08:55,500"
+			},
+			"offsets": {
+				"from": 530860,
+				"to": 535500
+			},
+			"text": " One is maybe something that choreographs how the parties are going to call functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,500",
+				"to": "00:08:59,740"
+			},
+			"offsets": {
+				"from": 535500,
+				"to": 539740
+			},
+			"text": " You know contracts are not self-waking so unless you're using something like pipers amazing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,740",
+				"to": "00:09:04,940"
+			},
+			"offsets": {
+				"from": 539740,
+				"to": 544940
+			},
+			"text": " alarm clock application you want to agree with the other party beforehand how are you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,940",
+				"to": "00:09:08,620"
+			},
+			"offsets": {
+				"from": 544940,
+				"to": 548620
+			},
+			"text": " guys are going to call functions and related to that is you might also want to have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,620",
+				"to": "00:09:11,060"
+			},
+			"offsets": {
+				"from": 548620,
+				"to": 551060
+			},
+			"text": " policies for gas reimbursement."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,060",
+				"to": "00:09:15,260"
+			},
+			"offsets": {
+				"from": 551060,
+				"to": 555260
+			},
+			"text": " So all of these things are not easy at least right now I don't see ways that they easily"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,260",
+				"to": "00:09:17,540"
+			},
+			"offsets": {
+				"from": 555260,
+				"to": 557540
+			},
+			"text": " map onto functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,540",
+				"to": "00:09:21,380"
+			},
+			"offsets": {
+				"from": 557540,
+				"to": 561380
+			},
+			"text": " So I would think about them and think if there are other ways you can build them into"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,380",
+				"to": "00:09:23,260"
+			},
+			"offsets": {
+				"from": 561380,
+				"to": 563260
+			},
+			"text": " your smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,260",
+				"to": "00:09:26,940"
+			},
+			"offsets": {
+				"from": 563260,
+				"to": 566940
+			},
+			"text": " There's a couple of hacks here that I've been looking at and I'm definitely curious to hear"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,940",
+				"to": "00:09:28,420"
+			},
+			"offsets": {
+				"from": 566940,
+				"to": 568420
+			},
+			"text": " you guys ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,420",
+				"to": "00:09:32,220"
+			},
+			"offsets": {
+				"from": 568420,
+				"to": 572220
+			},
+			"text": " These are everything from just putting them in your solidity comments which is not very"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,220",
+				"to": "00:09:37,060"
+			},
+			"offsets": {
+				"from": 572220,
+				"to": 577060
+			},
+			"text": " good because it doesn't keep it holistically with the rest of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,060",
+				"to": "00:09:44,260"
+			},
+			"offsets": {
+				"from": 577060,
+				"to": 584260
+			},
+			"text": " I think things like swarm, IPFS, NAT spec those might be good places to stash these other"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,260",
+				"to": "00:09:45,740"
+			},
+			"offsets": {
+				"from": 584260,
+				"to": 585740
+			},
+			"text": " things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,740",
+				"to": "00:09:47,380"
+			},
+			"offsets": {
+				"from": 585740,
+				"to": 587380
+			},
+			"text": " So I'm looking all of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,380",
+				"to": "00:09:52,340"
+			},
+			"offsets": {
+				"from": 587380,
+				"to": 592340
+			},
+			"text": " I think bytecode would be the ideal place to stash that kind of stuff but I don't know"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,340",
+				"to": "00:09:53,340"
+			},
+			"offsets": {
+				"from": 592340,
+				"to": 593340
+			},
+			"text": " that that's feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,340",
+				"to": "00:09:58,220"
+			},
+			"offsets": {
+				"from": 593340,
+				"to": 598220
+			},
+			"text": " If it is feasible we should maybe start that conversation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,220",
+				"to": "00:10:02,100"
+			},
+			"offsets": {
+				"from": 598220,
+				"to": 602100
+			},
+			"text": " Another thing is to engineer evidentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,100",
+				"to": "00:10:07,580"
+			},
+			"offsets": {
+				"from": 602100,
+				"to": 607580
+			},
+			"text": " One of the best things about law school is it kind of teaches you to start thinking with"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,580",
+				"to": "00:10:10,780"
+			},
+			"offsets": {
+				"from": 607580,
+				"to": 610780
+			},
+			"text": " eyes towards courts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,780",
+				"to": "00:10:15,780"
+			},
+			"offsets": {
+				"from": 610780,
+				"to": 615780
+			},
+			"text": " You know everything you do you're kind of thinking like what if this winds up in courts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,780",
+				"to": "00:10:19,060"
+			},
+			"offsets": {
+				"from": 615780,
+				"to": 619060
+			},
+			"text": " And when you're creating smart contracts that can be a useful thing even if we're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,060",
+				"to": "00:10:23,460"
+			},
+			"offsets": {
+				"from": 619060,
+				"to": 623460
+			},
+			"text": " talking about brick and mortar courts we could be talking about some kind of digital dispute"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,460",
+				"to": "00:10:26,580"
+			},
+			"offsets": {
+				"from": 623460,
+				"to": 626580
+			},
+			"text": " resolution, distributed dispute resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,580",
+				"to": "00:10:30,700"
+			},
+			"offsets": {
+				"from": 626580,
+				"to": 630700
+			},
+			"text": " Maybe be thinking about those things while you're creating your smart contracts and I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,700",
+				"to": "00:10:33,980"
+			},
+			"offsets": {
+				"from": 630700,
+				"to": 633980
+			},
+			"text": " going to tee this up this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,980",
+				"to": "00:10:39,060"
+			},
+			"offsets": {
+				"from": 633980,
+				"to": 639060
+			},
+			"text": " Imagine that we had a Venn diagram and it was people who know solidity and then people"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,060",
+				"to": "00:10:40,420"
+			},
+			"offsets": {
+				"from": 639060,
+				"to": 640420
+			},
+			"text": " in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,420",
+				"to": "00:10:45,220"
+			},
+			"offsets": {
+				"from": 640420,
+				"to": 645220
+			},
+			"text": " You might think that there's probably a lot of overlap and that might look like Garfield"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,220",
+				"to": "00:10:46,220"
+			},
+			"offsets": {
+				"from": 645220,
+				"to": 646220
+			},
+			"text": " eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,220",
+				"to": "00:10:49,460"
+			},
+			"offsets": {
+				"from": 646220,
+				"to": 649460
+			},
+			"text": " See there's a lot of overlap."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,460",
+				"to": "00:10:51,860"
+			},
+			"offsets": {
+				"from": 649460,
+				"to": 651860
+			},
+			"text": " Now let's create another Venn diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,860",
+				"to": "00:10:56,180"
+			},
+			"offsets": {
+				"from": 651860,
+				"to": 656180
+			},
+			"text": " People who know solidity and I don't need to disparage the other languages."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,180",
+				"to": "00:10:58,460"
+			},
+			"offsets": {
+				"from": 656180,
+				"to": 658460
+			},
+			"text": " I work mostly in solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,460",
+				"to": "00:11:00,180"
+			},
+			"offsets": {
+				"from": 658460,
+				"to": 660180
+			},
+			"text": " So let's create another Venn diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,180",
+				"to": "00:11:03,820"
+			},
+			"offsets": {
+				"from": 660180,
+				"to": 663820
+			},
+			"text": " People who know solidity and then potential jury members."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,820",
+				"to": "00:11:07,420"
+			},
+			"offsets": {
+				"from": 663820,
+				"to": 667420
+			},
+			"text": " And that you can imagine there's less overlap so it might look like SpongeBob's eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,420",
+				"to": "00:11:09,300"
+			},
+			"offsets": {
+				"from": 667420,
+				"to": 669300
+			},
+			"text": " Just a teeny little overlap."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,300",
+				"to": "00:11:15,500"
+			},
+			"offsets": {
+				"from": 669300,
+				"to": 675500
+			},
+			"text": " And then lastly let's do a Venn diagram of people who know solidity and then judges."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,500",
+				"to": "00:11:19,900"
+			},
+			"offsets": {
+				"from": 675500,
+				"to": 679900
+			},
+			"text": " And as you can probably guess there's basically no overlap and then for good measure I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,900",
+				"to": "00:11:23,580"
+			},
+			"offsets": {
+				"from": 679900,
+				"to": 683580
+			},
+			"text": " also just put a big separation between them so it's kind of like Stewie's eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,580",
+				"to": "00:11:24,900"
+			},
+			"offsets": {
+				"from": 683580,
+				"to": 684900
+			},
+			"text": " That's the Venn diagram."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,900",
+				"to": "00:11:30,900"
+			},
+			"offsets": {
+				"from": 684900,
+				"to": 690900
+			},
+			"text": " So this is a long winded way of saying that if you ever have to take your code into court"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,900",
+				"to": "00:11:39,100"
+			},
+			"offsets": {
+				"from": 690900,
+				"to": 699100
+			},
+			"text": " or maybe even to some sort of consensus based dispute resolution contract that is operated"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,100",
+				"to": "00:11:42,940"
+			},
+			"offsets": {
+				"from": 699100,
+				"to": 702940
+			},
+			"text": " by humans they might not be able to read your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,940",
+				"to": "00:11:50,260"
+			},
+			"offsets": {
+				"from": 702940,
+				"to": 710260
+			},
+			"text": " So you might want to think about a couple hacks and ways to get around that issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,260",
+				"to": "00:11:56,060"
+			},
+			"offsets": {
+				"from": 710260,
+				"to": 716060
+			},
+			"text": " And some of the ones that I've come up with, you know, like what I need to say is think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,060",
+				"to": "00:12:02,340"
+			},
+			"offsets": {
+				"from": 716060,
+				"to": 722340
+			},
+			"text": " about embellishing your solidity code with legible contract style language."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,340",
+				"to": "00:12:05,660"
+			},
+			"offsets": {
+				"from": 722340,
+				"to": 725660
+			},
+			"text": " And it's sort of like the hacks I was talking about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,660",
+				"to": "00:12:09,140"
+			},
+			"offsets": {
+				"from": 725660,
+				"to": 729140
+			},
+			"text": " I'm not quite sure where to pop them at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,140",
+				"to": "00:12:10,700"
+			},
+			"offsets": {
+				"from": 729140,
+				"to": 730700
+			},
+			"text": " You might pop them in your solidity code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,700",
+				"to": "00:12:16,540"
+			},
+			"offsets": {
+				"from": 730700,
+				"to": 736540
+			},
+			"text": " You might pop them in some of these ancillary stores like Swarm and NatSpec."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,540",
+				"to": "00:12:22,260"
+			},
+			"offsets": {
+				"from": 736540,
+				"to": 742260
+			},
+			"text": " You might even think of paper or offline agreements that can somehow communicate with your smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,260",
+				"to": "00:12:27,700"
+			},
+			"offsets": {
+				"from": 742260,
+				"to": 747700
+			},
+			"text": " contracts but are legible to judges and jury members and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,700",
+				"to": "00:12:28,780"
+			},
+			"offsets": {
+				"from": 747700,
+				"to": 748780
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,780",
+				"to": "00:12:34,180"
+			},
+			"offsets": {
+				"from": 748780,
+				"to": 754180
+			},
+			"text": " One last way to embrace contract law is to pay attention to the special risks of creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,180",
+				"to": "00:12:37,380"
+			},
+			"offsets": {
+				"from": 754180,
+				"to": 757380
+			},
+			"text": " that unstoppable force that we talked about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,380",
+				"to": "00:12:39,460"
+			},
+			"offsets": {
+				"from": 757380,
+				"to": 759460
+			},
+			"text": " Gav actually said it nicely earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,460",
+				"to": "00:12:41,900"
+			},
+			"offsets": {
+				"from": 759460,
+				"to": 761900
+			},
+			"text": " I think you were talking about the system but he said there's no reset and that's also"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,900",
+				"to": "00:12:43,580"
+			},
+			"offsets": {
+				"from": 761900,
+				"to": 763580
+			},
+			"text": " true of your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,580",
+				"to": "00:12:47,180"
+			},
+			"offsets": {
+				"from": 763580,
+				"to": 767180
+			},
+			"text": " They're immutable, they're automatically enforcing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,180",
+				"to": "00:12:51,420"
+			},
+			"offsets": {
+				"from": 767180,
+				"to": 771420
+			},
+			"text": " So that comes to play in a couple of different areas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,420",
+				"to": "00:12:55,220"
+			},
+			"offsets": {
+				"from": 771420,
+				"to": 775220
+			},
+			"text": " One is rescission, modification, reformation."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,220",
+				"to": "00:13:01,020"
+			},
+			"offsets": {
+				"from": 775220,
+				"to": 781020
+			},
+			"text": " So in normal contract law, sometimes circumstances change and the parties want to go in and undo"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,020",
+				"to": "00:13:02,020"
+			},
+			"offsets": {
+				"from": 781020,
+				"to": 782020
+			},
+			"text": " their contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,020",
+				"to": "00:13:03,820"
+			},
+			"offsets": {
+				"from": 782020,
+				"to": 783820
+			},
+			"text": " That's called the mutual rescission."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,820",
+				"to": "00:13:07,500"
+			},
+			"offsets": {
+				"from": 783820,
+				"to": 787500
+			},
+			"text": " Sometimes a court orders parties to go in and undo their contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,500",
+				"to": "00:13:09,860"
+			},
+			"offsets": {
+				"from": 787500,
+				"to": 789860
+			},
+			"text": " They might do that, for example, if one party was a minor."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,860",
+				"to": "00:13:11,060"
+			},
+			"offsets": {
+				"from": 789860,
+				"to": 791060
+			},
+			"text": " That is called rescission."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,060",
+				"to": "00:13:15,260"
+			},
+			"offsets": {
+				"from": 791060,
+				"to": 795260
+			},
+			"text": " The parties might also have a reason to modify their agreement."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,260",
+				"to": "00:13:16,260"
+			},
+			"offsets": {
+				"from": 795260,
+				"to": 796260
+			},
+			"text": " That's usually just called modification."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,260",
+				"to": "00:13:17,860"
+			},
+			"offsets": {
+				"from": 796260,
+				"to": 797860
+			},
+			"text": " It doesn't really have a name."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,860",
+				"to": "00:13:21,500"
+			},
+			"offsets": {
+				"from": 797860,
+				"to": 801500
+			},
+			"text": " And sometimes the court orders the parties to modify their contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,500",
+				"to": "00:13:27,340"
+			},
+			"offsets": {
+				"from": 801500,
+				"to": 807340
+			},
+			"text": " This might be because they did a bad job of distilling their intentions into writing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,340",
+				"to": "00:13:34,140"
+			},
+			"offsets": {
+				"from": 807340,
+				"to": 814140
+			},
+			"text": " So you need to think about this in ways to kind of reconstruct, like how do you go about"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,140",
+				"to": "00:13:35,140"
+			},
+			"offsets": {
+				"from": 814140,
+				"to": 815140
+			},
+			"text": " these things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,140",
+				"to": "00:13:36,140"
+			},
+			"offsets": {
+				"from": 815140,
+				"to": 816140
+			},
+			"text": " How do you rescind a contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,140",
+				"to": "00:13:37,140"
+			},
+			"offsets": {
+				"from": 816140,
+				"to": 817140
+			},
+			"text": " How do you reform it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,140",
+				"to": "00:13:39,580"
+			},
+			"offsets": {
+				"from": 817140,
+				"to": 819580
+			},
+			"text": " I'm going to skip a little bit ahead because I'm getting the time signal."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,580",
+				"to": "00:13:41,740"
+			},
+			"offsets": {
+				"from": 819580,
+				"to": 821740
+			},
+			"text": " But I have a couple of hacks here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,740",
+				"to": "00:13:46,480"
+			},
+			"offsets": {
+				"from": 821740,
+				"to": 826480
+			},
+			"text": " You know, they involve the enums that Christian was talking about earlier in the week are"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,480",
+				"to": "00:13:52,020"
+			},
+			"offsets": {
+				"from": 826480,
+				"to": 832020
+			},
+			"text": " amazing to turn your functions on and off and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,020",
+				"to": "00:13:54,020"
+			},
+			"offsets": {
+				"from": 832020,
+				"to": 834020
+			},
+			"text": " Sometimes I think suicide is a better idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,020",
+				"to": "00:13:58,260"
+			},
+			"offsets": {
+				"from": 834020,
+				"to": 838260
+			},
+			"text": " You don't just deal with these things with respect to rescission and reformation, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,260",
+				"to": "00:14:04,580"
+			},
+			"offsets": {
+				"from": 838260,
+				"to": 844580
+			},
+			"text": " also what if something illegal winds up in your contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,580",
+				"to": "00:14:10,180"
+			},
+			"offsets": {
+				"from": 844580,
+				"to": 850180
+			},
+			"text": " I think from HIPAA violating medical data to non-PCI compliant credit card data to Jared,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,180",
+				"to": "00:14:13,980"
+			},
+			"offsets": {
+				"from": 850180,
+				"to": 853980
+			},
+			"text": " the subway guy kind of stuff, like if those things wind up in your contract, what do you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,980",
+				"to": "00:14:14,980"
+			},
+			"offsets": {
+				"from": 853980,
+				"to": 854980
+			},
+			"text": " do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,980",
+				"to": "00:14:15,980"
+			},
+			"offsets": {
+				"from": 854980,
+				"to": 855980
+			},
+			"text": " How do you peel them out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,980",
+				"to": "00:14:16,980"
+			},
+			"offsets": {
+				"from": 855980,
+				"to": 856980
+			},
+			"text": " So that's something you have to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,980",
+				"to": "00:14:23,220"
+			},
+			"offsets": {
+				"from": 856980,
+				"to": 863220
+			},
+			"text": " In my last couple of minutes, I want to just focus on a potpourri of issues all in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,220",
+				"to": "00:14:24,220"
+			},
+			"offsets": {
+				"from": 863220,
+				"to": 864220
+			},
+			"text": " realm."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,220",
+				"to": "00:14:25,220"
+			},
+			"offsets": {
+				"from": 864220,
+				"to": 865220
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,220",
+				"to": "00:14:32,380"
+			},
+			"offsets": {
+				"from": 865220,
+				"to": 872380
+			},
+			"text": " So I'm a New Yorker and lately scoring F feels a lot like trying to score meth, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,380",
+				"to": "00:14:34,500"
+			},
+			"offsets": {
+				"from": 872380,
+				"to": 874500
+			},
+			"text": " is that it's impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,500",
+				"to": "00:14:41,140"
+			},
+			"offsets": {
+				"from": 874500,
+				"to": 881140
+			},
+			"text": " It seems like a lot of the ethics changes have evacuated the markets in the wake of bit license."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,140",
+				"to": "00:14:42,900"
+			},
+			"offsets": {
+				"from": 881140,
+				"to": 882900
+			},
+			"text": " Actually, I kind of have proof of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,900",
+				"to": "00:14:46,340"
+			},
+			"offsets": {
+				"from": 882900,
+				"to": 886340
+			},
+			"text": " This is my rejection of Cripsey."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,340",
+				"to": "00:14:50,620"
+			},
+			"offsets": {
+				"from": 886340,
+				"to": 890620
+			},
+			"text": " We are unable to approve your application at this time due to New York virtual currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,620",
+				"to": "00:14:52,780"
+			},
+			"offsets": {
+				"from": 890620,
+				"to": 892780
+			},
+			"text": " bit license requirements."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,780",
+				"to": "00:14:54,580"
+			},
+			"offsets": {
+				"from": 892780,
+				"to": 894580
+			},
+			"text": " And this is my rejection from Kraken."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,580",
+				"to": "00:14:58,620"
+			},
+			"offsets": {
+				"from": 894580,
+				"to": 898620
+			},
+			"text": " Unfortunately, we no longer offer our services to residents in New York due to bit license."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,620",
+				"to": "00:15:00,740"
+			},
+			"offsets": {
+				"from": 898620,
+				"to": 900740
+			},
+			"text": " So I think we should be talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,740",
+				"to": "00:15:05,980"
+			},
+			"offsets": {
+				"from": 900740,
+				"to": 905980
+			},
+			"text": " Is this regulation having a chilling effect on development?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,980",
+				"to": "00:15:09,180"
+			},
+			"offsets": {
+				"from": 905980,
+				"to": 909180
+			},
+			"text": " Actually, I was at an event with Jesse, you know, three weeks ago and a couple of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,180",
+				"to": "00:15:12,180"
+			},
+			"offsets": {
+				"from": 909180,
+				"to": 912180
+			},
+			"text": " were coming out to him and asking like, where can I get F?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,180",
+				"to": "00:15:13,180"
+			},
+			"offsets": {
+				"from": 912180,
+				"to": 913180
+			},
+			"text": " It seems so hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,180",
+				"to": "00:15:14,180"
+			},
+			"offsets": {
+				"from": 913180,
+				"to": 914180
+			},
+			"text": " So let's ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,180",
+				"to": "00:15:17,620"
+			},
+			"offsets": {
+				"from": 914180,
+				"to": 917620
+			},
+			"text": " Let's talk about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,620",
+				"to": "00:15:20,660"
+			},
+			"offsets": {
+				"from": 917620,
+				"to": 920660
+			},
+			"text": " We need more engineers who know law and more lawyers who can code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,660",
+				"to": "00:15:25,740"
+			},
+			"offsets": {
+				"from": 920660,
+				"to": 925740
+			},
+			"text": " That's kind of why I'm here to help start bridging that gap and we need a lot more like"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,740",
+				"to": "00:15:26,740"
+			},
+			"offsets": {
+				"from": 925740,
+				"to": 926740
+			},
+			"text": " me."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,740",
+				"to": "00:15:32,020"
+			},
+			"offsets": {
+				"from": 926740,
+				"to": 932020
+			},
+			"text": " I work for -- I do research for this awesome cryptocurrency and crypto contract initiative."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,020",
+				"to": "00:15:35,940"
+			},
+			"offsets": {
+				"from": 932020,
+				"to": 935940
+			},
+			"text": " That's a partnership between professors at UMD, Cornell and Berkeley."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,940",
+				"to": "00:15:36,940"
+			},
+			"offsets": {
+				"from": 935940,
+				"to": 936940
+			},
+			"text": " It's called IC3."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,940",
+				"to": "00:15:37,940"
+			},
+			"offsets": {
+				"from": 936940,
+				"to": 937940
+			},
+			"text": " That's a website."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,940",
+				"to": "00:15:40,380"
+			},
+			"offsets": {
+				"from": 937940,
+				"to": 940380
+			},
+			"text": " You should definitely check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,380",
+				"to": "00:15:41,660"
+			},
+			"offsets": {
+				"from": 940380,
+				"to": 941660
+			},
+			"text": " Here are my acknowledgments."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,660",
+				"to": "00:15:45,420"
+			},
+			"offsets": {
+				"from": 941660,
+				"to": 945420
+			},
+			"text": " A lot of people help me prepare this talk, including some of the people in this room."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,420",
+				"to": "00:15:46,780"
+			},
+			"offsets": {
+				"from": 945420,
+				"to": 946780
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,780",
+				"to": "00:15:53,460"
+			},
+			"offsets": {
+				"from": 946780,
+				"to": 953460
+			},
+			"text": " And then lastly, let's make this an annual thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,460",
+				"to": "00:15:57,580"
+			},
+			"offsets": {
+				"from": 953460,
+				"to": 957580
+			},
+			"text": " At the end, clap for me to come back because I want to come here every year and talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,580",
+				"to": "00:16:00,300"
+			},
+			"offsets": {
+				"from": 957580,
+				"to": 960300
+			},
+			"text": " the development of these legal issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,300",
+				"to": "00:16:06,780"
+			},
+			"offsets": {
+				"from": 960300,
+				"to": 966780
+			},
+			"text": " I think everything is in this kind of nascent stage and, you know, let's all have this conversation"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,780",
+				"to": "00:16:07,780"
+			},
+			"offsets": {
+				"from": 966780,
+				"to": 967780
+			},
+			"text": " continue."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,780",
+				"to": "00:16:08,780"
+			},
+			"offsets": {
+				"from": 967780,
+				"to": 968780
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,780",
+				"to": "00:16:09,780"
+			},
+			"offsets": {
+				"from": 968780,
+				"to": 969780
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,780",
+				"to": "00:16:09,780"
+			},
+			"offsets": {
+				"from": 969780,
+				"to": 969780
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,780",
+				"to": "00:16:11,780"
+			},
+			"offsets": {
+				"from": 969780,
+				"to": 971780
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,780",
+				"to": "00:16:13,780"
+			},
+			"offsets": {
+				"from": 971780,
+				"to": 973780
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,780",
+				"to": "00:16:15,780"
+			},
+			"offsets": {
+				"from": 973780,
+				"to": 975780
+			},
+			"text": " (music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,780",
+				"to": "00:16:18,020"
+			},
+			"offsets": {
+				"from": 975780,
+				"to": 978020
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

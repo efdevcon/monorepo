@@ -1,0 +1,2837 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 14000
+			},
+			"text": " I'm Geoff Lampard."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 17000
+			},
+			"text": " I'm from the Privacy and Scaling's Explorations team"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 19000
+			},
+			"text": " in the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 22000
+			},
+			"text": " And I'm going to talk today about Inter-Rep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " which is a project we've been working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 27000
+			},
+			"text": " It's in the identity space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " So, a brief introduction to what we do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 37000
+			},
+			"text": " It's -- there's lots of projects in the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 42000
+			},
+			"text": " trying to bring identity into Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 49000
+			},
+			"text": " And they tend to be, like, have some identity source"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 51000
+			},
+			"text": " and build it up from the ground."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 55000
+			},
+			"text": " Our approach is a pragmatic approach"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 60000
+			},
+			"text": " where we build on the identity that we already have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " in our digital lives."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:08,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 68000
+			},
+			"text": " And we bring that across to Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 68000,
+				"to": 73000
+			},
+			"text": " so we can have an established pool of --"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 76000
+			},
+			"text": " or established identity pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 83000
+			},
+			"text": " And we can integrate that into our Ethereum applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 87000
+			},
+			"text": " So, yeah, very much a pragmatic approach building on"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 90000
+			},
+			"text": " the identity sources we already have."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 94000
+			},
+			"text": " So, what we aim to do is build a bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 100000
+			},
+			"text": " from existing digital identity sources to Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:45,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 105000
+			},
+			"text": " integrate with providers of those identity sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 105000,
+				"to": 109000
+			},
+			"text": " and then privacy is very important to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 115000
+			},
+			"text": " So, we build on the semaphore framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 119000
+			},
+			"text": " and integrate with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122000
+			},
+			"text": " So, those building blocks all come together"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 125000
+			},
+			"text": " to form the basis of an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " So, identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 134000
+			},
+			"text": " We spend a lot of time in our social networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 136000
+			},
+			"text": " Some people more than others,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 140000
+			},
+			"text": " but people spend a lot of time on their Twitter accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 146000
+			},
+			"text": " and building up putting out a bit of our personality"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 149000
+			},
+			"text": " into those accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 154000
+			},
+			"text": " So, we spend -- you know, every tweet you write"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " is a bit of humanity that goes into that tweet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 160000
+			},
+			"text": " that represents you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 165000
+			},
+			"text": " And we build those up in our social network accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " And some people spend a lot of time on that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " Even if you're not into social networks big time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 179000
+			},
+			"text": " we still have digital identity in the non-web3 world."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 183000
+			},
+			"text": " We have things like government IDs and drivers licenses"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 185000
+			},
+			"text": " and all that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " So, yeah, it's -- our real world human identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 194000
+			},
+			"text": " is reflected in those digital sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 198000
+			},
+			"text": " So, that's what we try and build on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 204000
+			},
+			"text": " But we need to recognize that those digital sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 209000
+			},
+			"text": " also are vulnerable to civil attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:34,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 214000
+			},
+			"text": " So, we need to, yeah, filter out the bots and kick them out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,000",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214000,
+				"to": 219000
+			},
+			"text": " So, they're the kinds of things we're trying to do with Interrep."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 225000
+			},
+			"text": " Now, let's take a look at what the Interrep LEGO block looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:48,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 228000
+			},
+			"text": " in an application."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 228000,
+				"to": 235000
+			},
+			"text": " We have -- we have everything rooted in the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 238000
+			},
+			"text": " Interrep is the LEGO block on top of that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 244000
+			},
+			"text": " that provides the identity -- the identity module."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 250000
+			},
+			"text": " And the LEGO block on top of that is Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 255000
+			},
+			"text": " And your application hooks into Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 262000
+			},
+			"text": " And with all of that, we get the identity layer in Interrep."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " We get the privacy layer in Semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 273000
+			},
+			"text": " And we get the blockchain, sort of providing all the guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:38,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 278000
+			},
+			"text": " Interrep will integrate with those identity sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278000,
+				"to": 282000
+			},
+			"text": " like our social media accounts and those kinds of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 288000
+			},
+			"text": " Now, Semaphore relies on the idea of groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:52,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 292000
+			},
+			"text": " You form pre-existing groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,000",
+				"to": "00:04:59,000"
+			},
+			"offsets": {
+				"from": 292000,
+				"to": 299000
+			},
+			"text": " and the Semaphore application will use those identities in those groups"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 299000,
+				"to": 304000
+			},
+			"text": " to verify the kinds of things that your application is doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " So, Semaphore is a privacy layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 314000
+			},
+			"text": " So, those groups -- the group membership is guaranteed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:16,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 316000
+			},
+			"text": " but never revealed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 316000,
+				"to": 321000
+			},
+			"text": " It's never revealed what the underlying Ethereum account is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 327000
+			},
+			"text": " So, yeah, so we'll talk a bit more about the details of that a bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 331000
+			},
+			"text": " That's an idea of what your application stack is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 338000
+			},
+			"text": " It's really just a bunch of LEGO bricks all plugged together."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 345000
+			},
+			"text": " The kinds of identity providers we've been linking with so far are these examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 351000
+			},
+			"text": " Twitter and Reddit and GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 360000
+			},
+			"text": " So, what we'll do is an OAuth verification on your Twitter account, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 365000
+			},
+			"text": " and using that we'll link it with an Ethereum account"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 369000
+			},
+			"text": " and never reveal that link,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 380000
+			},
+			"text": " but we maintain that Twitter handle is always reflected in that Ethereum account."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 384000
+			},
+			"text": " And it's easy for us to add new providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 393000
+			},
+			"text": " It's really just an OAuth verification and some rules about, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 396000
+			},
+			"text": " what's a qualified account or what does it look like a bot?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 400000
+			},
+			"text": " Does it not -- does it look like a human?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 405000
+			},
+			"text": " We can also integrate with other providers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 410000
+			},
+			"text": " We could use email as an identity source."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 414000
+			},
+			"text": " And this is useful in some cases, not in others."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 420000
+			},
+			"text": " Maybe it's not so useful for Gmail accounts, but even Gmail has some barriers to entry."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424000
+			},
+			"text": " But if you've got like a .edu account, email account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 430000
+			},
+			"text": " then that's a fairly good guarantee that there's a human behind that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:13,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 433000
+			},
+			"text": " And a reasonably good guarantee of uniqueness."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 433000,
+				"to": 438000
+			},
+			"text": " So, we can use those kinds of sources and integrate with those."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 445000
+			},
+			"text": " Government authorities are good in that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 450000
+			},
+			"text": " the government makes sure you only have one driver's license, for instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 455000
+			},
+			"text": " And there's a strong guarantee that there's a human behind that driver's license."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:38,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 458000
+			},
+			"text": " So, if we can integrate with those kinds of sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,000",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458000,
+				"to": 463000
+			},
+			"text": " and it also includes the people who don't use social media,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 469000
+			},
+			"text": " so that's another approach we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 476000
+			},
+			"text": " We can do things like curating groups of users"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 482000
+			},
+			"text": " so that might rely on personal knowledge of the individual that's involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 486000
+			},
+			"text": " So, that's also a strong way to guarantee humanity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 490000
+			},
+			"text": " Other ID projects, we can integrate with those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " and we can integrate with on-chain sources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500000
+			},
+			"text": " like, use things like NFT ownership, that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 502000
+			},
+			"text": " Now, a bit about semaphore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 507000
+			},
+			"text": " So, with those identity sources, we create a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 511000
+			},
+			"text": " We put someone into a group."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 514000
+			},
+			"text": " Now, semaphore relies on these groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 520000
+			},
+			"text": " Semaphore groups are membership sets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 527000
+			},
+			"text": " so there are guarantees of, once you're in that set,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 535000
+			},
+			"text": " you're expected to be, you know, anyone can expect that identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 540000
+			},
+			"text": " to have a human behind it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 546000
+			},
+			"text": " So, and with semaphore, it's a generic framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 553000
+			},
+			"text": " in which members in that membership set can signal on a topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 556000
+			},
+			"text": " and that can be applied in multiple ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:20,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 560000
+			},
+			"text": " but an easy to grasp example would be a DAO"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,000",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 560000,
+				"to": 563000
+			},
+			"text": " that has votes on proposals."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 568000
+			},
+			"text": " In that situation, a signal is a vote,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 570000
+			},
+			"text": " and that topic is a proposal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 576000
+			},
+			"text": " and semaphore will guarantee that anyone who votes"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 580000
+			},
+			"text": " is a member of that group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 583000
+			},
+			"text": " and that can only vote once."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 589000
+			},
+			"text": " And all of that is done with privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 596000
+			},
+			"text": " so you don't know who is voting on a particular direction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 600000
+			},
+			"text": " so it can support secret votes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 609000
+			},
+			"text": " but it still maintains strong guarantees of membership in that set."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 614000
+			},
+			"text": " So, this, yeah, the semaphore framework gets used in lots of ways,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 620000
+			},
+			"text": " but the group membership part of semaphore,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 625000
+			},
+			"text": " semaphore playing vanilla semaphore has its own group management,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 629000
+			},
+			"text": " but what we do with interrep is semaphore outsource"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633000
+			},
+			"text": " as the group management to interrep,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 644000
+			},
+			"text": " and then that's interrep itself is basing its identity groups on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 649000
+			},
+			"text": " for instance, on Twitter membership and GitHub membership and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 660000
+			},
+			"text": " So, the way that works is users will prove their membership"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:07,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 667000
+			},
+			"text": " in that social network identity source."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,000",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 667000,
+				"to": 673000
+			},
+			"text": " Each, so that will form a Twitter group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:18,000"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 678000
+			},
+			"text": " but we subdivide that into tiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 678000,
+				"to": 683000
+			},
+			"text": " which basically represent a level of confidence"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 687000
+			},
+			"text": " that there is a human behind that ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 693000
+			},
+			"text": " And as we know, Twitter is riddled with bots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:40,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 700000
+			},
+			"text": " so we will just apply rules to filter out those bots as best we can."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,000",
+				"to": "00:11:43,000"
+			},
+			"offsets": {
+				"from": 700000,
+				"to": 703000
+			},
+			"text": " We won't. We're not going to say it's perfect,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 703000,
+				"to": 708000
+			},
+			"text": " but we'll get pretty close, good enough for most applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 716000
+			},
+			"text": " The way we do that, for instance, with Twitter is we'll have a --"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 721000
+			},
+			"text": " we have some criteria that we apply ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:07,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 727000
+			},
+			"text": " With Twitter, it's a fairly high bar to get in gold status."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 727000,
+				"to": 730000
+			},
+			"text": " You'd need 7,000 followers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:13,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 733000
+			},
+			"text": " With 2,000 followers, you'd be silver."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 733000,
+				"to": 737000
+			},
+			"text": " With less than that, you'd be bronze."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " But we also link to Botometer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 745000
+			},
+			"text": " and that will do an assessment of your Twitter account."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 752000
+			},
+			"text": " And for most people, that's going to give us a score"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:39,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 759000
+			},
+			"text": " on how much Botometer -- how confident they are that you are not a bot."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,000",
+				"to": "00:12:44,000"
+			},
+			"offsets": {
+				"from": 759000,
+				"to": 764000
+			},
+			"text": " So most people with a bit of history in their Twitter account"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 764000,
+				"to": 769000
+			},
+			"text": " and a few followers will be able to get in silver or gold"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:53,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 773000
+			},
+			"text": " just using that Botometer to score."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 773000,
+				"to": 779000
+			},
+			"text": " You can try -- you can join a group on our website"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 787000
+			},
+			"text": " and assess your own status there and see if you can get into one of those groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " The link will be in the -- in the later slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 803000
+			},
+			"text": " But yeah, so the way we do it is we'll do that evaluation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 811000
+			},
+			"text": " give someone a score, and then assign them to that level,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:37,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 817000
+			},
+			"text": " that tier, bronze, silver or gold."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 817000,
+				"to": 833000
+			},
+			"text": " And that -- yeah, so applications will be able to choose what level of confidence they require."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:14:00,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 840000
+			},
+			"text": " Some applications will insist on a strong guarantee of humanity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 840000,
+				"to": 847000
+			},
+			"text": " but they're going to be working with a smaller pool of people who can qualify for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 853000
+			},
+			"text": " So some people -- some applications will want a large pool of people to draw on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 862000
+			},
+			"text": " and they're not so concerned that we strongly guarantee humanity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " as long as we do some filtering to kick out the bots."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 871000
+			},
+			"text": " So that would be a bronze level."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " We've inter-rape groups because inter-rep is managing those groups."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 883000
+			},
+			"text": " If you join a group, that group can be used across multiple applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 888000
+			},
+			"text": " So you can join once and use it in many applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:50,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 890000
+			},
+			"text": " And effectively, you've got to sign in."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 890000,
+				"to": 895000
+			},
+			"text": " That will be workable across multiple applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:08,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 908000
+			},
+			"text": " And the advantage of doing that in a privacy setting is that we have a large privacy pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 908000,
+				"to": 917000
+			},
+			"text": " So the nitty-gritty process of joining a group, the user will come to a sign on screen."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 924000
+			},
+			"text": " Sometimes it will be a step just before they go into use the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 927000
+			},
+			"text": " Sometimes it can be done well beforehand."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 933000
+			},
+			"text": " Someone can join a group, and then they'll keep their identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 938000
+			},
+			"text": " and use that kind of login to work with the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 946000
+			},
+			"text": " So whichever way that's done, first step is to prove the identity with the provider."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:51,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 951000
+			},
+			"text": " That might be like Twitter OAuth or GitHub OAuth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 951000,
+				"to": 962000
+			},
+			"text": " Having done that, our application will do that assessment, assign the user to a tier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 967000
+			},
+			"text": " gold silver bronze, and then invite them to join that group."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 974000
+			},
+			"text": " So the user will do their Twitter sign on, say, \"Okay, you're in Twitter gold."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:16,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 976000
+			},
+			"text": " Would you like to join this group?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,000",
+				"to": "00:16:24,000"
+			},
+			"offsets": {
+				"from": 976000,
+				"to": 984000
+			},
+			"text": " So you click that button, and then the next step is they link that with an Ethereum account."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 984000,
+				"to": 990000
+			},
+			"text": " So the user will sign a message with their Ethereum account, which guarantees that they"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:32,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 992000
+			},
+			"text": " own that Ethereum account."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,000",
+				"to": "00:16:35,000"
+			},
+			"offsets": {
+				"from": 992000,
+				"to": 995000
+			},
+			"text": " It also prevents that account from being used again."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 995000,
+				"to": 1001000
+			},
+			"text": " So they can only join once, and the Twitter account likewise can only join once."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1010000
+			},
+			"text": " So having made that link, we return a semaphore ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1018000
+			},
+			"text": " The semaphore ID provides that guarantee that that Twitter handle is represented in that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1024000
+			},
+			"text": " semaphore ID, and that can be used from there on in the application without revealing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:10,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1030000
+			},
+			"text": " link of who the actual Twitter user is behind that account."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,000",
+				"to": "00:17:16,000"
+			},
+			"offsets": {
+				"from": 1030000,
+				"to": 1036000
+			},
+			"text": " And neither is the Ethereum account revealed in the actual application because we're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,000",
+				"to": "00:17:19,000"
+			},
+			"offsets": {
+				"from": 1036000,
+				"to": 1039000
+			},
+			"text": " semaphore IDs, and it conceals that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,000",
+				"to": "00:17:27,000"
+			},
+			"offsets": {
+				"from": 1039000,
+				"to": 1047000
+			},
+			"text": " We can also work with on-chain sources of proof of humanity, if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1047000,
+				"to": 1056000
+			},
+			"text": " Some of those are pretty strong guarantees of humanity, and I'm thinking there of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1063000
+			},
+			"text": " Soulburn tokens or pull-ups like the pull-up you get from your DevCon 6, with your DevCon"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:46,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1066000
+			},
+			"text": " 6 ticket."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,000",
+				"to": "00:17:48,000"
+			},
+			"offsets": {
+				"from": 1066000,
+				"to": 1068000
+			},
+			"text": " That can only be owned by a human, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1068000,
+				"to": 1071000
+			},
+			"text": " Because they're only giving out tickets for humans."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1078000
+			},
+			"text": " So that's a pretty good indication that account has a human behind it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1081000
+			},
+			"text": " It's certainly very hard to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1084000
+			},
+			"text": " very resistant to civil attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1095000
+			},
+			"text": " So, yeah, so we take a slightly different approach with on-chain groups behind the scenes, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1103000
+			},
+			"text": " they end up as a semaphore ID and work the same way in your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1112000
+			},
+			"text": " So, the kind of applications we work with that we have in mind for InterEP, private voting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1117000
+			},
+			"text": " I took a bit about this before."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1126000
+			},
+			"text": " Yeah, membership of DAO, for instance, and we can guarantee membership, guarantee that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1139000
+			},
+			"text": " there's a human behind that, a human in that group, but never reveal who that human is."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:05,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1145000
+			},
+			"text": " Social networking, we think, is a promising way to apply this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1145000,
+				"to": 1152000
+			},
+			"text": " And some of our sister projects in privacy and scaling group are working on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:16,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1156000
+			},
+			"text": " You'll hear some talks in DevCon about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1156000,
+				"to": 1161000
+			},
+			"text": " But, yeah, that's another place where privacy is important, but also humanity."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:24,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1164000
+			},
+			"text": " Proof of humanity is very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1164000,
+				"to": 1173000
+			},
+			"text": " We have anti-spam applications like the rate limiting nullifier, another one of our sister projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1179000
+			},
+			"text": " We can do things like fair air drops and civil resistant forces."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1188000
+			},
+			"text": " So, if you want to, yeah, put some anti-civil properties into an air drop or a force it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1192000
+			},
+			"text": " InterEP can do that kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1200000
+			},
+			"text": " So, to close, we think a pragmatic approach to identity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1209000
+			},
+			"text": " building on our history that we all work on in our existing digital lives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1218000
+			},
+			"text": " taking a pragmatic approach to use that, bringing it across to Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1223000
+			},
+			"text": " We can build up, we have an existing source of identity that we can build on."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1226000
+			},
+			"text": " We don't need to build it from the ground up."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1232000
+			},
+			"text": " We don't need to discard those relationships we have in our social networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1238000
+			},
+			"text": " But we don't want to bring along the surveillance opportunities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1247000
+			},
+			"text": " the opportunities for misuse and abuse, and we can build applications that respect personal privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:55,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1255000
+			},
+			"text": " So, our Ethereum accounts can be used for more than just financial transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,000",
+				"to": "00:21:03,000"
+			},
+			"offsets": {
+				"from": 1255000,
+				"to": 1263000
+			},
+			"text": " We can start to extend it into the social realm, bring along our social relationships,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1263000,
+				"to": 1271000
+			},
+			"text": " give them a human context and make our accounts more credibly human"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1274000
+			},
+			"text": " and our applications in the web3 world."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1281000
+			},
+			"text": " So, the links that QR code is to our Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:25,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1285000
+			},
+			"text": " You're welcome to come there and ask questions and find out more."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1285000,
+				"to": 1289000
+			},
+			"text": " You're also welcome to come and hit me up."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1296000
+			},
+			"text": " I'll be hanging around a lot at the temporary autonomous zone down on the ground floor,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1303000
+			},
+			"text": " which is the PSE's little hub."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1310000
+			},
+			"text": " You're welcome to visit the applicationinterrep.link and you can sign on there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:21:58,000"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1318000
+			},
+			"text": " get yourself signed up with a semaphore ID, see what your Twitter status is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1318000,
+				"to": 1320000
+			},
+			"text": " maybe you have to work on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1326000
+			},
+			"text": " We've got documentation links, we've got our code open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:11,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1331000
+			},
+			"text": " You'll find all that on those links."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:11,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1331000,
+				"to": 1341000
+			},
+			"text": " But, yeah, please come to the Discord and ask questions if you will come and ask me in person."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:25,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1345000
+			},
+			"text": " So, thanks for all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,000",
+				"to": "00:22:31,000"
+			},
+			"offsets": {
+				"from": 1345000,
+				"to": 1351000
+			},
+			"text": " The QR code on this slide is the Discord for privacy and scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,000",
+				"to": "00:22:38,000"
+			},
+			"offsets": {
+				"from": 1351000,
+				"to": 1358000
+			},
+			"text": " We do lots of cool applications in the zero knowledge space."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,000",
+				"to": "00:22:42,000"
+			},
+			"offsets": {
+				"from": 1358000,
+				"to": 1362000
+			},
+			"text": " So, you can join that Discord and ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,000",
+				"to": "00:22:50,000"
+			},
+			"offsets": {
+				"from": 1362000,
+				"to": 1370000
+			},
+			"text": " Check out our job openings if you like building cool applications for privacy and scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1370000,
+				"to": 1373000
+			},
+			"text": " And check that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:59,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1379000
+			},
+			"text": " And on that note, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1379000,
+				"to": 1381000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:03,540"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1383540
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,540",
+				"to": "00:23:06,080"
+			},
+			"offsets": {
+				"from": 1383540,
+				"to": 1386080
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,080",
+				"to": "00:23:35,080"
+			},
+			"offsets": {
+				"from": 1386080,
+				"to": 1415080
+			},
+			"text": " ]"
+		}
+	]
+}

@@ -1,0 +1,3167 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,920"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15920
+			},
+			"text": " >> I'm Gubsheep and today I'm going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,920",
+				"to": "00:00:19,680"
+			},
+			"offsets": {
+				"from": 15920,
+				"to": 19680
+			},
+			"text": " about Dark Forest lessons from three years of on-chain gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,680",
+				"to": "00:00:23,100"
+			},
+			"offsets": {
+				"from": 19680,
+				"to": 23100
+			},
+			"text": " So first, real brief introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,100",
+				"to": "00:00:24,120"
+			},
+			"offsets": {
+				"from": 23100,
+				"to": 24120
+			},
+			"text": " I'm Gubsheep."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,120",
+				"to": "00:00:27,500"
+			},
+			"offsets": {
+				"from": 24120,
+				"to": 27500
+			},
+			"text": " I've been working with the Ethereum Foundation since about 2018"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,500",
+				"to": "00:00:31,440"
+			},
+			"offsets": {
+				"from": 27500,
+				"to": 31440
+			},
+			"text": " on various education, community, and applied ZK research"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,440",
+				"to": "00:00:32,900"
+			},
+			"offsets": {
+				"from": 31440,
+				"to": 32900
+			},
+			"text": " and development projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,900",
+				"to": "00:00:38,560"
+			},
+			"offsets": {
+				"from": 32900,
+				"to": 38560
+			},
+			"text": " I co-created Dark Forest and spent a lot of 2019 to 2021 building the game"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,560",
+				"to": "00:00:42,720"
+			},
+			"offsets": {
+				"from": 38560,
+				"to": 42720
+			},
+			"text": " out with various friends including Ivan Chub, Alan Loh, Bryce Huang,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,720",
+				"to": "00:00:43,720"
+			},
+			"offsets": {
+				"from": 42720,
+				"to": 43720
+			},
+			"text": " Robert Cunningham, and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,720",
+				"to": "00:00:47,840"
+			},
+			"offsets": {
+				"from": 43720,
+				"to": 47840
+			},
+			"text": " And currently I'm working on applied ZK research and development"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,840",
+				"to": "00:00:51,220"
+			},
+			"offsets": {
+				"from": 47840,
+				"to": 51220
+			},
+			"text": " and other applied crypto experiments with 0x Park."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,220",
+				"to": "00:00:54,160"
+			},
+			"offsets": {
+				"from": 51220,
+				"to": 54160
+			},
+			"text": " So to give a little bit of context,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,160",
+				"to": "00:00:57,120"
+			},
+			"offsets": {
+				"from": 54160,
+				"to": 57120
+			},
+			"text": " 0x Park is a research focused organization that supports"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,380",
+				"to": "00:01:01,040"
+			},
+			"offsets": {
+				"from": 57380,
+				"to": 61040
+			},
+			"text": " a network of teams that are all aiming to push the envelope"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,040",
+				"to": "00:01:03,380"
+			},
+			"offsets": {
+				"from": 61040,
+				"to": 63380
+			},
+			"text": " on what is possible to build on blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,380",
+				"to": "00:01:04,760"
+			},
+			"offsets": {
+				"from": 63380,
+				"to": 64760
+			},
+			"text": " or with new cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,760",
+				"to": "00:01:07,800"
+			},
+			"offsets": {
+				"from": 64760,
+				"to": 67800
+			},
+			"text": " And a lot of these experiments started with Dark Forest"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,800",
+				"to": "00:01:09,820"
+			},
+			"offsets": {
+				"from": 67800,
+				"to": 69820
+			},
+			"text": " which is a part of the 0x Park community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,820",
+				"to": "00:01:14,640"
+			},
+			"offsets": {
+				"from": 69820,
+				"to": 74640
+			},
+			"text": " So today's talk is nominally about Dark Forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,640",
+				"to": "00:01:19,940"
+			},
+			"offsets": {
+				"from": 74640,
+				"to": 79940
+			},
+			"text": " But you know, the subject or the question that I'd really like to answer looking back"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,940",
+				"to": "00:01:25,220"
+			},
+			"offsets": {
+				"from": 79940,
+				"to": 85220
+			},
+			"text": " on three years of running this game is what can projects like Dark Forest teach us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:27,480"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 87480
+			},
+			"text": " about innovation and crypto more broadly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,480",
+				"to": "00:01:31,460"
+			},
+			"offsets": {
+				"from": 87480,
+				"to": 91460
+			},
+			"text": " And to answer that, first we have to talk a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,460",
+				"to": "00:01:33,200"
+			},
+			"offsets": {
+				"from": 91460,
+				"to": 93200
+			},
+			"text": " about what Dark Forest actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,200",
+				"to": "00:01:38,460"
+			},
+			"offsets": {
+				"from": 93200,
+				"to": 98460
+			},
+			"text": " So summed up in a sentence, Dark Forest is a decentralized MMORPG game"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,460",
+				"to": "00:01:40,340"
+			},
+			"offsets": {
+				"from": 98460,
+				"to": 100340
+			},
+			"text": " built with ZK Snarks on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,340",
+				"to": "00:01:42,680"
+			},
+			"offsets": {
+				"from": 100340,
+				"to": 102680
+			},
+			"text": " Now that's kind of a mouthful."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,680",
+				"to": "00:01:46,700"
+			},
+			"offsets": {
+				"from": 102680,
+				"to": 106700
+			},
+			"text": " So let's take a look at a few screenshots to understand what this really means."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,700",
+				"to": "00:01:52,280"
+			},
+			"offsets": {
+				"from": 106700,
+				"to": 112280
+			},
+			"text": " So first off, Dark Forest is a massively multiplayer strategy game"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,500",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 112500,
+				"to": 117000
+			},
+			"text": " that takes place on an infinite procedurally generated universe"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:01:59,880"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 119880
+			},
+			"text": " of all sorts of different types of planets and space entities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,880",
+				"to": "00:02:04,400"
+			},
+			"offsets": {
+				"from": 119880,
+				"to": 124400
+			},
+			"text": " The most popular Dark Forest game mode is a week long battle royale contest"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,400",
+				"to": "00:02:08,160"
+			},
+			"offsets": {
+				"from": 124400,
+				"to": 128160
+			},
+			"text": " where thousands of players, bots, AIs and even smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,160",
+				"to": "00:02:10,360"
+			},
+			"offsets": {
+				"from": 128160,
+				"to": 130360
+			},
+			"text": " compete head to head for galactic supremacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,360",
+				"to": "00:02:14,280"
+			},
+			"offsets": {
+				"from": 130360,
+				"to": 134280
+			},
+			"text": " Players are dropped into the universe on a tiny home planet"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,280",
+				"to": "00:02:18,500"
+			},
+			"offsets": {
+				"from": 134280,
+				"to": 138500
+			},
+			"text": " and they must harvest resources, conquer nearby planets"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,720",
+				"to": "00:02:23,020"
+			},
+			"offsets": {
+				"from": 138720,
+				"to": 143020
+			},
+			"text": " and interact with their neighbors either through alliances or trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,020",
+				"to": "00:02:26,300"
+			},
+			"offsets": {
+				"from": 143020,
+				"to": 146300
+			},
+			"text": " or negotiation or even war in order to expand their empires."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,300",
+				"to": "00:02:29,580"
+			},
+			"offsets": {
+				"from": 146300,
+				"to": 149580
+			},
+			"text": " It's a hardcore free for all space themed strategy game"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,580",
+				"to": "00:02:30,940"
+			},
+			"offsets": {
+				"from": 149580,
+				"to": 150940
+			},
+			"text": " and rounds can get pretty intense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,940",
+				"to": "00:02:33,820"
+			},
+			"offsets": {
+				"from": 150940,
+				"to": 153820
+			},
+			"text": " The thing though that makes Dark Forest different"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,820",
+				"to": "00:02:37,320"
+			},
+			"offsets": {
+				"from": 153820,
+				"to": 157320
+			},
+			"text": " from your typical strategy game is that it's entirely run"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,320",
+				"to": "00:02:40,180"
+			},
+			"offsets": {
+				"from": 157320,
+				"to": 160180
+			},
+			"text": " on an EVM compatible blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,180",
+				"to": "00:02:43,180"
+			},
+			"offsets": {
+				"from": 160180,
+				"to": 163180
+			},
+			"text": " This means that all of the game state and all of the game rules"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,180",
+				"to": "00:02:47,580"
+			},
+			"offsets": {
+				"from": 163180,
+				"to": 167580
+			},
+			"text": " are actually stored in smart contracts rather than a traditional back end server."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,420",
+				"to": "00:02:53,120"
+			},
+			"offsets": {
+				"from": 168420,
+				"to": 173120
+			},
+			"text": " And every single move that any player makes is in fact an on chain transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,120",
+				"to": "00:02:56,620"
+			},
+			"offsets": {
+				"from": 173120,
+				"to": 176620
+			},
+			"text": " Because the game is so complex in comparison to a lot of modern"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,620",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176620,
+				"to": 182000
+			},
+			"text": " Ethereum applications and production, each move can take up to millions of gas"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,960"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185960
+			},
+			"text": " and players over the course of a single round can end up making thousands"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,960",
+				"to": "00:03:08,120"
+			},
+			"offsets": {
+				"from": 185960,
+				"to": 188120
+			},
+			"text": " or even tens of thousands of moves per game."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,120",
+				"to": "00:03:14,480"
+			},
+			"offsets": {
+				"from": 188120,
+				"to": 194480
+			},
+			"text": " The other key mechanic of Dark Forest that is shared"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,480",
+				"to": "00:03:18,120"
+			},
+			"offsets": {
+				"from": 194480,
+				"to": 198120
+			},
+			"text": " with a lot of other strategy games is that much of the intrigue"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,120",
+				"to": "00:03:21,520"
+			},
+			"offsets": {
+				"from": 198120,
+				"to": 201520
+			},
+			"text": " in the game comes from the concept of hidden information"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,520",
+				"to": "00:03:22,820"
+			},
+			"offsets": {
+				"from": 201520,
+				"to": 202820
+			},
+			"text": " or information asymmetry."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,820",
+				"to": "00:03:26,520"
+			},
+			"offsets": {
+				"from": 202820,
+				"to": 206520
+			},
+			"text": " The overall Dark Forest universe is practically infinite"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,520",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 206520,
+				"to": 210000
+			},
+			"text": " and it's teeming with thousands of adversarial players,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:33,820"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 213820
+			},
+			"text": " bots, scripts, smart contract players, etc, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,820",
+				"to": "00:03:38,020"
+			},
+			"offsets": {
+				"from": 213820,
+				"to": 218020
+			},
+			"text": " However, individual players upon joining the universe only have access"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,020",
+				"to": "00:03:41,120"
+			},
+			"offsets": {
+				"from": 218020,
+				"to": 221120
+			},
+			"text": " to a very small slice of the total universe map."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,120",
+				"to": "00:03:44,460"
+			},
+			"offsets": {
+				"from": 221120,
+				"to": 224460
+			},
+			"text": " And this is exactly what gives Dark Forest its characteristic"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,460",
+				"to": "00:03:47,320"
+			},
+			"offsets": {
+				"from": 224460,
+				"to": 227320
+			},
+			"text": " or namesake sort of Dark Forest feeling."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,720",
+				"to": "00:03:52,220"
+			},
+			"offsets": {
+				"from": 227720,
+				"to": 232220
+			},
+			"text": " So at first it might seem kind of paradoxical that we can have this on chain application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,220",
+				"to": "00:03:56,020"
+			},
+			"offsets": {
+				"from": 232220,
+				"to": 236020
+			},
+			"text": " where there's so much complex private state being mutually moved around"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,020",
+				"to": "00:03:59,720"
+			},
+			"offsets": {
+				"from": 236020,
+				"to": 239720
+			},
+			"text": " by different parties, especially because blockchains are systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,720",
+				"to": "00:04:02,120"
+			},
+			"offsets": {
+				"from": 239720,
+				"to": 242120
+			},
+			"text": " where all information is public and transparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,120",
+				"to": "00:04:06,220"
+			},
+			"offsets": {
+				"from": 242120,
+				"to": 246220
+			},
+			"text": " In other words, any data that's stored inside of a smart contract is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,220",
+				"to": "00:04:07,320"
+			},
+			"offsets": {
+				"from": 246220,
+				"to": 247320
+			},
+			"text": " that anyone can access."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,320",
+				"to": "00:04:10,120"
+			},
+			"offsets": {
+				"from": 247320,
+				"to": 250120
+			},
+			"text": " So how can we put a game where different players know different parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,120",
+				"to": "00:04:11,220"
+			},
+			"offsets": {
+				"from": 250120,
+				"to": 251220
+			},
+			"text": " of the map on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,220",
+				"to": "00:04:14,320"
+			},
+			"offsets": {
+				"from": 251220,
+				"to": 254320
+			},
+			"text": " Well, the answer is that this is exactly what DK Snark's enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,320",
+				"to": "00:04:18,920"
+			},
+			"offsets": {
+				"from": 254320,
+				"to": 258920
+			},
+			"text": " and thanks to the work of the IDEN3 team with Snark.js back in 2019,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,920",
+				"to": "00:04:23,920"
+			},
+			"offsets": {
+				"from": 258920,
+				"to": 263920
+			},
+			"text": " these kinds of applications or incomplete information games first became possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,920",
+				"to": "00:04:24,920"
+			},
+			"offsets": {
+				"from": 263920,
+				"to": 264920
+			},
+			"text": " to build on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,920",
+				"to": "00:04:29,220"
+			},
+			"offsets": {
+				"from": 264920,
+				"to": 269220
+			},
+			"text": " Okay, so hopefully that gives a little bit more color into what Dark Forest actually is."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,220",
+				"to": "00:04:35,120"
+			},
+			"offsets": {
+				"from": 269220,
+				"to": 275120
+			},
+			"text": " Next, I want to take a step back and just talk a little bit about how our thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,120",
+				"to": "00:04:37,420"
+			},
+			"offsets": {
+				"from": 275120,
+				"to": 277420
+			},
+			"text": " about the game has evolved over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,420",
+				"to": "00:04:40,420"
+			},
+			"offsets": {
+				"from": 277420,
+				"to": 280420
+			},
+			"text": " So we started working on Dark Forest back in 2019"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,420",
+				"to": "00:04:43,120"
+			},
+			"offsets": {
+				"from": 280420,
+				"to": 283120
+			},
+			"text": " and it started off as just a pie in the sky experiment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,120",
+				"to": "00:04:50,020"
+			},
+			"offsets": {
+				"from": 283120,
+				"to": 290020
+			},
+			"text": " You know, let's build a ZK game where every single WASD move is in fact a blockchain transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,020",
+				"to": "00:04:53,420"
+			},
+			"offsets": {
+				"from": 290020,
+				"to": 293420
+			},
+			"text": " triggering a ZK Snark proof verification on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,420",
+				"to": "00:04:56,520"
+			},
+			"offsets": {
+				"from": 293420,
+				"to": 296520
+			},
+			"text": " Now, at the time this seemed pretty ridiculous."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,520",
+				"to": "00:05:00,520"
+			},
+			"offsets": {
+				"from": 296520,
+				"to": 300520
+			},
+			"text": " Blockchains are super slow and super expensive databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,520",
+				"to": "00:05:04,520"
+			},
+			"offsets": {
+				"from": 300520,
+				"to": 304520
+			},
+			"text": " that of course could only be used for critical financial applications or transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,520",
+				"to": "00:05:07,120"
+			},
+			"offsets": {
+				"from": 304520,
+				"to": 307120
+			},
+			"text": " And games require pretty much the opposite."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,120",
+				"to": "00:05:10,920"
+			},
+			"offsets": {
+				"from": 307120,
+				"to": 310920
+			},
+			"text": " We did some benchmarking and we estimated that on Ethereum mainnet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,920",
+				"to": "00:05:15,320"
+			},
+			"offsets": {
+				"from": 310920,
+				"to": 315320
+			},
+			"text": " a move on Dark Forest could cost anywhere from 10 to 100 US dollars"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,320",
+				"to": "00:05:17,620"
+			},
+			"offsets": {
+				"from": 315320,
+				"to": 317620
+			},
+			"text": " and players might need to make up to thousands of moves"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,620",
+				"to": "00:05:19,420"
+			},
+			"offsets": {
+				"from": 317620,
+				"to": 319420
+			},
+			"text": " in order to meaningfully interact with the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,420",
+				"to": "00:05:23,920"
+			},
+			"offsets": {
+				"from": 319420,
+				"to": 323920
+			},
+			"text": " So we originally built a game not because it was necessarily like possible or feasible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,920",
+				"to": "00:05:26,720"
+			},
+			"offsets": {
+				"from": 323920,
+				"to": 326720
+			},
+			"text": " but it was an intellectual experiment to learn more about the tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,720",
+				"to": "00:05:29,320"
+			},
+			"offsets": {
+				"from": 326720,
+				"to": 329320
+			},
+			"text": " And obviously from a cynical or skeptical point of view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,320",
+				"to": "00:05:31,720"
+			},
+			"offsets": {
+				"from": 329320,
+				"to": 331720
+			},
+			"text": " it would have seemed like pretty much a useless thing to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,720",
+				"to": "00:05:36,520"
+			},
+			"offsets": {
+				"from": 331720,
+				"to": 336520
+			},
+			"text": " But if you fast forward three years, a lot has happened since."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,920",
+				"to": "00:05:41,320"
+			},
+			"offsets": {
+				"from": 336920,
+				"to": 341320
+			},
+			"text": " Over 10,000 players from around the world have participated in Dark Forest rounds"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,320",
+				"to": "00:05:42,720"
+			},
+			"offsets": {
+				"from": 341320,
+				"to": 342720
+			},
+			"text": " running entirely on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,720",
+				"to": "00:05:48,720"
+			},
+			"offsets": {
+				"from": 342720,
+				"to": 348720
+			},
+			"text": " They've collectively spent trillions of gas on Ropsten, X-Dye and Gnosis chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,720",
+				"to": "00:05:54,020"
+			},
+			"offsets": {
+				"from": 348720,
+				"to": 354020
+			},
+			"text": " and a rich developer ecosystem has emerged for player built third party plugins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,020",
+				"to": "00:05:58,420"
+			},
+			"offsets": {
+				"from": 354020,
+				"to": 358420
+			},
+			"text": " alternate clients, GPU miners, player corporations, data marketplaces,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,420",
+				"to": "00:06:00,020"
+			},
+			"offsets": {
+				"from": 358420,
+				"to": 360020
+			},
+			"text": " chain analysis tools and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,020",
+				"to": "00:06:04,720"
+			},
+			"offsets": {
+				"from": 360020,
+				"to": 364720
+			},
+			"text": " And we've seen some epic on chain dramas featuring deception, betrayal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,720",
+				"to": "00:06:06,520"
+			},
+			"offsets": {
+				"from": 364720,
+				"to": 366520
+			},
+			"text": " universe wide alliances."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,520",
+				"to": "00:06:09,520"
+			},
+			"offsets": {
+				"from": 366520,
+				"to": 369520
+			},
+			"text": " One of my favorite examples of this is this long running rivalry"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,520",
+				"to": "00:06:14,920"
+			},
+			"offsets": {
+				"from": 369520,
+				"to": 374920
+			},
+			"text": " between these two player alliances, Orton GG, a group of Ukrainian and Eastern European players"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,920",
+				"to": "00:06:19,720"
+			},
+			"offsets": {
+				"from": 374920,
+				"to": 379720
+			},
+			"text": " and D.F. Dow, which is both of these are basically player groups"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,720",
+				"to": "00:06:23,820"
+			},
+			"offsets": {
+				"from": 379720,
+				"to": 383820
+			},
+			"text": " that have teamed up using various crypto native governance mechanisms"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,820",
+				"to": "00:06:24,920"
+			},
+			"offsets": {
+				"from": 383820,
+				"to": 384920
+			},
+			"text": " in order to play the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,920",
+				"to": "00:06:29,820"
+			},
+			"offsets": {
+				"from": 384920,
+				"to": 389820
+			},
+			"text": " And one of my favorite sort of, you know, summaries of this story"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,820",
+				"to": "00:06:32,520"
+			},
+			"offsets": {
+				"from": 389820,
+				"to": 392520
+			},
+			"text": " is this thread by Will Chang on Twitter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,820",
+				"to": "00:06:36,020"
+			},
+			"offsets": {
+				"from": 392820,
+				"to": 396020
+			},
+			"text": " where he basically, if you find this thread, you can read about the story of bitter rivals,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,020",
+				"to": "00:06:38,520"
+			},
+			"offsets": {
+				"from": 396020,
+				"to": 398520
+			},
+			"text": " a dream of glory, betrayal, redemption, it's kind of awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,520",
+				"to": "00:06:47,420"
+			},
+			"offsets": {
+				"from": 398520,
+				"to": 407420
+			},
+			"text": " And beyond Dark Forest, we've seen this entire ecosystem of next generation application level R&D"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,420",
+				"to": "00:06:51,520"
+			},
+			"offsets": {
+				"from": 407420,
+				"to": 411520
+			},
+			"text": " in the broader zero X park ecosystem and beyond sort of emerge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,520",
+				"to": "00:06:56,420"
+			},
+			"offsets": {
+				"from": 411520,
+				"to": 416420
+			},
+			"text": " oftentimes taking some degree of inspiration from Dark Forest as key ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,420",
+				"to": "00:07:00,420"
+			},
+			"offsets": {
+				"from": 416420,
+				"to": 420420
+			},
+			"text": " from the game have clarified and been built on top of and extended."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,420",
+				"to": "00:07:09,920"
+			},
+			"offsets": {
+				"from": 420420,
+				"to": 429920
+			},
+			"text": " So the first question that we're often asked is why build games on the blockchain to begin with."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,920",
+				"to": "00:07:15,120"
+			},
+			"offsets": {
+				"from": 429920,
+				"to": 435120
+			},
+			"text": " And I think the answer to this question is pre revealing about what crypto games can teach us"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,120",
+				"to": "00:07:18,420"
+			},
+			"offsets": {
+				"from": 435120,
+				"to": 438420
+			},
+			"text": " about innovation at the application level more broadly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,420",
+				"to": "00:07:25,020"
+			},
+			"offsets": {
+				"from": 438420,
+				"to": 445020
+			},
+			"text": " So there's been a lot of talk in the last couple of years about things like game-fi or play to earn"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,020",
+				"to": "00:07:27,920"
+			},
+			"offsets": {
+				"from": 445020,
+				"to": 447920
+			},
+			"text": " or how crypto can help to financialize games."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,920",
+				"to": "00:07:31,720"
+			},
+			"offsets": {
+				"from": 447920,
+				"to": 451720
+			},
+			"text": " But to be quite honest, for me personally, these ideas are pretty much the least interesting parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,720",
+				"to": "00:07:34,220"
+			},
+			"offsets": {
+				"from": 451720,
+				"to": 454220
+			},
+			"text": " of the possibilities of crypto gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,220",
+				"to": "00:07:36,720"
+			},
+			"offsets": {
+				"from": 454220,
+				"to": 456720
+			},
+			"text": " I think that there's a kernel of some interesting stuff there."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,720",
+				"to": "00:07:41,320"
+			},
+			"offsets": {
+				"from": 456720,
+				"to": 461320
+			},
+			"text": " However, I think also 90% of it is a lot of times inflated by hype and speculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,320",
+				"to": "00:07:45,920"
+			},
+			"offsets": {
+				"from": 461320,
+				"to": 465920
+			},
+			"text": " And instead, I think that crypto native games are powerful because they have this property"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,920",
+				"to": "00:07:49,720"
+			},
+			"offsets": {
+				"from": 465920,
+				"to": 469720
+			},
+			"text": " which, you know, I sort of in my own head label as permissionless interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,720",
+				"to": "00:07:53,920"
+			},
+			"offsets": {
+				"from": 469720,
+				"to": 473920
+			},
+			"text": " Dark Forest is an Ethereum smart contract, which means that anyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,920",
+				"to": "00:07:58,720"
+			},
+			"offsets": {
+				"from": 473920,
+				"to": 478720
+			},
+			"text": " player, bot, script, or smart contract can interact with the game programmatically."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,720",
+				"to": "00:08:03,920"
+			},
+			"offsets": {
+				"from": 478720,
+				"to": 483920
+			},
+			"text": " This has led to some really interesting emergent behavior, which I'll show in the next couple of slides."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,920",
+				"to": "00:08:10,720"
+			},
+			"offsets": {
+				"from": 483920,
+				"to": 490720
+			},
+			"text": " So the first thing to note about any crypto native game is that it is pretty much necessarily client agnostic."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,720",
+				"to": "00:08:14,920"
+			},
+			"offsets": {
+				"from": 490720,
+				"to": 494920
+			},
+			"text": " Because the source of truth for the game rules and state is the blockchain itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,920",
+				"to": "00:08:20,920"
+			},
+			"offsets": {
+				"from": 494920,
+				"to": 500920
+			},
+			"text": " the game doesn't care about what client you use to read its data or interact with its API."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,920",
+				"to": "00:08:25,320"
+			},
+			"offsets": {
+				"from": 500920,
+				"to": 505320
+			},
+			"text": " In the first releases, we provided an out-of-the-box web client for players to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,320",
+				"to": "00:08:29,520"
+			},
+			"offsets": {
+				"from": 505320,
+				"to": 509520
+			},
+			"text": " And we noticed that players quickly got to work hacking the client to build automations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,520",
+				"to": "00:08:32,520"
+			},
+			"offsets": {
+				"from": 509520,
+				"to": 512520
+			},
+			"text": " different kinds of data visualizations, or new skins."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,520",
+				"to": "00:08:37,320"
+			},
+			"offsets": {
+				"from": 512520,
+				"to": 517320
+			},
+			"text": " So Ivan and a number of other contributors released a plugins tool chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,320",
+				"to": "00:08:40,920"
+			},
+			"offsets": {
+				"from": 517320,
+				"to": 520920
+			},
+			"text": " that allowed people to build and share snippets of JavaScript code"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,920",
+				"to": "00:08:45,920"
+			},
+			"offsets": {
+				"from": 520920,
+				"to": 525920
+			},
+			"text": " that would allow them to customize or modify their front-end gameplay experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,920",
+				"to": "00:08:50,720"
+			},
+			"offsets": {
+				"from": 525920,
+				"to": 530720
+			},
+			"text": " And today, there's nearly 100 open-source plugins that players can use to remotely generate snark proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,720",
+				"to": "00:08:55,520"
+			},
+			"offsets": {
+				"from": 530720,
+				"to": 535520
+			},
+			"text": " outline enemy territory, or even wage automated war, and all sorts of different functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,520",
+				"to": "00:08:57,720"
+			},
+			"offsets": {
+				"from": 535520,
+				"to": 537720
+			},
+			"text": " So this has been fascinating to see over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,720",
+				"to": "00:09:03,720"
+			},
+			"offsets": {
+				"from": 537720,
+				"to": 543720
+			},
+			"text": " One step further than that, you have the idea of third-party client implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,720",
+				"to": "00:09:09,720"
+			},
+			"offsets": {
+				"from": 543720,
+				"to": 549720
+			},
+			"text": " So again, Dark Forest or any crypto native game starts to look more closely like resembling a protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,720",
+				"to": "00:09:17,720"
+			},
+			"offsets": {
+				"from": 549720,
+				"to": 557720
+			},
+			"text": " or a set of rules, digital physics, that various people will subscribe to via whatever client they want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,720",
+				"to": "00:09:23,720"
+			},
+			"offsets": {
+				"from": 557720,
+				"to": 563720
+			},
+			"text": " And this is an example of a client that Georgios and Kobe Gurkin built for Dark Forest originally built in Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,720",
+				"to": "00:09:27,720"
+			},
+			"offsets": {
+				"from": 563720,
+				"to": 567720
+			},
+			"text": " Now, the advantage of this is that it allows you to play Dark Forest in your terminal,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,720",
+				"to": "00:09:33,720"
+			},
+			"offsets": {
+				"from": 567720,
+				"to": 573720
+			},
+			"text": " and it offers better performance perhaps than the typical vanilla JavaScript web client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,720",
+				"to": "00:09:37,720"
+			},
+			"offsets": {
+				"from": 573720,
+				"to": 577720
+			},
+			"text": " in that you can generate snark proof and explore the universe faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,720",
+				"to": "00:09:40,720"
+			},
+			"offsets": {
+				"from": 577720,
+				"to": 580720
+			},
+			"text": " However, this comes at the cost of having a nice visual UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,720",
+				"to": "00:09:46,720"
+			},
+			"offsets": {
+				"from": 580720,
+				"to": 586720
+			},
+			"text": " Finally, one more thing on the client side that I want to explicitly point out is the level of complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,720",
+				"to": "00:09:50,720"
+			},
+			"offsets": {
+				"from": 586720,
+				"to": 590720
+			},
+			"text": " that we began to see in automations and bots programmed by players to play the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,720",
+				"to": "00:09:54,720"
+			},
+			"offsets": {
+				"from": 590720,
+				"to": 594720
+			},
+			"text": " Again, all of that kind of activity is fair game on Dark Forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,720",
+				"to": "00:09:59,720"
+			},
+			"offsets": {
+				"from": 594720,
+				"to": 599720
+			},
+			"text": " Dark Forest's smart contracts simply specify the rules or almost the physics of the universe."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,720",
+				"to": "00:10:02,720"
+			},
+			"offsets": {
+				"from": 599720,
+				"to": 602720
+			},
+			"text": " And subject to following those rules, you can do almost anything you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,720",
+				"to": "00:10:08,720"
+			},
+			"offsets": {
+				"from": 602720,
+				"to": 608720
+			},
+			"text": " By 2022, some top players had built tools that allowed them to almost entirely abstract away"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,720",
+				"to": "00:10:11,720"
+			},
+			"offsets": {
+				"from": 608720,
+				"to": 611720
+			},
+			"text": " the base level gameplay mechanics of Dark Forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,720",
+				"to": "00:10:16,720"
+			},
+			"offsets": {
+				"from": 611720,
+				"to": 616720
+			},
+			"text": " Rather than making individual moves, players were instead operating these more complex dashboards"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,720",
+				"to": "00:10:23,720"
+			},
+			"offsets": {
+				"from": 616720,
+				"to": 623720
+			},
+			"text": " of higher level heuristics and strategies, things like press a button to distribute silver to all upgraded planets in this region."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,720",
+				"to": "00:10:28,720"
+			},
+			"offsets": {
+				"from": 623720,
+				"to": 628720
+			},
+			"text": " These scripts would then translate these higher level strategies into base their moves."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,720",
+				"to": "00:10:31,720"
+			},
+			"offsets": {
+				"from": 628720,
+				"to": 631720
+			},
+			"text": " And at this point, players were basically programming their own gameplay experiences."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,720",
+				"to": "00:10:37,720"
+			},
+			"offsets": {
+				"from": 631720,
+				"to": 637720
+			},
+			"text": " You had players building third party tools that became a part of their first party gameplay experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,720",
+				"to": "00:10:41,720"
+			},
+			"offsets": {
+				"from": 637720,
+				"to": 641720
+			},
+			"text": " Okay, so far we've only talked about client side program ability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,720",
+				"to": "00:10:45,720"
+			},
+			"offsets": {
+				"from": 641720,
+				"to": 645720
+			},
+			"text": " And we've seen plugins, third party clients, automations, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,720",
+				"to": "00:10:50,720"
+			},
+			"offsets": {
+				"from": 645720,
+				"to": 650720
+			},
+			"text": " But I think that the true promise of crypto native games comes even one step further."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,720",
+				"to": "00:10:57,720"
+			},
+			"offsets": {
+				"from": 650720,
+				"to": 657720
+			},
+			"text": " While all of those previous things are kind of reminiscent of things you might see in the modding ecosystem of games like Minecraft, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,720",
+				"to": "00:11:01,720"
+			},
+			"offsets": {
+				"from": 657720,
+				"to": 661720
+			},
+			"text": " Crypto native games do allow you to do something that is fundamentally different"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,720",
+				"to": "00:11:04,720"
+			},
+			"offsets": {
+				"from": 661720,
+				"to": 664720
+			},
+			"text": " and that fundamentally was not possible in the same ways before."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,720",
+				"to": "00:11:08,720"
+			},
+			"offsets": {
+				"from": 664720,
+				"to": 668720
+			},
+			"text": " So to illustrate exactly what's going on here, I want to bring up a hypothetical example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,720",
+				"to": "00:11:14,720"
+			},
+			"offsets": {
+				"from": 668720,
+				"to": 674720
+			},
+			"text": " Say you're playing a traditional multiplayer RPG game and you want to see a new feature added to the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,720",
+				"to": "00:11:22,720"
+			},
+			"offsets": {
+				"from": 674720,
+				"to": 682720
+			},
+			"text": " So this might be a game like RuneScape or World of Warcraft or you might imagine like a multiplayer version of Pokémon or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,720",
+				"to": "00:11:27,720"
+			},
+			"offsets": {
+				"from": 682720,
+				"to": 687720
+			},
+			"text": " And let's say that you have a new feature that you'd like to see implemented in the game like player to player trading."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,720",
+				"to": "00:11:31,720"
+			},
+			"offsets": {
+				"from": 687720,
+				"to": 691720
+			},
+			"text": " So in the traditional paradigm, here's what has to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,720",
+				"to": "00:11:37,720"
+			},
+			"offsets": {
+				"from": 691720,
+				"to": 697720
+			},
+			"text": " First, I'd have to go to the core developers of the game and make my feature request and maybe they decide to accept it or maybe they don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,720",
+				"to": "00:11:43,720"
+			},
+			"offsets": {
+				"from": 697720,
+				"to": 703720
+			},
+			"text": " Then after that, the core devs have to introduce a new data transformation on their proprietary backend"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,720",
+				"to": "00:11:47,720"
+			},
+			"offsets": {
+				"from": 703720,
+				"to": 707720
+			},
+			"text": " and API routes on their web server that trigger these data transformations."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,720",
+				"to": "00:11:54,720"
+			},
+			"offsets": {
+				"from": 707720,
+				"to": 714720
+			},
+			"text": " And finally, they have to go to their canonical game client implementation that's distributed to everybody and add in a new UI component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,720",
+				"to": "00:12:00,720"
+			},
+			"offsets": {
+				"from": 714720,
+				"to": 720720
+			},
+			"text": " like a button or something that when clicked triggers this new or hits this new API route."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,720",
+				"to": "00:12:09,720"
+			},
+			"offsets": {
+				"from": 720720,
+				"to": 729720
+			},
+			"text": " In contrast, that with Dark Forest where in Dark Forest any player can develop an escrow or marketplace contract that talks to the core Dark Forest contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,720",
+				"to": "00:12:16,720"
+			},
+			"offsets": {
+				"from": 729720,
+				"to": 736720
+			},
+			"text": " They can then deploy this contract to the blockchain and maybe it says something like, \"Alright, if anyone deposits one ETH into this escrow contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,720",
+				"to": "00:12:23,720"
+			},
+			"offsets": {
+				"from": 736720,
+				"to": 743720
+			},
+			"text": " it will programmatically talk to the Dark Forest contract and trigger a release of like a hundred silver from my planet to yours.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,720",
+				"to": "00:12:33,720"
+			},
+			"offsets": {
+				"from": 743720,
+				"to": 753720
+			},
+			"text": " Afterwards, they can write a JavaScript plugin that allows a web client to interact with this marketplace contract and distribute this to any player who wants to opt into this new core gameplay feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,720",
+				"to": "00:12:40,720"
+			},
+			"offsets": {
+				"from": 753720,
+				"to": 760720
+			},
+			"text": " In this way, players can add entirely new features to the game without having to go through specially permission developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,720",
+				"to": "00:12:47,720"
+			},
+			"offsets": {
+				"from": 760720,
+				"to": 767720
+			},
+			"text": " So the broadcast market, which you can see on screen right here, was the first example actually of a feature developed in this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,720",
+				"to": "00:12:58,720"
+			},
+			"offsets": {
+				"from": 767720,
+				"to": 778720
+			},
+			"text": " It was built by Blaine Bublets and Jacob Rosenthal, and what it allows you to do is it allows you to ask for someone to broadcast or share with you a certain set of map information for a fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,720",
+				"to": "00:13:14,720"
+			},
+			"offsets": {
+				"from": 778720,
+				"to": 794720
+			},
+			"text": " Now this was extended earlier this year with Night Market built by Xerox Sage and PRXYZ, which is a trustless ZK enabled marketplace for you to exchange encrypted data with other players on the map, again for a fee."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:14,720",
+				"to": "00:13:26,720"
+			},
+			"offsets": {
+				"from": 794720,
+				"to": 806720
+			},
+			"text": " And we've also seen several groups build out marketplace contracts for in-game items, as well as some interesting experiments into player corporations or other coordination constructs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,720",
+				"to": "00:13:32,720"
+			},
+			"offsets": {
+				"from": 806720,
+				"to": 812720
+			},
+			"text": " So on the screen here you can see a contract called Astro Colossus built by DfDow, Dark Forest Dow."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,720",
+				"to": "00:13:41,720"
+			},
+			"offsets": {
+				"from": 812720,
+				"to": 821720
+			},
+			"text": " So this was really cool. Essentially, the Dark Forest contract does not distinguish between players as EOAs externally owned accounts or smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,720",
+				"to": "00:13:45,720"
+			},
+			"offsets": {
+				"from": 821720,
+				"to": 825720
+			},
+			"text": " So a smart contract can play the game just as much as a regular player can play the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,720",
+				"to": "00:13:51,720"
+			},
+			"offsets": {
+				"from": 825720,
+				"to": 831720
+			},
+			"text": " And the Astro Colossus was essentially a smart contract player that anyone could contribute to or pilot."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,720",
+				"to": "00:13:59,720"
+			},
+			"offsets": {
+				"from": 831720,
+				"to": 839720
+			},
+			"text": " In just 48 hours of its operation, it reached among the top 50 places on the leaderboard with contributions from dozens of players."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,720",
+				"to": "00:14:08,720"
+			},
+			"offsets": {
+				"from": 839720,
+				"to": 848720
+			},
+			"text": " So I just want to imagine, you're playing Dark Forest and you run into this growing amoeba that's this crazy headless organism amalgamation of dozens of individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,720",
+				"to": "00:14:14,720"
+			},
+			"offsets": {
+				"from": 848720,
+				"to": 854720
+			},
+			"text": " It's super interesting to speculate on how these kinds of things might evolve going forwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,720",
+				"to": "00:14:23,720"
+			},
+			"offsets": {
+				"from": 854720,
+				"to": 863720
+			},
+			"text": " And finally, new tools like those being built by teams like Lattice will make it easy for players to even add in new rules or resource types to the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,720",
+				"to": "00:14:34,720"
+			},
+			"offsets": {
+				"from": 863720,
+				"to": 874720
+			},
+			"text": " So this is a screenshot from a mockup of what it might look like for players to introduce plugins and third-party contracts that add in their own game modes, side objectives or even resource types."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,720",
+				"to": "00:14:39,720"
+			},
+			"offsets": {
+				"from": 874720,
+				"to": 879720
+			},
+			"text": " So to sum it all up, what does permissionless interoperability mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,720",
+				"to": "00:14:44,720"
+			},
+			"offsets": {
+				"from": 879720,
+				"to": 884720
+			},
+			"text": " Permissionless interoperability means that players can build the game experience, not just the core developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,720",
+				"to": "00:14:51,720"
+			},
+			"offsets": {
+				"from": 884720,
+				"to": 891720
+			},
+			"text": " And this unlocks a massive range of new kinds of affordances in games built in this fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,720",
+				"to": "00:14:56,720"
+			},
+			"offsets": {
+				"from": 891720,
+				"to": 896720
+			},
+			"text": " Okay, so I think that's mostly my answer to question one, why build games on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,720",
+				"to": "00:14:59,720"
+			},
+			"offsets": {
+				"from": 896720,
+				"to": 899720
+			},
+			"text": " In other words, what can blockchain do for games?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,720",
+				"to": "00:15:04,720"
+			},
+			"offsets": {
+				"from": 899720,
+				"to": 904720
+			},
+			"text": " The second question that I think is also very instructive to ask is why build games on the blockchain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,720",
+				"to": "00:15:13,720"
+			},
+			"offsets": {
+				"from": 904720,
+				"to": 913720
+			},
+			"text": " In other words, of all of the things that you could build on the blockchain, why bother with an application that doesn't have any obvious practical use case?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,720",
+				"to": "00:15:20,720"
+			},
+			"offsets": {
+				"from": 913720,
+				"to": 920720
+			},
+			"text": " And the text and the purple is sort of my broader interpretation of what I want to answer this question for."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,720",
+				"to": "00:15:28,720"
+			},
+			"offsets": {
+				"from": 920720,
+				"to": 928720
+			},
+			"text": " And I think it's a big question to ask any R&D facing org which is working on things that don't have a concrete practical use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,720",
+				"to": "00:15:31,720"
+			},
+			"offsets": {
+				"from": 928720,
+				"to": 931720
+			},
+			"text": " So I've got three reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,720",
+				"to": "00:15:38,720"
+			},
+			"offsets": {
+				"from": 931720,
+				"to": 938720
+			},
+			"text": " The first is that games and other experimental applications of this nature are technically demanding yet low stakes environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,720",
+				"to": "00:15:45,720"
+			},
+			"offsets": {
+				"from": 938720,
+				"to": 945720
+			},
+			"text": " for us to rapidly push forward infrastructure without putting massive amounts of capital or social stake at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,720",
+				"to": "00:15:53,720"
+			},
+			"offsets": {
+				"from": 945720,
+				"to": 953720
+			},
+			"text": " In the process of building crypto native games and game infrastructure, the Dark Forest and Zero X part communities have uncovered bugs in core infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,720",
+				"to": "00:16:04,720"
+			},
+			"offsets": {
+				"from": 953720,
+				"to": 964720
+			},
+			"text": " and motivated significant optimizations to things like Nethermind or Optimism Cannon or Akula or Aragon, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,720",
+				"to": "00:16:10,720"
+			},
+			"offsets": {
+				"from": 964720,
+				"to": 970720
+			},
+			"text": " This progress can happen rapidly and iteratively without putting hundreds of millions of dollars at stake as in DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,720",
+				"to": "00:16:19,720"
+			},
+			"offsets": {
+				"from": 970720,
+				"to": 979720
+			},
+			"text": " So we can move forward the ecosystem very quickly, we can move fast and break things, again without suffering enormous consequences where people's real livelihoods are at stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,720",
+				"to": "00:16:25,720"
+			},
+			"offsets": {
+				"from": 979720,
+				"to": 985720
+			},
+			"text": " This is very reminiscent of I would say gaming's impacts on the early days of personal computing and of the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,720",
+				"to": "00:16:33,720"
+			},
+			"offsets": {
+				"from": 985720,
+				"to": 993720
+			},
+			"text": " Games like Wolfenstein 3D and Doom massively advanced the graphics industry and stretched networking infrastructure to its limits back in the 90s"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,720",
+				"to": "00:16:39,720"
+			},
+			"offsets": {
+				"from": 993720,
+				"to": 999720
+			},
+			"text": " and devs were forced to invent new techniques and optimizations, many of which we still use today."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,720",
+				"to": "00:16:43,720"
+			},
+			"offsets": {
+				"from": 999720,
+				"to": 1003720
+			},
+			"text": " So the second reason is that games are a leading indicator in technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,720",
+				"to": "00:16:48,720"
+			},
+			"offsets": {
+				"from": 1003720,
+				"to": 1008720
+			},
+			"text": " And player behavior in today's games can help us predict user behavior on tomorrow's digital systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,720",
+				"to": "00:16:55,720"
+			},
+			"offsets": {
+				"from": 1008720,
+				"to": 1015720
+			},
+			"text": " To draw parallel back to the early days of mobile computing, another recent platform that has been hugely impactful for all of our lives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,720",
+				"to": "00:17:03,720"
+			},
+			"offsets": {
+				"from": 1015720,
+				"to": 1023720
+			},
+			"text": " interactions such as swiping and rotating were initially popularized and somewhat even say invented by games like Cut the Rope or Angry Birds."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,720",
+				"to": "00:17:11,720"
+			},
+			"offsets": {
+				"from": 1023720,
+				"to": 1031720
+			},
+			"text": " And while these apps were just games, these interaction patterns that they pioneered have become ubiquitous across everything that we do on mobile apps today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,720",
+				"to": "00:17:15,720"
+			},
+			"offsets": {
+				"from": 1031720,
+				"to": 1035720
+			},
+			"text": " So we've seen a few examples of this, a few early examples in crypto gaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,720",
+				"to": "00:17:29,720"
+			},
+			"offsets": {
+				"from": 1035720,
+				"to": 1049720
+			},
+			"text": " Thanks to the community management efforts of folks like Jordan Spence, Classic J and Ivan, we've seen various crypto native player cooperatives emerge using new crypto enabled mechanisms for governance, voting and value distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,720",
+				"to": "00:17:44,720"
+			},
+			"offsets": {
+				"from": 1049720,
+				"to": 1064720
+			},
+			"text": " The lead of DFTO Tony Goss sums this up quite nicely in an article, the crypto gaming governance thesis in which she argues for the values of the value of games as a sandbox for innovation inside the digital governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,720",
+				"to": "00:17:50,720"
+			},
+			"offsets": {
+				"from": 1064720,
+				"to": 1070720
+			},
+			"text": " And then the final reason that I would say that games are good for blockchain is that games are inherently playful."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,720",
+				"to": "00:17:56,720"
+			},
+			"offsets": {
+				"from": 1070720,
+				"to": 1076720
+			},
+			"text": " The crypto space currently is dominated, I would say by technologists and financiers."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,720",
+				"to": "00:18:05,720"
+			},
+			"offsets": {
+				"from": 1076720,
+				"to": 1085720
+			},
+			"text": " And a thriving indie game community can potentially help to bridge the gap between crypto and more creatively meaningful, such as artists, writers, thinkers, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,720",
+				"to": "00:18:15,720"
+			},
+			"offsets": {
+				"from": 1085720,
+				"to": 1095720
+			},
+			"text": " Introducing critical dimensions of intellectual diversity that crypto doesn't currently have. And I think that this kind of diversity is crucial for any intellectual movement or counterculture."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,720",
+				"to": "00:18:23,720"
+			},
+			"offsets": {
+				"from": 1095720,
+				"to": 1103720
+			},
+			"text": " Historically, many creatives have been extremely turned off or outright hostile to crypto due to the hyper financialization of things like NFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,720",
+				"to": "00:18:32,720"
+			},
+			"offsets": {
+				"from": 1103720,
+				"to": 1112720
+			},
+			"text": " But by really showing what the technology makes possible and what permissionless interoperability makes possible, we've been finally getting some indie game devs to come around."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,720",
+				"to": "00:18:47,720"
+			},
+			"offsets": {
+				"from": 1112720,
+				"to": 1127720
+			},
+			"text": " So, for example, the lattice team out at the autonomous world's residency has been pulling together a community of artists and creatives in London to introduce proper game devs and creators to blockchain technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,720",
+				"to": "00:18:50,720"
+			},
+			"offsets": {
+				"from": 1127720,
+				"to": 1130720
+			},
+			"text": " So now I want to zoom out even a bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,720",
+				"to": "00:19:01,720"
+			},
+			"offsets": {
+				"from": 1130720,
+				"to": 1141720
+			},
+			"text": " What are some of the lessons that we can learn from dark forest and crypto gaming, which we've talked a lot about in this talk, that are even more broadly applicable to innovation on blockchain technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,720",
+				"to": "00:19:05,720"
+			},
+			"offsets": {
+				"from": 1141720,
+				"to": 1145720
+			},
+			"text": " In my head, three things really stick out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,720",
+				"to": "00:19:10,720"
+			},
+			"offsets": {
+				"from": 1145720,
+				"to": 1150720
+			},
+			"text": " The first is to put it bluntly, the importance of fucking around and finding out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,720",
+				"to": "00:19:23,720"
+			},
+			"offsets": {
+				"from": 1150720,
+				"to": 1163720
+			},
+			"text": " So much innovation is the result of people being willing to work on seemingly blue sky moonshots that seem impractical at the time that they're conceived, and for which we can't really predict what the outcome is going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,720",
+				"to": "00:19:30,720"
+			},
+			"offsets": {
+				"from": 1163720,
+				"to": 1170720
+			},
+			"text": " So, to give a historical example that I think sums up this principle very nicely, I want to take us back to the 1970s."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,720",
+				"to": "00:19:45,720"
+			},
+			"offsets": {
+				"from": 1170720,
+				"to": 1185720
+			},
+			"text": " So up until the 1970s, computers themselves were commonly conceived of as these monolithic room size beasts, only accessible to select few organizations like government agencies and university labs, simply because they were so expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,720",
+				"to": "00:20:02,720"
+			},
+			"offsets": {
+				"from": 1185720,
+				"to": 1202720
+			},
+			"text": " The idea of the personal computer as a tool for personal expression and liberation was something that was not on the map at all, until researchers at Xerox Park basically put together the Xerox Alto, which was the first personal computer somewhat resembling what we think of as a PC today."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,720",
+				"to": "00:20:06,720"
+			},
+			"offsets": {
+				"from": 1202720,
+				"to": 1206720
+			},
+			"text": " At the time, the Alto seemed like a colossal waste of resources and money."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,720",
+				"to": "00:20:14,720"
+			},
+			"offsets": {
+				"from": 1206720,
+				"to": 1214720
+			},
+			"text": " It was one of the first devices to have a graphical display, like a monitor, and that took up two thirds of the memory of the entire unit."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,720",
+				"to": "00:20:20,720"
+			},
+			"offsets": {
+				"from": 1214720,
+				"to": 1220720
+			},
+			"text": " And in a world where memory is really scarce and really expensive, this seems extremely frivolous."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,720",
+				"to": "00:20:25,720"
+			},
+			"offsets": {
+				"from": 1220720,
+				"to": 1225720
+			},
+			"text": " Also, it costs like $20,000 per unit in 1970 dollars, which is pretty terrible."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,720",
+				"to": "00:20:34,720"
+			},
+			"offsets": {
+				"from": 1225720,
+				"to": 1234720
+			},
+			"text": " But Xerox Park, what they were doing was they were looking at Moore's Law at the time, and they correctly predicted that all of these resources would become more accessible over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,720",
+				"to": "00:20:37,720"
+			},
+			"offsets": {
+				"from": 1234720,
+				"to": 1237720
+			},
+			"text": " And they decided to skate to where the puck was going."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,720",
+				"to": "00:20:46,720"
+			},
+			"offsets": {
+				"from": 1237720,
+				"to": 1246720
+			},
+			"text": " And in doing so, they quite likely either altered or accelerated the trajectory of computing technology by potentially even decades."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,720",
+				"to": "00:20:54,720"
+			},
+			"offsets": {
+				"from": 1246720,
+				"to": 1254720
+			},
+			"text": " Steve Jobs and Bill Gates in later decades cited Xerox Park as the inspiration for so much of their own commercial visions for personal computing technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,720",
+				"to": "00:21:03,720"
+			},
+			"offsets": {
+				"from": 1254720,
+				"to": 1263720
+			},
+			"text": " Now, on a much smaller scale, again, we mentioned how three years ago, Dark Forest and various other experiments started as \"Pine the Sky\" experiments."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,720",
+				"to": "00:21:16,720"
+			},
+			"offsets": {
+				"from": 1263720,
+				"to": 1276720
+			},
+			"text": " We've seen firsthand how fucking around and then finding out has been so valuable to us in enabling us to uncover new research directions or new dimensions for crypto applications to really take the stage in the coming years."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,720",
+				"to": "00:21:26,720"
+			},
+			"offsets": {
+				"from": 1276720,
+				"to": 1286720
+			},
+			"text": " Another interesting that I've taken away from watching Dark Forest evolve is a mental model which I think of in my head as a dichotomy between systems and tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,720",
+				"to": "00:21:35,720"
+			},
+			"offsets": {
+				"from": 1286720,
+				"to": 1295720
+			},
+			"text": " So, to give an example of what I mean or to explain what I mean by systems versus tools and the particular usage here, I'll give a few examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,720",
+				"to": "00:21:46,720"
+			},
+			"offsets": {
+				"from": 1295720,
+				"to": 1306720
+			},
+			"text": " So, this is a screenshot from Battle.net, which is Blizzard's launcher for a number of very popular AAA games, such as Warcraft, or sorry World of Warcraft, StarCraft, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,720",
+				"to": "00:21:54,720"
+			},
+			"offsets": {
+				"from": 1306720,
+				"to": 1314720
+			},
+			"text": " Each of these games has a clearly defined canonical game mode, set of rules, ranking system, you know, methods of interacting with the game."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,720",
+				"to": "00:21:59,720"
+			},
+			"offsets": {
+				"from": 1314720,
+				"to": 1319720
+			},
+			"text": " It's a pretty prescriptive thing that tells you exactly how you can and can't interact with Battle.net."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,720",
+				"to": "00:22:03,720"
+			},
+			"offsets": {
+				"from": 1319720,
+				"to": 1323720
+			},
+			"text": " And it's a very well engineered, very large monolithic system."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,720",
+				"to": "00:22:07,720"
+			},
+			"offsets": {
+				"from": 1323720,
+				"to": 1327720
+			},
+			"text": " Similarly, this is a screenshot from the Facebook homepage."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,720",
+				"to": "00:22:23,720"
+			},
+			"offsets": {
+				"from": 1327720,
+				"to": 1343720
+			},
+			"text": " Facebook itself is also a monolithic system, and they've specifically engineered ways that you are permitted to interact with other participants and components of the system, how you can log in and authenticate, how you can message other people, and even what API routes you're permitted to access, and how frequently you're permitted to access them."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,720",
+				"to": "00:22:33,720"
+			},
+			"offsets": {
+				"from": 1343720,
+				"to": 1353720
+			},
+			"text": " In both of these examples, Battle.net and Facebook, we see monolithic systems that are disproportionately engineered to serve the goals and visions of a particular group."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,720",
+				"to": "00:22:41,720"
+			},
+			"offsets": {
+				"from": 1353720,
+				"to": 1361720
+			},
+			"text": " On the other hand, Dark Force has found many of its coolest and most unexpected outcomes as the result of building tools for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,720",
+				"to": "00:22:49,720"
+			},
+			"offsets": {
+				"from": 1361720,
+				"to": 1369720
+			},
+			"text": " Tools, as opposed to systems, are small, modular, and accessible things that aren't overly prescriptive in their use."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,720",
+				"to": "00:22:54,720"
+			},
+			"offsets": {
+				"from": 1369720,
+				"to": 1374720
+			},
+			"text": " A tool invites a user to uncover their own visions and use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,720",
+				"to": "00:23:06,720"
+			},
+			"offsets": {
+				"from": 1374720,
+				"to": 1386720
+			},
+			"text": " In our case, the Dark Force plugins tool chain and many of the other developer tools that we built enabled people to do all sorts of those crazy creative experiments that we saw earlier in this presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,720",
+				"to": "00:23:11,720"
+			},
+			"offsets": {
+				"from": 1386720,
+				"to": 1391720
+			},
+			"text": " This also means that tool builders have an enormous leverage in these kinds of early technology ecosystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,720",
+				"to": "00:23:18,720"
+			},
+			"offsets": {
+				"from": 1391720,
+				"to": 1398720
+			},
+			"text": " For example, Blaine Bublets built the Dark Force plugin dev server, which again enabled a ton of innovation."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,720",
+				"to": "00:23:30,720"
+			},
+			"offsets": {
+				"from": 1398720,
+				"to": 1410720
+			},
+			"text": " The folks at DFDOW have been building out custom infrastructure that allows anyone to modify and run their own Dark Force rounds with custom rule sets, leading to things like the Dark Force, the Reina Grand Prix, and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,720",
+				"to": "00:23:36,720"
+			},
+			"offsets": {
+				"from": 1410720,
+				"to": 1416720
+			},
+			"text": " Now, I don't think systems, at least as I'm referring to them, are necessarily better or worse than tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,720",
+				"to": "00:23:38,720"
+			},
+			"offsets": {
+				"from": 1416720,
+				"to": 1418720
+			},
+			"text": " They're quite necessary for the world to function."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,720",
+				"to": "00:23:43,720"
+			},
+			"offsets": {
+				"from": 1418720,
+				"to": 1423720
+			},
+			"text": " But there's a time and a place where you either want to be building systems or building tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,720",
+				"to": "00:24:01,720"
+			},
+			"offsets": {
+				"from": 1423720,
+				"to": 1441720
+			},
+			"text": " And early on in a technology's lifecycle, before you can predict all of the serendipitous innovations or second order effects of the technology, I think it's important to focus on tools, because tools empower people, future generators of innovators, to express their own visions that are unpredictable to us today."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,720",
+				"to": "00:24:04,720"
+			},
+			"offsets": {
+				"from": 1441720,
+				"to": 1444720
+			},
+			"text": " With crypto native gaming, I think we're also just getting started."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,720",
+				"to": "00:24:09,720"
+			},
+			"offsets": {
+				"from": 1444720,
+				"to": 1449720
+			},
+			"text": " And I want to shout out again one particular team that will be releasing and demoing a lot of really cool stuff this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:09,720",
+				"to": "00:24:14,720"
+			},
+			"offsets": {
+				"from": 1449720,
+				"to": 1454720
+			},
+			"text": " So the lattice team has been building out a tool stack for various crypto native games and crypto native applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,720",
+				"to": "00:24:18,720"
+			},
+			"offsets": {
+				"from": 1454720,
+				"to": 1458720
+			},
+			"text": " And if you're curious, their sessions are on the devcon schedule."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,720",
+				"to": "00:24:26,720"
+			},
+			"offsets": {
+				"from": 1458720,
+				"to": 1466720
+			},
+			"text": " So the final note that I want to end on is the importance of playing what some people call the \"infinite game.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,720",
+				"to": "00:24:35,720"
+			},
+			"offsets": {
+				"from": 1466720,
+				"to": 1475720
+			},
+			"text": " So this is a term coined by James P. Carr's, a religious scholar in his book, \"Finite and Infinite Games,\" which I highly recommend to anyone who's never heard of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,720",
+				"to": "00:24:42,720"
+			},
+			"offsets": {
+				"from": 1475720,
+				"to": 1482720
+			},
+			"text": " In this book, Carr's basically puts forward the idea that there are two kinds of games, finite games and infinite games."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,720",
+				"to": "00:24:50,720"
+			},
+			"offsets": {
+				"from": 1482720,
+				"to": 1490720
+			},
+			"text": " A finite game is played for the purpose of winning. Think of a sports match or a political election or an MEV arbitrage juror."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,720",
+				"to": "00:24:56,720"
+			},
+			"offsets": {
+				"from": 1490720,
+				"to": 1496720
+			},
+			"text": " Conversely, infinite games are games that are played for the purpose of continuing the play."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,720",
+				"to": "00:25:06,720"
+			},
+			"offsets": {
+				"from": 1496720,
+				"to": 1506720
+			},
+			"text": " To me, this means engendering innovation, experimenting with new rule sets and ways of collaborating and developing new tools for continued creative expression."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,720",
+				"to": "00:25:14,720"
+			},
+			"offsets": {
+				"from": 1506720,
+				"to": 1514720
+			},
+			"text": " I think that Dark Forest has done a good job of representing what it might look like to participate in the infinite game that is Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,720",
+				"to": "00:25:25,720"
+			},
+			"offsets": {
+				"from": 1514720,
+				"to": 1525720
+			},
+			"text": " And I'll wrap this up with a quote from Tony Goss at D.F. Dow, where he outlines the philosophy of the D.F. Dow player group, which is to play Dark Forest is to build on Dark Forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,720",
+				"to": "00:25:33,720"
+			},
+			"offsets": {
+				"from": 1525720,
+				"to": 1533720
+			},
+			"text": " So thank you everyone, and if you're curious about any of the other work that we're doing to build on top of these communities, you can check out these sessions."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,720",
+				"to": "00:25:37,720"
+			},
+			"offsets": {
+				"from": 1533720,
+				"to": 1537720
+			},
+			"text": " But otherwise, yeah, I think that's all I've got for today. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,720",
+				"to": "00:25:40,260"
+			},
+			"offsets": {
+				"from": 1537720,
+				"to": 1540260
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,260",
+				"to": "00:25:42,800"
+			},
+			"offsets": {
+				"from": 1540260,
+				"to": 1542800
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:25:42,800",
+				"to": "00:26:11,800"
+			},
+			"offsets": {
+				"from": 1542800,
+				"to": 1571800
+			},
+			"text": " ]"
+		}
+	]
+}

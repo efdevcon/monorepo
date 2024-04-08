@@ -1,0 +1,2221 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12640
+			},
+			"text": " So I'm here to talk about the data availability and validity scheme in Polkadot."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,640",
+				"to": "00:00:19,560"
+			},
+			"offsets": {
+				"from": 12640,
+				"to": 19560
+			},
+			"text": " Now this talk is probably a bit technical for the main stage in 15 minutes at 9am."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,560",
+				"to": "00:00:25,600"
+			},
+			"offsets": {
+				"from": 19560,
+				"to": 25600
+			},
+			"text": " You're end up going to sleep, still fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,600",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 25600,
+				"to": 28000
+			},
+			"text": " But I'm going to try and explain this."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:35,680"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 35680
+			},
+			"text": " So what do we mean by data availability and validity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,680",
+				"to": "00:00:43,040"
+			},
+			"offsets": {
+				"from": 35680,
+				"to": 43040
+			},
+			"text": " So in particular we're talking about blocks in a sharded system."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,040",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 43040,
+				"to": 54560
+			},
+			"text": " So if you have a single chain like Ethereum 1.0 or Bitcoin, if you have a header and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:59,640"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 59640
+			},
+			"text": " block doesn't exist, the people would ignore it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,640",
+				"to": "00:01:06,800"
+			},
+			"offsets": {
+				"from": 59640,
+				"to": 66800
+			},
+			"text": " If they download the block, full node and it verifies it, tries to run it, it doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,800",
+				"to": "00:01:11,240"
+			},
+			"offsets": {
+				"from": 66800,
+				"to": 71240
+			},
+			"text": " succeed, it would ignore that block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,240",
+				"to": "00:01:15,720"
+			},
+			"offsets": {
+				"from": 71240,
+				"to": 75720
+			},
+			"text": " And of course full nodes include the miners."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,720",
+				"to": "00:01:23,480"
+			},
+			"offsets": {
+				"from": 75720,
+				"to": 83480
+			},
+			"text": " And if we add them in 51% of our miners are honest, then they won't build on a block that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,480",
+				"to": "00:01:27,040"
+			},
+			"offsets": {
+				"from": 83480,
+				"to": 87040
+			},
+			"text": " doesn't exist, was implied."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,040",
+				"to": "00:01:30,800"
+			},
+			"offsets": {
+				"from": 87040,
+				"to": 90800
+			},
+			"text": " So it'll never be in the longest chain eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,800",
+				"to": "00:01:40,840"
+			},
+			"offsets": {
+				"from": 90800,
+				"to": 100840
+			},
+			"text": " But if you're in a sharded system like S2.0, like Polkadot, then only a small number of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,840",
+				"to": "00:01:43,200"
+			},
+			"offsets": {
+				"from": 100840,
+				"to": 103200
+			},
+			"text": " people check the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,200",
+				"to": "00:01:52,200"
+			},
+			"offsets": {
+				"from": 103200,
+				"to": 112200
+			},
+			"text": " The set of validators which form the consensus for the entire system, they don't know if"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,200",
+				"to": "00:02:00,320"
+			},
+			"offsets": {
+				"from": 112200,
+				"to": 120320
+			},
+			"text": " the block exists, if anyone has it, the data or if it's valid, if it makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,320",
+				"to": "00:02:08,240"
+			},
+			"offsets": {
+				"from": 120320,
+				"to": 128240
+			},
+			"text": " So I'm going to explain a bit how Polkadot works so that the rest of this makes sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,240",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128240,
+				"to": 131000
+			},
+			"text": " So Polkadot's a multi-chain system."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:17,920"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 137920
+			},
+			"text": " We have the relay chain and a lot of the power chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,920",
+				"to": "00:02:23,280"
+			},
+			"offsets": {
+				"from": 137920,
+				"to": 143280
+			},
+			"text": " And these are secured by a set of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,280",
+				"to": "00:02:33,360"
+			},
+			"offsets": {
+				"from": 143280,
+				"to": 153360
+			},
+			"text": " And the way parachain blocks work is some collator produces it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,360",
+				"to": "00:02:36,840"
+			},
+			"offsets": {
+				"from": 153360,
+				"to": 156840
+			},
+			"text": " And there's some random subset of validators, all the set of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,840",
+				"to": "00:02:39,720"
+			},
+			"offsets": {
+				"from": 156840,
+				"to": 159720
+			},
+			"text": " We sort of divide them between parachains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,720",
+				"to": "00:02:45,920"
+			},
+			"offsets": {
+				"from": 159720,
+				"to": 165920
+			},
+			"text": " And this random subset checks the block, says it's valid and available."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,920",
+				"to": "00:02:51,880"
+			},
+			"offsets": {
+				"from": 165920,
+				"to": 171880
+			},
+			"text": " They sign this header, the header goes onto the relay chain, and then it's in the relay"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,880",
+				"to": "00:02:53,480"
+			},
+			"offsets": {
+				"from": 171880,
+				"to": 173480
+			},
+			"text": " chain recount it is happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,480",
+				"to": "00:02:57,520"
+			},
+			"offsets": {
+				"from": 173480,
+				"to": 177520
+			},
+			"text": " In particular when the relay chain is finalized, which we do by, we finalize by a finality,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,520",
+				"to": "00:03:01,560"
+			},
+			"offsets": {
+				"from": 177520,
+				"to": 181560
+			},
+			"text": " get Byzantine agreement, then it's final."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,560",
+				"to": "00:03:04,360"
+			},
+			"offsets": {
+				"from": 181560,
+				"to": 184360
+			},
+			"text": " So we compare this with S2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,360",
+				"to": "00:03:09,800"
+			},
+			"offsets": {
+				"from": 184360,
+				"to": 189800
+			},
+			"text": " So what now happens is that, so shard blocks are produced."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,800",
+				"to": "00:03:16,240"
+			},
+			"offsets": {
+				"from": 189800,
+				"to": 196240
+			},
+			"text": " And we have a random subset of validators, which we divide between all the shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,240",
+				"to": "00:03:18,560"
+			},
+			"offsets": {
+				"from": 196240,
+				"to": 198560
+			},
+			"text": " They're called a crosslink committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,560",
+				"to": "00:03:23,640"
+			},
+			"offsets": {
+				"from": 198560,
+				"to": 203640
+			},
+			"text": " And periodically they all sign a crosslink, which says that these blocks happen, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,640",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 203640,
+				"to": 206000
+			},
+			"text": " they're byed and available."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:32,160"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 212160
+			},
+			"text": " And then that goes onto the beacon chain, if two thirds of those sign it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,160",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 212160,
+				"to": 218640
+			},
+			"text": " And then the block, it happens because it's in the beacon chain, it's final when the finality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:41,520"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 221520
+			},
+			"text": " gadget CASPERFFG finalizes it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,520",
+				"to": "00:03:42,600"
+			},
+			"offsets": {
+				"from": 221520,
+				"to": 222600
+			},
+			"text": " So this is basically the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,600",
+				"to": "00:03:47,760"
+			},
+			"offsets": {
+				"from": 222600,
+				"to": 227760
+			},
+			"text": " You just change a few words, as far as this talk is concerned."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,760",
+				"to": "00:03:53,360"
+			},
+			"offsets": {
+				"from": 227760,
+				"to": 233360
+			},
+			"text": " There's a few important differences."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,360",
+				"to": "00:03:57,840"
+			},
+			"offsets": {
+				"from": 233360,
+				"to": 237840
+			},
+			"text": " Things like the crosslinks aren't every block."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,840",
+				"to": "00:04:02,840"
+			},
+			"offsets": {
+				"from": 237840,
+				"to": 242840
+			},
+			"text": " They change more parachains are different in polka dots."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,840",
+				"to": "00:04:07,960"
+			},
+			"offsets": {
+				"from": 242840,
+				"to": 247960
+			},
+			"text": " But the only thing that's important here is how many validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,960",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 247960,
+				"to": 249800
+			},
+			"text": " This is the big difference for this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:18,360"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 258360
+			},
+			"text": " So in Ethereum 2.0, you're going for 100 to 1000 validators per shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,360",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 258360,
+				"to": 262640
+			},
+			"text": " And in polka dot, we're looking at like tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:31,960"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 271960
+			},
+			"text": " And this is sort of a bigger problem for-- and basically this will be fine as long as we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,960",
+				"to": "00:04:36,520"
+			},
+			"offsets": {
+				"from": 271960,
+				"to": 276520
+			},
+			"text": " can guarantee that the blocks are valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,520",
+				"to": "00:04:38,880"
+			},
+			"offsets": {
+				"from": 276520,
+				"to": 278880
+			},
+			"text": " And they're available."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,880",
+				"to": "00:04:42,120"
+			},
+			"offsets": {
+				"from": 278880,
+				"to": 282120
+			},
+			"text": " Any full token download."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,120",
+				"to": "00:04:46,640"
+			},
+			"offsets": {
+				"from": 282120,
+				"to": 286640
+			},
+			"text": " If that happens, it's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,640",
+				"to": "00:04:48,760"
+			},
+			"offsets": {
+				"from": 286640,
+				"to": 288760
+			},
+			"text": " So how do we guarantee this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,760",
+				"to": "00:04:55,960"
+			},
+			"offsets": {
+				"from": 288760,
+				"to": 295960
+			},
+			"text": " Well, so this is the reason why we wanted about 1000 validators per shard."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,960",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 295960,
+				"to": 303000
+			},
+			"text": " So what F4.0 plans is to have sort of 16,000 initially to a million validators, all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:07,320"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 307320
+			},
+			"text": " which sort of have every 32 each of the deviledators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,320",
+				"to": "00:05:16,040"
+			},
+			"offsets": {
+				"from": 307320,
+				"to": 316040
+			},
+			"text": " And it's like if we say three quarters of those are honest and we select say 100, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,040",
+				"to": "00:05:21,200"
+			},
+			"offsets": {
+				"from": 316040,
+				"to": 321200
+			},
+			"text": " with everyone we make high probability."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,200",
+				"to": "00:05:25,160"
+			},
+			"offsets": {
+				"from": 321200,
+				"to": 325160
+			},
+			"text": " One third of those will be honest and say if two thirds of people signed to say it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,160",
+				"to": "00:05:30,280"
+			},
+			"offsets": {
+				"from": 325160,
+				"to": 330280
+			},
+			"text": " bad and available, so a modest person will keep it bad and available, probably a whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,280",
+				"to": "00:05:38,560"
+			},
+			"offsets": {
+				"from": 330280,
+				"to": 338560
+			},
+			"text": " load of them, and then it will carry on being available and valid."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,560",
+				"to": "00:05:51,400"
+			},
+			"offsets": {
+				"from": 338560,
+				"to": 351400
+			},
+			"text": " But it's still sort of small fraction of the entire system that's giving us this guarantee."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,400",
+				"to": "00:05:55,960"
+			},
+			"offsets": {
+				"from": 351400,
+				"to": 355960
+			},
+			"text": " And sort of the question is will we be able to get a million validators?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,960",
+				"to": "00:05:58,040"
+			},
+			"offsets": {
+				"from": 355960,
+				"to": 358040
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,040",
+				"to": "00:06:08,040"
+			},
+			"offsets": {
+				"from": 358040,
+				"to": 368040
+			},
+			"text": " So if I have, well maybe, but only if some people run a lot of validators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,040",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 368040,
+				"to": 374400
+			},
+			"text": " So if I have 1000, then I should be running 30 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,400",
+				"to": "00:06:18,880"
+			},
+			"offsets": {
+				"from": 374400,
+				"to": 378880
+			},
+			"text": " But what we really, you know, sort of a design goal was to make these runnable by someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,880",
+				"to": "00:06:22,000"
+			},
+			"offsets": {
+				"from": 378880,
+				"to": 382000
+			},
+			"text": " on a laptop in their bedroom."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:26,160"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 386160
+			},
+			"text": " But that doesn't really work so well if I have 1000 debt."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,160",
+				"to": "00:06:31,880"
+			},
+			"offsets": {
+				"from": 386160,
+				"to": 391880
+			},
+			"text": " I see, and I'm not sure how all this is going to scale, but there's like sort of network"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,880",
+				"to": "00:06:33,960"
+			},
+			"offsets": {
+				"from": 391880,
+				"to": 393960
+			},
+			"text": " and computing limitations."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,960",
+				"to": "00:06:36,480"
+			},
+			"offsets": {
+				"from": 393960,
+				"to": 396480
+			},
+			"text": " And the networking is probably a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,480",
+				"to": "00:06:39,120"
+			},
+			"offsets": {
+				"from": 396480,
+				"to": 399120
+			},
+			"text": " So like how many validators can I run a one machine?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,120",
+				"to": "00:06:41,960"
+			},
+			"offsets": {
+				"from": 399120,
+				"to": 401960
+			},
+			"text": " Well, it kind of depends on how many peer-to-peer networks I can connect."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,960",
+				"to": "00:06:44,240"
+			},
+			"offsets": {
+				"from": 401960,
+				"to": 404240
+			},
+			"text": " Can I connect to 30 networks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,240",
+				"to": "00:06:50,440"
+			},
+			"offsets": {
+				"from": 404240,
+				"to": 410440
+			},
+			"text": " And sort of to be robust, maybe only 30 connections each, 1000 connections."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,440",
+				"to": "00:06:54,320"
+			},
+			"offsets": {
+				"from": 410440,
+				"to": 414320
+			},
+			"text": " I can do that with a server in a data center, probably if the code is good."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,320",
+				"to": "00:07:00,840"
+			},
+			"offsets": {
+				"from": 414320,
+				"to": 420840
+			},
+			"text": " But probably not in my bedroom, it would crash my router."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,840",
+				"to": "00:07:06,560"
+			},
+			"offsets": {
+				"from": 420840,
+				"to": 426560
+			},
+			"text": " And this is why we kind of worried in Polkadot that we won't get this many validators, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,560",
+				"to": "00:07:08,680"
+			},
+			"offsets": {
+				"from": 426560,
+				"to": 428680
+			},
+			"text": " we're trying to design a system with less."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,680",
+				"to": "00:07:15,520"
+			},
+			"offsets": {
+				"from": 428680,
+				"to": 435520
+			},
+			"text": " But I'd like to sort of point out that because S2.0 has a very similar architecture, almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,520",
+				"to": "00:07:18,040"
+			},
+			"offsets": {
+				"from": 435520,
+				"to": 438040
+			},
+			"text": " all parts of our solution would just apply."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,040",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 438040,
+				"to": 441640
+			},
+			"text": " So you could use any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:23,720"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 443720
+			},
+			"text": " So what does Polkadot do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,720",
+				"to": "00:07:27,240"
+			},
+			"offsets": {
+				"from": 443720,
+				"to": 447240
+			},
+			"text": " So as I said before, we only have 10 validators per power chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,240",
+				"to": "00:07:35,440"
+			},
+			"offsets": {
+				"from": 447240,
+				"to": 455440
+			},
+			"text": " It means we only need sort of five to seven signatures on this block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,440",
+				"to": "00:07:39,240"
+			},
+			"offsets": {
+				"from": 455440,
+				"to": 459240
+			},
+			"text": " And the basic idea for validity was to rely on fishermen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,240",
+				"to": "00:07:41,240"
+			},
+			"offsets": {
+				"from": 459240,
+				"to": 461240
+			},
+			"text": " So every collator will be a fisherman."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,240",
+				"to": "00:07:42,240"
+			},
+			"offsets": {
+				"from": 461240,
+				"to": 462240
+			},
+			"text": " There will be no shortage of fishermen."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,240",
+				"to": "00:07:44,040"
+			},
+			"offsets": {
+				"from": 462240,
+				"to": 464040
+			},
+			"text": " Every full note can just production state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,040",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 464040,
+				"to": 466000
+			},
+			"text": " They don't have to lock anything beforehand."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 467000
+			},
+			"text": " They can just run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:53,520"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 473520
+			},
+			"text": " And then when they discover a block is invalid, that they're running, they're reported."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,520",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 473520,
+				"to": 481000
+			},
+			"text": " And then people check it and if we discover someone was lying, one of these factors seven"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,360"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485360
+			},
+			"text": " signs in a banded block will slash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,360",
+				"to": "00:08:08,600"
+			},
+			"offsets": {
+				"from": 485360,
+				"to": 488600
+			},
+			"text": " We'll take away their stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,600",
+				"to": "00:08:11,920"
+			},
+			"offsets": {
+				"from": 488600,
+				"to": 491920
+			},
+			"text": " And we can allow sort of fishermen to stake themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,920",
+				"to": "00:08:15,680"
+			},
+			"offsets": {
+				"from": 491920,
+				"to": 495680
+			},
+			"text": " We can band them together if fishermen lie, that they get slashed."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,680",
+				"to": "00:08:21,760"
+			},
+			"offsets": {
+				"from": 495680,
+				"to": 501760
+			},
+			"text": " It's like if you're in there, a fisherman, and you want to come into all your friends"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,760",
+				"to": "00:08:26,520"
+			},
+			"offsets": {
+				"from": 501760,
+				"to": 506520
+			},
+			"text": " to join in and say this is true and this will ensure that we check it enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,520",
+				"to": "00:08:31,120"
+			},
+			"offsets": {
+				"from": 506520,
+				"to": 511120
+			},
+			"text": " And if you're correct, you will get a reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,120",
+				"to": "00:08:36,680"
+			},
+			"offsets": {
+				"from": 511120,
+				"to": 516680
+			},
+			"text": " But the problem is you can't validate a block you never see."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,680",
+				"to": "00:08:41,360"
+			},
+			"offsets": {
+				"from": 516680,
+				"to": 521360
+			},
+			"text": " And validators don't know that the full notes never saw it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,360",
+				"to": "00:08:46,600"
+			},
+			"offsets": {
+				"from": 521360,
+				"to": 526600
+			},
+			"text": " And even if the full notes say they didn't see it and it's sort of subjective, we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,600",
+				"to": "00:08:48,160"
+			},
+			"offsets": {
+				"from": 526600,
+				"to": 528160
+			},
+			"text": " we're verifying that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,160",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 528160,
+				"to": 532400
+			},
+			"text": " All we can do is after the data ourselves, at which point if everyone has the data, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:54,960"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 534960
+			},
+			"text": " not scalable anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,960",
+				"to": "00:08:58,840"
+			},
+			"offsets": {
+				"from": 534960,
+				"to": 538840
+			},
+			"text": " And maybe when we ask for it, when the validators ask for it, it shows up."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,840",
+				"to": "00:08:59,840"
+			},
+			"offsets": {
+				"from": 538840,
+				"to": 539840
+			},
+			"text": " And it's correct."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,840",
+				"to": "00:09:00,840"
+			},
+			"offsets": {
+				"from": 539840,
+				"to": 540840
+			},
+			"text": " But we don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,840",
+				"to": "00:09:02,840"
+			},
+			"offsets": {
+				"from": 540840,
+				"to": 542840
+			},
+			"text": " We can't slash anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,840",
+				"to": "00:09:05,480"
+			},
+			"offsets": {
+				"from": 542840,
+				"to": 545480
+			},
+			"text": " It's a kind of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,480",
+				"to": "00:09:12,960"
+			},
+			"offsets": {
+				"from": 545480,
+				"to": 552960
+			},
+			"text": " The reason this wasn't a problem with Ethereum, 1.0, it's Bitcoin, was because the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,960",
+				"to": "00:09:21,360"
+			},
+			"offsets": {
+				"from": 552960,
+				"to": 561360
+			},
+			"text": " responsible for the entire set, the consensus, were the same people who kept the data available."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,360",
+				"to": "00:09:27,360"
+			},
+			"offsets": {
+				"from": 561360,
+				"to": 567360
+			},
+			"text": " And at least all the miners keep the data available as do all other full notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,360",
+				"to": "00:09:30,320"
+			},
+			"offsets": {
+				"from": 567360,
+				"to": 570320
+			},
+			"text": " So what we really would like is to sort of do that again."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,320",
+				"to": "00:09:31,320"
+			},
+			"offsets": {
+				"from": 570320,
+				"to": 571320
+			},
+			"text": " And we can kind of do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,320",
+				"to": "00:09:32,320"
+			},
+			"offsets": {
+				"from": 571320,
+				"to": 572320
+			},
+			"text": " There is a solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,320",
+				"to": "00:09:33,320"
+			},
+			"offsets": {
+				"from": 572320,
+				"to": 573320
+			},
+			"text": " Everyone kind of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,320",
+				"to": "00:09:36,840"
+			},
+			"offsets": {
+				"from": 573320,
+				"to": 576840
+			},
+			"text": " It's an old solution for a bus, these two run data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,840",
+				"to": "00:09:39,560"
+			},
+			"offsets": {
+				"from": 576840,
+				"to": 579560
+			},
+			"text": " And that is you do user-raiser coding."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,560",
+				"to": "00:09:44,160"
+			},
+			"offsets": {
+				"from": 579560,
+				"to": 584160
+			},
+			"text": " So you sort of add some redundancy to your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,160",
+				"to": "00:09:48,840"
+			},
+			"offsets": {
+				"from": 584160,
+				"to": 588840
+			},
+			"text": " And then you divide it into little pieces."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,840",
+				"to": "00:09:53,720"
+			},
+			"offsets": {
+				"from": 588840,
+				"to": 593720
+			},
+			"text": " And even if a large number of these pieces go missing, you can still reconstruct it from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,720",
+				"to": "00:09:55,680"
+			},
+			"offsets": {
+				"from": 593720,
+				"to": 595680
+			},
+			"text": " the remainder."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,680",
+				"to": "00:10:02,120"
+			},
+			"offsets": {
+				"from": 595680,
+				"to": 602120
+			},
+			"text": " And so we can use this to make the whole set of validators responsible for the availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,120",
+				"to": "00:10:09,320"
+			},
+			"offsets": {
+				"from": 602120,
+				"to": 609320
+			},
+			"text": " of every data, all the data, without overloading any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,320",
+				"to": "00:10:13,040"
+			},
+			"offsets": {
+				"from": 609320,
+				"to": 613040
+			},
+			"text": " So with the way we do this, parachain validators send the pieces of the data to every other"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,040",
+				"to": "00:10:14,040"
+			},
+			"offsets": {
+				"from": 613040,
+				"to": 614040
+			},
+			"text": " validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,040",
+				"to": "00:10:20,640"
+			},
+			"offsets": {
+				"from": 614040,
+				"to": 620640
+			},
+			"text": " And one third of validators, pieces along to a third of validators are enough to reconstruct."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,640",
+				"to": "00:10:25,800"
+			},
+			"offsets": {
+				"from": 620640,
+				"to": 625800
+			},
+			"text": " And then we make voting with the consensus, particularly in the finality gadget, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,800",
+				"to": "00:10:30,160"
+			},
+			"offsets": {
+				"from": 625800,
+				"to": 630160
+			},
+			"text": " is a bit of a teen agreement, however, then we need two thirds of the people to sign,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,160",
+				"to": "00:10:34,360"
+			},
+			"offsets": {
+				"from": 630160,
+				"to": 634360
+			},
+			"text": " conditional on having all the pieces you're supposed to have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,360",
+				"to": "00:10:40,120"
+			},
+			"offsets": {
+				"from": 634360,
+				"to": 640120
+			},
+			"text": " And what this means is if we finalise a block and we're two thirds honest, then the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,120",
+				"to": "00:10:42,200"
+			},
+			"offsets": {
+				"from": 640120,
+				"to": 642200
+			},
+			"text": " is available in principle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,200",
+				"to": "00:10:44,680"
+			},
+			"offsets": {
+				"from": 642200,
+				"to": 644680
+			},
+			"text": " Right, we can reconstruct it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,680",
+				"to": "00:10:51,080"
+			},
+			"offsets": {
+				"from": 644680,
+				"to": 651080
+			},
+			"text": " So the data, if we are now two back to two thirds honest, and we'd really like it to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,080",
+				"to": "00:11:00,400"
+			},
+			"offsets": {
+				"from": 651080,
+				"to": 660400
+			},
+			"text": " be rational, but we can do that as well, then it's available."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,400",
+				"to": "00:11:05,680"
+			},
+			"offsets": {
+				"from": 660400,
+				"to": 665680
+			},
+			"text": " So there is a problem here, which if you launch an attack, we're going to catch you in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,680",
+				"to": "00:11:06,680"
+			},
+			"offsets": {
+				"from": 665680,
+				"to": 666680
+			},
+			"text": " end."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,680",
+				"to": "00:11:11,160"
+			},
+			"offsets": {
+				"from": 666680,
+				"to": 671160
+			},
+			"text": " If these ten validators sign in a valid block, we're going to catch them, we're going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,160",
+				"to": "00:11:12,720"
+			},
+			"offsets": {
+				"from": 671160,
+				"to": 672720
+			},
+			"text": " slash them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,720",
+				"to": "00:11:18,560"
+			},
+			"offsets": {
+				"from": 672720,
+				"to": 678560
+			},
+			"text": " Ideally that would be sort of a hundredth of the stake in the entire system."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,560",
+				"to": "00:11:22,520"
+			},
+			"offsets": {
+				"from": 678560,
+				"to": 682520
+			},
+			"text": " But that isn't good enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,520",
+				"to": "00:11:28,640"
+			},
+			"offsets": {
+				"from": 682520,
+				"to": 688640
+			},
+			"text": " So what can happen is that these guys can send sign in a valid block, make a send a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,640",
+				"to": "00:11:34,920"
+			},
+			"offsets": {
+				"from": 688640,
+				"to": 694920
+			},
+			"text": " to a Bitcoin bridge that earns a lot of external things Bitcoin and tells them to pay the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,920",
+				"to": "00:11:36,320"
+			},
+			"offsets": {
+				"from": 694920,
+				"to": 696320
+			},
+			"text": " Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,320",
+				"to": "00:11:39,920"
+			},
+			"offsets": {
+				"from": 696320,
+				"to": 699920
+			},
+			"text": " And this means that if that's more than a hundredth of the stake in the system, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,920",
+				"to": "00:11:44,480"
+			},
+			"offsets": {
+				"from": 699920,
+				"to": 704480
+			},
+			"text": " make a profit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,480",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 704480,
+				"to": 710000
+			},
+			"text": " And we can't revert it on our check because we're not Bitcoin."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:54,120"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 714120
+			},
+			"text": " But we can get around this if we have a protocol to catch people quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,120",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 714120,
+				"to": 720000
+			},
+			"text": " So if 99% of the time we catch this before they pay you the Bitcoin, only 1% of the time"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:05,160"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 725160
+			},
+			"text": " you succeed, the expected cost an attack, under the stake 1% of the time, they're all"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,160",
+				"to": "00:12:06,760"
+			},
+			"offsets": {
+				"from": 725160,
+				"to": 726760
+			},
+			"text": " the stake in the entire system."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,760",
+				"to": "00:12:12,840"
+			},
+			"offsets": {
+				"from": 726760,
+				"to": 732840
+			},
+			"text": " It's cheaper to attack the main chain and the entire system than it is anyone on a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,840",
+				"to": "00:12:15,600"
+			},
+			"offsets": {
+				"from": 732840,
+				"to": 735600
+			},
+			"text": " bank opponent."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,600",
+				"to": "00:12:16,680"
+			},
+			"offsets": {
+				"from": 735600,
+				"to": 736680
+			},
+			"text": " But we need a protocol for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,680",
+				"to": "00:12:22,680"
+			},
+			"offsets": {
+				"from": 736680,
+				"to": 742680
+			},
+			"text": " So what happens is that we take reports of immunity or this time on availability and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,680",
+				"to": "00:12:25,760"
+			},
+			"offsets": {
+				"from": 742680,
+				"to": 745760
+			},
+			"text": " we get extra people to check it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,760",
+				"to": "00:12:28,280"
+			},
+			"offsets": {
+				"from": 745760,
+				"to": 748280
+			},
+			"text": " We choose the extra people at random."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,280",
+				"to": "00:12:30,240"
+			},
+			"offsets": {
+				"from": 748280,
+				"to": 750240
+			},
+			"text": " This is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,240",
+				"to": "00:12:32,880"
+			},
+			"offsets": {
+				"from": 750240,
+				"to": 752880
+			},
+			"text": " We use a very far more random function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,880",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 752880,
+				"to": 761000
+			},
+			"text": " So the people validating the shot were chosen at random, but everyone knows who they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,880"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765880
+			},
+			"text": " So the bank guys can just wait until they own enough, attack the rest and they're fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,880",
+				"to": "00:12:48,480"
+			},
+			"offsets": {
+				"from": 765880,
+				"to": 768480
+			},
+			"text": " But if random people check they don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,480",
+				"to": "00:12:51,640"
+			},
+			"offsets": {
+				"from": 768480,
+				"to": 771640
+			},
+			"text": " On the other hand of VRF, everyone knows who's responsible."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,640",
+				"to": "00:12:55,080"
+			},
+			"offsets": {
+				"from": 771640,
+				"to": 775080
+			},
+			"text": " We know who we should be checking this after the fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,080",
+				"to": "00:12:59,560"
+			},
+			"offsets": {
+				"from": 775080,
+				"to": 779560
+			},
+			"text": " We know which reports we should pay attention to and we can even pay them."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,560",
+				"to": "00:13:04,840"
+			},
+			"offsets": {
+				"from": 779560,
+				"to": 784840
+			},
+			"text": " And then if anyone claims it to invalid, everyone downloads it and checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,840",
+				"to": "00:13:11,600"
+			},
+			"offsets": {
+				"from": 784840,
+				"to": 791600
+			},
+			"text": " Now the other things you could do, you could do random text without reports."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,600",
+				"to": "00:13:17,080"
+			},
+			"offsets": {
+				"from": 791600,
+				"to": 797080
+			},
+			"text": " And there's this great idea of doing fraud proofs and this paper by the staff for Arbus"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,080",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 797080,
+				"to": 806000
+			},
+			"text": " and Vitalik and Sonio, which I saw on my staff are talking about, DevCon last year, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:32,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 812000
+			},
+			"text": " we do some erasure coding, but we sort of erasure code sub blocks and then we can check"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,000",
+				"to": "00:13:34,920"
+			},
+			"offsets": {
+				"from": 812000,
+				"to": 814920
+			},
+			"text": " only a sub block and it gives us a small proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,920",
+				"to": "00:13:39,440"
+			},
+			"offsets": {
+				"from": 814920,
+				"to": 819440
+			},
+			"text": " And if we have a small proof, we don't need this escalation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,440",
+				"to": "00:13:43,680"
+			},
+			"offsets": {
+				"from": 819440,
+				"to": 823680
+			},
+			"text": " Or we could use succinct proofs to comment to everyone on the validity and reduce the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,680",
+				"to": "00:13:48,440"
+			},
+			"offsets": {
+				"from": 823680,
+				"to": 828440
+			},
+			"text": " only problem then is availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,440",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 828440,
+				"to": 834240
+			},
+			"text": " And so any of these could be used in F2.0 if you want to do the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:13:59,680"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 839680
+			},
+			"text": " So one of the nice things about finality gadgets is that you don't have to find nice things"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,680",
+				"to": "00:14:01,640"
+			},
+			"offsets": {
+				"from": 839680,
+				"to": 841640
+			},
+			"text": " straight away."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,640",
+				"to": "00:14:06,200"
+			},
+			"offsets": {
+				"from": 841640,
+				"to": 846200
+			},
+			"text": " So what we do is we delay on voting on finality until we have all the erasure code of pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,200",
+				"to": "00:14:11,200"
+			},
+			"offsets": {
+				"from": 846200,
+				"to": 851200
+			},
+			"text": " and if, until we believe some time to get reports and if they don't show up, they do"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,200",
+				"to": "00:14:13,840"
+			},
+			"offsets": {
+				"from": 851200,
+				"to": 853840
+			},
+			"text": " show up and we have to wait for checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,840",
+				"to": "00:14:21,280"
+			},
+			"offsets": {
+				"from": 853840,
+				"to": 861280
+			},
+			"text": " And then we never find lies and invalid or unevigable block except with small probability"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,280",
+				"to": "00:14:26,040"
+			},
+			"offsets": {
+				"from": 861280,
+				"to": 866040
+			},
+			"text": " as long as we get enough reports or we had enough random checks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,040",
+				"to": "00:14:27,040"
+			},
+			"offsets": {
+				"from": 866040,
+				"to": 867040
+			},
+			"text": " And that doesn't slow block production."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,040",
+				"to": "00:14:29,040"
+			},
+			"offsets": {
+				"from": 867040,
+				"to": 869040
+			},
+			"text": " There's a bit of an issue with networking."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,040",
+				"to": "00:14:31,800"
+			},
+			"offsets": {
+				"from": 869040,
+				"to": 871800
+			},
+			"text": " We can't go out and pull these pieces but never mind that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,800",
+				"to": "00:14:33,920"
+			},
+			"offsets": {
+				"from": 871800,
+				"to": 873920
+			},
+			"text": " We can solve that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,920",
+				"to": "00:14:39,480"
+			},
+			"offsets": {
+				"from": 873920,
+				"to": 879480
+			},
+			"text": " And the result is that we can secure Polkadot with only 10 validators per parochand and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,480",
+				"to": "00:14:41,080"
+			},
+			"offsets": {
+				"from": 879480,
+				"to": 881080
+			},
+			"text": " still have it secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,080",
+				"to": "00:14:44,400"
+			},
+			"offsets": {
+				"from": 881080,
+				"to": 884400
+			},
+			"text": " And I think Ethereum could use a similar thing to get, to use a number of validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,400",
+				"to": "00:14:44,640"
+			},
+			"offsets": {
+				"from": 884400,
+				"to": 884640
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,640",
+				"to": "00:14:48,640"
+			},
+			"offsets": {
+				"from": 884640,
+				"to": 888640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,640",
+				"to": "00:14:58,640"
+			},
+			"offsets": {
+				"from": 888640,
+				"to": 898640
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,640",
+				"to": "00:15:08,640"
+			},
+			"offsets": {
+				"from": 898640,
+				"to": 908640
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,640",
+				"to": "00:15:18,640"
+			},
+			"offsets": {
+				"from": 908640,
+				"to": 918640
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,640",
+				"to": "00:15:28,640"
+			},
+			"offsets": {
+				"from": 918640,
+				"to": 928640
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

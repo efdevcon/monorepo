@@ -1,0 +1,5235 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:07,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 7000
+			},
+			"text": " I'd like to start off with introduction."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,000",
+				"to": "00:00:08,000"
+			},
+			"offsets": {
+				"from": 7000,
+				"to": 8000
+			},
+			"text": " So my name is Eva."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 8000,
+				"to": 11000
+			},
+			"text": " I work on various projects in the theory and ecosystem and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 12000
+			},
+			"text": " Super close with dfi."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15000
+			},
+			"text": " And maybe if you can start and say what you're working on and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " How that relates to stable points."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 21000
+			},
+			"text": " >> Sure. So i'm a victor work that i work with the r-dyed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 25000
+			},
+			"text": " Project. For those of you that are familiar, it's an open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " Non-profit money-lego protocol that was created by francesco"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32000
+			},
+			"text": " Renzi and meow as the chang earlier this summer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 37000
+			},
+			"text": " It's sort of one sentence pitch is programmable interest payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43000
+			},
+			"text": " It takes die as the underlying asset and invests in no loss"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 43000,
+				"to": 47000
+			},
+			"text": " Lending pools like compound, dydx or fulcrum and takes that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 50000
+			},
+			"text": " Interest that's streaming back to the user account and allows the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 53000
+			},
+			"text": " User that holds the die to direct that interest outside of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 54000
+			},
+			"text": " Their own account."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:56,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 56000
+			},
+			"text": " So you can use it to pay for services."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,000",
+				"to": "00:01:00,000"
+			},
+			"offsets": {
+				"from": 56000,
+				"to": 60000
+			},
+			"text": " You can direct it to charity and open source projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 60000,
+				"to": 66000
+			},
+			"text": " And for me it kind of constituted a -- my third fall down the rabbit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 67000
+			},
+			"text": " Hole in crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 70000
+			},
+			"text": " So the first one is the one everybody talks about when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73000
+			},
+			"text": " First understand bitcoin and come out the other end and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 76000
+			},
+			"text": " Start saying things like fiat money instead of dollar bills."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 79000
+			},
+			"text": " And then my second trip down the rabbit hole is learning about"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 82000
+			},
+			"text": " MakerDAW, understanding how those kinds of systems which seem"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:25,000"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 85000
+			},
+			"text": " Incredibly complex can result in this really wonderful"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 85000,
+				"to": 89000
+			},
+			"text": " System that opens up all kinds of new affordances for human"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 92000
+			},
+			"text": " Financial behavior and then the money legos that are built on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 93000
+			},
+			"text": " It are fascinating."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 98000
+			},
+			"text": " And so when i heard about rdie i started building on it and i"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 102000
+			},
+			"text": " Recognized that it's not only a cool money lego but it actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 106000
+			},
+			"text": " Kind of inverts a cognitive bias that sort of circumnavigates a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " Cognitive bias that we've always had whenever we pay for things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " Out of pocket which is loss version doesn't feel good to see your"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 116000
+			},
+			"text": " Number go down and your bank account and so anything you pay for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 120000
+			},
+			"text": " You have to overcome that obstacle so rdie when you can direct"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " Interest to things that you support seems to alleviate some"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 127000
+			},
+			"text": " Of that loss version and it kind of gets me spinning thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 127000,
+				"to": 130000
+			},
+			"text": " About the different possibilities that you can build out a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 134000
+			},
+			"text": " Payment system and a payment network that is an entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 137000
+			},
+			"text": " Different structure with a lot more fluidity and a lot more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 141000
+			},
+			"text": " Possibility for supporting things that we think of now as these"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 143000
+			},
+			"text": " Kinds if you need to add support models or surveillance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 147000
+			},
+			"text": " Capitalism to support but with the directed interest micro"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 151000
+			},
+			"text": " Payment kind of platform like rdie you really do have some"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " Really neat models that come out of that so i'm excited to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 156000
+			},
+			"text": " Build it's not on me yet but that will be a couple of months"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 159000
+			},
+			"text": " Away so i encourage everybody to check it out hopefully you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 162000
+			},
+			"text": " Make me fall down the same route of all i did."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 165000
+			},
+			"text": " >> Yeah i'm rune christmison."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 169000
+			},
+			"text": " I'm the co of the mega foundation and for those of you that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173000
+			},
+			"text": " Didn't hear it yesterday we just announced that full version"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " Of die multiple-level die that also includes the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 182000
+			},
+			"text": " Die savings rate is launching on the memory team."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 188000
+			},
+			"text": " >> I'm dan robinson."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 191000
+			},
+			"text": " I'm a research partner at parodym which is a crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " Investment firm but i'm here representing my own views and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 196000
+			},
+			"text": " Not those with the fund."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 201000
+			},
+			"text": " I mostly work on research and currency and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 204000
+			},
+			"text": " Defy and recently published a paper called the yield"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 207000
+			},
+			"text": " Protocol which is about a way to do essentially secured zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 213000
+			},
+			"text": " Group on bonds on a theorem so for example one y die is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " Where is the demable for one die at a particular future date and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 222000
+			},
+			"text": " Is secured by some that is collateral so unlike"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " Die i'm like it's not a petrol and it's also not meant to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 234000
+			},
+			"text": " Target stability so it's a way to get the y die trade from"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:57,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 237000
+			},
+			"text": " Discount and you can infer from the discount what the implied"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 237000,
+				"to": 240000
+			},
+			"text": " Interest rate is that the market sets on this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 244000
+			},
+			"text": " Matureity of debt and so it's a protocol essentially for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247000
+			},
+			"text": " Interest rate discovery on a theorem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " >> Awesome so something that's been really exciting that came"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 254000
+			},
+			"text": " Out of the world of die that makers created is all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 258000
+			},
+			"text": " Derivatives like r die lsti c die but a lot of that has to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " With the interest rate that people can earn."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 264000
+			},
+			"text": " So these opportunities that for example instadap is creating"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 264000,
+				"to": 267000
+			},
+			"text": " Arbitrage between maker cdp and lending a compound but how do"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 271000
+			},
+			"text": " You guys see interest rates evolving as our ecosystem involves"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 274000
+			},
+			"text": " And maybe dan will start with you given why tokens are a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 276000
+			},
+			"text": " Bit relevant to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 279000
+			},
+			"text": " >> Sure so yes so why do i obviously haven't been"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 283000
+			},
+			"text": " But once you do just from sort of the market on chain you can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 285000
+			},
+			"text": " With the markets just for the prices of various"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " Maturities you can infer what the market predicts the term"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " Structure of interest rates will be which is the future path"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 294000
+			},
+			"text": " Of interest rates i think if you did that now and this is a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 296000
+			},
+			"text": " Various sort of undestified opinion i think it would be an"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 298000
+			},
+			"text": " Inverted yield curve in that i think people think that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " Current yields are going to go down in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 305000
+			},
+			"text": " That would be probably my guess maybe i'm not sure the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " Panel for this period."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 313000
+			},
+			"text": " >> Yeah i mean i really have no, actually we talked about it"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " Yesterday like i really have no idea what the yield curve would"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 320000
+			},
+			"text": " Look like if there was one and also i think it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " Really difficult to even construct one right because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " Need to have a lot more liquidity in the ecosystem and maybe"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 330000
+			},
+			"text": " Once we do get to that level of liquidity the economy has"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " Stabilized a little bit and who knows it will still be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 338000
+			},
+			"text": " Inverted though i actually agree with you right now that rates do"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 342000
+			},
+			"text": " Seem to be going down and so to the question of like these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 348000
+			},
+			"text": " Yields are critical for all of these like debriero to essence"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 351000
+			},
+			"text": " What i think is really interesting is that with the dye"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 355000
+			},
+			"text": " Savings rate the dye is going to add now this will be the first"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " Time in gfy that you can get a type of yield that doesn't add"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 362000
+			},
+			"text": " Any additional risk to the underlying stablecoin and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 362000,
+				"to": 367000
+			},
+			"text": " And i think that will really open up for even more types of"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 370000
+			},
+			"text": " Innovation like this or at least it will make people feel a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:14,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 374000
+			},
+			"text": " More safe doing it because for instance if you wanted to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 374000,
+				"to": 378000
+			},
+			"text": " Something like our dye and donate it to charity if you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 381000
+			},
+			"text": " Using compound right now you actually are like like you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 384000
+			},
+			"text": " Not just donating money to charity for free because you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:28,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 388000
+			},
+			"text": " Taking some risk and there is some real non-zero risk that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 388000,
+				"to": 391000
+			},
+			"text": " Could you could end up with a loss because of companies and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 395000
+			},
+			"text": " Because of compound having like a you know not being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:39,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 399000
+			},
+			"text": " Cover liquidation and that's where the dye savings rate is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 399000,
+				"to": 401000
+			},
+			"text": " Really interesting in that it you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406000
+			},
+			"text": " There really is no downside to like sending it out so it really"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 410000
+			},
+			"text": " Is like free money in a way that you can also give away and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " Really have no sense or no no possibility of a loss"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 420000
+			},
+			"text": " Right so yeah also i this is not the boxing match part of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 423000
+			},
+			"text": " The panel this is not really really fighting with each other i"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 426000
+			},
+			"text": " Agree that the rates are artificially high now because of all kinds of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:10,000"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 430000
+			},
+			"text": " Sort of one time or you know ecosystem issues with the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,000",
+				"to": "00:07:15,000"
+			},
+			"offsets": {
+				"from": 430000,
+				"to": 435000
+			},
+			"text": " Risk more contract risk with compound being on the level and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 435000,
+				"to": 438000
+			},
+			"text": " The fact that the dye savings rate is coming out i think we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 440000
+			},
+			"text": " Going to see a massive kind of peroxysm in those kinds of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 444000
+			},
+			"text": " Rates and things will stabilize in number of months if not years"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 448000
+			},
+			"text": " But i don't think that this is sustainable at the current"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 451000
+			},
+			"text": " Levels but i think that there still is a very high probability that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:35,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 455000
+			},
+			"text": " These d5 technologies will enable you know some sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 455000,
+				"to": 459000
+			},
+			"text": " Above inflation type interest rates that that could be quite"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " Useful for billions of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " Awesome yeah i think something that's cool and sort of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 467000
+			},
+			"text": " Elephant in the room is that the maker stability fee almost acts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:50,000"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 470000
+			},
+			"text": " Like a live or today and so people started debating you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,000",
+				"to": "00:07:53,000"
+			},
+			"offsets": {
+				"from": 470000,
+				"to": 473000
+			},
+			"text": " How is the compound lending interest rate dictated and really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 473000,
+				"to": 476000
+			},
+			"text": " That's probably in proxy to what maker stability fees today"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 479000
+			},
+			"text": " Maybe when you could speak a little more to how the ds are will"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:02,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 482000
+			},
+			"text": " Be decided and how the stability fee has also been decided"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 482000,
+				"to": 485000
+			},
+			"text": " Lately just for those in the room who aren't aware of that process"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:09,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 489000
+			},
+			"text": " Yes so right so the maker stability fee is what you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 489000,
+				"to": 493000
+			},
+			"text": " Pay right now in order to generate dye by putting a collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 499000
+			},
+			"text": " Into to maker and it started out at a half percent when"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 504000
+			},
+			"text": " Dye launched two years ago and it's state stable at a half"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:27,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 507000
+			},
+			"text": " Percent for like i think almost a year like very"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 507000,
+				"to": 511000
+			},
+			"text": " In that state at the very low rate for almost a year and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 516000
+			},
+			"text": " Suddenly last spring it just like shut up and became like"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 520000
+			},
+			"text": " Hit a high point of 20 and a half percent of it and the reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 525000
+			},
+			"text": " Why it changed at all is because it's actually so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 528000
+			},
+			"text": " N.K.R.H.L. It's a governance of maker that decides what"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:51,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 531000
+			},
+			"text": " Disability fee is and they have like these weekly decision-making"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 531000,
+				"to": 535000
+			},
+			"text": " Process that sets a new one every week but that decision is"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 541000
+			},
+			"text": " Made entirely based on data on the price of dye in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " Market because what you use rates for is you really use that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " To stabilize the dye stable for itself and make it as stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " Against the u.S. dollars possible and this is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " Analysis to how central banks that manage a pect currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 559000
+			},
+			"text": " They have to always modify their rates so that they can keep"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 567000
+			},
+			"text": " Their picks and really the very basic logic is that if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " If you want your currency to go up in value you have to increase"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 576000
+			},
+			"text": " The rates in maker what happened was that around spring"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:40,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 580000
+			},
+			"text": " This year the dye price suddenly fell below like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,000",
+				"to": "00:09:42,000"
+			},
+			"offsets": {
+				"from": 580000,
+				"to": 582000
+			},
+			"text": " Felt like 96 cents or something and what was happening is too"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 582000,
+				"to": 585000
+			},
+			"text": " Many people were taking advantage of the fact that they could"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 588000
+			},
+			"text": " Borrow, diver and cheaply and then sell it for more eth and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:09:52,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 592000
+			},
+			"text": " Then get like better exposure to eth. So the response of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 592000,
+				"to": 595000
+			},
+			"text": " Governance was to then just increase the rate until pied"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " Stupil stopped borrowing that much dye right and so basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 604000
+			},
+			"text": " Like the supply was going up too much demand was only like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:07,000"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 607000
+			},
+			"text": " Staying at this level i guess you can say rather than the high"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,000",
+				"to": "00:10:10,000"
+			},
+			"offsets": {
+				"from": 607000,
+				"to": 610000
+			},
+			"text": " Rates like push the supply back down to bean line with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 610000,
+				"to": 614000
+			},
+			"text": " Price could remain stable so and what's happening now is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 617000
+			},
+			"text": " Rates are going back down and that's basically actually i"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:21,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 621000
+			},
+			"text": " Think because of this new dimension of dye demand where"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 621000,
+				"to": 624000
+			},
+			"text": " People buy dye so they can put it into compound into like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:28,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 628000
+			},
+			"text": " These derivative dye type of products and that itself is"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,000",
+				"to": "00:10:31,000"
+			},
+			"offsets": {
+				"from": 628000,
+				"to": 631000
+			},
+			"text": " Then dragging the rates down and i think that really shows the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 631000,
+				"to": 635000
+			},
+			"text": " Whole the nature of the feedback loop that like as there's more"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:39,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 639000
+			},
+			"text": " Demand for cdp is the more demand for borrowing because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 639000,
+				"to": 642000
+			},
+			"text": " Rate is so low the rate automatically goes up and now"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 646000
+			},
+			"text": " There's all this demand for compound and like for all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 651000
+			},
+			"text": " Ways to earn it like a return on your on your on your stable"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 655000
+			},
+			"text": " Points and those rates then go down and i think once we get"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 658000
+			},
+			"text": " Into dye saving straight and once the ecosystem matures a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 662000
+			},
+			"text": " More we might finally get to a point where the rates in general"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:06,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 666000
+			},
+			"text": " Start being a bit more stabilized because i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 666000,
+				"to": 669000
+			},
+			"text": " Really the whole journey we've been through like this extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 672000
+			},
+			"text": " High extreme low rates to extreme high rates and then coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 676000
+			},
+			"text": " Back down that is like exactly what you would expect from"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:20,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 680000
+			},
+			"text": " Like a brand new economy right like it doesn't really people"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,000",
+				"to": "00:11:23,000"
+			},
+			"offsets": {
+				"from": 680000,
+				"to": 683000
+			},
+			"text": " Kind of like making having the wrong assumption sometimes like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,000",
+				"to": "00:11:27,000"
+			},
+			"offsets": {
+				"from": 683000,
+				"to": 687000
+			},
+			"text": " Trying to extrapolating the wrong things and over time as some"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,000",
+				"to": "00:11:30,000"
+			},
+			"offsets": {
+				"from": 687000,
+				"to": 690000
+			},
+			"text": " Of the market goes through this like a learning process think"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 690000,
+				"to": 694000
+			},
+			"text": " She stabilizes a lot more agreed i think that some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:37,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 697000
+			},
+			"text": " Factors that dictate that are eath price maker decision making"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 697000,
+				"to": 701000
+			},
+			"text": " And then also organic demand for dye that will dictate these"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 704000
+			},
+			"text": " Interest rates but dan in your protocol like what variables"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 707000
+			},
+			"text": " Were you taking into account when you were building your"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 709000
+			},
+			"text": " Yields group? >> Sure yes so spending those panelists"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 712000
+			},
+			"text": " Able coins because basically the defining feature and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 716000
+			},
+			"text": " Usal feature about why tokens is that they're not stable so"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:00,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 720000
+			},
+			"text": " Maker you know through a really really sort of ingenious"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 720000,
+				"to": 723000
+			},
+			"text": " Mechanisms managed to achieve these two things perpetuity"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:06,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 726000
+			},
+			"text": " And stability that are really necessary to have a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 726000,
+				"to": 730000
+			},
+			"text": " Decentrized dollar in chain and i'm buttering up now because i"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 734000
+			},
+			"text": " Think we're going to come close a little more later on and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 739000
+			},
+			"text": " Then talk i think what y took is just abandoned so it says"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 742000
+			},
+			"text": " Is no longer perpetual and we're not going to target"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 746000
+			},
+			"text": " Ability as a result you actually get by removing these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 749000
+			},
+			"text": " For amateurs from the system and just letting the price flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " Freely you actually get the market to tell you what it thinks the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:36,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 756000
+			},
+			"text": " Interest rate is for this particular tenor and i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 756000,
+				"to": 758000
+			},
+			"text": " That's useful it's useful potentially as an input into"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 761000
+			},
+			"text": " Systems like maker compound to help inform their"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 763000
+			},
+			"text": " Formulas or governance decisions and i think it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 766000
+			},
+			"text": " Usually useful for somebody looking for a fixed term low"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:49,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 769000
+			},
+			"text": " And for a good amount of time but ultimately it depends i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,000",
+				"to": "00:12:52,000"
+			},
+			"offsets": {
+				"from": 769000,
+				"to": 772000
+			},
+			"text": " On having this kind of rock solid unit of account like dye is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 772000,
+				"to": 775000
+			},
+			"text": " Becoming interesting i feel like this is the time that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 778000
+			},
+			"text": " Should switch gears so the hot topic is multicolateral dye"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:02,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 782000
+			},
+			"text": " And so figuring out what is the process and what will be included"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,000",
+				"to": "00:13:06,000"
+			},
+			"offsets": {
+				"from": 782000,
+				"to": 786000
+			},
+			"text": " And maybe if you have any context you can provide about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 786000,
+				"to": 789000
+			},
+			"text": " We know of how the process is going to be bootstrapped that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 793000
+			},
+			"text": " Might be useful. >> Yeah so maker governance is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:18,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 798000
+			},
+			"text": " Notoriously complex because we're really talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 798000,
+				"to": 802000
+			},
+			"text": " Governance of a full monetary system so we have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 806000
+			},
+			"text": " Extremely dedicated core community that actually spent the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 810000
+			},
+			"text": " Time it takes to like you know follow all the sort of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 814000
+			},
+			"text": " Most detailed research and actually even creating research"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 820000
+			},
+			"text": " Themselves so there is actually a very well like thought out"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:45,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 825000
+			},
+			"text": " Like base level theory around the whole concept of how we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,000",
+				"to": "00:13:50,000"
+			},
+			"offsets": {
+				"from": 825000,
+				"to": 830000
+			},
+			"text": " Are going to do maker governance and multicolateral dye that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,000",
+				"to": "00:13:54,000"
+			},
+			"offsets": {
+				"from": 830000,
+				"to": 834000
+			},
+			"text": " Been worked on for years at this point and the foundation is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 834000,
+				"to": 839000
+			},
+			"text": " Then contributed a lot to this conversation of cells and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843000
+			},
+			"text": " Ultimately also seen like the organic conversation coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 848000
+			},
+			"text": " Out of the community and all the ideas and then formulated a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 852000
+			},
+			"text": " Very basic you know what we call an interim kind of like just"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 856000
+			},
+			"text": " Like an initial framework that should work for the very"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 861000
+			},
+			"text": " Early stages right and we're really just extrapolating what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 865000
+			},
+			"text": " Already there which is the weekly cycle that sets the rates in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 870000
+			},
+			"text": " The system and then creating a new monthly cycle because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:34,000"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 874000
+			},
+			"text": " More it deals with having more events so it's going to be on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,000",
+				"to": "00:14:37,000"
+			},
+			"offsets": {
+				"from": 874000,
+				"to": 877000
+			},
+			"text": " A monthly basis and actually in addition to the already"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 877000,
+				"to": 880000
+			},
+			"text": " Existing weekly cycle that will continue to exist and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:43,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 883000
+			},
+			"text": " How the rates will continue to be said in sort of the in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 883000,
+				"to": 888000
+			},
+			"text": " Short term but then in this every monthly cycle you have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 893000
+			},
+			"text": " Like intimate process of like evaluating new collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 896000
+			},
+			"text": " Tokens and also evaluating existing collateral tokens and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:00,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 900000
+			},
+			"text": " Seeing whether you want to unload new collateral and also how"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 900000,
+				"to": 903000
+			},
+			"text": " You want to adjust the parameters for existing collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 907000
+			},
+			"text": " Types and the goal is always to try to get as much like as"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 911000
+			},
+			"text": " Broad discussion it's kind of like as rational and as little as"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:14,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 914000
+			},
+			"text": " Possible of kind of like a popularity contest so we actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,000",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 914000,
+				"to": 939000
+			},
+			"text": " Try to in a way like actively prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:43,000"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 943000
+			},
+			"text": " A great on and then through that coming to like this this common"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 943000,
+				"to": 946000
+			},
+			"text": " Understanding of how we can securely include new collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 950000
+			},
+			"text": " Types right so essentially there's two facets to how you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:53,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 953000
+			},
+			"text": " Deciding multi collateral die one is the degree of collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 953000,
+				"to": 956000
+			},
+			"text": " Something victor says is interesting is having different"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:15:59,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 959000
+			},
+			"text": " Types of e like eath as the collateral but different collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 959000,
+				"to": 962000
+			},
+			"text": " Rates and also the asset and so the fundamental question is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 966000
+			},
+			"text": " Should we be including trusted assets in multi collateral die and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 969000
+			},
+			"text": " I know there's a bit of controversy so maybe we'll start"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 973000
+			},
+			"text": " With dan and your perspective on that sure yeah so i think as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 977000
+			},
+			"text": " Said you know make your governance is extremely complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:20,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 980000
+			},
+			"text": " Process and right now it's as far as active governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 980000,
+				"to": 983000
+			},
+			"text": " Decisions is basically just setting one number right and"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 986000
+			},
+			"text": " It's still it's still like a relatively hard to get this right"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 989000
+			},
+			"text": " And the mechanisms for it i think are still sort of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:33,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 993000
+			},
+			"text": " Being involved and improved and so by you know by moving to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 993000,
+				"to": 996000
+			},
+			"text": " Multi collateral dies as you recognize you know you're really"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 999000
+			},
+			"text": " To dramatically increase in the number of decisions that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1003000
+			},
+			"text": " Process has to make and in my view i think that that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " Quite possibly increases the risk much more so than"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:50,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1010000
+			},
+			"text": " The diversification maybe maybe reduces it and then as"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1010000,
+				"to": 1014000
+			},
+			"text": " Even mentions there's there's also this there's risk just"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1017000
+			},
+			"text": " Regulatory risk that comes in if you're starting to use tokens that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1019000
+			},
+			"text": " Can be that can be frozen by government or"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:03,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1023000
+			},
+			"text": " Custodial risk if it's something that's backed by"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1023000,
+				"to": 1027000
+			},
+			"text": " Actual asset being held by a by custodian but i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " Maybe most important to me i think is the model risk is just the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1034000
+			},
+			"text": " Idea what if maker governance isn't up to the task of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1038000
+			},
+			"text": " Evaluating the stability and sort of relative risks of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1041000
+			},
+			"text": " Really diverse portfolio assets and maybe it's worth talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1045000
+			},
+			"text": " About sort of what you see as in the future these assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1048000
+			},
+			"text": " Being because i think it's not great it's not just on chain assets as"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:31,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1051000
+			},
+			"text": " You said and i think you know that's i think that kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,000",
+				"to": "00:17:34,000"
+			},
+			"offsets": {
+				"from": 1051000,
+				"to": 1054000
+			},
+			"text": " Risk is maybe what's scariest to me because that's the kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,000",
+				"to": "00:17:37,000"
+			},
+			"offsets": {
+				"from": 1054000,
+				"to": 1057000
+			},
+			"text": " Thing that caused the 2008 financial crisis where you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1057000,
+				"to": 1060000
+			},
+			"text": " The smartest people in the world had models that were"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1063000
+			},
+			"text": " Fundamentally wrong and things that they thought were like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1067000
+			},
+			"text": " Triple a rated debt were actually zeros and that doesn't i think"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " That kind of going from going from valuable to nothing you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1074000
+			},
+			"text": " That happen a lot in these more complex instruments i don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1077000
+			},
+			"text": " Think that's likely to happen in a simple asset like a theory"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1081000
+			},
+			"text": " So that's why i think the when you see a theory to draw down"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1084000
+			},
+			"text": " We saw maker that's the survive date ninety five percent almost"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:08,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1088000
+			},
+			"text": " Grew down in the price of you when you see this happen like it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1088000,
+				"to": 1091000
+			},
+			"text": " Happens gradually enough that the system actually is able to handle it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:14,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1094000
+			},
+			"text": " The liquidations whereas again if you would have an event like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1094000,
+				"to": 1097000
+			},
+			"text": " The 2008 financial crisis and a lot of this sort of like i don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1099000
+			},
+			"text": " Know like the kind of mortgages that you would have back in it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1104000
+			},
+			"text": " We're not gzeroes that seems like a more likely"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:28,000"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1108000
+			},
+			"text": " Differentiated crisis yeah okay so that was a lot of points"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1108000,
+				"to": 1112000
+			},
+			"text": " And i'll try to like i mean i think the fundamental point or"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1116000
+			},
+			"text": " Like one of the really crucial fundamental points is this like"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1120000
+			},
+			"text": " This question of the complexity of governance and finance in general"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1125000
+			},
+			"text": " And i mean i think the most basic thing to understand is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1129000
+			},
+			"text": " Risk is always there right like finance and money is just"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1133000
+			},
+			"text": " Incredibly complex just because you because you ignore the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1139000
+			},
+			"text": " Complexity or don't address it doesn't mean it goes away and"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1143000
+			},
+			"text": " And there's actually no like when you think about like models and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1146000
+			},
+			"text": " Sort of like how to think about risk and so on like the the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1150000
+			},
+			"text": " Truth is exactly that like there's never there's never like"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1152000
+			},
+			"text": " Any way to kind of like solve this problem is and you just like"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1155000
+			},
+			"text": " Make a good enough model or something like that and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:19,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1159000
+			},
+			"text": " Gonna like solve solve the problem in fact sometimes thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1159000,
+				"to": 1162000
+			},
+			"text": " That you know the biggest risk is thinking that you've solved"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1165000
+			},
+			"text": " The problem of risk and now there's no longer any more risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1168000
+			},
+			"text": " Right and in my opinion there really is there's really is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:33,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1173000
+			},
+			"text": " Only sort of like only ones of like rock solid truth that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1173000,
+				"to": 1177000
+			},
+			"text": " Can grasp onto and that you can depend on and that is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:41,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1181000
+			},
+			"text": " Diversification helps with risk right that's because in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181000,
+				"to": 1184000
+			},
+			"text": " Any of you think about risk as like you know purely in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1188000
+			},
+			"text": " Black tournaments so like that you never know if whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1192000
+			},
+			"text": " Bitcoin or you or ethereum or housing or anything like you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1196000
+			},
+			"text": " Never know if it's all just like a big lie and it's all you know"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1199000
+			},
+			"text": " It doesn't make sense at all and everyone was just getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:03,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1203000
+			},
+			"text": " Really excited about something that really didn't make sense at all right"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,000",
+				"to": "00:20:06,000"
+			},
+			"offsets": {
+				"from": 1203000,
+				"to": 1206000
+			},
+			"text": " Or whatever that could be some hidden financial engineering"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,000",
+				"to": "00:20:09,000"
+			},
+			"offsets": {
+				"from": 1206000,
+				"to": 1209000
+			},
+			"text": " Build-up that's gonna make it all pop or something like that right and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1209000,
+				"to": 1212000
+			},
+			"text": " If you assume that that could happen to anything and there's no way"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1217000
+			},
+			"text": " You can ever prevent that or like predict that then the only way"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1221000
+			},
+			"text": " You can defend yourself is by making sure that you can survive"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:26,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1226000
+			},
+			"text": " That happening to like a piece of the portfolio of die right so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,000",
+				"to": "00:20:30,000"
+			},
+			"offsets": {
+				"from": 1226000,
+				"to": 1230000
+			},
+			"text": " Even if all real estate takes completely that shouldn't take"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,000",
+				"to": "00:20:34,000"
+			},
+			"offsets": {
+				"from": 1230000,
+				"to": 1234000
+			},
+			"text": " Die right or even if all crypto goes to zero that also shouldn't kill"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,000",
+				"to": "00:20:38,000"
+			},
+			"offsets": {
+				"from": 1234000,
+				"to": 1238000
+			},
+			"text": " The system right or and and the most important like what you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,000",
+				"to": "00:20:42,000"
+			},
+			"offsets": {
+				"from": 1238000,
+				"to": 1242000
+			},
+			"text": " Really want to achieve is like a situation where you can have several of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,000",
+				"to": "00:20:47,000"
+			},
+			"offsets": {
+				"from": 1242000,
+				"to": 1247000
+			},
+			"text": " Scenarios happening at the same time sort of stacking up top of each other and the system can still survive"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,000",
+				"to": "00:20:52,000"
+			},
+			"offsets": {
+				"from": 1247000,
+				"to": 1252000
+			},
+			"text": " Because this like the other critical point of this is like is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1252000,
+				"to": 1256000
+			},
+			"text": " Make your governance up to the task right like maybe even though you know the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1261000
+			},
+			"text": " Foundations obviously been very careful in how all them cowas distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:06,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1266000
+			},
+			"text": " And and really like in terms of like the models and so the model risk and like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,000",
+				"to": "00:21:11,000"
+			},
+			"offsets": {
+				"from": 1266000,
+				"to": 1271000
+			},
+			"text": " Just like the methodology the focus has always been on trying to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,000",
+				"to": "00:21:16,000"
+			},
+			"offsets": {
+				"from": 1271000,
+				"to": 1276000
+			},
+			"text": " Experts from the traditional space but like very you know very broadly and like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1276000,
+				"to": 1281000
+			},
+			"text": " Very diverse by but ultimately like at least realize much as possible in"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1286000
+			},
+			"text": " Traditional models so that's just at least there's something already there that can then be built on top of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1289000
+			},
+			"text": " But even if that turns out to not work so well"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1296000
+			},
+			"text": " The whole like the whole concept of maker is that when there is a loss the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:41,000"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1301000
+			},
+			"text": " Empire homes they have to have sought that loss right and that actually creates"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,000",
+				"to": "00:21:46,000"
+			},
+			"offsets": {
+				"from": 1301000,
+				"to": 1306000
+			},
+			"text": " This dynamic that over time you can see makers this like evolutionary system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,000",
+				"to": "00:21:51,000"
+			},
+			"offsets": {
+				"from": 1306000,
+				"to": 1311000
+			},
+			"text": " Rather than just like thinking really hard and like totally like solving risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,000",
+				"to": "00:21:56,000"
+			},
+			"offsets": {
+				"from": 1311000,
+				"to": 1316000
+			},
+			"text": " And now it's not a problem anymore because we're so smart which is unlikely to be how things play out right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,000",
+				"to": "00:22:06,000"
+			},
+			"offsets": {
+				"from": 1316000,
+				"to": 1326000
+			},
+			"text": " It'll be basically this like process of trial and error and like very real consequences of errors that then make it very clear that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,000",
+				"to": "00:22:10,000"
+			},
+			"offsets": {
+				"from": 1326000,
+				"to": 1330000
+			},
+			"text": " You know it is there's a big advantage to actually getting it right and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,000",
+				"to": "00:22:14,000"
+			},
+			"offsets": {
+				"from": 1330000,
+				"to": 1334000
+			},
+			"text": " And making sure that this system evolves in the right direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,000",
+				"to": "00:22:22,000"
+			},
+			"offsets": {
+				"from": 1334000,
+				"to": 1342000
+			},
+			"text": " I guess a concern for me in terms of trusted assets is if we were to play this out right let's say using tokenized real estate from"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,000",
+				"to": "00:22:30,000"
+			},
+			"offsets": {
+				"from": 1342000,
+				"to": 1350000
+			},
+			"text": " You know that was underwritten by the investment bank like Goldman you know the financial crisis the problem was these assets were"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,000",
+				"to": "00:22:37,000"
+			},
+			"offsets": {
+				"from": 1350000,
+				"to": 1357000
+			},
+			"text": " Misappropriately tagged right and that's an incentive problem really these banks were more incentivized to do it incorrectly than"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,000",
+				"to": "00:22:43,000"
+			},
+			"offsets": {
+				"from": 1357000,
+				"to": 1363000
+			},
+			"text": " Then accurately and even if we have this very open decision-making you know transparent maker process"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,000",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1363000,
+				"to": 1368000
+			},
+			"text": " We are necessarily going to go all the way down to the way that that debt or real estate the mortgage was issued"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:58,000"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1378000
+			},
+			"text": " And so how do you see that counterparty risk playing in or maker even maybe a leaving that like are you going to start creating risk teams that go all the way downstream to how the asset was created"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,000",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1378000,
+				"to": 1382000
+			},
+			"text": " Or simply at the level of what assets should be included in multi collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:11,000"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1391000
+			},
+			"text": " Well I certainly think that that exact problem is something where blockchain gives us the best chart ever and getting you know very granular data"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1391000,
+				"to": 1398000
+			},
+			"text": " But I also but actually I think and such an important point right is that if you look at something like the financial crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:30,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1410000
+			},
+			"text": " It really was like the fundamental thing that went wrong was really greed right and like and like misaligned incentives but more than that really like greed and bad culture"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1410000,
+				"to": 1420000
+			},
+			"text": " And that's where I think I mean what maker relies on in this aspect is like lots of version you know like very basic psychology of like yeah you might be greedy"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:51,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1431000
+			},
+			"text": " But then you're going to get slapped with you know the entire loss that you create right whereas the bankers they knew that the government had to deal with the fallout right which is this like horrible"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,000",
+				"to": "00:24:05,000"
+			},
+			"offsets": {
+				"from": 1431000,
+				"to": 1445000
+			},
+			"text": " You know like perfect stall of like greed and bad incentives and bad structure and so on right but like but actually to like the only way you can only like you always have to take it back to diversification"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1445000,
+				"to": 1455000
+			},
+			"text": " So like even if you whatever like salt greed or like you know have this like have this like you know at least like it's clear consequence to being overly greedy"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:22,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1462000
+			},
+			"text": " And and you also like dig all the way down and get all the data about this specific assets and so on"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:22,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1462000,
+				"to": 1473000
+			},
+			"text": " You still have to always assume that you might be wrong regardless so again the only thing you can really do and you can sort of hold on to as being something that is very likely to work"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:46,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1486000
+			},
+			"text": " Is to you know don't depend too much in Goldman Sachs only right make sure you also depend on all the other investment banks and also all the assets that don't even have anything to do with investment banks and what is he's and so on and so on right and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,000",
+				"to": "00:24:58,000"
+			},
+			"offsets": {
+				"from": 1486000,
+				"to": 1498000
+			},
+			"text": " Basically accept the fact that many times you're going to be wrong but you'll get to learn from those mistakes and also on a whole if the portfolio is well enough diversified"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,000",
+				"to": "00:25:03,000"
+			},
+			"offsets": {
+				"from": 1498000,
+				"to": 1503000
+			},
+			"text": " So you know it'll just be up salt and sort of be a part of the general process of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,000",
+				"to": "00:25:15,000"
+			},
+			"offsets": {
+				"from": 1503000,
+				"to": 1515000
+			},
+			"text": " So I don't I don't agree that we can potentially solve for greed here I'm a little bit concerned that like if that's what maker is trying to do that's that's really running at a almost bigger target than a government's process could ever handle"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1515000,
+				"to": 1525000
+			},
+			"text": " And I guess I I think at a financial crisis is motivated not so much by greed but by opacity like we didn't know what those things were we didn't know who owed what to who and how these things would compound"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:37,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1537000
+			},
+			"text": " And so I think that the maker process could potentially benefit so much from the fact that it's all on chain and that all the assumptions are on chain too like how we're evaluating these assets how we're looking at these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,000",
+				"to": "00:25:53,000"
+			},
+			"offsets": {
+				"from": 1537000,
+				"to": 1553000
+			},
+			"text": " becomes a major difference in how the 2008 financial crisis played out and I think that that's my thought to your point Dan I mean I think you're exactly right there's no way the maker token holders can be doing the evaluation of each and every one of the decisions that come across"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,000",
+				"to": "00:26:06,000"
+			},
+			"offsets": {
+				"from": 1553000,
+				"to": 1566000
+			},
+			"text": " you know that they're they're sure here with you know what should we price this one person's mortgage at but I think the idea is that we have a lot more transparency and I think we build systems that over time start to have their own support networks"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,000",
+				"to": "00:26:21,000"
+			},
+			"offsets": {
+				"from": 1566000,
+				"to": 1581000
+			},
+			"text": " and they don't filter they filter up in a way that maker token holders are incentivizing them to filter up right if there's some sort of bounty for alerting the system right that's one way you can design crypto economic incentive here for people to report up dangerous you know flaws and some sort of model"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1581000,
+				"to": 1593000
+			},
+			"text": " and it's a long process I don't think we're getting there right away but I think that's that's the sort of long range view that it's not about making direct decisions but kind of like how we're going to do the process thing and I think like for me the model is like Wikipedia"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1607000
+			},
+			"text": " that's like the maker token alerts become the mods but they're not the ones that are actually contributing all the actual data of like this is what we're going to look at here and it's a you know not perfect analogy but I think it's one that is at least optimistic right that there is a way to do this kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1623000
+			},
+			"text": " decentralized you know project that nobody really thought could work and generate a public good in this case information in maker's case you know value but I guess I'm bullish but I think that we should be solving for transparency first"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:11,000"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1631000
+			},
+			"text": " yeah yeah I just typically I mean I don't think that you can solve greed either and there wasn't I mean it's a joke that like even if you solve it"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,000",
+				"to": "00:27:27,000"
+			},
+			"offsets": {
+				"from": 1631000,
+				"to": 1647000
+			},
+			"text": " that you still actually haven't fixed the problem right because they're still stupidity and so on but I mean yeah you can't solve stability you can solve greed these are like natural human characteristics right but but you're totally right with transparency with like proper incentives"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:27,000",
+				"to": "00:27:43,000"
+			},
+			"offsets": {
+				"from": 1647000,
+				"to": 1663000
+			},
+			"text": " and then crucially very strong transparency around those incentives right and around those consequences you can at least like yeah like right like you can use people's self interest towards something positive rather than again in the case with financial crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,000",
+				"to": "00:27:48,000"
+			},
+			"offsets": {
+				"from": 1663000,
+				"to": 1668000
+			},
+			"text": " the self interest really was like just misaligned with a public interest entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,000",
+				"to": "00:28:03,000"
+			},
+			"offsets": {
+				"from": 1668000,
+				"to": 1683000
+			},
+			"text": " there's certain shareholders were incentivized right in the same way maybe that maker holders are and you know it ends up being a zero I think like you know all the bigs potentially where equity shareholders that were wiped out or I decided that a steep discount"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,000",
+				"to": "00:28:17,000"
+			},
+			"offsets": {
+				"from": 1683000,
+				"to": 1697000
+			},
+			"text": " like there were a lot of incentives there but the problem is because of just the inherent complexity like you said of finance you necessarily have to delegate these kinds of decisions to to experts and ultimately you know that if you read"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,000",
+				"to": "00:28:30,000"
+			},
+			"offsets": {
+				"from": 1697000,
+				"to": 1710000
+			},
+			"text": " that introduces the same principal agent problems that you that you haven't in big banks and yes certainly again I think like a lot of the individual actors maybe if those banks were not correctly incentivized to act in the best interest of"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,000",
+				"to": "00:28:43,000"
+			},
+			"offsets": {
+				"from": 1710000,
+				"to": 1723000
+			},
+			"text": " ultimately the shareholders are in ultimately stability of the system but that I don't see how you get around that and in fact like in maker it may even be more dangerous because because you have this risk that the that MPR shareholder for example could be could be"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,000",
+				"to": "00:28:56,000"
+			},
+			"offsets": {
+				"from": 1723000,
+				"to": 1736000
+			},
+			"text": " described in order to make a decision that this may be to the best interest of the attacker but not and to their best interest but there's an ultimately in the best interest of the value of the system of the system of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,000",
+				"to": "00:29:10,000"
+			},
+			"offsets": {
+				"from": 1736000,
+				"to": 1750000
+			},
+			"text": " so you have these new sort of you're introducing a lot of new principal agent problems there actually these do exist in traditional finance to be short at making sure that you do derivatives to reduce your exposure to equity your own pipe"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,000",
+				"to": "00:29:16,000"
+			},
+			"offsets": {
+				"from": 1750000,
+				"to": 1756000
+			},
+			"text": " this does end up like in some ways increasing right a lot of the indirectness that caused the crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,000",
+				"to": "00:29:28,000"
+			},
+			"offsets": {
+				"from": 1756000,
+				"to": 1768000
+			},
+			"text": " yeah you're making like 2.0 right so let me so the first one is that shareholders and banks have the same incentives that MPR owners have in the financial crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,000",
+				"to": "00:29:44,000"
+			},
+			"offsets": {
+				"from": 1768000,
+				"to": 1784000
+			},
+			"text": " I mean which is true right and to some extent it's how like it on one hand it is how things are meant to play out but I think also at the same time exactly if you look at like the way that that public companies occur in the structure and like the way they exist in society"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,000",
+				"to": "00:29:57,000"
+			},
+			"offsets": {
+				"from": 1784000,
+				"to": 1797000
+			},
+			"text": " like the framework itself actually recognizes that there really is a major disconnect between shareholders and the actual management of an organization and even you know you often say that like there's like a fight between them right and they're using"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,000",
+				"to": "00:30:16,000"
+			},
+			"offsets": {
+				"from": 1797000,
+				"to": 1816000
+			},
+			"text": " some legal means to always battle over the resources between each other right and I mean if you what I think the analogy if we get like imagine if in the lead up to the financial crisis you actually had the technology that allowed you know shareholders to get sort of like a clear visualization of what"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,000",
+				"to": "00:30:32,000"
+			},
+			"offsets": {
+				"from": 1816000,
+				"to": 1832000
+			},
+			"text": " you know what they were cooking up in there were like all those derivatives and kind of like you know for instance just see something like what like what's our level of diversification right like how much exposure do we have to do particular things right"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,000",
+				"to": "00:30:56,000"
+			},
+			"offsets": {
+				"from": 1832000,
+				"to": 1856000
+			},
+			"text": " and then ultimately you know at a much more granular level individual decisions would have to be okayed on a you know on a recurring basis with like a you know almost like an app or something imagine like a shareholder app where then they'll be like okay we're going to do all these like new CDOs and we're doing them like you know like here's a video explaining how we're doing all these things yes or no kind of right"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,000",
+				"to": "00:31:14,000"
+			},
+			"offsets": {
+				"from": 1856000,
+				"to": 1874000
+			},
+			"text": " like that I mean I think if you imagine that type of scenario and especially with like blockchain technology and I guess also most crucially like a very focused education campaign sort of like you know towards the shareholders and combining all of these things together"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,000",
+				"to": "00:31:23,000"
+			},
+			"offsets": {
+				"from": 1874000,
+				"to": 1883000
+			},
+			"text": " I definitely think that you would have a much more higher likelihood of like you know catching something like this in the act"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:23,000",
+				"to": "00:31:47,000"
+			},
+			"offsets": {
+				"from": 1883000,
+				"to": 1907000
+			},
+			"text": " so okay so that's so that's like the first element of the right and then the second thing you're talking about I think it's very interesting is like there's a tech of MPI holders can be bright because so now we're getting into crypto economic attacks which is like a whole class of like crazy things you have to think about when you do DeFi and blockchain apps in general"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,000",
+				"to": "00:32:05,000"
+			},
+			"offsets": {
+				"from": 1907000,
+				"to": 1925000
+			},
+			"text": " and maker actually has a very strong defense against this entire class of attacks really right because what we are like basically that what we are what we are getting into is like the point where MPI holders might decide that they're better off essentially abusing their ability to control the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:05,000",
+				"to": "00:32:15,000"
+			},
+			"offsets": {
+				"from": 1925000,
+				"to": 1935000
+			},
+			"text": " for something else than keeping die stable right and typically I mean I think like the thing is once you get into governance attacks and areas and crypto economic attacks and areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:15,000",
+				"to": "00:32:29,000"
+			},
+			"offsets": {
+				"from": 1935000,
+				"to": 1949000
+			},
+			"text": " you're very quickly get into let's try to steal all the collateral so maker needs to be built so that it can you know even survive like everything like all MPI holders colluding and saying we're gonna correct we're gonna steal all the collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:29,000",
+				"to": "00:32:56,000"
+			},
+			"offsets": {
+				"from": 1949000,
+				"to": 1976000
+			},
+			"text": " and the basic defense is that there's always like security delay on all governance decisions so that they can be scrutinized to see whether you know whether like is this actually like a decision that's just getting pushed through completely circumventing the governance framework and circumventing all like the transparency and all the sort of the data driven models that are supposed to drive governance"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,000",
+				"to": "00:33:10,000"
+			},
+			"offsets": {
+				"from": 1976000,
+				"to": 1990000
+			},
+			"text": " and if that's the case it very likely is an attack and then in the worst case in the area what you actually do is that you actually like do what's called the emergency shutdown so you shut down the system entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:10,000",
+				"to": "00:33:25,000"
+			},
+			"offsets": {
+				"from": 1990000,
+				"to": 2005000
+			},
+			"text": " and then you take the attackers and PR and once you have the system shut down you can remove the attackers and parent highly you redeploy the system and do like a migration process that's quite similar to how the upgrade to multiple-level die will work now"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,000",
+				"to": "00:33:43,000"
+			},
+			"offsets": {
+				"from": 2005000,
+				"to": 2023000
+			},
+			"text": " and this is a very extreme scenario but it really is like I mean the mechanism has to be there because of course it would never work if you could just like steal the collateral or like damage the system just because you control MCA voting power"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,000",
+				"to": "00:33:57,000"
+			},
+			"offsets": {
+				"from": 2023000,
+				"to": 2037000
+			},
+			"text": " so I think we have about 10 minutes left and I think this is a good time to open up the floor for any questions so if you have any questions please come up to the mic up here if you don't have any questions we can continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:33:57,000",
+				"to": "00:34:15,000"
+			},
+			"offsets": {
+				"from": 2037000,
+				"to": 2055000
+			},
+			"text": " one victim. Good morning I have a question regarding the migration and the deprecation of the first single collateral buy and I've asked around a few times and most of the time the answer comes down to the overhead of having two systems to manage"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,000",
+				"to": "00:34:30,000"
+			},
+			"offsets": {
+				"from": 2055000,
+				"to": 2070000
+			},
+			"text": " and I personally find that it's somewhat of a weak argument considering the amount of money involved and I feel uncomfortable with the fact that the system would eventually be forcefully deprecated versus the market choosing which version of die they prefer"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:30,000",
+				"to": "00:34:45,000"
+			},
+			"offsets": {
+				"from": 2070000,
+				"to": 2085000
+			},
+			"text": " yeah and just clarify questions I use specifically talking about that you think it would be desirable to have a version of die that is backed only by ETH correct so I mean so for the first part of the question right it's really like"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:45,000",
+				"to": "00:35:01,000"
+			},
+			"offsets": {
+				"from": 2085000,
+				"to": 2101000
+			},
+			"text": " the thing is that there are level of security measures and especially crypto economic defense solutions built into the multilateral die code base that just means that over time it really makes no sense to hold on to like the single"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:01,000",
+				"to": "00:35:27,000"
+			},
+			"offsets": {
+				"from": 2101000,
+				"to": 2127000
+			},
+			"text": " little die even I mean even single-level die it's been incredibly security tested right it's been battle tested for years at this point but you know the multilateral die code base is actually older than the single-level die code base like multilateral die has gone through this incredibly long like multi-year research and development process that has produced like some you know like code with a level of sort of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:27,000",
+				"to": "00:35:53,000"
+			},
+			"offsets": {
+				"from": 2127000,
+				"to": 2153000
+			},
+			"text": " test like principles that are you know an order of magnitude better than what you haven't single-level die so from a technical perspective it really is like I mean if you want to look at like a timescale of decades it really makes a lot more sense to rely on the MCD code base but then to the second point about there the fact that there might be demand for a stable home that's only backed by ETH"
+		},
+		{
+			"timestamps": {
+				"from": "00:35:53,000",
+				"to": "00:36:13,000"
+			},
+			"offsets": {
+				"from": 2153000,
+				"to": 2173000
+			},
+			"text": " this is something that we that started really coming up in the community once like basically a broader group that just like the people who are involved in maker governance started realizing that maker governance had for years been you know figuring out how can we scale the dies apply and how we needed real world assets for that"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:13,000",
+				"to": "00:36:28,000"
+			},
+			"offsets": {
+				"from": 2173000,
+				"to": 2188000
+			},
+			"text": " this a solution that was proposed by I mean actually some some guy on Twitter in this conversation was that because maker will support synthetic assets anyway right so there will also be like a euro stable coin and"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,000",
+				"to": "00:36:42,000"
+			},
+			"offsets": {
+				"from": 2188000,
+				"to": 2202000
+			},
+			"text": " maker governance can actually create whatever kind of synthetic as if they want that means they could also create a new asset so like a new single-level die which then like right now I refer to that as a purity die right so like"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:42,000",
+				"to": "00:36:57,000"
+			},
+			"offsets": {
+				"from": 2202000,
+				"to": 2217000
+			},
+			"text": " a new stable coin that's backed only by ETH but using the multiple-level die framework so it has all those advantages of security and also something like the you know the die savings rate and that's kind of these kind of like the full set of features"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:57,000",
+				"to": "00:37:10,000"
+			},
+			"offsets": {
+				"from": 2217000,
+				"to": 2230000
+			},
+			"text": " and so I think that if they really turns out to be a critical mass of demand for that then it'll be trivial to easy for maker governance to like create a follow-up single-level die"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:10,000",
+				"to": "00:37:26,000"
+			},
+			"offsets": {
+				"from": 2230000,
+				"to": 2246000
+			},
+			"text": " and then another thing to consider is a single-level die will actually continue to run in the background for quite a while even after the multi-level die launches although much of liquidity will probably immediately move to multi-level die like it's not going to be like forcefully go away immediately"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:26,000",
+				"to": "00:37:36,000"
+			},
+			"offsets": {
+				"from": 2246000,
+				"to": 2256000
+			},
+			"text": " so they should like they should I think in the end as long as there there's enough demand there it will be possible for people to to stay with the kind of stable coin they want"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:36,000",
+				"to": "00:37:50,000"
+			},
+			"offsets": {
+				"from": 2256000,
+				"to": 2270000
+			},
+			"text": " and if I understand the way the system works directly I think you are free to make a proposal to the maker multi-collateral die system to make this single collateral base one so you know it's not something that you have to rely on maker making that call you can also participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:50,000",
+				"to": "00:38:04,000"
+			},
+			"offsets": {
+				"from": 2270000,
+				"to": 2284000
+			},
+			"text": " if there are any other questions I guess if we are simulating a world where we are using off-chain assets which assets would we use and maybe we have different perspectives on that"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,000",
+				"to": "00:38:18,000"
+			},
+			"offsets": {
+				"from": 2284000,
+				"to": 2298000
+			},
+			"text": " I mean I think the bit like I think what's cool to look at is the actual proposals and actual collaborations that the foundation at least has been been looking at recently"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:18,000",
+				"to": "00:38:32,000"
+			},
+			"offsets": {
+				"from": 2298000,
+				"to": 2312000
+			},
+			"text": " and okay one really cool example is paper chain so this is a blockchain startup that's tokenizing royalties for like music artists that are selling music and Spotify"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:32,000",
+				"to": "00:38:46,000"
+			},
+			"offsets": {
+				"from": 2312000,
+				"to": 2326000
+			},
+			"text": " and they are and if you're not like a really big shot musician you actually have a lot of issues like how do you even like finance your leader like your near recording and all this stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:46,000",
+				"to": "00:38:58,000"
+			},
+			"offsets": {
+				"from": 2326000,
+				"to": 2338000
+			},
+			"text": " and I don't think that we're not very good infrastructure for people who weren't like at the very high level and so this startup is trying to solve that issue by enabling them to tokenize"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:58,000",
+				"to": "00:39:12,000"
+			},
+			"offsets": {
+				"from": 2338000,
+				"to": 2352000
+			},
+			"text": " you know the claim on their on their future royalties for something like Spotify and then this asset can actually like and that's actually going to be like a digital easy 20 token that will fit straight into maker"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:12,000",
+				"to": "00:39:27,000"
+			},
+			"offsets": {
+				"from": 2352000,
+				"to": 2367000
+			},
+			"text": " and I think that's like a really cool example of like some very you know very like out there like type of exposure that is incredibly you know it creates a lot of diversity obviously compared to something like just having a new product"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:27,000",
+				"to": "00:39:41,000"
+			},
+			"offsets": {
+				"from": 2367000,
+				"to": 2381000
+			},
+			"text": " or something like just having it all be real estate or having it all be crypto but then beyond that I mean real estate there's there's several startups that are trying to figure out how to get how to get real estate into multi-level die over"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:41,000",
+				"to": "00:39:56,000"
+			},
+			"offsets": {
+				"from": 2381000,
+				"to": 2396000
+			},
+			"text": " you know I mean it's a long journey because of all the regulation that's involved of course and the same goes for trade finance and there's actually also I don't think it's pretty cool there's like fluidity the creators of S1"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:56,000",
+				"to": "00:40:11,000"
+			},
+			"offsets": {
+				"from": 2396000,
+				"to": 2411000
+			},
+			"text": " completely unknown without any sort of like without any sort of collaboration involvement from the mega foundation create their own like the whole like own stack and and proposal and kind of like approach of how they want to introduce T bills as collateral"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:11,000",
+				"to": "00:40:22,000"
+			},
+			"offsets": {
+				"from": 2411000,
+				"to": 2422000
+			},
+			"text": " especially in order to like generate sufficient liquidity for dying like enable it to like scale in a much more elastic fashion when there's like big swings in the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,000",
+				"to": "00:40:25,000"
+			},
+			"offsets": {
+				"from": 2422000,
+				"to": 2425000
+			},
+			"text": " that's really interesting Dan did you have a perspective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:25,000",
+				"to": "00:40:43,000"
+			},
+			"offsets": {
+				"from": 2425000,
+				"to": 2443000
+			},
+			"text": " Yeah so I mean I think real estate I certainly see the demand for borrowing against real estate but I think there's very clear sort of like systemic risks around it in fact I think like practically every credit crisis ever has all that has been driven by some kind of real estate bubble and"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:43,000",
+				"to": "00:40:51,600"
+			},
+			"offsets": {
+				"from": 2443000,
+				"to": 2451600
+			},
+			"text": " borrowing against the leveraging real estate and so I think there's that risk I understand the points about"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:51,600",
+				"to": "00:41:07,600"
+			},
+			"offsets": {
+				"from": 2451600,
+				"to": 2467600
+			},
+			"text": " diversification but ultimately like quite often when such a crisis happens it hits the whole sector it hits everything weirdly enough I think like if you actually just are tied to an asset like ether I think we've seen that even sort of a dramatic"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:07,600",
+				"to": "00:41:20,600"
+			},
+			"offsets": {
+				"from": 2467600,
+				"to": 2480600
+			},
+			"text": " fall in the price of ether over the course of a year was perfectly fine for a single collateral die I don't think we've ever seen a case where you've had like a commodity a commodity crash that fast or have a crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:20,600",
+				"to": "00:41:37,600"
+			},
+			"offsets": {
+				"from": 2480600,
+				"to": 2497600
+			},
+			"text": " or a boom or a bubble driven just by like a single commodity is price and so I again that's part of my suppose for why I sort of arguably not to be fine at all makes more sense from a risk perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:37,600",
+				"to": "00:41:59,600"
+			},
+			"offsets": {
+				"from": 2497600,
+				"to": 2519600
+			},
+			"text": " and I think it's a good point that most credit bubbles in the past have been based on real estate and I mean I also think what's especially interesting to look at is how the financial crisis was really this example of like a crash at really where it really you know it wasn't like the Ethereum crash that dies alive right it really was like a one to zero type of crash"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:59,600",
+				"to": "00:42:27,600"
+			},
+			"offsets": {
+				"from": 2519600,
+				"to": 2547600
+			},
+			"text": " I mean there are also examples of crashes that nothing new real estate and I think the one that's most relevant for crypto is obviously the dot com crash right and here and like the thing is the problem with time die only to eat and like creating a stable coin and creating like a monetary system that's based only on like a you know something that is like it's a little bit equivalent to like a tech stock right like I mean like a tech asset right"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:27,600",
+				"to": "00:42:42,600"
+			},
+			"offsets": {
+				"from": 2547600,
+				"to": 2562600
+			},
+			"text": " is that what you're essentially doing is you're like taking it I mean this is very very simplified right but imagine if you took the same dynamic of like CDOs and derivatives upon derivatives upon derivatives that had been applied to real estate in the financial crisis"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:42,600",
+				"to": "00:42:57,600"
+			},
+			"offsets": {
+				"from": 2562600,
+				"to": 2577600
+			},
+			"text": " imagine if that had somehow been applied to like tech stocks in the dot com bubble right like because and because then that would have could possibly have been even more insane and violent than the dot com bubble already was right"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:57,600",
+				"to": "00:43:09,600"
+			},
+			"offsets": {
+				"from": 2577600,
+				"to": 2589600
+			},
+			"text": " so in the end I mean I think this dynamic of like and well actually I think a really critical point is that like things only really go ever go wrong when finance kind of like starts putting the cart before the horse right"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:09,600",
+				"to": "00:43:24,600"
+			},
+			"offsets": {
+				"from": 2589600,
+				"to": 2604600
+			},
+			"text": " and that's the that's the problem with with the decentralized stable coin and like a single full-analyzed stable coin is that it works great when if it's kind of like driving the show right and like die is kind of like relying on"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:24,600",
+				"to": "00:43:39,600"
+			},
+			"offsets": {
+				"from": 2604600,
+				"to": 2619600
+			},
+			"text": " for its value but if we end up in a situation where is suddenly being like propped up by die because die is now in this big monetary system and it's creating all this like it's channeling all this credit into"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:39,600",
+				"to": "00:43:59,600"
+			},
+			"offsets": {
+				"from": 2619600,
+				"to": 2639600
+			},
+			"text": " Ethereum and that way you actually know but it like with the die driving the Ethereum price instead of Ethereum driving like stabilizing the price then that's when if the if the market starts turning and the theorem price starts falling or if just the dies apply start shrinking because it turns out there's a better stable coin or something like that"
+		},
+		{
+			"timestamps": {
+				"from": "00:43:59,600",
+				"to": "00:44:13,600"
+			},
+			"offsets": {
+				"from": 2639600,
+				"to": 2653600
+			},
+			"text": " that's when you can get what's referred to as a death spiral where you know as the Ethereum price falls the die supply shrinks because of liquidations and because the dies like die is driving the price as a die supply shrinks"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:13,600",
+				"to": "00:44:30,600"
+			},
+			"offsets": {
+				"from": 2653600,
+				"to": 2670600
+			},
+			"text": " evolves even more and that's when you can get that kind of like zero like one to zero 2007 where real estate turns out to be worthless type of scenario and again there I mean the only known way to deal with this is to assume that it'll have"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:30,600",
+				"to": "00:44:46,600"
+			},
+			"offsets": {
+				"from": 2670600,
+				"to": 2686600
+			},
+			"text": " to be a very simple coin and diversify as much as possible. So a happy medium the way I'm seeing that is you know you can diversify and also maybe have on chain assets when we can have other crypto assets on Ethereum so things like TVTC once that's live that might be really interesting to put in multi collateral die."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:46,600",
+				"to": "00:44:53,600"
+			},
+			"offsets": {
+				"from": 2686600,
+				"to": 2693600
+			},
+			"text": " Time is up so thank you all for joining us this early morning and hope you can follow the multi collateral process."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:54,600",
+				"to": "00:44:55,600"
+			},
+			"offsets": {
+				"from": 2694600,
+				"to": 2695600
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:55,600",
+				"to": "00:44:57,600"
+			},
+			"offsets": {
+				"from": 2695600,
+				"to": 2697600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,600",
+				"to": "00:44:59,600"
+			},
+			"offsets": {
+				"from": 2697600,
+				"to": 2699600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:59,600",
+				"to": "00:45:01,600"
+			},
+			"offsets": {
+				"from": 2699600,
+				"to": 2701600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:01,600",
+				"to": "00:45:03,600"
+			},
+			"offsets": {
+				"from": 2701600,
+				"to": 2703600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:03,600",
+				"to": "00:45:05,600"
+			},
+			"offsets": {
+				"from": 2703600,
+				"to": 2705600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:05,600",
+				"to": "00:45:07,600"
+			},
+			"offsets": {
+				"from": 2705600,
+				"to": 2707600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:07,600",
+				"to": "00:45:09,600"
+			},
+			"offsets": {
+				"from": 2707600,
+				"to": 2709600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:09,600",
+				"to": "00:45:11,600"
+			},
+			"offsets": {
+				"from": 2709600,
+				"to": 2711600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,600",
+				"to": "00:45:13,600"
+			},
+			"offsets": {
+				"from": 2711600,
+				"to": 2713600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:13,600",
+				"to": "00:45:15,600"
+			},
+			"offsets": {
+				"from": 2713600,
+				"to": 2715600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:15,600",
+				"to": "00:45:17,600"
+			},
+			"offsets": {
+				"from": 2715600,
+				"to": 2717600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:17,600",
+				"to": "00:45:19,600"
+			},
+			"offsets": {
+				"from": 2717600,
+				"to": 2719600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:19,600",
+				"to": "00:45:21,600"
+			},
+			"offsets": {
+				"from": 2719600,
+				"to": 2721600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:21,600",
+				"to": "00:45:23,600"
+			},
+			"offsets": {
+				"from": 2721600,
+				"to": 2723600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:23,600",
+				"to": "00:45:25,600"
+			},
+			"offsets": {
+				"from": 2723600,
+				"to": 2725600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,600",
+				"to": "00:45:27,600"
+			},
+			"offsets": {
+				"from": 2725600,
+				"to": 2727600
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:27,600",
+				"to": "00:45:57,600"
+			},
+			"offsets": {
+				"from": 2727600,
+				"to": 2757600
+			},
+			"text": " you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you you"
+		}
+	]
+}

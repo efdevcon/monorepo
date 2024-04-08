@@ -62,7 +62,7 @@
       bottom: 0px;
       width: 100%;
       height: 100%;
-      background: #ffe3cd;
+      background: var(--custom-fade-color, #ffe3cd);
       mask-image: linear-gradient(to bottom, 
       black,  
       transparent);
@@ -97,7 +97,7 @@
     bottom: 0px;
     width: 100%;
     height: 100%;
-    background: #e5d2ff;
+    background: var(--custom-fade-color, #e5d2ff);
     mask-image: linear-gradient(to top, 
     black,  
     transparent);

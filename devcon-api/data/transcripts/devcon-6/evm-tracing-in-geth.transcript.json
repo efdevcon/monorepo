@@ -1,0 +1,5312 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,500"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17500
+			},
+			"text": " >> Hey, everyone, I'm Sino."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,500",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 17500,
+				"to": 21000
+			},
+			"text": " This is going to be a workshop, so I will be working with the terminal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 28000
+			},
+			"text": " I will show you some code and show you how to use guess, like, guess tracing feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 31000
+			},
+			"text": " So I will specifically need my laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 35000
+			},
+			"text": " Sorry for having to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 42000
+			},
+			"text": " Also, yeah, because I will be showing code, it would be great if you guys could come forward"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " if you want to see what's happening because I imagine the phones will be small."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " So, yeah, I'm going to give you a bit of time to come forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 59000
+			},
+			"text": " And while you're doing that, I want to talk a bit, something a bit personal."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62000
+			},
+			"text": " So I come from Iran."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 67000
+			},
+			"text": " I don't know if you heard, but there's some stuff happening there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 73000
+			},
+			"text": " I just wanted to give a quick shout out to the people who are going to the streets there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:21,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 81000
+			},
+			"text": " They're protesting for their civil liberties for freedom of speech."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 81000,
+				"to": 84000
+			},
+			"text": " So, yeah, there's been three weeks of protest now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " Internet has been disconnected."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 96000
+			},
+			"text": " And it all started when the girl on the left, who is 22 years old, was in custody"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " because of showing a bit of hair."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " And she somehow happened to die in custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " And this outraged people who went on the streets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 113000
+			},
+			"text": " And during this protest, close to 200 people have died."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:57,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 117000
+			},
+			"text": " Among them, Nikka, who was 16 years old."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 117000,
+				"to": 122000
+			},
+			"text": " And when running away from the police, she also died."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 130000
+			},
+			"text": " So, yeah, I just want to give a quick shout out to them, their risk in their lives, asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 132000
+			},
+			"text": " for their rights and for freedom."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 137000
+			},
+			"text": " But this is a technical topic, and I don't want to waste your time anymore."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 137000,
+				"to": 140000
+			},
+			"text": " So let's get straight to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 141000
+			},
+			"text": " So what is tracing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 144000
+			},
+			"text": " What would you need tracing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:29,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 149000
+			},
+			"text": " I just want to show you an example of..."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 149000,
+				"to": 151000
+			},
+			"text": " This is Ithoscan."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:33,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 153000
+			},
+			"text": " Everybody knows Ithoscan, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 161000
+			},
+			"text": " And the internal transaction section of Ithoscan is basically a trace of that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 164000
+			},
+			"text": " It shows you what happened within that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 169000
+			},
+			"text": " Every call that happened there, who called who, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 175000
+			},
+			"text": " And this was actually probably not from a guest node, but I'm guessing from Open Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 176000
+			},
+			"text": " or Eregon."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 179000
+			},
+			"text": " But we have a similar feature to this."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:02,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 182000
+			},
+			"text": " And this is not the only use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182000,
+				"to": 185000
+			},
+			"text": " There's many of them, just to name a few, like I..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " Just before coming here, I was talking to somebody who's developing ZKEVM, who are also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:15,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 195000
+			},
+			"text": " heavily dependent on the tracing feature of Gath."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 195000,
+				"to": 199000
+			},
+			"text": " I've seen talks about..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:24,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 204000
+			},
+			"text": " From MEV researchers who are using the tracing features, and many more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 204000,
+				"to": 213000
+			},
+			"text": " This is also another tab in Ithoscan details where it shows you the state, like the state difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 218000
+			},
+			"text": " We also have, as we will see later, this is also something that you can get from Gath."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 231000
+			},
+			"text": " So before we get into tracing, you know that you can use Gath to execute a call on top of a given state."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234000
+			},
+			"text": " So you probably know Ithcal."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " You give it a set of parameters, like as if it would be..."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 244000
+			},
+			"text": " As if you want to send a transaction to the network, but this is actually not sent to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247000
+			},
+			"text": " It's just executed locally, and you see the result."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:10,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 250000
+			},
+			"text": " It's a simulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 250000,
+				"to": 256000
+			},
+			"text": " Actually, you have to give me a bit of time, because I had to restart my laptop and I lost all my setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " I have to bring up the terminal, because I wanted to show you how this actually goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 270000
+			},
+			"text": " So, yeah, I have a girly note on my machine that is kind of a thing to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:31,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 271000
+			},
+			"text": " Okay, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 271000,
+				"to": 273000
+			},
+			"text": " Is it behind me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275000
+			},
+			"text": " Maybe I move it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 282000
+			},
+			"text": " All right, so let's do a call."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:47,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 287000
+			},
+			"text": " I have them all stored in a file, so I don't have to type it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 287000,
+				"to": 291000
+			},
+			"text": " Anyway, I'm losing too much time on this, so I'm just going to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 293000
+			},
+			"text": " I already lost a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:56,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 296000
+			},
+			"text": " You all know how Ithcal goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 296000,
+				"to": 300000
+			},
+			"text": " Let's move on to the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 302000
+			},
+			"text": " I'm just going to explain to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 317000
+			},
+			"text": " Basically, I'm sending a call to the wrapped ETH contract on girly to get the balance of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 321000
+			},
+			"text": " an account, of account zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 324000
+			},
+			"text": " This will only give you the result."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:28,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 328000
+			},
+			"text": " In this case, the result is zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 328000,
+				"to": 333000
+			},
+			"text": " It shouldn't be."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 338000
+			},
+			"text": " I have the wrong address here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:41,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 341000
+			},
+			"text": " This address, the zero address, should have some balance."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 341000,
+				"to": 347000
+			},
+			"text": " What I wanted to show is that when you do an ETH call, you only get the execution result"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " what is returned from the contract back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 353000
+			},
+			"text": " This is oftentimes not enough information."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 355000
+			},
+			"text": " We want more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " Let's see what happens inside the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:07,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 367000
+			},
+			"text": " That you can do by doing the same thing, but using a debug method, trace call, which will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 367000,
+				"to": 372000
+			},
+			"text": " simulate the call for you and trace it at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " I would give you more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 400000
+			},
+			"text": " If I were to run this now, I was using -- I was going to present with mainnet node, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 406000
+			},
+			"text": " I found that the Wi-Fi here is not so good, so I can't SSH to my server."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 411000
+			},
+			"text": " Here, we can already see that there is a lot more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 420000
+			},
+			"text": " As it basically shows you all the steps that happen during the execution of this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424000
+			},
+			"text": " There is going to be a lot of steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 427000
+			},
+			"text": " I'm not going to go to show you all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 434000
+			},
+			"text": " Basically, you will see what is the first upcode, what is the programming counter at that point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 440000
+			},
+			"text": " which was executed, how much gas do we have at this point, what is the storage at this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 441000
+			},
+			"text": " point, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 450000
+			},
+			"text": " It will give you almost the full information that the EVM has when it runs through the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 451000
+			},
+			"text": " transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:33,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 453000
+			},
+			"text": " You can ask questions here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 453000,
+				"to": 456000
+			},
+			"text": " This stack is before the instruction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 461000
+			},
+			"text": " All of these information are from before we execute the upcode."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 469000
+			},
+			"text": " In this example, I showed you tracing a call of my own craft."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 475000
+			},
+			"text": " Basically, I said, okay, I want to do from to input and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 485000
+			},
+			"text": " Of course, gas supports tracing existing transactions, the one that were already mined on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 490000
+			},
+			"text": " Those you can do via these end points."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 496000
+			},
+			"text": " You have a debug trace transaction that traces a historical transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 500000
+			},
+			"text": " You just give it a TX hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:23,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 503000
+			},
+			"text": " You can also do it at the block level."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 503000,
+				"to": 509000
+			},
+			"text": " You can trace a block by using trace block by number or hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:36,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 516000
+			},
+			"text": " Or you can do even a whole range of blocks by using trace chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,000",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 516000,
+				"to": 519000
+			},
+			"text": " But trace chain, mind you, is a bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 525000
+			},
+			"text": " It's not a simple -- it's not using the simple JSON RPC request."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:48,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 528000
+			},
+			"text": " It's based on the subscription API."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 528000,
+				"to": 530000
+			},
+			"text": " You have to use WebSocket for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 532000
+			},
+			"text": " The usage of it is a bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 534000
+			},
+			"text": " I'm not going to show you here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 542000
+			},
+			"text": " But it's cool for when you need to run over a range of blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 548000
+			},
+			"text": " What we saw in the previous trace was the default tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 551000
+			},
+			"text": " It's basically the upcode tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:13,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 553000
+			},
+			"text": " It shows you every step."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 553000,
+				"to": 559000
+			},
+			"text": " But sometimes you need information at a different abstraction level."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 565000
+			},
+			"text": " As we saw in the etherscan screenshot, you want to see what calls happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 567000
+			},
+			"text": " You want to get different information."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 574000
+			},
+			"text": " Geth has a bunch of built-in tracers that you can call them by name and get the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 575000
+			},
+			"text": " you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 581000
+			},
+			"text": " Here in this section, I want to show you three of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 583000
+			},
+			"text": " The first one being the one that we saw."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 590000
+			},
+			"text": " In this table, you will see all the information you will get from the upcode tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:57,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 597000
+			},
+			"text": " I'm going to give you a second if you want to see what's in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 597000,
+				"to": 603000
+			},
+			"text": " You get the upcode information, all the related information, like how much this upcode costs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 608000
+			},
+			"text": " to execute or will costs to execute how much gas there is left."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 618000
+			},
+			"text": " The whole memory snapshot of that transaction, the stack, return data of the last call, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 620000
+			},
+			"text": " when call finishes."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 627000
+			},
+			"text": " In the next step, you will get the return data for it, storage slots for the contract, depth"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:32,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 632000
+			},
+			"text": " of the execution refund, and if there was any error."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,000",
+				"to": "00:10:38,000"
+			},
+			"offsets": {
+				"from": 632000,
+				"to": 638000
+			},
+			"text": " Please note that if you want to use this tracer, there are some things to note."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,000",
+				"to": "00:10:45,000"
+			},
+			"offsets": {
+				"from": 638000,
+				"to": 645000
+			},
+			"text": " As I said, memory stack storage and return data, these are dynamic values and they can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 645000,
+				"to": 646000
+			},
+			"text": " grow large."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 648000
+			},
+			"text": " Especially memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 655000
+			},
+			"text": " You have to watch out for memory because mainnet transaction these days are very heavy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:02,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 662000
+			},
+			"text": " If you have memory enabled, it can kill the node basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 662000,
+				"to": 671000
+			},
+			"text": " One of our users reported that they tried to trace a block on a server with 64GB of memory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 674000
+			},
+			"text": " and it crashed basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 681000
+			},
+			"text": " Because of this, the tracer accepts options to disable all these features."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 684000
+			},
+			"text": " All of the ones that you will see in this list, they can be disabled."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:28,800"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 688800
+			},
+			"text": " Some of them are enabled by default, some are not, but they are all like you can toggle"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,800",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 688800,
+				"to": 690800
+			},
+			"text": " all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:40,360"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 700360
+			},
+			"text": " Also, if you really need to trace, you need a memory, let's say, and JSON RPC is not sufficient"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,360",
+				"to": "00:11:45,960"
+			},
+			"offsets": {
+				"from": 700360,
+				"to": 705960
+			},
+			"text": " for it, and you control the node, then there is an endpoint, standard trace block to file,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,960",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 705960,
+				"to": 713760
+			},
+			"text": " which will trace a block and save it on a file alongside the node that you can easily access."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:56,560"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 716560
+			},
+			"text": " So it's not like JSON RPC because."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,560",
+				"to": "00:11:57,880"
+			},
+			"offsets": {
+				"from": 716560,
+				"to": 717880
+			},
+			"text": " The next one is the call tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,880",
+				"to": "00:12:02,640"
+			},
+			"offsets": {
+				"from": 717880,
+				"to": 722640
+			},
+			"text": " This is arguably one of the more interesting tracers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,640",
+				"to": "00:12:07,600"
+			},
+			"offsets": {
+				"from": 722640,
+				"to": 727600
+			},
+			"text": " It will basically give you all the call information, like all the internal calls that happened"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,600",
+				"to": "00:12:10,040"
+			},
+			"offsets": {
+				"from": 727600,
+				"to": 730040
+			},
+			"text": " during the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,040",
+				"to": "00:12:20,080"
+			},
+			"offsets": {
+				"from": 730040,
+				"to": 740080
+			},
+			"text": " I'm going to show you in the previous example, like basically when we call wrapped ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,080",
+				"to": "00:12:27,600"
+			},
+			"offsets": {
+				"from": 740080,
+				"to": 747600
+			},
+			"text": " balance of what information we will get in return."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,600",
+				"to": "00:12:33,320"
+			},
+			"offsets": {
+				"from": 747600,
+				"to": 753320
+			},
+			"text": " So you can see that balance of is a simple call."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,320",
+				"to": "00:12:35,480"
+			},
+			"offsets": {
+				"from": 753320,
+				"to": 755480
+			},
+			"text": " It's not going to call anything else."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,480",
+				"to": "00:12:38,160"
+			},
+			"offsets": {
+				"from": 755480,
+				"to": 758160
+			},
+			"text": " And there's one call."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,160",
+				"to": "00:12:43,480"
+			},
+			"offsets": {
+				"from": 758160,
+				"to": 763480
+			},
+			"text": " It shows you who is the sender, who is the recipient, who is the contract, what is it"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,480",
+				"to": "00:12:45,920"
+			},
+			"offsets": {
+				"from": 763480,
+				"to": 765920
+			},
+			"text": " call or is it create?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,920",
+				"to": "00:12:49,360"
+			},
+			"offsets": {
+				"from": 765920,
+				"to": 769360
+			},
+			"text": " Was there any value transfer and what was the call data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,360",
+				"to": "00:12:51,120"
+			},
+			"offsets": {
+				"from": 769360,
+				"to": 771120
+			},
+			"text": " What was the input?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,120",
+				"to": "00:12:55,480"
+			},
+			"offsets": {
+				"from": 771120,
+				"to": 775480
+			},
+			"text": " But yeah, this is a more boring example."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,480",
+				"to": "00:13:02,600"
+			},
+			"offsets": {
+				"from": 775480,
+				"to": 782600
+			},
+			"text": " We can, I hope this transaction hashes are okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,600",
+				"to": "00:13:05,320"
+			},
+			"offsets": {
+				"from": 782600,
+				"to": 785320
+			},
+			"text": " I feel like the file wasn't saved."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,320",
+				"to": "00:13:08,760"
+			},
+			"offsets": {
+				"from": 785320,
+				"to": 788760
+			},
+			"text": " Yeah, okay, it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,760",
+				"to": "00:13:10,200"
+			},
+			"offsets": {
+				"from": 788760,
+				"to": 790200
+			},
+			"text": " So I'm just going to run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,200",
+				"to": "00:13:11,800"
+			},
+			"offsets": {
+				"from": 790200,
+				"to": 791800
+			},
+			"text": " So show you guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,800",
+				"to": "00:13:17,120"
+			},
+			"offsets": {
+				"from": 791800,
+				"to": 797120
+			},
+			"text": " So here I'm trying, like I'm not doing trace call, but I'm using historical transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,120",
+				"to": "00:13:19,200"
+			},
+			"offsets": {
+				"from": 797120,
+				"to": 799200
+			},
+			"text": " that was mined on girly."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,200",
+				"to": "00:13:22,160"
+			},
+			"offsets": {
+				"from": 799200,
+				"to": 802160
+			},
+			"text": " So I'm using trace transaction end point."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,160",
+				"to": "00:13:23,800"
+			},
+			"offsets": {
+				"from": 802160,
+				"to": 803800
+			},
+			"text": " This is the transaction hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,800",
+				"to": "00:13:29,680"
+			},
+			"offsets": {
+				"from": 803800,
+				"to": 809680
+			},
+			"text": " And here, like as an option, you can specify what, which tracer you want to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,680",
+				"to": "00:13:33,840"
+			},
+			"offsets": {
+				"from": 809680,
+				"to": 813840
+			},
+			"text": " So if you don't provide anything, then it will default to the upcode tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,840",
+				"to": "00:13:37,680"
+			},
+			"offsets": {
+				"from": 813840,
+				"to": 817680
+			},
+			"text": " But you can say, I want to use the call tracer as we did here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,680",
+				"to": "00:13:40,680"
+			},
+			"offsets": {
+				"from": 817680,
+				"to": 820680
+			},
+			"text": " And you will get a bunch of information."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,680",
+				"to": "00:13:41,680"
+			},
+			"offsets": {
+				"from": 820680,
+				"to": 821680
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,680",
+				"to": "00:13:49,120"
+			},
+			"offsets": {
+				"from": 821680,
+				"to": 829120
+			},
+			"text": " So this is going to be the main call and notice that we can already see, like this call error,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,120",
+				"to": "00:13:51,040"
+			},
+			"offsets": {
+				"from": 829120,
+				"to": 831040
+			},
+			"text": " like it reverted."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,040",
+				"to": "00:13:56,960"
+			},
+			"offsets": {
+				"from": 831040,
+				"to": 836960
+			},
+			"text": " We can also see from since recently, we can see the revert reason, which is system time"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,960",
+				"to": "00:13:57,960"
+			},
+			"offsets": {
+				"from": 836960,
+				"to": 837960
+			},
+			"text": " outdated."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,960",
+				"to": "00:14:04,800"
+			},
+			"offsets": {
+				"from": 837960,
+				"to": 844800
+			},
+			"text": " This is the solidity revert error that was returned, the input output."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,800",
+				"to": "00:14:07,280"
+			},
+			"offsets": {
+				"from": 844800,
+				"to": 847280
+			},
+			"text": " And then here from here, we have the nested calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,280",
+				"to": "00:14:16,080"
+			},
+			"offsets": {
+				"from": 847280,
+				"to": 856080
+			},
+			"text": " So basically, the main contract did some called another one that we can see here, which also"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,080",
+				"to": "00:14:17,080"
+			},
+			"offsets": {
+				"from": 856080,
+				"to": 857080
+			},
+			"text": " reverted."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,080",
+				"to": "00:14:25,640"
+			},
+			"offsets": {
+				"from": 857080,
+				"to": 865640
+			},
+			"text": " And like up there, you can see there's more nested calls that it's not being displayed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,640",
+				"to": "00:14:29,200"
+			},
+			"offsets": {
+				"from": 865640,
+				"to": 869200
+			},
+			"text": " here, but you can get that information also."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,200",
+				"to": "00:14:35,520"
+			},
+			"offsets": {
+				"from": 869200,
+				"to": 875520
+			},
+			"text": " So yeah, call tracer you would use when you need information about the internal calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,520",
+				"to": "00:14:44,560"
+			},
+			"offsets": {
+				"from": 875520,
+				"to": 884560
+			},
+			"text": " And also, since recently it accepts an if the option, so I'm going to provide here, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,560",
+				"to": "00:14:46,840"
+			},
+			"offsets": {
+				"from": 884560,
+				"to": 886840
+			},
+			"text": " can basically configure the tracers."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,840",
+				"to": "00:14:51,120"
+			},
+			"offsets": {
+				"from": 886840,
+				"to": 891120
+			},
+			"text": " You can say, I want only top call."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,120",
+				"to": "00:14:56,240"
+			},
+			"offsets": {
+				"from": 891120,
+				"to": 896240
+			},
+			"text": " This is useful if you need only the top call information, like only if you want to know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,240",
+				"to": "00:14:59,160"
+			},
+			"offsets": {
+				"from": 896240,
+				"to": 899160
+			},
+			"text": " okay, why did this transaction revert?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,160",
+				"to": "00:15:02,240"
+			},
+			"offsets": {
+				"from": 899160,
+				"to": 902240
+			},
+			"text": " Then I don't need to see all the nested call information."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,240",
+				"to": "00:15:06,760"
+			},
+			"offsets": {
+				"from": 902240,
+				"to": 906760
+			},
+			"text": " I just get the top call and I checked the revert reason and I know, okay, there was a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,760",
+				"to": "00:15:10,160"
+			},
+			"offsets": {
+				"from": 906760,
+				"to": 910160
+			},
+			"text": " time outdated or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,160",
+				"to": "00:15:13,280"
+			},
+			"offsets": {
+				"from": 910160,
+				"to": 913280
+			},
+			"text": " This one is the pre-state tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,280",
+				"to": "00:15:16,040"
+			},
+			"offsets": {
+				"from": 913280,
+				"to": 916040
+			},
+			"text": " It has two modes of execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,040",
+				"to": "00:15:24,400"
+			},
+			"offsets": {
+				"from": 916040,
+				"to": 924400
+			},
+			"text": " By default, when you just say, I want to trace this with the pre-state tracer, then it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,400",
+				"to": "00:15:36,440"
+			},
+			"offsets": {
+				"from": 924400,
+				"to": 936440
+			},
+			"text": " give you all the accounts that are needed to execute the call or the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,440",
+				"to": "00:15:42,680"
+			},
+			"offsets": {
+				"from": 936440,
+				"to": 942680
+			},
+			"text": " You can think of it something similar to access list or witnesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,680",
+				"to": "00:15:50,360"
+			},
+			"offsets": {
+				"from": 942680,
+				"to": 950360
+			},
+			"text": " So if you somehow need to simulate the transaction and don't store the whole state, you can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,360",
+				"to": "00:15:58,840"
+			},
+			"offsets": {
+				"from": 950360,
+				"to": 958840
+			},
+			"text": " the state via the pre-state tracer and then you can execute your transaction locally."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,840",
+				"to": "00:16:06,640"
+			},
+			"offsets": {
+				"from": 958840,
+				"to": 966640
+			},
+			"text": " In the second mode, you can see all the state modifications that happen during the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,640",
+				"to": "00:16:12,680"
+			},
+			"offsets": {
+				"from": 966640,
+				"to": 972680
+			},
+			"text": " Basically you can say, okay, the balance of this account increased to such value."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,680",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 972680,
+				"to": 985000
+			},
+			"text": " The store slots changed such and such if we were to see it in CIT Live, it's this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:31,680"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 991680
+			},
+			"text": " So here I need to change the address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,680",
+				"to": "00:16:43,520"
+			},
+			"offsets": {
+				"from": 991680,
+				"to": 1003520
+			},
+			"text": " I'm going to execute the same wrapped ether balance of call and pass to see the pre-state."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,520",
+				"to": "00:16:49,160"
+			},
+			"offsets": {
+				"from": 1003520,
+				"to": 1009160
+			},
+			"text": " And yeah, as you can see, the zero address shows the balance of the zero address."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,160",
+				"to": "00:16:55,760"
+			},
+			"offsets": {
+				"from": 1009160,
+				"to": 1015760
+			},
+			"text": " This is the contract itself, has a balance, the code, the nodes and all the storage slots"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,760",
+				"to": "00:16:58,160"
+			},
+			"offsets": {
+				"from": 1015760,
+				"to": 1018160
+			},
+			"text": " that were needed to execute these transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,160",
+				"to": "00:17:02,400"
+			},
+			"offsets": {
+				"from": 1018160,
+				"to": 1022400
+			},
+			"text": " These are not all the storage slots of this contract but only those that were required"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,400",
+				"to": "00:17:03,400"
+			},
+			"offsets": {
+				"from": 1022400,
+				"to": 1023400
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,400",
+				"to": "00:17:12,800"
+			},
+			"offsets": {
+				"from": 1023400,
+				"to": 1032800
+			},
+			"text": " And let's say you wanted to see the diff, you just pass a parameter diff mode."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,800",
+				"to": "00:17:20,800"
+			},
+			"offsets": {
+				"from": 1032800,
+				"to": 1040800
+			},
+			"text": " And yeah, basically we can see the biggest change here is that the nodes, so you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,800",
+				"to": "00:17:26,640"
+			},
+			"offsets": {
+				"from": 1040800,
+				"to": 1046640
+			},
+			"text": " like a pre and post state and you have to compare them."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,640",
+				"to": "00:17:33,360"
+			},
+			"offsets": {
+				"from": 1046640,
+				"to": 1053360
+			},
+			"text": " So you can see here we have the zero address, the nonce is omitted because it's zero, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,360",
+				"to": "00:17:35,920"
+			},
+			"offsets": {
+				"from": 1053360,
+				"to": 1055920
+			},
+			"text": " nonce was zero and now it's one."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,920",
+				"to": "00:17:43,840"
+			},
+			"offsets": {
+				"from": 1055920,
+				"to": 1063840
+			},
+			"text": " So this is the only change that happened in the state during this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,840",
+				"to": "00:17:52,400"
+			},
+			"offsets": {
+				"from": 1063840,
+				"to": 1072400
+			},
+			"text": " But of course if we were to run it with a more complicated transaction, you would see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,400",
+				"to": "00:18:00,400"
+			},
+			"offsets": {
+				"from": 1072400,
+				"to": 1080400
+			},
+			"text": " like there's going to be much more stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,400",
+				"to": "00:18:05,520"
+			},
+			"offsets": {
+				"from": 1080400,
+				"to": 1085520
+			},
+			"text": " And this is what first of the state changed during this particular transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,520",
+				"to": "00:18:12,440"
+			},
+			"offsets": {
+				"from": 1085520,
+				"to": 1092440
+			},
+			"text": " Here we had also balance updates, nonce and balance both changed and balance of zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,440",
+				"to": "00:18:14,040"
+			},
+			"offsets": {
+				"from": 1092440,
+				"to": 1094040
+			},
+			"text": " account change."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,040",
+				"to": "00:18:22,600"
+			},
+			"offsets": {
+				"from": 1094040,
+				"to": 1102600
+			},
+			"text": " And yeah, here we have like the format works as follows, basically whenever something is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,600",
+				"to": "00:18:28,760"
+			},
+			"offsets": {
+				"from": 1102600,
+				"to": 1108760
+			},
+			"text": " created, let's say a contract is created, it will not show up in the pre object, it will"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,760",
+				"to": "00:18:31,960"
+			},
+			"offsets": {
+				"from": 1108760,
+				"to": 1111960
+			},
+			"text": " only show in the post object."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,960",
+				"to": "00:18:36,800"
+			},
+			"offsets": {
+				"from": 1111960,
+				"to": 1116800
+			},
+			"text": " And whenever something is deleted, it will only show up in the pre object but not in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,800",
+				"to": "00:18:37,960"
+			},
+			"offsets": {
+				"from": 1116800,
+				"to": 1117960
+			},
+			"text": " post object."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,960",
+				"to": "00:18:47,280"
+			},
+			"offsets": {
+				"from": 1117960,
+				"to": 1127280
+			},
+			"text": " So by comparing these two objects, you can see how the state was modified."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,280",
+				"to": "00:18:55,040"
+			},
+			"offsets": {
+				"from": 1127280,
+				"to": 1135040
+			},
+			"text": " So now I want to talk a bit about how gas stores state because it is very relevant when"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,040",
+				"to": "00:18:56,600"
+			},
+			"offsets": {
+				"from": 1135040,
+				"to": 1136600
+			},
+			"text": " you're doing tracing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,600",
+				"to": "00:19:03,920"
+			},
+			"offsets": {
+				"from": 1136600,
+				"to": 1143920
+			},
+			"text": " If you've been tracing, you've probably saw this error, required historical state unavailable."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,920",
+				"to": "00:19:10,160"
+			},
+			"offsets": {
+				"from": 1143920,
+				"to": 1150160
+			},
+			"text": " Especially when you want to trace a historical transaction, one that was mined."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,160",
+				"to": "00:19:12,480"
+			},
+			"offsets": {
+				"from": 1150160,
+				"to": 1152480
+			},
+			"text": " Now why is this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,480",
+				"to": "00:19:20,880"
+			},
+			"offsets": {
+				"from": 1152480,
+				"to": 1160880
+			},
+			"text": " So first of all, how do we prepare the state for simulating a transaction or rerunning"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,880",
+				"to": "00:19:22,200"
+			},
+			"offsets": {
+				"from": 1160880,
+				"to": 1162200
+			},
+			"text": " a transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,200",
+				"to": "00:19:28,840"
+			},
+			"offsets": {
+				"from": 1162200,
+				"to": 1168840
+			},
+			"text": " It's basically like you have to, we have to find, okay, the transaction in block N, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,840",
+				"to": "00:19:36,440"
+			},
+			"offsets": {
+				"from": 1168840,
+				"to": 1176440
+			},
+			"text": " we need, we will fetch the state for block N minus one, the post state of block N minus"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,440",
+				"to": "00:19:44,360"
+			},
+			"offsets": {
+				"from": 1176440,
+				"to": 1184360
+			},
+			"text": " one, and start executing all of the transactions within the target block until we reach the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,360",
+				"to": "00:19:46,400"
+			},
+			"offsets": {
+				"from": 1184360,
+				"to": 1186400
+			},
+			"text": " transaction that we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,400",
+				"to": "00:19:51,960"
+			},
+			"offsets": {
+				"from": 1186400,
+				"to": 1191960
+			},
+			"text": " At this point, we have the transaction, we have the state, the pre state basically for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,960",
+				"to": "00:19:55,480"
+			},
+			"offsets": {
+				"from": 1191960,
+				"to": 1195480
+			},
+			"text": " our transaction and we can execute it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,480",
+				"to": "00:20:03,240"
+			},
+			"offsets": {
+				"from": 1195480,
+				"to": 1203240
+			},
+			"text": " But what happens if the state for this block N minus one is not available in the database?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,240",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1203240,
+				"to": 1211000
+			},
+			"text": " Basically that's hint, that's when you get this error."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:22,800"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1222800
+			},
+			"text": " So what, so now comes the question, the state for which blocks are actually persisted."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,800",
+				"to": "00:20:27,280"
+			},
+			"offsets": {
+				"from": 1222800,
+				"to": 1227280
+			},
+			"text": " Let's get the archive node out of the picture because it's the easiest."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,280",
+				"to": "00:20:31,040"
+			},
+			"offsets": {
+				"from": 1227280,
+				"to": 1231040
+			},
+			"text": " So for archive node you have all the states."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,040",
+				"to": "00:20:34,240"
+			},
+			"offsets": {
+				"from": 1231040,
+				"to": 1234240
+			},
+			"text": " Next one is full sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,240",
+				"to": "00:20:40,960"
+			},
+			"offsets": {
+				"from": 1234240,
+				"to": 1240960
+			},
+			"text": " By full sync I specifically mean that you start executing all of the blocks from genesis"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,960",
+				"to": "00:20:42,760"
+			},
+			"offsets": {
+				"from": 1240960,
+				"to": 1242760
+			},
+			"text": " up until the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,760",
+				"to": "00:20:53,400"
+			},
+			"offsets": {
+				"from": 1242760,
+				"to": 1253400
+			},
+			"text": " Here it's worth to note that always guest stores the latest 128 blocks, the state for"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,400",
+				"to": "00:20:55,400"
+			},
+			"offsets": {
+				"from": 1253400,
+				"to": 1255400
+			},
+			"text": " them in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,400",
+				"to": "00:21:00,840"
+			},
+			"offsets": {
+				"from": 1255400,
+				"to": 1260840
+			},
+			"text": " So you always have, like while your node is syncing, you always have the state for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,840",
+				"to": "00:21:03,080"
+			},
+			"offsets": {
+				"from": 1260840,
+				"to": 1263080
+			},
+			"text": " last 128 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,080",
+				"to": "00:21:11,720"
+			},
+			"offsets": {
+				"from": 1263080,
+				"to": 1271720
+			},
+			"text": " Now anything beyond that is stored, like it's persisted to this only periodically."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,720",
+				"to": "00:21:14,600"
+			},
+			"offsets": {
+				"from": 1271720,
+				"to": 1274600
+			},
+			"text": " And that is roughly every two hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,600",
+				"to": "00:21:22,480"
+			},
+			"offsets": {
+				"from": 1274600,
+				"to": 1282480
+			},
+			"text": " So every two hours the state for a block will be persisted to disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,480",
+				"to": "00:21:30,640"
+			},
+			"offsets": {
+				"from": 1282480,
+				"to": 1290640
+			},
+			"text": " And because we synced from genesis, that means we have the state of a block roughly"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,640",
+				"to": "00:21:35,600"
+			},
+			"offsets": {
+				"from": 1290640,
+				"to": 1295600
+			},
+			"text": " every two hours from genesis on until the more recent ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,600",
+				"to": "00:21:42,360"
+			},
+			"offsets": {
+				"from": 1295600,
+				"to": 1302360
+			},
+			"text": " But the difference between full sync and snap sync is that in snap sync you won't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,360",
+				"to": "00:21:48,200"
+			},
+			"offsets": {
+				"from": 1302360,
+				"to": 1308200
+			},
+			"text": " start, you won't actually execute the transaction, you won't actually execute the blocks from"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,200",
+				"to": "00:21:52,400"
+			},
+			"offsets": {
+				"from": 1308200,
+				"to": 1312400
+			},
+			"text": " the beginning but from some pivot point."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,400",
+				"to": "00:22:01,120"
+			},
+			"offsets": {
+				"from": 1312400,
+				"to": 1321120
+			},
+			"text": " So let's say here is the point when you start, like you fetch the state from the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,120",
+				"to": "00:22:03,320"
+			},
+			"offsets": {
+				"from": 1321120,
+				"to": 1323320
+			},
+			"text": " you start executing transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,320",
+				"to": "00:22:07,560"
+			},
+			"offsets": {
+				"from": 1323320,
+				"to": 1327560
+			},
+			"text": " So that's why we only have the checkpoints from this point on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,560",
+				"to": "00:22:19,600"
+			},
+			"offsets": {
+				"from": 1327560,
+				"to": 1339600
+			},
+			"text": " And like, so we basically we cannot execute any transaction that happens before we did"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,600",
+				"to": "00:22:22,360"
+			},
+			"offsets": {
+				"from": 1339600,
+				"to": 1342360
+			},
+			"text": " the snap sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,360",
+				"to": "00:22:29,280"
+			},
+			"offsets": {
+				"from": 1342360,
+				"to": 1349280
+			},
+			"text": " So it's important to know like based on your use case, which sync mode you should go for."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,280",
+				"to": "00:22:31,360"
+			},
+			"offsets": {
+				"from": 1349280,
+				"to": 1351360
+			},
+			"text": " And now we can complete the picture again."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,360",
+				"to": "00:22:36,600"
+			},
+			"offsets": {
+				"from": 1351360,
+				"to": 1356600
+			},
+			"text": " So how do we prepare the state for executing a transaction?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,600",
+				"to": "00:22:41,840"
+			},
+			"offsets": {
+				"from": 1356600,
+				"to": 1361840
+			},
+			"text": " We fetch the state of the parent block from the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,840",
+				"to": "00:22:45,520"
+			},
+			"offsets": {
+				"from": 1361840,
+				"to": 1365520
+			},
+			"text": " If it's not available, what do we do?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,520",
+				"to": "00:22:54,560"
+			},
+			"offsets": {
+				"from": 1365520,
+				"to": 1374560
+			},
+			"text": " Yes, we'll go back in the blocks for a number of blocks and check if it has the state available"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,560",
+				"to": "00:22:58,760"
+			},
+			"offsets": {
+				"from": 1374560,
+				"to": 1378760
+			},
+			"text": " for any of them on disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,760",
+				"to": "00:23:05,440"
+			},
+			"offsets": {
+				"from": 1378760,
+				"to": 1385440
+			},
+			"text": " And if so, then it will basically re-execute all of those blocks and prepare the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,440",
+				"to": "00:23:07,200"
+			},
+			"offsets": {
+				"from": 1385440,
+				"to": 1387200
+			},
+			"text": " for your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,200",
+				"to": "00:23:13,880"
+			},
+			"offsets": {
+				"from": 1387200,
+				"to": 1393880
+			},
+			"text": " So here you can see in the error we have the error and we have some more information like"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,880",
+				"to": "00:23:15,920"
+			},
+			"offsets": {
+				"from": 1393880,
+				"to": 1395920
+			},
+			"text": " re-exact equals 128."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,920",
+				"to": "00:23:31,920"
+			},
+			"offsets": {
+				"from": 1395920,
+				"to": 1411920
+			},
+			"text": " This means that when 128 blocks backwards to find some state on disk that it could use"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,920",
+				"to": "00:23:33,360"
+			},
+			"offsets": {
+				"from": 1411920,
+				"to": 1413360
+			},
+			"text": " to go forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,360",
+				"to": "00:23:36,960"
+			},
+			"offsets": {
+				"from": 1413360,
+				"to": 1416960
+			},
+			"text": " But it didn't find any."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,960",
+				"to": "00:23:43,520"
+			},
+			"offsets": {
+				"from": 1416960,
+				"to": 1423520
+			},
+			"text": " And this is a parameter that you can give."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,520",
+				"to": "00:23:49,640"
+			},
+			"offsets": {
+				"from": 1423520,
+				"to": 1429640
+			},
+			"text": " So basically when you do trace transaction, you can provide this re-exact parameter and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,640",
+				"to": "00:23:57,200"
+			},
+			"offsets": {
+				"from": 1429640,
+				"to": 1437200
+			},
+			"text": " say, okay, I'm willing to go back 2,000 or 2 million blocks to find a state that I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,200",
+				"to": "00:24:02,080"
+			},
+			"offsets": {
+				"from": 1437200,
+				"to": 1442080
+			},
+			"text": " use to execute this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,080",
+				"to": "00:24:05,720"
+			},
+			"offsets": {
+				"from": 1442080,
+				"to": 1445720
+			},
+			"text": " But of course, the more you're willing to go, the more you go back, the longer it's going"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,720",
+				"to": "00:24:12,320"
+			},
+			"offsets": {
+				"from": 1445720,
+				"to": 1452320
+			},
+			"text": " to take because all of those blocks have to be re-executed to compute the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,320",
+				"to": "00:24:20,240"
+			},
+			"offsets": {
+				"from": 1452320,
+				"to": 1460240
+			},
+			"text": " We have -- there's a method that you can use to see states for which blocks are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:20,240",
+				"to": "00:24:21,800"
+			},
+			"offsets": {
+				"from": 1460240,
+				"to": 1461800
+			},
+			"text": " stored on disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,800",
+				"to": "00:24:26,400"
+			},
+			"offsets": {
+				"from": 1461800,
+				"to": 1466400
+			},
+			"text": " And that's debug gets accessible state."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,400",
+				"to": "00:24:35,200"
+			},
+			"offsets": {
+				"from": 1466400,
+				"to": 1475200
+			},
+			"text": " So let's say like I want to see -- I want to see like 5,000 blocks behind the head."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,200",
+				"to": "00:24:38,080"
+			},
+			"offsets": {
+				"from": 1475200,
+				"to": 1478080
+			},
+			"text": " Do I have any state there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:38,080",
+				"to": "00:24:39,480"
+			},
+			"offsets": {
+				"from": 1478080,
+				"to": 1479480
+			},
+			"text": " Computing no state found."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,480",
+				"to": "00:24:44,080"
+			},
+			"offsets": {
+				"from": 1479480,
+				"to": 1484080
+			},
+			"text": " So I don't have anything between the last 5,000 and 4,000 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,080",
+				"to": "00:24:45,080"
+			},
+			"offsets": {
+				"from": 1484080,
+				"to": 1485080
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,080",
+				"to": "00:24:46,080"
+			},
+			"offsets": {
+				"from": 1485080,
+				"to": 1486080
+			},
+			"text": " I can try again."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,080",
+				"to": "00:24:50,880"
+			},
+			"offsets": {
+				"from": 1486080,
+				"to": 1490880
+			},
+			"text": " Or I can enlarge the search parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,880",
+				"to": "00:24:52,360"
+			},
+			"offsets": {
+				"from": 1490880,
+				"to": 1492360
+			},
+			"text": " It's probably also going to say no."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,360",
+				"to": "00:24:53,440"
+			},
+			"offsets": {
+				"from": 1492360,
+				"to": 1493440
+			},
+			"text": " Oh, actually no."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,440",
+				"to": "00:24:54,440"
+			},
+			"offsets": {
+				"from": 1493440,
+				"to": 1494440
+			},
+			"text": " It found it."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,440",
+				"to": "00:25:02,120"
+			},
+			"offsets": {
+				"from": 1494440,
+				"to": 1502120
+			},
+			"text": " So here it says like, I have -- there's this block that I have this state for."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,120",
+				"to": "00:25:07,080"
+			},
+			"offsets": {
+				"from": 1502120,
+				"to": 1507080
+			},
+			"text": " So I know that -- block number."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,080",
+				"to": "00:25:09,080"
+			},
+			"offsets": {
+				"from": 1507080,
+				"to": 1509080
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,080",
+				"to": "00:25:14,040"
+			},
+			"offsets": {
+				"from": 1509080,
+				"to": 1514040
+			},
+			"text": " So I know that I have the state for like 8,000 blocks ago, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,040",
+				"to": "00:25:23,440"
+			},
+			"offsets": {
+				"from": 1514040,
+				"to": 1523440
+			},
+			"text": " So yeah, this is the nifty method for finding which states you have on your disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,440",
+				"to": "00:25:31,120"
+			},
+			"offsets": {
+				"from": 1523440,
+				"to": 1531120
+			},
+			"text": " And then when you know this, then you can set the re-exec parameter accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,120",
+				"to": "00:25:36,920"
+			},
+			"offsets": {
+				"from": 1531120,
+				"to": 1536920
+			},
+			"text": " And sometimes there is a range of blocks that you care about a lot, like you need a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,920",
+				"to": "00:25:40,200"
+			},
+			"offsets": {
+				"from": 1536920,
+				"to": 1540200
+			},
+			"text": " So you want to store the whole state for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,200",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1540200,
+				"to": 1549000
+			},
+			"text": " What you can do is basically stop guess, add this parameter, GC mode archive, and run for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:25:52,280"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1552280
+			},
+			"text": " as long as you need, and then stop it again and take it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,280",
+				"to": "00:25:58,800"
+			},
+			"offsets": {
+				"from": 1552280,
+				"to": 1558800
+			},
+			"text": " Because when this flag is there, then guess will store every state, like the state for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,800",
+				"to": "00:26:02,440"
+			},
+			"offsets": {
+				"from": 1558800,
+				"to": 1562440
+			},
+			"text": " every block on disk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,440",
+				"to": "00:26:13,200"
+			},
+			"offsets": {
+				"from": 1562440,
+				"to": 1573200
+			},
+			"text": " We went over some of the tracers that come in stock guess, but that's not your only option."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,200",
+				"to": "00:26:17,840"
+			},
+			"offsets": {
+				"from": 1573200,
+				"to": 1577840
+			},
+			"text": " You can also -- you can write a custom tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:17,840",
+				"to": "00:26:29,680"
+			},
+			"offsets": {
+				"from": 1577840,
+				"to": 1589680
+			},
+			"text": " You can basically guess -- there's some hooks that you can use to collect the relevant information"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,680",
+				"to": "00:26:30,960"
+			},
+			"offsets": {
+				"from": 1589680,
+				"to": 1590960
+			},
+			"text": " for your use case."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,960",
+				"to": "00:26:31,960"
+			},
+			"offsets": {
+				"from": 1590960,
+				"to": 1591960
+			},
+			"text": " And only that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:31,960",
+				"to": "00:26:38,560"
+			},
+			"offsets": {
+				"from": 1591960,
+				"to": 1598560
+			},
+			"text": " You don't have to rely on the tracers that we provide."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,560",
+				"to": "00:26:44,400"
+			},
+			"offsets": {
+				"from": 1598560,
+				"to": 1604400
+			},
+			"text": " And here I want to show you an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,400",
+				"to": "00:26:51,200"
+			},
+			"offsets": {
+				"from": 1604400,
+				"to": 1611200
+			},
+			"text": " During dev connect in Amsterdam, I met this guy who was an ME researcher, and he was telling"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,200",
+				"to": "00:26:55,240"
+			},
+			"offsets": {
+				"from": 1611200,
+				"to": 1615240
+			},
+			"text": " me that he found the tracing feature of guess extremely useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,240",
+				"to": "00:27:00,800"
+			},
+			"offsets": {
+				"from": 1615240,
+				"to": 1620800
+			},
+			"text": " And later on I saw his talk, and he was talking about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,800",
+				"to": "00:27:13,040"
+			},
+			"offsets": {
+				"from": 1620800,
+				"to": 1633040
+			},
+			"text": " So apparently there are some poisonous tokens out there, or there used to be at some point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,040",
+				"to": "00:27:18,560"
+			},
+			"offsets": {
+				"from": 1633040,
+				"to": 1638560
+			},
+			"text": " that direct basically searchers, like the automatic bots."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,560",
+				"to": "00:27:23,200"
+			},
+			"offsets": {
+				"from": 1638560,
+				"to": 1643200
+			},
+			"text": " And one of those tokens kind of looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,200",
+				"to": "00:27:24,440"
+			},
+			"offsets": {
+				"from": 1643200,
+				"to": 1644440
+			},
+			"text": " I think this is a simple one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:24,440",
+				"to": "00:27:26,640"
+			},
+			"offsets": {
+				"from": 1644440,
+				"to": 1646640
+			},
+			"text": " It's not a real one."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,640",
+				"to": "00:27:34,200"
+			},
+			"offsets": {
+				"from": 1646640,
+				"to": 1654200
+			},
+			"text": " Basically it just checks to see if you're in a development environment, then it does the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,200",
+				"to": "00:27:39,040"
+			},
+			"offsets": {
+				"from": 1654200,
+				"to": 1659040
+			},
+			"text": " actual transfer of value."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,040",
+				"to": "00:27:47,040"
+			},
+			"offsets": {
+				"from": 1659040,
+				"to": 1667040
+			},
+			"text": " So let's say you simulate that on hard hat, and you see, yeah, I got some money, but when"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,040",
+				"to": "00:27:50,400"
+			},
+			"offsets": {
+				"from": 1667040,
+				"to": 1670400
+			},
+			"text": " you run it on Mainnet, then you actually don't get that money and you probably lose"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,400",
+				"to": "00:27:51,680"
+			},
+			"offsets": {
+				"from": 1670400,
+				"to": 1671680
+			},
+			"text": " some."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,680",
+				"to": "00:27:54,200"
+			},
+			"offsets": {
+				"from": 1671680,
+				"to": 1674200
+			},
+			"text": " So that's the gist of the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,200",
+				"to": "00:28:03,600"
+			},
+			"offsets": {
+				"from": 1674200,
+				"to": 1683600
+			},
+			"text": " And he wrote a simple tracer that can detect this, and I'm going to show you that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,600",
+				"to": "00:28:10,560"
+			},
+			"offsets": {
+				"from": 1683600,
+				"to": 1690560
+			},
+			"text": " This is how custom JavaScript tracer looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,560",
+				"to": "00:28:12,800"
+			},
+			"offsets": {
+				"from": 1690560,
+				"to": 1692800
+			},
+			"text": " It's a very simple one."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,800",
+				"to": "00:28:20,640"
+			},
+			"offsets": {
+				"from": 1692800,
+				"to": 1700640
+			},
+			"text": " You have a few methods that you can implement in a JavaScript object, and you will pass this"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,640",
+				"to": "00:28:27,560"
+			},
+			"offsets": {
+				"from": 1700640,
+				"to": 1707560
+			},
+			"text": " object to get when you invoke the API."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,560",
+				"to": "00:28:37,280"
+			},
+			"offsets": {
+				"from": 1707560,
+				"to": 1717280
+			},
+			"text": " In this case, we implement the step method, which is run for every step of the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,280",
+				"to": "00:28:43,120"
+			},
+			"offsets": {
+				"from": 1717280,
+				"to": 1723120
+			},
+			"text": " And we implement also the result function, which is executed once at the end of the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,120",
+				"to": "00:28:56,320"
+			},
+			"offsets": {
+				"from": 1723120,
+				"to": 1736320
+			},
+			"text": " So basically, the idea of the detection algorithm is that token transfers shouldn't use any"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,320",
+				"to": "00:28:59,640"
+			},
+			"offsets": {
+				"from": 1736320,
+				"to": 1739640
+			},
+			"text": " of the following upcodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,640",
+				"to": "00:29:02,280"
+			},
+			"offsets": {
+				"from": 1739640,
+				"to": 1742280
+			},
+			"text": " Coin-based number, difficulty, origin."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,280",
+				"to": "00:29:05,600"
+			},
+			"offsets": {
+				"from": 1742280,
+				"to": 1745600
+			},
+			"text": " These are all block metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:05,600",
+				"to": "00:29:10,040"
+			},
+			"offsets": {
+				"from": 1745600,
+				"to": 1750040
+			},
+			"text": " When you're doing a ERC-20 transfer, why would you need any of these upcodes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:10,040",
+				"to": "00:29:15,720"
+			},
+			"offsets": {
+				"from": 1750040,
+				"to": 1755720
+			},
+			"text": " So this is a very simple detection thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,720",
+				"to": "00:29:23,040"
+			},
+			"offsets": {
+				"from": 1755720,
+				"to": 1763040
+			},
+			"text": " So what I'm doing is basically I have a global variable called fishy, and as I'm going through"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,040",
+				"to": "00:29:32,480"
+			},
+			"offsets": {
+				"from": 1763040,
+				"to": 1772480
+			},
+			"text": " the steps, I check that if any of these upcodes appear, then I'm going to say, okay, there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,480",
+				"to": "00:29:33,560"
+			},
+			"offsets": {
+				"from": 1772480,
+				"to": 1773560
+			},
+			"text": " more coming out of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,560",
+				"to": "00:29:37,280"
+			},
+			"offsets": {
+				"from": 1773560,
+				"to": 1777280
+			},
+			"text": " I don't want to do this straight."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,280",
+				"to": "00:29:40,520"
+			},
+			"offsets": {
+				"from": 1777280,
+				"to": 1780520
+			},
+			"text": " So I just have that variable to true and return it."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,520",
+				"to": "00:29:50,440"
+			},
+			"offsets": {
+				"from": 1780520,
+				"to": 1790440
+			},
+			"text": " And now, like here is my -- it can't see that, but basically the result is true."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,440",
+				"to": "00:29:59,680"
+			},
+			"offsets": {
+				"from": 1790440,
+				"to": 1799680
+			},
+			"text": " So I run that tracer over a contract, and the result was true."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,680",
+				"to": "00:30:07,240"
+			},
+			"offsets": {
+				"from": 1799680,
+				"to": 1807240
+			},
+			"text": " But let's -- this is probably the most interesting part of the -- there is a few things."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,240",
+				"to": "00:30:08,440"
+			},
+			"offsets": {
+				"from": 1807240,
+				"to": 1808440
+			},
+			"text": " Things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:08,440",
+				"to": "00:30:19,840"
+			},
+			"offsets": {
+				"from": 1808440,
+				"to": 1819840
+			},
+			"text": " So I'm simulating a call from and to an address."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,840",
+				"to": "00:30:28,040"
+			},
+			"offsets": {
+				"from": 1819840,
+				"to": 1828040
+			},
+			"text": " But note that this address is actually not -- it's empty."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,040",
+				"to": "00:30:32,600"
+			},
+			"offsets": {
+				"from": 1828040,
+				"to": 1832600
+			},
+			"text": " There's no contract deployed on girly for this address."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,600",
+				"to": "00:30:39,600"
+			},
+			"offsets": {
+				"from": 1832600,
+				"to": 1839600
+			},
+			"text": " So I'm going to introduce to you a very nifty feature, and that's called state override."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,600",
+				"to": "00:30:41,600"
+			},
+			"offsets": {
+				"from": 1839600,
+				"to": 1841600
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,600",
+				"to": "00:30:53,440"
+			},
+			"offsets": {
+				"from": 1841600,
+				"to": 1853440
+			},
+			"text": " Basically, when you simulate a call using is.call or debug.trace.call, you can give a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,440",
+				"to": "00:30:57,080"
+			},
+			"offsets": {
+				"from": 1853440,
+				"to": 1857080
+			},
+			"text": " state modifications to get, like temporary."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:57,080",
+				"to": "00:31:06,680"
+			},
+			"offsets": {
+				"from": 1857080,
+				"to": 1866680
+			},
+			"text": " And you say, okay, apply these state overrides temporarily for simulating this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,680",
+				"to": "00:31:11,960"
+			},
+			"offsets": {
+				"from": 1866680,
+				"to": 1871960
+			},
+			"text": " So here what I did was I have the bytecode of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:11,960",
+				"to": "00:31:13,400"
+			},
+			"offsets": {
+				"from": 1871960,
+				"to": 1873400
+			},
+			"text": " The poison is token."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,400",
+				"to": "00:31:15,600"
+			},
+			"offsets": {
+				"from": 1873400,
+				"to": 1875600
+			},
+			"text": " This is the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:15,600",
+				"to": "00:31:18,440"
+			},
+			"offsets": {
+				"from": 1875600,
+				"to": 1878440
+			},
+			"text": " And here I say, okay, state overrides."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,440",
+				"to": "00:31:23,560"
+			},
+			"offsets": {
+				"from": 1878440,
+				"to": 1883560
+			},
+			"text": " In this address, please put this contract code."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:23,560",
+				"to": "00:31:27,840"
+			},
+			"offsets": {
+				"from": 1883560,
+				"to": 1887840
+			},
+			"text": " So this contract code will not be deployed anywhere, but only when I'm simulating this"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,840",
+				"to": "00:31:33,640"
+			},
+			"offsets": {
+				"from": 1887840,
+				"to": 1893640
+			},
+			"text": " transaction, it will be as if this address has this code."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:33,640",
+				"to": "00:31:36,840"
+			},
+			"offsets": {
+				"from": 1893640,
+				"to": 1896840
+			},
+			"text": " So this is very useful, like if you're simulating stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,840",
+				"to": "00:31:42,380"
+			},
+			"offsets": {
+				"from": 1896840,
+				"to": 1902380
+			},
+			"text": " And the trace that are objects, I'm passing also separately here."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,380",
+				"to": "00:31:49,520"
+			},
+			"offsets": {
+				"from": 1902380,
+				"to": 1909520
+			},
+			"text": " So what happens is basically, yeah, there's a call to transfer to this contract, and my"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,520",
+				"to": "00:31:55,360"
+			},
+			"offsets": {
+				"from": 1909520,
+				"to": 1915360
+			},
+			"text": " custom tracer detects, like says, it's a feature call, because it uses the coinbase"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:55,360",
+				"to": "00:31:56,560"
+			},
+			"offsets": {
+				"from": 1915360,
+				"to": 1916560
+			},
+			"text": " upgrade."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:56,560",
+				"to": "00:32:04,840"
+			},
+			"offsets": {
+				"from": 1916560,
+				"to": 1924840
+			},
+			"text": " Now the JavaScript tracer is what most of people know about, but it's not the only option"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,840",
+				"to": "00:32:07,560"
+			},
+			"offsets": {
+				"from": 1924840,
+				"to": 1927560
+			},
+			"text": " for writing a custom tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,560",
+				"to": "00:32:11,480"
+			},
+			"offsets": {
+				"from": 1927560,
+				"to": 1931480
+			},
+			"text": " Since a while ago, we also have another option."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:11,480",
+				"to": "00:32:16,120"
+			},
+			"offsets": {
+				"from": 1931480,
+				"to": 1936120
+			},
+			"text": " Namely, you can write your tracers in go."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:16,120",
+				"to": "00:32:23,280"
+			},
+			"offsets": {
+				"from": 1936120,
+				"to": 1943280
+			},
+			"text": " This is especially relevant if performance is a concern to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:23,280",
+				"to": "00:32:27,400"
+			},
+			"offsets": {
+				"from": 1943280,
+				"to": 1947400
+			},
+			"text": " The go JavaScript overhead is a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:27,400",
+				"to": "00:32:34,880"
+			},
+			"offsets": {
+				"from": 1947400,
+				"to": 1954880
+			},
+			"text": " So when you want to do tracing over a long range of blocks, it just takes a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:34,880",
+				"to": "00:32:39,680"
+			},
+			"offsets": {
+				"from": 1954880,
+				"to": 1959680
+			},
+			"text": " But now you can actually write your tracers in go."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:39,680",
+				"to": "00:32:41,320"
+			},
+			"offsets": {
+				"from": 1959680,
+				"to": 1961320
+			},
+			"text": " And it's pretty simple how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:41,320",
+				"to": "00:32:48,240"
+			},
+			"offsets": {
+				"from": 1961320,
+				"to": 1968240
+			},
+			"text": " I have one here that I'm going to walk through a bit, but I just want to show you how you"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:48,240",
+				"to": "00:32:52,200"
+			},
+			"offsets": {
+				"from": 1968240,
+				"to": 1972200
+			},
+			"text": " can -- first I want to show you how you can write one."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:52,200",
+				"to": "00:32:55,680"
+			},
+			"offsets": {
+				"from": 1972200,
+				"to": 1975680
+			},
+			"text": " So basically, you write your tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,680",
+				"to": "00:32:56,760"
+			},
+			"offsets": {
+				"from": 1975680,
+				"to": 1976760
+			},
+			"text": " You add this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:56,760",
+				"to": "00:32:58,240"
+			},
+			"offsets": {
+				"from": 1976760,
+				"to": 1978240
+			},
+			"text": " This is a very important part."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:58,240",
+				"to": "00:33:03,960"
+			},
+			"offsets": {
+				"from": 1978240,
+				"to": 1983960
+			},
+			"text": " This is how it -- how guests will know that there's a tracer here to be found."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:03,960",
+				"to": "00:33:09,000"
+			},
+			"offsets": {
+				"from": 1983960,
+				"to": 1989000
+			},
+			"text": " And you drop this file in a directory in guess."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:09,000",
+				"to": "00:33:13,120"
+			},
+			"offsets": {
+				"from": 1989000,
+				"to": 1993120
+			},
+			"text": " So we have this directory, it's tracer's native."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:13,120",
+				"to": "00:33:20,840"
+			},
+			"offsets": {
+				"from": 1993120,
+				"to": 2000840
+			},
+			"text": " You simply have to drop your go file here, do the registration, and you're good to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:20,840",
+				"to": "00:33:26,520"
+			},
+			"offsets": {
+				"from": 2000840,
+				"to": 2006520
+			},
+			"text": " And of course, your struct has to adhere to an interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:26,520",
+				"to": "00:33:28,560"
+			},
+			"offsets": {
+				"from": 2006520,
+				"to": 2008560
+			},
+			"text": " And this is the interface that you will see."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:28,560",
+				"to": "00:33:32,680"
+			},
+			"offsets": {
+				"from": 2008560,
+				"to": 2012680
+			},
+			"text": " So the methods are capture start."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:32,680",
+				"to": "00:33:37,400"
+			},
+			"offsets": {
+				"from": 2012680,
+				"to": 2017400
+			},
+			"text": " This is at the beginning of the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:37,400",
+				"to": "00:33:42,920"
+			},
+			"offsets": {
+				"from": 2017400,
+				"to": 2022920
+			},
+			"text": " You have capture state, which is run for every step of execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:42,920",
+				"to": "00:33:43,920"
+			},
+			"offsets": {
+				"from": 2022920,
+				"to": 2023920
+			},
+			"text": " You have enter."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:43,920",
+				"to": "00:33:47,400"
+			},
+			"offsets": {
+				"from": 2023920,
+				"to": 2027400
+			},
+			"text": " We didn't see this before."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,400",
+				"to": "00:33:54,440"
+			},
+			"offsets": {
+				"from": 2027400,
+				"to": 2034440
+			},
+			"text": " Enter is basically a hook that is called every time we enter a new call frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:54,440",
+				"to": "00:33:59,160"
+			},
+			"offsets": {
+				"from": 2034440,
+				"to": 2039160
+			},
+			"text": " So when there's a call or a create, we enter a new call frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:59,160",
+				"to": "00:34:01,480"
+			},
+			"offsets": {
+				"from": 2039160,
+				"to": 2041480
+			},
+			"text": " This one is called."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:01,480",
+				"to": "00:34:05,520"
+			},
+			"offsets": {
+				"from": 2041480,
+				"to": 2045520
+			},
+			"text": " And exit is when we leave the call frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:05,520",
+				"to": "00:34:09,560"
+			},
+			"offsets": {
+				"from": 2045520,
+				"to": 2049560
+			},
+			"text": " And you have fault and the result."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:09,560",
+				"to": "00:34:15,440"
+			},
+			"offsets": {
+				"from": 2049560,
+				"to": 2055440
+			},
+			"text": " So the result is when basically what you return and what the tracer will return when"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:15,440",
+				"to": "00:34:17,760"
+			},
+			"offsets": {
+				"from": 2055440,
+				"to": 2057760
+			},
+			"text": " you call the method."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:17,760",
+				"to": "00:34:19,400"
+			},
+			"offsets": {
+				"from": 2057760,
+				"to": 2059400
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:19,400",
+				"to": "00:34:24,240"
+			},
+			"offsets": {
+				"from": 2059400,
+				"to": 2064240
+			},
+			"text": " It's a bit tight time-wise, but I'm just going to give a short overview."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:24,240",
+				"to": "00:34:35,120"
+			},
+			"offsets": {
+				"from": 2064240,
+				"to": 2075120
+			},
+			"text": " So what this tracer does is that it will tell me the method signature for all of the functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:35,120",
+				"to": "00:34:36,320"
+			},
+			"offsets": {
+				"from": 2075120,
+				"to": 2076320
+			},
+			"text": " that were called."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:36,320",
+				"to": "00:34:42,320"
+			},
+			"offsets": {
+				"from": 2076320,
+				"to": 2082320
+			},
+			"text": " So as you probably know, so little functions, like when you hash their signatures, the four"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:42,320",
+				"to": "00:34:47,560"
+			},
+			"offsets": {
+				"from": 2082320,
+				"to": 2087560
+			},
+			"text": " bytes, that's how you actually invoke them at the EVM level."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:47,560",
+				"to": "00:34:49,040"
+			},
+			"offsets": {
+				"from": 2087560,
+				"to": 2089040
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:34:49,040",
+				"to": "00:34:54,120"
+			},
+			"offsets": {
+				"from": 2089040,
+				"to": 2094120
+			},
+			"text": " And I want to just collect this four bytes, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:54,120",
+				"to": "00:34:57,160"
+			},
+			"offsets": {
+				"from": 2094120,
+				"to": 2097160
+			},
+			"text": " The signature of the methods that were called."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:57,160",
+				"to": "00:35:03,080"
+			},
+			"offsets": {
+				"from": 2097160,
+				"to": 2103080
+			},
+			"text": " So this is the gist of the logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:03,080",
+				"to": "00:35:08,080"
+			},
+			"offsets": {
+				"from": 2103080,
+				"to": 2108080
+			},
+			"text": " I check that we're entering a new call frame."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:08,080",
+				"to": "00:35:15,800"
+			},
+			"offsets": {
+				"from": 2108080,
+				"to": 2115800
+			},
+			"text": " I check that it has to be a call or a delegate, call or static call, some kind of call."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:15,800",
+				"to": "00:35:17,040"
+			},
+			"offsets": {
+				"from": 2115800,
+				"to": 2117040
+			},
+			"text": " Otherwise, just return."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,040",
+				"to": "00:35:19,000"
+			},
+			"offsets": {
+				"from": 2117040,
+				"to": 2119000
+			},
+			"text": " That's not important."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:19,000",
+				"to": "00:35:23,240"
+			},
+			"offsets": {
+				"from": 2119000,
+				"to": 2123240
+			},
+			"text": " Also we don't want to collect pre-compile information, so they're also returned."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:23,240",
+				"to": "00:35:30,920"
+			},
+			"offsets": {
+				"from": 2123240,
+				"to": 2130920
+			},
+			"text": " Otherwise, take the first four bytes of the call data and this will be my signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:30,920",
+				"to": "00:35:34,240"
+			},
+			"offsets": {
+				"from": 2130920,
+				"to": 2134240
+			},
+			"text": " And these are stored in some objects here."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:34,240",
+				"to": "00:35:37,440"
+			},
+			"offsets": {
+				"from": 2134240,
+				"to": 2137440
+			},
+			"text": " Yeah, I don't have more time to go through this."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:37,440",
+				"to": "00:35:40,800"
+			},
+			"offsets": {
+				"from": 2137440,
+				"to": 2140800
+			},
+			"text": " So that's how you write a girl tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:40,800",
+				"to": "00:35:47,040"
+			},
+			"offsets": {
+				"from": 2140800,
+				"to": 2147040
+			},
+			"text": " And I want to quickly mention what's coming next on this front."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:47,040",
+				"to": "00:35:48,800"
+			},
+			"offsets": {
+				"from": 2147040,
+				"to": 2148800
+			},
+			"text": " So you saw the trace call method."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:48,800",
+				"to": "00:35:52,520"
+			},
+			"offsets": {
+				"from": 2148800,
+				"to": 2152520
+			},
+			"text": " I'm planning to work on the trace multicol."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:52,520",
+				"to": "00:35:56,200"
+			},
+			"offsets": {
+				"from": 2152520,
+				"to": 2156200
+			},
+			"text": " This is when you will have a list of call objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:56,200",
+				"to": "00:36:01,200"
+			},
+			"offsets": {
+				"from": 2156200,
+				"to": 2161200
+			},
+			"text": " They will be executed sequentially maintaining the intermediate state as they go to the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:01,200",
+				"to": "00:36:02,200"
+			},
+			"offsets": {
+				"from": 2161200,
+				"to": 2162200
+			},
+			"text": " call."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:02,200",
+				"to": "00:36:10,560"
+			},
+			"offsets": {
+				"from": 2162200,
+				"to": 2170560
+			},
+			"text": " And the other thing is the trace namespace or as other people refer to it as parity tracing."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:10,560",
+				"to": "00:36:15,520"
+			},
+			"offsets": {
+				"from": 2170560,
+				"to": 2175520
+			},
+			"text": " So these are the things on the world map that are being worked on right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:15,520",
+				"to": "00:36:19,840"
+			},
+			"offsets": {
+				"from": 2175520,
+				"to": 2179840
+			},
+			"text": " And on the last seconds, that was it, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:19,840",
+				"to": "00:36:21,320"
+			},
+			"offsets": {
+				"from": 2179840,
+				"to": 2181320
+			},
+			"text": " Thank you, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:21,320",
+				"to": "00:36:22,320"
+			},
+			"offsets": {
+				"from": 2181320,
+				"to": 2182320
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:22,320",
+				"to": "00:36:28,520"
+			},
+			"offsets": {
+				"from": 2182320,
+				"to": 2188520
+			},
+			"text": " Hi, most of these will probably be available in the docs, but does trace to file exist"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:28,520",
+				"to": "00:36:31,360"
+			},
+			"offsets": {
+				"from": 2188520,
+				"to": 2191360
+			},
+			"text": " for transactions only rather than just blocks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:31,360",
+				"to": "00:36:35,320"
+			},
+			"offsets": {
+				"from": 2191360,
+				"to": 2195320
+			},
+			"text": " No, I think what we have is only for blocks now."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:35,320",
+				"to": "00:36:36,320"
+			},
+			"offsets": {
+				"from": 2195320,
+				"to": 2196320
+			},
+			"text": " Got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:36,320",
+				"to": "00:36:39,760"
+			},
+			"offsets": {
+				"from": 2196320,
+				"to": 2199760
+			},
+			"text": " Is re-exac available via JSONRPC?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:39,760",
+				"to": "00:36:40,760"
+			},
+			"offsets": {
+				"from": 2199760,
+				"to": 2200760
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,760",
+				"to": "00:36:44,920"
+			},
+			"offsets": {
+				"from": 2200760,
+				"to": 2204920
+			},
+			"text": " So I didn't show it, but basically when you do trace transaction, in the same object"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:44,920",
+				"to": "00:36:48,680"
+			},
+			"offsets": {
+				"from": 2204920,
+				"to": 2208680
+			},
+			"text": " that you provide the tracer name, you specify re-exac."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:48,680",
+				"to": "00:36:49,680"
+			},
+			"offsets": {
+				"from": 2208680,
+				"to": 2209680
+			},
+			"text": " Got it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,680",
+				"to": "00:36:55,040"
+			},
+			"offsets": {
+				"from": 2209680,
+				"to": 2215040
+			},
+			"text": " And does get accessible state return only the highest block number that has state or all"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,040",
+				"to": "00:36:56,040"
+			},
+			"offsets": {
+				"from": 2215040,
+				"to": 2216040
+			},
+			"text": " block numbers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:36:56,040",
+				"to": "00:37:00,880"
+			},
+			"offsets": {
+				"from": 2216040,
+				"to": 2220880
+			},
+			"text": " It will return, like, in the range that you specify, it will return the first state that"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:00,880",
+				"to": "00:37:01,960"
+			},
+			"offsets": {
+				"from": 2220880,
+				"to": 2221960
+			},
+			"text": " it finds."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:01,960",
+				"to": "00:37:02,960"
+			},
+			"offsets": {
+				"from": 2221960,
+				"to": 2222960
+			},
+			"text": " The first."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:02,960",
+				"to": "00:37:03,960"
+			},
+			"offsets": {
+				"from": 2222960,
+				"to": 2223960
+			},
+			"text": " So the earliest."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:03,960",
+				"to": "00:37:04,960"
+			},
+			"offsets": {
+				"from": 2223960,
+				"to": 2224960
+			},
+			"text": " The first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,960",
+				"to": "00:37:07,080"
+			},
+			"offsets": {
+				"from": 2224960,
+				"to": 2227080
+			},
+			"text": " So if you want to get all of them, then you have to iterate."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:07,080",
+				"to": "00:37:11,120"
+			},
+			"offsets": {
+				"from": 2227080,
+				"to": 2231120
+			},
+			"text": " You have to narrow your range as you go and..."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:11,120",
+				"to": "00:37:13,520"
+			},
+			"offsets": {
+				"from": 2231120,
+				"to": 2233520
+			},
+			"text": " So if I did Genesis to now."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:13,520",
+				"to": "00:37:17,760"
+			},
+			"offsets": {
+				"from": 2233520,
+				"to": 2237760
+			},
+			"text": " If you need Genesis to now, then it will give you the first one, like, let's say, it's block"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,760",
+				"to": "00:37:22,920"
+			},
+			"offsets": {
+				"from": 2237760,
+				"to": 2242920
+			},
+			"text": " 10, and then you do another call from block 10 until now and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:22,920",
+				"to": "00:37:28,320"
+			},
+			"offsets": {
+				"from": 2242920,
+				"to": 2248320
+			},
+			"text": " Hey, quick question on the state diff tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:28,320",
+				"to": "00:37:35,040"
+			},
+			"offsets": {
+				"from": 2248320,
+				"to": 2255040
+			},
+			"text": " So does it provide kind of, you know, if there are multiple state changes in a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,040",
+				"to": "00:37:40,440"
+			},
+			"offsets": {
+				"from": 2255040,
+				"to": 2260440
+			},
+			"text": " like at the call level, do you provide all of those state changes, or is it just from"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,440",
+				"to": "00:37:44,160"
+			},
+			"offsets": {
+				"from": 2260440,
+				"to": 2264160
+			},
+			"text": " the beginning to the end of the transaction, what is the state diff?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:44,160",
+				"to": "00:37:45,160"
+			},
+			"offsets": {
+				"from": 2264160,
+				"to": 2265160
+			},
+			"text": " I may have missed this."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:45,160",
+				"to": "00:37:49,960"
+			},
+			"offsets": {
+				"from": 2265160,
+				"to": 2269960
+			},
+			"text": " So it's only from, like, basically throughout the whole transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:49,960",
+				"to": "00:37:51,840"
+			},
+			"offsets": {
+				"from": 2269960,
+				"to": 2271840
+			},
+			"text": " Not you mean for call level?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:51,840",
+				"to": "00:37:52,840"
+			},
+			"offsets": {
+				"from": 2271840,
+				"to": 2272840
+			},
+			"text": " Yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:52,840",
+				"to": "00:37:53,840"
+			},
+			"offsets": {
+				"from": 2272840,
+				"to": 2273840
+			},
+			"text": " You want the site diff for call."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:53,840",
+				"to": "00:37:54,840"
+			},
+			"offsets": {
+				"from": 2273840,
+				"to": 2274840
+			},
+			"text": " No, no."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:54,840",
+				"to": "00:37:57,480"
+			},
+			"offsets": {
+				"from": 2274840,
+				"to": 2277480
+			},
+			"text": " It's all for call translation."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:57,480",
+				"to": "00:38:00,400"
+			},
+			"offsets": {
+				"from": 2277480,
+				"to": 2280400
+			},
+			"text": " But this is something a custom tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:00,400",
+				"to": "00:38:02,400"
+			},
+			"offsets": {
+				"from": 2280400,
+				"to": 2282400
+			},
+			"text": " But yeah, you can definitely do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:02,400",
+				"to": "00:38:03,400"
+			},
+			"offsets": {
+				"from": 2282400,
+				"to": 2283400
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:03,400",
+				"to": "00:38:04,400"
+			},
+			"offsets": {
+				"from": 2283400,
+				"to": 2284400
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:04,400",
+				"to": "00:38:05,400"
+			},
+			"offsets": {
+				"from": 2284400,
+				"to": 2285400
+			},
+			"text": " You can just check the code for the pre-strace tracer."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,400",
+				"to": "00:38:07,320"
+			},
+			"offsets": {
+				"from": 2285400,
+				"to": 2287320
+			},
+			"text": " It's in the same directory that I showed."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:07,320",
+				"to": "00:38:09,720"
+			},
+			"offsets": {
+				"from": 2287320,
+				"to": 2289720
+			},
+			"text": " I don't think it will be very hard to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:09,720",
+				"to": "00:38:11,640"
+			},
+			"offsets": {
+				"from": 2289720,
+				"to": 2291640
+			},
+			"text": " But thanks so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:11,640",
+				"to": "00:38:11,920"
+			},
+			"offsets": {
+				"from": 2291640,
+				"to": 2291920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:11,920",
+				"to": "00:38:12,920"
+			},
+			"offsets": {
+				"from": 2291920,
+				"to": 2292920
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:12,920",
+				"to": "00:38:14,920"
+			},
+			"offsets": {
+				"from": 2292920,
+				"to": 2294920
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:14,920",
+				"to": "00:38:16,920"
+			},
+			"offsets": {
+				"from": 2294920,
+				"to": 2296920
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:16,920",
+				"to": "00:38:18,920"
+			},
+			"offsets": {
+				"from": 2296920,
+				"to": 2298920
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:18,920",
+				"to": "00:38:20,920"
+			},
+			"offsets": {
+				"from": 2298920,
+				"to": 2300920
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:38:20,920",
+				"to": "00:38:24,920"
+			},
+			"offsets": {
+				"from": 2300920,
+				"to": 2304920
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

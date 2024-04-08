@@ -1,0 +1,1671 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:18,300"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 18300
+			},
+			"text": " >> Hi. My name is Petri Anug."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,300",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 18300,
+				"to": 25440
+			},
+			"text": " I work at IMAP and I'm going to present you our approach to nano payments and"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,440",
+				"to": "00:00:30,080"
+			},
+			"offsets": {
+				"from": 27440,
+				"to": 30080
+			},
+			"text": " Ethereum and how we believe they can be implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,080",
+				"to": "00:00:35,180"
+			},
+			"offsets": {
+				"from": 30080,
+				"to": 35180
+			},
+			"text": " By nano payments we understand payments that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,180",
+				"to": "00:00:39,400"
+			},
+			"offsets": {
+				"from": 35180,
+				"to": 39400
+			},
+			"text": " two orders of magnitude smaller than typical micro payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,400",
+				"to": "00:00:45,200"
+			},
+			"offsets": {
+				"from": 39400,
+				"to": 45200
+			},
+			"text": " It's not a formal definition but we believe that typical micro payment is a payment under $10."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,200",
+				"to": "00:00:55,080"
+			},
+			"offsets": {
+				"from": 45200,
+				"to": 55080
+			},
+			"text": " We came across this problem when we tried to implement parts of our project, the column project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,640",
+				"to": "00:00:58,240"
+			},
+			"offsets": {
+				"from": 55640,
+				"to": 58240
+			},
+			"text": " which is distributed supercomputer."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,240",
+				"to": "00:01:05,640"
+			},
+			"offsets": {
+				"from": 58240,
+				"to": 65640
+			},
+			"text": " In fact, it's distributed peer-to-peer network where each node can participate both as a computer and as a task sender."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,640",
+				"to": "00:01:13,040"
+			},
+			"offsets": {
+				"from": 65640,
+				"to": 73040
+			},
+			"text": " And each node taking part in this computation should be able to receive payment eventually."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,040",
+				"to": "00:01:23,760"
+			},
+			"offsets": {
+				"from": 73040,
+				"to": 83760
+			},
+			"text": " And this results in nano payment because tasks can be split into pretty small, pretty substantial amount."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,760",
+				"to": "00:01:30,560"
+			},
+			"offsets": {
+				"from": 83760,
+				"to": 90560
+			},
+			"text": " For example, a single task can be split into up to 10,000 tasks where a cost of one task is below $1."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,560",
+				"to": "00:01:41,560"
+			},
+			"offsets": {
+				"from": 90560,
+				"to": 101560
+			},
+			"text": " We tried to achieve payments as small as one cent for a simple sub-task but we believe that we can approach even one cent of a cent."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,560",
+				"to": "00:01:51,760"
+			},
+			"offsets": {
+				"from": 101560,
+				"to": 111760
+			},
+			"text": " To make it attractive to users, we believe that cost of rent in one CPU core shouldn't exceed five cents on average per hour."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,760",
+				"to": "00:01:56,360"
+			},
+			"offsets": {
+				"from": 111760,
+				"to": 116360
+			},
+			"text": " To make it even more attractive, you could believe that from the user perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,360",
+				"to": "00:02:01,560"
+			},
+			"offsets": {
+				"from": 116360,
+				"to": 121560
+			},
+			"text": " the setting should be that the transaction fees are below the 5% of the total task value."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,560",
+				"to": "00:02:11,160"
+			},
+			"offsets": {
+				"from": 121560,
+				"to": 131160
+			},
+			"text": " Framework should not require any central authority, when it's trusted authority, everything should work inside the peer-to-peer network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,160",
+				"to": "00:02:14,160"
+			},
+			"offsets": {
+				"from": 131160,
+				"to": 134160
+			},
+			"text": " column network and in fact also an interior network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,160",
+				"to": "00:02:20,960"
+			},
+			"offsets": {
+				"from": 134160,
+				"to": 140960
+			},
+			"text": " Users, computing nodes shouldn't be required to stay online at any specific times."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,960",
+				"to": "00:02:29,560"
+			},
+			"offsets": {
+				"from": 140960,
+				"to": 149560
+			},
+			"text": " For example, due to changes in time zones, we should be able nevertheless to get their payments at some point, even if they're offline."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,560",
+				"to": "00:02:37,360"
+			},
+			"offsets": {
+				"from": 149560,
+				"to": 157360
+			},
+			"text": " An ideal you would like to skip any payments from users so that they don't have to pay upfront any funds to start the computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,360",
+				"to": "00:02:45,160"
+			},
+			"offsets": {
+				"from": 157360,
+				"to": 165160
+			},
+			"text": " We believe also that nano payments can be used in other scenarios, for example, paying for articles or for streaming content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,160",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 165160,
+				"to": 169160
+			},
+			"text": " paying direct to artists or for likes on social media."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 174160
+			},
+			"text": " Also, you can donate forms and blogs for people who write something that you find useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:02:57,160"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 177160
+			},
+			"text": " But there are many more ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,160",
+				"to": "00:03:01,160"
+			},
+			"offsets": {
+				"from": 177160,
+				"to": 181160
+			},
+			"text": " Why we believe Ethereum is the solution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,160",
+				"to": "00:03:11,160"
+			},
+			"offsets": {
+				"from": 181160,
+				"to": 191160
+			},
+			"text": " Well, traditional payment systems are simply too costly and they require additional, some trusted central authorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,160",
+				"to": "00:03:20,160"
+			},
+			"offsets": {
+				"from": 191160,
+				"to": 200160
+			},
+			"text": " They don't want to trust them. Well, people wouldn't have to trust them because there are some central and external authorities that work outside of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,160",
+				"to": "00:03:26,160"
+			},
+			"offsets": {
+				"from": 200160,
+				"to": 206160
+			},
+			"text": " Additional you have Bitcoin, which up to some point can solve our problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,160",
+				"to": "00:03:32,160"
+			},
+			"offsets": {
+				"from": 206160,
+				"to": 212160
+			},
+			"text": " But first of all, it requires additional payments for dust transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,160",
+				"to": "00:03:40,160"
+			},
+			"offsets": {
+				"from": 212160,
+				"to": 220160
+			},
+			"text": " Additional, there are some penalties for many transactions in one block and you have to pay additional for large blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,160",
+				"to": "00:03:51,160"
+			},
+			"offsets": {
+				"from": 220160,
+				"to": 231160
+			},
+			"text": " Possibly we could overcome these problems in Bitcoin network, but we also believe that additional logic would be implemented in a contract attached to GOM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,160",
+				"to": "00:03:57,160"
+			},
+			"offsets": {
+				"from": 231160,
+				"to": 237160
+			},
+			"text": " which makes Bitcoin a bad choice and Ethereum the right one."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,160",
+				"to": "00:04:00,160"
+			},
+			"offsets": {
+				"from": 237160,
+				"to": 240160
+			},
+			"text": " So how did the Bitcoin payments look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,160",
+				"to": "00:04:05,160"
+			},
+			"offsets": {
+				"from": 240160,
+				"to": 245160
+			},
+			"text": " Well, we talked about them a bit. We investigated all of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,160",
+				"to": "00:04:13,160"
+			},
+			"offsets": {
+				"from": 245160,
+				"to": 253160
+			},
+			"text": " And it seems that external service would be the best solution because they would solve the problem in simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,160",
+				"to": "00:04:23,160"
+			},
+			"offsets": {
+				"from": 253160,
+				"to": 263160
+			},
+			"text": " But they require the external service and additional authority, something which is of the network, both GOM and Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,160",
+				"to": "00:04:26,160"
+			},
+			"offsets": {
+				"from": 263160,
+				"to": 266160
+			},
+			"text": " and it is not feasible in our scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,160",
+				"to": "00:04:30,160"
+			},
+			"offsets": {
+				"from": 266160,
+				"to": 270160
+			},
+			"text": " Butching up to some point solves the problem, but it's not scalable."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,160",
+				"to": "00:04:37,160"
+			},
+			"offsets": {
+				"from": 270160,
+				"to": 277160
+			},
+			"text": " Well, direct transfer costs, approximately 21,000 gas right now, even exactly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,160",
+				"to": "00:04:42,160"
+			},
+			"offsets": {
+				"from": 277160,
+				"to": 282160
+			},
+			"text": " And batching is two up to three times cheaper, but that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,160",
+				"to": "00:04:45,160"
+			},
+			"offsets": {
+				"from": 282160,
+				"to": 285160
+			},
+			"text": " You cannot get any better with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,160",
+				"to": "00:04:51,160"
+			},
+			"offsets": {
+				"from": 285160,
+				"to": 291160
+			},
+			"text": " Batching boils down to initiating all transaction just with one message."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,160",
+				"to": "00:04:58,160"
+			},
+			"offsets": {
+				"from": 291160,
+				"to": 298160
+			},
+			"text": " In Ethereum, it's just a loop that sends value to all users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,160",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 298160,
+				"to": 301160
+			},
+			"text": " A very promising option is micro-payment channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:06,160"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 306160
+			},
+			"text": " Unfortunately, this requires the setting when two parties cooperate together for a longer period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,160",
+				"to": "00:05:09,160"
+			},
+			"offsets": {
+				"from": 306160,
+				"to": 309160
+			},
+			"text": " And this is not the case in GOM, unfortunately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,160",
+				"to": "00:05:16,160"
+			},
+			"offsets": {
+				"from": 309160,
+				"to": 316160
+			},
+			"text": " And the last one, probabilistic payments described by Vitalik on his blog, seems very promising."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,160",
+				"to": "00:05:26,160"
+			},
+			"offsets": {
+				"from": 316160,
+				"to": 326160
+			},
+			"text": " Unfortunately, it requires users to send large amounts of value before starting the calculation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,160",
+				"to": "00:05:35,160"
+			},
+			"offsets": {
+				"from": 326160,
+				"to": 335160
+			},
+			"text": " And those deposits, we believe, may not be acceptable by the senders, who simply would like to pay the predefined amount of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,160",
+				"to": "00:05:41,160"
+			},
+			"offsets": {
+				"from": 335160,
+				"to": 341160
+			},
+			"text": " and be sure that that's enough to make the whole payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,160",
+				"to": "00:05:44,160"
+			},
+			"offsets": {
+				"from": 341160,
+				"to": 344160
+			},
+			"text": " So how it looks in Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,160",
+				"to": "00:05:52,160"
+			},
+			"offsets": {
+				"from": 344160,
+				"to": 352160
+			},
+			"text": " Well, with the gas price in its recoasts at the level presented on the slide, it looks like this direct transfer costs 21,000 gas,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,160",
+				"to": "00:05:55,160"
+			},
+			"offsets": {
+				"from": 352160,
+				"to": 355160
+			},
+			"text": " whereas batching costs 11,000."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,160",
+				"to": "00:06:00,160"
+			},
+			"offsets": {
+				"from": 355160,
+				"to": 360160
+			},
+			"text": " It's an improvement, but it's not enough for now-no payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,160",
+				"to": "00:06:07,160"
+			},
+			"offsets": {
+				"from": 360160,
+				"to": 367160
+			},
+			"text": " Micro-payment channels would work, provided that we could establish a connection between two parties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,160",
+				"to": "00:06:12,160"
+			},
+			"offsets": {
+				"from": 367160,
+				"to": 372160
+			},
+			"text": " which we unfortunately cannot do when we take GOM into mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,160",
+				"to": "00:06:15,160"
+			},
+			"offsets": {
+				"from": 372160,
+				"to": 375160
+			},
+			"text": " Probabilistic payments would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,160",
+				"to": "00:06:19,160"
+			},
+			"offsets": {
+				"from": 375160,
+				"to": 379160
+			},
+			"text": " Unfortunately, there is no fixed cost per user."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,160",
+				"to": "00:06:25,160"
+			},
+			"offsets": {
+				"from": 379160,
+				"to": 385160
+			},
+			"text": " Expected cost could be calculated, but we're not going to do it here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,160",
+				"to": "00:06:30,160"
+			},
+			"offsets": {
+				"from": 385160,
+				"to": 390160
+			},
+			"text": " Our minor improvement over batching is a sub-accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,160",
+				"to": "00:06:38,160"
+			},
+			"offsets": {
+				"from": 390160,
+				"to": 398160
+			},
+			"text": " Sub-accounts is a simple smart contract which establishes a mapping between addresses and values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,160",
+				"to": "00:06:46,160"
+			},
+			"offsets": {
+				"from": 398160,
+				"to": 406160
+			},
+			"text": " and sender transfers values, sending a vector of data, where so addresses and values,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,160",
+				"to": "00:06:51,160"
+			},
+			"offsets": {
+				"from": 406160,
+				"to": 411160
+			},
+			"text": " and they accumulate in those accounts stored in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,160",
+				"to": "00:06:58,160"
+			},
+			"offsets": {
+				"from": 411160,
+				"to": 418160
+			},
+			"text": " From time to time, end users can cash out, and we believe that on average it should cost 8,000 gas per user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,160",
+				"to": "00:07:06,160"
+			},
+			"offsets": {
+				"from": 418160,
+				"to": 426160
+			},
+			"text": " which gives 5K for contract modification, 2K gas for sending message to the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,160",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 426160,
+				"to": 433160
+			},
+			"text": " and we believe that users should be able to boil down to 1,000 gas for cashing out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:21,160"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 441160
+			},
+			"text": " This still is not a perfect solution. It doesn't scale, and that's where we came up with a voluntary contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,160",
+				"to": "00:07:25,160"
+			},
+			"offsets": {
+				"from": 441160,
+				"to": 445160
+			},
+			"text": " which supposedly solves all the problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,160",
+				"to": "00:07:33,160"
+			},
+			"offsets": {
+				"from": 445160,
+				"to": 453160
+			},
+			"text": " And it's pretty simple. It looks like the task center, and a person who broadcasted the task into a volume network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,160",
+				"to": "00:07:38,160"
+			},
+			"offsets": {
+				"from": 453160,
+				"to": 458160
+			},
+			"text": " sends off-chain the description of the lottery to all receivers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,160",
+				"to": "00:07:46,160"
+			},
+			"offsets": {
+				"from": 458160,
+				"to": 466160
+			},
+			"text": " and additionally sends some data to the smart contract, so that all receivers can verify that they are treated fairly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,160",
+				"to": "00:07:52,160"
+			},
+			"offsets": {
+				"from": 466160,
+				"to": 472160
+			},
+			"text": " and contracts should be able to verify that some user has won."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,160",
+				"to": "00:07:58,160"
+			},
+			"offsets": {
+				"from": 472160,
+				"to": 478160
+			},
+			"text": " The second step is drawing a random number. I'll talk about the random source later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,160",
+				"to": "00:08:01,160"
+			},
+			"offsets": {
+				"from": 478160,
+				"to": 481160
+			},
+			"text": " We believe that we can provide it, so we can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,160",
+				"to": "00:08:07,160"
+			},
+			"offsets": {
+				"from": 481160,
+				"to": 487160
+			},
+			"text": " It's just a matter of running the contract so that it pays the required amount to the winner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,160",
+				"to": "00:08:13,160"
+			},
+			"offsets": {
+				"from": 487160,
+				"to": 493160
+			},
+			"text": " and so that everyone can verify that indeed that person won."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,160",
+				"to": "00:08:22,160"
+			},
+			"offsets": {
+				"from": 493160,
+				"to": 502160
+			},
+			"text": " In the ideal world, we would be able to drill a random number easily, and in a very, very viable way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,160",
+				"to": "00:08:27,160"
+			},
+			"offsets": {
+				"from": 502160,
+				"to": 507160
+			},
+			"text": " And in that setting, the algorithm would be pretty straightforward."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,160",
+				"to": "00:08:32,160"
+			},
+			"offsets": {
+				"from": 507160,
+				"to": 512160
+			},
+			"text": " The task center would send a very description to everyone in the column network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,160",
+				"to": "00:08:36,160"
+			},
+			"offsets": {
+				"from": 512160,
+				"to": 516160
+			},
+			"text": " so that everyone would be able to verify that it is fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,160",
+				"to": "00:08:46,160"
+			},
+			"offsets": {
+				"from": 516160,
+				"to": 526160
+			},
+			"text": " And after that, anyone could call a reward winner into the contract, which would simply send the funds to the winning node."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,160",
+				"to": "00:08:51,160"
+			},
+			"offsets": {
+				"from": 526160,
+				"to": 531160
+			},
+			"text": " Unfortunately, we don't know how to do it, because there is no source of trusted source of randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,160",
+				"to": "00:09:00,160"
+			},
+			"offsets": {
+				"from": 531160,
+				"to": 540160
+			},
+			"text": " But if we could draw a random number from some external source that can be checked later on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,160",
+				"to": "00:09:04,160"
+			},
+			"offsets": {
+				"from": 540160,
+				"to": 544160
+			},
+			"text": " then the sender would call a start lottery with lottery ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,160",
+				"to": "00:09:14,160"
+			},
+			"offsets": {
+				"from": 544160,
+				"to": 554160
+			},
+			"text": " Lottery ID maps uniquely to the description of the lottery and the ID of the task that was sent to the column network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,160",
+				"to": "00:09:22,160"
+			},
+			"offsets": {
+				"from": 554160,
+				"to": 562160
+			},
+			"text": " And after the random number is generated, someone may be the sender or the winner calls a reward winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,160",
+				"to": "00:09:27,160"
+			},
+			"offsets": {
+				"from": 562160,
+				"to": 567160
+			},
+			"text": " And just as before, funds are transferred to the winning node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,160",
+				"to": "00:09:33,160"
+			},
+			"offsets": {
+				"from": 567160,
+				"to": 573160
+			},
+			"text": " Unfortunately, this is still invisible, and we have to come up with something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,160",
+				"to": "00:09:38,160"
+			},
+			"offsets": {
+				"from": 573160,
+				"to": 578160
+			},
+			"text": " So we use, as suggested, by Vitalik Hush's from FutureBlox."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,160",
+				"to": "00:09:43,160"
+			},
+			"offsets": {
+				"from": 578160,
+				"to": 583160
+			},
+			"text": " An additional method in the turbine winner can be called by anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,160",
+				"to": "00:09:48,160"
+			},
+			"offsets": {
+				"from": 583160,
+				"to": 588160
+			},
+			"text": " And that method stores a pretty fine hash of a predefined block, future block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,160",
+				"to": "00:09:56,160"
+			},
+			"offsets": {
+				"from": 588160,
+				"to": 596160
+			},
+			"text": " And after that, everything goes as before, someone calls a reward winner, and the funds are transferred to the winning node."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,160",
+				"to": "00:09:59,160"
+			},
+			"offsets": {
+				"from": 596160,
+				"to": 599160
+			},
+			"text": " The point is that reward winner can be called by anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,160",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 599160,
+				"to": 604160
+			},
+			"text": " The turbine winner is required to be called within some amount of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:08,160"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 608160
+			},
+			"text": " And there is an incentive for everyone to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,160",
+				"to": "00:10:15,160"
+			},
+			"offsets": {
+				"from": 608160,
+				"to": 615160
+			},
+			"text": " First off, the paying node, the task sender, pays some small additional deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,160",
+				"to": "00:10:22,160"
+			},
+			"offsets": {
+				"from": 615160,
+				"to": 622160
+			},
+			"text": " And this deposit is returned if the sender calls the turbine winner \"Elion\"."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,160",
+				"to": "00:10:28,160"
+			},
+			"offsets": {
+				"from": 622160,
+				"to": 628160
+			},
+			"text": " If that node fails to call it, anyone can call the turbine winner, and the deposit is transferred to that node."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,160",
+				"to": "00:10:32,160"
+			},
+			"offsets": {
+				"from": 628160,
+				"to": 632160
+			},
+			"text": " So there is an incentive to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,160",
+				"to": "00:10:40,160"
+			},
+			"offsets": {
+				"from": 632160,
+				"to": 640160
+			},
+			"text": " Well, what's more important, what's important here is that winner certificate is pretty similar to what we had in Saba-Kons case."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,160",
+				"to": "00:10:42,160"
+			},
+			"offsets": {
+				"from": 640160,
+				"to": 642160
+			},
+			"text": " It's a list of pairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,160",
+				"to": "00:10:51,160"
+			},
+			"offsets": {
+				"from": 642160,
+				"to": 651160
+			},
+			"text": " And nodes addresses and values that correspond to each node, and each value is proportional to the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,160",
+				"to": "00:10:58,160"
+			},
+			"offsets": {
+				"from": 651160,
+				"to": 658160
+			},
+			"text": " Well, compute resources that node spent for the task, or even sub-task."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,160",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 658160,
+				"to": 663160
+			},
+			"text": " And this is linear in number of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:09,160"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 669160
+			},
+			"text": " We believe that it should be better, and everyone knows what the structure is."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,160",
+				"to": "00:11:14,160"
+			},
+			"offsets": {
+				"from": 669160,
+				"to": 674160
+			},
+			"text": " So the circle tree can be used to simply send a logarithmic amount of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,160",
+				"to": "00:11:18,160"
+			},
+			"offsets": {
+				"from": 674160,
+				"to": 678160
+			},
+			"text": " with regard to the number of participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,160",
+				"to": "00:11:25,160"
+			},
+			"offsets": {
+				"from": 678160,
+				"to": 685160
+			},
+			"text": " The only change in the algorithm is that the winner certificate right now consists of triplets."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,160",
+				"to": "00:11:34,160"
+			},
+			"offsets": {
+				"from": 685160,
+				"to": 694160
+			},
+			"text": " Address a partial sum up to the point where this node is in a vector, and its value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,160",
+				"to": "00:11:39,160"
+			},
+			"offsets": {
+				"from": 694160,
+				"to": 699160
+			},
+			"text": " And that is can be determined in a tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,160",
+				"to": "00:11:51,160"
+			},
+			"offsets": {
+				"from": 699160,
+				"to": 711160
+			},
+			"text": " So when the path is set, the lottery AD is changed to the hash of the root of the tree, concatenated with the lottery ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,160",
+				"to": "00:11:54,160"
+			},
+			"offsets": {
+				"from": 711160,
+				"to": 714160
+			},
+			"text": " We believe that we can do even better."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,160",
+				"to": "00:11:58,160"
+			},
+			"offsets": {
+				"from": 714160,
+				"to": 718160
+			},
+			"text": " We can keep the cost of the whole lottery constant."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,160",
+				"to": "00:12:10,160"
+			},
+			"offsets": {
+				"from": 718160,
+				"to": 730160
+			},
+			"text": " This setting requires some optimistic assumptions that prove the one that is sent in fifth step."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,160",
+				"to": "00:12:16,160"
+			},
+			"offsets": {
+				"from": 730160,
+				"to": 736160
+			},
+			"text": " It's sent only when necessary, and necessary meaning that someone was cheating."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,160",
+				"to": "00:12:25,160"
+			},
+			"offsets": {
+				"from": 736160,
+				"to": 745160
+			},
+			"text": " So a winning node sends a lottery winner message without any proof, and stores a huge deposit, which would be paid to other node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,160",
+				"to": "00:12:29,160"
+			},
+			"offsets": {
+				"from": 745160,
+				"to": 749160
+			},
+			"text": " if that sending node is a cheater."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,160",
+				"to": "00:12:39,160"
+			},
+			"offsets": {
+				"from": 749160,
+				"to": 759160
+			},
+			"text": " After that, anyone participating in the network can send a proof, and if the tutor is revealed, then the node sending the proof gets the deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,160",
+				"to": "00:12:43,160"
+			},
+			"offsets": {
+				"from": 759160,
+				"to": 763160
+			},
+			"text": " and the winner gets the value, it gets the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,160",
+				"to": "00:12:48,160"
+			},
+			"offsets": {
+				"from": 763160,
+				"to": 768160
+			},
+			"text": " We believe that 24 hours is just enough to make it fair."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,160",
+				"to": "00:12:56,160"
+			},
+			"offsets": {
+				"from": 768160,
+				"to": 776160
+			},
+			"text": " The algorithm is pretty similar to the first implementation that is not optimistic but uses certificates."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,160",
+				"to": "00:12:59,160"
+			},
+			"offsets": {
+				"from": 776160,
+				"to": 779160
+			},
+			"text": " Right here, we add three additional points."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,160",
+				"to": "00:13:02,160"
+			},
+			"offsets": {
+				"from": 779160,
+				"to": 782160
+			},
+			"text": " In fact, two, a lottery winner and lottery payout."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,160",
+				"to": "00:13:07,160"
+			},
+			"offsets": {
+				"from": 782160,
+				"to": 787160
+			},
+			"text": " A lottery winner is used to indicate that a node believes is a winner."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,160",
+				"to": "00:13:11,160"
+			},
+			"offsets": {
+				"from": 787160,
+				"to": 791160
+			},
+			"text": " A lottery payout can be called after 24 hours, it's no one who vetoes."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,160",
+				"to": "00:13:22,160"
+			},
+			"offsets": {
+				"from": 791160,
+				"to": 802160
+			},
+			"text": " A lottery winner is a veto which results in revealing cheater and sending a deposit to the revealing node and sending price to the winning node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,160",
+				"to": "00:13:30,160"
+			},
+			"offsets": {
+				"from": 802160,
+				"to": 810160
+			},
+			"text": " So one very important problem that we have to deal with is how to generate random value."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,160",
+				"to": "00:13:45,160"
+			},
+			"offsets": {
+				"from": 810160,
+				"to": 825160
+			},
+			"text": " Well, generating random values by future blocks is not a perfect method because it's prone to minus fraud and at the point of this presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,160",
+				"to": "00:13:53,160"
+			},
+			"offsets": {
+				"from": 825160,
+				"to": 833160
+			},
+			"text": " only 25 and 56 blocks can be, well, hashes of blocks are available to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,160",
+				"to": "00:14:05,160"
+			},
+			"offsets": {
+				"from": 833160,
+				"to": 845160
+			},
+			"text": " So within 25, 2056 blocks, block hash has to be stored in a contract because later on it cannot be verified."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,160",
+				"to": "00:14:16,160"
+			},
+			"offsets": {
+				"from": 845160,
+				"to": 856160
+			},
+			"text": " If that doesn't happen, then the next batch of 25, 256 blocks is used and another hash is used."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,160",
+				"to": "00:14:27,160"
+			},
+			"offsets": {
+				"from": 856160,
+				"to": 867160
+			},
+			"text": " It's fair, but it changes the winner, so it's an incentive to everyone to get that hash from the first 256 blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,160",
+				"to": "00:14:38,160"
+			},
+			"offsets": {
+				"from": 867160,
+				"to": 878160
+			},
+			"text": " Well, so far we don't know any better solution, but we are aware of approaches that can, in future, replace our approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,160",
+				"to": "00:14:49,160"
+			},
+			"offsets": {
+				"from": 878160,
+				"to": 889160
+			},
+			"text": " So we have no contracts and arm clock. If one stable and well, well developed, may be a better approach to this problem and may solve it easily, we don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,160",
+				"to": "00:14:57,160"
+			},
+			"offsets": {
+				"from": 889160,
+				"to": 897160
+			},
+			"text": " Right now they are not very reliable and well, more expensive than our approach, simply."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,160",
+				"to": "00:15:07,160"
+			},
+			"offsets": {
+				"from": 897160,
+				"to": 907160
+			},
+			"text": " So we know that they exist, we know that they can be used, but we have to wait until they get a bit more mature."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,160",
+				"to": "00:15:18,160"
+			},
+			"offsets": {
+				"from": 907160,
+				"to": 918160
+			},
+			"text": " So the cost comparison between presented methods is like this, and Bashing can somehow comes with the number of users, lottery check, as you can see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,160",
+				"to": "00:15:32,160"
+			},
+			"offsets": {
+				"from": 918160,
+				"to": 932160
+			},
+			"text": " logarithmically lottery winner is a constant cost, and for less than 256 users, lottery check is cheaper than lottery winner, which makes it a preferable method in our setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,160",
+				"to": "00:15:46,160"
+			},
+			"offsets": {
+				"from": 932160,
+				"to": 946160
+			},
+			"text": " As you can see for 100 users, cost is 67 times higher than for lottery, Bashing and Subcans, and for 1000 users it's 2 orders of magnitude, more expensive, which makes it unusable in our setting."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,160",
+				"to": "00:15:56,160"
+			},
+			"offsets": {
+				"from": 946160,
+				"to": 956160
+			},
+			"text": " What may be interesting for a user who takes part in a probabilistic setting is how long, well, a user would have to wait for the first pay payment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,160",
+				"to": "00:16:11,160"
+			},
+			"offsets": {
+				"from": 956160,
+				"to": 971160
+			},
+			"text": " and it seems that the probability of not getting a payment during first and number of lotter drops to zero pretty quickly, which means that it goes, rises to one, pretty quickly, probability of getting a payment rises quickly to one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,160",
+				"to": "00:16:21,160"
+			},
+			"offsets": {
+				"from": 971160,
+				"to": 981160
+			},
+			"text": " What's even more interesting is what's the chance of getting some predefined amount of expected income after a number of lotteries?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,160",
+				"to": "00:16:36,160"
+			},
+			"offsets": {
+				"from": 981160,
+				"to": 996160
+			},
+			"text": " Well, using a simplified approach with a minimal cumulative distribution, we can show that this is, this grows to one with the number of lotteries, the way it's presented on this graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,160",
+				"to": "00:16:46,160"
+			},
+			"offsets": {
+				"from": 996160,
+				"to": 1006160
+			},
+			"text": " and it's pretty convincing that it should work and it should be convincing to users to take part in a lotteries."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,160",
+				"to": "00:16:51,160"
+			},
+			"offsets": {
+				"from": 1006160,
+				"to": 1011160
+			},
+			"text": " Thank you very much. If you have any questions, please don't hesitate to contact us."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,160",
+				"to": "00:17:01,160"
+			},
+			"offsets": {
+				"from": 1011160,
+				"to": 1021160
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,160",
+				"to": "00:17:03,740"
+			},
+			"offsets": {
+				"from": 1021160,
+				"to": 1023740
+			},
+			"text": " (bells ringing)"
+		}
+	]
+}

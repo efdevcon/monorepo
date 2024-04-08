@@ -1,0 +1,3398 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,560"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16560
+			},
+			"text": " Today I want to talk about proposal builder separation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,560",
+				"to": "00:00:18,180"
+			},
+			"offsets": {
+				"from": 16560,
+				"to": 18180
+			},
+			"text": " give some updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,180",
+				"to": "00:00:23,200"
+			},
+			"offsets": {
+				"from": 18180,
+				"to": 23200
+			},
+			"text": " In a sense these are updates because it's something we've been working on for some time."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,200",
+				"to": "00:00:26,540"
+			},
+			"offsets": {
+				"from": 23200,
+				"to": 26540
+			},
+			"text": " I am the team leader of the Robust Incentives group,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,540",
+				"to": "00:00:29,100"
+			},
+			"offsets": {
+				"from": 26540,
+				"to": 29100
+			},
+			"text": " which is a research team at the Ethereum Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,560",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 29560,
+				"to": 35280
+			},
+			"text": " Looking at mechanism design, game theory, economic modeling, these fancy stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:42,920"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 42920
+			},
+			"text": " In the previous episode let me set a bit of context for what PBS is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,920",
+				"to": "00:00:54,120"
+			},
+			"offsets": {
+				"from": 42920,
+				"to": 54120
+			},
+			"text": " Something we definitely have learned to appreciate more in the last years as Blogspace got scarce"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,120",
+				"to": "00:00:59,540"
+			},
+			"offsets": {
+				"from": 54120,
+				"to": 59540
+			},
+			"text": " and as gas fees got more expensive is that we are all learning what Blogspace"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,540",
+				"to": "00:01:00,960"
+			},
+			"offsets": {
+				"from": 59540,
+				"to": 60960
+			},
+			"text": " is capable to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,960",
+				"to": "00:01:06,320"
+			},
+			"offsets": {
+				"from": 60960,
+				"to": 66320
+			},
+			"text": " So when we think of it as an economic good we try to understand what its properties are,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,320",
+				"to": "00:01:10,120"
+			},
+			"offsets": {
+				"from": 66320,
+				"to": 70120
+			},
+			"text": " how to sell it and how to provide for it as the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,120",
+				"to": "00:01:11,720"
+			},
+			"offsets": {
+				"from": 70120,
+				"to": 71720
+			},
+			"text": " So as the Ethereum protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,720",
+				"to": "00:01:18,380"
+			},
+			"offsets": {
+				"from": 71720,
+				"to": 78380
+			},
+			"text": " We know that it's valuable, it's the raw material that users take advantage of to do their transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,380",
+				"to": "00:01:21,480"
+			},
+			"offsets": {
+				"from": 78380,
+				"to": 81480
+			},
+			"text": " but we know also that some of it is more valuable than the rest."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,480",
+				"to": "00:01:26,400"
+			},
+			"offsets": {
+				"from": 81480,
+				"to": 86400
+			},
+			"text": " For instance, being first to do something or being right behind another transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,400",
+				"to": "00:01:28,580"
+			},
+			"offsets": {
+				"from": 86400,
+				"to": 88580
+			},
+			"text": " all these things that we call now MEV."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,580",
+				"to": "00:01:32,740"
+			},
+			"offsets": {
+				"from": 88580,
+				"to": 92740
+			},
+			"text": " That led us to Blogwars."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,740",
+				"to": "00:01:35,940"
+			},
+			"offsets": {
+				"from": 92740,
+				"to": 95940
+			},
+			"text": " I'm just going to read from the text here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,940",
+				"to": "00:01:41,380"
+			},
+			"offsets": {
+				"from": 95940,
+				"to": 101380
+			},
+			"text": " While the resistance hashtags take from home, solo validators are rookies in the market of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,380",
+				"to": "00:01:42,820"
+			},
+			"offsets": {
+				"from": 101380,
+				"to": 102820
+			},
+			"text": " galactic proportions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,820",
+				"to": "00:01:47,580"
+			},
+			"offsets": {
+				"from": 102820,
+				"to": 107580
+			},
+			"text": " To keep up with the empire rebels source blogs from distant planets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,580",
+				"to": "00:01:50,060"
+			},
+			"offsets": {
+				"from": 107580,
+				"to": 110060
+			},
+			"text": " But the trade is fraught with difficulties."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,060",
+				"to": "00:01:55,820"
+			},
+			"offsets": {
+				"from": 110060,
+				"to": 115820
+			},
+			"text": " Indeed, because Blogspace is so valuable and because some people got so good at providing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,820",
+				"to": "00:02:00,220"
+			},
+			"offsets": {
+				"from": 115820,
+				"to": 120220
+			},
+			"text": " it, it has happened even before Proof of Stake and Proof of Work."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,220",
+				"to": "00:02:05,260"
+			},
+			"offsets": {
+				"from": 120220,
+				"to": 125260
+			},
+			"text": " That parts of the Blog would be constructed by people who have specific expertise in making"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,260",
+				"to": "00:02:08,180"
+			},
+			"offsets": {
+				"from": 125260,
+				"to": 128180
+			},
+			"text": " the best use of the valuable Blogspace."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,180",
+				"to": "00:02:09,660"
+			},
+			"offsets": {
+				"from": 128180,
+				"to": 129660
+			},
+			"text": " So we call that MEV Gef."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,660",
+				"to": "00:02:16,780"
+			},
+			"offsets": {
+				"from": 129660,
+				"to": 136780
+			},
+			"text": " This was provided by Flashbots and in this MEV Gef network, searchers were these very"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,780",
+				"to": "00:02:23,420"
+			},
+			"offsets": {
+				"from": 136780,
+				"to": 143420
+			},
+			"text": " sophisticated players, submit bundles to at the time what were trusted Blog producers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,420",
+				"to": "00:02:27,980"
+			},
+			"offsets": {
+				"from": 143420,
+				"to": 147980
+			},
+			"text": " essentially mining pools who were producing the blogs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,980",
+				"to": "00:02:29,380"
+			},
+			"offsets": {
+				"from": 147980,
+				"to": 149380
+			},
+			"text": " So these bundles are very valuable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,380",
+				"to": "00:02:33,740"
+			},
+			"offsets": {
+				"from": 149380,
+				"to": 153740
+			},
+			"text": " But at the time that the searchers submit them, they don't want anyone to see them because"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,740",
+				"to": "00:02:39,660"
+			},
+			"offsets": {
+				"from": 153740,
+				"to": 159660
+			},
+			"text": " the value of the Blog could easily be copied by a malicious Blog producer, which is why"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,660",
+				"to": "00:02:44,380"
+			},
+			"offsets": {
+				"from": 159660,
+				"to": 164380
+			},
+			"text": " the network relied on only trusted Blog producers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,380",
+				"to": "00:02:48,580"
+			},
+			"offsets": {
+				"from": 164380,
+				"to": 168580
+			},
+			"text": " When the Blog producers receive the bundles, they are scored, they may be combined with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,580",
+				"to": "00:02:53,380"
+			},
+			"offsets": {
+				"from": 168580,
+				"to": 173380
+			},
+			"text": " one another, essentially you are trying to get the most juice out of the scarce Blogspace"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,380",
+				"to": "00:02:58,660"
+			},
+			"offsets": {
+				"from": 173380,
+				"to": 178660
+			},
+			"text": " that you are providing as a Blog producer."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,660",
+				"to": "00:03:01,340"
+			},
+			"offsets": {
+				"from": 178660,
+				"to": 181340
+			},
+			"text": " So how does that look today in Proof of Stake?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,340",
+				"to": "00:03:04,020"
+			},
+			"offsets": {
+				"from": 181340,
+				"to": 184020
+			},
+			"text": " It looks very empty because I will add more to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,020",
+				"to": "00:03:09,220"
+			},
+			"offsets": {
+				"from": 184020,
+				"to": 189220
+			},
+			"text": " But today you have essentially two options."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,220",
+				"to": "00:03:11,100"
+			},
+			"offsets": {
+				"from": 189220,
+				"to": 191100
+			},
+			"text": " There could be more in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,100",
+				"to": "00:03:17,420"
+			},
+			"offsets": {
+				"from": 191100,
+				"to": 197420
+			},
+			"text": " You could decide to forego this smart network of capable Blog builders and build your Blog"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,420",
+				"to": "00:03:21,820"
+			},
+			"offsets": {
+				"from": 197420,
+				"to": 201820
+			},
+			"text": " locally, just grabbing transactions from your local Mempool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,820",
+				"to": "00:03:27,740"
+			},
+			"offsets": {
+				"from": 201820,
+				"to": 207740
+			},
+			"text": " So in Proof of Stake, the clients are divided into the Consensus client and the execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,740",
+				"to": "00:03:28,740"
+			},
+			"offsets": {
+				"from": 207740,
+				"to": 208740
+			},
+			"text": " engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,740",
+				"to": "00:03:32,380"
+			},
+			"offsets": {
+				"from": 208740,
+				"to": 212380
+			},
+			"text": " You are just listening passively to use your transactions and including them into your"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,380",
+				"to": "00:03:34,660"
+			},
+			"offsets": {
+				"from": 212380,
+				"to": 214660
+			},
+			"text": " Blog."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,660",
+				"to": "00:03:40,900"
+			},
+			"offsets": {
+				"from": 214660,
+				"to": 220900
+			},
+			"text": " Or you can summon this much more complex external network that involves many parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,900",
+				"to": "00:03:42,580"
+			},
+			"offsets": {
+				"from": 220900,
+				"to": 222580
+			},
+			"text": " So let's talk a bit about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,580",
+				"to": "00:03:48,140"
+			},
+			"offsets": {
+				"from": 222580,
+				"to": 228140
+			},
+			"text": " I will go from right to left as I feel this is probably the more intuitive way to go about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,140",
+				"to": "00:03:49,140"
+			},
+			"offsets": {
+				"from": 228140,
+				"to": 229140
+			},
+			"text": " it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,140",
+				"to": "00:03:53,940"
+			},
+			"offsets": {
+				"from": 229140,
+				"to": 233940
+			},
+			"text": " So users send their transaction, they are public, they are broadcasted around the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,940",
+				"to": "00:03:58,180"
+			},
+			"offsets": {
+				"from": 233940,
+				"to": 238180
+			},
+			"text": " The searchers pick up some of these transactions and make these valuable bundles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,180",
+				"to": "00:04:02,420"
+			},
+			"offsets": {
+				"from": 238180,
+				"to": 242420
+			},
+			"text": " They forward these bundles to builders and builders are responsible for making whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,420",
+				"to": "00:04:06,020"
+			},
+			"offsets": {
+				"from": 242420,
+				"to": 246020
+			},
+			"text": " blocks and these whole blocks are then forwarded to relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,020",
+				"to": "00:04:12,940"
+			},
+			"offsets": {
+				"from": 246020,
+				"to": 252940
+			},
+			"text": " The relays act as middlemen in this market between proposers who are the bonded validators"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,940",
+				"to": "00:04:15,820"
+			},
+			"offsets": {
+				"from": 252940,
+				"to": 255820
+			},
+			"text": " in Proof of Stake and builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,820",
+				"to": "00:04:20,460"
+			},
+			"offsets": {
+				"from": 255820,
+				"to": 260460
+			},
+			"text": " Why we need this intermediary is again because these opportunities that searchers found,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,460",
+				"to": "00:04:25,380"
+			},
+			"offsets": {
+				"from": 260460,
+				"to": 265380
+			},
+			"text": " they are kind of private and so we don't want to reveal them too soon to the Blog producer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,380",
+				"to": "00:04:30,180"
+			},
+			"offsets": {
+				"from": 265380,
+				"to": 270180
+			},
+			"text": " We need to make sure that we have a commitment that the Blog producer will use the block provided"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,180",
+				"to": "00:04:33,900"
+			},
+			"offsets": {
+				"from": 270180,
+				"to": 273900
+			},
+			"text": " to them by the builder before the block is actually revealed perfectly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,900",
+				"to": "00:04:37,860"
+			},
+			"offsets": {
+				"from": 273900,
+				"to": 277860
+			},
+			"text": " So the relay is discussed again in this system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,860",
+				"to": "00:04:42,540"
+			},
+			"offsets": {
+				"from": 277860,
+				"to": 282540
+			},
+			"text": " Mav Boost is a little piece of software that you can run next to your node so that you talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,540",
+				"to": "00:04:47,340"
+			},
+			"offsets": {
+				"from": 282540,
+				"to": 287340
+			},
+			"text": " to this network of relays and once the relay says I have a very juicy block for you, if"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,340",
+				"to": "00:04:52,620"
+			},
+			"offsets": {
+				"from": 287340,
+				"to": 292620
+			},
+			"text": " you use it I will pay you a certain amount of if you sign that block or you sign that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,620",
+				"to": "00:04:58,060"
+			},
+			"offsets": {
+				"from": 292620,
+				"to": 298060
+			},
+			"text": " block header as a blog proposal via this builder API."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,060",
+				"to": "00:05:04,860"
+			},
+			"offsets": {
+				"from": 298060,
+				"to": 304860
+			},
+			"text": " With more detail on this, we can really separate it in three phases."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,860",
+				"to": "00:05:08,060"
+			},
+			"offsets": {
+				"from": 304860,
+				"to": 308060
+			},
+			"text": " The first phase is the bidding phase where the builders send their full blocks to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,060",
+				"to": "00:05:09,060"
+			},
+			"offsets": {
+				"from": 308060,
+				"to": 309060
+			},
+			"text": " relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,060",
+				"to": "00:05:13,780"
+			},
+			"offsets": {
+				"from": 309060,
+				"to": 313780
+			},
+			"text": " The relays have to validate that the block is valid and there is no consensus error and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,780",
+				"to": "00:05:20,980"
+			},
+			"offsets": {
+				"from": 313780,
+				"to": 320980
+			},
+			"text": " that indeed the bid that the builder declares corresponds to the value of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,980",
+				"to": "00:05:25,380"
+			},
+			"offsets": {
+				"from": 320980,
+				"to": 325380
+			},
+			"text": " In the second phase the bid selection, the proposer listens to the streams of bids from"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,380",
+				"to": "00:05:30,460"
+			},
+			"offsets": {
+				"from": 325380,
+				"to": 330460
+			},
+			"text": " the relays, by default today Mav Boost selects the highest bid that the proposer has received"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,460",
+				"to": "00:05:35,300"
+			},
+			"offsets": {
+				"from": 330460,
+				"to": 335300
+			},
+			"text": " and at that time the proposer signs the bid with the builder API and they can no longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,300",
+				"to": "00:05:36,500"
+			},
+			"offsets": {
+				"from": 335300,
+				"to": 336500
+			},
+			"text": " make another block."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,500",
+				"to": "00:05:40,100"
+			},
+			"offsets": {
+				"from": 336500,
+				"to": 340100
+			},
+			"text": " They don't know the full content of their block but if they were to make another block"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,100",
+				"to": "00:05:43,700"
+			},
+			"offsets": {
+				"from": 340100,
+				"to": 343700
+			},
+			"text": " themselves now they would have signed two different objects and they could be slashed"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,700",
+				"to": "00:05:45,860"
+			},
+			"offsets": {
+				"from": 343700,
+				"to": 345860
+			},
+			"text": " for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,860",
+				"to": "00:05:50,820"
+			},
+			"offsets": {
+				"from": 345860,
+				"to": 350820
+			},
+			"text": " In the third phase the relay receives the signed bid from the proposer and at this stage it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,820",
+				"to": "00:05:54,380"
+			},
+			"offsets": {
+				"from": 350820,
+				"to": 354380
+			},
+			"text": " confident that it can release the block to the rest of the network and there's not going"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,380",
+				"to": "00:05:57,220"
+			},
+			"offsets": {
+				"from": 354380,
+				"to": 357220
+			},
+			"text": " to be a copy that is being made."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,220",
+				"to": "00:06:02,460"
+			},
+			"offsets": {
+				"from": 357220,
+				"to": 362460
+			},
+			"text": " A few numbers that I got from a few days ago, more and more validators seem to choose to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,460",
+				"to": "00:06:06,780"
+			},
+			"offsets": {
+				"from": 362460,
+				"to": 366780
+			},
+			"text": " use this external block building facility which today leaves pretty much totally out"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,780",
+				"to": "00:06:12,500"
+			},
+			"offsets": {
+				"from": 366780,
+				"to": 372500
+			},
+			"text": " of the protocol 50% as of I think that was Saturday."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,500",
+				"to": "00:06:19,940"
+			},
+			"offsets": {
+				"from": 372500,
+				"to": 379940
+			},
+			"text": " Flashbots still operates the dominant relay so 83% of the blocks which are received and"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,940",
+				"to": "00:06:23,580"
+			},
+			"offsets": {
+				"from": 379940,
+				"to": 383580
+			},
+			"text": " signed by proposers have been relayed by flashbots."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,580",
+				"to": "00:06:26,180"
+			},
+			"offsets": {
+				"from": 383580,
+				"to": 386180
+			},
+			"text": " There seems to be seven active relays."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,180",
+				"to": "00:06:32,540"
+			},
+			"offsets": {
+				"from": 386180,
+				"to": 392540
+			},
+			"text": " Some of them are all run by the same entity and they let's say satisfy different trade-offs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,540",
+				"to": "00:06:39,060"
+			},
+			"offsets": {
+				"from": 392540,
+				"to": 399060
+			},
+			"text": " that the block proposers may have when they want to summon this external network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,060",
+				"to": "00:06:40,060"
+			},
+			"offsets": {
+				"from": 399060,
+				"to": 400060
+			},
+			"text": " So what is PBS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,060",
+				"to": "00:06:42,100"
+			},
+			"offsets": {
+				"from": 400060,
+				"to": 402100
+			},
+			"text": " This was sort of an intro."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,100",
+				"to": "00:06:45,300"
+			},
+			"offsets": {
+				"from": 402100,
+				"to": 405300
+			},
+			"text": " In what I described before you can think of this as PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,300",
+				"to": "00:06:50,820"
+			},
+			"offsets": {
+				"from": 405300,
+				"to": 410820
+			},
+			"text": " PBS is more of a philosophy so it's proposer builder separation and it's the idea that as"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,820",
+				"to": "00:06:56,860"
+			},
+			"offsets": {
+				"from": 410820,
+				"to": 416860
+			},
+			"text": " the protocol gets more complex and as the roles of block proposers become more valuable it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,860",
+				"to": "00:07:00,980"
+			},
+			"offsets": {
+				"from": 416860,
+				"to": 420980
+			},
+			"text": " may not be possible for the block proposer to do everything and so parts of what the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,980",
+				"to": "00:07:07,340"
+			},
+			"offsets": {
+				"from": 420980,
+				"to": 427340
+			},
+			"text": " proposer does could be outsourced to third parties outside of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,340",
+				"to": "00:07:14,540"
+			},
+			"offsets": {
+				"from": 427340,
+				"to": 434540
+			},
+			"text": " These days I think of PBS as kind of two different things that we've maybe wrongly put together."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,540",
+				"to": "00:07:17,820"
+			},
+			"offsets": {
+				"from": 434540,
+				"to": 437820
+			},
+			"text": " So I call it the proposer builder separation separation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,820",
+				"to": "00:07:25,420"
+			},
+			"offsets": {
+				"from": 437820,
+				"to": 445420
+			},
+			"text": " On the first side I think of PBS as a market structure or a way of organizing the duties"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,420",
+				"to": "00:07:28,260"
+			},
+			"offsets": {
+				"from": 445420,
+				"to": 448260
+			},
+			"text": " of the proposer with respect to the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,260",
+				"to": "00:07:32,980"
+			},
+			"offsets": {
+				"from": 448260,
+				"to": 452980
+			},
+			"text": " So again there are duties that the block proposer especially the average block proposer who's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,980",
+				"to": "00:07:38,940"
+			},
+			"offsets": {
+				"from": 452980,
+				"to": 458940
+			},
+			"text": " taking from home can't or won't do for instance making these execution blocks that contain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,940",
+				"to": "00:07:44,380"
+			},
+			"offsets": {
+				"from": 458940,
+				"to": 464380
+			},
+			"text": " the valuable block space in the future making dumb sharding blocks which will contain a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,380",
+				"to": "00:07:49,140"
+			},
+			"offsets": {
+				"from": 464380,
+				"to": 469140
+			},
+			"text": " lot of data and require a very high bandwidth to propagate."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,140",
+				"to": "00:07:54,380"
+			},
+			"offsets": {
+				"from": 469140,
+				"to": 474380
+			},
+			"text": " Maybe even further into the future once we have statelessness computing the block witness"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,380",
+				"to": "00:08:00,740"
+			},
+			"offsets": {
+				"from": 474380,
+				"to": 480740
+			},
+			"text": " if we want stateless block proposers that might not be possible for them and even further"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,740",
+				"to": "00:08:07,220"
+			},
+			"offsets": {
+				"from": 480740,
+				"to": 487220
+			},
+			"text": " we might require validity proofs along with execution block to show that the execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,220",
+				"to": "00:08:13,380"
+			},
+			"offsets": {
+				"from": 487220,
+				"to": 493380
+			},
+			"text": " is correct so that would rely on enshrining some ZK EVM into the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,380",
+				"to": "00:08:17,460"
+			},
+			"offsets": {
+				"from": 493380,
+				"to": 497460
+			},
+			"text": " So it seems to me that the protocol is becoming more and more complex is asking more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,460",
+				"to": "00:08:23,340"
+			},
+			"offsets": {
+				"from": 497460,
+				"to": 503340
+			},
+			"text": " things to the proposer and so maybe it's a good idea to think of ways that we can organize"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,340",
+				"to": "00:08:25,340"
+			},
+			"offsets": {
+				"from": 503340,
+				"to": 505340
+			},
+			"text": " these markets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,340",
+				"to": "00:08:30,140"
+			},
+			"offsets": {
+				"from": 505340,
+				"to": 510140
+			},
+			"text": " The second half of the separation is not really the organizing principle but it's really the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,140",
+				"to": "00:08:31,540"
+			},
+			"offsets": {
+				"from": 510140,
+				"to": 511540
+			},
+			"text": " shape of the market."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,540",
+				"to": "00:08:33,780"
+			},
+			"offsets": {
+				"from": 511540,
+				"to": 513780
+			},
+			"text": " So I think of the first half of the beta as the legal system."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,780",
+				"to": "00:08:38,540"
+			},
+			"offsets": {
+				"from": 513780,
+				"to": 518540
+			},
+			"text": " He defines who are the players and the second half is more of a business logic while exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,540",
+				"to": "00:08:44,580"
+			},
+			"offsets": {
+				"from": 518540,
+				"to": 524580
+			},
+			"text": " being sold and what are the contracts that the proposer enters into with these third parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,580",
+				"to": "00:08:49,860"
+			},
+			"offsets": {
+				"from": 524580,
+				"to": 529860
+			},
+			"text": " Today for PBS when it comes to the execution block and block space the allocation mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,860",
+				"to": "00:08:51,140"
+			},
+			"offsets": {
+				"from": 529860,
+				"to": 531140
+			},
+			"text": " is a whole block auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,140",
+				"to": "00:08:55,700"
+			},
+			"offsets": {
+				"from": 531140,
+				"to": 535700
+			},
+			"text": " So the proposer sells off the entire rights to make a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,700",
+				"to": "00:09:00,020"
+			},
+			"offsets": {
+				"from": 535700,
+				"to": 540020
+			},
+			"text": " The current design allocates the right to make the exact block to such a third party as"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,020",
+				"to": "00:09:02,220"
+			},
+			"offsets": {
+				"from": 540020,
+				"to": 542220
+			},
+			"text": " we've seen in MevBoost."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,220",
+				"to": "00:09:07,780"
+			},
+			"offsets": {
+				"from": 542220,
+				"to": 547780
+			},
+			"text": " Being a bit more precise about it MevBoost the allocation mechanism again is this whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,780",
+				"to": "00:09:13,260"
+			},
+			"offsets": {
+				"from": 547780,
+				"to": 553260
+			},
+			"text": " block auction and the market structure of MevBoost places the relays as kind of brokers who broker"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,260",
+				"to": "00:09:19,940"
+			},
+			"offsets": {
+				"from": 553260,
+				"to": 559940
+			},
+			"text": " these deals between the proposer and between the builders."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,940",
+				"to": "00:09:24,980"
+			},
+			"offsets": {
+				"from": 559940,
+				"to": 564980
+			},
+			"text": " We expect them to guarantee the validity of the good but they're not protocol actors and"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,980",
+				"to": "00:09:25,980"
+			},
+			"offsets": {
+				"from": 564980,
+				"to": 565980
+			},
+			"text": " they could fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,980",
+				"to": "00:09:28,660"
+			},
+			"offsets": {
+				"from": 565980,
+				"to": 568660
+			},
+			"text": " These are a few ways that they could fail."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,660",
+				"to": "00:09:32,500"
+			},
+			"offsets": {
+				"from": 568660,
+				"to": 572500
+			},
+			"text": " For instance they could receive a block from a builder and fail to properly validate that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,500",
+				"to": "00:09:34,140"
+			},
+			"offsets": {
+				"from": 572500,
+				"to": 574140
+			},
+			"text": " it's a valid block."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,140",
+				"to": "00:09:35,900"
+			},
+			"offsets": {
+				"from": 574140,
+				"to": 575900
+			},
+			"text": " This has happened before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,900",
+				"to": "00:09:44,100"
+			},
+			"offsets": {
+				"from": 575900,
+				"to": 584100
+			},
+			"text": " It really could also not validate properly that the bid made by the builder actually corresponds"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,100",
+				"to": "00:09:49,660"
+			},
+			"offsets": {
+				"from": 584100,
+				"to": 589660
+			},
+			"text": " to what is being paid to the proposer and it could also fail midway into the deal."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,660",
+				"to": "00:09:52,340"
+			},
+			"offsets": {
+				"from": 589660,
+				"to": 592340
+			},
+			"text": " For instance they leave off a block late or not at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,340",
+				"to": "00:09:56,620"
+			},
+			"offsets": {
+				"from": 592340,
+				"to": 596620
+			},
+			"text": " In which case the proposer doesn't have the opportunity to propose the block themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,620",
+				"to": "00:09:59,060"
+			},
+			"offsets": {
+				"from": 596620,
+				"to": 599060
+			},
+			"text": " and misses out on some of the rewards."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,060",
+				"to": "00:10:05,340"
+			},
+			"offsets": {
+				"from": 599060,
+				"to": 605340
+			},
+			"text": " So this is kind of the idea of in protocol PBS is moving this systemic part of the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,340",
+				"to": "00:10:06,540"
+			},
+			"offsets": {
+				"from": 605340,
+				"to": 606540
+			},
+			"text": " into the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,540",
+				"to": "00:10:12,540"
+			},
+			"offsets": {
+				"from": 606540,
+				"to": 612540
+			},
+			"text": " So in protocol PBS design the protocol becomes the broker and it's the one that guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,540",
+				"to": "00:10:18,020"
+			},
+			"offsets": {
+				"from": 612540,
+				"to": 618020
+			},
+			"text": " that if deals go south the proposer is still compensated for it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,020",
+				"to": "00:10:24,060"
+			},
+			"offsets": {
+				"from": 618020,
+				"to": 624060
+			},
+			"text": " So the builder in this case whenever they make a bid that bid is binding even if they deliver"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,060",
+				"to": "00:10:28,380"
+			},
+			"offsets": {
+				"from": 624060,
+				"to": 628380
+			},
+			"text": " an invalid block or if they don't deliver it at all they would have to pay the proposer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,380",
+				"to": "00:10:30,620"
+			},
+			"offsets": {
+				"from": 628380,
+				"to": 630620
+			},
+			"text": " up to the bid that they have made."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,620",
+				"to": "00:10:35,940"
+			},
+			"offsets": {
+				"from": 630620,
+				"to": 635940
+			},
+			"text": " So a bit more detail on this again we can use the same framework or division to understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,940",
+				"to": "00:10:37,220"
+			},
+			"offsets": {
+				"from": 635940,
+				"to": 637220
+			},
+			"text": " this market."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,220",
+				"to": "00:10:42,260"
+			},
+			"offsets": {
+				"from": 637220,
+				"to": 642260
+			},
+			"text": " In the bidding phase the builders send directly the bids to the proposer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,260",
+				"to": "00:10:47,540"
+			},
+			"offsets": {
+				"from": 642260,
+				"to": 647540
+			},
+			"text": " For instance there's a couple here 5, 7, 8 if at the bid selection phase which is slot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,540",
+				"to": "00:10:53,220"
+			},
+			"offsets": {
+				"from": 647540,
+				"to": 653220
+			},
+			"text": " 1 the proposer selects a bid and makes a bid on block that commits to the bid which you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,220",
+				"to": "00:10:55,340"
+			},
+			"offsets": {
+				"from": 653220,
+				"to": 655340
+			},
+			"text": " can see in green below."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,340",
+				"to": "00:10:59,740"
+			},
+			"offsets": {
+				"from": 655340,
+				"to": 659740
+			},
+			"text": " So seeing this once the proposer makes a bid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,740",
+				"to": "00:11:04,700"
+			},
+			"offsets": {
+				"from": 659740,
+				"to": 664700
+			},
+			"text": " So this is part of the consensus rule whenever the proposer makes a block you have a row of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,700",
+				"to": "00:11:10,140"
+			},
+			"offsets": {
+				"from": 664700,
+				"to": 670140
+			},
+			"text": " the testers which is a very large set of of stackers who vote to say we've seen this block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,140",
+				"to": "00:11:12,500"
+			},
+			"offsets": {
+				"from": 670140,
+				"to": 672500
+			},
+			"text": " and this block should belong to the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,500",
+				"to": "00:11:16,660"
+			},
+			"offsets": {
+				"from": 672500,
+				"to": 676660
+			},
+			"text": " So these are testers they give weight to the bid on block and they make safe the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,660",
+				"to": "00:11:21,020"
+			},
+			"offsets": {
+				"from": 676660,
+				"to": 681020
+			},
+			"text": " in a way that the builder sees it and the builder says well there's no real way for the proposer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,020",
+				"to": "00:11:25,380"
+			},
+			"offsets": {
+				"from": 681020,
+				"to": 685380
+			},
+			"text": " to go back on their commitment to my bid now and so I feel confident that I can release"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,380",
+				"to": "00:11:29,940"
+			},
+			"offsets": {
+				"from": 685380,
+				"to": 689940
+			},
+			"text": " my block and it's not going to be reverted and stolen."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,940",
+				"to": "00:11:35,100"
+			},
+			"offsets": {
+				"from": 689940,
+				"to": 695100
+			},
+			"text": " That's slot 2 at the delivery stage the builder releases the builder block that contains the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,100",
+				"to": "00:11:42,540"
+			},
+			"offsets": {
+				"from": 695100,
+				"to": 702540
+			},
+			"text": " payload and once again you have a row of the testers that makes the builder block safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,540",
+				"to": "00:11:48,740"
+			},
+			"offsets": {
+				"from": 702540,
+				"to": 708740
+			},
+			"text": " Right now what I describe is really the vanilla version of in protocol PBS but of course you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,740",
+				"to": "00:11:53,340"
+			},
+			"offsets": {
+				"from": 708740,
+				"to": 713340
+			},
+			"text": " may as a proposer your only value may not be you just want to maximize the amount of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,340",
+				"to": "00:11:58,220"
+			},
+			"offsets": {
+				"from": 713340,
+				"to": 718220
+			},
+			"text": " either to get and you might want to add some constraints over the block that is being made"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,220",
+				"to": "00:12:03,900"
+			},
+			"offsets": {
+				"from": 718220,
+				"to": 723900
+			},
+			"text": " so that you don't entirely remove your input from the block production."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,900",
+				"to": "00:12:05,740"
+			},
+			"offsets": {
+				"from": 723900,
+				"to": 725740
+			},
+			"text": " One way to do so is inclusion list."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,740",
+				"to": "00:12:10,780"
+			},
+			"offsets": {
+				"from": 725740,
+				"to": 730780
+			},
+			"text": " So inclusion list is a list of transaction that the block builder must either include"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,780",
+				"to": "00:12:14,620"
+			},
+			"offsets": {
+				"from": 730780,
+				"to": 734620
+			},
+			"text": " or show that they couldn't include in the block that they made and the only way that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,620",
+				"to": "00:12:17,940"
+			},
+			"offsets": {
+				"from": 734620,
+				"to": 737940
+			},
+			"text": " they can't include the transaction is if the block is full."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,940",
+				"to": "00:12:22,500"
+			},
+			"offsets": {
+				"from": 737940,
+				"to": 742500
+			},
+			"text": " So if you're trying to keep the transaction away from a block over let's say a long period"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,500",
+				"to": "00:12:27,060"
+			},
+			"offsets": {
+				"from": 742500,
+				"to": 747060
+			},
+			"text": " of time it becomes increasingly difficult to do so and expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,060",
+				"to": "00:12:29,820"
+			},
+			"offsets": {
+				"from": 747060,
+				"to": 749820
+			},
+			"text": " The reason is EIP 1559."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,820",
+				"to": "00:12:35,940"
+			},
+			"offsets": {
+				"from": 749820,
+				"to": 755940
+			},
+			"text": " In Ethereum today if a block is full the protocol mandated base price increasing exponentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,940",
+				"to": "00:12:40,180"
+			},
+			"offsets": {
+				"from": 755940,
+				"to": 760180
+			},
+			"text": " over time so if you want to keep censoring something you have to keep making full blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,180",
+				"to": "00:12:46,460"
+			},
+			"offsets": {
+				"from": 760180,
+				"to": 766460
+			},
+			"text": " and it becomes just impossibly expensive to do so and so that's the idea behind inclusion"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,460",
+				"to": "00:12:47,460"
+			},
+			"offsets": {
+				"from": 766460,
+				"to": 767460
+			},
+			"text": " list."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,460",
+				"to": "00:12:52,220"
+			},
+			"offsets": {
+				"from": 767460,
+				"to": 772220
+			},
+			"text": " Another way to do it is to just let the proposer make part of the block so for instance we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,220",
+				"to": "00:12:56,860"
+			},
+			"offsets": {
+				"from": 772220,
+				"to": 776860
+			},
+			"text": " do the prefix or the suffix and they could let the builder build the rest of the block."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,860",
+				"to": "00:12:59,180"
+			},
+			"offsets": {
+				"from": 776860,
+				"to": 779180
+			},
+			"text": " Designs exist for both sides."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,180",
+				"to": "00:13:04,820"
+			},
+			"offsets": {
+				"from": 779180,
+				"to": 784820
+			},
+			"text": " If the proposer makes the prefix the builder will make the suffix and vice versa."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,820",
+				"to": "00:13:10,740"
+			},
+			"offsets": {
+				"from": 784820,
+				"to": 790740
+			},
+			"text": " So that's another way to reintroduce a bit of proposer input into the block construction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,740",
+				"to": "00:13:13,660"
+			},
+			"offsets": {
+				"from": 790740,
+				"to": 793660
+			},
+			"text": " A third variant of PBS is the slot auction."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,660",
+				"to": "00:13:17,580"
+			},
+			"offsets": {
+				"from": 793660,
+				"to": 797580
+			},
+			"text": " So I didn't really specify what the bids were but there are two versions."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,580",
+				"to": "00:13:23,740"
+			},
+			"offsets": {
+				"from": 797580,
+				"to": 803740
+			},
+			"text": " In one version the builder has to commit to a certain block before they make the bid and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,740",
+				"to": "00:13:26,180"
+			},
+			"offsets": {
+				"from": 803740,
+				"to": 806180
+			},
+			"text": " in this version the builder doesn't have to commit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,180",
+				"to": "00:13:31,340"
+			},
+			"offsets": {
+				"from": 806180,
+				"to": 811340
+			},
+			"text": " They're just saying when the time comes I will make a block for you and you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,340",
+				"to": "00:13:34,620"
+			},
+			"offsets": {
+				"from": 811340,
+				"to": 814620
+			},
+			"text": " select me because I will pay you the most."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,620",
+				"to": "00:13:39,180"
+			},
+			"offsets": {
+				"from": 814620,
+				"to": 819180
+			},
+			"text": " And so this might be more flexible especially when it comes to things like cross domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,180",
+				"to": "00:13:42,740"
+			},
+			"offsets": {
+				"from": 819180,
+				"to": 822740
+			},
+			"text": " MEV which require you to do things just in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,740",
+				"to": "00:13:48,060"
+			},
+			"offsets": {
+				"from": 822740,
+				"to": 828060
+			},
+			"text": " So we have these three variants, they are not incompatible with one another, it's just a"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,060",
+				"to": "00:13:54,860"
+			},
+			"offsets": {
+				"from": 828060,
+				"to": 834860
+			},
+			"text": " matter of deciding the trade offs and what fits well into the protocol and even for each"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,860",
+				"to": "00:14:01,900"
+			},
+			"offsets": {
+				"from": 834860,
+				"to": 841900
+			},
+			"text": " variant I think there's a bit more margin for us or a bit more parameters that we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,900",
+				"to": "00:14:02,900"
+			},
+			"offsets": {
+				"from": 841900,
+				"to": 842900
+			},
+			"text": " tune."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,900",
+				"to": "00:14:05,860"
+			},
+			"offsets": {
+				"from": 842900,
+				"to": 845860
+			},
+			"text": " So if we do a partial block auction we can decide which part."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,860",
+				"to": "00:14:11,020"
+			},
+			"offsets": {
+				"from": 845860,
+				"to": 851020
+			},
+			"text": " If we do inclusion lists you have some leeway on deciding who makes the inclusion list and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,020",
+				"to": "00:14:12,020"
+			},
+			"offsets": {
+				"from": 851020,
+				"to": 852020
+			},
+			"text": " when."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,020",
+				"to": "00:14:16,900"
+			},
+			"offsets": {
+				"from": 852020,
+				"to": 856900
+			},
+			"text": " If you auction the slot you can even tell yourself that the slot could be auction much"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,900",
+				"to": "00:14:21,740"
+			},
+			"offsets": {
+				"from": 856900,
+				"to": 861740
+			},
+			"text": " more in advance than just the current block."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,740",
+				"to": "00:14:28,060"
+			},
+			"offsets": {
+				"from": 861740,
+				"to": 868060
+			},
+			"text": " So I've been trying to think maybe adversarial with respect to this PBS proposal and tell"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,060",
+				"to": "00:14:33,020"
+			},
+			"offsets": {
+				"from": 868060,
+				"to": 873020
+			},
+			"text": " myself well if PBS is really two things, a market structure and an allocation mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,020",
+				"to": "00:14:39,420"
+			},
+			"offsets": {
+				"from": 873020,
+				"to": 879420
+			},
+			"text": " would we entrain into protocol only the market structure and let people determine the allocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,420",
+				"to": "00:14:41,100"
+			},
+			"offsets": {
+				"from": 879420,
+				"to": 881100
+			},
+			"text": " mechanism that they prefer."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,100",
+				"to": "00:14:46,300"
+			},
+			"offsets": {
+				"from": 881100,
+				"to": 886300
+			},
+			"text": " So this is a proposal I recently posted on e3search but it's very new so I won't talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,300",
+				"to": "00:14:47,300"
+			},
+			"offsets": {
+				"from": 886300,
+				"to": 887300
+			},
+			"text": " about it today."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,300",
+				"to": "00:14:54,020"
+			},
+			"offsets": {
+				"from": 887300,
+				"to": 894020
+			},
+			"text": " Okay, I want to pull out the frame a bit and look ahead to what might a world with PBS"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,020",
+				"to": "00:14:55,220"
+			},
+			"offsets": {
+				"from": 894020,
+				"to": 895220
+			},
+			"text": " look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,220",
+				"to": "00:15:01,500"
+			},
+			"offsets": {
+				"from": 895220,
+				"to": 901500
+			},
+			"text": " So the first question that I guess we ask ourselves a lot as protocol designers is putting"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,500",
+				"to": "00:15:06,460"
+			},
+			"offsets": {
+				"from": 901500,
+				"to": 906460
+			},
+			"text": " things into protocol is really hard and if we do that and then people don't use it there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,460",
+				"to": "00:15:08,940"
+			},
+			"offsets": {
+				"from": 906460,
+				"to": 908940
+			},
+			"text": " not really the use for all this overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,940",
+				"to": "00:15:13,740"
+			},
+			"offsets": {
+				"from": 908940,
+				"to": 913740
+			},
+			"text": " And so the first question which I think is natural is would if we had this in protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,740",
+				"to": "00:15:17,100"
+			},
+			"offsets": {
+				"from": 913740,
+				"to": 917100
+			},
+			"text": " PBS would proposal use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,100",
+				"to": "00:15:22,260"
+			},
+			"offsets": {
+				"from": 917100,
+				"to": 922260
+			},
+			"text": " One reason why they might not want to is because they could still strike deals of chain with"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,260",
+				"to": "00:15:27,060"
+			},
+			"offsets": {
+				"from": 922260,
+				"to": 927060
+			},
+			"text": " builders and get the builder blocks included even though they receive beads on some kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,060",
+				"to": "00:15:30,340"
+			},
+			"offsets": {
+				"from": 927060,
+				"to": 930340
+			},
+			"text": " of official gossip channel for the beads."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,340",
+				"to": "00:15:33,220"
+			},
+			"offsets": {
+				"from": 930340,
+				"to": 933220
+			},
+			"text": " There's another proposal which is called MEV smoothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,220",
+				"to": "00:15:38,420"
+			},
+			"offsets": {
+				"from": 933220,
+				"to": 938420
+			},
+			"text": " So mechanism that takes the block value and smooths it across all the stickers in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,420",
+				"to": "00:15:42,900"
+			},
+			"offsets": {
+				"from": 938420,
+				"to": 942900
+			},
+			"text": " protocol rather than giving it only to the current block producer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,900",
+				"to": "00:15:47,260"
+			},
+			"offsets": {
+				"from": 942900,
+				"to": 947260
+			},
+			"text": " That would make it binding because it would force proposals to accept the highest bead"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,260",
+				"to": "00:15:50,420"
+			},
+			"offsets": {
+				"from": 947260,
+				"to": 950420
+			},
+			"text": " received on this official bead channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,420",
+				"to": "00:15:54,100"
+			},
+			"offsets": {
+				"from": 950420,
+				"to": 954100
+			},
+			"text": " But there's more questions there in terms of incentive compatibility that I think we"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,100",
+				"to": "00:15:56,940"
+			},
+			"offsets": {
+				"from": 954100,
+				"to": 956940
+			},
+			"text": " need to look at."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,940",
+				"to": "00:15:58,940"
+			},
+			"offsets": {
+				"from": 956940,
+				"to": 958940
+			},
+			"text": " Another question is would relays still exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,940",
+				"to": "00:16:02,100"
+			},
+			"offsets": {
+				"from": 958940,
+				"to": 962100
+			},
+			"text": " I've been talking about this official bead channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,100",
+				"to": "00:16:04,180"
+			},
+			"offsets": {
+				"from": 962100,
+				"to": 964180
+			},
+			"text": " There's questions on how to design that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,180",
+				"to": "00:16:10,060"
+			},
+			"offsets": {
+				"from": 964180,
+				"to": 970060
+			},
+			"text": " It could still be the case that proposal would listen to out of protocol beads that come from"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,060",
+				"to": "00:16:11,580"
+			},
+			"offsets": {
+				"from": 970060,
+				"to": 971580
+			},
+			"text": " relays that they prefer."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,580",
+				"to": "00:16:17,700"
+			},
+			"offsets": {
+				"from": 971580,
+				"to": 977700
+			},
+			"text": " For instance, relays might be very good at getting you the best bead very fast in time"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,700",
+				"to": "00:16:23,380"
+			},
+			"offsets": {
+				"from": 977700,
+				"to": 983380
+			},
+			"text": " or they might be constraining the beads for instance with censorship."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,380",
+				"to": "00:16:27,140"
+			},
+			"offsets": {
+				"from": 983380,
+				"to": 987140
+			},
+			"text": " So as a proposal if there are transactions you don't want to include you could listen"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,140",
+				"to": "00:16:32,380"
+			},
+			"offsets": {
+				"from": 987140,
+				"to": 992380
+			},
+			"text": " to some relays that provide you beads with respect to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,380",
+				"to": "00:16:37,180"
+			},
+			"offsets": {
+				"from": 992380,
+				"to": 997180
+			},
+			"text": " Some builders may even prefer to use MEV busts since they don't need to put the upfront capital"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,180",
+				"to": "00:16:41,020"
+			},
+			"offsets": {
+				"from": 997180,
+				"to": 1001020
+			},
+			"text": " but it's to the proposal's risk in that case."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,020",
+				"to": "00:16:43,140"
+			},
+			"offsets": {
+				"from": 1001020,
+				"to": 1003140
+			},
+			"text": " Pulling a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,140",
+				"to": "00:16:44,380"
+			},
+			"offsets": {
+				"from": 1003140,
+				"to": 1004380
+			},
+			"text": " What does the protocol see?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,380",
+				"to": "00:16:49,900"
+			},
+			"offsets": {
+				"from": 1004380,
+				"to": 1009900
+			},
+			"text": " It's a question we ask ourselves when we introduced EIP1559 and the answer was well"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,900",
+				"to": "00:16:52,300"
+			},
+			"offsets": {
+				"from": 1009900,
+				"to": 1012300
+			},
+			"text": " it prices the congestion in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,300",
+				"to": "00:16:58,300"
+			},
+			"offsets": {
+				"from": 1012300,
+				"to": 1018300
+			},
+			"text": " It prices the value that the next person who isn't included will be ready to pay to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,300",
+				"to": "00:16:59,300"
+			},
+			"offsets": {
+				"from": 1018300,
+				"to": 1019300
+			},
+			"text": " included."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,300",
+				"to": "00:17:03,900"
+			},
+			"offsets": {
+				"from": 1019300,
+				"to": 1023900
+			},
+			"text": " As we add more of this economic mechanism in the protocol we find that the protocol gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,900",
+				"to": "00:17:09,060"
+			},
+			"offsets": {
+				"from": 1023900,
+				"to": 1029060
+			},
+			"text": " more introspection about what happens and the value that people using the protocol get"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,060",
+				"to": "00:17:10,580"
+			},
+			"offsets": {
+				"from": 1029060,
+				"to": 1030580
+			},
+			"text": " out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,580",
+				"to": "00:17:15,340"
+			},
+			"offsets": {
+				"from": 1030580,
+				"to": 1035340
+			},
+			"text": " And so one reasonable question is what does the PBS bead value exactly?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,340",
+				"to": "00:17:20,780"
+			},
+			"offsets": {
+				"from": 1035340,
+				"to": 1040780
+			},
+			"text": " I think ideally that bead should be the total extractable value that the proposal's position"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,780",
+				"to": "00:17:24,340"
+			},
+			"offsets": {
+				"from": 1040780,
+				"to": 1044340
+			},
+			"text": " confers to the proposal."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,340",
+				"to": "00:17:30,220"
+			},
+			"offsets": {
+				"from": 1044340,
+				"to": 1050220
+			},
+			"text": " But is it in reality does the PBS bead really represent this extractable value?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,220",
+				"to": "00:17:32,940"
+			},
+			"offsets": {
+				"from": 1050220,
+				"to": 1052940
+			},
+			"text": " Can it be achieved with a single builder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,940",
+				"to": "00:17:35,740"
+			},
+			"offsets": {
+				"from": 1052940,
+				"to": 1055740
+			},
+			"text": " Can it be achieved with a distributed builder?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,740",
+				"to": "00:17:40,300"
+			},
+			"offsets": {
+				"from": 1055740,
+				"to": 1060300
+			},
+			"text": " There's more models I think that we can work out on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,300",
+				"to": "00:17:45,060"
+			},
+			"offsets": {
+				"from": 1060300,
+				"to": 1065060
+			},
+			"text": " Another way to think about it is might the PBS bead be the spot price of value for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,060",
+				"to": "00:17:46,060"
+			},
+			"offsets": {
+				"from": 1065060,
+				"to": 1066060
+			},
+			"text": " block?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,060",
+				"to": "00:17:49,980"
+			},
+			"offsets": {
+				"from": 1066060,
+				"to": 1069980
+			},
+			"text": " For instance if there's economic value from selling the rights way in advance before your"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,980",
+				"to": "00:17:56,420"
+			},
+			"offsets": {
+				"from": 1069980,
+				"to": 1076420
+			},
+			"text": " slot so that people can plan for it and possibly make promises in advance with the PBS bead"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,420",
+				"to": "00:17:58,420"
+			},
+			"offsets": {
+				"from": 1076420,
+				"to": 1078420
+			},
+			"text": " we are not really capturing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,420",
+				"to": "00:18:02,580"
+			},
+			"offsets": {
+				"from": 1078420,
+				"to": 1082580
+			},
+			"text": " Or is there economic value to selling rights to multiple builders at the same time?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,580",
+				"to": "00:18:07,420"
+			},
+			"offsets": {
+				"from": 1082580,
+				"to": 1087420
+			},
+			"text": " So these are I think very interesting questions with respect to PBS."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,420",
+				"to": "00:18:14,660"
+			},
+			"offsets": {
+				"from": 1087420,
+				"to": 1094660
+			},
+			"text": " Pulling the frame even larger and especially in this world where more and more of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,660",
+				"to": "00:18:21,780"
+			},
+			"offsets": {
+				"from": 1094660,
+				"to": 1101780
+			},
+			"text": " proposal duties are performed by third parties or by builders is where should the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,780",
+				"to": "00:18:24,820"
+			},
+			"offsets": {
+				"from": 1101780,
+				"to": 1104820
+			},
+			"text": " as a protocol where should the concern stop?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,820",
+				"to": "00:18:29,380"
+			},
+			"offsets": {
+				"from": 1104820,
+				"to": 1109380
+			},
+			"text": " So we could decide that if proposal don't want to do the things that they are told to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,380",
+				"to": "00:18:33,380"
+			},
+			"offsets": {
+				"from": 1109380,
+				"to": 1113380
+			},
+			"text": " do by the protocol and if they want to enter into these third party relationships while"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,380",
+				"to": "00:18:37,540"
+			},
+			"offsets": {
+				"from": 1113380,
+				"to": 1117540
+			},
+			"text": " the protocol can't prevent them from doing so but doesn't have to actively help them"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,540",
+				"to": "00:18:38,540"
+			},
+			"offsets": {
+				"from": 1117540,
+				"to": 1118540
+			},
+			"text": " either."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,540",
+				"to": "00:18:43,260"
+			},
+			"offsets": {
+				"from": 1118540,
+				"to": 1123260
+			},
+			"text": " For instance we could keep including more things into the builder API at the client level"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,260",
+				"to": "00:18:48,180"
+			},
+			"offsets": {
+				"from": 1123260,
+				"to": 1128180
+			},
+			"text": " just so that the communication can happen between the proposals and these third parties"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,180",
+				"to": "00:18:53,300"
+			},
+			"offsets": {
+				"from": 1128180,
+				"to": 1133300
+			},
+			"text": " but call it today and let the out of protocol markets develop there."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,300",
+				"to": "00:18:57,780"
+			},
+			"offsets": {
+				"from": 1133300,
+				"to": 1137780
+			},
+			"text": " We could decide to draw the boundary a little further so this is the distinction I was making."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,780",
+				"to": "00:19:02,580"
+			},
+			"offsets": {
+				"from": 1137780,
+				"to": 1142580
+			},
+			"text": " We could decide to say well the protocol should guarantee some kind of market structure for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,580",
+				"to": "00:19:08,020"
+			},
+			"offsets": {
+				"from": 1142580,
+				"to": 1148020
+			},
+			"text": " the proposals because that makes them safe and it backstops certain bad cases for instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,020",
+				"to": "00:19:12,420"
+			},
+			"offsets": {
+				"from": 1148020,
+				"to": 1152420
+			},
+			"text": " relay failure but it doesn't have to determine all the mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,420",
+				"to": "00:19:16,420"
+			},
+			"offsets": {
+				"from": 1152420,
+				"to": 1156420
+			},
+			"text": " So my Pepsi proposal is in that direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,420",
+				"to": "00:19:21,340"
+			},
+			"offsets": {
+				"from": 1156420,
+				"to": 1161340
+			},
+			"text": " And then we could also decide that well all the markets that the protocol requires for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,340",
+				"to": "00:19:25,580"
+			},
+			"offsets": {
+				"from": 1161340,
+				"to": 1165580
+			},
+			"text": " these third party relationships they should be determined at protocol level and we should"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,580",
+				"to": "00:19:30,940"
+			},
+			"offsets": {
+				"from": 1165580,
+				"to": 1170940
+			},
+			"text": " be able to find the best way for these markets to organize."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,940",
+				"to": "00:19:35,500"
+			},
+			"offsets": {
+				"from": 1170940,
+				"to": 1175500
+			},
+			"text": " At the moment I think I'm still exploring all options and I think we all are but as"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,500",
+				"to": "00:19:39,740"
+			},
+			"offsets": {
+				"from": 1175500,
+				"to": 1179740
+			},
+			"text": " the protocol also finds it might be more and more difficult to say for sure but we got"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,740",
+				"to": "00:19:45,020"
+			},
+			"offsets": {
+				"from": 1179740,
+				"to": 1185020
+			},
+			"text": " to call it right the first time around and they still write 50 years later."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,020",
+				"to": "00:19:47,340"
+			},
+			"offsets": {
+				"from": 1185020,
+				"to": 1187340
+			},
+			"text": " Some incomplete ways to think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,340",
+				"to": "00:19:52,420"
+			},
+			"offsets": {
+				"from": 1187340,
+				"to": 1192420
+			},
+			"text": " I think these are really the criteria that help us decide between these questions and"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,420",
+				"to": "00:19:54,940"
+			},
+			"offsets": {
+				"from": 1192420,
+				"to": 1194940
+			},
+			"text": " the first is what is the risk for the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,940",
+				"to": "00:20:01,220"
+			},
+			"offsets": {
+				"from": 1194940,
+				"to": 1201220
+			},
+			"text": " So if there is a very systemic dependency on this third party relationship does that put"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,220",
+				"to": "00:20:06,320"
+			},
+			"offsets": {
+				"from": 1201220,
+				"to": 1206320
+			},
+			"text": " the protocol safety, liveness or throughput properties in jeopardy."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,320",
+				"to": "00:20:11,620"
+			},
+			"offsets": {
+				"from": 1206320,
+				"to": 1211620
+			},
+			"text": " And we do things at protocol level does it maximize welfare for instance increasing capacity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,620",
+				"to": "00:20:14,720"
+			},
+			"offsets": {
+				"from": 1211620,
+				"to": 1214720
+			},
+			"text": " serving more user transaction that's an operator for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:14,720",
+				"to": "00:20:20,200"
+			},
+			"offsets": {
+				"from": 1214720,
+				"to": 1220200
+			},
+			"text": " This gets us more value into the system as long as of course safety and liveness are"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,200",
+				"to": "00:20:21,200"
+			},
+			"offsets": {
+				"from": 1220200,
+				"to": 1221200
+			},
+			"text": " preserved."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,200",
+				"to": "00:20:22,840"
+			},
+			"offsets": {
+				"from": 1221200,
+				"to": 1222840
+			},
+			"text": " So these things are good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,840",
+				"to": "00:20:27,800"
+			},
+			"offsets": {
+				"from": 1222840,
+				"to": 1227800
+			},
+			"text": " This is maybe a hot take but I've been seeing well maybe boost your selling off your whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,800",
+				"to": "00:20:33,360"
+			},
+			"offsets": {
+				"from": 1227800,
+				"to": 1233360
+			},
+			"text": " rights maybe we should go back to a world where proposals have to make the block themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,360",
+				"to": "00:20:35,540"
+			},
+			"offsets": {
+				"from": 1233360,
+				"to": 1235540
+			},
+			"text": " but I'm not making this argument entirely either."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,540",
+				"to": "00:20:40,020"
+			},
+			"offsets": {
+				"from": 1235540,
+				"to": 1240020
+			},
+			"text": " I think sometimes outsourcing things to third parties it might be good."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,020",
+				"to": "00:20:44,660"
+			},
+			"offsets": {
+				"from": 1240020,
+				"to": 1244660
+			},
+			"text": " There might be much more incentive alignment when the third party really wants something"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,660",
+				"to": "00:20:46,500"
+			},
+			"offsets": {
+				"from": 1244660,
+				"to": 1246500
+			},
+			"text": " to go into the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,500",
+				"to": "00:20:49,880"
+			},
+			"offsets": {
+				"from": 1246500,
+				"to": 1249880
+			},
+			"text": " So there's also that to weigh in the scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,880",
+				"to": "00:20:53,100"
+			},
+			"offsets": {
+				"from": 1249880,
+				"to": 1253100
+			},
+			"text": " The final thing that we might consider is the risk for the proposal themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,100",
+				"to": "00:21:01,380"
+			},
+			"offsets": {
+				"from": 1253100,
+				"to": 1261380
+			},
+			"text": " So should the protocol backstop possibly risky behavior that the proposal engages in."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,380",
+				"to": "00:21:06,900"
+			},
+			"offsets": {
+				"from": 1261380,
+				"to": 1266900
+			},
+			"text": " So I'm asking more questions than I have answers for but this is also what I think interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,900",
+				"to": "00:21:09,940"
+			},
+			"offsets": {
+				"from": 1266900,
+				"to": 1269940
+			},
+			"text": " in the research."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,940",
+				"to": "00:21:14,460"
+			},
+			"offsets": {
+				"from": 1269940,
+				"to": 1274460
+			},
+			"text": " I'm not alone in asking these questions there's going to be much more talks about PBS at DEFCON"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,460",
+				"to": "00:21:19,340"
+			},
+			"offsets": {
+				"from": 1274460,
+				"to": 1279340
+			},
+			"text": " and I definitely encourage you to check some of these out."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,340",
+				"to": "00:21:24,660"
+			},
+			"offsets": {
+				"from": 1279340,
+				"to": 1284660
+			},
+			"text": " And if you think these are interesting questions I would also like to invite you to apply to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,660",
+				"to": "00:21:29,500"
+			},
+			"offsets": {
+				"from": 1284660,
+				"to": 1289500
+			},
+			"text": " our research team as we are currently looking for someone with a strong research background"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,500",
+				"to": "00:21:33,740"
+			},
+			"offsets": {
+				"from": 1289500,
+				"to": 1293740
+			},
+			"text": " who knows mechanism design and really loves it and wants to help us make sense of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,740",
+				"to": "00:21:34,740"
+			},
+			"offsets": {
+				"from": 1293740,
+				"to": 1294740
+			},
+			"text": " of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,740",
+				"to": "00:21:35,460"
+			},
+			"offsets": {
+				"from": 1294740,
+				"to": 1295460
+			},
+			"text": " Thank you for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,460",
+				"to": "00:21:37,460"
+			},
+			"offsets": {
+				"from": 1295460,
+				"to": 1297460
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,460",
+				"to": "00:21:44,460"
+			},
+			"offsets": {
+				"from": 1297460,
+				"to": 1304460
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,460",
+				"to": "00:21:51,460"
+			},
+			"offsets": {
+				"from": 1304460,
+				"to": 1311460
+			},
+			"text": " [Applause]"
+		}
+	]
+}

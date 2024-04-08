@@ -1,0 +1,1990 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5640
+			},
+			"text": " >> Okay, hello guys. Well, first of all, thank you for being here today and also thanks"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,640",
+				"to": "00:00:11,640"
+			},
+			"offsets": {
+				"from": 5640,
+				"to": 11640
+			},
+			"text": " for the, to the organizer for taking care of such an amazing event. So today we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,640",
+				"to": "00:00:18,360"
+			},
+			"offsets": {
+				"from": 11640,
+				"to": 18360
+			},
+			"text": " to talk about agri-ability and EVM packages. And it is to learn some, some things about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,360",
+				"to": "00:00:23,680"
+			},
+			"offsets": {
+				"from": 18360,
+				"to": 23680
+			},
+			"text": " these concepts and of course to see how we can leverage these concepts using Subly Know"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,680",
+				"to": "00:00:30,220"
+			},
+			"offsets": {
+				"from": 23680,
+				"to": 30220
+			},
+			"text": " S. But before we begin, I would like to talk a little bit about us. We are Subly and at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,220",
+				"to": "00:00:36,780"
+			},
+			"offsets": {
+				"from": 30220,
+				"to": 36780
+			},
+			"text": " Subly, we build key technology and infrastructure to build, develop and manage smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,780",
+				"to": "00:00:43,040"
+			},
+			"offsets": {
+				"from": 36780,
+				"to": 43040
+			},
+			"text": " systems. My name is Fagos Pagnolo. I'm a core developer and security researcher at Sublym"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,040",
+				"to": "00:00:49,200"
+			},
+			"offsets": {
+				"from": 43040,
+				"to": 49200
+			},
+			"text": " and currently I'm leading the efforts of Subly Know S. Maybe some of you may know us because"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,200",
+				"to": "00:00:56,160"
+			},
+			"offsets": {
+				"from": 49200,
+				"to": 56160
+			},
+			"text": " of Open Sublym. Open Sublym is a community driven open source framework of resource modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,160",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 56160,
+				"to": 62280
+			},
+			"text": " of smart contracts that you can install and start using directly in your own projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:08,920"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 68920
+			},
+			"text": " You also do security audits. A few weeks ago we finished the audit for the Solidity compiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,920",
+				"to": "00:01:15,080"
+			},
+			"offsets": {
+				"from": 68920,
+				"to": 75080
+			},
+			"text": " where you see a grant from the Ethereum Foundation. It was really great. And well, as I said before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,080",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 75080,
+				"to": 79000
+			},
+			"text": " we are here today to talk a little bit about Subly and OS. Subly and OS is an open source"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:26,040"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 86040
+			},
+			"text": " platform to help you build and develop and manage smart contract systems. So let's begin"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,040",
+				"to": "00:01:33,320"
+			},
+			"offsets": {
+				"from": 86040,
+				"to": 93320
+			},
+			"text": " with the first topic, agri-ability. So of course that availability is one of the main features"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,320",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 93320,
+				"to": 101160
+			},
+			"text": " of Ethereum. However, software quality really much depends on a development that needs to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:45,800"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 105800
+			},
+			"text": " be iterative and incremental. And this means that we need to have the chance to update or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,800",
+				"to": "00:01:53,040"
+			},
+			"offsets": {
+				"from": 105800,
+				"to": 113040
+			},
+			"text": " patch our code if we need to. And we are not just talking about bugs. We may need to optimize"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,040",
+				"to": "00:01:57,880"
+			},
+			"offsets": {
+				"from": 113040,
+				"to": 117880
+			},
+			"text": " our solutions. We may need to provide new functionality because the community is requiring"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,880",
+				"to": "00:02:04,280"
+			},
+			"offsets": {
+				"from": 117880,
+				"to": 124280
+			},
+			"text": " it or whatever. And the thing is that we've seen many other projects building their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,280",
+				"to": "00:02:13,560"
+			},
+			"offsets": {
+				"from": 124280,
+				"to": 133560
+			},
+			"text": " implementations of app availability. And Subly and OS is providing a standard and really flexible"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,560",
+				"to": "00:02:19,720"
+			},
+			"offsets": {
+				"from": 133560,
+				"to": 139720
+			},
+			"text": " way to do this. So I would like to introduce an example of how we can easily have available"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,720",
+				"to": "00:02:25,920"
+			},
+			"offsets": {
+				"from": 139720,
+				"to": 145920
+			},
+			"text": " smart contracts in our projects using Subly and OS. So the first thing we will need to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,920",
+				"to": "00:02:32,200"
+			},
+			"offsets": {
+				"from": 145920,
+				"to": 152200
+			},
+			"text": " is to install Subly and OS in this case we are using npm. And Subly and OS comes with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,200",
+				"to": "00:02:36,280"
+			},
+			"offsets": {
+				"from": 152200,
+				"to": 156280
+			},
+			"text": " common line tool. In this case, for example, we have a need command that we can use to"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,280",
+				"to": "00:02:43,600"
+			},
+			"offsets": {
+				"from": 156280,
+				"to": 163600
+			},
+			"text": " start a new project, just passing the name of our project. And let's say that we start"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,600",
+				"to": "00:02:49,720"
+			},
+			"offsets": {
+				"from": 163600,
+				"to": 169720
+			},
+			"text": " writing our first smart contract. In this case, a wallet. As you can see, he has an owner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,720",
+				"to": "00:02:53,760"
+			},
+			"offsets": {
+				"from": 169720,
+				"to": 173760
+			},
+			"text": " he has an initialization function where he received the owner, you know, to set the owner"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,760",
+				"to": "00:02:59,200"
+			},
+			"offsets": {
+				"from": 173760,
+				"to": 179200
+			},
+			"text": " of the contract. He has a withdrawal function in order to withdraw some funds from the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,200",
+				"to": "00:03:06,160"
+			},
+			"offsets": {
+				"from": 179200,
+				"to": 186160
+			},
+			"text": " and so on. So let's see how we can deploy an abreel of an instance of this smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,160",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 186160,
+				"to": 193160
+			},
+			"text": " using Subly and OS. So the common line tool has some commands that are pretty much similar"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:18,240"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 198240
+			},
+			"text": " to the ones we use in Git. So I think it will sound familiar to you. In this case, we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,240",
+				"to": "00:03:23,960"
+			},
+			"offsets": {
+				"from": 198240,
+				"to": 203960
+			},
+			"text": " running the first command. The add command, it's the way we tell Subly and OS in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,960",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 203960,
+				"to": 208160
+			},
+			"text": " to add a new smart contract in our project. In this case, we're doing Subly and OS that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:33,920"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 213920
+			},
+			"text": " we want to add the main wallet contract that we wrote before. And the second step is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,920",
+				"to": "00:03:39,840"
+			},
+			"offsets": {
+				"from": 213920,
+				"to": 219840
+			},
+			"text": " push command. This is how we upload the bytecode of our contract to the network. In this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,840",
+				"to": "00:03:44,640"
+			},
+			"offsets": {
+				"from": 219840,
+				"to": 224640
+			},
+			"text": " for example, we're pushing the source code of the my wallet contract to the Rofs and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,640",
+				"to": "00:03:50,080"
+			},
+			"offsets": {
+				"from": 224640,
+				"to": 230080
+			},
+			"text": " network. And finally, we have the create command. The create command will create an abreel of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,080",
+				"to": "00:03:55,040"
+			},
+			"offsets": {
+				"from": 230080,
+				"to": 235040
+			},
+			"text": " an instance of the my wallet contract. And the other step that we receive there is the new"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,040",
+				"to": "00:04:00,240"
+			},
+			"offsets": {
+				"from": 235040,
+				"to": 240240
+			},
+			"text": " instance that we have just created. And maybe some of you may wonder why do we need to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,240",
+				"to": "00:04:04,960"
+			},
+			"offsets": {
+				"from": 240240,
+				"to": 244960
+			},
+			"text": " these three steps in order to create an abreel of an instance. Well, the thing is that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,960",
+				"to": "00:04:08,840"
+			},
+			"offsets": {
+				"from": 244960,
+				"to": 248840
+			},
+			"text": " is not a regular instance, obviously, this is an abreel of an instance. And the thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,840",
+				"to": "00:04:14,720"
+			},
+			"offsets": {
+				"from": 248840,
+				"to": 254720
+			},
+			"text": " is that we can run the create command as many times as we want and we'll be always reusing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,720",
+				"to": "00:04:21,440"
+			},
+			"offsets": {
+				"from": 254720,
+				"to": 261440
+			},
+			"text": " the same logic that we uploaded just once. So it's great. And let's say that after we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,440",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 261440,
+				"to": 268480
+			},
+			"text": " created the first instance, abreel of an instance of my wallet contract, we found the back. As"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:33,840"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 273840
+			},
+			"text": " you can see, they need wallet function. It can be called by anyone. And this means that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,840",
+				"to": "00:04:37,520"
+			},
+			"offsets": {
+				"from": 273840,
+				"to": 277520
+			},
+			"text": " for example, an attacker can call they need wallet function to withdraw some funds from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,520",
+				"to": "00:04:44,240"
+			},
+			"offsets": {
+				"from": 277520,
+				"to": 284240
+			},
+			"text": " Any resemblance with reality here is per concinous. And let's say that we want to fix this back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,240",
+				"to": "00:04:48,480"
+			},
+			"offsets": {
+				"from": 284240,
+				"to": 288480
+			},
+			"text": " So let's see how we can do this with sub-linearized experiments. It's really simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,040",
+				"to": "00:04:54,320"
+			},
+			"offsets": {
+				"from": 289040,
+				"to": 294320
+			},
+			"text": " So the first thing we'll need to do is just to edit the source code of our contracts. For"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,320",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 294320,
+				"to": 300000
+			},
+			"text": " example, in this case, we're adding an only owner modifier in order to restrict the person."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:06,800"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 306800
+			},
+			"text": " They can call this function. And once again, as we did before, we just need to run the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,800",
+				"to": "00:05:13,760"
+			},
+			"offsets": {
+				"from": 306800,
+				"to": 313760
+			},
+			"text": " out command to tell sub-linearized to add the new fixed my wallet contract. We're pushing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,760",
+				"to": "00:05:18,560"
+			},
+			"offsets": {
+				"from": 313760,
+				"to": 318560
+			},
+			"text": " that fixed to the network. And finally, we're running a new command here. The update command"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,560",
+				"to": "00:05:24,080"
+			},
+			"offsets": {
+				"from": 318560,
+				"to": 324080
+			},
+			"text": " is the way to tell sub-linearized to upgrade the abreel of an instance that we created before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,080",
+				"to": "00:05:28,880"
+			},
+			"offsets": {
+				"from": 324080,
+				"to": 328880
+			},
+			"text": " And it will be as simple as that. As you can see, an attacker cannot call anymore. They need wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,880",
+				"to": "00:05:35,760"
+			},
+			"offsets": {
+				"from": 328880,
+				"to": 335760
+			},
+			"text": " function, and our back has been fixed. So it was pretty simple. We didn't have to modify our source"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,760",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 335760,
+				"to": 342080
+			},
+			"text": " code in order to make our contracts abreelable. As you can see, we're using the same address."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:48,480"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 348480
+			},
+			"text": " It was an abreel per se. We didn't have to migrate data from the previous wallet contract to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,480",
+				"to": "00:05:56,240"
+			},
+			"offsets": {
+				"from": 348480,
+				"to": 356240
+			},
+			"text": " new one. We're really upgrading it. So that was -- that was possible. I think that many of you may"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,240",
+				"to": "00:06:03,440"
+			},
+			"offsets": {
+				"from": 356240,
+				"to": 363440
+			},
+			"text": " know already this, but we're using proxies in order to make it happen. And the way a proxy works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,440",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 363440,
+				"to": 369280
+			},
+			"text": " it's a particular contract that basically delegates every call it receives to another contract that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:15,280"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 375280
+			},
+			"text": " is called logic contract. And the thing is that logic -- the others of logic contract can be"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,280",
+				"to": "00:06:23,040"
+			},
+			"offsets": {
+				"from": 375280,
+				"to": 383040
+			},
+			"text": " changed. And this is how our ability works. As you can see, this storage layer is always kept in"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,040",
+				"to": "00:06:29,680"
+			},
+			"offsets": {
+				"from": 383040,
+				"to": 389680
+			},
+			"text": " the proxy contract. And this is why we don't need to migrate or pay any like expensive migrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,680",
+				"to": "00:06:38,880"
+			},
+			"offsets": {
+				"from": 389680,
+				"to": 398880
+			},
+			"text": " of data when we want to do an upgrade of a contract. We're not going to -- so much div in the proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,880",
+				"to": "00:06:46,240"
+			},
+			"offsets": {
+				"from": 398880,
+				"to": 406240
+			},
+			"text": " stuff, but you can read more about it in the documentation if you want. So something things up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,240",
+				"to": "00:06:51,840"
+			},
+			"offsets": {
+				"from": 406240,
+				"to": 411840
+			},
+			"text": " SublinOS provides a standard way in order to have a great -- a great amount of projects in your"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,840",
+				"to": "00:06:55,920"
+			},
+			"offsets": {
+				"from": 411840,
+				"to": 415920
+			},
+			"text": " projects that will basically allow you to fix bugs or add functionality, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,920",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 415920,
+				"to": 424000
+			},
+			"text": " So let's move to the second topic. If you have packages, this is a new concept we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:11,680"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 431680
+			},
+			"text": " introduced some weeks ago. Even packages are available on-chain packages of smart contracts code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,680",
+				"to": "00:07:18,320"
+			},
+			"offsets": {
+				"from": 431680,
+				"to": 438320
+			},
+			"text": " And this means code that it's already on-chain deployed by another developer team that is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,320",
+				"to": "00:07:24,160"
+			},
+			"offsets": {
+				"from": 438320,
+				"to": 444160
+			},
+			"text": " maintained by another developer team that then any application can link directly through your"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,160",
+				"to": "00:07:30,160"
+			},
+			"offsets": {
+				"from": 444160,
+				"to": 450160
+			},
+			"text": " own projects in order to reuse it directly on-chain. And it comes, of course, with opt-in upgrades."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,160",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 450160,
+				"to": 456000
+			},
+			"text": " And this means that the developer team that is developing an EVM package comes with a new version"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:40,960"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 460960
+			},
+			"text": " of the EVM package. You can decide where to upgrade your code to use the new version that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,960",
+				"to": "00:07:48,720"
+			},
+			"offsets": {
+				"from": 460960,
+				"to": 468720
+			},
+			"text": " they're providing or not. So why do we need EVM packages? We do think that this is a way in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,720",
+				"to": "00:07:56,560"
+			},
+			"offsets": {
+				"from": 468720,
+				"to": 476560
+			},
+			"text": " order to encourage modular development. You can start focusing on what you do best and start"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,560",
+				"to": "00:08:03,920"
+			},
+			"offsets": {
+				"from": 476560,
+				"to": 483920
+			},
+			"text": " reusing the work that your college has done. So we just don't need to build everything if we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,920",
+				"to": "00:08:09,120"
+			},
+			"offsets": {
+				"from": 483920,
+				"to": 489120
+			},
+			"text": " to build something. We can start reusing some code that is already deployed on-chain. And as I said"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,120",
+				"to": "00:08:14,720"
+			},
+			"offsets": {
+				"from": 489120,
+				"to": 494720
+			},
+			"text": " before, EVM packages are upgradable by definition. And this means that their developers can provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,720",
+				"to": "00:08:20,880"
+			},
+			"offsets": {
+				"from": 494720,
+				"to": 500880
+			},
+			"text": " new versions of those EVM packages. And you can opt-in decide where you want those upgrades in"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,880",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 500880,
+				"to": 506560
+			},
+			"text": " your projects or not. It's like any other dependency management system. And of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:31,760"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 511760
+			},
+			"text": " we're saving a lot of gas costs because we're reusing some logic that is already deployed on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,760",
+				"to": "00:08:36,720"
+			},
+			"offsets": {
+				"from": 511760,
+				"to": 516720
+			},
+			"text": " by those developer teams. And we don't have to redeploy the logic every time if we want to reuse it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,720",
+				"to": "00:08:45,200"
+			},
+			"offsets": {
+				"from": 516720,
+				"to": 525200
+			},
+			"text": " Let's take a look at another example. Let's say that we have a deck contract in our project."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,200",
+				"to": "00:08:52,480"
+			},
+			"offsets": {
+				"from": 525200,
+				"to": 532480
+			},
+			"text": " And as you can see, it has an ERC 721 dependency. It has an idealized function in order to receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,480",
+				"to": "00:08:59,360"
+			},
+			"offsets": {
+				"from": 532480,
+				"to": 539360
+			},
+			"text": " the ERC 721 dependency. And it has another function called pick that will basically allow"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,360",
+				"to": "00:09:06,320"
+			},
+			"offsets": {
+				"from": 539360,
+				"to": 546320
+			},
+			"text": " any users to pick cards from the contract. And it will be minting new ERC 721 tokens every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,320",
+				"to": "00:09:13,920"
+			},
+			"offsets": {
+				"from": 546320,
+				"to": 553920
+			},
+			"text": " a user picks a new card. So here we can create an available instance of this contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,920",
+				"to": "00:09:21,200"
+			},
+			"offsets": {
+				"from": 553920,
+				"to": 561200
+			},
+			"text": " reusing an EVM package for the ERC 721 dependency using sub-binOS. So it will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,200",
+				"to": "00:09:28,480"
+			},
+			"offsets": {
+				"from": 561200,
+				"to": 568480
+			},
+			"text": " resinable once again. The first thing we should do is, I'm curious when it comes to the new part,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,480",
+				"to": "00:09:34,720"
+			},
+			"offsets": {
+				"from": 568480,
+				"to": 574720
+			},
+			"text": " the link command will allow you to link to any other EVM package that is already deployed on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,720",
+				"to": "00:09:40,800"
+			},
+			"offsets": {
+				"from": 574720,
+				"to": 580800
+			},
+			"text": " In this case, we're linking our projects to the open sub-binOS EVM package. And this package is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,800",
+				"to": "00:09:46,400"
+			},
+			"offsets": {
+				"from": 580800,
+				"to": 586400
+			},
+			"text": " the EVM package that the open sub-binOS EVM has provided on-chain. In this case, we're linking to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,400",
+				"to": "00:09:52,880"
+			},
+			"offsets": {
+				"from": 586400,
+				"to": 592880
+			},
+			"text": " the 2.0 version. And as we did before, we just need to push those changes to the network. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,880",
+				"to": "00:09:57,840"
+			},
+			"offsets": {
+				"from": 592880,
+				"to": 597840
+			},
+			"text": " finally, we can run the create command. And as you can see here, we're creating an instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,840",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 597840,
+				"to": 604000
+			},
+			"text": " reusing the logic of the ERC 721 that has been already deployed by the open sub-binOS EVM team."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:10,160"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 610160
+			},
+			"text": " We haven't added that contract in our projects. We're reusing the same logic that the open sub-bin"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,160",
+				"to": "00:10:15,920"
+			},
+			"offsets": {
+				"from": 610160,
+				"to": 615920
+			},
+			"text": " team has provided on-chain for us. And we'll receive, of course, the others of our available"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,920",
+				"to": "00:10:24,560"
+			},
+			"offsets": {
+				"from": 615920,
+				"to": 624560
+			},
+			"text": " instance of the ERC 721 there. So let's now create, let's use this new ERC 721 instance in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,560",
+				"to": "00:10:30,080"
+			},
+			"offsets": {
+				"from": 624560,
+				"to": 630080
+			},
+			"text": " create an instance of our contract, the deck contract. As we did before, in this case, we do need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,080",
+				"to": "00:10:37,520"
+			},
+			"offsets": {
+				"from": 630080,
+				"to": 637520
+			},
+			"text": " add the deck contract. So we're running there the app command. Then we're pushing the source"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,520",
+				"to": "00:10:42,720"
+			},
+			"offsets": {
+				"from": 637520,
+				"to": 642720
+			},
+			"text": " go of the deck contract to the network. And finally, we're running the create command in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,720",
+				"to": "00:10:48,320"
+			},
+			"offsets": {
+				"from": 642720,
+				"to": 648320
+			},
+			"text": " create a new instance of the deck contract and passing here the address of the ERC 721 instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,320",
+				"to": "00:10:54,480"
+			},
+			"offsets": {
+				"from": 648320,
+				"to": 654480
+			},
+			"text": " that we created before. And we will receive there the address of our available instance of the deck"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,480",
+				"to": "00:11:02,640"
+			},
+			"offsets": {
+				"from": 654480,
+				"to": 662640
+			},
+			"text": " contract. So as you can see, we can start reusing the deck contract. And it will be, we can start"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,640",
+				"to": "00:11:11,360"
+			},
+			"offsets": {
+				"from": 662640,
+				"to": 671360
+			},
+			"text": " picking cards. We will be minting ERC 721 tokens. It will be as simple as that. So this is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,360",
+				"to": "00:11:18,720"
+			},
+			"offsets": {
+				"from": 671360,
+				"to": 678720
+			},
+			"text": " We didn't have to deploy an ERC 721 contract in order to reuse it. We're just reusing the one"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,720",
+				"to": "00:11:24,800"
+			},
+			"offsets": {
+				"from": 678720,
+				"to": 684800
+			},
+			"text": " that the open sub-bin team has provided for us. And this is really cool. So I said before that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,800",
+				"to": "00:11:30,800"
+			},
+			"offsets": {
+				"from": 684800,
+				"to": 690800
+			},
+			"text": " EVM packages are upgradable by definition. Let's see an example of what does it mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,800",
+				"to": "00:11:35,520"
+			},
+			"offsets": {
+				"from": 690800,
+				"to": 695520
+			},
+			"text": " Let's say that the open sub-bin team comes with a new version of their EVM package. In this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,520",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 695520,
+				"to": 702000
+			},
+			"text": " the open sub-bin isth, as I said before. And let's say that we want to use it in our project. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:48,480"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 708480
+			},
+			"text": " as you can see, this is an opt-in decision I said before. So in order to tell sub-bin"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,480",
+				"to": "00:11:53,040"
+			},
+			"offsets": {
+				"from": 708480,
+				"to": 713040
+			},
+			"text": " S that we want to use that upgrade, that new version in our project, we need to tell sub-bin"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,040",
+				"to": "00:11:57,680"
+			},
+			"offsets": {
+				"from": 713040,
+				"to": 717680
+			},
+			"text": " S that we want to link our project to the new version. As you can see here, we're linking our"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,680",
+				"to": "00:12:04,800"
+			},
+			"offsets": {
+				"from": 717680,
+				"to": 724800
+			},
+			"text": " project to the 2.1 version of the open sub-bin isth EVM package. Once again, we're pushing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,800",
+				"to": "00:12:11,600"
+			},
+			"offsets": {
+				"from": 724800,
+				"to": 731600
+			},
+			"text": " those changes to the network. And finally, we can run, in this case, the update command in"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,600",
+				"to": "00:12:16,400"
+			},
+			"offsets": {
+				"from": 731600,
+				"to": 736400
+			},
+			"text": " order to update the upgradeable instance that we created before of the ERC 721 contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,400",
+				"to": "00:12:24,320"
+			},
+			"offsets": {
+				"from": 736400,
+				"to": 744320
+			},
+			"text": " And as you can see, we'll be picking new cards again with the same deck contract that we created"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,320",
+				"to": "00:12:30,480"
+			},
+			"offsets": {
+				"from": 744320,
+				"to": 750480
+			},
+			"text": " before. The address of the deck contract hasn't changed. And we'll be using this new version of"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,480",
+				"to": "00:12:37,280"
+			},
+			"offsets": {
+				"from": 750480,
+				"to": 757280
+			},
+			"text": " the ERC 721. It will be as simple as that once again. And as you can see, we didn't have to update"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,280",
+				"to": "00:12:41,760"
+			},
+			"offsets": {
+				"from": 757280,
+				"to": 761760
+			},
+			"text": " our deck contract. We just need to update the dependency that we're using in our project. In"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,760",
+				"to": "00:12:51,040"
+			},
+			"offsets": {
+				"from": 761760,
+				"to": 771040
+			},
+			"text": " this case, the ERC 721. So some of the things up. EVM packages allows us to reuse code that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,040",
+				"to": "00:12:55,920"
+			},
+			"offsets": {
+				"from": 771040,
+				"to": 775920
+			},
+			"text": " already deployed on chain. That we don't have to redeploy it every time we want to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,920",
+				"to": "00:13:03,280"
+			},
+			"offsets": {
+				"from": 775920,
+				"to": 783280
+			},
+			"text": " And of course, we can, as we saw before, we can update our dependencies if the developers of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,280",
+				"to": "00:13:08,880"
+			},
+			"offsets": {
+				"from": 783280,
+				"to": 788880
+			},
+			"text": " EVM packages that we're linking to provide new versions. So this is really good. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,880",
+				"to": "00:13:15,680"
+			},
+			"offsets": {
+				"from": 788880,
+				"to": 795680
+			},
+			"text": " let's go a little bit further on the EVM packages thing. Maybe some of you may be wondering"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,240",
+				"to": "00:13:21,840"
+			},
+			"offsets": {
+				"from": 796240,
+				"to": 801840
+			},
+			"text": " how we can actually make sure that the code, what we're sharing and reusing on chain directly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,840",
+				"to": "00:13:26,400"
+			},
+			"offsets": {
+				"from": 801840,
+				"to": 806400
+			},
+			"text": " is actually safe. We can trust the code that is already deployed on chain. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,400",
+				"to": "00:13:32,320"
+			},
+			"offsets": {
+				"from": 806400,
+				"to": 812320
+			},
+			"text": " before we answer that, let's think how we should, how we probably do this this days."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,320",
+				"to": "00:13:39,520"
+			},
+			"offsets": {
+				"from": 812320,
+				"to": 819520
+			},
+			"text": " We may, for example, hire an auditor in order to audit that code that was deployed on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,520",
+				"to": "00:13:45,760"
+			},
+			"offsets": {
+				"from": 819520,
+				"to": 825760
+			},
+			"text": " And the auditor may raise some findings on that code. And we'll tell the developer team to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,760",
+				"to": "00:13:52,080"
+			},
+			"offsets": {
+				"from": 825760,
+				"to": 832080
+			},
+			"text": " ignore it, fix those bags or to improve the things that we found there. And it will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,080",
+				"to": "00:13:57,840"
+			},
+			"offsets": {
+				"from": 832080,
+				"to": 837840
+			},
+			"text": " kind of expensive in order to hire an auditor to do that every time we want to use a new dependency."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,840",
+				"to": "00:14:02,800"
+			},
+			"offsets": {
+				"from": 837840,
+				"to": 842800
+			},
+			"text": " And that's why we decided to start working on the on the botching system of SublinOS."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,800",
+				"to": "00:14:08,880"
+			},
+			"offsets": {
+				"from": 842800,
+				"to": 848880
+			},
+			"text": " This is a way to decentralize those decisions. And this is our first step towards the TUCOM"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,880",
+				"to": "00:14:15,280"
+			},
+			"offsets": {
+				"from": 848880,
+				"to": 855280
+			},
+			"text": " mechanics that we've been announcing since we started this project. The first implementation of"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,280",
+				"to": "00:14:20,720"
+			},
+			"offsets": {
+				"from": 855280,
+				"to": 860720
+			},
+			"text": " the botching system, we really have announced that it's already included in the second version"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,720",
+				"to": "00:14:30,000"
+			},
+			"offsets": {
+				"from": 860720,
+				"to": 870000
+			},
+			"text": " of SublinOS we launched this week. So let's see what do we have to say about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,000",
+				"to": "00:14:36,960"
+			},
+			"offsets": {
+				"from": 870000,
+				"to": 876960
+			},
+			"text": " So the botching system basically allows users to back the quality of an EVM package that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,960",
+				"to": "00:14:41,760"
+			},
+			"offsets": {
+				"from": 876960,
+				"to": 881760
+			},
+			"text": " already deployed. As you can see, this is something complementary to the EVM packages thing. It"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,760",
+				"to": "00:14:46,800"
+			},
+			"offsets": {
+				"from": 881760,
+				"to": 886800
+			},
+			"text": " doesn't mean that you need to use the botching system in order to create an EVM package. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,800",
+				"to": "00:14:53,680"
+			},
+			"offsets": {
+				"from": 886800,
+				"to": 893680
+			},
+			"text": " this is the way that you can use in order to sign the security of an EVM package that is already"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,680",
+				"to": "00:15:01,200"
+			},
+			"offsets": {
+				"from": 893680,
+				"to": 901200
+			},
+			"text": " deployed. As you can see, this is our first step towards a greater list of secure EVM packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,200",
+				"to": "00:15:07,520"
+			},
+			"offsets": {
+				"from": 901200,
+				"to": 907520
+			},
+			"text": " And let's see a quick example of the things that we can do with the botching system. For example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,240",
+				"to": "00:15:14,400"
+			},
+			"offsets": {
+				"from": 908240,
+				"to": 914400
+			},
+			"text": " raising here a way to register an EVM package on the botching system of SublinOS, it's pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,400",
+				"to": "00:15:20,720"
+			},
+			"offsets": {
+				"from": 914400,
+				"to": 920720
+			},
+			"text": " much very simple. You just need to pass the name of your EVM package and the others where it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,720",
+				"to": "00:15:26,880"
+			},
+			"offsets": {
+				"from": 920720,
+				"to": 926880
+			},
+			"text": " deploying and will be as simple as that. And of course, that you can also start botching some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,880",
+				"to": "00:15:34,080"
+			},
+			"offsets": {
+				"from": 926880,
+				"to": 934080
+			},
+			"text": " amounts for EVM package that are already registered in the botching system. And the amounts that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,080",
+				"to": "00:15:39,680"
+			},
+			"offsets": {
+				"from": 934080,
+				"to": 939680
+			},
+			"text": " we are botching here are not just numbers. And this is where the SEP token is born. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,680",
+				"to": "00:15:44,480"
+			},
+			"offsets": {
+				"from": 939680,
+				"to": 944480
+			},
+			"text": " SEP token is the native token of the botching system. And it's basically what allows us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,480",
+				"to": "00:15:50,320"
+			},
+			"offsets": {
+				"from": 944480,
+				"to": 950320
+			},
+			"text": " align the incentives in order to create a healthy ecosystem of secure smart contracts projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,320",
+				"to": "00:15:56,560"
+			},
+			"offsets": {
+				"from": 950320,
+				"to": 956560
+			},
+			"text": " And it was also launched with the second version of SublinOS along with the botching system."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,760",
+				"to": "00:16:04,240"
+			},
+			"offsets": {
+				"from": 957760,
+				"to": 964240
+			},
+			"text": " And one more thing, we're not alone. There's a lot of amazing projects that already decided to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,240",
+				"to": "00:16:11,040"
+			},
+			"offsets": {
+				"from": 964240,
+				"to": 971040
+			},
+			"text": " start building their own EVM packages. And many of them are already on chain. They're already on"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,040",
+				"to": "00:16:15,840"
+			},
+			"offsets": {
+				"from": 971040,
+				"to": 975840
+			},
+			"text": " the mainnet. So you can start using their code in your own projects through SublinOS."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,840",
+				"to": "00:16:22,480"
+			},
+			"offsets": {
+				"from": 975840,
+				"to": 982480
+			},
+			"text": " And you can be one of them too. So that's why we decided to start a private beta period. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,480",
+				"to": "00:16:28,480"
+			},
+			"offsets": {
+				"from": 982480,
+				"to": 988480
+			},
+			"text": " a way to -- that we decided to gather a small group of people in order to validate all these ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,480",
+				"to": "00:16:34,080"
+			},
+			"offsets": {
+				"from": 988480,
+				"to": 994080
+			},
+			"text": " And all the projects that I mentioned before are going to receive some SEP tokens in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,080",
+				"to": "00:16:42,560"
+			},
+			"offsets": {
+				"from": 994080,
+				"to": 1002560
+			},
+			"text": " to start testing the botching system. And you can be one of them too. Just a quick"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,560",
+				"to": "00:16:48,960"
+			},
+			"offsets": {
+				"from": 1002560,
+				"to": 1008960
+			},
+			"text": " clarification here. This doesn't mean that SublinOS is not available for everyone. SublinOS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,960",
+				"to": "00:16:53,920"
+			},
+			"offsets": {
+				"from": 1008960,
+				"to": 1013920
+			},
+			"text": " as I said before, is open source. And you can use it right now if you want. Just -- it does mean"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,920",
+				"to": "00:16:58,160"
+			},
+			"offsets": {
+				"from": 1013920,
+				"to": 1018160
+			},
+			"text": " that the beta participants are the only ones that are going to be allowed to start testing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,160",
+				"to": "00:17:03,760"
+			},
+			"offsets": {
+				"from": 1018160,
+				"to": 1023760
+			},
+			"text": " botching system. Those are the ones that will receive some SEP tokens that the ones that can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,760",
+				"to": "00:17:08,640"
+			},
+			"offsets": {
+				"from": 1023760,
+				"to": 1028640
+			},
+			"text": " start botching for some EVM packages that are already deployed. The ones that will be allowed"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,640",
+				"to": "00:17:16,320"
+			},
+			"offsets": {
+				"from": 1028640,
+				"to": 1036320
+			},
+			"text": " to register EVM packages on our botching system and so on. And you can follow this link where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,320",
+				"to": "00:17:22,560"
+			},
+			"offsets": {
+				"from": 1036320,
+				"to": 1042560
+			},
+			"text": " will find a registration form in order to sign up for the beta period. As I said before, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,560",
+				"to": "00:17:30,160"
+			},
+			"offsets": {
+				"from": 1042560,
+				"to": 1050160
+			},
+			"text": " open for everyone. So feel free to apply and we hope you do. And the registration is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,160",
+				"to": "00:17:37,120"
+			},
+			"offsets": {
+				"from": 1050160,
+				"to": 1057120
+			},
+			"text": " finishing by mid-November, so please come and join us. And thank you so much, guys, for hearing me today."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,120",
+				"to": "00:17:41,120"
+			},
+			"offsets": {
+				"from": 1057120,
+				"to": 1061120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,120",
+				"to": "00:17:45,120"
+			},
+			"offsets": {
+				"from": 1061120,
+				"to": 1065120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,120",
+				"to": "00:17:49,120"
+			},
+			"offsets": {
+				"from": 1065120,
+				"to": 1069120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,120",
+				"to": "00:17:53,120"
+			},
+			"offsets": {
+				"from": 1069120,
+				"to": 1073120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,120",
+				"to": "00:17:57,120"
+			},
+			"offsets": {
+				"from": 1073120,
+				"to": 1077120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,120",
+				"to": "00:18:05,120"
+			},
+			"offsets": {
+				"from": 1077120,
+				"to": 1085120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,120",
+				"to": "00:18:09,120"
+			},
+			"offsets": {
+				"from": 1085120,
+				"to": 1089120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,120",
+				"to": "00:18:38,120"
+			},
+			"offsets": {
+				"from": 1089120,
+				"to": 1118120
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

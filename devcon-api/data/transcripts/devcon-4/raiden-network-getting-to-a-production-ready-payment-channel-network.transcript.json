@@ -1,0 +1,1704 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 9000
+			},
+			"text": " Welcome guys, good morning. I will present to you about the RADIEN network and how we are trying to get to a production ready payments on a network for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 20000
+			},
+			"text": " I want to thank Jeremy from Fanfare for starting because basically what he described is very similar to what we are facing testing trying to go to the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 28000
+			},
+			"text": " So first of a little bit about myself, so I'm lefteels Carapetas. I have been working in the Ethereum space in 2014."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " I'm working on Solidity, the S++ Ethereum and some other stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 38000
+			},
+			"text": " And later I joined BrainBot as the core developer for RADIEN network and as the development team lead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 52000
+			},
+			"text": " So we're going to talk about today essentially the current status of RADIEN, what we call the upcoming Redis release, then get a bit of a more technical deep dive on the RADIEN protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:04,000"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 64000
+			},
+			"text": " We're going to talk about how we implement this protocol, looking at the RADIEN architecture. We're going to talk about Stedma since, very similar to what the Fanfare guys are doing and then what is missing to get to production readiness."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 64000,
+				"to": 73000
+			},
+			"text": " So first let's talk about the current status of RADIEN and the upcoming RADIEN release."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,000",
+				"to": "00:01:32,000"
+			},
+			"offsets": {
+				"from": 74000,
+				"to": 92000
+			},
+			"text": " Nice colors. So we were trying to get into a release mode for DevCon, like many, many other projects, but we were not, a lot of things came up because of the mainnet testing that also Jeremy mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 92000,
+				"to": 101000
+			},
+			"text": " So we are still on the last phases of testing the software to prepare for the mainnet release."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 111000
+			},
+			"text": " So the RADIEN release will not be a production ready release because it will be missing some key components which we will describe later in the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 121000
+			},
+			"text": " The goal is to get mainnet feedback because, yeah, testnet is one thing, but not many people use your software on the testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:07,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 127000
+			},
+			"text": " And as Jeremy also said, the behavior is rather different when you try your software on the testnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 138000
+			},
+			"text": " And we will release once we iron out most of the bugs, but I guess we won't find out everything, so we will also have a bug bounty for the mainnet release."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143000
+			},
+			"text": " So whenever we make the post, please watch out for the bug bounty rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 152000
+			},
+			"text": " So now I'm going to go a bit more technical. I hope you guys are all awake to explain how the RADIEN protocol works."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 153000,
+				"to": 164000
+			},
+			"text": " First of this is our, the life cycle of a tunnel. Essentially, people can open a tunnel, so two participants, either of them, or a delegate can open the tunnel."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 172000
+			},
+			"text": " Then we have an open tunnel and anybody can deposit tokens or a delegate can deposit for either one of the participants."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " At this point, we have a live tunnel and it can be used for transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 191000
+			},
+			"text": " There is a lot of things that I can talk about, our protocol and the messages that are exchanged in the happy case, but I've already talked about it in other talks and perhaps I can just give a small overview here."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 199000
+			},
+			"text": " So here is a mediated transfer from Alice to Dave, through Bob and Charlie, and the messages that are exchanged for a hostile transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 206000
+			},
+			"text": " So this is the happy path, the core of RADIEN payment through the payments and network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:31,000"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 211000
+			},
+			"text": " I want to go to a bit more interesting stuff, so essentially pending transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 211000,
+				"to": 223000
+			},
+			"text": " So whenever you have a network like the Bob, like we have Alice, Bob, Charlie, Dave, Ewald and Francis, let's say, and then Alice wants to send transfers to everyone through Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:56,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 236000
+			},
+			"text": " So we send the hostile block transfer and here we see the state of Alice, Bob, tunnel, the receiving state of Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,000",
+				"to": "00:04:05,000"
+			},
+			"offsets": {
+				"from": 236000,
+				"to": 245000
+			},
+			"text": " So we keep a lock for the pending transfer and for each transfer that is going on, we are putting all the locks in a miracle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 245000,
+				"to": 253000
+			},
+			"text": " And essentially this is how we, so all we need is the route, which sends us with every new lock."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:24,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 264000
+			},
+			"text": " And as the protocol continues, a target like Dave will ask for the secret, so this is the pre-emats that we will ask from the initiator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 273000
+			},
+			"text": " We will get it, then send it back to the mediator and we will unlock the pending transfer and remove it from the miracle tree."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 280000
+			},
+			"text": " So this is how transfers would happen, but then at some point people would want to close the tunnel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284000
+			},
+			"text": " There are two possibilities to close the payment tunnel in RADIEN network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " One is the happy path, which funnily enough is not implemented yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 290000,
+				"to": 300000
+			},
+			"text": " You have only one transaction because both parties agree that they want these final balances and then they sign and send one cooperative settlement on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 305000
+			},
+			"text": " The unhappy path, which is the adversarial one, is what we have implemented right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 313000
+			},
+			"text": " So each party updates the contract with their side of the state of the tunnel and then we get to the settlement."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 320000
+			},
+			"text": " At the settlement the contract pays out the finalize transfers for both parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 333000
+			},
+			"text": " And then we also have pending transfers, so transfers that were not unlocked while the tunnel was closing, and then we need to feed the contract with the pending transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 337000
+			},
+			"text": " How that happens? We can see it here. We need to involve the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 349000
+			},
+			"text": " So essentially we have the token network, which is the main contract that holds all of the channels, and the secret registry, which is something that we got from the sprites paper from Patrick McCory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:06:02,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 362000
+			},
+			"text": " And at this point, let's say that the protocol continues, C gets the secret from A, sends it back to B, but at the same time A closes the tunnel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 370000
+			},
+			"text": " At this point B cannot continue with the protocol and has to go on saying, what can he do? He has to prove that he knew the secret in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 381000
+			},
+			"text": " So he registers it in the secret registry contract and we have the block at which the secret registry doesn't happen, so he can prove that he was aware of the secret on time."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 382000,
+				"to": 395000
+			},
+			"text": " Then the protocol continues, and as we discussed before, so B will have to update his side of the tunnel, which is essentially them, Merkletry, and the monotonically increased transfer demand."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 414000
+			},
+			"text": " So someone, in this case B, can call settle or delegate, can essentially settle that tunnel and this will pay out however much was owed to A and however much was owed to B from the finalized transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:02,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 422000
+			},
+			"text": " And then we have to, if they are big enough, deal with pending transfers because this is another on the end transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 422000,
+				"to": 437000
+			},
+			"text": " So B will take his Merkletry, which is essentially like this whole thing, send it to the token network, and the token network will take from the secret registry where its of the pending locks were registered."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 445000
+			},
+			"text": " So what will happen is that it will pay out transfer 1 to B and transfer 3, 4 back to A."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 461000
+			},
+			"text": " So in conclusion, what happens here is that B will receive transfer 1 because he actually knew the secret and registered it on the end, but transfer 3 and 4 will go back to the initiator, so A, because the protocol didn't continue until the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 477000
+			},
+			"text": " So that's a few things about the protocol, there are a lot more messages we can go on and on about, but I would like to speak about how we are building this, so what is the architecture that we are following for the writing client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 490000
+			},
+			"text": " Here is a very, very high level overview at the core of a write and a license state machine, and essentially everything generates state changes that are fed to the state machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,000",
+				"to": "00:08:29,000"
+			},
+			"offsets": {
+				"from": 491000,
+				"to": 509000
+			},
+			"text": " So like the transport layer gives us state changes, polling blocks in events will give us state changes, API calls will give us state changes, they will all go in the state machine, generate a new state, and I/O, so external events, because there should be no side effects inside the state machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509000,
+				"to": 513000
+			},
+			"text": " And we also log stuff in a database."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 529000
+			},
+			"text": " A bit more details about this, so the state machine is a differential state machine, so essentially we, it's just a simple function that takes a previous, the current state, state change, and generates a new state, and must have no side effects."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 543000
+			},
+			"text": " We save the state of all known channels in the database, and that allows us to be persistent, which means that if the write-in crashes or if someone restarts it, then whenever we restart, it will be exactly the same state as before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 546000
+			},
+			"text": " This time it took us quite a bit of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 558000
+			},
+			"text": " And with the state machine we have improved stability, because you can write unit tests for each part of the state machine and test state changes individually."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 568000
+			},
+			"text": " So how does the state machine and the database, which we, it's essentially write ahead log, that's what WAL stands for, interact."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 569000,
+				"to": 576000
+			},
+			"text": " So everything the state change in write-in, but before we do anything, we log every state change inside the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:44,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 584000
+			},
+			"text": " After it's logged, then we dispatch it to the state machine, and that generates a new state and some internal events."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 584000,
+				"to": 595000
+			},
+			"text": " So internal events is anything that has side effects, so an on-chain transaction and off-chain message, even just making an entry into the debug log."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 600000
+			},
+			"text": " So this loop continues and continues, and this is how write-in works."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:17,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 617000
+			},
+			"text": " At some point we take an app sort of the state and put it back into the database, and that is an optimization, because when we want to restart after a crash, let's say, what we will do is we will have to replay all of the state changes to get into the same state that we were before."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,000",
+				"to": "00:10:24,000"
+			},
+			"offsets": {
+				"from": 617000,
+				"to": 624000
+			},
+			"text": " And that at some point, let's say if writing was running for four weeks, would take quite a bit of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 624000,
+				"to": 635000
+			},
+			"text": " And as such, we start by requesting the latest state that was snapshotted, and then we start and replaying the state changes since that snapshot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 654000
+			},
+			"text": " Going away from the state machine, let's talk a little bit about the transport layer. So since we deal with offsetting messages, so we receive and we send messages to our channel partners, we have to have a specific transport layer."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:04,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 664000
+			},
+			"text": " Our architecture is transport agnostic by design, so it's just a common interface of sent receive, and we can have plug-able transport layers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,000",
+				"to": "00:11:16,000"
+			},
+			"offsets": {
+				"from": 664000,
+				"to": 676000
+			},
+			"text": " So we started with UDP, but we had a lot of problems due to nut pancing, and we have now switched to using the matrix protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 676000,
+				"to": 681000
+			},
+			"text": " So what is matrix and why are we using it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 692000
+			},
+			"text": " There is a blog post that you can take in the write-in network medium account that has a lot of details about why that's always, but I will just go through some of the main points."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:34,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 694000
+			},
+			"text": " So it gives us reliability."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 694000,
+				"to": 704000
+			},
+			"text": " As opposed to UDP transfers, we know that when you send the matrix message, it will arrive and it will reach its target."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:52,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 712000
+			},
+			"text": " All connections start from the client to the server through HTTP long polling, and that allows us to go around all of the nut problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 712000,
+				"to": 721000
+			},
+			"text": " That may not sound too important, but when we were using UDP, only half of our issues were about the network configuration of the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 724000
+			},
+			"text": " and we ended up dividing the two configurations."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 730000
+			},
+			"text": " Another good thing about matrix is that it uses a federated server setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 739000
+			},
+			"text": " That means that we don't have only one server, but it's a federation of servers, and all of messages are federated between the servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 744000
+			},
+			"text": " So if, let's say, one matrix server goes down, the protocol doesn't go down with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:28,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 748000
+			},
+			"text": " And it also gives us encryption out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 750000,
+				"to": 761000
+			},
+			"text": " So with our entities that are starting the writing transport, I want to give a big thing to my crypto, to digital virtues, to exchange union, and to KID centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 768000
+			},
+			"text": " because they are the first people who are running a matrix servers to help boost up the transport network of writing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:56,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 776000
+			},
+			"text": " If any of you are interested in actually running a matrix server, just talk to me later or send us an email."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 784000
+			},
+			"text": " So we also have a REST API. That's how most users interact with the writing client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789000
+			},
+			"text": " It's very simple. It just exposes through REST API endpoints all of the basic functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 789000,
+				"to": 792000
+			},
+			"text": " Let's say Open channel, Close, settle, make transfers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 801000
+			},
+			"text": " We also have some debugging endpoints through which people can give us very events, and we can debug what's happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 803000
+			},
+			"text": " But most importantly, it's a work in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 811000
+			},
+			"text": " So an API is meant to be consumed by developers. So it's made by us. We are also developers, but we don't have enough feedback yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 820000
+			},
+			"text": " So we have some kind of assumptions about how the endpoints should work, or about even the hierarchy of the URL endpoints."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 832000
+			},
+			"text": " So please, guys, if you want to play with writing, test it, use it, and tell us if the endpoints make sense, or if you need more endpoints, less endpoints,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:14:04,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 844000
+			},
+			"text": " etc. We also have a user interface. It's just a web UI. You can go to this link of the QR and C it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 844000,
+				"to": 849000
+			},
+			"text": " We have a video that is made by my colleague, Christopharn. It's very nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 853000
+			},
+			"text": " It explains how you can use writing through the web UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 863000
+			},
+			"text": " Essentially, it is just showing you the rest. It's just a layer over the rest API."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 875000
+			},
+			"text": " So the next section, which is pretty interesting, is how can we achieve production readiness? What does production readiness mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 885000
+			},
+			"text": " So, as Jeremy said, testing is hard, and especially testing a protocol implementation is really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 897000
+			},
+			"text": " So we had a lot of tests on the test, so COVID and Rinkaby, and then we started also testing on the mainnet, and then things blew up completely."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 910000
+			},
+			"text": " So you have a payment channel network, which has a lot of moving parts, has time-logs, we have a separate transport layer, and this is layer two, and then you have layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 916000
+			},
+			"text": " And we rely on layer one, working correctly, which sometimes it doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 923000
+			},
+			"text": " We are building software on top of something that is still experimental, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 930000
+			},
+			"text": " Jeremy mentioned a lot of things about gas prices. We saw that in the mainnet, especially."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 945000
+			},
+			"text": " We have five blocks of confirmation for reorgs that makes the user experience terrible, but gives us safety, because it is an automated protocol that has two sent transactions, and once they are sent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 950000
+			},
+			"text": " you have to assume that they are mined, or else everything breaks, because the protocol is just not followed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 956000
+			},
+			"text": " So, basically, exactly what Jeremy said before. What do we do for testing then?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 962000
+			},
+			"text": " So we have, of course, like most others, a suite of automated tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 969000
+			},
+			"text": " We use Travis at this point, maybe we will switch to something else since it has been pretty unstable for the past months."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 978000
+			},
+			"text": " The cumulative time is around three hours, the test suite, but we have parallelized the jobs and it takes about 50 minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:23,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 983000
+			},
+			"text": " It covers a lot. We feel very confident when it's green, but it doesn't cover everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,000",
+				"to": "00:16:29,000"
+			},
+			"offsets": {
+				"from": 983000,
+				"to": 989000
+			},
+			"text": " So my colleague, Ulo, made a new tool we call it the scenario player."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,000",
+				"to": "00:16:39,000"
+			},
+			"offsets": {
+				"from": 989000,
+				"to": 999000
+			},
+			"text": " So, essentially, unlike the continuous integration system that spins up a new private test for every test run,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 999000,
+				"to": 1014000
+			},
+			"text": " this uses existing test nets or a private test net, and through a yummy language, essentially great scenarios like you open 10 channels and 100 transfers in the meantime, kill nodes, restart nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1019000
+			},
+			"text": " and take things if the balance is set out at the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1031000
+			},
+			"text": " And what is good about this is that even our non-so-tech-y, oriented colleagues can write scenarios here, because it's yummy, so it's pretty readable."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1040000
+			},
+			"text": " And the best thing that we -- the manual testing. We have been doing a lot of manual testing, so clicking buttons on the user interface,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1049000
+			},
+			"text": " and making scripts that spin up nodes, make hundreds of transactions, kill stuff, restart stuff, in order to find bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1058000
+			},
+			"text": " And we have found quite a bit of bugs, so a lot of things go wrong when doing stuff like that on the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1064000
+			},
+			"text": " Soon we would like to, in order to feel more confident, hit the state machine with fast testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1075000
+			},
+			"text": " And, essentially, all of this is probably not optimal, so the best way to test test testing machine will be to just feed it random but valid data and see if it breaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1082000
+			},
+			"text": " If you get into an invalid state, you have a bug. So that's what we plan to do in the future for testing."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:12,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1092000
+			},
+			"text": " So we talked about what we have right now and what is coming with the Reddyze Mainnet release, but we said it is not production ready, and I cannot state this enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,000",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1092000,
+				"to": 1096000
+			},
+			"text": " So what is missing to achieve this production readiness?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:22,000"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1102000
+			},
+			"text": " First of all, fees, right? So you would think that the payments on the network has fees by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,000",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1102000,
+				"to": 1112000
+			},
+			"text": " We will not at Reddyze. Our production ready release will, of course, have fees, but since we are trying to go and build incremental software that works,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:36,000"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1116000
+			},
+			"text": " we have scoped fees out for the mainnet release."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,000",
+				"to": "00:18:46,000"
+			},
+			"offsets": {
+				"from": 1116000,
+				"to": 1126000
+			},
+			"text": " Of course, why are fees important? Well, I mean, you need fees to incentivize mediation of transfers, and also with a proper fee model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,000",
+				"to": "00:18:53,000"
+			},
+			"offsets": {
+				"from": 1126000,
+				"to": 1133000
+			},
+			"text": " we can also have incentives to have a balanced network."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1133000,
+				"to": 1139000
+			},
+			"text": " Another thing that will be missing from Reddyze will be monitoring."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:10,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1150000
+			},
+			"text": " Patrick will talk a lot about this in the PISA talk later, but what it is essentially is that if you go offline for an extended period of time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1150000,
+				"to": 1155000
+			},
+			"text": " with our defaults, it's more than two hours. So it's not like if you just go offline, you lost money."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1157000
+			},
+			"text": " You just need to be offline for more than two hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1167000
+			},
+			"text": " Then you are in the danger zone of your partner closing the channel, and basically you're not having enough time to claim your funds out of the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1177000
+			},
+			"text": " So we will have monitoring services that will be looking at your channels, and if something, if your partner acts while you're offline, they can take care of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1192000
+			},
+			"text": " Finally, at the moment, we have suboptimal routing, because when we create the route to the target, we only know the initial capacity that was deposited to the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1199000
+			},
+			"text": " And we create the route to send the transfer through using this assumption."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1207000
+			},
+			"text": " In reality, it's a moving network capacity changes all the time, so we need to be able to know the current capacity."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1211000
+			},
+			"text": " Our solution to this is to use a third-party service, we call it the Pathfinder,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1221000
+			},
+			"text": " and he will have a current view of the terminal capacity because nodes will be incentivized actually to send them to the pathfinding helper capacity updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1228000
+			},
+			"text": " So whenever you want to make a transfer, you just query the Pathfinder, what is the optimal route, and then you send it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1241000
+			},
+			"text": " That's very good because then you will get the optimal path so it will cost less, and also the Pathfinder will also give you a route that will keep a helping network."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:51,000"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1251000
+			},
+			"text": " So you guys can try it. We have a release every week actually preparing for the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,000",
+				"to": "00:20:58,000"
+			},
+			"offsets": {
+				"from": 1251000,
+				"to": 1258000
+			},
+			"text": " Everything is right now on all three test nets. We have the contrast deployed, so Robston, Coven, and Ringbii,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1258000,
+				"to": 1261000
+			},
+			"text": " and Wotzout for the bug bounty."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:13,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1273000
+			},
+			"text": " Whenever we finally make the Redis mainnet release, if you want to have a lot more fun with writing and get into it and use it in a hands-on workshop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,000",
+				"to": "00:21:21,000"
+			},
+			"offsets": {
+				"from": 1273000,
+				"to": 1281000
+			},
+			"text": " my colleagues Jacob, Ulo, and Paul will be hosting a hands-on writing workshop from 1pm to 3 at the Mikado room."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,000",
+				"to": "00:21:29,000"
+			},
+			"offsets": {
+				"from": 1281000,
+				"to": 1289000
+			},
+			"text": " I will also be there. I think that the entire team will be there, so you guys can just come in touch with us and see how to use writing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,000",
+				"to": "00:21:36,000"
+			},
+			"offsets": {
+				"from": 1289000,
+				"to": 1296000
+			},
+			"text": " So that's all. Thank you. If you guys want more information, just follow us on Twitter at the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,000",
+				"to": "00:21:58,060"
+			},
+			"offsets": {
+				"from": 1296000,
+				"to": 1318060
+			},
+			"text": " Take the website or just follow me at Left"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,060",
+				"to": "00:22:00,060"
+			},
+			"offsets": {
+				"from": 1318060,
+				"to": 1320060
+			},
+			"text": " and"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,060",
+				"to": "00:22:02,060"
+			},
+			"offsets": {
+				"from": 1320060,
+				"to": 1322060
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,060",
+				"to": "00:22:04,060"
+			},
+			"offsets": {
+				"from": 1322060,
+				"to": 1324060
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,060",
+				"to": "00:22:06,060"
+			},
+			"offsets": {
+				"from": 1324060,
+				"to": 1326060
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,060",
+				"to": "00:22:08,060"
+			},
+			"offsets": {
+				"from": 1326060,
+				"to": 1328060
+			},
+			"text": " you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,060",
+				"to": "00:22:12,060"
+			},
+			"offsets": {
+				"from": 1328060,
+				"to": 1332060
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

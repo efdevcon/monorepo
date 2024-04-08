@@ -1,0 +1,2199 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:11,860"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 11860
+			},
+			"text": " Hello."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,860",
+				"to": "00:00:14,520"
+			},
+			"offsets": {
+				"from": 11860,
+				"to": 14520
+			},
+			"text": " Hello, I'm John."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,520",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 14520,
+				"to": 19000
+			},
+			"text": " I'm going to present you an instantization model"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23000
+			},
+			"text": " for an S-mat"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:29,600"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 29600
+			},
+			"text": " client server, the network cost, and what is the way the lifeline cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,600",
+				"to": "00:00:35,360"
+			},
+			"offsets": {
+				"from": 29600,
+				"to": 35360
+			},
+			"text": " Talking about the lifeline, most people usually think about the end user use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,360",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 35360,
+				"to": 37000
+			},
+			"text": " and very lightweight use cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:43,400"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 43400
+			},
+			"text": " And I believe in the near future, we work towards scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,400",
+				"to": "00:00:48,680"
+			},
+			"offsets": {
+				"from": 43400,
+				"to": 48680
+			},
+			"text": " Even our core network protocols and systems will have more and more"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,680",
+				"to": "00:00:52,680"
+			},
+			"offsets": {
+				"from": 48680,
+				"to": 52680
+			},
+			"text": " on some kind of lifeline cost or ACMOT protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,680",
+				"to": "00:00:57,920"
+			},
+			"offsets": {
+				"from": 52680,
+				"to": 57920
+			},
+			"text": " So having a reliable solution for incentivizing is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,920",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 57920,
+				"to": 64600
+			},
+			"text": " So I think working on a model that is capable of the long-term trust building"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:08,320"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 68320
+			},
+			"text": " being focused on clients and servers in a totally decent right than trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,320",
+				"to": "00:01:09,560"
+			},
+			"offsets": {
+				"from": 68320,
+				"to": 69560
+			},
+			"text": " as environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,560",
+				"to": "00:01:16,720"
+			},
+			"offsets": {
+				"from": 69560,
+				"to": 76720
+			},
+			"text": " And Canada is incentivized, particularly service availability"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,720",
+				"to": "00:01:18,080"
+			},
+			"offsets": {
+				"from": 76720,
+				"to": 78080
+			},
+			"text": " and the concept of people."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,080",
+				"to": "00:01:19,640"
+			},
+			"offsets": {
+				"from": 78080,
+				"to": 79640
+			},
+			"text": " Response times."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,640",
+				"to": "00:01:24,500"
+			},
+			"offsets": {
+				"from": 79640,
+				"to": 84500
+			},
+			"text": " And I've been implementing this model in the go-it area like"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,500",
+				"to": "00:01:26,600"
+			},
+			"offsets": {
+				"from": 84500,
+				"to": 86600
+			},
+			"text": " client protocols, so called LAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,600",
+				"to": "00:01:32,400"
+			},
+			"offsets": {
+				"from": 86600,
+				"to": 92400
+			},
+			"text": " But it's also applicable in any model or any for any protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,400",
+				"to": "00:01:36,360"
+			},
+			"offsets": {
+				"from": 92400,
+				"to": 96360
+			},
+			"text": " And if the right list turns out to be workable, then it could also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,360",
+				"to": "00:01:40,800"
+			},
+			"offsets": {
+				"from": 96360,
+				"to": 100800
+			},
+			"text": " service a group of concepts for our future network protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,800",
+				"to": "00:01:44,480"
+			},
+			"offsets": {
+				"from": 100800,
+				"to": 104480
+			},
+			"text": " So what I was trying to realize is that it truly"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,480",
+				"to": "00:01:51,160"
+			},
+			"offsets": {
+				"from": 104480,
+				"to": 111160
+			},
+			"text": " resumbrised the service cloud where clients and servers can do resource allocation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,160",
+				"to": "00:01:58,160"
+			},
+			"offsets": {
+				"from": 111160,
+				"to": 118160
+			},
+			"text": " and both clients based purely on market signals and can take care of their own interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,160",
+				"to": "00:02:04,760"
+			},
+			"offsets": {
+				"from": 118160,
+				"to": 124760
+			},
+			"text": " and putting themselves against attackers and pros because no one else will do this for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,760",
+				"to": "00:02:13,080"
+			},
+			"offsets": {
+				"from": 124760,
+				"to": 133080
+			},
+			"text": " And so one of the most obvious issues such as this that has to solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,080",
+				"to": "00:02:19,800"
+			},
+			"offsets": {
+				"from": 133080,
+				"to": 139800
+			},
+			"text": " is that in a built-up year network, promises are not enforceable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,800",
+				"to": "00:02:25,760"
+			},
+			"offsets": {
+				"from": 139800,
+				"to": 145760
+			},
+			"text": " So anyone can get away at any point, including servers right after receiving the payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,760",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 145760,
+				"to": 149360
+			},
+			"text": " So we have to have some kind of a replication mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:35,640"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 155640
+			},
+			"text": " And in this case, in this model, these will look like servers have to first provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,640",
+				"to": "00:02:36,960"
+			},
+			"offsets": {
+				"from": 155640,
+				"to": 156960
+			},
+			"text": " a pre-service."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,960",
+				"to": "00:02:41,400"
+			},
+			"offsets": {
+				"from": 156960,
+				"to": 161400
+			},
+			"text": " And after there's a high demand for the pre-service and clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,400",
+				"to": "00:02:49,160"
+			},
+			"offsets": {
+				"from": 161400,
+				"to": 169160
+			},
+			"text": " just to try to start the server, they can start offering the money in order to make it very priority."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,160",
+				"to": "00:02:54,800"
+			},
+			"offsets": {
+				"from": 169160,
+				"to": 174800
+			},
+			"text": " I also wanted this model to have a first-level network overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,800",
+				"to": "00:03:00,240"
+			},
+			"offsets": {
+				"from": 174800,
+				"to": 180240
+			},
+			"text": " And I do believe it could even be workable with any kind of payment technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,240",
+				"to": "00:03:07,880"
+			},
+			"offsets": {
+				"from": 180240,
+				"to": 187880
+			},
+			"text": " including on-chain payments, but of course, more than on-chain technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,880",
+				"to": "00:03:13,320"
+			},
+			"offsets": {
+				"from": 187880,
+				"to": 193320
+			},
+			"text": " So the best way to understand this approach is through the time of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,320",
+				"to": "00:03:16,320"
+			},
+			"offsets": {
+				"from": 193320,
+				"to": 196320
+			},
+			"text": " It used to be key on a market and this one is no exception."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,320",
+				"to": "00:03:21,960"
+			},
+			"offsets": {
+				"from": 196320,
+				"to": 201960
+			},
+			"text": " After all, I think I would like to provide my answer to talk about the importance of your responses"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,960",
+				"to": "00:03:23,400"
+			},
+			"offsets": {
+				"from": 201960,
+				"to": 203400
+			},
+			"text": " to response times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,400",
+				"to": "00:03:27,240"
+			},
+			"offsets": {
+				"from": 203400,
+				"to": 207240
+			},
+			"text": " But also the market mechanisms themselves are timely conduct."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,240",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 207240,
+				"to": 213640
+			},
+			"text": " And what works on a longer time scale might not work equally well on a short time scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:40,880"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 220880
+			},
+			"text": " simply because the information that actors are trying to base the decisions on might need some time"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,880",
+				"to": "00:03:47,560"
+			},
+			"offsets": {
+				"from": 220880,
+				"to": 227560
+			},
+			"text": " to become reliable, like service-quality and response-like characteristics."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,560",
+				"to": "00:03:52,280"
+			},
+			"offsets": {
+				"from": 227560,
+				"to": 232280
+			},
+			"text": " And serving difficult measurements is a very noisy thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,280",
+				"to": "00:03:58,720"
+			},
+			"offsets": {
+				"from": 232280,
+				"to": 238720
+			},
+			"text": " And we just have to call it a certain amount of data in order to be able to make good decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,720",
+				"to": "00:04:04,000"
+			},
+			"offsets": {
+				"from": 238720,
+				"to": 244000
+			},
+			"text": " And I will have to run into problems similar to high-frequency trading,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,000",
+				"to": "00:04:07,640"
+			},
+			"offsets": {
+				"from": 244000,
+				"to": 247640
+			},
+			"text": " which I do it can really disconnect from any market fundamentals"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,640",
+				"to": "00:04:12,640"
+			},
+			"offsets": {
+				"from": 247640,
+				"to": 252640
+			},
+			"text": " and this to have any meaningful market activity by using price fluctuations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,640",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 252640,
+				"to": 257280
+			},
+			"text": " So it is a sort of, you know, also like to avoid a quick price fluctuations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:22,640"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 262640
+			},
+			"text": " because the prices, I believe, are practically meaningless on a short enough time scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,640",
+				"to": "00:04:23,960"
+			},
+			"offsets": {
+				"from": 262640,
+				"to": 263960
+			},
+			"text": " or price changes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,960",
+				"to": "00:04:32,840"
+			},
+			"offsets": {
+				"from": 263960,
+				"to": 272840
+			},
+			"text": " And so, you know, to make things a bit more stable and predictable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,840",
+				"to": "00:04:38,240"
+			},
+			"offsets": {
+				"from": 272840,
+				"to": 278240
+			},
+			"text": " in this talk I will show you how servers can balance a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,240",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 278240,
+				"to": 284640
+			},
+			"text": " of either educating their serving capacity and how banks can do low balancing"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:49,400"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 289400
+			},
+			"text": " based on the server feedback and also on a longer time scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,400",
+				"to": "00:04:57,840"
+			},
+			"offsets": {
+				"from": 289400,
+				"to": 297840
+			},
+			"text": " and how banks can evaluate server performance and choose the best service for the money."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,840",
+				"to": "00:05:05,040"
+			},
+			"offsets": {
+				"from": 297840,
+				"to": 305040
+			},
+			"text": " So for first, let's look at how the servers can manage their own serving capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,040",
+				"to": "00:05:08,440"
+			},
+			"offsets": {
+				"from": 305040,
+				"to": 308440
+			},
+			"text": " and ensure good response times."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,440",
+				"to": "00:05:10,600"
+			},
+			"offsets": {
+				"from": 308440,
+				"to": 310600
+			},
+			"text": " Service..."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,600",
+				"to": "00:05:14,440"
+			},
+			"offsets": {
+				"from": 310600,
+				"to": 314440
+			},
+			"text": " Oh, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,440",
+				"to": "00:05:22,120"
+			},
+			"offsets": {
+				"from": 314440,
+				"to": 322120
+			},
+			"text": " So, servers have their own token account and so they have their own service tokens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,120",
+				"to": "00:05:27,680"
+			},
+			"offsets": {
+				"from": 322120,
+				"to": 327680
+			},
+			"text": " which are not to be based on the actual physical serving difficulty of request"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,680",
+				"to": "00:05:33,760"
+			},
+			"offsets": {
+				"from": 327680,
+				"to": 333760
+			},
+			"text": " and the competition should be unrelated to any market prices or conditions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,760",
+				"to": "00:05:38,160"
+			},
+			"offsets": {
+				"from": 333760,
+				"to": 338160
+			},
+			"text": " And the request costs are always nominated in the service tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,160",
+				"to": "00:05:45,040"
+			},
+			"offsets": {
+				"from": 338160,
+				"to": 345040
+			},
+			"text": " and basically usually the servers can freely decide the cost of any individual request,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,040",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 345040,
+				"to": 351000
+			},
+			"text": " but there are previously announced maximum cost limits for each request time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:56,800"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 356800
+			},
+			"text": " And we also defined capacity as service tokens, spendable per time unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,800",
+				"to": "00:06:01,160"
+			},
+			"offsets": {
+				"from": 356800,
+				"to": 361160
+			},
+			"text": " and we assign a capacity to each client, which basically means request rate limiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,160",
+				"to": "00:06:06,920"
+			},
+			"offsets": {
+				"from": 361160,
+				"to": 366920
+			},
+			"text": " and we also set an upper limit on the total capacity of all connected clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,920",
+				"to": "00:06:08,920"
+			},
+			"offsets": {
+				"from": 366920,
+				"to": 368920
+			},
+			"text": " and this is..."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,920",
+				"to": "00:06:12,720"
+			},
+			"offsets": {
+				"from": 368920,
+				"to": 372720
+			},
+			"text": " The goal of this is to avoid the transient overloads"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,720",
+				"to": "00:06:17,400"
+			},
+			"offsets": {
+				"from": 372720,
+				"to": 377400
+			},
+			"text": " by chimeing a situation where we have a lot of requests in the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,400",
+				"to": "00:06:21,520"
+			},
+			"offsets": {
+				"from": 377400,
+				"to": 381520
+			},
+			"text": " and response times that to rise very quickly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,520",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381520,
+				"to": 386000
+			},
+			"text": " and so we set up some criteria for detecting this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:28,600"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 388600
+			},
+			"text": " and we can..."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,600",
+				"to": "00:06:32,840"
+			},
+			"offsets": {
+				"from": 388600,
+				"to": 392840
+			},
+			"text": " Maybe not always avoid this, but to reduce its program to its occurrence"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,840",
+				"to": "00:06:39,120"
+			},
+			"offsets": {
+				"from": 392840,
+				"to": 399120
+			},
+			"text": " and then adjust the total capacity a lot of months."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,120",
+				"to": "00:06:45,480"
+			},
+			"offsets": {
+				"from": 399120,
+				"to": 405480
+			},
+			"text": " So the request rate limiting method of adding alias is called client-side for control"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,480",
+				"to": "00:06:52,400"
+			},
+			"offsets": {
+				"from": 405480,
+				"to": 412400
+			},
+			"text": " and as I said, it's based on capacity to each client and also request for buffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,400",
+				"to": "00:06:58,120"
+			},
+			"offsets": {
+				"from": 412400,
+				"to": 418120
+			},
+			"text": " and the server when the two C3 requested can remove the cost of the request from the buffer"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,120",
+				"to": "00:07:01,720"
+			},
+			"offsets": {
+				"from": 418120,
+				"to": 421720
+			},
+			"text": " and also reach out the buffer at the rate that's proportional to the capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,720",
+				"to": "00:07:08,200"
+			},
+			"offsets": {
+				"from": 421720,
+				"to": 428200
+			},
+			"text": " and in every reply it also includes the current buffer status"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,200",
+				"to": "00:07:13,080"
+			},
+			"offsets": {
+				"from": 428200,
+				"to": 433080
+			},
+			"text": " and this is what clients can use as a feedback for local and same"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,080",
+				"to": "00:07:18,200"
+			},
+			"offsets": {
+				"from": 433080,
+				"to": 438200
+			},
+			"text": " because if they have multiple server connections they can always send an extra request to the server"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,200",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438200,
+				"to": 443000
+			},
+			"text": " but they have the best buffer value."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:30,360"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 450360
+			},
+			"text": " And yeah, now a few words about how service tokens are being sold"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,360",
+				"to": "00:07:38,360"
+			},
+			"offsets": {
+				"from": 450360,
+				"to": 458360
+			},
+			"text": " so basically we will be able to service to be able to sell some of the tokens in advance"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,360",
+				"to": "00:07:46,040"
+			},
+			"offsets": {
+				"from": 458360,
+				"to": 466040
+			},
+			"text": " but not too many of them because the spending rate of tokens is also limited"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,040",
+				"to": "00:07:54,680"
+			},
+			"offsets": {
+				"from": 466040,
+				"to": 474680
+			},
+			"text": " and it is always the service interested in ensure the stability of the purchasing power of its own tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,680",
+				"to": "00:08:03,080"
+			},
+			"offsets": {
+				"from": 474680,
+				"to": 483080
+			},
+			"text": " because as we will see later the clients will pay attention to this and the service will remove the reputation"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,080",
+				"to": "00:08:10,520"
+			},
+			"offsets": {
+				"from": 483080,
+				"to": 490520
+			},
+			"text": " if they fail to do so. So what the service should ideally do is limit the total outstanding amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,520",
+				"to": "00:08:17,480"
+			},
+			"offsets": {
+				"from": 490520,
+				"to": 497480
+			},
+			"text": " of its service tokens by controlling the selling price of tokens. So there's a base price and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,520",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 498520,
+				"to": 504840
+			},
+			"text": " it issues more and more tokens you can rise up the token price and if we are limiting the amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:30,920"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 510920
+			},
+			"text": " of tokens we should also enforce the spending of little hands by setting an expiration time on them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,920",
+				"to": "00:08:37,400"
+			},
+			"offsets": {
+				"from": 510920,
+				"to": 517400
+			},
+			"text": " or by making them inflationary or some combination of these and it's also important to mention here"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,400",
+				"to": "00:08:43,800"
+			},
+			"offsets": {
+				"from": 517400,
+				"to": 523800
+			},
+			"text": " that whenever a currency transfer is accepted by the server it's not automatically converted to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,800",
+				"to": "00:08:52,040"
+			},
+			"offsets": {
+				"from": 523800,
+				"to": 532040
+			},
+			"text": " service tokens that's something the client has to explicitly initiate and this is also when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,040",
+				"to": "00:09:00,280"
+			},
+			"offsets": {
+				"from": 532040,
+				"to": 540280
+			},
+			"text": " expiration starts ticking so it's always optional to buy a significant amount of service tokens in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,280",
+				"to": "00:09:05,320"
+			},
+			"offsets": {
+				"from": 540280,
+				"to": 545320
+			},
+			"text": " advance that's an option for clients that has a potential cost but it also has a benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,320",
+				"to": "00:09:11,320"
+			},
+			"offsets": {
+				"from": 545320,
+				"to": 551320
+			},
+			"text": " more benefit is that it avoids further price fluctuations but even more importantly that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,320",
+				"to": "00:09:17,320"
+			},
+			"offsets": {
+				"from": 551320,
+				"to": 557320
+			},
+			"text": " is a commitment to spending the tokens and using the service in the near future and the server"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,320",
+				"to": "00:09:21,720"
+			},
+			"offsets": {
+				"from": 557320,
+				"to": 561720
+			},
+			"text": " this is a very valuable information for the server and the server will report this by"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,720",
+				"to": "00:09:28,760"
+			},
+			"offsets": {
+				"from": 561720,
+				"to": 568760
+			},
+			"text": " granting the most stable connections. Let's look at it also how it's done so"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,760",
+				"to": "00:09:35,480"
+			},
+			"offsets": {
+				"from": 568760,
+				"to": 575480
+			},
+			"text": " so we are now looking into the client connection private model"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,920",
+				"to": "00:10:02,600"
+			},
+			"offsets": {
+				"from": 578920,
+				"to": 602600
+			},
+			"text": " the so obviously the number of clients to be connected to cyber"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,080",
+				"to": "00:10:07,800"
+			},
+			"offsets": {
+				"from": 603080,
+				"to": 607800
+			},
+			"text": " so the client promised to use the service in the near future then the server promised to"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,800",
+				"to": "00:10:13,960"
+			},
+			"offsets": {
+				"from": 607800,
+				"to": 613960
+			},
+			"text": " add the client to use the service in the near future and another nice property if this is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,960",
+				"to": "00:10:20,120"
+			},
+			"offsets": {
+				"from": 613960,
+				"to": 620120
+			},
+			"text": " it adds as integrated free service very nicely and smoothly into the whole model"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,120",
+				"to": "00:10:25,320"
+			},
+			"offsets": {
+				"from": 620120,
+				"to": 625320
+			},
+			"text": " and this is all something that already works in the void area in my servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,120",
+				"to": "00:10:32,680"
+			},
+			"offsets": {
+				"from": 626120,
+				"to": 632680
+			},
+			"text": " that even clients who don't have a token balance they have a virtual negative balance"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,680",
+				"to": "00:10:40,360"
+			},
+			"offsets": {
+				"from": 632680,
+				"to": 640360
+			},
+			"text": " which is associated to the IP address and also it's expired it's gonna show you over a longer"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,360",
+				"to": "00:10:50,200"
+			},
+			"offsets": {
+				"from": 640360,
+				"to": 650200
+			},
+			"text": " time but so this is to ensure that free clients can so so they it finds who has"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,200",
+				"to": "00:10:55,480"
+			},
+			"offsets": {
+				"from": 650200,
+				"to": 655480
+			},
+			"text": " used the service last in the near recent week and has a higher chance to connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,480",
+				"to": "00:11:03,480"
+			},
+			"offsets": {
+				"from": 655480,
+				"to": 663480
+			},
+			"text": " and so free service is also important and the server also has to ensure that the free service"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,480",
+				"to": "00:11:09,880"
+			},
+			"offsets": {
+				"from": 663480,
+				"to": 669880
+			},
+			"text": " is a regular the network is but regularly available for two reasons one of them is that this is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,880",
+				"to": "00:11:14,760"
+			},
+			"offsets": {
+				"from": 669880,
+				"to": 674760
+			},
+			"text": " helps a reputation fielding and getting new customers and the other one is that the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,760",
+				"to": "00:11:20,840"
+			},
+			"offsets": {
+				"from": 674760,
+				"to": 680840
+			},
+			"text": " condition that allows free service to be available it also ensures that the service"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,840",
+				"to": "00:11:27,960"
+			},
+			"offsets": {
+				"from": 680840,
+				"to": 687960
+			},
+			"text": " clients are all spendable in a limited time frame so there's another control mechanism here that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,960",
+				"to": "00:11:35,720"
+			},
+			"offsets": {
+				"from": 687960,
+				"to": 695720
+			},
+			"text": " controls the base token price based on whether the service free service is possible or not if it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,720",
+				"to": "00:11:45,720"
+			},
+			"offsets": {
+				"from": 695720,
+				"to": 705720
+			},
+			"text": " is possible then it reduces the price and the device it slowly exponentially increases the base price"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,720",
+				"to": "00:11:53,240"
+			},
+			"offsets": {
+				"from": 705720,
+				"to": 713240
+			},
+			"text": " and yeah this is about this for the server mechanism and now quickly let's take a look at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,240",
+				"to": "00:12:04,600"
+			},
+			"offsets": {
+				"from": 713240,
+				"to": 724600
+			},
+			"text": " client side the mechanisms so this is a complex book we can done also I can't go into a little here"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,600",
+				"to": "00:12:10,600"
+			},
+			"offsets": {
+				"from": 724600,
+				"to": 730600
+			},
+			"text": " but there's a subject view where you measure a map on the client side which is ideally it should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,600",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 730600,
+				"to": 739000
+			},
+			"text": " a mirror of the server side token accounting so basically the clients try to somehow put an"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:25,080"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 745080
+			},
+			"text": " number on how much service they receive and this is also based on server requests and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,080",
+				"to": "00:12:30,440"
+			},
+			"offsets": {
+				"from": 745080,
+				"to": 750440
+			},
+			"text": " guaranteed capacities and it's also modified by a service quality factor which is based on"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,440",
+				"to": "00:12:37,800"
+			},
+			"offsets": {
+				"from": 750440,
+				"to": 757800
+			},
+			"text": " response times and how response times are conducted to serve it quite depends on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,800",
+				"to": "00:12:43,800"
+			},
+			"offsets": {
+				"from": 757800,
+				"to": 763800
+			},
+			"text": " expectations on response times which depends on price factors and everything so basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,800",
+				"to": "00:12:50,680"
+			},
+			"offsets": {
+				"from": 763800,
+				"to": 770680
+			},
+			"text": " it's possible to if the client has to make a decision on who to pay for it can map out the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,680",
+				"to": "00:13:00,200"
+			},
+			"offsets": {
+				"from": 770680,
+				"to": 780200
+			},
+			"text": " available market as a price versus average expected response time function which is nice and intuitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,200",
+				"to": "00:13:05,720"
+			},
+			"offsets": {
+				"from": 780200,
+				"to": 785720
+			},
+			"text": " and not easy to understand for human users so if we have an equity room and we have an expected"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,720",
+				"to": "00:13:13,640"
+			},
+			"offsets": {
+				"from": 785720,
+				"to": 793640
+			},
+			"text": " response time then we can homework our quality statistics into a super scalar value and I like"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,640",
+				"to": "00:13:21,800"
+			},
+			"offsets": {
+				"from": 793640,
+				"to": 801800
+			},
+			"text": " to mention here that the very long response times can even pop out as a negative by for clients because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,800",
+				"to": "00:13:29,800"
+			},
+			"offsets": {
+				"from": 801800,
+				"to": 809800
+			},
+			"text": " we want to incentivize a reliably good response times and this service for you is what the clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,800",
+				"to": "00:13:36,600"
+			},
+			"offsets": {
+				"from": 809800,
+				"to": 816600
+			},
+			"text": " are trying to get for the money basically and finally there's a tricky part of this because"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,600",
+				"to": "00:13:43,960"
+			},
+			"offsets": {
+				"from": 816600,
+				"to": 823960
+			},
+			"text": " if the client wants to make a decision about who to pay for then what it really would like to do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,960",
+				"to": "00:13:51,480"
+			},
+			"offsets": {
+				"from": 823960,
+				"to": 831480
+			},
+			"text": " to predict the service value received after making the payment and before the next payment is requested"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,040",
+				"to": "00:14:01,960"
+			},
+			"offsets": {
+				"from": 832040,
+				"to": 841960
+			},
+			"text": " so theoretically if they can trust the server this is not so hard because we expect the service"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,960",
+				"to": "00:14:06,920"
+			},
+			"offsets": {
+				"from": 841960,
+				"to": 846920
+			},
+			"text": " tokens purchasing power to be more or less stable and the client has an idea of how well you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,920",
+				"to": "00:14:11,480"
+			},
+			"offsets": {
+				"from": 846920,
+				"to": 851480
+			},
+			"text": " all those service tokens were in the past and there's a token price at the moment so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,480",
+				"to": "00:14:17,240"
+			},
+			"offsets": {
+				"from": 851480,
+				"to": 857240
+			},
+			"text": " it should be predictable but of course the client cannot blindly trust any server so this is how"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,240",
+				"to": "00:14:22,680"
+			},
+			"offsets": {
+				"from": 857240,
+				"to": 862680
+			},
+			"text": " the reputation building mechanism works we have three predictors we have a base value predictor"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,680",
+				"to": "00:14:29,640"
+			},
+			"offsets": {
+				"from": 862680,
+				"to": 869640
+			},
+			"text": " which is a very simple and paranoid and only uses things that the client knows for sure so"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,640",
+				"to": "00:14:35,240"
+			},
+			"offsets": {
+				"from": 869640,
+				"to": 875240
+			},
+			"text": " it's basically takes the service value received so far and the payments and so far and the payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,240",
+				"to": "00:14:42,520"
+			},
+			"offsets": {
+				"from": 875240,
+				"to": 882520
+			},
+			"text": " expected currently and it just does a linear extrapolation which is which homos just do something"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,520",
+				"to": "00:14:48,040"
+			},
+			"offsets": {
+				"from": 882520,
+				"to": 888040
+			},
+			"text": " meaningful over the long term it's not very good but also not suitable and there's the trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,040",
+				"to": "00:14:53,320"
+			},
+			"offsets": {
+				"from": 888040,
+				"to": 893320
+			},
+			"text": " value predictor which basically does what I already described it within the server and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,320",
+				"to": "00:15:00,360"
+			},
+			"offsets": {
+				"from": 893320,
+				"to": 900360
+			},
+			"text": " token accounting and token prices and the stability of these tokens and to make the final judgment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,360",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 900360,
+				"to": 907000
+			},
+			"text": " there's a third as some more predictor which initially takes or returns the predictions of the base"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:13,240"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 913240
+			},
+			"text": " predictor and over time if the trusted predictor consistently gives better estimates of service"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,240",
+				"to": "00:15:19,640"
+			},
+			"offsets": {
+				"from": 913240,
+				"to": 919640
+			},
+			"text": " value received after making a payment then it will allow more and more deviation from the base"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,640",
+				"to": "00:15:26,760"
+			},
+			"offsets": {
+				"from": 919640,
+				"to": 926760
+			},
+			"text": " for base with predictors value in the direction of the trusted predictors prediction and so this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,760",
+				"to": "00:15:34,200"
+			},
+			"offsets": {
+				"from": 926760,
+				"to": 934200
+			},
+			"text": " is this this this allowed deviation this represents the reputation of the server and this is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,200",
+				"to": "00:15:40,120"
+			},
+			"offsets": {
+				"from": 934200,
+				"to": 940120
+			},
+			"text": " it's going to be ruined if the server doesn't hold its promises and doesn't keep its service token"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,120",
+				"to": "00:15:53,400"
+			},
+			"offsets": {
+				"from": 940120,
+				"to": 953400
+			},
+			"text": " via stable and yeah I have a lot of time so now just just just about a few words about current"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,400",
+				"to": "00:16:00,600"
+			},
+			"offsets": {
+				"from": 953400,
+				"to": 960600
+			},
+			"text": " state of implementation and this is a roadmap so as I said as I already said most of the most of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,600",
+				"to": "00:16:07,640"
+			},
+			"offsets": {
+				"from": 960600,
+				"to": 967640
+			},
+			"text": " the components or many of the components are already implemented in the go Ethereum and I so far"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,640",
+				"to": "00:16:15,160"
+			},
+			"offsets": {
+				"from": 967640,
+				"to": 975160
+			},
+			"text": " mostly focused on implementing the server side because that's what the first that's what we first"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,160",
+				"to": "00:16:24,760"
+			},
+			"offsets": {
+				"from": 975160,
+				"to": 984760
+			},
+			"text": " need in order to even start experimenting and recently a server API has been implemented it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,760",
+				"to": "00:16:30,360"
+			},
+			"offsets": {
+				"from": 984760,
+				"to": 990360
+			},
+			"text": " going to come out in one of the subsequent guest releases and this with this you can already"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,360",
+				"to": "00:16:37,800"
+			},
+			"offsets": {
+				"from": 990360,
+				"to": 997800
+			},
+			"text": " play it with client priorities and you can assign priorities to your own modes or your friends or"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,800",
+				"to": "00:16:46,040"
+			},
+			"offsets": {
+				"from": 997800,
+				"to": 1006040
+			},
+			"text": " customers nodes and there's the auto the token cell mechanism it's working progress but I really"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,040",
+				"to": "00:16:51,800"
+			},
+			"offsets": {
+				"from": 1006040,
+				"to": 1011800
+			},
+			"text": " hope I can finish it and we can release it end up by the end of this year and this will mean that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,800",
+				"to": "00:16:57,640"
+			},
+			"offsets": {
+				"from": 1011800,
+				"to": 1017640
+			},
+			"text": " by the end of this year we are going to have a payment fully working payment enabled light"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,640",
+				"to": "00:17:05,160"
+			},
+			"offsets": {
+				"from": 1017640,
+				"to": 1025160
+			},
+			"text": " servers and and which anyone can start up and start earning money and this still means that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,160",
+				"to": "00:17:12,360"
+			},
+			"offsets": {
+				"from": 1025160,
+				"to": 1032360
+			},
+			"text": " on the client side there's going to be some manual help needed like a five list for servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,920",
+				"to": "00:17:22,360"
+			},
+			"offsets": {
+				"from": 1032920,
+				"to": 1042360
+			},
+			"text": " who we can pay for but the client side the client side management project it's also already partially"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,360",
+				"to": "00:17:31,240"
+			},
+			"offsets": {
+				"from": 1042360,
+				"to": 1051240
+			},
+			"text": " implemented and I really hope that the middle of next year we are going to be able to show some"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,960",
+				"to": "00:17:38,840"
+			},
+			"offsets": {
+				"from": 1051960,
+				"to": 1058840
+			},
+			"text": " some results that you can try of course this is going to be an ongoing longer research and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,840",
+				"to": "00:17:42,360"
+			},
+			"offsets": {
+				"from": 1058840,
+				"to": 1062360
+			},
+			"text": " and yeah so"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,360",
+				"to": "00:17:52,520"
+			},
+			"offsets": {
+				"from": 1062360,
+				"to": 1072520
+			},
+			"text": " please please please give if you if you are already feedback then contact me I'm going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,520",
+				"to": "00:17:57,480"
+			},
+			"offsets": {
+				"from": 1072520,
+				"to": 1077480
+			},
+			"text": " release new documents about the details of this model because I"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,120",
+				"to": "00:18:05,080"
+			},
+			"offsets": {
+				"from": 1078120,
+				"to": 1085080
+			},
+			"text": " very in that I didn't answer any every questions in this short talk but I'm going to put up"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,080",
+				"to": "00:18:12,200"
+			},
+			"offsets": {
+				"from": 1085080,
+				"to": 1092200
+			},
+			"text": " what's up with new documents to make it happen page and I'm going to announce them on Twitter"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,200",
+				"to": "00:18:19,160"
+			},
+			"offsets": {
+				"from": 1092200,
+				"to": 1099160
+			},
+			"text": " and have it on every bar and I would really like to make this model usable both for"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,160",
+				"to": "00:18:26,040"
+			},
+			"offsets": {
+				"from": 1099160,
+				"to": 1106040
+			},
+			"text": " for go with your human the getaway client and also for our future lifelines of Ethereum too"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,840",
+				"to": "00:18:31,080"
+			},
+			"offsets": {
+				"from": 1106840,
+				"to": 1111080
+			},
+			"text": " and yeah that was it thank you for your attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,080",
+				"to": "00:18:40,360"
+			},
+			"offsets": {
+				"from": 1111080,
+				"to": 1120360
+			},
+			"text": " so maybe this time took one question or two questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,360",
+				"to": "00:18:52,200"
+			},
+			"offsets": {
+				"from": 1120360,
+				"to": 1132200
+			},
+			"text": " how do you do payments work sorry how do payments work how do payments work well"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,840",
+				"to": "00:19:00,840"
+			},
+			"offsets": {
+				"from": 1132840,
+				"to": 1140840
+			},
+			"text": " so this this this model is so it can work with a bit with any kind of payment technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,840",
+				"to": "00:19:10,920"
+			},
+			"offsets": {
+				"from": 1140840,
+				"to": 1150920
+			},
+			"text": " I was looking into using a rhythm and now this one thing also has a this web protocol that's also"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,920",
+				"to": "00:19:18,200"
+			},
+			"offsets": {
+				"from": 1150920,
+				"to": 1158200
+			},
+			"text": " a an interesting payment channel technology but I think we can even start this payment because I"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,200",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1158200,
+				"to": 1165000
+			},
+			"text": " said super launching payments which are really easy to do and yeah so so the model doesn't depend"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:30,440"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1170440
+			},
+			"text": " on the payment the payment technology sorry but the documents are enjoyable you pay for"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,440",
+				"to": "00:19:38,280"
+			},
+			"offsets": {
+				"from": 1170440,
+				"to": 1178280
+			},
+			"text": " software or things that are just service to consumers no so so every server has its own service token"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,280",
+				"to": "00:19:43,160"
+			},
+			"offsets": {
+				"from": 1178280,
+				"to": 1183160
+			},
+			"text": " and they are only a country locally on the server and I'm not sure yet what they should be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,720",
+				"to": "00:19:50,840"
+			},
+			"offsets": {
+				"from": 1183720,
+				"to": 1190840
+			},
+			"text": " a tradeable transferable that's well that's that's let's leave it as a future research"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,840",
+				"to": "00:19:56,120"
+			},
+			"offsets": {
+				"from": 1190840,
+				"to": 1196120
+			},
+			"text": " for me but that's a good idea or not so if you do like an on-train is actually you have to like read"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,120",
+				"to": "00:20:03,080"
+			},
+			"offsets": {
+				"from": 1196120,
+				"to": 1203080
+			},
+			"text": " the over there like yeah so the server will so if you send it or to a server or die or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,080",
+				"to": "00:20:08,200"
+			},
+			"offsets": {
+				"from": 1203080,
+				"to": 1208200
+			},
+			"text": " what the server wants to accept then then you are going to have either or die on the server and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,080",
+				"to": "00:20:15,800"
+			},
+			"offsets": {
+				"from": 1209080,
+				"to": 1215800
+			},
+			"text": " as I said you have to explicitly say okay now I have either review and I want to convert"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,800",
+				"to": "00:20:19,480"
+			},
+			"offsets": {
+				"from": 1215800,
+				"to": 1219480
+			},
+			"text": " some of it to service to hands now and my time is up and thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,440",
+				"to": "00:20:24,440"
+			},
+			"offsets": {
+				"from": 1220440,
+				"to": 1224440
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,440",
+				"to": "00:20:39,000"
+			},
+			"offsets": {
+				"from": 1224440,
+				"to": 1239000
+			},
+			"text": " [Music]"
+		}
+	]
+}

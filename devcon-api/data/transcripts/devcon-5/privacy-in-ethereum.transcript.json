@@ -1,0 +1,2452 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12160
+			},
+			"text": " Hello, everybody. Thanks for coming to this talk. Privacy in Ethereum. So today I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,160",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 12160,
+				"to": 18720
+			},
+			"text": " to talk about where we are at the moment and where we want to go. So in Ethereum over the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 25000
+			},
+			"text": " last six to 12 months, we've had a lot of new and exciting zero-knowledge proof stuff coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:33,720"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 33720
+			},
+			"text": " up. Yeah. So, for example, we have a bunch of mixers that are coming out. Tornado cache is live on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,720",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 33720,
+				"to": 41160
+			},
+			"text": " mainnet at the moment. Micro mix is in progress. There's the urgent hopper is live on mainnet"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:45,720"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 45720
+			},
+			"text": " too, and maybe there's more that I'm not saying that I left out. And then we have some kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,720",
+				"to": "00:00:51,840"
+			},
+			"offsets": {
+				"from": 45720,
+				"to": 51840
+			},
+			"text": " other interesting privacy applications like Aztec, which you will be coming out about to run their"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,840",
+				"to": "00:00:57,720"
+			},
+			"offsets": {
+				"from": 51840,
+				"to": 57720
+			},
+			"text": " trusted set up. And as well as just doing transactional privacy, we also have private applications to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,720",
+				"to": "00:01:05,560"
+			},
+			"offsets": {
+				"from": 57720,
+				"to": 65560
+			},
+			"text": " do with private signaling, like semaphore, private voting, private dows. There's this really cool"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,560",
+				"to": "00:01:11,920"
+			},
+			"offsets": {
+				"from": 65560,
+				"to": 71920
+			},
+			"text": " pull-up signaling app at this event where you can get a pull-up token and deposit into a private"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,920",
+				"to": "00:01:18,120"
+			},
+			"offsets": {
+				"from": 71920,
+				"to": 78120
+			},
+			"text": " pool and then start to make private signals using this, which is pretty cool. And then we also have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,120",
+				"to": "00:01:23,920"
+			},
+			"offsets": {
+				"from": 78120,
+				"to": 83920
+			},
+			"text": " like private voting where it's impossible to prove that you voted a certain way, which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,920",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 83920,
+				"to": 90480
+			},
+			"text": " important for quadratic voting and things like that. So let's start and talk about the mixers first."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:38,840"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 98840
+			},
+			"text": " So there's a bunch of snack-based mixers at the moment. And these work work. Like what they do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,840",
+				"to": "00:01:44,560"
+			},
+			"offsets": {
+				"from": 98840,
+				"to": 104560
+			},
+			"text": " pretty simple. So basically you have some money, you deposit into the mixer, and sometimes later you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,560",
+				"to": "00:01:50,560"
+			},
+			"offsets": {
+				"from": 104560,
+				"to": 110560
+			},
+			"text": " withdraw that money. And this question mark here kind of shows that you don't know which deposit is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,560",
+				"to": "00:02:02,560"
+			},
+			"offsets": {
+				"from": 110560,
+				"to": 122560
+			},
+			"text": " which withdrawal. Yeah. So there's three of these that I know about. Micro mix, hopper, and tornado,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,560",
+				"to": "00:02:10,520"
+			},
+			"offsets": {
+				"from": 122560,
+				"to": 130520
+			},
+			"text": " which is in production. So what are the problems with this? So one of the problems is that there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,520",
+				"to": "00:02:15,320"
+			},
+			"offsets": {
+				"from": 130520,
+				"to": 135320
+			},
+			"text": " like a single denomination. You deposit one ether and you withdraw one ether and there's no kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,320",
+				"to": "00:02:21,320"
+			},
+			"offsets": {
+				"from": 135320,
+				"to": 141320
+			},
+			"text": " way to do internal transactions to -- so for example, if you want to send some money to your friend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,320",
+				"to": "00:02:25,240"
+			},
+			"offsets": {
+				"from": 141320,
+				"to": 145240
+			},
+			"text": " you have to deposit the money into the mixer, withdraw it, and then send it to your friend,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,240",
+				"to": "00:02:30,200"
+			},
+			"offsets": {
+				"from": 145240,
+				"to": 150200
+			},
+			"text": " which is kind of annoying especially because there's like only a single denomination allowed. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,200",
+				"to": "00:02:35,400"
+			},
+			"offsets": {
+				"from": 150200,
+				"to": 155400
+			},
+			"text": " you can only ever send your friend 0.1 ether or less than 0.1 ether, which is a little bit annoying."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,400",
+				"to": "00:02:40,560"
+			},
+			"offsets": {
+				"from": 155400,
+				"to": 160560
+			},
+			"text": " And the third problem is that there's -- you need to pay for the gas for the transaction, but we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,560",
+				"to": "00:02:44,760"
+			},
+			"offsets": {
+				"from": 160560,
+				"to": 164760
+			},
+			"text": " this kind of chicken and the egg situation. So for example, imagine I wanted to deposit -- I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,760",
+				"to": "00:02:50,280"
+			},
+			"offsets": {
+				"from": 164760,
+				"to": 170280
+			},
+			"text": " a dress A and a dress B, and B has 0 ether and A has 10 ether. And I wanted to transfer one ether"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,280",
+				"to": "00:02:55,320"
+			},
+			"offsets": {
+				"from": 170280,
+				"to": 175320
+			},
+			"text": " from address A to address B, but I don't want to link the two together. So the first thing I do is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,320",
+				"to": "00:02:59,560"
+			},
+			"offsets": {
+				"from": 175320,
+				"to": 179560
+			},
+			"text": " I deposit the money into the mixer, and then I need to withdraw that money to the new address."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,560",
+				"to": "00:03:03,800"
+			},
+			"offsets": {
+				"from": 179560,
+				"to": 183800
+			},
+			"text": " But I don't have any gas in the new address account, so there's no way for me to withdraw it there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,800",
+				"to": "00:03:09,320"
+			},
+			"offsets": {
+				"from": 183800,
+				"to": 189320
+			},
+			"text": " unless I send some money there first, which kind of defeats the purpose of putting it in the mixer"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,320",
+				"to": "00:03:16,280"
+			},
+			"offsets": {
+				"from": 189320,
+				"to": 196280
+			},
+			"text": " in the first place, because if you send it from address A to address B, you link those two accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,280",
+				"to": "00:03:20,760"
+			},
+			"offsets": {
+				"from": 196280,
+				"to": 200760
+			},
+			"text": " together. So what we do instead is we come up with some kind of transaction abstraction, where we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,760",
+				"to": "00:03:27,160"
+			},
+			"offsets": {
+				"from": 200760,
+				"to": 207160
+			},
+			"text": " make it like another network of nodes that will pay the gas for a transaction and also get repaid"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,160",
+				"to": "00:03:32,200"
+			},
+			"offsets": {
+				"from": 207160,
+				"to": 212200
+			},
+			"text": " that gas at the end of the transaction. So those are the kind of three main problems of mixers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,320",
+				"to": "00:03:38,200"
+			},
+			"offsets": {
+				"from": 213320,
+				"to": 218200
+			},
+			"text": " And here's some kind of attacks that we can leverage to de-anonymize people."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,200",
+				"to": "00:03:45,800"
+			},
+			"offsets": {
+				"from": 218200,
+				"to": 225800
+			},
+			"text": " So first of all, one big problem that we have is that there's no like metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,800",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 225800,
+				"to": 231960
+			},
+			"text": " and there's no like metadata privacy here. So when you go into any of the mixers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:58,600"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 238600
+			},
+			"text": " there's a user interface, and when you deposit your coin, you have to send information to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,240",
+				"to": "00:04:03,400"
+			},
+			"offsets": {
+				"from": 239240,
+				"to": 243400
+			},
+			"text": " the blockchain, and that information is sent through. That means you create a transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,400",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 243400,
+				"to": 249160
+			},
+			"text": " and you broadcast that transaction through Infura. So everybody is able to know who deposited,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:14,920"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 254920
+			},
+			"text": " so Infura is able to know whose IP address sent which money into the mixer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,920",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 254920,
+				"to": 260440
+			},
+			"text": " But more seriously, Infura is also able to know whose IP address withdrew money from the mixer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:24,440"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 264440
+			},
+			"text": " because when you make a withdrawal, you also need to send some information to Infura. You need"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,440",
+				"to": "00:04:27,720"
+			},
+			"offsets": {
+				"from": 264440,
+				"to": 267720
+			},
+			"text": " to request information from Infura, and you also need to broadcast that transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,720",
+				"to": "00:04:31,160"
+			},
+			"offsets": {
+				"from": 267720,
+				"to": 271160
+			},
+			"text": " So Infura knows the metadata you're requesting, and you have to be very careful about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,160",
+				"to": "00:04:37,560"
+			},
+			"offsets": {
+				"from": 271160,
+				"to": 277560
+			},
+			"text": " metadata that you request. And you have to be very careful about the metadata you request."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,560",
+				"to": "00:04:54,600"
+			},
+			"offsets": {
+				"from": 277560,
+				"to": 294600
+			},
+			"text": " Just one second. Yeah, you have to be very careful about the metadata you request."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,320",
+				"to": "00:05:00,280"
+			},
+			"offsets": {
+				"from": 295320,
+				"to": 300280
+			},
+			"text": " And the relayer knows your IP address when you withdraw."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,280",
+				"to": "00:05:08,840"
+			},
+			"offsets": {
+				"from": 300280,
+				"to": 308840
+			},
+			"text": " So what can you do to limit this? So you can use Tor, so if you log in with Tor to the mixer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,840",
+				"to": "00:05:13,240"
+			},
+			"offsets": {
+				"from": 308840,
+				"to": 313240
+			},
+			"text": " which is totally possible, you can do your deposit and your withdrawal through Tor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,240",
+				"to": "00:05:17,800"
+			},
+			"offsets": {
+				"from": 313240,
+				"to": 317800
+			},
+			"text": " But very few users actually do this, and we should try and encourage people to do this as much as"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,800",
+				"to": "00:05:23,160"
+			},
+			"offsets": {
+				"from": 317800,
+				"to": 323160
+			},
+			"text": " possible. So you should use Tor for the withdrawal, but you shouldn't use it for the deposit."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,160",
+				"to": "00:05:26,520"
+			},
+			"offsets": {
+				"from": 323160,
+				"to": 326520
+			},
+			"text": " And the reason for this is that if you use it for the deposit and the withdrawal, you can kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,520",
+				"to": "00:05:31,400"
+			},
+			"offsets": {
+				"from": 326520,
+				"to": 331400
+			},
+			"text": " break your anonymity set up into two groups. Group number one is the people who use Tor to deposit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,400",
+				"to": "00:05:36,760"
+			},
+			"offsets": {
+				"from": 331400,
+				"to": 336760
+			},
+			"text": " and group number two is people who use Tor to deposit, and group number two is people who didn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,760",
+				"to": "00:05:42,920"
+			},
+			"offsets": {
+				"from": 336760,
+				"to": 342920
+			},
+			"text": " use Tor. And this attack can be quite serious, especially when you have a small anonymity set."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,920",
+				"to": "00:05:47,560"
+			},
+			"offsets": {
+				"from": 342920,
+				"to": 347560
+			},
+			"text": " So for example, imagine that there's 100 coins in the mixer, and one person deposits a coin"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,560",
+				"to": "00:05:52,520"
+			},
+			"offsets": {
+				"from": 347560,
+				"to": 352520
+			},
+			"text": " with Tor. And then sometimes later, the same person withdraws the same coin with Tor."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,520",
+				"to": "00:05:57,800"
+			},
+			"offsets": {
+				"from": 352520,
+				"to": 357800
+			},
+			"text": " Or no, someone withdraws a coin with Tor. It seems pretty logical to say that, okay,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,800",
+				"to": "00:06:02,120"
+			},
+			"offsets": {
+				"from": 357800,
+				"to": 362120
+			},
+			"text": " the person who deposited with Tor is also the person who withdrew with Tor. It seems like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,120",
+				"to": "00:06:06,520"
+			},
+			"offsets": {
+				"from": 362120,
+				"to": 366520
+			},
+			"text": " that is kind of reasonable, because why would you deposit with Tor and then remove Tor for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,520",
+				"to": "00:06:11,080"
+			},
+			"offsets": {
+				"from": 366520,
+				"to": 371080
+			},
+			"text": " withdrawal? It doesn't really make -- yeah. So there are these kind of heuristic attacks that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,080",
+				"to": "00:06:18,760"
+			},
+			"offsets": {
+				"from": 371080,
+				"to": 378760
+			},
+			"text": " you can do that you need to be careful about. Yeah, so in the long run, we should have Tor by default."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,760",
+				"to": "00:06:21,960"
+			},
+			"offsets": {
+				"from": 378760,
+				"to": 381960
+			},
+			"text": " Yeah, we should have Tor for a default by default for the deposit and the withdrawal."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,040",
+				"to": "00:06:31,320"
+			},
+			"offsets": {
+				"from": 382040,
+				"to": 391320
+			},
+			"text": " So then there's also temporal attacks. So imagine that we have a mixer that has this huge amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,320",
+				"to": "00:06:37,800"
+			},
+			"offsets": {
+				"from": 391320,
+				"to": 397800
+			},
+			"text": " of ease of deposit. Imagine there's 1 million coins deposited into the mixer. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,800",
+				"to": "00:06:43,320"
+			},
+			"offsets": {
+				"from": 397800,
+				"to": 403320
+			},
+			"text": " these ones have been there for a long time. And then one day someone comes along and deposits"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,320",
+				"to": "00:06:49,240"
+			},
+			"offsets": {
+				"from": 403320,
+				"to": 409240
+			},
+			"text": " one ether in, and then sometimes later somebody withdraws one ether from the pool. So it seems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,200",
+				"to": "00:06:55,560"
+			},
+			"offsets": {
+				"from": 410200,
+				"to": 415560
+			},
+			"text": " pretty unlikely that one of the 1 million people who had the money deposited there for a long time"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,560",
+				"to": "00:07:00,200"
+			},
+			"offsets": {
+				"from": 415560,
+				"to": 420200
+			},
+			"text": " suddenly decided to come along and withdraw. Like, you can -- I would be pretty confident to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,200",
+				"to": "00:07:05,080"
+			},
+			"offsets": {
+				"from": 420200,
+				"to": 425080
+			},
+			"text": " that the person who deposited is also the person who withdrew in that scenario. So you can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,080",
+				"to": "00:07:09,240"
+			},
+			"offsets": {
+				"from": 425080,
+				"to": 429240
+			},
+			"text": " these kind of heuristic attacks that you say, okay, the last person to withdraw, the last person to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,240",
+				"to": "00:07:14,200"
+			},
+			"offsets": {
+				"from": 429240,
+				"to": 434200
+			},
+			"text": " deposit is the next withdrawal. So you have to be careful about the amount of time that you leave"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,200",
+				"to": "00:07:23,320"
+			},
+			"offsets": {
+				"from": 434200,
+				"to": 443320
+			},
+			"text": " your funds in the mixer. So to defend against this, some UIs force you to deposit for a certain amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,320",
+				"to": "00:07:29,160"
+			},
+			"offsets": {
+				"from": 443320,
+				"to": 449160
+			},
+			"text": " of time. But there's also problems with that that you -- that I can talk about in the questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,160",
+				"to": "00:07:34,120"
+			},
+			"offsets": {
+				"from": 449160,
+				"to": 454120
+			},
+			"text": " afterwards if people are interested. And then the third problem is that the anonymity set is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,120",
+				"to": "00:07:39,400"
+			},
+			"offsets": {
+				"from": 454120,
+				"to": 459400
+			},
+			"text": " quite small. The current most popular mixer has about 200 deposits. At the time that I made the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,400",
+				"to": "00:07:46,200"
+			},
+			"offsets": {
+				"from": 459400,
+				"to": 466200
+			},
+			"text": " slides, I'm not sure how many it is now. So this is an anonymity set of 200, which is -- which I"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,200",
+				"to": "00:07:52,200"
+			},
+			"offsets": {
+				"from": 466200,
+				"to": 472200
+			},
+			"text": " suppose people don't think of when -- it's not my level of anonymity to say I'm one of 200. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,200",
+				"to": "00:07:59,080"
+			},
+			"offsets": {
+				"from": 472200,
+				"to": 479080
+			},
+			"text": " that's like a higher standard. So we need to sort of be kind of careful about the privacy guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,080",
+				"to": "00:08:05,560"
+			},
+			"offsets": {
+				"from": 479080,
+				"to": 485560
+			},
+			"text": " that we tell people about when we discuss these systems. So, okay, so let's talk about like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,560",
+				"to": "00:08:10,760"
+			},
+			"offsets": {
+				"from": 485560,
+				"to": 490760
+			},
+			"text": " how can we fix some of these problems? So, for example, how can we get more people to deposit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,760",
+				"to": "00:08:14,840"
+			},
+			"offsets": {
+				"from": 490760,
+				"to": 494840
+			},
+			"text": " into the mixer? Because I will -- that will kind of make a lot of these problems a little bit less"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,840",
+				"to": "00:08:24,600"
+			},
+			"offsets": {
+				"from": 494840,
+				"to": 504600
+			},
+			"text": " severe. Because 200 seems like a very small subset. So one way to do this is to increase people's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,600",
+				"to": "00:08:29,240"
+			},
+			"offsets": {
+				"from": 504600,
+				"to": 509240
+			},
+			"text": " confidence in the mixer, to increase confidence in the implementations and the crypto components."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,080",
+				"to": "00:08:35,640"
+			},
+			"offsets": {
+				"from": 511080,
+				"to": 515640
+			},
+			"text": " So what we would -- so, yeah, that's one thing we could do. Another thing we could do is we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,640",
+				"to": "00:08:39,720"
+			},
+			"offsets": {
+				"from": 515640,
+				"to": 519720
+			},
+			"text": " combine multiple mixers together. There's three mixers that are very similar. But there's also"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,720",
+				"to": "00:08:43,960"
+			},
+			"offsets": {
+				"from": 519720,
+				"to": 523960
+			},
+			"text": " very compelling reasons why we should have mixers that are more different. Just from the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,960",
+				"to": "00:08:47,480"
+			},
+			"offsets": {
+				"from": 523960,
+				"to": 527480
+			},
+			"text": " point of view, it would make sense to have mixers that are based upon different hash functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,480",
+				"to": "00:08:52,520"
+			},
+			"offsets": {
+				"from": 527480,
+				"to": 532520
+			},
+			"text": " different -- different crypto components. And so in the case that one of them fails,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,520",
+				"to": "00:08:57,640"
+			},
+			"offsets": {
+				"from": 532520,
+				"to": 537640
+			},
+			"text": " there's still other ones that are still working. For example, we find a bug in some of the crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,640",
+				"to": "00:09:04,280"
+			},
+			"offsets": {
+				"from": 537640,
+				"to": 544280
+			},
+			"text": " or something like that. And the third possible thing we can do is to perform an MPC trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,280",
+				"to": "00:09:09,880"
+			},
+			"offsets": {
+				"from": 544280,
+				"to": 549880
+			},
+			"text": " So at the moment, all the mixers in deployment have been -- have no trusted setup. They have"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,880",
+				"to": "00:09:13,640"
+			},
+			"offsets": {
+				"from": 549880,
+				"to": 553640
+			},
+			"text": " just a single -- well, they have a trusted setup, but they just have a single party that you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,640",
+				"to": "00:09:19,720"
+			},
+			"offsets": {
+				"from": 553640,
+				"to": 559720
+			},
+			"text": " to trust in order to be confident that the -- of the privacy of your coins. Or not to be confident"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,720",
+				"to": "00:09:24,200"
+			},
+			"offsets": {
+				"from": 559720,
+				"to": 564200
+			},
+			"text": " that they won't just one day steal all the money from the mixer, which is a possibility that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,200",
+				"to": "00:09:29,800"
+			},
+			"offsets": {
+				"from": 564200,
+				"to": 569800
+			},
+			"text": " need to be careful about. And the -- a fourth thing that we can do is we can integrate with wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,800",
+				"to": "00:09:36,680"
+			},
+			"offsets": {
+				"from": 569800,
+				"to": 576680
+			},
+			"text": " because a lot of people don't really worry about their privacy. And if we integrate with"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,680",
+				"to": "00:09:41,560"
+			},
+			"offsets": {
+				"from": 576680,
+				"to": 581560
+			},
+			"text": " wallets, we can help provide these people privacy without them having to explicitly opt in."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,560",
+				"to": "00:09:44,920"
+			},
+			"offsets": {
+				"from": 581560,
+				"to": 584920
+			},
+			"text": " Because at the moment, you have to go through a series of technical steps that are kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,920",
+				"to": "00:09:50,840"
+			},
+			"offsets": {
+				"from": 584920,
+				"to": 590840
+			},
+			"text": " difficult to perform. Although the user experience of some of the mixers is very nice. It's still --"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,840",
+				"to": "00:09:58,600"
+			},
+			"offsets": {
+				"from": 590840,
+				"to": 598600
+			},
+			"text": " it's still like extra work for people to do. So I'm one -- one idea that we were interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,600",
+				"to": "00:10:03,240"
+			},
+			"offsets": {
+				"from": 598600,
+				"to": 603240
+			},
+			"text": " promoting as the first step to integrate with wallets is to create -- create this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,240",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 603240,
+				"to": 611000
+			},
+			"text": " create new private address. Yeah? So similar to create new private tab in browsers, we could"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:16,760"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 616760
+			},
+			"text": " have users at the -- when they create their wallet deposit some money into the mixer. And then"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,760",
+				"to": "00:10:20,600"
+			},
+			"offsets": {
+				"from": 616760,
+				"to": 620600
+			},
+			"text": " later they have the option to create a new private address when they would -- where they would"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,600",
+				"to": "00:10:29,960"
+			},
+			"offsets": {
+				"from": 620600,
+				"to": 629960
+			},
+			"text": " draw those funds to their new address. Okay. So the first solution is to do the -- or the --"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,960",
+				"to": "00:10:33,800"
+			},
+			"offsets": {
+				"from": 629960,
+				"to": 633800
+			},
+			"text": " firstly, we should talk about the trusted setup. So at the moment, we're running a trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,800",
+				"to": "00:10:40,040"
+			},
+			"offsets": {
+				"from": 633800,
+				"to": 640040
+			},
+			"text": " We have had eight participants so far. And we've been running it for about 14 days."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,040",
+				"to": "00:10:44,440"
+			},
+			"offsets": {
+				"from": 640040,
+				"to": 644440
+			},
+			"text": " I'd like to invite everyone here to participate in the trusted setup at the end of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,200",
+				"to": "00:10:50,840"
+			},
+			"offsets": {
+				"from": 646200,
+				"to": 650840
+			},
+			"text": " So we're currently running phase one and we can run phase two, which is circuit specific later."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,840",
+				"to": "00:10:56,600"
+			},
+			"offsets": {
+				"from": 650840,
+				"to": 656600
+			},
+			"text": " But it's important to remember that both need to be -- to contain a single honest participant"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,600",
+				"to": "00:11:02,760"
+			},
+			"offsets": {
+				"from": 656600,
+				"to": 662760
+			},
+			"text": " in order for the -- for the result in circuits to be secure. So here's some links about how you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,760",
+				"to": "00:11:06,920"
+			},
+			"offsets": {
+				"from": 662760,
+				"to": 666920
+			},
+			"text": " can -- how you can join the trusted setup. You can join this email group and share your --"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,920",
+				"to": "00:11:13,880"
+			},
+			"offsets": {
+				"from": 666920,
+				"to": 673880
+			},
+			"text": " your desire to participate. Yeah. And the second thing we can do is we can audit -- audit the mixers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,880",
+				"to": "00:11:20,920"
+			},
+			"offsets": {
+				"from": 673880,
+				"to": 680920
+			},
+			"text": " So micro mixers being audited at the moment by ABDK Consulting. This is including an audit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,920",
+				"to": "00:11:26,840"
+			},
+			"offsets": {
+				"from": 680920,
+				"to": 686840
+			},
+			"text": " of CircumLib, which will also help the -- some other mixers specifically to an EdoCash that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,840",
+				"to": "00:11:32,600"
+			},
+			"offsets": {
+				"from": 686840,
+				"to": 692600
+			},
+			"text": " use a bunch of components from -- from CircumLib and their mixer. But we still need to audit the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,600",
+				"to": "00:11:38,040"
+			},
+			"offsets": {
+				"from": 692600,
+				"to": 698040
+			},
+			"text": " Circum compiler and the -- the code for the MPC trusted setup. And both of these needs to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,040",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 698040,
+				"to": 702280
+			},
+			"text": " audited before we can start to be really confident about the security of our mixer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,080",
+				"to": "00:11:49,960"
+			},
+			"offsets": {
+				"from": 703080,
+				"to": 709960
+			},
+			"text": " Also, we still use some experimental components. For example, the hash function is -- is MIMC. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,960",
+				"to": "00:11:56,840"
+			},
+			"offsets": {
+				"from": 709960,
+				"to": 716840
+			},
+			"text": " as far as I know, that's never been deployed before. So -- but I'd like to thank Proof of Authority"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,840",
+				"to": "00:12:01,960"
+			},
+			"offsets": {
+				"from": 716840,
+				"to": 721960
+			},
+			"text": " Network and the Ethereum Foundation for funding the audit of the mixer and the CircumLib components."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,960",
+				"to": "00:12:08,840"
+			},
+			"offsets": {
+				"from": 721960,
+				"to": 728840
+			},
+			"text": " Yeah. And in order to increase our confidence about the -- the security of the hash functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,840",
+				"to": "00:12:15,320"
+			},
+			"offsets": {
+				"from": 728840,
+				"to": 735320
+			},
+			"text": " we're also announcing a -- a bounty for collisions of the MIMC hash function. Yeah. So there's -- there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,320",
+				"to": "00:12:20,600"
+			},
+			"offsets": {
+				"from": 735320,
+				"to": 740600
+			},
+			"text": " two rounds -- or there's two difficulties. 80-bit security. If you find a collision, you get 100 -- or"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,600",
+				"to": "00:12:27,320"
+			},
+			"offsets": {
+				"from": 740600,
+				"to": 747320
+			},
+			"text": " 10,000 U.S. dollars. And if you -- if you break the 128-bit security, you get 20,000 U.S. dollars."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,320",
+				"to": "00:12:36,200"
+			},
+			"offsets": {
+				"from": 747320,
+				"to": 756200
+			},
+			"text": " So you can make -- you can -- so here's the link to -- to -- with more information about the -- about"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,200",
+				"to": "00:12:41,320"
+			},
+			"offsets": {
+				"from": 756200,
+				"to": 761320
+			},
+			"text": " the bounty. And I'd like to thank the Ethereum Foundation and foil -- foil coin for contributing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,320",
+				"to": "00:12:47,480"
+			},
+			"offsets": {
+				"from": 761320,
+				"to": 767480
+			},
+			"text": " to the bounty on these hash functions. So please attack it if you -- if you like. Now, I don't know if you."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,480",
+				"to": "00:12:57,400"
+			},
+			"offsets": {
+				"from": 767480,
+				"to": 777400
+			},
+			"text": " So there's also been a bunch of ideas that people have proposed for -- including -- for"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,400",
+				"to": "00:13:04,680"
+			},
+			"offsets": {
+				"from": 777400,
+				"to": 784680
+			},
+			"text": " increasing the size of the anonymity set. And some of these -- and here's some of these ideas that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,680",
+				"to": "00:13:11,240"
+			},
+			"offsets": {
+				"from": 784680,
+				"to": 791240
+			},
+			"text": " think won't work. For example, there's this idea of having an interest rate for -- or paying"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,240",
+				"to": "00:13:16,280"
+			},
+			"offsets": {
+				"from": 791240,
+				"to": 796280
+			},
+			"text": " people to deposit into the mixer. So the idea here is that we have a mixer that has some money in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,280",
+				"to": "00:13:21,720"
+			},
+			"offsets": {
+				"from": 796280,
+				"to": 801720
+			},
+			"text": " And whenever someone deposits their money, we deposit it in the compound where we earn interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,720",
+				"to": "00:13:26,040"
+			},
+			"offsets": {
+				"from": 801720,
+				"to": 806040
+			},
+			"text": " And then we take that interest and we use that to pay other people to put their money into the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,040",
+				"to": "00:13:32,520"
+			},
+			"offsets": {
+				"from": 806040,
+				"to": 812520
+			},
+			"text": " mixer. Yeah. So it's like a reward to increase the size of the privacy pool. So this seems like an"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,520",
+				"to": "00:13:38,840"
+			},
+			"offsets": {
+				"from": 812520,
+				"to": 818840
+			},
+			"text": " interesting idea, but it's been tried before. So Zcash had a similar idea where they would"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,840",
+				"to": "00:13:43,080"
+			},
+			"offsets": {
+				"from": 818840,
+				"to": 823080
+			},
+			"text": " reward -- they would force their miners to deposit their rewards into the privacy pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,080",
+				"to": "00:13:48,680"
+			},
+			"offsets": {
+				"from": 823080,
+				"to": 828680
+			},
+			"text": " And it turns out that this doesn't really work because the miners are only interested in"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,680",
+				"to": "00:13:53,320"
+			},
+			"offsets": {
+				"from": 828680,
+				"to": 833320
+			},
+			"text": " mining Zcash. They're not interested in maintaining the privacy of their coins that they mined. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,320",
+				"to": "00:13:57,800"
+			},
+			"offsets": {
+				"from": 833320,
+				"to": 837800
+			},
+			"text": " whenever a miner would mine coins into the privacy pool, they would always withdraw them to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,800",
+				"to": "00:14:05,320"
+			},
+			"offsets": {
+				"from": 837800,
+				"to": 845320
+			},
+			"text": " same interest. So I don't think that this -- so I feel like in this situation, these two cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,320",
+				"to": "00:14:09,080"
+			},
+			"offsets": {
+				"from": 845320,
+				"to": 849080
+			},
+			"text": " are quite similar and we should be careful about doing sort of experiments like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,080",
+				"to": "00:14:13,960"
+			},
+			"offsets": {
+				"from": 849080,
+				"to": 853960
+			},
+			"text": " And the reason for this -- the reason why I think this will work is that the incentives here are"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,960",
+				"to": "00:14:21,000"
+			},
+			"offsets": {
+				"from": 853960,
+				"to": 861000
+			},
+			"text": " misaligned, that the users want to use the privacy pool to get privacy. But the depositors, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,000",
+				"to": "00:14:25,560"
+			},
+			"offsets": {
+				"from": 861000,
+				"to": 865560
+			},
+			"text": " interest or the reward seekers want to do it to make -- want the deposit to make the reward."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,280",
+				"to": "00:14:30,200"
+			},
+			"offsets": {
+				"from": 866280,
+				"to": 870200
+			},
+			"text": " But the reward -- the depositors don't have any interest in maintaining privacy after they"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,200",
+				"to": "00:14:37,240"
+			},
+			"offsets": {
+				"from": 870200,
+				"to": 877240
+			},
+			"text": " withdraw. And for that reason, I don't think -- for that reason, I think it's pretty likely that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,240",
+				"to": "00:14:41,560"
+			},
+			"offsets": {
+				"from": 877240,
+				"to": 881560
+			},
+			"text": " they will maintain their privacy after they withdraw because they have this capital that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,560",
+				"to": "00:14:46,360"
+			},
+			"offsets": {
+				"from": 881560,
+				"to": 886360
+			},
+			"text": " they want to invest and as soon as they withdraw, they'll want to put it somewhere else to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,360",
+				"to": "00:14:51,960"
+			},
+			"offsets": {
+				"from": 886360,
+				"to": 891960
+			},
+			"text": " some more -- to gain some more interest. But I'm open to changing my mind about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:14:57,560"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 897560
+			},
+			"text": " If we see some like experimental results or some use case where it works a little bit better."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,560",
+				"to": "00:15:05,160"
+			},
+			"offsets": {
+				"from": 897560,
+				"to": 905160
+			},
+			"text": " So also not to talk too much about mixers. As I currently working on confidential transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,160",
+				"to": "00:15:11,480"
+			},
+			"offsets": {
+				"from": 905160,
+				"to": 911480
+			},
+			"text": " that they're -- I mean, they're trusted set up soon. And here's a link if you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,480",
+				"to": "00:15:16,680"
+			},
+			"offsets": {
+				"from": 911480,
+				"to": 916680
+			},
+			"text": " participate in their trusted set up. And their roadmap includes like full privacy as opposed to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,680",
+				"to": "00:15:20,520"
+			},
+			"offsets": {
+				"from": 916680,
+				"to": 920520
+			},
+			"text": " just confidential transactions. And they're also talking -- in the future, they're trying to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,520",
+				"to": "00:15:25,800"
+			},
+			"offsets": {
+				"from": 920520,
+				"to": 925800
+			},
+			"text": " a universal trust to set up based on Planck, which is pretty interesting. And maybe that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,800",
+				"to": "00:15:31,640"
+			},
+			"offsets": {
+				"from": 925800,
+				"to": 931640
+			},
+			"text": " will be applicable to the broader privacy community. So what can we do in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,640",
+				"to": "00:15:38,680"
+			},
+			"offsets": {
+				"from": 931640,
+				"to": 938680
+			},
+			"text": " It seems like we have these mixers that are like very functionally limited. And what can we do"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,680",
+				"to": "00:15:44,680"
+			},
+			"offsets": {
+				"from": 938680,
+				"to": 944680
+			},
+			"text": " to improve them? So one idea is that we should add more tokens to the mixer and add more denominations."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,000",
+				"to": "00:15:53,640"
+			},
+			"offsets": {
+				"from": 947000,
+				"to": 953640
+			},
+			"text": " But I kind of feel like the mixers at the moment are not really fit for this purpose."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,640",
+				"to": "00:15:58,440"
+			},
+			"offsets": {
+				"from": 953640,
+				"to": 958440
+			},
+			"text": " Because the privacy set is so limited that if you have people depositing into multiple privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,440",
+				"to": "00:16:02,920"
+			},
+			"offsets": {
+				"from": 958440,
+				"to": 962920
+			},
+			"text": " pools, it's very difficult to tell how many people deposited in Woodrew. Oh, no, it's very easy to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,920",
+				"to": "00:16:08,440"
+			},
+			"offsets": {
+				"from": 962920,
+				"to": 968440
+			},
+			"text": " tell how many people deposited in Woodrew. And you need to have like a high liquidity in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,440",
+				"to": "00:16:16,920"
+			},
+			"offsets": {
+				"from": 968440,
+				"to": 976920
+			},
+			"text": " ensure -- ensure privacy or to give people good privacy guarantees. So instead of this, I would"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,920",
+				"to": "00:16:21,960"
+			},
+			"offsets": {
+				"from": 976920,
+				"to": 981960
+			},
+			"text": " propose that we should focus on making general privacy and private transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,960",
+				"to": "00:16:27,320"
+			},
+			"offsets": {
+				"from": 981960,
+				"to": 987320
+			},
+			"text": " I see that mixers are like a pragmatic first step, but in the future we should try and make"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,320",
+				"to": "00:16:34,040"
+			},
+			"offsets": {
+				"from": 987320,
+				"to": 994040
+			},
+			"text": " a privacy pool where people don't ever withdraw or don't withdraw for a long time. So in order to"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,040",
+				"to": "00:16:45,720"
+			},
+			"offsets": {
+				"from": 994040,
+				"to": 1005720
+			},
+			"text": " do that -- yeah, so in order to do that, what kind of features should we provide? So"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,680",
+				"to": "00:16:54,360"
+			},
+			"offsets": {
+				"from": 1006680,
+				"to": 1014360
+			},
+			"text": " firstly, we should provide private atomic swaps. I think that this makes a lot of sense on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,360",
+				"to": "00:17:02,120"
+			},
+			"offsets": {
+				"from": 1014360,
+				"to": 1022120
+			},
+			"text": " because there's multiple tokens. And unless we allow a way to transfer -- to convert between"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,120",
+				"to": "00:17:07,560"
+			},
+			"offsets": {
+				"from": 1022120,
+				"to": 1027560
+			},
+			"text": " different tokens inside the private pool, then there is no way to join these anonymity sets together."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,560",
+				"to": "00:17:12,840"
+			},
+			"offsets": {
+				"from": 1027560,
+				"to": 1032840
+			},
+			"text": " So if we have this kind of atomic swaps inside the mixer, we'll be able to kind of trade between"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,840",
+				"to": "00:17:18,840"
+			},
+			"offsets": {
+				"from": 1032840,
+				"to": 1038840
+			},
+			"text": " multiple different tokens. So this work has already been started. Some people are working on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,840",
+				"to": "00:17:24,920"
+			},
+			"offsets": {
+				"from": 1038840,
+				"to": 1044920
+			},
+			"text": " It's largely in the prototyping phase except for Ethereum 9 and 3/4, which has -- well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,920",
+				"to": "00:17:29,960"
+			},
+			"offsets": {
+				"from": 1044920,
+				"to": 1049960
+			},
+			"text": " Ethereum 9 and 3/4 is a little bit different than what I was proposing. The first two links are"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,960",
+				"to": "00:17:37,480"
+			},
+			"offsets": {
+				"from": 1049960,
+				"to": 1057480
+			},
+			"text": " proposal for this, and I know that zero pool is actively working on this. Yeah, and 9 and 3/4."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,480",
+				"to": "00:17:41,480"
+			},
+			"offsets": {
+				"from": 1057480,
+				"to": 1061480
+			},
+			"text": " Ethereum 9 and 3/4 is another interesting privacy project."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,360",
+				"to": "00:17:46,840"
+			},
+			"offsets": {
+				"from": 1062360,
+				"to": 1066840
+			},
+			"text": " Yeah. Okay, so conclusions about the mixer. So first of all, I think we should be really"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,840",
+				"to": "00:17:53,400"
+			},
+			"offsets": {
+				"from": 1066840,
+				"to": 1073400
+			},
+			"text": " careful about the claims that we make about these systems. I feel like we have a responsibility to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,400",
+				"to": "00:17:58,920"
+			},
+			"offsets": {
+				"from": 1073400,
+				"to": 1078920
+			},
+			"text": " sort of be honest and fair with other people when we talk about this and the privacy guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,920",
+				"to": "00:18:06,360"
+			},
+			"offsets": {
+				"from": 1078920,
+				"to": 1086360
+			},
+			"text": " that we provide. Because maybe someone's life might depend on the security or the privacy that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,360",
+				"to": "00:18:11,720"
+			},
+			"offsets": {
+				"from": 1086360,
+				"to": 1091720
+			},
+			"text": " provided by these mixers. And I think it's really important that we're upfront with people about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,720",
+				"to": "00:18:19,400"
+			},
+			"offsets": {
+				"from": 1091720,
+				"to": 1099400
+			},
+			"text": " the guarantees that they get. But the mixers that we have now are definitely better than what we"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,400",
+				"to": "00:18:25,640"
+			},
+			"offsets": {
+				"from": 1099400,
+				"to": 1105640
+			},
+			"text": " had before. It definitely gives you a much higher level of privacy than we had before. And it's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,640",
+				"to": "00:18:34,840"
+			},
+			"offsets": {
+				"from": 1105640,
+				"to": 1114840
+			},
+			"text": " pragmatic first step, and it's a good step in a direction that we need to go. At the same time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,840",
+				"to": "00:18:41,400"
+			},
+			"offsets": {
+				"from": 1114840,
+				"to": 1121400
+			},
+			"text": " these are very new tools. The snark programming -- it's programming snark and building things with"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,400",
+				"to": "00:18:46,040"
+			},
+			"offsets": {
+				"from": 1121400,
+				"to": 1126040
+			},
+			"text": " snark has not been around for a very long time. And there's very little stuff in production."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,040",
+				"to": "00:18:53,480"
+			},
+			"offsets": {
+				"from": 1126040,
+				"to": 1133480
+			},
+			"text": " And for that reason, we need to be sort of very careful about using these. I predict that at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,480",
+				"to": "00:19:00,120"
+			},
+			"offsets": {
+				"from": 1133480,
+				"to": 1140120
+			},
+			"text": " one snark that will be hacked before DEF CON next year. And I'm pretty confident about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,120",
+				"to": "00:19:08,360"
+			},
+			"offsets": {
+				"from": 1140120,
+				"to": 1148360
+			},
+			"text": " So -- and also it's important to support the people who are building these applications and to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,360",
+				"to": "00:19:14,040"
+			},
+			"offsets": {
+				"from": 1148360,
+				"to": 1154040
+			},
+			"text": " understand if some sort of mistakes happen. Because the only way that we kind of improve and get"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,040",
+				"to": "00:19:22,120"
+			},
+			"offsets": {
+				"from": 1154040,
+				"to": 1162120
+			},
+			"text": " better at this is by experimenting and making mistakes. So as well as being very clear with"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,120",
+				"to": "00:19:28,840"
+			},
+			"offsets": {
+				"from": 1162120,
+				"to": 1168840
+			},
+			"text": " people about the limited privacy guarantees that the mixers provide, we should also be very careful"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,840",
+				"to": "00:19:33,720"
+			},
+			"offsets": {
+				"from": 1168840,
+				"to": 1173720
+			},
+			"text": " about the kind of security and wanting people to be very careful about using them."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,240",
+				"to": "00:19:40,200"
+			},
+			"offsets": {
+				"from": 1175240,
+				"to": 1180200
+			},
+			"text": " Okay. So other important things that are going on -- oh, wow. Other important things that are going"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,200",
+				"to": "00:19:45,640"
+			},
+			"offsets": {
+				"from": 1180200,
+				"to": 1185640
+			},
+			"text": " on is like private voting, collusion resistant voting, private resistance voting, censorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,640",
+				"to": "00:19:51,640"
+			},
+			"offsets": {
+				"from": 1185640,
+				"to": 1191640
+			},
+			"text": " resistance, signaling, anonymous logins, anonymous styles. I'm sorry. I'm very close to my time"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,640",
+				"to": "00:19:57,480"
+			},
+			"offsets": {
+				"from": 1191640,
+				"to": 1197480
+			},
+			"text": " is up. So we also need a lot of help. There's a lot of projects that I listed before that need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,480",
+				"to": "00:20:02,200"
+			},
+			"offsets": {
+				"from": 1197480,
+				"to": 1202200
+			},
+			"text": " be worked on and built. So I'd like to invite people who are interested in working on this to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,200",
+				"to": "00:20:06,120"
+			},
+			"offsets": {
+				"from": 1202200,
+				"to": 1206120
+			},
+			"text": " join this telecom group where there's like a nice community of people working on things."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,120",
+				"to": "00:20:11,960"
+			},
+			"offsets": {
+				"from": 1206120,
+				"to": 1211960
+			},
+			"text": " Yeah. And I'd also like to thank all these people who contributed and sort of helped and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,960",
+				"to": "00:20:18,040"
+			},
+			"offsets": {
+				"from": 1211960,
+				"to": 1218040
+			},
+			"text": " did great work in this space this year. And last year and for a long time. So I'd like to thank"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,040",
+				"to": "00:20:24,520"
+			},
+			"offsets": {
+				"from": 1218040,
+				"to": 1224520
+			},
+			"text": " all of them. And now I'm done. I have 17 seconds for questions. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,520",
+				"to": "00:20:28,120"
+			},
+			"offsets": {
+				"from": 1224520,
+				"to": 1228120
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,120",
+				"to": "00:20:30,120"
+			},
+			"offsets": {
+				"from": 1228120,
+				"to": 1230120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,120",
+				"to": "00:20:32,120"
+			},
+			"offsets": {
+				"from": 1230120,
+				"to": 1232120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,120",
+				"to": "00:20:34,120"
+			},
+			"offsets": {
+				"from": 1232120,
+				"to": 1234120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,120",
+				"to": "00:20:36,120"
+			},
+			"offsets": {
+				"from": 1234120,
+				"to": 1236120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,120",
+				"to": "00:20:38,120"
+			},
+			"offsets": {
+				"from": 1236120,
+				"to": 1238120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,120",
+				"to": "00:20:40,120"
+			},
+			"offsets": {
+				"from": 1238120,
+				"to": 1240120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,120",
+				"to": "00:20:42,120"
+			},
+			"offsets": {
+				"from": 1240120,
+				"to": 1242120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,120",
+				"to": "00:20:44,120"
+			},
+			"offsets": {
+				"from": 1242120,
+				"to": 1244120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,120",
+				"to": "00:20:46,120"
+			},
+			"offsets": {
+				"from": 1244120,
+				"to": 1246120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,120",
+				"to": "00:20:48,120"
+			},
+			"offsets": {
+				"from": 1246120,
+				"to": 1248120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,120",
+				"to": "00:20:50,120"
+			},
+			"offsets": {
+				"from": 1248120,
+				"to": 1250120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,120",
+				"to": "00:20:52,120"
+			},
+			"offsets": {
+				"from": 1250120,
+				"to": 1252120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,120",
+				"to": "00:21:02,120"
+			},
+			"offsets": {
+				"from": 1252120,
+				"to": 1262120
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,120",
+				"to": "00:21:04,120"
+			},
+			"offsets": {
+				"from": 1262120,
+				"to": 1264120
+			},
+			"text": " [buzzing]"
+		}
+	]
+}

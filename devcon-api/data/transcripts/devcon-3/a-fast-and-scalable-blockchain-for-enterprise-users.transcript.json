@@ -1,0 +1,1286 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:26,200"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 26200
+			},
+			"text": " Hello everyone. I'm Jan Xie. I'm the CEO of Cryptape, which is a blockchain start up"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,200",
+				"to": "00:00:35,280"
+			},
+			"offsets": {
+				"from": 26200,
+				"to": 35280
+			},
+			"text": " based in China. I was an Ethereum developer in the Telax research team, but now I'm fully"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,280",
+				"to": "00:00:42,640"
+			},
+			"offsets": {
+				"from": 35280,
+				"to": 42640
+			},
+			"text": " committed to our own blockchain product named Sita, which is a permission blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,640",
+				"to": "00:00:53,560"
+			},
+			"offsets": {
+				"from": 42640,
+				"to": 53560
+			},
+			"text": " Today I want to share with you the most important design choice of Sita and why it makes Sita"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,560",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 53560,
+				"to": 64600
+			},
+			"text": " unique. And the topic is Scalable Blockchain for Enterprise, which is a scalable solution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:13,440"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 73440
+			},
+			"text": " you can use today. With the advent of Ethereum we can build decentralized application very"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,440",
+				"to": "00:01:19,880"
+			},
+			"offsets": {
+				"from": 73440,
+				"to": 79880
+			},
+			"text": " easily on Ethereum. And in Cryptape we provide all kinds of consultancy services to our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,880",
+				"to": "00:01:27,400"
+			},
+			"offsets": {
+				"from": 79880,
+				"to": 87400
+			},
+			"text": " customers, include notary crypto assets to settlement supply chain. We build all kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,400",
+				"to": "00:01:36,560"
+			},
+			"offsets": {
+				"from": 87400,
+				"to": 96560
+			},
+			"text": " of prototypes, but the most question we've been asked by our customers is the solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,560",
+				"to": "00:01:47,880"
+			},
+			"offsets": {
+				"from": 96560,
+				"to": 107880
+			},
+			"text": " you build for us scale. What if the blockchain application becomes super success and there"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,880",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 107880,
+				"to": 121920
+			},
+			"text": " are a lot of our users using it? Is the solution can handle that much users? But all of us know"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 130000
+			},
+			"text": " blockchain has its own scalability problem because in blockchain we need to replicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:19,400"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 139400
+			},
+			"text": " the transactions as many copies as the nodes in the network and broadcast the replicates"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,400",
+				"to": "00:02:25,280"
+			},
+			"offsets": {
+				"from": 139400,
+				"to": 145280
+			},
+			"text": " to all the nodes and all the nodes need to process the same task again and again and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,280",
+				"to": "00:02:33,560"
+			},
+			"offsets": {
+				"from": 145280,
+				"to": 153560
+			},
+			"text": " then vote. So no matter how many nodes in the network, the whole network, the throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,560",
+				"to": "00:02:43,560"
+			},
+			"offsets": {
+				"from": 153560,
+				"to": 163560
+			},
+			"text": " of the whole network is the same as a single node. You can increase the network throughput"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,560",
+				"to": "00:02:53,720"
+			},
+			"offsets": {
+				"from": 163560,
+				"to": 173720
+			},
+			"text": " by simply adding nodes into the network. So how do we solve the problem? There are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,720",
+				"to": "00:03:06,560"
+			},
+			"offsets": {
+				"from": 173720,
+				"to": 186560
+			},
+			"text": " two solutions. The hard way is what Ethereum or Vitalik is doing now is scale out by shouting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,560",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 186560,
+				"to": 193920
+			},
+			"text": " What if we don't replicate each transaction that many times? What if we split transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:21,920"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 201920
+			},
+			"text": " into groups and we also split nodes into groups and each group of nodes only need to process"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,920",
+				"to": "00:03:28,080"
+			},
+			"offsets": {
+				"from": 201920,
+				"to": 208080
+			},
+			"text": " a subgroup of transactions and each group of nodes only need to maintain a substate of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,080",
+				"to": "00:03:40,320"
+			},
+			"offsets": {
+				"from": 208080,
+				"to": 220320
+			},
+			"text": " the blockchain? That's what sharding is doing but sharding is hard. If you listen to Vitalik's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,320",
+				"to": "00:03:51,840"
+			},
+			"offsets": {
+				"from": 220320,
+				"to": 231840
+			},
+			"text": " talk yesterday, there is a dilemma in the scalability problem. You can reach a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,840",
+				"to": "00:03:58,680"
+			},
+			"offsets": {
+				"from": 231840,
+				"to": 238680
+			},
+			"text": " which decentralization, scalability and security at the same time. So in sharding the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,680",
+				"to": "00:04:08,600"
+			},
+			"offsets": {
+				"from": 238680,
+				"to": 248600
+			},
+			"text": " hard part is security. How can you do it in a safe way? So it's very hard and Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,600",
+				"to": "00:04:18,880"
+			},
+			"offsets": {
+				"from": 248600,
+				"to": 258880
+			},
+			"text": " team is working hard on this and maybe we don't have it today. The other way or the easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,880",
+				"to": "00:04:30,520"
+			},
+			"offsets": {
+				"from": 258880,
+				"to": 270520
+			},
+			"text": " way is scale up. If the throughput of the whole network is the same as a single node in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,520",
+				"to": "00:04:37,520"
+			},
+			"offsets": {
+				"from": 270520,
+				"to": 277520
+			},
+			"text": " network, what if we just upgrade the node in the network? We can use workstation, even"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,520",
+				"to": "00:04:45,920"
+			},
+			"offsets": {
+				"from": 277520,
+				"to": 285920
+			},
+			"text": " mainframe instead of a laptop to run a node. Then the throughput of the whole system will"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,920",
+				"to": "00:04:58,640"
+			},
+			"offsets": {
+				"from": 285920,
+				"to": 298640
+			},
+			"text": " naturally increase. That's the solution promoted by some big names in this industry. If it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,640",
+				"to": "00:05:13,520"
+			},
+			"offsets": {
+				"from": 298640,
+				"to": 313520
+			},
+			"text": " so good why don't Ethereum just use this solution? The problem of scale up solution is obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,520",
+				"to": "00:05:21,720"
+			},
+			"offsets": {
+				"from": 313520,
+				"to": 321720
+			},
+			"text": " If you want to build a very decentralized network, you have to make the cost of running a node"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,720",
+				"to": "00:05:32,080"
+			},
+			"offsets": {
+				"from": 321720,
+				"to": 332080
+			},
+			"text": " very low. If you need a mainframe to run a full node, any individual cannot afford that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,080",
+				"to": "00:05:40,680"
+			},
+			"offsets": {
+				"from": 332080,
+				"to": 340680
+			},
+			"text": " cost. You may also need very good network condition for that full node. So the cost"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,680",
+				"to": "00:05:53,240"
+			},
+			"offsets": {
+				"from": 340680,
+				"to": 353240
+			},
+			"text": " is very high for scale up for a mainframe node. The other problem is centralization. If the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,240",
+				"to": "00:06:01,840"
+			},
+			"offsets": {
+				"from": 353240,
+				"to": 361840
+			},
+			"text": " cost is so high then any individual cannot afford it. Only people with a lot of money"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,840",
+				"to": "00:06:11,600"
+			},
+			"offsets": {
+				"from": 361840,
+				"to": 371600
+			},
+			"text": " can run a full node in the network. The solution is not suitable for a public chain. But for"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,600",
+				"to": "00:06:21,280"
+			},
+			"offsets": {
+				"from": 371600,
+				"to": 381280
+			},
+			"text": " crypt tape or for a permission blockchain, the context is different. The users in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,280",
+				"to": "00:06:30,240"
+			},
+			"offsets": {
+				"from": 381280,
+				"to": 390240
+			},
+			"text": " network are all enterprises. They cannot afford the cost. In a permission blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,240",
+				"to": "00:06:40,640"
+			},
+			"offsets": {
+				"from": 390240,
+				"to": 400640
+			},
+			"text": " we can set a barrier for enter. If you want to join to be a validation node, we can ask"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,640",
+				"to": "00:06:53,720"
+			},
+			"offsets": {
+				"from": 400640,
+				"to": 413720
+			},
+			"text": " you to buy some minimum hardware to become a validation node. So scale up solution can"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,720",
+				"to": "00:07:04,760"
+			},
+			"offsets": {
+				"from": 413720,
+				"to": 424760
+			},
+			"text": " be used in permission blockchain. And we have an even better way to do that. How? We don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,760",
+				"to": "00:07:13,840"
+			},
+			"offsets": {
+				"from": 424760,
+				"to": 433840
+			},
+			"text": " need a mainframe. That's not the way today. We can use the same technique used by all"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,840",
+				"to": "00:07:21,600"
+			},
+			"offsets": {
+				"from": 433840,
+				"to": 441600
+			},
+			"text": " those internet companies. So instead, we redesigned the architecture of a full node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,600",
+				"to": "00:07:32,480"
+			},
+			"offsets": {
+				"from": 441600,
+				"to": 452480
+			},
+			"text": " to use microservices. We break the functionalities of a full node into many independent modules"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,480",
+				"to": "00:07:43,960"
+			},
+			"offsets": {
+				"from": 452480,
+				"to": 463960
+			},
+			"text": " and each module can run as an independent process. All of those processes can run on"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,960",
+				"to": "00:07:55,080"
+			},
+			"offsets": {
+				"from": 463960,
+				"to": 475080
+			},
+			"text": " an independent server. So you can use a server cluster to run a full node. That's very different"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,080",
+				"to": "00:08:06,960"
+			},
+			"offsets": {
+				"from": 475080,
+				"to": 486960
+			},
+			"text": " from the full node clients of other blockchains today because public blockchain clients' goal"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,960",
+				"to": "00:08:16,880"
+			},
+			"offsets": {
+				"from": 486960,
+				"to": 496880
+			},
+			"text": " is to have individual run the full node on their laptop. But for enterprise users, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,880",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 496880,
+				"to": 504840
+			},
+			"text": " can afford a cluster and they have the operators to maintain the cluster. This architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:33,480"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 513480
+			},
+			"text": " can fully unleash the resources owned by enterprise users. So instead, we have consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,480",
+				"to": "00:08:41,320"
+			},
+			"offsets": {
+				"from": 513480,
+				"to": 521320
+			},
+			"text": " service which is in charge of ordering all the transactions received by node. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,320",
+				"to": "00:08:49,240"
+			},
+			"offsets": {
+				"from": 521320,
+				"to": 529240
+			},
+			"text": " have executed to process transactions. We have authentication service, RPC service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,240",
+				"to": "00:08:56,600"
+			},
+			"offsets": {
+				"from": 529240,
+				"to": 536600
+			},
+			"text": " and all the microservices exchange messages with each other through a message bus. Currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,600",
+				"to": "00:09:10,080"
+			},
+			"offsets": {
+				"from": 536600,
+				"to": 550080
+			},
+			"text": " we use RubyMQ as the message bus between those microservices. So we turn the scale up node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,080",
+				"to": "00:09:18,560"
+			},
+			"offsets": {
+				"from": 550080,
+				"to": 558560
+			},
+			"text": " we turn the scale up solution into a scale out solution inside a logical node. What is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,560",
+				"to": "00:09:26,880"
+			},
+			"offsets": {
+				"from": 558560,
+				"to": 566880
+			},
+			"text": " a logical node? Because instead a full node is not necessarily a server. So we call it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,880",
+				"to": "00:09:38,720"
+			},
+			"offsets": {
+				"from": 566880,
+				"to": 578720
+			},
+			"text": " a logical node because it may run on a server cluster. So on the right side is a logical"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,720",
+				"to": "00:09:45,800"
+			},
+			"offsets": {
+				"from": 578720,
+				"to": 585800
+			},
+			"text": " node with many servers inside it. From the other full nodes point of view, point of view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,800",
+				"to": "00:09:56,880"
+			},
+			"offsets": {
+				"from": 585800,
+				"to": 596880
+			},
+			"text": " it doesn't know if the other full node is running on 10 servers or hundreds of servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,880",
+				"to": "00:10:04,760"
+			},
+			"offsets": {
+				"from": 596880,
+				"to": 604760
+			},
+			"text": " So what's the benefit? If we break the functionalities into independent processes, we can do a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,760",
+				"to": "00:10:13,720"
+			},
+			"offsets": {
+				"from": 604760,
+				"to": 613720
+			},
+			"text": " of concurrent and parallel optimizations. For example, instead of we have implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,720",
+				"to": "00:10:23,320"
+			},
+			"offsets": {
+				"from": 613720,
+				"to": 623320
+			},
+			"text": " asynchronous transaction validation and execution. What does it mean? When a full node receives"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,320",
+				"to": "00:10:31,480"
+			},
+			"offsets": {
+				"from": 623320,
+				"to": 631480
+			},
+			"text": " a new block, the new block will be broadcast to executor and all service at the same time."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,480",
+				"to": "00:10:41,200"
+			},
+			"offsets": {
+				"from": 631480,
+				"to": 641200
+			},
+			"text": " And all and executor service can optimistically pre-compute the new block and validate transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,200",
+				"to": "00:10:50,440"
+			},
+			"offsets": {
+				"from": 641200,
+				"to": 650440
+			},
+			"text": " in the new block. It's a concurrent process. And this change will largely increase the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,440",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 650440,
+				"to": 664880
+			},
+			"text": " system's efficiency. This is asynchrony in a single block. And we go much farther than"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:15,200"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 675200
+			},
+			"text": " that. We separate consensus service and executor service completely. So when the system load"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,200",
+				"to": "00:11:23,520"
+			},
+			"offsets": {
+				"from": 675200,
+				"to": 683520
+			},
+			"text": " of is super high and all the transactions cannot be processed in one block time, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,520",
+				"to": "00:11:32,760"
+			},
+			"offsets": {
+				"from": 683520,
+				"to": 692760
+			},
+			"text": " is three seconds instead of, the execution can last across many blocks. And the state"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,760",
+				"to": "00:11:39,240"
+			},
+			"offsets": {
+				"from": 692760,
+				"to": 699240
+			},
+			"text": " route of the final result will be right back to -- will be written back to the block when"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,240",
+				"to": "00:11:50,760"
+			},
+			"offsets": {
+				"from": 699240,
+				"to": 710760
+			},
+			"text": " it's finished, maybe three blocks later. And we also -- we also do a lot of parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,760",
+				"to": "00:11:59,700"
+			},
+			"offsets": {
+				"from": 710760,
+				"to": 719700
+			},
+			"text": " optimizations in CDER. So this is a better picture than previous one, right? Instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,700",
+				"to": "00:12:08,580"
+			},
+			"offsets": {
+				"from": 719700,
+				"to": 728580
+			},
+			"text": " of only one service, we can run many service instances for any of the microservice. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,580",
+				"to": "00:12:14,020"
+			},
+			"offsets": {
+				"from": 728580,
+				"to": 734020
+			},
+			"text": " can have three authentication services to validate transaction signatures. We can have"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,020",
+				"to": "00:12:22,700"
+			},
+			"offsets": {
+				"from": 734020,
+				"to": 742700
+			},
+			"text": " three RPC services to receive requests from clients. And we can have many executors to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,700",
+				"to": "00:12:33,340"
+			},
+			"offsets": {
+				"from": 742700,
+				"to": 753340
+			},
+			"text": " run transactions in parallel. So this is the -- this is a benchmark result of CDER. We"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,340",
+				"to": "00:12:46,220"
+			},
+			"offsets": {
+				"from": 753340,
+				"to": 766220
+			},
+			"text": " did one week ago. We deployed a network with 10 logical nodes on a cloud service. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,220",
+				"to": "00:12:57,060"
+			},
+			"offsets": {
+				"from": 766220,
+				"to": 777060
+			},
+			"text": " the throughput of the 10 node network is 15,000 transactions per second. And in comparison,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,060",
+				"to": "00:13:05,020"
+			},
+			"offsets": {
+				"from": 777060,
+				"to": 785020
+			},
+			"text": " some other block chain solution or the most popular block chain solution today can reach"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,020",
+				"to": "00:13:13,020"
+			},
+			"offsets": {
+				"from": 785020,
+				"to": 793020
+			},
+			"text": " only 15 hundred transactions per second. So it's a 10 times difference. And we found"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,020",
+				"to": "00:13:26,820"
+			},
+			"offsets": {
+				"from": 793020,
+				"to": 806820
+			},
+			"text": " that the throughput of the whole network will increase proportionally to the ability of"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,820",
+				"to": "00:13:37,780"
+			},
+			"offsets": {
+				"from": 806820,
+				"to": 817780
+			},
+			"text": " a single node in the system. Like the orange bar, we use a 4x large server. And in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,780",
+				"to": "00:13:49,140"
+			},
+			"offsets": {
+				"from": 817780,
+				"to": 829140
+			},
+			"text": " blue and red deployment, we use twice powerful hardware. And another interesting thing is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,140",
+				"to": "00:13:56,700"
+			},
+			"offsets": {
+				"from": 829140,
+				"to": 836700
+			},
+			"text": " we find that the blue deployment -- the performance of blue deployment is almost the same as red"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,700",
+				"to": "00:14:02,220"
+			},
+			"offsets": {
+				"from": 836700,
+				"to": 842220
+			},
+			"text": " deployment. But the blue one uses a single server for a logical node. But the red one"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,220",
+				"to": "00:14:11,420"
+			},
+			"offsets": {
+				"from": 842220,
+				"to": 851420
+			},
+			"text": " uses three lower grades servers for a single node, for a single logical node. So the result"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,420",
+				"to": "00:14:18,580"
+			},
+			"offsets": {
+				"from": 851420,
+				"to": 858580
+			},
+			"text": " is very promising. And all of this is just a beginning. We are still pushing very hard"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,580",
+				"to": "00:14:31,220"
+			},
+			"offsets": {
+				"from": 858580,
+				"to": 871220
+			},
+			"text": " to increase the system's throughput to do more parallelism in CDER. And actually, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,220",
+				"to": "00:14:37,180"
+			},
+			"offsets": {
+				"from": 871220,
+				"to": 877180
+			},
+			"text": " microservice architecture is the only cloud friendly architecture today. Cloud friendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,180",
+				"to": "00:14:47,140"
+			},
+			"offsets": {
+				"from": 877180,
+				"to": 887140
+			},
+			"text": " blockchain architecture today. Because you can fully utilize the server instances on"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,140",
+				"to": "00:14:56,700"
+			},
+			"offsets": {
+				"from": 887140,
+				"to": 896700
+			},
+			"text": " cloud. You can run many server instances to power a full node. And there are many other"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,700",
+				"to": "00:15:05,500"
+			},
+			"offsets": {
+				"from": 896700,
+				"to": 905500
+			},
+			"text": " interesting designs. And I got no enough time. But, well, we have native contract other than"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,500",
+				"to": "00:15:12,740"
+			},
+			"offsets": {
+				"from": 905500,
+				"to": 912740
+			},
+			"text": " EVM contract. In the default CDER stack, we support EVM contract by default. But you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,740",
+				"to": "00:15:19,020"
+			},
+			"offsets": {
+				"from": 912740,
+				"to": 919020
+			},
+			"text": " can always rewrite your solidity contract with native code. And our native contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,020",
+				"to": "00:15:28,780"
+			},
+			"offsets": {
+				"from": 919020,
+				"to": 928780
+			},
+			"text": " supports solidity API. And it provides solidity compatible storage API. So you can use mappings,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,780",
+				"to": "00:15:37,180"
+			},
+			"offsets": {
+				"from": 928780,
+				"to": 937180
+			},
+			"text": " those data structures in native contract. And a solidity contract can call into native"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,180",
+				"to": "00:15:44,980"
+			},
+			"offsets": {
+				"from": 937180,
+				"to": 944980
+			},
+			"text": " contract naturally without any change. This is an example in Rust. By the way, CDER is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,980",
+				"to": "00:15:57,220"
+			},
+			"offsets": {
+				"from": 944980,
+				"to": 957220
+			},
+			"text": " written in Rust. And the beautiful of the scale up solution is that the solution is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,220",
+				"to": "00:16:06,420"
+			},
+			"offsets": {
+				"from": 957220,
+				"to": 966420
+			},
+			"text": " orthogonal to all the future scaling solutions like sharding, plasma, state channel. We can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,420",
+				"to": "00:16:16,300"
+			},
+			"offsets": {
+				"from": 966420,
+				"to": 976300
+			},
+			"text": " use them together. And I believe even in scalability solution like plasma, the root chain still"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,300",
+				"to": "00:16:26,300"
+			},
+			"offsets": {
+				"from": 976300,
+				"to": 986300
+			},
+			"text": " need very high performance. Still need to do a lot of things like we did in CDER to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,300",
+				"to": "00:16:38,940"
+			},
+			"offsets": {
+				"from": 986300,
+				"to": 998940
+			},
+			"text": " all those child chains. And this is a typical network of CDER. So we built this network"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,940",
+				"to": "00:16:46,180"
+			},
+			"offsets": {
+				"from": 998940,
+				"to": 1006180
+			},
+			"text": " for enterprise users. Each enterprise user can run a full node, which includes many microservices."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,180",
+				"to": "00:16:55,900"
+			},
+			"offsets": {
+				"from": 1006180,
+				"to": 1015900
+			},
+			"text": " And there users can get access to the network through their full node. This hybrid model"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,900",
+				"to": "00:17:04,780"
+			},
+			"offsets": {
+				"from": 1015900,
+				"to": 1024780
+			},
+			"text": " deserves more consideration and more research. And we can build decentralized enterprise"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,780",
+				"to": "00:17:11,500"
+			},
+			"offsets": {
+				"from": 1024780,
+				"to": 1031500
+			},
+			"text": " application on this network. And if you are interested in CDER, CDER is fully open sourced."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,500",
+				"to": "00:17:18,540"
+			},
+			"offsets": {
+				"from": 1031500,
+				"to": 1038540
+			},
+			"text": " You can find this white paper. It's all of its code. And we build Docker image. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,540",
+				"to": "00:17:25,020"
+			},
+			"offsets": {
+				"from": 1038540,
+				"to": 1045020
+			},
+			"text": " provide a simple bootstrap document so you can follow the steps and run a CDER network"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,020",
+				"to": "00:17:34,820"
+			},
+			"offsets": {
+				"from": 1045020,
+				"to": 1054820
+			},
+			"text": " and benchmark it. We have many customers. Yeah, this is why we need such high throughput,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,820",
+				"to": "00:17:41,020"
+			},
+			"offsets": {
+				"from": 1054820,
+				"to": 1061020
+			},
+			"text": " such high performance. Because our customers include like China bank node printing and"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,020",
+				"to": "00:18:03,140"
+			},
+			"offsets": {
+				"from": 1061020,
+				"to": 1083140
+			},
+			"text": " minting company, their product literally has billions of users. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,140",
+				"to": "00:18:05,140"
+			},
+			"offsets": {
+				"from": 1083140,
+				"to": 1085140
+			},
+			"text": " ( )"
+		}
+	]
+}

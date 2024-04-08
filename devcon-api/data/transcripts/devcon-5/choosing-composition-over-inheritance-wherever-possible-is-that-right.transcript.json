@@ -1,0 +1,1836 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:12,440"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 12440
+			},
+			"text": " Hi, I'm Alex."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,440",
+				"to": "00:00:15,200"
+			},
+			"offsets": {
+				"from": 12440,
+				"to": 15200
+			},
+			"text": " I'm a Solidity Engineer at Aswell."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,200",
+				"to": "00:00:17,480"
+			},
+			"offsets": {
+				"from": 15200,
+				"to": 17480
+			},
+			"text": " And I'm here to quickly talk to you guys"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,480",
+				"to": "00:00:20,760"
+			},
+			"offsets": {
+				"from": 17480,
+				"to": 20760
+			},
+			"text": " about composition of inheritance in Solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,760",
+				"to": "00:00:24,680"
+			},
+			"offsets": {
+				"from": 20760,
+				"to": 24680
+			},
+			"text": " So quick intro."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,680",
+				"to": "00:00:28,200"
+			},
+			"offsets": {
+				"from": 24680,
+				"to": 28200
+			},
+			"text": " Composition in inheritance came about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,200",
+				"to": "00:00:30,880"
+			},
+			"offsets": {
+				"from": 28200,
+				"to": 30880
+			},
+			"text": " at the advent of object-oriented programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,880",
+				"to": "00:00:33,440"
+			},
+			"offsets": {
+				"from": 30880,
+				"to": 33440
+			},
+			"text": " and graphical user interfaces."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,440",
+				"to": "00:00:37,960"
+			},
+			"offsets": {
+				"from": 33440,
+				"to": 37960
+			},
+			"text": " So in these, what about classes and objects?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,960",
+				"to": "00:00:41,320"
+			},
+			"offsets": {
+				"from": 37960,
+				"to": 41320
+			},
+			"text": " And composition inheritance are how these classes and objects"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,320",
+				"to": "00:00:45,080"
+			},
+			"offsets": {
+				"from": 41320,
+				"to": 45080
+			},
+			"text": " can talk to one another, how they can share code."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,080",
+				"to": "00:00:46,560"
+			},
+			"offsets": {
+				"from": 45080,
+				"to": 46560
+			},
+			"text": " And so here's a quick bit of background"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,560",
+				"to": "00:00:48,400"
+			},
+			"offsets": {
+				"from": 46560,
+				"to": 48400
+			},
+			"text": " about what each one is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,400",
+				"to": "00:00:50,920"
+			},
+			"offsets": {
+				"from": 48400,
+				"to": 50920
+			},
+			"text": " Let's say I want to make a pizza."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,920",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 50920,
+				"to": 54560
+			},
+			"text": " We have a pizza-based class, and it has a shape."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:57,800"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 57800
+			},
+			"text": " We have a cheese class, and it's got something about this flavor."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,800",
+				"to": "00:00:59,920"
+			},
+			"offsets": {
+				"from": 57800,
+				"to": 59920
+			},
+			"text": " And we have a pepperoni class."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,920",
+				"to": "00:01:01,040"
+			},
+			"offsets": {
+				"from": 59920,
+				"to": 61040
+			},
+			"text": " It's that pepperoni spicy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,040",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 61040,
+				"to": 62280
+			},
+			"text": " We have another function."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 64600
+			},
+			"text": " So whenever we then want to make a pizza,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:07,080"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 67080
+			},
+			"text": " we can either inherit all of the previous classes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,080",
+				"to": "00:01:10,840"
+			},
+			"offsets": {
+				"from": 67080,
+				"to": 70840
+			},
+			"text": " So we have a pizza, and the pizza is a pizza-based cheese"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,840",
+				"to": "00:01:13,760"
+			},
+			"offsets": {
+				"from": 70840,
+				"to": 73760
+			},
+			"text": " and pepperoni that automatically then gets all the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,760",
+				"to": "00:01:15,360"
+			},
+			"offsets": {
+				"from": 73760,
+				"to": 75360
+			},
+			"text": " that the pizza-based cheese and pepperoni"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,360",
+				"to": "00:01:17,480"
+			},
+			"offsets": {
+				"from": 75360,
+				"to": 77480
+			},
+			"text": " got all into the new class."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,480",
+				"to": "00:01:21,920"
+			},
+			"offsets": {
+				"from": 77480,
+				"to": 81920
+			},
+			"text": " So the pizza is now the same shape as whatever it inherited."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,920",
+				"to": "00:01:25,280"
+			},
+			"offsets": {
+				"from": 81920,
+				"to": 85280
+			},
+			"text": " We can then use composition instead as our way of combining"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,280",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 85280,
+				"to": 86000
+			},
+			"text": " these three."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:28,400"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 88400
+			},
+			"text": " And so to start with inheriting them and automatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,400",
+				"to": "00:01:31,920"
+			},
+			"offsets": {
+				"from": 88400,
+				"to": 91920
+			},
+			"text": " getting all of those functions, it has very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,920",
+				"to": "00:01:32,960"
+			},
+			"offsets": {
+				"from": 91920,
+				"to": 92960
+			},
+			"text": " It has a pizza-based."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,960",
+				"to": "00:01:35,240"
+			},
+			"offsets": {
+				"from": 92960,
+				"to": 95240
+			},
+			"text": " It has cheese and it has a pepperoni."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,240",
+				"to": "00:01:37,600"
+			},
+			"offsets": {
+				"from": 95240,
+				"to": 97600
+			},
+			"text": " And if you want to find out the pepperoni is spicy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,600",
+				"to": "00:01:42,240"
+			},
+			"offsets": {
+				"from": 97600,
+				"to": 102240
+			},
+			"text": " you look up the pepperoni and ask the pepperoni class."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,240",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 102240,
+				"to": 105840
+			},
+			"text": " So that's just a quick background on what they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:49,560"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 109560
+			},
+			"text": " Composition over inheritance was something introduced either"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,560",
+				"to": "00:01:54,480"
+			},
+			"offsets": {
+				"from": 109560,
+				"to": 114480
+			},
+			"text": " in 1994 or in 1994, or the idea famous."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,480",
+				"to": "00:01:59,760"
+			},
+			"offsets": {
+				"from": 114480,
+				"to": 119760
+			},
+			"text": " They basically go through the idea that inheritance is essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,760",
+				"to": "00:02:01,440"
+			},
+			"offsets": {
+				"from": 119760,
+				"to": 121440
+			},
+			"text": " white box reuse of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,440",
+				"to": "00:02:04,400"
+			},
+			"offsets": {
+				"from": 121440,
+				"to": 124400
+			},
+			"text": " So when one class inherits another,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,400",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 124400,
+				"to": 126120
+			},
+			"text": " it can get all of the variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:09,120"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 129120
+			},
+			"text": " It can see everything that's going on, all the computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,120",
+				"to": "00:02:11,840"
+			},
+			"offsets": {
+				"from": 129120,
+				"to": 131840
+			},
+			"text": " It can override functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,840",
+				"to": "00:02:15,440"
+			},
+			"offsets": {
+				"from": 131840,
+				"to": 135440
+			},
+			"text": " And it's all there, including a one class."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,440",
+				"to": "00:02:17,800"
+			},
+			"offsets": {
+				"from": 135440,
+				"to": 137800
+			},
+			"text": " Black box reuse is composition."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,800",
+				"to": "00:02:19,760"
+			},
+			"offsets": {
+				"from": 137800,
+				"to": 139760
+			},
+			"text": " So when two classes interact with one another,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,760",
+				"to": "00:02:21,760"
+			},
+			"offsets": {
+				"from": 139760,
+				"to": 141760
+			},
+			"text": " you can't see what's going on inside the other class."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,760",
+				"to": "00:02:24,400"
+			},
+			"offsets": {
+				"from": 141760,
+				"to": 144400
+			},
+			"text": " You can't see how the answer is imposuted."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,400",
+				"to": "00:02:26,880"
+			},
+			"offsets": {
+				"from": 144400,
+				"to": 146880
+			},
+			"text": " You don't really care about how it's implemented."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,880",
+				"to": "00:02:29,400"
+			},
+			"offsets": {
+				"from": 146880,
+				"to": 149400
+			},
+			"text": " You can just interact with it, get the answers you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,400",
+				"to": "00:02:32,080"
+			},
+			"offsets": {
+				"from": 149400,
+				"to": 152080
+			},
+			"text": " And they argue that this is far simpler."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,080",
+				"to": "00:02:33,800"
+			},
+			"offsets": {
+				"from": 152080,
+				"to": 153800
+			},
+			"text": " It doesn't matter how long things implement,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,800",
+				"to": "00:02:36,720"
+			},
+			"offsets": {
+				"from": 153800,
+				"to": 156720
+			},
+			"text": " as long as you know it's working."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,720",
+				"to": "00:02:39,080"
+			},
+			"offsets": {
+				"from": 156720,
+				"to": 159080
+			},
+			"text": " So a long kinds of theory, and we have something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,080",
+				"to": "00:02:41,600"
+			},
+			"offsets": {
+				"from": 159080,
+				"to": 161600
+			},
+			"text": " called contract oriented programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,600",
+				"to": "00:02:44,920"
+			},
+			"offsets": {
+				"from": 161600,
+				"to": 164920
+			},
+			"text": " So it's very similar to object oriented programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,920",
+				"to": "00:02:47,520"
+			},
+			"offsets": {
+				"from": 164920,
+				"to": 167520
+			},
+			"text": " But now we have a decentralized computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,520",
+				"to": "00:02:49,840"
+			},
+			"offsets": {
+				"from": 167520,
+				"to": 169840
+			},
+			"text": " where instead of trusting a central party,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,840",
+				"to": "00:02:51,920"
+			},
+			"offsets": {
+				"from": 169840,
+				"to": 171920
+			},
+			"text": " you have to trust that the smart contract really does"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,920",
+				"to": "00:02:53,720"
+			},
+			"offsets": {
+				"from": 171920,
+				"to": 173720
+			},
+			"text": " what we think it does."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,720",
+				"to": "00:02:57,240"
+			},
+			"offsets": {
+				"from": 173720,
+				"to": 177240
+			},
+			"text": " So we also have the code publicly on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,240",
+				"to": "00:03:00,240"
+			},
+			"offsets": {
+				"from": 177240,
+				"to": 180240
+			},
+			"text": " which basically means you are asking people to hack you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,240",
+				"to": "00:03:03,280"
+			},
+			"offsets": {
+				"from": 180240,
+				"to": 183280
+			},
+			"text": " So you really, really need to be able to look at that code"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,280",
+				"to": "00:03:05,880"
+			},
+			"offsets": {
+				"from": 183280,
+				"to": 185880
+			},
+			"text": " and understand what it's doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,880",
+				"to": "00:03:07,720"
+			},
+			"offsets": {
+				"from": 185880,
+				"to": 187720
+			},
+			"text": " We also have gas costs."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,720",
+				"to": "00:03:11,520"
+			},
+			"offsets": {
+				"from": 187720,
+				"to": 191520
+			},
+			"text": " But I'd say that the most important thing is readability."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,520",
+				"to": "00:03:12,960"
+			},
+			"offsets": {
+				"from": 191520,
+				"to": 192960
+			},
+			"text": " If you can't read the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,960",
+				"to": "00:03:14,520"
+			},
+			"offsets": {
+				"from": 192960,
+				"to": 194520
+			},
+			"text": " and you can't understand what it's doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,520",
+				"to": "00:03:16,280"
+			},
+			"offsets": {
+				"from": 194520,
+				"to": 196280
+			},
+			"text": " you essentially have the same problems before us."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,280",
+				"to": "00:03:17,920"
+			},
+			"offsets": {
+				"from": 196280,
+				"to": 197920
+			},
+			"text": " How can you really trust that it's going to work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,920",
+				"to": "00:03:20,160"
+			},
+			"offsets": {
+				"from": 197920,
+				"to": 200160
+			},
+			"text": " How do you think it's going to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,160",
+				"to": "00:03:23,800"
+			},
+			"offsets": {
+				"from": 200160,
+				"to": 203800
+			},
+			"text": " This is a quote from, I think the 1980s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,800",
+				"to": "00:03:27,080"
+			},
+			"offsets": {
+				"from": 203800,
+				"to": 207080
+			},
+			"text": " but it's feeling more relevant than ever in Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,080",
+				"to": "00:03:30,720"
+			},
+			"offsets": {
+				"from": 207080,
+				"to": 210720
+			},
+			"text": " that programs must be written for people to read."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,720",
+				"to": "00:03:35,560"
+			},
+			"offsets": {
+				"from": 210720,
+				"to": 215560
+			},
+			"text": " So in composition, we have a separation of concerns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,560",
+				"to": "00:03:37,560"
+			},
+			"offsets": {
+				"from": 215560,
+				"to": 217560
+			},
+			"text": " When you want to read a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,560",
+				"to": "00:03:39,040"
+			},
+			"offsets": {
+				"from": 217560,
+				"to": 219040
+			},
+			"text": " and argue about what it's doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,040",
+				"to": "00:03:40,920"
+			},
+			"offsets": {
+				"from": 219040,
+				"to": 220920
+			},
+			"text": " you can read each smart contract separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,920",
+				"to": "00:03:43,600"
+			},
+			"offsets": {
+				"from": 220920,
+				"to": 223600
+			},
+			"text": " You can check in your head that that concern"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,600",
+				"to": "00:03:45,080"
+			},
+			"offsets": {
+				"from": 223600,
+				"to": 225080
+			},
+			"text": " is doing what it wants to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,080",
+				"to": "00:03:46,640"
+			},
+			"offsets": {
+				"from": 225080,
+				"to": 226640
+			},
+			"text": " And then only at the end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,640",
+				"to": "00:03:48,440"
+			},
+			"offsets": {
+				"from": 226640,
+				"to": 228440
+			},
+			"text": " do you then bring in integration testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,440",
+				"to": "00:03:51,600"
+			},
+			"offsets": {
+				"from": 228440,
+				"to": 231600
+			},
+			"text": " that you then see how the objects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,600",
+				"to": "00:03:53,880"
+			},
+			"offsets": {
+				"from": 231600,
+				"to": 233880
+			},
+			"text": " or that all the contracts talk to each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,880",
+				"to": "00:03:55,520"
+			},
+			"offsets": {
+				"from": 233880,
+				"to": 235520
+			},
+			"text": " But before that, you can argue about"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,520",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 235520,
+				"to": 238840
+			},
+			"text": " more individually and test them all individually."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:01,920"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 241920
+			},
+			"text": " When we bring in inheritance, to read one smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,920",
+				"to": "00:04:03,720"
+			},
+			"offsets": {
+				"from": 241920,
+				"to": 243720
+			},
+			"text": " you have to jump between all the ones that inherit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,720",
+				"to": "00:04:05,800"
+			},
+			"offsets": {
+				"from": 243720,
+				"to": 245800
+			},
+			"text": " So you're trying to understand what it references a variable"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,800",
+				"to": "00:04:08,160"
+			},
+			"offsets": {
+				"from": 245800,
+				"to": 248160
+			},
+			"text": " that you can't see and the one you're looking at."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,160",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 248160,
+				"to": 249800
+			},
+			"text": " You then have to jump over to another contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:11,920"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 251920
+			},
+			"text": " see that variable, see how it's been set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,920",
+				"to": "00:04:13,080"
+			},
+			"offsets": {
+				"from": 251920,
+				"to": 253080
+			},
+			"text": " in another contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,080",
+				"to": "00:04:15,040"
+			},
+			"offsets": {
+				"from": 253080,
+				"to": 255040
+			},
+			"text": " And so you jump up and forth between other files"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,040",
+				"to": "00:04:16,600"
+			},
+			"offsets": {
+				"from": 255040,
+				"to": 256600
+			},
+			"text": " and it's a lot more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,600",
+				"to": "00:04:21,720"
+			},
+			"offsets": {
+				"from": 256600,
+				"to": 261720
+			},
+			"text": " Most importantly, multiple inheritance connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,720",
+				"to": "00:04:24,520"
+			},
+			"offsets": {
+				"from": 261720,
+				"to": 264520
+			},
+			"text": " very differently to how many people think it can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,520",
+				"to": "00:04:27,800"
+			},
+			"offsets": {
+				"from": 264520,
+				"to": 267800
+			},
+			"text": " and it's like about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,800",
+				"to": "00:04:30,960"
+			},
+			"offsets": {
+				"from": 267800,
+				"to": 270960
+			},
+			"text": " So let's say we have this dev contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,960",
+				"to": "00:04:34,240"
+			},
+			"offsets": {
+				"from": 270960,
+				"to": 274240
+			},
+			"text": " and we've got a function that says I'm a dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,240",
+				"to": "00:04:38,200"
+			},
+			"offsets": {
+				"from": 274240,
+				"to": 278200
+			},
+			"text": " We have a solidity dev and the talk function returns"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,200",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 278200,
+				"to": 282000
+			},
+			"text": " I write solidity and then calls it parent contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:43,960"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 283960
+			},
+			"text": " I write solidity I'm a dev."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,960",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 283960,
+				"to": 285480
+			},
+			"text": " So it calls it back onto here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:48,040"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 288040
+			},
+			"text": " We have the same thing with a react developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,040",
+				"to": "00:04:51,320"
+			},
+			"offsets": {
+				"from": 288040,
+				"to": 291320
+			},
+			"text": " I write react I'm a dev and then we have Charlie"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,320",
+				"to": "00:04:53,200"
+			},
+			"offsets": {
+				"from": 291320,
+				"to": 293200
+			},
+			"text": " and Charlie is a react developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,200",
+				"to": "00:04:54,440"
+			},
+			"offsets": {
+				"from": 293200,
+				"to": 294440
+			},
+			"text": " and a salinity developer."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,440",
+				"to": "00:04:57,360"
+			},
+			"offsets": {
+				"from": 294440,
+				"to": 297360
+			},
+			"text": " Multiple inheritance and so these two contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,360",
+				"to": "00:05:00,960"
+			},
+			"offsets": {
+				"from": 297360,
+				"to": 300960
+			},
+			"text": " So to look at what Charlie returns when you call talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,960",
+				"to": "00:05:04,960"
+			},
+			"offsets": {
+				"from": 300960,
+				"to": 304960
+			},
+			"text": " it obviously starts with like Charlie, that's obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,960",
+				"to": "00:05:06,240"
+			},
+			"offsets": {
+				"from": 304960,
+				"to": 306240
+			},
+			"text": " But then what is super dot talk?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,240",
+				"to": "00:05:07,240"
+			},
+			"offsets": {
+				"from": 306240,
+				"to": 307240
+			},
+			"text": " What does it call up to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,240",
+				"to": "00:05:08,840"
+			},
+			"offsets": {
+				"from": 307240,
+				"to": 308840
+			},
+			"text": " Which parent contract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,840",
+				"to": "00:05:09,760"
+			},
+			"offsets": {
+				"from": 308840,
+				"to": 309760
+			},
+			"text": " Hard to tell."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,760",
+				"to": "00:05:11,600"
+			},
+			"offsets": {
+				"from": 309760,
+				"to": 311600
+			},
+			"text": " Insolidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,600",
+				"to": "00:05:12,440"
+			},
+			"offsets": {
+				"from": 311600,
+				"to": 312440
+			},
+			"text": " (beeping)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,440",
+				"to": "00:05:13,280"
+			},
+			"offsets": {
+				"from": 312440,
+				"to": 313280
+			},
+			"text": " Oh."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,280",
+				"to": "00:05:17,040"
+			},
+			"offsets": {
+				"from": 313280,
+				"to": 317040
+			},
+			"text": " It calls up to the salinity developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,040",
+				"to": "00:05:20,560"
+			},
+			"offsets": {
+				"from": 317040,
+				"to": 320560
+			},
+			"text": " and comes up with our X-relatedity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,560",
+				"to": "00:05:23,400"
+			},
+			"offsets": {
+				"from": 320560,
+				"to": 323400
+			},
+			"text": " And that one now calls super dot talk from there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,400",
+				"to": "00:05:25,800"
+			},
+			"offsets": {
+				"from": 323400,
+				"to": 325800
+			},
+			"text": " but instead of calling the developer form"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,800",
+				"to": "00:05:27,800"
+			},
+			"offsets": {
+				"from": 325800,
+				"to": 327800
+			},
+			"text": " which you'd think from salinity dev"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,800",
+				"to": "00:05:30,280"
+			},
+			"offsets": {
+				"from": 327800,
+				"to": 330280
+			},
+			"text": " it actually jumps back down to the react developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,280",
+				"to": "00:05:32,280"
+			},
+			"offsets": {
+				"from": 330280,
+				"to": 332280
+			},
+			"text": " and outputs I write react."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,280",
+				"to": "00:05:36,240"
+			},
+			"offsets": {
+				"from": 332280,
+				"to": 336240
+			},
+			"text": " And then from there it finally calls back up to the top"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,240",
+				"to": "00:05:39,360"
+			},
+			"offsets": {
+				"from": 336240,
+				"to": 339360
+			},
+			"text": " and you can see how that's an unexpected thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,360",
+				"to": "00:05:41,440"
+			},
+			"offsets": {
+				"from": 339360,
+				"to": 341440
+			},
+			"text": " but it's not just in salinity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,440",
+				"to": "00:05:42,960"
+			},
+			"offsets": {
+				"from": 341440,
+				"to": 342960
+			},
+			"text": " it happens another object to enter program"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,960",
+				"to": "00:05:44,160"
+			},
+			"offsets": {
+				"from": 342960,
+				"to": 344160
+			},
+			"text": " and languages as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,160",
+				"to": "00:05:47,600"
+			},
+			"offsets": {
+				"from": 344160,
+				"to": 347600
+			},
+			"text": " But you can easily see how bugs might come in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,600",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 347600,
+				"to": 349960
+			},
+			"text": " It's very hard to read what sort of chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:51,360"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 351360
+			},
+			"text": " is going to follow."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,360",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 351360,
+				"to": 353000
+			},
+			"text": " So it's not all bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:54,160"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 354160
+			},
+			"text": " It's how the brand's standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,160",
+				"to": "00:05:56,360"
+			},
+			"offsets": {
+				"from": 354160,
+				"to": 356360
+			},
+			"text": " It's also people that have the LC20 contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,360",
+				"to": "00:06:00,520"
+			},
+			"offsets": {
+				"from": 356360,
+				"to": 360520
+			},
+			"text": " for example to have the LC20 tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,520",
+				"to": "00:06:02,920"
+			},
+			"offsets": {
+				"from": 360520,
+				"to": 362920
+			},
+			"text": " People are now at earnable, plausible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,920",
+				"to": "00:06:04,960"
+			},
+			"offsets": {
+				"from": 362920,
+				"to": 364960
+			},
+			"text": " The opens up in contracts to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,960",
+				"to": "00:06:06,440"
+			},
+			"offsets": {
+				"from": 364960,
+				"to": 366440
+			},
+			"text": " and they're great lifecycle things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,440",
+				"to": "00:06:08,080"
+			},
+			"offsets": {
+				"from": 366440,
+				"to": 368080
+			},
+			"text": " that you can implement in your smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,080",
+				"to": "00:06:09,200"
+			},
+			"offsets": {
+				"from": 368080,
+				"to": 369200
+			},
+			"text": " to keep them safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,200",
+				"to": "00:06:11,560"
+			},
+			"offsets": {
+				"from": 369200,
+				"to": 371560
+			},
+			"text": " But there's definitely complications when you're doing it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,560",
+				"to": "00:06:13,200"
+			},
+			"offsets": {
+				"from": 371560,
+				"to": 373200
+			},
+			"text": " and you have to really know what you're doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,200",
+				"to": "00:06:15,120"
+			},
+			"offsets": {
+				"from": 373200,
+				"to": 375120
+			},
+			"text": " to make sure these bugs don't occur."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,120",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 375120,
+				"to": 378360
+			},
+			"text": " So, CAS is also a consideration."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:20,080"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 380080
+			},
+			"text": " One contract is cheaper than two"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,080",
+				"to": "00:06:22,240"
+			},
+			"offsets": {
+				"from": 380080,
+				"to": 382240
+			},
+			"text": " but if you're just applying contracts once"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,240",
+				"to": "00:06:24,680"
+			},
+			"offsets": {
+				"from": 382240,
+				"to": 384680
+			},
+			"text": " is it really well saving for $10 just to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,680",
+				"to": "00:06:29,640"
+			},
+			"offsets": {
+				"from": 384680,
+				"to": 389640
+			},
+			"text": " you know about slightly more complex contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,640",
+				"to": "00:06:33,120"
+			},
+			"offsets": {
+				"from": 389640,
+				"to": 393120
+			},
+			"text": " Immutability, upgrading is easier if you have composition"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,120",
+				"to": "00:06:35,920"
+			},
+			"offsets": {
+				"from": 393120,
+				"to": 395920
+			},
+			"text": " but people don't like upgrade ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,920",
+				"to": "00:06:36,840"
+			},
+			"offsets": {
+				"from": 395920,
+				"to": 396840
+			},
+			"text": " not to start the item."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,840",
+				"to": "00:06:40,200"
+			},
+			"offsets": {
+				"from": 396840,
+				"to": 400200
+			},
+			"text": " So that's a subject for another talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,200",
+				"to": "00:06:41,560"
+			},
+			"offsets": {
+				"from": 400200,
+				"to": 401560
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,560",
+				"to": "00:06:43,720"
+			},
+			"offsets": {
+				"from": 401560,
+				"to": 403720
+			},
+			"text": " It's my contact details on your way to the next one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,720",
+				"to": "00:06:46,880"
+			},
+			"offsets": {
+				"from": 403720,
+				"to": 406880
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,880",
+				"to": "00:06:49,460"
+			},
+			"offsets": {
+				"from": 406880,
+				"to": 409460
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,460",
+				"to": "00:06:52,040"
+			},
+			"offsets": {
+				"from": 409460,
+				"to": 412040
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,040",
+				"to": "00:06:54,620"
+			},
+			"offsets": {
+				"from": 412040,
+				"to": 414620
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,620",
+				"to": "00:06:57,200"
+			},
+			"offsets": {
+				"from": 414620,
+				"to": 417200
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,200",
+				"to": "00:06:59,940"
+			},
+			"offsets": {
+				"from": 417200,
+				"to": 419940
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,940",
+				"to": "00:07:02,680"
+			},
+			"offsets": {
+				"from": 419940,
+				"to": 422680
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

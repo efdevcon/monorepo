@@ -1,0 +1,3607 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,340"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16340
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,340",
+				"to": "00:00:17,620"
+			},
+			"offsets": {
+				"from": 16340,
+				"to": 17620
+			},
+			"text": " >> Hello, everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,620",
+				"to": "00:00:23,640"
+			},
+			"offsets": {
+				"from": 17620,
+				"to": 23640
+			},
+			"text": " So, my name is Jonathan Alexander."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,640",
+				"to": "00:00:25,540"
+			},
+			"offsets": {
+				"from": 23640,
+				"to": 25540
+			},
+			"text": " I am CTO at Open Zeppelin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,540",
+				"to": "00:00:27,300"
+			},
+			"offsets": {
+				"from": 25540,
+				"to": 27300
+			},
+			"text": " I'm the co-founder of Forde."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:31,640"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 31640
+			},
+			"text": " And in this talk, we're going to be covering research"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,640",
+				"to": "00:00:35,640"
+			},
+			"offsets": {
+				"from": 31640,
+				"to": 35640
+			},
+			"text": " and development on decentralized threat detection bots."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,640",
+				"to": "00:00:41,800"
+			},
+			"offsets": {
+				"from": 35640,
+				"to": 41800
+			},
+			"text": " There are a number of contributors to this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,800",
+				"to": "00:00:44,680"
+			},
+			"offsets": {
+				"from": 41800,
+				"to": 44680
+			},
+			"text": " whose work I'll be citing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,680",
+				"to": "00:00:51,200"
+			},
+			"offsets": {
+				"from": 44680,
+				"to": 51200
+			},
+			"text": " A lot of the information and research is been conducted"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,200",
+				"to": "00:00:52,200"
+			},
+			"offsets": {
+				"from": 51200,
+				"to": 52200
+			},
+			"text": " by these individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,200",
+				"to": "00:00:54,280"
+			},
+			"offsets": {
+				"from": 52200,
+				"to": 54280
+			},
+			"text": " It includes Christian Seifert,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,280",
+				"to": "00:00:56,600"
+			},
+			"offsets": {
+				"from": 54280,
+				"to": 56600
+			},
+			"text": " who is researcher in residence at Forde."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,360",
+				"to": "00:01:01,960"
+			},
+			"offsets": {
+				"from": 57360,
+				"to": 61960
+			},
+			"text": " Mariko Wacabashi, who is lead machine learning engineer"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,960",
+				"to": "00:01:04,560"
+			},
+			"offsets": {
+				"from": 61960,
+				"to": 64560
+			},
+			"text": " at Open Zeppelin, Dario Labullio,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,560",
+				"to": "00:01:07,040"
+			},
+			"offsets": {
+				"from": 64560,
+				"to": 67040
+			},
+			"text": " who is security researcher at Open Zeppelin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,040",
+				"to": "00:01:09,480"
+			},
+			"offsets": {
+				"from": 67040,
+				"to": 69480
+			},
+			"text": " We have a number of independent researchers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,480",
+				"to": "00:01:13,480"
+			},
+			"offsets": {
+				"from": 69480,
+				"to": 73480
+			},
+			"text": " and we also have teams at Nethermind and LimeChain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,480",
+				"to": "00:01:16,480"
+			},
+			"offsets": {
+				"from": 73480,
+				"to": 76480
+			},
+			"text": " who have contributed to some of the techniques"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,480",
+				"to": "00:01:17,840"
+			},
+			"offsets": {
+				"from": 76480,
+				"to": 77840
+			},
+			"text": " that we'll be discussing here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:22,400"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 82400
+			},
+			"text": " And so, I'm going to start with a little bit of background."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,440",
+				"to": "00:01:27,920"
+			},
+			"offsets": {
+				"from": 83440,
+				"to": 87920
+			},
+			"text": " We are starting to see increasing acceptance in the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,920",
+				"to": "00:01:30,880"
+			},
+			"offsets": {
+				"from": 87920,
+				"to": 90880
+			},
+			"text": " that security needs to be end to end,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,880",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 90880,
+				"to": 96960
+			},
+			"text": " and that part of end to end security includes runtime monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:37,960"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 97960
+			},
+			"text": " and threat detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,960",
+				"to": "00:01:41,840"
+			},
+			"offsets": {
+				"from": 97960,
+				"to": 101840
+			},
+			"text": " We have multiple leading security audit firms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,840",
+				"to": "00:01:45,960"
+			},
+			"offsets": {
+				"from": 101840,
+				"to": 105960
+			},
+			"text": " Open Zeppelin, Chain Security, Halborne, MIX Bytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,960",
+				"to": "00:01:49,400"
+			},
+			"offsets": {
+				"from": 105960,
+				"to": 109400
+			},
+			"text": " who are beginning to make recommendations along"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,400",
+				"to": "00:01:53,600"
+			},
+			"offsets": {
+				"from": 109400,
+				"to": 113600
+			},
+			"text": " with their audits for smart contract monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,600",
+				"to": "00:01:56,200"
+			},
+			"offsets": {
+				"from": 113600,
+				"to": 116200
+			},
+			"text": " that can be done post-deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,200",
+				"to": "00:02:00,680"
+			},
+			"offsets": {
+				"from": 116200,
+				"to": 120680
+			},
+			"text": " The recommendations include covering protocol assumptions"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,680",
+				"to": "00:02:04,600"
+			},
+			"offsets": {
+				"from": 120680,
+				"to": 124600
+			},
+			"text": " and invariance, critical protocol variables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,600",
+				"to": "00:02:10,040"
+			},
+			"offsets": {
+				"from": 124600,
+				"to": 130040
+			},
+			"text": " known protocol risks that have been considered acceptable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,040",
+				"to": "00:02:17,000"
+			},
+			"offsets": {
+				"from": 130040,
+				"to": 137000
+			},
+			"text": " the use of privileged functions and the transfer of privileges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:23,240"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 143240
+			},
+			"text": " on-chain and cross-chain synchronization and oracles"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,240",
+				"to": "00:02:25,240"
+			},
+			"offsets": {
+				"from": 143240,
+				"to": 145240
+			},
+			"text": " and keeping track of the state of data"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,240",
+				"to": "00:02:27,760"
+			},
+			"offsets": {
+				"from": 145240,
+				"to": 147760
+			},
+			"text": " that's meant to be kept in sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,760",
+				"to": "00:02:30,200"
+			},
+			"offsets": {
+				"from": 147760,
+				"to": 150200
+			},
+			"text": " across these different environments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,200",
+				"to": "00:02:33,880"
+			},
+			"offsets": {
+				"from": 150200,
+				"to": 153880
+			},
+			"text": " and also external contracts and protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,880",
+				"to": "00:02:36,640"
+			},
+			"offsets": {
+				"from": 153880,
+				"to": 156640
+			},
+			"text": " that your protocol may rely on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,640",
+				"to": "00:02:39,920"
+			},
+			"offsets": {
+				"from": 156640,
+				"to": 159920
+			},
+			"text": " as well as identified attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,920",
+				"to": "00:02:43,520"
+			},
+			"offsets": {
+				"from": 159920,
+				"to": 163520
+			},
+			"text": " that may follow certain patterns that are already known."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,520",
+				"to": "00:02:47,800"
+			},
+			"offsets": {
+				"from": 163520,
+				"to": 167800
+			},
+			"text": " And this monitoring is meant to cover the knowns"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,800",
+				"to": "00:02:51,560"
+			},
+			"offsets": {
+				"from": 167800,
+				"to": 171560
+			},
+			"text": " the things like specific attack patterns that we might see,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,560",
+				"to": "00:02:54,600"
+			},
+			"offsets": {
+				"from": 171560,
+				"to": 174600
+			},
+			"text": " so that's one thing we want to monitor."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,600",
+				"to": "00:02:59,200"
+			},
+			"offsets": {
+				"from": 174600,
+				"to": 179200
+			},
+			"text": " The known unknowns, which would be places in the protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,200",
+				"to": "00:03:02,760"
+			},
+			"offsets": {
+				"from": 179200,
+				"to": 182760
+			},
+			"text": " where you know you're not sure what might happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,760",
+				"to": "00:03:04,400"
+			},
+			"offsets": {
+				"from": 182760,
+				"to": 184400
+			},
+			"text": " and you might want to monitor that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,400",
+				"to": "00:03:07,240"
+			},
+			"offsets": {
+				"from": 184400,
+				"to": 187240
+			},
+			"text": " and then very importantly, the unknown unknowns."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,240",
+				"to": "00:03:10,400"
+			},
+			"offsets": {
+				"from": 187240,
+				"to": 190400
+			},
+			"text": " So we might have things in our protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,400",
+				"to": "00:03:13,920"
+			},
+			"offsets": {
+				"from": 190400,
+				"to": 193920
+			},
+			"text": " that we think are invariant and will not change,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,920",
+				"to": "00:03:17,560"
+			},
+			"offsets": {
+				"from": 193920,
+				"to": 197560
+			},
+			"text": " and yet if something could happen that was unexpected,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,560",
+				"to": "00:03:19,880"
+			},
+			"offsets": {
+				"from": 197560,
+				"to": 199880
+			},
+			"text": " we would certainly want to know about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,880",
+				"to": "00:03:23,400"
+			},
+			"offsets": {
+				"from": 199880,
+				"to": 203400
+			},
+			"text": " So the challenge though, with runtime monitoring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,400",
+				"to": "00:03:25,360"
+			},
+			"offsets": {
+				"from": 203400,
+				"to": 205360
+			},
+			"text": " is if you take that whole list,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,360",
+				"to": "00:03:29,960"
+			},
+			"offsets": {
+				"from": 205360,
+				"to": 209960
+			},
+			"text": " it's very difficult to implement the full set of monitoring"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,960",
+				"to": "00:03:33,240"
+			},
+			"offsets": {
+				"from": 209960,
+				"to": 213240
+			},
+			"text": " that you might want, especially when you get into some of these areas"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,240",
+				"to": "00:03:36,800"
+			},
+			"offsets": {
+				"from": 213240,
+				"to": 216800
+			},
+			"text": " that are not the responsibility of the protocol team themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,800",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 216800,
+				"to": 222000
+			},
+			"text": " such as other protocol implementations and their risks"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:43,520"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 223520
+			},
+			"text": " and updates to those,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,920",
+				"to": "00:03:48,880"
+			},
+			"offsets": {
+				"from": 224920,
+				"to": 228880
+			},
+			"text": " as well as things like the different attack patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,880",
+				"to": "00:03:51,960"
+			},
+			"offsets": {
+				"from": 228880,
+				"to": 231960
+			},
+			"text": " that have been seen in the ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,960",
+				"to": "00:03:53,800"
+			},
+			"offsets": {
+				"from": 231960,
+				"to": 233800
+			},
+			"text": " but also maybe new and emerging,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,800",
+				"to": "00:03:57,960"
+			},
+			"offsets": {
+				"from": 233800,
+				"to": 237960
+			},
+			"text": " and we see new attack patterns emerging all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,960",
+				"to": "00:04:03,400"
+			},
+			"offsets": {
+				"from": 237960,
+				"to": 243400
+			},
+			"text": " So, at Open Zeppelin, we started working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,400",
+				"to": "00:04:09,120"
+			},
+			"offsets": {
+				"from": 243400,
+				"to": 249120
+			},
+			"text": " post-deployment tools and specifically monitoring a few years ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,120",
+				"to": "00:04:13,720"
+			},
+			"offsets": {
+				"from": 249120,
+				"to": 253720
+			},
+			"text": " and this led us to the realization of the challenges here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,720",
+				"to": "00:04:18,520"
+			},
+			"offsets": {
+				"from": 253720,
+				"to": 258520
+			},
+			"text": " and we decided to build and, along with a number of partners,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,520",
+				"to": "00:04:21,320"
+			},
+			"offsets": {
+				"from": 258520,
+				"to": 261320
+			},
+			"text": " now have launched a decentralized network"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,320",
+				"to": "00:04:23,280"
+			},
+			"offsets": {
+				"from": 261320,
+				"to": 263280
+			},
+			"text": " for runtime threat detection."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,280",
+				"to": "00:04:24,440"
+			},
+			"offsets": {
+				"from": 263280,
+				"to": 264440
+			},
+			"text": " It's called FORDA."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,440",
+				"to": "00:04:28,640"
+			},
+			"offsets": {
+				"from": 264440,
+				"to": 268640
+			},
+			"text": " I'm going to be citing some of it in this presentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,640",
+				"to": "00:04:33,080"
+			},
+			"offsets": {
+				"from": 268640,
+				"to": 273080
+			},
+			"text": " and a lot of the research that's here has been done by people working"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,080",
+				"to": "00:04:35,640"
+			},
+			"offsets": {
+				"from": 273080,
+				"to": 275640
+			},
+			"text": " in and around FORDA."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,640",
+				"to": "00:04:37,320"
+			},
+			"offsets": {
+				"from": 275640,
+				"to": 277320
+			},
+			"text": " FORDA, you can go check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,320",
+				"to": "00:04:40,600"
+			},
+			"offsets": {
+				"from": 277320,
+				"to": 280600
+			},
+			"text": " It's a decentralized network of scan nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,600",
+				"to": "00:04:43,640"
+			},
+			"offsets": {
+				"from": 280600,
+				"to": 283640
+			},
+			"text": " There's thousands of scan nodes running now across"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,640",
+				"to": "00:04:46,280"
+			},
+			"offsets": {
+				"from": 283640,
+				"to": 286280
+			},
+			"text": " a number of main nets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,280",
+				"to": "00:04:50,760"
+			},
+			"offsets": {
+				"from": 286280,
+				"to": 290760
+			},
+			"text": " and the way it works is that you build bots,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,760",
+				"to": "00:04:55,080"
+			},
+			"offsets": {
+				"from": 290760,
+				"to": 295080
+			},
+			"text": " threat detection bots, they are deployed as containers onto the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,080",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 295080,
+				"to": 297480
+			},
+			"text": " They run on multiple scan nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:05:02,280"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 302280
+			},
+			"text": " and it is those results that are brought together to detect threats."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,280",
+				"to": "00:05:08,600"
+			},
+			"offsets": {
+				"from": 302280,
+				"to": 308600
+			},
+			"text": " So, and the idea here is that for protocol teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,080",
+				"to": "00:05:14,120"
+			},
+			"offsets": {
+				"from": 311080,
+				"to": 314120
+			},
+			"text": " sorry, I'm not literally standing right in front of the slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,120",
+				"to": "00:05:17,880"
+			},
+			"offsets": {
+				"from": 314120,
+				"to": 317880
+			},
+			"text": " the, for protocol teams,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,880",
+				"to": "00:05:24,040"
+			},
+			"offsets": {
+				"from": 317880,
+				"to": 324040
+			},
+			"text": " back to the prior slide, the challenge of trying to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,040",
+				"to": "00:05:28,200"
+			},
+			"offsets": {
+				"from": 324040,
+				"to": 328200
+			},
+			"text": " sufficient and real end-to-end monitoring and threat detection"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,200",
+				"to": "00:05:30,120"
+			},
+			"offsets": {
+				"from": 328200,
+				"to": 330120
+			},
+			"text": " now is not just the risk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,120",
+				"to": "00:05:32,360"
+			},
+			"offsets": {
+				"from": 330120,
+				"to": 332360
+			},
+			"text": " the team doesn't just have to do it themselves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,360",
+				"to": "00:05:35,800"
+			},
+			"offsets": {
+				"from": 332360,
+				"to": 335800
+			},
+			"text": " they can take advantage of a community of threat detection,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,800",
+				"to": "00:05:40,040"
+			},
+			"offsets": {
+				"from": 335800,
+				"to": 340040
+			},
+			"text": " we can work together to have a real complete solution."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,840",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 340840,
+				"to": 347000
+			},
+			"text": " So, first of all, I'd like to share with you some observations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:49,960"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 349960
+			},
+			"text": " from research that's been done on threat detection"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,960",
+				"to": "00:05:54,440"
+			},
+			"offsets": {
+				"from": 349960,
+				"to": 354440
+			},
+			"text": " that hopefully you'll find a little bit interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,440",
+				"to": "00:05:59,000"
+			},
+			"offsets": {
+				"from": 354440,
+				"to": 359000
+			},
+			"text": " The first thing is that as we look at the history of attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,000",
+				"to": "00:06:05,640"
+			},
+			"offsets": {
+				"from": 359000,
+				"to": 365640
+			},
+			"text": " we begin to see a very common pattern of a set of stages"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,640",
+				"to": "00:06:07,560"
+			},
+			"offsets": {
+				"from": 365640,
+				"to": 367560
+			},
+			"text": " that an attacker goes through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,560",
+				"to": "00:06:13,880"
+			},
+			"offsets": {
+				"from": 367560,
+				"to": 373880
+			},
+			"text": " and this starts with obtaining funds that will be used to carry out the attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,880",
+				"to": "00:06:18,680"
+			},
+			"offsets": {
+				"from": 373880,
+				"to": 378680
+			},
+			"text": " It moves to preparation, and there's a number of steps"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,680",
+				"to": "00:06:21,960"
+			},
+			"offsets": {
+				"from": 378680,
+				"to": 381960
+			},
+			"text": " that are common in different kinds of attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,960",
+				"to": "00:06:24,200"
+			},
+			"offsets": {
+				"from": 381960,
+				"to": 384200
+			},
+			"text": " It may involve deploying a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,200",
+				"to": "00:06:26,680"
+			},
+			"offsets": {
+				"from": 384200,
+				"to": 386680
+			},
+			"text": " which is going to be used to carry out the attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,680",
+				"to": "00:06:29,080"
+			},
+			"offsets": {
+				"from": 386680,
+				"to": 389080
+			},
+			"text": " It may involve token impersonation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,080",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 389080,
+				"to": 396040
+			},
+			"text": " act, it may involve the transfer of privileges"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:38,600"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 398600
+			},
+			"text": " or making use of privileged functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,600",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 398600,
+				"to": 402360
+			},
+			"text": " and then there are different kinds of fraud techniques"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:47,720"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 407720
+			},
+			"text": " that we see being carried out to prepare for stealing funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,720",
+				"to": "00:06:50,120"
+			},
+			"offsets": {
+				"from": 407720,
+				"to": 410120
+			},
+			"text": " and we'll get into some of that a little bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,120",
+				"to": "00:06:52,520"
+			},
+			"offsets": {
+				"from": 410120,
+				"to": 412520
+			},
+			"text": " The next stage is exploitation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,520",
+				"to": "00:06:54,360"
+			},
+			"offsets": {
+				"from": 412520,
+				"to": 414360
+			},
+			"text": " that's where the actual attack occurs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,360",
+				"to": "00:06:56,840"
+			},
+			"offsets": {
+				"from": 414360,
+				"to": 416840
+			},
+			"text": " In this stage, we may see flash loans,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,840",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 416840,
+				"to": 418760
+			},
+			"text": " we may see private transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:04,120"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 424120
+			},
+			"text": " we may see re-entrancy, minting, anomalous transfers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,920",
+				"to": "00:07:10,600"
+			},
+			"offsets": {
+				"from": 424920,
+				"to": 430600
+			},
+			"text": " anomalous functions, large balance changes, things like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,600",
+				"to": "00:07:12,760"
+			},
+			"offsets": {
+				"from": 430600,
+				"to": 432760
+			},
+			"text": " and finally we have the phase of laundering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,760",
+				"to": "00:07:18,600"
+			},
+			"offsets": {
+				"from": 432760,
+				"to": 438600
+			},
+			"text": " which is where the attacker takes the funds that they've obtained,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,600",
+				"to": "00:07:27,320"
+			},
+			"offsets": {
+				"from": 438600,
+				"to": 447320
+			},
+			"text": " and they move them to try to hide the trail and exit with funds."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,320",
+				"to": "00:07:31,240"
+			},
+			"offsets": {
+				"from": 447320,
+				"to": 451240
+			},
+			"text": " One of the other interesting things in the research"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,240",
+				"to": "00:07:37,240"
+			},
+			"offsets": {
+				"from": 451240,
+				"to": 457240
+			},
+			"text": " is that looking at quite a large number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,240",
+				"to": "00:07:40,440"
+			},
+			"offsets": {
+				"from": 457240,
+				"to": 460440
+			},
+			"text": " over 180 attacks over the last three years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,440",
+				"to": "00:07:42,040"
+			},
+			"offsets": {
+				"from": 460440,
+				"to": 462040
+			},
+			"text": " specifically in DeFi,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,040",
+				"to": "00:07:46,600"
+			},
+			"offsets": {
+				"from": 462040,
+				"to": 466600
+			},
+			"text": " we see that over half of the attacks have been non-atomic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,600",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 466600,
+				"to": 471000
+			},
+			"text": " and what that means is that in the exploitation phase,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,040"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476040
+			},
+			"text": " it is more than one transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,040",
+				"to": "00:07:59,640"
+			},
+			"offsets": {
+				"from": 476040,
+				"to": 479640
+			},
+			"text": " and typically many transactions that use to carry out"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,640",
+				"to": "00:08:01,240"
+			},
+			"offsets": {
+				"from": 479640,
+				"to": 481240
+			},
+			"text": " the completion of the attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,240",
+				"to": "00:08:05,880"
+			},
+			"offsets": {
+				"from": 481240,
+				"to": 485880
+			},
+			"text": " and why that's important is it means there is a time frame"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,880",
+				"to": "00:08:07,800"
+			},
+			"offsets": {
+				"from": 485880,
+				"to": 487800
+			},
+			"text": " over which the exploit occurs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,800",
+				"to": "00:08:12,520"
+			},
+			"offsets": {
+				"from": 487800,
+				"to": 492520
+			},
+			"text": " and therefore early detection could be useful to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,520",
+				"to": "00:08:18,280"
+			},
+			"offsets": {
+				"from": 492520,
+				"to": 498280
+			},
+			"text": " taking action and possibly mitigating the full effect of the exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,280",
+				"to": "00:08:21,400"
+			},
+			"offsets": {
+				"from": 498280,
+				"to": 501400
+			},
+			"text": " So that's another interesting fact."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,400",
+				"to": "00:08:26,600"
+			},
+			"offsets": {
+				"from": 501400,
+				"to": 506600
+			},
+			"text": " Another observation is that attackers often use more than one account."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,240",
+				"to": "00:08:32,360"
+			},
+			"offsets": {
+				"from": 507240,
+				"to": 512360
+			},
+			"text": " This may be obvious, but as researchers have looked at this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,360",
+				"to": "00:08:34,680"
+			},
+			"offsets": {
+				"from": 512360,
+				"to": 514680
+			},
+			"text": " and you may have seen this in some other presentations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,680",
+				"to": "00:08:41,560"
+			},
+			"offsets": {
+				"from": 514680,
+				"to": 521560
+			},
+			"text": " we can use heuristics to associate attacker accounts through,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,560",
+				"to": "00:08:45,960"
+			},
+			"offsets": {
+				"from": 521560,
+				"to": 525960
+			},
+			"text": " and then by associating attacker accounts into clusters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,960",
+				"to": "00:08:51,720"
+			},
+			"offsets": {
+				"from": 525960,
+				"to": 531720
+			},
+			"text": " we are able to track and attack through those stages I just talked about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,720",
+				"to": "00:08:55,400"
+			},
+			"offsets": {
+				"from": 531720,
+				"to": 535400
+			},
+			"text": " even if many accounts are being used as part of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,920",
+				"to": "00:09:01,080"
+			},
+			"offsets": {
+				"from": 536920,
+				"to": 541080
+			},
+			"text": " We have examples of using heuristic-based approaches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,080",
+				"to": "00:09:03,880"
+			},
+			"offsets": {
+				"from": 541080,
+				"to": 543880
+			},
+			"text": " such as a connected component graph algorithm,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,880",
+				"to": "00:09:08,920"
+			},
+			"offsets": {
+				"from": 543880,
+				"to": 548920
+			},
+			"text": " which would allow us to kind of graph together these connected accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,920",
+				"to": "00:09:11,640"
+			},
+			"offsets": {
+				"from": 548920,
+				"to": 551640
+			},
+			"text": " and then track them as a cluster."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,640",
+				"to": "00:09:16,760"
+			},
+			"offsets": {
+				"from": 551640,
+				"to": 556760
+			},
+			"text": " Another observation, in over 40% of the attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,760",
+				"to": "00:09:21,960"
+			},
+			"offsets": {
+				"from": 556760,
+				"to": 561960
+			},
+			"text": " the attacker deploys a smart contract to execute the exploit."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,320",
+				"to": "00:09:32,280"
+			},
+			"offsets": {
+				"from": 563320,
+				"to": 572280
+			},
+			"text": " These attack contracts differ from benign contracts in very clear ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,280",
+				"to": "00:09:43,720"
+			},
+			"offsets": {
+				"from": 572280,
+				"to": 583720
+			},
+			"text": " And here on this slide, I'm citing some research conducted where"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,720",
+				"to": "00:09:47,160"
+			},
+			"offsets": {
+				"from": 583720,
+				"to": 587160
+			},
+			"text": " over 10,000 smart contracts were sourced from LuaBase."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,880",
+				"to": "00:09:56,120"
+			},
+			"offsets": {
+				"from": 587880,
+				"to": 596120
+			},
+			"text": " 155 external accounts were identified as tagged as having an exploit in Etherscan,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,120",
+				"to": "00:10:00,280"
+			},
+			"offsets": {
+				"from": 596120,
+				"to": 600280
+			},
+			"text": " and then those accounts were associated to a set of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,280",
+				"to": "00:10:03,400"
+			},
+			"offsets": {
+				"from": 600280,
+				"to": 603400
+			},
+			"text": " that those accounts deployed."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,400",
+				"to": "00:10:05,960"
+			},
+			"offsets": {
+				"from": 603400,
+				"to": 605960
+			},
+			"text": " So we had a set of benign contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,960",
+				"to": "00:10:14,440"
+			},
+			"offsets": {
+				"from": 605960,
+				"to": 614440
+			},
+			"text": " and we had a set of malicious contracts using a classification"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,320",
+				"to": "00:10:20,920"
+			},
+			"offsets": {
+				"from": 615320,
+				"to": 620920
+			},
+			"text": " of the top 100 opcodes in each of the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,920",
+				"to": "00:10:27,720"
+			},
+			"offsets": {
+				"from": 620920,
+				"to": 627720
+			},
+			"text": " We see incredible success in being able to identify contracts that are benign."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,720",
+				"to": "00:10:32,760"
+			},
+			"offsets": {
+				"from": 627720,
+				"to": 632760
+			},
+			"text": " So in this case, of the benign contracts with 98% accuracy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,760",
+				"to": "00:10:39,080"
+			},
+			"offsets": {
+				"from": 632760,
+				"to": 639080
+			},
+			"text": " the classification algorithm is able to say that is not a malicious contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,080",
+				"to": "00:10:42,920"
+			},
+			"offsets": {
+				"from": 639080,
+				"to": 642920
+			},
+			"text": " And in the case of the set of malicious contracts, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,920",
+				"to": "00:10:50,280"
+			},
+			"offsets": {
+				"from": 642920,
+				"to": 650280
+			},
+			"text": " 21 malicious contracts, the classification algorithm was able to identify 17 of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,280",
+				"to": "00:10:55,400"
+			},
+			"offsets": {
+				"from": 650280,
+				"to": 655400
+			},
+			"text": " as suspicious or likely malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,400",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 655400,
+				"to": 660920
+			},
+			"text": " So this shows promise in the ability to just identify among a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,920",
+				"to": "00:11:03,720"
+			},
+			"offsets": {
+				"from": 660920,
+				"to": 663720
+			},
+			"text": " if it falls into the category of potentially malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,720",
+				"to": "00:11:10,280"
+			},
+			"offsets": {
+				"from": 663720,
+				"to": 670280
+			},
+			"text": " Taking that a step further, we also see that when we get into the details,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:15,480"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 675480
+			},
+			"text": " not just kind of like which opcodes are used,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,480",
+				"to": "00:11:21,400"
+			},
+			"offsets": {
+				"from": 675480,
+				"to": 681400
+			},
+			"text": " but we look at the patterns of the opcodes in use in these smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,400",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 681400,
+				"to": 687480
+			},
+			"text": " that are used for attacks, we see that they follow very similar patterns."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:30,600"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 690600
+			},
+			"text": " And so if we look deeper into the patterns, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,600",
+				"to": "00:11:35,160"
+			},
+			"offsets": {
+				"from": 690600,
+				"to": 695160
+			},
+			"text": " taking an even more advanced kind of approach to classification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,160",
+				"to": "00:11:39,080"
+			},
+			"offsets": {
+				"from": 695160,
+				"to": 699080
+			},
+			"text": " where using techniques from natural language processing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,440",
+				"to": "00:11:48,120"
+			},
+			"offsets": {
+				"from": 700440,
+				"to": 708120
+			},
+			"text": " grouping together opcodes into groups, collections in order,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,120",
+				"to": "00:11:51,560"
+			},
+			"offsets": {
+				"from": 708120,
+				"to": 711560
+			},
+			"text": " and then analyzing the use of those different groups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,560",
+				"to": "00:11:57,960"
+			},
+			"offsets": {
+				"from": 711560,
+				"to": 717960
+			},
+			"text": " again with classification, in this case, the researchers looked at over 12,000 benign contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,960",
+				"to": "00:12:07,800"
+			},
+			"offsets": {
+				"from": 717960,
+				"to": 727800
+			},
+			"text": " over 100 malicious contracts, and then using the TFIDF,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,560",
+				"to": "00:12:15,960"
+			},
+			"offsets": {
+				"from": 729560,
+				"to": 735960
+			},
+			"text": " TFIDF, NLP technique of grouping, feeding it into the classification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,960",
+				"to": "00:12:21,160"
+			},
+			"offsets": {
+				"from": 735960,
+				"to": 741160
+			},
+			"text": " now we get even a higher level of precision, in this case, 88% precision,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,160",
+				"to": "00:12:28,600"
+			},
+			"offsets": {
+				"from": 741160,
+				"to": 748600
+			},
+			"text": " where the technique and the classification would predict that a contract was malicious."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,600",
+				"to": "00:12:36,040"
+			},
+			"offsets": {
+				"from": 748600,
+				"to": 756040
+			},
+			"text": " When it predicted that, it had a fairly small rate of error, so 88% accuracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,040",
+				"to": "00:12:41,960"
+			},
+			"offsets": {
+				"from": 756040,
+				"to": 761960
+			},
+			"text": " And also, in this case, the researchers went back to a number of known attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,960",
+				"to": "00:12:50,120"
+			},
+			"offsets": {
+				"from": 761960,
+				"to": 770120
+			},
+			"text": " that have been historically analyzed and carried out via smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,120",
+				"to": "00:12:56,520"
+			},
+			"offsets": {
+				"from": 770120,
+				"to": 776520
+			},
+			"text": " and some of them are cited here, the Wintermute, Audius, inverse finance exploits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,520",
+				"to": "00:13:01,800"
+			},
+			"offsets": {
+				"from": 776520,
+				"to": 781800
+			},
+			"text": " and in that case, this technique was able to predict in almost 60% of the cases that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,440",
+				"to": "00:13:10,120"
+			},
+			"offsets": {
+				"from": 782440,
+				"to": 790120
+			},
+			"text": " the attacking contract was malicious. So again, promising areas of research that we can identify"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,120",
+				"to": "00:13:15,640"
+			},
+			"offsets": {
+				"from": 790120,
+				"to": 795640
+			},
+			"text": " malicious contracts. The last observation I want to share with you relates to fraud."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,640",
+				"to": "00:13:25,720"
+			},
+			"offsets": {
+				"from": 795640,
+				"to": 805720
+			},
+			"text": " Fraud is an attack that is usually carried out with social engineering or some kind of web to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,720",
+				"to": "00:13:34,440"
+			},
+			"offsets": {
+				"from": 805720,
+				"to": 814440
+			},
+			"text": " attack, where in the case of the examples given here, ICE fishing, an attacker will get users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,440",
+				"to": "00:13:40,600"
+			},
+			"offsets": {
+				"from": 814440,
+				"to": 820600
+			},
+			"text": " will trick users into signing approval transactions that give the attacker control over their tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,600",
+				"to": "00:13:47,480"
+			},
+			"offsets": {
+				"from": 820600,
+				"to": 827480
+			},
+			"text": " These also produce detectable on-chain patterns. And so, in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,760",
+				"to": "00:13:57,560"
+			},
+			"offsets": {
+				"from": 828760,
+				"to": 837560
+			},
+			"text": " we can use heuristic-based approaches just to look for these patterns of accumulation or repeated"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,560",
+				"to": "00:14:03,800"
+			},
+			"offsets": {
+				"from": 837560,
+				"to": 843800
+			},
+			"text": " kind of actions that might be carried out by a single account, or again, a cluster of connected"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,800",
+				"to": "00:14:12,680"
+			},
+			"offsets": {
+				"from": 843800,
+				"to": 852680
+			},
+			"text": " accounts that are carrying out some kind of fraud attack on a lot of users, and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,360",
+				"to": "00:14:22,760"
+			},
+			"offsets": {
+				"from": 854360,
+				"to": 862760
+			},
+			"text": " going to steal those users' tokens. They might do it. We've seen this happen in certain cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,760",
+				"to": "00:14:28,280"
+			},
+			"offsets": {
+				"from": 862760,
+				"to": 868280
+			},
+			"text": " we've seen attackers who do all the preparation up front, and then they carry out the attack all at"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,280",
+				"to": "00:14:33,720"
+			},
+			"offsets": {
+				"from": 868280,
+				"to": 873720
+			},
+			"text": " once. We've seen some cases where the attack just continues over time. But in this case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,720",
+				"to": "00:14:40,840"
+			},
+			"offsets": {
+				"from": 873720,
+				"to": 880840
+			},
+			"text": " using a heuristic-based technique, and then using public data about ICE fishing attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,400",
+				"to": "00:14:49,800"
+			},
+			"offsets": {
+				"from": 881400,
+				"to": 889800
+			},
+			"text": " that occurred over a one-week period in the month of September, this technique was able to, with 95%"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,800",
+				"to": "00:15:02,760"
+			},
+			"offsets": {
+				"from": 889800,
+				"to": 902760
+			},
+			"text": " precision, predict that ICE fishing attack was underway. So, in this case, it made 12 predictions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,760",
+				"to": "00:15:08,840"
+			},
+			"offsets": {
+				"from": 902760,
+				"to": 908840
+			},
+			"text": " that there was an ICE fishing attack, and, or I'm sorry, it may have, I probably have the data runs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,840",
+				"to": "00:15:16,200"
+			},
+			"offsets": {
+				"from": 908840,
+				"to": 916200
+			},
+			"text": " probably like 13, but it was 95% accurate. It's a very low number of false positives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,200",
+				"to": "00:15:22,440"
+			},
+			"offsets": {
+				"from": 916200,
+				"to": 922440
+			},
+			"text": " and of the 21 ICE fishing attacks that were known publicly to have heard that we could see"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,440",
+				"to": "00:15:27,640"
+			},
+			"offsets": {
+				"from": 922440,
+				"to": 927640
+			},
+			"text": " historically had occurred that week, it actually predicted 12 of those. So, again, these are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,640",
+				"to": "00:15:32,600"
+			},
+			"offsets": {
+				"from": 927640,
+				"to": 932600
+			},
+			"text": " promising kind of, this is kind of the research that's going on in some of the things we're seeing."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,600",
+				"to": "00:15:40,520"
+			},
+			"offsets": {
+				"from": 932600,
+				"to": 940520
+			},
+			"text": " So, now what I'd like to do is share with you some threat detection bot techniques that can be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,520",
+				"to": "00:15:45,640"
+			},
+			"offsets": {
+				"from": 940520,
+				"to": 945640
+			},
+			"text": " to detect some of the various kinds of threats that we're seeing. There actually will be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,640",
+				"to": "00:15:50,600"
+			},
+			"offsets": {
+				"from": 945640,
+				"to": 950600
+			},
+			"text": " workshop tomorrow on Fortabot development if you're interested. I think it's tomorrow afternoon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,600",
+				"to": "00:15:56,920"
+			},
+			"offsets": {
+				"from": 950600,
+				"to": 956920
+			},
+			"text": " I don't have the exact details, but it'll be useful for you to know just up front that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,960",
+				"to": "00:16:03,080"
+			},
+			"offsets": {
+				"from": 957960,
+				"to": 963080
+			},
+			"text": " because I'm going to reference it in a couple of cases that Fortabots, you implement handlers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,080",
+				"to": "00:16:07,960"
+			},
+			"offsets": {
+				"from": 963080,
+				"to": 967960
+			},
+			"text": " you can implement in JavaScript or Python. One of the things you can do is initialize, you have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,960",
+				"to": "00:16:14,120"
+			},
+			"offsets": {
+				"from": 967960,
+				"to": 974120
+			},
+			"text": " your own environment, it's a Docker container, and then you kind of subscribe to either handle"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,120",
+				"to": "00:16:19,800"
+			},
+			"offsets": {
+				"from": 974120,
+				"to": 979800
+			},
+			"text": " transaction or handle block, and you can pretty much do whatever you want. You can also look up"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,800",
+				"to": "00:16:26,600"
+			},
+			"offsets": {
+				"from": 979800,
+				"to": 986600
+			},
+			"text": " other alerts that have been emitted by other bots, and ultimately what a bot does is that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,600",
+				"to": "00:16:32,040"
+			},
+			"offsets": {
+				"from": 986600,
+				"to": 992040
+			},
+			"text": " if it has a finding, if it finds some kind of threat or something it want alerts on, it shares"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,040",
+				"to": "00:16:37,480"
+			},
+			"offsets": {
+				"from": 992040,
+				"to": 997480
+			},
+			"text": " that, which then gets published, and again, other bots can take advantage of that, or users can take"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,480",
+				"to": "00:16:44,280"
+			},
+			"offsets": {
+				"from": 997480,
+				"to": 1004280
+			},
+			"text": " advantage. The first technique that I want to discuss, and on, I have three techniques I'm going"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,280",
+				"to": "00:16:49,720"
+			},
+			"offsets": {
+				"from": 1004280,
+				"to": 1009720
+			},
+			"text": " to talk about, and in each of these I'm providing some examples of bots, these examples, if you go"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,720",
+				"to": "00:16:55,400"
+			},
+			"offsets": {
+				"from": 1009720,
+				"to": 1015400
+			},
+			"text": " to the documentation on Fortabot, you'll be able to find references, or if you go to the Fortabot"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,400",
+				"to": "00:17:01,240"
+			},
+			"offsets": {
+				"from": 1015400,
+				"to": 1021240
+			},
+			"text": " Explorer, you can also look up bots by name, and most of them are open source, and you can link."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,240",
+				"to": "00:17:07,480"
+			},
+			"offsets": {
+				"from": 1021240,
+				"to": 1027480
+			},
+			"text": " There are templates that mostly are what I'm covering here that have been provided by either"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,480",
+				"to": "00:17:14,600"
+			},
+			"offsets": {
+				"from": 1027480,
+				"to": 1034600
+			},
+			"text": " the Forta network, or Nethermind, or Limechain. So the first technique I want to talk about is"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,600",
+				"to": "00:17:22,760"
+			},
+			"offsets": {
+				"from": 1034600,
+				"to": 1042760
+			},
+			"text": " multiple bots working together in a group to track attack stages, and then to, with increasing"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,760",
+				"to": "00:17:29,800"
+			},
+			"offsets": {
+				"from": 1042760,
+				"to": 1049800
+			},
+			"text": " confidence as an attack goes through stages, be able to express that there is potentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,800",
+				"to": "00:17:34,040"
+			},
+			"offsets": {
+				"from": 1049800,
+				"to": 1054040
+			},
+			"text": " attack underway, going all the way to complete confidence that an attack has occurred."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,040",
+				"to": "00:17:41,720"
+			},
+			"offsets": {
+				"from": 1054040,
+				"to": 1061720
+			},
+			"text": " This is done with having a set of bots that atomically detect some of those things that occur in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,720",
+				"to": "00:17:49,000"
+			},
+			"offsets": {
+				"from": 1061720,
+				"to": 1069000
+			},
+			"text": " funding, in preparation, in exploit, in laundering. You can have individual bots looking for individual"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,000",
+				"to": "00:17:58,440"
+			},
+			"offsets": {
+				"from": 1069000,
+				"to": 1078440
+			},
+			"text": " things, like suspicious contract creation, contract spoofing, ice fishing, large transfers, money"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,440",
+				"to": "00:18:06,040"
+			},
+			"offsets": {
+				"from": 1078440,
+				"to": 1086040
+			},
+			"text": " laundering. You can also have bots that identify clusters of accounts, and we have, there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,040",
+				"to": "00:18:11,560"
+			},
+			"offsets": {
+				"from": 1086040,
+				"to": 1091560
+			},
+			"text": " example bots now available where you can see the source and how to do that. And finally, once you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,560",
+				"to": "00:18:17,640"
+			},
+			"offsets": {
+				"from": 1091560,
+				"to": 1097640
+			},
+			"text": " have these bots who are each kind of making an individual discovery, then you put that together"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,640",
+				"to": "00:18:26,520"
+			},
+			"offsets": {
+				"from": 1097640,
+				"to": 1106520
+			},
+			"text": " with a pattern matching on the various alerts, and being able to then declare with some level of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,520",
+				"to": "00:18:32,280"
+			},
+			"offsets": {
+				"from": 1106520,
+				"to": 1112280
+			},
+			"text": " confidence this is what's going on, this is the possible attacker, and eventually this is the party"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,280",
+				"to": "00:18:40,040"
+			},
+			"offsets": {
+				"from": 1112280,
+				"to": 1120040
+			},
+			"text": " or parties under attack. And so there are some bots that you would be able to find. The technique"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,040",
+				"to": "00:18:47,320"
+			},
+			"offsets": {
+				"from": 1120040,
+				"to": 1127320
+			},
+			"text": " in the Forta community has been referred to as a combiner bot. The second technique that I want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,320",
+				"to": "00:18:55,240"
+			},
+			"offsets": {
+				"from": 1127320,
+				"to": 1135240
+			},
+			"text": " discuss is simulation. In this case, you can have a bot that literally, while it's executing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,240",
+				"to": "00:19:01,880"
+			},
+			"offsets": {
+				"from": 1135240,
+				"to": 1141880
+			},
+			"text": " forks mainnet with ganache with something else, you can fork mainnet and then run simulations"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,880",
+				"to": "00:19:06,280"
+			},
+			"offsets": {
+				"from": 1141880,
+				"to": 1146280
+			},
+			"text": " to detect issues. There's kind of two techniques that have been used here. One is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,280",
+				"to": "00:19:13,160"
+			},
+			"offsets": {
+				"from": 1146280,
+				"to": 1153160
+			},
+			"text": " if you have a known protocol and you know that there are, if certain things happened on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,160",
+				"to": "00:19:18,120"
+			},
+			"offsets": {
+				"from": 1153160,
+				"to": 1158120
+			},
+			"text": " protocol, then you would know that there must be something wrong, perhaps an attack underway. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,120",
+				"to": "00:19:25,160"
+			},
+			"offsets": {
+				"from": 1158120,
+				"to": 1165160
+			},
+			"text": " could execute those in simulation after every single block that's been mined and alert if the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,160",
+				"to": "00:19:33,560"
+			},
+			"offsets": {
+				"from": 1165160,
+				"to": 1173560
+			},
+			"text": " transactions failed. An example here is a liquidity tester. This is a bot that's been written to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,080",
+				"to": "00:19:46,040"
+			},
+			"offsets": {
+				"from": 1175080,
+				"to": 1186040
+			},
+			"text": " take a DeFi system, identify the top 10 current liquidity holders, and simply execute their ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,040",
+				"to": "00:19:52,440"
+			},
+			"offsets": {
+				"from": 1186040,
+				"to": 1192440
+			},
+			"text": " to exit their position after each block. And in the case if any of them were not able to exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,440",
+				"to": "00:19:58,280"
+			},
+			"offsets": {
+				"from": 1192440,
+				"to": 1198280
+			},
+			"text": " their position, it would alert. The other technique here is to test contracts. And we have a couple"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,280",
+				"to": "00:20:04,760"
+			},
+			"offsets": {
+				"from": 1198280,
+				"to": 1204760
+			},
+			"text": " of bot examples, one that uses fuzzing, one that doesn't. But in this case, the simulation is"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,760",
+				"to": "00:20:12,040"
+			},
+			"offsets": {
+				"from": 1204760,
+				"to": 1212040
+			},
+			"text": " to take a deployed contract, fork the network, and then basically try to execute every single"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,040",
+				"to": "00:20:19,240"
+			},
+			"offsets": {
+				"from": 1212040,
+				"to": 1219240
+			},
+			"text": " method, knowing nothing about the contract itself, just detecting it through code and trying to"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,240",
+				"to": "00:20:26,760"
+			},
+			"offsets": {
+				"from": 1219240,
+				"to": 1226760
+			},
+			"text": " execute it and looking to see if any execution results in, let's say, a large funds transfer"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,760",
+				"to": "00:20:32,360"
+			},
+			"offsets": {
+				"from": 1226760,
+				"to": 1232360
+			},
+			"text": " or some other kind of unusually anomalous occurrence that would say there is something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,640",
+				"to": "00:20:39,720"
+			},
+			"offsets": {
+				"from": 1233640,
+				"to": 1239720
+			},
+			"text": " this contract is trying to do something or it seems to result in a big transfer of funds and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,720",
+				"to": "00:20:45,880"
+			},
+			"offsets": {
+				"from": 1239720,
+				"to": 1245880
+			},
+			"text": " therefore is suspicious. The final technique I want to talk about is the use of machine learning"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,880",
+				"to": "00:20:53,800"
+			},
+			"offsets": {
+				"from": 1245880,
+				"to": 1253800
+			},
+			"text": " in bots. In this case, you can take a machine learning model, you can serialize it to a file."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,800",
+				"to": "00:20:59,880"
+			},
+			"offsets": {
+				"from": 1253800,
+				"to": 1259880
+			},
+			"text": " In the case of Forta, you can deploy models with the bot and you can use the initialized"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,880",
+				"to": "00:21:07,320"
+			},
+			"offsets": {
+				"from": 1259880,
+				"to": 1267320
+			},
+			"text": " function to load a model and then in your bot you can execute the model. This has been used"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,320",
+				"to": "00:21:16,840"
+			},
+			"offsets": {
+				"from": 1267320,
+				"to": 1276840
+			},
+			"text": " successfully already in a number of bots that do anomaly detection and also malicious contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,840",
+				"to": "00:21:24,360"
+			},
+			"offsets": {
+				"from": 1276840,
+				"to": 1284360
+			},
+			"text": " detection. So in this case, for example, there is a smart change detector bot that I've referred"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,360",
+				"to": "00:21:31,640"
+			},
+			"offsets": {
+				"from": 1284360,
+				"to": 1291640
+			},
+			"text": " to here and a time series analyzer that they use machine learning algorithms. I know one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,640",
+				"to": "00:21:38,920"
+			},
+			"offsets": {
+				"from": 1291640,
+				"to": 1298920
+			},
+			"text": " them is a library that actually the meta team developed that is very good at detecting outliers"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,920",
+				"to": "00:21:48,680"
+			},
+			"offsets": {
+				"from": 1298920,
+				"to": 1308680
+			},
+			"text": " and deviation with a limited amount of false positives. So it's pretty good at saying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,680",
+				"to": "00:21:54,040"
+			},
+			"offsets": {
+				"from": 1308680,
+				"to": 1314040
+			},
+			"text": " this is a real outlier and there's a price change that occurs here if we're looking at"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,040",
+				"to": "00:22:04,680"
+			},
+			"offsets": {
+				"from": 1314040,
+				"to": 1324680
+			},
+			"text": " on chain prices or if you're looking at let's say the balances or certain values in your smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,680",
+				"to": "00:22:15,480"
+			},
+			"offsets": {
+				"from": 1324680,
+				"to": 1335480
+			},
+			"text": " contract variables, it can detect over a period of time an outlier that is perhaps meaningful in"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,480",
+				"to": "00:22:22,520"
+			},
+			"offsets": {
+				"from": 1335480,
+				"to": 1342520
+			},
+			"text": " something you should look at. And then in the case of the machine learning for smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,520",
+				"to": "00:22:30,440"
+			},
+			"offsets": {
+				"from": 1342520,
+				"to": 1350440
+			},
+			"text": " there's a bot called the contract destructor and some other bots that do similar things where"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,440",
+				"to": "00:22:39,560"
+			},
+			"offsets": {
+				"from": 1350440,
+				"to": 1359560
+			},
+			"text": " they literally take a deployed smart contract to address and they decompile it to get the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,560",
+				"to": "00:22:46,120"
+			},
+			"offsets": {
+				"from": 1359560,
+				"to": 1366120
+			},
+			"text": " opcodes for the smart contract and then they use these machine learning models that I referred to"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,120",
+				"to": "00:22:56,680"
+			},
+			"offsets": {
+				"from": 1366120,
+				"to": 1376680
+			},
+			"text": " before to pattern to analyze and classify that smart contract and therefore predict whether the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,680",
+				"to": "00:23:05,480"
+			},
+			"offsets": {
+				"from": 1376680,
+				"to": 1385480
+			},
+			"text": " smart contract is malicious or benign. So these are all techniques that are already now in use and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,480",
+				"to": "00:23:15,080"
+			},
+			"offsets": {
+				"from": 1385480,
+				"to": 1395080
+			},
+			"text": " further research is underway on how to improve these kinds of bots. So I want to wrap up just with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,080",
+				"to": "00:23:19,720"
+			},
+			"offsets": {
+				"from": 1395080,
+				"to": 1399720
+			},
+			"text": " couple of challenges and you might have been thinking about some of these as I've been speaking,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,720",
+				"to": "00:23:27,640"
+			},
+			"offsets": {
+				"from": 1399720,
+				"to": 1407640
+			},
+			"text": " there are challenges here that we're all dealing with. Atomic attacks are obviously a challenge,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:27,640",
+				"to": "00:23:33,240"
+			},
+			"offsets": {
+				"from": 1407640,
+				"to": 1413240
+			},
+			"text": " so I said that well we have history to tell us that more than half the attacks are non-atomic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,240",
+				"to": "00:23:40,840"
+			},
+			"offsets": {
+				"from": 1413240,
+				"to": 1420840
+			},
+			"text": " but of course that means that 40 to 45% of the attacks are atomic. Also private transactions can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,840",
+				"to": "00:23:46,840"
+			},
+			"offsets": {
+				"from": 1420840,
+				"to": 1426840
+			},
+			"text": " be used and so this is a challenge for threat detection and monitoring. Another challenge is"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:46,840",
+				"to": "00:23:53,960"
+			},
+			"offsets": {
+				"from": 1426840,
+				"to": 1433960
+			},
+			"text": " that there are teams who want to monitor in secret that would prefer not to monitor in public and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,960",
+				"to": "00:23:59,080"
+			},
+			"offsets": {
+				"from": 1433960,
+				"to": 1439080
+			},
+			"text": " they may have good reason for that. For example if there is a known vulnerability and you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,080",
+				"to": "00:24:03,560"
+			},
+			"offsets": {
+				"from": 1439080,
+				"to": 1443560
+			},
+			"text": " you're in process of trying to deal with a known vulnerability, you may want to do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,920",
+				"to": "00:24:11,560"
+			},
+			"offsets": {
+				"from": 1444920,
+				"to": 1451560
+			},
+			"text": " privately and not on a public system and then finally we have the challenge of response latency"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,560",
+				"to": "00:24:19,320"
+			},
+			"offsets": {
+				"from": 1451560,
+				"to": 1459320
+			},
+			"text": " with GOAT which goes to how quickly can we alert but also can we respond and is there even"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,320",
+				"to": "00:24:26,520"
+			},
+			"offsets": {
+				"from": 1459320,
+				"to": 1466520
+			},
+			"text": " anything we're able to do once we've detected. These are things that Forta's working on, there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,520",
+				"to": "00:24:31,480"
+			},
+			"offsets": {
+				"from": 1466520,
+				"to": 1471480
+			},
+			"text": " already some things available for private but these are also areas for future research."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,440",
+				"to": "00:24:40,280"
+			},
+			"offsets": {
+				"from": 1474440,
+				"to": 1480280
+			},
+			"text": " Latency by the way on the Forta network is about 40 seconds from mind block to alert"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,280",
+				"to": "00:24:49,080"
+			},
+			"offsets": {
+				"from": 1480280,
+				"to": 1489080
+			},
+			"text": " but things that are being looked at are possibility of trusted private scan pools for people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,080",
+				"to": "00:24:57,800"
+			},
+			"offsets": {
+				"from": 1489080,
+				"to": 1497800
+			},
+			"text": " want to monitor in secret, pre-submission or mempool transaction scanning, on-chain alerts"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,360",
+				"to": "00:25:07,320"
+			},
+			"offsets": {
+				"from": 1498360,
+				"to": 1507320
+			},
+			"text": " which would provide a possibility for on-chain reaction and other systems that can be used for"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,320",
+				"to": "00:25:14,120"
+			},
+			"offsets": {
+				"from": 1507320,
+				"to": 1514120
+			},
+			"text": " automated action and follow-up. Open Zeppelin is working on these things. Forta community"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,120",
+				"to": "00:25:18,120"
+			},
+			"offsets": {
+				"from": 1514120,
+				"to": 1518120
+			},
+			"text": " and many of the contributors I mentioned are starting to work into these things and"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,240",
+				"to": "00:25:31,800"
+			},
+			"offsets": {
+				"from": 1521240,
+				"to": 1531800
+			},
+			"text": " to wrap up I would say if you are interested, bot developers, security researchers, data scientists,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,800",
+				"to": "00:25:40,120"
+			},
+			"offsets": {
+				"from": 1531800,
+				"to": 1540120
+			},
+			"text": " please go to Forta.org and you can learn more and find ways to get involved and there's various"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,120",
+				"to": "00:25:44,600"
+			},
+			"offsets": {
+				"from": 1540120,
+				"to": 1544600
+			},
+			"text": " grants and incentives available for people to get involved and with that I'm done and if there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,600",
+				"to": "00:26:01,160"
+			},
+			"offsets": {
+				"from": 1544600,
+				"to": 1561160
+			},
+			"text": " time I'll take questions. Thank you for the talk today. I find the bots incredibly useful for"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,160",
+				"to": "00:26:08,920"
+			},
+			"offsets": {
+				"from": 1561160,
+				"to": 1568920
+			},
+			"text": " teams but what I'm curious about is what happens once the bot alerts a team, what does the team"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,920",
+				"to": "00:26:19,880"
+			},
+			"offsets": {
+				"from": 1568920,
+				"to": 1579880
+			},
+			"text": " have to do to make a fast impact? In this presentation I wasn't so much getting into that but that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:19,880",
+				"to": "00:26:25,080"
+			},
+			"offsets": {
+				"from": 1579880,
+				"to": 1585080
+			},
+			"text": " obviously a big topic of conversation for everybody. I think we are starting to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,080",
+				"to": "00:26:31,880"
+			},
+			"offsets": {
+				"from": 1585080,
+				"to": 1591880
+			},
+			"text": " well we have seen many attacks in the wild where teams have paused"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,200",
+				"to": "00:26:43,000"
+			},
+			"offsets": {
+				"from": 1594200,
+				"to": 1603000
+			},
+			"text": " their smart contracts and we even saw a chain pause the whole chain. We are seeing more discussion"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:43,000",
+				"to": "00:26:48,040"
+			},
+			"offsets": {
+				"from": 1603000,
+				"to": 1608040
+			},
+			"text": " about that because I think we're definitely headed down the road where emergency response"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,040",
+				"to": "00:26:54,920"
+			},
+			"offsets": {
+				"from": 1608040,
+				"to": 1614920
+			},
+			"text": " capabilities may be an acceptable thing to have on your protocol but it needs to be contained."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,920",
+				"to": "00:27:03,000"
+			},
+			"offsets": {
+				"from": 1614920,
+				"to": 1623000
+			},
+			"text": " It needs to be limited. We need to kind of have some level of delegation to a set of responders"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,000",
+				"to": "00:27:09,320"
+			},
+			"offsets": {
+				"from": 1623000,
+				"to": 1629320
+			},
+			"text": " so that they can maybe do fast response but with limited control. We're starting to see"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,320",
+				"to": "00:27:18,760"
+			},
+			"offsets": {
+				"from": 1629320,
+				"to": 1638760
+			},
+			"text": " protocols implement this and teams talk about it publicly. I think you may have heard some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,760",
+				"to": "00:27:26,520"
+			},
+			"offsets": {
+				"from": 1638760,
+				"to": 1646520
+			},
+			"text": " leading DeFi protocols are starting to discuss this. So pausing and then having some capability to"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,880",
+				"to": "00:27:35,240"
+			},
+			"offsets": {
+				"from": 1649880,
+				"to": 1655240
+			},
+			"text": " deal with the attack is kind of a base point but there's a lot to get into there because"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:35,240",
+				"to": "00:27:41,160"
+			},
+			"offsets": {
+				"from": 1655240,
+				"to": 1661160
+			},
+			"text": " even pausing depending on the nature of the attack may not solve the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,160",
+				"to": "00:27:47,400"
+			},
+			"offsets": {
+				"from": 1661160,
+				"to": 1667400
+			},
+			"text": " I think the important thing here is that we all have to start thinking about this because if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,400",
+				"to": "00:27:54,200"
+			},
+			"offsets": {
+				"from": 1667400,
+				"to": 1674200
+			},
+			"text": " go back to the unknown unknowns it's just impossible that we're going to catch everything up front."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,160",
+				"to": "00:27:59,560"
+			},
+			"offsets": {
+				"from": 1677160,
+				"to": 1679560
+			},
+			"text": " But it's not solved. That's the true answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,560",
+				"to": "00:28:08,600"
+			},
+			"offsets": {
+				"from": 1679560,
+				"to": 1688600
+			},
+			"text": " Thanks for your talk, Jonathan. Speaking of things that you do after the attack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,600",
+				"to": "00:28:14,040"
+			},
+			"offsets": {
+				"from": 1688600,
+				"to": 1694040
+			},
+			"text": " what is Open"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,040",
+				"to": "00:28:17,880"
+			},
+			"offsets": {
+				"from": 1694040,
+				"to": 1697880
+			},
+			"text": " Signal Information? How does Open Signal Information to confirm that into knowledge?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:17,880",
+				"to": "00:28:24,200"
+			},
+			"offsets": {
+				"from": 1697880,
+				"to": 1704200
+			},
+			"text": " That is the first question. And the same question, is there anything to do besides"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,200",
+				"to": "00:28:30,120"
+			},
+			"offsets": {
+				"from": 1704200,
+				"to": 1710120
+			},
+			"text": " a smart contract audit in terms of things that you can do before the attack happens,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:30,120",
+				"to": "00:28:34,920"
+			},
+			"offsets": {
+				"from": 1710120,
+				"to": 1714920
+			},
+			"text": " like scanning the mempool or having someone re-stick in there?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,920",
+				"to": "00:28:41,880"
+			},
+			"offsets": {
+				"from": 1714920,
+				"to": 1721880
+			},
+			"text": " Well, a couple of two parts to your question. The first one is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,880",
+				"to": "00:28:54,120"
+			},
+			"offsets": {
+				"from": 1721880,
+				"to": 1734120
+			},
+			"text": " Open Zeppelin is in our audit practice. We are now when we do an audit. We typically also"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:54,120",
+				"to": "00:29:00,520"
+			},
+			"offsets": {
+				"from": 1734120,
+				"to": 1740520
+			},
+			"text": " make recommendations because of what should be monitored. Because the auditors have good insight"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,520",
+				"to": "00:29:08,120"
+			},
+			"offsets": {
+				"from": 1740520,
+				"to": 1748120
+			},
+			"text": " into, well, we're training our auditors more and more in how monitoring can help. So then the"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,120",
+				"to": "00:29:14,200"
+			},
+			"offsets": {
+				"from": 1748120,
+				"to": 1754200
+			},
+			"text": " auditors also understand the protocol and they can say to a team, you know, these are things you"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:14,200",
+				"to": "00:29:20,600"
+			},
+			"offsets": {
+				"from": 1754200,
+				"to": 1760600
+			},
+			"text": " should think about monitoring and production because if our audit didn't catch anything or these may"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,600",
+				"to": "00:29:26,280"
+			},
+			"offsets": {
+				"from": 1760600,
+				"to": 1766280
+			},
+			"text": " be just live risks you're going to be exposed to. Open Zeppelin is also working on tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,280",
+				"to": "00:29:35,160"
+			},
+			"offsets": {
+				"from": 1766280,
+				"to": 1775160
+			},
+			"text": " to automate the creation of monitoring. And we have, like if you've seen our contracts wizard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:35,160",
+				"to": "00:29:39,880"
+			},
+			"offsets": {
+				"from": 1775160,
+				"to": 1779880
+			},
+			"text": " we're going to be starting to build in things that if you use Open Zeppelin contracts, we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,880",
+				"to": "00:29:47,400"
+			},
+			"offsets": {
+				"from": 1779880,
+				"to": 1787400
+			},
+			"text": " auto-generate monitoring templates for you. And then we have a product platform called Defender."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,960",
+				"to": "00:29:52,600"
+			},
+			"offsets": {
+				"from": 1787960,
+				"to": 1792600
+			},
+			"text": " We're working on how to automate those responses that we were talking about, like how you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:52,600",
+				"to": "00:29:59,080"
+			},
+			"offsets": {
+				"from": 1792600,
+				"to": 1799080
+			},
+			"text": " at least get to where you could pause as quickly as possible as an example. So we're doing all those"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,080",
+				"to": "00:30:05,400"
+			},
+			"offsets": {
+				"from": 1799080,
+				"to": 1805400
+			},
+			"text": " things and we're collaborating. I know Forte has many multiple, I mentioned chain security and"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:05,400",
+				"to": "00:30:13,640"
+			},
+			"offsets": {
+				"from": 1805400,
+				"to": 1813640
+			},
+			"text": " Halborne and mixed bytes are all doing some similar things I think. Yeah. We're good. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,640",
+				"to": "00:30:15,640"
+			},
+			"offsets": {
+				"from": 1813640,
+				"to": 1815640
+			},
+			"text": " ["
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,640",
+				"to": "00:30:39,640"
+			},
+			"offsets": {
+				"from": 1815640,
+				"to": 1839640
+			},
+			"text": " ]"
+		}
+	]
+}

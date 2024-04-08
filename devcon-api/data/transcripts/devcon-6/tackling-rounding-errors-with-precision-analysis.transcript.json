@@ -1,0 +1,2023 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 21000
+			},
+			"text": " I'm a Walter Franeck and I work as a former very formal verification engineer for one-time verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 27000
+			},
+			"text": " And today I want to talk to you about rounding errors and what we can do about them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 27000,
+				"to": 32000
+			},
+			"text": " So, very roughly speaking and I'm really oversimplifying,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:41,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 41000
+			},
+			"text": " there are two things that can go wrong when we do approximate arithmetic in contrast to exact arithmetic."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 41000,
+				"to": 52000
+			},
+			"text": " The first one is the rounding error that we do is just too big, too far away from the exact result and that is a problem in itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 66000
+			},
+			"text": " But that is not the topic of today. So, I want to talk about the second thing that can go wrong and that is what can happen is that you want to approximate a value from below"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " or you want to come from above but you do it in the wrong direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 79000
+			},
+			"text": " In other words, you want to round down but you round it up instead and that can lead to severe security vulnerabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 87000
+			},
+			"text": " I will show you some examples that you will recognize maybe and then but I'm not going to work on these weird examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 100000
+			},
+			"text": " I'm working on a simplified example and make sure to understand the two-way trading problem because otherwise you won't be able to follow my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 107000
+			},
+			"text": " So, we need to accept them. We cannot do exact arithmetic on the blockchain. It's not feasible."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 118000
+			},
+			"text": " So, and we found rounding errors in Uniswap."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 140000
+			},
+			"text": " Luckily, this rounding error was fixed before Uniswap V1 was deployed but I leave it to your imagination how the blockchain landscape boot have looked like if this bug was not caught during and out it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:27,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 147000
+			},
+			"text": " And then we had like two more examples Solana token lending contract and Solana token stable swap."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,000",
+				"to": "00:02:40,000"
+			},
+			"offsets": {
+				"from": 147000,
+				"to": 160000
+			},
+			"text": " And so, these bugs were actually caught doing like why these contracts haven't deployed and at a peak time there were like 3 billion assets at risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 160000,
+				"to": 173000
+			},
+			"text": " So, luckily again, these were not exploited by the but they were found by Ytakers before any serious damage could be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 186000
+			},
+			"text": " So, I cannot get into detail into any of those but I promise you if you follow my talk then you will be able to visit the links that I put on the slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:16,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 196000
+			},
+			"text": " And you will be able to make sense of these exploits and how these vulnerabilities and how they could have been exploited if they haven't been fixed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 196000,
+				"to": 210000
+			},
+			"text": " So, I want to show you the two way trading problem and I promise you this is like the most mathematical slide on my entire talk which is strange because I'm talking about running errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 222000
+			},
+			"text": " Okay, but I want to introduce to you to my imaginary friend Alice she's right here. Hi Alice and I will demonstrate to you the two way rounding problem, the two way trading problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:53,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 233000
+			},
+			"text": " So, first I'm going to offer Alice a trade and we do it with exact arithmetic and then we are going to replay the role play and then we are doing it with rounding."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 233000,
+				"to": 251000
+			},
+			"text": " So, hi Alice, so basic scenarios we have two currencies we have dollar and gill, gill is just a fantasy currency and we have an exchange rate currently that says I can get like two gill for one dollar so exchange rate is two."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 261000
+			},
+			"text": " So, I'm Raoul, I have one gill in my pocket and this is Alice and hey Alice do you want to trade with me I can offer you one gill. How many dollars do I get for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 270000
+			},
+			"text": " And Alice do the calculation. Alice thinks hi he gives me one dollar, he gives me one gill so I need to divide by the exchange rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:42,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 282000
+			},
+			"text": " So, you get one, you get half a dollar back from me. So, now I have half a dollar. So, I get back to Alice and say hey Alice I don't want my half dollar anymore, can I get my gill back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 282000,
+				"to": 294000
+			},
+			"text": " And I offer Alice the half the dollar and she does the computation and now this time she needs to multiply by the exchange rate and so she ends up with one gill."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 302000
+			},
+			"text": " Everything went fine, I started with one gill and I ended up with one gill right. So, now let's do the same thing with rounding."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 312000
+			},
+			"text": " So, and for simplicity I'm just rounding to like there's no decimal, no digit after the decimal point. That's just for simplicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 324000
+			},
+			"text": " So, now Alice, I have one gill to offer how many dollars do I get for that. Alice do the computation and but she does rounding error."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 331000
+			},
+			"text": " Do I have a laser pointer here? No, I don't. So, she does a rounding error in this computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 346000
+			},
+			"text": " So, we divide two by one, this gives us two and then we want divide one by two which gives us 0.5 and we are using rounding to the nearest neighbor here so that means we are rounding up."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 352000
+			},
+			"text": " So, that means I get one dollar back from Alice. So, now I have one dollar."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 365000
+			},
+			"text": " So, I go back to Alice and say hey Alice, I don't want my dollar anymore can I get my gill back. And again Alice do the calculation. This time she's not even doing a rounding error but she ends up giving me two gill."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 373000
+			},
+			"text": " And that is the basic problem. I started with one gill. I did two trades with Alice and I ended up with two gills in my pocket."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 387000
+			},
+			"text": " So, in other words, I just like created money out of thin air. So, let's bring this example into the blockchain context. So, the important thing here in this example was that I needed two trades."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:40,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 400000
+			},
+			"text": " And like in many smart contracts, you would see a pair of trading functions like a deposit and a do you function or deposit and withdraw stake and an unstake function and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 400000,
+				"to": 415000
+			},
+			"text": " And so, what happened here, what went wrong, like now have a look at the red line. So, I deposited one gill to Alice and then I immediately re-deemed it like in the same transaction and I was able to make two gill out of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 427000
+			},
+			"text": " So, I created money out of thin air. So, now, okay, so we don't want that, right? We need to fix that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 434000
+			},
+			"text": " So, we need to make a sanity check that we don't get more money out than we put in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 447000
+			},
+			"text": " And this is the second line here. This is my sanity assumption that when I put one gill into the contract or I should be able to get it most, one gill out if I immediately redeem."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 459000
+			},
+			"text": " And of course, this concept can be generalized. It shouldn't only hold for one gill, but it should essentially hold for arbitrary amounts that I'm putting into the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 468000
+			},
+			"text": " So, this is what the typical implementation of a deposit and a redeem function looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 486000
+			},
+			"text": " And what you can see here is, like, let's walk over the deposit function real quick. So, the deposit function accepts an asset amount and then it converts this asset amount into shares just by multiplying the amount of assets with a current exchange rate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:12,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 492000
+			},
+			"text": " Then we are transferring the asset. We are pulling in. We are pulling the assets in from the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,000",
+				"to": "00:08:19,000"
+			},
+			"offsets": {
+				"from": 492000,
+				"to": 499000
+			},
+			"text": " Then we are minting some shares. And finally, we return the shares that we have minted. And the redeem function is similar."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 499000,
+				"to": 510000
+			},
+			"text": " And with what I just told you, you can see, or maybe you cannot see it because what I didn't use, you cannot see the implementation of the multiplication function."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:49,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 529000
+			},
+			"text": " But this contract is suffering from the exact vulnerability that I showed you before. And that was present in a more complicated, more complex setting in this uniswap contract that I talked about earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 529000,
+				"to": 539000
+			},
+			"text": " So, this multiplication function and this division function is implemented as like rounding to the nearest neighbour. And that is the mistake that we did here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:11,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 551000
+			},
+			"text": " But like, how do we actually know in which direction we should round? And there's like a very simple rule of thumb that I can give you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 551000,
+				"to": 566000
+			},
+			"text": " And that is, I call it keep the change. That means whenever we are rounding up, oh, sorry, whenever we have incoming assets, like, except assets from the user, then we are going to round up."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 579000
+			},
+			"text": " And whenever, like we are sending assets out to the user, we are rounding down. And if you follow this rule, that means you will approximate your values from the right direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 589000
+			},
+			"text": " And users won't be able to create money out of thin air and drain your contracts. That is the simple rule. So that means, like, let's revisit the example from before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 602000
+			},
+			"text": " So, like, let's walk over the deposit function. So instead of like just multiplying, I just now, I use now a variation of the multiplication function that always rounds down."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:13,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 613000
+			},
+			"text": " And it rounds down because I'm sending the assets out to the user. And for the redeem function here in this example, it's the same."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 613000,
+				"to": 626000
+			},
+			"text": " So now, how can we actually be sure that our implementation is correct? I mean, this example was really simple and you were maybe able to follow it like on the spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:36,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 636000
+			},
+			"text": " But like when you're working, when you're a developer and working on a like, we would contract, your logic will be more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 636000,
+				"to": 646000
+			},
+			"text": " So you want to have tests that ensure that you can actually detect counter examples and achieve a higher level of confidence."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 658000
+			},
+			"text": " So we are now looking at a property test. So that is basically just like a unit test, but it has parameters to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 669000
+			},
+			"text": " So it has two parameters, share's per asset, which should just decolon exchange rate. And it has another parameter assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:21,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 681000
+			},
+			"text": " And when this test is one, foundry, by the way, that's a foundry test. I don't know if I have said that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 681000,
+				"to": 692000
+			},
+			"text": " So when foundry wants this test, it will like insert, call this test with a bunch of random inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 704000
+			},
+			"text": " And that's the benefit of a unit test. When you have a unit test and you want to detect such a running error, you basically need to be lucky and put the white numbers into the unit test and guess the counter example."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 711000
+			},
+			"text": " Like with this foundry test, foundry data guessing for you and can it do much quicker than you ever could?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:59,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 719000
+			},
+			"text": " Like it can 1,000 samples or 2,000 samples in a couple of milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,000",
+				"to": "00:12:10,000"
+			},
+			"offsets": {
+				"from": 719000,
+				"to": 730000
+			},
+			"text": " So I want now to have you a look at line 14 and 15 and see that it resembles the property that we specified above."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,000",
+				"to": "00:12:19,000"
+			},
+			"offsets": {
+				"from": 730000,
+				"to": 739000
+			},
+			"text": " So I hope that you can see in line 14 that we are executing a deposit function. And in the same transaction, we are executing the redeem function."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,000",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 739000,
+				"to": 745000
+			},
+			"text": " And that is exactly what the property is above, what the property above says."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 749000
+			},
+			"text": " So and then there's some boilerplate code to that test as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 753000
+			},
+			"text": " That's like it's not like mandatory to understand."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:42,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 762000
+			},
+			"text": " But like if you look at lines 2 to line 7s to line 7, these are just some assumptions that I make over the inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 762000,
+				"to": 768000
+			},
+			"text": " And I put these assumptions there just to avoid arithmetic, overflow and arithmetic underflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:57,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 777000
+			},
+			"text": " Of course, if I went into such a situation, my test would simply revert. And I only want to execute like the happy path with this test."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,000",
+				"to": "00:13:10,000"
+			},
+			"offsets": {
+				"from": 777000,
+				"to": 790000
+			},
+			"text": " And then like line 8 to line 12 is just a basic test setup so that my contract is in the state that it can actually fulfill the transfer functions that I'm calling in line 14."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 790000,
+				"to": 800000
+			},
+			"text": " So fuzzing is good and you should actually, you should do it when you test for rounding errors."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:25,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 805000
+			},
+			"text": " But fuzzing is not enough. That's the sad message here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 805000,
+				"to": 829000
+			},
+			"text": " Like the third example from the first slide that I showed you, this example, it was the stable swap contract suffered from this rounding direction, vulnerability, although it was heavily fuzzed."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 841000
+			},
+			"text": " And like this excerpt that you see here is like from the blog post that explains this vulnerability and just let it read me, let it, let me read it out to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:06,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 846000
+			},
+			"text": " So another interesting takeaway is that fuzzing can give you a false sense of security."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,000",
+				"to": "00:14:13,000"
+			},
+			"offsets": {
+				"from": 846000,
+				"to": 853000
+			},
+			"text": " Prior to our report, Saberhead already deployed comprehensive fuzzers for their state, for their swap implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 853000,
+				"to": 862000
+			},
+			"text": " A researcher looking at the code coverage alone might come to the incorrect conclusion that such extensively fast code couldn't possibly have a vulnerability."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:27,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 867000
+			},
+			"text": " Alright, so what else can we do to increase our confidence in our implementation?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,000",
+				"to": "00:14:35,000"
+			},
+			"offsets": {
+				"from": 867000,
+				"to": 875000
+			},
+			"text": " And like one possible solution is that we could use symbolic execution on top of fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,000",
+				"to": "00:14:49,000"
+			},
+			"offsets": {
+				"from": 875000,
+				"to": 889000
+			},
+			"text": " So if you see that table on the left hand side, there are some properties that fuzzing has on the right hand side, on the right column, you see some properties of symbolic execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,000",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 889000,
+				"to": 896000
+			},
+			"text": " But I don't want you to think about this slide as fuzzing versus symbolic execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 903000
+			},
+			"text": " It's like you can get the best of both worlds if you combine both of these efforts."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 911000
+			},
+			"text": " And we recently, so we at one time verification, we have a symbolic execution engine that's called KVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 917000
+			},
+			"text": " It's a symbolic execution engine tailored to the Ethereum virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 936000
+			},
+			"text": " And we recently added a feature to that that allows you to put foundry tests into it, and instead of fuzzing over the parameters, so instead of choosing random input variables for the parameters, we do symbolic execution over the parameters."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 952000
+			},
+			"text": " And that has like different trade-offs, so the nice thing is that, well, for foundry and for symbolic execution with the EVM, you get to specify your tests and your specifications in foundry itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 962000
+			},
+			"text": " So that's easier than having to write your tests in JavaScript or TypeScript."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:07,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 967000
+			},
+			"text": " Developers like foundry, especially because of this property."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,000",
+				"to": "00:16:14,000"
+			},
+			"offsets": {
+				"from": 967000,
+				"to": 974000
+			},
+			"text": " So but that also means, like when it comes to foundry, that you are somewhat limited to the expressiveness of solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,000",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 974000,
+				"to": 981000
+			},
+			"text": " And there are a bunch of like safety properties that you simply cannot express in solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:43,000"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 1003000
+			},
+			"text": " And that's like one advantage of this symbolic execution approach, like that you can actually, you can escape from the specification format, and you can actually use the K language to specify to gain additional expressiveness and express more properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,000",
+				"to": "00:16:47,000"
+			},
+			"offsets": {
+				"from": 1003000,
+				"to": 1007000
+			},
+			"text": " So foundry fuzzing is extremely fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1007000,
+				"to": 1012000
+			},
+			"text": " It's like you can 1,000 samples in a couple of milliseconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1017000
+			},
+			"text": " And that is like really important for developers who want to get instant feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " So and compared to that, symbolic execution is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1028000
+			},
+			"text": " So there's reason for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1034000
+			},
+			"text": " So symbolic execution can give you much more safety guarantees than fuzzing can."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:22,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1042000
+			},
+			"text": " But that also means like it's computationally much more expensive than fuzzing."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1042000,
+				"to": 1045000
+			},
+			"text": " So it's slow, but it's not too slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1056000
+			},
+			"text": " Like it works, for example, you could simply integrate it into your CI pipeline and let the let the Prover 1 like on your nightly builds, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1071000
+			},
+			"text": " And like this shows like the benefit of like composing both strategies like fuzzing with foundry and then symbolic execution with with KVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:18:05,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1085000
+			},
+			"text": " So I don't want to go over every line in this table, but I want to talk about the false positives and the false negatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1085000,
+				"to": 1089000
+			},
+			"text": " So foundry doesn't have false positives."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:17,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1097000
+			},
+			"text": " And what I mean by that is when foundry comes up with a counter example, that means that counter example really works."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1097000,
+				"to": 1098000
+			},
+			"text": " It breaks your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1103000
+			},
+			"text": " So it doesn't come up with a counter example that does not break your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:25,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1105000
+			},
+			"text": " So there's no false positive."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1105000,
+				"to": 1109000
+			},
+			"text": " But foundry has false negatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:35,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1115000
+			},
+			"text": " And that is simply if foundry is not able to choose the right input variables."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,000",
+				"to": "00:18:38,000"
+			},
+			"offsets": {
+				"from": 1115000,
+				"to": 1118000
+			},
+			"text": " That means it fails to guess the right counter example."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1118000,
+				"to": 1123000
+			},
+			"text": " And at the end, foundry will tell you that test, that test actually passed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1130000
+			},
+			"text": " And that is like the false sense of security that you get from using foundry alone."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1139000
+			},
+			"text": " So if we use symbolic execution, like we cover 100% of the input domain and we will find that counter example, there's no matter what."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:06,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1146000
+			},
+			"text": " So there are no false negatives when you use KVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1146000,
+				"to": 1151000
+			},
+			"text": " Then there's another trade off and that is foundry is extremely easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:26,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1166000
+			},
+			"text": " I'd argue it's even easier to use than hearted or truffle for testing because the smart contract developers are already familiar with solidity, like the language that they use to write their contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,000",
+				"to": "00:19:31,000"
+			},
+			"offsets": {
+				"from": 1166000,
+				"to": 1171000
+			},
+			"text": " And so that makes foundry very easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,000",
+				"to": "00:19:37,000"
+			},
+			"offsets": {
+				"from": 1171000,
+				"to": 1177000
+			},
+			"text": " Symbolic execution with KVM is a little bit different."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1177000,
+				"to": 1179000
+			},
+			"text": " It's very easy to try out."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:47,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1187000
+			},
+			"text": " If you have it installed on your machine and you have foundry test specified, you can just try running the KVM on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:47,000",
+				"to": "00:19:59,000"
+			},
+			"offsets": {
+				"from": 1187000,
+				"to": 1199000
+			},
+			"text": " And maybe you're lucky and maybe the KVM will tell you, right, your test passed or your test was proven or it was like, or we found a counter example."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,000",
+				"to": "00:20:07,000"
+			},
+			"offsets": {
+				"from": 1199000,
+				"to": 1207000
+			},
+			"text": " In some cases, you will get like a third state that is you didn't pass, you didn't fail, but we are not sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1207000,
+				"to": 1208000
+			},
+			"text": " Like, we don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1217000
+			},
+			"text": " And if you end up in this, we don't know state, that is when a human needs to drive the proof forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:21,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1221000
+			},
+			"text": " And that is actually something that needs some practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1221000,
+				"to": 1224000
+			},
+			"text": " I think I don't think it's impossible to learn."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1225000
+			},
+			"text": " I learned it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1233000
+			},
+			"text": " I'm sure you guys can, but it's harder than just calling foundry test."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:45,000"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1245000
+			},
+			"text": " So one final example of running foundry and running the KVM, Symbolic Execution Engine on the same test suite."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,000",
+				"to": "00:20:50,000"
+			},
+			"offsets": {
+				"from": 1245000,
+				"to": 1250000
+			},
+			"text": " So on the top image, I just called forch test."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,000",
+				"to": "00:21:01,000"
+			},
+			"offsets": {
+				"from": 1250000,
+				"to": 1261000
+			},
+			"text": " And I can see the output, like, that tells me, okay, I was running one test and it passed."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,000",
+				"to": "00:21:07,000"
+			},
+			"offsets": {
+				"from": 1261000,
+				"to": 1267000
+			},
+			"text": " I tried 256 samples on that test."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,000",
+				"to": "00:21:15,000"
+			},
+			"offsets": {
+				"from": 1267000,
+				"to": 1275000
+			},
+			"text": " That means foundry won this test with 256 different inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,000",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1275000,
+				"to": 1286000
+			},
+			"text": " And then I can use, like, after I've won the foundry test, I can one KVM foundry compile and give it a foundry out directory as a parameter."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:35,000"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1295000
+			},
+			"text": " And what this comment will do is it will turn the foundry test suite into a proof obligation for the Symbolic Execution Engine."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,000",
+				"to": "00:21:37,000"
+			},
+			"offsets": {
+				"from": 1295000,
+				"to": 1297000
+			},
+			"text": " Like, it's a compile step."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,000",
+				"to": "00:21:48,000"
+			},
+			"offsets": {
+				"from": 1297000,
+				"to": 1308000
+			},
+			"text": " And then when I've done that, I can actually try to discharge this proof obligation by one in KVM foundry proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,000",
+				"to": "00:22:00,000"
+			},
+			"offsets": {
+				"from": 1308000,
+				"to": 1320000
+			},
+			"text": " And the output that you see here is the lucky case that our, like, Symbolic Execution was actually able to discharge the proof obligation."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,000",
+				"to": "00:22:05,000"
+			},
+			"offsets": {
+				"from": 1320000,
+				"to": 1325000
+			},
+			"text": " And that's why it says top at the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,000",
+				"to": "00:22:20,000"
+			},
+			"offsets": {
+				"from": 1325000,
+				"to": 1340000
+			},
+			"text": " So, but when this, when a test doesn't pass, you will get a counter example that is not as easy, like, to link back to the original code of the test than the foundry counter example."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,000",
+				"to": "00:22:27,000"
+			},
+			"offsets": {
+				"from": 1340000,
+				"to": 1347000
+			},
+			"text": " Or even worse, it will give you this unknown state and, like, making sense of this unknown state really requires some practice."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,000",
+				"to": "00:22:33,000"
+			},
+			"offsets": {
+				"from": 1347000,
+				"to": 1353000
+			},
+			"text": " You need to learn to read these configurations to read these stuck states."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,000",
+				"to": "00:22:36,000"
+			},
+			"offsets": {
+				"from": 1353000,
+				"to": 1356000
+			},
+			"text": " So, that's basically it with my talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,000",
+				"to": "00:22:41,000"
+			},
+			"offsets": {
+				"from": 1356000,
+				"to": 1361000
+			},
+			"text": " I have just one more, a couple of more notes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,000",
+				"to": "00:22:45,000"
+			},
+			"offsets": {
+				"from": 1361000,
+				"to": 1365000
+			},
+			"text": " So, I work at one time verification and we have a research department."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,000",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1365000,
+				"to": 1373000
+			},
+			"text": " And we just recently posted some more research challenges on our website, research.onetimeborification.com."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:23:01,000"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1381000
+			},
+			"text": " And if you are a researcher, go to that website, see if something interests you, and we have, like, multiple ways to collaborate with you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1381000,
+				"to": 1384000
+			},
+			"text": " Like, if anything interests you."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:05,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1385000
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,000",
+				"to": "00:23:13,000"
+			},
+			"offsets": {
+				"from": 1385000,
+				"to": 1393000
+			},
+			"text": " And then, like, one other announcement, a colleague of mine, Ricat Ortiz in the audience somewhere, I see them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,000",
+				"to": "00:23:25,000"
+			},
+			"offsets": {
+				"from": 1393000,
+				"to": 1405000
+			},
+			"text": " He's giving a workshop on formal methods for the working DeFi DAF tomorrow at 11am in workshop room number three."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,000",
+				"to": "00:23:32,000"
+			},
+			"offsets": {
+				"from": 1405000,
+				"to": 1412000
+			},
+			"text": " So, if you like this talk, go ahead and visit Ricat's talk. It's highly recommended."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,000",
+				"to": "00:23:36,000"
+			},
+			"offsets": {
+				"from": 1412000,
+				"to": 1416000
+			},
+			"text": " All right. And that's it. I think we have some time for questions. Do we?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,000",
+				"to": "00:23:40,000"
+			},
+			"offsets": {
+				"from": 1416000,
+				"to": 1420000
+			},
+			"text": " We have."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,000",
+				"to": "00:23:43,000"
+			},
+			"offsets": {
+				"from": 1420000,
+				"to": 1423000
+			},
+			"text": " Do we have a microphone for questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,000",
+				"to": "00:23:54,000"
+			},
+			"offsets": {
+				"from": 1423000,
+				"to": 1434000
+			},
+			"text": " Hello. Great presentation. I have a couple of questions. Can you go back to the table that you show both like passing and symbolic execution?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,000",
+				"to": "00:24:01,000"
+			},
+			"offsets": {
+				"from": 1434000,
+				"to": 1441000
+			},
+			"text": " I have it on the screen, but I don't have it on the projector."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,000",
+				"to": "00:24:04,000"
+			},
+			"offsets": {
+				"from": 1441000,
+				"to": 1444000
+			},
+			"text": " Here it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,000",
+				"to": "00:24:16,000"
+			},
+			"offsets": {
+				"from": 1444000,
+				"to": 1456000
+			},
+			"text": " Okay. Great. So, you put like in the passing column that requires no intervention in human intervention, but you need someone to write the properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:16,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1456000,
+				"to": 1467000
+			},
+			"text": " It's the same for the symbolic execution. Right. So, if you have good properties, you will catch good bugs. If you don't have good properties, you will have no bugs."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:33,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1473000
+			},
+			"text": " Right. And this is the same with the examples that you show, like, passing is not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,000",
+				"to": "00:24:42,000"
+			},
+			"offsets": {
+				"from": 1473000,
+				"to": 1482000
+			},
+			"text": " This code was fast, but perhaps they are not using the correct properties. So, what is your take on this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,000",
+				"to": "00:24:52,000"
+			},
+			"offsets": {
+				"from": 1482000,
+				"to": 1492000
+			},
+			"text": " Yeah, that's true. So, this is not like fully automatic. Like, for example, when you want aesthetic analysis tool on your code base, then you essentially have to do nothing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,000",
+				"to": "00:25:05,000"
+			},
+			"offsets": {
+				"from": 1492000,
+				"to": 1505000
+			},
+			"text": " You can just like hit a button and once litter on your code base. So, for passing, you need to write down the tests and like, like, getting the test, getting the white tests is a challenge on its own."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,000",
+				"to": "00:25:22,000"
+			},
+			"offsets": {
+				"from": 1505000,
+				"to": 1522000
+			},
+			"text": " It's not like, doesn't come easy. It has to be practiced. And the same is even more true when you do symbolic execution, because where symbolic execution can also be a foot gun if you don't know how to use it appropriately."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,000",
+				"to": "00:25:34,000"
+			},
+			"offsets": {
+				"from": 1522000,
+				"to": 1534000
+			},
+			"text": " All right. Yeah, yeah, definitely. And the other thing very quickly, you put like false negatives, like, on fun, on fast, which is which I agree, and you put no false negatives on symbolic execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1534000,
+				"to": 1541000
+			},
+			"text": " However, you said that you could have a third state in which you don't know if it's true or it's false."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:49,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1549000
+			},
+			"text": " That sounds like a false negative to me. Like, you don't know the answer. The tool doesn't know the answer. So, it is, it is like, you don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,000",
+				"to": "00:26:07,000"
+			},
+			"offsets": {
+				"from": 1549000,
+				"to": 1567000
+			},
+			"text": " But it doesn't say, I just charge this proof obligation and everything is right. It says, I'm stuck. That is, you should interpret this as, I need to put more effort in the proof or in the code to get it to like a final state that says to or false."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:07,000",
+				"to": "00:26:22,000"
+			},
+			"offsets": {
+				"from": 1567000,
+				"to": 1582000
+			},
+			"text": " So, it's the same for for fasting. When you say like a past, like a tested path, it's simply because you didn't put enough enough time right to run it. So it's a matter of interpretation."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,000",
+				"to": "00:26:24,000"
+			},
+			"offsets": {
+				"from": 1582000,
+				"to": 1584000
+			},
+			"text": " It's a little misleading."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,000",
+				"to": "00:26:37,000"
+			},
+			"offsets": {
+				"from": 1584000,
+				"to": 1597000
+			},
+			"text": " You could try like, fuzzing over, like the entire input space, and then you will also have like no false, no false negatives. You could try that, but like, you will never terminate."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:37,000",
+				"to": "00:26:39,000"
+			},
+			"offsets": {
+				"from": 1597000,
+				"to": 1599000
+			},
+			"text": " But that would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,000",
+				"to": "00:26:45,000"
+			},
+			"offsets": {
+				"from": 1599000,
+				"to": 1605000
+			},
+			"text": " Come to my talk tomorrow, because we'll be going over how to write properties. That's basically the next talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,000",
+				"to": "00:26:47,000"
+			},
+			"offsets": {
+				"from": 1605000,
+				"to": 1607000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,000",
+				"to": "00:26:54,000"
+			},
+			"offsets": {
+				"from": 1607000,
+				"to": 1614000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,000",
+				"to": "00:27:01,000"
+			},
+			"offsets": {
+				"from": 1614000,
+				"to": 1621000
+			},
+			"text": " [Music]"
+		}
+	]
+}

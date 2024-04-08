@@ -1,0 +1,1022 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:17,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 17960
+			},
+			"text": " How to do Magia Echigashio, the Magical Irrigation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,960",
+				"to": "00:00:22,360"
+			},
+			"offsets": {
+				"from": 17960,
+				"to": 22360
+			},
+			"text": " So how do you generate a graph 16 or a Planck proof right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,360",
+				"to": "00:00:27,280"
+			},
+			"offsets": {
+				"from": 22360,
+				"to": 27280
+			},
+			"text": " You perform set up ceremony and then you set up for a circuit and then you prove a specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,280",
+				"to": "00:00:32,760"
+			},
+			"offsets": {
+				"from": 27280,
+				"to": 32760
+			},
+			"text": " input of the circuit and then you verify or you generate a sorority call data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,760",
+				"to": "00:00:34,960"
+			},
+			"offsets": {
+				"from": 32760,
+				"to": 34960
+			},
+			"text": " And what does on-chain verification look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,960",
+				"to": "00:00:39,680"
+			},
+			"offsets": {
+				"from": 34960,
+				"to": 39680
+			},
+			"text": " Basically you have a verify a contract that verifies the proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,680",
+				"to": "00:00:45,440"
+			},
+			"offsets": {
+				"from": 39680,
+				"to": 45440
+			},
+			"text": " So on L1 the cost comprises of execution cost as well as call data cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,440",
+				"to": "00:00:49,600"
+			},
+			"offsets": {
+				"from": 45440,
+				"to": 49600
+			},
+			"text": " But on L2 the majority of the cost is the call data cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,600",
+				"to": "00:00:54,680"
+			},
+			"offsets": {
+				"from": 49600,
+				"to": 54680
+			},
+			"text": " So for a growth 16 proof the execution cost is 210,000 units."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,680",
+				"to": "00:00:57,080"
+			},
+			"offsets": {
+				"from": 54680,
+				"to": 57080
+			},
+			"text": " Call data cost is 128 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,080",
+				"to": "00:01:04,240"
+			},
+			"offsets": {
+				"from": 57080,
+				"to": 64240
+			},
+			"text": " For a Planck proof the execution cost is 300,000 units and the call data cost is around 400"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,240",
+				"to": "00:01:05,640"
+			},
+			"offsets": {
+				"from": 64240,
+				"to": 65640
+			},
+			"text": " bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,640",
+				"to": "00:01:11,960"
+			},
+			"offsets": {
+				"from": 65640,
+				"to": 71960
+			},
+			"text": " But what if we want to verify 50 growth 60 proofs on-chain?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,960",
+				"to": "00:01:14,040"
+			},
+			"offsets": {
+				"from": 71960,
+				"to": 74040
+			},
+			"text": " It will obviously take times 50 right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,040",
+				"to": "00:01:19,920"
+			},
+			"offsets": {
+				"from": 74040,
+				"to": 79920
+			},
+			"text": " There will be around 10.6 million gas units and 6400 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,920",
+				"to": "00:01:24,500"
+			},
+			"offsets": {
+				"from": 79920,
+				"to": 84500
+			},
+			"text": " But what if I told you that you didn't have to live in that world anymore?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,500",
+				"to": "00:01:30,240"
+			},
+			"offsets": {
+				"from": 84500,
+				"to": 90240
+			},
+			"text": " If we could prove 50 proofs at the cost of 1 and yes we can do that and we can do that"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,240",
+				"to": "00:01:32,640"
+			},
+			"offsets": {
+				"from": 90240,
+				"to": 92640
+			},
+			"text": " using aggregation."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,640",
+				"to": "00:01:35,520"
+			},
+			"offsets": {
+				"from": 92640,
+				"to": 95520
+			},
+			"text": " What is proof aggregation now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,520",
+				"to": "00:01:40,920"
+			},
+			"offsets": {
+				"from": 95520,
+				"to": 100920
+			},
+			"text": " Basically you can get several proofs into a single proof and that is it and that is what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,920",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 100920,
+				"to": 105200
+			},
+			"text": " proof aggregation allows you to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 106400
+			},
+			"text": " And how do you do it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:48,200"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 108200
+			},
+			"text": " You can do that using maze."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,200",
+				"to": "00:01:53,620"
+			},
+			"offsets": {
+				"from": 108200,
+				"to": 113620
+			},
+			"text": " It's a tool that helps you aggregate individual long proofs that you can generate using snarl"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,620",
+				"to": "00:01:58,320"
+			},
+			"offsets": {
+				"from": 113620,
+				"to": 118320
+			},
+			"text": " jays into a single aggregated proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,320",
+				"to": "00:02:00,240"
+			},
+			"offsets": {
+				"from": 118320,
+				"to": 120240
+			},
+			"text": " And what should we use it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,240",
+				"to": "00:02:06,400"
+			},
+			"offsets": {
+				"from": 120240,
+				"to": 126400
+			},
+			"text": " Basically you will get constant proof size that means constant call data of 4320 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,400",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 126400,
+				"to": 131120
+			},
+			"text": " So it doesn't matter whether you are aggregating 20 proofs or 50 proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:18,760"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 138760
+			},
+			"text": " The call data cost will always remain the same and the same goes for the execution cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,760",
+				"to": "00:02:23,620"
+			},
+			"offsets": {
+				"from": 138760,
+				"to": 143620
+			},
+			"text": " That would be approximately around 600000 gas units."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,620",
+				"to": "00:02:25,900"
+			},
+			"offsets": {
+				"from": 143620,
+				"to": 145900
+			},
+			"text": " So let's try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,900",
+				"to": "00:02:31,020"
+			},
+			"offsets": {
+				"from": 145900,
+				"to": 151020
+			},
+			"text": " To build an aggregation circuit you need a bunch of prompt proofs for virtual build"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,020",
+				"to": "00:02:32,460"
+			},
+			"offsets": {
+				"from": 151020,
+				"to": 152460
+			},
+			"text": " aggregation circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,460",
+				"to": "00:02:37,540"
+			},
+			"offsets": {
+				"from": 152460,
+				"to": 157540
+			},
+			"text": " So we generate the prompt proofs using snarl jays and then we build the using circuit using"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,540",
+				"to": "00:02:38,540"
+			},
+			"offsets": {
+				"from": 157540,
+				"to": 158540
+			},
+			"text": " maze."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,540",
+				"to": "00:02:44,220"
+			},
+			"offsets": {
+				"from": 158540,
+				"to": 164220
+			},
+			"text": " So we have already done the necessary setup for generating prompt proofs using snarl jays."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,220",
+				"to": "00:02:48,960"
+			},
+			"offsets": {
+				"from": 164220,
+				"to": 168960
+			},
+			"text": " You can see the circuit is here and we have the proving key file over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,960",
+				"to": "00:02:54,240"
+			},
+			"offsets": {
+				"from": 168960,
+				"to": 174240
+			},
+			"text": " Now we will use the circuit files and the proving key file to generate a bunch of proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,240",
+				"to": "00:02:59,480"
+			},
+			"offsets": {
+				"from": 174240,
+				"to": 179480
+			},
+			"text": " for which we will build the aggregation circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,480",
+				"to": "00:03:05,560"
+			},
+			"offsets": {
+				"from": 179480,
+				"to": 185560
+			},
+			"text": " So for that first we need to install a focus snarl jays that adds this new command called"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,560",
+				"to": "00:03:12,800"
+			},
+			"offsets": {
+				"from": 185560,
+				"to": 192800
+			},
+			"text": " snarl jays plonk setup maze which helps you output necessary files for building the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,800",
+				"to": "00:03:14,080"
+			},
+			"offsets": {
+				"from": 192800,
+				"to": 194080
+			},
+			"text": " execution circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,080",
+				"to": "00:03:21,760"
+			},
+			"offsets": {
+				"from": 194080,
+				"to": 201760
+			},
+			"text": " So it takes input.json which contains several inputs for which you need to generate the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,760",
+				"to": "00:03:22,760"
+			},
+			"offsets": {
+				"from": 201760,
+				"to": 202760
+			},
+			"text": " proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,760",
+				"to": "00:03:30,580"
+			},
+			"offsets": {
+				"from": 202760,
+				"to": 210580
+			},
+			"text": " So over here we have two inputs this and this and then it takes the circuit file and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,580",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 210580,
+				"to": 216880
+			},
+			"text": " circuit.zk file which is the proving key for a single prompt proof and will generate proof.json"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:39,400"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 219400
+			},
+			"text": " public signals and the verification key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,400",
+				"to": "00:03:45,320"
+			},
+			"offsets": {
+				"from": 219400,
+				"to": 225320
+			},
+			"text": " So let's sit on this command and it will generate the necessary files."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,320",
+				"to": "00:03:50,480"
+			},
+			"offsets": {
+				"from": 225320,
+				"to": 230480
+			},
+			"text": " So we have got two proofs public signals and the verification key."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,480",
+				"to": "00:03:54,560"
+			},
+			"offsets": {
+				"from": 230480,
+				"to": 234560
+			},
+			"text": " So now we will use the maze tool to build an aggregation circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,560",
+				"to": "00:03:58,440"
+			},
+			"offsets": {
+				"from": 234560,
+				"to": 238440
+			},
+			"text": " So let's check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,440",
+				"to": "00:04:00,280"
+			},
+			"offsets": {
+				"from": 238440,
+				"to": 240280
+			},
+			"text": " So maze tool has a bunch of commands."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,280",
+				"to": "00:04:02,240"
+			},
+			"offsets": {
+				"from": 240280,
+				"to": 242240
+			},
+			"text": " The first one is mock setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,240",
+				"to": "00:04:07,780"
+			},
+			"offsets": {
+				"from": 242240,
+				"to": 247780
+			},
+			"text": " Mock setup builds the aggregation circuit and runs a mock prover on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,780",
+				"to": "00:04:13,120"
+			},
+			"offsets": {
+				"from": 247780,
+				"to": 253120
+			},
+			"text": " And then we can also generate an even verify for the aggregation circuit and we can create"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,120",
+				"to": "00:04:19,340"
+			},
+			"offsets": {
+				"from": 253120,
+				"to": 259340
+			},
+			"text": " the proof, verify the proof and we can also simulate even verification of the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,340",
+				"to": "00:04:23,840"
+			},
+			"offsets": {
+				"from": 259340,
+				"to": 263840
+			},
+			"text": " So for the demo purposes I'll stick to mock setup because rest of the commands are pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,840",
+				"to": "00:04:25,980"
+			},
+			"offsets": {
+				"from": 263840,
+				"to": 265980
+			},
+			"text": " computationally expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,980",
+				"to": "00:04:34,180"
+			},
+			"offsets": {
+				"from": 265980,
+				"to": 274180
+			},
+			"text": " So let's just run the command maze mock setup on the files over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,180",
+				"to": "00:04:39,560"
+			},
+			"offsets": {
+				"from": 274180,
+				"to": 279560
+			},
+			"text": " So we have the verification key, we have got the proofs which we need to aggregate and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,560",
+				"to": "00:04:44,060"
+			},
+			"offsets": {
+				"from": 279560,
+				"to": 284060
+			},
+			"text": " the public signals."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,060",
+				"to": "00:04:45,060"
+			},
+			"offsets": {
+				"from": 284060,
+				"to": 285060
+			},
+			"text": " And there you go."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,060",
+				"to": "00:04:49,600"
+			},
+			"offsets": {
+				"from": 285060,
+				"to": 289600
+			},
+			"text": " So we build the aggregation circuit for two proofs and now it is running the mock prover."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,600",
+				"to": "00:04:55,740"
+			},
+			"offsets": {
+				"from": 289600,
+				"to": 295740
+			},
+			"text": " So it will take a while until then let's just try to understand how does it all work."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,740",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 295740,
+				"to": 301480
+			},
+			"text": " So basically in the verification of a prompt proof you have two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:06,960"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 306960
+			},
+			"text": " The first part is the cheap part that performs the computation required for pairing check"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,960",
+				"to": "00:05:12,020"
+			},
+			"offsets": {
+				"from": 306960,
+				"to": 312020
+			},
+			"text": " and the second part is the expensive part that is the pairing check."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,020",
+				"to": "00:05:18,260"
+			},
+			"offsets": {
+				"from": 312020,
+				"to": 318260
+			},
+			"text": " So the trick is that in the aggregation circuit we verify the cheap part of each prompt proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,260",
+				"to": "00:05:23,720"
+			},
+			"offsets": {
+				"from": 318260,
+				"to": 323720
+			},
+			"text": " and within the aggregation circuit we accumulate the expensive part of each prompt proof into"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,720",
+				"to": "00:05:28,480"
+			},
+			"offsets": {
+				"from": 323720,
+				"to": 328480
+			},
+			"text": " a single accumulator, single pairing check and that is the final accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,480",
+				"to": "00:05:32,920"
+			},
+			"offsets": {
+				"from": 328480,
+				"to": 332920
+			},
+			"text": " And we expose the final accumulator as the public input of the proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,920",
+				"to": "00:05:40,520"
+			},
+			"offsets": {
+				"from": 332920,
+				"to": 340520
+			},
+			"text": " Now the well fire will first verify the proof of the aggregation circuit and then will perform"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,520",
+				"to": "00:05:43,880"
+			},
+			"offsets": {
+				"from": 340520,
+				"to": 343880
+			},
+			"text": " a single pairing check on the file accumulator."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,880",
+				"to": "00:05:49,400"
+			},
+			"offsets": {
+				"from": 343880,
+				"to": 349400
+			},
+			"text": " And after this the verify would be satisfied of the proof of the aggregation aggregated"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,400",
+				"to": "00:05:54,320"
+			},
+			"offsets": {
+				"from": 349400,
+				"to": 354320
+			},
+			"text": " proofs and that is it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,320",
+				"to": "00:05:59,600"
+			},
+			"offsets": {
+				"from": 354320,
+				"to": 359600
+			},
+			"text": " So now let's go back and check whether the aggregation circuit was successful or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,600",
+				"to": "00:06:03,160"
+			},
+			"offsets": {
+				"from": 359600,
+				"to": 363160
+			},
+			"text": " And you can see a way it was a success and it took 22 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,160",
+				"to": "00:06:13,520"
+			},
+			"offsets": {
+				"from": 363160,
+				"to": 373520
+			},
+			"text": " So that means our aggregation circuit of these two proofs is satisfied."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,520",
+				"to": "00:06:18,560"
+			},
+			"offsets": {
+				"from": 373520,
+				"to": 378560
+			},
+			"text": " So now you might be wondering okay fine we are able to get a lot of proofs into a single"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,560",
+				"to": "00:06:24,280"
+			},
+			"offsets": {
+				"from": 378560,
+				"to": 384280
+			},
+			"text": " proof and we are able to save a lot of lot and call data and the execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,280",
+				"to": "00:06:26,960"
+			},
+			"offsets": {
+				"from": 384280,
+				"to": 386960
+			},
+			"text": " But what are we incurring an exchange?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,960",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 386960,
+				"to": 389480
+			},
+			"text": " The thing that we incur in exchange is the proof of cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:34,280"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 394280
+			},
+			"text": " It is very computationally expensive to generate aggregated proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,280",
+				"to": "00:06:41,440"
+			},
+			"offsets": {
+				"from": 394280,
+				"to": 401440
+			},
+			"text": " So for 25 proofs it takes 27 minutes and for 50 proofs it takes 58 minutes on a pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,440",
+				"to": "00:06:43,560"
+			},
+			"offsets": {
+				"from": 401440,
+				"to": 403560
+			},
+			"text": " beefy machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,560",
+				"to": "00:06:47,080"
+			},
+			"offsets": {
+				"from": 403560,
+				"to": 407080
+			},
+			"text": " So that is it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,080",
+				"to": "00:06:48,560"
+			},
+			"offsets": {
+				"from": 407080,
+				"to": 408560
+			},
+			"text": " And that is it from my side."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,560",
+				"to": "00:06:49,280"
+			},
+			"offsets": {
+				"from": 408560,
+				"to": 409280
+			},
+			"text": " Thank you for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,280",
+				"to": "00:06:59,280"
+			},
+			"offsets": {
+				"from": 409280,
+				"to": 419280
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,280",
+				"to": "00:07:28,280"
+			},
+			"offsets": {
+				"from": 419280,
+				"to": 448280
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

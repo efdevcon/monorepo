@@ -1,0 +1,4322 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2000
+			},
+			"text": " So yeah, cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,000",
+				"to": "00:00:07,560"
+			},
+			"offsets": {
+				"from": 2000,
+				"to": 7560
+			},
+			"text": " So essentially, you guys have been here for all of DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,560",
+				"to": "00:00:14,240"
+			},
+			"offsets": {
+				"from": 7560,
+				"to": 14240
+			},
+			"text": " You probably, you could have known coming into DevCon that blockchains need to scale"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,240",
+				"to": "00:00:19,240"
+			},
+			"offsets": {
+				"from": 14240,
+				"to": 19240
+			},
+			"text": " if you didn't know going in based on some of the talks that you've gone to."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,240",
+				"to": "00:00:23,200"
+			},
+			"offsets": {
+				"from": 19240,
+				"to": 23200
+			},
+			"text": " You probably know now, so I don't really have to make that argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,200",
+				"to": "00:00:25,320"
+			},
+			"offsets": {
+				"from": 23200,
+				"to": 25320
+			},
+			"text": " But I'll just go into it a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,320",
+				"to": "00:00:31,400"
+			},
+			"offsets": {
+				"from": 25320,
+				"to": 31400
+			},
+			"text": " Basically, blockchains are amazing, they're this global truth, especially when they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,400",
+				"to": "00:00:38,160"
+			},
+			"offsets": {
+				"from": 31400,
+				"to": 38160
+			},
+			"text": " public blockchains, then they're this global truth that everyone can see, that everyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,160",
+				"to": "00:00:40,360"
+			},
+			"offsets": {
+				"from": 38160,
+				"to": 40360
+			},
+			"text": " can access."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,360",
+				"to": "00:00:48,120"
+			},
+			"offsets": {
+				"from": 40360,
+				"to": 48120
+			},
+			"text": " And in the case of blockchains like Ethereum, anyone can essentially store information"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,120",
+				"to": "00:00:50,440"
+			},
+			"offsets": {
+				"from": 48120,
+				"to": 50440
+			},
+			"text": " on them and interact with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,440",
+				"to": "00:00:51,440"
+			},
+			"offsets": {
+				"from": 50440,
+				"to": 51440
+			},
+			"text": " Yo."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,440",
+				"to": "00:00:53,000"
+			},
+			"offsets": {
+				"from": 51440,
+				"to": 53000
+			},
+			"text": " It's Kelvin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,000",
+				"to": "00:01:02,600"
+			},
+			"offsets": {
+				"from": 53000,
+				"to": 62600
+			},
+			"text": " Anyway, and so this is amazing, but they are single threaded, at least as of right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,600",
+				"to": "00:01:07,520"
+			},
+			"offsets": {
+				"from": 62600,
+				"to": 67520
+			},
+			"text": " Bunch of nodes running the same stuff all over the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,520",
+				"to": "00:01:10,960"
+			},
+			"offsets": {
+				"from": 67520,
+				"to": 70960
+			},
+			"text": " This is great in terms of keeping a record of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,960",
+				"to": "00:01:16,120"
+			},
+			"offsets": {
+				"from": 70960,
+				"to": 76120
+			},
+			"text": " Everyone who's running a full node has their own personal copy of the blockchain they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,120",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 76120,
+				"to": 78000
+			},
+			"text": " running."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:21,160"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 81160
+			},
+			"text": " But the downside is it's expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,160",
+				"to": "00:01:25,960"
+			},
+			"offsets": {
+				"from": 81160,
+				"to": 85960
+			},
+			"text": " And so this is where we get into scaling L1 with stuff like sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,960",
+				"to": "00:01:31,800"
+			},
+			"offsets": {
+				"from": 85960,
+				"to": 91800
+			},
+			"text": " And then there's L2, which is like essentially like the three big ones are state channels,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,800",
+				"to": "00:01:38,080"
+			},
+			"offsets": {
+				"from": 91800,
+				"to": 98080
+			},
+			"text": " side chains, and then plasma, which is kind of in the middle in terms of the security"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,080",
+				"to": "00:01:40,840"
+			},
+			"offsets": {
+				"from": 98080,
+				"to": 100840
+			},
+			"text": " guarantees that it provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,840",
+				"to": "00:01:43,840"
+			},
+			"offsets": {
+				"from": 100840,
+				"to": 103840
+			},
+			"text": " So plasma, it's cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,840",
+				"to": "00:01:46,160"
+			},
+			"offsets": {
+				"from": 103840,
+				"to": 106160
+			},
+			"text": " You've come to this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,160",
+				"to": "00:01:47,200"
+			},
+			"offsets": {
+				"from": 106160,
+				"to": 107200
+			},
+			"text": " You might know a little."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,200",
+				"to": "00:01:54,240"
+			},
+			"offsets": {
+				"from": 107200,
+				"to": 114240
+			},
+			"text": " But essentially the defining characteristic of plasma is that it's a framework for securing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,240",
+				"to": "00:01:55,720"
+			},
+			"offsets": {
+				"from": 114240,
+				"to": 115720
+			},
+			"text": " blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,720",
+				"to": "00:01:59,360"
+			},
+			"offsets": {
+				"from": 115720,
+				"to": 119360
+			},
+			"text": " Yo, Kelvin, put in that password."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,360",
+				"to": "00:02:03,600"
+			},
+			"offsets": {
+				"from": 119360,
+				"to": 123600
+			},
+			"text": " Anyway, so it's a framework for securing blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,600",
+				"to": "00:02:07,960"
+			},
+			"offsets": {
+				"from": 123600,
+				"to": 127960
+			},
+			"text": " And so if you have a side chain, yes, it can talk to another chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,960",
+				"to": "00:02:12,480"
+			},
+			"offsets": {
+				"from": 127960,
+				"to": 132480
+			},
+			"text": " So you could have a side chain that talks to Ethereum, and this is great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,480",
+				"to": "00:02:18,120"
+			},
+			"offsets": {
+				"from": 132480,
+				"to": 138120
+			},
+			"text": " And if we take the happy path, everything's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,120",
+				"to": "00:02:19,840"
+			},
+			"offsets": {
+				"from": 138120,
+				"to": 139840
+			},
+			"text": " But ship breaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,840",
+				"to": "00:02:27,280"
+			},
+			"offsets": {
+				"from": 139840,
+				"to": 147280
+			},
+			"text": " And so with side chains, they're reliant on essentially their own consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,280",
+				"to": "00:02:31,280"
+			},
+			"offsets": {
+				"from": 147280,
+				"to": 151280
+			},
+			"text": " So if a side chain consensus fails, it's a security issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,280",
+				"to": "00:02:37,360"
+			},
+			"offsets": {
+				"from": 151280,
+				"to": 157360
+			},
+			"text": " With plasma chains, they are actually secured by the root chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,360",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 157360,
+				"to": 160080
+			},
+			"text": " In our case, we're using Ethereum as the root chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:46,720"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 166720
+			},
+			"text": " And so if the plasma chain consensus breaks, it's a disruption as opposed to security failure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,720",
+				"to": "00:02:49,480"
+			},
+			"offsets": {
+				"from": 166720,
+				"to": 169480
+			},
+			"text": " which is pretty cool, because essentially you can exit state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,480",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 169480,
+				"to": 175000
+			},
+			"text": " Anyway, the next slide was a picture of the plasma white paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:58,920"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 178920
+			},
+			"text": " It was released on August 11th."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,920",
+				"to": "00:03:05,920"
+			},
+			"offsets": {
+				"from": 178920,
+				"to": 185920
+			},
+			"text": " And if you're interested in getting into plasma, I would say it's a solid read in terms of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,920",
+				"to": "00:03:08,400"
+			},
+			"offsets": {
+				"from": 185920,
+				"to": 188400
+			},
+			"text": " selling the vision of plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,400",
+				"to": "00:03:11,280"
+			},
+			"offsets": {
+				"from": 188400,
+				"to": 191280
+			},
+			"text": " But since then, a lot of stuff has changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,280",
+				"to": "00:03:14,880"
+			},
+			"offsets": {
+				"from": 191280,
+				"to": 194880
+			},
+			"text": " So I would say kind of follow the spirit and not the letter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,880",
+				"to": "00:03:16,800"
+			},
+			"offsets": {
+				"from": 194880,
+				"to": 196800
+			},
+			"text": " Don't take it too literally."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,800",
+				"to": "00:03:22,040"
+			},
+			"offsets": {
+				"from": 196800,
+				"to": 202040
+			},
+			"text": " Yeah, so read it, but yeah, take it with a grain of salt."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,040",
+				"to": "00:03:24,480"
+			},
+			"offsets": {
+				"from": 202040,
+				"to": 204480
+			},
+			"text": " Boom, we've come a long way."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,480",
+				"to": "00:03:27,960"
+			},
+			"offsets": {
+				"from": 204480,
+				"to": 207960
+			},
+			"text": " This is where you go if you want the most up-to-date stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,960",
+				"to": "00:03:33,880"
+			},
+			"offsets": {
+				"from": 207960,
+				"to": 213880
+			},
+			"text": " Sure, sometimes it can be a little technical or hard to digest."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,880",
+				"to": "00:03:40,200"
+			},
+			"offsets": {
+				"from": 213880,
+				"to": 220200
+			},
+			"text": " But this is kind of where a lot of the bleeding-edge discussion happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,200",
+				"to": "00:03:48,040"
+			},
+			"offsets": {
+				"from": 220200,
+				"to": 228040
+			},
+			"text": " And what's super cool is that as time has gone on, kind of the discussion around what"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,040",
+				"to": "00:03:57,440"
+			},
+			"offsets": {
+				"from": 228040,
+				"to": 237440
+			},
+			"text": " plasma is and what plasma can facilitate has grown, seemingly exponentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,440",
+				"to": "00:04:03,840"
+			},
+			"offsets": {
+				"from": 237440,
+				"to": 243840
+			},
+			"text": " So when the plasma white paper was first released, it was kind of, as I said before, this boom,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,840",
+				"to": "00:04:05,560"
+			},
+			"offsets": {
+				"from": 243840,
+				"to": 245560
+			},
+			"text": " vision."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,560",
+				"to": "00:04:07,720"
+			},
+			"offsets": {
+				"from": 245560,
+				"to": 247720
+			},
+			"text": " And that was amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,720",
+				"to": "00:04:14,720"
+			},
+			"offsets": {
+				"from": 247720,
+				"to": 254720
+			},
+			"text": " But I think it was actually quite intimidating to kind of take this vision and then turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,720",
+				"to": "00:04:19,920"
+			},
+			"offsets": {
+				"from": 254720,
+				"to": 259920
+			},
+			"text": " it into code because it wasn't like a clear specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,920",
+				"to": "00:04:27,160"
+			},
+			"offsets": {
+				"from": 259920,
+				"to": 267160
+			},
+			"text": " And so it kind of took understanding of the vision and then distilling that down into"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,160",
+				"to": "00:04:33,200"
+			},
+			"offsets": {
+				"from": 267160,
+				"to": 273200
+			},
+			"text": " something that could actually be implemented that could be fully specified so that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,200",
+				"to": "00:04:40,120"
+			},
+			"offsets": {
+				"from": 273200,
+				"to": 280120
+			},
+			"text": " could know the security properties that it provides at a granular level."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,120",
+				"to": "00:04:48,640"
+			},
+			"offsets": {
+				"from": 280120,
+				"to": 288640
+			},
+			"text": " And yeah, as time went on, then essentially we kind of got a very clear idea about the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,640",
+				"to": "00:04:50,600"
+			},
+			"offsets": {
+				"from": 288640,
+				"to": 290600
+			},
+			"text": " core mechanisms."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,600",
+				"to": "00:04:53,520"
+			},
+			"offsets": {
+				"from": 290600,
+				"to": 293520
+			},
+			"text": " And so essentially it's all about moving state."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,520",
+				"to": "00:05:02,640"
+			},
+			"offsets": {
+				"from": 293520,
+				"to": 302640
+			},
+			"text": " If we have all state on Ethereum, we run into the problem I mentioned before."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,640",
+				"to": "00:05:08,320"
+			},
+			"offsets": {
+				"from": 302640,
+				"to": 308320
+			},
+			"text": " And so what we actually do is we have a plasma chain that also has state transitions and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,320",
+				"to": "00:05:13,560"
+			},
+			"offsets": {
+				"from": 308320,
+				"to": 313560
+			},
+			"text": " essentially it's changing states."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,560",
+				"to": "00:05:18,240"
+			},
+			"offsets": {
+				"from": 313560,
+				"to": 318240
+			},
+			"text": " And then every so often, the child chain consensus actually submits snapshots of this"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,240",
+				"to": "00:05:22,320"
+			},
+			"offsets": {
+				"from": 318240,
+				"to": 322320
+			},
+			"text": " state back to the root chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,320",
+				"to": "00:05:29,920"
+			},
+			"offsets": {
+				"from": 322320,
+				"to": 329920
+			},
+			"text": " And so the snapshots that are sent back are what actually secures the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,920",
+				"to": "00:05:36,200"
+			},
+			"offsets": {
+				"from": 329920,
+				"to": 336200
+			},
+			"text": " And if the child chain consensus essentially creates an invalid state or accepts an invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,200",
+				"to": "00:05:41,240"
+			},
+			"offsets": {
+				"from": 336200,
+				"to": 341240
+			},
+			"text": " state transition, then all of a sudden you have an invalid state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,240",
+				"to": "00:05:46,440"
+			},
+			"offsets": {
+				"from": 341240,
+				"to": 346440
+			},
+			"text": " But it's okay because you can exit based off a previous valid state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,440",
+				"to": "00:05:50,320"
+			},
+			"offsets": {
+				"from": 346440,
+				"to": 350320
+			},
+			"text": " How do we know when something is invalid?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,320",
+				"to": "00:05:53,040"
+			},
+			"offsets": {
+				"from": 350320,
+				"to": 353040
+			},
+			"text": " This is where clients come in."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,040",
+				"to": "00:05:56,560"
+			},
+			"offsets": {
+				"from": 353040,
+				"to": 356560
+			},
+			"text": " So essentially you have the child chain consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,560",
+				"to": "00:06:03,360"
+			},
+			"offsets": {
+				"from": 356560,
+				"to": 363360
+			},
+			"text": " But then you also have to have clients or watchers who are not actively participating"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,360",
+				"to": "00:06:06,080"
+			},
+			"offsets": {
+				"from": 363360,
+				"to": 366080
+			},
+			"text": " in the decision making of a plasma chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,080",
+				"to": "00:06:09,680"
+			},
+			"offsets": {
+				"from": 366080,
+				"to": 369680
+			},
+			"text": " What they're actually doing is just validating it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,680",
+				"to": "00:06:15,600"
+			},
+			"offsets": {
+				"from": 369680,
+				"to": 375600
+			},
+			"text": " They're taking blocks that have been included and they are making sure that everything is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,600",
+				"to": "00:06:17,720"
+			},
+			"offsets": {
+				"from": 375600,
+				"to": 377720
+			},
+			"text": " A-OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,720",
+				"to": "00:06:22,360"
+			},
+			"offsets": {
+				"from": 377720,
+				"to": 382360
+			},
+			"text": " If everything's not OK, then essentially you exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,360",
+				"to": "00:06:30,440"
+			},
+			"offsets": {
+				"from": 382360,
+				"to": 390440
+			},
+			"text": " And the client is essentially what allows you to detect when things have gone wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,440",
+				"to": "00:06:39,800"
+			},
+			"offsets": {
+				"from": 390440,
+				"to": 399800
+			},
+			"text": " And so, yes, intimidating, but kind of things were distilled and out flew plasma MVP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,800",
+				"to": "00:06:42,400"
+			},
+			"offsets": {
+				"from": 399800,
+				"to": 402400
+			},
+			"text": " And this was super basic functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,400",
+				"to": "00:06:44,720"
+			},
+			"offsets": {
+				"from": 402400,
+				"to": 404720
+			},
+			"text": " So essentially it's a UTXO payments block chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,720",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 404720,
+				"to": 409680
+			},
+			"text": " It's even simpler than Bitcoin because it doesn't have Bitcoin scripting."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:57,440"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 417440
+			},
+			"text": " And it's a bit more limited, at least in terms of the inputs and outputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,440",
+				"to": "00:07:04,120"
+			},
+			"offsets": {
+				"from": 417440,
+				"to": 424120
+			},
+			"text": " Anyway, so with plasma MVP and with other plasma constructions, you essentially have"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,120",
+				"to": "00:07:08,720"
+			},
+			"offsets": {
+				"from": 424120,
+				"to": 428720
+			},
+			"text": " a smart contract on your root chain that is responsible for storing the snapshots of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,720",
+				"to": "00:07:09,960"
+			},
+			"offsets": {
+				"from": 428720,
+				"to": 429960
+			},
+			"text": " state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,960",
+				"to": "00:07:20,080"
+			},
+			"offsets": {
+				"from": 429960,
+				"to": 440080
+			},
+			"text": " And so when you want to enter a plasma chain, you send assets or state to this root chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,080",
+				"to": "00:07:21,560"
+			},
+			"offsets": {
+				"from": 440080,
+				"to": 441560
+			},
+			"text": " smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,560",
+				"to": "00:07:25,760"
+			},
+			"offsets": {
+				"from": 441560,
+				"to": 445760
+			},
+			"text": " And your assets are essentially stored there and they're locked up."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,760",
+				"to": "00:07:31,360"
+			},
+			"offsets": {
+				"from": 445760,
+				"to": 451360
+			},
+			"text": " And then you can play with them on a plasma chain for a fraction of the cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,360",
+				"to": "00:07:37,680"
+			},
+			"offsets": {
+				"from": 451360,
+				"to": 457680
+			},
+			"text": " And when you're done and ready to piece out, maybe you want to interact with the rest of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,680",
+				"to": "00:07:44,320"
+			},
+			"offsets": {
+				"from": 457680,
+				"to": 464320
+			},
+			"text": " Ethereum, as you've seen from all these wonderful DevCon presentations, it's constantly expanding"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,320",
+				"to": "00:07:48,440"
+			},
+			"offsets": {
+				"from": 464320,
+				"to": 468440
+			},
+			"text": " and there's so many cool things to play with, you just exit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,440",
+				"to": "00:07:57,760"
+			},
+			"offsets": {
+				"from": 468440,
+				"to": 477760
+			},
+			"text": " Or if something goes bad, then you have to exit because it's no longer safe to essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,760",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 477760,
+				"to": 485040
+			},
+			"text": " sign off on state transitions for your assets on an invalid plasma chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:06,040"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 486040
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,040",
+				"to": "00:08:09,760"
+			},
+			"offsets": {
+				"from": 486040,
+				"to": 489760
+			},
+			"text": " So, plasma MVP got something out the door."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,760",
+				"to": "00:08:10,920"
+			},
+			"offsets": {
+				"from": 489760,
+				"to": 490920
+			},
+			"text": " It's awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,920",
+				"to": "00:08:13,800"
+			},
+			"offsets": {
+				"from": 490920,
+				"to": 493800
+			},
+			"text": " But it did have some issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,800",
+				"to": "00:08:22,920"
+			},
+			"offsets": {
+				"from": 493800,
+				"to": 502920
+			},
+			"text": " And so the two kind of issues with plasma MVP and plasma MVP architectures is that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,920",
+				"to": "00:08:26,840"
+			},
+			"offsets": {
+				"from": 502920,
+				"to": 506840
+			},
+			"text": " plasma MVP actually introduces time constraint."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,840",
+				"to": "00:08:36,160"
+			},
+			"offsets": {
+				"from": 506840,
+				"to": 516160
+			},
+			"text": " So essentially, this essentially forces every user to be alive for every given period of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,160",
+				"to": "00:08:37,720"
+			},
+			"offsets": {
+				"from": 516160,
+				"to": 517720
+			},
+			"text": " time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,720",
+				"to": "00:08:40,040"
+			},
+			"offsets": {
+				"from": 517720,
+				"to": 520040
+			},
+			"text": " Or it requires someone, the user, trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,040",
+				"to": "00:08:47,600"
+			},
+			"offsets": {
+				"from": 520040,
+				"to": 527600
+			},
+			"text": " So a trusted third party to actually watch the chain on their behalf and check it every"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,600",
+				"to": "00:08:49,920"
+			},
+			"offsets": {
+				"from": 527600,
+				"to": 529920
+			},
+			"text": " given period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,920",
+				"to": "00:08:52,400"
+			},
+			"offsets": {
+				"from": 529920,
+				"to": 532400
+			},
+			"text": " And checking it is doable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,400",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 532400,
+				"to": 539560
+			},
+			"text": " The real downside and the real constraint here is that if a plasma MVP chain is found to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:04,040"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 544040
+			},
+			"text": " be invalid, everyone has to exit within a given period of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,040",
+				"to": "00:09:08,920"
+			},
+			"offsets": {
+				"from": 544040,
+				"to": 548920
+			},
+			"text": " And this is all well and good in most situations."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,920",
+				"to": "00:09:15,880"
+			},
+			"offsets": {
+				"from": 548920,
+				"to": 555880
+			},
+			"text": " But as soon as we dig deep, getting to worst case scenarios, essentially, if you have this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,880",
+				"to": "00:09:23,800"
+			},
+			"offsets": {
+				"from": 555880,
+				"to": 563800
+			},
+			"text": " much state and this much capacity available on Ethereum, you run into trouble."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,800",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 563800,
+				"to": 566000
+			},
+			"text": " And there are things we can do to minimize this."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,640"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570640
+			},
+			"text": " But essentially, you kind of have to plan for it from the get go by predicting like"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,640",
+				"to": "00:09:35,800"
+			},
+			"offsets": {
+				"from": 570640,
+				"to": 575800
+			},
+			"text": " worst case scenario network congestion if a plasma chain breaks when the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,800",
+				"to": "00:09:45,080"
+			},
+			"offsets": {
+				"from": 575800,
+				"to": 585080
+			},
+			"text": " is already super congested from ICO or trade mining or one of the many things that is being"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,080",
+				"to": "00:09:49,760"
+			},
+			"offsets": {
+				"from": 585080,
+				"to": 589760
+			},
+			"text": " created right now, you essentially have to factor that in."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,760",
+				"to": "00:09:55,080"
+			},
+			"offsets": {
+				"from": 589760,
+				"to": 595080
+			},
+			"text": " And then you shouldn't allow any essentially too much state."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,080",
+				"to": "00:10:00,200"
+			},
+			"offsets": {
+				"from": 595080,
+				"to": 600200
+			},
+			"text": " And you want to make sure that it can all be exited within the given time period."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,200",
+				"to": "00:10:07,960"
+			},
+			"offsets": {
+				"from": 600200,
+				"to": 607960
+			},
+			"text": " Other downside is that essentially your watcher that's validating the child chain actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,960",
+				"to": "00:10:10,120"
+			},
+			"offsets": {
+				"from": 607960,
+				"to": 610120
+			},
+			"text": " has to validate everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,120",
+				"to": "00:10:14,720"
+			},
+			"offsets": {
+				"from": 610120,
+				"to": 614720
+			},
+			"text": " So you could have a super fast plasma chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,720",
+				"to": "00:10:22,480"
+			},
+			"offsets": {
+				"from": 614720,
+				"to": 622480
+			},
+			"text": " But then essentially, the watchers are going to have a lot of trouble validating it because"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,480",
+				"to": "00:10:26,280"
+			},
+			"offsets": {
+				"from": 622480,
+				"to": 626280
+			},
+			"text": " -- whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,280",
+				"to": "00:10:31,840"
+			},
+			"offsets": {
+				"from": 626280,
+				"to": 631840
+			},
+			"text": " The watchers are going to have a bunch of trouble validating it because unless they"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,840",
+				"to": "00:10:39,520"
+			},
+			"offsets": {
+				"from": 631840,
+				"to": 639520
+			},
+			"text": " are using like dedicated hardware or heavy AWS computing, they're everyday like laptops."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,520",
+				"to": "00:10:43,200"
+			},
+			"offsets": {
+				"from": 639520,
+				"to": 643200
+			},
+			"text": " Just won't be able to keep up."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,200",
+				"to": "00:10:47,840"
+			},
+			"offsets": {
+				"from": 643200,
+				"to": 647840
+			},
+			"text": " Yo, Kelvin, get up here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,840",
+				"to": "00:10:52,680"
+			},
+			"offsets": {
+				"from": 647840,
+				"to": 652680
+			},
+			"text": " Anyway, so plasma has these time constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,680",
+				"to": "00:10:56,520"
+			},
+			"offsets": {
+				"from": 652680,
+				"to": 656520
+			},
+			"text": " It also -- and you have to validate the entire chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,520",
+				"to": "00:10:59,280"
+			},
+			"offsets": {
+				"from": 656520,
+				"to": 659280
+			},
+			"text": " You also have confirmation signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,280",
+				"to": "00:11:05,600"
+			},
+			"offsets": {
+				"from": 659280,
+				"to": 665600
+			},
+			"text": " So what this means is essentially if I -- boom, thank you, Kelvin."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,600",
+				"to": "00:11:14,800"
+			},
+			"offsets": {
+				"from": 665600,
+				"to": 674800
+			},
+			"text": " If Alice sends Bob value, Bob does not actually have access to this value until he receives"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,800",
+				"to": "00:11:15,800"
+			},
+			"offsets": {
+				"from": 674800,
+				"to": 675800
+			},
+			"text": " the confirmation."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,800",
+				"to": "00:11:21,720"
+			},
+			"offsets": {
+				"from": 675800,
+				"to": 681720
+			},
+			"text": " So as you can see here, Alice makes the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,720",
+				"to": "00:11:26,720"
+			},
+			"offsets": {
+				"from": 681720,
+				"to": 686720
+			},
+			"text": " Then she actually has to watch it first being included in a plasma chain and then being"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,720",
+				"to": "00:11:28,240"
+			},
+			"offsets": {
+				"from": 686720,
+				"to": 688240
+			},
+			"text": " included on a serium."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,240",
+				"to": "00:11:31,360"
+			},
+			"offsets": {
+				"from": 688240,
+				"to": 691360
+			},
+			"text": " And then she signs a confirmation signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,360",
+				"to": "00:11:36,400"
+			},
+			"offsets": {
+				"from": 691360,
+				"to": 696400
+			},
+			"text": " And only then does Bob have custody of said value."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,400",
+				"to": "00:11:41,240"
+			},
+			"offsets": {
+				"from": 696400,
+				"to": 701240
+			},
+			"text": " So boom, now it's unlocked and now it's finally Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,240",
+				"to": "00:11:50,240"
+			},
+			"offsets": {
+				"from": 701240,
+				"to": 710240
+			},
+			"text": " And so this is bummer because essentially it's pretty horrible for UI because all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,240",
+				"to": "00:11:55,400"
+			},
+			"offsets": {
+				"from": 710240,
+				"to": 715400
+			},
+			"text": " a sudden, not only does a user have to sign once, but that user has to sign once wait a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,400",
+				"to": "00:12:01,040"
+			},
+			"offsets": {
+				"from": 715400,
+				"to": 721040
+			},
+			"text": " period of time to watch their transaction be included on a serium."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,040",
+				"to": "00:12:03,480"
+			},
+			"offsets": {
+				"from": 721040,
+				"to": 723480
+			},
+			"text": " And then they have to sign again."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,480",
+				"to": "00:12:06,360"
+			},
+			"offsets": {
+				"from": 723480,
+				"to": 726360
+			},
+			"text": " There's also a grieving vector."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,360",
+				"to": "00:12:14,400"
+			},
+			"offsets": {
+				"from": 726360,
+				"to": 734400
+			},
+			"text": " And so essentially this is kind of what inspired more viable plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,400",
+				"to": "00:12:18,400"
+			},
+			"offsets": {
+				"from": 734400,
+				"to": 738400
+			},
+			"text": " Yeah, Kelvin, Kelvin right there, main man, main man behind that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,400",
+				"to": "00:12:25,000"
+			},
+			"offsets": {
+				"from": 738400,
+				"to": 745000
+			},
+			"text": " And essentially the big thing here is that whereas with plasma MVP, you're only able"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 745000,
+				"to": 752000
+			},
+			"text": " to exit outputs with more viable plasma, you're able to exit inputs as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:38,920"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 758920
+			},
+			"text": " And so essentially the clear difference between more viable plasma and minimum viable plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,920",
+				"to": "00:12:45,400"
+			},
+			"offsets": {
+				"from": 758920,
+				"to": 765400
+			},
+			"text": " is that with minimum essentially transactions are invalid by default and they only become"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,400",
+				"to": "00:12:48,920"
+			},
+			"offsets": {
+				"from": 765400,
+				"to": 768920
+			},
+			"text": " valid after a confirmation signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,920",
+				"to": "00:12:58,560"
+			},
+			"offsets": {
+				"from": 768920,
+				"to": 778560
+			},
+			"text": " Whereas with more viable plasma, essentially you have transactions that are valid by default"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,560",
+				"to": "00:13:05,720"
+			},
+			"offsets": {
+				"from": 778560,
+				"to": 785720
+			},
+			"text": " and then if something goes wrong, you essentially have an exit protocol, an interactive game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,720",
+				"to": "00:13:08,080"
+			},
+			"offsets": {
+				"from": 785720,
+				"to": 788080
+			},
+			"text": " which you can use to exit the inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,080",
+				"to": "00:13:13,120"
+			},
+			"offsets": {
+				"from": 788080,
+				"to": 793120
+			},
+			"text": " So yeah, removes confirmation signatures and removes the grieving vector."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,120",
+				"to": "00:13:15,120"
+			},
+			"offsets": {
+				"from": 793120,
+				"to": 795120
+			},
+			"text": " Super, super cool stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,120",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 795120,
+				"to": 801000
+			},
+			"text": " But you still have to validate the entire chain and it still has the time constraints."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:23,960"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 803960
+			},
+			"text": " So you're vulnerable to network congestion."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,960",
+				"to": "00:13:28,240"
+			},
+			"offsets": {
+				"from": 803960,
+				"to": 808240
+			},
+			"text": " Boom, plasma cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,240",
+				"to": "00:13:36,960"
+			},
+			"offsets": {
+				"from": 808240,
+				"to": 816960
+			},
+			"text": " And so essentially plasma cache gets rid of the time constraints and also it essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,960",
+				"to": "00:13:42,600"
+			},
+			"offsets": {
+				"from": 816960,
+				"to": 822600
+			},
+			"text": " allows users to only watch their own assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,600",
+				"to": "00:13:45,680"
+			},
+			"offsets": {
+				"from": 822600,
+				"to": 825680
+			},
+			"text": " And so how does this work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,680",
+				"to": "00:13:53,080"
+			},
+			"offsets": {
+				"from": 825680,
+				"to": 833080
+			},
+			"text": " Well, every all value on a plasma cache chain is essentially treated as an NFT."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,080",
+				"to": "00:14:00,840"
+			},
+			"offsets": {
+				"from": 833080,
+				"to": 840840
+			},
+			"text": " So as opposed to having a large pool of assets like you do on plasma MVP, where if one invalid"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,840",
+				"to": "00:14:08,160"
+			},
+			"offsets": {
+				"from": 840840,
+				"to": 848160
+			},
+			"text": " exit gets through, essentially the child chain consensus can steal everything in the smart"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,160",
+				"to": "00:14:17,320"
+			},
+			"offsets": {
+				"from": 848160,
+				"to": 857320
+			},
+			"text": " contract with plasma cache if there's an invalid exit, only a discrete piece of value, a specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,320",
+				"to": "00:14:23,080"
+			},
+			"offsets": {
+				"from": 857320,
+				"to": 863080
+			},
+			"text": " user's value can be stolen, which is why users only have to watch their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,080",
+				"to": "00:14:28,120"
+			},
+			"offsets": {
+				"from": 863080,
+				"to": 868120
+			},
+			"text": " NFTs, I kind of think of them as like kind of like collectible, so yeah, kind of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,120",
+				"to": "00:14:31,160"
+			},
+			"offsets": {
+				"from": 868120,
+				"to": 871160
+			},
+			"text": " action figure, action figure."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,160",
+				"to": "00:14:36,240"
+			},
+			"offsets": {
+				"from": 871160,
+				"to": 876240
+			},
+			"text": " But within the context of plasma and vp or sorry, plasma cache, it's actually used to represent"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,240",
+				"to": "00:14:37,240"
+			},
+			"offsets": {
+				"from": 876240,
+				"to": 877240
+			},
+			"text": " value."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,240",
+				"to": "00:14:39,840"
+			},
+			"offsets": {
+				"from": 877240,
+				"to": 879840
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,840",
+				"to": "00:14:47,720"
+			},
+			"offsets": {
+				"from": 879840,
+				"to": 887720
+			},
+			"text": " And so here when Alice deposits, new NFT is created with the value that Alice deposited."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,720",
+				"to": "00:14:53,520"
+			},
+			"offsets": {
+				"from": 887720,
+				"to": 893520
+			},
+			"text": " And then Alice only has to watch that value when she exits."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,520",
+				"to": "00:15:00,880"
+			},
+			"offsets": {
+				"from": 893520,
+				"to": 900880
+			},
+			"text": " All of a sudden she can stop watching and everything's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,880",
+				"to": "00:15:05,160"
+			},
+			"offsets": {
+				"from": 900880,
+				"to": 905160
+			},
+			"text": " And then essentially, anyway."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,160",
+				"to": "00:15:12,560"
+			},
+			"offsets": {
+				"from": 905160,
+				"to": 912560
+			},
+			"text": " Yeah, so essentially users only have to check their own value."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,560",
+				"to": "00:15:19,360"
+			},
+			"offsets": {
+				"from": 912560,
+				"to": 919360
+			},
+			"text": " And this is amazing because it essentially reduces the computational requirements for"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,360",
+				"to": "00:15:26,080"
+			},
+			"offsets": {
+				"from": 919360,
+				"to": 926080
+			},
+			"text": " users to validate a plasma cache chain because you can kind of divide it amongst all users."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,080",
+				"to": "00:15:34,080"
+			},
+			"offsets": {
+				"from": 926080,
+				"to": 934080
+			},
+			"text": " And so now the kind of heavy computational requirements are only on the child chain consensus, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,080",
+				"to": "00:15:42,600"
+			},
+			"offsets": {
+				"from": 934080,
+				"to": 942600
+			},
+			"text": " is a lot less limiting because they are expected to be able to have fairly powerful hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,600",
+				"to": "00:15:45,560"
+			},
+			"offsets": {
+				"from": 942600,
+				"to": 945560
+			},
+			"text": " Then there was plasma Xt."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,560",
+				"to": "00:15:53,800"
+			},
+			"offsets": {
+				"from": 945560,
+				"to": 953800
+			},
+			"text": " And so one downside to plasma cache is that for each NFT that a user holds, you essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,800",
+				"to": "00:15:59,400"
+			},
+			"offsets": {
+				"from": 953800,
+				"to": 959400
+			},
+			"text": " have to have a poof for each block in the plasma cache chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,400",
+				"to": "00:16:08,680"
+			},
+			"offsets": {
+				"from": 959400,
+				"to": 968680
+			},
+			"text": " And so if you spend and transfer ownership of this NFT, you have to have a poof of membership"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,680",
+				"to": "00:16:10,360"
+			},
+			"offsets": {
+				"from": 968680,
+				"to": 970360
+			},
+			"text": " for this transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,360",
+				"to": "00:16:17,320"
+			},
+			"offsets": {
+				"from": 970360,
+				"to": 977320
+			},
+			"text": " And but even if you're just sitting with your NFT value and not using it all, you still"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,320",
+				"to": "00:16:23,480"
+			},
+			"offsets": {
+				"from": 977320,
+				"to": 983480
+			},
+			"text": " have to keep track of the value and you essentially have to constantly be collecting proofs of"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,480",
+				"to": "00:16:33,720"
+			},
+			"offsets": {
+				"from": 983480,
+				"to": 993720
+			},
+			"text": " non-inclusion to be able to prove that you have not transferred your NFT like in secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,720",
+				"to": "00:16:38,800"
+			},
+			"offsets": {
+				"from": 993720,
+				"to": 998800
+			},
+			"text": " And so essentially when you're transferring ownership of the NFT, you have to pass around"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,800",
+				"to": "00:16:41,120"
+			},
+			"offsets": {
+				"from": 998800,
+				"to": 1001120
+			},
+			"text": " all its history as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,120",
+				"to": "00:16:47,360"
+			},
+			"offsets": {
+				"from": 1001120,
+				"to": 1007360
+			},
+			"text": " And if you're holding a particular NFT for a year, this can actually end up being a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,360",
+				"to": "00:16:48,440"
+			},
+			"offsets": {
+				"from": 1007360,
+				"to": 1008440
+			},
+			"text": " of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,440",
+				"to": "00:16:59,160"
+			},
+			"offsets": {
+				"from": 1008440,
+				"to": 1019160
+			},
+			"text": " And so what plasma Xt does is it essentially allows users to checkpoint their NFTs on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,160",
+				"to": "00:17:00,200"
+			},
+			"offsets": {
+				"from": 1019160,
+				"to": 1020200
+			},
+			"text": " root chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,200",
+				"to": "00:17:07,360"
+			},
+			"offsets": {
+				"from": 1020200,
+				"to": 1027360
+			},
+			"text": " And so by checkpointing their NFTs every so often, that's essentially a reset on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,360",
+				"to": "00:17:09,840"
+			},
+			"offsets": {
+				"from": 1027360,
+				"to": 1029840
+			},
+			"text": " amount of data they have to store."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,840",
+				"to": "00:17:18,000"
+			},
+			"offsets": {
+				"from": 1029840,
+				"to": 1038000
+			},
+			"text": " And you can actually develop like very targeted algorithms for checkpointing so that users"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,000",
+				"to": "00:17:23,800"
+			},
+			"offsets": {
+				"from": 1038000,
+				"to": 1043800
+			},
+			"text": " who are more sensitive to data storage don't have to keep track of it as much."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,800",
+				"to": "00:17:29,480"
+			},
+			"offsets": {
+				"from": 1043800,
+				"to": 1049480
+			},
+			"text": " This is super awesome for like essentially computationally restricted devices because"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,480",
+				"to": "00:17:32,080"
+			},
+			"offsets": {
+				"from": 1049480,
+				"to": 1052080
+			},
+			"text": " yeah, their storage is super limited."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,080",
+				"to": "00:17:33,080"
+			},
+			"offsets": {
+				"from": 1052080,
+				"to": 1053080
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,080",
+				"to": "00:17:42,080"
+			},
+			"offsets": {
+				"from": 1053080,
+				"to": 1062080
+			},
+			"text": " And then we have plasma debit essentially, which attempts to deal with the non-fungibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,080",
+				"to": "00:17:48,480"
+			},
+			"offsets": {
+				"from": 1062080,
+				"to": 1068480
+			},
+			"text": " of tokens because it's great that essentially plasma cache has better properties from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,480",
+				"to": "00:17:53,640"
+			},
+			"offsets": {
+				"from": 1068480,
+				"to": 1073640
+			},
+			"text": " get go but non-fungibility is a huge issue in a lot of cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,640",
+				"to": "00:18:03,400"
+			},
+			"offsets": {
+				"from": 1073640,
+				"to": 1083400
+			},
+			"text": " And so what plasma debit essentially does is it allows users to have their NFTs but it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,400",
+				"to": "00:18:08,160"
+			},
+			"offsets": {
+				"from": 1083400,
+				"to": 1088160
+			},
+			"text": " allows users to kind of treat the NFTs as containers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,160",
+				"to": "00:18:11,160"
+			},
+			"offsets": {
+				"from": 1088160,
+				"to": 1091160
+			},
+			"text": " So an NFT could be partially full."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,160",
+				"to": "00:18:15,600"
+			},
+			"offsets": {
+				"from": 1091160,
+				"to": 1095600
+			},
+			"text": " And then a user can essentially open up a state channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,600",
+				"to": "00:18:21,960"
+			},
+			"offsets": {
+				"from": 1095600,
+				"to": 1101960
+			},
+			"text": " In most cases it would be with the child chain's consensus mechanism and essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,960",
+				"to": "00:18:29,080"
+			},
+			"offsets": {
+				"from": 1101960,
+				"to": 1109080
+			},
+			"text": " they're essentially able to transfer value in and out of their NFTs up to its total value."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,080",
+				"to": "00:18:37,560"
+			},
+			"offsets": {
+				"from": 1109080,
+				"to": 1117560
+			},
+			"text": " And so this essentially grants a modicum of fungibility which is super exciting and awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,560",
+				"to": "00:18:40,480"
+			},
+			"offsets": {
+				"from": 1117560,
+				"to": 1120480
+			},
+			"text": " And yeah, now I'm going to hand it over to Kelvin."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,480",
+				"to": "00:18:41,480"
+			},
+			"offsets": {
+				"from": 1120480,
+				"to": 1121480
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,480",
+				"to": "00:18:43,360"
+			},
+			"offsets": {
+				"from": 1121480,
+				"to": 1123360
+			},
+			"text": " Okay, so I'm going to talk about the future of plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,360",
+				"to": "00:18:48,880"
+			},
+			"offsets": {
+				"from": 1123360,
+				"to": 1128880
+			},
+			"text": " I'm going to make this as quick as I possibly can and click this a bunch so it doesn't get"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,880",
+				"to": "00:18:49,880"
+			},
+			"offsets": {
+				"from": 1128880,
+				"to": 1129880
+			},
+			"text": " blocked."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,880",
+				"to": "00:18:54,040"
+			},
+			"offsets": {
+				"from": 1129880,
+				"to": 1134040
+			},
+			"text": " So I think a lot of people are wondering where is plasma headed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,040",
+				"to": "00:18:59,480"
+			},
+			"offsets": {
+				"from": 1134040,
+				"to": 1139480
+			},
+			"text": " And these are sort of the things that I think are really interesting in the future of plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,480",
+				"to": "00:19:04,880"
+			},
+			"offsets": {
+				"from": 1139480,
+				"to": 1144880
+			},
+			"text": " I'll get into more detail about each one of these but generally it's zero-naller stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,880",
+				"to": "00:19:11,200"
+			},
+			"offsets": {
+				"from": 1144880,
+				"to": 1151200
+			},
+			"text": " Some new research is coming around plasma cache then formalizing plasma as a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,200",
+				"to": "00:19:13,560"
+			},
+			"offsets": {
+				"from": 1151200,
+				"to": 1153560
+			},
+			"text": " So what actually is plasma?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,560",
+				"to": "00:19:16,880"
+			},
+			"offsets": {
+				"from": 1153560,
+				"to": 1156880
+			},
+			"text": " And then sort of the holy grail which is generalized plasma."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,880",
+				"to": "00:19:18,400"
+			},
+			"offsets": {
+				"from": 1156880,
+				"to": 1158400
+			},
+			"text": " That's the high level of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,400",
+				"to": "00:19:20,600"
+			},
+			"offsets": {
+				"from": 1158400,
+				"to": 1160600
+			},
+			"text": " So the first thing here is zero knowledge."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,600",
+				"to": "00:19:25,040"
+			},
+			"offsets": {
+				"from": 1160600,
+				"to": 1165040
+			},
+			"text": " I think we've seen something of what I like to call a SNARK NATO recently where a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,040",
+				"to": "00:19:30,120"
+			},
+			"offsets": {
+				"from": 1165040,
+				"to": 1170120
+			},
+			"text": " people have been designing these zero knowledge constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,120",
+				"to": "00:19:35,440"
+			},
+			"offsets": {
+				"from": 1170120,
+				"to": 1175440
+			},
+			"text": " And I would like to attribute some of that to Barry Whitehat who's been doing a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,440",
+				"to": "00:19:40,960"
+			},
+			"offsets": {
+				"from": 1175440,
+				"to": 1180960
+			},
+			"text": " awesome work with SNARKs and actually building SNARK based applications on Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,960",
+				"to": "00:19:46,320"
+			},
+			"offsets": {
+				"from": 1180960,
+				"to": 1186320
+			},
+			"text": " And I think that that sort of spurred a lot of awesome people saying, \"Hey, how do we,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,320",
+				"to": "00:19:49,960"
+			},
+			"offsets": {
+				"from": 1186320,
+				"to": 1189960
+			},
+			"text": " you know, this thing might actually start to be production ready soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,960",
+				"to": "00:19:51,480"
+			},
+			"offsets": {
+				"from": 1189960,
+				"to": 1191480
+			},
+			"text": " Let's start building applications with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,480",
+				"to": "00:19:53,160"
+			},
+			"offsets": {
+				"from": 1191480,
+				"to": 1193160
+			},
+			"text": " Let's start designing applications.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,160",
+				"to": "00:19:58,400"
+			},
+			"offsets": {
+				"from": 1193160,
+				"to": 1198400
+			},
+			"text": " So I have this feeling that, you know, five to ten years from now we'll see half of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,400",
+				"to": "00:20:02,800"
+			},
+			"offsets": {
+				"from": 1198400,
+				"to": 1202800
+			},
+			"text": " blockchain problems that we have just solved by zero knowledge constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,800",
+				"to": "00:20:08,240"
+			},
+			"offsets": {
+				"from": 1202800,
+				"to": 1208240
+			},
+			"text": " And I think that, you know, people are starting to recognize that as well right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,240",
+				"to": "00:20:11,160"
+			},
+			"offsets": {
+				"from": 1208240,
+				"to": 1211160
+			},
+			"text": " People are building things like plasma snap or rollback."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,160",
+				"to": "00:20:13,640"
+			},
+			"offsets": {
+				"from": 1211160,
+				"to": 1213640
+			},
+			"text": " And I won't really go into detail about how these things work."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,640",
+				"to": "00:20:17,880"
+			},
+			"offsets": {
+				"from": 1213640,
+				"to": 1217880
+			},
+			"text": " But generally it's solving a lot of the things that we've solved so far with crypto economic"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,880",
+				"to": "00:20:22,080"
+			},
+			"offsets": {
+				"from": 1217880,
+				"to": 1222080
+			},
+			"text": " constructions just straight up with cryptographic constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,080",
+				"to": "00:20:26,640"
+			},
+			"offsets": {
+				"from": 1222080,
+				"to": 1226640
+			},
+			"text": " And that generally means that it's much more efficient and we have to worry about a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,640",
+				"to": "00:20:29,200"
+			},
+			"offsets": {
+				"from": 1226640,
+				"to": 1229200
+			},
+			"text": " less."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,200",
+				"to": "00:20:30,960"
+			},
+			"offsets": {
+				"from": 1229200,
+				"to": 1230960
+			},
+			"text": " It's pretty amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,960",
+				"to": "00:20:33,960"
+			},
+			"offsets": {
+				"from": 1230960,
+				"to": 1233960
+			},
+			"text": " If you're very interested I would read into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,960",
+				"to": "00:20:38,280"
+			},
+			"offsets": {
+				"from": 1233960,
+				"to": 1238280
+			},
+			"text": " You should look into zero knowledge applications in general and start to design these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,280",
+				"to": "00:20:43,720"
+			},
+			"offsets": {
+				"from": 1238280,
+				"to": 1243720
+			},
+			"text": " because in a few years you should be ready when they start to get production ready."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,720",
+				"to": "00:20:47,200"
+			},
+			"offsets": {
+				"from": 1243720,
+				"to": 1247200
+			},
+			"text": " So, yeah, this is my SNARK NATO slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,200",
+				"to": "00:20:48,200"
+			},
+			"offsets": {
+				"from": 1247200,
+				"to": 1248200
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,200",
+				"to": "00:20:53,520"
+			},
+			"offsets": {
+				"from": 1248200,
+				"to": 1253520
+			},
+			"text": " So this is my brief slide about plasma cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,520",
+				"to": "00:20:56,400"
+			},
+			"offsets": {
+				"from": 1253520,
+				"to": 1256400
+			},
+			"text": " So new plasma cache is not actually a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,400",
+				"to": "00:21:01,120"
+			},
+			"offsets": {
+				"from": 1256400,
+				"to": 1261120
+			},
+			"text": " I don't take pictures of this slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,120",
+				"to": "00:21:04,800"
+			},
+			"offsets": {
+				"from": 1261120,
+				"to": 1264800
+			},
+			"text": " So really what happened was that for a long time plasma cache was this thing that was sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,800",
+				"to": "00:21:07,960"
+			},
+			"offsets": {
+				"from": 1264800,
+				"to": 1267960
+			},
+			"text": " of useful for some things but not useful for a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,960",
+				"to": "00:21:12,320"
+			},
+			"offsets": {
+				"from": 1267960,
+				"to": 1272320
+			},
+			"text": " And we started doing this work and we had some research workshops and Ben Jones came"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,320",
+				"to": "00:21:17,040"
+			},
+			"offsets": {
+				"from": 1272320,
+				"to": 1277040
+			},
+			"text": " up with an interesting construction for how to make things a little bit more fungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,040",
+				"to": "00:21:21,160"
+			},
+			"offsets": {
+				"from": 1277040,
+				"to": 1281160
+			},
+			"text": " and Vitalik put up some posts right so Vitalik did what Vitalik does which is like make these"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,160",
+				"to": "00:21:26,920"
+			},
+			"offsets": {
+				"from": 1281160,
+				"to": 1286920
+			},
+			"text": " posts that spur a ton of conversation about stuff and a lot of interesting plasma cache"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,920",
+				"to": "00:21:28,160"
+			},
+			"offsets": {
+				"from": 1286920,
+				"to": 1288160
+			},
+			"text": " research came out of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,160",
+				"to": "00:21:33,120"
+			},
+			"offsets": {
+				"from": 1288160,
+				"to": 1293120
+			},
+			"text": " And so we had this thing that we originally calling plasma cache flow which was like whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,120",
+				"to": "00:21:39,440"
+			},
+			"offsets": {
+				"from": 1293120,
+				"to": 1299440
+			},
+			"text": " That's not a real thing anymore either and eventually all these things got combined"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,440",
+				"to": "00:21:41,600"
+			},
+			"offsets": {
+				"from": 1299440,
+				"to": 1301600
+			},
+			"text": " to one big thing that we're calling plasma prime."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,600",
+				"to": "00:21:45,520"
+			},
+			"offsets": {
+				"from": 1301600,
+				"to": 1305520
+			},
+			"text": " So it's basically the next giant iteration on top of plasma cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,520",
+				"to": "00:21:50,160"
+			},
+			"offsets": {
+				"from": 1305520,
+				"to": 1310160
+			},
+			"text": " Carl talked about it a little bit in his talk a few days ago but the high level is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,160",
+				"to": "00:21:54,640"
+			},
+			"offsets": {
+				"from": 1310160,
+				"to": 1314640
+			},
+			"text": " we've taken all of these constructions and kind of pasted them together and made this"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,640",
+				"to": "00:21:59,000"
+			},
+			"offsets": {
+				"from": 1314640,
+				"to": 1319000
+			},
+			"text": " thing that I think is actually quite good."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,000",
+				"to": "00:22:02,480"
+			},
+			"offsets": {
+				"from": 1319000,
+				"to": 1322480
+			},
+			"text": " There's still a lot of work to be done but it's definitely a massive improvement on top"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,480",
+				"to": "00:22:07,520"
+			},
+			"offsets": {
+				"from": 1322480,
+				"to": 1327520
+			},
+			"text": " of plasma cache and this is where a lot of research I'm assuming in the next few months"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,520",
+				"to": "00:22:10,920"
+			},
+			"offsets": {
+				"from": 1327520,
+				"to": 1330920
+			},
+			"text": " is really going to go if not the next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,920",
+				"to": "00:22:15,320"
+			},
+			"offsets": {
+				"from": 1330920,
+				"to": 1335320
+			},
+			"text": " Trying to figure out can we take this and really push this to something that's production"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,320",
+				"to": "00:22:21,280"
+			},
+			"offsets": {
+				"from": 1335320,
+				"to": 1341280
+			},
+			"text": " ready that you can have a fantastic payments and exchange platform on top of."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,280",
+				"to": "00:22:25,280"
+			},
+			"offsets": {
+				"from": 1341280,
+				"to": 1345280
+			},
+			"text": " And I think it is a big improvement over MVP but there's still a lot to be fleshed out"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,280",
+				"to": "00:22:29,080"
+			},
+			"offsets": {
+				"from": 1345280,
+				"to": 1349080
+			},
+			"text": " and that's where people are going to be spending time."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,080",
+				"to": "00:22:31,040"
+			},
+			"offsets": {
+				"from": 1349080,
+				"to": 1351040
+			},
+			"text": " So actually here is formalization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,040",
+				"to": "00:22:34,880"
+			},
+			"offsets": {
+				"from": 1351040,
+				"to": 1354880
+			},
+			"text": " So I think plasma is a confusing term."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,880",
+				"to": "00:22:36,640"
+			},
+			"offsets": {
+				"from": 1354880,
+				"to": 1356640
+			},
+			"text": " Nobody really knows what plasma is."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,640",
+				"to": "00:22:37,640"
+			},
+			"offsets": {
+				"from": 1356640,
+				"to": 1357640
+			},
+			"text": " I don't know."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,640",
+				"to": "00:22:39,560"
+			},
+			"offsets": {
+				"from": 1357640,
+				"to": 1359560
+			},
+			"text": " It's kind of just been thrown out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,560",
+				"to": "00:22:41,800"
+			},
+			"offsets": {
+				"from": 1359560,
+				"to": 1361800
+			},
+			"text": " The paper defines plasma as one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,800",
+				"to": "00:22:45,920"
+			},
+			"offsets": {
+				"from": 1361800,
+				"to": 1365920
+			},
+			"text": " The researchers define it as something else, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,920",
+				"to": "00:22:49,000"
+			},
+			"offsets": {
+				"from": 1365920,
+				"to": 1369000
+			},
+			"text": " It's very, very confusing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,000",
+				"to": "00:22:51,160"
+			},
+			"offsets": {
+				"from": 1369000,
+				"to": 1371160
+			},
+			"text": " And my conclusion here is that we need more formalization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,160",
+				"to": "00:22:52,560"
+			},
+			"offsets": {
+				"from": 1371160,
+				"to": 1372560
+			},
+			"text": " So this is my first attempt."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,560",
+				"to": "00:22:59,120"
+			},
+			"offsets": {
+				"from": 1372560,
+				"to": 1379120
+			},
+			"text": " And so this is the standard model of grandtian which is the most elegant physics we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,120",
+				"to": "00:23:00,120"
+			},
+			"offsets": {
+				"from": 1379120,
+				"to": 1380120
+			},
+			"text": " or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,120",
+				"to": "00:23:05,480"
+			},
+			"offsets": {
+				"from": 1380120,
+				"to": 1385480
+			},
+			"text": " But basically formalization is something that yes it makes mathematicians happy but it also"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,480",
+				"to": "00:23:07,240"
+			},
+			"offsets": {
+				"from": 1385480,
+				"to": 1387240
+			},
+			"text": " clears up a lot of confusion."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,240",
+				"to": "00:23:11,720"
+			},
+			"offsets": {
+				"from": 1387240,
+				"to": 1391720
+			},
+			"text": " I want to be able to point to projects on Twitter and say you're claiming to be plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,720",
+				"to": "00:23:12,720"
+			},
+			"offsets": {
+				"from": 1391720,
+				"to": 1392720
+			},
+			"text": " but you're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,720",
+				"to": "00:23:18,920"
+			},
+			"offsets": {
+				"from": 1392720,
+				"to": 1398920
+			},
+			"text": " But really I want to be able to have these definitions for the certain security properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,920",
+				"to": "00:23:20,560"
+			},
+			"offsets": {
+				"from": 1398920,
+				"to": 1400560
+			},
+			"text": " that plasma chains give me."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,560",
+				"to": "00:23:25,680"
+			},
+			"offsets": {
+				"from": 1400560,
+				"to": 1405680
+			},
+			"text": " Because I believe that users have a right to understand how safe are their assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,680",
+				"to": "00:23:29,400"
+			},
+			"offsets": {
+				"from": 1405680,
+				"to": 1409400
+			},
+			"text": " What assumptions are being made with your assets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,400",
+				"to": "00:23:33,480"
+			},
+			"offsets": {
+				"from": 1409400,
+				"to": 1413480
+			},
+			"text": " So on a side chain you're making certain assumptions about the consensus mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,480",
+				"to": "00:23:36,280"
+			},
+			"offsets": {
+				"from": 1413480,
+				"to": 1416280
+			},
+			"text": " And you're not making those assumptions in a plasma chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,280",
+				"to": "00:23:43,160"
+			},
+			"offsets": {
+				"from": 1416280,
+				"to": 1423160
+			},
+			"text": " And so I would like to clear that up so we can have these really formal definitions for"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,160",
+				"to": "00:23:48,440"
+			},
+			"offsets": {
+				"from": 1423160,
+				"to": 1428440
+			},
+			"text": " what these things are and start to explain to users what these things mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,440",
+				"to": "00:23:51,240"
+			},
+			"offsets": {
+				"from": 1428440,
+				"to": 1431240
+			},
+			"text": " And I think the other big thing here is revealing the trade-off space."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,240",
+				"to": "00:23:55,320"
+			},
+			"offsets": {
+				"from": 1431240,
+				"to": 1435320
+			},
+			"text": " So really what this means is that there are certain trade-offs that you make when you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,320",
+				"to": "00:23:57,680"
+			},
+			"offsets": {
+				"from": 1435320,
+				"to": 1437680
+			},
+			"text": " design these layer two solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,680",
+				"to": "00:24:02,800"
+			},
+			"offsets": {
+				"from": 1437680,
+				"to": 1442800
+			},
+			"text": " And like I was just saying, side chains make these assumptions on the consensus mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,800",
+				"to": "00:24:04,440"
+			},
+			"offsets": {
+				"from": 1442800,
+				"to": 1444440
+			},
+			"text": " But a plasma chain doesn't."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,440",
+				"to": "00:24:06,800"
+			},
+			"offsets": {
+				"from": 1444440,
+				"to": 1446800
+			},
+			"text": " And it's like why are we making these assumptions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,800",
+				"to": "00:24:08,520"
+			},
+			"offsets": {
+				"from": 1446800,
+				"to": 1448520
+			},
+			"text": " Well we're trying to solve certain problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,520",
+				"to": "00:24:14,560"
+			},
+			"offsets": {
+				"from": 1448520,
+				"to": 1454560
+			},
+			"text": " We're trying to solve the problem of we need a strict ordering on data on these side block"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,560",
+				"to": "00:24:15,560"
+			},
+			"offsets": {
+				"from": 1454560,
+				"to": 1455560
+			},
+			"text": " chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,560",
+				"to": "00:24:18,000"
+			},
+			"offsets": {
+				"from": 1455560,
+				"to": 1458000
+			},
+			"text": " And we need data availability."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,000",
+				"to": "00:24:23,000"
+			},
+			"offsets": {
+				"from": 1458000,
+				"to": 1463000
+			},
+			"text": " And so are we going to assume that the consensus mechanism is going to give these things?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:23,000",
+				"to": "00:24:27,960"
+			},
+			"offsets": {
+				"from": 1463000,
+				"to": 1467960
+			},
+			"text": " Are we going to not assume it and try to have a fallback and have this assumption that"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,960",
+				"to": "00:24:29,720"
+			},
+			"offsets": {
+				"from": 1467960,
+				"to": 1469720
+			},
+			"text": " Ethereum is going to be live?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,720",
+				"to": "00:24:35,160"
+			},
+			"offsets": {
+				"from": 1469720,
+				"to": 1475160
+			},
+			"text": " It's all these different things and if we kind of formally define what these different"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,160",
+				"to": "00:24:39,320"
+			},
+			"offsets": {
+				"from": 1475160,
+				"to": 1479320
+			},
+			"text": " things are, we start to reveal what we're trying to actually solve."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:39,320",
+				"to": "00:24:44,960"
+			},
+			"offsets": {
+				"from": 1479320,
+				"to": 1484960
+			},
+			"text": " And it means that you reveal these knobs, right, that you could turn and solve the fundamental"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,960",
+				"to": "00:24:47,240"
+			},
+			"offsets": {
+				"from": 1484960,
+				"to": 1487240
+			},
+			"text": " problems in very different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:47,240",
+				"to": "00:24:52,680"
+			},
+			"offsets": {
+				"from": 1487240,
+				"to": 1492680
+			},
+			"text": " And I think it'll allow us to create novel constructions because we can just say, oh,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,680",
+				"to": "00:24:56,240"
+			},
+			"offsets": {
+				"from": 1492680,
+				"to": 1496240
+			},
+			"text": " we were doing this because we were trying to solve this specific problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,240",
+				"to": "00:24:59,400"
+			},
+			"offsets": {
+				"from": 1496240,
+				"to": 1499400
+			},
+			"text": " What if we solve that problem in a totally new way?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,400",
+				"to": "00:25:04,160"
+			},
+			"offsets": {
+				"from": 1499400,
+				"to": 1504160
+			},
+			"text": " I think this is really important and I know a lot of people are interested in doing this"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,160",
+				"to": "00:25:08,640"
+			},
+			"offsets": {
+				"from": 1504160,
+				"to": 1508640
+			},
+			"text": " work and so I'm hoping that we start to see a formal definition of plasma pop up soon"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,640",
+				"to": "00:25:09,640"
+			},
+			"offsets": {
+				"from": 1508640,
+				"to": 1509640
+			},
+			"text": " enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,640",
+				"to": "00:25:14,640"
+			},
+			"offsets": {
+				"from": 1509640,
+				"to": 1514640
+			},
+			"text": " So this is my, you know, I copied this off of Vlad's triangle thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,640",
+				"to": "00:25:21,320"
+			},
+			"offsets": {
+				"from": 1514640,
+				"to": 1521320
+			},
+			"text": " So this is like where we were out here before this is, you know, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,320",
+				"to": "00:25:28,040"
+			},
+			"offsets": {
+				"from": 1521320,
+				"to": 1528040
+			},
+			"text": " So this is, I'm trying to finish here because I only have a minute left."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,040",
+				"to": "00:25:33,080"
+			},
+			"offsets": {
+				"from": 1528040,
+				"to": 1533080
+			},
+			"text": " This plasma is kind of the holy grail and where a lot of people are focusing their time right"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,080",
+				"to": "00:25:34,080"
+			},
+			"offsets": {
+				"from": 1533080,
+				"to": 1534080
+			},
+			"text": " now."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,080",
+				"to": "00:25:37,320"
+			},
+			"offsets": {
+				"from": 1534080,
+				"to": 1537320
+			},
+			"text": " So this is the big one and I'm going to make a statement here."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,320",
+				"to": "00:25:43,600"
+			},
+			"offsets": {
+				"from": 1537320,
+				"to": 1543600
+			},
+			"text": " I hope this gets accepted but I'm now calling plasma apps, plaps, which if you look in urban"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,600",
+				"to": "00:25:48,600"
+			},
+			"offsets": {
+				"from": 1543600,
+				"to": 1548600
+			},
+			"text": " dictionary, it does say plasma app."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,600",
+				"to": "00:25:50,080"
+			},
+			"offsets": {
+				"from": 1548600,
+				"to": 1550080
+			},
+			"text": " It doesn't say plasma app."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,080",
+				"to": "00:25:52,480"
+			},
+			"offsets": {
+				"from": 1550080,
+				"to": 1552480
+			},
+			"text": " Don't look it up."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,480",
+				"to": "00:25:53,880"
+			},
+			"offsets": {
+				"from": 1552480,
+				"to": 1553880
+			},
+			"text": " But it's hard, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,880",
+				"to": "00:25:58,280"
+			},
+			"offsets": {
+				"from": 1553880,
+				"to": 1558280
+			},
+			"text": " So we've written stuff about why it's hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:58,280",
+				"to": "00:26:01,480"
+			},
+			"offsets": {
+				"from": 1558280,
+				"to": 1561480
+			},
+			"text": " I'm starting to think that there are actually things that are just straight up impossible"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,480",
+				"to": "00:26:06,440"
+			},
+			"offsets": {
+				"from": 1561480,
+				"to": 1566440
+			},
+			"text": " on a plasma chain and I think, you know, other layer two people will kind of understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,440",
+				"to": "00:26:11,440"
+			},
+			"offsets": {
+				"from": 1566440,
+				"to": 1571440
+			},
+			"text": " why this is but the formalization will help us understand exactly why it is that some"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,440",
+				"to": "00:26:14,120"
+			},
+			"offsets": {
+				"from": 1571440,
+				"to": 1574120
+			},
+			"text": " of these things are impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,120",
+				"to": "00:26:15,120"
+			},
+			"offsets": {
+				"from": 1574120,
+				"to": 1575120
+			},
+			"text": " But this is kind of the ideal."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,120",
+				"to": "00:26:20,320"
+			},
+			"offsets": {
+				"from": 1575120,
+				"to": 1580320
+			},
+			"text": " We want these smart contracts so we can somehow recover back to Ethereum if something bad"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,320",
+				"to": "00:26:26,840"
+			},
+			"offsets": {
+				"from": 1580320,
+				"to": 1586840
+			},
+			"text": " happens and we want people to do amazing things like run whatever, crypto kitties in"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:26,840",
+				"to": "00:26:30,680"
+			},
+			"offsets": {
+				"from": 1586840,
+				"to": 1590680
+			},
+			"text": " the plasma chain and the best thing we can do right now is payments in exchange."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,680",
+				"to": "00:26:34,920"
+			},
+			"offsets": {
+				"from": 1590680,
+				"to": 1594920
+			},
+			"text": " Payments in exchange is absolutely great but it's not generalized stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,920",
+				"to": "00:26:38,840"
+			},
+			"offsets": {
+				"from": 1594920,
+				"to": 1598840
+			},
+			"text": " So a lot of people are focusing on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,840",
+				"to": "00:26:40,640"
+			},
+			"offsets": {
+				"from": 1598840,
+				"to": 1600640
+			},
+			"text": " People have been coming up with different constructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,640",
+				"to": "00:26:42,460"
+			},
+			"offsets": {
+				"from": 1600640,
+				"to": 1602460
+			},
+			"text": " There's like plasma leap."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,460",
+				"to": "00:26:44,360"
+			},
+			"offsets": {
+				"from": 1602460,
+				"to": 1604360
+			},
+			"text": " Some other people are publishing stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,360",
+				"to": "00:26:47,680"
+			},
+			"offsets": {
+				"from": 1604360,
+				"to": 1607680
+			},
+			"text": " We're going to have a debate later about whether it's good to actually name these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,680",
+				"to": "00:26:48,680"
+			},
+			"offsets": {
+				"from": 1607680,
+				"to": 1608680
+			},
+			"text": " like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,680",
+				"to": "00:26:51,560"
+			},
+			"offsets": {
+				"from": 1608680,
+				"to": 1611560
+			},
+			"text": " I have no is the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,560",
+				"to": "00:26:54,840"
+			},
+			"offsets": {
+				"from": 1611560,
+				"to": 1614840
+			},
+			"text": " But I would say plasma VM, it's MVP backwards."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,840",
+				"to": "00:26:58,240"
+			},
+			"offsets": {
+				"from": 1614840,
+				"to": 1618240
+			},
+			"text": " I think it's a good, you know, alpha and omega."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,240",
+				"to": "00:27:00,000"
+			},
+			"offsets": {
+				"from": 1618240,
+				"to": 1620000
+			},
+			"text": " Somebody should take that name."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,000",
+				"to": "00:27:06,720"
+			},
+			"offsets": {
+				"from": 1620000,
+				"to": 1626720
+			},
+			"text": " So yeah, we're really not close to generalized plasma and I think a ton of money and time"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,720",
+				"to": "00:27:12,320"
+			},
+			"offsets": {
+				"from": 1626720,
+				"to": 1632320
+			},
+			"text": " is going to be spent looking at this in the next few months or even years."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:12,320",
+				"to": "00:27:15,440"
+			},
+			"offsets": {
+				"from": 1632320,
+				"to": 1635440
+			},
+			"text": " And yeah, so this is the Holy Grail."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,440",
+				"to": "00:27:18,640"
+			},
+			"offsets": {
+				"from": 1635440,
+				"to": 1638640
+			},
+			"text": " If you are interested in this, you can talk to me later and I can explain to you all"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,640",
+				"to": "00:27:23,840"
+			},
+			"offsets": {
+				"from": 1638640,
+				"to": 1643840
+			},
+			"text": " about why it's hard and what the work that has been done so far on this is."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,840",
+				"to": "00:27:29,720"
+			},
+			"offsets": {
+				"from": 1643840,
+				"to": 1649720
+			},
+			"text": " Yeah, so in conclusion, I'm out of time here but basically, snarks are getting useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,720",
+				"to": "00:27:36,800"
+			},
+			"offsets": {
+				"from": 1649720,
+				"to": 1656800
+			},
+			"text": " New plasma cache is plasma cache and, well, it's yeah, whatever, plasma prime is whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,800",
+				"to": "00:27:37,800"
+			},
+			"offsets": {
+				"from": 1656800,
+				"to": 1657800
+			},
+			"text": " And the plaps are coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,800",
+				"to": "00:27:42,480"
+			},
+			"offsets": {
+				"from": 1657800,
+				"to": 1662480
+			},
+			"text": " So I do hope that if there's one thing you take away from this talk, it's that plaps"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:42,480",
+				"to": "00:27:45,440"
+			},
+			"offsets": {
+				"from": 1662480,
+				"to": 1665440
+			},
+			"text": " is a new term."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,440",
+				"to": "00:27:53,880"
+			},
+			"offsets": {
+				"from": 1665440,
+				"to": 1673880
+			},
+			"text": " I credit Ben Jones as well for that term and please use it liberally."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,880",
+				"to": "00:27:55,360"
+			},
+			"offsets": {
+				"from": 1673880,
+				"to": 1675360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:55,360",
+				"to": "00:27:56,160"
+			},
+			"offsets": {
+				"from": 1675360,
+				"to": 1676160
+			},
+			"text": " Come talk to me after it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,160",
+				"to": "00:27:57,160"
+			},
+			"offsets": {
+				"from": 1676160,
+				"to": 1677160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,160",
+				"to": "00:27:58,160"
+			},
+			"offsets": {
+				"from": 1677160,
+				"to": 1678160
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:58,160",
+				"to": "00:28:00,160"
+			},
+			"offsets": {
+				"from": 1678160,
+				"to": 1680160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,160",
+				"to": "00:28:02,160"
+			},
+			"offsets": {
+				"from": 1680160,
+				"to": 1682160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,160",
+				"to": "00:28:04,160"
+			},
+			"offsets": {
+				"from": 1682160,
+				"to": 1684160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:04,160",
+				"to": "00:28:06,160"
+			},
+			"offsets": {
+				"from": 1684160,
+				"to": 1686160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,160",
+				"to": "00:28:08,160"
+			},
+			"offsets": {
+				"from": 1686160,
+				"to": 1688160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,160",
+				"to": "00:28:10,160"
+			},
+			"offsets": {
+				"from": 1688160,
+				"to": 1690160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:10,160",
+				"to": "00:28:12,160"
+			},
+			"offsets": {
+				"from": 1690160,
+				"to": 1692160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,160",
+				"to": "00:28:14,160"
+			},
+			"offsets": {
+				"from": 1692160,
+				"to": 1694160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,160",
+				"to": "00:28:16,160"
+			},
+			"offsets": {
+				"from": 1694160,
+				"to": 1696160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,160",
+				"to": "00:28:18,160"
+			},
+			"offsets": {
+				"from": 1696160,
+				"to": 1698160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,160",
+				"to": "00:28:20,160"
+			},
+			"offsets": {
+				"from": 1698160,
+				"to": 1700160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,160",
+				"to": "00:28:22,160"
+			},
+			"offsets": {
+				"from": 1700160,
+				"to": 1702160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:22,160",
+				"to": "00:28:23,160"
+			},
+			"offsets": {
+				"from": 1702160,
+				"to": 1703160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,160",
+				"to": "00:28:24,160"
+			},
+			"offsets": {
+				"from": 1703160,
+				"to": 1704160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,160",
+				"to": "00:28:25,160"
+			},
+			"offsets": {
+				"from": 1704160,
+				"to": 1705160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:25,160",
+				"to": "00:28:26,160"
+			},
+			"offsets": {
+				"from": 1705160,
+				"to": 1706160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,160",
+				"to": "00:28:27,160"
+			},
+			"offsets": {
+				"from": 1706160,
+				"to": 1707160
+			},
+			"text": " [end]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,160",
+				"to": "00:28:28,160"
+			},
+			"offsets": {
+				"from": 1707160,
+				"to": 1708160
+			},
+			"text": " [end]"
+		}
+	]
+}

@@ -1,0 +1,2309 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:19,920"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 19920
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,920",
+				"to": "00:00:22,200"
+			},
+			"offsets": {
+				"from": 19920,
+				"to": 22200
+			},
+			"text": " Thank you for having me here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,200",
+				"to": "00:00:23,320"
+			},
+			"offsets": {
+				"from": 22200,
+				"to": 23320
+			},
+			"text": " My name is Samoy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,320",
+				"to": "00:00:25,920"
+			},
+			"offsets": {
+				"from": 23320,
+				"to": 25920
+			},
+			"text": " I'm a software engineer at Protocol Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,920",
+				"to": "00:00:30,320"
+			},
+			"offsets": {
+				"from": 25920,
+				"to": 30320
+			},
+			"text": " I work on IPFS and more specifically on dynamic content."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,320",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 30320,
+				"to": 35000
+			},
+			"text": " So distributed peer-to-peer applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:37,320"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 37320
+			},
+			"text": " One of the applications I've been working on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,320",
+				"to": "00:00:40,120"
+			},
+			"offsets": {
+				"from": 37320,
+				"to": 40120
+			},
+			"text": " is called Orbin."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,120",
+				"to": "00:00:43,360"
+			},
+			"offsets": {
+				"from": 40120,
+				"to": 43360
+			},
+			"text": " I've appeared to hear chat application on IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,360",
+				"to": "00:00:46,680"
+			},
+			"offsets": {
+				"from": 43360,
+				"to": 46680
+			},
+			"text": " which we just integrated with Uport."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,680",
+				"to": "00:00:49,280"
+			},
+			"offsets": {
+				"from": 46680,
+				"to": 49280
+			},
+			"text": " You already seen it earlier here today."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,280",
+				"to": "00:00:52,800"
+			},
+			"offsets": {
+				"from": 49280,
+				"to": 52800
+			},
+			"text": " And the marriage of these two technologies is beautiful."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,800",
+				"to": "00:00:55,560"
+			},
+			"offsets": {
+				"from": 52800,
+				"to": 55560
+			},
+			"text": " So today I'm going to show you Orbin with Uport"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,560",
+				"to": "00:00:58,040"
+			},
+			"offsets": {
+				"from": 55560,
+				"to": 58040
+			},
+			"text": " and talk about how we build completely distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,040",
+				"to": "00:01:00,040"
+			},
+			"offsets": {
+				"from": 58040,
+				"to": 60040
+			},
+			"text": " applications today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,040",
+				"to": "00:01:02,520"
+			},
+			"offsets": {
+				"from": 60040,
+				"to": 62520
+			},
+			"text": " And also what we should consider when"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,520",
+				"to": "00:01:06,560"
+			},
+			"offsets": {
+				"from": 62520,
+				"to": 66560
+			},
+			"text": " we build our applications for Web 3.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,560",
+				"to": "00:01:09,960"
+			},
+			"offsets": {
+				"from": 66560,
+				"to": 69960
+			},
+			"text": " So if you heard me talking about Orbin before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,960",
+				"to": "00:01:13,040"
+			},
+			"offsets": {
+				"from": 69960,
+				"to": 73040
+			},
+			"text": " you may have had some doubts about the distributed nature"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,040",
+				"to": "00:01:13,480"
+			},
+			"offsets": {
+				"from": 73040,
+				"to": 73480
+			},
+			"text": " of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,480",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 73480,
+				"to": 78520
+			},
+			"text": " But today I'm happy to announce that Orbin is finally completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:20,680"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 80680
+			},
+			"text": " distributed and peer-to-peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,680",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 80680,
+				"to": 83960
+			},
+			"text": " There are no servers involved."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:33,040"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 93040
+			},
+			"text": " So I'm going to jump right into the demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,040",
+				"to": "00:01:35,040"
+			},
+			"offsets": {
+				"from": 93040,
+				"to": 95040
+			},
+			"text": " and show you the cool stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,040",
+				"to": "00:01:36,280"
+			},
+			"offsets": {
+				"from": 95040,
+				"to": 96280
+			},
+			"text": " Can you play the video, please?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,280",
+				"to": "00:01:46,680"
+			},
+			"offsets": {
+				"from": 96280,
+				"to": 106680
+			},
+			"text": " So when I open Orbin, I can log in simply with a nickname"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,680",
+				"to": "00:01:49,120"
+			},
+			"offsets": {
+				"from": 106680,
+				"to": 109120
+			},
+			"text": " or I can use Uport."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,120",
+				"to": "00:01:50,920"
+			},
+			"offsets": {
+				"from": 109120,
+				"to": 110920
+			},
+			"text": " When I choose Uport, it will prompt me"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,920",
+				"to": "00:01:53,280"
+			},
+			"offsets": {
+				"from": 110920,
+				"to": 113280
+			},
+			"text": " to authenticate the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,280",
+				"to": "00:01:55,800"
+			},
+			"offsets": {
+				"from": 113280,
+				"to": 115800
+			},
+			"text": " I scan the QR code with my mobile app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,800",
+				"to": "00:02:00,480"
+			},
+			"offsets": {
+				"from": 115800,
+				"to": 120480
+			},
+			"text": " and Orbin will pull the profile from the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,480",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 120480,
+				"to": 122840
+			},
+			"text": " Now, when I log in the first time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:05,560"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 125560
+			},
+			"text": " Uport will ask me to sign my Orbin key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,560",
+				"to": "00:02:09,200"
+			},
+			"offsets": {
+				"from": 125560,
+				"to": 129200
+			},
+			"text": " which then gets added to my Uport profile"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,200",
+				"to": "00:02:13,280"
+			},
+			"offsets": {
+				"from": 129200,
+				"to": 133280
+			},
+			"text": " and will work as the public signing key for the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,280",
+				"to": "00:02:15,640"
+			},
+			"offsets": {
+				"from": 133280,
+				"to": 135640
+			},
+			"text": " that I'm sending in Orbin."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,640",
+				"to": "00:02:18,240"
+			},
+			"offsets": {
+				"from": 135640,
+				"to": 138240
+			},
+			"text": " So once I'm logged in, I can join DevCon 2 channel"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,240",
+				"to": "00:02:20,880"
+			},
+			"offsets": {
+				"from": 138240,
+				"to": 140880
+			},
+			"text": " and start chatting."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,880",
+				"to": "00:02:24,040"
+			},
+			"offsets": {
+				"from": 140880,
+				"to": 144040
+			},
+			"text": " One of the really cool features of Orbin"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,040",
+				"to": "00:02:26,280"
+			},
+			"offsets": {
+				"from": 144040,
+				"to": 146280
+			},
+			"text": " is the file integration with IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,280",
+				"to": "00:02:29,720"
+			},
+			"offsets": {
+				"from": 146280,
+				"to": 149720
+			},
+			"text": " So I can drag and drop files and folders directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,720",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 149720,
+				"to": 152960
+			},
+			"text": " into the chat and share it with the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:36,080"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 156080
+			},
+			"text": " Code, pictures, video, audio."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,080",
+				"to": "00:02:38,280"
+			},
+			"offsets": {
+				"from": 156080,
+				"to": 158280
+			},
+			"text": " They all kind of pop right in, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,280",
+				"to": "00:02:40,880"
+			},
+			"offsets": {
+				"from": 158280,
+				"to": 160880
+			},
+			"text": " can start directly streaming the videos"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,880",
+				"to": "00:02:43,960"
+			},
+			"offsets": {
+				"from": 160880,
+				"to": 163960
+			},
+			"text": " from the other users."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,960",
+				"to": "00:02:51,280"
+			},
+			"offsets": {
+				"from": 163960,
+				"to": 171280
+			},
+			"text": " Now, what Uport gives us is the verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,280",
+				"to": "00:02:55,440"
+			},
+			"offsets": {
+				"from": 171280,
+				"to": 175440
+			},
+			"text": " that the messages from HUD are really from me."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,440",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 175440,
+				"to": 183840
+			},
+			"text": " If I click on my username, once I'm done making bad jokes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:09,080"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 189080
+			},
+			"text": " you can see the Uport profile data right there."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,080",
+				"to": "00:03:12,960"
+			},
+			"offsets": {
+				"from": 189080,
+				"to": 192960
+			},
+			"text": " So my name, my location, providers, Uport,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,960",
+				"to": "00:03:16,400"
+			},
+			"offsets": {
+				"from": 192960,
+				"to": 196400
+			},
+			"text": " and the public signing key that I just added to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,400",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 196400,
+				"to": 198880
+			},
+			"text": " and which is used to sign the messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:20,640"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 200640
+			},
+			"text": " This is extremely exciting."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,640",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 200640,
+				"to": 205120
+			},
+			"text": " I know who I'm talking with, and I can verify the source."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:26,480"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 206480
+			},
+			"text": " Uport is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,480",
+				"to": "00:03:27,320"
+			},
+			"offsets": {
+				"from": 206480,
+				"to": 207320
+			},
+			"text": " I love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,320",
+				"to": "00:03:29,960"
+			},
+			"offsets": {
+				"from": 207320,
+				"to": 209960
+			},
+			"text": " Thank you, Christian, and consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,960",
+				"to": "00:03:38,760"
+			},
+			"offsets": {
+				"from": 209960,
+				"to": 218760
+			},
+			"text": " So I wanted to show you another cool demo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,760",
+				"to": "00:03:41,200"
+			},
+			"offsets": {
+				"from": 218760,
+				"to": 221200
+			},
+			"text": " which I didn't have time to finish."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,200",
+				"to": "00:03:43,360"
+			},
+			"offsets": {
+				"from": 221200,
+				"to": 223360
+			},
+			"text": " But this is called Planet Express,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,360",
+				"to": "00:03:44,720"
+			},
+			"offsets": {
+				"from": 223360,
+				"to": 224720
+			},
+			"text": " and it's kind of like Twitter."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,720",
+				"to": "00:03:47,040"
+			},
+			"offsets": {
+				"from": 224720,
+				"to": 227040
+			},
+			"text": " You have a feed where you can post stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,040",
+				"to": "00:03:50,920"
+			},
+			"offsets": {
+				"from": 227040,
+				"to": 230920
+			},
+			"text": " you can post from repost from other users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,920",
+				"to": "00:03:55,920"
+			},
+			"offsets": {
+				"from": 230920,
+				"to": 235920
+			},
+			"text": " you can pin them, you can comment on them, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,920",
+				"to": "00:03:59,320"
+			},
+			"offsets": {
+				"from": 235920,
+				"to": 239320
+			},
+			"text": " And it uses the same technology as Uport,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,320",
+				"to": "00:04:00,920"
+			},
+			"offsets": {
+				"from": 239320,
+				"to": 240920
+			},
+			"text": " this is really sweet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,920",
+				"to": "00:04:04,480"
+			},
+			"offsets": {
+				"from": 240920,
+				"to": 244480
+			},
+			"text": " And what you just saw were completely distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,480",
+				"to": "00:04:07,880"
+			},
+			"offsets": {
+				"from": 244480,
+				"to": 247880
+			},
+			"text": " real-time applications with verifiable blockchain-based"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,880",
+				"to": "00:04:12,640"
+			},
+			"offsets": {
+				"from": 247880,
+				"to": 252640
+			},
+			"text": " identities running on desktops and browsers today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,640",
+				"to": "00:04:15,920"
+			},
+			"offsets": {
+				"from": 252640,
+				"to": 255920
+			},
+			"text": " This is what serverless architecture really means."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,920",
+				"to": "00:04:18,400"
+			},
+			"offsets": {
+				"from": 255920,
+				"to": 258400
+			},
+			"text": " And let that sink in for a while,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,400",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 258400,
+				"to": 262000
+			},
+			"text": " because this is absolutely huge, where you've come incredibly"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:23,960"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 263960
+			},
+			"text": " far in just a few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,960",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 263960,
+				"to": 269000
+			},
+			"text": " Underneath the orbit, there's an here-to-here database"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:31,160"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 271160
+			},
+			"text": " called OrbitDB."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,160",
+				"to": "00:04:36,360"
+			},
+			"offsets": {
+				"from": 271160,
+				"to": 276360
+			},
+			"text": " It gives you various types of databases, event log,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,360",
+				"to": "00:04:39,040"
+			},
+			"offsets": {
+				"from": 276360,
+				"to": 279040
+			},
+			"text": " where you can only add messages, but you can delete them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,040",
+				"to": "00:04:40,560"
+			},
+			"offsets": {
+				"from": 279040,
+				"to": 280560
+			},
+			"text": " If he is the same as the event log,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,560",
+				"to": "00:04:44,280"
+			},
+			"offsets": {
+				"from": 280560,
+				"to": 284280
+			},
+			"text": " but you can also delete messages, a key-value store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,280",
+				"to": "00:04:46,760"
+			},
+			"offsets": {
+				"from": 284280,
+				"to": 286760
+			},
+			"text": " just like any other key-value store, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,760",
+				"to": "00:04:50,520"
+			},
+			"offsets": {
+				"from": 286760,
+				"to": 290520
+			},
+			"text": " but peer-to-peer, and counters, which are really useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,520",
+				"to": "00:04:54,480"
+			},
+			"offsets": {
+				"from": 290520,
+				"to": 294480
+			},
+			"text": " for stuff like votes and likes and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,480",
+				"to": "00:04:57,880"
+			},
+			"offsets": {
+				"from": 294480,
+				"to": 297880
+			},
+			"text": " You can also easily implement other types of databases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,880",
+				"to": "00:05:04,040"
+			},
+			"offsets": {
+				"from": 297880,
+				"to": 304040
+			},
+			"text": " like index, document store, kind of like MongoDB or so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,040",
+				"to": "00:05:08,800"
+			},
+			"offsets": {
+				"from": 304040,
+				"to": 308800
+			},
+			"text": " OrbitDB uses IPFS log for database operations log."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,800",
+				"to": "00:05:12,360"
+			},
+			"offsets": {
+				"from": 308800,
+				"to": 312360
+			},
+			"text": " It's an append-only, partially ordered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,360",
+				"to": "00:05:17,520"
+			},
+			"offsets": {
+				"from": 312360,
+				"to": 317520
+			},
+			"text": " eventually consistent, miracle tree of database operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,520",
+				"to": "00:05:20,200"
+			},
+			"offsets": {
+				"from": 317520,
+				"to": 320200
+			},
+			"text": " basically a linked list of IPFS hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,200",
+				"to": "00:05:27,920"
+			},
+			"offsets": {
+				"from": 320200,
+				"to": 327920
+			},
+			"text": " So having an operation log allows us to use CRDTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,920",
+				"to": "00:05:31,720"
+			},
+			"offsets": {
+				"from": 327920,
+				"to": 331720
+			},
+			"text": " They basically allow us to merge data in a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,720",
+				"to": "00:05:35,320"
+			},
+			"offsets": {
+				"from": 331720,
+				"to": 335320
+			},
+			"text": " that there are never conflicts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,320",
+				"to": "00:05:38,400"
+			},
+			"offsets": {
+				"from": 335320,
+				"to": 338400
+			},
+			"text": " I would highly recommend you to look into CRDTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,400",
+				"to": "00:05:41,800"
+			},
+			"offsets": {
+				"from": 338400,
+				"to": 341800
+			},
+			"text": " They're extremely cool data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,800",
+				"to": "00:05:44,840"
+			},
+			"offsets": {
+				"from": 341800,
+				"to": 344840
+			},
+			"text": " So once we have distributed data structures in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,840",
+				"to": "00:05:48,280"
+			},
+			"offsets": {
+				"from": 344840,
+				"to": 348280
+			},
+			"text": " we need to replicate the data between the peers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,280",
+				"to": "00:05:53,280"
+			},
+			"offsets": {
+				"from": 348280,
+				"to": 353280
+			},
+			"text": " And OrbitDB uses IPFS Pupsub for propagating"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,280",
+				"to": "00:05:58,920"
+			},
+			"offsets": {
+				"from": 353280,
+				"to": 358920
+			},
+			"text": " the database operations from the operation log to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,920",
+				"to": "00:06:03,560"
+			},
+			"offsets": {
+				"from": 358920,
+				"to": 363560
+			},
+			"text": " So in Orbitz case, when I send a message,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,560",
+				"to": "00:06:06,440"
+			},
+			"offsets": {
+				"from": 363560,
+				"to": 366440
+			},
+			"text": " the message gets created and signed with my public signing key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,440",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 366440,
+				"to": 370000
+			},
+			"text": " the one that was added to my U-port profile."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,440"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373440
+			},
+			"text": " We then add the operation to the database"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,440",
+				"to": "00:06:16,720"
+			},
+			"offsets": {
+				"from": 373440,
+				"to": 376720
+			},
+			"text": " and the head hash of the operation log gets sent"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,720",
+				"to": "00:06:21,320"
+			},
+			"offsets": {
+				"from": 376720,
+				"to": 381320
+			},
+			"text": " to Pupsub topic, which in this case is the name of the channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,320",
+				"to": "00:06:24,320"
+			},
+			"offsets": {
+				"from": 381320,
+				"to": 384320
+			},
+			"text": " And that's how the data gets eventually consistent"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,320",
+				"to": "00:06:27,800"
+			},
+			"offsets": {
+				"from": 384320,
+				"to": 387800
+			},
+			"text": " across the peers and everyone sees the same data."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,800",
+				"to": "00:06:32,800"
+			},
+			"offsets": {
+				"from": 388800,
+				"to": 392800
+			},
+			"text": " So OrbitDB works really nicely for application databases"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,800",
+				"to": "00:06:37,200"
+			},
+			"offsets": {
+				"from": 392800,
+				"to": 397200
+			},
+			"text": " and is quite performant, but there's no saving of the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,200",
+				"to": "00:06:41,800"
+			},
+			"offsets": {
+				"from": 397200,
+				"to": 401800
+			},
+			"text": " So what would be really cool is to timestamp the head hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,800",
+				"to": "00:06:47,200"
+			},
+			"offsets": {
+				"from": 401800,
+				"to": 407200
+			},
+			"text": " of the log or snapshot it periodically into the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,200",
+				"to": "00:06:49,600"
+			},
+			"offsets": {
+				"from": 407200,
+				"to": 409600
+			},
+			"text": " You may think, why is so complicated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,600",
+				"to": "00:06:54,400"
+			},
+			"offsets": {
+				"from": 409600,
+				"to": 414400
+			},
+			"text": " Why can't we just replicate MySQL databases between the peers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,400",
+				"to": "00:06:58,800"
+			},
+			"offsets": {
+				"from": 414400,
+				"to": 418800
+			},
+			"text": " In distributed systems, time is a very subjective matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,800",
+				"to": "00:07:01,600"
+			},
+			"offsets": {
+				"from": 418800,
+				"to": 421600
+			},
+			"text": " And without a central authority, we don't know what the order"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,600",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 421600,
+				"to": 423080
+			},
+			"text": " of the messages are."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 426000
+			},
+			"text": " And this is what the CRDT stole."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:10,520"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 430520
+			},
+			"text": " And this is why they work so well in distributed systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,520",
+				"to": "00:07:14,400"
+			},
+			"offsets": {
+				"from": 430520,
+				"to": 434400
+			},
+			"text": " So we have IPFS for storage, an append-only log"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,400",
+				"to": "00:07:20,520"
+			},
+			"offsets": {
+				"from": 434400,
+				"to": 440520
+			},
+			"text": " for data-transferred CRDTs to create databases on top of the storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,520",
+				"to": "00:07:25,240"
+			},
+			"offsets": {
+				"from": 440520,
+				"to": 445240
+			},
+			"text": " And we have Pupsub for super fast message propagation"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,240",
+				"to": "00:07:28,520"
+			},
+			"offsets": {
+				"from": 445240,
+				"to": 448520
+			},
+			"text": " that enables peer-to-peer replication."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,520",
+				"to": "00:07:34,080"
+			},
+			"offsets": {
+				"from": 448520,
+				"to": 454080
+			},
+			"text": " And we have Ethereum for authenticating and verifying data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,080",
+				"to": "00:07:37,440"
+			},
+			"offsets": {
+				"from": 454080,
+				"to": 457440
+			},
+			"text": " people, transactions, payments, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,440",
+				"to": "00:07:39,600"
+			},
+			"offsets": {
+				"from": 457440,
+				"to": 459600
+			},
+			"text": " Combining all of these, we finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,600",
+				"to": "00:07:41,520"
+			},
+			"offsets": {
+				"from": 459600,
+				"to": 461520
+			},
+			"text": " have all the primitives that we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,520",
+				"to": "00:07:45,360"
+			},
+			"offsets": {
+				"from": 461520,
+				"to": 465360
+			},
+			"text": " to build truly powerful distributed peer-to-peer applications that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,360",
+				"to": "00:07:47,680"
+			},
+			"offsets": {
+				"from": 465360,
+				"to": 467680
+			},
+			"text": " also work in the browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,680",
+				"to": "00:07:49,920"
+			},
+			"offsets": {
+				"from": 467680,
+				"to": 469920
+			},
+			"text": " Different types of databases, dynamic content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,920",
+				"to": "00:07:53,200"
+			},
+			"offsets": {
+				"from": 469920,
+				"to": 473200
+			},
+			"text": " even live video streaming as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,200",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 473200,
+				"to": 478360
+			},
+			"text": " I can't emphasize enough how profound this stack is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:02,160"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 482160
+			},
+			"text": " So with these new superpowers, we should also consider"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,160",
+				"to": "00:08:05,920"
+			},
+			"offsets": {
+				"from": 482160,
+				"to": 485920
+			},
+			"text": " what and how we build our applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,920",
+				"to": "00:08:09,880"
+			},
+			"offsets": {
+				"from": 485920,
+				"to": 489880
+			},
+			"text": " We don't want to just blindly follow the web 2.0 paradigms."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,880",
+				"to": "00:08:13,280"
+			},
+			"offsets": {
+				"from": 489880,
+				"to": 493280
+			},
+			"text": " And we need to consider what are the properties"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,280",
+				"to": "00:08:16,480"
+			},
+			"offsets": {
+				"from": 493280,
+				"to": 496480
+			},
+			"text": " of distributed applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,480",
+				"to": "00:08:19,320"
+			},
+			"offsets": {
+				"from": 496480,
+				"to": 499320
+			},
+			"text": " Today, pretty much nothing works if you're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,320",
+				"to": "00:08:21,040"
+			},
+			"offsets": {
+				"from": 499320,
+				"to": 501040
+			},
+			"text": " connected to the back point."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,040",
+				"to": "00:08:23,280"
+			},
+			"offsets": {
+				"from": 501040,
+				"to": 503280
+			},
+			"text": " This is a huge, huge problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,280",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 503280,
+				"to": 506560
+			},
+			"text": " We need to make sure that our applications work offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:28,160"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 508160
+			},
+			"text": " first and foremost."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,160",
+				"to": "00:08:30,040"
+			},
+			"offsets": {
+				"from": 508160,
+				"to": 510040
+			},
+			"text": " There's a new trend in web development"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,040",
+				"to": "00:08:32,040"
+			},
+			"offsets": {
+				"from": 510040,
+				"to": 512040
+			},
+			"text": " called progressive web applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,040",
+				"to": "00:08:33,280"
+			},
+			"offsets": {
+				"from": 512040,
+				"to": 513280
+			},
+			"text": " which is a great direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,280",
+				"to": "00:08:35,920"
+			},
+			"offsets": {
+				"from": 513280,
+				"to": 515920
+			},
+			"text": " But with these technologies, offline"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,920",
+				"to": "00:08:39,000"
+			},
+			"offsets": {
+				"from": 515920,
+				"to": 519000
+			},
+			"text": " becomes an inherent implicit property."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,000",
+				"to": "00:08:41,600"
+			},
+			"offsets": {
+				"from": 519000,
+				"to": 521600
+			},
+			"text": " And we can make it so much easier and better"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,600",
+				"to": "00:08:47,680"
+			},
+			"offsets": {
+				"from": 521600,
+				"to": 527680
+			},
+			"text": " for all the developers around the world than it is today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,680",
+				"to": "00:08:49,760"
+			},
+			"offsets": {
+				"from": 527680,
+				"to": 529760
+			},
+			"text": " This should be pretty obvious to the crowd here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,760",
+				"to": "00:08:52,280"
+			},
+			"offsets": {
+				"from": 529760,
+				"to": 532280
+			},
+			"text": " But let's make sure that our applications don't depend"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,280",
+				"to": "00:08:56,040"
+			},
+			"offsets": {
+				"from": 532280,
+				"to": 536040
+			},
+			"text": " on services that can just disappear, can be shut down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,040",
+				"to": "00:08:59,760"
+			},
+			"offsets": {
+				"from": 536040,
+				"to": 539760
+			},
+			"text": " or otherwise just cease to exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,760",
+				"to": "00:09:02,200"
+			},
+			"offsets": {
+				"from": 539760,
+				"to": 542200
+			},
+			"text": " We're pretty much locked in with our data"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,200",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 542200,
+				"to": 544000
+			},
+			"text": " through the services we use today."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:06,080"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 546080
+			},
+			"text": " We can't share data between applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,080",
+				"to": "00:09:09,640"
+			},
+			"offsets": {
+				"from": 546080,
+				"to": 549640
+			},
+			"text": " let it alone, and have any control over our personal data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,640",
+				"to": "00:09:10,800"
+			},
+			"offsets": {
+				"from": 549640,
+				"to": 550800
+			},
+			"text": " This is not cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,800",
+				"to": "00:09:12,960"
+			},
+			"offsets": {
+				"from": 550800,
+				"to": 552960
+			},
+			"text": " This is not the internet we wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,960",
+				"to": "00:09:15,640"
+			},
+			"offsets": {
+				"from": 552960,
+				"to": 555640
+			},
+			"text": " We need to make sure that the applications we build"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,640",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 555640,
+				"to": 559000
+			},
+			"text": " can share the data between other programs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:23,080"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 563080
+			},
+			"text": " Use linked data to create relationships"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,080",
+				"to": "00:09:25,000"
+			},
+			"offsets": {
+				"from": 563080,
+				"to": 565000
+			},
+			"text": " between the nuggets of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,000",
+				"to": "00:09:28,200"
+			},
+			"offsets": {
+				"from": 565000,
+				"to": 568200
+			},
+			"text": " And use standard data structures as much as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,200",
+				"to": "00:09:31,280"
+			},
+			"offsets": {
+				"from": 568200,
+				"to": 571280
+			},
+			"text": " So a chat message in one chat application"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,280",
+				"to": "00:09:35,520"
+			},
+			"offsets": {
+				"from": 571280,
+				"to": 575520
+			},
+			"text": " is probably the same as it is in other chat application."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,520",
+				"to": "00:09:42,520"
+			},
+			"offsets": {
+				"from": 575520,
+				"to": 582520
+			},
+			"text": " And a feed is just a feed viewed and packaged differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,520",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 582520,
+				"to": 585160
+			},
+			"text": " As we develop our deck, we also need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:48,960"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 588960
+			},
+			"text": " to make sure to provide a smooth integration path."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,960",
+				"to": "00:09:51,240"
+			},
+			"offsets": {
+				"from": 588960,
+				"to": 591240
+			},
+			"text": " Otherwise, the revolution will not happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,240",
+				"to": "00:09:54,640"
+			},
+			"offsets": {
+				"from": 591240,
+				"to": 594640
+			},
+			"text": " This is crucial to gain mass adaptation."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,640",
+				"to": "00:09:57,840"
+			},
+			"offsets": {
+				"from": 594640,
+				"to": 597840
+			},
+			"text": " Application developers don't care about deeper layers"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,840",
+				"to": "00:09:58,560"
+			},
+			"offsets": {
+				"from": 597840,
+				"to": 598560
+			},
+			"text": " of the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,560",
+				"to": "00:10:00,640"
+			},
+			"offsets": {
+				"from": 598560,
+				"to": 600640
+			},
+			"text": " They just want something that works"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,640",
+				"to": "00:10:03,120"
+			},
+			"offsets": {
+				"from": 600640,
+				"to": 603120
+			},
+			"text": " that they're familiar with, and something that works"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,120",
+				"to": "00:10:05,720"
+			},
+			"offsets": {
+				"from": 603120,
+				"to": 605720
+			},
+			"text": " with the technologies that they use today."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,720",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 605720,
+				"to": 609000
+			},
+			"text": " So as an example, OrbitDB provides a key value store,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:13,560"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 613560
+			},
+			"text": " which on the API level is exactly the same as key value"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,560",
+				"to": "00:10:17,720"
+			},
+			"offsets": {
+				"from": 613560,
+				"to": 617720
+			},
+			"text": " stores we have today, except it's here to here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,720",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 617720,
+				"to": 622000
+			},
+			"text": " So like I said, we've come really far, incredibly far,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:23,360"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 623360
+			},
+			"text": " just in a few years."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,360",
+				"to": "00:10:27,680"
+			},
+			"offsets": {
+				"from": 623360,
+				"to": 627680
+			},
+			"text": " And you should all be very proud of what you've built so far."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,680",
+				"to": "00:10:30,120"
+			},
+			"offsets": {
+				"from": 627680,
+				"to": 630120
+			},
+			"text": " But there's still a lot of work ahead."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,120",
+				"to": "00:10:33,440"
+			},
+			"offsets": {
+				"from": 630120,
+				"to": 633440
+			},
+			"text": " And I want to leave you with something to think about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,440",
+				"to": "00:10:38,880"
+			},
+			"offsets": {
+				"from": 633440,
+				"to": 638880
+			},
+			"text": " How can we achieve or solve some of the remaining problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,880",
+				"to": "00:10:41,960"
+			},
+			"offsets": {
+				"from": 638880,
+				"to": 641960
+			},
+			"text": " that we still have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,960",
+				"to": "00:10:42,960"
+			},
+			"offsets": {
+				"from": 641960,
+				"to": 642960
+			},
+			"text": " You can have this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,960",
+				"to": "00:10:47,200"
+			},
+			"offsets": {
+				"from": 642960,
+				"to": 647200
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,200",
+				"to": "00:10:53,280"
+			},
+			"offsets": {
+				"from": 647200,
+				"to": 653280
+			},
+			"text": " So the way you for does authentication is fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,280",
+				"to": "00:10:55,360"
+			},
+			"offsets": {
+				"from": 653280,
+				"to": 655360
+			},
+			"text": " Like I said, I love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,360",
+				"to": "00:10:59,400"
+			},
+			"offsets": {
+				"from": 655360,
+				"to": 659400
+			},
+			"text": " I wonder how we could use the same or a similar mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,400",
+				"to": "00:11:05,080"
+			},
+			"offsets": {
+				"from": 659400,
+				"to": 665080
+			},
+			"text": " for doing permissions in a more general way."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,080",
+				"to": "00:11:08,680"
+			},
+			"offsets": {
+				"from": 665080,
+				"to": 668680
+			},
+			"text": " The mobile use case is a very different from desktops"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,680",
+				"to": "00:11:09,320"
+			},
+			"offsets": {
+				"from": 668680,
+				"to": 669320
+			},
+			"text": " and servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,320",
+				"to": "00:11:14,440"
+			},
+			"offsets": {
+				"from": 669320,
+				"to": 674440
+			},
+			"text": " So how can we make all this happen smoothly on the mobile web?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,440",
+				"to": "00:11:17,160"
+			},
+			"offsets": {
+				"from": 674440,
+				"to": 677160
+			},
+			"text": " And you may think this is pretty out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,160",
+				"to": "00:11:19,160"
+			},
+			"offsets": {
+				"from": 677160,
+				"to": 679160
+			},
+			"text": " but think about the future of the humankind."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,160",
+				"to": "00:11:23,520"
+			},
+			"offsets": {
+				"from": 679160,
+				"to": 683520
+			},
+			"text": " We'll soon reach Mars and maybe beyond even in our lifetime."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,520",
+				"to": "00:11:28,120"
+			},
+			"offsets": {
+				"from": 683520,
+				"to": 688120
+			},
+			"text": " So how do we make truly interplanetary applications that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,120",
+				"to": "00:11:31,400"
+			},
+			"offsets": {
+				"from": 688120,
+				"to": 691400
+			},
+			"text": " can work across vast distances, timesfans,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,400",
+				"to": "00:11:34,360"
+			},
+			"offsets": {
+				"from": 691400,
+				"to": 694360
+			},
+			"text": " and disconnected networks?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,360",
+				"to": "00:11:39,080"
+			},
+			"offsets": {
+				"from": 694360,
+				"to": 699080
+			},
+			"text": " My personal goal is to put Orbit on Orbit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,080",
+				"to": "00:11:40,080"
+			},
+			"offsets": {
+				"from": 699080,
+				"to": 700080
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,080",
+				"to": "00:11:42,440"
+			},
+			"offsets": {
+				"from": 700080,
+				"to": 702440
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,440",
+				"to": "00:11:45,600"
+			},
+			"offsets": {
+				"from": 702440,
+				"to": 705600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,600",
+				"to": "00:11:48,180"
+			},
+			"offsets": {
+				"from": 705600,
+				"to": 708180
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,180",
+				"to": "00:11:50,760"
+			},
+			"offsets": {
+				"from": 708180,
+				"to": 710760
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

@@ -1,0 +1,5125 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:15,880"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 15880
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,880",
+				"to": "00:00:19,720"
+			},
+			"offsets": {
+				"from": 15880,
+				"to": 19720
+			},
+			"text": " My talk today-- I'm Nicolas Ocovander and City of Ledger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,720",
+				"to": "00:00:22,080"
+			},
+			"offsets": {
+				"from": 19720,
+				"to": 22080
+			},
+			"text": " manufacturer of fine hardware wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,080",
+				"to": "00:00:24,840"
+			},
+			"offsets": {
+				"from": 22080,
+				"to": 24840
+			},
+			"text": " My talk today will be about how the links smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,840",
+				"to": "00:00:26,600"
+			},
+			"offsets": {
+				"from": 24840,
+				"to": 26600
+			},
+			"text": " with hardware security."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,600",
+				"to": "00:00:30,200"
+			},
+			"offsets": {
+				"from": 26600,
+				"to": 30200
+			},
+			"text": " An alternative title could be how to build, how to design"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,200",
+				"to": "00:00:33,640"
+			},
+			"offsets": {
+				"from": 30200,
+				"to": 33640
+			},
+			"text": " a platform to design hardware wallets on different kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,640",
+				"to": "00:00:34,840"
+			},
+			"offsets": {
+				"from": 33640,
+				"to": 34840
+			},
+			"text": " of secure hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,840",
+				"to": "00:00:37,200"
+			},
+			"offsets": {
+				"from": 34840,
+				"to": 37200
+			},
+			"text": " So let's move forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,200",
+				"to": "00:00:41,320"
+			},
+			"offsets": {
+				"from": 37200,
+				"to": 41320
+			},
+			"text": " So first, why do we need to secure smart contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,320",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 41320,
+				"to": 44400
+			},
+			"text": " Because smart contracts themselves are extremely secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:49,360"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 49360
+			},
+			"text": " They are running into the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,360",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 49360,
+				"to": 51120
+			},
+			"text": " I mean, they are secured by the consensus,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:52,600"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 52600
+			},
+			"text": " the securing smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,600",
+				"to": "00:00:54,800"
+			},
+			"offsets": {
+				"from": 52600,
+				"to": 54800
+			},
+			"text": " But there are some nasty things that"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,800",
+				"to": "00:00:56,760"
+			},
+			"offsets": {
+				"from": 54800,
+				"to": 56760
+			},
+			"text": " could happen around the edges."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,760",
+				"to": "00:00:59,720"
+			},
+			"offsets": {
+				"from": 56760,
+				"to": 59720
+			},
+			"text": " If we look at the right thing, first smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,720",
+				"to": "00:01:02,240"
+			},
+			"offsets": {
+				"from": 59720,
+				"to": 62240
+			},
+			"text": " can receive data from external sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,240",
+				"to": "00:01:03,800"
+			},
+			"offsets": {
+				"from": 62240,
+				"to": 63800
+			},
+			"text": " So here, this is a standard sources"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,800",
+				"to": "00:01:08,600"
+			},
+			"offsets": {
+				"from": 63800,
+				"to": 68600
+			},
+			"text": " is a PTR from Delphi, who, as you know, is telling the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,600",
+				"to": "00:01:11,440"
+			},
+			"offsets": {
+				"from": 68600,
+				"to": 71440
+			},
+			"text": " So some people are calling that awakens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,440",
+				"to": "00:01:13,880"
+			},
+			"offsets": {
+				"from": 71440,
+				"to": 73880
+			},
+			"text": " I decided to stop doing that after getting some"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,880",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 73880,
+				"to": 77000
+			},
+			"text": " Instagram from a database designing company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 78520
+			},
+			"text": " but you get the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:21,480"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 81480
+			},
+			"text": " So if they are not trusted, the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,480",
+				"to": "00:01:24,280"
+			},
+			"offsets": {
+				"from": 81480,
+				"to": 84280
+			},
+			"text": " can act and perform some mistakes."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,280",
+				"to": "00:01:26,160"
+			},
+			"offsets": {
+				"from": 84280,
+				"to": 86160
+			},
+			"text": " On the other hand, smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,160",
+				"to": "00:01:29,760"
+			},
+			"offsets": {
+				"from": 86160,
+				"to": 89760
+			},
+			"text": " are interacting with users who are holding keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,760",
+				"to": "00:01:33,960"
+			},
+			"offsets": {
+				"from": 89760,
+				"to": 93960
+			},
+			"text": " The generic user PC is not extremely secure, also,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,960",
+				"to": "00:01:35,200"
+			},
+			"offsets": {
+				"from": 93960,
+				"to": 95200
+			},
+			"text": " as you can see here."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,200",
+				"to": "00:01:38,560"
+			},
+			"offsets": {
+				"from": 95200,
+				"to": 98560
+			},
+			"text": " So we need to secure key protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,560",
+				"to": "00:01:40,960"
+			},
+			"offsets": {
+				"from": 98560,
+				"to": 100960
+			},
+			"text": " Here, we have two items to secure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,960",
+				"to": "00:01:44,440"
+			},
+			"offsets": {
+				"from": 100960,
+				"to": 104440
+			},
+			"text": " and we'll see how secure our hardware can help with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,440",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 104440,
+				"to": 108800
+			},
+			"text": " So what kind of threats can we get against the edges?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 110520
+			},
+			"text": " First, we can consider malware."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:52,160"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 112160
+			},
+			"text": " So we are very done malware, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,160",
+				"to": "00:01:54,800"
+			},
+			"offsets": {
+				"from": 112160,
+				"to": 114800
+			},
+			"text": " is still private keys, or smart or malware"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,800",
+				"to": "00:01:58,040"
+			},
+			"offsets": {
+				"from": 114800,
+				"to": 118040
+			},
+			"text": " that can manipulate contracts or just feed bad data"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,040",
+				"to": "00:01:59,720"
+			},
+			"offsets": {
+				"from": 118040,
+				"to": 119720
+			},
+			"text": " to the user."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,720",
+				"to": "00:02:02,160"
+			},
+			"offsets": {
+				"from": 119720,
+				"to": 122160
+			},
+			"text": " First, then we have physical attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,160",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 122160,
+				"to": 125000
+			},
+			"text": " So we can have passive physical attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:06,840"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 126840
+			},
+			"text": " which are extremely powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,840",
+				"to": "00:02:09,120"
+			},
+			"offsets": {
+				"from": 126840,
+				"to": 129120
+			},
+			"text": " If the algorithms are not properly defined,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,120",
+				"to": "00:02:11,840"
+			},
+			"offsets": {
+				"from": 129120,
+				"to": 131840
+			},
+			"text": " an attacker can manage by looking at the chip"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,840",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 131840,
+				"to": 136000
+			},
+			"text": " over consumption or a significative thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:18,840"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 138840
+			},
+			"text": " I mean, changing with the chip can retrieve private keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,840",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138840,
+				"to": 142000
+			},
+			"text": " and can basically steal data from the executing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:23,440"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 143440
+			},
+			"text": " process."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,440",
+				"to": "00:02:27,400"
+			},
+			"offsets": {
+				"from": 143440,
+				"to": 147400
+			},
+			"text": " Then physical attacks requiring access to the chip itself,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,400",
+				"to": "00:02:31,600"
+			},
+			"offsets": {
+				"from": 147400,
+				"to": 151600
+			},
+			"text": " which can be leveraged to change the behavior of the chip"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,600",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 151600,
+				"to": 153680
+			},
+			"text": " by performing some glitching attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:36,320"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 156320
+			},
+			"text": " So here, people might think that glitching"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,320",
+				"to": "00:02:38,560"
+			},
+			"offsets": {
+				"from": 156320,
+				"to": 158560
+			},
+			"text": " is going to open something."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,560",
+				"to": "00:02:40,120"
+			},
+			"offsets": {
+				"from": 158560,
+				"to": 160120
+			},
+			"text": " Glitching is a bit more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,120",
+				"to": "00:02:43,440"
+			},
+			"offsets": {
+				"from": 160120,
+				"to": 163440
+			},
+			"text": " It will change the way the process is running, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,440",
+				"to": "00:02:45,640"
+			},
+			"offsets": {
+				"from": 163440,
+				"to": 165640
+			},
+			"text": " So it's still extremely powerful."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,640",
+				"to": "00:02:47,240"
+			},
+			"offsets": {
+				"from": 165640,
+				"to": 167240
+			},
+			"text": " It's not easy to get right."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,240",
+				"to": "00:02:50,360"
+			},
+			"offsets": {
+				"from": 167240,
+				"to": 170360
+			},
+			"text": " But if you manage to glitch an item,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,360",
+				"to": "00:02:53,160"
+			},
+			"offsets": {
+				"from": 170360,
+				"to": 173160
+			},
+			"text": " if you manage to glitch a physical device the right way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,160",
+				"to": "00:02:54,840"
+			},
+			"offsets": {
+				"from": 173160,
+				"to": 174840
+			},
+			"text": " you can also extract keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,840",
+				"to": "00:02:57,200"
+			},
+			"offsets": {
+				"from": 174840,
+				"to": 177200
+			},
+			"text": " So we have to consider all those threats when dealing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,200",
+				"to": "00:02:59,200"
+			},
+			"offsets": {
+				"from": 177200,
+				"to": 179200
+			},
+			"text": " with secure hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,200",
+				"to": "00:03:02,600"
+			},
+			"offsets": {
+				"from": 179200,
+				"to": 182600
+			},
+			"text": " So secure hardware here will be bringing an isolated environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,600",
+				"to": "00:03:04,560"
+			},
+			"offsets": {
+				"from": 182600,
+				"to": 184560
+			},
+			"text": " to run the different applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,560",
+				"to": "00:03:07,680"
+			},
+			"offsets": {
+				"from": 184560,
+				"to": 187680
+			},
+			"text": " So we want secure hardware that lets us execute code."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,680",
+				"to": "00:03:09,480"
+			},
+			"offsets": {
+				"from": 187680,
+				"to": 189480
+			},
+			"text": " Otherwise, we can't do much."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,480",
+				"to": "00:03:11,360"
+			},
+			"offsets": {
+				"from": 189480,
+				"to": 191360
+			},
+			"text": " We want it to be a lay secure hardware that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,360",
+				"to": "00:03:12,920"
+			},
+			"offsets": {
+				"from": 191360,
+				"to": 192920
+			},
+			"text": " is physically resistant."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,920",
+				"to": "00:03:17,160"
+			},
+			"offsets": {
+				"from": 192920,
+				"to": 197160
+			},
+			"text": " So secure hardware on which it's hard to extract data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,160",
+				"to": "00:03:19,520"
+			},
+			"offsets": {
+				"from": 197160,
+				"to": 199520
+			},
+			"text": " We also want secure hardware to give us proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,520",
+				"to": "00:03:21,840"
+			},
+			"offsets": {
+				"from": 199520,
+				"to": 201840
+			},
+			"text": " of execution on the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,840",
+				"to": "00:03:24,360"
+			},
+			"offsets": {
+				"from": 201840,
+				"to": 204360
+			},
+			"text": " So when we run code and secure hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,360",
+				"to": "00:03:27,880"
+			},
+			"offsets": {
+				"from": 204360,
+				"to": 207880
+			},
+			"text": " we must be able to prove to an external party"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,880",
+				"to": "00:03:30,320"
+			},
+			"offsets": {
+				"from": 207880,
+				"to": 210320
+			},
+			"text": " that the platform is healthy, so that the platform has not"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,320",
+				"to": "00:03:32,760"
+			},
+			"offsets": {
+				"from": 210320,
+				"to": 212760
+			},
+			"text": " been broken into."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,760",
+				"to": "00:03:34,840"
+			},
+			"offsets": {
+				"from": 212760,
+				"to": 214840
+			},
+			"text": " And that the code running into the hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,840",
+				"to": "00:03:36,760"
+			},
+			"offsets": {
+				"from": 214840,
+				"to": 216760
+			},
+			"text": " has been running into the right platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,760",
+				"to": "00:03:40,480"
+			},
+			"offsets": {
+				"from": 216760,
+				"to": 220480
+			},
+			"text": " And ideally, if, depending on the hardware we're running on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,480",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 220480,
+				"to": 225520
+			},
+			"text": " we might want to strengthen the cryptographic primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:49,360"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 229360
+			},
+			"text": " to prevent the passive attacks we have been talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,360",
+				"to": "00:03:51,720"
+			},
+			"offsets": {
+				"from": 229360,
+				"to": 231720
+			},
+			"text": " about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,720",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 231720,
+				"to": 234520
+			},
+			"text": " So when considering secure hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:03:57,600"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 237600
+			},
+			"text": " people do not feel comfortable about them"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,600",
+				"to": "00:04:03,160"
+			},
+			"offsets": {
+				"from": 237600,
+				"to": 243160
+			},
+			"text": " because of binary blobs and NDIS around secure hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,160",
+				"to": "00:04:05,760"
+			},
+			"offsets": {
+				"from": 243160,
+				"to": 245760
+			},
+			"text": " But the general idea here is that today we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,760",
+				"to": "00:04:09,120"
+			},
+			"offsets": {
+				"from": 245760,
+				"to": 249120
+			},
+			"text": " don't have any kind of open hardware really available."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,120",
+				"to": "00:04:11,880"
+			},
+			"offsets": {
+				"from": 249120,
+				"to": 251880
+			},
+			"text": " If you look closely into the different architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,880",
+				"to": "00:04:13,520"
+			},
+			"offsets": {
+				"from": 251880,
+				"to": 253520
+			},
+			"text": " of the hardware that you are using,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,520",
+				"to": "00:04:15,560"
+			},
+			"offsets": {
+				"from": 253520,
+				"to": 255560
+			},
+			"text": " you never fully own your hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,560",
+				"to": "00:04:17,560"
+			},
+			"offsets": {
+				"from": 255560,
+				"to": 257560
+			},
+			"text": " I mean, at least for all generic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,560",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 257560,
+				"to": 260440
+			},
+			"text": " for all general purpose computers available today."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:23,440"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 263440
+			},
+			"text": " On your CPU, people can modify the microcode"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,440",
+				"to": "00:04:25,720"
+			},
+			"offsets": {
+				"from": 263440,
+				"to": 265720
+			},
+			"text": " of your CPU so the way it behaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,720",
+				"to": "00:04:30,120"
+			},
+			"offsets": {
+				"from": 265720,
+				"to": 270120
+			},
+			"text": " If you are using an STM32, which is a very common open"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,120",
+				"to": "00:04:32,600"
+			},
+			"offsets": {
+				"from": 270120,
+				"to": 272600
+			},
+			"text": " microcontroller use for hardware wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,600",
+				"to": "00:04:35,560"
+			},
+			"offsets": {
+				"from": 272600,
+				"to": 275560
+			},
+			"text": " you don't really know how the chip is behaving itself as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,560",
+				"to": "00:04:37,800"
+			},
+			"offsets": {
+				"from": 275560,
+				"to": 277800
+			},
+			"text": " because it has critical parts regarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,800",
+				"to": "00:04:41,120"
+			},
+			"offsets": {
+				"from": 277800,
+				"to": 281120
+			},
+			"text": " to the security of the chip itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,120",
+				"to": "00:04:45,080"
+			},
+			"offsets": {
+				"from": 281120,
+				"to": 285080
+			},
+			"text": " So I am taking a primary approach about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,080",
+				"to": "00:04:49,280"
+			},
+			"offsets": {
+				"from": 285080,
+				"to": 289280
+			},
+			"text": " I'm basically considering that secure hardware is considered"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,280",
+				"to": "00:04:51,800"
+			},
+			"offsets": {
+				"from": 289280,
+				"to": 291800
+			},
+			"text": " to be best of class today to protect data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,800",
+				"to": "00:04:55,600"
+			},
+			"offsets": {
+				"from": 291800,
+				"to": 295600
+			},
+			"text": " And if it's available and if we think about the different threads"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,600",
+				"to": "00:04:58,480"
+			},
+			"offsets": {
+				"from": 295600,
+				"to": 298480
+			},
+			"text": " and if we try to limit them, it's still safe to use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,480",
+				"to": "00:05:01,880"
+			},
+			"offsets": {
+				"from": 298480,
+				"to": 301880
+			},
+			"text": " and it's still open enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,880",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 301880,
+				"to": 307440
+			},
+			"text": " And on a small point, I mean, if you are using an Intel CPU"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:09,680"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 309680
+			},
+			"text": " today and you don't want to use SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,680",
+				"to": "00:05:12,120"
+			},
+			"offsets": {
+				"from": 309680,
+				"to": 312120
+			},
+			"text": " I would just remind you that you are already"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,120",
+				"to": "00:05:14,120"
+			},
+			"offsets": {
+				"from": 312120,
+				"to": 314120
+			},
+			"text": " using the management engine, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,120",
+				"to": "00:05:15,840"
+			},
+			"offsets": {
+				"from": 314120,
+				"to": 315840
+			},
+			"text": " can do a lot of stuff behind your back."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,840",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 315840,
+				"to": 318520
+			},
+			"text": " So if you are using the management engine for the bad parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:22,400"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 322400
+			},
+			"text": " you can also use it for the good parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,400",
+				"to": "00:05:25,760"
+			},
+			"offsets": {
+				"from": 322400,
+				"to": 325760
+			},
+			"text": " Small, very quick history of secure hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,760",
+				"to": "00:05:27,920"
+			},
+			"offsets": {
+				"from": 325760,
+				"to": 327920
+			},
+			"text": " So the general idea here is that secure hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,920",
+				"to": "00:05:29,840"
+			},
+			"offsets": {
+				"from": 327920,
+				"to": 329840
+			},
+			"text": " is getting more open over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,840",
+				"to": "00:05:33,280"
+			},
+			"offsets": {
+				"from": 329840,
+				"to": 333280
+			},
+			"text": " So initially, everything started with smart cards in the IT."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,280",
+				"to": "00:05:36,720"
+			},
+			"offsets": {
+				"from": 333280,
+				"to": 336720
+			},
+			"text": " Smart cards were not very powerful and were not easy to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,720",
+				"to": "00:05:39,040"
+			},
+			"offsets": {
+				"from": 336720,
+				"to": 339040
+			},
+			"text": " You had to buy a specific reader to use them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,040",
+				"to": "00:05:41,200"
+			},
+			"offsets": {
+				"from": 339040,
+				"to": 341200
+			},
+			"text": " They were absolutely not internet friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,200",
+				"to": "00:05:44,360"
+			},
+			"offsets": {
+				"from": 341200,
+				"to": 344360
+			},
+			"text": " In 2005, you become innovative with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,360",
+				"to": "00:05:48,600"
+			},
+			"offsets": {
+				"from": 344360,
+				"to": 348600
+			},
+			"text": " more sophisticated on which you could bring user presents"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,600",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 348600,
+				"to": 350120
+			},
+			"text": " and you didn't need a reader."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:54,680"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 354680
+			},
+			"text": " But still, the chip was not very powerful and not extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,680",
+				"to": "00:05:55,360"
+			},
+			"offsets": {
+				"from": 354680,
+				"to": 355360
+			},
+			"text": " open."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,360",
+				"to": "00:05:59,480"
+			},
+			"offsets": {
+				"from": 355360,
+				"to": 359480
+			},
+			"text": " And we have seen really a new set of secure hardware coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,480",
+				"to": "00:06:02,960"
+			},
+			"offsets": {
+				"from": 359480,
+				"to": 362960
+			},
+			"text": " with cryptocurrencies because hardware wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,960",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 362960,
+				"to": 366840
+			},
+			"text": " have been designed to be able to work in an extremely hostile"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:10,640"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 370640
+			},
+			"text": " environment in which malware could change things"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,640",
+				"to": "00:06:13,320"
+			},
+			"offsets": {
+				"from": 370640,
+				"to": 373320
+			},
+			"text": " and the user computer and the hardware wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,320",
+				"to": "00:06:16,200"
+			},
+			"offsets": {
+				"from": 373320,
+				"to": 376200
+			},
+			"text": " had to always operate properly, otherwise people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,200",
+				"to": "00:06:18,160"
+			},
+			"offsets": {
+				"from": 376200,
+				"to": 378160
+			},
+			"text": " would be losing money."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,160",
+				"to": "00:06:20,960"
+			},
+			"offsets": {
+				"from": 378160,
+				"to": 380960
+			},
+			"text": " So I'm considering hardware wallets today"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,960",
+				"to": "00:06:23,280"
+			},
+			"offsets": {
+				"from": 380960,
+				"to": 383280
+			},
+			"text": " as the next evolution in smart cards"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,280",
+				"to": "00:06:25,760"
+			},
+			"offsets": {
+				"from": 383280,
+				"to": 385760
+			},
+			"text": " because they are really smart cards designed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,760",
+				"to": "00:06:29,840"
+			},
+			"offsets": {
+				"from": 385760,
+				"to": 389840
+			},
+			"text": " for an hostile environment and for the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,840",
+				"to": "00:06:33,240"
+			},
+			"offsets": {
+				"from": 389840,
+				"to": 393240
+			},
+			"text": " If we look now at the history of generic hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,240",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 393240,
+				"to": 396040
+			},
+			"text": " so why secure hardware is getting more open,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:38,120"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 398120
+			},
+			"text": " generic hardware is getting more secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,120",
+				"to": "00:06:40,040"
+			},
+			"offsets": {
+				"from": 398120,
+				"to": 400040
+			},
+			"text": " So they will meet at some point."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,040",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 400040,
+				"to": 401000
+			},
+			"text": " That's the idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,280"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406280
+			},
+			"text": " So here, initially, if we want to consider the generic CPUs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,280",
+				"to": "00:06:48,040"
+			},
+			"offsets": {
+				"from": 406280,
+				"to": 408040
+			},
+			"text": " I'm introduced to a zone which I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,040",
+				"to": "00:06:50,640"
+			},
+			"offsets": {
+				"from": 408040,
+				"to": 410640
+			},
+			"text": " set up very low-level primitives that you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,640",
+				"to": "00:06:53,640"
+			},
+			"offsets": {
+				"from": 410640,
+				"to": 413640
+			},
+			"text": " to basically create operating system that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,640",
+				"to": "00:06:57,920"
+			},
+			"offsets": {
+				"from": 413640,
+				"to": 417920
+			},
+			"text": " will isolate applications and create a normal world"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,920",
+				"to": "00:07:00,920"
+			},
+			"offsets": {
+				"from": 417920,
+				"to": 420920
+			},
+			"text": " and a secure world in which secure application can execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,920",
+				"to": "00:07:04,320"
+			},
+			"offsets": {
+				"from": 420920,
+				"to": 424320
+			},
+			"text": " without being interrupted by the operating system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,320",
+				"to": "00:07:06,880"
+			},
+			"offsets": {
+				"from": 424320,
+				"to": 426880
+			},
+			"text": " Intel did the same thing a bit later."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,880",
+				"to": "00:07:09,520"
+			},
+			"offsets": {
+				"from": 426880,
+				"to": 429520
+			},
+			"text": " The platform is more rich, so while TrustZone only"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,520",
+				"to": "00:07:14,640"
+			},
+			"offsets": {
+				"from": 429520,
+				"to": 434640
+			},
+			"text": " provides primitives, in SGX is providing a set of APIs"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,640",
+				"to": "00:07:16,960"
+			},
+			"offsets": {
+				"from": 434640,
+				"to": 436960
+			},
+			"text": " that you can use to run any kind of application"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,960",
+				"to": "00:07:19,600"
+			},
+			"offsets": {
+				"from": 436960,
+				"to": 439600
+			},
+			"text": " without writing the operating system yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,600",
+				"to": "00:07:22,720"
+			},
+			"offsets": {
+				"from": 439600,
+				"to": 442720
+			},
+			"text": " And then a bit later, we have seen some evolutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,720",
+				"to": "00:07:25,280"
+			},
+			"offsets": {
+				"from": 442720,
+				"to": 445280
+			},
+			"text": " of TrustZone and mostly TrustZone coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,280",
+				"to": "00:07:28,760"
+			},
+			"offsets": {
+				"from": 445280,
+				"to": 448760
+			},
+			"text": " with hardware components optimizing cryptographic primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,760",
+				"to": "00:07:30,680"
+			},
+			"offsets": {
+				"from": 448760,
+				"to": 450680
+			},
+			"text": " that we have been talking about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,680",
+				"to": "00:07:33,320"
+			},
+			"offsets": {
+				"from": 450680,
+				"to": 453320
+			},
+			"text": " And one interesting chip, if you want to look at that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,320",
+				"to": "00:07:38,040"
+			},
+			"offsets": {
+				"from": 453320,
+				"to": 458040
+			},
+			"text": " it's the latest chip, including BLE from Nordic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,040",
+				"to": "00:07:42,360"
+			},
+			"offsets": {
+				"from": 458040,
+				"to": 462360
+			},
+			"text": " which has TrustZone and a cryptographic accelerator."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,360",
+				"to": "00:07:45,520"
+			},
+			"offsets": {
+				"from": 462360,
+				"to": 465520
+			},
+			"text": " So those chips are extremely close to secure elements today."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,520",
+				"to": "00:07:49,040"
+			},
+			"offsets": {
+				"from": 465520,
+				"to": 469040
+			},
+			"text": " They don't have exactly the same physical properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,040",
+				"to": "00:07:51,880"
+			},
+			"offsets": {
+				"from": 469040,
+				"to": 471880
+			},
+			"text": " I mean, regarding resistance to hardware attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,880",
+				"to": "00:07:53,560"
+			},
+			"offsets": {
+				"from": 471880,
+				"to": 473560
+			},
+			"text": " and proving the origin of the chip."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,560",
+				"to": "00:07:57,600"
+			},
+			"offsets": {
+				"from": 473560,
+				"to": 477600
+			},
+			"text": " But otherwise, they are extremely close."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,600",
+				"to": "00:08:02,440"
+			},
+			"offsets": {
+				"from": 477600,
+				"to": 482440
+			},
+			"text": " So now, what is a hardware wallet and what do we want to build?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,440",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 482440,
+				"to": 485040
+			},
+			"text": " If we are splitting the different parts of a hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:06,920"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 486920
+			},
+			"text": " wallet into an architecture, that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,920",
+				"to": "00:08:08,880"
+			},
+			"offsets": {
+				"from": 486920,
+				"to": 488880
+			},
+			"text": " will call the transaction interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,880",
+				"to": "00:08:12,360"
+			},
+			"offsets": {
+				"from": 488880,
+				"to": 492360
+			},
+			"text": " So the transaction interface will interact with secret data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,360",
+				"to": "00:08:15,360"
+			},
+			"offsets": {
+				"from": 492360,
+				"to": 495360
+			},
+			"text": " which is basically the seed of the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,360",
+				"to": "00:08:19,080"
+			},
+			"offsets": {
+				"from": 495360,
+				"to": 499080
+			},
+			"text": " if we are considering keys and if we are considering"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,080",
+				"to": "00:08:20,240"
+			},
+			"offsets": {
+				"from": 499080,
+				"to": 500240
+			},
+			"text": " deriving keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,240",
+				"to": "00:08:23,080"
+			},
+			"offsets": {
+				"from": 500240,
+				"to": 503080
+			},
+			"text": " Several applications will be interacting with those keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,080",
+				"to": "00:08:25,640"
+			},
+			"offsets": {
+				"from": 503080,
+				"to": 505640
+			},
+			"text": " We don't want those applications to interact directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,640",
+				"to": "00:08:28,640"
+			},
+			"offsets": {
+				"from": 505640,
+				"to": 508640
+			},
+			"text": " with the secrets, otherwise they can steal the secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,640",
+				"to": "00:08:31,400"
+			},
+			"offsets": {
+				"from": 508640,
+				"to": 511400
+			},
+			"text": " And we want to either write the applications from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,400",
+				"to": "00:08:34,840"
+			},
+			"offsets": {
+				"from": 511400,
+				"to": 514840
+			},
+			"text": " So applications have to call the transaction interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,840",
+				"to": "00:08:37,760"
+			},
+			"offsets": {
+				"from": 514840,
+				"to": 517760
+			},
+			"text": " over a secure path, which won't reveal the secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,760",
+				"to": "00:08:42,160"
+			},
+			"offsets": {
+				"from": 517760,
+				"to": 522160
+			},
+			"text": " and will only let them run a specific set of algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,160",
+				"to": "00:08:44,680"
+			},
+			"offsets": {
+				"from": 522160,
+				"to": 524680
+			},
+			"text": " And further, we can lock the applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,680",
+				"to": "00:08:46,160"
+			},
+			"offsets": {
+				"from": 524680,
+				"to": 526160
+			},
+			"text": " on several properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,160",
+				"to": "00:08:50,400"
+			},
+			"offsets": {
+				"from": 526160,
+				"to": 530400
+			},
+			"text": " For example, we can lock them on an HD derivation path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,400",
+				"to": "00:08:54,120"
+			},
+			"offsets": {
+				"from": 530400,
+				"to": 534120
+			},
+			"text": " which means that here, if an application gets compromised,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,120",
+				"to": "00:08:56,280"
+			},
+			"offsets": {
+				"from": 534120,
+				"to": 536280
+			},
+			"text": " the only derivation path that can leak"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,280",
+				"to": "00:08:59,720"
+			},
+			"offsets": {
+				"from": 536280,
+				"to": 539720
+			},
+			"text": " is a pass specific to this application."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,720",
+				"to": "00:09:04,040"
+			},
+			"offsets": {
+				"from": 539720,
+				"to": 544040
+			},
+			"text": " So here, I'm referring to hierarchical deterministic wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,040",
+				"to": "00:09:07,400"
+			},
+			"offsets": {
+				"from": 544040,
+				"to": 547400
+			},
+			"text": " which are getting used now significantly, I mean,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,400",
+				"to": "00:09:11,240"
+			},
+			"offsets": {
+				"from": 547400,
+				"to": 551240
+			},
+			"text": " for Ethereum and have been used in Bitcoin for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,240",
+				"to": "00:09:13,840"
+			},
+			"offsets": {
+				"from": 551240,
+				"to": 553840
+			},
+			"text": " But we can generalize the concept for all set of keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,840",
+				"to": "00:09:18,920"
+			},
+			"offsets": {
+				"from": 553840,
+				"to": 558920
+			},
+			"text": " So what kind of components do we need"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,920",
+				"to": "00:09:21,640"
+			},
+			"offsets": {
+				"from": 558920,
+				"to": 561640
+			},
+			"text": " to build the transaction interface and secure hardware?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,640",
+				"to": "00:09:23,720"
+			},
+			"offsets": {
+				"from": 561640,
+				"to": 563720
+			},
+			"text": " We need to build the isolation first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,720",
+				"to": "00:09:26,920"
+			},
+			"offsets": {
+				"from": 563720,
+				"to": 566920
+			},
+			"text": " so because if we want to run several applications together,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,920",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 566920,
+				"to": 568360
+			},
+			"text": " we need to isolate them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:31,680"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 571680
+			},
+			"text": " And we need to isolate the path interwriting with secret data"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,680",
+				"to": "00:09:33,120"
+			},
+			"offsets": {
+				"from": 571680,
+				"to": 573120
+			},
+			"text": " from the applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,120",
+				"to": "00:09:35,920"
+			},
+			"offsets": {
+				"from": 573120,
+				"to": 575920
+			},
+			"text": " Then we need to guarantee secure storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,920",
+				"to": "00:09:38,640"
+			},
+			"offsets": {
+				"from": 575920,
+				"to": 578640
+			},
+			"text": " We need to guarantee a secure implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,640",
+				"to": "00:09:40,920"
+			},
+			"offsets": {
+				"from": 578640,
+				"to": 580920
+			},
+			"text": " of the cryptographic primitive, so referring"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,920",
+				"to": "00:09:44,680"
+			},
+			"offsets": {
+				"from": 580920,
+				"to": 584680
+			},
+			"text": " to the passive attacks that we talked about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,680",
+				"to": "00:09:49,040"
+			},
+			"offsets": {
+				"from": 584680,
+				"to": 589040
+			},
+			"text": " And then we need to provide a way for the external party"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,040",
+				"to": "00:09:51,680"
+			},
+			"offsets": {
+				"from": 589040,
+				"to": 591680
+			},
+			"text": " to verify that the platform is legitimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,680",
+				"to": "00:09:53,720"
+			},
+			"offsets": {
+				"from": 591680,
+				"to": 593720
+			},
+			"text": " and that an application running on the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,720",
+				"to": "00:09:54,920"
+			},
+			"offsets": {
+				"from": 593720,
+				"to": 594920
+			},
+			"text": " is legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,920",
+				"to": "00:09:57,360"
+			},
+			"offsets": {
+				"from": 594920,
+				"to": 597360
+			},
+			"text": " And on top of that, because we are running in a world"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,360",
+				"to": "00:09:59,800"
+			},
+			"offsets": {
+				"from": 597360,
+				"to": 599800
+			},
+			"text": " with smart contracts, we want to provide a way"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,800",
+				"to": "00:10:01,720"
+			},
+			"offsets": {
+				"from": 599800,
+				"to": 601720
+			},
+			"text": " to authenticate this on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,720",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 601720,
+				"to": 604160
+			},
+			"text": " So typically, we want to be able to prove on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:06,240"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 606240
+			},
+			"text": " that we are running the right application"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,240",
+				"to": "00:10:07,680"
+			},
+			"offsets": {
+				"from": 606240,
+				"to": 607680
+			},
+			"text": " on the right platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,680",
+				"to": "00:10:09,520"
+			},
+			"offsets": {
+				"from": 607680,
+				"to": 609520
+			},
+			"text": " And now we'll see how to implement"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,520",
+				"to": "00:10:11,800"
+			},
+			"offsets": {
+				"from": 609520,
+				"to": 611800
+			},
+			"text": " those different components on different hardware"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,800",
+				"to": "00:10:14,480"
+			},
+			"offsets": {
+				"from": 611800,
+				"to": 614480
+			},
+			"text": " and the consequences."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,480",
+				"to": "00:10:18,720"
+			},
+			"offsets": {
+				"from": 614480,
+				"to": 618720
+			},
+			"text": " So first, why are we designing a transaction interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,720",
+				"to": "00:10:22,520"
+			},
+			"offsets": {
+				"from": 618720,
+				"to": 622520
+			},
+			"text": " rather than running with a set of different applications?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,520",
+				"to": "00:10:25,240"
+			},
+			"offsets": {
+				"from": 622520,
+				"to": 625240
+			},
+			"text": " The point is we are saving time by doing that"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,240",
+				"to": "00:10:29,480"
+			},
+			"offsets": {
+				"from": 625240,
+				"to": 629480
+			},
+			"text": " rather than just letting each provider design"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,480",
+				"to": "00:10:31,520"
+			},
+			"offsets": {
+				"from": 629480,
+				"to": 631520
+			},
+			"text": " is on set of applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,520",
+				"to": "00:10:33,960"
+			},
+			"offsets": {
+				"from": 631520,
+				"to": 633960
+			},
+			"text": " As we've seen before, a formal validation"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,960",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 633960,
+				"to": 636760
+			},
+			"text": " is quite complicated, so that's just an example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:39,920"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 639920
+			},
+			"text": " If we want a formal validation of a secure hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,920",
+				"to": "00:10:42,120"
+			},
+			"offsets": {
+				"from": 639920,
+				"to": 642120
+			},
+			"text": " it's better to do it on a common interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,120",
+				"to": "00:10:46,080"
+			},
+			"offsets": {
+				"from": 642120,
+				"to": 646080
+			},
+			"text": " than to duplicate the work on a set of applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,080",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 646080,
+				"to": 649000
+			},
+			"text": " So here, the right path as a critical path,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:50,920"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 650920
+			},
+			"text": " the transaction interface is critical,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,920",
+				"to": "00:10:54,440"
+			},
+			"offsets": {
+				"from": 650920,
+				"to": 654440
+			},
+			"text": " and all the steps are that the other application"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,440",
+				"to": "00:10:57,800"
+			},
+			"offsets": {
+				"from": 654440,
+				"to": 657800
+			},
+			"text": " would call, which are still executing in the secure world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,800",
+				"to": "00:11:00,480"
+			},
+			"offsets": {
+				"from": 657800,
+				"to": 660480
+			},
+			"text": " are protected by the transaction interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,480",
+				"to": "00:11:03,280"
+			},
+			"offsets": {
+				"from": 660480,
+				"to": 663280
+			},
+			"text": " So you don't need to spend too much time in that case"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,280",
+				"to": "00:11:05,880"
+			},
+			"offsets": {
+				"from": 663280,
+				"to": 665880
+			},
+			"text": " validating them, because the platform will already"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,880",
+				"to": "00:11:08,800"
+			},
+			"offsets": {
+				"from": 665880,
+				"to": 668800
+			},
+			"text": " guarantee that they can't click thanks to the isolation"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,800",
+				"to": "00:11:11,040"
+			},
+			"offsets": {
+				"from": 668800,
+				"to": 671040
+			},
+			"text": " properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,040",
+				"to": "00:11:14,160"
+			},
+			"offsets": {
+				"from": 671040,
+				"to": 674160
+			},
+			"text": " If we want to implement that on ARM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,160",
+				"to": "00:11:18,920"
+			},
+			"offsets": {
+				"from": 674160,
+				"to": 678920
+			},
+			"text": " so that's a regular use case which will be completely native,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,920",
+				"to": "00:11:23,520"
+			},
+			"offsets": {
+				"from": 678920,
+				"to": 683520
+			},
+			"text": " we can use the native properties of ARM CPUs to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,520",
+				"to": "00:11:27,440"
+			},
+			"offsets": {
+				"from": 683520,
+				"to": 687440
+			},
+			"text": " So we can isolate the secrets using memory management unit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,440",
+				"to": "00:11:29,400"
+			},
+			"offsets": {
+				"from": 687440,
+				"to": 689400
+			},
+			"text": " or memory protection unit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,400",
+				"to": "00:11:32,880"
+			},
+			"offsets": {
+				"from": 689400,
+				"to": 692880
+			},
+			"text": " And when the calls that will be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,880",
+				"to": "00:11:35,800"
+			},
+			"offsets": {
+				"from": 692880,
+				"to": 695800
+			},
+			"text": " over from the applications to the transaction interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,800",
+				"to": "00:11:39,160"
+			},
+			"offsets": {
+				"from": 695800,
+				"to": 699160
+			},
+			"text": " can be directly mapped to ARM service calls."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,160",
+				"to": "00:11:43,440"
+			},
+			"offsets": {
+				"from": 699160,
+				"to": 703440
+			},
+			"text": " So here, the architecture is extremely close to the first one."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,440",
+				"to": "00:11:46,560"
+			},
+			"offsets": {
+				"from": 703440,
+				"to": 706560
+			},
+			"text": " We are just replacing all the calls and all the iterations"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,560",
+				"to": "00:11:49,680"
+			},
+			"offsets": {
+				"from": 706560,
+				"to": 709680
+			},
+			"text": " by native ARM properties, and the applications themselves"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,680",
+				"to": "00:11:50,360"
+			},
+			"offsets": {
+				"from": 709680,
+				"to": 710360
+			},
+			"text": " are native."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,360",
+				"to": "00:11:53,280"
+			},
+			"offsets": {
+				"from": 710360,
+				"to": 713280
+			},
+			"text": " We don't need to run a VM when we are using ARM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,280",
+				"to": "00:11:55,680"
+			},
+			"offsets": {
+				"from": 713280,
+				"to": 715680
+			},
+			"text": " because the hardware is allowing us"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,680",
+				"to": "00:11:59,040"
+			},
+			"offsets": {
+				"from": 715680,
+				"to": 719040
+			},
+			"text": " to perform the resolution by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:01,720"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 721720
+			},
+			"text": " Now, let's consider SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,720",
+				"to": "00:12:05,320"
+			},
+			"offsets": {
+				"from": 721720,
+				"to": 725320
+			},
+			"text": " So SGX is kind of different."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,320",
+				"to": "00:12:07,280"
+			},
+			"offsets": {
+				"from": 725320,
+				"to": 727280
+			},
+			"text": " We don't work close to the metal."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,280",
+				"to": "00:12:09,640"
+			},
+			"offsets": {
+				"from": 727280,
+				"to": 729640
+			},
+			"text": " We can't really isolate enclaves."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,640",
+				"to": "00:12:14,200"
+			},
+			"offsets": {
+				"from": 729640,
+				"to": 734200
+			},
+			"text": " So enclaves being application running on SGX from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,200",
+				"to": "00:12:16,440"
+			},
+			"offsets": {
+				"from": 734200,
+				"to": 736440
+			},
+			"text": " We don't have either an attestation scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,440",
+				"to": "00:12:17,880"
+			},
+			"offsets": {
+				"from": 736440,
+				"to": 737880
+			},
+			"text": " that can run on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,880",
+				"to": "00:12:21,600"
+			},
+			"offsets": {
+				"from": 737880,
+				"to": 741600
+			},
+			"text": " So the attestation scheme on SGX is Intel proprietary,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,600",
+				"to": "00:12:23,920"
+			},
+			"offsets": {
+				"from": 741600,
+				"to": 743920
+			},
+			"text": " and we have to call a server on Intel side"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,920",
+				"to": "00:12:26,880"
+			},
+			"offsets": {
+				"from": 743920,
+				"to": 746880
+			},
+			"text": " to guarantee that the platform is legitimate."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,880",
+				"to": "00:12:31,560"
+			},
+			"offsets": {
+				"from": 746880,
+				"to": 751560
+			},
+			"text": " So in this case, one simple use case that I suggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,560",
+				"to": "00:12:33,240"
+			},
+			"offsets": {
+				"from": 751560,
+				"to": 753240
+			},
+			"text": " is to use a virtual CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,240",
+				"to": "00:12:36,840"
+			},
+			"offsets": {
+				"from": 753240,
+				"to": 756840
+			},
+			"text": " So it might look complex to use a virtual CPU,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,840",
+				"to": "00:12:40,240"
+			},
+			"offsets": {
+				"from": 756840,
+				"to": 760240
+			},
+			"text": " but thankfully, there are things like Moxie, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,240",
+				"to": "00:12:42,760"
+			},
+			"offsets": {
+				"from": 760240,
+				"to": 762760
+			},
+			"text": " are open source, already very easy to test,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,760",
+				"to": "00:12:45,560"
+			},
+			"offsets": {
+				"from": 762760,
+				"to": 765560
+			},
+			"text": " and already almost proven, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,560",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 765560,
+				"to": 768000
+			},
+			"text": " So it has been used by different projects in the Bitcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:48,840"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 768840
+			},
+			"text": " space."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,840",
+				"to": "00:12:52,040"
+			},
+			"offsets": {
+				"from": 768840,
+				"to": 772040
+			},
+			"text": " And why would we use that rather than the EVM?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,040",
+				"to": "00:12:54,200"
+			},
+			"offsets": {
+				"from": 772040,
+				"to": 774200
+			},
+			"text": " The most-- I mean, the easiest reason"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,200",
+				"to": "00:12:57,400"
+			},
+			"offsets": {
+				"from": 774200,
+				"to": 777400
+			},
+			"text": " is that if we want to guarantee portability and easy"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,400",
+				"to": "00:13:01,040"
+			},
+			"offsets": {
+				"from": 777400,
+				"to": 781040
+			},
+			"text": " portability between different secure environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,040",
+				"to": "00:13:02,920"
+			},
+			"offsets": {
+				"from": 781040,
+				"to": 782920
+			},
+			"text": " targeting C is a good call."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,920",
+				"to": "00:13:06,440"
+			},
+			"offsets": {
+				"from": 782920,
+				"to": 786440
+			},
+			"text": " Because when we will be working on ARM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,440",
+				"to": "00:13:08,240"
+			},
+			"offsets": {
+				"from": 786440,
+				"to": 788240
+			},
+			"text": " we will have native resolution."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,240",
+				"to": "00:13:11,040"
+			},
+			"offsets": {
+				"from": 788240,
+				"to": 791040
+			},
+			"text": " And here, we simulate the native resolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,040",
+				"to": "00:13:13,120"
+			},
+			"offsets": {
+				"from": 791040,
+				"to": 793120
+			},
+			"text": " by running with a virtual CPU."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,120",
+				"to": "00:13:16,560"
+			},
+			"offsets": {
+				"from": 793120,
+				"to": 796560
+			},
+			"text": " So of course, well, that's just a suggestion, I would say."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,560",
+				"to": "00:13:20,720"
+			},
+			"offsets": {
+				"from": 796560,
+				"to": 800720
+			},
+			"text": " This architecture is completely open for comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,720",
+				"to": "00:13:25,680"
+			},
+			"offsets": {
+				"from": 800720,
+				"to": 805680
+			},
+			"text": " And well, don't hesitate to push for some other ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,680",
+				"to": "00:13:27,480"
+			},
+			"offsets": {
+				"from": 805680,
+				"to": 807480
+			},
+			"text": " Now, secure storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,480",
+				"to": "00:13:30,760"
+			},
+			"offsets": {
+				"from": 807480,
+				"to": 810760
+			},
+			"text": " So how are we going to handle secure storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,760",
+				"to": "00:13:32,440"
+			},
+			"offsets": {
+				"from": 810760,
+				"to": 812440
+			},
+			"text": " depending on the platforms?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,440",
+				"to": "00:13:34,960"
+			},
+			"offsets": {
+				"from": 812440,
+				"to": 814960
+			},
+			"text": " If we are running on our own platform natively,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,960",
+				"to": "00:13:36,480"
+			},
+			"offsets": {
+				"from": 814960,
+				"to": 816480
+			},
+			"text": " then we don't have any problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,480",
+				"to": "00:13:39,520"
+			},
+			"offsets": {
+				"from": 816480,
+				"to": 819520
+			},
+			"text": " Because we can just store things natively on the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,520",
+				"to": "00:13:43,400"
+			},
+			"offsets": {
+				"from": 819520,
+				"to": 823400
+			},
+			"text": " If we are running on a host on which we can store anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,400",
+				"to": "00:13:46,480"
+			},
+			"offsets": {
+				"from": 823400,
+				"to": 826480
+			},
+			"text": " which is an example for enclaves and SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,480",
+				"to": "00:13:50,040"
+			},
+			"offsets": {
+				"from": 826480,
+				"to": 830040
+			},
+			"text": " we have to be a little bit more creative in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,040",
+				"to": "00:13:52,640"
+			},
+			"offsets": {
+				"from": 830040,
+				"to": 832640
+			},
+			"text": " So one way to do that is every time"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,640",
+				"to": "00:13:55,920"
+			},
+			"offsets": {
+				"from": 832640,
+				"to": 835920
+			},
+			"text": " we want to use secret data, we can encrypt it by a key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,920",
+				"to": "00:13:59,640"
+			},
+			"offsets": {
+				"from": 835920,
+				"to": 839640
+			},
+			"text": " which is owned by the application running into SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,640",
+				"to": "00:14:01,320"
+			},
+			"offsets": {
+				"from": 839640,
+				"to": 841320
+			},
+			"text": " running into the secure environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,320",
+				"to": "00:14:04,520"
+			},
+			"offsets": {
+				"from": 841320,
+				"to": 844520
+			},
+			"text": " We can store this on the host because then it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,520",
+				"to": "00:14:07,760"
+			},
+			"offsets": {
+				"from": 844520,
+				"to": 847760
+			},
+			"text": " dangerous, because this blob is encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,760",
+				"to": "00:14:10,360"
+			},
+			"offsets": {
+				"from": 847760,
+				"to": 850360
+			},
+			"text": " and cannot be used by the host."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,360",
+				"to": "00:14:12,640"
+			},
+			"offsets": {
+				"from": 850360,
+				"to": 852640
+			},
+			"text": " And when we want to use it, we will just pass it back"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,640",
+				"to": "00:14:14,480"
+			},
+			"offsets": {
+				"from": 852640,
+				"to": 854480
+			},
+			"text": " to the enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,480",
+				"to": "00:14:18,320"
+			},
+			"offsets": {
+				"from": 854480,
+				"to": 858320
+			},
+			"text": " We can also choose to bind the data to different items."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,320",
+				"to": "00:14:20,640"
+			},
+			"offsets": {
+				"from": 858320,
+				"to": 860640
+			},
+			"text": " So we can bind it to the interface itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,640",
+				"to": "00:14:22,240"
+			},
+			"offsets": {
+				"from": 860640,
+				"to": 862240
+			},
+			"text": " We can bind it to the device."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,240",
+				"to": "00:14:24,520"
+			},
+			"offsets": {
+				"from": 862240,
+				"to": 864520
+			},
+			"text": " Or we can bind it to a specific application."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,520",
+				"to": "00:14:26,560"
+			},
+			"offsets": {
+				"from": 864520,
+				"to": 866560
+			},
+			"text": " So we have all kind of granularity"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,560",
+				"to": "00:14:30,200"
+			},
+			"offsets": {
+				"from": 866560,
+				"to": 870200
+			},
+			"text": " in the way with the late secrets from other applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,200",
+				"to": "00:14:33,480"
+			},
+			"offsets": {
+				"from": 870200,
+				"to": 873480
+			},
+			"text": " even when running on an enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:35,640"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 875640
+			},
+			"text": " We still have some problems if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,640",
+				"to": "00:14:39,080"
+			},
+			"offsets": {
+				"from": 875640,
+				"to": 879080
+			},
+			"text": " want to consider secure storage on claves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,080",
+				"to": "00:14:41,720"
+			},
+			"offsets": {
+				"from": 879080,
+				"to": 881720
+			},
+			"text": " so on which we can store things natively."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,720",
+				"to": "00:14:44,560"
+			},
+			"offsets": {
+				"from": 881720,
+				"to": 884560
+			},
+			"text": " Typically, on T-Replay is a critical feature."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,560",
+				"to": "00:14:46,680"
+			},
+			"offsets": {
+				"from": 884560,
+				"to": 886680
+			},
+			"text": " If we want to implement a pin contour"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,680",
+				"to": "00:14:49,080"
+			},
+			"offsets": {
+				"from": 886680,
+				"to": 889080
+			},
+			"text": " and we don't have on T-Replay, it's not going to work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,080",
+				"to": "00:14:51,880"
+			},
+			"offsets": {
+				"from": 889080,
+				"to": 891880
+			},
+			"text": " because then people can just push you the same contour over"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,880",
+				"to": "00:14:54,120"
+			},
+			"offsets": {
+				"from": 891880,
+				"to": 894120
+			},
+			"text": " and over again, and you just can't do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,120",
+				"to": "00:14:57,280"
+			},
+			"offsets": {
+				"from": 894120,
+				"to": 897280
+			},
+			"text": " So one way to overcome this limitation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,280",
+				"to": "00:14:59,240"
+			},
+			"offsets": {
+				"from": 897280,
+				"to": 899240
+			},
+			"text": " is to use monotonic contours."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,240",
+				"to": "00:15:03,640"
+			},
+			"offsets": {
+				"from": 899240,
+				"to": 903640
+			},
+			"text": " Monotonic contours would be contour that can only go forward,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,640",
+				"to": "00:15:05,720"
+			},
+			"offsets": {
+				"from": 903640,
+				"to": 905720
+			},
+			"text": " and this is guaranteed by hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,720",
+				"to": "00:15:08,320"
+			},
+			"offsets": {
+				"from": 905720,
+				"to": 908320
+			},
+			"text": " So in this case, we would use a monotonic contour,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,320",
+				"to": "00:15:11,320"
+			},
+			"offsets": {
+				"from": 908320,
+				"to": 911320
+			},
+			"text": " put it in GObject reference, store the value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,320",
+				"to": "00:15:13,160"
+			},
+			"offsets": {
+				"from": 911320,
+				"to": 913160
+			},
+			"text": " increase it when we want to change it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,160",
+				"to": "00:15:16,080"
+			},
+			"offsets": {
+				"from": 913160,
+				"to": 916080
+			},
+			"text": " and it's fine because this can't be replayed."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,080",
+				"to": "00:15:18,760"
+			},
+			"offsets": {
+				"from": 916080,
+				"to": 918760
+			},
+			"text": " This can't be replayed, depending on the condition"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,760",
+				"to": "00:15:21,480"
+			},
+			"offsets": {
+				"from": 918760,
+				"to": 921480
+			},
+			"text": " we have for the implementation of monotonic contours"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,480",
+				"to": "00:15:22,480"
+			},
+			"offsets": {
+				"from": 921480,
+				"to": 922480
+			},
+			"text": " on the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,480",
+				"to": "00:15:24,680"
+			},
+			"offsets": {
+				"from": 922480,
+				"to": 924680
+			},
+			"text": " So here again, keeping in mind that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,680",
+				"to": "00:15:27,360"
+			},
+			"offsets": {
+				"from": 924680,
+				"to": 927360
+			},
+			"text": " have to consider all threads when implementing something,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,360",
+				"to": "00:15:29,520"
+			},
+			"offsets": {
+				"from": 927360,
+				"to": 929520
+			},
+			"text": " you want to verify it typically if there"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,520",
+				"to": "00:15:31,760"
+			},
+			"offsets": {
+				"from": 929520,
+				"to": 931760
+			},
+			"text": " is a reset condition for monotonic contour"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,760",
+				"to": "00:15:34,160"
+			},
+			"offsets": {
+				"from": 931760,
+				"to": 934160
+			},
+			"text": " and how that would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,160",
+				"to": "00:15:38,280"
+			},
+			"offsets": {
+				"from": 934160,
+				"to": 938280
+			},
+			"text": " Now, something else to consider specifically for SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,280",
+				"to": "00:15:40,960"
+			},
+			"offsets": {
+				"from": 938280,
+				"to": 940960
+			},
+			"text": " let's say you want to migrate data from one enclave"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,960",
+				"to": "00:15:43,400"
+			},
+			"offsets": {
+				"from": 940960,
+				"to": 943400
+			},
+			"text": " to another, you have to consider if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,400",
+				"to": "00:15:45,880"
+			},
+			"offsets": {
+				"from": 943400,
+				"to": 945880
+			},
+			"text": " want to lock your secrets to your applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,880",
+				"to": "00:15:48,600"
+			},
+			"offsets": {
+				"from": 945880,
+				"to": 948600
+			},
+			"text": " or lock your secrets to your issuer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,600",
+				"to": "00:15:52,320"
+			},
+			"offsets": {
+				"from": 948600,
+				"to": 952320
+			},
+			"text": " If you lock to your application, then security wise"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,320",
+				"to": "00:15:56,160"
+			},
+			"offsets": {
+				"from": 952320,
+				"to": 956160
+			},
+			"text": " is quite safe because if the application is modified,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,160",
+				"to": "00:15:57,240"
+			},
+			"offsets": {
+				"from": 956160,
+				"to": 957240
+			},
+			"text": " you are losing secrets."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,240",
+				"to": "00:15:59,760"
+			},
+			"offsets": {
+				"from": 957240,
+				"to": 959760
+			},
+			"text": " But it's not that nice for the end user"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,760",
+				"to": "00:16:02,200"
+			},
+			"offsets": {
+				"from": 959760,
+				"to": 962200
+			},
+			"text": " because then you have to repersonalize everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,200",
+				"to": "00:16:05,880"
+			},
+			"offsets": {
+				"from": 962200,
+				"to": 965880
+			},
+			"text": " If you lock to the issuer, everybody can update the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,880",
+				"to": "00:16:09,440"
+			},
+			"offsets": {
+				"from": 965880,
+				"to": 969440
+			},
+			"text": " But if you lose the issuer key, then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,440",
+				"to": "00:16:11,920"
+			},
+			"offsets": {
+				"from": 969440,
+				"to": 971920
+			},
+			"text": " are going to be able to compromise all user data"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,920",
+				"to": "00:16:14,960"
+			},
+			"offsets": {
+				"from": 971920,
+				"to": 974960
+			},
+			"text": " by just deploying a wrong enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,960",
+				"to": "00:16:16,680"
+			},
+			"offsets": {
+				"from": 974960,
+				"to": 976680
+			},
+			"text": " So here again, you have a trade-off"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,680",
+				"to": "00:16:19,040"
+			},
+			"offsets": {
+				"from": 976680,
+				"to": 979040
+			},
+			"text": " to perform between security and usability"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,040",
+				"to": "00:16:22,840"
+			},
+			"offsets": {
+				"from": 979040,
+				"to": 982840
+			},
+			"text": " and think carefully about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,840",
+				"to": "00:16:25,800"
+			},
+			"offsets": {
+				"from": 982840,
+				"to": 985800
+			},
+			"text": " Now, regarding the implementation of cryptographic primitives,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,800",
+				"to": "00:16:27,960"
+			},
+			"offsets": {
+				"from": 985800,
+				"to": 987960
+			},
+			"text": " you have basically two choices."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,960",
+				"to": "00:16:30,800"
+			},
+			"offsets": {
+				"from": 987960,
+				"to": 990800
+			},
+			"text": " You can use cryptographic primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,800",
+				"to": "00:16:33,480"
+			},
+			"offsets": {
+				"from": 990800,
+				"to": 993480
+			},
+			"text": " given to you by the platform with guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,480",
+				"to": "00:16:35,640"
+			},
+			"offsets": {
+				"from": 993480,
+				"to": 995640
+			},
+			"text": " that they are going to behave very well"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,640",
+				"to": "00:16:40,240"
+			},
+			"offsets": {
+				"from": 995640,
+				"to": 1000240
+			},
+			"text": " and they are going to resist all kind of site channel attacks."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,240",
+				"to": "00:16:42,240"
+			},
+			"offsets": {
+				"from": 1000240,
+				"to": 1002240
+			},
+			"text": " Or you can use open source crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,240",
+				"to": "00:16:44,240"
+			},
+			"offsets": {
+				"from": 1002240,
+				"to": 1004240
+			},
+			"text": " History has proven so far that it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,240",
+				"to": "00:16:45,880"
+			},
+			"offsets": {
+				"from": 1004240,
+				"to": 1005880
+			},
+			"text": " better to use open source crypto."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,880",
+				"to": "00:16:48,680"
+			},
+			"offsets": {
+				"from": 1005880,
+				"to": 1008680
+			},
+			"text": " So if you have been following security news,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,680",
+				"to": "00:16:51,800"
+			},
+			"offsets": {
+				"from": 1008680,
+				"to": 1011800
+			},
+			"text": " an infinite library has some issues recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,800",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1011800,
+				"to": 1015440
+			},
+			"text": " So here, well, we have good typical choices"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:57,840"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1017840
+			},
+			"text": " to implement several cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,840",
+				"to": "00:17:03,880"
+			},
+			"offsets": {
+				"from": 1017840,
+				"to": 1023880
+			},
+			"text": " Coming from Bitcoin, we have LipSecP 256K1 and CTAES,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,880",
+				"to": "00:17:05,200"
+			},
+			"offsets": {
+				"from": 1023880,
+				"to": 1025200
+			},
+			"text": " so far as."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,200",
+				"to": "00:17:07,280"
+			},
+			"offsets": {
+				"from": 1025200,
+				"to": 1027280
+			},
+			"text": " And we have other open source libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,280",
+				"to": "00:17:09,240"
+			},
+			"offsets": {
+				"from": 1027280,
+				"to": 1029240
+			},
+			"text": " for different kind of cryptos which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,240",
+				"to": "00:17:11,760"
+			},
+			"offsets": {
+				"from": 1029240,
+				"to": 1031760
+			},
+			"text": " have been tested against site channel attacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,760",
+				"to": "00:17:13,520"
+			},
+			"offsets": {
+				"from": 1031760,
+				"to": 1033520
+			},
+			"text": " and which are reliable."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,520",
+				"to": "00:17:17,080"
+			},
+			"offsets": {
+				"from": 1033520,
+				"to": 1037080
+			},
+			"text": " I would consider to exert extreme caution"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,080",
+				"to": "00:17:19,480"
+			},
+			"offsets": {
+				"from": 1037080,
+				"to": 1039480
+			},
+			"text": " when picking a cryptographic library"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,480",
+				"to": "00:17:22,840"
+			},
+			"offsets": {
+				"from": 1039480,
+				"to": 1042840
+			},
+			"text": " because there are a lot of open source cryptographic libraries"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,840",
+				"to": "00:17:25,560"
+			},
+			"offsets": {
+				"from": 1042840,
+				"to": 1045560
+			},
+			"text": " when these attacks have not been considered."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,560",
+				"to": "00:17:29,320"
+			},
+			"offsets": {
+				"from": 1045560,
+				"to": 1049320
+			},
+			"text": " But thanks to different cryptocurrency projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,320",
+				"to": "00:17:31,680"
+			},
+			"offsets": {
+				"from": 1049320,
+				"to": 1051680
+			},
+			"text": " they have already picked some good libraries for us."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,680",
+				"to": "00:17:34,920"
+			},
+			"offsets": {
+				"from": 1051680,
+				"to": 1054920
+			},
+			"text": " So we can use that in on-claves as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,920",
+				"to": "00:17:37,160"
+			},
+			"offsets": {
+				"from": 1054920,
+				"to": 1057160
+			},
+			"text": " Now the proof of execution, if we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,160",
+				"to": "00:17:40,880"
+			},
+			"offsets": {
+				"from": 1057160,
+				"to": 1060880
+			},
+			"text": " to prove that something has been running"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,880",
+				"to": "00:17:43,200"
+			},
+			"offsets": {
+				"from": 1060880,
+				"to": 1063200
+			},
+			"text": " on the trusted platform and on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,200",
+				"to": "00:17:45,840"
+			},
+			"offsets": {
+				"from": 1063200,
+				"to": 1065840
+			},
+			"text": " the easiest way to do that is to just include"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:45,840",
+				"to": "00:17:49,680"
+			},
+			"offsets": {
+				"from": 1065840,
+				"to": 1069680
+			},
+			"text": " the hash of the application into a primitive that we will call"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,680",
+				"to": "00:17:51,880"
+			},
+			"offsets": {
+				"from": 1069680,
+				"to": 1071880
+			},
+			"text": " to let an application sign a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,880",
+				"to": "00:17:54,320"
+			},
+			"offsets": {
+				"from": 1071880,
+				"to": 1074320
+			},
+			"text": " We can do that because the isolation and join"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,320",
+				"to": "00:17:56,360"
+			},
+			"offsets": {
+				"from": 1074320,
+				"to": 1076360
+			},
+			"text": " is knowing which application is running"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,360",
+				"to": "00:17:59,960"
+			},
+			"offsets": {
+				"from": 1076360,
+				"to": 1079960
+			},
+			"text": " and so can intercept a call, insert the hash of the application"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,960",
+				"to": "00:18:02,520"
+			},
+			"offsets": {
+				"from": 1079960,
+				"to": 1082520
+			},
+			"text": " in the middle, and work further with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,520",
+				"to": "00:18:05,040"
+			},
+			"offsets": {
+				"from": 1082520,
+				"to": 1085040
+			},
+			"text": " So by implementing this, we have some things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,040",
+				"to": "00:18:07,440"
+			},
+			"offsets": {
+				"from": 1085040,
+				"to": 1087440
+			},
+			"text": " that are extremely easy to verify on-chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,440",
+				"to": "00:18:09,160"
+			},
+			"offsets": {
+				"from": 1087440,
+				"to": 1089160
+			},
+			"text": " because it's just a signature."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,160",
+				"to": "00:18:13,680"
+			},
+			"offsets": {
+				"from": 1089160,
+				"to": 1093680
+			},
+			"text": " And typically this has already been implemented by our clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,680",
+				"to": "00:18:18,040"
+			},
+			"offsets": {
+				"from": 1093680,
+				"to": 1098040
+			},
+			"text": " And there is an example you can check."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,040",
+				"to": "00:18:23,600"
+			},
+			"offsets": {
+				"from": 1098040,
+				"to": 1103600
+			},
+			"text": " On SGX, the way we will do that is we will go through one step."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,600",
+				"to": "00:18:25,120"
+			},
+			"offsets": {
+				"from": 1103600,
+				"to": 1105120
+			},
+			"text": " We will call IAS."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,120",
+				"to": "00:18:28,320"
+			},
+			"offsets": {
+				"from": 1105120,
+				"to": 1108320
+			},
+			"text": " So we'll call the Intel ATE station service at some point"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,320",
+				"to": "00:18:32,000"
+			},
+			"offsets": {
+				"from": 1108320,
+				"to": 1112000
+			},
+			"text": " because that's necessary to initiate the chain of trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,000",
+				"to": "00:18:35,640"
+			},
+			"offsets": {
+				"from": 1112000,
+				"to": 1115640
+			},
+			"text": " And then we will continue the chain of trust for more cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,640",
+				"to": "00:18:37,920"
+			},
+			"offsets": {
+				"from": 1115640,
+				"to": 1117920
+			},
+			"text": " So in the end, we end up with applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,920",
+				"to": "00:18:41,200"
+			},
+			"offsets": {
+				"from": 1117920,
+				"to": 1121200
+			},
+			"text": " that we can verify on-chain, even if they are running on an SGX"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,200",
+				"to": "00:18:45,120"
+			},
+			"offsets": {
+				"from": 1121200,
+				"to": 1125120
+			},
+			"text": " on-clave with an ATE station, which is not supposed to run on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,120",
+				"to": "00:18:48,200"
+			},
+			"offsets": {
+				"from": 1125120,
+				"to": 1128200
+			},
+			"text": " But we might still want from time to time"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,200",
+				"to": "00:18:51,640"
+			},
+			"offsets": {
+				"from": 1128200,
+				"to": 1131640
+			},
+			"text": " to check the house of the platform because the state of an on-clave"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,640",
+				"to": "00:18:52,760"
+			},
+			"offsets": {
+				"from": 1131640,
+				"to": 1132760
+			},
+			"text": " can change over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,760",
+				"to": "00:18:55,480"
+			},
+			"offsets": {
+				"from": 1132760,
+				"to": 1135480
+			},
+			"text": " Typically, there are bugs or exploits."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,480",
+				"to": "00:18:56,440"
+			},
+			"offsets": {
+				"from": 1135480,
+				"to": 1136440
+			},
+			"text": " That's the case today."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,440",
+				"to": "00:19:00,440"
+			},
+			"offsets": {
+				"from": 1136440,
+				"to": 1140440
+			},
+			"text": " There is a bug that's going to be patched by Intel shortly."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,440",
+				"to": "00:19:05,120"
+			},
+			"offsets": {
+				"from": 1140440,
+				"to": 1145120
+			},
+			"text": " So we have a system that we can verify on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,120",
+				"to": "00:19:11,240"
+			},
+			"offsets": {
+				"from": 1145120,
+				"to": 1151240
+			},
+			"text": " We still have to pay some attention on who we are going to patch it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,240",
+				"to": "00:19:14,360"
+			},
+			"offsets": {
+				"from": 1151240,
+				"to": 1154360
+			},
+			"text": " On several use cases, we can have with all those systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:14,360",
+				"to": "00:19:18,680"
+			},
+			"offsets": {
+				"from": 1154360,
+				"to": 1158680
+			},
+			"text": " So we can first decide to replace hardware wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,680",
+				"to": "00:19:21,120"
+			},
+			"offsets": {
+				"from": 1158680,
+				"to": 1161120
+			},
+			"text": " and virtualize hardware wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,120",
+				"to": "00:19:23,800"
+			},
+			"offsets": {
+				"from": 1161120,
+				"to": 1163800
+			},
+			"text": " But to do that, we first need to have a trusted display"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,800",
+				"to": "00:19:27,440"
+			},
+			"offsets": {
+				"from": 1163800,
+				"to": 1167440
+			},
+			"text": " and trusted input because one of the key parts of hardware wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,440",
+				"to": "00:19:30,560"
+			},
+			"offsets": {
+				"from": 1167440,
+				"to": 1170560
+			},
+			"text": " is not lying to the user when displaying something"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,560",
+				"to": "00:19:34,320"
+			},
+			"offsets": {
+				"from": 1170560,
+				"to": 1174320
+			},
+			"text": " and waiting for the user input before actually performing an action."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,320",
+				"to": "00:19:37,160"
+			},
+			"offsets": {
+				"from": 1174320,
+				"to": 1177160
+			},
+			"text": " If we want to do that, we need specific primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,160",
+				"to": "00:19:40,400"
+			},
+			"offsets": {
+				"from": 1177160,
+				"to": 1180400
+			},
+			"text": " that might be not implemented by all platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,400",
+				"to": "00:19:43,760"
+			},
+			"offsets": {
+				"from": 1180400,
+				"to": 1183760
+			},
+			"text": " Typically, on SGX, we would need the trusted display"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,760",
+				"to": "00:19:46,440"
+			},
+			"offsets": {
+				"from": 1183760,
+				"to": 1186440
+			},
+			"text": " is called PTD for protected protection display,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,440",
+				"to": "00:19:48,040"
+			},
+			"offsets": {
+				"from": 1186440,
+				"to": 1188040
+			},
+			"text": " transaction display, sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,040",
+				"to": "00:19:49,920"
+			},
+			"offsets": {
+				"from": 1188040,
+				"to": 1189920
+			},
+			"text": " We need to have this implemented if we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,920",
+				"to": "00:19:53,920"
+			},
+			"offsets": {
+				"from": 1189920,
+				"to": 1193920
+			},
+			"text": " want to have a user wallet, which is similar to a consumer product."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,920",
+				"to": "00:19:57,640"
+			},
+			"offsets": {
+				"from": 1193920,
+				"to": 1197640
+			},
+			"text": " We can still perform some-- we have some mitigations."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,640",
+				"to": "00:19:59,480"
+			},
+			"offsets": {
+				"from": 1197640,
+				"to": 1199480
+			},
+			"text": " If we don't have PTD, typically, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,480",
+				"to": "00:20:03,160"
+			},
+			"offsets": {
+				"from": 1199480,
+				"to": 1203160
+			},
+			"text": " can use two enclaves to have one acting as a secure screen"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,160",
+				"to": "00:20:06,040"
+			},
+			"offsets": {
+				"from": 1203160,
+				"to": 1206040
+			},
+			"text": " and the other one binding to the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,040",
+				"to": "00:20:09,440"
+			},
+			"offsets": {
+				"from": 1206040,
+				"to": 1209440
+			},
+			"text": " But yeah, that's kind of a hack and not extremely comfortable."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,440",
+				"to": "00:20:12,680"
+			},
+			"offsets": {
+				"from": 1209440,
+				"to": 1212680
+			},
+			"text": " If you tell to users that you are going to make their life easier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,680",
+				"to": "00:20:17,680"
+			},
+			"offsets": {
+				"from": 1212680,
+				"to": 1217680
+			},
+			"text": " but still require-- need to have two devices to work properly."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,680",
+				"to": "00:20:23,160"
+			},
+			"offsets": {
+				"from": 1217680,
+				"to": 1223160
+			},
+			"text": " Another use case, which is probably more useful and easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,160",
+				"to": "00:20:25,800"
+			},
+			"offsets": {
+				"from": 1223160,
+				"to": 1225800
+			},
+			"text": " to deploy in that case, is to use--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,800",
+				"to": "00:20:28,280"
+			},
+			"offsets": {
+				"from": 1225800,
+				"to": 1228280
+			},
+			"text": " to create a user-specific hardware wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,280",
+				"to": "00:20:31,120"
+			},
+			"offsets": {
+				"from": 1228280,
+				"to": 1231120
+			},
+			"text": " So hardware wallets that would look for specific contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,120",
+				"to": "00:20:35,320"
+			},
+			"offsets": {
+				"from": 1231120,
+				"to": 1235320
+			},
+			"text": " for specific addresses, for specific limits or cut-as"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,320",
+				"to": "00:20:39,600"
+			},
+			"offsets": {
+				"from": 1235320,
+				"to": 1239600
+			},
+			"text": " that you want to implement on the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,600",
+				"to": "00:20:44,920"
+			},
+			"offsets": {
+				"from": 1239600,
+				"to": 1244920
+			},
+			"text": " So that's easy to deploy, even if you don't have a trusted input."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,920",
+				"to": "00:20:48,280"
+			},
+			"offsets": {
+				"from": 1244920,
+				"to": 1248280
+			},
+			"text": " Question is, you might wonder why this is better than a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,280",
+				"to": "00:20:51,200"
+			},
+			"offsets": {
+				"from": 1248280,
+				"to": 1251200
+			},
+			"text": " implementation that could do all this by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,200",
+				"to": "00:20:54,280"
+			},
+			"offsets": {
+				"from": 1251200,
+				"to": 1254280
+			},
+			"text": " So first, if you want to deploy this on a device,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,280",
+				"to": "00:20:57,320"
+			},
+			"offsets": {
+				"from": 1254280,
+				"to": 1257320
+			},
+			"text": " it's a great way to make sure that your device keys won't"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,320",
+				"to": "00:21:00,600"
+			},
+			"offsets": {
+				"from": 1257320,
+				"to": 1260600
+			},
+			"text": " be stolen to do something else, which is still a critical issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,600",
+				"to": "00:21:03,400"
+			},
+			"offsets": {
+				"from": 1260600,
+				"to": 1263400
+			},
+			"text": " I mean, even if the smart contract is enforcing things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,400",
+				"to": "00:21:06,600"
+			},
+			"offsets": {
+				"from": 1263400,
+				"to": 1266600
+			},
+			"text": " And then you can create more flexible update rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,600",
+				"to": "00:21:08,600"
+			},
+			"offsets": {
+				"from": 1266600,
+				"to": 1268600
+			},
+			"text": " If you want to update a smart contract today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,600",
+				"to": "00:21:11,720"
+			},
+			"offsets": {
+				"from": 1268600,
+				"to": 1271720
+			},
+			"text": " either you have to think about it before creating it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,720",
+				"to": "00:21:15,600"
+			},
+			"offsets": {
+				"from": 1271720,
+				"to": 1275600
+			},
+			"text": " or you will have to empty it and transfer its funds elsewhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,600",
+				"to": "00:21:19,640"
+			},
+			"offsets": {
+				"from": 1275600,
+				"to": 1279640
+			},
+			"text": " So doing that with hardware might be more convenient in many new"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,640",
+				"to": "00:21:20,140"
+			},
+			"offsets": {
+				"from": 1279640,
+				"to": 1280140
+			},
+			"text": " cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,140",
+				"to": "00:21:26,800"
+			},
+			"offsets": {
+				"from": 1280140,
+				"to": 1286800
+			},
+			"text": " You can also use the service to create external services"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,800",
+				"to": "00:21:27,840"
+			},
+			"offsets": {
+				"from": 1286800,
+				"to": 1287840
+			},
+			"text": " that you can verify."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,840",
+				"to": "00:21:31,640"
+			},
+			"offsets": {
+				"from": 1287840,
+				"to": 1291640
+			},
+			"text": " So the random source random or I call it an example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,640",
+				"to": "00:21:34,360"
+			},
+			"offsets": {
+				"from": 1291640,
+				"to": 1294360
+			},
+			"text": " also for more a class, creating a random source"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,360",
+				"to": "00:21:36,640"
+			},
+			"offsets": {
+				"from": 1294360,
+				"to": 1296640
+			},
+			"text": " and verifying that the random has been generated"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,640",
+				"to": "00:21:38,720"
+			},
+			"offsets": {
+				"from": 1296640,
+				"to": 1298720
+			},
+			"text": " by a trusted platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,720",
+				"to": "00:21:43,240"
+			},
+			"offsets": {
+				"from": 1298720,
+				"to": 1303240
+			},
+			"text": " And finally, so speaking about those architecture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,240",
+				"to": "00:21:46,160"
+			},
+			"offsets": {
+				"from": 1303240,
+				"to": 1306160
+			},
+			"text": " we have an implementation running the prototypes"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,160",
+				"to": "00:21:47,920"
+			},
+			"offsets": {
+				"from": 1306160,
+				"to": 1307920
+			},
+			"text": " that you can already play with."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,920",
+				"to": "00:21:51,400"
+			},
+			"offsets": {
+				"from": 1307920,
+				"to": 1311400
+			},
+			"text": " So I'm taking all kinds of suggestions about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,400",
+				"to": "00:21:54,440"
+			},
+			"offsets": {
+				"from": 1311400,
+				"to": 1314440
+			},
+			"text": " Today, there is an implementation working on SGX."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,440",
+				"to": "00:21:58,680"
+			},
+			"offsets": {
+				"from": 1314440,
+				"to": 1318680
+			},
+			"text": " There will be one working on arm shortly next year."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,680",
+				"to": "00:22:02,200"
+			},
+			"offsets": {
+				"from": 1318680,
+				"to": 1322200
+			},
+			"text": " So it's heavy work in progress, just to let you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,200",
+				"to": "00:22:04,840"
+			},
+			"offsets": {
+				"from": 1322200,
+				"to": 1324840
+			},
+			"text": " We don't have yet an Ethereum wallet available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,840",
+				"to": "00:22:07,480"
+			},
+			"offsets": {
+				"from": 1324840,
+				"to": 1327480
+			},
+			"text": " but you will find all cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,480",
+				"to": "00:22:09,400"
+			},
+			"offsets": {
+				"from": 1327480,
+				"to": 1329400
+			},
+			"text": " And if you want to start playing with it"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,400",
+				"to": "00:22:13,880"
+			},
+			"offsets": {
+				"from": 1329400,
+				"to": 1333880
+			},
+			"text": " and then asking some questions, well, I'm around,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,880",
+				"to": "00:22:16,360"
+			},
+			"offsets": {
+				"from": 1333880,
+				"to": 1336360
+			},
+			"text": " let's get the conversation started."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,360",
+				"to": "00:22:17,880"
+			},
+			"offsets": {
+				"from": 1336360,
+				"to": 1337880
+			},
+			"text": " Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,880",
+				"to": "00:22:20,880"
+			},
+			"offsets": {
+				"from": 1337880,
+				"to": 1340880
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,880",
+				"to": "00:22:24,240"
+			},
+			"offsets": {
+				"from": 1340880,
+				"to": 1344240
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,240",
+				"to": "00:22:27,600"
+			},
+			"offsets": {
+				"from": 1344240,
+				"to": 1347600
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,600",
+				"to": "00:22:30,340"
+			},
+			"offsets": {
+				"from": 1347600,
+				"to": 1350340
+			},
+			"text": " (dramatic music)"
+		}
+	]
+}

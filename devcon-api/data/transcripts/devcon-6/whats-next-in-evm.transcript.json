@@ -1,0 +1,1242 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:18,360"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 18360
+			},
+			"text": " And Ipsilon team at Ethereum Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,360",
+				"to": "00:00:22,280"
+			},
+			"offsets": {
+				"from": 18360,
+				"to": 22280
+			},
+			"text": " and this talk was originally about what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,280",
+				"to": "00:00:23,920"
+			},
+			"offsets": {
+				"from": 22280,
+				"to": 23920
+			},
+			"text": " next in the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,920",
+				"to": "00:00:28,760"
+			},
+			"offsets": {
+				"from": 23920,
+				"to": 28760
+			},
+			"text": " But we showed it a bit because like Nick talks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,760",
+				"to": "00:00:31,400"
+			},
+			"offsets": {
+				"from": 28760,
+				"to": 31400
+			},
+			"text": " But what I want to tell you about today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,400",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 31400,
+				"to": 35120
+			},
+			"text": " is quick to give you a quick introduction to EOF,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:38,400"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 38400
+			},
+			"text": " EVM object format."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,400",
+				"to": "00:00:41,920"
+			},
+			"offsets": {
+				"from": 38400,
+				"to": 41920
+			},
+			"text": " But we have to start with the current EVM we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,920",
+				"to": "00:00:45,920"
+			},
+			"offsets": {
+				"from": 41920,
+				"to": 45920
+			},
+			"text": " So one of the design goals of current EVM was simplicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,920",
+				"to": "00:00:50,000"
+			},
+			"offsets": {
+				"from": 45920,
+				"to": 50000
+			},
+			"text": " And the thing is that we kind of overdone it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,000",
+				"to": "00:00:55,600"
+			},
+			"offsets": {
+				"from": 50000,
+				"to": 55600
+			},
+			"text": " And the current EVM can just execute whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,600",
+				"to": "00:00:59,120"
+			},
+			"offsets": {
+				"from": 55600,
+				"to": 59120
+			},
+			"text": " you will provide to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,120",
+				"to": "00:01:02,200"
+			},
+			"offsets": {
+				"from": 59120,
+				"to": 62200
+			},
+			"text": " And that's why I kind of sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,200",
+				"to": "00:01:06,400"
+			},
+			"offsets": {
+				"from": 62200,
+				"to": 66400
+			},
+			"text": " thinking about it as a garbage heating machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,400",
+				"to": "00:01:10,400"
+			},
+			"offsets": {
+				"from": 66400,
+				"to": 70400
+			},
+			"text": " So it brings some success to EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,400",
+				"to": "00:01:17,080"
+			},
+			"offsets": {
+				"from": 70400,
+				"to": 77080
+			},
+			"text": " but it also brings some inefficiencies to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,080",
+				"to": "00:01:21,240"
+			},
+			"offsets": {
+				"from": 77080,
+				"to": 81240
+			},
+			"text": " So one of these inefficient aspects of EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,240",
+				"to": "00:01:26,120"
+			},
+			"offsets": {
+				"from": 81240,
+				"to": 86120
+			},
+			"text": " is that you need to do a lot of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,120",
+				"to": "00:01:30,840"
+			},
+			"offsets": {
+				"from": 86120,
+				"to": 90840
+			},
+			"text": " above the actual work the instruction are doing internally."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,840",
+				"to": "00:01:37,320"
+			},
+			"offsets": {
+				"from": 90840,
+				"to": 97320
+			},
+			"text": " So this is like the checks that every step in the interpreter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,320",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 97320,
+				"to": 101000
+			},
+			"text": " you will need to perform to make sure that the EVM works"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:46,480"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 106480
+			},
+			"text": " as a specification wants it to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,480",
+				"to": "00:01:50,040"
+			},
+			"offsets": {
+				"from": 106480,
+				"to": 110040
+			},
+			"text": " And this is kind of the motivation we want to create up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,040",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 110040,
+				"to": 114360
+			},
+			"text": " And the cleanup of that is to introduce a container,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:58,440"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 118440
+			},
+			"text": " binary container for the programs in EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,440",
+				"to": "00:02:02,760"
+			},
+			"offsets": {
+				"from": 118440,
+				"to": 122760
+			},
+			"text": " so that it will kind of translate the mixture"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,760",
+				"to": "00:02:09,440"
+			},
+			"offsets": {
+				"from": 122760,
+				"to": 129440
+			},
+			"text": " of different features and some misfeatures in the legacy EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,440",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 129440,
+				"to": 136680
+			},
+			"text": " to something that is a bit more structured and polished."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:23,080"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 143080
+			},
+			"text": " So the main aspect of EOF is to provide some metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,080",
+				"to": "00:02:27,720"
+			},
+			"offsets": {
+				"from": 143080,
+				"to": 147720
+			},
+			"text": " about the program, including the version number,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,720",
+				"to": "00:02:34,240"
+			},
+			"offsets": {
+				"from": 147720,
+				"to": 154240
+			},
+			"text": " and splits the bytes into code and data sections."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,240",
+				"to": "00:02:35,920"
+			},
+			"offsets": {
+				"from": 154240,
+				"to": 155920
+			},
+			"text": " We can also do a bit more about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,920",
+				"to": "00:02:40,360"
+			},
+			"offsets": {
+				"from": 155920,
+				"to": 160360
+			},
+			"text": " This is kind of the next proposal"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,360",
+				"to": "00:02:44,600"
+			},
+			"offsets": {
+				"from": 160360,
+				"to": 164600
+			},
+			"text": " that can be applied to the EV of EOF,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,600",
+				"to": "00:02:46,720"
+			},
+			"offsets": {
+				"from": 164600,
+				"to": 166720
+			},
+			"text": " which is to introduce functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,720",
+				"to": "00:02:51,560"
+			},
+			"offsets": {
+				"from": 166720,
+				"to": 171560
+			},
+			"text": " So we can partition the code section into more pieces"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,560",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 171560,
+				"to": 175680
+			},
+			"text": " with additional function type information."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:02:59,080"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 179080
+			},
+			"text": " And to work with the functions in EVM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,080",
+				"to": "00:03:02,360"
+			},
+			"offsets": {
+				"from": 179080,
+				"to": 182360
+			},
+			"text": " we will introduce two new instructions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,360",
+				"to": "00:03:06,400"
+			},
+			"offsets": {
+				"from": 182360,
+				"to": 186400
+			},
+			"text": " One is to call the other code blob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,400",
+				"to": "00:03:10,880"
+			},
+			"offsets": {
+				"from": 186400,
+				"to": 190880
+			},
+			"text": " and one is to return from the call to the caller."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,720",
+				"to": "00:03:17,600"
+			},
+			"offsets": {
+				"from": 193720,
+				"to": 197600
+			},
+			"text": " And this, like the calling, the functions internally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,600",
+				"to": "00:03:19,560"
+			},
+			"offsets": {
+				"from": 197600,
+				"to": 199560
+			},
+			"text": " works, allows you to move you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,560",
+				"to": "00:03:22,360"
+			},
+			"offsets": {
+				"from": 199560,
+				"to": 202360
+			},
+			"text": " between the different code sections."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,360",
+				"to": "00:03:27,280"
+			},
+			"offsets": {
+				"from": 202360,
+				"to": 207280
+			},
+			"text": " In the code sections, you can use relative jumps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,280",
+				"to": "00:03:31,640"
+			},
+			"offsets": {
+				"from": 207280,
+				"to": 211640
+			},
+			"text": " which would replace the existing dynamic jumps."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,640",
+				"to": "00:03:35,200"
+			},
+			"offsets": {
+				"from": 211640,
+				"to": 215200
+			},
+			"text": " And yeah, so this is the control flow instructions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,200",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 215200,
+				"to": 219480
+			},
+			"text": " that will allow you to move it around in the code sections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:43,840"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 223840
+			},
+			"text": " and it won't be allowed to actually close the boundaries"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,840",
+				"to": "00:03:47,040"
+			},
+			"offsets": {
+				"from": 223840,
+				"to": 227040
+			},
+			"text": " of the partitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,040",
+				"to": "00:03:53,280"
+			},
+			"offsets": {
+				"from": 227040,
+				"to": 233280
+			},
+			"text": " And as I mentioned, having to do this control flow features,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,280",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 233280,
+				"to": 240000
+			},
+			"text": " we can deprecate the existing jumps semantics."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:01,840"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 241840
+			},
+			"text": " In particular, this is really useful"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,840",
+				"to": "00:04:04,600"
+			},
+			"offsets": {
+				"from": 241840,
+				"to": 244600
+			},
+			"text": " because we can drop the jumpless analysis, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,600",
+				"to": "00:04:07,840"
+			},
+			"offsets": {
+				"from": 244600,
+				"to": 247840
+			},
+			"text": " has to be performed about EVM programs"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,840",
+				"to": "00:04:11,040"
+			},
+			"offsets": {
+				"from": 247840,
+				"to": 251040
+			},
+			"text": " before every execution."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,040",
+				"to": "00:04:14,440"
+			},
+			"offsets": {
+				"from": 251040,
+				"to": 254440
+			},
+			"text": " And if we kind of adapt all of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,440",
+				"to": "00:04:20,080"
+			},
+			"offsets": {
+				"from": 254440,
+				"to": 260080
+			},
+			"text": " we can-- with additional code verification that will happen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,080",
+				"to": "00:04:26,160"
+			},
+			"offsets": {
+				"from": 260080,
+				"to": 266160
+			},
+			"text": " we can eliminate these like 33 checks in the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,160",
+				"to": "00:04:35,760"
+			},
+			"offsets": {
+				"from": 266160,
+				"to": 275760
+			},
+			"text": " So this is the additional aspects that can be added to that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,760",
+				"to": "00:04:40,560"
+			},
+			"offsets": {
+				"from": 275760,
+				"to": 280560
+			},
+			"text": " which we can verify how the functions behave internally"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,560",
+				"to": "00:04:42,800"
+			},
+			"offsets": {
+				"from": 280560,
+				"to": 282800
+			},
+			"text": " with simple algorithms."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,800",
+				"to": "00:04:48,320"
+			},
+			"offsets": {
+				"from": 282800,
+				"to": 288320
+			},
+			"text": " But to sum up all of that, yeah, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,320",
+				"to": "00:04:52,800"
+			},
+			"offsets": {
+				"from": 288320,
+				"to": 292800
+			},
+			"text": " kind of improved version of EVM that has some nice control"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,800",
+				"to": "00:04:56,040"
+			},
+			"offsets": {
+				"from": 292800,
+				"to": 296040
+			},
+			"text": " flow, have the code and data separation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,040",
+				"to": "00:04:57,600"
+			},
+			"offsets": {
+				"from": 296040,
+				"to": 297600
+			},
+			"text": " and support native functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,600",
+				"to": "00:05:04,640"
+			},
+			"offsets": {
+				"from": 297600,
+				"to": 304640
+			},
+			"text": " Yeah, so that's mostly what I had to show you today."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,600",
+				"to": "00:05:08,720"
+			},
+			"offsets": {
+				"from": 305600,
+				"to": 308720
+			},
+			"text": " These are pointers when you can find more information."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,720",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 308720,
+				"to": 312880
+			},
+			"text": " I think, in particular, the FCC talk from this year,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:15,280"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 315280
+			},
+			"text": " it's kind of the extended version of this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,280",
+				"to": "00:05:22,960"
+			},
+			"offsets": {
+				"from": 315280,
+				"to": 322960
+			},
+			"text": " So, yeah, you're invited to see it after it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,960",
+				"to": "00:05:26,040"
+			},
+			"offsets": {
+				"from": 322960,
+				"to": 326040
+			},
+			"text": " And yeah, the five bullet points in the end"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,040",
+				"to": "00:05:34,080"
+			},
+			"offsets": {
+				"from": 326040,
+				"to": 334080
+			},
+			"text": " are all the APs that kind of specify the broad aspect of your F."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,080",
+				"to": "00:05:35,360"
+			},
+			"offsets": {
+				"from": 334080,
+				"to": 335360
+			},
+			"text": " Yeah, still have one minute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,360",
+				"to": "00:05:38,800"
+			},
+			"offsets": {
+				"from": 335360,
+				"to": 338800
+			},
+			"text": " So if you want, you can shout some questions from the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,800",
+				"to": "00:05:46,480"
+			},
+			"offsets": {
+				"from": 338800,
+				"to": 346480
+			},
+			"text": " That's a hard question."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,480",
+				"to": "00:05:50,480"
+			},
+			"offsets": {
+				"from": 346480,
+				"to": 350480
+			},
+			"text": " I mean, we kind of competing with the proto-dunction link,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,480",
+				"to": "00:05:52,800"
+			},
+			"offsets": {
+				"from": 350480,
+				"to": 352800
+			},
+			"text": " and we've draw us right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,800",
+				"to": "00:05:56,760"
+			},
+			"offsets": {
+				"from": 352800,
+				"to": 356760
+			},
+			"text": " So yeah, it's hard to tell, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,760",
+				"to": "00:06:01,120"
+			},
+			"offsets": {
+				"from": 356760,
+				"to": 361120
+			},
+			"text": " Some of these aspects were prepared for Shanghai,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,120",
+				"to": "00:06:04,880"
+			},
+			"offsets": {
+				"from": 361120,
+				"to": 364880
+			},
+			"text": " but not all of the features I talked about today."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,880",
+				"to": "00:06:08,720"
+			},
+			"offsets": {
+				"from": 364880,
+				"to": 368720
+			},
+			"text": " Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,720",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368720,
+				"to": 370000
+			},
+			"text": " I have a quick question."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:10,600"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 370600
+			},
+			"text": " Oh, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,600",
+				"to": "00:06:12,200"
+			},
+			"offsets": {
+				"from": 370600,
+				"to": 372200
+			},
+			"text": " Oh, say."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,200",
+				"to": "00:06:17,440"
+			},
+			"offsets": {
+				"from": 372200,
+				"to": 377440
+			},
+			"text": " So in one of the slides, you strike through Stack on the Flow"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,440",
+				"to": "00:06:19,440"
+			},
+			"offsets": {
+				"from": 377440,
+				"to": 379440
+			},
+			"text": " and Stack Overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,440",
+				"to": "00:06:22,640"
+			},
+			"offsets": {
+				"from": 379440,
+				"to": 382640
+			},
+			"text": " I think this one and only--"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,640",
+				"to": "00:06:25,400"
+			},
+			"offsets": {
+				"from": 382640,
+				"to": 385400
+			},
+			"text": " can you give me a bit more details around that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,400",
+				"to": "00:06:28,320"
+			},
+			"offsets": {
+				"from": 385400,
+				"to": 388320
+			},
+			"text": " Yeah, this is done by code validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,320",
+				"to": "00:06:30,520"
+			},
+			"offsets": {
+				"from": 388320,
+				"to": 390520
+			},
+			"text": " So when you want to deploy a code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,520",
+				"to": "00:06:33,760"
+			},
+			"offsets": {
+				"from": 390520,
+				"to": 393760
+			},
+			"text": " it will go through additional validation process."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,760",
+				"to": "00:06:36,400"
+			},
+			"offsets": {
+				"from": 393760,
+				"to": 396400
+			},
+			"text": " And in particular, when you don't have dynamic jumps,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,400",
+				"to": "00:06:41,560"
+			},
+			"offsets": {
+				"from": 396400,
+				"to": 401560
+			},
+			"text": " you can statically check if the function will never"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,560",
+				"to": "00:06:43,920"
+			},
+			"offsets": {
+				"from": 401560,
+				"to": 403920
+			},
+			"text": " stack underflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,920",
+				"to": "00:06:46,480"
+			},
+			"offsets": {
+				"from": 403920,
+				"to": 406480
+			},
+			"text": " Stack Overflow is a bit more complicated,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,480",
+				"to": "00:06:49,400"
+			},
+			"offsets": {
+				"from": 406480,
+				"to": 409400
+			},
+			"text": " but you can compute the maximum stack height,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,400",
+				"to": "00:06:51,120"
+			},
+			"offsets": {
+				"from": 409400,
+				"to": 411120
+			},
+			"text": " the function reaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,120",
+				"to": "00:06:53,120"
+			},
+			"offsets": {
+				"from": 411120,
+				"to": 413120
+			},
+			"text": " And then whenever you call the function,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,120",
+				"to": "00:06:57,160"
+			},
+			"offsets": {
+				"from": 413120,
+				"to": 417160
+			},
+			"text": " you can check if you still have enough stack space available."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,160",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 417160,
+				"to": 420000
+			},
+			"text": " So that's the second one is a bit more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:04,720"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 424720
+			},
+			"text": " And it has some trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,720",
+				"to": "00:07:06,640"
+			},
+			"offsets": {
+				"from": 424720,
+				"to": 426640
+			},
+			"text": " I think it's my time."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,640",
+				"to": "00:07:07,800"
+			},
+			"offsets": {
+				"from": 426640,
+				"to": 427800
+			},
+			"text": " So thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,800",
+				"to": "00:07:09,440"
+			},
+			"offsets": {
+				"from": 427800,
+				"to": 429440
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,440",
+				"to": "00:07:12,800"
+			},
+			"offsets": {
+				"from": 429440,
+				"to": 432800
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,800",
+				"to": "00:07:16,160"
+			},
+			"offsets": {
+				"from": 432800,
+				"to": 436160
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,160",
+				"to": "00:07:19,520"
+			},
+			"offsets": {
+				"from": 436160,
+				"to": 439520
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,520",
+				"to": "00:07:48,520"
+			},
+			"offsets": {
+				"from": 439520,
+				"to": 468520
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,1209 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " >> Hi, everyone. Hi, welcome to Japan. Are you enjoying Osaka? Oh, yeah, sounds great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:26,400"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 26400
+			},
+			"text": " Today I'm going to talk about new voting systems. And I just want to tell one -- just one simple"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,400",
+				"to": "00:00:33,040"
+			},
+			"offsets": {
+				"from": 26400,
+				"to": 33040
+			},
+			"text": " key message today, which is, \"Retreat our voting system for a better one, such as majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,040",
+				"to": "00:00:41,080"
+			},
+			"offsets": {
+				"from": 33040,
+				"to": 41080
+			},
+			"text": " judgment and quality voting, as to change this world to a better one.\" And before I give"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,080",
+				"to": "00:00:50,960"
+			},
+			"offsets": {
+				"from": 41080,
+				"to": 50960
+			},
+			"text": " my presentation, let me introduce myself quickly. My name is Masahiro Yasu. Please call me Masah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,960",
+				"to": "00:00:59,600"
+			},
+			"offsets": {
+				"from": 50960,
+				"to": 59600
+			},
+			"text": " I founded Alice in 2017, which is a social media using Ethereum blockchain. And I'm also"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,600",
+				"to": "00:01:07,240"
+			},
+			"offsets": {
+				"from": 59600,
+				"to": 67240
+			},
+			"text": " in charge of the radical exchange, Japan chapter, which is created by Glen Wave, the famous"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,240",
+				"to": "00:01:15,720"
+			},
+			"offsets": {
+				"from": 67240,
+				"to": 75720
+			},
+			"text": " book author of radical markets. I think most of you know about radical markets. And our"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,720",
+				"to": "00:01:23,600"
+			},
+			"offsets": {
+				"from": 75720,
+				"to": 83600
+			},
+			"text": " company is also researching a mechanism designed with famous economists, Dr. Kasekai from K.O."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,600",
+				"to": "00:01:30,520"
+			},
+			"offsets": {
+				"from": 83600,
+				"to": 90520
+			},
+			"text": " University, which is one of the most famous private universities in Japan, to create Alice"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,520",
+				"to": "00:01:39,160"
+			},
+			"offsets": {
+				"from": 90520,
+				"to": 99160
+			},
+			"text": " as decentralized as possible. So that's why I'm looking into the new voting ways to create"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,160",
+				"to": "00:01:48,800"
+			},
+			"offsets": {
+				"from": 99160,
+				"to": 108800
+			},
+			"text": " our service, more decentralized one. So today, before I introduce my new voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,800",
+				"to": "00:01:59,400"
+			},
+			"offsets": {
+				"from": 108800,
+				"to": 119400
+			},
+			"text": " ways, I want to ask some questions to you. Why did Brexit happen? Also, why was George"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,400",
+				"to": "00:02:10,480"
+			},
+			"offsets": {
+				"from": 119400,
+				"to": 130480
+			},
+			"text": " Doublebush elected as a US president in 2000 US president election? Also, our goal was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,480",
+				"to": "00:02:19,560"
+			},
+			"offsets": {
+				"from": 130480,
+				"to": 139560
+			},
+			"text": " recognized as the best candidate. I think there are many reasons for that, but it was"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,560",
+				"to": "00:02:26,320"
+			},
+			"offsets": {
+				"from": 139560,
+				"to": 146320
+			},
+			"text": " due to the current voting system, a majority rule, having a huge defect. For example, people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,320",
+				"to": "00:02:33,840"
+			},
+			"offsets": {
+				"from": 146320,
+				"to": 153840
+			},
+			"text": " can't reflect the strengths of their preference. Also, it's a result in a spoiler effect. I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,840",
+				"to": "00:02:42,960"
+			},
+			"offsets": {
+				"from": 153840,
+				"to": 162960
+			},
+			"text": " explain what spoiler effect later. And it's relatively easy to manipulate as well. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,960",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 162960,
+				"to": 168560
+			},
+			"text": " I want to introduce two better alternatives to the majority rule. First one is majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:58,920"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 178920
+			},
+			"text": " judgment and second one is quality voting. So what's majority judgment? This is the image"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,920",
+				"to": "00:03:04,320"
+			},
+			"offsets": {
+				"from": 178920,
+				"to": 184320
+			},
+			"text": " of majority judgment. So it's like this. Instead of choosing one option, voters give"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,320",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 184320,
+				"to": 194000
+			},
+			"text": " a score to every available option. On X axis, you can see the options and on Y axis, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:22,840"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 202840
+			},
+			"text": " can choose how much you like each option. And after voting, you can calculate the medium"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,840",
+				"to": "00:03:30,240"
+			},
+			"offsets": {
+				"from": 202840,
+				"to": 210240
+			},
+			"text": " of all options and the option with the highest medium with the vote. A majority judgment"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,240",
+				"to": "00:03:39,480"
+			},
+			"offsets": {
+				"from": 210240,
+				"to": 219480
+			},
+			"text": " guarantees the contentment of the majority of all voters. And it also prevents the spoiler"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,480",
+				"to": "00:03:47,560"
+			},
+			"offsets": {
+				"from": 219480,
+				"to": 227560
+			},
+			"text": " effect, which is one spoiler candidate in an election draws votes from a major candidate"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,560",
+				"to": "00:03:55,480"
+			},
+			"offsets": {
+				"from": 227560,
+				"to": 235480
+			},
+			"text": " with similar politics. In case of 2000 US present election, do you remember Ralph Nader?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,480",
+				"to": "00:04:06,800"
+			},
+			"offsets": {
+				"from": 235480,
+				"to": 246800
+			},
+			"text": " He suddenly came up and he ate the votes of Al Gore. So as a result, X century, George"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,800",
+				"to": "00:04:19,040"
+			},
+			"offsets": {
+				"from": 246800,
+				"to": 259040
+			},
+			"text": " Wich won. So you can prevent this spoiler effect by using majority judgment. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,040",
+				"to": "00:04:28,560"
+			},
+			"offsets": {
+				"from": 259040,
+				"to": 268560
+			},
+			"text": " second voting way is credit voting. Both are votes with credit. So if you want to buy"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,560",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 268560,
+				"to": 277040
+			},
+			"text": " one votes, then you have to consume one credit. And the cost of the price of votes increases"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:44,760"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 284760
+			},
+			"text": " quadratically for each vote. So if you want to vote two, then you have to consume four"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,760",
+				"to": "00:04:53,160"
+			},
+			"offsets": {
+				"from": 284760,
+				"to": 293160
+			},
+			"text": " credit. And three, four, nine credit. And the option is the most amount of votes wins."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,160",
+				"to": "00:05:04,280"
+			},
+			"offsets": {
+				"from": 293160,
+				"to": 304280
+			},
+			"text": " So QB voters are able to express how strong they feel about certain options. And I've"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,280",
+				"to": "00:05:11,240"
+			},
+			"offsets": {
+				"from": 304280,
+				"to": 311240
+			},
+			"text": " read many documentation about credit voting or a major judgment. But there are very few"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,240",
+				"to": "00:05:19,080"
+			},
+			"offsets": {
+				"from": 311240,
+				"to": 319080
+			},
+			"text": " use cases. So we actually try to use them on our service. So we use majority judgment"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,080",
+				"to": "00:05:26,840"
+			},
+			"offsets": {
+				"from": 319080,
+				"to": 326840
+			},
+			"text": " on Alice for choosing a new category. Alice is a social media, which has a category on"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,840",
+				"to": "00:05:36,120"
+			},
+			"offsets": {
+				"from": 326840,
+				"to": 336120
+			},
+			"text": " top page. So we use majority judgment for choosing a new category. And also we use credit voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,120",
+				"to": "00:05:47,640"
+			},
+			"offsets": {
+				"from": 336120,
+				"to": 347640
+			},
+			"text": " for choosing a main strategy of Alice in 2020. I don't tell the detailed outcome here because"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,640",
+				"to": "00:05:57,920"
+			},
+			"offsets": {
+				"from": 347640,
+				"to": 357920
+			},
+			"text": " it takes a lot of time. But I share the summary paper, which is created by the economist I"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,920",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 357920,
+				"to": 369280
+			},
+			"text": " introduced to you. So just I share the good points of those voting weights. First about"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:16,240"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 376240
+			},
+			"text": " majority judgment, which is quite simple. So you don't have to explain what is majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,240",
+				"to": "00:06:24,720"
+			},
+			"offsets": {
+				"from": 376240,
+				"to": 384720
+			},
+			"text": " judgment to voters. Also, it has high resistance to manipulation. And it also sketches a picture"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,720",
+				"to": "00:06:33,480"
+			},
+			"offsets": {
+				"from": 384720,
+				"to": 393480
+			},
+			"text": " of users over our preference as byproduct. And the last point is very huge merit for me,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,480",
+				"to": "00:06:40,600"
+			},
+			"offsets": {
+				"from": 393480,
+				"to": 400600
+			},
+			"text": " which is result is compatible to border rules, which is also a famous voting way or majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,600",
+				"to": "00:06:47,440"
+			},
+			"offsets": {
+				"from": 400600,
+				"to": 407440
+			},
+			"text": " rule. So you can compare the outcomes and decide on one with more confidence. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,440",
+				"to": "00:06:55,360"
+			},
+			"offsets": {
+				"from": 407440,
+				"to": 415360
+			},
+			"text": " this is a huge merit. And also the good points of credit voting is it's also simple, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,360",
+				"to": "00:07:03,240"
+			},
+			"offsets": {
+				"from": 415360,
+				"to": 423240
+			},
+			"text": " you need to explain a little for voters because there are no way to contribute your credit"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,240",
+				"to": "00:07:11,560"
+			},
+			"offsets": {
+				"from": 423240,
+				"to": 431560
+			},
+			"text": " point to vote now. But it's relatively simple as well. And it can reflect the preference"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,560",
+				"to": "00:07:17,800"
+			},
+			"offsets": {
+				"from": 431560,
+				"to": 437800
+			},
+			"text": " of a minority that has the largest interest in a particular poll. Glend the also radical"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,800",
+				"to": "00:07:24,840"
+			},
+			"offsets": {
+				"from": 437800,
+				"to": 444840
+			},
+			"text": " markets also emphasize this in his work. And it makes voters think more because it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,840",
+				"to": "00:07:36,720"
+			},
+			"offsets": {
+				"from": 444840,
+				"to": 456720
+			},
+			"text": " kind of gaming factor. So resulting in people taking the vote more serious. So in conclusion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,720",
+				"to": "00:07:42,560"
+			},
+			"offsets": {
+				"from": 456720,
+				"to": 462560
+			},
+			"text": " majority judgment functions much better than other voting rules, such as majority rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,560",
+				"to": "00:07:48,920"
+			},
+			"offsets": {
+				"from": 462560,
+				"to": 468920
+			},
+			"text": " So implementing is relatively easy. And as developers of a platform, the excel info the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,920",
+				"to": "00:07:56,760"
+			},
+			"offsets": {
+				"from": 468920,
+				"to": 476760
+			},
+			"text": " result gives is also a nice plus. And it's one of the greatest voting systems, not only"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,760",
+				"to": "00:08:04,600"
+			},
+			"offsets": {
+				"from": 476760,
+				"to": 484600
+			},
+			"text": " practically but theologically according to Professor Sakai. And credit voting provided"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,600",
+				"to": "00:08:10,600"
+			},
+			"offsets": {
+				"from": 484600,
+				"to": 490600
+			},
+			"text": " an interesting outcome, more difficult to implement compared to majority judgment, but worth"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,600",
+				"to": "00:08:15,200"
+			},
+			"offsets": {
+				"from": 490600,
+				"to": 495200
+			},
+			"text": " trying depending on the poll subject. And especially beneficial if you want to give a"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,200",
+				"to": "00:08:24,280"
+			},
+			"offsets": {
+				"from": 495200,
+				"to": 504280
+			},
+			"text": " power to minority. So from this part, our city of Soto will talk about less of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,280",
+				"to": "00:08:27,320"
+			},
+			"offsets": {
+				"from": 504280,
+				"to": 507320
+			},
+			"text": " presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,320",
+				"to": "00:08:43,800"
+			},
+			"offsets": {
+				"from": 507320,
+				"to": 523800
+			},
+			"text": " Konnichiwa. Hi, I'm Soto Ishichi of the ARIS. Today, I intended to talk about some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,800",
+				"to": "00:08:53,440"
+			},
+			"offsets": {
+				"from": 523800,
+				"to": 533440
+			},
+			"text": " technical topics. However, it's not so difficult for experienced engineers to build a voting"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,440",
+				"to": "00:09:02,360"
+			},
+			"offsets": {
+				"from": 533440,
+				"to": 542360
+			},
+			"text": " contract. Actually, there's nothing to say. Just build that sort. So today, I'll talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,360",
+				"to": "00:09:13,760"
+			},
+			"offsets": {
+				"from": 542360,
+				"to": 553760
+			},
+			"text": " about the following shortly. As I said, majority is not an either voting system. However,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,760",
+				"to": "00:09:24,120"
+			},
+			"offsets": {
+				"from": 553760,
+				"to": 564120
+			},
+			"text": " there's no serial power. In other words, there is no airtight alternative. There I wanted"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,120",
+				"to": "00:09:36,200"
+			},
+			"offsets": {
+				"from": 564120,
+				"to": 576200
+			},
+			"text": " to argue that we engineers should run social choice theory, including voting systems. There"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,200",
+				"to": "00:09:42,680"
+			},
+			"offsets": {
+				"from": 576200,
+				"to": 582680
+			},
+			"text": " are a lot of voting systems and each has its own strengths and weaknesses. Majority"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,680",
+				"to": "00:09:57,560"
+			},
+			"offsets": {
+				"from": 582680,
+				"to": 597560
+			},
+			"text": " judgment and credit voting. Just one of many options. Each serves their own purpose. Fortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,560",
+				"to": "00:10:04,800"
+			},
+			"offsets": {
+				"from": 597560,
+				"to": 604800
+			},
+			"text": " there's a huge amount of brilliant knowledge in this area. I just started to run about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,800",
+				"to": "00:10:16,520"
+			},
+			"offsets": {
+				"from": 604800,
+				"to": 616520
+			},
+			"text": " year, but I believe doing so can help engineers like us are dealing with blockchain governance."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,520",
+				"to": "00:10:24,440"
+			},
+			"offsets": {
+				"from": 616520,
+				"to": 624440
+			},
+			"text": " The team is good system. You have to understand what we are building anyway. It is interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,440",
+				"to": "00:10:36,760"
+			},
+			"offsets": {
+				"from": 624440,
+				"to": 636760
+			},
+			"text": " to note that there is a conference in this area called the NSF CEEMED Centralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,760",
+				"to": "00:10:45,840"
+			},
+			"offsets": {
+				"from": 636760,
+				"to": 645840
+			},
+			"text": " Conference, which has been around since 1970. I'm sure that implication of this centralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,840",
+				"to": "00:10:52,760"
+			},
+			"offsets": {
+				"from": 645840,
+				"to": 652760
+			},
+			"text": " have changed since then. However, it seems like in the latest conference, they have also"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,760",
+				"to": "00:10:59,080"
+			},
+			"offsets": {
+				"from": 652760,
+				"to": 659080
+			},
+			"text": " been discussing blockchain. What I'm trying to say is there is a lot of information out"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,080",
+				"to": "00:11:07,120"
+			},
+			"offsets": {
+				"from": 659080,
+				"to": 667120
+			},
+			"text": " there to be studied. So to all engineers in this room, we consider leading up on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,120",
+				"to": "00:11:17,520"
+			},
+			"offsets": {
+				"from": 667120,
+				"to": 677520
+			},
+			"text": " social choice theory. Let's go over to build a structured government system to empower the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,520",
+				"to": "00:11:26,120"
+			},
+			"offsets": {
+				"from": 677520,
+				"to": 686120
+			},
+			"text": " individual together. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,120",
+				"to": "00:11:35,360"
+			},
+			"offsets": {
+				"from": 686120,
+				"to": 695360
+			},
+			"text": " Before we finish our presentation, I'd like to introduce the paper as I mentioned. This"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,360",
+				"to": "00:11:43,040"
+			},
+			"offsets": {
+				"from": 695360,
+				"to": 703040
+			},
+			"text": " is a summary paper on majority judgment. You can learn many things about the judgment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,040",
+				"to": "00:11:52,320"
+			},
+			"offsets": {
+				"from": 703040,
+				"to": 712320
+			},
+			"text": " good point and bad point. Please take a look at it. I want to say a special thanks to Professor"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,320",
+				"to": "00:12:03,440"
+			},
+			"offsets": {
+				"from": 712320,
+				"to": 723440
+			},
+			"text": " Zorta Sakai. To conclude our session, my presentation, I'd like to share one story"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,440",
+				"to": "00:12:13,800"
+			},
+			"offsets": {
+				"from": 723440,
+				"to": 733800
+			},
+			"text": " relevant to Japan about what happens when you use majority rule. Have you heard about our"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,800",
+				"to": "00:12:28,560"
+			},
+			"offsets": {
+				"from": 733800,
+				"to": 748560
+			},
+			"text": " minister of cybersecurity? Anyone? No? He's 69 years old and with the best security policy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,560",
+				"to": "00:12:39,480"
+			},
+			"offsets": {
+				"from": 748560,
+				"to": 759480
+			},
+			"text": " my best because he doesn't use a computer. Also, he said he has not ever used computer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,480",
+				"to": "00:12:50,400"
+			},
+			"offsets": {
+				"from": 759480,
+				"to": 770400
+			},
+			"text": " before and he also said he doesn't know what a USB is. Again, he is our minister of cybersecurity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,400",
+				"to": "00:13:00,120"
+			},
+			"offsets": {
+				"from": 770400,
+				"to": 780120
+			},
+			"text": " So this may happen in the current voting system. I think this is quite serious. Ironically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,120",
+				"to": "00:13:12,440"
+			},
+			"offsets": {
+				"from": 780120,
+				"to": 792440
+			},
+			"text": " the next speaker is the IT minister of Taiwan and also known as a genius programmer. I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,440",
+				"to": "00:13:19,640"
+			},
+			"offsets": {
+				"from": 792440,
+				"to": 799640
+			},
+			"text": " we're going to talk about more detail about quadratic voting and I really required to"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,640",
+				"to": "00:13:23,240"
+			},
+			"offsets": {
+				"from": 799640,
+				"to": 803240
+			},
+			"text": " it. Please give her a warm welcome. Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,240",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 804240,
+				"to": 806240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:28,240"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 808240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,240",
+				"to": "00:13:30,240"
+			},
+			"offsets": {
+				"from": 808240,
+				"to": 810240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,240",
+				"to": "00:13:32,240"
+			},
+			"offsets": {
+				"from": 810240,
+				"to": 812240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,240",
+				"to": "00:13:34,240"
+			},
+			"offsets": {
+				"from": 812240,
+				"to": 814240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,240",
+				"to": "00:13:36,240"
+			},
+			"offsets": {
+				"from": 814240,
+				"to": 816240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,240",
+				"to": "00:13:38,240"
+			},
+			"offsets": {
+				"from": 816240,
+				"to": 818240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,240",
+				"to": "00:13:40,240"
+			},
+			"offsets": {
+				"from": 818240,
+				"to": 820240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,240",
+				"to": "00:13:42,240"
+			},
+			"offsets": {
+				"from": 820240,
+				"to": 822240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,240",
+				"to": "00:13:44,240"
+			},
+			"offsets": {
+				"from": 822240,
+				"to": 824240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,240",
+				"to": "00:13:46,240"
+			},
+			"offsets": {
+				"from": 824240,
+				"to": 826240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,240",
+				"to": "00:13:48,240"
+			},
+			"offsets": {
+				"from": 826240,
+				"to": 828240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:50,240"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 830240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,240",
+				"to": "00:13:52,240"
+			},
+			"offsets": {
+				"from": 830240,
+				"to": 832240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,240",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 832240,
+				"to": 834240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:13:56,240"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 836240
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,240",
+				"to": "00:14:00,240"
+			},
+			"offsets": {
+				"from": 836240,
+				"to": 840240
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

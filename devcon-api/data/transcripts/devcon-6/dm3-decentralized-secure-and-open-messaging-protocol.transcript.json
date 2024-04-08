@@ -1,0 +1,1022 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,160"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14160
+			},
+			"text": " Hello, my name is Haiko."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,160",
+				"to": "00:00:16,360"
+			},
+			"offsets": {
+				"from": 14160,
+				"to": 16360
+			},
+			"text": " I'm a developer at Core Suspentures,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,360",
+				"to": "00:00:20,320"
+			},
+			"offsets": {
+				"from": 16360,
+				"to": 20320
+			},
+			"text": " and I'll present you now at DM3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,320",
+				"to": "00:00:21,640"
+			},
+			"offsets": {
+				"from": 20320,
+				"to": 21640
+			},
+			"text": " What is DM3?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,640",
+				"to": "00:00:26,520"
+			},
+			"offsets": {
+				"from": 21640,
+				"to": 26520
+			},
+			"text": " DM3 is a simple protocol for messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,520",
+				"to": "00:00:30,840"
+			},
+			"offsets": {
+				"from": 26520,
+				"to": 30840
+			},
+			"text": " It's decentralized, it's open, and it's secure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,840",
+				"to": "00:00:36,080"
+			},
+			"offsets": {
+				"from": 30840,
+				"to": 36080
+			},
+			"text": " To achieve this, we built DM3 on established"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,080",
+				"to": "00:00:39,040"
+			},
+			"offsets": {
+				"from": 36080,
+				"to": 39040
+			},
+			"text": " where three protocols like DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,040",
+				"to": "00:00:42,760"
+			},
+			"offsets": {
+				"from": 39040,
+				"to": 42760
+			},
+			"text": " The properties I just mentioned make it sensor-hill persistent."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,760",
+				"to": "00:00:46,800"
+			},
+			"offsets": {
+				"from": 42760,
+				"to": 46800
+			},
+			"text": " We designed it so that there is no single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,800",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46800,
+				"to": 51000
+			},
+			"text": " And with DM3 users are in control of the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:53,600"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 53600
+			},
+			"text": " Everyone can write an own implementation of DM3."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:01:00,640"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 60640
+			},
+			"text": " The basis for DM3 is a registry where users can store"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,640",
+				"to": "00:01:03,080"
+			},
+			"offsets": {
+				"from": 60640,
+				"to": 63080
+			},
+			"text": " their profiles."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,080",
+				"to": "00:01:06,440"
+			},
+			"offsets": {
+				"from": 63080,
+				"to": 66440
+			},
+			"text": " We used DNS text records for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,440",
+				"to": "00:01:10,480"
+			},
+			"offsets": {
+				"from": 66440,
+				"to": 70480
+			},
+			"text": " And on the middle layer, we have the delivery service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,480",
+				"to": "00:01:14,600"
+			},
+			"offsets": {
+				"from": 70480,
+				"to": 74600
+			},
+			"text": " delivery services, buffer the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,600",
+				"to": "00:01:17,960"
+			},
+			"offsets": {
+				"from": 74600,
+				"to": 77960
+			},
+			"text": " until they are delivered to the messaging app."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,960",
+				"to": "00:01:19,760"
+			},
+			"offsets": {
+				"from": 77960,
+				"to": 79760
+			},
+			"text": " And on top, you can see the messaging app."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,400",
+				"to": "00:01:27,360"
+			},
+			"offsets": {
+				"from": 83400,
+				"to": 87360
+			},
+			"text": " Since the registry is the core of the protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,360",
+				"to": "00:01:30,200"
+			},
+			"offsets": {
+				"from": 87360,
+				"to": 90200
+			},
+			"text": " I'll now explain a little bit deeper how it works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,200",
+				"to": "00:01:36,840"
+			},
+			"offsets": {
+				"from": 90200,
+				"to": 96840
+			},
+			"text": " As you can see, we have the public encryption key"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,840",
+				"to": "00:01:38,960"
+			},
+			"offsets": {
+				"from": 96840,
+				"to": 98960
+			},
+			"text": " in the text record for the profile,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,960",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 98960,
+				"to": 102760
+			},
+			"text": " and also the public signing key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:47,280"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 107280
+			},
+			"text": " And also important is the delivery service name."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,280",
+				"to": "00:01:52,640"
+			},
+			"offsets": {
+				"from": 107280,
+				"to": 112640
+			},
+			"text": " So there must be at least one name of a delivery service."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,640",
+				"to": "00:01:55,440"
+			},
+			"offsets": {
+				"from": 112640,
+				"to": 115440
+			},
+			"text": " OK, the delivery service text record"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,440",
+				"to": "00:01:58,600"
+			},
+			"offsets": {
+				"from": 115440,
+				"to": 118600
+			},
+			"text": " also contains public keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,600",
+				"to": "00:02:00,160"
+			},
+			"offsets": {
+				"from": 118600,
+				"to": 120160
+			},
+			"text": " And it contains a URL."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,160",
+				"to": "00:02:04,240"
+			},
+			"offsets": {
+				"from": 120160,
+				"to": 124240
+			},
+			"text": " This URL is pointing to the delivery service instant"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,240",
+				"to": "00:02:05,760"
+			},
+			"offsets": {
+				"from": 124240,
+				"to": 125760
+			},
+			"text": " where messages can be sent to."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,760",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 125760,
+				"to": 134000
+			},
+			"text": " It's also possible to store data of chain or on layer two"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:15,760"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 135760
+			},
+			"text": " by using CCIP."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,760",
+				"to": "00:02:18,600"
+			},
+			"offsets": {
+				"from": 135760,
+				"to": 138600
+			},
+			"text": " This allows the creation of DM3 profiles"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,600",
+				"to": "00:02:22,280"
+			},
+			"offsets": {
+				"from": 138600,
+				"to": 142280
+			},
+			"text": " without high transaction fees or if it's completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,280",
+				"to": "00:02:24,760"
+			},
+			"offsets": {
+				"from": 142280,
+				"to": 144760
+			},
+			"text": " off-chain, you don't have any."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,760",
+				"to": "00:02:27,480"
+			},
+			"offsets": {
+				"from": 144760,
+				"to": 147480
+			},
+			"text": " And it also makes it possible to include"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,480",
+				"to": "00:02:29,320"
+			},
+			"offsets": {
+				"from": 147480,
+				"to": 149320
+			},
+			"text": " external public key databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,320",
+				"to": "00:02:37,840"
+			},
+			"offsets": {
+				"from": 149320,
+				"to": 157840
+			},
+			"text": " This slide shows how a message would be delivered"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,840",
+				"to": "00:02:41,040"
+			},
+			"offsets": {
+				"from": 157840,
+				"to": 161040
+			},
+			"text": " from Alice to Bob."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,040",
+				"to": "00:02:46,600"
+			},
+			"offsets": {
+				"from": 161040,
+				"to": 166600
+			},
+			"text": " So at first, Alice types a message into the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,600",
+				"to": "00:02:50,400"
+			},
+			"offsets": {
+				"from": 166600,
+				"to": 170400
+			},
+			"text": " Then the app will retrieve the DM3 profile of Bob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,400",
+				"to": "00:02:54,280"
+			},
+			"offsets": {
+				"from": 170400,
+				"to": 174280
+			},
+			"text": " which contains the delivery service name he is using."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,280",
+				"to": "00:03:02,560"
+			},
+			"offsets": {
+				"from": 174280,
+				"to": 182560
+			},
+			"text": " In the next step, the app will retrieve the delivery service"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,560",
+				"to": "00:03:08,240"
+			},
+			"offsets": {
+				"from": 182560,
+				"to": 188240
+			},
+			"text": " text record, where there is the URL of Bob's delivery service."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,240",
+				"to": "00:03:15,040"
+			},
+			"offsets": {
+				"from": 188240,
+				"to": 195040
+			},
+			"text": " Then the message is signed and encrypted"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,040",
+				"to": "00:03:18,880"
+			},
+			"offsets": {
+				"from": 195040,
+				"to": 198880
+			},
+			"text": " and sent to Bob's delivery service."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,880",
+				"to": "00:03:22,800"
+			},
+			"offsets": {
+				"from": 198880,
+				"to": 202800
+			},
+			"text": " The delivery service will push the message to the app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,800",
+				"to": "00:03:26,160"
+			},
+			"offsets": {
+				"from": 202800,
+				"to": 206160
+			},
+			"text": " That will be decrypted."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,160",
+				"to": "00:03:30,240"
+			},
+			"offsets": {
+				"from": 206160,
+				"to": 210240
+			},
+			"text": " And the app will look for the profile of Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,240",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 210240,
+				"to": 216880
+			},
+			"text": " And that's needed because the signature needs to be checked."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:42,320"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 222320
+			},
+			"text": " And if the signature is fine, the Bob can then read the message."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,320",
+				"to": "00:03:47,440"
+			},
+			"offsets": {
+				"from": 222320,
+				"to": 227440
+			},
+			"text": " Besides the protocol definition, we also"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,440",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 227440,
+				"to": 229600
+			},
+			"text": " have a reference implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 232160
+			},
+			"text": " The reference implementation consists"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:55,600"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 235600
+			},
+			"text": " of four different packages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,600",
+				"to": "00:03:57,960"
+			},
+			"offsets": {
+				"from": 235600,
+				"to": 237960
+			},
+			"text": " We have the DM3 web app."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,960",
+				"to": "00:04:01,760"
+			},
+			"offsets": {
+				"from": 237960,
+				"to": 241760
+			},
+			"text": " As you can see, it's been shot here on the website."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,760",
+				"to": "00:04:07,240"
+			},
+			"offsets": {
+				"from": 241760,
+				"to": 247240
+			},
+			"text": " It's also online available on the app.dot. DM3.chat."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,240",
+				"to": "00:04:10,680"
+			},
+			"offsets": {
+				"from": 247240,
+				"to": 250680
+			},
+			"text": " Besides the web app, we have the React package."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,680",
+				"to": "00:04:16,280"
+			},
+			"offsets": {
+				"from": 250680,
+				"to": 256280
+			},
+			"text": " This can be used to include a widget of DM3 into other apps."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,280",
+				"to": "00:04:18,440"
+			},
+			"offsets": {
+				"from": 256280,
+				"to": 258440
+			},
+			"text": " And then we have the backend package."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,440",
+				"to": "00:04:20,720"
+			},
+			"offsets": {
+				"from": 258440,
+				"to": 260720
+			},
+			"text": " This contains the delivery service."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,720",
+				"to": "00:04:26,480"
+			},
+			"offsets": {
+				"from": 260720,
+				"to": 266480
+			},
+			"text": " And finally, we have the DM3 lip, which contains basic protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,480",
+				"to": "00:04:27,280"
+			},
+			"offsets": {
+				"from": 266480,
+				"to": 267280
+			},
+			"text": " services."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,280",
+				"to": "00:04:35,840"
+			},
+			"offsets": {
+				"from": 267280,
+				"to": 275840
+			},
+			"text": " So we are working also on protocol extensions, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,840",
+				"to": "00:04:38,840"
+			},
+			"offsets": {
+				"from": 275840,
+				"to": 278840
+			},
+			"text": " takes care of things like group messaging."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,840",
+				"to": "00:04:41,880"
+			},
+			"offsets": {
+				"from": 278840,
+				"to": 281880
+			},
+			"text": " These extensions are optional."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,880",
+				"to": "00:04:44,480"
+			},
+			"offsets": {
+				"from": 281880,
+				"to": 284480
+			},
+			"text": " If you want to write a DM3 implementation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,480",
+				"to": "00:04:48,360"
+			},
+			"offsets": {
+				"from": 284480,
+				"to": 288360
+			},
+			"text": " you only need to follow the DM3 message transfer protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,360",
+				"to": "00:04:54,240"
+			},
+			"offsets": {
+				"from": 288360,
+				"to": 294240
+			},
+			"text": " So that's our roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,240",
+				"to": "00:04:57,920"
+			},
+			"offsets": {
+				"from": 294240,
+				"to": 297920
+			},
+			"text": " Until now, we published the protocol draft"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,920",
+				"to": "00:05:01,200"
+			},
+			"offsets": {
+				"from": 297920,
+				"to": 301200
+			},
+			"text": " and the reference implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,200",
+				"to": "00:05:06,040"
+			},
+			"offsets": {
+				"from": 301200,
+				"to": 306040
+			},
+			"text": " A critical goal of DM3 is to enable interoperability"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,040",
+				"to": "00:05:10,600"
+			},
+			"offsets": {
+				"from": 306040,
+				"to": 310600
+			},
+			"text": " between currently isolated web 3 messengers."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,600",
+				"to": "00:05:15,640"
+			},
+			"offsets": {
+				"from": 310600,
+				"to": 315640
+			},
+			"text": " We are now talking with many of those messenger teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,640",
+				"to": "00:05:17,960"
+			},
+			"offsets": {
+				"from": 315640,
+				"to": 317960
+			},
+			"text": " to understand their needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,960",
+				"to": "00:05:23,320"
+			},
+			"offsets": {
+				"from": 317960,
+				"to": 323320
+			},
+			"text": " And yeah, please let us know if you want to join the discussion."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,320",
+				"to": "00:05:25,640"
+			},
+			"offsets": {
+				"from": 323320,
+				"to": 325640
+			},
+			"text": " After we finished that process, we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,640",
+				"to": "00:05:33,400"
+			},
+			"offsets": {
+				"from": 325640,
+				"to": 333400
+			},
+			"text": " publish the specification and adapt the reference implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,400",
+				"to": "00:05:34,320"
+			},
+			"offsets": {
+				"from": 333400,
+				"to": 334320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,320",
+				"to": "00:05:37,840"
+			},
+			"offsets": {
+				"from": 334320,
+				"to": 337840
+			},
+			"text": " If you want to include DM3 into an app,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,840",
+				"to": "00:05:40,120"
+			},
+			"offsets": {
+				"from": 337840,
+				"to": 340120
+			},
+			"text": " let us know and we'll try to support you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,120",
+				"to": "00:05:44,560"
+			},
+			"offsets": {
+				"from": 340120,
+				"to": 344560
+			},
+			"text": " That's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,560",
+				"to": "00:05:45,840"
+			},
+			"offsets": {
+				"from": 344560,
+				"to": 345840
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,840",
+				"to": "00:05:48,480"
+			},
+			"offsets": {
+				"from": 345840,
+				"to": 348480
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,480",
+				"to": "00:05:51,480"
+			},
+			"offsets": {
+				"from": 348480,
+				"to": 351480
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,480",
+				"to": "00:05:54,480"
+			},
+			"offsets": {
+				"from": 351480,
+				"to": 354480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,480",
+				"to": "00:06:23,480"
+			},
+			"offsets": {
+				"from": 354480,
+				"to": 383480
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

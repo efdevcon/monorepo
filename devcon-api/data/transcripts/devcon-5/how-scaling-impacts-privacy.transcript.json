@@ -1,0 +1,4509 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:13,200"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 13200
+			},
+			"text": " >> It's difficult technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,200",
+				"to": "00:00:15,320"
+			},
+			"offsets": {
+				"from": 13200,
+				"to": 15320
+			},
+			"text": " >> Okay. Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,320",
+				"to": "00:00:19,800"
+			},
+			"offsets": {
+				"from": 15320,
+				"to": 19800
+			},
+			"text": " The panel that we're doing right now is called Health Scaling Impacts Privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,800",
+				"to": "00:00:21,920"
+			},
+			"offsets": {
+				"from": 19800,
+				"to": 21920
+			},
+			"text": " I apologize my voice is a little rough today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,920",
+				"to": "00:00:23,640"
+			},
+			"offsets": {
+				"from": 21920,
+				"to": 23640
+			},
+			"text": " but I think I can manage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,640",
+				"to": "00:00:25,440"
+			},
+			"offsets": {
+				"from": 23640,
+				"to": 25440
+			},
+			"text": " My name is Liz Steininger."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,440",
+				"to": "00:00:26,760"
+			},
+			"offsets": {
+				"from": 25440,
+				"to": 26760
+			},
+			"text": " I work at Lisa Boardy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,760",
+				"to": "00:00:29,400"
+			},
+			"offsets": {
+				"from": 26760,
+				"to": 29400
+			},
+			"text": " but I'm just here to moderate the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,400",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 29400,
+				"to": 34400
+			},
+			"text": " We have four wonderful panelists to talk about this topic today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:37,800"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 37800
+			},
+			"text": " and I'm going to let them introduce themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,800",
+				"to": "00:00:41,160"
+			},
+			"offsets": {
+				"from": 37800,
+				"to": 41160
+			},
+			"text": " Then we'll also, and then we'll get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,160",
+				"to": "00:00:44,400"
+			},
+			"offsets": {
+				"from": 41160,
+				"to": 44400
+			},
+			"text": " >> Hi everyone. I'm Josh."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,400",
+				"to": "00:00:48,040"
+			},
+			"offsets": {
+				"from": 44400,
+				"to": 48040
+			},
+			"text": " Since today, I'm the executive director of the ZCASH Foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,040",
+				"to": "00:00:53,520"
+			},
+			"offsets": {
+				"from": 48040,
+				"to": 53520
+			},
+			"text": " a US-based federal embassy through nonprofit focused on privacy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,520",
+				"to": "00:00:57,920"
+			},
+			"offsets": {
+				"from": 53520,
+				"to": 57920
+			},
+			"text": " financial transactions online primarily through ZCASH."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,920",
+				"to": "00:01:00,520"
+			},
+			"offsets": {
+				"from": 57920,
+				"to": 60520
+			},
+			"text": " I'm very excited to talk about all this day."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,520",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 60520,
+				"to": 65600
+			},
+			"text": " Liz previously said in the general little rant about privacy as privacy production."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:07,520"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 67520
+			},
+			"text": " >> Yeah, we can add that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,520",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 67520,
+				"to": 71080
+			},
+			"text": " >> Yeah, why is scaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:13,600"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 73600
+			},
+			"text": " how do you think scaling impacts privacy?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,600",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 73600,
+				"to": 76000
+			},
+			"text": " What do you think matters that we're having this discussion?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:20,640"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 80640
+			},
+			"text": " >> Yeah, for me, I think some of these become apparently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,640",
+				"to": "00:01:26,920"
+			},
+			"offsets": {
+				"from": 80640,
+				"to": 86920
+			},
+			"text": " the very apparent is that oftentimes the discussion around privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,920",
+				"to": "00:01:30,440"
+			},
+			"offsets": {
+				"from": 86920,
+				"to": 90440
+			},
+			"text": " is at odds with what we can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,440",
+				"to": "00:01:37,120"
+			},
+			"offsets": {
+				"from": 90440,
+				"to": 97120
+			},
+			"text": " or the things that can enable scalability and you have to sacrifice one in order to have the other."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,120",
+				"to": "00:01:40,240"
+			},
+			"offsets": {
+				"from": 97120,
+				"to": 100240
+			},
+			"text": " The other thing that I'm really,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,240",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 100240,
+				"to": 103160
+			},
+			"text": " if I'm not only concerned about is actually more about scaling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:45,200"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 105200
+			},
+			"text": " and this is a semi-op topic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,200",
+				"to": "00:01:50,240"
+			},
+			"offsets": {
+				"from": 105200,
+				"to": 110240
+			},
+			"text": " but scaling a public discussion around white privacy is important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,240",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 110240,
+				"to": 114360
+			},
+			"text": " because if we don't really socially agree that it is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:57,680"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 117680
+			},
+			"text": " we're going to have a very hard time actually convincing people"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,680",
+				"to": "00:02:01,560"
+			},
+			"offsets": {
+				"from": 117680,
+				"to": 121560
+			},
+			"text": " to integrate the things necessary to make those sorts of trade offices."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,560",
+				"to": "00:02:09,280"
+			},
+			"offsets": {
+				"from": 121560,
+				"to": 129280
+			},
+			"text": " >> Hi, I'm Ed Felt, who I am co-founder and chief scientist at Off-chain Labs."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,280",
+				"to": "00:02:13,320"
+			},
+			"offsets": {
+				"from": 129280,
+				"to": 133320
+			},
+			"text": " I'm a professor at Princeton and sometime US government official."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,320",
+				"to": "00:02:16,680"
+			},
+			"offsets": {
+				"from": 133320,
+				"to": 136680
+			},
+			"text": " So, we might come back to that there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,680",
+				"to": "00:02:24,080"
+			},
+			"offsets": {
+				"from": 136680,
+				"to": 144080
+			},
+			"text": " So, for me, one of the big issues about scaling and privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,080",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 144080,
+				"to": 149960
+			},
+			"text": " is what happens as we try to meet this vision of web 3,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:35,160"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 155160
+			},
+			"text": " of scaling up this technology to the point where it's something that everybody uses all the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,160",
+				"to": "00:02:40,440"
+			},
+			"offsets": {
+				"from": 155160,
+				"to": 160440
+			},
+			"text": " And I think there's a lot we can learn from the history of privacy on web 1 and web 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,440",
+				"to": "00:02:42,800"
+			},
+			"offsets": {
+				"from": 160440,
+				"to": 162800
+			},
+			"text": " which were not good."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,800",
+				"to": "00:02:45,320"
+			},
+			"offsets": {
+				"from": 162800,
+				"to": 165320
+			},
+			"text": " People are very unhappy with how that worked out."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,320",
+				"to": "00:02:49,280"
+			},
+			"offsets": {
+				"from": 165320,
+				"to": 169280
+			},
+			"text": " And it's not because there was not useful privacy technology there."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,280",
+				"to": "00:02:53,400"
+			},
+			"offsets": {
+				"from": 169280,
+				"to": 173400
+			},
+			"text": " We knew how to end an encryption, we knew how to encrypt in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,400",
+				"to": "00:02:55,680"
+			},
+			"offsets": {
+				"from": 173400,
+				"to": 175680
+			},
+			"text": " we knew how to do strong authentication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,680",
+				"to": "00:03:02,560"
+			},
+			"offsets": {
+				"from": 175680,
+				"to": 182560
+			},
+			"text": " we knew how to do a lot of things that somehow did not actually get done in practice with our data."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,560",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 182560,
+				"to": 185000
+			},
+			"text": " We had horrible problems with endpoint security,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:08,560"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 188560
+			},
+			"text": " we had horrible problems with all of our data sitting in corporate servers"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,560",
+				"to": "00:03:10,800"
+			},
+			"offsets": {
+				"from": 188560,
+				"to": 190800
+			},
+			"text": " where who knows what happens to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,800",
+				"to": "00:03:15,360"
+			},
+			"offsets": {
+				"from": 190800,
+				"to": 195360
+			},
+			"text": " The point being that having the technological tools there is not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,360",
+				"to": "00:03:18,600"
+			},
+			"offsets": {
+				"from": 195360,
+				"to": 198600
+			},
+			"text": " If we just redo everything that happened in web 1 and web 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,600",
+				"to": "00:03:21,560"
+			},
+			"offsets": {
+				"from": 198600,
+				"to": 201560
+			},
+			"text": " but now with more stuff on a public ledger,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,560",
+				"to": "00:03:24,120"
+			},
+			"offsets": {
+				"from": 201560,
+				"to": 204120
+			},
+			"text": " we're going to get a result that is no better."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,120",
+				"to": "00:03:28,360"
+			},
+			"offsets": {
+				"from": 204120,
+				"to": 208360
+			},
+			"text": " And so we have to think beyond just building the technological tools,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,360",
+				"to": "00:03:33,760"
+			},
+			"offsets": {
+				"from": 208360,
+				"to": 213760
+			},
+			"text": " we have to understand how to build a market and how to build a structure in a community"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,760",
+				"to": "00:03:42,160"
+			},
+			"offsets": {
+				"from": 213760,
+				"to": 222160
+			},
+			"text": " that's going to behave differently than others have before when the big money shows up."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,160",
+				"to": "00:03:44,160"
+			},
+			"offsets": {
+				"from": 222160,
+				"to": 224160
+			},
+			"text": " Hi, so my name is Ian Myers."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,160",
+				"to": "00:03:48,880"
+			},
+			"offsets": {
+				"from": 224160,
+				"to": 228880
+			},
+			"text": " I'm one of the founding scientists at Zcash and that's of next fall,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,880",
+				"to": "00:03:52,080"
+			},
+			"offsets": {
+				"from": 228880,
+				"to": 232080
+			},
+			"text": " professor at the University of Grand Valley."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,080",
+				"to": "00:03:56,080"
+			},
+			"offsets": {
+				"from": 232080,
+				"to": 236080
+			},
+			"text": " First, I'm a cryptocurrency because I was worried about the privacy of aspects of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,080",
+				"to": "00:04:00,280"
+			},
+			"offsets": {
+				"from": 236080,
+				"to": 240280
+			},
+			"text": " because cryptocurrency is basically Twitter for your bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,280",
+				"to": "00:04:01,280"
+			},
+			"offsets": {
+				"from": 240280,
+				"to": 241280
+			},
+			"text": " Everything's public."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,280",
+				"to": "00:04:03,680"
+			},
+			"offsets": {
+				"from": 241280,
+				"to": 243680
+			},
+			"text": " Everybody, that's not acceptable for the same reason for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,680",
+				"to": "00:04:05,080"
+			},
+			"offsets": {
+				"from": 243680,
+				"to": 245080
+			},
+			"text": " It's said."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,080",
+				"to": "00:04:09,080"
+			},
+			"offsets": {
+				"from": 245080,
+				"to": 249080
+			},
+			"text": " That's also an actual link, I think, to the scaling problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,080",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 249080,
+				"to": 252280
+			},
+			"text": " Like a lot of people think that privacy techniques are opposed to scaling."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:16,280"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 256280
+			},
+			"text": " They make scaling hard for things like DK Starks or Slo."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,280",
+				"to": "00:04:20,680"
+			},
+			"offsets": {
+				"from": 256280,
+				"to": 260680
+			},
+			"text": " When it comes to verifying data on blockchain, it actually extends faster"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,680",
+				"to": "00:04:25,080"
+			},
+			"offsets": {
+				"from": 260680,
+				"to": 265080
+			},
+			"text": " because Twitter for your bank account also describes the scaling problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,080",
+				"to": "00:04:28,480"
+			},
+			"offsets": {
+				"from": 265080,
+				"to": 268480
+			},
+			"text": " somewhat aptly and then Twitter has these hilarious problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,480",
+				"to": "00:04:32,880"
+			},
+			"offsets": {
+				"from": 268480,
+				"to": 272880
+			},
+			"text": " When they first started, he's going to try to broadcast huge amounts of data to everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,880",
+				"to": "00:04:36,680"
+			},
+			"offsets": {
+				"from": 272880,
+				"to": 276680
+			},
+			"text": " And so if you solve the privacy problem by removing that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,680",
+				"to": "00:04:40,280"
+			},
+			"offsets": {
+				"from": 276680,
+				"to": 280280
+			},
+			"text": " and they get corporate verify, you've also inherently solved the scaling problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,280",
+				"to": "00:04:42,480"
+			},
+			"offsets": {
+				"from": 280280,
+				"to": 282480
+			},
+			"text": " So I think these two things are linked."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,480",
+				"to": "00:04:46,480"
+			},
+			"offsets": {
+				"from": 282480,
+				"to": 286480
+			},
+			"text": " They're actually a thing where you can have synergies between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,480",
+				"to": "00:04:50,480"
+			},
+			"offsets": {
+				"from": 286480,
+				"to": 290480
+			},
+			"text": " My name is Jacob Ibaas."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,480",
+				"to": "00:04:55,480"
+			},
+			"offsets": {
+				"from": 290480,
+				"to": 295480
+			},
+			"text": " I'm a researcher at the Technical University of Berlin."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,480",
+				"to": "00:05:01,480"
+			},
+			"offsets": {
+				"from": 295480,
+				"to": 301480
+			},
+			"text": " And so why I'm here is I work on different things in the context of off-changing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,480",
+				"to": "00:05:07,480"
+			},
+			"offsets": {
+				"from": 301480,
+				"to": 307480
+			},
+			"text": " One of these things was the Socrates framework, which kind of programming language"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,480",
+				"to": "00:05:14,480"
+			},
+			"offsets": {
+				"from": 307480,
+				"to": 314480
+			},
+			"text": " toolbox allows you to easily or more easily specify programs that are approval in CK Sarns"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,480",
+				"to": "00:05:17,480"
+			},
+			"offsets": {
+				"from": 314480,
+				"to": 317480
+			},
+			"text": " and verify them conveniently on the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,480",
+				"to": "00:05:22,480"
+			},
+			"offsets": {
+				"from": 317480,
+				"to": 322480
+			},
+			"text": " What's very interesting to note here is liking an indicated CK Sarns"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,480",
+				"to": "00:05:25,480"
+			},
+			"offsets": {
+				"from": 322480,
+				"to": 325480
+			},
+			"text": " and these things that are not often categorized as privacy tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,480",
+				"to": "00:05:29,480"
+			},
+			"offsets": {
+				"from": 325480,
+				"to": 329480
+			},
+			"text": " Where privacy was not motivation to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,480",
+				"to": "00:05:36,480"
+			},
+			"offsets": {
+				"from": 329480,
+				"to": 336480
+			},
+			"text": " It was actually scaling because the idea was if there is a way to verify a very complex computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,480",
+				"to": "00:05:42,480"
+			},
+			"offsets": {
+				"from": 336480,
+				"to": 342480
+			},
+			"text": " with a constant amount of computational effort, and we can do that on the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,480",
+				"to": "00:05:44,480"
+			},
+			"offsets": {
+				"from": 342480,
+				"to": 344480
+			},
+			"text": " then we can scale very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,480",
+				"to": "00:05:48,480"
+			},
+			"offsets": {
+				"from": 344480,
+				"to": 348480
+			},
+			"text": " So I do agree that these things are not opposed at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,480",
+				"to": "00:05:51,480"
+			},
+			"offsets": {
+				"from": 348480,
+				"to": 351480
+			},
+			"text": " And the scaling things were actually probably there."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,480",
+				"to": "00:05:54,480"
+			},
+			"offsets": {
+				"from": 351480,
+				"to": 354480
+			},
+			"text": " And now it's also nice to address privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,480",
+				"to": "00:06:01,480"
+			},
+			"offsets": {
+				"from": 354480,
+				"to": 361480
+			},
+			"text": " My take on privacy and security and how they relate to this, both are key challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,480",
+				"to": "00:06:05,480"
+			},
+			"offsets": {
+				"from": 361480,
+				"to": 365480
+			},
+			"text": " that need to be addressed for DAPs to actually become successful"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,480",
+				"to": "00:06:07,480"
+			},
+			"offsets": {
+				"from": 365480,
+				"to": 367480
+			},
+			"text": " and make mainstream usage."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,480",
+				"to": "00:06:14,480"
+			},
+			"offsets": {
+				"from": 367480,
+				"to": 374480
+			},
+			"text": " Because I do think people will not be comfortable tweeting, not only their financial transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,480",
+				"to": "00:06:20,480"
+			},
+			"offsets": {
+				"from": 374480,
+				"to": 380480
+			},
+			"text": " over the blockchain, but actually all their interaction with any IT service over the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,480",
+				"to": "00:06:25,480"
+			},
+			"offsets": {
+				"from": 380480,
+				"to": 385480
+			},
+			"text": " So let's say we solve scaling in a year and privacy tech does not keep up."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,480",
+				"to": "00:06:28,480"
+			},
+			"offsets": {
+				"from": 385480,
+				"to": 388480
+			},
+			"text": " I don't think we will see mainstream adoption of DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,480",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 388480,
+				"to": 389480
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:32,480"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 392480
+			},
+			"text": " So for me, it's a key enabler."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,480",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 392480,
+				"to": 395480
+			},
+			"text": " Great. So thanks, everyone. Thanks for panelists for your interactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:39,480"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 399480
+			},
+			"text": " We've covered a few different things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,480",
+				"to": "00:06:43,480"
+			},
+			"offsets": {
+				"from": 399480,
+				"to": 403480
+			},
+			"text": " Actually, there's a lot just captured by parents for statements."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,480",
+				"to": "00:06:48,480"
+			},
+			"offsets": {
+				"from": 403480,
+				"to": 408480
+			},
+			"text": " So let's talk about how things are working now and why we should care."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,480",
+				"to": "00:06:50,480"
+			},
+			"offsets": {
+				"from": 408480,
+				"to": 410480
+			},
+			"text": " Let's dig into that a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,480",
+				"to": "00:06:57,480"
+			},
+			"offsets": {
+				"from": 410480,
+				"to": 417480
+			},
+			"text": " So right now, sometimes projects think in space that it's more important to solve some technical problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,480",
+				"to": "00:07:02,480"
+			},
+			"offsets": {
+				"from": 417480,
+				"to": 422480
+			},
+			"text": " to solve a use case problem and we'll layer privacy on top later."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,480",
+				"to": "00:07:08,480"
+			},
+			"offsets": {
+				"from": 422480,
+				"to": 428480
+			},
+			"text": " Or that, yeah, let's get the scaling first and then we'll do the privacy part because"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,480",
+				"to": "00:07:11,480"
+			},
+			"offsets": {
+				"from": 428480,
+				"to": 431480
+			},
+			"text": " there's not that much, we shouldn't be too worried about."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,480",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 431480,
+				"to": 440480
+			},
+			"text": " So let's talk a little bit about maybe what is the concern right now with the technology that's being used"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:25,480"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 445480
+			},
+			"text": " and how is it not good for privacy now and how this could scale up and to be something"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,480",
+				"to": "00:07:28,480"
+			},
+			"offsets": {
+				"from": 445480,
+				"to": 448480
+			},
+			"text": " that's not good for privacy now."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,480",
+				"to": "00:07:43,480"
+			},
+			"offsets": {
+				"from": 448480,
+				"to": 463480
+			},
+			"text": " So, I think the way it works now for anyone that, if someone uses Ethereum in the room,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,480",
+				"to": "00:07:48,480"
+			},
+			"offsets": {
+				"from": 463480,
+				"to": 468480
+			},
+			"text": " or many other differences, frankly, actually the average C cache user, they use it now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,480",
+				"to": "00:07:56,480"
+			},
+			"offsets": {
+				"from": 468480,
+				"to": 476480
+			},
+			"text": " and they use the portion of the system that effectively paints the transaction graph for anybody to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,480",
+				"to": "00:08:05,480"
+			},
+			"offsets": {
+				"from": 476480,
+				"to": 485480
+			},
+			"text": " And it only takes like one short conversation with a blockchain analytics firm to realize that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,480",
+				"to": "00:08:13,480"
+			},
+			"offsets": {
+				"from": 485480,
+				"to": 493480
+			},
+			"text": " the system as it exists today within all of these projects is measurably worse than the patchwork of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,480",
+				"to": "00:08:22,480"
+			},
+			"offsets": {
+				"from": 493480,
+				"to": 502480
+			},
+			"text": " offline cache transactions and various financial intermediaries that actually do have some degree of privacy guarantees"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,480",
+				"to": "00:08:24,480"
+			},
+			"offsets": {
+				"from": 502480,
+				"to": 504480
+			},
+			"text": " the way it works today."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,480",
+				"to": "00:08:35,480"
+			},
+			"offsets": {
+				"from": 504480,
+				"to": 515480
+			},
+			"text": " So, I think we can all kind of universally agree that these systems need to change in order for us to actually feel comfortable"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,480",
+				"to": "00:08:40,480"
+			},
+			"offsets": {
+				"from": 515480,
+				"to": 520480
+			},
+			"text": " using them on a more day to day and grow up with basis because otherwise,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,480",
+				"to": "00:08:45,480"
+			},
+			"offsets": {
+				"from": 520480,
+				"to": 525480
+			},
+			"text": " it's going to wind up happening is we're going to recreate this brand new financial system"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,480",
+				"to": "00:08:53,480"
+			},
+			"offsets": {
+				"from": 525480,
+				"to": 533480
+			},
+			"text": " but then people will actually feel comfortable using DAPs because they'll know that all the data can be traced and open"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,480",
+				"to": "00:08:55,480"
+			},
+			"offsets": {
+				"from": 533480,
+				"to": 535480
+			},
+			"text": " for their competitors to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,480",
+				"to": "00:09:04,480"
+			},
+			"offsets": {
+				"from": 535480,
+				"to": 544480
+			},
+			"text": " People won't actually engage in any cryptocurrency transactions because they know that companies and governments will be surveilling"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,480",
+				"to": "00:09:09,480"
+			},
+			"offsets": {
+				"from": 544480,
+				"to": 549480
+			},
+			"text": " their own move and that's like a very frightening thought."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,480",
+				"to": "00:09:11,480"
+			},
+			"offsets": {
+				"from": 549480,
+				"to": 551480
+			},
+			"text": " So, how do we fix that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,480",
+				"to": "00:09:14,480"
+			},
+			"offsets": {
+				"from": 551480,
+				"to": 554480
+			},
+			"text": " Well, we've been to smarter people, we've made a figure that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,480",
+				"to": "00:09:21,480"
+			},
+			"offsets": {
+				"from": 554480,
+				"to": 561480
+			},
+			"text": " But, I mean, one of the ways to do it is to figure out how we can incentivize privacy on this chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,480",
+				"to": "00:09:29,480"
+			},
+			"offsets": {
+				"from": 561480,
+				"to": 569480
+			},
+			"text": " So, how do we get people to actually say that there's this cheaper to do this on various chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,480",
+				"to": "00:09:35,480"
+			},
+			"offsets": {
+				"from": 569480,
+				"to": 575480
+			},
+			"text": " And then socially, how do we connect the or really solve the disconnect that people have?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,480",
+				"to": "00:09:43,480"
+			},
+			"offsets": {
+				"from": 575480,
+				"to": 583480
+			},
+			"text": " Like, right now, we've talked about this before, Liz, but like when people interact and buy something online"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,480",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 583480,
+				"to": 591480
+			},
+			"text": " through credit card or use cryptocurrency without any privacy protection, they don't really think about how many people can"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:58,480"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 598480
+			},
+			"text": " actually surveil and understand the data that is being sold on their behalf or observed on their behalf."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,480",
+				"to": "00:10:03,480"
+			},
+			"offsets": {
+				"from": 598480,
+				"to": 603480
+			},
+			"text": " Like, if you imagine going into a store using cash like my newspaper, the online equivalent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,480",
+				"to": "00:10:08,480"
+			},
+			"offsets": {
+				"from": 603480,
+				"to": 608480
+			},
+			"text": " there are like 30 people in the room watching you do that and then taking notes"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,480",
+				"to": "00:10:13,480"
+			},
+			"offsets": {
+				"from": 608480,
+				"to": 613480
+			},
+			"text": " and then recommending other newspapers to be able to buy a quality or a process of doing that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,480",
+				"to": "00:10:20,480"
+			},
+			"offsets": {
+				"from": 613480,
+				"to": 620480
+			},
+			"text": " And most people don't view it that way, so they have a big social challenge in terms of convincing people to bet that is the truth."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,480",
+				"to": "00:10:29,480"
+			},
+			"offsets": {
+				"from": 620480,
+				"to": 629480
+			},
+			"text": " I want to just sort of take issue with the approach of which you talked about, but obviously we're just suggesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,480",
+				"to": "00:10:35,480"
+			},
+			"offsets": {
+				"from": 629480,
+				"to": 635480
+			},
+			"text": " that we'll just build a thing first and then we will figure out how to add privacy later."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,480",
+				"to": "00:10:41,480"
+			},
+			"offsets": {
+				"from": 635480,
+				"to": 641480
+			},
+			"text": " Because if you say that what you're essentially saying is we're going to design a system in a particular way"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,480",
+				"to": "00:10:48,480"
+			},
+			"offsets": {
+				"from": 641480,
+				"to": 648480
+			},
+			"text": " and once we've invested a lot of engineering effort and we have a big installed base, then we're going to fundamentally redesign it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,480",
+				"to": "00:10:50,480"
+			},
+			"offsets": {
+				"from": 648480,
+				"to": 650480
+			},
+			"text": " That's not going to work."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,480",
+				"to": "00:10:57,480"
+			},
+			"offsets": {
+				"from": 650480,
+				"to": 657480
+			},
+			"text": " If you don't start out with privacy in mind, if you don't start out at least thinking about what your privacy strategy is going to be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,480",
+				"to": "00:11:02,480"
+			},
+			"offsets": {
+				"from": 657480,
+				"to": 662480
+			},
+			"text": " and at the very least not engineering in a way that's inconsistent with that strategy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,480",
+				"to": "00:11:09,480"
+			},
+			"offsets": {
+				"from": 662480,
+				"to": 669480
+			},
+			"text": " you're going to find yourself locked in to a design later that is very difficult from the privacy standpoint."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,480",
+				"to": "00:11:16,480"
+			},
+			"offsets": {
+				"from": 669480,
+				"to": 676480
+			},
+			"text": " And just to add to that, it's tempting to think that you don't need privacy if you're not doing payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,480",
+				"to": "00:11:21,480"
+			},
+			"offsets": {
+				"from": 676480,
+				"to": 681480
+			},
+			"text": " So actually when Josh here wanted me to give the first answer, I think you expected me to give the standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,480",
+				"to": "00:11:27,480"
+			},
+			"offsets": {
+				"from": 681480,
+				"to": 687480
+			},
+			"text": " feel like you have both, well you can't do payments that are public. It's sort of for your bank account."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,480",
+				"to": "00:11:32,480"
+			},
+			"offsets": {
+				"from": 687480,
+				"to": 692480
+			},
+			"text": " You're going to stop by your ex-girlfriend, your business competitors, you'll see what you're doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,480",
+				"to": "00:11:37,480"
+			},
+			"offsets": {
+				"from": 692480,
+				"to": 697480
+			},
+			"text": " Foreign government to use it for counterintelligence. This is a rant I think going on for 20 minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,480",
+				"to": "00:11:42,480"
+			},
+			"offsets": {
+				"from": 697480,
+				"to": 702480
+			},
+			"text": " but it's tempting and I think particularly for this audience to go, well, if I'm not doing payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,480",
+				"to": "00:11:47,480"
+			},
+			"offsets": {
+				"from": 702480,
+				"to": 707480
+			},
+			"text": " if I'm doing crypto-kitty, if I'm doing something different, then there's no privacy problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,480",
+				"to": "00:11:53,480"
+			},
+			"offsets": {
+				"from": 707480,
+				"to": 713480
+			},
+			"text": " because you just can't think in terms of what it will be. And actually I have that problem too when I think about smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,480",
+				"to": "00:11:57,480"
+			},
+			"offsets": {
+				"from": 713480,
+				"to": 717480
+			},
+			"text": " But it's not the case, right? There will be some privacy problem that stuff succeeds."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,480",
+				"to": "00:12:00,480"
+			},
+			"offsets": {
+				"from": 717480,
+				"to": 720480
+			},
+			"text": " If your stuff is worth money, some will want to know what the data is."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,480",
+				"to": "00:12:07,480"
+			},
+			"offsets": {
+				"from": 720480,
+				"to": 727480
+			},
+			"text": " And I think you had a very good point in replanting this kind of way that for actual contracts, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,480",
+				"to": "00:12:12,480"
+			},
+			"offsets": {
+				"from": 727480,
+				"to": 732480
+			},
+			"text": " you don't meet the fact that there's a business relationship between two different parties every time you sign one of these, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,480",
+				"to": "00:12:17,480"
+			},
+			"offsets": {
+				"from": 732480,
+				"to": 737480
+			},
+			"text": " But in a blockchain, when you establish that kind of relationship, it's public every month."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,480",
+				"to": "00:12:24,480"
+			},
+			"offsets": {
+				"from": 737480,
+				"to": 744480
+			},
+			"text": " And that's just not a thing companies or enterprises would do. And so this goes back to your point that if we don't solve these privacy problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,480",
+				"to": "00:12:30,480"
+			},
+			"offsets": {
+				"from": 744480,
+				"to": 750480
+			},
+			"text": " even for things that aren't like money, it's going to be a major barrier to adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,480",
+				"to": "00:12:38,480"
+			},
+			"offsets": {
+				"from": 750480,
+				"to": 758480
+			},
+			"text": " I think you made a very good point that privacy needs to be considered early in the process of designing applications and also platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,480",
+				"to": "00:12:48,480"
+			},
+			"offsets": {
+				"from": 758480,
+				"to": 768480
+			},
+			"text": " But in like my perspective is that currently people are also ill-equipped to attract these privacy concerns from a technological perspective, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,480",
+				"to": "00:12:54,480"
+			},
+			"offsets": {
+				"from": 768480,
+				"to": 774480
+			},
+			"text": " We built Ethereum as a platform that allows you to do something you could."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,480",
+				"to": "00:12:59,480"
+			},
+			"offsets": {
+				"from": 774480,
+				"to": 779480
+			},
+			"text": " Some people say also doing Bitcoin to large degree, but it was super complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,480",
+				"to": "00:13:05,480"
+			},
+			"offsets": {
+				"from": 779480,
+				"to": 785480
+			},
+			"text": " So Ethereum came along and had this nice programming model and smart contracts that added generality to the field."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,480",
+				"to": "00:13:11,480"
+			},
+			"offsets": {
+				"from": 785480,
+				"to": 791480
+			},
+			"text": " The problem is now, the seek has solved for Bitcoin, but who solves the same issue for Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,480",
+				"to": "00:13:23,480"
+			},
+			"offsets": {
+				"from": 791480,
+				"to": 803480
+			},
+			"text": " Ethereum is much more generic and there will not be a privacy solution, technical solution, that fits all the use cases that can be built on the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,480",
+				"to": "00:13:34,480"
+			},
+			"offsets": {
+				"from": 803480,
+				"to": 814480
+			},
+			"text": " So from my perspective, it's key that we establish good tooling and equip the engineers that build decentralized applications with the tools they need to make their stuff privacy within the platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,480",
+				"to": "00:13:49,480"
+			},
+			"offsets": {
+				"from": 814480,
+				"to": 829480
+			},
+			"text": " I'm not only talking about cryptographic mechanisms, but I think they could bring you a long way of as community, we need to think about how we enable people to build privacy-wear applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,480",
+				"to": "00:13:54,480"
+			},
+			"offsets": {
+				"from": 829480,
+				"to": 834480
+			},
+			"text": " Because now even if people think about it, I think they can often just not pull it off."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,480",
+				"to": "00:13:57,480"
+			},
+			"offsets": {
+				"from": 834480,
+				"to": 837480
+			},
+			"text": " Another everybody has to see cash engineering team."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,480",
+				"to": "00:14:03,480"
+			},
+			"offsets": {
+				"from": 837480,
+				"to": 843480
+			},
+			"text": " One more sort of engineering note here, and that is privacy is a safety property."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,480",
+				"to": "00:14:07,480"
+			},
+			"offsets": {
+				"from": 843480,
+				"to": 847480
+			},
+			"text": " A safety property can be lost at any layer in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,480",
+				"to": "00:14:16,480"
+			},
+			"offsets": {
+				"from": 847480,
+				"to": 856480
+			},
+			"text": " So you can have the strongest possible platform underneath you, this privacy preserving, but you can still build an application on top of that than destroys privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,480",
+				"to": "00:14:24,480"
+			},
+			"offsets": {
+				"from": 856480,
+				"to": 864480
+			},
+			"text": " In the same way that the fact that you have HTTPS to transmit data across the internet is an excellent way to protect the privacy of that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,480",
+				"to": "00:14:30,480"
+			},
+			"offsets": {
+				"from": 864480,
+				"to": 870480
+			},
+			"text": " But there are plenty of services that use HTTPS and you have terrible prices."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,480",
+				"to": "00:14:36,480"
+			},
+			"offsets": {
+				"from": 870480,
+				"to": 876480
+			},
+			"text": " Because of the application level, they give away everything that you gain at the lower level."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,480",
+				"to": "00:14:47,480"
+			},
+			"offsets": {
+				"from": 876480,
+				"to": 887480
+			},
+			"text": " So one thing that you were saying is that looking to the future, we used to try to avoid the mistakes that we made with Web1 and Web2, and do Web3 different."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,480",
+				"to": "00:14:58,480"
+			},
+			"offsets": {
+				"from": 887480,
+				"to": 898480
+			},
+			"text": " And so the answer is privacy by design, privacy tooling, things like that, giving developers the opportunity and the knowledge to build in privacy by design and make it easy for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,480",
+				"to": "00:15:04,480"
+			},
+			"offsets": {
+				"from": 898480,
+				"to": 904480
+			},
+			"text": " So do we think that we just set it? Is that the answer? That's how we get Web3?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,480",
+				"to": "00:15:10,480"
+			},
+			"offsets": {
+				"from": 904480,
+				"to": 910480
+			},
+			"text": " Will that really help our scaling issue and not have Web1 and 2 again?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,480",
+				"to": "00:15:26,480"
+			},
+			"offsets": {
+				"from": 910480,
+				"to": 926480
+			},
+			"text": " Well, I think if all of the engineers in the world could make a pact that we would only build privacy-friendly technologies for the rest of our lives and be careful about who else we trained to be an engineer, then we'd be in good shape."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,480",
+				"to": "00:15:35,480"
+			},
+			"offsets": {
+				"from": 926480,
+				"to": 935480
+			},
+			"text": " But given the incentive structure that we're in, given how everything works, we have to be concerned about what kind of market develops and avoiding a situation where there's a race to the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,480",
+				"to": "00:15:49,480"
+			},
+			"offsets": {
+				"from": 935480,
+				"to": 949480
+			},
+			"text": " And that means we need to think about governance because there is a competitive dynamic that will drive everyone to try to collect and exploit more data than the other person in order to eke out a little bit more profit, gain a little bit of the business advantage."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,480",
+				"to": "00:16:09,480"
+			},
+			"offsets": {
+				"from": 949480,
+				"to": 969480
+			},
+			"text": " I don't think we can solve this by just all agreeing to not be evil. And I don't think we can solve it by trying to build a layer 1 or a layer 2, which is going to make insecure or unprivate applications on top of them impossible."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,480",
+				"to": "00:16:21,480"
+			},
+			"offsets": {
+				"from": 969480,
+				"to": 981480
+			},
+			"text": " We need to have some way of governing our behavior that is stronger than just slimmings. And that means that we need to think about how we're going to operate. We need to think about rules of the road for the sector."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,480",
+				"to": "00:16:29,480"
+			},
+			"offsets": {
+				"from": 981480,
+				"to": 989480
+			},
+			"text": " And we can try to set those ourselves. Governments will try to set them for us. Sometimes governments will actually be helping us when they do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,480",
+				"to": "00:16:39,480"
+			},
+			"offsets": {
+				"from": 989480,
+				"to": 999480
+			},
+			"text": " But they're going to have to be rules because the market by itself leads to an outcome when it comes to privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,480",
+				"to": "00:16:42,480"
+			},
+			"offsets": {
+				"from": 999480,
+				"to": 1002480
+			},
+			"text": " Sorry."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,480",
+				"to": "00:16:45,480"
+			},
+			"offsets": {
+				"from": 1002480,
+				"to": 1005480
+			},
+			"text": " No."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,480",
+				"to": "00:17:05,480"
+			},
+			"offsets": {
+				"from": 1005480,
+				"to": 1025480
+			},
+			"text": " No. I just wanted to add to that that I see the decentralized space also as a kind of opportunity because it just shows the body where which data is collected and that it needs protection, whereas in the current system, it's kind of hidden behind API or company walls."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,480",
+				"to": "00:17:22,480"
+			},
+			"offsets": {
+				"from": 1025480,
+				"to": 1042480
+			},
+			"text": " And we do not really know because we cannot personally track what's happening behind that. So like, by making this issue a very prominent issue by showing everybody, hey, your data is there and to a text, it will probably encourage this process is needed up, hopefully."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,480",
+				"to": "00:17:39,480"
+			},
+			"offsets": {
+				"from": 1042480,
+				"to": 1059480
+			},
+			"text": " And the one sort of follow up question I had for you on the idea of how governments to potentially provide, you know, guidance or additional incentive for us to consider privacy as a sort of central tenant and all these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,480",
+				"to": "00:18:03,480"
+			},
+			"offsets": {
+				"from": 1059480,
+				"to": 1083480
+			},
+			"text": " Do you think like things like GPR that kind of transform user data into a much bigger liability for companies and business entities? Do you think actions like that in other governments or regulations like that in other governments might serve to compel people to effectively change their behavior when it comes to businesses approaching these systems?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,480",
+				"to": "00:18:19,480"
+			},
+			"offsets": {
+				"from": 1083480,
+				"to": 1099480
+			},
+			"text": " I mean, I think ultimately when businesses think of large holdings of data as a source of risk, then their, then their, their populations will change. GPR is one of the things that does that."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,480",
+				"to": "00:18:37,480"
+			},
+			"offsets": {
+				"from": 1099480,
+				"to": 1117480
+			},
+			"text": " It's legal risk, it's reputational risk and other kinds of risk that can come from holding data. Governments will be tightening the screws because there's a perception, probably correct, that privacy has gotten worse over time and companies have become more careless with consumer data over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,480",
+				"to": "00:18:51,480"
+			},
+			"offsets": {
+				"from": 1117480,
+				"to": 1131480
+			},
+			"text": " And if this sector is going to be better, something's going to have to happen to me. That happened. Anybody in this sector or any other sector who gets big enough to matter, it's big enough that your investors are happy."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,480",
+				"to": "00:18:58,480"
+			},
+			"offsets": {
+				"from": 1131480,
+				"to": 1138480
+			},
+			"text": " You will be visible to policy makers and regulators and if you are not behaving well, you're going to find out."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,480",
+				"to": "00:19:06,480"
+			},
+			"offsets": {
+				"from": 1138480,
+				"to": 1146480
+			},
+			"text": " In the same way that ICO markets have seen crackdowns, we're going to see, I think, crackdowns upon privacy if people are really careless."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,480",
+				"to": "00:19:20,480"
+			},
+			"offsets": {
+				"from": 1146480,
+				"to": 1160480
+			},
+			"text": " So I guess my question through everybody answered it. How will we make sure we get privacy possession good and not just the illusion of compliance, right? We've seen this in for payments and they call it the \"good\" and such."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,480",
+				"to": "00:19:30,480"
+			},
+			"offsets": {
+				"from": 1160480,
+				"to": 1170480
+			},
+			"text": " We have these privacy techniques that look like they work now, but they really don't. And so anyone who just has a public data set, you can think, you're safe."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,480",
+				"to": "00:19:38,480"
+			},
+			"offsets": {
+				"from": 1170480,
+				"to": 1178480
+			},
+			"text": " But then when you start looking at sophisticated analysis, people have access to data that's also not public, then the stuff all breaks down."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:38,480",
+				"to": "00:19:53,480"
+			},
+			"offsets": {
+				"from": 1178480,
+				"to": 1193480
+			},
+			"text": " And it seems like the immediate reaction we're going to get, an anticipation with GDPR or anything else, is someone does some completely broken piece of topography that's like \"good enough to get past compliance until five years later when we find out it doesn't actually work.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,480",
+				"to": "00:20:04,480"
+			},
+			"offsets": {
+				"from": 1193480,
+				"to": 1204480
+			},
+			"text": " So I want to speak to this one because I was at one point the CTO at the Federal Trade Commission, which is the US government agency that is most responsible for enforcing privacy laws."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,480",
+				"to": "00:20:13,480"
+			},
+			"offsets": {
+				"from": 1204480,
+				"to": 1213480
+			},
+			"text": " And one of the things in that wall that drove me absolutely crazy was when companies made blatantly technically false statements about privacy protection."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,480",
+				"to": "00:20:32,480"
+			},
+			"offsets": {
+				"from": 1213480,
+				"to": 1232480
+			},
+			"text": " For example, claiming that we only store the hash of the 32-bit IP address, therefore we have no way to know what the IP address is, or even people who claim we have the hash of a 10-digit phone number, and therefore we have no way of knowing what it is, and saying that with a straight face of senior policy makers."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,480",
+				"to": "00:20:49,480"
+			},
+			"offsets": {
+				"from": 1232480,
+				"to": 1249480
+			},
+			"text": " And so I think over time governments can get smarter, they're hiring people who know how to call BS on those things. I mean that's part of it, right? Part of it is we have to create an environment where people just can't get away with bogus arguments about privacy, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,480",
+				"to": "00:20:58,480"
+			},
+			"offsets": {
+				"from": 1249480,
+				"to": 1258480
+			},
+			"text": " And we need to call the map. If somebody's making a bogus privacy argument, they should be called out by their peers publicly, and it should affect their reputation."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,480",
+				"to": "00:21:06,480"
+			},
+			"offsets": {
+				"from": 1258480,
+				"to": 1266480
+			},
+			"text": " Governments will listen to that stuff, but more importantly, employers' perspective, investors and so on will listen as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,480",
+				"to": "00:21:14,480"
+			},
+			"offsets": {
+				"from": 1266480,
+				"to": 1274480
+			},
+			"text": " It's sort of up to us to copy us on each other when somebody is saying something that is really misleading to their customers."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,480",
+				"to": "00:21:39,480"
+			},
+			"offsets": {
+				"from": 1274480,
+				"to": 1299480
+			},
+			"text": " So besides the good nature of developers in the community, saying that they're not going to collect personal data and they care about privacy, also government regulations, and also just catching each other on each other, what else can we do to incentivize privacy being depicted to our systems and allow people to scale?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,480",
+				"to": "00:21:48,480"
+			},
+			"offsets": {
+				"from": 1299480,
+				"to": 1308480
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,480",
+				"to": "00:21:56,480"
+			},
+			"offsets": {
+				"from": 1308480,
+				"to": 1316480
+			},
+			"text": " Well, I guess this will go back to my previous mic a little bit, but you really have to make your users want it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,480",
+				"to": "00:22:08,480"
+			},
+			"offsets": {
+				"from": 1316480,
+				"to": 1328480
+			},
+			"text": " I honestly think that if you, so there are all these external incentives and one thing that people should be intrinsically motivated about, at least as an American coming from this sort of constitutional right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,480",
+				"to": "00:22:21,480"
+			},
+			"offsets": {
+				"from": 1328480,
+				"to": 1341480
+			},
+			"text": " constitutional rights perspective, like you should care about your fourth amendment rights, care about a sort of right to fundamental privacy that isn't trying by these fundamental legal rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,480",
+				"to": "00:22:39,480"
+			},
+			"offsets": {
+				"from": 1341480,
+				"to": 1359480
+			},
+			"text": " But I do agree that oftentimes I've been practiced, I think the user has really bad tradeoffs. There is one service that is very nice and easy to use, it doesn't care about privacy, and then you can do a CCAS shield of transaction, which is very complex and comparison to pay for, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,480",
+				"to": "00:22:51,480"
+			},
+			"offsets": {
+				"from": 1359480,
+				"to": 1371480
+			},
+			"text": " So I think it's, maybe that's not the best example, but it's also like just clicking except on the website for something. So we need to provide better tradeoffs and maybe regularly force people to not better tradeoffs."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,480",
+				"to": "00:23:07,480"
+			},
+			"offsets": {
+				"from": 1371480,
+				"to": 1387480
+			},
+			"text": " I think we also need to provide better attacks, right? It would be really good if you can demonstrate to people what you're all. So a good example of this is VINDA, which in the US is an app used to pay back your friends for dinner because we don't have a good bank and system for transfer, and running that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,480",
+				"to": "00:23:19,480"
+			},
+			"offsets": {
+				"from": 1387480,
+				"to": 1399480
+			},
+			"text": " And for a long time, a bunch of people knew that VINDA had this default public feature, literally was Twitter for your bank account, it was a web page for your friend, and this did everything everyone did."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,480",
+				"to": "00:23:30,480"
+			},
+			"offsets": {
+				"from": 1399480,
+				"to": 1410480
+			},
+			"text": " But we were all shouting to the wind, and then someone made an art project where they had this website with all this stuff on an narrative, and all of a sudden people started caring about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,480",
+				"to": "00:23:42,480"
+			},
+			"offsets": {
+				"from": 1410480,
+				"to": 1422480
+			},
+			"text": " And so similarly for blockchains, I think we actually learned that writing tools with nice UIs, look, you saw the data we can find out about you, don't you really wish you hadn't made this mistake, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,480",
+				"to": "00:23:50,480"
+			},
+			"offsets": {
+				"from": 1422480,
+				"to": 1430480
+			},
+			"text": " And until we do that, it's just a hypothetical, oh, I can tell you that in an era that's important, well, I can tell you that this doesn't work, well, that doesn't work, well, but it's not real."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,480",
+				"to": "00:24:03,480"
+			},
+			"offsets": {
+				"from": 1430480,
+				"to": 1443480
+			},
+			"text": " I mean, another thing we can do is give users some hope. I think most users most of the time when they use technology just said this fatalistic attitude, whatever I do, my data is going to go everywhere, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,480",
+				"to": "00:24:14,480"
+			},
+			"offsets": {
+				"from": 1443480,
+				"to": 1454480
+			},
+			"text": " And so it doesn't really matter what I choose. People don't really believe that if they choose product A rather than product B, they'll be in a significantly better position with respect and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,480",
+				"to": "00:24:37,480"
+			},
+			"offsets": {
+				"from": 1454480,
+				"to": 1477480
+			},
+			"text": " And in that kind of environment, if there is A product, A stack, if there is some environment that's available to people that actually does offer better privacy, and we talk about the idea that it is possible to do this, because I think in the legacy text space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,480",
+				"to": "00:24:49,480"
+			},
+			"offsets": {
+				"from": 1477480,
+				"to": 1489480
+			},
+			"text": " the narrative that you hear is that we really don't want to have all your data, but we just need it to run our business. It's just a thing that's necessary to make the sector go."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,480",
+				"to": "00:24:59,480"
+			},
+			"offsets": {
+				"from": 1489480,
+				"to": 1499480
+			},
+			"text": " And I don't think that's necessarily true, but to the extent that this is the way that our community talks about these things, we will make it true."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,480",
+				"to": "00:25:12,480"
+			},
+			"offsets": {
+				"from": 1499480,
+				"to": 1512480
+			},
+			"text": " So we need to work hard, I think, to try to give users hope and to try to talk about holding ourselves to a higher standard that we can solve these problems, and we don't have to just collect everything in order to make our businesses go."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,480",
+				"to": "00:25:23,480"
+			},
+			"offsets": {
+				"from": 1512480,
+				"to": 1523480
+			},
+			"text": " Does that get easier in what we're not talking about? Do you trust Google with your data or Facebook with your data, and it's actually do you trust some part of your data or is it public everywhere?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:23,480",
+				"to": "00:25:35,480"
+			},
+			"offsets": {
+				"from": 1523480,
+				"to": 1535480
+			},
+			"text": " It's not just this trade-off, maybe give us some better ability to welcome and say, \"You really don't, it's going to be everybody. You can at least decide you only trust whatever it is for music.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:25:35,480",
+				"to": "00:25:38,480"
+			},
+			"offsets": {
+				"from": 1535480,
+				"to": 1538480
+			},
+			"text": " Does that change the narrative or anything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,480",
+				"to": "00:25:50,480"
+			},
+			"offsets": {
+				"from": 1538480,
+				"to": 1550480
+			},
+			"text": " I may have a follow-up question. Do you think there's really that much of a choice you have in where three or isn't it rather? There is an implementation that gives you privacy properties technically, where you have zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,480",
+				"to": "00:26:01,480"
+			},
+			"offsets": {
+				"from": 1550480,
+				"to": 1561480
+			},
+			"text": " For me, it's much more binary in that space because the longer a company that has data and can act maliciously or be good with the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,480",
+				"to": "00:26:12,480"
+			},
+			"offsets": {
+				"from": 1561480,
+				"to": 1572480
+			},
+			"text": " Well, in the legacy tech space, a lot of the privacy action or trouble happens at higher levels in the stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,480",
+				"to": "00:26:21,480"
+			},
+			"offsets": {
+				"from": 1572480,
+				"to": 1581480
+			},
+			"text": " I think that is a real risk here in this space as well. At higher levels of the stack, you might see more data collection."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,480",
+				"to": "00:26:30,480"
+			},
+			"offsets": {
+				"from": 1581480,
+				"to": 1590480
+			},
+			"text": " From a fundamental technology standpoint, you have an answer to your question. I think there are pros and cons of this, but there's none compared to what came before."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,480",
+				"to": "00:26:38,480"
+			},
+			"offsets": {
+				"from": 1590480,
+				"to": 1598480
+			},
+			"text": " Also, this is a do-over on some of the structures and approaches that happened before. Maybe we're a little bit wiser about how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,480",
+				"to": "00:26:50,480"
+			},
+			"offsets": {
+				"from": 1598480,
+				"to": 1610480
+			},
+			"text": " So speaking of being wiser, let's talk a little bit about the technology and the talk a little bit more about the technology and incentives that can be combined perhaps."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,480",
+				"to": "00:26:57,480"
+			},
+			"offsets": {
+				"from": 1610480,
+				"to": 1617480
+			},
+			"text": " We were talking earlier about scalability and privacy can be done at the same time with certain technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,480",
+				"to": "00:27:07,480"
+			},
+			"offsets": {
+				"from": 1617480,
+				"to": 1627480
+			},
+			"text": " I think it's good to explore that kind of thing too because it adds an extra opportunity for incentive that perhaps is not there in what we know what to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,480",
+				"to": "00:27:18,480"
+			},
+			"offsets": {
+				"from": 1627480,
+				"to": 1638480
+			},
+			"text": " So, yeah, do you want to talk about some of the abilities that we can do with the things that we can capabilities that we have when we're doing scaling and privacy to build in?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:18,480",
+				"to": "00:27:26,480"
+			},
+			"offsets": {
+				"from": 1638480,
+				"to": 1646480
+			},
+			"text": " So, my usual thing at work with is zero-knowledge proofs. We've seen a massive amount of new excitement of what we can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,480",
+				"to": "00:27:38,480"
+			},
+			"offsets": {
+				"from": 1646480,
+				"to": 1658480
+			},
+			"text": " It's quite interesting, but I think we've sort of... people getting distracted by looking at just the new exciting little pieces of it and not the general pattern of here's the tools, here's the techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,480",
+				"to": "00:27:50,480"
+			},
+			"offsets": {
+				"from": 1658480,
+				"to": 1670480
+			},
+			"text": " So, a common thing people think of is we got this new piece of compiler thing, we have to then a bunch of new things to do this. This is the existing techniques we're doing like how we catch more and some mermaids and groups are left or it's well."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,480",
+				"to": "00:27:57,480"
+			},
+			"offsets": {
+				"from": 1670480,
+				"to": 1677480
+			},
+			"text": " And then also that like people in this audience get hung out and I'm like, \"Oh, we're in the account model. Big ones in UTXO model.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,480",
+				"to": "00:28:02,480"
+			},
+			"offsets": {
+				"from": 1677480,
+				"to": 1682480
+			},
+			"text": " And they've heard none of the techniques over there or over here, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,480",
+				"to": "00:28:06,480"
+			},
+			"offsets": {
+				"from": 1682480,
+				"to": 1686480
+			},
+			"text": " And it's actually, it's all pretty uniform. You can use most of these things all into anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,480",
+				"to": "00:28:16,480"
+			},
+			"offsets": {
+				"from": 1686480,
+				"to": 1696480
+			},
+			"text": " So, it seems like in fact the incentives of these face right now are getting very excited about what from a party's perspective are actually my new shots, like what color the insides are in the car."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,480",
+				"to": "00:28:20,480"
+			},
+			"offsets": {
+				"from": 1696480,
+				"to": 1700480
+			},
+			"text": " It's not the biggest thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:20,480",
+				"to": "00:28:31,480"
+			},
+			"offsets": {
+				"from": 1700480,
+				"to": 1711480
+			},
+			"text": " There are also things that you can do in terms of design that don't rely on the absolutely newest, chinese, most complicated cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,480",
+				"to": "00:28:40,480"
+			},
+			"offsets": {
+				"from": 1711480,
+				"to": 1720480
+			},
+			"text": " So, you know, looking at what we're doing at off-chain labs, we've done a lot of work to try to move state-of-state of contracts off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,480",
+				"to": "00:28:44,480"
+			},
+			"offsets": {
+				"from": 1720480,
+				"to": 1724480
+			},
+			"text": " We did that originally way back in the beginning, motivated by scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:44,480",
+				"to": "00:28:52,480"
+			},
+			"offsets": {
+				"from": 1724480,
+				"to": 1732480
+			},
+			"text": " But when you move stuff off-chain, when you reduce the footprint on-chain, you also have significant privacy benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,480",
+				"to": "00:28:56,480"
+			},
+			"offsets": {
+				"from": 1732480,
+				"to": 1736480
+			},
+			"text": " So, you don't need to use the highest tech stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,480",
+				"to": "00:29:00,480"
+			},
+			"offsets": {
+				"from": 1736480,
+				"to": 1740480
+			},
+			"text": " There's stuff you can do within the sort of traditional engineering frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,480",
+				"to": "00:29:11,480"
+			},
+			"offsets": {
+				"from": 1740480,
+				"to": 1751480
+			},
+			"text": " And there is this synergy between efficiency and privacy in a space where the more public on-chain setting is more expensive than what you could do privately."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,480",
+				"to": "00:29:23,480"
+			},
+			"offsets": {
+				"from": 1751480,
+				"to": 1763480
+			},
+			"text": " That's not to say that you should never use the high-tech stuff or that we would never use it, but you can get a lot without needing to even use that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,480",
+				"to": "00:29:37,480"
+			},
+			"offsets": {
+				"from": 1763480,
+				"to": 1777480
+			},
+			"text": " I would really agree and I would like to ask a question to the other panelists, because it was like, an initial question was like, where did it, is like, how do we have privacy while we're scaling?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,480",
+				"to": "00:29:51,480"
+			},
+			"offsets": {
+				"from": 1777480,
+				"to": 1791480
+			},
+			"text": " For me, oftentimes the answer to privacy and scaling always in the same direction as these, because it's like reducing blockchains to what they're actually good at and not doing as much as possible on the blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,480",
+				"to": "00:29:59,480"
+			},
+			"offsets": {
+				"from": 1791480,
+				"to": 1799480
+			},
+			"text": " And if you remove computation steps and then like to verify the monge, you can use different techniques."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:59,480",
+				"to": "00:30:06,480"
+			},
+			"offsets": {
+				"from": 1799480,
+				"to": 1806480
+			},
+			"text": " It can be simple, integrity checks with hashes. It can be complex mechanisms like Snark, Starch, whatsoever. It doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:06,480",
+				"to": "00:30:16,480"
+			},
+			"offsets": {
+				"from": 1806480,
+				"to": 1816480
+			},
+			"text": " But the key aspect is we move stuff away from the blockchain, keep as much of the information off that public ledger in the first place, and then there's much less we need to bother about."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:16,480",
+				"to": "00:30:31,480"
+			},
+			"offsets": {
+				"from": 1816480,
+				"to": 1831480
+			},
+			"text": " And at the same time, we push less load on the blockchain. So it's naturally not going to scale better, but for the same amount of utility require less computation to be done on chain in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:31,480",
+				"to": "00:30:43,480"
+			},
+			"offsets": {
+				"from": 1831480,
+				"to": 1843480
+			},
+			"text": " So do you think there is a synergy between privacy and scalability or a trade-off?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,480",
+				"to": "00:30:48,480"
+			},
+			"offsets": {
+				"from": 1843480,
+				"to": 1848480
+			},
+			"text": " I think I'm a lone panelist who said that it was a trade-off."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,480",
+				"to": "00:30:53,480"
+			},
+			"offsets": {
+				"from": 1848480,
+				"to": 1853480
+			},
+			"text": " And it was at least technical one here, so maybe you're wrong."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:53,480",
+				"to": "00:31:00,480"
+			},
+			"offsets": {
+				"from": 1853480,
+				"to": 1860480
+			},
+			"text": " But I actually like, I think there is a trade-off present in that, because it creates a degree of user complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,480",
+				"to": "00:31:12,480"
+			},
+			"offsets": {
+				"from": 1860480,
+				"to": 1872480
+			},
+			"text": " For one thing, when you start offloading stuff into other layers and doing like CK roll-ups and the like, you have to figure out then how do you actually engage that interaction with the layer on the user side."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:12,480",
+				"to": "00:31:27,480"
+			},
+			"offsets": {
+				"from": 1872480,
+				"to": 1887480
+			},
+			"text": " Then the other good thing that I think it creates is it does require like shiny or new art photography that has potentially like unknowns about what your building really would like stuff like Halo,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,480",
+				"to": "00:31:35,480"
+			},
+			"offsets": {
+				"from": 1887480,
+				"to": 1895480
+			},
+			"text": " where there is, it doesn't be like a win-win trustless set of recursive, you know, that it's a crucial curiosity."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:35,480",
+				"to": "00:31:38,480"
+			},
+			"offsets": {
+				"from": 1895480,
+				"to": 1898480
+			},
+			"text": " But there's so much that's not known about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:38,480",
+				"to": "00:31:42,480"
+			},
+			"offsets": {
+				"from": 1898480,
+				"to": 1902480
+			},
+			"text": " You just have to understand those trade-offs when you're in a position."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:42,480",
+				"to": "00:31:46,480"
+			},
+			"offsets": {
+				"from": 1902480,
+				"to": 1906480
+			},
+			"text": " Does that something say that there isn't still some alignment online?"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:46,480",
+				"to": "00:31:53,480"
+			},
+			"offsets": {
+				"from": 1906480,
+				"to": 1913480
+			},
+			"text": " Yeah, they're being a mutual advantage to having less state on the game blockchain and more of it, sort of private and elsewhere,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,480",
+				"to": "00:31:57,480"
+			},
+			"offsets": {
+				"from": 1913480,
+				"to": 1917480
+			},
+			"text": " but it just creates new complexities that you have to deal with."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,480",
+				"to": "00:32:07,480"
+			},
+			"offsets": {
+				"from": 1917480,
+				"to": 1927480
+			},
+			"text": " The actor, what Josh is saying, I think, is that a technical level, that seems to be true, which is an interesting switch because usually in traditional centralized systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,480",
+				"to": "00:32:10,480"
+			},
+			"offsets": {
+				"from": 1927480,
+				"to": 1930480
+			},
+			"text": " when you added cryptography, it made a bit slower."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:10,480",
+				"to": "00:32:17,480"
+			},
+			"offsets": {
+				"from": 1930480,
+				"to": 1937480
+			},
+			"text": " And so you make it justified versus here, it's more effectively removing data and a system that's all the burden that makes it faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:17,480",
+				"to": "00:32:25,480"
+			},
+			"offsets": {
+				"from": 1937480,
+				"to": 1945480
+			},
+			"text": " But the social complexity of this bike shedding of which cryptography you use or hopefully you use not complex things."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:25,480",
+				"to": "00:32:32,480"
+			},
+			"offsets": {
+				"from": 1945480,
+				"to": 1952480
+			},
+			"text": " This whole debate of which assumptions, which elliptic curves, which, you know, do you believe in falsify of our assumptions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:32,480",
+				"to": "00:32:37,480"
+			},
+			"offsets": {
+				"from": 1952480,
+				"to": 1957480
+			},
+			"text": " You've seen these things on Twitter, can slow things down. It's very practical from a social perspective to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:37,480",
+				"to": "00:32:44,480"
+			},
+			"offsets": {
+				"from": 1957480,
+				"to": 1964480
+			},
+			"text": " Well, in the interest of scaling the debate and scaling the system, we're going to put those off for five years."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:44,480",
+				"to": "00:32:53,480"
+			},
+			"offsets": {
+				"from": 1964480,
+				"to": 1973480
+			},
+			"text": " And what it's going to ignore it. And that is tempting, but if we do that, we will find out five years that we can't add privacy to the system later."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:53,480",
+				"to": "00:32:55,480"
+			},
+			"offsets": {
+				"from": 1973480,
+				"to": 1975480
+			},
+			"text": " And it'll be too late to fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:55,480",
+				"to": "00:33:01,480"
+			},
+			"offsets": {
+				"from": 1975480,
+				"to": 1981480
+			},
+			"text": " There's a role for standardization here as well, in dealing with the issue that Ian was talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:01,480",
+				"to": "00:33:05,480"
+			},
+			"offsets": {
+				"from": 1981480,
+				"to": 1985480
+			},
+			"text": " That, you know, the sort of fragmentation of the complexity."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:05,480",
+				"to": "00:33:18,480"
+			},
+			"offsets": {
+				"from": 1985480,
+				"to": 1998480
+			},
+			"text": " You've seen this in other areas as well, where those things that are similar across products can be standardized while allowing people to still compete in the areas where there's more innovation."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:18,480",
+				"to": "00:33:25,480"
+			},
+			"offsets": {
+				"from": 1998480,
+				"to": 2005480
+			},
+			"text": " So, you've seen that in cryptography, for example. Right? There are standard ways to do many of the older cryptographic primitives."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:25,480",
+				"to": "00:33:30,480"
+			},
+			"offsets": {
+				"from": 2005480,
+				"to": 2010480
+			},
+			"text": " It's understood how to do them, what key size you need, how you generate this or that."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:30,480",
+				"to": "00:33:33,480"
+			},
+			"offsets": {
+				"from": 2010480,
+				"to": 2013480
+			},
+			"text": " Even formats and so on are standardized. And that's all useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:33,480",
+				"to": "00:33:38,480"
+			},
+			"offsets": {
+				"from": 2013480,
+				"to": 2018480
+			},
+			"text": " For a bunch of reasons. One, first, because it allows more vetting by the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:38,480",
+				"to": "00:33:44,480"
+			},
+			"offsets": {
+				"from": 2018480,
+				"to": 2024480
+			},
+			"text": " A particular approach is, but also because it helps with the emergence of open source implementations."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:44,480",
+				"to": "00:33:47,480"
+			},
+			"offsets": {
+				"from": 2024480,
+				"to": 2027480
+			},
+			"text": " So you don't have people reimplementing the same stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:47,480",
+				"to": "00:33:58,480"
+			},
+			"offsets": {
+				"from": 2027480,
+				"to": 2038480
+			},
+			"text": " So, how do you think that interacts with what seems to be emerging now, where we have companies that are basically marketing, not a product, but literally they're like zero knowledge and encryption proof-type."
+		},
+		{
+			"timestamps": {
+				"from": "00:33:58,480",
+				"to": "00:34:06,480"
+			},
+			"offsets": {
+				"from": 2038480,
+				"to": 2046480
+			},
+			"text": " And they're trying to push these things. So we're going to, in fact, disappear in like five years without just affecting the fact that this is a very nascent."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:06,480",
+				"to": "00:34:16,480"
+			},
+			"offsets": {
+				"from": 2046480,
+				"to": 2056480
+			},
+			"text": " The ecosystem is this problem of like, you're not going to standardize this because one guy says they want to standardize on thing A and someone's saying that it's being completely different."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:16,480",
+				"to": "00:34:20,480"
+			},
+			"offsets": {
+				"from": 2056480,
+				"to": 2060480
+			},
+			"text": " Or do we have a strong controversy that is just too dumb and you don't remember."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:20,480",
+				"to": "00:34:28,480"
+			},
+			"offsets": {
+				"from": 2060480,
+				"to": 2068480
+			},
+			"text": " I mean, there's standardization works where there is enough agreement on where how some part of the system would work."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:28,480",
+				"to": "00:34:41,480"
+			},
+			"offsets": {
+				"from": 2068480,
+				"to": 2081480
+			},
+			"text": " You know, you can come up with standards for, say, verification of zero knowledge proofs, maybe, without needing to have a standard for how you generate the proof or how you build the circuit that you're proving and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:41,480",
+				"to": "00:34:55,480"
+			},
+			"offsets": {
+				"from": 2081480,
+				"to": 2095480
+			},
+			"text": " So, you know, and similarly in other systems, there are parts that are standardized and the standards can be pluggable, where people can plug in their own secret sauce in the areas where there is a lot of innovation and where it's a little bit less settled."
+		},
+		{
+			"timestamps": {
+				"from": "00:34:55,480",
+				"to": "00:35:10,480"
+			},
+			"offsets": {
+				"from": 2095480,
+				"to": 2110480
+			},
+			"text": " I'm not an expert on the history of photography, but I do think that there was kind of similar things taking place with early encryption, like where it was in private companies and they selected some parameters and was like, hold up magic."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:10,480",
+				"to": "00:35:17,480"
+			},
+			"offsets": {
+				"from": 2110480,
+				"to": 2117480
+			},
+			"text": " And over time, these things were battle tested, became established, were republished in a more open source way."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:17,480",
+				"to": "00:35:22,480"
+			},
+			"offsets": {
+				"from": 2117480,
+				"to": 2122480
+			},
+			"text": " So maybe we're just on track, but I do see what they're getting at that."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:22,480",
+				"to": "00:35:25,480"
+			},
+			"offsets": {
+				"from": 2122480,
+				"to": 2125480
+			},
+			"text": " So, I think that's a good issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:25,480",
+				"to": "00:35:39,480"
+			},
+			"offsets": {
+				"from": 2125480,
+				"to": 2139480
+			},
+			"text": " The reason I mentioned it seems to me that, as exactly right, there are some standards like Beds and such, but a lot of it was all done by RSA for basic encryption and then Netscape for ALS, or as I said, all of the time."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:39,480",
+				"to": "00:35:49,480"
+			},
+			"offsets": {
+				"from": 2139480,
+				"to": 2149480
+			},
+			"text": " But it seems like in those cases there was one dominant guy who wrote the X for the piece, and now in this case it's democratized, which is good, but there's now more in-fighting."
+		},
+		{
+			"timestamps": {
+				"from": "00:35:49,480",
+				"to": "00:36:05,480"
+			},
+			"offsets": {
+				"from": 2149480,
+				"to": 2165480
+			},
+			"text": " I mean, if you look at cryptographic standards, some of the most popular standards, like the hash function standards, for example, or AES, were done through government-organized processes, although they were open competitions."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:05,480",
+				"to": "00:36:12,480"
+			},
+			"offsets": {
+				"from": 2165480,
+				"to": 2172480
+			},
+			"text": " And that was a way of organizing the community, and you had a lot of, it was community work."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:12,480",
+				"to": "00:36:25,480"
+			},
+			"offsets": {
+				"from": 2172480,
+				"to": 2185480
+			},
+			"text": " And so lots of diversity, different opinions about how to do that, but yet a strong standard emerged, and one that got trust out of that process."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:25,480",
+				"to": "00:36:34,480"
+			},
+			"offsets": {
+				"from": 2185480,
+				"to": 2194480
+			},
+			"text": " Obviously governments can run these things badly, and the result of that can be worse than nothing, as we all know."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:34,480",
+				"to": "00:36:40,480"
+			},
+			"offsets": {
+				"from": 2194480,
+				"to": 2200480
+			},
+			"text": " But there are good examples, good existence proofs that this can be done well."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:40,480",
+				"to": "00:36:49,480"
+			},
+			"offsets": {
+				"from": 2200480,
+				"to": 2209480
+			},
+			"text": " And you can get to standards even for things like Cyphers, where there's a lot of different ideas about how to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:49,480",
+				"to": "00:36:55,480"
+			},
+			"offsets": {
+				"from": 2209480,
+				"to": 2215480
+			},
+			"text": " And I guess standardization will help with making easier tools for privacy by design."
+		},
+		{
+			"timestamps": {
+				"from": "00:36:55,480",
+				"to": "00:37:04,480"
+			},
+			"offsets": {
+				"from": 2215480,
+				"to": 2224480
+			},
+			"text": " So, yeah, is there anything else that you want me to say before we open up for questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:04,480",
+				"to": "00:37:12,480"
+			},
+			"offsets": {
+				"from": 2224480,
+				"to": 2232480
+			},
+			"text": " Okay, just are there any questions from the audience for the panel?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:12,480",
+				"to": "00:37:16,480"
+			},
+			"offsets": {
+				"from": 2232480,
+				"to": 2236480
+			},
+			"text": " We're doing a mic thing, or we're not."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:16,480",
+				"to": "00:37:17,480"
+			},
+			"offsets": {
+				"from": 2236480,
+				"to": 2237480
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:17,480",
+				"to": "00:37:35,480"
+			},
+			"offsets": {
+				"from": 2237480,
+				"to": 2255480
+			},
+			"text": " It's fine, I can express. Could you talk about the role of cryptocurrency exchanges in this debate, and perhaps in your answers, could you debate about yourself, or talk about what you'd like to see, versus what you think will happen?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:35,480",
+				"to": "00:37:40,480"
+			},
+			"offsets": {
+				"from": 2255480,
+				"to": 2260480
+			},
+			"text": " So the question was, how can exchanges help in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:37:40,480",
+				"to": "00:37:43,480"
+			},
+			"offsets": {
+				"from": 2260480,
+				"to": 2263480
+			},
+			"text": " Scanning privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:37:43,480",
+				"to": "00:38:05,480"
+			},
+			"offsets": {
+				"from": 2263480,
+				"to": 2285480
+			},
+			"text": " I'll start with just going to be very brief, but with exchanges, my major concern is that these exchanges may be forbidden, but many users and users may appear, and it goes back to privacy and trust, and putting responsibility to the users as well, because if it looks statistics, how many people actually keep private keys themselves, and how many people trust these changes with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:05,480",
+				"to": "00:38:18,480"
+			},
+			"offsets": {
+				"from": 2285480,
+				"to": 2298480
+			},
+			"text": " It's kind of boring to think, or I don't think we can think that these people will take responsibility for privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:18,480",
+				"to": "00:38:31,480"
+			},
+			"offsets": {
+				"from": 2298480,
+				"to": 2311480
+			},
+			"text": " Yeah, I mean, if we all view data as a liability, then exchanges are effectively like centralized exchanges are legally mandated nuclear waste subs."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:31,480",
+				"to": "00:38:43,480"
+			},
+			"offsets": {
+				"from": 2311480,
+				"to": 2323480
+			},
+			"text": " They're where everyone's data goes, and they're legally required to, and I don't see that changing, to be honest."
+		},
+		{
+			"timestamps": {
+				"from": "00:38:43,480",
+				"to": "00:39:00,480"
+			},
+			"offsets": {
+				"from": 2323480,
+				"to": 2340480
+			},
+			"text": " So my preferred outcome that I don't think is actually likely to be honest is that, at least in a night to assume, is that people figure out other ways to exchange and get into these systems that do actually preserve privacy"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:00,480",
+				"to": "00:39:07,480"
+			},
+			"offsets": {
+				"from": 2340480,
+				"to": 2347480
+			},
+			"text": " without having to go through the nuclear waste stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:07,480",
+				"to": "00:39:10,480"
+			},
+			"offsets": {
+				"from": 2347480,
+				"to": 2350480
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:10,480",
+				"to": "00:39:13,480"
+			},
+			"offsets": {
+				"from": 2350480,
+				"to": 2353480
+			},
+			"text": " Where is the mic?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:13,480",
+				"to": "00:39:14,480"
+			},
+			"offsets": {
+				"from": 2353480,
+				"to": 2354480
+			},
+			"text": " Or I can just repeat."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:14,480",
+				"to": "00:39:15,480"
+			},
+			"offsets": {
+				"from": 2354480,
+				"to": 2355480
+			},
+			"text": " Anybody thought of it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:15,480",
+				"to": "00:39:16,480"
+			},
+			"offsets": {
+				"from": 2355480,
+				"to": 2356480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:16,480",
+				"to": "00:39:29,480"
+			},
+			"offsets": {
+				"from": 2356480,
+				"to": 2369480
+			},
+			"text": " The question is, I guess, the panelists, I guess, European and American, but probably the most users are, or moving in the mostly Asia, China, Japan, what is your experience between that side?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:29,480",
+				"to": "00:39:36,480"
+			},
+			"offsets": {
+				"from": 2369480,
+				"to": 2376480
+			},
+			"text": " Do you think we can see if there's development there, or is there a thing on that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:39:36,480",
+				"to": "00:39:51,480"
+			},
+			"offsets": {
+				"from": 2376480,
+				"to": 2391480
+			},
+			"text": " So, last month I was in Tokyo on a panel with some people from the JFSA, which is the Japanese financial services administration, I believe, and they regulate cryptocurrency and finance in Japan."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:51,480",
+				"to": "00:39:58,480"
+			},
+			"offsets": {
+				"from": 2391480,
+				"to": 2398480
+			},
+			"text": " And that was actually interesting because there was an appreciation of that privacy was a thing they should be aware of."
+		},
+		{
+			"timestamps": {
+				"from": "00:39:58,480",
+				"to": "00:40:02,480"
+			},
+			"offsets": {
+				"from": 2398480,
+				"to": 2402480
+			},
+			"text": " They wanted to deal with other things first, but that actually was a thing they were concerned about."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:02,480",
+				"to": "00:40:06,480"
+			},
+			"offsets": {
+				"from": 2402480,
+				"to": 2406480
+			},
+			"text": " They acknowledged that you needed legitimately to have privacy for these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:06,480",
+				"to": "00:40:16,480"
+			},
+			"offsets": {
+				"from": 2406480,
+				"to": 2416480
+			},
+			"text": " The really interesting thing, male, was that the regulatory environment, JFSA is responsible both for consumer protection and privacy, and for enforcing anti-money laundering stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:16,480",
+				"to": "00:40:22,480"
+			},
+			"offsets": {
+				"from": 2416480,
+				"to": 2422480
+			},
+			"text": " First in the US, the guys who do money laundering is a Treasury Department of Finston."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:22,480",
+				"to": "00:40:29,480"
+			},
+			"offsets": {
+				"from": 2422480,
+				"to": 2429480
+			},
+			"text": " And when you talk to them about privacy, they basically go, \"Yeah, you're set up right, but that's not our problem, so why are you getting out of the way?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:40:29,480",
+				"to": "00:40:39,480"
+			},
+			"offsets": {
+				"from": 2429480,
+				"to": 2439480
+			},
+			"text": " So I think there'll be some better hope in parts of Asia and other places, well, I'm not going to comment further on that."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:39,480",
+				"to": "00:40:40,480"
+			},
+			"offsets": {
+				"from": 2439480,
+				"to": 2440480
+			},
+			"text": " Anybody else?"
+		},
+		{
+			"timestamps": {
+				"from": "00:40:40,480",
+				"to": "00:40:48,480"
+			},
+			"offsets": {
+				"from": 2440480,
+				"to": 2448480
+			},
+			"text": " I mean, this also could be the difference between privacy for companies versus privacy for individuals, too."
+		},
+		{
+			"timestamps": {
+				"from": "00:40:48,480",
+				"to": "00:41:00,480"
+			},
+			"offsets": {
+				"from": 2448480,
+				"to": 2460480
+			},
+			"text": " Oh, right. I mean, there was the other thing that even in the most privacy-possible government you can think of, those governments have enemies that are other governments, and they don't want those other governments seeing everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:00,480",
+				"to": "00:41:09,480"
+			},
+			"offsets": {
+				"from": 2460480,
+				"to": 2469480
+			},
+			"text": " Just imagine what would happen if you could go look at everybody and work in the security service and get them caught, and they'd go, \"Oh, yeah, that guy there is having to be a security service.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:41:09,480",
+				"to": "00:41:13,480"
+			},
+			"offsets": {
+				"from": 2469480,
+				"to": 2473480
+			},
+			"text": " That guy there is having trouble paying his rent."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:13,480",
+				"to": "00:41:18,480"
+			},
+			"offsets": {
+				"from": 2473480,
+				"to": 2478480
+			},
+			"text": " Maybe we could try to bribe him to get them and all of the... they get us all the plans that that documents can ask, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:18,480",
+				"to": "00:41:26,480"
+			},
+			"offsets": {
+				"from": 2478480,
+				"to": 2486480
+			},
+			"text": " So there isn't any setup, even in regimes that will hospital privacy, do at least have security from other governments, they don't block."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:26,480",
+				"to": "00:41:31,480"
+			},
+			"offsets": {
+				"from": 2486480,
+				"to": 2491480
+			},
+			"text": " So it's kind of going to be funny because the other side I haven't placed out."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:31,480",
+				"to": "00:41:36,480"
+			},
+			"offsets": {
+				"from": 2491480,
+				"to": 2496480
+			},
+			"text": " Any other questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:41:36,480",
+				"to": "00:41:40,480"
+			},
+			"offsets": {
+				"from": 2496480,
+				"to": 2500480
+			},
+			"text": " I'm going to ask a fun question for the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:40,480",
+				"to": "00:41:44,480"
+			},
+			"offsets": {
+				"from": 2500480,
+				"to": 2504480
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:44,480",
+				"to": "00:41:49,480"
+			},
+			"offsets": {
+				"from": 2504480,
+				"to": 2509480
+			},
+			"text": " So if you could... I remember life before the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:49,480",
+				"to": "00:41:54,480"
+			},
+			"offsets": {
+				"from": 2509480,
+				"to": 2514480
+			},
+			"text": " I think you probably do, or have some idea of what life was like before the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:54,480",
+				"to": "00:41:55,480"
+			},
+			"offsets": {
+				"from": 2514480,
+				"to": 2515480
+			},
+			"text": " Here we go again."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:55,480",
+				"to": "00:41:56,480"
+			},
+			"offsets": {
+				"from": 2515480,
+				"to": 2516480
+			},
+			"text": " Web 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:41:56,480",
+				"to": "00:42:05,480"
+			},
+			"offsets": {
+				"from": 2516480,
+				"to": 2525480
+			},
+			"text": " What is... let's maybe think about what would be your coolest dream for what three outcomes and what's life going to be like, if everything is like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:05,480",
+				"to": "00:42:09,480"
+			},
+			"offsets": {
+				"from": 2525480,
+				"to": 2529480
+			},
+			"text": " If everything works out as we want."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:09,480",
+				"to": "00:42:12,480"
+			},
+			"offsets": {
+				"from": 2529480,
+				"to": 2532480
+			},
+			"text": " Or some aspect of that, just thinking the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:12,480",
+				"to": "00:42:13,480"
+			},
+			"offsets": {
+				"from": 2532480,
+				"to": 2533480
+			},
+			"text": " I thought you were going to go with the opposite."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:13,480",
+				"to": "00:42:25,480"
+			},
+			"offsets": {
+				"from": 2533480,
+				"to": 2545480
+			},
+			"text": " Like, what was it like back in the day before we like, you know, you're the person you were at a date with to find out everything you've been and everything you've bought, just like Google would address, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:25,480",
+				"to": "00:42:34,480"
+			},
+			"offsets": {
+				"from": 2545480,
+				"to": 2554480
+			},
+			"text": " Yeah, it's tough for, but I just hope that this could be like... like, cloud computing in a first structure as powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:42:34,480",
+				"to": "00:42:42,480"
+			},
+			"offsets": {
+				"from": 2554480,
+				"to": 2562480
+			},
+			"text": " with better privacy with less dependency because as it turns out, information technology is like a key driver nowadays."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:42,480",
+				"to": "00:42:47,480"
+			},
+			"offsets": {
+				"from": 2562480,
+				"to": 2567480
+			},
+			"text": " And that access and solid infrastructure would be nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:47,480",
+				"to": "00:42:49,480"
+			},
+			"offsets": {
+				"from": 2567480,
+				"to": 2569480
+			},
+			"text": " One more daily life level."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:49,480",
+				"to": "00:42:59,480"
+			},
+			"offsets": {
+				"from": 2569480,
+				"to": 2579480
+			},
+			"text": " I think there's still huge opportunities for integrating services, reducing vendor login, all these kinds of things that just make your daily life better."
+		},
+		{
+			"timestamps": {
+				"from": "00:42:59,480",
+				"to": "00:43:03,480"
+			},
+			"offsets": {
+				"from": 2579480,
+				"to": 2583480
+			},
+			"text": " But we will see how it's going to turn out over the next 10 years."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:03,480",
+				"to": "00:43:10,480"
+			},
+			"offsets": {
+				"from": 2583480,
+				"to": 2590480
+			},
+			"text": " My biggest hope is that we learned from what has happened before us."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:10,480",
+				"to": "00:43:17,480"
+			},
+			"offsets": {
+				"from": 2590480,
+				"to": 2597480
+			},
+			"text": " We had a chance kind of to, before I do over, to rebuild the technology stack that people rely on."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:17,480",
+				"to": "00:43:21,480"
+			},
+			"offsets": {
+				"from": 2597480,
+				"to": 2601480
+			},
+			"text": " And we have a real opportunity to do a better job."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:21,480",
+				"to": "00:43:24,480"
+			},
+			"offsets": {
+				"from": 2601480,
+				"to": 2604480
+			},
+			"text": " It is probably not as easy as we think to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:24,480",
+				"to": "00:43:27,480"
+			},
+			"offsets": {
+				"from": 2604480,
+				"to": 2607480
+			},
+			"text": " The people who came before us faced a lot of trade-offs."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:27,480",
+				"to": "00:43:28,480"
+			},
+			"offsets": {
+				"from": 2607480,
+				"to": 2608480
+			},
+			"text": " They made a lot of decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:28,480",
+				"to": "00:43:31,480"
+			},
+			"offsets": {
+				"from": 2608480,
+				"to": 2611480
+			},
+			"text": " Most of them still seem like good decisions in hindsight."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:31,480",
+				"to": "00:43:35,480"
+			},
+			"offsets": {
+				"from": 2611480,
+				"to": 2615480
+			},
+			"text": " And yet they ended up in a place that has some built disadvantages."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:35,480",
+				"to": "00:43:37,480"
+			},
+			"offsets": {
+				"from": 2615480,
+				"to": 2617480
+			},
+			"text": " But I hope that we do better this time."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:37,480",
+				"to": "00:43:41,480"
+			},
+			"offsets": {
+				"from": 2617480,
+				"to": 2621480
+			},
+			"text": " And I think one of the keys to doing that is to..."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:41,480",
+				"to": "00:43:47,480"
+			},
+			"offsets": {
+				"from": 2621480,
+				"to": 2627480
+			},
+			"text": " Well, two keys to doing that are first to really pay attention to what happened before and learn from it."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:47,480",
+				"to": "00:43:58,480"
+			},
+			"offsets": {
+				"from": 2627480,
+				"to": 2638480
+			},
+			"text": " And two not to give ourselves too much credit for being able to see ahead or for being more altruistic than we actually will turn out to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:43:58,480",
+				"to": "00:44:06,480"
+			},
+			"offsets": {
+				"from": 2638480,
+				"to": 2646480
+			},
+			"text": " And if I could describe my ideal view for looking at results, this movement might be..."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:06,480",
+				"to": "00:44:10,480"
+			},
+			"offsets": {
+				"from": 2646480,
+				"to": 2650480
+			},
+			"text": " Actually, I think it would be more..."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:10,480",
+				"to": "00:44:16,480"
+			},
+			"offsets": {
+				"from": 2650480,
+				"to": 2656480
+			},
+			"text": " In my day-to-day, I would like to have a device on me that is not tracking me."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:16,480",
+				"to": "00:44:20,480"
+			},
+			"offsets": {
+				"from": 2656480,
+				"to": 2660480
+			},
+			"text": " That when I go to buy a book, it doesn't have DRM on it."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:20,480",
+				"to": "00:44:28,480"
+			},
+			"offsets": {
+				"from": 2660480,
+				"to": 2668480
+			},
+			"text": " And I paid for it without having to enter in my email or user account and without anyone knowing who I am buying that information."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:28,480",
+				"to": "00:44:38,480"
+			},
+			"offsets": {
+				"from": 2668480,
+				"to": 2678480
+			},
+			"text": " I just want to live in a world where it kind of emulates what it was like when you went into a bookstore in the 19th century with a cat."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:38,480",
+				"to": "00:44:41,480"
+			},
+			"offsets": {
+				"from": 2678480,
+				"to": 2681480
+			},
+			"text": " We had a little thing about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:41,480",
+				"to": "00:44:49,480"
+			},
+			"offsets": {
+				"from": 2681480,
+				"to": 2689480
+			},
+			"text": " I actually feel like that's a return to form and that we could build that return to form up, gaining all the convenience that we have in today's society."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:49,480",
+				"to": "00:44:52,480"
+			},
+			"offsets": {
+				"from": 2689480,
+				"to": 2692480
+			},
+			"text": " So you're saying you wanted to look like it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:52,480",
+				"to": "00:44:55,480"
+			},
+			"offsets": {
+				"from": 2692480,
+				"to": 2695480
+			},
+			"text": " You're saying you wanted to look like what it was before there was the internet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:44:55,480",
+				"to": "00:44:57,480"
+			},
+			"offsets": {
+				"from": 2695480,
+				"to": 2697480
+			},
+			"text": " Yeah, you thought with the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:57,480",
+				"to": "00:44:59,480"
+			},
+			"offsets": {
+				"from": 2697480,
+				"to": 2699480
+			},
+			"text": " You're like with the internet."
+		},
+		{
+			"timestamps": {
+				"from": "00:44:59,480",
+				"to": "00:45:05,480"
+			},
+			"offsets": {
+				"from": 2699480,
+				"to": 2705480
+			},
+			"text": " So we want the mobile device in our pocket that's not acting like the mobile device tracking us in our pocket that we have right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:05,480",
+				"to": "00:45:09,480"
+			},
+			"offsets": {
+				"from": 2705480,
+				"to": 2709480
+			},
+			"text": " And we want something like cash, but that's digital, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:09,480",
+				"to": "00:45:10,480"
+			},
+			"offsets": {
+				"from": 2709480,
+				"to": 2710480
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:10,480",
+				"to": "00:45:11,480"
+			},
+			"offsets": {
+				"from": 2710480,
+				"to": 2711480
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:11,480",
+				"to": "00:45:12,480"
+			},
+			"offsets": {
+				"from": 2711480,
+				"to": 2712480
+			},
+			"text": " Alright."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:12,480",
+				"to": "00:45:14,480"
+			},
+			"offsets": {
+				"from": 2712480,
+				"to": 2714480
+			},
+			"text": " And here are the last comments."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:14,480",
+				"to": "00:45:18,480"
+			},
+			"offsets": {
+				"from": 2714480,
+				"to": 2718480
+			},
+			"text": " Okay. We got 16, 17 seconds."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:18,480",
+				"to": "00:45:20,480"
+			},
+			"offsets": {
+				"from": 2718480,
+				"to": 2720480
+			},
+			"text": " I'm nowhere over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:20,480",
+				"to": "00:45:22,480"
+			},
+			"offsets": {
+				"from": 2720480,
+				"to": 2722480
+			},
+			"text": " That's what it's coming up."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:22,480",
+				"to": "00:45:23,480"
+			},
+			"offsets": {
+				"from": 2722480,
+				"to": 2723480
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:23,480",
+				"to": "00:45:24,480"
+			},
+			"offsets": {
+				"from": 2723480,
+				"to": 2724480
+			},
+			"text": " Anything else to say?"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:24,480",
+				"to": "00:45:25,480"
+			},
+			"offsets": {
+				"from": 2724480,
+				"to": 2725480
+			},
+			"text": " Alright."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:25,480",
+				"to": "00:45:27,480"
+			},
+			"offsets": {
+				"from": 2725480,
+				"to": 2727480
+			},
+			"text": " Well, thank you panelists and thank you all very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:45:27,480",
+				"to": "00:45:31,480"
+			},
+			"offsets": {
+				"from": 2727480,
+				"to": 2731480
+			},
+			"text": " [applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:31,480",
+				"to": "00:45:39,480"
+			},
+			"offsets": {
+				"from": 2731480,
+				"to": 2739480
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:45:39,480",
+				"to": "00:45:46,480"
+			},
+			"offsets": {
+				"from": 2739480,
+				"to": 2746480
+			},
+			"text": " [music]"
+		}
+	]
+}

@@ -1,0 +1,1154 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,280"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15280
+			},
+			"text": " All right. Hello everybody. My name is Sean Wilkinson,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,280",
+				"to": "00:00:17,360"
+			},
+			"offsets": {
+				"from": 15280,
+				"to": 17360
+			},
+			"text": " I'm the founder of Storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,360",
+				"to": "00:00:21,680"
+			},
+			"offsets": {
+				"from": 17360,
+				"to": 21680
+			},
+			"text": " We're talking today about decentralizing GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,680",
+				"to": "00:00:26,280"
+			},
+			"offsets": {
+				"from": 21680,
+				"to": 26280
+			},
+			"text": " So how many people raise your hand use GitHub?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,280",
+				"to": "00:00:29,360"
+			},
+			"offsets": {
+				"from": 26280,
+				"to": 29360
+			},
+			"text": " Three people. Okay, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,360",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 29360,
+				"to": 32000
+			},
+			"text": " Great tool, great platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:34,040"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 34040
+			},
+			"text": " Now imagine one day you wake up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,040",
+				"to": "00:00:35,400"
+			},
+			"offsets": {
+				"from": 34040,
+				"to": 35400
+			},
+			"text": " you have a nice scuppa tea,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,400",
+				"to": "00:00:40,360"
+			},
+			"offsets": {
+				"from": 35400,
+				"to": 40360
+			},
+			"text": " your coffee and your login and your account has been banned on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,360",
+				"to": "00:00:42,600"
+			},
+			"offsets": {
+				"from": 40360,
+				"to": 42600
+			},
+			"text": " You can't access any of your repositories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,600",
+				"to": "00:00:44,680"
+			},
+			"offsets": {
+				"from": 42600,
+				"to": 44680
+			},
+			"text": " you can't download any of your code,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,680",
+				"to": "00:00:47,640"
+			},
+			"offsets": {
+				"from": 44680,
+				"to": 47640
+			},
+			"text": " it's this all up and there's nothing you can do."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,640",
+				"to": "00:00:51,680"
+			},
+			"offsets": {
+				"from": 47640,
+				"to": 51680
+			},
+			"text": " This is not a hypothetical situation for some people."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,680",
+				"to": "00:00:55,680"
+			},
+			"offsets": {
+				"from": 51680,
+				"to": 55680
+			},
+			"text": " In 2019, people in Korea, Syria,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,680",
+				"to": "00:00:58,600"
+			},
+			"offsets": {
+				"from": 55680,
+				"to": 58600
+			},
+			"text": " and Iran developers just have their account spot."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,600",
+				"to": "00:01:01,680"
+			},
+			"offsets": {
+				"from": 58600,
+				"to": 61680
+			},
+			"text": " As we know, GitHub got what I acquired by Microsoft,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,680",
+				"to": "00:01:04,160"
+			},
+			"offsets": {
+				"from": 61680,
+				"to": 64160
+			},
+			"text": " I got some lawyers got for,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,160",
+				"to": "00:01:06,320"
+			},
+			"offsets": {
+				"from": 64160,
+				"to": 66320
+			},
+			"text": " they figured what are we going to do today?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,320",
+				"to": "00:01:10,280"
+			},
+			"offsets": {
+				"from": 66320,
+				"to": 70280
+			},
+			"text": " We can't work commercially with these countries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,280",
+				"to": "00:01:13,320"
+			},
+			"offsets": {
+				"from": 70280,
+				"to": 73320
+			},
+			"text": " through sanction laws and they interpret that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,320",
+				"to": "00:01:16,800"
+			},
+			"offsets": {
+				"from": 73320,
+				"to": 76800
+			},
+			"text": " okay, let's ban all these users in these countries."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,800",
+				"to": "00:01:21,320"
+			},
+			"offsets": {
+				"from": 76800,
+				"to": 81320
+			},
+			"text": " So such as that, not that great, not that great."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,320",
+				"to": "00:01:23,040"
+			},
+			"offsets": {
+				"from": 81320,
+				"to": 83040
+			},
+			"text": " There's other examples of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,040",
+				"to": "00:01:27,640"
+			},
+			"offsets": {
+				"from": 83040,
+				"to": 87640
+			},
+			"text": " In 2014, Russia, someone posted something on GitHub"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,640",
+				"to": "00:01:31,560"
+			},
+			"offsets": {
+				"from": 87640,
+				"to": 91560
+			},
+			"text": " that Russia didn't like, so they just banned it entirely."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,560",
+				"to": "00:01:33,560"
+			},
+			"offsets": {
+				"from": 91560,
+				"to": 93560
+			},
+			"text": " Obviously they brought it back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,560",
+				"to": "00:01:36,240"
+			},
+			"offsets": {
+				"from": 93560,
+				"to": 96240
+			},
+			"text": " but for a week or so, people weren't developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,240",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 96240,
+				"to": 98000
+			},
+			"text": " weren't people that accessed GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:44,440"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 104440
+			},
+			"text": " We have many other examples, 2015, 16, 2017, 2018, 2019,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,440",
+				"to": "00:01:50,520"
+			},
+			"offsets": {
+				"from": 104440,
+				"to": 110520
+			},
+			"text": " where for whatever reason or whatever problem happened,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,520",
+				"to": "00:01:55,680"
+			},
+			"offsets": {
+				"from": 110520,
+				"to": 115680
+			},
+			"text": " GitHub goes down for hours today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,680",
+				"to": "00:01:59,680"
+			},
+			"offsets": {
+				"from": 115680,
+				"to": 119680
+			},
+			"text": " So this sounds like a familiar problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,680",
+				"to": "00:02:01,920"
+			},
+			"offsets": {
+				"from": 119680,
+				"to": 121920
+			},
+			"text": " in the industry that we're trying to deal with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,920",
+				"to": "00:02:03,720"
+			},
+			"offsets": {
+				"from": 121920,
+				"to": 123720
+			},
+			"text": " centralization, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,720",
+				"to": "00:02:10,680"
+			},
+			"offsets": {
+				"from": 123720,
+				"to": 130680
+			},
+			"text": " And GitHub just has a lot of control over the platform"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,680",
+				"to": "00:02:13,120"
+			},
+			"offsets": {
+				"from": 130680,
+				"to": 133120
+			},
+			"text": " that we use and we really depend on"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,120",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 133120,
+				"to": 135800
+			},
+			"text": " to build out these next-gen applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:17,400"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 137400
+			},
+			"text": " and that's not that great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,400",
+				"to": "00:02:21,360"
+			},
+			"offsets": {
+				"from": 137400,
+				"to": 141360
+			},
+			"text": " Again, there's a lot of concern by many people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,360",
+				"to": "00:02:24,240"
+			},
+			"offsets": {
+				"from": 141360,
+				"to": 144240
+			},
+			"text": " in the community that Microsoft will do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,240",
+				"to": "00:02:26,800"
+			},
+			"offsets": {
+				"from": 144240,
+				"to": 146800
+			},
+			"text": " what they did with LinkedIn, and one day you'll wake up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,800",
+				"to": "00:02:28,680"
+			},
+			"offsets": {
+				"from": 146800,
+				"to": 148680
+			},
+			"text": " and then we have paywall to GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,680",
+				"to": "00:02:32,680"
+			},
+			"offsets": {
+				"from": 148680,
+				"to": 152680
+			},
+			"text": " So I think this is a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,680",
+				"to": "00:02:35,200"
+			},
+			"offsets": {
+				"from": 152680,
+				"to": 155200
+			},
+			"text": " First this happens to somebody else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,200",
+				"to": "00:02:37,560"
+			},
+			"offsets": {
+				"from": 155200,
+				"to": 157560
+			},
+			"text": " but it can happen to any of us."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,560",
+				"to": "00:02:41,800"
+			},
+			"offsets": {
+				"from": 157560,
+				"to": 161800
+			},
+			"text": " And so we need to act now, we need to do something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,800",
+				"to": "00:02:44,720"
+			},
+			"offsets": {
+				"from": 161800,
+				"to": 164720
+			},
+			"text": " about this, we need to decentralize GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,720",
+				"to": "00:02:47,400"
+			},
+			"offsets": {
+				"from": 164720,
+				"to": 167400
+			},
+			"text": " So how should we go about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,400",
+				"to": "00:02:49,560"
+			},
+			"offsets": {
+				"from": 167400,
+				"to": 169560
+			},
+			"text": " What I think we should go about it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,560",
+				"to": "00:02:52,200"
+			},
+			"offsets": {
+				"from": 169560,
+				"to": 172200
+			},
+			"text": " is we should just download it all and give up."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,200",
+				"to": "00:02:56,240"
+			},
+			"offsets": {
+				"from": 172200,
+				"to": 176240
+			},
+			"text": " All in its entire entirety, download all the repositories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,240",
+				"to": "00:02:59,280"
+			},
+			"offsets": {
+				"from": 176240,
+				"to": 179280
+			},
+			"text": " and stick it in a decentralized platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,280",
+				"to": "00:03:03,680"
+			},
+			"offsets": {
+				"from": 179280,
+				"to": 183680
+			},
+			"text": " a decentralized data store, so that it gets us down,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,680",
+				"to": "00:03:06,360"
+			},
+			"offsets": {
+				"from": 183680,
+				"to": 186360
+			},
+			"text": " or they decide to arbitrarily block your accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,360",
+				"to": "00:03:08,960"
+			},
+			"offsets": {
+				"from": 186360,
+				"to": 188960
+			},
+			"text": " and run accounts, at least you can get your code out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,960",
+				"to": "00:03:11,240"
+			},
+			"offsets": {
+				"from": 188960,
+				"to": 191240
+			},
+			"text": " and take it somewhere else I get out."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,240",
+				"to": "00:03:15,880"
+			},
+			"offsets": {
+				"from": 191240,
+				"to": 195880
+			},
+			"text": " So, go through this process, past couple of months,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,880",
+				"to": "00:03:17,960"
+			},
+			"offsets": {
+				"from": 195880,
+				"to": 197960
+			},
+			"text": " we found there's a cool little project called"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,960",
+				"to": "00:03:22,960"
+			},
+			"offsets": {
+				"from": 197960,
+				"to": 202960
+			},
+			"text": " getArchive.org, which essentially caches all the public"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,960",
+				"to": "00:03:29,320"
+			},
+			"offsets": {
+				"from": 202960,
+				"to": 209320
+			},
+			"text": " metadata and actions that people publicly do on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,320",
+				"to": "00:03:31,720"
+			},
+			"offsets": {
+				"from": 209320,
+				"to": 211720
+			},
+			"text": " So from there you can kind of get a list of pretty much"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,720",
+				"to": "00:03:35,720"
+			},
+			"offsets": {
+				"from": 211720,
+				"to": 215720
+			},
+			"text": " anyone who's been active on GitHub since 2015,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,720",
+				"to": "00:03:37,520"
+			},
+			"offsets": {
+				"from": 215720,
+				"to": 217520
+			},
+			"text": " and then you can pull the GitHub API"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,520",
+				"to": "00:03:40,640"
+			},
+			"offsets": {
+				"from": 217520,
+				"to": 220640
+			},
+			"text": " to get all the public repositories."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,640",
+				"to": "00:03:44,840"
+			},
+			"offsets": {
+				"from": 220640,
+				"to": 224840
+			},
+			"text": " And we can download them into a decentralized data storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,840",
+				"to": "00:03:49,840"
+			},
+			"offsets": {
+				"from": 224840,
+				"to": 229840
+			},
+			"text": " platform storage, and then we can make this accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,840",
+				"to": "00:03:53,920"
+			},
+			"offsets": {
+				"from": 229840,
+				"to": 233920
+			},
+			"text": " to many people again in the case that people whose access"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,920",
+				"to": "00:03:57,620"
+			},
+			"offsets": {
+				"from": 233920,
+				"to": 237620
+			},
+			"text": " to their repositories on GitHub or Block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,620",
+				"to": "00:04:02,040"
+			},
+			"offsets": {
+				"from": 237620,
+				"to": 242040
+			},
+			"text": " or GitHub goes down, we can get access to this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,040",
+				"to": "00:04:06,640"
+			},
+			"offsets": {
+				"from": 242040,
+				"to": 246640
+			},
+			"text": " So in animals, getBackup.org."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,640",
+				"to": "00:04:09,320"
+			},
+			"offsets": {
+				"from": 246640,
+				"to": 249320
+			},
+			"text": " All you do is you put in your GitHub username,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,320",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 249320,
+				"to": 252280
+			},
+			"text": " you hit sync, and you will back it up and store it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 257280
+			},
+			"text": " and then make that accessible both through our platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:20,280"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 260280
+			},
+			"text": " and then we're also looking at making it accessible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,280",
+				"to": "00:04:21,840"
+			},
+			"offsets": {
+				"from": 260280,
+				"to": 261840
+			},
+			"text": " through things like IP address."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,840",
+				"to": "00:04:25,320"
+			},
+			"offsets": {
+				"from": 261840,
+				"to": 265320
+			},
+			"text": " So if this website is ever bound, it's still get to the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,320",
+				"to": "00:04:29,200"
+			},
+			"offsets": {
+				"from": 265320,
+				"to": 269200
+			},
+			"text": " So this data is way out of date."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,200",
+				"to": "00:04:32,680"
+			},
+			"offsets": {
+				"from": 269200,
+				"to": 272680
+			},
+			"text": " To date we've downloaded about 300,000 repositories,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,680",
+				"to": "00:04:36,120"
+			},
+			"offsets": {
+				"from": 272680,
+				"to": 276120
+			},
+			"text": " we're storing about 30 terabytes of information,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,120",
+				"to": "00:04:39,520"
+			},
+			"offsets": {
+				"from": 276120,
+				"to": 279520
+			},
+			"text": " and we're talking about 50,000 users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,520",
+				"to": "00:04:41,720"
+			},
+			"offsets": {
+				"from": 279520,
+				"to": 281720
+			},
+			"text": " So this is just how much data we downloaded"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,720",
+				"to": "00:04:43,400"
+			},
+			"offsets": {
+				"from": 281720,
+				"to": 283400
+			},
+			"text": " pretty much this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,400",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 283400,
+				"to": 285480
+			},
+			"text": " So the pace at which we're accelerating"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:48,360"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 288360
+			},
+			"text": " and downloading data is growing and increasing pace."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,360",
+				"to": "00:04:51,400"
+			},
+			"offsets": {
+				"from": 288360,
+				"to": 291400
+			},
+			"text": " So we'll probably have at least a million users"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,400",
+				"to": "00:04:53,200"
+			},
+			"offsets": {
+				"from": 291400,
+				"to": 293200
+			},
+			"text": " downloaded by the end of the year."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,200",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 293200,
+				"to": 297480
+			},
+			"text": " So I encourage you to help on your phone or your laptop,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:04:58,480"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 298480
+			},
+			"text": " and try it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,480",
+				"to": "00:05:00,480"
+			},
+			"offsets": {
+				"from": 298480,
+				"to": 300480
+			},
+			"text": " Just all you have to do is put in your GitHub username"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,480",
+				"to": "00:05:03,400"
+			},
+			"offsets": {
+				"from": 300480,
+				"to": 303400
+			},
+			"text": " and hit sync, and we'll back it up for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,400",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 303400,
+				"to": 307440
+			},
+			"text": " And next time GitHub decides to do something like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:10,560"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 310560
+			},
+			"text": " \"Man, users are maturely not give them access to their code.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,560",
+				"to": "00:05:12,440"
+			},
+			"offsets": {
+				"from": 310560,
+				"to": 312440
+			},
+			"text": " At least now we have a backup option."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,440",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 312440,
+				"to": 314000
+			},
+			"text": " So thanks for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,160"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317160
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,160",
+				"to": "00:05:19,740"
+			},
+			"offsets": {
+				"from": 317160,
+				"to": 319740
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,740",
+				"to": "00:05:22,320"
+			},
+			"offsets": {
+				"from": 319740,
+				"to": 322320
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,320",
+				"to": "00:05:24,900"
+			},
+			"offsets": {
+				"from": 322320,
+				"to": 324900
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,900",
+				"to": "00:05:27,480"
+			},
+			"offsets": {
+				"from": 324900,
+				"to": 327480
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,480",
+				"to": "00:05:30,220"
+			},
+			"offsets": {
+				"from": 327480,
+				"to": 330220
+			},
+			"text": " (dramatic music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,220",
+				"to": "00:05:32,720"
+			},
+			"offsets": {
+				"from": 330220,
+				"to": 332720
+			},
+			"text": " (drum beats)"
+		}
+	]
+}

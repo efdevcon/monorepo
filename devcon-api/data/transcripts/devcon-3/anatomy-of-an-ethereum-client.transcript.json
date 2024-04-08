@@ -1,0 +1,1297 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:11,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 11000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 11000,
+				"to": 16000
+			},
+			"text": " Quickly overview the internals with the Ethereum client implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 24000
+			},
+			"text": " I am most of all familiar with the C++ client, but in fact there are many common ideas behind all of the clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 34000
+			},
+			"text": " And in this talk I am not going to tell about C++ client in particular, but about the general view of what any client should consist of."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 39000
+			},
+			"text": " The things that you would definitely need to implement as a part of any client."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 49000
+			},
+			"text": " This talk might be interesting to anyone who is kind of new to this area and is wondering about some practical details of how Ethereum works under the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:57,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 57000
+			},
+			"text": " Or maybe to someone who might be considering implementing a new Ethereum client with their favorite programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 57000,
+				"to": 63000
+			},
+			"text": " And I could recommend that as a best way to get a deeper understanding of the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " So I am sure everyone knows what a client is."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 75000
+			},
+			"text": " It is a piece of software that allows you to connect to the Ethereum network, run a node and interact with Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 86000
+			},
+			"text": " Also, all of the teams working on the clients usually clearly separate any kind of end user friendly graphic interface from the back end core part of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:37,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 97000
+			},
+			"text": " And in this talk by the client I mean only this back end part which doesn't necessarily have any intentions to be user friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 97000,
+				"to": 107000
+			},
+			"text": " Essentially, a client is an implementation of the Ethereum protocol as specified by the yellow paper, the main formal specification of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 109000
+			},
+			"text": " But not only that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 116000
+			},
+			"text": " This is a very high level overview of more or less everything you can find in the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 122000
+			},
+			"text": " The middle part in yellow is the implementation of the Ethereum protocol itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 126000
+			},
+			"text": " This is the part specified by the yellow paper directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 141000
+			},
+			"text": " And this is where all of the client developers should be very careful in following this specification because if there is some disagreement about how the client should behave, it could lead to an unintentional fork in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 155000
+			},
+			"text": " And all the rest is the parts where developers have some freedom in choosing the approach strategy or technology to help implement it or for some parts may be whether to implement it at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 164000
+			},
+			"text": " So let's go into some details about each of these parts starting from the lower level components, the ones closer to hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:57,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 177000
+			},
+			"text": " The networking layer is essentially the implementation of the peer-to-peer protocol which specifies how the nodes in the Ethereum network can communicate with one another."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 177000,
+				"to": 181000
+			},
+			"text": " In fact, it's not one single protocol but a family of protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " One important of them is the node discovery protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 191000
+			},
+			"text": " That is the algorithm of how the nodes find one another in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 198000
+			},
+			"text": " And all others are nicely designed as two levels of protocols, maybe three levels depending on how you look at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:21,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 201000
+			},
+			"text": " So there is a lower level called DEF P2P."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 201000,
+				"to": 212000
+			},
+			"text": " And together with something even lower level called LPX, they together specify how the nodes can exchange the binary and coded messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 220000
+			},
+			"text": " By the way, for the binary serialization theorem uses this cool format called LP which stands for Curse of Land prefix."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 225000
+			},
+			"text": " It's used not only in the networking bag, everywhere in the protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 232000
+			},
+			"text": " So basically DEF P2P specifies how the nodes can talk to one another with a European coded messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 239000
+			},
+			"text": " And other protocols are based on DEF P2P and they specify which data exactly can be exchanged."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 248000
+			},
+			"text": " So there is for example, if protocol that specifies how the nodes exchange the mind blocks and the mind pending transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " And there are other protocols for downloading the data during fast sync or warp sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:17,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 257000
+			},
+			"text": " And these protocols are also based on DEF P2P."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 257000,
+				"to": 266000
+			},
+			"text": " Every client needs some persistent storage for the blockchain and the state data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 275000
+			},
+			"text": " Typically clients use some kind of key value storage database for that because this fits naturally all the needs of the theorem client."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 284000
+			},
+			"text": " For example, CPP theorem and GoAtheorem and Python client as well, all just level DB for that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:49,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 289000
+			},
+			"text": " What is the distinction between the blockchain and the state data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 289000,
+				"to": 298000
+			},
+			"text": " The state can be in fact stored all in a single database, don't separate databases but anyway these pretty distant parts of the client data."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:05,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 305000
+			},
+			"text": " So the blockchain obviously is the storage for all of the blocks, all of the transactions of the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 305000,
+				"to": 308000
+			},
+			"text": " And the state data is kind of orthogonal to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 314000
+			},
+			"text": " It is the current information about all of the accounts and contracts currently exist in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 318000
+			},
+			"text": " There are balances, nonces, code of contract, storage of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 327000
+			},
+			"text": " Also clients typically implement some indexing and caching strategies on top of the database to make queries more efficient."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 339000
+			},
+			"text": " Some clients also have the pruning of the state data that is compacting the state database by removing some older parts of it that are not normally needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 350000
+			},
+			"text": " Synchronization is the process that allows us to get the latest blockchain and the state data from other nodes of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 363000
+			},
+			"text": " So we could say that it is built on top of both the networking and the database layers because it gets the data over the network through one of the network protocols and this data ends up in the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:09,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 369000
+			},
+			"text": " So there currently exist at least three null methods to organize this synchronization."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 369000,
+				"to": 375000
+			},
+			"text": " The oldest one, the one that the post-in Ethereum is forcing, also known currently as archive sync."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:24,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 384000
+			},
+			"text": " And it is basically just downloading all of the blocks one by one and executing each and every one of the transactions of all the blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 384000,
+				"to": 398000
+			},
+			"text": " And this way you calculate the full Ethereum state according to each block and in the end you have what is called an archive node that is you have all of the intermediate states and you can query any of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:50,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 410000
+			},
+			"text": " In practice doing this for the whole blockchains terribly inefficient nowadays and it will take ages to complete so almost no one currently uses this by itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,000",
+				"to": "00:06:55,000"
+			},
+			"offsets": {
+				"from": 410000,
+				"to": 415000
+			},
+			"text": " Fast sync also downloads the blocks and it downloads the full Ethereum state as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,000",
+				"to": "00:07:01,000"
+			},
+			"offsets": {
+				"from": 415000,
+				"to": 421000
+			},
+			"text": " So we are forcing, calculates the state by executing all the transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,000",
+				"to": "00:07:08,000"
+			},
+			"offsets": {
+				"from": 421000,
+				"to": 428000
+			},
+			"text": " Fast sync instead of this downloads the result of this calculation from other nodes and that's the main difference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 428000,
+				"to": 438000
+			},
+			"text": " Also for efficiency reasons fast sync skips some proof of work verification for some blocks still trying to remain as secure as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 443000
+			},
+			"text": " And in general this approach allows to make sync time pretty manageable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 459000
+			},
+			"text": " Snapshot sync also known as warp sync in the parity client is downloading the compressed snapshot of everything needed to start the node including the blocks at least some number of recent blocks and the state according to the last block."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 468000
+			},
+			"text": " I should say that although as I said, forcing is very inefficient and nevertheless it is very essential component of any client implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 472000
+			},
+			"text": " One reason for that is security."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 485000
+			},
+			"text": " Even if I don't want to have an archive node I still, it would still be a good idea for both fast sync and snapshot sync to switch at some point close to being complete to forcing mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 496000
+			},
+			"text": " And this way I can be sure that the latest state I have in the node is based on my local transaction execution and not something you get from the adjusted nodes of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 510000
+			},
+			"text": " And another reason is that if you know it gets behind the current chain for some reason like if it was offline for some time then you would need to download these missing blocks that don't mind during the downtime."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 518000
+			},
+			"text": " And usually the more efficient way to do that would be to download them through forcing mechanism."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 534000
+			},
+			"text": " So to summarize, to have a client that can be practically used in real-of-theorem networks you would need to implement at least forcing and at least one of the fast sync, all of the snapshots."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 539000
+			},
+			"text": " And there's also light client technology about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:02,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 542000
+			},
+			"text": " People were talking about it in the main hole today in the morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 542000,
+				"to": 544000
+			},
+			"text": " It's something completely different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:19,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 559000
+			},
+			"text": " It's not exactly the way to organize this synchronization but a way to run the client in such a way that the full state and the full blockchain is not needed locally and instead of having the full state and the local database the light client can request the parts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 559000,
+				"to": 571000
+			},
+			"text": " the needed parts of the state from other nodes and download them when needed and this way keep the local database very compact."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:39,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 579000
+			},
+			"text": " Blockchain, this is the first one of consensus critical components specified directly by the yellow paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,000",
+				"to": "00:09:48,000"
+			},
+			"offsets": {
+				"from": 579000,
+				"to": 588000
+			},
+			"text": " Essentially it uses the implementation of the number of rules around the data structures like the block, the transaction, like for example the rules for constructing the block,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 588000,
+				"to": 603000
+			},
+			"text": " filling its fields, calculating the difficulty of the block rules about signing the transactions with the accounts private key rules about encoding all of this in the LP format, etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:18,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 618000
+			},
+			"text": " This part I would say is not so complicated although it might seem that there are many difficult rules to implement here but anyway it is very precisely specified and all you need to do here as a developer is just to care for the follow the specification."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,000",
+				"to": "00:10:23,000"
+			},
+			"offsets": {
+				"from": 618000,
+				"to": 623000
+			},
+			"text": " Another important part of the client data is the state."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 623000,
+				"to": 640000
+			},
+			"text": " As I already mentioned this is the information about all of the current existing accounts and contracts of Ethereum so what is required from the client implementation here is also to carefully follow the specification regarding what constitutes the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:55,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 655000
+			},
+			"text": " Another thing required from the client here is to implement this awesome tree data structure called Norco Patricia Tree which allows us to compact the store and efficiently query all of the state data."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,000",
+				"to": "00:11:11,000"
+			},
+			"offsets": {
+				"from": 655000,
+				"to": 671000
+			},
+			"text": " So this means that on the physical storage level the state database stores only the nodes of the tree and then the responsibility of this component is to provide a high level interface to the storage in the form of convenient access to accounts data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,000",
+				"to": "00:11:24,000"
+			},
+			"offsets": {
+				"from": 671000,
+				"to": 684000
+			},
+			"text": " The theorem virtual machine is the component that executes the code of smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,000",
+				"to": "00:11:36,000"
+			},
+			"offsets": {
+				"from": 684000,
+				"to": 696000
+			},
+			"text": " So this bytecode is just the binary sequence of instruction codes in the operands, not that even doesn't know anything about solidity or any other high level programming language."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 696000,
+				"to": 699000
+			},
+			"text": " So we don't have to deal with that here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 716000
+			},
+			"text": " The instructions of the bytecode calculates the gas consumption for this execution, performs the corresponding updates to the state like for example saving something into the contract storage and return some result data or an error in the end."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 734000
+			},
+			"text": " This component I would say is pretty complicated and challenging to implement. Well, implementing it according to the yellow purpose specification itself might be not that difficult but making work efficiently is an important challenge and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:26,000"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 746000
+			},
+			"text": " the particular clients have various kinds of optimizations around here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,000",
+				"to": "00:12:32,000"
+			},
+			"offsets": {
+				"from": 746000,
+				"to": 752000
+			},
+			"text": " Also I should note that there exists two different approaches to implement in the EVM. The simpler one is interpreter that is executing the instructions one by one as we see them in the bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 752000,
+				"to": 763000
+			},
+			"text": " And another one is just in time compilation. There is a translating the bytecode into the hardware machine code and then executing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:54,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 774000
+			},
+			"text": " This is the implementation of the proof of rock algorithms still using the theorem. It is called ethash and the client needs it primarily for two reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 774000,
+				"to": 779000
+			},
+			"text": " One is to validate the blocks that we receive over the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 787000
+			},
+			"text": " And another one is if the client also supports mine, we would need it to create the new blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 795000
+			},
+			"text": " Some clients also support some alternative, certain algorithms like proof of authority for incabial call and networks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:21,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 801000
+			},
+			"text": " RPC is the primary way for the DAPs to communicate with the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,000",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 801000,
+				"to": 810000
+			},
+			"text": " And as we might consider the DAPs to be the main users of the theorem clients in this sense RPC is the main interface of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:38,000"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 818000
+			},
+			"text": " If you adapt developer then you know that RPC is what underlies web.js interface that is used in the DAP code to communicate with the node."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,000",
+				"to": "00:13:48,000"
+			},
+			"offsets": {
+				"from": 818000,
+				"to": 828000
+			},
+			"text": " So JSON RPC is used as an RPC protocol and not also that it can be used both with a locally run client or remotely through HTTP."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,000",
+				"to": "00:14:02,000"
+			},
+			"offsets": {
+				"from": 828000,
+				"to": 842000
+			},
+			"text": " And this link here is the API specs any client that wants to be usable by the DAPs should provide at least the methods listed in this document."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 842000,
+				"to": 852000
+			},
+			"text": " Any client that expects the DAPs using it to create and send the transactions should provide at least the very basic wall functionality."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 862000
+			},
+			"text": " This again doesn't mean that we need any kind of graphic user interface for the wall necessary because this is only the backend part we're talking about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:28,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 868000
+			},
+			"text": " So what is needed is just wall functionality and an access to it through RPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 868000,
+				"to": 880000
+			},
+			"text": " So the client typically should provide at least the way to manage your accounts like create an account, import expert account data, list accounts etc."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 884000
+			},
+			"text": " and the ability to send transactions with the accounts by it."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 895000
+			},
+			"text": " And here are some features that are not so critical but are nice to have in the client since they can make the life of the user easier both for the human users and for the DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:11,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 911000
+			},
+			"text": " So this could be features like import and expert of the blockchain data, interactive console, support and web3js calls, some tools useful for debugging like, for example, the tool for running EVM code and seeing its results."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 911000,
+				"to": 916000
+			},
+			"text": " Compilers from high level languages like Solidity or LLL."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:25,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 925000
+			},
+			"text": " Also I mentioned mining here which is of course big an important feature but in fact it's not that indispensable part of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 925000,
+				"to": 930000
+			},
+			"text": " You don't necessarily need to have a mining support in your client for it to be usable by the DAPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 934000
+			},
+			"text": " It can become completely separated from the rest of the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 941000
+			},
+			"text": " In fact that's what we do with CPP Ethereum hiring a GPU miner as a completely separate project."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:44,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 944000
+			},
+			"text": " And here's the special mention about the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 944000,
+				"to": 950000
+			},
+			"text": " Consensus tests are a comprehensive corpus of tests developed and maintained by our testing team."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:16:02,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 962000
+			},
+			"text": " They are essentially these JSON files, each one specifying some initial state of Ethereum, some operations on it in the form of transactions of logs and some expected state after that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,000",
+				"to": "00:16:15,000"
+			},
+			"offsets": {
+				"from": 962000,
+				"to": 975000
+			},
+			"text": " So what is required from the client implementation here is to be able to parse these files around the tests and compare the final state and of course to pass on the tests."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,000",
+				"to": "00:16:25,000"
+			},
+			"offsets": {
+				"from": 975000,
+				"to": 985000
+			},
+			"text": " The tests are an important topic by itself and Dimitri is giving a talk about it in an hour from now here in the breakout hall I think so if you're interested you are welcome to attend."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 985000,
+				"to": 998000
+			},
+			"text": " And this concludes my overview of the building blocks of the Ethereum client. If you're interested in getting into more details you are welcome to dive into code repositories and documentation or to join our developer computer channel."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1006000
+			},
+			"text": " Thank you for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:55,000"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1015000
+			},
+			"text": " Alright, so I get what happened. So the other research team members, they were using my thing to factor very"
+		}
+	]
+}

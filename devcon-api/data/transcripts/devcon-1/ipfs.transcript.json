@@ -1,0 +1,8227 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16840
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,840",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 16840,
+				"to": 18040
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:19,640"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 19640
+			},
+			"text": " Shall we begin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,640",
+				"to": "00:00:21,280"
+			},
+			"offsets": {
+				"from": 19640,
+				"to": 21280
+			},
+			"text": " Let's do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,280",
+				"to": "00:00:26,560"
+			},
+			"offsets": {
+				"from": 21280,
+				"to": 26560
+			},
+			"text": " So my name is Juan, one of the people behind IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,560",
+				"to": "00:00:29,160"
+			},
+			"offsets": {
+				"from": 26560,
+				"to": 29160
+			},
+			"text": " And today I'm going to talk to you about data and data"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,160",
+				"to": "00:00:31,040"
+			},
+			"offsets": {
+				"from": 29160,
+				"to": 31040
+			},
+			"text": " structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,040",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 31040,
+				"to": 32800
+			},
+			"text": " So the talk is structured this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:35,560"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 35560
+			},
+			"text": " I'll give you a brief introduction to IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,560",
+				"to": "00:00:39,200"
+			},
+			"offsets": {
+				"from": 35560,
+				"to": 39200
+			},
+			"text": " Actually, how many people here know already what IPFS is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,200",
+				"to": "00:00:41,200"
+			},
+			"offsets": {
+				"from": 39200,
+				"to": 41200
+			},
+			"text": " Wow, awesome."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,200",
+				"to": "00:00:43,440"
+			},
+			"offsets": {
+				"from": 41200,
+				"to": 43440
+			},
+			"text": " That's a great distribution."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,440",
+				"to": "00:00:45,560"
+			},
+			"offsets": {
+				"from": 43440,
+				"to": 45560
+			},
+			"text": " So that'll go really quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,560",
+				"to": "00:00:48,960"
+			},
+			"offsets": {
+				"from": 45560,
+				"to": 48960
+			},
+			"text": " We'll cover the IPLD data model."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,960",
+				"to": "00:00:52,240"
+			},
+			"offsets": {
+				"from": 48960,
+				"to": 52240
+			},
+			"text": " And then we'll talk about use cases and examples of IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,240",
+				"to": "00:00:55,760"
+			},
+			"offsets": {
+				"from": 52240,
+				"to": 55760
+			},
+			"text": " and data structures and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,760",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55760,
+				"to": 58000
+			},
+			"text": " All right, so IPFS, another name for it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:00,960"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 60960
+			},
+			"text": " is the distributed web or the permanent web"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,960",
+				"to": "00:01:04,880"
+			},
+			"offsets": {
+				"from": 60960,
+				"to": 64880
+			},
+			"text": " or the Merkle web in honor of Ralph Merkle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,880",
+				"to": "00:01:08,440"
+			},
+			"offsets": {
+				"from": 64880,
+				"to": 68440
+			},
+			"text": " And in a sense, it's this evolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,440",
+				"to": "00:01:10,840"
+			},
+			"offsets": {
+				"from": 68440,
+				"to": 70840
+			},
+			"text": " of how the internet and the web were structured."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,840",
+				"to": "00:01:14,680"
+			},
+			"offsets": {
+				"from": 70840,
+				"to": 74680
+			},
+			"text": " And I think everyone here, both coming from blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,680",
+				"to": "00:01:18,080"
+			},
+			"offsets": {
+				"from": 74680,
+				"to": 78080
+			},
+			"text": " history to Ethereum and a whole bunch of other interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,080",
+				"to": "00:01:20,240"
+			},
+			"offsets": {
+				"from": 78080,
+				"to": 80240
+			},
+			"text": " technologies that are happening right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,240",
+				"to": "00:01:22,000"
+			},
+			"offsets": {
+				"from": 80240,
+				"to": 82000
+			},
+			"text": " sort of see what's going on or what"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,000",
+				"to": "00:01:23,680"
+			},
+			"offsets": {
+				"from": 82000,
+				"to": 83680
+			},
+			"text": " has been going on for the last three years"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,680",
+				"to": "00:01:28,240"
+			},
+			"offsets": {
+				"from": 83680,
+				"to": 88240
+			},
+			"text": " as this total reinvention of how to do distributed computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,240",
+				"to": "00:01:31,520"
+			},
+			"offsets": {
+				"from": 88240,
+				"to": 91520
+			},
+			"text": " and distributed networks in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,520",
+				"to": "00:01:33,440"
+			},
+			"offsets": {
+				"from": 91520,
+				"to": 93440
+			},
+			"text": " And so this is, of course, layers"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,440",
+				"to": "00:01:35,680"
+			},
+			"offsets": {
+				"from": 93440,
+				"to": 95680
+			},
+			"text": " on top of the old internet and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,680",
+				"to": "00:01:37,160"
+			},
+			"offsets": {
+				"from": 95680,
+				"to": 97160
+			},
+			"text": " But what's really happening is that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,160",
+				"to": "00:01:42,080"
+			},
+			"offsets": {
+				"from": 97160,
+				"to": 102080
+			},
+			"text": " taking the web applications of the 1.0 or web 2.0 world"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,080",
+				"to": "00:01:47,640"
+			},
+			"offsets": {
+				"from": 102080,
+				"to": 107640
+			},
+			"text": " and we are separating them from their physical location"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,640",
+				"to": "00:01:50,320"
+			},
+			"offsets": {
+				"from": 107640,
+				"to": 110320
+			},
+			"text": " in servers and so on and distributing them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,320",
+				"to": "00:01:53,400"
+			},
+			"offsets": {
+				"from": 110320,
+				"to": 113400
+			},
+			"text": " across different hosts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,400",
+				"to": "00:01:56,600"
+			},
+			"offsets": {
+				"from": 113400,
+				"to": 116600
+			},
+			"text": " So IPFS is a protocol to upgrade the web"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,600",
+				"to": "00:01:57,960"
+			},
+			"offsets": {
+				"from": 116600,
+				"to": 117960
+			},
+			"text": " because the web has some problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,960",
+				"to": "00:02:00,360"
+			},
+			"offsets": {
+				"from": 117960,
+				"to": 120360
+			},
+			"text": " I won't go over these."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,360",
+				"to": "00:02:01,800"
+			},
+			"offsets": {
+				"from": 120360,
+				"to": 121800
+			},
+			"text": " I think most of you are familiar with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,800",
+				"to": "00:02:05,280"
+			},
+			"offsets": {
+				"from": 121800,
+				"to": 125280
+			},
+			"text": " It's inefficient, doesn't work offline, links break,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,280",
+				"to": "00:02:08,520"
+			},
+			"offsets": {
+				"from": 125280,
+				"to": 128520
+			},
+			"text": " central points of failure, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,520",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128520,
+				"to": 131000
+			},
+			"text": " And the gist is to try and create what"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:14,080"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 134080
+			},
+			"text": " would the web look like if you took a Merkle tree or a Merkle"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,080",
+				"to": "00:02:16,720"
+			},
+			"offsets": {
+				"from": 134080,
+				"to": 136720
+			},
+			"text": " chain and put it underneath the web itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,720",
+				"to": "00:02:19,400"
+			},
+			"offsets": {
+				"from": 136720,
+				"to": 139400
+			},
+			"text": " So what would happen if you gained"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,400",
+				"to": "00:02:25,400"
+			},
+			"offsets": {
+				"from": 139400,
+				"to": 145400
+			},
+			"text": " immutability for distributing content on the web?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,400",
+				"to": "00:02:27,520"
+			},
+			"offsets": {
+				"from": 145400,
+				"to": 147520
+			},
+			"text": " You can think of data structures like Git"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,520",
+				"to": "00:02:29,960"
+			},
+			"offsets": {
+				"from": 147520,
+				"to": 149960
+			},
+			"text": " and the amazing power of distributed computing"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,960",
+				"to": "00:02:33,680"
+			},
+			"offsets": {
+				"from": 149960,
+				"to": 153680
+			},
+			"text": " that you get out of that or distributed version control."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,680",
+				"to": "00:02:36,360"
+			},
+			"offsets": {
+				"from": 153680,
+				"to": 156360
+			},
+			"text": " You can think about Ethereum and the amazing powers"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,360",
+				"to": "00:02:40,080"
+			},
+			"offsets": {
+				"from": 156360,
+				"to": 160080
+			},
+			"text": " of contracts and running programs in a distributed sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,080",
+				"to": "00:02:42,840"
+			},
+			"offsets": {
+				"from": 160080,
+				"to": 162840
+			},
+			"text": " and, of course, before Ethereum, Bitcoin, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,840",
+				"to": "00:02:45,280"
+			},
+			"offsets": {
+				"from": 162840,
+				"to": 165280
+			},
+			"text": " All of these are Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,280",
+				"to": "00:02:48,480"
+			},
+			"offsets": {
+				"from": 165280,
+				"to": 168480
+			},
+			"text": " And what IPFS really is is this massive Merkle forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,480",
+				"to": "00:02:50,800"
+			},
+			"offsets": {
+				"from": 168480,
+				"to": 170800
+			},
+			"text": " So that's kind of like the intuitive description"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,800",
+				"to": "00:02:51,520"
+			},
+			"offsets": {
+				"from": 170800,
+				"to": 171520
+			},
+			"text": " of IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,520",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 171520,
+				"to": 175000
+			},
+			"text": " It's saying, let's take-- let's write one transport protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:03:00,040"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 180040
+			},
+			"text": " to layer underneath the web and other protocols as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,040",
+				"to": "00:03:04,320"
+			},
+			"offsets": {
+				"from": 180040,
+				"to": 184320
+			},
+			"text": " and build this distributed data structure"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,320",
+				"to": "00:03:08,520"
+			},
+			"offsets": {
+				"from": 184320,
+				"to": 188520
+			},
+			"text": " transport that is all Merkle addressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,520",
+				"to": "00:03:08,720"
+			},
+			"offsets": {
+				"from": 188520,
+				"to": 188720
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,720",
+				"to": "00:03:12,920"
+			},
+			"offsets": {
+				"from": 188720,
+				"to": 192920
+			},
+			"text": " So imagine being able to link across different Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,920",
+				"to": "00:03:16,160"
+			},
+			"offsets": {
+				"from": 192920,
+				"to": 196160
+			},
+			"text": " chains and being able to link across Bitcoin and Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,160",
+				"to": "00:03:18,080"
+			},
+			"offsets": {
+				"from": 196160,
+				"to": 198080
+			},
+			"text": " and being able to link to Git repos"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,080",
+				"to": "00:03:20,720"
+			},
+			"offsets": {
+				"from": 198080,
+				"to": 200720
+			},
+			"text": " and be able to link to BitTorrent, Torrance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,720",
+				"to": "00:03:24,800"
+			},
+			"offsets": {
+				"from": 200720,
+				"to": 204800
+			},
+			"text": " or be able to link directly into specific commits inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,800",
+				"to": "00:03:28,160"
+			},
+			"offsets": {
+				"from": 204800,
+				"to": 208160
+			},
+			"text": " GitHub so you can create a contract and say, whoever"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,160",
+				"to": "00:03:31,320"
+			},
+			"offsets": {
+				"from": 208160,
+				"to": 211320
+			},
+			"text": " patches this commit or something successfully"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,320",
+				"to": "00:03:34,120"
+			},
+			"offsets": {
+				"from": 211320,
+				"to": 214120
+			},
+			"text": " gets some money or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,120",
+				"to": "00:03:39,120"
+			},
+			"offsets": {
+				"from": 214120,
+				"to": 219120
+			},
+			"text": " And in the IPFS world, which is a world on its own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,120",
+				"to": "00:03:40,840"
+			},
+			"offsets": {
+				"from": 219120,
+				"to": 220840
+			},
+			"text": " there's a whole bunch of different protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,840",
+				"to": "00:03:43,600"
+			},
+			"offsets": {
+				"from": 220840,
+				"to": 223600
+			},
+			"text": " And we have this view of the world"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,600",
+				"to": "00:03:44,800"
+			},
+			"offsets": {
+				"from": 223600,
+				"to": 224800
+			},
+			"text": " that looks a little bit like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,800",
+				"to": "00:03:47,200"
+			},
+			"offsets": {
+				"from": 224800,
+				"to": 227200
+			},
+			"text": " with a whole bunch of different sections"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,200",
+				"to": "00:03:49,360"
+			},
+			"offsets": {
+				"from": 227200,
+				"to": 229360
+			},
+			"text": " for these protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,360",
+				"to": "00:03:52,040"
+			},
+			"offsets": {
+				"from": 229360,
+				"to": 232040
+			},
+			"text": " Kind of on top of the lower level network--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,040",
+				"to": "00:03:54,160"
+			},
+			"offsets": {
+				"from": 232040,
+				"to": 234160
+			},
+			"text": " and this is, of course, all sits on top of IP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,160",
+				"to": "00:03:56,120"
+			},
+			"offsets": {
+				"from": 234160,
+				"to": 236120
+			},
+			"text": " although it doesn't need to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,120",
+				"to": "00:03:59,680"
+			},
+			"offsets": {
+				"from": 236120,
+				"to": 239680
+			},
+			"text": " on top of transport, in top of different routing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,680",
+				"to": "00:04:01,320"
+			},
+			"offsets": {
+				"from": 239680,
+				"to": 241320
+			},
+			"text": " different ways of doing routing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,320",
+				"to": "00:04:04,640"
+			},
+			"offsets": {
+				"from": 241320,
+				"to": 244640
+			},
+			"text": " we want to layer what we're calling IPLD, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,640",
+				"to": "00:04:07,680"
+			},
+			"offsets": {
+				"from": 244640,
+				"to": 247680
+			},
+			"text": " is the Merkle DAG or the Merkle web,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,680",
+				"to": "00:04:11,560"
+			},
+			"offsets": {
+				"from": 247680,
+				"to": 251560
+			},
+			"text": " as this common data structure that we can all use"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,560",
+				"to": "00:04:14,000"
+			},
+			"offsets": {
+				"from": 251560,
+				"to": 254000
+			},
+			"text": " for expressing our data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,000",
+				"to": "00:04:17,120"
+			},
+			"offsets": {
+				"from": 254000,
+				"to": 257120
+			},
+			"text": " It's kind of the same idea as the semantic web."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,120",
+				"to": "00:04:19,280"
+			},
+			"offsets": {
+				"from": 257120,
+				"to": 259280
+			},
+			"text": " But instead of just having an object definition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,280",
+				"to": "00:04:21,480"
+			},
+			"offsets": {
+				"from": 259280,
+				"to": 261480
+			},
+			"text": " imagine if the object definition linked"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,480",
+				"to": "00:04:24,160"
+			},
+			"offsets": {
+				"from": 261480,
+				"to": 264160
+			},
+			"text": " between objects with hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,160",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 264160,
+				"to": 266000
+			},
+			"text": " That's the heart of IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:27,600"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 267600
+			},
+			"text": " That's like the core."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,600",
+				"to": "00:04:31,680"
+			},
+			"offsets": {
+				"from": 267600,
+				"to": 271680
+			},
+			"text": " What happens when, instead of having a URL that points"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,680",
+				"to": "00:04:34,240"
+			},
+			"offsets": {
+				"from": 271680,
+				"to": 274240
+			},
+			"text": " from one object to another using a location,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,240",
+				"to": "00:04:38,200"
+			},
+			"offsets": {
+				"from": 274240,
+				"to": 278200
+			},
+			"text": " what happens when you point using hashes?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,200",
+				"to": "00:04:38,960"
+			},
+			"offsets": {
+				"from": 278200,
+				"to": 278960
+			},
+			"text": " And this idea is old."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,960",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 278960,
+				"to": 280000
+			},
+			"text": " It's been around for a while."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 284640
+			},
+			"text": " But this talk will be mostly about what we're sort of loosely"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:46,280"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 286280
+			},
+			"text": " describing as the internet of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,280",
+				"to": "00:04:50,680"
+			},
+			"offsets": {
+				"from": 286280,
+				"to": 290680
+			},
+			"text": " or internet of data structures, to write on top of IPLD."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,680",
+				"to": "00:04:52,400"
+			},
+			"offsets": {
+				"from": 290680,
+				"to": 292400
+			},
+			"text": " And so you've probably seen something like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,400",
+				"to": "00:04:56,560"
+			},
+			"offsets": {
+				"from": 292400,
+				"to": 296560
+			},
+			"text": " where the IPFS model is you take the original HTTP"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,560",
+				"to": "00:05:00,880"
+			},
+			"offsets": {
+				"from": 296560,
+				"to": 300880
+			},
+			"text": " world of mapping a DNS name to an IP address, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,880",
+				"to": "00:05:02,920"
+			},
+			"offsets": {
+				"from": 300880,
+				"to": 302920
+			},
+			"text": " looks kind of like this, where you're resolving through the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,920",
+				"to": "00:05:04,960"
+			},
+			"offsets": {
+				"from": 302920,
+				"to": 304960
+			},
+			"text": " to a specific host."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,960",
+				"to": "00:05:07,920"
+			},
+			"offsets": {
+				"from": 304960,
+				"to": 307920
+			},
+			"text": " And instead, say, hey, let's just take the hash of the content"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,920",
+				"to": "00:05:12,200"
+			},
+			"offsets": {
+				"from": 307920,
+				"to": 312200
+			},
+			"text": " itself and use that to address the files."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,200",
+				"to": "00:05:15,320"
+			},
+			"offsets": {
+				"from": 312200,
+				"to": 315320
+			},
+			"text": " And it looks, instead of that, you get something like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,320",
+				"to": "00:05:18,600"
+			},
+			"offsets": {
+				"from": 315320,
+				"to": 318600
+			},
+			"text": " where anybody in the network that has the file can serve it to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,600",
+				"to": "00:05:23,080"
+			},
+			"offsets": {
+				"from": 318600,
+				"to": 323080
+			},
+			"text": " This is all super intro IPFS stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,080",
+				"to": "00:05:26,160"
+			},
+			"offsets": {
+				"from": 323080,
+				"to": 326160
+			},
+			"text": " And in a sense, what's really going on underneath the hood"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,160",
+				"to": "00:05:30,240"
+			},
+			"offsets": {
+				"from": 326160,
+				"to": 330240
+			},
+			"text": " is that that hash is a pointer to a directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,240",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 330240,
+				"to": 333000
+			},
+			"text": " You can retrieve the directory because you can check--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:34,800"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 334800
+			},
+			"text": " you can ask the network for the directory."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,800",
+				"to": "00:05:36,440"
+			},
+			"offsets": {
+				"from": 334800,
+				"to": 336440
+			},
+			"text": " People can return the directory to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,440",
+				"to": "00:05:39,560"
+			},
+			"offsets": {
+				"from": 336440,
+				"to": 339560
+			},
+			"text": " You can check the content, make sure it matches the hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,560",
+				"to": "00:05:41,480"
+			},
+			"offsets": {
+				"from": 339560,
+				"to": 341480
+			},
+			"text": " That way, you don't have to trust anyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,480",
+				"to": "00:05:44,320"
+			},
+			"offsets": {
+				"from": 341480,
+				"to": 344320
+			},
+			"text": " And within that, you look for foo."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,320",
+				"to": "00:05:46,600"
+			},
+			"offsets": {
+				"from": 344320,
+				"to": 346600
+			},
+			"text": " And what that means is that inside that object,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,600",
+				"to": "00:05:50,120"
+			},
+			"offsets": {
+				"from": 346600,
+				"to": 350120
+			},
+			"text": " foo is a link that is pointing to another hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,120",
+				"to": "00:05:53,840"
+			},
+			"offsets": {
+				"from": 350120,
+				"to": 353840
+			},
+			"text": " And you use that to resolve for the next step and so on down."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,840",
+				"to": "00:05:57,360"
+			},
+			"offsets": {
+				"from": 353840,
+				"to": 357360
+			},
+			"text": " This is taking the idea of file system with iNodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,360",
+				"to": "00:06:01,400"
+			},
+			"offsets": {
+				"from": 357360,
+				"to": 361400
+			},
+			"text": " but replace an iNode with a hash."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,400",
+				"to": "00:06:03,720"
+			},
+			"offsets": {
+				"from": 361400,
+				"to": 363720
+			},
+			"text": " And of course, this is Merkle linking."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,720",
+				"to": "00:06:09,240"
+			},
+			"offsets": {
+				"from": 363720,
+				"to": 369240
+			},
+			"text": " And you get full path traversals down this kind of graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,240",
+				"to": "00:06:11,880"
+			},
+			"offsets": {
+				"from": 369240,
+				"to": 371880
+			},
+			"text": " So if you imagine a blockchain layered like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,880",
+				"to": "00:06:14,400"
+			},
+			"offsets": {
+				"from": 371880,
+				"to": 374400
+			},
+			"text": " you would have a massive path going like parent, parent,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,400",
+				"to": "00:06:16,800"
+			},
+			"offsets": {
+				"from": 374400,
+				"to": 376800
+			},
+			"text": " parent, parent, parent, parent, and so on down."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,800",
+				"to": "00:06:19,040"
+			},
+			"offsets": {
+				"from": 376800,
+				"to": 379040
+			},
+			"text": " But imagine you would be able to index directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,040",
+				"to": "00:06:21,400"
+			},
+			"offsets": {
+				"from": 379040,
+				"to": 381400
+			},
+			"text": " into a specific block and be able to go down"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,400",
+				"to": "00:06:24,400"
+			},
+			"offsets": {
+				"from": 381400,
+				"to": 384400
+			},
+			"text": " into the transactions and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,400",
+				"to": "00:06:28,560"
+			},
+			"offsets": {
+				"from": 384400,
+				"to": 388560
+			},
+			"text": " And so the iPFS link sphere, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,560",
+				"to": "00:06:31,400"
+			},
+			"offsets": {
+				"from": 388560,
+				"to": 391400
+			},
+			"text": " is that you first have content addressed links,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,400",
+				"to": "00:06:34,560"
+			},
+			"offsets": {
+				"from": 391400,
+				"to": 394560
+			},
+			"text": " where they start with slash IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,560",
+				"to": "00:06:37,080"
+			},
+			"offsets": {
+				"from": 394560,
+				"to": 397080
+			},
+			"text": " Then you have a hash, and then the rest of the stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,080",
+				"to": "00:06:39,560"
+			},
+			"offsets": {
+				"from": 397080,
+				"to": 399560
+			},
+			"text": " And by the way, those are shortened hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,560",
+				"to": "00:06:42,480"
+			},
+			"offsets": {
+				"from": 399560,
+				"to": 402480
+			},
+			"text": " They haven't yet found a way to compress information magically."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,480",
+				"to": "00:06:45,560"
+			},
+			"offsets": {
+				"from": 402480,
+				"to": 405560
+			},
+			"text": " That's supposed to be a SHA-256, but it's shortened."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,560",
+				"to": "00:06:46,960"
+			},
+			"offsets": {
+				"from": 405560,
+				"to": 406960
+			},
+			"text": " So it fits here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,960",
+				"to": "00:06:48,680"
+			},
+			"offsets": {
+				"from": 406960,
+				"to": 408680
+			},
+			"text": " And yeah, of course, we have the scheme identifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,680",
+				"to": "00:06:49,680"
+			},
+			"offsets": {
+				"from": 408680,
+				"to": 409680
+			},
+			"text": " if you want to use it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,680",
+				"to": "00:06:53,240"
+			},
+			"offsets": {
+				"from": 409680,
+				"to": 413240
+			},
+			"text": " But we recommend that you don't use the scheme identifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,240",
+				"to": "00:06:56,200"
+			},
+			"offsets": {
+				"from": 413240,
+				"to": 416200
+			},
+			"text": " because the way we look at the world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,200",
+				"to": "00:07:00,080"
+			},
+			"offsets": {
+				"from": 416200,
+				"to": 420080
+			},
+			"text": " the regular W3C-based scheme identifier"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,080",
+				"to": "00:07:01,920"
+			},
+			"offsets": {
+				"from": 420080,
+				"to": 421920
+			},
+			"text": " broke compatibility with Unix."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,920",
+				"to": "00:07:06,000"
+			},
+			"offsets": {
+				"from": 421920,
+				"to": 426000
+			},
+			"text": " So we're making everything so you can layer it directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,000",
+				"to": "00:07:09,400"
+			},
+			"offsets": {
+				"from": 426000,
+				"to": 429400
+			},
+			"text": " on top of any POS-X machine so you can mount it directly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,400",
+				"to": "00:07:13,040"
+			},
+			"offsets": {
+				"from": 429400,
+				"to": 433040
+			},
+			"text": " So you can mount IPFS and you can fetch data and write data"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,040",
+				"to": "00:07:15,960"
+			},
+			"offsets": {
+				"from": 433040,
+				"to": 435960
+			},
+			"text": " to the network with standard old-style applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,960",
+				"to": "00:07:21,080"
+			},
+			"offsets": {
+				"from": 435960,
+				"to": 441080
+			},
+			"text": " You don't have to teach them to speak over some other protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,080",
+				"to": "00:07:25,840"
+			},
+			"offsets": {
+				"from": 441080,
+				"to": 445840
+			},
+			"text": " And on top of the Merkle linking, which is sort of like a URI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,840",
+				"to": "00:07:30,280"
+			},
+			"offsets": {
+				"from": 445840,
+				"to": 450280
+			},
+			"text": " and I say URI with quotes because we do prefer people not"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,280",
+				"to": "00:07:33,160"
+			},
+			"offsets": {
+				"from": 450280,
+				"to": 453160
+			},
+			"text": " to use the scheme identifier, we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,160",
+				"to": "00:07:34,560"
+			},
+			"offsets": {
+				"from": 453160,
+				"to": 454560
+			},
+			"text": " have everything working and resolving"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,560",
+				"to": "00:07:37,080"
+			},
+			"offsets": {
+				"from": 454560,
+				"to": 457080
+			},
+			"text": " with just straight up paths."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,080",
+				"to": "00:07:38,800"
+			},
+			"offsets": {
+				"from": 457080,
+				"to": 458800
+			},
+			"text": " On top of that, we layer what we're calling"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,800",
+				"to": "00:07:40,400"
+			},
+			"offsets": {
+				"from": 458800,
+				"to": 460400
+			},
+			"text": " also Maseras links."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,400",
+				"to": "00:07:43,280"
+			},
+			"offsets": {
+				"from": 460400,
+				"to": 463280
+			},
+			"text": " This is for David Maseras, who author of Caddemlia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,280",
+				"to": "00:07:46,400"
+			},
+			"offsets": {
+				"from": 463280,
+				"to": 466400
+			},
+			"text": " author of Stellar, author of SFS, way before that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,400",
+				"to": "00:07:49,480"
+			},
+			"offsets": {
+				"from": 466400,
+				"to": 469480
+			},
+			"text": " And he came up with a great idea in SFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,480",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 469480,
+				"to": 470880
+			},
+			"text": " And one go through the whole thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:54,200"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 474200
+			},
+			"text": " but the basic notion here is that the way you achieve"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,200",
+				"to": "00:07:58,760"
+			},
+			"offsets": {
+				"from": 474200,
+				"to": 478760
+			},
+			"text": " mutability in IPFS is that you use the hashes of public keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,760",
+				"to": "00:08:00,880"
+			},
+			"offsets": {
+				"from": 478760,
+				"to": 480880
+			},
+			"text": " and you use those to resolve for pointers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,880",
+				"to": "00:08:04,480"
+			},
+			"offsets": {
+				"from": 480880,
+				"to": 484480
+			},
+			"text": " have been signed with a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,480",
+				"to": "00:08:06,120"
+			},
+			"offsets": {
+				"from": 484480,
+				"to": 486120
+			},
+			"text": " It's explained better somewhere in the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,120",
+				"to": "00:08:08,040"
+			},
+			"offsets": {
+				"from": 486120,
+				"to": 488040
+			},
+			"text": " There's more interesting stuff here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,040",
+				"to": "00:08:11,120"
+			},
+			"offsets": {
+				"from": 488040,
+				"to": 491120
+			},
+			"text": " But it's a very subtle idea that gives you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,120",
+				"to": "00:08:12,720"
+			},
+			"offsets": {
+				"from": 491120,
+				"to": 492720
+			},
+			"text": " a way to achieve naming."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,720",
+				"to": "00:08:15,400"
+			},
+			"offsets": {
+				"from": 492720,
+				"to": 495400
+			},
+			"text": " And this is naming that is not human readable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,400",
+				"to": "00:08:17,560"
+			},
+			"offsets": {
+				"from": 495400,
+				"to": 497560
+			},
+			"text": " but it's a way to achieve naming that's cryptographically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,560",
+				"to": "00:08:20,680"
+			},
+			"offsets": {
+				"from": 497560,
+				"to": 500680
+			},
+			"text": " addressed or cryptographically mediated"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,680",
+				"to": "00:08:24,160"
+			},
+			"offsets": {
+				"from": 500680,
+				"to": 504160
+			},
+			"text": " instead of through some central authority."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,160",
+				"to": "00:08:27,360"
+			},
+			"offsets": {
+				"from": 504160,
+				"to": 507360
+			},
+			"text": " And on top of that mutable link, then you can layer names."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,360",
+				"to": "00:08:29,600"
+			},
+			"offsets": {
+				"from": 507360,
+				"to": 509600
+			},
+			"text": " And so here's the old style DNS world."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,600",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 509600,
+				"to": 513000
+			},
+			"text": " We work exactly with DNS, so you can add a text record"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 514000
+			},
+			"text": " into your domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:38,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 518000
+			},
+			"text": " And now you can resolve through IPNS or directly to IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,000",
+				"to": "00:08:40,880"
+			},
+			"offsets": {
+				"from": 518000,
+				"to": 520880
+			},
+			"text": " And of course, you could have Ethereum names the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,880",
+				"to": "00:08:45,240"
+			},
+			"offsets": {
+				"from": 520880,
+				"to": 525240
+			},
+			"text": " And so you can imagine resolving Ethereum names directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,240",
+				"to": "00:08:48,720"
+			},
+			"offsets": {
+				"from": 525240,
+				"to": 528720
+			},
+			"text": " into IPFS content the exact same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,720",
+				"to": "00:08:51,400"
+			},
+			"offsets": {
+				"from": 528720,
+				"to": 531400
+			},
+			"text": " What's amazingly interesting about these kinds of names"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,400",
+				"to": "00:08:54,040"
+			},
+			"offsets": {
+				"from": 531400,
+				"to": 534040
+			},
+			"text": " is that you no longer have to have any machine running"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,040",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 534040,
+				"to": 535000
+			},
+			"text": " yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:08:57,520"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 537520
+			},
+			"text": " You can create the content and add it to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,520",
+				"to": "00:09:01,600"
+			},
+			"offsets": {
+				"from": 537520,
+				"to": 541600
+			},
+			"text": " You can create the names and the key names and sign contents"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,600",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 541600,
+				"to": 543000
+			},
+			"text": " and distribute it to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:04,360"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 544360
+			},
+			"text": " And then you can register some name"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,360",
+				"to": "00:09:06,520"
+			},
+			"offsets": {
+				"from": 544360,
+				"to": 546520
+			},
+			"text": " and point it to the hash of your property."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,520",
+				"to": "00:09:09,480"
+			},
+			"offsets": {
+				"from": 546520,
+				"to": 549480
+			},
+			"text": " And now you can just disappear, just add content to the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,480",
+				"to": "00:09:10,520"
+			},
+			"offsets": {
+				"from": 549480,
+				"to": 550520
+			},
+			"text": " and walk away."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,520",
+				"to": "00:09:12,720"
+			},
+			"offsets": {
+				"from": 550520,
+				"to": 552720
+			},
+			"text": " And if the network will continue serving your stuff--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,720",
+				"to": "00:09:15,640"
+			},
+			"offsets": {
+				"from": 552720,
+				"to": 555640
+			},
+			"text": " and that's an asterisk there--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,640",
+				"to": "00:09:17,320"
+			},
+			"offsets": {
+				"from": 555640,
+				"to": 557320
+			},
+			"text": " everything will continue working."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,320",
+				"to": "00:09:19,160"
+			},
+			"offsets": {
+				"from": 557320,
+				"to": 559160
+			},
+			"text": " And that's something that's very different."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,160",
+				"to": "00:09:21,400"
+			},
+			"offsets": {
+				"from": 559160,
+				"to": 561400
+			},
+			"text": " You don't have to maintain your own infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,400",
+				"to": "00:09:29,440"
+			},
+			"offsets": {
+				"from": 561400,
+				"to": 569440
+			},
+			"text": " This is often non-obvious, so I'll go through the IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,440",
+				"to": "00:09:31,200"
+			},
+			"offsets": {
+				"from": 569440,
+				"to": 571200
+			},
+			"text": " content and replication model."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,200",
+				"to": "00:09:34,240"
+			},
+			"offsets": {
+				"from": 571200,
+				"to": 574240
+			},
+			"text": " This is kind of like what most people don't expect to hear."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,240",
+				"to": "00:09:35,960"
+			},
+			"offsets": {
+				"from": 574240,
+				"to": 575960
+			},
+			"text": " They're like, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,960",
+				"to": "00:09:37,440"
+			},
+			"offsets": {
+				"from": 575960,
+				"to": 577440
+			},
+			"text": " But it makes sense to go through."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,440",
+				"to": "00:09:39,840"
+			},
+			"offsets": {
+				"from": 577440,
+				"to": 579840
+			},
+			"text": " So there are three important points"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,840",
+				"to": "00:09:42,960"
+			},
+			"offsets": {
+				"from": 579840,
+				"to": 582960
+			},
+			"text": " that bear mentioning here, other than a whole bunch of others"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,960",
+				"to": "00:09:44,040"
+			},
+			"offsets": {
+				"from": 582960,
+				"to": 584040
+			},
+			"text": " that you probably can assume."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,040",
+				"to": "00:09:47,160"
+			},
+			"offsets": {
+				"from": 584040,
+				"to": 587160
+			},
+			"text": " But number one is that we want IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,160",
+				"to": "00:09:50,200"
+			},
+			"offsets": {
+				"from": 587160,
+				"to": 590200
+			},
+			"text": " to be able to go as fast as the underlying network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,200",
+				"to": "00:09:56,160"
+			},
+			"offsets": {
+				"from": 590200,
+				"to": 596160
+			},
+			"text": " So we need to allow users to dial between efficiency"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,160",
+				"to": "00:09:57,440"
+			},
+			"offsets": {
+				"from": 596160,
+				"to": 597440
+			},
+			"text": " and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,440",
+				"to": "00:10:01,760"
+			},
+			"offsets": {
+				"from": 597440,
+				"to": 601760
+			},
+			"text": " So as you know, systems like Tor and IGP and so on"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,760",
+				"to": "00:10:03,680"
+			},
+			"offsets": {
+				"from": 601760,
+				"to": 603680
+			},
+			"text": " that are focused around privacy have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,680",
+				"to": "00:10:05,920"
+			},
+			"offsets": {
+				"from": 603680,
+				"to": 605920
+			},
+			"text": " to do a whole bunch of work routing packets"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,920",
+				"to": "00:10:06,760"
+			},
+			"offsets": {
+				"from": 605920,
+				"to": 606760
+			},
+			"text": " and moving them around."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,760",
+				"to": "00:10:12,560"
+			},
+			"offsets": {
+				"from": 606760,
+				"to": 612560
+			},
+			"text": " And you spend a bunch of bandwidth hiding"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,560",
+				"to": "00:10:15,760"
+			},
+			"offsets": {
+				"from": 612560,
+				"to": 615760
+			},
+			"text": " the traces of people's access in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,760",
+				"to": "00:10:17,920"
+			},
+			"offsets": {
+				"from": 615760,
+				"to": 617920
+			},
+			"text": " And this is how you achieve privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,920",
+				"to": "00:10:19,600"
+			},
+			"offsets": {
+				"from": 617920,
+				"to": 619600
+			},
+			"text": " But that's not fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,600",
+				"to": "00:10:25,080"
+			},
+			"offsets": {
+				"from": 619600,
+				"to": 625080
+			},
+			"text": " So you're trading off the speed of transfer there"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,080",
+				"to": "00:10:26,600"
+			},
+			"offsets": {
+				"from": 625080,
+				"to": 626600
+			},
+			"text": " to gain some privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,600",
+				"to": "00:10:28,840"
+			},
+			"offsets": {
+				"from": 626600,
+				"to": 628840
+			},
+			"text": " But the users of IPFS are varied."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,840",
+				"to": "00:10:31,320"
+			},
+			"offsets": {
+				"from": 628840,
+				"to": 631320
+			},
+			"text": " Some people really want that use case and layer IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,320",
+				"to": "00:10:32,880"
+			},
+			"offsets": {
+				"from": 631320,
+				"to": 632880
+			},
+			"text": " directly over Tor or IGP."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,880",
+				"to": "00:10:34,760"
+			},
+			"offsets": {
+				"from": 632880,
+				"to": 634760
+			},
+			"text": " And some users don't care at all about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,760",
+				"to": "00:10:36,600"
+			},
+			"offsets": {
+				"from": 634760,
+				"to": 636600
+			},
+			"text": " They're using IPFS inside data centers"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,600",
+				"to": "00:10:38,400"
+			},
+			"offsets": {
+				"from": 636600,
+				"to": 638400
+			},
+			"text": " or they're using it in some other way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,400",
+				"to": "00:10:41,080"
+			},
+			"offsets": {
+				"from": 638400,
+				"to": 641080
+			},
+			"text": " And they really want it to be as efficient as possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,080",
+				"to": "00:10:43,120"
+			},
+			"offsets": {
+				"from": 641080,
+				"to": 643120
+			},
+			"text": " Do you really need to route through Tor"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,120",
+				"to": "00:10:45,680"
+			},
+			"offsets": {
+				"from": 643120,
+				"to": 645680
+			},
+			"text": " to go from your computer, your laptop"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,680",
+				"to": "00:10:48,120"
+			},
+			"offsets": {
+				"from": 645680,
+				"to": 648120
+			},
+			"text": " to your mobile phone in the same room?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,120",
+				"to": "00:10:48,840"
+			},
+			"offsets": {
+				"from": 648120,
+				"to": 648840
+			},
+			"text": " Maybe not."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,840",
+				"to": "00:10:49,640"
+			},
+			"offsets": {
+				"from": 648840,
+				"to": 649640
+			},
+			"text": " Or maybe you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,640",
+				"to": "00:10:52,760"
+			},
+			"offsets": {
+				"from": 649640,
+				"to": 652760
+			},
+			"text": " It depends on what kind of home you have."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,760",
+				"to": "00:10:58,320"
+			},
+			"offsets": {
+				"from": 652760,
+				"to": 658320
+			},
+			"text": " But another point here is that IPFS only downloads"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,320",
+				"to": "00:11:00,400"
+			},
+			"offsets": {
+				"from": 658320,
+				"to": 660400
+			},
+			"text": " explicitly requested data."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,400",
+				"to": "00:11:02,040"
+			},
+			"offsets": {
+				"from": 660400,
+				"to": 662040
+			},
+			"text": " You do not download other people's stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,040",
+				"to": "00:11:04,840"
+			},
+			"offsets": {
+				"from": 662040,
+				"to": 664840
+			},
+			"text": " And this is an important piece from a legality perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,840",
+				"to": "00:11:07,840"
+			},
+			"offsets": {
+				"from": 664840,
+				"to": 667840
+			},
+			"text": " So there's been a whole bunch of problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,840",
+				"to": "00:11:10,880"
+			},
+			"offsets": {
+				"from": 667840,
+				"to": 670880
+			},
+			"text": " around peer-to-peer systems where they download other data"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,880",
+				"to": "00:11:13,000"
+			},
+			"offsets": {
+				"from": 670880,
+				"to": 673000
+			},
+			"text": " as part of the peer-to-peer algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,000",
+				"to": "00:11:15,360"
+			},
+			"offsets": {
+				"from": 673000,
+				"to": 675360
+			},
+			"text": " And they end up downloading stuff that's illegal."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,360",
+				"to": "00:11:18,600"
+			},
+			"offsets": {
+				"from": 675360,
+				"to": 678600
+			},
+			"text": " This prevents the adoption of these systems in companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,600",
+				"to": "00:11:21,080"
+			},
+			"offsets": {
+				"from": 678600,
+				"to": 681080
+			},
+			"text": " Because companies just cannot afford to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,080",
+				"to": "00:11:24,320"
+			},
+			"offsets": {
+				"from": 681080,
+				"to": 684320
+			},
+			"text": " So in IPFS, those are policies that are expressed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,320",
+				"to": "00:11:26,160"
+			},
+			"offsets": {
+				"from": 684320,
+				"to": 686160
+			},
+			"text": " and that can be added on top."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,160",
+				"to": "00:11:28,040"
+			},
+			"offsets": {
+				"from": 686160,
+				"to": 688040
+			},
+			"text": " So if you want to organize a cluster that"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,040",
+				"to": "00:11:31,360"
+			},
+			"offsets": {
+				"from": 688040,
+				"to": 691360
+			},
+			"text": " moves around and shares data and so on, you can do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,360",
+				"to": "00:11:35,480"
+			},
+			"offsets": {
+				"from": 691360,
+				"to": 695480
+			},
+			"text": " But that's a policy that is layered above IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,480",
+				"to": "00:11:37,320"
+			},
+			"offsets": {
+				"from": 695480,
+				"to": 697320
+			},
+			"text": " So there's a strong commitment there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,320",
+				"to": "00:11:39,640"
+			},
+			"offsets": {
+				"from": 697320,
+				"to": 699640
+			},
+			"text": " of being able to say, look, you can use IPFS"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,640",
+				"to": "00:11:42,360"
+			},
+			"offsets": {
+				"from": 699640,
+				"to": 702360
+			},
+			"text": " and not have to worry about what other people are adding"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,360",
+				"to": "00:11:44,200"
+			},
+			"offsets": {
+				"from": 702360,
+				"to": 704200
+			},
+			"text": " to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,200",
+				"to": "00:11:48,760"
+			},
+			"offsets": {
+				"from": 704200,
+				"to": 708760
+			},
+			"text": " And yes, IPFS is able to follow what the user programs"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,760",
+				"to": "00:11:52,360"
+			},
+			"offsets": {
+				"from": 708760,
+				"to": 712360
+			},
+			"text": " and so these policies that will be--"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,360",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 712360,
+				"to": 713760
+			},
+			"text": " we haven't done as much work here."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:56,000"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 716000
+			},
+			"text": " We'll be doing some interesting stuff there"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,000",
+				"to": "00:11:59,760"
+			},
+			"offsets": {
+				"from": 716000,
+				"to": 719760
+			},
+			"text": " to be able to express how you might trust other keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,760",
+				"to": "00:12:01,240"
+			},
+			"offsets": {
+				"from": 719760,
+				"to": 721240
+			},
+			"text": " and trust the content from other keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,240",
+				"to": "00:12:03,960"
+			},
+			"offsets": {
+				"from": 721240,
+				"to": 723960
+			},
+			"text": " and being able to give people capabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,960",
+				"to": "00:12:06,640"
+			},
+			"offsets": {
+				"from": 723960,
+				"to": 726640
+			},
+			"text": " to add stuff to your node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,640",
+				"to": "00:12:09,320"
+			},
+			"offsets": {
+				"from": 726640,
+				"to": 729320
+			},
+			"text": " So yeah, on this, on this only downloads explicitly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,320",
+				"to": "00:12:09,840"
+			},
+			"offsets": {
+				"from": 729320,
+				"to": 729840
+			},
+			"text": " request the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,840",
+				"to": "00:12:11,320"
+			},
+			"offsets": {
+				"from": 729840,
+				"to": 731320
+			},
+			"text": " So this is a huge surprise for most people"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,320",
+				"to": "00:12:12,600"
+			},
+			"offsets": {
+				"from": 731320,
+				"to": 732600
+			},
+			"text": " because they're like, wait, what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,600",
+				"to": "00:12:14,080"
+			},
+			"offsets": {
+				"from": 732600,
+				"to": 734080
+			},
+			"text": " You have this distributed file system"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,080",
+				"to": "00:12:15,400"
+			},
+			"offsets": {
+				"from": 734080,
+				"to": 735400
+			},
+			"text": " is supposed to be peer-to-peer."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,400",
+				"to": "00:12:20,160"
+			},
+			"offsets": {
+				"from": 735400,
+				"to": 740160
+			},
+			"text": " And like, if I add content, how do I back it up?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,160",
+				"to": "00:12:21,720"
+			},
+			"offsets": {
+				"from": 740160,
+				"to": 741720
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,720",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 741720,
+				"to": 743000
+			},
+			"text": " What if I disappear from the network?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:24,800"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 744800
+			},
+			"text": " It falls off."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,800",
+				"to": "00:12:27,080"
+			},
+			"offsets": {
+				"from": 744800,
+				"to": 747080
+			},
+			"text": " And the idea here is that when you add content to the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,080",
+				"to": "00:12:29,080"
+			},
+			"offsets": {
+				"from": 747080,
+				"to": 749080
+			},
+			"text": " you're explicitly publishing something."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,080",
+				"to": "00:12:31,520"
+			},
+			"offsets": {
+				"from": 749080,
+				"to": 751520
+			},
+			"text": " So the rest of the network has an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,520",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 751520,
+				"to": 755400
+			},
+			"text": " Either they spend energy maintaining this online or they don't."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:37,360"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 757360
+			},
+			"text": " And if they do, it's because they care about this thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,360",
+				"to": "00:12:40,640"
+			},
+			"offsets": {
+				"from": 757360,
+				"to": 760640
+			},
+			"text": " So if they don't care about what you have to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,640",
+				"to": "00:12:43,320"
+			},
+			"offsets": {
+				"from": 760640,
+				"to": 763320
+			},
+			"text": " because they just-- what do you say is not that interesting,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,320",
+				"to": "00:12:45,240"
+			},
+			"offsets": {
+				"from": 763320,
+				"to": 765240
+			},
+			"text": " then you can just pay them to care."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,240",
+				"to": "00:12:47,400"
+			},
+			"offsets": {
+				"from": 765240,
+				"to": 767400
+			},
+			"text": " And this is where something like Filecoin comes in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,400",
+				"to": "00:12:54,680"
+			},
+			"offsets": {
+				"from": 767400,
+				"to": 774680
+			},
+			"text": " So HTTP maps to IPFS and AWS S3 maps to Filecoin or Swarm"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,680",
+				"to": "00:12:58,120"
+			},
+			"offsets": {
+				"from": 774680,
+				"to": 778120
+			},
+			"text": " or really AWS and Windows Azure and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,120",
+				"to": "00:13:02,520"
+			},
+			"offsets": {
+				"from": 778120,
+				"to": 782520
+			},
+			"text": " So there's-- how you maintain stuff in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,520",
+				"to": "00:13:07,160"
+			},
+			"offsets": {
+				"from": 782520,
+				"to": 787160
+			},
+			"text": " is a separate part different from how you move stuff in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,160",
+				"to": "00:13:10,240"
+			},
+			"offsets": {
+				"from": 787160,
+				"to": 790240
+			},
+			"text": " So IPFS is strictly about how you address and move"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,240",
+				"to": "00:13:11,360"
+			},
+			"offsets": {
+				"from": 790240,
+				"to": 791360
+			},
+			"text": " content in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,360",
+				"to": "00:13:17,640"
+			},
+			"offsets": {
+				"from": 791360,
+				"to": 797640
+			},
+			"text": " And this, and so these protocols around incentivized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,640",
+				"to": "00:13:22,920"
+			},
+			"offsets": {
+				"from": 797640,
+				"to": 802920
+			},
+			"text": " organized, distributed storage, those layer on top of IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,920",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 802920,
+				"to": 806240
+			},
+			"text": " And so an interesting thought is a lot of people say, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:30,000"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 810000
+			},
+			"text": " how could you ever hope to compete with something as big as"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,000",
+				"to": "00:13:31,960"
+			},
+			"offsets": {
+				"from": 810000,
+				"to": 811960
+			},
+			"text": " Amazon, Google, and Microsoft, and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,960",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 811960,
+				"to": 814560
+			},
+			"text": " which have these massive infrastructures?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:36,840"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 816840
+			},
+			"text": " And then I just kind of point this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,840",
+				"to": "00:13:39,960"
+			},
+			"offsets": {
+				"from": 816840,
+				"to": 819960
+			},
+			"text": " So this is the hash rate of the Bitcoin network"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,960",
+				"to": "00:13:41,880"
+			},
+			"offsets": {
+				"from": 819960,
+				"to": 821880
+			},
+			"text": " and the massive spike."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,880",
+				"to": "00:13:46,960"
+			},
+			"offsets": {
+				"from": 821880,
+				"to": 826960
+			},
+			"text": " And this is what happens when you get an economic model"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,960",
+				"to": "00:13:49,960"
+			},
+			"offsets": {
+				"from": 826960,
+				"to": 829960
+			},
+			"text": " coupled with a very easy to enter market."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,960",
+				"to": "00:13:51,920"
+			},
+			"offsets": {
+				"from": 829960,
+				"to": 831920
+			},
+			"text": " And so somewhere along this graph,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,920",
+				"to": "00:13:57,000"
+			},
+			"offsets": {
+				"from": 831920,
+				"to": 837000
+			},
+			"text": " the way before the hash rate of Bitcoins are passed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,000",
+				"to": "00:14:00,040"
+			},
+			"offsets": {
+				"from": 837000,
+				"to": 840040
+			},
+			"text": " the equivalent of the world's most powerful supercomputer"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,040",
+				"to": "00:14:02,760"
+			},
+			"offsets": {
+				"from": 840040,
+				"to": 842760
+			},
+			"text": " and then the world's 500 supercomputers put together"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,760",
+				"to": "00:14:04,400"
+			},
+			"offsets": {
+				"from": 842760,
+				"to": 844400
+			},
+			"text": " before the knee of the curve."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,400",
+				"to": "00:14:07,560"
+			},
+			"offsets": {
+				"from": 844400,
+				"to": 847560
+			},
+			"text": " So that gives you a sense of just how insanely powerful"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,560",
+				"to": "00:14:10,160"
+			},
+			"offsets": {
+				"from": 847560,
+				"to": 850160
+			},
+			"text": " the hash rate of that network is."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,160",
+				"to": "00:14:11,560"
+			},
+			"offsets": {
+				"from": 850160,
+				"to": 851560
+			},
+			"text": " Sadly, all that is going to waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,560",
+				"to": "00:14:14,880"
+			},
+			"offsets": {
+				"from": 851560,
+				"to": 854880
+			},
+			"text": " So hopefully we'll get proof of stake working correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,880",
+				"to": "00:14:16,080"
+			},
+			"offsets": {
+				"from": 854880,
+				"to": 856080
+			},
+			"text": " so we don't have to waste this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,080",
+				"to": "00:14:18,440"
+			},
+			"offsets": {
+				"from": 856080,
+				"to": 858440
+			},
+			"text": " But when you think about this model"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,440",
+				"to": "00:14:20,960"
+			},
+			"offsets": {
+				"from": 858440,
+				"to": 860960
+			},
+			"text": " and you apply it to doing something useful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,960",
+				"to": "00:14:26,520"
+			},
+			"offsets": {
+				"from": 860960,
+				"to": 866520
+			},
+			"text": " like storing content, you can get an enormous amount of storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,520",
+				"to": "00:14:27,720"
+			},
+			"offsets": {
+				"from": 866520,
+				"to": 867720
+			},
+			"text": " wired up into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,720",
+				"to": "00:14:31,760"
+			},
+			"offsets": {
+				"from": 867720,
+				"to": 871760
+			},
+			"text": " So you'll see-- so mark my words in the next year and two years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,760",
+				"to": "00:14:36,120"
+			},
+			"offsets": {
+				"from": 871760,
+				"to": 876120
+			},
+			"text": " you will see enormous distributed systems with storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,120",
+				"to": "00:14:37,360"
+			},
+			"offsets": {
+				"from": 876120,
+				"to": 877360
+			},
+			"text": " popping up into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,360",
+				"to": "00:14:40,520"
+			},
+			"offsets": {
+				"from": 877360,
+				"to": 880520
+			},
+			"text": " And they're already getting started, but it'll come."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,520",
+				"to": "00:14:42,240"
+			},
+			"offsets": {
+				"from": 880520,
+				"to": 882240
+			},
+			"text": " And so you'll have something that looks like this, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,240",
+				"to": "00:14:46,560"
+			},
+			"offsets": {
+				"from": 882240,
+				"to": 886560
+			},
+			"text": " are the Bitcoin mines, but for storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,560",
+				"to": "00:14:50,680"
+			},
+			"offsets": {
+				"from": 886560,
+				"to": 890680
+			},
+			"text": " All right, so now that I've made a claim about the future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,680",
+				"to": "00:14:52,440"
+			},
+			"offsets": {
+				"from": 890680,
+				"to": 892440
+			},
+			"text": " let's have a dose of web reality today"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,440",
+				"to": "00:14:54,560"
+			},
+			"offsets": {
+				"from": 892440,
+				"to": 894560
+			},
+			"text": " to cleanse our minds."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,560",
+				"to": "00:14:57,920"
+			},
+			"offsets": {
+				"from": 894560,
+				"to": 897920
+			},
+			"text": " So the web here-- and these are strictly"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,920",
+				"to": "00:15:02,080"
+			},
+			"offsets": {
+				"from": 897920,
+				"to": 902080
+			},
+			"text": " web 1.0, web 2.0 companies or websites in general"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,080",
+				"to": "00:15:05,160"
+			},
+			"offsets": {
+				"from": 902080,
+				"to": 905160
+			},
+			"text": " that I put up there--"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,160",
+				"to": "00:15:07,560"
+			},
+			"offsets": {
+				"from": 905160,
+				"to": 907560
+			},
+			"text": " these applications run your life."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,560",
+				"to": "00:15:09,760"
+			},
+			"offsets": {
+				"from": 907560,
+				"to": 909760
+			},
+			"text": " So everything that you do nowadays"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,760",
+				"to": "00:15:13,120"
+			},
+			"offsets": {
+				"from": 909760,
+				"to": 913120
+			},
+			"text": " revolves in some way around these applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,120",
+				"to": "00:15:19,720"
+			},
+			"offsets": {
+				"from": 913120,
+				"to": 919720
+			},
+			"text": " So your personal communications, your work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,720",
+				"to": "00:15:24,040"
+			},
+			"offsets": {
+				"from": 919720,
+				"to": 924040
+			},
+			"text": " how you learn, how you get stuff, how you buy food,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,040",
+				"to": "00:15:26,640"
+			},
+			"offsets": {
+				"from": 924040,
+				"to": 926640
+			},
+			"text": " everything is now mediated not only through the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,640",
+				"to": "00:15:29,040"
+			},
+			"offsets": {
+				"from": 926640,
+				"to": 929040
+			},
+			"text": " but through specifically web applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,040",
+				"to": "00:15:31,440"
+			},
+			"offsets": {
+				"from": 929040,
+				"to": 931440
+			},
+			"text": " And this means that all of your capabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,440",
+				"to": "00:15:34,960"
+			},
+			"offsets": {
+				"from": 931440,
+				"to": 934960
+			},
+			"text": " are tied to specific organizations maintaining"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,960",
+				"to": "00:15:38,400"
+			},
+			"offsets": {
+				"from": 934960,
+				"to": 938400
+			},
+			"text": " specific infrastructures online."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,400",
+				"to": "00:15:39,440"
+			},
+			"offsets": {
+				"from": 938400,
+				"to": 939440
+			},
+			"text": " It's kind of scary, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,440",
+				"to": "00:15:41,880"
+			},
+			"offsets": {
+				"from": 939440,
+				"to": 941880
+			},
+			"text": " Because those could be-- this would disappear at any moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,880",
+				"to": "00:15:44,280"
+			},
+			"offsets": {
+				"from": 941880,
+				"to": 944280
+			},
+			"text": " in time, or those could just stop wanting to serve you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,280",
+				"to": "00:15:47,600"
+			},
+			"offsets": {
+				"from": 944280,
+				"to": 947600
+			},
+			"text": " or blah, blah, blah, blah, blah, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,600",
+				"to": "00:15:50,840"
+			},
+			"offsets": {
+				"from": 947600,
+				"to": 950840
+			},
+			"text": " But these-- I like pointing these out, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,840",
+				"to": "00:15:53,640"
+			},
+			"offsets": {
+				"from": 950840,
+				"to": 953640
+			},
+			"text": " in this crowd, because this is kind of the competition, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,640",
+				"to": "00:15:56,240"
+			},
+			"offsets": {
+				"from": 953640,
+				"to": 956240
+			},
+			"text": " So if we want to push this very different model of computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,240",
+				"to": "00:16:00,480"
+			},
+			"offsets": {
+				"from": 956240,
+				"to": 960480
+			},
+			"text": " very different model of storage, and actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,480",
+				"to": "00:16:02,400"
+			},
+			"offsets": {
+				"from": 960480,
+				"to": 962400
+			},
+			"text": " upgrade how the web works, we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,400",
+				"to": "00:16:06,720"
+			},
+			"offsets": {
+				"from": 962400,
+				"to": 966720
+			},
+			"text": " to work equally well at least and ideally better"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,720",
+				"to": "00:16:07,400"
+			},
+			"offsets": {
+				"from": 966720,
+				"to": 967400
+			},
+			"text": " than these systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,400",
+				"to": "00:16:10,160"
+			},
+			"offsets": {
+				"from": 967400,
+				"to": 970160
+			},
+			"text": " In fact, not only do we have to work equally well, ideally"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,160",
+				"to": "00:16:14,040"
+			},
+			"offsets": {
+				"from": 970160,
+				"to": 974040
+			},
+			"text": " better, we must be way more--"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,040",
+				"to": "00:16:17,160"
+			},
+			"offsets": {
+				"from": 974040,
+				"to": 977160
+			},
+			"text": " we have to have much higher performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,160",
+				"to": "00:16:19,560"
+			},
+			"offsets": {
+				"from": 977160,
+				"to": 979560
+			},
+			"text": " or none of these people will adopt this stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,560",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 979560,
+				"to": 982000
+			},
+			"text": " And so this is what I mean by those of reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:24,880"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 984880
+			},
+			"text": " And when you think about the data on the web today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,880",
+				"to": "00:16:27,360"
+			},
+			"offsets": {
+				"from": 984880,
+				"to": 987360
+			},
+			"text": " you have these massive infrastructure providers"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,360",
+				"to": "00:16:31,000"
+			},
+			"offsets": {
+				"from": 987360,
+				"to": 991000
+			},
+			"text": " that have huge high performance databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,000",
+				"to": "00:16:34,520"
+			},
+			"offsets": {
+				"from": 991000,
+				"to": 994520
+			},
+			"text": " And the model is that people have these business logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,520",
+				"to": "00:16:36,400"
+			},
+			"offsets": {
+				"from": 994520,
+				"to": 996400
+			},
+			"text": " services, and they have to maintain them."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,400",
+				"to": "00:16:40,040"
+			},
+			"offsets": {
+				"from": 996400,
+				"to": 1000040
+			},
+			"text": " And this is where perhaps these systems can come in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,040",
+				"to": "00:16:42,200"
+			},
+			"offsets": {
+				"from": 1000040,
+				"to": 1002200
+			},
+			"text": " and change the model, where people don't actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,200",
+				"to": "00:16:44,360"
+			},
+			"offsets": {
+				"from": 1002200,
+				"to": 1004360
+			},
+			"text": " have to maintain infrastructure themselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,360",
+				"to": "00:16:47,720"
+			},
+			"offsets": {
+				"from": 1004360,
+				"to": 1007720
+			},
+			"text": " It becomes a lot cheaper if they don't have to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,720",
+				"to": "00:16:49,680"
+			},
+			"offsets": {
+				"from": 1007720,
+				"to": 1009680
+			},
+			"text": " But this is the competition, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,680",
+				"to": "00:16:53,480"
+			},
+			"offsets": {
+				"from": 1009680,
+				"to": 1013480
+			},
+			"text": " This is something-- this is a diagram from Amazon itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,480",
+				"to": "00:16:56,160"
+			},
+			"offsets": {
+				"from": 1013480,
+				"to": 1016160
+			},
+			"text": " It has-- think about how many machines here"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,160",
+				"to": "00:16:59,240"
+			},
+			"offsets": {
+				"from": 1016160,
+				"to": 1019240
+			},
+			"text": " are involved in just one application, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,240",
+				"to": "00:17:01,680"
+			},
+			"offsets": {
+				"from": 1019240,
+				"to": 1021680
+			},
+			"text": " This is kind of like-- if you're a legit application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,680",
+				"to": "00:17:02,360"
+			},
+			"offsets": {
+				"from": 1021680,
+				"to": 1022360
+			},
+			"text": " this is what you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,360",
+				"to": "00:17:05,920"
+			},
+			"offsets": {
+				"from": 1022360,
+				"to": 1025920
+			},
+			"text": " You have a DNS resolution machine connected to a CDN,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,920",
+				"to": "00:17:09,440"
+			},
+			"offsets": {
+				"from": 1025920,
+				"to": 1029440
+			},
+			"text": " connected to a bunch of static content buckets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,440",
+				"to": "00:17:10,960"
+			},
+			"offsets": {
+				"from": 1029440,
+				"to": 1030960
+			},
+			"text": " connected to a whole bunch of web servers that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,960",
+				"to": "00:17:13,520"
+			},
+			"offsets": {
+				"from": 1030960,
+				"to": 1033520
+			},
+			"text": " auto scale, connected to routers, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,520",
+				"to": "00:17:15,600"
+			},
+			"offsets": {
+				"from": 1033520,
+				"to": 1035600
+			},
+			"text": " hit your application servers, and then going all the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,600",
+				"to": "00:17:16,800"
+			},
+			"offsets": {
+				"from": 1035600,
+				"to": 1036800
+			},
+			"text": " to the databases."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,800",
+				"to": "00:17:18,280"
+			},
+			"offsets": {
+				"from": 1036800,
+				"to": 1038280
+			},
+			"text": " It's madness, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,280",
+				"to": "00:17:22,640"
+			},
+			"offsets": {
+				"from": 1038280,
+				"to": 1042640
+			},
+			"text": " And this is all for optimizing really fast accesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,640",
+				"to": "00:17:24,000"
+			},
+			"offsets": {
+				"from": 1042640,
+				"to": 1044000
+			},
+			"text": " on the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,000",
+				"to": "00:17:25,400"
+			},
+			"offsets": {
+				"from": 1044000,
+				"to": 1045400
+			},
+			"text": " When a user hits your web page, they"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,400",
+				"to": "00:17:27,640"
+			},
+			"offsets": {
+				"from": 1045400,
+				"to": 1047640
+			},
+			"text": " have to get the stuff within a second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,640",
+				"to": "00:17:29,080"
+			},
+			"offsets": {
+				"from": 1047640,
+				"to": 1049080
+			},
+			"text": " or it's a game over, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,080",
+				"to": "00:17:31,120"
+			},
+			"offsets": {
+				"from": 1049080,
+				"to": 1051120
+			},
+			"text": " Like they'll leave and they'll go to somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,120",
+				"to": "00:17:34,840"
+			},
+			"offsets": {
+				"from": 1051120,
+				"to": 1054840
+			},
+			"text": " And so this is like a beast lying in the center of the backbone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,840",
+				"to": "00:17:38,400"
+			},
+			"offsets": {
+				"from": 1054840,
+				"to": 1058400
+			},
+			"text": " to just be able to manage that."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,400",
+				"to": "00:17:42,560"
+			},
+			"offsets": {
+				"from": 1058400,
+				"to": 1062560
+			},
+			"text": " And we have this enormous explosion of databases, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,560",
+				"to": "00:17:44,600"
+			},
+			"offsets": {
+				"from": 1062560,
+				"to": 1064600
+			},
+			"text": " And so the constraints are around being"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,600",
+				"to": "00:17:47,560"
+			},
+			"offsets": {
+				"from": 1064600,
+				"to": 1067560
+			},
+			"text": " able to do billions of transactions per second,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,560",
+				"to": "00:17:50,400"
+			},
+			"offsets": {
+				"from": 1067560,
+				"to": 1070400
+			},
+			"text": " handling billions of users, millions or hundreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,400",
+				"to": "00:17:52,880"
+			},
+			"offsets": {
+				"from": 1070400,
+				"to": 1072880
+			},
+			"text": " of millions of simultaneous users for the big ones,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,880",
+				"to": "00:17:56,680"
+			},
+			"offsets": {
+				"from": 1072880,
+				"to": 1076680
+			},
+			"text": " sub 100 millisecond latencies from the backbone to the user,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,680",
+				"to": "00:18:00,120"
+			},
+			"offsets": {
+				"from": 1076680,
+				"to": 1080120
+			},
+			"text": " or ideally just from the user to the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,120",
+				"to": "00:18:01,760"
+			},
+			"offsets": {
+				"from": 1080120,
+				"to": 1081760
+			},
+			"text": " And we're talking about terabytes, petabytes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,760",
+				"to": "00:18:02,600"
+			},
+			"offsets": {
+				"from": 1081760,
+				"to": 1082600
+			},
+			"text": " and exabyte scales."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,600",
+				"to": "00:18:05,200"
+			},
+			"offsets": {
+				"from": 1082600,
+				"to": 1085200
+			},
+			"text": " So terabyte scales, if you're a small company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,200",
+				"to": "00:18:08,960"
+			},
+			"offsets": {
+				"from": 1085200,
+				"to": 1088960
+			},
+			"text": " exabyte scales, if you're basically Facebook and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,960",
+				"to": "00:18:12,960"
+			},
+			"offsets": {
+				"from": 1088960,
+				"to": 1092960
+			},
+			"text": " And of course, so when I hear blockchain technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,960",
+				"to": "00:18:14,680"
+			},
+			"offsets": {
+				"from": 1092960,
+				"to": 1094680
+			},
+			"text": " how is it going to deal with this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,680",
+				"to": "00:18:16,440"
+			},
+			"offsets": {
+				"from": 1094680,
+				"to": 1096440
+			},
+			"text": " How are we-- what?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,440",
+				"to": "00:18:17,920"
+			},
+			"offsets": {
+				"from": 1096440,
+				"to": 1097920
+			},
+			"text": " What?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,920",
+				"to": "00:18:20,880"
+			},
+			"offsets": {
+				"from": 1097920,
+				"to": 1100880
+			},
+			"text": " But here's the magic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,880",
+				"to": "00:18:22,640"
+			},
+			"offsets": {
+				"from": 1100880,
+				"to": 1102640
+			},
+			"text": " But here's the magic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,640",
+				"to": "00:18:25,400"
+			},
+			"offsets": {
+				"from": 1102640,
+				"to": 1105400
+			},
+			"text": " So the thing is that it's not about matching"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:25,400",
+				"to": "00:18:27,240"
+			},
+			"offsets": {
+				"from": 1105400,
+				"to": 1107240
+			},
+			"text": " the capabilities today."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,240",
+				"to": "00:18:31,200"
+			},
+			"offsets": {
+				"from": 1107240,
+				"to": 1111200
+			},
+			"text": " It's about proving that those capabilities can be achieved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:31,200",
+				"to": "00:18:33,960"
+			},
+			"offsets": {
+				"from": 1111200,
+				"to": 1113960
+			},
+			"text": " but complementing them with a whole bunch of capabilities"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,960",
+				"to": "00:18:35,720"
+			},
+			"offsets": {
+				"from": 1113960,
+				"to": 1115720
+			},
+			"text": " that were in there before."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,720",
+				"to": "00:18:38,120"
+			},
+			"offsets": {
+				"from": 1115720,
+				"to": 1118120
+			},
+			"text": " So stuff like the idea behind a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,120",
+				"to": "00:18:40,080"
+			},
+			"offsets": {
+				"from": 1118120,
+				"to": 1120080
+			},
+			"text": " is being able to do multi-party computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,080",
+				"to": "00:18:41,760"
+			},
+			"offsets": {
+				"from": 1120080,
+				"to": 1121760
+			},
+			"text": " but it's verifiable and trustless."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,760",
+				"to": "00:18:44,040"
+			},
+			"offsets": {
+				"from": 1121760,
+				"to": 1124040
+			},
+			"text": " You don't get that at all today in Web 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,040",
+				"to": "00:18:46,920"
+			},
+			"offsets": {
+				"from": 1124040,
+				"to": 1126920
+			},
+			"text": " Being able to do trustless ledgers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,920",
+				"to": "00:18:48,800"
+			},
+			"offsets": {
+				"from": 1126920,
+				"to": 1128800
+			},
+			"text": " being able to account that things are actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,800",
+				"to": "00:18:50,360"
+			},
+			"offsets": {
+				"from": 1128800,
+				"to": 1130360
+			},
+			"text": " happening, time-stamping."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,360",
+				"to": "00:18:52,680"
+			},
+			"offsets": {
+				"from": 1130360,
+				"to": 1132680
+			},
+			"text": " Being able to run contracts that are verifiable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:52,680",
+				"to": "00:18:55,040"
+			},
+			"offsets": {
+				"from": 1132680,
+				"to": 1135040
+			},
+			"text": " that you just write the source code out there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,040",
+				"to": "00:18:57,040"
+			},
+			"offsets": {
+				"from": 1135040,
+				"to": 1137040
+			},
+			"text": " put it up there, and it just runs on its own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,040",
+				"to": "00:18:59,400"
+			},
+			"offsets": {
+				"from": 1137040,
+				"to": 1139400
+			},
+			"text": " and you don't have to maintain it, and nobody has to do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,400",
+				"to": "00:19:01,400"
+			},
+			"offsets": {
+				"from": 1139400,
+				"to": 1141400
+			},
+			"text": " Being able to write decentralized and distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,400",
+				"to": "00:19:03,640"
+			},
+			"offsets": {
+				"from": 1141400,
+				"to": 1143640
+			},
+			"text": " applications, things where you write them once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,640",
+				"to": "00:19:06,200"
+			},
+			"offsets": {
+				"from": 1143640,
+				"to": 1146200
+			},
+			"text": " you sign them, drop them into the network, and disappear,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:06,200",
+				"to": "00:19:07,600"
+			},
+			"offsets": {
+				"from": 1146200,
+				"to": 1147600
+			},
+			"text": " and the people can carry them on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,600",
+				"to": "00:19:09,720"
+			},
+			"offsets": {
+				"from": 1147600,
+				"to": 1149720
+			},
+			"text": " You could disappear as an organization and company,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,720",
+				"to": "00:19:11,640"
+			},
+			"offsets": {
+				"from": 1149720,
+				"to": 1151640
+			},
+			"text": " and people could continue to use the applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,640",
+				"to": "00:19:13,720"
+			},
+			"offsets": {
+				"from": 1151640,
+				"to": 1153720
+			},
+			"text": " These are real capabilities that give people"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,720",
+				"to": "00:19:15,240"
+			},
+			"offsets": {
+				"from": 1153720,
+				"to": 1155240
+			},
+			"text": " that you cannot take away."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,240",
+				"to": "00:19:16,600"
+			},
+			"offsets": {
+				"from": 1155240,
+				"to": 1156600
+			},
+			"text": " And that's extremely interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,600",
+				"to": "00:19:19,480"
+			},
+			"offsets": {
+				"from": 1156600,
+				"to": 1159480
+			},
+			"text": " That's where there's a completely unfair advantage"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,480",
+				"to": "00:19:22,040"
+			},
+			"offsets": {
+				"from": 1159480,
+				"to": 1162040
+			},
+			"text": " compared to the Web 2.0, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,040",
+				"to": "00:19:25,840"
+			},
+			"offsets": {
+				"from": 1162040,
+				"to": 1165840
+			},
+			"text": " And so we're talking about building, taking data and code"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,840",
+				"to": "00:19:30,000"
+			},
+			"offsets": {
+				"from": 1165840,
+				"to": 1170000
+			},
+			"text": " and execution in a completely different verifiable model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,000",
+				"to": "00:19:32,760"
+			},
+			"offsets": {
+				"from": 1170000,
+				"to": 1172760
+			},
+			"text": " and of course, being able to do secure an encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,760",
+				"to": "00:19:35,840"
+			},
+			"offsets": {
+				"from": 1172760,
+				"to": 1175840
+			},
+			"text": " in a way that the Web 2.0 people can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,840",
+				"to": "00:19:39,880"
+			},
+			"offsets": {
+				"from": 1175840,
+				"to": 1179880
+			},
+			"text": " Because a lot of Web 2.0 relies on advertising and so on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,880",
+				"to": "00:19:43,160"
+			},
+			"offsets": {
+				"from": 1179880,
+				"to": 1183160
+			},
+			"text": " which means that they can't really do end-to-end encryption."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,160",
+				"to": "00:19:45,320"
+			},
+			"offsets": {
+				"from": 1183160,
+				"to": 1185320
+			},
+			"text": " So that's a huge advantage, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,320",
+				"to": "00:19:46,880"
+			},
+			"offsets": {
+				"from": 1185320,
+				"to": 1186880
+			},
+			"text": " Because we don't have to deal with that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,880",
+				"to": "00:19:49,520"
+			},
+			"offsets": {
+				"from": 1186880,
+				"to": 1189520
+			},
+			"text": " We can just do end-to-end encryption for users."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,520",
+				"to": "00:19:52,840"
+			},
+			"offsets": {
+				"from": 1189520,
+				"to": 1192840
+			},
+			"text": " We don't need users data at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,840",
+				"to": "00:19:54,880"
+			},
+			"offsets": {
+				"from": 1192840,
+				"to": 1194880
+			},
+			"text": " And this is a strong reason to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,880",
+				"to": "00:19:57,200"
+			},
+			"offsets": {
+				"from": 1194880,
+				"to": 1197200
+			},
+			"text": " able to move in this direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,200",
+				"to": "00:19:57,680"
+			},
+			"offsets": {
+				"from": 1197200,
+				"to": 1197680
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,680",
+				"to": "00:20:00,200"
+			},
+			"offsets": {
+				"from": 1197680,
+				"to": 1200200
+			},
+			"text": " Let me check timing, because timing--"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,200",
+				"to": "00:20:01,040"
+			},
+			"offsets": {
+				"from": 1200200,
+				"to": 1201040
+			},
+			"text": " all right, five minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,040",
+				"to": "00:20:01,720"
+			},
+			"offsets": {
+				"from": 1201040,
+				"to": 1201720
+			},
+			"text": " Sweet."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,720",
+				"to": "00:20:03,200"
+			},
+			"offsets": {
+				"from": 1201720,
+				"to": 1203200
+			},
+			"text": " So that was the interlude."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,200",
+				"to": "00:20:04,880"
+			},
+			"offsets": {
+				"from": 1203200,
+				"to": 1204880
+			},
+			"text": " So Web 2.0 is kind of about having"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,880",
+				"to": "00:20:07,800"
+			},
+			"offsets": {
+				"from": 1204880,
+				"to": 1207800
+			},
+			"text": " these databases talking to each other with data"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,800",
+				"to": "00:20:09,200"
+			},
+			"offsets": {
+				"from": 1207800,
+				"to": 1209200
+			},
+			"text": " behind the scenes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,200",
+				"to": "00:20:13,680"
+			},
+			"offsets": {
+				"from": 1209200,
+				"to": 1213680
+			},
+			"text": " And Web 3.0 is about taking the logic and the data itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,680",
+				"to": "00:20:15,640"
+			},
+			"offsets": {
+				"from": 1213680,
+				"to": 1215640
+			},
+			"text": " and putting those into the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,640",
+				"to": "00:20:17,280"
+			},
+			"offsets": {
+				"from": 1215640,
+				"to": 1217280
+			},
+			"text": " and allowing those to communicate"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,280",
+				"to": "00:20:21,680"
+			},
+			"offsets": {
+				"from": 1217280,
+				"to": 1221680
+			},
+			"text": " and making the actual hardware secondary."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,680",
+				"to": "00:20:22,760"
+			},
+			"offsets": {
+				"from": 1221680,
+				"to": 1222760
+			},
+			"text": " All right, that was the interlude."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,760",
+				"to": "00:20:26,360"
+			},
+			"offsets": {
+				"from": 1222760,
+				"to": 1226360
+			},
+			"text": " OK, I'll have to rush to this stuff five minutes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,360",
+				"to": "00:20:26,960"
+			},
+			"offsets": {
+				"from": 1226360,
+				"to": 1226960
+			},
+			"text": " but we'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,960",
+				"to": "00:20:28,720"
+			},
+			"offsets": {
+				"from": 1226960,
+				"to": 1228720
+			},
+			"text": " All right, so IPLD."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,720",
+				"to": "00:20:30,000"
+			},
+			"offsets": {
+				"from": 1228720,
+				"to": 1230000
+			},
+			"text": " This is the heart of IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,000",
+				"to": "00:20:34,160"
+			},
+			"offsets": {
+				"from": 1230000,
+				"to": 1234160
+			},
+			"text": " It's a common format for hash chain or distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,160",
+				"to": "00:20:36,400"
+			},
+			"offsets": {
+				"from": 1234160,
+				"to": 1236400
+			},
+			"text": " data structures based on Merkle trees."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,400",
+				"to": "00:20:38,200"
+			},
+			"offsets": {
+				"from": 1236400,
+				"to": 1238200
+			},
+			"text": " And so what I showed before with these files,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,200",
+				"to": "00:20:40,160"
+			},
+			"offsets": {
+				"from": 1238200,
+				"to": 1240160
+			},
+			"text": " these aren't actually files."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,160",
+				"to": "00:20:41,800"
+			},
+			"offsets": {
+				"from": 1240160,
+				"to": 1241800
+			},
+			"text": " So when you add something to IPFS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,800",
+				"to": "00:20:43,040"
+			},
+			"offsets": {
+				"from": 1241800,
+				"to": 1243040
+			},
+			"text": " it kind of looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,040",
+				"to": "00:20:44,200"
+			},
+			"offsets": {
+				"from": 1243040,
+				"to": 1244200
+			},
+			"text": " You're at all this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,200",
+				"to": "00:20:45,040"
+			},
+			"offsets": {
+				"from": 1244200,
+				"to": 1245040
+			},
+			"text": " But these aren't files."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,040",
+				"to": "00:20:47,960"
+			},
+			"offsets": {
+				"from": 1245040,
+				"to": 1247960
+			},
+			"text": " These are actually nodes in a graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,960",
+				"to": "00:20:51,760"
+			},
+			"offsets": {
+				"from": 1247960,
+				"to": 1251760
+			},
+			"text": " And these nodes in a graph, they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,760",
+				"to": "00:20:54,760"
+			},
+			"offsets": {
+				"from": 1251760,
+				"to": 1254760
+			},
+			"text": " stored in a format that we are calling IPLD"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,760",
+				"to": "00:20:57,640"
+			},
+			"offsets": {
+				"from": 1254760,
+				"to": 1257640
+			},
+			"text": " that is basically something like JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,640",
+				"to": "00:20:59,260"
+			},
+			"offsets": {
+				"from": 1257640,
+				"to": 1259260
+			},
+			"text": " It's not exactly JSON because it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,260",
+				"to": "00:21:02,040"
+			},
+			"offsets": {
+				"from": 1259260,
+				"to": 1262040
+			},
+			"text": " serialized to be fast."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,040",
+				"to": "00:21:04,880"
+			},
+			"offsets": {
+				"from": 1262040,
+				"to": 1264880
+			},
+			"text": " But it's the whole point that you have a very flexible data"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,880",
+				"to": "00:21:07,680"
+			},
+			"offsets": {
+				"from": 1264880,
+				"to": 1267680
+			},
+			"text": " model so you can take entire APIs with today"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,680",
+				"to": "00:21:09,560"
+			},
+			"offsets": {
+				"from": 1267680,
+				"to": 1269560
+			},
+			"text": " and just dump them straight into IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:09,560",
+				"to": "00:21:14,360"
+			},
+			"offsets": {
+				"from": 1269560,
+				"to": 1274360
+			},
+			"text": " So you can take some data API that you have and just straight"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,360",
+				"to": "00:21:16,100"
+			},
+			"offsets": {
+				"from": 1274360,
+				"to": 1276100
+			},
+			"text": " up import all of that into IPFS and like"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,100",
+				"to": "00:21:17,800"
+			},
+			"offsets": {
+				"from": 1276100,
+				"to": 1277800
+			},
+			"text": " Merkle likes the whole thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,800",
+				"to": "00:21:18,800"
+			},
+			"offsets": {
+				"from": 1277800,
+				"to": 1278800
+			},
+			"text": " That is not perfect."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:18,800",
+				"to": "00:21:21,060"
+			},
+			"offsets": {
+				"from": 1278800,
+				"to": 1281060
+			},
+			"text": " And you have to work hard to make it really a good distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,060",
+				"to": "00:21:21,880"
+			},
+			"offsets": {
+				"from": 1281060,
+				"to": 1281880
+			},
+			"text": " application."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:21,880",
+				"to": "00:21:24,160"
+			},
+			"offsets": {
+				"from": 1281880,
+				"to": 1284160
+			},
+			"text": " But that's kind of like step one."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,160",
+				"to": "00:21:26,560"
+			},
+			"offsets": {
+				"from": 1284160,
+				"to": 1286560
+			},
+			"text": " And so we see as this new thin waste of the internet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,560",
+				"to": "00:21:28,600"
+			},
+			"offsets": {
+				"from": 1286560,
+				"to": 1288600
+			},
+			"text": " the internet of data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,600",
+				"to": "00:21:31,260"
+			},
+			"offsets": {
+				"from": 1288600,
+				"to": 1291260
+			},
+			"text": " And it gives you like Merkle links that are secure and immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,260",
+				"to": "00:21:33,300"
+			},
+			"offsets": {
+				"from": 1291260,
+				"to": 1293300
+			},
+			"text": " It gives you Merkle paths, meaning you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,300",
+				"to": "00:21:35,540"
+			},
+			"offsets": {
+				"from": 1293300,
+				"to": 1295540
+			},
+			"text": " can resolve through the graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,540",
+				"to": "00:21:36,540"
+			},
+			"offsets": {
+				"from": 1295540,
+				"to": 1296540
+			},
+			"text": " They're sort of universal."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:36,540",
+				"to": "00:21:40,540"
+			},
+			"offsets": {
+				"from": 1296540,
+				"to": 1300540
+			},
+			"text": " And they're kind of URIs or URLs, as we said before."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,540",
+				"to": "00:21:41,980"
+			},
+			"offsets": {
+				"from": 1300540,
+				"to": 1301980
+			},
+			"text": " Though it's not location based, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,980",
+				"to": "00:21:44,820"
+			},
+			"offsets": {
+				"from": 1301980,
+				"to": 1304820
+			},
+			"text": " So I mentioned here URL because most people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,820",
+				"to": "00:21:46,700"
+			},
+			"offsets": {
+				"from": 1304820,
+				"to": 1306700
+			},
+			"text": " are familiar with that term, but it's not actually location"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,700",
+				"to": "00:21:47,860"
+			},
+			"offsets": {
+				"from": 1306700,
+				"to": 1307860
+			},
+			"text": " based."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:47,860",
+				"to": "00:21:49,900"
+			},
+			"offsets": {
+				"from": 1307860,
+				"to": 1309900
+			},
+			"text": " And in terms of serialization, you can do anything you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,900",
+				"to": "00:21:54,580"
+			},
+			"offsets": {
+				"from": 1309900,
+				"to": 1314580
+			},
+			"text": " You can use JSON, protobuf, XML, RLP, or whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,580",
+				"to": "00:21:56,180"
+			},
+			"offsets": {
+				"from": 1314580,
+				"to": 1316180
+			},
+			"text": " you just use."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,180",
+				"to": "00:21:59,060"
+			},
+			"offsets": {
+				"from": 1316180,
+				"to": 1319060
+			},
+			"text": " You can use a serialization format underneath the hood."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,060",
+				"to": "00:22:01,520"
+			},
+			"offsets": {
+				"from": 1319060,
+				"to": 1321520
+			},
+			"text": " Though there is a canonical way of describing which"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,520",
+				"to": "00:22:03,980"
+			},
+			"offsets": {
+				"from": 1321520,
+				"to": 1323980
+			},
+			"text": " serialization thing to use so that everyone has this the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,980",
+				"to": "00:22:05,500"
+			},
+			"offsets": {
+				"from": 1323980,
+				"to": 1325500
+			},
+			"text": " thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,500",
+				"to": "00:22:08,880"
+			},
+			"offsets": {
+				"from": 1325500,
+				"to": 1328880
+			},
+			"text": " And so if you had something like this in Tason, where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,880",
+				"to": "00:22:13,200"
+			},
+			"offsets": {
+				"from": 1328880,
+				"to": 1333200
+			},
+			"text": " outlined the followers of a user this way, this is kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,200",
+				"to": "00:22:14,120"
+			},
+			"offsets": {
+				"from": 1333200,
+				"to": 1334120
+			},
+			"text": " like mush, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,120",
+				"to": "00:22:17,120"
+			},
+			"offsets": {
+				"from": 1334120,
+				"to": 1337120
+			},
+			"text": " What does @.vannaverbus mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,120",
+				"to": "00:22:20,880"
+			},
+			"offsets": {
+				"from": 1337120,
+				"to": 1340880
+			},
+			"text": " Some user somewhere, but you don't know what context that"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,880",
+				"to": "00:22:21,880"
+			},
+			"offsets": {
+				"from": 1340880,
+				"to": 1341880
+			},
+			"text": " comes from."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,880",
+				"to": "00:22:23,600"
+			},
+			"offsets": {
+				"from": 1341880,
+				"to": 1343600
+			},
+			"text": " You have to know that this would be Twitter or something"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,600",
+				"to": "00:22:27,200"
+			},
+			"offsets": {
+				"from": 1343600,
+				"to": 1347200
+			},
+			"text": " else just from the endpoint that you're accessing this from."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,200",
+				"to": "00:22:30,560"
+			},
+			"offsets": {
+				"from": 1347200,
+				"to": 1350560
+			},
+			"text": " But what if these actually look to content address things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,560",
+				"to": "00:22:30,760"
+			},
+			"offsets": {
+				"from": 1350560,
+				"to": 1350760
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,760",
+				"to": "00:22:34,160"
+			},
+			"offsets": {
+				"from": 1350760,
+				"to": 1354160
+			},
+			"text": " Like the resources were actually based on hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,160",
+				"to": "00:22:36,920"
+			},
+			"offsets": {
+				"from": 1354160,
+				"to": 1356920
+			},
+			"text": " Then you don't have to know anything about where you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,920",
+				"to": "00:22:40,680"
+			},
+			"offsets": {
+				"from": 1356920,
+				"to": 1360680
+			},
+			"text": " accessing at all because the content itself tells you what"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,680",
+				"to": "00:22:43,160"
+			},
+			"offsets": {
+				"from": 1360680,
+				"to": 1363160
+			},
+			"text": " it's about, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,160",
+				"to": "00:22:46,320"
+			},
+			"offsets": {
+				"from": 1363160,
+				"to": 1366320
+			},
+			"text": " And with IPLD, you can do Yammer, you can do whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,320",
+				"to": "00:22:48,120"
+			},
+			"offsets": {
+				"from": 1366320,
+				"to": 1368120
+			},
+			"text": " format you want, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,120",
+				"to": "00:22:51,640"
+			},
+			"offsets": {
+				"from": 1368120,
+				"to": 1371640
+			},
+			"text": " So the whole point here is to build something as easy to use"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,640",
+				"to": "00:22:53,680"
+			},
+			"offsets": {
+				"from": 1371640,
+				"to": 1373680
+			},
+			"text": " as JSON."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,680",
+				"to": "00:22:58,120"
+			},
+			"offsets": {
+				"from": 1373680,
+				"to": 1378120
+			},
+			"text": " But when you merkalize it and you turn these normal graphs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,120",
+				"to": "00:23:03,000"
+			},
+			"offsets": {
+				"from": 1378120,
+				"to": 1383000
+			},
+			"text": " you should be able to have the exact same architecture of your"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,000",
+				"to": "00:23:03,760"
+			},
+			"offsets": {
+				"from": 1383000,
+				"to": 1383760
+			},
+			"text": " data."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:03,760",
+				"to": "00:23:06,560"
+			},
+			"offsets": {
+				"from": 1383760,
+				"to": 1386560
+			},
+			"text": " But before you would just have some strings that you then"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,560",
+				"to": "00:23:09,080"
+			},
+			"offsets": {
+				"from": 1386560,
+				"to": 1389080
+			},
+			"text": " would have to look up in a database, here you have hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:09,080",
+				"to": "00:23:11,200"
+			},
+			"offsets": {
+				"from": 1389080,
+				"to": 1391200
+			},
+			"text": " links."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,200",
+				"to": "00:23:13,200"
+			},
+			"offsets": {
+				"from": 1391200,
+				"to": 1393200
+			},
+			"text": " And so you can follow--"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,200",
+				"to": "00:23:14,880"
+			},
+			"offsets": {
+				"from": 1393200,
+				"to": 1394880
+			},
+			"text": " you can resolve through the hash link."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,880",
+				"to": "00:23:18,800"
+			},
+			"offsets": {
+				"from": 1394880,
+				"to": 1398800
+			},
+			"text": " So here in the second layer, you're going through the hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,800",
+				"to": "00:23:21,600"
+			},
+			"offsets": {
+				"from": 1398800,
+				"to": 1401600
+			},
+			"text": " and then slash followers, meaning that you're accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,600",
+				"to": "00:23:24,040"
+			},
+			"offsets": {
+				"from": 1401600,
+				"to": 1404040
+			},
+			"text": " into the JSON object."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,040",
+				"to": "00:23:26,200"
+			},
+			"offsets": {
+				"from": 1404040,
+				"to": 1406200
+			},
+			"text": " So you're touching a JSON object and then accessing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,200",
+				"to": "00:23:30,080"
+			},
+			"offsets": {
+				"from": 1406200,
+				"to": 1410080
+			},
+			"text": " through it to get another piece of the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,080",
+				"to": "00:23:32,200"
+			},
+			"offsets": {
+				"from": 1410080,
+				"to": 1412200
+			},
+			"text": " And you can do whatever, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,200",
+				"to": "00:23:35,080"
+			},
+			"offsets": {
+				"from": 1412200,
+				"to": 1415080
+			},
+			"text": " So you can take somebody's followers, go slash followers"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,080",
+				"to": "00:23:38,360"
+			},
+			"offsets": {
+				"from": 1415080,
+				"to": 1418360
+			},
+			"text": " to get pulled out a ray out, and then go slash zero to pull"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,360",
+				"to": "00:23:40,400"
+			},
+			"offsets": {
+				"from": 1418360,
+				"to": 1420400
+			},
+			"text": " out the first entry, and now you get something."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,400",
+				"to": "00:23:43,080"
+			},
+			"offsets": {
+				"from": 1420400,
+				"to": 1423080
+			},
+			"text": " And this is resolving through Merkal links."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,080",
+				"to": "00:23:45,920"
+			},
+			"offsets": {
+				"from": 1423080,
+				"to": 1425920
+			},
+			"text": " The idea there is you would pull one object out and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,920",
+				"to": "00:23:48,880"
+			},
+			"offsets": {
+				"from": 1425920,
+				"to": 1428880
+			},
+			"text": " you would look into it, pull out another link, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,880",
+				"to": "00:23:51,760"
+			},
+			"offsets": {
+				"from": 1428880,
+				"to": 1431760
+			},
+			"text": " resolve it through the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,760",
+				"to": "00:23:53,920"
+			},
+			"offsets": {
+				"from": 1431760,
+				"to": 1433920
+			},
+			"text": " And everything is integrity checks, so you can just dump"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,920",
+				"to": "00:23:55,560"
+			},
+			"offsets": {
+				"from": 1433920,
+				"to": 1435560
+			},
+			"text": " all of this content into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,560",
+				"to": "00:23:57,560"
+			},
+			"offsets": {
+				"from": 1435560,
+				"to": 1437560
+			},
+			"text": " And anybody can serve it to you, and you don't have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,560",
+				"to": "00:23:59,600"
+			},
+			"offsets": {
+				"from": 1437560,
+				"to": 1439600
+			},
+			"text": " worry about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:59,600",
+				"to": "00:24:01,280"
+			},
+			"offsets": {
+				"from": 1439600,
+				"to": 1441280
+			},
+			"text": " You have to worry about it in terms of privacy, but that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,280",
+				"to": "00:24:03,480"
+			},
+			"offsets": {
+				"from": 1441280,
+				"to": 1443480
+			},
+			"text": " a whole different question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,480",
+				"to": "00:24:05,520"
+			},
+			"offsets": {
+				"from": 1443480,
+				"to": 1445520
+			},
+			"text": " And anyway, so you can model things."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,520",
+				"to": "00:24:06,760"
+			},
+			"offsets": {
+				"from": 1445520,
+				"to": 1446760
+			},
+			"text": " You can pretty much model anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,760",
+				"to": "00:24:10,960"
+			},
+			"offsets": {
+				"from": 1446760,
+				"to": 1450960
+			},
+			"text": " One, you get to be able to annotate links with other data."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,960",
+				"to": "00:24:12,880"
+			},
+			"offsets": {
+				"from": 1450960,
+				"to": 1452880
+			},
+			"text": " Here's what a directory would look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,880",
+				"to": "00:24:14,320"
+			},
+			"offsets": {
+				"from": 1452880,
+				"to": 1454320
+			},
+			"text": " You could do version data structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,320",
+				"to": "00:24:17,320"
+			},
+			"offsets": {
+				"from": 1454320,
+				"to": 1457320
+			},
+			"text": " This is, for example, a git commit and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,320",
+				"to": "00:24:19,680"
+			},
+			"offsets": {
+				"from": 1457320,
+				"to": 1459680
+			},
+			"text": " So these will be completely native in IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:19,680",
+				"to": "00:24:21,840"
+			},
+			"offsets": {
+				"from": 1459680,
+				"to": 1461840
+			},
+			"text": " You'll be able to write all these data structures and have"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,840",
+				"to": "00:24:24,520"
+			},
+			"offsets": {
+				"from": 1461840,
+				"to": 1464520
+			},
+			"text": " them write on this transport, like the poorest thing that I"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,520",
+				"to": "00:24:25,720"
+			},
+			"offsets": {
+				"from": 1464520,
+				"to": 1465720
+			},
+			"text": " described earlier."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,720",
+				"to": "00:24:28,520"
+			},
+			"offsets": {
+				"from": 1465720,
+				"to": 1468520
+			},
+			"text": " And so this is really how we start doing Web 3.0, where we"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,520",
+				"to": "00:24:31,240"
+			},
+			"offsets": {
+				"from": 1468520,
+				"to": 1471240
+			},
+			"text": " take all these data structures and these APIs and model"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,240",
+				"to": "00:24:34,040"
+			},
+			"offsets": {
+				"from": 1471240,
+				"to": 1474040
+			},
+			"text": " our applications around content that we are just"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,040",
+				"to": "00:24:37,400"
+			},
+			"offsets": {
+				"from": 1474040,
+				"to": 1477400
+			},
+			"text": " putting into the network and addressing through content"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,400",
+				"to": "00:24:40,040"
+			},
+			"offsets": {
+				"from": 1477400,
+				"to": 1480040
+			},
+			"text": " addressing and key addressing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,040",
+				"to": "00:24:42,520"
+			},
+			"offsets": {
+				"from": 1480040,
+				"to": 1482520
+			},
+			"text": " And so in a sense, when you think about modeling your"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,520",
+				"to": "00:24:45,760"
+			},
+			"offsets": {
+				"from": 1482520,
+				"to": 1485760
+			},
+			"text": " application and you think about the data model, do I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,760",
+				"to": "00:24:48,520"
+			},
+			"offsets": {
+				"from": 1485760,
+				"to": 1488520
+			},
+			"text": " users, do they follow each other, what are all these"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,520",
+				"to": "00:24:52,720"
+			},
+			"offsets": {
+				"from": 1488520,
+				"to": 1492720
+			},
+			"text": " relationships, you can take those direct objects and put"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,720",
+				"to": "00:24:53,880"
+			},
+			"offsets": {
+				"from": 1492720,
+				"to": 1493880
+			},
+			"text": " them straight into IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,880",
+				"to": "00:24:56,040"
+			},
+			"offsets": {
+				"from": 1493880,
+				"to": 1496040
+			},
+			"text": " Like you don't have to go to a database at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,040",
+				"to": "00:24:57,560"
+			},
+			"offsets": {
+				"from": 1496040,
+				"to": 1497560
+			},
+			"text": " You can just add them straight to IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,560",
+				"to": "00:25:00,560"
+			},
+			"offsets": {
+				"from": 1497560,
+				"to": 1500560
+			},
+			"text": " And what you gain is that when an application pulls those"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,560",
+				"to": "00:25:03,120"
+			},
+			"offsets": {
+				"from": 1500560,
+				"to": 1503120
+			},
+			"text": " in, if there's nothing that has changed, nothing has to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,120",
+				"to": "00:25:05,400"
+			},
+			"offsets": {
+				"from": 1503120,
+				"to": 1505400
+			},
+			"text": " updated, so you beat the speed of light."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,400",
+				"to": "00:25:08,880"
+			},
+			"offsets": {
+				"from": 1505400,
+				"to": 1508880
+			},
+			"text": " Because if I'm using an application here and I request"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,880",
+				"to": "00:25:10,520"
+			},
+			"offsets": {
+				"from": 1508880,
+				"to": 1510520
+			},
+			"text": " some set of objects and I pull them down through the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,520",
+				"to": "00:25:13,720"
+			},
+			"offsets": {
+				"from": 1510520,
+				"to": 1513720
+			},
+			"text": " network and I have them locally and I have to fetch them"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,720",
+				"to": "00:25:18,560"
+			},
+			"offsets": {
+				"from": 1513720,
+				"to": 1518560
+			},
+			"text": " again, normal HTTP would say, oh, go and talk to the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:18,560",
+				"to": "00:25:20,280"
+			},
+			"offsets": {
+				"from": 1518560,
+				"to": 1520280
+			},
+			"text": " network and see if it has changed."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,280",
+				"to": "00:25:22,320"
+			},
+			"offsets": {
+				"from": 1520280,
+				"to": 1522320
+			},
+			"text": " But with IPFS, we can be like, well, no, I have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,320",
+				"to": "00:25:24,040"
+			},
+			"offsets": {
+				"from": 1522320,
+				"to": 1524040
+			},
+			"text": " hash, I have the content."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,040",
+				"to": "00:25:25,200"
+			},
+			"offsets": {
+				"from": 1524040,
+				"to": 1525200
+			},
+			"text": " It's here already."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,200",
+				"to": "00:25:27,360"
+			},
+			"offsets": {
+				"from": 1525200,
+				"to": 1527360
+			},
+			"text": " We don't have to go to the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,360",
+				"to": "00:25:30,000"
+			},
+			"offsets": {
+				"from": 1527360,
+				"to": 1530000
+			},
+			"text": " And of course, you can do this with all kinds of legal"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,000",
+				"to": "00:25:31,360"
+			},
+			"offsets": {
+				"from": 1530000,
+				"to": 1531360
+			},
+			"text": " records and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,360",
+				"to": "00:25:33,880"
+			},
+			"offsets": {
+				"from": 1531360,
+				"to": 1533880
+			},
+			"text": " Legal records is a great example of why people want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:33,880",
+				"to": "00:25:37,720"
+			},
+			"offsets": {
+				"from": 1533880,
+				"to": 1537720
+			},
+			"text": " use blockchains in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,720",
+				"to": "00:25:43,640"
+			},
+			"offsets": {
+				"from": 1537720,
+				"to": 1543640
+			},
+			"text": " It's to do careful time stamping of legal documents."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,640",
+				"to": "00:25:44,320"
+			},
+			"offsets": {
+				"from": 1543640,
+				"to": 1544320
+			},
+			"text": " So you can do all this."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,320",
+				"to": "00:25:47,120"
+			},
+			"offsets": {
+				"from": 1544320,
+				"to": 1547120
+			},
+			"text": " And so in reality, we're building not exactly the web,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:47,120",
+				"to": "00:25:49,760"
+			},
+			"offsets": {
+				"from": 1547120,
+				"to": 1549760
+			},
+			"text": " but it's really like more of a strong mesh that is"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,760",
+				"to": "00:25:50,920"
+			},
+			"offsets": {
+				"from": 1549760,
+				"to": 1550920
+			},
+			"text": " secured."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:50,920",
+				"to": "00:25:54,320"
+			},
+			"offsets": {
+				"from": 1550920,
+				"to": 1554320
+			},
+			"text": " You can think of it as a secure web where the links can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,320",
+				"to": "00:25:56,920"
+			},
+			"offsets": {
+				"from": 1554320,
+				"to": 1556920
+			},
+			"text": " break because they're content-in-res."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,920",
+				"to": "00:25:59,440"
+			},
+			"offsets": {
+				"from": 1556920,
+				"to": 1559440
+			},
+			"text": " So you don't have to maintain infrastructure and worry"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:59,440",
+				"to": "00:26:01,440"
+			},
+			"offsets": {
+				"from": 1559440,
+				"to": 1561440
+			},
+			"text": " that your link now is slightly different and so"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,440",
+				"to": "00:26:02,640"
+			},
+			"offsets": {
+				"from": 1561440,
+				"to": 1562640
+			},
+			"text": " everything will fall apart."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,640",
+				"to": "00:26:05,080"
+			},
+			"offsets": {
+				"from": 1562640,
+				"to": 1565080
+			},
+			"text": " You just create content, you link it securely, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:05,080",
+				"to": "00:26:08,360"
+			},
+			"offsets": {
+				"from": 1565080,
+				"to": 1568360
+			},
+			"text": " just release it into the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,360",
+				"to": "00:26:12,320"
+			},
+			"offsets": {
+				"from": 1568360,
+				"to": 1572320
+			},
+			"text": " And so I mentioned that IPLD thing is a spec in progress."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:12,320",
+				"to": "00:26:14,160"
+			},
+			"offsets": {
+				"from": 1572320,
+				"to": 1574160
+			},
+			"text": " Some of the interesting stuff that we're doing is we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,160",
+				"to": "00:26:18,000"
+			},
+			"offsets": {
+				"from": 1574160,
+				"to": 1578000
+			},
+			"text": " coming up with the right way of doing traversals through"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,000",
+				"to": "00:26:21,120"
+			},
+			"offsets": {
+				"from": 1578000,
+				"to": 1581120
+			},
+			"text": " the graph, so being able to express, descending down a"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,120",
+				"to": "00:26:24,560"
+			},
+			"offsets": {
+				"from": 1581120,
+				"to": 1584560
+			},
+			"text": " path in the graph, things like being able to address one"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,560",
+				"to": "00:26:27,920"
+			},
+			"offsets": {
+				"from": 1584560,
+				"to": 1587920
+			},
+			"text": " level deep or everything underneath it or being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:27,920",
+				"to": "00:26:30,200"
+			},
+			"offsets": {
+				"from": 1587920,
+				"to": 1590200
+			},
+			"text": " look into something."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:30,200",
+				"to": "00:26:32,320"
+			},
+			"offsets": {
+				"from": 1590200,
+				"to": 1592320
+			},
+			"text": " But then something more interesting, being able to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,320",
+				"to": "00:26:35,960"
+			},
+			"offsets": {
+				"from": 1592320,
+				"to": 1595960
+			},
+			"text": " so this last expression would be able to--"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,960",
+				"to": "00:26:38,920"
+			},
+			"offsets": {
+				"from": 1595960,
+				"to": 1598920
+			},
+			"text": " in a huge graph that represents a movie, being able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:38,920",
+				"to": "00:26:41,440"
+			},
+			"offsets": {
+				"from": 1598920,
+				"to": 1601440
+			},
+			"text": " walk down the first path and retrieving the first set of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,440",
+				"to": "00:26:44,960"
+			},
+			"offsets": {
+				"from": 1601440,
+				"to": 1604960
+			},
+			"text": " blocks in so that with that you are able to just pull out"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:44,960",
+				"to": "00:26:47,240"
+			},
+			"offsets": {
+				"from": 1604960,
+				"to": 1607240
+			},
+			"text": " the first few things that have the data and then start"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:47,240",
+				"to": "00:26:51,920"
+			},
+			"offsets": {
+				"from": 1607240,
+				"to": 1611920
+			},
+			"text": " showing the user the beginning of a movie."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:51,920",
+				"to": "00:26:54,000"
+			},
+			"offsets": {
+				"from": 1611920,
+				"to": 1614000
+			},
+			"text": " So being able to express these things this way is extremely"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,000",
+				"to": "00:26:55,640"
+			},
+			"offsets": {
+				"from": 1614000,
+				"to": 1615640
+			},
+			"text": " useful for replication protocols."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:55,640",
+				"to": "00:26:58,960"
+			},
+			"offsets": {
+				"from": 1615640,
+				"to": 1618960
+			},
+			"text": " It's extremely useful to be able to point stuff out in"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,960",
+				"to": "00:27:00,440"
+			},
+			"offsets": {
+				"from": 1618960,
+				"to": 1620440
+			},
+			"text": " contracts and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:00,440",
+				"to": "00:27:01,760"
+			},
+			"offsets": {
+				"from": 1620440,
+				"to": 1621760
+			},
+			"text": " So this is kind of an interesting thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,760",
+				"to": "00:27:05,080"
+			},
+			"offsets": {
+				"from": 1621760,
+				"to": 1625080
+			},
+			"text": " Another one here is where you're able to embed one"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,080",
+				"to": "00:27:06,760"
+			},
+			"offsets": {
+				"from": 1625080,
+				"to": 1626760
+			},
+			"text": " expression inside another expression."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,760",
+				"to": "00:27:09,480"
+			},
+			"offsets": {
+				"from": 1626760,
+				"to": 1629480
+			},
+			"text": " So if you like this kind of language and stuff, come"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,480",
+				"to": "00:27:11,920"
+			},
+			"offsets": {
+				"from": 1629480,
+				"to": 1631920
+			},
+			"text": " talk to me because getting those languages right is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,920",
+				"to": "00:27:13,840"
+			},
+			"offsets": {
+				"from": 1631920,
+				"to": 1633840
+			},
+			"text": " important."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:13,840",
+				"to": "00:27:14,120"
+			},
+			"offsets": {
+				"from": 1633840,
+				"to": 1634120
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:14,120",
+				"to": "00:27:16,880"
+			},
+			"offsets": {
+				"from": 1634120,
+				"to": 1636880
+			},
+			"text": " So last section, use cases and examples."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,880",
+				"to": "00:27:19,720"
+			},
+			"offsets": {
+				"from": 1636880,
+				"to": 1639720
+			},
+			"text": " So this might be the most interesting to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,720",
+				"to": "00:27:23,560"
+			},
+			"offsets": {
+				"from": 1639720,
+				"to": 1643560
+			},
+			"text": " So a lot of people are like, OK, well, what is IPFS4?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,560",
+				"to": "00:27:25,280"
+			},
+			"offsets": {
+				"from": 1643560,
+				"to": 1645280
+			},
+			"text": " What do you use it with?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,280",
+				"to": "00:27:26,080"
+			},
+			"offsets": {
+				"from": 1645280,
+				"to": 1646080
+			},
+			"text": " What is this thing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:26,080",
+				"to": "00:27:29,360"
+			},
+			"offsets": {
+				"from": 1646080,
+				"to": 1649360
+			},
+			"text": " And they want me to tell you the specific set of users that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,360",
+				"to": "00:27:31,200"
+			},
+			"offsets": {
+				"from": 1649360,
+				"to": 1651200
+			},
+			"text": " are only going to use it for one thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:31,200",
+				"to": "00:27:33,360"
+			},
+			"offsets": {
+				"from": 1651200,
+				"to": 1653360
+			},
+			"text": " And the thing about IPFS is that it's a transfer protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,360",
+				"to": "00:27:36,080"
+			},
+			"offsets": {
+				"from": 1653360,
+				"to": 1656080
+			},
+			"text": " meant to help the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,080",
+				"to": "00:27:40,200"
+			},
+			"offsets": {
+				"from": 1656080,
+				"to": 1660200
+			},
+			"text": " And so what is the web used for?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:40,200",
+				"to": "00:27:41,480"
+			},
+			"offsets": {
+				"from": 1660200,
+				"to": 1661480
+			},
+			"text": " Everything?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:41,480",
+				"to": "00:27:44,600"
+			},
+			"offsets": {
+				"from": 1661480,
+				"to": 1664600
+			},
+			"text": " And then people just say, oh, you haven't thought about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,600",
+				"to": "00:27:44,960"
+			},
+			"offsets": {
+				"from": 1664600,
+				"to": 1664960
+			},
+			"text": " enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,960",
+				"to": "00:27:45,920"
+			},
+			"offsets": {
+				"from": 1664960,
+				"to": 1665920
+			},
+			"text": " I'm like, no, I'm serious."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,920",
+				"to": "00:27:48,200"
+			},
+			"offsets": {
+				"from": 1665920,
+				"to": 1668200
+			},
+			"text": " You can use this for everything."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,200",
+				"to": "00:27:50,200"
+			},
+			"offsets": {
+				"from": 1668200,
+				"to": 1670200
+			},
+			"text": " Let me list out the reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,200",
+				"to": "00:27:52,280"
+			},
+			"offsets": {
+				"from": 1670200,
+				"to": 1672280
+			},
+			"text": " You can use it to do peer-to-peer content delivery."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,280",
+				"to": "00:27:56,000"
+			},
+			"offsets": {
+				"from": 1672280,
+				"to": 1676000
+			},
+			"text": " So think about a CDN, but a distributed CDN, distributed"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,000",
+				"to": "00:27:57,960"
+			},
+			"offsets": {
+				"from": 1676000,
+				"to": 1677960
+			},
+			"text": " content distribution network."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:57,960",
+				"to": "00:28:01,160"
+			},
+			"offsets": {
+				"from": 1677960,
+				"to": 1681160
+			},
+			"text": " You could do a decentralized links, things where no"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,160",
+				"to": "00:28:02,800"
+			},
+			"offsets": {
+				"from": 1681160,
+				"to": 1682800
+			},
+			"text": " authority determines the link."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,800",
+				"to": "00:28:03,720"
+			},
+			"offsets": {
+				"from": 1682800,
+				"to": 1683720
+			},
+			"text": " You just add content."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,720",
+				"to": "00:28:05,960"
+			},
+			"offsets": {
+				"from": 1683720,
+				"to": 1685960
+			},
+			"text": " And the content is now part of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,960",
+				"to": "00:28:07,440"
+			},
+			"offsets": {
+				"from": 1685960,
+				"to": 1687440
+			},
+			"text": " What we've talked about before."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,440",
+				"to": "00:28:09,840"
+			},
+			"offsets": {
+				"from": 1687440,
+				"to": 1689840
+			},
+			"text": " You can take applications, entire applications, and define"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,840",
+				"to": "00:28:11,440"
+			},
+			"offsets": {
+				"from": 1689840,
+				"to": 1691440
+			},
+			"text": " them with an IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,440",
+				"to": "00:28:14,440"
+			},
+			"offsets": {
+				"from": 1691440,
+				"to": 1694440
+			},
+			"text": " Then give people a reference to that application as a link."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,440",
+				"to": "00:28:15,200"
+			},
+			"offsets": {
+				"from": 1694440,
+				"to": 1695200
+			},
+			"text": " They download it."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:15,200",
+				"to": "00:28:16,280"
+			},
+			"offsets": {
+				"from": 1695200,
+				"to": 1696280
+			},
+			"text": " They run the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,280",
+				"to": "00:28:18,560"
+			},
+			"offsets": {
+				"from": 1696280,
+				"to": 1698560
+			},
+			"text": " And they just do everything on their side."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:18,560",
+				"to": "00:28:21,560"
+			},
+			"offsets": {
+				"from": 1698560,
+				"to": 1701560
+			},
+			"text": " So it's not only the distribution of the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:21,560",
+				"to": "00:28:24,720"
+			},
+			"offsets": {
+				"from": 1701560,
+				"to": 1704720
+			},
+			"text": " It's also the definition of the application."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,720",
+				"to": "00:28:27,560"
+			},
+			"offsets": {
+				"from": 1704720,
+				"to": 1707560
+			},
+			"text": " An example here is people have written video players that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:27,560",
+				"to": "00:28:28,240"
+			},
+			"offsets": {
+				"from": 1707560,
+				"to": 1708240
+			},
+			"text": " go over IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,240",
+				"to": "00:28:31,000"
+			},
+			"offsets": {
+				"from": 1708240,
+				"to": 1711000
+			},
+			"text": " People have taken entire legal codes."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:31,000",
+				"to": "00:28:34,360"
+			},
+			"offsets": {
+				"from": 1711000,
+				"to": 1714360
+			},
+			"text": " People have made like imager, solid clones."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:34,360",
+				"to": "00:28:37,840"
+			},
+			"offsets": {
+				"from": 1714360,
+				"to": 1717840
+			},
+			"text": " People are able to do 3D models of stuff and be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,840",
+				"to": "00:28:40,760"
+			},
+			"offsets": {
+				"from": 1717840,
+				"to": 1720760
+			},
+			"text": " share them with IPFS because these are data intensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:40,760",
+				"to": "00:28:42,800"
+			},
+			"offsets": {
+				"from": 1720760,
+				"to": 1722800
+			},
+			"text": " applications."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,800",
+				"to": "00:28:45,080"
+			},
+			"offsets": {
+				"from": 1722800,
+				"to": 1725080
+			},
+			"text": " This is the only one in this set that is not an actual"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,080",
+				"to": "00:28:45,720"
+			},
+			"offsets": {
+				"from": 1725080,
+				"to": 1725720
+			},
+			"text": " IPFS application."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,720",
+				"to": "00:28:47,120"
+			},
+			"offsets": {
+				"from": 1725720,
+				"to": 1727120
+			},
+			"text": " This is a Minecraft."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,120",
+				"to": "00:28:48,840"
+			},
+			"offsets": {
+				"from": 1727120,
+				"to": 1728840
+			},
+			"text": " But people are taking Minecraft and making it so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:48,840",
+				"to": "00:28:50,600"
+			},
+			"offsets": {
+				"from": 1728840,
+				"to": 1730600
+			},
+			"text": " there's links between worlds."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,600",
+				"to": "00:28:52,600"
+			},
+			"offsets": {
+				"from": 1730600,
+				"to": 1732600
+			},
+			"text": " So you're walking through a Minecraft world and then you"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,600",
+				"to": "00:28:55,080"
+			},
+			"offsets": {
+				"from": 1732600,
+				"to": 1735080
+			},
+			"text": " find a link and you walk somewhere else."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:55,080",
+				"to": "00:28:57,800"
+			},
+			"offsets": {
+				"from": 1735080,
+				"to": 1737800
+			},
+			"text": " And all of that is served over IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,800",
+				"to": "00:29:01,720"
+			},
+			"offsets": {
+				"from": 1737800,
+				"to": 1741720
+			},
+			"text": " People are storing documents, blogs, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:01,720",
+				"to": "00:29:03,760"
+			},
+			"offsets": {
+				"from": 1741720,
+				"to": 1743760
+			},
+			"text": " You can do containers on DMs, definition and distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,760",
+				"to": "00:29:04,760"
+			},
+			"offsets": {
+				"from": 1743760,
+				"to": 1744760
+			},
+			"text": " of these."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:04,760",
+				"to": "00:29:09,440"
+			},
+			"offsets": {
+				"from": 1744760,
+				"to": 1749440
+			},
+			"text": " You can think of these as like, Merkle containers, where the"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:09,440",
+				"to": "00:29:12,760"
+			},
+			"offsets": {
+				"from": 1749440,
+				"to": 1752760
+			},
+			"text": " entire application and the graph is defined as a proper"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,760",
+				"to": "00:29:15,760"
+			},
+			"offsets": {
+				"from": 1752760,
+				"to": 1755760
+			},
+			"text": " Merkle graph, which should have been the case from"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,760",
+				"to": "00:29:16,560"
+			},
+			"offsets": {
+				"from": 1755760,
+				"to": 1756560
+			},
+			"text": " the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,560",
+				"to": "00:29:18,800"
+			},
+			"offsets": {
+				"from": 1756560,
+				"to": 1758800
+			},
+			"text": " But anyway, you can do whole package managers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:18,800",
+				"to": "00:29:19,680"
+			},
+			"offsets": {
+				"from": 1758800,
+				"to": 1759680
+			},
+			"text": " distribute them this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:19,680",
+				"to": "00:29:22,600"
+			},
+			"offsets": {
+				"from": 1759680,
+				"to": 1762600
+			},
+			"text": " So we're already working on doing this to several of"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:22,600",
+				"to": "00:29:25,640"
+			},
+			"offsets": {
+				"from": 1762600,
+				"to": 1765640
+			},
+			"text": " these package managers, where we're taking all of the code"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:25,640",
+				"to": "00:29:28,880"
+			},
+			"offsets": {
+				"from": 1765640,
+				"to": 1768880
+			},
+			"text": " or all of the actual compiled binaries and adding them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,880",
+				"to": "00:29:29,800"
+			},
+			"offsets": {
+				"from": 1768880,
+				"to": 1769800
+			},
+			"text": " IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:29,800",
+				"to": "00:29:32,360"
+			},
+			"offsets": {
+				"from": 1769800,
+				"to": 1772360
+			},
+			"text": " Usually, first of all, you get a huge space savings because"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:32,360",
+				"to": "00:29:33,680"
+			},
+			"offsets": {
+				"from": 1772360,
+				"to": 1773680
+			},
+			"text": " tons of stuff is duplicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:33,680",
+				"to": "00:29:36,920"
+			},
+			"offsets": {
+				"from": 1773680,
+				"to": 1776920
+			},
+			"text": " But then you also get to distribute them faster because"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,920",
+				"to": "00:29:39,920"
+			},
+			"offsets": {
+				"from": 1776920,
+				"to": 1779920
+			},
+			"text": " if machines in the same data center have it, then things"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:39,920",
+				"to": "00:29:41,160"
+			},
+			"offsets": {
+				"from": 1779920,
+				"to": 1781160
+			},
+			"text": " move faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:41,160",
+				"to": "00:29:43,280"
+			},
+			"offsets": {
+				"from": 1781160,
+				"to": 1783280
+			},
+			"text": " Key addressing, archiving, backup everything, people are"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,280",
+				"to": "00:29:45,960"
+			},
+			"offsets": {
+				"from": 1783280,
+				"to": 1785960
+			},
+			"text": " archiving all the stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:45,960",
+				"to": "00:29:47,040"
+			},
+			"offsets": {
+				"from": 1785960,
+				"to": 1787040
+			},
+			"text": " All of these--"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,040",
+				"to": "00:29:48,800"
+			},
+			"offsets": {
+				"from": 1787040,
+				"to": 1788800
+			},
+			"text": " a whole bunch of the data here, you can archive a"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:48,800",
+				"to": "00:29:51,520"
+			},
+			"offsets": {
+				"from": 1788800,
+				"to": 1791520
+			},
+			"text": " IPFS and there's efforts on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:51,520",
+				"to": "00:29:53,120"
+			},
+			"offsets": {
+				"from": 1791520,
+				"to": 1793120
+			},
+			"text": " Now, when it comes to Ethereum--"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:53,120",
+				"to": "00:29:54,880"
+			},
+			"offsets": {
+				"from": 1793120,
+				"to": 1794880
+			},
+			"text": " and this is like the last line, I promise--"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,880",
+				"to": "00:29:57,360"
+			},
+			"offsets": {
+				"from": 1794880,
+				"to": 1797360
+			},
+			"text": " when it comes to Ethereum, and by the way, the logos fit"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:57,360",
+				"to": "00:29:58,360"
+			},
+			"offsets": {
+				"from": 1797360,
+				"to": 1798360
+			},
+			"text": " really nicely together."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:58,360",
+				"to": "00:30:01,800"
+			},
+			"offsets": {
+				"from": 1798360,
+				"to": 1801800
+			},
+			"text": " Just wanted to hold that out."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:01,800",
+				"to": "00:30:04,040"
+			},
+			"offsets": {
+				"from": 1801800,
+				"to": 1804040
+			},
+			"text": " So you can use it for off-chain data."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,040",
+				"to": "00:30:07,400"
+			},
+			"offsets": {
+				"from": 1804040,
+				"to": 1807400
+			},
+			"text": " So the very first thing that you can think of is like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:07,400",
+				"to": "00:30:09,320"
+			},
+			"offsets": {
+				"from": 1807400,
+				"to": 1809320
+			},
+			"text": " anything that just shouldn't be on the blockchain because"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,320",
+				"to": "00:30:11,360"
+			},
+			"offsets": {
+				"from": 1809320,
+				"to": 1811360
+			},
+			"text": " it's too big."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:11,360",
+				"to": "00:30:14,760"
+			},
+			"offsets": {
+				"from": 1811360,
+				"to": 1814760
+			},
+			"text": " Put an IPFS, take a link, and then serve that link with"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,760",
+				"to": "00:30:15,400"
+			},
+			"offsets": {
+				"from": 1814760,
+				"to": 1815400
+			},
+			"text": " your own node."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:15,400",
+				"to": "00:30:18,040"
+			},
+			"offsets": {
+				"from": 1815400,
+				"to": 1818040
+			},
+			"text": " But that means that anybody else can serve it as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,040",
+				"to": "00:30:19,920"
+			},
+			"offsets": {
+				"from": 1818040,
+				"to": 1819920
+			},
+			"text": " And it means that you can disappear."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:19,920",
+				"to": "00:30:23,640"
+			},
+			"offsets": {
+				"from": 1819920,
+				"to": 1823640
+			},
+			"text": " And the content doesn't disappear."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:23,640",
+				"to": "00:30:25,760"
+			},
+			"offsets": {
+				"from": 1823640,
+				"to": 1825760
+			},
+			"text": " So big stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:25,760",
+				"to": "00:30:28,480"
+			},
+			"offsets": {
+				"from": 1825760,
+				"to": 1828480
+			},
+			"text": " You can use them, again, to define and distribute these"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:28,480",
+				"to": "00:30:29,440"
+			},
+			"offsets": {
+				"from": 1828480,
+				"to": 1829440
+			},
+			"text": " distribute daps."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:29,440",
+				"to": "00:30:32,080"
+			},
+			"offsets": {
+				"from": 1829440,
+				"to": 1832080
+			},
+			"text": " So these decentralized distributed applications, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:32,080",
+				"to": "00:30:34,360"
+			},
+			"offsets": {
+				"from": 1832080,
+				"to": 1834360
+			},
+			"text": " can write them, put them on IPFS, put all the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:34,360",
+				"to": "00:30:37,560"
+			},
+			"offsets": {
+				"from": 1834360,
+				"to": 1837560
+			},
+			"text": " there, people are already doing this, and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:37,560",
+				"to": "00:30:39,440"
+			},
+			"offsets": {
+				"from": 1837560,
+				"to": 1839440
+			},
+			"text": " So yeah, the code and the assets and everything, but also"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:39,440",
+				"to": "00:30:41,200"
+			},
+			"offsets": {
+				"from": 1839440,
+				"to": 1841200
+			},
+			"text": " the user's data."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,200",
+				"to": "00:30:42,440"
+			},
+			"offsets": {
+				"from": 1841200,
+				"to": 1842440
+			},
+			"text": " This is an example of one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:42,440",
+				"to": "00:30:43,160"
+			},
+			"offsets": {
+				"from": 1842440,
+				"to": 1843160
+			},
+			"text": " This is ours."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:43,160",
+				"to": "00:30:46,600"
+			},
+			"offsets": {
+				"from": 1843160,
+				"to": 1846600
+			},
+			"text": " This is our web UI for an IPFS node."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,600",
+				"to": "00:30:48,400"
+			},
+			"offsets": {
+				"from": 1846600,
+				"to": 1848400
+			},
+			"text": " All of the code for this is an IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:48,400",
+				"to": "00:30:51,080"
+			},
+			"offsets": {
+				"from": 1848400,
+				"to": 1851080
+			},
+			"text": " You pull it out, you run it, and it's completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,080",
+				"to": "00:30:51,600"
+			},
+			"offsets": {
+				"from": 1851080,
+				"to": 1851600
+			},
+			"text": " distributed."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:51,600",
+				"to": "00:30:56,480"
+			},
+			"offsets": {
+				"from": 1851600,
+				"to": 1856480
+			},
+			"text": " It's a very cool experience when you do this, and you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:56,480",
+				"to": "00:30:58,720"
+			},
+			"offsets": {
+				"from": 1856480,
+				"to": 1858720
+			},
+			"text": " like, whoa, not touching a web server ever."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:58,720",
+				"to": "00:31:00,720"
+			},
+			"offsets": {
+				"from": 1858720,
+				"to": 1860720
+			},
+			"text": " Like, it just-- my browser does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:00,720",
+				"to": "00:31:04,440"
+			},
+			"offsets": {
+				"from": 1860720,
+				"to": 1864440
+			},
+			"text": " Here's Swarmchan, an example of a B-style, a 4-time-style"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,440",
+				"to": "00:31:06,920"
+			},
+			"offsets": {
+				"from": 1864440,
+				"to": 1866920
+			},
+			"text": " board done with IPFS and Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,920",
+				"to": "00:31:11,120"
+			},
+			"offsets": {
+				"from": 1866920,
+				"to": 1871120
+			},
+			"text": " So you actually pay Ether to be able to post."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:11,120",
+				"to": "00:31:13,000"
+			},
+			"offsets": {
+				"from": 1871120,
+				"to": 1873000
+			},
+			"text": " So you can do a chunk base for it, just Swarm was"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,000",
+				"to": "00:31:14,560"
+			},
+			"offsets": {
+				"from": 1873000,
+				"to": 1874560
+			},
+			"text": " pointing out."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:14,560",
+				"to": "00:31:18,000"
+			},
+			"offsets": {
+				"from": 1874560,
+				"to": 1878000
+			},
+			"text": " And you can do-- now, the two interesting things here, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:18,000",
+				"to": "00:31:20,320"
+			},
+			"offsets": {
+				"from": 1878000,
+				"to": 1880320
+			},
+			"text": " sort of I'll end this talk this way, the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:20,320",
+				"to": "00:31:24,280"
+			},
+			"offsets": {
+				"from": 1880320,
+				"to": 1884280
+			},
+			"text": " interesting things where IPFS could be useful for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:24,280",
+				"to": "00:31:27,480"
+			},
+			"offsets": {
+				"from": 1884280,
+				"to": 1887480
+			},
+			"text": " and are worth investigating carefully is representing the"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,480",
+				"to": "00:31:31,000"
+			},
+			"offsets": {
+				"from": 1887480,
+				"to": 1891000
+			},
+			"text": " entire Mercful Patricia 3 state as IPFS nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,000",
+				"to": "00:31:34,360"
+			},
+			"offsets": {
+				"from": 1891000,
+				"to": 1894360
+			},
+			"text": " So you're able to directly index into the state tree and"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:34,360",
+				"to": "00:31:36,000"
+			},
+			"offsets": {
+				"from": 1894360,
+				"to": 1896000
+			},
+			"text": " pull things out."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:36,000",
+				"to": "00:31:39,160"
+			},
+			"offsets": {
+				"from": 1896000,
+				"to": 1899160
+			},
+			"text": " And use a bunch of IPFS nodes that may not speak Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:39,160",
+				"to": "00:31:40,600"
+			},
+			"offsets": {
+				"from": 1899160,
+				"to": 1900600
+			},
+			"text": " yet, but they speak IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:40,600",
+				"to": "00:31:44,520"
+			},
+			"offsets": {
+				"from": 1900600,
+				"to": 1904520
+			},
+			"text": " You can then start addressing Ethereum state with them and"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,520",
+				"to": "00:31:47,120"
+			},
+			"offsets": {
+				"from": 1904520,
+				"to": 1907120
+			},
+			"text": " use them to move around Ethereum state, which is really cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,120",
+				"to": "00:31:49,800"
+			},
+			"offsets": {
+				"from": 1907120,
+				"to": 1909800
+			},
+			"text": " And you can do that to the blockchain itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,800",
+				"to": "00:31:52,360"
+			},
+			"offsets": {
+				"from": 1909800,
+				"to": 1912360
+			},
+			"text": " You can take the entire definition of the blockchain and"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:52,360",
+				"to": "00:31:54,920"
+			},
+			"offsets": {
+				"from": 1912360,
+				"to": 1914920
+			},
+			"text": " just import it into IPFS and then distribute all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:54,920",
+				"to": "00:31:57,160"
+			},
+			"offsets": {
+				"from": 1914920,
+				"to": 1917160
+			},
+			"text": " content this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:57,160",
+				"to": "00:32:00,400"
+			},
+			"offsets": {
+				"from": 1917160,
+				"to": 1920400
+			},
+			"text": " And so this is a blog post from Chris that talks a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:00,400",
+				"to": "00:32:01,160"
+			},
+			"offsets": {
+				"from": 1920400,
+				"to": 1921160
+			},
+			"text": " bit about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,160",
+				"to": "00:32:01,560"
+			},
+			"offsets": {
+				"from": 1921160,
+				"to": 1921560
+			},
+			"text": " Very cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:01,560",
+				"to": "00:32:02,840"
+			},
+			"offsets": {
+				"from": 1921560,
+				"to": 1922840
+			},
+			"text": " So check it out."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:02,840",
+				"to": "00:32:03,200"
+			},
+			"offsets": {
+				"from": 1922840,
+				"to": 1923200
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:03,200",
+				"to": "00:32:04,040"
+			},
+			"offsets": {
+				"from": 1923200,
+				"to": 1924040
+			},
+			"text": " So that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:04,040",
+				"to": "00:32:05,040"
+			},
+			"offsets": {
+				"from": 1924040,
+				"to": 1925040
+			},
+			"text": " If you guys didn't get it, get it."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:05,040",
+				"to": "00:32:06,080"
+			},
+			"offsets": {
+				"from": 1925040,
+				"to": 1926080
+			},
+			"text": " You're so curious."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:06,080",
+				"to": "00:32:07,000"
+			},
+			"offsets": {
+				"from": 1926080,
+				"to": 1927000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:07,000",
+				"to": "00:32:08,000"
+			},
+			"offsets": {
+				"from": 1927000,
+				"to": 1928000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:08,000",
+				"to": "00:32:09,000"
+			},
+			"offsets": {
+				"from": 1928000,
+				"to": 1929000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,000",
+				"to": "00:32:09,000"
+			},
+			"offsets": {
+				"from": 1929000,
+				"to": 1929000
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:09,000",
+				"to": "00:32:10,000"
+			},
+			"offsets": {
+				"from": 1929000,
+				"to": 1930000
+			},
+			"text": " Thanks, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:32:10,000",
+				"to": "00:32:12,000"
+			},
+			"offsets": {
+				"from": 1930000,
+				"to": 1932000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:32:12,000",
+				"to": "00:32:22,000"
+			},
+			"offsets": {
+				"from": 1932000,
+				"to": 1942000
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

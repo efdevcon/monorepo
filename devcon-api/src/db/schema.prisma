@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:devcon.db"
+}
+
+model Event {
+  id String @id @unique
+  edition Int
+  title String
+  description String
+  location String
+  startDate DateTime
+  endDate DateTime
+  speakers Speaker[]
+  sessions Session[]
+  venue_name String
+  venue_description String
+  venue_address String
+  venue_website String
+  venue_directions String
+  rooms Room[]
+}
+
+model Room {
+  id String @id @unique
+  name String
+  description String?
+  info String?
+  capacity Int?
+  events Event[]
+  sessions Session[]
+}
+
+model Speaker {
+  id String @id @unique
+  sourceId String
+  name String
+  avatar String
+  description String?
+  twitter String?
+  events Event[]
+  sessions Session[]
+}
+
+model Session {
+  id String @id @unique
+  sourceId String
+  title String
+  description String
+  track String
+  type String
+  expertise String
+  tags String
+  duration Int?
+  language String?
+  sources_youtubeId String?
+  sources_ipfsHash String?
+  sources_swarmHash String?
+  speakers Speaker[]
+  event Event @relation(fields: [eventId], references: [id])
+  eventId String
+  slot_start DateTime?
+  slot_end DateTime?
+  slot_room Room? @relation(fields: [slot_roomId], references: [id])
+  slot_roomId String?
+  resources_slides String?
+}
+
+// model Tag {
+//   name String @id
+//   sessions Session[]
+// }

@@ -1,0 +1,6555 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:14,040"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 14040
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,040",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 14040,
+				"to": 15360
+			},
+			"text": " Good afternoon, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:16,440"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 16440
+			},
+			"text": " My name is Kosho."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,440",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 16440,
+				"to": 20840
+			},
+			"text": " I am from the Nimbus client team."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:23,000"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 23000
+			},
+			"text": " Hopefully, you'll know what Nimbus client team is."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,000",
+				"to": "00:00:25,320"
+			},
+			"offsets": {
+				"from": 23000,
+				"to": 25320
+			},
+			"text": " But if not, I'll talk to you about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,320",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 25320,
+				"to": 28640
+			},
+			"text": " I support Nimbus client team with their ecosystem development"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,640",
+				"to": "00:00:32,360"
+			},
+			"offsets": {
+				"from": 28640,
+				"to": 32360
+			},
+			"text": " efforts, which means I get to go out and talk to end users"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,360",
+				"to": "00:00:36,320"
+			},
+			"offsets": {
+				"from": 32360,
+				"to": 36320
+			},
+			"text": " who use the Nimbus clients or other clients for that matter"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,320",
+				"to": "00:00:39,720"
+			},
+			"offsets": {
+				"from": 36320,
+				"to": 39720
+			},
+			"text": " and understand what their experience is today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,720",
+				"to": "00:00:42,200"
+			},
+			"offsets": {
+				"from": 39720,
+				"to": 42200
+			},
+			"text": " and what their expectations are of the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,200",
+				"to": "00:00:45,160"
+			},
+			"offsets": {
+				"from": 42200,
+				"to": 45160
+			},
+			"text": " So in this talk today, I should start"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,160",
+				"to": "00:00:46,960"
+			},
+			"offsets": {
+				"from": 45160,
+				"to": 46960
+			},
+			"text": " to use the clicker as well, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,960",
+				"to": "00:00:51,300"
+			},
+			"offsets": {
+				"from": 46960,
+				"to": 51300
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,300",
+				"to": "00:00:52,360"
+			},
+			"offsets": {
+				"from": 51300,
+				"to": 52360
+			},
+			"text": " There we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,360",
+				"to": "00:00:54,240"
+			},
+			"offsets": {
+				"from": 52360,
+				"to": 54240
+			},
+			"text": " Yeah, so I just wanted to share some of my thoughts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,240",
+				"to": "00:00:57,880"
+			},
+			"offsets": {
+				"from": 54240,
+				"to": 57880
+			},
+			"text": " and experience talking to a lot of the validators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,880",
+				"to": "00:01:00,320"
+			},
+			"offsets": {
+				"from": 57880,
+				"to": 60320
+			},
+			"text": " Whether they are centralized exchanges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,320",
+				"to": "00:01:03,120"
+			},
+			"offsets": {
+				"from": 60320,
+				"to": 63120
+			},
+			"text": " whether they are the professional node operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,120",
+				"to": "00:01:04,840"
+			},
+			"offsets": {
+				"from": 63120,
+				"to": 64840
+			},
+			"text": " or individual users."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,840",
+				"to": "00:01:07,960"
+			},
+			"offsets": {
+				"from": 64840,
+				"to": 67960
+			},
+			"text": " I just want to share the feedback that you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,960",
+				"to": "00:01:10,440"
+			},
+			"offsets": {
+				"from": 67960,
+				"to": 70440
+			},
+			"text": " when you talk to these validators about what's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,440",
+				"to": "00:01:13,160"
+			},
+			"offsets": {
+				"from": 70440,
+				"to": 73160
+			},
+			"text": " the future of the client experience?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,160",
+				"to": "00:01:14,480"
+			},
+			"offsets": {
+				"from": 73160,
+				"to": 74480
+			},
+			"text": " Like, what does the client experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,480",
+				"to": "00:01:17,480"
+			},
+			"offsets": {
+				"from": 74480,
+				"to": 77480
+			},
+			"text": " need to look like in the future?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,480",
+				"to": "00:01:19,720"
+			},
+			"offsets": {
+				"from": 77480,
+				"to": 79720
+			},
+			"text": " As you can see, I titled my talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,720",
+				"to": "00:01:23,040"
+			},
+			"offsets": {
+				"from": 79720,
+				"to": 83040
+			},
+			"text": " \"Validating Made Simple, Light and Simple.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,040",
+				"to": "00:01:25,840"
+			},
+			"offsets": {
+				"from": 83040,
+				"to": 85840
+			},
+			"text": " It may be light, but it's definitely not simple right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,840",
+				"to": "00:01:27,640"
+			},
+			"offsets": {
+				"from": 85840,
+				"to": 87640
+			},
+			"text": " So that's something that we definitely"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,640",
+				"to": "00:01:30,200"
+			},
+			"offsets": {
+				"from": 87640,
+				"to": 90200
+			},
+			"text": " want to fix in the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,200",
+				"to": "00:01:32,240"
+			},
+			"offsets": {
+				"from": 90200,
+				"to": 92240
+			},
+			"text": " Let's talk about Nimbus a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,240",
+				"to": "00:01:35,280"
+			},
+			"offsets": {
+				"from": 92240,
+				"to": 95280
+			},
+			"text": " So Nimbus is a Ethereum client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,280",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 95280,
+				"to": 98000
+			},
+			"text": " It's a consensus client that you can use right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:41,800"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 101800
+			},
+			"text": " It's an easy, efficient, low resource intensive"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,800",
+				"to": "00:01:46,880"
+			},
+			"offsets": {
+				"from": 101800,
+				"to": 106880
+			},
+			"text": " or less very efficient, essentially, stable consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,880",
+				"to": "00:01:47,240"
+			},
+			"offsets": {
+				"from": 106880,
+				"to": 107240
+			},
+			"text": " client."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,240",
+				"to": "00:01:50,640"
+			},
+			"offsets": {
+				"from": 107240,
+				"to": 110640
+			},
+			"text": " So you can use the Nimbus client with any other execution"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,640",
+				"to": "00:01:54,360"
+			},
+			"offsets": {
+				"from": 110640,
+				"to": 114360
+			},
+			"text": " client if you're running an Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,360",
+				"to": "00:01:56,440"
+			},
+			"offsets": {
+				"from": 114360,
+				"to": 116440
+			},
+			"text": " The story behind Nimbus is obviously"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,440",
+				"to": "00:02:00,680"
+			},
+			"offsets": {
+				"from": 116440,
+				"to": 120680
+			},
+			"text": " around lowering the barriers to enable participation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,680",
+				"to": "00:02:02,320"
+			},
+			"offsets": {
+				"from": 120680,
+				"to": 122320
+			},
+			"text": " in the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,320",
+				"to": "00:02:04,640"
+			},
+			"offsets": {
+				"from": 122320,
+				"to": 124640
+			},
+			"text": " And we are very specific about the words."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,640",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 124640,
+				"to": 128000
+			},
+			"text": " It's the Ethereum network, not Ethereum in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 130560
+			},
+			"text": " You want more participation in the Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:12,760"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 132760
+			},
+			"text": " Truly see it decentralized further."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,760",
+				"to": "00:02:15,600"
+			},
+			"offsets": {
+				"from": 132760,
+				"to": 135600
+			},
+			"text": " The reason behind that is also the next slide, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,600",
+				"to": "00:02:20,920"
+			},
+			"offsets": {
+				"from": 135600,
+				"to": 140920
+			},
+			"text": " is it's part of the status network portfolio of projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,920",
+				"to": "00:02:24,120"
+			},
+			"offsets": {
+				"from": 140920,
+				"to": 144120
+			},
+			"text": " Many of you will recognize the status network project"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,120",
+				"to": "00:02:26,200"
+			},
+			"offsets": {
+				"from": 144120,
+				"to": 146200
+			},
+			"text": " or the status app, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,200",
+				"to": "00:02:29,360"
+			},
+			"offsets": {
+				"from": 146200,
+				"to": 149360
+			},
+			"text": " Many of you will have that on your phones as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,360",
+				"to": "00:02:31,760"
+			},
+			"offsets": {
+				"from": 149360,
+				"to": 151760
+			},
+			"text": " and hopefully are using it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,760",
+				"to": "00:02:35,040"
+			},
+			"offsets": {
+				"from": 151760,
+				"to": 155040
+			},
+			"text": " But the story is status started back in 2017"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,040",
+				"to": "00:02:38,800"
+			},
+			"offsets": {
+				"from": 155040,
+				"to": 158800
+			},
+			"text": " with the mission to create a decentralized peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,800",
+				"to": "00:02:41,360"
+			},
+			"offsets": {
+				"from": 158800,
+				"to": 161360
+			},
+			"text": " censorship-resistant chat application."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,360",
+				"to": "00:02:42,960"
+			},
+			"offsets": {
+				"from": 161360,
+				"to": 162960
+			},
+			"text": " But as we started building it, we realized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,960",
+				"to": "00:02:44,800"
+			},
+			"offsets": {
+				"from": 162960,
+				"to": 164800
+			},
+			"text": " that there is a lot of work on the infrastructure side"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,800",
+				"to": "00:02:46,200"
+			},
+			"offsets": {
+				"from": 164800,
+				"to": 166200
+			},
+			"text": " that needs to be done."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,200",
+				"to": "00:02:48,320"
+			},
+			"offsets": {
+				"from": 166200,
+				"to": 168320
+			},
+			"text": " And that includes building the infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,320",
+				"to": "00:02:51,240"
+			},
+			"offsets": {
+				"from": 168320,
+				"to": 171240
+			},
+			"text": " for enabling a completely decentralized peer-to-peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,240",
+				"to": "00:02:54,080"
+			},
+			"offsets": {
+				"from": 171240,
+				"to": 174080
+			},
+			"text": " messaging, storage, and compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,080",
+				"to": "00:02:56,960"
+			},
+			"offsets": {
+				"from": 174080,
+				"to": 176960
+			},
+			"text": " That is where some of these projects actually fit in."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,960",
+				"to": "00:02:59,240"
+			},
+			"offsets": {
+				"from": 176960,
+				"to": 179240
+			},
+			"text": " If you want to know more about some of these projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,240",
+				"to": "00:03:03,840"
+			},
+			"offsets": {
+				"from": 179240,
+				"to": 183840
+			},
+			"text": " please pop by the Nimbus booth on level three"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,840",
+				"to": "00:03:06,840"
+			},
+			"offsets": {
+				"from": 183840,
+				"to": 186840
+			},
+			"text": " and we'll be happy to talk through the details"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,840",
+				"to": "00:03:08,720"
+			},
+			"offsets": {
+				"from": 186840,
+				"to": 188720
+			},
+			"text": " of each of these projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,720",
+				"to": "00:03:11,200"
+			},
+			"offsets": {
+				"from": 188720,
+				"to": 191200
+			},
+			"text": " But there is a common thread that runs across all these projects,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,200",
+				"to": "00:03:14,320"
+			},
+			"offsets": {
+				"from": 191200,
+				"to": 194320
+			},
+			"text": " and that is to enable true decentralization, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,320",
+				"to": "00:03:18,200"
+			},
+			"offsets": {
+				"from": 194320,
+				"to": 198200
+			},
+			"text": " And the focus on privacy and censorship resistance."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,200",
+				"to": "00:03:22,240"
+			},
+			"offsets": {
+				"from": 198200,
+				"to": 202240
+			},
+			"text": " And that sort of theme flows through to Nimbus as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,240",
+				"to": "00:03:28,240"
+			},
+			"offsets": {
+				"from": 202240,
+				"to": 208240
+			},
+			"text": " So when we talk about the future client experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,240",
+				"to": "00:03:31,960"
+			},
+			"offsets": {
+				"from": 208240,
+				"to": 211960
+			},
+			"text": " it needs to be in the context of who the users are."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,960",
+				"to": "00:03:34,160"
+			},
+			"offsets": {
+				"from": 211960,
+				"to": 214160
+			},
+			"text": " And both the current users, as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,160",
+				"to": "00:03:38,640"
+			},
+			"offsets": {
+				"from": 214160,
+				"to": 218640
+			},
+			"text": " as what we see the composition of the validator set"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,640",
+				"to": "00:03:41,880"
+			},
+			"offsets": {
+				"from": 218640,
+				"to": 221880
+			},
+			"text": " to look like maybe a career or two down the line of future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,880",
+				"to": "00:03:43,560"
+			},
+			"offsets": {
+				"from": 221880,
+				"to": 223560
+			},
+			"text": " in future in general, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,560",
+				"to": "00:03:46,400"
+			},
+			"offsets": {
+				"from": 223560,
+				"to": 226400
+			},
+			"text": " And who are our current and future users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,400",
+				"to": "00:03:50,840"
+			},
+			"offsets": {
+				"from": 226400,
+				"to": 230840
+			},
+			"text": " So our current and future users can be broadly classified"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,840",
+				"to": "00:03:52,200"
+			},
+			"offsets": {
+				"from": 230840,
+				"to": 232200
+			},
+			"text": " into categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,200",
+				"to": "00:03:56,360"
+			},
+			"offsets": {
+				"from": 232200,
+				"to": 236360
+			},
+			"text": " It's the individuals, or you can call them the solo stakers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,360",
+				"to": "00:03:58,760"
+			},
+			"offsets": {
+				"from": 236360,
+				"to": 238760
+			},
+			"text": " and the professional node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,760",
+				"to": "00:04:00,840"
+			},
+			"offsets": {
+				"from": 238760,
+				"to": 240840
+			},
+			"text": " Now, there are some other--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,840",
+				"to": "00:04:03,680"
+			},
+			"offsets": {
+				"from": 240840,
+				"to": 243680
+			},
+			"text": " you might call them customers or segments that are in between."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,680",
+				"to": "00:04:06,040"
+			},
+			"offsets": {
+				"from": 243680,
+				"to": 246040
+			},
+			"text": " But broadly speaking, you can put them in one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,040",
+				"to": "00:04:07,200"
+			},
+			"offsets": {
+				"from": 246040,
+				"to": 247200
+			},
+			"text": " of these two categories."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,200",
+				"to": "00:04:09,040"
+			},
+			"offsets": {
+				"from": 247200,
+				"to": 249040
+			},
+			"text": " And we can work through the details"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,040",
+				"to": "00:04:11,560"
+			},
+			"offsets": {
+				"from": 249040,
+				"to": 251560
+			},
+			"text": " as we work through the presentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,560",
+				"to": "00:04:14,760"
+			},
+			"offsets": {
+				"from": 251560,
+				"to": 254760
+			},
+			"text": " So let's talk about each one of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,760",
+				"to": "00:04:17,280"
+			},
+			"offsets": {
+				"from": 254760,
+				"to": 257280
+			},
+			"text": " We will talk about the professional node operators first."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,280",
+				"to": "00:04:20,840"
+			},
+			"offsets": {
+				"from": 257280,
+				"to": 260840
+			},
+			"text": " And then we will talk about the individual users."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,840",
+				"to": "00:04:23,240"
+			},
+			"offsets": {
+				"from": 260840,
+				"to": 263240
+			},
+			"text": " And we'll see what the similarities and differences"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,240",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 263240,
+				"to": 268320
+			},
+			"text": " are in terms of their expectations of using a client"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:31,440"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 271440
+			},
+			"text": " to run a validator."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,440",
+				"to": "00:04:34,400"
+			},
+			"offsets": {
+				"from": 271440,
+				"to": 274400
+			},
+			"text": " So professional node operators, like who are these?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,400",
+				"to": "00:04:37,080"
+			},
+			"offsets": {
+				"from": 274400,
+				"to": 277080
+			},
+			"text": " Let's work quick show of hands for people"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,080",
+				"to": "00:04:41,320"
+			},
+			"offsets": {
+				"from": 277080,
+				"to": 281320
+			},
+			"text": " who have staked their ETH with, let's say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,320",
+				"to": "00:04:45,240"
+			},
+			"offsets": {
+				"from": 281320,
+				"to": 285240
+			},
+			"text": " a centralized exchange or LIDO or not Rocket Pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,240",
+				"to": "00:04:49,760"
+			},
+			"offsets": {
+				"from": 285240,
+				"to": 289760
+			},
+			"text": " but any of the LIDO or centralized exchanges, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,760",
+				"to": "00:04:51,280"
+			},
+			"offsets": {
+				"from": 289760,
+				"to": 291280
+			},
+			"text": " All right, a few hands here."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,280",
+				"to": "00:04:51,800"
+			},
+			"offsets": {
+				"from": 291280,
+				"to": 291800
+			},
+			"text": " That's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,800",
+				"to": "00:04:53,200"
+			},
+			"offsets": {
+				"from": 291800,
+				"to": 293200
+			},
+			"text": " That's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,200",
+				"to": "00:04:54,400"
+			},
+			"offsets": {
+				"from": 293200,
+				"to": 294400
+			},
+			"text": " Hopefully, you see more hands when"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,400",
+				"to": "00:04:58,040"
+			},
+			"offsets": {
+				"from": 294400,
+				"to": 298040
+			},
+			"text": " we come to the individual segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,040",
+				"to": "00:05:00,520"
+			},
+			"offsets": {
+				"from": 298040,
+				"to": 300520
+			},
+			"text": " But professional node operators are an important part"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,520",
+				"to": "00:05:03,040"
+			},
+			"offsets": {
+				"from": 300520,
+				"to": 303040
+			},
+			"text": " of the network right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,040",
+				"to": "00:05:05,320"
+			},
+			"offsets": {
+				"from": 303040,
+				"to": 305320
+			},
+			"text": " Like it's not a segment we can ignore, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,320",
+				"to": "00:05:07,440"
+			},
+			"offsets": {
+				"from": 305320,
+				"to": 307440
+			},
+			"text": " Whether we like it or not, they are here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,440",
+				"to": "00:05:10,600"
+			},
+			"offsets": {
+				"from": 307440,
+				"to": 310600
+			},
+			"text": " They do offer an important service right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,600",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 310600,
+				"to": 312880
+			},
+			"text": " And they are a large part of the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:16,760"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 316760
+			},
+			"text": " That needs to be taken seriously in terms of their expectations"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,760",
+				"to": "00:05:17,880"
+			},
+			"offsets": {
+				"from": 316760,
+				"to": 317880
+			},
+			"text": " as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,880",
+				"to": "00:05:20,440"
+			},
+			"offsets": {
+				"from": 317880,
+				"to": 320440
+			},
+			"text": " So in my role, I have had the opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,440",
+				"to": "00:05:23,240"
+			},
+			"offsets": {
+				"from": 320440,
+				"to": 323240
+			},
+			"text": " to speak with about 12 to 15 node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,240",
+				"to": "00:05:25,720"
+			},
+			"offsets": {
+				"from": 323240,
+				"to": 325720
+			},
+			"text": " in the last six to eight months."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,720",
+				"to": "00:05:29,560"
+			},
+			"offsets": {
+				"from": 325720,
+				"to": 329560
+			},
+			"text": " And it's really interesting when we talk to them about their setup,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,560",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 329560,
+				"to": 333000
+			},
+			"text": " their history as to why and how they have set up the node"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:36,800"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 336800
+			},
+			"text": " operations that we understand why they've chosen certain clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,800",
+				"to": "00:05:39,280"
+			},
+			"offsets": {
+				"from": 336800,
+				"to": 339280
+			},
+			"text": " and why they've chosen to work with certain clients."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,280",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 339280,
+				"to": 342080
+			},
+			"text": " And in that process, we learned a few things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:44,320"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 344320
+			},
+			"text": " which is really interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,320",
+				"to": "00:05:45,800"
+			},
+			"offsets": {
+				"from": 344320,
+				"to": 345800
+			},
+			"text": " Some of these node operators, in fact,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,800",
+				"to": "00:05:48,640"
+			},
+			"offsets": {
+				"from": 345800,
+				"to": 348640
+			},
+			"text": " most of these node operators are quite large, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,640",
+				"to": "00:05:51,680"
+			},
+			"offsets": {
+				"from": 348640,
+				"to": 351680
+			},
+			"text": " By what in the remains, I mean, in terms of comparison,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,680",
+				"to": "00:05:55,200"
+			},
+			"offsets": {
+				"from": 351680,
+				"to": 355200
+			},
+			"text": " they run anything between two and a half, two, seven,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,200",
+				"to": "00:05:56,880"
+			},
+			"offsets": {
+				"from": 355200,
+				"to": 356880
+			},
+			"text": " eight thousand validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,880",
+				"to": "00:05:58,960"
+			},
+			"offsets": {
+				"from": 356880,
+				"to": 358960
+			},
+			"text": " That is a lot of validators, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,960",
+				"to": "00:06:02,680"
+			},
+			"offsets": {
+				"from": 358960,
+				"to": 362680
+			},
+			"text": " And these are individual node operators, maybe 20, 30 of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,680",
+				"to": "00:06:03,960"
+			},
+			"offsets": {
+				"from": 362680,
+				"to": 363960
+			},
+			"text": " I don't have the exact count."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,960",
+				"to": "00:06:06,840"
+			},
+			"offsets": {
+				"from": 363960,
+				"to": 366840
+			},
+			"text": " But I suppose that's somewhere close to 30, 35 node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,840",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 366840,
+				"to": 372000
+			},
+			"text": " total across some of these liquid-staking protocols in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:14,320"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 374320
+			},
+			"text": " They tend to operate from specific regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,320",
+				"to": "00:06:17,520"
+			},
+			"offsets": {
+				"from": 374320,
+				"to": 377520
+			},
+			"text": " They generally are a registered entity in these regions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,520",
+				"to": "00:06:21,160"
+			},
+			"offsets": {
+				"from": 377520,
+				"to": 381160
+			},
+			"text": " which means they are governed by the law of those jurisdictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,160",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 381160,
+				"to": 386720
+			},
+			"text": " And they're likely-- they're trying to obviously scale up"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:28,840"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 388840
+			},
+			"text": " through the liquid-staking protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,840",
+				"to": "00:06:32,280"
+			},
+			"offsets": {
+				"from": 388840,
+				"to": 392280
+			},
+			"text": " but also directly trying to find customers who would like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,280",
+				"to": "00:06:34,160"
+			},
+			"offsets": {
+				"from": 392280,
+				"to": 394160
+			},
+			"text": " to stake with them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,160",
+				"to": "00:06:36,080"
+			},
+			"offsets": {
+				"from": 394160,
+				"to": 396080
+			},
+			"text": " And the other aspect that is really interesting"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,080",
+				"to": "00:06:39,840"
+			},
+			"offsets": {
+				"from": 396080,
+				"to": 399840
+			},
+			"text": " is that they're trying to also serve the needs of institutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,840",
+				"to": "00:06:42,360"
+			},
+			"offsets": {
+				"from": 399840,
+				"to": 402360
+			},
+			"text": " operating from the same jurisdictions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,360",
+				"to": "00:06:42,640"
+			},
+			"offsets": {
+				"from": 402360,
+				"to": 402640
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,640",
+				"to": "00:06:44,320"
+			},
+			"offsets": {
+				"from": 402640,
+				"to": 404320
+			},
+			"text": " Because they understand the jurisdiction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,320",
+				"to": "00:06:46,080"
+			},
+			"offsets": {
+				"from": 404320,
+				"to": 406080
+			},
+			"text": " they understand the regulatory aspects"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,080",
+				"to": "00:06:50,600"
+			},
+			"offsets": {
+				"from": 406080,
+				"to": 410600
+			},
+			"text": " and the nature of business in that jurisdiction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,600",
+				"to": "00:06:52,320"
+			},
+			"offsets": {
+				"from": 410600,
+				"to": 412320
+			},
+			"text": " And the institutions in those jurisdictions"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,320",
+				"to": "00:06:56,600"
+			},
+			"offsets": {
+				"from": 412320,
+				"to": 416600
+			},
+			"text": " seem to have an inclination to use and work with node"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,600",
+				"to": "00:06:58,560"
+			},
+			"offsets": {
+				"from": 416600,
+				"to": 418560
+			},
+			"text": " operators from that region, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,560",
+				"to": "00:07:01,280"
+			},
+			"offsets": {
+				"from": 418560,
+				"to": 421280
+			},
+			"text": " So it kind of makes sense that they are sort of becoming"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,280",
+				"to": "00:07:05,600"
+			},
+			"offsets": {
+				"from": 421280,
+				"to": 425600
+			},
+			"text": " a channel for the institutions to come on board."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,600",
+				"to": "00:07:08,560"
+			},
+			"offsets": {
+				"from": 425600,
+				"to": 428560
+			},
+			"text": " So that's another point and another reason why node"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,560",
+				"to": "00:07:11,040"
+			},
+			"offsets": {
+				"from": 428560,
+				"to": 431040
+			},
+			"text": " operations and node operators in general as a segment"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,040",
+				"to": "00:07:13,120"
+			},
+			"offsets": {
+				"from": 431040,
+				"to": 433120
+			},
+			"text": " are an important segment of the network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,120",
+				"to": "00:07:17,760"
+			},
+			"offsets": {
+				"from": 433120,
+				"to": 437760
+			},
+			"text": " and they need to be looked at in that regard."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,760",
+				"to": "00:07:20,720"
+			},
+			"offsets": {
+				"from": 437760,
+				"to": 440720
+			},
+			"text": " Let's look at what the node operators actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,720",
+				"to": "00:07:23,520"
+			},
+			"offsets": {
+				"from": 440720,
+				"to": 443520
+			},
+			"text": " look at in terms of performance or what"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,520",
+				"to": "00:07:27,480"
+			},
+			"offsets": {
+				"from": 443520,
+				"to": 447480
+			},
+			"text": " they prioritize as the characteristics that are important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,480",
+				"to": "00:07:29,360"
+			},
+			"offsets": {
+				"from": 447480,
+				"to": 449360
+			},
+			"text": " The first is the uptime, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,360",
+				"to": "00:07:32,600"
+			},
+			"offsets": {
+				"from": 449360,
+				"to": 452600
+			},
+			"text": " Now, when you're running 7,000 or 8,000 validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,600",
+				"to": "00:07:34,240"
+			},
+			"offsets": {
+				"from": 452600,
+				"to": 454240
+			},
+			"text": " uptime is really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,240",
+				"to": "00:07:35,960"
+			},
+			"offsets": {
+				"from": 454240,
+				"to": 455960
+			},
+			"text": " You can't be down for hours."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,960",
+				"to": "00:07:37,800"
+			},
+			"offsets": {
+				"from": 455960,
+				"to": 457800
+			},
+			"text": " It needs to be up and running."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,800",
+				"to": "00:07:40,680"
+			},
+			"offsets": {
+				"from": 457800,
+				"to": 460680
+			},
+			"text": " There needs to be a fair degree of failover redundancy"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,680",
+				"to": "00:07:42,080"
+			},
+			"offsets": {
+				"from": 460680,
+				"to": 462080
+			},
+			"text": " in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,080",
+				"to": "00:07:46,520"
+			},
+			"offsets": {
+				"from": 462080,
+				"to": 466520
+			},
+			"text": " It's like it's a significantly professional or sophisticated"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,520",
+				"to": "00:07:49,640"
+			},
+			"offsets": {
+				"from": 466520,
+				"to": 469640
+			},
+			"text": " operation that the node operators actually run."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,640",
+				"to": "00:07:51,520"
+			},
+			"offsets": {
+				"from": 469640,
+				"to": 471520
+			},
+			"text": " The second being reward performance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,520",
+				"to": "00:07:52,640"
+			},
+			"offsets": {
+				"from": 471520,
+				"to": 472640
+			},
+			"text": " which is extremely important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,640",
+				"to": "00:07:55,360"
+			},
+			"offsets": {
+				"from": 472640,
+				"to": 475360
+			},
+			"text": " So the choice of client is also based on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,360",
+				"to": "00:07:58,280"
+			},
+			"offsets": {
+				"from": 475360,
+				"to": 478280
+			},
+			"text": " is the reward performance good enough?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,280",
+				"to": "00:08:00,480"
+			},
+			"offsets": {
+				"from": 478280,
+				"to": 480480
+			},
+			"text": " And finally, operating efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,480",
+				"to": "00:08:02,480"
+			},
+			"offsets": {
+				"from": 480480,
+				"to": 482480
+			},
+			"text": " You don't want to hire too many people"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:02,480",
+				"to": "00:08:05,040"
+			},
+			"offsets": {
+				"from": 482480,
+				"to": 485040
+			},
+			"text": " to run the operations as well, because that impacts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,040",
+				"to": "00:08:07,760"
+			},
+			"offsets": {
+				"from": 485040,
+				"to": 487760
+			},
+			"text": " the profitability of their operation in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,760",
+				"to": "00:08:11,400"
+			},
+			"offsets": {
+				"from": 487760,
+				"to": 491400
+			},
+			"text": " So these are some of the factors that node operators think"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:11,400",
+				"to": "00:08:14,600"
+			},
+			"offsets": {
+				"from": 491400,
+				"to": 494600
+			},
+			"text": " about when they think about their business in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,600",
+				"to": "00:08:16,240"
+			},
+			"offsets": {
+				"from": 494600,
+				"to": 496240
+			},
+			"text": " And this is important, because this"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,240",
+				"to": "00:08:19,360"
+			},
+			"offsets": {
+				"from": 496240,
+				"to": 499360
+			},
+			"text": " feeds down to what they look as in the client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,360",
+				"to": "00:08:22,040"
+			},
+			"offsets": {
+				"from": 499360,
+				"to": 502040
+			},
+			"text": " when they select a client, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,040",
+				"to": "00:08:25,360"
+			},
+			"offsets": {
+				"from": 502040,
+				"to": 505360
+			},
+			"text": " So things like stability of the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,360",
+				"to": "00:08:27,440"
+			},
+			"offsets": {
+				"from": 505360,
+				"to": 507440
+			},
+			"text": " is extremely important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,440",
+				"to": "00:08:29,680"
+			},
+			"offsets": {
+				"from": 507440,
+				"to": 509680
+			},
+			"text": " Things like reward performance."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,680",
+				"to": "00:08:31,920"
+			},
+			"offsets": {
+				"from": 509680,
+				"to": 511920
+			},
+			"text": " How does the reward performance of client"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,920",
+				"to": "00:08:33,240"
+			},
+			"offsets": {
+				"from": 511920,
+				"to": 513240
+			},
+			"text": " A compared to client B?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,240",
+				"to": "00:08:36,120"
+			},
+			"offsets": {
+				"from": 513240,
+				"to": 516120
+			},
+			"text": " These are factors that are extremely important to node"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,120",
+				"to": "00:08:37,160"
+			},
+			"offsets": {
+				"from": 516120,
+				"to": 517160
+			},
+			"text": " operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,160",
+				"to": "00:08:40,360"
+			},
+			"offsets": {
+				"from": 517160,
+				"to": 520360
+			},
+			"text": " Factors like fit with the current setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,360",
+				"to": "00:08:42,640"
+			},
+			"offsets": {
+				"from": 520360,
+				"to": 522640
+			},
+			"text": " This is something that is extremely important."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,640",
+				"to": "00:08:42,920"
+			},
+			"offsets": {
+				"from": 522640,
+				"to": 522920
+			},
+			"text": " Why?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,920",
+				"to": "00:08:45,840"
+			},
+			"offsets": {
+				"from": 522920,
+				"to": 525840
+			},
+			"text": " Because each client is slightly different."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,840",
+				"to": "00:08:48,720"
+			},
+			"offsets": {
+				"from": 525840,
+				"to": 528720
+			},
+			"text": " And this goes back to Danny Ryan's presentation on day one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,720",
+				"to": "00:08:51,680"
+			},
+			"offsets": {
+				"from": 528720,
+				"to": 531680
+			},
+			"text": " where he talked about diversity of perspectives."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,680",
+				"to": "00:08:54,600"
+			},
+			"offsets": {
+				"from": 531680,
+				"to": 534600
+			},
+			"text": " And each client team takes a slightly different perspective"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,600",
+				"to": "00:08:57,080"
+			},
+			"offsets": {
+				"from": 534600,
+				"to": 537080
+			},
+			"text": " on how they would like to architect the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,080",
+				"to": "00:08:58,800"
+			},
+			"offsets": {
+				"from": 537080,
+				"to": 538800
+			},
+			"text": " Now, when it comes to node operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,800",
+				"to": "00:09:01,760"
+			},
+			"offsets": {
+				"from": 538800,
+				"to": 541760
+			},
+			"text": " node operations like similarity, homogeneity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,760",
+				"to": "00:09:05,200"
+			},
+			"offsets": {
+				"from": 541760,
+				"to": 545200
+			},
+			"text": " in the client architecture, so that it fits with the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,200",
+				"to": "00:09:08,640"
+			},
+			"offsets": {
+				"from": 545200,
+				"to": 548640
+			},
+			"text": " they have started to operate, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,640",
+				"to": "00:09:11,800"
+			},
+			"offsets": {
+				"from": 548640,
+				"to": 551800
+			},
+			"text": " So it's really interesting that there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,800",
+				"to": "00:09:13,720"
+			},
+			"offsets": {
+				"from": 551800,
+				"to": 553720
+			},
+			"text": " a huge push to try and figure out"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,720",
+				"to": "00:09:16,200"
+			},
+			"offsets": {
+				"from": 553720,
+				"to": 556200
+			},
+			"text": " how to make the clients actually fit and work"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,200",
+				"to": "00:09:21,120"
+			},
+			"offsets": {
+				"from": 556200,
+				"to": 561120
+			},
+			"text": " with the current architecture of the node operator"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,120",
+				"to": "00:09:25,280"
+			},
+			"offsets": {
+				"from": 561120,
+				"to": 565280
+			},
+			"text": " and the future in the direction in which this architecture"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,280",
+				"to": "00:09:28,120"
+			},
+			"offsets": {
+				"from": 565280,
+				"to": 568120
+			},
+			"text": " is actually evolving."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,120",
+				"to": "00:09:30,520"
+			},
+			"offsets": {
+				"from": 568120,
+				"to": 570520
+			},
+			"text": " Other factors are really important,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,520",
+				"to": "00:09:32,760"
+			},
+			"offsets": {
+				"from": 570520,
+				"to": 572760
+			},
+			"text": " such as release communication and the rhythm."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,760",
+				"to": "00:09:35,720"
+			},
+			"offsets": {
+				"from": 572760,
+				"to": 575720
+			},
+			"text": " So how good can the quality of release communication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,720",
+				"to": "00:09:37,800"
+			},
+			"offsets": {
+				"from": 575720,
+				"to": 577800
+			},
+			"text": " the rhythm of the release communication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,800",
+				"to": "00:09:39,640"
+			},
+			"offsets": {
+				"from": 577800,
+				"to": 579640
+			},
+			"text": " and the ability to contact the team,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,640",
+				"to": "00:09:41,920"
+			},
+			"offsets": {
+				"from": 579640,
+				"to": 581920
+			},
+			"text": " the ability for the team to turn around when there are"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,920",
+				"to": "00:09:43,640"
+			},
+			"offsets": {
+				"from": 581920,
+				"to": 583640
+			},
+			"text": " issues and challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,640",
+				"to": "00:09:46,600"
+			},
+			"offsets": {
+				"from": 583640,
+				"to": 586600
+			},
+			"text": " And of course, the testing rigor and the variety of testing"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,600",
+				"to": "00:09:50,040"
+			},
+			"offsets": {
+				"from": 586600,
+				"to": 590040
+			},
+			"text": " that the team actually conducts before the release goes out."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,040",
+				"to": "00:09:51,640"
+			},
+			"offsets": {
+				"from": 590040,
+				"to": 591640
+			},
+			"text": " So these are all very important factors"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,640",
+				"to": "00:09:53,720"
+			},
+			"offsets": {
+				"from": 591640,
+				"to": 593720
+			},
+			"text": " from a node operator point of view, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,720",
+				"to": "00:09:57,200"
+			},
+			"offsets": {
+				"from": 593720,
+				"to": 597200
+			},
+			"text": " And as a client team, we have to take these into account"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:57,200",
+				"to": "00:10:01,760"
+			},
+			"offsets": {
+				"from": 597200,
+				"to": 601760
+			},
+			"text": " as expectations of a potential large set of customers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,760",
+				"to": "00:10:04,640"
+			},
+			"offsets": {
+				"from": 601760,
+				"to": 604640
+			},
+			"text": " Who use these clients, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,640",
+				"to": "00:10:07,760"
+			},
+			"offsets": {
+				"from": 604640,
+				"to": 607760
+			},
+			"text": " Now, what does desired client evolution look like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:07,760",
+				"to": "00:10:10,680"
+			},
+			"offsets": {
+				"from": 607760,
+				"to": 610680
+			},
+			"text": " for from a node operator point of view?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,680",
+				"to": "00:10:13,440"
+			},
+			"offsets": {
+				"from": 610680,
+				"to": 613440
+			},
+			"text": " It's basically much more flexibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,440",
+				"to": "00:10:15,200"
+			},
+			"offsets": {
+				"from": 613440,
+				"to": 615200
+			},
+			"text": " in how they would want to use the client"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,200",
+				"to": "00:10:17,640"
+			},
+			"offsets": {
+				"from": 615200,
+				"to": 617640
+			},
+			"text": " to make it work with their current setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,640",
+				"to": "00:10:21,520"
+			},
+			"offsets": {
+				"from": 617640,
+				"to": 621520
+			},
+			"text": " and much more interoperability."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,520",
+				"to": "00:10:25,200"
+			},
+			"offsets": {
+				"from": 621520,
+				"to": 625200
+			},
+			"text": " Interoperability because it's not just the client software"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,200",
+				"to": "00:10:27,680"
+			},
+			"offsets": {
+				"from": 625200,
+				"to": 627680
+			},
+			"text": " that is used, there are other pieces of components"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,680",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 627680,
+				"to": 630000
+			},
+			"text": " of software that are actually used"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:32,400"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 632400
+			},
+			"text": " in running a sophisticated node operation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,400",
+				"to": "00:10:34,440"
+			},
+			"offsets": {
+				"from": 632400,
+				"to": 634440
+			},
+			"text": " So interoperability with all of these components"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,440",
+				"to": "00:10:37,200"
+			},
+			"offsets": {
+				"from": 634440,
+				"to": 637200
+			},
+			"text": " becomes really important when it comes to selecting a client"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,200",
+				"to": "00:10:38,920"
+			},
+			"offsets": {
+				"from": 637200,
+				"to": 638920
+			},
+			"text": " and working with a client."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,920",
+				"to": "00:10:40,800"
+			},
+			"offsets": {
+				"from": 638920,
+				"to": 640800
+			},
+			"text": " All of these factors on all these discussions"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,800",
+				"to": "00:10:43,440"
+			},
+			"offsets": {
+				"from": 640800,
+				"to": 643440
+			},
+			"text": " are really important because if we want client diversity"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,440",
+				"to": "00:10:45,600"
+			},
+			"offsets": {
+				"from": 643440,
+				"to": 645600
+			},
+			"text": " in the network, then we have to somehow make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,600",
+				"to": "00:10:48,920"
+			},
+			"offsets": {
+				"from": 645600,
+				"to": 648920
+			},
+			"text": " that we meet these requirements, we meet these challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,920",
+				"to": "00:10:52,800"
+			},
+			"offsets": {
+				"from": 648920,
+				"to": 652800
+			},
+			"text": " so that we can see greater diversity in this segment"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,800",
+				"to": "00:10:56,480"
+			},
+			"offsets": {
+				"from": 652800,
+				"to": 656480
+			},
+			"text": " of validators, which is primarily the node operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,480",
+				"to": "00:10:59,160"
+			},
+			"offsets": {
+				"from": 656480,
+				"to": 659160
+			},
+			"text": " which we are talking about here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,160",
+				"to": "00:11:01,560"
+			},
+			"offsets": {
+				"from": 659160,
+				"to": 661560
+			},
+			"text": " So a little bit about what Nimbus is trying to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,560",
+				"to": "00:11:02,800"
+			},
+			"offsets": {
+				"from": 661560,
+				"to": 662800
+			},
+			"text": " to address these issues, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,800",
+				"to": "00:11:06,720"
+			},
+			"offsets": {
+				"from": 662800,
+				"to": 666720
+			},
+			"text": " So Nimbus started when it went into production in 2021,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,720",
+				"to": "00:11:10,600"
+			},
+			"offsets": {
+				"from": 666720,
+				"to": 670600
+			},
+			"text": " it was constructed as a very simple, easy client to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,600",
+				"to": "00:11:13,720"
+			},
+			"offsets": {
+				"from": 670600,
+				"to": 673720
+			},
+			"text": " It had a single process, a beacon node setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:13,720",
+				"to": "00:11:15,440"
+			},
+			"offsets": {
+				"from": 673720,
+				"to": 675440
+			},
+			"text": " It had validated duties that are performed"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,440",
+				"to": "00:11:18,040"
+			},
+			"offsets": {
+				"from": 675440,
+				"to": 678040
+			},
+			"text": " by the beacon node itself, which means you don't need to go"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:18,040",
+				"to": "00:11:19,800"
+			},
+			"offsets": {
+				"from": 678040,
+				"to": 679800
+			},
+			"text": " and set up a separate validator client."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,800",
+				"to": "00:11:22,160"
+			},
+			"offsets": {
+				"from": 679800,
+				"to": 682160
+			},
+			"text": " So this was really easy for anybody"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,160",
+				"to": "00:11:24,040"
+			},
+			"offsets": {
+				"from": 682160,
+				"to": 684040
+			},
+			"text": " sticking from home."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,040",
+				"to": "00:11:27,400"
+			},
+			"offsets": {
+				"from": 684040,
+				"to": 687400
+			},
+			"text": " However, as we've talked about it previously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,400",
+				"to": "00:11:29,520"
+			},
+			"offsets": {
+				"from": 687400,
+				"to": 689520
+			},
+			"text": " a lot of node operators actually started using"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,520",
+				"to": "00:11:31,560"
+			},
+			"offsets": {
+				"from": 689520,
+				"to": 691560
+			},
+			"text": " some of the other clients, which are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,560",
+				"to": "00:11:34,400"
+			},
+			"offsets": {
+				"from": 691560,
+				"to": 694400
+			},
+			"text": " architected slightly differently, which means a separate beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,400",
+				"to": "00:11:37,640"
+			},
+			"offsets": {
+				"from": 694400,
+				"to": 697640
+			},
+			"text": " node, separate validate process, and the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,640",
+				"to": "00:11:40,160"
+			},
+			"offsets": {
+				"from": 697640,
+				"to": 700160
+			},
+			"text": " to mix and match between these components."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,160",
+				"to": "00:11:42,600"
+			},
+			"offsets": {
+				"from": 700160,
+				"to": 702600
+			},
+			"text": " So it is an expectation that Nimbus also offers something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,600",
+				"to": "00:11:47,160"
+			},
+			"offsets": {
+				"from": 702600,
+				"to": 707160
+			},
+			"text": " similar if Nimbus is to be used equally well"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,160",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707160,
+				"to": 710000
+			},
+			"text": " in this segment of validators in this segment of customers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 711000
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:54,040"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 714040
+			},
+			"text": " So there are a few things that Nimbus has done over the last,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,040",
+				"to": "00:11:55,400"
+			},
+			"offsets": {
+				"from": 714040,
+				"to": 715400
+			},
+			"text": " I'd say, six to eight months, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,400",
+				"to": "00:12:00,480"
+			},
+			"offsets": {
+				"from": 715400,
+				"to": 720480
+			},
+			"text": " like supporting the Nimbus beacon node with support for Wouch"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,480",
+				"to": "00:12:04,360"
+			},
+			"offsets": {
+				"from": 720480,
+				"to": 724360
+			},
+			"text": " and the Lighthouse client, which we have now in place,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,360",
+				"to": "00:12:08,680"
+			},
+			"offsets": {
+				"from": 724360,
+				"to": 728680
+			},
+			"text": " and the Nimbus Web 3 signer remote signer interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,680",
+				"to": "00:12:10,240"
+			},
+			"offsets": {
+				"from": 728680,
+				"to": 730240
+			},
+			"text": " as well, which is in place."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,240",
+				"to": "00:12:12,480"
+			},
+			"offsets": {
+				"from": 730240,
+				"to": 732480
+			},
+			"text": " So these are things that are really important for node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,480",
+				"to": "00:12:15,400"
+			},
+			"offsets": {
+				"from": 732480,
+				"to": 735400
+			},
+			"text": " operators, not as much for somebody who runs"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,400",
+				"to": "00:12:18,000"
+			},
+			"offsets": {
+				"from": 735400,
+				"to": 738000
+			},
+			"text": " let's say a single validator from their home."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,000",
+				"to": "00:12:21,440"
+			},
+			"offsets": {
+				"from": 738000,
+				"to": 741440
+			},
+			"text": " But these are expectations from a node operator perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,440",
+				"to": "00:12:23,400"
+			},
+			"offsets": {
+				"from": 741440,
+				"to": 743400
+			},
+			"text": " The one big requirement that was missing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,400",
+				"to": "00:12:27,440"
+			},
+			"offsets": {
+				"from": 743400,
+				"to": 747440
+			},
+			"text": " the missing piece, I suppose, was the Nimbus validator client"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,440",
+				"to": "00:12:29,720"
+			},
+			"offsets": {
+				"from": 747440,
+				"to": 749720
+			},
+			"text": " or the ability to split the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,720",
+				"to": "00:12:32,920"
+			},
+			"offsets": {
+				"from": 749720,
+				"to": 752920
+			},
+			"text": " So having the ability to use a separate beacon node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,920",
+				"to": "00:12:38,040"
+			},
+			"offsets": {
+				"from": 752920,
+				"to": 758040
+			},
+			"text": " and the validator separately and use them with other mixing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,040",
+				"to": "00:12:41,480"
+			},
+			"offsets": {
+				"from": 758040,
+				"to": 761480
+			},
+			"text": " and matching it with other client components, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,480",
+				"to": "00:12:44,360"
+			},
+			"offsets": {
+				"from": 761480,
+				"to": 764360
+			},
+			"text": " Nimbus did not have that so far, but we have it now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:44,360",
+				"to": "00:12:45,760"
+			},
+			"offsets": {
+				"from": 764360,
+				"to": 765760
+			},
+			"text": " and it's available in beta."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,760",
+				"to": "00:12:47,680"
+			},
+			"offsets": {
+				"from": 765760,
+				"to": 767680
+			},
+			"text": " It's going out of beta into production"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,680",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 767680,
+				"to": 770000
+			},
+			"text": " and ready for mainnet very soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:52,320"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 772320
+			},
+			"text": " So these are all the components that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,320",
+				"to": "00:12:55,240"
+			},
+			"offsets": {
+				"from": 772320,
+				"to": 775240
+			},
+			"text": " have been built over the last few months, last few,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,240",
+				"to": "00:12:58,360"
+			},
+			"offsets": {
+				"from": 775240,
+				"to": 778360
+			},
+			"text": " last six to eight months to enable Nimbus to be better"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,360",
+				"to": "00:13:00,880"
+			},
+			"offsets": {
+				"from": 778360,
+				"to": 780880
+			},
+			"text": " suited for this large segment, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,880",
+				"to": "00:13:02,040"
+			},
+			"offsets": {
+				"from": 780880,
+				"to": 782040
+			},
+			"text": " is the node operator segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,040",
+				"to": "00:13:06,080"
+			},
+			"offsets": {
+				"from": 782040,
+				"to": 786080
+			},
+			"text": " That is not it though."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,080",
+				"to": "00:13:08,040"
+			},
+			"offsets": {
+				"from": 786080,
+				"to": 788040
+			},
+			"text": " There are some advanced features which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,040",
+				"to": "00:13:10,560"
+			},
+			"offsets": {
+				"from": 788040,
+				"to": 790560
+			},
+			"text": " Nimbus is working on, some of the validator client features"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,560",
+				"to": "00:13:13,360"
+			},
+			"offsets": {
+				"from": 790560,
+				"to": 793360
+			},
+			"text": " that are really interesting for node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,360",
+				"to": "00:13:16,360"
+			},
+			"offsets": {
+				"from": 793360,
+				"to": 796360
+			},
+			"text": " And I'm talking about these because these are factors"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,360",
+				"to": "00:13:18,720"
+			},
+			"offsets": {
+				"from": 796360,
+				"to": 798720
+			},
+			"text": " that are important to node operator segment, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,720",
+				"to": "00:13:20,320"
+			},
+			"offsets": {
+				"from": 798720,
+				"to": 800320
+			},
+			"text": " need to be taken into account when"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,320",
+				"to": "00:13:24,000"
+			},
+			"offsets": {
+				"from": 800320,
+				"to": 804000
+			},
+			"text": " we think about the future client experience as it evolves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,000",
+				"to": "00:13:26,080"
+			},
+			"offsets": {
+				"from": 804000,
+				"to": 806080
+			},
+			"text": " because the client is the one client that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,080",
+				"to": "00:13:29,920"
+			},
+			"offsets": {
+				"from": 806080,
+				"to": 809920
+			},
+			"text": " is used by both individual users and the node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,920",
+				"to": "00:13:31,760"
+			},
+			"offsets": {
+				"from": 809920,
+				"to": 811760
+			},
+			"text": " at a professional level."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,760",
+				"to": "00:13:35,240"
+			},
+			"offsets": {
+				"from": 811760,
+				"to": 815240
+			},
+			"text": " So the advanced validator features"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,240",
+				"to": "00:13:38,760"
+			},
+			"offsets": {
+				"from": 815240,
+				"to": 818760
+			},
+			"text": " are things like they are inspired by the shared secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,760",
+				"to": "00:13:43,840"
+			},
+			"offsets": {
+				"from": 818760,
+				"to": 823840
+			},
+			"text": " validator research, and it addresses risks like rogue employees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,840",
+				"to": "00:13:47,760"
+			},
+			"offsets": {
+				"from": 823840,
+				"to": 827760
+			},
+			"text": " malicious actors, or infrastructure failures."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,760",
+				"to": "00:13:49,800"
+			},
+			"offsets": {
+				"from": 827760,
+				"to": 829800
+			},
+			"text": " Even in the current setup where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,800",
+				"to": "00:13:55,440"
+			},
+			"offsets": {
+				"from": 829800,
+				"to": 835440
+			},
+			"text": " have validators running through remote signers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,440",
+				"to": "00:13:57,280"
+			},
+			"offsets": {
+				"from": 835440,
+				"to": 837280
+			},
+			"text": " infrastructure failures can still bring down"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:57,280",
+				"to": "00:13:58,520"
+			},
+			"offsets": {
+				"from": 837280,
+				"to": 838520
+			},
+			"text": " the operation in a way."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,520",
+				"to": "00:14:02,520"
+			},
+			"offsets": {
+				"from": 838520,
+				"to": 842520
+			},
+			"text": " So that is one area of or risk potential risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,520",
+				"to": "00:14:06,120"
+			},
+			"offsets": {
+				"from": 842520,
+				"to": 846120
+			},
+			"text": " that the node operators are still exposed to."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:06,120",
+				"to": "00:14:07,880"
+			},
+			"offsets": {
+				"from": 846120,
+				"to": 847880
+			},
+			"text": " There's always a risk of rogue employees,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,880",
+				"to": "00:14:11,360"
+			},
+			"offsets": {
+				"from": 847880,
+				"to": 851360
+			},
+			"text": " because if an employee has access to all the key keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,360",
+				"to": "00:14:14,640"
+			},
+			"offsets": {
+				"from": 851360,
+				"to": 854640
+			},
+			"text": " they can actually hold the company to ransom."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,640",
+				"to": "00:14:17,360"
+			},
+			"offsets": {
+				"from": 854640,
+				"to": 857360
+			},
+			"text": " And you don't want that when you're running 7,000 validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,360",
+				"to": "00:14:18,680"
+			},
+			"offsets": {
+				"from": 857360,
+				"to": 858680
+			},
+			"text": " So these are some of the factors that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,680",
+				"to": "00:14:23,360"
+			},
+			"offsets": {
+				"from": 858680,
+				"to": 863360
+			},
+			"text": " are really important to address from a risk management"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,360",
+				"to": "00:14:25,000"
+			},
+			"offsets": {
+				"from": 863360,
+				"to": 865000
+			},
+			"text": " point of view."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:25,000",
+				"to": "00:14:28,760"
+			},
+			"offsets": {
+				"from": 865000,
+				"to": 868760
+			},
+			"text": " There are some features that Nimbus is working on in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,760",
+				"to": "00:14:31,280"
+			},
+			"offsets": {
+				"from": 868760,
+				"to": 871280
+			},
+			"text": " of what the advanced validator features that would look like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,280",
+				"to": "00:14:34,280"
+			},
+			"offsets": {
+				"from": 871280,
+				"to": 874280
+			},
+			"text": " that would address some of these issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,280",
+				"to": "00:14:37,640"
+			},
+			"offsets": {
+				"from": 874280,
+				"to": 877640
+			},
+			"text": " And part of this is about splitting the sysadmin teams"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,640",
+				"to": "00:14:40,280"
+			},
+			"offsets": {
+				"from": 877640,
+				"to": 880280
+			},
+			"text": " into multiple teams that have only access"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,280",
+				"to": "00:14:43,480"
+			},
+			"offsets": {
+				"from": 880280,
+				"to": 883480
+			},
+			"text": " to part of the keys, like no one person has access"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,480",
+				"to": "00:14:46,760"
+			},
+			"offsets": {
+				"from": 883480,
+				"to": 886760
+			},
+			"text": " to all of the entire key set, I suppose."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,760",
+				"to": "00:14:49,480"
+			},
+			"offsets": {
+				"from": 886760,
+				"to": 889480
+			},
+			"text": " And distributing that, the portions of those keys"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,480",
+				"to": "00:14:53,120"
+			},
+			"offsets": {
+				"from": 889480,
+				"to": 893120
+			},
+			"text": " across several different infrastructure providers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,120",
+				"to": "00:14:54,480"
+			},
+			"offsets": {
+				"from": 893120,
+				"to": 894480
+			},
+			"text": " potentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,480",
+				"to": "00:14:59,000"
+			},
+			"offsets": {
+				"from": 894480,
+				"to": 899000
+			},
+			"text": " The challenge also here is that this is extremely complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,000",
+				"to": "00:15:00,800"
+			},
+			"offsets": {
+				"from": 899000,
+				"to": 900800
+			},
+			"text": " I mean, node operations itself is complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,800",
+				"to": "00:15:02,720"
+			},
+			"offsets": {
+				"from": 900800,
+				"to": 902720
+			},
+			"text": " And then on top of that, we are overlaying"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,720",
+				"to": "00:15:05,320"
+			},
+			"offsets": {
+				"from": 902720,
+				"to": 905320
+			},
+			"text": " organizational changes that you need to bring about."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,320",
+				"to": "00:15:08,400"
+			},
+			"offsets": {
+				"from": 905320,
+				"to": 908400
+			},
+			"text": " So this creates an additional layer of complexity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:08,400",
+				"to": "00:15:09,800"
+			},
+			"offsets": {
+				"from": 908400,
+				"to": 909800
+			},
+			"text": " but it's a trade-off, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,800",
+				"to": "00:15:13,000"
+			},
+			"offsets": {
+				"from": 909800,
+				"to": 913000
+			},
+			"text": " It's a trade-off around do we want to actively manage that risk"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,000",
+				"to": "00:15:17,720"
+			},
+			"offsets": {
+				"from": 913000,
+				"to": 917720
+			},
+			"text": " versus sort of live with this risk as an odd operator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,720",
+				"to": "00:15:21,440"
+			},
+			"offsets": {
+				"from": 917720,
+				"to": 921440
+			},
+			"text": " And in this regard, there are a few possible solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,440",
+				"to": "00:15:25,080"
+			},
+			"offsets": {
+				"from": 921440,
+				"to": 925080
+			},
+			"text": " that Nimbus is exploring, including kind of a new remote key"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,080",
+				"to": "00:15:28,160"
+			},
+			"offsets": {
+				"from": 925080,
+				"to": 928160
+			},
+			"text": " store, where each item is sent to multiple web"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,160",
+				"to": "00:15:30,480"
+			},
+			"offsets": {
+				"from": 928160,
+				"to": 930480
+			},
+			"text": " three-signal instances instead of just one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,480",
+				"to": "00:15:32,800"
+			},
+			"offsets": {
+				"from": 930480,
+				"to": 932800
+			},
+			"text": " So there are some of these things that Nimbus is exploring,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:32,800",
+				"to": "00:15:36,680"
+			},
+			"offsets": {
+				"from": 932800,
+				"to": 936680
+			},
+			"text": " which will add much more capability"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,680",
+				"to": "00:15:39,720"
+			},
+			"offsets": {
+				"from": 936680,
+				"to": 939720
+			},
+			"text": " to the validator client, which is what the node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,720",
+				"to": "00:15:42,240"
+			},
+			"offsets": {
+				"from": 939720,
+				"to": 942240
+			},
+			"text": " have been looking for for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,240",
+				"to": "00:15:47,080"
+			},
+			"offsets": {
+				"from": 942240,
+				"to": 947080
+			},
+			"text": " So overall, you can see where the expectations of node operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,080",
+				"to": "00:15:48,520"
+			},
+			"offsets": {
+				"from": 947080,
+				"to": 948520
+			},
+			"text": " how the expectations of node operators"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,520",
+				"to": "00:15:51,280"
+			},
+			"offsets": {
+				"from": 948520,
+				"to": 951280
+			},
+			"text": " are changing with regards to the use of the client, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,280",
+				"to": "00:15:55,520"
+			},
+			"offsets": {
+				"from": 951280,
+				"to": 955520
+			},
+			"text": " And how they see the evolution of the client experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,520",
+				"to": "00:15:58,920"
+			},
+			"offsets": {
+				"from": 955520,
+				"to": 958920
+			},
+			"text": " Now, this is definitely not what individual customers want,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,920",
+				"to": "00:15:59,420"
+			},
+			"offsets": {
+				"from": 958920,
+				"to": 959420
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,420",
+				"to": "00:16:01,640"
+			},
+			"offsets": {
+				"from": 959420,
+				"to": 961640
+			},
+			"text": " Like, as an individual, if you want to run the node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,640",
+				"to": "00:16:03,240"
+			},
+			"offsets": {
+				"from": 961640,
+				"to": 963240
+			},
+			"text": " you're looking for simplicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,240",
+				"to": "00:16:09,000"
+			},
+			"offsets": {
+				"from": 963240,
+				"to": 969000
+			},
+			"text": " And so it's almost like pulling the direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,000",
+				"to": "00:16:11,680"
+			},
+			"offsets": {
+				"from": 969000,
+				"to": 971680
+			},
+			"text": " in which the client should evolve in a different direction"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,680",
+				"to": "00:16:13,800"
+			},
+			"offsets": {
+				"from": 971680,
+				"to": 973800
+			},
+			"text": " totally, right, compared to where the node operators are"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,800",
+				"to": "00:16:17,840"
+			},
+			"offsets": {
+				"from": 973800,
+				"to": 977840
+			},
+			"text": " seeking for the client to evolve."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,840",
+				"to": "00:16:20,320"
+			},
+			"offsets": {
+				"from": 977840,
+				"to": 980320
+			},
+			"text": " Quick question before I can't go back, unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,320",
+				"to": "00:16:22,600"
+			},
+			"offsets": {
+				"from": 980320,
+				"to": 982600
+			},
+			"text": " but I just quick show off hands for those who"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,600",
+				"to": "00:16:25,360"
+			},
+			"offsets": {
+				"from": 982600,
+				"to": 985360
+			},
+			"text": " are running a node from their own homes."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,360",
+				"to": "00:16:27,320"
+			},
+			"offsets": {
+				"from": 985360,
+				"to": 987320
+			},
+			"text": " Wow, that's definitely more than people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,320",
+				"to": "00:16:30,800"
+			},
+			"offsets": {
+				"from": 987320,
+				"to": 990800
+			},
+			"text": " who are taking through liquids, taking protocols or exchanges."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,800",
+				"to": "00:16:34,720"
+			},
+			"offsets": {
+				"from": 990800,
+				"to": 994720
+			},
+			"text": " So that's really good to see."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,720",
+				"to": "00:16:38,800"
+			},
+			"offsets": {
+				"from": 994720,
+				"to": 998800
+			},
+			"text": " Hester and Kiel from the team ran some research very recently."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,800",
+				"to": "00:16:43,360"
+			},
+			"offsets": {
+				"from": 998800,
+				"to": 1003360
+			},
+			"text": " And the feedback is quite interesting from individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,360",
+				"to": "00:16:44,360"
+			},
+			"offsets": {
+				"from": 1003360,
+				"to": 1004360
+			},
+			"text": " There's a lot of potential."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,360",
+				"to": "00:16:45,360"
+			},
+			"offsets": {
+				"from": 1004360,
+				"to": 1005360
+			},
+			"text": " There's a lot of interest."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,360",
+				"to": "00:16:49,400"
+			},
+			"offsets": {
+				"from": 1005360,
+				"to": 1009400
+			},
+			"text": " But they're all held back by a number of challenges,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,400",
+				"to": "00:16:53,240"
+			},
+			"offsets": {
+				"from": 1009400,
+				"to": 1013240
+			},
+			"text": " particularly around lack of easy access to documentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,240",
+				"to": "00:16:56,120"
+			},
+			"offsets": {
+				"from": 1013240,
+				"to": 1016120
+			},
+			"text": " lack of uniform documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,120",
+				"to": "00:16:58,000"
+			},
+			"offsets": {
+				"from": 1016120,
+				"to": 1018000
+			},
+			"text": " Multiple clients have multiple guides."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,000",
+				"to": "00:17:00,120"
+			},
+			"offsets": {
+				"from": 1018000,
+				"to": 1020120
+			},
+			"text": " You need to shuffle across these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,120",
+				"to": "00:17:00,960"
+			},
+			"offsets": {
+				"from": 1020120,
+				"to": 1020960
+			},
+			"text": " It is not easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,960",
+				"to": "00:17:03,480"
+			},
+			"offsets": {
+				"from": 1020960,
+				"to": 1023480
+			},
+			"text": " Multiple Discord channels, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:03,480",
+				"to": "00:17:06,720"
+			},
+			"offsets": {
+				"from": 1023480,
+				"to": 1026720
+			},
+			"text": " So there are few requests that came out"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,720",
+				"to": "00:17:10,400"
+			},
+			"offsets": {
+				"from": 1026720,
+				"to": 1030400
+			},
+			"text": " when they ran this research."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,400",
+				"to": "00:17:13,800"
+			},
+			"offsets": {
+				"from": 1030400,
+				"to": 1033800
+			},
+			"text": " One of the first is, is there a no command line option, please,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,800",
+				"to": "00:17:17,240"
+			},
+			"offsets": {
+				"from": 1033800,
+				"to": 1037240
+			},
+			"text": " setting up a validator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,240",
+				"to": "00:17:20,640"
+			},
+			"offsets": {
+				"from": 1037240,
+				"to": 1040640
+			},
+			"text": " Believe it or not, all the validators you set up right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,640",
+				"to": "00:17:23,120"
+			},
+			"offsets": {
+				"from": 1040640,
+				"to": 1043120
+			},
+			"text": " no matter which client it is, it's all still command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,120",
+				"to": "00:17:26,880"
+			},
+			"offsets": {
+				"from": 1043120,
+				"to": 1046880
+			},
+			"text": " So a lot of users and users who are interested in running"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,880",
+				"to": "00:17:29,000"
+			},
+			"offsets": {
+				"from": 1046880,
+				"to": 1049000
+			},
+			"text": " validators who are not very tech savvy are still"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,000",
+				"to": "00:17:31,880"
+			},
+			"offsets": {
+				"from": 1049000,
+				"to": 1051880
+			},
+			"text": " looking for a non-command line interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,880",
+				"to": "00:17:33,240"
+			},
+			"offsets": {
+				"from": 1051880,
+				"to": 1053240
+			},
+			"text": " to set up the validators."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,240",
+				"to": "00:17:35,800"
+			},
+			"offsets": {
+				"from": 1053240,
+				"to": 1055800
+			},
+			"text": " A fair ask, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:35,800",
+				"to": "00:17:38,760"
+			},
+			"offsets": {
+				"from": 1055800,
+				"to": 1058760
+			},
+			"text": " The second challenge, obviously, is don't have the 32 or 16.8."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,760",
+				"to": "00:17:41,200"
+			},
+			"offsets": {
+				"from": 1058760,
+				"to": 1061200
+			},
+			"text": " So how do I participate?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,200",
+				"to": "00:17:48,040"
+			},
+			"offsets": {
+				"from": 1061200,
+				"to": 1068040
+			},
+			"text": " So there's this huge idea in this segment of individual users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,040",
+				"to": "00:17:52,000"
+			},
+			"offsets": {
+				"from": 1068040,
+				"to": 1072000
+			},
+			"text": " which is around that you need 16 to 32 each to participate"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,000",
+				"to": "00:17:52,920"
+			},
+			"offsets": {
+				"from": 1072000,
+				"to": 1072920
+			},
+			"text": " in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,920",
+				"to": "00:17:55,280"
+			},
+			"offsets": {
+				"from": 1072920,
+				"to": 1075280
+			},
+			"text": " But there could be other ways to participate in the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,280",
+				"to": "00:17:56,440"
+			},
+			"offsets": {
+				"from": 1075280,
+				"to": 1076440
+			},
+			"text": " when you're not validating."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,440",
+				"to": "00:18:00,480"
+			},
+			"offsets": {
+				"from": 1076440,
+				"to": 1080480
+			},
+			"text": " And we'd like to explore a few of those in this talk as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,480",
+				"to": "00:18:02,800"
+			},
+			"offsets": {
+				"from": 1080480,
+				"to": 1082800
+			},
+			"text": " And finally, as I said earlier, the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,800",
+				"to": "00:18:06,360"
+			},
+			"offsets": {
+				"from": 1082800,
+				"to": 1086360
+			},
+			"text": " is scattered across forums, across different guides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,360",
+				"to": "00:18:10,440"
+			},
+			"offsets": {
+				"from": 1086360,
+				"to": 1090440
+			},
+			"text": " across guides that are created by champions in the community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,440",
+				"to": "00:18:11,560"
+			},
+			"offsets": {
+				"from": 1090440,
+				"to": 1091560
+			},
+			"text": " and then Discord channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,560",
+				"to": "00:18:15,880"
+			},
+			"offsets": {
+				"from": 1091560,
+				"to": 1095880
+			},
+			"text": " So it becomes difficult, if not impossible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,880",
+				"to": "00:18:19,160"
+			},
+			"offsets": {
+				"from": 1095880,
+				"to": 1099160
+			},
+			"text": " to coordinate and to be across all of this, especially"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,160",
+				"to": "00:18:23,360"
+			},
+			"offsets": {
+				"from": 1099160,
+				"to": 1103360
+			},
+			"text": " when there are multiple releases going out for the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,360",
+				"to": "00:18:26,440"
+			},
+			"offsets": {
+				"from": 1103360,
+				"to": 1106440
+			},
+			"text": " Professional node operators have the bandwidth, the capacity"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,440",
+				"to": "00:18:28,160"
+			},
+			"offsets": {
+				"from": 1106440,
+				"to": 1108160
+			},
+			"text": " to be able to deal with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,160",
+				"to": "00:18:29,720"
+			},
+			"offsets": {
+				"from": 1108160,
+				"to": 1109720
+			},
+			"text": " Individuals don't, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,720",
+				"to": "00:18:32,120"
+			},
+			"offsets": {
+				"from": 1109720,
+				"to": 1112120
+			},
+			"text": " So there's an absolute need."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,120",
+				"to": "00:18:35,680"
+			},
+			"offsets": {
+				"from": 1112120,
+				"to": 1115680
+			},
+			"text": " And I know the community has been asking for individuals"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,680",
+				"to": "00:18:38,440"
+			},
+			"offsets": {
+				"from": 1115680,
+				"to": 1118440
+			},
+			"text": " to step up and take on the responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,440",
+				"to": "00:18:41,600"
+			},
+			"offsets": {
+				"from": 1118440,
+				"to": 1121600
+			},
+			"text": " to run more nodes, run them at home."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,600",
+				"to": "00:18:42,880"
+			},
+			"offsets": {
+				"from": 1121600,
+				"to": 1122880
+			},
+			"text": " But there are real challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,880",
+				"to": "00:18:44,560"
+			},
+			"offsets": {
+				"from": 1122880,
+				"to": 1124560
+			},
+			"text": " And from a client team perspective,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,560",
+				"to": "00:18:46,360"
+			},
+			"offsets": {
+				"from": 1124560,
+				"to": 1126360
+			},
+			"text": " we definitely acknowledge that these are challenges"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,360",
+				"to": "00:18:49,000"
+			},
+			"offsets": {
+				"from": 1126360,
+				"to": 1129000
+			},
+			"text": " that need to be addressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,000",
+				"to": "00:18:51,720"
+			},
+			"offsets": {
+				"from": 1129000,
+				"to": 1131720
+			},
+			"text": " Now, let's give credit where it's due, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,720",
+				"to": "00:18:57,480"
+			},
+			"offsets": {
+				"from": 1131720,
+				"to": 1137480
+			},
+			"text": " So credit to Rocketpool, to Styrium, to DAPnod,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:57,480",
+				"to": "00:19:00,440"
+			},
+			"offsets": {
+				"from": 1137480,
+				"to": 1140440
+			},
+			"text": " who have all stepped up in a way to offer some solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,440",
+				"to": "00:19:02,200"
+			},
+			"offsets": {
+				"from": 1140440,
+				"to": 1142200
+			},
+			"text": " while there is a gap."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,200",
+				"to": "00:19:04,960"
+			},
+			"offsets": {
+				"from": 1142200,
+				"to": 1144960
+			},
+			"text": " DAPnod Styrium offer ability for you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,960",
+				"to": "00:19:08,880"
+			},
+			"offsets": {
+				"from": 1144960,
+				"to": 1148880
+			},
+			"text": " to spin up your own nodes, right, on your own hardware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,880",
+				"to": "00:19:10,320"
+			},
+			"offsets": {
+				"from": 1148880,
+				"to": 1150320
+			},
+			"text": " with a UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,320",
+				"to": "00:19:13,600"
+			},
+			"offsets": {
+				"from": 1150320,
+				"to": 1153600
+			},
+			"text": " So you don't need to necessarily use a command line interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,600",
+				"to": "00:19:16,360"
+			},
+			"offsets": {
+				"from": 1153600,
+				"to": 1156360
+			},
+			"text": " So these are absolutely positives."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,360",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1156360,
+				"to": 1161000
+			},
+			"text": " And there is an option to use NIMBIS across all of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:22,200"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1162200
+			},
+			"text": " operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,200",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1162200,
+				"to": 1165000
+			},
+			"text": " Rocketpool, of course, very popular amongst people"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1167000
+			},
+			"text": " who want to run a node from their own homes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:30,240"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1170240
+			},
+			"text": " whether that's a full node, whether that's a mini pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,240",
+				"to": "00:19:32,120"
+			},
+			"offsets": {
+				"from": 1170240,
+				"to": 1172120
+			},
+			"text": " And again, NIMBIS is extremely popular"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,120",
+				"to": "00:19:37,880"
+			},
+			"offsets": {
+				"from": 1172120,
+				"to": 1177880
+			},
+			"text": " as a client of choice amongst Rocketpool users."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,880",
+				"to": "00:19:40,680"
+			},
+			"offsets": {
+				"from": 1177880,
+				"to": 1180680
+			},
+			"text": " NIMBIS is doing its own bit to contribute to this effort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:40,680",
+				"to": "00:19:41,160"
+			},
+			"offsets": {
+				"from": 1180680,
+				"to": 1181160
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,160",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1181160,
+				"to": 1184000
+			},
+			"text": " So we completely acknowledge there are challenges here"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:45,360"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1185360
+			},
+			"text": " that need to be addressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,360",
+				"to": "00:19:49,440"
+			},
+			"offsets": {
+				"from": 1185360,
+				"to": 1189440
+			},
+			"text": " And we have some views on how this can be addressed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,440",
+				"to": "00:19:51,760"
+			},
+			"offsets": {
+				"from": 1189440,
+				"to": 1191760
+			},
+			"text": " The first thing is abstracting the complexity away"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:51,760",
+				"to": "00:19:54,280"
+			},
+			"offsets": {
+				"from": 1191760,
+				"to": 1194280
+			},
+			"text": " from the end user, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,280",
+				"to": "00:19:57,320"
+			},
+			"offsets": {
+				"from": 1194280,
+				"to": 1197320
+			},
+			"text": " End users like to be taken on a journey."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,320",
+				"to": "00:19:59,680"
+			},
+			"offsets": {
+				"from": 1197320,
+				"to": 1199680
+			},
+			"text": " If you can give them a wizard and follow the journey,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,680",
+				"to": "00:20:03,640"
+			},
+			"offsets": {
+				"from": 1199680,
+				"to": 1203640
+			},
+			"text": " follow the wizard to get to set up a validator successfully,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,640",
+				"to": "00:20:07,520"
+			},
+			"offsets": {
+				"from": 1203640,
+				"to": 1207520
+			},
+			"text": " easily, and be able to monitor that in a simplistic fashion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:07,520",
+				"to": "00:20:10,600"
+			},
+			"offsets": {
+				"from": 1207520,
+				"to": 1210600
+			},
+			"text": " then that is what the end user would like as an individual."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,600",
+				"to": "00:20:15,760"
+			},
+			"offsets": {
+				"from": 1210600,
+				"to": 1215760
+			},
+			"text": " So one of the key tenets here from a client evolution"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,760",
+				"to": "00:20:19,640"
+			},
+			"offsets": {
+				"from": 1215760,
+				"to": 1219640
+			},
+			"text": " point of view for individuals is abstracting complexity away"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,640",
+				"to": "00:20:21,280"
+			},
+			"offsets": {
+				"from": 1219640,
+				"to": 1221280
+			},
+			"text": " from the individual."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,280",
+				"to": "00:20:24,920"
+			},
+			"offsets": {
+				"from": 1221280,
+				"to": 1224920
+			},
+			"text": " And this takes the form as far as status is concerned."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,920",
+				"to": "00:20:27,560"
+			},
+			"offsets": {
+				"from": 1224920,
+				"to": 1227560
+			},
+			"text": " We've talked about, let's say, Stereum and Daphnode."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,560",
+				"to": "00:20:30,960"
+			},
+			"offsets": {
+				"from": 1227560,
+				"to": 1230960
+			},
+			"text": " But status is heading in this similar direction."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,960",
+				"to": "00:20:32,560"
+			},
+			"offsets": {
+				"from": 1230960,
+				"to": 1232560
+			},
+			"text": " The status network team is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,560",
+				"to": "00:20:34,840"
+			},
+			"offsets": {
+				"from": 1232560,
+				"to": 1234840
+			},
+			"text": " planning to integrate the NIMBIS client"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,840",
+				"to": "00:20:39,360"
+			},
+			"offsets": {
+				"from": 1234840,
+				"to": 1239360
+			},
+			"text": " inside the status desktop, which will give users the ability"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,360",
+				"to": "00:20:42,640"
+			},
+			"offsets": {
+				"from": 1239360,
+				"to": 1242640
+			},
+			"text": " to spin up a node, manage it through the status"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,640",
+				"to": "00:20:44,200"
+			},
+			"offsets": {
+				"from": 1242640,
+				"to": 1244200
+			},
+			"text": " test of application."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,200",
+				"to": "00:20:47,440"
+			},
+			"offsets": {
+				"from": 1244200,
+				"to": 1247440
+			},
+			"text": " So this is one of the things that NIMBIS and the status team"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,440",
+				"to": "00:20:50,400"
+			},
+			"offsets": {
+				"from": 1247440,
+				"to": 1250400
+			},
+			"text": " are working on to address."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,400",
+				"to": "00:20:53,600"
+			},
+			"offsets": {
+				"from": 1250400,
+				"to": 1253600
+			},
+			"text": " Second one, let's talk about the elephant in the room."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,600",
+				"to": "00:20:55,440"
+			},
+			"offsets": {
+				"from": 1253600,
+				"to": 1255440
+			},
+			"text": " Who's recently set up a node?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,440",
+				"to": "00:20:56,960"
+			},
+			"offsets": {
+				"from": 1255440,
+				"to": 1256960
+			},
+			"text": " Quick show of hand?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,960",
+				"to": "00:20:59,320"
+			},
+			"offsets": {
+				"from": 1256960,
+				"to": 1259320
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:59,320",
+				"to": "00:21:03,440"
+			},
+			"offsets": {
+				"from": 1259320,
+				"to": 1263440
+			},
+			"text": " You had to set up one execution client, consensus client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,440",
+				"to": "00:21:05,840"
+			},
+			"offsets": {
+				"from": 1263440,
+				"to": 1265840
+			},
+			"text": " or probably even beacon node and a validator client."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,840",
+				"to": "00:21:08,120"
+			},
+			"offsets": {
+				"from": 1265840,
+				"to": 1268120
+			},
+			"text": " Let's talk about the two components individually,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,120",
+				"to": "00:21:10,880"
+			},
+			"offsets": {
+				"from": 1268120,
+				"to": 1270880
+			},
+			"text": " and then possibly an MEV set up, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,880",
+				"to": "00:21:13,400"
+			},
+			"offsets": {
+				"from": 1270880,
+				"to": 1273400
+			},
+			"text": " That is like four steps."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,400",
+				"to": "00:21:14,920"
+			},
+			"offsets": {
+				"from": 1273400,
+				"to": 1274920
+			},
+			"text": " It's too complex, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,920",
+				"to": "00:21:17,240"
+			},
+			"offsets": {
+				"from": 1274920,
+				"to": 1277240
+			},
+			"text": " For individuals, when we're talking about no command line"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,240",
+				"to": "00:21:20,840"
+			},
+			"offsets": {
+				"from": 1277240,
+				"to": 1280840
+			},
+			"text": " options and presenting a simpler UI,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,840",
+				"to": "00:21:23,520"
+			},
+			"offsets": {
+				"from": 1280840,
+				"to": 1283520
+			},
+			"text": " walking through setting up four different clients"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,520",
+				"to": "00:21:25,720"
+			},
+			"offsets": {
+				"from": 1283520,
+				"to": 1285720
+			},
+			"text": " with four different guides, potentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,720",
+				"to": "00:21:28,680"
+			},
+			"offsets": {
+				"from": 1285720,
+				"to": 1288680
+			},
+			"text": " or components at least, is complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,680",
+				"to": "00:21:30,360"
+			},
+			"offsets": {
+				"from": 1288680,
+				"to": 1290360
+			},
+			"text": " And this could get even more complex"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,360",
+				"to": "00:21:31,960"
+			},
+			"offsets": {
+				"from": 1290360,
+				"to": 1291960
+			},
+			"text": " if it's not checked right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,960",
+				"to": "00:21:34,320"
+			},
+			"offsets": {
+				"from": 1291960,
+				"to": 1294320
+			},
+			"text": " So we need to do something about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,320",
+				"to": "00:21:37,400"
+			},
+			"offsets": {
+				"from": 1294320,
+				"to": 1297400
+			},
+			"text": " And from a NIMBIS point of view, one of the things we would"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,400",
+				"to": "00:21:40,400"
+			},
+			"offsets": {
+				"from": 1297400,
+				"to": 1300400
+			},
+			"text": " like to do, and we are working on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,400",
+				"to": "00:21:45,040"
+			},
+			"offsets": {
+				"from": 1300400,
+				"to": 1305040
+			},
+			"text": " is a unified execution plus consensus client,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,040",
+				"to": "00:21:48,760"
+			},
+			"offsets": {
+				"from": 1305040,
+				"to": 1308760
+			},
+			"text": " or actually an execution client that works really well"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,760",
+				"to": "00:21:51,280"
+			},
+			"offsets": {
+				"from": 1308760,
+				"to": 1311280
+			},
+			"text": " with the consensus client from NIMBIS."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,280",
+				"to": "00:21:54,320"
+			},
+			"offsets": {
+				"from": 1311280,
+				"to": 1314320
+			},
+			"text": " So a NIMBIS execution client and a NIMBIS consensus client"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,320",
+				"to": "00:21:56,720"
+			},
+			"offsets": {
+				"from": 1314320,
+				"to": 1316720
+			},
+			"text": " together."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,720",
+				"to": "00:21:59,760"
+			},
+			"offsets": {
+				"from": 1316720,
+				"to": 1319760
+			},
+			"text": " There will be ability to use these clients independently"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,760",
+				"to": "00:22:02,480"
+			},
+			"offsets": {
+				"from": 1319760,
+				"to": 1322480
+			},
+			"text": " and interchangeably with other clients as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,480",
+				"to": "00:22:05,120"
+			},
+			"offsets": {
+				"from": 1322480,
+				"to": 1325120
+			},
+			"text": " But I think there is real benefits"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,120",
+				"to": "00:22:08,520"
+			},
+			"offsets": {
+				"from": 1325120,
+				"to": 1328520
+			},
+			"text": " if we can simplify the setup of a validator"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,520",
+				"to": "00:22:10,480"
+			},
+			"offsets": {
+				"from": 1328520,
+				"to": 1330480
+			},
+			"text": " and take the user on a journey where you set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,480",
+				"to": "00:22:13,040"
+			},
+			"offsets": {
+				"from": 1330480,
+				"to": 1333040
+			},
+			"text": " your execution client and consensus client simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,040",
+				"to": "00:22:17,520"
+			},
+			"offsets": {
+				"from": 1333040,
+				"to": 1337520
+			},
+			"text": " in the same process, rather having to switch between things."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,520",
+				"to": "00:22:19,880"
+			},
+			"offsets": {
+				"from": 1337520,
+				"to": 1339880
+			},
+			"text": " There are other ways to participate in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,880",
+				"to": "00:22:23,440"
+			},
+			"offsets": {
+				"from": 1339880,
+				"to": 1343440
+			},
+			"text": " So the light proxy-- this is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,440",
+				"to": "00:22:24,680"
+			},
+			"offsets": {
+				"from": 1343440,
+				"to": 1344680
+			},
+			"text": " I want to spend a bit of time on."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,680",
+				"to": "00:22:26,560"
+			},
+			"offsets": {
+				"from": 1344680,
+				"to": 1346560
+			},
+			"text": " I think I'm running out of time, but I have enough time"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:26,560",
+				"to": "00:22:28,640"
+			},
+			"offsets": {
+				"from": 1346560,
+				"to": 1348640
+			},
+			"text": " to cover this as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,640",
+				"to": "00:22:30,360"
+			},
+			"offsets": {
+				"from": 1348640,
+				"to": 1350360
+			},
+			"text": " So the light web proxy is something"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,360",
+				"to": "00:22:32,720"
+			},
+			"offsets": {
+				"from": 1350360,
+				"to": 1352720
+			},
+			"text": " that NIMBIS has recently released."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,720",
+				"to": "00:22:36,320"
+			},
+			"offsets": {
+				"from": 1352720,
+				"to": 1356320
+			},
+			"text": " And this is another way to participate in the network."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,320",
+				"to": "00:22:40,920"
+			},
+			"offsets": {
+				"from": 1356320,
+				"to": 1360920
+			},
+			"text": " Participating in the network doesn't only"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,920",
+				"to": "00:22:44,520"
+			},
+			"offsets": {
+				"from": 1360920,
+				"to": 1364520
+			},
+			"text": " mean testing and validating and creating blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,520",
+				"to": "00:22:47,320"
+			},
+			"offsets": {
+				"from": 1364520,
+				"to": 1367320
+			},
+			"text": " Participating in the network also means taking responsibility"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,320",
+				"to": "00:22:51,400"
+			},
+			"offsets": {
+				"from": 1367320,
+				"to": 1371400
+			},
+			"text": " and checking, verifying where you're getting your data from."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,400",
+				"to": "00:22:53,000"
+			},
+			"offsets": {
+				"from": 1371400,
+				"to": 1373000
+			},
+			"text": " Can you trust that data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,000",
+				"to": "00:22:54,400"
+			},
+			"offsets": {
+				"from": 1373000,
+				"to": 1374400
+			},
+			"text": " Should you trust that data?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:54,400",
+				"to": "00:22:56,440"
+			},
+			"offsets": {
+				"from": 1374400,
+				"to": 1376440
+			},
+			"text": " If you should not trust that data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,440",
+				"to": "00:22:58,640"
+			},
+			"offsets": {
+				"from": 1376440,
+				"to": 1378640
+			},
+			"text": " you should at least verify it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,640",
+				"to": "00:23:01,640"
+			},
+			"offsets": {
+				"from": 1378640,
+				"to": 1381640
+			},
+			"text": " And so light web proxy gives you the ability to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,640",
+				"to": "00:23:06,520"
+			},
+			"offsets": {
+				"from": 1381640,
+				"to": 1386520
+			},
+			"text": " It's a-- you can basically set up the light web proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,520",
+				"to": "00:23:08,480"
+			},
+			"offsets": {
+				"from": 1386520,
+				"to": 1388480
+			},
+			"text": " on your phone, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,480",
+				"to": "00:23:11,200"
+			},
+			"offsets": {
+				"from": 1388480,
+				"to": 1391200
+			},
+			"text": " And instead of trusting the endpoint,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:11,200",
+				"to": "00:23:13,960"
+			},
+			"offsets": {
+				"from": 1391200,
+				"to": 1393960
+			},
+			"text": " let's say the wallet trusts the endpoint that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:13,960",
+				"to": "00:23:17,000"
+			},
+			"offsets": {
+				"from": 1393960,
+				"to": 1397000
+			},
+			"text": " set up for the wallet, instead of trusting the data that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,000",
+				"to": "00:23:19,680"
+			},
+			"offsets": {
+				"from": 1397000,
+				"to": 1399680
+			},
+			"text": " provided by the endpoint, the light web proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,680",
+				"to": "00:23:21,680"
+			},
+			"offsets": {
+				"from": 1399680,
+				"to": 1401680
+			},
+			"text": " can actually intercept that call."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,680",
+				"to": "00:23:23,800"
+			},
+			"offsets": {
+				"from": 1401680,
+				"to": 1403800
+			},
+			"text": " To give you an example, if you make a call,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,800",
+				"to": "00:23:26,520"
+			},
+			"offsets": {
+				"from": 1403800,
+				"to": 1406520
+			},
+			"text": " you want to check your balance on the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,520",
+				"to": "00:23:29,960"
+			},
+			"offsets": {
+				"from": 1406520,
+				"to": 1409960
+			},
+			"text": " The wallet makes a call, get balance, get it balanced."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,960",
+				"to": "00:23:32,320"
+			},
+			"offsets": {
+				"from": 1409960,
+				"to": 1412320
+			},
+			"text": " The light web proxy can actually intercept that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,320",
+				"to": "00:23:35,840"
+			},
+			"offsets": {
+				"from": 1412320,
+				"to": 1415840
+			},
+			"text": " And the light web proxy connects to the light-lined network"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,840",
+				"to": "00:23:40,280"
+			},
+			"offsets": {
+				"from": 1415840,
+				"to": 1420280
+			},
+			"text": " to keep track of the head of the chain right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,280",
+				"to": "00:23:41,880"
+			},
+			"offsets": {
+				"from": 1420280,
+				"to": 1421880
+			},
+			"text": " or the state, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,880",
+				"to": "00:23:45,960"
+			},
+			"offsets": {
+				"from": 1421880,
+				"to": 1425960
+			},
+			"text": " And then it requests a get proof separately"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,960",
+				"to": "00:23:50,080"
+			},
+			"offsets": {
+				"from": 1425960,
+				"to": 1430080
+			},
+			"text": " from any of your nor providers, API providers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,080",
+				"to": "00:23:53,400"
+			},
+			"offsets": {
+				"from": 1430080,
+				"to": 1433400
+			},
+			"text": " to check the state route against the balance that is applied."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,400",
+				"to": "00:23:58,240"
+			},
+			"offsets": {
+				"from": 1433400,
+				"to": 1438240
+			},
+			"text": " So now, if let's say in FURA, you use meta mask within FURA,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,240",
+				"to": "00:24:00,520"
+			},
+			"offsets": {
+				"from": 1438240,
+				"to": 1440520
+			},
+			"text": " and if in FURA comes back with a balance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,520",
+				"to": "00:24:02,280"
+			},
+			"offsets": {
+				"from": 1440520,
+				"to": 1442280
+			},
+			"text": " your light web proxy can actually verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,280",
+				"to": "00:24:05,720"
+			},
+			"offsets": {
+				"from": 1442280,
+				"to": 1445720
+			},
+			"text": " whether it is true or not, whether that balance is correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:05,720",
+				"to": "00:24:06,680"
+			},
+			"offsets": {
+				"from": 1445720,
+				"to": 1446680
+			},
+			"text": " or not."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,680",
+				"to": "00:24:08,920"
+			},
+			"offsets": {
+				"from": 1446680,
+				"to": 1448920
+			},
+			"text": " So there are all these things that can be done"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,920",
+				"to": "00:24:10,880"
+			},
+			"offsets": {
+				"from": 1448920,
+				"to": 1450880
+			},
+			"text": " to improve the security and health of the network"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:10,880",
+				"to": "00:24:14,160"
+			},
+			"offsets": {
+				"from": 1450880,
+				"to": 1454160
+			},
+			"text": " that don't only mean validating and staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,160",
+				"to": "00:24:17,320"
+			},
+			"offsets": {
+				"from": 1454160,
+				"to": 1457320
+			},
+			"text": " There are things that individuals can do on their own"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,320",
+				"to": "00:24:21,400"
+			},
+			"offsets": {
+				"from": 1457320,
+				"to": 1461400
+			},
+			"text": " to improve their own security, the security and trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,400",
+				"to": "00:24:25,680"
+			},
+			"offsets": {
+				"from": 1461400,
+				"to": 1465680
+			},
+			"text": " in the balance that they see in the meta mask wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,680",
+				"to": "00:24:28,520"
+			},
+			"offsets": {
+				"from": 1465680,
+				"to": 1468520
+			},
+			"text": " And these are things that are possible now, right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,520",
+				"to": "00:24:32,680"
+			},
+			"offsets": {
+				"from": 1468520,
+				"to": 1472680
+			},
+			"text": " So on that note, I would also like to say my colleague,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,680",
+				"to": "00:24:35,360"
+			},
+			"offsets": {
+				"from": 1472680,
+				"to": 1475360
+			},
+			"text": " Eton, is going to present about the light clients tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,360",
+				"to": "00:24:37,520"
+			},
+			"offsets": {
+				"from": 1475360,
+				"to": 1477520
+			},
+			"text": " So if you're interested in the light-lined"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,520",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1477520,
+				"to": 1481000
+			},
+			"text": " and the light-lined proxy, please do make sure you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:24:42,640"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1482640
+			},
+			"text": " attend his talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,640",
+				"to": "00:24:46,520"
+			},
+			"offsets": {
+				"from": 1482640,
+				"to": 1486520
+			},
+			"text": " It's quite fascinating to see the actual demo as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,520",
+				"to": "00:24:48,160"
+			},
+			"offsets": {
+				"from": 1486520,
+				"to": 1488160
+			},
+			"text": " if you can show that."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,160",
+				"to": "00:24:52,680"
+			},
+			"offsets": {
+				"from": 1488160,
+				"to": 1492680
+			},
+			"text": " And finally, in conclusion, I'd say the client experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,680",
+				"to": "00:24:54,200"
+			},
+			"offsets": {
+				"from": 1492680,
+				"to": 1494200
+			},
+			"text": " or evolution of the client experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,200",
+				"to": "00:24:57,080"
+			},
+			"offsets": {
+				"from": 1494200,
+				"to": 1497080
+			},
+			"text": " is being pulled in different directions, right."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:57,080",
+				"to": "00:25:00,840"
+			},
+			"offsets": {
+				"from": 1497080,
+				"to": 1500840
+			},
+			"text": " More modularity when it comes to node operators and simplicity"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,840",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1500840,
+				"to": 1502000
+			},
+			"text": " when it comes to individuals."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:04,280"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1504280
+			},
+			"text": " So the task for client teams in general"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,280",
+				"to": "00:25:07,480"
+			},
+			"offsets": {
+				"from": 1504280,
+				"to": 1507480
+			},
+			"text": " isn't easy to balance these priorities."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,480",
+				"to": "00:25:10,440"
+			},
+			"offsets": {
+				"from": 1507480,
+				"to": 1510440
+			},
+			"text": " But I think I can speak on behalf of NIMBUS"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,440",
+				"to": "00:25:12,520"
+			},
+			"offsets": {
+				"from": 1510440,
+				"to": 1512520
+			},
+			"text": " that I think from a NIMBUS point of view,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,520",
+				"to": "00:25:14,760"
+			},
+			"offsets": {
+				"from": 1512520,
+				"to": 1514760
+			},
+			"text": " there are certain things that we have planned, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,760",
+				"to": "00:25:17,920"
+			},
+			"offsets": {
+				"from": 1514760,
+				"to": 1517920
+			},
+			"text": " should hopefully address a number of these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,920",
+				"to": "00:25:21,200"
+			},
+			"offsets": {
+				"from": 1517920,
+				"to": 1521200
+			},
+			"text": " for both these major segments of validators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,200",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1521200,
+				"to": 1525000
+			},
+			"text": " because both of them are equally important at this stage."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:27,040"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1527040
+			},
+			"text": " On that note, I'll conclude."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,040",
+				"to": "00:25:28,440"
+			},
+			"offsets": {
+				"from": 1527040,
+				"to": 1528440
+			},
+			"text": " Happy to stay in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:28,440",
+				"to": "00:25:31,560"
+			},
+			"offsets": {
+				"from": 1528440,
+				"to": 1531560
+			},
+			"text": " My Twitter is lifelines, and you can also"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,560",
+				"to": "00:25:36,280"
+			},
+			"offsets": {
+				"from": 1531560,
+				"to": 1536280
+			},
+			"text": " reach out to me via Telegram and other channels"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,280",
+				"to": "00:25:37,560"
+			},
+			"offsets": {
+				"from": 1536280,
+				"to": 1537560
+			},
+			"text": " using the same handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:37,560",
+				"to": "00:25:38,560"
+			},
+			"offsets": {
+				"from": 1537560,
+				"to": 1538560
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,560",
+				"to": "00:25:40,560"
+			},
+			"offsets": {
+				"from": 1538560,
+				"to": 1540560
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:40,560",
+				"to": "00:25:46,760"
+			},
+			"offsets": {
+				"from": 1540560,
+				"to": 1546760
+			},
+			"text": " Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,760",
+				"to": "00:25:52,760"
+			},
+			"offsets": {
+				"from": 1546760,
+				"to": 1552760
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:52,760",
+				"to": "00:25:53,760"
+			},
+			"offsets": {
+				"from": 1552760,
+				"to": 1553760
+			},
+			"text": " Second row?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,760",
+				"to": "00:25:54,760"
+			},
+			"offsets": {
+				"from": 1553760,
+				"to": 1554760
+			},
+			"text": " Up."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,760",
+				"to": "00:26:14,480"
+			},
+			"offsets": {
+				"from": 1554760,
+				"to": 1574480
+			},
+			"text": " You know, you're close enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:14,480",
+				"to": "00:26:15,760"
+			},
+			"offsets": {
+				"from": 1574480,
+				"to": 1575760
+			},
+			"text": " You could probably yell if you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:15,760",
+				"to": "00:26:18,360"
+			},
+			"offsets": {
+				"from": 1575760,
+				"to": 1578360
+			},
+			"text": " No, thanks for the sharing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,360",
+				"to": "00:26:20,960"
+			},
+			"offsets": {
+				"from": 1578360,
+				"to": 1580960
+			},
+			"text": " I'm just curious."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:20,960",
+				"to": "00:26:23,680"
+			},
+			"offsets": {
+				"from": 1580960,
+				"to": 1583680
+			},
+			"text": " For the better user experience, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,680",
+				"to": "00:26:28,240"
+			},
+			"offsets": {
+				"from": 1583680,
+				"to": 1588240
+			},
+			"text": " you're thinking about provide infrastructure as code"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:28,240",
+				"to": "00:26:35,160"
+			},
+			"offsets": {
+				"from": 1588240,
+				"to": 1595160
+			},
+			"text": " to set up the infra, like Terraform or Xamcha,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:35,160",
+				"to": "00:26:36,080"
+			},
+			"offsets": {
+				"from": 1595160,
+				"to": 1596080
+			},
+			"text": " this kind of thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:36,080",
+				"to": "00:26:40,120"
+			},
+			"offsets": {
+				"from": 1596080,
+				"to": 1600120
+			},
+			"text": " So if I understand correctly, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,120",
+				"to": "00:26:45,760"
+			},
+			"offsets": {
+				"from": 1600120,
+				"to": 1605760
+			},
+			"text": " by asking whether or not Nimbus would supply infrastructure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,760",
+				"to": "00:26:46,840"
+			},
+			"offsets": {
+				"from": 1605760,
+				"to": 1606840
+			},
+			"text": " is that what you're asking?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:46,840",
+				"to": "00:26:49,320"
+			},
+			"offsets": {
+				"from": 1606840,
+				"to": 1609320
+			},
+			"text": " Sorry?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,320",
+				"to": "00:26:52,200"
+			},
+			"offsets": {
+				"from": 1609320,
+				"to": 1612200
+			},
+			"text": " Infrastructure as code."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:52,200",
+				"to": "00:26:53,280"
+			},
+			"offsets": {
+				"from": 1612200,
+				"to": 1613280
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,280",
+				"to": "00:26:57,360"
+			},
+			"offsets": {
+				"from": 1613280,
+				"to": 1617360
+			},
+			"text": " I think the primary goal for us at the moment"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:57,360",
+				"to": "00:26:59,920"
+			},
+			"offsets": {
+				"from": 1617360,
+				"to": 1619920
+			},
+			"text": " is to make sure that we can tick the boxes that we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,920",
+				"to": "00:27:01,400"
+			},
+			"offsets": {
+				"from": 1619920,
+				"to": 1621400
+			},
+			"text": " planned on the roadmap."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,400",
+				"to": "00:27:05,440"
+			},
+			"offsets": {
+				"from": 1621400,
+				"to": 1625440
+			},
+			"text": " So these are things that we must address over the next six"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,440",
+				"to": "00:27:06,040"
+			},
+			"offsets": {
+				"from": 1625440,
+				"to": 1626040
+			},
+			"text": " to eight months."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:08,480",
+				"to": "00:27:11,520"
+			},
+			"offsets": {
+				"from": 1628480,
+				"to": 1631520
+			},
+			"text": " It could be one of the things we could consider, absolutely."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,520",
+				"to": "00:27:15,080"
+			},
+			"offsets": {
+				"from": 1631520,
+				"to": 1635080
+			},
+			"text": " But yeah, I wouldn't say more about that than that"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,080",
+				"to": "00:27:16,160"
+			},
+			"offsets": {
+				"from": 1635080,
+				"to": 1636160
+			},
+			"text": " at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:16,160",
+				"to": "00:27:22,640"
+			},
+			"offsets": {
+				"from": 1636160,
+				"to": 1642640
+			},
+			"text": " I think for us, it's important that the users who end up"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:22,640",
+				"to": "00:27:25,640"
+			},
+			"offsets": {
+				"from": 1642640,
+				"to": 1645640
+			},
+			"text": " using Nimbus, but that's directly using Nimbus as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:25,640",
+				"to": "00:27:28,920"
+			},
+			"offsets": {
+				"from": 1645640,
+				"to": 1648920
+			},
+			"text": " validator that they set up on their own home environment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,920",
+				"to": "00:27:32,440"
+			},
+			"offsets": {
+				"from": 1648920,
+				"to": 1652440
+			},
+			"text": " whatever that looks like, or use a rocket pool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:32,440",
+				"to": "00:27:36,840"
+			},
+			"offsets": {
+				"from": 1652440,
+				"to": 1656840
+			},
+			"text": " stadium, DAPNOD, or any other hardware providers to set up"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:36,840",
+				"to": "00:27:43,320"
+			},
+			"offsets": {
+				"from": 1656840,
+				"to": 1663320
+			},
+			"text": " the client, or use as part of professional node operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,320",
+				"to": "00:27:46,200"
+			},
+			"offsets": {
+				"from": 1663320,
+				"to": 1666200
+			},
+			"text": " at scale, that they have the flexibility to run it the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:46,200",
+				"to": "00:27:47,200"
+			},
+			"offsets": {
+				"from": 1666200,
+				"to": 1667200
+			},
+			"text": " they like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:47,200",
+				"to": "00:27:51,200"
+			},
+			"offsets": {
+				"from": 1667200,
+				"to": 1671200
+			},
+			"text": " So I don't think we'd like to mandate anything in particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,200",
+				"to": "00:27:54,840"
+			},
+			"offsets": {
+				"from": 1671200,
+				"to": 1674840
+			},
+			"text": " But the guide does cover different scenarios,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:54,840",
+				"to": "00:27:59,120"
+			},
+			"offsets": {
+				"from": 1674840,
+				"to": 1679120
+			},
+			"text": " depending on who wants to set up in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,120",
+				"to": "00:27:59,440"
+			},
+			"offsets": {
+				"from": 1679120,
+				"to": 1679440
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,440",
+				"to": "00:28:00,240"
+			},
+			"offsets": {
+				"from": 1679440,
+				"to": 1680240
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,240",
+				"to": "00:28:01,160"
+			},
+			"offsets": {
+				"from": 1680240,
+				"to": 1681160
+			},
+			"text": " Let's--"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,160",
+				"to": "00:28:03,920"
+			},
+			"offsets": {
+				"from": 1681160,
+				"to": 1683920
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,920",
+				"to": "00:28:05,920"
+			},
+			"offsets": {
+				"from": 1683920,
+				"to": 1685920
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,920",
+				"to": "00:28:07,920"
+			},
+			"offsets": {
+				"from": 1685920,
+				"to": 1687920
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:07,920",
+				"to": "00:28:09,920"
+			},
+			"offsets": {
+				"from": 1687920,
+				"to": 1689920
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:09,920",
+				"to": "00:28:38,920"
+			},
+			"offsets": {
+				"from": 1689920,
+				"to": 1718920
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

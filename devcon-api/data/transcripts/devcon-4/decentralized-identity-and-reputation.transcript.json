@@ -1,0 +1,3464 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4280
+			},
+			"text": " Cool, so thanks for joining me here. Today I'm going to be talking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,280",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 4280,
+				"to": 12000
+			},
+			"text": " decentralized identity and reputation. So first of all I'm Sina. I was previously"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 15560
+			},
+			"text": " the engineering lead at Trubit, a project for a scaling computation on"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:19,480"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 19480
+			},
+			"text": " Ethereum. Also helped launch this project called ETHPRISE where we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,480",
+				"to": "00:00:24,320"
+			},
+			"offsets": {
+				"from": 19480,
+				"to": 24320
+			},
+			"text": " interviewed over a hundred engineers around this space to pinpoint shared"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,320",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 24320,
+				"to": 29520
+			},
+			"text": " problems around development, you know, like deploying a testnet or doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,520",
+				"to": "00:00:33,840"
+			},
+			"offsets": {
+				"from": 29520,
+				"to": 33840
+			},
+			"text": " security audits and helped fund resources towards solving those problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,840",
+				"to": "00:00:38,880"
+			},
+			"offsets": {
+				"from": 33840,
+				"to": 38880
+			},
+			"text": " And more recently I've been exploring open problems and helping at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,880",
+				"to": "00:00:43,840"
+			},
+			"offsets": {
+				"from": 38880,
+				"to": 43840
+			},
+			"text": " Ethereum Foundations with the grants program. So today I'm going to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,840",
+				"to": "00:00:48,640"
+			},
+			"offsets": {
+				"from": 43840,
+				"to": 48640
+			},
+			"text": " identity and I think identity is one of the most important problems any of us"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,640",
+				"to": "00:00:55,240"
+			},
+			"offsets": {
+				"from": 48640,
+				"to": 55240
+			},
+			"text": " could be working on. In the blockchain space, identity plays into a whole host"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,240",
+				"to": "00:00:59,720"
+			},
+			"offsets": {
+				"from": 55240,
+				"to": 59720
+			},
+			"text": " of things that we're all excited about. So I'm just going to kind of talk through"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,720",
+				"to": "00:01:04,480"
+			},
+			"offsets": {
+				"from": 59720,
+				"to": 64480
+			},
+			"text": " a few of them. The first is, you know, if you're familiar with some of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,480",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 64480,
+				"to": 68960
+			},
+			"text": " protocols that are being built, you know that Ethereum addresses are"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:13,560"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 73560
+			},
+			"text": " sedonymous, you can create a new one at zero cost. And because of that a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,560",
+				"to": "00:01:18,600"
+			},
+			"offsets": {
+				"from": 73560,
+				"to": 78600
+			},
+			"text": " the protocols that exist like, you know, CASPER, live peer for, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,600",
+				"to": "00:01:23,440"
+			},
+			"offsets": {
+				"from": 78600,
+				"to": 83440
+			},
+			"text": " decentralized video streaming, Trubit for computation. The only way you have of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,440",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 83440,
+				"to": 88000
+			},
+			"text": " keeping your participants honest is to make them deposit some stake and then if"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:32,720"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 92720
+			},
+			"text": " they do something wrong, burning that stake. And that by definition is a one-off"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,720",
+				"to": "00:01:40,720"
+			},
+			"offsets": {
+				"from": 92720,
+				"to": 100720
+			},
+			"text": " game. Now imagine if instead of staking ETH or some amount of monetary collateral,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,720",
+				"to": "00:01:46,360"
+			},
+			"offsets": {
+				"from": 100720,
+				"to": 106360
+			},
+			"text": " people had to stake their reputation and their persistent identity. And if they"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,360",
+				"to": "00:01:49,760"
+			},
+			"offsets": {
+				"from": 106360,
+				"to": 109760
+			},
+			"text": " did something wrong, it was a reputation that would take a hit. This would give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,760",
+				"to": "00:01:54,520"
+			},
+			"offsets": {
+				"from": 109760,
+				"to": 114520
+			},
+			"text": " much stronger guarantees around the space. There's a whole host of application"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,520",
+				"to": "00:01:59,640"
+			},
+			"offsets": {
+				"from": 114520,
+				"to": 119640
+			},
+			"text": " layer things that depend on identity. One is governance. You know, if you want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,640",
+				"to": "00:02:06,200"
+			},
+			"offsets": {
+				"from": 119640,
+				"to": 126200
+			},
+			"text": " do any kind of quadratic voting, you need a sense of identity. On-chain lending"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,200",
+				"to": "00:02:10,560"
+			},
+			"offsets": {
+				"from": 126200,
+				"to": 130560
+			},
+			"text": " relies on identity to be able to underwrite the loans, determine how risky"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,560",
+				"to": "00:02:13,760"
+			},
+			"offsets": {
+				"from": 130560,
+				"to": 133760
+			},
+			"text": " someone is because you just can't give money to someone who's anonymous and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,760",
+				"to": "00:02:19,160"
+			},
+			"offsets": {
+				"from": 133760,
+				"to": 139160
+			},
+			"text": " could disappear. Air drops, which are, you know, means of economic distribution and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,160",
+				"to": "00:02:23,160"
+			},
+			"offsets": {
+				"from": 139160,
+				"to": 143160
+			},
+			"text": " bootstrapping networks. It's one of the very interesting, like, crypto native"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,160",
+				"to": "00:02:28,160"
+			},
+			"offsets": {
+				"from": 143160,
+				"to": 148160
+			},
+			"text": " primitives that we have. Having identity would help people do these in a more"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,160",
+				"to": "00:02:34,520"
+			},
+			"offsets": {
+				"from": 148160,
+				"to": 154520
+			},
+			"text": " nuanced way. And rate limiting and pricing. So some of the web two services"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,520",
+				"to": "00:02:39,480"
+			},
+			"offsets": {
+				"from": 154520,
+				"to": 159480
+			},
+			"text": " that we all use and which are great, you know, for example, Dropbox, make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,480",
+				"to": "00:02:43,840"
+			},
+			"offsets": {
+				"from": 159480,
+				"to": 163840
+			},
+			"text": " extensive use of these techniques. For example, you know, there's freemium models"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,840",
+				"to": "00:02:49,680"
+			},
+			"offsets": {
+				"from": 163840,
+				"to": 169680
+			},
+			"text": " where as a new user you get free access to the service or there's tiered usage"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,680",
+				"to": "00:02:55,480"
+			},
+			"offsets": {
+				"from": 169680,
+				"to": 175480
+			},
+			"text": " models where as a pro user you get a discount on what you're doing. And you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,480",
+				"to": "00:03:01,080"
+			},
+			"offsets": {
+				"from": 175480,
+				"to": 181080
+			},
+			"text": " just can't replicate these models on the blockchain right now. And finally, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,080",
+				"to": "00:03:05,680"
+			},
+			"offsets": {
+				"from": 181080,
+				"to": 185680
+			},
+			"text": " problem of sampling, which is kind of theoretical, but if you can basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,680",
+				"to": "00:03:11,480"
+			},
+			"offsets": {
+				"from": 185680,
+				"to": 191480
+			},
+			"text": " pick an address from amongst a number of addresses, and right now you can't do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,480",
+				"to": "00:03:15,720"
+			},
+			"offsets": {
+				"from": 191480,
+				"to": 195720
+			},
+			"text": " this because they can be sibbled, this would change everything. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,720",
+				"to": "00:03:19,840"
+			},
+			"offsets": {
+				"from": 195720,
+				"to": 199840
+			},
+			"text": " basically, you know, in some way it's what proof of work and proof of stake and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,840",
+				"to": "00:03:24,760"
+			},
+			"offsets": {
+				"from": 199840,
+				"to": 204760
+			},
+			"text": " these various mechanisms are trying to get at is selecting a leader or sampling"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,760",
+				"to": "00:03:30,560"
+			},
+			"offsets": {
+				"from": 204760,
+				"to": 210560
+			},
+			"text": " a number of people from a large pool. And even in the real world, we're seeing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,560",
+				"to": "00:03:34,760"
+			},
+			"offsets": {
+				"from": 210560,
+				"to": 214760
+			},
+			"text": " identity become or digital identity become more and more important. So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,760",
+				"to": "00:03:40,760"
+			},
+			"offsets": {
+				"from": 214760,
+				"to": 220760
+			},
+			"text": " odd-har program in India, it's a identity system based on biometrics and has over"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,760",
+				"to": "00:03:45,480"
+			},
+			"offsets": {
+				"from": 220760,
+				"to": 225480
+			},
+			"text": " one billion people using it now. And you can use it to sign up for bank accounts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,480",
+				"to": "00:03:52,280"
+			},
+			"offsets": {
+				"from": 225480,
+				"to": 232280
+			},
+			"text": " take out loans, e-residency in Estonia of course, and you know, China's rolling"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,280",
+				"to": "00:03:56,600"
+			},
+			"offsets": {
+				"from": 232280,
+				"to": 236600
+			},
+			"text": " out this virtual ID, which, you know, could speak to alternate ways that we could,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,600",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 236600,
+				"to": 240880
+			},
+			"text": " you know, provide a more self-sovereign way of doing this. So today I'm going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:05,200"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 245200
+			},
+			"text": " talk about what we mean by identity reputation and then talk through some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,200",
+				"to": "00:04:08,880"
+			},
+			"offsets": {
+				"from": 245200,
+				"to": 248880
+			},
+			"text": " the nuances through the lens of three particular applications, governance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,880",
+				"to": "00:04:14,640"
+			},
+			"offsets": {
+				"from": 248880,
+				"to": 254640
+			},
+			"text": " lending, and security tokens. So an identity is basically, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,640",
+				"to": "00:04:18,520"
+			},
+			"offsets": {
+				"from": 254640,
+				"to": 258520
+			},
+			"text": " atomic actor within the system. So if we're talking about Ethereum right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,520",
+				"to": "00:04:23,840"
+			},
+			"offsets": {
+				"from": 258520,
+				"to": 263840
+			},
+			"text": " each Ethereum address could be an identity. When you are, you know, buying a token"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,840",
+				"to": "00:04:31,880"
+			},
+			"offsets": {
+				"from": 263840,
+				"to": 271880
+			},
+			"text": " on zero X or you're, you know, staking some ETH in a protocol, it's that"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,880",
+				"to": "00:04:36,480"
+			},
+			"offsets": {
+				"from": 271880,
+				"to": 276480
+			},
+			"text": " that's the identity. And these addresses can obviously be backed by a human being"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,480",
+				"to": "00:04:40,480"
+			},
+			"offsets": {
+				"from": 276480,
+				"to": 280480
+			},
+			"text": " who's controlling the private key or they could be backed or they could be a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,480",
+				"to": "00:04:46,560"
+			},
+			"offsets": {
+				"from": 280480,
+				"to": 286560
+			},
+			"text": " smart contract that has interesting mechanisms around, you know, different,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,560",
+				"to": "00:04:53,760"
+			},
+			"offsets": {
+				"from": 286560,
+				"to": 293760
+			},
+			"text": " different spending limits, access control mechanisms. And if, you know, you build"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,760",
+				"to": "00:04:56,720"
+			},
+			"offsets": {
+				"from": 293760,
+				"to": 296720
+			},
+			"text": " up a history as you engage with the network through your identity. And this"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,720",
+				"to": "00:05:01,040"
+			},
+			"offsets": {
+				"from": 296720,
+				"to": 301040
+			},
+			"text": " speaks to the importance of being this identity being secure. And why if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,040",
+				"to": "00:05:06,360"
+			},
+			"offsets": {
+				"from": 301040,
+				"to": 306360
+			},
+			"text": " have a multisig and you have ways to recover your keys, it's important."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,360",
+				"to": "00:05:09,280"
+			},
+			"offsets": {
+				"from": 306360,
+				"to": 309280
+			},
+			"text": " And obviously it plays into the user experience, which a lot of other people"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,280",
+				"to": "00:05:15,280"
+			},
+			"offsets": {
+				"from": 309280,
+				"to": 315280
+			},
+			"text": " are talking about at this conference. The next kind of part of this that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,280",
+				"to": "00:05:19,160"
+			},
+			"offsets": {
+				"from": 315280,
+				"to": 319160
+			},
+			"text": " should know about is this idea of a claim, which is, you know, you have all"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,160",
+				"to": "00:05:23,040"
+			},
+			"offsets": {
+				"from": 319160,
+				"to": 323040
+			},
+			"text": " these identities dispersed around the network and each one of them can claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,040",
+				"to": "00:05:28,200"
+			},
+			"offsets": {
+				"from": 323040,
+				"to": 328200
+			},
+			"text": " something about another one. So you can, you know, identity A can say that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,200",
+				"to": "00:05:33,560"
+			},
+			"offsets": {
+				"from": 328200,
+				"to": 333560
+			},
+			"text": " identity B has passed KYC or that they're, you know, a resident of this country or"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,560",
+				"to": "00:05:38,320"
+			},
+			"offsets": {
+				"from": 333560,
+				"to": 338320
+			},
+			"text": " they have this income. And these could play different, it's just kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,320",
+				"to": "00:05:43,200"
+			},
+			"offsets": {
+				"from": 338320,
+				"to": 343200
+			},
+			"text": " a primitive that you can use within different applications. And you don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,200",
+				"to": "00:05:47,200"
+			},
+			"offsets": {
+				"from": 343200,
+				"to": 347200
+			},
+			"text": " really need to enforce any kind of authority here. Any, you know, any, I can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,200",
+				"to": "00:05:50,200"
+			},
+			"offsets": {
+				"from": 347200,
+				"to": 350200
+			},
+			"text": " claim something about someone else, they can claim something about someone else."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,200",
+				"to": "00:05:54,640"
+			},
+			"offsets": {
+				"from": 350200,
+				"to": 354640
+			},
+			"text": " And there's a lot of awesome teams working on pushing this forward project"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,640",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 354640,
+				"to": 360720
+			},
+			"text": " like Zeppelin, TPL, Bloom, Uport, ERC 725 and 735. There's different"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:04,600"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 364600
+			},
+			"text": " architectures, you know, like storing these claims in a, in a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,600",
+				"to": "00:06:09,760"
+			},
+			"offsets": {
+				"from": 364600,
+				"to": 369760
+			},
+			"text": " registry, storing them with the user in a more self-sovereign way. And this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,760",
+				"to": "00:06:14,920"
+			},
+			"offsets": {
+				"from": 369760,
+				"to": 374920
+			},
+			"text": " kind of an area of active experimentation. And what do we mean by"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,920",
+				"to": "00:06:20,520"
+			},
+			"offsets": {
+				"from": 374920,
+				"to": 380520
+			},
+			"text": " reputation? Reputation is, you know, when you, when one of these identities"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,520",
+				"to": "00:06:24,640"
+			},
+			"offsets": {
+				"from": 380520,
+				"to": 384640
+			},
+			"text": " kind of builds up trust over time. So it goes from this state of being just this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,640",
+				"to": "00:06:29,760"
+			},
+			"offsets": {
+				"from": 384640,
+				"to": 389760
+			},
+			"text": " anonymous, you know, Ethereum address to, to an identity that people can trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:35,200"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 395200
+			},
+			"text": " And you can think of this analogously to the real world. So think of you, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,200",
+				"to": "00:06:40,200"
+			},
+			"offsets": {
+				"from": 395200,
+				"to": 400200
+			},
+			"text": " know, just hearing of an engineer for the first time who you've never met before,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,200",
+				"to": "00:06:43,120"
+			},
+			"offsets": {
+				"from": 400200,
+				"to": 403120
+			},
+			"text": " you don't know anything about them. How do you know if they're any good or if"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,120",
+				"to": "00:06:46,680"
+			},
+			"offsets": {
+				"from": 403120,
+				"to": 406680
+			},
+			"text": " you should, you know, work with them? This can happen in one of two ways, really."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,680",
+				"to": "00:06:51,200"
+			},
+			"offsets": {
+				"from": 406680,
+				"to": 411200
+			},
+			"text": " Either someone you already trust goes out on the limb and is like, no, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,200",
+				"to": "00:06:56,960"
+			},
+			"offsets": {
+				"from": 411200,
+				"to": 416960
+			},
+			"text": " person's amazing. Like, and, and through that, through there, you know, trust you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,960",
+				"to": "00:07:03,200"
+			},
+			"offsets": {
+				"from": 416960,
+				"to": 423200
+			},
+			"text": " you take a chance on this person. Or that, that graph of trust isn't there. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,200",
+				"to": "00:07:07,040"
+			},
+			"offsets": {
+				"from": 423200,
+				"to": 427040
+			},
+			"text": " instead, this person just shows up and does some good work over time. And through"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,040",
+				"to": "00:07:10,640"
+			},
+			"offsets": {
+				"from": 427040,
+				"to": 430640
+			},
+			"text": " their own good behavior, they build up their reputation. So we can use the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,640",
+				"to": "00:07:17,840"
+			},
+			"offsets": {
+				"from": 430640,
+				"to": 437840
+			},
+			"text": " two kinds of ideas on blockchains. So let's talk about governance a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,840",
+				"to": "00:07:22,240"
+			},
+			"offsets": {
+				"from": 437840,
+				"to": 442240
+			},
+			"text": " Governance is really important in this space, you know, as it comes to"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,240",
+				"to": "00:07:26,800"
+			},
+			"offsets": {
+				"from": 442240,
+				"to": 446800
+			},
+			"text": " decentralize networks upgrading without, you know, a central party making that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,800",
+				"to": "00:07:35,560"
+			},
+			"offsets": {
+				"from": 446800,
+				"to": 455560
+			},
+			"text": " choice when it comes to allocating funds and making decisions as a whole. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,560",
+				"to": "00:07:39,240"
+			},
+			"offsets": {
+				"from": 455560,
+				"to": 459240
+			},
+			"text": " can't really replicate the model that exists in the real world, which is one"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,240",
+				"to": "00:07:43,960"
+			},
+			"offsets": {
+				"from": 459240,
+				"to": 463960
+			},
+			"text": " person, one vote, because obviously, you know, you can spin up multiple addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,960",
+				"to": "00:07:48,920"
+			},
+			"offsets": {
+				"from": 463960,
+				"to": 468920
+			},
+			"text": " and civil the system. And so what's been happening so far is coin voting, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,920",
+				"to": "00:07:54,120"
+			},
+			"offsets": {
+				"from": 468920,
+				"to": 474120
+			},
+			"text": " is, you know, you have the scarce resource, which is the number of tokens you have,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,120",
+				"to": "00:08:00,960"
+			},
+			"offsets": {
+				"from": 474120,
+				"to": 480960
+			},
+			"text": " or the number of, the amount of ETH you have. And you stake this ETH and it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,960",
+				"to": "00:08:07,760"
+			},
+			"offsets": {
+				"from": 480960,
+				"to": 487760
+			},
+			"text": " your voice in this vote is determined by how much you stake. And this, this works."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,760",
+				"to": "00:08:12,520"
+			},
+			"offsets": {
+				"from": 487760,
+				"to": 492520
+			},
+			"text": " But, you know, it has this problem of being plutocratic, which is people with"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,520",
+				"to": "00:08:16,560"
+			},
+			"offsets": {
+				"from": 492520,
+				"to": 496560
+			},
+			"text": " more money get more voice in the system. So this all speaks to this need for"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,560",
+				"to": "00:08:23,320"
+			},
+			"offsets": {
+				"from": 496560,
+				"to": 503320
+			},
+			"text": " decentralized, civil-resistant identity. Civil-resistant meaning you can't, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,320",
+				"to": "00:08:27,160"
+			},
+			"offsets": {
+				"from": 503320,
+				"to": 507160
+			},
+			"text": " can't, you know, one person can't spin up multiple identities. And it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,160",
+				"to": "00:08:32,840"
+			},
+			"offsets": {
+				"from": 507160,
+				"to": 512840
+			},
+			"text": " decentralized meaning it emerges from the network. And this is, this is one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,840",
+				"to": "00:08:37,680"
+			},
+			"offsets": {
+				"from": 512840,
+				"to": 517680
+			},
+			"text": " the hardest problems that exists in the space. And I think anyone who wants to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,680",
+				"to": "00:08:41,400"
+			},
+			"offsets": {
+				"from": 517680,
+				"to": 521400
+			},
+			"text": " work on interesting research problems should go and attack this. And I'll just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,400",
+				"to": "00:08:44,840"
+			},
+			"offsets": {
+				"from": 521400,
+				"to": 524840
+			},
+			"text": " talk through kind of a thought experiment of how, how you can think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,840",
+				"to": "00:08:49,040"
+			},
+			"offsets": {
+				"from": 524840,
+				"to": 529040
+			},
+			"text": " this. One, one method of approaching this. No, no system has been built that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,040",
+				"to": "00:08:53,320"
+			},
+			"offsets": {
+				"from": 529040,
+				"to": 533320
+			},
+			"text": " fully achieves this. So I think that there's some protocol. Let's say, you know, one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,320",
+				"to": "00:08:59,240"
+			},
+			"offsets": {
+				"from": 533320,
+				"to": 539240
+			},
+			"text": " of my favorites, zero X, wants to upgrade their contracts. This is, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,240",
+				"to": "00:09:03,320"
+			},
+			"offsets": {
+				"from": 539240,
+				"to": 543320
+			},
+			"text": " couple, like, sometime in the future and the system is fully decentralized. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,320",
+				"to": "00:09:07,240"
+			},
+			"offsets": {
+				"from": 543320,
+				"to": 547240
+			},
+			"text": " they want the network to vote on whether, you know, this change happens or how it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,240",
+				"to": "00:09:12,680"
+			},
+			"offsets": {
+				"from": 547240,
+				"to": 552680
+			},
+			"text": " happens. And one, one way you could do this instead of doing the coin voting is"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,680",
+				"to": "00:09:17,480"
+			},
+			"offsets": {
+				"from": 552680,
+				"to": 557480
+			},
+			"text": " you could just announce that any theorem address who wants to have an input on"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,480",
+				"to": "00:09:22,560"
+			},
+			"offsets": {
+				"from": 557480,
+				"to": 562560
+			},
+			"text": " this, we're just going to airdrop a hundred, you know, vote tokens onto them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,560",
+				"to": "00:09:27,480"
+			},
+			"offsets": {
+				"from": 562560,
+				"to": 567480
+			},
+			"text": " And so you just give this to everyone on the network. And obviously you can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,480",
+				"to": "00:09:30,120"
+			},
+			"offsets": {
+				"from": 567480,
+				"to": 570120
+			},
+			"text": " just, like, get these people to vote with these tokens because it would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,120",
+				"to": "00:09:35,280"
+			},
+			"offsets": {
+				"from": 570120,
+				"to": 575280
+			},
+			"text": " civil. But what happens instead is there's a campaigning period where anyone can,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,280",
+				"to": "00:09:39,480"
+			},
+			"offsets": {
+				"from": 575280,
+				"to": 579480
+			},
+			"text": " you know, use the existing social channels to campaign for their voice to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,480",
+				"to": "00:09:44,880"
+			},
+			"offsets": {
+				"from": 579480,
+				"to": 584880
+			},
+			"text": " heard. So, you know, the core zero X team, people in the community, developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,880",
+				"to": "00:09:49,200"
+			},
+			"offsets": {
+				"from": 584880,
+				"to": 589200
+			},
+			"text": " anonymous, you know, Reddit commenters, everyone would make their case for why,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,200",
+				"to": "00:09:54,000"
+			},
+			"offsets": {
+				"from": 589200,
+				"to": 594000
+			},
+			"text": " why they should have an input into this. And, you know, they would list their"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,000",
+				"to": "00:09:59,640"
+			},
+			"offsets": {
+				"from": 594000,
+				"to": 599640
+			},
+			"text": " theorem address next to their name. And during this month of campaigning, you go"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,640",
+				"to": "00:10:03,640"
+			},
+			"offsets": {
+				"from": 599640,
+				"to": 603640
+			},
+			"text": " and allocate your vote tokens between all these other people and whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,640",
+				"to": "00:10:08,640"
+			},
+			"offsets": {
+				"from": 603640,
+				"to": 608640
+			},
+			"text": " proportions that you want. And now once the month is over, you take the vote. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,640",
+				"to": "00:10:16,280"
+			},
+			"offsets": {
+				"from": 608640,
+				"to": 616280
+			},
+			"text": " everyone just cast their vote once. But instead of counting each vote as equal or"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,280",
+				"to": "00:10:21,120"
+			},
+			"offsets": {
+				"from": 616280,
+				"to": 621120
+			},
+			"text": " equal to the number of tokens they had, instead, you know, the naive way would be"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,120",
+				"to": "00:10:24,800"
+			},
+			"offsets": {
+				"from": 621120,
+				"to": 624800
+			},
+			"text": " how many vote tokens did they get allocated to them by the community, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,800",
+				"to": "00:10:29,000"
+			},
+			"offsets": {
+				"from": 624800,
+				"to": 629000
+			},
+			"text": " would already be pretty interesting. But what you could do is actually run page"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,000",
+				"to": "00:10:33,240"
+			},
+			"offsets": {
+				"from": 629000,
+				"to": 633240
+			},
+			"text": " rank on this, which is, you know, Google's algorithm for ranking websites. So you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,240",
+				"to": "00:10:40,200"
+			},
+			"offsets": {
+				"from": 633240,
+				"to": 640200
+			},
+			"text": " would say, you know, this person, you know, person X received all these vote tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,200",
+				"to": "00:10:43,880"
+			},
+			"offsets": {
+				"from": 640200,
+				"to": 643880
+			},
+			"text": " to them. So their voice obviously matters. And you can imagine, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,880",
+				"to": "00:10:49,120"
+			},
+			"offsets": {
+				"from": 643880,
+				"to": 649120
+			},
+			"text": " well in a mirror from zero X receiving all these vote tokens. But then you wouldn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,120",
+				"to": "00:10:52,400"
+			},
+			"offsets": {
+				"from": 649120,
+				"to": 652400
+			},
+			"text": " stop there. You would iterate the algorithm again. And you'd be like, who"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,400",
+				"to": "00:10:58,880"
+			},
+			"offsets": {
+				"from": 652400,
+				"to": 658880
+			},
+			"text": " have these people allocated? They're limited 100 vote tokens. And those edges"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,880",
+				"to": "00:11:03,840"
+			},
+			"offsets": {
+				"from": 658880,
+				"to": 663840
+			},
+			"text": " themselves have more value. And this wasn't determined by, you know, any"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,840",
+				"to": "00:11:08,080"
+			},
+			"offsets": {
+				"from": 663840,
+				"to": 668080
+			},
+			"text": " centralized process. It's just a property of the network. People, someone gets a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:08,080",
+				"to": "00:11:12,440"
+			},
+			"offsets": {
+				"from": 668080,
+				"to": 672440
+			},
+			"text": " lot of votes from the community. And because of that, their own votes become"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,440",
+				"to": "00:11:17,160"
+			},
+			"offsets": {
+				"from": 672440,
+				"to": 677160
+			},
+			"text": " more important. And then, you know, in turn, that person's votes become more"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,160",
+				"to": "00:11:23,080"
+			},
+			"offsets": {
+				"from": 677160,
+				"to": 683080
+			},
+			"text": " in turn. So this process converges. And is a really interesting idea. The problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,080",
+				"to": "00:11:29,440"
+			},
+			"offsets": {
+				"from": 683080,
+				"to": 689440
+			},
+			"text": " is that, you know, this approach also can be sibbled. So you can, you know, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,440",
+				"to": "00:11:33,880"
+			},
+			"offsets": {
+				"from": 689440,
+				"to": 693880
+			},
+			"text": " have the real trust graph here of all these people, you know, allocating their"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,880",
+				"to": "00:11:38,120"
+			},
+			"offsets": {
+				"from": 693880,
+				"to": 698120
+			},
+			"text": " tokens within the real Ethereum ecosystem, someone could just spin up a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,120",
+				"to": "00:11:42,520"
+			},
+			"offsets": {
+				"from": 698120,
+				"to": 702520
+			},
+			"text": " thousand addresses and replicate the exact same structure on this side. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,520",
+				"to": "00:11:46,640"
+			},
+			"offsets": {
+				"from": 702520,
+				"to": 706640
+			},
+			"text": " this is why this isn't open problem. So some ideas there are having globally"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,640",
+				"to": "00:11:52,320"
+			},
+			"offsets": {
+				"from": 706640,
+				"to": 712320
+			},
+			"text": " trusted peers, you know, maybe like 10, 50 or 100 addresses that kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,320",
+				"to": "00:11:56,880"
+			},
+			"offsets": {
+				"from": 712320,
+				"to": 716880
+			},
+			"text": " everyone agrees should be trusted. And you kind of start the graph from them. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,880",
+				"to": "00:11:59,600"
+			},
+			"offsets": {
+				"from": 716880,
+				"to": 719600
+			},
+			"text": " you're like, who do these people trust? Or do they trust? And this has a way of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,600",
+				"to": "00:12:04,560"
+			},
+			"offsets": {
+				"from": 719600,
+				"to": 724560
+			},
+			"text": " like bringing the network, grounding the network. Another approach is requiring a"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,560",
+				"to": "00:12:09,360"
+			},
+			"offsets": {
+				"from": 724560,
+				"to": 729360
+			},
+			"text": " scarce resource to create an edge. So, you know, you could use those zero X tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,360",
+				"to": "00:12:14,560"
+			},
+			"offsets": {
+				"from": 729360,
+				"to": 734560
+			},
+			"text": " to create these edges. And that makes them, means that one person just can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,560",
+				"to": "00:12:18,320"
+			},
+			"offsets": {
+				"from": 734560,
+				"to": 738320
+			},
+			"text": " create an infinite number of them. And the final one is you could, you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,320",
+				"to": "00:12:23,120"
+			},
+			"offsets": {
+				"from": 738320,
+				"to": 743120
+			},
+			"text": " pattern match from the top down. So you could say that, you know, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,120",
+				"to": "00:12:26,960"
+			},
+			"offsets": {
+				"from": 743120,
+				"to": 746960
+			},
+			"text": " addresses seem to be trusting themselves within this cluster, but no one from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,960",
+				"to": "00:12:32,960"
+			},
+			"offsets": {
+				"from": 746960,
+				"to": 752960
+			},
+			"text": " outside is trusting them. And the next problem is how do you actually incentivize"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,960",
+				"to": "00:12:38,840"
+			},
+			"offsets": {
+				"from": 752960,
+				"to": 758840
+			},
+			"text": " these, these people to allocate these tokens correctly? So what's, what makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,840",
+				"to": "00:12:42,640"
+			},
+			"offsets": {
+				"from": 758840,
+				"to": 762640
+			},
+			"text": " you spend the time and to do diligence to find out who to give your tokens to?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,640",
+				"to": "00:12:47,520"
+			},
+			"offsets": {
+				"from": 762640,
+				"to": 767520
+			},
+			"text": " And what prevents you from giving this to just, you know, bad actors in the system?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,520",
+				"to": "00:12:53,040"
+			},
+			"offsets": {
+				"from": 767520,
+				"to": 773040
+			},
+			"text": " And, you know, there's ideas around using collateral and requiring people, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,040",
+				"to": "00:12:59,120"
+			},
+			"offsets": {
+				"from": 773040,
+				"to": 779120
+			},
+			"text": " lock up some value that they get back in time. Or if these edges actually come to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,120",
+				"to": "00:13:02,840"
+			},
+			"offsets": {
+				"from": 779120,
+				"to": 782840
+			},
+			"text": " existence as a byproduct of existing behavior. So a great example of this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,840",
+				"to": "00:13:07,800"
+			},
+			"offsets": {
+				"from": 782840,
+				"to": 787800
+			},
+			"text": " in the web itself where, you know, Google didn't go to all these people and tell"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,800",
+				"to": "00:13:11,760"
+			},
+			"offsets": {
+				"from": 787800,
+				"to": 791760
+			},
+			"text": " them to point to each other so that the page rank algorithm could work. Instead,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,760",
+				"to": "00:13:16,400"
+			},
+			"offsets": {
+				"from": 791760,
+				"to": 796400
+			},
+			"text": " someone who's building a website personally just wants to have good links"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,400",
+				"to": "00:13:19,600"
+			},
+			"offsets": {
+				"from": 796400,
+				"to": 799600
+			},
+			"text": " going out because that means that their website is more interesting and they get"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,600",
+				"to": "00:13:25,080"
+			},
+			"offsets": {
+				"from": 799600,
+				"to": 805080
+			},
+			"text": " more traffic and, you know, they're just doing that in a selfish way. And, and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:25,080",
+				"to": "00:13:30,160"
+			},
+			"offsets": {
+				"from": 805080,
+				"to": 810160
+			},
+			"text": " in turn means that this page rank can be built on top of it. So there's projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,160",
+				"to": "00:13:34,560"
+			},
+			"offsets": {
+				"from": 810160,
+				"to": 814560
+			},
+			"text": " exploring this in crypto as well like source grad, which is doing it for GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,560",
+				"to": "00:13:41,360"
+			},
+			"offsets": {
+				"from": 814560,
+				"to": 821360
+			},
+			"text": " So this, you know, this is a really interesting area to explore and you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,360",
+				"to": "00:13:47,800"
+			},
+			"offsets": {
+				"from": 821360,
+				"to": 827800
+			},
+			"text": " all kind of look into it. Next kind of application we'll look at is lending. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,800",
+				"to": "00:13:52,600"
+			},
+			"offsets": {
+				"from": 827800,
+				"to": 832600
+			},
+			"text": " lending, you know, intuitively makes sense as a place where we all should look for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,600",
+				"to": "00:13:58,120"
+			},
+			"offsets": {
+				"from": 832600,
+				"to": 838120
+			},
+			"text": " applying this blockchain technology. You know, it's a global network. You can write"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:58,120",
+				"to": "00:14:04,320"
+			},
+			"offsets": {
+				"from": 838120,
+				"to": 844320
+			},
+			"text": " code instead of legal contracts. It's self enforcing. But then again, there's a"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,320",
+				"to": "00:14:10,040"
+			},
+			"offsets": {
+				"from": 844320,
+				"to": 850040
+			},
+			"text": " problem. You can't just extend the line of credit to an anonymous person because"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,040",
+				"to": "00:14:16,080"
+			},
+			"offsets": {
+				"from": 850040,
+				"to": 856080
+			},
+			"text": " they can disappear. They can take that money and run. And so there's a few ideas."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,080",
+				"to": "00:14:20,320"
+			},
+			"offsets": {
+				"from": 856080,
+				"to": 860320
+			},
+			"text": " I'll kind of talk through a spectrum of them here. And my goal is to show that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,320",
+				"to": "00:14:26,240"
+			},
+			"offsets": {
+				"from": 860320,
+				"to": 866240
+			},
+			"text": " the identity systems that we build are nuanced and, and relates to what we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,240",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 866240,
+				"to": 871000
+			},
+			"text": " trying to achieve on the application layer. So there's existing companies in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:35,760"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 875760
+			},
+			"text": " the web2 world that give out loans to people without credit scores. And, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,760",
+				"to": "00:14:40,520"
+			},
+			"offsets": {
+				"from": 875760,
+				"to": 880520
+			},
+			"text": " they begin by lending really small amounts. So, you know, let's say it's a village"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,520",
+				"to": "00:14:45,960"
+			},
+			"offsets": {
+				"from": 880520,
+				"to": 885960
+			},
+			"text": " in sub-Saharan Africa. They start by lending out $5 a month or till the loan"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,960",
+				"to": "00:14:49,800"
+			},
+			"offsets": {
+				"from": 885960,
+				"to": 889800
+			},
+			"text": " is paid back. And then as this person builds up reputation, they increase that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,800",
+				"to": "00:14:56,000"
+			},
+			"offsets": {
+				"from": 889800,
+				"to": 896000
+			},
+			"text": " amount. And this is actually worked. You know, these are successful companies"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,000",
+				"to": "00:15:00,040"
+			},
+			"offsets": {
+				"from": 896000,
+				"to": 900040
+			},
+			"text": " actually like making a difference in the world. But the critical thing is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,040",
+				"to": "00:15:06,200"
+			},
+			"offsets": {
+				"from": 900040,
+				"to": 906200
+			},
+			"text": " they all rely on this person's real-world identity. So they, you know, reads their,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,200",
+				"to": "00:15:11,760"
+			},
+			"offsets": {
+				"from": 906200,
+				"to": 911760
+			},
+			"text": " you use the person's contact list and GPS location. And if they have identity"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,760",
+				"to": "00:15:15,880"
+			},
+			"offsets": {
+				"from": 911760,
+				"to": 915880
+			},
+			"text": " information, they use these things to underwrite that person's risk. And know"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,880",
+				"to": "00:15:21,240"
+			},
+			"offsets": {
+				"from": 915880,
+				"to": 921240
+			},
+			"text": " that in the future, if this person, you know, exits the system, that they don't let"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,240",
+				"to": "00:15:28,000"
+			},
+			"offsets": {
+				"from": 921240,
+				"to": 928000
+			},
+			"text": " them in again. So this is how these systems have been able to build up trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,000",
+				"to": "00:15:34,120"
+			},
+			"offsets": {
+				"from": 928000,
+				"to": 934120
+			},
+			"text": " over time. And that's not really available to us in the crypto space if we want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,120",
+				"to": "00:15:39,040"
+			},
+			"offsets": {
+				"from": 934120,
+				"to": 939040
+			},
+			"text": " build fully anonymous, you know, decentralized lending systems. And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,040",
+				"to": "00:15:44,400"
+			},
+			"offsets": {
+				"from": 939040,
+				"to": 944400
+			},
+			"text": " example of this kind of was shown in, you know, earlier when this awesome"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,400",
+				"to": "00:15:49,920"
+			},
+			"offsets": {
+				"from": 944400,
+				"to": 949920
+			},
+			"text": " company, BTCGEM, which was doing Bitcoin lending in the developing world, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,920",
+				"to": "00:15:53,440"
+			},
+			"offsets": {
+				"from": 949920,
+				"to": 953440
+			},
+			"text": " a lot of people were very excited about it. But there was just a lot of exit"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,440",
+				"to": "00:15:57,960"
+			},
+			"offsets": {
+				"from": 953440,
+				"to": 957960
+			},
+			"text": " scams. So people would build up their reputation by borrowing, paying back into"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,960",
+				"to": "00:16:01,680"
+			},
+			"offsets": {
+				"from": 957960,
+				"to": 961680
+			},
+			"text": " time, not defaulting. And as soon as this value would get large enough, they would"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,680",
+				"to": "00:16:05,400"
+			},
+			"offsets": {
+				"from": 961680,
+				"to": 965400
+			},
+			"text": " just run away with the money. And then they'd start over again. So how do you solve that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,400",
+				"to": "00:16:13,440"
+			},
+			"offsets": {
+				"from": 965400,
+				"to": 973440
+			},
+			"text": " Another idea is, okay, let's not do this decentralized anonymous thing. Let's do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,440",
+				"to": "00:16:18,080"
+			},
+			"offsets": {
+				"from": 973440,
+				"to": 978080
+			},
+			"text": " peer-to-peer loans in a user's own community. So in their own village, people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,080",
+				"to": "00:16:23,360"
+			},
+			"offsets": {
+				"from": 978080,
+				"to": 983360
+			},
+			"text": " trust them socially. So you can do that. And, you know, that wasn't possible before"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,360",
+				"to": "00:16:27,120"
+			},
+			"offsets": {
+				"from": 983360,
+				"to": 987120
+			},
+			"text": " either. We can use blockchain technology to enable that. There's a few questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,120",
+				"to": "00:16:32,040"
+			},
+			"offsets": {
+				"from": 987120,
+				"to": 992040
+			},
+			"text": " there, again, more on the social layer rather than the technology layer, which is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,040",
+				"to": "00:16:36,720"
+			},
+			"offsets": {
+				"from": 992040,
+				"to": 996720
+			},
+			"text": " you know, does their community actually have the capital to lend? Like, is that a"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,720",
+				"to": "00:16:42,640"
+			},
+			"offsets": {
+				"from": 996720,
+				"to": 1002640
+			},
+			"text": " believable idea? And the other one is, do people like to borrow a land from people"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,640",
+				"to": "00:16:46,360"
+			},
+			"offsets": {
+				"from": 1002640,
+				"to": 1006360
+			},
+			"text": " they know? You know, if you think about it right now, would you take out, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,360",
+				"to": "00:16:51,760"
+			},
+			"offsets": {
+				"from": 1006360,
+				"to": 1011760
+			},
+			"text": " alone from your friends? Or would you lend to your friends? And how would that"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,760",
+				"to": "00:16:55,440"
+			},
+			"offsets": {
+				"from": 1011760,
+				"to": 1015440
+			},
+			"text": " impact your personal relationship? So some people, you know, there's some"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:55,440",
+				"to": "00:16:59,840"
+			},
+			"offsets": {
+				"from": 1015440,
+				"to": 1019840
+			},
+			"text": " research that shows people actually behave better if you do that because of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,840",
+				"to": "00:17:04,480"
+			},
+			"offsets": {
+				"from": 1019840,
+				"to": 1024480
+			},
+			"text": " social accountability. And there's a bunch of people who think that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,480",
+				"to": "00:17:08,400"
+			},
+			"offsets": {
+				"from": 1024480,
+				"to": 1028400
+			},
+			"text": " people would rather have this relationship with some bank and not"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,400",
+				"to": "00:17:11,160"
+			},
+			"offsets": {
+				"from": 1028400,
+				"to": 1031160
+			},
+			"text": " involved there, you know, have the separation between the person and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,160",
+				"to": "00:17:17,040"
+			},
+			"offsets": {
+				"from": 1031160,
+				"to": 1037040
+			},
+			"text": " financial life. So again, things that we need to all think about. And, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,040",
+				"to": "00:17:23,240"
+			},
+			"offsets": {
+				"from": 1037040,
+				"to": 1043240
+			},
+			"text": " the, you know, the, on the other side of a continuum is, okay, it's, it's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,240",
+				"to": "00:17:29,800"
+			},
+			"offsets": {
+				"from": 1043240,
+				"to": 1049800
+			},
+			"text": " not using the blockchain for peer-to-peer, you know, lending for, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,800",
+				"to": "00:17:34,120"
+			},
+			"offsets": {
+				"from": 1049800,
+				"to": 1054120
+			},
+			"text": " building up reputation. We're just using the blockchain to simplify the payment"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,120",
+				"to": "00:17:39,080"
+			},
+			"offsets": {
+				"from": 1054120,
+				"to": 1059080
+			},
+			"text": " rails and make it global and automate, you know, the settlement. And, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,080",
+				"to": "00:17:42,680"
+			},
+			"offsets": {
+				"from": 1059080,
+				"to": 1062680
+			},
+			"text": " case here is that even the peer-to-peer lending marketplaces like Lending Club"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,680",
+				"to": "00:17:46,480"
+			},
+			"offsets": {
+				"from": 1062680,
+				"to": 1066480
+			},
+			"text": " and Prosper and these companies that have been built over the last 10 years, even"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,480",
+				"to": "00:17:49,360"
+			},
+			"offsets": {
+				"from": 1066480,
+				"to": 1069360
+			},
+			"text": " though they're peer-to-peer, most of the volume comes from institutional"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,360",
+				"to": "00:17:54,040"
+			},
+			"offsets": {
+				"from": 1069360,
+				"to": 1074040
+			},
+			"text": " investors. And the catch is that if you talk to these institutions, they actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,040",
+				"to": "00:17:58,880"
+			},
+			"offsets": {
+				"from": 1074040,
+				"to": 1078880
+			},
+			"text": " can't go off of peer-to-peer claims. Like, they don't, they, it's not good"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,880",
+				"to": "00:18:02,720"
+			},
+			"offsets": {
+				"from": 1078880,
+				"to": 1082720
+			},
+			"text": " enough if, you know, 10 theorem addresses or your friends in the community say"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,720",
+				"to": "00:18:06,600"
+			},
+			"offsets": {
+				"from": 1082720,
+				"to": 1086600
+			},
+			"text": " that you have this income. They actually need to know that. And, you know, when it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,600",
+				"to": "00:18:13,360"
+			},
+			"offsets": {
+				"from": 1086600,
+				"to": 1093360
+			},
+			"text": " comes to KYC and AML, they actually need certified authorities to do that. So, so,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,360",
+				"to": "00:18:18,400"
+			},
+			"offsets": {
+				"from": 1093360,
+				"to": 1098400
+			},
+			"text": " you know, again, it's like you need to think about how, what the application is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,400",
+				"to": "00:18:23,560"
+			},
+			"offsets": {
+				"from": 1098400,
+				"to": 1103560
+			},
+			"text": " as you design the ITEMDZ reputation layer. The final thing I wanted to talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,560",
+				"to": "00:18:28,080"
+			},
+			"offsets": {
+				"from": 1103560,
+				"to": 1108080
+			},
+			"text": " is security tokens, which have been getting a lot of, you know, attention"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:28,080",
+				"to": "00:18:33,040"
+			},
+			"offsets": {
+				"from": 1108080,
+				"to": 1113040
+			},
+			"text": " recently. And the case makes sense, you know, so the idea is that there's all"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,040",
+				"to": "00:18:38,080"
+			},
+			"offsets": {
+				"from": 1113040,
+				"to": 1118080
+			},
+			"text": " these real-worlds, illiquid assets like real estate, art, private company equity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,080",
+				"to": "00:18:44,480"
+			},
+			"offsets": {
+				"from": 1118080,
+				"to": 1124480
+			},
+			"text": " and you can tokenize them, you can open them to global markets, you know, people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,480",
+				"to": "00:18:51,440"
+			},
+			"offsets": {
+				"from": 1124480,
+				"to": 1131440
+			},
+			"text": " can, people can own fractional amounts, and, and, you know, it seems like a value"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,440",
+				"to": "00:18:56,760"
+			},
+			"offsets": {
+				"from": 1131440,
+				"to": 1136760
+			},
+			"text": " ad. And maybe this would open up ownership to, you know, people who aren't"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,760",
+				"to": "00:19:01,440"
+			},
+			"offsets": {
+				"from": 1136760,
+				"to": 1141440
+			},
+			"text": " in the US, you know, someone could own a piece of an American company, even if"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,440",
+				"to": "00:19:09,680"
+			},
+			"offsets": {
+				"from": 1141440,
+				"to": 1149680
+			},
+			"text": " they live in Asia or in Africa. So, we actually, like, looked into this because"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,680",
+				"to": "00:19:15,720"
+			},
+			"offsets": {
+				"from": 1149680,
+				"to": 1155720
+			},
+			"text": " we were kind of researching identity broadly. And it turns out that if these"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,720",
+				"to": "00:19:20,760"
+			},
+			"offsets": {
+				"from": 1155720,
+				"to": 1160760
+			},
+			"text": " issuers are unregulated countries themselves, and because this is like in"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,760",
+				"to": "00:19:24,800"
+			},
+			"offsets": {
+				"from": 1160760,
+				"to": 1164800
+			},
+			"text": " the name is a security token, the compliance means that they're actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,800",
+				"to": "00:19:29,400"
+			},
+			"offsets": {
+				"from": 1164800,
+				"to": 1169400
+			},
+			"text": " on the hook for who buys these tokens. So, they need to, you know, run all the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:29,400",
+				"to": "00:19:33,480"
+			},
+			"offsets": {
+				"from": 1169400,
+				"to": 1173480
+			},
+			"text": " traditional processes that they would have to in the real world on the buyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,480",
+				"to": "00:19:41,720"
+			},
+			"offsets": {
+				"from": 1173480,
+				"to": 1181720
+			},
+			"text": " So, you know, KYC, AML, accreditation, O-fact list, debarment lists, and, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,720",
+				"to": "00:19:45,680"
+			},
+			"offsets": {
+				"from": 1181720,
+				"to": 1185680
+			},
+			"text": " fair enough. And, you know, then you think about what you could really change on"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,680",
+				"to": "00:19:49,400"
+			},
+			"offsets": {
+				"from": 1185680,
+				"to": 1189400
+			},
+			"text": " the identity layer, and you realize that, again, peer-to-peer identities don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,400",
+				"to": "00:19:53,840"
+			},
+			"offsets": {
+				"from": 1189400,
+				"to": 1193840
+			},
+			"text": " work because this issuer is actually legally on the hook. Like, they will go"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:53,840",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1193840,
+				"to": 1198000
+			},
+			"text": " to jail if they, if the government realizes that someone didn't have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:03,440"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1203440
+			},
+			"text": " KYC AML. So, they need to rely on certified authorities to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,440",
+				"to": "00:20:09,360"
+			},
+			"offsets": {
+				"from": 1203440,
+				"to": 1209360
+			},
+			"text": " And another kind of nuance, again, that emerges is, so you could, you know, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,360",
+				"to": "00:20:16,440"
+			},
+			"offsets": {
+				"from": 1209360,
+				"to": 1216440
+			},
+			"text": " say that, you know, let's put, let's put the KYC AML self-sauvering, the user"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,440",
+				"to": "00:20:19,960"
+			},
+			"offsets": {
+				"from": 1216440,
+				"to": 1219960
+			},
+			"text": " hosts them. And this is what, you know, an awesome company like Bloom is doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,960",
+				"to": "00:20:25,000"
+			},
+			"offsets": {
+				"from": 1219960,
+				"to": 1225000
+			},
+			"text": " right now. So, it's, the attestation's come from regulated authorities, but the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,000",
+				"to": "00:20:29,480"
+			},
+			"offsets": {
+				"from": 1225000,
+				"to": 1229480
+			},
+			"text": " user actually holds them, they reveal them when they want. But there's other"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,480",
+				"to": "00:20:35,840"
+			},
+			"offsets": {
+				"from": 1229480,
+				"to": 1235840
+			},
+			"text": " things we need to navigate here. So, the, these providers, the K, the attestters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,840",
+				"to": "00:20:41,000"
+			},
+			"offsets": {
+				"from": 1235840,
+				"to": 1241000
+			},
+			"text": " actually their incentives are, right now, you know, if a user is going to buy five"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,000",
+				"to": "00:20:46,400"
+			},
+			"offsets": {
+				"from": 1241000,
+				"to": 1246400
+			},
+			"text": " different tokens, each of those platforms does the KYC wants, and this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,400",
+				"to": "00:20:50,480"
+			},
+			"offsets": {
+				"from": 1246400,
+				"to": 1250480
+			},
+			"text": " like, provider, like, makes money from that. So, by putting this stuff on chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,480",
+				"to": "00:20:55,080"
+			},
+			"offsets": {
+				"from": 1250480,
+				"to": 1255080
+			},
+			"text": " you're actually, like, lowering the redundancy. So, there's a lot of, kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,080",
+				"to": "00:21:01,680"
+			},
+			"offsets": {
+				"from": 1255080,
+				"to": 1261680
+			},
+			"text": " case-by-case nuances that you need to navigate. And so, just wanted to, kind of,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,680",
+				"to": "00:21:08,480"
+			},
+			"offsets": {
+				"from": 1261680,
+				"to": 1268480
+			},
+			"text": " give some context, you know, beyond the key management and the user experience,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,480",
+				"to": "00:21:13,080"
+			},
+			"offsets": {
+				"from": 1268480,
+				"to": 1273080
+			},
+			"text": " and these things which are all really important, and we need to work on to make"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,080",
+				"to": "00:21:16,960"
+			},
+			"offsets": {
+				"from": 1273080,
+				"to": 1276960
+			},
+			"text": " this stuff viable for people who aren't, you know, who aren't in the space, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,960",
+				"to": "00:21:22,800"
+			},
+			"offsets": {
+				"from": 1276960,
+				"to": 1282800
+			},
+			"text": " so they can actually use this stuff. But we need to actually think about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,800",
+				"to": "00:21:27,480"
+			},
+			"offsets": {
+				"from": 1282800,
+				"to": 1287480
+			},
+			"text": " use cases we're building for, and design with, with that in mind, from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,480",
+				"to": "00:21:32,800"
+			},
+			"offsets": {
+				"from": 1287480,
+				"to": 1292800
+			},
+			"text": " architecture layer. And that's what I'll leave you with."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,800",
+				"to": "00:21:48,200"
+			},
+			"offsets": {
+				"from": 1292800,
+				"to": 1308200
+			},
+			"text": " We do have about four minutes to anyone have one to ask a question. Okay, down"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,200",
+				"to": "00:21:55,160"
+			},
+			"offsets": {
+				"from": 1308200,
+				"to": 1315160
+			},
+			"text": " there. Hello, the Metrobiscollum, as I said. Let's imagine that you have solved"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,160",
+				"to": "00:22:01,960"
+			},
+			"offsets": {
+				"from": 1315160,
+				"to": 1321960
+			},
+			"text": " most of the problems that you, you were talking about. In this, in this case, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,960",
+				"to": "00:22:07,280"
+			},
+			"offsets": {
+				"from": 1321960,
+				"to": 1327280
+			},
+			"text": " would be the major problems for the adoption of the decentralized identity?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,280",
+				"to": "00:22:12,640"
+			},
+			"offsets": {
+				"from": 1327280,
+				"to": 1332640
+			},
+			"text": " Decentralized meaning, it's not packed on the real world, it's emerges from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,640",
+				"to": "00:22:19,000"
+			},
+			"offsets": {
+				"from": 1332640,
+				"to": 1339000
+			},
+			"text": " network. Maybe in this case, like, maybe it depends on the problems that you were"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,000",
+				"to": "00:22:28,360"
+			},
+			"offsets": {
+				"from": 1339000,
+				"to": 1348360
+			},
+			"text": " talking about, but in a sense, what would be the adoption barriers for, yeah, for"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,360",
+				"to": "00:22:33,040"
+			},
+			"offsets": {
+				"from": 1348360,
+				"to": 1353040
+			},
+			"text": " this kind of thing? So the question is, what would be the adoption barriers to an"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,040",
+				"to": "00:22:39,520"
+			},
+			"offsets": {
+				"from": 1353040,
+				"to": 1359520
+			},
+			"text": " identity system? And I think there's, you know, you, there's multiple aspects of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,520",
+				"to": "00:22:44,360"
+			},
+			"offsets": {
+				"from": 1359520,
+				"to": 1364360
+			},
+			"text": " this. One part of it is, you just need to have, like, a very compelling use case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,360",
+				"to": "00:22:48,640"
+			},
+			"offsets": {
+				"from": 1364360,
+				"to": 1368640
+			},
+			"text": " where people are coming in and using, you know, because this technology still, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,640",
+				"to": "00:22:55,640"
+			},
+			"offsets": {
+				"from": 1368640,
+				"to": 1375640
+			},
+			"text": " hard to use. And one thing you notice is that identity in the web2 world has"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,640",
+				"to": "00:23:02,000"
+			},
+			"offsets": {
+				"from": 1375640,
+				"to": 1382000
+			},
+			"text": " always emerged as a byproduct of an application that people actually want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,000",
+				"to": "00:23:07,840"
+			},
+			"offsets": {
+				"from": 1382000,
+				"to": 1387840
+			},
+			"text": " use. So there's been attempts to build more self-sovereign identity on web2, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,840",
+				"to": "00:23:12,880"
+			},
+			"offsets": {
+				"from": 1387840,
+				"to": 1392880
+			},
+			"text": " know, from 10, 15 years ago. But eventually what became people's identity was their"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,880",
+				"to": "00:23:15,840"
+			},
+			"offsets": {
+				"from": 1392880,
+				"to": 1395840
+			},
+			"text": " email address, because they were just using it to communicate with everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,840",
+				"to": "00:23:19,720"
+			},
+			"offsets": {
+				"from": 1395840,
+				"to": 1399720
+			},
+			"text": " It was their Facebook login, because, you know, everyone had it, and people had"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,720",
+				"to": "00:23:24,160"
+			},
+			"offsets": {
+				"from": 1399720,
+				"to": 1404160
+			},
+			"text": " originally joined to build relationships and stay in touch. So I think a key part"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,160",
+				"to": "00:23:30,040"
+			},
+			"offsets": {
+				"from": 1404160,
+				"to": 1410040
+			},
+			"text": " is actually having use cases that pull people in. And then beyond that, it's, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,040",
+				"to": "00:23:35,360"
+			},
+			"offsets": {
+				"from": 1410040,
+				"to": 1415360
+			},
+			"text": " know, security. So, you know, having, you know, there's a lot of good ideas around"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,360",
+				"to": "00:23:38,680"
+			},
+			"offsets": {
+				"from": 1415360,
+				"to": 1418680
+			},
+			"text": " having different keys with different levels of permissions, different key"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,680",
+				"to": "00:23:42,400"
+			},
+			"offsets": {
+				"from": 1418680,
+				"to": 1422400
+			},
+			"text": " recovery mechanisms, because you just can't, you can't, you know, lose your"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,400",
+				"to": "00:23:47,200"
+			},
+			"offsets": {
+				"from": 1422400,
+				"to": 1427200
+			},
+			"text": " identity. And most people aren't going to, aren't going to, like, have the level of"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,200",
+				"to": "00:23:50,480"
+			},
+			"offsets": {
+				"from": 1427200,
+				"to": 1430480
+			},
+			"text": " understanding of the technologies, like, be able to do that stuff hands-on. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,480",
+				"to": "00:23:58,760"
+			},
+			"offsets": {
+				"from": 1430480,
+				"to": 1438760
+			},
+			"text": " the user experience. So, you know, even having to understand, you know, claims or"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,760",
+				"to": "00:24:03,840"
+			},
+			"offsets": {
+				"from": 1438760,
+				"to": 1443840
+			},
+			"text": " transactions or delegation or all these things need to get abstracted over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:03,840",
+				"to": "00:24:08,240"
+			},
+			"offsets": {
+				"from": 1443840,
+				"to": 1448240
+			},
+			"text": " which I think I'm hopeful will happen, given how many great people are working"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,240",
+				"to": "00:24:13,040"
+			},
+			"offsets": {
+				"from": 1448240,
+				"to": 1453040
+			},
+			"text": " on it in this space. But it's all stuff we need to figure out."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,040",
+				"to": "00:24:15,720"
+			},
+			"offsets": {
+				"from": 1453040,
+				"to": 1455720
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,720",
+				"to": "00:24:24,080"
+			},
+			"offsets": {
+				"from": 1455720,
+				"to": 1464080
+			},
+			"text": " Hi. Whoops. Hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,080",
+				"to": "00:24:30,720"
+			},
+			"offsets": {
+				"from": 1464080,
+				"to": 1470720
+			},
+			"text": " We're working in the self-solving identity space, and I would be curious what's your"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,720",
+				"to": "00:24:36,760"
+			},
+			"offsets": {
+				"from": 1470720,
+				"to": 1476760
+			},
+			"text": " opinion about the major challenges to get the current understanding of self-solving"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,760",
+				"to": "00:24:42,960"
+			},
+			"offsets": {
+				"from": 1476760,
+				"to": 1482960
+			},
+			"text": " identity, either the approach of Newport or Sovereign or Weber, where do you see"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,960",
+				"to": "00:24:49,880"
+			},
+			"offsets": {
+				"from": 1482960,
+				"to": 1489880
+			},
+			"text": " the major challenges to get it on a broader level towards the people?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,880",
+				"to": "00:24:50,880"
+			},
+			"offsets": {
+				"from": 1489880,
+				"to": 1490880
+			},
+			"text": " So, the question."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:50,880",
+				"to": "00:24:55,760"
+			},
+			"offsets": {
+				"from": 1490880,
+				"to": 1495760
+			},
+			"text": " Or even here in the room. So, basically, take, take that crowd and not just the"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,760",
+				"to": "00:24:58,960"
+			},
+			"offsets": {
+				"from": 1495760,
+				"to": 1498960
+			},
+			"text": " ordinary person, if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,960",
+				"to": "00:25:04,880"
+			},
+			"offsets": {
+				"from": 1498960,
+				"to": 1504880
+			},
+			"text": " I think this speaks to why it's important to think of the design consciously up front."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,880",
+				"to": "00:25:09,160"
+			},
+			"offsets": {
+				"from": 1504880,
+				"to": 1509160
+			},
+			"text": " So, you know, if you let it purely emerge as a byproduct of the application, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,160",
+				"to": "00:25:12,560"
+			},
+			"offsets": {
+				"from": 1509160,
+				"to": 1512560
+			},
+			"text": " you don't really know what's going to happen. You know, all these claims might"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,560",
+				"to": "00:25:17,240"
+			},
+			"offsets": {
+				"from": 1512560,
+				"to": 1517240
+			},
+			"text": " be on-chain and, like, it might be, you know, might complete lack privacy. Or, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,240",
+				"to": "00:25:21,560"
+			},
+			"offsets": {
+				"from": 1517240,
+				"to": 1521560
+			},
+			"text": " know, some, the dominant service that's getting all the traction might just store"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,560",
+				"to": "00:25:24,920"
+			},
+			"offsets": {
+				"from": 1521560,
+				"to": 1524920
+			},
+			"text": " all the information in a centralized server. So, it's good that we're thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,920",
+				"to": "00:25:31,080"
+			},
+			"offsets": {
+				"from": 1524920,
+				"to": 1531080
+			},
+			"text": " about it up front. I think, I mean, I've seen some approaches that are pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,080",
+				"to": "00:25:34,680"
+			},
+			"offsets": {
+				"from": 1531080,
+				"to": 1534680
+			},
+			"text": " interesting, like, again, talking to the Bloom team while you're here would be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,680",
+				"to": "00:25:39,880"
+			},
+			"offsets": {
+				"from": 1534680,
+				"to": 1539880
+			},
+			"text": " like, they have a pretty interesting go-to-market strategy. But, yeah, I think it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,880",
+				"to": "00:25:43,560"
+			},
+			"offsets": {
+				"from": 1539880,
+				"to": 1543560
+			},
+			"text": " use cases, user experience, security, it's kind of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:43,560",
+				"to": "00:25:46,920"
+			},
+			"offsets": {
+				"from": 1543560,
+				"to": 1546920
+			},
+			"text": " That's, you know, heavy."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:46,920",
+				"to": "00:25:56,920"
+			},
+			"offsets": {
+				"from": 1546920,
+				"to": 1556920
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:56,920",
+				"to": "00:26:06,920"
+			},
+			"offsets": {
+				"from": 1556920,
+				"to": 1566920
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:06,920",
+				"to": "00:26:16,920"
+			},
+			"offsets": {
+				"from": 1566920,
+				"to": 1576920
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

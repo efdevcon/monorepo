@@ -1,0 +1,6346 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,440"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2440
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,440",
+				"to": "00:00:17,040"
+			},
+			"offsets": {
+				"from": 2440,
+				"to": 17040
+			},
+			"text": " All right, so today's talk is going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,040",
+				"to": "00:00:20,040"
+			},
+			"offsets": {
+				"from": 17040,
+				"to": 20040
+			},
+			"text": " to be on building a thriving developer community."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,040",
+				"to": "00:00:21,400"
+			},
+			"offsets": {
+				"from": 20040,
+				"to": 21400
+			},
+			"text": " So I'm Sam."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,400",
+				"to": "00:00:23,280"
+			},
+			"offsets": {
+				"from": 21400,
+				"to": 23280
+			},
+			"text": " You know a little bit about me from the intro there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,280",
+				"to": "00:00:25,320"
+			},
+			"offsets": {
+				"from": 23280,
+				"to": 25320
+			},
+			"text": " but I'll get into who I am in a couple minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,320",
+				"to": "00:00:28,680"
+			},
+			"offsets": {
+				"from": 25320,
+				"to": 28680
+			},
+			"text": " But first, before we get into actual content here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,680",
+				"to": "00:00:30,960"
+			},
+			"offsets": {
+				"from": 28680,
+				"to": 30960
+			},
+			"text": " I want to paint a scenario."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,960",
+				"to": "00:00:34,600"
+			},
+			"offsets": {
+				"from": 30960,
+				"to": 34600
+			},
+			"text": " Let's say that you're building a really cool protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,600",
+				"to": "00:00:35,880"
+			},
+			"offsets": {
+				"from": 34600,
+				"to": 35880
+			},
+			"text": " or piece of technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,880",
+				"to": "00:00:37,480"
+			},
+			"offsets": {
+				"from": 35880,
+				"to": 37480
+			},
+			"text": " You're targeting developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,480",
+				"to": "00:00:39,680"
+			},
+			"offsets": {
+				"from": 37480,
+				"to": 39680
+			},
+			"text": " You're building this platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,680",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 39680,
+				"to": 41480
+			},
+			"text": " And you just sponsored a hackathon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:43,720"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 43720
+			},
+			"text": " because you've heard hackathons are a great way"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,720",
+				"to": "00:00:45,520"
+			},
+			"offsets": {
+				"from": 43720,
+				"to": 45520
+			},
+			"text": " to engage developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,520",
+				"to": "00:00:49,480"
+			},
+			"offsets": {
+				"from": 45520,
+				"to": 49480
+			},
+			"text": " You've paid 10K in travel expenses and sponsorship"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,480",
+				"to": "00:00:50,600"
+			},
+			"offsets": {
+				"from": 49480,
+				"to": 50600
+			},
+			"text": " expenses."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:50,600",
+				"to": "00:00:52,880"
+			},
+			"offsets": {
+				"from": 50600,
+				"to": 52880
+			},
+			"text": " You've told everyone how excited you"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,880",
+				"to": "00:00:54,840"
+			},
+			"offsets": {
+				"from": 52880,
+				"to": 54840
+			},
+			"text": " are for hackers to build things you've never even seen"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,840",
+				"to": "00:00:55,480"
+			},
+			"offsets": {
+				"from": 54840,
+				"to": 55480
+			},
+			"text": " before."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,480",
+				"to": "00:00:56,880"
+			},
+			"offsets": {
+				"from": 55480,
+				"to": 56880
+			},
+			"text": " And you've told your team to be ready,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,880",
+				"to": "00:00:59,760"
+			},
+			"offsets": {
+				"from": 56880,
+				"to": 59760
+			},
+			"text": " because this weekend is going to be intense."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,760",
+				"to": "00:01:03,120"
+			},
+			"offsets": {
+				"from": 59760,
+				"to": 63120
+			},
+			"text": " It's going to be lots of questions, lots of developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,120",
+				"to": "00:01:07,800"
+			},
+			"offsets": {
+				"from": 63120,
+				"to": 67800
+			},
+			"text": " And you show up, and nothing happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,800",
+				"to": "00:01:09,640"
+			},
+			"offsets": {
+				"from": 67800,
+				"to": 69640
+			},
+			"text": " The hackathon flop is a real thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,640",
+				"to": "00:01:12,160"
+			},
+			"offsets": {
+				"from": 69640,
+				"to": 72160
+			},
+			"text": " I've seen these talk to people in the community"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,160",
+				"to": "00:01:13,960"
+			},
+			"offsets": {
+				"from": 72160,
+				"to": 73960
+			},
+			"text": " that have had this happen to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,960",
+				"to": "00:01:15,800"
+			},
+			"offsets": {
+				"from": 73960,
+				"to": 75800
+			},
+			"text": " Let's say you get three submissions to them"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,800",
+				"to": "00:01:18,520"
+			},
+			"offsets": {
+				"from": 75800,
+				"to": 78520
+			},
+			"text": " or Figma files that don't really actually use your tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,520",
+				"to": "00:01:19,360"
+			},
+			"offsets": {
+				"from": 78520,
+				"to": 79360
+			},
+			"text": " They're just mockups."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,360",
+				"to": "00:01:21,560"
+			},
+			"offsets": {
+				"from": 79360,
+				"to": 81560
+			},
+			"text": " And your docs get ripped to shreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,560",
+				"to": "00:01:23,240"
+			},
+			"offsets": {
+				"from": 81560,
+				"to": 83240
+			},
+			"text": " by the people that you do engage with."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,240",
+				"to": "00:01:24,960"
+			},
+			"offsets": {
+				"from": 83240,
+				"to": 84960
+			},
+			"text": " And they tell you that they're not usable."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,960",
+				"to": "00:01:26,480"
+			},
+			"offsets": {
+				"from": 84960,
+				"to": 86480
+			},
+			"text": " It was all very confusing."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,480",
+				"to": "00:01:27,880"
+			},
+			"offsets": {
+				"from": 86480,
+				"to": 87880
+			},
+			"text": " And it's just bottom-- the bottom line"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,880",
+				"to": "00:01:30,400"
+			},
+			"offsets": {
+				"from": 87880,
+				"to": 90400
+			},
+			"text": " just didn't go very well."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,400",
+				"to": "00:01:32,800"
+			},
+			"offsets": {
+				"from": 90400,
+				"to": 92800
+			},
+			"text": " And the key lesson here, I think, to take away"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,800",
+				"to": "00:01:35,920"
+			},
+			"offsets": {
+				"from": 92800,
+				"to": 95920
+			},
+			"text": " is that it's not enough to build awesome tools."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,920",
+				"to": "00:01:38,320"
+			},
+			"offsets": {
+				"from": 95920,
+				"to": 98320
+			},
+			"text": " You need people to know about them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,320",
+				"to": "00:01:42,760"
+			},
+			"offsets": {
+				"from": 98320,
+				"to": 102760
+			},
+			"text": " and you need to make using them a great experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,760",
+				"to": "00:01:44,080"
+			},
+			"offsets": {
+				"from": 102760,
+				"to": 104080
+			},
+			"text": " So who am I?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,080",
+				"to": "00:01:46,440"
+			},
+			"offsets": {
+				"from": 104080,
+				"to": 106440
+			},
+			"text": " I help lead developer experiences, Superfluid."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,440",
+				"to": "00:01:48,760"
+			},
+			"offsets": {
+				"from": 106440,
+				"to": 108760
+			},
+			"text": " Superfluid is a protocol that enables real-time finance"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,760",
+				"to": "00:01:49,840"
+			},
+			"offsets": {
+				"from": 108760,
+				"to": 109840
+			},
+			"text": " and money streaming."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,840",
+				"to": "00:01:51,400"
+			},
+			"offsets": {
+				"from": 109840,
+				"to": 111400
+			},
+			"text": " If you're curious about Superfluid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,400",
+				"to": "00:01:52,920"
+			},
+			"offsets": {
+				"from": 111400,
+				"to": 112920
+			},
+			"text": " check us out at superfluid.finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,920",
+				"to": "00:01:54,400"
+			},
+			"offsets": {
+				"from": 112920,
+				"to": 114400
+			},
+			"text": " There's lots of good stuff there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,400",
+				"to": "00:01:56,800"
+			},
+			"offsets": {
+				"from": 114400,
+				"to": 116800
+			},
+			"text": " I'm a reformed, SaaS salesperson."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,800",
+				"to": "00:01:58,800"
+			},
+			"offsets": {
+				"from": 116800,
+				"to": 118800
+			},
+			"text": " So I used to sling B2B software."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,800",
+				"to": "00:02:00,160"
+			},
+			"offsets": {
+				"from": 118800,
+				"to": 120160
+			},
+			"text": " And I taught myself the code."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,160",
+				"to": "00:02:02,680"
+			},
+			"offsets": {
+				"from": 120160,
+				"to": 122680
+			},
+			"text": " I got really into the technical side of that business."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,680",
+				"to": "00:02:06,480"
+			},
+			"offsets": {
+				"from": 122680,
+				"to": 126480
+			},
+			"text": " I fell down the crypto rabbit hole, and here I am."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,480",
+				"to": "00:02:10,600"
+			},
+			"offsets": {
+				"from": 126480,
+				"to": 130600
+			},
+			"text": " So at Superfluid, I also host the Devs Do Something podcast,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,600",
+				"to": "00:02:13,440"
+			},
+			"offsets": {
+				"from": 130600,
+				"to": 133440
+			},
+			"text": " which is a technical podcast for engineers in Web3."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,440",
+				"to": "00:02:16,360"
+			},
+			"offsets": {
+				"from": 133440,
+				"to": 136360
+			},
+			"text": " And at Superfluid, we've had over 300 projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,360",
+				"to": "00:02:18,680"
+			},
+			"offsets": {
+				"from": 136360,
+				"to": 138680
+			},
+			"text": " built on Superfluid in the last 12 months or so."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,680",
+				"to": "00:02:21,680"
+			},
+			"offsets": {
+				"from": 138680,
+				"to": 141680
+			},
+			"text": " To go back further, it's more like 500 or 600."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,680",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 141680,
+				"to": 143000
+			},
+			"text": " We have teams building on Superfluid"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:26,440"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 146440
+			},
+			"text": " that have raised eight figures in grant money/venture money."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,440",
+				"to": "00:02:29,240"
+			},
+			"offsets": {
+				"from": 146440,
+				"to": 149240
+			},
+			"text": " And it looks like our community's doing well, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,240",
+				"to": "00:02:31,400"
+			},
+			"offsets": {
+				"from": 149240,
+				"to": 151400
+			},
+			"text": " Obviously, we have a long way to go in our eyes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,400",
+				"to": "00:02:35,080"
+			},
+			"offsets": {
+				"from": 151400,
+				"to": 155080
+			},
+			"text": " But I've learned a lot in the DevRel trenches, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,080",
+				"to": "00:02:36,320"
+			},
+			"offsets": {
+				"from": 155080,
+				"to": 156320
+			},
+			"text": " I've been to a lot of hackathons."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,320",
+				"to": "00:02:39,240"
+			},
+			"offsets": {
+				"from": 156320,
+				"to": 159240
+			},
+			"text": " I've talked to a lot of engineers in the space."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,240",
+				"to": "00:02:41,440"
+			},
+			"offsets": {
+				"from": 159240,
+				"to": 161440
+			},
+			"text": " And I'm still learning, but I know"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,440",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 161440,
+				"to": 164000
+			},
+			"text": " the feeling of sponsoring a hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:46,280"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 166280
+			},
+			"text": " and just not getting the results you wanted."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,280",
+				"to": "00:02:49,960"
+			},
+			"offsets": {
+				"from": 166280,
+				"to": 169960
+			},
+			"text": " I know the feeling of having your docs torn to shreds"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,960",
+				"to": "00:02:52,080"
+			},
+			"offsets": {
+				"from": 169960,
+				"to": 172080
+			},
+			"text": " by developers who get frustrated, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,080",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 172080,
+				"to": 174160
+			},
+			"text": " If you're in the audience here and you've done a hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:02:56,240"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 176240
+			},
+			"text": " and you've just started exploring"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,240",
+				"to": "00:02:58,600"
+			},
+			"offsets": {
+				"from": 176240,
+				"to": 178600
+			},
+			"text": " some different technologies in this space, there's no doubt."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,600",
+				"to": "00:03:01,320"
+			},
+			"offsets": {
+				"from": 178600,
+				"to": 181320
+			},
+			"text": " You've probably been frustrated by documentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,320",
+				"to": "00:03:03,480"
+			},
+			"offsets": {
+				"from": 181320,
+				"to": 183480
+			},
+			"text": " at some point in your journey, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,480",
+				"to": "00:03:06,200"
+			},
+			"offsets": {
+				"from": 183480,
+				"to": 186200
+			},
+			"text": " And what's nice for me is that Superfluid is a cool protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,200",
+				"to": "00:03:06,480"
+			},
+			"offsets": {
+				"from": 186200,
+				"to": 186480
+			},
+			"text": " right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,480",
+				"to": "00:03:08,120"
+			},
+			"offsets": {
+				"from": 186480,
+				"to": 188120
+			},
+			"text": " It does cool stuff like this money-streaming thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,120",
+				"to": "00:03:10,240"
+			},
+			"offsets": {
+				"from": 188120,
+				"to": 190240
+			},
+			"text": " So it makes my job easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,240",
+				"to": "00:03:11,440"
+			},
+			"offsets": {
+				"from": 190240,
+				"to": 191440
+			},
+			"text": " But I've still had to learn a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,440",
+				"to": "00:03:13,160"
+			},
+			"offsets": {
+				"from": 191440,
+				"to": 193160
+			},
+			"text": " And we've had to learn a lot at Superfluid."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,160",
+				"to": "00:03:16,720"
+			},
+			"offsets": {
+				"from": 193160,
+				"to": 196720
+			},
+			"text": " So today, I will share some of those lessons."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,720",
+				"to": "00:03:18,560"
+			},
+			"offsets": {
+				"from": 196720,
+				"to": 198560
+			},
+			"text": " So if we zoom out a little bit, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,560",
+				"to": "00:03:21,720"
+			},
+			"offsets": {
+				"from": 198560,
+				"to": 201720
+			},
+			"text": " I think it's worth asking why we even"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,720",
+				"to": "00:03:23,400"
+			},
+			"offsets": {
+				"from": 201720,
+				"to": 203400
+			},
+			"text": " build developer communities in the first place."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,400",
+				"to": "00:03:26,640"
+			},
+			"offsets": {
+				"from": 203400,
+				"to": 206640
+			},
+			"text": " Like, why are these things useful to us?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,640",
+				"to": "00:03:29,520"
+			},
+			"offsets": {
+				"from": 206640,
+				"to": 209520
+			},
+			"text": " And the key thing here is that if your tech matters"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,520",
+				"to": "00:03:30,560"
+			},
+			"offsets": {
+				"from": 209520,
+				"to": 210560
+			},
+			"text": " to people, you win, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,560",
+				"to": "00:03:33,360"
+			},
+			"offsets": {
+				"from": 210560,
+				"to": 213360
+			},
+			"text": " That's like the simple way of putting it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,360",
+				"to": "00:03:35,080"
+			},
+			"offsets": {
+				"from": 213360,
+				"to": 215080
+			},
+			"text": " So what does actual success look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,080",
+				"to": "00:03:37,600"
+			},
+			"offsets": {
+				"from": 215080,
+				"to": 217600
+			},
+			"text": " Like, what does succeeding with the developer community"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,600",
+				"to": "00:03:38,040"
+			},
+			"offsets": {
+				"from": 217600,
+				"to": 218040
+			},
+			"text": " really mean?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,040",
+				"to": "00:03:39,640"
+			},
+			"offsets": {
+				"from": 218040,
+				"to": 219640
+			},
+			"text": " Like, what's the output, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,640",
+				"to": "00:03:41,960"
+			},
+			"offsets": {
+				"from": 219640,
+				"to": 221960
+			},
+			"text": " And I like to define it as really two things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,960",
+				"to": "00:03:45,360"
+			},
+			"offsets": {
+				"from": 221960,
+				"to": 225360
+			},
+			"text": " That will actually move the needle for you economically."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,360",
+				"to": "00:03:48,080"
+			},
+			"offsets": {
+				"from": 225360,
+				"to": 228080
+			},
+			"text": " And the first thing is an ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,080",
+				"to": "00:03:49,600"
+			},
+			"offsets": {
+				"from": 228080,
+				"to": 229600
+			},
+			"text": " of new and successful applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,600",
+				"to": "00:03:51,480"
+			},
+			"offsets": {
+				"from": 229600,
+				"to": 231480
+			},
+			"text": " built on top of your tech."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,480",
+				"to": "00:03:53,240"
+			},
+			"offsets": {
+				"from": 231480,
+				"to": 233240
+			},
+			"text": " And the second thing is integrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,240",
+				"to": "00:03:55,200"
+			},
+			"offsets": {
+				"from": 233240,
+				"to": 235200
+			},
+			"text": " between your technology, your protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,200",
+				"to": "00:03:58,320"
+			},
+			"offsets": {
+				"from": 235200,
+				"to": 238320
+			},
+			"text": " and existing solutions and applications today."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,320",
+				"to": "00:04:01,520"
+			},
+			"offsets": {
+				"from": 238320,
+				"to": 241520
+			},
+			"text": " So a good web2 example is Twilio."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,520",
+				"to": "00:04:03,480"
+			},
+			"offsets": {
+				"from": 241520,
+				"to": 243480
+			},
+			"text": " They've enabled new applications, like Uber and Lyft"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,480",
+				"to": "00:04:04,160"
+			},
+			"offsets": {
+				"from": 243480,
+				"to": 244160
+			},
+			"text": " and Airbnb."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,160",
+				"to": "00:04:06,440"
+			},
+			"offsets": {
+				"from": 244160,
+				"to": 246440
+			},
+			"text": " And they've also integrated with a lot of existing applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,440",
+				"to": "00:04:07,040"
+			},
+			"offsets": {
+				"from": 246440,
+				"to": 247040
+			},
+			"text": " obviously, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,040",
+				"to": "00:04:09,640"
+			},
+			"offsets": {
+				"from": 247040,
+				"to": 249640
+			},
+			"text": " Everything that uses SMS, push notifications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,640",
+				"to": "00:04:11,400"
+			},
+			"offsets": {
+				"from": 249640,
+				"to": 251400
+			},
+			"text": " those kinds of things, it's probably"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,400",
+				"to": "00:04:14,400"
+			},
+			"offsets": {
+				"from": 251400,
+				"to": 254400
+			},
+			"text": " using Twilio or something like Twilio on the back end."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,400",
+				"to": "00:04:16,640"
+			},
+			"offsets": {
+				"from": 254400,
+				"to": 256640
+			},
+			"text": " And the obvious web3 example is Ethereum, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,640",
+				"to": "00:04:20,800"
+			},
+			"offsets": {
+				"from": 256640,
+				"to": 260800
+			},
+			"text": " So Uniswap, Maker, ENS, all the existence of those apps"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,800",
+				"to": "00:04:23,280"
+			},
+			"offsets": {
+				"from": 260800,
+				"to": 263280
+			},
+			"text": " makes the Ethereum ecosystem more valuable, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,280",
+				"to": "00:04:25,640"
+			},
+			"offsets": {
+				"from": 263280,
+				"to": 265640
+			},
+			"text": " It makes ether more valuable, actually."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,640",
+				"to": "00:04:29,320"
+			},
+			"offsets": {
+				"from": 265640,
+				"to": 269320
+			},
+			"text": " And on the other hand, the integration bit for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,320",
+				"to": "00:04:30,720"
+			},
+			"offsets": {
+				"from": 269320,
+				"to": 270720
+			},
+			"text": " is to help--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,720",
+				"to": "00:04:32,320"
+			},
+			"offsets": {
+				"from": 270720,
+				"to": 272320
+			},
+			"text": " I mean, I think some people have this vision at least."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,320",
+				"to": "00:04:34,840"
+			},
+			"offsets": {
+				"from": 272320,
+				"to": 274840
+			},
+			"text": " But it's to help Ethereum become a kind of global sediment"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,840",
+				"to": "00:04:36,680"
+			},
+			"offsets": {
+				"from": 274840,
+				"to": 276680
+			},
+			"text": " layer for international finance."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,680",
+				"to": "00:04:39,480"
+			},
+			"offsets": {
+				"from": 276680,
+				"to": 279480
+			},
+			"text": " And some of the other non-inflammatory use cases"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,480",
+				"to": "00:04:42,440"
+			},
+			"offsets": {
+				"from": 279480,
+				"to": 282440
+			},
+			"text": " might be examples of those integrations."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,440",
+				"to": "00:04:44,920"
+			},
+			"offsets": {
+				"from": 282440,
+				"to": 284920
+			},
+			"text": " So if those are our outputs, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,920",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284920,
+				"to": 288000
+			},
+			"text": " if that's what we want when we create a developer ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:50,600"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 290600
+			},
+			"text": " and that's what we're looking to do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,600",
+				"to": "00:04:53,440"
+			},
+			"offsets": {
+				"from": 290600,
+				"to": 293440
+			},
+			"text": " the discipline that creates this is developer relations, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,440",
+				"to": "00:04:57,120"
+			},
+			"offsets": {
+				"from": 293440,
+				"to": 297120
+			},
+			"text": " So you'll see a lot of DevRel people run around like myself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,120",
+				"to": "00:04:58,440"
+			},
+			"offsets": {
+				"from": 297120,
+				"to": 298440
+			},
+			"text": " We tweet a lot."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,440",
+				"to": "00:05:00,120"
+			},
+			"offsets": {
+				"from": 298440,
+				"to": 300120
+			},
+			"text": " We make lots of videos."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,120",
+				"to": "00:05:02,920"
+			},
+			"offsets": {
+				"from": 300120,
+				"to": 302920
+			},
+			"text": " And it really has become a kind of very important discipline"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,920",
+				"to": "00:05:03,880"
+			},
+			"offsets": {
+				"from": 302920,
+				"to": 303880
+			},
+			"text": " in web3, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,880",
+				"to": "00:05:08,520"
+			},
+			"offsets": {
+				"from": 303880,
+				"to": 308520
+			},
+			"text": " And what I like to do is break DevRel out into the Dev"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,520",
+				"to": "00:05:09,680"
+			},
+			"offsets": {
+				"from": 308520,
+				"to": 309680
+			},
+			"text": " and the real side, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,680",
+				"to": "00:05:12,800"
+			},
+			"offsets": {
+				"from": 309680,
+				"to": 312800
+			},
+			"text": " So on the developer side, this is your libraries, your APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,800",
+				"to": "00:05:15,240"
+			},
+			"offsets": {
+				"from": 312800,
+				"to": 315240
+			},
+			"text": " your docs, your tooling, even your smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,240",
+				"to": "00:05:16,440"
+			},
+			"offsets": {
+				"from": 315240,
+				"to": 316440
+			},
+			"text": " if you're a protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,440",
+				"to": "00:05:19,520"
+			},
+			"offsets": {
+				"from": 316440,
+				"to": 319520
+			},
+			"text": " It looks a lot like engineering."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,520",
+				"to": "00:05:22,120"
+			},
+			"offsets": {
+				"from": 319520,
+				"to": 322120
+			},
+			"text": " And a key thing that I think most teams get wrong"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,120",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 322120,
+				"to": 325120
+			},
+			"text": " is that they don't realize you need to product manage"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:28,640"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 328640
+			},
+			"text": " your developer products like you'd PM any other product, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,640",
+				"to": "00:05:31,800"
+			},
+			"offsets": {
+				"from": 328640,
+				"to": 331800
+			},
+			"text": " The other half of DevRel is the relations side."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,800",
+				"to": "00:05:34,400"
+			},
+			"offsets": {
+				"from": 331800,
+				"to": 334400
+			},
+			"text": " This is the very loud thing you guys all probably see, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,400",
+				"to": "00:05:36,680"
+			},
+			"offsets": {
+				"from": 334400,
+				"to": 336680
+			},
+			"text": " This is your tutorials, your videos, your meetups,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,680",
+				"to": "00:05:38,640"
+			},
+			"offsets": {
+				"from": 336680,
+				"to": 338640
+			},
+			"text": " your podcasts, all this stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,640",
+				"to": "00:05:43,560"
+			},
+			"offsets": {
+				"from": 338640,
+				"to": 343560
+			},
+			"text": " It looks a lot like marketing, but it cannot feel like marketing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,560",
+				"to": "00:05:45,160"
+			},
+			"offsets": {
+				"from": 343560,
+				"to": 345160
+			},
+			"text": " And we'll get into why that is in a second."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,160",
+				"to": "00:05:48,880"
+			},
+			"offsets": {
+				"from": 345160,
+				"to": 348880
+			},
+			"text": " But for those of you that are technical, it's probably obvious."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,880",
+				"to": "00:05:52,640"
+			},
+			"offsets": {
+				"from": 348880,
+				"to": 352640
+			},
+			"text": " The key thing to keep in mind as a DevRel person"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,640",
+				"to": "00:05:55,040"
+			},
+			"offsets": {
+				"from": 352640,
+				"to": 355040
+			},
+			"text": " or as someone who's building on a DevRel function"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,040",
+				"to": "00:05:58,200"
+			},
+			"offsets": {
+				"from": 355040,
+				"to": 358200
+			},
+			"text": " is that great developer experience seems to have both, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,200",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 358200,
+				"to": 360720
+			},
+			"text": " You need, like I said a couple slides ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:03,280"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 363280
+			},
+			"text": " you need to have great tools that are really easy to use,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,280",
+				"to": "00:06:06,760"
+			},
+			"offsets": {
+				"from": 363280,
+				"to": 366760
+			},
+			"text": " and you need people to know about them, both are important."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,760",
+				"to": "00:06:08,400"
+			},
+			"offsets": {
+				"from": 366760,
+				"to": 368400
+			},
+			"text": " So how about the dev and DevRel, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,400",
+				"to": "00:06:10,440"
+			},
+			"offsets": {
+				"from": 368400,
+				"to": 370440
+			},
+			"text": " How do we at Superfluid approach this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,440",
+				"to": "00:06:13,160"
+			},
+			"offsets": {
+				"from": 370440,
+				"to": 373160
+			},
+			"text": " Well, I think the biggest thing that I've learned"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,160",
+				"to": "00:06:15,040"
+			},
+			"offsets": {
+				"from": 373160,
+				"to": 375040
+			},
+			"text": " is you have to PM these products, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,040",
+				"to": "00:06:17,520"
+			},
+			"offsets": {
+				"from": 375040,
+				"to": 377520
+			},
+			"text": " You have to treat them like any other product"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,520",
+				"to": "00:06:19,960"
+			},
+			"offsets": {
+				"from": 377520,
+				"to": 379960
+			},
+			"text": " and run the same kind of process, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,960",
+				"to": "00:06:25,040"
+			},
+			"offsets": {
+				"from": 379960,
+				"to": 385040
+			},
+			"text": " That most valuable product for a developer relations team is your docs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,040",
+				"to": "00:06:26,120"
+			},
+			"offsets": {
+				"from": 385040,
+				"to": 386120
+			},
+			"text": " That's number one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,120",
+				"to": "00:06:30,080"
+			},
+			"offsets": {
+				"from": 386120,
+				"to": 390080
+			},
+			"text": " Number two, in order to make good docs and other good developer tooling,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,080",
+				"to": "00:06:32,320"
+			},
+			"offsets": {
+				"from": 390080,
+				"to": 392320
+			},
+			"text": " you have to understand your developer personas."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,320",
+				"to": "00:06:34,120"
+			},
+			"offsets": {
+				"from": 392320,
+				"to": 394120
+			},
+			"text": " You have to really get into the minds of the people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,120",
+				"to": "00:06:37,440"
+			},
+			"offsets": {
+				"from": 394120,
+				"to": 397440
+			},
+			"text": " that are gonna come to your site and be using your stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,440",
+				"to": "00:06:39,560"
+			},
+			"offsets": {
+				"from": 397440,
+				"to": 399560
+			},
+			"text": " and make things for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,560",
+				"to": "00:06:41,720"
+			},
+			"offsets": {
+				"from": 399560,
+				"to": 401720
+			},
+			"text": " And the third thing that's a little more in the weeds"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,720",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 401720,
+				"to": 405000
+			},
+			"text": " on how to build individual good dev tools and SDKs"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:47,400"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 407400
+			},
+			"text": " is to be mindful of your abstractions, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,400",
+				"to": "00:06:53,480"
+			},
+			"offsets": {
+				"from": 407400,
+				"to": 413480
+			},
+			"text": " So on the side of docs, right, there's this quote that Elon has on Tesla Autopilot"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,480",
+				"to": "00:06:58,920"
+			},
+			"offsets": {
+				"from": 413480,
+				"to": 418920
+			},
+			"text": " that they view at Tesla all input as user error, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,920",
+				"to": "00:07:05,320"
+			},
+			"offsets": {
+				"from": 418920,
+				"to": 425320
+			},
+			"text": " So a loose analogy for your docs is to view all developer questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,320",
+				"to": "00:07:11,280"
+			},
+			"offsets": {
+				"from": 425320,
+				"to": 431280
+			},
+			"text": " and every piece for confusion as a failure of your docs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,280",
+				"to": "00:07:13,440"
+			},
+			"offsets": {
+				"from": 431280,
+				"to": 433440
+			},
+			"text": " Obviously, you're still gonna get questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,440",
+				"to": "00:07:14,960"
+			},
+			"offsets": {
+				"from": 433440,
+				"to": 434960
+			},
+			"text": " no matter how good your docs are."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,960",
+				"to": "00:07:15,800"
+			},
+			"offsets": {
+				"from": 434960,
+				"to": 435800
+			},
+			"text": " I hope that's evident."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,800",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 435800,
+				"to": 439000
+			},
+			"text": " If no one's asking questions, that's probably a bad sign."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:21,520"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 441520
+			},
+			"text": " But it's a useful mindset, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,520",
+				"to": "00:07:24,480"
+			},
+			"offsets": {
+				"from": 441520,
+				"to": 444480
+			},
+			"text": " And the reason why it's a useful mindset is that it points you"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,480",
+				"to": "00:07:26,840"
+			},
+			"offsets": {
+				"from": 444480,
+				"to": 446840
+			},
+			"text": " in the direction of higher leverage activities."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,840",
+				"to": "00:07:30,960"
+			},
+			"offsets": {
+				"from": 446840,
+				"to": 450960
+			},
+			"text": " So when I first started at Superfluid doing dev roll stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,960",
+				"to": "00:07:33,640"
+			},
+			"offsets": {
+				"from": 450960,
+				"to": 453640
+			},
+			"text": " I would spend a lot of time answering questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,640",
+				"to": "00:07:37,800"
+			},
+			"offsets": {
+				"from": 453640,
+				"to": 457800
+			},
+			"text": " I was like building my self-esteem around how good I was at this job,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,800",
+				"to": "00:07:39,840"
+			},
+			"offsets": {
+				"from": 457800,
+				"to": 459840
+			},
+			"text": " by like how fast I was at answering questions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,840",
+				"to": "00:07:41,720"
+			},
+			"offsets": {
+				"from": 459840,
+				"to": 461720
+			},
+			"text": " and how many questions I answered and all this stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,720",
+				"to": "00:07:44,560"
+			},
+			"offsets": {
+				"from": 461720,
+				"to": 464560
+			},
+			"text": " And that really wasn't the right mindset to take, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,560",
+				"to": "00:07:47,520"
+			},
+			"offsets": {
+				"from": 464560,
+				"to": 467520
+			},
+			"text": " Because all of the question answering, although it's useful, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,520",
+				"to": "00:07:49,560"
+			},
+			"offsets": {
+				"from": 467520,
+				"to": 469560
+			},
+			"text": " if you ask a question in someone's discord and they don't answer you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,560",
+				"to": "00:07:51,760"
+			},
+			"offsets": {
+				"from": 469560,
+				"to": 471760
+			},
+			"text": " you're gonna feel like they don't care about you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,760",
+				"to": "00:07:54,360"
+			},
+			"offsets": {
+				"from": 471760,
+				"to": 474360
+			},
+			"text": " So we still do value answering questions doing it quickly."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,360",
+				"to": "00:07:58,360"
+			},
+			"offsets": {
+				"from": 474360,
+				"to": 478360
+			},
+			"text": " But the higher leverage thing is to find patterns"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,360",
+				"to": "00:08:03,440"
+			},
+			"offsets": {
+				"from": 478360,
+				"to": 483440
+			},
+			"text": " and spend time in your docs, making sure that people ideally don't even have to ask you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,440",
+				"to": "00:08:06,320"
+			},
+			"offsets": {
+				"from": 483440,
+				"to": 486320
+			},
+			"text": " And if they do ask you, you do have to give an answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,320",
+				"to": "00:08:09,520"
+			},
+			"offsets": {
+				"from": 486320,
+				"to": 489520
+			},
+			"text": " Ideally, you should send them a link to the answer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,520",
+				"to": "00:08:10,880"
+			},
+			"offsets": {
+				"from": 489520,
+				"to": 490880
+			},
+			"text": " And more information, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,880",
+				"to": "00:08:14,400"
+			},
+			"offsets": {
+				"from": 490880,
+				"to": 494400
+			},
+			"text": " I've seen, so Patrick Collins, you guys might know who Patrick Collins is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,400",
+				"to": "00:08:17,040"
+			},
+			"offsets": {
+				"from": 494400,
+				"to": 497040
+			},
+			"text": " is he a great developer experience person in the training ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,040",
+				"to": "00:08:19,280"
+			},
+			"offsets": {
+				"from": 497040,
+				"to": 499280
+			},
+			"text": " that I've learned a lot from him?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,280",
+				"to": "00:08:24,840"
+			},
+			"offsets": {
+				"from": 499280,
+				"to": 504840
+			},
+			"text": " What he actually does is if someone asks a question to him in their discord,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,840",
+				"to": "00:08:28,760"
+			},
+			"offsets": {
+				"from": 504840,
+				"to": 508760
+			},
+			"text": " he will like answer the question, he will create the question on Stack Overflow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,760",
+				"to": "00:08:30,400"
+			},
+			"offsets": {
+				"from": 508760,
+				"to": 510400
+			},
+			"text": " answer the question on Stack Overflow,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,400",
+				"to": "00:08:33,480"
+			},
+			"offsets": {
+				"from": 510400,
+				"to": 513480
+			},
+			"text": " and then send a link to Stack Overflow in a Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,480",
+				"to": "00:08:36,120"
+			},
+			"offsets": {
+				"from": 513480,
+				"to": 516120
+			},
+			"text": " And the reason why that's so smart is that every question you're answering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,120",
+				"to": "00:08:38,280"
+			},
+			"offsets": {
+				"from": 516120,
+				"to": 518280
+			},
+			"text": " Discord just stays there, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,280",
+				"to": "00:08:43,080"
+			},
+			"offsets": {
+				"from": 518280,
+				"to": 523080
+			},
+			"text": " Discord, it's really hard to go research in the Discord search bar"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,080",
+				"to": "00:08:44,680"
+			},
+			"offsets": {
+				"from": 523080,
+				"to": 524680
+			},
+			"text": " and find useful answers to questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,680",
+				"to": "00:08:46,480"
+			},
+			"offsets": {
+				"from": 524680,
+				"to": 526480
+			},
+			"text": " It really is difficult to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,480",
+				"to": "00:08:51,040"
+			},
+			"offsets": {
+				"from": 526480,
+				"to": 531040
+			},
+			"text": " So what Patrick is doing is he is adding more leverage to his activities, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,040",
+				"to": "00:08:54,880"
+			},
+			"offsets": {
+				"from": 531040,
+				"to": 534880
+			},
+			"text": " He's answering a question but creating a paper trail back to Stack Overflow."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,880",
+				"to": "00:09:00,040"
+			},
+			"offsets": {
+				"from": 534880,
+				"to": 540040
+			},
+			"text": " So ideally, he doesn't have to be there and answer those questions every time, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,040",
+				"to": "00:09:03,440"
+			},
+			"offsets": {
+				"from": 540040,
+				"to": 543440
+			},
+			"text": " Doc's work for you while you sleep, answering questions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,440",
+				"to": "00:09:08,120"
+			},
+			"offsets": {
+				"from": 543440,
+				"to": 548120
+			},
+			"text": " you can't do that in your sleep, unless you have some kind of powers that I don't know about."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,120",
+				"to": "00:09:10,840"
+			},
+			"offsets": {
+				"from": 548120,
+				"to": 550840
+			},
+			"text": " So, okay, with that being said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,840",
+				"to": "00:09:15,160"
+			},
+			"offsets": {
+				"from": 550840,
+				"to": 555160
+			},
+			"text": " how do you maximize the utility of all your docs and developer tooling, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,160",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 555160,
+				"to": 557000
+			},
+			"text": " How do you think about this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:21,160"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 561160
+			},
+			"text": " Well, you need to start by identifying developer personas, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,160",
+				"to": "00:09:24,040"
+			},
+			"offsets": {
+				"from": 561160,
+				"to": 564040
+			},
+			"text": " So a case study on this would be with Superfluid,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,040",
+				"to": "00:09:25,840"
+			},
+			"offsets": {
+				"from": 564040,
+				"to": 565840
+			},
+			"text": " and I'll walk you through what we've done, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,840",
+				"to": "00:09:27,760"
+			},
+			"offsets": {
+				"from": 565840,
+				"to": 567760
+			},
+			"text": " We have a few different ways of doing this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,760",
+				"to": "00:09:31,400"
+			},
+			"offsets": {
+				"from": 567760,
+				"to": 571400
+			},
+			"text": " but the two main ways are setting by skill level, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,400",
+				"to": "00:09:33,720"
+			},
+			"offsets": {
+				"from": 571400,
+				"to": 573720
+			},
+			"text": " So you have your beginners, you have your intermediate,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,720",
+				"to": "00:09:36,240"
+			},
+			"offsets": {
+				"from": 573720,
+				"to": 576240
+			},
+			"text": " and you have your gigabroids, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,240",
+				"to": "00:09:38,880"
+			},
+			"offsets": {
+				"from": 576240,
+				"to": 578880
+			},
+			"text": " And we also segment by the role or intent, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,880",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 578880,
+				"to": 581000
+			},
+			"text": " So, come to hackathons, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:44,880"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 584880
+			},
+			"text": " They're just hackathon devs or indie devs coming to just hack and have fun."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,880",
+				"to": "00:09:47,600"
+			},
+			"offsets": {
+				"from": 584880,
+				"to": 587600
+			},
+			"text": " You also have developers that integration partners, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:47,600",
+				"to": "00:09:51,080"
+			},
+			"offsets": {
+				"from": 587600,
+				"to": 591080
+			},
+			"text": " People that might go champion to their boss that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,080",
+				"to": "00:09:53,360"
+			},
+			"offsets": {
+				"from": 591080,
+				"to": 593360
+			},
+			"text": " their company should use Superfluid in the next product."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,360",
+				"to": "00:09:56,680"
+			},
+			"offsets": {
+				"from": 593360,
+				"to": 596680
+			},
+			"text": " And you also have, like, especially if you're a developer ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,680",
+				"to": "00:10:01,120"
+			},
+			"offsets": {
+				"from": 596680,
+				"to": 601120
+			},
+			"text": " that wants full-blown applications and companies to be built on top of your stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,120",
+				"to": "00:10:04,000"
+			},
+			"offsets": {
+				"from": 601120,
+				"to": 604000
+			},
+			"text": " you might have future founders or entrepreneurs looking at your stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,000",
+				"to": "00:10:05,440"
+			},
+			"offsets": {
+				"from": 604000,
+				"to": 605440
+			},
+			"text": " and you need to cater to them as well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,440",
+				"to": "00:10:09,360"
+			},
+			"offsets": {
+				"from": 605440,
+				"to": 609360
+			},
+			"text": " because those would be some of the most high-value people you can interact with."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,360",
+				"to": "00:10:12,800"
+			},
+			"offsets": {
+				"from": 609360,
+				"to": 612800
+			},
+			"text": " So, in our case, for the beginners/hackathon devs, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,800",
+				"to": "00:10:15,520"
+			},
+			"offsets": {
+				"from": 612800,
+				"to": 615520
+			},
+			"text": " I'll loop them together because there's a little bit of overlap here."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,520",
+				"to": "00:10:18,640"
+			},
+			"offsets": {
+				"from": 615520,
+				"to": 618640
+			},
+			"text": " But for our docs, we have a nice, quick start page,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,640",
+				"to": "00:10:22,040"
+			},
+			"offsets": {
+				"from": 618640,
+				"to": 622040
+			},
+			"text": " where it's like, go here, get what you need, get out, it's quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,040",
+				"to": "00:10:24,280"
+			},
+			"offsets": {
+				"from": 622040,
+				"to": 624280
+			},
+			"text": " For tooling, we have a simple JavaScript SDK"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,280",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 624280,
+				"to": 626000
+			},
+			"text": " to interact with our smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:28,320"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 628320
+			},
+			"text": " We also have very simple Solidity libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,320",
+				"to": "00:10:30,320"
+			},
+			"offsets": {
+				"from": 628320,
+				"to": 630320
+			},
+			"text": " want to build smart contracts with Superfluid."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,320",
+				"to": "00:10:33,600"
+			},
+			"offsets": {
+				"from": 630320,
+				"to": 633600
+			},
+			"text": " And in our tutorials and examples, we have a zero-to-hero series,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,600",
+				"to": "00:10:37,200"
+			},
+			"offsets": {
+				"from": 633600,
+				"to": 637200
+			},
+			"text": " and we have very easy, like, dead-simple beginner examples"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,200",
+				"to": "00:10:38,560"
+			},
+			"offsets": {
+				"from": 637200,
+				"to": 638560
+			},
+			"text": " on the front-end and react."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,560",
+				"to": "00:10:41,120"
+			},
+			"offsets": {
+				"from": 638560,
+				"to": 641120
+			},
+			"text": " Okay, so that's like the beginner segment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,120",
+				"to": "00:10:45,120"
+			},
+			"offsets": {
+				"from": 641120,
+				"to": 645120
+			},
+			"text": " For intermediate devs, we have our reference docs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,120",
+				"to": "00:10:46,880"
+			},
+			"offsets": {
+				"from": 645120,
+				"to": 646880
+			},
+			"text": " If you're an intermediate dev, you know what you're doing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,880",
+				"to": "00:10:49,400"
+			},
+			"offsets": {
+				"from": 646880,
+				"to": 649400
+			},
+			"text": " you're happy to just go literally, like, look into the reference docs"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,400",
+				"to": "00:10:50,880"
+			},
+			"offsets": {
+				"from": 649400,
+				"to": 650880
+			},
+			"text": " and find the functions you need."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,880",
+				"to": "00:10:53,600"
+			},
+			"offsets": {
+				"from": 650880,
+				"to": 653600
+			},
+			"text": " We also have advanced guides for some of the more advanced features"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,600",
+				"to": "00:10:55,600"
+			},
+			"offsets": {
+				"from": 653600,
+				"to": 655600
+			},
+			"text": " of Superfluid and the more powerful things you can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,600",
+				"to": "00:10:57,120"
+			},
+			"offsets": {
+				"from": 655600,
+				"to": 657120
+			},
+			"text": " all sorted by topic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,120",
+				"to": "00:10:59,440"
+			},
+			"offsets": {
+				"from": 657120,
+				"to": 659440
+			},
+			"text": " And we also have, in the tooling section,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,440",
+				"to": "00:11:03,520"
+			},
+			"offsets": {
+				"from": 659440,
+				"to": 663520
+			},
+			"text": " that JavaScript SDK also has typings so that you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,520",
+				"to": "00:11:06,080"
+			},
+			"offsets": {
+				"from": 663520,
+				"to": 666080
+			},
+			"text": " the SDK with first-class TypeScript support, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,080",
+				"to": "00:11:07,680"
+			},
+			"offsets": {
+				"from": 666080,
+				"to": 667680
+			},
+			"text": " On top of that, we have a developer console,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,680",
+				"to": "00:11:10,400"
+			},
+			"offsets": {
+				"from": 667680,
+				"to": 670400
+			},
+			"text": " which is helpful for, like, getting data from the subgraph."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,400",
+				"to": "00:11:12,640"
+			},
+			"offsets": {
+				"from": 670400,
+				"to": 672640
+			},
+			"text": " And in terms of tutorials and examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,640",
+				"to": "00:11:14,880"
+			},
+			"offsets": {
+				"from": 672640,
+				"to": 674880
+			},
+			"text": " we have more fully-fledged example applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,880",
+				"to": "00:11:17,600"
+			},
+			"offsets": {
+				"from": 674880,
+				"to": 677600
+			},
+			"text": " that can take you end-to-end building a more full product, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,600",
+				"to": "00:11:19,840"
+			},
+			"offsets": {
+				"from": 677600,
+				"to": 679840
+			},
+			"text": " You can see test suites, all the stuff that you need"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,840",
+				"to": "00:11:21,920"
+			},
+			"offsets": {
+				"from": 679840,
+				"to": 681920
+			},
+			"text": " to actually build some kind of integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,920",
+				"to": "00:11:24,480"
+			},
+			"offsets": {
+				"from": 681920,
+				"to": 684480
+			},
+			"text": " between Superfluid and what you're working on."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,480",
+				"to": "00:11:26,240"
+			},
+			"offsets": {
+				"from": 684480,
+				"to": 686240
+			},
+			"text": " And then, for our entrepreneurial devs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,240",
+				"to": "00:11:28,880"
+			},
+			"offsets": {
+				"from": 686240,
+				"to": 688880
+			},
+			"text": " we have a library of ideas we'd love to see built, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,880",
+				"to": "00:11:30,960"
+			},
+			"offsets": {
+				"from": 688880,
+				"to": 690960
+			},
+			"text": " We try to seed the community with ideas"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:30,960",
+				"to": "00:11:33,200"
+			},
+			"offsets": {
+				"from": 690960,
+				"to": 693200
+			},
+			"text": " so that the entrepreneurial types can find something"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,200",
+				"to": "00:11:34,640"
+			},
+			"offsets": {
+				"from": 693200,
+				"to": 694640
+			},
+			"text": " to actually try to build."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:34,640",
+				"to": "00:11:36,640"
+			},
+			"offsets": {
+				"from": 694640,
+				"to": 696640
+			},
+			"text": " We have this Superfluid Reactor program,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,640",
+				"to": "00:11:38,800"
+			},
+			"offsets": {
+				"from": 696640,
+				"to": 698800
+			},
+			"text": " which is like a mini accelerator that we run"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,800",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 698800,
+				"to": 702000
+			},
+			"text": " to help people go from idea stage or, like, good proof of concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 704000
+			},
+			"text": " to actually raising money or getting a grant."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:45,600"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 705600
+			},
+			"text": " And then, in terms of tutorials and examples,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,600",
+				"to": "00:11:47,440"
+			},
+			"offsets": {
+				"from": 705600,
+				"to": 707440
+			},
+			"text": " we have a lot of primitives, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,440",
+				"to": "00:11:49,120"
+			},
+			"offsets": {
+				"from": 707440,
+				"to": 709120
+			},
+			"text": " Which you can think of them as, like, building blocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,120",
+				"to": "00:11:50,800"
+			},
+			"offsets": {
+				"from": 709120,
+				"to": 710800
+			},
+			"text": " they can use within applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,800",
+				"to": "00:11:52,480"
+			},
+			"offsets": {
+				"from": 710800,
+				"to": 712480
+			},
+			"text": " build on top of them and then ideally ship"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,480",
+				"to": "00:11:54,720"
+			},
+			"offsets": {
+				"from": 712480,
+				"to": 714720
+			},
+			"text": " an end-user product or a thing that can actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:54,720",
+				"to": "00:11:55,760"
+			},
+			"offsets": {
+				"from": 714720,
+				"to": 715760
+			},
+			"text": " become a business, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,280",
+				"to": "00:11:59,040"
+			},
+			"offsets": {
+				"from": 717280,
+				"to": 719040
+			},
+			"text": " Some other considerations, right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,040",
+				"to": "00:12:00,880"
+			},
+			"offsets": {
+				"from": 719040,
+				"to": 720880
+			},
+			"text": " when it comes to developer tooling, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,880",
+				"to": "00:12:03,200"
+			},
+			"offsets": {
+				"from": 720880,
+				"to": 723200
+			},
+			"text": " One thing I like to think about is being mindful"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,200",
+				"to": "00:12:05,280"
+			},
+			"offsets": {
+				"from": 723200,
+				"to": 725280
+			},
+			"text": " of how many abstractions you're putting"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,280",
+				"to": "00:12:06,960"
+			},
+			"offsets": {
+				"from": 725280,
+				"to": 726960
+			},
+			"text": " into your SDKs and tooling, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,960",
+				"to": "00:12:08,880"
+			},
+			"offsets": {
+				"from": 726960,
+				"to": 728880
+			},
+			"text": " If you have two little abstractions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,880",
+				"to": "00:12:10,080"
+			},
+			"offsets": {
+				"from": 728880,
+				"to": 730080
+			},
+			"text": " you know, you might be asking developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,080",
+				"to": "00:12:12,560"
+			},
+			"offsets": {
+				"from": 730080,
+				"to": 732560
+			},
+			"text": " to come to your code base, your docs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,560",
+				"to": "00:12:14,000"
+			},
+			"offsets": {
+				"from": 732560,
+				"to": 734000
+			},
+			"text": " and figure too many things out, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,000",
+				"to": "00:12:15,280"
+			},
+			"offsets": {
+				"from": 734000,
+				"to": 735280
+			},
+			"text": " You might lose beginners."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,280",
+				"to": "00:12:18,240"
+			},
+			"offsets": {
+				"from": 735280,
+				"to": 738240
+			},
+			"text": " However, if you try to shield a developer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,240",
+				"to": "00:12:21,040"
+			},
+			"offsets": {
+				"from": 738240,
+				"to": 741040
+			},
+			"text": " from the tricky stuff too much,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,040",
+				"to": "00:12:23,840"
+			},
+			"offsets": {
+				"from": 741040,
+				"to": 743840
+			},
+			"text": " you lose the more advanced engineers"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,840",
+				"to": "00:12:26,320"
+			},
+			"offsets": {
+				"from": 743840,
+				"to": 746320
+			},
+			"text": " that would be comfortable dealing with the bare metal"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,320",
+				"to": "00:12:28,480"
+			},
+			"offsets": {
+				"from": 746320,
+				"to": 748480
+			},
+			"text": " and you even stifle innovation in the process as well"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,480",
+				"to": "00:12:30,640"
+			},
+			"offsets": {
+				"from": 748480,
+				"to": 750640
+			},
+			"text": " because you're not going to allow access to things"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,640",
+				"to": "00:12:32,720"
+			},
+			"offsets": {
+				"from": 750640,
+				"to": 752720
+			},
+			"text": " that some really intelligent developer can make use of."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:32,720",
+				"to": "00:12:36,320"
+			},
+			"offsets": {
+				"from": 752720,
+				"to": 756320
+			},
+			"text": " And then finally, something we actually haven't done"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,320",
+				"to": "00:12:37,040"
+			},
+			"offsets": {
+				"from": 756320,
+				"to": 757040
+			},
+			"text": " a pretty good job of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,040",
+				"to": "00:12:39,920"
+			},
+			"offsets": {
+				"from": 757040,
+				"to": 759920
+			},
+			"text": " Super fluid is that naming really matters, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,920",
+				"to": "00:12:42,720"
+			},
+			"offsets": {
+				"from": 759920,
+				"to": 762720
+			},
+			"text": " Protocol engineers sometimes like to throw really"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,720",
+				"to": "00:12:46,080"
+			},
+			"offsets": {
+				"from": 762720,
+				"to": 766080
+			},
+			"text": " crazy names in their contracts that don't make a whole lot of sense."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,080",
+				"to": "00:12:48,240"
+			},
+			"offsets": {
+				"from": 766080,
+				"to": 768240
+			},
+			"text": " So you should think about this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,240",
+				"to": "00:12:49,440"
+			},
+			"offsets": {
+				"from": 768240,
+				"to": 769440
+			},
+			"text": " You should think about this for your team."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,440",
+				"to": "00:12:54,160"
+			},
+			"offsets": {
+				"from": 769440,
+				"to": 774160
+			},
+			"text": " All right, so moving on to some of the more"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,160",
+				"to": "00:12:55,920"
+			},
+			"offsets": {
+				"from": 774160,
+				"to": 775920
+			},
+			"text": " relations side of things, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,920",
+				"to": "00:12:57,600"
+			},
+			"offsets": {
+				"from": 775920,
+				"to": 777600
+			},
+			"text": " This is one thing leading into this"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,600",
+				"to": "00:12:59,440"
+			},
+			"offsets": {
+				"from": 777600,
+				"to": 779440
+			},
+			"text": " that I think is important to keep in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,440",
+				"to": "00:13:02,880"
+			},
+			"offsets": {
+				"from": 779440,
+				"to": 782880
+			},
+			"text": " And it's that most developers are not good"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,880",
+				"to": "00:13:04,400"
+			},
+			"offsets": {
+				"from": 782880,
+				"to": 784400
+			},
+			"text": " at explaining their product to newcomers."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,400",
+				"to": "00:13:05,760"
+			},
+			"offsets": {
+				"from": 784400,
+				"to": 785760
+			},
+			"text": " So why is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,760",
+				"to": "00:13:10,160"
+			},
+			"offsets": {
+				"from": 785760,
+				"to": 790160
+			},
+			"text": " I think the reason is that most engineering types"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:10,160",
+				"to": "00:13:13,760"
+			},
+			"offsets": {
+				"from": 790160,
+				"to": 793760
+			},
+			"text": " who are really, really good at shipping code"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,760",
+				"to": "00:13:15,840"
+			},
+			"offsets": {
+				"from": 793760,
+				"to": 795840
+			},
+			"text": " and really, really good at building new features"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,840",
+				"to": "00:13:18,640"
+			},
+			"offsets": {
+				"from": 795840,
+				"to": 798640
+			},
+			"text": " sometimes are blind to how much context they have, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,640",
+				"to": "00:13:21,440"
+			},
+			"offsets": {
+				"from": 798640,
+				"to": 801440
+			},
+			"text": " In order to really explain something to someone new"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,440",
+				"to": "00:13:23,600"
+			},
+			"offsets": {
+				"from": 801440,
+				"to": 803600
+			},
+			"text": " at a hackathon or even an event like this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,600",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 803600,
+				"to": 806000
+			},
+			"text": " you have to be able to go back to first principles"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:28,080"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 808080
+			},
+			"text": " and explain things from the ground up, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,080",
+				"to": "00:13:30,400"
+			},
+			"offsets": {
+				"from": 808080,
+				"to": 810400
+			},
+			"text": " And people that become really good dev rel people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,400",
+				"to": "00:13:33,600"
+			},
+			"offsets": {
+				"from": 810400,
+				"to": 813600
+			},
+			"text": " people that actually become founders of protocols and things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,600",
+				"to": "00:13:35,840"
+			},
+			"offsets": {
+				"from": 813600,
+				"to": 815840
+			},
+			"text": " they have to get really good at this, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,840",
+				"to": "00:13:38,160"
+			},
+			"offsets": {
+				"from": 815840,
+				"to": 818160
+			},
+			"text": " Because you might have to explain the same thing over and over again."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,160",
+				"to": "00:13:39,440"
+			},
+			"offsets": {
+				"from": 818160,
+				"to": 819440
+			},
+			"text": " And honestly, I actually respect it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,440",
+				"to": "00:13:41,680"
+			},
+			"offsets": {
+				"from": 819440,
+				"to": 821680
+			},
+			"text": " Like engineers are often working on pretty cutting-edge stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:41,680",
+				"to": "00:13:43,040"
+			},
+			"offsets": {
+				"from": 821680,
+				"to": 823040
+			},
+			"text": " You don't always want to go back to zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,040",
+				"to": "00:13:45,680"
+			},
+			"offsets": {
+				"from": 823040,
+				"to": 825680
+			},
+			"text": " You want to push the boundaries and build something new."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,680",
+				"to": "00:13:48,240"
+			},
+			"offsets": {
+				"from": 825680,
+				"to": 828240
+			},
+			"text": " But it's worth keeping this in mind, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:48,240",
+				"to": "00:13:51,680"
+			},
+			"offsets": {
+				"from": 828240,
+				"to": 831680
+			},
+			"text": " And when it comes to the relations side of what you do"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,680",
+				"to": "00:13:54,240"
+			},
+			"offsets": {
+				"from": 831680,
+				"to": 834240
+			},
+			"text": " and all your tutorials and all your examples and all your content,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,240",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 834240,
+				"to": 836000
+			},
+			"text": " you have to keep that in mind, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:59,920"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 839920
+			},
+			"text": " Don't assume too much context from new people coming to your stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,920",
+				"to": "00:14:05,120"
+			},
+			"offsets": {
+				"from": 839920,
+				"to": 845120
+			},
+			"text": " Moving further into the dev rel stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,120",
+				"to": "00:14:08,080"
+			},
+			"offsets": {
+				"from": 845120,
+				"to": 848080
+			},
+			"text": " one thing that you have to keep in mind that many of you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,080",
+				"to": "00:14:11,440"
+			},
+			"offsets": {
+				"from": 848080,
+				"to": 851440
+			},
+			"text": " probably already know is that you can't market to developers, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,440",
+				"to": "00:14:13,840"
+			},
+			"offsets": {
+				"from": 851440,
+				"to": 853840
+			},
+			"text": " You need to peak curiosity instead, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,840",
+				"to": "00:14:15,920"
+			},
+			"offsets": {
+				"from": 853840,
+				"to": 855920
+			},
+			"text": " So we're going to go through what I've seen,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,920",
+				"to": "00:14:17,120"
+			},
+			"offsets": {
+				"from": 855920,
+				"to": 857120
+			},
+			"text": " doesn't really work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,120",
+				"to": "00:14:18,720"
+			},
+			"offsets": {
+				"from": 857120,
+				"to": 858720
+			},
+			"text": " When it comes to marketing developers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,720",
+				"to": "00:14:20,240"
+			},
+			"offsets": {
+				"from": 858720,
+				"to": 860240
+			},
+			"text": " what I've seen does work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,240",
+				"to": "00:14:22,400"
+			},
+			"offsets": {
+				"from": 860240,
+				"to": 862400
+			},
+			"text": " And then, you know, we might talk a little bit more about being"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,400",
+				"to": "00:14:24,640"
+			},
+			"offsets": {
+				"from": 862400,
+				"to": 864640
+			},
+			"text": " mindful of extreme context, but I wanted to lead with that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,640",
+				"to": "00:14:27,840"
+			},
+			"offsets": {
+				"from": 864640,
+				"to": 867840
+			},
+			"text": " because I think it was so important to hit you guys with that up front."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:27,840",
+				"to": "00:14:31,120"
+			},
+			"offsets": {
+				"from": 867840,
+				"to": 871120
+			},
+			"text": " So what doesn't work when marketing to developers?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,120",
+				"to": "00:14:34,640"
+			},
+			"offsets": {
+				"from": 871120,
+				"to": 874640
+			},
+			"text": " Well, anything that feels like a traditional demo"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,640",
+				"to": "00:14:38,880"
+			},
+			"offsets": {
+				"from": 874640,
+				"to": 878880
+			},
+			"text": " or a sales/piece of marketing collateral does not work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,880",
+				"to": "00:14:40,320"
+			},
+			"offsets": {
+				"from": 878880,
+				"to": 880320
+			},
+			"text": " Engineers can see it from a mile away."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,320",
+				"to": "00:14:41,840"
+			},
+			"offsets": {
+				"from": 880320,
+				"to": 881840
+			},
+			"text": " It will immediately turn them off."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,840",
+				"to": "00:14:44,000"
+			},
+			"offsets": {
+				"from": 881840,
+				"to": 884000
+			},
+			"text": " And even if you're giving them something really useful,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,000",
+				"to": "00:14:46,240"
+			},
+			"offsets": {
+				"from": 884000,
+				"to": 886240
+			},
+			"text": " they're not going to pay attention, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,240",
+				"to": "00:14:49,920"
+			},
+			"offsets": {
+				"from": 886240,
+				"to": 889920
+			},
+			"text": " And this kind of is looped in with anything that's feeling, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,920",
+				"to": "00:14:54,160"
+			},
+			"offsets": {
+				"from": 889920,
+				"to": 894160
+			},
+			"text": " So there's the Supreme Court Justice quote about,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,160",
+				"to": "00:14:56,320"
+			},
+			"offsets": {
+				"from": 894160,
+				"to": 896320
+			},
+			"text": " you know, this was like a case on pornography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,320",
+				"to": "00:14:58,800"
+			},
+			"offsets": {
+				"from": 896320,
+				"to": 898800
+			},
+			"text": " and somebody asked the judge, like, well, how do you know what porn is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,800",
+				"to": "00:15:03,040"
+			},
+			"offsets": {
+				"from": 898800,
+				"to": 903040
+			},
+			"text": " And he said, I don't know, but I know it when I see it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,040",
+				"to": "00:15:04,320"
+			},
+			"offsets": {
+				"from": 903040,
+				"to": 904320
+			},
+			"text": " It's the same thing with shilling, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,320",
+				"to": "00:15:05,760"
+			},
+			"offsets": {
+				"from": 904320,
+				"to": 905760
+			},
+			"text": " You know when you see it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,760",
+				"to": "00:15:06,640"
+			},
+			"offsets": {
+				"from": 905760,
+				"to": 906640
+			},
+			"text": " So be careful of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,640",
+				"to": "00:15:11,520"
+			},
+			"offsets": {
+				"from": 906640,
+				"to": 911520
+			},
+			"text": " The other thing that I think is actually underappreciated"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,520",
+				"to": "00:15:15,600"
+			},
+			"offsets": {
+				"from": 911520,
+				"to": 915600
+			},
+			"text": " is that you can really lose credibility with people"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,600",
+				"to": "00:15:19,440"
+			},
+			"offsets": {
+				"from": 915600,
+				"to": 919440
+			},
+			"text": " if you try to mangle every use case into using your technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,000",
+				"to": "00:15:22,400"
+			},
+			"offsets": {
+				"from": 920000,
+				"to": 922400
+			},
+			"text": " Right? So if some engineer comes up to me to hackathon and says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,400",
+				"to": "00:15:25,680"
+			},
+			"offsets": {
+				"from": 922400,
+				"to": 925680
+			},
+			"text": " hey, Sam, you know, I've got this thing, you know, it does XYZ."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:25,680",
+				"to": "00:15:28,720"
+			},
+			"offsets": {
+				"from": 925680,
+				"to": 928720
+			},
+			"text": " Should I use superfluid to integrate with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,720",
+				"to": "00:15:31,600"
+			},
+			"offsets": {
+				"from": 928720,
+				"to": 931600
+			},
+			"text": " Right? And if they tell me that XYZ is something that really makes no sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,600",
+				"to": "00:15:34,800"
+			},
+			"offsets": {
+				"from": 931600,
+				"to": 934800
+			},
+			"text": " to integrate superfluid with, and I try to sell them on why superfluid"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,800",
+				"to": "00:15:37,920"
+			},
+			"offsets": {
+				"from": 934800,
+				"to": 937920
+			},
+			"text": " is a good thing to connect to their project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,920",
+				"to": "00:15:41,120"
+			},
+			"offsets": {
+				"from": 937920,
+				"to": 941120
+			},
+			"text": " if they don't recognize it right away,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,120",
+				"to": "00:15:43,920"
+			},
+			"offsets": {
+				"from": 941120,
+				"to": 943920
+			},
+			"text": " they're going to figure it out when they start going through our docs"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,920",
+				"to": "00:15:46,640"
+			},
+			"offsets": {
+				"from": 943920,
+				"to": 946640
+			},
+			"text": " and our code base, and you just lose credibility with people, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,640",
+				"to": "00:15:49,200"
+			},
+			"offsets": {
+				"from": 946640,
+				"to": 949200
+			},
+			"text": " So one of the most persuasive things you can do in my opinion"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,200",
+				"to": "00:15:53,760"
+			},
+			"offsets": {
+				"from": 949200,
+				"to": 953760
+			},
+			"text": " is actually to be really upfront about when your technology doesn't make sense for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,760",
+				"to": "00:15:56,560"
+			},
+			"offsets": {
+				"from": 953760,
+				"to": 956560
+			},
+			"text": " Right? Interestingly, people will come back to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,560",
+				"to": "00:16:00,320"
+			},
+			"offsets": {
+				"from": 956560,
+				"to": 960320
+			},
+			"text": " and find some reason to use your technology in a more interesting way"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,320",
+				"to": "00:16:01,840"
+			},
+			"offsets": {
+				"from": 960320,
+				"to": 961840
+			},
+			"text": " if you're honest with them, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,840",
+				"to": "00:16:04,640"
+			},
+			"offsets": {
+				"from": 961840,
+				"to": 964640
+			},
+			"text": " You just, you cannot be dishonest, especially to engineers."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,640",
+				"to": "00:16:07,520"
+			},
+			"offsets": {
+				"from": 964640,
+				"to": 967520
+			},
+			"text": " Engineers here, you have some of the greatest BS filters in the world, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,520",
+				"to": "00:16:10,800"
+			},
+			"offsets": {
+				"from": 967520,
+				"to": 970800
+			},
+			"text": " You should be proud of that, but dev rel people need to keep that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,800",
+				"to": "00:16:11,760"
+			},
+			"offsets": {
+				"from": 970800,
+				"to": 971760
+			},
+			"text": " It's very, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:11,760",
+				"to": "00:16:14,240"
+			},
+			"offsets": {
+				"from": 971760,
+				"to": 974240
+			},
+			"text": " So how about what does work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,240",
+				"to": "00:16:18,640"
+			},
+			"offsets": {
+				"from": 974240,
+				"to": 978640
+			},
+			"text": " Well, I mean, I think that focusing on education is really the right move, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,640",
+				"to": "00:16:21,840"
+			},
+			"offsets": {
+				"from": 978640,
+				"to": 981840
+			},
+			"text": " And not just education around what you do, but general education, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,840",
+				"to": "00:16:23,520"
+			},
+			"offsets": {
+				"from": 981840,
+				"to": 983520
+			},
+			"text": " Even if it's just adjacent to what you're doing, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,520",
+				"to": "00:16:27,680"
+			},
+			"offsets": {
+				"from": 983520,
+				"to": 987680
+			},
+			"text": " So one example is this new Chain Dev YouTube channel that the Chainlink community put out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,680",
+				"to": "00:16:30,880"
+			},
+			"offsets": {
+				"from": 987680,
+				"to": 990880
+			},
+			"text": " and in other words, a podcast we launched a super fluid called Devs Do Something."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,880",
+				"to": "00:16:34,560"
+			},
+			"offsets": {
+				"from": 990880,
+				"to": 994560
+			},
+			"text": " So Chain Dev, they just do very general stuff like Patrick Collins does it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,560",
+				"to": "00:16:37,760"
+			},
+			"offsets": {
+				"from": 994560,
+				"to": 997760
+			},
+			"text": " He does very general just web three tutorials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,760",
+				"to": "00:16:40,640"
+			},
+			"offsets": {
+				"from": 997760,
+				"to": 1000640
+			},
+			"text": " and that builds a lot of credibility with the Chainlink ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,640",
+				"to": "00:16:42,560"
+			},
+			"offsets": {
+				"from": 1000640,
+				"to": 1002560
+			},
+			"text": " And, you know, I think people know who Patrick is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,560",
+				"to": "00:16:46,000"
+			},
+			"offsets": {
+				"from": 1002560,
+				"to": 1006000
+			},
+			"text": " and they want to go build on Chainlink because they know he's helped them a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,000",
+				"to": "00:16:47,920"
+			},
+			"offsets": {
+				"from": 1006000,
+				"to": 1007920
+			},
+			"text": " and he literally is always wearing the Chainlink t-shirt, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,920",
+				"to": "00:16:49,360"
+			},
+			"offsets": {
+				"from": 1007920,
+				"to": 1009360
+			},
+			"text": " That's a good thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,360",
+				"to": "00:16:53,440"
+			},
+			"offsets": {
+				"from": 1009360,
+				"to": 1013440
+			},
+			"text": " And then at our end with super fluid, we launched this podcast called Devs Do Something"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,440",
+				"to": "00:16:57,040"
+			},
+			"offsets": {
+				"from": 1013440,
+				"to": 1017040
+			},
+			"text": " that is designed to just be purely helpful for engineers in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,040",
+				"to": "00:16:59,760"
+			},
+			"offsets": {
+				"from": 1017040,
+				"to": 1019760
+			},
+			"text": " We've had on just a lot of really good technical minds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,760",
+				"to": "00:17:04,080"
+			},
+			"offsets": {
+				"from": 1019760,
+				"to": 1024080
+			},
+			"text": " and we don't really talk about streaming money or super fluid stuff that much at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,080",
+				"to": "00:17:07,120"
+			},
+			"offsets": {
+				"from": 1024080,
+				"to": 1027120
+			},
+			"text": " Right? All we do is we just talk through like what they're working on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,120",
+				"to": "00:17:11,680"
+			},
+			"offsets": {
+				"from": 1027120,
+				"to": 1031680
+			},
+			"text": " we go through their favorite design patterns and examples, and it's worked, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,680",
+				"to": "00:17:12,640"
+			},
+			"offsets": {
+				"from": 1031680,
+				"to": 1032640
+			},
+			"text": " People like it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,640",
+				"to": "00:17:17,360"
+			},
+			"offsets": {
+				"from": 1032640,
+				"to": 1037360
+			},
+			"text": " So those kinds of things will, you know, your community will accrue value"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,360",
+				"to": "00:17:18,960"
+			},
+			"offsets": {
+				"from": 1037360,
+				"to": 1038960
+			},
+			"text": " as a result of these kinds of things you do."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,960",
+				"to": "00:17:24,640"
+			},
+			"offsets": {
+				"from": 1038960,
+				"to": 1044640
+			},
+			"text": " Another thing that works when it comes to being more specific to your stack and your protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,640",
+				"to": "00:17:28,240"
+			},
+			"offsets": {
+				"from": 1044640,
+				"to": 1048240
+			},
+			"text": " is creating really interesting examples and proof of concepts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,240",
+				"to": "00:17:33,440"
+			},
+			"offsets": {
+				"from": 1048240,
+				"to": 1053440
+			},
+			"text": " So this might be obvious, but one thing to keep in mind is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,440",
+				"to": "00:17:37,600"
+			},
+			"offsets": {
+				"from": 1053440,
+				"to": 1057600
+			},
+			"text": " we're all playing a long game here, hopefully, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:37,600",
+				"to": "00:17:41,120"
+			},
+			"offsets": {
+				"from": 1057600,
+				"to": 1061120
+			},
+			"text": " But the problem is that there are so many things that become hot"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,120",
+				"to": "00:17:44,400"
+			},
+			"offsets": {
+				"from": 1061120,
+				"to": 1064400
+			},
+			"text": " and capture the attention of every engineer in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,400",
+				"to": "00:17:46,080"
+			},
+			"offsets": {
+				"from": 1064400,
+				"to": 1066080
+			},
+			"text": " and they always want to work on them now, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,080",
+				"to": "00:17:48,240"
+			},
+			"offsets": {
+				"from": 1066080,
+				"to": 1068240
+			},
+			"text": " So the cycles go so fast, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:48,240",
+				"to": "00:17:51,840"
+			},
+			"offsets": {
+				"from": 1068240,
+				"to": 1071840
+			},
+			"text": " One moment it's NFTs, and another moment it's DeFi."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,840",
+				"to": "00:17:56,000"
+			},
+			"offsets": {
+				"from": 1071840,
+				"to": 1076000
+			},
+			"text": " Right now we're hitting the stage of like zero knowledge stuff is like the sexy thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,000",
+				"to": "00:17:57,120"
+			},
+			"offsets": {
+				"from": 1076000,
+				"to": 1077120
+			},
+			"text": " and yeah, rightfully so."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,120",
+				"to": "00:17:59,280"
+			},
+			"offsets": {
+				"from": 1077120,
+				"to": 1079280
+			},
+			"text": " I hope people get zero knowledge stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,280",
+				"to": "00:18:03,760"
+			},
+			"offsets": {
+				"from": 1079280,
+				"to": 1083760
+			},
+			"text": " But what you can do is stay up to date with all this new stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:03,760",
+				"to": "00:18:05,920"
+			},
+			"offsets": {
+				"from": 1083760,
+				"to": 1085920
+			},
+			"text": " Stay up to date with all the new features in Foundry."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,920",
+				"to": "00:18:08,080"
+			},
+			"offsets": {
+				"from": 1085920,
+				"to": 1088080
+			},
+			"text": " Stay up to date with all the new ZK stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,080",
+				"to": "00:18:10,480"
+			},
+			"offsets": {
+				"from": 1088080,
+				"to": 1090480
+			},
+			"text": " and if you can create some kind of interesting integration"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,480",
+				"to": "00:18:13,520"
+			},
+			"offsets": {
+				"from": 1090480,
+				"to": 1093520
+			},
+			"text": " between these new technologies that are hot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:13,520",
+				"to": "00:18:16,640"
+			},
+			"offsets": {
+				"from": 1093520,
+				"to": 1096640
+			},
+			"text": " and what you're working on, you can stay in the conversation, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,640",
+				"to": "00:18:18,400"
+			},
+			"offsets": {
+				"from": 1096640,
+				"to": 1098400
+			},
+			"text": " They don't have to be perfect solutions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,400",
+				"to": "00:18:20,720"
+			},
+			"offsets": {
+				"from": 1098400,
+				"to": 1100720
+			},
+			"text": " and you don't, and remember, like I said a second ago,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:20,720",
+				"to": "00:18:22,800"
+			},
+			"offsets": {
+				"from": 1100720,
+				"to": 1102800
+			},
+			"text": " you don't want to force anything,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,800",
+				"to": "00:18:24,320"
+			},
+			"offsets": {
+				"from": 1102800,
+				"to": 1104320
+			},
+			"text": " but if there's a genuine integration,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,320",
+				"to": "00:18:27,760"
+			},
+			"offsets": {
+				"from": 1104320,
+				"to": 1107760
+			},
+			"text": " you should build some proof of concept around that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,760",
+				"to": "00:18:29,680"
+			},
+			"offsets": {
+				"from": 1107760,
+				"to": 1109680
+			},
+			"text": " It helps you stay in the conversation, like I said."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,680",
+				"to": "00:18:33,680"
+			},
+			"offsets": {
+				"from": 1109680,
+				"to": 1113680
+			},
+			"text": " And the other thing I really want to highlight is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,680",
+				"to": "00:18:37,200"
+			},
+			"offsets": {
+				"from": 1113680,
+				"to": 1117200
+			},
+			"text": " you want to create superstars in your community, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,200",
+				"to": "00:18:39,760"
+			},
+			"offsets": {
+				"from": 1117200,
+				"to": 1119760
+			},
+			"text": " You want to make people feel really, really special, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,760",
+				"to": "00:18:42,800"
+			},
+			"offsets": {
+				"from": 1119760,
+				"to": 1122800
+			},
+			"text": " So this means promoting the projects that your community builds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:42,800",
+				"to": "00:18:46,160"
+			},
+			"offsets": {
+				"from": 1122800,
+				"to": 1126160
+			},
+			"text": " it means hosting little sessions and meetups"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,160",
+				"to": "00:18:49,520"
+			},
+			"offsets": {
+				"from": 1126160,
+				"to": 1129520
+			},
+			"text": " where they can come in and share with their working onto your broader community."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,520",
+				"to": "00:18:50,800"
+			},
+			"offsets": {
+				"from": 1129520,
+				"to": 1130800
+			},
+			"text": " You really want to highlight people, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,800",
+				"to": "00:18:53,760"
+			},
+			"offsets": {
+				"from": 1130800,
+				"to": 1133760
+			},
+			"text": " It gives you content, right, because you have something to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,760",
+				"to": "00:18:55,680"
+			},
+			"offsets": {
+				"from": 1133760,
+				"to": 1135680
+			},
+			"text": " and it also makes people feel good, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,680",
+				"to": "00:18:59,040"
+			},
+			"offsets": {
+				"from": 1135680,
+				"to": 1139040
+			},
+			"text": " Because it's just a nice human thing to spotlight someone"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,040",
+				"to": "00:19:00,400"
+			},
+			"offsets": {
+				"from": 1139040,
+				"to": 1140400
+			},
+			"text": " and tell them they did a good job, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,400",
+				"to": "00:19:02,080"
+			},
+			"offsets": {
+				"from": 1140400,
+				"to": 1142080
+			},
+			"text": " Especially if it's true, obviously."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:02,080",
+				"to": "00:19:05,440"
+			},
+			"offsets": {
+				"from": 1142080,
+				"to": 1145440
+			},
+			"text": " So that's a dev in the real side."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,440",
+				"to": "00:19:08,800"
+			},
+			"offsets": {
+				"from": 1145440,
+				"to": 1148800
+			},
+			"text": " Another thing that I think is interesting to talk through"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,800",
+				"to": "00:19:15,520"
+			},
+			"offsets": {
+				"from": 1148800,
+				"to": 1155520
+			},
+			"text": " is how to spend money in an intelligent way on developer acquisition, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,520",
+				"to": "00:19:19,600"
+			},
+			"offsets": {
+				"from": 1155520,
+				"to": 1159600
+			},
+			"text": " So all the hackathons you guys see, those are not cheap for sponsors, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:19,600",
+				"to": "00:19:20,880"
+			},
+			"offsets": {
+				"from": 1159600,
+				"to": 1160880
+			},
+			"text": " Those are very expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,880",
+				"to": "00:19:23,920"
+			},
+			"offsets": {
+				"from": 1160880,
+				"to": 1163920
+			},
+			"text": " So I think it's worth keeping in mind how to actually do this right."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,920",
+				"to": "00:19:27,680"
+			},
+			"offsets": {
+				"from": 1163920,
+				"to": 1167680
+			},
+			"text": " So again, our industry spends so much money on developer acquisition,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,680",
+				"to": "00:19:28,960"
+			},
+			"offsets": {
+				"from": 1167680,
+				"to": 1168960
+			},
+			"text": " it matters to us."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,960",
+				"to": "00:19:31,840"
+			},
+			"offsets": {
+				"from": 1168960,
+				"to": 1171840
+			},
+			"text": " It spent mostly on hackathons, bounties, and dev roll team members."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,840",
+				"to": "00:19:34,240"
+			},
+			"offsets": {
+				"from": 1171840,
+				"to": 1174240
+			},
+			"text": " I'm not going to go into how to hire dev roll team members,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:34,240",
+				"to": "00:19:39,680"
+			},
+			"offsets": {
+				"from": 1174240,
+				"to": 1179680
+			},
+			"text": " but in terms of getting money, getting ROI out of the money you spend at hackathons and bounties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,680",
+				"to": "00:19:43,120"
+			},
+			"offsets": {
+				"from": 1179680,
+				"to": 1183120
+			},
+			"text": " you have to keep in mind that you cannot just throw money"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,120",
+				"to": "00:19:46,240"
+			},
+			"offsets": {
+				"from": 1183120,
+				"to": 1186240
+			},
+			"text": " at your community and hope for a good outcome, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,240",
+				"to": "00:19:48,640"
+			},
+			"offsets": {
+				"from": 1186240,
+				"to": 1188640
+			},
+			"text": " There have been times I've been at events where someone from a protocol says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,640",
+				"to": "00:19:52,720"
+			},
+			"offsets": {
+				"from": 1188640,
+				"to": 1192720
+			},
+			"text": " \"Hey, if you build anything on this L1 or this protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,720",
+				"to": "00:19:54,960"
+			},
+			"offsets": {
+				"from": 1192720,
+				"to": 1194960
+			},
+			"text": " we'll give you a 10k grant,\" right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,960",
+				"to": "00:19:56,720"
+			},
+			"offsets": {
+				"from": 1194960,
+				"to": 1196720
+			},
+			"text": " And they just start throwing money out like crazy,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,720",
+				"to": "00:19:59,920"
+			},
+			"offsets": {
+				"from": 1196720,
+				"to": 1199920
+			},
+			"text": " because there has been a lot of money in this space to date, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,920",
+				"to": "00:20:02,960"
+			},
+			"offsets": {
+				"from": 1199920,
+				"to": 1202960
+			},
+			"text": " Unfortunately, that just doesn't really work, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,960",
+				"to": "00:20:05,200"
+			},
+			"offsets": {
+				"from": 1202960,
+				"to": 1205200
+			},
+			"text": " It can get you some growth immediately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,200",
+				"to": "00:20:08,480"
+			},
+			"offsets": {
+				"from": 1205200,
+				"to": 1208480
+			},
+			"text": " but the way I like to put it is that you really get out what you put in"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,480",
+				"to": "00:20:12,880"
+			},
+			"offsets": {
+				"from": 1208480,
+				"to": 1212880
+			},
+			"text": " from an effort and how thoughtful you are point of view, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,880",
+				"to": "00:20:16,080"
+			},
+			"offsets": {
+				"from": 1212880,
+				"to": 1216080
+			},
+			"text": " So when it comes to hackathons, I don't hackathons first,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,080",
+				"to": "00:20:19,120"
+			},
+			"offsets": {
+				"from": 1216080,
+				"to": 1219120
+			},
+			"text": " the selection of the hackathon you're going to do really matters, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,120",
+				"to": "00:20:22,560"
+			},
+			"offsets": {
+				"from": 1219120,
+				"to": 1222560
+			},
+			"text": " So you want to look for events that have really high quality co-sponsors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,560",
+				"to": "00:20:26,320"
+			},
+			"offsets": {
+				"from": 1222560,
+				"to": 1226320
+			},
+			"text": " and you want to look for organizations to put out lots of good content"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,320",
+				"to": "00:20:28,640"
+			},
+			"offsets": {
+				"from": 1226320,
+				"to": 1228640
+			},
+			"text": " and see them like they're on top of their stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,640",
+				"to": "00:20:30,560"
+			},
+			"offsets": {
+				"from": 1228640,
+				"to": 1230560
+			},
+			"text": " You should ask yourself before you show up at a hackathon"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,560",
+				"to": "00:20:32,480"
+			},
+			"offsets": {
+				"from": 1230560,
+				"to": 1232480
+			},
+			"text": " and before you pay money to be at the hackathon,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,480",
+				"to": "00:20:35,040"
+			},
+			"offsets": {
+				"from": 1232480,
+				"to": 1235040
+			},
+			"text": " what kind of community is this event going to attract?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:35,040",
+				"to": "00:20:40,160"
+			},
+			"offsets": {
+				"from": 1235040,
+				"to": 1240160
+			},
+			"text": " And is that community one that you want building on your on top of your protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,160",
+				"to": "00:20:42,080"
+			},
+			"offsets": {
+				"from": 1240160,
+				"to": 1242080
+			},
+			"text": " right, or your technology in general?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,080",
+				"to": "00:20:44,240"
+			},
+			"offsets": {
+				"from": 1242080,
+				"to": 1244240
+			},
+			"text": " Two really good examples that are kind of the gold standard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,240",
+				"to": "00:20:45,600"
+			},
+			"offsets": {
+				"from": 1244240,
+				"to": 1245600
+			},
+			"text": " are ETH Global and Dev Folio."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,600",
+				"to": "00:20:46,560"
+			},
+			"offsets": {
+				"from": 1245600,
+				"to": 1246560
+			},
+			"text": " I love ETH Global."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:46,560",
+				"to": "00:20:47,840"
+			},
+			"offsets": {
+				"from": 1246560,
+				"to": 1247840
+			},
+			"text": " If you're an ETH Global person in here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,840",
+				"to": "00:20:49,760"
+			},
+			"offsets": {
+				"from": 1247840,
+				"to": 1249760
+			},
+			"text": " thank you for doing good work, good hackathons."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,760",
+				"to": "00:20:50,640"
+			},
+			"offsets": {
+				"from": 1249760,
+				"to": 1250640
+			},
+			"text": " That's right."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,640",
+				"to": "00:20:53,760"
+			},
+			"offsets": {
+				"from": 1250640,
+				"to": 1253760
+			},
+			"text": " So look for teams like that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:53,760",
+				"to": "00:20:54,240"
+			},
+			"offsets": {
+				"from": 1253760,
+				"to": 1254240
+			},
+			"text": " It helps."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,240",
+				"to": "00:20:58,720"
+			},
+			"offsets": {
+				"from": 1254240,
+				"to": 1258720
+			},
+			"text": " And then at the hackathon, one thing that's counterintuitive is you should"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,720",
+				"to": "00:21:02,240"
+			},
+			"offsets": {
+				"from": 1258720,
+				"to": 1262240
+			},
+			"text": " prepare a couple of ideas at least before the hackathon starts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,240",
+				"to": "00:21:04,720"
+			},
+			"offsets": {
+				"from": 1262240,
+				"to": 1264720
+			},
+			"text": " because we all like to sit here and say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,720",
+				"to": "00:21:07,200"
+			},
+			"offsets": {
+				"from": 1264720,
+				"to": 1267200
+			},
+			"text": " \"Hey, we're just so excited for the applications"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:07,200",
+				"to": "00:21:08,800"
+			},
+			"offsets": {
+				"from": 1267200,
+				"to": 1268800
+			},
+			"text": " no one's even thought of yet.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,800",
+				"to": "00:21:10,720"
+			},
+			"offsets": {
+				"from": 1268800,
+				"to": 1270720
+			},
+			"text": " And it's true that you will be surprised"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:10,720",
+				"to": "00:21:12,880"
+			},
+			"offsets": {
+				"from": 1270720,
+				"to": 1272880
+			},
+			"text": " and people will build cool things on your tech stack."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,880",
+				"to": "00:21:14,400"
+			},
+			"offsets": {
+				"from": 1272880,
+				"to": 1274400
+			},
+			"text": " But people have two days here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,400",
+				"to": "00:21:15,920"
+			},
+			"offsets": {
+				"from": 1274400,
+				"to": 1275920
+			},
+			"text": " They have a lot of things coming at them."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:15,920",
+				"to": "00:21:17,520"
+			},
+			"offsets": {
+				"from": 1275920,
+				"to": 1277520
+			},
+			"text": " Give them something to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,520",
+				"to": "00:21:19,120"
+			},
+			"offsets": {
+				"from": 1277520,
+				"to": 1279120
+			},
+			"text": " Give them some idea to start with."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:19,120",
+				"to": "00:21:20,160"
+			},
+			"offsets": {
+				"from": 1279120,
+				"to": 1280160
+			},
+			"text": " It's really helpful."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,160",
+				"to": "00:21:22,720"
+			},
+			"offsets": {
+				"from": 1280160,
+				"to": 1282720
+			},
+			"text": " And ideally, those ideas integrate well with other sponsors."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,720",
+				"to": "00:21:26,000"
+			},
+			"offsets": {
+				"from": 1282720,
+				"to": 1286000
+			},
+			"text": " Devs and hackathons like to stack prices on top of each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,000",
+				"to": "00:21:28,080"
+			},
+			"offsets": {
+				"from": 1286000,
+				"to": 1288080
+			},
+			"text": " They look for ways to integrate multiple things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:28,080",
+				"to": "00:21:29,520"
+			},
+			"offsets": {
+				"from": 1288080,
+				"to": 1289520
+			},
+			"text": " and it's worth keeping that in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,520",
+				"to": "00:21:31,760"
+			},
+			"offsets": {
+				"from": 1289520,
+				"to": 1291760
+			},
+			"text": " And then obviously, you want to be friendly."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,760",
+				"to": "00:21:33,840"
+			},
+			"offsets": {
+				"from": 1291760,
+				"to": 1293840
+			},
+			"text": " Being friendly really matters."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,840",
+				"to": "00:21:34,640"
+			},
+			"offsets": {
+				"from": 1293840,
+				"to": 1294640
+			},
+			"text": " Obviously, a hackathon."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:34,640",
+				"to": "00:21:37,840"
+			},
+			"offsets": {
+				"from": 1294640,
+				"to": 1297840
+			},
+			"text": " That's how to think about hackathons."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,840",
+				"to": "00:21:41,040"
+			},
+			"offsets": {
+				"from": 1297840,
+				"to": 1301040
+			},
+			"text": " The other thing that we do at Superfluid is we think about"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:41,040",
+				"to": "00:21:42,720"
+			},
+			"offsets": {
+				"from": 1301040,
+				"to": 1302720
+			},
+			"text": " bounties a little bit differently."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,720",
+				"to": "00:21:44,800"
+			},
+			"offsets": {
+				"from": 1302720,
+				"to": 1304800
+			},
+			"text": " So I think that when it comes to developer experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,800",
+				"to": "00:21:45,920"
+			},
+			"offsets": {
+				"from": 1304800,
+				"to": 1305920
+			},
+			"text": " and building developer communities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,920",
+				"to": "00:21:49,040"
+			},
+			"offsets": {
+				"from": 1305920,
+				"to": 1309040
+			},
+			"text": " using bounties, like individual bounties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:49,040",
+				"to": "00:21:52,400"
+			},
+			"offsets": {
+				"from": 1309040,
+				"to": 1312400
+			},
+			"text": " to get people to complete tasks is a little bit overrated."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,400",
+				"to": "00:21:54,560"
+			},
+			"offsets": {
+				"from": 1312400,
+				"to": 1314560
+			},
+			"text": " You can crowdsource some good content and things."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,560",
+				"to": "00:21:56,880"
+			},
+			"offsets": {
+				"from": 1314560,
+				"to": 1316880
+			},
+			"text": " But what we kind of like to use bounties for"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,880",
+				"to": "00:21:59,520"
+			},
+			"offsets": {
+				"from": 1316880,
+				"to": 1319520
+			},
+			"text": " is to get giga-brains and really smart people"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,520",
+				"to": "00:22:00,880"
+			},
+			"offsets": {
+				"from": 1319520,
+				"to": 1320880
+			},
+			"text": " looking at your code base."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,880",
+				"to": "00:22:02,080"
+			},
+			"offsets": {
+				"from": 1320880,
+				"to": 1322080
+			},
+			"text": " That's what you want."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:02,080",
+				"to": "00:22:04,480"
+			},
+			"offsets": {
+				"from": 1322080,
+				"to": 1324480
+			},
+			"text": " You want to have them looking at your technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,480",
+				"to": "00:22:07,680"
+			},
+			"offsets": {
+				"from": 1324480,
+				"to": 1327680
+			},
+			"text": " And ideally, they go out and they build something brand new"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,680",
+				"to": "00:22:09,280"
+			},
+			"offsets": {
+				"from": 1327680,
+				"to": 1329280
+			},
+			"text": " as a result of seeing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,280",
+				"to": "00:22:10,720"
+			},
+			"offsets": {
+				"from": 1329280,
+				"to": 1330720
+			},
+			"text": " That's a very important thing to note."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,720",
+				"to": "00:22:13,920"
+			},
+			"offsets": {
+				"from": 1330720,
+				"to": 1333920
+			},
+			"text": " Again, this is just kind of a regurgitation of what I just said."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,920",
+				"to": "00:22:17,520"
+			},
+			"offsets": {
+				"from": 1333920,
+				"to": 1337520
+			},
+			"text": " They're decent for crowdsourcing tutorials"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,520",
+				"to": "00:22:18,800"
+			},
+			"offsets": {
+				"from": 1337520,
+				"to": 1338800
+			},
+			"text": " and educational content."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,800",
+				"to": "00:22:21,760"
+			},
+			"offsets": {
+				"from": 1338800,
+				"to": 1341760
+			},
+			"text": " But again, use them to get smart people looking at your technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,760",
+				"to": "00:22:24,640"
+			},
+			"offsets": {
+				"from": 1341760,
+				"to": 1344640
+			},
+			"text": " All right, so to wrap up here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,640",
+				"to": "00:22:27,680"
+			},
+			"offsets": {
+				"from": 1344640,
+				"to": 1347680
+			},
+			"text": " I want to go through a couple of DevRel failure modes"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,400",
+				"to": "00:22:30,400"
+			},
+			"offsets": {
+				"from": 1348400,
+				"to": 1350400
+			},
+			"text": " that I've experienced and mistakes that I've made"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,400",
+				"to": "00:22:31,520"
+			},
+			"offsets": {
+				"from": 1350400,
+				"to": 1351520
+			},
+			"text": " and mistakes that I see in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:31,520",
+				"to": "00:22:34,560"
+			},
+			"offsets": {
+				"from": 1351520,
+				"to": 1354560
+			},
+			"text": " just to give you something to walk away with."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:34,560",
+				"to": "00:22:37,520"
+			},
+			"offsets": {
+				"from": 1354560,
+				"to": 1357520
+			},
+			"text": " And then I'll kind of recap and remind us all"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,520",
+				"to": "00:22:38,480"
+			},
+			"offsets": {
+				"from": 1357520,
+				"to": 1358480
+			},
+			"text": " of what the goal is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:38,480",
+				"to": "00:22:40,880"
+			},
+			"offsets": {
+				"from": 1358480,
+				"to": 1360880
+			},
+			"text": " So some DevRel common failure modes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:40,880",
+				"to": "00:22:43,440"
+			},
+			"offsets": {
+				"from": 1360880,
+				"to": 1363440
+			},
+			"text": " Number one, trying to throw money at the problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,440",
+				"to": "00:22:44,480"
+			},
+			"offsets": {
+				"from": 1363440,
+				"to": 1364480
+			},
+			"text": " We talked about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,480",
+				"to": "00:22:46,640"
+			},
+			"offsets": {
+				"from": 1364480,
+				"to": 1366640
+			},
+			"text": " Number two, not seeding your community"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,640",
+				"to": "00:22:49,680"
+			},
+			"offsets": {
+				"from": 1366640,
+				"to": 1369680
+			},
+			"text": " with enough interesting ideas and examples to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,680",
+				"to": "00:22:52,160"
+			},
+			"offsets": {
+				"from": 1369680,
+				"to": 1372160
+			},
+			"text": " You can't expect people to read your mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,160",
+				"to": "00:22:55,920"
+			},
+			"offsets": {
+				"from": 1372160,
+				"to": 1375920
+			},
+			"text": " Giving them something to work on is sometimes very useful."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:56,720",
+				"to": "00:23:01,680"
+			},
+			"offsets": {
+				"from": 1376720,
+				"to": 1381680
+			},
+			"text": " Another three is assuming too much content in your docs and tutorials."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,680",
+				"to": "00:23:04,160"
+			},
+			"offsets": {
+				"from": 1381680,
+				"to": 1384160
+			},
+			"text": " Meet developers where they are."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,160",
+				"to": "00:23:07,120"
+			},
+			"offsets": {
+				"from": 1384160,
+				"to": 1387120
+			},
+			"text": " Understand those personas, and you'll be much more successful."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,120",
+				"to": "00:23:10,720"
+			},
+			"offsets": {
+				"from": 1387120,
+				"to": 1390720
+			},
+			"text": " Four is doing way too much low leverage work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,720",
+				"to": "00:23:12,080"
+			},
+			"offsets": {
+				"from": 1390720,
+				"to": 1392080
+			},
+			"text": " So that's me in the beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,080",
+				"to": "00:23:14,160"
+			},
+			"offsets": {
+				"from": 1392080,
+				"to": 1394160
+			},
+			"text": " Only answer is not really working on our docs."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,160",
+				"to": "00:23:17,760"
+			},
+			"offsets": {
+				"from": 1394160,
+				"to": 1397760
+			},
+			"text": " But on the flip side, go too far there."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,760",
+				"to": "00:23:21,120"
+			},
+			"offsets": {
+				"from": 1397760,
+				"to": 1401120
+			},
+			"text": " You can only focus on high leverage work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,120",
+				"to": "00:23:23,920"
+			},
+			"offsets": {
+				"from": 1401120,
+				"to": 1403920
+			},
+			"text": " And if you do that, you don't do the things that don't scale,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,920",
+				"to": "00:23:28,400"
+			},
+			"offsets": {
+				"from": 1403920,
+				"to": 1408400
+			},
+			"text": " meaning you make people feel like you don't care about them"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,400",
+				"to": "00:23:31,920"
+			},
+			"offsets": {
+				"from": 1408400,
+				"to": 1411920
+			},
+			"text": " by not answering questions in your Discord and not staying."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:31,920",
+				"to": "00:23:35,520"
+			},
+			"offsets": {
+				"from": 1411920,
+				"to": 1415520
+			},
+			"text": " For example, we stay up until 3 a.m. some nights at Hackathons."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,520",
+				"to": "00:23:38,000"
+			},
+			"offsets": {
+				"from": 1415520,
+				"to": 1418000
+			},
+			"text": " That's not exactly high leverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,000",
+				"to": "00:23:40,560"
+			},
+			"offsets": {
+				"from": 1418000,
+				"to": 1420560
+			},
+			"text": " But it does help us build goodwill with the ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,560",
+				"to": "00:23:44,560"
+			},
+			"offsets": {
+				"from": 1420560,
+				"to": 1424560
+			},
+			"text": " So be willing to do those things in addition to some of the higher leverage stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,560",
+				"to": "00:23:45,280"
+			},
+			"offsets": {
+				"from": 1424560,
+				"to": 1425280
+			},
+			"text": " It's both important."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,280",
+				"to": "00:23:48,800"
+			},
+			"offsets": {
+				"from": 1425280,
+				"to": 1428800
+			},
+			"text": " And then finally, the thing I'll leave you with"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,800",
+				"to": "00:23:51,280"
+			},
+			"offsets": {
+				"from": 1428800,
+				"to": 1431280
+			},
+			"text": " is to remember what success looks like here."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:51,280",
+				"to": "00:23:53,200"
+			},
+			"offsets": {
+				"from": 1431280,
+				"to": 1433200
+			},
+			"text": " I think we sometimes forget that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,200",
+				"to": "00:23:55,680"
+			},
+			"offsets": {
+				"from": 1433200,
+				"to": 1435680
+			},
+			"text": " We just get in this cycle of just throwing money at Hackathons"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,680",
+				"to": "00:23:57,920"
+			},
+			"offsets": {
+				"from": 1435680,
+				"to": 1437920
+			},
+			"text": " and just going to all these conferences and things."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:57,920",
+				"to": "00:24:02,720"
+			},
+			"offsets": {
+				"from": 1437920,
+				"to": 1442720
+			},
+			"text": " And we forget that success looks like a thriving community of developers"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,720",
+				"to": "00:24:07,520"
+			},
+			"offsets": {
+				"from": 1442720,
+				"to": 1447520
+			},
+			"text": " who tell all their friends, their bosses, and other people they know about your product"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:07,520",
+				"to": "00:24:11,360"
+			},
+			"offsets": {
+				"from": 1447520,
+				"to": 1451360
+			},
+			"text": " that help other developers in your community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,360",
+				"to": "00:24:14,960"
+			},
+			"offsets": {
+				"from": 1451360,
+				"to": 1454960
+			},
+			"text": " that give back to you, that build their integrations"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,960",
+				"to": "00:24:18,800"
+			},
+			"offsets": {
+				"from": 1454960,
+				"to": 1458800
+			},
+			"text": " at their existing company or protocol between your stack,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:18,800",
+				"to": "00:24:24,400"
+			},
+			"offsets": {
+				"from": 1458800,
+				"to": 1464400
+			},
+			"text": " and that ultimately launch businesses that are built using a technology build."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:24,400",
+				"to": "00:24:26,720"
+			},
+			"offsets": {
+				"from": 1464400,
+				"to": 1466720
+			},
+			"text": " That's all the things that really matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,720",
+				"to": "00:24:31,920"
+			},
+			"offsets": {
+				"from": 1466720,
+				"to": 1471920
+			},
+			"text": " So if you're interested in all this stuff, I love talking shop on DevRel Things."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:31,920",
+				"to": "00:24:34,960"
+			},
+			"offsets": {
+				"from": 1471920,
+				"to": 1474960
+			},
+			"text": " Thank you all for coming today."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,960",
+				"to": "00:24:37,760"
+			},
+			"offsets": {
+				"from": 1474960,
+				"to": 1477760
+			},
+			"text": " Get in touch with me on Twitter at @Spline5."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,760",
+				"to": "00:24:42,560"
+			},
+			"offsets": {
+				"from": 1477760,
+				"to": 1482560
+			},
+			"text": " I'm also in Discord at SamF Superfluid with this little 0902 thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,560",
+				"to": "00:24:44,640"
+			},
+			"offsets": {
+				"from": 1482560,
+				"to": 1484640
+			},
+			"text": " So yeah, come say hi."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:44,640",
+				"to": "00:24:46,800"
+			},
+			"offsets": {
+				"from": 1484640,
+				"to": 1486800
+			},
+			"text": " I'll be outside to answer questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,800",
+				"to": "00:24:48,960"
+			},
+			"offsets": {
+				"from": 1486800,
+				"to": 1488960
+			},
+			"text": " If you guys have any questions, we'd just like to talk and meet up."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,960",
+				"to": "00:24:51,600"
+			},
+			"offsets": {
+				"from": 1488960,
+				"to": 1491600
+			},
+			"text": " And thank you so much for joining us today."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,600",
+				"to": "00:24:56,240"
+			},
+			"offsets": {
+				"from": 1491600,
+				"to": 1496240
+			},
+			"text": " Oh, one more thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,240",
+				"to": "00:24:59,040"
+			},
+			"offsets": {
+				"from": 1496240,
+				"to": 1499040
+			},
+			"text": " I have my friend Yao in the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,040",
+				"to": "00:25:03,040"
+			},
+			"offsets": {
+				"from": 1499040,
+				"to": 1503040
+			},
+			"text": " We're going to have a DevRel meet up tonight from six, right Yao?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,040",
+				"to": "00:25:03,920"
+			},
+			"offsets": {
+				"from": 1503040,
+				"to": 1503920
+			},
+			"text": " Six to nine 30?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,920",
+				"to": "00:25:06,240"
+			},
+			"offsets": {
+				"from": 1503920,
+				"to": 1506240
+			},
+			"text": " Six 30 to nine."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,240",
+				"to": "00:25:07,680"
+			},
+			"offsets": {
+				"from": 1506240,
+				"to": 1507680
+			},
+			"text": " All right, so if you're interested in this stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,680",
+				"to": "00:25:10,880"
+			},
+			"offsets": {
+				"from": 1507680,
+				"to": 1510880
+			},
+			"text": " we have some cool DevRel professionals and developer community experts coming."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,880",
+				"to": "00:25:13,840"
+			},
+			"offsets": {
+				"from": 1510880,
+				"to": 1513840
+			},
+			"text": " Stop by, say hi, and we'll have a good time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,840",
+				"to": "00:25:14,880"
+			},
+			"offsets": {
+				"from": 1513840,
+				"to": 1514880
+			},
+			"text": " So thank you again."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,880",
+				"to": "00:25:20,400"
+			},
+			"offsets": {
+				"from": 1514880,
+				"to": 1520400
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,400",
+				"to": "00:25:30,400"
+			},
+			"offsets": {
+				"from": 1520400,
+				"to": 1530400
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,400",
+				"to": "00:25:32,400"
+			},
+			"offsets": {
+				"from": 1530400,
+				"to": 1532400
+			},
+			"text": " [ ]"
+		}
+	]
+}

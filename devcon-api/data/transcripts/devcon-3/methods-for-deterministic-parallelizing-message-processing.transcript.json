@@ -1,0 +1,2881 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,500"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17500
+			},
+			"text": " >> Hi everyone, I'm Martin Beasy."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,500",
+				"to": "00:00:21,500"
+			},
+			"offsets": {
+				"from": 17500,
+				"to": 21500
+			},
+			"text": " I'm going to talk about methods for deterministically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,500",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 21500,
+				"to": 26000
+			},
+			"text": " paralyzing message processing, which I hope sounds like a really fun title."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 32000
+			},
+			"text": " So, I'm really going to talk about primia."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 44000
+			},
+			"text": " And what primia is is sort of a prototype of me experimenting with this idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " deterministically paralyzing message processing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " So, an overview of the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 63000
+			},
+			"text": " I'm going to talk about the history of ewasm, kernel and primia."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 72000
+			},
+			"text": " Problems with current blockchain computers, potential and hopefully potential solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 79000
+			},
+			"text": " So, the roots of primia really started in ewasm days."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 88000
+			},
+			"text": " And it builds extensively off the ideas used in ewasm."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 96000
+			},
+			"text": " So, if you're familiar with ewasm, the idea was to adopt the WebAssembly instruction set"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:41,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 101000
+			},
+			"text": " for usage in the Ethereum blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 101000,
+				"to": 111000
+			},
+			"text": " Another important part of this was to add metering to WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 121000
+			},
+			"text": " To run this modified WebAssembly binary, we created something called ewasm kernel, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:10,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 130000
+			},
+			"text": " just provided the methods to link the Ethereum blockchain to the WebAssembly binary."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 130000,
+				"to": 136000
+			},
+			"text": " And shortly after that, I used the ewasm kernel to prototype something called nested contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:20,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 140000
+			},
+			"text": " which I'll talk about in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,000",
+				"to": "00:02:23,000"
+			},
+			"offsets": {
+				"from": 140000,
+				"to": 143000
+			},
+			"text": " After that, it was sort of a branching point."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 143000,
+				"to": 148000
+			},
+			"text": " So, WebAssembly solved several problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 152000
+			},
+			"text": " It was more performant than eVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:36,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 156000
+			},
+			"text": " And more expensive and had a larger ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,000",
+				"to": "00:02:47,000"
+			},
+			"offsets": {
+				"from": 156000,
+				"to": 167000
+			},
+			"text": " Compile C or C++ or any LLVM compatible language to WebAssembly."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,000",
+				"to": "00:02:55,000"
+			},
+			"offsets": {
+				"from": 167000,
+				"to": 175000
+			},
+			"text": " But thinking about starting from the virtual machine layer and going up, the next performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,000",
+				"to": "00:02:59,000"
+			},
+			"offsets": {
+				"from": 175000,
+				"to": 179000
+			},
+			"text": " bottleneck was in parallelization."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 179000,
+				"to": 185000
+			},
+			"text": " Currently, the way things are structured in Ethereum, we can't run transactions or messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 190000
+			},
+			"text": " concurrently."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 205000
+			},
+			"text": " So, Premier was focused on prototyping ideas with concurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 212000
+			},
+			"text": " And it moved towards using the actor model, which I'll talk about more in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " So, a brief overview of what Premier is."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " It provides inter-process communication for contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 225000
+			},
+			"text": " It has a microkernel-like design."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 229000
+			},
+			"text": " I used that term very loosely, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:51,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 231000
+			},
+			"text": " It's concurrent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 231000,
+				"to": 234000
+			},
+			"text": " It's deterministic."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 239000
+			},
+			"text": " There's a JavaScript prototype on GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 243000
+			},
+			"text": " And currently, it's being developed in conjunction with affinity."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 249000
+			},
+			"text": " And hopefully, will be useful in Ethereum once we have sharding."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 258000
+			},
+			"text": " So, Premier, you can think of it as the layer that sits above the virtual machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 261000
+			},
+			"text": " But below consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 267000
+			},
+			"text": " And it's totally decoupled from both."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 274000
+			},
+			"text": " It's totally agnostic to the structure set."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 277000
+			},
+			"text": " You can even mix and match the instruction sets if you like."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " You can run the WebAssembly JavaScript or X86."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " And, ideally, Premier could provide inter-process communication across those"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " instruction sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " So, blockchain computers."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:05:01,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 301000
+			},
+			"text": " According to Google Images' search, this is what a blockchain computer looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 301000,
+				"to": 308000
+			},
+			"text": " It's like a start-going supernova with quantum entanglement or something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 312000
+			},
+			"text": " But you could also make an argument that a blockchain computer currently looks like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 314000
+			},
+			"text": " A fairly early computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 318000
+			},
+			"text": " Or maybe a 90 cell phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 330000
+			},
+			"text": " A few problems that we have right now are it's not very performant compared to a server."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335000
+			},
+			"text": " We haven't really accomplished scalability yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " The design is still fairly ad hoc."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:45,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 345000
+			},
+			"text": " It doesn't borrow much from what was learned from previous designs of operating systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 345000,
+				"to": 347000
+			},
+			"text": " for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:50,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 350000
+			},
+			"text": " It's hard to extend."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 350000,
+				"to": 356000
+			},
+			"text": " And because of these, it's also hard to interplay with existing systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " So, if I have a programmer running on a server, it's fairly hard just to move that program"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:04,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 364000
+			},
+			"text": " to running on a blockchain computer."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 364000,
+				"to": 368000
+			},
+			"text": " You have to rewrite it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 370000
+			},
+			"text": " So, scalability."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 375000
+			},
+			"text": " So, scalability is hard to subject."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 378000
+			},
+			"text": " I don't have any solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 386000
+			},
+			"text": " But what I want to try to accomplish is to observe some properties that scalability might"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 387000
+			},
+			"text": " have."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:35,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 395000
+			},
+			"text": " And how to express these properties into process communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,000",
+				"to": "00:06:45,000"
+			},
+			"offsets": {
+				"from": 395000,
+				"to": 405000
+			},
+			"text": " So, I think a fundamental property we'll see in scalability is a need to impose locality."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,000",
+				"to": "00:06:47,000"
+			},
+			"offsets": {
+				"from": 405000,
+				"to": 407000
+			},
+			"text": " So, what do I mean by locality?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,000",
+				"to": "00:06:56,000"
+			},
+			"offsets": {
+				"from": 407000,
+				"to": 416000
+			},
+			"text": " In the physical world, if we have two objects separated by some distance that are communicating,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 416000,
+				"to": 424000
+			},
+			"text": " locality is sensed by the time communication takes to happen between those objects."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:14,720"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 434720
+			},
+			"text": " And the time it takes is going to be how far apart they are times the speed at which the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,720",
+				"to": "00:07:17,400"
+			},
+			"offsets": {
+				"from": 434720,
+				"to": 437400
+			},
+			"text": " communication happens."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,400",
+				"to": "00:07:20,000"
+			},
+			"offsets": {
+				"from": 437400,
+				"to": 440000
+			},
+			"text": " Speed here is kinetic energy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,000",
+				"to": "00:07:31,000"
+			},
+			"offsets": {
+				"from": 440000,
+				"to": 451000
+			},
+			"text": " Essentially the mass of the object times the force that was used to push it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 451000,
+				"to": 459000
+			},
+			"text": " So, in the world of incentivized computation, we can use this as an analogy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 466000
+			},
+			"text": " And the world of incentivized computation, a mass of an object is the size of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 468000
+			},
+			"text": " And bytes or bits."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 477000
+			},
+			"text": " And how much force we push it with, you can think of it in terms of maybe gas price."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 486000
+			},
+			"text": " So, how could we oppose locality on contracts?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:12,640"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 492640
+			},
+			"text": " Essentially, what that means here is that contracts further away will have to will sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,640",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 492640,
+				"to": 500000
+			},
+			"text": " distances via longer communication times or higher costs or both."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:30,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 510000
+			},
+			"text": " So, currently Ethereum has a flat namespace for contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,000",
+				"to": "00:08:37,600"
+			},
+			"offsets": {
+				"from": 510000,
+				"to": 517600
+			},
+			"text": " All contracts exist along a single tree, if you will."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,600",
+				"to": "00:08:44,480"
+			},
+			"offsets": {
+				"from": 517600,
+				"to": 524480
+			},
+			"text": " My first idea for imposing locality was the idea of subcontracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,480",
+				"to": "00:08:50,720"
+			},
+			"offsets": {
+				"from": 524480,
+				"to": 530720
+			},
+			"text": " The idea would be that each contract could create subcontracts that it only had access"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,720",
+				"to": "00:08:52,080"
+			},
+			"offsets": {
+				"from": 530720,
+				"to": 532080
+			},
+			"text": " to."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,080",
+				"to": "00:08:57,840"
+			},
+			"offsets": {
+				"from": 532080,
+				"to": 537840
+			},
+			"text": " Now, this idea has a few problems."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,840",
+				"to": "00:09:00,240"
+			},
+			"offsets": {
+				"from": 537840,
+				"to": 540240
+			},
+			"text": " But let's explore it a little bit more."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,240",
+				"to": "00:09:10,440"
+			},
+			"offsets": {
+				"from": 540240,
+				"to": 550440
+			},
+			"text": " So, a parent contract can delete its subcontracts, move its subcontracts, and send and receive"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,440",
+				"to": "00:09:16,640"
+			},
+			"offsets": {
+				"from": 550440,
+				"to": 556640
+			},
+			"text": " messages from its subcontracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,640",
+				"to": "00:09:27,200"
+			},
+			"offsets": {
+				"from": 556640,
+				"to": 567200
+			},
+			"text": " And if we take that tree of contracts and subcontracts and look at it from the top, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,200",
+				"to": "00:09:34,000"
+			},
+			"offsets": {
+				"from": 567200,
+				"to": 574000
+			},
+			"text": " could flatten that tree into a set of nested circles, like here, where the top circle would"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,000",
+				"to": "00:09:40,920"
+			},
+			"offsets": {
+				"from": 574000,
+				"to": 580920
+			},
+			"text": " be the global blockchain, then the circles inside that would be more contracts, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,920",
+				"to": "00:09:45,400"
+			},
+			"offsets": {
+				"from": 580920,
+				"to": 585400
+			},
+			"text": " circles inside those would be subcontracts and further."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,400",
+				"to": "00:09:56,480"
+			},
+			"offsets": {
+				"from": 585400,
+				"to": 596480
+			},
+			"text": " So, this is also analogous to membrane computing, which was a -- which is inspired off of actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,480",
+				"to": "00:10:01,400"
+			},
+			"offsets": {
+				"from": 596480,
+				"to": 601400
+			},
+			"text": " biological, modeling biological things like cells."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,400",
+				"to": "00:10:06,680"
+			},
+			"offsets": {
+				"from": 601400,
+				"to": 606680
+			},
+			"text": " Any communication happening within one of the membranes going outside the membranes must"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,680",
+				"to": "00:10:08,840"
+			},
+			"offsets": {
+				"from": 606680,
+				"to": 608840
+			},
+			"text": " pass through the membrane."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,840",
+				"to": "00:10:13,920"
+			},
+			"offsets": {
+				"from": 608840,
+				"to": 613920
+			},
+			"text": " The membrane here is, you know, the circle."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:13,920",
+				"to": "00:10:19,960"
+			},
+			"offsets": {
+				"from": 613920,
+				"to": 619960
+			},
+			"text": " So having this membrane type system, we can impose locality."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,960",
+				"to": "00:10:27,880"
+			},
+			"offsets": {
+				"from": 619960,
+				"to": 627880
+			},
+			"text": " So, if contract A wants to talk to contract B, for example, it would have to go through"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,880",
+				"to": "00:10:34,920"
+			},
+			"offsets": {
+				"from": 627880,
+				"to": 634920
+			},
+			"text": " the membrane of its parent, A prime, and then have to go through B prime, and then finally"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,920",
+				"to": "00:10:44,840"
+			},
+			"offsets": {
+				"from": 634920,
+				"to": 644840
+			},
+			"text": " to A. So locality here is sensed by the extra message passing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,840",
+				"to": "00:10:53,360"
+			},
+			"offsets": {
+				"from": 644840,
+				"to": 653360
+			},
+			"text": " Contract that are further away in terms of parent contracts have more cost associated"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,360",
+				"to": "00:11:00,720"
+			},
+			"offsets": {
+				"from": 653360,
+				"to": 660720
+			},
+			"text": " with -- because there's more messages, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,720",
+				"to": "00:11:06,080"
+			},
+			"offsets": {
+				"from": 660720,
+				"to": 666080
+			},
+			"text": " And then you could use the same structure for shards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,080",
+				"to": "00:11:14,960"
+			},
+			"offsets": {
+				"from": 666080,
+				"to": 674960
+			},
+			"text": " A and B could be sharded easily, and you could maybe have a recursive nested sharded"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,960",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 674960,
+				"to": 679000
+			},
+			"text": " scheme using this, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:22,400"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 682400
+			},
+			"text": " You have subcontracts, and the subcontracts have subcontracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,400",
+				"to": "00:11:26,000"
+			},
+			"offsets": {
+				"from": 682400,
+				"to": 686000
+			},
+			"text": " And some of those would be shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:26,000",
+				"to": "00:11:33,480"
+			},
+			"offsets": {
+				"from": 686000,
+				"to": 693480
+			},
+			"text": " In reality, I don't know if you need more than maybe two layers of shards, though."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,480",
+				"to": "00:11:37,880"
+			},
+			"offsets": {
+				"from": 693480,
+				"to": 697880
+			},
+			"text": " So it's dubious in whether that's necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,880",
+				"to": "00:11:45,840"
+			},
+			"offsets": {
+				"from": 697880,
+				"to": 705840
+			},
+			"text": " So problems with nested contracts, though, are -- they're a bit inflexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,840",
+				"to": "00:11:52,360"
+			},
+			"offsets": {
+				"from": 705840,
+				"to": 712360
+			},
+			"text": " It's hard to arrange -- if you have a bunch of contracts that communicate quite frequently,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,360",
+				"to": "00:12:02,360"
+			},
+			"offsets": {
+				"from": 712360,
+				"to": 722360
+			},
+			"text": " that are distributed across a bunch of different parent contracts, then it's hard to rearrange"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,360",
+				"to": "00:12:07,480"
+			},
+			"offsets": {
+				"from": 722360,
+				"to": 727480
+			},
+			"text": " things to provide optimal communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:07,480",
+				"to": "00:12:10,600"
+			},
+			"offsets": {
+				"from": 727480,
+				"to": 730600
+			},
+			"text": " So yeah, they're also inefficient because of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:10,600",
+				"to": "00:12:13,360"
+			},
+			"offsets": {
+				"from": 730600,
+				"to": 733360
+			},
+			"text": " You have the extra message passing."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,360",
+				"to": "00:12:24,440"
+			},
+			"offsets": {
+				"from": 733360,
+				"to": 744440
+			},
+			"text": " So that was the first iteration in the Ewasm kernel experimenting with this idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,440",
+				"to": "00:12:31,360"
+			},
+			"offsets": {
+				"from": 744440,
+				"to": 751360
+			},
+			"text": " So the next stop was, okay, let's solution the restriction of message passing up and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,360",
+				"to": "00:12:34,000"
+			},
+			"offsets": {
+				"from": 751360,
+				"to": 754000
+			},
+			"text": " down in a tree in subcontracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,000",
+				"to": "00:12:40,400"
+			},
+			"offsets": {
+				"from": 754000,
+				"to": 760400
+			},
+			"text": " A lot of subcontracts are just connected by a graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,400",
+				"to": "00:12:46,080"
+			},
+			"offsets": {
+				"from": 760400,
+				"to": 766080
+			},
+			"text": " But we still want the property of imposing locality and finding a nice way to build shards"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,080",
+				"to": "00:12:50,480"
+			},
+			"offsets": {
+				"from": 766080,
+				"to": 770480
+			},
+			"text": " around our contracts, which you can do here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,480",
+				"to": "00:12:58,640"
+			},
+			"offsets": {
+				"from": 770480,
+				"to": 778640
+			},
+			"text": " The tree just becomes the shard boundaries in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,640",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 778640,
+				"to": 784000
+			},
+			"text": " But we still have a more efficient way of communication since contracts can be arranged"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:09,560"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 789560
+			},
+			"text": " in arbitrary graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,560",
+				"to": "00:13:16,440"
+			},
+			"offsets": {
+				"from": 789560,
+				"to": 796440
+			},
+			"text": " So this structure, interestingly enough, I think is represented very well by bi graphs."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,440",
+				"to": "00:13:26,320"
+			},
+			"offsets": {
+				"from": 796440,
+				"to": 806320
+			},
+			"text": " Bi graphs are something created by algebra created by Robin Miller to model communicating"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,320",
+				"to": "00:13:29,200"
+			},
+			"offsets": {
+				"from": 806320,
+				"to": 809200
+			},
+			"text": " agents in space and time."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,200",
+				"to": "00:13:32,840"
+			},
+			"offsets": {
+				"from": 809200,
+				"to": 812840
+			},
+			"text": " So I find it a nice fit."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,840",
+				"to": "00:13:40,040"
+			},
+			"offsets": {
+				"from": 812840,
+				"to": 820040
+			},
+			"text": " So here the shard boundaries would be the place graph or the forest."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,040",
+				"to": "00:13:45,920"
+			},
+			"offsets": {
+				"from": 820040,
+				"to": 825920
+			},
+			"text": " And then the communication, lines of communication would be the hypergraph."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:45,920",
+				"to": "00:13:51,800"
+			},
+			"offsets": {
+				"from": 825920,
+				"to": 831800
+			},
+			"text": " And when we put those two graphs together, we have a structure called a bi graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,800",
+				"to": "00:14:00,520"
+			},
+			"offsets": {
+				"from": 831800,
+				"to": 840520
+			},
+			"text": " And that just gives us sort of a nice, a nice hollow to work with to express these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,520",
+				"to": "00:14:07,160"
+			},
+			"offsets": {
+				"from": 840520,
+				"to": 847160
+			},
+			"text": " So communication here, it's a bit different than the way communication and contracts work"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,160",
+				"to": "00:14:08,760"
+			},
+			"offsets": {
+				"from": 847160,
+				"to": 848760
+			},
+			"text": " now in Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,760",
+				"to": "00:14:14,040"
+			},
+			"offsets": {
+				"from": 848760,
+				"to": 854040
+			},
+			"text": " So as it stands now, any contract is sent a message to any other contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,040",
+				"to": "00:14:17,440"
+			},
+			"offsets": {
+				"from": 854040,
+				"to": 857440
+			},
+			"text": " You might notice here communication is more restricted."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,440",
+				"to": "00:14:22,120"
+			},
+			"offsets": {
+				"from": 857440,
+				"to": 862120
+			},
+			"text": " You have to have a line of communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,120",
+				"to": "00:14:24,720"
+			},
+			"offsets": {
+				"from": 862120,
+				"to": 864720
+			},
+			"text": " But this does have some benefits."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,720",
+				"to": "00:14:30,520"
+			},
+			"offsets": {
+				"from": 864720,
+				"to": 870520
+			},
+			"text": " It allows us to build isolation groups of contracts that we know cannot be contacted"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:30,520",
+				"to": "00:14:33,480"
+			},
+			"offsets": {
+				"from": 870520,
+				"to": 873480
+			},
+			"text": " by the groups of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,480",
+				"to": "00:14:36,360"
+			},
+			"offsets": {
+				"from": 873480,
+				"to": 876360
+			},
+			"text": " And therefore this allows us to build modularity."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,360",
+				"to": "00:14:41,600"
+			},
+			"offsets": {
+				"from": 876360,
+				"to": 881600
+			},
+			"text": " And I'll talk about this a little bit more later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,600",
+				"to": "00:14:47,520"
+			},
+			"offsets": {
+				"from": 881600,
+				"to": 887520
+			},
+			"text": " Also this makes it fairly easy to build concurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,520",
+				"to": "00:14:55,880"
+			},
+			"offsets": {
+				"from": 887520,
+				"to": 895880
+			},
+			"text": " So the first idea to sort of express these lines of communication or graphs and contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,880",
+				"to": "00:14:57,320"
+			},
+			"offsets": {
+				"from": 895880,
+				"to": 897320
+			},
+			"text": " is channels."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,320",
+				"to": "00:15:06,960"
+			},
+			"offsets": {
+				"from": 897320,
+				"to": 906960
+			},
+			"text": " If you're familiar with CSP, you should be familiar to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:06,960",
+				"to": "00:15:12,320"
+			},
+			"offsets": {
+				"from": 906960,
+				"to": 912320
+			},
+			"text": " So a channel is just a bidirectional line of communication."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,320",
+				"to": "00:15:15,960"
+			},
+			"offsets": {
+				"from": 912320,
+				"to": 915960
+			},
+			"text": " It's always one to one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,960",
+				"to": "00:15:21,720"
+			},
+			"offsets": {
+				"from": 915960,
+				"to": 921720
+			},
+			"text": " And inside the contracts, channels are addressed by ports."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,720",
+				"to": "00:15:26,480"
+			},
+			"offsets": {
+				"from": 921720,
+				"to": 926480
+			},
+			"text": " Ports have names internal to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,480",
+				"to": "00:15:33,200"
+			},
+			"offsets": {
+				"from": 926480,
+				"to": 933200
+			},
+			"text": " So this blue contract here might call the yellow contract dog, the blue one cat, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,200",
+				"to": "00:15:35,920"
+			},
+			"offsets": {
+				"from": 933200,
+				"to": 935920
+			},
+			"text": " you know the orange one, something else."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,920",
+				"to": "00:15:38,240"
+			},
+			"offsets": {
+				"from": 935920,
+				"to": 938240
+			},
+			"text": " But it's only relative to that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,240",
+				"to": "00:15:46,360"
+			},
+			"offsets": {
+				"from": 938240,
+				"to": 946360
+			},
+			"text": " The yellow contract might have a different naming."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,360",
+				"to": "00:15:48,720"
+			},
+			"offsets": {
+				"from": 946360,
+				"to": 948720
+			},
+			"text": " But these ports are also mobile."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,720",
+				"to": "00:15:51,640"
+			},
+			"offsets": {
+				"from": 948720,
+				"to": 951640
+			},
+			"text": " So the graph can rearrange."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,640",
+				"to": "00:15:56,440"
+			},
+			"offsets": {
+				"from": 951640,
+				"to": 956440
+			},
+			"text": " For example, if C can talk to B or A, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,440",
+				"to": "00:16:03,040"
+			},
+			"offsets": {
+				"from": 956440,
+				"to": 963040
+			},
+			"text": " If C wants to talk to B or B wants to talk to C, but only A can talk to B right now or"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,040",
+				"to": "00:16:04,040"
+			},
+			"offsets": {
+				"from": 963040,
+				"to": 964040
+			},
+			"text": " C."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,040",
+				"to": "00:16:14,640"
+			},
+			"offsets": {
+				"from": 964040,
+				"to": 974640
+			},
+			"text": " Then A can send B, the port to C, in a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,640",
+				"to": "00:16:24,320"
+			},
+			"offsets": {
+				"from": 974640,
+				"to": 984320
+			},
+			"text": " So now B can talk directly to C. Therefore, we can now define messages as two things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:24,320",
+				"to": "00:16:30,520"
+			},
+			"offsets": {
+				"from": 984320,
+				"to": 990520
+			},
+			"text": " data and port references."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,520",
+				"to": "00:16:37,840"
+			},
+			"offsets": {
+				"from": 990520,
+				"to": 997840
+			},
+			"text": " And this might be, you might observe that ports are also capabilities here, as in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,840",
+				"to": "00:16:41,800"
+			},
+			"offsets": {
+				"from": 997840,
+				"to": 1001800
+			},
+			"text": " terms of capability systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,800",
+				"to": "00:16:48,160"
+			},
+			"offsets": {
+				"from": 1001800,
+				"to": 1008160
+			},
+			"text": " So it's a capability to send a message."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,160",
+				"to": "00:16:50,360"
+			},
+			"offsets": {
+				"from": 1008160,
+				"to": 1010360
+			},
+			"text": " And it's an opaque reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,360",
+				"to": "00:16:51,640"
+			},
+			"offsets": {
+				"from": 1010360,
+				"to": 1011640
+			},
+			"text": " It's unportable."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,640",
+				"to": "00:16:56,880"
+			},
+			"offsets": {
+				"from": 1011640,
+				"to": 1016880
+			},
+			"text": " You can't create ports that are maintained by the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,880",
+				"to": "00:17:00,480"
+			},
+			"offsets": {
+				"from": 1016880,
+				"to": 1020480
+			},
+			"text": " If you're interested in capabilities, check out eRights."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,480",
+				"to": "00:17:16,400"
+			},
+			"offsets": {
+				"from": 1020480,
+				"to": 1036400
+			},
+			"text": " It was a pre-blockchain language used to express smart contracts, essentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,400",
+				"to": "00:17:24,040"
+			},
+			"offsets": {
+				"from": 1036400,
+				"to": 1044040
+			},
+			"text": " And they're also transferable, which I talked about in mobility."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:24,040",
+				"to": "00:17:29,480"
+			},
+			"offsets": {
+				"from": 1044040,
+				"to": 1049480
+			},
+			"text": " So now it should be apparent how we can build isolation."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,480",
+				"to": "00:17:34,840"
+			},
+			"offsets": {
+				"from": 1049480,
+				"to": 1054840
+			},
+			"text": " So, for example, we might have a set of three contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,840",
+				"to": "00:17:39,040"
+			},
+			"offsets": {
+				"from": 1054840,
+				"to": 1059040
+			},
+			"text": " One does authentication logic, ACL, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,040",
+				"to": "00:17:41,080"
+			},
+			"offsets": {
+				"from": 1059040,
+				"to": 1061080
+			},
+			"text": " The other does some sort of business logic."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,080",
+				"to": "00:17:49,200"
+			},
+			"offsets": {
+				"from": 1061080,
+				"to": 1069200
+			},
+			"text": " And we have another contract that might provide a database like interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,200",
+				"to": "00:17:56,960"
+			},
+			"offsets": {
+				"from": 1069200,
+				"to": 1076960
+			},
+			"text": " And no external communication can happen to the contracts in yellow."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,960",
+				"to": "00:18:00,560"
+			},
+			"offsets": {
+				"from": 1076960,
+				"to": 1080560
+			},
+			"text": " Everything has to pass through with the notification."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,560",
+				"to": "00:18:06,720"
+			},
+			"offsets": {
+				"from": 1080560,
+				"to": 1086720
+			},
+			"text": " And I think this helps us a lot to reason about security, because now we can just plug"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,720",
+				"to": "00:18:18,080"
+			},
+			"offsets": {
+				"from": 1086720,
+				"to": 1098080
+			},
+			"text": " and play contracts like business logic contracts and database contracts without having to worry"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,080",
+				"to": "00:18:24,000"
+			},
+			"offsets": {
+				"from": 1098080,
+				"to": 1104000
+			},
+			"text": " about security implementations, because all communication has to pass through the authentication"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,000",
+				"to": "00:18:27,560"
+			},
+			"offsets": {
+				"from": 1104000,
+				"to": 1107560
+			},
+			"text": " or ACL contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,560",
+				"to": "00:18:33,720"
+			},
+			"offsets": {
+				"from": 1107560,
+				"to": 1113720
+			},
+			"text": " So if you were to audit the system, you would really just have to focus on the authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,720",
+				"to": "00:18:44,840"
+			},
+			"offsets": {
+				"from": 1113720,
+				"to": 1124840
+			},
+			"text": " And you could just use off-the-shelf parts for everything in the isolated area."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,840",
+				"to": "00:18:47,920"
+			},
+			"offsets": {
+				"from": 1124840,
+				"to": 1127920
+			},
+			"text": " And it also helps us build concurrency."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,920",
+				"to": "00:18:58,520"
+			},
+			"offsets": {
+				"from": 1127920,
+				"to": 1138520
+			},
+			"text": " So no one who can talk to who allows us to find mutually exclusive sets of contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,520",
+				"to": "00:19:07,480"
+			},
+			"offsets": {
+				"from": 1138520,
+				"to": 1147480
+			},
+			"text": " And if we have mutually exclusive sets of contracts, then we can run them in parallel."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,480",
+				"to": "00:19:18,680"
+			},
+			"offsets": {
+				"from": 1147480,
+				"to": 1158680
+			},
+			"text": " So there's a few problems with ports and channels from the point of view of CSP."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,680",
+				"to": "00:19:23,120"
+			},
+			"offsets": {
+				"from": 1158680,
+				"to": 1163120
+			},
+			"text": " That is there's a system overhead associated with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,120",
+				"to": "00:19:28,840"
+			},
+			"offsets": {
+				"from": 1163120,
+				"to": 1168840
+			},
+			"text": " Since there's always a bidirectional communication happening for every channel, whenever you"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,840",
+				"to": "00:19:37,440"
+			},
+			"offsets": {
+				"from": 1168840,
+				"to": 1177440
+			},
+			"text": " move a port, then the system also has to update the other port on the new location of the port."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,440",
+				"to": "00:19:43,080"
+			},
+			"offsets": {
+				"from": 1177440,
+				"to": 1183080
+			},
+			"text": " Also, I think there's too much restriction, because we still want -- I think it's still"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,080",
+				"to": "00:19:56,960"
+			},
+			"offsets": {
+				"from": 1183080,
+				"to": 1196960
+			},
+			"text": " useful to have a Ethereum-style message where a contract can just send to a synthesized"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,960",
+				"to": "00:20:05,080"
+			},
+			"offsets": {
+				"from": 1196960,
+				"to": 1205080
+			},
+			"text": " address, not an opaque address maintained by the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,080",
+				"to": "00:20:11,160"
+			},
+			"offsets": {
+				"from": 1205080,
+				"to": 1211160
+			},
+			"text": " So if we loosen the restrictions on channels, we just have addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,160",
+				"to": "00:20:16,520"
+			},
+			"offsets": {
+				"from": 1211160,
+				"to": 1216520
+			},
+			"text": " But we still can maintain the idea in all the good things of channels, like isolation and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,520",
+				"to": "00:20:21,560"
+			},
+			"offsets": {
+				"from": 1216520,
+				"to": 1221560
+			},
+			"text": " whatnot, if we have opaque addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,560",
+				"to": "00:20:26,120"
+			},
+			"offsets": {
+				"from": 1221560,
+				"to": 1226120
+			},
+			"text": " And opaque addresses work just like ports."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,120",
+				"to": "00:20:29,840"
+			},
+			"offsets": {
+				"from": 1226120,
+				"to": 1229840
+			},
+			"text": " Opaque addresses, something maintained by the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:29,840",
+				"to": "00:20:33,160"
+			},
+			"offsets": {
+				"from": 1229840,
+				"to": 1233160
+			},
+			"text": " You can't synthesize it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,160",
+				"to": "00:20:38,800"
+			},
+			"offsets": {
+				"from": 1233160,
+				"to": 1238800
+			},
+			"text": " You just get a reference to it in your contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,800",
+				"to": "00:20:45,040"
+			},
+			"offsets": {
+				"from": 1238800,
+				"to": 1245040
+			},
+			"text": " And as where ports and channels are bidirectional, addresses are not."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,040",
+				"to": "00:20:47,440"
+			},
+			"offsets": {
+				"from": 1245040,
+				"to": 1247440
+			},
+			"text": " They're unidirectional."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:47,440",
+				"to": "00:20:52,240"
+			},
+			"offsets": {
+				"from": 1247440,
+				"to": 1252240
+			},
+			"text": " So if I have an address to a contract, I can send that message to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,240",
+				"to": "00:20:57,400"
+			},
+			"offsets": {
+				"from": 1252240,
+				"to": 1257400
+			},
+			"text": " And I also can send the address to another contract, and then that other contract can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,400",
+				"to": "00:21:00,520"
+			},
+			"offsets": {
+				"from": 1257400,
+				"to": 1260520
+			},
+			"text": " send a message to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,520",
+				"to": "00:21:05,560"
+			},
+			"offsets": {
+				"from": 1260520,
+				"to": 1265560
+			},
+			"text": " So they maintain the same properties as capabilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,560",
+				"to": "00:21:13,560"
+			},
+			"offsets": {
+				"from": 1265560,
+				"to": 1273560
+			},
+			"text": " So, yeah, it has all the good properties and less system overhood, especially with regards"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,560",
+				"to": "00:21:20,000"
+			},
+			"offsets": {
+				"from": 1273560,
+				"to": 1280000
+			},
+			"text": " to mobility, because now when we move addresses around in messages, we don't have to update"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,000",
+				"to": "00:21:26,360"
+			},
+			"offsets": {
+				"from": 1280000,
+				"to": 1286360
+			},
+			"text": " the corresponding contract that it points to on the system level."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:26,360",
+				"to": "00:21:35,680"
+			},
+			"offsets": {
+				"from": 1286360,
+				"to": 1295680
+			},
+			"text": " So we can layer synthesizing addresses on top of this to represent Ethereum style contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,680",
+				"to": "00:21:42,320"
+			},
+			"offsets": {
+				"from": 1295680,
+				"to": 1302320
+			},
+			"text": " where a contract could take in a string and then use that string to send a message to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,320",
+				"to": "00:21:46,640"
+			},
+			"offsets": {
+				"from": 1302320,
+				"to": 1306640
+			},
+			"text": " address."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,640",
+				"to": "00:21:52,960"
+			},
+			"offsets": {
+				"from": 1306640,
+				"to": 1312960
+			},
+			"text": " So now we can really talk about synchronous calling as we have other previous sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,960",
+				"to": "00:21:59,280"
+			},
+			"offsets": {
+				"from": 1312960,
+				"to": 1319280
+			},
+			"text": " So synchronous calling currently works like this."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:59,280",
+				"to": "00:22:05,360"
+			},
+			"offsets": {
+				"from": 1319280,
+				"to": 1325360
+			},
+			"text": " A equals B, and after it calls B, it has to pull off."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,360",
+				"to": "00:22:06,560"
+			},
+			"offsets": {
+				"from": 1325360,
+				"to": 1326560
+			},
+			"text": " It can't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:06,560",
+				"to": "00:22:10,320"
+			},
+			"offsets": {
+				"from": 1326560,
+				"to": 1330320
+			},
+			"text": " Let's say A has like 100 bytes allocated in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,320",
+				"to": "00:22:12,480"
+			},
+			"offsets": {
+				"from": 1330320,
+				"to": 1332480
+			},
+			"text": " Well, we have to just keep that there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,480",
+				"to": "00:22:16,520"
+			},
+			"offsets": {
+				"from": 1332480,
+				"to": 1336520
+			},
+			"text": " And then now B is running, and it allocates another 100 bytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:16,520",
+				"to": "00:22:19,960"
+			},
+			"offsets": {
+				"from": 1336520,
+				"to": 1339960
+			},
+			"text": " So we have to keep 200 bytes in memory."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,960",
+				"to": "00:22:21,520"
+			},
+			"offsets": {
+				"from": 1339960,
+				"to": 1341520
+			},
+			"text": " And A still can't do anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,520",
+				"to": "00:22:25,440"
+			},
+			"offsets": {
+				"from": 1341520,
+				"to": 1345440
+			},
+			"text": " Now B calls C, and now B is paused."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,440",
+				"to": "00:22:36,840"
+			},
+			"offsets": {
+				"from": 1345440,
+				"to": 1356840
+			},
+			"text": " So as you can see, we sort of get this linear growth in resource consumption where only"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,840",
+				"to": "00:22:45,040"
+			},
+			"offsets": {
+				"from": 1356840,
+				"to": 1365040
+			},
+			"text": " the act of contract can use resources, but none of the other contracts can, if they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,040",
+				"to": "00:22:50,320"
+			},
+			"offsets": {
+				"from": 1365040,
+				"to": 1370320
+			},
+			"text": " frozen, so it's sort of like going to waste."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,320",
+				"to": "00:22:53,960"
+			},
+			"offsets": {
+				"from": 1370320,
+				"to": 1373960
+			},
+			"text": " Also atomicity in this setting is really expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:53,960",
+				"to": "00:23:01,080"
+			},
+			"offsets": {
+				"from": 1373960,
+				"to": 1381080
+			},
+			"text": " So not only do we have the resources in terms of memory and computation, like frozen and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:01,080",
+				"to": "00:23:08,560"
+			},
+			"offsets": {
+				"from": 1381080,
+				"to": 1388560
+			},
+			"text": " going to waste, reverting adds a lot of overhead or atomicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,560",
+				"to": "00:23:15,840"
+			},
+			"offsets": {
+				"from": 1388560,
+				"to": 1395840
+			},
+			"text": " So for example, when A equals B, now we need to keep A's modified state and B's modified"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,840",
+				"to": "00:23:16,840"
+			},
+			"offsets": {
+				"from": 1395840,
+				"to": 1396840
+			},
+			"text": " state."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,840",
+				"to": "00:23:25,360"
+			},
+			"offsets": {
+				"from": 1396840,
+				"to": 1405360
+			},
+			"text": " Then when C, when B calls C, we also have to keep A's modified state, B's modified state,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,360",
+				"to": "00:23:26,360"
+			},
+			"offsets": {
+				"from": 1405360,
+				"to": 1406360
+			},
+			"text": " C's modified state."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,360",
+				"to": "00:23:32,840"
+			},
+			"offsets": {
+				"from": 1406360,
+				"to": 1412840
+			},
+			"text": " And then when C's done running, we still have to keep around C's modified state, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:32,840",
+				"to": "00:23:34,120"
+			},
+			"offsets": {
+				"from": 1412840,
+				"to": 1414120
+			},
+			"text": " B's and A's."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,120",
+				"to": "00:23:40,520"
+			},
+			"offsets": {
+				"from": 1414120,
+				"to": 1420520
+			},
+			"text": " And then when B's done running, we have to do the same for A."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:40,520",
+				"to": "00:23:48,880"
+			},
+			"offsets": {
+				"from": 1420520,
+				"to": 1428880
+			},
+			"text": " So if you loosen this restriction and have just contracts running concurrently, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,880",
+				"to": "00:23:55,640"
+			},
+			"offsets": {
+				"from": 1428880,
+				"to": 1435640
+			},
+			"text": " what would happen is from a system point of view, it would run, it would have 100 bytes"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,640",
+				"to": "00:24:04,400"
+			},
+			"offsets": {
+				"from": 1435640,
+				"to": 1444400
+			},
+			"text": " located in memory, and then it would be freed, then B would run and C and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,400",
+				"to": "00:24:11,680"
+			},
+			"offsets": {
+				"from": 1444400,
+				"to": 1451680
+			},
+			"text": " The only problem with this is you still might want to represent atomicity."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,680",
+				"to": "00:24:15,880"
+			},
+			"offsets": {
+				"from": 1451680,
+				"to": 1455880
+			},
+			"text": " And you can do this using something called a two-phase lock, and we can provide some"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,880",
+				"to": "00:24:21,360"
+			},
+			"offsets": {
+				"from": 1455880,
+				"to": 1461360
+			},
+			"text": " system primitives to make this easier."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,360",
+				"to": "00:24:28,320"
+			},
+			"offsets": {
+				"from": 1461360,
+				"to": 1468320
+			},
+			"text": " So essentially how this would work is, let's say B's performing the two-phase lock, A"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,320",
+				"to": "00:24:36,320"
+			},
+			"offsets": {
+				"from": 1468320,
+				"to": 1476320
+			},
+			"text": " would call B, then B would return to A and lock, it would basically give A a lock."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:36,320",
+				"to": "00:24:42,080"
+			},
+			"offsets": {
+				"from": 1476320,
+				"to": 1482080
+			},
+			"text": " Then A would do something, and then return to B until it to unlock."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:42,080",
+				"to": "00:24:48,200"
+			},
+			"offsets": {
+				"from": 1482080,
+				"to": 1488200
+			},
+			"text": " And yeah, the important thing here is that the commit or the revert can be enforced by"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:48,200",
+				"to": "00:24:55,080"
+			},
+			"offsets": {
+				"from": 1488200,
+				"to": 1495080
+			},
+			"text": " the system, so we don't have to implement a full two-phase protocol."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:55,080",
+				"to": "00:25:00,120"
+			},
+			"offsets": {
+				"from": 1495080,
+				"to": 1500120
+			},
+			"text": " I think I'm out of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:00,120",
+				"to": "00:25:04,760"
+			},
+			"offsets": {
+				"from": 1500120,
+				"to": 1504760
+			},
+			"text": " But okay, so that was the gist of it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:04,760",
+				"to": "00:25:07,440"
+			},
+			"offsets": {
+				"from": 1504760,
+				"to": 1507440
+			},
+			"text": " There's more stuff we can talk about later."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,440",
+				"to": "00:25:08,880"
+			},
+			"offsets": {
+				"from": 1507440,
+				"to": 1508880
+			},
+			"text": " All right, thank you everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:08,880",
+				"to": "00:25:12,240"
+			},
+			"offsets": {
+				"from": 1508880,
+				"to": 1512240
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:12,240",
+				"to": "00:25:22,240"
+			},
+			"offsets": {
+				"from": 1512240,
+				"to": 1522240
+			},
+			"text": " [MUSIC]"
+		}
+	]
+}

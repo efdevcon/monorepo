@@ -1,0 +1,3970 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:14,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 14000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,000",
+				"to": "00:00:18,480"
+			},
+			"offsets": {
+				"from": 14000,
+				"to": 18480
+			},
+			"text": " Hey everyone. I'm Gubsheep and I work with the research focused organization called"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,480",
+				"to": "00:00:22,040"
+			},
+			"offsets": {
+				"from": 18480,
+				"to": 22040
+			},
+			"text": " 0x Park. Today I will be talking about this idea of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,040",
+				"to": "00:00:27,600"
+			},
+			"offsets": {
+				"from": 22040,
+				"to": 27600
+			},
+			"text": " ZKPs and programmable cryptography which is a phrase that we use to describe a lot of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,600",
+				"to": "00:00:33,520"
+			},
+			"offsets": {
+				"from": 27600,
+				"to": 33520
+			},
+			"text": " what we focused on at 0x Park. I'll describe what programmable cryptography means and why"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,520",
+				"to": "00:00:38,440"
+			},
+			"offsets": {
+				"from": 33520,
+				"to": 38440
+			},
+			"text": " we think it's important for anyone who is interested in the future of next generation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,440",
+				"to": "00:00:43,800"
+			},
+			"offsets": {
+				"from": 38440,
+				"to": 43800
+			},
+			"text": " blockchain and decentralized applications. So first off I'll give a little bit of context"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,800",
+				"to": "00:00:49,960"
+			},
+			"offsets": {
+				"from": 43800,
+				"to": 49960
+			},
+			"text": " into what 0x Park is for folks who have not heard about this organization. 0x Park is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,960",
+				"to": "00:00:55,360"
+			},
+			"offsets": {
+				"from": 49960,
+				"to": 55360
+			},
+			"text": " a relatively new research focused org which supports what we call application level R&D"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,360",
+				"to": "00:01:00,520"
+			},
+			"offsets": {
+				"from": 55360,
+				"to": 60520
+			},
+			"text": " on Ethereum and other decentralized platforms. So this means trying to better understand"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,520",
+				"to": "00:01:07,480"
+			},
+			"offsets": {
+				"from": 60520,
+				"to": 67480
+			},
+			"text": " what is possible to do on these kinds of smart contract platforms or with new decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,480",
+				"to": "00:01:12,200"
+			},
+			"offsets": {
+				"from": 67480,
+				"to": 72200
+			},
+			"text": " application technologies that isn't necessarily currently possible today but might be on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,200",
+				"to": "00:01:18,960"
+			},
+			"offsets": {
+				"from": 72200,
+				"to": 78960
+			},
+			"text": " horizon. Projects that we support include things like dark forest as well as persona"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,960",
+				"to": "00:01:23,960"
+			},
+			"offsets": {
+				"from": 78960,
+				"to": 83960
+			},
+			"text": " labs, building things like hand on or if folks were around the applied ZK showcase yesterday"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,960",
+				"to": "00:01:31,040"
+			},
+			"offsets": {
+				"from": 83960,
+				"to": 91040
+			},
+			"text": " you might have seen proof of email or various ZK machine learning experiments. We also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,040",
+				"to": "00:01:35,840"
+			},
+			"offsets": {
+				"from": 91040,
+				"to": 95840
+			},
+			"text": " build circuit primitives for ZKs SNARKs and focus a lot on infrastructure maintenance"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,840",
+				"to": "00:01:41,240"
+			},
+			"offsets": {
+				"from": 95840,
+				"to": 101240
+			},
+			"text": " and third party development of tool stacks like SNARK, JS, CIRCOM, Halo 2 and more. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,240",
+				"to": "00:01:46,400"
+			},
+			"offsets": {
+				"from": 101240,
+				"to": 106400
+			},
+			"text": " we also do a lot of community building efforts and we work on cross team and ecosystem wide"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,400",
+				"to": "00:01:53,840"
+			},
+			"offsets": {
+				"from": 106400,
+				"to": 113840
+			},
+			"text": " projects as well. Cool. So one of our largest areas of focus at 0x Park is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,840",
+				"to": "00:02:00,600"
+			},
+			"offsets": {
+				"from": 113840,
+				"to": 120600
+			},
+			"text": " applied ZK cryptography which means that a big focus for us is understanding what is"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,600",
+				"to": "00:02:05,680"
+			},
+			"offsets": {
+				"from": 120600,
+				"to": 125680
+			},
+			"text": " possible to do with ZK crypto, what you know theoretically should be possible to do with"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,680",
+				"to": "00:02:10,720"
+			},
+			"offsets": {
+				"from": 125680,
+				"to": 130720
+			},
+			"text": " ZK crypto and decentralized apps and what we need to do to get there to eventually bring"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,720",
+				"to": "00:02:17,720"
+			},
+			"offsets": {
+				"from": 130720,
+				"to": 137720
+			},
+			"text": " those kinds of tools to production. And applied ZK is one of a category of relatively new"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,720",
+				"to": "00:02:24,200"
+			},
+			"offsets": {
+				"from": 137720,
+				"to": 144200
+			},
+			"text": " or cryptographic primitives that we categorize under this term programmable cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,200",
+				"to": "00:02:30,800"
+			},
+			"offsets": {
+				"from": 144200,
+				"to": 150800
+			},
+			"text": " And in order to describe or you know give a feeling for why programmable cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,800",
+				"to": "00:02:35,280"
+			},
+			"offsets": {
+				"from": 150800,
+				"to": 155280
+			},
+			"text": " is important, first I want to go into a little bit about the a couple of the reasons that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,280",
+				"to": "00:02:42,720"
+			},
+			"offsets": {
+				"from": 155280,
+				"to": 162720
+			},
+			"text": " we think that applied ZK is especially important. So there's two concrete reasons that I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,720",
+				"to": "00:02:47,680"
+			},
+			"offsets": {
+				"from": 162720,
+				"to": 167680
+			},
+			"text": " are especially compelling in terms of why ZK is going to be powerful for unlocking the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,680",
+				"to": "00:02:54,080"
+			},
+			"offsets": {
+				"from": 167680,
+				"to": 174080
+			},
+			"text": " next generation of decentralized applications. And I'll just go through those real quick."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,080",
+				"to": "00:03:00,880"
+			},
+			"offsets": {
+				"from": 174080,
+				"to": 180880
+			},
+			"text": " So the first thing is that 0x cryptography gives us what I think of as an expressive"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,880",
+				"to": "00:03:07,080"
+			},
+			"offsets": {
+				"from": 180880,
+				"to": 187080
+			},
+			"text": " language for claims. So what does that mean? We'll go through an example to get a sense"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,080",
+				"to": "00:03:12,400"
+			},
+			"offsets": {
+				"from": 187080,
+				"to": 192400
+			},
+			"text": " for what an expressive language for claims looks like. Let's take the example of ZK"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,400",
+				"to": "00:03:19,440"
+			},
+			"offsets": {
+				"from": 192400,
+				"to": 199440
+			},
+			"text": " snarks and group membership proofs in the context of claims about digital identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,440",
+				"to": "00:03:26,480"
+			},
+			"offsets": {
+				"from": 199440,
+				"to": 206480
+			},
+			"text": " So the simplest kind of identity claim that we have from cryptography and something that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,480",
+				"to": "00:03:31,160"
+			},
+			"offsets": {
+				"from": 206480,
+				"to": 211160
+			},
+			"text": " we've known how to do for many decades is prove a statement like I know a private key"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,160",
+				"to": "00:03:37,840"
+			},
+			"offsets": {
+				"from": 211160,
+				"to": 217840
+			},
+			"text": " corresponding to someone say Alice's public key which implicitly identifies me as Alice."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,840",
+				"to": "00:03:44,600"
+			},
+			"offsets": {
+				"from": 217840,
+				"to": 224600
+			},
+			"text": " So this is something that I can do with a digital signature, something like RSA or ECDSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,600",
+				"to": "00:03:50,680"
+			},
+			"offsets": {
+				"from": 224600,
+				"to": 230680
+			},
+			"text": " The invention of public key cryptography made proofs like this possible or made provable"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,680",
+				"to": "00:03:56,280"
+			},
+			"offsets": {
+				"from": 230680,
+				"to": 236280
+			},
+			"text": " statements like this possible. And this is infrastructure that underlies so many of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,280",
+				"to": "00:04:03,160"
+			},
+			"offsets": {
+				"from": 236280,
+				"to": 243160
+			},
+			"text": " digital systems that we know and rely on today including secure traffic on the internet as"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,160",
+				"to": "00:04:09,800"
+			},
+			"offsets": {
+				"from": 243160,
+				"to": 249800
+			},
+			"text": " well as blockchain systems like Ethereum or Bitcoin. So going up one level in complexity"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,800",
+				"to": "00:04:15,120"
+			},
+			"offsets": {
+				"from": 249800,
+				"to": 255120
+			},
+			"text": " from the previous slide, we have claims like I know a private key corresponding to one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,120",
+				"to": "00:04:18,560"
+			},
+			"offsets": {
+				"from": 255120,
+				"to": 258560
+			},
+			"text": " of the public keys in a group. So for example, I know a private key corresponding to one"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,560",
+				"to": "00:04:23,640"
+			},
+			"offsets": {
+				"from": 258560,
+				"to": 263640
+			},
+			"text": " of Alice, Bob or Charlie's public keys. This kind of claim is commonly referred to in"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,640",
+				"to": "00:04:30,240"
+			},
+			"offsets": {
+				"from": 263640,
+				"to": 270240
+			},
+			"text": " the literature as a group signature or a ring signature. We do have cryptographic protocols"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,240",
+				"to": "00:04:35,800"
+			},
+			"offsets": {
+				"from": 270240,
+				"to": 275800
+			},
+			"text": " that are purpose built to enable people to generate group signatures or ring signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,800",
+				"to": "00:04:41,840"
+			},
+			"offsets": {
+				"from": 275800,
+				"to": 281840
+			},
+			"text": " but they are again special purpose built for this kind of claim and the math or like the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,840",
+				"to": "00:04:47,320"
+			},
+			"offsets": {
+				"from": 281840,
+				"to": 287320
+			},
+			"text": " cryptographic protocols that make these sorts of claims possible are often times incompatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,320",
+				"to": "00:04:52,960"
+			},
+			"offsets": {
+				"from": 287320,
+				"to": 292960
+			},
+			"text": " with the math used for ordinary signature schemes. So we figured out how to do these"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,960",
+				"to": "00:04:56,920"
+			},
+			"offsets": {
+				"from": 292960,
+				"to": 296920
+			},
+			"text": " group signature schemes a few years after we figured out how to do digital signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,920",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 296920,
+				"to": 302000
+			},
+			"text": " in general. However, it is the case that in order to make claims like these or in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:06,720"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 306720
+			},
+			"text": " to build up a system or a network in which people can make these claims, you have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,720",
+				"to": "00:05:13,440"
+			},
+			"offsets": {
+				"from": 306720,
+				"to": 313440
+			},
+			"text": " build -- you have to bootstrap like an entirely new key registry, you have to build a different"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,440",
+				"to": "00:05:19,200"
+			},
+			"offsets": {
+				"from": 313440,
+				"to": 319200
+			},
+			"text": " key generation algorithm and you have to popularize that. So, you know, the math involved in"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,200",
+				"to": "00:05:23,320"
+			},
+			"offsets": {
+				"from": 319200,
+				"to": 323320
+			},
+			"text": " making a claim like this can be incompatible and require you to sort of move to an entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,320",
+				"to": "00:05:29,640"
+			},
+			"offsets": {
+				"from": 323320,
+				"to": 329640
+			},
+			"text": " different system than if you want to, you know, use systems that allow you to make claims"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,640",
+				"to": "00:05:37,640"
+			},
+			"offsets": {
+				"from": 329640,
+				"to": 337640
+			},
+			"text": " like this. So one thing that I want to note is that today, however, we have another much"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,640",
+				"to": "00:05:44,120"
+			},
+			"offsets": {
+				"from": 337640,
+				"to": 344120
+			},
+			"text": " easier way of enabling these kinds of claims and a manner which -- a way which is, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,120",
+				"to": "00:05:49,080"
+			},
+			"offsets": {
+				"from": 344120,
+				"to": 349080
+			},
+			"text": " know, actually compatible with systems for proving the first kind of claim. So with"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,080",
+				"to": "00:05:54,960"
+			},
+			"offsets": {
+				"from": 349080,
+				"to": 354960
+			},
+			"text": " ZK Snarks, the problem of building a system that allows you to make these kinds of claims"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,960",
+				"to": "00:05:59,880"
+			},
+			"offsets": {
+				"from": 354960,
+				"to": 359880
+			},
+			"text": " from a system that allows you to make these kinds of claims is actually a really simple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,880",
+				"to": "00:06:04,920"
+			},
+			"offsets": {
+				"from": 359880,
+				"to": 364920
+			},
+			"text": " essentially two-line code change in a ZK circuit. So rather than having to invent an entirely"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,920",
+				"to": "00:06:09,120"
+			},
+			"offsets": {
+				"from": 364920,
+				"to": 369120
+			},
+			"text": " new mathematical protocol or new key generation algorithm, if I have a primitive that allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,120",
+				"to": "00:06:15,800"
+			},
+			"offsets": {
+				"from": 369120,
+				"to": 375800
+			},
+			"text": " me to prove in a ZK circuit that I possess a public key corresponding to some private"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,800",
+				"to": "00:06:21,480"
+			},
+			"offsets": {
+				"from": 375800,
+				"to": 381480
+			},
+			"text": " secret, then what I can do is I can construct a ZK circuit that says I know some public"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,480",
+				"to": "00:06:29,680"
+			},
+			"offsets": {
+				"from": 381480,
+				"to": 389680
+			},
+			"text": " key corresponding to some secret private key. I'm going to keep that public key secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,680",
+				"to": "00:06:35,680"
+			},
+			"offsets": {
+				"from": 389680,
+				"to": 395680
+			},
+			"text": " and that public key minus hash one times public key minus hash two times that public"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,680",
+				"to": "00:06:41,120"
+			},
+			"offsets": {
+				"from": 395680,
+				"to": 401120
+			},
+			"text": " key minus hash three equals zero. So if I can prove all of this in zero knowledge, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,120",
+				"to": "00:06:47,080"
+			},
+			"offsets": {
+				"from": 401120,
+				"to": 407080
+			},
+			"text": " I'm effectively proving is that I know a private key corresponding to one of these three,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,080",
+				"to": "00:06:54,080"
+			},
+			"offsets": {
+				"from": 407080,
+				"to": 414080
+			},
+			"text": " you know, public commitments hash one, hash two, or hash three. So this way, I now have"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,080",
+				"to": "00:06:59,240"
+			},
+			"offsets": {
+				"from": 414080,
+				"to": 419240
+			},
+			"text": " this system which uses the exact same key generation algorithm or key generation strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,240",
+				"to": "00:07:03,240"
+			},
+			"offsets": {
+				"from": 419240,
+				"to": 423240
+			},
+			"text": " as a system that allows me to, you know, simply prove that I know the private key corresponding"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,240",
+				"to": "00:07:08,280"
+			},
+			"offsets": {
+				"from": 423240,
+				"to": 428280
+			},
+			"text": " to Alice's public key. And we've turned essentially this problem of building group signatures"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,280",
+				"to": "00:07:12,720"
+			},
+			"offsets": {
+				"from": 428280,
+				"to": 432720
+			},
+			"text": " from a math problem where we have to go to a cartographer, they have to write us a paper,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,720",
+				"to": "00:07:18,320"
+			},
+			"offsets": {
+				"from": 432720,
+				"to": 438320
+			},
+			"text": " do all this stuff, bootstrap a new key registry into essentially a programming task that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,320",
+				"to": "00:07:22,440"
+			},
+			"offsets": {
+				"from": 438320,
+				"to": 442440
+			},
+			"text": " you know, any developer familiar with say, so it can carry out. Okay, so slightly more"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,440",
+				"to": "00:07:27,280"
+			},
+			"offsets": {
+				"from": 442440,
+				"to": 447280
+			},
+			"text": " complicated than this, we can go level even further up and consider augmentations to this"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,280",
+				"to": "00:07:33,200"
+			},
+			"offsets": {
+				"from": 447280,
+				"to": 453200
+			},
+			"text": " protocol such as I know a private key corresponding to one of Alice, Charlie's public keys and"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,200",
+				"to": "00:07:39,520"
+			},
+			"offsets": {
+				"from": 453200,
+				"to": 459520
+			},
+			"text": " the other two either can or cannot prove that they did not generate this message. So sometimes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,520",
+				"to": "00:07:44,520"
+			},
+			"offsets": {
+				"from": 459520,
+				"to": 464520
+			},
+			"text": " this is, this property is called by various different names, some call it like disavowal."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,520",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 464520,
+				"to": 470880
+			},
+			"text": " So as an example, like suppose I'm Bob and I generate a signature that is either coming"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:56,920"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 476920
+			},
+			"text": " from, you know, you can see is coming from one of Alice, Bob or Charlie. Alice or Charlie"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,920",
+				"to": "00:08:04,800"
+			},
+			"offsets": {
+				"from": 476920,
+				"to": 484800
+			},
+			"text": " might be able to generate a proof that they did not create that signature. So, yeah, there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,800",
+				"to": "00:08:10,160"
+			},
+			"offsets": {
+				"from": 484800,
+				"to": 490160
+			},
+			"text": " cryptographic systems that allow you to toggle this property on or off, but again, these"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,160",
+				"to": "00:08:13,960"
+			},
+			"offsets": {
+				"from": 490160,
+				"to": 493960
+			},
+			"text": " use new math are incompatible with previous systems and are generally fairly difficult"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,960",
+				"to": "00:08:20,920"
+			},
+			"offsets": {
+				"from": 493960,
+				"to": 500920
+			},
+			"text": " to engineer. Again, however, with DK SNARK, this is a pretty trivial like two-line circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,920",
+				"to": "00:08:27,400"
+			},
+			"offsets": {
+				"from": 500920,
+				"to": 507400
+			},
+			"text": " code change. So again, we're sort of seeing this idea of this language that allows us"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,400",
+				"to": "00:08:32,040"
+			},
+			"offsets": {
+				"from": 507400,
+				"to": 512040
+			},
+			"text": " to build these expressive claims that are compatible with, you know, previous claims"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,040",
+				"to": "00:08:36,360"
+			},
+			"offsets": {
+				"from": 512040,
+				"to": 516360
+			},
+			"text": " that other cryptographic systems will allow us to generate. And finally, we can get to"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,360",
+				"to": "00:08:41,240"
+			},
+			"offsets": {
+				"from": 516360,
+				"to": 521240
+			},
+			"text": " claims, you know, of this level of complexity, something like I know a private key corresponding"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,240",
+				"to": "00:08:46,280"
+			},
+			"offsets": {
+				"from": 521240,
+				"to": 526280
+			},
+			"text": " to one of Alice, Bob or Charlie's public keys and I either possess a signed attestation from"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,280",
+				"to": "00:08:51,880"
+			},
+			"offsets": {
+				"from": 526280,
+				"to": 531880
+			},
+			"text": " one of David, Eve or Fred, one of these trusted, you know, attestation service providers or"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,880",
+				"to": "00:08:55,560"
+			},
+			"offsets": {
+				"from": 531880,
+				"to": 535560
+			},
+			"text": " during a block with header X, I knew the private key corresponding to an account with at least"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,560",
+				"to": "00:09:01,560"
+			},
+			"offsets": {
+				"from": 535560,
+				"to": 541560
+			},
+			"text": " 32 ETH and, you know, you know, you can kind of compose a bunch of arbitrary, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,560",
+				"to": "00:09:05,360"
+			},
+			"offsets": {
+				"from": 541560,
+				"to": 545360
+			},
+			"text": " predicates on this identity claim. And I think it's pretty fair to say that there's like no"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,360",
+				"to": "00:09:11,560"
+			},
+			"offsets": {
+				"from": 545360,
+				"to": 551560
+			},
+			"text": " cryptography in the world you could go to and ask them to build a special purpose new"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,560",
+				"to": "00:09:15,200"
+			},
+			"offsets": {
+				"from": 551560,
+				"to": 555200
+			},
+			"text": " cryptographic tool that would allow you to prove this specific kind of claim, nor would"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,200",
+				"to": "00:09:19,200"
+			},
+			"offsets": {
+				"from": 555200,
+				"to": 559200
+			},
+			"text": " it even make sense to. But again, with the case in our X, this actually becomes fairly"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,200",
+				"to": "00:09:24,040"
+			},
+			"offsets": {
+				"from": 559200,
+				"to": 564040
+			},
+			"text": " trivial. You have your building blocks in the case circuits for each of these things,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,040",
+				"to": "00:09:30,520"
+			},
+			"offsets": {
+				"from": 564040,
+				"to": 570520
+			},
+			"text": " you know, key free image, signature, recovery, proof of inclusion in the Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,520",
+				"to": "00:09:34,840"
+			},
+			"offsets": {
+				"from": 570520,
+				"to": 574840
+			},
+			"text": " Merciful Patricia try, and then you can just put all these together, essentially calling"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,840",
+				"to": "00:09:38,320"
+			},
+			"offsets": {
+				"from": 574840,
+				"to": 578320
+			},
+			"text": " all these like different functions in your ZK circuit code to start building out these"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,320",
+				"to": "00:09:44,560"
+			},
+			"offsets": {
+				"from": 578320,
+				"to": 584560
+			},
+			"text": " claims. So another framing of this idea of the expressive language for claims is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:44,560",
+				"to": "00:09:49,960"
+			},
+			"offsets": {
+				"from": 584560,
+				"to": 589960
+			},
+			"text": " ZK Starks turn math problems into programming tasks. Rather than having to go to a cartographer"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,960",
+				"to": "00:09:55,640"
+			},
+			"offsets": {
+				"from": 589960,
+				"to": 595640
+			},
+			"text": " to write you a new paper, every single time you want a new kind of digital identity claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,640",
+				"to": "00:10:01,400"
+			},
+			"offsets": {
+				"from": 595640,
+				"to": 601400
+			},
+			"text": " to exist in the world and be provable, you can just have a ZK circuit developer compose"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,400",
+				"to": "00:10:06,720"
+			},
+			"offsets": {
+				"from": 601400,
+				"to": 606720
+			},
+			"text": " the right primitives inside ZK circuit code. Okay, so cool thing number two, which is closely"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,720",
+				"to": "00:10:12,400"
+			},
+			"offsets": {
+				"from": 606720,
+				"to": 612400
+			},
+			"text": " related to cool thing number one, is that ZK adds interoperability to cryptographic systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,400",
+				"to": "00:10:18,080"
+			},
+			"offsets": {
+				"from": 612400,
+				"to": 618080
+			},
+			"text": " So what does this mean? Well, to explain this first, I just wanted to do a quick breakdown"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,080",
+				"to": "00:10:23,960"
+			},
+			"offsets": {
+				"from": 618080,
+				"to": 623960
+			},
+			"text": " between two terms, snark friendly versus snark compatible cryptographic primitives. Snark friendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,960",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 623960,
+				"to": 630000
+			},
+			"text": " cryptographic primitives are, you know, primitives like hashing algorithms or digital signature"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:36,640"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 636640
+			},
+			"text": " schemes or encryption algorithms that are specifically purpose built for, to be efficiently"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,640",
+				"to": "00:10:41,520"
+			},
+			"offsets": {
+				"from": 636640,
+				"to": 641520
+			},
+			"text": " provable inside of ZK snark proving systems. So for example, the MIMC or Poseidon hash"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,520",
+				"to": "00:10:50,800"
+			},
+			"offsets": {
+				"from": 641520,
+				"to": 650800
+			},
+			"text": " functions or EDSA signatures, these cryptographic primitives oftentimes have been invented in"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,800",
+				"to": "00:10:55,120"
+			},
+			"offsets": {
+				"from": 650800,
+				"to": 655120
+			},
+			"text": " the last couple of years and, you know, the hope is that with these primitives we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,120",
+				"to": "00:11:00,640"
+			},
+			"offsets": {
+				"from": 655120,
+				"to": 660640
+			},
+			"text": " move towards a world where we can do more and more inside of snark. However, most of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,640",
+				"to": "00:11:04,840"
+			},
+			"offsets": {
+				"from": 660640,
+				"to": 664840
+			},
+			"text": " the cryptographic systems that exist in the world use cryptography that was invented before"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,840",
+				"to": "00:11:10,440"
+			},
+			"offsets": {
+				"from": 664840,
+				"to": 670440
+			},
+			"text": " we knew about ZK snark. So for example, a lot of hash functions use a lot of bitwise operations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,440",
+				"to": "00:11:15,760"
+			},
+			"offsets": {
+				"from": 670440,
+				"to": 675760
+			},
+			"text": " which are very costly to do inside of ZK snarks. And so these systems are not snark friendly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,760",
+				"to": "00:11:20,360"
+			},
+			"offsets": {
+				"from": 675760,
+				"to": 680360
+			},
+			"text": " but they are what we have to work with. So for example, all the signatures on, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,360",
+				"to": "00:11:24,200"
+			},
+			"offsets": {
+				"from": 680360,
+				"to": 684200
+			},
+			"text": " emails signed by mail servers that are being sent out are not going to be snark friendly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,200",
+				"to": "00:11:32,920"
+			},
+			"offsets": {
+				"from": 684200,
+				"to": 692920
+			},
+			"text": " signatures. However, we can start to at least connect all of these different snark compatible"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,920",
+				"to": "00:11:39,480"
+			},
+			"offsets": {
+				"from": 692920,
+				"to": 699480
+			},
+			"text": " systems together by embedding these different signature algorithms, hash functions, encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,480",
+				"to": "00:11:43,960"
+			},
+			"offsets": {
+				"from": 699480,
+				"to": 703960
+			},
+			"text": " teams, etcetera, inside of snarks, even if it is costly. So as an example of a few crypto"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,960",
+				"to": "00:11:48,560"
+			},
+			"offsets": {
+				"from": 703960,
+				"to": 708560
+			},
+			"text": " systems that exist out in the wild, we have got key distribution and identity registries"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,560",
+				"to": "00:11:55,440"
+			},
+			"offsets": {
+				"from": 708560,
+				"to": 715440
+			},
+			"text": " such as like, you know, you can build an identity registry of like GPG keys. GitHub allows you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,440",
+				"to": "00:12:01,600"
+			},
+			"offsets": {
+				"from": 715440,
+				"to": 721600
+			},
+			"text": " to generate locally a key pair and upload it and make it publicly accessible to anyone"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,600",
+				"to": "00:12:04,800"
+			},
+			"offsets": {
+				"from": 721600,
+				"to": 724800
+			},
+			"text": " so that anyone can verify, you know, your commit history or things like that repose you"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,800",
+				"to": "00:12:08,880"
+			},
+			"offsets": {
+				"from": 724800,
+				"to": 728880
+			},
+			"text": " have contributed to. So for example, if you go to github.com/govsheep.keys, you will see"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,880",
+				"to": "00:12:17,720"
+			},
+			"offsets": {
+				"from": 728880,
+				"to": 737720
+			},
+			"text": " like my RSA keys, Ethereum and Bitcoin rely on the ECDSA signature scheme. So addresses"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,720",
+				"to": "00:12:24,240"
+			},
+			"offsets": {
+				"from": 737720,
+				"to": 744240
+			},
+			"text": " are going to be, you know, a hash of an ECDSA public key in Ethereum. And I think mail"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,240",
+				"to": "00:12:31,400"
+			},
+			"offsets": {
+				"from": 744240,
+				"to": 751400
+			},
+			"text": " servers use the DKIM protocol to sign and authenticate messages which under the hood relies on RSA."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,400",
+				"to": "00:12:37,080"
+			},
+			"offsets": {
+				"from": 751400,
+				"to": 757080
+			},
+			"text": " So one of the things that is going on with all these different signature schemes is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,080",
+				"to": "00:12:41,560"
+			},
+			"offsets": {
+				"from": 757080,
+				"to": 761560
+			},
+			"text": " they kind of can't really talk to each other. You know, if you are running on the RSA protocol,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,560",
+				"to": "00:12:49,280"
+			},
+			"offsets": {
+				"from": 761560,
+				"to": 769280
+			},
+			"text": " you can't really understand an ECDSA signature. However, by making all of these primitives"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,280",
+				"to": "00:12:54,440"
+			},
+			"offsets": {
+				"from": 769280,
+				"to": 774440
+			},
+			"text": " snark compatible by implementing RSA signature verification, ECDSA signature verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:54,440",
+				"to": "00:12:59,520"
+			},
+			"offsets": {
+				"from": 774440,
+				"to": 779520
+			},
+			"text": " etcetera, etcetera, inside of snarks, what we can start to do is build adapters between"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,520",
+				"to": "00:13:04,920"
+			},
+			"offsets": {
+				"from": 779520,
+				"to": 784920
+			},
+			"text": " all these different systems. So again, if I have an RSA primitive and an ECDSA primitive"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,920",
+				"to": "00:13:11,160"
+			},
+			"offsets": {
+				"from": 784920,
+				"to": 791160
+			},
+			"text": " inside of a snark, then I can start to make claims like either I have a github account"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,160",
+				"to": "00:13:18,760"
+			},
+			"offsets": {
+				"from": 791160,
+				"to": 798760
+			},
+			"text": " that is contributed to the, you know, Ethereum, github org, or I possess at least 100 ETH."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:18,760",
+				"to": "00:13:23,720"
+			},
+			"offsets": {
+				"from": 798760,
+				"to": 803720
+			},
+			"text": " And again, by making existing cryptography snark compatible and combining that with this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,720",
+				"to": "00:13:27,560"
+			},
+			"offsets": {
+				"from": 803720,
+				"to": 807560
+			},
+			"text": " expressive language for claims, we can start to make statements about all sorts of digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,560",
+				"to": "00:13:33,560"
+			},
+			"offsets": {
+				"from": 807560,
+				"to": 813560
+			},
+			"text": " or online activity. So both of these features are examples of the power of programmable"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,560",
+				"to": "00:13:38,400"
+			},
+			"offsets": {
+				"from": 813560,
+				"to": 818400
+			},
+			"text": " cryptography, which probably as you have grok from now, you know, both of these features"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,400",
+				"to": "00:13:43,520"
+			},
+			"offsets": {
+				"from": 818400,
+				"to": 823520
+			},
+			"text": " are giving us these tools to much more flexibly manipulate digital objects. So now I am going"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,520",
+				"to": "00:13:47,800"
+			},
+			"offsets": {
+				"from": 823520,
+				"to": 827800
+			},
+			"text": " to kind of give my description of programmable cryptography, which is that it is a cryptography"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,800",
+				"to": "00:13:54,800"
+			},
+			"offsets": {
+				"from": 827800,
+				"to": 834800
+			},
+			"text": " that can be layered on top of arbitrary computations. To contrast this with cryptography that we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,800",
+				"to": "00:13:59,360"
+			},
+			"offsets": {
+				"from": 834800,
+				"to": 839360
+			},
+			"text": " have been using for the last couple of decades, well, for most of cryptography's short history,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,360",
+				"to": "00:14:03,960"
+			},
+			"offsets": {
+				"from": 839360,
+				"to": 843960
+			},
+			"text": " the set of mechanisms that we have been able to instantiate with our tools has been, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,960",
+				"to": "00:14:07,480"
+			},
+			"offsets": {
+				"from": 843960,
+				"to": 847480
+			},
+			"text": " know, quite narrow. So we can say things like this message originated with Alice as we have"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,480",
+				"to": "00:14:13,480"
+			},
+			"offsets": {
+				"from": 847480,
+				"to": 853480
+			},
+			"text": " seen or this message can only be read by Bob, but every single new mechanism that we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:13,480",
+				"to": "00:14:16,920"
+			},
+			"offsets": {
+				"from": 853480,
+				"to": 856920
+			},
+			"text": " is build whether it is like, you know, arbitrary identity predicates or read permissions or"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,920",
+				"to": "00:14:21,680"
+			},
+			"offsets": {
+				"from": 856920,
+				"to": 861680
+			},
+			"text": " things like that would require us to build a new special purpose cryptographic system."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,680",
+				"to": "00:14:24,920"
+			},
+			"offsets": {
+				"from": 861680,
+				"to": 864920
+			},
+			"text": " However, now we are seeing tools like, you know, ZK snarks as we have discussed that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,920",
+				"to": "00:14:29,840"
+			},
+			"offsets": {
+				"from": 864920,
+				"to": 869840
+			},
+			"text": " allow us to move from this message originated from Alice to, I know, a private key corresponding"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,840",
+				"to": "00:14:34,480"
+			},
+			"offsets": {
+				"from": 869840,
+				"to": 874480
+			},
+			"text": " to one of these people, I have an attestation from one of these service providers, et cetera,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,480",
+				"to": "00:14:38,680"
+			},
+			"offsets": {
+				"from": 874480,
+				"to": 878680
+			},
+			"text": " et cetera. To things like witness encryption, witness encryption is a primitive that essentially"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,680",
+				"to": "00:14:45,040"
+			},
+			"offsets": {
+				"from": 878680,
+				"to": 885040
+			},
+			"text": " allows you to encrypt data not with like a key pair where someone has to know a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,040",
+				"to": "00:14:49,320"
+			},
+			"offsets": {
+				"from": 885040,
+				"to": 889320
+			},
+			"text": " secret to decrypt the message, but it allows you to decrypt messages with, or sorry, encrypt"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,320",
+				"to": "00:14:55,640"
+			},
+			"offsets": {
+				"from": 889320,
+				"to": 895640
+			},
+			"text": " messages with a program. So for example, I can encrypt a message with a pseudo-coup puzzle"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,640",
+				"to": "00:15:00,920"
+			},
+			"offsets": {
+				"from": 895640,
+				"to": 900920
+			},
+			"text": " and anyone who solves the pseudo-coup puzzle will be able to generate a key to decrypt the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,920",
+				"to": "00:15:05,560"
+			},
+			"offsets": {
+				"from": 900920,
+				"to": 905560
+			},
+			"text": " message that I have encrypted with witness encryption. And this allows us to move from"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,560",
+				"to": "00:15:09,360"
+			},
+			"offsets": {
+				"from": 905560,
+				"to": 909360
+			},
+			"text": " systems where we can do things like Charlie has published some secret vote that only a"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,360",
+				"to": "00:15:13,600"
+			},
+			"offsets": {
+				"from": 909360,
+				"to": 913600
+			},
+			"text": " coordinator can read with the coordinator's private key to Charlie has committed to some"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,600",
+				"to": "00:15:18,560"
+			},
+			"offsets": {
+				"from": 913600,
+				"to": 918560
+			},
+			"text": " secret vote that only attesters with a certain permission level can decrypt today, but which"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,560",
+				"to": "00:15:23,080"
+			},
+			"offsets": {
+				"from": 918560,
+				"to": 923080
+			},
+			"text": " a class of auditors with a lower permission level can at least partially decrypt in exactly"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,080",
+				"to": "00:15:29,120"
+			},
+			"offsets": {
+				"from": 923080,
+				"to": 929120
+			},
+			"text": " you know, one week. I would say that smart contracts also spiritually kind of fall in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,120",
+				"to": "00:15:34,520"
+			},
+			"offsets": {
+				"from": 929120,
+				"to": 934520
+			},
+			"text": " the same category as a lot of these other programmable cryptography primitives. So, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,520",
+				"to": "00:15:39,920"
+			},
+			"offsets": {
+				"from": 934520,
+				"to": 939920
+			},
+			"text": " know, imagine very early on in the history of this idea of blockchains, we would have"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,920",
+				"to": "00:15:44,480"
+			},
+			"offsets": {
+				"from": 939920,
+				"to": 944480
+			},
+			"text": " these consensus engines where people could come to consensus on only very simple or specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,480",
+				"to": "00:15:48,920"
+			},
+			"offsets": {
+				"from": 944480,
+				"to": 948920
+			},
+			"text": " data transformations. Data transformations like, you know, Bob can decrement his balance by"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,920",
+				"to": "00:15:53,480"
+			},
+			"offsets": {
+				"from": 948920,
+				"to": 953480
+			},
+			"text": " 100 ether to increment Alice's balance by 100 ether. Nowadays, with smart contracts and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,480",
+				"to": "00:15:57,920"
+			},
+			"offsets": {
+				"from": 953480,
+				"to": 957920
+			},
+			"text": " programmable blockchains, we can sort of execute arbitrary predicates, you know, at block B,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,920",
+				"to": "00:16:02,880"
+			},
+			"offsets": {
+				"from": 957920,
+				"to": 962880
+			},
+			"text": " 100 ether will be available for withdrawal by Bob, so long as Bob has closed his position"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,880",
+				"to": "00:16:07,320"
+			},
+			"offsets": {
+				"from": 962880,
+				"to": 967320
+			},
+			"text": " in some smart contract and no one submitted a fraud challenge, though an early withdrawal"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,320",
+				"to": "00:16:12,800"
+			},
+			"offsets": {
+				"from": 967320,
+				"to": 972800
+			},
+			"text": " may be initiated if two of the following three solvency conditions are met, et cetera, et"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,800",
+				"to": "00:16:18,400"
+			},
+			"offsets": {
+				"from": 972800,
+				"to": 978400
+			},
+			"text": " cetera. So, in each of these examples, there's this common theme of moving from the specific"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,400",
+				"to": "00:16:23,760"
+			},
+			"offsets": {
+				"from": 978400,
+				"to": 983760
+			},
+			"text": " to the general. With ZK Snarks, I can move from proofs of specific claims to a general"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,760",
+				"to": "00:16:29,560"
+			},
+			"offsets": {
+				"from": 983760,
+				"to": 989560
+			},
+			"text": " purpose language of claims. Smart contracts allow us to move from coming to consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:29,560",
+				"to": "00:16:35,040"
+			},
+			"offsets": {
+				"from": 989560,
+				"to": 995040
+			},
+			"text": " on canonical data that can be modified in only very specific or narrow ways to a general"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,040",
+				"to": "00:16:41,680"
+			},
+			"offsets": {
+				"from": 995040,
+				"to": 1001680
+			},
+			"text": " purpose language for modifying or executing code on this canonical data. Witness encryption"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,680",
+				"to": "00:16:47,880"
+			},
+			"offsets": {
+				"from": 1001680,
+				"to": 1007880
+			},
+			"text": " moves us from a world where we can permission data to only be read by a specific person"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,880",
+				"to": "00:16:53,320"
+			},
+			"offsets": {
+				"from": 1007880,
+				"to": 1013320
+			},
+			"text": " or specific set of people to having a language for specifying arbitrary predicates for read"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,320",
+				"to": "00:16:57,880"
+			},
+			"offsets": {
+				"from": 1013320,
+				"to": 1017880
+			},
+			"text": " permissions. So, I kind of imagine this as like, you know, decentralized OAuth tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,880",
+				"to": "00:17:02,680"
+			},
+			"offsets": {
+				"from": 1017880,
+				"to": 1022680
+			},
+			"text": " where anyone can plug into this like global authentication system and specify who can"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,680",
+				"to": "00:17:08,360"
+			},
+			"offsets": {
+				"from": 1022680,
+				"to": 1028360
+			},
+			"text": " read what and when. And there's all these new primitives that are continually getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,360",
+				"to": "00:17:12,440"
+			},
+			"offsets": {
+				"from": 1028360,
+				"to": 1032440
+			},
+			"text": " better and better and more feasible things like fully homomorphic encryption, multi-party"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,440",
+				"to": "00:17:18,760"
+			},
+			"offsets": {
+				"from": 1032440,
+				"to": 1038760
+			},
+			"text": " computation, even really far out things like in distinguishability, obfuscation and more."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:18,760",
+				"to": "00:17:23,280"
+			},
+			"offsets": {
+				"from": 1038760,
+				"to": 1043280
+			},
+			"text": " Oh, and, you know, there's a couple of folks who have sort of independently come up with"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,280",
+				"to": "00:17:28,280"
+			},
+			"offsets": {
+				"from": 1043280,
+				"to": 1048280
+			},
+			"text": " this categorization framework. I believe this CIRC team calls these computational cryptosystems."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,280",
+				"to": "00:17:33,720"
+			},
+			"offsets": {
+				"from": 1048280,
+				"to": 1053720
+			},
+			"text": " So, you know, very similar in general spirit to what we're calling programmable cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,720",
+				"to": "00:17:44,360"
+			},
+			"offsets": {
+				"from": 1053720,
+				"to": 1064360
+			},
+			"text": " Okay, so the second part of this basically thesis is that programmable cryptography itself"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,360",
+				"to": "00:17:50,320"
+			},
+			"offsets": {
+				"from": 1064360,
+				"to": 1070320
+			},
+			"text": " seems like a very powerful tool. Blockchains are also a very powerful tool, but it's not"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,320",
+				"to": "00:17:55,840"
+			},
+			"offsets": {
+				"from": 1070320,
+				"to": 1075840
+			},
+			"text": " sort of a priori obvious like why these two things are related to each other except that"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,840",
+				"to": "00:18:00,800"
+			},
+			"offsets": {
+				"from": 1075840,
+				"to": 1080800
+			},
+			"text": " they both sort of derive from similar mathematical principles. But I claim that there's actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,800",
+				"to": "00:18:07,440"
+			},
+			"offsets": {
+				"from": 1080800,
+				"to": 1087440
+			},
+			"text": " a very deep and complementary marriage between these two powerful things. And to explain"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,440",
+				"to": "00:18:12,080"
+			},
+			"offsets": {
+				"from": 1087440,
+				"to": 1092080
+			},
+			"text": " why I think that is, first I want to give my kind of mental image of what Ethereum as"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,080",
+				"to": "00:18:17,560"
+			},
+			"offsets": {
+				"from": 1092080,
+				"to": 1097560
+			},
+			"text": " a data availability layer looks like, say like five or ten years out from now. So, in my"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:17,560",
+				"to": "00:18:21,360"
+			},
+			"offsets": {
+				"from": 1097560,
+				"to": 1101360
+			},
+			"text": " head the way that I kind of conceptualize the idea of, you know, Ethereum the global"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,360",
+				"to": "00:18:26,760"
+			},
+			"offsets": {
+				"from": 1101360,
+				"to": 1106760
+			},
+			"text": " data availability layer is I think of Ethereum almost as this like, you know, giant super"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,760",
+				"to": "00:18:34,040"
+			},
+			"offsets": {
+				"from": 1106760,
+				"to": 1114040
+			},
+			"text": " thick coaxial cable that basically streams humanities like global stream of consciousness."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,040",
+				"to": "00:18:38,680"
+			},
+			"offsets": {
+				"from": 1114040,
+				"to": 1118680
+			},
+			"text": " So humanities, you know, promises, bets, secrets, debts, dreams, et cetera, et cetera. And this"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,680",
+				"to": "00:18:45,720"
+			},
+			"offsets": {
+				"from": 1118680,
+				"to": 1125720
+			},
+			"text": " coaxial cable is, you know, made available to any person or computing device in the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,720",
+				"to": "00:18:51,840"
+			},
+			"offsets": {
+				"from": 1125720,
+				"to": 1131840
+			},
+			"text": " So, you know, any phone, any computer that like lives on some, you know, like institutional"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,840",
+				"to": "00:18:56,840"
+			},
+			"offsets": {
+				"from": 1131840,
+				"to": 1136840
+			},
+			"text": " server, anything like that can hook into the one gigabyte per second canonical data stream,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,840",
+				"to": "00:18:59,640"
+			},
+			"offsets": {
+				"from": 1136840,
+				"to": 1139640
+			},
+			"text": " look up data and know that they're seeing exactly the same thing as someone across the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,640",
+				"to": "00:19:07,280"
+			},
+			"offsets": {
+				"from": 1139640,
+				"to": 1147280
+			},
+			"text": " world is seeing. Now, right now this data stream is completely transparent. And that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,280",
+				"to": "00:19:13,120"
+			},
+			"offsets": {
+				"from": 1147280,
+				"to": 1153120
+			},
+			"text": " has been a design decision that has been necessary in order to gain acceptance of this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,120",
+				"to": "00:19:18,160"
+			},
+			"offsets": {
+				"from": 1153120,
+				"to": 1158160
+			},
+			"text": " data stream that we're wanting to claim is the canonical data stream or the legitimate"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,160",
+				"to": "00:19:22,960"
+			},
+			"offsets": {
+				"from": 1158160,
+				"to": 1162960
+			},
+			"text": " data stream. So in order to build acceptance, we have this principle of don't trust verify"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,960",
+				"to": "00:19:27,400"
+			},
+			"offsets": {
+				"from": 1162960,
+				"to": 1167400
+			},
+			"text": " and in order to verify you need to be able to see all of the data. But I claim that this"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,400",
+				"to": "00:19:33,320"
+			},
+			"offsets": {
+				"from": 1167400,
+				"to": 1173320
+			},
+			"text": " is actually extremely limiting. There is a wide class of applications that you might"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,320",
+				"to": "00:19:39,080"
+			},
+			"offsets": {
+				"from": 1173320,
+				"to": 1179080
+			},
+			"text": " care about to build where you don't want every piece of data to be completely public. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,080",
+				"to": "00:19:42,880"
+			},
+			"offsets": {
+				"from": 1179080,
+				"to": 1182880
+			},
+			"text": " I think that when a lot of people talk about this idea of privacy or information asymmetry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:42,880",
+				"to": "00:19:48,280"
+			},
+			"offsets": {
+				"from": 1182880,
+				"to": 1188280
+			},
+			"text": " you know, people have various different beliefs on like various ideological nuances around"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,280",
+				"to": "00:19:52,500"
+			},
+			"offsets": {
+				"from": 1188280,
+				"to": 1192500
+			},
+			"text": " privacy. But I want to go even a level lower to explain why I think this is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,500",
+				"to": "00:19:57,240"
+			},
+			"offsets": {
+				"from": 1192500,
+				"to": 1197240
+			},
+			"text": " Privacy is important not just as a matter of ideology but simply as a matter of mechanics."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:57,240",
+				"to": "00:20:01,320"
+			},
+			"offsets": {
+				"from": 1197240,
+				"to": 1201320
+			},
+			"text": " There's certain coordination systems that just don't work unless you have information"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,320",
+				"to": "00:20:06,160"
+			},
+			"offsets": {
+				"from": 1201320,
+				"to": 1206160
+			},
+			"text": " asymmetry. And in fact, most of the complex systems that we see in the world today and"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,160",
+				"to": "00:20:09,960"
+			},
+			"offsets": {
+				"from": 1206160,
+				"to": 1209960
+			},
+			"text": " most of the organizations we have in the world rely on the idea that different people know"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,960",
+				"to": "00:20:16,600"
+			},
+			"offsets": {
+				"from": 1209960,
+				"to": 1216600
+			},
+			"text": " different stuff and can do different stuff. So the way that I think about this is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,600",
+				"to": "00:20:20,160"
+			},
+			"offsets": {
+				"from": 1216600,
+				"to": 1220160
+			},
+			"text": " what we would really like to do is we would like to be able to enforce read/write execute"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,160",
+				"to": "00:20:26,280"
+			},
+			"offsets": {
+				"from": 1220160,
+				"to": 1226280
+			},
+			"text": " permissions on this canonical data stream that is the blockchain. And the way that we do"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:26,280",
+				"to": "00:20:32,280"
+			},
+			"offsets": {
+				"from": 1226280,
+				"to": 1232280
+			},
+			"text": " this is, you know, in fact, programmable cryptography. Programmable cryptography gives us these expressive"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,280",
+				"to": "00:20:36,880"
+			},
+			"offsets": {
+				"from": 1232280,
+				"to": 1236880
+			},
+			"text": " tools and languages for enforcing read permissions like we mentioned with things like witness"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,880",
+				"to": "00:20:41,960"
+			},
+			"offsets": {
+				"from": 1236880,
+				"to": 1241960
+			},
+			"text": " encryption or write or execute permissions which we're seeing with things like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,960",
+				"to": "00:20:48,960"
+			},
+			"offsets": {
+				"from": 1241960,
+				"to": 1248960
+			},
+			"text": " zksnarks and smart contracts and more. So to give just a toy example of why this kinds"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,960",
+				"to": "00:20:54,520"
+			},
+			"offsets": {
+				"from": 1248960,
+				"to": 1254520
+			},
+			"text": " of permissioning or access control is really important, I want to consider the example"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,520",
+				"to": "00:21:01,520"
+			},
+			"offsets": {
+				"from": 1254520,
+				"to": 1261520
+			},
+			"text": " of games. So, for example, let's consider poker. In poker, a lot of the depth of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:01,520",
+				"to": "00:21:06,280"
+			},
+			"offsets": {
+				"from": 1261520,
+				"to": 1266280
+			},
+			"text": " game relies on the fact that I know my cards but I don't know your cards and you know your"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,280",
+				"to": "00:21:12,160"
+			},
+			"offsets": {
+				"from": 1266280,
+				"to": 1272160
+			},
+			"text": " cards but you don't know my cards. Poker as a game would simply not work if we knew each"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,160",
+				"to": "00:21:16,400"
+			},
+			"offsets": {
+				"from": 1272160,
+				"to": 1276400
+			},
+			"text": " other's cards. It would be completely degenerate, right? Like, it wouldn't really make sense,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:16,400",
+				"to": "00:21:23,840"
+			},
+			"offsets": {
+				"from": 1276400,
+				"to": 1283840
+			},
+			"text": " it wouldn't be any fun. And, you know, a slightly more complex example of this might be strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:23,840",
+				"to": "00:21:30,000"
+			},
+			"offsets": {
+				"from": 1283840,
+				"to": 1290000
+			},
+			"text": " game. So a couple of days ago, we had a talk on dark forest which is a fully on chain strategy"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:30,000",
+				"to": "00:21:33,840"
+			},
+			"offsets": {
+				"from": 1290000,
+				"to": 1293840
+			},
+			"text": " game, you can kind of imagine it as something like star craft on the blockchain. And one"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,840",
+				"to": "00:21:39,680"
+			},
+			"offsets": {
+				"from": 1293840,
+				"to": 1299680
+			},
+			"text": " really key mechanic of dark forest is that in dark forest, players' respective locations"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:39,680",
+				"to": "00:21:45,560"
+			},
+			"offsets": {
+				"from": 1299680,
+				"to": 1305560
+			},
+			"text": " are all hidden which gives the game a lot of its, you know, relative strategic depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:45,560",
+				"to": "00:21:51,040"
+			},
+			"offsets": {
+				"from": 1305560,
+				"to": 1311040
+			},
+			"text": " So the general pattern here with games is that oftentimes what we're going to do is we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:51,040",
+				"to": "00:21:55,960"
+			},
+			"offsets": {
+				"from": 1311040,
+				"to": 1315960
+			},
+			"text": " going to have players commit to a state that they keep private and whenever they want to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,960",
+				"to": "00:22:00,120"
+			},
+			"offsets": {
+				"from": 1315960,
+				"to": 1320120
+			},
+			"text": " make a state transition, they're going to provide a zero knowledge proof that they are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:00,120",
+				"to": "00:22:04,680"
+			},
+			"offsets": {
+				"from": 1320120,
+				"to": 1324680
+			},
+			"text": " making a valid update on their private state and committing, you know, a valid state commitment"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:04,680",
+				"to": "00:22:09,400"
+			},
+			"offsets": {
+				"from": 1324680,
+				"to": 1329400
+			},
+			"text": " to the network. So this proof might prove something like I'm moving my, you know, secret"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:09,400",
+				"to": "00:22:14,400"
+			},
+			"offsets": {
+				"from": 1329400,
+				"to": 1334400
+			},
+			"text": " night from secret location A to secret location B. I'm not going to tell you what A or B are"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,400",
+				"to": "00:22:18,400"
+			},
+			"offsets": {
+				"from": 1334400,
+				"to": 1338400
+			},
+			"text": " but this zero knowledge proof proves that, you know, there's an L shape between them."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,400",
+				"to": "00:22:23,200"
+			},
+			"offsets": {
+				"from": 1338400,
+				"to": 1343200
+			},
+			"text": " Or zero knowledge proof might prove something like drawing some card, I'm drawing it validly"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:23,200",
+				"to": "00:22:27,080"
+			},
+			"offsets": {
+				"from": 1343200,
+				"to": 1347080
+			},
+			"text": " according to the rules, I'm drawing it out of a randomly shuffled deck, I'm not cheating"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:27,080",
+				"to": "00:22:33,200"
+			},
+			"offsets": {
+				"from": 1347080,
+				"to": 1353200
+			},
+			"text": " and just like continually drawing a bunch of eases. So, you know, there's a bunch of"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:33,200",
+				"to": "00:22:37,600"
+			},
+			"offsets": {
+				"from": 1353200,
+				"to": 1357600
+			},
+			"text": " game examples which we can kind of imagine where the game just simply does not work if"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,600",
+				"to": "00:22:41,720"
+			},
+			"offsets": {
+				"from": 1357600,
+				"to": 1361720
+			},
+			"text": " all of the information is transparent and while those are kind of toy examples, I think"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,720",
+				"to": "00:22:46,520"
+			},
+			"offsets": {
+				"from": 1361720,
+				"to": 1366520
+			},
+			"text": " they allow us to start to hint at this more complex future where we're using blockchains"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,520",
+				"to": "00:22:51,480"
+			},
+			"offsets": {
+				"from": 1366520,
+				"to": 1371480
+			},
+			"text": " for a much wider range of use cases. So, you know, I think one completely digital, completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,480",
+				"to": "00:22:55,360"
+			},
+			"offsets": {
+				"from": 1371480,
+				"to": 1375360
+			},
+			"text": " reasonable digital interaction we might expect to see something like in the future is, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,360",
+				"to": "00:22:59,720"
+			},
+			"offsets": {
+				"from": 1375360,
+				"to": 1379720
+			},
+			"text": " know, imagine like I walk into a store and perform a cryptographic handshake with the"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:59,720",
+				"to": "00:23:06,240"
+			},
+			"offsets": {
+				"from": 1379720,
+				"to": 1386240
+			},
+			"text": " merchant and perform like a multi-party computation with some identity provider. After verifying"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:06,240",
+				"to": "00:23:10,520"
+			},
+			"offsets": {
+				"from": 1386240,
+				"to": 1390520
+			},
+			"text": " the merchant's identity, I give the merchant one token that permissions them to access"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,520",
+				"to": "00:23:16,200"
+			},
+			"offsets": {
+				"from": 1390520,
+				"to": 1396200
+			},
+			"text": " some specific data on my preferences for an hour and another token that allows them to"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:16,200",
+				"to": "00:23:20,680"
+			},
+			"offsets": {
+				"from": 1396200,
+				"to": 1400680
+			},
+			"text": " transfer a limited amount from my balance. After that transaction completes, I update"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,680",
+				"to": "00:23:25,560"
+			},
+			"offsets": {
+				"from": 1400680,
+				"to": 1405560
+			},
+			"text": " my transaction history, that's private to me and committed on chain but only visible"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:25,560",
+				"to": "00:23:33,040"
+			},
+			"offsets": {
+				"from": 1405560,
+				"to": 1413040
+			},
+			"text": " to myself. So, you know, each of the components of this interaction today are not possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,040",
+				"to": "00:23:37,440"
+			},
+			"offsets": {
+				"from": 1413040,
+				"to": 1417440
+			},
+			"text": " due to the fact that there's so many things, there's so many constraints on what we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:37,440",
+				"to": "00:23:42,880"
+			},
+			"offsets": {
+				"from": 1417440,
+				"to": 1422880
+			},
+			"text": " keep private. But again, with things like fully homomorphic encryption, witness encryption,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:42,880",
+				"to": "00:23:49,400"
+			},
+			"offsets": {
+				"from": 1422880,
+				"to": 1429400
+			},
+			"text": " zk, snaar, etc., etc., these kinds of interactions may start to be unlocked while still preserving"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,400",
+				"to": "00:23:54,800"
+			},
+			"offsets": {
+				"from": 1429400,
+				"to": 1434800
+			},
+			"text": " the neutrality where all this data is living on some globally verifiable block chain or"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:54,800",
+				"to": "00:24:01,720"
+			},
+			"offsets": {
+				"from": 1434800,
+				"to": 1441720
+			},
+			"text": " data availability system. So, the last kind of like analogy that I want to make here to"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,720",
+				"to": "00:24:06,280"
+			},
+			"offsets": {
+				"from": 1441720,
+				"to": 1446280
+			},
+			"text": " kind of create an image of what this future might look like is, you know, I want to kind"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,280",
+				"to": "00:24:12,960"
+			},
+			"offsets": {
+				"from": 1446280,
+				"to": 1452960
+			},
+			"text": " of describe the concept of an ender chest from the game Minecraft. So, Minecraft is a, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:12,960",
+				"to": "00:24:17,320"
+			},
+			"offsets": {
+				"from": 1452960,
+				"to": 1457320
+			},
+			"text": " know, sandbox game in which you can harvest resources and build stuff. And Minecraft is"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,320",
+				"to": "00:24:21,560"
+			},
+			"offsets": {
+				"from": 1457320,
+				"to": 1461560
+			},
+			"text": " this concept of chests. So, with a wooden chest, if I build a wooden chest, I can like"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,560",
+				"to": "00:24:25,680"
+			},
+			"offsets": {
+				"from": 1461560,
+				"to": 1465680
+			},
+			"text": " place it down here, I can put items into the chest, if I leave and come back, the items"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,680",
+				"to": "00:24:30,400"
+			},
+			"offsets": {
+				"from": 1465680,
+				"to": 1470400
+			},
+			"text": " are still going to be there. The chest is a very important like primitive in Minecraft."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,400",
+				"to": "00:24:33,320"
+			},
+			"offsets": {
+				"from": 1470400,
+				"to": 1473320
+			},
+			"text": " If anyone else goes to the chest and they open it, they're going to be able to see all"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:33,320",
+				"to": "00:24:41,080"
+			},
+			"offsets": {
+				"from": 1473320,
+				"to": 1481080
+			},
+			"text": " the items that I've placed in there. In Minecraft, there's also a very powerful tool called"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,080",
+				"to": "00:24:45,800"
+			},
+			"offsets": {
+				"from": 1481080,
+				"to": 1485800
+			},
+			"text": " the ender chest, which is sort of similar to a chest but has this kind of magical property"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:45,800",
+				"to": "00:24:52,600"
+			},
+			"offsets": {
+				"from": 1485800,
+				"to": 1492600
+			},
+			"text": " where ender chests inventories are marked as like per player inventories and are sort"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:52,600",
+				"to": "00:24:56,960"
+			},
+			"offsets": {
+				"from": 1492600,
+				"to": 1496960
+			},
+			"text": " of shared across every ender chest that exists in the world. So, if I put an ender chest down"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:56,960",
+				"to": "00:25:02,400"
+			},
+			"offsets": {
+				"from": 1496960,
+				"to": 1502400
+			},
+			"text": " here and put down like, you know, five stone or something and then I put an ender chest"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,400",
+				"to": "00:25:05,960"
+			},
+			"offsets": {
+				"from": 1502400,
+				"to": 1505960
+			},
+			"text": " down over there and like I walk over there and open it, I'm going to see that same five"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:05,960",
+				"to": "00:25:11,080"
+			},
+			"offsets": {
+				"from": 1505960,
+				"to": 1511080
+			},
+			"text": " stone. And if someone else walks into the, walks over to the ender chest, they're not"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,080",
+				"to": "00:25:14,480"
+			},
+			"offsets": {
+				"from": 1511080,
+				"to": 1514480
+			},
+			"text": " going to see that same inventory that I have, they're only going to see, you know, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:14,480",
+				"to": "00:25:20,000"
+			},
+			"offsets": {
+				"from": 1514480,
+				"to": 1520000
+			},
+			"text": " they've put into the ender chest. The ender chest is an incredibly powerful tool for Minecraft"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,000",
+				"to": "00:25:24,440"
+			},
+			"offsets": {
+				"from": 1520000,
+				"to": 1524440
+			},
+			"text": " players that allows them to execute on these larger scale strategies, build these much"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,440",
+				"to": "00:25:30,320"
+			},
+			"offsets": {
+				"from": 1524440,
+				"to": 1530320
+			},
+			"text": " more complex constructions, just makes it easier for you to do a lot of things. And I"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:30,320",
+				"to": "00:25:34,840"
+			},
+			"offsets": {
+				"from": 1530320,
+				"to": 1534840
+			},
+			"text": " think as more of our social and economic activities move online, we're going to need"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,840",
+				"to": "00:25:39,600"
+			},
+			"offsets": {
+				"from": 1534840,
+				"to": 1539600
+			},
+			"text": " primitives like these, these digital ender chests that allow us to carry things like our reputation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:39,600",
+				"to": "00:25:44,920"
+			},
+			"offsets": {
+				"from": 1539600,
+				"to": 1544920
+			},
+			"text": " our financial history, our social context across different platforms. And in order to do that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:44,920",
+				"to": "00:25:49,080"
+			},
+			"offsets": {
+				"from": 1544920,
+				"to": 1549080
+			},
+			"text": " we're going to need these new privacy preserving mechanisms that fall under this category of"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:49,080",
+				"to": "00:25:53,560"
+			},
+			"offsets": {
+				"from": 1549080,
+				"to": 1553560
+			},
+			"text": " programmable cryptography. So, that's all I've got for today. If you're interested in any"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:53,560",
+				"to": "00:25:57,000"
+			},
+			"offsets": {
+				"from": 1553560,
+				"to": 1557000
+			},
+			"text": " of the work that we're currently working on around programmable cryptography or anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:57,000",
+				"to": "00:26:02,360"
+			},
+			"offsets": {
+				"from": 1557000,
+				"to": 1562360
+			},
+			"text": " else, you can check us out at zeroxpark.org or you can find us on Twitter at @zeroxpark."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:02,360",
+				"to": "00:26:03,360"
+			},
+			"offsets": {
+				"from": 1562360,
+				"to": 1563360
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:03,360",
+				"to": "00:26:08,800"
+			},
+			"offsets": {
+				"from": 1563360,
+				"to": 1568800
+			},
+			"text": " >> Thank you for the talk. As we went through a lot of the slides, there were examples of"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:08,800",
+				"to": "00:26:13,880"
+			},
+			"offsets": {
+				"from": 1568800,
+				"to": 1573880
+			},
+			"text": " ZK things where you have a claim and it's true or false and you prove it. But I guess the"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,880",
+				"to": "00:26:18,400"
+			},
+			"offsets": {
+				"from": 1573880,
+				"to": 1578400
+			},
+			"text": " bigger picture of all programmable cryptography could have other sorts of statements like"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:18,400",
+				"to": "00:26:22,560"
+			},
+			"offsets": {
+				"from": 1578400,
+				"to": 1582560
+			},
+			"text": " I summed all these numbers and this is the true sum. And so I guess those are other flavors"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:22,560",
+				"to": "00:26:25,920"
+			},
+			"offsets": {
+				"from": 1582560,
+				"to": 1585920
+			},
+			"text": " and maybe that's how many more for encryption, I'm not sure. How friendly are those with"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,920",
+				"to": "00:26:32,160"
+			},
+			"offsets": {
+				"from": 1585920,
+				"to": 1592160
+			},
+			"text": " each other right now? Like proving things and doing math and getting continuous results?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,160",
+				"to": "00:26:39,120"
+			},
+			"offsets": {
+				"from": 1592160,
+				"to": 1599120
+			},
+			"text": " >> Yeah. This is a great question. So, right now, you know, as you probably noticed, like"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,120",
+				"to": "00:26:45,640"
+			},
+			"offsets": {
+				"from": 1599120,
+				"to": 1605640
+			},
+			"text": " we are specifically very focused on zero knowledge cryptography which is, you know, one of one"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:45,640",
+				"to": "00:26:50,320"
+			},
+			"offsets": {
+				"from": 1605640,
+				"to": 1610320
+			},
+			"text": " piece of this like much broader category but it seems like disproportionately represented."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,320",
+				"to": "00:26:54,320"
+			},
+			"offsets": {
+				"from": 1610320,
+				"to": 1614320
+			},
+			"text": " So why is that the case? Well, one reason is that zero knowledge crypto systems are simply"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:54,320",
+				"to": "00:26:58,240"
+			},
+			"offsets": {
+				"from": 1614320,
+				"to": 1618240
+			},
+			"text": " much more mature today than a lot of these other systems where there's -- there only"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,240",
+				"to": "00:27:03,960"
+			},
+			"offsets": {
+				"from": 1618240,
+				"to": 1623960
+			},
+			"text": " exist theoretical constructions or academic implementations, we expect things like witness"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,960",
+				"to": "00:27:09,120"
+			},
+			"offsets": {
+				"from": 1623960,
+				"to": 1629120
+			},
+			"text": " encryption to be much further out and we're still even trying to like describe the landscape"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:09,120",
+				"to": "00:27:15,000"
+			},
+			"offsets": {
+				"from": 1629120,
+				"to": 1635000
+			},
+			"text": " of what is possible to do with multi-party computation. So unfortunately, none of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:15,000",
+				"to": "00:27:19,760"
+			},
+			"offsets": {
+				"from": 1635000,
+				"to": 1639760
+			},
+			"text": " systems are super compatible because a lot of them don't yet exist in a form where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:19,760",
+				"to": "00:27:23,400"
+			},
+			"offsets": {
+				"from": 1639760,
+				"to": 1643400
+			},
+			"text": " can meaningfully start playing around with them but we hope that that is going to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,400",
+				"to": "00:27:28,320"
+			},
+			"offsets": {
+				"from": 1643400,
+				"to": 1648320
+			},
+			"text": " evolving rapidly over the next, say like, you know, a couple of years. >> Hello. Thank"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,320",
+				"to": "00:27:33,560"
+			},
+			"offsets": {
+				"from": 1648320,
+				"to": 1653560
+			},
+			"text": " you very much by your talk. Haven't made any kind of research around quantum cryptography?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:33,560",
+				"to": "00:27:39,320"
+			},
+			"offsets": {
+				"from": 1653560,
+				"to": 1659320
+			},
+			"text": " ZK? >> Yeah. So, I think quantum cryptography is"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,320",
+				"to": "00:27:49,320"
+			},
+			"offsets": {
+				"from": 1659320,
+				"to": 1669320
+			},
+			"text": " a slightly like orthogonal direction to what a lot of these tools are going to enable. Specifically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,320",
+				"to": "00:27:53,760"
+			},
+			"offsets": {
+				"from": 1669320,
+				"to": 1673760
+			},
+			"text": " for example, like one way that we think about the interaction of quantum cryptography with"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,760",
+				"to": "00:28:00,040"
+			},
+			"offsets": {
+				"from": 1673760,
+				"to": 1680040
+			},
+			"text": " these tools is considering which of these tools -- or like which, you know, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:00,040",
+				"to": "00:28:05,880"
+			},
+			"offsets": {
+				"from": 1680040,
+				"to": 1685880
+			},
+			"text": " ZK algorithms or like FHE algorithms, we have our quantum resistance. In other words,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,880",
+				"to": "00:28:11,160"
+			},
+			"offsets": {
+				"from": 1685880,
+				"to": 1691160
+			},
+			"text": " once we have quantum computers, which of these algorithms might we be able to break? Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:11,160",
+				"to": "00:28:16,800"
+			},
+			"offsets": {
+				"from": 1691160,
+				"to": 1696800
+			},
+			"text": " that's kind of a different thing, however, from necessarily, you know, the affordances"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:16,800",
+				"to": "00:28:23,720"
+			},
+			"offsets": {
+				"from": 1696800,
+				"to": 1703720
+			},
+			"text": " of these tools. So, for example, like, you know, it's -- when I think about programmable"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:23,720",
+				"to": "00:28:28,160"
+			},
+			"offsets": {
+				"from": 1703720,
+				"to": 1708160
+			},
+			"text": " cryptography, I usually think about it from the perspective of like what these things"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,160",
+				"to": "00:28:33,760"
+			},
+			"offsets": {
+				"from": 1708160,
+				"to": 1713760
+			},
+			"text": " can do for us rather than necessarily like what's the underlying algorithms and what"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:33,760",
+				"to": "00:28:37,640"
+			},
+			"offsets": {
+				"from": 1713760,
+				"to": 1717640
+			},
+			"text": " are the computational models in which they might, you know, broken by or enabled by whether"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:37,640",
+				"to": "00:28:42,240"
+			},
+			"offsets": {
+				"from": 1717640,
+				"to": 1722240
+			},
+			"text": " that's quantum or elliptic curves or, you know, large prime fields or things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:42,240",
+				"to": "00:28:47,200"
+			},
+			"offsets": {
+				"from": 1722240,
+				"to": 1727200
+			},
+			"text": " Thank you for the talk. You can ask, if I understand it correctly, the state currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:47,200",
+				"to": "00:28:53,880"
+			},
+			"offsets": {
+				"from": 1727200,
+				"to": 1733880
+			},
+			"text": " in dark forest, you keep it locally and you just put the proofs on the chain. That may"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,880",
+				"to": "00:29:00,480"
+			},
+			"offsets": {
+				"from": 1733880,
+				"to": 1740480
+			},
+			"text": " not be ideal for the future. If you lose the state, you kind of lose the game. Like, what"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:00,480",
+				"to": "00:29:08,240"
+			},
+			"offsets": {
+				"from": 1740480,
+				"to": 1748240
+			},
+			"text": " are your thoughts on how to keep the state safe in other ways either using a homo-marketing"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:08,240",
+				"to": "00:29:11,240"
+			},
+			"offsets": {
+				"from": 1748240,
+				"to": 1751240
+			},
+			"text": " encryption or your general thoughts around it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:11,240",
+				"to": "00:29:15,480"
+			},
+			"offsets": {
+				"from": 1751240,
+				"to": 1755480
+			},
+			"text": " Yeah, this is a great question and I think like, you know, as an extension of the debate"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,480",
+				"to": "00:29:20,920"
+			},
+			"offsets": {
+				"from": 1755480,
+				"to": 1760920
+			},
+			"text": " that people have around the viability of, you know, everyone custody their own keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:20,920",
+				"to": "00:29:26,600"
+			},
+			"offsets": {
+				"from": 1760920,
+				"to": 1766600
+			},
+			"text": " for example, on a blockchain. I think that there are a couple of things here that might"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:26,600",
+				"to": "00:29:30,480"
+			},
+			"offsets": {
+				"from": 1766600,
+				"to": 1770480
+			},
+			"text": " be possible. One is, like you mentioned, fully homomorphic encryption might allow us to"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,480",
+				"to": "00:29:38,200"
+			},
+			"offsets": {
+				"from": 1770480,
+				"to": 1778200
+			},
+			"text": " store private state on -- that is encrypted on, you know, cloud services, but still be"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:38,200",
+				"to": "00:29:43,320"
+			},
+			"offsets": {
+				"from": 1778200,
+				"to": 1783320
+			},
+			"text": " able to like retrieve that data and perform operations on it just like we would if it"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,320",
+				"to": "00:29:47,200"
+			},
+			"offsets": {
+				"from": 1783320,
+				"to": 1787200
+			},
+			"text": " was local while still preserving the privacy of that data. That is pretty far out though"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:47,200",
+				"to": "00:29:50,920"
+			},
+			"offsets": {
+				"from": 1787200,
+				"to": 1790920
+			},
+			"text": " and in the meantime, I think the most immediate thing that we can focus on doing is like"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:50,920",
+				"to": "00:29:54,880"
+			},
+			"offsets": {
+				"from": 1790920,
+				"to": 1794880
+			},
+			"text": " building more user friendly solutions that allow you to keep critical or sensitive data"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,880",
+				"to": "00:30:00,600"
+			},
+			"offsets": {
+				"from": 1794880,
+				"to": 1800600
+			},
+			"text": " on your own machine. I mean, everybody already does keep critical and sensitive data. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:00,600",
+				"to": "00:30:04,600"
+			},
+			"offsets": {
+				"from": 1800600,
+				"to": 1804600
+			},
+			"text": " it is a question of like, as the volume of that data or as the sensitivity of that data"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,600",
+				"to": "00:30:09,480"
+			},
+			"offsets": {
+				"from": 1804600,
+				"to": 1809480
+			},
+			"text": " grows, then how can we make those systems even more and more ergonomic and more and more secure?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:09,480",
+				"to": "00:30:14,200"
+			},
+			"offsets": {
+				"from": 1809480,
+				"to": 1814200
+			},
+			"text": " >> Hi. Thanks for the talk. What do you think about the fundamental bottleneck of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,200",
+				"to": "00:30:20,640"
+			},
+			"offsets": {
+				"from": 1814200,
+				"to": 1820640
+			},
+			"text": " ZKPs being quite slow and you have this trade off between like proof generation and verification?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:20,640",
+				"to": "00:30:26,080"
+			},
+			"offsets": {
+				"from": 1820640,
+				"to": 1826080
+			},
+			"text": " Do you think we will have sort of more like external off-prem solutions, maybe like layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,080",
+				"to": "00:30:34,400"
+			},
+			"offsets": {
+				"from": 1826080,
+				"to": 1834400
+			},
+			"text": " two for ZK or like do you see the most promising solutions being in like fundamental ZKP research?"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:34,400",
+				"to": "00:30:41,520"
+			},
+			"offsets": {
+				"from": 1834400,
+				"to": 1841520
+			},
+			"text": " What do you think that will fall straight off? >> Yeah. So, personally, I think that there"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:41,520",
+				"to": "00:30:46,440"
+			},
+			"offsets": {
+				"from": 1841520,
+				"to": 1846440
+			},
+			"text": " is still a ton of low hanging fruit in terms of performance optimization for these currently"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:46,440",
+				"to": "00:30:52,120"
+			},
+			"offsets": {
+				"from": 1846440,
+				"to": 1852120
+			},
+			"text": " very expensive crypto systems. For example, with ZK by some metrics over the last three"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:52,120",
+				"to": "00:30:59,200"
+			},
+			"offsets": {
+				"from": 1852120,
+				"to": 1859200
+			},
+			"text": " years, the -- or like over the last four years, the size of circuit or like the size of computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:59,200",
+				"to": "00:31:04,600"
+			},
+			"offsets": {
+				"from": 1859200,
+				"to": 1864600
+			},
+			"text": " that you can ZK prove in browser efficiently has, you know, expanded by like three orders"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:04,600",
+				"to": "00:31:09,520"
+			},
+			"offsets": {
+				"from": 1864600,
+				"to": 1869520
+			},
+			"text": " of magnitude. We are still seeing like rapid improvements via new protocols, new better"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:09,520",
+				"to": "00:31:13,720"
+			},
+			"offsets": {
+				"from": 1869520,
+				"to": 1873720
+			},
+			"text": " engineered libraries for proving stacks, more efficient circuit implementations and things"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:13,720",
+				"to": "00:31:19,680"
+			},
+			"offsets": {
+				"from": 1873720,
+				"to": 1879680
+			},
+			"text": " like, you know, ZK friendly hardware are just getting started. So, I think that like, well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:19,680",
+				"to": "00:31:24,720"
+			},
+			"offsets": {
+				"from": 1879680,
+				"to": 1884720
+			},
+			"text": " eventually, there may be some industry of services that arise around, you know, off-loading"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:24,720",
+				"to": "00:31:31,040"
+			},
+			"offsets": {
+				"from": 1884720,
+				"to": 1891040
+			},
+			"text": " computation or things like that. At the moment, there are still a lot of optimizations that"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:31,040",
+				"to": "00:31:37,760"
+			},
+			"offsets": {
+				"from": 1891040,
+				"to": 1897760
+			},
+			"text": " have not yet been fully, you know, explored that I think can enable some really, really"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:37,760",
+				"to": "00:31:44,240"
+			},
+			"offsets": {
+				"from": 1897760,
+				"to": 1904240
+			},
+			"text": " complex proofs even on like small client devices like mobile phones. >> Is there any other"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:44,240",
+				"to": "00:31:47,160"
+			},
+			"offsets": {
+				"from": 1904240,
+				"to": 1907160
+			},
+			"text": " questions? >> Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:47,160",
+				"to": "00:31:49,160"
+			},
+			"offsets": {
+				"from": 1907160,
+				"to": 1909160
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:49,160",
+				"to": "00:31:51,160"
+			},
+			"offsets": {
+				"from": 1909160,
+				"to": 1911160
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:51,160",
+				"to": "00:31:53,160"
+			},
+			"offsets": {
+				"from": 1911160,
+				"to": 1913160
+			},
+			"text": " [ Silence ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:31:53,160",
+				"to": "00:32:22,160"
+			},
+			"offsets": {
+				"from": 1913160,
+				"to": 1942160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

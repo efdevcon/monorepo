@@ -1,0 +1,7061 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,360"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3360
+			},
+			"text": " Some of you may remember me from the early days of Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,360",
+				"to": "00:00:05,840"
+			},
+			"offsets": {
+				"from": 3360,
+				"to": 5840
+			},
+			"text": " I came in to manage the project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,840",
+				"to": "00:00:08,120"
+			},
+			"offsets": {
+				"from": 5840,
+				"to": 8120
+			},
+			"text": " release kind of, I guess,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,120",
+				"to": "00:00:09,680"
+			},
+			"offsets": {
+				"from": 8120,
+				"to": 9680
+			},
+			"text": " it's going to late 2014."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,680",
+				"to": "00:00:12,440"
+			},
+			"offsets": {
+				"from": 9680,
+				"to": 12440
+			},
+			"text": " It's been about Europe with the foundation and I have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,440",
+				"to": "00:00:17,840"
+			},
+			"offsets": {
+				"from": 12440,
+				"to": 17840
+			},
+			"text": " pretty quiet for a couple of years because I was working on a big unsolved problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,840",
+				"to": "00:00:19,600"
+			},
+			"offsets": {
+				"from": 17840,
+				"to": 19600
+			},
+			"text": " So when I was still at the foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,600",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 19600,
+				"to": 23560
+			},
+			"text": " I started building outreach to the City of London legal community,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,560",
+				"to": "00:00:26,680"
+			},
+			"offsets": {
+				"from": 23560,
+				"to": 26680
+			},
+			"text": " because I knew that we were going to need some way of enforcing"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,680",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 26680,
+				"to": 28640
+			},
+			"text": " smart contracts as legal contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,640",
+				"to": "00:00:30,440"
+			},
+			"offsets": {
+				"from": 28640,
+				"to": 30440
+			},
+			"text": " The template that I was working from was"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,440",
+				"to": "00:00:32,480"
+			},
+			"offsets": {
+				"from": 30440,
+				"to": 32480
+			},
+			"text": " Ian Gregg's Ricardian Contract Model."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,480",
+				"to": "00:00:36,040"
+			},
+			"offsets": {
+				"from": 32480,
+				"to": 36040
+			},
+			"text": " So this entire talk is basically an update of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,040",
+				"to": "00:00:40,440"
+			},
+			"offsets": {
+				"from": 36040,
+				"to": 40440
+			},
+			"text": " the Ian Gregg Ricardian Contract Model from the perspective of trying to turn"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,440",
+				"to": "00:00:43,400"
+			},
+			"offsets": {
+				"from": 40440,
+				"to": 43400
+			},
+			"text": " that into a generically available technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,400",
+				"to": "00:00:46,560"
+			},
+			"offsets": {
+				"from": 43400,
+				"to": 46560
+			},
+			"text": " which we can use all over the ecosystem for basically everything"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,560",
+				"to": "00:00:49,360"
+			},
+			"offsets": {
+				"from": 46560,
+				"to": 49360
+			},
+			"text": " where we need to touch what we call fiat assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,360",
+				"to": "00:00:52,480"
+			},
+			"offsets": {
+				"from": 49360,
+				"to": 52480
+			},
+			"text": " So basically, I spent a lot of time rolling around with lawyers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,480",
+				"to": "00:00:53,840"
+			},
+			"offsets": {
+				"from": 52480,
+				"to": 53840
+			},
+			"text": " This is what I've learned."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,840",
+				"to": "00:00:57,880"
+			},
+			"offsets": {
+				"from": 53840,
+				"to": 57880
+			},
+			"text": " So the first concept is the concept of a fiat asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,880",
+				"to": "00:01:00,680"
+			},
+			"offsets": {
+				"from": 57880,
+				"to": 60680
+			},
+			"text": " We have a nice clean compartment for crypto assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,680",
+				"to": "00:01:02,280"
+			},
+			"offsets": {
+				"from": 60680,
+				"to": 62280
+			},
+			"text": " We all kind of know how that works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,280",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 62280,
+				"to": 65000
+			},
+			"text": " We know that possession of the keys is possession of the asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:06,560"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 66560
+			},
+			"text": " all the rest of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,560",
+				"to": "00:01:10,320"
+			},
+			"offsets": {
+				"from": 66560,
+				"to": 70320
+			},
+			"text": " Fiat assets are the assets that are controlled by governments."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,320",
+				"to": "00:01:13,520"
+			},
+			"offsets": {
+				"from": 70320,
+				"to": 73520
+			},
+			"text": " And a nice way of thinking about it is if the legal status of the asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,520",
+				"to": "00:01:17,320"
+			},
+			"offsets": {
+				"from": 73520,
+				"to": 77320
+			},
+			"text": " changes when you cross a border with the asset, it's a fiat asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,320",
+				"to": "00:01:20,840"
+			},
+			"offsets": {
+				"from": 77320,
+				"to": 80840
+			},
+			"text": " So if I take my wallet out and I put it on the street in London,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,840",
+				"to": "00:01:23,680"
+			},
+			"offsets": {
+				"from": 80840,
+				"to": 83680
+			},
+			"text": " 20 minutes later, my wallet has gone on the police don't want to know."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,680",
+				"to": "00:01:26,320"
+			},
+			"offsets": {
+				"from": 83680,
+				"to": 86320
+			},
+			"text": " If I take my wallet and I put it out on the street in Saudi Arabia,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,320",
+				"to": "00:01:29,560"
+			},
+			"offsets": {
+				"from": 86320,
+				"to": 89560
+			},
+			"text": " I come back in two weeks and it's surrounded by traffic cones."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,560",
+				"to": "00:01:31,920"
+			},
+			"offsets": {
+				"from": 89560,
+				"to": 91920
+			},
+			"text": " So that is an example of a fiat asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,920",
+				"to": "00:01:36,760"
+			},
+			"offsets": {
+				"from": 91920,
+				"to": 96760
+			},
+			"text": " The local governance regime directly controls how the asset works."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,760",
+				"to": "00:01:41,160"
+			},
+			"offsets": {
+				"from": 96760,
+				"to": 101160
+			},
+			"text": " The asset is, in a sense, produced by the governance of the material world"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,160",
+				"to": "00:01:42,400"
+			},
+			"offsets": {
+				"from": 101160,
+				"to": 102400
+			},
+			"text": " that the nation-state provides."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,400",
+				"to": "00:01:44,240"
+			},
+			"offsets": {
+				"from": 102400,
+				"to": 104240
+			},
+			"text": " And this is the world of fiat."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,240",
+				"to": "00:01:47,040"
+			},
+			"offsets": {
+				"from": 104240,
+				"to": 107040
+			},
+			"text": " Now, fiat is not just fiat currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,040",
+				"to": "00:01:50,360"
+			},
+			"offsets": {
+				"from": 107040,
+				"to": 110360
+			},
+			"text": " It's houses because they're on rational property registers."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,360",
+				"to": "00:01:51,400"
+			},
+			"offsets": {
+				"from": 110360,
+				"to": 111400
+			},
+			"text": " It's cars."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,400",
+				"to": "00:01:53,760"
+			},
+			"offsets": {
+				"from": 111400,
+				"to": 113760
+			},
+			"text": " It's anything that has regulation attached to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,760",
+				"to": "00:01:55,120"
+			},
+			"offsets": {
+				"from": 113760,
+				"to": 115120
+			},
+			"text": " That's the fiat world."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,120",
+				"to": "00:02:00,880"
+			},
+			"offsets": {
+				"from": 115120,
+				"to": 120880
+			},
+			"text": " So the question is, how do we control fiat assets with code?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,880",
+				"to": "00:02:02,440"
+			},
+			"offsets": {
+				"from": 120880,
+				"to": 122440
+			},
+			"text": " Simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,440",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 122440,
+				"to": 126120
+			},
+			"text": " So I want to put this in the context of global trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:08,560"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 128560
+			},
+			"text": " Right now, something like 50% of global trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,560",
+				"to": "00:02:11,120"
+			},
+			"offsets": {
+				"from": 128560,
+				"to": 131120
+			},
+			"text": " goes over high-frequency trading systems, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,120",
+				"to": "00:02:14,880"
+			},
+			"offsets": {
+				"from": 131120,
+				"to": 134880
+			},
+			"text": " are basically enormous server farms, where they measure out the cables"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,880",
+				"to": "00:02:18,040"
+			},
+			"offsets": {
+				"from": 134880,
+				"to": 138040
+			},
+			"text": " to the trading computers, basically to the millimeter,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,040",
+				"to": "00:02:21,680"
+			},
+			"offsets": {
+				"from": 138040,
+				"to": 141680
+			},
+			"text": " so that nobody gets an advantage in trade because they've got a shorter cable"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,680",
+				"to": "00:02:24,320"
+			},
+			"offsets": {
+				"from": 141680,
+				"to": 144320
+			},
+			"text": " and they can make decisions faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,320",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 144320,
+				"to": 148040
+			},
+			"text": " We're in an age where nearly all of our really big global systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:30,800"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 150800
+			},
+			"text": " are directly affected by the speed of light delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,800",
+				"to": "00:02:31,200"
+			},
+			"offsets": {
+				"from": 150800,
+				"to": 151200
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,200",
+				"to": "00:02:33,200"
+			},
+			"offsets": {
+				"from": 151200,
+				"to": 153200
+			},
+			"text": " GPS works on the speed of light delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,200",
+				"to": "00:02:36,040"
+			},
+			"offsets": {
+				"from": 153200,
+				"to": 156040
+			},
+			"text": " HFT is optimized for speed of light delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:36,040",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 156040,
+				"to": 158600
+			},
+			"text": " Google Spanner gives you a seven millisecond window"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:40,160"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 160160
+			},
+			"text": " in which a transaction could have happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,160",
+				"to": "00:02:41,760"
+			},
+			"offsets": {
+				"from": 160160,
+				"to": 161760
+			},
+			"text": " So they just put a little delay, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,760",
+				"to": "00:02:45,280"
+			},
+			"offsets": {
+				"from": 161760,
+				"to": 165280
+			},
+			"text": " why things like Google Docs don't get screwed up when you use them internationally."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,280",
+				"to": "00:02:48,560"
+			},
+			"offsets": {
+				"from": 165280,
+				"to": 168560
+			},
+			"text": " And we've got blockchain, which solves the light speed delay problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,560",
+				"to": "00:02:53,520"
+			},
+			"offsets": {
+				"from": 168560,
+				"to": 173520
+			},
+			"text": " which prevents us from synchronizing the computers with a batch, a block."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,520",
+				"to": "00:02:53,920"
+			},
+			"offsets": {
+				"from": 173520,
+				"to": 173920
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,920",
+				"to": "00:02:56,520"
+			},
+			"offsets": {
+				"from": 173920,
+				"to": 176520
+			},
+			"text": " 10 minutes for Bitcoin, 15 seconds for Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,520",
+				"to": "00:02:58,760"
+			},
+			"offsets": {
+				"from": 176520,
+				"to": 178760
+			},
+			"text": " That's there to manage the speed of light delay."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,760",
+				"to": "00:03:02,800"
+			},
+			"offsets": {
+				"from": 178760,
+				"to": 182800
+			},
+			"text": " So my contention is that global trade is either going to be completely centralized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,800",
+				"to": "00:03:05,400"
+			},
+			"offsets": {
+				"from": 182800,
+				"to": 185400
+			},
+			"text": " or you're going to have to synchronize computers internationally"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,400",
+				"to": "00:03:08,760"
+			},
+			"offsets": {
+				"from": 185400,
+				"to": 188760
+			},
+			"text": " to conduct global trade, and for that, it's either going to be a blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,760",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 188760,
+				"to": 190120
+			},
+			"text": " or something equivalent."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:13,480"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 193480
+			},
+			"text": " So I'm completely convinced that the synchronization of the world's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,480",
+				"to": "00:03:16,880"
+			},
+			"offsets": {
+				"from": 193480,
+				"to": 196880
+			},
+			"text": " computers for all purposes of global trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,880",
+				"to": "00:03:20,240"
+			},
+			"offsets": {
+				"from": 196880,
+				"to": 200240
+			},
+			"text": " is going to wind up on a blockchain or a closely equivalent technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,240",
+				"to": "00:03:21,320"
+			},
+			"offsets": {
+				"from": 200240,
+				"to": 201320
+			},
+			"text": " This is the big game."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,320",
+				"to": "00:03:21,600"
+			},
+			"offsets": {
+				"from": 201320,
+				"to": 201600
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,600",
+				"to": "00:03:22,880"
+			},
+			"offsets": {
+				"from": 201600,
+				"to": 202880
+			},
+			"text": " This is what we're chasing."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,880",
+				"to": "00:03:25,880"
+			},
+			"offsets": {
+				"from": 202880,
+				"to": 205880
+			},
+			"text": " And in that process, we can either wind up with a better world"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,880",
+				"to": "00:03:29,720"
+			},
+			"offsets": {
+				"from": 205880,
+				"to": 209720
+			},
+			"text": " because that same system tracks carbon, tracks slavery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,720",
+				"to": "00:03:32,800"
+			},
+			"offsets": {
+				"from": 209720,
+				"to": 212800
+			},
+			"text": " tracks environmental pollution, tracks political oppression"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,800",
+				"to": "00:03:35,040"
+			},
+			"offsets": {
+				"from": 212800,
+				"to": 215040
+			},
+			"text": " in the regimes in which these things were produced,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,040",
+				"to": "00:03:37,400"
+			},
+			"offsets": {
+				"from": 215040,
+				"to": 217400
+			},
+			"text": " or we can have a global system that washes all hands"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,400",
+				"to": "00:03:41,440"
+			},
+			"offsets": {
+				"from": 217400,
+				"to": 221440
+			},
+			"text": " and automizes all payments and gives you with no record keeping."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,440",
+				"to": "00:03:44,960"
+			},
+			"offsets": {
+				"from": 221440,
+				"to": 224960
+			},
+			"text": " So how we implement this transition from paper-based trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,960",
+				"to": "00:03:49,040"
+			},
+			"offsets": {
+				"from": 224960,
+				"to": 229040
+			},
+			"text": " to computer-based trade is hugely going to affect the everyday economic reality"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,040",
+				"to": "00:03:50,240"
+			},
+			"offsets": {
+				"from": 229040,
+				"to": 230240
+			},
+			"text": " for the entire planet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,240",
+				"to": "00:03:52,680"
+			},
+			"offsets": {
+				"from": 230240,
+				"to": 232680
+			},
+			"text": " This is a fight that's worth us participating in,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,680",
+				"to": "00:03:56,600"
+			},
+			"offsets": {
+				"from": 232680,
+				"to": 236600
+			},
+			"text": " and it's a fight that it's important that we win."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,600",
+				"to": "00:03:58,840"
+			},
+			"offsets": {
+				"from": 236600,
+				"to": 238840
+			},
+			"text": " The balance of power that shapes global trade"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,840",
+				"to": "00:04:00,640"
+			},
+			"offsets": {
+				"from": 238840,
+				"to": 240640
+			},
+			"text": " is a complex adaptive system."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,640",
+				"to": "00:04:04,920"
+			},
+			"offsets": {
+				"from": 240640,
+				"to": 244920
+			},
+			"text": " It's a set of multiple competing forces that are struggling for control"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,920",
+				"to": "00:04:06,680"
+			},
+			"offsets": {
+				"from": 244920,
+				"to": 246680
+			},
+			"text": " of the society."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,680",
+				"to": "00:04:10,360"
+			},
+			"offsets": {
+				"from": 246680,
+				"to": 250360
+			},
+			"text": " We are essentially in the people part of that group."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,360",
+				"to": "00:04:13,160"
+			},
+			"offsets": {
+				"from": 250360,
+				"to": 253160
+			},
+			"text": " We're not in a single enormous global faceless corporation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,160",
+				"to": "00:04:16,400"
+			},
+			"offsets": {
+				"from": 253160,
+				"to": 256400
+			},
+			"text": " run by one massive shareholder."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,400",
+				"to": "00:04:19,400"
+			},
+			"offsets": {
+				"from": 256400,
+				"to": 259400
+			},
+			"text": " We are actually at assemblage of the people."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,400",
+				"to": "00:04:22,320"
+			},
+			"offsets": {
+				"from": 259400,
+				"to": 262320
+			},
+			"text": " So our position in this is that we, the people,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,320",
+				"to": "00:04:26,440"
+			},
+			"offsets": {
+				"from": 262320,
+				"to": 266440
+			},
+			"text": " attempt to represent a better future by implementing a set of technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,440",
+				"to": "00:04:28,320"
+			},
+			"offsets": {
+				"from": 266440,
+				"to": 268320
+			},
+			"text": " that give us access to a better world"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,320",
+				"to": "00:04:32,760"
+			},
+			"offsets": {
+				"from": 268320,
+				"to": 272760
+			},
+			"text": " and that economically outcompete the competitors for that role."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,760",
+				"to": "00:04:36,680"
+			},
+			"offsets": {
+				"from": 272760,
+				"to": 276680
+			},
+			"text": " One way that I talk about this is Star Trek loyalists or cultural loyalists."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,680",
+				"to": "00:04:40,960"
+			},
+			"offsets": {
+				"from": 276680,
+				"to": 280960
+			},
+			"text": " We're the science fiction faction that are trying to get to a preferable future,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,960",
+				"to": "00:04:45,240"
+			},
+			"offsets": {
+				"from": 280960,
+				"to": 285240
+			},
+			"text": " and to get there we have to outcompete the state and the corporations to arrive there."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,240",
+				"to": "00:04:47,200"
+			},
+			"offsets": {
+				"from": 285240,
+				"to": 287200
+			},
+			"text": " This stuff is all extremely political."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,200",
+				"to": "00:04:49,440"
+			},
+			"offsets": {
+				"from": 287200,
+				"to": 289440
+			},
+			"text": " We are not less political than the Bitcoin community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,440",
+				"to": "00:04:51,880"
+			},
+			"offsets": {
+				"from": 289440,
+				"to": 291880
+			},
+			"text": " We're just a little slower to figure out what our values are."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,880",
+				"to": "00:04:53,600"
+			},
+			"offsets": {
+				"from": 291880,
+				"to": 293600
+			},
+			"text": " But it's the same game."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,600",
+				"to": "00:04:57,480"
+			},
+			"offsets": {
+				"from": 293600,
+				"to": 297480
+			},
+			"text": " It's just we're going after a much, much wider spectrum of activities"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,480",
+				"to": "00:04:59,800"
+			},
+			"offsets": {
+				"from": 297480,
+				"to": 299800
+			},
+			"text": " than just competing with state-suition currency."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,800",
+				"to": "00:05:02,480"
+			},
+			"offsets": {
+				"from": 299800,
+				"to": 302480
+			},
+			"text": " It's a much broader perspective."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,480",
+				"to": "00:05:05,520"
+			},
+			"offsets": {
+				"from": 302480,
+				"to": 305520
+			},
+			"text": " So this is our issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,520",
+				"to": "00:05:08,880"
+			},
+			"offsets": {
+				"from": 305520,
+				"to": 308880
+			},
+			"text": " We are having a horrible problem breaking out into the real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,880",
+				"to": "00:05:12,120"
+			},
+			"offsets": {
+				"from": 308880,
+				"to": 312120
+			},
+			"text": " so that we can use foreign contracts to control fiat assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,120",
+				"to": "00:05:16,560"
+			},
+			"offsets": {
+				"from": 312120,
+				"to": 316560
+			},
+			"text": " Until we solve this problem, we are not fully empowered."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,560",
+				"to": "00:05:19,760"
+			},
+			"offsets": {
+				"from": 316560,
+				"to": 319760
+			},
+			"text": " We can't get hold of the future and shape the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,760",
+				"to": "00:05:22,560"
+			},
+			"offsets": {
+				"from": 319760,
+				"to": 322560
+			},
+			"text": " because as soon as we get outside of the world of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,560",
+				"to": "00:05:25,120"
+			},
+			"offsets": {
+				"from": 322560,
+				"to": 325120
+			},
+			"text": " outside the world of crypto assets, we're suddenly powerless."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,120",
+				"to": "00:05:26,360"
+			},
+			"offsets": {
+				"from": 325120,
+				"to": 326360
+			},
+			"text": " The magic stops working."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,360",
+				"to": "00:05:28,520"
+			},
+			"offsets": {
+				"from": 326360,
+				"to": 328520
+			},
+			"text": " We hit a threshold, we can't get past it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,520",
+				"to": "00:05:31,440"
+			},
+			"offsets": {
+				"from": 328520,
+				"to": 331440
+			},
+			"text": " So what I'm going to tell you is I've breached that threshold,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,440",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 331440,
+				"to": 334000
+			},
+			"text": " but the solution is kind of ugly."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:35,440"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 335440
+			},
+			"text": " I know how to get to the real world now."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,440",
+				"to": "00:05:37,360"
+			},
+			"offsets": {
+				"from": 335440,
+				"to": 337360
+			},
+			"text": " I know how to control the smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,360",
+				"to": "00:05:39,240"
+			},
+			"offsets": {
+				"from": 337360,
+				"to": 339240
+			},
+			"text": " Some of you are going to hate what I have to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,240",
+				"to": "00:05:40,720"
+			},
+			"offsets": {
+				"from": 339240,
+				"to": 340720
+			},
+			"text": " Some of you are going to love it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,720",
+				"to": "00:05:43,360"
+			},
+			"offsets": {
+				"from": 340720,
+				"to": 343360
+			},
+			"text": " Please, if you find a better way of doing it, let me know."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,360",
+				"to": "00:05:45,240"
+			},
+			"offsets": {
+				"from": 343360,
+				"to": 345240
+			},
+			"text": " But let's go."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,240",
+				"to": "00:05:47,720"
+			},
+			"offsets": {
+				"from": 345240,
+				"to": 347720
+			},
+			"text": " So 50 trillion of assets a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,720",
+				"to": "00:05:49,160"
+			},
+			"offsets": {
+				"from": 347720,
+				"to": 349160
+			},
+			"text": " I've already talked about the size of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,160",
+				"to": "00:05:50,480"
+			},
+			"offsets": {
+				"from": 349160,
+				"to": 350480
+			},
+			"text": " It's worth noting."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,480",
+				"to": "00:05:53,800"
+			},
+			"offsets": {
+				"from": 350480,
+				"to": 353800
+			},
+			"text": " BSE on credit cards gave us three of the world's five biggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,800",
+				"to": "00:05:55,200"
+			},
+			"offsets": {
+				"from": 353800,
+				"to": 355200
+			},
+			"text": " companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,200",
+				"to": "00:06:00,680"
+			},
+			"offsets": {
+				"from": 355200,
+				"to": 360680
+			},
+			"text": " B2B is conservatively 20 times the size of the entire BSE"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,680",
+				"to": "00:06:01,680"
+			},
+			"offsets": {
+				"from": 360680,
+				"to": 361680
+			},
+			"text": " commercial market."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,680",
+				"to": "00:06:04,240"
+			},
+			"offsets": {
+				"from": 361680,
+				"to": 364240
+			},
+			"text": " It's a vast pool of transactions."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,240",
+				"to": "00:06:08,160"
+			},
+			"offsets": {
+				"from": 364240,
+				"to": 368160
+			},
+			"text": " And if we could figure out how to get into that market,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,160",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 368160,
+				"to": 370000
+			},
+			"text": " it's a very, very big game."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:13,720"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 373720
+			},
+			"text": " The entire e-commerce game is about $2.5 trillion"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,720",
+				"to": "00:06:15,360"
+			},
+			"offsets": {
+				"from": 373720,
+				"to": 375360
+			},
+			"text": " of transactions a year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,360",
+				"to": "00:06:18,880"
+			},
+			"offsets": {
+				"from": 375360,
+				"to": 378880
+			},
+			"text": " There's a vast space next door, which is completely underserved"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,880",
+				"to": "00:06:21,360"
+			},
+			"offsets": {
+				"from": 378880,
+				"to": 381360
+			},
+			"text": " because credit cards are no good for BSE payments."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,360",
+				"to": "00:06:24,040"
+			},
+			"offsets": {
+				"from": 381360,
+				"to": 384040
+			},
+			"text": " This is all of the real world stuff, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,040",
+				"to": "00:06:26,560"
+			},
+			"offsets": {
+				"from": 384040,
+				"to": 386560
+			},
+			"text": " 200-acre robot ports tied together"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,560",
+				"to": "00:06:29,480"
+			},
+			"offsets": {
+				"from": 386560,
+				"to": 389480
+			},
+			"text": " by paper contracts and bills of lading."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,480",
+				"to": "00:06:31,680"
+			},
+			"offsets": {
+				"from": 389480,
+				"to": 391680
+			},
+			"text": " If we could figure out how to get into this game,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,680",
+				"to": "00:06:33,520"
+			},
+			"offsets": {
+				"from": 391680,
+				"to": 393520
+			},
+			"text": " we become a global economic superpower,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,520",
+				"to": "00:06:35,400"
+			},
+			"offsets": {
+				"from": 393520,
+				"to": 395400
+			},
+			"text": " and our values become amplified."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,400",
+				"to": "00:06:37,160"
+			},
+			"offsets": {
+				"from": 395400,
+				"to": 397160
+			},
+			"text": " If we can't get into this game, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,160",
+				"to": "00:06:39,920"
+			},
+			"offsets": {
+				"from": 397160,
+				"to": 399920
+			},
+			"text": " remain relatively marginalized in an environment which"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,920",
+				"to": "00:06:42,280"
+			},
+			"offsets": {
+				"from": 399920,
+				"to": 402280
+			},
+			"text": " is increasingly going to be regulated by people"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,280",
+				"to": "00:06:44,320"
+			},
+			"offsets": {
+				"from": 402280,
+				"to": 404320
+			},
+			"text": " that don't like our values."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,320",
+				"to": "00:06:46,560"
+			},
+			"offsets": {
+				"from": 404320,
+				"to": 406560
+			},
+			"text": " We have to move into the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,560",
+				"to": "00:06:49,240"
+			},
+			"offsets": {
+				"from": 406560,
+				"to": 409240
+			},
+			"text": " So the first thing that we need to be able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,240",
+				"to": "00:06:52,200"
+			},
+			"offsets": {
+				"from": 409240,
+				"to": 412200
+			},
+			"text": " is we need to be able to identify real world assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,200",
+				"to": "00:06:54,960"
+			},
+			"offsets": {
+				"from": 412200,
+				"to": 414960
+			},
+			"text": " in a way that's unique enough to get control of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,960",
+				"to": "00:06:57,080"
+			},
+			"offsets": {
+				"from": 414960,
+				"to": 417080
+			},
+			"text": " We need the equivalent of IP addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,080",
+				"to": "00:06:59,800"
+			},
+			"offsets": {
+				"from": 417080,
+				"to": 419800
+			},
+			"text": " We need the equivalent of DNS."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,800",
+				"to": "00:07:02,280"
+			},
+			"offsets": {
+				"from": 419800,
+				"to": 422280
+			},
+			"text": " We need the equivalent of cryptographic hashes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:02,280",
+				"to": "00:07:04,120"
+			},
+			"offsets": {
+				"from": 422280,
+				"to": 424120
+			},
+			"text": " And the world is already filled with assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,120",
+				"to": "00:07:05,640"
+			},
+			"offsets": {
+				"from": 424120,
+				"to": 425640
+			},
+			"text": " that have these numbers, and there"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,640",
+				"to": "00:07:08,640"
+			},
+			"offsets": {
+				"from": 425640,
+				"to": 428640
+			},
+			"text": " are lots of numbering schemes to give assets numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,640",
+				"to": "00:07:10,800"
+			},
+			"offsets": {
+				"from": 428640,
+				"to": 430800
+			},
+			"text": " These numbering schemes are under constant attack."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,800",
+				"to": "00:07:12,920"
+			},
+			"offsets": {
+				"from": 430800,
+				"to": 432920
+			},
+			"text": " The top one is a bank node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,920",
+				"to": "00:07:14,720"
+			},
+			"offsets": {
+				"from": 432920,
+				"to": 434720
+			},
+			"text": " The middle one is a car registration number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,720",
+				"to": "00:07:17,560"
+			},
+			"offsets": {
+				"from": 434720,
+				"to": 437560
+			},
+			"text": " The bottom one is a laptop number."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,560",
+				"to": "00:07:19,480"
+			},
+			"offsets": {
+				"from": 437560,
+				"to": 439480
+			},
+			"text": " All of those kind of structures are constantly"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,480",
+				"to": "00:07:21,760"
+			},
+			"offsets": {
+				"from": 439480,
+				"to": 441760
+			},
+			"text": " under pressure from things that counterfeit goods."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,760",
+				"to": "00:07:24,680"
+			},
+			"offsets": {
+				"from": 441760,
+				"to": 444680
+			},
+			"text": " But even if you just start the game with these numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,680",
+				"to": "00:07:26,880"
+			},
+			"offsets": {
+				"from": 444680,
+				"to": 446880
+			},
+			"text": " it puts you at parity with the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,880",
+				"to": "00:07:29,240"
+			},
+			"offsets": {
+				"from": 446880,
+				"to": 449240
+			},
+			"text": " If you can then make these numbers properly cryptographic"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,240",
+				"to": "00:07:31,560"
+			},
+			"offsets": {
+				"from": 449240,
+				"to": 451560
+			},
+			"text": " and bind them to a chain at point of manufacture,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,560",
+				"to": "00:07:33,240"
+			},
+			"offsets": {
+				"from": 451560,
+				"to": 453240
+			},
+			"text": " you get better than the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,240",
+				"to": "00:07:36,360"
+			},
+			"offsets": {
+				"from": 453240,
+				"to": 456360
+			},
+			"text": " Lots of projects working on that for things like drug delivery."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,360",
+				"to": "00:07:38,240"
+			},
+			"offsets": {
+				"from": 456360,
+				"to": 458240
+			},
+			"text": " So it's not that the real world is"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,240",
+				"to": "00:07:41,480"
+			},
+			"offsets": {
+				"from": 458240,
+				"to": 461480
+			},
+			"text": " unenumerated and unidentifiable, we cannot really"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,480",
+				"to": "00:07:43,520"
+			},
+			"offsets": {
+				"from": 461480,
+				"to": 463520
+			},
+			"text": " get hold of things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,520",
+				"to": "00:07:46,000"
+			},
+			"offsets": {
+				"from": 463520,
+				"to": 466000
+			},
+			"text": " The problem is that if we get hold of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,000",
+				"to": "00:07:49,840"
+			},
+			"offsets": {
+				"from": 466000,
+				"to": 469840
+			},
+			"text": " without an appropriate binding to some kind of legal entity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,840",
+				"to": "00:07:52,360"
+			},
+			"offsets": {
+				"from": 469840,
+				"to": 472360
+			},
+			"text": " you don't have any ability to control the asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,360",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 472360,
+				"to": 474960
+			},
+			"text": " You can identify it, but you can't control it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:07:58,120"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 478120
+			},
+			"text": " So the first piece of new stuff that we're building out"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,120",
+				"to": "00:08:00,400"
+			},
+			"offsets": {
+				"from": 478120,
+				"to": 480400
+			},
+			"text": " is a thing called an asset passport."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,400",
+				"to": "00:08:01,960"
+			},
+			"offsets": {
+				"from": 480400,
+				"to": 481960
+			},
+			"text": " And an asset passport is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,960",
+				"to": "00:08:05,240"
+			},
+			"offsets": {
+				"from": 481960,
+				"to": 485240
+			},
+			"text": " digital identity documents on the self-soverer"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,240",
+				"to": "00:08:08,520"
+			},
+			"offsets": {
+				"from": 485240,
+				"to": 488520
+			},
+			"text": " model more or less for assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,520",
+				"to": "00:08:10,800"
+			},
+			"offsets": {
+				"from": 488520,
+				"to": 490800
+			},
+			"text": " And it's implemented to handle the kind of squishiness"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,800",
+				"to": "00:08:13,800"
+			},
+			"offsets": {
+				"from": 490800,
+				"to": 493800
+			},
+			"text": " of the real world using a set of staked partners that"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,800",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 493800,
+				"to": 497000
+			},
+			"text": " do things like value the asset, identify the asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:19,160"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 499160
+			},
+			"text": " verify the asset, doesn't have more than one owner"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,160",
+				"to": "00:08:20,640"
+			},
+			"offsets": {
+				"from": 499160,
+				"to": 500640
+			},
+			"text": " in these kind of processes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,640",
+				"to": "00:08:23,600"
+			},
+			"offsets": {
+				"from": 500640,
+				"to": 503600
+			},
+			"text": " So you have an asset, you take all the relevant legal facts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,600",
+				"to": "00:08:25,880"
+			},
+			"offsets": {
+				"from": 503600,
+				"to": 505880
+			},
+			"text": " about the asset, you attach a stake to each one"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:25,880",
+				"to": "00:08:28,160"
+			},
+			"offsets": {
+				"from": 505880,
+				"to": 508160
+			},
+			"text": " of the legal facts in case the fact is wrong,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,160",
+				"to": "00:08:30,240"
+			},
+			"offsets": {
+				"from": 508160,
+				"to": 510240
+			},
+			"text": " and then you bundle all that all up"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:30,240",
+				"to": "00:08:32,400"
+			},
+			"offsets": {
+				"from": 510240,
+				"to": 512400
+			},
+			"text": " into a nice machine-readable bundle."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,400",
+				"to": "00:08:34,520"
+			},
+			"offsets": {
+				"from": 512400,
+				"to": 514520
+			},
+			"text": " And this asset passporting process"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,520",
+				"to": "00:08:38,120"
+			},
+			"offsets": {
+				"from": 514520,
+				"to": 518120
+			},
+			"text": " is the first step in getting an asset onto the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,120",
+				"to": "00:08:40,440"
+			},
+			"offsets": {
+				"from": 518120,
+				"to": 520440
+			},
+			"text": " and under smart contract control."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,440",
+				"to": "00:08:42,040"
+			},
+			"offsets": {
+				"from": 520440,
+				"to": 522040
+			},
+			"text": " Does this make sense so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,040",
+				"to": "00:08:44,080"
+			},
+			"offsets": {
+				"from": 522040,
+				"to": 524080
+			},
+			"text": " That's a pretty easy thing to conceive of."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,080",
+				"to": "00:08:44,880"
+			},
+			"offsets": {
+				"from": 524080,
+				"to": 524880
+			},
+			"text": " There's no magic there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,880",
+				"to": "00:08:46,880"
+			},
+			"offsets": {
+				"from": 524880,
+				"to": 526880
+			},
+			"text": " We haven't hit the hard part yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,880",
+				"to": "00:08:49,080"
+			},
+			"offsets": {
+				"from": 526880,
+				"to": 529080
+			},
+			"text": " Second thing, automated custodians."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,080",
+				"to": "00:08:51,160"
+			},
+			"offsets": {
+				"from": 529080,
+				"to": 531160
+			},
+			"text": " This is kind of where the fun begins."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,160",
+				"to": "00:08:55,520"
+			},
+			"offsets": {
+				"from": 531160,
+				"to": 535520
+			},
+			"text": " So a custodian is a corporation or a trust."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,520",
+				"to": "00:08:57,480"
+			},
+			"offsets": {
+				"from": 535520,
+				"to": 537480
+			},
+			"text": " It could be something like a bank."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,480",
+				"to": "00:09:02,560"
+			},
+			"offsets": {
+				"from": 537480,
+				"to": 542560
+			},
+			"text": " And it has the legal requirement of owning an asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,560",
+				"to": "00:09:06,000"
+			},
+			"offsets": {
+				"from": 542560,
+				"to": 546000
+			},
+			"text": " as a proxy for some other actor in the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,000",
+				"to": "00:09:09,040"
+			},
+			"offsets": {
+				"from": 546000,
+				"to": 549040
+			},
+			"text": " Now, these things are all over the commercial world."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,040",
+				"to": "00:09:11,360"
+			},
+			"offsets": {
+				"from": 549040,
+				"to": 551360
+			},
+			"text": " They handle goodness-nose billions or trillions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,360",
+				"to": "00:09:16,120"
+			},
+			"offsets": {
+				"from": 551360,
+				"to": 556120
+			},
+			"text": " of transactions a year that are an un-inumerated number"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,120",
+				"to": "00:09:16,960"
+			},
+			"offsets": {
+				"from": 556120,
+				"to": 556960
+			},
+			"text": " of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,960",
+				"to": "00:09:18,280"
+			},
+			"offsets": {
+				"from": 556960,
+				"to": 558280
+			},
+			"text": " And different jurisdictions handle them"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,280",
+				"to": "00:09:20,240"
+			},
+			"offsets": {
+				"from": 558280,
+				"to": 560240
+			},
+			"text": " in very different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,240",
+				"to": "00:09:25,520"
+			},
+			"offsets": {
+				"from": 560240,
+				"to": 565520
+			},
+			"text": " So the job of the custodian is to look to the digital world"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,520",
+				"to": "00:09:28,840"
+			},
+			"offsets": {
+				"from": 565520,
+				"to": 568840
+			},
+			"text": " as if it's a smart contract and to the analog world"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,840",
+				"to": "00:09:30,640"
+			},
+			"offsets": {
+				"from": 568840,
+				"to": 570640
+			},
+			"text": " as if it's a paper contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,640",
+				"to": "00:09:34,080"
+			},
+			"offsets": {
+				"from": 570640,
+				"to": 574080
+			},
+			"text": " So it's basically the structural equivalent"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:34,080",
+				"to": "00:09:35,840"
+			},
+			"offsets": {
+				"from": 574080,
+				"to": 575840
+			},
+			"text": " of the accordion contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,840",
+				"to": "00:09:37,960"
+			},
+			"offsets": {
+				"from": 575840,
+				"to": 577960
+			},
+			"text": " The accordion contract has a digital component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,960",
+				"to": "00:09:39,280"
+			},
+			"offsets": {
+				"from": 577960,
+				"to": 579280
+			},
+			"text": " which is a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,280",
+				"to": "00:09:42,320"
+			},
+			"offsets": {
+				"from": 579280,
+				"to": 582320
+			},
+			"text": " It has an analog component, which is a paper contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,320",
+				"to": "00:09:45,240"
+			},
+			"offsets": {
+				"from": 582320,
+				"to": 585240
+			},
+			"text": " And it relies on an arbitrator to interpret both sides"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,240",
+				"to": "00:09:46,880"
+			},
+			"offsets": {
+				"from": 585240,
+				"to": 586880
+			},
+			"text": " of that in a successful way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,880",
+				"to": "00:09:49,000"
+			},
+			"offsets": {
+				"from": 586880,
+				"to": 589000
+			},
+			"text": " And that fits a lot of load on the arbitrators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,000",
+				"to": "00:09:51,480"
+			},
+			"offsets": {
+				"from": 589000,
+				"to": 591480
+			},
+			"text": " It's very hard to find qualified arbitrators."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,480",
+				"to": "00:09:54,640"
+			},
+			"offsets": {
+				"from": 591480,
+				"to": 594640
+			},
+			"text": " In this model, rather than having that element"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:54,640",
+				"to": "00:09:56,680"
+			},
+			"offsets": {
+				"from": 594640,
+				"to": 596680
+			},
+			"text": " which has a foot in both worlds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,680",
+				"to": "00:09:59,240"
+			},
+			"offsets": {
+				"from": 596680,
+				"to": 599240
+			},
+			"text": " be instantiated as a contract pair,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,240",
+				"to": "00:10:02,240"
+			},
+			"offsets": {
+				"from": 599240,
+				"to": 602240
+			},
+			"text": " it's instantiated as a legal institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,240",
+				"to": "00:10:04,480"
+			},
+			"offsets": {
+				"from": 602240,
+				"to": 604480
+			},
+			"text": " One side of the institution looks like a smart contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,480",
+				"to": "00:10:06,400"
+			},
+			"offsets": {
+				"from": 604480,
+				"to": 606400
+			},
+			"text": " You call the contract and it does things."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,400",
+				"to": "00:10:08,360"
+			},
+			"offsets": {
+				"from": 606400,
+				"to": 608360
+			},
+			"text": " The other side looks like an analog institution"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,360",
+				"to": "00:10:11,760"
+			},
+			"offsets": {
+				"from": 608360,
+				"to": 611760
+			},
+			"text": " which has a full set of regulation and regulatory licenses."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,760",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 611760,
+				"to": 616000
+			},
+			"text": " So this thing is the adapter between the smart contract world"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:17,280"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 617280
+			},
+			"text": " and the legal world."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,280",
+				"to": "00:10:20,600"
+			},
+			"offsets": {
+				"from": 617280,
+				"to": 620600
+			},
+			"text": " And what works to make that happen is a concept"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,600",
+				"to": "00:10:23,440"
+			},
+			"offsets": {
+				"from": 620600,
+				"to": 623440
+			},
+			"text": " that we take from the crypto world, which is staking."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,440",
+				"to": "00:10:26,280"
+			},
+			"offsets": {
+				"from": 623440,
+				"to": 626280
+			},
+			"text": " These things have extremely strong contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,280",
+				"to": "00:10:29,720"
+			},
+			"offsets": {
+				"from": 626280,
+				"to": 629720
+			},
+			"text": " insurance, indemnification, regulation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,720",
+				"to": "00:10:31,760"
+			},
+			"offsets": {
+				"from": 629720,
+				"to": 631760
+			},
+			"text": " dispute resolution, arbitration."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,760",
+				"to": "00:10:34,000"
+			},
+			"offsets": {
+				"from": 631760,
+				"to": 634000
+			},
+			"text": " Every single mechanism you can use"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,000",
+				"to": "00:10:36,080"
+			},
+			"offsets": {
+				"from": 634000,
+				"to": 636080
+			},
+			"text": " to make sure that the automated custodian"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,080",
+				"to": "00:10:38,760"
+			},
+			"offsets": {
+				"from": 636080,
+				"to": 638760
+			},
+			"text": " does exactly what the smart contract tells it to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,760",
+				"to": "00:10:41,880"
+			},
+			"offsets": {
+				"from": 638760,
+				"to": 641880
+			},
+			"text": " is deployed to give us a nice clean interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:41,880",
+				"to": "00:10:45,520"
+			},
+			"offsets": {
+				"from": 641880,
+				"to": 645520
+			},
+			"text": " between the fiat world and the crypto world."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:45,520",
+				"to": "00:10:48,160"
+			},
+			"offsets": {
+				"from": 645520,
+				"to": 648160
+			},
+			"text": " And in this direction, this is a unidirectional interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,160",
+				"to": "00:10:50,280"
+			},
+			"offsets": {
+				"from": 648160,
+				"to": 650280
+			},
+			"text": " you write to the material world"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,280",
+				"to": "00:10:51,760"
+			},
+			"offsets": {
+				"from": 650280,
+				"to": 651760
+			},
+			"text": " by writing to the smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,760",
+				"to": "00:10:53,960"
+			},
+			"offsets": {
+				"from": 651760,
+				"to": 653960
+			},
+			"text": " that drive the automated custodian."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,960",
+				"to": "00:10:55,880"
+			},
+			"offsets": {
+				"from": 653960,
+				"to": 655880
+			},
+			"text": " Now at this point, what we've introduced here"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,880",
+				"to": "00:10:57,680"
+			},
+			"offsets": {
+				"from": 655880,
+				"to": 657680
+			},
+			"text": " is a point of centralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,680",
+				"to": "00:10:59,800"
+			},
+			"offsets": {
+				"from": 657680,
+				"to": 659800
+			},
+			"text": " So if you imagine a single automated custodian"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,800",
+				"to": "00:11:02,320"
+			},
+			"offsets": {
+				"from": 659800,
+				"to": 662320
+			},
+			"text": " for the entire planet, you can see that that might have"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,320",
+				"to": "00:11:05,440"
+			},
+			"offsets": {
+				"from": 662320,
+				"to": 665440
+			},
+			"text": " some issues, I'll come back to that a little further in."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,440",
+				"to": "00:11:06,840"
+			},
+			"offsets": {
+				"from": 665440,
+				"to": 666840
+			},
+			"text": " Does this all make sense so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,840",
+				"to": "00:11:07,680"
+			},
+			"offsets": {
+				"from": 666840,
+				"to": 667680
+			},
+			"text": " I want to make sure that we don't,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,680",
+				"to": "00:11:10,480"
+			},
+			"offsets": {
+				"from": 667680,
+				"to": 670480
+			},
+			"text": " because the legal machinery around building"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,480",
+				"to": "00:11:12,320"
+			},
+			"offsets": {
+				"from": 670480,
+				"to": 672320
+			},
+			"text": " these things is seriously non-trivial."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,320",
+				"to": "00:11:15,960"
+			},
+			"offsets": {
+				"from": 672320,
+				"to": 675960
+			},
+			"text": " So that is a very complex legal object."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,960",
+				"to": "00:11:17,920"
+			},
+			"offsets": {
+				"from": 675960,
+				"to": 677920
+			},
+			"text": " Multiple layers of corporations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,920",
+				"to": "00:11:19,600"
+			},
+			"offsets": {
+				"from": 677920,
+				"to": 679600
+			},
+			"text": " complex legal instrumentation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,600",
+				"to": "00:11:21,880"
+			},
+			"offsets": {
+				"from": 679600,
+				"to": 681880
+			},
+			"text": " different jurisdictions implement in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,880",
+				"to": "00:11:23,760"
+			},
+			"offsets": {
+				"from": 681880,
+				"to": 683760
+			},
+			"text": " It's a really, really serious piece of work"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,760",
+				"to": "00:11:25,520"
+			},
+			"offsets": {
+				"from": 683760,
+				"to": 685520
+			},
+			"text": " to build one of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,520",
+				"to": "00:11:28,680"
+			},
+			"offsets": {
+				"from": 685520,
+				"to": 688680
+			},
+			"text": " It never might develop planets worth of them."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,680",
+				"to": "00:11:31,320"
+			},
+			"offsets": {
+				"from": 688680,
+				"to": 691320
+			},
+			"text": " So what comes out of that is the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,320",
+				"to": "00:11:35,960"
+			},
+			"offsets": {
+				"from": 691320,
+				"to": 695960
+			},
+			"text": " which have passports and which are embedded inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,960",
+				"to": "00:11:39,800"
+			},
+			"offsets": {
+				"from": 695960,
+				"to": 699800
+			},
+			"text": " of a custodian are now what we would term smart property."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,800",
+				"to": "00:11:42,280"
+			},
+			"offsets": {
+				"from": 699800,
+				"to": 702280
+			},
+			"text": " So smart property is where you take an asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,280",
+				"to": "00:11:46,840"
+			},
+			"offsets": {
+				"from": 702280,
+				"to": 706840
+			},
+			"text": " take an object, you bind it to a set of metadata,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,840",
+				"to": "00:11:49,000"
+			},
+			"offsets": {
+				"from": 706840,
+				"to": 709000
+			},
+			"text": " which is the asset passport in process."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,000",
+				"to": "00:11:51,680"
+			},
+			"offsets": {
+				"from": 709000,
+				"to": 711680
+			},
+			"text": " So now the object is, for example, searchable."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,680",
+				"to": "00:11:53,520"
+			},
+			"offsets": {
+				"from": 711680,
+				"to": 713520
+			},
+			"text": " You could figure out where it is and who owns it"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,520",
+				"to": "00:11:55,280"
+			},
+			"offsets": {
+				"from": 713520,
+				"to": 715280
+			},
+			"text": " because you can interrogate the metadata,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,280",
+				"to": "00:11:56,520"
+			},
+			"offsets": {
+				"from": 715280,
+				"to": 716520
+			},
+			"text": " which is on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,520",
+				"to": "00:11:57,520"
+			},
+			"offsets": {
+				"from": 716520,
+				"to": 717520
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,520",
+				"to": "00:12:02,520"
+			},
+			"offsets": {
+				"from": 717520,
+				"to": 722520
+			},
+			"text": " If the asset chooses to publish a set of essentially API hooks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,520",
+				"to": "00:12:05,400"
+			},
+			"offsets": {
+				"from": 722520,
+				"to": 725400
+			},
+			"text": " right, that's at contract end points,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,400",
+				"to": "00:12:06,600"
+			},
+			"offsets": {
+				"from": 725400,
+				"to": 726600
+			},
+			"text": " that you can hook,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,600",
+				"to": "00:12:09,880"
+			},
+			"offsets": {
+				"from": 726600,
+				"to": 729880
+			},
+			"text": " you could then do things like buy the asset directly on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,880",
+				"to": "00:12:11,360"
+			},
+			"offsets": {
+				"from": 729880,
+				"to": 731360
+			},
+			"text": " And as long as the asset is correctly"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,360",
+				"to": "00:12:12,800"
+			},
+			"offsets": {
+				"from": 731360,
+				"to": 732800
+			},
+			"text": " logged through the custodian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,800",
+				"to": "00:12:14,760"
+			},
+			"offsets": {
+				"from": 732800,
+				"to": 734760
+			},
+			"text": " as soon as you put the money into the smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,760",
+				"to": "00:12:17,200"
+			},
+			"offsets": {
+				"from": 734760,
+				"to": 737200
+			},
+			"text": " you're now the legal owner of the asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,200",
+				"to": "00:12:18,040"
+			},
+			"offsets": {
+				"from": 737200,
+				"to": 738040
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:18,040",
+				"to": "00:12:21,520"
+			},
+			"offsets": {
+				"from": 738040,
+				"to": 741520
+			},
+			"text": " And that works equally well, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,520",
+				"to": "00:12:24,600"
+			},
+			"offsets": {
+				"from": 741520,
+				"to": 744600
+			},
+			"text": " For a single asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,600",
+				"to": "00:12:28,200"
+			},
+			"offsets": {
+				"from": 744600,
+				"to": 748200
+			},
+			"text": " as it works for a house or a portfolio of stocks"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,200",
+				"to": "00:12:29,280"
+			},
+			"offsets": {
+				"from": 748200,
+				"to": 749280
+			},
+			"text": " or anything else,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,280",
+				"to": "00:12:31,320"
+			},
+			"offsets": {
+				"from": 749280,
+				"to": 751320
+			},
+			"text": " because the legal machinery of the custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,320",
+				"to": "00:12:35,160"
+			},
+			"offsets": {
+				"from": 751320,
+				"to": 755160
+			},
+			"text": " is able to correctly address any legal object."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,160",
+				"to": "00:12:37,920"
+			},
+			"offsets": {
+				"from": 755160,
+				"to": 757920
+			},
+			"text": " All fiat property has the necessary handles"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,920",
+				"to": "00:12:39,600"
+			},
+			"offsets": {
+				"from": 757920,
+				"to": 759600
+			},
+			"text": " to be embedded in a custodian."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:39,600",
+				"to": "00:12:40,440"
+			},
+			"offsets": {
+				"from": 759600,
+				"to": 760440
+			},
+			"text": " And at that point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,440",
+				"to": "00:12:42,320"
+			},
+			"offsets": {
+				"from": 760440,
+				"to": 762320
+			},
+			"text": " as long as you've got the correct smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,320",
+				"to": "00:12:43,960"
+			},
+			"offsets": {
+				"from": 762320,
+				"to": 763960
+			},
+			"text": " and the correct legal contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,960",
+				"to": "00:12:46,640"
+			},
+			"offsets": {
+				"from": 763960,
+				"to": 766640
+			},
+			"text": " you can use the existing machinery of state"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,640",
+				"to": "00:12:48,640"
+			},
+			"offsets": {
+				"from": 766640,
+				"to": 768640
+			},
+			"text": " to get hold of any physical asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,640",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 768640,
+				"to": 771000
+			},
+			"text": " and turn it into a blockchain address in the asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,880",
+				"to": "00:12:52,720"
+			},
+			"offsets": {
+				"from": 771880,
+				"to": 772720
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,720",
+				"to": "00:12:53,880"
+			},
+			"offsets": {
+				"from": 772720,
+				"to": 773880
+			},
+			"text": " It's a ton of legal work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,880",
+				"to": "00:12:57,440"
+			},
+			"offsets": {
+				"from": 773880,
+				"to": 777440
+			},
+			"text": " but the engineering is sound and you can actually do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,440",
+				"to": "00:13:00,520"
+			},
+			"offsets": {
+				"from": 777440,
+				"to": 780520
+			},
+			"text": " So, what this gives you is a world in which the fiat assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,520",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 780520,
+				"to": 784000
+			},
+			"text": " are as easy to access as URLs, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:05,200"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 785200
+			},
+			"text": " You could, in theory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,200",
+				"to": "00:13:07,800"
+			},
+			"offsets": {
+				"from": 785200,
+				"to": 787800
+			},
+			"text": " in fact, drive one of these automated custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,800",
+				"to": "00:13:09,320"
+			},
+			"offsets": {
+				"from": 787800,
+				"to": 789320
+			},
+			"text": " using standard web technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,320",
+				"to": "00:13:11,520"
+			},
+			"offsets": {
+				"from": 789320,
+				"to": 791520
+			},
+			"text": " You could just publish a bunch of APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,520",
+				"to": "00:13:13,320"
+			},
+			"offsets": {
+				"from": 791520,
+				"to": 793320
+			},
+			"text": " but the problem then is by the time you've built"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,320",
+				"to": "00:13:15,520"
+			},
+			"offsets": {
+				"from": 793320,
+				"to": 795520
+			},
+			"text": " the necessary security and identity machinery"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,520",
+				"to": "00:13:16,800"
+			},
+			"offsets": {
+				"from": 795520,
+				"to": 796800
+			},
+			"text": " around those APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,800",
+				"to": "00:13:19,280"
+			},
+			"offsets": {
+				"from": 796800,
+				"to": 799280
+			},
+			"text": " you might as well use the blockchain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,280",
+				"to": "00:13:22,800"
+			},
+			"offsets": {
+				"from": 799280,
+				"to": 802800
+			},
+			"text": " It builds a very, very different model"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,800",
+				"to": "00:13:24,480"
+			},
+			"offsets": {
+				"from": 802800,
+				"to": 804480
+			},
+			"text": " of how we think about the world."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:24,480",
+				"to": "00:13:26,240"
+			},
+			"offsets": {
+				"from": 804480,
+				"to": 806240
+			},
+			"text": " So, I'm gonna run through that again, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,240",
+				"to": "00:13:28,760"
+			},
+			"offsets": {
+				"from": 806240,
+				"to": 808760
+			},
+			"text": " You start with a bare piece of fiat property"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,760",
+				"to": "00:13:30,080"
+			},
+			"offsets": {
+				"from": 808760,
+				"to": 810080
+			},
+			"text": " that you cannot address on chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,080",
+				"to": "00:13:31,240"
+			},
+			"offsets": {
+				"from": 810080,
+				"to": 811240
+			},
+			"text": " because it has no identity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,240",
+				"to": "00:13:32,840"
+			},
+			"offsets": {
+				"from": 811240,
+				"to": 812840
+			},
+			"text": " There's nothing to talk to."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,840",
+				"to": "00:13:33,680"
+			},
+			"offsets": {
+				"from": 812840,
+				"to": 813680
+			},
+			"text": " Right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,680",
+				"to": "00:13:36,600"
+			},
+			"offsets": {
+				"from": 813680,
+				"to": 816600
+			},
+			"text": " We attach a set of metadata to that on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,600",
+				"to": "00:13:38,280"
+			},
+			"offsets": {
+				"from": 816600,
+				"to": 818280
+			},
+			"text": " That gives us a way of indexing the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,280",
+				"to": "00:13:39,400"
+			},
+			"offsets": {
+				"from": 818280,
+				"to": 819400
+			},
+			"text": " We can talk about the object."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,400",
+				"to": "00:13:40,880"
+			},
+			"offsets": {
+				"from": 819400,
+				"to": 820880
+			},
+			"text": " We still don't have control of it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,880",
+				"to": "00:13:42,720"
+			},
+			"offsets": {
+				"from": 820880,
+				"to": 822720
+			},
+			"text": " but at least now it exists."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,720",
+				"to": "00:13:46,560"
+			},
+			"offsets": {
+				"from": 822720,
+				"to": 826560
+			},
+			"text": " We take control of it by giving it to an asset custodian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,560",
+				"to": "00:13:49,720"
+			},
+			"offsets": {
+				"from": 826560,
+				"to": 829720
+			},
+			"text": " right? And that custodian is automated to the point"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,720",
+				"to": "00:13:52,480"
+			},
+			"offsets": {
+				"from": 829720,
+				"to": 832480
+			},
+			"text": " where smart contracts tell it to do it legally performs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,480",
+				"to": "00:13:53,720"
+			},
+			"offsets": {
+				"from": 832480,
+				"to": 833720
+			},
+			"text": " or it pays."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,720",
+				"to": "00:13:56,800"
+			},
+			"offsets": {
+				"from": 833720,
+				"to": 836800
+			},
+			"text": " A very ordinary model inside of the crypto universe,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,800",
+				"to": "00:13:59,040"
+			},
+			"offsets": {
+				"from": 836800,
+				"to": 839040
+			},
+			"text": " we bind the asset to the smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,040",
+				"to": "00:14:01,360"
+			},
+			"offsets": {
+				"from": 839040,
+				"to": 841360
+			},
+			"text": " and using the legal authority of the custodians."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,360",
+				"to": "00:14:02,400"
+			},
+			"offsets": {
+				"from": 841360,
+				"to": 842400
+			},
+			"text": " And at that point,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,400",
+				"to": "00:14:05,400"
+			},
+			"offsets": {
+				"from": 842400,
+				"to": 845400
+			},
+			"text": " we now have real control of assets."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,400",
+				"to": "00:14:08,080"
+			},
+			"offsets": {
+				"from": 845400,
+				"to": 848080
+			},
+			"text": " Those assets then form a category of things"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,080",
+				"to": "00:14:09,520"
+			},
+			"offsets": {
+				"from": 848080,
+				"to": 849520
+			},
+			"text": " called smart property,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,520",
+				"to": "00:14:10,720"
+			},
+			"offsets": {
+				"from": 849520,
+				"to": 850720
+			},
+			"text": " and the smart property assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,720",
+				"to": "00:14:12,920"
+			},
+			"offsets": {
+				"from": 850720,
+				"to": 852920
+			},
+			"text": " can do whatever you tell them to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,920",
+				"to": "00:14:17,240"
+			},
+			"offsets": {
+				"from": 852920,
+				"to": 857240
+			},
+			"text": " Now, that is a way of totally unifying the physical"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:17,240",
+				"to": "00:14:20,400"
+			},
+			"offsets": {
+				"from": 857240,
+				"to": 860400
+			},
+			"text": " and the digital from the perspective of both the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,400",
+				"to": "00:14:22,320"
+			},
+			"offsets": {
+				"from": 860400,
+				"to": 862320
+			},
+			"text": " where you're writing out into the real world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,320",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 862320,
+				"to": 864160
+			},
+			"text": " but also from the perspective of the governments"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:26,680"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 866680
+			},
+			"text": " that control so much physical matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,680",
+				"to": "00:14:29,440"
+			},
+			"offsets": {
+				"from": 866680,
+				"to": 869440
+			},
+			"text": " Because these systems look to the real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,440",
+				"to": "00:14:31,880"
+			},
+			"offsets": {
+				"from": 869440,
+				"to": 871880
+			},
+			"text": " exactly like the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,880",
+				"to": "00:14:34,560"
+			},
+			"offsets": {
+				"from": 871880,
+				"to": 874560
+			},
+			"text": " An automated custodian is just a custodian,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:34,560",
+				"to": "00:14:36,640"
+			},
+			"offsets": {
+				"from": 874560,
+				"to": 876640
+			},
+			"text": " and there are thousands and thousands and thousands"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,640",
+				"to": "00:14:37,640"
+			},
+			"offsets": {
+				"from": 876640,
+				"to": 877640
+			},
+			"text": " of custodians."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,640",
+				"to": "00:14:39,240"
+			},
+			"offsets": {
+				"from": 877640,
+				"to": 879240
+			},
+			"text": " So it's a seamless integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,240",
+				"to": "00:14:41,400"
+			},
+			"offsets": {
+				"from": 879240,
+				"to": 881400
+			},
+			"text": " It's not that there's a clunky bridge."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,400",
+				"to": "00:14:43,400"
+			},
+			"offsets": {
+				"from": 881400,
+				"to": 883400
+			},
+			"text": " What we have is a container,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,400",
+				"to": "00:14:45,160"
+			},
+			"offsets": {
+				"from": 883400,
+				"to": 885160
+			},
+			"text": " which is a set of legal engineering"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,160",
+				"to": "00:14:46,520"
+			},
+			"offsets": {
+				"from": 885160,
+				"to": 886520
+			},
+			"text": " and smart contract engineering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,520",
+				"to": "00:14:47,880"
+			},
+			"offsets": {
+				"from": 886520,
+				"to": 887880
+			},
+			"text": " a contract engineering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,880",
+				"to": "00:14:50,720"
+			},
+			"offsets": {
+				"from": 887880,
+				"to": 890720
+			},
+			"text": " which takes all the messy mismatches"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:50,720",
+				"to": "00:14:53,400"
+			},
+			"offsets": {
+				"from": 890720,
+				"to": 893400
+			},
+			"text": " between the crypto world and the real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,400",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 893400,
+				"to": 897000
+			},
+			"text": " and manages them in a completely controlled environment."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:14:58,840"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 898840
+			},
+			"text": " So it's not that there's no complexity there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,840",
+				"to": "00:15:00,280"
+			},
+			"offsets": {
+				"from": 898840,
+				"to": 900280
+			},
+			"text": " it's not that there's no trickery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:00,280",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 900280,
+				"to": 902000
+			},
+			"text": " it's not that the real world and the fiat world"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:03,520"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 903520
+			},
+			"text": " are the same place."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,520",
+				"to": "00:15:05,640"
+			},
+			"offsets": {
+				"from": 903520,
+				"to": 905640
+			},
+			"text": " It's that you build a set of machinery"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,640",
+				"to": "00:15:07,720"
+			},
+			"offsets": {
+				"from": 905640,
+				"to": 907720
+			},
+			"text": " which matches these expectations"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,720",
+				"to": "00:15:10,400"
+			},
+			"offsets": {
+				"from": 907720,
+				"to": 910400
+			},
+			"text": " in a way which makes the contracts completely coherent"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,400",
+				"to": "00:15:13,200"
+			},
+			"offsets": {
+				"from": 910400,
+				"to": 913200
+			},
+			"text": " across both the fiat and the crypto domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,200",
+				"to": "00:15:14,680"
+			},
+			"offsets": {
+				"from": 913200,
+				"to": 914680
+			},
+			"text": " And in software engineering,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:14,680",
+				"to": "00:15:17,560"
+			},
+			"offsets": {
+				"from": 914680,
+				"to": 917560
+			},
+			"text": " you've all seen systems that work that way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,560",
+				"to": "00:15:19,720"
+			},
+			"offsets": {
+				"from": 917560,
+				"to": 919720
+			},
+			"text": " In any situation where you've got two technologies"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:19,720",
+				"to": "00:15:21,800"
+			},
+			"offsets": {
+				"from": 919720,
+				"to": 921800
+			},
+			"text": " which are of completely different generations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,800",
+				"to": "00:15:23,600"
+			},
+			"offsets": {
+				"from": 921800,
+				"to": 923600
+			},
+			"text": " you wind up having to build a bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,600",
+				"to": "00:15:26,400"
+			},
+			"offsets": {
+				"from": 923600,
+				"to": 926400
+			},
+			"text": " of difficult, complicated interface code."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,400",
+				"to": "00:15:28,240"
+			},
+			"offsets": {
+				"from": 926400,
+				"to": 928240
+			},
+			"text": " Any time you interface a legacy systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:28,240",
+				"to": "00:15:30,640"
+			},
+			"offsets": {
+				"from": 928240,
+				"to": 930640
+			},
+			"text": " you wind up with legacy system adapters, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,640",
+				"to": "00:15:33,120"
+			},
+			"offsets": {
+				"from": 930640,
+				"to": 933120
+			},
+			"text": " So this model, the smart property registers"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,120",
+				"to": "00:15:35,520"
+			},
+			"offsets": {
+				"from": 933120,
+				"to": 935520
+			},
+			"text": " and the asset custodians and the passports,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,520",
+				"to": "00:15:38,480"
+			},
+			"offsets": {
+				"from": 935520,
+				"to": 938480
+			},
+			"text": " that is the equivalent of the legacy adapters"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,480",
+				"to": "00:15:41,880"
+			},
+			"offsets": {
+				"from": 938480,
+				"to": 941880
+			},
+			"text": " which give us direct access to the namespace"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,880",
+				"to": "00:15:44,880"
+			},
+			"offsets": {
+				"from": 941880,
+				"to": 944880
+			},
+			"text": " defined by the nation states."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,880",
+				"to": "00:15:46,240"
+			},
+			"offsets": {
+				"from": 944880,
+				"to": 946240
+			},
+			"text": " It's a way of taking all the assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,240",
+				"to": "00:15:48,400"
+			},
+			"offsets": {
+				"from": 946240,
+				"to": 948400
+			},
+			"text": " which are currently under nation state governments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,400",
+				"to": "00:15:51,360"
+			},
+			"offsets": {
+				"from": 948400,
+				"to": 951360
+			},
+			"text": " making them visible on chain and moving them around."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:51,360",
+				"to": "00:15:54,880"
+			},
+			"offsets": {
+				"from": 951360,
+				"to": 954880
+			},
+			"text": " And this is the key, it's the magic"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,880",
+				"to": "00:15:57,120"
+			},
+			"offsets": {
+				"from": 954880,
+				"to": 957120
+			},
+			"text": " to enable us to get into the next step"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:57,120",
+				"to": "00:15:58,680"
+			},
+			"offsets": {
+				"from": 957120,
+				"to": 958680
+			},
+			"text": " of blockchain growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,680",
+				"to": "00:16:00,160"
+			},
+			"offsets": {
+				"from": 958680,
+				"to": 960160
+			},
+			"text": " This is the adoption mechanism"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,160",
+				"to": "00:16:02,680"
+			},
+			"offsets": {
+				"from": 960160,
+				"to": 962680
+			},
+			"text": " until we can touch the real world, we can't go anywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,680",
+				"to": "00:16:04,240"
+			},
+			"offsets": {
+				"from": 962680,
+				"to": 964240
+			},
+			"text": " The security token model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:04,240",
+				"to": "00:16:06,080"
+			},
+			"offsets": {
+				"from": 964240,
+				"to": 966080
+			},
+			"text": " which is currently getting so much play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,080",
+				"to": "00:16:08,680"
+			},
+			"offsets": {
+				"from": 966080,
+				"to": 968680
+			},
+			"text": " is a very simplified model of doing this."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,680",
+				"to": "00:16:10,120"
+			},
+			"offsets": {
+				"from": 968680,
+				"to": 970120
+			},
+			"text": " We take a single legal right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,120",
+				"to": "00:16:12,080"
+			},
+			"offsets": {
+				"from": 970120,
+				"to": 972080
+			},
+			"text": " which is the ownership of an asset,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,080",
+				"to": "00:16:13,680"
+			},
+			"offsets": {
+				"from": 972080,
+				"to": 973680
+			},
+			"text": " we figure out how to get that legal right"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,680",
+				"to": "00:16:16,520"
+			},
+			"offsets": {
+				"from": 973680,
+				"to": 976520
+			},
+			"text": " correctly represented on chain as a security token,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,520",
+				"to": "00:16:18,640"
+			},
+			"offsets": {
+				"from": 976520,
+				"to": 978640
+			},
+			"text": " and then we use the standard tokenization machinery"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,640",
+				"to": "00:16:20,440"
+			},
+			"offsets": {
+				"from": 978640,
+				"to": 980440
+			},
+			"text": " to bring these things to market."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,440",
+				"to": "00:16:22,480"
+			},
+			"offsets": {
+				"from": 980440,
+				"to": 982480
+			},
+			"text": " That takes just a single legal right"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,480",
+				"to": "00:16:25,200"
+			},
+			"offsets": {
+				"from": 982480,
+				"to": 985200
+			},
+			"text": " and automates it in an on chain way."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,200",
+				"to": "00:16:27,200"
+			},
+			"offsets": {
+				"from": 985200,
+				"to": 987200
+			},
+			"text": " But all that allows us to do is own things"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,200",
+				"to": "00:16:28,960"
+			},
+			"offsets": {
+				"from": 987200,
+				"to": 988960
+			},
+			"text": " and build portfolios of property."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:28,960",
+				"to": "00:16:30,840"
+			},
+			"offsets": {
+				"from": 988960,
+				"to": 990840
+			},
+			"text": " It doesn't generate any kind of new functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,840",
+				"to": "00:16:32,800"
+			},
+			"offsets": {
+				"from": 990840,
+				"to": 992800
+			},
+			"text": " you can't use it to start new businesses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:32,800",
+				"to": "00:16:34,400"
+			},
+			"offsets": {
+				"from": 992800,
+				"to": 994400
+			},
+			"text": " it's just the ownership function."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:35,760",
+				"to": "00:16:37,280"
+			},
+			"offsets": {
+				"from": 995760,
+				"to": 997280
+			},
+			"text": " What we really want to be able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,280",
+				"to": "00:16:39,720"
+			},
+			"offsets": {
+				"from": 997280,
+				"to": 999720
+			},
+			"text": " is something much bigger and more complex."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:39,720",
+				"to": "00:16:41,200"
+			},
+			"offsets": {
+				"from": 999720,
+				"to": 1001200
+			},
+			"text": " What we want to be able to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,200",
+				"to": "00:16:44,640"
+			},
+			"offsets": {
+				"from": 1001200,
+				"to": 1004640
+			},
+			"text": " is take all the functions that a thing could have"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,640",
+				"to": "00:16:48,240"
+			},
+			"offsets": {
+				"from": 1004640,
+				"to": 1008240
+			},
+			"text": " and build machinery around those functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,240",
+				"to": "00:16:51,320"
+			},
+			"offsets": {
+				"from": 1008240,
+				"to": 1011320
+			},
+			"text": " So if you have something like an apartment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:51,320",
+				"to": "00:16:54,160"
+			},
+			"offsets": {
+				"from": 1011320,
+				"to": 1014160
+			},
+			"text": " you can buy it, you could sell it, you could rent it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,160",
+				"to": "00:16:57,600"
+			},
+			"offsets": {
+				"from": 1014160,
+				"to": 1017600
+			},
+			"text": " you could auction it, you could rent it on short terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,600",
+				"to": "00:17:00,880"
+			},
+			"offsets": {
+				"from": 1017600,
+				"to": 1020880
+			},
+			"text": " like an Airbnb model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,880",
+				"to": "00:17:02,960"
+			},
+			"offsets": {
+				"from": 1020880,
+				"to": 1022960
+			},
+			"text": " you could contract out the maintenance on it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,960",
+				"to": "00:17:04,680"
+			},
+			"offsets": {
+				"from": 1022960,
+				"to": 1024680
+			},
+			"text": " there must be 50 different legal rights"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,680",
+				"to": "00:17:06,360"
+			},
+			"offsets": {
+				"from": 1024680,
+				"to": 1026360
+			},
+			"text": " associated with an apartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,360",
+				"to": "00:17:08,080"
+			},
+			"offsets": {
+				"from": 1026360,
+				"to": 1028080
+			},
+			"text": " So what you want is to be able to bring"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,080",
+				"to": "00:17:12,000"
+			},
+			"offsets": {
+				"from": 1028080,
+				"to": 1032000
+			},
+			"text": " that entire suite of legal competences"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,000",
+				"to": "00:17:13,520"
+			},
+			"offsets": {
+				"from": 1032000,
+				"to": 1033520
+			},
+			"text": " into a smart contract environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,520",
+				"to": "00:17:15,640"
+			},
+			"offsets": {
+				"from": 1033520,
+				"to": 1035640
+			},
+			"text": " where you could get at the entire set."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:15,640",
+				"to": "00:17:17,400"
+			},
+			"offsets": {
+				"from": 1035640,
+				"to": 1037400
+			},
+			"text": " And what that gives us is what we think"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,400",
+				"to": "00:17:19,240"
+			},
+			"offsets": {
+				"from": 1037400,
+				"to": 1039240
+			},
+			"text": " of as being smart property."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:19,240",
+				"to": "00:17:22,920"
+			},
+			"offsets": {
+				"from": 1039240,
+				"to": 1042920
+			},
+			"text": " It's the ability to fully drive the APIs of the real world"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,920",
+				"to": "00:17:25,320"
+			},
+			"offsets": {
+				"from": 1042920,
+				"to": 1045320
+			},
+			"text": " from blockchain smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,320",
+				"to": "00:17:27,840"
+			},
+			"offsets": {
+				"from": 1045320,
+				"to": 1047840
+			},
+			"text": " And you can sort of imagine the kind of wallet software"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:27,840",
+				"to": "00:17:30,720"
+			},
+			"offsets": {
+				"from": 1047840,
+				"to": 1050720
+			},
+			"text": " where you take something out of your phone"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,720",
+				"to": "00:17:32,200"
+			},
+			"offsets": {
+				"from": 1050720,
+				"to": 1052200
+			},
+			"text": " and it gives you an interface that looks like"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,200",
+				"to": "00:17:34,760"
+			},
+			"offsets": {
+				"from": 1052200,
+				"to": 1054760
+			},
+			"text": " a property screen from an MMO."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,760",
+				"to": "00:17:36,800"
+			},
+			"offsets": {
+				"from": 1054760,
+				"to": 1056800
+			},
+			"text": " You know, here's all the stuff that you own,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,800",
+				"to": "00:17:38,920"
+			},
+			"offsets": {
+				"from": 1056800,
+				"to": 1058920
+			},
+			"text": " you take your bicycle, you drag it to your friend's face"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,920",
+				"to": "00:17:41,560"
+			},
+			"offsets": {
+				"from": 1058920,
+				"to": 1061560
+			},
+			"text": " and you say land, and it just goes off"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:41,560",
+				"to": "00:17:42,720"
+			},
+			"offsets": {
+				"from": 1061560,
+				"to": 1062720
+			},
+			"text": " and does a set of transactions"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:42,720",
+				"to": "00:17:44,640"
+			},
+			"offsets": {
+				"from": 1062720,
+				"to": 1064640
+			},
+			"text": " that transfers the necessary rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,640",
+				"to": "00:17:47,360"
+			},
+			"offsets": {
+				"from": 1064640,
+				"to": 1067360
+			},
+			"text": " So the bicycle is your friend until it gives it back to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,360",
+				"to": "00:17:49,080"
+			},
+			"offsets": {
+				"from": 1067360,
+				"to": 1069080
+			},
+			"text": " And that could serve all the insurance liability"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,080",
+				"to": "00:17:50,600"
+			},
+			"offsets": {
+				"from": 1069080,
+				"to": 1070600
+			},
+			"text": " for bicycle breaks, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,600",
+				"to": "00:17:53,520"
+			},
+			"offsets": {
+				"from": 1070600,
+				"to": 1073520
+			},
+			"text": " You take your house, you drag it to securitize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,520",
+				"to": "00:17:56,360"
+			},
+			"offsets": {
+				"from": 1073520,
+				"to": 1076360
+			},
+			"text": " it hands you back a wallet full of security tokens, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,360",
+				"to": "00:17:58,000"
+			},
+			"offsets": {
+				"from": 1076360,
+				"to": 1078000
+			},
+			"text": " You can then sell some of those to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,000",
+				"to": "00:17:59,240"
+			},
+			"offsets": {
+				"from": 1078000,
+				"to": 1079240
+			},
+			"text": " somebody that owes some money to you, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:59,240",
+				"to": "00:18:02,160"
+			},
+			"offsets": {
+				"from": 1079240,
+				"to": 1082160
+			},
+			"text": " You've got 5.7% of your house, that gives you my car, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,160",
+				"to": "00:18:04,640"
+			},
+			"offsets": {
+				"from": 1082160,
+				"to": 1084640
+			},
+			"text": " All of those kinds of models become possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,640",
+				"to": "00:18:07,320"
+			},
+			"offsets": {
+				"from": 1084640,
+				"to": 1087320
+			},
+			"text": " because we don't just do a shallow transformation"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,320",
+				"to": "00:18:08,560"
+			},
+			"offsets": {
+				"from": 1087320,
+				"to": 1088560
+			},
+			"text": " of the physical into the digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:08,560",
+				"to": "00:18:10,520"
+			},
+			"offsets": {
+				"from": 1088560,
+				"to": 1090520
+			},
+			"text": " where we just do the ownership rights,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:10,520",
+				"to": "00:18:12,520"
+			},
+			"offsets": {
+				"from": 1090520,
+				"to": 1092520
+			},
+			"text": " we want to take all the use rights as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:12,520",
+				"to": "00:18:14,400"
+			},
+			"offsets": {
+				"from": 1092520,
+				"to": 1094400
+			},
+			"text": " And you can see that this model completely wraps"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,400",
+				"to": "00:18:16,000"
+			},
+			"offsets": {
+				"from": 1094400,
+				"to": 1096000
+			},
+			"text": " around the utility token model"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,000",
+				"to": "00:18:18,280"
+			},
+			"offsets": {
+				"from": 1096000,
+				"to": 1098280
+			},
+			"text": " because the utility tokens then bind directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,280",
+				"to": "00:18:19,520"
+			},
+			"offsets": {
+				"from": 1098280,
+				"to": 1099520
+			},
+			"text": " into the material world"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,520",
+				"to": "00:18:21,440"
+			},
+			"offsets": {
+				"from": 1099520,
+				"to": 1101440
+			},
+			"text": " because those are the tokens that you give people"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,440",
+				"to": "00:18:23,120"
+			},
+			"offsets": {
+				"from": 1101440,
+				"to": 1103120
+			},
+			"text": " and you want to use the asset"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,120",
+				"to": "00:18:24,640"
+			},
+			"offsets": {
+				"from": 1103120,
+				"to": 1104640
+			},
+			"text": " and the security tokens are the tokens"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:24,640",
+				"to": "00:18:26,640"
+			},
+			"offsets": {
+				"from": 1104640,
+				"to": 1106640
+			},
+			"text": " that you give people when you want to own the asset."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,640",
+				"to": "00:18:30,080"
+			},
+			"offsets": {
+				"from": 1106640,
+				"to": 1110080
+			},
+			"text": " And ownership and use are two different contractual rights."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:30,080",
+				"to": "00:18:33,640"
+			},
+			"offsets": {
+				"from": 1110080,
+				"to": 1113640
+			},
+			"text": " It took me a long time to learn how to think about law this way."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,640",
+				"to": "00:18:35,480"
+			},
+			"offsets": {
+				"from": 1113640,
+				"to": 1115480
+			},
+			"text": " It has been a very hard-learning process"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:35,480",
+				"to": "00:18:36,800"
+			},
+			"offsets": {
+				"from": 1115480,
+				"to": 1116800
+			},
+			"text": " because I have no legal background at all."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,800",
+				"to": "00:18:38,360"
+			},
+			"offsets": {
+				"from": 1116800,
+				"to": 1118360
+			},
+			"text": " I came into this as a nerd."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:38,360",
+				"to": "00:18:41,240"
+			},
+			"offsets": {
+				"from": 1118360,
+				"to": 1121240
+			},
+			"text": " And what I eventually realised was that lawyers"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,240",
+				"to": "00:18:44,000"
+			},
+			"offsets": {
+				"from": 1121240,
+				"to": 1124000
+			},
+			"text": " are simply the programmers for the real world, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,000",
+				"to": "00:18:46,960"
+			},
+			"offsets": {
+				"from": 1124000,
+				"to": 1126960
+			},
+			"text": " And the real world is a nasty, squishy, imprecise place."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:46,960",
+				"to": "00:18:49,040"
+			},
+			"offsets": {
+				"from": 1126960,
+				"to": 1129040
+			},
+			"text": " So the lawyers are basically constantly writing"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:49,040",
+				"to": "00:18:50,400"
+			},
+			"offsets": {
+				"from": 1129040,
+				"to": 1130400
+			},
+			"text": " error handling code."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,400",
+				"to": "00:18:51,400"
+			},
+			"offsets": {
+				"from": 1130400,
+				"to": 1131400
+			},
+			"text": " So you would..."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,400",
+				"to": "00:18:53,400"
+			},
+			"offsets": {
+				"from": 1131400,
+				"to": 1133400
+			},
+			"text": " (audience laughing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:53,400",
+				"to": "00:18:54,400"
+			},
+			"offsets": {
+				"from": 1133400,
+				"to": 1134400
+			},
+			"text": " All here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,400",
+				"to": "00:18:58,240"
+			},
+			"offsets": {
+				"from": 1134400,
+				"to": 1138240
+			},
+			"text": " (audience applauding)"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:58,240",
+				"to": "00:19:01,280"
+			},
+			"offsets": {
+				"from": 1138240,
+				"to": 1141280
+			},
+			"text": " A paper contract is about 90% exception handling"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,280",
+				"to": "00:19:03,240"
+			},
+			"offsets": {
+				"from": 1141280,
+				"to": 1143240
+			},
+			"text": " and about 10% logic, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,240",
+				"to": "00:19:04,240"
+			},
+			"offsets": {
+				"from": 1143240,
+				"to": 1144240
+			},
+			"text": " (audience laughing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,240",
+				"to": "00:19:05,920"
+			},
+			"offsets": {
+				"from": 1144240,
+				"to": 1145920
+			},
+			"text": " And that's just because the real lawyers are really squishy."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:05,920",
+				"to": "00:19:07,920"
+			},
+			"offsets": {
+				"from": 1145920,
+				"to": 1147920
+			},
+			"text": " So when you actually get to know the lawyers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,920",
+				"to": "00:19:10,280"
+			},
+			"offsets": {
+				"from": 1147920,
+				"to": 1150280
+			},
+			"text": " and it's a process,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:10,280",
+				"to": "00:19:11,520"
+			},
+			"offsets": {
+				"from": 1150280,
+				"to": 1151520
+			},
+			"text": " (audience laughing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,520",
+				"to": "00:19:13,680"
+			},
+			"offsets": {
+				"from": 1151520,
+				"to": 1153680
+			},
+			"text": " what you discover is they're just programmers"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:13,680",
+				"to": "00:19:16,280"
+			},
+			"offsets": {
+				"from": 1153680,
+				"to": 1156280
+			},
+			"text": " that weren't given computers young enough, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,280",
+				"to": "00:19:17,480"
+			},
+			"offsets": {
+				"from": 1156280,
+				"to": 1157480
+			},
+			"text": " You accidentally become a lawyer"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,480",
+				"to": "00:19:20,240"
+			},
+			"offsets": {
+				"from": 1157480,
+				"to": 1160240
+			},
+			"text": " and five years later, like damn, I should become a programmer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:20,240",
+				"to": "00:19:22,080"
+			},
+			"offsets": {
+				"from": 1160240,
+				"to": 1162080
+			},
+			"text": " My chief legal officer, Christopher Ray,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,080",
+				"to": "00:19:23,720"
+			},
+			"offsets": {
+				"from": 1162080,
+				"to": 1163720
+			},
+			"text": " who figured all of this stuff out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:23,720",
+				"to": "00:19:27,320"
+			},
+			"offsets": {
+				"from": 1163720,
+				"to": 1167320
+			},
+			"text": " is an extraordinarily nerdy model,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,320",
+				"to": "00:19:30,560"
+			},
+			"offsets": {
+				"from": 1167320,
+				"to": 1170560
+			},
+			"text": " only very narrowly avoided becoming a programmer."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:30,560",
+				"to": "00:19:33,560"
+			},
+			"offsets": {
+				"from": 1170560,
+				"to": 1173560
+			},
+			"text": " And that's part of why we have this system working,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:33,560",
+				"to": "00:19:35,320"
+			},
+			"offsets": {
+				"from": 1173560,
+				"to": 1175320
+			},
+			"text": " is because what we built was a culture"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,320",
+				"to": "00:19:37,600"
+			},
+			"offsets": {
+				"from": 1175320,
+				"to": 1177600
+			},
+			"text": " which was fully tech and fully law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:37,600",
+				"to": "00:19:39,800"
+			},
+			"offsets": {
+				"from": 1177600,
+				"to": 1179800
+			},
+			"text": " and that was basically two years of conversations"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,800",
+				"to": "00:19:41,800"
+			},
+			"offsets": {
+				"from": 1179800,
+				"to": 1181800
+			},
+			"text": " around my dining room table,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:41,800",
+				"to": "00:19:43,880"
+			},
+			"offsets": {
+				"from": 1181800,
+				"to": 1183880
+			},
+			"text": " really getting to the point where everybody spoke,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,880",
+				"to": "00:19:45,400"
+			},
+			"offsets": {
+				"from": 1183880,
+				"to": 1185400
+			},
+			"text": " everybody else's language,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,400",
+				"to": "00:19:46,720"
+			},
+			"offsets": {
+				"from": 1185400,
+				"to": 1186720
+			},
+			"text": " well enough to come up with something"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,720",
+				"to": "00:19:49,400"
+			},
+			"offsets": {
+				"from": 1186720,
+				"to": 1189400
+			},
+			"text": " which was a genuine fusion of code on the law"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,400",
+				"to": "00:19:54,240"
+			},
+			"offsets": {
+				"from": 1189400,
+				"to": 1194240
+			},
+			"text": " rather than a kind of afraid and impedance mismatch parent, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:54,240",
+				"to": "00:19:55,800"
+			},
+			"offsets": {
+				"from": 1194240,
+				"to": 1195800
+			},
+			"text": " Once you understand that the processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,800",
+				"to": "00:19:58,400"
+			},
+			"offsets": {
+				"from": 1195800,
+				"to": 1198400
+			},
+			"text": " which generate law in the process which generate code"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,400",
+				"to": "00:19:59,480"
+			},
+			"offsets": {
+				"from": 1198400,
+				"to": 1199480
+			},
+			"text": " are the same kinds of people"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:59,480",
+				"to": "00:20:01,200"
+			},
+			"offsets": {
+				"from": 1199480,
+				"to": 1201200
+			},
+			"text": " solving the same kinds of problems"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,200",
+				"to": "00:20:03,200"
+			},
+			"offsets": {
+				"from": 1201200,
+				"to": 1203200
+			},
+			"text": " just with two different eras of technology,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:03,200",
+				"to": "00:20:05,520"
+			},
+			"offsets": {
+				"from": 1203200,
+				"to": 1205520
+			},
+			"text": " we could basically begin to back into law"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,520",
+				"to": "00:20:06,560"
+			},
+			"offsets": {
+				"from": 1205520,
+				"to": 1206560
+			},
+			"text": " in the same way that we're backing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:06,560",
+				"to": "00:20:09,120"
+			},
+			"offsets": {
+				"from": 1206560,
+				"to": 1209120
+			},
+			"text": " into legacy systems like SAP, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,120",
+				"to": "00:20:11,160"
+			},
+			"offsets": {
+				"from": 1209120,
+				"to": 1211160
+			},
+			"text": " If you're doing integration with ERP systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,160",
+				"to": "00:20:13,280"
+			},
+			"offsets": {
+				"from": 1211160,
+				"to": 1213280
+			},
+			"text": " so you've got the asset control logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:13,280",
+				"to": "00:20:16,240"
+			},
+			"offsets": {
+				"from": 1213280,
+				"to": 1216240
+			},
+			"text": " that currently runs capitalism connected to the blockchain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,240",
+				"to": "00:20:18,000"
+			},
+			"offsets": {
+				"from": 1216240,
+				"to": 1218000
+			},
+			"text": " you could do the same thing with law,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:18,000",
+				"to": "00:20:19,960"
+			},
+			"offsets": {
+				"from": 1218000,
+				"to": 1219960
+			},
+			"text": " it's just the case of getting fully immersed enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,960",
+				"to": "00:20:21,480"
+			},
+			"offsets": {
+				"from": 1219960,
+				"to": 1221480
+			},
+			"text": " to the point where it begins to look like one thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,480",
+				"to": "00:20:22,520"
+			},
+			"offsets": {
+				"from": 1221480,
+				"to": 1222520
+			},
+			"text": " rather than two,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,520",
+				"to": "00:20:25,480"
+			},
+			"offsets": {
+				"from": 1222520,
+				"to": 1225480
+			},
+			"text": " and this is basically the core of what we spent our time doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,480",
+				"to": "00:20:28,680"
+			},
+			"offsets": {
+				"from": 1225480,
+				"to": 1228680
+			},
+			"text": " It takes a long time to make these kind of problems solvable,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,680",
+				"to": "00:20:30,200"
+			},
+			"offsets": {
+				"from": 1228680,
+				"to": 1230200
+			},
+			"text": " and the next thing that we have to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:30,200",
+				"to": "00:20:32,960"
+			},
+			"offsets": {
+				"from": 1230200,
+				"to": 1232960
+			},
+			"text": " is a community after this is governments."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,960",
+				"to": "00:20:34,960"
+			},
+			"offsets": {
+				"from": 1232960,
+				"to": 1234960
+			},
+			"text": " Because if we could figure out how to deal with the lawyers"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,960",
+				"to": "00:20:36,280"
+			},
+			"offsets": {
+				"from": 1234960,
+				"to": 1236280
+			},
+			"text": " where it becomes a single system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,280",
+				"to": "00:20:37,360"
+			},
+			"offsets": {
+				"from": 1236280,
+				"to": 1237360
+			},
+			"text": " we ought to be able to do the same thing"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,360",
+				"to": "00:20:39,800"
+			},
+			"offsets": {
+				"from": 1237360,
+				"to": 1239800
+			},
+			"text": " with the state or any other standing institution."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:39,800",
+				"to": "00:20:41,520"
+			},
+			"offsets": {
+				"from": 1239800,
+				"to": 1241520
+			},
+			"text": " It's just a question of getting deep enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,520",
+				"to": "00:20:43,440"
+			},
+			"offsets": {
+				"from": 1241520,
+				"to": 1243440
+			},
+			"text": " into the understanding of the systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,440",
+				"to": "00:20:45,160"
+			},
+			"offsets": {
+				"from": 1243440,
+				"to": 1245160
+			},
+			"text": " to understand that we're all trying to solve"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,160",
+				"to": "00:20:49,520"
+			},
+			"offsets": {
+				"from": 1245160,
+				"to": 1249520
+			},
+			"text": " the real world problems in a way that works in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:49,520",
+				"to": "00:20:50,960"
+			},
+			"offsets": {
+				"from": 1249520,
+				"to": 1250960
+			},
+			"text": " It's just as real world changes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:50,960",
+				"to": "00:20:52,960"
+			},
+			"offsets": {
+				"from": 1250960,
+				"to": 1252960
+			},
+			"text": " you get different generations of solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,960",
+				"to": "00:20:54,760"
+			},
+			"offsets": {
+				"from": 1252960,
+				"to": 1254760
+			},
+			"text": " and all these different generations of solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,760",
+				"to": "00:20:56,320"
+			},
+			"offsets": {
+				"from": 1254760,
+				"to": 1256320
+			},
+			"text": " are kind of running on top of each other,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,320",
+				"to": "00:20:58,440"
+			},
+			"offsets": {
+				"from": 1256320,
+				"to": 1258440
+			},
+			"text": " and this is the complex system of society."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:58,440",
+				"to": "00:21:00,680"
+			},
+			"offsets": {
+				"from": 1258440,
+				"to": 1260680
+			},
+			"text": " If we want to interact with that complex system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,680",
+				"to": "00:21:03,280"
+			},
+			"offsets": {
+				"from": 1260680,
+				"to": 1263280
+			},
+			"text": " we have to make deals and form partnerships"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:03,280",
+				"to": "00:21:04,520"
+			},
+			"offsets": {
+				"from": 1263280,
+				"to": 1264520
+			},
+			"text": " with these entities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,520",
+				"to": "00:21:06,120"
+			},
+			"offsets": {
+				"from": 1264520,
+				"to": 1266120
+			},
+			"text": " and that involves understanding their logic"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:06,120",
+				"to": "00:21:08,320"
+			},
+			"offsets": {
+				"from": 1266120,
+				"to": 1268320
+			},
+			"text": " and understanding their historical period."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:08,320",
+				"to": "00:21:11,360"
+			},
+			"offsets": {
+				"from": 1268320,
+				"to": 1271360
+			},
+			"text": " Okay, very briefly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,360",
+				"to": "00:21:13,600"
+			},
+			"offsets": {
+				"from": 1271360,
+				"to": 1273600
+			},
+			"text": " because I want to be saying for one question."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:13,600",
+				"to": "00:21:14,600"
+			},
+			"offsets": {
+				"from": 1273600,
+				"to": 1274600
+			},
+			"text": " Governance protocols,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,600",
+				"to": "00:21:17,560"
+			},
+			"offsets": {
+				"from": 1274600,
+				"to": 1277560
+			},
+			"text": " if we take something like a Stradivarius violin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,560",
+				"to": "00:21:20,120"
+			},
+			"offsets": {
+				"from": 1277560,
+				"to": 1280120
+			},
+			"text": " and we very nearly had one with us today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:20,120",
+				"to": "00:21:22,640"
+			},
+			"offsets": {
+				"from": 1280120,
+				"to": 1282640
+			},
+			"text": " but we hit some logistical problems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,640",
+				"to": "00:21:24,160"
+			},
+			"offsets": {
+				"from": 1282640,
+				"to": 1284160
+			},
+			"text": " you need to protect the things valued"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,160",
+				"to": "00:21:25,640"
+			},
+			"offsets": {
+				"from": 1284160,
+				"to": 1285640
+			},
+			"text": " because it's hundreds of years old,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:25,640",
+				"to": "00:21:27,000"
+			},
+			"offsets": {
+				"from": 1285640,
+				"to": 1287000
+			},
+			"text": " which means you need to be in a position"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,000",
+				"to": "00:21:29,280"
+			},
+			"offsets": {
+				"from": 1287000,
+				"to": 1289280
+			},
+			"text": " where it's properly maintained and cared for."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:29,280",
+				"to": "00:21:31,920"
+			},
+			"offsets": {
+				"from": 1289280,
+				"to": 1291920
+			},
+			"text": " If it needs a replacement of one of the parts"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,920",
+				"to": "00:21:33,360"
+			},
+			"offsets": {
+				"from": 1291920,
+				"to": 1293360
+			},
+			"text": " which wears out with play,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,360",
+				"to": "00:21:35,240"
+			},
+			"offsets": {
+				"from": 1293360,
+				"to": 1295240
+			},
+			"text": " you need to make sure that it's done by a proper person"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:35,240",
+				"to": "00:21:37,040"
+			},
+			"offsets": {
+				"from": 1295240,
+				"to": 1297040
+			},
+			"text": " who's going to decide it's a proper person."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:37,040",
+				"to": "00:21:40,160"
+			},
+			"offsets": {
+				"from": 1297040,
+				"to": 1300160
+			},
+			"text": " So making the assets such that they're protected over time,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:40,160",
+				"to": "00:21:42,160"
+			},
+			"offsets": {
+				"from": 1300160,
+				"to": 1302160
+			},
+			"text": " whether it's rain forests or violins,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:42,160",
+				"to": "00:21:46,080"
+			},
+			"offsets": {
+				"from": 1302160,
+				"to": 1306080
+			},
+			"text": " you need to take a ton of time to design governance structures"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,080",
+				"to": "00:21:48,400"
+			},
+			"offsets": {
+				"from": 1306080,
+				"to": 1308400
+			},
+			"text": " so that the owners don't put short-term interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,400",
+				"to": "00:21:50,000"
+			},
+			"offsets": {
+				"from": 1308400,
+				"to": 1310000
+			},
+			"text": " ahead of long-term interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:50,000",
+				"to": "00:21:53,640"
+			},
+			"offsets": {
+				"from": 1310000,
+				"to": 1313640
+			},
+			"text": " and damage the assets that they're custodians of."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:53,640",
+				"to": "00:21:55,160"
+			},
+			"offsets": {
+				"from": 1313640,
+				"to": 1315160
+			},
+			"text": " Because I don't want us to build systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:55,160",
+				"to": "00:21:58,800"
+			},
+			"offsets": {
+				"from": 1315160,
+				"to": 1318800
+			},
+			"text": " which basically turn into kind of cutthroat capitalism"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:58,800",
+				"to": "00:22:01,960"
+			},
+			"offsets": {
+				"from": 1318800,
+				"to": 1321960
+			},
+			"text": " where we have like leverage buyouts followed by asset stripping."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:01,960",
+				"to": "00:22:03,240"
+			},
+			"offsets": {
+				"from": 1321960,
+				"to": 1323240
+			},
+			"text": " We want this to be a system where things"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,240",
+				"to": "00:22:05,960"
+			},
+			"offsets": {
+				"from": 1323240,
+				"to": 1325960
+			},
+			"text": " are put under long-term custodianship and management"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:05,960",
+				"to": "00:22:08,040"
+			},
+			"offsets": {
+				"from": 1325960,
+				"to": 1328040
+			},
+			"text": " so that they are cared for for the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,040",
+				"to": "00:22:10,600"
+			},
+			"offsets": {
+				"from": 1328040,
+				"to": 1330600
+			},
+			"text": " And we need that approach both for historical artifacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:10,600",
+				"to": "00:22:13,440"
+			},
+			"offsets": {
+				"from": 1330600,
+				"to": 1333440
+			},
+			"text": " We also need it for cultural artifacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:13,440",
+				"to": "00:22:15,800"
+			},
+			"offsets": {
+				"from": 1333440,
+				"to": 1335800
+			},
+			"text": " We need it for environmental artifacts."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:15,800",
+				"to": "00:22:17,600"
+			},
+			"offsets": {
+				"from": 1335800,
+				"to": 1337600
+			},
+			"text": " How are we going to do things like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:17,600",
+				"to": "00:22:19,640"
+			},
+			"offsets": {
+				"from": 1337600,
+				"to": 1339640
+			},
+			"text": " correctly tax carbon?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:19,640",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1339640,
+				"to": 1341000
+			},
+			"text": " Probably there'll be a blockchain in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:22,480"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1342480
+			},
+			"text": " You want to be able to take a rainforest"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,480",
+				"to": "00:22:25,640"
+			},
+			"offsets": {
+				"from": 1342480,
+				"to": 1345640
+			},
+			"text": " and put them under real governance structures."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:25,640",
+				"to": "00:22:29,280"
+			},
+			"offsets": {
+				"from": 1345640,
+				"to": 1349280
+			},
+			"text": " So the final thing is centralization and decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,280",
+				"to": "00:22:32,880"
+			},
+			"offsets": {
+				"from": 1349280,
+				"to": 1352880
+			},
+			"text": " Building protocols where the automated counterparties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,880",
+				"to": "00:22:35,920"
+			},
+			"offsets": {
+				"from": 1352880,
+				"to": 1355920
+			},
+			"text": " the automated custodians, are reliable enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:35,920",
+				"to": "00:22:37,520"
+			},
+			"offsets": {
+				"from": 1355920,
+				"to": 1357520
+			},
+			"text": " that you can use them on smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,520",
+				"to": "00:22:39,760"
+			},
+			"offsets": {
+				"from": 1357520,
+				"to": 1359760
+			},
+			"text": " and not wind up with a ton of error,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:39,760",
+				"to": "00:22:41,920"
+			},
+			"offsets": {
+				"from": 1359760,
+				"to": 1361920
+			},
+			"text": " where error implies dispute which puts us back"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:41,920",
+				"to": "00:22:45,120"
+			},
+			"offsets": {
+				"from": 1361920,
+				"to": 1365120
+			},
+			"text": " in the Ricardian model where we've got to go to arbitrators"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:45,120",
+				"to": "00:22:46,560"
+			},
+			"offsets": {
+				"from": 1365120,
+				"to": 1366560
+			},
+			"text": " and all the rest of that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:46,560",
+				"to": "00:22:49,360"
+			},
+			"offsets": {
+				"from": 1366560,
+				"to": 1369360
+			},
+			"text": " Being able to get this stuff correct"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:49,360",
+				"to": "00:22:51,200"
+			},
+			"offsets": {
+				"from": 1369360,
+				"to": 1371200
+			},
+			"text": " requires that all of the custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:51,200",
+				"to": "00:22:52,600"
+			},
+			"offsets": {
+				"from": 1371200,
+				"to": 1372600
+			},
+			"text": " and all of the other actors in the system"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,600",
+				"to": "00:22:55,160"
+			},
+			"offsets": {
+				"from": 1372600,
+				"to": 1375160
+			},
+			"text": " are doing things like providing title insurance."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:55,160",
+				"to": "00:22:58,680"
+			},
+			"offsets": {
+				"from": 1375160,
+				"to": 1378680
+			},
+			"text": " All of those actors have to be at an extremely high level"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:58,680",
+				"to": "00:23:02,080"
+			},
+			"offsets": {
+				"from": 1378680,
+				"to": 1382080
+			},
+			"text": " of professionalism in the analog world."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:02,080",
+				"to": "00:23:04,440"
+			},
+			"offsets": {
+				"from": 1382080,
+				"to": 1384440
+			},
+			"text": " The analog world actors have to be the best possible"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,440",
+				"to": "00:23:05,880"
+			},
+			"offsets": {
+				"from": 1384440,
+				"to": 1385880
+			},
+			"text": " analog world actors."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,880",
+				"to": "00:23:08,480"
+			},
+			"offsets": {
+				"from": 1385880,
+				"to": 1388480
+			},
+			"text": " And we need to make sure that as we grow these systems out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:08,480",
+				"to": "00:23:10,120"
+			},
+			"offsets": {
+				"from": 1388480,
+				"to": 1390120
+			},
+			"text": " we've got the appropriate certification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,120",
+				"to": "00:23:12,440"
+			},
+			"offsets": {
+				"from": 1390120,
+				"to": 1392440
+			},
+			"text": " training and technology packages to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:12,440",
+				"to": "00:23:15,520"
+			},
+			"offsets": {
+				"from": 1392440,
+				"to": 1395520
+			},
+			"text": " that the analog world actors are not stealing things"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:15,520",
+				"to": "00:23:17,240"
+			},
+			"offsets": {
+				"from": 1395520,
+				"to": 1397240
+			},
+			"text": " out of the custodians and then screwing"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:17,240",
+				"to": "00:23:19,680"
+			},
+			"offsets": {
+				"from": 1397240,
+				"to": 1399680
+			},
+			"text": " up the dispute processes by bribery."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:19,680",
+				"to": "00:23:21,160"
+			},
+			"offsets": {
+				"from": 1399680,
+				"to": 1401160
+			},
+			"text": " If you want to think about doing business"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:21,160",
+				"to": "00:23:23,960"
+			},
+			"offsets": {
+				"from": 1401160,
+				"to": 1403960
+			},
+			"text": " in developing world countries where we really desperately"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:23,960",
+				"to": "00:23:26,240"
+			},
+			"offsets": {
+				"from": 1403960,
+				"to": 1406240
+			},
+			"text": " need effective trade infrastructure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,240",
+				"to": "00:23:28,320"
+			},
+			"offsets": {
+				"from": 1406240,
+				"to": 1408320
+			},
+			"text": " there are enormous pools of assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:28,320",
+				"to": "00:23:30,840"
+			},
+			"offsets": {
+				"from": 1408320,
+				"to": 1410840
+			},
+			"text": " in developing world countries that could be used"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,840",
+				"to": "00:23:34,320"
+			},
+			"offsets": {
+				"from": 1410840,
+				"to": 1414320
+			},
+			"text": " to stake and secure smart contracts that would enable trade."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:34,320",
+				"to": "00:23:36,320"
+			},
+			"offsets": {
+				"from": 1414320,
+				"to": 1416320
+			},
+			"text": " If you're selling goods from a factory,"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:36,320",
+				"to": "00:23:38,760"
+			},
+			"offsets": {
+				"from": 1416320,
+				"to": 1418760
+			},
+			"text": " if you stake the factory itself on the performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,760",
+				"to": "00:23:41,600"
+			},
+			"offsets": {
+				"from": 1418760,
+				"to": 1421600
+			},
+			"text": " of those goods, it's much easier to do business with you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,600",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1421600,
+				"to": 1424000
+			},
+			"text": " than if you've got nothing but a promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:47,960"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1427960
+			},
+			"text": " And that ability to anchor deals against hard assets"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:47,960",
+				"to": "00:23:50,280"
+			},
+			"offsets": {
+				"from": 1427960,
+				"to": 1430280
+			},
+			"text": " allows us to work in low trust environments."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,280",
+				"to": "00:23:53,920"
+			},
+			"offsets": {
+				"from": 1430280,
+				"to": 1433920
+			},
+			"text": " Those kind of competencies require the entire analog system"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:53,920",
+				"to": "00:23:55,800"
+			},
+			"offsets": {
+				"from": 1433920,
+				"to": 1435800
+			},
+			"text": " to be as good as it can possibly be"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:55,800",
+				"to": "00:23:58,600"
+			},
+			"offsets": {
+				"from": 1435800,
+				"to": 1438600
+			},
+			"text": " or it would constantly in dispute and disputes are expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:58,600",
+				"to": "00:24:01,560"
+			},
+			"offsets": {
+				"from": 1438600,
+				"to": 1441560
+			},
+			"text": " So our big challenges as we go forward are finding"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:01,560",
+				"to": "00:24:04,400"
+			},
+			"offsets": {
+				"from": 1441560,
+				"to": 1444400
+			},
+			"text": " the correct set of partners on the analog side"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:04,400",
+				"to": "00:24:06,600"
+			},
+			"offsets": {
+				"from": 1444400,
+				"to": 1446600
+			},
+			"text": " to build analog systems which are fully integrated"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:06,600",
+				"to": "00:24:08,680"
+			},
+			"offsets": {
+				"from": 1446600,
+				"to": 1448680
+			},
+			"text": " and compatible with the blockchain reality."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:08,680",
+				"to": "00:24:11,720"
+			},
+			"offsets": {
+				"from": 1448680,
+				"to": 1451720
+			},
+			"text": " We just published the light paper."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,720",
+				"to": "00:24:13,120"
+			},
+			"offsets": {
+				"from": 1451720,
+				"to": 1453120
+			},
+			"text": " It explains a lot of the logic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:13,120",
+				"to": "00:24:14,600"
+			},
+			"offsets": {
+				"from": 1453120,
+				"to": 1454600
+			},
+			"text": " explains a lot of the legal reasoning."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:14,600",
+				"to": "00:24:17,640"
+			},
+			"offsets": {
+				"from": 1454600,
+				"to": 1457640
+			},
+			"text": " It gives a really good idea of how these systems work."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:17,640",
+				"to": "00:24:21,160"
+			},
+			"offsets": {
+				"from": 1457640,
+				"to": 1461160
+			},
+			"text": " There will be a white paper very likely associated"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:21,160",
+				"to": "00:24:25,200"
+			},
+			"offsets": {
+				"from": 1461160,
+				"to": 1465200
+			},
+			"text": " with fundraising then at some future point."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,200",
+				"to": "00:24:26,560"
+			},
+			"offsets": {
+				"from": 1465200,
+				"to": 1466560
+			},
+			"text": " That stuff is not happening yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:26,560",
+				"to": "00:24:28,000"
+			},
+			"offsets": {
+				"from": 1466560,
+				"to": 1468000
+			},
+			"text": " If you hear anybody say that it's happening,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:28,000",
+				"to": "00:24:29,040"
+			},
+			"offsets": {
+				"from": 1468000,
+				"to": 1469040
+			},
+			"text": " it's not happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:29,040",
+				"to": "00:24:30,880"
+			},
+			"offsets": {
+				"from": 1469040,
+				"to": 1470880
+			},
+			"text": " But at some point the intention is that there will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,880",
+				"to": "00:24:32,080"
+			},
+			"offsets": {
+				"from": 1470880,
+				"to": 1472080
+			},
+			"text": " tokenization of these things."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,080",
+				"to": "00:24:34,560"
+			},
+			"offsets": {
+				"from": 1472080,
+				"to": 1474560
+			},
+			"text": " If we can find legal structures that we like for it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:34,560",
+				"to": "00:24:35,720"
+			},
+			"offsets": {
+				"from": 1474560,
+				"to": 1475720
+			},
+			"text": " that is TBA."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:35,720",
+				"to": "00:24:40,480"
+			},
+			"offsets": {
+				"from": 1475720,
+				"to": 1480480
+			},
+			"text": " And I guess that is all I had to say."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:40,480",
+				"to": "00:24:41,480"
+			},
+			"offsets": {
+				"from": 1480480,
+				"to": 1481480
+			},
+			"text": " Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,480",
+				"to": "00:24:46,520"
+			},
+			"offsets": {
+				"from": 1481480,
+				"to": 1486520
+			},
+			"text": " - Do you have any measures in mind to prevent"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,520",
+				"to": "00:24:49,040"
+			},
+			"offsets": {
+				"from": 1486520,
+				"to": 1489040
+			},
+			"text": " the centralization of custodians to the point"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,040",
+				"to": "00:24:53,400"
+			},
+			"offsets": {
+				"from": 1489040,
+				"to": 1493400
+			},
+			"text": " that they would look like the big tech landscape"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:53,400",
+				"to": "00:24:54,920"
+			},
+			"offsets": {
+				"from": 1493400,
+				"to": 1494920
+			},
+			"text": " we have right now?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:54,920",
+				"to": "00:24:58,120"
+			},
+			"offsets": {
+				"from": 1494920,
+				"to": 1498120
+			},
+			"text": " - So my expectation is that the custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:58,120",
+				"to": "00:25:01,360"
+			},
+			"offsets": {
+				"from": 1498120,
+				"to": 1501360
+			},
+			"text": " will turn into marketplaces with extremely strong"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,360",
+				"to": "00:25:03,360"
+			},
+			"offsets": {
+				"from": 1501360,
+				"to": 1503360
+			},
+			"text": " oversight from the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:03,360",
+				"to": "00:25:06,800"
+			},
+			"offsets": {
+				"from": 1503360,
+				"to": 1506800
+			},
+			"text": " So in any situation where you think that the custodians"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:06,800",
+				"to": "00:25:09,200"
+			},
+			"offsets": {
+				"from": 1506800,
+				"to": 1509200
+			},
+			"text": " are becoming centralized, that creates an opportunity"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:09,200",
+				"to": "00:25:11,520"
+			},
+			"offsets": {
+				"from": 1509200,
+				"to": 1511520
+			},
+			"text": " for a second custodian to enter the market"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:11,520",
+				"to": "00:25:13,680"
+			},
+			"offsets": {
+				"from": 1511520,
+				"to": 1513680
+			},
+			"text": " because nobody wants a centralized custodian."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:13,680",
+				"to": "00:25:15,360"
+			},
+			"offsets": {
+				"from": 1513680,
+				"to": 1515360
+			},
+			"text": " So I think what you get is kind of like community"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,360",
+				"to": "00:25:17,200"
+			},
+			"offsets": {
+				"from": 1515360,
+				"to": 1517200
+			},
+			"text": " enforced antitrust regulation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:17,200",
+				"to": "00:25:20,320"
+			},
+			"offsets": {
+				"from": 1517200,
+				"to": 1520320
+			},
+			"text": " The other possibility is that we build market machines"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,320",
+				"to": "00:25:22,200"
+			},
+			"offsets": {
+				"from": 1520320,
+				"to": 1522200
+			},
+			"text": " which punish custodians who get too large"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,200",
+				"to": "00:25:24,000"
+			},
+			"offsets": {
+				"from": 1522200,
+				"to": 1524000
+			},
+			"text": " by for example taxation."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:24,000",
+				"to": "00:25:26,960"
+			},
+			"offsets": {
+				"from": 1524000,
+				"to": 1526960
+			},
+			"text": " So we could build anti-monopoly machinery directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:26,960",
+				"to": "00:25:29,000"
+			},
+			"offsets": {
+				"from": 1526960,
+				"to": 1529000
+			},
+			"text": " into the underlying contract frameworks."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,000",
+				"to": "00:25:29,840"
+			},
+			"offsets": {
+				"from": 1529000,
+				"to": 1529840
+			},
+			"text": " - Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:29,840",
+				"to": "00:25:32,420"
+			},
+			"offsets": {
+				"from": 1529840,
+				"to": 1532420
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,420",
+				"to": "00:25:34,660"
+			},
+			"offsets": {
+				"from": 1532420,
+				"to": 1534660
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:34,660",
+				"to": "00:25:36,900"
+			},
+			"offsets": {
+				"from": 1534660,
+				"to": 1536900
+			},
+			"text": " (buzzing)"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:36,900",
+				"to": "00:25:59,220"
+			},
+			"offsets": {
+				"from": 1536900,
+				"to": 1559220
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

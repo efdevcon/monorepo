@@ -1,0 +1,3387 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 13000
+			},
+			"text": " Connecting to the Internet here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 20000
+			},
+			"text": " So I would plan to do a bit of a demo to try and show off sort of what happens if this runs successfully for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:26,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 26000
+			},
+			"text": " But if you're able to connect to the Internet and interested in the workshop, style component,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 26000,
+				"to": 31000
+			},
+			"text": " I would recommend following these steps, basically just pulling down the vulcanize,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 36000
+			},
+			"text": " checking out the branch you've got set up for this process, and running Docker"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 40000
+			},
+			"text": " to post up to set up your own instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 46000
+			},
+			"text": " So that's that being said, I'll grab my phone and start it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:51,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 51000
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 51000,
+				"to": 52000
+			},
+			"text": " Thanks everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " So yeah, you're talking about vulcanine DB."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " My name is Rob Mahaland. I'm a lead developer with vulcanize."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 63000
+			},
+			"text": " I'm also a principal software crafter at A-Blight in Chicago, and I'm a guest contributor."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " I've met three likes of code using the Ethereum repo."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 69000
+			},
+			"text": " In case it might come across that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 71000
+			},
+			"text": " Yeah, bring my phone up."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:12,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 72000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 72000,
+				"to": 77000
+			},
+			"text": " So to get started talking about sort of the motivation for vulcanize DB,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 84000
+			},
+			"text": " I wanted to start talking about sort of where are we now with accessing data in the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " And from my perspective, there's a few things to notice."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 96000
+			},
+			"text": " One is that you've got these decentralized applications, but largely in order for these decentralized applications to work,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 98000
+			},
+			"text": " we're relying on centralized data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 109000
+			},
+			"text": " Right? So here, I visited moolockdown.com, and we've got a bunch of network requests going to Enfura to access the latest state of the moolock contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:54,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 114000
+			},
+			"text": " And that's pretty cool. Like, it works, and it's awesome that Enfura provides this service."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,000",
+				"to": "00:02:02,000"
+			},
+			"offsets": {
+				"from": 114000,
+				"to": 122000
+			},
+			"text": " But ideally, you know, we might have solutions that didn't depend on one third party to service that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 122000,
+				"to": 128000
+			},
+			"text": " So in addition to sort of centralization around access to data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:12,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 132000
+			},
+			"text": " another thing we've got is that we've got a lot of duplicated effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 132000,
+				"to": 136000
+			},
+			"text": " Right? So when I've spoken with people about vulcanize DB in the hallway,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:21,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 141000
+			},
+			"text": " I think one of the most common comments I get is like, \"Oh, that sounds really great."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 141000,
+				"to": 145000
+			},
+			"text": " Like, we had to build something like that in-house to support our own infrastructure.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 152000
+			},
+			"text": " Right? So it's amazing to me how many teams had sort of gone through this work of figuring out how to extract data from an Ethereum node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:35,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 155000
+			},
+			"text": " decode it, and put it into a Postgres database."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,000",
+				"to": "00:02:39,000"
+			},
+			"offsets": {
+				"from": 155000,
+				"to": 159000
+			},
+			"text": " But the fact that so many people are doing it sort of raises the obvious question of like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,000",
+				"to": "00:02:44,000"
+			},
+			"offsets": {
+				"from": 159000,
+				"to": 164000
+			},
+			"text": " \"Why don't we have a shared toolset for that?\""
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,000",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 164000,
+				"to": 169000
+			},
+			"text": " I want to mention that there's a lot of teams doing great work to address these two issues, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 172000
+			},
+			"text": " So the question of centralization and duplicate effort,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 178000
+			},
+			"text": " we see a ton of teams out there making progress to try and improve the situation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:04,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 184000
+			},
+			"text": " And, you know, I think that's super awesome. I'm really happy to be able to, you know, hear a DEVCON,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,000",
+				"to": "00:03:06,000"
+			},
+			"offsets": {
+				"from": 184000,
+				"to": 186000
+			},
+			"text": " like see what other people are doing and learn from them."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,000",
+				"to": "00:03:08,000"
+			},
+			"offsets": {
+				"from": 186000,
+				"to": 188000
+			},
+			"text": " And hopefully we can all learn from each other."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 188000,
+				"to": 193000
+			},
+			"text": " But I think the fact that you've got this many organizations all working"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " on like this shared problem sort of indicates the magnitude of the issue"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 203000
+			},
+			"text": " and the rationale for having improved toolset."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:28,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 208000
+			},
+			"text": " So with that sort of motivation in mind, the question I wanted to propose is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 208000,
+				"to": 212000
+			},
+			"text": " \"So like, where are we headed?\" And with AlcanizeDB,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 217000
+			},
+			"text": " I would say that our mission is to replace the centralized and bespoke solutions"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:42,000"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 222000
+			},
+			"text": " with shared tooling that anyone can run."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 222000,
+				"to": 227000
+			},
+			"text": " And so if we look at the toolbox of sort of what we started in developing"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 232000
+			},
+			"text": " to make this happen, I wanted to walk through a few different things in our tool chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 238000
+			},
+			"text": " that you can use like right now to start spinning up your own instance of AlcanizeDB"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 243000
+			},
+			"text": " and owning your own data to be able to serve it for yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:08,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 248000
+			},
+			"text": " So I'll walk through each of these in more detail."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,000",
+				"to": "00:04:13,000"
+			},
+			"offsets": {
+				"from": 248000,
+				"to": 253000
+			},
+			"text": " So the foundation of the process for setting up the AlcanizeDB instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 253000,
+				"to": 256000
+			},
+			"text": " we've got this header sync process."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " And what the header sync process does is we're basically taking block headers out of your node"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:23,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 263000
+			},
+			"text": " and putting them into Postgres."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 263000,
+				"to": 265000
+			},
+			"text": " You can configure a starting block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 269000
+			},
+			"text": " So if you only care about a contract that was deployed at block, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 273000
+			},
+			"text": " seven and a half million, then you can start sinking headers into your instance"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:35,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 275000
+			},
+			"text": " from that individual starting block."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 275000,
+				"to": 283000
+			},
+			"text": " And what this process will do is it'll enable you to continually verify those headers"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 284000
+			},
+			"text": " at a configurable depth."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 288000
+			},
+			"text": " So depending on what your concern is about reorgs and so forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 293000
+			},
+			"text": " you can have this foundation of data that's continually being validated"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 298000
+			},
+			"text": " and where data that's no longer on the chain, if there was a reorg or something like that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 300000
+			},
+			"text": " it's going to be automatically pruned for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " So you know you have a consistent record of just like what are the headers that were on the chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:08,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 308000
+			},
+			"text": " And importantly for some of the additional tools I'll discuss,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,000",
+				"to": "00:05:13,000"
+			},
+			"offsets": {
+				"from": 308000,
+				"to": 313000
+			},
+			"text": " you know, we have form key relationship between this block header and all of the nested data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 313000,
+				"to": 318000
+			},
+			"text": " such that you can sort of cascade, remove any data you have in your system"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:22,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 322000
+			},
+			"text": " that is a product of a header that was removed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,000",
+				"to": "00:05:29,000"
+			},
+			"offsets": {
+				"from": 322000,
+				"to": 329000
+			},
+			"text": " So the thing I wanted to talk about today and the thing that the exercise will let you to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,000",
+				"to": "00:05:31,000"
+			},
+			"offsets": {
+				"from": 329000,
+				"to": 331000
+			},
+			"text": " is then the contract watcher process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 331000,
+				"to": 335000
+			},
+			"text": " And so we think the contract watchers pretty neat."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 340000
+			},
+			"text": " What it does is basically you give us a address for a contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " and you tell us the deployment block of that contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:49,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 349000
+			},
+			"text": " And then we will automatically figure out what are the events on this contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 349000,
+				"to": 352000
+			},
+			"text": " start getting them off the chain and decoding them for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:56,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 356000
+			},
+			"text": " You can run the contract watcher with multiple contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 356000,
+				"to": 361000
+			},
+			"text": " and then you can run the contract in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:06,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 366000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,000",
+				"to": "00:06:11,000"
+			},
+			"offsets": {
+				"from": 366000,
+				"to": 371000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:11,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 371000,
+				"to": 376000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:21,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 381000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,000",
+				"to": "00:06:26,000"
+			},
+			"offsets": {
+				"from": 381000,
+				"to": 386000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,000",
+				"to": "00:06:31,000"
+			},
+			"offsets": {
+				"from": 386000,
+				"to": 391000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,000",
+				"to": "00:06:36,000"
+			},
+			"offsets": {
+				"from": 391000,
+				"to": 396000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,000",
+				"to": "00:06:41,000"
+			},
+			"offsets": {
+				"from": 396000,
+				"to": 401000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 401000,
+				"to": 406000
+			},
+			"text": " And then you can run the contract watcher with multiple contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:54,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 414000
+			},
+			"text": " But what the contract watcher gives you right is the ability to automatically look at events that are defined in the API."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 414000,
+				"to": 419000
+			},
+			"text": " But what we found is that in more complex systems of smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 423000
+			},
+			"text": " we also got to worry about things like anonymous events, right, or custom events"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 429000
+			},
+			"text": " where the payload doesn't necessarily like the types that you want to decode the payload into and post-press"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " don't necessarily match what might be defined on the API or the topic zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 437000
+			},
+			"text": " And given log events, it's a little bit different than what you might expect."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:21,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 441000
+			},
+			"text": " And so our answer for dealing with that sort of thing has basically been to say,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 441000,
+				"to": 448000
+			},
+			"text": " hey, you can write your own plugins, and these plugins can be used to take care of that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 454000
+			},
+			"text": " Another thing that compodes and execute plugins enable you to do is to look directly at storage tree nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:37,000"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 457000
+			},
+			"text": " So I'll continue to talk about this during this talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 457000,
+				"to": 462000
+			},
+			"text": " But I think one thing that is really interesting that the community sort of needs to like reckon with"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 468000
+			},
+			"text": " is that, right, the... in order to access state, you traditionally need to run like an archive node, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:49,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 469000
+			},
+			"text": " You want to have historical state."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 469000,
+				"to": 472000
+			},
+			"text": " And so a lot of folks don't want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:55,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 475000
+			},
+			"text": " They want to be able to access their data running just a full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,000",
+				"to": "00:08:00,000"
+			},
+			"offsets": {
+				"from": 475000,
+				"to": 480000
+			},
+			"text": " And the way you can do that is you can sort of stuff your state into events, which is cool,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,000",
+				"to": "00:08:04,000"
+			},
+			"offsets": {
+				"from": 480000,
+				"to": 484000
+			},
+			"text": " except it means that we've just sort of moved the problem over where instead of like state load,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 484000,
+				"to": 488000
+			},
+			"text": " you have the state load, but you also then have like event load, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:16,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 496000
+			},
+			"text": " So there have been proposals already floated in the ecosystem to start pruning historical events out of full nodes as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:16,000",
+				"to": "00:08:22,000"
+			},
+			"offsets": {
+				"from": 496000,
+				"to": 502000
+			},
+			"text": " And the state that you get from an event isn't necessarily the state that's actually, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 502000,
+				"to": 504000
+			},
+			"text": " what's happening on a given contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:34,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 514000
+			},
+			"text": " And so one thing that we've been working on a lot with plugins that we're developing is to look directly at storage on a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 514000,
+				"to": 520000
+			},
+			"text": " Now, traditionally you're going to have to do this with an archive node, but we've got some ideas there as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:42,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 522000
+			},
+			"text": " Anyways, plugins let you look at storage tree nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 522000,
+				"to": 527000
+			},
+			"text": " You can automatically decode like one of the true VAC value of a variable on a contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:52,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 532000
+			},
+			"text": " And plugins also enable you to make more complex queries, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,000",
+				"to": "00:08:59,000"
+			},
+			"offsets": {
+				"from": 532000,
+				"to": 539000
+			},
+			"text": " So in order to sort of crystallize what those complex queries look like, I'm going to bump ahead to post-graph file."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 539000,
+				"to": 545000
+			},
+			"text": " So post-graph file is not something we built, but post-graph file is a super awesome tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:09,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 549000
+			},
+			"text": " And we support Benji on Patreon. I would recommend that everyone else does as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,000",
+				"to": "00:09:14,000"
+			},
+			"offsets": {
+				"from": 549000,
+				"to": 554000
+			},
+			"text": " What post-graph file enables you to do is you just literally like run post-graph file from the command line,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 554000,
+				"to": 558000
+			},
+			"text": " and it will inspect your post-graph database, identify the schema,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 564000
+			},
+			"text": " and like automatically make that about available to you in the browser, which is just like super sic-cata."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:28,000"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 568000
+			},
+			"text": " So thank you so much to Benji. He's also super responsive on Discord."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 568000,
+				"to": 576000
+			},
+			"text": " We found it to be a really easy solution to sort of expose API in the browser with the data that we have in post-graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:41,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 581000
+			},
+			"text": " Of course, if you're interested, you can always just make queries directly against that post-graph data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:41,000",
+				"to": "00:09:46,000"
+			},
+			"offsets": {
+				"from": 581000,
+				"to": 586000
+			},
+			"text": " but for browser access, post-graph files have been great."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 586000,
+				"to": 591000
+			},
+			"text": " Some things to know about post-graph files that it will automatically discover relations between your data."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:58,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 598000
+			},
+			"text": " So for example, I mentioned that events we decode are associated with a block header that exists in the database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,000",
+				"to": "00:10:03,000"
+			},
+			"offsets": {
+				"from": 598000,
+				"to": 603000
+			},
+			"text": " so you can just automatically get header by an E with the event that you're looking up,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 603000,
+				"to": 609000
+			},
+			"text": " and see metadata about that block header if you want to see what block number was it or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 614000
+			},
+			"text": " Post-graph file also exposes filters and conditions and so forth,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 622000
+			},
+			"text": " which means that you can basically apply those exact tools to your post-graph database via your GraphQL query,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:27,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 627000
+			},
+			"text": " and support subscriptions, and notifications about new data hitting the database."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 627000,
+				"to": 633000
+			},
+			"text": " There are computed columns which enable you to like append data and custom queries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " which is what I was mentioning with the more complex queries on the last slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 644000
+			},
+			"text": " So you can in a migration like Create-A-Gree, that aggregates data from say multiple events or tables,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:49,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 649000
+			},
+			"text": " and it will show up automatically in post-graph file."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:49,000",
+				"to": "00:10:54,000"
+			},
+			"offsets": {
+				"from": 649000,
+				"to": 654000
+			},
+			"text": " Cool. So that's the toolbox sort of like as it stands right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,000",
+				"to": "00:11:01,000"
+			},
+			"offsets": {
+				"from": 654000,
+				"to": 661000
+			},
+			"text": " Again, you can try it out, repost totally open source, and the thing I wanted to talk about next is sort of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:01,000",
+				"to": "00:11:05,000"
+			},
+			"offsets": {
+				"from": 661000,
+				"to": 665000
+			},
+			"text": " what are we driving toward with our upcoming work."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:05,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 665000,
+				"to": 669000
+			},
+			"text": " And so the first thing is simplifying our interfaces for plugins, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:12,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 672000
+			},
+			"text": " So I mentioned that you can write plugins and they do super cool stuff,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:12,000",
+				"to": "00:11:19,000"
+			},
+			"offsets": {
+				"from": 672000,
+				"to": 679000
+			},
+			"text": " but our mission there is to make sure that in order to write a plugin that enable you to get things like storage tree nodes"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:19,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 679000,
+				"to": 688000
+			},
+			"text": " or anonymous events that you have to write like the minimal amount of the spoke code possible for a given Spark contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:35,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 695000
+			},
+			"text": " Another thing we're working on is client patches to emit these storage disks during a scene."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,000",
+				"to": "00:11:42,000"
+			},
+			"offsets": {
+				"from": 695000,
+				"to": 702000
+			},
+			"text": " So I mentioned that traditionally even archive node to access historical state, and that's kind of a bummer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:42,000",
+				"to": "00:11:47,000"
+			},
+			"offsets": {
+				"from": 702000,
+				"to": 707000
+			},
+			"text": " but like one option that's definitely on the table would be to enable a subscription over the JSON RBC interface"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 707000,
+				"to": 710000
+			},
+			"text": " that would just like spit out those disks as they're happening."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 715000
+			},
+			"text": " And you could even say like specifically I only want you to publish disks to me if they come from a given Spark contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:03,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 723000
+			},
+			"text": " So part of our sort of open source work is to figure out a way to get this done and get that upstreamed into gap and parity and so forth"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,000",
+				"to": "00:12:11,000"
+			},
+			"offsets": {
+				"from": 723000,
+				"to": 731000
+			},
+			"text": " so that you can sort of plug in that subscription directly to all kinds of DB, have a plugin that's parsing that data on the fly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,000",
+				"to": "00:12:17,000"
+			},
+			"offsets": {
+				"from": 731000,
+				"to": 737000
+			},
+			"text": " and you can be accessing state data with a plugin that took ideally a minimal amount of code."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,000",
+				"to": "00:12:22,000"
+			},
+			"offsets": {
+				"from": 737000,
+				"to": 742000
+			},
+			"text": " Another thing that we've got coming down the pipeline is what we call the super node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 742000,
+				"to": 749000
+			},
+			"text": " So the idea for the super node is that we will be automatically digesting all those state and storage disks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 755000
+			},
+			"text": " but also blocks and also proofs for the disks that are coming out of a node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:43,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 763000
+			},
+			"text": " And our goal is to publish all of that data to IPFS and have vulcanized DB serve as sort of a filtering layer"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 763000,
+				"to": 771000
+			},
+			"text": " where you can say I want to get all of the disks from X contract and we will give you a list of contact addresses,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:58,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 778000
+			},
+			"text": " content addresses, CIDs, and you can then query IPFS for that data and you can get the proofs with it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,000",
+				"to": "00:13:05,000"
+			},
+			"offsets": {
+				"from": 778000,
+				"to": 785000
+			},
+			"text": " So you don't have to trust that we're giving you like the correct data or that that data is valid because you can submit that proof to your node"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 785000,
+				"to": 791000
+			},
+			"text": " if you want in order to verify that that data is in fact what we say it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:15,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 795000
+			},
+			"text": " And so again we think this is like super cool work."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 795000,
+				"to": 802000
+			},
+			"text": " Hopefully you can like share Docker composed style demo that lets you do this at DevCon next year maybe or even sooner,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:26,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 806000
+			},
+			"text": " but that's some huge priority stress."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,000",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 806000,
+				"to": 814000
+			},
+			"text": " And you know we always welcome issues, pull requests and people think that other priorities are worth tracking down as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:40,000"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 820000
+			},
+			"text": " So this is the part of the workshop where I would be saying like let's go ahead and try this out."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,000",
+				"to": "00:13:44,000"
+			},
+			"offsets": {
+				"from": 820000,
+				"to": 824000
+			},
+			"text": " Everyone run your own instance of vulcanized DB on your machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 824000,
+				"to": 827000
+			},
+			"text": " If you have internet we even like performance tested."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 835000
+			},
+			"text": " A node back home that you can connect to but I don't think performance is going to be a problem with an internet issue here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " So to walk into our stack you know vulcanized DB is written in Go."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:07,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 847000
+			},
+			"text": " It goes pretty nice because it enables us to like really easily integrate with Go Ethereum with like unpack and logs and so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,000",
+				"to": "00:14:09,000"
+			},
+			"offsets": {
+				"from": 847000,
+				"to": 849000
+			},
+			"text": " Postgres obviously talking about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 849000,
+				"to": 850000
+			},
+			"text": " I grabbed UL."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 856000
+			},
+			"text": " This setup on this slide is exactly what it says on the board."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:23,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 863000
+			},
+			"text": " But you know try it out when you're at the hotel or home or whatever like definitely interested to get feedback on this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,000",
+				"to": "00:14:29,000"
+			},
+			"offsets": {
+				"from": 863000,
+				"to": 869000
+			},
+			"text": " So what I wanted to point out about this setup that we're showing is our config file."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,000",
+				"to": "00:14:32,000"
+			},
+			"offsets": {
+				"from": 869000,
+				"to": 872000
+			},
+			"text": " This config file is 20 lines."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:32,000",
+				"to": "00:14:38,000"
+			},
+			"offsets": {
+				"from": 872000,
+				"to": 878000
+			},
+			"text": " This config file also yields parsed events from all three molar contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,000",
+				"to": "00:14:42,000"
+			},
+			"offsets": {
+				"from": 878000,
+				"to": 882000
+			},
+			"text": " The molar contract you'll make contract in the molar pool contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:42,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 882000,
+				"to": 887000
+			},
+			"text": " And to be honest some of that data at the top I could have put an environment variable to slim this down even more."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:53,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 893000
+			},
+			"text": " But I just wanted to show you like everything you need to do this work."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,000",
+				"to": "00:15:02,000"
+			},
+			"offsets": {
+				"from": 893000,
+				"to": 902000
+			},
+			"text": " So what's happening under the hood you've got this configuration file and then you're running three of the processes that I mentioned."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 902000,
+				"to": 910000
+			},
+			"text": " Right so you're saying I went on the header sync process pointed that config file starting at the deployment block for molar."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:17,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 917000
+			},
+			"text": " I want to run a contract watcher process with that config file and the most cumbersome command in this post graph file."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,000",
+				"to": "00:15:23,000"
+			},
+			"offsets": {
+				"from": 917000,
+				"to": 923000
+			},
+			"text": " But that's our fault because the way that we set up these schemas for the contracts is header."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,000",
+				"to": "00:15:29,000"
+			},
+			"offsets": {
+				"from": 923000,
+				"to": 929000
+			},
+			"text": " Basically this is the header sync process and the contract watcher that's creating this data and then it's the contract address."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,000",
+				"to": "00:15:34,000"
+			},
+			"offsets": {
+				"from": 929000,
+				"to": 934000
+			},
+			"text": " So fairly straightforward to populate this data with any arbitrary address that you want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,000",
+				"to": "00:15:36,000"
+			},
+			"offsets": {
+				"from": 934000,
+				"to": 936000
+			},
+			"text": " You can point this email."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 936000,
+				"to": 937000
+			},
+			"text": " It'll be there."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:40,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 940000
+			},
+			"text": " It'll be a little w flag there which is important."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:40,000",
+				"to": "00:15:45,000"
+			},
+			"offsets": {
+				"from": 940000,
+				"to": 945000
+			},
+			"text": " You can kick off this post graph file process as soon as you kick off the contract watcher."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:45,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 945000,
+				"to": 949000
+			},
+			"text": " And with the w flag it'll be watching the schema."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 955000
+			},
+			"text": " So you'll see a warning perhaps it'll say like hey we don't have anything in the schema right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:16:00,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 960000
+			},
+			"text": " And then as the contract watcher starts to populate that data it'll be like okay the schema is here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:00,000",
+				"to": "00:16:06,000"
+			},
+			"offsets": {
+				"from": 960000,
+				"to": 966000
+			},
+			"text": " You can load it in and when you refresh your browser you're going to have that data exposed in most graph file."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 966000,
+				"to": 977000
+			},
+			"text": " So in a workshop, well an ability to run this stuff, we've got sort of a demo here."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 982000
+			},
+			"text": " So this is a setup instance."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 987000
+			},
+			"text": " So I did this whole thing, two steps that I asked everyone else to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 994000
+			},
+			"text": " And this is the post graph file interface that we have."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:38,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 998000
+			},
+			"text": " So enhanced graph IQL which was a command we passed to post graph file."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 998000,
+				"to": 1002000
+			},
+			"text": " That means that we get a list of all the available queries on the left hand side."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1008000
+			},
+			"text": " And then what we've got in the center is you know grab your interface with these queries."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:53,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1013000
+			},
+			"text": " So I've selected these two ownership transfer events and withdrawal events."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1013000,
+				"to": 1021000
+			},
+			"text": " Because we can see that if I ask for that I get 23 events and we pop over to the main source of truth either scan."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1024000
+			},
+			"text": " We see that there is an event."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:07,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1027000
+			},
+			"text": " 23 events on the Molok cool contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:07,000",
+				"to": "00:17:11,000"
+			},
+			"offsets": {
+				"from": 1027000,
+				"to": 1031000
+			},
+			"text": " So that's cool, that lines up, checks out."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:11,000",
+				"to": "00:17:20,000"
+			},
+			"offsets": {
+				"from": 1031000,
+				"to": 1040000
+			},
+			"text": " Within these queries we can do some cool stuff so we can say like I want to see the nodes and I want to see the parts like new owner and previous owner data."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:20,000",
+				"to": "00:17:23,000"
+			},
+			"offsets": {
+				"from": 1040000,
+				"to": 1043000
+			},
+			"text": " And then I fire that query and like there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,000",
+				"to": "00:17:26,000"
+			},
+			"offsets": {
+				"from": 1043000,
+				"to": 1046000
+			},
+			"text": " Okay ownership was transferred from address."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:26,000",
+				"to": "00:17:30,000"
+			},
+			"offsets": {
+				"from": 1046000,
+				"to": 1050000
+			},
+			"text": " And I can do the same thing with withdrawal events."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1050000,
+				"to": 1053000
+			},
+			"text": " I want to see the amount and I want to see the receiver."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:44,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1064000
+			},
+			"text": " And cool, you know these amounts are weird because it's like EDM but there's a fixed value you can divide that by to get something that's a little bit more easy to parse."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,000",
+				"to": "00:17:50,000"
+			},
+			"offsets": {
+				"from": 1064000,
+				"to": 1070000
+			},
+			"text": " But an easier event to look at for understanding this would be the rage put event because they're dealing with shares."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,000",
+				"to": "00:18:00,000"
+			},
+			"offsets": {
+				"from": 1070000,
+				"to": 1080000
+			},
+			"text": " That's opposed to monetary value and so if I want to see shares to burn and the member address from the rage put event on the Molok contract then it's like okay these are pretty nice numbers."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,000",
+				"to": "00:18:06,000"
+			},
+			"offsets": {
+				"from": 1080000,
+				"to": 1086000
+			},
+			"text": " And we can see here we've got like 99 shares burnt."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:06,000",
+				"to": "00:18:09,000"
+			},
+			"offsets": {
+				"from": 1086000,
+				"to": 1089000
+			},
+			"text": " We pop over the Molok contract on ether stand."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1089000,
+				"to": 1091000
+			},
+			"text": " We see like interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:21,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1101000
+			},
+			"text": " We see that same address in topic one you know it's a habit, heck to value and if we do code this to number it's like 99 this event is that event."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,000",
+				"to": "00:18:27,000"
+			},
+			"offsets": {
+				"from": 1101000,
+				"to": 1107000
+			},
+			"text": " So again you know you're just getting like automatically decoded events."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:27,000",
+				"to": "00:18:40,000"
+			},
+			"offsets": {
+				"from": 1107000,
+				"to": 1120000
+			},
+			"text": " I had you know I can walk through all the queries but I think folks get an idea of what we're doing right here automatically getting all these events parsed into postgres with like three cans."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:40,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1120000,
+				"to": 1131000
+			},
+			"text": " Cool so I'm going to avoid opening my email again and talk about customizing it."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:19:01,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1141000
+			},
+			"text": " So you know the idea for the workshop was like first you can run this docker compose that will enable you to like reproduce exactly what I just demoed."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1141000,
+				"to": 1168000
+			},
+			"text": " I did want to mention that that thing that I demoed that database ends up being about three gigs that also took me about 30 hours to sync on my home Wi-Fi so continue to work on performance that cost is amortized over the life of your system right so you might have like a high up front cost to get totally synced with all the events that have happened throughout history but then you're going to stay in sync if you're running the process continually not going to fall behind"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:45,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1185000
+			},
+			"text": " and and yet that cost is amortized which is built but what that means is that you know you start seeing events immediately for things that happened early on in the history of those contracts but you wouldn't yield the latest ones until your system would finish thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1185000,
+				"to": 1198000
+			},
+			"text": " but if you wanted to check out some other stuff you could record config file right so that was 20 lines to look at three contracts but you could look at 17 contracts and more lines that's up to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:11,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1211000
+			},
+			"text": " You could run it with an address where the ADI is not published on etherscan right so there's an option to supply the ADI and that config file for the contract if you're not dealing with you know verified source code."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1211000,
+				"to": 1228000
+			},
+			"text": " So it's not a constraint for the system that the ADI has to exist on etherscan but that minimizes the amount you have to include in the new thing and if you wanted to run it locally like not in Docker then you can you know do a few things that we have hidden for you in our compose script right so you have to like create a database that all can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:44,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1244000
+			},
+			"text": " connect to we use Go modules so you have to turn that on to enable it to build you build you end up with your ball of nice DB binary and you should be able to run these things locally and then if folks were able to you know if you like okay I did this"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:44,000",
+				"to": "00:20:56,000"
+			},
+			"offsets": {
+				"from": 1244000,
+				"to": 1256000
+			},
+			"text": " I'm bored and I like made my own config look at my own contracts and board again I'm running it locally I mentioned machine I'm still bored then like option three that I thought would really take up everyone's time would be okay let's start building our own plug it"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:56,000",
+				"to": "00:21:14,000"
+			},
+			"offsets": {
+				"from": 1256000,
+				"to": 1274000
+			},
+			"text": " right so all the plug-in architecture is in the library shared folder of all of my DB and specifically in the factories directory you can see we've abstracted code that will handle like the overarching process of thinking anonymous events"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,000",
+				"to": "00:21:43,000"
+			},
+			"offsets": {
+				"from": 1274000,
+				"to": 1303000
+			},
+			"text": " or sticking storage depth and you just have to write like a few small dependencies to basically tell us like okay you've given me an anonymous event like how does X become Y like something that you put in the database but yeah and you know I'll stick around after this talk I would love for people to give this go if you can but there we are so I wanted to say thank you I definitely have not done this by myself I get you know how to"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:43,000",
+				"to": "00:22:07,000"
+			},
+			"offsets": {
+				"from": 1303000,
+				"to": 1327000
+			},
+			"text": " privilege to speak up here but Rick Dudley Elizabeth Andy Gabe Edward Ian Connor Gusman have all been super instrumental to getting this project where it is today we see support from the Ethereum Foundation for which we're tremendously grateful and also from MakerDaw so thank you so much to those folks for supporting our effort we're really excited about"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,000",
+				"to": "00:22:21,000"
+			},
+			"offsets": {
+				"from": 1327000,
+				"to": 1341000
+			},
+			"text": " hopefully a lot of value can be delivered to the community with the shared tools that for caching historical data and that is pretty much what I got"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:21,000",
+				"to": "00:22:29,000"
+			},
+			"offsets": {
+				"from": 1341000,
+				"to": 1349000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:29,000",
+				"to": "00:22:44,000"
+			},
+			"offsets": {
+				"from": 1349000,
+				"to": 1364000
+			},
+			"text": " Definitely happy to answer any questions. Yeah, you're supposed to be a true chef on the right go. Yeah, yeah so I mean post-grad file is again just like the most awesome and awesome open source projects and supports subscriptions out of the box so yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:44,000",
+				"to": "00:23:04,000"
+			},
+			"offsets": {
+				"from": 1364000,
+				"to": 1384000
+			},
+			"text": " Okay, thanks. Yeah, we're just curious in the copy file that you showed us so you can specify an address, right? So how do you deal with some of that essentially form a different contract for a patient individual user with this invite code and then suddenly now you're ending up with like thousands of choices?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:04,000",
+				"to": "00:23:18,000"
+			},
+			"offsets": {
+				"from": 1384000,
+				"to": 1398000
+			},
+			"text": " Yeah, so you definitely want to like write a plug-in to deal with that, right? Because what the contract watcher is giving you is it's giving you a upfront facility to say like given a contract address I want to see all of its events like decoded"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,000",
+				"to": "00:23:33,000"
+			},
+			"offsets": {
+				"from": 1398000,
+				"to": 1413000
+			},
+			"text": " which you know I think has some value on its own but we're not trying to be like super aggressive beyond that with the contract watcher itself but with plugins what you could do is you could say okay like given that I see this event that I want to spin up"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:33,000",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1413000,
+				"to": 1424000
+			},
+			"text": " maybe a new instance of the contract watcher pointed at a field on that event that is an address that I care about or you know any number of ways you can implement that to run the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:24:02,000"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1442000
+			},
+			"text": " We have code that does that. Some EMs code, EMs. There's a couple different teams that work in both NISTI so there's another code base that actually does that. It takes the, it will read a contract to get a contract address and then write the code for that address"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,000",
+				"to": "00:24:15,000"
+			},
+			"offsets": {
+				"from": 1442000,
+				"to": 1455000
+			},
+			"text": " Yeah, so you know the question is like, from the new one just to, you said it's called ABI, a multi-address, the typical case 721 for example, which is a cute track for the 721 token."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,000",
+				"to": "00:24:27,000"
+			},
+			"offsets": {
+				"from": 1455000,
+				"to": 1467000
+			},
+			"text": " Yeah, so that's actually what I was just talking about. It was a BRC20 watcher and we just did a BRC20 watcher but obviously you could change it to make it a BRC721 watcher as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:27,000",
+				"to": "00:24:41,000"
+			},
+			"offsets": {
+				"from": 1467000,
+				"to": 1481000
+			},
+			"text": " Yeah, I mean one thing just to expand on that point too, you know we've sort of tinkered with a variety of different amounts of like base data that you can scan for when you're running Volcanize DB"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:41,000",
+				"to": "00:25:02,000"
+			},
+			"offsets": {
+				"from": 1481000,
+				"to": 1502000
+			},
+			"text": " and so we started off being like, what's the, just like digest everything and then anyone can run this and digest everything but like I think reality is that a lot of people who might get value from Volcanize DB are not necessarily super stoked to like pay the performance cost that it takes to digest all of that extra information if they don't need it."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:02,000",
+				"to": "00:25:10,000"
+			},
+			"offsets": {
+				"from": 1502000,
+				"to": 1510000
+			},
+			"text": " Right, so a lot of what I've been doing here is like a pretty lightweight process of sinking headers and sinking events from specific targeted contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:10,000",
+				"to": "00:25:21,000"
+			},
+			"offsets": {
+				"from": 1510000,
+				"to": 1521000
+			},
+			"text": " There are more tools in the box that they will you to do more heavyweight stuff if you've got the info on the motivation to do that and we're hoping the super note can help out with that a lot too."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:21,000",
+				"to": "00:25:25,000"
+			},
+			"offsets": {
+				"from": 1521000,
+				"to": 1525000
+			},
+			"text": " Sorry, I'll go back to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:25,000",
+				"to": "00:25:32,000"
+			},
+			"offsets": {
+				"from": 1525000,
+				"to": 1532000
+			},
+			"text": " I have another question. Okay, is there a technical reason for not sinking backwards?"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:32,000",
+				"to": "00:25:41,000"
+			},
+			"offsets": {
+				"from": 1532000,
+				"to": 1541000
+			},
+			"text": " Because you mentioned that you start seeing from the starting book, which means it takes you 30 hours to get to events you probably care about."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:41,000",
+				"to": "00:25:54,000"
+			},
+			"offsets": {
+				"from": 1541000,
+				"to": 1554000
+			},
+			"text": " Yeah, so I mean the main thing is just like I guess that the latest blocks are more likely to be removed by the header stick process right so you'd be potentially doing a lot more redundant work."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:54,000",
+				"to": "00:26:01,000"
+			},
+			"offsets": {
+				"from": 1554000,
+				"to": 1561000
+			},
+			"text": " You can totally get around that if you're interested by starting the header sync process with a more recent starting block number."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,000",
+				"to": "00:26:13,000"
+			},
+			"offsets": {
+				"from": 1561000,
+				"to": 1573000
+			},
+			"text": " Right, so I was demoing with like the deployment block as the starting block number so that you know you're going to get like all of the events but if you really wanted to say like I've always been up an instance to give me like what happened in the last five days,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:13,000",
+				"to": "00:26:23,000"
+			},
+			"offsets": {
+				"from": 1573000,
+				"to": 1583000
+			},
+			"text": " then you can pop that in as a parameter to the command block number where you start caring about stuff and then that's where the thing will happen from."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:23,000",
+				"to": "00:26:32,000"
+			},
+			"offsets": {
+				"from": 1583000,
+				"to": 1592000
+			},
+			"text": " Yeah, but I mean you care about everything. It's just that in that 30 hours you want to do something as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:32,000",
+				"to": "00:26:33,000"
+			},
+			"offsets": {
+				"from": 1592000,
+				"to": 1593000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:33,000",
+				"to": "00:26:40,000"
+			},
+			"offsets": {
+				"from": 1593000,
+				"to": 1600000
+			},
+			"text": " So and you have a book watching for new blocks so your real schedule just managed to just the same way as they are right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:40,000",
+				"to": "00:26:41,000"
+			},
+			"offsets": {
+				"from": 1600000,
+				"to": 1601000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:41,000",
+				"to": "00:26:49,000"
+			},
+			"offsets": {
+				"from": 1601000,
+				"to": 1609000
+			},
+			"text": " It's just instead of starting at seven minutes whatever you bought backwards from the moment you started the book watching before but before but before."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:49,000",
+				"to": "00:26:50,000"
+			},
+			"offsets": {
+				"from": 1609000,
+				"to": 1610000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:50,000",
+				"to": "00:26:59,000"
+			},
+			"offsets": {
+				"from": 1610000,
+				"to": 1619000
+			},
+			"text": " So the short answer is it is technically harder to do that. Just generally Gath doesn't like to go in reverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:59,000",
+				"to": "00:27:07,000"
+			},
+			"offsets": {
+				"from": 1619000,
+				"to": 1627000
+			},
+			"text": " So I mean that's kind of we can if you're really curious about it we can really talk about it but the short answer is Gath doesn't want to go in reverse."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:07,000",
+				"to": "00:27:20,000"
+			},
+			"offsets": {
+				"from": 1627000,
+				"to": 1640000
+			},
+			"text": " I mean that's specifically true also with like subscriptions right so part of the idea here is that you could easily have like a subscription to events but then those are going to be fired as your nodes like processing the blocks that it's going over."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,000",
+				"to": "00:27:34,000"
+			},
+			"offsets": {
+				"from": 1640000,
+				"to": 1654000
+			},
+			"text": " So part of the rational for the setup is like you could use either subscriptions or get blog series to progress forward but I think that's a really cool idea and something we could totally dig into so appreciate it."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,000",
+				"to": "00:27:37,000"
+			},
+			"offsets": {
+				"from": 1654000,
+				"to": 1657000
+			},
+			"text": " And then that's what you mean."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:37,000",
+				"to": "00:27:38,000"
+			},
+			"offsets": {
+				"from": 1657000,
+				"to": 1658000
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,000",
+				"to": "00:27:44,000"
+			},
+			"offsets": {
+				"from": 1658000,
+				"to": 1664000
+			},
+			"text": " Last time I checked you had no Docker file in your master branch so now I'm seeing that it's only a branch."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:44,000",
+				"to": "00:27:45,000"
+			},
+			"offsets": {
+				"from": 1664000,
+				"to": 1665000
+			},
+			"text": " Is there a reason for that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:45,000",
+				"to": "00:27:48,000"
+			},
+			"offsets": {
+				"from": 1665000,
+				"to": 1668000
+			},
+			"text": " Well, did you think the statement or was it working progress?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:48,000",
+				"to": "00:27:59,000"
+			},
+			"offsets": {
+				"from": 1668000,
+				"to": 1679000
+			},
+			"text": " It's kind of a work in progress. I mean we have I think we had like a Docker file a long time ago and it was like pointed at Reinde and we found it to be like not super useful for our day to day development."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:59,000",
+				"to": "00:28:05,000"
+			},
+			"offsets": {
+				"from": 1679000,
+				"to": 1685000
+			},
+			"text": " So lately there's been a lot more work on that and we have a lot of progress on an open PR."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:05,000",
+				"to": "00:28:08,000"
+			},
+			"offsets": {
+				"from": 1685000,
+				"to": 1688000
+			},
+			"text": " I think it's called like Docker updates."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:08,000",
+				"to": "00:28:14,000"
+			},
+			"offsets": {
+				"from": 1688000,
+				"to": 1694000
+			},
+			"text": " But yes, it's not on master yet and the reason but the reason that this one is on a done branch is because like this is pointed at mollock."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:14,000",
+				"to": "00:28:24,000"
+			},
+			"offsets": {
+				"from": 1694000,
+				"to": 1704000
+			},
+			"text": " Like maybe it makes sense at some point to have like a handle Docker files but which didn't want to be like the purpose of vulcanized DB is watching the mollock contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:24,000",
+				"to": "00:28:26,000"
+			},
+			"offsets": {
+				"from": 1704000,
+				"to": 1706000
+			},
+			"text": " You know."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,000",
+				"to": "00:28:28,000"
+			},
+			"offsets": {
+				"from": 1706000,
+				"to": 1708000
+			},
+			"text": " It is one for them."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:28,000",
+				"to": "00:28:32,000"
+			},
+			"offsets": {
+				"from": 1708000,
+				"to": 1712000
+			},
+			"text": " So I'm curious about the limitations of the packing API."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:32,000",
+				"to": "00:28:36,000"
+			},
+			"offsets": {
+				"from": 1712000,
+				"to": 1716000
+			},
+			"text": " So currently from what I understood, packing is a map."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,000",
+				"to": "00:28:41,000"
+			},
+			"offsets": {
+				"from": 1716000,
+				"to": 1721000
+			},
+			"text": " Let's say so they map events or whatever to another events or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:41,000",
+				"to": "00:28:43,000"
+			},
+			"offsets": {
+				"from": 1721000,
+				"to": 1723000
+			},
+			"text": " Can they act as a reduced?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:43,000",
+				"to": "00:28:53,000"
+			},
+			"offsets": {
+				"from": 1723000,
+				"to": 1733000
+			},
+			"text": " So for example, reduced I don't know the database level like I don't know, sum up, transfer, balance, whatever and how does it work with reorgs?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:53,000",
+				"to": "00:28:56,000"
+			},
+			"offsets": {
+				"from": 1733000,
+				"to": 1736000
+			},
+			"text": " Yeah, I think I'm going to go straight to record on this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:56,000",
+				"to": "00:28:57,000"
+			},
+			"offsets": {
+				"from": 1736000,
+				"to": 1737000
+			},
+			"text": " Oh, okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:57,000",
+				"to": "00:28:59,000"
+			},
+			"offsets": {
+				"from": 1737000,
+				"to": 1739000
+			},
+			"text": " I mean, yeah, we could be running reduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:59,000",
+				"to": "00:29:02,000"
+			},
+			"offsets": {
+				"from": 1739000,
+				"to": 1742000
+			},
+			"text": " But then as you pointed out, there we are."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:02,000",
+				"to": "00:29:12,000"
+			},
+			"offsets": {
+				"from": 1742000,
+				"to": 1752000
+			},
+			"text": " So what you would be doing is you would have a table like we have now and then we would just again have a plug in and have read from that table and wrote a new table."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:12,000",
+				"to": "00:29:16,000"
+			},
+			"offsets": {
+				"from": 1752000,
+				"to": 1756000
+			},
+			"text": " And then it would know to compute the new table."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:16,000",
+				"to": "00:29:23,000"
+			},
+			"offsets": {
+				"from": 1756000,
+				"to": 1763000
+			},
+			"text": " So the first table that I described would have all of the things that can get reorged and then the secondary table get re-computed."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:23,000",
+				"to": "00:29:28,000"
+			},
+			"offsets": {
+				"from": 1763000,
+				"to": 1768000
+			},
+			"text": " So you can write everything that I just described in a login because you can do all these things in plugins."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,000",
+				"to": "00:29:31,000"
+			},
+			"offsets": {
+				"from": 1768000,
+				"to": 1771000
+			},
+			"text": " And that's sort of, I mean, that's how we would have addressed that."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:31,000",
+				"to": "00:29:37,000"
+			},
+			"offsets": {
+				"from": 1771000,
+				"to": 1777000
+			},
+			"text": " But yeah, I mean, when I designed this as an original, I thought most of the utility would be in reduce."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:37,000",
+				"to": "00:29:42,000"
+			},
+			"offsets": {
+				"from": 1777000,
+				"to": 1782000
+			},
+			"text": " That's just not the way that development happened to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:42,000",
+				"to": "00:29:43,000"
+			},
+			"offsets": {
+				"from": 1782000,
+				"to": 1783000
+			},
+			"text": " Yep."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:43,000",
+				"to": "00:30:04,000"
+			},
+			"offsets": {
+				"from": 1783000,
+				"to": 1804000
+			},
+			"text": " So I mean, that's work that happens in plugins because we're actively trying to sort of figure out like how can we do this automatically or ask you to write like the fair minimum of code that you need to to make that happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,000",
+				"to": "00:30:13,000"
+			},
+			"offsets": {
+				"from": 1804000,
+				"to": 1813000
+			},
+			"text": " But in a nutshell, the way it works is that you have a mapping of given storage keys to given contract values."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:13,000",
+				"to": "00:30:14,000"
+			},
+			"offsets": {
+				"from": 1813000,
+				"to": 1814000
+			},
+			"text": " Right."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:14,000",
+				"to": "00:30:18,000"
+			},
+			"offsets": {
+				"from": 1814000,
+				"to": 1818000
+			},
+			"text": " So that's pretty straightforward for static values on contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:18,000",
+				"to": "00:30:21,000"
+			},
+			"offsets": {
+				"from": 1818000,
+				"to": 1821000
+			},
+			"text": " Like it's literally just like the index, the value on the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:21,000",
+				"to": "00:30:26,000"
+			},
+			"offsets": {
+				"from": 1821000,
+				"to": 1826000
+			},
+			"text": " You can have a mapping that's like index one is, you know, the total supplier, whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:26,000",
+				"to": "00:30:40,000"
+			},
+			"offsets": {
+				"from": 1826000,
+				"to": 1840000
+			},
+			"text": " But it gets a little bit more interesting when you start dealing with like mappings and dynamic arrays because generating storage keys for that generally depends on secondary data to like an address to map to balances or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:40,000",
+				"to": "00:30:50,000"
+			},
+			"offsets": {
+				"from": 1840000,
+				"to": 1850000
+			},
+			"text": " And so the way that we're looking at doing that is basically you flag some events as like these have addresses that I know for sure are going to be in this mapping."
+		},
+		{
+			"timestamps": {
+				"from": "00:30:50,000",
+				"to": "00:31:06,000"
+			},
+			"offsets": {
+				"from": 1850000,
+				"to": 1866000
+			},
+			"text": " And then we'll like automatically based on the index of the mapping generate the keys based on hashing that address with the index such that you can recognize like all of the storage divs that are coming off of a contract after a given event has been seen."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:06,000",
+				"to": "00:31:17,000"
+			},
+			"offsets": {
+				"from": 1866000,
+				"to": 1877000
+			},
+			"text": " And then you know after you know like what it maps to it's a pretty trivial process of just like decoding the value associated with that storage key into the appropriate type."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:17,000",
+				"to": "00:31:22,000"
+			},
+			"offsets": {
+				"from": 1877000,
+				"to": 1882000
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:22,000",
+				"to": "00:31:27,000"
+			},
+			"offsets": {
+				"from": 1882000,
+				"to": 1887000
+			},
+			"text": " Alrighty well thank you so much for coming out to listen to me talk again."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:27,000",
+				"to": "00:31:32,000"
+			},
+			"offsets": {
+				"from": 1887000,
+				"to": 1892000
+			},
+			"text": " I'm really excited about this work and hope that I can provide a lot of value for the community and totally open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:31:32,000",
+				"to": "00:31:51,000"
+			},
+			"offsets": {
+				"from": 1892000,
+				"to": 1911000
+			},
+			"text": " [Applause]"
+		}
+	]
+}

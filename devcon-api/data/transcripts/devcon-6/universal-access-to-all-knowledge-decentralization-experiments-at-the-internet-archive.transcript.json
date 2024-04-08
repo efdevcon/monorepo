@@ -1,0 +1,3541 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:12,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 12880
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,880",
+				"to": "00:00:16,780"
+			},
+			"offsets": {
+				"from": 12880,
+				"to": 16780
+			},
+			"text": " >> My name is Architer Kukarkan and welcome to my very humbly named talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,780",
+				"to": "00:00:18,920"
+			},
+			"offsets": {
+				"from": 16780,
+				"to": 18920
+			},
+			"text": " about decentralization at the Internet Archive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,920",
+				"to": "00:00:21,520"
+			},
+			"offsets": {
+				"from": 18920,
+				"to": 21520
+			},
+			"text": " So, a couple quick caveats."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,520",
+				"to": "00:00:23,720"
+			},
+			"offsets": {
+				"from": 21520,
+				"to": 23720
+			},
+			"text": " This is not strictly official views of the archive."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,720",
+				"to": "00:00:25,580"
+			},
+			"offsets": {
+				"from": 23720,
+				"to": 25580
+			},
+			"text": " It's sort of my own exegesis."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,580",
+				"to": "00:00:28,340"
+			},
+			"offsets": {
+				"from": 25580,
+				"to": 28340
+			},
+			"text": " This was submitted as a 30-minute talk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,740",
+				"to": "00:00:31,980"
+			},
+			"offsets": {
+				"from": 28740,
+				"to": 31980
+			},
+			"text": " turned into a lightning talk and now is 25 minutes somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,980",
+				"to": "00:00:34,420"
+			},
+			"offsets": {
+				"from": 31980,
+				"to": 34420
+			},
+			"text": " So, it's going to be a little weird, but that's okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,420",
+				"to": "00:00:38,300"
+			},
+			"offsets": {
+				"from": 34420,
+				"to": 38300
+			},
+			"text": " And thirdly, it does not contain Ethereum currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,300",
+				"to": "00:00:42,180"
+			},
+			"offsets": {
+				"from": 38300,
+				"to": 42180
+			},
+			"text": " This may change, hopefully is an outcome of this session."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,180",
+				"to": "00:00:42,620"
+			},
+			"offsets": {
+				"from": 42180,
+				"to": 42620
+			},
+			"text": " We'll see."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,620",
+				"to": "00:00:44,300"
+			},
+			"offsets": {
+				"from": 42620,
+				"to": 44300
+			},
+			"text": " Okay, let's get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,300",
+				"to": "00:00:48,620"
+			},
+			"offsets": {
+				"from": 44300,
+				"to": 48620
+			},
+			"text": " So, why decentralize the archive from a spiritual"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,620",
+				"to": "00:00:49,940"
+			},
+			"offsets": {
+				"from": 48620,
+				"to": 49940
+			},
+			"text": " or ideological perspective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,940",
+				"to": "00:00:54,880"
+			},
+			"offsets": {
+				"from": 49940,
+				"to": 54880
+			},
+			"text": " So, since you hear your probability to know what the archive is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,880",
+				"to": "00:00:57,940"
+			},
+			"offsets": {
+				"from": 54880,
+				"to": 57940
+			},
+			"text": " but just as a quick recap, probably best known feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,940",
+				"to": "00:01:02,500"
+			},
+			"offsets": {
+				"from": 57940,
+				"to": 62500
+			},
+			"text": " is a way back machine, which has been archiving the known web since 1996."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,500",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 62500,
+				"to": 64120
+			},
+			"text": " It has trillions of captures."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:09,220"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 69220
+			},
+			"text": " In a given URL, you can punch in and travel back in time quite far."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,220",
+				"to": "00:01:10,980"
+			},
+			"offsets": {
+				"from": 69220,
+				"to": 70980
+			},
+			"text": " Of course, that's not all."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,980",
+				"to": "00:01:17,620"
+			},
+			"offsets": {
+				"from": 70980,
+				"to": 77620
+			},
+			"text": " Oop. Okay. So, we have thousands and thousands of other collections,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,620",
+				"to": "00:01:23,860"
+			},
+			"offsets": {
+				"from": 77620,
+				"to": 83860
+			},
+			"text": " everything from books to film to wax cylinders and vinyl."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,860",
+				"to": "00:01:25,660"
+			},
+			"offsets": {
+				"from": 83860,
+				"to": 85660
+			},
+			"text": " We digitize it ourselves."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,660",
+				"to": "00:01:29,740"
+			},
+			"offsets": {
+				"from": 85660,
+				"to": 89740
+			},
+			"text": " We partner with other institutions to preserve their collections and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,740",
+				"to": "00:01:31,100"
+			},
+			"offsets": {
+				"from": 89740,
+				"to": 91100
+			},
+			"text": " It's a lot of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,100",
+				"to": "00:01:40,020"
+			},
+			"offsets": {
+				"from": 91100,
+				"to": 100020
+			},
+			"text": " Okay. And we are also perhaps known for our beautiful headquarters,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,020",
+				"to": "00:01:44,260"
+			},
+			"offsets": {
+				"from": 100020,
+				"to": 104260
+			},
+			"text": " which is here seen in its previous incarnation as a literal church."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,260",
+				"to": "00:01:49,460"
+			},
+			"offsets": {
+				"from": 104260,
+				"to": 109460
+			},
+			"text": " And inside is our own terracotta army, which by the way is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,460",
+				"to": "00:01:52,140"
+			},
+			"offsets": {
+				"from": 109460,
+				"to": 112140
+			},
+			"text": " I think, the best employee perk ever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,140",
+				"to": "00:01:55,260"
+			},
+			"offsets": {
+				"from": 112140,
+				"to": 115260
+			},
+			"text": " After three years, you get a half-sized statue of yourself made."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,940",
+				"to": "00:02:01,060"
+			},
+			"offsets": {
+				"from": 115940,
+				"to": 121060
+			},
+			"text": " And it's placed somewhat creepily on the side of the great hall."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,060",
+				"to": "00:02:07,060"
+			},
+			"offsets": {
+				"from": 121060,
+				"to": 127060
+			},
+			"text": " And within the very same room is actually some of our servers."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,060",
+				"to": "00:02:09,580"
+			},
+			"offsets": {
+				"from": 127060,
+				"to": 129580
+			},
+			"text": " We also have more conventional data centers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,580",
+				"to": "00:02:13,980"
+			},
+			"offsets": {
+				"from": 129580,
+				"to": 133980
+			},
+			"text": " but I think for the purposes of this metaphor, this is a very good image."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,980",
+				"to": "00:02:16,540"
+			},
+			"offsets": {
+				"from": 133980,
+				"to": 136540
+			},
+			"text": " It's the, these are petaboxes."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,540",
+				"to": "00:02:19,300"
+			},
+			"offsets": {
+				"from": 136540,
+				"to": 139300
+			},
+			"text": " At one point, they held about a petabyte of data each."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,300",
+				"to": "00:02:20,180"
+			},
+			"offsets": {
+				"from": 139300,
+				"to": 140180
+			},
+			"text": " Now it's much more."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,180",
+				"to": "00:02:22,860"
+			},
+			"offsets": {
+				"from": 140180,
+				"to": 142860
+			},
+			"text": " So, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,420",
+				"to": "00:02:27,500"
+			},
+			"offsets": {
+				"from": 143420,
+				"to": 147500
+			},
+			"text": " So, you know, we've got four walls."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,500",
+				"to": "00:02:28,380"
+			},
+			"offsets": {
+				"from": 147500,
+				"to": 148380
+			},
+			"text": " We've got a roof."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,380",
+				"to": "00:02:31,420"
+			},
+			"offsets": {
+				"from": 148380,
+				"to": 151420
+			},
+			"text": " We've got our hardware serving you."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,420",
+				"to": "00:02:39,700"
+			},
+			"offsets": {
+				"from": 151420,
+				"to": 159700
+			},
+			"text": " You know, you're grateful dead, live set from 1972 or the White House homepage from the 90s."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,700",
+				"to": "00:02:45,180"
+			},
+			"offsets": {
+				"from": 159700,
+				"to": 165180
+			},
+			"text": " And that is how we accomplish our mission of universal access to all knowledge, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,180",
+				"to": "00:02:49,500"
+			},
+			"offsets": {
+				"from": 165180,
+				"to": 169500
+			},
+			"text": " Well, I think actually, for a long time, this has been true."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,500",
+				"to": "00:02:51,460"
+			},
+			"offsets": {
+				"from": 169500,
+				"to": 171460
+			},
+			"text": " It might be somewhat true today."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,900",
+				"to": "00:02:54,140"
+			},
+			"offsets": {
+				"from": 171900,
+				"to": 174140
+			},
+			"text": " But before I try to answer this question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,140",
+				"to": "00:02:58,620"
+			},
+			"offsets": {
+				"from": 174140,
+				"to": 178620
+			},
+			"text": " I just want to play this clip off our founder from the very, very beginning."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,620",
+				"to": "00:03:01,060"
+			},
+			"offsets": {
+				"from": 178620,
+				"to": 181060
+			},
+			"text": " You may have seen him earlier in the week."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,060",
+				"to": "00:03:03,300"
+			},
+			"offsets": {
+				"from": 181060,
+				"to": 183300
+			},
+			"text": " And here's a much younger version."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,300",
+				"to": "00:03:08,860"
+			},
+			"offsets": {
+				"from": 183300,
+				"to": 188860
+			},
+			"text": " And there's no audio, but there are subtitles."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,860",
+				"to": "00:03:17,820"
+			},
+			"offsets": {
+				"from": 188860,
+				"to": 197820
+			},
+			"text": " And he's basically talking about his thinking in starting the archive,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,380",
+				"to": "00:03:22,340"
+			},
+			"offsets": {
+				"from": 198380,
+				"to": 202340
+			},
+			"text": " which at that time was just a web repository."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:22,340",
+				"to": "00:03:25,100"
+			},
+			"offsets": {
+				"from": 202340,
+				"to": 205100
+			},
+			"text": " And I want you to take two things away from this clip."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,100",
+				"to": "00:03:27,940"
+			},
+			"offsets": {
+				"from": 205100,
+				"to": 207940
+			},
+			"text": " First is that this is really a web native organization."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,940",
+				"to": "00:03:29,860"
+			},
+			"offsets": {
+				"from": 207940,
+				"to": 209860
+			},
+			"text": " We do have all this other content."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,860",
+				"to": "00:03:34,940"
+			},
+			"offsets": {
+				"from": 209860,
+				"to": 214940
+			},
+			"text": " And we value it very much, but the web has largely eaten the world at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,940",
+				"to": "00:03:43,940"
+			},
+			"offsets": {
+				"from": 214940,
+				"to": 223940
+			},
+			"text": " So it is in our DNA to essentially be a the missing memory layer of the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,940",
+				"to": "00:03:48,660"
+			},
+			"offsets": {
+				"from": 223940,
+				"to": 228660
+			},
+			"text": " And up to this point, the best way to accomplish that was put a bunch of stuff"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,660",
+				"to": "00:03:52,620"
+			},
+			"offsets": {
+				"from": 228660,
+				"to": 232620
+			},
+			"text": " in servers in a box."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,620",
+				"to": "00:03:58,180"
+			},
+			"offsets": {
+				"from": 232620,
+				"to": 238180
+			},
+			"text": " And the second thing is that underlying our top line mission"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,180",
+				"to": "00:04:02,020"
+			},
+			"offsets": {
+				"from": 238180,
+				"to": 242020
+			},
+			"text": " off universal access to all knowledge is this technological imperative"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,020",
+				"to": "00:04:07,500"
+			},
+			"offsets": {
+				"from": 242020,
+				"to": 247500
+			},
+			"text": " to periodically assess the tools that are now newly available,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,500",
+				"to": "00:04:12,220"
+			},
+			"offsets": {
+				"from": 247500,
+				"to": 252220
+			},
+			"text": " whether they can help us further that top line and apply them accordingly."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,980",
+				"to": "00:04:17,140"
+			},
+			"offsets": {
+				"from": 252980,
+				"to": 257140
+			},
+			"text": " So I think for the first time since our founding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,140",
+				"to": "00:04:20,100"
+			},
+			"offsets": {
+				"from": 257140,
+				"to": 260100
+			},
+			"text": " we actually have something that's not just, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,100",
+				"to": "00:04:23,340"
+			},
+			"offsets": {
+				"from": 260100,
+				"to": 263340
+			},
+			"text": " better servers, bigger hard drives, better scanning equipment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,340",
+				"to": "00:04:28,780"
+			},
+			"offsets": {
+				"from": 263340,
+				"to": 268780
+			},
+			"text": " We have possibility of potentially fixing this problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,780",
+				"to": "00:04:34,980"
+			},
+			"offsets": {
+				"from": 268780,
+				"to": 274980
+			},
+			"text": " in a way that is universal and not just embodied in our service."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,980",
+				"to": "00:04:37,700"
+			},
+			"offsets": {
+				"from": 274980,
+				"to": 277700
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,700",
+				"to": "00:04:41,700"
+			},
+			"offsets": {
+				"from": 277700,
+				"to": 281700
+			},
+			"text": " So to zoom back in a little bit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,540",
+				"to": "00:04:45,660"
+			},
+			"offsets": {
+				"from": 282540,
+				"to": 285660
+			},
+			"text": " why decentralized archive from a practical perspective?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,660",
+				"to": "00:04:47,940"
+			},
+			"offsets": {
+				"from": 285660,
+				"to": 287940
+			},
+			"text": " Well, one is physical location risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,940",
+				"to": "00:04:54,860"
+			},
+			"offsets": {
+				"from": 287940,
+				"to": 294860
+			},
+			"text": " So this is a map of seismic risk zones in the Bay Area and the little logos there"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,860",
+				"to": "00:04:57,380"
+			},
+			"offsets": {
+				"from": 294860,
+				"to": 297380
+			},
+			"text": " correspond to our facilities."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,380",
+				"to": "00:04:59,060"
+			},
+			"offsets": {
+				"from": 297380,
+				"to": 299060
+			},
+			"text": " And that's not great."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:59,060",
+				"to": "00:05:01,980"
+			},
+			"offsets": {
+				"from": 299060,
+				"to": 301980
+			},
+			"text": " We're actually building a new data center in British Columbia currently."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,980",
+				"to": "00:05:05,660"
+			},
+			"offsets": {
+				"from": 301980,
+				"to": 305660
+			},
+			"text": " Unfortunately, that's also on a false zone."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:05,660",
+				"to": "00:05:09,900"
+			},
+			"offsets": {
+				"from": 305660,
+				"to": 309900
+			},
+			"text": " And you might say, well, why don't you stop building your data centers"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,900",
+				"to": "00:05:11,220"
+			},
+			"offsets": {
+				"from": 309900,
+				"to": 311220
+			},
+			"text": " in seismically active regions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,420",
+				"to": "00:05:13,660"
+			},
+			"offsets": {
+				"from": 311420,
+				"to": 313660
+			},
+			"text": " And for reasons that are outside this go to the stock,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,660",
+				"to": "00:05:16,700"
+			},
+			"offsets": {
+				"from": 313660,
+				"to": 316700
+			},
+			"text": " this is actually surprisingly difficult."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,700",
+				"to": "00:05:19,100"
+			},
+			"offsets": {
+				"from": 316700,
+				"to": 319100
+			},
+			"text": " Secondly, political location risk."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,100",
+				"to": "00:05:23,820"
+			},
+			"offsets": {
+				"from": 319100,
+				"to": 323820
+			},
+			"text": " So we're addressing this a little bit with the Canadian expansion."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,820",
+				"to": "00:05:25,940"
+			},
+			"offsets": {
+				"from": 323820,
+				"to": 325940
+			},
+			"text": " But as you can see on this map,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,940",
+				"to": "00:05:32,580"
+			},
+			"offsets": {
+				"from": 325940,
+				"to": 332580
+			},
+			"text": " this is essentially a sort of weighted index off the democratic quality of various"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,580",
+				"to": "00:05:36,740"
+			},
+			"offsets": {
+				"from": 332580,
+				"to": 336740
+			},
+			"text": " countries and we're not doing great at it and it's really trending downward."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,940",
+				"to": "00:05:42,620"
+			},
+			"offsets": {
+				"from": 336940,
+				"to": 342620
+			},
+			"text": " So this is a real problem for us because we have a lot of stuff that people want"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,620",
+				"to": "00:05:44,420"
+			},
+			"offsets": {
+				"from": 342620,
+				"to": 344420
+			},
+			"text": " silenced."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,420",
+				"to": "00:05:48,820"
+			},
+			"offsets": {
+				"from": 344420,
+				"to": 348820
+			},
+			"text": " And, clearly, we have pretty significant network bottlenecks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,820",
+				"to": "00:05:52,620"
+			},
+			"offsets": {
+				"from": 348820,
+				"to": 352620
+			},
+			"text": " So this is the user signups over time."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,620",
+				"to": "00:05:54,820"
+			},
+			"offsets": {
+				"from": 352620,
+				"to": 354820
+			},
+			"text": " You can see there was 16 in 1996."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,820",
+				"to": "00:05:55,940"
+			},
+			"offsets": {
+				"from": 354820,
+				"to": 355940
+			},
+			"text": " That's very cute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,940",
+				"to": "00:06:01,580"
+			},
+			"offsets": {
+				"from": 355940,
+				"to": 361580
+			},
+			"text": " And during the pandemic, it just went crazy and has never really let up."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,780",
+				"to": "00:06:07,340"
+			},
+			"offsets": {
+				"from": 361780,
+				"to": 367340
+			},
+			"text": " So in practice, this means our bandwidth is just totally cooked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,340",
+				"to": "00:06:12,660"
+			},
+			"offsets": {
+				"from": 367340,
+				"to": 372660
+			},
+			"text": " We are putting fiber in as fast as the city authorities will allow us."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,660",
+				"to": "00:06:15,140"
+			},
+			"offsets": {
+				"from": 372660,
+				"to": 375140
+			},
+			"text": " And it's really just not enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,140",
+				"to": "00:06:19,700"
+			},
+			"offsets": {
+				"from": 375140,
+				"to": 379700
+			},
+			"text": " So you might ask, why not just put all your stuff on S3 and use Cloud France"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,700",
+				"to": "00:06:22,020"
+			},
+			"offsets": {
+				"from": 379700,
+				"to": 382020
+			},
+			"text": " and not worry about any of this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,020",
+				"to": "00:06:23,260"
+			},
+			"offsets": {
+				"from": 382020,
+				"to": 383260
+			},
+			"text": " So there are multiple reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,260",
+				"to": "00:06:28,060"
+			},
+			"offsets": {
+				"from": 383260,
+				"to": 388060
+			},
+			"text": " Some of them are also ideological, but there are also practical ones like cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,260",
+				"to": "00:06:35,980"
+			},
+			"offsets": {
+				"from": 388260,
+				"to": 395980
+			},
+			"text": " So our model cost and actually kind of real cost is around 650 bucks per"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,980",
+				"to": "00:06:41,300"
+			},
+			"offsets": {
+				"from": 395980,
+				"to": 401300
+			},
+			"text": " terabytes to store forever, which in the model means 100 plus years."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,300",
+				"to": "00:06:44,100"
+			},
+			"offsets": {
+				"from": 401300,
+				"to": 404100
+			},
+			"text": " On S3, that's about 160 bucks per year."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,100",
+				"to": "00:06:48,820"
+			},
+			"offsets": {
+				"from": 404100,
+				"to": 408820
+			},
+			"text": " So that multiplied by forever, that's not a very nice number."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,820",
+				"to": "00:06:54,260"
+			},
+			"offsets": {
+				"from": 408820,
+				"to": 414260
+			},
+			"text": " With Filecoin, which is sort of presaging, what we'll get into a little bit later,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,460",
+				"to": "00:06:59,020"
+			},
+			"offsets": {
+				"from": 414460,
+				"to": 419020
+			},
+			"text": " the costs are vanishingly low and might in fact be negative for us"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,020",
+				"to": "00:07:03,420"
+			},
+			"offsets": {
+				"from": 419020,
+				"to": 423420
+			},
+			"text": " because there's a network subsidy for culturally valuable data."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,420",
+				"to": "00:07:05,020"
+			},
+			"offsets": {
+				"from": 423420,
+				"to": 425020
+			},
+			"text": " How sustainable that is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,020",
+				"to": "00:07:07,100"
+			},
+			"offsets": {
+				"from": 425020,
+				"to": 427100
+			},
+			"text": " We'll find out."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,100",
+				"to": "00:07:10,300"
+			},
+			"offsets": {
+				"from": 427100,
+				"to": 430300
+			},
+			"text": " Storage is another decentralized storage network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,300",
+				"to": "00:07:14,940"
+			},
+			"offsets": {
+				"from": 430300,
+				"to": 434940
+			},
+			"text": " They're sort of a little bit more here and now thinking."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,940",
+				"to": "00:07:19,540"
+			},
+			"offsets": {
+				"from": 434940,
+				"to": 439540
+			},
+			"text": " So they're competing with S3 and they have a slightly better cost."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,740",
+				"to": "00:07:24,980"
+			},
+			"offsets": {
+				"from": 439740,
+				"to": 444980
+			},
+			"text": " But there's also Rweave, which you might be familiar with as the forever storage"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,980",
+				"to": "00:07:27,500"
+			},
+			"offsets": {
+				"from": 444980,
+				"to": 447500
+			},
+			"text": " solution and it is expensive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,500",
+				"to": "00:07:32,380"
+			},
+			"offsets": {
+				"from": 447500,
+				"to": 452380
+			},
+			"text": " It is quite pricey compared to our model and I'm a little bit unconvinced"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,380",
+				"to": "00:07:39,420"
+			},
+			"offsets": {
+				"from": 452380,
+				"to": 459420
+			},
+			"text": " about their data availability model for stuff that's unimportant until it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,420",
+				"to": "00:07:43,540"
+			},
+			"offsets": {
+				"from": 459420,
+				"to": 463540
+			},
+			"text": " So things that are sitting idle for a very long time and then because of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,540",
+				"to": "00:07:46,300"
+			},
+			"offsets": {
+				"from": 463540,
+				"to": 466300
+			},
+			"text": " political moment or something like that, they suddenly become relevant."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,500",
+				"to": "00:07:50,140"
+			},
+			"offsets": {
+				"from": 466500,
+				"to": 470140
+			},
+			"text": " So if you have other thoughts, please talk to me and convince me."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,140",
+				"to": "00:07:51,460"
+			},
+			"offsets": {
+				"from": 470140,
+				"to": 471460
+			},
+			"text": " I'd love that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,460",
+				"to": "00:07:53,980"
+			},
+			"offsets": {
+				"from": 471460,
+				"to": 473980
+			},
+			"text": " And there are other things I haven't mentioned here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,980",
+				"to": "00:07:56,420"
+			},
+			"offsets": {
+				"from": 473980,
+				"to": 476420
+			},
+			"text": " I'd love to talk to Swarmfolks, for example."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,420",
+				"to": "00:07:58,380"
+			},
+			"offsets": {
+				"from": 476420,
+				"to": 478380
+			},
+			"text": " I don't know what their pricing model is."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,380",
+				"to": "00:08:03,620"
+			},
+			"offsets": {
+				"from": 478380,
+				"to": 483620
+			},
+			"text": " So please, if you're with that team, find me later."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,620",
+				"to": "00:08:07,500"
+			},
+			"offsets": {
+				"from": 483620,
+				"to": 487500
+			},
+			"text": " And they're aside from all the dealing with negatives."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,500",
+				"to": "00:08:12,660"
+			},
+			"offsets": {
+				"from": 487500,
+				"to": 492660
+			},
+			"text": " They're also positive new opportunities with decentralized storage and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,860",
+				"to": "00:08:17,060"
+			},
+			"offsets": {
+				"from": 492860,
+				"to": 497060
+			},
+			"text": " decentralized networks in general, like content addressing, which a lot of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,060",
+				"to": "00:08:21,380"
+			},
+			"offsets": {
+				"from": 497060,
+				"to": 501380
+			},
+			"text": " support, which, for example, can allow for transparent link preservation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,380",
+				"to": "00:08:26,660"
+			},
+			"offsets": {
+				"from": 501380,
+				"to": 506660
+			},
+			"text": " Right now, when a link breaks, we may have a backup copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,660",
+				"to": "00:08:31,540"
+			},
+			"offsets": {
+				"from": 506660,
+				"to": 511540
+			},
+			"text": " If it's on Wikipedia, we have a bot that will go in and edit the broken links"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,540",
+				"to": "00:08:33,900"
+			},
+			"offsets": {
+				"from": 511540,
+				"to": 513900
+			},
+			"text": " and the citations with our backups."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,900",
+				"to": "00:08:37,340"
+			},
+			"offsets": {
+				"from": 513900,
+				"to": 517340
+			},
+			"text": " Or maybe if you're an enthusiast, you'll be using our extension."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,340",
+				"to": "00:08:42,420"
+			},
+			"offsets": {
+				"from": 517340,
+				"to": 522420
+			},
+			"text": " But for the most part, an HTTP link, when it breaks, it just breaks."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,620",
+				"to": "00:08:50,380"
+			},
+			"offsets": {
+				"from": 522620,
+				"to": 530380
+			},
+			"text": " And of course, there is web 3 forward compatibility as a nice bonus when the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,380",
+				"to": "00:08:53,900"
+			},
+			"offsets": {
+				"from": 530380,
+				"to": 533900
+			},
+			"text": " stuff is in a decentralized network and it's content addressable."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,900",
+				"to": "00:08:58,860"
+			},
+			"offsets": {
+				"from": 533900,
+				"to": 538860
+			},
+			"text": " You can reference it using standard IPFS libraries that I'm sure you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,860",
+				"to": "00:09:02,460"
+			},
+			"offsets": {
+				"from": 538860,
+				"to": 542460
+			},
+			"text": " familiar with, and so on and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,460",
+				"to": "00:09:10,900"
+			},
+			"offsets": {
+				"from": 542460,
+				"to": 550900
+			},
+			"text": " So I'm going to quickly jump into a couple of things that we have working today"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,100",
+				"to": "00:09:19,660"
+			},
+			"offsets": {
+				"from": 551100,
+				"to": 559660
+			},
+			"text": " as steps in this direction and then maybe come back to the musings about how an"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,660",
+				"to": "00:09:23,980"
+			},
+			"offsets": {
+				"from": 559660,
+				"to": 563980
+			},
+			"text": " actual decentralized internet archive might look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,980",
+				"to": "00:09:26,740"
+			},
+			"offsets": {
+				"from": 563980,
+				"to": 566740
+			},
+			"text": " OK, so the first one is the simpler one."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,740",
+				"to": "00:09:33,180"
+			},
+			"offsets": {
+				"from": 566740,
+				"to": 573180
+			},
+			"text": " And this mostly addresses the bandwidth concerns and it's streaming media from"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,180",
+				"to": "00:09:37,820"
+			},
+			"offsets": {
+				"from": 573180,
+				"to": 577820
+			},
+			"text": " storage. And if you'd like to try this yourself, you can do it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,020",
+				"to": "00:09:42,220"
+			},
+			"offsets": {
+				"from": 578020,
+				"to": 582220
+			},
+			"text": " We don't currently have a real front end, so you'll need to grab this little book"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,220",
+				"to": "00:09:48,940"
+			},
+			"offsets": {
+				"from": 582220,
+				"to": 588940
+			},
+			"text": " market from the presentation and just add it to your toolbar and you will be"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:48,940",
+				"to": "00:09:51,420"
+			},
+			"offsets": {
+				"from": 588940,
+				"to": 591420
+			},
+			"text": " able to follow my example."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,420",
+				"to": "00:10:00,980"
+			},
+			"offsets": {
+				"from": 591420,
+				"to": 600980
+			},
+			"text": " All right, so here we have a video from from NASA and we have a whole collection"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,980",
+				"to": "00:10:03,100"
+			},
+			"offsets": {
+				"from": 600980,
+				"to": 603100
+			},
+			"text": " of their their videos."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,300",
+				"to": "00:10:09,060"
+			},
+			"offsets": {
+				"from": 603300,
+				"to": 609060
+			},
+			"text": " And in the metadata here, you see some internal identifiers, this archival"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,060",
+				"to": "00:10:14,180"
+			},
+			"offsets": {
+				"from": 609060,
+				"to": 614180
+			},
+			"text": " identifier, ARK, and then this storage string."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,180",
+				"to": "00:10:21,540"
+			},
+			"offsets": {
+				"from": 614180,
+				"to": 621540
+			},
+			"text": " So any archive item that you see this string on is actually mirrored on storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,540",
+				"to": "00:10:27,980"
+			},
+			"offsets": {
+				"from": 621540,
+				"to": 627980
+			},
+			"text": " So you can just head this book market and hopefully we do not get demo fail here"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,980",
+				"to": "00:10:29,740"
+			},
+			"offsets": {
+				"from": 627980,
+				"to": 629740
+			},
+			"text": " due to network issues."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,740",
+				"to": "00:10:30,820"
+			},
+			"offsets": {
+				"from": 629740,
+				"to": 630820
+			},
+			"text": " No, it's working great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,020",
+				"to": "00:10:37,740"
+			},
+			"offsets": {
+				"from": 631020,
+				"to": 637740
+			},
+			"text": " So here is a pretty big video, you know, full resolution MP4 for gigs."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,740",
+				"to": "00:10:46,220"
+			},
+			"offsets": {
+				"from": 637740,
+				"to": 646220
+			},
+			"text": " And so as as actually, yeah, that loaded."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,220",
+				"to": "00:10:47,140"
+			},
+			"offsets": {
+				"from": 646220,
+				"to": 647140
+			},
+			"text": " That's fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,140",
+				"to": "00:10:54,140"
+			},
+			"offsets": {
+				"from": 647140,
+				"to": 654140
+			},
+			"text": " So here we have some wacky astronaut things and it's as you see on the right here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,140",
+				"to": "00:10:59,140"
+			},
+			"offsets": {
+				"from": 654140,
+				"to": 659140
+			},
+			"text": " it's being served from almost 3,000 nodes worldwide."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,340",
+				"to": "00:11:03,380"
+			},
+			"offsets": {
+				"from": 659340,
+				"to": 663380
+			},
+			"text": " StorageWorks is sort of like an incentivized bit torrent swarm."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,380",
+				"to": "00:11:07,740"
+			},
+			"offsets": {
+				"from": 663380,
+				"to": 667740
+			},
+			"text": " It's not quite the same, but it's the basic principle applies."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,740",
+				"to": "00:11:14,500"
+			},
+			"offsets": {
+				"from": 667740,
+				"to": 674500
+			},
+			"text": " The use of a razor coating and basically pick 88 of the fastest nodes to give you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,500",
+				"to": "00:11:20,940"
+			},
+			"offsets": {
+				"from": 674500,
+				"to": 680940
+			},
+			"text": " a nice robust stream without relying on something like CloudFront or expensive edge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,940",
+				"to": "00:11:22,340"
+			},
+			"offsets": {
+				"from": 680940,
+				"to": 682340
+			},
+			"text": " cache."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,340",
+				"to": "00:11:25,100"
+			},
+			"offsets": {
+				"from": 682340,
+				"to": 685100
+			},
+			"text": " So let's close that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,100",
+				"to": "00:11:27,940"
+			},
+			"offsets": {
+				"from": 685100,
+				"to": 687940
+			},
+			"text": " All right, so."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,820",
+				"to": "00:11:35,580"
+			},
+			"offsets": {
+				"from": 688820,
+				"to": 695580
+			},
+			"text": " So what do we need for this to actually be useful to you all is?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,580",
+				"to": "00:11:40,980"
+			},
+			"offsets": {
+				"from": 695580,
+				"to": 700980
+			},
+			"text": " Well, one is obviously an actual front end and that's that's assigned to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,980",
+				"to": "00:11:45,740"
+			},
+			"offsets": {
+				"from": 700980,
+				"to": 705740
+			},
+			"text": " We need browser support because in this case, it was sort of cheating a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:45,740",
+				"to": "00:11:49,540"
+			},
+			"offsets": {
+				"from": 705740,
+				"to": 709540
+			},
+			"text": " because I was actually using an HTTP Terminator where my browser was talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,540",
+				"to": "00:11:55,580"
+			},
+			"offsets": {
+				"from": 709540,
+				"to": 715580
+			},
+			"text": " to a storage service that was then talking to all these thousands of nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,780",
+				"to": "00:12:00,020"
+			},
+			"offsets": {
+				"from": 715780,
+				"to": 720020
+			},
+			"text": " It's actually an HTTPS connection to the nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,020",
+				"to": "00:12:06,340"
+			},
+			"offsets": {
+				"from": 720020,
+				"to": 726340
+			},
+			"text": " So all you need to make this work in the browser in a truly peer to peer fashion"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,340",
+				"to": "00:12:09,980"
+			},
+			"offsets": {
+				"from": 726340,
+				"to": 729980
+			},
+			"text": " is self-signed certificate support in a particular context."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,980",
+				"to": "00:12:15,100"
+			},
+			"offsets": {
+				"from": 729980,
+				"to": 735100
+			},
+			"text": " So if you're with Brave or Opera or another browser that wants to make a play"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,100",
+				"to": "00:12:17,140"
+			},
+			"offsets": {
+				"from": 735100,
+				"to": 737140
+			},
+			"text": " in this space, please talk to me."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,140",
+				"to": "00:12:22,580"
+			},
+			"offsets": {
+				"from": 737140,
+				"to": 742580
+			},
+			"text": " And lastly, as was many decentralized system there systems today, there is actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,780",
+				"to": "00:12:28,580"
+			},
+			"offsets": {
+				"from": 742780,
+				"to": 748580
+			},
+			"text": " a place point of failure, which is the metadata that essentially tells you where"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,580",
+				"to": "00:12:30,260"
+			},
+			"offsets": {
+				"from": 748580,
+				"to": 750260
+			},
+			"text": " to find all the pieces of the file."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:30,260",
+				"to": "00:12:35,580"
+			},
+			"offsets": {
+				"from": 750260,
+				"to": 755580
+			},
+			"text": " So we're currently using a storage hosted with a called satellite metadata service."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,580",
+				"to": "00:12:40,580"
+			},
+			"offsets": {
+				"from": 755580,
+				"to": 760580
+			},
+			"text": " We'll probably be running one of our own soon, but the real solution is, of course,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,580",
+				"to": "00:12:42,580"
+			},
+			"offsets": {
+				"from": 760580,
+				"to": 762580
+			},
+			"text": " not to have the single point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,580",
+				"to": "00:12:46,460"
+			},
+			"offsets": {
+				"from": 762580,
+				"to": 766460
+			},
+			"text": " So that is on the to-do list."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,460",
+				"to": "00:12:49,300"
+			},
+			"offsets": {
+				"from": 766460,
+				"to": 769300
+			},
+			"text": " OK, so the second demo is a little bit more complicated."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,500",
+				"to": "00:12:53,540"
+			},
+			"offsets": {
+				"from": 769500,
+				"to": 773540
+			},
+			"text": " And for it, you might need to have a crash course in web archiving."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,540",
+				"to": "00:12:59,980"
+			},
+			"offsets": {
+				"from": 773540,
+				"to": 779980
+			},
+			"text": " So the canonical format for web archives is called Wark."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,980",
+				"to": "00:13:08,700"
+			},
+			"offsets": {
+				"from": 779980,
+				"to": 788700
+			},
+			"text": " And it's an IRB standard that the archive has developed back in the 2000s."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,700",
+				"to": "00:13:16,020"
+			},
+			"offsets": {
+				"from": 788700,
+				"to": 796020
+			},
+			"text": " And it's basically just a dump off of HTTP traffic between your browser and a given"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,220",
+				"to": "00:13:27,820"
+			},
+			"offsets": {
+				"from": 796220,
+				"to": 807820
+			},
+			"text": " server. And the actual file structure is basically a tarball or concatenated"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,820",
+				"to": "00:13:29,820"
+			},
+			"offsets": {
+				"from": 807820,
+				"to": 809820
+			},
+			"text": " dumps of these different crawls."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:29,820",
+				"to": "00:13:32,620"
+			},
+			"offsets": {
+				"from": 809820,
+				"to": 812620
+			},
+			"text": " And this is how the entirety of the Wayback Machine works."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:32,620",
+				"to": "00:13:39,540"
+			},
+			"offsets": {
+				"from": 812620,
+				"to": 819540
+			},
+			"text": " It's just a bunch of these giant files that are HTTP dumps and some index data that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,740",
+				"to": "00:13:46,380"
+			},
+			"offsets": {
+				"from": 819740,
+				"to": 826380
+			},
+			"text": " gives you what offset in the file to read and out comes the web page."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,380",
+				"to": "00:13:49,380"
+			},
+			"offsets": {
+				"from": 826380,
+				"to": 829380
+			},
+			"text": " So let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,380",
+				"to": "00:13:54,140"
+			},
+			"offsets": {
+				"from": 829380,
+				"to": 834140
+			},
+			"text": " All right, so I'm going to go back to the demo here."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:54,140",
+				"to": "00:13:59,300"
+			},
+			"offsets": {
+				"from": 834140,
+				"to": 839300
+			},
+			"text": " So here's an example of such a Wark file."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,300",
+				"to": "00:14:03,660"
+			},
+			"offsets": {
+				"from": 839300,
+				"to": 843660
+			},
+			"text": " And it doesn't look like much here because this is sort of internal use."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,660",
+				"to": "00:14:09,100"
+			},
+			"offsets": {
+				"from": 843660,
+				"to": 849100
+			},
+			"text": " If you open this up in a different front-end, you'll actually see the web pages."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:09,300",
+				"to": "00:14:14,820"
+			},
+			"offsets": {
+				"from": 849300,
+				"to": 854820
+			},
+			"text": " But this is kind of what's how the sausage is made internally, just these files."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:14,820",
+				"to": "00:14:21,340"
+			},
+			"offsets": {
+				"from": 854820,
+				"to": 861340
+			},
+			"text": " And we have, again, in the metadata fields, we have these identifiers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,340",
+				"to": "00:14:23,820"
+			},
+			"offsets": {
+				"from": 861340,
+				"to": 863820
+			},
+			"text": " ID by a CID and Comp P."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:23,820",
+				"to": "00:14:26,460"
+			},
+			"offsets": {
+				"from": 863820,
+				"to": 866460
+			},
+			"text": " And these are identifiers within the file coin network."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,460",
+				"to": "00:14:29,060"
+			},
+			"offsets": {
+				"from": 866460,
+				"to": 869060
+			},
+			"text": " So we've been storing a lot of these web crawls."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,060",
+				"to": "00:14:35,820"
+			},
+			"offsets": {
+				"from": 869060,
+				"to": 875820
+			},
+			"text": " This particular data set is our pre-enigration crawl."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:35,820",
+				"to": "00:14:38,220"
+			},
+			"offsets": {
+				"from": 875820,
+				"to": 878220
+			},
+			"text": " So every US presidential election,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,420",
+				"to": "00:14:44,780"
+			},
+			"offsets": {
+				"from": 878420,
+				"to": 884780
+			},
+			"text": " we capture the entirety of the dot-gov domain and associated things before and after"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,780",
+				"to": "00:14:53,700"
+			},
+			"offsets": {
+				"from": 884780,
+				"to": 893700
+			},
+			"text": " the administration change to see how the politics reflect in the reality of the government web."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,700",
+				"to": "00:15:01,980"
+			},
+			"offsets": {
+				"from": 893700,
+				"to": 901980
+			},
+			"text": " So we're using this data sets as a test bed because it is in public interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,980",
+				"to": "00:15:06,820"
+			},
+			"offsets": {
+				"from": 901980,
+				"to": 906820
+			},
+			"text": " and it is also not copyright-encumbered as a US government data generally is."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,020",
+				"to": "00:15:13,260"
+			},
+			"offsets": {
+				"from": 907020,
+				"to": 913260
+			},
+			"text": " So we can pull up, oops, actually this one."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,260",
+				"to": "00:15:20,580"
+			},
+			"offsets": {
+				"from": 913260,
+				"to": 920580
+			},
+			"text": " Just grab this identifier here and go to a file coin network indexer."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,580",
+				"to": "00:15:23,700"
+			},
+			"offsets": {
+				"from": 920580,
+				"to": 923700
+			},
+			"text": " So to avoid demo fail, I've actually pre-filled this."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,700",
+				"to": "00:15:27,380"
+			},
+			"offsets": {
+				"from": 923700,
+				"to": 927380
+			},
+			"text": " So I'm not going to breeze on it so it doesn't pull over."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,380",
+				"to": "00:15:31,340"
+			},
+			"offsets": {
+				"from": 927380,
+				"to": 931340
+			},
+			"text": " So here's that content ID."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,340",
+				"to": "00:15:34,140"
+			},
+			"offsets": {
+				"from": 931340,
+				"to": 934140
+			},
+			"text": " And it's founded a couple of peers where we stored it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,340",
+				"to": "00:15:43,100"
+			},
+			"offsets": {
+				"from": 934340,
+				"to": 943100
+			},
+			"text": " So we can map this peer ID to a minor ID here."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,100",
+				"to": "00:15:47,260"
+			},
+			"offsets": {
+				"from": 943100,
+				"to": 947260
+			},
+			"text": " And let's see."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:47,260",
+				"to": "00:15:58,660"
+			},
+			"offsets": {
+				"from": 947260,
+				"to": 958660
+			},
+			"text": " So we'll grab it from that provider and we'll grab it by."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,660",
+				"to": "00:16:01,700"
+			},
+			"offsets": {
+				"from": 958660,
+				"to": 961700
+			},
+			"text": " Oops, not that one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:01,900",
+				"to": "00:16:07,180"
+			},
+			"offsets": {
+				"from": 961900,
+				"to": 967180
+			},
+			"text": " By the identifier and for demo purposes, I'm just going to discard it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:07,180",
+				"to": "00:16:10,540"
+			},
+			"offsets": {
+				"from": 967180,
+				"to": 970540
+			},
+			"text": " But oops."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,540",
+				"to": "00:16:23,980"
+			},
+			"offsets": {
+				"from": 970540,
+				"to": 983980
+			},
+			"text": " All right, fantastic."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,980",
+				"to": "00:16:30,860"
+			},
+			"offsets": {
+				"from": 983980,
+				"to": 990860
+			},
+			"text": " So here we are retrieving the bulk package from the file."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:31,060",
+				"to": "00:16:34,340"
+			},
+			"offsets": {
+				"from": 991060,
+				"to": 994340
+			},
+			"text": " Not for..."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,340",
+				"to": "00:16:40,980"
+			},
+			"offsets": {
+				"from": 994340,
+				"to": 1000980
+			},
+			"text": " So at the moment we're sort of treating this as just a dumb blob."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,980",
+				"to": "00:16:43,940"
+			},
+			"offsets": {
+				"from": 1000980,
+				"to": 1003940
+			},
+			"text": " So it's being stored on a file coin as essentially an other copy."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,940",
+				"to": "00:16:48,900"
+			},
+			"offsets": {
+				"from": 1003940,
+				"to": 1008900
+			},
+			"text": " We have a couple of internal copies and this is a third sort of cold storage thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,900",
+				"to": "00:16:52,100"
+			},
+			"offsets": {
+				"from": 1008900,
+				"to": 1012100
+			},
+			"text": " But things can get a lot more interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,100",
+				"to": "00:16:58,180"
+			},
+			"offsets": {
+				"from": 1012100,
+				"to": 1018180
+			},
+			"text": " So we can take a look at some other tools in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:58,380",
+				"to": "00:17:08,300"
+			},
+			"offsets": {
+				"from": 1018380,
+				"to": 1028300
+			},
+			"text": " It looks a little weird of this resolution, but here we have a capture of the devcon.org"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,300",
+				"to": "00:17:10,500"
+			},
+			"offsets": {
+				"from": 1028300,
+				"to": 1030500
+			},
+			"text": " site."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,500",
+				"to": "00:17:17,460"
+			},
+			"offsets": {
+				"from": 1030500,
+				"to": 1037460
+			},
+			"text": " And this tool, it's not an Internet Archive tool, but it's sort of affiliated."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,460",
+				"to": "00:17:22,420"
+			},
+			"offsets": {
+				"from": 1037460,
+				"to": 1042420
+			},
+			"text": " And here we have made a capture of the site."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:22,420",
+				"to": "00:17:28,300"
+			},
+			"offsets": {
+				"from": 1042420,
+				"to": 1048300
+			},
+			"text": " And we can store it on IPFS and file coin through Web3 storage."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:29,300",
+				"to": "00:17:31,660"
+			},
+			"offsets": {
+				"from": 1049300,
+				"to": 1051660
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:31,660",
+				"to": "00:17:36,820"
+			},
+			"offsets": {
+				"from": 1051660,
+				"to": 1056820
+			},
+			"text": " And now this bundle is a static"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,820",
+				"to": "00:17:43,700"
+			},
+			"offsets": {
+				"from": 1056820,
+				"to": 1063700
+			},
+			"text": " self-hosted application that provides a view into this Web Archive the same way"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,700",
+				"to": "00:17:46,980"
+			},
+			"offsets": {
+				"from": 1063700,
+				"to": 1066980
+			},
+			"text": " that you would get on the Wayback machine, but there's no server."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:46,980",
+				"to": "00:17:53,180"
+			},
+			"offsets": {
+				"from": 1066980,
+				"to": 1073180
+			},
+			"text": " This is just loaded from my IPFS and it has all the nice archive stuff built right"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:53,180",
+				"to": "00:17:56,380"
+			},
+			"offsets": {
+				"from": 1073180,
+				"to": 1076380
+			},
+			"text": " in. You have this timestamp, you could travel back in time."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,580",
+				"to": "00:18:01,060"
+			},
+			"offsets": {
+				"from": 1076580,
+				"to": 1081060
+			},
+			"text": " I had earlier copies. You can have the links reference and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,060",
+				"to": "00:18:11,140"
+			},
+			"offsets": {
+				"from": 1081060,
+				"to": 1091140
+			},
+			"text": " So the next steps in the file coin work for us are to try to make our captures"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,140",
+				"to": "00:18:16,340"
+			},
+			"offsets": {
+				"from": 1091140,
+				"to": 1096340
+			},
+			"text": " structured and compatible with something like this so you don't actually need our"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,340",
+				"to": "00:18:19,700"
+			},
+			"offsets": {
+				"from": 1096340,
+				"to": 1099700
+			},
+			"text": " servers to interact with this data."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,700",
+				"to": "00:18:23,140"
+			},
+			"offsets": {
+				"from": 1099700,
+				"to": 1103140
+			},
+			"text": " So."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,140",
+				"to": "00:18:25,340"
+			},
+			"offsets": {
+				"from": 1103140,
+				"to": 1105340
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:26,060",
+				"to": "00:18:32,020"
+			},
+			"offsets": {
+				"from": 1106060,
+				"to": 1112020
+			},
+			"text": " And beyond that step, there are a few things we need to actually make this work"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:32,020",
+				"to": "00:18:34,940"
+			},
+			"offsets": {
+				"from": 1112020,
+				"to": 1114940
+			},
+			"text": " for real. So one is actually encryption and ACLs."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:34,940",
+				"to": "00:18:41,580"
+			},
+			"offsets": {
+				"from": 1114940,
+				"to": 1121580
+			},
+			"text": " You might think of sort of public good information sets such as our collections"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,580",
+				"to": "00:18:43,060"
+			},
+			"offsets": {
+				"from": 1121580,
+				"to": 1123060
+			},
+			"text": " as being essentially open."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,060",
+				"to": "00:18:44,940"
+			},
+			"offsets": {
+				"from": 1123060,
+				"to": 1124940
+			},
+			"text": " And that's generally true."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:44,940",
+				"to": "00:18:50,380"
+			},
+			"offsets": {
+				"from": 1124940,
+				"to": 1130380
+			},
+			"text": " But because we capture from the open Web and some of our collections do come from"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,380",
+				"to": "00:18:54,620"
+			},
+			"offsets": {
+				"from": 1130380,
+				"to": 1134620
+			},
+			"text": " sources where just so much stuff goes in that it's very hard to do diligence"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:54,820",
+				"to": "00:19:00,740"
+			},
+			"offsets": {
+				"from": 1134820,
+				"to": 1140740
+			},
+			"text": " at ingestion time, there are opportunities when where things do require a certain"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:00,740",
+				"to": "00:19:07,060"
+			},
+			"offsets": {
+				"from": 1140740,
+				"to": 1147060
+			},
+			"text": " degree of access control in case of legal action or something like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:07,060",
+				"to": "00:19:12,740"
+			},
+			"offsets": {
+				"from": 1147060,
+				"to": 1152740
+			},
+			"text": " And there's also kind of a broad concern about data mining of these sets."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,740",
+				"to": "00:19:17,420"
+			},
+			"offsets": {
+				"from": 1152740,
+				"to": 1157420
+			},
+			"text": " So we seek to primarily support users and good faith researchers."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,420",
+				"to": "00:19:24,020"
+			},
+			"offsets": {
+				"from": 1157420,
+				"to": 1164020
+			},
+			"text": " But there is a broad spectrum of use cases that go from kind of white to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,220",
+				"to": "00:19:25,780"
+			},
+			"offsets": {
+				"from": 1164220,
+				"to": 1165780
+			},
+			"text": " grey to black."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,780",
+				"to": "00:19:31,100"
+			},
+			"offsets": {
+				"from": 1165780,
+				"to": 1171100
+			},
+			"text": " And the most well, OK, two most important things is indexing and metadata."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,100",
+				"to": "00:19:35,420"
+			},
+			"offsets": {
+				"from": 1171100,
+				"to": 1175420
+			},
+			"text": " So right now we're able to store this bulk data fairly well."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,420",
+				"to": "00:19:39,540"
+			},
+			"offsets": {
+				"from": 1175420,
+				"to": 1179540
+			},
+			"text": " We've spent about a year on this and it seems like kind of a simple thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,540",
+				"to": "00:19:43,740"
+			},
+			"offsets": {
+				"from": 1179540,
+				"to": 1183740
+			},
+			"text": " But at the end of the day, it turns out not to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,740",
+				"to": "00:19:50,580"
+			},
+			"offsets": {
+				"from": 1183740,
+				"to": 1190580
+			},
+			"text": " But the thing that we don't have a solution for right now is the index because we"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,780",
+				"to": "00:19:55,220"
+			},
+			"offsets": {
+				"from": 1190780,
+				"to": 1195220
+			},
+			"text": " have, as I mentioned, trillions of captures in the way back machine."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,220",
+				"to": "00:20:01,420"
+			},
+			"offsets": {
+				"from": 1195220,
+				"to": 1201420
+			},
+			"text": " We have billions of other objects and you can't put that stuff on chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:01,420",
+				"to": "00:20:04,540"
+			},
+			"offsets": {
+				"from": 1201420,
+				"to": 1204540
+			},
+			"text": " Right. And it has to be discoverable somehow."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,540",
+				"to": "00:20:11,940"
+			},
+			"offsets": {
+				"from": 1204540,
+				"to": 1211940
+			},
+			"text": " So I'm very open to suggestions from the audience after my talk on how we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,940",
+				"to": "00:20:12,940"
+			},
+			"offsets": {
+				"from": 1211940,
+				"to": 1212940
+			},
+			"text": " attack this."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,940",
+				"to": "00:20:16,660"
+			},
+			"offsets": {
+				"from": 1212940,
+				"to": 1216660
+			},
+			"text": " And the second most important thing is scale."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,860",
+				"to": "00:20:23,140"
+			},
+			"offsets": {
+				"from": 1216860,
+				"to": 1223140
+			},
+			"text": " So we have hundreds of petabytes in our collections at the moment."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,140",
+				"to": "00:20:25,340"
+			},
+			"offsets": {
+				"from": 1223140,
+				"to": 1225340
+			},
+			"text": " And that's a lot of data."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,340",
+				"to": "00:20:32,580"
+			},
+			"offsets": {
+				"from": 1225340,
+				"to": 1232580
+			},
+			"text": " I think most folks here who work on chain things, you're probably dealing with"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,580",
+				"to": "00:20:34,220"
+			},
+			"offsets": {
+				"from": 1232580,
+				"to": 1234220
+			},
+			"text": " things that are at most a few megabytes."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,220",
+				"to": "00:20:41,900"
+			},
+			"offsets": {
+				"from": 1234220,
+				"to": 1241900
+			},
+			"text": " Right. It's really not that much data that we're used to dealing with in the blockchain"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:41,900",
+				"to": "00:20:45,500"
+			},
+			"offsets": {
+				"from": 1241900,
+				"to": 1245500
+			},
+			"text": " world. And we've got tons and tons and tons."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:45,700",
+				"to": "00:20:51,140"
+			},
+			"offsets": {
+				"from": 1245700,
+				"to": 1251140
+			},
+			"text": " So that's something that the Filecoin team has been very supportive of."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:51,140",
+				"to": "00:20:55,180"
+			},
+			"offsets": {
+				"from": 1251140,
+				"to": 1255180
+			},
+			"text": " But we are just getting started."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:55,180",
+				"to": "00:21:00,580"
+			},
+			"offsets": {
+				"from": 1255180,
+				"to": 1260580
+			},
+			"text": " All right. And I think that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:00,580",
+				"to": "00:21:05,020"
+			},
+			"offsets": {
+				"from": 1260580,
+				"to": 1265020
+			},
+			"text": " I guess the question I leave you"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:05,020",
+				"to": "00:21:10,900"
+			},
+			"offsets": {
+				"from": 1265020,
+				"to": 1270900
+			},
+			"text": " was that goes back to the beginning is can"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,100",
+				"to": "00:21:17,380"
+			},
+			"offsets": {
+				"from": 1271100,
+				"to": 1277380
+			},
+			"text": " the web have a memory, not just web three, which is already somewhat set up for that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:17,380",
+				"to": "00:21:24,620"
+			},
+			"offsets": {
+				"from": 1277380,
+				"to": 1284620
+			},
+			"text": " but all the web content because we we value culture that is not just this narrow"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:24,620",
+				"to": "00:21:27,140"
+			},
+			"offsets": {
+				"from": 1284620,
+				"to": 1287140
+			},
+			"text": " domain that we inhabit, we value all culture."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:27,140",
+				"to": "00:21:31,900"
+			},
+			"offsets": {
+				"from": 1287140,
+				"to": 1291900
+			},
+			"text": " Right. So how do we preserve that forever?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:31,900",
+				"to": "00:21:33,420"
+			},
+			"offsets": {
+				"from": 1291900,
+				"to": 1293420
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:33,420",
+				"to": "00:21:46,060"
+			},
+			"offsets": {
+				"from": 1293420,
+				"to": 1306060
+			},
+			"text": " I have a couple minutes if people have questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:46,060",
+				"to": "00:21:52,060"
+			},
+			"offsets": {
+				"from": 1306060,
+				"to": 1312060
+			},
+			"text": " Are there any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,060",
+				"to": "00:21:54,060"
+			},
+			"offsets": {
+				"from": 1312060,
+				"to": 1314060
+			},
+			"text": " Right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:54,060",
+				"to": "00:22:03,300"
+			},
+			"offsets": {
+				"from": 1314060,
+				"to": 1323300
+			},
+			"text": " So when you're archiving the web, very often web servers differentiate what"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:03,300",
+				"to": "00:22:07,980"
+			},
+			"offsets": {
+				"from": 1323300,
+				"to": 1327980
+			},
+			"text": " content they serve depending on the idea from which you ask."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:07,980",
+				"to": "00:22:12,660"
+			},
+			"offsets": {
+				"from": 1327980,
+				"to": 1332660
+			},
+			"text": " And it seems to me that there's an opportunity for decentralization here as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:12,660",
+				"to": "00:22:18,740"
+			},
+			"offsets": {
+				"from": 1332660,
+				"to": 1338740
+			},
+			"text": " So that your crawlers actually pick from which region they download the web."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,740",
+				"to": "00:22:20,580"
+			},
+			"offsets": {
+				"from": 1338740,
+				"to": 1340580
+			},
+			"text": " How are you dealing with this problem?"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:20,580",
+				"to": "00:22:22,180"
+			},
+			"offsets": {
+				"from": 1340580,
+				"to": 1342180
+			},
+			"text": " Yeah, that's a great point."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:22,180",
+				"to": "00:22:24,300"
+			},
+			"offsets": {
+				"from": 1342180,
+				"to": 1344300
+			},
+			"text": " So we we definitely run into these"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:24,300",
+				"to": "00:22:28,380"
+			},
+			"offsets": {
+				"from": 1344300,
+				"to": 1348380
+			},
+			"text": " industries as you're just being straight up blocked or a page that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,380",
+				"to": "00:22:32,220"
+			},
+			"offsets": {
+				"from": 1348380,
+				"to": 1352220
+			},
+			"text": " meaningfully different appearance depending on the requesting region."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:32,420",
+				"to": "00:22:36,900"
+			},
+			"offsets": {
+				"from": 1352420,
+				"to": 1356900
+			},
+			"text": " Right now we have a few semi decentralized tools for this."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:36,900",
+				"to": "00:22:42,620"
+			},
+			"offsets": {
+				"from": 1356900,
+				"to": 1362620
+			},
+			"text": " There is a organization called Archive Team, which is basically a volunteer"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:42,620",
+				"to": "00:22:47,900"
+			},
+			"offsets": {
+				"from": 1362620,
+				"to": 1367900
+			},
+			"text": " group that runs crawlers that receive these tasks."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:47,900",
+				"to": "00:22:52,660"
+			},
+			"offsets": {
+				"from": 1367900,
+				"to": 1372660
+			},
+			"text": " And there is also academic research in this where different archiving"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:52,660",
+				"to": "00:22:57,660"
+			},
+			"offsets": {
+				"from": 1372660,
+				"to": 1377660
+			},
+			"text": " organizations would enter into consortium where they would synchronize their"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:57,860",
+				"to": "00:23:00,300"
+			},
+			"offsets": {
+				"from": 1377860,
+				"to": 1380300
+			},
+			"text": " calls from different regions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,300",
+				"to": "00:23:05,940"
+			},
+			"offsets": {
+				"from": 1380300,
+				"to": 1385940
+			},
+			"text": " But I agree that those are not super scalable solutions."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:05,940",
+				"to": "00:23:10,100"
+			},
+			"offsets": {
+				"from": 1385940,
+				"to": 1390100
+			},
+			"text": " So I think that my short answer is yes."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:10,100",
+				"to": "00:23:14,580"
+			},
+			"offsets": {
+				"from": 1390100,
+				"to": 1394580
+			},
+			"text": " Thanks for the talk."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,580",
+				"to": "00:23:18,220"
+			},
+			"offsets": {
+				"from": 1394580,
+				"to": 1398220
+			},
+			"text": " How do you deal with takedown requests like DMCA takedowns?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:18,220",
+				"to": "00:23:24,140"
+			},
+			"offsets": {
+				"from": 1398220,
+				"to": 1404140
+			},
+			"text": " So unfortunately we are required to comply with that to continue existing as an"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,340",
+				"to": "00:23:29,220"
+			},
+			"offsets": {
+				"from": 1404340,
+				"to": 1409220
+			},
+			"text": " organization. So we have a legal team that processes them."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:29,220",
+				"to": "00:23:35,220"
+			},
+			"offsets": {
+				"from": 1409220,
+				"to": 1415220
+			},
+			"text": " And if they are they have merits and are made in good faith, we will generally"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:35,220",
+				"to": "00:23:38,100"
+			},
+			"offsets": {
+				"from": 1415220,
+				"to": 1418100
+			},
+			"text": " block the item for being served."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,100",
+				"to": "00:23:41,380"
+			},
+			"offsets": {
+				"from": 1418100,
+				"to": 1421380
+			},
+			"text": " So unfortunately time is up."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:41,380",
+				"to": "00:23:43,180"
+			},
+			"offsets": {
+				"from": 1421380,
+				"to": 1423180
+			},
+			"text": " Thank you so much, Akadi."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:43,180",
+				"to": "00:23:45,700"
+			},
+			"offsets": {
+				"from": 1423180,
+				"to": 1425700
+			},
+			"text": " And I'm pretty sure they can find you afterwards, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:45,700",
+				"to": "00:23:48,580"
+			},
+			"offsets": {
+				"from": 1425700,
+				"to": 1428580
+			},
+			"text": " OK, fantastic. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:48,580",
+				"to": "00:23:50,580"
+			},
+			"offsets": {
+				"from": 1428580,
+				"to": 1430580
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:50,580",
+				"to": "00:24:00,580"
+			},
+			"offsets": {
+				"from": 1430580,
+				"to": 1440580
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

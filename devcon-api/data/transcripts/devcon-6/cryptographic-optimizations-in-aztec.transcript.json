@@ -1,0 +1,2408 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,840"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10840
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,840",
+				"to": "00:00:15,960"
+			},
+			"offsets": {
+				"from": 10840,
+				"to": 15960
+			},
+			"text": " >> The next presentation is by Adrian from Aztec,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,960",
+				"to": "00:00:18,520"
+			},
+			"offsets": {
+				"from": 15960,
+				"to": 18520
+			},
+			"text": " the future of Puncish systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,520",
+				"to": "00:00:22,460"
+			},
+			"offsets": {
+				"from": 18520,
+				"to": 22460
+			},
+			"text": " And I expect Adrian on the Zoom later."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,460",
+				"to": "00:00:23,320"
+			},
+			"offsets": {
+				"from": 22460,
+				"to": 23320
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,320",
+				"to": "00:00:25,720"
+			},
+			"offsets": {
+				"from": 23320,
+				"to": 25720
+			},
+			"text": " >> Hi everybody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,720",
+				"to": "00:00:26,780"
+			},
+			"offsets": {
+				"from": 25720,
+				"to": 26780
+			},
+			"text": " I'm Adrian."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,120",
+				"to": "00:00:30,640"
+			},
+			"offsets": {
+				"from": 27120,
+				"to": 30640
+			},
+			"text": " And I work at Aztec basically making Snarks faster."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,640",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 30640,
+				"to": 34000
+			},
+			"text": " I hope you're all having a wonderful time in Bogota this week."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:36,640"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 36640
+			},
+			"text": " Unfortunately, I wasn't able to make it due"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,640",
+				"to": "00:00:39,240"
+			},
+			"offsets": {
+				"from": 36640,
+				"to": 39240
+			},
+			"text": " to getting sick at the last moment, last week."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,240",
+				"to": "00:00:42,880"
+			},
+			"offsets": {
+				"from": 39240,
+				"to": 42880
+			},
+			"text": " And so this is why this presentation has been prerecorded."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,880",
+				"to": "00:00:48,000"
+			},
+			"offsets": {
+				"from": 42880,
+				"to": 48000
+			},
+			"text": " I'm going to be talking about some thoughts and hypotheses I have"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,000",
+				"to": "00:00:51,760"
+			},
+			"offsets": {
+				"from": 48000,
+				"to": 51760
+			},
+			"text": " about what the next generation of Puncish systems is going to look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,760",
+				"to": "00:00:56,560"
+			},
+			"offsets": {
+				"from": 51760,
+				"to": 56560
+			},
+			"text": " By the way, there's going to be a Q&A once this video finishes."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:57,080",
+				"to": "00:00:59,800"
+			},
+			"offsets": {
+				"from": 57080,
+				"to": 59800
+			},
+			"text": " So right down in questions you may have with slight numbers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,800",
+				"to": "00:01:02,000"
+			},
+			"offsets": {
+				"from": 59800,
+				"to": 62000
+			},
+			"text": " I'll do my best to answer it at that point."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,000",
+				"to": "00:01:05,520"
+			},
+			"offsets": {
+				"from": 62000,
+				"to": 65520
+			},
+			"text": " And here's my Twitter and Telegram handle."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,520",
+				"to": "00:01:07,300"
+			},
+			"offsets": {
+				"from": 65520,
+				"to": 67300
+			},
+			"text": " If ever you have any questions that come up later."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,300",
+				"to": "00:01:13,520"
+			},
+			"offsets": {
+				"from": 67300,
+				"to": 73520
+			},
+			"text": " So I'm going to start with a brief recap of the evolution of Punc until now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,520",
+				"to": "00:01:19,000"
+			},
+			"offsets": {
+				"from": 73520,
+				"to": 79000
+			},
+			"text": " In 2019, Zach and Ariel came up with this certainly named proof system"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,000",
+				"to": "00:01:21,200"
+			},
+			"offsets": {
+				"from": 79000,
+				"to": 81200
+			},
+			"text": " that kind of revolutionizes EK space."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,120",
+				"to": "00:01:26,920"
+			},
+			"offsets": {
+				"from": 82120,
+				"to": 86920
+			},
+			"text": " The state of the art until then was basically growth 16,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,920",
+				"to": "00:01:29,520"
+			},
+			"offsets": {
+				"from": 86920,
+				"to": 89520
+			},
+			"text": " which is based on R1CS."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,520",
+				"to": "00:01:35,240"
+			},
+			"offsets": {
+				"from": 89520,
+				"to": 95240
+			},
+			"text": " But the per circuit trusted setup made it a bit more complicated to the deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,240",
+				"to": "00:01:42,680"
+			},
+			"offsets": {
+				"from": 95240,
+				"to": 102680
+			},
+			"text": " With Plunk now, we had a ZK snark with very similar performance profile,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,680",
+				"to": "00:01:45,840"
+			},
+			"offsets": {
+				"from": 102680,
+				"to": 105840
+			},
+			"text": " but it only required a one time trusted setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:45,840",
+				"to": "00:01:50,920"
+			},
+			"offsets": {
+				"from": 105840,
+				"to": 110920
+			},
+			"text": " But really, I think one of the main innovations was that we're now able"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,920",
+				"to": "00:01:54,760"
+			},
+			"offsets": {
+				"from": 110920,
+				"to": 114760
+			},
+			"text": " to represent circuits in a much more practical way,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,760",
+				"to": "00:02:01,800"
+			},
+			"offsets": {
+				"from": 114760,
+				"to": 121800
+			},
+			"text": " which made writing circuits easier because the resulting representation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,800",
+				"to": "00:02:04,960"
+			},
+			"offsets": {
+				"from": 121800,
+				"to": 124960
+			},
+			"text": " looked a lot more like the actual functionality you want to compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,960",
+				"to": "00:02:14,800"
+			},
+			"offsets": {
+				"from": 124960,
+				"to": 134800
+			},
+			"text": " Over the years followed, many new techniques and tools and improvements were introduced"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,800",
+				"to": "00:02:19,600"
+			},
+			"offsets": {
+				"from": 134800,
+				"to": 139600
+			},
+			"text": " that basically tried to tackle concrete efficiency."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,600",
+				"to": "00:02:23,600"
+			},
+			"offsets": {
+				"from": 140600,
+				"to": 143600
+			},
+			"text": " There's the introduction of different custom gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,600",
+				"to": "00:02:28,040"
+			},
+			"offsets": {
+				"from": 143600,
+				"to": 148040
+			},
+			"text": " which allowed for more efficient elliptic curve group operations"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,040",
+				"to": "00:02:35,880"
+			},
+			"offsets": {
+				"from": 148040,
+				"to": 155880
+			},
+			"text": " for different hash functions, or really any kind of more specific computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,880",
+				"to": "00:02:39,600"
+			},
+			"offsets": {
+				"from": 155880,
+				"to": 159600
+			},
+			"text": " you might have in mind that might appear several times inside of a circuit."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,600",
+				"to": "00:02:45,320"
+			},
+			"offsets": {
+				"from": 159600,
+				"to": 165320
+			},
+			"text": " We also got lookup protocols, which allowed us to essentially pre-compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,320",
+				"to": "00:02:49,320"
+			},
+			"offsets": {
+				"from": 165320,
+				"to": 169320
+			},
+			"text": " the inputs and outputs of more complicated functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,320",
+				"to": "00:02:52,200"
+			},
+			"offsets": {
+				"from": 169320,
+				"to": 172200
+			},
+			"text": " There might be a lot harder to do inside of a circuit,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,200",
+				"to": "00:02:57,320"
+			},
+			"offsets": {
+				"from": 172200,
+				"to": 177320
+			},
+			"text": " and in a way that we can just look up the results from these huge tables."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,320",
+				"to": "00:03:04,320"
+			},
+			"offsets": {
+				"from": 177320,
+				"to": 184320
+			},
+			"text": " And this made a big difference, especially for operations or functions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,320",
+				"to": "00:03:09,960"
+			},
+			"offsets": {
+				"from": 184320,
+				"to": 189960
+			},
+			"text": " which are hard to do inside of a circuit with the works of our finite fields."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,160",
+				"to": "00:03:17,480"
+			},
+			"offsets": {
+				"from": 191160,
+				"to": 197480
+			},
+			"text": " It also made range checks a lot easier to check that an integer is in a certain range."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,480",
+				"to": "00:03:23,160"
+			},
+			"offsets": {
+				"from": 197480,
+				"to": 203160
+			},
+			"text": " But beyond that, there's also a lot of work done on just improving the tooling"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,160",
+				"to": "00:03:30,160"
+			},
+			"offsets": {
+				"from": 203160,
+				"to": 210160
+			},
+			"text": " and the introduction of quite a few languages and DSLs like Noir or Halo 2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,160",
+				"to": "00:03:35,160"
+			},
+			"offsets": {
+				"from": 210160,
+				"to": 215160
+			},
+			"text": " which essentially help make more optimized circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,160",
+				"to": "00:03:40,160"
+			},
+			"offsets": {
+				"from": 215160,
+				"to": 220160
+			},
+			"text": " And one thing I want to note with all these improvements is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,160",
+				"to": "00:03:45,160"
+			},
+			"offsets": {
+				"from": 220160,
+				"to": 225160
+			},
+			"text": " they all try to tackle the same thing, which is Prover Time."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,160",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 225160,
+				"to": 232160
+			},
+			"text": " With a lot of these, what you're trying to do is make the circuits smaller, more optimized,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:58,160"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 238160
+			},
+			"text": " but the real concrete effect of this is that the Prover has to do less work."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,160",
+				"to": "00:04:01,160"
+			},
+			"offsets": {
+				"from": 238160,
+				"to": 241160
+			},
+			"text": " Unfortunately, there's only so much we can do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:01,160",
+				"to": "00:04:05,160"
+			},
+			"offsets": {
+				"from": 241160,
+				"to": 245160
+			},
+			"text": " and we're still faced with the same roadblocks like the FITs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,160",
+				"to": "00:04:11,160"
+			},
+			"offsets": {
+				"from": 245160,
+				"to": 251160
+			},
+			"text": " which mean that the Prover Time is going to be lower bounded by N log N."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,160",
+				"to": "00:04:15,160"
+			},
+			"offsets": {
+				"from": 251160,
+				"to": 255160
+			},
+			"text": " So you may wonder, what's next for Planck?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,160",
+				"to": "00:04:22,160"
+			},
+			"offsets": {
+				"from": 255160,
+				"to": 262160
+			},
+			"text": " Well, recently at ZK Summit 8 in Berlin, Benedict Bunce from Espresso System announced Hyper Planck,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,160",
+				"to": "00:04:29,160"
+			},
+			"offsets": {
+				"from": 262160,
+				"to": 269160
+			},
+			"text": " and it claims to drastically increase the efficiency of Planck-ish circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,160",
+				"to": "00:04:33,160"
+			},
+			"offsets": {
+				"from": 269160,
+				"to": 273160
+			},
+			"text": " The main improvement is that there are no more FFTs involved,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,160",
+				"to": "00:04:38,160"
+			},
+			"offsets": {
+				"from": 273160,
+				"to": 278160
+			},
+			"text": " and the proof can now be generated in time, linear in the circuit size."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,160",
+				"to": "00:04:44,160"
+			},
+			"offsets": {
+				"from": 278160,
+				"to": 284160
+			},
+			"text": " At the heart of Hyper Planck is subject, an incredibly efficient protocol from the 90s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,160",
+				"to": "00:04:48,160"
+			},
+			"offsets": {
+				"from": 284160,
+				"to": 288160
+			},
+			"text": " even though it's been out for almost 30 years at this point."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,160",
+				"to": "00:04:53,160"
+			},
+			"offsets": {
+				"from": 288160,
+				"to": 293160
+			},
+			"text": " I don't think it's received nearly as much attention as it deserves,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,160",
+				"to": "00:04:55,160"
+			},
+			"offsets": {
+				"from": 293160,
+				"to": 295160
+			},
+			"text": " especially in the context of Starks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,160",
+				"to": "00:05:00,160"
+			},
+			"offsets": {
+				"from": 295160,
+				"to": 300160
+			},
+			"text": " But this is great because this means we've got a brand new problem that's ripe for optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:06,160"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 306160
+			},
+			"text": " So in this talk, I want to go over some of my personal hypotheses"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,160",
+				"to": "00:05:11,160"
+			},
+			"offsets": {
+				"from": 306160,
+				"to": 311160
+			},
+			"text": " about what changes were likely going to see around ZK-SNARK circuits and deployments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,160",
+				"to": "00:05:15,160"
+			},
+			"offsets": {
+				"from": 311160,
+				"to": 315160
+			},
+			"text": " and that we've got this new proof system to work with."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,160",
+				"to": "00:05:25,160"
+			},
+			"offsets": {
+				"from": 315160,
+				"to": 325160
+			},
+			"text": " So instead of a SNARK, we need an efficient way of checking that N different polynomial equations vanish"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,160",
+				"to": "00:05:28,160"
+			},
+			"offsets": {
+				"from": 325160,
+				"to": 328160
+			},
+			"text": " over predetermined subset of the finite field."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,160",
+				"to": "00:05:33,160"
+			},
+			"offsets": {
+				"from": 328160,
+				"to": 333160
+			},
+			"text": " Previously, this was done using a quotient test that relied heavily on FFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,160",
+				"to": "00:05:37,160"
+			},
+			"offsets": {
+				"from": 333160,
+				"to": 337160
+			},
+			"text": " However, we've now found out that this is doable with some check as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,160",
+				"to": "00:05:43,160"
+			},
+			"offsets": {
+				"from": 337160,
+				"to": 343160
+			},
+			"text": " From a high level, this table shows the main differences that come up when we use one system over another."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,160",
+				"to": "00:05:46,160"
+			},
+			"offsets": {
+				"from": 343160,
+				"to": 346160
+			},
+			"text": " First of all, we have to change the way we represent polynomials."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,160",
+				"to": "00:05:51,160"
+			},
+			"offsets": {
+				"from": 346160,
+				"to": 351160
+			},
+			"text": " Instead of interpolating a vector as a univariate polynomial over the roots of unity,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,160",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 351160,
+				"to": 356160
+			},
+			"text": " we use multilinear polynomials over a binary hypercube."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:06:00,160"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 360160
+			},
+			"text": " In terms of efficiency, we notice something particular."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,160",
+				"to": "00:06:05,160"
+			},
+			"offsets": {
+				"from": 360160,
+				"to": 365160
+			},
+			"text": " We have to sacrifice small proofs and fast verifiers in exchange for faster provers."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,160",
+				"to": "00:06:10,160"
+			},
+			"offsets": {
+				"from": 365160,
+				"to": 370160
+			},
+			"text": " But when you want to implement SNARK, these SMTotics hide way too much detail,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,160",
+				"to": "00:06:15,160"
+			},
+			"offsets": {
+				"from": 370160,
+				"to": 375160
+			},
+			"text": " and I'm going to argue the benefits for the prover are actually a lot better"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,160",
+				"to": "00:06:19,160"
+			},
+			"offsets": {
+				"from": 375160,
+				"to": 379160
+			},
+			"text": " than just removing this log-in overhead from the FFTs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,160",
+				"to": "00:06:23,160"
+			},
+			"offsets": {
+				"from": 379160,
+				"to": 383160
+			},
+			"text": " So let's get into the weeds a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,160",
+				"to": "00:06:28,160"
+			},
+			"offsets": {
+				"from": 383160,
+				"to": 388160
+			},
+			"text": " Recall that we usually want to prove that we have this polynomial p,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,160",
+				"to": "00:06:34,160"
+			},
+			"offsets": {
+				"from": 388160,
+				"to": 394160
+			},
+			"text": " usually called the Planck identity, which is a polynomial which equals zero"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,160",
+				"to": "00:06:40,160"
+			},
+			"offsets": {
+				"from": 394160,
+				"to": 400160
+			},
+			"text": " when it's evaluated over all points, little h, belonging to a larger subset of h."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:40,160",
+				"to": "00:06:44,160"
+			},
+			"offsets": {
+				"from": 400160,
+				"to": 404160
+			},
+			"text": " Now, what does this Planck identity really look like?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:44,160",
+				"to": "00:06:48,160"
+			},
+			"offsets": {
+				"from": 404160,
+				"to": 408160
+			},
+			"text": " Well, I'm going to give you a simplified view of it, but essentially what it does"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,160",
+				"to": "00:06:55,160"
+			},
+			"offsets": {
+				"from": 408160,
+				"to": 415160
+			},
+			"text": " is it is a sum of all the different gates that make up our circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,160",
+				"to": "00:07:01,160"
+			},
+			"offsets": {
+				"from": 415160,
+				"to": 421160
+			},
+			"text": " and multiply it by different selectors which either activated, disactivate a gate"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,160",
+				"to": "00:07:06,160"
+			},
+			"offsets": {
+				"from": 421160,
+				"to": 426160
+			},
+			"text": " depending on which operation you're actually trying to do in each row."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,160",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 426160,
+				"to": 433160
+			},
+			"text": " Now, I want to emphasize that this is a cross-simplification of what is actually happening"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:16,160"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 436160
+			},
+			"text": " mainly to get everything to fit in the slides,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:16,160",
+				"to": "00:07:19,160"
+			},
+			"offsets": {
+				"from": 436160,
+				"to": 439160
+			},
+			"text": " and so don't go implementing this stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,160",
+				"to": "00:07:26,160"
+			},
+			"offsets": {
+				"from": 439160,
+				"to": 446160
+			},
+			"text": " If we look at this identity I wrote down, what we have is a certain number of custom gates,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,160",
+				"to": "00:07:32,160"
+			},
+			"offsets": {
+				"from": 446160,
+				"to": 452160
+			},
+			"text": " and each of them are multiplied by this multilunear binary selector polynomial Sj."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,160",
+				"to": "00:07:36,160"
+			},
+			"offsets": {
+				"from": 452160,
+				"to": 456160
+			},
+			"text": " So this is just the interpolation of a vector of zeros and ones."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,160",
+				"to": "00:07:41,160"
+			},
+			"offsets": {
+				"from": 456160,
+				"to": 461160
+			},
+			"text": " And it multiplies this more complex gate polynomial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,160",
+				"to": "00:07:48,160"
+			},
+			"offsets": {
+				"from": 461160,
+				"to": 468160
+			},
+			"text": " which is going to be zero if the gate is satisfied by the input wires W,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,160",
+				"to": "00:07:52,160"
+			},
+			"offsets": {
+				"from": 468160,
+				"to": 472160
+			},
+			"text": " along with some fixed constants Q."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,160",
+				"to": "00:07:59,160"
+			},
+			"offsets": {
+				"from": 472160,
+				"to": 479160
+			},
+			"text": " So both W and Q are multilunear polynomials, and G is just a function which combines these."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,160",
+				"to": "00:08:05,160"
+			},
+			"offsets": {
+				"from": 479160,
+				"to": 485160
+			},
+			"text": " Now, if we take a closer look at the selector, we can see that it's just an indicator function"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,160",
+				"to": "00:08:09,160"
+			},
+			"offsets": {
+				"from": 485160,
+				"to": 489160
+			},
+			"text": " over specific set Hj."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,160",
+				"to": "00:08:14,160"
+			},
+			"offsets": {
+				"from": 489160,
+				"to": 494160
+			},
+			"text": " So we're choosing to partition H in this way because it makes it more clear, like,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,160",
+				"to": "00:08:19,160"
+			},
+			"offsets": {
+				"from": 494160,
+				"to": 499160
+			},
+			"text": " in which parts of the circuit, in which rows each gate is active,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:19,160",
+				"to": "00:08:23,160"
+			},
+			"offsets": {
+				"from": 499160,
+				"to": 503160
+			},
+			"text": " and this is going to help us a bit later on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,160",
+				"to": "00:08:27,160"
+			},
+			"offsets": {
+				"from": 503160,
+				"to": 507160
+			},
+			"text": " Basically, the circuit is valid as this polynomial vanishes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,160",
+				"to": "00:08:32,160"
+			},
+			"offsets": {
+				"from": 507160,
+				"to": 512160
+			},
+			"text": " which is only the case when either the selector is zero for each gate"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,160",
+				"to": "00:08:35,160"
+			},
+			"offsets": {
+				"from": 512160,
+				"to": 515160
+			},
+			"text": " or the gate itself equals zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,160",
+				"to": "00:08:41,160"
+			},
+			"offsets": {
+				"from": 515160,
+				"to": 521160
+			},
+			"text": " So the problem with the proof this in standard plug is just by computing the polynomial,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,160",
+				"to": "00:08:49,160"
+			},
+			"offsets": {
+				"from": 521160,
+				"to": 529160
+			},
+			"text": " which divides this polynomial P, where the division is by the xn minus one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:49,160",
+				"to": "00:08:53,160"
+			},
+			"offsets": {
+				"from": 529160,
+				"to": 533160
+			},
+			"text": " which equals zero over all the roots of unity."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,160",
+				"to": "00:08:56,160"
+			},
+			"offsets": {
+				"from": 533160,
+				"to": 536160
+			},
+			"text": " How do we do it with some check, though?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,160",
+				"to": "00:09:01,160"
+			},
+			"offsets": {
+				"from": 536160,
+				"to": 541160
+			},
+			"text": " Now, the way it's usually presented is that it allows a pervert to prove a claim"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,160",
+				"to": "00:09:09,160"
+			},
+			"offsets": {
+				"from": 541160,
+				"to": 549160
+			},
+			"text": " that sigma is equal to the sum of all the evaluations over H of a certain polynomial function P."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,160",
+				"to": "00:09:18,160"
+			},
+			"offsets": {
+				"from": 549160,
+				"to": 558160
+			},
+			"text": " Now, this doesn't help us right away, but instead, if we set P prime is equal to P multiplied"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,160",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 558160,
+				"to": 565160
+			},
+			"text": " by this weird random equality polynomial, that's often used in some check proof systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:31,160"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 571160
+			},
+			"text": " well, we can set sigma equal to zero, and because this random linear combination is zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,160",
+				"to": "00:09:38,160"
+			},
+			"offsets": {
+				"from": 571160,
+				"to": 578160
+			},
+			"text": " well, proving the sum check is essentially is equal to a vanishing test."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,160",
+				"to": "00:09:43,160"
+			},
+			"offsets": {
+				"from": 578160,
+				"to": 583160
+			},
+			"text": " Now, unfortunately, due to the time constraints, I'm not going to be able to get into more detail"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,160",
+				"to": "00:09:45,160"
+			},
+			"offsets": {
+				"from": 583160,
+				"to": 585160
+			},
+			"text": " about how to perform the actual sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,160",
+				"to": "00:09:50,160"
+			},
+			"offsets": {
+				"from": 585160,
+				"to": 590160
+			},
+			"text": " These are all cellties involved, and I need to make some big simplifications."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,160",
+				"to": "00:09:58,160"
+			},
+			"offsets": {
+				"from": 590160,
+				"to": 598160
+			},
+			"text": " But one of the key observations I wanted to make is that if we look at the sum check sum"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:58,160",
+				"to": "00:10:04,160"
+			},
+			"offsets": {
+				"from": 598160,
+				"to": 604160
+			},
+			"text": " for one particular gate, so we just take the gate from the previous slide"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:04,160",
+				"to": "00:10:09,160"
+			},
+			"offsets": {
+				"from": 604160,
+				"to": 609160
+			},
+			"text": " and multiply it by this equality polynomial, this selector polynomial plays a big role,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,160",
+				"to": "00:10:18,160"
+			},
+			"offsets": {
+				"from": 609160,
+				"to": 618160
+			},
+			"text": " because we notice when H ranges over big H, well, s of j is going to be zero whenever the gate is not active."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,160",
+				"to": "00:10:29,160"
+			},
+			"offsets": {
+				"from": 618160,
+				"to": 629160
+			},
+			"text": " So this means that we can rewrite the sum ranging over with a set of points at which G is active."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,160",
+				"to": "00:10:36,160"
+			},
+			"offsets": {
+				"from": 629160,
+				"to": 636160
+			},
+			"text": " Now, concretely, this means that the prover only actually has to evaluate this polynomial equation G"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,160",
+				"to": "00:10:40,160"
+			},
+			"offsets": {
+				"from": 636160,
+				"to": 640160
+			},
+			"text": " in the number of times that it's actually used."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,160",
+				"to": "00:10:48,160"
+			},
+			"offsets": {
+				"from": 640160,
+				"to": 648160
+			},
+			"text": " In other words, the proving time is now much more closely linked to the time it would take to evaluate the actual circuits,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,160",
+				"to": "00:10:55,160"
+			},
+			"offsets": {
+				"from": 648160,
+				"to": 655160
+			},
+			"text": " because we don't need to evaluate the gates at indexes where they're not active."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:55,160",
+				"to": "00:11:03,160"
+			},
+			"offsets": {
+				"from": 655160,
+				"to": 663160
+			},
+			"text": " And the verifier time basically only depends on the maximum size of circuits log n."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,160",
+				"to": "00:11:11,160"
+			},
+			"offsets": {
+				"from": 663160,
+				"to": 671160
+			},
+			"text": " This is due to sum check, but for each additional custom gate that we have, it only adds constant amounts of overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,160",
+				"to": "00:11:17,160"
+			},
+			"offsets": {
+				"from": 671160,
+				"to": 677160
+			},
+			"text": " So if we take a step back, what do we actually get when we use sum check in practice?"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,160",
+				"to": "00:11:25,160"
+			},
+			"offsets": {
+				"from": 677160,
+				"to": 685160
+			},
+			"text": " So what I expect to see is it will have perverts to find with way more custom gates than we previously have."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,160",
+				"to": "00:11:33,160"
+			},
+			"offsets": {
+				"from": 685160,
+				"to": 693160
+			},
+			"text": " And you may have some which have way more complexity, which are able to do a lot more work at once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,160",
+				"to": "00:11:37,160"
+			},
+			"offsets": {
+				"from": 693160,
+				"to": 697160
+			},
+			"text": " even if those gates are not used very often."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:37,160",
+				"to": "00:11:44,160"
+			},
+			"offsets": {
+				"from": 697160,
+				"to": 704160
+			},
+			"text": " Because essentially due to those sparsity that's preserved by not having to do the FFTs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,160",
+				"to": "00:11:49,160"
+			},
+			"offsets": {
+				"from": 704160,
+				"to": 709160
+			},
+			"text": " the prover is only going to be running the gates that are actually active."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,160",
+				"to": "00:11:53,160"
+			},
+			"offsets": {
+				"from": 709160,
+				"to": 713160
+			},
+			"text": " In other words, you're only paying for what you use."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,160",
+				"to": "00:12:01,160"
+			},
+			"offsets": {
+				"from": 713160,
+				"to": 721160
+			},
+			"text": " To me, this kind of feels like we're heading to a more an architecture for circuit that resembles a bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,160",
+				"to": "00:12:08,160"
+			},
+			"offsets": {
+				"from": 721160,
+				"to": 728160
+			},
+			"text": " what we had with like x86 processors, which are complex instruction set processors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,160",
+				"to": "00:12:11,160"
+			},
+			"offsets": {
+				"from": 728160,
+				"to": 731160
+			},
+			"text": " where you've got many different kind of functions."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,160",
+				"to": "00:12:16,160"
+			},
+			"offsets": {
+				"from": 731160,
+				"to": 736160
+			},
+			"text": " This is compared to the risk or reduced instruction set type of processors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,160",
+				"to": "00:12:20,160"
+			},
+			"offsets": {
+				"from": 736160,
+				"to": 740160
+			},
+			"text": " where you only have a couple of instructions to use from."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,160",
+				"to": "00:12:28,160"
+			},
+			"offsets": {
+				"from": 740160,
+				"to": 748160
+			},
+			"text": " So it's kind of interesting to see this difference in how we do circuits compared to processors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:28,160",
+				"to": "00:12:33,160"
+			},
+			"offsets": {
+				"from": 748160,
+				"to": 753160
+			},
+			"text": " However, this isn't the only thing that we get from sum check."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,160",
+				"to": "00:12:38,160"
+			},
+			"offsets": {
+				"from": 753160,
+				"to": 758160
+			},
+			"text": " In fact, if you've got like rather optimized implementations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,160",
+				"to": "00:12:43,160"
+			},
+			"offsets": {
+				"from": 758160,
+				"to": 763160
+			},
+			"text": " you should be able to see way smaller memory footprints than what we currently have."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,160",
+				"to": "00:12:49,160"
+			},
+			"offsets": {
+				"from": 763160,
+				"to": 769160
+			},
+			"text": " And another nice thing about the memory is that the access patterns are a lot better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,160",
+				"to": "00:13:00,160"
+			},
+			"offsets": {
+				"from": 769160,
+				"to": 780160
+			},
+			"text": " Everything is more sequential, which means that you're able to way more easily parallelize this sum check procedure."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:00,160",
+				"to": "00:13:06,160"
+			},
+			"offsets": {
+				"from": 780160,
+				"to": 786160
+			},
+			"text": " Now, unfortunately, we're still going to have to deal with this annoying log-in verifier cost-improved size."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,160",
+				"to": "00:13:12,160"
+			},
+			"offsets": {
+				"from": 786160,
+				"to": 792160
+			},
+			"text": " But one thing that's happened over the last few years is we got a lot better at doing recursion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,160",
+				"to": "00:13:15,160"
+			},
+			"offsets": {
+				"from": 792160,
+				"to": 795160
+			},
+			"text": " and we understand it a lot better."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,160",
+				"to": "00:13:23,160"
+			},
+			"offsets": {
+				"from": 795160,
+				"to": 803160
+			},
+			"text": " And what this means is that we will be able to more efficiently and more easily write a standard Plunkish circuit"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,160",
+				"to": "00:13:30,160"
+			},
+			"offsets": {
+				"from": 803160,
+				"to": 810160
+			},
+			"text": " that just performs the sum check-based Plunk proof verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:30,160",
+				"to": "00:13:34,160"
+			},
+			"offsets": {
+				"from": 810160,
+				"to": 814160
+			},
+			"text": " And therefore, we end up with a best of both worlds situation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,160",
+				"to": "00:13:38,160"
+			},
+			"offsets": {
+				"from": 814160,
+				"to": 818160
+			},
+			"text": " where we've got a really fast-prover with relatively small overhead to generate a proof,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:38,160",
+				"to": "00:13:43,160"
+			},
+			"offsets": {
+				"from": 818160,
+				"to": 823160
+			},
+			"text": " and the final proof is going to be constant size with fast verification."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,160",
+				"to": "00:13:51,160"
+			},
+			"offsets": {
+				"from": 823160,
+				"to": 831160
+			},
+			"text": " Another really nice thing is that sum check doesn't really rely any more on a specific field."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,160",
+				"to": "00:13:55,160"
+			},
+			"offsets": {
+				"from": 831160,
+				"to": 835160
+			},
+			"text": " So because we don't do any more FFTs, we don't really need any specific field,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,160",
+				"to": "00:14:02,160"
+			},
+			"offsets": {
+				"from": 835160,
+				"to": 842160
+			},
+			"text": " which has a large root of unity, which means that we might be able to deploy snacks over different curves now."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:02,160",
+				"to": "00:14:10,160"
+			},
+			"offsets": {
+				"from": 842160,
+				"to": 850160
+			},
+			"text": " Although that also depends on the trusted setups we have available, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,160",
+				"to": "00:14:15,160"
+			},
+			"offsets": {
+				"from": 850160,
+				"to": 855160
+			},
+			"text": " So with that, I hope I've convinced you that there's a lot to look forward to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:15,160",
+				"to": "00:14:21,160"
+			},
+			"offsets": {
+				"from": 855160,
+				"to": 861160
+			},
+			"text": " in terms of improvements for snacks, and that the future is going to be bright,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:21,160",
+				"to": "00:14:24,160"
+			},
+			"offsets": {
+				"from": 861160,
+				"to": 864160
+			},
+			"text": " full of possible optimizations."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,160",
+				"to": "00:14:29,160"
+			},
+			"offsets": {
+				"from": 864160,
+				"to": 869160
+			},
+			"text": " And I, in any case, can't wait to see what everybody is going to come up with."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,160",
+				"to": "00:14:33,160"
+			},
+			"offsets": {
+				"from": 869160,
+				"to": 873160
+			},
+			"text": " Please let me know if you have any questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,160",
+				"to": "00:14:37,160"
+			},
+			"offsets": {
+				"from": 873160,
+				"to": 877160
+			},
+			"text": " And again, here's my handle if ever you have any questions that come up later."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:37,160",
+				"to": "00:14:38,160"
+			},
+			"offsets": {
+				"from": 877160,
+				"to": 878160
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,160",
+				"to": "00:14:41,160"
+			},
+			"offsets": {
+				"from": 878160,
+				"to": 881160
+			},
+			"text": " So any questions for Adrian?"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:41,160",
+				"to": "00:14:43,160"
+			},
+			"offsets": {
+				"from": 881160,
+				"to": 883160
+			},
+			"text": " I'm going to put my questions on."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:43,160",
+				"to": "00:14:44,160"
+			},
+			"offsets": {
+				"from": 883160,
+				"to": 884160
+			},
+			"text": " Right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:44,160",
+				"to": "00:14:47,160"
+			},
+			"offsets": {
+				"from": 884160,
+				"to": 887160
+			},
+			"text": " I actually have a question."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,160",
+				"to": "00:14:49,160"
+			},
+			"offsets": {
+				"from": 887160,
+				"to": 889160
+			},
+			"text": " We've got only one right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:49,160",
+				"to": "00:14:53,160"
+			},
+			"offsets": {
+				"from": 889160,
+				"to": 893160
+			},
+			"text": " Oh, you have a question? Go for it. Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:53,160",
+				"to": "00:14:58,160"
+			},
+			"offsets": {
+				"from": 893160,
+				"to": 898160
+			},
+			"text": " Thanks for the presentation. I have a question about the sum check argument."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,160",
+				"to": "00:15:03,160"
+			},
+			"offsets": {
+				"from": 898160,
+				"to": 903160
+			},
+			"text": " How we can handle not these things cancelling out to zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,160",
+				"to": "00:15:07,160"
+			},
+			"offsets": {
+				"from": 903160,
+				"to": 907160
+			},
+			"text": " Are we going to need to choose a specific field size?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,160",
+				"to": "00:15:13,160"
+			},
+			"offsets": {
+				"from": 907160,
+				"to": 913160
+			},
+			"text": " So because we are just adding up this stuff and we are assuming if they are all zero,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:13,160",
+				"to": "00:15:16,160"
+			},
+			"offsets": {
+				"from": 913160,
+				"to": 916160
+			},
+			"text": " the addition will be zero."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,160",
+				"to": "00:15:20,160"
+			},
+			"offsets": {
+				"from": 916160,
+				"to": 920160
+			},
+			"text": " But what if sometimes they're not zero and they somehow cancel each other out?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:20,160",
+				"to": "00:15:23,160"
+			},
+			"offsets": {
+				"from": 920160,
+				"to": 923160
+			},
+			"text": " Would that be possible or why it's not possible?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:23,160",
+				"to": "00:15:27,160"
+			},
+			"offsets": {
+				"from": 923160,
+				"to": 927160
+			},
+			"text": " I mean, I'll get on Zoom."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,160",
+				"to": "00:15:29,160"
+			},
+			"offsets": {
+				"from": 927160,
+				"to": 929160
+			},
+			"text": " I just got it from the video."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:29,160",
+				"to": "00:15:31,160"
+			},
+			"offsets": {
+				"from": 929160,
+				"to": 931160
+			},
+			"text": " I don't know if I'm late or anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,160",
+				"to": "00:15:35,160"
+			},
+			"offsets": {
+				"from": 931160,
+				"to": 935160
+			},
+			"text": " But if I get your question right, it's like, do we have the sum over all the gates?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:35,160",
+				"to": "00:15:43,160"
+			},
+			"offsets": {
+				"from": 935160,
+				"to": 943160
+			},
+			"text": " What I'm missing here is the linear combination factor like the kind of one you would have in a tonk as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:43,160",
+				"to": "00:15:48,160"
+			},
+			"offsets": {
+				"from": 943160,
+				"to": 948160
+			},
+			"text": " That's your question."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:48,160",
+				"to": "00:15:53,160"
+			},
+			"offsets": {
+				"from": 948160,
+				"to": 953160
+			},
+			"text": " Yeah, it's like a random linear combination."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:53,160",
+				"to": "00:15:59,160"
+			},
+			"offsets": {
+				"from": 953160,
+				"to": 959160
+			},
+			"text": " But I get that we can do that for combining the addition for different circuits."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:59,160",
+				"to": "00:16:02,160"
+			},
+			"offsets": {
+				"from": 959160,
+				"to": 962160
+			},
+			"text": " But for each circuit, we have a sum, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,160",
+				"to": "00:16:05,160"
+			},
+			"offsets": {
+				"from": 962160,
+				"to": 965160
+			},
+			"text": " So, I'm not going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,160",
+				"to": "00:16:08,160"
+			},
+			"offsets": {
+				"from": 965160,
+				"to": 968160
+			},
+			"text": " So, I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,160",
+				"to": "00:16:10,160"
+			},
+			"offsets": {
+				"from": 968160,
+				"to": 970160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:10,160",
+				"to": "00:16:12,160"
+			},
+			"offsets": {
+				"from": 970160,
+				"to": 972160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,160",
+				"to": "00:16:13,160"
+			},
+			"offsets": {
+				"from": 972160,
+				"to": 973160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,160",
+				"to": "00:16:15,160"
+			},
+			"offsets": {
+				"from": 973160,
+				"to": 975160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:15,160",
+				"to": "00:16:16,160"
+			},
+			"offsets": {
+				"from": 975160,
+				"to": 976160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,160",
+				"to": "00:16:17,160"
+			},
+			"offsets": {
+				"from": 976160,
+				"to": 977160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,160",
+				"to": "00:16:19,160"
+			},
+			"offsets": {
+				"from": 977160,
+				"to": 979160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:19,160",
+				"to": "00:16:21,160"
+			},
+			"offsets": {
+				"from": 979160,
+				"to": 981160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,160",
+				"to": "00:16:23,160"
+			},
+			"offsets": {
+				"from": 981160,
+				"to": 983160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,160",
+				"to": "00:16:25,160"
+			},
+			"offsets": {
+				"from": 983160,
+				"to": 985160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:25,160",
+				"to": "00:16:27,160"
+			},
+			"offsets": {
+				"from": 985160,
+				"to": 987160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,160",
+				"to": "00:16:33,160"
+			},
+			"offsets": {
+				"from": 987160,
+				"to": 993160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,160",
+				"to": "00:16:36,160"
+			},
+			"offsets": {
+				"from": 993160,
+				"to": 996160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,160",
+				"to": "00:16:38,160"
+			},
+			"offsets": {
+				"from": 996160,
+				"to": 998160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:38,160",
+				"to": "00:16:40,160"
+			},
+			"offsets": {
+				"from": 998160,
+				"to": 1000160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,160",
+				"to": "00:16:41,160"
+			},
+			"offsets": {
+				"from": 1000160,
+				"to": 1001160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,160",
+				"to": "00:16:43,160"
+			},
+			"offsets": {
+				"from": 1001160,
+				"to": 1003160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:43,160",
+				"to": "00:16:45,160"
+			},
+			"offsets": {
+				"from": 1003160,
+				"to": 1005160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,160",
+				"to": "00:16:46,160"
+			},
+			"offsets": {
+				"from": 1005160,
+				"to": 1006160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:46,160",
+				"to": "00:16:48,160"
+			},
+			"offsets": {
+				"from": 1006160,
+				"to": 1008160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,160",
+				"to": "00:16:50,160"
+			},
+			"offsets": {
+				"from": 1008160,
+				"to": 1010160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:50,160",
+				"to": "00:16:52,160"
+			},
+			"offsets": {
+				"from": 1010160,
+				"to": 1012160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,160",
+				"to": "00:16:54,160"
+			},
+			"offsets": {
+				"from": 1012160,
+				"to": 1014160
+			},
+			"text": " I'm going to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,160",
+				"to": "00:17:23,160"
+			},
+			"offsets": {
+				"from": 1014160,
+				"to": 1043160
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

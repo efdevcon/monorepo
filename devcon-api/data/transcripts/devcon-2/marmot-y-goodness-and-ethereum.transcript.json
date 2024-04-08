@@ -1,0 +1,2617 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,980"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2980
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,980",
+				"to": "00:00:21,360"
+			},
+			"offsets": {
+				"from": 2980,
+				"to": 21360
+			},
+			"text": " OK, so hi, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,360",
+				"to": "00:00:23,240"
+			},
+			"offsets": {
+				"from": 21360,
+				"to": 23240
+			},
+			"text": " I'm RJ."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,240",
+				"to": "00:00:26,600"
+			},
+			"offsets": {
+				"from": 23240,
+				"to": 26600
+			},
+			"text": " For those of you who have not had to endure my chatty"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,600",
+				"to": "00:00:29,040"
+			},
+			"offsets": {
+				"from": 26600,
+				"to": 29040
+			},
+			"text": " catheiness and had the misfortune of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,040",
+				"to": "00:00:31,600"
+			},
+			"offsets": {
+				"from": 29040,
+				"to": 31600
+			},
+			"text": " a little bit about me, I help develop solidity"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,600",
+				"to": "00:00:33,720"
+			},
+			"offsets": {
+				"from": 31600,
+				"to": 33720
+			},
+			"text": " and work on the Ethereum package manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,720",
+				"to": "00:00:38,960"
+			},
+			"offsets": {
+				"from": 33720,
+				"to": 38960
+			},
+			"text": " And right now, I'm going to go hand it over to Zach, my colleague."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,960",
+				"to": "00:00:41,120"
+			},
+			"offsets": {
+				"from": 38960,
+				"to": 41120
+			},
+			"text": " Right, so RJ and I are on the platform team at ARIS."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,120",
+				"to": "00:00:43,120"
+			},
+			"offsets": {
+				"from": 41120,
+				"to": 43120
+			},
+			"text": " And today, we're going to talk to you about chain orchestration"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,120",
+				"to": "00:00:44,920"
+			},
+			"offsets": {
+				"from": 43120,
+				"to": 44920
+			},
+			"text": " tooling, which is what I focus on,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,920",
+				"to": "00:00:47,480"
+			},
+			"offsets": {
+				"from": 44920,
+				"to": 47480
+			},
+			"text": " and smart contract package management, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,480",
+				"to": "00:00:48,680"
+			},
+			"offsets": {
+				"from": 47480,
+				"to": 48680
+			},
+			"text": " is what RJ focuses on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,680",
+				"to": "00:00:55,200"
+			},
+			"offsets": {
+				"from": 48680,
+				"to": 55200
+			},
+			"text": " On-- next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,200",
+				"to": "00:00:56,800"
+			},
+			"offsets": {
+				"from": 55200,
+				"to": 56800
+			},
+			"text": " OK, so what is ARIS?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,800",
+				"to": "00:00:59,520"
+			},
+			"offsets": {
+				"from": 56800,
+				"to": 59520
+			},
+			"text": " ARIS is tooling for developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,520",
+				"to": "00:01:04,600"
+			},
+			"offsets": {
+				"from": 59520,
+				"to": 64600
+			},
+			"text": " We offer a chain maker, and it's got an interactive wizard,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,600",
+				"to": "00:01:07,960"
+			},
+			"offsets": {
+				"from": 64600,
+				"to": 67960
+			},
+			"text": " and it helps you set up your chain, essentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,960",
+				"to": "00:01:08,960"
+			},
+			"offsets": {
+				"from": 67960,
+				"to": 68960
+			},
+			"text": " for different accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,960",
+				"to": "00:01:11,280"
+			},
+			"offsets": {
+				"from": 68960,
+				"to": 71280
+			},
+			"text": " And the account types are an abstraction"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,280",
+				"to": "00:01:14,200"
+			},
+			"offsets": {
+				"from": 71280,
+				"to": 74200
+			},
+			"text": " of our permissioning scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,200",
+				"to": "00:01:17,640"
+			},
+			"offsets": {
+				"from": 74200,
+				"to": 77640
+			},
+			"text": " And the permissioning scheme comes out of ARISDB,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,640",
+				"to": "00:01:19,840"
+			},
+			"offsets": {
+				"from": 77640,
+				"to": 79840
+			},
+			"text": " which is our blockchain client that uses"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,840",
+				"to": "00:01:21,760"
+			},
+			"offsets": {
+				"from": 79840,
+				"to": 81760
+			},
+			"text": " tenorment proof of stake."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,760",
+				"to": "00:01:23,200"
+			},
+			"offsets": {
+				"from": 81760,
+				"to": 83200
+			},
+			"text": " Can everyone hear me?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,200",
+				"to": "00:01:24,640"
+			},
+			"offsets": {
+				"from": 83200,
+				"to": 84640
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,640",
+				"to": "00:01:26,960"
+			},
+			"offsets": {
+				"from": 84640,
+				"to": 86960
+			},
+			"text": " And then we have the package manager,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,960",
+				"to": "00:01:30,760"
+			},
+			"offsets": {
+				"from": 86960,
+				"to": 90760
+			},
+			"text": " and it's all wrapped up in a command line tool that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,760",
+				"to": "00:01:32,120"
+			},
+			"offsets": {
+				"from": 90760,
+				"to": 92120
+			},
+			"text": " heavily Docker-ized."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,120",
+				"to": "00:01:37,480"
+			},
+			"offsets": {
+				"from": 92120,
+				"to": 97480
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,480",
+				"to": "00:01:39,080"
+			},
+			"offsets": {
+				"from": 97480,
+				"to": 99080
+			},
+			"text": " It's two things that don't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,080",
+				"to": "00:01:41,080"
+			},
+			"offsets": {
+				"from": 99080,
+				"to": 101080
+			},
+			"text": " All right, so this is what it looks like."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,080",
+				"to": "00:01:44,760"
+			},
+			"offsets": {
+				"from": 101080,
+				"to": 104760
+			},
+			"text": " So at ARIS, we're providing what you see in green."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,760",
+				"to": "00:01:47,960"
+			},
+			"offsets": {
+				"from": 104760,
+				"to": 107960
+			},
+			"text": " And so through Docker, we can control"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,960",
+				"to": "00:01:52,480"
+			},
+			"offsets": {
+				"from": 107960,
+				"to": 112480
+			},
+			"text": " all these different requirements for a blockchain application."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,480",
+				"to": "00:01:56,760"
+			},
+			"offsets": {
+				"from": 112480,
+				"to": 116760
+			},
+			"text": " Files, for example, we have an IPFS integration, keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,760",
+				"to": "00:01:57,640"
+			},
+			"offsets": {
+				"from": 116760,
+				"to": 117640
+			},
+			"text": " We outsource that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,640",
+				"to": "00:01:59,440"
+			},
+			"offsets": {
+				"from": 117640,
+				"to": 119440
+			},
+			"text": " Transaction and consensus engine, that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,440",
+				"to": "00:02:02,040"
+			},
+			"offsets": {
+				"from": 119440,
+				"to": 122040
+			},
+			"text": " tenorment, et cetera."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,040",
+				"to": "00:02:04,320"
+			},
+			"offsets": {
+				"from": 122040,
+				"to": 124320
+			},
+			"text": " Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,320",
+				"to": "00:02:05,320"
+			},
+			"offsets": {
+				"from": 124320,
+				"to": 125320
+			},
+			"text": " OK, so here's the demo."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,320",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 125320,
+				"to": 127200
+			},
+			"text": " The internet gods were not so nice."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:10,200"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 130200
+			},
+			"text": " So basically, the way that you would run ARIS"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:10,200",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 130200,
+				"to": 133000
+			},
+			"text": " and certain ARIS chain, you run ARIS chains make"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:15,800"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 135800
+			},
+			"text": " that will generate a key or several."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,800",
+				"to": "00:02:20,080"
+			},
+			"offsets": {
+				"from": 135800,
+				"to": 140080
+			},
+			"text": " There's a whole slew of flags to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,080",
+				"to": "00:02:22,960"
+			},
+			"offsets": {
+				"from": 140080,
+				"to": 142960
+			},
+			"text": " And then you start the chain, pass it the directory where"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,960",
+				"to": "00:02:24,920"
+			},
+			"offsets": {
+				"from": 142960,
+				"to": 144920
+			},
+			"text": " all these files were generated."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,920",
+				"to": "00:02:28,360"
+			},
+			"offsets": {
+				"from": 144920,
+				"to": 148360
+			},
+			"text": " And then you grab the address that you need or a key."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,360",
+				"to": "00:02:31,640"
+			},
+			"offsets": {
+				"from": 148360,
+				"to": 151640
+			},
+			"text": " And you can see there that you've got your keys serviced"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,640",
+				"to": "00:02:32,140"
+			},
+			"offsets": {
+				"from": 151640,
+				"to": 152140
+			},
+			"text": " running."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,140",
+				"to": "00:02:35,400"
+			},
+			"offsets": {
+				"from": 152140,
+				"to": 155400
+			},
+			"text": " So the keys daemon is in its own Docker container,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,400",
+				"to": "00:02:37,160"
+			},
+			"offsets": {
+				"from": 155400,
+				"to": 157160
+			},
+			"text": " which makes it nice and modular."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,160",
+				"to": "00:02:39,920"
+			},
+			"offsets": {
+				"from": 157160,
+				"to": 159920
+			},
+			"text": " And then the chain, which I've named DevCon2,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,920",
+				"to": "00:02:41,920"
+			},
+			"offsets": {
+				"from": 159920,
+				"to": 161920
+			},
+			"text": " is also running."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,920",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 161920,
+				"to": 164040
+			},
+			"text": " And then the third command, basically, that you would run"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:45,680"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 165680
+			},
+			"text": " would be ARIS packages do."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,680",
+				"to": "00:02:46,720"
+			},
+			"offsets": {
+				"from": 165680,
+				"to": 166720
+			},
+			"text": " You give it the chain name."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,720",
+				"to": "00:02:48,360"
+			},
+			"offsets": {
+				"from": 166720,
+				"to": 168360
+			},
+			"text": " You give it the address that would"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,360",
+				"to": "00:02:52,480"
+			},
+			"offsets": {
+				"from": 168360,
+				"to": 172480
+			},
+			"text": " have contract deploy permission on that chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,480",
+				"to": "00:02:54,040"
+			},
+			"offsets": {
+				"from": 172480,
+				"to": 174040
+			},
+			"text": " And you're off to the races."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,040",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 174040,
+				"to": 176000
+			},
+			"text": " So that command, ARIS packages do,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:02:58,440"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 178440
+			},
+			"text": " would be run from a directory that"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,440",
+				"to": "00:03:02,080"
+			},
+			"offsets": {
+				"from": 178440,
+				"to": 182080
+			},
+			"text": " will have all your smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,080",
+				"to": "00:03:05,720"
+			},
+			"offsets": {
+				"from": 182080,
+				"to": 185720
+			},
+			"text": " And then the EPM EMO file, which RJ will be talking about."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,720",
+				"to": "00:03:07,560"
+			},
+			"offsets": {
+				"from": 185720,
+				"to": 187560
+			},
+			"text": " Eventually, next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,560",
+				"to": "00:03:11,080"
+			},
+			"offsets": {
+				"from": 187560,
+				"to": 191080
+			},
+			"text": " No, forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,080",
+				"to": "00:03:12,080"
+			},
+			"offsets": {
+				"from": 191080,
+				"to": 192080
+			},
+			"text": " Let's go forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,080",
+				"to": "00:03:15,880"
+			},
+			"offsets": {
+				"from": 192080,
+				"to": 195880
+			},
+			"text": " One more."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,880",
+				"to": "00:03:16,800"
+			},
+			"offsets": {
+				"from": 195880,
+				"to": 196800
+			},
+			"text": " Yeah, great."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,800",
+				"to": "00:03:19,120"
+			},
+			"offsets": {
+				"from": 196800,
+				"to": 199120
+			},
+			"text": " OK, so here's just to show you a little bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,120",
+				"to": "00:03:23,520"
+			},
+			"offsets": {
+				"from": 199120,
+				"to": 203520
+			},
+			"text": " about how we think services and how a blockchain application"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,520",
+				"to": "00:03:25,480"
+			},
+			"offsets": {
+				"from": 203520,
+				"to": 205480
+			},
+			"text": " platform should look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,480",
+				"to": "00:03:29,120"
+			},
+			"offsets": {
+				"from": 205480,
+				"to": 209120
+			},
+			"text": " So I stopped keys, which was started earlier by the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,120",
+				"to": "00:03:29,880"
+			},
+			"offsets": {
+				"from": 209120,
+				"to": 209880
+			},
+			"text": " maker."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,880",
+				"to": "00:03:31,880"
+			},
+			"offsets": {
+				"from": 209880,
+				"to": 211880
+			},
+			"text": " I've started IPFS."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,880",
+				"to": "00:03:33,640"
+			},
+			"offsets": {
+				"from": 211880,
+				"to": 213640
+			},
+			"text": " And I've started the compiler service."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,640",
+				"to": "00:03:37,000"
+			},
+			"offsets": {
+				"from": 213640,
+				"to": 217000
+			},
+			"text": " And when I run ARIS LS, you can see that keys is not running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,000",
+				"to": "00:03:37,800"
+			},
+			"offsets": {
+				"from": 217000,
+				"to": 217800
+			},
+			"text": " It's got a dash."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,800",
+				"to": "00:03:40,680"
+			},
+			"offsets": {
+				"from": 217800,
+				"to": 220680
+			},
+			"text": " Compilers and IPFS, those are running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,680",
+				"to": "00:03:42,320"
+			},
+			"offsets": {
+				"from": 220680,
+				"to": 222320
+			},
+			"text": " And the chain is also still running."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,320",
+				"to": "00:03:44,440"
+			},
+			"offsets": {
+				"from": 222320,
+				"to": 224440
+			},
+			"text": " So with IPFS running, we can do something simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,440",
+				"to": "00:03:47,560"
+			},
+			"offsets": {
+				"from": 224440,
+				"to": 227560
+			},
+			"text": " Like, ARIS files put some random file."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,560",
+				"to": "00:03:50,000"
+			},
+			"offsets": {
+				"from": 227560,
+				"to": 230000
+			},
+			"text": " And that will spit you out the hash, which you can then"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,000",
+				"to": "00:03:53,400"
+			},
+			"offsets": {
+				"from": 230000,
+				"to": 233400
+			},
+			"text": " get with ARIS files get and give it an output,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,400",
+				"to": "00:03:57,880"
+			},
+			"offsets": {
+				"from": 233400,
+				"to": 237880
+			},
+			"text": " rename your file, or share it with your colleagues."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,880",
+				"to": "00:03:59,920"
+			},
+			"offsets": {
+				"from": 237880,
+				"to": 239920
+			},
+			"text": " Next slide."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,920",
+				"to": "00:04:00,320"
+			},
+			"offsets": {
+				"from": 239920,
+				"to": 240320
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,320",
+				"to": "00:04:04,440"
+			},
+			"offsets": {
+				"from": 240320,
+				"to": 244440
+			},
+			"text": " So on a roadmap-- and this is where Docker really shines--"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,440",
+				"to": "00:04:09,680"
+			},
+			"offsets": {
+				"from": 244440,
+				"to": 249680
+			},
+			"text": " is being able to modularize the client type"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,680",
+				"to": "00:04:11,120"
+			},
+			"offsets": {
+				"from": 249680,
+				"to": 251120
+			},
+			"text": " and also the consensus type."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,120",
+				"to": "00:04:15,120"
+			},
+			"offsets": {
+				"from": 251120,
+				"to": 255120
+			},
+			"text": " So like I mentioned, ARISDB uses tenorment under the hood"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,120",
+				"to": "00:04:18,040"
+			},
+			"offsets": {
+				"from": 255120,
+				"to": 258040
+			},
+			"text": " as a proof of stake consensus algorithm."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,040",
+				"to": "00:04:20,440"
+			},
+			"offsets": {
+				"from": 258040,
+				"to": 260440
+			},
+			"text": " But there's been a lot of talk here and some interest"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,440",
+				"to": "00:04:22,760"
+			},
+			"offsets": {
+				"from": 260440,
+				"to": 262760
+			},
+			"text": " by the various developers of getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,760",
+				"to": "00:04:24,360"
+			},
+			"offsets": {
+				"from": 262760,
+				"to": 264360
+			},
+			"text": " geth over TMSB."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,360",
+				"to": "00:04:26,760"
+			},
+			"offsets": {
+				"from": 264360,
+				"to": 266760
+			},
+			"text": " So TMSB is a tenorment socket protocol"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,760",
+				"to": "00:04:31,040"
+			},
+			"offsets": {
+				"from": 266760,
+				"to": 271040
+			},
+			"text": " that can communicate with any arbitrary client."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,040",
+				"to": "00:04:34,280"
+			},
+			"offsets": {
+				"from": 271040,
+				"to": 274280
+			},
+			"text": " And so this would be interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,280",
+				"to": "00:04:37,440"
+			},
+			"offsets": {
+				"from": 274280,
+				"to": 277440
+			},
+			"text": " And I would like to see as many different clients,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,440",
+				"to": "00:04:39,760"
+			},
+			"offsets": {
+				"from": 277440,
+				"to": 279760
+			},
+			"text": " blockchain clients-- oh, and I forgot"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,760",
+				"to": "00:04:43,080"
+			},
+			"offsets": {
+				"from": 279760,
+				"to": 283080
+			},
+			"text": " to mention ARISDB has a full reimplementation of the EVM."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,080",
+				"to": "00:04:46,240"
+			},
+			"offsets": {
+				"from": 283080,
+				"to": 286240
+			},
+			"text": " So all of your solidity code that you've written"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,240",
+				"to": "00:04:49,360"
+			},
+			"offsets": {
+				"from": 286240,
+				"to": 289360
+			},
+			"text": " and can deploy on the Ethereum test net or main net"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,360",
+				"to": "00:04:53,560"
+			},
+			"offsets": {
+				"from": 289360,
+				"to": 293560
+			},
+			"text": " will work on an ARISDB."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,560",
+				"to": "00:04:56,080"
+			},
+			"offsets": {
+				"from": 293560,
+				"to": 296080
+			},
+			"text": " No, go back."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,080",
+				"to": "00:04:57,920"
+			},
+			"offsets": {
+				"from": 296080,
+				"to": 297920
+			},
+			"text": " What was my last point here?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,920",
+				"to": "00:04:58,520"
+			},
+			"offsets": {
+				"from": 297920,
+				"to": 298520
+			},
+			"text": " Yeah, basically."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,520",
+				"to": "00:05:00,720"
+			},
+			"offsets": {
+				"from": 298520,
+				"to": 300720
+			},
+			"text": " So I envision-- and we're working towards this--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,720",
+				"to": "00:05:03,640"
+			},
+			"offsets": {
+				"from": 300720,
+				"to": 303640
+			},
+			"text": " to be able to choose any client type, be it geth, CPP,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,640",
+				"to": "00:05:07,200"
+			},
+			"offsets": {
+				"from": 303640,
+				"to": 307200
+			},
+			"text": " parity, and choose any consensus type and mix and match."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,200",
+				"to": "00:05:10,800"
+			},
+			"offsets": {
+				"from": 307200,
+				"to": 310800
+			},
+			"text": " And so you could start five, 10 chains of any combination"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,800",
+				"to": "00:05:15,120"
+			},
+			"offsets": {
+				"from": 310800,
+				"to": 315120
+			},
+			"text": " and do your benchmarks with that and to see what works best"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,120",
+				"to": "00:05:16,840"
+			},
+			"offsets": {
+				"from": 315120,
+				"to": 316840
+			},
+			"text": " for your application."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,840",
+				"to": "00:05:19,640"
+			},
+			"offsets": {
+				"from": 316840,
+				"to": 319640
+			},
+			"text": " And I want to make one final point here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,640",
+				"to": "00:05:21,600"
+			},
+			"offsets": {
+				"from": 319640,
+				"to": 321600
+			},
+			"text": " Yes, we make permission chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,600",
+				"to": "00:05:24,200"
+			},
+			"offsets": {
+				"from": 321600,
+				"to": 324200
+			},
+			"text": " We're not necessarily in the private chain space."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,200",
+				"to": "00:05:25,600"
+			},
+			"offsets": {
+				"from": 324200,
+				"to": 325600
+			},
+			"text": " And there's a crucial distinction there"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,600",
+				"to": "00:05:28,240"
+			},
+			"offsets": {
+				"from": 325600,
+				"to": 328240
+			},
+			"text": " that the media hasn't noticed."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,240",
+				"to": "00:05:32,360"
+			},
+			"offsets": {
+				"from": 328240,
+				"to": 332360
+			},
+			"text": " And so yeah, we hope that you can try out our tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,360",
+				"to": "00:05:34,520"
+			},
+			"offsets": {
+				"from": 332360,
+				"to": 334520
+			},
+			"text": " And up next, we'll talk--"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,520",
+				"to": "00:05:36,520"
+			},
+			"offsets": {
+				"from": 334520,
+				"to": 336520
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,520",
+				"to": "00:05:38,920"
+			},
+			"offsets": {
+				"from": 336520,
+				"to": 338920
+			},
+			"text": " Hey, guys, can I get the next slide, please?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,920",
+				"to": "00:05:41,520"
+			},
+			"offsets": {
+				"from": 338920,
+				"to": 341520
+			},
+			"text": " All right, so here I'm going to be presenting the ARIS package"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,520",
+				"to": "00:05:42,280"
+			},
+			"offsets": {
+				"from": 341520,
+				"to": 342280
+			},
+			"text": " manager."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,280",
+				"to": "00:05:45,440"
+			},
+			"offsets": {
+				"from": 342280,
+				"to": 345440
+			},
+			"text": " And I would like to go ahead and frame it as the ease of NPM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,440",
+				"to": "00:05:49,840"
+			},
+			"offsets": {
+				"from": 345440,
+				"to": 349840
+			},
+			"text": " the simple coordination of Chef, all running through solidity."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,840",
+				"to": "00:05:53,680"
+			},
+			"offsets": {
+				"from": 349840,
+				"to": 353680
+			},
+			"text": " Now, this runs through the simple workflow right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,680",
+				"to": "00:05:56,120"
+			},
+			"offsets": {
+				"from": 353680,
+				"to": 356120
+			},
+			"text": " There is a disclaimer, though, in installer on the road map."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,120",
+				"to": "00:05:58,880"
+			},
+			"offsets": {
+				"from": 356120,
+				"to": 358880
+			},
+			"text": " They are not yet implemented, but it is simply just this."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,880",
+				"to": "00:06:00,880"
+			},
+			"offsets": {
+				"from": 358880,
+				"to": 360880
+			},
+			"text": " You just go ahead and initialize your project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,880",
+				"to": "00:06:03,720"
+			},
+			"offsets": {
+				"from": 360880,
+				"to": 363720
+			},
+			"text": " install your dependencies, and deploy and run your code"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,720",
+				"to": "00:06:06,240"
+			},
+			"offsets": {
+				"from": 363720,
+				"to": 366240
+			},
+			"text": " on your running chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,240",
+				"to": "00:06:07,520"
+			},
+			"offsets": {
+				"from": 366240,
+				"to": 367520
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,520",
+				"to": "00:06:09,800"
+			},
+			"offsets": {
+				"from": 367520,
+				"to": 369800
+			},
+			"text": " Why do we need another package manager?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,800",
+				"to": "00:06:13,120"
+			},
+			"offsets": {
+				"from": 369800,
+				"to": 373120
+			},
+			"text": " Why do we need to go ahead and have this when we have so many"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,120",
+				"to": "00:06:15,320"
+			},
+			"offsets": {
+				"from": 373120,
+				"to": 375320
+			},
+			"text": " others to go ahead and handle ourselves?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,320",
+				"to": "00:06:17,640"
+			},
+			"offsets": {
+				"from": 375320,
+				"to": 377640
+			},
+			"text": " Well, there are specific problems inherent in utilizing"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,640",
+				"to": "00:06:20,160"
+			},
+			"offsets": {
+				"from": 377640,
+				"to": 380160
+			},
+			"text": " blockchains and smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,160",
+				"to": "00:06:22,920"
+			},
+			"offsets": {
+				"from": 380160,
+				"to": 382920
+			},
+			"text": " There's the problem of single versus multiple parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,920",
+				"to": "00:06:24,800"
+			},
+			"offsets": {
+				"from": 382920,
+				"to": 384800
+			},
+			"text": " What do we mean by this?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,800",
+				"to": "00:06:29,760"
+			},
+			"offsets": {
+				"from": 384800,
+				"to": 389760
+			},
+			"text": " In the top right here, you have the old traditional model."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,760",
+				"to": "00:06:33,160"
+			},
+			"offsets": {
+				"from": 389760,
+				"to": 393160
+			},
+			"text": " This was one person executing code in a file system that one"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,160",
+				"to": "00:06:35,480"
+			},
+			"offsets": {
+				"from": 393160,
+				"to": 395480
+			},
+			"text": " computer and only that computer controlled."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:35,480",
+				"to": "00:06:37,200"
+			},
+			"offsets": {
+				"from": 395480,
+				"to": 397200
+			},
+			"text": " As Nickle, I'm a Shuggian from Dapple,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,200",
+				"to": "00:06:39,600"
+			},
+			"offsets": {
+				"from": 397200,
+				"to": 399600
+			},
+			"text": " explained in his talk yesterday, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,600",
+				"to": "00:06:42,680"
+			},
+			"offsets": {
+				"from": 399600,
+				"to": 402680
+			},
+			"text": " are in a completely new paradigm whereby code is not meant"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,680",
+				"to": "00:06:45,320"
+			},
+			"offsets": {
+				"from": 402680,
+				"to": 405320
+			},
+			"text": " to be running an isolated setting, but rather"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,320",
+				"to": "00:06:48,840"
+			},
+			"offsets": {
+				"from": 405320,
+				"to": 408840
+			},
+			"text": " collaboratively acted upon as can be seen and displayed"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,840",
+				"to": "00:06:51,600"
+			},
+			"offsets": {
+				"from": 408840,
+				"to": 411600
+			},
+			"text": " by the many smiling faces over here."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,600",
+				"to": "00:06:54,840"
+			},
+			"offsets": {
+				"from": 411600,
+				"to": 414840
+			},
+			"text": " This calls for a specific design to handle this new paradigm."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:54,840",
+				"to": "00:06:57,920"
+			},
+			"offsets": {
+				"from": 414840,
+				"to": 417920
+			},
+			"text": " Secondly, at Eris, we don't believe in a one chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,920",
+				"to": "00:06:59,640"
+			},
+			"offsets": {
+				"from": 417920,
+				"to": 419640
+			},
+			"text": " to rule them all design and believe"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,640",
+				"to": "00:07:01,400"
+			},
+			"offsets": {
+				"from": 419640,
+				"to": 421400
+			},
+			"text": " that the world will inherently cater"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:01,400",
+				"to": "00:07:03,680"
+			},
+			"offsets": {
+				"from": 421400,
+				"to": 423680
+			},
+			"text": " to a multi-chain mindset."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,680",
+				"to": "00:07:07,080"
+			},
+			"offsets": {
+				"from": 423680,
+				"to": 427080
+			},
+			"text": " Even for those that do believe in a maximalist, one chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,080",
+				"to": "00:07:09,560"
+			},
+			"offsets": {
+				"from": 427080,
+				"to": 429560
+			},
+			"text": " to rule them all, we all can agree"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,560",
+				"to": "00:07:12,080"
+			},
+			"offsets": {
+				"from": 429560,
+				"to": 432080
+			},
+			"text": " that there is a high amount of utility and separated test"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:12,080",
+				"to": "00:07:14,480"
+			},
+			"offsets": {
+				"from": 432080,
+				"to": 434480
+			},
+			"text": " networks for chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,480",
+				"to": "00:07:17,520"
+			},
+			"offsets": {
+				"from": 434480,
+				"to": 437520
+			},
+			"text": " This calls for package management that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,520",
+				"to": "00:07:19,840"
+			},
+			"offsets": {
+				"from": 437520,
+				"to": 439840
+			},
+			"text": " can coordinate and maintain smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,840",
+				"to": "00:07:22,680"
+			},
+			"offsets": {
+				"from": 439840,
+				"to": 442680
+			},
+			"text": " over multiple chains and distributed ledgers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,680",
+				"to": "00:07:25,160"
+			},
+			"offsets": {
+				"from": 442680,
+				"to": 445160
+			},
+			"text": " Thirdly, verification, simple enough."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,160",
+				"to": "00:07:28,120"
+			},
+			"offsets": {
+				"from": 445160,
+				"to": 448120
+			},
+			"text": " We want to make sure that what we have exists on the chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,120",
+				"to": "00:07:32,880"
+			},
+			"offsets": {
+				"from": 448120,
+				"to": 452880
+			},
+			"text": " and works as expected, and we're in a working with enough said."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,880",
+				"to": "00:07:38,440"
+			},
+			"offsets": {
+				"from": 453880,
+				"to": 458440
+			},
+			"text": " Fourth, finally, we have to keep in mind contract reuse"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,440",
+				"to": "00:07:43,000"
+			},
+			"offsets": {
+				"from": 458440,
+				"to": 463000
+			},
+			"text": " as we now are acting in an environment where economics"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,000",
+				"to": "00:07:45,920"
+			},
+			"offsets": {
+				"from": 463000,
+				"to": 465920
+			},
+			"text": " is actually a factor in your code."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,920",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 465920,
+				"to": 468000
+			},
+			"text": " And it calls for you to be the least amount of resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:51,160"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 471160
+			},
+			"text": " aka gas, as necessary."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,160",
+				"to": "00:07:52,520"
+			},
+			"offsets": {
+				"from": 471160,
+				"to": 472520
+			},
+			"text": " Next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,520",
+				"to": "00:07:55,640"
+			},
+			"offsets": {
+				"from": 472520,
+				"to": 475640
+			},
+			"text": " Moving to where EPM's chef-like quality shine."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:55,640",
+				"to": "00:07:57,280"
+			},
+			"offsets": {
+				"from": 475640,
+				"to": 477280
+			},
+			"text": " It's the little thing right here."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,280",
+				"to": "00:08:00,680"
+			},
+			"offsets": {
+				"from": 477280,
+				"to": 480680
+			},
+			"text": " The EPM YAML file is on the right,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,680",
+				"to": "00:08:03,560"
+			},
+			"offsets": {
+				"from": 480680,
+				"to": 483560
+			},
+			"text": " and on my left is a slightly smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,560",
+				"to": "00:08:05,800"
+			},
+			"offsets": {
+				"from": 483560,
+				"to": 485800
+			},
+			"text": " that I thought would be good for this example."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,800",
+				"to": "00:08:08,640"
+			},
+			"offsets": {
+				"from": 485800,
+				"to": 488640
+			},
+			"text": " You can see right here that we have numerous different jobs"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,640",
+				"to": "00:08:09,160"
+			},
+			"offsets": {
+				"from": 488640,
+				"to": 489160
+			},
+			"text": " running."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,160",
+				"to": "00:08:10,880"
+			},
+			"offsets": {
+				"from": 489160,
+				"to": 490880
+			},
+			"text": " We can go ahead and set an initial value"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,880",
+				"to": "00:08:12,760"
+			},
+			"offsets": {
+				"from": 490880,
+				"to": 492760
+			},
+			"text": " that we want to go ahead and pass in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:12,760",
+				"to": "00:08:15,400"
+			},
+			"offsets": {
+				"from": 492760,
+				"to": 495400
+			},
+			"text": " You go ahead and create a deploy method,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,400",
+				"to": "00:08:17,520"
+			},
+			"offsets": {
+				"from": 495400,
+				"to": 497520
+			},
+			"text": " call the contract, gs-factor-ed-soul,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,520",
+				"to": "00:08:20,320"
+			},
+			"offsets": {
+				"from": 497520,
+				"to": 500320
+			},
+			"text": " and name an instance of it, and then go ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,320",
+				"to": "00:08:22,840"
+			},
+			"offsets": {
+				"from": 500320,
+				"to": 502840
+			},
+			"text": " and call that instance further on."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,840",
+				"to": "00:08:23,960"
+			},
+			"offsets": {
+				"from": 502840,
+				"to": 503960
+			},
+			"text": " Then you can go ahead and continue"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:23,960",
+				"to": "00:08:26,480"
+			},
+			"offsets": {
+				"from": 503960,
+				"to": 506480
+			},
+			"text": " to call the contract function for create"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,480",
+				"to": "00:08:29,440"
+			},
+			"offsets": {
+				"from": 506480,
+				"to": 509440
+			},
+			"text": " at that deploy-gs-contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:29,440",
+				"to": "00:08:31,120"
+			},
+			"offsets": {
+				"from": 509440,
+				"to": 511120
+			},
+			"text": " For those who have been in the Unix system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,120",
+				"to": "00:08:32,240"
+			},
+			"offsets": {
+				"from": 511120,
+				"to": 512240
+			},
+			"text": " this should be very familiar."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,240",
+				"to": "00:08:35,080"
+			},
+			"offsets": {
+				"from": 512240,
+				"to": 515080
+			},
+			"text": " You have a little dollar sign to go ahead and call back"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,080",
+				"to": "00:08:37,320"
+			},
+			"offsets": {
+				"from": 515080,
+				"to": 517320
+			},
+			"text": " what you already set."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,320",
+				"to": "00:08:39,400"
+			},
+			"offsets": {
+				"from": 517320,
+				"to": 519400
+			},
+			"text": " You have the set storage, which we'll go ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,400",
+				"to": "00:08:42,760"
+			},
+			"offsets": {
+				"from": 519400,
+				"to": 522760
+			},
+			"text": " and call the set function and input the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,760",
+				"to": "00:08:44,920"
+			},
+			"offsets": {
+				"from": 522760,
+				"to": 524920
+			},
+			"text": " from the set storage base made at the top,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,920",
+				"to": "00:08:46,800"
+			},
+			"offsets": {
+				"from": 524920,
+				"to": 526800
+			},
+			"text": " so passing in the number five."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,800",
+				"to": "00:08:51,240"
+			},
+			"offsets": {
+				"from": 526800,
+				"to": 531240
+			},
+			"text": " And you have the query contract, which now, for now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:51,240",
+				"to": "00:08:56,440"
+			},
+			"offsets": {
+				"from": 531240,
+				"to": 536440
+			},
+			"text": " forces the chain to not be altered."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,440",
+				"to": "00:09:00,320"
+			},
+			"offsets": {
+				"from": 536440,
+				"to": 540320
+			},
+			"text": " And next slide, please."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,320",
+				"to": "00:09:03,240"
+			},
+			"offsets": {
+				"from": 540320,
+				"to": 543240
+			},
+			"text": " All right, and for finally, further on our roadmap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,240",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 543240,
+				"to": 546280
+			},
+			"text": " we are going to be looking to go ahead and integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:10,880"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 550880
+			},
+			"text": " IPFS and Swarm because the kick-ass, that's enough said."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,880",
+				"to": "00:09:14,080"
+			},
+			"offsets": {
+				"from": 550880,
+				"to": 554080
+			},
+			"text": " We are also going ahead with a lifecycle management contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,080",
+				"to": "00:09:18,680"
+			},
+			"offsets": {
+				"from": 554080,
+				"to": 558680
+			},
+			"text": " And what that is that, that is a contract that functions"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,680",
+				"to": "00:09:20,320"
+			},
+			"offsets": {
+				"from": 558680,
+				"to": 560320
+			},
+			"text": " as a single point of communication"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,320",
+				"to": "00:09:23,480"
+			},
+			"offsets": {
+				"from": 560320,
+				"to": 563480
+			},
+			"text": " to deploy, update, link all your contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,480",
+				"to": "00:09:25,800"
+			},
+			"offsets": {
+				"from": 563480,
+				"to": 565800
+			},
+			"text": " The best way to go ahead and frame this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,800",
+				"to": "00:09:28,240"
+			},
+			"offsets": {
+				"from": 565800,
+				"to": 568240
+			},
+			"text": " for those of you who are familiar with NPM,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,240",
+				"to": "00:09:32,880"
+			},
+			"offsets": {
+				"from": 568240,
+				"to": 572880
+			},
+			"text": " would be it's like the index.js file."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,880",
+				"to": "00:09:36,840"
+			},
+			"offsets": {
+				"from": 572880,
+				"to": 576840
+			},
+			"text": " It is the entry point for all of your projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,840",
+				"to": "00:09:40,040"
+			},
+			"offsets": {
+				"from": 576840,
+				"to": 580040
+			},
+			"text": " Thirdly, chain runs."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,040",
+				"to": "00:09:43,440"
+			},
+			"offsets": {
+				"from": 580040,
+				"to": 583440
+			},
+			"text": " We are going to be going ahead with that YAML file."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,440",
+				"to": "00:09:46,840"
+			},
+			"offsets": {
+				"from": 583440,
+				"to": 586840
+			},
+			"text": " You could go ahead and set out set jobs that go ahead"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:46,840",
+				"to": "00:09:50,240"
+			},
+			"offsets": {
+				"from": 586840,
+				"to": 590240
+			},
+			"text": " and define how you think your project should run."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,240",
+				"to": "00:09:52,720"
+			},
+			"offsets": {
+				"from": 590240,
+				"to": 592720
+			},
+			"text": " And then you could chain them all throughout the dependency"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,720",
+				"to": "00:09:56,760"
+			},
+			"offsets": {
+				"from": 592720,
+				"to": 596760
+			},
+			"text": " tree to all move up through and interact."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,760",
+				"to": "00:10:00,160"
+			},
+			"offsets": {
+				"from": 596760,
+				"to": 600160
+			},
+			"text": " And fourthly, of course, dependency management."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,160",
+				"to": "00:10:02,760"
+			},
+			"offsets": {
+				"from": 600160,
+				"to": 602760
+			},
+			"text": " And with that, the next slide, I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,760",
+				"to": "00:10:05,320"
+			},
+			"offsets": {
+				"from": 602760,
+				"to": 605320
+			},
+			"text": " going to let Zach finish us off."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,320",
+				"to": "00:10:05,660"
+			},
+			"offsets": {
+				"from": 605320,
+				"to": 605660
+			},
+			"text": " Great."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:05,660",
+				"to": "00:10:08,000"
+			},
+			"offsets": {
+				"from": 605660,
+				"to": 608000
+			},
+			"text": " So if you want to get started on any platform,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:08,000",
+				"to": "00:10:09,920"
+			},
+			"offsets": {
+				"from": 608000,
+				"to": 609920
+			},
+			"text": " it's a quick out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,920",
+				"to": "00:10:12,200"
+			},
+			"offsets": {
+				"from": 609920,
+				"to": 612200
+			},
+			"text": " So brew and choco work out of the box."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:12,200",
+				"to": "00:10:15,280"
+			},
+			"offsets": {
+				"from": 612200,
+				"to": 615280
+			},
+			"text": " We just-- choco got approved last week."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,280",
+				"to": "00:10:17,480"
+			},
+			"offsets": {
+				"from": 615280,
+				"to": 617480
+			},
+			"text": " And app get, if you want to run it on Linux,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,480",
+				"to": "00:10:19,720"
+			},
+			"offsets": {
+				"from": 617480,
+				"to": 619720
+			},
+			"text": " just check out our documentation."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,720",
+				"to": "00:10:21,880"
+			},
+			"offsets": {
+				"from": 619720,
+				"to": 621880
+			},
+			"text": " And finally, join our Slack."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,880",
+				"to": "00:10:22,880"
+			},
+			"offsets": {
+				"from": 621880,
+				"to": 622880
+			},
+			"text": " It's open."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,880",
+				"to": "00:10:24,240"
+			},
+			"offsets": {
+				"from": 622880,
+				"to": 624240
+			},
+			"text": " And there's lots of users in there."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:24,240",
+				"to": "00:10:25,440"
+			},
+			"offsets": {
+				"from": 624240,
+				"to": 625440
+			},
+			"text": " And they can help you get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,440",
+				"to": "00:10:27,520"
+			},
+			"offsets": {
+				"from": 625440,
+				"to": 627520
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,520",
+				"to": "00:10:28,680"
+			},
+			"offsets": {
+				"from": 627520,
+				"to": 628680
+			},
+			"text": " Thanks, RJ and Zach."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,680",
+				"to": "00:10:30,160"
+			},
+			"offsets": {
+				"from": 628680,
+				"to": 630160
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,160",
+				"to": "00:10:33,160"
+			},
+			"offsets": {
+				"from": 630160,
+				"to": 633160
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,160",
+				"to": "00:10:35,740"
+			},
+			"offsets": {
+				"from": 633160,
+				"to": 635740
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,740",
+				"to": "00:10:37,980"
+			},
+			"offsets": {
+				"from": 635740,
+				"to": 637980
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

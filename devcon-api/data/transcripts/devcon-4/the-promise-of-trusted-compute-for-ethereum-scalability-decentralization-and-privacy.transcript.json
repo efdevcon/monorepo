@@ -1,0 +1,4124 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,500"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6500
+			},
+			"text": " I'm Sanjay, I work for Intel, and this is Andrea's works for consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,500",
+				"to": "00:00:12,580"
+			},
+			"offsets": {
+				"from": 6500,
+				"to": 12580
+			},
+			"text": " So today we are going to share some of the work that we have been doing in the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,580",
+				"to": "00:00:20,240"
+			},
+			"offsets": {
+				"from": 12580,
+				"to": 20240
+			},
+			"text": " of how we can apply trusted compute for the good of Ethereum as an option."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,240",
+				"to": "00:00:22,640"
+			},
+			"offsets": {
+				"from": 20240,
+				"to": 22640
+			},
+			"text": " So the talk today is like in the two parts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,640",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 22640,
+				"to": 29800
+			},
+			"text": " One is generally talking about how we are viewing this trusted compute play in the space,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:34,400"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 34400
+			},
+			"text": " and then Andrea's will drive a completed with a concrete example of something that we are"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,400",
+				"to": "00:00:35,400"
+			},
+			"offsets": {
+				"from": 34400,
+				"to": 35400
+			},
+			"text": " doing."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,400",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 35400,
+				"to": 41480
+			},
+			"text": " And then tomorrow there's a breakout session that will go into a whole bunch of more"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:43,080"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 43080
+			},
+			"text": " applications in this space."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,080",
+				"to": "00:00:48,600"
+			},
+			"offsets": {
+				"from": 43080,
+				"to": 48600
+			},
+			"text": " So with that, I'll get started."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,600",
+				"to": "00:00:53,200"
+			},
+			"offsets": {
+				"from": 48600,
+				"to": 53200
+			},
+			"text": " So there are lots of definitions of when it comes to trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,200",
+				"to": "00:01:01,560"
+			},
+			"offsets": {
+				"from": 53200,
+				"to": 61560
+			},
+			"text": " So I thought that would start off with having a level set of what it means."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,560",
+				"to": "00:01:07,760"
+			},
+			"offsets": {
+				"from": 61560,
+				"to": 67760
+			},
+			"text": " Typically when I talk about a trusted compute, I say that, hey, it's a place on your PC or"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,760",
+				"to": "00:01:16,960"
+			},
+			"offsets": {
+				"from": 67760,
+				"to": 76960
+			},
+			"text": " on your server where software can execute without any external interference."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,960",
+				"to": "00:01:22,800"
+			},
+			"offsets": {
+				"from": 76960,
+				"to": 82800
+			},
+			"text": " So to drive the point home, so think of the box in the big box in the middle is your PC"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:22,800",
+				"to": "00:01:24,040"
+			},
+			"offsets": {
+				"from": 82800,
+				"to": 84040
+			},
+			"text": " or your server."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,040",
+				"to": "00:01:28,080"
+			},
+			"offsets": {
+				"from": 84040,
+				"to": 88080
+			},
+			"text": " It has two parts to it, trusted and untrusted part."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,080",
+				"to": "00:01:31,040"
+			},
+			"offsets": {
+				"from": 88080,
+				"to": 91040
+			},
+			"text": " And the blue is the trusted part or the trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,040",
+				"to": "00:01:38,520"
+			},
+			"offsets": {
+				"from": 91040,
+				"to": 98520
+			},
+			"text": " And inside there, you can run your code and or you can have your secrets like keys and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,520",
+				"to": "00:01:40,080"
+			},
+			"offsets": {
+				"from": 98520,
+				"to": 100080
+			},
+			"text": " any sense to data."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,080",
+				"to": "00:01:44,560"
+			},
+			"offsets": {
+				"from": 100080,
+				"to": 104560
+			},
+			"text": " All of that can be processed in this blue part and it will be secure even though in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,560",
+				"to": "00:01:50,880"
+			},
+			"offsets": {
+				"from": 104560,
+				"to": 110880
+			},
+			"text": " white past around it, you may have a malware or something else is owning that system."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,880",
+				"to": "00:01:57,600"
+			},
+			"offsets": {
+				"from": 110880,
+				"to": 117600
+			},
+			"text": " So it gives you that isolation on and off the shelf platforms."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,600",
+				"to": "00:02:03,440"
+			},
+			"offsets": {
+				"from": 117600,
+				"to": 123440
+			},
+			"text": " And the other side of it is like the final point there is that whatever it does, it gives"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,440",
+				"to": "00:02:09,800"
+			},
+			"offsets": {
+				"from": 123440,
+				"to": 129800
+			},
+			"text": " you an attestation to what happened so that like anybody can verify that the result really"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,800",
+				"to": "00:02:16,440"
+			},
+			"offsets": {
+				"from": 129800,
+				"to": 136440
+			},
+			"text": " did happen inside the trusted compute and these instructions did actually get executed."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,440",
+				"to": "00:02:23,920"
+			},
+			"offsets": {
+				"from": 136440,
+				"to": 143920
+			},
+			"text": " So I work for Intel and Intel's one of the popular trusted computes out there is Intel"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,920",
+				"to": "00:02:29,720"
+			},
+			"offsets": {
+				"from": 143920,
+				"to": 149720
+			},
+			"text": " SGX and more than happy to talk about it in general."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,720",
+				"to": "00:02:32,960"
+			},
+			"offsets": {
+				"from": 149720,
+				"to": 152960
+			},
+			"text": " But today we will talk in generally in terms of trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,960",
+				"to": "00:02:38,600"
+			},
+			"offsets": {
+				"from": 152960,
+				"to": 158600
+			},
+			"text": " And then there are these other variants of trusted compute based on ZK proofs and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,600",
+				"to": "00:02:40,120"
+			},
+			"offsets": {
+				"from": 158600,
+				"to": 160120
+			},
+			"text": " MPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,120",
+				"to": "00:02:46,120"
+			},
+			"offsets": {
+				"from": 160120,
+				"to": 166120
+			},
+			"text": " Those are also there that can be used to apply to the concepts that we're going to be talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,120",
+				"to": "00:02:48,960"
+			},
+			"offsets": {
+				"from": 166120,
+				"to": 168960
+			},
+			"text": " here."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,960",
+				"to": "00:02:55,520"
+			},
+			"offsets": {
+				"from": 168960,
+				"to": 175520
+			},
+			"text": " So the first thing we were saying is like, hey, how can a trusted compute play in this space"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:55,520",
+				"to": "00:02:57,560"
+			},
+			"offsets": {
+				"from": 175520,
+				"to": 177560
+			},
+			"text": " and there are lots of questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,560",
+				"to": "00:03:07,320"
+			},
+			"offsets": {
+				"from": 177560,
+				"to": 187320
+			},
+			"text": " And you guys probably seen this picture and what we're asking is like, hey, how can, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,320",
+				"to": "00:03:12,600"
+			},
+			"offsets": {
+				"from": 187320,
+				"to": 192600
+			},
+			"text": " know, if we address it computed this world, right now the problem is like you can get"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:12,600",
+				"to": "00:03:14,720"
+			},
+			"offsets": {
+				"from": 192600,
+				"to": 194720
+			},
+			"text": " two of the three, not all three."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,720",
+				"to": "00:03:20,880"
+			},
+			"offsets": {
+				"from": 194720,
+				"to": 200880
+			},
+			"text": " So can we basically do something with trusted compute so that we can make it possible to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,880",
+				"to": "00:03:26,440"
+			},
+			"offsets": {
+				"from": 200880,
+				"to": 206440
+			},
+			"text": " achieve all three so that we have scalability, we have decentralization and we have the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,440",
+				"to": "00:03:32,400"
+			},
+			"offsets": {
+				"from": 206440,
+				"to": 212400
+			},
+			"text": " So let's talk about each of these things briefly and then see how that goes."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,400",
+				"to": "00:03:37,680"
+			},
+			"offsets": {
+				"from": 212400,
+				"to": 217680
+			},
+			"text": " So first of all, like the security is plainly like transactions per second or seconds per"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:37,680",
+				"to": "00:03:39,200"
+			},
+			"offsets": {
+				"from": 217680,
+				"to": 219200
+			},
+			"text": " transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,200",
+				"to": "00:03:45,520"
+			},
+			"offsets": {
+				"from": 219200,
+				"to": 225520
+			},
+			"text": " You believe that given the way these trusted compute work in them, you have the integrity"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,520",
+				"to": "00:03:51,040"
+			},
+			"offsets": {
+				"from": 225520,
+				"to": 231040
+			},
+			"text": " of the execution and things like that, you can combine it with the constructs like plasma"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:51,040",
+				"to": "00:03:57,040"
+			},
+			"offsets": {
+				"from": 231040,
+				"to": 237040
+			},
+			"text": " chains and side chains and you can achieve a lot of scalability in that space."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,040",
+				"to": "00:04:03,120"
+			},
+			"offsets": {
+				"from": 237040,
+				"to": 243120
+			},
+			"text": " And there has been work in the space done and some of that will be talked about in the breakout"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,120",
+				"to": "00:04:04,120"
+			},
+			"offsets": {
+				"from": 243120,
+				"to": 244120
+			},
+			"text": " tomorrow."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,120",
+				"to": "00:04:08,480"
+			},
+			"offsets": {
+				"from": 244120,
+				"to": 248480
+			},
+			"text": " The other side of the thing is the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:08,480",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 248480,
+				"to": 250080
+			},
+			"text": " There are two ways to look at the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:16,120"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 256120
+			},
+			"text": " One is security of your consensus and things like that and one is the security of around"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,120",
+				"to": "00:04:19,840"
+			},
+			"offsets": {
+				"from": 256120,
+				"to": 259840
+			},
+			"text": " it, you know, transaction ordering and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,840",
+				"to": "00:04:25,560"
+			},
+			"offsets": {
+				"from": 259840,
+				"to": 265560
+			},
+			"text": " So again, going to the property that you have, you can trust like, hey, if I asked this trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,560",
+				"to": "00:04:29,360"
+			},
+			"offsets": {
+				"from": 265560,
+				"to": 269360
+			},
+			"text": " compute to do one plus one, it did do one plus one."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,360",
+				"to": "00:04:38,800"
+			},
+			"offsets": {
+				"from": 269360,
+				"to": 278800
+			},
+			"text": " So based on that, we are doing some work and that's work that Andre as well talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:38,800",
+				"to": "00:04:39,800"
+			},
+			"offsets": {
+				"from": 278800,
+				"to": 279800
+			},
+			"text": " in a little bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,800",
+				"to": "00:04:43,040"
+			},
+			"offsets": {
+				"from": 279800,
+				"to": 283040
+			},
+			"text": " And finally, the decentralization, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,040",
+				"to": "00:04:48,520"
+			},
+			"offsets": {
+				"from": 283040,
+				"to": 288520
+			},
+			"text": " There's a lot of this conversation is like if you rely on trusted compute, you let go"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,520",
+				"to": "00:04:49,760"
+			},
+			"offsets": {
+				"from": 288520,
+				"to": 289760
+			},
+			"text": " of decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,760",
+				"to": "00:04:54,760"
+			},
+			"offsets": {
+				"from": 289760,
+				"to": 294760
+			},
+			"text": " And this is something that we would like to have a conversation around because if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,760",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 294760,
+				"to": 300360
+			},
+			"text": " take trusted compute, the way I view decentralization, the way I have, you know, read it in various"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:04,720"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 304720
+			},
+			"text": " articles like on sharding and things like that, it's about, you know, two properties,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,720",
+				"to": "00:05:07,720"
+			},
+			"offsets": {
+				"from": 304720,
+				"to": 307720
+			},
+			"text": " like censorship resistance and permissioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,720",
+				"to": "00:05:10,240"
+			},
+			"offsets": {
+				"from": 307720,
+				"to": 310240
+			},
+			"text": " And we look at trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,240",
+				"to": "00:05:13,240"
+			},
+			"offsets": {
+				"from": 310240,
+				"to": 313240
+			},
+			"text": " It doesn't have either of these properties."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:13,240",
+				"to": "00:05:18,520"
+			},
+			"offsets": {
+				"from": 313240,
+				"to": 318520
+			},
+			"text": " Anybody can, you can, my PC has this trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,520",
+				"to": "00:05:21,560"
+			},
+			"offsets": {
+				"from": 318520,
+				"to": 321560
+			},
+			"text": " All of your PCs have it and you are free to run it."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,560",
+				"to": "00:05:26,080"
+			},
+			"offsets": {
+				"from": 321560,
+				"to": 326080
+			},
+			"text": " So there is no that you need to have a special hardware from somewhere to do these kinds of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,080",
+				"to": "00:05:27,720"
+			},
+			"offsets": {
+				"from": 326080,
+				"to": 327720
+			},
+			"text": " things."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,720",
+				"to": "00:05:33,520"
+			},
+			"offsets": {
+				"from": 327720,
+				"to": 333520
+			},
+			"text": " And then, you can, and initially, yes, there were some controls in terms of like, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,520",
+				"to": "00:05:36,960"
+			},
+			"offsets": {
+				"from": 333520,
+				"to": 336960
+			},
+			"text": " who all gets to run software in this space and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,960",
+				"to": "00:05:42,080"
+			},
+			"offsets": {
+				"from": 336960,
+				"to": 342080
+			},
+			"text": " And what at least for Intel, we have worked to, you know, actually remove all of those"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,080",
+				"to": "00:05:46,440"
+			},
+			"offsets": {
+				"from": 342080,
+				"to": 346440
+			},
+			"text": " controls in terms of like, you know, we are no longer going to be in the middle of like"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,440",
+				"to": "00:05:49,760"
+			},
+			"offsets": {
+				"from": 346440,
+				"to": 349760
+			},
+			"text": " who gets to execute and who gets to test and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:49,760",
+				"to": "00:05:57,440"
+			},
+			"offsets": {
+				"from": 349760,
+				"to": 357440
+			},
+			"text": " So we have, you know, worked to in last one year since last DevCon 3 to, you know, ease"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,440",
+				"to": "00:05:59,640"
+			},
+			"offsets": {
+				"from": 357440,
+				"to": 359640
+			},
+			"text": " out all of that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,640",
+				"to": "00:06:08,320"
+			},
+			"offsets": {
+				"from": 359640,
+				"to": 368320
+			},
+			"text": " But there is this thing like anything in this space as we go further, as we go new, use it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,320",
+				"to": "00:06:13,280"
+			},
+			"offsets": {
+				"from": 368320,
+				"to": 373280
+			},
+			"text": " in newer spaces, there's always that, you know, hey, things can get hacked, which is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,280",
+				"to": "00:06:18,360"
+			},
+			"offsets": {
+				"from": 373280,
+				"to": 378360
+			},
+			"text": " which we view is no different than a particular hashing algorithm getting hacked."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,360",
+				"to": "00:06:21,800"
+			},
+			"offsets": {
+				"from": 378360,
+				"to": 381800
+			},
+			"text": " As long as there's a commitment to basically fix it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:21,800",
+				"to": "00:06:26,880"
+			},
+			"offsets": {
+				"from": 381800,
+				"to": 386880
+			},
+			"text": " And then there is this notion that who is the provider of this trusted compute has done"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,880",
+				"to": "00:06:32,880"
+			},
+			"offsets": {
+				"from": 386880,
+				"to": 392880
+			},
+			"text": " the due diligence and is willing to do continued due diligence to make sure that it is, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,880",
+				"to": "00:06:36,040"
+			},
+			"offsets": {
+				"from": 392880,
+				"to": 396040
+			},
+			"text": " know, delivering on its promises."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,040",
+				"to": "00:06:41,400"
+			},
+			"offsets": {
+				"from": 396040,
+				"to": 401400
+			},
+			"text": " So in general, we believe that, you know, it tested compute if it used in a particular,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,400",
+				"to": "00:06:50,040"
+			},
+			"offsets": {
+				"from": 401400,
+				"to": 410040
+			},
+			"text": " you know, ways can be a very, you know, helpful tool in addressing and easing this tri-lima"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,040",
+				"to": "00:06:56,080"
+			},
+			"offsets": {
+				"from": 410040,
+				"to": 416080
+			},
+			"text": " problem that we haven't blocked chains can just help it to, you know, get deployed very"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:56,080",
+				"to": "00:06:57,840"
+			},
+			"offsets": {
+				"from": 416080,
+				"to": 417840
+			},
+			"text": " easily in some cases."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,840",
+				"to": "00:07:03,080"
+			},
+			"offsets": {
+				"from": 417840,
+				"to": 423080
+			},
+			"text": " So what I will do is like quickly, you know, before I jump into like, you know, some of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,080",
+				"to": "00:07:09,040"
+			},
+			"offsets": {
+				"from": 423080,
+				"to": 429040
+			},
+			"text": " the ideas we have and then a concrete idea just to levels at a common design pattern"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,040",
+				"to": "00:07:10,040"
+			},
+			"offsets": {
+				"from": 429040,
+				"to": 430040
+			},
+			"text": " around us."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:10,040",
+				"to": "00:07:15,360"
+			},
+			"offsets": {
+				"from": 430040,
+				"to": 435360
+			},
+			"text": " So when you have a trusted compute, it can be in a PC or in a server, you have some function"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,360",
+				"to": "00:07:19,040"
+			},
+			"offsets": {
+				"from": 435360,
+				"to": 439040
+			},
+			"text": " that you can basically, you know, deploy to it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,040",
+				"to": "00:07:21,880"
+			},
+			"offsets": {
+				"from": 439040,
+				"to": 441880
+			},
+			"text": " And that typically we call an enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,880",
+				"to": "00:07:23,280"
+			},
+			"offsets": {
+				"from": 441880,
+				"to": 443280
+			},
+			"text": " And that function can be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,280",
+				"to": "00:07:30,040"
+			},
+			"offsets": {
+				"from": 443280,
+				"to": 450040
+			},
+			"text": " It could be matching a fingerprint data against template or finding a particular pattern in"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,040",
+				"to": "00:07:31,040"
+			},
+			"offsets": {
+				"from": 450040,
+				"to": 451040
+			},
+			"text": " something."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,040",
+				"to": "00:07:32,040"
+			},
+			"offsets": {
+				"from": 451040,
+				"to": 452040
+			},
+			"text": " It can be anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,040",
+				"to": "00:07:37,400"
+			},
+			"offsets": {
+				"from": 452040,
+				"to": 457400
+			},
+			"text": " The idea is that you can, you know, you can be sure that particular sets of instructions"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:37,400",
+				"to": "00:07:43,400"
+			},
+			"offsets": {
+				"from": 457400,
+				"to": 463400
+			},
+			"text": " were executed and that your data, that whatever you gave it, was handled confidentiality."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,400",
+				"to": "00:07:46,760"
+			},
+			"offsets": {
+				"from": 463400,
+				"to": 466760
+			},
+			"text": " And then there can be any request or who can provide two things."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,760",
+				"to": "00:07:50,880"
+			},
+			"offsets": {
+				"from": 466760,
+				"to": 470880
+			},
+			"text": " One is the data on which they would like to operate, have that algorithm operate upon."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:50,880",
+				"to": "00:07:56,720"
+			},
+			"offsets": {
+				"from": 470880,
+				"to": 476720
+			},
+			"text": " And plus you can also provide your own identity that the enclave or the function will check"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,720",
+				"to": "00:08:01,320"
+			},
+			"offsets": {
+				"from": 476720,
+				"to": 481320
+			},
+			"text": " before even executing your request."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,320",
+				"to": "00:08:06,360"
+			},
+			"offsets": {
+				"from": 481320,
+				"to": 486360
+			},
+			"text": " And then, and result of this, all of this process is like you have data, you have algorithm"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,360",
+				"to": "00:08:09,920"
+			},
+			"offsets": {
+				"from": 486360,
+				"to": 489920
+			},
+			"text": " all executing inside this container and secure container."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,920",
+				"to": "00:08:18,280"
+			},
+			"offsets": {
+				"from": 489920,
+				"to": 498280
+			},
+			"text": " And you can output this attested result that anybody can basically validate."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,280",
+				"to": "00:08:22,120"
+			},
+			"offsets": {
+				"from": 498280,
+				"to": 502120
+			},
+			"text": " It can be the requester or it can be somebody else who you are targeting that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,120",
+				"to": "00:08:26,560"
+			},
+			"offsets": {
+				"from": 502120,
+				"to": 506560
+			},
+			"text": " And finally, if you are running this trusted compute in the context of a PC, you do have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,560",
+				"to": "00:08:31,840"
+			},
+			"offsets": {
+				"from": 506560,
+				"to": 511840
+			},
+			"text": " this human secured, what we call protected transaction display."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,840",
+				"to": "00:08:38,480"
+			},
+			"offsets": {
+				"from": 511840,
+				"to": 518480
+			},
+			"text": " And that's basically is that before the transaction is completed, you can prompt a user for some"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,480",
+				"to": "00:08:44,880"
+			},
+			"offsets": {
+				"from": 518480,
+				"to": 524880
+			},
+			"text": " kind of a pin or something like that so that you have, user has all the control at the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,880",
+				"to": "00:08:46,120"
+			},
+			"offsets": {
+				"from": 524880,
+				"to": 526120
+			},
+			"text": " end of the day what happened."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,120",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 526120,
+				"to": 530000
+			},
+			"text": " So you can build that in."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:56,960"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 536960
+			},
+			"text": " And tomorrow is during breakout, a ledger who have built a wallet on top of SGX, we'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,960",
+				"to": "00:08:59,160"
+			},
+			"offsets": {
+				"from": 536960,
+				"to": 539160
+			},
+			"text": " talk about some of this."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,160",
+				"to": "00:09:05,480"
+			},
+			"offsets": {
+				"from": 539160,
+				"to": 545480
+			},
+			"text": " So in general, what we believe is if you step up from all of this, this thing enables this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,480",
+				"to": "00:09:10,640"
+			},
+			"offsets": {
+				"from": 545480,
+				"to": 550640
+			},
+			"text": " notion that I can prove that something I did or I did not."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:10,640",
+				"to": "00:09:15,440"
+			},
+			"offsets": {
+				"from": 550640,
+				"to": 555440
+			},
+			"text": " And I can be kind of sure that the data that I gave it to you, it didn't leak."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,440",
+				"to": "00:09:18,880"
+			},
+			"offsets": {
+				"from": 555440,
+				"to": 558880
+			},
+			"text": " That's what this trusted compute is giving at the end of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,880",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 558880,
+				"to": 567000
+			},
+			"text": " So now let's jump into one last slide from me is how could it now connect with Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:29,160"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 569160
+			},
+			"text": " especially Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,160",
+				"to": "00:09:35,640"
+			},
+			"offsets": {
+				"from": 569160,
+				"to": 575640
+			},
+			"text": " This picture probably, most of the people have seen it, it's off the medium articles."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,640",
+				"to": "00:09:39,520"
+			},
+			"offsets": {
+				"from": 575640,
+				"to": 579520
+			},
+			"text": " And the main thing really here is that this whole, you know, today morning, like in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:39,520",
+				"to": "00:09:42,480"
+			},
+			"offsets": {
+				"from": 579520,
+				"to": 582480
+			},
+			"text": " morning, Vitalik talked about this beacon chain and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:42,480",
+				"to": "00:09:49,880"
+			},
+			"offsets": {
+				"from": 582480,
+				"to": 589880
+			},
+			"text": " So there's four tiers of abstraction or the layering of this whole Ethereum 2.0."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,880",
+				"to": "00:09:52,040"
+			},
+			"offsets": {
+				"from": 589880,
+				"to": 592040
+			},
+			"text": " In this, there are two things here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:52,040",
+				"to": "00:09:56,960"
+			},
+			"offsets": {
+				"from": 592040,
+				"to": 596960
+			},
+			"text": " One is this beacon chain which I, in my view, is like it's the control plane that's making"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,960",
+				"to": "00:09:59,240"
+			},
+			"offsets": {
+				"from": 596960,
+				"to": 599240
+			},
+			"text": " sure that things are happening the right way."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:59,240",
+				"to": "00:10:02,240"
+			},
+			"offsets": {
+				"from": 599240,
+				"to": 602240
+			},
+			"text": " And then at the bottom is your execution plane."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,240",
+				"to": "00:10:09,200"
+			},
+			"offsets": {
+				"from": 602240,
+				"to": 609200
+			},
+			"text": " So in the control plane, this is where you have the validators and verification and,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,200",
+				"to": "00:10:14,320"
+			},
+			"offsets": {
+				"from": 609200,
+				"to": 614320
+			},
+			"text": " you know, all the crypto economics going on in terms of like, you know, making sure that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,320",
+				"to": "00:10:16,240"
+			},
+			"offsets": {
+				"from": 614320,
+				"to": 616240
+			},
+			"text": " you know, everybody is doing the right thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,240",
+				"to": "00:10:20,040"
+			},
+			"offsets": {
+				"from": 616240,
+				"to": 620040
+			},
+			"text": " And if somebody is not doing the right thing, penalizing them and all of that, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,040",
+				"to": "00:10:23,880"
+			},
+			"offsets": {
+				"from": 620040,
+				"to": 623880
+			},
+			"text": " keeping the equilibrium and keeping the system working."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,880",
+				"to": "00:10:32,120"
+			},
+			"offsets": {
+				"from": 623880,
+				"to": 632120
+			},
+			"text": " So right now the focus really is on, hey, you know, you did something wrong, okay, I'll"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,120",
+				"to": "00:10:33,880"
+			},
+			"offsets": {
+				"from": 632120,
+				"to": 633880
+			},
+			"text": " penalize you."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,880",
+				"to": "00:10:38,400"
+			},
+			"offsets": {
+				"from": 633880,
+				"to": 638400
+			},
+			"text": " But what we are saying is, if you run, say, validator or you run a verifier inside a"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:38,400",
+				"to": "00:10:43,680"
+			},
+			"offsets": {
+				"from": 638400,
+				"to": 643680
+			},
+			"text": " trusted compute and you have all of those log of your activity, you can really prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,680",
+				"to": "00:10:46,520"
+			},
+			"offsets": {
+				"from": 643680,
+				"to": 646520
+			},
+			"text": " that, you know, hey, hey, I did do this."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,520",
+				"to": "00:10:52,200"
+			},
+			"offsets": {
+				"from": 646520,
+				"to": 652200
+			},
+			"text": " That means I did vote on it, something else in the ecosystem down the line is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,200",
+				"to": "00:10:54,080"
+			},
+			"offsets": {
+				"from": 652200,
+				"to": 654080
+			},
+			"text": " censoring my output."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,080",
+				"to": "00:11:00,920"
+			},
+			"offsets": {
+				"from": 654080,
+				"to": 660920
+			},
+			"text": " Or I did not do that because the key that is used to sign the result is safely inside the"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,920",
+				"to": "00:11:02,800"
+			},
+			"offsets": {
+				"from": 660920,
+				"to": 662800
+			},
+			"text": " thing and cannot be leaked."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:02,800",
+				"to": "00:11:07,600"
+			},
+			"offsets": {
+				"from": 662800,
+				"to": 667600
+			},
+			"text": " So this is where we see like we can simplify some of these things and this is where you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:07,600",
+				"to": "00:11:09,520"
+			},
+			"offsets": {
+				"from": 667600,
+				"to": 669520
+			},
+			"text": " will talk a little bit about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,520",
+				"to": "00:11:17,080"
+			},
+			"offsets": {
+				"from": 669520,
+				"to": 677080
+			},
+			"text": " And then lastly at the execution layer, you know, signature validations as an example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,080",
+				"to": "00:11:20,280"
+			},
+			"offsets": {
+				"from": 677080,
+				"to": 680280
+			},
+			"text": " you know, it's a common thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:20,280",
+				"to": "00:11:21,600"
+			},
+			"offsets": {
+				"from": 680280,
+				"to": 681600
+			},
+			"text": " And they take a lot of time."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,600",
+				"to": "00:11:23,640"
+			},
+			"offsets": {
+				"from": 681600,
+				"to": 683640
+			},
+			"text": " You can offload that."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:23,640",
+				"to": "00:11:28,680"
+			},
+			"offsets": {
+				"from": 683640,
+				"to": 688680
+			},
+			"text": " Complex tasks that require a lot of, you know, gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,680",
+				"to": "00:11:33,960"
+			},
+			"offsets": {
+				"from": 688680,
+				"to": 693960
+			},
+			"text": " You can offload that to a, you know, plasma chain built around this or a side chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,960",
+				"to": "00:11:39,880"
+			},
+			"offsets": {
+				"from": 693960,
+				"to": 699880
+			},
+			"text": " So in general, like what the thing is, like what we see is like, you know, at the beacon"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,880",
+				"to": "00:11:46,640"
+			},
+			"offsets": {
+				"from": 699880,
+				"to": 706640
+			},
+			"text": " layer, it reduces the friction or reduces the fear that I might get slashed and I don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:46,640",
+				"to": "00:11:48,520"
+			},
+			"offsets": {
+				"from": 706640,
+				"to": 708520
+			},
+			"text": " have anything to fall back to."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,520",
+				"to": "00:11:53,680"
+			},
+			"offsets": {
+				"from": 708520,
+				"to": 713680
+			},
+			"text": " So it in a way helps more people to participate and increase hopefully the democratization"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,680",
+				"to": "00:11:59,080"
+			},
+			"offsets": {
+				"from": 713680,
+				"to": 719080
+			},
+			"text": " of this whole decentralization and also helps with the scalability and security."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:59,080",
+				"to": "00:12:02,000"
+			},
+			"offsets": {
+				"from": 719080,
+				"to": 722000
+			},
+			"text": " At this point, I will turn over to Andreas."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:02,000",
+				"to": "00:12:05,920"
+			},
+			"offsets": {
+				"from": 722000,
+				"to": 725920
+			},
+			"text": " Hey, how's everyone doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,920",
+				"to": "00:12:09,840"
+			},
+			"offsets": {
+				"from": 725920,
+				"to": 729840
+			},
+			"text": " Let's get a little real with what we have here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,840",
+				"to": "00:12:12,200"
+			},
+			"offsets": {
+				"from": 729840,
+				"to": 732200
+			},
+			"text": " Is this on?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,200",
+				"to": "00:12:14,680"
+			},
+			"offsets": {
+				"from": 732200,
+				"to": 734680
+			},
+			"text": " Oh, better."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:14,680",
+				"to": "00:12:22,200"
+			},
+			"offsets": {
+				"from": 734680,
+				"to": 742200
+			},
+			"text": " So we talked about secure private and self-control and it can be ubiquitous."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,200",
+				"to": "00:12:29,200"
+			},
+			"offsets": {
+				"from": 742200,
+				"to": 749200
+			},
+			"text": " So what are the type of services that could be built with this on top of Ethereum?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,200",
+				"to": "00:12:36,760"
+			},
+			"offsets": {
+				"from": 749200,
+				"to": 756760
+			},
+			"text": " So you have, for example, a decentralized device registry, which is valuable when you're talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,760",
+				"to": "00:12:41,720"
+			},
+			"offsets": {
+				"from": 756760,
+				"to": 761720
+			},
+			"text": " about IoT, self-driving vehicles."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,720",
+				"to": "00:12:49,240"
+			},
+			"offsets": {
+				"from": 761720,
+				"to": 769240
+			},
+			"text": " You have secure multi-party transaction signing, which is applicable not only for Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:49,240",
+				"to": "00:12:52,040"
+			},
+			"offsets": {
+				"from": 769240,
+				"to": 772040
+			},
+			"text": " transaction, but for any transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:52,040",
+				"to": "00:12:58,520"
+			},
+			"offsets": {
+				"from": 772040,
+				"to": 778520
+			},
+			"text": " You don't no longer need your private key on your device because you can have the signing"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,520",
+				"to": "00:13:02,120"
+			},
+			"offsets": {
+				"from": 778520,
+				"to": 782120
+			},
+			"text": " done in a trusted way by multiple parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:02,120",
+				"to": "00:13:04,200"
+			},
+			"offsets": {
+				"from": 782120,
+				"to": 784200
+			},
+			"text": " You have secure decentralized cloud."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,200",
+				"to": "00:13:15,920"
+			},
+			"offsets": {
+				"from": 784200,
+				"to": 795920
+			},
+			"text": " So we're talking with OEMs to be able to provide, to collect a cloud, a fog of devices that"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:15,920",
+				"to": "00:13:19,240"
+			},
+			"offsets": {
+				"from": 795920,
+				"to": 799240
+			},
+			"text": " run trusted compute services."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:19,240",
+				"to": "00:13:23,320"
+			},
+			"offsets": {
+				"from": 799240,
+				"to": 803320
+			},
+			"text": " And I'll talk at the end for a few minutes about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,320",
+				"to": "00:13:26,560"
+			},
+			"offsets": {
+				"from": 803320,
+				"to": 806560
+			},
+			"text": " You also can do MPC analytics."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:26,560",
+				"to": "00:13:31,560"
+			},
+			"offsets": {
+				"from": 806560,
+				"to": 811560
+			},
+			"text": " You can also now do secure wallets and real-time oracles with this."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,560",
+				"to": "00:13:37,440"
+			},
+			"offsets": {
+				"from": 811560,
+				"to": 817440
+			},
+			"text": " And you can do secure public or private data stores at consensus."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:37,440",
+				"to": "00:13:42,000"
+			},
+			"offsets": {
+				"from": 817440,
+				"to": 822000
+			},
+			"text": " They're a project called LENIA at the decentralized identity foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:42,000",
+				"to": "00:13:50,520"
+			},
+			"offsets": {
+				"from": 822000,
+				"to": 830520
+			},
+			"text": " We're working together with others on identity hubs where we will actually employ these technologies."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,520",
+				"to": "00:13:55,120"
+			},
+			"offsets": {
+				"from": 830520,
+				"to": 835120
+			},
+			"text": " Then you have what you've probably referred before, off-chain compute, offload, a lot"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,120",
+				"to": "00:14:04,080"
+			},
+			"offsets": {
+				"from": 835120,
+				"to": 844080
+			},
+			"text": " of smart contract heavy logic onto trusted compute entities as well as secure attestation"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,080",
+				"to": "00:14:05,240"
+			},
+			"offsets": {
+				"from": 844080,
+				"to": 845240
+			},
+			"text": " validation."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,240",
+				"to": "00:14:12,480"
+			},
+			"offsets": {
+				"from": 845240,
+				"to": 852480
+			},
+			"text": " So for example, if your bank gives you your KYC and it says you have a US or security"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,480",
+				"to": "00:14:18,160"
+			},
+			"offsets": {
+				"from": 852480,
+				"to": 858160
+			},
+			"text": " number, you have a valid US address, you don't want to reveal that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:18,160",
+				"to": "00:14:24,360"
+			},
+			"offsets": {
+				"from": 858160,
+				"to": 864360
+			},
+			"text": " But you can prove that you're over 21, that you have a valid source security number and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:24,360",
+				"to": "00:14:29,800"
+			},
+			"offsets": {
+				"from": 864360,
+				"to": 869800
+			},
+			"text": " you can pass this attestation into it, trusted compute, that applies the logic to it and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:29,800",
+				"to": "00:14:38,920"
+			},
+			"offsets": {
+				"from": 869800,
+				"to": 878920
+			},
+			"text": " generates another anonymized attestation that still proves the same thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:38,920",
+				"to": "00:14:45,360"
+			},
+			"offsets": {
+				"from": 878920,
+				"to": 885360
+			},
+			"text": " So after talking about the applications on top, let's come back one step and let's talk"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,360",
+				"to": "00:14:48,720"
+			},
+			"offsets": {
+				"from": 885360,
+				"to": 888720
+			},
+			"text": " about what we can do on any Ethereum node."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,720",
+				"to": "00:14:52,600"
+			},
+			"offsets": {
+				"from": 888720,
+				"to": 892600
+			},
+			"text": " Apparently I shouldn't touch this."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,600",
+				"to": "00:14:59,120"
+			},
+			"offsets": {
+				"from": 892600,
+				"to": 899120
+			},
+			"text": " So what Sanjay showed you about Ethereum 2.0, let's take that level deeper and let's do"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:59,120",
+				"to": "00:15:02,760"
+			},
+			"offsets": {
+				"from": 899120,
+				"to": 902760
+			},
+			"text": " it do a little journey of a Ethereum transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:02,760",
+				"to": "00:15:05,320"
+			},
+			"offsets": {
+				"from": 902760,
+				"to": 905320
+			},
+			"text": " So it first comes into the transaction pool."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:05,320",
+				"to": "00:15:09,280"
+			},
+			"offsets": {
+				"from": 905320,
+				"to": 909280
+			},
+			"text": " Well nowadays, any node can do anything with your transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:09,280",
+				"to": "00:15:11,240"
+			},
+			"offsets": {
+				"from": 909280,
+				"to": 911240
+			},
+			"text": " It can do front running."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:11,240",
+				"to": "00:15:15,920"
+			},
+			"offsets": {
+				"from": 911240,
+				"to": 915920
+			},
+			"text": " It can do, put it into any order that it wants or it might just simply censor it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:15,920",
+				"to": "00:15:21,200"
+			},
+			"offsets": {
+				"from": 915920,
+				"to": 921200
+			},
+			"text": " So if you ask, add a trusted ordering, an encryption service to that, all of this goes"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:21,200",
+				"to": "00:15:22,200"
+			},
+			"offsets": {
+				"from": 921200,
+				"to": 922200
+			},
+			"text": " away."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,200",
+				"to": "00:15:26,120"
+			},
+			"offsets": {
+				"from": 922200,
+				"to": 926120
+			},
+			"text": " It's taking a significant attack vector out."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:26,120",
+				"to": "00:15:31,680"
+			},
+			"offsets": {
+				"from": 926120,
+				"to": 931680
+			},
+			"text": " If you're following along, you go to the EVM that goes into the level DB, you can now"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,680",
+				"to": "00:15:37,240"
+			},
+			"offsets": {
+				"from": 931680,
+				"to": 937240
+			},
+			"text": " do a trusted EVM execution service before it goes to proof of work."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,240",
+				"to": "00:15:39,000"
+			},
+			"offsets": {
+				"from": 937240,
+				"to": 939000
+			},
+			"text": " That's for the mainnet."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:39,000",
+				"to": "00:15:44,480"
+			},
+			"offsets": {
+				"from": 939000,
+				"to": 944480
+			},
+			"text": " If you're now going plasma chain, site chain, beacon chain, you're talking about CASPER"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:44,480",
+				"to": "00:15:46,320"
+			},
+			"offsets": {
+				"from": 944480,
+				"to": 946320
+			},
+			"text": " FFG."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,320",
+				"to": "00:15:52,600"
+			},
+			"offsets": {
+				"from": 946320,
+				"to": 952600
+			},
+			"text": " And here, again, you can employ a trusted compute service that actually says, hey, I voted this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,600",
+				"to": "00:15:54,160"
+			},
+			"offsets": {
+				"from": 952600,
+				"to": 954160
+			},
+			"text": " way."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:54,160",
+				"to": "00:15:58,960"
+			},
+			"offsets": {
+				"from": 954160,
+				"to": 958960
+			},
+			"text": " And no human being can influence that."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,960",
+				"to": "00:16:06,960"
+			},
+			"offsets": {
+				"from": 958960,
+				"to": 966960
+			},
+			"text": " Which means your assurances that the vote was done honestly go up exponentially."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:06,960",
+				"to": "00:16:12,960"
+			},
+			"offsets": {
+				"from": 966960,
+				"to": 972960
+			},
+			"text": " So this is for, let's go one level deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:12,960",
+				"to": "00:16:17,720"
+			},
+			"offsets": {
+				"from": 972960,
+				"to": 977720
+			},
+			"text": " So I give you three concrete examples already at layer one."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,720",
+				"to": "00:16:20,320"
+			},
+			"offsets": {
+				"from": 977720,
+				"to": 980320
+			},
+			"text": " Now let's dive one level deeper."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:20,320",
+				"to": "00:16:23,640"
+			},
+			"offsets": {
+				"from": 980320,
+				"to": 983640
+			},
+			"text": " This looks really, really ugly and it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:23,640",
+				"to": "00:16:30,360"
+			},
+			"offsets": {
+				"from": 983640,
+				"to": 990360
+			},
+			"text": " What I want to focus on, on the right hand side, the actual trusted compute logic for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,360",
+				"to": "00:16:34,320"
+			},
+			"offsets": {
+				"from": 990360,
+				"to": 994320
+			},
+			"text": " a transaction ordering service is very, very simple."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,320",
+				"to": "00:16:40,120"
+			},
+			"offsets": {
+				"from": 994320,
+				"to": 1000120
+			},
+			"text": " And on the left hand side, and again, don't focus on the text, the key thing or the two"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:40,120",
+				"to": "00:16:47,880"
+			},
+			"offsets": {
+				"from": 1000120,
+				"to": 1007880
+			},
+			"text": " blue boxes about trusted transaction pool app and the trusted ordering registration update"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:47,880",
+				"to": "00:16:57,720"
+			},
+			"offsets": {
+				"from": 1007880,
+				"to": 1017720
+			},
+			"text": " service are two updates that can be done to the transaction pool module in a complementary"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,720",
+				"to": "00:16:59,000"
+			},
+			"offsets": {
+				"from": 1017720,
+				"to": 1019000
+			},
+			"text": " fashion."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:59,000",
+				"to": "00:17:05,640"
+			},
+			"offsets": {
+				"from": 1019000,
+				"to": 1025640
+			},
+			"text": " Which means the actual change to the protocol is actually minimal."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:05,640",
+				"to": "00:17:10,440"
+			},
+			"offsets": {
+				"from": 1025640,
+				"to": 1030440
+			},
+			"text": " So you can, with minimal protocol changes that have, do not require any hard forking or anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:10,440",
+				"to": "00:17:23,400"
+			},
+			"offsets": {
+				"from": 1030440,
+				"to": 1043400
+			},
+			"text": " like that, you can increase the security of the Ethereum network significantly."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,400",
+				"to": "00:17:33,600"
+			},
+			"offsets": {
+				"from": 1043400,
+				"to": 1053600
+			},
+			"text": " Okay, so after going down to the protocol layer, let's go one back up and talk about"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,600",
+				"to": "00:17:34,600"
+			},
+			"offsets": {
+				"from": 1053600,
+				"to": 1054600
+			},
+			"text": " services."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:34,600",
+				"to": "00:17:38,000"
+			},
+			"offsets": {
+				"from": 1054600,
+				"to": 1058000
+			},
+			"text": " How can you discover these services?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,000",
+				"to": "00:17:47,480"
+			},
+			"offsets": {
+				"from": 1058000,
+				"to": 1067480
+			},
+			"text": " There are, you can run Intel SGX or AMD or TrustZone or is there a knowledge proof service"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,480",
+				"to": "00:17:49,800"
+			},
+			"offsets": {
+				"from": 1067480,
+				"to": 1069800
+			},
+			"text": " on your laptop?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:49,800",
+				"to": "00:17:52,560"
+			},
+			"offsets": {
+				"from": 1069800,
+				"to": 1072560
+			},
+			"text": " And that's great but no one can find it."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:52,560",
+				"to": "00:17:57,480"
+			},
+			"offsets": {
+				"from": 1072560,
+				"to": 1077480
+			},
+			"text": " So that's you, the provider, you have your trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,480",
+				"to": "00:17:58,480"
+			},
+			"offsets": {
+				"from": 1077480,
+				"to": 1078480
+			},
+			"text": " What do you need?"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:58,480",
+				"to": "00:18:00,520"
+			},
+			"offsets": {
+				"from": 1078480,
+				"to": 1080520
+			},
+			"text": " You need a utility service market platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:00,520",
+				"to": "00:18:09,360"
+			},
+			"offsets": {
+				"from": 1080520,
+				"to": 1089360
+			},
+			"text": " So really for trusted compute is best if it has a marketplace with a broker service running"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:09,360",
+				"to": "00:18:16,360"
+			},
+			"offsets": {
+				"from": 1089360,
+				"to": 1096360
+			},
+			"text": " on a blockchain such that a buyer who uses and needs this trusted compute service can"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,360",
+				"to": "00:18:22,280"
+			},
+			"offsets": {
+				"from": 1096360,
+				"to": 1102280
+			},
+			"text": " now find it and pay for it on a per transaction or on a subscription basis."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:22,280",
+				"to": "00:18:29,320"
+			},
+			"offsets": {
+				"from": 1102280,
+				"to": 1109320
+			},
+			"text": " And now anybody in the world who runs such a trusted compute service can register it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,320",
+				"to": "00:18:37,280"
+			},
+			"offsets": {
+				"from": 1109320,
+				"to": 1117280
+			},
+			"text": " can expose it and can offer it to anyone on this planet and they can actually resell"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,280",
+				"to": "00:18:39,040"
+			},
+			"offsets": {
+				"from": 1117280,
+				"to": 1119040
+			},
+			"text": " it if they want to."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,040",
+				"to": "00:18:47,120"
+			},
+			"offsets": {
+				"from": 1119040,
+				"to": 1127120
+			},
+			"text": " However, because of the way this works, you can now exact another rent."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:47,120",
+				"to": "00:18:50,520"
+			},
+			"offsets": {
+				"from": 1127120,
+				"to": 1130520
+			},
+			"text": " It's fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,520",
+				"to": "00:18:56,040"
+			},
+			"offsets": {
+				"from": 1130520,
+				"to": 1136040
+			},
+			"text": " If you guys can hear me all right, then that's good."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,040",
+				"to": "00:19:03,400"
+			},
+			"offsets": {
+				"from": 1136040,
+				"to": 1143400
+			},
+			"text": " So this way the provider can also participate on the subsequent monetization of that secure"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,400",
+				"to": "00:19:08,560"
+			},
+			"offsets": {
+				"from": 1143400,
+				"to": 1148560
+			},
+			"text": " service through the marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,560",
+				"to": "00:19:17,920"
+			},
+			"offsets": {
+				"from": 1148560,
+				"to": 1157920
+			},
+			"text": " So again, we're discussing with various OEM providers to actually build such a marketplace."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,920",
+				"to": "00:19:22,800"
+			},
+			"offsets": {
+				"from": 1157920,
+				"to": 1162800
+			},
+			"text": " So that's very exciting work that's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,800",
+				"to": "00:19:26,360"
+			},
+			"offsets": {
+				"from": 1162800,
+				"to": 1166360
+			},
+			"text": " We want to push forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:26,360",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1166360,
+				"to": 1175000
+			},
+			"text": " And so when you look at the services, the applications and the layer one, you see how"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:45,400"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1185400
+			},
+			"text": " the trusted compute can really add to, as Sanjay said, to the democratization and decentralization"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:45,400",
+				"to": "00:19:46,400"
+			},
+			"offsets": {
+				"from": 1185400,
+				"to": 1186400
+			},
+			"text": " of blockchains."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:46,400",
+				"to": "00:19:50,920"
+			},
+			"offsets": {
+				"from": 1186400,
+				"to": 1190920
+			},
+			"text": " Not only Ethereum, but any blockchain that's out there."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:50,920",
+				"to": "00:19:55,800"
+			},
+			"offsets": {
+				"from": 1190920,
+				"to": 1195800
+			},
+			"text": " So that's why we're really excited about this aspect."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:55,800",
+				"to": "00:20:02,680"
+			},
+			"offsets": {
+				"from": 1195800,
+				"to": 1202680
+			},
+			"text": " And therefore, it's really want to finish here with a call to action to the community."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:02,680",
+				"to": "00:20:11,480"
+			},
+			"offsets": {
+				"from": 1202680,
+				"to": 1211480
+			},
+			"text": " We invite you to review, improve and to help implement this vision, not only for Ethereum,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:11,480",
+				"to": "00:20:19,160"
+			},
+			"offsets": {
+				"from": 1211480,
+				"to": 1219160
+			},
+			"text": " but for all blockchains such that they can be successful and deliver on their promise."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:19,160",
+				"to": "00:20:27,040"
+			},
+			"offsets": {
+				"from": 1219160,
+				"to": 1227040
+			},
+			"text": " And as a first step, please join us tomorrow at the other trusted compute enthusiasts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:27,040",
+				"to": "00:20:31,040"
+			},
+			"offsets": {
+				"from": 1227040,
+				"to": 1231040
+			},
+			"text": " actually in the ultraviolet room at 10 a.m."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:31,040",
+				"to": "00:20:36,440"
+			},
+			"offsets": {
+				"from": 1231040,
+				"to": 1236440
+			},
+			"text": " What we talk about the future of Ethereum with trusted compute."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,440",
+				"to": "00:20:37,440"
+			},
+			"offsets": {
+				"from": 1236440,
+				"to": 1237440
+			},
+			"text": " Thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:37,440",
+				"to": "00:20:42,120"
+			},
+			"offsets": {
+				"from": 1237440,
+				"to": 1242120
+			},
+			"text": " Thank you very much, guys."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,120",
+				"to": "00:20:43,920"
+			},
+			"offsets": {
+				"from": 1242120,
+				"to": 1243920
+			},
+			"text": " We got eight minutes for questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:43,920",
+				"to": "00:20:48,920"
+			},
+			"offsets": {
+				"from": 1243920,
+				"to": 1248920
+			},
+			"text": " So let's get this started."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,920",
+				"to": "00:20:54,200"
+			},
+			"offsets": {
+				"from": 1248920,
+				"to": 1254200
+			},
+			"text": " On that previous slide, you had the buyer reselling data from the provider and the provider collecting"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:54,200",
+				"to": "00:20:57,880"
+			},
+			"offsets": {
+				"from": 1254200,
+				"to": 1257880
+			},
+			"text": " rent from the buyer's third party customers."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:57,880",
+				"to": "00:21:02,440"
+			},
+			"offsets": {
+				"from": 1257880,
+				"to": 1262440
+			},
+			"text": " How in the world can you do that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,440",
+				"to": "00:21:04,320"
+			},
+			"offsets": {
+				"from": 1262440,
+				"to": 1264320
+			},
+			"text": " You're actually not reselling the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:04,320",
+				"to": "00:21:11,720"
+			},
+			"offsets": {
+				"from": 1264320,
+				"to": 1271720
+			},
+			"text": " You're reselling the service, which means you're still control who gets the service."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:11,720",
+				"to": "00:21:14,760"
+			},
+			"offsets": {
+				"from": 1271720,
+				"to": 1274760
+			},
+			"text": " You're still holding the permissioning."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:14,760",
+				"to": "00:21:22,840"
+			},
+			"offsets": {
+				"from": 1274760,
+				"to": 1282840
+			},
+			"text": " So if you want to resell it, the other party needs to be added to that service contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:22,840",
+				"to": "00:21:32,080"
+			},
+			"offsets": {
+				"from": 1282840,
+				"to": 1292080
+			},
+			"text": " So that's how you ensure that you get paid for that service if it's resolved."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:32,080",
+				"to": "00:21:38,080"
+			},
+			"offsets": {
+				"from": 1292080,
+				"to": 1298080
+			},
+			"text": " So what do you say to ease the fears of people that generally notice that trusted compute"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:38,080",
+				"to": "00:21:44,720"
+			},
+			"offsets": {
+				"from": 1298080,
+				"to": 1304720
+			},
+			"text": " relies on trusted hardware that's oftentimes closed source and not allow for security reviews?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:44,720",
+				"to": "00:21:48,800"
+			},
+			"offsets": {
+				"from": 1304720,
+				"to": 1308800
+			},
+			"text": " And resulting in things like the level one terminal fault and then a recent breach that"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:48,800",
+				"to": "00:21:52,680"
+			},
+			"offsets": {
+				"from": 1308800,
+				"to": 1312680
+			},
+			"text": " exposes to management mode on Intel chips that invalidate best GX completely."
+		},
+		{
+			"timestamps": {
+				"from": "00:21:52,680",
+				"to": "00:21:56,520"
+			},
+			"offsets": {
+				"from": 1312680,
+				"to": 1316520
+			},
+			"text": " Just how do you reconcile that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:56,520",
+				"to": "00:22:08,000"
+			},
+			"offsets": {
+				"from": 1316520,
+				"to": 1328000
+			},
+			"text": " So the general thing is like being as much as open as we can in terms of like the breaches"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:08,000",
+				"to": "00:22:14,080"
+			},
+			"offsets": {
+				"from": 1328000,
+				"to": 1334080
+			},
+			"text": " happen not because they are intentional breaches happen because we are starting to use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:14,080",
+				"to": "00:22:18,120"
+			},
+			"offsets": {
+				"from": 1334080,
+				"to": 1338120
+			},
+			"text": " technology at scale and many people are looking at it."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:18,120",
+				"to": "00:22:28,680"
+			},
+			"offsets": {
+				"from": 1338120,
+				"to": 1348680
+			},
+			"text": " And as at Intel, we are committed to working continuously and quickly to provide patches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:28,680",
+				"to": "00:22:30,760"
+			},
+			"offsets": {
+				"from": 1348680,
+				"to": 1350760
+			},
+			"text": " provide whatever is needed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:30,760",
+				"to": "00:22:37,200"
+			},
+			"offsets": {
+				"from": 1350760,
+				"to": 1357200
+			},
+			"text": " And as the breaches that happened, there's a lot of information on the Intel website"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:37,200",
+				"to": "00:22:43,160"
+			},
+			"offsets": {
+				"from": 1357200,
+				"to": 1363160
+			},
+			"text": " in terms of why you can get the patches and how you can basically put it on the systems"
+		},
+		{
+			"timestamps": {
+				"from": "00:22:43,160",
+				"to": "00:22:48,000"
+			},
+			"offsets": {
+				"from": 1363160,
+				"to": 1368000
+			},
+			"text": " and how we can figure out whether the system has been passed."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:48,000",
+				"to": "00:22:50,880"
+			},
+			"offsets": {
+				"from": 1368000,
+				"to": 1370880
+			},
+			"text": " So there's a lot of information there."
+		},
+		{
+			"timestamps": {
+				"from": "00:22:50,880",
+				"to": "00:23:00,800"
+			},
+			"offsets": {
+				"from": 1370880,
+				"to": 1380800
+			},
+			"text": " Also if you think about side channel attacks, actually I talked with Marla Gray from Microsoft"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:00,800",
+				"to": "00:23:07,920"
+			},
+			"offsets": {
+				"from": 1380800,
+				"to": 1387920
+			},
+			"text": " yesterday and we'll probably do a little experiment with Microsoft research to see whether you"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:07,920",
+				"to": "00:23:14,680"
+			},
+			"offsets": {
+				"from": 1387920,
+				"to": 1394680
+			},
+			"text": " can actually do a side channel attack on a laptop in a Starbucks."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:14,680",
+				"to": "00:23:20,200"
+			},
+			"offsets": {
+				"from": 1394680,
+				"to": 1400200
+			},
+			"text": " If you can do that, then you really have a problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:20,200",
+				"to": "00:23:24,840"
+			},
+			"offsets": {
+				"from": 1400200,
+				"to": 1404840
+			},
+			"text": " Because typically you will not be able to get the apparatus you need into a secure data"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:24,840",
+				"to": "00:23:26,480"
+			},
+			"offsets": {
+				"from": 1404840,
+				"to": 1406480
+			},
+			"text": " center that's really hard."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:26,480",
+				"to": "00:23:30,080"
+			},
+			"offsets": {
+				"from": 1406480,
+				"to": 1410080
+			},
+			"text": " So it's more like on your custom laptop."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:30,080",
+				"to": "00:23:38,960"
+			},
+			"offsets": {
+				"from": 1410080,
+				"to": 1418960
+			},
+			"text": " And we'll do that and hopefully in some time, be able to produce a little video about that"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:38,960",
+				"to": "00:23:44,000"
+			},
+			"offsets": {
+				"from": 1418960,
+				"to": 1424000
+			},
+			"text": " and see how well that works or doesn't work."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:44,000",
+				"to": "00:23:49,200"
+			},
+			"offsets": {
+				"from": 1424000,
+				"to": 1429200
+			},
+			"text": " So looking forward to that."
+		},
+		{
+			"timestamps": {
+				"from": "00:23:49,200",
+				"to": "00:23:56,280"
+			},
+			"offsets": {
+				"from": 1429200,
+				"to": 1436280
+			},
+			"text": " And in the end, the more you get these trusted compute services out into the marketplace"
+		},
+		{
+			"timestamps": {
+				"from": "00:23:56,280",
+				"to": "00:24:00,040"
+			},
+			"offsets": {
+				"from": 1436280,
+				"to": 1440040
+			},
+			"text": " and into the hands of people, the more secure it's going to be."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:00,040",
+				"to": "00:24:02,720"
+			},
+			"offsets": {
+				"from": 1440040,
+				"to": 1442720
+			},
+			"text": " And the more decentralized."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:02,720",
+				"to": "00:24:11,560"
+			},
+			"offsets": {
+				"from": 1442720,
+				"to": 1451560
+			},
+			"text": " So if people are offering those services, or the people use it, the risk of a few controlling"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:11,560",
+				"to": "00:24:15,200"
+			},
+			"offsets": {
+				"from": 1451560,
+				"to": 1455200
+			},
+			"text": " the many is really low."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:15,200",
+				"to": "00:24:25,560"
+			},
+			"offsets": {
+				"from": 1455200,
+				"to": 1465560
+			},
+			"text": " I just had a question if you could try to correlate for the naive observer who sees a"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:25,560",
+				"to": "00:24:30,720"
+			},
+			"offsets": {
+				"from": 1465560,
+				"to": 1470720
+			},
+			"text": " vision here for something that allows additional scaling, better efficiency of compute and"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:30,720",
+				"to": "00:24:32,080"
+			},
+			"offsets": {
+				"from": 1470720,
+				"to": 1472080
+			},
+			"text": " so forth."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:32,080",
+				"to": "00:24:37,960"
+			},
+			"offsets": {
+				"from": 1472080,
+				"to": 1477960
+			},
+			"text": " But then it's not really on the roadmap when the Ethereum foundation in the group is talking"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:37,960",
+				"to": "00:24:46,760"
+			},
+			"offsets": {
+				"from": 1477960,
+				"to": 1486760
+			},
+			"text": " about what's in Ethereum 2.0, zero-knowledge proofs are as both scaling and privacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:24:46,760",
+				"to": "00:24:49,560"
+			},
+			"offsets": {
+				"from": 1486760,
+				"to": 1489560
+			},
+			"text": " So just can you say some words about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:49,560",
+				"to": "00:24:51,320"
+			},
+			"offsets": {
+				"from": 1489560,
+				"to": 1491320
+			},
+			"text": " I can start that, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:51,320",
+				"to": "00:24:59,480"
+			},
+			"offsets": {
+				"from": 1491320,
+				"to": 1499480
+			},
+			"text": " You're right, and a lot of it is like generally a lot of, you know, not information about"
+		},
+		{
+			"timestamps": {
+				"from": "00:24:59,480",
+				"to": "00:25:01,640"
+			},
+			"offsets": {
+				"from": 1499480,
+				"to": 1501640
+			},
+			"text": " how trusted compute is working, all that stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:01,640",
+				"to": "00:25:07,520"
+			},
+			"offsets": {
+				"from": 1501640,
+				"to": 1507520
+			},
+			"text": " So we have done a lot of work in the context of enterprise Ethereum."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:07,520",
+				"to": "00:25:15,880"
+			},
+			"offsets": {
+				"from": 1507520,
+				"to": 1515880
+			},
+			"text": " Where in, for example, we have released a .5 version of an API via which anybody on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:15,880",
+				"to": "00:25:20,880"
+			},
+			"offsets": {
+				"from": 1515880,
+				"to": 1520880
+			},
+			"text": " chain, a smart contact on the chain can talk to a trusted compute and bring the results"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:20,880",
+				"to": "00:25:22,240"
+			},
+			"offsets": {
+				"from": 1520880,
+				"to": 1522240
+			},
+			"text": " back and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:22,240",
+				"to": "00:25:27,520"
+			},
+			"offsets": {
+				"from": 1522240,
+				"to": 1527520
+			},
+			"text": " It's .5 version, and the idea is to get that kind of a conversation going, and that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:27,520",
+				"to": "00:25:31,280"
+			},
+			"offsets": {
+				"from": 1527520,
+				"to": 1531280
+			},
+			"text": " where we are here in terms of like, you know, hey, there are these things and that trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:31,280",
+				"to": "00:25:38,640"
+			},
+			"offsets": {
+				"from": 1531280,
+				"to": 1538640
+			},
+			"text": " compute API that we have put out there, it's not specific to a particular thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:38,640",
+				"to": "00:25:45,200"
+			},
+			"offsets": {
+				"from": 1538640,
+				"to": 1545200
+			},
+			"text": " We want to comprehend hardware-based and software-based trusted computers because it's not one,"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:45,200",
+				"to": "00:25:48,440"
+			},
+			"offsets": {
+				"from": 1545200,
+				"to": 1548440
+			},
+			"text": " it's not a silver bullet kind of a thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:25:48,440",
+				"to": "00:25:55,600"
+			},
+			"offsets": {
+				"from": 1548440,
+				"to": 1555600
+			},
+			"text": " So we see, so that's what we are doing, and that would be a great place to start because"
+		},
+		{
+			"timestamps": {
+				"from": "00:25:55,600",
+				"to": "00:26:01,480"
+			},
+			"offsets": {
+				"from": 1555600,
+				"to": 1561480
+			},
+			"text": " there's a lot of the stuff work in there is like right now more enterprise-y in terms"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:01,480",
+				"to": "00:26:11,200"
+			},
+			"offsets": {
+				"from": 1561480,
+				"to": 1571200
+			},
+			"text": " of the flows, but immediately, you know, we're going to start work on how to make that API"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:11,200",
+				"to": "00:26:16,480"
+			},
+			"offsets": {
+				"from": 1571200,
+				"to": 1576480
+			},
+			"text": " apply for a public Ethereum where you have the gas constraints and things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:16,480",
+				"to": "00:26:21,560"
+			},
+			"offsets": {
+				"from": 1576480,
+				"to": 1581560
+			},
+			"text": " Oh, yeah, so sort of a follow-up to the . . ."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:21,560",
+				"to": "00:26:24,480"
+			},
+			"offsets": {
+				"from": 1581560,
+				"to": 1584480
+			},
+			"text": " Is there a gentleman in the back?"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:24,480",
+				"to": "00:26:25,480"
+			},
+			"offsets": {
+				"from": 1584480,
+				"to": 1585480
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:25,480",
+				"to": "00:26:29,760"
+			},
+			"offsets": {
+				"from": 1585480,
+				"to": 1589760
+			},
+			"text": " Yeah, so sort of a follow-up to the question that was just asked, you know, about how"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:29,760",
+				"to": "00:26:34,080"
+			},
+			"offsets": {
+				"from": 1589760,
+				"to": 1594080
+			},
+			"text": " it's, you know, we don't really see this on the roadmap, you know, with Ethereum, too,"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:34,080",
+				"to": "00:26:39,040"
+			},
+			"offsets": {
+				"from": 1594080,
+				"to": 1599040
+			},
+			"text": " but I think like one thing that would help is if, you know, these designs were like open"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:39,040",
+				"to": "00:26:42,560"
+			},
+			"offsets": {
+				"from": 1599040,
+				"to": 1602560
+			},
+			"text": " that would help, you know, people actually like trust what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:26:42,560",
+				"to": "00:26:48,320"
+			},
+			"offsets": {
+				"from": 1602560,
+				"to": 1608320
+			},
+			"text": " And another thing is, I mean, have you all approached them even, you know, even the whole"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:48,320",
+				"to": "00:26:53,760"
+			},
+			"offsets": {
+				"from": 1608320,
+				"to": 1613760
+			},
+			"text": " idea of, you know, feeding, you know, randomness from, you know, ran down the beacon chain"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:53,760",
+				"to": "00:26:58,520"
+			},
+			"offsets": {
+				"from": 1613760,
+				"to": 1618520
+			},
+			"text": " into a VDF, you know, there's all this research and work going on to create a, you know, a"
+		},
+		{
+			"timestamps": {
+				"from": "00:26:58,520",
+				"to": "00:27:01,960"
+			},
+			"offsets": {
+				"from": 1618520,
+				"to": 1621960
+			},
+			"text": " verifiable delay function ASIC."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:01,960",
+				"to": "00:27:02,960"
+			},
+			"offsets": {
+				"from": 1621960,
+				"to": 1622960
+			},
+			"text": " Could this help with that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:02,960",
+				"to": "00:27:03,960"
+			},
+			"offsets": {
+				"from": 1622960,
+				"to": 1623960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:03,960",
+				"to": "00:27:04,960"
+			},
+			"offsets": {
+				"from": 1623960,
+				"to": 1624960
+			},
+			"text": " Could that replace that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:04,960",
+				"to": "00:27:05,960"
+			},
+			"offsets": {
+				"from": 1624960,
+				"to": 1625960
+			},
+			"text": " Like, so why don't we talk about that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:05,960",
+				"to": "00:27:06,960"
+			},
+			"offsets": {
+				"from": 1625960,
+				"to": 1626960
+			},
+			"text": " So that . . ."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:06,960",
+				"to": "00:27:11,680"
+			},
+			"offsets": {
+				"from": 1626960,
+				"to": 1631680
+			},
+			"text": " You know, it's another . . . You're right on the mark, right, because like, you know, we"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:11,680",
+				"to": "00:27:20,560"
+			},
+			"offsets": {
+				"from": 1631680,
+				"to": 1640560
+			},
+			"text": " have some really hardened, you know, random generators within the hardware that feed of"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:20,560",
+				"to": "00:27:23,320"
+			},
+			"offsets": {
+				"from": 1640560,
+				"to": 1643320
+			},
+			"text": " the entropy within the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:23,320",
+				"to": "00:27:28,240"
+			},
+			"offsets": {
+				"from": 1643320,
+				"to": 1648240
+			},
+			"text": " And when I look at random and all that in context of beacon chain, it becomes very, very"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:28,240",
+				"to": "00:27:29,240"
+			},
+			"offsets": {
+				"from": 1648240,
+				"to": 1649240
+			},
+			"text": " interesting."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:29,240",
+				"to": "00:27:34,480"
+			},
+			"offsets": {
+				"from": 1649240,
+				"to": 1654480
+			},
+			"text": " So that's where we talked about it, like, you know, there's a role to be played and"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:34,480",
+				"to": "00:27:38,160"
+			},
+			"offsets": {
+				"from": 1654480,
+				"to": 1658160
+			},
+			"text": " that's why we are here, is like, you know, let's have that conversation going."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:38,160",
+				"to": "00:27:39,160"
+			},
+			"offsets": {
+				"from": 1658160,
+				"to": 1659160
+			},
+			"text": " What's the right way to . . ."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:39,160",
+				"to": "00:27:43,320"
+			},
+			"offsets": {
+				"from": 1659160,
+				"to": 1663320
+			},
+			"text": " You know, you're approaching Justin Drake to ask him . . ."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:43,320",
+				"to": "00:27:49,960"
+			},
+			"offsets": {
+				"from": 1663320,
+				"to": 1669960
+			},
+			"text": " We have not yet, but the idea is, first was to get the API out, have something to shoot"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:49,960",
+				"to": "00:27:50,960"
+			},
+			"offsets": {
+				"from": 1669960,
+				"to": 1670960
+			},
+			"text": " against."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:50,960",
+				"to": "00:27:51,960"
+			},
+			"offsets": {
+				"from": 1670960,
+				"to": 1671960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:51,960",
+				"to": "00:27:52,960"
+			},
+			"offsets": {
+				"from": 1671960,
+				"to": 1672960
+			},
+			"text": " But that's idea."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:52,960",
+				"to": "00:27:53,960"
+			},
+			"offsets": {
+				"from": 1672960,
+				"to": 1673960
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:27:53,960",
+				"to": "00:27:56,680"
+			},
+			"offsets": {
+				"from": 1673960,
+				"to": 1676680
+			},
+			"text": " I mean, that would just be a really good way to like get an answer really quick about what"
+		},
+		{
+			"timestamps": {
+				"from": "00:27:56,680",
+				"to": "00:28:01,640"
+			},
+			"offsets": {
+				"from": 1676680,
+				"to": 1681640
+			},
+			"text": " they, you know, what reservations they have so that it could be moved forward, you know."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:01,640",
+				"to": "00:28:02,640"
+			},
+			"offsets": {
+				"from": 1681640,
+				"to": 1682640
+			},
+			"text": " So, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:02,640",
+				"to": "00:28:03,640"
+			},
+			"offsets": {
+				"from": 1682640,
+				"to": 1683640
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:03,640",
+				"to": "00:28:06,280"
+			},
+			"offsets": {
+				"from": 1683640,
+				"to": 1686280
+			},
+			"text": " So, this is the beginning of a dialogue, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:06,280",
+				"to": "00:28:12,240"
+			},
+			"offsets": {
+				"from": 1686280,
+				"to": 1692240
+			},
+			"text": " So, and one thing that I want to point out was just really important."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:12,240",
+				"to": "00:28:19,000"
+			},
+			"offsets": {
+				"from": 1692240,
+				"to": 1699000
+			},
+			"text": " What we're saying here is we're not replacing any of the current security features, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:19,000",
+				"to": "00:28:26,680"
+			},
+			"offsets": {
+				"from": 1699000,
+				"to": 1706680
+			},
+			"text": " We're not saying replace, you know, proof of work with proof of elapsed time using into"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:26,680",
+				"to": "00:28:29,320"
+			},
+			"offsets": {
+				"from": 1706680,
+				"to": 1709320
+			},
+			"text": " SGX or any other trusted enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:28:29,320",
+				"to": "00:28:36,080"
+			},
+			"offsets": {
+				"from": 1709320,
+				"to": 1716080
+			},
+			"text": " What we're saying, we're adding additional security features to the ecosystem stack that"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:36,080",
+				"to": "00:28:45,040"
+			},
+			"offsets": {
+				"from": 1716080,
+				"to": 1725040
+			},
+			"text": " makes the whole thing more secure, allows better decentralization and lowers the barrier"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:45,040",
+				"to": "00:28:50,920"
+			},
+			"offsets": {
+				"from": 1725040,
+				"to": 1730920
+			},
+			"text": " to entry because it is literally ubiquitous, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:50,920",
+				"to": "00:28:52,120"
+			},
+			"offsets": {
+				"from": 1730920,
+				"to": 1732120
+			},
+			"text": " Already, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:28:52,120",
+				"to": "00:29:03,640"
+			},
+			"offsets": {
+				"from": 1732120,
+				"to": 1743640
+			},
+			"text": " You can, if you run an I7 and I9, you can turn on, turn on Intel SGX and deploy a trusted"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:03,640",
+				"to": "00:29:06,200"
+			},
+			"offsets": {
+				"from": 1743640,
+				"to": 1746200
+			},
+			"text": " service in a few minutes."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:06,200",
+				"to": "00:29:15,840"
+			},
+			"offsets": {
+				"from": 1746200,
+				"to": 1755840
+			},
+			"text": " So it's about educating the ecosystem about this novel idea and it really has only come"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:15,840",
+				"to": "00:29:21,400"
+			},
+			"offsets": {
+				"from": 1755840,
+				"to": 1761400
+			},
+			"text": " out in the last, you know, six months really, six to nine months really that we've been"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:21,400",
+				"to": "00:29:28,200"
+			},
+			"offsets": {
+				"from": 1761400,
+				"to": 1768200
+			},
+			"text": " working on this to formulate the ideas to talk with people like Virgil to get feedback."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:28,200",
+				"to": "00:29:30,760"
+			},
+			"offsets": {
+				"from": 1768200,
+				"to": 1770760
+			},
+			"text": " And it's a slow process, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:30,760",
+				"to": "00:29:36,280"
+			},
+			"offsets": {
+				"from": 1770760,
+				"to": 1776280
+			},
+			"text": " Because Intel came out first and was Intel helped the keys and that's what's stuck in"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:36,280",
+				"to": "00:29:40,600"
+			},
+			"offsets": {
+				"from": 1776280,
+				"to": 1780600
+			},
+			"text": " people's heads and, you know, you're saying now Intel doesn't hold the keys anymore or"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:40,600",
+				"to": "00:29:44,320"
+			},
+			"offsets": {
+				"from": 1780600,
+				"to": 1784320
+			},
+			"text": " AMD or ARM, it doesn't matter."
+		},
+		{
+			"timestamps": {
+				"from": "00:29:44,320",
+				"to": "00:29:54,320"
+			},
+			"offsets": {
+				"from": 1784320,
+				"to": 1794320
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:29:54,320",
+				"to": "00:30:04,320"
+			},
+			"offsets": {
+				"from": 1794320,
+				"to": 1804320
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:30:04,320",
+				"to": "00:30:14,320"
+			},
+			"offsets": {
+				"from": 1804320,
+				"to": 1814320
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

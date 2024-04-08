@@ -9,6 +9,7 @@ import Image from 'next/legacy/image'
 import useNavigationData from '../../useNavigationData'
 import IconCalendar from 'assets/icons/calendar.svg'
 import IconWatch from 'assets/icons/on_demand_video.svg'
+import { Button } from 'lib/components/button'
 
 const Mobile = (props: any) => {
   const [openItem, setOpenItem] = React.useState<string | undefined>()
@@ -133,7 +134,7 @@ export const Navigation = (props: any) => {
             if (i.highlight) {
               className += ` button ${css[i.highlight as any]}`
 
-              if (['app', 'archive'].includes(i.highlight)) {
+              if (['app'].includes(i.highlight)) {
                 className += ` rounded-purple`
               } else {
                 className += ` black`
@@ -142,12 +143,23 @@ export const Navigation = (props: any) => {
               className += ` plain`
             }
 
+            if (i.highlight === 'archive') {
+              return (
+                <Link to={i.url}>
+                  <Button color="purple-1" className="shadow lg !py-1" fill>
+                    <IconWatch className="mr-2 icon" />
+                    {i.title}
+                  </Button>
+                </Link>
+              )
+            }
+
             return (
-              <Link className={className} to={i.url}>
+              <Link to={i.url} className={className}>
                 <>
                   {i.highlight === 'app' && <IconCalendar />}
                   {i.highlight === 'livestream' && <IconWatch />}
-                  {i.highlight === 'archive' && <IconWatch />}
+                  {i.highlight === 'archive' && <IconWatch className="mr-2 icon" />}
                   {i.title}
                 </>
               </Link>

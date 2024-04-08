@@ -1,0 +1,1385 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:26,480"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 26480
+			},
+			"text": " So, hello everyone. I will present to you about Sikorka, which is a side product I have been"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,480",
+				"to": "00:00:33,080"
+			},
+			"offsets": {
+				"from": 26480,
+				"to": 33080
+			},
+			"text": " working on. It's not really code development, so I don't know how it came up in the first day,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,080",
+				"to": "00:00:41,280"
+			},
+			"offsets": {
+				"from": 33080,
+				"to": 41280
+			},
+			"text": " but we will have a quick look at it. So, who am I? I'm Leftaris. I have been working as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,280",
+				"to": "00:00:48,640"
+			},
+			"offsets": {
+				"from": 41280,
+				"to": 48640
+			},
+			"text": " code developer since fall of 2014. Later, I ended up in various other parts of the ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,640",
+				"to": "00:00:54,880"
+			},
+			"offsets": {
+				"from": 48640,
+				"to": 54880
+			},
+			"text": " and since over a year now, I'm working with BrainBot as the right-hand end of TeamRead."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,880",
+				"to": "00:01:00,560"
+			},
+			"offsets": {
+				"from": 54880,
+				"to": 60560
+			},
+			"text": " We are going to see a very awesome presentation from our team tomorrow at Round 4 about"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,560",
+				"to": "00:01:10,400"
+			},
+			"offsets": {
+				"from": 60560,
+				"to": 70400
+			},
+			"text": " writing from Augusto and Dorodana. So, what is Sikorka? It's something that I have a passion for"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,400",
+				"to": "00:01:19,680"
+			},
+			"offsets": {
+				"from": 70400,
+				"to": 79680
+			},
+			"text": " being able to provide presence proofs for decentralized applications in order to be able to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:19,680",
+				"to": "00:01:29,480"
+			},
+			"offsets": {
+				"from": 79680,
+				"to": 89480
+			},
+			"text": " various applications that use locations for various purposes in the blockchain. So, then,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,480",
+				"to": "00:01:36,960"
+			},
+			"offsets": {
+				"from": 89480,
+				"to": 96960
+			},
+			"text": " purple would be to make locations and objects programmable. The team is small, as I said right now."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,960",
+				"to": "00:01:43,160"
+			},
+			"offsets": {
+				"from": 96960,
+				"to": 103160
+			},
+			"text": " We are two people mainly working on it, Costandinos Paparas, also known as Kelsos. He is also"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,160",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 103160,
+				"to": 111000
+			},
+			"text": " an Android developer who has been making the Android app of Sikorka and me as the guy doing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:58,440"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 118440
+			},
+			"text": " the theorem smart contracts. We are also talking with some people who make hardware verification"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,440",
+				"to": "00:02:08,560"
+			},
+			"offsets": {
+				"from": 118440,
+				"to": 128560
+			},
+			"text": " devices, and we are trying to create an ecosystem around this. So, about a generic system overview,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,560",
+				"to": "00:02:16,400"
+			},
+			"offsets": {
+				"from": 128560,
+				"to": 136400
+			},
+			"text": " Sikorka, it's a network of detectors that aims to provide proof of presence for decentralized"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,400",
+				"to": "00:02:23,640"
+			},
+			"offsets": {
+				"from": 136400,
+				"to": 143640
+			},
+			"text": " applications. We can have different types of detectors and contracts can choose the detector"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,640",
+				"to": "00:02:30,080"
+			},
+			"offsets": {
+				"from": 143640,
+				"to": 150080
+			},
+			"text": " depending on their own security requirements. A user can interact with a contract via the use"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,080",
+				"to": "00:02:35,200"
+			},
+			"offsets": {
+				"from": 150080,
+				"to": 155200
+			},
+			"text": " of the mobile app, and the most exciting thing would be for objects to directly interact with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,200",
+				"to": "00:02:44,480"
+			},
+			"offsets": {
+				"from": 155200,
+				"to": 164480
+			},
+			"text": " contract through the use of small chips that we call tags. Use cases for such a system. Well,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,480",
+				"to": "00:02:49,480"
+			},
+			"offsets": {
+				"from": 164480,
+				"to": 169480
+			},
+			"text": " there are many. You can prove your presence in a particular location for bureaucratic reasons."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,480",
+				"to": "00:02:56,920"
+			},
+			"offsets": {
+				"from": 169480,
+				"to": 176920
+			},
+			"text": " Picture, for example, yourself unemployed and having to go to the unemployment office every first"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,920",
+				"to": "00:03:01,840"
+			},
+			"offsets": {
+				"from": 176920,
+				"to": 181840
+			},
+			"text": " of the month and prove that you were in that particular location. Customer loyalty programs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,840",
+				"to": "00:03:11,200"
+			},
+			"offsets": {
+				"from": 181840,
+				"to": 191200
+			},
+			"text": " you get discount tokens for being in a particular sub games, augmented reality games, Pokemon"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,200",
+				"to": "00:03:16,920"
+			},
+			"offsets": {
+				"from": 191200,
+				"to": 196920
+			},
+			"text": " going, the blockchain. And the most exciting use case would be objects directly interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,920",
+				"to": "00:03:21,920"
+			},
+			"offsets": {
+				"from": 196920,
+				"to": 201920
+			},
+			"text": " with smart contracts. Say you rent a power tool. The minute you return the tool to its"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,920",
+				"to": "00:03:27,800"
+			},
+			"offsets": {
+				"from": 201920,
+				"to": 207800
+			},
+			"text": " starting station, a blockchain transaction is made in order to pay for your usage of this tool."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,800",
+				"to": "00:03:36,360"
+			},
+			"offsets": {
+				"from": 207800,
+				"to": 216360
+			},
+			"text": " There are various different detector types. We have designed the system in a modular fashion,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,360",
+				"to": "00:03:48,120"
+			},
+			"offsets": {
+				"from": 216360,
+				"to": 228120
+			},
+			"text": " so you can add more detectors as the ecosystem progresses. The deployer of the contract, so"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,120",
+				"to": "00:03:54,520"
+			},
+			"offsets": {
+				"from": 228120,
+				"to": 234520
+			},
+			"text": " the people who create contracts can choose their own detectors depending on their security"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,520",
+				"to": "00:04:03,440"
+			},
+			"offsets": {
+				"from": 234520,
+				"to": 243440
+			},
+			"text": " requirements. I'm going to present a bit about some hardware detectors that we have worked"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,440",
+				"to": "00:04:09,160"
+			},
+			"offsets": {
+				"from": 243440,
+				"to": 249160
+			},
+			"text": " with. This is a very interesting one that's developed by a company called Revilo. We are"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,160",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 249160,
+				"to": 255000
+			},
+			"text": " cooperating with them, and they have created a temporal Bluetooth tracker that you can see"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:24,360"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 264360
+			},
+			"text": " on the picture on the left. It can provide accuracy for locations up to 20 meters if I"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:24,360",
+				"to": "00:04:33,920"
+			},
+			"offsets": {
+				"from": 264360,
+				"to": 273920
+			},
+			"text": " remember correctly. It's most interesting feature is that it is privacy preserving because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,920",
+				"to": "00:04:39,280"
+			},
+			"offsets": {
+				"from": 273920,
+				"to": 279280
+			},
+			"text": " user can extend temporal keys with a device and actually specify for how long he wants"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,280",
+				"to": "00:04:44,640"
+			},
+			"offsets": {
+				"from": 279280,
+				"to": 284640
+			},
+			"text": " to be tracked. This is really important because this way we can avoid a big brother scenario"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,640",
+				"to": "00:04:48,920"
+			},
+			"offsets": {
+				"from": 284640,
+				"to": 288920
+			},
+			"text": " where we have a network of these detectors tracking everyone forever. As a user, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,920",
+				"to": "00:04:55,640"
+			},
+			"offsets": {
+				"from": 288920,
+				"to": 295640
+			},
+			"text": " can choose how long you want to be tracked by an application that uses these detectors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,640",
+				"to": "00:05:01,160"
+			},
+			"offsets": {
+				"from": 295640,
+				"to": 301160
+			},
+			"text": " Furthermore, simplified version of a detector, here we can see a classic QR code detector,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,160",
+				"to": "00:05:08,680"
+			},
+			"offsets": {
+				"from": 301160,
+				"to": 308680
+			},
+			"text": " so a device that just flashes QR codes every number of seconds, let's say 10 here. Its"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,680",
+				"to": "00:05:14,320"
+			},
+			"offsets": {
+				"from": 308680,
+				"to": 314320
+			},
+			"text": " code is essentially a signed message that the user would need to include with his transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,320",
+				"to": "00:05:20,360"
+			},
+			"offsets": {
+				"from": 314320,
+				"to": 320360
+			},
+			"text": " to the contract. Of course, it's an Ethereum ecosystem application, so there need to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,360",
+				"to": "00:05:26,400"
+			},
+			"offsets": {
+				"from": 320360,
+				"to": 326400
+			},
+			"text": " smart contracts. We have two basic smart contracts. One is a registry of all C-corca enabled"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,400",
+				"to": "00:05:32,160"
+			},
+			"offsets": {
+				"from": 326400,
+				"to": 332160
+			},
+			"text": " contracts, and the second, an interface for a contract to implement in order to be able"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,160",
+				"to": "00:05:40,560"
+			},
+			"offsets": {
+				"from": 332160,
+				"to": 340560
+			},
+			"text": " to interface with the C-corca ecosystem. The registry is rather simple, just you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,560",
+				"to": "00:05:47,240"
+			},
+			"offsets": {
+				"from": 340560,
+				"to": 347240
+			},
+			"text": " add or remove contracts to a mapping and get an index of all contracts for using geo-special"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,240",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 347240,
+				"to": 356160
+			},
+			"text": " indexing applications. The C-corca interface is a bit more convoluted, but its main feature"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:06:04,880"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 364880
+			},
+			"text": " is a modifier that allows any contract that inherits it to specify a function that will"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,880",
+				"to": "00:06:09,280"
+			},
+			"offsets": {
+				"from": 364880,
+				"to": 369280
+			},
+			"text": " need proof of presence. So you just put a modifier on the function that would require"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:09,280",
+				"to": "00:06:18,400"
+			},
+			"offsets": {
+				"from": 369280,
+				"to": 378400
+			},
+			"text": " proof of presence, and then that function would need to be checked by a detector. As I said,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,400",
+				"to": "00:06:24,960"
+			},
+			"offsets": {
+				"from": 378400,
+				"to": 384960
+			},
+			"text": " we have created an Android app. It's using the GoA theorem Lite client Android libraries,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,960",
+				"to": "00:06:31,320"
+			},
+			"offsets": {
+				"from": 384960,
+				"to": 391320
+			},
+			"text": " and you can see a screenshot here on the right. You can create and deploy contracts with it"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,320",
+				"to": "00:06:36,200"
+			},
+			"offsets": {
+				"from": 391320,
+				"to": 396200
+			},
+			"text": " or interact with already deployed contracts and see how many contracts are around you,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,200",
+				"to": "00:06:41,120"
+			},
+			"offsets": {
+				"from": 396200,
+				"to": 401120
+			},
+			"text": " and also interact with detectors. The source code is open source, it's in our GitHub, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,120",
+				"to": "00:06:47,480"
+			},
+			"offsets": {
+				"from": 401120,
+				"to": 407480
+			},
+			"text": " can download it and play with it. Because it's using the Lite client, I would like"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:47,480",
+				"to": "00:06:53,800"
+			},
+			"offsets": {
+				"from": 407480,
+				"to": 413800
+			},
+			"text": " to please ask Ennem who is running a GIF node, please add - - Lite serve at least 10 or any"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,800",
+				"to": "00:06:58,760"
+			},
+			"offsets": {
+				"from": 413800,
+				"to": 418760
+			},
+			"text": " other value so that we can be finding peers, because at the moment that's a problem, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,760",
+				"to": "00:07:06,800"
+			},
+			"offsets": {
+				"from": 418760,
+				"to": 426800
+			},
+			"text": " I had that things will improve as time goes on. So usage scenarios, this is the most trivial"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,800",
+				"to": "00:07:13,040"
+			},
+			"offsets": {
+				"from": 426800,
+				"to": 433040
+			},
+			"text": " usage scenario. There is no detector, the contract trusts your mobile phone to provide"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,040",
+				"to": "00:07:18,520"
+			},
+			"offsets": {
+				"from": 433040,
+				"to": 438520
+			},
+			"text": " the GPS coordinates and that they are correct. This can of course very easily be spoofed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,520",
+				"to": "00:07:25,320"
+			},
+			"offsets": {
+				"from": 438520,
+				"to": 445320
+			},
+			"text": " and that's the whole reason why we have introduced hardware detectors. So with hardware detector,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,320",
+				"to": "00:07:31,440"
+			},
+			"offsets": {
+				"from": 445320,
+				"to": 451440
+			},
+			"text": " the mobile phone would interact with the detector and then the detector would authorize the user's"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,440",
+				"to": "00:07:35,880"
+			},
+			"offsets": {
+				"from": 451440,
+				"to": 455880
+			},
+			"text": " phone for an amount of time. And then the user would be able to interact with the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:35,880",
+				"to": "00:07:43,640"
+			},
+			"offsets": {
+				"from": 455880,
+				"to": 463640
+			},
+			"text": " for this amount of time. A variation of this would be when instead of the contract interacting"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,640",
+				"to": "00:07:49,760"
+			},
+			"offsets": {
+				"from": 463640,
+				"to": 469760
+			},
+			"text": " with the user, the detector instead sends a signed message back to the user which the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,760",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 469760,
+				"to": 477000
+			},
+			"text": " user would have to include with his transactions. And finally, the more interesting scenario"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:03,320"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 483320
+			},
+			"text": " would be, no user, that's an object. An object with a small tip, a tag as we say, that as"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,320",
+				"to": "00:08:09,680"
+			},
+			"offsets": {
+				"from": 483320,
+				"to": 489680
+			},
+			"text": " soon as it comes in the range of a detector, then a transaction is fired. The power tool"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,680",
+				"to": "00:08:14,640"
+			},
+			"offsets": {
+				"from": 489680,
+				"to": 494640
+			},
+			"text": " pictured here in the graph, for example, could be returned to its charging station and then"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,640",
+				"to": "00:08:22,080"
+			},
+			"offsets": {
+				"from": 494640,
+				"to": 502080
+			},
+			"text": " pay for itself for how much time you have rented it. So here is a demo of our Android"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,080",
+				"to": "00:08:32,360"
+			},
+			"offsets": {
+				"from": 502080,
+				"to": 512360
+			},
+			"text": " application. Here is the loading screen. We can see on the menu on the left our account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,360",
+				"to": "00:08:39,640"
+			},
+			"offsets": {
+				"from": 512360,
+				"to": 519640
+			},
+			"text": " balance, number of peers, etc. This is in Robston. So we are in Berlin, we are in Langestra"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,640",
+				"to": "00:08:45,640"
+			},
+			"offsets": {
+				"from": 519640,
+				"to": 525640
+			},
+			"text": " and we want to deploy a contract that uses detectors. We can specify the type of detector,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,640",
+				"to": "00:08:52,640"
+			},
+			"offsets": {
+				"from": 525640,
+				"to": 532640
+			},
+			"text": " either Bluetooth or manual specification, which in this case is a QR code detector."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,640",
+				"to": "00:08:59,560"
+			},
+			"offsets": {
+				"from": 532640,
+				"to": 539560
+			},
+			"text": " We paste the address and we have to provide a name. So because this is a discount token"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:59,560",
+				"to": "00:09:06,120"
+			},
+			"offsets": {
+				"from": 539560,
+				"to": 546120
+			},
+			"text": " contract, we will just say discount token example, we have to provide an authorization"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,120",
+				"to": "00:09:12,640"
+			},
+			"offsets": {
+				"from": 546120,
+				"to": 552640
+			},
+			"text": " duration in a number of seconds. And since it's a token, we also have to provide the number"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,640",
+				"to": "00:09:18,160"
+			},
+			"offsets": {
+				"from": 552640,
+				"to": 558160
+			},
+			"text": " of tokens, the total supply. Since it's in Robston, as you probably all know, if you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,160",
+				"to": "00:09:23,320"
+			},
+			"offsets": {
+				"from": 558160,
+				"to": 563320
+			},
+			"text": " are using it, we need to give a hell of a lot of gas, 100 giveaway, which is a lot,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,320",
+				"to": "00:09:30,720"
+			},
+			"offsets": {
+				"from": 563320,
+				"to": 570720
+			},
+			"text": " and unlock the account. Very, very secure password, please don't say this. And so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,720",
+				"to": "00:09:36,440"
+			},
+			"offsets": {
+				"from": 570720,
+				"to": 576440
+			},
+			"text": " creates a transaction that is sent to the network. Now we are waiting for a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,440",
+				"to": "00:09:40,400"
+			},
+			"offsets": {
+				"from": 576440,
+				"to": 580400
+			},
+			"text": " to get included in the blog and as soon as that happens, we will get a notification"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,400",
+				"to": "00:09:49,400"
+			},
+			"offsets": {
+				"from": 580400,
+				"to": 589400
+			},
+			"text": " inside the app and then also outside. And if we take Robston, then we can see, yeah,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,400",
+				"to": "00:09:56,280"
+			},
+			"offsets": {
+				"from": 589400,
+				"to": 596280
+			},
+			"text": " something happened to the video here, but anyway, you can see that in Robston, it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,280",
+				"to": "00:10:03,040"
+			},
+			"offsets": {
+				"from": 596280,
+				"to": 603040
+			},
+			"text": " on in Etherscan. So for the other scenario, we find the same contract and we want to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:03,040",
+				"to": "00:10:10,800"
+			},
+			"offsets": {
+				"from": 603040,
+				"to": 610800
+			},
+			"text": " with it. Remember, we deployed it with a QR code detector. So when we appear to interact"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:10,800",
+				"to": "00:10:18,480"
+			},
+			"offsets": {
+				"from": 610800,
+				"to": 618480
+			},
+			"text": " with it, we have to select QR code and then the device, our mobile app, we have to scan"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,480",
+				"to": "00:10:25,120"
+			},
+			"offsets": {
+				"from": 618480,
+				"to": 625120
+			},
+			"text": " the detector's QR code. That will generate a signed message, but we have to include the"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,120",
+				"to": "00:10:34,480"
+			},
+			"offsets": {
+				"from": 625120,
+				"to": 634480
+			},
+			"text": " transaction. Remember, Robston, so a lot of gas and that will allow us to create a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:34,480",
+				"to": "00:10:43,400"
+			},
+			"offsets": {
+				"from": 634480,
+				"to": 643400
+			},
+			"text": " with, we will send to the blog scene. While we are waiting for it to get mined, you get"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,400",
+				"to": "00:10:50,080"
+			},
+			"offsets": {
+				"from": 643400,
+				"to": 650080
+			},
+			"text": " a loading screen and once it's sent, then you will have to wait again for it to get mined"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:50,080",
+				"to": "00:10:56,800"
+			},
+			"offsets": {
+				"from": 650080,
+				"to": 656800
+			},
+			"text": " and you get a notification inside the application and outside and then you have actually interacted"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,800",
+				"to": "00:11:04,920"
+			},
+			"offsets": {
+				"from": 656800,
+				"to": 664920
+			},
+			"text": " with the detector, proved your presence and claimed some tokens. So essentially, as you"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,920",
+				"to": "00:11:11,880"
+			},
+			"offsets": {
+				"from": 664920,
+				"to": 671880
+			},
+			"text": " can see, the CICORCA is kind of an ecosystem of various parties. There are the people who"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,880",
+				"to": "00:11:17,720"
+			},
+			"offsets": {
+				"from": 671880,
+				"to": 677720
+			},
+			"text": " will deploy and maintain detectors who will provide hardware verification for CICORCA"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,720",
+				"to": "00:11:22,920"
+			},
+			"offsets": {
+				"from": 677720,
+				"to": 682920
+			},
+			"text": " contracts. Then you have the people who deploy the contracts and those who interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,920",
+				"to": "00:11:27,800"
+			},
+			"offsets": {
+				"from": 682920,
+				"to": 687800
+			},
+			"text": " them. These are all people with different incentives and we have to think of how to properly"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:27,800",
+				"to": "00:11:33,880"
+			},
+			"offsets": {
+				"from": 687800,
+				"to": 693880
+			},
+			"text": " incentivize different parties. This is totally under research and we are just thinking on"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,880",
+				"to": "00:11:38,600"
+			},
+			"offsets": {
+				"from": 693880,
+				"to": 698600
+			},
+			"text": " the problem and we would like to provide some kind of incentivization mechanism. This is"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,600",
+				"to": "00:11:44,320"
+			},
+			"offsets": {
+				"from": 698600,
+				"to": 704320
+			},
+			"text": " the rough idea, maybe end users and contract employers or only one of these parties would"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,320",
+				"to": "00:11:49,200"
+			},
+			"offsets": {
+				"from": 704320,
+				"to": 709200
+			},
+			"text": " be paying minor fees to the contracts and these fees would be forwarded then as a close ecosystem"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:49,200",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 709200,
+				"to": 715000
+			},
+			"text": " to the people who maintain the detectors. This is all just rough ideas right now. If any"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:12:00,640"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 720640
+			},
+			"text": " of you actually have any good ideas on that, I would really like to hear from your feedback"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:00,640",
+				"to": "00:12:06,120"
+			},
+			"offsets": {
+				"from": 720640,
+				"to": 726120
+			},
+			"text": " so just find me around the conference and we can talk about it. So our technical challenge"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:06,120",
+				"to": "00:12:12,080"
+			},
+			"offsets": {
+				"from": 726120,
+				"to": 732080
+			},
+			"text": " is ahead. Basically, how to combine input from various detector types. Since we have the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,080",
+				"to": "00:12:17,640"
+			},
+			"offsets": {
+				"from": 732080,
+				"to": 737640
+			},
+			"text": " QR code Bluetooth, we can add different ones and a contract can have multiple detectors."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,640",
+				"to": "00:12:22,880"
+			},
+			"offsets": {
+				"from": 737640,
+				"to": 742880
+			},
+			"text": " We have to find ways to combine the input. We have to deal with device grinding fraud."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:22,880",
+				"to": "00:12:29,480"
+			},
+			"offsets": {
+				"from": 742880,
+				"to": 749480
+			},
+			"text": " That is when a smart guy pretends to be multiple people by just having 10 devices with him"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,480",
+				"to": "00:12:35,680"
+			},
+			"offsets": {
+				"from": 749480,
+				"to": 755680
+			},
+			"text": " and then claiming all the tokens for himself. Identity systems would come really in handy"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,680",
+				"to": "00:12:41,600"
+			},
+			"offsets": {
+				"from": 755680,
+				"to": 761600
+			},
+			"text": " here. And of course privacy. We are talking about location transactions in open ledger"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,600",
+				"to": "00:12:47,960"
+			},
+			"offsets": {
+				"from": 761600,
+				"to": 767960
+			},
+			"text": " such as the blockchain. You do not want everything open about you in the blockchain. We are thinking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,960",
+				"to": "00:12:56,600"
+			},
+			"offsets": {
+				"from": 767960,
+				"to": 776600
+			},
+			"text": " about that and looking closely at the ZK Snark's research. So as for our next steps, we want"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,600",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 776600,
+				"to": 781000
+			},
+			"text": " to read a first table version of the application, make it available in the Android App Store"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:05,760"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 785760
+			},
+			"text": " and then further net through the development of the ecosystem, this slide that I showed"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:05,760",
+				"to": "00:13:16,560"
+			},
+			"offsets": {
+				"from": 785760,
+				"to": 796560
+			},
+			"text": " about hardware and the builders and the authors of contracts and the users. So essentially,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,560",
+				"to": "00:13:21,840"
+			},
+			"offsets": {
+				"from": 796560,
+				"to": 801840
+			},
+			"text": " that is all. If any of you are really interested in the problem of proving your presence for"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:21,840",
+				"to": "00:13:27,040"
+			},
+			"offsets": {
+				"from": 801840,
+				"to": 807040
+			},
+			"text": " decentralized applications, please find me around the conference and let's have a chat."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,040",
+				"to": "00:13:34,000"
+			},
+			"offsets": {
+				"from": 807040,
+				"to": 814000
+			},
+			"text": " For more up-to-date information, just follow either me or Kelso's in Twitter or GitHub."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,000",
+				"to": "00:13:36,400"
+			},
+			"offsets": {
+				"from": 814000,
+				"to": 816400
+			},
+			"text": " And yeah, that's all. Thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,400",
+				"to": "00:13:40,280"
+			},
+			"offsets": {
+				"from": 816400,
+				"to": 820280
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:40,280",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 820280,
+				"to": 830280
+			},
+			"text": " [Music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:52,540"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 832540
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

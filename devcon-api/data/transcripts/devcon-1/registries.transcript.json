@@ -1,0 +1,1759 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 19000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:21,000"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 21000
+			},
+			"text": " >> All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,000",
+				"to": "00:00:22,000"
+			},
+			"offsets": {
+				"from": 21000,
+				"to": 22000
+			},
+			"text": " Hi everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 22000,
+				"to": 24000
+			},
+			"text": " I'm Neeran Babalola."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:28,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 28000
+			},
+			"text": " I've contributed some to the Auger project and at consensus I"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,000",
+				"to": "00:00:32,000"
+			},
+			"offsets": {
+				"from": 28000,
+				"to": 32000
+			},
+			"text": " Work on gnosis, our production market platform."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,000",
+				"to": "00:00:35,000"
+			},
+			"offsets": {
+				"from": 32000,
+				"to": 35000
+			},
+			"text": " Like lots of other people in the room, I spent a lot of time"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,000",
+				"to": "00:00:36,000"
+			},
+			"offsets": {
+				"from": 35000,
+				"to": 36000
+			},
+			"text": " Thinking about how we can use this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,000",
+				"to": "00:00:39,000"
+			},
+			"offsets": {
+				"from": 36000,
+				"to": 39000
+			},
+			"text": " Executive historical record that we now have to coordinate"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 39000,
+				"to": 42000
+			},
+			"text": " Behavior in new and interesting ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:46,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 46000
+			},
+			"text": " I'm speaking on behalf of daniel nove, my co-worker at"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 46000,
+				"to": 49000
+			},
+			"text": " Consensus, who wasn't able to make it to dev con."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 52000
+			},
+			"text": " He's been building regis, which is a platform that allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " Developers to build registries into their applications and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 58000
+			},
+			"text": " Also allows non-developers to create and interact with a"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61000
+			},
+			"text": " Variety of registries that they can configure and deploy"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:03,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 63000
+			},
+			"text": " Through a graphical ui."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,000",
+				"to": "00:01:07,000"
+			},
+			"offsets": {
+				"from": 63000,
+				"to": 67000
+			},
+			"text": " So registries are everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 67000,
+				"to": 70000
+			},
+			"text": " Most people here have registered the main name, but even more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:15,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 75000
+			},
+			"text": " People have registered a car or piece of land with their"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,000",
+				"to": "00:01:17,000"
+			},
+			"offsets": {
+				"from": 75000,
+				"to": 77000
+			},
+			"text": " Governments."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 77000,
+				"to": 80000
+			},
+			"text": " Corporations, for instance, purchase rights to public"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " Resources like radio spectrum and oil deposits from the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:28,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 88000
+			},
+			"text": " Government where it's registered there."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,000",
+				"to": "00:01:31,000"
+			},
+			"offsets": {
+				"from": 88000,
+				"to": 91000
+			},
+			"text": " These centralized registries are fine when they run"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 91000,
+				"to": 94000
+			},
+			"text": " Officially, but in so many places they aren't."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:38,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 98000
+			},
+			"text": " In brazil, where daniel's from, there are ten to twenty"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,000",
+				"to": "00:01:40,000"
+			},
+			"offsets": {
+				"from": 98000,
+				"to": 100000
+			},
+			"text": " Real estate registrars per city."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:40,000",
+				"to": "00:01:42,000"
+			},
+			"offsets": {
+				"from": 100000,
+				"to": 102000
+			},
+			"text": " So if you're trying to sell an apartment or buy an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,000",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 102000,
+				"to": 104000
+			},
+			"text": " Apartment, you have to track down the registrar that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:46,000"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 106000
+			},
+			"text": " Associated with that particular apartment."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 106000,
+				"to": 109000
+			},
+			"text": " Go there, show up in person, prove to them who you are so"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " They can transfer the apartment from the old owner to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 116000
+			},
+			"text": " It's not the best."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 119000
+			},
+			"text": " Functioning property registries are the foundation of tons of"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 121000
+			},
+			"text": " Wealthable in our society."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 125000
+			},
+			"text": " Without a land registry, it would be risky to own land."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:08,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 128000
+			},
+			"text": " Without a car registry, it would be a lot easier for somebody"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 128000,
+				"to": 131000
+			},
+			"text": " To show up and steal your car without you being able to prove"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " That they stole it."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:18,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 138000
+			},
+			"text": " And societies where these registries don't exist or don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 138000,
+				"to": 142000
+			},
+			"text": " Function well, these risks either have to be taken on by"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:25,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 145000
+			},
+			"text": " People who can't afford the risk or they have to be offloaded"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 145000,
+				"to": 148000
+			},
+			"text": " To investors who get compensated for the risk, either by"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:31,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 151000
+			},
+			"text": " Increasing the price of housing that people pay them or"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 151000,
+				"to": 154000
+			},
+			"text": " Increasing the price of transportation that people pay them."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " Bad registries are yet another barrier that keep poor people"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:41,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 161000
+			},
+			"text": " Poor and these barriers are things we should destroy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,000",
+				"to": "00:02:45,000"
+			},
+			"offsets": {
+				"from": 161000,
+				"to": 165000
+			},
+			"text": " We can use decentralized registries to bootstrap societies"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 165000,
+				"to": 168000
+			},
+			"text": " And to the functioning social infrastructure for wealth building"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:53,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 173000
+			},
+			"text": " And areas that don't have this infrastructure like the digital"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 173000,
+				"to": 176000
+			},
+			"text": " Arena, we can bootstrap it there so you can build digital wealth"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:01,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 181000
+			},
+			"text": " Where you couldn't be for."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:01,000",
+				"to": "00:03:05,000"
+			},
+			"offsets": {
+				"from": 181000,
+				"to": 185000
+			},
+			"text": " So, adapt developers have even broader registries than we"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 185000,
+				"to": 187000
+			},
+			"text": " Experience in the real world."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 190000
+			},
+			"text": " We have all these identifiers that often need names or"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 193000
+			},
+			"text": " Owners."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 197000
+			},
+			"text": " EtherX, for instance, needs to know what name and ticker symbol to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:19,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 199000
+			},
+			"text": " Use for arbitrary token addresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 199000,
+				"to": 203000
+			},
+			"text": " The dap store needs to let authors associate their dap name with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:26,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 206000
+			},
+			"text": " The client url and other information about the dap."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:26,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 206000,
+				"to": 209000
+			},
+			"text": " But it also needs to have rules embedded in it to make sure"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:32,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 212000
+			},
+			"text": " That the names are unique and rules for determining who can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,000",
+				"to": "00:03:38,000"
+			},
+			"offsets": {
+				"from": 212000,
+				"to": 218000
+			},
+			"text": " Actually register a name or sit out in stone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:38,000",
+				"to": "00:03:41,000"
+			},
+			"offsets": {
+				"from": 218000,
+				"to": 221000
+			},
+			"text": " General purpose wallet needs to know what tokens exist."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,000",
+				"to": "00:03:44,000"
+			},
+			"offsets": {
+				"from": 221000,
+				"to": 224000
+			},
+			"text": " You have to know which tokens to check the balances for to be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:44,000",
+				"to": "00:03:45,000"
+			},
+			"offsets": {
+				"from": 224000,
+				"to": 225000
+			},
+			"text": " Display them in a wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 225000,
+				"to": 227000
+			},
+			"text": " And if you can look them up in a registry, you have that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:49,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 229000
+			},
+			"text": " Information available to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 229000,
+				"to": 235000
+			},
+			"text": " In general, registries map a key to one or more values with"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:04:00,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 240000
+			},
+			"text": " Rules that establish who can control a particular key."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,000",
+				"to": "00:04:03,000"
+			},
+			"offsets": {
+				"from": 240000,
+				"to": 243000
+			},
+			"text": " If you think about the token transfer api's as the rails for"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 243000,
+				"to": 247000
+			},
+			"text": " Fungible property, registries are the rails for non-fungible"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 252000
+			},
+			"text": " Property like physical objects or names."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " For those physical objects, the ones that you would put locks on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:18,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 258000
+			},
+			"text": " Are especially useful for registries, for instance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 258000,
+				"to": 259000
+			},
+			"text": " Slock it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:26,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 266000
+			},
+			"text": " So, registries is a tool that daniel novi is built to create,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,000",
+				"to": "00:04:29,000"
+			},
+			"offsets": {
+				"from": 266000,
+				"to": 269000
+			},
+			"text": " Watch and interact with registry systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,000",
+				"to": "00:04:32,000"
+			},
+			"offsets": {
+				"from": 269000,
+				"to": 272000
+			},
+			"text": " Once registry has been created, you can explore it to see which"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,000",
+				"to": "00:04:36,000"
+			},
+			"offsets": {
+				"from": 272000,
+				"to": 276000
+			},
+			"text": " Of the values have been set in the registry and you can create"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,000",
+				"to": "00:04:40,000"
+			},
+			"offsets": {
+				"from": 276000,
+				"to": 280000
+			},
+			"text": " Entries in the registry yourself."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,000",
+				"to": "00:04:43,000"
+			},
+			"offsets": {
+				"from": 280000,
+				"to": 283000
+			},
+			"text": " Redis lets you choose the parameters and behaviors for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,000",
+				"to": "00:04:44,000"
+			},
+			"offsets": {
+				"from": 283000,
+				"to": 284000
+			},
+			"text": " Registry you are creating."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:44,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 284000,
+				"to": 286000
+			},
+			"text": " For instance, how are keys allocated?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 288000
+			},
+			"text": " Do the keys expire?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 291000
+			},
+			"text": " Different use cases have different requirements and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:54,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 294000
+			},
+			"text": " Redis lets users and developers set those requirements on"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 294000,
+				"to": 295000
+			},
+			"text": " Their own."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:57,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 297000
+			},
+			"text": " Using those requirements, registries generates a"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,000",
+				"to": "00:05:00,000"
+			},
+			"offsets": {
+				"from": 297000,
+				"to": 300000
+			},
+			"text": " Solidity contract that you can then deploy to the network and"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,000",
+				"to": "00:05:04,000"
+			},
+			"offsets": {
+				"from": 300000,
+				"to": 304000
+			},
+			"text": " Adds itself to a master registry of registries so people who are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,000",
+				"to": "00:05:12,000"
+			},
+			"offsets": {
+				"from": 304000,
+				"to": 312000
+			},
+			"text": " Trying to discover registries have a place to look to find them."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 312000,
+				"to": 314000
+			},
+			"text": " Some commonly needed registry behaviors that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:18,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 318000
+			},
+			"text": " Redis lets you specify are key expiry, key auctions to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,000",
+				"to": "00:05:21,000"
+			},
+			"offsets": {
+				"from": 318000,
+				"to": 321000
+			},
+			"text": " Avoid squatting on unique key names and feed distribution"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,000",
+				"to": "00:05:25,000"
+			},
+			"offsets": {
+				"from": 321000,
+				"to": 325000
+			},
+			"text": " Behavior that allows either the creator or existing key owners"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 325000,
+				"to": 330000
+			},
+			"text": " To profit from the new auctions that are established on the system."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:35,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 335000
+			},
+			"text": " In addition to the standard English auction where all the bids"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,000",
+				"to": "00:05:38,000"
+			},
+			"offsets": {
+				"from": 335000,
+				"to": 338000
+			},
+			"text": " Are public, there are two other auction types that are implemented"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 338000,
+				"to": 340000
+			},
+			"text": " To make bids private in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 343000
+			},
+			"text": " There are sealed bid auctions that make the bid price"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:46,000"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 346000
+			},
+			"text": " Private and there are hidden key auctions that make the key that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 346000,
+				"to": 348000
+			},
+			"text": " Is being bid on private."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:51,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 351000
+			},
+			"text": " Both of these avoid bidding wars in different ways."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:51,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 351000,
+				"to": 355000
+			},
+			"text": " Sealed bid auctions encourage bidders to bid the price that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " They're willing to pay up front and they also hide the information"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:01,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 361000
+			},
+			"text": " About what price is being bided so you can't react to other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,000",
+				"to": "00:06:05,000"
+			},
+			"offsets": {
+				"from": 361000,
+				"to": 365000
+			},
+			"text": " People's bids and cause that price war to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,000",
+				"to": "00:06:10,000"
+			},
+			"offsets": {
+				"from": 365000,
+				"to": 370000
+			},
+			"text": " Sealed bid auctions, hidden key auctions avoid bidding wars on"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,000",
+				"to": "00:06:12,000"
+			},
+			"offsets": {
+				"from": 370000,
+				"to": 372000
+			},
+			"text": " New desirable keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,000",
+				"to": "00:06:15,000"
+			},
+			"offsets": {
+				"from": 372000,
+				"to": 375000
+			},
+			"text": " So if i'm trying to register the user name near on and a"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 375000,
+				"to": 378000
+			},
+			"text": " Registry, i don't want all the other near-ons out there to"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:20,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 380000
+			},
+			"text": " Notice and bid up the price."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 380000,
+				"to": 383000
+			},
+			"text": " I don't think i'm actually going to run into this problem in practice,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:25,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 385000
+			},
+			"text": " But this will solve it."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 385000,
+				"to": 390000
+			},
+			"text": " So, daniel has put together a two-minute video, walk"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 393000
+			},
+			"text": " Through of the regis ui, i have some text narration on the video"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:37,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 397000
+			},
+			"text": " That i'm going to read out loud and hopefully this all works"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 397000,
+				"to": 409000
+			},
+			"text": " So regis is a platform for building and deploying registries"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:51,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 411000
+			},
+			"text": " Into the ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 411000,
+				"to": 413000
+			},
+			"text": " Creating a registry is very easy."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:58,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 418000
+			},
+			"text": " You just enter some basic parameters, include some optional"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 418000,
+				"to": 424000
+			},
+			"text": " And advanced ones, and click on deploy."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 429000
+			},
+			"text": " As you change the parameters, a solidity contract is built"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 431000
+			},
+			"text": " Automatically for you."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:17,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 437000
+			},
+			"text": " After clicking on deploy, you just have to wait."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,000",
+				"to": "00:07:23,000"
+			},
+			"offsets": {
+				"from": 437000,
+				"to": 443000
+			},
+			"text": " And there you go, your registry is alive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:23,000",
+				"to": "00:07:28,000"
+			},
+			"offsets": {
+				"from": 443000,
+				"to": 448000
+			},
+			"text": " You can also save the contract to your local disk or estimate the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:28,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 448000,
+				"to": 450000
+			},
+			"text": " Gas consumption to deploy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 456000
+			},
+			"text": " All parameters have a very descriptive help message."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:39,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 459000
+			},
+			"text": " On advanced parameters, you can enable three different types of"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 459000,
+				"to": 461000
+			},
+			"text": " Actions for keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:45,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 465000
+			},
+			"text": " You can choose which address you want to deploy your registry"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:45,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 465000,
+				"to": 471000
+			},
+			"text": " From and address from your local node or address from a light"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 472000
+			},
+			"text": " Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " You can also search registries by name, deploy your address, or by"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:07:59,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 479000
+			},
+			"text": " Type tag."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:59,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 479000,
+				"to": 485000
+			},
+			"text": " Type tags are specified on registry creation."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 490000
+			},
+			"text": " Search results show some basic information about each registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:17,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 497000
+			},
+			"text": " You can click on a registry name to see more details."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,000",
+				"to": "00:08:20,000"
+			},
+			"offsets": {
+				"from": 497000,
+				"to": 500000
+			},
+			"text": " And you can see all the options that are taking place in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,000",
+				"to": "00:08:26,000"
+			},
+			"offsets": {
+				"from": 500000,
+				"to": 506000
+			},
+			"text": " Bridget."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,000",
+				"to": "00:08:31,000"
+			},
+			"offsets": {
+				"from": 506000,
+				"to": 511000
+			},
+			"text": " And send bids for active options."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,000",
+				"to": "00:08:35,000"
+			},
+			"offsets": {
+				"from": 511000,
+				"to": 515000
+			},
+			"text": " This table lists the current records of the registry."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 515000,
+				"to": 520000
+			},
+			"text": " And if you're the owner of the registry, you can kill it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:46,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 526000
+			},
+			"text": " You can transfer ownership of the records you own or delete them."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,000",
+				"to": "00:08:54,000"
+			},
+			"offsets": {
+				"from": 526000,
+				"to": 534000
+			},
+			"text": " And that's regis."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 534000,
+				"to": 538000
+			},
+			"text": " So thanks for listening."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:03,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 543000
+			},
+			"text": " Daniel and i hope you find it useful as you build your daps that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 543000,
+				"to": 552000
+			},
+			"text": " Can gain value from adding registries to them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:17,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 557000
+			},
+			"text": " >> You can ask questions."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:17,000",
+				"to": "00:09:22,000"
+			},
+			"offsets": {
+				"from": 557000,
+				"to": 562000
+			},
+			"text": " I didn't write this software but i know a lot about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 562000,
+				"to": 567000
+			},
+			"text": " >> Any questions?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 570000
+			},
+			"text": " >> Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:35,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 575000
+			},
+			"text": " >> Thank you, Naran."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,000",
+				"to": "00:09:37,240"
+			},
+			"offsets": {
+				"from": 575000,
+				"to": 577240
+			},
+			"text": " (buzzing)"
+		}
+	]
+}

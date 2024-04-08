@@ -1,0 +1,2639 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:28,720"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 28720
+			},
+			"text": " The genius of Vitalik Buterin's multi-client implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,720",
+				"to": "00:00:31,720"
+			},
+			"offsets": {
+				"from": 28720,
+				"to": 31720
+			},
+			"text": " approach was seen this morning."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,720",
+				"to": "00:00:35,680"
+			},
+			"offsets": {
+				"from": 31720,
+				"to": 35680
+			},
+			"text": " So obviously, there was that incident regarding"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,680",
+				"to": "00:00:37,120"
+			},
+			"offsets": {
+				"from": 35680,
+				"to": 37120
+			},
+			"text": " the exploit of Geth."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,120",
+				"to": "00:00:38,840"
+			},
+			"offsets": {
+				"from": 37120,
+				"to": 38840
+			},
+			"text": " And so the parity node was running."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,840",
+				"to": "00:00:43,880"
+			},
+			"offsets": {
+				"from": 38840,
+				"to": 43880
+			},
+			"text": " So this eludes to the importance of a robust and multi-client"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,880",
+				"to": "00:00:46,800"
+			},
+			"offsets": {
+				"from": 43880,
+				"to": 46800
+			},
+			"text": " implementation of the theorem network."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:46,800",
+				"to": "00:00:48,800"
+			},
+			"offsets": {
+				"from": 46800,
+				"to": 48800
+			},
+			"text": " [CHEERING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,800",
+				"to": "00:00:53,920"
+			},
+			"offsets": {
+				"from": 48800,
+				"to": 53920
+			},
+			"text": " So good afternoon, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,920",
+				"to": "00:00:56,800"
+			},
+			"offsets": {
+				"from": 53920,
+				"to": 56800
+			},
+			"text": " My name is TJ, and I'm here on behalf of ETH Core."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:56,800",
+				"to": "00:01:00,200"
+			},
+			"offsets": {
+				"from": 56800,
+				"to": 60200
+			},
+			"text": " So Gavin Wood is unable to attend today."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,200",
+				"to": "00:01:02,320"
+			},
+			"offsets": {
+				"from": 60200,
+				"to": 62320
+			},
+			"text": " He's spending time with his newborn baby."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,320",
+				"to": "00:01:06,680"
+			},
+			"offsets": {
+				"from": 62320,
+				"to": 66680
+			},
+			"text": " So I hope I will be able to present on behalf of ETH Core"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,680",
+				"to": "00:01:09,000"
+			},
+			"offsets": {
+				"from": 66680,
+				"to": 69000
+			},
+			"text": " and on behalf of the team."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,000",
+				"to": "00:01:11,080"
+			},
+			"offsets": {
+				"from": 69000,
+				"to": 71080
+			},
+			"text": " If you don't mind, because we are here in China,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,080",
+				"to": "00:01:13,720"
+			},
+			"offsets": {
+				"from": 71080,
+				"to": 73720
+			},
+			"text": " I'll say a few words in Mandarin."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,720",
+				"to": "00:01:15,680"
+			},
+			"offsets": {
+				"from": 73720,
+				"to": 75680
+			},
+			"text": " [SPEAKING CHINESE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,680",
+				"to": "00:01:17,680"
+			},
+			"offsets": {
+				"from": 75680,
+				"to": 77680
+			},
+			"text": " [SPEAKING CHINESE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,680",
+				"to": "00:01:38,360"
+			},
+			"offsets": {
+				"from": 77680,
+				"to": 98360
+			},
+			"text": " I hope Vitalik doesn't mind that."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,360",
+				"to": "00:01:39,880"
+			},
+			"offsets": {
+				"from": 98360,
+				"to": 99880
+			},
+			"text": " Today, we are so excited."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,880",
+				"to": "00:01:44,560"
+			},
+			"offsets": {
+				"from": 99880,
+				"to": 104560
+			},
+			"text": " We are so excited to be here to launch Parity's UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,560",
+				"to": "00:01:50,200"
+			},
+			"offsets": {
+				"from": 104560,
+				"to": 110200
+			},
+			"text": " So we know the importance of contributing"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,200",
+				"to": "00:01:52,080"
+			},
+			"offsets": {
+				"from": 110200,
+				"to": 112080
+			},
+			"text": " and growing the theorem ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,080",
+				"to": "00:01:54,680"
+			},
+			"offsets": {
+				"from": 112080,
+				"to": 114680
+			},
+			"text": " And that is what ETH Core is focused upon."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,680",
+				"to": "00:01:56,880"
+			},
+			"offsets": {
+				"from": 114680,
+				"to": 116880
+			},
+			"text": " We have an amazing dev team, and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,880",
+				"to": "00:02:02,840"
+			},
+			"offsets": {
+				"from": 116880,
+				"to": 122840
+			},
+			"text": " is our passion to provide and create amazing software."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,840",
+				"to": "00:02:07,200"
+			},
+			"offsets": {
+				"from": 122840,
+				"to": 127200
+			},
+			"text": " So today, we'll be about the launch of Parity's UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,200",
+				"to": "00:02:11,600"
+			},
+			"offsets": {
+				"from": 127200,
+				"to": 131600
+			},
+			"text": " And we want to continue making it easier for developers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,600",
+				"to": "00:02:15,880"
+			},
+			"offsets": {
+				"from": 131600,
+				"to": 135880
+			},
+			"text": " users to leverage and utilize the amazing Ethereum network."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,880",
+				"to": "00:02:18,560"
+			},
+			"offsets": {
+				"from": 135880,
+				"to": 138560
+			},
+			"text": " So we want to thank the foundation, and everyone that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,560",
+				"to": "00:02:21,080"
+			},
+			"offsets": {
+				"from": 138560,
+				"to": 141080
+			},
+			"text": " been involved in the organization of this event,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:21,080",
+				"to": "00:02:24,720"
+			},
+			"offsets": {
+				"from": 141080,
+				"to": 144720
+			},
+			"text": " especially Ming and Vitalik."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,720",
+				"to": "00:02:30,600"
+			},
+			"offsets": {
+				"from": 144720,
+				"to": 150600
+			},
+			"text": " So what we have done for ETH Core, a little bit of background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,600",
+				"to": "00:02:34,120"
+			},
+			"offsets": {
+				"from": 150600,
+				"to": 154120
+			},
+			"text": " ETH Core is made out of many of the alumni of the Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,120",
+				"to": "00:02:35,160"
+			},
+			"offsets": {
+				"from": 154120,
+				"to": 155160
+			},
+			"text": " Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,160",
+				"to": "00:02:38,160"
+			},
+			"offsets": {
+				"from": 155160,
+				"to": 158160
+			},
+			"text": " We have a great relationship with the foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,160",
+				"to": "00:02:44,040"
+			},
+			"offsets": {
+				"from": 158160,
+				"to": 164040
+			},
+			"text": " And we present to you the Parity Ethereum client."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:44,040",
+				"to": "00:02:48,080"
+			},
+			"offsets": {
+				"from": 164040,
+				"to": 168080
+			},
+			"text": " It is a high performance client written in a very safe"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,080",
+				"to": "00:02:49,600"
+			},
+			"offsets": {
+				"from": 168080,
+				"to": 169600
+			},
+			"text": " language, Rust."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,600",
+				"to": "00:02:54,000"
+			},
+			"offsets": {
+				"from": 169600,
+				"to": 174000
+			},
+			"text": " It's a very new language created by the Mozilla Foundation."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,000",
+				"to": "00:02:57,640"
+			},
+			"offsets": {
+				"from": 174000,
+				"to": 177640
+			},
+			"text": " And what we tried to do was to do a clean room implementation"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,640",
+				"to": "00:03:00,120"
+			},
+			"offsets": {
+				"from": 177640,
+				"to": 180120
+			},
+			"text": " to take the lessons that we've learned,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,120",
+				"to": "00:03:03,280"
+			},
+			"offsets": {
+				"from": 180120,
+				"to": 183280
+			},
+			"text": " building the different clients with the foundation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,280",
+				"to": "00:03:05,760"
+			},
+			"offsets": {
+				"from": 183280,
+				"to": 185760
+			},
+			"text": " and to put that into a high performance client"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:05,760",
+				"to": "00:03:08,720"
+			},
+			"offsets": {
+				"from": 185760,
+				"to": 188720
+			},
+			"text": " that we can bring to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,720",
+				"to": "00:03:13,400"
+			},
+			"offsets": {
+				"from": 188720,
+				"to": 193400
+			},
+			"text": " So we believe that the ecosystem has a tremendous"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,400",
+				"to": "00:03:15,680"
+			},
+			"offsets": {
+				"from": 193400,
+				"to": 195680
+			},
+			"text": " potential for growth."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:15,680",
+				"to": "00:03:18,520"
+			},
+			"offsets": {
+				"from": 195680,
+				"to": 198520
+			},
+			"text": " However, it requires basic infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,520",
+				"to": "00:03:23,960"
+			},
+			"offsets": {
+				"from": 198520,
+				"to": 203960
+			},
+			"text": " For example, the roads and electrical wiring and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,960",
+				"to": "00:03:27,680"
+			},
+			"offsets": {
+				"from": 203960,
+				"to": 207680
+			},
+			"text": " plumbing to make sure that everything is set out there"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,680",
+				"to": "00:03:29,200"
+			},
+			"offsets": {
+				"from": 207680,
+				"to": 209200
+			},
+			"text": " for people to build on."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,200",
+				"to": "00:03:32,480"
+			},
+			"offsets": {
+				"from": 209200,
+				"to": 212480
+			},
+			"text": " For example, it is important that the network runs at all"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,480",
+				"to": "00:03:33,040"
+			},
+			"offsets": {
+				"from": 212480,
+				"to": 213040
+			},
+			"text": " times."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,040",
+				"to": "00:03:34,920"
+			},
+			"offsets": {
+				"from": 213040,
+				"to": 214920
+			},
+			"text": " This is mission critical."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,920",
+				"to": "00:03:39,000"
+			},
+			"offsets": {
+				"from": 214920,
+				"to": 219000
+			},
+			"text": " So what we try to do is to ensure that the infrastructure is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,000",
+				"to": "00:03:41,840"
+			},
+			"offsets": {
+				"from": 219000,
+				"to": 221840
+			},
+			"text": " there for people to build on and leverage."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,840",
+				"to": "00:03:49,320"
+			},
+			"offsets": {
+				"from": 221840,
+				"to": 229320
+			},
+			"text": " Today, what I'm going to show you, the Parity UI, has that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,320",
+				"to": "00:03:50,320"
+			},
+			"offsets": {
+				"from": 229320,
+				"to": 230320
+			},
+			"text": " in mind."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,320",
+				"to": "00:03:54,760"
+			},
+			"offsets": {
+				"from": 230320,
+				"to": 234760
+			},
+			"text": " It is the focus of the UI and its our gift to developers and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,760",
+				"to": "00:03:57,520"
+			},
+			"offsets": {
+				"from": 234760,
+				"to": 237520
+			},
+			"text": " application developers everywhere."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:57,520",
+				"to": "00:04:05,840"
+			},
+			"offsets": {
+				"from": 237520,
+				"to": 245840
+			},
+			"text": " So in tomorrow's session, my esteemed colleague, Akari, will"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,840",
+				"to": "00:04:09,880"
+			},
+			"offsets": {
+				"from": 245840,
+				"to": 249880
+			},
+			"text": " be presenting on Parity's performance and security."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,880",
+				"to": "00:04:12,760"
+			},
+			"offsets": {
+				"from": 249880,
+				"to": 252760
+			},
+			"text": " I really encourage you to attend the event."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,760",
+				"to": "00:04:14,680"
+			},
+			"offsets": {
+				"from": 252760,
+				"to": 254680
+			},
+			"text": " It will be very technical."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:14,680",
+				"to": "00:04:17,320"
+			},
+			"offsets": {
+				"from": 254680,
+				"to": 257320
+			},
+			"text": " Today, I'll just be walking through the UI, the shiny,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,320",
+				"to": "00:04:19,960"
+			},
+			"offsets": {
+				"from": 257320,
+				"to": 259960
+			},
+			"text": " amazing UI, never before seen by everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,960",
+				"to": "00:04:21,440"
+			},
+			"offsets": {
+				"from": 259960,
+				"to": 261440
+			},
+			"text": " And I hope that you guys enjoyed it."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,440",
+				"to": "00:04:26,280"
+			},
+			"offsets": {
+				"from": 261440,
+				"to": 266280
+			},
+			"text": " So we really think the team at Ms."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,280",
+				"to": "00:04:28,720"
+			},
+			"offsets": {
+				"from": 266280,
+				"to": 268720
+			},
+			"text": " has done a really amazing job."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,720",
+				"to": "00:04:32,360"
+			},
+			"offsets": {
+				"from": 268720,
+				"to": 272360
+			},
+			"text": " And what we tried to do was to take some of the ideas and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,360",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 272360,
+				"to": 275960
+			},
+			"text": " reimagine it in a new and different way."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:41,120"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 281120
+			},
+			"text": " For the first time, the client and the UI will be natively"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,120",
+				"to": "00:04:42,040"
+			},
+			"offsets": {
+				"from": 281120,
+				"to": 282040
+			},
+			"text": " baked in."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:42,040",
+				"to": "00:04:45,840"
+			},
+			"offsets": {
+				"from": 282040,
+				"to": 285840
+			},
+			"text": " By downloading the Parity client, you will have the native"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,840",
+				"to": "00:04:49,840"
+			},
+			"offsets": {
+				"from": 285840,
+				"to": 289840
+			},
+			"text": " UI built for your use."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:49,840",
+				"to": "00:04:52,240"
+			},
+			"offsets": {
+				"from": 289840,
+				"to": 292240
+			},
+			"text": " You wouldn't have to download any other external"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,240",
+				"to": "00:04:52,840"
+			},
+			"offsets": {
+				"from": 292240,
+				"to": 292840
+			},
+			"text": " application."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,840",
+				"to": "00:04:55,520"
+			},
+			"offsets": {
+				"from": 292840,
+				"to": 295520
+			},
+			"text": " We are going to run discussions to support"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,520",
+				"to": "00:05:00,200"
+			},
+			"offsets": {
+				"from": 295520,
+				"to": 300200
+			},
+			"text": " Ms. to ensure that Ms is compatible with the Parity client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,200",
+				"to": "00:05:04,400"
+			},
+			"offsets": {
+				"from": 300200,
+				"to": 304400
+			},
+			"text": " But this is a reimagination of how a UI could look like."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,400",
+				"to": "00:05:07,880"
+			},
+			"offsets": {
+				"from": 304400,
+				"to": 307880
+			},
+			"text": " And we spent a lot of work looking at it, thinking about"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,880",
+				"to": "00:05:11,400"
+			},
+			"offsets": {
+				"from": 307880,
+				"to": 311400
+			},
+			"text": " the various security design features, and ensuring that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,400",
+				"to": "00:05:14,280"
+			},
+			"offsets": {
+				"from": 311400,
+				"to": 314280
+			},
+			"text": " UI is baked into the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,280",
+				"to": "00:05:20,800"
+			},
+			"offsets": {
+				"from": 314280,
+				"to": 320800
+			},
+			"text": " So for the first time, running a full node, you'll be able to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,800",
+				"to": "00:05:28,880"
+			},
+			"offsets": {
+				"from": 320800,
+				"to": 328880
+			},
+			"text": " see a user interface for each and every one of you to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:28,880",
+				"to": "00:05:29,840"
+			},
+			"offsets": {
+				"from": 328880,
+				"to": 329840
+			},
+			"text": " So there it is."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,840",
+				"to": "00:05:37,600"
+			},
+			"offsets": {
+				"from": 329840,
+				"to": 337600
+			},
+			"text": " OK, before you get too excited, this will only be going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,600",
+				"to": "00:05:39,120"
+			},
+			"offsets": {
+				"from": 337600,
+				"to": 339120
+			},
+			"text": " beta in the next release."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,120",
+				"to": "00:05:40,920"
+			},
+			"offsets": {
+				"from": 339120,
+				"to": 340920
+			},
+			"text": " So it's not out yet."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,920",
+				"to": "00:05:43,920"
+			},
+			"offsets": {
+				"from": 340920,
+				"to": 343920
+			},
+			"text": " The next beta release will be over the next three weeks or"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,920",
+				"to": "00:05:44,760"
+			},
+			"offsets": {
+				"from": 343920,
+				"to": 344760
+			},
+			"text": " so."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,760",
+				"to": "00:05:46,160"
+			},
+			"offsets": {
+				"from": 344760,
+				"to": 346160
+			},
+			"text": " Why is it so amazing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:46,160",
+				"to": "00:05:50,040"
+			},
+			"offsets": {
+				"from": 346160,
+				"to": 350040
+			},
+			"text": " Why is this blank screen so wonderful and so amazing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,040",
+				"to": "00:05:52,280"
+			},
+			"offsets": {
+				"from": 350040,
+				"to": 352280
+			},
+			"text": " This is a Chrome browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,280",
+				"to": "00:05:56,160"
+			},
+			"offsets": {
+				"from": 352280,
+				"to": 356160
+			},
+			"text": " By simply typing in local host into the URL line, you are"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,160",
+				"to": "00:06:00,240"
+			},
+			"offsets": {
+				"from": 356160,
+				"to": 360240
+			},
+			"text": " able to interact directly with the Parity client, directly"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,240",
+				"to": "00:06:01,360"
+			},
+			"offsets": {
+				"from": 360240,
+				"to": 361360
+			},
+			"text": " with the full node."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:01,360",
+				"to": "00:06:02,400"
+			},
+			"offsets": {
+				"from": 361360,
+				"to": 362400
+			},
+			"text": " Think about that."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:02,400",
+				"to": "00:06:03,800"
+			},
+			"offsets": {
+				"from": 362400,
+				"to": 363800
+			},
+			"text": " You wouldn't have to download anything."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,800",
+				"to": "00:06:08,080"
+			},
+			"offsets": {
+				"from": 363800,
+				"to": 368080
+			},
+			"text": " For the first time, you wouldn't have the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,080",
+				"to": "00:06:10,800"
+			},
+			"offsets": {
+				"from": 368080,
+				"to": 370800
+			},
+			"text": " Now, everyday users can build stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,800",
+				"to": "00:06:12,800"
+			},
+			"offsets": {
+				"from": 370800,
+				"to": 372800
+			},
+			"text": " We don't need to mess around with the security."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,800",
+				"to": "00:06:15,560"
+			},
+			"offsets": {
+				"from": 372800,
+				"to": 375560
+			},
+			"text": " Can have a wonderful UI just for you to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:15,560",
+				"to": "00:06:17,040"
+			},
+			"offsets": {
+				"from": 375560,
+				"to": 377040
+			},
+			"text": " So that is our gift to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,480",
+				"to": "00:06:23,560"
+			},
+			"offsets": {
+				"from": 379480,
+				"to": 383560
+			},
+			"text": " So it is packed full of features."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,560",
+				"to": "00:06:26,040"
+			},
+			"offsets": {
+				"from": 383560,
+				"to": 386040
+			},
+			"text": " Before I go into it, I'll be talking through the video."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,040",
+				"to": "00:06:30,120"
+			},
+			"offsets": {
+				"from": 386040,
+				"to": 390120
+			},
+			"text": " Packed full of features that we hope will dramatically"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,120",
+				"to": "00:06:33,600"
+			},
+			"offsets": {
+				"from": 390120,
+				"to": 393600
+			},
+			"text": " change the user experience."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,600",
+				"to": "00:06:36,720"
+			},
+			"offsets": {
+				"from": 393600,
+				"to": 396720
+			},
+			"text": " So I will show you now the UI, the first glance."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,720",
+				"to": "00:06:43,400"
+			},
+			"offsets": {
+				"from": 396720,
+				"to": 403400
+			},
+			"text": " This is-- I'm going to show you a video in a bit, but I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,400",
+				"to": "00:06:45,920"
+			},
+			"offsets": {
+				"from": 403400,
+				"to": 405920
+			},
+			"text": " just going to talk through a few of the screen shots so that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,920",
+				"to": "00:06:48,320"
+			},
+			"offsets": {
+				"from": 405920,
+				"to": 408320
+			},
+			"text": " you understand where everything is going."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,320",
+				"to": "00:06:53,600"
+			},
+			"offsets": {
+				"from": 408320,
+				"to": 413600
+			},
+			"text": " This is the first screen that you come across when you enter"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,600",
+				"to": "00:06:55,240"
+			},
+			"offsets": {
+				"from": 413600,
+				"to": 415240
+			},
+			"text": " the Parity browser."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,240",
+				"to": "00:06:58,240"
+			},
+			"offsets": {
+				"from": 415240,
+				"to": 418240
+			},
+			"text": " It allows you to set up an account, very similar to what"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,240",
+				"to": "00:06:58,720"
+			},
+			"offsets": {
+				"from": 418240,
+				"to": 418720
+			},
+			"text": " you're used to."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,720",
+				"to": "00:07:05,800"
+			},
+			"offsets": {
+				"from": 418720,
+				"to": 425800
+			},
+			"text": " The UI is designed to be very clean, very intuitive."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,800",
+				"to": "00:07:09,040"
+			},
+			"offsets": {
+				"from": 425800,
+				"to": 429040
+			},
+			"text": " It's designed for my mom and dad, my grandparents,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,040",
+				"to": "00:07:13,240"
+			},
+			"offsets": {
+				"from": 429040,
+				"to": 433240
+			},
+			"text": " to be able to use the power of the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,240",
+				"to": "00:07:15,680"
+			},
+			"offsets": {
+				"from": 433240,
+				"to": 435680
+			},
+			"text": " to leverage that decentralized network."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,120",
+				"to": "00:07:20,360"
+			},
+			"offsets": {
+				"from": 438120,
+				"to": 440360
+			},
+			"text": " You are able to do obviously client imports."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,360",
+				"to": "00:07:21,800"
+			},
+			"offsets": {
+				"from": 440360,
+				"to": 441800
+			},
+			"text": " This is on a full life note."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,800",
+				"to": "00:07:22,560"
+			},
+			"offsets": {
+				"from": 441800,
+				"to": 442560
+			},
+			"text": " Think about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,560",
+				"to": "00:07:25,360"
+			},
+			"offsets": {
+				"from": 442560,
+				"to": 445360
+			},
+			"text": " This UI will come shipped with the client."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,360",
+				"to": "00:07:31,560"
+			},
+			"offsets": {
+				"from": 445360,
+				"to": 451560
+			},
+			"text": " Are you all ready for the video?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,560",
+				"to": "00:07:33,040"
+			},
+			"offsets": {
+				"from": 451560,
+				"to": 453040
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,040",
+				"to": "00:07:39,240"
+			},
+			"offsets": {
+				"from": 453040,
+				"to": 459240
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,240",
+				"to": "00:07:39,740"
+			},
+			"offsets": {
+				"from": 459240,
+				"to": 459740
+			},
+			"text": " OK."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:39,740",
+				"to": "00:07:43,960"
+			},
+			"offsets": {
+				"from": 459740,
+				"to": 463960
+			},
+			"text": " So right now we have the client being run in the background,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,960",
+				"to": "00:07:46,080"
+			},
+			"offsets": {
+				"from": 463960,
+				"to": 466080
+			},
+			"text": " and we are setting up an account."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:46,320",
+				"to": "00:07:49,800"
+			},
+			"offsets": {
+				"from": 466320,
+				"to": 469800
+			},
+			"text": " [INAUDIBLE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,800",
+				"to": "00:07:54,960"
+			},
+			"offsets": {
+				"from": 469800,
+				"to": 474960
+			},
+			"text": " You have this identical that map from a key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:54,960",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 474960,
+				"to": 480760
+			},
+			"text": " a image which allows you to remember your key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:04,200"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 484200
+			},
+			"text": " and we have a UI which is natively designed, allowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,200",
+				"to": "00:08:05,560"
+			},
+			"offsets": {
+				"from": 484200,
+				"to": 485560
+			},
+			"text": " people to use it very easily."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,560",
+				"to": "00:08:08,040"
+			},
+			"offsets": {
+				"from": 485560,
+				"to": 488040
+			},
+			"text": " It integrates with a GAF key store if you want to do that."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:15,200",
+				"to": "00:08:20,520"
+			},
+			"offsets": {
+				"from": 495200,
+				"to": 500520
+			},
+			"text": " And suddenly you have the UI baked on top of your client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,520",
+				"to": "00:08:22,880"
+			},
+			"offsets": {
+				"from": 500520,
+				"to": 502880
+			},
+			"text": " Now we're doing a quick transfer, just either transfer."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,880",
+				"to": "00:08:28,120"
+			},
+			"offsets": {
+				"from": 502880,
+				"to": 508120
+			},
+			"text": " And this is the key feature here."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,120",
+				"to": "00:08:31,560"
+			},
+			"offsets": {
+				"from": 508120,
+				"to": 511560
+			},
+			"text": " This is the parity sign-up, which ensures the level of security"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:31,560",
+				"to": "00:08:34,240"
+			},
+			"offsets": {
+				"from": 511560,
+				"to": 514240
+			},
+			"text": " which the end user actually needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:34,240",
+				"to": "00:08:36,800"
+			},
+			"offsets": {
+				"from": 514240,
+				"to": 516800
+			},
+			"text": " So that developers won't have to mess around with that kind of stuff."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,800",
+				"to": "00:08:41,840"
+			},
+			"offsets": {
+				"from": 516800,
+				"to": 521840
+			},
+			"text": " So you see the transaction there."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,840",
+				"to": "00:08:44,080"
+			},
+			"offsets": {
+				"from": 521840,
+				"to": 524080
+			},
+			"text": " You have a address book, and you can just"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:44,080",
+				"to": "00:08:45,440"
+			},
+			"offsets": {
+				"from": 524080,
+				"to": 525440
+			},
+			"text": " save the address as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,440",
+				"to": "00:08:48,360"
+			},
+			"offsets": {
+				"from": 525440,
+				"to": 528360
+			},
+			"text": " So it's a very intuitive user interface."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,360",
+				"to": "00:08:50,680"
+			},
+			"offsets": {
+				"from": 528360,
+				"to": 530680
+			},
+			"text": " We are focused on the core technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,680",
+				"to": "00:08:53,440"
+			},
+			"offsets": {
+				"from": 530680,
+				"to": 533440
+			},
+			"text": " We are focused on building a high performance client."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,440",
+				"to": "00:08:56,000"
+			},
+			"offsets": {
+				"from": 533440,
+				"to": 536000
+			},
+			"text": " But we don't think that just because you have high performance"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,000",
+				"to": "00:08:57,200"
+			},
+			"offsets": {
+				"from": 536000,
+				"to": 537200
+			},
+			"text": " client, you have a crappy UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,200",
+				"to": "00:09:00,000"
+			},
+			"offsets": {
+				"from": 537200,
+				"to": 540000
+			},
+			"text": " No, we believe that the two things come together."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,000",
+				"to": "00:09:08,480"
+			},
+			"offsets": {
+				"from": 540000,
+				"to": 548480
+			},
+			"text": " So the next part of this presentation"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,480",
+				"to": "00:09:12,280"
+			},
+			"offsets": {
+				"from": 548480,
+				"to": 552280
+			},
+			"text": " will be what should really excite all of you."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,280",
+				"to": "00:09:15,040"
+			},
+			"offsets": {
+				"from": 552280,
+				"to": 555040
+			},
+			"text": " It is targeted at that developers."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,040",
+				"to": "00:09:19,040"
+			},
+			"offsets": {
+				"from": 555040,
+				"to": 559040
+			},
+			"text": " It's targeted at that developers to create that infrastructure which"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,040",
+				"to": "00:09:22,520"
+			},
+			"offsets": {
+				"from": 559040,
+				"to": 562520
+			},
+			"text": " should have been a dev so that you don't have to mess with security."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,520",
+				"to": "00:09:25,160"
+			},
+			"offsets": {
+				"from": 562520,
+				"to": 565160
+			},
+			"text": " So you don't have to wreck your mind thinking about UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,160",
+				"to": "00:09:26,560"
+			},
+			"offsets": {
+				"from": 565160,
+				"to": 566560
+			},
+			"text": " How am I going to keep it safe?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,560",
+				"to": "00:09:27,840"
+			},
+			"offsets": {
+				"from": 566560,
+				"to": 567840
+			},
+			"text": " Do I route it through a server?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,840",
+				"to": "00:09:29,440"
+			},
+			"offsets": {
+				"from": 567840,
+				"to": 569440
+			},
+			"text": " Am I going to get shut down by the regulator?"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,440",
+				"to": "00:09:30,360"
+			},
+			"offsets": {
+				"from": 569440,
+				"to": 570360
+			},
+			"text": " Things like that."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,360",
+				"to": "00:09:36,400"
+			},
+			"offsets": {
+				"from": 570360,
+				"to": 576400
+			},
+			"text": " So we want to ensure that apps have the necessary infrastructure"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,400",
+				"to": "00:09:40,080"
+			},
+			"offsets": {
+				"from": 576400,
+				"to": 580080
+			},
+			"text": " to function in a decentralized network the way it was intended."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:40,080",
+				"to": "00:09:50,360"
+			},
+			"offsets": {
+				"from": 580080,
+				"to": 590360
+			},
+			"text": " So this is the dev UI here."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,360",
+				"to": "00:09:53,680"
+			},
+			"offsets": {
+				"from": 590360,
+				"to": 593680
+			},
+			"text": " We have Gavcoin, because even though Gavin is not here to join us,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:53,680",
+				"to": "00:09:56,480"
+			},
+			"offsets": {
+				"from": 593680,
+				"to": 596480
+			},
+			"text": " he is here in spirit and he senses love."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,480",
+				"to": "00:10:01,400"
+			},
+			"offsets": {
+				"from": 596480,
+				"to": 601400
+			},
+			"text": " So this is an imagination of how depths can look like"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,400",
+				"to": "00:10:06,840"
+			},
+			"offsets": {
+				"from": 601400,
+				"to": 606840
+			},
+			"text": " and how people can use the parity client to integrate"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,840",
+				"to": "00:10:09,800"
+			},
+			"offsets": {
+				"from": 606840,
+				"to": 609800
+			},
+			"text": " whatever depths they are creating."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,800",
+				"to": "00:10:17,200"
+			},
+			"offsets": {
+				"from": 609800,
+				"to": 617200
+			},
+			"text": " Dev tokens are given equal citizenship status in the UI to Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:17,200",
+				"to": "00:10:18,800"
+			},
+			"offsets": {
+				"from": 617200,
+				"to": 618800
+			},
+			"text": " And we'll see what that means in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:18,800",
+				"to": "00:10:21,320"
+			},
+			"offsets": {
+				"from": 618800,
+				"to": 621320
+			},
+			"text": " This means that you can do whatever you're"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:21,320",
+				"to": "00:10:27,360"
+			},
+			"offsets": {
+				"from": 621320,
+				"to": 627360
+			},
+			"text": " required to do with the dev tokens in the same way as you would with Ether."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:27,360",
+				"to": "00:10:28,560"
+			},
+			"offsets": {
+				"from": 627360,
+				"to": 628560
+			},
+			"text": " It's treated in the same way."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:28,560",
+				"to": "00:10:32,400"
+			},
+			"offsets": {
+				"from": 628560,
+				"to": 632400
+			},
+			"text": " And we know that it's just as important."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:32,400",
+				"to": "00:10:34,840"
+			},
+			"offsets": {
+				"from": 632400,
+				"to": 634840
+			},
+			"text": " And we want people to build amazing stuff on this network."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:39,720",
+				"to": "00:10:43,280"
+			},
+			"offsets": {
+				"from": 639720,
+				"to": 643280
+			},
+			"text": " So this was the trusted signer that I talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:43,280",
+				"to": "00:10:47,280"
+			},
+			"offsets": {
+				"from": 643280,
+				"to": 647280
+			},
+			"text": " This thing has an identical on the bottom."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:47,280",
+				"to": "00:10:52,960"
+			},
+			"offsets": {
+				"from": 647280,
+				"to": 652960
+			},
+			"text": " To ensure that the user knows that it is trusted, you can trust parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:52,960",
+				"to": "00:10:57,080"
+			},
+			"offsets": {
+				"from": 652960,
+				"to": 657080
+			},
+			"text": " We sandbox all the depths from parity itself."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,080",
+				"to": "00:11:00,200"
+			},
+			"offsets": {
+				"from": 657080,
+				"to": 660200
+			},
+			"text": " This means that you don't have to worry about depth accessing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,200",
+				"to": "00:11:04,880"
+			},
+			"offsets": {
+				"from": 660200,
+				"to": 664880
+			},
+			"text": " particular of the client ports, compromising security, any of that issue."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,880",
+				"to": "00:11:06,960"
+			},
+			"offsets": {
+				"from": 664880,
+				"to": 666960
+			},
+			"text": " As long as this parity trusted signer is there,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:06,960",
+				"to": "00:11:09,880"
+			},
+			"offsets": {
+				"from": 666960,
+				"to": 669880
+			},
+			"text": " you can make the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,880",
+				"to": "00:11:11,960"
+			},
+			"offsets": {
+				"from": 669880,
+				"to": 671960
+			},
+			"text": " So the really beautiful thing about this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:11,960",
+				"to": "00:11:15,160"
+			},
+			"offsets": {
+				"from": 671960,
+				"to": 675160
+			},
+			"text": " is that this thing is not routed through a central server."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:15,160",
+				"to": "00:11:17,840"
+			},
+			"offsets": {
+				"from": 675160,
+				"to": 677840
+			},
+			"text": " It is done natively on the client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,840",
+				"to": "00:11:21,720"
+			},
+			"offsets": {
+				"from": 677840,
+				"to": 681720
+			},
+			"text": " You are the one doing all of these transactions the way"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,720",
+				"to": "00:11:25,480"
+			},
+			"offsets": {
+				"from": 681720,
+				"to": 685480
+			},
+			"text": " that Ethereum was designed to do."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:25,480",
+				"to": "00:11:31,800"
+			},
+			"offsets": {
+				"from": 685480,
+				"to": 691800
+			},
+			"text": " As long as the dev tokens at here with the ERC20 standard"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:31,800",
+				"to": "00:11:35,400"
+			},
+			"offsets": {
+				"from": 691800,
+				"to": 695400
+			},
+			"text": " and is on the parity dev token registry,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:35,400",
+				"to": "00:11:41,440"
+			},
+			"offsets": {
+				"from": 695400,
+				"to": 701440
+			},
+			"text": " it will automatically be integrated into the dev UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,440",
+				"to": "00:11:43,360"
+			},
+			"offsets": {
+				"from": 701440,
+				"to": 703360
+			},
+			"text": " I talked about the trusted signer in a bit."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:43,360",
+				"to": "00:11:47,160"
+			},
+			"offsets": {
+				"from": 703360,
+				"to": 707160
+			},
+			"text": " Tomorrow, Arcadilly will talk a little bit about the technical aspects"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,160",
+				"to": "00:11:52,240"
+			},
+			"offsets": {
+				"from": 707160,
+				"to": 712240
+			},
+			"text": " of the trusted signer and what goes behind in the machinery"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:52,240",
+				"to": "00:11:53,200"
+			},
+			"offsets": {
+				"from": 712240,
+				"to": 713200
+			},
+			"text": " at the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,200",
+				"to": "00:11:55,680"
+			},
+			"offsets": {
+				"from": 713200,
+				"to": 715680
+			},
+			"text": " But I just want to say a few things about it."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,680",
+				"to": "00:11:58,080"
+			},
+			"offsets": {
+				"from": 715680,
+				"to": 718080
+			},
+			"text": " That you can actually go into the signer"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,080",
+				"to": "00:12:03,440"
+			},
+			"offsets": {
+				"from": 718080,
+				"to": 723440
+			},
+			"text": " and ensure that the transaction is done in the way that you intended it."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,440",
+				"to": "00:12:08,360"
+			},
+			"offsets": {
+				"from": 723440,
+				"to": 728360
+			},
+			"text": " So you have a level of trust in the Ethereum network"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:08,360",
+				"to": "00:12:12,680"
+			},
+			"offsets": {
+				"from": 728360,
+				"to": 732680
+			},
+			"text": " interacting with DEPS that currently may not exist if you just"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,680",
+				"to": "00:12:13,440"
+			},
+			"offsets": {
+				"from": 732680,
+				"to": 733440
+			},
+			"text": " use the command line."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:13,440",
+				"to": "00:12:19,400"
+			},
+			"offsets": {
+				"from": 733440,
+				"to": 739400
+			},
+			"text": " So now will be the dev part of the video."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:19,400",
+				"to": "00:12:21,120"
+			},
+			"offsets": {
+				"from": 739400,
+				"to": 741120
+			},
+			"text": " Are you guys ready for that as well?"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:21,120",
+				"to": "00:12:25,040"
+			},
+			"offsets": {
+				"from": 741120,
+				"to": 745040
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:25,040",
+				"to": "00:12:26,960"
+			},
+			"offsets": {
+				"from": 745040,
+				"to": 746960
+			},
+			"text": " OK, so now we go into the dev part."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:26,960",
+				"to": "00:12:31,200"
+			},
+			"offsets": {
+				"from": 746960,
+				"to": 751200
+			},
+			"text": " Gavcoin is a toy dev just to show you what is possible."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,200",
+				"to": "00:12:34,120"
+			},
+			"offsets": {
+				"from": 751200,
+				"to": 754120
+			},
+			"text": " Now we buy coins."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:34,120",
+				"to": "00:12:35,400"
+			},
+			"offsets": {
+				"from": 754120,
+				"to": 755400
+			},
+			"text": " This is just a toy."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,400",
+				"to": "00:12:38,640"
+			},
+			"offsets": {
+				"from": 755400,
+				"to": 758640
+			},
+			"text": " So we buy coins using the ether test eater"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,640",
+				"to": "00:12:42,680"
+			},
+			"offsets": {
+				"from": 758640,
+				"to": 762680
+			},
+			"text": " and we transfer it into the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:42,680",
+				"to": "00:12:47,360"
+			},
+			"offsets": {
+				"from": 762680,
+				"to": 767360
+			},
+			"text": " The dev is functioning the background."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:47,360",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 767360,
+				"to": 771000
+			},
+			"text": " And we can see, oh, wow, the transaction is locked."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:53,160"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 773160
+			},
+			"text": " Now we go to parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:53,160",
+				"to": "00:12:57,680"
+			},
+			"offsets": {
+				"from": 773160,
+				"to": 777680
+			},
+			"text": " And we see, OK, now the account has this new dev token in it now."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,680",
+				"to": "00:12:58,960"
+			},
+			"offsets": {
+				"from": 777680,
+				"to": 778960
+			},
+			"text": " We can transfer the token."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:58,960",
+				"to": "00:13:03,680"
+			},
+			"offsets": {
+				"from": 778960,
+				"to": 783680
+			},
+			"text": " This is the first classism treatment that we talked about."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,680",
+				"to": "00:13:06,480"
+			},
+			"offsets": {
+				"from": 783680,
+				"to": 786480
+			},
+			"text": " And we can now send the tokens between different accounts."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:06,480",
+				"to": "00:13:08,240"
+			},
+			"offsets": {
+				"from": 786480,
+				"to": 788240
+			},
+			"text": " So this is-- we're not running any server."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:08,240",
+				"to": "00:13:09,760"
+			},
+			"offsets": {
+				"from": 788240,
+				"to": 789760
+			},
+			"text": " This is completely on the client side."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:09,760",
+				"to": "00:13:16,840"
+			},
+			"offsets": {
+				"from": 789760,
+				"to": 796840
+			},
+			"text": " And now this trusted signer allows you to key in your password."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,840",
+				"to": "00:13:17,960"
+			},
+			"offsets": {
+				"from": 796840,
+				"to": 797960
+			},
+			"text": " And you can trust parity."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,960",
+				"to": "00:13:27,320"
+			},
+			"offsets": {
+				"from": 797960,
+				"to": 807320
+			},
+			"text": " And now you can see that the account has a few of the dev tokens in it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:28,160",
+				"to": "00:13:33,200"
+			},
+			"offsets": {
+				"from": 808160,
+				"to": 813200
+			},
+			"text": " So we are so happy to be here today and to present to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,200",
+				"to": "00:13:34,440"
+			},
+			"offsets": {
+				"from": 813200,
+				"to": 814440
+			},
+			"text": " the launch of the UI."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,440",
+				"to": "00:13:39,600"
+			},
+			"offsets": {
+				"from": 814440,
+				"to": 819600
+			},
+			"text": " This will be-- the UI will be coming out around about the same time"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,600",
+				"to": "00:13:43,040"
+			},
+			"offsets": {
+				"from": 819600,
+				"to": 823040
+			},
+			"text": " that this video will be put up on YouTube in about three to four weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,040",
+				"to": "00:13:46,120"
+			},
+			"offsets": {
+				"from": 823040,
+				"to": 826120
+			},
+			"text": " So we are really excited to be bringing this to you."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,120",
+				"to": "00:13:50,280"
+			},
+			"offsets": {
+				"from": 826120,
+				"to": 830280
+			},
+			"text": " And if there's nothing else, I would just"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:50,280",
+				"to": "00:13:53,920"
+			},
+			"offsets": {
+				"from": 830280,
+				"to": 833920
+			},
+			"text": " like to thank the organizers of this event for doing such a wonderful job"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,920",
+				"to": "00:13:55,160"
+			},
+			"offsets": {
+				"from": 833920,
+				"to": 835160
+			},
+			"text": " here in Shanghai."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,160",
+				"to": "00:13:56,720"
+			},
+			"offsets": {
+				"from": 835160,
+				"to": 836720
+			},
+			"text": " And hello to everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,720",
+				"to": "00:14:00,640"
+			},
+			"offsets": {
+				"from": 836720,
+				"to": 840640
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:00,640",
+				"to": "00:14:01,720"
+			},
+			"offsets": {
+				"from": 840640,
+				"to": 841720
+			},
+			"text": " Thank you, TJ."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,720",
+				"to": "00:14:04,720"
+			},
+			"offsets": {
+				"from": 841720,
+				"to": 844720
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:04,720",
+				"to": "00:14:07,300"
+			},
+			"offsets": {
+				"from": 844720,
+				"to": 847300
+			},
+			"text": " (upbeat music)"
+		}
+	]
+}

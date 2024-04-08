@@ -1,0 +1,2463 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,480"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3480
+			},
+			"text": " [MUSIC PLAYING]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,480",
+				"to": "00:00:18,480"
+			},
+			"offsets": {
+				"from": 3480,
+				"to": 18480
+			},
+			"text": " I'm Ivo, and I'm the founder and CEO of Ambar Wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,480",
+				"to": "00:00:21,180"
+			},
+			"offsets": {
+				"from": 18480,
+				"to": 21180
+			},
+			"text": " And I'm going to tell you about the future of Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,180",
+				"to": "00:00:23,840"
+			},
+			"offsets": {
+				"from": 21180,
+				"to": 23840
+			},
+			"text": " wallets and Ethereum UX."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,840",
+				"to": "00:00:26,840"
+			},
+			"offsets": {
+				"from": 23840,
+				"to": 26840
+			},
+			"text": " And two technologies are at the core of this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,840",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 26840,
+				"to": 29000
+			},
+			"text": " and that's Smart Contract Wallets,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:32,400"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 32400
+			},
+			"text": " kind of also known as account obstructions and MPC,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,400",
+				"to": "00:00:35,480"
+			},
+			"offsets": {
+				"from": 32400,
+				"to": 35480
+			},
+			"text": " otherwise known as much party computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,480",
+				"to": "00:00:38,960"
+			},
+			"offsets": {
+				"from": 35480,
+				"to": 38960
+			},
+			"text": " and sometimes referred to as threshold signatures in this case."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,960",
+				"to": "00:00:41,480"
+			},
+			"offsets": {
+				"from": 38960,
+				"to": 41480
+			},
+			"text": " The question is, can self custody be the future"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,480",
+				"to": "00:00:42,800"
+			},
+			"offsets": {
+				"from": 41480,
+				"to": 42800
+			},
+			"text": " for the next billion users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,800",
+				"to": "00:00:45,360"
+			},
+			"offsets": {
+				"from": 42800,
+				"to": 45360
+			},
+			"text": " How can we onboard the next billion users?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,360",
+				"to": "00:00:47,560"
+			},
+			"offsets": {
+				"from": 45360,
+				"to": 47560
+			},
+			"text": " And there is a big myth in the space"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,560",
+				"to": "00:00:51,080"
+			},
+			"offsets": {
+				"from": 47560,
+				"to": 51080
+			},
+			"text": " that most people are not ready for self custody."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,080",
+				"to": "00:00:55,160"
+			},
+			"offsets": {
+				"from": 51080,
+				"to": 55160
+			},
+			"text": " But the actual reality is that most self custodial wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,160",
+				"to": "00:01:00,040"
+			},
+			"offsets": {
+				"from": 55160,
+				"to": 60040
+			},
+			"text": " are not ready for the users, not the other way around."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,040",
+				"to": "00:01:02,800"
+			},
+			"offsets": {
+				"from": 60040,
+				"to": 62800
+			},
+			"text": " And I'm guessing-- can I get a show of hands"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,800",
+				"to": "00:01:04,920"
+			},
+			"offsets": {
+				"from": 62800,
+				"to": 64920
+			},
+			"text": " who saw the account obstruction panel yesterday"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,920",
+				"to": "00:01:06,440"
+			},
+			"offsets": {
+				"from": 64920,
+				"to": 66440
+			},
+			"text": " with Vitalik?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,440",
+				"to": "00:01:06,720"
+			},
+			"offsets": {
+				"from": 66440,
+				"to": 66720
+			},
+			"text": " Cool."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,720",
+				"to": "00:01:07,600"
+			},
+			"offsets": {
+				"from": 66720,
+				"to": 67600
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:07,600",
+				"to": "00:01:10,720"
+			},
+			"offsets": {
+				"from": 67600,
+				"to": 70720
+			},
+			"text": " So you all know that seat phrases are absolutely terrible,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,720",
+				"to": "00:01:12,680"
+			},
+			"offsets": {
+				"from": 70720,
+				"to": 72680
+			},
+			"text": " and they're an absolutely terrible way"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,680",
+				"to": "00:01:16,080"
+			},
+			"offsets": {
+				"from": 72680,
+				"to": 76080
+			},
+			"text": " of backing up your private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,080",
+				"to": "00:01:17,840"
+			},
+			"offsets": {
+				"from": 76080,
+				"to": 77840
+			},
+			"text": " And we have so many problems in the industry"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,840",
+				"to": "00:01:20,960"
+			},
+			"offsets": {
+				"from": 77840,
+				"to": 80960
+			},
+			"text": " with compromised keys, software wallets being vulnerable"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,960",
+				"to": "00:01:24,800"
+			},
+			"offsets": {
+				"from": 80960,
+				"to": 84800
+			},
+			"text": " to malware and to supply chain attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,800",
+				"to": "00:01:25,680"
+			},
+			"offsets": {
+				"from": 84800,
+				"to": 85680
+			},
+			"text": " which is quite scary."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,680",
+				"to": "00:01:28,600"
+			},
+			"offsets": {
+				"from": 85680,
+				"to": 88600
+			},
+			"text": " Like a single NPM library can completely"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:28,600",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 88600,
+				"to": 90480
+			},
+			"text": " wreck your wallet security."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:33,240"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 93240
+			},
+			"text": " And of course, we have social engineering attacks,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,240",
+				"to": "00:01:35,920"
+			},
+			"offsets": {
+				"from": 93240,
+				"to": 95920
+			},
+			"text": " like, for example, with board dates."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,920",
+				"to": "00:01:38,360"
+			},
+			"offsets": {
+				"from": 95920,
+				"to": 98360
+			},
+			"text": " And generally, all of those things"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:38,360",
+				"to": "00:01:42,120"
+			},
+			"offsets": {
+				"from": 98360,
+				"to": 102120
+			},
+			"text": " can be solved by multi-factor authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:42,120",
+				"to": "00:01:46,560"
+			},
+			"offsets": {
+				"from": 102120,
+				"to": 106560
+			},
+			"text": " And on the chain, we call these multisigs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,560",
+				"to": "00:01:49,560"
+			},
+			"offsets": {
+				"from": 106560,
+				"to": 109560
+			},
+			"text": " And why are multisigs kind of a silver bullet?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,560",
+				"to": "00:01:52,520"
+			},
+			"offsets": {
+				"from": 109560,
+				"to": 112520
+			},
+			"text": " So first of all, by having multiple keys,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,520",
+				"to": "00:01:56,000"
+			},
+			"offsets": {
+				"from": 112520,
+				"to": 116000
+			},
+			"text": " or you can think of it as multiple shards of a single private key,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:56,000",
+				"to": "00:01:58,400"
+			},
+			"offsets": {
+				"from": 116000,
+				"to": 118400
+			},
+			"text": " but it's actually multiple keys, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,400",
+				"to": "00:02:01,640"
+			},
+			"offsets": {
+				"from": 118400,
+				"to": 121640
+			},
+			"text": " can actually onboard users without making them"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,640",
+				"to": "00:02:04,040"
+			},
+			"offsets": {
+				"from": 121640,
+				"to": 124040
+			},
+			"text": " write down a seed and without worrying"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,040",
+				"to": "00:02:06,600"
+			},
+			"offsets": {
+				"from": 124040,
+				"to": 126600
+			},
+			"text": " that they would lose access to their account."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,600",
+				"to": "00:02:08,080"
+			},
+			"offsets": {
+				"from": 126600,
+				"to": 128080
+			},
+			"text": " So basically, a simple example would"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,080",
+				"to": "00:02:12,200"
+			},
+			"offsets": {
+				"from": 128080,
+				"to": 132200
+			},
+			"text": " be to have a key on your laptop and on your phone."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,200",
+				"to": "00:02:14,000"
+			},
+			"offsets": {
+				"from": 132200,
+				"to": 134000
+			},
+			"text": " You can also recover your account"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:14,000",
+				"to": "00:02:18,200"
+			},
+			"offsets": {
+				"from": 134000,
+				"to": 138200
+			},
+			"text": " with methods like social recovery, not urgent pioneered,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,200",
+				"to": "00:02:20,840"
+			},
+			"offsets": {
+				"from": 138200,
+				"to": 140840
+			},
+			"text": " but there's also other ways of recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,840",
+				"to": "00:02:23,720"
+			},
+			"offsets": {
+				"from": 140840,
+				"to": 143720
+			},
+			"text": " You can also generally do multi-factor authentication,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,720",
+				"to": "00:02:26,680"
+			},
+			"offsets": {
+				"from": 143720,
+				"to": 146680
+			},
+			"text": " which is way more secure and prevents you from malware."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,680",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 146680,
+				"to": 148000
+			},
+			"text": " And of course, you have resistance"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 150000
+			},
+			"text": " to hacks and compromised keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:32,880"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 152880
+			},
+			"text": " For example, if you have malware on one of the devices,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,880",
+				"to": "00:02:35,080"
+			},
+			"offsets": {
+				"from": 152880,
+				"to": 155080
+			},
+			"text": " you will not be that vulnerable."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,080",
+				"to": "00:02:40,400"
+			},
+			"offsets": {
+				"from": 155080,
+				"to": 160400
+			},
+			"text": " So there are two ways to achieve a multi-seagon on an EVM chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:40,400",
+				"to": "00:02:43,240"
+			},
+			"offsets": {
+				"from": 160400,
+				"to": 163240
+			},
+			"text": " One of them is smart contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,240",
+				"to": "00:02:45,760"
+			},
+			"offsets": {
+				"from": 163240,
+				"to": 165760
+			},
+			"text": " And a lot of you have heard about account abstractions."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,760",
+				"to": "00:02:47,200"
+			},
+			"offsets": {
+				"from": 165760,
+				"to": 167200
+			},
+			"text": " And account abstractions are basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,200",
+				"to": "00:02:50,440"
+			},
+			"offsets": {
+				"from": 167200,
+				"to": 170440
+			},
+			"text": " a way to pave the way forward for smart contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:50,440",
+				"to": "00:02:54,160"
+			},
+			"offsets": {
+				"from": 170440,
+				"to": 174160
+			},
+			"text": " But I prefer to call this smart contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,160",
+				"to": "00:02:57,040"
+			},
+			"offsets": {
+				"from": 174160,
+				"to": 177040
+			},
+			"text": " I prefer to call all of these technologies smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,040",
+				"to": "00:02:59,040"
+			},
+			"offsets": {
+				"from": 177040,
+				"to": 179040
+			},
+			"text": " wallets or smart wallets for short."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,040",
+				"to": "00:03:02,400"
+			},
+			"offsets": {
+				"from": 179040,
+				"to": 182400
+			},
+			"text": " And this is basically where each account is a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,400",
+				"to": "00:03:06,160"
+			},
+			"offsets": {
+				"from": 182400,
+				"to": 186160
+			},
+			"text": " which allows for any custom execution logic, including"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,160",
+				"to": "00:03:07,120"
+			},
+			"offsets": {
+				"from": 186160,
+				"to": 187120
+			},
+			"text": " multi-six, of course."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,120",
+				"to": "00:03:10,080"
+			},
+			"offsets": {
+				"from": 187120,
+				"to": 190080
+			},
+			"text": " And then MPC refers to multi-party computation."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,080",
+				"to": "00:03:13,200"
+			},
+			"offsets": {
+				"from": 190080,
+				"to": 193200
+			},
+			"text": " And in the context of wallets, it means"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,200",
+				"to": "00:03:16,960"
+			},
+			"offsets": {
+				"from": 193200,
+				"to": 196960
+			},
+			"text": " that it allows you to have threshold signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:16,960",
+				"to": "00:03:21,880"
+			},
+			"offsets": {
+				"from": 196960,
+				"to": 201880
+			},
+			"text": " So you can sign by-- the signature could be by multiple parties."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,880",
+				"to": "00:03:24,960"
+			},
+			"offsets": {
+				"from": 201880,
+				"to": 204960
+			},
+			"text": " Or you can do N out of M, so like 2 out of 3."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,960",
+				"to": "00:03:28,920"
+			},
+			"offsets": {
+				"from": 204960,
+				"to": 208920
+			},
+			"text": " And let's start by busting some myths about smart wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,920",
+				"to": "00:03:31,280"
+			},
+			"offsets": {
+				"from": 208920,
+				"to": 211280
+			},
+			"text": " So one of them is that smart wallets can not sign messages."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,280",
+				"to": "00:03:33,080"
+			},
+			"offsets": {
+				"from": 211280,
+				"to": 213080
+			},
+			"text": " And I'm sure that many of you have heard that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,080",
+				"to": "00:03:36,120"
+			},
+			"offsets": {
+				"from": 213080,
+				"to": 216120
+			},
+			"text": " But the reality is that smart wallets can sign messages just fine."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,120",
+				"to": "00:03:39,200"
+			},
+			"offsets": {
+				"from": 216120,
+				"to": 219200
+			},
+			"text": " You just need a bit of custom logic for verification,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:39,200",
+				"to": "00:03:41,400"
+			},
+			"offsets": {
+				"from": 219200,
+				"to": 221400
+			},
+			"text": " which is the IP1271."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:41,400",
+				"to": "00:03:43,400"
+			},
+			"offsets": {
+				"from": 221400,
+				"to": 223400
+			},
+			"text": " Then another one is that smart wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,400",
+				"to": "00:03:45,600"
+			},
+			"offsets": {
+				"from": 223400,
+				"to": 225600
+			},
+			"text": " And I've heard that in the past that they produce different"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:45,600",
+				"to": "00:03:46,920"
+			},
+			"offsets": {
+				"from": 225600,
+				"to": 226920
+			},
+			"text": " others for each chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,920",
+				"to": "00:03:49,520"
+			},
+			"offsets": {
+				"from": 226920,
+				"to": 229520
+			},
+			"text": " So it's kind of tough to use."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:49,520",
+				"to": "00:03:52,160"
+			},
+			"offsets": {
+				"from": 229520,
+				"to": 232160
+			},
+			"text": " But that's not really true, because you have create two now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,160",
+				"to": "00:03:53,840"
+			},
+			"offsets": {
+				"from": 232160,
+				"to": 233840
+			},
+			"text": " and you can create accounts counterfactually"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,840",
+				"to": "00:03:56,640"
+			},
+			"offsets": {
+				"from": 233840,
+				"to": 236640
+			},
+			"text": " at the same address on all EVM chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,640",
+				"to": "00:03:58,520"
+			},
+			"offsets": {
+				"from": 236640,
+				"to": 238520
+			},
+			"text": " Again, it was mentioned in the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,520",
+				"to": "00:04:00,880"
+			},
+			"offsets": {
+				"from": 238520,
+				"to": 240880
+			},
+			"text": " And then the other one is the gas overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:00,880",
+				"to": "00:04:02,440"
+			},
+			"offsets": {
+				"from": 240880,
+				"to": 242440
+			},
+			"text": " Gas overhead still exists, but it"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,440",
+				"to": "00:04:04,680"
+			},
+			"offsets": {
+				"from": 242440,
+				"to": 244680
+			},
+			"text": " goes a lot less in the last years,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:04,680",
+				"to": "00:04:10,080"
+			},
+			"offsets": {
+				"from": 244680,
+				"to": 250080
+			},
+			"text": " again, thanks to proxies, minimal proxies,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:10,080",
+				"to": "00:04:12,920"
+			},
+			"offsets": {
+				"from": 250080,
+				"to": 252920
+			},
+			"text": " and thanks to counterfactual deployment."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,920",
+				"to": "00:04:15,840"
+			},
+			"offsets": {
+				"from": 252920,
+				"to": 255840
+			},
+			"text": " Unlike NPCs, smart wallets can do many more things"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,840",
+				"to": "00:04:17,760"
+			},
+			"offsets": {
+				"from": 255840,
+				"to": 257760
+			},
+			"text": " than just multisigs."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,760",
+				"to": "00:04:18,720"
+			},
+			"offsets": {
+				"from": 257760,
+				"to": 258720
+			},
+			"text": " They can do time-locks."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:18,720",
+				"to": "00:04:20,560"
+			},
+			"offsets": {
+				"from": 258720,
+				"to": 260560
+			},
+			"text": " They can do spending limits."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,560",
+				"to": "00:04:23,560"
+			},
+			"offsets": {
+				"from": 260560,
+				"to": 263560
+			},
+			"text": " Again, something that was fantastically covered on the panel."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,560",
+				"to": "00:04:25,400"
+			},
+			"offsets": {
+				"from": 263560,
+				"to": 265400
+			},
+			"text": " And this also allows for recovery mechanisms,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,400",
+				"to": "00:04:27,440"
+			},
+			"offsets": {
+				"from": 265400,
+				"to": 267440
+			},
+			"text": " like social recovery."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,440",
+				"to": "00:04:30,760"
+			},
+			"offsets": {
+				"from": 267440,
+				"to": 270760
+			},
+			"text": " And for example, seedless onboarding,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,760",
+				"to": "00:04:33,560"
+			},
+			"offsets": {
+				"from": 270760,
+				"to": 273560
+			},
+			"text": " like we have on our wallet, just with an email and a password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,560",
+				"to": "00:04:37,040"
+			},
+			"offsets": {
+				"from": 273560,
+				"to": 277040
+			},
+			"text": " while not compromising the non-custodial nature of the wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,040",
+				"to": "00:04:39,320"
+			},
+			"offsets": {
+				"from": 277040,
+				"to": 279320
+			},
+			"text": " It's also mutable, which means that you"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,320",
+				"to": "00:04:40,800"
+			},
+			"offsets": {
+				"from": 279320,
+				"to": 280800
+			},
+			"text": " can change the authentication scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,800",
+				"to": "00:04:43,720"
+			},
+			"offsets": {
+				"from": 280800,
+				"to": 283720
+			},
+			"text": " You can start with a seedless onboarding account,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,720",
+				"to": "00:04:45,480"
+			},
+			"offsets": {
+				"from": 283720,
+				"to": 285480
+			},
+			"text": " where you have an email and a password."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,480",
+				"to": "00:04:47,600"
+			},
+			"offsets": {
+				"from": 285480,
+				"to": 287600
+			},
+			"text": " And then as you become more versed in crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:47,600",
+				"to": "00:04:51,040"
+			},
+			"offsets": {
+				"from": 287600,
+				"to": 291040
+			},
+			"text": " you can upgrade this to a treasure or a ledger."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,040",
+				"to": "00:04:54,240"
+			},
+			"offsets": {
+				"from": 291040,
+				"to": 294240
+			},
+			"text": " And you can set the treasure and the ledger"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,240",
+				"to": "00:04:56,200"
+			},
+			"offsets": {
+				"from": 294240,
+				"to": 296200
+			},
+			"text": " to be like the sole owner of the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,200",
+				"to": "00:04:58,960"
+			},
+			"offsets": {
+				"from": 296200,
+				"to": 298960
+			},
+			"text": " without changing the address, without having to move funds,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,960",
+				"to": "00:05:00,360"
+			},
+			"offsets": {
+				"from": 298960,
+				"to": 300360
+			},
+			"text": " which is amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,360",
+				"to": "00:05:02,720"
+			},
+			"offsets": {
+				"from": 300360,
+				"to": 302720
+			},
+			"text": " Then you have gas obstructions, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,720",
+				"to": "00:05:06,240"
+			},
+			"offsets": {
+				"from": 302720,
+				"to": 306240
+			},
+			"text": " allow you to pay for transactions in stablecoins."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,240",
+				"to": "00:05:09,240"
+			},
+			"offsets": {
+				"from": 306240,
+				"to": 309240
+			},
+			"text": " So if you're a new user onboarding on crypto,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:09,240",
+				"to": "00:05:12,200"
+			},
+			"offsets": {
+				"from": 309240,
+				"to": 312200
+			},
+			"text": " to crypto, you can sign up with an email and a password,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,200",
+				"to": "00:05:14,960"
+			},
+			"offsets": {
+				"from": 312200,
+				"to": 314960
+			},
+			"text": " then fund your account with an onel ramp."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,960",
+				"to": "00:05:16,520"
+			},
+			"offsets": {
+				"from": 314960,
+				"to": 316520
+			},
+			"text": " And then you would receive USDT, and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,520",
+				"to": "00:05:18,080"
+			},
+			"offsets": {
+				"from": 316520,
+				"to": 318080
+			},
+			"text": " would be able to swap that, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:18,080",
+				"to": "00:05:20,760"
+			},
+			"offsets": {
+				"from": 318080,
+				"to": 320760
+			},
+			"text": " for itter without having itter for gas."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,760",
+				"to": "00:05:22,400"
+			},
+			"offsets": {
+				"from": 320760,
+				"to": 322400
+			},
+			"text": " And of course, you can batch transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:22,400",
+				"to": "00:05:25,240"
+			},
+			"offsets": {
+				"from": 322400,
+				"to": 325240
+			},
+			"text": " so do multiple things in one transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,240",
+				"to": "00:05:27,600"
+			},
+			"offsets": {
+				"from": 325240,
+				"to": 327600
+			},
+			"text": " Again, a fantastic example from Argent"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,600",
+				"to": "00:05:29,320"
+			},
+			"offsets": {
+				"from": 327600,
+				"to": 329320
+			},
+			"text": " was the NFT shopping cart."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:29,320",
+				"to": "00:05:31,160"
+			},
+			"offsets": {
+				"from": 329320,
+				"to": 331160
+			},
+			"text": " But a simpler example would be on Uniswap,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:31,160",
+				"to": "00:05:32,320"
+			},
+			"offsets": {
+				"from": 331160,
+				"to": 332320
+			},
+			"text": " when you have an approval."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:32,320",
+				"to": "00:05:35,280"
+			},
+			"offsets": {
+				"from": 332320,
+				"to": 335280
+			},
+			"text": " The approval would get batch together with the transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,280",
+				"to": "00:05:37,800"
+			},
+			"offsets": {
+				"from": 335280,
+				"to": 337800
+			},
+			"text": " so you wouldn't have to do it separately."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,800",
+				"to": "00:05:39,480"
+			},
+			"offsets": {
+				"from": 337800,
+				"to": 339480
+			},
+			"text": " And there are more exotitudes cases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,480",
+				"to": "00:05:41,960"
+			},
+			"offsets": {
+				"from": 339480,
+				"to": 341960
+			},
+			"text": " like, for example, a custom cryptography,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:41,960",
+				"to": "00:05:44,440"
+			},
+			"offsets": {
+				"from": 341960,
+				"to": 344440
+			},
+			"text": " like enabling the NIST curve, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,440",
+				"to": "00:05:48,920"
+			},
+			"offsets": {
+				"from": 344440,
+				"to": 348920
+			},
+			"text": " would allow using iOS biometrics and web authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,920",
+				"to": "00:05:50,880"
+			},
+			"offsets": {
+				"from": 348920,
+				"to": 350880
+			},
+			"text": " And there are, of course, some drawbacks"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:50,880",
+				"to": "00:05:53,440"
+			},
+			"offsets": {
+				"from": 350880,
+				"to": 353440
+			},
+			"text": " of smart wallets and some adoption challenges."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,440",
+				"to": "00:05:56,560"
+			},
+			"offsets": {
+				"from": 353440,
+				"to": 356560
+			},
+			"text": " Like you have a gas overhead."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:56,560",
+				"to": "00:06:00,720"
+			},
+			"offsets": {
+				"from": 356560,
+				"to": 360720
+			},
+			"text": " As mentioned previously, it's not so much as people think."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,720",
+				"to": "00:06:05,040"
+			},
+			"offsets": {
+				"from": 360720,
+				"to": 365040
+			},
+			"text": " You just have around 1 to 2,000 gas per transaction,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:05,040",
+				"to": "00:06:07,200"
+			},
+			"offsets": {
+				"from": 365040,
+				"to": 367200
+			},
+			"text": " and around 40,000 gas for deployment,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:07,200",
+				"to": "00:06:10,400"
+			},
+			"offsets": {
+				"from": 367200,
+				"to": 370400
+			},
+			"text": " which is added to your first transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,400",
+				"to": "00:06:13,560"
+			},
+			"offsets": {
+				"from": 370400,
+				"to": 373560
+			},
+			"text": " But the main challenge is DAP adoption."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,560",
+				"to": "00:06:17,160"
+			},
+			"offsets": {
+				"from": 373560,
+				"to": 377160
+			},
+			"text": " So a lot of DAPs either block smart contracts intentionally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:17,160",
+				"to": "00:06:19,600"
+			},
+			"offsets": {
+				"from": 377160,
+				"to": 379600
+			},
+			"text": " because they believe that that's not a wallet,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,600",
+				"to": "00:06:22,200"
+			},
+			"offsets": {
+				"from": 379600,
+				"to": 382200
+			},
+			"text": " and it's some sort of automation."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,200",
+				"to": "00:06:23,600"
+			},
+			"offsets": {
+				"from": 382200,
+				"to": 383600
+			},
+			"text": " That's basically what NFT means."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,600",
+				"to": "00:06:25,120"
+			},
+			"offsets": {
+				"from": 383600,
+				"to": 385120
+			},
+			"text": " And the other thing is many DAPs just"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,120",
+				"to": "00:06:26,720"
+			},
+			"offsets": {
+				"from": 385120,
+				"to": 386720
+			},
+			"text": " don't implement smart contract signing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:26,720",
+				"to": "00:06:29,120"
+			},
+			"offsets": {
+				"from": 386720,
+				"to": 389120
+			},
+			"text": " but this is quite easy to fix."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,120",
+				"to": "00:06:31,640"
+			},
+			"offsets": {
+				"from": 389120,
+				"to": 391640
+			},
+			"text": " So when would you want to use MPC wallets?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:31,640",
+				"to": "00:06:33,760"
+			},
+			"offsets": {
+				"from": 391640,
+				"to": 393760
+			},
+			"text": " So one of the benefits of MPC wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,760",
+				"to": "00:06:36,520"
+			},
+			"offsets": {
+				"from": 393760,
+				"to": 396520
+			},
+			"text": " is off-chain recovery, which is cheaper and easier,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,520",
+				"to": "00:06:38,440"
+			},
+			"offsets": {
+				"from": 396520,
+				"to": 398440
+			},
+			"text": " but not as flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,440",
+				"to": "00:06:41,080"
+			},
+			"offsets": {
+				"from": 398440,
+				"to": 401080
+			},
+			"text": " Then the other thing is they're truly cross-chain,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:41,080",
+				"to": "00:06:43,760"
+			},
+			"offsets": {
+				"from": 401080,
+				"to": 403760
+			},
+			"text": " so there's no dependence on smart contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,760",
+				"to": "00:06:45,800"
+			},
+			"offsets": {
+				"from": 403760,
+				"to": 405800
+			},
+			"text": " So for example, you can support Bitcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,800",
+				"to": "00:06:48,080"
+			},
+			"offsets": {
+				"from": 405800,
+				"to": 408080
+			},
+			"text": " or you can support basically any chain that"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:48,080",
+				"to": "00:06:50,480"
+			},
+			"offsets": {
+				"from": 408080,
+				"to": 410480
+			},
+			"text": " uses elliptical signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:50,480",
+				"to": "00:06:52,840"
+			},
+			"offsets": {
+				"from": 410480,
+				"to": 412840
+			},
+			"text": " There's no gas overhead, and there's"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,840",
+				"to": "00:06:55,520"
+			},
+			"offsets": {
+				"from": 412840,
+				"to": 415520
+			},
+			"text": " no kind of drama with the signatures."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,520",
+				"to": "00:06:57,880"
+			},
+			"offsets": {
+				"from": 415520,
+				"to": 417880
+			},
+			"text": " Like signatures just work with any DAP."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,880",
+				"to": "00:06:59,680"
+			},
+			"offsets": {
+				"from": 417880,
+				"to": 419680
+			},
+			"text": " But there are some problems with MPC."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,680",
+				"to": "00:07:03,760"
+			},
+			"offsets": {
+				"from": 419680,
+				"to": 423760
+			},
+			"text": " And one of those is that they require custom cryptography."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,760",
+				"to": "00:07:06,160"
+			},
+			"offsets": {
+				"from": 423760,
+				"to": 426160
+			},
+			"text": " And there are not that many libraries so far,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,160",
+				"to": "00:07:08,760"
+			},
+			"offsets": {
+				"from": 426160,
+				"to": 428760
+			},
+			"text": " and there are no data well-bottle tested"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,760",
+				"to": "00:07:11,200"
+			},
+			"offsets": {
+				"from": 428760,
+				"to": 431200
+			},
+			"text": " as normal elliptical signature libraries."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,200",
+				"to": "00:07:13,160"
+			},
+			"offsets": {
+				"from": 431200,
+				"to": 433160
+			},
+			"text": " And it's kind of an experimental technology."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:13,160",
+				"to": "00:07:15,040"
+			},
+			"offsets": {
+				"from": 433160,
+				"to": 435040
+			},
+			"text": " But then the main problem, I think,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:15,040",
+				"to": "00:07:17,920"
+			},
+			"offsets": {
+				"from": 435040,
+				"to": 437920
+			},
+			"text": " is the immutable authentication rules, which basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,920",
+				"to": "00:07:19,480"
+			},
+			"offsets": {
+				"from": 437920,
+				"to": 439480
+			},
+			"text": " means that when you create, like, for example,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,480",
+				"to": "00:07:21,640"
+			},
+			"offsets": {
+				"from": 439480,
+				"to": 441640
+			},
+			"text": " two out of three multi-sick, you cannot just swap out"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,640",
+				"to": "00:07:22,920"
+			},
+			"offsets": {
+				"from": 441640,
+				"to": 442920
+			},
+			"text": " one of the signers."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,920",
+				"to": "00:07:25,040"
+			},
+			"offsets": {
+				"from": 442920,
+				"to": 445040
+			},
+			"text": " You cannot make it like a two out of four,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,040",
+				"to": "00:07:26,680"
+			},
+			"offsets": {
+				"from": 445040,
+				"to": 446680
+			},
+			"text": " or you cannot make it like a three out of four."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,680",
+				"to": "00:07:27,600"
+			},
+			"offsets": {
+				"from": 446680,
+				"to": 447600
+			},
+			"text": " It's just immutable."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,600",
+				"to": "00:07:29,720"
+			},
+			"offsets": {
+				"from": 447600,
+				"to": 449720
+			},
+			"text": " Once you create it, that's it, which also"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,720",
+				"to": "00:07:31,760"
+			},
+			"offsets": {
+				"from": 449720,
+				"to": 451760
+			},
+			"text": " creates some problems with recovery, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,760",
+				"to": "00:07:33,360"
+			},
+			"offsets": {
+				"from": 451760,
+				"to": 453360
+			},
+			"text": " So you could recover the account once,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:33,360",
+				"to": "00:07:34,800"
+			},
+			"offsets": {
+				"from": 453360,
+				"to": 454800
+			},
+			"text": " but then you can change one of the keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,800",
+				"to": "00:07:38,720"
+			},
+			"offsets": {
+				"from": 454800,
+				"to": 458720
+			},
+			"text": " So if you lost the key, then it's kind of bad."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:38,720",
+				"to": "00:07:40,960"
+			},
+			"offsets": {
+				"from": 458720,
+				"to": 460960
+			},
+			"text": " And it's also limited to multi-sick."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,960",
+				"to": "00:07:44,680"
+			},
+			"offsets": {
+				"from": 460960,
+				"to": 464680
+			},
+			"text": " You don't have time-locks, so that limits you a lot as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,680",
+				"to": "00:07:47,000"
+			},
+			"offsets": {
+				"from": 464680,
+				"to": 467000
+			},
+			"text": " There's no gas abstractions, but that's not in the slide,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,000",
+				"to": "00:07:49,560"
+			},
+			"offsets": {
+				"from": 467000,
+				"to": 469560
+			},
+			"text": " because it's more of a benefit of smart contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:49,560",
+				"to": "00:07:51,840"
+			},
+			"offsets": {
+				"from": 469560,
+				"to": 471840
+			},
+			"text": " And finally, also a very big thing."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,840",
+				"to": "00:07:53,520"
+			},
+			"offsets": {
+				"from": 471840,
+				"to": 473520
+			},
+			"text": " You cannot use it with a hardware wallet."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:53,520",
+				"to": "00:07:56,360"
+			},
+			"offsets": {
+				"from": 473520,
+				"to": 476360
+			},
+			"text": " At least not before those hardware wallets implement that."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,360",
+				"to": "00:07:58,240"
+			},
+			"offsets": {
+				"from": 476360,
+				"to": 478240
+			},
+			"text": " Of course, you can argue that you can pull request"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,240",
+				"to": "00:08:00,760"
+			},
+			"offsets": {
+				"from": 478240,
+				"to": 480760
+			},
+			"text": " to those hardware wallets, but at the moment, you can't."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:00,760",
+				"to": "00:08:04,120"
+			},
+			"offsets": {
+				"from": 480760,
+				"to": 484120
+			},
+			"text": " And as a conclusion, I would say that smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:04,120",
+				"to": "00:08:06,680"
+			},
+			"offsets": {
+				"from": 484120,
+				"to": 486680
+			},
+			"text": " and account abstractions are the way to go."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,680",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 486680,
+				"to": 490000
+			},
+			"text": " Does the future-proof way of doing accounts on Ethereum"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:13,200"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 493200
+			},
+			"text": " and on other VM chains, on layer tools, and et cetera?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,200",
+				"to": "00:08:17,720"
+			},
+			"offsets": {
+				"from": 493200,
+				"to": 497720
+			},
+			"text": " But much part computation can be fantastic for some temporary use"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:17,720",
+				"to": "00:08:22,120"
+			},
+			"offsets": {
+				"from": 497720,
+				"to": 502120
+			},
+			"text": " cases before DAPS kind of get their stuff together."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,120",
+				"to": "00:08:24,600"
+			},
+			"offsets": {
+				"from": 502120,
+				"to": 504600
+			},
+			"text": " But definitely smart contract wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,600",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 504600,
+				"to": 507200
+			},
+			"text": " are way better for the future."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:28,720"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 508720
+			},
+			"text": " So that's it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,720",
+				"to": "00:08:32,680"
+			},
+			"offsets": {
+				"from": 508720,
+				"to": 512680
+			},
+			"text": " So one of the critics for the smart contract wallets right"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,680",
+				"to": "00:08:35,200"
+			},
+			"offsets": {
+				"from": 512680,
+				"to": 515200
+			},
+			"text": " now is that in the end, you still need a wallet"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:35,200",
+				"to": "00:08:37,240"
+			},
+			"offsets": {
+				"from": 515200,
+				"to": 517240
+			},
+			"text": " with a private key to manage it."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,240",
+				"to": "00:08:38,240"
+			},
+			"offsets": {
+				"from": 517240,
+				"to": 518240
+			},
+			"text": " Yeah, yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:38,240",
+				"to": "00:08:39,480"
+			},
+			"offsets": {
+				"from": 518240,
+				"to": 519480
+			},
+			"text": " Both on 1,000 multi-six."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:39,480",
+				"to": "00:08:42,680"
+			},
+			"offsets": {
+				"from": 519480,
+				"to": 522680
+			},
+			"text": " So how do any ideas of how to overcome it?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:42,680",
+				"to": "00:08:43,840"
+			},
+			"offsets": {
+				"from": 522680,
+				"to": 523840
+			},
+			"text": " Well, that's completely true."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,840",
+				"to": "00:08:45,400"
+			},
+			"offsets": {
+				"from": 523840,
+				"to": 525400
+			},
+			"text": " But like on a fundamental level, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,400",
+				"to": "00:08:47,160"
+			},
+			"offsets": {
+				"from": 525400,
+				"to": 527160
+			},
+			"text": " cannot get away from the secret, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,160",
+				"to": "00:08:48,640"
+			},
+			"offsets": {
+				"from": 527160,
+				"to": 528640
+			},
+			"text": " In any form of authentication, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:48,640",
+				"to": "00:08:50,120"
+			},
+			"offsets": {
+				"from": 528640,
+				"to": 530120
+			},
+			"text": " have some sort of a secret."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,120",
+				"to": "00:08:52,200"
+			},
+			"offsets": {
+				"from": 530120,
+				"to": 532200
+			},
+			"text": " Just the great thing about smart contract wallets"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:52,200",
+				"to": "00:08:53,520"
+			},
+			"offsets": {
+				"from": 532200,
+				"to": 533520
+			},
+			"text": " is that you can manage it and you"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,520",
+				"to": "00:08:56,280"
+			},
+			"offsets": {
+				"from": 533520,
+				"to": 536280
+			},
+			"text": " can make it work not like as a single private key, which"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:56,280",
+				"to": "00:08:57,960"
+			},
+			"offsets": {
+				"from": 536280,
+				"to": 537960
+			},
+			"text": " is like the source of all authentication"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:57,960",
+				"to": "00:09:00,320"
+			},
+			"offsets": {
+				"from": 537960,
+				"to": 540320
+			},
+			"text": " and like the one true point of authentication."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:00,320",
+				"to": "00:09:02,040"
+			},
+			"offsets": {
+				"from": 540320,
+				"to": 542040
+			},
+			"text": " But you can have multiple of those secrets"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:02,040",
+				"to": "00:09:03,960"
+			},
+			"offsets": {
+				"from": 542040,
+				"to": 543960
+			},
+			"text": " like a regular--"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,960",
+				"to": "00:09:06,280"
+			},
+			"offsets": {
+				"from": 543960,
+				"to": 546280
+			},
+			"text": " like you have one, for example, on Google or on Facebook"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,280",
+				"to": "00:09:09,400"
+			},
+			"offsets": {
+				"from": 546280,
+				"to": 549400
+			},
+			"text": " or on a regular human-friendly authentication scheme."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:09,400",
+				"to": "00:09:12,040"
+			},
+			"offsets": {
+				"from": 549400,
+				"to": 552040
+			},
+			"text": " So it is a private key, but you shouldn't think of it"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,040",
+				"to": "00:09:12,760"
+			},
+			"offsets": {
+				"from": 552040,
+				"to": 552760
+			},
+			"text": " as a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,760",
+				"to": "00:09:15,600"
+			},
+			"offsets": {
+				"from": 552760,
+				"to": 555600
+			},
+			"text": " Because EOA wallets, they're the private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:15,600",
+				"to": "00:09:18,080"
+			},
+			"offsets": {
+				"from": 555600,
+				"to": 558080
+			},
+			"text": " It's like the single secret number"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,080",
+				"to": "00:09:22,400"
+			},
+			"offsets": {
+				"from": 558080,
+				"to": 562400
+			},
+			"text": " where everything comes from, unlike smart contract wallets."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:22,400",
+				"to": "00:09:25,760"
+			},
+			"offsets": {
+				"from": 562400,
+				"to": 565760
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:25,760",
+				"to": "00:09:29,120"
+			},
+			"offsets": {
+				"from": 565760,
+				"to": 569120
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,120",
+				"to": "00:09:32,480"
+			},
+			"offsets": {
+				"from": 569120,
+				"to": 572480
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:32,480",
+				"to": "00:10:01,480"
+			},
+			"offsets": {
+				"from": 572480,
+				"to": 601480
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

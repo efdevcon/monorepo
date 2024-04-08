@@ -1,0 +1,1165 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:16,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 16000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,000",
+				"to": "00:00:17,580"
+			},
+			"offsets": {
+				"from": 16000,
+				"to": 17580
+			},
+			"text": " >> Well, thank you very much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,580",
+				"to": "00:00:20,420"
+			},
+			"offsets": {
+				"from": 17580,
+				"to": 20420
+			},
+			"text": " It's a pleasure to be here and grant past more"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,420",
+				"to": "00:00:22,320"
+			},
+			"offsets": {
+				"from": 20420,
+				"to": 22320
+			},
+			"text": " in my co-founder Dennis Ignatovic,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,320",
+				"to": "00:00:23,780"
+			},
+			"offsets": {
+				"from": 22320,
+				"to": 23780
+			},
+			"text": " here in the audience."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,780",
+				"to": "00:00:26,460"
+			},
+			"offsets": {
+				"from": 23780,
+				"to": 26460
+			},
+			"text": " Thank you to Vitalik for the invitation."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,460",
+				"to": "00:00:28,500"
+			},
+			"offsets": {
+				"from": 26460,
+				"to": 28500
+			},
+			"text": " So we're going to talk to you today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,500",
+				"to": "00:00:31,500"
+			},
+			"offsets": {
+				"from": 28500,
+				"to": 31500
+			},
+			"text": " about our formal verification platform in Mondra"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,500",
+				"to": "00:00:34,440"
+			},
+			"offsets": {
+				"from": 31500,
+				"to": 34440
+			},
+			"text": " and in particular something we're calling a Mondra contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,440",
+				"to": "00:00:38,640"
+			},
+			"offsets": {
+				"from": 34440,
+				"to": 38640
+			},
+			"text": " which is the application of a Mondra to Ethereum smart contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,640",
+				"to": "00:00:42,320"
+			},
+			"offsets": {
+				"from": 38640,
+				"to": 42320
+			},
+			"text": " both to analyze smart contracts, reason about them,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,320",
+				"to": "00:00:45,260"
+			},
+			"offsets": {
+				"from": 42320,
+				"to": 45260
+			},
+			"text": " be able to prove properties of them, compute proofs"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,260",
+				"to": "00:00:47,960"
+			},
+			"offsets": {
+				"from": 45260,
+				"to": 47960
+			},
+			"text": " and counter examples, and then on top of that,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,960",
+				"to": "00:00:49,320"
+			},
+			"offsets": {
+				"from": 47960,
+				"to": 49320
+			},
+			"text": " to actually do risk management."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,320",
+				"to": "00:00:51,360"
+			},
+			"offsets": {
+				"from": 49320,
+				"to": 51360
+			},
+			"text": " So I'll tell you what I mean, but for those"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,360",
+				"to": "00:00:54,560"
+			},
+			"offsets": {
+				"from": 51360,
+				"to": 54560
+			},
+			"text": " in investment banking we mean, you know, compute Greeks and so on."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,560",
+				"to": "00:00:58,280"
+			},
+			"offsets": {
+				"from": 54560,
+				"to": 58280
+			},
+			"text": " So let me start with a video that gives you a background"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,280",
+				"to": "00:01:00,220"
+			},
+			"offsets": {
+				"from": 58280,
+				"to": 60220
+			},
+			"text": " on what we're doing at aesthetic integration."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,220",
+				"to": "00:01:04,420"
+			},
+			"offsets": {
+				"from": 60220,
+				"to": 64420
+			},
+			"text": " Let's see if the sound -- I'll start it over."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,420",
+				"to": "00:01:04,760"
+			},
+			"offsets": {
+				"from": 64420,
+				"to": 64760
+			},
+			"text": " Here we go."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,760",
+				"to": "00:01:08,280"
+			},
+			"offsets": {
+				"from": 64760,
+				"to": 68280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,280",
+				"to": "00:01:13,280"
+			},
+			"offsets": {
+				"from": 68280,
+				"to": 73280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,280",
+				"to": "00:01:20,280"
+			},
+			"offsets": {
+				"from": 73280,
+				"to": 80280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,280",
+				"to": "00:01:27,280"
+			},
+			"offsets": {
+				"from": 80280,
+				"to": 87280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,280",
+				"to": "00:01:37,280"
+			},
+			"offsets": {
+				"from": 87280,
+				"to": 97280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,280",
+				"to": "00:01:47,280"
+			},
+			"offsets": {
+				"from": 97280,
+				"to": 107280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,280",
+				"to": "00:01:57,280"
+			},
+			"offsets": {
+				"from": 107280,
+				"to": 117280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:57,280",
+				"to": "00:02:07,280"
+			},
+			"offsets": {
+				"from": 117280,
+				"to": 127280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:07,280",
+				"to": "00:02:17,280"
+			},
+			"offsets": {
+				"from": 127280,
+				"to": 137280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:17,280",
+				"to": "00:02:27,280"
+			},
+			"offsets": {
+				"from": 137280,
+				"to": 147280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,280",
+				"to": "00:02:37,280"
+			},
+			"offsets": {
+				"from": 147280,
+				"to": 157280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,280",
+				"to": "00:03:04,280"
+			},
+			"offsets": {
+				"from": 157280,
+				"to": 184280
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,780",
+				"to": "00:03:14,780"
+			},
+			"offsets": {
+				"from": 184780,
+				"to": 194780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,780",
+				"to": "00:03:24,780"
+			},
+			"offsets": {
+				"from": 194780,
+				"to": 204780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,780",
+				"to": "00:03:34,780"
+			},
+			"offsets": {
+				"from": 204780,
+				"to": 214780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:34,780",
+				"to": "00:03:43,780"
+			},
+			"offsets": {
+				"from": 214780,
+				"to": 223780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,780",
+				"to": "00:03:53,780"
+			},
+			"offsets": {
+				"from": 223780,
+				"to": 233780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,780",
+				"to": "00:04:03,780"
+			},
+			"offsets": {
+				"from": 233780,
+				"to": 243780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,780",
+				"to": "00:04:13,780"
+			},
+			"offsets": {
+				"from": 243780,
+				"to": 253780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:13,780",
+				"to": "00:04:23,780"
+			},
+			"offsets": {
+				"from": 253780,
+				"to": 263780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:23,780",
+				"to": "00:04:32,780"
+			},
+			"offsets": {
+				"from": 263780,
+				"to": 272780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:32,780",
+				"to": "00:04:52,780"
+			},
+			"offsets": {
+				"from": 272780,
+				"to": 292780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,780",
+				"to": "00:04:56,780"
+			},
+			"offsets": {
+				"from": 292780,
+				"to": 296780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:56,780",
+				"to": "00:05:06,780"
+			},
+			"offsets": {
+				"from": 296780,
+				"to": 306780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:06,780",
+				"to": "00:05:16,780"
+			},
+			"offsets": {
+				"from": 306780,
+				"to": 316780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,780",
+				"to": "00:05:25,780"
+			},
+			"offsets": {
+				"from": 316780,
+				"to": 325780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:25,780",
+				"to": "00:05:35,780"
+			},
+			"offsets": {
+				"from": 325780,
+				"to": 335780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,780",
+				"to": "00:05:45,780"
+			},
+			"offsets": {
+				"from": 335780,
+				"to": 345780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,780",
+				"to": "00:05:54,780"
+			},
+			"offsets": {
+				"from": 345780,
+				"to": 354780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,780",
+				"to": "00:06:04,780"
+			},
+			"offsets": {
+				"from": 354780,
+				"to": 364780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,780",
+				"to": "00:06:14,780"
+			},
+			"offsets": {
+				"from": 364780,
+				"to": 374780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,780",
+				"to": "00:06:19,780"
+			},
+			"offsets": {
+				"from": 374780,
+				"to": 379780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,780",
+				"to": "00:06:29,780"
+			},
+			"offsets": {
+				"from": 379780,
+				"to": 389780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:29,780",
+				"to": "00:06:39,780"
+			},
+			"offsets": {
+				"from": 389780,
+				"to": 399780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:39,780",
+				"to": "00:06:43,780"
+			},
+			"offsets": {
+				"from": 399780,
+				"to": 403780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:43,780",
+				"to": "00:06:53,780"
+			},
+			"offsets": {
+				"from": 403780,
+				"to": 413780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,780",
+				"to": "00:07:03,780"
+			},
+			"offsets": {
+				"from": 413780,
+				"to": 423780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,780",
+				"to": "00:07:06,780"
+			},
+			"offsets": {
+				"from": 423780,
+				"to": 426780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:06,780",
+				"to": "00:07:11,780"
+			},
+			"offsets": {
+				"from": 426780,
+				"to": 431780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,780",
+				"to": "00:07:21,780"
+			},
+			"offsets": {
+				"from": 431780,
+				"to": 441780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:21,780",
+				"to": "00:07:31,780"
+			},
+			"offsets": {
+				"from": 441780,
+				"to": 451780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,780",
+				"to": "00:07:36,780"
+			},
+			"offsets": {
+				"from": 451780,
+				"to": 456780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,780",
+				"to": "00:07:56,780"
+			},
+			"offsets": {
+				"from": 456780,
+				"to": 476780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,780",
+				"to": "00:08:01,780"
+			},
+			"offsets": {
+				"from": 476780,
+				"to": 481780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,780",
+				"to": "00:08:21,780"
+			},
+			"offsets": {
+				"from": 481780,
+				"to": 501780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:21,780",
+				"to": "00:08:26,780"
+			},
+			"offsets": {
+				"from": 501780,
+				"to": 506780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:26,780",
+				"to": "00:08:46,780"
+			},
+			"offsets": {
+				"from": 506780,
+				"to": 526780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,780",
+				"to": "00:09:06,780"
+			},
+			"offsets": {
+				"from": 526780,
+				"to": 546780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:06,780",
+				"to": "00:09:11,780"
+			},
+			"offsets": {
+				"from": 546780,
+				"to": 551780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,780",
+				"to": "00:09:31,780"
+			},
+			"offsets": {
+				"from": 551780,
+				"to": 571780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,780",
+				"to": "00:09:51,780"
+			},
+			"offsets": {
+				"from": 571780,
+				"to": 591780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,780",
+				"to": "00:10:11,780"
+			},
+			"offsets": {
+				"from": 591780,
+				"to": 611780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,780",
+				"to": "00:10:31,780"
+			},
+			"offsets": {
+				"from": 611780,
+				"to": 631780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:31,780",
+				"to": "00:10:36,780"
+			},
+			"offsets": {
+				"from": 631780,
+				"to": 636780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:36,780",
+				"to": "00:10:56,780"
+			},
+			"offsets": {
+				"from": 636780,
+				"to": 656780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:56,780",
+				"to": "00:11:16,780"
+			},
+			"offsets": {
+				"from": 656780,
+				"to": 676780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:16,780",
+				"to": "00:11:36,780"
+			},
+			"offsets": {
+				"from": 676780,
+				"to": 696780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,780",
+				"to": "00:11:56,780"
+			},
+			"offsets": {
+				"from": 696780,
+				"to": 716780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,780",
+				"to": "00:12:16,780"
+			},
+			"offsets": {
+				"from": 716780,
+				"to": 736780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,780",
+				"to": "00:12:36,780"
+			},
+			"offsets": {
+				"from": 736780,
+				"to": 756780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:36,780",
+				"to": "00:12:56,780"
+			},
+			"offsets": {
+				"from": 756780,
+				"to": 776780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:56,780",
+				"to": "00:13:16,780"
+			},
+			"offsets": {
+				"from": 776780,
+				"to": 796780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,780",
+				"to": "00:13:36,780"
+			},
+			"offsets": {
+				"from": 796780,
+				"to": 816780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,780",
+				"to": "00:13:56,780"
+			},
+			"offsets": {
+				"from": 816780,
+				"to": 836780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,780",
+				"to": "00:14:16,780"
+			},
+			"offsets": {
+				"from": 836780,
+				"to": 856780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,780",
+				"to": "00:14:36,780"
+			},
+			"offsets": {
+				"from": 856780,
+				"to": 876780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,780",
+				"to": "00:14:56,780"
+			},
+			"offsets": {
+				"from": 876780,
+				"to": 896780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:56,780",
+				"to": "00:15:16,780"
+			},
+			"offsets": {
+				"from": 896780,
+				"to": 916780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,780",
+				"to": "00:15:36,780"
+			},
+			"offsets": {
+				"from": 916780,
+				"to": 936780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:36,780",
+				"to": "00:15:56,780"
+			},
+			"offsets": {
+				"from": 936780,
+				"to": 956780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,780",
+				"to": "00:16:16,780"
+			},
+			"offsets": {
+				"from": 956780,
+				"to": 976780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:16,780",
+				"to": "00:16:36,780"
+			},
+			"offsets": {
+				"from": 976780,
+				"to": 996780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,780",
+				"to": "00:16:56,780"
+			},
+			"offsets": {
+				"from": 996780,
+				"to": 1016780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,780",
+				"to": "00:17:16,780"
+			},
+			"offsets": {
+				"from": 1016780,
+				"to": 1036780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:16,780",
+				"to": "00:17:36,780"
+			},
+			"offsets": {
+				"from": 1036780,
+				"to": 1056780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,780",
+				"to": "00:17:56,780"
+			},
+			"offsets": {
+				"from": 1056780,
+				"to": 1076780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:56,780",
+				"to": "00:18:16,780"
+			},
+			"offsets": {
+				"from": 1076780,
+				"to": 1096780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:16,780",
+				"to": "00:18:36,780"
+			},
+			"offsets": {
+				"from": 1096780,
+				"to": 1116780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:36,780",
+				"to": "00:18:56,780"
+			},
+			"offsets": {
+				"from": 1116780,
+				"to": 1136780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:56,780",
+				"to": "00:19:16,780"
+			},
+			"offsets": {
+				"from": 1136780,
+				"to": 1156780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:16,780",
+				"to": "00:19:36,780"
+			},
+			"offsets": {
+				"from": 1156780,
+				"to": 1176780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,780",
+				"to": "00:19:56,780"
+			},
+			"offsets": {
+				"from": 1176780,
+				"to": 1196780
+			},
+			"text": " [ Inaudible ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,780",
+				"to": "00:20:16,780"
+			},
+			"offsets": {
+				"from": 1196780,
+				"to": 1216780
+			},
+			"text": " [ Inaudible ]"
+		}
+	]
+}

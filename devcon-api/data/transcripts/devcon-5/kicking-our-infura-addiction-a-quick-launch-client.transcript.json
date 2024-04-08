@@ -1,0 +1,2155 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,240"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13240
+			},
+			"text": " Welcome. We are here to talk about in Fura how we're hooked on it and what we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,240",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 13240,
+				"to": 20600
+			},
+			"text": " to do about it. My name is Jason Carver. I work at the Ethereum foundation on all sorts"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:29,800"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 29800
+			},
+			"text": " of Python tooling as well as the Trinity Python client. Let's get started. So why are we"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,800",
+				"to": "00:00:42,240"
+			},
+			"offsets": {
+				"from": 29800,
+				"to": 42240
+			},
+			"text": " hooked to Ethereum? Obviously it's delicious. It's an obvious thing for DAP developers to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,240",
+				"to": "00:00:48,760"
+			},
+			"offsets": {
+				"from": 42240,
+				"to": 48760
+			},
+			"text": " make it as easy as possible for new people to sign up and use their app. And similarly"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,760",
+				"to": "00:00:55,280"
+			},
+			"offsets": {
+				"from": 48760,
+				"to": 55280
+			},
+			"text": " plugins like MetaMask, Ignosis Safe and so on are -- have the same incentives, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,280",
+				"to": "00:01:02,920"
+			},
+			"offsets": {
+				"from": 55280,
+				"to": 62920
+			},
+			"text": " So Infura is a way to skip the install of the node, skip the syncing of the node and"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,920",
+				"to": "00:01:09,440"
+			},
+			"offsets": {
+				"from": 62920,
+				"to": 69440
+			},
+			"text": " get people on board. Fairly obvious set up why that's easier and more pleasant for a"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:09,440",
+				"to": "00:01:15,480"
+			},
+			"offsets": {
+				"from": 69440,
+				"to": 75480
+			},
+			"text": " lot of users. And frankly for a lot of casual users, you know, 80 to 90% of people, they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:15,480",
+				"to": "00:01:20,400"
+			},
+			"offsets": {
+				"from": 75480,
+				"to": 80400
+			},
+			"text": " always going to minimize effort. They're very willing to make trade-offs about trust"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,400",
+				"to": "00:01:30,480"
+			},
+			"offsets": {
+				"from": 80400,
+				"to": 90480
+			},
+			"text": " and custodianship to make it easy. But there is a set of users that we're interested in."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,480",
+				"to": "00:01:36,040"
+			},
+			"offsets": {
+				"from": 90480,
+				"to": 96040
+			},
+			"text": " The sophisticated users, whether that's hobbyists or people writing scripts to interact with"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,040",
+				"to": "00:01:41,400"
+			},
+			"offsets": {
+				"from": 96040,
+				"to": 101400
+			},
+			"text": " the chain and they're willing to do more. They're willing to put it into more effort."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,400",
+				"to": "00:01:48,680"
+			},
+			"offsets": {
+				"from": 101400,
+				"to": 108680
+			},
+			"text": " So the problem is when they try that, they go out and look for documentation. They look"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,680",
+				"to": "00:01:55,520"
+			},
+			"offsets": {
+				"from": 108680,
+				"to": 115520
+			},
+			"text": " for help in the apps and they don't find anything. It's all built for that 80% user. And so they"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,520",
+				"to": "00:02:01,960"
+			},
+			"offsets": {
+				"from": 115520,
+				"to": 121960
+			},
+			"text": " just skip over it. And they often don't have any trigger later to switch over to something"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,960",
+				"to": "00:02:09,280"
+			},
+			"offsets": {
+				"from": 121960,
+				"to": 129280
+			},
+			"text": " different. So maybe that's okay. You know, how bad is that? How big a problem is that?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,280",
+				"to": "00:02:15,080"
+			},
+			"offsets": {
+				"from": 129280,
+				"to": 135080
+			},
+			"text": " Well, you know, there's some obvious ones like concerns about downtime. You know, Infura"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,080",
+				"to": "00:02:18,800"
+			},
+			"offsets": {
+				"from": 135080,
+				"to": 138800
+			},
+			"text": " is going to be a single point of failure, no matter how good their systems are. And they're"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:18,800",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 138800,
+				"to": 148000
+			},
+			"text": " very good. Perhaps the worst is that Infura makes a bad hire or someone cracks into their"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:35,120"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 155120
+			},
+			"text": " systems and they serve you bad data. Now, they can't explicitly directly, say, send"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,120",
+				"to": "00:02:42,240"
+			},
+			"offsets": {
+				"from": 155120,
+				"to": 162240
+			},
+			"text": " your funds from one account or another or your assets. But if they can control the view"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,240",
+				"to": "00:02:49,640"
+			},
+			"offsets": {
+				"from": 162240,
+				"to": 169640
+			},
+			"text": " of the world you have, it is pretty straightforward to get you to send funds or assets to whatever"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,640",
+				"to": "00:02:54,560"
+			},
+			"offsets": {
+				"from": 169640,
+				"to": 174560
+			},
+			"text": " address they choose. For example, by resolving an ENS name to a different address than the"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:54,560",
+				"to": "00:03:00,200"
+			},
+			"offsets": {
+				"from": 174560,
+				"to": 180200
+			},
+			"text": " real main network. And some other things like leaking private data, everything about who"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,200",
+				"to": "00:03:06,560"
+			},
+			"offsets": {
+				"from": 180200,
+				"to": 186560
+			},
+			"text": " you are and what you're doing is going out to Infura and the other apps long way. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,560",
+				"to": "00:03:14,040"
+			},
+			"offsets": {
+				"from": 186560,
+				"to": 194040
+			},
+			"text": " slightly more subtly, the more people, the fewer people that are running nodes, the easier"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,040",
+				"to": "00:03:24,680"
+			},
+			"offsets": {
+				"from": 194040,
+				"to": 204680
+			},
+			"text": " it is to spin up other nodes and do slight manipulations like Eclipse attacks. So it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:24,680",
+				"to": "00:03:28,720"
+			},
+			"offsets": {
+				"from": 204680,
+				"to": 208720
+			},
+			"text": " here. It's a problem. What are we going to do about it? Well, there's a lot of different"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,720",
+				"to": "00:03:36,880"
+			},
+			"offsets": {
+				"from": 208720,
+				"to": 216880
+			},
+			"text": " avenues to approach this with. There is dedicated hardware like Dapno at a grid plus. There's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,880",
+				"to": "00:03:42,800"
+			},
+			"offsets": {
+				"from": 216880,
+				"to": 222800
+			},
+			"text": " people looking at the problem of how much storage it takes to use on your computer. There's"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:42,800",
+				"to": "00:03:50,560"
+			},
+			"offsets": {
+				"from": 222800,
+				"to": 230560
+			},
+			"text": " people looking at peer discovery. And the thing that we've found to be one of the biggest"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:50,560",
+				"to": "00:03:55,200"
+			},
+			"offsets": {
+				"from": 230560,
+				"to": 235200
+			},
+			"text": " pain points is just the amount of time that it takes to sink from a fresh start. You know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,200",
+				"to": "00:03:59,360"
+			},
+			"offsets": {
+				"from": 235200,
+				"to": 239360
+			},
+			"text": " these sophisticated users who are willing to try something out, they're hobbyists. They"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,360",
+				"to": "00:04:05,920"
+			},
+			"offsets": {
+				"from": 239360,
+				"to": 245920
+			},
+			"text": " like to tinker. But they'll start up a node and try to sink it. And two hours later have"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:05,920",
+				"to": "00:04:12,280"
+			},
+			"offsets": {
+				"from": 245920,
+				"to": 252280
+			},
+			"text": " no indication about how far they are into that sink and say screw it, flip it off and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,280",
+				"to": "00:04:19,840"
+			},
+			"offsets": {
+				"from": 252280,
+				"to": 259840
+			},
+			"text": " go do something else that's more fun to tinker with. So we want to fix that problem. The"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,840",
+				"to": "00:04:26,120"
+			},
+			"offsets": {
+				"from": 259840,
+				"to": 266120
+			},
+			"text": " reigning speed champion is gets fast sink. That's the one to beat. That's about four"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,120",
+				"to": "00:04:35,960"
+			},
+			"offsets": {
+				"from": 266120,
+				"to": 275960
+			},
+			"text": " hours according to their latest benchmarks. So, you know, even that is going to be a problem"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:35,960",
+				"to": "00:04:40,760"
+			},
+			"offsets": {
+				"from": 275960,
+				"to": 280760
+			},
+			"text": " for these users. And so we want to take a look at that and see how much better can we"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,760",
+				"to": "00:04:46,920"
+			},
+			"offsets": {
+				"from": 280760,
+				"to": 286920
+			},
+			"text": " do. And part of the reason we're asking that question is if we directly implement fast"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,920",
+				"to": "00:04:52,360"
+			},
+			"offsets": {
+				"from": 286920,
+				"to": 292360
+			},
+			"text": " sink, we're going to do a lot worse. Because Python is never going to match or beat go"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:52,360",
+				"to": "00:05:01,040"
+			},
+			"offsets": {
+				"from": 292360,
+				"to": 301040
+			},
+			"text": " in a head-to-head performance race. So we zoom into fast sink and we say we look at"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:01,040",
+				"to": "00:05:07,840"
+			},
+			"offsets": {
+				"from": 301040,
+				"to": 307840
+			},
+			"text": " what parts are taking most of the time. And the majority of that is downloading state."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,840",
+				"to": "00:05:12,880"
+			},
+			"offsets": {
+				"from": 307840,
+				"to": 312880
+			},
+			"text": " There's things like downloading the headers, downloading receipts, but downloading the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:12,880",
+				"to": "00:05:19,680"
+			},
+			"offsets": {
+				"from": 312880,
+				"to": 319680
+			},
+			"text": " state of a recent block which includes all the things like accounts and storage for contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,680",
+				"to": "00:05:26,760"
+			},
+			"offsets": {
+				"from": 319680,
+				"to": 326760
+			},
+			"text": " That's the vast majority. So what are we going to do? It's time to upgrade our sink process."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,760",
+				"to": "00:05:35,320"
+			},
+			"offsets": {
+				"from": 326760,
+				"to": 335320
+			},
+			"text": " So this next generation of sink we're calling beam sink. And the ability it gives us is"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:35,320",
+				"to": "00:05:44,840"
+			},
+			"offsets": {
+				"from": 335320,
+				"to": 344840
+			},
+			"text": " go from an empty node, node data, to executing a recent mainnet block in minutes, asterisk,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,840",
+				"to": "00:05:53,000"
+			},
+			"offsets": {
+				"from": 344840,
+				"to": 353000
+			},
+			"text": " with just in time state downloads. That's the main concept behind it. So asterisk, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:53,000",
+				"to": "00:05:57,480"
+			},
+			"offsets": {
+				"from": 353000,
+				"to": 357480
+			},
+			"text": " don't want to lie to you. It takes longer than that right now because you have to find"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:57,480",
+				"to": "00:06:03,760"
+			},
+			"offsets": {
+				"from": 357480,
+				"to": 363760
+			},
+			"text": " peers. And that's unreasonably difficult right now. And header imports can take a while"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,760",
+				"to": "00:06:10,320"
+			},
+			"offsets": {
+				"from": 363760,
+				"to": 370320
+			},
+			"text": " unless you use a checkpoint which has its own interesting side checks. We will get back"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:10,320",
+				"to": "00:06:14,160"
+			},
+			"offsets": {
+				"from": 370320,
+				"to": 374160
+			},
+			"text": " to those things, but we're not -- we're considering that out of scope for our beam sink right"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,160",
+				"to": "00:06:20,800"
+			},
+			"offsets": {
+				"from": 374160,
+				"to": 380800
+			},
+			"text": " now. So high level, how does beam sink work?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:20,800",
+				"to": "00:06:25,840"
+			},
+			"offsets": {
+				"from": 380800,
+				"to": 385840
+			},
+			"text": " Roughly we combine the ideas of the way that fast sink works and the way that stateless"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,840",
+				"to": "00:06:30,640"
+			},
+			"offsets": {
+				"from": 385840,
+				"to": 390640
+			},
+			"text": " clients work. So stateless client gets all the data -- just the data it needs to run"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,640",
+				"to": "00:06:37,880"
+			},
+			"offsets": {
+				"from": 390640,
+				"to": 397880
+			},
+			"text": " a block. And it dumps it at the end of the block. Fast sink is about getting all of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:37,880",
+				"to": "00:06:45,080"
+			},
+			"offsets": {
+				"from": 397880,
+				"to": 405080
+			},
+			"text": " data all up front and save it to disk. So instead, beam sink works by running the EVM"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:45,080",
+				"to": "00:06:51,680"
+			},
+			"offsets": {
+				"from": 405080,
+				"to": 411680
+			},
+			"text": " on an empty state, pulling the data as it's needed, but saving it and storing it for future"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:51,680",
+				"to": "00:06:59,760"
+			},
+			"offsets": {
+				"from": 411680,
+				"to": 419760
+			},
+			"text": " executions. So what kind of effect does that have? Well, there are about 375 million"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,760",
+				"to": "00:07:08,840"
+			},
+			"offsets": {
+				"from": 419760,
+				"to": 428840
+			},
+			"text": " trinodes in the mainnet state database. And there are roughly 3,000 trinodes that are"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:08,840",
+				"to": "00:07:14,400"
+			},
+			"offsets": {
+				"from": 428840,
+				"to": 434400
+			},
+			"text": " used per block. So that's about 1/100,000th of the amount of data you need for just one"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,400",
+				"to": "00:07:20,480"
+			},
+			"offsets": {
+				"from": 434400,
+				"to": 440480
+			},
+			"text": " block versus for everything in the state. And this works out to about 250 times fewer"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,480",
+				"to": "00:07:26,400"
+			},
+			"offsets": {
+				"from": 440480,
+				"to": 446400
+			},
+			"text": " requests on the network before the first block can run. And we'll get into those numbers"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:26,400",
+				"to": "00:07:34,760"
+			},
+			"offsets": {
+				"from": 446400,
+				"to": 454760
+			},
+			"text": " a little bit more later. So we are approaching halfway through and obviously only glaze"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,760",
+				"to": "00:07:44,080"
+			},
+			"offsets": {
+				"from": 454760,
+				"to": 464080
+			},
+			"text": " -- graced over beam sink. So I've got to talk -- or a post here rather on medium that"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,080",
+				"to": "00:07:47,800"
+			},
+			"offsets": {
+				"from": 464080,
+				"to": 467800
+			},
+			"text": " goes into a bit more detail, compares it to fastening and all that. So I'll give people"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:47,800",
+				"to": "00:07:58,000"
+			},
+			"offsets": {
+				"from": 467800,
+				"to": 478000
+			},
+			"text": " a second to grab that link. And also I'm going to be posting further beam sink updates as"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:58,000",
+				"to": "00:08:03,120"
+			},
+			"offsets": {
+				"from": 478000,
+				"to": 483120
+			},
+			"text": " well as talking about how it impacts the whole network over time. So feel free to follow me"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:03,120",
+				"to": "00:08:09,360"
+			},
+			"offsets": {
+				"from": 483120,
+				"to": 489360
+			},
+			"text": " there to find out more. And while people are getting their last shot of that, you may have"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:09,360",
+				"to": "00:08:13,800"
+			},
+			"offsets": {
+				"from": 489360,
+				"to": 493800
+			},
+			"text": " noticed kind of a discrepancy in the numbers on the last slide. If there's 100,000th of"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,800",
+				"to": "00:08:24,120"
+			},
+			"offsets": {
+				"from": 493800,
+				"to": 504120
+			},
+			"text": " the data, then why is it only 250 times fewer requests? Excellent question. So fast sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,120",
+				"to": "00:08:33,440"
+			},
+			"offsets": {
+				"from": 504120,
+				"to": 513440
+			},
+			"text": " gets to batch together its try node requests into 340 node -- 384 nodes per request. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,440",
+				"to": "00:08:40,280"
+			},
+			"offsets": {
+				"from": 513440,
+				"to": 520280
+			},
+			"text": " beam sink as implemented now can only request a single node per request. And because the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,280",
+				"to": "00:08:45,040"
+			},
+			"offsets": {
+				"from": 520280,
+				"to": 525040
+			},
+			"text": " latency, the actual time that the packet is round tripping between you and your peer makes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,040",
+				"to": "00:08:55,880"
+			},
+			"offsets": {
+				"from": 525040,
+				"to": 535880
+			},
+			"text": " up the majority of the time, you lose a factor of 384. Okay. So we're about to do a deep dive."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,880",
+				"to": "00:09:01,400"
+			},
+			"offsets": {
+				"from": 535880,
+				"to": 541400
+			},
+			"text": " I'm sorry for the folks that I might lose. It requires a little bit of understanding about"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,400",
+				"to": "00:09:08,080"
+			},
+			"offsets": {
+				"from": 541400,
+				"to": 548080
+			},
+			"text": " EVM and the way that tries work. I'm not going to have time to give background on it. So I'm"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,080",
+				"to": "00:09:14,840"
+			},
+			"offsets": {
+				"from": 548080,
+				"to": 554840
+			},
+			"text": " sorry. For everyone else, I hope you have fun. So what I'm going to do here is I'm going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:14,840",
+				"to": "00:09:20,080"
+			},
+			"offsets": {
+				"from": 554840,
+				"to": 560080
+			},
+			"text": " paint a big picture of kind of how it works, but I'm going to put it on the slide bit by bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,080",
+				"to": "00:09:28,360"
+			},
+			"offsets": {
+				"from": 560080,
+				"to": 568360
+			},
+			"text": " so that we can kind of stitch it together, the understanding. So the idea here is we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:28,360",
+				"to": "00:09:36,480"
+			},
+			"offsets": {
+				"from": 568360,
+				"to": 576480
+			},
+			"text": " going to jump into EVM code execution. This isn't the way it really works, but it gets"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,480",
+				"to": "00:09:43,480"
+			},
+			"offsets": {
+				"from": 576480,
+				"to": 583480
+			},
+			"text": " the point across. So let's say we have a push 20 op code, we're going to push an address"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,480",
+				"to": "00:09:49,880"
+			},
+			"offsets": {
+				"from": 583480,
+				"to": 589880
+			},
+			"text": " onto the stack. That didn't take -- that didn't require any state. That was just in the byte"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:49,880",
+				"to": "00:09:55,560"
+			},
+			"offsets": {
+				"from": 589880,
+				"to": 595560
+			},
+			"text": " code, so even though our state database is empty, we can continue on. Okay. But the next"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,560",
+				"to": "00:10:01,880"
+			},
+			"offsets": {
+				"from": 595560,
+				"to": 601880
+			},
+			"text": " op code asks for the balance of that address. So now, EVM has to check the state database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:01,880",
+				"to": "00:10:09,360"
+			},
+			"offsets": {
+				"from": 601880,
+				"to": 609360
+			},
+			"text": " which is empty, and try to extract that balance. Now, all we know at this point, all the node"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,360",
+				"to": "00:10:15,600"
+			},
+			"offsets": {
+				"from": 609360,
+				"to": 615600
+			},
+			"text": " knows at this point is the hash of the root of the try. So that is -- we're going to call"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:15,600",
+				"to": "00:10:23,160"
+			},
+			"offsets": {
+				"from": 615600,
+				"to": 623160
+			},
+			"text": " that F here, F dot dot dot. And that's all we've got. So what are we going to do? How"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:23,160",
+				"to": "00:10:29,440"
+			},
+			"offsets": {
+				"from": 623160,
+				"to": 629440
+			},
+			"text": " are we going to get the balance? We're going to find a friendly peer and we'll ask it."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:29,440",
+				"to": "00:10:35,080"
+			},
+			"offsets": {
+				"from": 629440,
+				"to": 635080
+			},
+			"text": " Hey, peer, do you know what the node is that has the hash F? This command is the exact"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,080",
+				"to": "00:10:40,840"
+			},
+			"offsets": {
+				"from": 635080,
+				"to": 640840
+			},
+			"text": " same command that fast sync uses. So we're pigging back in on this. We don't require any"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,840",
+				"to": "00:10:46,560"
+			},
+			"offsets": {
+				"from": 640840,
+				"to": 646560
+			},
+			"text": " new network protocols to make beams in cabin. So we say peer, give us -- can you give us"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,560",
+				"to": "00:10:54,120"
+			},
+			"offsets": {
+				"from": 646560,
+				"to": 654120
+			},
+			"text": " F? And they say sure. The node F has children A and B. So what does that mean? It means"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:54,120",
+				"to": "00:10:59,680"
+			},
+			"offsets": {
+				"from": 654120,
+				"to": 659680
+			},
+			"text": " that the hashes of the children of the node F are A and B. You know, I'm lying to you"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:59,680",
+				"to": "00:11:04,600"
+			},
+			"offsets": {
+				"from": 659680,
+				"to": 664600
+			},
+			"text": " a little bit here, pretending this is a binary tree, other than a modified picture of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:04,600",
+				"to": "00:11:10,280"
+			},
+			"offsets": {
+				"from": 664600,
+				"to": 670280
+			},
+			"text": " Markle tree, still gets a point across. So we get A and B back and we store it in our"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,280",
+				"to": "00:11:14,840"
+			},
+			"offsets": {
+				"from": 670280,
+				"to": 674840
+			},
+			"text": " database. So here's what our local try looks like now. We've got two children, we don't"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,840",
+				"to": "00:11:21,520"
+			},
+			"offsets": {
+				"from": 674840,
+				"to": 681520
+			},
+			"text": " know what are inside them. We have the root node. And what happens at this point? Now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:21,520",
+				"to": "00:11:24,960"
+			},
+			"offsets": {
+				"from": 681520,
+				"to": 684960
+			},
+			"text": " we're looking for the balance of a particular address. And we know which address we're looking"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:24,960",
+				"to": "00:11:28,840"
+			},
+			"offsets": {
+				"from": 684960,
+				"to": 688840
+			},
+			"text": " for. So we don't have to fill out the whole tree. We can just follow the path to the address"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,840",
+				"to": "00:11:36,160"
+			},
+			"offsets": {
+				"from": 688840,
+				"to": 696160
+			},
+			"text": " we want. So let's say the path takes us down A. And so we want to know what the children"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:36,160",
+				"to": "00:11:40,840"
+			},
+			"offsets": {
+				"from": 696160,
+				"to": 700840
+			},
+			"text": " of A are. So we ask our peer, hey, what are the children of A? It says the children are"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:40,840",
+				"to": "00:11:47,640"
+			},
+			"offsets": {
+				"from": 700840,
+				"to": 707640
+			},
+			"text": " D and E. We save that into our database. Okay. So now we're starting to build just a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:47,640",
+				"to": "00:11:53,760"
+			},
+			"offsets": {
+				"from": 707640,
+				"to": 713760
+			},
+			"text": " pieces that are necessary to get at the balance of the address that we care about. And so"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:53,760",
+				"to": "00:11:56,640"
+			},
+			"offsets": {
+				"from": 713760,
+				"to": 716640
+			},
+			"text": " we do the same thing, again, where we know a particular address that we're looking for"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:56,640",
+				"to": "00:12:03,920"
+			},
+			"offsets": {
+				"from": 716640,
+				"to": 723920
+			},
+			"text": " the balance for. Let's say it's down, you're meant to follow down the path to E. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:03,920",
+				"to": "00:12:11,880"
+			},
+			"offsets": {
+				"from": 723920,
+				"to": 731880
+			},
+			"text": " ask our peer and they say, hey, E is actually a leaf node. It contains the RLP of the account."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:11,880",
+				"to": "00:12:17,240"
+			},
+			"offsets": {
+				"from": 731880,
+				"to": 737240
+			},
+			"text": " And which includes things like the balance that you're interested in. So we save that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:17,240",
+				"to": "00:12:23,440"
+			},
+			"offsets": {
+				"from": 737240,
+				"to": 743440
+			},
+			"text": " in the state database. So now we've got three nodes in the state database. That's enough"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,440",
+				"to": "00:12:29,280"
+			},
+			"offsets": {
+				"from": 743440,
+				"to": 749280
+			},
+			"text": " to not only know the balance, but prove that that balance is part of the state route from"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,280",
+				"to": "00:12:37,720"
+			},
+			"offsets": {
+				"from": 749280,
+				"to": 757720
+			},
+			"text": " the previous block. And so at this point we can read the balance out of that leaf node"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:37,720",
+				"to": "00:12:43,960"
+			},
+			"offsets": {
+				"from": 757720,
+				"to": 763960
+			},
+			"text": " and push it onto the stack and continue resume going down the EBM. So let's say, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:43,960",
+				"to": "00:12:50,840"
+			},
+			"offsets": {
+				"from": 763960,
+				"to": 770840
+			},
+			"text": " the bytecode wants to know if the balance was not empty. So this is the gist of it. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,840",
+				"to": "00:12:57,320"
+			},
+			"offsets": {
+				"from": 770840,
+				"to": 777320
+			},
+			"text": " can see, you know, later on, maybe a different balance is asked for. Again, you'd be asking"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:57,320",
+				"to": "00:13:04,600"
+			},
+			"offsets": {
+				"from": 777320,
+				"to": 784600
+			},
+			"text": " for nodes one by one. You get to skip the root node next time. But, you know, the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,600",
+				"to": "00:13:11,760"
+			},
+			"offsets": {
+				"from": 784600,
+				"to": 791760
+			},
+			"text": " concept applies. Similarly, this is showing, you know, three layers, the real main nets"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,760",
+				"to": "00:13:16,760"
+			},
+			"offsets": {
+				"from": 791760,
+				"to": 796760
+			},
+			"text": " closer to six or seven, probably at this point, depending on, you know, where the account"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:16,760",
+				"to": "00:13:27,760"
+			},
+			"offsets": {
+				"from": 796760,
+				"to": 807760
+			},
+			"text": " is. So how long does that take? So let's say there are 3,000 nodes per block. And we"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,760",
+				"to": "00:13:34,080"
+			},
+			"offsets": {
+				"from": 807760,
+				"to": 814080
+			},
+			"text": " only get to request one node in each request. And we're connected to peers, but we can"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:34,080",
+				"to": "00:13:39,160"
+			},
+			"offsets": {
+				"from": 814080,
+				"to": 819160
+			},
+			"text": " only ask one peer at a time. So we get to ask our best peer. We get the one that, in this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,160",
+				"to": "00:13:44,840"
+			},
+			"offsets": {
+				"from": 819160,
+				"to": 824840
+			},
+			"text": " case, best means we're closest to that around trip fastest. So let's say that our best peer"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:44,840",
+				"to": "00:13:51,360"
+			},
+			"offsets": {
+				"from": 824840,
+				"to": 831360
+			},
+			"text": " is 100 milliseconds away. So you work that all out. You get 300 seconds of time waiting"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:51,360",
+				"to": "00:13:56,920"
+			},
+			"offsets": {
+				"from": 831360,
+				"to": 836920
+			},
+			"text": " for state for a block. And that kind of sounds like a problem. You can imagine if it takes"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,920",
+				"to": "00:14:01,920"
+			},
+			"offsets": {
+				"from": 836920,
+				"to": 841920
+			},
+			"text": " five minutes to download the state for a block, then you're going to lag behind the net. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,920",
+				"to": "00:14:07,640"
+			},
+			"offsets": {
+				"from": 841920,
+				"to": 847640
+			},
+			"text": " then as you process the next block, you're going to lag further. That would not be tenable."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:07,640",
+				"to": "00:14:11,800"
+			},
+			"offsets": {
+				"from": 847640,
+				"to": 851800
+			},
+			"text": " But the good news is we don't have to wait for the first block to finish before we start"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:11,800",
+				"to": "00:14:19,880"
+			},
+			"offsets": {
+				"from": 851800,
+				"to": 859880
+			},
+			"text": " executing the second one. So what ends up happening is you continue to run these all in parallel"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:19,880",
+				"to": "00:14:28,400"
+			},
+			"offsets": {
+				"from": 859880,
+				"to": 868400
+			},
+			"text": " and you catch up along the way, but maybe stay perpetually five minutes behind main net."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:28,400",
+				"to": "00:14:33,960"
+			},
+			"offsets": {
+				"from": 868400,
+				"to": 873960
+			},
+			"text": " In reality, it might look something more like fluctuating between 15 minutes behind and"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,960",
+				"to": "00:14:39,920"
+			},
+			"offsets": {
+				"from": 873960,
+				"to": 879920
+			},
+			"text": " one minute behind, depending on the blocks you're running into and your peers and all that."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,920",
+				"to": "00:14:46,200"
+			},
+			"offsets": {
+				"from": 879920,
+				"to": 886200
+			},
+			"text": " Okay. So at this point, you know, you're a few minutes, you've turned on your node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:46,200",
+				"to": "00:14:52,280"
+			},
+			"offsets": {
+				"from": 886200,
+				"to": 892280
+			},
+			"text": " your five minutes in, maybe some more minutes for peer discovery and headers. And you've"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:52,280",
+				"to": "00:14:58,720"
+			},
+			"offsets": {
+				"from": 892280,
+				"to": 898720
+			},
+			"text": " got main net blocks executing on your local node. This is already a way better experience"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:58,720",
+				"to": "00:15:07,520"
+			},
+			"offsets": {
+				"from": 898720,
+				"to": 907520
+			},
+			"text": " than four hours or sometimes days to run fast sync. But it's not good enough. So how can"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,520",
+				"to": "00:15:17,040"
+			},
+			"offsets": {
+				"from": 907520,
+				"to": 917040
+			},
+			"text": " we do better? One of the things we can do is to find out from our peers which nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:17,040",
+				"to": "00:15:22,840"
+			},
+			"offsets": {
+				"from": 917040,
+				"to": 922840
+			},
+			"text": " which try nodes, are going to be needed in a block. So we're going to call that the block"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:22,840",
+				"to": "00:15:27,800"
+			},
+			"offsets": {
+				"from": 922840,
+				"to": 927800
+			},
+			"text": " witness metadata, where the witness is all the state needed to execute the block. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,800",
+				"to": "00:15:34,200"
+			},
+			"offsets": {
+				"from": 927800,
+				"to": 934200
+			},
+			"text": " the metadata is just the hashes of the state that's needed to execute the block. So what"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:34,200",
+				"to": "00:15:42,760"
+			},
+			"offsets": {
+				"from": 934200,
+				"to": 942760
+			},
+			"text": " that allows us to do is batch up the requests again into 384 nodes per request and it allows"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:42,760",
+				"to": "00:15:50,520"
+			},
+			"offsets": {
+				"from": 942760,
+				"to": 950520
+			},
+			"text": " us to spread those requests across multiple peers. So a quick look, this is going to look"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,520",
+				"to": "00:15:55,400"
+			},
+			"offsets": {
+				"from": 950520,
+				"to": 955400
+			},
+			"text": " very similar to the past one, so we'll go through a little bit faster of what that might"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,400",
+				"to": "00:16:02,880"
+			},
+			"offsets": {
+				"from": 955400,
+				"to": 962880
+			},
+			"text": " look like. So push an address onto the stack, ask for its balance, hit the empty state database,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:02,880",
+				"to": "00:16:09,800"
+			},
+			"offsets": {
+				"from": 962880,
+				"to": 969800
+			},
+			"text": " all we know is the root hash, find a peer to help us out. And now instead of asking for"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:09,800",
+				"to": "00:16:14,800"
+			},
+			"offsets": {
+				"from": 969800,
+				"to": 974800
+			},
+			"text": " that root node, what we do is we get a witness, really I'd probably call it witness metadata"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:14,800",
+				"to": "00:16:21,000"
+			},
+			"offsets": {
+				"from": 974800,
+				"to": 981000
+			},
+			"text": " or something. And we know which block we're on, of course, so we can say, hey, peer, can"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:21,000",
+				"to": "00:16:26,320"
+			},
+			"offsets": {
+				"from": 981000,
+				"to": 986320
+			},
+			"text": " you tell us which hashes we're going to need for block G? Say, sure, we're going to need"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,320",
+				"to": "00:16:33,480"
+			},
+			"offsets": {
+				"from": 986320,
+				"to": 993480
+			},
+			"text": " F A and E from last time. So, you know, at this point, we actually can't store anything"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:33,480",
+				"to": "00:16:36,960"
+			},
+			"offsets": {
+				"from": 993480,
+				"to": 996960
+			},
+			"text": " in the database. We just have a bunch of keys, we don't have any key value pairs. And in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,960",
+				"to": "00:16:44,080"
+			},
+			"offsets": {
+				"from": 996960,
+				"to": 1004080
+			},
+			"text": " fact, we don't know how these stitch together. All we really know is F's of the root. But"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:44,080",
+				"to": "00:16:48,800"
+			},
+			"offsets": {
+				"from": 1004080,
+				"to": 1008800
+			},
+			"text": " we can use it to now make the next request. So we can batch them together, put them in"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,800",
+				"to": "00:16:53,040"
+			},
+			"offsets": {
+				"from": 1008800,
+				"to": 1013040
+			},
+			"text": " a single request, we can send it to a different peer, we can send it to, we can split it up"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:53,040",
+				"to": "00:17:00,000"
+			},
+			"offsets": {
+				"from": 1013040,
+				"to": 1020000
+			},
+			"text": " and send it to a bunch of different peers. We have a lot of options. And so we get back,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:00,000",
+				"to": "00:17:06,840"
+			},
+			"offsets": {
+				"from": 1020000,
+				"to": 1026840
+			},
+			"text": " essentially all the data that was requested in the previous slide, so we know F is, has"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:06,840",
+				"to": "00:17:12,200"
+			},
+			"offsets": {
+				"from": 1026840,
+				"to": 1032200
+			},
+			"text": " children A and B, A has children D and E, and E is the account RLP. So we save it into"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:12,200",
+				"to": "00:17:17,480"
+			},
+			"offsets": {
+				"from": 1032200,
+				"to": 1037480
+			},
+			"text": " the database. That's enough. We can look up and prove the account balance and push it"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,480",
+				"to": "00:17:23,640"
+			},
+			"offsets": {
+				"from": 1037480,
+				"to": 1043640
+			},
+			"text": " onto the stack and then ask follow up questions like, is that balance zero? Which is a stateless"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:23,640",
+				"to": "00:17:30,640"
+			},
+			"offsets": {
+				"from": 1043640,
+				"to": 1050640
+			},
+			"text": " call. Okay. So how much does that help us? Well, let's run some numbers. So let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:30,640",
+				"to": "00:17:38,400"
+			},
+			"offsets": {
+				"from": 1050640,
+				"to": 1058400
+			},
+			"text": " again, 3000, try nodes per block, rough number. But this time we get to group it into 384"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:38,400",
+				"to": "00:17:44,120"
+			},
+			"offsets": {
+				"from": 1058400,
+				"to": 1064120
+			},
+			"text": " at a time. And, you know, we're again assuming, and this looks about right from empirical"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:44,120",
+				"to": "00:17:50,200"
+			},
+			"offsets": {
+				"from": 1064120,
+				"to": 1070200
+			},
+			"text": " tests that most of the time spent is latency. So we get to group it up and we get to also"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:50,200",
+				"to": "00:17:57,080"
+			},
+			"offsets": {
+				"from": 1070200,
+				"to": 1077080
+			},
+			"text": " split it up. So we get to send these requests to, let's say, four different peers at once."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,080",
+				"to": "00:18:01,120"
+			},
+			"offsets": {
+				"from": 1077080,
+				"to": 1081120
+			},
+			"text": " And now that we're sending it to more than our best peer, you know, maybe the average"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,120",
+				"to": "00:18:05,680"
+			},
+			"offsets": {
+				"from": 1081120,
+				"to": 1085680
+			},
+			"text": " round trip time actually goes up. You know, we have to rely on some peers that are a little"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:05,680",
+				"to": "00:18:14,480"
+			},
+			"offsets": {
+				"from": 1085680,
+				"to": 1094480
+			},
+			"text": " further away. And so maybe each peer takes 500 milliseconds to round trip. And so all"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:14,480",
+				"to": "00:18:21,960"
+			},
+			"offsets": {
+				"from": 1094480,
+				"to": 1101960
+			},
+			"text": " of that, throw it into, you know, throw some arithmetic at it and you get one second of"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:21,960",
+				"to": "00:18:33,680"
+			},
+			"offsets": {
+				"from": 1101960,
+				"to": 1113680
+			},
+			"text": " time waiting on try node requests. So this is a prediction, right? The other one is known."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,680",
+				"to": "00:18:39,200"
+			},
+			"offsets": {
+				"from": 1113680,
+				"to": 1119200
+			},
+			"text": " But this is a fairly straightforward extension that we're looking at that would be pretty"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:39,200",
+				"to": "00:18:43,640"
+			},
+			"offsets": {
+				"from": 1119200,
+				"to": 1123640
+			},
+			"text": " much the whole game, right? If you can download all the state in one second for a block, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,640",
+				"to": "00:18:51,360"
+			},
+			"offsets": {
+				"from": 1123640,
+				"to": 1131360
+			},
+			"text": " can keep up with MainNet quite easily from the beginning of launching an empty node."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,360",
+				"to": "00:19:01,080"
+			},
+			"offsets": {
+				"from": 1131360,
+				"to": 1141080
+			},
+			"text": " So how close are we? Well, V0 is prototyped in Trinity Alpha. That works on MainNet right"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:01,080",
+				"to": "00:19:12,000"
+			},
+			"offsets": {
+				"from": 1141080,
+				"to": 1152000
+			},
+			"text": " now. So we have executed many MainNet blocks over and over. And, you know, generated local"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:12,000",
+				"to": "00:19:17,560"
+			},
+			"offsets": {
+				"from": 1152000,
+				"to": 1157560
+			},
+			"text": " witnesses, that kind of thing. But it's not production ready. You know, this is meant"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,560",
+				"to": "00:19:24,920"
+			},
+			"offsets": {
+				"from": 1157560,
+				"to": 1164920
+			},
+			"text": " for experimentation right now. But there's nothing left to research. There's no open"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:24,920",
+				"to": "00:19:31,040"
+			},
+			"offsets": {
+				"from": 1164920,
+				"to": 1171040
+			},
+			"text": " questions really on V0 and how it works, just more coding to do. Now the witness method"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:31,040",
+				"to": "00:19:36,960"
+			},
+			"offsets": {
+				"from": 1171040,
+				"to": 1176960
+			},
+			"text": " data serving is in its design phase, right? So we have ideas about how to do that. That's"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,960",
+				"to": "00:19:44,400"
+			},
+			"offsets": {
+				"from": 1176960,
+				"to": 1184400
+			},
+			"text": " going to be coming up next right after DevCon, you know, follows to see how that progresses."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,400",
+				"to": "00:19:49,760"
+			},
+			"offsets": {
+				"from": 1184400,
+				"to": 1189760
+			},
+			"text": " And people sometimes ask the question, well, why hasn't anyone done this before? And the"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:49,760",
+				"to": "00:19:56,160"
+			},
+			"offsets": {
+				"from": 1189760,
+				"to": 1196160
+			},
+			"text": " answer is that no one had to. You know, we were forced to do it because Python is slow."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,160",
+				"to": "00:20:04,320"
+			},
+			"offsets": {
+				"from": 1196160,
+				"to": 1204320
+			},
+			"text": " So we had to ask these questions. There's a chicken in the egg problem with why we can't"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,320",
+				"to": "00:20:09,200"
+			},
+			"offsets": {
+				"from": 1204320,
+				"to": 1209200
+			},
+			"text": " couldn't use witnesses right away in V0 because there were no servers of those witnesses."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:09,200",
+				"to": "00:20:15,280"
+			},
+			"offsets": {
+				"from": 1209200,
+				"to": 1215280
+			},
+			"text": " And so Trinity can't serve them until it syncs. So we're going to bootstrap with V0 in order"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:15,280",
+				"to": "00:20:21,480"
+			},
+			"offsets": {
+				"from": 1215280,
+				"to": 1221480
+			},
+			"text": " to sync V1. So that's it. We're doing this now. We're talking to other clients to get"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:21,480",
+				"to": "00:20:25,920"
+			},
+			"offsets": {
+				"from": 1221480,
+				"to": 1225920
+			},
+			"text": " it done for them. It's a great thing about working at the foundation is we get to share"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:25,920",
+				"to": "00:20:34,040"
+			},
+			"offsets": {
+				"from": 1225920,
+				"to": 1234040
+			},
+			"text": " all the fun toys that we make up. And we're cranking away. So follow us and see what's new."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:34,040",
+				"to": "00:20:38,560"
+			},
+			"offsets": {
+				"from": 1234040,
+				"to": 1238560
+			},
+			"text": " It looks like we don't have time for questions. But you can find me on the side or in the"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:38,560",
+				"to": "00:20:40,440"
+			},
+			"offsets": {
+				"from": 1238560,
+				"to": 1240440
+			},
+			"text": " hall. I'm happy to talk. Thanks for your time."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:40,440",
+				"to": "00:20:42,440"
+			},
+			"offsets": {
+				"from": 1240440,
+				"to": 1242440
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:42,440",
+				"to": "00:20:52,440"
+			},
+			"offsets": {
+				"from": 1242440,
+				"to": 1252440
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:52,440",
+				"to": "00:21:02,440"
+			},
+			"offsets": {
+				"from": 1252440,
+				"to": 1262440
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:02,440",
+				"to": "00:21:12,440"
+			},
+			"offsets": {
+				"from": 1262440,
+				"to": 1272440
+			},
+			"text": " [BLANK_AUDIO]"
+		},
+		{
+			"timestamps": {
+				"from": "00:21:12,440",
+				"to": "00:21:16,440"
+			},
+			"offsets": {
+				"from": 1272440,
+				"to": 1276440
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

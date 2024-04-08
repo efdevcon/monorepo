@@ -1,0 +1,3464 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10000
+			},
+			"text": " [MUSIC]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 20000
+			},
+			"text": " So what I wanted to tell you about today is basically"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,000",
+				"to": "00:00:25,000"
+			},
+			"offsets": {
+				"from": 20000,
+				"to": 25000
+			},
+			"text": " scalability and particularly some of the more detailed"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 25000,
+				"to": 29000
+			},
+			"text": " implications that this is going to have for how if your"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:31,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 31000
+			},
+			"text": " developers are going to write their contracts."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,000",
+				"to": "00:00:34,000"
+			},
+			"offsets": {
+				"from": 31000,
+				"to": 34000
+			},
+			"text": " So we've already talked about scalability quite a lot this"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,000",
+				"to": "00:00:38,000"
+			},
+			"offsets": {
+				"from": 34000,
+				"to": 38000
+			},
+			"text": " morning for about an hour. We've talked about CASPER, consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:38,000",
+				"to": "00:00:42,000"
+			},
+			"offsets": {
+				"from": 38000,
+				"to": 42000
+			},
+			"text": " problems, some of the issues that making Ethereum scale is"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:42,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 42000,
+				"to": 47000
+			},
+			"text": " necessarily going to entail. So just to sort of recap all of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:52,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 52000
+			},
+			"text": " that very quickly, Ethereum right now, every single computer in"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:52,000",
+				"to": "00:00:55,000"
+			},
+			"offsets": {
+				"from": 52000,
+				"to": 55000
+			},
+			"text": " the Ethereum network processes every transaction, every single"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,000",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 55000,
+				"to": 59000
+			},
+			"text": " computer in the Ethereum network maintains the entire state. And"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:05,000"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 65000
+			},
+			"text": " that is very slow on the Olympic test that we achieved an"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,000",
+				"to": "00:01:10,000"
+			},
+			"offsets": {
+				"from": 65000,
+				"to": 70000
+			},
+			"text": " impressive 20 transactions per second, which I believe is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,000",
+				"to": "00:01:13,000"
+			},
+			"offsets": {
+				"from": 70000,
+				"to": 73000
+			},
+			"text": " roughly what normal computers were able to do at some point in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:13,000",
+				"to": "00:01:20,000"
+			},
+			"offsets": {
+				"from": 73000,
+				"to": 80000
+			},
+			"text": " the 1980s. So yeah, but unlike nearly all other systems in"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:20,000",
+				"to": "00:01:24,000"
+			},
+			"offsets": {
+				"from": 80000,
+				"to": 84000
+			},
+			"text": " the real world, this also does not get more powerful. The more"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:24,000",
+				"to": "00:01:27,000"
+			},
+			"offsets": {
+				"from": 84000,
+				"to": 87000
+			},
+			"text": " you join the network surprisingly enough. In fact, it actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,000",
+				"to": "00:01:29,000"
+			},
+			"offsets": {
+				"from": 87000,
+				"to": 89000
+			},
+			"text": " should get slightly less powerful with the universal"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,000",
+				"to": "00:01:33,000"
+			},
+			"offsets": {
+				"from": 89000,
+				"to": 93000
+			},
+			"text": " algorithm of the size of the network. But the basic reason is"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,000",
+				"to": "00:01:36,000"
+			},
+			"offsets": {
+				"from": 93000,
+				"to": 96000
+			},
+			"text": " if you have 10 times more nodes, guess what? Each and every"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 96000,
+				"to": 99000
+			},
+			"text": " node still processes every transaction. You still are where"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " you started. You just have even more inefficiency. So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:47,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 107000
+			},
+			"text": " basic vision for 2.0 is this concept of sharding. So instead"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:47,000",
+				"to": "00:01:51,000"
+			},
+			"offsets": {
+				"from": 107000,
+				"to": 111000
+			},
+			"text": " of having one global state that's seen by absolutely everyone,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:51,000",
+				"to": "00:01:55,000"
+			},
+			"offsets": {
+				"from": 111000,
+				"to": 115000
+			},
+			"text": " you split the state up into these chunks that you can call"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,000",
+				"to": "00:02:00,000"
+			},
+			"offsets": {
+				"from": 115000,
+				"to": 120000
+			},
+			"text": " shards. And each of these shards is when it contains its own state."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:00,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 120000,
+				"to": 123000
+			},
+			"text": " So you can imagine each shard containing some portion of all"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:06,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 126000
+			},
+			"text": " of the accounts. And then you have some number of shards."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,000",
+				"to": "00:02:09,000"
+			},
+			"offsets": {
+				"from": 126000,
+				"to": 129000
+			},
+			"text": " You can imagine potentially having a few hundred, a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:09,000",
+				"to": "00:02:13,000"
+			},
+			"offsets": {
+				"from": 129000,
+				"to": 133000
+			},
+			"text": " thousand of these. And the state is represented in a"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:13,000",
+				"to": "00:02:16,000"
+			},
+			"offsets": {
+				"from": 133000,
+				"to": 136000
+			},
+			"text": " more in a Merkel tree as usual. Merkel roots of the state are"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 136000,
+				"to": 139000
+			},
+			"text": " represented in the shard roots. And then you build another"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:24,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 144000
+			},
+			"text": " Merkel tree out of the shard roots and you get the global state"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:24,000",
+				"to": "00:02:28,000"
+			},
+			"offsets": {
+				"from": 144000,
+				"to": 148000
+			},
+			"text": " root of the entire Ethereum system. So as you can see, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:28,000",
+				"to": "00:02:32,000"
+			},
+			"offsets": {
+				"from": 148000,
+				"to": 152000
+			},
+			"text": " guys can still have some concept of sort of global truth even in"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:32,000",
+				"to": "00:02:38,000"
+			},
+			"offsets": {
+				"from": 152000,
+				"to": 158000
+			},
+			"text": " a scalable context. So states split into shards. Each"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:38,000",
+				"to": "00:02:43,000"
+			},
+			"offsets": {
+				"from": 158000,
+				"to": 163000
+			},
+			"text": " account is only in one shard. And just the simplest case,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,000",
+				"to": "00:02:48,000"
+			},
+			"offsets": {
+				"from": 163000,
+				"to": 168000
+			},
+			"text": " accounts can only send transactions to or call accounts"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:48,000",
+				"to": "00:02:52,000"
+			},
+			"offsets": {
+				"from": 168000,
+				"to": 172000
+			},
+			"text": " within the same shard. So this is one fairly simple way to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:52,000",
+				"to": "00:02:56,000"
+			},
+			"offsets": {
+				"from": 172000,
+				"to": 176000
+			},
+			"text": " it. So basically, you know, you just sort of split Ethereum up"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:56,000",
+				"to": "00:03:00,000"
+			},
+			"offsets": {
+				"from": 176000,
+				"to": 180000
+			},
+			"text": " into a few thousand different islands. And if you want to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:00,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 180000,
+				"to": 183000
+			},
+			"text": " stuff that kind of interoperates between islands, well, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " just have to figure out some sort of super protocol way to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:11,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 191000
+			},
+			"text": " it. But in theory, you know, you can probably have a few"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,000",
+				"to": "00:03:14,000"
+			},
+			"offsets": {
+				"from": 191000,
+				"to": 194000
+			},
+			"text": " thousand different applications. And each application can kind of"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,000",
+				"to": "00:03:17,000"
+			},
+			"offsets": {
+				"from": 194000,
+				"to": 197000
+			},
+			"text": " do its own thing. You could have, you know, a shard that has"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 197000,
+				"to": 200000
+			},
+			"text": " gnosis on it. You could have a shard that has like auger and"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:23,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 203000
+			},
+			"text": " potentially three other things on it. You could have a shard that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,000",
+				"to": "00:03:29,000"
+			},
+			"offsets": {
+				"from": 203000,
+				"to": 209000
+			},
+			"text": " has five other things. So this is one place to start. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:29,000",
+				"to": "00:03:33,000"
+			},
+			"offsets": {
+				"from": 209000,
+				"to": 213000
+			},
+			"text": " just to go into this in sort of much more detail, the way that"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,000",
+				"to": "00:03:36,000"
+			},
+			"offsets": {
+				"from": 213000,
+				"to": 216000
+			},
+			"text": " this would work from a transaction standpoint is you have two"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 216000,
+				"to": 220000
+			},
+			"text": " levels. So in Bitcoin in Ethereum, you have a block header"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 223000
+			},
+			"text": " which is small. Then you have the set of transactions which is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " large. And in the block header, the set of transactions is"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:52,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 232000
+			},
+			"text": " represented by a Merkle word. So here, we're instead we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:52,000",
+				"to": "00:03:55,000"
+			},
+			"offsets": {
+				"from": 232000,
+				"to": 235000
+			},
+			"text": " to do a two level thing. So we're going to create this object"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:55,000",
+				"to": "00:03:59,000"
+			},
+			"offsets": {
+				"from": 235000,
+				"to": 239000
+			},
+			"text": " called a transaction group. And so, you know, the way you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:59,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 239000,
+				"to": 242000
+			},
+			"text": " think about this sort of from a big picture standpoint is"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 246000
+			},
+			"text": " theoretically, even in Bitcoin, you don't, or even for something"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:09,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 249000
+			},
+			"text": " like Bitcoin, you don't need to have blocks. You could have just"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:09,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 249000,
+				"to": 252000
+			},
+			"text": " required transactions to just have proof of work on their own and"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:15,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 255000
+			},
+			"text": " you could have just made every transaction reference one previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,000",
+				"to": "00:04:19,000"
+			},
+			"offsets": {
+				"from": 255000,
+				"to": 259000
+			},
+			"text": " transaction and just made a chain of transactions. As it turns out,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:19,000",
+				"to": "00:04:22,000"
+			},
+			"offsets": {
+				"from": 259000,
+				"to": 262000
+			},
+			"text": " by introducing one level of interaction with blocks, you can"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:22,000",
+				"to": "00:04:25,000"
+			},
+			"offsets": {
+				"from": 262000,
+				"to": 265000
+			},
+			"text": " make things somewhat more efficient and somewhat more"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,000",
+				"to": "00:04:27,000"
+			},
+			"offsets": {
+				"from": 265000,
+				"to": 267000
+			},
+			"text": " scalable. Here, we're introducing two levels of"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:27,000",
+				"to": "00:04:30,000"
+			},
+			"offsets": {
+				"from": 267000,
+				"to": 270000
+			},
+			"text": " interaction. You have transactions. Transactions get"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:30,000",
+				"to": "00:04:33,000"
+			},
+			"offsets": {
+				"from": 270000,
+				"to": 273000
+			},
+			"text": " collated into transaction groups. And then it's going to be the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,000",
+				"to": "00:04:37,000"
+			},
+			"offsets": {
+				"from": 273000,
+				"to": 277000
+			},
+			"text": " transaction groups that go into the main header chain. So"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:37,000",
+				"to": "00:04:41,000"
+			},
+			"offsets": {
+				"from": 277000,
+				"to": 281000
+			},
+			"text": " transactions, what they have, they have a header and a body."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:41,000",
+				"to": "00:04:46,000"
+			},
+			"offsets": {
+				"from": 281000,
+				"to": 286000
+			},
+			"text": " The header contains two main components to it. The left"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,000",
+				"to": "00:04:51,000"
+			},
+			"offsets": {
+				"from": 286000,
+				"to": 291000
+			},
+			"text": " side contains a shard ID. Then a pre-state root, a post-state"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,000",
+				"to": "00:04:55,000"
+			},
+			"offsets": {
+				"from": 291000,
+				"to": 295000
+			},
+			"text": " root and a receipt root. So the pre-state root basically says,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:55,000",
+				"to": "00:04:58,000"
+			},
+			"offsets": {
+				"from": 295000,
+				"to": 298000
+			},
+			"text": " hey, look, before these transactions were applied, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:58,000",
+				"to": "00:05:03,000"
+			},
+			"offsets": {
+				"from": 298000,
+				"to": 303000
+			},
+			"text": " state root of shard 43 was this. The post-state says, after"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:03,000",
+				"to": "00:05:07,000"
+			},
+			"offsets": {
+				"from": 303000,
+				"to": 307000
+			},
+			"text": " applying all of these transactions, the state root of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:07,000",
+				"to": "00:05:11,000"
+			},
+			"offsets": {
+				"from": 307000,
+				"to": 311000
+			},
+			"text": " shard 43 is going to be this. And then you also say, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:11,000",
+				"to": "00:05:14,000"
+			},
+			"offsets": {
+				"from": 311000,
+				"to": 314000
+			},
+			"text": " because the theorem has this concept of receipts, if you apply"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:14,000",
+				"to": "00:05:17,000"
+			},
+			"offsets": {
+				"from": 314000,
+				"to": 317000
+			},
+			"text": " all of these transactions, the root of the tree of receipts that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:17,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 317000,
+				"to": 320000
+			},
+			"text": " they're going to emit is going to be this. And each of these"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " transactions has to have a shard ID as well. So, you know, all"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:26,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 326000
+			},
+			"text": " these transactions are going to have shard ID 43. And so the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:26,000",
+				"to": "00:05:30,000"
+			},
+			"offsets": {
+				"from": 326000,
+				"to": 330000
+			},
+			"text": " whole thing has shard ID 43. Over here, you have, you know, the"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,000",
+				"to": "00:05:34,000"
+			},
+			"offsets": {
+				"from": 330000,
+				"to": 334000
+			},
+			"text": " idea that in order for this header to be valid, it has to be"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:34,000",
+				"to": "00:05:37,000"
+			},
+			"offsets": {
+				"from": 334000,
+				"to": 337000
+			},
+			"text": " validated by this sort of randomly selected global sample of"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:37,000",
+				"to": "00:05:40,000"
+			},
+			"offsets": {
+				"from": 337000,
+				"to": 340000
+			},
+			"text": " validators. So you could imagine you'll have, like, some, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:40,000",
+				"to": "00:05:44,000"
+			},
+			"offsets": {
+				"from": 340000,
+				"to": 344000
+			},
+			"text": " know, 400, 1000, whatever number of ideas of validators inside"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:44,000",
+				"to": "00:05:48,000"
+			},
+			"offsets": {
+				"from": 344000,
+				"to": 348000
+			},
+			"text": " the entire system. And theoretically, these don't even"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:48,000",
+				"to": "00:05:52,000"
+			},
+			"offsets": {
+				"from": 348000,
+				"to": 352000
+			},
+			"text": " need to be the same validators as the ones that maintain -- that"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,000",
+				"to": "00:05:55,000"
+			},
+			"offsets": {
+				"from": 352000,
+				"to": 355000
+			},
+			"text": " actually maintain the top level consensus. So, you know, if"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 355000,
+				"to": 358000
+			},
+			"text": " you're concerned about sort of O of N squared stuff slowing"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:00,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 360000
+			},
+			"text": " down, Casper, or, you know, slowing down whatever other"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:00,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 360000,
+				"to": 363000
+			},
+			"text": " consensus algorithm, that's fine. You can stick to, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 368000
+			},
+			"text": " 400 validators for Casper and have 40,000 validators for the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " bottom level. Now, you know, every transaction is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:16,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 376000
+			},
+			"text": " specified as an ID. A transaction in shard X means that it does"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:16,000",
+				"to": "00:06:19,000"
+			},
+			"offsets": {
+				"from": 376000,
+				"to": 379000
+			},
+			"text": " stuff only in shard X. A transaction grouping in shard X"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:19,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 379000,
+				"to": 383000
+			},
+			"text": " contains zero or more transactions in shard X and specifies the"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " pre-input state root. Top level looks like this. So this is"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:30,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 390000
+			},
+			"text": " probably one of the more complicated blockchains diagrams"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:30,000",
+				"to": "00:06:34,000"
+			},
+			"offsets": {
+				"from": 390000,
+				"to": 394000
+			},
+			"text": " you're going to see this week. Probably the major competitor here"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:34,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 394000,
+				"to": 398000
+			},
+			"text": " is going to be Jeff Coleman's universal hash time graph."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:42,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 402000
+			},
+			"text": " So, basically, you still have a block chain at the top. So, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 402000,
+				"to": 406000
+			},
+			"text": " know, you can call this the header chain. And it contains, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " know, a state root. It contains the hash of the previous block."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:52,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 412000
+			},
+			"text": " It contains metadata just like, you know, all the metadata we all"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,000",
+				"to": "00:06:57,000"
+			},
+			"offsets": {
+				"from": 412000,
+				"to": 417000
+			},
+			"text": " know and love. But it contains two primary roots. One of them"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:57,000",
+				"to": "00:07:00,000"
+			},
+			"offsets": {
+				"from": 417000,
+				"to": 420000
+			},
+			"text": " is a state root. And the state root basically represents the"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:00,000",
+				"to": "00:07:03,000"
+			},
+			"offsets": {
+				"from": 420000,
+				"to": 423000
+			},
+			"text": " entire state. So, here we have the shard roots. Each shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:03,000",
+				"to": "00:07:07,000"
+			},
+			"offsets": {
+				"from": 423000,
+				"to": 427000
+			},
+			"text": " itself points to a tree. And then you have a transaction group"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:07,000",
+				"to": "00:07:11,000"
+			},
+			"offsets": {
+				"from": 427000,
+				"to": 431000
+			},
+			"text": " root. So, instead of just being a Merkle tree of transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 431000,
+				"to": 434000
+			},
+			"text": " you have a Merkle tree of transaction groups. And then each"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:18,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 438000
+			},
+			"text": " transaction group, as usual, contains pre-state, post-state"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:18,000",
+				"to": "00:07:22,000"
+			},
+			"offsets": {
+				"from": 438000,
+				"to": 442000
+			},
+			"text": " of the shard, not of the whole, not of the entire global thing,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:22,000",
+				"to": "00:07:27,000"
+			},
+			"offsets": {
+				"from": 442000,
+				"to": 447000
+			},
+			"text": " but a transaction root and a transaction tree and a receipt"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:27,000",
+				"to": "00:07:32,000"
+			},
+			"offsets": {
+				"from": 447000,
+				"to": 452000
+			},
+			"text": " root for the receipt tree. So, one way to think about this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:32,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 452000,
+				"to": 456000
+			},
+			"text": " sort of intuitively, is you can think of the top level as a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:41,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 461000
+			},
+			"text": " non-scalable Ethereum 1.0 style block chain, except it has"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:41,000",
+				"to": "00:07:44,000"
+			},
+			"offsets": {
+				"from": 461000,
+				"to": 464000
+			},
+			"text": " these funny state transition rules, where instead of validating"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:44,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 464000,
+				"to": 468000
+			},
+			"text": " transactions, it validates transaction groups. And a"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:52,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 472000
+			},
+			"text": " transaction group is valid if basically the pre-state root"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,000",
+				"to": "00:07:57,000"
+			},
+			"offsets": {
+				"from": 472000,
+				"to": 477000
+			},
+			"text": " matches and if the signatures are valid. And if those two things"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 477000,
+				"to": 481000
+			},
+			"text": " line up, then it takes the signatures as kind of proxy"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:05,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 485000
+			},
+			"text": " evidence that everything else was done correctly. And then if"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:05,000",
+				"to": "00:08:08,000"
+			},
+			"offsets": {
+				"from": 485000,
+				"to": 488000
+			},
+			"text": " this transaction group gets in, then the post-state root becomes"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:08,000",
+				"to": "00:08:13,000"
+			},
+			"offsets": {
+				"from": 488000,
+				"to": 493000
+			},
+			"text": " the state root of that particular shard. So, question,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:13,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 493000,
+				"to": 498000
+			},
+			"text": " getting back to how do we do cross-shard transactions? So the"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:24,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 504000
+			},
+			"text": " problem is, if we allow just sort of random arbitrary cross-shard"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:24,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 504000,
+				"to": 508000
+			},
+			"text": " calling, then parallelization becomes impossible. You know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:32,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 512000
+			},
+			"text": " you could potentially have contracts in 20 different shards,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:32,000",
+				"to": "00:08:37,000"
+			},
+			"offsets": {
+				"from": 512000,
+				"to": 517000
+			},
+			"text": " all access or modify accounts in 20 other different shards, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:37,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 517000,
+				"to": 520000
+			},
+			"text": " it could be done in some way that's like completely, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:43,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 523000
+			},
+			"text": " not friendly to any kind of parallel analysis. It could be,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:43,000",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 523000,
+				"to": 525000
+			},
+			"text": " you know, it could be non-computerative in a whole bunch"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:50,000"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 530000
+			},
+			"text": " of intractable ways. So, solution is to make it asynchronous,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,000",
+				"to": "00:08:55,000"
+			},
+			"offsets": {
+				"from": 530000,
+				"to": 535000
+			},
+			"text": " but how? So, the basic ingredient here is Merkle tree"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,000",
+				"to": "00:09:01,000"
+			},
+			"offsets": {
+				"from": 535000,
+				"to": 541000
+			},
+			"text": " receipts. So, if you look at just one particular receipt, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:01,000",
+				"to": "00:09:04,000"
+			},
+			"offsets": {
+				"from": 541000,
+				"to": 544000
+			},
+			"text": " might notice that this receipt is part of a tree, and this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:04,000",
+				"to": "00:09:08,000"
+			},
+			"offsets": {
+				"from": 544000,
+				"to": 548000
+			},
+			"text": " Merkle tree has a root over here, and this thing is itself part"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 548000,
+				"to": 552000
+			},
+			"text": " of a tree, or rather, and then this thing itself is part of a"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:16,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 556000
+			},
+			"text": " tree which has a Merkle root over here. So, ultimately, you could"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,000",
+				"to": "00:09:21,000"
+			},
+			"offsets": {
+				"from": 556000,
+				"to": 561000
+			},
+			"text": " come up with a fairly compact branch, and that branch would"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,000",
+				"to": "00:09:26,000"
+			},
+			"offsets": {
+				"from": 561000,
+				"to": 566000
+			},
+			"text": " ultimately, you know, have basically be a proof that the"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,000",
+				"to": "00:09:30,000"
+			},
+			"offsets": {
+				"from": 566000,
+				"to": 570000
+			},
+			"text": " receipt actually was included at this particular time. So this"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:30,000",
+				"to": "00:09:33,000"
+			},
+			"offsets": {
+				"from": 570000,
+				"to": 573000
+			},
+			"text": " gives you proof of existence. It does not give you sort of proof"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,000",
+				"to": "00:09:36,000"
+			},
+			"offsets": {
+				"from": 573000,
+				"to": 576000
+			},
+			"text": " of non-double spending, but what we're going to do is we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:36,000",
+				"to": "00:09:38,000"
+			},
+			"offsets": {
+				"from": 576000,
+				"to": 578000
+			},
+			"text": " going to add that in, but we're going to sort of cleverly add that"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:38,000",
+				"to": "00:09:43,000"
+			},
+			"offsets": {
+				"from": 578000,
+				"to": 583000
+			},
+			"text": " in in the correct shard. So, what I'm basically describing here"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:43,000",
+				"to": "00:09:51,000"
+			},
+			"offsets": {
+				"from": 583000,
+				"to": 591000
+			},
+			"text": " is a fairly kind of simple, sort of standard approach that lets"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:51,000",
+				"to": "00:09:55,000"
+			},
+			"offsets": {
+				"from": 591000,
+				"to": 595000
+			},
+			"text": " you implement a sort of Node.js style, asynchronous programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:55,000",
+				"to": "00:10:00,000"
+			},
+			"offsets": {
+				"from": 595000,
+				"to": 600000
+			},
+			"text": " language on top of this sort of, if you're in a 2.0 infrastructure."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:00,000",
+				"to": "00:10:06,000"
+			},
+			"offsets": {
+				"from": 600000,
+				"to": 606000
+			},
+			"text": " And the key piece that you require is you need to have"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:06,000",
+				"to": "00:10:11,000"
+			},
+			"offsets": {
+				"from": 606000,
+				"to": 611000
+			},
+			"text": " transactions have access to Merkle roots from previous blocks."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:11,000",
+				"to": "00:10:16,000"
+			},
+			"offsets": {
+				"from": 611000,
+				"to": 616000
+			},
+			"text": " So, transactions here should be able to read the global previous"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:16,000",
+				"to": "00:10:20,000"
+			},
+			"offsets": {
+				"from": 616000,
+				"to": 620000
+			},
+			"text": " state root, the previous transaction group root."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:20,000",
+				"to": "00:10:22,000"
+			},
+			"offsets": {
+				"from": 620000,
+				"to": 622000
+			},
+			"text": " Now, they don't need to be able to modify anything globally."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:22,000",
+				"to": "00:10:26,000"
+			},
+			"offsets": {
+				"from": 622000,
+				"to": 626000
+			},
+			"text": " They just need to read a historical root. And that's"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:26,000",
+				"to": "00:10:30,000"
+			},
+			"offsets": {
+				"from": 626000,
+				"to": 630000
+			},
+			"text": " fairly okay. It doesn't sort of prevent parallel analysis,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:30,000",
+				"to": "00:10:35,000"
+			},
+			"offsets": {
+				"from": 630000,
+				"to": 635000
+			},
+			"text": " or parallel computation at all. Now, what you have here is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:35,000",
+				"to": "00:10:40,000"
+			},
+			"offsets": {
+				"from": 635000,
+				"to": 640000
+			},
+			"text": " let's just go through a fairly sort of somewhat involved example."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:40,000",
+				"to": "00:10:44,000"
+			},
+			"offsets": {
+				"from": 640000,
+				"to": 644000
+			},
+			"text": " It's involved enough to capture all the nuances, but it's still"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:44,000",
+				"to": "00:10:48,000"
+			},
+			"offsets": {
+				"from": 644000,
+				"to": 648000
+			},
+			"text": " sort of as simple as it can be within that context. So suppose"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:48,000",
+				"to": "00:10:51,000"
+			},
+			"offsets": {
+				"from": 648000,
+				"to": 651000
+			},
+			"text": " that you're trying to register a domain name, and this domain"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:51,000",
+				"to": "00:10:57,000"
+			},
+			"offsets": {
+				"from": 651000,
+				"to": 657000
+			},
+			"text": " register is so devilishly evil that it only accepts GAFcoin as payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:57,000",
+				"to": "00:11:03,000"
+			},
+			"offsets": {
+				"from": 657000,
+				"to": 663000
+			},
+			"text": " So, the domain register lives in chart 43, and GAFcoin lives in"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:03,000",
+				"to": "00:11:10,000"
+			},
+			"offsets": {
+				"from": 663000,
+				"to": 670000
+			},
+			"text": " chart 666. So, the problem is that, now, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:10,000",
+				"to": "00:11:17,000"
+			},
+			"offsets": {
+				"from": 670000,
+				"to": 677000
+			},
+			"text": " register charges a fee. And so, the problem is, you know, let's say"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:17,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 677000,
+				"to": 682000
+			},
+			"text": " the fee is 20 GAFcoin. Let's say I want to make a transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:29,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 689000
+			},
+			"text": " which pays a 20 GAFcoin, registers a domain."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:29,000",
+				"to": "00:11:33,000"
+			},
+			"offsets": {
+				"from": 689000,
+				"to": 693000
+			},
+			"text": " How does this sort of ensemble of the register and GAFcoin actually"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:33,000",
+				"to": "00:11:39,000"
+			},
+			"offsets": {
+				"from": 693000,
+				"to": 699000
+			},
+			"text": " verify everything? So, in general, the sort of the most"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:39,000",
+				"to": "00:11:44,000"
+			},
+			"offsets": {
+				"from": 699000,
+				"to": 704000
+			},
+			"text": " kind of standard approach so far for contracts, charging users,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:44,000",
+				"to": "00:11:48,000"
+			},
+			"offsets": {
+				"from": 704000,
+				"to": 708000
+			},
+			"text": " cryptocurrencies in order to actually make payment is a sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:48,000",
+				"to": "00:11:51,000"
+			},
+			"offsets": {
+				"from": 708000,
+				"to": 711000
+			},
+			"text": " two-step receipt approach. Where the first step is, you send"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:51,000",
+				"to": "00:11:55,000"
+			},
+			"offsets": {
+				"from": 711000,
+				"to": 715000
+			},
+			"text": " a transaction to the currency, and you kind of authorize the other"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:55,000",
+				"to": "00:11:58,000"
+			},
+			"offsets": {
+				"from": 715000,
+				"to": 718000
+			},
+			"text": " contract as it was draw, and then you send another transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:58,000",
+				"to": "00:12:01,000"
+			},
+			"offsets": {
+				"from": 718000,
+				"to": 721000
+			},
+			"text": " to withdraw, and then the contract sort of actually debits"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:01,000",
+				"to": "00:12:05,000"
+			},
+			"offsets": {
+				"from": 721000,
+				"to": 725000
+			},
+			"text": " out of your bank account. So, this is something that we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:05,000",
+				"to": "00:12:09,000"
+			},
+			"offsets": {
+				"from": 725000,
+				"to": 729000
+			},
+			"text": " going to be discussing probably in more detail over the next few"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:09,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 729000,
+				"to": 732000
+			},
+			"text": " days and things like the standard contract interfaces panel, but"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:16,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 736000
+			},
+			"text": " it's roughly the approach right now. So, over here, what we're"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:16,000",
+				"to": "00:12:20,000"
+			},
+			"offsets": {
+				"from": 736000,
+				"to": 740000
+			},
+			"text": " going to do is we're going to call the function of the name"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:20,000",
+				"to": "00:12:24,000"
+			},
+			"offsets": {
+				"from": 740000,
+				"to": 744000
+			},
+			"text": " registrar, and, you know, we're going to say, what we're going"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:24,000",
+				"to": "00:12:27,000"
+			},
+			"offsets": {
+				"from": 744000,
+				"to": 747000
+			},
+			"text": " to say is we want to register a domain with some name."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:27,000",
+				"to": "00:12:31,000"
+			},
+			"offsets": {
+				"from": 747000,
+				"to": 751000
+			},
+			"text": " We want to provide, you know, what fee we want to provide, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:31,000",
+				"to": "00:12:33,000"
+			},
+			"offsets": {
+				"from": 751000,
+				"to": 753000
+			},
+			"text": " we're going to provide the currency chart and the currency"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:33,000",
+				"to": "00:12:38,000"
+			},
+			"offsets": {
+				"from": 753000,
+				"to": 758000
+			},
+			"text": " address, so basically where GAFcoin lives. So, what it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:38,000",
+				"to": "00:12:41,000"
+			},
+			"offsets": {
+				"from": 758000,
+				"to": 761000
+			},
+			"text": " going to do is it's going to register a callback ID, and that"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:41,000",
+				"to": "00:12:45,000"
+			},
+			"offsets": {
+				"from": 761000,
+				"to": 765000
+			},
+			"text": " is going to create a log, and this log is basically going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:45,000",
+				"to": "00:12:48,000"
+			},
+			"offsets": {
+				"from": 765000,
+				"to": 768000
+			},
+			"text": " contain all the information, so it's going to contain the"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:48,000",
+				"to": "00:12:51,000"
+			},
+			"offsets": {
+				"from": 768000,
+				"to": 771000
+			},
+			"text": " destination chart, the destination address, so it's"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:51,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 771000,
+				"to": 775000
+			},
+			"text": " basically, so the log is going to say this log is address to GAFcoin,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:12:59,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 779000
+			},
+			"text": " then it's going to say what method is being called here."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:59,000",
+				"to": "00:13:03,000"
+			},
+			"offsets": {
+				"from": 779000,
+				"to": 783000
+			},
+			"text": " So, in this case, this contract wants to call the method"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:03,000",
+				"to": "00:13:07,000"
+			},
+			"offsets": {
+				"from": 783000,
+				"to": 787000
+			},
+			"text": " was draw, it wants to withdraw 20 GAFcoin from my account, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:07,000",
+				"to": "00:13:12,000"
+			},
+			"offsets": {
+				"from": 787000,
+				"to": 792000
+			},
+			"text": " the arguments are from me to the name registry and the value"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:12,000",
+				"to": "00:13:17,000"
+			},
+			"offsets": {
+				"from": 792000,
+				"to": 797000
+			},
+			"text": " 20 GAFcoin, and it's going to say if this is all, this all"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:17,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 797000,
+				"to": 800000
+			},
+			"text": " happens, it's going to go to a callback method, which is the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:23,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 803000
+			},
+			"text": " ones you want to call back, and it's going to give it the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:23,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 803000,
+				"to": 807000
+			},
+			"text": " callback ID. Now, over here, I'm also going to, in the name"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:31,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 811000
+			},
+			"text": " registrar's own storage, basically provide some information"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:31,000",
+				"to": "00:13:35,000"
+			},
+			"offsets": {
+				"from": 811000,
+				"to": 815000
+			},
+			"text": " saying, hey, look, there is this callback that's being"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:35,000",
+				"to": "00:13:39,000"
+			},
+			"offsets": {
+				"from": 815000,
+				"to": 819000
+			},
+			"text": " happening, and it's in progress right now. Step two on the"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:39,000",
+				"to": "00:13:43,000"
+			},
+			"offsets": {
+				"from": 819000,
+				"to": 823000
+			},
+			"text": " GAFcoin side. So, I made, step one, I set this transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:43,000",
+				"to": "00:13:49,000"
+			},
+			"offsets": {
+				"from": 823000,
+				"to": 829000
+			},
+			"text": " on chart 43, it happens, it created a log. Now, unfortunately,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:49,000",
+				"to": "00:13:52,000"
+			},
+			"offsets": {
+				"from": 829000,
+				"to": 832000
+			},
+			"text": " this isn't just the RAM 1.0 anymore, where all the messages"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:52,000",
+				"to": "00:13:56,000"
+			},
+			"offsets": {
+				"from": 832000,
+				"to": 836000
+			},
+			"text": " happen automatically. In asynchronous programming, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:56,000",
+				"to": "00:13:59,000"
+			},
+			"offsets": {
+				"from": 836000,
+				"to": 839000
+			},
+			"text": " is also going to be a second transaction, you have to send it."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:59,000",
+				"to": "00:14:03,000"
+			},
+			"offsets": {
+				"from": 839000,
+				"to": 843000
+			},
+			"text": " So, you send a transaction, and what this transaction is, is"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:03,000",
+				"to": "00:14:08,000"
+			},
+			"offsets": {
+				"from": 843000,
+				"to": 848000
+			},
+			"text": " it's going to basically, all that it contains is a log proof."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:08,000",
+				"to": "00:14:12,000"
+			},
+			"offsets": {
+				"from": 848000,
+				"to": 852000
+			},
+			"text": " It's just going to contain this miracle proof of the log that"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:12,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 852000,
+				"to": 856000
+			},
+			"text": " was created in step one. So, what this contract is going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:20,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 860000
+			},
+			"text": " do is it's going to check the miracle proof, and it's going to"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:20,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 860000,
+				"to": 866000
+			},
+			"text": " verify that the miracle proof is actually, is actually addressed"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:31,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 871000
+			},
+			"text": " to GAFcoin, and it's also going to verify that this particular"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:31,000",
+				"to": "00:14:36,000"
+			},
+			"offsets": {
+				"from": 871000,
+				"to": 876000
+			},
+			"text": " log has not yet been submitted. So, in chart 666, it now maintains"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:36,000",
+				"to": "00:14:40,000"
+			},
+			"offsets": {
+				"from": 876000,
+				"to": 880000
+			},
+			"text": " the record of whether or not this particular log callback ID has"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:40,000",
+				"to": "00:14:45,000"
+			},
+			"offsets": {
+				"from": 880000,
+				"to": 885000
+			},
+			"text": " been spent. So, then it sets spent to true, and it"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:45,000",
+				"to": "00:14:48,000"
+			},
+			"offsets": {
+				"from": 885000,
+				"to": 888000
+			},
+			"text": " calls its own method. So, in this particular case, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:48,000",
+				"to": "00:14:51,000"
+			},
+			"offsets": {
+				"from": 888000,
+				"to": 891000
+			},
+			"text": " the method could be, could be whatever, it could be, well, in"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:51,000",
+				"to": "00:14:54,000"
+			},
+			"offsets": {
+				"from": 891000,
+				"to": 894000
+			},
+			"text": " this case, it's actually going to be processing the withdrawal."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:54,000",
+				"to": "00:14:57,000"
+			},
+			"offsets": {
+				"from": 894000,
+				"to": 897000
+			},
+			"text": " So, it's going to be checking, number one, is there, have I"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:57,000",
+				"to": "00:15:01,000"
+			},
+			"offsets": {
+				"from": 897000,
+				"to": 901000
+			},
+			"text": " authorized the registrar to withdraw my GAFcoin?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:01,000",
+				"to": "00:15:04,000"
+			},
+			"offsets": {
+				"from": 901000,
+				"to": 904000
+			},
+			"text": " Number two, do I have enough balance? And if both of those are"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:04,000",
+				"to": "00:15:07,000"
+			},
+			"offsets": {
+				"from": 904000,
+				"to": 907000
+			},
+			"text": " true, then it's going to, it's going to debit my GAFcoin"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:07,000",
+				"to": "00:15:10,000"
+			},
+			"offsets": {
+				"from": 907000,
+				"to": 910000
+			},
+			"text": " balance, it's going to give the name registrar my GAFcoin, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:10,000",
+				"to": "00:15:16,000"
+			},
+			"offsets": {
+				"from": 910000,
+				"to": 916000
+			},
+			"text": " I'm, it's going to return success. Otherwise, it returns"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:16,000",
+				"to": "00:15:24,000"
+			},
+			"offsets": {
+				"from": 916000,
+				"to": 924000
+			},
+			"text": " fail. So, then it's going to, it's going to, steps three, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:24,000",
+				"to": "00:15:27,000"
+			},
+			"offsets": {
+				"from": 924000,
+				"to": 927000
+			},
+			"text": " then if that succeeds, then, you know, so it's going to call and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:27,000",
+				"to": "00:15:30,000"
+			},
+			"offsets": {
+				"from": 927000,
+				"to": 930000
+			},
+			"text": " it's going to create yet another receipt, this time in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:30,000",
+				"to": "00:15:33,000"
+			},
+			"offsets": {
+				"from": 930000,
+				"to": 933000
+			},
+			"text": " chart 666. And this receipt basically says, okay, this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:33,000",
+				"to": "00:15:37,000"
+			},
+			"offsets": {
+				"from": 933000,
+				"to": 937000
+			},
+			"text": " computation happened, and you have a response. Step three is"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:37,000",
+				"to": "00:15:41,000"
+			},
+			"offsets": {
+				"from": 937000,
+				"to": 941000
+			},
+			"text": " basically the same, almost the same thing as step two, except in"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:41,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 941000,
+				"to": 946000
+			},
+			"text": " step two, you were verifying that a log proof of the original"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:49,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 949000
+			},
+			"text": " call, and you were verifying that has it yet been spent, and"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:49,000",
+				"to": "00:15:52,000"
+			},
+			"offsets": {
+				"from": 949000,
+				"to": 952000
+			},
+			"text": " you're also creating a receipt. Here, you're verifying the"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:52,000",
+				"to": "00:15:55,000"
+			},
+			"offsets": {
+				"from": 952000,
+				"to": 955000
+			},
+			"text": " callback. You're verifying a miracle proof of the callback."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:55,000",
+				"to": "00:15:58,000"
+			},
+			"offsets": {
+				"from": 955000,
+				"to": 958000
+			},
+			"text": " So, you're in the name registrar, you're back in chart 43."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:58,000",
+				"to": "00:16:03,000"
+			},
+			"offsets": {
+				"from": 958000,
+				"to": 963000
+			},
+			"text": " Now, you're just verifying a proof that GAF, that a log has"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:03,000",
+				"to": "00:16:08,000"
+			},
+			"offsets": {
+				"from": 963000,
+				"to": 968000
+			},
+			"text": " been created, has been emitted by the GAFcoin contract, and has"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:08,000",
+				"to": "00:16:13,000"
+			},
+			"offsets": {
+				"from": 968000,
+				"to": 973000
+			},
+			"text": " been directed at the name registrar. If that's true, and if"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:13,000",
+				"to": "00:16:18,000"
+			},
+			"offsets": {
+				"from": 973000,
+				"to": 978000
+			},
+			"text": " this particular log has not yet been spent, then I'm going to say"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:18,000",
+				"to": "00:16:22,000"
+			},
+			"offsets": {
+				"from": 978000,
+				"to": 982000
+			},
+			"text": " see that it's been spent, and I'm going to call the method."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:22,000",
+				"to": "00:16:26,000"
+			},
+			"offsets": {
+				"from": 982000,
+				"to": 986000
+			},
+			"text": " So, the method in this case has a withdraw callback, and the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:26,000",
+				"to": "00:16:30,000"
+			},
+			"offsets": {
+				"from": 986000,
+				"to": 990000
+			},
+			"text": " withdraw callback basically says, if the response is true, then"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:30,000",
+				"to": "00:16:34,000"
+			},
+			"offsets": {
+				"from": 990000,
+				"to": 994000
+			},
+			"text": " set the owner of this particular domain. Now, over here, I"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:34,000",
+				"to": "00:16:37,000"
+			},
+			"offsets": {
+				"from": 994000,
+				"to": 997000
+			},
+			"text": " probably should have also added that if the domain doesn't"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:37,000",
+				"to": "00:16:41,000"
+			},
+			"offsets": {
+				"from": 997000,
+				"to": 1001000
+			},
+			"text": " have an owner yet or something similar. So, basically, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:41,000",
+				"to": "00:16:45,000"
+			},
+			"offsets": {
+				"from": 1001000,
+				"to": 1005000
+			},
+			"text": " know, if the entire payment process, including initial"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:45,000",
+				"to": "00:16:49,000"
+			},
+			"offsets": {
+				"from": 1005000,
+				"to": 1009000
+			},
+			"text": " transaction, processing on the GAFcoin side, and the callback,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:49,000",
+				"to": "00:16:52,000"
+			},
+			"offsets": {
+				"from": 1009000,
+				"to": 1012000
+			},
+			"text": " if everything works out fine, then I'm going to register the"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:52,000",
+				"to": "00:16:56,000"
+			},
+			"offsets": {
+				"from": 1012000,
+				"to": 1016000
+			},
+			"text": " domain name in chart 43. And there you go, you have an entire"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:56,000",
+				"to": "00:17:01,000"
+			},
+			"offsets": {
+				"from": 1016000,
+				"to": 1021000
+			},
+			"text": " kind of pathway of asynchronous function execution. So, in"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:01,000",
+				"to": "00:17:04,000"
+			},
+			"offsets": {
+				"from": 1021000,
+				"to": 1024000
+			},
+			"text": " practice, there's three main use cases for cross-contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:04,000",
+				"to": "00:17:08,000"
+			},
+			"offsets": {
+				"from": 1024000,
+				"to": 1028000
+			},
+			"text": " calling. Number one is to get information. So, getting"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:08,000",
+				"to": "00:17:13,000"
+			},
+			"offsets": {
+				"from": 1028000,
+				"to": 1033000
+			},
+			"text": " information basically means I want to call the Bloomberg contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:13,000",
+				"to": "00:17:17,000"
+			},
+			"offsets": {
+				"from": 1033000,
+				"to": 1037000
+			},
+			"text": " and I want to find out what the exchange rate is of USD to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:17,000",
+				"to": "00:17:21,000"
+			},
+			"offsets": {
+				"from": 1037000,
+				"to": 1041000
+			},
+			"text": " Euro. The second one is send an action without response. So,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:21,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1041000,
+				"to": 1045000
+			},
+			"text": " one simple use case is, let's say I'm making a crowd, you know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:28,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1048000
+			},
+			"text": " I'm building a crowdfunding application, I'm building Wayfund,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:28,000",
+				"to": "00:17:33,000"
+			},
+			"offsets": {
+				"from": 1048000,
+				"to": 1053000
+			},
+			"text": " and the Wayfund campaign, let's say fails, and so I have to"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:33,000",
+				"to": "00:17:36,000"
+			},
+			"offsets": {
+				"from": 1053000,
+				"to": 1056000
+			},
+			"text": " refund all the money. So, I'm just going to do a big, huge"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:36,000",
+				"to": "00:17:39,000"
+			},
+			"offsets": {
+				"from": 1056000,
+				"to": 1059000
+			},
+			"text": " multi-sense, give everyone their money back. That's just asynchronous"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:39,000",
+				"to": "00:17:43,000"
+			},
+			"offsets": {
+				"from": 1059000,
+				"to": 1063000
+			},
+			"text": " sense, does not require a callback. The third one is send an"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:43,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1063000,
+				"to": 1067000
+			},
+			"text": " action with a response. And GAFcoin is one example. You have"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:51,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1071000
+			},
+			"text": " to send an action, tell GAFcoin to withdraw, GAFcoin does"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:51,000",
+				"to": "00:17:54,000"
+			},
+			"offsets": {
+				"from": 1071000,
+				"to": 1074000
+			},
+			"text": " something, and it might return success or it might return failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:54,000",
+				"to": "00:17:57,000"
+			},
+			"offsets": {
+				"from": 1074000,
+				"to": 1077000
+			},
+			"text": " So, the second is actually not problematic at all. The first"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:57,000",
+				"to": "00:18:01,000"
+			},
+			"offsets": {
+				"from": 1077000,
+				"to": 1081000
+			},
+			"text": " and third may be. So, once you get into asynchronous programming,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:01,000",
+				"to": "00:18:04,000"
+			},
+			"offsets": {
+				"from": 1081000,
+				"to": 1084000
+			},
+			"text": " as everyone who has done asynchronous programming will know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:04,000",
+				"to": "00:18:07,000"
+			},
+			"offsets": {
+				"from": 1084000,
+				"to": 1087000
+			},
+			"text": " you run into race conditions, you have to think about mutual"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:07,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1087000,
+				"to": 1091000
+			},
+			"text": " exclusion issues, and even without that, you know, JavaScript"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:15,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1095000
+			},
+			"text": " callback towers work ugly and they are annoying. And so, you"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:15,000",
+				"to": "00:18:19,000"
+			},
+			"offsets": {
+				"from": 1095000,
+				"to": 1099000
+			},
+			"text": " know, you might want to think about promises, you know, things"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:19,000",
+				"to": "00:18:23,000"
+			},
+			"offsets": {
+				"from": 1099000,
+				"to": 1103000
+			},
+			"text": " like async map. So, in general, you want kind of programming"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:23,000",
+				"to": "00:18:29,000"
+			},
+			"offsets": {
+				"from": 1103000,
+				"to": 1109000
+			},
+			"text": " paradigms that make this kind of stuff easier. Now, skip the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:29,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1109000,
+				"to": 1113000
+			},
+			"text": " economics because I don't have too much time, but that side is"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:37,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1117000
+			},
+			"text": " also interesting. The basic summary is that yes, you can do it, yes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:37,000",
+				"to": "00:18:41,000"
+			},
+			"offsets": {
+				"from": 1117000,
+				"to": 1121000
+			},
+			"text": " it's fine. And in fact, even though you need multiple transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:41,000",
+				"to": "00:18:45,000"
+			},
+			"offsets": {
+				"from": 1121000,
+				"to": 1125000
+			},
+			"text": " you can actually make it censorship resistant because, basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:45,000",
+				"to": "00:18:48,000"
+			},
+			"offsets": {
+				"from": 1125000,
+				"to": 1128000
+			},
+			"text": " because the log was created, you have common knowledge of the"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:48,000",
+				"to": "00:18:51,000"
+			},
+			"offsets": {
+				"from": 1128000,
+				"to": 1131000
+			},
+			"text": " fact that theoretically, a transaction completing the process"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:51,000",
+				"to": "00:18:55,000"
+			},
+			"offsets": {
+				"from": 1131000,
+				"to": 1135000
+			},
+			"text": " can be made, and so you can punish validators for not making it"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:55,000",
+				"to": "00:18:59,000"
+			},
+			"offsets": {
+				"from": 1135000,
+				"to": 1139000
+			},
+			"text": " within some number of blocks. So, more generality. Here is one"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:59,000",
+				"to": "00:19:04,000"
+			},
+			"offsets": {
+				"from": 1139000,
+				"to": 1144000
+			},
+			"text": " possible model. First, K bits of an address is a shard ID. And K is"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:04,000",
+				"to": "00:19:08,000"
+			},
+			"offsets": {
+				"from": 1144000,
+				"to": 1148000
+			},
+			"text": " set by the transaction. So, every transaction sets its own K. You"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:08,000",
+				"to": "00:19:11,000"
+			},
+			"offsets": {
+				"from": 1148000,
+				"to": 1151000
+			},
+			"text": " know, you could set K equals zero means that your transaction can"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:11,000",
+				"to": "00:19:15,000"
+			},
+			"offsets": {
+				"from": 1151000,
+				"to": 1155000
+			},
+			"text": " do everything globally. Setting K equals 10 means your"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:15,000",
+				"to": "00:19:17,000"
+			},
+			"offsets": {
+				"from": 1155000,
+				"to": 1157000
+			},
+			"text": " transaction only affects things that have a particular 10 bit"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:17,000",
+				"to": "00:19:21,000"
+			},
+			"offsets": {
+				"from": 1157000,
+				"to": 1161000
+			},
+			"text": " prefix and so forth. Attempting to synchronously call a"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:21,000",
+				"to": "00:19:25,000"
+			},
+			"offsets": {
+				"from": 1161000,
+				"to": 1165000
+			},
+			"text": " contract outside of a shard. And the shard is kind of this sort of"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:25,000",
+				"to": "00:19:28,000"
+			},
+			"offsets": {
+				"from": 1165000,
+				"to": 1168000
+			},
+			"text": " much more fuzzy concept where it's kind of defined by K. Basically,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:28,000",
+				"to": "00:19:32,000"
+			},
+			"offsets": {
+				"from": 1168000,
+				"to": 1172000
+			},
+			"text": " you know, if your transaction sets K to 13, then if you try to do"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:32,000",
+				"to": "00:19:36,000"
+			},
+			"offsets": {
+				"from": 1172000,
+				"to": 1176000
+			},
+			"text": " something, if one contract tries to call another contract, where"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:36,000",
+				"to": "00:19:39,000"
+			},
+			"offsets": {
+				"from": 1176000,
+				"to": 1179000
+			},
+			"text": " one of the first 13 bits is different, then that triggers an"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:39,000",
+				"to": "00:19:44,000"
+			},
+			"offsets": {
+				"from": 1179000,
+				"to": 1184000
+			},
+			"text": " out of gas exception. And so, the key point economically is that"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:44,000",
+				"to": "00:19:48,000"
+			},
+			"offsets": {
+				"from": 1184000,
+				"to": 1188000
+			},
+			"text": " transaction groups, no matter what the K is going to have the same"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:48,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1188000,
+				"to": 1192000
+			},
+			"text": " gas limit. So, if you want, you can make a transaction set the K to"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:56,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1196000
+			},
+			"text": " zero. And someone can, they can call it all these transactions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:56,000",
+				"to": "00:20:00,000"
+			},
+			"offsets": {
+				"from": 1196000,
+				"to": 1200000
+			},
+			"text": " put them together into a transaction group that has K equals"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:00,000",
+				"to": "00:20:04,000"
+			},
+			"offsets": {
+				"from": 1200000,
+				"to": 1204000
+			},
+			"text": " zero. But here's the thing. If you are a, if you are one of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:04,000",
+				"to": "00:20:08,000"
+			},
+			"offsets": {
+				"from": 1204000,
+				"to": 1208000
+			},
+			"text": " someone creating a top level block, then you could get one"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:08,000",
+				"to": "00:20:12,000"
+			},
+			"offsets": {
+				"from": 1208000,
+				"to": 1212000
+			},
+			"text": " transaction group at K equals zero. Or you can get 32 transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:12,000",
+				"to": "00:20:16,000"
+			},
+			"offsets": {
+				"from": 1212000,
+				"to": 1216000
+			},
+			"text": " groups at K equals five. Or you can get 65,536 transaction"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:16,000",
+				"to": "00:20:20,000"
+			},
+			"offsets": {
+				"from": 1216000,
+				"to": 1220000
+			},
+			"text": " groups at K equals 16. So, in equilibrium, the lower your K is,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:20,000",
+				"to": "00:20:24,000"
+			},
+			"offsets": {
+				"from": 1220000,
+				"to": 1224000
+			},
+			"text": " the more expensive it's going to be. And that's kind of a way of"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:24,000",
+				"to": "00:20:28,000"
+			},
+			"offsets": {
+				"from": 1224000,
+				"to": 1228000
+			},
+			"text": " making this sort of balance and letting people sort of choose along"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:28,000",
+				"to": "00:20:32,000"
+			},
+			"offsets": {
+				"from": 1228000,
+				"to": 1232000
+			},
+			"text": " the curve between cyclinion cost. So, that's basically it."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:32,000",
+				"to": "00:20:36,000"
+			},
+			"offsets": {
+				"from": 1232000,
+				"to": 1236000
+			},
+			"text": " Welcome to asynchronous Ethereum 2.0 contracts programming."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:36,000",
+				"to": "00:20:48,000"
+			},
+			"offsets": {
+				"from": 1236000,
+				"to": 1248000
+			},
+			"text": " [Applause]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:48,000",
+				"to": "00:21:17,000"
+			},
+			"offsets": {
+				"from": 1248000,
+				"to": 1277000
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

@@ -1,0 +1,1968 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 13000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:16,700"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 16700
+			},
+			"text": " >> Here with Daniel Burnett and Taz Deannins."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,700",
+				"to": "00:00:20,340"
+			},
+			"offsets": {
+				"from": 16700,
+				"to": 20340
+			},
+			"text": " So yeah, thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,340",
+				"to": "00:00:22,280"
+			},
+			"offsets": {
+				"from": 20340,
+				"to": 22280
+			},
+			"text": " Woo!"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,280",
+				"to": "00:00:24,100"
+			},
+			"offsets": {
+				"from": 22280,
+				"to": 24100
+			},
+			"text": " >> Thanks."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,100",
+				"to": "00:00:25,400"
+			},
+			"offsets": {
+				"from": 24100,
+				"to": 25400
+			},
+			"text": " [ Applause ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,400",
+				"to": "00:00:25,900"
+			},
+			"offsets": {
+				"from": 25400,
+				"to": 25900
+			},
+			"text": " >> Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,900",
+				"to": "00:00:27,900"
+			},
+			"offsets": {
+				"from": 25900,
+				"to": 27900
+			},
+			"text": " [ Laughter ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,900",
+				"to": "00:00:30,500"
+			},
+			"offsets": {
+				"from": 27900,
+				"to": 30500
+			},
+			"text": " All right, so they're still filling in a little bit here."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,500",
+				"to": "00:00:30,900"
+			},
+			"offsets": {
+				"from": 30500,
+				"to": 30900
+			},
+			"text": " All right."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,900",
+				"to": "00:00:33,900"
+			},
+			"offsets": {
+				"from": 30900,
+				"to": 33900
+			},
+			"text": " [ Inaudible Remark ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,900",
+				"to": "00:00:34,900"
+			},
+			"offsets": {
+				"from": 33900,
+				"to": 34900
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:34,900",
+				"to": "00:00:36,400"
+			},
+			"offsets": {
+				"from": 34900,
+				"to": 36400
+			},
+			"text": " Thanks, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:36,400",
+				"to": "00:00:40,100"
+			},
+			"offsets": {
+				"from": 36400,
+				"to": 40100
+			},
+			"text": " So we're going to be talking, well, obviously,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,100",
+				"to": "00:00:41,400"
+			},
+			"offsets": {
+				"from": 40100,
+				"to": 41400
+			},
+			"text": " about community projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:41,400",
+				"to": "00:00:44,300"
+			},
+			"offsets": {
+				"from": 41400,
+				"to": 44300
+			},
+			"text": " And I'll just launch right into it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,300",
+				"to": "00:00:45,900"
+			},
+			"offsets": {
+				"from": 44300,
+				"to": 45900
+			},
+			"text": " I'm going to talk a little bit about the history."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,900",
+				"to": "00:00:48,700"
+			},
+			"offsets": {
+				"from": 45900,
+				"to": 48700
+			},
+			"text": " And then Taz will get into what we're doing today"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:48,700",
+				"to": "00:00:53,300"
+			},
+			"offsets": {
+				"from": 48700,
+				"to": 53300
+			},
+			"text": " and what you can do through the community projects going forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,300",
+				"to": "00:00:59,000"
+			},
+			"offsets": {
+				"from": 53300,
+				"to": 59000
+			},
+			"text": " Okay, so when we created the community projects originally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:59,000",
+				"to": "00:01:02,400"
+			},
+			"offsets": {
+				"from": 59000,
+				"to": 62400
+			},
+			"text": " our goal was to increase or improve the quality of standards"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:02,400",
+				"to": "00:01:03,500"
+			},
+			"offsets": {
+				"from": 62400,
+				"to": 63500
+			},
+			"text": " in the Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:03,500",
+				"to": "00:01:05,600"
+			},
+			"offsets": {
+				"from": 63500,
+				"to": 65600
+			},
+			"text": " And that's an interesting statement."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:05,600",
+				"to": "00:01:10,700"
+			},
+			"offsets": {
+				"from": 65600,
+				"to": 70700
+			},
+			"text": " That's actually what was brought to us initially by some folks"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:10,700",
+				"to": "00:01:11,900"
+			},
+			"offsets": {
+				"from": 70700,
+				"to": 71900
+			},
+			"text": " who were concerned with quality."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,900",
+				"to": "00:01:14,600"
+			},
+			"offsets": {
+				"from": 71900,
+				"to": 74600
+			},
+			"text": " And what they meant by that was EIPs are great"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:14,600",
+				"to": "00:01:17,100"
+			},
+			"offsets": {
+				"from": 74600,
+				"to": 77100
+			},
+			"text": " and EIPs have moved the entire ecosystem forward."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,100",
+				"to": "00:01:17,800"
+			},
+			"offsets": {
+				"from": 77100,
+				"to": 77800
+			},
+			"text": " That's for sure."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,800",
+				"to": "00:01:21,300"
+			},
+			"offsets": {
+				"from": 77800,
+				"to": 81300
+			},
+			"text": " But they often don't meet the quality and completeness level"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,300",
+				"to": "00:01:25,600"
+			},
+			"offsets": {
+				"from": 81300,
+				"to": 85600
+			},
+			"text": " of standards that businesses would expect, something you would see"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,600",
+				"to": "00:01:29,600"
+			},
+			"offsets": {
+				"from": 85600,
+				"to": 89600
+			},
+			"text": " from traditional standards organizations such as IETF or W3C"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,600",
+				"to": "00:01:31,900"
+			},
+			"offsets": {
+				"from": 89600,
+				"to": 91900
+			},
+			"text": " or OASIS or ISO or whatever."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,900",
+				"to": "00:01:32,600"
+			},
+			"offsets": {
+				"from": 91900,
+				"to": 92600
+			},
+			"text": " Okay."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:32,600",
+				"to": "00:01:36,300"
+			},
+			"offsets": {
+				"from": 92600,
+				"to": 96300
+			},
+			"text": " And so businesses and governments are a lot more comfortable adopting"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:36,300",
+				"to": "00:01:41,200"
+			},
+			"offsets": {
+				"from": 96300,
+				"to": 101200
+			},
+			"text": " those kinds of technology standards than some of the ones"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,200",
+				"to": "00:01:44,000"
+			},
+			"offsets": {
+				"from": 101200,
+				"to": 104000
+			},
+			"text": " that they've seen from EIPs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,000",
+				"to": "00:01:48,600"
+			},
+			"offsets": {
+				"from": 104000,
+				"to": 108600
+			},
+			"text": " And so the goal was to see are there projects that could benefit"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,600",
+				"to": "00:01:52,100"
+			},
+			"offsets": {
+				"from": 108600,
+				"to": 112100
+			},
+			"text": " from this additional level of rigor?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,100",
+				"to": "00:01:55,600"
+			},
+			"offsets": {
+				"from": 112100,
+				"to": 115600
+			},
+			"text": " So we have a formal but open standards development process"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:55,600",
+				"to": "00:01:59,000"
+			},
+			"offsets": {
+				"from": 115600,
+				"to": 119000
+			},
+			"text": " that includes input from multiple organizations and stakeholders."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:59,000",
+				"to": "00:02:02,500"
+			},
+			"offsets": {
+				"from": 119000,
+				"to": 122500
+			},
+			"text": " And one of the goals with this, of course, was to reduce the bureaucracy."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,500",
+				"to": "00:02:04,900"
+			},
+			"offsets": {
+				"from": 122500,
+				"to": 124900
+			},
+			"text": " Okay, so for any of you who've ever participated"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:04,900",
+				"to": "00:02:06,900"
+			},
+			"offsets": {
+				"from": 124900,
+				"to": 126900
+			},
+			"text": " in any of these other standards organizations,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,900",
+				"to": "00:02:12,700"
+			},
+			"offsets": {
+				"from": 126900,
+				"to": 132700
+			},
+			"text": " you know they have a reputation for being very slow, ponderous, cumbersome."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,700",
+				"to": "00:02:15,900"
+			},
+			"offsets": {
+				"from": 132700,
+				"to": 135900
+			},
+			"text": " And so our goal is to see if we could put in the minimum amount"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,900",
+				"to": "00:02:20,400"
+			},
+			"offsets": {
+				"from": 135900,
+				"to": 140400
+			},
+			"text": " of bureaucracy to still allow us to get to a good result."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,400",
+				"to": "00:02:27,900"
+			},
+			"offsets": {
+				"from": 140400,
+				"to": 147900
+			},
+			"text": " So this is the work itself is actually managed and run by OASIS Open."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:27,900",
+				"to": "00:02:31,900"
+			},
+			"offsets": {
+				"from": 147900,
+				"to": 151900
+			},
+			"text": " OASIS is a nonprofit technical standards body, been around for a long time."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:31,900",
+				"to": "00:02:35,700"
+			},
+			"offsets": {
+				"from": 151900,
+				"to": 155700
+			},
+			"text": " They're actually known for a lot of XML standards and many others as well."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:35,700",
+				"to": "00:02:39,400"
+			},
+			"offsets": {
+				"from": 155700,
+				"to": 159400
+			},
+			"text": " What they did is they actually started a new OASIS Open program specifically"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:39,400",
+				"to": "00:02:43,400"
+			},
+			"offsets": {
+				"from": 159400,
+				"to": 163400
+			},
+			"text": " for open source software and standards development."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,400",
+				"to": "00:02:45,400"
+			},
+			"offsets": {
+				"from": 163400,
+				"to": 165400
+			},
+			"text": " So we created an OASIS Open project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,400",
+				"to": "00:02:46,700"
+			},
+			"offsets": {
+				"from": 165400,
+				"to": 166700
+			},
+			"text": " I say we."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,700",
+				"to": "00:02:49,000"
+			},
+			"offsets": {
+				"from": 166700,
+				"to": 169000
+			},
+			"text": " So it was the Ethereum Foundation consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,000",
+				"to": "00:02:53,400"
+			},
+			"offsets": {
+				"from": 169000,
+				"to": 173400
+			},
+			"text": " and the Enterprise Ethereum Alliance in 2019 started this project."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,400",
+				"to": "00:02:57,900"
+			},
+			"offsets": {
+				"from": 173400,
+				"to": 177900
+			},
+			"text": " And again, we focused really heavily on the low bureaucracy piece."
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,900",
+				"to": "00:03:03,400"
+			},
+			"offsets": {
+				"from": 177900,
+				"to": 183400
+			},
+			"text": " So the EEA, which of course I obviously represent with my shirt here,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,400",
+				"to": "00:03:09,400"
+			},
+			"offsets": {
+				"from": 183400,
+				"to": 189400
+			},
+			"text": " was founded in 2017, initially focused, for any of you saw my presentation earlier today,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:09,400",
+				"to": "00:03:11,700"
+			},
+			"offsets": {
+				"from": 189400,
+				"to": 191700
+			},
+			"text": " you know what I'm going to say, we were focused initially"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:11,700",
+				"to": "00:03:14,100"
+			},
+			"offsets": {
+				"from": 191700,
+				"to": 194100
+			},
+			"text": " on standards development for private chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,100",
+				"to": "00:03:18,100"
+			},
+			"offsets": {
+				"from": 194100,
+				"to": 198100
+			},
+			"text": " Okay, and that's because the public chain wasn't ready for businesses"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,100",
+				"to": "00:03:20,800"
+			},
+			"offsets": {
+				"from": 198100,
+				"to": 200800
+			},
+			"text": " to use it a number of years ago."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,800",
+				"to": "00:03:27,000"
+			},
+			"offsets": {
+				"from": 200800,
+				"to": 207000
+			},
+			"text": " But we have a broader mission now at the EEA to include much more ecosystem development work"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,000",
+				"to": "00:03:28,200"
+			},
+			"offsets": {
+				"from": 207000,
+				"to": 208200
+			},
+			"text": " and Ethereum advocacy."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:28,200",
+				"to": "00:03:32,400"
+			},
+			"offsets": {
+				"from": 208200,
+				"to": 212400
+			},
+			"text": " So we're looking at moving, well, we've already been moving beyond private chains"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:32,400",
+				"to": "00:03:33,800"
+			},
+			"offsets": {
+				"from": 212400,
+				"to": 213800
+			},
+			"text": " for a while now."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:33,800",
+				"to": "00:03:36,300"
+			},
+			"offsets": {
+				"from": 213800,
+				"to": 216300
+			},
+			"text": " We're actually looking much more broadly than that."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:36,300",
+				"to": "00:03:40,900"
+			},
+			"offsets": {
+				"from": 216300,
+				"to": 220900
+			},
+			"text": " So in particular, even though enterprises in our title and we know"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,900",
+				"to": "00:03:43,800"
+			},
+			"offsets": {
+				"from": 220900,
+				"to": 223800
+			},
+			"text": " that people sometimes hate that enterprise word,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,800",
+				"to": "00:03:46,500"
+			},
+			"offsets": {
+				"from": 223800,
+				"to": 226500
+			},
+			"text": " the reality is we are business focused."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:46,500",
+				"to": "00:03:48,900"
+			},
+			"offsets": {
+				"from": 226500,
+				"to": 228900
+			},
+			"text": " And so you'll hear that more and more from the EEA."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:48,900",
+				"to": "00:03:53,500"
+			},
+			"offsets": {
+				"from": 228900,
+				"to": 233500
+			},
+			"text": " You can almost think of us as, you know, the Ethereum business alliance,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:53,500",
+				"to": "00:03:56,500"
+			},
+			"offsets": {
+				"from": 233500,
+				"to": 236500
+			},
+			"text": " you know, as far as the way we operate."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:56,500",
+				"to": "00:04:03,400"
+			},
+			"offsets": {
+				"from": 236500,
+				"to": 243400
+			},
+			"text": " So we actually, we like the way OASIS started the open projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:03,400",
+				"to": "00:04:06,000"
+			},
+			"offsets": {
+				"from": 243400,
+				"to": 246000
+			},
+			"text": " and decided that we would work together with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:06,000",
+				"to": "00:04:11,000"
+			},
+			"offsets": {
+				"from": 246000,
+				"to": 251000
+			},
+			"text": " We particularly like how inclusive it was of the entire Ethereum community."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:11,000",
+				"to": "00:04:15,200"
+			},
+			"offsets": {
+				"from": 251000,
+				"to": 255200
+			},
+			"text": " It's important to point out that EEA membership is not required"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:15,200",
+				"to": "00:04:17,400"
+			},
+			"offsets": {
+				"from": 255200,
+				"to": 257400
+			},
+			"text": " to participate in the community projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:17,400",
+				"to": "00:04:20,000"
+			},
+			"offsets": {
+				"from": 257400,
+				"to": 260000
+			},
+			"text": " And that's why they're called community projects."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:20,000",
+				"to": "00:04:25,300"
+			},
+			"offsets": {
+				"from": 260000,
+				"to": 265300
+			},
+			"text": " Okay. At this point, I think I'm switching over to Tash to tell you what we're up to."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:25,300",
+				"to": "00:04:26,700"
+			},
+			"offsets": {
+				"from": 265300,
+				"to": 266700
+			},
+			"text": " Yeah, so, oh, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:26,700",
+				"to": "00:04:29,200"
+			},
+			"offsets": {
+				"from": 266700,
+				"to": 269200
+			},
+			"text": " So what do we look for in an EEA community project?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:29,200",
+				"to": "00:04:31,600"
+			},
+			"offsets": {
+				"from": 269200,
+				"to": 271600
+			},
+			"text": " What kind of projects are good to fit?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:31,600",
+				"to": "00:04:33,800"
+			},
+			"offsets": {
+				"from": 271600,
+				"to": 273800
+			},
+			"text": " Ethereum first name, Ethereum first project,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:33,800",
+				"to": "00:04:36,800"
+			},
+			"offsets": {
+				"from": 273800,
+				"to": 276800
+			},
+			"text": " as the name implies, Ethereum should be central to the project."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:36,800",
+				"to": "00:04:40,400"
+			},
+			"offsets": {
+				"from": 276800,
+				"to": 280400
+			},
+			"text": " Although it doesn't have to be exclusively Ethereum at Can support other chains."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:40,400",
+				"to": "00:04:43,400"
+			},
+			"offsets": {
+				"from": 280400,
+				"to": 283400
+			},
+			"text": " We look for projects that want to do open standards development,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:43,400",
+				"to": "00:04:46,800"
+			},
+			"offsets": {
+				"from": 283400,
+				"to": 286800
+			},
+			"text": " often from initial source, initial open source software."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:46,800",
+				"to": "00:04:50,600"
+			},
+			"offsets": {
+				"from": 286800,
+				"to": 290600
+			},
+			"text": " So there can be a software implementation around which the standard is developed,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:50,600",
+				"to": "00:04:51,900"
+			},
+			"offsets": {
+				"from": 290600,
+				"to": 291900
+			},
+			"text": " or there can be no implementation."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:51,900",
+				"to": "00:04:54,100"
+			},
+			"offsets": {
+				"from": 291900,
+				"to": 294100
+			},
+			"text": " You just develop a standard first."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:54,100",
+				"to": "00:04:57,800"
+			},
+			"offsets": {
+				"from": 294100,
+				"to": 297800
+			},
+			"text": " Either one's okay, but it must be open, i.e. contributors."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:57,800",
+				"to": "00:05:00,100"
+			},
+			"offsets": {
+				"from": 297800,
+				"to": 300100
+			},
+			"text": " Must be willing to sign a contributor license agreement"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:00,100",
+				"to": "00:05:04,500"
+			},
+			"offsets": {
+				"from": 300100,
+				"to": 304500
+			},
+			"text": " that ensures that there will be no, all contributions are open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:04,500",
+				"to": "00:05:08,300"
+			},
+			"offsets": {
+				"from": 304500,
+				"to": 308300
+			},
+			"text": " There's no intellectual property, no patents associated with the contributions to that standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:08,300",
+				"to": "00:05:10,300"
+			},
+			"offsets": {
+				"from": 308300,
+				"to": 310300
+			},
+			"text": " So the standard should be completely open source."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,300",
+				"to": "00:05:16,600"
+			},
+			"offsets": {
+				"from": 310300,
+				"to": 316600
+			},
+			"text": " And to start a project, we look for at least three and ideally five organizations to sponsor a project."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:16,600",
+				"to": "00:05:19,100"
+			},
+			"offsets": {
+				"from": 316600,
+				"to": 319100
+			},
+			"text": " So one company cannot define a standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:19,100",
+				"to": "00:05:21,900"
+			},
+			"offsets": {
+				"from": 319100,
+				"to": 321900
+			},
+			"text": " A standard exists when multiple entities get together"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:21,900",
+				"to": "00:05:24,000"
+			},
+			"offsets": {
+				"from": 321900,
+				"to": 324000
+			},
+			"text": " and hash out their differences and agree on something."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:24,000",
+				"to": "00:05:30,200"
+			},
+			"offsets": {
+				"from": 324000,
+				"to": 330200
+			},
+			"text": " So we look for at least three and hopefully more than three entities often that have competing interests"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:30,200",
+				"to": "00:05:34,200"
+			},
+			"offsets": {
+				"from": 330200,
+				"to": 334200
+			},
+			"text": " to get together and discuss and agree on something which we can call a standard."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:36,700",
+				"to": "00:05:38,700"
+			},
+			"offsets": {
+				"from": 336700,
+				"to": 338700
+			},
+			"text": " So how is it governed?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:38,700",
+				"to": "00:05:43,000"
+			},
+			"offsets": {
+				"from": 338700,
+				"to": 343000
+			},
+			"text": " The EEA community projects is governed by a project governing board."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:43,000",
+				"to": "00:05:45,900"
+			},
+			"offsets": {
+				"from": 343000,
+				"to": 345900
+			},
+			"text": " And then each project has a technical steering committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:45,900",
+				"to": "00:05:52,300"
+			},
+			"offsets": {
+				"from": 345900,
+				"to": 352300
+			},
+			"text": " So there's one project governing board and there's a TSC for each standard development project."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:52,300",
+				"to": "00:05:54,300"
+			},
+			"offsets": {
+				"from": 352300,
+				"to": 354300
+			},
+			"text": " The PGB meets every two weeks."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,300",
+				"to": "00:05:55,900"
+			},
+			"offsets": {
+				"from": 354300,
+				"to": 355900
+			},
+			"text": " It manages the TSCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:55,900",
+				"to": "00:05:58,300"
+			},
+			"offsets": {
+				"from": 355900,
+				"to": 358300
+			},
+			"text": " It authorizes and makes rules for the TSCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,300",
+				"to": "00:05:59,800"
+			},
+			"offsets": {
+				"from": 358300,
+				"to": 359800
+			},
+			"text": " It does not make technical decisions."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:59,800",
+				"to": "00:06:04,800"
+			},
+			"offsets": {
+				"from": 359800,
+				"to": 364800
+			},
+			"text": " It's just a kind of a middle level of governance between OASIS and the TSCs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:04,800",
+				"to": "00:06:06,800"
+			},
+			"offsets": {
+				"from": 364800,
+				"to": 366800
+			},
+			"text": " Dan and I are the co-chairs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:06,800",
+				"to": "00:06:12,100"
+			},
+			"offsets": {
+				"from": 366800,
+				"to": 372100
+			},
+			"text": " And the TSC also includes members from each -- sorry, the PGB also includes members from each TSC."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:12,100",
+				"to": "00:06:14,300"
+			},
+			"offsets": {
+				"from": 372100,
+				"to": 374300
+			},
+			"text": " So each TSC gets a seat on the PGB."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:14,300",
+				"to": "00:06:22,200"
+			},
+			"offsets": {
+				"from": 374300,
+				"to": 382200
+			},
+			"text": " And also companies that sponsor the EEA community projects by giving us money get a seat on the PGB"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:22,200",
+				"to": "00:06:24,200"
+			},
+			"offsets": {
+				"from": 382200,
+				"to": 384200
+			},
+			"text": " if they want one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:24,200",
+				"to": "00:06:25,700"
+			},
+			"offsets": {
+				"from": 384200,
+				"to": 385700
+			},
+			"text": " Yeah."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:25,700",
+				"to": "00:06:28,800"
+			},
+			"offsets": {
+				"from": 385700,
+				"to": 388800
+			},
+			"text": " So each project is governed by its own technical steering committee."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:28,800",
+				"to": "00:06:32,600"
+			},
+			"offsets": {
+				"from": 388800,
+				"to": 392600
+			},
+			"text": " So the technical steering committee sets the governance rules for that project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:32,600",
+				"to": "00:06:33,900"
+			},
+			"offsets": {
+				"from": 392600,
+				"to": 393900
+			},
+			"text": " They can be pretty flexible."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,900",
+				"to": "00:06:36,600"
+			},
+			"offsets": {
+				"from": 393900,
+				"to": 396600
+			},
+			"text": " The PGB has to approve the rules."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:36,600",
+				"to": "00:06:42,700"
+			},
+			"offsets": {
+				"from": 396600,
+				"to": 402700
+			},
+			"text": " So there is some degree of customizability for each project to set their own rules and get approved by the PGB."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:42,700",
+				"to": "00:06:49,200"
+			},
+			"offsets": {
+				"from": 402700,
+				"to": 409200
+			},
+			"text": " The members of the PGB TSC are typically the most active contributors to that project."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,200",
+				"to": "00:06:52,700"
+			},
+			"offsets": {
+				"from": 409200,
+				"to": 412700
+			},
+			"text": " And the TSCs report to the PGB."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:52,700",
+				"to": "00:06:55,800"
+			},
+			"offsets": {
+				"from": 412700,
+				"to": 415800
+			},
+			"text": " So what projects do we have or what have we worked on so far?"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:55,800",
+				"to": "00:06:58,400"
+			},
+			"offsets": {
+				"from": 415800,
+				"to": 418400
+			},
+			"text": " Baseline protocol is probably the biggest one."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:58,400",
+				"to": "00:07:05,300"
+			},
+			"offsets": {
+				"from": 418400,
+				"to": 425300
+			},
+			"text": " Baseline protocol is a standard that enables enterprises to synchronize complex multi-party business processes"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:05,300",
+				"to": "00:07:11,600"
+			},
+			"offsets": {
+				"from": 425300,
+				"to": 431600
+			},
+			"text": " with privacy and without moving data from systems of record using Ethereum as a common frame of reference."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:11,600",
+				"to": "00:07:17,400"
+			},
+			"offsets": {
+				"from": 431600,
+				"to": 437400
+			},
+			"text": " So basically it enables companies that engage in multi-party business transactions to do so"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:17,400",
+				"to": "00:07:20,700"
+			},
+			"offsets": {
+				"from": 437400,
+				"to": 440700
+			},
+			"text": " in a way that doesn't leak any confidential information from their databases,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:20,700",
+				"to": "00:07:25,000"
+			},
+			"offsets": {
+				"from": 440700,
+				"to": 445000
+			},
+			"text": " it also ensures that all of their systems -- each company's systems are in sync"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:25,000",
+				"to": "00:07:29,500"
+			},
+			"offsets": {
+				"from": 445000,
+				"to": 449500
+			},
+			"text": " and that each company is doing the correct thing and proving that with zero-knowledge proofs."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:29,500",
+				"to": "00:07:31,500"
+			},
+			"offsets": {
+				"from": 449500,
+				"to": 451500
+			},
+			"text": " Wow."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:31,500",
+				"to": "00:07:34,000"
+			},
+			"offsets": {
+				"from": 451500,
+				"to": 454000
+			},
+			"text": " We also have a Layer 2 standards working group."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:34,000",
+				"to": "00:07:36,500"
+			},
+			"offsets": {
+				"from": 454000,
+				"to": 456500
+			},
+			"text": " We just talked about that earlier at a different room."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,500",
+				"to": "00:07:40,800"
+			},
+			"offsets": {
+				"from": 456500,
+				"to": 460800
+			},
+			"text": " So the Layer 2 standards working group, as the name implies, is developing standards for Layer 2s,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:40,800",
+				"to": "00:07:43,800"
+			},
+			"offsets": {
+				"from": 460800,
+				"to": 463800
+			},
+			"text": " which is, I think, very important."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:43,800",
+				"to": "00:07:52,500"
+			},
+			"offsets": {
+				"from": 463800,
+				"to": 472500
+			},
+			"text": " There's been some work done on formalizing the standards and specifications for the JSON RPC-Clanned API."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:52,500",
+				"to": "00:07:57,800"
+			},
+			"offsets": {
+				"from": 472500,
+				"to": 477800
+			},
+			"text": " And we've been talking about a new project called \"Token Script,\" possibly coming in."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:57,800",
+				"to": "00:08:01,400"
+			},
+			"offsets": {
+				"from": 477800,
+				"to": 481400
+			},
+			"text": " \"Token Script\" is a JavaScript Web Assembly and XML framework"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,400",
+				"to": "00:08:07,400"
+			},
+			"offsets": {
+				"from": 481400,
+				"to": 487400
+			},
+			"text": " to improve the functionality, security, and usability of blockchain tokens."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:07,400",
+				"to": "00:08:10,000"
+			},
+			"offsets": {
+				"from": 487400,
+				"to": 490000
+			},
+			"text": " And if you have an idea for a project, we would love to hear from you."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:10,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 490000,
+				"to": 494000
+			},
+			"text": " We would love to have more projects coming in to the EA community projects"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:20,500"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 500500
+			},
+			"text": " to improve the quality of standards development within the Ethereum ecosystem."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:20,500",
+				"to": "00:08:22,800"
+			},
+			"offsets": {
+				"from": 500500,
+				"to": 502800
+			},
+			"text": " So we have sponsors."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:22,800",
+				"to": "00:08:27,200"
+			},
+			"offsets": {
+				"from": 502800,
+				"to": 507200
+			},
+			"text": " Sponsors have provided money to help us get stuff done."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:27,200",
+				"to": "00:08:33,500"
+			},
+			"offsets": {
+				"from": 507200,
+				"to": 513500
+			},
+			"text": " Some big companies like EY, Accenture, and SAP, and also a lot of smaller crypto-focused companies."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,500",
+				"to": "00:08:36,900"
+			},
+			"offsets": {
+				"from": 513500,
+				"to": 516900
+			},
+			"text": " So there's quite a wide variety of sponsors."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:36,900",
+				"to": "00:08:41,800"
+			},
+			"offsets": {
+				"from": 516900,
+				"to": 521800
+			},
+			"text": " If you are interested in starting a new standards development project"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:41,800",
+				"to": "00:08:45,000"
+			},
+			"offsets": {
+				"from": 521800,
+				"to": 525000
+			},
+			"text": " or participating in one of the existing ones, please get in touch."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:45,000",
+				"to": "00:08:46,800"
+			},
+			"offsets": {
+				"from": 525000,
+				"to": 526800
+			},
+			"text": " Here's how."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:46,800",
+				"to": "00:08:50,800"
+			},
+			"offsets": {
+				"from": 526800,
+				"to": 530800
+			},
+			"text": " And thanks for sticking around until the last talk of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:50,800",
+				"to": "00:08:53,800"
+			},
+			"offsets": {
+				"from": 530800,
+				"to": 533800
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,800",
+				"to": "00:08:54,300"
+			},
+			"offsets": {
+				"from": 533800,
+				"to": 534300
+			},
+			"text": " Amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:54,300",
+				"to": "00:08:55,300"
+			},
+			"offsets": {
+				"from": 534300,
+				"to": 535300
+			},
+			"text": " Thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:55,300",
+				"to": "00:08:58,400"
+			},
+			"offsets": {
+				"from": 535300,
+				"to": 538400
+			},
+			"text": " So yeah, reach out to Dan and Taz."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,400",
+				"to": "00:09:03,500"
+			},
+			"offsets": {
+				"from": 538400,
+				"to": 543500
+			},
+			"text": " If you have some ideas to keep improving the Ethereum ecosystem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:03,500",
+				"to": "00:09:05,800"
+			},
+			"offsets": {
+				"from": 543500,
+				"to": 545800
+			},
+			"text": " or you want to join a project with them."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,800",
+				"to": "00:09:07,200"
+			},
+			"offsets": {
+				"from": 545800,
+				"to": 547200
+			},
+			"text": " So thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:07,200",
+				"to": "00:09:08,100"
+			},
+			"offsets": {
+				"from": 547200,
+				"to": 548100
+			},
+			"text": " And thank you all."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:08,100",
+				"to": "00:09:11,300"
+			},
+			"offsets": {
+				"from": 548100,
+				"to": 551300
+			},
+			"text": " This is the last talk of the day."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:11,300",
+				"to": "00:09:13,800"
+			},
+			"offsets": {
+				"from": 551300,
+				"to": 553800
+			},
+			"text": " And a very amazing day for DevCon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:13,800",
+				"to": "00:09:16,700"
+			},
+			"offsets": {
+				"from": 553800,
+				"to": 556700
+			},
+			"text": " This is the biggest DevCon till now."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:16,700",
+				"to": "00:09:19,400"
+			},
+			"offsets": {
+				"from": 556700,
+				"to": 559400
+			},
+			"text": " We are more than 5,000 people."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:19,400",
+				"to": "00:09:20,600"
+			},
+			"offsets": {
+				"from": 559400,
+				"to": 560600
+			},
+			"text": " So amazing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:20,600",
+				"to": "00:09:21,600"
+			},
+			"offsets": {
+				"from": 560600,
+				"to": 561600
+			},
+			"text": " I hope you enjoy it."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:21,600",
+				"to": "00:09:23,000"
+			},
+			"offsets": {
+				"from": 561600,
+				"to": 563000
+			},
+			"text": " And I'm Anna."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:23,000",
+				"to": "00:09:24,000"
+			},
+			"offsets": {
+				"from": 563000,
+				"to": 564000
+			},
+			"text": " And thank you so much."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:24,000",
+				"to": "00:09:26,200"
+			},
+			"offsets": {
+				"from": 564000,
+				"to": 566200
+			},
+			"text": " Have a great life."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:26,200",
+				"to": "00:09:27,200"
+			},
+			"offsets": {
+				"from": 566200,
+				"to": 567200
+			},
+			"text": " See you soon."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,200",
+				"to": "00:09:29,200"
+			},
+			"offsets": {
+				"from": 567200,
+				"to": 569200
+			},
+			"text": " [APPLAUSE]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:29,200",
+				"to": "00:09:31,200"
+			},
+			"offsets": {
+				"from": 569200,
+				"to": 571200
+			},
+			"text": " [VIDEO PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,200",
+				"to": "00:09:33,200"
+			},
+			"offsets": {
+				"from": 571200,
+				"to": 573200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:33,200",
+				"to": "00:09:35,200"
+			},
+			"offsets": {
+				"from": 573200,
+				"to": 575200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:35,200",
+				"to": "00:09:37,200"
+			},
+			"offsets": {
+				"from": 575200,
+				"to": 577200
+			},
+			"text": " [END PLAYBACK]"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,200",
+				"to": "00:09:41,200"
+			},
+			"offsets": {
+				"from": 577200,
+				"to": 581200
+			},
+			"text": " [ Silence ]"
+		}
+	]
+}

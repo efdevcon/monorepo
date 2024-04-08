@@ -1,0 +1,2463 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | VSX = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": false,
+		"vocab": 51864,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"f16": 1
+	},
+	"params": {
+		"model": "models/ggml-base.en.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 15000
+			},
+			"text": " [ Music ]"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 17000
+			},
+			"text": " >> Thanks, thanks, Ming."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:18,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 18000
+			},
+			"text": " Hi, everyone."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,000",
+				"to": "00:00:24,000"
+			},
+			"offsets": {
+				"from": 18000,
+				"to": 24000
+			},
+			"text": " So the problem that we're focusing on is one which we think"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,000",
+				"to": "00:00:29,000"
+			},
+			"offsets": {
+				"from": 24000,
+				"to": 29000
+			},
+			"text": " keeps smart contracts limited to tokenization, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,000",
+				"to": "00:00:33,000"
+			},
+			"offsets": {
+				"from": 29000,
+				"to": 33000
+			},
+			"text": " If the native functionality you have when you start working with a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:33,000",
+				"to": "00:00:37,000"
+			},
+			"offsets": {
+				"from": 33000,
+				"to": 37000
+			},
+			"text": " network is the ability to make tokens, that's the functionality you'll start"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:37,000",
+				"to": "00:00:40,000"
+			},
+			"offsets": {
+				"from": 37000,
+				"to": 40000
+			},
+			"text": " working with and you'll do a lot of interesting things with it."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:40,000",
+				"to": "00:00:44,000"
+			},
+			"offsets": {
+				"from": 40000,
+				"to": 44000
+			},
+			"text": " But the capabilities of smart contracts go far beyond tokenization."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:44,000",
+				"to": "00:00:47,000"
+			},
+			"offsets": {
+				"from": 44000,
+				"to": 47000
+			},
+			"text": " There's enough logic to mimic and eventually replace the majority of"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,000",
+				"to": "00:00:49,000"
+			},
+			"offsets": {
+				"from": 47000,
+				"to": 49000
+			},
+			"text": " digital financial agreements."
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,000",
+				"to": "00:00:54,000"
+			},
+			"offsets": {
+				"from": 49000,
+				"to": 54000
+			},
+			"text": " Those agreements, as they're structured, will need triggering events,"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:54,000",
+				"to": "00:00:58,000"
+			},
+			"offsets": {
+				"from": 54000,
+				"to": 58000
+			},
+			"text": " so they'll need inputs into the application, and they'll also need to"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:58,000",
+				"to": "00:01:01,000"
+			},
+			"offsets": {
+				"from": 58000,
+				"to": 61000
+			},
+			"text": " have outputs as a form of payment, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:01,000",
+				"to": "00:01:06,000"
+			},
+			"offsets": {
+				"from": 61000,
+				"to": 66000
+			},
+			"text": " So in our opinion, one of the very large limiting factors for the creation"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,000",
+				"to": "00:01:11,000"
+			},
+			"offsets": {
+				"from": 66000,
+				"to": 71000
+			},
+			"text": " of interesting real-world use case smart contracts is their ability to step"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:11,000",
+				"to": "00:01:16,000"
+			},
+			"offsets": {
+				"from": 71000,
+				"to": 76000
+			},
+			"text": " beyond tokens and interact with external inputs and external outputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:16,000",
+				"to": "00:01:18,000"
+			},
+			"offsets": {
+				"from": 76000,
+				"to": 78000
+			},
+			"text": " in a meaningful manner, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:18,000",
+				"to": "00:01:23,000"
+			},
+			"offsets": {
+				"from": 78000,
+				"to": 83000
+			},
+			"text": " So the approach to solving that problem is basically middleware."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:23,000",
+				"to": "00:01:26,000"
+			},
+			"offsets": {
+				"from": 83000,
+				"to": 86000
+			},
+			"text": " You create a piece of middleware that takes the external inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:26,000",
+				"to": "00:01:30,000"
+			},
+			"offsets": {
+				"from": 86000,
+				"to": 90000
+			},
+			"text": " turns them into something that the contract on chain can interact with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:30,000",
+				"to": "00:01:34,000"
+			},
+			"offsets": {
+				"from": 90000,
+				"to": 94000
+			},
+			"text": " and you have the middleware provide those inputs to the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:34,000",
+				"to": "00:01:39,000"
+			},
+			"offsets": {
+				"from": 94000,
+				"to": 99000
+			},
+			"text": " Those inputs can be any kind of data feed, IOT input about delivery,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:39,000",
+				"to": "00:01:43,000"
+			},
+			"offsets": {
+				"from": 99000,
+				"to": 103000
+			},
+			"text": " any input that application needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:43,000",
+				"to": "00:01:49,000"
+			},
+			"offsets": {
+				"from": 103000,
+				"to": 109000
+			},
+			"text": " Likewise, the middleware can provide outputs into relevant payment systems."
+		},
+		{
+			"timestamps": {
+				"from": "00:01:49,000",
+				"to": "00:01:53,000"
+			},
+			"offsets": {
+				"from": 109000,
+				"to": 113000
+			},
+			"text": " Now, right now there isn't a large amount of these capabilities,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:53,000",
+				"to": "00:01:58,000"
+			},
+			"offsets": {
+				"from": 113000,
+				"to": 118000
+			},
+			"text": " and the parallel I tend to draw in my mind is, in the web development world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,000",
+				"to": "00:02:01,000"
+			},
+			"offsets": {
+				"from": 118000,
+				"to": 121000
+			},
+			"text": " when you want to build an application, you have a ton of APIs you can connect"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:01,000",
+				"to": "00:02:03,000"
+			},
+			"offsets": {
+				"from": 121000,
+				"to": 123000
+			},
+			"text": " to a contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:03,000",
+				"to": "00:02:05,000"
+			},
+			"offsets": {
+				"from": 123000,
+				"to": 125000
+			},
+			"text": " In the smart contract development world, right now,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:05,000",
+				"to": "00:02:11,000"
+			},
+			"offsets": {
+				"from": 125000,
+				"to": 131000
+			},
+			"text": " due to the lack of on-chain contracts that represent off-chain resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:11,000",
+				"to": "00:02:15,000"
+			},
+			"offsets": {
+				"from": 131000,
+				"to": 135000
+			},
+			"text": " it's very difficult for a smart contract developer to get access to the inputs"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:15,000",
+				"to": "00:02:19,000"
+			},
+			"offsets": {
+				"from": 135000,
+				"to": 139000
+			},
+			"text": " and the outputs they need to make an application, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:19,000",
+				"to": "00:02:22,000"
+			},
+			"offsets": {
+				"from": 139000,
+				"to": 142000
+			},
+			"text": " Like the people that made Uber or any number of other web applications,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:22,000",
+				"to": "00:02:26,000"
+			},
+			"offsets": {
+				"from": 142000,
+				"to": 146000
+			},
+			"text": " they put GPS API, any number of other APIs together with their core application,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:26,000",
+				"to": "00:02:30,000"
+			},
+			"offsets": {
+				"from": 146000,
+				"to": 150000
+			},
+			"text": " and then they had a payments output in a payments API, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:30,000",
+				"to": "00:02:34,000"
+			},
+			"offsets": {
+				"from": 150000,
+				"to": 154000
+			},
+			"text": " It should be just that easy for a smart contract developer to take inputs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:34,000",
+				"to": "00:02:37,000"
+			},
+			"offsets": {
+				"from": 154000,
+				"to": 157000
+			},
+			"text": " combine them with their core application in the form of a smart contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,000",
+				"to": "00:02:42,000"
+			},
+			"offsets": {
+				"from": 157000,
+				"to": 162000
+			},
+			"text": " and then have that smart contract make the relevant outputs without them figuring out"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:42,000",
+				"to": "00:02:46,000"
+			},
+			"offsets": {
+				"from": 162000,
+				"to": 166000
+			},
+			"text": " how to make that connectivity work at a very deep level, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:46,000",
+				"to": "00:02:51,000"
+			},
+			"offsets": {
+				"from": 166000,
+				"to": 171000
+			},
+			"text": " That's what blockchain middleware as a general solution provides, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,000",
+				"to": "00:02:58,000"
+			},
+			"offsets": {
+				"from": 171000,
+				"to": 178000
+			},
+			"text": " The benefit of blockchain middleware for a smart contract, ideally,"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:58,000",
+				"to": "00:03:03,000"
+			},
+			"offsets": {
+				"from": 178000,
+				"to": 183000
+			},
+			"text": " would be that it maintains the same level of security as the contract, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:03,000",
+				"to": "00:03:07,000"
+			},
+			"offsets": {
+				"from": 183000,
+				"to": 187000
+			},
+			"text": " You don't want a contract that's highly secure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:07,000",
+				"to": "00:03:10,000"
+			},
+			"offsets": {
+				"from": 187000,
+				"to": 190000
+			},
+			"text": " that's triggered by a highly insecure system,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,000",
+				"to": "00:03:13,000"
+			},
+			"offsets": {
+				"from": 190000,
+				"to": 193000
+			},
+			"text": " and that pays out through another highly insecure system."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:13,000",
+				"to": "00:03:18,000"
+			},
+			"offsets": {
+				"from": 193000,
+				"to": 198000
+			},
+			"text": " If you have a very secure middle part of the end-to-end setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:18,000",
+				"to": "00:03:20,000"
+			},
+			"offsets": {
+				"from": 198000,
+				"to": 200000
+			},
+			"text": " and the inputs and the outputs are insecure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:20,000",
+				"to": "00:03:25,000"
+			},
+			"offsets": {
+				"from": 200000,
+				"to": 205000
+			},
+			"text": " it's unlikely that digital financial agreements of large value"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,000",
+				"to": "00:03:30,000"
+			},
+			"offsets": {
+				"from": 205000,
+				"to": 210000
+			},
+			"text": " are going to transfer from the legacy world into the smart contract world, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:30,000",
+				"to": "00:03:35,000"
+			},
+			"offsets": {
+				"from": 210000,
+				"to": 215000
+			},
+			"text": " So as a community, or at least we as a group of people are very interested"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:35,000",
+				"to": "00:03:40,000"
+			},
+			"offsets": {
+				"from": 215000,
+				"to": 220000
+			},
+			"text": " in solving this problem of how do you get a smart contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:40,000",
+				"to": "00:03:43,000"
+			},
+			"offsets": {
+				"from": 220000,
+				"to": 223000
+			},
+			"text": " to do something meaningful relative to the real world,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:43,000",
+				"to": "00:03:47,000"
+			},
+			"offsets": {
+				"from": 223000,
+				"to": 227000
+			},
+			"text": " but also to do it so securely that the input of the data that triggers the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:47,000",
+				"to": "00:03:54,000"
+			},
+			"offsets": {
+				"from": 227000,
+				"to": 234000
+			},
+			"text": " the contract itself and the output can all be trusted at a very high level of tamper proofness."
+		},
+		{
+			"timestamps": {
+				"from": "00:03:54,000",
+				"to": "00:03:58,000"
+			},
+			"offsets": {
+				"from": 234000,
+				"to": 238000
+			},
+			"text": " So to understand what our options are in this problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:58,000",
+				"to": "00:04:02,000"
+			},
+			"offsets": {
+				"from": 238000,
+				"to": 242000
+			},
+			"text": " it's good to look at what is some of the current approaches."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:02,000",
+				"to": "00:04:07,000"
+			},
+			"offsets": {
+				"from": 242000,
+				"to": 247000
+			},
+			"text": " One very common approach is basically the use of a centralized oracle."
+		},
+		{
+			"timestamps": {
+				"from": "00:04:07,000",
+				"to": "00:04:12,000"
+			},
+			"offsets": {
+				"from": 247000,
+				"to": 252000
+			},
+			"text": " So that is the approach where either an individual in the contract runs an oracle,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:12,000",
+				"to": "00:04:16,000"
+			},
+			"offsets": {
+				"from": 252000,
+				"to": 256000
+			},
+			"text": " one of the counter-parties, or possibly a service,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:16,000",
+				"to": "00:04:21,000"
+			},
+			"offsets": {
+				"from": 256000,
+				"to": 261000
+			},
+			"text": " in any case there's a single centralized oracle that acquires data"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:21,000",
+				"to": "00:04:28,000"
+			},
+			"offsets": {
+				"from": 261000,
+				"to": 268000
+			},
+			"text": " as a trusted third party and gives that data to the decentralized computation network to process it, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:28,000",
+				"to": "00:04:34,000"
+			},
+			"offsets": {
+				"from": 268000,
+				"to": 274000
+			},
+			"text": " The problem with this in our opinion is that the decentralized computation network has thousands of nodes,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:34,000",
+				"to": "00:04:39,000"
+			},
+			"offsets": {
+				"from": 274000,
+				"to": 279000
+			},
+			"text": " which provide the tamper proofness and the security guarantees we all value in that contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:39,000",
+				"to": "00:04:45,000"
+			},
+			"offsets": {
+				"from": 279000,
+				"to": 285000
+			},
+			"text": " while the centralized oracle triggering this highly tamper proof decentralized computation"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:45,000",
+				"to": "00:04:48,000"
+			},
+			"offsets": {
+				"from": 285000,
+				"to": 288000
+			},
+			"text": " is not tamper proof, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:48,000",
+				"to": "00:04:53,000"
+			},
+			"offsets": {
+				"from": 288000,
+				"to": 293000
+			},
+			"text": " So the set up end to end at this point is not tamper proof, it's not going to appear very secure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:04:53,000",
+				"to": "00:05:02,000"
+			},
+			"offsets": {
+				"from": 293000,
+				"to": 302000
+			},
+			"text": " it doesn't provide the tamper proof guarantees that we think are important for smart contracts to have a unique value, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:02,000",
+				"to": "00:05:10,000"
+			},
+			"offsets": {
+				"from": 302000,
+				"to": 310000
+			},
+			"text": " And so this attack vector of how do you attack a contract that has one node triggering the key events"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:10,000",
+				"to": "00:05:15,000"
+			},
+			"offsets": {
+				"from": 310000,
+				"to": 315000
+			},
+			"text": " is the attack vector that we think is worth seriously considering."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:15,000",
+				"to": "00:05:20,000"
+			},
+			"offsets": {
+				"from": 315000,
+				"to": 320000
+			},
+			"text": " Everything from DevOps problems with that one node to somebody genuinely attacking a single node"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:20,000",
+				"to": "00:05:23,000"
+			},
+			"offsets": {
+				"from": 320000,
+				"to": 323000
+			},
+			"text": " to stop a contract from running on, you know, could be a million nodes."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:23,000",
+				"to": "00:05:27,000"
+			},
+			"offsets": {
+				"from": 323000,
+				"to": 327000
+			},
+			"text": " It doesn't matter how many nodes are in the decentralized computation environment"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:27,000",
+				"to": "00:05:33,000"
+			},
+			"offsets": {
+				"from": 327000,
+				"to": 333000
+			},
+			"text": " if the trigger is attacked and compromised and doesn't happen, the contract won't trigger."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:33,000",
+				"to": "00:05:39,000"
+			},
+			"offsets": {
+				"from": 333000,
+				"to": 339000
+			},
+			"text": " So the approach that we advocated, this problem is twofold."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:39,000",
+				"to": "00:05:42,000"
+			},
+			"offsets": {
+				"from": 339000,
+				"to": 342000
+			},
+			"text": " The first part of it is decentralization."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:42,000",
+				"to": "00:05:47,000"
+			},
+			"offsets": {
+				"from": 342000,
+				"to": 347000
+			},
+			"text": " So we apply the idea of decentralization to oracles to blockchain but aware,"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:47,000",
+				"to": "00:05:54,000"
+			},
+			"offsets": {
+				"from": 347000,
+				"to": 354000
+			},
+			"text": " and we create an oracle network that is able to process and acquire the data"
+		},
+		{
+			"timestamps": {
+				"from": "00:05:54,000",
+				"to": "00:05:58,000"
+			},
+			"offsets": {
+				"from": 354000,
+				"to": 358000
+			},
+			"text": " using multiple independent node operators."
+		},
+		{
+			"timestamps": {
+				"from": "00:05:58,000",
+				"to": "00:06:03,000"
+			},
+			"offsets": {
+				"from": 358000,
+				"to": 363000
+			},
+			"text": " Those independent node operators can be selected by the person making the contract"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:03,000",
+				"to": "00:06:08,000"
+			},
+			"offsets": {
+				"from": 363000,
+				"to": 368000
+			},
+			"text": " and they can select as many node operators as they want to five, ten, fifty, a hundred."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:08,000",
+				"to": "00:06:13,000"
+			},
+			"offsets": {
+				"from": 368000,
+				"to": 373000
+			},
+			"text": " So how much decentralization they want at this level of middleware, they can now acquire"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:13,000",
+				"to": "00:06:18,000"
+			},
+			"offsets": {
+				"from": 373000,
+				"to": 378000
+			},
+			"text": " to give them guarantees about tamper proofness in terms of their inputs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:18,000",
+				"to": "00:06:23,000"
+			},
+			"offsets": {
+				"from": 378000,
+				"to": 383000
+			},
+			"text": " This ability to decentralize the blockchain middleware layer, the oracle layer,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:23,000",
+				"to": "00:06:27,000"
+			},
+			"offsets": {
+				"from": 383000,
+				"to": 387000
+			},
+			"text": " also gives you the ability to now contract with multiple data sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:27,000",
+				"to": "00:06:33,000"
+			},
+			"offsets": {
+				"from": 387000,
+				"to": 393000
+			},
+			"text": " In our opinion, it doesn't make as much sense for one node to use five data sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:33,000",
+				"to": "00:06:38,000"
+			},
+			"offsets": {
+				"from": 393000,
+				"to": 398000
+			},
+			"text": " You centralize the data at the level of the origin but it's still going through one point of failure."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:38,000",
+				"to": "00:06:46,000"
+			},
+			"offsets": {
+				"from": 398000,
+				"to": 406000
+			},
+			"text": " Now, once you have, for example, five separate decentralized oracles, they can all acquire data from five separate data sources."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:46,000",
+				"to": "00:06:49,000"
+			},
+			"offsets": {
+				"from": 406000,
+				"to": 409000
+			},
+			"text": " If that's something that your use case needs."
+		},
+		{
+			"timestamps": {
+				"from": "00:06:49,000",
+				"to": "00:06:53,000"
+			},
+			"offsets": {
+				"from": 409000,
+				"to": 413000
+			},
+			"text": " So there's going to be an entire spectrum of use cases that doing don't need this,"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:53,000",
+				"to": "00:06:59,000"
+			},
+			"offsets": {
+				"from": 413000,
+				"to": 419000
+			},
+			"text": " but in our opinion, the high value use cases are going to want to provide a high level of tamper proofness"
+		},
+		{
+			"timestamps": {
+				"from": "00:06:59,000",
+				"to": "00:07:04,000"
+			},
+			"offsets": {
+				"from": 419000,
+				"to": 424000
+			},
+			"text": " through decentralization, right, which is what we'd like to enable"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:04,000",
+				"to": "00:07:09,000"
+			},
+			"offsets": {
+				"from": 424000,
+				"to": 429000
+			},
+			"text": " so that the end to end setup is sufficiently secure for people to trust it,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:09,000",
+				"to": "00:07:14,000"
+			},
+			"offsets": {
+				"from": 429000,
+				"to": 434000
+			},
+			"text": " to put actual money into a smart contract for things to go to production."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:14,000",
+				"to": "00:07:19,000"
+			},
+			"offsets": {
+				"from": 434000,
+				"to": 439000
+			},
+			"text": " The other part of our approach is that it's open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:19,000",
+				"to": "00:07:24,000"
+			},
+			"offsets": {
+				"from": 439000,
+				"to": 444000
+			},
+			"text": " and we believe very strongly in open source and security reviews through open source,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:24,000",
+				"to": "00:07:30,000"
+			},
+			"offsets": {
+				"from": 444000,
+				"to": 450000
+			},
+			"text": " both on the level of the on-chain contracts and the off-chain implementation of the middleware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:30,000",
+				"to": "00:07:36,000"
+			},
+			"offsets": {
+				"from": 450000,
+				"to": 456000
+			},
+			"text": " And we believe that a shared large community of people working towards a blockchain middleware"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:36,000",
+				"to": "00:07:42,000"
+			},
+			"offsets": {
+				"from": 456000,
+				"to": 462000
+			},
+			"text": " that can solve this problem will make a blockchain middleware that payments processors,"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:42,000",
+				"to": "00:07:48,000"
+			},
+			"offsets": {
+				"from": 462000,
+				"to": 468000
+			},
+			"text": " data providers, e-signature providers, various API services will adopt"
+		},
+		{
+			"timestamps": {
+				"from": "00:07:48,000",
+				"to": "00:07:51,000"
+			},
+			"offsets": {
+				"from": 468000,
+				"to": 471000
+			},
+			"text": " because they don't want to build their own middleware."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:51,000",
+				"to": "00:07:56,000"
+			},
+			"offsets": {
+				"from": 471000,
+				"to": 476000
+			},
+			"text": " They just want to sell their services, and they constantly buy things that just let them sell their services."
+		},
+		{
+			"timestamps": {
+				"from": "00:07:56,000",
+				"to": "00:08:01,000"
+			},
+			"offsets": {
+				"from": 476000,
+				"to": 481000
+			},
+			"text": " So what we should do in our opinion is that if we as a community are interested in this problem,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:01,000",
+				"to": "00:08:06,000"
+			},
+			"offsets": {
+				"from": 481000,
+				"to": 486000
+			},
+			"text": " we should solve it in a decentralized manner that allows the people with the data resources,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:06,000",
+				"to": "00:08:14,000"
+			},
+			"offsets": {
+				"from": 486000,
+				"to": 494000
+			},
+			"text": " payment resources, e-signature resources, various other APIs to be able to provide those services to contracts,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:14,000",
+				"to": "00:08:18,000"
+			},
+			"offsets": {
+				"from": 494000,
+				"to": 498000
+			},
+			"text": " so those contracts can then do something much more meaningful, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:18,000",
+				"to": "00:08:28,000"
+			},
+			"offsets": {
+				"from": 498000,
+				"to": 508000
+			},
+			"text": " Now, the second part of our approach after decentralization in open source is the application of trusted hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:28,000",
+				"to": "00:08:33,000"
+			},
+			"offsets": {
+				"from": 508000,
+				"to": 513000
+			},
+			"text": " So trusted hardware provides certain tamper-proofness guarantees."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:33,000",
+				"to": "00:08:40,000"
+			},
+			"offsets": {
+				"from": 513000,
+				"to": 520000
+			},
+			"text": " In this case, applied to oracles, those guarantees extend as far as the node operator will not know what they are running."
+		},
+		{
+			"timestamps": {
+				"from": "00:08:40,000",
+				"to": "00:08:47,000"
+			},
+			"offsets": {
+				"from": 520000,
+				"to": 527000
+			},
+			"text": " The node operator will not be able to tamper with the data, the node operator will really only be able to turn off their node,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:47,000",
+				"to": "00:08:53,000"
+			},
+			"offsets": {
+				"from": 527000,
+				"to": 533000
+			},
+			"text": " and that will be an immediate signal, and with even basic reputation systems,"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:53,000",
+				"to": "00:08:58,000"
+			},
+			"offsets": {
+				"from": 533000,
+				"to": 538000
+			},
+			"text": " they won't participate in future inputs into high-value contracts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:08:58,000",
+				"to": "00:09:05,000"
+			},
+			"offsets": {
+				"from": 538000,
+				"to": 545000
+			},
+			"text": " So the application of trusted hardware, and its new recently evolved form in terms of Intel SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:05,000",
+				"to": "00:09:12,000"
+			},
+			"offsets": {
+				"from": 545000,
+				"to": 552000
+			},
+			"text": " is something we think has a lot of merit, and is an approach that can create a decentralized oracle network,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:12,000",
+				"to": "00:09:18,000"
+			},
+			"offsets": {
+				"from": 552000,
+				"to": 558000
+			},
+			"text": " where you can sufficiently trust the independent node operators to execute the acquisition of data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:18,000",
+				"to": "00:09:27,000"
+			},
+			"offsets": {
+				"from": 558000,
+				"to": 567000
+			},
+			"text": " and the execution of payments, while not knowing important things like your payment credentials,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:27,000",
+				"to": "00:09:31,000"
+			},
+			"offsets": {
+				"from": 567000,
+				"to": 571000
+			},
+			"text": " or what data they're executing."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:31,000",
+				"to": "00:09:37,000"
+			},
+			"offsets": {
+				"from": 571000,
+				"to": 577000
+			},
+			"text": " Another very large benefit is the ability for you to do off-chain computation in this same oracle network."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:37,000",
+				"to": "00:09:45,000"
+			},
+			"offsets": {
+				"from": 577000,
+				"to": 585000
+			},
+			"text": " So the oracle network can now become a layer of off-chain computation around the data it acquired"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:45,000",
+				"to": "00:09:50,000"
+			},
+			"offsets": {
+				"from": 585000,
+				"to": 590000
+			},
+			"text": " for intensive computations that you can't or don't want to do on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:09:50,000",
+				"to": "00:09:56,000"
+			},
+			"offsets": {
+				"from": 590000,
+				"to": 596000
+			},
+			"text": " So to dive a little deeper into trusted hardware, and why we think it's an interesting approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:09:56,000",
+				"to": "00:10:02,000"
+			},
+			"offsets": {
+				"from": 596000,
+				"to": 602000
+			},
+			"text": " the main premise underlying trusted hardware is that compared to previous approaches,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:02,000",
+				"to": "00:10:09,000"
+			},
+			"offsets": {
+				"from": 602000,
+				"to": 609000
+			},
+			"text": " like various HSMs, various data rights management modules, it has a smaller trusted computing base."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:09,000",
+				"to": "00:10:14,000"
+			},
+			"offsets": {
+				"from": 609000,
+				"to": 614000
+			},
+			"text": " So what that means is that privileged system code, like the OS and BIOS,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:14,000",
+				"to": "00:10:19,000"
+			},
+			"offsets": {
+				"from": 614000,
+				"to": 619000
+			},
+			"text": " are no longer attack vectors for something like an Intel SGX enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:19,000",
+				"to": "00:10:25,000"
+			},
+			"offsets": {
+				"from": 619000,
+				"to": 625000
+			},
+			"text": " What that means is that you can give even encrypted code into the enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:25,000",
+				"to": "00:10:33,000"
+			},
+			"offsets": {
+				"from": 625000,
+				"to": 633000
+			},
+			"text": " and it can decrypt it and run and make outputs, and the operator of the node running something like Intel SGX"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:33,000",
+				"to": "00:10:37,000"
+			},
+			"offsets": {
+				"from": 633000,
+				"to": 637000
+			},
+			"text": " can't tell what's going on."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:37,000",
+				"to": "00:10:42,000"
+			},
+			"offsets": {
+				"from": 637000,
+				"to": 642000
+			},
+			"text": " They can't acquire private information, and once again all they can really do is turn it off,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:42,000",
+				"to": "00:10:46,000"
+			},
+			"offsets": {
+				"from": 642000,
+				"to": 646000
+			},
+			"text": " which becomes immediately apparent."
+		},
+		{
+			"timestamps": {
+				"from": "00:10:46,000",
+				"to": "00:10:53,000"
+			},
+			"offsets": {
+				"from": 646000,
+				"to": 653000
+			},
+			"text": " Now the approach that we're adopting towards trusted hardware in the context of a decentralized oracle network"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:53,000",
+				"to": "00:10:58,000"
+			},
+			"offsets": {
+				"from": 653000,
+				"to": 658000
+			},
+			"text": " with the help of the various smart folks at IC3, who we're very lucky to be working with,"
+		},
+		{
+			"timestamps": {
+				"from": "00:10:58,000",
+				"to": "00:11:00,000"
+			},
+			"offsets": {
+				"from": 658000,
+				"to": 660000
+			},
+			"text": " is called Town Cryer."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:00,000",
+				"to": "00:11:09,000"
+			},
+			"offsets": {
+				"from": 660000,
+				"to": 669000
+			},
+			"text": " Town Cryer basically applies Intel SGX, which at this moment appears to be the leading trusted hardware approach,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:09,000",
+				"to": "00:11:14,000"
+			},
+			"offsets": {
+				"from": 669000,
+				"to": 674000
+			},
+			"text": " to the problem of secure tamper-proof oracles."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:14,000",
+				"to": "00:11:22,000"
+			},
+			"offsets": {
+				"from": 674000,
+				"to": 682000
+			},
+			"text": " It basically allows a contract to talk to an SGX enclave that then using the existing TLS scheme"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:22,000",
+				"to": "00:11:28,000"
+			},
+			"offsets": {
+				"from": 682000,
+				"to": 688000
+			},
+			"text": " can acquire data from a data source, and then provably return only the value that it acquired"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:28,000",
+				"to": "00:11:32,000"
+			},
+			"offsets": {
+				"from": 688000,
+				"to": 692000
+			},
+			"text": " from the enclave into the requesting contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:32,000",
+				"to": "00:11:38,000"
+			},
+			"offsets": {
+				"from": 692000,
+				"to": 698000
+			},
+			"text": " In this case the requesting contract is the Town Cryer contract, which then kind of is the on-chain bridge"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:38,000",
+				"to": "00:11:41,000"
+			},
+			"offsets": {
+				"from": 698000,
+				"to": 701000
+			},
+			"text": " from the enclave into the user contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:41,000",
+				"to": "00:11:50,000"
+			},
+			"offsets": {
+				"from": 701000,
+				"to": 710000
+			},
+			"text": " It's a very common oracle setup, but the differences that the on-clave provides this tamper-proof guarantee."
+		},
+		{
+			"timestamps": {
+				"from": "00:11:50,000",
+				"to": "00:11:57,000"
+			},
+			"offsets": {
+				"from": 710000,
+				"to": 717000
+			},
+			"text": " In our opinion, when you look at how do we make smart contracts useful, what is their unique value,"
+		},
+		{
+			"timestamps": {
+				"from": "00:11:57,000",
+				"to": "00:12:04,000"
+			},
+			"offsets": {
+				"from": 717000,
+				"to": 724000
+			},
+			"text": " it's the fact that they're tamper-proof, tamper-resistant, kind of these unstoppable financial agreements."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:04,000",
+				"to": "00:12:12,000"
+			},
+			"offsets": {
+				"from": 724000,
+				"to": 732000
+			},
+			"text": " And as tamper-proof as we can make something like the triggers of those agreements,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:12,000",
+				"to": "00:12:15,000"
+			},
+			"offsets": {
+				"from": 732000,
+				"to": 735000
+			},
+			"text": " it's probably the right direction to go in."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:15,000",
+				"to": "00:12:23,000"
+			},
+			"offsets": {
+				"from": 735000,
+				"to": 743000
+			},
+			"text": " And those two approaches, once again, one is decentralization and the other one is the application of trusted hardware."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:23,000",
+				"to": "00:12:29,000"
+			},
+			"offsets": {
+				"from": 743000,
+				"to": 749000
+			},
+			"text": " Now, how this would look if trusted hardware works and everything works out properly,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:29,000",
+				"to": "00:12:35,000"
+			},
+			"offsets": {
+				"from": 749000,
+				"to": 755000
+			},
+			"text": " is that a user shows up and says, \"I have a very large computation that needs data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:35,000",
+				"to": "00:12:40,000"
+			},
+			"offsets": {
+				"from": 755000,
+				"to": 760000
+			},
+			"text": " I'm going to give that computation into the relevant node."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:40,000",
+				"to": "00:12:46,000"
+			},
+			"offsets": {
+				"from": 760000,
+				"to": 766000
+			},
+			"text": " The relevant node is going to take that computation and run it in the on-clave inside an EVM.\""
+		},
+		{
+			"timestamps": {
+				"from": "00:12:46,000",
+				"to": "00:12:50,000"
+			},
+			"offsets": {
+				"from": 766000,
+				"to": 770000
+			},
+			"text": " So there'll be an EVM running inside the on-clave, the EVM will run the computation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:12:50,000",
+				"to": "00:12:55,000"
+			},
+			"offsets": {
+				"from": 770000,
+				"to": 775000
+			},
+			"text": " and it'll run it privately such that even the node operator can't acquire the data."
+		},
+		{
+			"timestamps": {
+				"from": "00:12:55,000",
+				"to": "00:13:01,000"
+			},
+			"offsets": {
+				"from": 775000,
+				"to": 781000
+			},
+			"text": " And then they'll return a query ID, the query ID is what's used to pay the contract,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:01,000",
+				"to": "00:13:04,000"
+			},
+			"offsets": {
+				"from": 781000,
+				"to": 784000
+			},
+			"text": " and it returns relevant information for payment."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:04,000",
+				"to": "00:13:11,000"
+			},
+			"offsets": {
+				"from": 784000,
+				"to": 791000
+			},
+			"text": " After that, what happens is, let's say one of the counterparties wants to know,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:11,000",
+				"to": "00:13:13,000"
+			},
+			"offsets": {
+				"from": 791000,
+				"to": 793000
+			},
+			"text": " what is this Oracle doing?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:13,000",
+				"to": "00:13:20,000"
+			},
+			"offsets": {
+				"from": 793000,
+				"to": 800000
+			},
+			"text": " What is this decentralized Oracle network or this set of oracles that are going to trigger the agreement that I'm a part of?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:20,000",
+				"to": "00:13:22,000"
+			},
+			"offsets": {
+				"from": 800000,
+				"to": 802000
+			},
+			"text": " What actions are they actually going to take?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:22,000",
+				"to": "00:13:27,000"
+			},
+			"offsets": {
+				"from": 802000,
+				"to": 807000
+			},
+			"text": " Can you please return to me the code that you're going to execute at time X?"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:27,000",
+				"to": "00:13:33,000"
+			},
+			"offsets": {
+				"from": 807000,
+				"to": 813000
+			},
+			"text": " At that point, the counterpartie, in this case Bob, receives back an encrypted blob,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:33,000",
+				"to": "00:13:36,000"
+			},
+			"offsets": {
+				"from": 813000,
+				"to": 816000
+			},
+			"text": " which he can decrypt because he has the relevant private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:36,000",
+				"to": "00:13:46,000"
+			},
+			"offsets": {
+				"from": 816000,
+				"to": 826000
+			},
+			"text": " So in this scenario, what's been done is that the creator of a smart contract has written in Oracle instructions,"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:46,000",
+				"to": "00:13:47,000"
+			},
+			"offsets": {
+				"from": 826000,
+				"to": 827000
+			},
+			"text": " in this case, Insility."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:47,000",
+				"to": "00:13:53,000"
+			},
+			"offsets": {
+				"from": 827000,
+				"to": 833000
+			},
+			"text": " So they've written Oracle instructions in a format they're already used to working with"
+		},
+		{
+			"timestamps": {
+				"from": "00:13:53,000",
+				"to": "00:13:55,000"
+			},
+			"offsets": {
+				"from": 833000,
+				"to": 835000
+			},
+			"text": " that compiles down to EVM bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:13:55,000",
+				"to": "00:14:01,000"
+			},
+			"offsets": {
+				"from": 835000,
+				"to": 841000
+			},
+			"text": " They've put those Oracle instructions into the enclave."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:01,000",
+				"to": "00:14:05,000"
+			},
+			"offsets": {
+				"from": 841000,
+				"to": 845000
+			},
+			"text": " They've set it up to trigger their contract without the node operator knowing."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:05,000",
+				"to": "00:14:10,000"
+			},
+			"offsets": {
+				"from": 845000,
+				"to": 850000
+			},
+			"text": " They've done this with anywhere from 5, 10, 15, 20 individual node operators,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:10,000",
+				"to": "00:14:16,000"
+			},
+			"offsets": {
+				"from": 850000,
+				"to": 856000
+			},
+			"text": " so that if one fails or if one is attacked, it doesn't compromise the execution of the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:16,000",
+				"to": "00:14:22,000"
+			},
+			"offsets": {
+				"from": 856000,
+				"to": 862000
+			},
+			"text": " And then they've done it in such a way that if their counterpartie wants to know what is the Oracle setup"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:22,000",
+				"to": "00:14:26,000"
+			},
+			"offsets": {
+				"from": 862000,
+				"to": 866000
+			},
+			"text": " we're using going to do at time X, let me randomly check that any time I would like."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:26,000",
+				"to": "00:14:33,000"
+			},
+			"offsets": {
+				"from": 866000,
+				"to": 873000
+			},
+			"text": " They can go submit the query ID and receive both the encrypted blob and an attestation from the enclave,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:33,000",
+				"to": "00:14:39,000"
+			},
+			"offsets": {
+				"from": 873000,
+				"to": 879000
+			},
+			"text": " proving to them that the execution that is supposed to happen at time X is going to happen."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:39,000",
+				"to": "00:14:47,000"
+			},
+			"offsets": {
+				"from": 879000,
+				"to": 887000
+			},
+			"text": " So at this point, we have multiple node operators executing a valuable off-chain operation,"
+		},
+		{
+			"timestamps": {
+				"from": "00:14:47,000",
+				"to": "00:14:55,000"
+			},
+			"offsets": {
+				"from": 887000,
+				"to": 895000
+			},
+			"text": " and we have them being able to prove it to the other parties in the transaction."
+		},
+		{
+			"timestamps": {
+				"from": "00:14:55,000",
+				"to": "00:15:03,000"
+			},
+			"offsets": {
+				"from": 895000,
+				"to": 903000
+			},
+			"text": " The benefits of this approach, in our opinion, are basically that you can have very scalable execution off-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:03,000",
+				"to": "00:15:12,000"
+			},
+			"offsets": {
+				"from": 903000,
+				"to": 912000
+			},
+			"text": " You can put, well, not anything, but definitely much more intensive computations into SGX,"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:12,000",
+				"to": "00:15:18,000"
+			},
+			"offsets": {
+				"from": 912000,
+				"to": 918000
+			},
+			"text": " and very possibly things you would never want to be publicly given under certain conditions of encryption or other things."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:18,000",
+				"to": "00:15:31,000"
+			},
+			"offsets": {
+				"from": 918000,
+				"to": 931000
+			},
+			"text": " Due to the privacy of SGX, you can basically acquire some amount of surety that the node operator that you've given the code to hasn't acquired it."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:31,000",
+				"to": "00:15:38,000"
+			},
+			"offsets": {
+				"from": 931000,
+				"to": 938000
+			},
+			"text": " And you can also do very interesting things such as have smart contracts control private keys."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:38,000",
+				"to": "00:15:46,000"
+			},
+			"offsets": {
+				"from": 938000,
+				"to": 946000
+			},
+			"text": " So how we think this is going to evolve is that you're going to write one big, one smart contract in two parts, right?"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:46,000",
+				"to": "00:15:50,000"
+			},
+			"offsets": {
+				"from": 946000,
+				"to": 950000
+			},
+			"text": " You're going to have an off-chain part, both of them written so that you're going to have an off-chain part."
+		},
+		{
+			"timestamps": {
+				"from": "00:15:50,000",
+				"to": "00:15:56,000"
+			},
+			"offsets": {
+				"from": 950000,
+				"to": 956000
+			},
+			"text": " The off-chain part is going to make all kinds of off-chain requests that look like this"
+		},
+		{
+			"timestamps": {
+				"from": "00:15:56,000",
+				"to": "00:16:05,000"
+			},
+			"offsets": {
+				"from": 956000,
+				"to": 965000
+			},
+			"text": " and require all kinds of computations. You're going to write it in Solidity or whatever language you'd like that goes down to EVM bytecode."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:05,000",
+				"to": "00:16:17,000"
+			},
+			"offsets": {
+				"from": 965000,
+				"to": 977000
+			},
+			"text": " You're going to run it into an SGX enclave, and then that SGX enclave will have capabilities such as the control of a private key."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:17,000",
+				"to": "00:16:27,000"
+			},
+			"offsets": {
+				"from": 977000,
+				"to": 987000
+			},
+			"text": " Or the ability for the SGX enclave to make a direct request to a native OS library for something as useful as randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:27,000",
+				"to": "00:16:36,000"
+			},
+			"offsets": {
+				"from": 987000,
+				"to": 996000
+			},
+			"text": " So the thinking here is that you don't learn a new language for Oracle or anything super specific."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:36,000",
+				"to": "00:16:42,000"
+			},
+			"offsets": {
+				"from": 996000,
+				"to": 1002000
+			},
+			"text": " You continue writing in the language that you're writing your contract in, but you have an off-chain portion."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:42,000",
+				"to": "00:16:48,000"
+			},
+			"offsets": {
+				"from": 1002000,
+				"to": 1008000
+			},
+			"text": " The off-chain portion relates to your acquisition of data and your computation around that data."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:48,000",
+				"to": "00:16:54,000"
+			},
+			"offsets": {
+				"from": 1008000,
+				"to": 1014000
+			},
+			"text": " And then the on-chain portion is what you have on-chain that is presumably triggered by that on-chain data,"
+		},
+		{
+			"timestamps": {
+				"from": "00:16:54,000",
+				"to": "00:16:57,000"
+			},
+			"offsets": {
+				"from": 1014000,
+				"to": 1017000
+			},
+			"text": " by the off-chain data that reaches it."
+		},
+		{
+			"timestamps": {
+				"from": "00:16:57,000",
+				"to": "00:17:02,000"
+			},
+			"offsets": {
+				"from": 1017000,
+				"to": 1022000
+			},
+			"text": " And then presumably you have another section to the contract where you have off-chain payments,"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:02,000",
+				"to": "00:17:09,000"
+			},
+			"offsets": {
+				"from": 1022000,
+				"to": 1029000
+			},
+			"text": " where you want the contract to send some kind of payment message to a payment network or a bank or any other system"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:09,000",
+				"to": "00:17:14,000"
+			},
+			"offsets": {
+				"from": 1029000,
+				"to": 1034000
+			},
+			"text": " that has their own blockchain middleware that represents their services."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:14,000",
+				"to": "00:17:25,000"
+			},
+			"offsets": {
+				"from": 1034000,
+				"to": 1045000
+			},
+			"text": " And then also if you want key resources such as randomness or any other number of resources that can be provided from a native OS library"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:25,000",
+				"to": "00:17:32,000"
+			},
+			"offsets": {
+				"from": 1045000,
+				"to": 1052000
+			},
+			"text": " that's been widely used and tested, you can acquire it by directly messaging within the on-clave."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:32,000",
+				"to": "00:17:40,000"
+			},
+			"offsets": {
+				"from": 1052000,
+				"to": 1060000
+			},
+			"text": " So there's entire subsets of what your off-chain computation can have within the on-clave by having it message"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:40,000",
+				"to": "00:17:47,000"
+			},
+			"offsets": {
+				"from": 1060000,
+				"to": 1067000
+			},
+			"text": " something like a native OS library from randomness, eliminating certain scenarios where you would ever need to use a service"
+		},
+		{
+			"timestamps": {
+				"from": "00:17:47,000",
+				"to": "00:17:55,000"
+			},
+			"offsets": {
+				"from": 1067000,
+				"to": 1075000
+			},
+			"text": " and you kind of get the tamper-proof guarantees both on the level of the data acquisition and also on the level of this native OS library."
+		},
+		{
+			"timestamps": {
+				"from": "00:17:55,000",
+				"to": "00:18:02,000"
+			},
+			"offsets": {
+				"from": 1075000,
+				"to": 1082000
+			},
+			"text": " Once again also very possibly run in multiple nodes and those nodes being able to come to decentralized consensus"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:02,000",
+				"to": "00:18:11,000"
+			},
+			"offsets": {
+				"from": 1082000,
+				"to": 1091000
+			},
+			"text": " about the execution of that computation and even the acquisition of randomness."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:11,000",
+				"to": "00:18:18,000"
+			},
+			"offsets": {
+				"from": 1091000,
+				"to": 1098000
+			},
+			"text": " Now the reason we're kind of applying this level of stringent security and tamper-proofness"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:18,000",
+				"to": "00:18:33,000"
+			},
+			"offsets": {
+				"from": 1098000,
+				"to": 1113000
+			},
+			"text": " is that the world we'd like to be in a year or two years relatively soon is the ability for a contract to reach out to another contract on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:18:33,000",
+				"to": "00:18:43,000"
+			},
+			"offsets": {
+				"from": 1113000,
+				"to": 1123000
+			},
+			"text": " And for that on-chain contract to represent an off-chain resource so that a smart contract developer no longer needs to learn APIs,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:43,000",
+				"to": "00:18:50,000"
+			},
+			"offsets": {
+				"from": 1123000,
+				"to": 1130000
+			},
+			"text": " they have an entire list of contracts on-chain, which we call chain links but you know are basically oracles,"
+		},
+		{
+			"timestamps": {
+				"from": "00:18:50,000",
+				"to": "00:19:03,000"
+			},
+			"offsets": {
+				"from": 1130000,
+				"to": 1143000
+			},
+			"text": " that represent every type of data, off-chain payment mechanism, e-signature, basically any web service that a web developer gets access to to build their application"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:03,000",
+				"to": "00:19:09,000"
+			},
+			"offsets": {
+				"from": 1143000,
+				"to": 1149000
+			},
+			"text": " is a service that a smart contract developer should be able to get access to from a contract on-chain."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:09,000",
+				"to": "00:19:18,000"
+			},
+			"offsets": {
+				"from": 1149000,
+				"to": 1158000
+			},
+			"text": " And that's the quick prototyping world we want to be in for people to build killer applications of smart contracts"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:18,000",
+				"to": "00:19:22,000"
+			},
+			"offsets": {
+				"from": 1158000,
+				"to": 1162000
+			},
+			"text": " by focusing on their core application and getting all the inputs and outputs they need,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:22,000",
+				"to": "00:19:27,000"
+			},
+			"offsets": {
+				"from": 1162000,
+				"to": 1167000
+			},
+			"text": " while making sure that those inputs and outputs are sufficiently secure,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:27,000",
+				"to": "00:19:35,000"
+			},
+			"offsets": {
+				"from": 1167000,
+				"to": 1175000
+			},
+			"text": " that their end users, the other parties in the agreement, trust that the source of the inputs, the method of input,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:35,000",
+				"to": "00:19:43,000"
+			},
+			"offsets": {
+				"from": 1175000,
+				"to": 1183000
+			},
+			"text": " the contract itself, the method of the output is sufficiently secure to trust that end-to-end setup."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:43,000",
+				"to": "00:19:52,000"
+			},
+			"offsets": {
+				"from": 1183000,
+				"to": 1192000
+			},
+			"text": " The world we want to avoid is one where you have a highly secure decentralized computation that is then triggered by highly insecure services,"
+		},
+		{
+			"timestamps": {
+				"from": "00:19:52,000",
+				"to": "00:19:58,000"
+			},
+			"offsets": {
+				"from": 1192000,
+				"to": 1198000
+			},
+			"text": " which once looked at, lead people to not put any real value in the contract."
+		},
+		{
+			"timestamps": {
+				"from": "00:19:58,000",
+				"to": "00:20:05,000"
+			},
+			"offsets": {
+				"from": 1198000,
+				"to": 1205000
+			},
+			"text": " That's the world we want to get away from, and the world of secure end-to-end smart contracts is the world we'd like to approach."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:05,000",
+				"to": "00:20:10,000"
+			},
+			"offsets": {
+				"from": 1205000,
+				"to": 1210000
+			},
+			"text": " If you'd like to know more, you can find the technical details in these two papers,"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:10,000",
+				"to": "00:20:17,000"
+			},
+			"offsets": {
+				"from": 1210000,
+				"to": 1217000
+			},
+			"text": " and we're always happy to discuss this, and we're also working on this in an open-source manner"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:17,000",
+				"to": "00:20:22,000"
+			},
+			"offsets": {
+				"from": 1217000,
+				"to": 1222000
+			},
+			"text": " and looking for interested folks to join us to solve this problem."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:22,000",
+				"to": "00:20:23,000"
+			},
+			"offsets": {
+				"from": 1222000,
+				"to": 1223000
+			},
+			"text": " So, thank you."
+		},
+		{
+			"timestamps": {
+				"from": "00:20:23,000",
+				"to": "00:20:33,000"
+			},
+			"offsets": {
+				"from": 1223000,
+				"to": 1233000
+			},
+			"text": " [music]"
+		},
+		{
+			"timestamps": {
+				"from": "00:20:33,000",
+				"to": "00:20:35,580"
+			},
+			"offsets": {
+				"from": 1233000,
+				"to": 1235580
+			},
+			"text": " (gentle music)"
+		}
+	]
+}
